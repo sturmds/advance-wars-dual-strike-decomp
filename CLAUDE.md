@@ -53,7 +53,8 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
-| `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint, dsd problems. |
+| `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint. |
+| `docs/tool-issues.md` | Problems in dsd and other tools, and our workarounds. |
 | `orig/AWRE.nds` | Symlink to your ROM dump. Gitignored. |
 | `extract/`, `build/`, `.cache/` | Generated output and downloaded tools. Gitignored. |
 
