@@ -4,6 +4,10 @@
     .data       start:0x02151c80 end:0x0216e020 kind:data align:32
     .bss        start:0x0216e020 end:0x022ad560 kind:bss align:32
 
+src/game/main/func_02002620.c:
+    complete
+    .text       start:0x02002620 end:0x02002694
+
 src/game/main/func_02003f44.c:
     complete
     .text       start:0x02003f44 end:0x02003f6c
