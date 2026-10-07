@@ -3,15 +3,20 @@
 
 ROM      := orig/AWRE.nds
 ROM_SHA1 := config/AWRE/rom.sha1
+MODULES_SHA1 := config/AWRE/modules.sha1
+DSD_CONFIG := config/AWRE/arm9/config.yaml
+OUT      := build/AWRE.nds
 PYTHON   ?= python3
-TOOLS    := .cache/tools
-DSD      := $(TOOLS)/dsd/dsd
-OBJDIFF  := $(TOOLS)/objdiff-cli/objdiff-cli
-SKREW    := $(TOOLS)/metroskrew
+NINJA    ?= ninja
+DSD      := .cache/tools/dsd/dsd
 
-.PHONY: all setup release check check-rom hooks clean
+.PHONY: all setup release check check-rom check-modules check-out hooks extract clean
 
-all: check-rom
+all: check-rom build.ninja
+	@$(NINJA)
+
+build.ninja: tools/configure.py tools.lock
+	@$(PYTHON) tools/configure.py
 
 # Downloads tools.lock entries into .cache/ once; offline after that.
 setup: hooks
@@ -22,15 +27,28 @@ hooks:
 		git config core.hooksPath hooks && echo "setup: git hooks installed (core.hooksPath=hooks)"; \
 	fi
 
+extract: check-rom build.ninja
+	@$(NINJA) extract/config.yaml
+
 check-rom:
 	@if [ ! -e $(ROM) ]; then \
 		echo "error: $(ROM) not found. Link your dump there, for example:" >&2; \
 		echo "  mkdir -p orig && ln -s /path/to/your/awds.nds $(ROM)" >&2; \
 		exit 1; \
 	fi
-	@sha1sum --quiet -c $(ROM_SHA1) || { echo "error: $(ROM) is not the US/AUS AWRE retail ROM" >&2; exit 1; }
+	@sha1sum --quiet --strict -c $(ROM_SHA1) || { echo "error: $(ROM) is not the US/AUS AWRE retail ROM" >&2; exit 1; }
 
-check: check-rom
+# Per-module checks first, so a mismatch names the module.
+check-modules:
+	@$(DSD) check modules -c $(DSD_CONFIG) 2>&1 | grep -v ': OK$$' | grep -v '^\[INFO \] Loading' || true
+	@sha1sum --quiet --strict -c $(MODULES_SHA1)
+
+check-out:
+	@echo "$$(cut -d' ' -f1 $(ROM_SHA1))  $(OUT)" | sha1sum --quiet --strict -c - \
+		|| { echo "error: $(OUT) does not match the retail ROM" >&2; exit 1; }
+	@echo "check: $(OUT) matches retail AWRE (SHA-1 $$(cut -d' ' -f1 $(ROM_SHA1)))"
+
+check: check-rom check-modules check-out
 
 release: setup
 	@$(MAKE) --no-print-directory all
@@ -38,4 +56,4 @@ release: setup
 	@echo "release: OK"
 
 clean:
-	rm -rf build
+	rm -rf build build.ninja .ninja_log .ninja_deps

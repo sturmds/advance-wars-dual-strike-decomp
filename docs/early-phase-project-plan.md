@@ -59,6 +59,8 @@ Done when: one compiler build and flag set reproduces at least one function, and
 
 Stop and reassess if no native-Linux compiler matches anything.
 
+Result (2026-10-06): mwccarm 2.0-72 (builds 72–82 are equivalent) with `-O4,p -proc arm946e -interworking` matches game, SDK and ITCM functions natively. Details in `docs/awre-facts.md`.
+
 ### 0.3 Matching rebuild with zero C
 
 - `configure.py` generates `build.ninja` from dsd's `config/AWRE/arm9/**` (`delinks.txt`, `symbols.txt`, `relocs.txt`).

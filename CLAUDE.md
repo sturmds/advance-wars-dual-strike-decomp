@@ -9,14 +9,21 @@ The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it
 ```sh
 mkdir -p orig && ln -s /path/to/awds.nds orig/AWRE.nds   # once; never copy the ROM into git
 make release    # setup if needed, build, then every check
-make check      # hash checks only
+make            # build build/AWRE.nds (ninja, incremental)
+make check      # per-module hashes, then the whole-ROM SHA-1
+make extract    # unpack orig/AWRE.nds into extract/ (make does this when needed)
 make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 ```
 
 - `make release` must work as the first command after cloning, and must work offline once `make setup` has run.
 - The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 and the MD5 match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068), checked 2026-10-06.
 - Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
-- Status: Milestone 0. The build currently only checks the ROM. Later steps add `configure.py` → `build.ninja`, delink and relink, and per-module plus whole-ROM hash checks.
+- System packages needed: `make`, `ninja-build`, `python3` (3.11+), `libc6:i386` (the metroskrew binaries are 32-bit).
+- Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 and the file system come from `extract/` unchanged.
+- `make check` runs `dsd check modules`, then `config/AWRE/modules.sha1`, then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
+- Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking`; linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
+- `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards.
+- Status: Milestone 0. The zero-C build matches retail. Next: the one-function workflow (plan 0.4).
 
 ## Hard rules
 
@@ -40,9 +47,11 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/early-phase-project-plan.md` | Milestones and open questions. |
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
+| `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
-| `config/AWRE/` | Our config: ROM hash now; dsd's `arm9/**` analysis files later. |
+| `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
+| `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint, dsd problems. |
 | `orig/AWRE.nds` | Symlink to your ROM dump. Gitignored. |
 | `extract/`, `build/`, `.cache/` | Generated output and downloaded tools. Gitignored. |
 
