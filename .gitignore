@@ -24,6 +24,9 @@ __pycache__/
 /.ninja_deps
 /objdiff.json
 
+# Agent worktrees
+/.claude/worktrees/
+
 # Generated or local-only, never in git
 /extracted/
 /work/

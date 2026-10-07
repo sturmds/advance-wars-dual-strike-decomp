@@ -57,4 +57,5 @@ This compiles the file, rebuilds the original's delinked object, and runs `objdi
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `make` | Build `build/AWRE.nds` |
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
+| `make progress` | Matched functions and bytes: game vs SDK, C vs assembly |
 | `ninja objdiff.json` | objdiff project file, for the objdiff GUI if you install it |
