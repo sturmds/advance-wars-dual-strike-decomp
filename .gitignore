@@ -1,0 +1,27 @@
+# Inputs and outputs that never enter git (D5).
+/orig/
+/extract/
+/build/
+/.cache/
+
+# Binary types refused by hooks/pre-commit as well.
+*.nds
+*.bin
+*.o
+*.exe
+
+# Python
+/.venv/
+__pycache__/
+*.pyc
+
+# Editor and OS
+*.swp
+*~
+.DS_Store
+
+# Generated or local-only, never in git
+/extracted/
+/work/
+/.claude/
+/assets/maps/*/

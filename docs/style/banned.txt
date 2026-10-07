@@ -1,0 +1,16 @@
+# One word or phrase per line, matched case-insensitively on word boundaries.
+# A trailing * matches any word ending (scaffold* matches scaffolds, scaffolding).
+load-bearing
+verdict*
+scaffold*
+settle*
+genuine*
+drift*
+wired
+wiring
+canonical
+surfac*
+honest*
+seamless*
+gating
+decisive*

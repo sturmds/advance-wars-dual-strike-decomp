@@ -1,0 +1,15 @@
+#!/bin/sh
+# Installed by `make setup` through core.hooksPath.
+# 1. Refuse files that must never enter git (D5).
+# 2. Run `make release`. It builds the working tree, not only the staged
+#    changes, so stage everything you built with before committing.
+set -eu
+
+bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)(orig|extract|build)/|\.(nds|bin|o|exe)$' || true)
+if [ -n "$bad" ]; then
+    echo "pre-commit: these paths must not enter git:" >&2
+    echo "$bad" | sed 's/^/  /' >&2
+    exit 1
+fi
+
+exec make release

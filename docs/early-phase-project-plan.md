@@ -41,7 +41,8 @@ Most of the work here is writing instructions, not code: the project tenets, `CL
   - Banned constructions, not just words. Above all the aphorism "X is the Y" ("the hash is the test", "the checksum is the test suite", "the linker script is the map"). Say what the thing does instead: "`make release` fails if any byte differs."
 - **Git hooks** in `hooks/`, installed by `make setup` through `core.hooksPath`:
   - `pre-commit`: refuses `.nds`, `.bin`, `.o`, `.exe` and anything under `orig/`, `extract/`, `build/`.
-  - `pre-commit` (or `pre-push`, to be decided): runs `make release`.
+  - `pre-commit` also runs `make release` (decided 2026-10-06; `pre-push` would never run, as there is no remote).
+  - `commit-msg`: refuses words from `docs/style/banned.txt`.
 
 Open question: what the first tenets are. Treat the list above as a draft for sturmds to rewrite.
 
@@ -129,8 +130,9 @@ Done when: one Lua-driven scenario runs the same on the retail ROM and on our bu
 
 ## Open questions
 
-- Draft tenets (0.1): sturmds to rewrite.
-- Hook placement: `make release` on `pre-commit` or `pre-push`. A full build on every commit may slow work down; ninja's incremental builds should keep it short.
+- ~~Hook placement~~: decided, `pre-commit`.
+- Draft tenets were committed as-is (2026-10-06); sturmds edits them over time.
+- ROM SHA-1 not yet compared with No-Intro.
 - How "interesting" functions are marked (M1).
 - Emulator choice (M3).
 - Timeboxes for each milestone: sturmds's call.
