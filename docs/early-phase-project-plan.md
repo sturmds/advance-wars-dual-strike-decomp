@@ -83,6 +83,8 @@ Done when (M0 expected outcome): with a valid ROM at the gitignored path, `make 
 
 Done when: all three match through the real `make` pipeline. If the Thumb function only matches as hand-written assembly, record the evidence and continue (D6 "go with caveat").
 
+Result (2026-10-06): done, with the caveat. `PackNibblePairs` (game, ARM, only matches mwccarm 2.0 builds 72–82), `FS_GetOverlayFileID` (SDK, with a relocation to the ROM archive) and `MTX_RotX43_` (SDK Thumb) match through `make release`. AWRE's game code contains no Thumb at all; its only Thumb functions are hand-written SDK assembly, so the Thumb proof is an `asm void` function in a `.c` file. Loop documented in `docs/workflow.md`.
+
 ## Milestone 1: Initial decomp
 
 M0 gives a working repo. M1 starts real decompilation and tunes the automated loop on a small, chosen set of functions before scaling it.

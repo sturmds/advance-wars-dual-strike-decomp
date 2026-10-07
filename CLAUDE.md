@@ -23,7 +23,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - `make check` runs `dsd check modules`, then `config/AWRE/modules.sha1`, then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
 - Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking`; linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
 - `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards.
-- Status: Milestone 0. The zero-C build matches retail. Next: the one-function workflow (plan 0.4).
+- Status: Milestone 0 done (2026-10-06). The build matches retail with three functions in C: `PackNibblePairs` (game, ARM), `FS_GetOverlayFileID` (SDK, with a relocation), `MTX_RotX43_` (SDK Thumb assembly).
 
 ## Hard rules
 
@@ -48,6 +48,8 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
 | `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
+| `tools/fn.py`, `docs/workflow.md` | One-function loop: show, diff. |
+| `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
@@ -59,7 +61,7 @@ Reference repos in `~/repos/` are read-only: `pokeplatinum` (make wrapper, tool 
 
 ## Decompiling one function
 
-Written in plan step 0.4. Outline: pick a function, write C, compile that one file, diff against the original with `objdiff-cli` (relocations included), iterate until the diff is empty, run the tenets review, `make release`, commit.
+See `docs/workflow.md`. In short: `tools/fn.py show` → add a `delinks.txt` entry and rename symbols → write C in `src/` → `tools/fn.py diff` until 100% → mark the file `complete` → tenets review → `make release` → commit.
 
 ## Writing
 

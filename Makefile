@@ -10,12 +10,14 @@ PYTHON   ?= python3
 NINJA    ?= ninja
 DSD      := .cache/tools/dsd/dsd
 
-.PHONY: all setup release check check-rom check-modules check-out hooks extract clean
 
-all: check-rom build.ninja
+.PHONY: all configure setup release check check-rom check-modules check-out hooks extract clean
+
+all: check-rom configure
 	@$(NINJA)
 
-build.ninja: tools/configure.py tools.lock
+# Cheap, and rewrites build.ninja only when it changes.
+configure:
 	@$(PYTHON) tools/configure.py
 
 # Downloads tools.lock entries into .cache/ once; offline after that.
@@ -27,7 +29,7 @@ hooks:
 		git config core.hooksPath hooks && echo "setup: git hooks installed (core.hooksPath=hooks)"; \
 	fi
 
-extract: check-rom build.ninja
+extract: check-rom configure
 	@$(NINJA) extract/config.yaml
 
 check-rom:

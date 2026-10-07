@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Write build.ninja. Run from the Makefile; paths are relative to the repo root.
 
-Pipeline (M0, no C yet):
+Pipeline:
   orig/AWRE.nds --dsd rom extract--> extract/
-  config/AWRE/arm9 + extract --dsd delink--> build/delinks/*.o
+  config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
+  src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
-  objects --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
+  compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
   ELF --dsd rom config--> build/build/rom_config.yaml (ARM7 and files from extract/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
 """
@@ -25,7 +26,7 @@ SKREW_BIN = ".cache/tools/metroskrew/bin"
 # for DS 1.2 base package.
 CC = f"{SKREW_BIN}/mwccarm-2.0-72.exe"
 LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
-CFLAGS = "-O4,p -proc arm946e -interworking"
+CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
 
 
@@ -34,9 +35,29 @@ def config_inputs() -> list[str]:
     return [p.relative_to(ROOT).as_posix() for p in files]
 
 
+def delinks_sources() -> list[str]:
+    """Every file path in a delinks.txt that exists under src/. All of them
+    are compiled, so a work-in-progress file can be diffed. Only the ones
+    marked `complete` replace the original bytes in the link (dsd lcf
+    decides that)."""
+    sources = []
+    for delinks in sorted((ROOT / CONFIG).rglob("delinks.txt")):
+        for line in delinks.read_text().splitlines():
+            if line and not line[0].isspace() and line.endswith(":"):
+                if (ROOT / line[:-1]).exists():
+                    sources.append(line[:-1])
+    return sources
+
+
+def obj_of(src: str) -> str:
+    return "build/" + str(Path(src).with_suffix(".o"))
+
+
 def main() -> int:
     tools = tomllib.loads((ROOT / "tools.lock").read_text())
     cfg = (CONFIG / "config.yaml").as_posix()
+    sources = delinks_sources()
+    objs = [obj_of(src) for src in sources]
     lines = [
         "ninja_required_version = 1.10",
         f"# dsd {tools['dsd']['version']}, metroskrew {tools['metroskrew']['version']}",
@@ -47,14 +68,20 @@ def main() -> int:
         f"ld = {LD}",
         f"ldflags = {LDFLAGS}",
         "",
-        "rule configure",
-        "  command = $python tools/configure.py",
-        "  description = CONFIGURE",
-        "  generator = 1",
-        "",
         "rule extract",
         "  command = rm -rf extract && $dsd rom extract -r $in -o extract > /dev/null",
         "  description = EXTRACT $in",
+        "",
+        # -gccdep -MD writes build/src/x.d next to the object.
+        "rule cc",
+        "  command = $cc -c $cflags -gccdep -MD -o $out $in",
+        "  description = CC $in",
+        "  depfile = $out_d",
+        "  deps = gcc",
+        "",
+        "rule objdiff_json",
+        "  command = $dsd objdiff -c $cfg -o . > /dev/null",
+        "  description = OBJDIFF JSON",
         "",
         "rule delink",
         "  command = rm -rf build/delinks && $dsd delink -c $cfg > /dev/null && touch $out",
@@ -81,8 +108,6 @@ def main() -> int:
         "  command = $python tools/fix_header.py $in orig/AWRE.nds $out",
         "  description = FIX HEADER $out",
         "",
-        "build build.ninja: configure tools/configure.py tools.lock",
-        "",
         "build extract/config.yaml: extract orig/AWRE.nds",
         "",
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
@@ -91,7 +116,10 @@ def main() -> int:
         "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld",
+        f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld {' '.join(objs)}",
+        "",
+        f"build objdiff.json: objdiff_json build/delink.stamp",
+        f"  cfg = {cfg}",
         "",
         "build build/build/rom_config.yaml: romconfig build/arm9.elf | $dsd",
         f"  cfg = {cfg}",
@@ -103,7 +131,14 @@ def main() -> int:
         "default build/AWRE.nds",
         "",
     ]
-    (ROOT / "build.ninja").write_text("\n".join(lines))
+    for src, obj in zip(sources, objs):
+        lines += [f"build {obj}: cc {src}", f"  out_d = {obj[:-2]}.d", ""]
+    # The Makefile runs this before every build (new src/ files have to be
+    # picked up); writing only on change keeps ninja from redoing work.
+    text = "\n".join(lines)
+    out = ROOT / "build.ninja"
+    if not out.exists() or out.read_text() != text:
+        out.write_text(text)
     return 0
 
 
