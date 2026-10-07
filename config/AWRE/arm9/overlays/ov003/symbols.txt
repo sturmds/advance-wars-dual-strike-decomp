@@ -8,7 +8,7 @@ func_ov003_02350eb0 kind:function(arm,size=0x94) addr:0x02350eb0
 func_ov003_02350f44 kind:function(arm,size=0x268) addr:0x02350f44
 func_ov003_023511ac kind:function(arm,size=0x634) addr:0x023511ac
 func_ov003_023517e0 kind:function(arm,size=0x4) addr:0x023517e0
-func_ov003_023517e4 kind:function(arm,size=0x30) addr:0x023517e4
+Ov003_RandNext kind:function(arm,size=0x30) addr:0x023517e4
 func_ov003_02351814 kind:function(arm,size=0x10) addr:0x02351814
 func_ov003_02351824 kind:function(arm,size=0x70) addr:0x02351824
 func_ov003_02351894 kind:function(arm,size=0xb0) addr:0x02351894
@@ -355,7 +355,7 @@ data_ov003_02365928 kind:data(any) addr:0x02365928
 data_ov003_02365960 kind:data(any) addr:0x02365960
 data_ov003_023659d4 kind:data(any) addr:0x023659d4
 data_ov003_02365a64 kind:data(any) addr:0x02365a64
-data_ov003_02365b00 kind:bss addr:0x02365b00
+gOv003RandState kind:bss addr:0x02365b00
 data_ov003_02365b04 kind:bss addr:0x02365b04
 data_ov003_02365b0c kind:bss addr:0x02365b0c
 data_ov003_02365b10 kind:bss addr:0x02365b10
