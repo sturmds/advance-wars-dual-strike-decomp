@@ -1,8 +1,8 @@
 # Inputs and outputs that never enter git (D5).
-/orig/
+/orig
 /extract/
 /build/
-/.cache/
+/.cache
 
 # Binary types refused by hooks/pre-commit as well.
 *.nds

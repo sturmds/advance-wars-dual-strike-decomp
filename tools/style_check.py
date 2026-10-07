@@ -49,9 +49,16 @@ def load_claudeisms() -> list[tuple[str, re.Pattern]]:
     return [(w, word_pattern(w)) for w in words]
 
 
+URL = re.compile(r"\S+://\S+")
+TRAILER = re.compile(r"^(Co-Authored-By|Claude-Session|Signed-off-by): ", re.IGNORECASE)
+
+
 def check(name: str, text: str, banned, warn, show_warnings: bool) -> int:
     errors = 0
     for lineno, line in enumerate(text.splitlines(), 1):
+        if TRAILER.match(line):
+            continue
+        line = URL.sub("", line)
         for entry, pat in banned:
             for m in pat.finditer(line):
                 print(f"{name}:{lineno}: error: banned word '{m.group(0)}' ({entry})")

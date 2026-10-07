@@ -44,7 +44,7 @@ This compiles the file, rebuilds the original's delinked object, and runs `objdi
 
 ## 5. Mark it complete and review
 
-1. Add `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
+1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
 2. Run the review pass (`.claude/skills/tenets-review/`): names, types, no magic offsets, comments only where the shape is odd, plain writing.
 3. `make release`. It fails if any module or the whole ROM differs from retail.
 4. Commit. The hooks run `make release` again and check the message.
