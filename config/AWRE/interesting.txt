@@ -1,0 +1,2 @@
+# Functions sturmds wants decompiled first. One symbol name or 0x address per
+# line; `tools/fn.py pick` lists these before anything else. Comments after #.
