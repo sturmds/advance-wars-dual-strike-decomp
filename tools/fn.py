@@ -284,8 +284,8 @@ def cmd_show(args) -> int:
         obj = ROOT / "build/delinks" / Path(fi[0]).with_suffix(".o")
     else:
         gaps = sorted((ROOT / "build/delinks").glob(f"_dsd_gap@{f.module}_*.o"))
-        obj = next((g for g in gaps if f.name in subprocess.run(
-            ["arm-none-eabi-nm", str(g)], capture_output=True, text=True).stdout), None)
+        obj = next((g for g in gaps if re.search(rf" [Tt] {re.escape(f.name)}$", subprocess.run(
+            ["arm-none-eabi-nm", "--defined-only", str(g)], capture_output=True, text=True).stdout, re.M)), None)
     if obj is None or not obj.exists():
         sys.exit("error: no delinked object yet. Run `make` first.")
     print("\n".join(objdump(obj, f.name, f.mode)))

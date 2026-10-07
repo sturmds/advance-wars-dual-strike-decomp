@@ -24,3 +24,4 @@ How the top-level Claude session runs batches of agents, each matching one funct
 
 | Date | Functions | Matched | Notes |
 |---|---|---|---|
+| 2026-10-06 pilot | func_02003f6c, func_0200a7b0, func_02080440, func_ov003_023517e4, func_02066818 | 5/5 | All matched in 1–2 rounds, about 1.5 min and 50k tokens each. Fixes from feedback: `fn.py finish` (sandbox refuses the word "complete"), one command per call, no shared scratch files, `.gitignore` for symlinks, trailer-aware style check, `show` on large functions. |

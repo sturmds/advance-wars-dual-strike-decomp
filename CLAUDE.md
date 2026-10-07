@@ -48,7 +48,8 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
 | `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
-| `tools/fn.py`, `docs/workflow.md` | One-function loop: show, diff. |
+| `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. |
+| `docs/loop.md`, `.claude/skills/decomp-function/`, `tools/apply_commit.py`, `tools/wt_setup.sh` | Automated loop: agents in worktrees, replaying their commits onto mainline. |
 | `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
