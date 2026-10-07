@@ -4,13 +4,18 @@
 ROM      := orig/AWRE.nds
 ROM_SHA1 := config/AWRE/rom.sha1
 PYTHON   ?= python3
+TOOLS    := .cache/tools
+DSD      := $(TOOLS)/dsd/dsd
+OBJDIFF  := $(TOOLS)/objdiff-cli/objdiff-cli
+SKREW    := $(TOOLS)/metroskrew
 
 .PHONY: all setup release check check-rom hooks clean
 
 all: check-rom
 
-# Fetching pinned tools into .cache/ arrives with tools.lock (plan 0.2).
+# Downloads tools.lock entries into .cache/ once; offline after that.
 setup: hooks
+	@$(PYTHON) tools/setup.py
 
 hooks:
 	@if [ "$$(git config --get core.hooksPath)" != hooks ]; then \

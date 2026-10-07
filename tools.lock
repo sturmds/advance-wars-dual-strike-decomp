@@ -1,0 +1,23 @@
+# Pinned tools. tools/setup.py downloads each one into .cache/ once and
+# checks its SHA-256 on every `make setup`. To upgrade: change version, url
+# and sha256 together, then run `make release`.
+
+[dsd]
+version = "0.12.1"
+url = "https://github.com/AetiasHax/ds-decomp/releases/download/v0.12.1/dsd-linux-x86_64"
+sha256 = "256edde804dd8e5d7bc4c0e4187f85244ee4cd1f42bb427502e01fda6af43ceb"
+type = "binary"
+
+[objdiff-cli]
+version = "3.8.2"
+url = "https://github.com/encounter/objdiff/releases/download/v3.8.2/objdiff-cli-linux-x86_64"
+sha256 = "e5445089a6f707e30cb5e02992451b604619cedfd2660ee2373a86bfefd9e718"
+type = "binary"
+
+# Metrowerks CodeWarrior for DS compilers, relinked as native Linux ELF
+# binaries. The files keep their .exe names but need no wine.
+[metroskrew]
+version = "0.1.3"
+url = "https://github.com/mid-kid/metroskrew/releases/download/0.1.3/metroskrew-linux.tar.xz"
+sha256 = "2fec5ba308690a25157afc532ed87411a413501d43d85892ae4bfb9eb3975790"
+type = "tar.xz"

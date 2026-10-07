@@ -10,12 +10,13 @@ The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it
 mkdir -p orig && ln -s /path/to/awds.nds orig/AWRE.nds   # once; never copy the ROM into git
 make release    # setup if needed, build, then every check
 make check      # hash checks only
-make setup      # install git hooks; later also fetch the tools in tools.lock
+make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 ```
 
 - `make release` must work as the first command after cloning, and must work offline once `make setup` has run.
 - The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 has not yet been compared with the No-Intro entry, so treat it as provisional until sturmds confirms.
-- Status: Milestone 0. The build currently only checks the ROM. Later steps add `tools.lock`, `configure.py` → `build.ninja`, delink and relink, and per-module plus whole-ROM hash checks.
+- Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
+- Status: Milestone 0. The build currently only checks the ROM. Later steps add `configure.py` → `build.ninja`, delink and relink, and per-module plus whole-ROM hash checks.
 
 ## Hard rules
 
@@ -38,6 +39,7 @@ make setup      # install git hooks; later also fetch the tools in tools.lock
 | `.claude/skills/tenets-review/` | The review pass. Run it before offering any generated change. |
 | `docs/early-phase-project-plan.md` | Milestones and open questions. |
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
+| `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
 | `config/AWRE/` | Our config: ROM hash now; dsd's `arm9/**` analysis files later. |
