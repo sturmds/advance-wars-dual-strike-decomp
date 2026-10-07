@@ -45,7 +45,7 @@ What we know about the US/AUS ROM, from plan step 0.2 (2026-10-06). Everything h
 
 ## dsd problems and workarounds
 
-- `dsd init` (0.12.0 and 0.12.1) aborts: "Local function call from 0x021347a6 in ARM9 main to 0x021341aa leads to no function". Its function search runs past the end of `.text` into `.rodata` graphics data. `tools/dsd_init.py` works around it by zeroing 0x02129760–0x0212b860 in a temporary copy. Result: no relocations in that `.rodata` range. That does not affect matching. It matters for moving code later (plan M3).
+- `dsd init` (0.12.0 and 0.12.1) aborts: "Local function call from 0x021347a6 in ARM9 main to 0x021341aa leads to no function". Its function search runs past the end of `.text` into `.rodata` graphics data. `tools/dsd_init.py` works around it by zeroing 0x02129760–0x0212b860 in a temporary copy. That range held 29 real pointers, all in the MSL exception table at 0x02129768 (28 function entries plus one pointer to action data at 0x02129760). They were added to `relocs.txt` by hand on 2026-10-06, so the workaround leaves no known gap. The other pointer-like words in the range (`0x01ff8888`, `0x01ff9999`, `0x01ffffff`, …) fall outside ITCM's 0x01ff8000–0x01ffde80 or look like fill patterns, so they are data.
 - 28 warnings about calls into the middle of functions, all in runtime and floating-point assembly. dsd adds labels for them.
 - `dsd fix find-exceptix` reports "__FindExceptionTable not found".
 - `dsd rom build` needs an ARM7 BIOS dump to compute the secure-area CRC. We don't use one: `tools/fix_header.py` checks that the secure area is unchanged, copies the original CRC, and recomputes the header CRC.

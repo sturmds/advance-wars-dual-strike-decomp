@@ -5953,6 +5953,7 @@ func_021296b8 kind:function(arm,size=0x58) addr:0x021296b8
 func_02129710 kind:function(arm,size=0x38) addr:0x02129710
 func_02129748 kind:function(arm,size=0xc) addr:0x02129748
 func_02129754 kind:function(arm,size=0xc) addr:0x02129754
+data_02129760 kind:data(any) addr:0x02129760
 data_021298b8 kind:data(any) addr:0x021298b8
 data_02129a38 kind:data(any) addr:0x02129a38
 data_02129bb8 kind:data(any) addr:0x02129bb8

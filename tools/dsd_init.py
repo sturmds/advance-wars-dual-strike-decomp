@@ -8,9 +8,10 @@ past that, this script runs `dsd init` on a temporary copy of the extract
 with 0x2100 bytes zeroed at 0x02129760. Then it points the config at the
 real extract and writes main's real code hash.
 
-Side effect: dsd sees no pointers in .rodata 0x02129760-0x0212b860, so the
-config has no relocations there. The bytes still match because they are
-copied as they are; it only matters once code has to move (plan M3).
+Side effect: dsd sees no pointers in .rodata 0x02129760-0x0212b860. The
+only real ones there are the 29 in the exception table at 0x02129768; they
+were added to relocs.txt by hand. A --force rerun drops them again, so
+restore them from git afterwards.
 
 Usage: dsd_init.py [--force]
 """
