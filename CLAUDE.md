@@ -14,7 +14,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 ```
 
 - `make release` must work as the first command after cloning, and must work offline once `make setup` has run.
-- The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 has not yet been compared with the No-Intro entry, so treat it as provisional until sturmds confirms.
+- The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 and the MD5 match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068), checked 2026-10-06.
 - Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
 - Status: Milestone 0. The build currently only checks the ROM. Later steps add `configure.py` → `build.ninja`, delink and relink, and per-module plus whole-ROM hash checks.
 

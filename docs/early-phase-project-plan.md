@@ -132,7 +132,7 @@ Done when: one Lua-driven scenario runs the same on the retail ROM and on our bu
 
 - ~~Hook placement~~: decided, `pre-commit`.
 - Draft tenets were committed as-is (2026-10-06); sturmds edits them over time.
-- ROM SHA-1 not yet compared with No-Intro.
+- ~~ROM SHA-1 source~~: matches TASVideos' "Good" `AWRE` entry (SHA-1 and MD5), checked 2026-10-06.
 - How "interesting" functions are marked (M1).
 - Emulator choice (M3).
 - Timeboxes for each milestone: sturmds's call.
