@@ -14,5 +14,7 @@ typedef s32 fx32;
 #define FX32_ONE 0x1000
 
 #define NULL ((void *)0)
+#define TRUE 1
+#define FALSE 0
 
 #endif
