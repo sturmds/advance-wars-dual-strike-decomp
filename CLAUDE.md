@@ -56,6 +56,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
 | `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint. |
 | `docs/tool-issues.md` | Problems in dsd and other tools, and our workarounds. |
+| `docs/issues/` | Issue tracker: one file per issue, index in `README.md`. Add an issue for any problem found and not fixed in the same change. |
 | `orig/AWRE.nds` | Symlink to your ROM dump. Gitignored. |
 | `extract/`, `build/`, `.cache/` | Generated output and downloaded tools. Gitignored. |
 

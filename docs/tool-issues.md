@@ -4,6 +4,8 @@ Problems found in third-party tools, with what we do about them. Kept local; not
 
 ## dsd: `init` aborts on AWRE
 
+Tracked as `docs/issues/0007-dsd-init-abort.md`.
+
 - **Versions:** dsd 0.12.0 and 0.12.1 (`tools.lock`). The unreleased commits after v0.12.1 at `c408063` change the disassembler, not `init`'s analysis, so a source build is not expected to help (not tested: building it needs cargo).
 - **Command:** `dsd init -r extract/config.yaml -o <out> -b build`
 - **Error:**
