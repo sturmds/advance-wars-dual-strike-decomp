@@ -13,7 +13,7 @@ extern MapHeader Ov000_gMapHeaders[];
 extern u8 data_02167d30[5][2];
 extern u32 data_0229eaec;
 
-u8 (*func_020e7fa8(int mode))[2];
+u8 (*GetCoPicksForMode(int mode))[2];
 void SetupCoSelection(void);
 int func_021039e4(void);
 int func_020c3d08(int mapId);
@@ -24,7 +24,7 @@ void func_020e817c(void);
 /* Fills the front and back CO of players 1-4 for the map being started.
  * unk_58 picks the source (meaning of its values unknown): the map
  * header (cases 1 and 3; case 0 also lets the first players pick), or
- * the CO selection buffer from func_020e7fa8, falling back to
+ * the CO selection buffer from GetCoPicksForMode, falling back to
  * data_02167d30 when the chosen CO is not unlocked. */
 void Map_SetupPlayerCos(void)
 {
@@ -36,7 +36,7 @@ void Map_SetupPlayerCos(void)
     int clearPlayer;
     int clearSlot;
 
-    cos = func_020e7fa8(STATE->unk_58);
+    cos = GetCoPicksForMode(STATE->unk_58);
     SetupCoSelection();
 
     for (clearPlayer = 1; clearPlayer < 5; clearPlayer++) {

@@ -4351,7 +4351,7 @@ PartnerBoost2 kind:function(arm,size=0x2c) addr:0x020e7eb4
 CheckSkillsEquipped kind:function(arm,size=0x38) addr:0x020e7ee0
 func_020e7f18 kind:function(arm,size=0x18) addr:0x020e7f18
 func_020e7f30 kind:function(arm,size=0x78) addr:0x020e7f30
-func_020e7fa8 kind:function(arm,size=0x4c) addr:0x020e7fa8
+GetCoPicksForMode kind:function(arm,size=0x4c) addr:0x020e7fa8
 func_020e7ff4 kind:function(arm,size=0x188) addr:0x020e7ff4
 func_020e817c kind:function(arm,size=0x12c) addr:0x020e817c
 Map_SetupPlayerCos kind:function(arm,size=0x328) addr:0x020e82a8
@@ -8629,7 +8629,7 @@ data_022900b8 kind:bss addr:0x022900b8
 data_022900bc kind:bss addr:0x022900bc
 data_02290118 kind:bss addr:0x02290118
 data_02290128 kind:bss addr:0x02290128
-data_02290198 kind:bss addr:0x02290198
+gCoPicksMode0 kind:bss addr:0x02290198
 data_022901a4 kind:bss addr:0x022901a4
 data_0229024e kind:bss addr:0x0229024e
 data_02290256 kind:bss addr:0x02290256
@@ -8641,9 +8641,9 @@ data_02290722 kind:bss addr:0x02290722
 data_02290723 kind:bss addr:0x02290723
 data_02290724 kind:bss addr:0x02290724
 data_02290725 kind:bss addr:0x02290725
-data_02290730 kind:bss addr:0x02290730
-data_0229073a kind:bss addr:0x0229073a
-data_02290744 kind:bss addr:0x02290744
+gCoPicksMode1 kind:bss addr:0x02290730
+gCoPicksMode2 kind:bss addr:0x0229073a
+gCoPicksMode3 kind:bss addr:0x02290744
 data_02290750 kind:bss addr:0x02290750
 data_02290754 kind:bss addr:0x02290754
 data_02290758 kind:bss addr:0x02290758
