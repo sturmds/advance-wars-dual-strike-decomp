@@ -38,6 +38,7 @@
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
+#define SKILL_RANK_SOUL_OF_HACHI    0x4a
 
 BOOL CheckSkillsEquipped(const u32 *skills, int id);
 

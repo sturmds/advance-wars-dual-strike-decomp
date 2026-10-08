@@ -15,6 +15,9 @@ typedef struct MapTiles {
 #define MAP_TILE_TERRAIN(t) ((t) & 0x1f)
 #define MAP_TILE_OWNER(t)   (((t) & 0xe0) >> 5)
 
+/* Terrain ids (MAP_TILE_TERRAIN); add more as code uses them. */
+#define TERRAIN_CITY 6
+
 /* Reached through Unk_02080440.unk_48[i]->unk_1c4. */
 typedef struct Unk_02080440_1c4 {
     u8 pad_00[0x1a];
@@ -37,7 +40,8 @@ typedef struct Unk_02080440_1c4 {
 typedef struct Unk_02080440_48 {
     u8 pad_00[2];
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
-    u8 pad_04[0x3e - 0x04];
+    u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
+    u8 pad_06[0x3e - 0x06];
     s16 unk_3e;
     s16 unk_40;
     s16 unk_42;

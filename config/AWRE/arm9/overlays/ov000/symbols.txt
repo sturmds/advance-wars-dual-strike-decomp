@@ -966,7 +966,7 @@ Ov000_gJakeSCOP kind:data(any) addr:0x022f4518 ambiguous
 data_ov000_022f4538 kind:data(any) addr:0x022f4538
 Ov000_gKindleCOP kind:data(any) addr:0x022f4558 ambiguous
 data_ov000_022f4578 kind:data(any) addr:0x022f4578 ambiguous
-data_ov000_022f4598 kind:data(any) addr:0x022f4598 ambiguous
+Ov000_gGroundDeployTerrain kind:data(any) addr:0x022f4598 ambiguous
 Ov000_gUrbanTerrain kind:data(any) addr:0x022f45b8 ambiguous
 data_ov000_022f45d8 kind:data(any) addr:0x022f45d8 ambiguous
 data_ov000_022f45f8 kind:data(any) addr:0x022f45f8
