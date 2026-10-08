@@ -26,7 +26,10 @@ typedef struct MapHeader {
     u32 unk_20;
     u16 playerCount;
     u16 unk_26;                        /* "map case" */
-    u8 unk_28[0x18];
+    u8 unk_28[0x08];
+    u16 unk_30[2];                     /* indexed by func_021039e4 */
+    u16 unk_34[2];                     /* indexed by func_021039e4 */
+    u8 unk_38[0x08];
     u32 unk_40;
     const void *mapData;               /* LZ77: width, height, then u16 tiles */
     const void *hardMapData;
