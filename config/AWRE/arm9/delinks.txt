@@ -339,6 +339,10 @@ src/game/main/skills/check_skills_equipped.c:
     complete
     .text       start:0x020e7ee0 end:0x020e7f18
 
+src/game/main/map/map_setup_player_cos.c:
+    complete
+    .text       start:0x020e82a8 end:0x020e85d0
+
 src/game/main/skills/deploy_city.c:
     complete
     .text       start:0x020f4b00 end:0x020f4c00

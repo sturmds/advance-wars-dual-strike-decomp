@@ -1,0 +1,100 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/map_header.h"
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+#define MAP_CO_NONE   0    /* MapHeader.co: no CO in this slot */
+#define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern MapHeader Ov000_gMapHeaders[];
+extern u8 data_02167d30[5][2];
+extern u32 data_0229eaec;
+
+u8 (*func_020e7fa8(int mode))[2];
+void func_020e89e0(void);
+int func_021039e4(void);
+int func_020c3d08(int mapId);
+u8 func_020e7ff4(int coId);
+u8 func_02101944(int coId);
+void func_020e817c(void);
+
+/* Fills the front and back CO of players 1-4 for the map being started.
+ * unk_58 picks the source (meaning of its values unknown): the map
+ * header (cases 1 and 3; case 0 also lets the first players pick), or
+ * the CO selection buffer from func_020e7fa8, falling back to
+ * data_02167d30 when the chosen CO is not unlocked. */
+void Map_SetupPlayerCos(void)
+{
+    u8 (*cos)[2];
+    int player;
+    int slot;
+    u8 co;
+    /* needed to match: the clearing loop has its own counters */
+    int clearPlayer;
+    int clearSlot;
+
+    cos = func_020e7fa8(STATE->unk_58);
+    func_020e89e0();
+
+    for (clearPlayer = 1; clearPlayer < 5; clearPlayer++) {
+        for (clearSlot = 0; clearSlot < 2; clearSlot++) {
+            STATE->playerCos[clearPlayer][clearSlot] = 0;
+        }
+    }
+
+    for (player = 1; player < 5; player++) {
+        for (slot = 0; slot < 2; slot++) {
+            switch (STATE->unk_58) {
+            case 0:
+                if (func_021039e4() == 1 && player - 1 < func_020c3d08(STATE->unk_1c4->mapId)) {
+                    STATE->playerCos[player][slot] = func_020e7ff4(cos[player][slot]);
+                    break;
+                }
+                /* fall through */
+            case 1:
+            case 3:
+                /* players are 1-based here, so co[4] runs past the
+                 * declared co[4][2]; the header needs co[5][2] */
+                co = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[player][slot];
+                if (co != MAP_CO_NONE) {
+                    if (co != MAP_CO_PICKED) {
+                        STATE->playerCos[player][slot] = co;
+                    } else {
+                        STATE->playerCos[player][slot] = func_020e7ff4(cos[player][slot]);
+                    }
+                } else {
+                    STATE->playerCos[player][slot] = 0;
+                }
+                break;
+            default:
+                if (data_0229eaec != 0) {
+                    STATE->playerCos[player][slot] = data_02167d30[player][slot] & 0x7f;
+                    break;
+                }
+                /* bit 7 of a selection byte is a flag (meaning unknown) */
+                STATE->playerCos[player][slot] = cos[player][slot] & 0x7f;
+                if (STATE->unk_8a == 1 && (STATE->playerCos[player][slot] & 0x7f) == 0) {
+                    if (slot == 1 && data_02167d30[player][1] == (STATE->playerCos[player][0] & 0x7f)) {
+                        cos[player][slot] = data_02167d30[player][0];
+                    } else {
+                        cos[player][slot] = data_02167d30[player][slot];
+                    }
+                    STATE->playerCos[player][slot] = cos[player][slot] & 0x7f;
+                }
+                /* a locked CO resets both slots to the defaults */
+                if (!func_02101944(cos[player][slot])) {
+                    cos[player][0] = data_02167d30[player][0];
+                    cos[player][1] = data_02167d30[player][1];
+                    STATE->playerCos[player][0] = cos[player][0] & 0x7f;
+                    STATE->playerCos[player][1] = cos[player][1] & 0x7f;
+                }
+                break;
+            }
+        }
+    }
+
+    func_020e817c();
+}

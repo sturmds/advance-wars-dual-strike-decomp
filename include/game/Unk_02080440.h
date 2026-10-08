@@ -57,7 +57,10 @@ typedef struct Unk_02080440_48 {
     s32 fundsPerProperty;              /* income from each city, base, airport, port and HQ */
     u8 pad_7c[0x88 - 0x7c];
     u16 unk_88;
-    u8 pad_8a[0xba - 0x8a];
+    u8 unk_8a;
+    u8 pad_8b[0x97 - 0x8b];
+    u8 playerCos[5][2];                /* front and back CO id per player, 1-based (index 0 unused); 0: none */
+    u8 pad_a1[0xba - 0xa1];
     u8 unk_ba;                         /* 1 turns off Scout and Eagle Eye, see func_020e8ae4 */
     u8 pad_bb[0x170 - 0xbb];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
