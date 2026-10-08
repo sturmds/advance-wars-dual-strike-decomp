@@ -2,6 +2,7 @@
 #define GAME_CO_DATA_H
 
 #include "types.h"
+#include "game/map_unit.h"
 #include "game/text_ref.h"
 
 /* CO ids, which are also indexes into the CO table. */
@@ -101,11 +102,11 @@ typedef struct CoTagPartner {
     const CoTagRecord *record;
 } CoTagPartner;
 
-/* The routines' parameters are not known yet, so the pointer types leave
- * them unspecified. */
+/* Where the parameters are not known yet, the pointer types leave them
+ * unspecified. */
 typedef void (*CoPowerFunc)();
 typedef BOOL (*CoUnitFilterFunc)();
-typedef void (*CoUnitBonusFunc)();
+typedef void (*CoUnitBonusFunc)(MapUnit *unit);
 typedef void (*CoCalcBonusFunc)();
 
 /* One CO in one power state. */
