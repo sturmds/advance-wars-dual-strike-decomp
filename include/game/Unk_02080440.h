@@ -65,10 +65,12 @@ typedef struct Unk_02080440_48 {
     u8 pad_82[0x88 - 0x82];
     u16 unk_88;
     u8 unk_8a;
-    u8 pad_8b[0x92 - 0x8b];
+    u8 pad_8b[0x8d - 0x8b];
+    u8 army[5];                        /* army colour per player number 1-4, copied from the map header */
     u8 unk_92[5];                      /* indexed 1 to 4, one per player?: 1 or 2 */
     u8 playerCos[5][2];                /* front and back CO id per player, 1-based (index 0 unused); 0: none */
-    u8 pad_a1[0xba - 0xa1];
+    u8 team[5];                        /* team per player number 1-4, copied from the map header */
+    u8 pad_a6[0xba - 0xa6];
     u8 unk_ba;                         /* 1 turns off Scout and Eagle Eye, see func_020e8ae4 */
     u8 pad_bb[0x170 - 0xbb];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */

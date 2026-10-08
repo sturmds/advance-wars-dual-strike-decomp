@@ -104,6 +104,10 @@ src/game/main/skills/damage_to_funds.c:
     complete
     .text       start:0x020c86cc end:0x020c880c
 
+src/game/main/map/map_load_header_setup.c:
+    complete
+    .text       start:0x020d3ad0 end:0x020d3bf8
+
 src/game/main/check_unit_type.c:
     complete
     .text       start:0x020df7ac end:0x020df7f8
