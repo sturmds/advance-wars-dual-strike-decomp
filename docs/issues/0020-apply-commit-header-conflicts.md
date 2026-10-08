@@ -1,6 +1,6 @@
 # 0020: `apply_commit.py` stops at shared-header conflicts
 
-- **Status:** open
+- **Status:** closed
 - **Area:** loop
 - **Opened:** 2026-10-08
 - **Milestone:** M1
@@ -18,6 +18,8 @@ Each case was fixed by hand with helper scripts kept outside the repo (`work/loo
 
 - Move the struct merge and the "finish the rest" step into `apply_commit.py`.
 - `apply_commit.py` also adds a second `delinks.txt` entry when a commit renames a file it added earlier, instead of moving the entry.
+
+- 2026-10-08: fixed in `apply_commit.py`. A conflict in `include/` is merged by meaning (struct fields by offset with padding regenerated; `#define`, `#include` and prototype lines by union; `SKILL_` ids sorted). Other conflicts no longer stop the replay early: the rest of the commit is applied first. A `delinks.txt` block the commit removes is removed. Tested on the two batch 4 conflicts.
 
 ## Done when
 

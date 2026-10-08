@@ -13,7 +13,10 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
   address, and the new names replace the old ones in src/ and include/.
 - relocs.txt: lines the commit added are added here.
 - Other files: written if this branch still has the parent's version,
-  otherwise merged with `git merge-file`. A conflict stops the replay.
+  otherwise merged with `git merge-file`. A conflict in a header under
+  include/ is merged by meaning: struct fields by offset (padding
+  regenerated), #define and prototype lines by union. Any other conflict
+  stops the replay after the rest of the commit is applied.
 
 Then it commits with the original message and author, which runs the hooks
 (so `make release` must pass).
@@ -54,6 +57,8 @@ def apply_delinks(path: str, old: str, new: str) -> None:
     for key, block in new_blocks.items():
         if old_blocks.get(key) != block:
             cur_blocks[key] = block
+    for key in old_blocks.keys() - new_blocks.keys():
+        cur_blocks.pop(key, None)
 
     def start(b):
         m = TEXT.search(b)
@@ -102,6 +107,88 @@ def apply_relocs(path: str, old: str, new: str) -> None:
     (ROOT / path).write_text("\n".join(cur) + "\n")
 
 
+# Sizes of the types used in shared structs, for merging padding by offset.
+TYPE_SIZES = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4,
+              "int": 4, "BOOL": 4, "fx32": 4}
+FIELD = re.compile(r"^\s*(?:const\s+)?(\w+)\s*(\*?)\s*(\w+)((?:\[[^\]]+\])*)\s*;")
+STRUCT = re.compile(r"(typedef struct (\w+) \{\n)(.*?)(\} \2;)", re.S)
+
+
+def struct_fields(body: str):
+    """[(offset, size, line)] of the named fields, and the struct size.
+    Raises ValueError on anything it cannot size (nested structs, unions)."""
+    off, fields = 0, []
+    for line in body.splitlines(True):
+        m = FIELD.match(line)
+        if not m:
+            if line.strip() and not line.strip().startswith(("/*", "*", "//")):
+                raise ValueError(line)
+            continue
+        typ, ptr, name, dims = m.groups()
+        n = 4 if ptr else TYPE_SIZES.get(typ)
+        if n is None:
+            raise ValueError(line)
+        for d in re.findall(r"\[([^\]]+)\]", dims):
+            n *= eval(d, {})
+        if not name.startswith("pad_"):
+            fields.append((off, n, line))
+        off += n
+    return fields, off
+
+
+def merge_struct(ours: str, theirs: str) -> str:
+    """Keep every named field of both versions (ours wins where they
+    overlap) and regenerate the pad_ arrays between them."""
+    fa, ea = struct_fields(ours)
+    fb, eb = struct_fields(theirs)
+    out, taken = list(fa), [(o, o + n) for o, n, _ in fa]
+    for o, n, line in fb:
+        if not any(o < e and s < o + n for s, e in taken):
+            out.append((o, n, line))
+            taken.append((o, o + n))
+    lines, cur = [], 0
+    for o, n, line in sorted(out) + [(max(ea, eb), 0, "")]:
+        if o > cur:
+            lines.append(f"    u8 pad_{cur:02x}[0x{o:02x} - 0x{cur:02x}];\n" if cur else f"    u8 pad_00[0x{o:x}];\n")
+        lines.append(line)
+        cur = max(cur, o + n)
+    return "".join(lines)
+
+
+def merge_header(ours: str, theirs: str) -> str | None:
+    """Merge a shared header that both sides only added to: structs by field
+    offset, #define/#include/prototype lines by union (SKILL_ ids sorted).
+    None if a changed struct cannot be parsed."""
+    res = ours
+    so = {m.group(2): m for m in STRUCT.finditer(ours)}
+    for m in STRUCT.finditer(theirs):
+        mine = so.get(m.group(2))
+        if mine is None or mine.group(3) == m.group(3):
+            continue
+        try:
+            body = merge_struct(mine.group(3), m.group(3))
+        except ValueError:
+            return None
+        res = res.replace(mine.group(0), mine.group(1) + body + mine.group(4))
+    flat = re.compile(r"^(#define|#include|\w[\w\s\*]*\(.*\);$)")
+    for line in theirs.splitlines(True):
+        if flat.match(line) and line not in res:
+            anchor = res.rfind("\n#endif")
+            res = res[:anchor] + "\n" + line.rstrip("\n") + res[anchor:]
+    lines = res.splitlines(True)
+    ids = [ln for ln in lines if ln.startswith("#define SKILL_")]
+    if ids:
+        first = next(i for i, ln in enumerate(lines) if ln.startswith("#define SKILL_"))
+        rest = [ln for ln in lines if not ln.startswith("#define SKILL_")]
+        seen, uniq = set(), []
+        for ln in sorted(ids, key=lambda ln: int(ln.split()[2], 0)):
+            if ln.split()[1] not in seen:
+                seen.add(ln.split()[1])
+                uniq.append(ln)
+        res = "".join(rest[:first] + uniq + rest[first:])
+    return res.replace("\n\n\n", "\n\n")
+
+
 def merge_file(path: str, base: str | None, theirs: str | None) -> None:
     target = ROOT / path
     if theirs is None:
@@ -125,7 +212,16 @@ def merge_file(path: str, base: str | None, theirs: str | None) -> None:
     r = subprocess.run(["git", "merge-file", "-L", "current", "-L", "base", "-L", "commit",
                         str(target), str(tmp / "base"), str(tmp / "theirs")], cwd=ROOT)
     if r.returncode:
-        sys.exit(f"error: conflict in {path}; resolve it, then commit by hand")
+        if path.startswith("include/"):
+            merged = merge_header(ours, theirs)
+            if merged is not None:
+                target.write_text(merged)
+                print(f"merged {path} by struct offset")
+                return
+        CONFLICTS.append(path)
+
+
+CONFLICTS: list[str] = []
 
 
 def rename_in_sources(renames) -> None:
@@ -164,6 +260,8 @@ def main() -> int:
     rename_in_sources(renames)
     for old, new in renames:
         print(f"renamed {old} -> {new}")
+    if CONFLICTS:
+        sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
     git("add", "-A", "config", "src", "include", "docs")
     if "--no-commit" in sys.argv:
