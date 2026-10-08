@@ -2,11 +2,7 @@
 #define GAME_POWER_DAMAGE_H
 
 #include "types.h"
-
-/* Weather values passed to StartPowerDamage. */
-#define POWER_WEATHER_NONE 0xff        /* keep the current weather */
-#define POWER_WEATHER_RAIN 2
-#define POWER_WEATHER_SNOW 0xfe        /* func_020d2aa8 turns 0xfe into 1, snow */
+#include "game/weather.h"
 
 /* Picks which enemy units a damage power hits; non-zero means hit.
  * The argument holds a map x at +2 and y at +3. */
@@ -19,9 +15,9 @@ typedef struct PowerDamageTask {
     u8 player;                         /* index of the player using the power */
     u8 damage;                         /* to enemy units, 10 per displayed HP */
     u8 heal;                           /* to own units, 10 per displayed HP */
-    u8 weather;                        /* POWER_WEATHER_* */
+    u8 weather;                        /* WEATHER_* */
     PowerDamageFilter filter;          /* NULL for powers that hit every enemy */
-    BOOL halveFuel;                    /* enemy units lose half their fuel */
+    BOOL halveFuel;                    /* set by Drake's powers, which halve enemy fuel */
 } PowerDamageTask;
 
 /* Child task of PowerDamageTask, made from the descriptor the power
