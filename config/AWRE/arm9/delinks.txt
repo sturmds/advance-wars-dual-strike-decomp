@@ -64,6 +64,10 @@ src/game/main/check_unit_type.c:
     complete
     .text       start:0x020df7ac end:0x020df7f8
 
+src/game/main/co_tag_firepower.c:
+    complete
+    .text       start:0x020e1928 end:0x020e1948
+
 src/game/main/hachi_flash.c:
     complete
     .text       start:0x020e1c6c end:0x020e1c8c

@@ -161,9 +161,11 @@ typedef struct CoRecord {
     u32 unk_54;
     const void *nameGraphics[5];       /* compressed; EN, FR, DE, ES, IT */
     CoTagPartner tagPartners[3];
-    s8 tagFirepower[CO_COUNT];         /* percent, by partner CO id */
+    u8 tagFirepower[CO_COUNT];         /* percent, 100 = no change; by partner CO id */
     CoPowerBlock blocks[POWER_STATE_COUNT];
 } CoRecord;
+
+extern CoRecord gCoTable[CO_COUNT];
 
 /* Fails to compile if a field change breaks the sizes the ROM uses. */
 typedef char CoPowerBlock_size_check[sizeof(CoPowerBlock) == 0x80 ? 1 : -1];
