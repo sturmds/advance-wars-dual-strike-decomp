@@ -80,6 +80,10 @@ src/game/main/unit_repair_2hp.c:
     complete
     .text       start:0x020e2498 end:0x020e24ac
 
+src/game/main/co_no_power.c:
+    complete
+    .text       start:0x020e2658 end:0x020e2670
+
 src/game/main/defense_increase_tag_transport.c:
     complete
     .text       start:0x020e63b0 end:0x020e646c
