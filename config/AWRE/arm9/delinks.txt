@@ -212,6 +212,10 @@ src/game/main/skills/tower_firepower.c:
     complete
     .text       start:0x020e6074 end:0x020e60d0
 
+src/game/main/skills/fuel_consumption.c:
+    complete
+    .text       start:0x020e60d0 end:0x020e61d8
+
 src/game/main/skills/defense_increase_direct_indirect.c:
     complete
     .text       start:0x020e61d8 end:0x020e63b0

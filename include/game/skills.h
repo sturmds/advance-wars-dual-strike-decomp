@@ -7,7 +7,9 @@
  * CheckSkillsEquipped. Id N is bit (N - 1) & 31 of word (N - 1) >> 5.
  * 0x01-0x10 are CO skills, 0x20-0x4a are Force Ranks. Ids from
  * romhacking.net doc 890 (RadioTails); add more as code uses them. */
+#define SKILL_DEPLOY_CITY           0x02 /* Hachi Super CO Power */
 #define SKILL_SNOW_FIREPOWER        0x06 /* Olaf day-to-day */
+#define SKILL_AIR_FUEL_SAVING       0x07 /* Eagle day-to-day */
 #define SKILL_PARTNER_TEAMWORK      0x08 /* tag partner has Teamwork */
 #define SKILL_PARTNER_SYNERGY       0x09 /* tag partner has Synergy */
 #define SKILL_PARTNER_BODYGUARD     0x0a /* tag partner has Bodyguard */
@@ -33,6 +35,8 @@
 #define SKILL_PRAIRIE_DOG           0x38
 #define SKILL_PATHFINDER            0x39
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
+#define SKILL_RANK_SNEAKY           0x41
+#define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 
 BOOL CheckSkillsEquipped(const u32 *skills, int id);
