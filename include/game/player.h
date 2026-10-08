@@ -6,7 +6,6 @@
 /* Bits of Player.frontCo and backCo. */
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
-#define PLAYER_POWER_READY_MASK 0x300            /* bits 8-9: power ready to use */
 
 /* Bitfield view of Player.frontCo and backCo. The fields stay u32 so
  * other code keeps its shifts; cast to this where the game code used

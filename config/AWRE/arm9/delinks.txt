@@ -185,6 +185,10 @@ src/game/main/copowers/func_020e2670.c:
     complete
     .text       start:0x020e2670 end:0x020e2688
 
+src/game/main/copowers/activate_power.c:
+    complete
+    .text       start:0x020e2688 end:0x020e2748
+
 src/game/main/copowers/count_power_use.c:
     complete
     .text       start:0x020e2748 end:0x020e27a0

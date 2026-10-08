@@ -1,0 +1,26 @@
+#include "types.h"
+#include "game/player.h"
+#include "game/Unk_02080440.h"
+
+void CountPowerUse(int player);
+void SpendPowerCharge(int player, int power);
+void func_020d5630(int player, int power, BOOL startSecond);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* Starts a power (enum CoPowerState) for the player's front CO: counts
+ * the use, takes the meter charge, clears the ready bits and starts the
+ * power's tasks. */
+void ActivatePower(int player, int power)
+{
+    CountPowerUse(player);
+    SpendPowerCharge(player, power);
+    PLAYER_CO_STATUS(data_027c027c->unk_48[data_027c0284]->players[player].frontCo)->powerReady = 0;
+    /* doc 890 reads unk_25 == 2 as "back CO half of a tag power" */
+    if (data_027c027c->unk_48[data_027c0284]->players[player].unk_25 != 2) {
+        func_020d5630(player, power, TRUE);
+    } else {
+        func_020d5630(player, power, FALSE);
+    }
+}
