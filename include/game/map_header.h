@@ -24,16 +24,16 @@ typedef struct MapHeader {
     const void *unk_08;                /* "Hint" option script */
     const void *unk_0c;                /* top-screen "Terms" script */
     u16 unk_10;                        /* map id for the top screen */
-    u16 pad_12;
+    u8 pad_12[0x14 - 0x12];
     TextRef name;
     u16 unk_18;
     u8 unk_1a;                         /* tileset */
     u8 unk_1b;                         /* weather */
     u8 fog;                            /* 1: Fog of War */
-    u8 pad_1d[3];
+    u8 pad_1d[0x20 - 0x1d];
     u32 unk_20;
     u8 playerCount;
-    u8 pad_25;
+    u8 pad_25[0x26 - 0x25];
     u16 unk_26;                        /* "map case" */
     u8 unk_28[0x08];
     u16 unk_30[2];                     /* indexed by func_021039e4 */
@@ -45,13 +45,14 @@ typedef struct MapHeader {
     const u8 *units;                   /* pre-deployed units, 13-byte rows */
     const u8 *hardUnits;
     u8 co[4][2];                       /* front and back CO per player; 0x1c: player picks */
-    u8 unk_5c[0x2d];
+    u8 unk_5c[0x2c];
+    u8 unk_88;                         /* army colour of slot 0 (neutral); army[] continues it, see Map_LoadArmyColours */
     u8 army[4];                        /* army colour per player */
     u8 unk_8d;
     u8 team[4];                        /* team per player */
     u8 unk_92[0x0a];
     u8 tileArmy;                       /* nonzero: army style of every tile but HQs, see Map_GetTileArmy */
-    u8 pad_9d[3];
+    u8 pad_9d[0xa0 - 0x9d];
 } MapHeader;
 
 /* Fails to compile if a field change breaks the size the ROM uses. */
@@ -60,4 +61,5 @@ typedef char MapHeader_size_check[sizeof(MapHeader) == 0xa0 ? 1 : -1];
 extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
 extern MapHeader Ov000_gMapHeaders[];
 
+#define ARMY_SLOT_COUNT 5         /* slot 0 neutral, then players 1-4 */
 #endif

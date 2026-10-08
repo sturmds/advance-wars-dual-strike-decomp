@@ -1195,7 +1195,7 @@ func_0202c520 kind:function(arm,size=0x3c) addr:0x0202c520
 func_0202c55c kind:function(arm,size=0x44) addr:0x0202c55c
 func_0202c5a0 kind:function(arm,size=0x1c0) addr:0x0202c5a0
 func_0202c760 kind:function(arm,size=0x314) addr:0x0202c760
-func_0202ca74 kind:function(arm,size=0x68) addr:0x0202ca74
+Map_LoadArmyColours kind:function(arm,size=0x68) addr:0x0202ca74
 func_0202cadc kind:function(arm,size=0x58) addr:0x0202cadc
 func_0202cb34 kind:function(arm,size=0x98) addr:0x0202cb34
 func_0202cbcc kind:function(arm,size=0x30) addr:0x0202cbcc
@@ -8727,7 +8727,7 @@ data_0229c674 kind:bss addr:0x0229c674
 data_0229c678 kind:bss addr:0x0229c678
 data_0229c684 kind:bss addr:0x0229c684
 data_0229c6c4 kind:bss addr:0x0229c6c4
-data_0229c70c kind:bss addr:0x0229c70c
+gArmyColours kind:bss addr:0x0229c70c
 data_0229c714 kind:bss addr:0x0229c714
 data_0229c71c kind:bss addr:0x0229c71c
 data_0229c720 kind:bss addr:0x0229c720
