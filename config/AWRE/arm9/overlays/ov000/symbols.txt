@@ -988,7 +988,7 @@ data_ov000_022f4cbc kind:data(any) addr:0x022f4cbc
 data_ov000_022f4cc4 kind:data(any) addr:0x022f4cc4
 data_ov000_022f4cc8 kind:data(any) addr:0x022f4cc8
 data_ov000_022f4ccc kind:data(any) addr:0x022f4ccc ambiguous
-data_ov000_022f4fb8 kind:data(any) addr:0x022f4fb8
+Ov000_gUnitStats kind:data(any) addr:0x022f4fb8
 data_ov000_022f4fbc kind:data(any) addr:0x022f4fbc
 data_ov000_022f4fc0 kind:data(any) addr:0x022f4fc0
 data_ov000_022f4fc4 kind:data(any) addr:0x022f4fc4 ambiguous
