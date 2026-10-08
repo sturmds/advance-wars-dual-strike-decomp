@@ -60,7 +60,6 @@
 #define SKILL_RANK_FIRE_SALE        0x44 /* units cost 8% less */
 #define SKILL_RANK_COMBAT_PAY       0x45 /* 2% of damage dealt becomes funds */
 #define SKILL_RANK_GOLD_RUSH       0x46 /* +100 G per property */
-#define SKILL_RANK_GOLD_RUSH        0x46 /* +100 G per property */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 #define SKILL_RANK_MISTWALKER       0x49 /* doc 890 name; CounterFirst checks it */
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a

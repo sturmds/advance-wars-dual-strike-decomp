@@ -80,6 +80,9 @@ src/game/main/check_unit_type.c:
     complete
     .text       start:0x020df7ac end:0x020df7f8
 
+src/game/main/skills/vision_increase.c:
+    .text       start:0x020df7f8 end:0x020df900
+
 
 src/game/main/co_stats/player_get_bad_luck.c:
     complete
