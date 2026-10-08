@@ -5,10 +5,14 @@
 
 /* A reference to one game string: an index inside a text group. The group
  * keys seen so far: 0xf000 CO text, 0xc000 general, 0x7c00 Force Rank names,
- * 0x7b00 Force Rank descriptions. */
-typedef struct TextRef {
-    u16 index;
-    u16 group;
+ * 0x7b00 Force Rank descriptions. The text lookup (func_ov000_022af7e8)
+ * takes both halves as one u32, id. */
+typedef union TextRef {
+    struct {
+        u16 index;
+        u16 group;
+    };
+    u32 id;
 } TextRef;
 
 #endif
