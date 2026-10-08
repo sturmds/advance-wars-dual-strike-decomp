@@ -68,6 +68,10 @@ src/game/main/hachi_flash.c:
     complete
     .text       start:0x020e1c6c end:0x020e1c8c
 
+src/game/main/gold_rush.c:
+    complete
+    .text       start:0x020e1c8c end:0x020e1cec
+
 src/game/main/sonja_flash.c:
     complete
     .text       start:0x020e1cec end:0x020e1d0c
