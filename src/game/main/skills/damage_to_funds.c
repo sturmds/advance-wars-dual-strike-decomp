@@ -1,0 +1,37 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/map_unit.h"
+#include "game/skills.h"
+
+s32 func_02002fa4(s32 numerator, s32 denominator);
+int func_020e0314(int playerIndex, int unitType); /* unit cost / 10, probably after the CO's cost change */
+void Player_AddFunds(int playerIndex, int amount);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* Index of the player that owns a unit: MAP_UNITS_PER_PLAYER (64) slots
+ * per player. Why the original adds 1 is not known yet. */
+#define UNIT_OWNER(unit) \
+    ((((unit) - data_027c027c->unk_48[data_027c0284]->units) >> 6) + 1)
+
+/* Skill words of a player's front CO. */
+#define FRONT_CO_SKILLS(player) \
+    (data_027c027c->unk_48[data_027c0284]->players[player].skills[0])
+
+/* Pays the attacker's player part of the value of the HP the target lost
+ * (hpLost in displayed HP, 0-10): 2% for Combat Pay, 50% for Sasha's
+ * Super CO Power. Only the front CO's skills count. */
+void DamageToFunds(MapUnit *attacker, MapUnit *target, int hpLost)
+{
+    int attackerOwner = UNIT_OWNER(attacker);
+    int targetOwner = UNIT_OWNER(target);
+
+    if (CheckSkillsEquipped(FRONT_CO_SKILLS(attackerOwner), SKILL_RANK_COMBAT_PAY)) {
+        /* needed to match: the original narrows the player index here */
+        Player_AddFunds((u16)attackerOwner, func_02002fa4(func_020e0314(targetOwner, target->type) * hpLost * 2, 100));
+    }
+    if (CheckSkillsEquipped(FRONT_CO_SKILLS(attackerOwner), SKILL_DAMAGE_TO_FUNDS)) {
+        Player_AddFunds((u16)attackerOwner, func_02002fa4(func_020e0314(targetOwner, target->type) * hpLost * 50, 100));
+    }
+}

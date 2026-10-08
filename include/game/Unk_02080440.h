@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/player.h"
+#include "game/map_unit.h"
 
 /* Terrain and owner of every map tile, reached through
  * Unk_02080440_48.mapTiles. */
@@ -61,7 +62,9 @@ typedef struct Unk_02080440_48 {
     Unk_02080440_1c4 *unk_1c4;
     u8 pad_1c8[0x43d0 - 0x1c8];
     MapTiles *mapTiles;
-    u8 pad_43d4[0x5a58 - 0x43d4];
+    u8 pad_43d4[0x575c - 0x43d4];
+    MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
+    u8 pad_5760[0x5a58 - 0x5760];
     Player *players;                   /* 4 players */
 } Unk_02080440_48;
 

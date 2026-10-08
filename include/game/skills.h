@@ -15,6 +15,7 @@
 #define SKILL_PARTNER_TEAMWORK      0x08 /* tag partner has Teamwork */
 #define SKILL_PARTNER_SYNERGY       0x09 /* tag partner has Synergy */
 #define SKILL_PARTNER_BODYGUARD     0x0a /* tag partner has Bodyguard */
+#define SKILL_DAMAGE_TO_FUNDS       0x0b /* Sasha Super CO Power, 50% of damage dealt becomes funds */
 #define SKILL_INDIRECT_DEFENSE_20   0x0c /* Javier day-to-day */
 #define SKILL_INDIRECT_DEFENSE_40   0x0d /* Javier CO Power */
 #define SKILL_INDIRECT_DEFENSE_80   0x0e /* Javier Super CO Power */
@@ -51,8 +52,9 @@
 #define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_SALE_PRICE       0x43 /* units cost 5% less */
 #define SKILL_RANK_FIRE_SALE        0x44 /* units cost 8% less */
-#define SKILL_RANK_GOLD_RUSH        0x46 /* +100 G per property */
+#define SKILL_RANK_COMBAT_PAY       0x45 /* 2% of damage dealt becomes funds */
 #define SKILL_RANK_GOLD_RUSH       0x46 /* +100 G per property */
+#define SKILL_RANK_GOLD_RUSH        0x46 /* +100 G per property */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 #define SKILL_RANK_MISTWALKER       0x49 /* doc 890 name; CounterFirst checks it */
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a
