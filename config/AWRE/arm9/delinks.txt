@@ -375,6 +375,10 @@ src/game/main/map/build_unlocked_co_list.c:
     complete
     .text       start:0x020e8774 end:0x020e87dc
 
+src/game/main/map/load_map_co_list.c:
+    complete
+    .text       start:0x020e87dc end:0x020e8848
+
 src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
