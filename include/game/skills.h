@@ -24,6 +24,7 @@
 #define SKILL_RANK_SNIPE_GUARD      0x27
 #define SKILL_RANK_SNIPE_SHIELD     0x28
 #define SKILL_RANK_APC_GUARD        0x29
+#define SKILL_RANK_BACKSTAB         0x31 /* +15 firepower while dived */
 #define SKILL_RANK_HIGH_AND_DRY     0x32
 #define SKILL_RANK_ICEBREAKER       0x33
 #define SKILL_RANK_SAND_SCORPION    0x34
