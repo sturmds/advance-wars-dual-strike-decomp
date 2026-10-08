@@ -56,6 +56,10 @@ src/game/main/func_02080440.c:
     complete
     .text       start:0x02080440 end:0x020804ac
 
+src/game/main/DrawSelectedCoPowerText.c:
+    complete
+    .text       start:0x02088d04 end:0x02088eb0
+
 src/game/main/player_add_funds.c:
     complete
     .text       start:0x020c83d0 end:0x020c8480
