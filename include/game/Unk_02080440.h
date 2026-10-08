@@ -47,7 +47,10 @@ typedef struct Unk_02080440_48 {
     s16 unk_44;
     u8 pad_46[0x58 - 0x46];
     u8 unk_58;
-    u8 pad_59[0x170 - 0x59];
+    u8 pad_59[0x5e - 0x59];
+    u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
+    u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
+    u8 pad_60[0x170 - 0x60];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
     u8 pad_17c[0x1c4 - 0x17c];
     Unk_02080440_1c4 *unk_1c4;
