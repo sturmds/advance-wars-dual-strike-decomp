@@ -36,6 +36,10 @@ src/game/main/map/map_place_predeployed_units.c:
     complete
     .text       start:0x02019c54 end:0x02019f90
 
+src/game/main/map/map_load_predeployed_units.c:
+    complete
+    .text       start:0x02019f90 end:0x02019ff8
+
 src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378

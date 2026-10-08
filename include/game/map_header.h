@@ -46,4 +46,6 @@ typedef struct MapHeader {
 /* Fails to compile if a field change breaks the size the ROM uses. */
 typedef char MapHeader_size_check[sizeof(MapHeader) == 0xa0 ? 1 : -1];
 
+extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
+
 #endif
