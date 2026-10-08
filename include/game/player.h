@@ -6,6 +6,12 @@
 /* Bits of Player.frontCo and backCo. */
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
+#define PLAYER_POWER_READY_MASK 0x300            /* bits 8-9: power ready to use */
+#define PLAYER_POWER_USES(w)    (((w) << 14) >> 28) /* bits 14-17: powers used, stops at 10 */
+#define PLAYER_POWER_USES_SHIFT 14
+#define PLAYER_POWER_USES_MASK  0x3c000
+#define PLAYER_POWER_CHARGE(w)  ((w) >> 21)         /* bits 21-31: power meter charge */
+#define PLAYER_POWER_CHARGE_SHIFT 21
 
 /* Player.front and back: the same words as frontCo and backCo, as bit
  * fields. Game code reads them this way; the u32 view is kept for code that
