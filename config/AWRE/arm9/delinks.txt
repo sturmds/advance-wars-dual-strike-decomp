@@ -85,6 +85,10 @@ src/game/main/co_stats/player_get_bad_luck.c:
     complete
     .text       start:0x020dff88 end:0x020e0040
 
+src/game/main/co_stats/player_get_good_luck.c:
+    complete
+    .text       start:0x020e0040 end:0x020e0108
+
 src/game/main/skills/increase_funds.c:
     complete
     .text       start:0x020e0158 end:0x020e0214
