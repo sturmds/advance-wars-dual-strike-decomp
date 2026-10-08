@@ -7,9 +7,11 @@
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
 
-/* Bit layout of Player.frontCo and backCo, as the game reads them. */
+/* Player.front and back: the same words as frontCo and backCo, as bit
+ * fields. Game code reads them this way; the u32 view is kept for code that
+ * uses the PLAYER_ macros. */
 typedef struct PlayerCo {
-    u32 id : 8;                        /* bits 0-6 enum CoId */
+    u32 id : 8;                        /* enum CoId in bits 0-6; mask with PLAYER_CO_ID_MASK */
     u32 unk_8 : 2;
     u32 powerState : 2;                /* enum CoPowerState */
     u32 unk_12 : 20;
@@ -48,8 +50,14 @@ typedef struct Player {
     u8 unk_2d;
     u8 unk_2e;                         /* AI behaviour */
     u8 pad_2f[0x6c - 0x2f];
-    u32 frontCo;                       /* CO id and power state, see PLAYER_ macros */
-    u32 backCo;
+    union {
+        u32 frontCo;                   /* CO id and power state, see PLAYER_ macros */
+        PlayerCo front;
+    };
+    union {
+        u32 backCo;
+        PlayerCo back;
+    };
     u32 skills[2][4];                  /* front CO, back CO; ids in game/skills.h */
     u32 unk_94;                        /* Time Survival timer, frames */
 } Player;
