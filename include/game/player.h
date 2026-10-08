@@ -7,6 +7,14 @@
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
 
+/* Bit layout of Player.frontCo and backCo, as the game reads them. */
+typedef struct PlayerCo {
+    u32 id : 8;                        /* bits 0-6 enum CoId */
+    u32 unk_8 : 2;
+    u32 powerState : 2;                /* enum CoPowerState */
+    u32 unk_12 : 20;
+} PlayerCo;
+
 /* Values of Player.controller. */
 #define PLAYER_CONTROLLER_NONE  0
 #define PLAYER_CONTROLLER_HUMAN 1

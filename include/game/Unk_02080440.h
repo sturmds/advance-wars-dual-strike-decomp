@@ -39,7 +39,7 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_SAND  3
 
 typedef struct Unk_02080440_48 {
-    u8 pad_00[2];
+    u8 pad_00[0x2];
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u8 pad_06[0x3e - 0x06];
@@ -49,7 +49,8 @@ typedef struct Unk_02080440_48 {
     s16 unk_44;
     u8 pad_46[0x58 - 0x46];
     u8 unk_58;
-    u8 pad_59[0x5e - 0x59];
+    u8 pad_59[0x5d - 0x59];
+    u8 unk_5d;                         /* 0: no CO luck (good luck 10, bad luck 0) */
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
     u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
     u8 pad_60[0x78 - 0x60];
