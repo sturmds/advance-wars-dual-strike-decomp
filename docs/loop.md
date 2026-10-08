@@ -18,6 +18,7 @@ How the top-level Claude session runs batches of agents, each matching one funct
 
 - Nothing lands unless `make release` passes on `mainline` after the replay.
 - Review each landed commit's C against `TENETS.md` before the next batch; fix the skill when the same problem shows up twice.
+- Check where each landed file sits ("Source layout" in `CLAUDE.md`). Tell agents which topic directory their group belongs to, and move misplaced files between batches.
 - Agents do not edit `tools/`, `docs/`, `Makefile` or `hooks/`. Tool fixes happen on `mainline` between batches.
 - Problems from agent feedback that are not fixed right away go into `docs/issues/`.
 

@@ -64,6 +64,17 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 
 Reference repos in `~/repos/` are read-only: `pokeplatinum` (make wrapper, tool fetching, layered hash checks), `khdays-decomp` (dsd pipeline, one-function loop), `ds-decomp` (dsd source), `metroskrew` (compilers). `awds-decomp` is someone else's EU repo: never a base and never copied from; its notes are unverified outside data.
 
+## Source layout
+
+Group code by what it does. A reader should find the CO powers, the map loader or the unit code by directory, not by grepping a flat list.
+
+- `src/game/<module>/` holds code from one module (`main`, `itcm`, `ovNNN`). The module decides where the code links, so it stays the top level.
+- Inside a module, a known topic gets a directory: `src/game/main/copowers/` (CO Power routines and the unit filters, unit bonuses and calculation bonuses that `CoPowerBlock` points to), `src/game/main/skills/` (day-to-day skill and Force Rank routines).
+- When a decompiled function belongs to an existing topic, put it there. When several functions share a new topic that the code makes clear, create a directory for it and say so in the commit message.
+- A function whose purpose is unknown stays at the module level (`src/game/main/func_XXXXXXXX.c`) until it is understood; move it then.
+- Headers in `include/game/` follow the same topics when they grow (one header per struct or table for now).
+- Moving a file means `git mv` plus its path in `delinks.txt`; `make release` must still pass.
+
 ## Decompiling one function
 
 See `docs/workflow.md`. In short: `tools/fn.py show` → add a `delinks.txt` entry and rename symbols → write C in `src/` → `tools/fn.py diff` until 100% → mark the file `complete` → tenets review → `make release` → commit.

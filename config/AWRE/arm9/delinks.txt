@@ -72,151 +72,151 @@ src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948
 
-src/game/main/hachi_flash.c:
+src/game/main/copowers/hachi_flash.c:
     complete
     .text       start:0x020e1c6c end:0x020e1c8c
 
-src/game/main/gold_rush.c:
+src/game/main/copowers/gold_rush.c:
     complete
     .text       start:0x020e1c8c end:0x020e1cec
 
-src/game/main/sonja_flash.c:
+src/game/main/copowers/sonja_flash.c:
     complete
     .text       start:0x020e1cec end:0x020e1d0c
 
-src/game/main/war_bonds.c:
+src/game/main/copowers/war_bonds.c:
     complete
     .text       start:0x020e1d0c end:0x020e1d2c
 
-src/game/main/urban_multiplier.c:
+src/game/main/copowers/urban_multiplier.c:
     complete
     .text       start:0x020e2264 end:0x020e2364
 
-src/game/main/money_multiplier.c:
+src/game/main/copowers/money_multiplier.c:
     complete
     .text       start:0x020e2364 end:0x020e23d8
 
-src/game/main/power_default_bonus.c:
+src/game/main/copowers/power_default_bonus.c:
     complete
     .text       start:0x020e23d8 end:0x020e244c
 
-src/game/main/unit_no_bonus.c:
+src/game/main/copowers/unit_no_bonus.c:
     complete
     .text       start:0x020e244c end:0x020e2450
 
-src/game/main/unit_resupply.c:
+src/game/main/copowers/unit_resupply.c:
     complete
     .text       start:0x020e2450 end:0x020e2474
 
-src/game/main/unit_non_infantry_move.c:
+src/game/main/copowers/unit_non_infantry_move.c:
     complete
     .text       start:0x020e2474 end:0x020e2484
 
-src/game/main/unit_repair_5hp.c:
+src/game/main/copowers/unit_repair_5hp.c:
     complete
     .text       start:0x020e2484 end:0x020e2498
 
-src/game/main/unit_repair_2hp.c:
+src/game/main/copowers/unit_repair_2hp.c:
     complete
     .text       start:0x020e2498 end:0x020e24ac
 
-src/game/main/unit_highlight_non_foot_units.c:
+src/game/main/copowers/unit_highlight_non_foot_units.c:
     complete
     .text       start:0x020e24ac end:0x020e24f0
 
-src/game/main/unit_highlight_air_units.c:
+src/game/main/copowers/unit_highlight_air_units.c:
     complete
     .text       start:0x020e24f0 end:0x020e2530
 
-src/game/main/unit_highlight_foot_units.c:
+src/game/main/copowers/unit_highlight_foot_units.c:
     complete
     .text       start:0x020e2530 end:0x020e2568
 
-src/game/main/unit_highlight_indirect_combat.c:
+src/game/main/copowers/unit_highlight_indirect_combat.c:
     complete
     .text       start:0x020e2568 end:0x020e25a8
 
-src/game/main/unit_highlight_direct_combat.c:
+src/game/main/copowers/unit_highlight_direct_combat.c:
     complete
     .text       start:0x020e25a8 end:0x020e25e8
 
-src/game/main/unit_highlight_all_but_oozium_2.c:
+src/game/main/copowers/unit_highlight_all_but_oozium_2.c:
     complete
     .text       start:0x020e25e8 end:0x020e2610
 
-src/game/main/unit_highlight_all_but_oozium.c:
+src/game/main/copowers/unit_highlight_all_but_oozium.c:
     complete
     .text       start:0x020e2610 end:0x020e2638
 
-src/game/main/blizzard.c:
+src/game/main/copowers/blizzard.c:
     complete
     .text       start:0x020e2638 end:0x020e2658
 
-src/game/main/co_no_power.c:
+src/game/main/copowers/co_no_power.c:
     complete
     .text       start:0x020e2658 end:0x020e2670
 
-src/game/main/func_020e2670.c:
+src/game/main/copowers/func_020e2670.c:
     complete
     .text       start:0x020e2670 end:0x020e2688
 
-src/game/main/start_power_damage.c:
+src/game/main/copowers/start_power_damage.c:
     complete
     .text       start:0x020e3e3c end:0x020e3eb0
 
-src/game/main/urban_blight.c:
+src/game/main/copowers/urban_blight.c:
     complete
     .text       start:0x020e3eb0 end:0x020e3f30
 
-src/game/main/black_storm.c:
+src/game/main/copowers/black_storm.c:
     complete
     .text       start:0x020e3f9c end:0x020e4014
 
-src/game/main/black_wave.c:
+src/game/main/copowers/black_wave.c:
     complete
     .text       start:0x020e4014 end:0x020e408c
 
-src/game/main/typhoon.c:
+src/game/main/copowers/typhoon.c:
     complete
     .text       start:0x020e408c end:0x020e4108
 
-src/game/main/tsunami.c:
+src/game/main/copowers/tsunami.c:
     complete
     .text       start:0x020e4108 end:0x020e4184
 
-src/game/main/winter_fury.c:
+src/game/main/copowers/winter_fury.c:
     complete
     .text       start:0x020e4184 end:0x020e41fc
 
-src/game/main/airborne_assault.c:
+src/game/main/copowers/airborne_assault.c:
     complete
     .text       start:0x020e444c end:0x020e4478
 
-src/game/main/copter_command.c:
+src/game/main/copowers/copter_command.c:
     complete
     .text       start:0x020e4478 end:0x020e44a4
 
-src/game/main/covering_fire.c:
+src/game/main/copowers/covering_fire.c:
     complete
     .text       start:0x020e4614 end:0x020e462c
 
-src/game/main/ex_machina.c:
+src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
 
-src/game/main/defense_increase_tag_transport.c:
+src/game/main/skills/defense_increase_tag_transport.c:
     complete
     .text       start:0x020e63b0 end:0x020e646c
 
-src/game/main/firepower_increase.c:
+src/game/main/skills/firepower_increase.c:
     complete
     .text       start:0x020e646c end:0x020e6714
 
-src/game/main/luck_damage.c:
+src/game/main/skills/luck_damage.c:
     complete
     .text       start:0x020e671c end:0x020e6778
 
-src/game/main/check_skills_equipped.c:
+src/game/main/skills/check_skills_equipped.c:
     complete
     .text       start:0x020e7ee0 end:0x020e7f18
 
