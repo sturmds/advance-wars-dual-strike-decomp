@@ -17,7 +17,7 @@ u8 (*GetCoPicksForMode(int mode))[2];
 void SetupCoSelection(void);
 int func_021039e4(void);
 int func_020c3d08(int mapId);
-u8 func_020e7ff4(int coId);
+u8 PickFreeCo(int coId);
 u8 Unlock_IsSet(int coId);
 void func_020e817c(void);
 
@@ -50,7 +50,7 @@ void Map_SetupPlayerCos(void)
             switch (STATE->unk_58) {
             case 0:
                 if (func_021039e4() == 1 && player - 1 < func_020c3d08(STATE->unk_1c4->mapId)) {
-                    STATE->playerCos[player][slot] = func_020e7ff4(cos[player][slot]);
+                    STATE->playerCos[player][slot] = PickFreeCo(cos[player][slot]);
                     break;
                 }
                 /* fall through */
@@ -63,7 +63,7 @@ void Map_SetupPlayerCos(void)
                     if (co != MAP_CO_PICKED) {
                         STATE->playerCos[player][slot] = co;
                     } else {
-                        STATE->playerCos[player][slot] = func_020e7ff4(cos[player][slot]);
+                        STATE->playerCos[player][slot] = PickFreeCo(cos[player][slot]);
                     }
                 } else {
                     STATE->playerCos[player][slot] = 0;
