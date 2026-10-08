@@ -41,6 +41,15 @@ enum UnitType {
 #define ATTACK_DIRECT   1
 #define ATTACK_INDIRECT 2
 
+/* UnitStats.moveGroup, read from the table: infantry and mech FOOT,
+ * recon, rockets and missiles TIRES, other ground units TREAD, planes and
+ * copters AIR, ships SEA. */
+#define MOVE_GROUP_FOOT  0x01
+#define MOVE_GROUP_TIRES 0x02
+#define MOVE_GROUP_TREAD 0x04
+#define MOVE_GROUP_AIR   0x10
+#define MOVE_GROUP_SEA   0x20
+
 /* Fixed stats of one unit type, 0x6c bytes, in ov000 at 0x022f4fb8.
  * Table address from romhacking.net doc 890 (RadioTails); the fields
  * were read from AWRE and checked against warswiki for the Tank. */
@@ -56,7 +65,8 @@ typedef struct UnitStats {
     u8 fuel;
     u8 unk_17[5];
     u8 unitClass;                      /* enum UnitClass in game/co_data.h */
-    u8 pad_1d[3];
+    u8 pad_1d[2];
+    u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 unk_20;                         /* the document calls this "unit class"; the code uses unitClass */
     u8 pad_21[0x6c - 0x21];
 } UnitStats;
