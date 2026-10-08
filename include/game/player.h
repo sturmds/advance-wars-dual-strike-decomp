@@ -7,6 +7,11 @@
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
 
+/* Values of Player.controller. */
+#define PLAYER_CONTROLLER_NONE  0
+#define PLAYER_CONTROLLER_HUMAN 1
+#define PLAYER_CONTROLLER_AI    2
+
 /* One of the four players, 0x98 bytes, in the array at
  * Unk_02080440_48.players. Layout from romhacking.net doc 890 (RadioTails);
  * fields named here have been seen in code, unk_ fields carry the
@@ -21,7 +26,7 @@ typedef struct Player {
     u8 unk_16;                         /* defeated */
     u8 pad_17[2];
     u8 unk_19;                         /* army colour */
-    u8 controller;                     /* 0 none, 1 human, 2 AI */
+    u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 unk_1b;
     u16 unk_1c;                        /* kills this turn */
     u16 unk_1e;                        /* most kills in one turn */
