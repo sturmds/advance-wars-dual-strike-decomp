@@ -1,0 +1,25 @@
+#include "types.h"
+#include "game/player.h"
+#include "game/Unk_02080440.h"
+
+s32 func_02002fa4(s32 numerator, s32 denominator);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* Power meter charge in one star for the CO in a player's slot (0 front,
+ * 1 back): 50, plus 10 for each power used, up to 100 after 10 uses. */
+int PowerStarCharge(int player, int slot)
+{
+    /* frontCo and backCo are adjacent, so slot indexes from frontCo */
+    u32 uses = PLAYER_POWER_USES((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot]);
+    u16 percent = 100;
+
+    if (uses >= 10) {
+        percent = 200;
+    } else {
+        percent += uses * 20;
+    }
+
+    return func_02002fa4(percent * 50, 100);
+}
