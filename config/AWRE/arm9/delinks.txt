@@ -84,6 +84,10 @@ src/game/main/co_no_power.c:
     complete
     .text       start:0x020e2658 end:0x020e2670
 
+src/game/main/copter_command.c:
+    complete
+    .text       start:0x020e4478 end:0x020e44a4
+
 src/game/main/defense_increase_tag_transport.c:
     complete
     .text       start:0x020e63b0 end:0x020e646c
