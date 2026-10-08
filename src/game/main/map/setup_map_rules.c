@@ -5,7 +5,7 @@
 
 void func_0200ac9c(void *state);
 void func_0200acac(void *state);
-int func_020c3da4(int mapId);          /* MapHeader.playerCount for most map ids */
+int Map_GetPlayerCount(int mapId);          /* MapHeader.playerCount for most map ids */
 void SetMapWeather(int weather);       /* sets unk_1c4 weather and default weather */
 void func_020e8c3c(void);
 int func_021039e4(void);
@@ -39,7 +39,7 @@ void SetupMapRules(void)
         func_0200ac9c(data_027c0288.unk_00);
         /* 2 for the slot that equals the map's player count, else 1 */
         for (i = 1; i < 5; i++) {
-            if (i == func_020c3da4(MAP_ID)) {
+            if (i == Map_GetPlayerCount(MAP_ID)) {
                 STATE->unk_92[i] = 2;
             } else {
                 STATE->unk_92[i] = 1;

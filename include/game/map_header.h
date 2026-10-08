@@ -7,6 +7,13 @@
 #define MAP_CAMPAIGN_FIRST 0xe0 /* campaign mission n is map id 0xe0 + n */
 #define MAP_COUNT          0x10d /* entries in Ov000_gMapHeaders */
 
+/* Map ids 0x101-0x10c have no header: the map lookups read them from 12
+ * records of 27 bytes in main bss (data_022a6c84) instead. Probably maps
+ * made in the Design Room. */
+#define MAP_CUSTOM_FIRST 0x101
+#define MAP_CUSTOM_COUNT 12
+#define MAP_IS_CUSTOM(id) ((id) >= MAP_CUSTOM_FIRST && (id) < MAP_CUSTOM_FIRST + MAP_CUSTOM_COUNT)
+
 /* One entry of the map header table (Ov000_gMapHeaders, ov000 0x022dbd28), indexed by map id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE.
  * unk_ fields have a meaning in the document that the code has not
@@ -25,7 +32,8 @@ typedef struct MapHeader {
     u8 fog;                            /* 1: Fog of War */
     u8 pad_1d[3];
     u32 unk_20;
-    u16 playerCount;
+    u8 playerCount;
+    u8 pad_25;
     u16 unk_26;                        /* "map case" */
     u8 unk_28[0x08];
     u16 unk_30[2];                     /* indexed by func_021039e4 */
