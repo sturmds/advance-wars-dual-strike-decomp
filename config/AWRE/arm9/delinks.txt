@@ -232,6 +232,10 @@ src/game/main/skills/damage_from_cannons.c:
     complete
     .text       start:0x020e6818 end:0x020e6874
 
+src/game/main/skills/damage_from_silos.c:
+    complete
+    .text       start:0x020e6874 end:0x020e68d0
+
 src/game/main/skills/stealth_firepower.c:
     complete
     .text       start:0x020e6ae4 end:0x020e6b44
