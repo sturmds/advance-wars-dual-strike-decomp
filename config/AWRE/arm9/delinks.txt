@@ -60,6 +60,10 @@ src/game/main/unit_no_bonus.c:
     complete
     .text       start:0x020e244c end:0x020e2450
 
+src/game/main/unit_non_infantry_move.c:
+    complete
+    .text       start:0x020e2474 end:0x020e2484
+
 src/game/main/unit_repair_5hp.c:
     complete
     .text       start:0x020e2484 end:0x020e2498
