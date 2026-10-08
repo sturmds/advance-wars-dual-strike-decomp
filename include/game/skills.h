@@ -27,6 +27,7 @@
 #define SKILL_RANK_HIGH_AND_DRY     0x32
 #define SKILL_RANK_ICEBREAKER       0x33
 #define SKILL_RANK_SAND_SCORPION    0x34
+#define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 
 BOOL CheckSkillsEquipped(const u32 *skills, int id);
