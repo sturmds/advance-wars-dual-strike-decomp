@@ -204,6 +204,10 @@ src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
 
+src/game/main/skills/defense_increase_direct_indirect.c:
+    complete
+    .text       start:0x020e61d8 end:0x020e63b0
+
 src/game/main/skills/defense_increase_tag_transport.c:
     complete
     .text       start:0x020e63b0 end:0x020e646c
