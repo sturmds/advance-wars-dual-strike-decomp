@@ -100,6 +100,10 @@ src/game/main/co_no_power.c:
     complete
     .text       start:0x020e2658 end:0x020e2670
 
+src/game/main/func_020e2670.c:
+    complete
+    .text       start:0x020e2670 end:0x020e2688
+
 src/game/main/airborne_assault.c:
     complete
     .text       start:0x020e444c end:0x020e4478
