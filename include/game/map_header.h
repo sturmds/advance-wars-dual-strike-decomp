@@ -5,6 +5,7 @@
 #include "game/text_ref.h"
 
 #define MAP_CAMPAIGN_FIRST 0xe0 /* campaign mission n is map id 0xe0 + n */
+#define MAP_COUNT          0x10d /* entries in Ov000_gMapHeaders */
 
 /* One entry of the map header table (Ov000_gMapHeaders, ov000 0x022dbd28), indexed by map id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE.
