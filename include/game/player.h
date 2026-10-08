@@ -37,7 +37,7 @@ typedef struct Player {
     u8 pad_2f[0x6c - 0x2f];
     u32 frontCo;                       /* CO id and power state, see PLAYER_ macros */
     u32 backCo;
-    u32 frontSkills[4];                /* skill and Force Rank bits, see CheckSkillsEquipped */
+    u32 frontSkills[4];                /* skill and Force Rank bits, tested by CheckSkillsEquipped */
     u32 backSkills[4];
     u32 unk_94;                        /* Time Survival timer, frames */
 } Player;
