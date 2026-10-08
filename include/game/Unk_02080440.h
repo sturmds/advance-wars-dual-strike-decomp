@@ -51,7 +51,9 @@ typedef struct Unk_02080440_48 {
     u8 pad_59[0x5e - 0x59];
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
     u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
-    u8 pad_60[0x88 - 0x60];
+    u8 pad_60[0x78 - 0x60];
+    s32 fundsPerProperty;              /* income from each city, base, airport, port and HQ */
+    u8 pad_7c[0x88 - 0x7c];
     u16 unk_88;
     u8 pad_8a[0x170 - 0x8a];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */

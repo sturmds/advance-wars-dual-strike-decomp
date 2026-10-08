@@ -18,6 +18,7 @@
 #define SKILL_INDIRECT_DEFENSE_20   0x0c /* Javier day-to-day */
 #define SKILL_INDIRECT_DEFENSE_40   0x0d /* Javier CO Power */
 #define SKILL_INDIRECT_DEFENSE_80   0x0e /* Javier Super CO Power */
+#define SKILL_PROPERTY_INCOME       0x0f /* Sasha day-to-day, +100 G per property */
 #define SKILL_TERRAIN_FIREPOWER     0x10 /* Lash day-to-day */
 #define SKILL_RANK_BRUISER          0x20
 #define SKILL_RANK_BRAWLER          0x21
@@ -48,6 +49,7 @@
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
+#define SKILL_RANK_GOLD_RUSH        0x46 /* +100 G per property */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 #define SKILL_RANK_MISTWALKER       0x49 /* doc 890 name; CounterFirst checks it */
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a
