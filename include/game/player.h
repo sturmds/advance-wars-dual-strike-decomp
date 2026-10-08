@@ -65,7 +65,9 @@ typedef struct Player {
     u8 team;
     u8 unk_2d;
     u8 unk_2e;                         /* AI behaviour */
-    u8 pad_2f[0x6c - 0x2f];
+    u8 unk_2f;                         /* ORed with MapHeader +0x92 + 2 * slot at map start */
+    u8 unk_30;                         /* ORed with MapHeader +0x93 + 2 * slot */
+    u8 pad_31[0x6c - 0x31];
     union {
         u32 frontCo;                   /* CO id and power state, see PLAYER_ macros */
         PlayerCo front;

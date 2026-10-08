@@ -14,6 +14,13 @@
 #define MAP_CUSTOM_COUNT 12
 #define MAP_IS_CUSTOM(id) ((id) >= MAP_CUSTOM_FIRST && (id) < MAP_CUSTOM_FIRST + MAP_CUSTOM_COUNT)
 
+/* Two flag bytes per slot at MapHeader +0x92, ORed into Player.unk_2f and
+ * unk_30 by Map_ApplySlotFlags. 0xff in unk_0: none. */
+typedef struct MapSlotFlags {
+    u8 unk_0;
+    u8 unk_1;
+} MapSlotFlags;
+
 /* One entry of the map header table (Ov000_gMapHeaders, ov000 0x022dbd28), indexed by map id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE.
  * unk_ fields have a meaning in the document that the code has not
