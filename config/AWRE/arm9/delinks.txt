@@ -252,6 +252,10 @@ src/game/main/skills/firepower_increase.c:
     complete
     .text       start:0x020e646c end:0x020e6714
 
+src/game/main/skills/bad_luck_damage.c:
+    complete
+    .text       start:0x020e6714 end:0x020e671c
+
 src/game/main/skills/luck_damage.c:
     complete
     .text       start:0x020e671c end:0x020e6778
