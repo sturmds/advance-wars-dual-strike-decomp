@@ -14,7 +14,7 @@ extern u8 data_02167d30[5][2];
 extern u32 data_0229eaec;
 
 u8 (*func_020e7fa8(int mode))[2];
-void func_020e89e0(void);
+void SetupCoSelection(void);
 int func_021039e4(void);
 int func_020c3d08(int mapId);
 u8 func_020e7ff4(int coId);
@@ -37,7 +37,7 @@ void Map_SetupPlayerCos(void)
     int clearSlot;
 
     cos = func_020e7fa8(STATE->unk_58);
-    func_020e89e0();
+    SetupCoSelection();
 
     for (clearPlayer = 1; clearPlayer < 5; clearPlayer++) {
         for (clearSlot = 0; clearSlot < 2; clearSlot++) {

@@ -379,6 +379,10 @@ src/game/main/map/load_map_co_list.c:
     complete
     .text       start:0x020e87dc end:0x020e8848
 
+src/game/main/map/setup_co_selection.c:
+    complete
+    .text       start:0x020e89e0 end:0x020e8a88
+
 src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
