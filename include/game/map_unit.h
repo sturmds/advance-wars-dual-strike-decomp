@@ -16,11 +16,34 @@
 /* Unit slots per player in Unk_02080440_48.units. */
 #define MAP_UNITS_PER_PLAYER 64
 
-/* A unit on the map, 0xe bytes. The fields past flags are not known yet. */
+/* MapUnit.aiTargetX and aiTargetY when the unit has no target. */
+#define MAP_UNIT_NO_TARGET 63
+
+/* A unit on the map, 0xe bytes. */
 typedef struct MapUnit {
     u8 type;                           /* enum UnitType */
     u8 flags;                          /* MAP_UNIT_* */
-    u8 pad_02[0xe - 0x02];
+    u8 x;
+    u8 y;
+    u8 cargo[2];                       /* slot of each carried unit */
+    u16 hp : 7;                        /* 100 = full */
+    u16 ammo : 4;
+    u16 unk_06_11 : 5;
+    u8 fuel : 7;
+    u8 unk_08_7 : 1;
+    u8 pad_09;
+    u16 aiTargetX : 6;                 /* MAP_UNIT_NO_TARGET when unused */
+    u16 aiTargetY : 6;
+    u16 unk_0a_12 : 2;
+    u16 unk_0a_14 : 2;
+    u8 aiOrder : 4;                    /* 8, 9 and 10 use aiTargetX and aiTargetY */
+    u8 unk_0c_4 : 1;
+    u8 unk_0c_5 : 1;
+    u8 unk_0c_6 : 1;
+    u8 unk_0c_7 : 1;
+    u8 pad_0d;
 } MapUnit;
+
+typedef char MapUnit_size_check[sizeof(MapUnit) == 0xe ? 1 : -1];
 
 #endif
