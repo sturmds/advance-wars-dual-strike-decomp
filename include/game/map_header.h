@@ -48,5 +48,6 @@ typedef struct MapHeader {
 typedef char MapHeader_size_check[sizeof(MapHeader) == 0xa0 ? 1 : -1];
 
 extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
+extern MapHeader Ov000_gMapHeaders[];
 
 #endif
