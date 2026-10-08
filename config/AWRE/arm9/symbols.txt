@@ -4927,7 +4927,7 @@ func_0210187c kind:function(arm,size=0x24) addr:0x0210187c
 func_021018a0 kind:function(arm,size=0x64) addr:0x021018a0
 func_02101904 kind:function(arm,size=0x20) addr:0x02101904
 func_02101924 kind:function(arm,size=0x20) addr:0x02101924
-func_02101944 kind:function(arm,size=0x20) addr:0x02101944
+Unlock_IsSet kind:function(arm,size=0x20) addr:0x02101944
 func_02101964 kind:function(arm,size=0x20) addr:0x02101964
 func_02101984 kind:function(arm,size=0x20) addr:0x02101984
 func_021019a4 kind:function(arm,size=0x30) addr:0x021019a4
@@ -8925,7 +8925,7 @@ data_022a7ef8 kind:bss addr:0x022a7ef8
 data_022a7f50 kind:bss addr:0x022a7f50
 data_022a7f58 kind:bss addr:0x022a7f58
 data_022a7f5a kind:bss addr:0x022a7f5a
-data_022a7f7c kind:bss addr:0x022a7f7c
+gUnlockFlags kind:bss addr:0x022a7f7c
 data_022a7f80 kind:bss addr:0x022a7f80
 data_022a7f84 kind:bss addr:0x022a7f84
 data_022a7fa8 kind:bss addr:0x022a7fa8

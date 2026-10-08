@@ -1,13 +1,13 @@
 #include "types.h"
 
-u8 func_02101944(int coId);
+u8 Unlock_IsSet(int coId);
 
 /* Zero-terminated lists of CO ids. */
 extern u8 gDefaultCoList[];
 extern u8 data_022a7a68[];
 
 /* Fills data_022a7a68 with the COs of gDefaultCoList, in that order, for
- * which func_02101944 is nonzero (a bit set per CO id, likely "unlocked"). */
+ * which Unlock_IsSet is nonzero (a bit set per CO id, likely "unlocked"). */
 void BuildUnlockedCoList(void)
 {
     int i;
@@ -17,7 +17,7 @@ void BuildUnlockedCoList(void)
     count = 0;
     i = 0;
     while (all[i] != 0) {
-        if (func_02101944(all[i])) {
+        if (Unlock_IsSet(all[i])) {
             data_022a7a68[count++] = all[i];
         }
         i++;

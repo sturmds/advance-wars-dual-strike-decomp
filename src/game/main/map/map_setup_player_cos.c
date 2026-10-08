@@ -18,7 +18,7 @@ void SetupCoSelection(void);
 int func_021039e4(void);
 int func_020c3d08(int mapId);
 u8 func_020e7ff4(int coId);
-u8 func_02101944(int coId);
+u8 Unlock_IsSet(int coId);
 void func_020e817c(void);
 
 /* Fills the front and back CO of players 1-4 for the map being started.
@@ -85,7 +85,7 @@ void Map_SetupPlayerCos(void)
                     STATE->playerCos[player][slot] = cos[player][slot] & 0x7f;
                 }
                 /* a locked CO resets both slots to the defaults */
-                if (!func_02101944(cos[player][slot])) {
+                if (!Unlock_IsSet(cos[player][slot])) {
                     cos[player][0] = data_02167d30[player][0];
                     cos[player][1] = data_02167d30[player][1];
                     STATE->playerCos[player][0] = cos[player][0] & 0x7f;
