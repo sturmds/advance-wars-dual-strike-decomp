@@ -120,6 +120,10 @@ src/game/main/unit_repair_2hp.c:
     complete
     .text       start:0x020e2498 end:0x020e24ac
 
+src/game/main/unit_highlight_foot_units.c:
+    complete
+    .text       start:0x020e2530 end:0x020e2568
+
 src/game/main/unit_highlight_all_but_oozium_2.c:
     complete
     .text       start:0x020e25e8 end:0x020e2610
