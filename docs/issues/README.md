@@ -45,3 +45,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0015](0015-agent-usage-budget.md) | No usage budget per batch | open | loop | M1 |
 | [0016](0016-field-renames-not-replayed.md) | `apply_commit.py` does not replay struct field renames | open | loop | M1 |
 | [0017](0017-diff-reloc-names.md) | `fn.py diff` shows less than 100% for table accesses that match | open | tools | M1 |
+| [0018](0018-rh890-names-to-confirm.md) | Names from document 890 to confirm | open | decomp | M2 |
+| [0019](0019-ov000-relocations.md) | Relocations marked `overlays(0,4)` that can only be ov000 | open | tools | M3 |
