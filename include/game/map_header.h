@@ -62,4 +62,6 @@ extern MapHeader Ov000_gMapHeaders[]; /* length unknown, indexed by map id */
 extern MapHeader Ov000_gMapHeaders[];
 
 #define ARMY_SLOT_COUNT 5         /* slot 0 neutral, then players 1-4 */
+#define MAP_DESIGN_FIRST 0x101    /* ids 0x101-0x10c: player-made maps (a guess), kept in data_022a6c84 */
+#define MAP_DESIGN_END 0x10d
 #endif
