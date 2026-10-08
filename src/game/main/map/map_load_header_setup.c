@@ -15,8 +15,9 @@ extern MapHeader Ov000_gMapHeaders[];
 #define HEADER_TEAM(player) ((&CURRENT_MAP_HEADER.unk_8d)[player])
 
 /* Copies each player's army and team, and the Fog of War flag, from the
- * current map's header into the game state. Only when unk_58 is 0, 1 or 3. */
-void Map_LoadHeaderSetup(void)
+ * current map's header into the game state. Only when unk_58 is 0, 1 or 3.
+ * Callers pass the map id, but the function reads it from the state. */
+void Map_LoadHeaderSetup(int mapId)
 {
     int player;
     u8 mode;

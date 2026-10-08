@@ -1,0 +1,160 @@
+#include "types.h"
+#include "game/player.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/map_header.h"
+
+void func_0200ac9c(void *state);
+void func_0200acac(void *state);
+void func_0201ad64(void);
+void func_02080734(void);
+void func_020d3c1c(void);
+void func_020e85d0(void);
+BOOL func_020e8ae4(void);
+int func_020f35cc(void);
+void func_020f35e0(int a);
+void func_020f368c(void);
+void func_020f3ee4(void);
+void func_020f4098(void);
+void func_020f808c(void);
+void Map_LoadHeaderSetup(int mapId);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern int data_027c0284;
+extern Unk_027c0288 data_027c0288;
+extern MapHeader Ov000_gMapHeaders[];
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Campaign missions played on two maps at once. */
+#define MAP_LIGHTNING_STRIKES (MAP_CAMPAIGN_FIRST + 10)
+#define MAP_RING_OF_FIRE      (MAP_CAMPAIGN_FIRST + 21)
+
+/* data_027c0288 holds two game states, one per map. A battle with a second
+ * map (header unk_10 nonzero) uses both; data_027c0284 picks the current one.
+ * func_0200acac and func_0200ac9c load a state into data_027c0280 and
+ * data_027c027c. */
+#define MAIN_MAP   (data_027c0288.unk_00)
+#define SECOND_MAP (data_027c0288.unk_04)
+#define OTHER_MAP  ((&data_027c0288.unk_00)[1 - data_027c0284])
+
+#define SWITCH_TO(state)            \
+    saved0280 = data_027c0280;      \
+    func_0200acac(state);           \
+    saved027c = data_027c027c;      \
+    func_0200ac9c(state)
+
+#define SWITCH_BACK()               \
+    func_0200ac9c(saved027c);       \
+    func_0200acac(saved0280)
+
+/* Sets up a battle's maps: clears unk_30 in both game states, takes the
+ * second map's id from the current map's header (unk_10, 0 for none),
+ * and copies armies, teams and fog from each map's header. */
+void Map_InitBattle(void)
+{
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+    Unk_02080440_48 *game;
+    u32 otherUnk30;
+    int i;
+
+    func_0201ad64();
+
+    switch (GAME->unk_58) {
+    case 2:
+        func_020e85d0();
+        break;
+    case 0:
+    case 1:
+    case 3:
+        if (!func_020e8ae4()) {
+            func_020e85d0();
+        }
+        break;
+    }
+
+    SWITCH_TO(MAIN_MAP);
+    GAME->unk_1c4->unk_30 = 0;
+    SWITCH_BACK();
+
+    SWITCH_TO(SECOND_MAP);
+    GAME->unk_1c4->unk_30 = 0;
+    SWITCH_BACK();
+
+    func_020f35e0(0);
+
+    game = GAME;
+    switch (game->unk_58) {
+    case 0:
+        func_020f4098();
+        GAME->unk_88 = Ov000_gMapHeaders[GAME->unk_1c4->mapId].unk_10;
+        break;
+    case 1:
+    case 3:
+        game->unk_88 = Ov000_gMapHeaders[game->unk_1c4->mapId].unk_10;
+        if (GAME->unk_88 != 0) {
+            SWITCH_TO(OTHER_MAP);
+            otherUnk30 = GAME->unk_1c4->unk_30;
+            SWITCH_BACK();
+            if (otherUnk30 == 0) {
+                func_020f35e0(4);
+            }
+        }
+        break;
+    case 2:
+        if (game->unk_88 != 0) {
+            SWITCH_TO(OTHER_MAP);
+            otherUnk30 = GAME->unk_1c4->unk_30;
+            SWITCH_BACK();
+            if (otherUnk30 == 0) {
+                func_020f35e0(4);
+            }
+        }
+        break;
+    }
+
+    if (func_020f35cc() == 3) {
+        GAME->unk_86 = 1;
+    }
+    func_020f3ee4();
+
+    SWITCH_TO(MAIN_MAP);
+    Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
+    SWITCH_BACK();
+
+    if (GAME->unk_88 != 0) {
+        SWITCH_TO(SECOND_MAP);
+        /* reads unk_88 of the second state, not the one set above */
+        GAME->unk_1c4->mapId = GAME->unk_88;
+        Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
+        SWITCH_BACK();
+    }
+
+    func_020f808c();
+
+    game = GAME;
+    if (game->unk_58 == 0 && game->unk_88 != 0) {
+        if (!func_020e8ae4() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
+                                  GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
+            SWITCH_TO(SECOND_MAP);
+            for (i = 1; i < 5; i++) {
+                GAME->unk_92[i] = GAME->players[i].controller;
+            }
+            SWITCH_BACK();
+        } else {
+            SWITCH_TO(SECOND_MAP);
+            for (i = 1; i < 5; i++) {
+                if (GAME->unk_92[i] != 0) {
+                    GAME->unk_92[i] = 2;
+                }
+            }
+            SWITCH_BACK();
+        }
+    }
+
+    func_020d3c1c();
+    func_020f368c();
+    func_02080734();
+}

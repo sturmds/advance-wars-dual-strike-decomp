@@ -62,7 +62,9 @@ typedef struct Unk_02080440_48 {
     u32 unk_7c;
     u8 unk_80;                         /* from MapHeader.unk_30 */
     u8 unk_81;                         /* from MapHeader.unk_34 */
-    u8 pad_82[0x88 - 0x82];
+    u8 pad_82[0x86 - 0x82];
+    u8 unk_86;
+    u8 pad_87[0x88 - 0x87];
     u16 unk_88;
     u8 unk_8a;
     u8 pad_8b[0x8d - 0x8b];

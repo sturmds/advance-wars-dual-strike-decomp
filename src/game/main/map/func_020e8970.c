@@ -3,7 +3,7 @@
 
 void func_020b9864(void);
 void func_020b9890(void);
-void func_020d3554(void);
+void Map_InitBattle(void);
 BOOL func_020e7f30(int mapId);
 void Map_SetupPlayerCos(void);
 void func_020e88f8(void);
@@ -20,7 +20,7 @@ void func_020e8970(void)
     Map_SetupPlayerCos();
     if (func_020e7f30(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId)) {
         func_020e8a88(1);
-        func_020d3554();
+        Map_InitBattle();
         func_020e88f8();
         func_020b9890();
     } else {
