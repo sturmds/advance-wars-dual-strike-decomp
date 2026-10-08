@@ -79,6 +79,16 @@ enum UnitClass {
 #define CO_SKILL2_FUNDS_PER_PROPERTY 0x40
 #define CO_SKILL2_TERRAIN_FIREPOWER  0x80
 
+/* Index into CoPowerBlock.movementCost, chosen per player by MovementCost
+ * from the front CO's skills. */
+enum MoveChart {
+    MOVE_CHART_DEFAULT,
+    MOVE_CHART_PRAIRIE_DOG,
+    MOVE_CHART_PATHFINDER,
+    MOVE_CHART_BOTH,
+    MOVE_CHART_COUNT
+};
+
 /* Changes a CO makes to one unit class. Each value is an offset; 0 means
  * no change. Firepower and defense are in percent. */
 typedef struct CoStatRow {

@@ -30,6 +30,8 @@
 #define SKILL_RANK_HIGH_AND_DRY     0x32
 #define SKILL_RANK_ICEBREAKER       0x33
 #define SKILL_RANK_SAND_SCORPION    0x34
+#define SKILL_PRAIRIE_DOG           0x38
+#define SKILL_PATHFINDER            0x39
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 
