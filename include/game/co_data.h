@@ -47,7 +47,8 @@ enum CoPowerState {
     POWER_STATE_COUNT
 };
 
-/* Index into CoPowerBlock.statRows. */
+/* Index into CoPowerBlock.statRows. UnitStats.unitClass holds one of
+ * UNIT_CLASS_FOOT to UNIT_CLASS_NAVY, or UNIT_CLASS_ALL for Oozium. */
 enum UnitClass {
     UNIT_CLASS_FOOT,
     UNIT_CLASS_DIRECT_VEHICLE,

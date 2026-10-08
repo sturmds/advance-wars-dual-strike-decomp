@@ -120,6 +120,10 @@ src/game/main/unit_repair_2hp.c:
     complete
     .text       start:0x020e2498 end:0x020e24ac
 
+src/game/main/unit_highlight_all_but_oozium.c:
+    complete
+    .text       start:0x020e2610 end:0x020e2638
+
 src/game/main/Blizzard.c:
     complete
     .text       start:0x020e2638 end:0x020e2658

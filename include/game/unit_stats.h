@@ -55,12 +55,14 @@ typedef struct UnitStats {
     u8 maxRange;
     u8 fuel;
     u8 unk_17[5];
-    u8 unk_1c;
+    u8 unitClass;                      /* enum UnitClass in game/co_data.h */
     u8 pad_1d[3];
-    u8 unk_20;                         /* "unit class" in the document */
+    u8 unk_20;                         /* the document calls this "unit class"; the code uses unitClass */
     u8 pad_21[0x6c - 0x21];
 } UnitStats;
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
+
+extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 #endif
