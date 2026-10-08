@@ -4,6 +4,19 @@
 #include "types.h"
 #include "game/text_ref.h"
 
+/* Terrain ids, from romhacking.net doc 890 (RadioTails). Add more as code
+ * uses them. */
+enum TerrainId {
+    TERRAIN_NONE,
+    TERRAIN_PLAIN,
+    TERRAIN_RIVER,
+    TERRAIN_MOUNTAIN,
+    TERRAIN_WOOD,
+    TERRAIN_ROAD,
+    TERRAIN_CITY,
+    TERRAIN_SEA
+};
+
 /* Fixed stats of one terrain id, 0x18 bytes, in ov000 at 0x022f4ccc.
  * The table holds terrain ids 0-30; Ov000_gUnitStats starts right
  * after. */

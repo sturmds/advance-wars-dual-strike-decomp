@@ -15,8 +15,7 @@ typedef struct MapTiles {
 #define MAP_TILE_TERRAIN(t) ((t) & 0x1f)
 #define MAP_TILE_OWNER(t)   (((t) & 0xe0) >> 5)
 
-/* Terrain ids (MAP_TILE_TERRAIN); add more as code uses them. */
-#define TERRAIN_CITY 6
+/* Terrain ids (MAP_TILE_TERRAIN) are in game/terrain.h. */
 
 /* Reached through Unk_02080440.unk_48[i]->unk_1c4. */
 typedef struct Unk_02080440_1c4 {

@@ -18,6 +18,7 @@
 #define SKILL_INDIRECT_DEFENSE_20   0x0c /* Javier day-to-day */
 #define SKILL_INDIRECT_DEFENSE_40   0x0d /* Javier CO Power */
 #define SKILL_INDIRECT_DEFENSE_80   0x0e /* Javier Super CO Power */
+#define SKILL_TERRAIN_FIREPOWER     0x10 /* Lash day-to-day */
 #define SKILL_RANK_BRUISER          0x20
 #define SKILL_RANK_BRAWLER          0x21
 #define SKILL_RANK_SHARPSHOOTER     0x22
@@ -30,6 +31,11 @@
 #define SKILL_RANK_APC_GUARD        0x29
 #define SKILL_RANK_MISSILE_GUARD    0x2a /* less damage from missile silos */
 #define SKILL_RANK_CANNON_GUARD     0x2b /* less damage from cannons */
+#define SKILL_RANK_ROAD_RAGE        0x2c
+#define SKILL_RANK_RANGER           0x2d
+#define SKILL_RANK_URBAN_FIGHTER    0x2e
+#define SKILL_RANK_MOUNTAINEER      0x2f
+#define SKILL_RANK_SEAMANSHIP       0x30
 #define SKILL_RANK_BACKSTAB         0x31 /* +15 firepower while dived */
 #define SKILL_RANK_HIGH_AND_DRY     0x32
 #define SKILL_RANK_ICEBREAKER       0x33
