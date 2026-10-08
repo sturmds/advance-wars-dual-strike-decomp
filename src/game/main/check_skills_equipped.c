@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/skills.h"
 
 /* Tests skill number `skill` (1-based) in a skill bitfield such as
  * Player.skills[0]. Skill 0 means no skill and is never set. */

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
-
-BOOL CheckSkillsEquipped(const u32 *bits, int skill);
+#include "game/skills.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -13,7 +12,7 @@ int LuckDamage(int playerIndex, int coSlot)
     Player *player = &data_027c027c->unk_48[data_027c0284]->players[playerIndex];
     int luck = 0;
 
-    if (CheckSkillsEquipped(player->skills[coSlot], SKILL_LUCK)) {
+    if (CheckSkillsEquipped(player->skills[coSlot], SKILL_RANK_LUCK)) {
         luck += 10;
     }
     return luck;

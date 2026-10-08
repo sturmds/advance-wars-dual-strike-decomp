@@ -10,7 +10,15 @@ typedef struct Unk_02080440_1c4 {
     u16 unk_2a;
     u8 pad_2c[0x34 - 0x2c];
     u16 mapId;                         /* index into Ov000_gMapHeaders */
+    u8 pad_36[0x3a - 0x36];
+    u8 weather;                        /* WEATHER_* */
 } Unk_02080440_1c4;
+
+/* Unk_02080440_1c4.weather */
+#define WEATHER_CLEAR 0
+#define WEATHER_SNOW  1
+#define WEATHER_RAIN  2
+#define WEATHER_SAND  3
 
 typedef struct Unk_02080440_48 {
     u8 pad_00[2];
