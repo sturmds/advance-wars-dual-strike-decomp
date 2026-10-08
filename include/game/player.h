@@ -7,6 +7,10 @@
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
 
+/* Ids for Player.skills, tested by CheckSkillsEquipped. 0x01-0x10 are CO
+ * skills, 0x20-0x4a Force Ranks. */
+#define SKILL_LUCK 0x47                /* Force Rank: +10 good luck */
+
 /* One of the four players, 0x98 bytes, in the array at
  * Unk_02080440_48.players. Layout from romhacking.net doc 890 (RadioTails);
  * fields named here have been seen in code, unk_ fields carry the
@@ -37,8 +41,7 @@ typedef struct Player {
     u8 pad_2f[0x6c - 0x2f];
     u32 frontCo;                       /* CO id and power state, see PLAYER_ macros */
     u32 backCo;
-    u32 frontSkills[4];                /* skill and Force Rank bits, tested by CheckSkillsEquipped */
-    u32 backSkills[4];
+    u32 skills[2][4];                  /* front and back CO: skill and Force Rank bits, see SKILL_ */
     u32 unk_94;                        /* Time Survival timer, frames */
 } Player;
 
