@@ -18,6 +18,7 @@
 #define SKILL_RANK_BRAWLER          0x21
 #define SKILL_RANK_SHARPSHOOTER     0x22
 #define SKILL_RANK_SNIPER           0x23
+#define SKILL_RANK_APC_BOOST        0x24 /* +1 transport movement */
 #define SKILL_RANK_SLAM_GUARD       0x25
 #define SKILL_RANK_SLAM_SHIELD      0x26
 #define SKILL_RANK_SNIPE_GUARD      0x27
