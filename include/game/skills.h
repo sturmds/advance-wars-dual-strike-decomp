@@ -49,7 +49,10 @@
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
+#define SKILL_RANK_SALE_PRICE       0x43 /* units cost 5% less */
+#define SKILL_RANK_FIRE_SALE        0x44 /* units cost 8% less */
 #define SKILL_RANK_GOLD_RUSH        0x46 /* +100 G per property */
+#define SKILL_RANK_GOLD_RUSH       0x46 /* +100 G per property */
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
 #define SKILL_RANK_MISTWALKER       0x49 /* doc 890 name; CounterFirst checks it */
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a
