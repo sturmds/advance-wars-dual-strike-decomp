@@ -52,6 +52,8 @@
 #define SKILL_RANK_EAGLE_EYE        0x3c /* +2 vision */
 #define SKILL_RANK_MECHANIC         0x3d /* +1 repair */
 #define SKILL_RANK_GEAR_HEAD        0x3e /* +2 repair */
+#define SKILL_RANK_INVADER          0x3f /* +1 capture */
+#define SKILL_RANK_CONQUEROR        0x40 /* +2 capture */
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_SALE_PRICE       0x43 /* units cost 5% less */
