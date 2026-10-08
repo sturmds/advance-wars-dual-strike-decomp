@@ -264,6 +264,10 @@ src/game/main/skills/movement_cost.c:
     complete
     .text       start:0x020e7be8 end:0x020e7e6c
 
+src/game/main/skills/partner_boost2.c:
+    complete
+    .text       start:0x020e7eb4 end:0x020e7ee0
+
 src/game/main/skills/check_skills_equipped.c:
     complete
     .text       start:0x020e7ee0 end:0x020e7f18

@@ -50,5 +50,6 @@
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a
 
 BOOL CheckSkillsEquipped(const u32 *skills, int id);
+void PartnerBoost2(u32 *skills, int id); /* turns skill id on */
 
 #endif
