@@ -8,7 +8,8 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Power meter charge in one star for the CO in a player's slot (0 front,
- * 1 back): 50, plus 10 for each power used, up to 100 after 10 uses. */
+ * 1 back): 50, plus 10 for each power used (140 after 9 uses). At 10 uses
+ * the percentage is a flat 200, so a star drops back to 100. */
 int PowerStarCharge(int player, int slot)
 {
     /* frontCo and backCo are adjacent, so slot indexes from frontCo */
