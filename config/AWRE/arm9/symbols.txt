@@ -4257,7 +4257,7 @@ func_020e3c14 kind:function(arm,size=0x1e8) addr:0x020e3c14
 func_020e3dfc kind:function(arm,size=0x18) addr:0x020e3dfc
 func_020e3e14 kind:function(arm,size=0x18) addr:0x020e3e14
 func_020e3e2c kind:function(arm,size=0x10) addr:0x020e3e2c
-func_020e3e3c kind:function(arm,size=0x74) addr:0x020e3e3c
+StartPowerDamage kind:function(arm,size=0x74) addr:0x020e3e3c
 UrbanBlight kind:function(arm,size=0x80) addr:0x020e3eb0
 func_020e3f30 kind:function(arm,size=0x6c) addr:0x020e3f30
 BlackStorm kind:function(arm,size=0x78) addr:0x020e3f9c
@@ -7906,7 +7906,7 @@ data_02168854 kind:data(any) addr:0x02168854
 data_02168858 kind:data(any) addr:0x02168858
 data_021688bc kind:data(any) addr:0x021688bc
 data_021688dc kind:data(any) addr:0x021688dc
-data_02168904 kind:data(any) addr:0x02168904
+gPowerDamageTaskDesc kind:data(any) addr:0x02168904
 data_02168984 kind:data(any) addr:0x02168984
 data_0216898c kind:data(any) addr:0x0216898c
 data_02168990 kind:data(any) addr:0x02168990

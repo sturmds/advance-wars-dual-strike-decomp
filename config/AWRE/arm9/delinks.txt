@@ -128,6 +128,10 @@ src/game/main/func_020e2670.c:
     complete
     .text       start:0x020e2670 end:0x020e2688
 
+src/game/main/StartPowerDamage.c:
+    complete
+    .text       start:0x020e3e3c end:0x020e3eb0
+
 src/game/main/airborne_assault.c:
     complete
     .text       start:0x020e444c end:0x020e4478
