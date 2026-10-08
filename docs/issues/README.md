@@ -47,3 +47,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0017](0017-diff-reloc-names.md) | `fn.py diff` shows less than 100% for table accesses that match | open | tools | M1 |
 | [0018](0018-rh890-names-to-confirm.md) | Names from document 890 to confirm | open | decomp | M2 |
 | [0019](0019-ov000-relocations.md) | Relocations marked `overlays(0,4)` that can only be ov000 | open | tools | M3 |
+| [0020](0020-apply-commit-header-conflicts.md) | `apply_commit.py` stops at shared-header conflicts | open | loop | M1 |
