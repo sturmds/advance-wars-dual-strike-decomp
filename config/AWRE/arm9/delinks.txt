@@ -225,6 +225,10 @@ src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
 
+src/game/main/co_stats/player_get_tag_stars.c:
+    complete
+    .text       start:0x020e5488 end:0x020e5508
+
 src/game/main/skills/repair_increase.c:
     complete
     .text       start:0x020e5ec4 end:0x020e5f60
