@@ -1,0 +1,108 @@
+#include "types.h"
+#include "game/player.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/skills.h"
+
+void func_0200ac9c(void *state);
+void func_0200acac(void *state);
+u32 *GetCoPowerSkills(int co, int powerState);
+BOOL PartnerBoost1(int player);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern int data_027c0284;
+extern Unk_027c0288 data_027c0288;
+extern Unk_02080440_48 data_02183b08;
+extern u32 data_022a72c8[4][2][4];     /* skills a tag partner lends, per player and CO slot */
+
+/* Shorthand for player i of the current state; the original code reloads
+ * it through the globals on every access. */
+#define PLAYER(i) (data_027c027c->unk_48[data_027c0284]->players[i])
+
+/* Rebuilds a player's two skill sets (front CO, back CO) from each CO's
+ * skills in the front CO's power state, plus skills the tag partner lends
+ * when PartnerBoost1 allows them. */
+void UpdatePlayerSkills(int player)
+{
+    int frontCo;
+    int backCo;
+    u32 *frontSkills;
+    u32 *backSkills;
+    int i;
+    int slot;
+
+    /* Needed to match: the CO id is read as a byte. */
+    frontCo = *(u8 *)&PLAYER(player).frontCo & PLAYER_CO_ID_MASK;
+    backCo = *(u8 *)&PLAYER(player).backCo & PLAYER_CO_ID_MASK;
+    /* Needed to match: PLAYER_POWER_ACTIVE written as shifts. Both COs
+     * use the front CO's power state. */
+    frontSkills = GetCoPowerSkills(frontCo, PLAYER(player).frontCo << 20 >> 30);
+    backSkills = GetCoPowerSkills(backCo, PLAYER(player).frontCo << 20 >> 30);
+
+    for (slot = 0; slot < 2; slot++) {
+        for (i = 0; i < 4; i++) {
+            PLAYER(player).skills[slot][i] = 0;
+        }
+    }
+
+    if (data_027c027c->unk_48[data_027c0284]->unk_88 != 0) {
+        Unk_027c0280 *saved0280 = data_027c0280;
+        Unk_02080440 *saved027c;
+        u32 otherUnk30;
+
+        /* data_027c0288 holds two states, indexed like data_027c0284;
+         * switch to the other one to read its unk_30. */
+        func_0200acac((&data_027c0288.unk_00)[1 - data_027c0284]);
+        saved027c = data_027c027c;
+        func_0200ac9c((&data_027c0288.unk_00)[1 - data_027c0284]);
+        otherUnk30 = data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_30;
+        func_0200ac9c(saved027c);
+        func_0200acac(saved0280);
+
+        if (otherUnk30 == 0) {
+            /* Only the front CO gets skills; the lent set depends on
+             * whether this is the state at data_02183b08. */
+            int lentSlot = data_027c027c->unk_48[data_027c0284] != &data_02183b08;
+
+            if (frontCo == 0) {
+                return;
+            }
+            for (i = 0; i < 4; i++) {
+                PLAYER(player).skills[0][i] = frontSkills[i];
+                if (PartnerBoost1(player)) {
+                    PLAYER(player).skills[0][i] |= data_022a72c8[player][lentSlot][i];
+                }
+            }
+            return;
+        }
+    }
+
+    if (backCo != 0) {
+        for (i = 0; i < 4; i++) {
+            PLAYER(player).skills[1][i] = backSkills[i];
+            if (PartnerBoost1(player)) {
+                PLAYER(player).skills[1][i] |= data_022a72c8[player][1][i];
+            }
+        }
+    }
+
+    if (frontCo == 0) {
+        return;
+    }
+    for (i = 0; i < 4; i++) {
+        PLAYER(player).skills[0][i] = frontSkills[i];
+        if (PartnerBoost1(player)) {
+            PLAYER(player).skills[0][i] |= data_022a72c8[player][0][i];
+            if (CheckSkillsEquipped(PLAYER(player).skills[1], SKILL_RANK_TEAMWORK)) {
+                PartnerBoost2(PLAYER(player).skills[0], SKILL_PARTNER_TEAMWORK);
+            }
+            if (CheckSkillsEquipped(PLAYER(player).skills[1], SKILL_RANK_SYNERGY)) {
+                PartnerBoost2(PLAYER(player).skills[0], SKILL_PARTNER_SYNERGY);
+            }
+            if (CheckSkillsEquipped(PLAYER(player).skills[1], SKILL_RANK_BODYGUARD)) {
+                PartnerBoost2(PLAYER(player).skills[0], SKILL_PARTNER_BODYGUARD);
+            }
+        }
+    }
+}

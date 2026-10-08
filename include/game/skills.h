@@ -40,6 +40,9 @@
 #define SKILL_RANK_HIGH_AND_DRY     0x32
 #define SKILL_RANK_ICEBREAKER       0x33
 #define SKILL_RANK_SAND_SCORPION    0x34
+#define SKILL_RANK_TEAMWORK         0x35 /* lends SKILL_PARTNER_TEAMWORK to the front CO */
+#define SKILL_RANK_SYNERGY          0x36 /* lends SKILL_PARTNER_SYNERGY */
+#define SKILL_RANK_BODYGUARD        0x37 /* lends SKILL_PARTNER_BODYGUARD */
 #define SKILL_PRAIRIE_DOG           0x38
 #define SKILL_PATHFINDER            0x39
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */

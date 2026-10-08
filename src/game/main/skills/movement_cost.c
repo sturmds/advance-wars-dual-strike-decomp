@@ -4,7 +4,7 @@
 #include "game/skills.h"
 
 BOOL func_020c237c(u8 player);
-void func_020e70b8(int player);
+void UpdatePlayerSkills(int player);
 void func_020c0aa8(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -25,7 +25,7 @@ void MovementCost(void)
 
     for (p = 1; p < 5; p++) {
         if (func_020c237c(p)) {
-            func_020e70b8(p);
+            UpdatePlayerSkills(p);
         }
     }
 

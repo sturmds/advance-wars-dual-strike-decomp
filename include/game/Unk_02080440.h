@@ -24,7 +24,8 @@ typedef struct Unk_02080440_1c4 {
     u16 mapHeight;
     u8 pad_1e[0x2a - 0x1e];
     u16 unk_2a;
-    u8 pad_2c[0x34 - 0x2c];
+    u8 pad_2c[0x30 - 0x2c];
+    u32 unk_30;
     u16 mapId;                         /* index into Ov000_gMapHeaders */
     u8 pad_36[0x3a - 0x36];
     u8 weather;                        /* WEATHER_* */
@@ -50,7 +51,9 @@ typedef struct Unk_02080440_48 {
     u8 pad_59[0x5e - 0x59];
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
     u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
-    u8 pad_60[0x170 - 0x60];
+    u8 pad_60[0x88 - 0x60];
+    u16 unk_88;
+    u8 pad_8a[0x170 - 0x8a];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
     u8 pad_17c[0x1c4 - 0x17c];
     Unk_02080440_1c4 *unk_1c4;
