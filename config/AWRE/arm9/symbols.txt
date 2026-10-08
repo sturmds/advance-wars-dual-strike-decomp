@@ -7916,7 +7916,7 @@ data_0216899c kind:data(any) addr:0x0216899c
 data_021689a0 kind:data(any) addr:0x021689a0
 data_021689a4 kind:data(any) addr:0x021689a4
 gUnitDropScript kind:data(any) addr:0x021689a8
-data_02168a18 kind:data(any) addr:0x02168a18
+gCoveringFireScript kind:data(any) addr:0x02168a18
 data_02168a88 kind:data(any) addr:0x02168a88
 data_02168ad0 kind:data(any) addr:0x02168ad0
 data_02168b60 kind:data(any) addr:0x02168b60
