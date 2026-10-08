@@ -109,7 +109,7 @@ def apply_relocs(path: str, old: str, new: str) -> None:
 
 # Sizes of the types used in shared structs, for merging padding by offset.
 TYPE_SIZES = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4,
-              "int": 4, "BOOL": 4, "fx32": 4}
+              "int": 4, "BOOL": 4, "fx32": 4, "TextRef": 4}
 FIELD = re.compile(r"^\s*(?:const\s+)?(\w+)\s*(\*?)\s*(\w+)((?:\[[^\]]+\])*)\s*;")
 STRUCT = re.compile(r"(typedef struct (\w+) \{\n)(.*?)(\} \2;)", re.S)
 
@@ -234,6 +234,37 @@ def rename_in_sources(renames) -> None:
                 p.write_text(word.sub(new, text))
 
 
+ADDR_NAME = re.compile(r"\b(?:func|data)_(?:(ov\d{3})_)?([0-9a-f]{8})\b")
+
+
+def fix_stale_names(paths) -> None:
+    """A commit made in parallel may still use an address name (func_020e82a8)
+    that another landed commit has since renamed. Replace each address name
+    that is no longer a symbol with the symbol now at that address."""
+    names = {}
+    for sym in (ROOT / "config/AWRE/arm9").rglob("symbols.txt"):
+        module = sym.parent.name if sym.parent.parent.name == "overlays" else None
+        for line in sym.read_text().splitlines():
+            m = SYM.match(line)
+            if m:
+                names.setdefault((module, m.group(3)), m.group(1))
+    current = set(names.values())
+    for path in paths:
+        p = ROOT / path
+        if not (path.startswith(("src/", "include/")) and p.exists()):
+            continue
+        text = p.read_text()
+
+        def sub(m):
+            if m.group(0) in current:
+                return m.group(0)
+            return names.get((m.group(1), "0x" + m.group(2)), m.group(0))
+        new_text = ADDR_NAME.sub(sub, text)
+        if new_text != text:
+            p.write_text(new_text)
+            print(f"updated stale address names in {path}")
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -260,6 +291,7 @@ def main() -> int:
     rename_in_sources(renames)
     for old, new in renames:
         print(f"renamed {old} -> {new}")
+    fix_stale_names([ln.split("\t", 1)[1] for ln in changes])
     if CONFLICTS:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
