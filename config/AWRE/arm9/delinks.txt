@@ -124,6 +124,10 @@ src/game/main/unit_highlight_non_foot_units.c:
     complete
     .text       start:0x020e24ac end:0x020e24f0
 
+src/game/main/unit_highlight_air_units.c:
+    complete
+    .text       start:0x020e24f0 end:0x020e2530
+
 src/game/main/unit_highlight_foot_units.c:
     complete
     .text       start:0x020e2530 end:0x020e2568
