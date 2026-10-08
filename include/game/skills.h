@@ -48,6 +48,10 @@
 #define SKILL_PRAIRIE_DOG           0x38
 #define SKILL_PATHFINDER            0x39
 #define SKILL_RANK_TOWER_POWER      0x3a /* +5 firepower per Com Tower */
+#define SKILL_RANK_SCOUT            0x3b /* +1 vision */
+#define SKILL_RANK_EAGLE_EYE        0x3c /* +2 vision */
+#define SKILL_RANK_MECHANIC         0x3d /* +1 repair */
+#define SKILL_RANK_GEAR_HEAD        0x3e /* +2 repair */
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_SALE_PRICE       0x43 /* units cost 5% less */
