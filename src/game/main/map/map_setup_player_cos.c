@@ -19,7 +19,7 @@ int func_021039e4(void);
 int func_020c3d08(int mapId);
 u8 PickFreeCo(int coId);
 u8 Unlock_IsSet(int coId);
-void func_020e817c(void);
+void SetPlayer1TagPartner(void);
 
 /* Fills the front and back CO of players 1-4 for the map being started.
  * unk_58 picks the source (meaning of its values unknown): the map
@@ -96,5 +96,5 @@ void Map_SetupPlayerCos(void)
         }
     }
 
-    func_020e817c();
+    SetPlayer1TagPartner();
 }
