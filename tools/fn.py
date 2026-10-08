@@ -338,6 +338,12 @@ def cmd_finish(args) -> int:
     return 0
 
 
+def snake_case(name: str) -> str:
+    """PlayerAddFunds -> player_add_funds, the file naming used in src/."""
+    name = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    return re.sub(r"([A-Z]+)([A-Z][a-z])", r"\1_\2", name).lower()
+
+
 def cmd_rename(args) -> int:
     old, new = args.old, args.new
     if not re.fullmatch(r"[A-Za-z_]\w*", new):
@@ -361,7 +367,7 @@ def cmd_rename(args) -> int:
     for mod in modules().values():
         for path, *_ in mod.files:
             if Path(path).stem == old and (ROOT / path).exists():
-                new_path = str(Path(path).with_name(new + ".c"))
+                new_path = str(Path(path).with_name(snake_case(new) + ".c"))
                 (ROOT / path).rename(ROOT / new_path)
                 d = mod.dir / "delinks.txt"
                 d.write_text(d.read_text().replace(f"\n{path}:\n", f"\n{new_path}:\n"))

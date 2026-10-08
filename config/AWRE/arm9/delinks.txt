@@ -56,7 +56,7 @@ src/game/main/func_02080440.c:
     complete
     .text       start:0x02080440 end:0x020804ac
 
-src/game/main/DrawSelectedCoPowerText.c:
+src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
 
@@ -104,7 +104,7 @@ src/game/main/unit_no_bonus.c:
     complete
     .text       start:0x020e244c end:0x020e2450
 
-src/game/main/UnitResupply.c:
+src/game/main/unit_resupply.c:
     complete
     .text       start:0x020e2450 end:0x020e2474
 
@@ -148,7 +148,7 @@ src/game/main/unit_highlight_all_but_oozium.c:
     complete
     .text       start:0x020e2610 end:0x020e2638
 
-src/game/main/Blizzard.c:
+src/game/main/blizzard.c:
     complete
     .text       start:0x020e2638 end:0x020e2658
 
@@ -160,31 +160,31 @@ src/game/main/func_020e2670.c:
     complete
     .text       start:0x020e2670 end:0x020e2688
 
-src/game/main/StartPowerDamage.c:
+src/game/main/start_power_damage.c:
     complete
     .text       start:0x020e3e3c end:0x020e3eb0
 
-src/game/main/UrbanBlight.c:
+src/game/main/urban_blight.c:
     complete
     .text       start:0x020e3eb0 end:0x020e3f30
 
-src/game/main/BlackStorm.c:
+src/game/main/black_storm.c:
     complete
     .text       start:0x020e3f9c end:0x020e4014
 
-src/game/main/BlackWave.c:
+src/game/main/black_wave.c:
     complete
     .text       start:0x020e4014 end:0x020e408c
 
-src/game/main/Typhoon.c:
+src/game/main/typhoon.c:
     complete
     .text       start:0x020e408c end:0x020e4108
 
-src/game/main/Tsunami.c:
+src/game/main/tsunami.c:
     complete
     .text       start:0x020e4108 end:0x020e4184
 
-src/game/main/WinterFury.c:
+src/game/main/winter_fury.c:
     complete
     .text       start:0x020e4184 end:0x020e41fc
 

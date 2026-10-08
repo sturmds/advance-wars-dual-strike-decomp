@@ -43,3 +43,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0013](0013-arm7-from-objects.md) | ARM7 is copied from the ROM, not built from objects | open | build | M2 |
 | [0014](0014-unk-struct-consolidation.md) | `Unk_*` structs need merging and real names | open | decomp | M2 |
 | [0015](0015-agent-usage-budget.md) | No usage budget per batch | open | loop | M1 |
+| [0016](0016-field-renames-not-replayed.md) | `apply_commit.py` does not replay struct field renames | open | loop | M1 |
+| [0017](0017-diff-reloc-names.md) | `fn.py diff` shows less than 100% for table accesses that match | open | tools | M1 |
