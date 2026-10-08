@@ -60,6 +60,10 @@ src/game/main/check_unit_type.c:
     complete
     .text       start:0x020df7ac end:0x020df7f8
 
+src/game/main/power_default_bonus.c:
+    complete
+    .text       start:0x020e23d8 end:0x020e244c
+
 src/game/main/unit_no_bonus.c:
     complete
     .text       start:0x020e244c end:0x020e2450

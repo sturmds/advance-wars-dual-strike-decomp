@@ -22,7 +22,7 @@ typedef struct Unk_02080440_1c4 {
 
 typedef struct Unk_02080440_48 {
     u8 pad_00[2];
-    u16 unk_02;                        /* a player index: PowerDefaultBonus uses players[unk_02] */
+    u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u8 pad_04[0x3e - 0x04];
     s16 unk_3e;
     s16 unk_40;
