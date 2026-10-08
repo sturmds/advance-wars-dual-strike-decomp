@@ -6827,7 +6827,7 @@ data_02152b60 kind:data(any) addr:0x02152b60
 data_02152b78 kind:data(any) addr:0x02152b78
 data_02152b80 kind:data(any) addr:0x02152b80
 data_02152b88 kind:data(any) addr:0x02152b88
-data_0215360c kind:data(any) addr:0x0215360c
+gCoTable kind:data(any) addr:0x0215360c
 data_02153610 kind:data(any) addr:0x02153610
 data_02153614 kind:data(any) addr:0x02153614
 data_02153618 kind:data(any) addr:0x02153618

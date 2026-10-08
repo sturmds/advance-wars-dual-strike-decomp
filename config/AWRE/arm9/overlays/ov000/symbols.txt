@@ -794,7 +794,7 @@ data_ov000_022db768 kind:data(any) addr:0x022db768
 data_ov000_022dbd1c kind:data(any) addr:0x022dbd1c
 data_ov000_022dbd20 kind:data(any) addr:0x022dbd20
 data_ov000_022dbd24 kind:data(any) addr:0x022dbd24
-data_ov000_022dbd28 kind:data(any) addr:0x022dbd28 ambiguous
+Ov000_gMapHeaders kind:data(any) addr:0x022dbd28 ambiguous
 data_ov000_022dbd2c kind:data(any) addr:0x022dbd2c ambiguous
 data_ov000_022dbd30 kind:data(any) addr:0x022dbd30 ambiguous
 data_ov000_022dbd34 kind:data(any) addr:0x022dbd34 ambiguous

@@ -64,3 +64,5 @@ Ov000_gCostPathfinderMovement,ov000,0x022f4958,rh890:data/COs/movement_cost/Path
 Ov000_gCostPrairiePathMovement,ov000,0x022f4a78,rh890:data/COs/movement_cost/Prairie_and_Pathfinder_Movement.asm:7
 Ov000_gCostFreeMovement,ov000,0x022f4b98,rh890:data/COs/movement_cost/Free_Movement.asm:7
 Ov000_gNoBoost,ov000,0x02350320,rh890:include/definitions_CO.asm:179
+gCoTable,main,0x0215360c,rh890:notes/AWDS CO Header.txt:3
+Ov000_gMapHeaders,ov000,0x022dbd28,rh890:notes/AWDS Datasheet.rtf (datasheet.txt):946
