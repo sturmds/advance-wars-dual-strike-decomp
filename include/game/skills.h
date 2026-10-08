@@ -8,6 +8,8 @@
  * 0x01-0x10 are CO skills, 0x20-0x4a are Force Ranks. Ids from
  * romhacking.net doc 890 (RadioTails); add more as code uses them. */
 #define SKILL_DEPLOY_CITY           0x02 /* Hachi Super CO Power */
+#define SKILL_COUNTER_FIRST         0x03 /* Sonja Super: counterattack first */
+#define SKILL_DOUBLE_TERRAIN_STARS  0x05 /* Lash Super */
 #define SKILL_SNOW_FIREPOWER        0x06 /* Olaf day-to-day */
 #define SKILL_AIR_FUEL_SAVING       0x07 /* Eagle day-to-day */
 #define SKILL_PARTNER_TEAMWORK      0x08 /* tag partner has Teamwork */
@@ -38,6 +40,7 @@
 #define SKILL_RANK_SNEAKY           0x41
 #define SKILL_RANK_STEALTHY         0x42
 #define SKILL_RANK_LUCK             0x47 /* +10 good luck */
+#define SKILL_RANK_MISTWALKER       0x49 /* doc 890 name; CounterFirst checks it */
 #define SKILL_RANK_SOUL_OF_HACHI    0x4a
 
 BOOL CheckSkillsEquipped(const u32 *skills, int id);
