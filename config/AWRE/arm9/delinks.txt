@@ -92,6 +92,10 @@ src/game/main/skills/double_terrain_stars.c:
     complete
     .text       start:0x020c3a50 end:0x020c3b00
 
+src/game/main/map/map_get_tile_army.c:
+    complete
+    .text       start:0x020c3c20 end:0x020c3ca0
+
 src/game/main/map/map_get_name.c:
     complete
     .text       start:0x020c3ca0 end:0x020c3d08

@@ -49,7 +49,9 @@ typedef struct MapHeader {
     u8 army[4];                        /* army colour per player */
     u8 unk_8d;
     u8 team[4];                        /* team per player */
-    u8 unk_92[0x0e];
+    u8 unk_92[0x0a];
+    u8 tileArmy;                       /* nonzero: army style of every tile but HQs, see Map_GetTileArmy */
+    u8 pad_9d[3];
 } MapHeader;
 
 /* Fails to compile if a field change breaks the size the ROM uses. */

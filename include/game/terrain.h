@@ -14,7 +14,8 @@ enum TerrainId {
     TERRAIN_WOOD,
     TERRAIN_ROAD,
     TERRAIN_CITY,
-    TERRAIN_SEA
+    TERRAIN_SEA,
+    TERRAIN_HQ
 };
 
 /* Fixed stats of one terrain id, 0x18 bytes, in ov000 at 0x022f4ccc.
