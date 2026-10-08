@@ -197,6 +197,10 @@ src/game/main/copowers/power_star_charge.c:
     complete
     .text       start:0x020e2c60 end:0x020e2ce0
 
+src/game/main/copowers/spend_power_charge.c:
+    complete
+    .text       start:0x020e2fc0 end:0x020e305c
+
 src/game/main/copowers/start_power_damage.c:
     complete
     .text       start:0x020e3e3c end:0x020e3eb0

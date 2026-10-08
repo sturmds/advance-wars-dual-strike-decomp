@@ -10,9 +10,8 @@ extern int data_027c0284;
 void CountPowerUse(int player)
 {
     Player *p = &data_027c027c->unk_48[data_027c0284]->players[player];
-    u32 uses = PLAYER_POWER_USES(p->frontCo);
 
-    if (uses < 10) {
-        p->frontCo = (p->frontCo & ~PLAYER_POWER_USES_MASK) | (((uses + 1) & 0xf) << PLAYER_POWER_USES_SHIFT);
+    if (PLAYER_CO_STATUS(p->frontCo)->powerUses < 10) {
+        PLAYER_CO_STATUS(p->frontCo)->powerUses++;
     }
 }

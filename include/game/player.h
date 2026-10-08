@@ -7,11 +7,22 @@
 #define PLAYER_CO_ID_MASK      0x7f
 #define PLAYER_POWER_ACTIVE(w) (((w) >> 10) & 3) /* enum CoPowerState */
 #define PLAYER_POWER_READY_MASK 0x300            /* bits 8-9: power ready to use */
-#define PLAYER_POWER_USES(w)    (((w) << 14) >> 28) /* bits 14-17: powers used, stops at 10 */
-#define PLAYER_POWER_USES_SHIFT 14
-#define PLAYER_POWER_USES_MASK  0x3c000
-#define PLAYER_POWER_CHARGE(w)  ((w) >> 21)         /* bits 21-31: power meter charge */
-#define PLAYER_POWER_CHARGE_SHIFT 21
+
+/* Bitfield view of Player.frontCo and backCo. The fields stay u32 so
+ * other code keeps its shifts; cast to this where the game code used
+ * bitfields (the reads and writes compile differently). */
+typedef struct PlayerCoStatus {
+    u32 co : 7;                        /* enum CoId */
+    u32 unk_7 : 1;
+    u32 powerReady : 2;
+    u32 powerActive : 2;               /* enum CoPowerState */
+    u32 unk_12 : 2;
+    u32 powerUses : 4;                 /* stops at 10 */
+    u32 unk_18 : 3;
+    u32 charge : 11;                   /* power meter */
+} PlayerCoStatus;
+
+#define PLAYER_CO_STATUS(word) ((PlayerCoStatus *)&(word))
 
 /* Player.front and back: the same words as frontCo and backCo, as bit
  * fields. Game code reads them this way; the u32 view is kept for code that
