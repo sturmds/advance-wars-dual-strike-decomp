@@ -7904,7 +7904,7 @@ gCoNoPowerScript kind:data(any) addr:0x02168810
 data_02168850 kind:data(any) addr:0x02168850
 data_02168854 kind:data(any) addr:0x02168854
 data_02168858 kind:data(any) addr:0x02168858
-data_021688bc kind:data(any) addr:0x021688bc
+gPowerEffectTaskDesc kind:data(any) addr:0x021688bc
 data_021688dc kind:data(any) addr:0x021688dc
 gPowerDamageTaskDesc kind:data(any) addr:0x02168904
 data_02168984 kind:data(any) addr:0x02168984

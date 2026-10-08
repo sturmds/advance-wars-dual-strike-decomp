@@ -1,0 +1,17 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/power_damage.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern u8 gPowerEffectTaskDesc[];
+extern char data_021689a0[];
+extern char data_02168994[];
+
+/* Drake's CO Power: 1 HP to every enemy unit, enemy fuel halved. */
+void Tsunami(void *parent)
+{
+    StartPowerDamage(gPowerEffectTaskDesc, data_021689a0, data_02168994,
+                     data_027c027c->unk_48[data_027c0284]->currentPlayer,
+                     10, 0, WEATHER_KEEP, TRUE, NULL, parent);
+}
