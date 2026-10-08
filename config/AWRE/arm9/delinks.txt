@@ -152,6 +152,10 @@ src/game/main/Tsunami.c:
     complete
     .text       start:0x020e4108 end:0x020e4184
 
+src/game/main/WinterFury.c:
+    complete
+    .text       start:0x020e4184 end:0x020e41fc
+
 src/game/main/airborne_assault.c:
     complete
     .text       start:0x020e444c end:0x020e4478
