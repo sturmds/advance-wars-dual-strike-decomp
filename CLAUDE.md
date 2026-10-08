@@ -54,6 +54,8 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
+| `config/AWRE/names-provenance.csv` | Where each imported name came from. `fn.py rename` keeps it current. |
+| `docs/third-party/` | Credit pages for outside sources we take facts from. |
 | `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint. |
 | `docs/tool-issues.md` | Problems in dsd and other tools, and our workarounds. |
 | `docs/issues/` | Issue tracker: one file per issue, index in `README.md`. Add an issue for any problem found and not fixed in the same change. |

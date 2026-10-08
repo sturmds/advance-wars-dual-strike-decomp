@@ -8,7 +8,8 @@
     fn.py diff NAME                            compile its file and compare with the original
     fn.py finish NAME                          mark its file `complete` (linked from our C)
     fn.py rename OLD NEW                       rename a symbol in symbols.txt, src/ and include/;
-                                               moves src/.../OLD.c to NEW.c as well
+                                               moves src/.../OLD.c to NEW.c as well, and updates
+                                               config/AWRE/names-provenance.csv
 
 Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
@@ -28,6 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config/AWRE/arm9"
 INTERESTING = ROOT / "config/AWRE/interesting.txt"
+PROVENANCE = ROOT / "config/AWRE/names-provenance.csv"
 OBJDIFF = ROOT / ".cache/tools/objdiff-cli/objdiff-cli"
 OBJDUMP = "arm-none-eabi-objdump"
 
@@ -369,6 +371,12 @@ def cmd_rename(args) -> int:
         if word.search(text):
             p.write_text(word.sub(new, text))
             print(f"updated {p.relative_to(ROOT)}")
+    # A renamed import keeps its source line, under the new name.
+    text = PROVENANCE.read_text()
+    new_text = re.sub(rf"^{re.escape(old)},", f"{new},", text, flags=re.M)
+    if new_text != text:
+        PROVENANCE.write_text(new_text)
+        print(f"updated {PROVENANCE.relative_to(ROOT)}")
     print(f"renamed {old} -> {new}")
     return 0
 
