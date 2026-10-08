@@ -34,24 +34,24 @@ void MovementCost(void)
             continue;
         }
 
-        PLAYERS[player].unk_2b = MOVE_CHART_DEFAULT;
+        PLAYERS[player].moveChart = MOVE_CHART_DEFAULT;
         if (CheckSkillsEquipped(PLAYERS[player].skills[0], SKILL_PRAIRIE_DOG)) {
             if (CheckSkillsEquipped(PLAYERS[player].skills[0], SKILL_PATHFINDER)) {
-                PLAYERS[player].unk_2b = MOVE_CHART_BOTH;
+                PLAYERS[player].moveChart = MOVE_CHART_BOTH;
             } else {
-                PLAYERS[player].unk_2b = MOVE_CHART_PRAIRIE_DOG;
+                PLAYERS[player].moveChart = MOVE_CHART_PRAIRIE_DOG;
             }
         } else if (CheckSkillsEquipped(PLAYERS[player].skills[0], SKILL_PATHFINDER)) {
-            PLAYERS[player].unk_2b = MOVE_CHART_PATHFINDER;
+            PLAYERS[player].moveChart = MOVE_CHART_PATHFINDER;
         }
 
         /* Each enemy star cut takes 10 off this player's terrain defense value. */
-        PLAYERS[player].unk_2a = 0;
+        PLAYERS[player].terrainDefense = 0;
         for (enemy = 1; enemy < 5; enemy++) {
-            if (func_020c237c(enemy) && PLAYERS[player].unk_2c != PLAYERS[enemy].unk_2c) {
+            if (func_020c237c(enemy) && PLAYERS[player].team != PLAYERS[enemy].team) {
                 /* Needed to match: the original reads the CO id with a byte
                  * load and the power state with shifts, as bit fields would. */
-                PLAYERS[player].unk_2a -=
+                PLAYERS[player].terrainDefense -=
                     gCoTable[*(u8 *)&PLAYERS[enemy].frontCo & PLAYER_CO_ID_MASK]
                         .blocks[(PLAYERS[enemy].frontCo << 20) >> 30]
                         .terrainStarCut * 10;

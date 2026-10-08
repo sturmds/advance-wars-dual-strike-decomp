@@ -60,9 +60,9 @@ typedef struct Player {
     u8 unk_25;                         /* tag power active: 1 front, 2 back */
     s16 firepowerBonus;                /* set to 10 while a power is on */
     s16 defenseBonus;                  /* set to 10 while a power is on */
-    s8 unk_2a;                         /* terrain defense adjustment */
-    u8 unk_2b;                         /* movement chart */
-    u8 unk_2c;                         /* team */
+    s8 terrainDefense;                 /* added to terrain defense; enemy Sonja-style star cuts make it negative */
+    u8 moveChart;                      /* enum MoveChart: index into CoPowerBlock.movementCost */
+    u8 team;
     u8 unk_2d;
     u8 unk_2e;                         /* AI behaviour */
     u8 pad_2f[0x6c - 0x2f];

@@ -21,7 +21,7 @@ int DoubleTerrainStars(int playerIndex, int unitType, int terrain)
         return 0;
     }
     player = &data_027c027c->unk_48[data_027c0284]->players[playerIndex];
-    defense = Ov000_gTerrainStats[terrain].defenseStars * 10 + player->unk_2a;
+    defense = Ov000_gTerrainStats[terrain].defenseStars * 10 + player->terrainDefense;
     if (defense < 0) {
         return 0;
     }

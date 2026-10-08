@@ -158,10 +158,8 @@ typedef struct CoRecord {
     TextRef profiles[4];               /* about, day-to-day, CO Power, Super */
     u16 theme;
     u8 pad_16[6];
-    u8 powerStars;
-    u8 pad_1d[3];
-    u8 superStars;
-    u8 pad_21[3];
+    u32 powerStars;                    /* CO Power cost in stars */
+    u32 superStars;                    /* Super CO Power cost in stars */
     u8 unk_24;                         /* always 1 */
     u8 armyStyle;                      /* 0-4: OS, BM, GE, YC, BH */
     u8 nation;                         /* 1-5; picks power themes */
