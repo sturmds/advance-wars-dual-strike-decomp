@@ -7,11 +7,11 @@ struct Unk_020d0148 {
     int unk_50;
 };
 
-void func_020b9c68(void);
+void MenuDepth_Pop(void);
 int func_0202244c(int);
 
 int func_020d0148(Unk_020d0148 *a0)
 {
-    func_020b9c68();
+    MenuDepth_Pop();
     return func_0202244c(a0->unk_50);
 }
