@@ -1195,6 +1195,10 @@ src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
 
+src/game/main/ai/func_0208fda8.c:
+    complete
+    .text       start:0x0208fda8 end:0x0208fe44
+
 src/game/main/ai/ai_turn_run_queue.c:
     complete
     .text       start:0x0208fe44 end:0x02090154
