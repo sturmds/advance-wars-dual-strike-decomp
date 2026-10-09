@@ -1703,6 +1703,10 @@ src/game/main/map/map_load_army_colours_by_id.c:
     complete
     .text       start:0x0202cb34 end:0x0202cbcc
 
+src/game/main/func_0202cbcc.c:
+    complete
+    .text       start:0x0202cbcc end:0x0202cbfc
+
 src/game/main/func_0202cbfc.c:
     complete
     .text       start:0x0202cbfc end:0x0202cc0c
