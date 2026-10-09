@@ -6583,6 +6583,10 @@ src/game/main/units/player_count_units.c:
     complete
     .text       start:0x020c9704 end:0x020c9778
 
+src/game/main/map/map_add_tile_offset.c:
+    complete
+    .text       start:0x020c9a14 end:0x020c9a74
+
 src/game/main/func_020c9c70.c:
     complete
     .text       start:0x020c9c70 end:0x020c9c7c

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 /* Adds offset `index` of offset list `list` to x and y; FALSE at the end of the list. */
-BOOL func_020c9a14(int *x, int *y, int list, int index);
+BOOL Map_AddTileOffset(int *x, int *y, int list, int index);
 void Unit_DamageAtTile(int x, int y, int arg);
 void Unit_ParalyseAtTile(int x, int y, int player);
 void func_020c4018(void);
@@ -20,7 +20,7 @@ void func_020e462c(int x, int y)
     do {
         pos[0] = x;
         pos[1] = y;
-        if (!func_020c9a14(&pos[0], &pos[1], 2, index++)) {
+        if (!Map_AddTileOffset(&pos[0], &pos[1], 2, index++)) {
             break;
         }
         Unit_DamageAtTile(pos[0], pos[1], 30);
