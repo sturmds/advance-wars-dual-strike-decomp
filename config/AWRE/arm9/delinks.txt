@@ -183,6 +183,10 @@ src/game/main/func_02003ff8.c:
     complete
     .text       start:0x02003ff8 end:0x02004018
 
+src/game/main/func_02004230.c:
+    complete
+    .text       start:0x02004230 end:0x02004284
+
 src/game/main/rng/rng_next.c:
     complete
     .text       start:0x02004470 end:0x02004498
