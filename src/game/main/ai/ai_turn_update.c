@@ -5,7 +5,7 @@ BOOL func_0201ad28(void);
 void AiTurn_Start(void);
 void AiTurn_RunPhase(void);
 void AiTurn_RunQueue(void);
-void func_020b9540(void);
+void AiTurn_ShowAction(void);
 void func_02093824(void);
 void func_02099f88(void);
 void func_0208c230(void);
@@ -28,7 +28,7 @@ void AiTurn_Update(void)
         AiTurn_RunQueue();
         break;
     case AI_STATE_SHOW_ACTION:
-        func_020b9540();
+        AiTurn_ShowAction();
         break;
     case AI_STATE_END_ACTIONS:
         func_02093824();
