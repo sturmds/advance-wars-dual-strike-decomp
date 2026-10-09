@@ -15,8 +15,8 @@ typedef struct WarRoomRecord {
     u32 : 2;
 } WarRoomRecord;
 
-/* data_02290c34 (main bss): records by MapListTables.unk_108, map
+/* gWarRoomRecords (main bss): records by MapListTables.unk_108, map
  * (id - WAR_ROOM_FIRST_MAP) and place. */
-extern WarRoomRecord data_02290c34[][44][3];
+extern WarRoomRecord gWarRoomRecords[][44][3];
 
 #endif

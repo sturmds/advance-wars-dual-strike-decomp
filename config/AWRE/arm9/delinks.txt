@@ -59,7 +59,7 @@ src/game/main/func_02001a20.c:
 src/game/main/graphics/func_02001f50.c:
     .text       start:0x02001f50 end:0x02001fa8
 
-src/game/main/func_02002110.c:
+src/game/main/graphics/co_queue_small_picture.c:
     complete
     .text       start:0x02002110 end:0x0200215c
 
@@ -2251,7 +2251,7 @@ src/game/main/menus/sprite_queue_picture192x160.c:
     complete
     .text       start:0x0202b89c end:0x0202bbb0
 
-src/game/main/func_0202bdcc.c:
+src/game/main/menus/map_preview_copy_counts.c:
     complete
     .text       start:0x0202bdcc end:0x0202bdec
 
@@ -3364,7 +3364,7 @@ src/game/main/link/link_find_slot_of_player.c:
     complete
     .text       start:0x020738d0 end:0x02073908
 
-src/game/main/func_02073908.c:
+src/game/main/link/link_get_player_of_slot.c:
     complete
     .text       start:0x02073908 end:0x02073920
 

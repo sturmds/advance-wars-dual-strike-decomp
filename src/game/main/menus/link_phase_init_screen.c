@@ -41,7 +41,7 @@ extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern u8 data_0229c874[4];
+extern u8 gLinkSlotPlayers[4];
 extern DesignMap data_022a6c84[];
 extern u16 gLinkPhaseArmyGfxOffsets[];
 extern const char gLinkPhaseResPath[];
@@ -102,7 +102,7 @@ void LinkPhase_InitScreen(void)
         }
     }
     for (i = 0; i < 4; i++) {
-        gMenuState.link.unk_020[i] = data_0229c874[i] - 1;
+        gMenuState.link.unk_020[i] = gLinkSlotPlayers[i] - 1;
         gMenuState.link.unk_028[i] = 0;
     }
     Gfx_InitBothScreens();

@@ -12,7 +12,7 @@ void Screen_SetCurrentGfx(void *state);
 void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 void Mem_Zero32(u32 value, void *dst, u32 size);
-void func_0202bdcc(s8 *dst);
+void MapPreview_CopyCounts(s8 *dst);
 void MapPreview_Draw(void *dst, int mapId);
 
 extern Unk_027c0280 *data_027c0280;
@@ -34,7 +34,7 @@ static inline u16 *Gfx_GetLayer1Map(void)
  * data_02167c90 text while the map is locked (Map_IsFlagSet). In gameMode 1,
  * a map with a second map also gets a preview on the other screen and a
  * window. Then fills the number grids that MapSelect_Draw shows:
- * func_0202bdcc copies six counts that the last MapPreview_Draw call left. */
+ * MapPreview_CopyCounts copies six counts that the last MapPreview_Draw call left. */
 void MapSelect_ShowSelectedMap(void)
 {
     Unk_027c0280 *savedState;
@@ -47,7 +47,7 @@ void MapSelect_ShowSelectedMap(void)
     if (Map_IsFlagSet(SELECTED_MAP_ID())) {
         if (STATE->gameMode == 1 && SECOND_MAP_ID() != 0) {
             MapPreview_Draw(data_027c0280->objVram + 0x8000, SECOND_MAP_ID());
-            func_0202bdcc(MENU->setup.unk_4d4);
+            MapPreview_CopyCounts(MENU->setup.unk_4d4);
         } else {
             MapPreview_Draw(data_027c0280->objVram + 0x8000, SELECTED_MAP_ID());
         }
@@ -100,8 +100,8 @@ void MapSelect_ShowSelectedMap(void)
         return;
     }
     if (TAB() == 2) {
-        func_0202bdcc(MENU->setup.unk_4d4);
+        MapPreview_CopyCounts(MENU->setup.unk_4d4);
     } else {
-        func_0202bdcc(MENU->setup.unk_4ce);
+        MapPreview_CopyCounts(MENU->setup.unk_4ce);
     }
 }

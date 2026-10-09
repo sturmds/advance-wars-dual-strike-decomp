@@ -2,6 +2,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/war_room_records.h"
 
 void Gfx_RequestLayerCopy(int a);
 const void *Map_GetName(u32 mapId);
@@ -17,18 +18,6 @@ extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern MenuState gMenuState;
 extern MapListTables data_0229c768;
-/* 12-byte record per map of a sub-tab, 44 per sub-tab; the first word packs
- * fields of 10 bits. */
-typedef struct Unk_02290c34 {
-    u32 unk_00_0 : 10;
-    u32 unk_00_10 : 10;
-    u32 unk_00_20 : 10;
-    u32 : 2;
-    u32 unk_04;
-    u32 unk_08;
-} Unk_02290c34;
-
-extern Unk_02290c34 data_02290c34[][44];
 extern u8 data_02167c90;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -42,8 +31,8 @@ extern u8 data_02167c90;
 /* Prints the names of the maps on one page of map list `list` into the layer 0
  * tile map, in columns that count down from the top. A map that is locked
  * (flag not set, id below 0x101) shows a placeholder text. In game mode 1 a
- * marker follows the name of the maps that have a nonzero field in
- * data_02290c34. */
+ * marker follows the name of the maps that have a first-place record in
+ * gWarRoomRecords. */
 void MapSelect_DrawMapNames(int list, int page)
 {
     int i;
@@ -74,7 +63,7 @@ void MapSelect_DrawMapNames(int list, int page)
             func_020152a4(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
         }
         if (STATE->gameMode == 1) {
-            if (data_02290c34[data_0229c768.unk_108][MAP_ID - 139].unk_00_10 != 0) {
+            if (gWarRoomRecords[data_0229c768.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].unk_0a != 0) {
                 Bg_PutTileQuad(x + 9, y,
                               0x400 - ROWS * COLS * 32 - ((4 - func_0206429c(data_0229c768.unk_108, MAP_ID)) << 2), 1);
             }

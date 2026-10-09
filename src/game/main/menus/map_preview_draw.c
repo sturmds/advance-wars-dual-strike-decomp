@@ -12,13 +12,13 @@ void func_0202c760(void *dst, s16 x, s16 y, int width, int height);
 void func_020c3e5c(void);
 
 extern const char data_02159964[];
-extern u8 data_0229c714[6];
+extern u8 gMapPreviewPropertyCounts[6];
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 #define PREVIEW_BLOCK_SIZE 0x800
 
-/* Indexes of data_0229c714: how many of each property the map has. */
+/* Indexes of gMapPreviewPropertyCounts: how many of each property the map has. */
 enum {
     COUNT_BASE,
     COUNT_AIRPORT,
@@ -31,7 +31,7 @@ enum {
 
 /* Draws a preview of map mapId into dst, 9 blocks of 16 by 16 tiles (the
  * last row 8 tiles high) cut from the middle of the map, and counts its
- * properties in data_0229c714. The player-made maps use a stored picture
+ * properties in gMapPreviewPropertyCounts. The player-made maps use a stored picture
  * instead and are not counted. */
 void MapPreview_Draw(u8 *dst, int mapId)
 {
@@ -63,28 +63,28 @@ void MapPreview_Draw(u8 *dst, int mapId)
 
     rowStart = 0;
     for (i = 0; i < COUNT_KINDS; i++) {
-        data_0229c714[i] = 0;
+        gMapPreviewPropertyCounts[i] = 0;
     }
     for (y = 0; y < data_0229eadc->height; y++) {
         for (x = 0; x < data_0229eadc->width; x++) {
             switch (MAP_TILE_TERRAIN(data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[data_0229eadc->tileCodes[rowStart + x]])) {
             case TERRAIN_CITY:
-                data_0229c714[COUNT_CITY]++;
+                gMapPreviewPropertyCounts[COUNT_CITY]++;
                 break;
             case TERRAIN_BASE:
-                data_0229c714[COUNT_BASE]++;
+                gMapPreviewPropertyCounts[COUNT_BASE]++;
                 break;
             case TERRAIN_AIRPORT:
-                data_0229c714[COUNT_AIRPORT]++;
+                gMapPreviewPropertyCounts[COUNT_AIRPORT]++;
                 break;
             case TERRAIN_PORT:
-                data_0229c714[COUNT_PORT]++;
+                gMapPreviewPropertyCounts[COUNT_PORT]++;
                 break;
             case TERRAIN_SILO:
-                data_0229c714[COUNT_SILO]++;
+                gMapPreviewPropertyCounts[COUNT_SILO]++;
                 break;
             case TERRAIN_COM_TOWER:
-                data_0229c714[COUNT_COM_TOWER]++;
+                gMapPreviewPropertyCounts[COUNT_COM_TOWER]++;
                 break;
             }
         }

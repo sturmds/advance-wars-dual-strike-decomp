@@ -66,7 +66,7 @@ func_02001f50 kind:function(arm,size=0x58) addr:0x02001f50
 func_02001fa8 kind:function(arm,size=0x60) addr:0x02001fa8
 func_02002008 kind:function(arm,size=0x84) addr:0x02002008
 func_0200208c kind:function(arm,size=0x84) addr:0x0200208c
-func_02002110 kind:function(arm,size=0x4c) addr:0x02002110
+Co_QueueSmallPicture kind:function(arm,size=0x4c) addr:0x02002110
 Co_LoadSmallPicture kind:function(arm,size=0x4c) addr:0x0200215c
 Co_LoadMoodPicture kind:function(arm,size=0x9c) addr:0x020021a8
 func_02002244 kind:function(arm,size=0x58) addr:0x02002244
@@ -1169,7 +1169,7 @@ func_0202a7ec kind:function(arm,size=0x28) addr:0x0202a7ec
 func_0202a814 kind:function(arm,size=0x198) addr:0x0202a814
 ModeFont_ShowText kind:function(arm,size=0x28) addr:0x0202a9ac
 ModeFont_ShowTextOnScreen kind:function(arm,size=0x8c) addr:0x0202a9d4
-func_0202aa60 kind:function(arm,size=0x148) addr:0x0202aa60
+ModeFont_StartTextTask kind:function(arm,size=0x148) addr:0x0202aa60
 ModeFont_Load kind:function(arm,size=0x6c) addr:0x0202aba8
 ModeFont_LoadHere kind:function(arm,size=0xa8) addr:0x0202ac14
 func_0202acbc kind:function(arm,size=0xc8) addr:0x0202acbc
@@ -1187,7 +1187,7 @@ func_0202b804 kind:function(arm,size=0x1c) addr:0x0202b804
 func_0202b820 kind:function(arm,size=0x7c) addr:0x0202b820
 Sprite_QueuePicture192x160 kind:function(arm,size=0x314) addr:0x0202b89c
 func_0202bbb0 kind:function(arm,size=0x21c) addr:0x0202bbb0
-func_0202bdcc kind:function(arm,size=0x20) addr:0x0202bdcc
+MapPreview_CopyCounts kind:function(arm,size=0x20) addr:0x0202bdcc
 MapPreview_Draw kind:function(arm,size=0x370) addr:0x0202bdec
 func_0202c15c kind:function(arm,size=0x3b0) addr:0x0202c15c
 func_0202c50c kind:function(arm,size=0x14) addr:0x0202c50c
@@ -2166,7 +2166,7 @@ func_020737a8 kind:function(arm,size=0xc0) addr:0x020737a8
 func_02073868 kind:function(arm,size=0xc) addr:0x02073868
 func_02073874 kind:function(arm,size=0x5c) addr:0x02073874
 Link_FindSlotOfPlayer kind:function(arm,size=0x38) addr:0x020738d0
-func_02073908 kind:function(arm,size=0x18) addr:0x02073908
+Link_GetPlayerOfSlot kind:function(arm,size=0x18) addr:0x02073908
 func_02073920 kind:function(arm,size=0x88) addr:0x02073920
 func_020739a8 kind:function(arm,size=0x18) addr:0x020739a8
 func_020739c0 kind:function(arm,size=0x130) addr:0x020739c0
@@ -8656,7 +8656,7 @@ data_02290a64 kind:bss addr:0x02290a64
 data_02290a66 kind:bss addr:0x02290a66
 data_02290a90 kind:bss addr:0x02290a90
 data_02290a94 kind:bss addr:0x02290a94
-data_02290c34 kind:bss addr:0x02290c34
+gWarRoomRecords kind:bss addr:0x02290c34
 data_02291474 kind:bss addr:0x02291474
 data_02291554 kind:bss addr:0x02291554
 data_02291555 kind:bss addr:0x02291555
@@ -8728,7 +8728,7 @@ data_0229c678 kind:bss addr:0x0229c678
 data_0229c684 kind:bss addr:0x0229c684
 data_0229c6c4 kind:bss addr:0x0229c6c4
 gArmyColours kind:bss addr:0x0229c70c
-data_0229c714 kind:bss addr:0x0229c714
+gMapPreviewPropertyCounts kind:bss addr:0x0229c714
 data_0229c71c kind:bss addr:0x0229c71c
 data_0229c720 kind:bss addr:0x0229c720
 data_0229c734 kind:bss addr:0x0229c734
@@ -8741,7 +8741,7 @@ data_0229c74a kind:bss addr:0x0229c74a
 data_0229c768 kind:bss addr:0x0229c768
 data_0229c838 kind:bss addr:0x0229c838
 data_0229c86c kind:bss addr:0x0229c86c
-data_0229c874 kind:bss addr:0x0229c874
+gLinkSlotPlayers kind:bss addr:0x0229c874
 data_0229c878 kind:bss addr:0x0229c878
 data_0229c87c kind:bss addr:0x0229c87c
 data_0229c880 kind:bss addr:0x0229c880
