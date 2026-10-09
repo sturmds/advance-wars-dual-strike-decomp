@@ -13,7 +13,7 @@ void Palette_Load(const void *src, int slideOffset, int size);
 void Screen_SetCurrentGfx(void *state);
 void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
 void func_020218e4(int a0, int x, int y, void *a3, int attr, int tile);
-int func_0202795c(int from, int to, int step, int steps);
+int Math_EaseInOut(int from, int to, int step, int steps);
 void func_0202b89c(s16 x, int y, int a2, int a3, int a4);
 void func_0205f03c(void);
 void func_0205f0ec(void);
@@ -92,7 +92,7 @@ void MapSelect_Draw(void)
             MapSelect_LoadWarRoomRecords();
             MapSelect_ShowSelectedMap();
         }
-        slideOffset = func_0202795c(256, 0, 17 - MENU->setup.slideFrames, 16);
+        slideOffset = Math_EaseInOut(256, 0, 17 - MENU->setup.slideFrames, 16);
         if (MENU->setup.slideBack != 0) {
             SET_SCROLL(layer1Bg, layer0Bg, -slideOffset);
             savedState = data_027c0280;
@@ -112,7 +112,7 @@ void MapSelect_Draw(void)
         }
     }
     if (MENU->setup.subSlideFrames != 0) {
-        subSlideOffset = func_0202795c(256, 0, 17 - MENU->setup.subSlideFrames, 16);
+        subSlideOffset = Math_EaseInOut(256, 0, 17 - MENU->setup.subSlideFrames, 16);
         MENU->setup.subSlideFrames--;
         if (MENU->setup.subSlideFrames == 0) {
             func_0205f03c();
