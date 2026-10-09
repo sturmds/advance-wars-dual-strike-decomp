@@ -47,7 +47,7 @@ This compiles the file, rebuilds the original's delinked object, and runs `objdi
 1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
 2. Run the review pass (`.claude/skills/tenets-review/`): names, types, no magic offsets, comments only where the shape is odd, plain writing.
 3. `make release`. It fails if any module or the whole ROM differs from retail.
-4. Commit. The hooks run `make release` again and check the message.
+4. Commit. The hooks run `make release` again, rewrite `PROGRESS.md` and stage it, and check the message.
 
 ## Reference
 
@@ -58,4 +58,5 @@ This compiles the file, rebuilds the original's delinked object, and runs `objdi
 | `make` | Build `build/AWRE.nds` |
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
 | `make progress` | Matched functions and bytes: game vs SDK, C vs assembly |
+| `python3 tools/progress.py --write PROGRESS.md` | Same counts per module, plus C files not linked yet; the pre-commit hook runs it |
 | `ninja objdiff.json` | objdiff project file, for the objdiff GUI if you install it |

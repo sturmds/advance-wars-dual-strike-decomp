@@ -52,7 +52,8 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/loop.md`, `.claude/skills/decomp-function/`, `tools/apply_commit.py`, `tools/wt_setup.sh` | Automated loop: agents in worktrees, replaying their commits onto mainline. |
 | `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code. |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
-| `hooks/` | `pre-commit` (forbidden files, then `make release`), `commit-msg` (banned words). |
+| `hooks/` | `pre-commit` (forbidden files, then `make release`, then `PROGRESS.md`), `commit-msg` (banned words). |
+| `PROGRESS.md`, `tools/progress.py` | Functions and bytes linked from C, per module, and C files not linked yet. Written by `pre-commit`; `apply_commit.py` ignores it. |
 | `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
 | `config/AWRE/names-provenance.csv`, `tools/import_names.py` | Where each imported name came from, and the importer that fills it. `fn.py rename` keeps it current. |
 | `docs/third-party/` | Credit pages for outside sources we take facts from. |

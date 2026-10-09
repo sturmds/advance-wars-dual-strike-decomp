@@ -12,6 +12,7 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
 - symbols.txt: symbols the commit renamed are renamed here, matched by
   address, and the new names replace the old ones in src/ and include/.
 - relocs.txt: lines the commit added are added here.
+- PROGRESS.md: skipped; the pre-commit hook writes it again here.
 - Other files: written if this branch still has the parent's version,
   otherwise merged with `git merge-file`. A conflict in a header under
   include/ is merged by meaning: struct fields by offset (padding
@@ -275,6 +276,8 @@ def main() -> int:
     renames = []
     for line in changes:
         status, path = line.split("\t", 1)
+        if path == "PROGRESS.md":
+            continue  # the pre-commit hook writes it for this branch
         if status[0] not in "AMD":
             sys.exit(f"error: unsupported change {status} {path}")
         old = show(f"{commit}^", path)
