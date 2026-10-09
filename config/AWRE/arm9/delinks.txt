@@ -2399,6 +2399,10 @@ src/game/main/func_0202a7ec.c:
     complete
     .text       start:0x0202a7ec end:0x0202a814
 
+src/game/main/text/mode_font_show_second_line.c:
+    complete
+    .text       start:0x0202a814 end:0x0202a9ac
+
 src/game/main/text/mode_font_show_text.c:
     complete
     .text       start:0x0202a9ac end:0x0202a9d4
