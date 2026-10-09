@@ -371,6 +371,10 @@ src/game/main/ai/ai_black_boat_act.c:
     complete
     .text       start:0x0209fb24 end:0x0209fb40
 
+src/game/main/ai/ai_class3_act.c:
+    complete
+    .text       start:0x0209fb40 end:0x0209fb5c
+
 src/game/main/ai/ai_unit_act_by_order_group.c:
     complete
     .text       start:0x0209fdb4 end:0x0209fe88

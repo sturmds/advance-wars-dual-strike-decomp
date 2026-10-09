@@ -12,7 +12,7 @@ extern int data_027c0284;
 /* UnitStats.aiClass value that no unit type has in retail. */
 #define UNIT_AI_CLASS_3 3
 
-void func_0209fb40(void); /* run on each queued unit */
+void AiClass3_Act(void); /* run on each queued unit */
 
 /* Queues the current player's units that have not acted yet and whose
  * UnitStats.aiClass is 3. No unit type has that value, so in retail the
@@ -33,6 +33,6 @@ void AiAction_QueueClass3Units(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    gAiQueueRoutine = func_0209fb40;
+    gAiQueueRoutine = AiClass3_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
