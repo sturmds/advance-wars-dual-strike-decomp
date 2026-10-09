@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
 void Ai_ClearThreatMaps(void);
-void func_0209b458(void);
+void Ai_ClearThreatInAntiAirCover(void);
 void AiBlackBomb_AddEnemyThreat(u8 player, int arg);
 void Ai_AddObjectThreat(void);
 void Ai_MarkObjectTileThreat(void);
@@ -18,7 +18,7 @@ void Ai_MarkObjectTileThreat(void);
  * still in the game (AiBlackBomb_AddEnemyThreat per player, arg passed through), with
  * the range map switched to rangeScratch filled with 0 meanwhile and to rangeMapTiles
  * after. Unless the current player's AI behaviour is Defense it then calls
- * func_0209b458, and it leaves rangeScratch filled with -1. */
+ * Ai_ClearThreatInAntiAirCover, and it leaves rangeScratch filled with -1. */
 void func_0209b2b0(int arg)
 {
     u16 savedUnk1e;
@@ -38,7 +38,7 @@ void func_0209b2b0(int arg)
     }
     STATE->unk_1e = savedUnk1e;
     if (STATE->players[STATE->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
-        func_0209b458();
+        Ai_ClearThreatInAntiAirCover();
     }
     RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
     RangeMap_Fill(-1);

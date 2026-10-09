@@ -13,10 +13,17 @@ int func_0209e230(int player, int unitType);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE(x, y) ((x) + MAP->rowStart[y])
+#define RANGE(unit) func_0209e230(STATE->currentPlayer, (unit)->type)
 
-void func_0209b458(void)
+/* Clears the threat maps (threatMax, threatSum) on tiles that the current
+ * player's anti-air units cover, where rangeScratch is 0. A unit counts when
+ * it can damage a Fighter, is not carried, has more than 60 hp and has ammo.
+ * A direct attacker covers the tiles it can move to; an indirect one the
+ * tiles in its attack range. Quirks kept from the original: the minimum
+ * range comes from the acting unit's type, not the unit's, and the search
+ * box reaches one tile past RANGE(unit) - 1 on each side. */
+void Ai_ClearThreatInAntiAirCover(void)
 {
-    Unk_02080440_48 *state;
     int x;
     int minY;
     MapUnit *unit;
@@ -50,22 +57,14 @@ void func_0209b458(void)
                 }
             }
         } else {
-            minX = (unit->x - func_0209e230(STATE->currentPlayer, unit->type) - 1 < 0)
-                ? 0
-                : unit->x - func_0209e230(STATE->currentPlayer, unit->type) - 1;
-            minY = (unit->y - func_0209e230(STATE->currentPlayer, unit->type) - 1 < 0)
-                ? 0
-                : unit->y - func_0209e230(STATE->currentPlayer, unit->type) - 1;
-            state = STATE;
-            maxX = state->unk_1c4->mapWidth - 1;
-            if (unit->x + func_0209e230(state->currentPlayer, unit->type) - 1 < maxX) {
-                maxX = unit->x + func_0209e230(state->currentPlayer, unit->type) - 1;
-            }
-            state = STATE;
-            maxY = state->unk_1c4->mapHeight - 1;
-            if (unit->y + func_0209e230(state->currentPlayer, unit->type) - 1 < maxY) {
-                maxY = unit->y + func_0209e230(state->currentPlayer, unit->type) - 1;
-            }
+            minX = unit->x - RANGE(unit) - 1 < 0 ? 0 : unit->x - RANGE(unit) - 1;
+            minY = unit->y - RANGE(unit) - 1 < 0 ? 0 : unit->y - RANGE(unit) - 1;
+            maxX = unit->x + RANGE(unit) - 1 < STATE->unk_1c4->mapWidth - 1
+                ? unit->x + RANGE(unit) - 1
+                : STATE->unk_1c4->mapWidth - 1;
+            maxY = unit->y + RANGE(unit) - 1 < STATE->unk_1c4->mapHeight - 1
+                ? unit->y + RANGE(unit) - 1
+                : STATE->unk_1c4->mapHeight - 1;
             for (ty = minY; ty <= maxY; ty++) {
                 for (tx = minX; tx <= maxX; tx++) {
                     dist = 0;
@@ -80,7 +79,7 @@ void func_0209b458(void)
                         dist += ty - unit->y;
                     }
                     if (dist < Ov000_gUnitStats[STATE->actingUnit->type].minRange + 1
-                        || dist > func_0209e230(STATE->currentPlayer, unit->type) - 1) {
+                        || dist > RANGE(unit) - 1) {
                         continue;
                     }
                     if (MAP->rangeScratch[TILE(tx, ty)] == 0) {
