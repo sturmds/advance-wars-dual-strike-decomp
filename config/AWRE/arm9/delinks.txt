@@ -1275,6 +1275,10 @@ src/game/main/ai/ai_clear_threat_maps.c:
     complete
     .text       start:0x0209ca48 end:0x0209cacc
 
+src/game/main/ai/ai_add_enemy_threat.c:
+    complete
+    .text       start:0x0209cacc end:0x0209d4e0
+
 src/game/main/ai/ai_add_object_threat.c:
     complete
     .text       start:0x0209d4e0 end:0x0209d610
