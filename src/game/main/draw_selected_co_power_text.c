@@ -7,7 +7,7 @@ void Gfx_RequestLayerCopy(int a);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
-void func_02015258(int x, int y, void *target, u32 text, int a, int b);
+void Text_PrintById(int x, int y, void *target, u32 text, int a, int b);
 Unk_02023724 *Task_FindByScript(void *key);
 void Bg_ClearRect(void *target, int x, int y, int w, int h);
 
@@ -60,7 +60,7 @@ void DrawSelectedCoPowerText(void)
     func_02014d88(19, 13, data_027c0280->layer0Map,
                   *(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])[data_021613a0[list->unk_32] & 0x7f].name,
                   0, 0);
-    func_02015258(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
+    Text_PrintById(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
     Gfx_RequestLayerCopy(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
