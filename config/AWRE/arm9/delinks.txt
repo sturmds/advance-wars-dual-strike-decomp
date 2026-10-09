@@ -423,6 +423,10 @@ src/game/main/func_02007748.c:
     complete
     .text       start:0x02007748 end:0x02007760
 
+src/game/main/screen/screen_set_nibble.c:
+    complete
+    .text       start:0x020077d4 end:0x02007830
+
 src/game/main/screen/screen_apply_all.c:
     complete
     .text       start:0x02007830 end:0x02007850
