@@ -479,6 +479,10 @@ src/game/main/sound/sound_restore_song_volume.c:
     complete
     .text       start:0x020264a0 end:0x020264e8
 
+src/game/main/sound/sound_lower_song_volume.c:
+    complete
+    .text       start:0x020264e8 end:0x02026530
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
