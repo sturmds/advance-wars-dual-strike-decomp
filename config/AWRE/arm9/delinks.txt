@@ -5373,6 +5373,14 @@ src/game/main/func_020d42b0.c:
     complete
     .text       start:0x020d42b0 end:0x020d42e4
 
+src/game/main/func_020d42e4.c:
+    complete
+    .text       start:0x020d42e4 end:0x020d4318
+
+src/game/main/func_020d4318.c:
+    complete
+    .text       start:0x020d4318 end:0x020d434c
+
 src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c
@@ -5496,6 +5504,10 @@ src/game/main/func_020d80a8.c:
 src/game/main/func_020d80c4.c:
     complete
     .text       start:0x020d80c4 end:0x020d80e8
+
+src/game/main/func_020d8310.c:
+    complete
+    .text       start:0x020d8310 end:0x020d8344
 
 src/game/main/func_020d8a24.c:
     complete
