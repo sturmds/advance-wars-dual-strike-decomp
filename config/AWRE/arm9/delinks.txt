@@ -475,6 +475,10 @@ src/game/main/sound/sound_load_battle_unit_data.c:
     complete
     .text       start:0x0202643c end:0x020264a0
 
+src/game/main/sound/sound_restore_song_volume.c:
+    complete
+    .text       start:0x020264a0 end:0x020264e8
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
