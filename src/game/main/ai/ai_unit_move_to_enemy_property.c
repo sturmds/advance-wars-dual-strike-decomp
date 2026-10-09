@@ -1,0 +1,62 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+void func_020a756c(void);
+void func_020a73e4(void);
+BOOL func_020a7034(s16 *pos);
+BOOL func_020a3dfc(int unitType, int tile);
+BOOL Unit_IsTileOwnedByTeam(int unitIndex, int tile);
+void func_020b2b70(int x, int y);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
+
+/* Moves the acting unit toward the reachable tile with the lowest rangeMap
+ * value (the last one on a tie) whose owner is another team's and that
+ * func_020a3dfc accepts for the unit type, if func_020a7034 agrees to the
+ * tile in pos. func_020a756c and func_020a73e4 run first; what they do is
+ * not understood yet. */
+void AiUnit_MoveToEnemyProperty(void)
+{
+    s16 pos[2];
+    int y;
+    int tile;
+    int bestReach = 0x7fff;
+    int x;
+
+    func_020a756c();
+    func_020a73e4();
+    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+        for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+            if (STATE->rangeMap[y][x] < 0) {
+                continue;
+            }
+            tile = STATE->mapTiles->tiles[TILE(x, y)];
+            if ((tile & 0xe0) == 0) {
+                continue;
+            }
+            if (Unit_IsTileOwnedByTeam((s16)STATE->currentUnitBase, (u8)tile) == 1) {
+                continue;
+            }
+            if (!func_020a3dfc(STATE->actingUnit->type, tile)) {
+                continue;
+            }
+            if (bestReach < STATE->rangeMap[y][x]) {
+                continue;
+            }
+            pos[0] = x;
+            pos[1] = y;
+            bestReach = STATE->rangeMap[y][x];
+        }
+    }
+    if (bestReach == 0x7fff) {
+        return;
+    }
+    if (!func_020a7034(pos)) {
+        return;
+    }
+    func_020b2b70(pos[0], pos[1]);
+}
