@@ -5069,6 +5069,10 @@ src/game/main/ai/ai_mark_object_tile_threat.c:
     complete
     .text       start:0x0209d610 end:0x0209d738
 
+src/game/main/ai/ai_enemy_within_reach.c:
+    complete
+    .text       start:0x0209d924 end:0x0209da94
+
 src/game/main/ai/ai_rated_base_damage.c:
     complete
     .text       start:0x0209da94 end:0x0209dae4

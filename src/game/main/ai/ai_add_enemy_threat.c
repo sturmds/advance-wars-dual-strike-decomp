@@ -19,7 +19,7 @@ int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL func_0209dae4(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);         /* best base damage, scaled for Fighters vs Fighters and Anti-Air vs Fighters */
-BOOL func_0209d924(MapUnit *acting, MapUnit *enemy, int arg2);
+BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);           /* fog, weather and terrain check of a tile */
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);        /* Black Hole unit on a tile with tileHp bit 7 */
@@ -84,7 +84,7 @@ void Ai_AddEnemyThreat(u8 player)
         if (damage < 25) {
             continue;
         }
-        if (!func_0209d924(ACTING, unit, 0)) {
+        if (!Ai_EnemyWithinReach(ACTING, unit, 0)) {
             continue;
         }
         if (ACTING->flags & MAP_UNIT_DIVED) {

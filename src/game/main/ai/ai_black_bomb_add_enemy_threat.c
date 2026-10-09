@@ -16,7 +16,7 @@ int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL func_0209dae4(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
-BOOL func_0209d924(MapUnit *acting, MapUnit *enemy, int arg2);
+BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
@@ -36,7 +36,7 @@ int func_0209e230(int player, int unitType);
  * Differences: it runs when func_0209dae4 passes for a Black Bomb, skips the
  * counter-first test and the per-tile func_0209e8bc and in-sight checks, and
  * marks every tile a non-air enemy threatens with 1 in
- * MapTiles.rangeScratch. skipEnemyCheck nonzero skips func_0209d924. */
+ * MapTiles.rangeScratch. skipEnemyCheck nonzero skips Ai_EnemyWithinReach. */
 void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
 {
     MapUnit *unit;
@@ -79,7 +79,7 @@ void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
             continue;
         }
         if (skipEnemyCheck == 0) {
-            if (!func_0209d924(ACTING, unit, 0)) {
+            if (!Ai_EnemyWithinReach(ACTING, unit, 0)) {
                 continue;
             }
         }
