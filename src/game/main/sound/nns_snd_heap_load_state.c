@@ -6,7 +6,7 @@
 int FrameHeap_FreeByState(void *frameHeap, int level);
 int func_02104b10(void *frameHeap, int level);
 void func_021069a8(void);
-int func_021069cc(SoundHeap *heap);
+int SoundHeap_AddLevel(SoundHeap *heap);
 void func_02106c18(SoundHeap *heap);
 
 /* NitroSystem NNS_SndHeapLoadState: drops every save point from the newest
@@ -41,5 +41,5 @@ void NNS_SndHeapLoadState(void *heapArg, int level)
     FrameHeap_FreeByState(heap->frameHeap, level);
     func_021069a8();
     func_02104b10(heap->frameHeap, heap->levels.count);
-    func_021069cc(heap);
+    SoundHeap_AddLevel(heap);
 }
