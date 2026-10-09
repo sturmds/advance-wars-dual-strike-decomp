@@ -6,7 +6,7 @@ int func_020d7b04(int id, u8 *buf);
 void func_ov006_0235864c(void);
 void func_ov006_02358388(void);
 void func_ov006_023583d8(void);
-int func_ov006_023586ac(u8 *buf);
+int Ov006_HasNonSpace(u8 *buf);
 void func_ov006_02357bcc(int id);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
@@ -23,7 +23,7 @@ void Ov006_StartIdScript(int id)
     data_ov006_0236d640->unk_00 &= ~0x100;
     data_ov006_0236d640->unk_38 = id;
     if (func_020d7b04(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb) == 0) {
-        if (func_ov006_023586ac(data_ov006_0236d640->unk_d8) == 0) {
+        if (Ov006_HasNonSpace(data_ov006_0236d640->unk_d8) == 0) {
             func_ov006_02357bcc(id);
             data_ov006_0236d640->unk_00 |= 0x100;
             EventScript_Start(data_ov006_0236bca0);
@@ -31,7 +31,7 @@ void Ov006_StartIdScript(int id)
             EventScript_Start(data_ov006_0236bb60);
         }
     } else {
-        if (func_ov006_023586ac(data_ov006_0236d640->unk_d8) == 0) {
+        if (Ov006_HasNonSpace(data_ov006_0236d640->unk_d8) == 0) {
             func_ov006_02357bcc(id);
             data_ov006_0236d640->unk_00 |= 0x100;
             EventScript_Start(data_ov006_0236bd50);

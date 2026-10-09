@@ -26,7 +26,7 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 pad_39[0xd8 - 0x39];
-    u8 unk_d8[0xeb - 0xd8];            /* passed to func_ov006_023586ac */
+    u8 unk_d8[0xeb - 0xd8];            /* passed to Ov006_HasNonSpace */
     u8 unk_eb;                         /* its address is passed to func_020d7b04 */
 } Unk_ov006_0235f690;
 
