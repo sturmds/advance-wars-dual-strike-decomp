@@ -19,6 +19,7 @@ enum TerrainId {
     TERRAIN_AIRPORT = 10,
     TERRAIN_PORT = 11,
     TERRAIN_BASE = 14,
+    TERRAIN_SILO = 17,
     TERRAIN_COM_TOWER = 22
 };
 

@@ -10,7 +10,7 @@ void func_0209c948(void);
 int func_0209f7ac(MapUnit *unit);
 void func_020ad0d4(void);
 void func_020ad8f8(void);
-void func_020ae9c0(void);
+void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
 
@@ -21,7 +21,7 @@ void AiFoot_MoveAndCapture(void)
 {
     func_0209c948();
     if (func_0209f7ac(GAME->actingUnit) >= 20) {
-        func_020ae9c0();
+        AiFoot_PickCaptureTarget();
     }
     if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
         AiFoot_AttackCapturingUnit();
@@ -31,7 +31,7 @@ void AiFoot_MoveAndCapture(void)
         func_020ad8f8();
     }
     func_020af5f8();
-    func_020ae9c0();
+    AiFoot_PickCaptureTarget();
     if (GAME->actingUnit->hp > 60) {
         func_020ad8f8();
     }
