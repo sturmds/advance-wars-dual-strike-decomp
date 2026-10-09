@@ -5369,6 +5369,10 @@ src/game/main/func_020d4288.c:
     complete
     .text       start:0x020d4288 end:0x020d42b0
 
+src/game/main/func_020d42b0.c:
+    complete
+    .text       start:0x020d42b0 end:0x020d42e4
+
 src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c
