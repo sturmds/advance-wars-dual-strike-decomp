@@ -35,7 +35,8 @@ typedef struct MapTiles {
 typedef struct Unk_02080440_6088 {
     u8 pad_00[3];
     u8 unk_03;                         /* raised when an AI foot unit heads for the tile to capture it */
-    u8 pad_04[2];
+    u8 unk_04;                         /* cleared with unk_03 and unk_05 at the start of an AI turn */
+    u8 unk_05;
 } Unk_02080440_6088;
 
 /* Reached through Unk_02080440.unk_48[i]->unk_1c4. */

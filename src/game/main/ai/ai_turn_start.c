@@ -10,7 +10,7 @@ void Rng_SetState(u32 state);
 int MainLoop_GetFrameCount(void);
 void func_0208c9f8(int player);
 void func_0208cdf8(void);
-void func_0208d914(void);
+void AiTurn_ClearCaptureMarks(void);
 void func_0208d6f4(void);
 void func_0208d56c(void);
 void func_0208d548(void);
@@ -35,7 +35,7 @@ void AiTurn_Start(void)
 
     func_0208c9f8(data_027c027c->unk_48[data_027c0284]->currentPlayer);
     func_0208cdf8();
-    func_0208d914();
+    AiTurn_ClearCaptureMarks();
     func_0208d6f4();
     func_0208d56c();
     func_0208d548();
