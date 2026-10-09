@@ -2022,6 +2022,10 @@ src/game/main/co_stats/player_get_defense_bonus.c:
     complete
     .text       start:0x020df9b8 end:0x020dfa8c
 
+src/game/main/combat/unit_get_defense.c:
+    complete
+    .text       start:0x020dfa8c end:0x020dfb0c
+
 src/game/main/combat/unit_get_chart_damage.c:
     complete
     .text       start:0x020dfb0c end:0x020dfc04
