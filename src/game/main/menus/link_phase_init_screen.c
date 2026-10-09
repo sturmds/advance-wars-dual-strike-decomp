@@ -27,7 +27,7 @@ void ModeFont_Load(int a, int b);
 void func_0202bdec(void *dst, int mapId);
 void func_0202c520(int a);
 void func_020727d0(void);
-int func_02073768(int player);
+int LinkScreen_GetPlayerRow(int player);
 int func_0207bd80(void);
 void EventQueue_Reset(void);
 void func_02082614(int a, int b, int c, int d);
@@ -130,7 +130,7 @@ void LinkPhase_InitScreen(void)
     Palette_Load(file + 0x2a4, 0, 0xa0);
     for (i = 0; i < gMenuState.link.playerCount; i++) {
         target = data_027c0280->layer2Map;
-        Bg_PutTileBlock(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[gMenuState.link.armyColours[i] - 1], 0);
+        Bg_PutTileBlock(target, 4, LinkScreen_GetPlayerRow(i), file + gLinkPhaseArmyGfxOffsets[gMenuState.link.armyColours[i] - 1], 0);
     }
     Gfx_RequestLayerCopy(2);
     SWITCH_BACK();
