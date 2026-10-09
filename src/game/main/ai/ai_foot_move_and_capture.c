@@ -9,7 +9,7 @@ extern int data_027c0284;
 void func_0209c948(void);
 int func_0209f7ac(MapUnit *unit);
 void func_020ad0d4(void);
-void func_020ad8f8(void);
+void AiFoot_JoinCapturingUnit(void);
 void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
@@ -28,11 +28,11 @@ void AiFoot_MoveAndCapture(void)
         func_020ad0d4();
     }
     if (GAME->actingUnit->hp <= 60) {
-        func_020ad8f8();
+        AiFoot_JoinCapturingUnit();
     }
     func_020af5f8();
     AiFoot_PickCaptureTarget();
     if (GAME->actingUnit->hp > 60) {
-        func_020ad8f8();
+        AiFoot_JoinCapturingUnit();
     }
 }

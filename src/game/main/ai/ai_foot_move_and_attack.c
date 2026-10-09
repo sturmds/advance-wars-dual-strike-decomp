@@ -13,7 +13,7 @@ void func_020a9854(void);
 void func_020ab014(void);
 void func_020ad0d4(void);
 void func_020ad704(void);
-void func_020ad8f8(void);
+void AiFoot_JoinCapturingUnit(void);
 void func_020ae37c(void);
 void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
@@ -36,12 +36,12 @@ void AiFoot_MoveAndAttack(void)
         func_020ad0d4();
     }
     if (GAME->actingUnit->hp <= 60) {
-        func_020ad8f8();
+        AiFoot_JoinCapturingUnit();
     }
     func_020af5f8();
     AiFoot_PickCaptureTarget();
     if (GAME->actingUnit->hp > 60) {
-        func_020ad8f8();
+        AiFoot_JoinCapturingUnit();
     }
     func_020b162c();
     func_020ad704();
