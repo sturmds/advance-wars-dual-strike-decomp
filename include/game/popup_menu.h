@@ -18,7 +18,7 @@ typedef struct PopupMenuTask {
     u8 pad_5d[0x6c - 0x5d];
 } PopupMenuTask;
 
-/* A pop-up menu pushed on the stack by PopupMenu_PushState, 8 bytes. */
+/* One stack entry written by PopupMenu_PushState, 8 bytes. */
 typedef struct PopupMenuSave {
     s8 x;
     s8 y;

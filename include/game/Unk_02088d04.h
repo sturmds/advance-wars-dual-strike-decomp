@@ -144,6 +144,7 @@ typedef struct Unk_027c0280 {
     u8 pad_12c[0x130 - 0x12c];
     u8 *bgVram;                        /* BG character base 0 */
     u8 *objVram;                       /* CO pictures load here, 32 bytes per tile */
+    u8 *paletteCopy;                   /* 0x400 bytes; Screen_ResetAndShowMessage copies paletteBuffer here */
 } Unk_027c0280;
 
 /* data_027c0288 (DTCM). */

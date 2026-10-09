@@ -4,6 +4,7 @@
 #include "types.h"
 
 #define REG_MASTER_BRIGHT ((volatile u16 *)0x0400006c)
+#define IO_SUB_SCREEN_FADE ((volatile u16 *)0x0400106c)
 #define REG_BG2CNT ((volatile u16 *)0x0400000c)
 /* Main engine display registers (GBATEK). */
 #define REG_DISPCNT ((volatile u32 *)0x04000000)
