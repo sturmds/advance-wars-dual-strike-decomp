@@ -3,6 +3,10 @@
     .data       start:0x0236a1e0 end:0x0236d640 kind:data align:32
     .bss        start:0x0236d640 end:0x0236d9a0 kind:bss align:32
 
+src/game/ov006/func_ov006_023505c4.c:
+    complete
+    .text       start:0x023505c4 end:0x023505dc
+
 src/game/ov006/func_ov006_02350ec0.c:
     complete
     .text       start:0x02350ec0 end:0x02350ee8
@@ -10,6 +14,10 @@ src/game/ov006/func_ov006_02350ec0.c:
 src/game/ov006/func_ov006_02350ee8.c:
     complete
     .text       start:0x02350ee8 end:0x02350f10
+
+src/game/ov006/func_ov006_023540ec.c:
+    complete
+    .text       start:0x023540ec end:0x02354108
 
 src/game/ov006/func_ov006_02354168.c:
     complete
@@ -67,6 +75,10 @@ src/game/ov006/func_ov006_023564b0.c:
     complete
     .text       start:0x023564b0 end:0x023564c4
 
+src/game/ov006/func_ov006_02357674.c:
+    complete
+    .text       start:0x02357674 end:0x02357694
+
 src/game/ov006/func_ov006_023578e8.c:
     complete
     .text       start:0x023578e8 end:0x0235790c
@@ -78,6 +90,10 @@ src/game/ov006/func_ov006_02357ab8.c:
 src/game/ov006/ov006_start_id_script.c:
     complete
     .text       start:0x02357ac8 end:0x02357bcc
+
+src/game/ov006/func_ov006_02357ca0.c:
+    complete
+    .text       start:0x02357ca0 end:0x02357cb8
 
 src/game/ov006/func_ov006_02357fa4.c:
     complete
