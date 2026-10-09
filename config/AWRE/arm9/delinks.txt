@@ -1127,6 +1127,10 @@ src/game/main/map/load_map_co_list.c:
     complete
     .text       start:0x020e87dc end:0x020e8848
 
+src/game/main/func_020e8860.c:
+    complete
+    .text       start:0x020e8860 end:0x020e8878
+
 src/game/main/map/func_020e88f8.c:
     complete
     .text       start:0x020e88f8 end:0x020e8970
