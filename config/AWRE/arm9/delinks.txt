@@ -152,6 +152,10 @@ src/game/main/sound/sound_play_se_at_volume.c:
     complete
     .text       start:0x0200b7ac end:0x0200b7e8
 
+src/game/main/sound/sound_shutdown.c:
+    complete
+    .text       start:0x0200b7e8 end:0x0200b83c
+
 src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
