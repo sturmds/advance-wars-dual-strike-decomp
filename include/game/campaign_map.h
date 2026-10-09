@@ -15,7 +15,7 @@ typedef struct CampaignMission {
 /* Passed to the world map setup by the screen table at data_0215b5e8. */
 typedef struct Unk_0204f960 {
     u8 pad_00[0x52];
-    u16 unk_52;                        /* 2: also checks func_020d5d2c */
+    u16 unk_52;                        /* 2: also checks Player1Team_HasPlayerInGame */
 } Unk_0204f960;
 
 /* World map state (gCampaignMapState). */

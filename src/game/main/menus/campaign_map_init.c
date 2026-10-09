@@ -30,7 +30,7 @@ void ModeFont_ShowText(const void *text, int x, int y, int a, int b);
 void ModeFont_Load(int x, int y);
 void CampaignMap_MarkMissionDone(void);
 void CampaignMap_FindTopCos(void);
-BOOL func_020d5d2c(void);
+BOOL Player1Team_HasPlayerInGame(void);
 int Campaign_IsHardMode(void);
 const char *File_LocalizePath(const char *path);
 const void *Text_Get(u32 textId);
@@ -74,7 +74,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     int j;
     int playerCount;
 
-    if (task->unk_52 == 2 && func_020d5d2c()) {
+    if (task->unk_52 == 2 && Player1Team_HasPlayerInGame()) {
         CampaignMap_MarkMissionDone();
     }
     CampaignMap_FindTopCos();
