@@ -54,7 +54,7 @@ typedef struct Unk_02080440_1c4 {
     u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
     u8 unk_3b;                         /* 1: menu weather setting 0 */
-    u8 pad_3c[0x3d - 0x3c];
+    u8 unk_3c;                         /* set by func_020ddb38; passed to func_020801dc */
     u8 unk_3d;                         /* 0-3, mapped to menu weather settings 1-4 */
 } Unk_02080440_1c4;
 
