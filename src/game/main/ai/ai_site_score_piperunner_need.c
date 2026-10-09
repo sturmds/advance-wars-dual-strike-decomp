@@ -16,73 +16,76 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define TERRAIN_PIPE_FIRST 15          /* guess: pipe and pipe seam */
+#define TERRAIN_PIPE       15          /* guess: TERRAIN_PIPE_SEAM is 16 */
 #define SITE_SKIPPED       0xfd
+#define PIPE_MOVE_LIMIT    110         /* RangeMap_FillMoves movement; tiles up to it are reachable */
 
-void func_0209462c(void)
+/* End-actions step: rates each active AiSite next to a pipe tile for
+ * Piperunners. It fills the Piperunner move and attack range from the site,
+ * then counts the units on it: the current player's Piperunners within move
+ * range, and armed enemy units (4 for a Piperunner, 1 for any other).
+ * score = (enemies + 4) / 8 - own Piperunners. */
+void AiSite_ScorePiperunnerNeed(void)
 {
-    int dist;
-    int minY;
-    u32 siteX;
-    int range;
+    /* needed to match: declaration order sets the register choice, and the
+     * second scan uses its own row and col */
     int maxY;
-    u16 minX;
+    int minX;
+    MapUnit *unit;
+    AiSite *site;
+    int maxX;
     int slot;
     int y;
-    AiSite *site;
-    u8 siteY;
+    int dist;
+    int minY;
+    u8 found;
     int x;
-    int terrain;
+    int ownCount;
     int i;
-    MapUnit *unit;
-    int maxX;
-    s8 found;
-    s32 ownCount;
+    int range;
     int enemyCount;
+    int col;
+    int row;
 
     site = data_0229e5bc;
     for (i = 0; i < data_021619c0->recordCount; i++, site++) {
         if (site->kind == SITE_SKIPPED || site->active != 1) {
             continue;
         }
-        siteX = site->x;
-        siteY = site->y;
-
-        minX = siteX - 1;
         found = 0;
+        minX = site->x - 1;
         if (minX < 0) {
             minX = 0;
         }
-        minY = siteY - 1;
+        minY = site->y - 1;
         if (minY < 0) {
             minY = 0;
         }
         maxX = STATE->unk_1c4->mapWidth - 1;
-        if (siteX + 1 < maxX) {
-            maxX = siteX + 1;
+        if (site->x + 1 < maxX) {
+            maxX = site->x + 1;
         }
         maxY = STATE->unk_1c4->mapHeight - 1;
-        if (siteY + 1 < maxY) {
-            maxY = siteY + 1;
+        if (site->y + 1 < maxY) {
+            maxY = site->y + 1;
         }
         for (y = minY; y <= maxY; y++) {
             for (x = minX; x <= maxX; x++) {
                 dist = 0;
-                if (siteX - x > 0) {
-                    dist += siteX - x;
+                if (site->x - x > 0) {
+                    dist += site->x - x;
                 } else {
-                    dist += x - siteX;
+                    dist += x - site->x;
                 }
-                if (siteY - y > 0) {
-                    dist += siteY - y;
+                if (site->y - y > 0) {
+                    dist += site->y - y;
                 } else {
-                    dist += y - siteY;
+                    dist += y - site->y;
                 }
                 if (dist < 1 || dist > 1) {
                     continue;
                 }
-                terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]);
-                if (terrain - TERRAIN_PIPE_FIRST <= 1U) {
+                if ((u32)(MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]) - TERRAIN_PIPE) <= 1) { /* pipe or pipe seam */
                     found = 1;
                 }
             }
@@ -91,24 +94,24 @@ void func_0209462c(void)
             continue;
         }
 
-        RangeMap_FillMoves(siteX, siteY, UNIT_PIPERUNNER, 110, 1);
+        RangeMap_FillMoves(site->x, site->y, UNIT_PIPERUNNER, PIPE_MOVE_LIMIT, 1);
         for (range = 0; range < UnitType_GetMaxRange(UNIT_PIPERUNNER); range++) {
-            RangeMap_MarkAdjacentTiles(111 + range);
+            RangeMap_MarkAdjacentTiles(PIPE_MOVE_LIMIT + 1 + range);
         }
 
         ownCount = 0;
         enemyCount = 0;
-        for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-            for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-                if (STATE->rangeMap[y][x] < 0) {
+        for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
+            for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
+                if (STATE->rangeMap[row][col] < 0) {
                     continue;
                 }
-                slot = STATE->mapTiles->unitAt[TILE(x, y)];
+                slot = STATE->mapTiles->unitAt[TILE(col, row)];
                 if (slot == 0) {
                     continue;
                 }
-                if (Unit_IsCurrentPlayers(slot)) {
-                    if (STATE->rangeMap[y][x] > 110) {
+                if (Unit_IsCurrentPlayers(slot) == 1) {
+                    if (STATE->rangeMap[row][col] > PIPE_MOVE_LIMIT) {
                         continue;
                     }
                     if (STATE->units[slot].type == UNIT_PIPERUNNER) {

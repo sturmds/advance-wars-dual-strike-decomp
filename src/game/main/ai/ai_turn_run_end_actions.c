@@ -22,7 +22,7 @@ void func_02092134(void);
 BOOL func_02090154(void);
 int Ai_WantsBlackBomb(int arg);
 void func_0209b2b0(int arg);
-void func_0209462c(void);
+void AiSite_ScorePiperunnerNeed(void);
 BOOL func_02091904(void);
 void func_020b81a4(void);
 void func_020b81b8(void);
@@ -120,7 +120,7 @@ void AiTurn_RunEndActions(void)
             if (Ai_WantsBlackBomb(0) == 1) {
                 func_0209b2b0(1);
             }
-            func_0209462c();
+            AiSite_ScorePiperunnerNeed();
             break;
         case 9:
             if (func_02091904()) {

@@ -11,7 +11,7 @@ typedef struct AiSite {
     u8 active;                         /* 1: the record is in use */
     u8 kind;                           /* 0xfd: the record is skipped */
     u8 pad_04[7];
-    s8 score;                          /* set by func_0209462c */
+    s8 score;                          /* set by AiSite_ScorePiperunnerNeed */
 } AiSite;
 
 typedef char AiSite_size_check[sizeof(AiSite) == 12 ? 1 : -1];
