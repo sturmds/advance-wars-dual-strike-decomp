@@ -28,6 +28,10 @@ src/game/ov000/func_ov000_022ad820.c:
     complete
     .text       start:0x022ad820 end:0x022ad840
 
+src/game/ov000/task/show_entry_finish.c:
+    complete
+    .text       start:0x022adbc0 end:0x022adc10
+
 src/game/ov000/func_ov000_022add0c.c:
     complete
     .text       start:0x022add0c end:0x022add10
