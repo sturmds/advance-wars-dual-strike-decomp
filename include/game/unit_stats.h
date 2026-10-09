@@ -42,6 +42,14 @@ enum UnitType {
 #define ATTACK_DIRECT   1
 #define ATTACK_INDIRECT 2
 
+/* UnitType_GetAttackKind: how a unit type attacks, from its range after
+ * CO bonuses. */
+#define ATTACK_KIND_DIRECT     0
+#define ATTACK_KIND_INDIRECT   1
+#define ATTACK_KIND_NONE       2
+#define ATTACK_KIND_BLACK_BOMB 3
+#define ATTACK_KIND_OOZIUM     4
+
 /* UnitStats.moveGroup, read from the table: infantry and mech FOOT,
  * recon, rockets and missiles TIRES, other ground units TREAD, planes and
  * copters AIR, ships SEA. */
