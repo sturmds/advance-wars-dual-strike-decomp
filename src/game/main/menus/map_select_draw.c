@@ -24,7 +24,7 @@ void MapSelect_ShowSelectedMap(void);
 void MapSelect_DrawSubStrip(int x, int y, int a2);
 void MapSelect_DrawTwoMapsTitle(int x, int y);
 void MapSelect_DrawListThumbnail(int x, int y, int list);
-void func_02063e04(int list, int a1);
+void MapSelect_DrawMapNames(int list, int a1);
 int func_0207bd6c(void);
 int func_0207bd80(void);
 int Map_GetPlayerCount(int mapId);
@@ -88,7 +88,7 @@ void MapSelect_Draw(void)
 
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideFrames == 15) {
-            func_02063e04(LIST_OF_TAB(TAB()), PAGE());
+            MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
             MapSelect_LoadWarRoomRecords();
             MapSelect_ShowSelectedMap();
         }

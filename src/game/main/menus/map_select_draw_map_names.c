@@ -1,0 +1,89 @@
+#include "types.h"
+#include "game/menu_state.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+
+void Gfx_RequestLayerCopy(int a);
+const void *Map_GetName(u32 mapId);
+u8 Map_IsFlagSet(u32 mapId);
+int func_02101904(u32 mapId);
+void func_02002dbc(u32 value, void *dst, u32 size);
+void func_020152a4(s16 x, s16 y, u16 *map, const void *text, int a4, u16 palette, u16 tile);
+void Bg_PutTileQuad(int x, int y, int tile, int size);
+int func_0206429c(int a, int mapId);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern int data_027c0284;
+extern MenuState gMenuState;
+extern MapListTables data_0229c768;
+/* 12-byte record per map of a sub-tab, 44 per sub-tab; the first word packs
+ * fields of 10 bits. */
+typedef struct Unk_02290c34 {
+    u32 unk_00_0 : 10;
+    u32 unk_00_10 : 10;
+    u32 unk_00_20 : 10;
+    u32 : 2;
+    u32 unk_04;
+    u32 unk_08;
+} Unk_02290c34;
+
+extern Unk_02290c34 data_02290c34[][44];
+extern u8 data_02167c90;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define COLS (STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
+#define ROWS (STATE->gameMode == 1 ? 1 : 3)
+/* Needed to match: listBase is gMenuState moved on by `list` MapLists, so the
+ * field offsets stay in the load instructions. */
+#define MAP_ID (listBase->setup.lists[0].mapIds[index])
+#define START_Y (STATE->gameMode == 1 ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
+
+/* Prints the names of the maps on one page of map list `list` into the layer 0
+ * tile map, in columns that count down from the top. A map that is locked
+ * (flag not set, id below 0x101) shows a placeholder text. In game mode 1 a
+ * marker follows the name of the maps that have a nonzero field in
+ * data_02290c34. */
+void MapSelect_DrawMapNames(int list, int page)
+{
+    int i;
+    int x;
+    int y;
+    int index;
+    int palette;
+    MenuState *listBase;
+    u16 *map;
+    int tile;
+
+    x = STATE->gameMode == 1 ? 17 : 1;
+    y = START_Y;
+    func_02002dbc(0, data_027c0280->layer0Map, 0x800);
+    listBase = (MenuState *)((u8 *)&gMenuState + list * sizeof(MapList));
+    for (i = 0; i < ROWS * COLS; i++) {
+        index = page * (ROWS * COLS) + i;
+        if (index >= listBase->setup.lists[0].mapCount) {
+            break;
+        }
+        palette = func_02101904(MAP_ID) != 0 ? 0 : 1;
+        if (MAP_ID < 0x101 && !Map_IsFlagSet(MAP_ID)) {
+            func_020152a4(x, y, data_027c0280->layer0Map, &data_02167c90, 0, palette,
+                          i * 16 + (0x400 - ROWS * COLS * 32));
+        } else {
+            tile = i * 16 + (0x400 - ROWS * COLS * 32);
+            map = data_027c0280->layer0Map;
+            func_020152a4(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
+        }
+        if (STATE->gameMode == 1) {
+            if (data_02290c34[data_0229c768.unk_108][MAP_ID - 139].unk_00_10 != 0) {
+                Bg_PutTileQuad(x + 9, y,
+                              0x400 - ROWS * COLS * 32 - ((4 - func_0206429c(data_0229c768.unk_108, MAP_ID)) << 2), 1);
+            }
+        }
+        y += 2;
+        if (y == START_Y + COLS * 2) {
+            x += STATE->gameMode == 1 ? 0 : 9;
+            y = START_Y;
+        }
+    }
+    Gfx_RequestLayerCopy(0);
+}
