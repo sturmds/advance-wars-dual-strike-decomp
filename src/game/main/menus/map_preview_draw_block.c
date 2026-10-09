@@ -73,7 +73,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                 code = data_0229eadc->tileCodes[rowStart + col];
                 tile = data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[code];
                 colour = gArmyColours[tile >> 5];
-                if (data_027c027c->unk_48[data_027c0284]->gameMode == 0
+                if (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_CAMPAIGN
                     && data_027c027c->unk_48[data_027c0284]->mapTiles->unk_2338[col + data_027c027c->unk_48[data_027c0284]->mapTiles->rowStart[y]] == 0
                     && MAP_TILE_TERRAIN(tile) != TERRAIN_HQ) {
                     colour = 0;

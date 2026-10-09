@@ -11,7 +11,7 @@ int Campaign_IsHardMode(void);
 u8 func_020c3d08(u32 mapId);
 void func_020c3e5c(void);
 void Player_SaveArmyColours(void);
-void func_020d6ec4(void);
+void SavedArmyColours_Reset(void);
 void MapPreview_DrawBlock(void *dst, s16 x, s16 y, int width, int height);
 void func_0202c5a0(void *dst, u16 x, u16 y, int width, int height);
 
@@ -62,7 +62,7 @@ void MapPreview_DrawPlayerViews(u8 (*dst)[32])
     }
 
     if ((u8)(STATE->gameMode + 255) <= 1) {
-        func_020d6ec4();
+        SavedArmyColours_Reset();
     } else {
         Player_SaveArmyColours();
     }

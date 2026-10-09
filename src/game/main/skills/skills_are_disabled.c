@@ -17,7 +17,7 @@ BOOL Skills_AreDisabled(void)
     if (!GameFlag_IsSet(0x27)) {
         return TRUE;
     }
-    if (data_027c027c->unk_48[data_027c0284]->gameMode == 1) {
+    if (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_WAR_ROOM) {
         if (data_027c027c->unk_48[data_027c0284]->unk_59 == 0) {
             return TRUE;
         }

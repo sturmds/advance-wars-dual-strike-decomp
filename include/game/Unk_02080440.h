@@ -80,6 +80,10 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_RAIN  2
 #define WEATHER_SAND  3
 
+/* Unk_02080440_48.gameMode values the code confirms. */
+#define GAME_MODE_CAMPAIGN 0           /* Mission_HasPendingEvent runs only here */
+#define GAME_MODE_WAR_ROOM 1           /* MapSelect_LoadWarRoomRecords runs only here */
+
 typedef struct Unk_02080440_48 {
     u16 unk_00;                        /* compared with 1 by AiTurn_RunEndActions (likely the day) */
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
@@ -111,7 +115,7 @@ typedef struct Unk_02080440_48 {
     s16 actingUnitDestY;
     u8 unk_46;                         /* passed to Unit_GetFuelUsed with actingUnit to get fuel used */
     u8 pad_47[0x58 - 0x47];
-    u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */
+    u8 gameMode;                       /* GAME_MODE_*; 2 is likely Versus (4 Force Rank sets per CO, CO_NONE pickable), 3 likely Survival (Player_AddFunds) */
     u8 unk_59;
     u8 pad_5a;
     u8 unk_5b;                         /* bit 1 set by func_020c0704 (map screen setup and Players_Reset) */

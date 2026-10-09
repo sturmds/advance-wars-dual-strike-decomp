@@ -19,7 +19,7 @@ void SetupCoSelection(void)
 {
     int i;
 
-    if (data_027c027c->unk_48[data_027c0284]->gameMode == 0) {
+    if (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_CAMPAIGN) {
         if (Campaign_IsHardMode() == 0) {
             LoadMapCoList(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId);
         } else {

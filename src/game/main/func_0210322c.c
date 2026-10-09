@@ -15,9 +15,9 @@ void func_0210322c(void)
     Unk_02080440 *saved027c = data_027c027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    data_027c027c->unk_48[data_027c0284]->gameMode = 1;
+    data_027c027c->unk_48[data_027c0284]->gameMode = GAME_MODE_WAR_ROOM;
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    data_027c027c->unk_48[data_027c0284]->gameMode = 1;
+    data_027c027c->unk_48[data_027c0284]->gameMode = GAME_MODE_WAR_ROOM;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     ForceRank_LoadSets(1);

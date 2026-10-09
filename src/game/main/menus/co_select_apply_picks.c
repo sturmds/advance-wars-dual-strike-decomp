@@ -27,7 +27,7 @@ void CoSelect_ApplyPicks(void)
     int row;
     int co;
 
-    if (STATE->gameMode != 0 || Campaign_IsHardMode() == 1) {
+    if (STATE->gameMode != GAME_MODE_CAMPAIGN || Campaign_IsHardMode() == 1) {
         for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
             for (row = 0; row < data_0229c73c->rowCount; row++) {
                 STATE->playerCos[column][row] = PICKED_CO(column, row);

@@ -35,7 +35,7 @@ void AiUnit_MoveToOtherMap(void)
     int x;
     int y;
 
-    if (GAME->gameMode == 0) {
+    if (GAME->gameMode == GAME_MODE_CAMPAIGN) {
         return;
     }
     if (GAME->secondMapId == 0) {

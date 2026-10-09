@@ -21,12 +21,12 @@ extern MapListTables data_0229c768;
 extern u8 data_02167c90;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-#define COLS (STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
-#define ROWS (STATE->gameMode == 1 ? 1 : 3)
+#define COLS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
+#define ROWS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
 /* Needed to match: listBase is gMenuState moved on by `list` MapLists, so the
  * field offsets stay in the load instructions. */
 #define MAP_ID (listBase->setup.lists[0].mapIds[index])
-#define START_Y (STATE->gameMode == 1 ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
+#define START_Y (STATE->gameMode == GAME_MODE_WAR_ROOM ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
 
 /* Prints the names of the maps on one page of map list `list` into the layer 0
  * tile map, in columns that count down from the top. A map that is locked
@@ -44,7 +44,7 @@ void MapSelect_DrawMapNames(int list, int page)
     u16 *map;
     int tile;
 
-    x = STATE->gameMode == 1 ? 17 : 1;
+    x = STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
     y = START_Y;
     Mem_Zero32(0, data_027c0280->layer0Map, 0x800);
     listBase = (MenuState *)((u8 *)&gMenuState + list * sizeof(MapList));
@@ -62,7 +62,7 @@ void MapSelect_DrawMapNames(int list, int page)
             map = data_027c0280->layer0Map;
             Text_PrintWithTile(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
         }
-        if (STATE->gameMode == 1) {
+        if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
             if (gWarRoomRecords[data_0229c768.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].unk_0a != 0) {
                 Bg_PutTileQuad(x + 9, y,
                               0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(data_0229c768.unk_108, MAP_ID)) << 2), 1);
@@ -70,7 +70,7 @@ void MapSelect_DrawMapNames(int list, int page)
         }
         y += 2;
         if (y == START_Y + COLS * 2) {
-            x += STATE->gameMode == 1 ? 0 : 9;
+            x += STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
             y = START_Y;
         }
     }

@@ -27,8 +27,8 @@ extern MapListTables data_0229c768;
 #define LIST(tab) (MENU->setup.lists[LIST_OF_TAB(tab)])
 
 /* Map list layout: COLS by ROWS maps per page. */
-#define COLS (STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
-#define ROWS (STATE->gameMode == 1 ? 1 : 3)
+#define COLS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
+#define ROWS (STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3)
 /* Page of the selected entry; the map's index is page * ROWS * COLS plus its
  * position on the page. */
 #define PAGE() (TABLES.unk_0d0[TAB()][LIST(TAB()).unk_64])

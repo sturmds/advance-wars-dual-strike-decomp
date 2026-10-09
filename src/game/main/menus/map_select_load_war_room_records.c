@@ -19,7 +19,7 @@ void MapSelect_LoadWarRoomRecords(void)
 {
     int i;
 
-    if (STATE->gameMode != 1) {
+    if (STATE->gameMode != GAME_MODE_WAR_ROOM) {
         return;
     }
     for (i = 0; i < 3; i++) {

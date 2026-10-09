@@ -45,7 +45,7 @@ void MapSelect_ShowSelectedMap(void)
     savedState = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (Map_IsFlagSet(SELECTED_MAP_ID())) {
-        if (STATE->gameMode == 1 && SECOND_MAP_ID() != 0) {
+        if (STATE->gameMode == GAME_MODE_WAR_ROOM && SECOND_MAP_ID() != 0) {
             MapPreview_Draw(data_027c0280->objVram + 0x8000, SECOND_MAP_ID());
             MapPreview_CopyCounts(MENU->setup.unk_4d4);
         } else {
@@ -63,7 +63,7 @@ void MapSelect_ShowSelectedMap(void)
 
     savedState2 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    if (STATE->gameMode == 1) {
+    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         if (SECOND_MAP_ID() != 0) {
             if (Map_IsFlagSet(SELECTED_MAP_ID())) {
                 MapPreview_Draw(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
@@ -93,7 +93,7 @@ void MapSelect_ShowSelectedMap(void)
     if (!Map_IsFlagSet(SELECTED_MAP_ID())) {
         for (i = 0; i < 6; i++) {
             MENU->setup.unk_4ce[i] = 0;
-            if (STATE->gameMode == 1) {
+            if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
                 MENU->setup.unk_4d4[i] = 0;
             }
         }

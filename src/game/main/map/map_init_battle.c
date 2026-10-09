@@ -133,7 +133,7 @@ void Map_InitBattle(void)
      * controllers, so the player can play that front. On other two-map
      * missions the AI plays every used slot of the second map. */
     game = GAME;
-    if (game->gameMode == 0 && game->secondMapId != 0) {
+    if (game->gameMode == GAME_MODE_CAMPAIGN && game->secondMapId != 0) {
         if (!Map_IsCoSelectPhase() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
                                   GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
             SWITCH_TO(SECOND_MAP);

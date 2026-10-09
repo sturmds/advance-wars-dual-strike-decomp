@@ -41,7 +41,7 @@ BOOL Player_IsAlliedNations(int player)
     u16 mapId;
     BOOL human;
 
-    if (GAME->gameMode == 0) {
+    if (GAME->gameMode == GAME_MODE_CAMPAIGN) {
         SWITCH_TO(CURRENT_MAP);
         mapId = GAME->unk_1c4->mapId;
         SWITCH_BACK();

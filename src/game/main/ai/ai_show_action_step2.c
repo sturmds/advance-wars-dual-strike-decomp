@@ -138,7 +138,7 @@ void AiShowAction_Step2(void)
         Ai_FlagCurrentPlayerEnterState18();
         break;
     case 22:
-        if (GAME->gameMode == 0 && GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 18) {
+        if (GAME->gameMode == GAME_MODE_CAMPAIGN && GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 18) {
             func_020dd9a0();
             ActingUnit_FinishAction();
         } else {

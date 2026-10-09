@@ -12,7 +12,7 @@ int MapSelect_GetTab(void)
 {
     Unk_02080440_48 *state = data_027c027c->unk_48[data_027c0284];
 
-    if (state->gameMode == 1) {
+    if (state->gameMode == GAME_MODE_WAR_ROOM) {
         return 3;
     }
     if (state->twoMaps == 0) {

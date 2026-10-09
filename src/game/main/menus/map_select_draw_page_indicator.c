@@ -32,8 +32,8 @@ void MapSelect_DrawPageIndicator(int x, int y, int list)
     Sprite_QueueAt(0, x & 0x1ff, y & 0xff, &data_027c0028, 0x1000,
                   (data_0229c768.unk_0d0[MapSelect_GetTab()][MENU->setup.lists[list].unk_64] + 1) * 2 + 0x180);
     Sprite_QueueAt(0, (x + 8) & 0x1ff, y & 0xff, &data_027c0028, 0x1000, 0x194);
-    columns = STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8);
-    rows = STATE->gameMode == 1 ? 1 : 3;
+    columns = STATE->gameMode == GAME_MODE_WAR_ROOM ? 7 : (STATE->twoMaps == 0 ? 9 : 8);
+    rows = STATE->gameMode == GAME_MODE_WAR_ROOM ? 1 : 3;
     pages = HwDiv32(MENU->setup.lists[data_0229c768.listOfTab[MapSelect_GetTab()]].mapCount - 1, rows * columns) + 1;
     Sprite_QueueAt(0, (x + 16) & 0x1ff, y & 0xff, &data_027c0028, 0x1000, pages * 2 + 0x180);
 }

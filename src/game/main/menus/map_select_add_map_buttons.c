@@ -9,7 +9,7 @@ int func_0207bd80(void);
 
 extern u8 data_0215c8a0[];
 
-#define FIRST_ROW() (STATE->gameMode == 1 ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
+#define FIRST_ROW() (STATE->gameMode == GAME_MODE_WAR_ROOM ? 9 : (STATE->twoMaps == 0 ? 5 : 7))
 
 /* Adds one button per map of the current page, in columns of COLS buttons
  * 2 tiles apart (the next column starts 9 tiles right, except in game mode 1,
@@ -23,7 +23,7 @@ void MapSelect_AddMapButtons(void)
     int i;
     int index;
 
-    x = STATE->gameMode == 1 ? 17 : 1;
+    x = STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
     y = FIRST_ROW();
     if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
         return;
@@ -37,7 +37,7 @@ void MapSelect_AddMapButtons(void)
         MenuButton_Add(x * 8, y * 8, data_0215c8a0, i);
         y += 2;
         if (y == FIRST_ROW() + COLS * 2) {
-            x += STATE->gameMode == 1 ? 0 : 9;
+            x += STATE->gameMode == GAME_MODE_WAR_ROOM ? 0 : 9;
             y = FIRST_ROW();
         }
     }

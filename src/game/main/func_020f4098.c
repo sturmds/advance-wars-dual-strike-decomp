@@ -35,7 +35,7 @@ void func_020f4098(void)
     Screen_SetCurrentGfx(savedGfx);
 
     value = 0;
-    if (gameMode == 0) {
+    if (gameMode == GAME_MODE_CAMPAIGN) {
         for (i = 0; data_02169ba4[i][0] != -1; i++) {
             if (mapId == data_02169ba4[i][0]) {
                 value = data_02169ba8[i][0];

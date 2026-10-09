@@ -3851,7 +3851,7 @@ func_020d4278 kind:function(arm,size=0x10) addr:0x020d4278
 func_020d4288 kind:function(arm,size=0x28) addr:0x020d4288
 func_020d42b0 kind:function(arm,size=0x34) addr:0x020d42b0
 func_020d42e4 kind:function(arm,size=0x34) addr:0x020d42e4
-func_020d4318 kind:function(arm,size=0x34) addr:0x020d4318
+Game_IsWarRoom kind:function(arm,size=0x34) addr:0x020d4318
 func_020d434c kind:function(arm,size=0x124) addr:0x020d434c
 func_020d4470 kind:function(arm,size=0x80) addr:0x020d4470
 func_020d44f0 kind:function(arm,size=0x138) addr:0x020d44f0
@@ -3921,7 +3921,7 @@ func_020d6cb0 kind:function(arm,size=0x114) addr:0x020d6cb0
 VersusTask_ResetGame kind:function(arm,size=0x80) addr:0x020d6dc4
 func_020d6e44 kind:function(arm,size=0x28) addr:0x020d6e44
 Player_SaveArmyColours kind:function(arm,size=0x58) addr:0x020d6e6c
-func_020d6ec4 kind:function(arm,size=0x20) addr:0x020d6ec4
+SavedArmyColours_Reset kind:function(arm,size=0x20) addr:0x020d6ec4
 func_020d6ee4 kind:function(arm,size=0xe8) addr:0x020d6ee4
 func_020d6fcc kind:function(arm,size=0x28) addr:0x020d6fcc
 func_020d6ff4 kind:function(arm,size=0xd8) addr:0x020d6ff4
@@ -3970,7 +3970,7 @@ func_020d8148 kind:function(arm,size=0x120) addr:0x020d8148
 func_020d8268 kind:function(arm,size=0x2c) addr:0x020d8268
 func_020d8294 kind:function(arm,size=0x34) addr:0x020d8294
 func_020d82c8 kind:function(arm,size=0x48) addr:0x020d82c8
-func_020d8310 kind:function(arm,size=0x34) addr:0x020d8310
+Game_IsCampaign kind:function(arm,size=0x34) addr:0x020d8310
 func_020d8344 kind:function(arm,size=0x174) addr:0x020d8344
 func_020d84b8 kind:function(arm,size=0x25c) addr:0x020d84b8
 func_020d8714 kind:function(arm,size=0x194) addr:0x020d8714
@@ -8864,7 +8864,7 @@ data_022a6b80 kind:bss addr:0x022a6b80
 data_022a6bd0 kind:bss addr:0x022a6bd0
 data_022a6c30 kind:bss addr:0x022a6c30
 data_022a6c78 kind:bss addr:0x022a6c78
-data_022a6c7c kind:bss addr:0x022a6c7c
+gSavedArmyColours kind:bss addr:0x022a6c7c
 data_022a6c84 kind:bss addr:0x022a6c84
 data_022a6c97 kind:bss addr:0x022a6c97
 data_022a6c9d kind:bss addr:0x022a6c9d

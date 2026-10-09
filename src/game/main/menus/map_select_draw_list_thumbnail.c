@@ -35,12 +35,12 @@ void MapSelect_DrawListThumbnail(int x, int y, int list)
     } while (list < 0 || list >= count);
     state = data_027c027c->unk_48[data_027c0284];
     gameMode = state->gameMode;
-    if (gameMode == 1) {
+    if (gameMode == GAME_MODE_WAR_ROOM) {
         list = MENU->setup.lists[list].unk_64 - 9;
     } else {
         list = MENU->setup.lists[list].unk_64 - 1;
     }
-    if (gameMode != 1) {
+    if (gameMode != GAME_MODE_WAR_ROOM) {
         if (state->twoMaps == 1) {
             y += 16;
         }

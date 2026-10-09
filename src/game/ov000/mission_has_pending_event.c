@@ -28,7 +28,7 @@ int Mission_HasPendingEvent(int event)
 {
     int result = 0;
 
-    if (GAME->gameMode != 0) {
+    if (GAME->gameMode != GAME_MODE_CAMPAIGN) {
         return 0;
     }
     if (GAME != &data_02183b08) {

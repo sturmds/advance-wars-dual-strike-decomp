@@ -37,7 +37,7 @@ void AiProfile_BuildForPlayer(int player)
             AiProfile_Build(gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE], (data_02161b8d + MAP_AI_SET * SET_SIZE)[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
             return;
         }
-        if (GAME->gameMode == 0 && CURRENT_MAP->unk_48[data_027c0284]->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
+        if (GAME->gameMode == GAME_MODE_CAMPAIGN && CURRENT_MAP->unk_48[data_027c0284]->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
             AiProfile_Build(gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE], data_02161baa[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
             return;
         }

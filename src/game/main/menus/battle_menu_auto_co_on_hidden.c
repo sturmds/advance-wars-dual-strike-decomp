@@ -44,7 +44,7 @@ s8 BattleMenu_AutoCoOnHidden(void)
     u8 controller;
 
     game = GAME;
-    if (game->gameMode != 0) {
+    if (game->gameMode != GAME_MODE_CAMPAIGN) {
         return MENU_ITEM_HIDDEN;
     }
     if (game->unk_1c4->mapId != MAP_LIGHTNING_STRIKES &&

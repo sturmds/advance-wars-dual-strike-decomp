@@ -10,7 +10,7 @@ extern u8 data_02290118[]; /* [2]: 1 when the campaign is in hard mode (guess) *
  * game mode 0 reads the flag; the name assumes mode 0 is the campaign. */
 int Campaign_IsHardMode(void)
 {
-    if (data_027c027c->unk_48[data_027c0284]->gameMode == 0) {
+    if (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_CAMPAIGN) {
         return data_02290118[2];
     }
     return 0;

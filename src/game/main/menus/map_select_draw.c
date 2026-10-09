@@ -128,7 +128,7 @@ void MapSelect_Draw(void)
             MapSelect_DrawListThumbnail(thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
             MapSelect_DrawListThumbnail(thumbOffset + 128, 8, LIST_OF_TAB(TAB()));
             MapSelect_DrawListThumbnail(thumbOffset + 256, 8, LIST_OF_TAB(TAB()) + 1);
-            if (STATE->gameMode == 1) {
+            if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
                 MapSelect_DrawStatsPanel(slideOffset, 72, 0);
                 MapSelect_DrawStatsPanel(slideOffset - 256, 72, 1);
                 MapSelect_DrawPageIndicator(slideOffset + 200, 64, LIST_OF_TAB(TAB()));
@@ -146,7 +146,7 @@ void MapSelect_Draw(void)
             MapSelect_DrawListThumbnail(128 - thumbOffset, 8, LIST_OF_TAB(TAB()));
             MapSelect_DrawListThumbnail(256 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 1);
             MapSelect_DrawListThumbnail(384 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 2);
-            if (STATE->gameMode == 1) {
+            if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
                 MapSelect_DrawStatsPanel(-slideOffset, 72, 0);
                 MapSelect_DrawStatsPanel(256 - slideOffset, 72, 1);
                 MapSelect_DrawPageIndicator(200 - slideOffset, 64, LIST_OF_TAB(TAB()));
@@ -163,7 +163,7 @@ void MapSelect_Draw(void)
         MapSelect_DrawListThumbnail(0, 8, LIST_OF_TAB(TAB()) - 1);
         MapSelect_DrawListThumbnail(128, 8, LIST_OF_TAB(TAB()));
         MapSelect_DrawListThumbnail(256, 8, LIST_OF_TAB(TAB()) + 1);
-        if (STATE->gameMode == 1) {
+        if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
             MapSelect_DrawPageIndicator(200, 64, LIST_OF_TAB(TAB()));
             MapSelect_DrawStatsPanel(0, 72, 0);
         } else if (STATE->twoMaps == 0) {
@@ -173,7 +173,7 @@ void MapSelect_Draw(void)
         }
     }
 
-    if (STATE->gameMode == 1) {
+    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         if (MENU->setup.subSlideFrames != 0) {
             if (MENU->setup.subSlideBack != 0) {
                 subSlideOffset >>= 1;
@@ -197,7 +197,7 @@ void MapSelect_Draw(void)
         MapSelect_DrawTwoMapsTitle(128, 8);
     }
 
-    if (STATE->gameMode == 1) {
+    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         if (MENU->setup.slideFrames != 0) {
             if (MENU->setup.slideBack != 0) {
                 if (LIST(TAB()).unk_64 == 12) {
@@ -234,7 +234,7 @@ void MapSelect_Draw(void)
         Sprite_QueuePicture192x160(128, 96, 0x2c00, 0x400, 3);
     }
 
-    if (STATE->gameMode == 1) {
+    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         count = Map_GetPlayerCount(SELECTED_MAP_ID());
         for (i = 0; i < count - 1; i++) {
             for (j = 0; j <= 1; j++) {
@@ -249,12 +249,12 @@ void MapSelect_Draw(void)
     DRAW_NUMBER_GRID(MENU->setup.unk_4ce, 128);
 
     /* The second grid shows on tab 2 and for a map with a second map. */
-    if (TAB() == 2 || (STATE->gameMode == 1 && Ov000_gMapHeaders[SELECTED_MAP_ID()].variantMapIds[0] != 0)) {
+    if (TAB() == 2 || (STATE->gameMode == GAME_MODE_WAR_ROOM && Ov000_gMapHeaders[SELECTED_MAP_ID()].variantMapIds[0] != 0)) {
         DRAW_NUMBER_GRID(MENU->setup.unk_4d4, 56);
     }
     Screen_SetCurrentGfx(savedState2);
 
-    if (STATE->gameMode == 1) {
+    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         Palette_Load(&MENU->colours[(MainLoop_GetFrameCount() >> 2) & 15], 0x238, 2);
     }
     if (func_0207bd80() == 1 && func_0207bd6c() != 0) {

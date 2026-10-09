@@ -47,7 +47,7 @@ void func_020f3ee4(void)
         controllers[i] = GAME->slotControllers[i];
     }
     GAME_SETTINGS(GAME) = settings;
-    if (GAME->gameMode == 1 || GAME->gameMode == 2) {
+    if (GAME->gameMode == GAME_MODE_WAR_ROOM || GAME->gameMode == 2) {
         for (j = 1; j < 5; j++) {
             GAME->slotControllers[j] = controllers[j];
         }

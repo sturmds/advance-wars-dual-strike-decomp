@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020d8310(void)
+BOOL Game_IsWarRoom(void)
 {
-    return data_027c027c->unk_48[data_027c0284]->gameMode == 0;
+    return data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_WAR_ROOM;
 }

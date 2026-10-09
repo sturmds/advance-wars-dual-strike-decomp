@@ -20,7 +20,7 @@ void SetPlayer1TagPartner(void)
      * the other accesses use this copy. */
     Unk_02080440_48 *state = STATE;
 
-    if (state->gameMode != 1) {
+    if (state->gameMode != GAME_MODE_WAR_ROOM) {
         return;
     }
     if (Ov000_gMapHeaders[state->unk_1c4->mapId].variantMapIds[0] != 0) {
