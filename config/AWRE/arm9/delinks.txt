@@ -5870,6 +5870,7 @@ src/game/main/ai/ai_show_action_emerge.c:
     .text       start:0x020b82a0 end:0x020b8308
 
 src/game/main/ai/ai_show_action_dive.c:
+    complete
     .text       start:0x020b8308 end:0x020b8370
 
 src/game/main/ai/ai_show_action_step11.c:

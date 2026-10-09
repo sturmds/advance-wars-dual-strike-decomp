@@ -20,7 +20,7 @@ int func_020b9664(void);
 void AiShowAction_BlackBombExplode(void);
 void func_020b8230(void);
 void AiShowAction_Emerge(void);
-void func_020b8308(void);
+void AiShowAction_Dive(void);
 void func_020b8370(int arg);
 void func_020b8964(void);
 void func_020b8a24(void);
@@ -124,7 +124,7 @@ void AiShowAction_Step2(void)
         UnitAction_Supply();
         break;
     case 11:
-        func_020b8308();
+        AiShowAction_Dive();
         ActingUnit_FinishAction();
         break;
     case 12:
