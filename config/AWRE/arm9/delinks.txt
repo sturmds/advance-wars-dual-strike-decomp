@@ -3443,6 +3443,10 @@ src/game/main/func_02070238.c:
     complete
     .text       start:0x02070238 end:0x02070250
 
+src/game/main/tab_list_rebuild_buttons.c:
+    complete
+    .text       start:0x02070250 end:0x020703b0
+
 src/game/main/func_02070660.c:
     complete
     .text       start:0x02070660 end:0x02070698

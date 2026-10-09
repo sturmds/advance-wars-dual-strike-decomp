@@ -6,13 +6,13 @@ typedef struct Unk_02070660_0 {
 } Unk_02070660_0;
 extern Unk_02070660_0 gMenuState;
 void Sound_PlaySe(int id);
-void func_02070250(void);
+void TabList_RebuildButtons(void);
 void func_02071494(void);
 
 void func_020706d0(void)
 {
     Sound_PlaySe(0x10002);
     gMenuState.unk_04 = 1;
-    func_02070250();
+    TabList_RebuildButtons();
     func_02071494();
 }
