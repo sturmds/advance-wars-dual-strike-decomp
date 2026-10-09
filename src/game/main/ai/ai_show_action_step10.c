@@ -4,7 +4,7 @@
 extern void *data_0229eacc[2];
 
 int func_020b9914(void);
-void func_ov000_022ae530(void *task);
+void AiShowActionTask_Destroy(void *task);
 void func_020deac4(void);
 
 /* Waits while func_020b9914 returns nonzero, then destroys the two
@@ -15,10 +15,10 @@ void AiShowAction_Step10(void)
         return;
     }
     if (data_0229eacc[0] != NULL) {
-        func_ov000_022ae530(data_0229eacc[0]);
+        AiShowActionTask_Destroy(data_0229eacc[0]);
     }
     if (data_0229eacc[1] != NULL) {
-        func_ov000_022ae530(data_0229eacc[1]);
+        AiShowActionTask_Destroy(data_0229eacc[1]);
     }
     func_020deac4();
     gAiTurnState->state = AI_STATE_RUN_QUEUE;

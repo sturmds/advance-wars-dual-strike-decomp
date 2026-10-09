@@ -44,6 +44,10 @@ src/game/ov000/func_ov000_022ae488.c:
     complete
     .text       start:0x022ae488 end:0x022ae4a8
 
+src/game/ov000/task/ai_show_action_task_destroy.c:
+    complete
+    .text       start:0x022ae530 end:0x022ae560
+
 src/game/ov000/gfx_load_current_army_palette.c:
     complete
     .text       start:0x022af400 end:0x022af45c
