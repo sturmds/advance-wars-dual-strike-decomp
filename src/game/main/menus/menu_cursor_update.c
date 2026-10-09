@@ -1,22 +1,22 @@
 #include "types.h"
 #include "game/menu_button.h"
+#include "game/touch.h"
 
 int MainLoop_GetFrameCount(void);
 void func_01ff8850(int x, int y, void *shape, int tileAndPalette);
 int MenuButton_TestFlags(MenuButton *entry, int mask);
 
-extern u8 data_0216e4d0;
 extern u8 data_02158f3c[];
-extern u8 data_02158f44[16];
+extern u8 gMenuCursorShake[16];
 
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 #define EASE(cur, target) (ABS((target) - (cur)) <= 1 ? (target) : (cur) + (((target) - (cur)) >> 1))
 
 /* Runs the menu cursor each frame: each corner moves half the way to the
  * matching corner of the selected button (or jumps there while
- * data_0216e4d0 is set), then the four corner sprites are drawn if the
+ * the screen is touched), then the four corner sprites are drawn if the
  * button has flag 1. On frames where MainLoop_GetFrameCount() & 0x30 is 0 the
- * corners shake by offsets from data_02158f44. */
+ * corners shake by offsets from gMenuCursorShake. */
 void MenuCursor_Update(void)
 {
     MenuButton *button;
@@ -28,41 +28,41 @@ void MenuCursor_Update(void)
     int bottom;
 
     mode = 0;
-    MenuButton_Select(data_02158f38->selectedId);
+    MenuButton_Select(gMenuCursor->selectedId);
     if (!MenuCursor_HasSelection()) {
         return;
     }
-    button = data_02158f38->selected;
+    button = gMenuCursor->selected;
     left = button->x;
     top = button->y;
     right = left + button->width;
     bottom = top + button->height;
-    if (data_0216e4d0 == 0) {
-        data_02158f38->corners[0][0] = EASE(data_02158f38->corners[0][0], left);
-        data_02158f38->corners[0][1] = EASE(data_02158f38->corners[0][1], top);
-        data_02158f38->corners[1][0] = EASE(data_02158f38->corners[1][0], right);
-        data_02158f38->corners[1][1] = EASE(data_02158f38->corners[1][1], top);
-        data_02158f38->corners[2][0] = EASE(data_02158f38->corners[2][0], left);
-        data_02158f38->corners[2][1] = EASE(data_02158f38->corners[2][1], bottom);
-        data_02158f38->corners[3][0] = EASE(data_02158f38->corners[3][0], right);
-        data_02158f38->corners[3][1] = EASE(data_02158f38->corners[3][1], bottom);
+    if (gTouch.phase == TOUCH_RELEASED) {
+        gMenuCursor->corners[0][0] = EASE(gMenuCursor->corners[0][0], left);
+        gMenuCursor->corners[0][1] = EASE(gMenuCursor->corners[0][1], top);
+        gMenuCursor->corners[1][0] = EASE(gMenuCursor->corners[1][0], right);
+        gMenuCursor->corners[1][1] = EASE(gMenuCursor->corners[1][1], top);
+        gMenuCursor->corners[2][0] = EASE(gMenuCursor->corners[2][0], left);
+        gMenuCursor->corners[2][1] = EASE(gMenuCursor->corners[2][1], bottom);
+        gMenuCursor->corners[3][0] = EASE(gMenuCursor->corners[3][0], right);
+        gMenuCursor->corners[3][1] = EASE(gMenuCursor->corners[3][1], bottom);
     } else {
         /* needed to match: the original sign-extends each value once */
         s16 l = left;
         s16 t = top;
         s16 r = right;
         s16 b = bottom;
-        data_02158f38->corners[0][0] = l;
-        data_02158f38->corners[0][1] = t;
-        data_02158f38->corners[1][0] = r;
-        data_02158f38->corners[1][1] = t;
-        data_02158f38->corners[2][0] = l;
-        data_02158f38->corners[2][1] = b;
-        data_02158f38->corners[3][0] = r;
-        data_02158f38->corners[3][1] = b;
+        gMenuCursor->corners[0][0] = l;
+        gMenuCursor->corners[0][1] = t;
+        gMenuCursor->corners[1][0] = r;
+        gMenuCursor->corners[1][1] = t;
+        gMenuCursor->corners[2][0] = l;
+        gMenuCursor->corners[2][1] = b;
+        gMenuCursor->corners[3][0] = r;
+        gMenuCursor->corners[3][1] = b;
     }
 
-    button = MenuButton_Find(data_02158f38->selectedId);
+    button = MenuButton_Find(gMenuCursor->selectedId);
     if (MenuButton_TestFlags(button, 1) == 0) {
         return;
     }
@@ -71,23 +71,23 @@ void MenuCursor_Update(void)
     }
     for (i = 0; i < 4; i++) {
         if (MainLoop_GetFrameCount() & 0x30) {
-            func_01ff8850(data_02158f38->corners[i][0] & 0x1ff,
-                          mode | (data_02158f38->corners[i][1] & 0xff), data_02158f3c,
-                          (data_02158f38->tile + i * 2) | (data_02158f38->palette << 12));
+            func_01ff8850(gMenuCursor->corners[i][0] & 0x1ff,
+                          mode | (gMenuCursor->corners[i][1] & 0xff), data_02158f3c,
+                          (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
         } else {
             /* left and top now hold the shake offsets; separate locals
              * get worse register allocation */
-            left = data_02158f44[MainLoop_GetFrameCount() & 15];
-            top = data_02158f44[MainLoop_GetFrameCount() & 15];
+            left = gMenuCursorShake[MainLoop_GetFrameCount() & 15];
+            top = gMenuCursorShake[MainLoop_GetFrameCount() & 15];
             if (i == 1 || i == 3) {
                 left = -left;
             }
             if (i == 2 || i == 3) {
                 top = -top;
             }
-            func_01ff8850((left + data_02158f38->corners[i][0]) & 0x1ff,
-                          mode | ((top + data_02158f38->corners[i][1]) & 0xff), data_02158f3c,
-                          (data_02158f38->tile + i * 2) | (data_02158f38->palette << 12));
+            func_01ff8850((left + gMenuCursor->corners[i][0]) & 0x1ff,
+                          mode | ((top + gMenuCursor->corners[i][1]) & 0xff), data_02158f3c,
+                          (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
         }
     }
 }

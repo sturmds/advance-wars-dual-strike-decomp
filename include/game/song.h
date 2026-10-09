@@ -20,7 +20,7 @@ typedef struct SongFadeOutTask {
     s16 framesLeft;                    /* frames until the fade ends */
 } SongFadeOutTask;
 
-/* The task Sound_RequestSong creates (script data_02158fa4): it waits
+/* The task Sound_RequestSong creates (script gSongRequestScript): it waits
  * while Sound_IsSongFadingOut, then starts songId. */
 typedef struct SongRequestTask {
     u8 pad_00[0x54];

@@ -116,7 +116,7 @@ void MenuButton_Deactivate(MenuButton *button);
 void MenuButton_EnableTouch(int id);
 
 /* The menu cursor: four corner sprites that frame the selected button,
- * reached through data_02158f38. */
+ * reached through gMenuCursor. */
 typedef struct MenuCursor {
     u32 tile;                          /* sprite tile of the first corner; each next corner is 2 tiles on */
     u32 palette;                       /* sprite palette */
@@ -127,7 +127,7 @@ typedef struct MenuCursor {
     u8 screen;                         /* screen the menu draws on, index into data_027c0288 */
 } MenuCursor;
 
-extern MenuCursor *data_02158f38;
+extern MenuCursor *gMenuCursor;
 
 u8 Menu_GetSelectedId(void);
 void MenuCursor_DrawAt(int x, int y, int width, int height);

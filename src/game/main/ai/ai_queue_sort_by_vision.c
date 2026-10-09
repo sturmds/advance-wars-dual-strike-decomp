@@ -24,7 +24,7 @@ void AiQueue_SortByVision(BOOL descending)
         if (gAiQueue[i] == 0) {
             break;
         }
-        data_0229e234[i] = func_020e0214(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
+        gAiQueueSortKeys[i] = func_020e0214(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
     }
     if (!descending) {
         AiQueue_SortAscending(i);

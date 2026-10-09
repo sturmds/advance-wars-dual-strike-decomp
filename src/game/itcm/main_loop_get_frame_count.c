@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/main_loop.h"
 
-extern MainLoop data_027c0720;
+extern MainLoop gMainLoop;
 
 u32 MainLoop_GetFrameCount(void)
 {
-    return data_027c0720.frameCount;
+    return gMainLoop.frameCount;
 }

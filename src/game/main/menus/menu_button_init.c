@@ -33,9 +33,9 @@ MenuButton *MenuButton_Init(int x, int y, MenuButton *button, const MenuButtonTe
     button->active = 1;
 
     if (data_027c027c == data_027c0288.unk_00) {
-        data_02158f38->screen = 0;
+        gMenuCursor->screen = 0;
     } else {
-        data_02158f38->screen = 1;
+        gMenuCursor->screen = 1;
     }
     return button;
 }

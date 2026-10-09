@@ -31,19 +31,19 @@ void AiQueue_SortSeaTransports(void)
         terrain = MAP_TILE_TERRAIN(map->tiles[map->rowStart[unit->y] + unit->x]);
         if (terrain == TERRAIN_PORT || terrain == TERRAIN_SHOAL) {
             if (unit->cargo[0] == 0) {
-                data_0229e234[i] = 5;
+                gAiQueueSortKeys[i] = 5;
             } else if (unit->cargo[1] != 0) {
-                data_0229e234[i] = 4;
+                gAiQueueSortKeys[i] = 4;
             } else {
-                data_0229e234[i] = 3;
+                gAiQueueSortKeys[i] = 3;
             }
         } else {
             if (unit->cargo[0] == 0) {
-                data_0229e234[i] = 2;
+                gAiQueueSortKeys[i] = 2;
             } else if (unit->cargo[1] != 0) {
-                data_0229e234[i] = 1;
+                gAiQueueSortKeys[i] = 1;
             } else {
-                data_0229e234[i] = 0;
+                gAiQueueSortKeys[i] = 0;
             }
         }
     }

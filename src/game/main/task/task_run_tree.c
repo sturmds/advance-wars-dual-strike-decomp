@@ -3,16 +3,16 @@
 #include "game/task.h"
 
 extern Unk_02080440 *data_027c027c;
-extern u32 data_0229b380;              /* set to 1 by Task_InitSystem; name unknown */
+extern u32 gTaskSystemReady;
 
 void Task_RunScript(Task *task);
 
 /* Runs one frame of task, of the tasks after it in its list (those first),
  * then of its children. A task waiting for children does not run, and
- * list 0 does not run while data_0229b380 is 0. */
+ * list 0 does not run while gTaskSystemReady is 0. */
 void Task_RunTree(Task *task)
 {
-    if (task == data_027c027c->taskLists[0] && !data_0229b380) {
+    if (task == data_027c027c->taskLists[0] && !gTaskSystemReady) {
         return;
     }
     if (task->next != NULL) {

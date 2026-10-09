@@ -6,9 +6,9 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_021619e8[]; /* per unit type: supply kind, 1 ground, 2 air, 3 sea */
-extern u8 data_02161a04[]; /* per terrain id: 1 for properties (city, HQ, airport, port, base, ...) */
-extern u8 data_02161a44[]; /* per terrain id: supply kind it serves, 1 city/HQ/base, 2 airport, 3 port */
+extern u8 gUnitSupplyKind[];    /* per unit type: 1 ground, 2 air, 3 sea */
+extern u8 gTerrainIsProperty[]; /* per terrain id: 1 for properties (city, HQ, airport, port, base, ...) */
+extern u8 gTerrainSupplyKind[]; /* per terrain id: kind of unit it supplies, 1 ground (city, HQ, base), 2 air, 3 sea */
 extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 
 int GetUnitMovement(int player, int unitType);
@@ -74,7 +74,7 @@ BOOL Ai_CanEndMoveAt(int x, int y)
     if (MAP->unitAt[TILE_INDEX(x, y)] != 0) {
         return FALSE;
     }
-    if (data_02161a04[MAP_TILE_TERRAIN(TILE(x, y))] == 0) {
+    if (gTerrainIsProperty[MAP_TILE_TERRAIN(TILE(x, y))] == 0) {
         return TRUE;
     }
     /* needed to match: the s16 cast gives ldrsh */
@@ -187,7 +187,7 @@ BOOL Ai_CanEndMoveAt(int x, int y)
     if (gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))] == 0) {
         return TRUE;
     }
-    if (data_021619e8[STATE->actingUnit->type] == data_02161a44[MAP_TILE_TERRAIN(TILE(x, y))]
+    if (gUnitSupplyKind[STATE->actingUnit->type] == gTerrainSupplyKind[MAP_TILE_TERRAIN(TILE(x, y))]
         && AI_TARGET_FLAGS->unk_1) {
         return TRUE;
     }

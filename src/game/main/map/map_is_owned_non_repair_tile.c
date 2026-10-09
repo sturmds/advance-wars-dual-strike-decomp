@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 /* Per terrain id: which units the tile repairs. 1 ground (city, HQ, base),
  * 2 air (airport), 3 sea (port), 0 none. */
-extern u8 data_02161a44[];
+extern u8 gTerrainSupplyKind[];
 
 /* TRUE when tile (x, y) has the owner bits in Unk_02080440_48.unk_04 and its
  * terrain repairs no units. */
@@ -18,5 +18,5 @@ BOOL Map_IsOwnedNonRepairTile(int x, int y)
     if (state->unk_04 != (tile & 0xe0)) {
         return FALSE;
     }
-    return data_02161a44[MAP_TILE_TERRAIN(tile)] == 0;
+    return gTerrainSupplyKind[MAP_TILE_TERRAIN(tile)] == 0;
 }

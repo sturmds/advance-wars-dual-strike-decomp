@@ -21,7 +21,7 @@ void AiQueue_SortByMaxRange(void)
         if (gAiQueue[i] == 0) {
             break;
         }
-        data_0229e234[i] = GetUnitMaxRange(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
+        gAiQueueSortKeys[i] = GetUnitMaxRange(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
     }
     AiQueue_SortAscending(i);
 }

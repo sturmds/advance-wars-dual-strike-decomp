@@ -65,7 +65,7 @@ data_027c0520 kind:data(any) addr:0x027c0520
 data_027c0524 kind:data(any) addr:0x027c0524
 data_027c0528 kind:data(any) addr:0x027c0528
 data_027c052c kind:data(any) addr:0x027c052c
-data_027c0720 kind:data(any) addr:0x027c0720
+gMainLoop kind:data(any) addr:0x027c0720
 data_027c074c kind:data(any) addr:0x027c074c
 data_027c0750 kind:data(any) addr:0x027c0750
 data_027c0754 kind:data(any) addr:0x027c0754

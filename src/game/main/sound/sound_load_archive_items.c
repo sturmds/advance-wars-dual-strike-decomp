@@ -5,16 +5,16 @@
 BOOL func_02107804(int itemNo, void *heap);
 BOOL func_021077cc(int itemNo, void *heap);
 
-extern void *data_0218feac;                 /* sound heap */
-extern BOOL data_0218fec0;                  /* sound system ready */
+extern void *gSoundHeap;
+extern BOOL gSoundReady;
 
 /* Loads two sound archive items into the sound heap with the same pair of
  * loaders Sound_LoadResidentData uses. */
 void Sound_LoadArchiveItems(int firstItem, int secondItem)
 {
-    if (data_0218fec0 == 0) {
+    if (gSoundReady == 0) {
         return;
     }
-    func_02107804(firstItem, data_0218feac);
-    func_021077cc(secondItem, data_0218feac);
+    func_02107804(firstItem, gSoundHeap);
+    func_021077cc(secondItem, gSoundHeap);
 }

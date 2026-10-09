@@ -23,11 +23,11 @@ void AiQueue_SortBlackBoats(void)
         }
         unit = &STATE->units[gAiQueue[i]];
         if (unit->cargo[0] == 0) {
-            data_0229e234[i] = 2;
+            gAiQueueSortKeys[i] = 2;
         } else if (unit->cargo[1] == 0) {
-            data_0229e234[i] = 1;
+            gAiQueueSortKeys[i] = 1;
         } else {
-            data_0229e234[i] = 0;
+            gAiQueueSortKeys[i] = 0;
         }
     }
     AiQueue_SortDescending(i);

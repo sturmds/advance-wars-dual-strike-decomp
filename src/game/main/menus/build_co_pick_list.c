@@ -11,7 +11,7 @@ extern int data_027c0284;
 /* CO ids in the order the pick screen lists them. */
 extern u8 gCoPickOrder[CO_PICK_ORDER_LENGTH];
 /* The pick list, ended by CO_PICK_LIST_END; see GetCoPickList. */
-extern u8 data_022a7298[];
+extern u8 gCoPickList[];
 
 u8 Unlock_IsSet(u32 id);
 
@@ -25,12 +25,12 @@ u8 BuildCoPickList(void)
 
     for (i = 0; i < CO_PICK_ORDER_LENGTH; i++) {
         if (Unlock_IsSet(gCoPickOrder[i])) {
-            data_022a7298[count++] = gCoPickOrder[i];
+            gCoPickList[count++] = gCoPickOrder[i];
         }
     }
     if (data_027c027c->unk_48[data_027c0284]->gameMode == 2) {
-        data_022a7298[count++] = CO_NONE;
+        gCoPickList[count++] = CO_NONE;
     }
-    data_022a7298[count] = CO_PICK_LIST_END;
+    gCoPickList[count] = CO_PICK_LIST_END;
     return count;
 }

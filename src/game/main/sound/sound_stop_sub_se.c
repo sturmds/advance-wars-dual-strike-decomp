@@ -3,15 +3,15 @@
 
 void Sound_StopHandle(SoundHandle *handle, int fadeFrames);
 
-extern SoundHandle data_0218feb8;           /* second sound effect handle */
-extern BOOL data_0218fec0;                  /* sound system ready */
+extern SoundHandle gSubSeHandle;
+extern BOOL gSoundReady;
 
 /* Stops the sound started by Sound_PlaySubSe, fading out over
  * fadeFrames frames. */
 void Sound_StopSubSe(int fadeFrames)
 {
-    if (data_0218fec0 == 0) {
+    if (gSoundReady == 0) {
         return;
     }
-    Sound_StopHandle(&data_0218feb8, fadeFrames);
+    Sound_StopHandle(&gSubSeHandle, fadeFrames);
 }

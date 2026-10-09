@@ -28,9 +28,9 @@ void AiQueue_SortByMovement(BOOL descending)
         type = STATE->units[gAiQueue[i]].type;
         if (type == UNIT_BOMBER) {
             /* a Bomber counts as one more than a Fighter */
-            data_0229e234[i] = GetUnitMovement(STATE->currentPlayer, UNIT_FIGHTER) + 1;
+            gAiQueueSortKeys[i] = GetUnitMovement(STATE->currentPlayer, UNIT_FIGHTER) + 1;
         } else {
-            data_0229e234[i] = GetUnitMovement(STATE->currentPlayer, type);
+            gAiQueueSortKeys[i] = GetUnitMovement(STATE->currentPlayer, type);
         }
     }
     if (!descending) {

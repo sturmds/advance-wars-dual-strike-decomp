@@ -3,7 +3,7 @@
 #include "game/task.h"
 
 extern Unk_02080440 *data_027c027c;
-extern u32 data_0229b380;              /* set to 1 once the task system is ready; name unknown */
+extern u32 gTaskSystemReady;
 
 /* Clears every task, puts all of them on the free stack and empties the
  * top-level task lists. */
@@ -35,5 +35,5 @@ void Task_InitSystem(void)
     for (i = 0; i < TASK_LEVELS; i++) {
         data_027c027c->taskLists[i] = NULL;
     }
-    data_0229b380 = 1;
+    gTaskSystemReady = 1;
 }

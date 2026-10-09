@@ -10,7 +10,7 @@ void Menu_ConfirmSelected(void)
     if (MenuCursor_HasSelection() == FALSE) {
         return;
     }
-    button = data_02158f38->selected;
+    button = gMenuCursor->selected;
     if (button->onConfirm != NULL) {
         button->onConfirm(button);
     }

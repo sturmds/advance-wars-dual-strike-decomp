@@ -6,7 +6,7 @@ BOOL MenuCursor_HasSelection(void)
 {
     MenuButton *button;
 
-    button = data_02158f38->selected;
+    button = gMenuCursor->selected;
     if (button == NULL || !button->active || button->slideState == 3 || button->slideState == 4) {
         return FALSE;
     }

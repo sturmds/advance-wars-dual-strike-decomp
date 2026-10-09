@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_0209f06c(u8 tile);              /* the tile's terrain is a property (flag table data_02161a04) */
+BOOL func_0209f06c(u8 tile);              /* the tile's terrain is a property (gTerrainIsProperty) */
 BOOL func_0209ef20(u8 slot, s16 x, s16 y); /* the owner of unit slot owns tile (x, y) */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

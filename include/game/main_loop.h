@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* data_027c0720 (DTCM): state of the main loop step func_01ff9c7c, which
+/* gMainLoop (DTCM): state of the main loop step func_01ff9c7c, which
  * runs once per frame and ends with VBlankIntrWait. */
 typedef struct MainLoop {
     void (*screenCallbacks[2])(void);  /* called once per frame on each screen when set */

@@ -12,9 +12,9 @@ void Menu_Reset(void)
     for (i = 0; i < 80; i++, button++) {
         button->active = 0;
     }
-    data_02158f38->tile = 0x3b8;
-    data_02158f38->palette = 15;
-    data_02158f38->selected = NULL;
-    data_02158f38->selectedId = 0;
-    data_02158f38->screen = 0;
+    gMenuCursor->tile = 0x3b8;
+    gMenuCursor->palette = 15;
+    gMenuCursor->selected = NULL;
+    gMenuCursor->selectedId = 0;
+    gMenuCursor->screen = 0;
 }

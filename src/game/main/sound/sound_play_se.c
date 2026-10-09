@@ -3,14 +3,14 @@
 
 void Sound_PlayOnHandle(SoundHandle *handle, u32 soundId);
 
-extern SoundHandle data_0218feb4;           /* sound effect handle */
-extern BOOL data_0218fec0;                  /* sound system ready */
+extern SoundHandle gSeHandle;
+extern BOOL gSoundReady;
 
 /* Plays sound effect soundId (see Sound_PlayOnHandle for the id format). */
 void Sound_PlaySe(u32 soundId)
 {
-    if (data_0218fec0 == 0) {
+    if (gSoundReady == 0) {
         return;
     }
-    Sound_PlayOnHandle(&data_0218feb4, soundId);
+    Sound_PlayOnHandle(&gSeHandle, soundId);
 }

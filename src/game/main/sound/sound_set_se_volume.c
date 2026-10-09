@@ -4,13 +4,13 @@
 /* NitroSystem NNS_SndPlayerSetVolume */
 void func_02105824(SoundHandle *handle, int volume);
 
-extern SoundHandle data_0218feb4;           /* sound effect handle */
-extern BOOL data_0218fec0;                  /* sound system ready */
+extern SoundHandle gSeHandle;
+extern BOOL gSoundReady;
 
 void Sound_SetSeVolume(int volume)
 {
-    if (data_0218fec0 == 0) {
+    if (gSoundReady == 0) {
         return;
     }
-    func_02105824(&data_0218feb4, volume);
+    func_02105824(&gSeHandle, volume);
 }

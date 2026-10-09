@@ -53,7 +53,7 @@ extern AiTurnState *gAiTurnState;
 extern u8 *gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
 extern u8 gAiQueue[];
-extern u8 data_0229e234[];            /* sort key of each gAiQueue entry, same index */
+extern u8 gAiQueueSortKeys[];         /* sort key of each gAiQueue entry, same index */
 
 /* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
 #define AI_ATTACK_DEFENDER_MASK  0xffff

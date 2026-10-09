@@ -3,5 +3,5 @@
 
 u8 Menu_GetSelectedId(void)
 {
-    return data_02158f38->selectedId;
+    return gMenuCursor->selectedId;
 }

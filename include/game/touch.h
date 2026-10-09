@@ -21,6 +21,6 @@ typedef struct TouchState {
     u8 startY;
 } TouchState;
 
-extern TouchState data_0216e4d0;
+extern TouchState gTouch;
 
 #endif

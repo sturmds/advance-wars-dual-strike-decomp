@@ -10,15 +10,15 @@ MenuButton *MenuCursor_SetSelected(MenuButton *button, int id)
 {
     BOOL changed;
 
-    if (MenuCursor_HasSelection() && button != NULL && data_02158f38->selected != button) {
+    if (MenuCursor_HasSelection() && button != NULL && gMenuCursor->selected != button) {
         changed = TRUE;
     } else {
         changed = FALSE;
     }
-    data_02158f38->selected = button;
-    data_02158f38->selectedId = id;
+    gMenuCursor->selected = button;
+    gMenuCursor->selectedId = id;
     if (changed) {
-        MenuButton_NotifySelected(data_02158f38->selected);
+        MenuButton_NotifySelected(gMenuCursor->selected);
     }
-    return data_02158f38->selected;
+    return gMenuCursor->selected;
 }

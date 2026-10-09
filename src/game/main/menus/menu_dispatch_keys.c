@@ -1,12 +1,10 @@
 #include "types.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
-
-
-extern u8 data_0216e4d0;
+#include "game/touch.h"
 
 /* Calls onKeys of the selected button when a key is down, unless
- * data_0216e4d0 is set. */
+ * the screen is touched. */
 void Menu_DispatchKeys(void)
 {
     MenuButton *button;
@@ -14,14 +12,14 @@ void Menu_DispatchKeys(void)
     if (!MenuCursor_HasSelection()) {
         return;
     }
-    button = data_02158f38->selected;
+    button = gMenuCursor->selected;
     if (button->slideState != 2) {
         return;
     }
     if (gKeypad->repeat == 0) {
         return;
     }
-    if (data_0216e4d0 != 0) {
+    if (gTouch.phase != TOUCH_RELEASED) {
         return;
     }
     if (button->onKeys != NULL) {

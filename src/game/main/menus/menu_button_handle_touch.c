@@ -12,7 +12,7 @@ BOOL func_0201ad28(void);
  * as an inline function does. */
 static inline BOOL Touch_Is(int phase)
 {
-    if (data_0216e4d0.active != 0 && data_0216e4d0.phase == phase) {
+    if (gTouch.active != 0 && gTouch.phase == phase) {
         return TRUE;
     }
     return FALSE;
@@ -28,10 +28,10 @@ static inline int Abs(int value)
  * at most 16 pixels from where the touch began. */
 BOOL MenuButton_HandleTouch(MenuButton *button)
 {
-    u8 x = data_0216e4d0.x;
-    u8 y = data_0216e4d0.y;
-    u8 startX = data_0216e4d0.startX;
-    u8 startY = data_0216e4d0.startY;
+    u8 x = gTouch.x;
+    u8 y = gTouch.y;
+    u8 startX = gTouch.startX;
+    u8 startY = gTouch.startY;
 
     switch (MenuButton_GetTouchState(button)) {
     case MENU_BUTTON_TOUCH_HELD:   /* needed to match: this case comes first */
