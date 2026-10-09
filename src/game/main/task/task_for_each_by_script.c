@@ -12,7 +12,7 @@ void Task_ForEachByScript(void *script, void (*visit)(Task *task))
 
     task = data_027c027c->taskPool;
     for (i = 0; i < TASK_COUNT; i++, task++) {
-        if (task->unk_00 == script) {
+        if (task->script == script) {
             visit(task);
         }
     }

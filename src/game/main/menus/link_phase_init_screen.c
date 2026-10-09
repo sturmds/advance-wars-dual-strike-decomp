@@ -146,7 +146,7 @@ void LinkPhase_InitScreen(void)
     Palette_Load(file, 0x200, 0x20);
     Palette_Load(file, 0x220, 0x20);
     Palette_Load(file, 0x240, 0x20);
-    func_02026bc8(data_027c0280->unk_08 + 0x240, 0, 8, 8);
+    func_02026bc8(data_027c0280->paletteBuffer + 0x240, 0, 8, 8);
     Mem_Copy32(file + 0x20, &gMenuState, 0x20);
     Mem_Free(file);
 

@@ -14,17 +14,17 @@ void Task_InitSystem(void)
 
     for (i = 0; i < TASK_COUNT; i++) {
         task = &data_027c027c->taskPool[i];
-        task->unk_00 = NULL;
-        task->unk_04 = NULL;
-        task->unk_08 = NULL;
-        task->unk_0c = NULL;
+        task->script = NULL;
+        task->scriptStart = NULL;
+        task->pc = NULL;
+        task->onDestroy = NULL;
         task->update = NULL;
         task->parent = NULL;
         task->firstChild = NULL;
         task->prev = NULL;
         task->next = NULL;
         task->unk_24 = 0;
-        task->unk_26 = 0;
+        task->group = 0;
         task->flags = 0;
         task->childCount = 0;
         data_027c027c->taskFreeStack[i] = task;

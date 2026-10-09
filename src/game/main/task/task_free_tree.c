@@ -4,7 +4,7 @@
 void Task_Free(Task *task);
 
 /* Frees task, the tasks after it in its list and all their children.
- * Each task's destroy callback (unk_0c, see Task_SetDestroyCallback) runs
+ * Each task's destroy callback (onDestroy, see Task_SetDestroyCallback) runs
  * before it goes back on the free stack. */
 void Task_FreeTree(Task *task)
 {
@@ -19,13 +19,13 @@ void Task_FreeTree(Task *task)
     if (task->flags & TASK_FLAG_FREED) {
         return;
     }
-    onDestroy = task->unk_0c;
+    onDestroy = task->onDestroy;
     if (onDestroy != NULL) {
         onDestroy(task);
     }
     Task_Free(task);
-    task->unk_00 = NULL;
-    task->unk_04 = NULL;
+    task->script = NULL;
+    task->scriptStart = NULL;
     task->update = NULL;
     task->flags |= TASK_FLAG_FREED;
     if (task->flags & TASK_FLAG_CHILD) {

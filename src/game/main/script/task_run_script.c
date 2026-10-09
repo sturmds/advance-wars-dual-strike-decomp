@@ -9,15 +9,15 @@ extern TaskCommandFunc gTaskCommands[];
  * Needed to match: the first command is written out before the loop. */
 void Task_RunScript(Task *task)
 {
-    if (task->unk_00 == NULL || task->childCount != 0 || task->update != NULL) {
+    if (task->script == NULL || task->childCount != 0 || task->update != NULL) {
         return;
     }
-    if (!gTaskCommands[((TaskScriptCmd *)task->unk_08)->op](task)) {
+    if (!gTaskCommands[task->pc->op](task)) {
         return;
     }
     do {
-        if (task->unk_00 == NULL || task->childCount != 0 || task->update != NULL) {
+        if (task->script == NULL || task->childCount != 0 || task->update != NULL) {
             return;
         }
-    } while (gTaskCommands[((TaskScriptCmd *)task->unk_08)->op](task));
+    } while (gTaskCommands[task->pc->op](task));
 }

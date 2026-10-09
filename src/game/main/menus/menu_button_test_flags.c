@@ -3,5 +3,5 @@
 
 int MenuButton_TestFlags(MenuButton *button, int mask)
 {
-    return button->unk_1c & mask;
+    return button->flags & mask;
 }

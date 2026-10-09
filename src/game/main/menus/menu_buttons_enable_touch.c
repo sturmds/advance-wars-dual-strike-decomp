@@ -11,7 +11,7 @@ void MenuButtons_EnableTouch(void)
 
     for (i = 0; i < 80; i++, button++) {
         if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH) != MENU_BUTTON_SELECT_ON_TOUCH) {
-            button->unk_1c &= ~MENU_BUTTON_NO_TOUCH_CONFIRM;
+            button->flags &= ~MENU_BUTTON_NO_TOUCH_CONFIRM;
         }
     }
 }

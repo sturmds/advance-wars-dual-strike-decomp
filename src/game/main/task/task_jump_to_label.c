@@ -6,11 +6,11 @@
  * has no such label. */
 void Task_JumpToLabel(Task *task, int label)
 {
-    TaskScriptCmd *cmd;
+    const TaskScriptCmd *cmd;
 
-    for (cmd = task->unk_04; cmd->op != TASK_CMD_END; cmd++) {
+    for (cmd = task->scriptStart; cmd->op != TASK_CMD_END; cmd++) {
         if (cmd->op == TASK_CMD_LABEL && cmd->arg == label) {
-            task->unk_08 = cmd;
+            task->pc = cmd;
             task->update = NULL;
             return;
         }

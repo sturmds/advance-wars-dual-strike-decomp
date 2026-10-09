@@ -14,7 +14,7 @@ MenuButton *MenuButton_Init(int x, int y, MenuButton *button, const MenuButtonTe
     button->y = y + template->y;
     button->width = template->width;
     button->height = template->height;
-    button->unk_1c = template->flags;
+    button->flags = template->flags;
     button->slideDuration = template->slideDuration;
     button->tile = template->tile;
     button->palette = template->palette;
