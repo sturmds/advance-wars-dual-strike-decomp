@@ -38,7 +38,7 @@ void func_020dd818(void);
 void func_020dd89c(void);
 void func_020dd9a0(void);
 void func_020ddc2c(void);
-void func_020ddd30(void);
+void UnitAction_Join(void);
 void func_020de350(int arg);
 void func_020de440(void);
 void func_020de5a4(void);
@@ -117,7 +117,7 @@ void AiShowAction_Step2(void)
         gAiTurnState->actionStep = 10;
         return;
     case 10:
-        func_020ddd30();
+        UnitAction_Join();
         func_020deac4();
         break;
     case 6:

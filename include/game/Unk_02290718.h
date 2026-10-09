@@ -19,6 +19,8 @@ typedef struct Unk_02290718 {
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
     u8 pad_after_records[0x3c0 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
     u32 humanFundsSpent;               /* funds spent by human players, capped at 999999999 (Player_SpendFunds) */
+    u8 pad_3c4[0x3f4 - 0x3c4];
+    u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
 } Unk_02290718;
 
 extern Unk_02290718 data_02290718;

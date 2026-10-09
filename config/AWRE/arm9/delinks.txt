@@ -6271,6 +6271,10 @@ src/game/main/func_020ddc14.c:
     complete
     .text       start:0x020ddc14 end:0x020ddc2c
 
+src/game/main/units/unit_action_join.c:
+    complete
+    .text       start:0x020ddd30 end:0x020de090
+
 src/game/main/func_020dea20.c:
     complete
     .text       start:0x020dea20 end:0x020dea40
