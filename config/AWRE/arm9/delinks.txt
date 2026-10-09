@@ -831,6 +831,10 @@ src/game/main/menus/co_select_clear_available.c:
     complete
     .text       start:0x02045860 end:0x02045874
 
+src/game/main/menus/co_select_add_available.c:
+    complete
+    .text       start:0x02045874 end:0x02045890
+
 src/game/main/func_02046fc8.c:
     complete
     .text       start:0x02046fc8 end:0x02046fe0
