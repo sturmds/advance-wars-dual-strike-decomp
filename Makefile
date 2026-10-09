@@ -11,7 +11,7 @@ NINJA    ?= ninja
 DSD      := .cache/tools/dsd/dsd
 
 
-.PHONY: all configure progress setup release check check-rom check-modules check-out hooks extract clean
+.PHONY: all configure fnindex progress setup release check check-rom check-modules check-out hooks extract clean
 
 all: check-rom configure
 	@$(NINJA)
@@ -51,6 +51,11 @@ check-out:
 	@echo "check: $(OUT) matches retail AWRE (SHA-1 $$(cut -d' ' -f1 $(ROM_SHA1)))"
 
 check: check-rom check-modules check-out
+
+# build/fnindex.json, for fn.py check and the brute-force tools. fn.py check
+# also rebuilds it when symbols.txt, relocs.txt or extract/ are newer.
+fnindex: all
+	@$(PYTHON) tools/fnindex.py
 
 progress: all
 	@$(PYTHON) tools/progress.py

@@ -6,6 +6,8 @@
     fn.py show NAME|ADDR                       location, callers, callees, data, disassembly
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
     fn.py diff NAME                            compile its file and compare with the original
+    fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
+                                               with build/fnindex.json (tools/fnindex.py)
     fn.py finish NAME                          mark its file `complete` (linked from our C)
     fn.py rename OLD NEW                       rename a symbol in symbols.txt, src/ and include/;
                                                moves src/.../OLD.c to NEW.c as well, and updates
@@ -454,6 +456,19 @@ def cmd_diff(args) -> int:
     return 0 if percent == 100.0 else 1
 
 
+def cmd_check(args) -> int:
+    import fnindex
+    index = fnindex.load()
+    try:
+        res = fnindex.check(index, Path(args.file), args.name, args.module)
+    except KeyError as e:
+        sys.exit(f"error: {e.args[0]}")
+    if res.compiler_output:
+        sys.stdout.write(res.compiler_output)
+    print(res)
+    return 0 if res.ok else 1
+
+
 @cache
 def symbol_addresses() -> dict[str, int | None]:
     """Name -> address over all modules; None when a name has two addresses."""
@@ -513,6 +528,11 @@ def main() -> int:
     p = sub.add_parser("diff")
     p.add_argument("name")
     p.set_defaults(fn=cmd_diff)
+    p = sub.add_parser("check")
+    p.add_argument("file")
+    p.add_argument("name")
+    p.add_argument("--module", help="for a name defined in several modules")
+    p.set_defaults(fn=cmd_check)
     # Not "complete": the worktree sandbox refuses commands containing that word.
     p = sub.add_parser("finish")
     p.add_argument("name")

@@ -49,6 +49,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
 | `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
 | `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. |
+| `tools/fnindex.py`, `tools/tests/` | Function index (`build/fnindex.json`) and the fast `fn.py check`, with its test against `fn.py diff`. |
 | `docs/loop.md`, `.claude/skills/decomp-function/`, `tools/apply_commit.py`, `tools/wt_setup.sh` | Automated loop: agents in worktrees, replaying their commits onto mainline. |
 | `tools/header_merge.py`, `tools/rebase_onto_mainline.py`, `tools/land_self.py` | Header merge by struct offset (used by `apply_commit.py`); an agent rebases its branch onto mainline and lands it with a fast-forward under a lock. |
 | `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code. |
