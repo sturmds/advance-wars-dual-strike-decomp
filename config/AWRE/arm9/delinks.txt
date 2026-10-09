@@ -7142,6 +7142,10 @@ src/game/main/acting_unit_finish_action.c:
     complete
     .text       start:0x020deac4 end:0x020dec2c
 
+src/game/main/units/acting_unit_reset_capture_if_moved.c:
+    complete
+    .text       start:0x020dec70 end:0x020decc4
+
 src/game/main/map/map_is_capturable_by_acting_unit.c:
     complete
     .text       start:0x020dedb0 end:0x020dee24
