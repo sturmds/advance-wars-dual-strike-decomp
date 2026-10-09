@@ -894,6 +894,10 @@ src/game/main/func_02080734.c:
     complete
     .text       start:0x02080734 end:0x02080774
 
+src/game/main/graphics/sprite_task_create.c:
+    complete
+    .text       start:0x02082614 end:0x02082718
+
 src/game/main/func_02082a5c.c:
     complete
     .text       start:0x02082a5c end:0x02082a78

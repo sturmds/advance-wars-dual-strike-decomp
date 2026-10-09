@@ -30,7 +30,7 @@ void LinkScreen_AddButtons(void);
 int LinkScreen_GetPlayerRow(int player);
 int func_0207bd80(void);
 void EventQueue_Reset(void);
-void func_02082614(int a, int b, int c, int d);
+void SpriteTask_Create(int a, int b, int c, int d);
 const char *File_LocalizePath(const char *path);
 u8 Map_GetPlayerCount(u32 mapId);
 const void *Map_GetName(u32 mapId);
@@ -198,6 +198,6 @@ void LinkPhase_InitScreen(void)
     func_02029648();
     EventQueue_Reset();
     if (func_0207bd80() == 1) {
-        func_02082614(0xe8, 8, 0x1f0, 15);
+        SpriteTask_Create(0xe8, 8, 0x1f0, 15);
     }
 }
