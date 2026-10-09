@@ -2775,7 +2775,7 @@ func_0208c560 kind:function(arm,size=0x300) addr:0x0208c560
 func_0208c860 kind:function(arm,size=0xe8) addr:0x0208c860
 func_0208c948 kind:function(arm,size=0xb0) addr:0x0208c948
 func_0208c9f8 kind:function(arm,size=0x1b0) addr:0x0208c9f8
-func_0208cba8 kind:function(arm,size=0x210) addr:0x0208cba8
+AiProfile_Build kind:function(arm,size=0x210) addr:0x0208cba8
 func_0208cdb8 kind:function(arm,size=0x40) addr:0x0208cdb8
 func_0208cdf8 kind:function(arm,size=0x4f8) addr:0x0208cdf8
 func_0208d2f0 kind:function(arm,size=0x10c) addr:0x0208d2f0
@@ -7595,7 +7595,7 @@ data_02161b80 kind:data(any) addr:0x02161b80
 data_02161b8c kind:data(any) addr:0x02161b8c
 data_02161b8d kind:data(any) addr:0x02161b8d
 data_02161baa kind:data(any) addr:0x02161baa
-data_02162050 kind:data(any) addr:0x02162050
+gAiProfileMods kind:data(any) addr:0x02162050
 data_02162a90 kind:data(any) addr:0x02162a90
 data_021658c8 kind:data(any) addr:0x021658c8
 data_021658d0 kind:data(any) addr:0x021658d0
