@@ -1302,6 +1302,10 @@ src/game/main/func_020cab68.c:
     complete
     .text       start:0x020cab68 end:0x020cab80
 
+src/game/main/units/unit_repair.c:
+    complete
+    .text       start:0x020cdd84 end:0x020cdf0c
+
 src/game/main/func_020cfe70.c:
     complete
     .text       start:0x020cfe70 end:0x020cfe80
