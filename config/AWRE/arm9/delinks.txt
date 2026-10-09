@@ -255,6 +255,10 @@ src/game/main/func_02089244.c:
     complete
     .text       start:0x02089244 end:0x02089260
 
+src/game/main/func_0208c010.c:
+    complete
+    .text       start:0x0208c010 end:0x0208c024
+
 src/game/main/ai/ai_turn_update.c:
     complete
     .text       start:0x0208c2a4 end:0x0208c368
