@@ -2223,6 +2223,10 @@ src/game/main/menus/build_co_pick_list.c:
     complete
     .text       start:0x020e3478 end:0x020e3518
 
+src/game/main/menus/get_co_pick_list.c:
+    complete
+    .text       start:0x020e3518 end:0x020e3524
+
 src/game/main/copowers/start_power_damage.c:
     complete
     .text       start:0x020e3e3c end:0x020e3eb0
