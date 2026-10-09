@@ -1571,6 +1571,10 @@ src/game/main/script/event_script_clear_text_map.c:
     complete
     .text       start:0x0201dba4 end:0x0201dbdc
 
+src/game/main/script/event_script_reset_line_offsets.c:
+    complete
+    .text       start:0x0201dbdc end:0x0201dc2c
+
 src/game/main/func_0201dc2c.c:
     complete
     .text       start:0x0201dc2c end:0x0201dc38

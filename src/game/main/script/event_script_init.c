@@ -12,7 +12,7 @@ extern u8 *data_02297790;
 void func_0210187c(void);
 void func_0201d7a8(void);
 void EventScript_ClearTextMap(void);
-void func_0201dbdc(void);
+void EventScript_ResetLineOffsets(void);
 
 /* Clears the event script slots and related state when a battle map starts
  * (Map_InitBattle). The last lines save the layer 0 tile data address in
@@ -34,7 +34,7 @@ void EventScript_Init(void)
     data_0229777c = 0;
     func_0201d7a8();
     EventScript_ClearTextMap();
-    func_0201dbdc();
+    EventScript_ResetLineOffsets();
     data_022977a4.unk_08 = 0;
     data_022977a4.unk_00 = 0;
     data_022977a4.unk_01 = 1;
