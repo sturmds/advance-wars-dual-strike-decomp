@@ -2062,6 +2062,10 @@ src/game/main/ai/ai_show_action_step3.c:
     complete
     .text       start:0x020b869c end:0x020b86e0
 
+src/game/main/ai/ai_show_action_step1.c:
+    complete
+    .text       start:0x020b9114 end:0x020b91b0
+
 src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664

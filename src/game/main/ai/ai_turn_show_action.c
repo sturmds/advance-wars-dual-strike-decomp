@@ -4,7 +4,7 @@
 extern u32 data_0229eac4;
 
 void func_020b91b0(void);
-void func_020b9114(void);
+void AiShowAction_Step1(void);
 void func_020b8cf0(void);
 void AiShowAction_Step3(void);
 void AiShowAction_Step4(void);
@@ -27,7 +27,7 @@ void AiTurn_ShowAction(void)
         func_020b91b0();
         break;
     case 1:
-        func_020b9114();
+        AiShowAction_Step1();
         break;
     case 2:
         func_020b8cf0();
