@@ -119,6 +119,10 @@ src/game/main/graphics/co_copy_palette.c:
     complete
     .text       start:0x02002c48 end:0x02002c88
 
+src/game/main/graphics/co_load_army_palette.c:
+    complete
+    .text       start:0x02002c88 end:0x02002cec
+
 src/game/main/graphics/co_load_palette.c:
     complete
     .text       start:0x02002cec end:0x02002d3c
