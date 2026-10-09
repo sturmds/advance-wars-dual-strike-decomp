@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
-int func_020a3294(void);
+int AiUnit_ClaimLandmass(void);
 int func_020a4984(MapUnit *unit);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);

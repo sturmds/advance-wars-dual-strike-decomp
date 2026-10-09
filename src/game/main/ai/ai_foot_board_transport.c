@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
-int func_020a3294(void);
+int AiUnit_ClaimLandmass(void);
 int func_020a4984(MapUnit *unit);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -36,7 +36,7 @@ void AiFoot_BoardTransport(void)
     MapUnit *transport;
     int type;
 
-    if (STATE->actingUnit->unk_0c_7 || func_020a3294() == 1) {
+    if (STATE->actingUnit->unk_0c_7 || AiUnit_ClaimLandmass() == 1) {
         STATE->actingUnit->transportWanted = 0;
         return;
     }
