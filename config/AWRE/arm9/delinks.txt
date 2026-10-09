@@ -96,6 +96,10 @@ src/game/main/sound/sound_update.c:
     complete
     .text       start:0x0200b3dc end:0x0200b410
 
+src/game/main/sound/sound_stop_stream.c:
+    complete
+    .text       start:0x0200b410 end:0x0200b428
+
 src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
