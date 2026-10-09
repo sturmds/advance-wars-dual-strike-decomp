@@ -19,7 +19,7 @@ void func_020a0b44(void);
 void func_020a0b80(void);
 
 /* Queue routine for the units AiAction_QueueDirectUnits, AiAction_QueueAllDirectUnits and
- * func_0208f060 collect: runs the action sequence for the active unit's
+ * AiAction_QueueAllDirectUnitsFog collect: runs the action sequence for the active unit's
  * AI order. */
 void AiUnit_ActByOrder(void)
 {
