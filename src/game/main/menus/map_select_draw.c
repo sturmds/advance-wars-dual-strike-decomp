@@ -23,7 +23,7 @@ void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_ShowSelectedMap(void);
 void MapSelect_DrawSubStrip(int x, int y, int a2);
 void MapSelect_DrawTwoMapsTitle(int x, int y);
-void func_02063958(int x, int y, int list);
+void MapSelect_DrawListThumbnail(int x, int y, int list);
 void func_02063e04(int list, int a1);
 int func_0207bd6c(void);
 int func_0207bd80(void);
@@ -124,10 +124,10 @@ void MapSelect_Draw(void)
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideBack != 0) {
             thumbOffset = slideOffset >> 1;
-            func_02063958(thumbOffset - 128, 8, LIST_OF_TAB(TAB()) - 2);
-            func_02063958(thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
-            func_02063958(thumbOffset + 128, 8, LIST_OF_TAB(TAB()));
-            func_02063958(thumbOffset + 256, 8, LIST_OF_TAB(TAB()) + 1);
+            MapSelect_DrawListThumbnail(thumbOffset - 128, 8, LIST_OF_TAB(TAB()) - 2);
+            MapSelect_DrawListThumbnail(thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
+            MapSelect_DrawListThumbnail(thumbOffset + 128, 8, LIST_OF_TAB(TAB()));
+            MapSelect_DrawListThumbnail(thumbOffset + 256, 8, LIST_OF_TAB(TAB()) + 1);
             if (STATE->gameMode == 1) {
                 func_02060718(slideOffset, 72, 0);
                 func_02060718(slideOffset - 256, 72, 1);
@@ -142,10 +142,10 @@ void MapSelect_Draw(void)
             }
         } else {
             thumbOffset = slideOffset >> 1;
-            func_02063958(-thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
-            func_02063958(128 - thumbOffset, 8, LIST_OF_TAB(TAB()));
-            func_02063958(256 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 1);
-            func_02063958(384 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 2);
+            MapSelect_DrawListThumbnail(-thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
+            MapSelect_DrawListThumbnail(128 - thumbOffset, 8, LIST_OF_TAB(TAB()));
+            MapSelect_DrawListThumbnail(256 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 1);
+            MapSelect_DrawListThumbnail(384 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 2);
             if (STATE->gameMode == 1) {
                 func_02060718(-slideOffset, 72, 0);
                 func_02060718(256 - slideOffset, 72, 1);
@@ -160,9 +160,9 @@ void MapSelect_Draw(void)
             }
         }
     } else {
-        func_02063958(0, 8, LIST_OF_TAB(TAB()) - 1);
-        func_02063958(128, 8, LIST_OF_TAB(TAB()));
-        func_02063958(256, 8, LIST_OF_TAB(TAB()) + 1);
+        MapSelect_DrawListThumbnail(0, 8, LIST_OF_TAB(TAB()) - 1);
+        MapSelect_DrawListThumbnail(128, 8, LIST_OF_TAB(TAB()));
+        MapSelect_DrawListThumbnail(256, 8, LIST_OF_TAB(TAB()) + 1);
         if (STATE->gameMode == 1) {
             MapSelect_DrawPageIndicator(200, 64, LIST_OF_TAB(TAB()));
             func_02060718(0, 72, 0);

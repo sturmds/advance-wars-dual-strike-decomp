@@ -53,7 +53,9 @@ typedef struct BattleSetupState {
     u8 forceRankSetChanged;            /* set by the first L or R press on the Vs setup screen, which also plays a sound */
     u8 unk_2ea;
     u8 unk_2eb;                        /* nonzero: take the settings from the players of a running game */
-    u8 pad_2ec[0x4ce - 0x2ec];
+    u8 pad_2ec[0x4cc - 0x2ec];
+    u8 mapListCount;                   /* entries MapSelect_DrawListThumbnail cycles through, a guess */
+    u8 pad_4cd;
     s8 unk_4ce[6];                     /* drawn as two-digit numbers in a 3 by 2 grid */
     s8 unk_4d4[6];                     /* same, for a second grid */
     u8 recordCos[6];                   /* War Room: front and back CO of each of the three best records */

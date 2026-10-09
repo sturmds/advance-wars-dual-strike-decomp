@@ -945,6 +945,10 @@ src/game/main/menus/map_select_draw_two_maps_title.c:
     complete
     .text       start:0x02063868 end:0x02063958
 
+src/game/main/menus/map_select_draw_list_thumbnail.c:
+    complete
+    .text       start:0x02063958 end:0x02063b2c
+
 src/game/main/menus/map_select_get_tab.c:
     complete
     .text       start:0x020642e8 end:0x02064344
