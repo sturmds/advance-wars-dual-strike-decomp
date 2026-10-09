@@ -2932,6 +2932,9 @@ src/game/main/func_02044c04.c:
     complete
     .text       start:0x02044c04 end:0x02044c28
 
+src/game/main/menus/func_02044c94.c:
+    .text       start:0x02044c94 end:0x02044fcc
+
 src/game/main/skills/skills_are_disabled.c:
     complete
     .text       start:0x02045680 end:0x0204572c
