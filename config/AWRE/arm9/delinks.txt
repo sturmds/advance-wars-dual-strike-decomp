@@ -811,14 +811,15 @@ src/game/main/menus/force_rank_screen_handle_keys.c:
     complete
     .text       start:0x0204030c end:0x02040568
 
-src/game/main/menus/force_rank_screen_clear_sets.c:
+src/game/main/menus/force_rank_screen_clear_chosen.c:
+    complete
     .text       start:0x02040568 end:0x0204062c
 
-src/game/main/menus/force_rank_screen_next_set.c:
+src/game/main/menus/force_rank_screen_next_slot.c:
     complete
     .text       start:0x0204062c end:0x0204069c
 
-src/game/main/menus/force_rank_screen_prev_set.c:
+src/game/main/menus/force_rank_screen_prev_slot.c:
     complete
     .text       start:0x0204069c end:0x02040708
 

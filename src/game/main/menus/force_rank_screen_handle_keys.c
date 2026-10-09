@@ -3,9 +3,9 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-void func_02040568(void);
-void ForceRankScreen_NextSet(void);
-void ForceRankScreen_PrevSet(void);
+void ForceRankScreen_ClearChosen(void);
+void ForceRankScreen_NextSlot(void);
+void ForceRankScreen_PrevSlot(void);
 void ForceRankScreen_Close(void);
 
 #define CURSOR_COLUMN(cursor) ((cursor) >> 3)
@@ -14,7 +14,7 @@ void ForceRankScreen_Close(void);
 /* onKeys of the Force Rank selection buttons. Up and down wrap within the
  * column; left and right skip empty columns (left wraps from column 1 to
  * the last one) and keep the row when the new column has it. L and R call
- * ForceRankScreen_PrevSet and ForceRankScreen_NextSet, X calls func_02040568. */
+ * ForceRankScreen_PrevSlot and ForceRankScreen_NextSlot, X calls ForceRankScreen_ClearChosen. */
 void ForceRankScreen_HandleKeys(MenuButton *button)
 {
     int cursor;
@@ -77,16 +77,16 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
         button = MenuButton_Select(cursor);
     }
     if (gKeypad->pressed & PAD_BUTTON_L) {
-        ForceRankScreen_PrevSet();
+        ForceRankScreen_PrevSlot();
     }
     if (gKeypad->pressed & PAD_BUTTON_R) {
-        ForceRankScreen_NextSet();
+        ForceRankScreen_NextSlot();
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
         MenuButton_Confirm(button);
     }
     if (gKeypad->pressed & PAD_BUTTON_X) {
-        func_02040568();
+        ForceRankScreen_ClearChosen();
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
         ForceRankScreen_Close();

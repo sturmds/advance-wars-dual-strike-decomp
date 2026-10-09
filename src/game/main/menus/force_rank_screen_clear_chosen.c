@@ -12,7 +12,9 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-void func_02040568(void)
+/* X button: selects slot 0, empties the four chosen skills and redraws each
+ * slot row on the second screen (func_02041594). */
+void ForceRankScreen_ClearChosen(void)
 {
     int i;
     Unk_027c0280 *savedGfx;
@@ -20,12 +22,12 @@ void func_02040568(void)
 
     gForceRankScreen->unk_7b = 0;
     for (i = 0; i < 4; i++) {
-        gForceRankScreen->unk_54[i] = 0;
+        gForceRankScreen->chosenSkills[i] = 0;
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedState = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_02041594(1, 15 + i * 2, 256 + i * 64, gForceRankScreen->unk_54[i]);
+        func_02041594(1, 15 + i * 2, 256 + i * 64, gForceRankScreen->chosenSkills[i]);
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
     }

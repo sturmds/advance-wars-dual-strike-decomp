@@ -29,7 +29,7 @@ typedef struct ForceRankColumn {
 /* Work area of the Force Rank selection screen, through gForceRankScreen. */
 typedef struct ForceRankScreen {
     ForceRankColumn columns[FORCE_RANK_COLUMN_COUNT];
-    u8 unk_54[4];                      /* one byte per slot of the set row; func_02040568 clears them */
+    u8 chosenSkills[4];                /* skill id picked in each of the 4 slots; 0: empty */
     u8 pad_58[0x7a - 0x58];
     u8 unk_7a;                         /* columns up to this one are listed; L and R cycle unk_7b through 0 to min(4, unk_7a) - 1 */
     u8 unk_7b;

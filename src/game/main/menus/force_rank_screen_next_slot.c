@@ -3,20 +3,20 @@
 
 void Sound_PlaySe(int id);
 
-/* R button: selects the next skill set, wrapping around. */
-void ForceRankScreen_NextSet(void)
+/* R button: selects the next skill slot, wrapping around. */
+void ForceRankScreen_NextSlot(void)
 {
-    int setCount;
+    int slotCount;
 
     if (gForceRankScreen->unk_7a < 2) {
         return;
     }
     Sound_PlaySe(0x10002);
-    setCount = gForceRankScreen->unk_7a;
-    if (setCount > 4) {
-        setCount = 4;
+    slotCount = gForceRankScreen->unk_7a;
+    if (slotCount > 4) {
+        slotCount = 4;
     }
-    if (gForceRankScreen->unk_7b < setCount - 1) {
+    if (gForceRankScreen->unk_7b < slotCount - 1) {
         gForceRankScreen->unk_7b++;
     } else {
         gForceRankScreen->unk_7b = 0;
