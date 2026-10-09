@@ -1603,6 +1603,10 @@ src/game/main/graphics/palette_load_player_row.c:
     complete
     .text       start:0x0201e3b8 end:0x0201e41c
 
+src/game/main/graphics/window_draw_frame.c:
+    complete
+    .text       start:0x0201e478 end:0x0201e530
+
 src/game/main/menus/menu_box_draw.c:
     complete
     .text       start:0x0201e5f8 end:0x0201e664
