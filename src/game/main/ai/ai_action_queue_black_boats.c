@@ -9,9 +9,8 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* For each queued unit, stores in data_0229e234 how many cargo slots are
- * free (0-2), then calls func_0208fa5c. */
-void func_0208f688(void);
+/* Sorts gAiQueue by free cargo slots, most first. */
+void AiQueue_SortBlackBoats(void);
 void AiBlackBoat_Act(void); /* run on each queued Black Boat */
 
 /* Queues the current player's Black Boats that have not acted yet. The
@@ -30,7 +29,7 @@ void AiAction_QueueBlackBoats(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    func_0208f688();
+    AiQueue_SortBlackBoats();
     gAiQueueRoutine = AiBlackBoat_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
