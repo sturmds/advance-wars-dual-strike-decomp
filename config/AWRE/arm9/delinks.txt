@@ -49,6 +49,7 @@ src/game/main/overlay/overlay_unload.c:
     .text       start:0x02001670 end:0x020016bc
 
 src/game/main/overlay/overlay_load.c:
+    complete
     .text       start:0x020016bc end:0x0200170c
 
 src/game/main/func_02001730.c:
