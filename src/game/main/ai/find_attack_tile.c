@@ -5,13 +5,13 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int MainLoop_GetFrameCount(void);           /* random number */
-int func_020a8b20(int x, int y);   /* score of (x, y) as a tile to attack from; -1: unusable */
+int AiTile_ScoreAttackFrom(int x, int y);   /* score of (x, y) as a tile to attack from; -1: unusable */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define NO_TILE 9999
 
-/* Picks the tile next to (targetX, targetY) that func_020a8b20 scores
+/* Picks the tile next to (targetX, targetY) that AiTile_ScoreAttackFrom scores
  * highest for the acting unit to attack from, and writes it to pos. Ties
  * go to a coin flip. FALSE: every side scores below 0. */
 BOOL FindAttackTile(int targetX, int targetY, s16 *pos)
@@ -60,7 +60,7 @@ BOOL FindAttackTile(int targetX, int targetY, s16 *pos)
             if (dist < 1 || dist > 1) {
                 continue;
             }
-            score = func_020a8b20(x, y);
+            score = AiTile_ScoreAttackFrom(x, y);
             if (score < bestScore) {
                 continue;
             }

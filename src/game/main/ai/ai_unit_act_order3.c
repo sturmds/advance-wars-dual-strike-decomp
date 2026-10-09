@@ -9,11 +9,11 @@ void func_020ab014(void);
 void func_020af5f8(void);
 void func_020b0a70(void);
 void AiUnit_PlanAttack(void);
-void func_020b2904(void);
+void AiUnit_WaitInPlace(void);
 void func_020b297c(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 3. The
- * last one, func_020b2904, makes the unit stay on its tile
+ * last one, AiUnit_WaitInPlace, makes the unit stay on its tile
  * (AiUnit_PerformAction with action 2). */
 void AiUnit_ActOrder3(void)
 {
@@ -27,5 +27,5 @@ void AiUnit_ActOrder3(void)
     func_020a9ac0();
     func_020aacc0();
     func_020a9854();
-    func_020b2904();
+    AiUnit_WaitInPlace();
 }

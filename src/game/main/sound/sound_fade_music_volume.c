@@ -1,11 +1,8 @@
 #include "types.h"
 #include "game/sound_handle.h"
+#include "game/sound.h"
 
 /* NitroSystem NNS_SndPlayerMoveVolume */
-void func_021057cc(SoundHandle *handle, int targetVolume, int frames);
-
-extern SoundHandle gMusicHandle;
-extern BOOL gSoundReady;
 
 /* Fades the music volume from startVolume to targetVolume over frames
  * frames. startVolume -1 starts from the player's set volume. */
@@ -20,6 +17,6 @@ void Sound_FadeMusicVolume(int startVolume, int targetVolume, int frames)
     if (startVolume == -1) {
         startVolume = gMusicHandle.player->volume;
     }
-    func_021057cc(&gMusicHandle, startVolume, 0);
-    func_021057cc(&gMusicHandle, targetVolume, frames);
+    NNS_SndPlayerMoveVolume(&gMusicHandle, startVolume, 0);
+    NNS_SndPlayerMoveVolume(&gMusicHandle, targetVolume, frames);
 }

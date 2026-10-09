@@ -14,7 +14,7 @@ BOOL Map_IsTileVisible(s16 x, s16 y);
 void Ai_ClearActingUnitTarget(void);
 BOOL FindAttackTile(int x, int y, s16 *pos);
 int Unit_CaptureEndsNextTurn(MapUnit *unit);
-BOOL func_020c094c(int player, int x, int y); /* tile (x, y) belongs to player's team */
+BOOL Map_IsTileOwnedByTeamOf(int player, int x, int y); /* tile (x, y) belongs to player's team */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -49,7 +49,7 @@ void AiFoot_AttackCapturingUnit(void)
                 continue;
             }
             /* owner bits; needed to match: MAP_TILE_OWNER adds a mask */
-            if ((tile >> 5) != 0 && !func_020c094c(STATE->currentPlayer, x, y)) {
+            if ((tile >> 5) != 0 && !Map_IsTileOwnedByTeamOf(STATE->currentPlayer, x, y)) {
                 continue;
             }
             unit = &STATE->units[STATE->mapTiles->unitAt[TILE(x, y)]];

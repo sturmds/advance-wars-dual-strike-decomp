@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int GetUnitMaxRange(int player, int unitType);
-/* Same diamond fill as func_01ffb078, with s16 coordinates and abs(). */
+/* Same diamond fill as RangeMap_FillDiamondU16, with s16 coordinates and abs(). */
 void RangeMap_FillDiamond(int x, int y, s16 radius, s8 value);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

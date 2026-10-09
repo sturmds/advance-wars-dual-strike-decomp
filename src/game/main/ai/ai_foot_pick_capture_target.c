@@ -11,7 +11,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
-int func_0209f560(MapUnit *unit); /* turns the unit needs to capture a property; 20 at 0 hp */
+int Unit_CaptureTurnsLeft(MapUnit *unit); /* turns the unit needs to capture a property; 20 at 0 hp */
 void Ai_ClearActingUnitTarget(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -55,7 +55,7 @@ void AiFoot_PickCaptureTarget(void)
     bestScore = -1;
     siloScore = bestScore;
     bestThreat = 0x7fff;
-    siloOnly = func_0209f560(STATE->actingUnit) >= 5;
+    siloOnly = Unit_CaptureTurnsLeft(STATE->actingUnit) >= 5;
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->rangeMap[y][x] < 0) {
@@ -129,7 +129,7 @@ void AiFoot_PickCaptureTarget(void)
     if (bestScore == -1) {
         return;
     }
-    if (func_0209f560(STATE->actingUnit) >= 2) {
+    if (Unit_CaptureTurnsLeft(STATE->actingUnit) >= 2) {
         STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].unk_03++;
     }
     Ai_ClearActingUnitTarget();

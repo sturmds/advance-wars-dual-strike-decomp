@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 int GetUnitMaxRange(int player, int unitType);
 /* Writes value into every range map tile within radius steps of (x, y). */
-void func_01ffb078(u16 x, u16 y, u16 radius, s8 value);
+void RangeMap_FillDiamondU16(u16 x, u16 y, u16 radius, s8 value);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -15,6 +15,6 @@ void func_01ffb078(u16 x, u16 y, u16 radius, s8 value);
  * maximum range, then -1 again inside its minimum range. */
 void RangeMap_FillAttackRange(int x, int y, MapUnit *unit)
 {
-    func_01ffb078(x, y, GetUnitMaxRange(MAP_UNIT_OWNER(STATE, unit), unit->type), 0);
-    func_01ffb078(x, y, Ov000_gUnitStats[unit->type].minRange - 1, -1);
+    RangeMap_FillDiamondU16(x, y, GetUnitMaxRange(MAP_UNIT_OWNER(STATE, unit), unit->type), 0);
+    RangeMap_FillDiamondU16(x, y, Ov000_gUnitStats[unit->type].minRange - 1, -1);
 }

@@ -7,7 +7,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 int Player_GetFirepowerBonus(int playerIndex, int slot, int powerState, int unitType);
-int func_020e5d8c(int playerIndex, int slot, int powerState, int unitType, int unk);
+int Player_GetSlotFirepower(int playerIndex, int slot, int powerState, int unitType, int unk);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -36,7 +36,7 @@ static inline u32 OtherMap_GetUnk30(void)
 /* Firepower bonus of a player's CO slot (0 front, 1 back) for a unit type,
  * as the unit info drawn by func_0206d67c shows it. Slot 0 uses
  * Player_GetFirepowerBonus with the front CO's power state; other slots use
- * func_020e5d8c. In a two-map battle where the other map's unk_30 is 0, a
+ * Player_GetSlotFirepower. In a two-map battle where the other map's unk_30 is 0, a
  * back slot instead reads the front CO of the same player on the second map
  * (data_027c0288.unk_04). */
 int Player_GetShownFirepower(int playerIndex, int slot, int unitType)
@@ -47,7 +47,7 @@ int Player_GetShownFirepower(int playerIndex, int slot, int unitType)
     int firepower;
 
     if (game->gameMode == 3 && gMenuState.unk_0206d67c.unk_0a8 == 1) {
-        firepower = func_020e5d8c(playerIndex, slot, 0, unitType, 0);
+        firepower = Player_GetSlotFirepower(playerIndex, slot, 0, unitType, 0);
     } else if (slot == 0) {
         firepower = Player_GetFirepowerBonus(playerIndex, slot, game->players[playerIndex].front.powerState, unitType);
     } else if (game->secondMapId != 0 && OtherMap_GetUnk30() == 0) {
@@ -59,7 +59,7 @@ int Player_GetShownFirepower(int playerIndex, int slot, int unitType)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     } else {
-        firepower = func_020e5d8c(playerIndex, slot, 0, unitType, 0);
+        firepower = Player_GetSlotFirepower(playerIndex, slot, 0, unitType, 0);
     }
     return firepower;
 }

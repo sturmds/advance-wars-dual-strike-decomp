@@ -88,7 +88,7 @@ typedef struct Unk_0206d67c {
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
     u8 pad_0a3[0xa8 - 0xa3];
-    u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses func_020e5d8c for every slot */
+    u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses Player_GetSlotFirepower for every slot */
 } Unk_0206d67c;
 
 /* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */

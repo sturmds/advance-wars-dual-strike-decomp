@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-void func_01ff8850(int x, int y, void *shape, int tileAndPalette);
+void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
 
 extern u8 data_02158f3c[];
 
@@ -16,10 +16,10 @@ void MenuCursor_DrawAt(int x, int y, int width, int height)
 
     top = y & 0xff;
     left = x & 0x1ff;
-    func_01ff8850(left, top, data_02158f3c, 0xf3b0);
+    Oam_PutSprite(left, top, data_02158f3c, 0xf3b0);
     right = (x + width) & 0x1ff;
-    func_01ff8850(right, top, data_02158f3c, 0xf3b2);
+    Oam_PutSprite(right, top, data_02158f3c, 0xf3b2);
     bottom = (y + height) & 0xff;
-    func_01ff8850(left, bottom, data_02158f3c, 0xf3b4);
-    func_01ff8850(right, bottom, data_02158f3c, 0xf3b6);
+    Oam_PutSprite(left, bottom, data_02158f3c, 0xf3b4);
+    Oam_PutSprite(right, bottom, data_02158f3c, 0xf3b6);
 }

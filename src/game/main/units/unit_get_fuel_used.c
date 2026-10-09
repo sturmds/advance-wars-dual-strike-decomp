@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
-int func_020dfe30(int player); /* fuel per movement point: 2 in snow unless the front CO is Olaf (checked only with coEffectsOn set) */
+int Player_GetFuelRate(int player); /* fuel per movement point: 2 in snow unless the front CO is Olaf (checked only with coEffectsOn set) */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -19,7 +19,7 @@ int Unit_GetFuelUsed(MapUnit *unit, int moveCost)
     if (unit->type == UNIT_OOZIUM) {
         return 0;
     }
-    fuel = func_020dfe30(player) * moveCost;
+    fuel = Player_GetFuelRate(player) * moveCost;
     if (unit->fuel < fuel) {
         fuel = unit->fuel;
     }

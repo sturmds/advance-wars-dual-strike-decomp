@@ -2,7 +2,7 @@
 
 extern u8 gTerrainIsProperty[32];
 
-BOOL func_0209f06c(int index)
+BOOL Terrain_IsProperty(int index)
 {
     return gTerrainIsProperty[index & 31] != 0;
 }

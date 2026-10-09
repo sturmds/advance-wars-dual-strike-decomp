@@ -6,7 +6,7 @@ void func_020a9854(void);
 void func_020ab014(void);
 void func_020aba28(void);
 void func_020abe3c(void);
-void func_020b2904(void);
+void AiUnit_WaitInPlace(void);
 
 /* Queue routine for APCs and T-Copters that carry a unit, set by
  * AiAction_QueueLoadedTransports. AiTransport_Unload runs
@@ -20,5 +20,5 @@ void AiLoadedTransport_Act(void)
     func_020abe3c();
     func_020aba28();
     func_020a9854();
-    func_020b2904();
+    AiUnit_WaitInPlace();
 }

@@ -3,7 +3,7 @@
 #include "game/icon.h"
 
 const char *File_LocalizePath(const char *path);
-void func_0200bb18(void *dest, const char *path, u32 offset, u32 size);   /* reads size bytes at offset of a file */
+void File_ReadAt(void *dest, const char *path, u32 offset, u32 size);   /* reads size bytes at offset of a file */
 
 extern Unk_027c0280 *data_027c0280;
 
@@ -23,7 +23,7 @@ void Icon_Load(int iconId)
     tiles = gIconSize[iconId][0] * gIconHeights[iconId][0];
     dest = bank->vram + tile * 32;
     path = File_LocalizePath(gIconBankFiles[bankId]);
-    func_0200bb18(dest, path, Icon_GetFileOffset(iconId, bankId), tiles * 32);
+    File_ReadAt(dest, path, Icon_GetFileOffset(iconId, bankId), tiles * 32);
     bank->slots[bank->count].iconId = iconId;
     bank->count++;
     if (bank->count < ICON_BANK_SLOTS) {

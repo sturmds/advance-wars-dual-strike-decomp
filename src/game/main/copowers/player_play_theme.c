@@ -11,7 +11,7 @@ extern int data_027c0284;
 
 BOOL Map_IsCoSelectPhase(void);
 void Sound_PlaySong(int song);
-int func_020e3394(int player);
+int Player_GetCoThemeSong(int player);
 void PlayCoPowerTheme(int player);
 void PlaySuperPowerTheme(int player);
 void PlayTagPowerTheme(int player);
@@ -33,7 +33,7 @@ static inline BOOL Player_IsTagPowerOn(Player *player)
 }
 
 /* Starts the music for a player: CO Select while a CO is being picked, else
- * the theme for the front CO's power state. func_020e3394 gives the front
+ * the theme for the front CO's power state. Player_GetCoThemeSong gives the front
  * CO's own theme from gCoTable. */
 void Player_PlayTheme(int playerIndex)
 {
@@ -49,7 +49,7 @@ void Player_PlayTheme(int playerIndex)
     switch (player->front.powerState) {
     case POWER_NONE:
     default:
-        Sound_PlaySong(func_020e3394(playerIndex));
+        Sound_PlaySong(Player_GetCoThemeSong(playerIndex));
         break;
     case POWER_CO:
         PlayCoPowerTheme(playerIndex);

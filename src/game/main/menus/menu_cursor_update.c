@@ -3,7 +3,7 @@
 #include "game/touch.h"
 
 int MainLoop_GetFrameCount(void);
-void func_01ff8850(int x, int y, void *shape, int tileAndPalette);
+void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
 int MenuButton_TestFlags(MenuButton *entry, int mask);
 
 extern u8 data_02158f3c[];
@@ -71,7 +71,7 @@ void MenuCursor_Update(void)
     }
     for (i = 0; i < 4; i++) {
         if (MainLoop_GetFrameCount() & 0x30) {
-            func_01ff8850(gMenuCursor->corners[i][0] & 0x1ff,
+            Oam_PutSprite(gMenuCursor->corners[i][0] & 0x1ff,
                           mode | (gMenuCursor->corners[i][1] & 0xff), data_02158f3c,
                           (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
         } else {
@@ -85,7 +85,7 @@ void MenuCursor_Update(void)
             if (i == 2 || i == 3) {
                 top = -top;
             }
-            func_01ff8850((left + gMenuCursor->corners[i][0]) & 0x1ff,
+            Oam_PutSprite((left + gMenuCursor->corners[i][0]) & 0x1ff,
                           mode | ((top + gMenuCursor->corners[i][1]) & 0xff), data_02158f3c,
                           (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
         }

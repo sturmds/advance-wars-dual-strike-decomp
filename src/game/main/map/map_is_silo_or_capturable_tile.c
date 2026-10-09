@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 /* Ov000_gUrbanTerrain of the tile's terrain, or 0 when the tile belongs to
  * the acting unit's team. */
-int func_020dedb0(s16 x, s16 y);
+int Map_IsCapturableByActingUnit(s16 x, s16 y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -18,5 +18,5 @@ BOOL Map_IsSiloOrCapturableTile(int x, int y)
     if (MAP_TILE_TERRAIN(STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]]) == TERRAIN_SILO) {
         return TRUE;
     }
-    return func_020dedb0(x, y);
+    return Map_IsCapturableByActingUnit(x, y);
 }

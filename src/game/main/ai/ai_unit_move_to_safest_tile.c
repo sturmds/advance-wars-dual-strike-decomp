@@ -9,7 +9,7 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int func_020a7fe0(s16 x, s16 y);
 void func_020b0794(void);
-int func_020c3954(int player, int unitType, int terrain); /* terrain defence stars */
+int Unit_GetTerrainStars(int player, int unitType, int terrain); /* terrain defence stars */
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -72,7 +72,7 @@ void AiUnit_MoveToSafestTile(void)
             if (gAiTurnState->stepFlags & AI_STEP_IGNORE_TERRAIN) {
                 stars = 0;
             } else {
-                stars = func_020c3954(STATE->currentPlayer, STATE->actingUnit->type,
+                stars = Unit_GetTerrainStars(STATE->currentPlayer, STATE->actingUnit->type,
                                       MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]));
             }
             reach = STATE->rangeMap[y][x];

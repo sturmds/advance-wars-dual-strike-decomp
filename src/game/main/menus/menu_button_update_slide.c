@@ -2,13 +2,13 @@
 #include "game/menu_button.h"
 
 int MenuButton_TestFlags(MenuButton *entry, int mask);
-s16 func_02026a60(int curve, int from, int to, int elapsed, int duration);
+s16 Math_Ease(int curve, int from, int to, int elapsed, int duration);
 
 /* Moves a button that slides onto or off the screen, once per frame.
  * Sliding in starts past an edge of the 256x192 screen and ends at
  * slideToX/Y, set before the slide starts. Sliding out starts at the
  * current position. With no slide flag set the move ends on the next
- * frame. func_02026a60 computes each step (curve 5 in, curve 2 out). */
+ * frame. Math_Ease computes each step (curve 5 in, curve 2 out). */
 void MenuButton_UpdateSlide(MenuButton *button)
 {
     switch (button->slideState) {
@@ -80,9 +80,9 @@ void MenuButton_UpdateSlide(MenuButton *button)
         } else {
             button->slideTimer--;
         }
-        button->x = func_02026a60(5, button->slideFromX, button->slideToX,
+        button->x = Math_Ease(5, button->slideFromX, button->slideToX,
                                   button->slideDuration - button->slideTimer, button->slideDuration);
-        button->y = func_02026a60(5, button->slideFromY, button->slideToY,
+        button->y = Math_Ease(5, button->slideFromY, button->slideToY,
                                   button->slideDuration - button->slideTimer, button->slideDuration);
         break;
     case MENU_BUTTON_SLIDING_OUT:
@@ -95,9 +95,9 @@ void MenuButton_UpdateSlide(MenuButton *button)
         } else {
             button->slideTimer--;
         }
-        button->x = func_02026a60(2, button->slideFromX, button->slideToX,
+        button->x = Math_Ease(2, button->slideFromX, button->slideToX,
                                   button->slideDuration - button->slideTimer, button->slideDuration);
-        button->y = func_02026a60(2, button->slideFromY, button->slideToY,
+        button->y = Math_Ease(2, button->slideFromY, button->slideToY,
                                   button->slideDuration - button->slideTimer, button->slideDuration);
         break;
     }

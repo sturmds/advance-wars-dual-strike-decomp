@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
-int func_0209e248(int player, int unitType);            /* movement plus the CO's move bonus */
+int Player_GetUnitMoveRange(int player, int unitType);            /* movement plus the CO's move bonus */
 int func_020a4434(MapUnit *unit);                        /* the same count for an indirect unit */
 /* ANDs UnitStats byte 0x22 of a with byte 0x21 of b; FALSE when a is
  * Infantry, Mech, APC, Black Boat, T-Copter or Lander */
@@ -15,7 +15,7 @@ BOOL func_020a4880(MapUnit *a, MapUnit *b);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
-#define MOVE_RANGE(unit) func_0209e248(MAP_UNIT_OWNER(STATE, unit), (unit)->type)
+#define MOVE_RANGE(unit) Player_GetUnitMoveRange(MAP_UNIT_OWNER(STATE, unit), (unit)->type)
 
 /* For a target unit that attacks directly: counts the current player's
  * team's units within the target's move range (distance in tiles) that

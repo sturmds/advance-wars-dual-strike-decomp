@@ -4,7 +4,7 @@
 #include "game/unit_stats.h"
 
 int Player_GetCoFirepower(int playerIndex, int slot, int powerState, int unitType);
-int func_020e5508(int playerIndex, BOOL tagPower); /* tag partner firepower bonus, percent */
+int Player_GetTagFirepower(int playerIndex, BOOL tagPower); /* tag partner firepower bonus, percent */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -41,7 +41,7 @@ int Player_GetFirepowerBonus(int playerIndex, int slot, int powerState, int unit
     }
     bonus += Player_GetCoFirepower(playerIndex, slot, powerState, unitType);
     if (Player_TagPowerOn(playerIndex)) {
-        bonus += func_020e5508(playerIndex, Player_TagPowerOn(playerIndex) != FALSE); /* needed to match: != FALSE */
+        bonus += Player_GetTagFirepower(playerIndex, Player_TagPowerOn(playerIndex) != FALSE); /* needed to match: != FALSE */
     }
     return bonus + data_027c027c->unk_48[data_027c0284]->players[playerIndex].firepowerBonus;
 }

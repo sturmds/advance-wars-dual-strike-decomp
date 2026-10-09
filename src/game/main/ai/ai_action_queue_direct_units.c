@@ -13,7 +13,7 @@ void AiQueue_SortByVision(BOOL descending);
 void AiQueue_SortByMovement(BOOL descending);
 /* Direct combat unit action, run on each queued unit. */
 void AiUnit_ActByOrder(void);
-/* TRUE on a missile silo; otherwise depends on the tile (func_020dedb0). */
+/* TRUE on a missile silo; otherwise depends on the tile (Map_IsCapturableByActingUnit). */
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

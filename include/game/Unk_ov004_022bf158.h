@@ -31,7 +31,7 @@ typedef struct Ov004Task {
     int tweenFrames;                   /* length of the next slide, in frames */
     u8 pad_48[0x54 - 0x48];
     int tweenFrom;                     /* start and end values of the slide, */
-    int tweenTo;                       /* eased by func_02026a60 */
+    int tweenTo;                       /* eased by Math_Ease */
 } Ov004Task;
 
 #endif

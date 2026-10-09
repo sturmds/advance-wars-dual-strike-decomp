@@ -5,8 +5,8 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void RangeMap_FillUnitMoves(MapUnit *unit);
-BOOL func_0209ee54(u8 tile);      /* TRUE: HQ, airport, port, base or com tower */
-BOOL func_0209f08c(s16 unitSlot); /* TRUE: the slot belongs to the current player */
+BOOL Terrain_IsHqBaseAirportPortOrTower(u8 tile);      /* TRUE: HQ, airport, port, base or com tower */
+BOOL Unit_IsCurrentPlayers(s16 unitSlot); /* TRUE: the slot belongs to the current player */
 s32 HwDiv32(s32 numerator, s32 denominator);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -40,7 +40,7 @@ void AiFoot_JoinCapturingUnit(void)
             if (slot == 0) {
                 continue;
             }
-            if (!func_0209f08c(slot)) {
+            if (!Unit_IsCurrentPlayers(slot)) {
                 continue;
             }
             unit = &STATE->units[slot];
@@ -63,7 +63,7 @@ void AiFoot_JoinCapturingUnit(void)
             } else {
                 ownHp = HwDiv32(STATE->actingUnit->hp - 1, 10) + 1;
             }
-            if (func_0209ee54(STATE->mapTiles->tiles[TILE(unit->x, unit->y)]) && targetHp + ownHp <= 15) {
+            if (Terrain_IsHqBaseAirportPortOrTower(STATE->mapTiles->tiles[TILE(unit->x, unit->y)]) && targetHp + ownHp <= 15) {
                 AiUnit_PerformAction(x, y, AI_ACTION_JOIN, 0, 0);
             }
             if (ownHp < 7 && targetHp + ownHp <= 12) {

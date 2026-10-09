@@ -7,7 +7,7 @@
  * code reads. */
 typedef struct SoundSeqPlayer {
     u8 pad_00[0x41];
-    u8 volume;                         /* 0x41: set by func_02105824 (NNS_SndPlayerSetVolume) */
+    u8 volume;                         /* 0x41: set by NNS_SndPlayerSetVolume (NNS_SndPlayerSetVolume) */
 } SoundSeqPlayer;
 
 /* NitroSystem sound handle (NNSSndHandle): the player a sequence was

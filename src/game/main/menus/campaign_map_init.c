@@ -17,7 +17,7 @@ void func_0200970c(int a);
 void func_0200a810(const void *config);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0200bb18(void *dest, const char *path, int a, int b);
+void File_ReadAt(void *dest, const char *path, int a, int b);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
 void Gfx_LoadBmap09f(void *a, int b, int c);
@@ -231,7 +231,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Mem_Copy32(res + 0x6d4, WORK_FIELD(unk_0e4), sizeof(gMenuState.campaignMap.unk_0e4));
     Mem_Free(res);
     Mem_Free(langRes);
-    func_0200bb18(gMenuState.colours, data_0215b9bc, 0, 0x20);
+    File_ReadAt(gMenuState.colours, data_0215b9bc, 0, 0x20);
 
     res = File_Load(data_0215b9d4);
     saved0280 = data_027c0280;

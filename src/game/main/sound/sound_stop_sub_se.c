@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/sound_handle.h"
+#include "game/sound.h"
 
 void Sound_StopHandle(SoundHandle *handle, int fadeFrames);
-
-extern SoundHandle gSubSeHandle;
-extern BOOL gSoundReady;
 
 /* Stops the sound started by Sound_PlaySubSe, fading out over
  * fadeFrames frames. */

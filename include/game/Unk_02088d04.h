@@ -18,7 +18,7 @@ typedef struct SpriteEntry {
 /* Pointed to by data_027c0280 (DTCM). */
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
-    u8 *paletteBuffer;                 /* BG and OBJ palettes, 0x400 bytes; Palette_Load writes, func_020031bc uploads */
+    u8 *paletteBuffer;                 /* BG and OBJ palettes, 0x400 bytes; Palette_Load writes, Palette_Flush uploads */
     u8 pad_0c[0x10 - 0x0c];
     u32 layerCopyMask;                 /* bit per layer: copy its tile map to VRAM (func_01ff8e58) */
     u8 pad_14[0x18 - 0x14];

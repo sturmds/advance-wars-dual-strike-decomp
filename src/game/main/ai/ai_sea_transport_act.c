@@ -12,7 +12,7 @@ void Ai_BuildThreatMaps(void);
 void func_020a9854(void);
 void func_020af540(void);
 void func_020af5f8(void);
-void func_020b2904(void);
+void AiUnit_WaitInPlace(void);
 void func_020b320c(void);
 
 /* Queue routine for Black Boats and Landers, set by
@@ -29,5 +29,5 @@ void AiSeaTransport_Act(void)
     }
     func_020b320c();
     func_020a9854();
-    func_020b2904();
+    AiUnit_WaitInPlace();
 }

@@ -1,12 +1,9 @@
 #include "types.h"
 #include "game/sound_handle.h"
+#include "game/sound.h"
 
 void Sound_PlaySe(u32 soundId);
 /* NitroSystem NNS_SndPlayerSetVolume */
-void func_02105824(SoundHandle *handle, int volume);
-
-extern SoundHandle gSeHandle;
-extern BOOL gSoundReady;
 
 /* Plays sound effect soundId at the given player volume. */
 void Sound_PlaySeAtVolume(u32 soundId, int volume)
@@ -15,5 +12,5 @@ void Sound_PlaySeAtVolume(u32 soundId, int volume)
         return;
     }
     Sound_PlaySe(soundId);
-    func_02105824(&gSeHandle, volume);
+    NNS_SndPlayerSetVolume(&gSeHandle, volume);
 }

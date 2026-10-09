@@ -20,7 +20,7 @@ void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
 void func_020b0794(void);
 void AiUnit_PlanAttack(void);
-void func_020b2904(void);
+void AiUnit_WaitInPlace(void);
 
 /* Queue routine for infantry and mechs (AiAction_QueueFootUnits2 collects units
  * whose UnitStats.aiClass is AI_CLASS_FOOT). AiUnit_PlanAttack picks direct or indirect
@@ -53,5 +53,5 @@ void AiFoot_MoveAndAttack(void)
     gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     func_020ae37c();
     func_020a9854();
-    func_020b2904();
+    AiUnit_WaitInPlace();
 }

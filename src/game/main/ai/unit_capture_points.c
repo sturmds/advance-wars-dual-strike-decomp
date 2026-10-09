@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int CaptureIncrease(int player, int slot);
-int func_020dfee8(u8 player); /* capture rate in percent of the player's front CO: 100 + the CO's bonus */
+int Co_GetCaptureRate(u8 player); /* capture rate in percent of the player's front CO: 100 + the CO's bonus */
 
 /* Capture points a foot unit adds to a property in one turn: shown hp
  * (1-10) times the CO's capture rate, plus the Force Rank bonus. A property
@@ -25,7 +25,7 @@ u8 Unit_CapturePoints(MapUnit *unit)
         value = HwDiv32(unit->hp - 1, 10) + 1;
     }
     shownHp = value;
-    value = func_020dfee8(player);
+    value = Co_GetCaptureRate(player);
     points = HwDiv32(shownHp * value, 100);
     return points + CaptureIncrease(player, 0);
 }

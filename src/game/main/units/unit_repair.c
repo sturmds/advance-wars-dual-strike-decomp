@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-void func_020c8480(int playerIndex, int amount);
+void Player_SpendFunds(int playerIndex, int amount);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -36,7 +36,7 @@ int Unit_Repair(MapUnit *unit, s16 steps, BOOL payCost)
             if ((u32)GAME->players[GAME->currentPlayer].funds < costPerHp) {
                 break;
             }
-            func_020c8480(GAME->currentPlayer, costPerHp);
+            Player_SpendFunds(GAME->currentPlayer, costPerHp);
         }
         total += costPerHp;
         unit->hp += 10;

@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/sound_handle.h"
+#include "game/sound.h"
 
 void Sound_PlayOnHandle(SoundHandle *handle, u32 soundId);
-
-extern SoundHandle gSubSeHandle;
-extern BOOL gSoundReady;
 
 /* Plays soundId on the second sound effect handle, which
  * Sound_StopSubSe can stop. */

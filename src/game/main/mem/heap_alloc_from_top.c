@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/heap.h"
 
-void *func_021047e8(ExpHeapData *data, HeapBlock *freeBlock, void *memory, u32 size, int fromTop);
+void *Heap_TakeFromFreeBlock(ExpHeapData *data, HeapBlock *freeBlock, void *memory, u32 size, int fromTop);
 
 /* Allocates from the top of the heap: searches the free list from the end
  * and places the block at the top of the chosen free block. In first-fit
@@ -35,5 +35,5 @@ void *Heap_AllocFromTop(ExpHeap *heap, u32 size, int align)
     if (found == NULL) {
         return NULL;
     }
-    return func_021047e8(data, found, foundMemory, size, 1);
+    return Heap_TakeFromFreeBlock(data, found, foundMemory, size, 1);
 }

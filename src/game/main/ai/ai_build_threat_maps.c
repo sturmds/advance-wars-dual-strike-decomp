@@ -6,8 +6,8 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player); /* TRUE: the player is still in the game */
-void func_0209ca48(void);       /* clears MapTiles.threatMax and threatSum */
-void func_0209cacc(u8 player);  /* adds one enemy player's units to the maps */
+void Ai_ClearThreatMaps(void);       /* clears MapTiles.threatMax and threatSum */
+void Ai_AddEnemyThreat(u8 player);  /* adds one enemy player's units to the maps */
 void func_0209d4e0(void);
 void func_0209d610(void);
 
@@ -26,12 +26,12 @@ void Ai_BuildThreatMaps(void)
         return;
     }
     AI_TARGET_FLAGS->threatMapsBuilt = TRUE;
-    func_0209ca48();
+    Ai_ClearThreatMaps();
     func_0209d4e0();
     func_0209d610();
     for (player = 1; player < 5; player++) {
         if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
-            func_0209cacc(player);
+            Ai_AddEnemyThreat(player);
         }
     }
     STATE->unk_1e = savedUnk1e;
