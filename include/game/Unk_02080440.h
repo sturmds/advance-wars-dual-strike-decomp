@@ -9,8 +9,8 @@
 /* Terrain and owner of every map tile, reached through
  * Unk_02080440_48.mapTiles. */
 typedef struct MapTiles {
-    u8 pad_00[0x508];
-    u8 unk_508[0x508];                 /* per tile, indexed like tiles; a unit slot, see AiAttack_Score */
+    u8 unitAt[0x508];                  /* slot in Unk_02080440_48.units of the unit on each tile; 0: none */
+    u8 unk_508[0x508];                 /* per tile: also a unit slot (Strike_ScoreSite, AiAttack_Score); how it differs from unitAt is unknown */
     u8 pad_a10[0x1420 - 0xa10];
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     u8 pad_1928[0x3250 - 0x1928];
@@ -56,8 +56,8 @@ typedef struct Unk_02080440_48 {
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
     u8 pad_08[0x38 - 0x08];
-    MapUnit *activeUnit;               /* unit the AI is acting with */
-    u8 unk_3c;                         /* a unit slot: attacker for func_020c28ac */
+    MapUnit *actingUnit;               /* &units[actingUnitIndex] */
+    u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;
     s16 unk_3e;
     s16 unk_40;
@@ -97,7 +97,8 @@ typedef struct Unk_02080440_48 {
     Unk_02080440_1c4 *unk_1c4;
     u8 pad_1c8[0x43d0 - 0x1c8];
     MapTiles *mapTiles;
-    u8 pad_43d4[0x575c - 0x43d4];
+    u8 tileHp[0x508];                  /* per tile like MapTiles; bits 0-6: hp of a tile units can attack (pipe seams) */
+    u8 pad_48dc[0x575c - 0x48dc];
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     u8 pad_5760[0x5a58 - 0x5760];
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */

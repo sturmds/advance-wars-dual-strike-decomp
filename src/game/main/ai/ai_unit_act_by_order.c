@@ -25,7 +25,7 @@ void AiUnit_ActByOrder(void)
 {
     Unk_02080440_48 *game = data_027c027c->unk_48[data_027c0284];
 
-    switch (game->activeUnit->aiOrder) {
+    switch (game->actingUnit->aiOrder) {
     case 0:
         func_020a0b80();
         break;

@@ -12,11 +12,11 @@ void func_020a0904(void);
  * action sequences on the active unit, chosen by its AI order. */
 void AiUnit_ActByOrderGroup(void)
 {
-    if (data_027c027c->unk_48[data_027c0284]->activeUnit->unk_0a_12 != 2) {
+    if (data_027c027c->unk_48[data_027c0284]->actingUnit->unk_0a_12 != 2) {
         gAiTurnState[8] |= 0x80;
     }
 
-    switch (data_027c027c->unk_48[data_027c0284]->activeUnit->aiOrder) {
+    switch (data_027c027c->unk_48[data_027c0284]->actingUnit->aiOrder) {
     case 0:
     case 2:
     case 3:

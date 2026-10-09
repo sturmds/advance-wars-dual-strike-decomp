@@ -20,19 +20,19 @@ void func_020af5f8(void);
 void AiFoot_MoveAndCapture(void)
 {
     func_0209c948();
-    if (func_0209f7ac(GAME->activeUnit) >= 20) {
+    if (func_0209f7ac(GAME->actingUnit) >= 20) {
         func_020ae9c0();
     }
     if (GAME->players[GAME->currentPlayer].unk_2e != AI_BEHAVIOUR_DEFENSE) {
         func_020aeefc();
         func_020ad0d4();
     }
-    if (GAME->activeUnit->hp <= 60) {
+    if (GAME->actingUnit->hp <= 60) {
         func_020ad8f8();
     }
     func_020af5f8();
     func_020ae9c0();
-    if (GAME->activeUnit->hp > 60) {
+    if (GAME->actingUnit->hp > 60) {
         func_020ad8f8();
     }
 }

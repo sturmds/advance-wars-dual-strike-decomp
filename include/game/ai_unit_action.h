@@ -15,6 +15,16 @@
  * fill a queue of unit indices, ended by 0, and pick a routine to run
  * on each entry. */
 extern u8 *gAiTurnState;
+
+/* gAiTurnState[7]: what an indirect unit may shoot besides units. */
+typedef struct AiTargetFlags {
+    u8 unk_0 : 2;
+    u8 attackTiles : 1;                /* tiles with hp (Unk_02080440_48.tileHp) */
+    u8 attackObjects : 1;              /* MapObject */
+    u8 unk_4 : 4;
+} AiTargetFlags;
+
+#define AI_TARGET_FLAGS ((AiTargetFlags *)&gAiTurnState[7])
 extern u8 *gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
 extern u8 gAiQueue[];

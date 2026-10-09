@@ -32,7 +32,7 @@ int func_020a3f2c(MapUnit *unit);
 #define AI_ATTACK_COST_VALUE     0x80000  /* see below */
 #define AI_ATTACK_NO_CHIP        0x100000 /* AI behaviour not 0, target not a Sub: target killed or loses 20 hp or more, and not an unarmed ship */
 
-/* Scores an attack by the unit in slot STATE->unk_3c on the unit in the
+/* Scores an attack by the unit in slot STATE->actingUnitIndex on the unit in the
  * flags' low 16 bits, from pos. The battle is simulated with luck, then
  * the score is (damage * mult - loss * 2) / 8, clamped to 1-0xffff, where
  * damage and loss are the funds / 10 each side loses. Returns 0 when the
@@ -49,7 +49,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
     u32 score;
 
     mult = 1;
-    func_020c28ac(STATE->unk_3c, flags & AI_ATTACK_DEFENDER_MASK, pos);
+    func_020c28ac(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
     if (ATTACKER.unk_16 == 0) {
         /* no weapon can hit */
         return 0;
