@@ -7234,6 +7234,10 @@ src/game/main/co_stats/player_get_capture_rate.c:
     complete
     .text       start:0x020dfee8 end:0x020dff38
 
+src/game/main/co_stats/co_get_capture_percent.c:
+    complete
+    .text       start:0x020dff38 end:0x020dff88
+
 
 src/game/main/co_stats/player_get_bad_luck.c:
     complete
