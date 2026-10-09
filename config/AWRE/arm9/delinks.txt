@@ -399,9 +399,13 @@ src/game/main/func_02006610.c:
     complete
     .text       start:0x02006610 end:0x02006634
 
-src/game/main/screen_reset_window_rects.c:
+src/game/main/screen/screen_reset_window_rects.c:
     complete
     .text       start:0x02006634 end:0x020066b0
+
+src/game/main/screen/screen_enable_empty_windows.c:
+    complete
+    .text       start:0x020066b0 end:0x02006824
 
 src/game/main/func_020076f8.c:
     complete
