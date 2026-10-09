@@ -29,7 +29,7 @@ void func_02017950(void);
 void func_020224b0(void);
 void func_0200a574(void);
 void OamBuffer_ClearTail(void);
-void func_020033a8(void);
+void OamBuffer_FlushTail(void);
 void func_0201d7fc(void);
 void Gfx_InitBothScreens(void);
 void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
@@ -47,7 +47,7 @@ void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
     func_020224b0();         \
     func_0200a574();         \
     OamBuffer_ClearTail();         \
-    func_020033a8();         \
+    OamBuffer_FlushTail();         \
     func_0201d7fc();         \
     func_01ff9c28(0);        \
     func_01ff9c48(0)
