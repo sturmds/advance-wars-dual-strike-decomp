@@ -1030,7 +1030,7 @@ MenuButton_TouchSelect kind:function(arm,size=0xd0) addr:0x0202569c
 MenuButton_ContainsPoint kind:function(arm,size=0x8c) addr:0x0202576c
 MenuButtons_Update kind:function(arm,size=0x164) addr:0x020257f8
 MenuButton_Init kind:function(arm,size=0x108) addr:0x0202595c
-func_02025a64 kind:function(arm,size=0x2c) addr:0x02025a64
+MenuButton_AddReserved kind:function(arm,size=0x2c) addr:0x02025a64
 func_02025a90 kind:function(arm,size=0x68) addr:0x02025a90
 func_02025af8 kind:function(arm,size=0x3c) addr:0x02025af8
 func_02025b34 kind:function(arm,size=0x38) addr:0x02025b34
@@ -8721,7 +8721,7 @@ data_0229b384 kind:bss addr:0x0229b384
 data_0229b388 kind:bss addr:0x0229b388
 data_0229b38c kind:bss addr:0x0229b38c
 gMenuButtons kind:bss addr:0x0229b3b0
-data_0229c634 kind:bss addr:0x0229c634
+gMenuButtonReserved kind:bss addr:0x0229c634
 gCurrentSong kind:bss addr:0x0229c670
 gPendingSong kind:bss addr:0x0229c674
 data_0229c678 kind:bss addr:0x0229c678

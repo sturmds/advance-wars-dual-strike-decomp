@@ -276,6 +276,10 @@ src/game/main/menus/menu_button_init.c:
     complete
     .text       start:0x0202595c end:0x02025a64
 
+src/game/main/menus/menu_button_add_reserved.c:
+    complete
+    .text       start:0x02025a64 end:0x02025a90
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

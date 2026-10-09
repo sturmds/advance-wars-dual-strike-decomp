@@ -112,4 +112,18 @@ void MenuButton_Draw(MenuButton *button);
 void MenuButton_UpdateSlide(MenuButton *button);
 BOOL MenuButton_HandleTouch(MenuButton *button);
 
+BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
+MenuButton *MenuButton_Init(int x, int y, MenuButton *button, const MenuButtonTemplate *template, int id);
+MenuButton *MenuButton_AddReserved(int x, int y, const MenuButtonTemplate *template);
+MenuButton *MenuButton_Add(int x, int y, const MenuButtonTemplate *template, int id);
+void MenuButtons_CloseAll(void);
+void MenuButton_Close(int id);
+void MenuButtons_EnableTouch(void);
+void MenuButtons_DisableTouch(void);
+void MenuButtons_RemoveSelectable(void);
+void MenuButtons_RemoveAll(void);
+void MenuButton_Remove(int id);
+void MenuButton_Deactivate(MenuButton *button);
+void MenuButton_EnableTouch(int id);
+
 #endif
