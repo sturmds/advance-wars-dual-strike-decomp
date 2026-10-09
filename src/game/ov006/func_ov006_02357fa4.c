@@ -1,7 +1,7 @@
 #include "types.h"
 
-void func_ov006_02357fb4(int id);
+void Ov006_UpdateIdFlag(int id);
 
 void func_ov006_02357fa4(void) {
-    func_ov006_02357fb4(0);
+    Ov006_UpdateIdFlag(0);
 }
