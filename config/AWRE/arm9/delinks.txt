@@ -898,6 +898,10 @@ src/game/main/menus/campaign_map_center_scroll_x.c:
 src/game/main/menus/campaign_map_init.c:
     .text       start:0x0204f960 end:0x0205053c
 
+src/game/main/menus/campaign_map_find_top_cos.c:
+    complete
+    .text       start:0x0205053c end:0x02050664
+
 src/game/main/func_020517d8.c:
     complete
     .text       start:0x020517d8 end:0x020517f0
