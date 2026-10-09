@@ -4,8 +4,8 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void AiActingUnit_GetSearchMovement(void);
-void AiActingUnit_MarkAttackRange(void);
+int AiActingUnit_GetSearchMovement(void);
+void AiActingUnit_MarkAttackRange(int movement);
 BOOL AiUnit_FindFiringTile(s16 *tile);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -17,8 +17,7 @@ BOOL func_020a9f9c(s16 *out)
 {
     s16 tile[2];
 
-    AiActingUnit_GetSearchMovement();
-    AiActingUnit_MarkAttackRange();
+    AiActingUnit_MarkAttackRange(AiActingUnit_GetSearchMovement());
     if (STATE->actingUnit->aiTargetX == MAP_UNIT_NO_TARGET) {
         return FALSE;
     }

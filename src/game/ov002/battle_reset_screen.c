@@ -15,9 +15,8 @@ void func_ov002_02353218(void);
 void func_ov002_02358478(void);
 void func_ov002_02357434(void);
 
-/* Destroys the battle screen tasks, clears the BattleEntry words and runs the rest of the reset.
- * The argument is not used. */
-void Battle_ResetScreen(u32 unused)
+/* Destroys the battle screen tasks, clears the BattleEntry words and runs the rest of the reset. */
+void Battle_ResetScreen(void)
 {
     int i;
     int j;

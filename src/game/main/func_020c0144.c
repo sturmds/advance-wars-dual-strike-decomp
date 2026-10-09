@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020c0144(int playerIndex, int coSlot)
+int func_020c0144(void)
 {
     return 0;
 }

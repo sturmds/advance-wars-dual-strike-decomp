@@ -8,8 +8,8 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
 BOOL Map_IsCapturableByActingUnit(s16 x, s16 y);
-void AiActingUnit_GetSearchMovement(void);
-void AiActingUnit_MarkAttackRange(void);
+int AiActingUnit_GetSearchMovement(void);
+void AiActingUnit_MarkAttackRange(int movement);
 BOOL AiUnit_FindFiringTile(s16 *tile);
 BOOL func_020a5100(int x, int y, int arg2, int arg3);
 
@@ -34,8 +34,7 @@ BOOL Ai_FindCaptureSiteTile(s16 *out)
 
     best = NO_TILE;
     counterOffset = UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_INDIRECT ? 2 : 1;
-    AiActingUnit_GetSearchMovement();
-    AiActingUnit_MarkAttackRange();
+    AiActingUnit_MarkAttackRange(AiActingUnit_GetSearchMovement());
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->rangeMap[y][x] < 0) {

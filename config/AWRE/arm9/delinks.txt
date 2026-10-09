@@ -7796,7 +7796,7 @@ src/game/main/co_stats/player_get_com_tower_firepower.c:
     complete
     .text       start:0x020e593c end:0x020e59fc
 
-src/game/main/func_020e59fc.c:
+src/game/main/co_stats/player_get_repair_hp.c:
     complete
     .text       start:0x020e59fc end:0x020e5a18
 

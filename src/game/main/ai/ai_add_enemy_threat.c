@@ -23,7 +23,7 @@ BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);           /* fog, weather and terrain check of a tile */
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);        /* Black Hole unit on a tile with tileHp bit 7 */
-int func_020e59fc(int player, int arg1, int arg2);       /* repair per turn in shown hp: 2 plus a bonus */
+int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int func_0209e230(int player, int unitType);             /* max range with no power on */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -106,7 +106,7 @@ void Ai_AddEnemyThreat(u8 player)
             threat += 20;
         }
         if (Unit_CanRepairAt(unit, unit->x, unit->y) == TRUE) {
-            threat += func_020e59fc(OWNER(unit), 0, 0) * 10;
+            threat += Player_GetRepairHp(OWNER(unit), 0, 0) * 10;
         }
         if (threat > 100) {
             threat = 100;

@@ -1,7 +1,7 @@
 #include "types.h"
 
-void AiActingUnit_GetSearchMovement(void);
-void AiActingUnit_MarkAttackRange(void);
+int AiActingUnit_GetSearchMovement(void);
+void AiActingUnit_MarkAttackRange(int movement);
 BOOL func_020a870c(s16 *tile);
 BOOL AiUnit_FindFiringTile(s16 *tile);
 
@@ -11,8 +11,7 @@ BOOL func_020aac60(s16 *out)
 {
     s16 tile[2];
 
-    AiActingUnit_GetSearchMovement();
-    AiActingUnit_MarkAttackRange();
+    AiActingUnit_MarkAttackRange(AiActingUnit_GetSearchMovement());
     if (!func_020a870c(tile)) {
         return FALSE;
     }

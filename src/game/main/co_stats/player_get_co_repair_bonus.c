@@ -2,7 +2,6 @@
 #include "game/co_data.h"
 #include "game/Unk_02080440.h"
 
-/* needed to match: the original passes slot too; skills/repair_increase.c reads only player */
 int RepairIncrease(int player, int slot);
 
 extern Unk_02080440 *data_027c027c;
