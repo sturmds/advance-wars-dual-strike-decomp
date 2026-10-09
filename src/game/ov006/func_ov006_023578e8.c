@@ -1,10 +1,10 @@
 #include "types.h"
 
-void func_0201e19c(void);
+void PopupMenu_PopState(void);
 int Sound_PlaySe(int);
 
 int func_ov006_023578e8(void)
 {
-    func_0201e19c();
+    PopupMenu_PopState();
     return Sound_PlaySe(0x10009);
 }
