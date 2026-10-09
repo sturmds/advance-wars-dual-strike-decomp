@@ -50,7 +50,7 @@ typedef struct Player {
     u8 comTowers;                      /* Com Towers owned */
     u8 unk_15;                         /* total properties */
     u16 defeated;                      /* nonzero once the player is out (Player_IsInGame) */
-    u8 pad_18;
+    u8 unk_18;                         /* cleared by Players_Reset */
     u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (func_020c1444) */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 unk_1b;
@@ -67,7 +67,12 @@ typedef struct Player {
     u8 aiBehaviour;                    /* AI_BEHAVIOUR_* */
     u8 unk_2f;                         /* ORed with MapHeader.slotFlags[slot].unk_0 at map start */
     u8 unk_30;                         /* ORed with MapHeader.slotFlags[slot].unk_1 */
-    u8 pad_31[0x6c - 0x31];
+    u8 pad_31[0x33 - 0x31];
+    u8 unk_33;                         /* cleared by Players_Reset */
+    u8 unk_34;
+    u8 unk_35;                         /* live unit count (doc 890) */
+    u8 unitsBuilt[27];                 /* per unit type (doc 890) */
+    u8 unitsLost[27];                  /* per unit type (doc 890) */
     PlayerCo front;
     PlayerCo back;
     u32 skills[2][4];                  /* front CO, back CO; ids in game/skills.h */

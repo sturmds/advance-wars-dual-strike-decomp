@@ -5559,6 +5559,10 @@ src/game/main/map/map_apply_slot_flags.c:
     complete
     .text       start:0x020c0e80 end:0x020c0f44
 
+src/game/main/map/players_reset.c:
+    complete
+    .text       start:0x020c0f44 end:0x020c1440
+
 src/game/main/func_020c1440.c:
     complete
     .text       start:0x020c1440 end:0x020c1444
