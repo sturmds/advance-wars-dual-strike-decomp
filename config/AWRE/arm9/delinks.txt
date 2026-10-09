@@ -514,6 +514,10 @@ src/game/main/co_stats/player_get_co_terrain_firepower.c:
     complete
     .text       start:0x020dfcf8 end:0x020dfd74
 
+src/game/main/co_stats/player_get_counter_bonus.c:
+    complete
+    .text       start:0x020dfdc0 end:0x020dfe30
+
 
 src/game/main/co_stats/player_get_bad_luck.c:
     complete
