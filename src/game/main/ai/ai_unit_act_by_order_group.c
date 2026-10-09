@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020a08e8(void);
+void AiIndirect_ActOrders1_7_10(void);
 void func_020a0904(void);
 
 /* Queue routine for the units AiAction_QueueIndirectUnits collects: runs one of two
@@ -30,7 +30,7 @@ void AiUnit_ActByOrderGroup(void)
     case 1:
     case 7:
     case 10:
-        func_020a08e8();
+        AiIndirect_ActOrders1_7_10();
         break;
     }
 }
