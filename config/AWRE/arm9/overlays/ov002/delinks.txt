@@ -31,6 +31,10 @@ src/game/ov002/func_ov002_023571b8.c:
     complete
     .text       start:0x023571b8 end:0x023571d0
 
+src/game/ov002/func_ov002_0235cd64.c:
+    complete
+    .text       start:0x0235cd64 end:0x0235cd88
+
 src/game/ov002/func_ov002_0235d514.c:
     complete
     .text       start:0x0235d514 end:0x0235d530
@@ -66,6 +70,10 @@ src/game/ov002/battle_get_start_mood.c:
 src/game/ov002/battle_build_side_tilemaps.c:
     complete
     .text       start:0x0235e58c end:0x0235e608
+
+src/game/ov002/func_ov002_0235f9b0.c:
+    complete
+    .text       start:0x0235f9b0 end:0x0235f9d8
 
 src/game/ov002/func_ov002_0235f9d8.c:
     complete

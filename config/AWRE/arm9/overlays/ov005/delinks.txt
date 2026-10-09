@@ -168,6 +168,10 @@ src/game/ov005/func_ov005_02364418.c:
     complete
     .text       start:0x02364418 end:0x02364428
 
+src/game/ov005/func_ov005_02364428.c:
+    complete
+    .text       start:0x02364428 end:0x0236444c
+
 src/game/ov005/func_ov005_023646f8.c:
     complete
     .text       start:0x023646f8 end:0x02364708
@@ -183,6 +187,10 @@ src/game/ov005/ov005_load_co_picture.c:
 src/game/ov005/func_ov005_02364a1c.c:
     complete
     .text       start:0x02364a1c end:0x02364a2c
+
+src/game/ov005/func_ov005_02364a2c.c:
+    complete
+    .text       start:0x02364a2c end:0x02364a50
 
 src/game/ov005/func_ov005_02365100.c:
     complete

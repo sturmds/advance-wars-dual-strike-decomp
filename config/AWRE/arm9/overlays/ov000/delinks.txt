@@ -8,6 +8,10 @@ src/game/ov000/func_ov000_022ad5c8.c:
     complete
     .text       start:0x022ad5c8 end:0x022ad5cc
 
+src/game/ov000/func_ov000_022ad610.c:
+    complete
+    .text       start:0x022ad610 end:0x022ad630
+
 src/game/ov000/func_ov000_022ad7dc.c:
     complete
     .text       start:0x022ad7dc end:0x022ad7e0
@@ -20,6 +24,10 @@ src/game/ov000/func_ov000_022ad7e4.c:
     complete
     .text       start:0x022ad7e4 end:0x022ad7f4
 
+src/game/ov000/func_ov000_022ad820.c:
+    complete
+    .text       start:0x022ad820 end:0x022ad840
+
 src/game/ov000/func_ov000_022add0c.c:
     complete
     .text       start:0x022add0c end:0x022add10
@@ -27,6 +35,10 @@ src/game/ov000/func_ov000_022add0c.c:
 src/game/ov000/func_ov000_022ae47c.c:
     complete
     .text       start:0x022ae47c end:0x022ae488
+
+src/game/ov000/func_ov000_022ae488.c:
+    complete
+    .text       start:0x022ae488 end:0x022ae4a8
 
 src/game/ov000/mission_has_pending_event.c:
     complete

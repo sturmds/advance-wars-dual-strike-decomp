@@ -11,6 +11,10 @@ src/game/ov001/func_ov001_023516a4.c:
     complete
     .text       start:0x023516a4 end:0x023516b8
 
+src/game/ov001/func_ov001_02351708.c:
+    complete
+    .text       start:0x02351708 end:0x0235172c
+
 src/game/ov001/func_ov001_0235172c.c:
     complete
     .text       start:0x0235172c end:0x02351738
@@ -38,6 +42,10 @@ src/game/ov001/func_ov001_02351d28.c:
 src/game/ov001/func_ov001_02351d3c.c:
     complete
     .text       start:0x02351d3c end:0x02351d50
+
+src/game/ov001/func_ov001_02351d50.c:
+    complete
+    .text       start:0x02351d50 end:0x02351d74
 
 src/game/ov001/func_ov001_02351dc8.c:
     complete
