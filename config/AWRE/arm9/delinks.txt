@@ -296,6 +296,10 @@ src/game/main/task/task_skip_command.c:
     complete
     .text       start:0x020235bc end:0x020235d0
 
+src/game/main/task/task_resume_by_script.c:
+    complete
+    .text       start:0x020235ec end:0x02023600
+
 src/game/main/task/task_resume_script_visitor.c:
     complete
     .text       start:0x02023600 end:0x0202360c
