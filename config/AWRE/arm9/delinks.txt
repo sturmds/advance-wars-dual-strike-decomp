@@ -1391,6 +1391,10 @@ src/game/main/ai/ai_unit_handle_unit_at_target.c:
     complete
     .text       start:0x020a0c1c end:0x020a0dec
 
+src/game/main/ai/ai_unit_pick_direct_attack_in_reach_of.c:
+    complete
+    .text       start:0x020a12cc end:0x020a189c
+
 src/game/main/ai/ai_unit_adjust_action.c:
     complete
     .text       start:0x020a2f98 end:0x020a30c4
