@@ -5,21 +5,65 @@ src/game/itcm/gfx_request_layer_copy.c:
     complete
     .text       start:0x01ff8d60 end:0x01ff8d94
 
+src/game/itcm/func_01ff95fc.c:
+    complete
+    .text       start:0x01ff95fc end:0x01ff9610
+
+src/game/itcm/func_01ff9610.c:
+    complete
+    .text       start:0x01ff9610 end:0x01ff9624
+
+src/game/itcm/func_01ff9ba0.c:
+    complete
+    .text       start:0x01ff9ba0 end:0x01ff9bb4
+
+src/game/itcm/func_01ff9c28.c:
+    complete
+    .text       start:0x01ff9c28 end:0x01ff9c38
+
 src/game/itcm/func_01ff9eac.c:
     complete
     .text       start:0x01ff9eac end:0x01ff9ebc
+
+src/game/itcm/func_01ff9ebc.c:
+    complete
+    .text       start:0x01ff9ebc end:0x01ff9ed0
+
+src/game/itcm/func_01ff9ed0.c:
+    complete
+    .text       start:0x01ff9ed0 end:0x01ff9ee4
+
+src/game/itcm/func_01ff9ee4.c:
+    complete
+    .text       start:0x01ff9ee4 end:0x01ff9ef8
+
+src/game/itcm/func_01ff9ef8.c:
+    complete
+    .text       start:0x01ff9ef8 end:0x01ff9f0c
 
 src/game/itcm/func_01ff9f0c.c:
     complete
     .text       start:0x01ff9f0c end:0x01ff9f1c
 
+src/game/itcm/func_01ff9f1c.c:
+    complete
+    .text       start:0x01ff9f1c end:0x01ff9f2c
+
 src/game/itcm/func_01ff9f44.c:
     complete
     .text       start:0x01ff9f44 end:0x01ff9f54
 
+src/game/itcm/func_01ff9f54.c:
+    complete
+    .text       start:0x01ff9f54 end:0x01ff9f64
+
 src/game/itcm/main_loop_get_frame_count.c:
     complete
     .text       start:0x01ff9f7c end:0x01ff9f8c
+
+src/game/itcm/func_01ff9f8c.c:
+    complete
+    .text       start:0x01ff9f8c end:0x01ff9f9c
 
 src/game/itcm/range_map/fill_attack_range.c:
     complete
@@ -35,3 +79,7 @@ src/game/itcm/range_map/mark_attack_range.c:
 
 src/game/itcm/range_map/mark_adjacent_tiles.c:
     .text       start:0x01ffaa3c end:0x01ffabcc
+
+src/game/itcm/func_01ffd854.c:
+    complete
+    .text       start:0x01ffd854 end:0x01ffd878
