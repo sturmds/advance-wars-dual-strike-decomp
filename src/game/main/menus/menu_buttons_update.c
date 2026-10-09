@@ -10,7 +10,7 @@ void MenuButton_Draw(MenuButton *button);
 void MenuButton_UpdateSlide(MenuButton *button);
 BOOL MenuButton_HandleTouch(MenuButton *button);
 BOOL MenuButton_TouchSelect(MenuButton *button);
-void func_02025e4c(void);
+void MenuCursor_Update(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -30,7 +30,7 @@ void MenuButtons_Update(void)
     saved027c = data_027c027c;
     Screen_SetCurrent((&data_027c0288.unk_00)[data_02158f38->screen]);
 
-    func_02025e4c();
+    MenuCursor_Update();
     Menu_DispatchKeys();
 
     button = gMenuButtons;

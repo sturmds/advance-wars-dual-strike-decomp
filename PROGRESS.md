@@ -34,3 +34,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | File | Functions | Bytes |
 |---|---|---:|
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
+| `src/game/main/menus/menu_cursor_update.c` | MenuCursor_Update | 816 |
