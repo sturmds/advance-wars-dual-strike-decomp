@@ -74,6 +74,16 @@ typedef struct UnitStats {
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
 
+/* UnitStats.unk_20 values: the group the AI unit action steps pick units
+ * by. Read from the table; no unit type uses 3. */
+#define AI_CLASS_OOZIUM         0
+#define AI_CLASS_FOOT           1
+#define AI_CLASS_TRANSPORT      2  /* APC, T-Copter */
+#define AI_CLASS_INDIRECT       4  /* Artillery, Rockets, Missiles, Piperunner, Battleship, Carrier */
+#define AI_CLASS_DIRECT         5
+#define AI_CLASS_SEA_TRANSPORT  6  /* Black Boat, Lander */
+#define AI_CLASS_BLACK_BOMB     7
+
 extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 #endif
