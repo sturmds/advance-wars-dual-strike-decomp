@@ -9,12 +9,12 @@ void func_020b8cf0(void);
 void func_020b869c(void);
 void func_020b8654(void);
 void func_020b8604(void);
-void func_020b85e0(void);
+void AiShowAction_Step6(void);
 void func_020b8850(void);
 void func_020b8798(void);
 void func_020b86e0(void);
 void func_020b8568(void);
-void func_020b8544(void);
+void AiShowAction_Step11(void);
 
 /* Runs one step of showing the action in gUnitAction, picked by
  * gAiTurnState->actionStep. The last steps set the state back to
@@ -42,7 +42,7 @@ void AiTurn_ShowAction(void)
         func_020b8604();
         break;
     case 6:
-        func_020b85e0();
+        AiShowAction_Step6();
         break;
     case 7:
         func_020b8850();
@@ -57,7 +57,7 @@ void AiTurn_ShowAction(void)
         func_020b8568();
         break;
     case 11:
-        func_020b8544();
+        AiShowAction_Step11();
         break;
     }
 }

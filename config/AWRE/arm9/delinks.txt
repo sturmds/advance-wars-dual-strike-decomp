@@ -2034,6 +2034,14 @@ src/game/main/ai/ai_action_debug_hook.c:
     complete
     .text       start:0x020b81b4 end:0x020b81b8
 
+src/game/main/ai/ai_show_action_step11.c:
+    complete
+    .text       start:0x020b8544 end:0x020b8568
+
+src/game/main/ai/ai_show_action_step6.c:
+    complete
+    .text       start:0x020b85e0 end:0x020b8604
+
 src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664
