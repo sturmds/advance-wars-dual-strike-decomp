@@ -10,7 +10,7 @@ void func_020099c8(void);
 void func_02009ac0(void);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_020030cc(const char *fileName, int fileOffset, int paletteOffset, int size);
+void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL func_0200ac2c(int layer);
@@ -72,19 +72,19 @@ void Gfx_LoadBmap083(void)
 
     FS_ChangeDir(data_02169c44);
     File_UnpackTo(data_027c0280->objVram + 0x2000, gBmapFile083);
-    func_020030cc(gBmapFile084, 0, 0x220, 32);
+    Palette_LoadFromFile(gBmapFile084, 0, 0x220, 32);
     File_UnpackTo((void *)GFX_LAYER(data_027c0280, 2)->charBase, gBmapFile07d);
     File_UnpackTo(GFX_LAYER(data_027c0280, 2)->map, gBmapFile07e);
     map = GFX_LAYER(data_027c0280, 2)->map;
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0x8000);
 
-    func_020030cc(gBmapFile07f, 0, 0x100, 32);
+    Palette_LoadFromFile(gBmapFile07f, 0, 0x100, 32);
     File_UnpackTo((void *)GFX_LAYER(data_027c0280, 3)->charBase, gBmapFile080);
     File_UnpackTo(GFX_LAYER(data_027c0280, 3)->map, gBmapFile081);
     map = GFX_LAYER(data_027c0280, 3)->map;
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 3), 3), 0);
 
-    func_020030cc(gBmapFile082, 0, 0, 256);
+    Palette_LoadFromFile(gBmapFile082, 0, 0, 256);
     Gfx_RequestLayerCopy(3);
     Gfx_RequestLayerCopy(2);
 }

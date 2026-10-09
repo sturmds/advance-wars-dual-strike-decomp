@@ -1,7 +1,7 @@
 #include "types.h"
 
 void FS_ChangeDir(const char *dir);
-void func_020030cc(const char *path, int filePos, u16 paletteOffset, int size);
+void Palette_LoadFromFile(const char *path, int filePos, u16 paletteOffset, int size);
 
 extern char data_021587d0[];    /* "/bmap" */
 extern char data_021587d8[];    /* "0a0" */
@@ -11,5 +11,5 @@ extern char data_021587d8[];    /* "0a0" */
 void Gfx_LoadBmap0a0Palette(int unused, int paletteSlot)
 {
     FS_ChangeDir(data_021587d0);
-    func_020030cc(data_021587d8, 0, paletteSlot << 5, 32);
+    Palette_LoadFromFile(data_021587d8, 0, paletteSlot << 5, 32);
 }
