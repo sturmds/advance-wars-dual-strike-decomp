@@ -556,7 +556,7 @@ func_0201710c kind:function(arm,size=0x24) addr:0x0201710c
 func_02017130 kind:function(arm,size=0x48) addr:0x02017130
 func_02017178 kind:function(arm,size=0x54) addr:0x02017178
 func_020171cc kind:function(arm,size=0x154) addr:0x020171cc
-func_02017320 kind:function(arm,size=0xf4) addr:0x02017320
+ScriptSlot_Run kind:function(arm,size=0xf4) addr:0x02017320
 func_02017414 kind:function(arm,size=0x80) addr:0x02017414
 func_02017494 kind:function(arm,size=0x68) addr:0x02017494
 func_020174fc kind:function(arm,size=0x4) addr:0x020174fc
@@ -6956,7 +6956,7 @@ data_02158364 kind:data(any) addr:0x02158364
 data_0215837c kind:data(any) addr:0x0215837c
 data_02158394 kind:data(any) addr:0x02158394
 data_021583b4 kind:data(any) addr:0x021583b4
-data_021583d4 kind:data(any) addr:0x021583d4
+gScriptCommands kind:data(any) addr:0x021583d4
 data_02158460 kind:data(any) addr:0x02158460
 data_02158468 kind:data(any) addr:0x02158468
 data_021584c8 kind:data(any) addr:0x021584c8

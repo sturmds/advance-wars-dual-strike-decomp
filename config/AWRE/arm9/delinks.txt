@@ -192,6 +192,10 @@ src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4
 
+src/game/main/script/script_slot_run.c:
+    complete
+    .text       start:0x02017320 end:0x02017414
+
 src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0
