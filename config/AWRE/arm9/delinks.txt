@@ -6735,6 +6735,10 @@ src/game/main/func_020d2190.c:
     complete
     .text       start:0x020d2190 end:0x020d2194
 
+src/game/main/weather/weather_reset_cooldowns.c:
+    complete
+    .text       start:0x020d2194 end:0x020d2260
+
 src/game/main/weather/weather_set.c:
     complete
     .text       start:0x020d2aa8 end:0x020d2ae4
