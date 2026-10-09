@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* One item of a pop-up menu table, 0x20 bytes. func_0201e9d8 builds the
+/* One item of a pop-up menu table, 0x20 bytes. PopupMenu_Create builds the
  * menu from a table: it calls getFlags on each item and lists the item
  * unless bit 0 (MENU_ITEM_HIDDEN) is set. An item with unk_00 ==
  * MENU_ITEM_END ends the table. */

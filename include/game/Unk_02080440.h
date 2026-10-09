@@ -81,7 +81,7 @@ typedef struct Unk_02080440_48 {
     u8 pad_08[0x0d - 0x08];
     u8 unk_0d;                         /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
     u8 pad_0e[0x10 - 0x0e];
-    u32 unk_10;                        /* passed to func_0201e9d8 when the battle menu opens (BattleMenu_Open) */
+    u32 unk_10;                        /* passed to PopupMenu_Create when the battle menu opens (BattleMenu_Open) */
     u32 unk_14;
     u16 unk_18;                        /* AiShowAction_Step0 tests 16 and 21 */
     u8 pad_1a[0x1e - 0x1a];

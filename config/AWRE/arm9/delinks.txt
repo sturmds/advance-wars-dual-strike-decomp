@@ -1635,6 +1635,10 @@ src/game/main/func_0201e954.c:
     complete
     .text       start:0x0201e954 end:0x0201e980
 
+src/game/main/menus/popup_menu_create.c:
+    complete
+    .text       start:0x0201e9d8 end:0x0201eb8c
+
 src/game/main/func_0201ece4.c:
     complete
     .text       start:0x0201ece4 end:0x0201ecf0
