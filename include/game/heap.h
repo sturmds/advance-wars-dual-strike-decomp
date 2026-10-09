@@ -60,6 +60,26 @@ typedef struct ExpHeap {
     ExpHeapData data;
 } ExpHeap;
 
+/* Frame heap (DoubleEndedHeap): allocates from both ends of one free region and
+ * can restore an earlier state. Every saved state is a FrameHeapState,
+ * allocated from the heap itself. */
+typedef struct FrameHeapState {
+    u32 tag;
+    void *head;                 /* HeapRegion.start when saved */
+    void *tail;                 /* HeapRegion.end when saved */
+    struct FrameHeapState *prev;
+} FrameHeapState;
+
+typedef struct FrameHeapData {
+    HeapRegion free;
+    FrameHeapState *states;     /* newest saved state */
+} FrameHeapData;
+
+typedef struct FrameHeap {
+    HeapHead head;
+    FrameHeapData data;
+} FrameHeap;
+
 extern ExpHeap *gGameHeap;             /* Mem_Alloc and Mem_Free use it */
 
 void *Heap_Alloc(ExpHeap *heap, u32 size, int align); /* negative align takes the top end */

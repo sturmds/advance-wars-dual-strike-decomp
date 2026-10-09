@@ -9068,6 +9068,10 @@ src/game/main/mem/frame_heap_free_by_state.c:
     complete
     .text       start:0x02104ab4 end:0x02104b10
 
+src/game/main/sound/frame_heap_save_state.c:
+    complete
+    .text       start:0x02104b10 end:0x02104b68
+
 src/game/main/func_02104bf0.c:
     complete
     .text       start:0x02104bf0 end:0x02104bfc

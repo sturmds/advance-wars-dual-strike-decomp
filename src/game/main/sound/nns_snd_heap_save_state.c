@@ -3,7 +3,7 @@
 #include "game/sound_heap.h"
 
 int FrameHeap_FreeByState(void *frameHeap, int level);
-int func_02104b10(void *frameHeap, int level);
+int FrameHeap_SaveState(void *frameHeap, int level);
 int SoundHeap_AddLevel(SoundHeap *heap);
 
 /* NitroSystem NNS_SndHeapSaveState: starts a new save point and returns its
@@ -12,7 +12,7 @@ int NNS_SndHeapSaveState(void *heapArg)
 {
     SoundHeap *heap = heapArg;
 
-    if (func_02104b10(heap->frameHeap, heap->levels.count) == 0) {
+    if (FrameHeap_SaveState(heap->frameHeap, heap->levels.count) == 0) {
         return -1;
     }
     if (SoundHeap_AddLevel(heap) != 0) {

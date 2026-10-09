@@ -4,7 +4,7 @@
 #include "game/link_list.h"
 
 int FrameHeap_FreeByState(void *frameHeap, int level);
-int func_02104b10(void *frameHeap, int level);
+int FrameHeap_SaveState(void *frameHeap, int level);
 void func_021069a8(void);
 int SoundHeap_AddLevel(SoundHeap *heap);
 void func_02106c18(SoundHeap *heap);
@@ -40,6 +40,6 @@ void NNS_SndHeapLoadState(void *heapArg, int level)
     }
     FrameHeap_FreeByState(heap->frameHeap, level);
     func_021069a8();
-    func_02104b10(heap->frameHeap, heap->levels.count);
+    FrameHeap_SaveState(heap->frameHeap, heap->levels.count);
     SoundHeap_AddLevel(heap);
 }
