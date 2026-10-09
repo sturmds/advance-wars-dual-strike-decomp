@@ -23,7 +23,7 @@ int func_020a6d30(MapUnit *target);
 BOOL func_020a770c(int x, int y);
 BOOL FindAttackTile(int x, int y, s16 *pos); /* finds a tile to attack (x, y) from; FALSE: none */
 int AiAttack_Score(int arg, s16 *pos);      /* scores an attack on the unit slot in the low bits of arg from pos; 0: none */
-void func_020b0e1c(void);
+void AiUnit_MoveToSafestTile(void);
 MapObject *Map_GetObjectAt(int x, int y);     /* object standing at (x, y); NULL: none or destroyed */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -254,6 +254,6 @@ void AiUnit_PickDirectAttack(void)
         AiUnit_PerformAction(objectAttackX, objectAttackY, 5, objectX, objectY);
     }
     if (holdsLastSide) {
-        func_020b0e1c();
+        AiUnit_MoveToSafestTile();
     }
 }
