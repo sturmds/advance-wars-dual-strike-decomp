@@ -18,6 +18,15 @@ typedef struct SoundArcSeqInfo {
     u16 pad_0a;
 } SoundArcSeqInfo;
 
+/* A stream entry: the file plus its playback parameters. */
+typedef struct SoundArcStrmInfo {
+    u32 fileId;
+    u8 unk_04;
+    u8 unk_05;
+    u8 unk_06;
+    u8 unk_07;
+} SoundArcStrmInfo;
+
 /* Table of sequence entries, each given as an offset into the info block. */
 typedef struct SoundArcSeqInfoTable {
     u32 count;

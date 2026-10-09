@@ -1,0 +1,19 @@
+#include "types.h"
+#include "game/sound_arc.h"
+
+const SoundArcStrmInfo *NNS_SndArcGetStrmInfo(int strmNo);
+BOOL func_02108a58(void **handle, const SoundArcStrmInfo *info, int unk_06, int unk_05,
+                   int strmNo, u32 offset, int arg6, int arg7, int arg8, int arg9);
+
+/* Prepares stream strmNo of the current sound archive on handle, starting
+ * at offset. Returns FALSE when the archive has no such stream or it
+ * cannot be set up. */
+BOOL SoundArc_PrepareStream(void **handle, int strmNo, u32 offset)
+{
+    const SoundArcStrmInfo *info = NNS_SndArcGetStrmInfo(strmNo);
+
+    if (info == NULL) {
+        return FALSE;
+    }
+    return func_02108a58(handle, info, info->unk_06, info->unk_05, strmNo, offset, 0, 0, 0, 0);
+}
