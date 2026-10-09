@@ -143,6 +143,10 @@ src/game/main/dma_stop_channel1.c:
     complete
     .text       start:0x020034d0 end:0x020034fc
 
+src/game/main/func_020034fc.c:
+    complete
+    .text       start:0x020034fc end:0x02003528
+
 src/game/main/func_02003528.c:
     complete
     .text       start:0x02003528 end:0x0200353c
@@ -2075,6 +2079,10 @@ src/game/main/func_0204ec28.c:
     complete
     .text       start:0x0204ec28 end:0x0204ec34
 
+src/game/main/func_0204ec34.c:
+    complete
+    .text       start:0x0204ec34 end:0x0204ec4c
+
 src/game/main/menus/campaign_map_center_scroll_x.c:
     complete
     .text       start:0x0204ec4c end:0x0204ec64
@@ -2678,6 +2686,10 @@ src/game/main/func_0207ab14.c:
     complete
     .text       start:0x0207ab14 end:0x0207ab2c
 
+src/game/main/func_0207b48c.c:
+    complete
+    .text       start:0x0207b48c end:0x0207b4b0
+
 src/game/main/func_0207b4b0.c:
     complete
     .text       start:0x0207b4b0 end:0x0207b4c8
@@ -2797,6 +2809,10 @@ src/game/main/event_queue/event_queue_reset.c:
 src/game/main/func_0207d930.c:
     complete
     .text       start:0x0207d930 end:0x0207d934
+
+src/game/main/func_0207d934.c:
+    complete
+    .text       start:0x0207d934 end:0x0207dc60
 
 src/game/main/func_0207dc60.c:
     complete
@@ -5806,6 +5822,10 @@ src/game/main/map/map_set_co_select_phase.c:
     complete
     .text       start:0x020e8a88 end:0x020e8ab0
 
+src/game/main/func_020e8ab0.c:
+    complete
+    .text       start:0x020e8ab0 end:0x020e8ae4
+
 src/game/main/map/map_is_co_select_phase.c:
     complete
     .text       start:0x020e8ae4 end:0x020e8b18
@@ -6393,6 +6413,10 @@ src/game/main/unlocks/game_flag_is_set.c:
 src/game/main/unlocks/game_flag_set.c:
     complete
     .text       start:0x021017f4 end:0x0210187c
+
+src/game/main/func_0210187c.c:
+    complete
+    .text       start:0x0210187c end:0x021018a0
 
 src/game/main/unlocks/game_flags_low_set.c:
     complete
