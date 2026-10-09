@@ -2151,6 +2151,10 @@ src/game/main/copowers/power_reset_scroll_and_refresh.c:
     complete
     .text       start:0x020d5684 end:0x020d56f4
 
+src/game/main/func_020d5b58.c:
+    complete
+    .text       start:0x020d5b58 end:0x020d5c44
+
 src/game/main/menus/player1_team_has_player_in_game.c:
     complete
     .text       start:0x020d5d2c end:0x020d5db0
