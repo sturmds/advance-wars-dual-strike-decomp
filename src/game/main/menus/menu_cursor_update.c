@@ -3,7 +3,7 @@
 
 int func_01ff9f7c(void);
 void func_01ff8850(int x, int y, void *shape, int tileAndPalette);
-int func_02026404(MenuButton *entry, int mask);
+int MenuButton_TestFlags(MenuButton *entry, int mask);
 
 extern u8 data_0216e4d0;
 extern u8 data_02158f3c[];
@@ -63,10 +63,10 @@ void MenuCursor_Update(void)
     }
 
     button = MenuButton_Find(data_02158f38->selectedId);
-    if (func_02026404(button, 1) == 0) {
+    if (MenuButton_TestFlags(button, 1) == 0) {
         return;
     }
-    if (func_02026404(button, 0x800) != 0) {
+    if (MenuButton_TestFlags(button, 0x800) != 0) {
         mode = 0x400;
     }
     for (i = 0; i < 4; i++) {

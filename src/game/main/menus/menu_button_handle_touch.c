@@ -2,7 +2,7 @@
 #include "game/menu_button.h"
 #include "game/touch.h"
 
-int func_02026404(MenuButton *entry, int mask);
+int MenuButton_TestFlags(MenuButton *entry, int mask);
 u8 MenuButton_GetTouchState(MenuButton *button);
 void MenuButton_SetTouchState(MenuButton *button, int touchState);
 BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
@@ -55,13 +55,13 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
         }
         if (Touch_Is(TOUCH_RELEASED) == TRUE) {
             MenuButton_SetTouchState(button, MENU_BUTTON_TOUCH_NONE);
-            if (func_02026404(button, MENU_BUTTON_NO_TOUCH_CONFIRM) != 0) {
+            if (MenuButton_TestFlags(button, MENU_BUTTON_NO_TOUCH_CONFIRM) != 0) {
                 return FALSE;
             }
             if (func_0201ad28() != FALSE) {
                 return FALSE;
             }
-            if (func_02026404(button, MENU_BUTTON_SELECT_ON_TOUCH) != 0) {
+            if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH) != 0) {
                 MenuCursor_SelectButton(button);
             }
             if (Abs(x - startX) > 16 || Abs(y - startY) > 16) {

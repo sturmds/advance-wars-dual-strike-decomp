@@ -25,7 +25,7 @@ typedef struct MenuButton {
     s16 y;
     s16 width;
     s16 height;
-    u16 unk_1c;                        /* flag bits, read by func_02026404 */
+    u16 unk_1c;                        /* flag bits, read by MenuButton_TestFlags */
     u16 slideDuration;                 /* frames */
     u16 tile;                          /* OAM character name of the sprite */
     u16 palette;                       /* OAM palette number */
@@ -37,7 +37,7 @@ typedef struct MenuButton {
     void (*onSlideOutDone)(struct MenuButton *button);
 } MenuButton;
 
-/* Bits of MenuButton.unk_1c, tested with func_02026404. */
+/* Bits of MenuButton.unk_1c, tested with MenuButton_TestFlags. */
 #define MENU_BUTTON_SELECT_ON_TOUCH  0x0001   /* a touch confirm also selects it */
 #define MENU_BUTTON_VISIBLE          0x0002
 #define MENU_BUTTON_SLIDE_IN_LEFT    0x0004   /* slides in from off the left edge */

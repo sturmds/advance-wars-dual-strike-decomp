@@ -459,6 +459,10 @@ src/game/main/menus/menu_button_set_touch_state.c:
     complete
     .text       start:0x020263fc end:0x02026404
 
+src/game/main/menus/menu_button_test_flags.c:
+    complete
+    .text       start:0x02026404 end:0x02026410
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868

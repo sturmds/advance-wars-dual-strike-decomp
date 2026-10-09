@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-int func_02026404(MenuButton *button, int mask);
+int MenuButton_TestFlags(MenuButton *button, int mask);
 
 /* Returns TRUE if the point (x, y) is inside the button. */
 BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y)
 {
-    if (func_02026404(button, MENU_BUTTON_TOUCH_ANYWHERE)) {
+    if (MenuButton_TestFlags(button, MENU_BUTTON_TOUCH_ANYWHERE)) {
         return TRUE;
     }
     if (x < button->x || button->x + button->width - 1 < x) {

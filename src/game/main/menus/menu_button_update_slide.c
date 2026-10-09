@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-int func_02026404(MenuButton *entry, int mask);
+int MenuButton_TestFlags(MenuButton *entry, int mask);
 s16 func_02026a60(int curve, int from, int to, int elapsed, int duration);
 
 /* Moves a button that slides onto or off the screen, once per frame.
@@ -15,19 +15,19 @@ void MenuButton_UpdateSlide(MenuButton *button)
     case MENU_BUTTON_SLIDE_IN_START:
         button->slideState = MENU_BUTTON_SLIDING_IN;
         button->slideTimer = 0;
-        if (func_02026404(button, MENU_BUTTON_SLIDE_IN_LEFT) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_IN_LEFT) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = -button->width;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_IN_RIGHT) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_IN_RIGHT) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = 256;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_IN_TOP) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_IN_TOP) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromY = -button->height;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_IN_BOTTOM) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_IN_BOTTOM) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromY = 192;
         }
@@ -38,28 +38,28 @@ void MenuButton_UpdateSlide(MenuButton *button)
     case MENU_BUTTON_SLIDE_OUT_START:
         button->slideState = MENU_BUTTON_SLIDING_OUT;
         button->slideTimer = 0;
-        if (func_02026404(button, MENU_BUTTON_SLIDE_OUT_LEFT) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_OUT_LEFT) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = button->x;
             button->slideFromY = button->y;
             button->slideToX = -button->width;
             button->slideToY = button->y;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_OUT_RIGHT) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_OUT_RIGHT) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = button->x;
             button->slideFromY = button->y;
             button->slideToX = 256;
             button->slideToY = button->y;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_OUT_TOP) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_OUT_TOP) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = button->x;
             button->slideFromY = button->y;
             button->slideToX = button->x;
             button->slideToY = -button->height;
         }
-        if (func_02026404(button, MENU_BUTTON_SLIDE_OUT_BOTTOM) != 0) {
+        if (MenuButton_TestFlags(button, MENU_BUTTON_SLIDE_OUT_BOTTOM) != 0) {
             button->slideTimer = button->slideDuration;
             button->slideFromX = button->x;
             button->slideFromY = button->y;
