@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 
-void func_020b0138(void);
+void AiUnit_TryAttackBeforeRepair(void);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
@@ -39,7 +39,7 @@ void AiUnit_HeadForRepairTile(void)
     int reach;
     int tile;
 
-    func_020b0138();
+    AiUnit_TryAttackBeforeRepair();
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, 110, 1);
     bestY = -1;
     bestX = bestY;
