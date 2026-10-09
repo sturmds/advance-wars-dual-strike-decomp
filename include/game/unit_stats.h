@@ -84,7 +84,8 @@ typedef struct UnitStats {
     u8 moveType;                       /* row of a CoPowerBlock.movementCost chart (32 terrain ids per row) */
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 aiClass;                        /* AI_CLASS_*; the document calls this "unit class" */
-    u8 pad_21[2];
+    u8 targetMask;                     /* categories of unit this type can attack, ANDed with categoryMask */
+    u8 categoryMask;                   /* the category this type belongs to, one bit */
     u8 chartDamage[2][32];             /* [weapon][damage chart column]: base damage in percent; 0: cannot hit */
     u8 pad_63;
     const s8 *repairTerrain;           /* per terrain id: nonzero where this type is repaired (ground: city, HQ, base; air: airport; sea: port) */

@@ -9,9 +9,7 @@ extern int data_027c0284;
 int UnitType_GetAttackKind(int unitType);
 int Player_GetUnitMoveRange(int player, int unitType);            /* movement plus the CO's move bonus */
 int func_020a4434(MapUnit *unit);                        /* the same count for an indirect unit */
-/* ANDs UnitStats byte 0x22 of a with byte 0x21 of b; FALSE when a is
- * Infantry, Mech, APC, Black Boat, T-Copter or Lander */
-BOOL func_020a4880(MapUnit *a, MapUnit *b);
+BOOL Unit_CanBeAttackedBy(MapUnit *target, MapUnit *attacker);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
@@ -19,7 +17,7 @@ BOOL func_020a4880(MapUnit *a, MapUnit *b);
 
 /* For a target unit that attacks directly: counts the current player's
  * team's units within the target's move range (distance in tiles) that
- * func_020a4880 pairs with it, plus the acting unit. Air units count
+ * Unit_CanBeAttackedBy pairs with it, plus the acting unit. Air units count
  * twice. AiAttack_Score raises an attack's score by count / 32. */
 int AiAttack_CountTeamUnitsInReach(MapUnit *unit)
 {
@@ -84,7 +82,7 @@ int AiAttack_CountTeamUnitsInReach(MapUnit *unit)
                 continue;
             }
             other = &STATE->units[slot];
-            if (func_020a4880(other, unit)) {
+            if (Unit_CanBeAttackedBy(other, unit)) {
                 count++;
                 if (Ov000_gUnitStats[other->type].moveGroup & MOVE_GROUP_AIR) {
                     count++;
@@ -92,7 +90,7 @@ int AiAttack_CountTeamUnitsInReach(MapUnit *unit)
             }
         }
     }
-    if (func_020a4880(STATE->actingUnit, unit) == TRUE) {
+    if (Unit_CanBeAttackedBy(STATE->actingUnit, unit) == TRUE) {
         count++;
         if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_AIR) {
             count++;
