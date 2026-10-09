@@ -6,13 +6,13 @@ How the top-level Claude session runs batches of agents, each matching one funct
 
 1. **Pick.** `python3 tools/fn.py pick -n 40` lists functions not yet in any file: entries in `config/AWRE/interesting.txt` first, then fewest unmatched callees, then smallest. Choose a batch (5–10 at first) and skip functions that call each other, so two agents never need the same callee renamed.
 2. **Start agents.** One background agent per function, each with `isolation: worktree` (the worktree appears under `.claude/worktrees/`, which git ignores). The prompt names the function and points at the skill. Each agent runs `tools/wt_setup.sh` (links `orig/` and `.cache/`), works, and either commits on its branch or stops. Agent commits do not carry `PROGRESS.md`: the hook skips it in a linked worktree.
-3. **Rebase.** Before reporting, each agent runs `python3 tools/rebase_onto_mainline.py`: it replays the agent's commits onto the current `mainline` with `apply_commit.py`, stops on a conflict or a failed build for the agent to fix (it has the context), and moves the branch there.
-4. **Collect.** Each agent ends with a `RESULT:` block: `matched` with the rebased commit hashes, or `partial`/`skipped` with notes.
-5. **Land.** For each matched commit, on `mainline`:
+3. **Land.** As its last step each agent runs `python3 tools/land_self.py` in its worktree. It replays the agent's commits onto the current `mainline` (`tools/rebase_onto_mainline.py`, which uses `apply_commit.py`), runs `make release`, amends a new `PROGRESS.md` into the branch's last commit, then takes a lock (`<git common dir>/land.lock`) and fast-forwards the main checkout's `mainline` to the branch, if `mainline` has not moved since the replay; otherwise it replays again (up to 5 tries). It waits up to 10 minutes while the main checkout has uncommitted changes. It never forces and never pushes. Exit codes: 0 landed, 1 the replay stopped (the agent fixes it, with its context, and runs it again), 2 `make release` failed, 3 gave up. Keep the main checkout on `mainline` and clean while agents run.
+4. **Collect.** Each agent ends with a `RESULT:` block: `matched` with its commit hashes and `LANDED: <mainline hash>`, or `partial`/`skipped` with notes.
+5. **Land what is left.** For a matched commit that did not land (exit 3), on `mainline`:
    ```sh
    python3 tools/apply_commit.py <hash>
    ```
-   It replays the commit by meaning (delinks entries by address, symbol renames by address, headers as below, source files with a 3-way merge) and commits with the original message; the hooks run `make release` and write `PROGRESS.md`. A commit rebased onto the current `mainline` replays with nothing to merge; one that landed after other agents' commits merges only those. On a conflict it stops with the changes staged.
+   It replays the commit by meaning (delinks entries by address, symbol renames by address, headers as below, source files with a 3-way merge) and commits with the original message; the hooks run `make release` and write `PROGRESS.md`. On a conflict it stops with the changes staged.
 6. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and best percentage in the batch log below.
 
 ## Shared headers

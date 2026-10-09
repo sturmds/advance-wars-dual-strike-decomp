@@ -353,6 +353,10 @@ def main() -> int:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
     git("add", "-A", "config", "src", "include", "docs")
+    if not git("diff", "--cached", "--name-only"):
+        print("error: nothing left to commit: this branch already has the change, or the merge"
+              " kept this branch's version (see the notes above)", file=sys.stderr)
+        return 1
     if "--no-commit" in sys.argv:
         print("applied; not committed")
         return 0
