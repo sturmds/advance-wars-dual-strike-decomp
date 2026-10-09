@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 func_020937dc(u32 co);
-int func_0209378c(int exp);
+void func_020937dc(void);
+void func_0209378c(void);
 
-int func_02093720(u32 co)
+void func_02093720(void)
 {
-    return func_0209378c(func_020937dc(co));
+    func_020937dc();
+    func_0209378c();
 }

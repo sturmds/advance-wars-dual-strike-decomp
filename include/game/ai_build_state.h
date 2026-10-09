@@ -8,7 +8,7 @@
  * Only the fields seen so far are listed. */
 typedef struct AiBuildState {
     u8 recordCount;                    /* entries in data_0229e5bc, 12 bytes each; the loop bound of func_02092134 */
-    u8 pad_01;
+    u8 slotCount;                      /* entries in data_0229e44c, 4 bytes each; the loop bound of func_020937dc */
     u8 step;                           /* 0-9, advanced by AiTurn_RunEndActions; cleared by func_0208d964 */
     u8 unk_03;                         /* cleared by func_0208d964 */
     u8 pad_04[3];
