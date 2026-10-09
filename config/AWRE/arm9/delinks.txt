@@ -239,6 +239,10 @@ src/game/main/func_02004a1c.c:
     complete
     .text       start:0x02004a1c end:0x02004a4c
 
+src/game/main/func_02004a4c.c:
+    complete
+    .text       start:0x02004a4c end:0x02004a7c
+
 src/game/main/func_02004a7c.c:
     complete
     .text       start:0x02004a7c end:0x02004ab0
@@ -246,6 +250,14 @@ src/game/main/func_02004a7c.c:
 src/game/main/func_02004ab0.c:
     complete
     .text       start:0x02004ab0 end:0x02004ae4
+
+src/game/main/func_02004ae4.c:
+    complete
+    .text       start:0x02004ae4 end:0x02004b14
+
+src/game/main/func_02004b14.c:
+    complete
+    .text       start:0x02004b14 end:0x02004b44
 
 src/game/main/func_02004b44.c:
     complete
