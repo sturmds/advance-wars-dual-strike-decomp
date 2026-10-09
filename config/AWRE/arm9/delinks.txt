@@ -383,6 +383,10 @@ src/game/main/ai/ai_queue_sort_ascending.c:
     complete
     .text       start:0x0208f9c4 end:0x0208fa5c
 
+src/game/main/ai/ai_queue_sort_descending.c:
+    complete
+    .text       start:0x0208fa5c end:0x0208faf4
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8

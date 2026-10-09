@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 int GetUnitMovement(int player, int unitType);
 void AiQueue_SortAscending(int count);
-void func_0208fa5c(int count);
+void AiQueue_SortDescending(int count);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -36,6 +36,6 @@ void AiQueue_SortByMovement(BOOL descending)
     if (!descending) {
         AiQueue_SortAscending(i);
     } else {
-        func_0208fa5c(i);
+        AiQueue_SortDescending(i);
     }
 }
