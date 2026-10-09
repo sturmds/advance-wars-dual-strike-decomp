@@ -72,6 +72,10 @@ src/game/main/rng/rng_set_state.c:
     complete
     .text       start:0x02004498 end:0x020044a8
 
+src/game/main/func_020076f8.c:
+    complete
+    .text       start:0x020076f8 end:0x02007710
+
 src/game/main/screen/screen_apply_all.c:
     complete
     .text       start:0x02007830 end:0x02007850
