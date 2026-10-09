@@ -1648,6 +1648,34 @@ src/game/main/ai/func_020a9e44.c:
     complete
     .text       start:0x020a9e44 end:0x020a9e7c
 
+src/game/main/ai/func_020a9f64.c:
+    complete
+    .text       start:0x020a9f64 end:0x020a9f9c
+
+src/game/main/ai/func_020aa068.c:
+    complete
+    .text       start:0x020aa068 end:0x020aa0a0
+
+src/game/main/ai/func_020aa1ec.c:
+    complete
+    .text       start:0x020aa1ec end:0x020aa224
+
+src/game/main/ai/func_020aa4a4.c:
+    complete
+    .text       start:0x020aa4a4 end:0x020aa4dc
+
+src/game/main/ai/func_020aa9c4.c:
+    complete
+    .text       start:0x020aa9c4 end:0x020aa9fc
+
+src/game/main/ai/func_020aac28.c:
+    complete
+    .text       start:0x020aac28 end:0x020aac60
+
+src/game/main/ai/func_020aacc0.c:
+    complete
+    .text       start:0x020aacc0 end:0x020aacf8
+
 src/game/main/ai/ai_unit_seek_sea_transport.c:
     complete
     .text       start:0x020ab014 end:0x020ab70c
