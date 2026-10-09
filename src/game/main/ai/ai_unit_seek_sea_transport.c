@@ -13,7 +13,7 @@ extern u8 gUnitFitsLander[];             /* per unit type; nonzero: ground units
 BOOL AiProfile_WantsSeaTransport(void);              /* gAiProfile->unk_08[9] has bit 2 or 3 set */
 int Ai_CountUnitsOfType(int type);
 BOOL AiUnit_ClaimLandmass(void);
-void func_020ab70c(void);              /* boards an own Lander or Black Boat in reach, if there is one */
+void AiUnit_BoardSeaTransport(void);              /* boards an own Lander or Black Boat in reach, if there is one */
 int UnitType_GetAttackKind(int type);
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 BOOL UnitSlot_OwnsTile(s16 slot, s16 x, s16 y);
@@ -79,7 +79,7 @@ void AiUnit_SeekSeaTransport(void)
     if (AiUnit_ClaimLandmass() == TRUE) {
         return;
     }
-    func_020ab70c();
+    AiUnit_BoardSeaTransport();
     unarmed = UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_NONE;
     STATE->actingUnit->transportWanted = 2;
     if (!unarmed) {

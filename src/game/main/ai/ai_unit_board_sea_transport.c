@@ -19,13 +19,10 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 /* Boards the acting unit on an own Black Boat or Lander it can reach that has
  * a free second cargo slot and can carry its type. A Black Boat beats a
  * Lander; later tiles win a tie. Marks the transport's AI target as its own
- * tile and moves the unit onto it.
- * WIP: 9 instructions differ, only in which registers hold the slot
- * multiply and the unit pointer. */
-void func_020ab70c(void)
+ * tile and moves the unit onto it. */
+void AiUnit_BoardSeaTransport(void)
 {
     u8 type;
-    u8 slot;
     int bestX;
     MapUnit *unit;
     int bestY;
@@ -45,9 +42,8 @@ void func_020ab70c(void)
             if (STATE->mapTiles->unitAt[TILE(x, y)] == 0 || !Unit_IsCurrentPlayers(STATE->mapTiles->unk_508[TILE(x, y)])) {
                 continue;
             }
-            slot = STATE->mapTiles->unitAt[TILE(x, y)];
-            type = STATE->units[slot].type;
-            unit = &STATE->units[slot];
+            unit = &STATE->units[STATE->mapTiles->unitAt[TILE(x, y)]];
+            type = unit->type;
             if (type != UNIT_BLACK_BOAT && type != UNIT_LANDER) {
                 continue;
             }
@@ -71,7 +67,7 @@ void func_020ab70c(void)
             }
             bestX = x;
             bestY = y;
-            bestType = type;
+            bestType = unit->type; /* needed to match: not type */
         }
     }
     if (bestX == -1) {
