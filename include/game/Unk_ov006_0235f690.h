@@ -3,6 +3,12 @@
 
 #include "types.h"
 
+/* One 12-byte slot; bit 0 of flags is tested by func_ov006_023547bc. */
+typedef struct Ov006Slot {
+    s16 flags;
+    u8 pad_02[10];
+} Ov006Slot;
+
 /* Overlay 6 state reached through data_ov006_0236d640. */
 typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
@@ -22,11 +28,15 @@ typedef struct Unk_ov006_0235f690 {
     s8 unk_27;
     s8 unk_28;
     s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
-    u8 pad_2a[0x2c - 0x2a];
+    s8 unk_2a;
+    u8 pad_2b;
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
-    u8 pad_39[0xd8 - 0x39];
+    u8 pad_39[0x80 - 0x39];
+    Ov006Slot unk_80[7];               /* an 8th slot starts at 0xd4 */
+    s16 unk_d4;                        /* flags of that 8th slot */
+    u8 pad_d6[0xd8 - 0xd6];
     u8 unk_d8[0xeb - 0xd8];            /* passed to Ov006_HasNonSpace */
     u8 unk_eb;                         /* its address is passed to func_020d7b04 */
 } Unk_ov006_0235f690;
