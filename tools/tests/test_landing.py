@@ -179,6 +179,52 @@ class HeaderUnionTest(RepoCase):
         self.assertIn("#define FLAG_B is `2` on mainline and `8` in the commit", r.stderr)
 
 
+RELOCS = "config/AWRE/arm9/relocs.txt"
+SYMBOLS = "config/AWRE/arm9/symbols.txt"
+
+
+def reloc(at: int, to: int) -> str:
+    return f"from:0x{at:08x} kind:arm_call to:0x{to:08x} module:main\n"
+
+
+def symbol(name: str, at: int) -> str:
+    return f"{name} kind:function(arm,size=0x4) addr:0x{at:08x}\n"
+
+
+class ConfigReplayTest(RepoCase):
+    def test_relocs_removed_and_changed(self):
+        """Issue 0025: lines a commit removed from relocs.txt were not replayed."""
+        base = reloc(0x2000800, 0x2000a00) + reloc(0x2000804, 0x2000a04) + reloc(0x2000808, 0x2000a08)
+        r = self.repo.replay(
+            base={RELOCS: base},
+            ours={RELOCS: base + reloc(0x200080c, 0x2000a0c)},
+            theirs={RELOCS: reloc(0x2000800, 0x2000a00) + reloc(0x2000808, 0x2000b08)})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read(RELOCS),
+                         reloc(0x2000800, 0x2000a00) + reloc(0x2000808, 0x2000b08) + reloc(0x200080c, 0x2000a0c))
+
+    def test_relocs_clash(self):
+        base = reloc(0x2000800, 0x2000a00)
+        r = self.repo.replay(
+            base={RELOCS: base},
+            ours={RELOCS: reloc(0x2000800, 0x2000c00)},
+            theirs={RELOCS: reloc(0x2000800, 0x2000b00)})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("this branch has `from:0x02000800", r.stderr)
+
+    def test_symbols_removed_renamed_added(self):
+        base = symbol("Entry", 0x2000800) + symbol("func_02000900", 0x2000900) + symbol("func_02000a00", 0x2000a00)
+        r = self.repo.replay(
+            base={SYMBOLS: base},
+            ours={SYMBOLS: base + symbol("func_02000b00", 0x2000b00)},
+            theirs={SYMBOLS: symbol("Entry", 0x2000800) + symbol("Unit_Move", 0x2000a00)
+                    + symbol("func_02000c00", 0x2000c00)})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read(SYMBOLS),
+                         symbol("Entry", 0x2000800) + symbol("Unit_Move", 0x2000a00)
+                         + symbol("func_02000b00", 0x2000b00) + symbol("func_02000c00", 0x2000c00))
+
+
 sys.path.insert(0, str(TOOLS))
 
 if __name__ == "__main__":

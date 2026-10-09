@@ -8,10 +8,14 @@ cherry-pick conflicts whenever two agents edit neighbouring lines of
 delinks.txt or symbols.txt, so this replays config changes by meaning:
 
 - delinks.txt: file entries the commit added (or marked complete) are added
-  here, sorted by address.
+  here, sorted by address; entries it removed are removed, and a change
+  to the section list at the top is taken.
 - symbols.txt: symbols the commit renamed are renamed here, matched by
   address, and the new names replace the old ones in src/ and include/.
-- relocs.txt: lines the commit added are added here.
+  Other symbols the commit added, removed or changed are replayed by name.
+- relocs.txt: relocations the commit added, removed or changed are
+  replayed, matched by their from: address. An entry this branch has with
+  other content is a conflict.
 - PROGRESS.md: skipped; the pre-commit hook writes it again here.
 - Other files: written if this branch still has the parent's version,
   otherwise merged with `git merge-file`. A conflict in a header under
@@ -66,9 +70,14 @@ def delinks_blocks(text: str):
 
 
 def apply_delinks(path: str, old: str, new: str) -> None:
-    _, old_blocks = delinks_blocks(old)
-    _, new_blocks = delinks_blocks(new)
+    old_head, old_blocks = delinks_blocks(old)
+    new_head, new_blocks = delinks_blocks(new)
     head, cur_blocks = delinks_blocks((ROOT / path).read_text())
+    if new_head != old_head:
+        if head == old_head:
+            head = new_head
+        elif head != new_head:
+            CONFLICTS.append(f"{path} (the commit and this branch both changed the section list at the top)")
     for key, block in new_blocks.items():
         if old_blocks.get(key) != block:
             cur_blocks[key] = block
@@ -103,23 +112,48 @@ def apply_symbols(path: str, old: str, new: str) -> list[tuple[str, str]]:
                 break
         else:
             sys.exit(f"error: {path} has no symbol {old_name} to rename to {new_name}")
-    added = [ln for ln in new.splitlines() if ln not in set(old.splitlines())
-             and not any(ln.startswith(n + " ") for _, n in renames)]
-    existing = set(lines)
-    lines += [ln for ln in added if ln not in existing]
     (ROOT / path).write_text("\n".join(lines) + "\n")
+    renamed = {n for n, _ in renames} | {n for _, n in renames}
+    replay_lines(path, old, new, lambda ln: ln.split(" ", 1)[0], skip=renamed)
     return renames
 
 
+RELOC_FROM = re.compile(r"\bfrom:(0x[0-9a-f]+)")
+
+
+def reloc_key(line: str) -> str:
+    m = RELOC_FROM.search(line)
+    return m.group(1) if m else line
+
+
 def apply_relocs(path: str, old: str, new: str) -> None:
-    old_set = set(old.splitlines())
-    removed = old_set - set(new.splitlines())
-    if removed:
-        sys.exit(f"error: commit removes lines from {path}; replay it by hand")
+    replay_lines(path, old, new, reloc_key)
+
+
+def replay_lines(path: str, old: str, new: str, key, skip: set[str] = frozenset()) -> None:
+    """Replay the lines the commit removed, added or changed in a config
+    file of one entry per line. key(line) names the entry (a symbol's name,
+    a relocation's from: address); a changed entry is replaced where it
+    stands. Lines whose key is in skip were handled already (renames)."""
+    old_lines, new_lines = old.splitlines(), new.splitlines()
+    removed = {ln for ln in set(old_lines) - set(new_lines) if key(ln) not in skip}
+    added = {key(ln): ln for ln in new_lines if ln not in set(old_lines) and key(ln) not in skip}
     cur = (ROOT / path).read_text().splitlines()
-    have = set(cur)
-    cur += [ln for ln in new.splitlines() if ln not in old_set and ln not in have]
-    (ROOT / path).write_text("\n".join(cur) + "\n")
+    for ln in sorted(removed - set(cur)):
+        print(f"{path}: `{ln}` is already gone here")
+    out = []
+    for ln in cur:
+        if ln not in removed:
+            out.append(ln)
+        elif key(ln) in added:
+            out.append(added.pop(key(ln)))
+    have = {key(ln): ln for ln in out}
+    for k, ln in added.items():
+        if k not in have:
+            out.append(ln)
+        elif have[k] != ln:
+            CONFLICTS.append(f"{path} (the commit has `{ln}`, this branch has `{have[k]}`)")
+    (ROOT / path).write_text("\n".join(out) + "\n")
 
 
 def merge_file(path: str, base: str | None, theirs: str | None, renames: dict[str, str]) -> None:
