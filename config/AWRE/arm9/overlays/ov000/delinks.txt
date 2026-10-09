@@ -32,6 +32,10 @@ src/game/ov000/func_ov000_022add0c.c:
     complete
     .text       start:0x022add0c end:0x022add10
 
+src/game/ov000/func_ov000_022add3c.c:
+    complete
+    .text       start:0x022add3c end:0x022add48
+
 src/game/ov000/func_ov000_022ae47c.c:
     complete
     .text       start:0x022ae47c end:0x022ae488
@@ -51,6 +55,10 @@ src/game/ov000/text/text_get.c:
 src/game/ov000/func_ov000_022b04ec.c:
     complete
     .text       start:0x022b04ec end:0x022b0500
+
+src/game/ov000/func_ov000_022b0500.c:
+    complete
+    .text       start:0x022b0500 end:0x022b052c
 
 src/game/ov000/func_ov000_022b20fc.c:
     complete

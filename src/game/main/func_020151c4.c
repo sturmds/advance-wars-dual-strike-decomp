@@ -1,0 +1,20 @@
+#include "types.h"
+#include "game/Unk_02088d04.h"
+
+extern Unk_027c0280 *data_027c0280;
+extern u8 data_022900b8;
+extern u8 data_021583b4[];
+void TextPrinter_Init(void *printer, int x, int y, u8 *tiles, u16 *map, const void *text, u16 unk_30, u16 unk_32);
+void func_02015da8(void *printer);
+s8 ScriptSlot_Start(const void *descriptor, int arg);
+
+void func_020151c4(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
+{
+    Unk_027c0280 *gfx = data_027c0280;
+    void *printer = gfx->textPrinter;
+
+    data_022900b8 = 0;
+    TextPrinter_Init(printer, x, y, gfx->bgVram + (gfx->bgCnt[gfx->layer0Bg].charBase << 14), map, text, unk_30, unk_32);
+    func_02015da8(printer);
+    ScriptSlot_Start(data_021583b4, 0);
+}
