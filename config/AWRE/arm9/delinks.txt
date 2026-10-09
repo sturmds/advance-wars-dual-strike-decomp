@@ -3522,7 +3522,8 @@ src/game/main/menus/vs_setup_set_controller.c:
     complete
     .text       start:0x02067d7c end:0x02067df0
 
-src/game/main/menus/func_020682f8.c:
+src/game/main/menus/vs_setup_add_map_and_co_buttons.c:
+    complete
     .text       start:0x020682f8 end:0x020685a0
 
 src/game/main/menus/vs_setup_handle_keys.c:
