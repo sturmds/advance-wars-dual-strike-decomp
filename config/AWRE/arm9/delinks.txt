@@ -76,6 +76,10 @@ src/game/main/mem/mem_free.c:
     complete
     .text       start:0x0200bf24 end:0x0200bf40
 
+src/game/main/unlocks/gba_cart_is_game.c:
+    complete
+    .text       start:0x0200c348 end:0x0200c38c
+
 src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0
