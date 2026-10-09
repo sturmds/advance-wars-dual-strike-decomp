@@ -5,7 +5,7 @@
 
 void func_02040568(void);
 void func_0204062c(void);
-void func_0204069c(void);
+void ForceRankScreen_PrevSet(void);
 void ForceRankScreen_Close(void);
 
 #define CURSOR_COLUMN(cursor) ((cursor) >> 3)
@@ -14,7 +14,7 @@ void ForceRankScreen_Close(void);
 /* onKeys of the Force Rank selection buttons. Up and down wrap within the
  * column; left and right skip empty columns (left wraps from column 1 to
  * the last one) and keep the row when the new column has it. L and R call
- * func_0204069c and func_0204062c, X calls func_02040568. */
+ * ForceRankScreen_PrevSet and func_0204062c, X calls func_02040568. */
 void ForceRankScreen_HandleKeys(MenuButton *button)
 {
     int cursor;
@@ -77,7 +77,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
         button = MenuButton_Select(cursor);
     }
     if (gKeypad->pressed & PAD_BUTTON_L) {
-        func_0204069c();
+        ForceRankScreen_PrevSet();
     }
     if (gKeypad->pressed & PAD_BUTTON_R) {
         func_0204062c();
