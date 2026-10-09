@@ -324,6 +324,10 @@ src/game/main/menus/menu_button_enable_touch.c:
     complete
     .text       start:0x02025cf4 end:0x02025d1c
 
+src/game/main/menus/func_02025d1c.c:
+    complete
+    .text       start:0x02025d1c end:0x02025d44
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868

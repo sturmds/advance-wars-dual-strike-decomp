@@ -90,19 +90,6 @@ typedef struct MenuButtonTemplate {
     void (*onSlideOutDone)(MenuButton *button);
 } MenuButtonTemplate;
 
-/* The menu cursor, reached through data_02158f38: the selected button and
- * the four corner sprites drawn around it. */
-typedef struct MenuCursor {
-    u32 tile;                          /* OAM character name of the corner sprites */
-    u32 palette;
-    u8 selectedId;                     /* set together with selected by func_0202621c */
-    u8 pad_09[0x0c - 0x09];
-    MenuButton *selected;
-    s16 corners[4][2];                 /* x, y of each corner sprite */
-    u8 screen;                         /* 0 when the buttons were made on data_027c0288.unk_00, else 1 */
-} MenuCursor;
-
-extern MenuCursor *data_02158f38;
 
 MenuButton *MenuButton_Find(int id);           /* active button with this id, or NULL */
 MenuButton *MenuButton_Select(int id);
@@ -127,5 +114,30 @@ void MenuButtons_RemoveAll(void);
 void MenuButton_Remove(int id);
 void MenuButton_Deactivate(MenuButton *button);
 void MenuButton_EnableTouch(int id);
+
+/* The menu cursor: four corner sprites that frame the selected button,
+ * reached through data_02158f38. */
+typedef struct MenuCursor {
+    u32 tile;                          /* sprite tile of the first corner; each next corner is 2 tiles on */
+    u32 palette;                       /* sprite palette */
+    u8 selectedId;                     /* id of the selected button */
+    u8 pad_09[3];
+    MenuButton *selected;
+    s16 corners[4][2];                 /* x, y of the top left, top right, bottom left and bottom right corner */
+    u8 screen;                         /* screen the menu draws on, index into data_027c0288 */
+} MenuCursor;
+
+extern MenuCursor *data_02158f38;
+
+u8 Menu_GetSelectedId(void);
+void MenuCursor_DrawAt(int x, int y, int width, int height);
+MenuButton *MenuCursor_SetSelected(MenuButton *button, int id);
+MenuButton *MenuCursor_SelectButton(MenuButton *button);
+s16 MenuCursor_GetCenterY(void);
+void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
+BOOL MenuCursor_HasSelection(void);
+void Menu_Reset(void);
+u8 MenuButton_GetTouchState(MenuButton *button);
+void MenuButton_SetTouchState(MenuButton *button, int state);
 
 #endif
