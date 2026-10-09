@@ -46,7 +46,7 @@ void UpdatePlayerSkills(int player)
         }
     }
 
-    if (data_027c027c->unk_48[data_027c0284]->unk_88 != 0) {
+    if (data_027c027c->unk_48[data_027c0284]->secondMapId != 0) {
         Unk_027c0280 *saved0280 = data_027c0280;
         Unk_02080440 *saved027c;
         u32 otherUnk30;

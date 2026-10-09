@@ -2,7 +2,7 @@ name,module,address,source
 CounterFirst,main,0x020c31ec,rh890:code/skills/Original_Skills/Counter_First.asm:3
 DoubleTerrainStars,main,0x020c3a50,rh890:code/skills/Original_Skills/Double_Terrain_Stars.asm:3
 DamageToFunds,main,0x020c86cc,rh890:code/skills/Original_Skills/Damage_To_Funds.asm:3
-CheckUnitType,main,0x020df7ac,rh890:code/common/Check_Unit_Type.asm:3
+GetUnitCombatClass,main,0x020df7ac,rh890:code/common/Check_Unit_Type.asm:3
 VisionIncrease,main,0x020df7f8,rh890:code/skills/Original_Skills/Vision_Increase.asm:3
 IncreaseFunds,main,0x020e0158,rh890:code/skills/Original_Skills/Increase_Funds.asm:3
 HachiFlash,main,0x020e1c6c,rh890:include/definitions_CO.asm:125

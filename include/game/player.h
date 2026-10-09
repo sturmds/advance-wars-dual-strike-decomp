@@ -38,8 +38,8 @@ typedef struct PlayerCo {
 #define PLAYER_CONTROLLER_HUMAN 1
 #define PLAYER_CONTROLLER_AI    2
 
-/* One of the four players, 0x98 bytes, in the array at
- * Unk_02080440_48.players. Layout from romhacking.net doc 890 (RadioTails);
+/* One player slot, 0x98 bytes, in the array at Unk_02080440_48.players:
+ * 5 slots, slot 0 neutral, then players 1-4. Layout from romhacking.net doc 890 (RadioTails);
  * fields named here have been seen in code, unk_ fields carry the
  * document's reading as a comment. */
 typedef struct Player {
@@ -63,10 +63,10 @@ typedef struct Player {
     s8 terrainDefense;                 /* added to terrain defense; enemy Sonja-style star cuts make it negative */
     u8 moveChart;                      /* enum MoveChart: index into CoPowerBlock.movementCost */
     u8 team;
-    u8 unk_2d;
+    u8 armyStyle;
     u8 unk_2e;                         /* AI behaviour */
-    u8 unk_2f;                         /* ORed with MapHeader +0x92 + 2 * slot at map start */
-    u8 unk_30;                         /* ORed with MapHeader +0x93 + 2 * slot */
+    u8 unk_2f;                         /* ORed with MapHeader.slotFlags[slot].unk_0 at map start */
+    u8 unk_30;                         /* ORed with MapHeader.slotFlags[slot].unk_1 */
     u8 pad_31[0x6c - 0x31];
     union {
         u32 frontCo;                   /* CO id and power state, see PLAYER_ macros */

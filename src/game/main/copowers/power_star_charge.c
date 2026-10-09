@@ -2,7 +2,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-s32 func_02002fa4(s32 numerator, s32 denominator);
+s32 HwDiv32(s32 numerator, s32 denominator);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,5 +22,5 @@ int PowerStarCharge(int player, int slot)
         percent += uses * 20;
     }
 
-    return func_02002fa4(percent * 50, 100);
+    return HwDiv32(percent * 50, 100);
 }

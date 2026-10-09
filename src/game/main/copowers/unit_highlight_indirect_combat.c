@@ -4,7 +4,7 @@
 
 /* Returns UNIT_CLASS_DIRECT_COMBAT, UNIT_CLASS_INDIRECT_COMBAT,
  * UNIT_CLASS_TRANSPORT or UNIT_CLASS_EXPLODES. */
-int CheckUnitType(int unitType);
+int GetUnitCombatClass(int unitType);
 
 /* CoPowerBlock.affectsUnit filter: indirect-attack units that are not
  * inside a transport. */
@@ -12,5 +12,5 @@ BOOL UnitHighlightIndirectCombat(MapUnit *unit) {
     if (unit->flags & MAP_UNIT_CARRIED) {
         return FALSE;
     }
-    return CheckUnitType(unit->type) == UNIT_CLASS_INDIRECT_COMBAT;
+    return GetUnitCombatClass(unit->type) == UNIT_CLASS_INDIRECT_COMBAT;
 }

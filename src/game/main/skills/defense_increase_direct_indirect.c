@@ -3,7 +3,7 @@
 #include "game/co_data.h"
 #include "game/skills.h"
 
-int CheckUnitType(int unitType);
+int GetUnitCombatClass(int unitType);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -20,7 +20,7 @@ int DefenseIncreaseDirectIndirect(int player, int defenderType, int attackerType
 {
     int bonus = 0;
 
-    switch (CheckUnitType(attackerType)) {
+    switch (GetUnitCombatClass(attackerType)) {
     case UNIT_CLASS_DIRECT_COMBAT:
         if (CheckSkillsEquipped(FRONT_CO_SKILLS(player), SKILL_RANK_SLAM_GUARD)) {
             bonus += 8;

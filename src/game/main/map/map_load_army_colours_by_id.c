@@ -18,7 +18,7 @@ void Map_LoadArmyColoursById(u32 mapId)
         }
     } else {
         for (slot = 0; slot < ARMY_SLOT_COUNT; slot++) {
-            gArmyColours[slot] = (&Ov000_gMapHeaders[mapId].unk_88)[slot];
+            gArmyColours[slot] = Ov000_gMapHeaders[mapId].army[slot];
         }
     }
 }

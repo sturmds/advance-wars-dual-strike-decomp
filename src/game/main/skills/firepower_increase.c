@@ -3,7 +3,7 @@
 #include "game/co_data.h"
 #include "game/skills.h"
 
-int CheckUnitType(int unitType);
+int GetUnitCombatClass(int unitType);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -25,7 +25,7 @@ int FirepowerIncrease(int player, int slot, int unitType)
         bonus += 8;
     }
 
-    switch (CheckUnitType(unitType)) {
+    switch (GetUnitCombatClass(unitType)) {
     case UNIT_CLASS_DIRECT_COMBAT:
         if (CheckSkillsEquipped(CO_SKILLS(player, slot), SKILL_RANK_BRUISER)) {
             bonus += 5;

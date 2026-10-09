@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020e1948(int co, int partner);
+int Co_GetTagStars(int co, int partner);
 
 /* Tag stars (0-3) of a player's front and back CO pair; 0 without a back
  * CO. */
@@ -15,6 +15,6 @@ int Player_GetTagStars(int playerIndex)
     if ((data_027c027c->unk_48[data_027c0284]->players[playerIndex].back.id ? TRUE : FALSE) == FALSE) {
         return 0;
     }
-    return func_020e1948(data_027c027c->unk_48[data_027c0284]->players[playerIndex].front.id & PLAYER_CO_ID_MASK,
+    return Co_GetTagStars(data_027c027c->unk_48[data_027c0284]->players[playerIndex].front.id & PLAYER_CO_ID_MASK,
                          data_027c027c->unk_48[data_027c0284]->players[playerIndex].back.id & PLAYER_CO_ID_MASK);
 }

@@ -3,8 +3,8 @@
 
 /* Task system: the second argument is a priority when below 8, else the
  * parent task. */
-void *func_02023a0c(const void *desc, void *parent);
-void *func_02023a58(const void *desc, void *parent);
+void *Task_CreateChild(const void *desc, void *parent);
+void *Task_Create(const void *desc, void *parent);
 
 extern u8 gPowerDamageTaskDesc[];
 
@@ -12,7 +12,7 @@ void StartPowerDamage(const void *effectDesc, const char *effectA, const char *e
                       int player, int damage, int heal, int weather, BOOL halveFuel,
                       PowerDamageFilter filter, void *parent)
 {
-    PowerDamageTask *task = func_02023a0c(gPowerDamageTaskDesc, parent);
+    PowerDamageTask *task = Task_CreateChild(gPowerDamageTaskDesc, parent);
     PowerEffectTask *effect;
 
     task->player = player;
@@ -21,7 +21,7 @@ void StartPowerDamage(const void *effectDesc, const char *effectA, const char *e
     task->weather = weather;
     task->halveFuel = halveFuel;
     task->filter = filter;
-    effect = func_02023a58(effectDesc, task);
+    effect = Task_Create(effectDesc, task);
     effect->effectA = effectA;
     effect->effectB = effectB;
 }

@@ -15,7 +15,6 @@ void Map_LoadArmyColours(void)
     u8 *dst = gArmyColours;
 
     for (slot = 0; slot < ARMY_SLOT_COUNT; slot++) {
-        /* unk_88 starts the 5-slot list; army[] covers slots 1-4 */
-        *dst++ = (&Ov000_gMapHeaders[game->unk_48[index]->unk_1c4->mapId].unk_88)[slot];
+        *dst++ = Ov000_gMapHeaders[game->unk_48[index]->unk_1c4->mapId].army[slot];
     }
 }

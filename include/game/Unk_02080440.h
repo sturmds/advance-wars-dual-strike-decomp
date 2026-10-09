@@ -30,7 +30,7 @@ typedef struct Unk_02080440_1c4 {
     u16 mapId;                         /* index into Ov000_gMapHeaders */
     u8 pad_36[0x38 - 0x36];
     u8 fog;                            /* 1: Fog of War */
-    u8 tileset;                        /* from MapHeader.unk_1a */
+    u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
 } Unk_02080440_1c4;
 
@@ -51,10 +51,10 @@ typedef struct Unk_02080440_48 {
     s16 unk_42;
     s16 unk_44;
     u8 pad_46[0x58 - 0x46];
-    u8 unk_58;
+    u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */
     u8 unk_59;
     u8 pad_5a[0x5d - 0x5a];
-    u8 unk_5d;                         /* 0: no CO luck (good luck 10, bad luck 0) */
+    u8 coEffectsOn;                    /* name is a guess; 0: no CO luck (good luck 10, bad luck 0) */
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
     u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
     u8 pad_60[0x78 - 0x60];
@@ -65,15 +65,15 @@ typedef struct Unk_02080440_48 {
     u8 pad_82[0x86 - 0x82];
     u8 unk_86;
     u8 pad_87[0x88 - 0x87];
-    u16 unk_88;
+    u16 secondMapId;                   /* second map of a two-map battle, from MapHeader.variantMapIds[0]; 0: none */
     u8 unk_8a;
     u8 pad_8b[0x8d - 0x8b];
-    u8 army[5];                        /* army colour per player number 1-4, copied from the map header */
-    u8 unk_92[5];                      /* indexed 1 to 4, one per player?: 1 or 2 */
-    u8 playerCos[5][2];                /* front and back CO id per player, 1-based (index 0 unused); 0: none */
-    u8 team[5];                        /* team per player number 1-4, copied from the map header */
+    u8 army[5];                        /* army colour per slot, copied from the map header */
+    u8 unk_92[5];                      /* per slot: 1 or 2 */
+    u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */
+    u8 team[5];                        /* team per slot, copied from the map header */
     u8 pad_a6[0xba - 0xa6];
-    u8 unk_ba;                         /* 1 turns off Scout and Eagle Eye, see func_020e8ae4 */
+    u8 visionRanksOff;                 /* name is a guess; 1 turns off Scout and Eagle Eye, see func_020e8ae4 */
     u8 pad_bb[0x170 - 0xbb];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
     u8 pad_17c[0x1c4 - 0x17c];
@@ -83,7 +83,7 @@ typedef struct Unk_02080440_48 {
     u8 pad_43d4[0x575c - 0x43d4];
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     u8 pad_5760[0x5a58 - 0x5760];
-    Player *players;                   /* 4 players */
+    Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
 } Unk_02080440_48;
 
 /* Pointed to by data_027c027c (DTCM). */

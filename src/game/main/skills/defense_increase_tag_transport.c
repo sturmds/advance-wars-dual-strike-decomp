@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int CheckUnitType(int unitType);
+int GetUnitCombatClass(int unitType);
 
 /* Defense bonus from skills for one CO (slot 0 front, 1 back) of a player:
  * +10 with a Bodyguard tag partner, +10 more for transports with APC Guard. */
@@ -19,7 +19,7 @@ int DefenseIncreaseTagTransport(int player, int slot, int unitType)
                             SKILL_PARTNER_BODYGUARD)) {
         defense += 10;
     }
-    if (CheckUnitType(unitType) == UNIT_CLASS_TRANSPORT
+    if (GetUnitCombatClass(unitType) == UNIT_CLASS_TRANSPORT
         && CheckSkillsEquipped(data_027c027c->unk_48[data_027c0284]->players[player].skills[slot],
                                SKILL_RANK_APC_GUARD)) {
         defense += 10;

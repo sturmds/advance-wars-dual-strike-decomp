@@ -23,12 +23,12 @@ extern MapHeader Ov000_gMapHeaders[];
 
 /* Applies the current map's header to the rules: fog, weather, tileset,
  * the tag partner flags and the per-player bytes unk_92, each by game
- * mode (unk_58). data_027c0288 holds two states; modes 0 and 1 switch to
+ * mode (gameMode). data_027c0288 holds two states; modes 0 and 1 switch to
  * one of them to write there, then switch back. */
 void SetupMapRules(void)
 {
     func_020e8c3c();
-    switch (STATE->unk_58) {
+    switch (STATE->gameMode) {
     case 0: {
         Unk_027c0280 *saved0280 = data_027c0280;
         Unk_02080440 *saved027c;
@@ -62,7 +62,7 @@ void SetupMapRules(void)
         STATE->unk_92[2] = 2;
         STATE->unk_92[3] = 2;
         STATE->unk_92[4] = 2;
-        if (Ov000_gMapHeaders[MAP_ID].unk_10 != 0) {
+        if (Ov000_gMapHeaders[MAP_ID].variantMapIds[0] != 0) {
             Unk_027c0280 *saved0280;
             Unk_02080440 *saved027c;
 
@@ -124,6 +124,6 @@ void SetupMapRules(void)
         STATE->partnerBoostAi = 1;
         break;
     }
-    SetMapWeather(Ov000_gMapHeaders[MAP_ID].unk_1b);
-    STATE->unk_1c4->tileset = Ov000_gMapHeaders[MAP_ID].unk_1a;
+    SetMapWeather(Ov000_gMapHeaders[MAP_ID].weather);
+    STATE->unk_1c4->tileset = Ov000_gMapHeaders[MAP_ID].tileset;
 }

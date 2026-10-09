@@ -9,12 +9,12 @@ int LuckDamage(int playerIndex, int coSlot);
 int Player_GetTagStars(int playerIndex);
 
 /* Good luck roll maximum of a player: 5 per tag star, skills, and the
- * front CO's value for its current power state. 10 when unk_5d is clear. */
+ * front CO's value for its current power state. 10 when coEffectsOn is clear. */
 int Player_GetGoodLuck(int playerIndex)
 {
     int luck = 0;
 
-    if (data_027c027c->unk_48[data_027c0284]->unk_5d == 0) {
+    if (data_027c027c->unk_48[data_027c0284]->coEffectsOn == 0) {
         return 10;
     }
     luck += Player_GetTagStars(playerIndex) * 5;

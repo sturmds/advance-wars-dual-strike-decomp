@@ -15,5 +15,5 @@ void *func_0201ab18(const void *script);
 void Map_StartHintScript(void)
 {
     func_0201e954();
-    func_0201ab18(Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].unk_08);
+    func_0201ab18(Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].hintScript);
 }

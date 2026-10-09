@@ -4,13 +4,13 @@
 #include "game/Unk_02080440.h"
 
 int SuperPowerCost(int player, int slot);
-int func_020e2be8(int player, int slot);
+int CoPowerCost(int player, int slot);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Takes the cost of a power (enum CoPowerState) from the player's front
- * CO meter, stopping at 0. func_020e2be8 gives the CO Power cost. */
+ * CO meter, stopping at 0. CoPowerCost gives the CO Power cost. */
 void SpendPowerCharge(int player, int power)
 {
     int cost;
@@ -20,7 +20,7 @@ void SpendPowerCharge(int player, int power)
     switch (power) {
     case POWER_CO:
     default:
-        cost = func_020e2be8(player, 0);
+        cost = CoPowerCost(player, 0);
         break;
     case POWER_SUPER:
         cost = SuperPowerCost(player, 0);

@@ -13,7 +13,7 @@ extern MapHeader Ov000_gMapHeaders[];
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Mode 1 only. Gives player 1 a back (tag) CO, Jake if he is free, when
- * the map header's unk_10 is set or unk_59 is 2 or 3; takes it away when
+ * the map header's variantMapIds[0] is set or unk_59 is 2 or 3; takes it away when
  * unk_59 is 0 or 1. A back CO already set is kept. */
 void SetPlayer1TagPartner(void)
 {
@@ -21,10 +21,10 @@ void SetPlayer1TagPartner(void)
      * the other accesses use this copy. */
     Unk_02080440_48 *state = STATE;
 
-    if (state->unk_58 != 1) {
+    if (state->gameMode != 1) {
         return;
     }
-    if (Ov000_gMapHeaders[state->unk_1c4->mapId].unk_10 != 0) {
+    if (Ov000_gMapHeaders[state->unk_1c4->mapId].variantMapIds[0] != 0) {
         if ((state->playerCos[1][1] & PLAYER_CO_ID_MASK) == CO_NONE) {
             STATE->playerCos[1][1] = PickFreeCo(CO_JAKE) & PLAYER_CO_ID_MASK;
         }

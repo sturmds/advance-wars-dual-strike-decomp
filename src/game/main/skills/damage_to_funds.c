@@ -3,8 +3,8 @@
 #include "game/map_unit.h"
 #include "game/skills.h"
 
-s32 func_02002fa4(s32 numerator, s32 denominator);
-int func_020e0314(int playerIndex, int unitType); /* unit cost / 10, probably after the CO's cost change */
+s32 HwDiv32(s32 numerator, s32 denominator);
+int Unit_GetValuePerHp(int playerIndex, int unitType); /* unit cost / 10, probably after the CO's cost change */
 void Player_AddFunds(int playerIndex, int amount);
 
 extern Unk_02080440 *data_027c027c;
@@ -29,9 +29,9 @@ void DamageToFunds(MapUnit *attacker, MapUnit *target, int hpLost)
 
     if (CheckSkillsEquipped(FRONT_CO_SKILLS(attackerOwner), SKILL_RANK_COMBAT_PAY)) {
         /* needed to match: the original narrows the player index here */
-        Player_AddFunds((u16)attackerOwner, func_02002fa4(func_020e0314(targetOwner, target->type) * hpLost * 2, 100));
+        Player_AddFunds((u16)attackerOwner, HwDiv32(Unit_GetValuePerHp(targetOwner, target->type) * hpLost * 2, 100));
     }
     if (CheckSkillsEquipped(FRONT_CO_SKILLS(attackerOwner), SKILL_DAMAGE_TO_FUNDS)) {
-        Player_AddFunds((u16)attackerOwner, func_02002fa4(func_020e0314(targetOwner, target->type) * hpLost * 50, 100));
+        Player_AddFunds((u16)attackerOwner, HwDiv32(Unit_GetValuePerHp(targetOwner, target->type) * hpLost * 50, 100));
     }
 }

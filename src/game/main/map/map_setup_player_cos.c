@@ -22,7 +22,7 @@ u8 Unlock_IsSet(int coId);
 void SetPlayer1TagPartner(void);
 
 /* Fills the front and back CO of players 1-4 for the map being started.
- * unk_58 picks the source (meaning of its values unknown): the map
+ * gameMode picks the source (meaning of its values unknown): the map
  * header (cases 1 and 3; case 0 also lets the first players pick), or
  * the CO selection buffer from GetCoPicksForMode, falling back to
  * data_02167d30 when the chosen CO is not unlocked. */
@@ -36,7 +36,7 @@ void Map_SetupPlayerCos(void)
     int clearPlayer;
     int clearSlot;
 
-    cos = GetCoPicksForMode(STATE->unk_58);
+    cos = GetCoPicksForMode(STATE->gameMode);
     SetupCoSelection();
 
     for (clearPlayer = 1; clearPlayer < 5; clearPlayer++) {
@@ -47,7 +47,7 @@ void Map_SetupPlayerCos(void)
 
     for (player = 1; player < 5; player++) {
         for (slot = 0; slot < 2; slot++) {
-            switch (STATE->unk_58) {
+            switch (STATE->gameMode) {
             case 0:
                 if (func_021039e4() == 1 && player - 1 < func_020c3d08(STATE->unk_1c4->mapId)) {
                     STATE->playerCos[player][slot] = PickFreeCo(cos[player][slot]);
@@ -56,8 +56,6 @@ void Map_SetupPlayerCos(void)
                 /* fall through */
             case 1:
             case 3:
-                /* players are 1-based here, so co[4] runs past the
-                 * declared co[4][2]; the header needs co[5][2] */
                 co = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[player][slot];
                 if (co != MAP_CO_NONE) {
                     if (co != MAP_CO_PICKED) {

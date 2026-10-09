@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/text_ref.h"
+#include "game/predeployed_unit.h"
 
 #define MAP_CAMPAIGN_FIRST 0xe0 /* campaign mission n is map id 0xe0 + n */
 #define MAP_COUNT          0x10d /* entries in Ov000_gMapHeaders */
@@ -14,8 +15,8 @@
 #define MAP_CUSTOM_COUNT 12
 #define MAP_IS_CUSTOM(id) ((id) >= MAP_CUSTOM_FIRST && (id) < MAP_CUSTOM_FIRST + MAP_CUSTOM_COUNT)
 
-/* Two flag bytes per slot at MapHeader +0x92, ORed into Player.unk_2f and
- * unk_30 by Map_ApplySlotFlags. 0xff in unk_0: none. */
+/* Two flag bytes per player slot at MapHeader.slotFlags, ORed into
+ * Player.unk_2f and unk_30 by Map_ApplySlotFlags. 0xff in unk_0: none. */
 typedef struct MapSlotFlags {
     u8 unk_0;
     u8 unk_1;
@@ -24,21 +25,21 @@ typedef struct MapSlotFlags {
 /* One entry of the map header table (Ov000_gMapHeaders, ov000 0x022dbd28), indexed by map id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE.
  * unk_ fields have a meaning in the document that the code has not
- * confirmed yet; their comments give it. */
+ * confirmed yet; their comments give it. Arrays of 5 are indexed by player
+ * slot: 0 neutral, then players 1-4. */
 typedef struct MapHeader {
     const void *unk_00;                /* map script */
-    const void *unk_04;                /* "Terms" option script */
-    const void *unk_08;                /* "Hint" option script */
+    const void *termsScript;           /* "Terms" option script; NULL: none */
+    const void *hintScript;            /* "Hint" option script; NULL: none */
     const void *unk_0c;                /* top-screen "Terms" script */
-    u16 unk_10;                        /* map id for the top screen */
-    u8 pad_12[0x14 - 0x12];
+    u16 variantMapIds[2];              /* variant n of this map is map variantMapIds[n - 1]; [0] also links the second map of a two-map battle */
     TextRef name;
     u16 unk_18;
-    u8 unk_1a;                         /* tileset */
-    u8 unk_1b;                         /* weather */
+    u8 tileset;
+    u8 weather;
     u8 fog;                            /* 1: Fog of War */
     u8 pad_1d[0x20 - 0x1d];
-    u32 unk_20;
+    const u8 *coList;                  /* COs offered on this map, see LoadMapCoList */
     u8 playerCount;
     u8 pad_25[0x26 - 0x25];
     u16 unk_26;                        /* "map case" */
@@ -47,17 +48,18 @@ typedef struct MapHeader {
     u16 unk_34[2];                     /* indexed by func_021039e4 */
     u8 unk_38[0x08];
     u32 unk_40;
+    /* Map_LoadData reads mapData and hardMapData as a two-entry array
+     * indexed by func_021039e4. They stay separate fields: declared as
+     * mapData[2], Map_LoadData no longer matches. */
     const void *mapData;               /* LZ77: width, height, then u16 tiles */
     const void *hardMapData;
-    const u8 *units;                   /* pre-deployed units, 13-byte rows */
-    const u8 *hardUnits;
-    u8 co[4][2];                       /* front and back CO per player; 0x1c: player picks */
-    u8 unk_5c[0x2c];
-    u8 unk_88;                         /* army colour of slot 0 (neutral); army[] continues it, see Map_LoadArmyColours */
-    u8 army[4];                        /* army colour per player */
-    u8 unk_8d;
-    u8 team[4];                        /* team per player */
-    u8 unk_92[0x0a];
+    const PredeployedUnit *units;      /* pre-deployed units; NULL: none */
+    const PredeployedUnit *hardUnits;  /* read with units as a two-entry array, indexed by func_021039e4 */
+    u8 co[5][2];                       /* front and back CO per slot, row 0 unused; 0x1c: player picks */
+    u8 unk_5e[0x88 - 0x5e];
+    u8 army[5];                        /* army colour per slot */
+    u8 team[5];                        /* team per slot */
+    MapSlotFlags slotFlags[5];
     u8 tileArmy;                       /* nonzero: army style of every tile but HQs, see Map_GetTileArmy */
     u8 pad_9d[0xa0 - 0x9d];
 } MapHeader;

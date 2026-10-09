@@ -3,7 +3,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-s32 func_02002fa4(s32 numerator, s32 denominator);
+s32 HwDiv32(s32 numerator, s32 denominator);
 void func_0200b76c(int id);
 BOOL func_020c237c(u8 player);
 void func_020e2670(int priority);
@@ -25,7 +25,7 @@ void MarketCrash(int priority)
 
     func_0200b76c(0xe3);
     func_020e2670(priority);
-    percent = func_02002fa4(data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].funds, 500);
+    percent = HwDiv32(data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].funds, 500);
     if (percent > 100) {
         percent = 100;
     }
@@ -44,7 +44,7 @@ void MarketCrash(int priority)
 
                 charge = PLAYER_CO_STATUS((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot])->charge;
                 cost = SuperPowerCost(player, slot);
-                cost = func_02002fa4(cost * percent, hundred);
+                cost = HwDiv32(cost * percent, hundred);
                 if (charge < cost) {
                     charge = 0;
                 } else {

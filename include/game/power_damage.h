@@ -9,7 +9,7 @@
 typedef BOOL (*PowerDamageFilter)(const void *unit);
 
 /* Task made from gPowerDamageTaskDesc by StartPowerDamage. The first 0x2c bytes
- * belong to the task system (func_02023a58). */
+ * belong to the task system (Task_Create). */
 typedef struct PowerDamageTask {
     u8 pad_00[0x2c];
     u8 player;                         /* index of the player using the power */

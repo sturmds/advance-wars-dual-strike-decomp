@@ -20,7 +20,7 @@ int VisionIncrease(int player)
 
     /* needed to match: no local for the battle state, or the two globals
      * load in the other order */
-    if (data_027c027c->unk_48[data_027c0284]->unk_5d) {
+    if (data_027c027c->unk_48[data_027c0284]->coEffectsOn) {
         bonus += gCoTable[data_027c027c->unk_48[data_027c0284]->players[player].front.id & PLAYER_CO_ID_MASK]
                      .blocks[data_027c027c->unk_48[data_027c0284]->players[player].front.powerState]
                      .visionBonus;

@@ -6,7 +6,7 @@ extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 /* Returns the UnitClass of a unit type for the combat-based stat rows:
  * indirect, direct, the two units that explode, or transport (no attack). */
-int CheckUnitType(int unitType)
+int GetUnitCombatClass(int unitType)
 {
     u8 attackType = Ov000_gUnitStats[unitType].attackType;
 

@@ -36,9 +36,6 @@ u8 PickFreeCo(int co)
                 if (taken > CO_NONE && taken < CO_COUNT) {
                     isFree[taken] = 0;
                 }
-                /* MapHeader.co is indexed by player number 1-4 here, so
-                 * player 4 reads past co[3]: the header's CO rows start
-                 * at +0x56 for player 1. */
                 taken = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[player][slot] & PLAYER_CO_ID_MASK;
                 if (taken > CO_NONE && taken < CO_COUNT) {
                     isFree[taken] = 0;

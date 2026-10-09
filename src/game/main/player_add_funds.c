@@ -15,9 +15,9 @@ void Player_AddFunds(int playerIndex, int amount)
     Unk_02080440_48 *state = data_027c027c->unk_48[data_027c0284];
     Player *players = state->players;
 
-    /* Human players get nothing while state->unk_58 is 3 and
+    /* Human players get nothing while state->gameMode is 3 and
      * data_022a7b80.unk_07 is 1 or 4 (meaning unknown). */
-    if (players[playerIndex].controller == PLAYER_CONTROLLER_HUMAN && state->unk_58 == 3) {
+    if (players[playerIndex].controller == PLAYER_CONTROLLER_HUMAN && state->gameMode == 3) {
         if (data_022a7b80.unk_07 == 1 || data_022a7b80.unk_07 == 4) {
             return;
         }

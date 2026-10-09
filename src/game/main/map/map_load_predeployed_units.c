@@ -15,7 +15,7 @@ void Map_PlacePredeployedUnits(const PredeployedUnit *row);
 void Map_LoadPredeployedUnits(void)
 {
     int hard = 0;
-    const u8 *units;
+    const PredeployedUnit *units;
 
     if (func_021039e4()) {
         hard = 1;
@@ -23,6 +23,6 @@ void Map_LoadPredeployedUnits(void)
     /* needed to match: units and hardUnits are read as a two-entry array */
     units = (&Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].units)[hard];
     if (units != NULL) {
-        Map_PlacePredeployedUnits((const PredeployedUnit *)units);
+        Map_PlacePredeployedUnits(units);
     }
 }

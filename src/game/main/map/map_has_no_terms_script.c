@@ -10,5 +10,5 @@ extern MapHeader Ov000_gMapHeaders[];
  * No direct callers: probably a menu callback that greys out the option. */
 s8 Map_HasNoTermsScript(void)
 {
-    return Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].unk_04 == NULL;
+    return Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].termsScript == NULL;
 }

@@ -32,7 +32,7 @@ extern MapHeader Ov000_gMapHeaders[];
 #define MAP_RING_OF_FIRE      (MAP_CAMPAIGN_FIRST + 21)
 
 /* data_027c0288 holds two game states, one per map. A battle with a second
- * map (header unk_10 nonzero) uses both; data_027c0284 picks the current one.
+ * map (header variantMapIds[0] nonzero) uses both; data_027c0284 picks the current one.
  * func_0200acac and func_0200ac9c load a state into data_027c0280 and
  * data_027c027c. */
 #define MAIN_MAP   (data_027c0288.unk_00)
@@ -50,7 +50,7 @@ extern MapHeader Ov000_gMapHeaders[];
     func_0200acac(saved0280)
 
 /* Sets up a battle's maps: clears unk_30 in both game states, takes the
- * second map's id from the current map's header (unk_10, 0 for none),
+ * second map's id from the current map's header (variantMapIds[0], 0 for none),
  * and copies armies, teams and fog from each map's header. */
 void Map_InitBattle(void)
 {
@@ -62,7 +62,7 @@ void Map_InitBattle(void)
 
     func_0201ad64();
 
-    switch (GAME->unk_58) {
+    switch (GAME->gameMode) {
     case 2:
         func_020e85d0();
         break;
@@ -86,15 +86,15 @@ void Map_InitBattle(void)
     func_020f35e0(0);
 
     game = GAME;
-    switch (game->unk_58) {
+    switch (game->gameMode) {
     case 0:
         func_020f4098();
-        GAME->unk_88 = Ov000_gMapHeaders[GAME->unk_1c4->mapId].unk_10;
+        GAME->secondMapId = Ov000_gMapHeaders[GAME->unk_1c4->mapId].variantMapIds[0];
         break;
     case 1:
     case 3:
-        game->unk_88 = Ov000_gMapHeaders[game->unk_1c4->mapId].unk_10;
-        if (GAME->unk_88 != 0) {
+        game->secondMapId = Ov000_gMapHeaders[game->unk_1c4->mapId].variantMapIds[0];
+        if (GAME->secondMapId != 0) {
             SWITCH_TO(OTHER_MAP);
             otherUnk30 = GAME->unk_1c4->unk_30;
             SWITCH_BACK();
@@ -104,7 +104,7 @@ void Map_InitBattle(void)
         }
         break;
     case 2:
-        if (game->unk_88 != 0) {
+        if (game->secondMapId != 0) {
             SWITCH_TO(OTHER_MAP);
             otherUnk30 = GAME->unk_1c4->unk_30;
             SWITCH_BACK();
@@ -124,10 +124,10 @@ void Map_InitBattle(void)
     Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
     SWITCH_BACK();
 
-    if (GAME->unk_88 != 0) {
+    if (GAME->secondMapId != 0) {
         SWITCH_TO(SECOND_MAP);
-        /* reads unk_88 of the second state, not the one set above */
-        GAME->unk_1c4->mapId = GAME->unk_88;
+        /* reads secondMapId of the second state, not the one set above */
+        GAME->unk_1c4->mapId = GAME->secondMapId;
         Map_LoadHeaderSetup(GAME->unk_1c4->mapId);
         SWITCH_BACK();
     }
@@ -135,7 +135,7 @@ void Map_InitBattle(void)
     func_020f808c();
 
     game = GAME;
-    if (game->unk_58 == 0 && game->unk_88 != 0) {
+    if (game->gameMode == 0 && game->secondMapId != 0) {
         if (!func_020e8ae4() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
                                   GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
             SWITCH_TO(SECOND_MAP);

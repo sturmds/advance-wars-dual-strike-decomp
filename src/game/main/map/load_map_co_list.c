@@ -5,15 +5,15 @@ extern MapHeader Ov000_gMapHeaders[];
 extern u8 gDefaultCoList[];
 extern u8 data_022a7a68[];
 
-/* Copies the map's CO list (header +0x20) into data_022a7a68, or all of
+/* Copies the map's CO list (MapHeader.coList) into data_022a7a68, or all of
  * gDefaultCoList when the map has none. Campaign missions use the map list
  * to limit which COs the player can pick. */
 void LoadMapCoList(int mapId)
 {
     int i;
     int count;
-    u8 *list = gDefaultCoList;
-    u8 *mapList = (u8 *)Ov000_gMapHeaders[mapId].unk_20;
+    const u8 *list = gDefaultCoList;
+    const u8 *mapList = Ov000_gMapHeaders[mapId].coList;
 
     count = 0;
     if (mapList != NULL) {

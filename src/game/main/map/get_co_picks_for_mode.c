@@ -7,7 +7,7 @@ extern u8 gCoPicksMode1[5][2];
 extern u8 gCoPicksMode2[5][2];
 extern u8 gCoPicksMode3[5][2];
 
-/* mode: Unk_02080440_48.unk_58. */
+/* mode: Unk_02080440_48.gameMode. */
 u8 (*GetCoPicksForMode(int mode))[2]
 {
     switch (mode) {
