@@ -9232,6 +9232,10 @@ src/game/main/sound/nns_snd_heap_save_state.c:
     complete
     .text       start:0x02106b50 end:0x02106ba8
 
+src/game/main/sound/sound_heap_reset.c:
+    complete
+    .text       start:0x02106c18 end:0x02106cc4
+
 src/game/main/sound/nns_snd_heap_destroy.c:
     complete
     .text       start:0x02106cc4 end:0x02106ce0
