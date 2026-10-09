@@ -6,7 +6,7 @@ BOOL func_020c9a14(int *x, int *y, int list, int index);
 void func_020c69c0(int x, int y, int arg);
 void func_020c6b50(int x, int y, int player);
 void func_020c4018(void);
-void func_020d5684(void);
+void Power_ResetScrollAndRefresh(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -27,5 +27,5 @@ void func_020e462c(int x, int y)
         func_020c6b50(pos[0], pos[1], data_027c027c->unk_48[data_027c0284]->currentPlayer);
     } while (1);
     func_020c4018();
-    func_020d5684();
+    Power_ResetScrollAndRefresh();
 }

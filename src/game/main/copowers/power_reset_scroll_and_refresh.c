@@ -1,0 +1,22 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+
+void func_020e2dc0(u16 player);
+void MovementCost(void);
+void func_020c4018(void);
+
+extern Unk_027c0280 *data_027c0280;
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* After a power changes the map (Blizzard): resets the scroll of layer 0's BG,
+ * then runs func_020e2dc0 for the current player, MovementCost and func_020c4018. */
+void Power_ResetScrollAndRefresh(void)
+{
+    data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 0;
+    func_020e2dc0(data_027c027c->unk_48[data_027c0284]->currentPlayer);
+    MovementCost();
+    func_020c4018();
+}
