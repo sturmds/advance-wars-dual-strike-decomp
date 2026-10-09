@@ -52,8 +52,8 @@ void MovementCost(void)
                 /* Needed to match: the original reads the CO id with a byte
                  * load and the power state with shifts, as bit fields would. */
                 PLAYERS[player].terrainDefense -=
-                    gCoTable[*(u8 *)&PLAYERS[enemy].frontCo & PLAYER_CO_ID_MASK]
-                        .blocks[(PLAYERS[enemy].frontCo << 20) >> 30]
+                    gCoTable[PLAYERS[enemy].front.id & PLAYER_CO_ID_MASK]
+                        .blocks[PLAYERS[enemy].front.powerState]
                         .terrainStarCut * 10;
             }
         }

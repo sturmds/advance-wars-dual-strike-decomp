@@ -27,9 +27,9 @@ void SpendPowerCharge(int player, int power)
         break;
     }
     p = &data_027c027c->unk_48[data_027c0284]->players[player];
-    charge = PLAYER_CO_STATUS(p->frontCo)->charge - cost;
+    charge = p->front.charge - cost;
     if (charge < 0) {
         charge = 0;
     }
-    PLAYER_CO_STATUS(p->frontCo)->charge = charge;
+    p->front.charge = charge;
 }

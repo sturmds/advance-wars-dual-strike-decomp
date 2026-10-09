@@ -13,10 +13,8 @@ extern int data_027c0284;
  * Sonja's Super Power skill, or skill 0x49 while a Super Power is on. */
 BOOL CounterFirst(int player)
 {
-    /* Power state, bits 10-11 of frontCo. Needed to match: the shift pair,
-     * not PLAYER_POWER_ACTIVE's shift and mask. */
     if (CheckSkillsEquipped(PLAYER(player).skills[0], SKILL_COUNTER_FIRST)
-        || ((PLAYER(player).frontCo << 20) >> 30 == POWER_SUPER
+        || (PLAYER(player).front.powerState == POWER_SUPER
             && CheckSkillsEquipped(PLAYER(player).skills[0], SKILL_RANK_MISTWALKER))) {
         return TRUE;
     }

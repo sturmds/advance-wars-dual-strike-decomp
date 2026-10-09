@@ -32,13 +32,11 @@ void UpdatePlayerSkills(int player)
     int i;
     int slot;
 
-    /* Needed to match: the CO id is read as a byte. */
-    frontCo = *(u8 *)&PLAYER(player).frontCo & PLAYER_CO_ID_MASK;
-    backCo = *(u8 *)&PLAYER(player).backCo & PLAYER_CO_ID_MASK;
-    /* Needed to match: PLAYER_POWER_ACTIVE written as shifts. Both COs
-     * use the front CO's power state. */
-    frontSkills = GetCoPowerSkills(frontCo, PLAYER(player).frontCo << 20 >> 30);
-    backSkills = GetCoPowerSkills(backCo, PLAYER(player).frontCo << 20 >> 30);
+    frontCo = PLAYER(player).front.id & PLAYER_CO_ID_MASK;
+    backCo = PLAYER(player).back.id & PLAYER_CO_ID_MASK;
+    /* Both COs use the front CO's power state. */
+    frontSkills = GetCoPowerSkills(frontCo, PLAYER(player).front.powerState);
+    backSkills = GetCoPowerSkills(backCo, PLAYER(player).front.powerState);
 
     for (slot = 0; slot < 2; slot++) {
         for (i = 0; i < 4; i++) {

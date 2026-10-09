@@ -42,7 +42,7 @@ void MarketCrash(int priority)
             if ((&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot].id & PLAYER_CO_ID_MASK) {
                 int cost;
 
-                charge = PLAYER_CO_STATUS((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot])->charge;
+                charge = (&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot].charge;
                 cost = SuperPowerCost(player, slot);
                 cost = HwDiv32(cost * percent, hundred);
                 if (charge < cost) {
@@ -50,7 +50,7 @@ void MarketCrash(int priority)
                 } else {
                     charge -= cost;
                 }
-                PLAYER_CO_STATUS((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot])->charge = charge;
+                (&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot].charge = charge;
             }
         }
     }

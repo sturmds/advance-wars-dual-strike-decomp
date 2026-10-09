@@ -11,7 +11,7 @@ void CountPowerUse(int player)
 {
     Player *p = &data_027c027c->unk_48[data_027c0284]->players[player];
 
-    if (PLAYER_CO_STATUS(p->frontCo)->powerUses < 10) {
-        PLAYER_CO_STATUS(p->frontCo)->powerUses++;
+    if (p->front.powerUses < 10) {
+        p->front.powerUses++;
     }
 }

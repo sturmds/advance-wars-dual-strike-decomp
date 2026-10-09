@@ -28,9 +28,8 @@ BOOL DeployCity(u8 tile)
         return FALSE;
     }
     if (terrain == TERRAIN_CITY) {
-        /* Needed to match: a shift pair, where PLAYER_POWER_ACTIVE masks. */
         if (CheckSkillsEquipped(state->players[playerIndex].skills[0], SKILL_DEPLOY_CITY)
-            || ((PLAYER(playerIndex).frontCo << 20) >> 30 == POWER_SUPER
+            || (PLAYER(playerIndex).front.powerState == POWER_SUPER
                 && CheckSkillsEquipped(PLAYER(playerIndex).skills[0], SKILL_RANK_SOUL_OF_HACHI))) {
             return TRUE;
         }

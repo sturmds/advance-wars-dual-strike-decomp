@@ -16,7 +16,7 @@ void ActivatePower(int player, int power)
 {
     CountPowerUse(player);
     SpendPowerCharge(player, power);
-    PLAYER_CO_STATUS(data_027c027c->unk_48[data_027c0284]->players[player].frontCo)->powerReady = 0;
+    data_027c027c->unk_48[data_027c0284]->players[player].front.powerReady = 0;
     /* doc 890 reads unk_25 == 2 as "back CO half of a tag power" */
     if (data_027c027c->unk_48[data_027c0284]->players[player].unk_25 != 2) {
         func_020d5630(player, power, TRUE);

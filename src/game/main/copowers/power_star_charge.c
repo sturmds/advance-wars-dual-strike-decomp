@@ -12,8 +12,8 @@ extern int data_027c0284;
  * the percentage is a flat 200, so a star drops back to 100. */
 int PowerStarCharge(int player, int slot)
 {
-    /* frontCo and backCo are adjacent, so slot indexes from frontCo */
-    u32 uses = PLAYER_CO_STATUS((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot])->powerUses;
+    /* front and back are adjacent, so slot indexes from front */
+    u32 uses = (&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot].powerUses;
     u16 percent = 100;
 
     if (uses >= 10) {
