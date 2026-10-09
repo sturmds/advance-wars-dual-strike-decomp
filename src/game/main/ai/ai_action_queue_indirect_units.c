@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_0208f7c4(void);
+void AiQueue_SortByMaxRange(void);
 void AiUnit_ActByOrderGroup(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -17,8 +17,8 @@ void AiUnit_ActByOrderGroup(void);
 #define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
 
 /* Queues the current player's indirect units (AI_CLASS_INDIRECT) that
- * have not waited yet, hands the queue to func_0208f7c4 (it reads each
- * unit's GetUnitMaxRange), and runs AiUnit_ActByOrderGroup on each. */
+ * have not waited yet, sorts them by range (AiQueue_SortByMaxRange), and
+ * runs AiUnit_ActByOrderGroup on each. */
 void AiAction_QueueIndirectUnits(void)
 {
     int i;
@@ -34,7 +34,7 @@ void AiAction_QueueIndirectUnits(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    func_0208f7c4();
+    AiQueue_SortByMaxRange();
     gAiQueueRoutine = AiUnit_ActByOrderGroup;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
