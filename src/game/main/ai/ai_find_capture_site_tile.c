@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
 BOOL Map_IsCapturableByActingUnit(s16 x, s16 y);
-void func_020a756c(void);
+void AiActingUnit_GetSearchMovement(void);
 void func_020a73e4(void);
 BOOL func_020a7034(s16 *tile);
 BOOL func_020a5100(int x, int y, int arg2, int arg3);
@@ -34,7 +34,7 @@ BOOL Ai_FindCaptureSiteTile(s16 *out)
 
     best = NO_TILE;
     counterOffset = UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_INDIRECT ? 2 : 1;
-    func_020a756c();
+    AiActingUnit_GetSearchMovement();
     func_020a73e4();
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {

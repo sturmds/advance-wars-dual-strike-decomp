@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_020a756c(void);
+void AiActingUnit_GetSearchMovement(void);
 void func_020a73e4(void);
 BOOL func_020a870c(s16 *tile);
 BOOL func_020a7034(s16 *tile);
@@ -11,7 +11,7 @@ BOOL func_020aac60(s16 *out)
 {
     s16 tile[2];
 
-    func_020a756c();
+    AiActingUnit_GetSearchMovement();
     func_020a73e4();
     if (!func_020a870c(tile)) {
         return FALSE;

@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020a756c(void);
+void AiActingUnit_GetSearchMovement(void);
 void func_020a73e4(void);
 BOOL func_020a7034(s16 *pos);
 BOOL func_020a3dfc(int unitType, int tile);
@@ -17,7 +17,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 /* Moves the acting unit toward the reachable tile with the lowest rangeMap
  * value (the last one on a tie) whose owner is another team's and that
  * func_020a3dfc accepts for the unit type, if func_020a7034 agrees to the
- * tile in pos. func_020a756c and func_020a73e4 run first; what they do is
+ * tile in pos. AiActingUnit_GetSearchMovement and func_020a73e4 run first; what they do is
  * not understood yet. */
 void AiUnit_MoveToEnemyProperty(void)
 {
@@ -27,7 +27,7 @@ void AiUnit_MoveToEnemyProperty(void)
     int bestReach = 0x7fff;
     int x;
 
-    func_020a756c();
+    AiActingUnit_GetSearchMovement();
     func_020a73e4();
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {

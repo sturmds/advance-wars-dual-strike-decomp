@@ -13,7 +13,7 @@ extern u8 gAiTransportsSentToUnit[64];
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 BOOL func_0209f3ec(s16 x, s16 y, int arg);
-s16 func_020a756c(void);
+s16 AiActingUnit_GetSearchMovement(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -45,7 +45,7 @@ BOOL func_020aa4dc(s16 *tile)
     if (data_ov000_022f4fd7[STATE->actingUnit->type * sizeof(UnitStats)] & MOVE_GROUP_SEA) {
         return FALSE;
     }
-    RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, func_020a756c(), 0);
+    RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, AiActingUnit_GetSearchMovement(), 0);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->rangeMap[y][x] < 0) {

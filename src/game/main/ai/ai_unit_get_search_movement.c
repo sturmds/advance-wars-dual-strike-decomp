@@ -8,13 +8,13 @@ int Unit_GetUsableMovement(MapUnit *unit);
 
 #define SEARCH_RANGE_MAX 110
 
-/* Movement budget AiTurn_ClaimCaptureTargets gives the move-range fill for a
- * foot unit. 110 (no limit in practice) when the player has no sea domain,
- * the unit is not a ground unit, or its unk_0c_7 flag is set. Otherwise a
- * foot unit counts 4, other ground units their usable movement, scaled by a
- * gAiProfile factor picked by unk_0c_4, capped at 110. Name is a guess. */
-
-int AiUnit_GetCaptureSearchRange(MapUnit *unit)
+/* Movement budget the AI gives the move-range fill for a unit. 110 (no limit
+ * in practice) when the player has no sea domain, the unit is not a ground
+ * unit, or its unk_0c_7 flag is set. Otherwise a foot unit counts 4, other
+ * ground units their usable movement, scaled by a gAiProfile factor picked by
+ * unk_0c_4, capped at 110. The purpose is a guess: callers use it for capture
+ * targets, and probably allow for ferrying by sea. */
+int AiUnit_GetSearchMovement(MapUnit *unit)
 {
     int range;
 

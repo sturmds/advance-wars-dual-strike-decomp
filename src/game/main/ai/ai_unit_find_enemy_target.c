@@ -21,7 +21,7 @@ int func_0209e8bc(int player, int x, int y);
 /* Checks the tile found and may move it; FALSE means the tile is not usable. */
 BOOL func_020a7034(s16 *tile);
 void func_020a73e4(void);
-s16 func_020a756c(void);
+s16 AiActingUnit_GetSearchMovement(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -46,7 +46,7 @@ BOOL AiUnit_FindEnemyTarget(s16 *tile)
     bestStrongCost = 0x7fff;
     bestWeakCost = 0x7fff;
 
-    func_020a756c();
+    AiActingUnit_GetSearchMovement();
     func_020a73e4();
     for (player = 1; player < 5; player++) {
         if (!Player_IsInGame(player) || STATE->players[STATE->currentPlayer].team == STATE->players[player].team) {

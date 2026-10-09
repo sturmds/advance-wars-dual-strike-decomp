@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020a756c(void);
+void AiActingUnit_GetSearchMovement(void);
 void func_020a73e4(void);
 BOOL func_020a7034(s16 *tile);
 
@@ -17,7 +17,7 @@ BOOL func_020a9f9c(s16 *out)
 {
     s16 tile[2];
 
-    func_020a756c();
+    AiActingUnit_GetSearchMovement();
     func_020a73e4();
     if (STATE->actingUnit->aiTargetX == MAP_UNIT_NO_TARGET) {
         return FALSE;

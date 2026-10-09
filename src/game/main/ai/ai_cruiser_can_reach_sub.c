@@ -9,7 +9,7 @@ extern int data_027c0284;
 BOOL Player_IsInGame(u8 player);
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int arg);
-s16 func_020a756c(void);
+s16 AiActingUnit_GetSearchMovement(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -27,7 +27,7 @@ int AiUnit_CruiserCanReachSub(void)
     }
     RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
     acting = STATE->actingUnit;
-    RangeMap_FillMoves(acting->x, acting->y, acting->type, func_020a756c(), 1);
+    RangeMap_FillMoves(acting->x, acting->y, acting->type, AiActingUnit_GetSearchMovement(), 1);
     RangeMap_MarkAdjacentTiles(111);
     for (player = 1; player < 5; player++) {
         if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
