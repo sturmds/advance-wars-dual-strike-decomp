@@ -6,18 +6,18 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_021039e4(void);
+BOOL Campaign_IsHardMode(void);
 void Map_PlacePredeployedUnits(const PredeployedUnit *row);
 
 /* Places the current map's pre-deployed units: MapHeader.units, or
- * hardUnits when func_021039e4 returns nonzero. Maps without a list are
+ * hardUnits when Campaign_IsHardMode returns nonzero. Maps without a list are
  * skipped. */
 void Map_LoadPredeployedUnits(void)
 {
     int hard = 0;
     const PredeployedUnit *units;
 
-    if (func_021039e4()) {
+    if (Campaign_IsHardMode()) {
         hard = 1;
     }
     /* needed to match: units and hardUnits are read as a two-entry array */

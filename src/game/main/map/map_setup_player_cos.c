@@ -15,7 +15,7 @@ extern u32 data_0229eaec;
 
 u8 (*GetCoPicksForMode(int mode))[2];
 void SetupCoSelection(void);
-int func_021039e4(void);
+int Campaign_IsHardMode(void);
 int func_020c3d08(int mapId);
 u8 PickFreeCo(int coId);
 u8 Unlock_IsSet(int coId);
@@ -49,7 +49,7 @@ void Map_SetupPlayerCos(void)
         for (slot = 0; slot < 2; slot++) {
             switch (STATE->gameMode) {
             case 0:
-                if (func_021039e4() == 1 && player - 1 < func_020c3d08(STATE->unk_1c4->mapId)) {
+                if (Campaign_IsHardMode() == 1 && player - 1 < func_020c3d08(STATE->unk_1c4->mapId)) {
                     STATE->playerCos[player][slot] = PickFreeCo(cos[player][slot]);
                     break;
                 }

@@ -54,17 +54,17 @@ typedef struct MapHeader {
     u8 pad_25[0x26 - 0x25];
     u16 unk_26;                        /* "map case" */
     u8 unk_28[0x08];
-    u16 unk_30[2];                     /* indexed by func_021039e4 */
-    u16 unk_34[2];                     /* indexed by func_021039e4 */
+    u16 unk_30[2];                     /* indexed by Campaign_IsHardMode */
+    u16 unk_34[2];                     /* indexed by Campaign_IsHardMode */
     u8 unk_38[0x08];
     u32 unk_40;
     /* Map_LoadData reads mapData and hardMapData as a two-entry array
-     * indexed by func_021039e4. They stay separate fields: declared as
+     * indexed by Campaign_IsHardMode. They stay separate fields: declared as
      * mapData[2], Map_LoadData no longer matches. */
     const void *mapData;               /* LZ77: width, height, then u16 tiles */
     const void *hardMapData;
     const PredeployedUnit *units;      /* pre-deployed units; NULL: none */
-    const PredeployedUnit *hardUnits;  /* read with units as a two-entry array, indexed by func_021039e4 */
+    const PredeployedUnit *hardUnits;  /* read with units as a two-entry array, indexed by Campaign_IsHardMode */
     u8 co[5][2];                       /* front and back CO per slot, row 0 unused; 0x1c: player picks */
     u8 unk_5e[0x88 - 0x5e];
     u8 army[5];                        /* army colour per slot */

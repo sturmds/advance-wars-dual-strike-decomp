@@ -31,7 +31,7 @@ void func_0202aba8(int x, int y);
 void func_0204d6dc(void);
 void CampaignMap_FindTopCos(void);
 BOOL func_020d5d2c(void);
-int func_021039e4(void);
+int Campaign_IsHardMode(void);
 const char *File_LocalizePath(const char *path);
 const void *Text_Get(u32 textId);
 u8 Map_GetPlayerCount(u16 mapId);
@@ -59,7 +59,7 @@ extern char data_0215b9ec[];           /* "/ohashi/res_gmap_map2" */
 /* Sets up both screens of the campaign world map (the res_gmap files):
  * layer priorities, blending and scroll, the background graphics, the
  * three top COs and the enemy COs of the selected mission. Text
- * 0x7d000014 or 0x7d000015 goes on top depending on func_021039e4
+ * 0x7d000014 or 0x7d000015 goes on top depending on Campaign_IsHardMode
  * (possibly hard campaign). */
 void CampaignMap_Init(Unk_0204f960 *task)
 {
@@ -258,7 +258,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Mem_Free(res);
 
     func_0202aba8(178, 9);
-    if (func_021039e4() == 0) {
+    if (Campaign_IsHardMode() == 0) {
         func_0202a9ac(Text_Get(0x7d000014), 178, 9, 0, 0);
     } else {
         func_0202a9ac(Text_Get(0x7d000015), 178, 9, 0, 0);

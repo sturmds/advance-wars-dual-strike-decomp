@@ -7,7 +7,7 @@ extern void *data_0229eadc;
 void *Mem_Alloc(u32 size);
 void func_020d3c34(void *buffer);
 void func_0201febc(int a, void *buffer);
-int func_021039e4(void);
+int Campaign_IsHardMode(void);
 void func_0210f78c(const void *src, void *dst); /* SDK LZ77 unpack */
 
 /* Allocates the map data buffer and fills it for a map id. */
@@ -21,8 +21,8 @@ void Map_LoadData(u32 mapId)
         return;
     }
     func_020d3c34(Mem_Alloc(0xa14));
-    /* func_021039e4 picks mapData (0) or hardMapData (1). */
-    src = (&Ov000_gMapHeaders[mapId].mapData)[func_021039e4()];
+    /* Campaign_IsHardMode picks mapData (0) or hardMapData (1). */
+    src = (&Ov000_gMapHeaders[mapId].mapData)[Campaign_IsHardMode()];
     if (src == NULL) {
         src = Ov000_gMapHeaders[mapId].mapData;
     }

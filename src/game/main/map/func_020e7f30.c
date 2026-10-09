@@ -2,15 +2,15 @@
 #include "game/co_data.h"
 #include "game/map_header.h"
 
-BOOL func_021039e4(void);
+BOOL Campaign_IsHardMode(void);
 
-/* TRUE if func_021039e4 says so, or if the map lets any player pick a CO. */
+/* TRUE if Campaign_IsHardMode says so, or if the map lets any player pick a CO. */
 BOOL func_020e7f30(int mapId)
 {
     int player;
     int slot;
 
-    if (func_021039e4() == TRUE) {
+    if (Campaign_IsHardMode() == TRUE) {
         return TRUE;
     }
     for (player = 1; player < 5; player++) {

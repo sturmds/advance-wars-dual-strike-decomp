@@ -1508,6 +1508,10 @@ src/game/main/unlocks/shop_map_war_room.c:
     complete
     .text       start:0x02102274 end:0x021022b4
 
+src/game/main/map/campaign_is_hard_mode.c:
+    complete
+    .text       start:0x021039e4 end:0x02103a20
+
 src/game/main/file/file_localize_path.c:
     complete
     .text       start:0x021040dc end:0x02104124

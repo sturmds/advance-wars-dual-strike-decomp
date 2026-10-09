@@ -8,7 +8,7 @@ void Screen_SetCurrentGfx(void *state);
 int Map_GetPlayerCount(int mapId);          /* MapHeader.playerCount for most map ids */
 void SetMapWeather(int weather);       /* sets unk_1c4 weather and default weather */
 void func_020e8c3c(void);
-int func_021039e4(void);
+int Campaign_IsHardMode(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -49,8 +49,8 @@ void SetupMapRules(void)
             STATE->unk_1c4->fog = 1;
         }
         STATE->unk_7c = 0;
-        STATE->unk_80 = Ov000_gMapHeaders[MAP_ID].unk_30[func_021039e4()];
-        STATE->unk_81 = Ov000_gMapHeaders[MAP_ID].unk_34[func_021039e4()];
+        STATE->unk_80 = Ov000_gMapHeaders[MAP_ID].unk_30[Campaign_IsHardMode()];
+        STATE->unk_81 = Ov000_gMapHeaders[MAP_ID].unk_34[Campaign_IsHardMode()];
         STATE->partnerBoostHuman = 1;
         STATE->partnerBoostAi = 1;
         Screen_SetCurrent(saved027c);
