@@ -71,6 +71,10 @@ src/game/ov003/func_ov003_0235c1ec.c:
     complete
     .text       start:0x0235c1ec end:0x0235c210
 
+src/game/ov003/ov003_unit_create.c:
+    complete
+    .text       start:0x0235c210 end:0x0235c42c
+
 src/game/ov003/func_ov003_0235ca24.c:
     complete
     .text       start:0x0235ca24 end:0x0235ca50
