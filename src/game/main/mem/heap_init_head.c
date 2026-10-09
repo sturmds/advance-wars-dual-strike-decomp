@@ -2,7 +2,6 @@
 #include "game/heap.h"
 
 LinkList *Heap_FindParentList(HeapHead *heap);
-void LinkList_Append(LinkList *list, void *object);
 
 extern BOOL gHeapRootListReady;
 extern LinkList gHeapRootList;

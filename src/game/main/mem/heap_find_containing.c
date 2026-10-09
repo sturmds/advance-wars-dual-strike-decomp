@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-void *LinkList_GetNext(LinkList *list, void *object);
-
 /* Returns the innermost heap in the list (or below it) whose range holds
  * address, or NULL. */
 HeapHead *Heap_FindContaining(LinkList *list, void *address)

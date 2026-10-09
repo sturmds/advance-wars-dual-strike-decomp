@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-ExpHeap *ExpHeap_Init(void *start, void *end, u16 options);
-
 /* Makes a heap in the memory [start, start + size), trimmed to 4-byte
  * bounds. Returns NULL when there is no room for the headers and at least
  * 4 bytes. */

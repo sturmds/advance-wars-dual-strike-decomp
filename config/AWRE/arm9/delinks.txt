@@ -2760,6 +2760,10 @@ src/game/main/mem/heap_alloc_from_bottom.c:
     complete
     .text       start:0x02104720 end:0x021047e8
 
+src/game/main/mem/heap_take_from_free_block.c:
+    complete
+    .text       start:0x021047e8 end:0x0210497c
+
 src/game/main/mem/heap_block_init_in_region.c:
     complete
     .text       start:0x02104a00 end:0x02104a30

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-void *Heap_AllocFromBottom(ExpHeap *heap, u32 size, int align);
 void *Heap_AllocFromTop(ExpHeap *heap, u32 size, int align);
 
 /* Allocates size bytes, rounded up to 4, aligned to |align|. A positive

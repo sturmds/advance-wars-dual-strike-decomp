@@ -1,10 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-HeapBlock *HeapBlock_InitInRegion(HeapRegion *region, u16 signature);
-HeapBlock *HeapBlockList_Remove(HeapBlockList *list, HeapBlock *block);
-HeapBlock *HeapBlockList_Insert(HeapBlockList *list, HeapBlock *block, HeapBlock *prev);
-
 /* Puts a region back on the free list, merged with the free blocks right
  * before and after it. The free list is sorted by address. Returns FALSE
  * when the result is too small to hold a block header. */

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-void *Heap_TakeFromFreeBlock(ExpHeapData *data, HeapBlock *freeBlock, void *memory, u32 size, int fromTop);
-
 /* Allocates from the top of the heap: searches the free list from the end
  * and places the block at the top of the chosen free block. In first-fit
  * mode it takes the first block that fits; otherwise the smallest one. */
