@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/ai_unit_action.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffb200(s8 *tiles);                  /* points each rangeMap row into tiles */
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -20,11 +20,11 @@ void AiUnit_MoveToSafestTile(void);
 
 /* AiUnit_HandleUnitAtTarget calls this for two of the AI's units: the acting
  * unit and other. Puts other's reach (RangeMap_FillUnitMoves) in
- * MapTiles.unk_2d48, then picks a direct attack for the acting unit like
+ * MapTiles.rangeScratch, then picks a direct attack for the acting unit like
  * AiUnit_PickDirectAttack, but only from tiles both units can reach, only
  * against units, and always passing AI_ATTACK_HEAVY_HIT | AI_ATTACK_SAFE to
  * AiAttack_Score. Ends with
- * AiUnit_MoveToSafestTile, with unk_2d48 holding other's reach again. */
+ * AiUnit_MoveToSafestTile, with rangeScratch holding other's reach again. */
 void AiUnit_PickDirectAttackInReachOf(MapUnit *other)
 {
     int maxY;
@@ -52,13 +52,13 @@ void AiUnit_PickDirectAttackInReachOf(MapUnit *other)
     bestScore = 0;
     bestY = bestX;
     targetSlot = bestScore;
-    func_01ffb200(STATE->mapTiles->unk_2d48);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
     RangeMap_FillUnitMoves(other);
-    func_01ffb200(STATE->mapTiles->unk_2840);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
     RangeMap_FillUnitMoves(STATE->actingUnit);
     for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
         for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
-            if (STATE->rangeMap[row][col] >= 0 && STATE->mapTiles->unk_2d48[TILE(col, row)] < 0) {
+            if (STATE->rangeMap[row][col] >= 0 && STATE->mapTiles->rangeScratch[TILE(col, row)] < 0) {
                 STATE->rangeMap[row][col] = -1;
             }
         }
@@ -144,8 +144,8 @@ void AiUnit_PickDirectAttackInReachOf(MapUnit *other)
     if (bestScore != 0) {
         AiUnit_PerformAction(bestX, bestY, 4, targetSlot, 0);
     }
-    func_01ffb200(STATE->mapTiles->unk_2d48);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
     RangeMap_FillUnitMoves(other);
-    func_01ffb200(STATE->mapTiles->unk_2840);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
     AiUnit_MoveToSafestTile();
 }

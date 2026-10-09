@@ -10,7 +10,7 @@ BOOL Player_IsInGame(u8 player);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_0209f890(int x1, int y1, int x2, int y2);
+int Map_GetDistance(int x1, int y1, int x2, int y2);
 void func_020b2b70(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -57,7 +57,7 @@ void AiBlackBomb_MoveTowardEnemy(void)
             if (unit->type == UNIT_NONE) {
                 continue;
             }
-            dist = func_0209f890(STATE->actingUnit->x, STATE->actingUnit->y, unit->x, unit->y);
+            dist = Map_GetDistance(STATE->actingUnit->x, STATE->actingUnit->y, unit->x, unit->y);
             if (bestDist > dist) {
                 bestDist = dist;
                 nearestX = unit->x;
@@ -75,7 +75,7 @@ void AiBlackBomb_MoveTowardEnemy(void)
             if (Unit_GetValuePerHp(STATE->currentPlayer, unit->type) < Unit_GetValuePerHp(STATE->currentPlayer, UNIT_BLACK_BOMB) >> 2) {
                 continue;
             }
-            dist = func_0209f890(STATE->actingUnit->x, STATE->actingUnit->y, unit->x, unit->y);
+            dist = Map_GetDistance(STATE->actingUnit->x, STATE->actingUnit->y, unit->x, unit->y);
             if (bestValuableDist > dist) {
                 valuableX = unit->x;
                 valuableY = unit->y;

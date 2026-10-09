@@ -37,7 +37,7 @@ void func_020b2b70(int x, int y);
  *
  * A unit above 60 hp first keeps its old target if it can still reach it,
  * no other unit claimed it and no unit stands there. Then it picks the
- * tile with the lowest score (2 * MapTiles.unk_2d48, minus 1 for an HQ,
+ * tile with the lowest score (2 * MapTiles.rangeScratch, minus 1 for an HQ,
  * base, airport, port or com tower), ties going to the higher rangeMap
  * value. On the first run tiles that another foot unit claimed
  * (Unk_02080440_6088.unk_03) are skipped; once AI_STEP_ATTACK_DONE is
@@ -84,8 +84,8 @@ void AiFoot_HeadForCaptureSite(void)
         if (STATE->rangeMap[targetY][targetX] >= 0 && Map_IsSiloOrCapturableTile(targetX, targetY)) {
             if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03 == 0 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
                 STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03++;
-                if (MAP->unk_2d48[TILE_INDEX(targetX, targetY)] > 2) {
-                    func_020adf6c(MAP->unk_2d48[TILE_INDEX(targetX, targetY)]);
+                if (MAP->rangeScratch[TILE_INDEX(targetX, targetY)] > 2) {
+                    func_020adf6c(MAP->rangeScratch[TILE_INDEX(targetX, targetY)]);
                 }
                 func_020b2b70(targetX, targetY);
             }
@@ -110,7 +110,7 @@ void AiFoot_HeadForCaptureSite(void)
                 continue;
             }
             range = STATE->rangeMap[y][x];
-            score = MAP->unk_2d48[TILE_INDEX(x, y)] * 2;
+            score = MAP->rangeScratch[TILE_INDEX(x, y)] * 2;
             if (Terrain_IsHqBaseAirportPortOrTower(MAP_TILE_TERRAIN(MAP->tiles[TILE_INDEX(x, y)])) == TRUE) {
                 score--;
             }

@@ -3,11 +3,11 @@
 #include "game/ai_profile.h"
 #include "game/ai_unit_action.h"
 #include "game/unit_stats.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffb200(s8 *buffer);   /* points the rows of rangeMap into buffer */
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 int UnitType_BestBaseDamage(int unitType, int targetType);
 int UnitType_GetAttackKind(int unitType);
@@ -19,7 +19,7 @@ int UnitType_GetAttackKind(int unitType);
 /* TRUE when a same-team ally can reach (x, y) and hit the target: a direct
  * attacker that is not Infantry, Mech or Recon, with at least 60 hp, and
  * standing within the acting unit type's move range of (x, y) (the range
- * map is rebuilt around (x, y) in the scratch buffer unk_2d48 and then
+ * map is rebuilt around (x, y) in the scratch buffer rangeScratch and then
  * pointed back at rangeMapBuf). An ally that has already acted counts only
  * on a tile whose threatSum reaches the profile limit. */
 BOOL AiTile_HasStrongAllyInReach(int x, int y, MapUnit *target)
@@ -28,7 +28,7 @@ BOOL AiTile_HasStrongAllyInReach(int x, int y, MapUnit *target)
     int col;
     int row;
 
-    func_01ffb200(MAP->unk_2d48);
+    RangeMap_SetBuffer(MAP->rangeScratch);
     RangeMap_FillMoves(x, y, STATE->actingUnit->type, gAiTurnState->unk_05, 0);
     for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
         for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
@@ -62,10 +62,10 @@ BOOL AiTile_HasStrongAllyInReach(int x, int y, MapUnit *target)
                     continue;
                 }
             }
-            func_01ffb200(MAP->unk_2840);
+            RangeMap_SetBuffer(MAP->rangeMapTiles);
             return TRUE;
         }
     }
-    func_01ffb200(MAP->unk_2840);
+    RangeMap_SetBuffer(MAP->rangeMapTiles);
     return FALSE;
 }

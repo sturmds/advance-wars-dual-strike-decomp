@@ -4,6 +4,7 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 #include "game/terrain.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -14,8 +15,6 @@ int Ai_CountUnitsOfType(int type);
 BOOL func_020a3294(void);
 void func_020ab70c(void);              /* boards an own Lander or Black Boat in reach, if there is one */
 int UnitType_GetAttackKind(int type);
-void func_01ffb200(s8 *buffer);        /* points rangeMap rows into buffer */
-void func_01ffb3a0(int value);         /* fills every rangeMap tile with value */
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 BOOL UnitSlot_OwnsTile(s16 slot, s16 x, s16 y);
 void func_020b2b70(int x, int y);      /* moves the acting unit toward (x, y) */
@@ -26,7 +25,7 @@ void func_020b2b70(int x, int y);      /* moves the acting unit toward (x, y) */
 /* RangeMap_FillMoves movement; guess: high enough to act as no limit. */
 #define ANY_DISTANCE 110
 
-/* MapTiles.unk_2d48 here: lowest move cost of an own transport to the
+/* MapTiles.rangeScratch here: lowest move cost of an own transport to the
  * tile; NO_TRANSPORT where none can get there. */
 #define NO_TRANSPORT 127
 
@@ -84,13 +83,13 @@ void AiUnit_SeekSeaTransport(void)
     unarmed = UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_NONE;
     STATE->actingUnit->unk_0a_14 = 2;
     if (!unarmed) {
-        func_01ffb200(STATE->mapTiles->unk_3c60);
+        RangeMap_SetBuffer(STATE->mapTiles->rangeScratch2);
         RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, ANY_DISTANCE, 0);
-        func_01ffb200(STATE->mapTiles->unk_2840);
+        RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
     }
-    func_01ffb200(STATE->mapTiles->unk_2d48);
-    func_01ffb3a0(NO_TRANSPORT);
-    func_01ffb200(STATE->mapTiles->unk_2840);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeScratch);
+    RangeMap_Fill(NO_TRANSPORT);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
 
     found = FALSE;
     for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1; i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
@@ -113,7 +112,7 @@ void AiUnit_SeekSeaTransport(void)
             if (unarmed == TRUE) {
                 continue;
             }
-            if (STATE->mapTiles->unk_3c60[TILE(unit->x, unit->y)] < 0) {
+            if (STATE->mapTiles->rangeScratch2[TILE(unit->x, unit->y)] < 0) {
                 continue;
             }
         }
@@ -128,13 +127,13 @@ void AiUnit_SeekSeaTransport(void)
                 if (terrain != TERRAIN_SHOAL && terrain != TERRAIN_PORT) {
                     continue;
                 }
-                if (reach >= STATE->mapTiles->unk_2d48[TILE(x, y)]) {
+                if (reach >= STATE->mapTiles->rangeScratch[TILE(x, y)]) {
                     continue;
                 }
-                if (!unarmed && STATE->mapTiles->unk_3c60[TILE(x, y)] < 0) {
+                if (!unarmed && STATE->mapTiles->rangeScratch2[TILE(x, y)] < 0) {
                     continue;
                 }
-                STATE->mapTiles->unk_2d48[TILE(x, y)] = reach;
+                STATE->mapTiles->rangeScratch[TILE(x, y)] = reach;
                 found = TRUE;
             }
         }
@@ -177,10 +176,10 @@ void AiUnit_SeekSeaTransport(void)
             if (terrain != TERRAIN_SHOAL && terrain != TERRAIN_PORT) {
                 continue;
             }
-            if (STATE->mapTiles->unk_2d48[TILE(meetX, meetY)] == NO_TRANSPORT) {
+            if (STATE->mapTiles->rangeScratch[TILE(meetX, meetY)] == NO_TRANSPORT) {
                 continue;
             }
-            reach = STATE->rangeMap[meetY][meetX] + STATE->mapTiles->unk_2d48[TILE(meetX, meetY)];
+            reach = STATE->rangeMap[meetY][meetX] + STATE->mapTiles->rangeScratch[TILE(meetX, meetY)];
             if (best >= reach) {
                 bestX = meetX;
                 bestY = meetY;

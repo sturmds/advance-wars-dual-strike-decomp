@@ -23,8 +23,8 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 /* AiUnit_PerformAction action; arg3 is the direction of the drop tile. */
 #define AI_ACTION_UNLOAD 8
 
-/* MapTiles.unk_3c60 bits read here, for each foot unit type.
- * Who sets them is unknown. */
+/* MapTiles.rangeScratch2 bits read here, for each foot unit type; set by
+ * AiTurn_BuildCaptureMap. */
 #define TILE_FLAG_INFANTRY 0x80
 #define TILE_FLAG_MECH     0x40
 
@@ -156,7 +156,7 @@ void AiTransport_UnloadForCapture(void)
             }
             switch (cargo->type) {
             case UNIT_INFANTRY: /* needed to match: the flag byte is read unsigned */
-                if (!((u8)STATE->mapTiles->unk_3c60[TILE(x2, y2)] & TILE_FLAG_INFANTRY)) {
+                if (!((u8)STATE->mapTiles->rangeScratch2[TILE(x2, y2)] & TILE_FLAG_INFANTRY)) {
                     continue;
                 }
                 if (!(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {
@@ -172,7 +172,7 @@ void AiTransport_UnloadForCapture(void)
                 }
                 break;
             case UNIT_MECH:
-                if (!((u8)STATE->mapTiles->unk_3c60[TILE(x2, y2)] & TILE_FLAG_MECH)) {
+                if (!((u8)STATE->mapTiles->rangeScratch2[TILE(x2, y2)] & TILE_FLAG_MECH)) {
                     continue;
                 }
                 if (!(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {

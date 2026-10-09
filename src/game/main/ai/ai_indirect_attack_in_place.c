@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/ai_unit_action.h"
 #include "game/unit_stats.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -12,7 +13,6 @@ int AiAttack_Score(int target, s16 *pos);
 void AiUnit_PerformAction(int x, int y, int action, u8 arg3, u8 arg4);
 void AiUnit_MoveToSafestTile(void);
 void RangeMap_FillUnitMoves(MapUnit *unit);
-void func_01ffb200(s8 *base);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -23,7 +23,7 @@ void func_01ffb200(s8 *base);
  * attacks from where it stands: the best-scored visible enemy unit in its
  * range gets action 4 (like Ai_PlanIndirectAttack, but without map objects
  * or hp tiles, and with a fixed score flag set). Then the move range of
- * mover is filled in (the range map points at MapTiles.unk_2d48 meanwhile)
+ * mover is filled in (the range map points at MapTiles.rangeScratch meanwhile)
  * and AiUnit_MoveToSafestTile runs. */
 void AiUnit_AttackFromPlaceThenMove(MapUnit *mover)
 {
@@ -103,8 +103,8 @@ void AiUnit_AttackFromPlaceThenMove(MapUnit *mover)
     if (bestScore != 0) {
         AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_UNIT, bestSlot, 0);
     }
-    func_01ffb200(MAP->unk_2d48);
+    RangeMap_SetBuffer(MAP->rangeScratch);
     RangeMap_FillUnitMoves(mover);
-    func_01ffb200(MAP->unk_2840);
+    RangeMap_SetBuffer(MAP->rangeMapTiles);
     AiUnit_MoveToSafestTile();
 }

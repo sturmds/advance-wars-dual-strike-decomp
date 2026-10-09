@@ -3,12 +3,11 @@
 #include "game/map_unit.h"
 #include "game/terrain.h"
 #include "game/unit_stats.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffb200(s8 *map);     /* points rangeMap's rows into map, so range fills write there */
-void func_01ffb3a0(s8 value);    /* sets every tile of rangeMap to value */
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
@@ -25,7 +24,7 @@ void func_020b2b70(int x, int y);
  * empty transport: moves it towards the closest tile (by its own move cost)
  * within 2 Infantry moves of a base of the current player, so it is near
  * when new foot units are built. A base with a unit that already waited is
- * skipped. MapTiles.unk_2d48 holds the Infantry distance to such a base,
+ * skipped. MapTiles.rangeScratch holds the Infantry distance to such a base,
  * -1 elsewhere. */
 void AiEmptyTransport_WaitNearBase(void)
 {
@@ -42,9 +41,9 @@ void AiEmptyTransport_WaitNearBase(void)
     if (STATE->actingUnit->cargo[0] != 0) {
         return;
     }
-    func_01ffb200(MAP->unk_2d48);
-    func_01ffb3a0(-1);
-    func_01ffb200(MAP->unk_2840);
+    RangeMap_SetBuffer(MAP->rangeScratch);
+    RangeMap_Fill(-1);
+    RangeMap_SetBuffer(MAP->rangeMapTiles);
     for (baseY = 0; baseY < STATE->unk_1c4->mapHeight; baseY++) {
         for (baseX = 0; baseX < STATE->unk_1c4->mapWidth; baseX++) {
             if (MAP_TILE_TERRAIN(MAP->tiles[TILE_INDEX(baseX, baseY)]) != TERRAIN_BASE) {
@@ -60,7 +59,7 @@ void AiEmptyTransport_WaitNearBase(void)
             for (nearY = 0; nearY < STATE->unk_1c4->mapHeight; nearY++) {
                 for (nearX = 0; nearX < STATE->unk_1c4->mapWidth; nearX++) {
                     if (STATE->rangeMap[nearY][nearX] >= 0) {
-                        MAP->unk_2d48[TILE_INDEX(nearX, nearY)] = STATE->rangeMap[nearY][nearX];
+                        MAP->rangeScratch[TILE_INDEX(nearX, nearY)] = STATE->rangeMap[nearY][nearX];
                     }
                 }
             }
@@ -72,7 +71,7 @@ void AiEmptyTransport_WaitNearBase(void)
             if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
-            if (MAP->unk_2d48[TILE_INDEX(x, y)] < 0) {
+            if (MAP->rangeScratch[TILE_INDEX(x, y)] < 0) {
                 continue;
             }
             if (MAP->unitAt[TILE_INDEX(x, y)] != 0) {

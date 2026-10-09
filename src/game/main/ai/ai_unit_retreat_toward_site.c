@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -7,7 +8,6 @@ extern int data_027c0284;
 BOOL func_020b0d94(void);
 void func_020b81a8(void);
 BOOL func_020a9c78(s16 *site);
-void func_01ffb200(s8 *map);     /* points rangeMap's rows into map, so range fills write there */
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_CanRepairAt(MapUnit *unit, int x, int y);
@@ -25,7 +25,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 /* Like AiUnit_RetreatToRepair, for a unit that func_020b0d94 says needs repair
  * (guess). func_020a9c78 picks a site (the unit's own tile when it finds
- * none); MapTiles.unk_2d48 gets the distance from there. The unit moves to
+ * none); MapTiles.rangeScratch gets the distance from there. The unit moves to
  * the reachable free tile with the lowest threat where Unit_CanRepairAt or
  * Unit_IsBlackHoleOnFlaggedTile holds, ties to the shorter distance (110 when the fill
  * missed the tile). */
@@ -54,9 +54,9 @@ void AiUnit_RetreatTowardSite(void)
         site[0] = STATE->actingUnit->x;
         site[1] = STATE->actingUnit->y;
     }
-    func_01ffb200(MAP->unk_2d48);
+    RangeMap_SetBuffer(MAP->rangeScratch);
     RangeMap_FillMoves(site[0], site[1], STATE->actingUnit->type, FAR_AWAY, 0);
-    func_01ffb200(MAP->unk_2840);
+    RangeMap_SetBuffer(MAP->rangeMapTiles);
     RangeMap_FillUnitMoves(STATE->actingUnit);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
@@ -79,7 +79,7 @@ void AiUnit_RetreatTowardSite(void)
             }
             tile = TILE(x, y);
             threat = MAP->threatMax[tile] + MAP->threatSum[tile] * 2;
-            distance = MAP->unk_2d48[tile];
+            distance = MAP->rangeScratch[tile];
             if (distance < 0) {
                 distance = FAR_AWAY;
             }

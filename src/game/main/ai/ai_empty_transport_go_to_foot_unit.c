@@ -2,13 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 extern u8 data_0229e1b0[64];     /* per unit slot & 63: empty transports already sent to that foot unit this turn */
 
-void func_01ffb200(s8 *map);     /* points rangeMap's rows into map, so range fills write there */
 /* movement is int here (s16 in fill_unit_moves.c): needed to match, the
  * caller passes footMove without narrowing it. */
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -43,9 +43,9 @@ void func_020b2b70(int x, int y);
  * gets there this turn it moves there and waits, otherwise
  * func_020b2b70 moves it towards the tile.
  *
- * MapTiles.unk_2d48: transport's move cost to each tile.
- * MapTiles.unk_2840: foot unit's move cost (where rangeMap points).
- * MapTiles.unk_3c60: second fill from the transport, used to break ties
+ * MapTiles.rangeScratch: transport's move cost to each tile.
+ * MapTiles.rangeMapTiles: foot unit's move cost (where rangeMap points).
+ * MapTiles.rangeScratch2: second fill from the transport, used to break ties
  * when the foot unit has an AI target. */
 
 void AiEmptyTransport_GoToFootUnit(void)
@@ -73,9 +73,9 @@ void AiEmptyTransport_GoToFootUnit(void)
     if (STATE->actingUnit->cargo[0] != 0) {
         return;
     }
-    func_01ffb200(MAP->unk_2d48);
+    RangeMap_SetBuffer(MAP->rangeScratch);
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, UNLIMITED_MOVE, 1);
-    func_01ffb200(MAP->unk_2840);
+    RangeMap_SetBuffer(MAP->rangeMapTiles);
     transportReach = Unit_GetUsableMovement(STATE->actingUnit) + 1;
     for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
         unit = &STATE->units[i];
@@ -102,7 +102,7 @@ void AiEmptyTransport_GoToFootUnit(void)
             break;
         }
         footMove = Player_GetUnitMoveRange(STATE->currentPlayer, unit->type);
-        dist = MAP->unk_2d48[TILE_INDEX(unit->x, unit->y)];
+        dist = MAP->rangeScratch[TILE_INDEX(unit->x, unit->y)];
         nearTarget = 0;
         meetRange = transportReach + footMove;
         /* Meaning of these two checks unknown; when one holds, the unit is
@@ -121,10 +121,10 @@ void AiEmptyTransport_GoToFootUnit(void)
         unitTileDist = NO_TILE;
         unitTileAlt = unitTileDist;
         if (unit->aiTargetX != MAP_UNIT_NO_TARGET) {
-            func_01ffb200(MAP->unk_3c60);
+            RangeMap_SetBuffer(MAP->rangeScratch2);
             RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, UNLIMITED_MOVE, 0);
-            func_01ffb200(MAP->unk_2840);
-            if (MAP->unk_3c60[TILE_INDEX(STATE->actingUnit->x, STATE->actingUnit->y)] < 0) {
+            RangeMap_SetBuffer(MAP->rangeMapTiles);
+            if (MAP->rangeScratch2[TILE_INDEX(STATE->actingUnit->x, STATE->actingUnit->y)] < 0) {
                 continue;
             }
         }
@@ -133,7 +133,7 @@ void AiEmptyTransport_GoToFootUnit(void)
                 if (STATE->rangeMap[y][x] < 0) {
                     continue;
                 }
-                if (MAP->unk_2d48[TILE_INDEX(x, y)] < 0) {
+                if (MAP->rangeScratch[TILE_INDEX(x, y)] < 0) {
                     continue;
                 }
                 if (MAP->unitAt[TILE_INDEX(x, y)] != 0) {
@@ -149,9 +149,9 @@ void AiEmptyTransport_GoToFootUnit(void)
                     && gTerrainFactoryKind[MAP_TILE_TERRAIN(MAP->tiles[TILE_INDEX(x, y)])] != 0) {
                     continue;
                 }
-                tileDist = MAP->unk_2d48[TILE_INDEX(x, y)];
+                tileDist = MAP->rangeScratch[TILE_INDEX(x, y)];
                 if (unit->aiTargetX != MAP_UNIT_NO_TARGET) {
-                    tileAlt = MAP->unk_3c60[TILE_INDEX(x, y)];
+                    tileAlt = MAP->rangeScratch2[TILE_INDEX(x, y)];
                     if (tileAlt < 0) {
                         tileAlt = NO_TILE;
                     }
@@ -185,7 +185,7 @@ void AiEmptyTransport_GoToFootUnit(void)
                 meetDist = transportReach;
             }
         } else {
-            meetDist = MAP->unk_2d48[TILE_INDEX(unitTileX, unitTileY)];
+            meetDist = MAP->rangeScratch[TILE_INDEX(unitTileX, unitTileY)];
         }
     }
     if (meetX == -1) {

@@ -23,7 +23,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
  * unit to the free reachable tile with the lowest threat (MapTiles.threatMax
  * + 2 * threatSum), ties to the lower rangeMap value, but only to tiles where
  * Unit_CanRepairAt holds or Unit_IsBlackHoleOnFlaggedTile does. With AI_STEP_UNIT_AT_TARGET
- * set it ignores tiles with a negative MapTiles.unk_2d48 and sets AI_STEP_STAY
+ * set it ignores tiles with a negative MapTiles.rangeScratch and sets AI_STEP_STAY
  * instead of moving when the best tile is where the unit already stands. */
 void AiUnit_RetreatToRepair(void)
 {
@@ -52,7 +52,7 @@ void AiUnit_RetreatToRepair(void)
                 continue;
             }
             if (gAiTurnState->stepFlags & AI_STEP_UNIT_AT_TARGET) {
-                if (STATE->mapTiles->unk_2d48[TILE(x, y)] < 0) {
+                if (STATE->mapTiles->rangeScratch[TILE(x, y)] < 0) {
                     STATE->rangeMap[y][x] = -1;
                     continue;
                 }

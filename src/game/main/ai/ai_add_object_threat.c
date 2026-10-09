@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/ai_unit_action.h"
+#include "game/range_map.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffb200(void *tileMap);
 BOOL func_0209dae4(int unitType);
 void func_020da068(MapObject *object, int value);
 
@@ -24,11 +24,11 @@ void Ai_AddObjectThreat(void)
     if (!func_0209dae4(STATE->actingUnit->type)) {
         return;
     }
-    func_01ffb200(STATE->mapTiles->threatSum);
+    RangeMap_SetBuffer(STATE->mapTiles->threatSum);
     for (object = STATE->objects; object->kind != 0; object++) {
         if (object->unk_06 == 1) {
             func_020da068(object, -1);
         }
     }
-    func_01ffb200(STATE->mapTiles->unk_2840);
+    RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
 }

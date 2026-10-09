@@ -17,11 +17,11 @@ typedef struct MapTiles {
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
     s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
     s8 unk_2338[0x508];                /* per tile; no code seen uses it yet */
-    s8 unk_2840[0x508];                /* per tile; scratch range map for AiEmptyTransport_GoToFootUnit */
-    s8 unk_2d48[0x508];                /* per tile; AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->stepFlags has AI_STEP_UNIT_AT_TARGET */
+    s8 rangeMapTiles[0x508];           /* per tile; the buffer Unk_02080440_48.rangeMap points into by default (RangeMap_SetBuffer) */
+    s8 rangeScratch[0x508];            /* per tile; a range map the AI fills for another unit (a transport's move cost, another unit's reach); AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->stepFlags has AI_STEP_UNIT_AT_TARGET */
     u8 threatMax[0x508];               /* per tile: highest threat of one enemy unit that can move next to it (Ai_AddEnemyThreat) */
     u8 threatSum[0x508];               /* per tile: threat of enemy units in range, added up and capped at 255 */
-    s8 unk_3c60[0x508];                /* per tile; AiEmptyTransport_GoToFootUnit fills it with the acting unit's moves */
+    s8 rangeScratch2[0x508];           /* per tile; a third range map (AiEmptyTransport_GoToFootUnit fills it with the acting unit's moves); AiTransport_UnloadForCapture reads bits 0x80 and 0x40 as Infantry and Mech drop flags */
     u16 rowStart[1];                   /* length unknown; index into tiles of each row's first tile */
 } MapTiles;
 

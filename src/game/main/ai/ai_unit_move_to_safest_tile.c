@@ -19,7 +19,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 /* Moves the acting unit to the free tile it can reach with the lowest
  * threat (MapTiles.threatMax + 2 * threatSum). Ties go to more terrain stars,
  * then to the lower rangeMap value. With AI_STEP_UNIT_AT_TARGET set, tiles
- * with a negative MapTiles.unk_2d48 get -1 in rangeMap, and nothing is
+ * with a negative MapTiles.rangeScratch get -1 in rangeMap, and nothing is
  * queued when the best tile is the one the unit stands on. */
 void AiUnit_MoveToSafestTile(void)
 {
@@ -53,7 +53,7 @@ void AiUnit_MoveToSafestTile(void)
                 continue;
             }
             if (gAiTurnState->stepFlags & AI_STEP_UNIT_AT_TARGET) {
-                if (STATE->mapTiles->unk_2d48[TILE(x, y)] < 0) {
+                if (STATE->mapTiles->rangeScratch[TILE(x, y)] < 0) {
                     STATE->rangeMap[y][x] = -1;
                     continue;
                 }
