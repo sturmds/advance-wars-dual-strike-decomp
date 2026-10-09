@@ -86,7 +86,9 @@ typedef struct Unk_02080440_48 {
     u16 unk_18;                        /* AiShowAction_Step0 tests 16 and 21 */
     u8 pad_1a[0x1e - 0x1a];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
-    u8 pad_20[0x28 - 0x20];
+    u16 unk_20;                        /* index of a 0x508-byte per-tile grid counted from MapTiles.inSight; func_020fed58 fills it */
+    u16 unk_22;                        /* a second grid index, like unk_20 */
+    u8 pad_24[0x28 - 0x24];
     s16 unk_28;                        /* x of the tile the AiShowAction steps point func_020c41c4 at; guess: the view scrolls there */
     s16 unk_2a;                        /* y of the same tile */
     u16 unk_2c;
