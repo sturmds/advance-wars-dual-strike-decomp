@@ -3,6 +3,9 @@
 
     fn.py pick [-n N] [--min-size S] [--max-size S] [--all]
                                                ranked candidates not yet in a file
+    fn.py pick --families [-n N] [--min-members M]
+                                               unmatched functions grouped by masked hash, largest
+                                               families first (heads for propagate.py)
     fn.py show NAME|ADDR                       location, callers, callees, data, disassembly
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
     fn.py diff NAME                            compile its file and compare with the original
@@ -17,6 +20,9 @@ Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
 symbol at the same address, and count as matching), and exits 0 only at 100%.
+
+`pick --families` is based on khdays-decomp tools/pick_family.py
+(CC0 1.0, commit ba2de370; see docs/third-party/khdays-decomp.md).
 """
 
 import argparse
@@ -233,7 +239,55 @@ def next_start(f: Func) -> int:
 
 # ---------------------------------------------------------------- commands
 
+def has_backward_branch(entry) -> bool:
+    """True when the function branches to a lower address (a loop)."""
+    if entry["mode"] != "arm":
+        return False
+    raw = bytes.fromhex(entry["raw"])
+    end = entry["pool"] or len(raw)
+    for i in range(0, end - 3, 4):
+        word = int.from_bytes(raw[i:i + 4], "little")
+        # B/Bcc (not BL): bits 27-24 = 1010; the offset is a signed 24 bits.
+        if (word >> 24) & 0xf == 0xa and (word >> 28) != 0xf and word & 0x800000:
+            return True
+    return False
+
+
+def cmd_pick_families(args) -> int:
+    """Rank unmatched functions by how many share one masked hash."""
+    import fnindex
+    index = fnindex.load()
+    entries = [e for es in index.by_name.values() for e in es]
+    started = {e["mhash"] for e in entries if e["status"] == "started"}
+    groups: dict[str, list] = {}
+    for e in entries:
+        game = e["module"].startswith("ov") or (e["module"] == "main" and MAIN_GAME_START <= e["addr"] < MAIN_GAME_END)
+        if e["status"] == "none" and (args.all or game):
+            groups.setdefault(e["mhash"], []).append(e)
+    fams = []
+    skipped = 0
+    for h, members in groups.items():
+        if len(members) < args.min_members:
+            continue
+        if h in started:
+            skipped += 1
+            continue
+        members.sort(key=lambda e: e["addr"])
+        fams.append((len(members), len(members) * members[0]["size"], members[0]))
+    fams.sort(key=lambda f: (-f[0], -f[1], f[2]["addr"]))
+    print(f"{'head':<24} {'module':<6} {'members':>7} {'size':>6} {'total':>7} loop")
+    for n, total, head in fams[:args.n]:
+        loop = "yes" if has_backward_branch(head) else "no"
+        print(f"{head['name']:<24} {head['module']:<6} {n:>7} {head['size']:>#6x} {total:>#7x} {loop}")
+    print(f"\n{len(fams)} families with {args.min_members}+ unmatched members "
+          f"({sum(f[0] for f in fams)} functions); {skipped} skipped because a started "
+          "function has the same shape. loop = backward branch in the head.")
+    return 0
+
+
 def cmd_pick(args) -> int:
+    if args.families:
+        return cmd_pick_families(args)
     done = matched_names()
     wanted = interesting()
     rows = []
@@ -517,6 +571,8 @@ def main() -> int:
     p.add_argument("--max-size", type=lambda s: int(s, 0), default=0x100)
     p.add_argument("--min-size", type=lambda s: int(s, 0), default=0x10)
     p.add_argument("--all", action="store_true", help="include SDK and library code")
+    p.add_argument("--families", action="store_true", help="rank families of same-shape functions")
+    p.add_argument("--min-members", type=int, default=2, help="with --families")
     p.set_defaults(fn=cmd_pick)
     p = sub.add_parser("show")
     p.add_argument("key")
