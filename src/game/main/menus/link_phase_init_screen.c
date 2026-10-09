@@ -21,7 +21,7 @@ void Font_LoadDigits(int a);
 void Bg_PutTileBlock(void *target, int a, int b, const void *src, int c);
 void Palette_BlendWithColor(void *dst, int a, int b, int c);
 void Gfx_InitBothScreens(void);
-void func_02029648(void);
+void Wallpaper_LoadBoth(void);
 void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 void ModeFont_Load(int a, int b);
 void func_0202bdec(void *dst, int mapId);
@@ -195,7 +195,7 @@ void LinkPhase_InitScreen(void)
     MenuButton_Select(0);
     LinkScreen_AddButtons();
     MenuButtons_DisableTouch();
-    func_02029648();
+    Wallpaper_LoadBoth();
     EventQueue_Reset();
     if (func_0207bd80() == 1) {
         SpriteTask_Create(0xe8, 8, 0x1f0, 15);
