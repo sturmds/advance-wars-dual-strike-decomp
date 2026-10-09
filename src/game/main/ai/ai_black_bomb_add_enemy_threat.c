@@ -17,7 +17,7 @@ BOOL func_0209dae4(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
 BOOL func_0209d924(MapUnit *acting, MapUnit *enemy, int arg2);
-BOOL func_0209e768(int enemyType, int actingType, int arg2);
+BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int func_020e59fc(int player, int arg1, int arg2);
@@ -84,7 +84,7 @@ void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
             }
         }
         if (ACTING->flags & MAP_UNIT_DIVED) {
-            if (!func_0209e768(unit->type, ACTING->type, 0)) {
+            if (!Ai_BestDamageVsDived(unit->type, ACTING->type, 0)) {
                 continue;
             }
         }

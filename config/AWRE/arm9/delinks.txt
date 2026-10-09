@@ -5109,6 +5109,10 @@ src/game/main/combat/unit_best_damage_to_target_kind.c:
     complete
     .text       start:0x0209e424 end:0x0209e4b0
 
+src/game/main/ai/ai_best_damage_vs_dived.c:
+    complete
+    .text       start:0x0209e768 end:0x0209e814
+
 src/game/main/map/map_is_tile_visible.c:
     complete
     .text       start:0x0209eb38 end:0x0209ec00

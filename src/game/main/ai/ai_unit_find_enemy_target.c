@@ -14,7 +14,7 @@ int UnitType_GetAttackKind(int unitType);
 BOOL Player_IsInGame(u8 player);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 slot);
 /* Damage percent the attacker type deals to a dived unit, 0 if it cannot hit it. */
-int func_0209e768(int attacker, int target, int arg);
+int Ai_BestDamageVsDived(int attacker, int target, int arg);
 /* Best damage percent of the attacker type against the target type. */
 int func_0209e814(int attacker, int target, int arg);
 int func_0209e8bc(int player, int x, int y);
@@ -66,7 +66,7 @@ BOOL AiUnit_FindEnemyTarget(s16 *tile)
                     continue;
                 }
             }
-            if ((unit->flags & MAP_UNIT_DIVED) && !func_0209e768(STATE->actingUnit->type, unit->type, 0)) {
+            if ((unit->flags & MAP_UNIT_DIVED) && !Ai_BestDamageVsDived(STATE->actingUnit->type, unit->type, 0)) {
                 continue;
             }
             score = func_0209e814(STATE->actingUnit->type, unit->type, 0);
