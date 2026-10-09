@@ -75,6 +75,10 @@ src/game/main/graphics/data_unpack.c:
     complete
     .text       start:0x02003bec end:0x02003c6c
 
+src/game/main/mem/mem_copy_auto.c:
+    complete
+    .text       start:0x02003c6c end:0x02003ca0
+
 src/game/main/mem/mem_copy16.c:
     complete
     .text       start:0x02003ca0 end:0x02003cb0
