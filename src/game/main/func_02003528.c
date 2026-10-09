@@ -1,9 +1,9 @@
 #include "types.h"
 
-void func_020034d0(void);
+void Dma_StopChannel1(void);
 void func_020045f4(void (*callback)(void));
 
 void func_02003528(void)
 {
-    func_020045f4(func_020034d0);
+    func_020045f4(Dma_StopChannel1);
 }
