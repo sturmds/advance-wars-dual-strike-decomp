@@ -3,11 +3,11 @@
 #include "game/main_menu.h"
 #include "game/menu_button.h"
 
-int func_0203142c(int page);
+int MainMenu_IsFirstSidePage(int page);
 void func_0202e7b8(int page, int slide);
 
 /* onKeys of the main menu buttons: up and down move the cursor past hidden
- * entries, left, right, L and R flip the page (func_0203142c picks the side),
+ * entries, left, right, L and R flip the page (MainMenu_IsFirstSidePage picks the side),
  * A and B confirm and cancel. */
 void MainMenu_HandleKeys(MenuButton *button)
 {
@@ -38,7 +38,7 @@ void MainMenu_HandleKeys(MenuButton *button)
     }
     if (keys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
         data_021599d0->cursors[data_021599d0->page] = cursor;
-        if (func_0203142c(data_021599d0->page) == 1) {
+        if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
             func_0202e7b8(6, 2);
         } else {
             func_0202e7b8(0, 2);
@@ -47,7 +47,7 @@ void MainMenu_HandleKeys(MenuButton *button)
     }
     if (keys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
         data_021599d0->cursors[data_021599d0->page] = cursor;
-        if (func_0203142c(data_021599d0->page) == 1) {
+        if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
             func_0202e7b8(6, 3);
         } else {
             func_0202e7b8(0, 3);
