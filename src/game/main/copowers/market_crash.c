@@ -5,7 +5,7 @@
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void func_0200b76c(int id);
-BOOL func_020c237c(u8 player);
+BOOL Player_IsInGame(u8 player);
 void func_020e2670(int priority);
 int SuperPowerCost(int player, int slot);
 
@@ -31,7 +31,7 @@ void MarketCrash(int priority)
     }
     hundred = 100;
     for (player = 1; player < 5; player++) {
-        if (!func_020c237c(player)) {
+        if (!Player_IsInGame(player)) {
             continue;
         }
         if (data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].team ==

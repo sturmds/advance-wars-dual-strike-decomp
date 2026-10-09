@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/weather.h"
 
-BOOL func_020c237c(u8 player);
+BOOL Player_IsInGame(u8 player);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -31,7 +31,7 @@ void Weather_SetDays(int weather)
     }
 
     for (player = 1; player < 5; player++) {
-        if (func_020c237c(player)) {
+        if (Player_IsInGame(player)) {
             data_027c027c->unk_5c[data_027c0284]->weatherDays[player] = (u8)days; /* needed to match: the cast */
         }
     }

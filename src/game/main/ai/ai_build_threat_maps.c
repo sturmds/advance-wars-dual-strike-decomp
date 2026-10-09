@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020c237c(u8 player); /* TRUE: the player is still in the game */
+BOOL Player_IsInGame(u8 player); /* TRUE: the player is still in the game */
 void func_0209ca48(void);       /* clears MapTiles.unk_3250 and unk_3758 */
 void func_0209cacc(u8 player);  /* adds one enemy player's units to the maps */
 void func_0209d4e0(void);
@@ -30,7 +30,7 @@ void Ai_BuildThreatMaps(void)
     func_0209d4e0();
     func_0209d610();
     for (player = 1; player < 5; player++) {
-        if (func_020c237c(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
+        if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
             func_0209cacc(player);
         }
     }

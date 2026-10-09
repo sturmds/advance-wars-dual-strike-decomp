@@ -719,6 +719,10 @@ src/game/main/map/map_apply_slot_flags.c:
     complete
     .text       start:0x020c0e80 end:0x020c0f44
 
+src/game/main/player_is_in_game.c:
+    complete
+    .text       start:0x020c237c end:0x020c23d0
+
 src/game/main/combat/combat_calc_damage_to_target.c:
     complete
     .text       start:0x020c25b8 end:0x020c28ac
