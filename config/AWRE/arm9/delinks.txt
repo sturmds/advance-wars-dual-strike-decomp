@@ -77,6 +77,7 @@ src/game/main/map/player_set_co.c:
     .text       start:0x02001a30 end:0x02001b94
 
 src/game/main/graphics/func_02001f50.c:
+    complete
     .text       start:0x02001f50 end:0x02001fa8
 
 src/game/main/graphics/co_queue_small_picture.c:
