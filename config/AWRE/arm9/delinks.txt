@@ -691,11 +691,11 @@ src/game/main/map/map_set_single_flag.c:
     complete
     .text       start:0x02101b64 end:0x02101b94
 
-src/game/main/unlocks/shop_cond_smashed_crystal.c:
+src/game/main/unlocks/shop_smashed_crystal.c:
     complete
     .text       start:0x02101ce0 end:0x02101d30
 
-src/game/main/unlocks/shop_cond_unlocked_co.c:
+src/game/main/unlocks/shop_unlocked_co.c:
     complete
     .text       start:0x02101d30 end:0x02101d68
 
