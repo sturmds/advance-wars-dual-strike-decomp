@@ -8138,6 +8138,10 @@ src/game/main/func_020f47e8.c:
     complete
     .text       start:0x020f47e8 end:0x020f4870
 
+src/game/main/func_020f4a18.c:
+    complete
+    .text       start:0x020f4a18 end:0x020f4a84
+
 src/game/main/func_020f4a84.c:
     complete
     .text       start:0x020f4a84 end:0x020f4a94
