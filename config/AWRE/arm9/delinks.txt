@@ -5018,6 +5018,9 @@ src/game/main/ai/func_0209b2b0.c:
     complete
     .text       start:0x0209b2b0 end:0x0209b458
 
+src/game/main/ai/func_0209b458.c:
+    .text       start:0x0209b458 end:0x0209b918
+
 src/game/main/ai/ai_black_bomb_add_enemy_threat.c:
     complete
     .text       start:0x0209b918 end:0x0209c1f8
