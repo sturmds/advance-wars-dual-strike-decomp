@@ -60,6 +60,10 @@ src/game/main/co_stats/player_get_co_id.c:
     complete
     .text       start:0x020018a8 end:0x020018c4
 
+src/game/main/co_stats/player_get_co_byte.c:
+    complete
+    .text       start:0x020018c4 end:0x02001a20
+
 src/game/main/func_02001a20.c:
     complete
     .text       start:0x02001a20 end:0x02001a30
