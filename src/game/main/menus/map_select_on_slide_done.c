@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-void func_0205dea0(void);
+void MapSelect_AddMapButtons(void);
 
 void MapSelect_OnSlideDone(void)
 {
-    func_0205dea0();
+    MapSelect_AddMapButtons();
     MenuButton_EnableTouch(254);
     MenuButton_EnableTouch(252);
     MenuButton_EnableTouch(253);
