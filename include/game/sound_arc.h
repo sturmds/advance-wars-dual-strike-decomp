@@ -32,7 +32,7 @@ typedef struct SoundArcSeqArcInfo {
     u32 fileId;
 } SoundArcSeqArcInfo;
 
-/* A sequence archive file as loaded in memory. */
+/* A sequence archive file or a sequence file as loaded in memory. */
 typedef struct SoundSeqArcFile {
     u8 pad_00[0x18];
     u32 dataOffset;                    /* start of the sequence data, from the start of the file */

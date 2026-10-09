@@ -3,7 +3,7 @@
 #include "game/sound_arc.h"
 
 const SoundArcSeqInfo *NNS_SndArcGetSeqInfo(int seqNo);
-BOOL func_0210790c(SoundHandle *handle, int playerNo, int bankNo, int playerPrio,
+BOOL SoundHandle_StartSeq(SoundHandle *handle, int playerNo, int bankNo, int playerPrio,
                    const SoundArcSeqInfo *info, int seqNo);
 
 /* NitroSystem NNS_SndArcPlayerStartSeq: starts sequence seqNo of the
@@ -15,5 +15,5 @@ BOOL NNS_SndArcPlayerStartSeq(SoundHandle *handle, int seqNo)
     if (info == NULL) {
         return FALSE;
     }
-    return func_0210790c(handle, info->playerNo, info->bankNo, info->playerPrio, info, seqNo);
+    return SoundHandle_StartSeq(handle, info->playerNo, info->bankNo, info->playerPrio, info, seqNo);
 }

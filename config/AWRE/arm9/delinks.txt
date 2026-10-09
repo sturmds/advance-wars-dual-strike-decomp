@@ -9268,6 +9268,10 @@ src/game/main/sound/sound_handle_start_seq_arc_seq.c:
     complete
     .text       start:0x0210783c end:0x0210790c
 
+src/game/main/sound/sound_handle_start_seq.c:
+    complete
+    .text       start:0x0210790c end:0x02107a18
+
 src/game/main/sound/nns_snd_arc_player_start_seq_arc.c:
     complete
     .text       start:0x02107a18 end:0x02107ab0
