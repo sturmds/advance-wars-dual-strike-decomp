@@ -14,7 +14,7 @@ void func_020ae9c0(void);
 void func_020aeefc(void);
 void func_020af5f8(void);
 
-/* Queue routine for infantry and mechs set by func_0208f308. Runs the
+/* Queue routine for infantry and mechs set by AiAction_QueueFootUnits. Runs the
  * same first steps as AiFoot_MoveAndAttack and stops before the attack
  * dispatcher. func_0209f7ac calls CaptureIncrease. */
 void AiFoot_MoveAndCapture(void)
