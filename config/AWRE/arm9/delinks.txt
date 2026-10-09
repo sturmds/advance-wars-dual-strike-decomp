@@ -1809,6 +1809,10 @@ src/game/main/ai/ai_foot_attack_capturing_unit.c:
     complete
     .text       start:0x020aeefc end:0x020af18c
 
+src/game/main/ai/ai_class3_supply_unit.c:
+    complete
+    .text       start:0x020af374 end:0x020af540
+
 src/game/main/ai/func_020af540.c:
     complete
     .text       start:0x020af540 end:0x020af5f8
