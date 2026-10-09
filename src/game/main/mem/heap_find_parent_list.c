@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/heap.h"
 
-HeapHead *func_02104424(LinkList *list, void *address);
+HeapHead *Heap_FindContaining(LinkList *list, void *address);
 
 extern LinkList gHeapRootList;
 
@@ -10,7 +10,7 @@ extern LinkList gHeapRootList;
 LinkList *Heap_FindParentList(HeapHead *heap)
 {
     LinkList *list = &gHeapRootList;
-    HeapHead *parent = func_02104424(list, heap);
+    HeapHead *parent = Heap_FindContaining(list, heap);
 
     if (parent != NULL) {
         list = &parent->children;
