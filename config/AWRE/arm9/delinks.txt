@@ -521,6 +521,10 @@ src/game/main/unlocks/shop_beat_hard_campaign.c:
     complete
     .text       start:0x02101d68 end:0x02101da8
 
+src/game/main/unlocks/shop_beat_campaign.c:
+    complete
+    .text       start:0x02101da8 end:0x02101de8
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
