@@ -5873,6 +5873,10 @@ src/game/main/ai/ai_show_action_dive.c:
     complete
     .text       start:0x020b8308 end:0x020b8370
 
+src/game/main/ai/ai_show_action_unload.c:
+    complete
+    .text       start:0x020b8370 end:0x020b8544
+
 src/game/main/ai/ai_show_action_step11.c:
     complete
     .text       start:0x020b8544 end:0x020b8568

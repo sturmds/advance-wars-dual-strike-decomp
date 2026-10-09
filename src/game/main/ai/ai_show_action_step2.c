@@ -21,7 +21,7 @@ void AiShowAction_BlackBombExplode(void);
 void func_020b8230(void);
 void AiShowAction_Emerge(void);
 void AiShowAction_Dive(void);
-void func_020b8370(int arg);
+void AiShowAction_ShowCargoUnit(int arg);
 void AiShowAction_Action22(void);
 void AiShowAction_AttackObject(void);
 void AiShowAction_AttackUnit(void);
@@ -112,8 +112,8 @@ void AiShowAction_Step2(void)
         ActingUnit_FinishAction();
         break;
     case 8:
-        func_020b8370(1);
-        func_020b8370(0);
+        AiShowAction_ShowCargoUnit(1);
+        AiShowAction_ShowCargoUnit(0);
         gAiTurnState->actionStep = 10;
         return;
     case 10:
