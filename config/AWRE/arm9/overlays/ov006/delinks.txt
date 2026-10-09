@@ -35,6 +35,10 @@ src/game/ov006/func_ov006_02351aa4.c:
     complete
     .text       start:0x02351aa4 end:0x02351ac4
 
+src/game/ov006/func_ov006_02351ac4.c:
+    complete
+    .text       start:0x02351ac4 end:0x02351b2c
+
 src/game/ov006/ov006_load_co_icons.c:
     complete
     .text       start:0x0235248c end:0x0235257c
