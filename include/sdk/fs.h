@@ -11,9 +11,13 @@ typedef struct FSFileID {
     u32 file_id;
 } FSFileID;
 
+#define FS_FILE_STATUS_IS_FILE 0x10
+
 /* An open file, 0x44 bytes in this SDK version. */
 typedef struct FSFile {
-    u8 pad_00[0x20];
+    u8 pad_00[0x0c];
+    u32 flags;                         /* FS_FILE_STATUS_IS_FILE once opened as a file */
+    u8 pad_10[0x20 - 0x10];
     u32 top;                           /* first byte of the file in the archive */
     u32 bottom;                        /* one past its last byte */
     u8 pad_28[0x44 - 0x28];

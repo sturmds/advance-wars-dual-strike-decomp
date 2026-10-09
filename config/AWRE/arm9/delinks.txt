@@ -252,6 +252,10 @@ src/game/main/mem/mem_zero_bytes.c:
     complete
     .text       start:0x0200b9bc end:0x0200b9d8
 
+src/game/main/file/file_read_at.c:
+    complete
+    .text       start:0x0200bb18 end:0x0200bc28
+
 src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
