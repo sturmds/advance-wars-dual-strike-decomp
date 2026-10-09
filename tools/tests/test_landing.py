@@ -41,6 +41,7 @@ class Repo:
         self.git("config", "core.hooksPath", str(path / ".no-hooks"))
         self.write("include/types.h", TYPES_H)
         self.write("docs/README.md", "test\n")
+        self.write("src/main.c", "int main(void) { return 0; }\n")
         self.write("config/AWRE/arm9/symbols.txt", "Entry kind:function(arm,size=0x4) addr:0x02000800\n")
 
     def git(self, *args: str) -> str:
@@ -81,7 +82,7 @@ def struct(name: str, body: str) -> str:
             f"typedef struct {name} {{\n{body}}} {name};\n\n#endif\n")
 
 
-class LandingTest(unittest.TestCase):
+class RepoCase(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.repo = Repo(Path(self.tmp.name))
@@ -89,6 +90,8 @@ class LandingTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
+
+class FieldRenameTest(RepoCase):
     def test_field_rename_scoped_to_struct(self):
         """Issue 0025: a header merge renamed Foo.mapWidth to mainline's name,
         and every `->mapWidth` in the commit's C changed, Bar's too."""
@@ -119,6 +122,64 @@ class LandingTest(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         self.assertIn("foo->width", self.repo.read("src/f.c"))
 
+
+def header(body: str) -> str:
+    return f'#ifndef T_H\n#define T_H\n\n#include "types.h"\n\n{body}\n#endif\n'
+
+
+ENUM = "enum TerrainId {{\n    TERRAIN_NONE,\n    TERRAIN_PLAIN,\n{a}    TERRAIN_LAB = 20,\n    TERRAIN_TOWER = 22{b}\n}};\n"
+
+
+class HeaderUnionTest(RepoCase):
+    def merged_values(self) -> dict[str, str]:
+        import header_merge  # tools/ is on sys.path below
+        return header_merge.Types([self.repo.read("include/t.h")]).defines
+
+    def test_enum_constants_union(self):
+        """Issue 0025: TERRAIN_* constants were dropped when both sides added
+        some next to TERRAIN_LAB."""
+        r = self.repo.replay(
+            base={"include/t.h": header(ENUM.format(a="", b=""))},
+            ours={"include/t.h": header(ENUM.format(a="    TERRAIN_CITY = 6,\n", b=""))},
+            theirs={"include/t.h": header(ENUM.format(a="    TERRAIN_SILO = 17,  /* launches once */\n",
+                                                      b=",\n    TERRAIN_VOLCANO = 28"))})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        v = self.merged_values()
+        for name, value in [("TERRAIN_PLAIN", 1), ("TERRAIN_CITY", 6), ("TERRAIN_SILO", 17),
+                            ("TERRAIN_LAB", 20), ("TERRAIN_TOWER", 22), ("TERRAIN_VOLCANO", 28)]:
+            self.assertEqual(v.get(name), str(value), name)
+        text = self.repo.read("include/t.h")
+        self.assertIn("TERRAIN_SILO = 17, /* launches once */", text)
+        self.assertIn("TERRAIN_VOLCANO = 28\n};", text)
+
+    def test_enum_constant_clash(self):
+        r = self.repo.replay(
+            base={"include/t.h": header(ENUM.format(a="", b=""))},
+            ours={"include/t.h": header(ENUM.format(a="    TERRAIN_SILO = 17,\n", b=""))},
+            theirs={"include/t.h": header(ENUM.format(a="    TERRAIN_SILO = 18,\n", b=""))})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("TERRAIN_SILO is 17 on mainline and 18 in the commit", r.stderr)
+
+    def test_defines_union(self):
+        r = self.repo.replay(
+            base={"include/t.h": header("#define FLAG_A 1\n")},
+            ours={"include/t.h": header("#define FLAG_A 1\n#define FLAG_B 2\n")},
+            theirs={"include/t.h": header("#define FLAG_A 1\n#define FLAG_C 4\n#define FLAG_B  2\n")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        text = self.repo.read("include/t.h")
+        for name in ("FLAG_A 1", "FLAG_B 2", "FLAG_C 4"):
+            self.assertEqual(text.count(f"#define {name}"), 1, name)
+
+    def test_define_clash(self):
+        r = self.repo.replay(
+            base={"include/t.h": header("#define FLAG_A 1\n")},
+            ours={"include/t.h": header("#define FLAG_A 1\n#define FLAG_B 2\n")},
+            theirs={"include/t.h": header("#define FLAG_A 1\n#define FLAG_B 8\n")})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("#define FLAG_B is `2` on mainline and `8` in the commit", r.stderr)
+
+
+sys.path.insert(0, str(TOOLS))
 
 if __name__ == "__main__":
     unittest.main()

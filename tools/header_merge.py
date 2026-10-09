@@ -12,7 +12,11 @@ reads both versions as declarations instead of lines:
   returned so that apply_commit.py can rewrite the commit's sources.
 - Typedefs, structs, #defines, externs and prototypes that only one side
   has are kept. Where both sides changed the same one, mainline's version
-  stays and the clash is reported.
+  stays and the clash is noted; for a #define with two different values
+  it is a conflict.
+- Enums are merged constant by constant: the result has the constants of
+  both sides, the commit's new ones written with their values. A constant
+  with two different values is a conflict.
 - A struct the commit names differently from mainline (both sides declare
   the same extern with it) is merged into mainline's struct.
 - Fields that overlap without matching are reported as conflicts.
@@ -601,6 +605,9 @@ def entry_key(code: str) -> tuple:
     if code.startswith("#"):
         return ("other", code)
     if "{" in code:
+        m = re.match(r"enum\s*\{\s*(\w+)", code)
+        if m:
+            return ("enum", m.group(1))  # an anonymous enum: known by its first constant
         m = re.search(r"\}\s*(\w+)\s*;$", code) if code.startswith("typedef") else None
         m = m or re.match(r"(?:typedef\s+)?(?:struct|union|enum)\s+(\w+)", code)
         if m:
@@ -720,14 +727,133 @@ def merge_entry(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) 
         return
     if b is not None and b.lead == o.lead:
         o.lead = t.lead
-    if o.key[0] == "type" and "{" in o.code and "{" in t.code and not o.code.startswith(("enum", "typedef enum")):
+    if "{" in o.code and "{" in t.code and o.code.startswith(("enum", "typedef enum")):
+        o.lines = merge_enum(o, t, b, types, rep)
+    elif o.key[0] == "type" and "{" in o.code and "{" in t.code:
         kind = "union" if re.match(r"(typedef\s+)?union\b", o.code) else "struct"
         oh, ob, ot = split_braces(o.lines)
         tb = split_braces(t.lines)[1]
         bb = split_braces(b.lines)[1] if b is not None and "{" in b.code else None
         o.lines = oh + merge_body(kind, ob, tb, bb, types, rep, o.key[1]) + ot
+    elif o.key[0] == "define" and (b is None or b.text != t.text) and define_body(o) != define_body(t):
+        rep.conflicts.append(f"#define {o.key[1]} is `{define_body(o)}` on mainline"
+                             f" and `{define_body(t)}` in the commit")
     elif (b is None or b.text != t.text) and o.code != t.code:
         rep.notes.append(f"kept mainline's {o.key[1] if len(o.key) > 1 else o.code[:40]}")
+
+
+def define_body(e: Entry) -> str:
+    """What a #define expands to, with comments and extra spaces removed."""
+    code = re.sub(r"^\s*#\s*define\s+\w+", "", e.code.replace("\\\n", " "))
+    return " ".join(code.split())
+
+
+# ------------------------------------------------------------- enum merge
+
+@dataclass
+class Member:
+    """One enum constant: its value, whether it is written `= expr`, and
+    the index of its line in the enum body."""
+    name: str
+    value: int
+    explicit: bool
+    line: int
+
+
+def enum_members(body: list[str], types: Types) -> list[Member]:
+    out: list[Member] = []
+    local: dict[str, int] = {}
+    value, in_comment = -1, False
+    for i, line in enumerate(body):
+        code, in_comment = split_code(line, in_comment)
+        for item in code.split(","):
+            if not item.strip():
+                continue
+            m = re.fullmatch(r"\s*(\w+)\s*(?:=\s*(.+?))?\s*", item, re.S)
+            if not m:
+                raise MergeError("cannot read enum constant: " + item.strip())
+            if m.group(2):
+                expr = re.sub(r"\b[A-Za-z_]\w*\b", lambda n: str(local.get(n.group(0), n.group(0))), m.group(2))
+                value = types.value(expr)
+            else:
+                value += 1
+            local[m.group(1)] = value
+            out.append(Member(m.group(1), value, bool(m.group(2)), i))
+    return out
+
+
+def merge_enum(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) -> list[str]:
+    """Merge two versions of an enum as the union of their constants. A
+    constant only the commit has is written with its value (`NAME = 24,`)
+    and placed by value, so no constant of mainline changes value. A
+    constant the two sides give different values is a conflict, unless
+    mainline still has the base's value (then the commit's value wins)."""
+    where = o.key[1]
+    oh, ob, ot = split_braces(o.lines)
+    tb = split_braces(t.lines)[1]
+    bb = split_braces(b.lines)[1] if b is not None and "{" in b.code else []
+    ours, theirs, base = (enum_members(x, types) for x in (ob, tb, bb))
+    o_by, b_by = {m.name: m for m in ours}, {m.name: m for m in base}
+    body = list(ob)
+    inserts: dict[int, list[tuple[int, str]]] = {}  # index in ob to insert before -> (value, line)
+    for m in theirs:
+        mine = o_by.get(m.name)
+        if mine is not None:
+            old = b_by.get(m.name)
+            if mine.value == m.value or (old is not None and old.value == m.value):
+                continue
+            if old is not None and old.value == mine.value and alone(ours, mine) and alone(theirs, m):
+                body[mine.line] = set_comma(tb[m.line], has_comma(ob[mine.line]))
+            else:
+                rep.conflicts.append(f"enum {where}: {m.name} is {mine.value} on mainline"
+                                     f" and {m.value} in the commit")
+            continue
+        if m.name in b_by:
+            rep.notes.append(f"kept mainline's removal of {m.name}")
+            continue
+        same = [x.name for x in ours if x.value == m.value]
+        if same:
+            rep.notes.append(f"{m.name} and {', '.join(same)} are both {m.value} in {where}")
+        before = next((x.line for x in ours if x.explicit and x.value > m.value), len(ob))
+        indent = re.match(r"[ \t]*", tb[m.line]).group(0) or "    "
+        comment = trailing_comment(tb[m.line]) if alone(theirs, m) else ""
+        inserts.setdefault(before, []).append((m.value, f"{indent}{m.name} = {m.value},"
+                                                        f"{' ' + comment if comment else ''}\n"))
+        rep.added_decls += 1
+    last = max((x.line for x in ours), default=-1)
+    for before in sorted(inserts, reverse=True):
+        lines = [line for _, line in sorted(inserts[before])]
+        if before > last >= 0:
+            # After the last constant: that one gains a comma, the last new one has none.
+            body[last] = set_comma(body[last], True)
+            lines[-1] = set_comma(lines[-1], False)
+            body[last + 1:last + 1] = lines
+        else:
+            body[before:before] = lines
+    return oh + body + ot
+
+
+def alone(members: list[Member], m: Member) -> bool:
+    """Whether m is the only constant on its line."""
+    return sum(x.line == m.line for x in members) == 1
+
+
+def trailing_comment(line: str) -> str:
+    i = line.find("/*")
+    return line[i:].rstrip("\n") if i >= 0 else ""
+
+
+def has_comma(line: str) -> bool:
+    return split_code(line, False)[0].rstrip().endswith(",")
+
+
+def set_comma(line: str, comma: bool) -> str:
+    """A constant's line ending in a comma or not, its comment kept."""
+    comment = trailing_comment(line)
+    code = line.rstrip("\n")[:len(line.rstrip("\n")) - len(comment)] if comment else line.rstrip("\n")
+    stripped = code.rstrip()
+    gap = code[len(stripped):]
+    return stripped.rstrip(",") + ("," if comma else "") + gap + comment + "\n"
 
 
 def field_names(body: str) -> set[str]:
