@@ -12,7 +12,7 @@ void func_02002b00(int a);
 void func_02002b24(int co, int a);
 void func_02002e50(const void *src, void *dest, u32 size);
 void Palette_Load(const void *src, int offset, u32 size);
-void func_02003bec(const void *src, void *dest);
+void Data_Unpack(const void *src, void *dest);
 void func_0200970c(int a);
 void func_0200a810(const void *config);
 void Screen_SetCurrent(void *state);
@@ -171,9 +171,9 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     func_0201e30c(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
-    func_02003bec(res + 0x1ab0,
+    Data_Unpack(res + 0x1ab0,
                   data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase << 14) + 0x4000);
-    func_02003bec(res + 0x36d4, data_027c0280->layer1Map);
+    Data_Unpack(res + 0x36d4, data_027c0280->layer1Map);
     Palette_Load(res + 0x3ae8, 0x40, 0x20);
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer1Map[i] += 0x2200;
@@ -181,11 +181,11 @@ void CampaignMap_Init(Unk_0204f960 *task)
     func_02002e50(data_027c0280->layer1Map, data_027c0280->layer1Map + 0x400, 0x800);
     func_01ff8d60(1);
     Palette_Load(res + 0x3b08, 0x60, 0x140);
-    func_02003bec(res + 0xed8, data_027c0280->objVram);
+    Data_Unpack(res + 0xed8, data_027c0280->objVram);
     Palette_Load(res + 0x1884, 0x200, 0x40);
-    func_02003bec(res + 0x848, data_027c0280->objVram + 0x2080);
-    func_02003bec(res + 0xdcc, data_027c0280->objVram + 0x2f80);
-    func_02003bec(res, data_027c0280->objVram + 0x3140);
+    Data_Unpack(res + 0x848, data_027c0280->objVram + 0x2080);
+    Data_Unpack(res + 0xdcc, data_027c0280->objVram + 0x2f80);
+    Data_Unpack(res, data_027c0280->objVram + 0x3140);
     Palette_Load(res + 0x834, 0x240, 0x20);
     Screen_SetCurrentGfx(saved0280);
 
@@ -193,15 +193,15 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     func_0201e30c(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
-    func_02003bec(langRes,
+    Data_Unpack(langRes,
                   data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
-    func_02003bec(res + 0x18c4, data_027c0280->layer2Map);
+    Data_Unpack(res + 0x18c4, data_027c0280->layer2Map);
     Palette_Load(res + 0x1a70, 0x20, 0x40);
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer2Map[i] += 0x1000;
     }
     func_01ff8d60(2);
-    func_02003bec(res + 0x1734, data_027c0280->objVram);
+    Data_Unpack(res + 0x1734, data_027c0280->objVram);
     Palette_Load(res + 0x1884, 0x200, 0x20);
     for (i = 0, objTile = 38; i < 3; i++, objTile += 8) {
         Icon_LoadTo(i + 0xbc, data_027c0280->objVram, objTile);
@@ -236,8 +236,8 @@ void CampaignMap_Init(Unk_0204f960 *task)
     res = File_Load(data_0215b9d4);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
-    func_02003bec(res + 0x53bc, data_027c0280->layer2Map);
+    Data_Unpack(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
+    Data_Unpack(res + 0x53bc, data_027c0280->layer2Map);
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer2Map[i] += 0x3000;
     }
@@ -248,8 +248,8 @@ void CampaignMap_Init(Unk_0204f960 *task)
     res = File_Load(data_0215b9ec);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
-    func_02003bec(res + 0x4c7c, data_027c0280->layer3Map + 0x400);
+    Data_Unpack(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
+    Data_Unpack(res + 0x4c7c, data_027c0280->layer3Map + 0x400);
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer3Map[i + 0x400] += 0x3000;
     }

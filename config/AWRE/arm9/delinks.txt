@@ -36,6 +36,10 @@ src/game/main/graphics/palette_load.c:
     complete
     .text       start:0x02003188 end:0x020031bc
 
+src/game/main/graphics/data_unpack.c:
+    complete
+    .text       start:0x02003bec end:0x02003c6c
+
 src/game/main/func_02003f44.c:
     complete
     .text       start:0x02003f44 end:0x02003f6c
