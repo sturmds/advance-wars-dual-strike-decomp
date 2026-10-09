@@ -1192,6 +1192,10 @@ src/game/main/script/func_02023064.c:
     complete
     .text       start:0x02023064 end:0x02023090
 
+src/game/main/script/func_02023090.c:
+    complete
+    .text       start:0x02023090 end:0x020230bc
+
 src/game/main/func_020230bc.c:
     complete
     .text       start:0x020230bc end:0x020230dc
@@ -1219,6 +1223,18 @@ src/game/main/func_0202335c.c:
 src/game/main/func_02023380.c:
     complete
     .text       start:0x02023380 end:0x02023394
+
+src/game/main/script/func_02023394.c:
+    complete
+    .text       start:0x02023394 end:0x020233c0
+
+src/game/main/script/func_020233c0.c:
+    complete
+    .text       start:0x020233c0 end:0x020233ec
+
+src/game/main/script/func_020234b0.c:
+    complete
+    .text       start:0x020234b0 end:0x020234dc
 
 src/game/main/task/task_skip_command.c:
     complete
