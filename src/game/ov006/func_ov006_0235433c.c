@@ -1,7 +1,7 @@
 #include "types.h"
 
-void func_ov006_0235437c(int id);
+void Ov006_OpenScreen(int id);
 
 void func_ov006_0235433c(void) {
-    func_ov006_0235437c(4);
+    Ov006_OpenScreen(4);
 }
