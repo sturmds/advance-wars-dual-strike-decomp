@@ -33,7 +33,7 @@ void func_020ca398(void);
 void UnitAction_ActivateTagPower(void);
 void UnitAction_ActivateSuperPower(void);
 void UnitAction_ActivateCoPower(void);
-void func_020dd6bc(void);
+void UnitAction_SwapCo(void);
 void UnitAction_MoveToOtherMap(void);
 void func_020dd89c(void);
 void func_020dd9a0(void);
@@ -75,7 +75,7 @@ void AiShowAction_Step2(void)
         func_020b8b80();
         break;
     case 15:
-        func_020dd6bc();
+        UnitAction_SwapCo();
         if (func_020b9664() == 1) {
             gAiTurnState->state = AI_STATE_RUN_QUEUE;
         } else if (GAME->players[GAME->currentPlayer].tagPowerHalf == TAG_POWER_BACK) {
