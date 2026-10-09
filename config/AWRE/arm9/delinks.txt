@@ -332,6 +332,10 @@ src/game/main/menus/menu_get_selected_id.c:
     complete
     .text       start:0x02025d44 end:0x02025d58
 
+src/game/main/menus/menu_button_find.c:
+    complete
+    .text       start:0x02025d58 end:0x02025da0
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
