@@ -7032,6 +7032,10 @@ src/game/main/func_020dd9a0.c:
     complete
     .text       start:0x020dd9a0 end:0x020dd9b4
 
+src/game/main/silo_start_launch.c:
+    complete
+    .text       start:0x020dd9b4 end:0x020dda74
+
 src/game/main/func_020dda74.c:
     complete
     .text       start:0x020dda74 end:0x020dda8c
