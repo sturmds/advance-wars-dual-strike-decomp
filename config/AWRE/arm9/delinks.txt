@@ -3108,6 +3108,10 @@ src/game/main/func_021066dc.c:
     complete
     .text       start:0x021066dc end:0x021066ec
 
+src/game/main/sound/sound_heap_newest_save_level.c:
+    complete
+    .text       start:0x02106a6c end:0x02106a78
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
