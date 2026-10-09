@@ -2054,6 +2054,10 @@ src/game/main/co_stats/player_get_counter_bonus.c:
     complete
     .text       start:0x020dfdc0 end:0x020dfe30
 
+src/game/main/co_stats/player_get_fuel_rate.c:
+    complete
+    .text       start:0x020dfe30 end:0x020dfe9c
+
 src/game/main/co_stats/player_get_capture_rate.c:
     complete
     .text       start:0x020dfee8 end:0x020dff38
