@@ -12,5 +12,6 @@ extern u16 gPendingSong;         /* song to start later, SONG_NONE: none */
 
 void Sound_RestoreSongVolume(void);
 void Sound_LowerSongVolume(int volume);
+void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
 
 #endif
