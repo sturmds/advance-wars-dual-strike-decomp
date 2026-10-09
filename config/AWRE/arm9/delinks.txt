@@ -1105,6 +1105,7 @@ src/game/main/units/get_co_unit_max_range.c:
     .text       start:0x020e5a18 end:0x020e5a58
 
 src/game/main/co_stats/player_get_co_defense.c:
+    complete
     .text       start:0x020e5a58 end:0x020e5b68
 
 src/game/main/co_stats/player_get_co_firepower.c:
