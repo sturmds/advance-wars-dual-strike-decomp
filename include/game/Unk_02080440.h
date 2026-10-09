@@ -10,7 +10,7 @@
  * Unk_02080440_48.mapTiles. */
 typedef struct MapTiles {
     u8 unitAt[0x508];                  /* slot in Unk_02080440_48.units of the unit on each tile; 0: none */
-    u8 unk_508[0x508];                 /* per tile: also a unit slot (Strike_ScoreSite, AiAttack_Score); how it differs from unitAt is unknown */
+    u8 unk_508[0x508];                 /* per tile: a unit slot too (Strike_ScoreSite, AiAttack_Score); how it differs from unitAt is unknown */
     u8 pad_a10[0x1420 - 0xa10];
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     u8 pad_1928[0x3250 - 0x1928];

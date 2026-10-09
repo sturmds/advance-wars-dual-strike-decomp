@@ -10,7 +10,7 @@ extern int data_027c0284;
 /* Picks the strike site with the best score for playerSlot and writes it
  * to site[0] (x) and site[1] (y). Returns 0 when no site scores. In
  * STRIKE_MODE_AI_FUNDS, site also gives the tile to skip on input (see
- * func_02098888). damage 30 is 3 HP. */
+ * Strike_ScoreSite). damage 30 is 3 HP. */
 int Strike_FindBestSite(s16 *site, int playerSlot, int visibleOnly, int mode)
 {
     int skipX;
@@ -91,7 +91,7 @@ int Strike_FindBestSite(s16 *site, int playerSlot, int visibleOnly, int mode)
 
     for (y = 0; y < data_027c027c->unk_48[data_027c0284]->unk_1c4->mapHeight; y++) {
         for (x = 0; x < data_027c027c->unk_48[data_027c0284]->unk_1c4->mapWidth; x++) {
-            score = func_02098888(playerSlot, x, y, radius, damage, visibleOnly, skipX, skipY);
+            score = Strike_ScoreSite(playerSlot, x, y, radius, damage, visibleOnly, skipX, skipY);
             if (score > best) {
                 site[0] = x;
                 best = score;

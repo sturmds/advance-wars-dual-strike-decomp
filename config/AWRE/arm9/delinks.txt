@@ -266,6 +266,10 @@ src/game/main/copowers/strike_find_best_site.c:
     complete
     .text       start:0x020985d0 end:0x02098888
 
+src/game/main/copowers/strike_score_site.c:
+    complete
+    .text       start:0x02098888 end:0x02098bfc
+
 src/game/main/units/strike_score_infantry_damage.c:
     complete
     .text       start:0x02098c34 end:0x02098d14

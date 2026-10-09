@@ -5,7 +5,7 @@
 #include "game/map_unit.h"
 
 /* Target choice for the CO power missile strikes. Strike_FindBestSite
- * scores every map tile with func_02098888, which adds up
+ * scores every map tile with Strike_ScoreSite, which adds up
  * gStrikeUnitScore over the units in the blast diamond, separately for
  * own-team and enemy units, then combines the two sums with
  * gStrikeSiteScore. */
@@ -43,7 +43,7 @@ int StrikeSiteScore_NetFunds(int ownScore, int enemyScore);
 /* Site score below every real score: no site found. */
 #define STRIKE_NO_SITE ((int)0x80000001)
 
-int func_02098888(int playerSlot, int x, int y, int radius, int damage, int visibleOnly, int skipX, int skipY);
+int Strike_ScoreSite(int playerSlot, int x, int y, int radius, int damage, int visibleOnly, int skipX, int skipY);
 
 int Strike_FindBestSite(s16 *site, int playerSlot, int visibleOnly, int mode);
 
