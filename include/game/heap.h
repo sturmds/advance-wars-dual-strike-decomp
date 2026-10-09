@@ -31,6 +31,9 @@ typedef struct HeapBlock {
 /* HeapBlock.signature values */
 #define HEAP_BLOCK_FREE 0x4652  /* "FR" */
 
+/* Bits 8-14 of HeapBlock.attribute: bytes of alignment padding in front of the header. */
+#define HEAP_BLOCK_PADDING(block) (((block)->attribute >> 8) & 0x7F)
+
 /* First byte after a block's memory. Size first: needed to match. */
 #define HEAP_BLOCK_END(block) ((void *)((block)->size + (u32)((block) + 1)))
 

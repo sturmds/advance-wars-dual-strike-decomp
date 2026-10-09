@@ -2756,6 +2756,19 @@ src/game/main/mem/heap_alloc_from_top.c:
     complete
     .text       start:0x0210465c end:0x02104720
 
+src/game/main/mem/heap_block_init_in_region.c:
+    .text       start:0x02104a00 end:0x02104a30
+
+src/game/main/mem/heap_block_list_insert.c:
+    .text       start:0x02104a30 end:0x02104a60
+
+src/game/main/mem/heap_block_list_remove.c:
+    complete
+    .text       start:0x02104a60 end:0x02104a88
+
+src/game/main/mem/heap_block_get_region.c:
+    .text       start:0x02104a88 end:0x02104ab4
+
 src/game/main/func_02104c78.c:
     complete
     .text       start:0x02104c78 end:0x02104c90
