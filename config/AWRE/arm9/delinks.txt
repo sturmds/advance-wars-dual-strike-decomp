@@ -175,6 +175,10 @@ src/game/main/graphics/oam_buffer_flush_tail.c:
     complete
     .text       start:0x020033a8 end:0x02003430
 
+src/game/main/graphics/oam_buffer_init.c:
+    complete
+    .text       start:0x02003430 end:0x020034d0
+
 src/game/main/dma_stop_channel1.c:
     complete
     .text       start:0x020034d0 end:0x020034fc

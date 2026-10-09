@@ -5,7 +5,7 @@
 
 #define OAM_ENTRY_COUNT 128
 
-/* Part of the OAM buffer. OamBuffer_Init splits the 128 entries in two:
+/* Part of the OAM buffer. OamBuffer_Split splits the 128 entries in two:
  * the first headCount entries (head) and the rest (tail). */
 typedef struct OamRegion {
     void *src;                         /* first entry of the region in the buffer */
