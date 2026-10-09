@@ -1789,6 +1789,10 @@ src/game/main/ai/ai_foot_pick_attack_target.c:
     complete
     .text       start:0x020ad0d4 end:0x020ad704
 
+src/game/main/ai/ai_foot_join_capturing_unit_loose.c:
+    complete
+    .text       start:0x020ad704 end:0x020ad8f8
+
 src/game/main/ai/ai_foot_join_capturing_unit.c:
     complete
     .text       start:0x020ad8f8 end:0x020adbac

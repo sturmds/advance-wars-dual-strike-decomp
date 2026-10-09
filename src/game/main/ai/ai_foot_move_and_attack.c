@@ -12,7 +12,7 @@ int Unit_CapturePoints(MapUnit *unit);
 void AiUnit_MoveToOtherMap(void);
 void AiUnit_SeekSeaTransport(void);
 void AiFoot_PickAttackTarget(void);
-void func_020ad704(void);
+void AiFoot_JoinCapturingUnitLoose(void);
 void AiFoot_JoinCapturingUnit(void);
 void AiFoot_HeadForCaptureSite(void);
 void AiFoot_PickCaptureTarget(void);
@@ -44,7 +44,7 @@ void AiFoot_MoveAndAttack(void)
         AiFoot_JoinCapturingUnit();
     }
     AiUnit_PlanAttack();
-    func_020ad704();
+    AiFoot_JoinCapturingUnitLoose();
     if (GAME->actingUnit->hp <= 60) {
         AiUnit_RetreatToRepair();
     }
