@@ -6376,6 +6376,10 @@ src/game/main/func_020c73b4.c:
     complete
     .text       start:0x020c73b4 end:0x020c73c0
 
+src/game/main/map/player_count_unit_lost.c:
+    complete
+    .text       start:0x020c73c0 end:0x020c7428
+
 src/game/main/map/player_count_unit_built.c:
     complete
     .text       start:0x020c7428 end:0x020c7490
