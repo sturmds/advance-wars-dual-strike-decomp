@@ -131,7 +131,7 @@ func_ov002_0235dfe0 kind:function(arm,size=0x158) addr:0x0235dfe0
 func_ov002_0235e138 kind:function(arm,size=0x80) addr:0x0235e138
 func_ov002_0235e1b8 kind:function(arm,size=0xb4) addr:0x0235e1b8
 func_ov002_0235e26c kind:function(arm,size=0x80) addr:0x0235e26c
-func_ov002_0235e2ec kind:function(arm,size=0xd8) addr:0x0235e2ec
+Battle_GetSideMood kind:function(arm,size=0xd8) addr:0x0235e2ec
 func_ov002_0235e3c4 kind:function(arm,size=0x1c8) addr:0x0235e3c4
 func_ov002_0235e58c kind:function(arm,size=0x7c) addr:0x0235e58c
 func_ov002_0235e608 kind:function(arm,size=0x8c) addr:0x0235e608
@@ -1937,8 +1937,8 @@ data_ov002_0236963c kind:data(any) addr:0x0236963c
 data_ov002_02369664 kind:data(any) addr:0x02369664
 data_ov002_02369684 kind:data(any) addr:0x02369684
 data_ov002_023696ac kind:data(any) addr:0x023696ac
-data_ov002_023696f8 kind:data(any) addr:0x023696f8
-data_ov002_0236970c kind:data(any) addr:0x0236970c
+Ov002_gBattleResPath kind:data(any) addr:0x023696f8
+Ov002_gBattleLangResPath kind:data(any) addr:0x0236970c
 data_ov002_02369724 kind:data(any) addr:0x02369724
 data_ov002_02369744 kind:data(any) addr:0x02369744
 data_ov002_02369764 kind:data(any) addr:0x02369764

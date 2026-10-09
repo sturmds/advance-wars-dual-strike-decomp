@@ -7,9 +7,13 @@
 typedef struct BattleSide {
     u8 unk_00;
     u8 unk_01;
-    u8 pad_02[6];
+    u8 pad_02[4];
+    u8 counters;                       /* nonzero: hits back; a guess from Battle_ShowQuote */
+    u8 pad_07;
     u8 coId; /* low 7 bits: enum CoId */
-    u8 pad_09[3];
+    u8 pad_09;
+    u8 army;                           /* 1-4: picks the palette at res_battle 0xab4 */
+    u8 pad_0b;
 } BattleSide;
 
 /* The battle animation state that Ov002_gBattleScene points to. */

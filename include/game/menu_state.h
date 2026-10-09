@@ -91,6 +91,24 @@ typedef struct Unk_0206d67c {
     u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses func_020e5d8c for every slot */
 } Unk_0206d67c;
 
+/* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */
+typedef struct BattleScreenWork {
+    u8 pad_020[0x490 - 0x20];
+    u8 unk_490[0x80];                  /* copied from res_battle 0x828 */
+    u8 unk_510[0x240];                 /* copied from res_battle 0x88c */
+    u8 unk_750[0x80];                  /* copied from res_battle 0xb54 */
+    u8 unk_7d0[0x800];                 /* cleared, then handed to func_ov002_0235e58c */
+    u16 unk_fd0[16];                   /* palette picked by data_0229fb30 */
+    s32 hpShown[2];                    /* 16.16 fixed point, per side */
+    s32 hpStep[2];                     /* 16.16 fixed point, taken off hpShown each frame */
+    u8 unk_1000[2];
+    u8 pad_1002[2];
+    u8 hpStart[2];
+    u8 mood[2];                        /* 0 none, 1 happy quote, 2 angry quote */
+    u16 unk_1008[2];
+    u16 hpFrames[2];                   /* frames the HP drain takes; 0: no drain */
+} BattleScreenWork;
+
 typedef struct MenuState {
     u16 colours[16];                   /* a 16-colour palette: map select copies one entry to the
                                         * palette every 4 frames; the link screen and the world map
@@ -100,6 +118,7 @@ typedef struct MenuState {
         BattleSetupState setup;
         CampaignMapWork campaignMap;
         Unk_0206d67c unk_0206d67c;
+        BattleScreenWork battle;
     };
 } MenuState;
 
