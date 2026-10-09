@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2723 / 6603 | 353764 / 1531944 | 23.09% | 0 | 0 |
+| game | 2730 / 6603 | 357724 / 1531944 | 23.35% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2861 / 7483 | 357184 / 1685994 | 21.19% | 1 | 30 |
+| all | 2868 / 7483 | 361144 / 1685994 | 21.42% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2326 / 5180 | 327740 / 1082632 | 30.27% | 0 |
+| main | game | 2333 / 5180 | 331700 / 1082632 | 30.64% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -38,16 +38,10 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | File | Functions | Bytes |
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
-| `src/game/main/ai/ai_add_oozium_threat.c` | Ai_AddOoziumThreat | 492 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
-| `src/game/main/ai/ai_unit_has_fuel_for_tile.c` | func_020a6554 | 528 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | func_020aff0c | 556 |
-| `src/game/main/ai/ai_unit_teammate_outdamages.c` | AiUnit_TeammateOutdamages | 772 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
-| `src/game/main/ai/func_02091e40.c` | func_02091e40 | 112 |
-| `src/game/main/ai/func_0209462c.c` | func_0209462c | 976 |
-| `src/game/main/ai/func_020b46c4.c` | func_020b46c4 | 644 |
-| `src/game/main/ai/func_020b7e90.c` | func_020b7e90 | 436 |
+| `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/link_send_packet.c` | no delinks entry | 0 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |

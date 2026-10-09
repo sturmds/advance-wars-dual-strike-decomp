@@ -5046,6 +5046,9 @@ src/game/main/ai/ai_player_try_use_power.c:
     complete
     .text       start:0x020995c4 end:0x02099a64
 
+src/game/main/ai/func_02099ba0.c:
+    .text       start:0x02099ba0 end:0x02099dac
+
 src/game/main/ai/ai_turn_run_power_step.c:
     complete
     .text       start:0x02099f88 end:0x0209a064
