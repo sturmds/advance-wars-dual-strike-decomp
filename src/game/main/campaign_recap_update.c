@@ -2,18 +2,18 @@
 #include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_020ffa50.h"
+#include "game/campaign_recap.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_020fb660(void);
-u32 func_020ffa50(Unk_020ffa50 *work, int index);
-u32 func_020ffa3c(Unk_020ffa50 *work, int index);
-u32 func_020ffa28(Unk_020ffa50 *work, int index);
-BOOL func_020ff9fc(Unk_020ffa50 *work, int index);
+u32 func_020ffa50(CampaignRecap *work, int index);
+u32 func_020ffa3c(CampaignRecap *work, int index);
+u32 func_020ffa28(CampaignRecap *work, int index);
+BOOL func_020ff9fc(CampaignRecap *work, int index);
 void func_020525a8(int mapId, int arg);
-void func_020ff4a8(Unk_020ffa50 *work);
-void func_020fed58(Unk_020ffa50 *work, int mapOffset);
+void func_020ff4a8(CampaignRecap *work);
+void func_020fed58(CampaignRecap *work, int mapOffset);
 s32 HwMod32(s32 numerator, s32 denominator);
 Task *func_020fcdc8(CampaignRecapTask *parent, int frames);
 Task *func_020fcda0(CampaignRecapTask *parent, int frames);
@@ -23,13 +23,13 @@ BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void func_020fd560(void);
-void func_020ff07c(Unk_020ffa50 *work);
+void func_020ff07c(CampaignRecap *work);
 Task *func_020fcb08(int arg);
 BOOL func_020fccbc(Task *task);
 void func_020fccb0(Task *task);
 void Task_ResumeScript(CampaignRecapTask *task);
-void func_020ff7d0(Unk_020ffa50 *work);
-void func_020ff254(Unk_020ffa50 *work);
+void func_020ff7d0(CampaignRecap *work);
+void func_020ff254(CampaignRecap *work);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -52,7 +52,7 @@ extern Int5 data_0216a870;
  * a guess: the code shows a walk through the missions, not when it plays. */
 void CampaignRecap_Update(CampaignRecapTask *task)
 {
-    Unk_020ffa50 *work = task->work;
+    CampaignRecap *work = task->work;
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedScreen;
     Int5 xs;

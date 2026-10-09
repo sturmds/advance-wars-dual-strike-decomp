@@ -1,10 +1,8 @@
 #include "types.h"
 #include "game/menu_button.h"
-#include "game/Unk_02070250.h"
-#include "game/Unk_0215d6c4.h"
+#include "game/tab_list.h"
 
-extern Unk_02070250 gMenuState;
-extern Unk_0215d6c4 data_0215d6c4[][44];
+extern TabListView gMenuState;
 extern const MenuButtonTemplate data_0215d4c4;
 extern const MenuButtonTemplate data_0215d53c;
 

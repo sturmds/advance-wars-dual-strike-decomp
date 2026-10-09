@@ -1,22 +1,22 @@
-#ifndef GAME_UNK_020FFA50_H
-#define GAME_UNK_020FFA50_H
+#ifndef GAME_CAMPAIGN_RECAP_H
+#define GAME_CAMPAIGN_RECAP_H
 
 #include "types.h"
 
 struct Task;
 
-/* One of the 28 entries at Unk_020ffa50.unk_7c, one per campaign mission
+/* One of the 28 entries at CampaignRecap.unk_7c, one per campaign mission
  * (maps 0xe0-0xfb are missions 0-27 in story order). */
-typedef struct Unk_020ffa50_Entry {
+typedef struct CampaignRecapEntry {
     u32 unk_00;                        /* mission number: map id - 0xe0 (func_020fed58 loads that map) */
     u32 unk_04;                        /* 0 ends the list (func_020ff9fc) */
     u8 pad_08[0x14 - 0x08];
     u32 unk_14;
-} Unk_020ffa50_Entry;
+} CampaignRecapEntry;
 
 /* Work block of the data_0216a8b0 task (0x80 bytes, func_020feadc
  * allocates it and stores it in the task and in data_022a7ea4). */
-typedef struct Unk_020ffa50 {
+typedef struct CampaignRecap {
     int blend[3];                      /* per panel: blend level 0-16, eased in by CampaignRecap_Update */
     int slide[3];                      /* per panel: offset eased from 24 to 0 */
     int number;                        /* index + 1 */
@@ -40,14 +40,14 @@ typedef struct Unk_020ffa50 {
     u8 pad_68[0x74 - 0x68];
     int index;                         /* current entry in unk_7c */
     u32 count;                         /* 28 */
-    Unk_020ffa50_Entry *unk_7c;
-} Unk_020ffa50;
+    CampaignRecapEntry *unk_7c;
+} CampaignRecap;
 
 /* The data_0216a8b0 task, as CampaignRecap_Update sees it. The first 0x2c
  * bytes belong to the task system (Task_Create). */
 typedef struct CampaignRecapTask {
     u8 pad_00[0x2c];
-    Unk_020ffa50 *work;
+    CampaignRecap *work;
     u8 pad_30[0x34 - 0x30];
     u32 step;
     u8 pad_38[0x3c - 0x38];

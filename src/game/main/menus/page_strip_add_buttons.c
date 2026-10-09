@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_0229c744.h"
+#include "game/page_strip.h"
 
 void MenuButton_Add(int x, int y, void *def, int id);
 void *MenuButton_Select(int id);

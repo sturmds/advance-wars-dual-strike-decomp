@@ -4,7 +4,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_020ffa50.h"
+#include "game/campaign_recap.h"
 
 void func_020c4eb4(void);
 void Map_LoadVariant(int mapId, int variant);
@@ -28,7 +28,7 @@ extern int data_027c0284;
  *
  * WIP: 97%. The loop preheader schedules two instructions differently
  * (the Ov000_gMapHeaders load and the copies of the constant 1). */
-void func_020fed58(Unk_020ffa50 *recap, int mission)
+void func_020fed58(CampaignRecap *recap, int mission)
 {
     int mapId;
     int slot;
