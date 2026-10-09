@@ -8289,6 +8289,10 @@ src/game/main/func_020f9838.c:
     complete
     .text       start:0x020f9838 end:0x020f9854
 
+src/game/main/graphics/screen_set_layer_priorities.c:
+    complete
+    .text       start:0x020f9ca0 end:0x020f9d28
+
 src/game/main/func_020fa448.c:
     complete
     .text       start:0x020fa448 end:0x020fa45c
