@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 269 / 6603 | 62488 / 1531944 | 4.08% | 0 | 0 |
+| game | 270 / 6603 | 64136 / 1531944 | 4.19% | 0 | 0 |
 | SDK/library | 1 / 880 | 40 / 154050 | 0.03% | 1 | 30 |
-| all | 270 / 7483 | 62528 / 1685994 | 3.71% | 1 | 30 |
+| all | 271 / 7483 | 64176 / 1685994 | 3.81% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 263 / 5180 | 61052 / 1082632 | 5.64% | 0 |
+| main | game | 264 / 5180 | 62700 / 1082632 | 5.79% | 0 |
 | main | SDK/library | 1 / 767 | 40 / 130618 | 0.03% | 1 |
 | ov002 | game | 2 / 164 | 1160 / 64208 | 1.81% | 0 |
 | ov003 | game | 2 / 235 | 64 / 82696 | 0.08% | 0 |
@@ -34,5 +34,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | File | Functions | Bytes |
 |---|---|---:|
 | `src/game/main/co_stats/player_get_co_defense.c` | Player_GetCoDefense | 272 |
-| `src/game/main/menus/battle_setup_load_from_game.c` | BattleSetup_LoadFromGame | 1648 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |

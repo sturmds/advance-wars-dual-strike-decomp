@@ -26,11 +26,19 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
-extern volatile u32 data_0229eaec;
+extern u32 data_0229eaec;
 extern Unk_02290718 data_02290718;
 extern DesignMap data_022a6c84[];
 
-#define GAME (data_027c027c->unk_48[data_027c0284])
+/* data_027c027c->unk_48[data_027c0284], written so that the compiler
+ * adds the scaled index before the field offset, as the original does.
+ * With the plain form the two loads end up in swapped registers. */
+#define GAME (*(Unk_02080440_48 **)((u8 *)data_027c027c + data_027c0284 * sizeof(Unk_02080440_48 *) \
+                                    + (u32)&((Unk_02080440 *)0)->unk_48))
+
+/* Needed to match: the original adds the field offset to the address of
+ * gMenuState at run time instead of folding it into the relocation. */
+#define SETUP_FIELD(field) ((u8 *)&gMenuState + (u32)&((MenuState *)0)->setup.field)
 
 /* data_027c0288 holds two game states, one per map; see Map_InitBattle. */
 #define MAIN_MAP   (data_027c0288.unk_00)
@@ -57,11 +65,12 @@ void BattleSetup_LoadFromGame(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(MAIN_MAP);
 
-    /* Some stores go through this pointer and some name gMenuState:
-     * the mix changes which loads the compiler repeats (closest shape
-     * found so far, 99.5%). */
+    /* Needed to match: some stores go through this pointer and some
+     * name gMenuState, and the weather store goes through a u8 pointer.
+     * The mix decides which loads the compiler repeats and which
+     * registers it picks. */
+    gMenuState.setup.fog = GAME->unk_1c4->fog;
     state = &gMenuState;
-    state->setup.fog = GAME->unk_1c4->fog;
     state->setup.unk_2dd = GAME->unk_1c4->tileset & PLAYER_CO_ID_MASK;
     state->setup.coEffectsOn = GAME->coEffectsOn;
     state->setup.unk_2de = GAME->unk_80;
@@ -80,7 +89,7 @@ void BattleSetup_LoadFromGame(void)
 
     /* weather setting: 0 when unk_3b is 1, else 1-4 from unk_3d */
     if (GAME->unk_1c4->unk_3b == 1) {
-        state->setup.unk_2dc = 0;
+        *(u8 *)&gMenuState.setup.unk_2dc = 0;
     } else {
         switch (GAME->unk_1c4->unk_3d) {
         case 0:
@@ -100,7 +109,7 @@ void BattleSetup_LoadFromGame(void)
     }
 
     if (gMenuState.setup.unk_2eb == 0) {
-        func_020c47d0(GAME->unk_1c4->mapId, &state->setup.unk_2e7, &state->setup.unk_2e8);
+        func_020c47d0(GAME->unk_1c4->mapId, SETUP_FIELD(unk_2e7), SETUP_FIELD(unk_2e8));
         gMenuState.setup.coListCount = func_020e3478();
         gMenuState.setup.coList = GetCoPickList();
         gMenuState.setup.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);
