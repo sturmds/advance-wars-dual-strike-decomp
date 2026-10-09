@@ -12,7 +12,7 @@ BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 void AiUnit_GoToSupply(void);
 void func_020aff0c(void);
 void AiUnit_LaunchSilo(void);
-void func_020b81ac(void);
+void AiStep_DebugHook(void);
 
 /* Like func_020af5f8, but only runs AiUnit_GoToSupply and only when the acting
  * unit's unk_0a_12 is 1. */
@@ -28,6 +28,6 @@ void AiUnit_SeekSupply(void)
         AiUnit_LaunchSilo();
     }
     gAiTurnState->flags |= 2;
-    func_020b81ac();
+    AiStep_DebugHook();
     AiUnit_GoToSupply();
 }

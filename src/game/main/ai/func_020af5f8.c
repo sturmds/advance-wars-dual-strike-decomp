@@ -13,7 +13,7 @@ void AiUnit_GoToSupply(void);
 void AiUnit_HeadForRepairTile(void);
 void func_020aff0c(void);
 void AiUnit_LaunchSilo(void);
-void func_020b81ac(void);
+void AiStep_DebugHook(void);
 
 /* AI step shared by AiFoot_MoveAndAttack and many queue routines. When the
  * acting unit's unk_0a_12 is 1 or 2, runs AiUnit_GoToSupply or AiUnit_HeadForRepairTile;
@@ -30,7 +30,7 @@ void func_020af5f8(void)
         AiUnit_LaunchSilo();
     }
     gAiTurnState->flags |= 2;
-    func_020b81ac();
+    AiStep_DebugHook();
     switch (GAME->actingUnit->unk_0a_12) {
     case 1:
         AiUnit_GoToSupply();
