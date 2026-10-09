@@ -8804,6 +8804,10 @@ src/game/main/file/file_localize_path.c:
     complete
     .text       start:0x021040dc end:0x02104124
 
+src/game/main/mem/link_list_get_prev.c:
+    complete
+    .text       start:0x02104124 end:0x02104138
+
 src/game/main/mem/link_list_get_next.c:
     complete
     .text       start:0x02104138 end:0x02104150
