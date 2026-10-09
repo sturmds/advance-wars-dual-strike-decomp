@@ -463,6 +463,10 @@ src/game/main/copowers/play_super_power_theme.c:
     complete
     .text       start:0x020e3098 end:0x020e30d4
 
+src/game/main/copowers/player_is_allied_nations.c:
+    complete
+    .text       start:0x020e3110 end:0x020e3298
+
 src/game/main/copowers/start_power_damage.c:
     complete
     .text       start:0x020e3e3c end:0x020e3eb0
