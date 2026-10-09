@@ -2796,6 +2796,10 @@ src/game/main/func_02104c78.c:
     complete
     .text       start:0x02104c78 end:0x02104c90
 
+src/game/main/sound/nns_snd_main.c:
+    complete
+    .text       start:0x02104e24 end:0x02104e58
+
 src/game/main/sound/nns_snd_player_move_volume.c:
     complete
     .text       start:0x021057cc end:0x02105814
