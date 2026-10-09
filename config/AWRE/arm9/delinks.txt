@@ -12,6 +12,10 @@ src/game/main/graphics/co_load_graphics.c:
     complete
     .text       start:0x02002984 end:0x020029e4
 
+src/game/main/graphics/co_get_picture_variant.c:
+    complete
+    .text       start:0x02002c04 end:0x02002c48
+
 src/game/main/graphics/co_load_palette.c:
     complete
     .text       start:0x02002cec end:0x02002d3c
