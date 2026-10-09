@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-BOOL func_0202634c(void);
 void MenuButton_NotifySelected(MenuButton *button);
 
 /* Puts the cursor on a button. When the cursor moves off a selectable
@@ -11,7 +10,7 @@ MenuButton *MenuCursor_SetSelected(MenuButton *button, int id)
 {
     BOOL changed;
 
-    if (func_0202634c() && button != NULL && data_02158f38->selected != button) {
+    if (MenuCursor_HasSelection() && button != NULL && data_02158f38->selected != button) {
         changed = TRUE;
     } else {
         changed = FALSE;

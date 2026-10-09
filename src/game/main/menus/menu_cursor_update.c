@@ -4,7 +4,6 @@
 int func_01ff9f7c(void);
 void func_01ff8850(int x, int y, void *shape, int tileAndPalette);
 int func_02026404(MenuButton *entry, int mask);
-BOOL func_0202634c(void);
 
 extern u8 data_0216e4d0;
 extern u8 data_02158f3c[];
@@ -30,7 +29,7 @@ void MenuCursor_Update(void)
 
     mode = 0;
     MenuButton_Select(data_02158f38->selectedId);
-    if (!func_0202634c()) {
+    if (!MenuCursor_HasSelection()) {
         return;
     }
     button = data_02158f38->selected;

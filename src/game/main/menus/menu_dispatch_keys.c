@@ -2,7 +2,6 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-BOOL func_0202634c(void);
 
 extern u8 data_0216e4d0;
 
@@ -12,7 +11,7 @@ void Menu_DispatchKeys(void)
 {
     MenuButton *button;
 
-    if (!func_0202634c()) {
+    if (!MenuCursor_HasSelection()) {
         return;
     }
     button = data_02158f38->selected;

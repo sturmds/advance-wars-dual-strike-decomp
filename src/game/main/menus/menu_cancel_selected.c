@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-BOOL func_0202634c(void);
+BOOL MenuCursor_HasSelection(void);
 
 void Menu_CancelSelected(void)
 {
     MenuButton *button;
 
-    if (func_0202634c() == FALSE) {
+    if (MenuCursor_HasSelection() == FALSE) {
         return;
     }
     button = data_02158f38->selected;
