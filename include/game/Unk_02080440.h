@@ -163,6 +163,16 @@ typedef struct Unk_02080440_5c {
  * first MAP_UNITS_PER_PLAYER (64) units belong to slot 1. */
 #define MAP_UNIT_OWNER(state, unit) ((((unit) - (state)->units) >> 6) + 1)
 
+/* One of the 100-byte records in data_02169f48 that Screens_SelectConfigs
+ * gives each game state (Unk_02080440.unk_50). */
+typedef struct Unk_02080440_50 {
+    void (*first)(void);               /* run by func_020c8888 when set */
+    void (*second)(void);              /* run by func_020c8888 after first */
+    u8 pad_08[0x18 - 0x08];
+    void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
+    u8 pad_1c[100 - 0x1c];
+} Unk_02080440_50;
+
 /* Pointed to by data_027c027c (DTCM). */
 typedef struct Unk_02080440 {
     u8 pad_00[0x2c];
@@ -172,7 +182,9 @@ typedef struct Unk_02080440 {
     struct Task **taskLists;           /* TASK_LEVELS lists of top-level tasks */
     struct ScriptSlot *scriptSlots;    /* 30 slots, see game/script_slot.h */
     u8 pad_40[0x48 - 0x40];
-    Unk_02080440_48 *unk_48[5]; /* indexed by data_027c0284; length is a guess (unk_5c follows) */
+    Unk_02080440_48 *unk_48[2];        /* indexed by data_027c0284 */
+    Unk_02080440_50 *unk_50[2];        /* indexed by data_027c0284; set by Screens_SelectConfigs */
+    u8 pad_58[0x5c - 0x58];
     Unk_02080440_5c *unk_5c[1];        /* length unknown, indexed by data_027c0284 like unk_48 */
 } Unk_02080440;
 

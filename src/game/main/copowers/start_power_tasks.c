@@ -1,12 +1,5 @@
 #include "types.h"
-
-/* Task started for an activated power. The first 0x54 bytes belong to the
- * task system (Task_Create). */
-typedef struct PowerActivateTask {
-    u8 pad_00[0x54];
-    int player;
-    int power;
-} PowerActivateTask;
+#include "game/power_activate_task.h"
 
 PowerActivateTask *Task_Create(const void *script, void *parentOrList);
 PowerActivateTask *Task_CreateChild(const void *script, void *parent);

@@ -5979,7 +5979,7 @@ src/game/main/func_020d55f4.c:
     complete
     .text       start:0x020d55f4 end:0x020d5608
 
-src/game/main/func_020d5608.c:
+src/game/main/copowers/power_activate_task_run.c:
     complete
     .text       start:0x020d5608 end:0x020d5620
 

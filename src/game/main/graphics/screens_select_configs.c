@@ -10,12 +10,9 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02169f48[][100];
+extern Unk_02080440_50 data_02169f48[];
 
-/* Unk_02080440 holds a second pointer array right after unk_48, one entry
- * per game state; this is entry n. It points the state at one of the
- * 100-byte records in data_02169f48. */
-#define STATE_RECORD(n) (((void **)&data_027c027c->unk_48[2])[n])
+#define STATE_RECORD(n) (data_027c027c->unk_50[n])
 
 #define SWITCH_TO(state)            \
     saved0280 = data_027c0280;      \
@@ -59,16 +56,16 @@ static inline int GetRecordKind(void)
     }
 }
 
-#define SELECT_RECORD(screen)                              \
-    {                                                      \
-        Unk_027c0280 *saved0280;                           \
-        Unk_02080440 *saved027c;                           \
-        int kind;                                          \
-                                                           \
-        SWITCH_TO(screen);                                 \
-        kind = GetRecordKind();                            \
-        STATE_RECORD(data_027c0284) = data_02169f48[kind]; \
-        SWITCH_BACK();                                     \
+#define SELECT_RECORD(screen)                               \
+    {                                                       \
+        Unk_027c0280 *saved0280;                            \
+        Unk_02080440 *saved027c;                            \
+        int kind;                                           \
+                                                            \
+        SWITCH_TO(screen);                                  \
+        kind = GetRecordKind();                             \
+        STATE_RECORD(data_027c0284) = &data_02169f48[kind]; \
+        SWITCH_BACK();                                      \
     }
 
 /* Gives the game state of each screen its record from data_02169f48. */
