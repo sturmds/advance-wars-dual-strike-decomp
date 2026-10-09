@@ -5,10 +5,10 @@ void func_020a363c(void);
 
 void func_0208e77c(void)
 {
-    data_0229e168 = data_0229e1f0;
-    *data_0229e168++ = AI_QUEUE_RUN_ONCE;
-    *data_0229e168 = 0;
-    data_0229e168 = data_0229e1f0;
-    data_0229e170 = func_020a363c;
-    *data_021619c8 = AI_STATE_RUN_QUEUE;
+    gAiQueueCursor = gAiQueue;
+    *gAiQueueCursor++ = AI_QUEUE_RUN_ONCE;
+    *gAiQueueCursor = 0;
+    gAiQueueCursor = gAiQueue;
+    gAiQueueRoutine = func_020a363c;
+    *gAiTurnState = AI_STATE_RUN_QUEUE;
 }

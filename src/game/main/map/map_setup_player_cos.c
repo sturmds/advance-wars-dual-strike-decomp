@@ -74,7 +74,7 @@ void Map_SetupPlayerCos(void)
                 }
                 /* bit 7 of a selection byte is a flag (meaning unknown) */
                 STATE->playerCos[player][slot] = cos[player][slot] & 0x7f;
-                if (STATE->unk_8a == 1 && (STATE->playerCos[player][slot] & 0x7f) == 0) {
+                if (STATE->twoMaps == 1 && (STATE->playerCos[player][slot] & 0x7f) == 0) {
                     if (slot == 1 && data_02167d30[player][1] == (STATE->playerCos[player][0] & 0x7f)) {
                         cos[player][slot] = data_02167d30[player][0];
                     } else {

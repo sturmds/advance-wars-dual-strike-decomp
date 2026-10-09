@@ -9,12 +9,12 @@ typedef struct CoPictureFiles {
     const char *unk_04;
 } CoPictureFiles;
 
-/* One entry of data_02152b38 (main), indexed by CO id. */
+/* One entry of gCoGraphics (main), indexed by CO id. */
 typedef struct CoGraphics {
     CoPictureFiles pictures[10];       /* indexed by the CO's stored picture variant */
     const u8 *palettes;                /* 16-colour palettes, 32 bytes each */
 } CoGraphics;
 
-extern CoGraphics data_02152b38[];
+extern CoGraphics gCoGraphics[];
 
 #endif

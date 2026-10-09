@@ -3,8 +3,8 @@
 #include "game/Unk_02080440.h"
 
 int CoPowerCost(int player, int slot);
-BOOL func_020e2d78(int player); /* the front CO has a power on */
-BOOL func_020e298c(int player, int slot); /* the same test for the Super CO Power */
+BOOL Player_IsPowerActive(int player); /* the front CO has a power on */
+BOOL CanUseSuperPower(int player, int slot); /* the same test for the Super CO Power */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -17,11 +17,11 @@ BOOL CanUseCoPower(int player, int slot)
     u32 cost;
     Player *p;
 
-    if (func_020e2d78(player)) {
+    if (Player_IsPowerActive(player)) {
         return FALSE;
     }
     if (CoPowerCost(player, slot) == 0) {
-        return func_020e298c(player, slot);
+        return CanUseSuperPower(player, slot);
     }
     cost = CoPowerCost(player, slot);
     p = &data_027c027c->unk_48[data_027c0284]->players[player];

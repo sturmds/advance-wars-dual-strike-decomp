@@ -11,8 +11,8 @@ void func_02003188(const void *src, u32 offset, u32 size);
 void func_02003bec(const void *src, void *dst);
 void func_0200ac9c(void *state);
 void func_0200acac(void *state);
-void *func_0200bc28(const char *path);
-void func_0200bf24(void *file);
+void *File_Load(const char *path);
+void Mem_Free(void *file);
 void func_02015340(int x, int y, void *target, const void *text, int a, int b);
 void func_0201e30c(void *target, int a, int b);
 void func_0201e6b4(int x, int y, int w, int h);
@@ -34,7 +34,7 @@ int func_02073768(int player);
 int func_0207bd80(void);
 void func_0207d918(void);
 void func_02082614(int a, int b, int c, int d);
-const char *func_021040dc(const char *path);
+const char *File_LocalizePath(const char *path);
 u8 Map_GetPlayerCount(u32 mapId);
 const void *Map_GetName(u32 mapId);
 const void *Text_Get(u32 textId);
@@ -70,7 +70,7 @@ extern const char gLinkCommonResPath[];
 
 #define LINK_STATE ((MenuState *)&gMenuState)
 
-/* Message ids; which one shows depends on GAME->unk_8a. */
+/* Message ids; which one shows depends on GAME->twoMaps. */
 #define TEXT_LINK_ONE_MAP  0x7d000017
 #define TEXT_LINK_TWO_MAPS 0x7d000018
 
@@ -78,7 +78,7 @@ extern const char gLinkCommonResPath[];
  * /ohashi/res_linkphase and /commo/res_linkcommon). Copies each player's
  * army colour from the current map into gMenuState, draws one army icon
  * per player, and writes the map name on the second game state's screen.
- * When GAME->unk_8a is 1 it writes the second map's name there, and the
+ * When GAME->twoMaps is 1 it writes the second map's name there, and the
  * main state's screen also gets the first map's name. */
 void LinkPhase_InitScreen(void)
 {
@@ -127,7 +127,7 @@ void LinkPhase_InitScreen(void)
     data_027c0280->blendBottomObj = 1;
     SWITCH_BACK();
 
-    file = func_0200bc28(gLinkPhaseResPath);
+    file = File_Load(gLinkPhaseResPath);
     SWITCH_TO(MAIN_MAP);
     func_02003bec(file, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     func_02003188(file + 0x2a4, 0, 0xa0);
@@ -137,21 +137,21 @@ void LinkPhase_InitScreen(void)
     }
     func_01ff8d60(2);
     SWITCH_BACK();
-    func_0200bf24(file);
+    Mem_Free(file);
 
-    file = func_0200bc28(func_021040dc(gLinkCommonLangResPath));
+    file = File_Load(File_LocalizePath(gLinkCommonLangResPath));
     func_02003bec(file, data_027c0280->objVram);
-    func_0200bf24(file);
+    Mem_Free(file);
 
-    file = func_0200bc28(gLinkCommonResPath);
+    file = File_Load(gLinkCommonResPath);
     func_02003188(file, 0x200, 0x20);
     func_02003188(file, 0x220, 0x20);
     func_02003188(file, 0x240, 0x20);
     func_02026bc8(data_027c0280->unk_08 + 0x240, 0, 8, 8);
     func_02002e50(file + 0x20, &gMenuState, 0x20);
-    func_0200bf24(file);
+    Mem_Free(file);
 
-    if (GAME->unk_8a == 1) {
+    if (GAME->twoMaps == 1) {
         mapId = GAME->secondMapId;
     } else {
         mapId = GAME->unk_1c4->mapId;
@@ -160,7 +160,7 @@ void LinkPhase_InitScreen(void)
     func_0201e30c(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
     func_0201e6b4(11, 20, 10, 4);
-    target = data_027c0280->unk_ec;
+    target = data_027c0280->layer0Map;
     func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
     func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
     func_0202c520(18);
@@ -168,7 +168,7 @@ void LinkPhase_InitScreen(void)
     func_01ff8d60(1);
     SWITCH_BACK();
 
-    if (GAME->unk_8a == 1) {
+    if (GAME->twoMaps == 1) {
         mapId = GAME->unk_1c4->mapId;
         SWITCH_TO(MAIN_MAP);
         data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 1;
@@ -178,7 +178,7 @@ void LinkPhase_InitScreen(void)
         func_0201e30c(data_027c0280->unk_f8, 0, 0);
         func_02021380(0);
         func_0201e6b4(11, 20, 10, 4);
-        target = data_027c0280->unk_ec;
+        target = data_027c0280->layer0Map;
         func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
         func_0202bdec(data_027c0280->objVram + 0x780, mapId);
         func_0202c520(19);
@@ -188,7 +188,7 @@ void LinkPhase_InitScreen(void)
     }
 
     func_0202aba8(0, 0);
-    if (GAME->unk_8a == 0) {
+    if (GAME->twoMaps == 0) {
         func_0202a9ac(Text_Get(TEXT_LINK_ONE_MAP), 0, 0, 1, 0);
     } else {
         func_0202a9ac(Text_Get(TEXT_LINK_TWO_MAPS), 0, 0, 1, 0);

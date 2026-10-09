@@ -33,7 +33,7 @@ typedef struct Unk_027c0280 {
      * their tile map buffer. */
     u8 layer0Bg;
     u8 pad_e2[0xec - 0xe2];
-    void *unk_ec;                      /* passed to the text drawing calls */
+    u16 *layer0Map;
     u8 pad_f0[0xf5 - 0xf0];
     u8 layer1Bg;
     u8 pad_f6[0xf8 - 0xf6];

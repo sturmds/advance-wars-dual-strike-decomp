@@ -14,7 +14,7 @@ int func_02017abc(int co, int player);
 void func_020c47d0(int mapId, u8 *a, u8 *b);
 u8 func_020c3e08(void);
 u8 func_020e3478(void);
-u8 *func_020e3518(void);
+u8 *GetCoPickList(void);
 int func_0207bd80(void);
 int func_0207bd6c(void);
 int func_020738d0(int a);
@@ -102,7 +102,7 @@ void BattleSetup_LoadFromGame(void)
     if (gMenuState.setup.unk_2eb == 0) {
         func_020c47d0(GAME->unk_1c4->mapId, &state->setup.unk_2e7, &state->setup.unk_2e8);
         gMenuState.setup.coListCount = func_020e3478();
-        gMenuState.setup.coList = func_020e3518();
+        gMenuState.setup.coList = GetCoPickList();
         gMenuState.setup.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);
         for (i = 0; i < 4; i++) {
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {

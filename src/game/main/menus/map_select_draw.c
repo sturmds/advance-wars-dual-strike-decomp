@@ -24,7 +24,7 @@ void func_020636d8(int x, int y, int a2);
 void func_02063868(int x, int y);
 void func_02063958(int x, int y, int list);
 void func_02063e04(int list, int a1);
-int func_020642e8(void);
+int MapSelect_GetTab(void);
 int func_0207bd6c(void);
 int func_0207bd80(void);
 int Map_GetPlayerCount(int mapId);
@@ -47,7 +47,7 @@ extern u8 data_027c0108;
 #define MENU ((MenuState *)&gMenuState)
 #define TABLES data_0229c768
 /* Current tab of the menu, 0-3; each tab has its own map list. */
-#define TAB() func_020642e8()
+#define TAB() MapSelect_GetTab()
 #define LIST_OF_TAB(tab) (TABLES.listOfTab[tab])
 #define LIST(tab) (MENU->setup.lists[LIST_OF_TAB(tab)])
 /* Writes value to the X scroll of the BG used by layer bg, then copies
@@ -81,7 +81,7 @@ extern u8 data_027c0108;
     }
 
 /* Map list layout: COLS by ROWS maps per page. */
-#define COLS (STATE->gameMode == 1 ? 7 : (STATE->unk_8a == 0 ? 9 : 8))
+#define COLS (STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
 #define ROWS (STATE->gameMode == 1 ? 1 : 3)
 /* Page of the selected entry; the map's index is page * ROWS * COLS plus its
  * position on the page. */
@@ -156,7 +156,7 @@ void MapSelect_Draw(void)
                 func_02060718(slideOffset - 256, 72, 1);
                 func_02060bf8(slideOffset + 200, 64, LIST_OF_TAB(TAB()));
                 func_02060bf8(slideOffset - 56, 64, MENU->setup.prevList);
-            } else if (STATE->unk_8a == 0) {
+            } else if (STATE->twoMaps == 0) {
                 func_02060bf8(slideOffset + 192, 32, LIST_OF_TAB(TAB()));
                 func_02060bf8(slideOffset - 64, 32, MENU->setup.prevList);
             } else {
@@ -174,7 +174,7 @@ void MapSelect_Draw(void)
                 func_02060718(256 - slideOffset, 72, 1);
                 func_02060bf8(200 - slideOffset, 64, LIST_OF_TAB(TAB()));
                 func_02060bf8(456 - slideOffset, 64, MENU->setup.prevList);
-            } else if (STATE->unk_8a == 0) {
+            } else if (STATE->twoMaps == 0) {
                 func_02060bf8(192 - slideOffset, 32, LIST_OF_TAB(TAB()));
                 func_02060bf8(448 - slideOffset, 32, MENU->setup.prevList);
             } else {
@@ -189,7 +189,7 @@ void MapSelect_Draw(void)
         if (STATE->gameMode == 1) {
             func_02060bf8(200, 64, LIST_OF_TAB(TAB()));
             func_02060718(0, 72, 0);
-        } else if (STATE->unk_8a == 0) {
+        } else if (STATE->twoMaps == 0) {
             func_02060bf8(192, 32, LIST_OF_TAB(TAB()));
         } else {
             func_02060bf8(192, 48, LIST_OF_TAB(TAB()));
@@ -216,7 +216,7 @@ void MapSelect_Draw(void)
             func_020636d8(128, 40, TABLES.unk_108);
             func_020636d8(256, 40, TABLES.unk_108 + 1);
         }
-    } else if (STATE->unk_8a == 1) {
+    } else if (STATE->twoMaps == 1) {
         func_02063868(128, 8);
     }
 

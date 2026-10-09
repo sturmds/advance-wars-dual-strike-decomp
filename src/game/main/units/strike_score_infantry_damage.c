@@ -4,7 +4,7 @@
 
 /* Returns how the current player's unitType attacks, from its range after
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
-int func_0209e134(int unitType);
+int UnitType_GetAttackKind(int unitType);
 
 /* One of the target scores for the CO power strikes (Covering Fire and
  * Ex Machina): the strike AI scores each unit in the blast area and sums
@@ -21,7 +21,7 @@ int StrikeScore_InfantryDamage(MapUnit *unit, int damage, int isEnemy)
     if (unit->hp <= 10) {
         return 1;
     }
-    if (func_0209e134(unit->type) == 2 && isEnemy == 1) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
         return 1;
     }
 
@@ -35,11 +35,10 @@ int StrikeScore_InfantryDamage(MapUnit *unit, int damage, int isEnemy)
             score *= 4;
         }
     }
-    /* unk_06_11: capture progress, per doc 890 */
-    if (unit->unk_06_11 != 0 && isEnemy == 1) {
+    if (unit->captureProgress != 0 && isEnemy == 1) {
         score *= 2;
     }
-    if (func_0209e134(unit->type) == 2 && isEnemy == 0) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
         score /= 2;
     }
     return score;

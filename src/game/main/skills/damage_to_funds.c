@@ -10,11 +10,6 @@ void Player_AddFunds(int playerIndex, int amount);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Index of the player that owns a unit: MAP_UNITS_PER_PLAYER (64) slots
- * per player. Why the original adds 1 is not known yet. */
-#define UNIT_OWNER(unit) \
-    ((((unit) - data_027c027c->unk_48[data_027c0284]->units) >> 6) + 1)
-
 /* Skill words of a player's front CO. */
 #define FRONT_CO_SKILLS(player) \
     (data_027c027c->unk_48[data_027c0284]->players[player].skills[0])
@@ -24,8 +19,8 @@ extern int data_027c0284;
  * Super CO Power. Only the front CO's skills count. */
 void DamageToFunds(MapUnit *attacker, MapUnit *target, int hpLost)
 {
-    int attackerOwner = UNIT_OWNER(attacker);
-    int targetOwner = UNIT_OWNER(target);
+    int attackerOwner = MAP_UNIT_OWNER(data_027c027c->unk_48[data_027c0284], attacker);
+    int targetOwner = MAP_UNIT_OWNER(data_027c027c->unk_48[data_027c0284], target);
 
     if (CheckSkillsEquipped(FRONT_CO_SKILLS(attackerOwner), SKILL_RANK_COMBAT_PAY)) {
         /* needed to match: the original narrows the player index here */

@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_021220ac(int value); /* absolute value */
+int abs(int value);
 void func_020c3640(Combatant *attacker, Combatant *defender, s16 distance, int arg3); /* sets baseDamage; probably defense too */
 void Combat_StrikeAndCounter(Combatant *first, Combatant *second); /* first hits, then second hits back */
 void Combat_ClampHp(Combatant *attacker, Combatant *defender);     /* no hp below 0; one side survives at 1 if both would die */
@@ -31,8 +31,8 @@ void Combat_SimulateBattle(s16 attackerIndex, s16 defenderIndex, s16 *pos)
     STATE->units[attackerIndex].y = pos[1];
     Combatant_Init(&STATE->combatants[0], attackerIndex);
     Combatant_Init(&STATE->combatants[1], defenderIndex);
-    distance = func_021220ac(STATE->combatants[0].unit->x - STATE->combatants[1].unit->x)
-             + func_021220ac(STATE->combatants[0].unit->y - STATE->combatants[1].unit->y);
+    distance = abs(STATE->combatants[0].unit->x - STATE->combatants[1].unit->x)
+             + abs(STATE->combatants[0].unit->y - STATE->combatants[1].unit->y);
     func_020c3640(&STATE->combatants[0], &STATE->combatants[1], distance, 1);
     func_020c3640(&STATE->combatants[1], &STATE->combatants[0], distance, 0);
     Combatant_CalcDamage(&STATE->combatants[0], 0, 1);

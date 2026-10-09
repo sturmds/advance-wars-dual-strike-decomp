@@ -4,7 +4,7 @@
 
 /* Returns how the current player's unitType attacks, from its range after
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
-int func_0209e134(int unitType);
+int UnitType_GetAttackKind(int unitType);
 
 /* Target score for the CO power strikes, like StrikeScore_InfantryDamage
  * without the infantry and capture weights: the HP the strike takes. */
@@ -18,7 +18,7 @@ int StrikeScore_HpDamage(MapUnit *unit, int damage, int isEnemy)
     if (unit->hp <= 10) {
         return 1;
     }
-    if (func_0209e134(unit->type) == 2 && isEnemy == 1) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
         return 1;
     }
 
@@ -27,7 +27,7 @@ int StrikeScore_HpDamage(MapUnit *unit, int damage, int isEnemy)
     } else {
         score = unit->hp - 1;
     }
-    if (func_0209e134(unit->type) == 2 && isEnemy == 0) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
         score /= 2;
     }
     return score;

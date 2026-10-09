@@ -1,8 +1,8 @@
 #include "types.h"
 
 /* RNG state. */
-extern u32 data_0216e2b4;
+extern u32 gRngState;
 
 void Rng_SetState(u32 state) {
-    data_0216e2b4 = state;
+    gRngState = state;
 }

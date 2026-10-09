@@ -3,7 +3,8 @@
 
 #include "types.h"
 
-/* One bit per unlockable: COs, cleared maps, hard mode, sound room. */
+/* One bit per CO, set once the CO is unlocked. Other unlocks (maps, hard
+ * mode, sound room) are game flags, see GameFlag_IsSet. */
 extern u8 gUnlockFlags[];
 
 /* Returns nonzero if unlock flag `id` is set. */

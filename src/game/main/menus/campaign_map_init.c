@@ -18,8 +18,8 @@ void func_0200a810(const void *config);
 void func_0200ac9c(void *state);
 void func_0200acac(void *state);
 void func_0200bb18(void *dest, const char *path, int a, int b);
-u8 *func_0200bc28(const char *path);
-void func_0200bf24(void *res);
+u8 *File_Load(const char *path);
+void Mem_Free(void *res);
 void func_0201e30c(void *a, int b, int c);
 void func_02021380(int a);
 void func_02023e00(int a, u8 *objVram, int b);
@@ -32,16 +32,16 @@ void func_0204d6dc(void);
 void CampaignMap_FindTopCos(void);
 BOOL func_020d5d2c(void);
 int func_021039e4(void);
-const char *func_021040dc(const char *path);
+const char *File_LocalizePath(const char *path);
 const void *Text_Get(u32 textId);
 u8 Map_GetPlayerCount(u16 mapId);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern CampaignMapState data_0229c748;
+extern CampaignMapState gCampaignMapState;
 extern MenuState gMenuState;
-extern CampaignMission data_0215ba04[];
+extern CampaignMission gCampaignMissions[];
 
 extern u8 data_0215b548[];
 extern u8 data_0215b598[];
@@ -81,10 +81,10 @@ void CampaignMap_Init(Unk_0204f960 *task)
     /* COs of the map's last player slot (probably the enemy). The (u8) casts get within
      * one instruction of the original, which copies the count with
      * "add rN, r0, #0" instead of "and rN, r0, #0xff". */
-    playerCount = Map_GetPlayerCount(data_0215ba04[data_0229c748.mission].mapId);
-    gMenuState.campaignMap.enemyCos[0] = Ov000_gMapHeaders[data_0215ba04[data_0229c748.mission].mapId].co[(u8)playerCount][0];
-    playerCount = Map_GetPlayerCount(data_0215ba04[data_0229c748.mission].mapId);
-    gMenuState.campaignMap.enemyCos[1] = Ov000_gMapHeaders[data_0215ba04[data_0229c748.mission].mapId].co[(u8)playerCount][1];
+    playerCount = Map_GetPlayerCount(gCampaignMissions[gCampaignMapState.mission].mapId);
+    gMenuState.campaignMap.enemyCos[0] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[(u8)playerCount][0];
+    playerCount = Map_GetPlayerCount(gCampaignMissions[gCampaignMapState.mission].mapId);
+    gMenuState.campaignMap.enemyCos[1] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[(u8)playerCount][1];
 
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
@@ -164,8 +164,8 @@ void CampaignMap_Init(Unk_0204f960 *task)
     func_0200ac9c(saved027c);
     func_0200acac(saved0280);
 
-    res = func_0200bc28(data_0215b990);
-    langRes = func_0200bc28(func_021040dc(data_0215b9a4));
+    res = File_Load(data_0215b990);
+    langRes = File_Load(File_LocalizePath(data_0215b9a4));
 
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
@@ -229,11 +229,11 @@ void CampaignMap_Init(Unk_0204f960 *task)
     func_02002e50(res + 0xe4c, WORK_FIELD(unk_244), sizeof(gMenuState.campaignMap.unk_244));
     func_02002e50(res + 0xd08, WORK_FIELD(unk_020), sizeof(gMenuState.campaignMap.unk_020));
     func_02002e50(res + 0x6d4, WORK_FIELD(unk_0e4), sizeof(gMenuState.campaignMap.unk_0e4));
-    func_0200bf24(res);
-    func_0200bf24(langRes);
+    Mem_Free(res);
+    Mem_Free(langRes);
     func_0200bb18(gMenuState.colours, data_0215b9bc, 0, 0x20);
 
-    res = func_0200bc28(data_0215b9d4);
+    res = File_Load(data_0215b9d4);
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
     func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
@@ -243,9 +243,9 @@ void CampaignMap_Init(Unk_0204f960 *task)
     }
     func_01ff8d60(2);
     func_0200acac(saved0280);
-    func_0200bf24(res);
+    Mem_Free(res);
 
-    res = func_0200bc28(data_0215b9ec);
+    res = File_Load(data_0215b9ec);
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
     func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
@@ -255,7 +255,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     }
     func_01ff8d60(3);
     func_0200acac(saved0280);
-    func_0200bf24(res);
+    Mem_Free(res);
 
     func_0202aba8(178, 9);
     if (func_021039e4() == 0) {

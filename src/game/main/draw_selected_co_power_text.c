@@ -53,14 +53,14 @@ void DrawSelectedCoPowerText(void)
         text = 0x44000009;
         break;
     }
-    func_02027804(data_027c0280->unk_ec, 17, 13, 15, 8);
+    func_02027804(data_027c0280->layer0Map, 17, 13, 15, 8);
     /* Needed to match: indexing from &gCoTable[0].blocks[POWER_CO] keeps
      * the 0x120 offset in the literal pool instead of the load. TextRefs
      * are passed as one u32. */
-    func_02014d88(19, 13, data_027c0280->unk_ec,
+    func_02014d88(19, 13, data_027c0280->layer0Map,
                   *(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])[data_021613a0[list->unk_32] & 0x7f].name,
                   0, 0);
-    func_02015258(17, 15, data_027c0280->unk_ec, text, 0, 0x340);
+    func_02015258(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
     func_01ff8d60(0);
     func_0200ac9c(saved027c);
     func_0200acac(saved0280);

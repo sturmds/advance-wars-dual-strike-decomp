@@ -4,7 +4,7 @@
 
 /* Returns how the current player's unitType attacks, from its range after
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
-int func_0209e134(int unitType);
+int UnitType_GetAttackKind(int unitType);
 
 extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
@@ -22,7 +22,7 @@ int StrikeScore_FundsDamage(MapUnit *unit, int damage, int isEnemy)
     if (unit->hp <= 10) {
         return 2;
     }
-    if (func_0209e134(unit->type) == 2 && isEnemy == 1) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
         return 2;
     }
 
@@ -33,7 +33,7 @@ int StrikeScore_FundsDamage(MapUnit *unit, int damage, int isEnemy)
         hpLost = unit->hp - 1;
     }
     score *= hpLost;
-    if (func_0209e134(unit->type) == 2 && isEnemy == 0) {
+    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
         score /= 2;
     }
     return score;

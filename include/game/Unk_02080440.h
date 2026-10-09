@@ -67,13 +67,13 @@ typedef struct Unk_02080440_48 {
     u8 unk_80;                         /* from MapHeader.unk_30 */
     u8 unk_81;                         /* from MapHeader.unk_34 */
     u8 unk_82;
-    u8 unk_83;                         /* 0: song requests are kept pending, see Sound_PlaySong */
+    u8 musicReady;                     /* 0: song requests are kept pending, see Sound_PlaySong; name a guess */
     u8 pad_84[0x85 - 0x84];
-    u8 unk_85;                         /* nonzero: Combatant_CalcDamage rolls luck only when its caller asks */
+    u8 luckOnRequestOnly;              /* nonzero: Combatant_CalcDamage rolls luck only when its caller asks; name a guess */
     u8 unk_86;
     u8 pad_87[0x88 - 0x87];
     u16 secondMapId;                   /* second map of a two-map battle, from MapHeader.variantMapIds[0]; 0: none */
-    u8 unk_8a;
+    u8 twoMaps;                        /* 1: a two-map battle (see secondMapId) */
     u8 pad_8b[0x8c - 0x8b];
     u8 unk_8c;
     u8 army[5];                        /* army colour per slot, copied from the map header */

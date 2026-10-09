@@ -100,7 +100,7 @@ typedef struct MenuStateFrom200 {
     u16 fundsPerProperty;              /* BattleSetupState.fundsPerProperty */
 } MenuStateFrom200;
 
-/* Tables per map select tab (0-3, see func_020642e8), data_0229c768. */
+/* Tables per map select tab (0-3, see MapSelect_GetTab), data_0229c768. */
 typedef struct MapListTables {
     u8 unk_000[4][13][4];              /* position of an entry's map on its page, by tab, entry (MapList.unk_64) and page */
     u8 unk_0d0[4][13];                 /* page of an entry, by tab and entry */

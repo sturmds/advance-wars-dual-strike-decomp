@@ -15,7 +15,7 @@ typedef struct Combatant {
     s16 damage;
     s16 defense;                       /* percent; capped at 200 */
     s16 baseDamage;                    /* from the damage chart */
-    s16 hpLost;                        /* hp the other side's hit takes, see func_020c33a8 */
+    s16 hpLost;                        /* hp the other side's hit takes, see Combatant_TakeHit */
     s16 damageNoLuck;                  /* damage before the luck rolls */
     s16 unk_16;                        /* 1 after a primary weapon hit, 5 after a secondary one */
 } Combatant;

@@ -28,7 +28,7 @@ typedef struct MapUnit {
     u8 cargo[2];                       /* slot of each carried unit */
     u16 hp : 7;                        /* 100 = full */
     u16 ammo : 4;
-    u16 unk_06_11 : 5;
+    u16 captureProgress : 5;
     u8 fuel : 7;
     u8 unk_08_7 : 1;
     u8 pad_09;

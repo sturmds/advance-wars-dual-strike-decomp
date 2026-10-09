@@ -16,7 +16,7 @@ int Combatant_GetCounterBonus(Combatant *combatant);
  * scaled by the unit's shown hp (1-10) to defense, capped at 200; scales
  * baseDamage by the counter bonus when isCounter is 1; then adds a good luck
  * roll (0 to goodLuck - 1) and takes away a bad luck roll. Without rollLuck
- * the rolls only happen while unk_85 is clear. damageNoLuck keeps the damage
+ * the rolls only happen while luckOnRequestOnly is clear. damageNoLuck keeps the damage
  * before the rolls. */
 void Combatant_CalcDamage(Combatant *combatant, int isCounter, int rollLuck)
 {
@@ -46,7 +46,7 @@ void Combatant_CalcDamage(Combatant *combatant, int isCounter, int rollLuck)
     }
     state = data_027c027c->unk_48[data_027c0284];
     /* needed to match: | instead of || */
-    if (!(rollLuck | (state->unk_85 == 0))) {
+    if (!(rollLuck | (state->luckOnRequestOnly == 0))) {
         return;
     }
     goodLuck = HwMod32(Rng_Next(), Player_GetGoodLuck(MAP_UNIT_OWNER(state, combatant->unit)));

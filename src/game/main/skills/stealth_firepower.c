@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Firepower added by Backstab for a dived attacker. func_020dfb0c passes
+/* Firepower added by Backstab for a dived attacker. Unit_GetChartDamage passes
  * bit 0x20 of the attacker's flags (probably MAP_UNIT_DIVED) as `dived`.
  * Only the front CO's skills count. */
 int StealthFirepower(int playerIndex, BOOL dived)

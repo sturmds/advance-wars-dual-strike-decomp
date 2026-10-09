@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* One campaign mission on the world map (data_0215ba04, 12 bytes each). */
+/* One campaign mission on the world map (gCampaignMissions, 12 bytes each). */
 typedef struct CampaignMission {
     s16 mapId;                         /* MAP_CAMPAIGN_FIRST + mission */
     u16 unk_02;
@@ -18,7 +18,7 @@ typedef struct Unk_0204f960 {
     u16 unk_52;                        /* 2: also checks func_020d5d2c */
 } Unk_0204f960;
 
-/* World map state (data_0229c748). */
+/* World map state (gCampaignMapState). */
 typedef struct CampaignMapState {
     u8 unk_00;
     u8 mission;                        /* index into the mission table */
