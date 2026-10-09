@@ -15,7 +15,7 @@ void AiUnit_ActOrder5(void);
 void AiUnit_ActOrder4(void);
 void AiUnit_ActOrder3(void);
 void AiUnit_ActOrder2(void);
-void func_020a0b44(void);
+void AiUnit_ActOrder1(void);
 void func_020a0b80(void);
 
 /* Queue routine for the units AiAction_QueueDirectUnits, AiAction_QueueAllDirectUnits and
@@ -30,7 +30,7 @@ void AiUnit_ActByOrder(void)
         func_020a0b80();
         break;
     case 1:
-        func_020a0b44();
+        AiUnit_ActOrder1();
         break;
     case 2:
         if (func_0209dd7c() == TRUE) {
