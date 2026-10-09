@@ -76,6 +76,10 @@ src/game/ov000/func_ov000_022b17cc.c:
     complete
     .text       start:0x022b17cc end:0x022b17f0
 
+src/game/ov000/unit_info_panel/unit_info_panel_set_unit.c:
+    complete
+    .text       start:0x022b1dbc end:0x022b1e70
+
 src/game/ov000/func_ov000_022b20fc.c:
     complete
     .text       start:0x022b20fc end:0x022b2114
