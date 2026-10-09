@@ -4,7 +4,7 @@
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void func_020c73c0(int player, int unitType);
-void func_020c7490(int player);
+void Player_DecUnitCount(int player);
 void func_020c857c(MapUnit *unit, int shownHp);
 
 extern Unk_02080440 *data_027c027c;
@@ -14,7 +14,7 @@ extern int data_027c0284;
 
 /* Takes a unit slot out of play and its cargo with it. destroyed: the unit
  * counts as lost (func_020c73c0 and func_020c857c record it, with the shown
- * hp); otherwise only the owner's unit count goes down (func_020c7490). */
+ * hp); otherwise only the owner's unit count goes down (Player_DecUnitCount). */
 void Unit_Remove(int unitIndex, int destroyed)
 {
     MapUnit *unit = &STATE->units[unitIndex];
@@ -29,7 +29,7 @@ void Unit_Remove(int unitIndex, int destroyed)
         }
         func_020c857c(unit, shownHp);
     } else {
-        func_020c7490((unitIndex >> 6) + 1);
+        Player_DecUnitCount((unitIndex >> 6) + 1);
     }
     if (unit->cargo[0] != 0) {
         Unit_Remove(unit->cargo[0], destroyed);

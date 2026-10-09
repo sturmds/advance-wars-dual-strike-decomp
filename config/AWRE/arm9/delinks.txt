@@ -6376,6 +6376,10 @@ src/game/main/map/player_count_unit_built.c:
     complete
     .text       start:0x020c7428 end:0x020c7490
 
+src/game/main/map/player_dec_unit_count.c:
+    complete
+    .text       start:0x020c7490 end:0x020c74dc
+
 src/game/main/units/unit_create.c:
     complete
     .text       start:0x020c7d8c end:0x020c7e20
