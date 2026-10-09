@@ -12,7 +12,7 @@ typedef struct MapObject {
     u16 unk_02_0 : 6;
     u16 kind : 4;                      /* damage chart target kind */
     u16 unk_02_10 : 6;
-    u8 hp;
+    u8 hp;                             /* 0: destroyed (func_020db148 then returns NULL) */
 } MapObject;
 
 #endif
