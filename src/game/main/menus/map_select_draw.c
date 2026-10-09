@@ -21,7 +21,7 @@ void func_02060718(int x, int y, int a2);
 void func_02060bf8(int x, int y, int list);
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_ShowSelectedMap(void);
-void func_020636d8(int x, int y, int a2);
+void MapSelect_DrawSubStrip(int x, int y, int a2);
 void MapSelect_DrawTwoMapsTitle(int x, int y);
 void func_02063958(int x, int y, int list);
 void func_02063e04(int list, int a1);
@@ -177,21 +177,21 @@ void MapSelect_Draw(void)
         if (MENU->setup.subSlideFrames != 0) {
             if (MENU->setup.subSlideBack != 0) {
                 subSlideOffset >>= 1;
-                func_020636d8(subSlideOffset - 128, 40, TABLES.unk_108 - 2);
-                func_020636d8(subSlideOffset, 40, TABLES.unk_108 - 1);
-                func_020636d8(subSlideOffset + 128, 40, TABLES.unk_108);
-                func_020636d8(subSlideOffset + 256, 40, TABLES.unk_108 + 1);
+                MapSelect_DrawSubStrip(subSlideOffset - 128, 40, TABLES.unk_108 - 2);
+                MapSelect_DrawSubStrip(subSlideOffset, 40, TABLES.unk_108 - 1);
+                MapSelect_DrawSubStrip(subSlideOffset + 128, 40, TABLES.unk_108);
+                MapSelect_DrawSubStrip(subSlideOffset + 256, 40, TABLES.unk_108 + 1);
             } else {
                 subSlideOffset >>= 1;
-                func_020636d8(-subSlideOffset, 40, TABLES.unk_108 - 1);
-                func_020636d8(128 - subSlideOffset, 40, TABLES.unk_108);
-                func_020636d8(256 - subSlideOffset, 40, TABLES.unk_108 + 1);
-                func_020636d8(384 - subSlideOffset, 40, TABLES.unk_108 + 2);
+                MapSelect_DrawSubStrip(-subSlideOffset, 40, TABLES.unk_108 - 1);
+                MapSelect_DrawSubStrip(128 - subSlideOffset, 40, TABLES.unk_108);
+                MapSelect_DrawSubStrip(256 - subSlideOffset, 40, TABLES.unk_108 + 1);
+                MapSelect_DrawSubStrip(384 - subSlideOffset, 40, TABLES.unk_108 + 2);
             }
         } else {
-            func_020636d8(0, 40, TABLES.unk_108 - 1);
-            func_020636d8(128, 40, TABLES.unk_108);
-            func_020636d8(256, 40, TABLES.unk_108 + 1);
+            MapSelect_DrawSubStrip(0, 40, TABLES.unk_108 - 1);
+            MapSelect_DrawSubStrip(128, 40, TABLES.unk_108);
+            MapSelect_DrawSubStrip(256, 40, TABLES.unk_108 + 1);
         }
     } else if (STATE->twoMaps == 1) {
         MapSelect_DrawTwoMapsTitle(128, 8);
