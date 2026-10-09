@@ -1864,6 +1864,10 @@ src/game/main/func_020b9890.c:
     complete
     .text       start:0x020b9890 end:0x020b98bc
 
+src/game/main/menus/battle_menu_open.c:
+    complete
+    .text       start:0x020bc450 end:0x020bc4cc
+
 src/game/main/func_020bc6d0.c:
     complete
     .text       start:0x020bc6d0 end:0x020bc6e4

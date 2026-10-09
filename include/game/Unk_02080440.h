@@ -75,7 +75,9 @@ typedef struct Unk_02080440_48 {
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
     u8 pad_08[0x0d - 0x08];
     u8 unk_0d;                         /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
-    u8 pad_0e[0x1e - 0x0e];
+    u8 pad_0e[0x10 - 0x0e];
+    u32 unk_10;                        /* passed to func_0201e9d8 when the battle menu opens (BattleMenu_Open) */
+    u8 pad_14[0x1e - 0x14];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
     u8 pad_20[0x38 - 0x20];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
