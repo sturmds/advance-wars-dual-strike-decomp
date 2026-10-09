@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 MapUnit *func_020c880c(int player); /* first free slot (type 0) of the player's units, or NULL */
-void func_020c8184(MapUnit *unit, u8 type);
+void Unit_Init(MapUnit *unit, u8 type);
 void Player_CountUnitBuilt(int player, int type);
 
 extern Unk_02080440 *data_027c027c;
@@ -19,7 +19,7 @@ MapUnit *Unit_Create(int x, int y, int type)
     if (unit == NULL) {
         return NULL;
     }
-    func_020c8184(unit, type);
+    Unit_Init(unit, type);
     unit->x = x;
     unit->y = y;
     Player_CountUnitBuilt(STATE->currentPlayer, type);

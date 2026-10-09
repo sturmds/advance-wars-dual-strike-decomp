@@ -5,20 +5,20 @@
 extern MapUnit data_ov000_02350510;
 
 u8 Player_GetArmyStyle(int playerIndex);
-void func_020c8184(MapUnit *unit, int type);
+void Unit_Init(MapUnit *unit, int type);
 void func_01ff9ac4(void);
 void func_ov000_022b1ad8(void);
 void func_ov000_022b1b1c(void);
 
 /* Like UnitInfoPanel_SetUnit, for a unit type instead of a unit on the map:
- * func_020c8184 builds a fresh unit of that type in data_ov000_02350510 and the
+ * Unit_Init builds a fresh unit of that type in data_ov000_02350510 and the
  * panel shows it. The panel is drawn on the other screen. owner gives the
  * palette (Player.armyColour) and sprite set (army style). */
 void UnitInfoPanel_SetUnitType(int owner, int unitType)
 {
     Unk_027c0280 *saved0280;
 
-    func_020c8184(&data_ov000_02350510, unitType);
+    Unit_Init(&data_ov000_02350510, unitType);
     data_ov000_0234ec8c->owner = owner;
     data_ov000_0234ec8c->unit = &data_ov000_02350510;
     data_ov000_0234ec8c->palette = data_027c027c->unk_48[data_027c0284]->players[data_ov000_0234ec8c->owner].armyColour - 1;
