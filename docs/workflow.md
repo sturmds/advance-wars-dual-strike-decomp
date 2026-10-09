@@ -42,6 +42,18 @@ python3 tools/fn.py diff PackNibblePairs
 
 This compiles the file, rebuilds the original's delinked object, and runs `objdiff-cli`. Lines marked `|` differ; relocations are compared by symbol name. The exit code is 0 only at 100%.
 
+### Fast check
+
+```sh
+python3 tools/fn.py check src/game/pack_nibbles.c PackNibblePairs
+```
+
+`check` compiles one file with the build's compiler command into a temporary object and compares one function with `build/fnindex.json`. It needs no `delinks.txt` entry, and runs neither ninja nor dsd: about 3 ms per function in-process for a small file and 100 ms for the largest, plus 0.1 s of Python start-up from the command line. Exit 0 on a match; otherwise it prints how many instructions differ, position by position (an inserted instruction makes everything after it differ, where `diff` lines them up).
+
+It compares the bytes outside relocations, the relocation offsets and kinds, and the relocation targets as addresses, so `Table+0x1c` equals dsd's symbol at that address (issue 0017). A relocation to a symbol it cannot place (a string or `static` data the object defines, missing from `symbols.txt`) counts as a difference. `tools/tests/test_fncheck.py` checks that it never says yes where `diff` says no. Use it to try many variants, then run `diff` and `make release` on the one that matches.
+
+`build/fnindex.json` lists every function: module, mode, address, size, original bytes, relocations, a masked hash (equal for functions that differ only in what they call or load), the mnemonics before the literal pool, and whether a C file covers it. `make fnindex` builds it in about a second; `check` rebuilds it when `symbols.txt`, `relocs.txt` or `extract/` change. It does not watch `delinks.txt`, so `status` can lag behind `fn.py add` until the next `make fnindex`. Tools can `import fnindex` and call `fnindex.load()` once, then `fnindex.check(index, path, name)` per variant.
+
 ## 5. Mark it complete and review
 
 1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
@@ -55,6 +67,9 @@ This compiles the file, rebuilds the original's delinked object, and runs `objdi
 |---|---|
 | `python3 tools/fn.py show NAME\|ADDR` | Location and original disassembly |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
+| `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
+| `make fnindex` | Build `build/fnindex.json` |
+| `python3 tools/tests/test_fncheck.py` | Check that `check` agrees with `diff` |
 | `make` | Build `build/AWRE.nds` |
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
 | `make progress` | Matched functions and bytes: game vs SDK, C vs assembly |
