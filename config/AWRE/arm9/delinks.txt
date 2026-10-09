@@ -245,6 +245,10 @@ src/game/main/script/script_slot_run.c:
     complete
     .text       start:0x02017320 end:0x02017414
 
+src/game/main/script/script_slot_stop_by_script.c:
+    complete
+    .text       start:0x02017580 end:0x020175e0
+
 src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0

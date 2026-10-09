@@ -1,6 +1,6 @@
 #include "types.h"
 
-s8 func_02017580(const void *descriptor);   /* finds the slot (of 30) using descriptor, calls func_020175e0 on it */
+s8 ScriptSlot_StopByScript(const void *descriptor);   /* finds the slot (of 30) using descriptor, calls func_020175e0 on it */
 void Task_DestroyByScript(const void *descriptor); /* calls Task_DestroyVisitor on each of 80 tasks running descriptor */
 
 extern u8 data_021583b4[];
@@ -10,6 +10,6 @@ extern u8 data_021587a8[];
  * the two task slot systems, probably to stop the tasks using them. */
 void func_0201e954(void)
 {
-    func_02017580(data_021583b4);
+    ScriptSlot_StopByScript(data_021583b4);
     Task_DestroyByScript(data_021587a8);
 }
