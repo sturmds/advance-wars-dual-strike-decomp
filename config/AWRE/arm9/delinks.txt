@@ -2712,6 +2712,14 @@ src/game/main/mem/link_list_get_next.c:
     complete
     .text       start:0x02104138 end:0x02104150
 
+src/game/main/mem/link_list_remove.c:
+    complete
+    .text       start:0x02104150 end:0x021041bc
+
+src/game/main/mem/link_list_append.c:
+    complete
+    .text       start:0x021042a0 end:0x02104308
+
 src/game/main/mem/link_list_set_first.c:
     complete
     .text       start:0x02104308 end:0x02104334
