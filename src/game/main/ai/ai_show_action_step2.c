@@ -19,7 +19,7 @@ void Screen_SetCurrentBoth(void *state);
 int func_020b9664(void);
 void AiShowAction_BlackBombExplode(void);
 void func_020b8230(void);
-void func_020b82a0(void);
+void AiShowAction_Emerge(void);
 void func_020b8308(void);
 void func_020b8370(int arg);
 void func_020b8964(void);
@@ -128,7 +128,7 @@ void AiShowAction_Step2(void)
         ActingUnit_FinishAction();
         break;
     case 12:
-        func_020b82a0();
+        AiShowAction_Emerge();
         ActingUnit_FinishAction();
         break;
     case 20:
