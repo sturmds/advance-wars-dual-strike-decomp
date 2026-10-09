@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020a0bc0(void);
+void AiFogDirect_ActOrder7(void);
 void func_020a0bdc(void);
 void func_020a0bfc(void);
 
@@ -35,7 +35,7 @@ void AiUnit_ActByOrderFog(void)
         func_020a0bdc();
         break;
     case 7:
-        func_020a0bc0();
+        AiFogDirect_ActOrder7();
         break;
     }
 }
