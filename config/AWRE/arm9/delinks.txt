@@ -529,6 +529,10 @@ src/game/main/unlocks/shop_smashed_obelisk.c:
     complete
     .text       start:0x02101de8 end:0x02101e28
 
+src/game/main/unlocks/shop_oozium.c:
+    complete
+    .text       start:0x02101e28 end:0x02101e6c
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
