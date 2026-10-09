@@ -33,7 +33,7 @@ typedef struct BattleSetupState {
     u8 teams[4];                       /* team of each player slot, 0-3 */
     u8 armyColours[4];
     u8 pad_2d0[0x2d4 - 0x2d0];
-    u8 *coList;                        /* COs to pick from, filled by func_020e3478 */
+    u8 *coList;                        /* COs to pick from, filled by BuildCoPickList */
     u16 fundsPerProperty;
     u8 coListCount;
     u8 fog;                            /* 1: Fog of War */
@@ -76,7 +76,7 @@ typedef struct CampaignMapWork {
     u8 enemyCos[2];                    /* front and back CO of the map's last player slot, probably the enemy */
 } CampaignMapWork;
 
-/* gMenuState (data_0229eb30): work area of the menu screens. The first
+/* gMenuState (gMenuState): work area of the menu screens. The first
  * 0x20 bytes mean the same on every screen; each screen lays out the rest
  * its own way. Field names with an offset give it from the start of
  * MenuState. The symbols data_0229eb70, data_0229ed30 and data_0229ef30

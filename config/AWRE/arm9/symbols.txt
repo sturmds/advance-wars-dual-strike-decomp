@@ -4237,7 +4237,7 @@ Player_PlayTheme kind:function(arm,size=0xfc) addr:0x020e3298
 func_020e3394 kind:function(arm,size=0x50) addr:0x020e3394
 func_020e33e4 kind:function(arm,size=0x28) addr:0x020e33e4
 func_020e340c kind:function(arm,size=0x6c) addr:0x020e340c
-func_020e3478 kind:function(arm,size=0xa0) addr:0x020e3478
+BuildCoPickList kind:function(arm,size=0xa0) addr:0x020e3478
 GetCoPickList kind:function(arm,size=0xc) addr:0x020e3518
 func_020e3524 kind:function(arm,size=0x18) addr:0x020e3524
 func_020e353c kind:function(arm,size=0x18) addr:0x020e353c
@@ -7897,7 +7897,7 @@ data_02168798 kind:data(any) addr:0x02168798
 data_0216879c kind:data(any) addr:0x0216879c
 data_021687a0 kind:data(any) addr:0x021687a0
 data_021687a4 kind:data(any) addr:0x021687a4
-data_021687a8 kind:data(any) addr:0x021687a8
+gCoPickOrder kind:data(any) addr:0x021687a8
 data_021687c4 kind:data(any) addr:0x021687c4
 data_021687e0 kind:data(any) addr:0x021687e0
 gCoNoPowerScript kind:data(any) addr:0x02168810
