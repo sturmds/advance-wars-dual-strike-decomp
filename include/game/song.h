@@ -24,5 +24,6 @@ void Sound_RestoreSongVolume(void);
 void Sound_LowerSongVolume(int volume);
 void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
 BOOL Sound_IsSongFadingOut(void);
+void Sound_FadeOutSong(void);
 
 #endif
