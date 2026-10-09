@@ -4,7 +4,7 @@ void Ai_ClearThreatMaps(void);
 void AiUnit_MoveToOtherMap(void);
 void AiUnit_MoveToEnemyProperty(void);
 void func_020aac28(void);
-void func_020aacc0(void);
+void AiUnit_MoveToEnemyTarget(void);
 void AiUnit_SeekSeaTransport(void);
 void AiUnit_SeekSupply(void);
 void AiUnit_PlanAttack(void);
@@ -19,7 +19,7 @@ void AiUnit_ActOrder1(void)
     Ai_ClearThreatMaps();
     AiUnit_SeekSupply();
     AiUnit_PlanAttack();
-    func_020aacc0();
+    AiUnit_MoveToEnemyTarget();
     AiUnit_SeekSeaTransport();
     AiUnit_HeadForObjectTarget();
     AiUnit_MoveToEnemyProperty();

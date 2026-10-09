@@ -24,7 +24,7 @@ void func_020c1950(void);
 void func_020c8888(void);
 void Screens_SelectConfigs(void);
 void func_01ff9a90(void);
-void func_0200c630(void *p);
+void Camera_ResetToPreset1(void *p);
 void func_ov006_023527ac(void);
 u8 func_ov006_02365ba8(void);
 void func_ov006_023659b4(void);
@@ -125,7 +125,7 @@ void DesignRoom_Init(Task *task)
         callback(1);
     }
     func_01ff9a90();
-    func_0200c630(data_022a7d5c);
+    Camera_ResetToPreset1(data_022a7d5c);
     func_ov006_023527ac();
     if (keep == 0) {
         OV6->unk_00 |= 0x1000;

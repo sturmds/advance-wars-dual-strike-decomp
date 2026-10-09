@@ -5636,7 +5636,7 @@ src/game/main/ai/func_020aac60.c:
     complete
     .text       start:0x020aac60 end:0x020aacc0
 
-src/game/main/ai/func_020aacc0.c:
+src/game/main/ai/ai_unit_move_to_enemy_target.c:
     complete
     .text       start:0x020aacc0 end:0x020aacf8
 

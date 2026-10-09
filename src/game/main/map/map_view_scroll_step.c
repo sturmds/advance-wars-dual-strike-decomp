@@ -3,7 +3,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_022900b4;
+extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 
@@ -28,7 +28,7 @@ void MapView_ScrollStep(int step)
     int layout;
     int dist;
 
-    layout = data_022900b4;
+    layout = gCameraPresetIndex;
     viewW = data_021576fa[layout][0];
     viewH = data_021576fb[layout][0];
 

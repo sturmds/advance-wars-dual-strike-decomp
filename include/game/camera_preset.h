@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-/* One start position for the camera object that func_0200c7ec fills.
- * data_021576e8 holds an array of these. */
+/* One start position for the camera object that Camera_Set fills.
+ * gCameraPresets holds an array of these. */
 typedef struct CameraPreset {
     s32 x;
     s32 y;
@@ -15,6 +15,6 @@ typedef struct CameraPreset {
     u16 pad_12;
 } CameraPreset;
 
-extern CameraPreset data_021576e8[];
+extern CameraPreset gCameraPresets[];
 
 #endif

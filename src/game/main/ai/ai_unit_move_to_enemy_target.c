@@ -5,7 +5,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 
 /* Looks for a target tile (AiUnit_FindEnemyTarget) and, if there is one, moves the
  * acting unit there (AiUnit_MoveTowardTile). */
-void func_020aacc0(void)
+void AiUnit_MoveToEnemyTarget(void)
 {
     s16 tile[2];
 

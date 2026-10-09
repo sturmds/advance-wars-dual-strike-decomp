@@ -15,7 +15,7 @@ extern Unk_027c0280 *data_027c0280;
 int func_ov003_023622b8(void);
 int func_ov003_02361f38(void);
 void func_ov003_02356614(void);
-void func_02002d9c(u32 value, void *dst, u32 size);
+void Mem_Fill32(u32 value, void *dst, u32 size);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 
 #define MAP data_ov003_02364a88
@@ -37,7 +37,7 @@ void Ov003_MarkRowTiles(void)
 
     unit = data_ov003_02369538;
     if (func_ov003_02361f38() == 1 || !STATE->unk_1df_0) {
-        func_02002d9c(-1, MAP->marks, OV003_MAP_TILE_MAX);
+        Mem_Fill32(-1, MAP->marks, OV003_MAP_TILE_MAX);
         GFX_DISPCNT(data_027c0280)->bg0 = 1;
         GFX_DISPCNT(data_027c0280)->bg1 = 0;
         GFX_DISPCNT(data_027c0280)->bg2 = 0;

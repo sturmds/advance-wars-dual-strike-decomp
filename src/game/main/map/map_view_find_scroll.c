@@ -5,7 +5,7 @@ void func_020c4394(int a0, int a1, void *a2, void *a3);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_022900b4;
+extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 
@@ -30,7 +30,7 @@ BOOL MapView_FindScroll(int *x, int *y, BOOL centre)
     u8 viewH;
     int dy;
 
-    screenLayout = data_022900b4;
+    screenLayout = gCameraPresetIndex;
     viewW = data_021576fa[screenLayout][0];
     viewH = data_021576fb[screenLayout][0];
     func_020c4394((s16)*x, (s16)*y, &GAME->unk_28, &GAME->unk_2c);

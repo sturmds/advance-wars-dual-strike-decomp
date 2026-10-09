@@ -12,7 +12,7 @@ void Ai_ClearThreatMaps(void);
 void AiUnit_MoveToOtherMap(void);
 void AiUnit_MoveToEnemyProperty(void);
 void func_020aac28(void);
-void func_020aacc0(void);
+void AiUnit_MoveToEnemyTarget(void);
 void AiUnit_SeekSeaTransport(void);
 void AiUnit_SeekSupply(void);
 void AiUnit_HeadForObjectTarget(void);
@@ -27,7 +27,7 @@ void AiIndirect_MoveOrder1(void)
     if (GAME->unk_1c4->fog != 0 || GAME->unk_1c4->weather == WEATHER_RAIN) {
         AiUnit_PlanAttack();
     }
-    func_020aacc0();
+    AiUnit_MoveToEnemyTarget();
     AiUnit_SeekSeaTransport();
     AiUnit_HeadForObjectTarget();
     AiUnit_MoveToEnemyProperty();
