@@ -10,6 +10,7 @@ typedef struct Unk_ov005_0236bb80 {
     u32 unk_08;
     u8 pad_0c[0x78 - 0xc];
     u32 unk_78;
+    u8 pad_7c[0xc4 - 0x7c];
 } Unk_ov005_0236bb80;
 
 #endif
