@@ -6,7 +6,9 @@
 /* One row of data_022a6c84, 27 bytes. Row n holds map id
  * MAP_DESIGN_FIRST + n. */
 typedef struct DesignMap {
-    u8 pad_00[0x14];
+    u8 pad_00[2];
+    char name[0x11];                   /* from offset 2 */
+    u8 playerCount;                    /* 0xff: row unused */
     u8 armyColours[5];                 /* per slot, like MapHeader +0x88 */
     u8 pad_19[0x1b - 0x19];
 } DesignMap;

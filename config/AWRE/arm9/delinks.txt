@@ -2119,6 +2119,10 @@ src/game/main/func_020d6a1c.c:
     complete
     .text       start:0x020d6a1c end:0x020d6a34
 
+src/game/main/map/design_map_get_player_count.c:
+    complete
+    .text       start:0x020d7ab8 end:0x020d7ad0
+
 src/game/main/func_020d7eb8.c:
     complete
     .text       start:0x020d7eb8 end:0x020d7ed0
