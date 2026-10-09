@@ -52,3 +52,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0022](0022-army-style-colour-comments.md) | Player.armyStyle and armyColour comments are wrong | closed | decomp | M2 |
 | [0023](0023-mod-build-repo.md) | A separate mod build on top of the matching source | open | build | later |
 | [0024](0024-brute-force-tool-leftovers.md) | What propagate.py, trivial.py and permute.py leave unmatched | open | tools | M1 |
+| [0025](0025-landing-tool-faults.md) | Faults in the landing tools seen in batch 10 | open | loop | M1 |

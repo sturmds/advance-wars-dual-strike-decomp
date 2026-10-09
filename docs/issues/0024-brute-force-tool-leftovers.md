@@ -35,3 +35,13 @@ The three tools matched 1,263 functions without a model. These cases still fall 
 ## Done when
 
 Each item is fixed or split into its own issue.
+
+## Seen in batch 10 (family heads)
+
+Agents matched 38 of 40 family heads; propagate.py then matched about two thirds of the siblings. Agents wrote the rest by hand or with their own scripts. The misses:
+
+- The head writes a varying value as a struct field (sound archive table offsets), an enum name (`UNIT_STEALTH` against `UNIT_SUB`), a macro (`AI_BEHAVIOUR_DEFENSE`) or `sizeof`. The value map only sees numbers in the C, so these give `no_map`. Mapping offsets to fields and values to enum or macro names would cover them.
+- `return 0`/`return 1` were rewritten by the value map; writing `TRUE`/`FALSE` in the head avoided it.
+- Siblings that read the same table in another index order, or call a callee with another argument count.
+- `pick --families` groups by mnemonics alone, which puts different shapes in one family (`func_02015efc`: one-argument against two-argument callee).
+
