@@ -25,7 +25,7 @@ void Font_LoadDigits(int a);
 void Icon_LoadTo(int a, u8 *objVram, int b);
 void IconBank_LoadPalette(int a, int b);
 void Menu_Reset(void);
-void func_02029540(void);
+void Wallpaper_LoadSingle(void);
 void ModeFont_ShowText(const void *text, int x, int y, int a, int b);
 void ModeFont_Load(int x, int y);
 void func_0204d6dc(void);
@@ -263,7 +263,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     } else {
         ModeFont_ShowText(Text_Get(0x7d000015), 178, 9, 0, 0);
     }
-    func_02029540();
+    Wallpaper_LoadSingle();
     func_01ff9b48();
     Menu_Reset();
 }
