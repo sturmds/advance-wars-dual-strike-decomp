@@ -14,6 +14,12 @@ typedef struct Unk_ov004_022bf158 {
 typedef struct Ov004Task {
     u8 pad_00[0x30];
     int slot;                          /* index into Unk_ov004_022bf158.unk_998 */
+    int step;                          /* progress inside the current script step */
+    u8 pad_38[0x44 - 0x38];
+    int tweenFrames;                   /* length of the next slide, in frames */
+    u8 pad_48[0x54 - 0x48];
+    int tweenFrom;                     /* start and end values of the slide, */
+    int tweenTo;                       /* eased by func_02026a60 */
 } Ov004Task;
 
 #endif
