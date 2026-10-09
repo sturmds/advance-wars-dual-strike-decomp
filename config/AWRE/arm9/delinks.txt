@@ -3130,6 +3130,10 @@ src/game/main/func_02080668.c:
     complete
     .text       start:0x02080668 end:0x02080684
 
+src/game/main/func_02080684.c:
+    complete
+    .text       start:0x02080684 end:0x020806b4
+
 src/game/main/func_02080708.c:
     complete
     .text       start:0x02080708 end:0x02080734
@@ -3158,6 +3162,14 @@ src/game/main/func_0208109c.c:
     complete
     .text       start:0x0208109c end:0x020810c4
 
+src/game/main/func_020811b4.c:
+    complete
+    .text       start:0x020811b4 end:0x020811e4
+
+src/game/main/func_020811e4.c:
+    complete
+    .text       start:0x020811e4 end:0x02081214
+
 src/game/main/func_02081214.c:
     complete
     .text       start:0x02081214 end:0x02081224
@@ -3181,6 +3193,10 @@ src/game/main/func_02081f6c.c:
 src/game/main/func_0208202c.c:
     complete
     .text       start:0x0208202c end:0x02082038
+
+src/game/main/func_02082038.c:
+    complete
+    .text       start:0x02082038 end:0x02082068
 
 src/game/main/func_02082068.c:
     complete
@@ -5300,6 +5316,10 @@ src/game/main/func_020d6a04.c:
 src/game/main/func_020d6a1c.c:
     complete
     .text       start:0x020d6a1c end:0x020d6a34
+
+src/game/main/func_020d6a34.c:
+    complete
+    .text       start:0x020d6a34 end:0x020d6a64
 
 src/game/main/func_020d6a94.c:
     complete
