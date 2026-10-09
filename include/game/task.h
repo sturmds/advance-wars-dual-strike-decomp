@@ -25,6 +25,11 @@ typedef struct Task {
     u8 pad_29[0x6c - 0x29];
 } Task;
 
+/* Task.flags bits */
+#define TASK_FLAG_FREED    0x01        /* back on the free stack */
+#define TASK_FLAG_CHILD    0x02        /* parent counts it in childCount */
+#define TASK_FLAG_CREATING 0x08        /* not run yet */
+
 /* One 8-byte command of a task script. */
 typedef struct TaskScriptCmd {
     s16 op;                            /* TASK_CMD_* */
