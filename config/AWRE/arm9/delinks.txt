@@ -666,6 +666,10 @@ src/game/main/func_0207bd6c.c:
     complete
     .text       start:0x0207bd6c end:0x0207bd80
 
+src/game/main/func_0207bd80.c:
+    complete
+    .text       start:0x0207bd80 end:0x0207bd94
+
 src/game/main/func_020802e8.c:
     complete
     .text       start:0x020802e8 end:0x0208038c
