@@ -5482,6 +5482,10 @@ src/game/main/ai/ai_unit_move_to_enemy_property.c:
     complete
     .text       start:0x020a9ac0 end:0x020a9c78
 
+src/game/main/ai/ai_unit_pick_order_site.c:
+    complete
+    .text       start:0x020a9c78 end:0x020a9e44
+
 src/game/main/ai/func_020a9e44.c:
     complete
     .text       start:0x020a9e44 end:0x020a9e7c

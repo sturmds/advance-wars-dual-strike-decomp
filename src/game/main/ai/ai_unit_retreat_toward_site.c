@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 BOOL AiUnit_NeedsService(void);
 void func_020b81a8(void);
-BOOL func_020a9c78(s16 *site);
+BOOL AiUnit_PickOrderSite(s16 *site);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_CanRepairAt(MapUnit *unit, int x, int y);
@@ -24,7 +24,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define FAR_AWAY 110                   /* movement of the fill from the site, and the distance of tiles it misses */
 
 /* Like AiUnit_RetreatToRepair, for a unit that AiUnit_NeedsService says needs repair
- * (guess). func_020a9c78 picks a site (the unit's own tile when it finds
+ * (guess). AiUnit_PickOrderSite picks a site (the unit's own tile when it finds
  * none); MapTiles.rangeScratch gets the distance from there. The unit moves to
  * the reachable free tile with the lowest threat where Unit_CanRepairAt or
  * Unit_IsBlackHoleOnFlaggedTile holds, ties to the shorter distance (110 when the fill
@@ -50,7 +50,7 @@ void AiUnit_RetreatTowardSite(void)
         return;
     }
     func_020b81a8();
-    if (!func_020a9c78(site)) {
+    if (!AiUnit_PickOrderSite(site)) {
         site[0] = STATE->actingUnit->x;
         site[1] = STATE->actingUnit->y;
     }
