@@ -964,6 +964,10 @@ src/game/main/copowers/covering_fire.c:
     complete
     .text       start:0x020e4614 end:0x020e462c
 
+src/game/main/func_020e4700.c:
+    complete
+    .text       start:0x020e4700 end:0x020e4718
+
 src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
