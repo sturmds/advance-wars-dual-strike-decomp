@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-BOOL func_0209ec00(MapUnit *unit, int x, int y);
+BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 void func_020af700(void);
 void func_020afb58(void);
 void func_020aff0c(void);
@@ -20,7 +20,7 @@ void func_020b81ac(void);
  * infantry and mechs first get func_020b0604. */
 void func_020af5f8(void)
 {
-    if (!func_0209ec00(GAME->actingUnit, GAME->actingUnit->x, GAME->actingUnit->y)) {
+    if (!Unit_IsBlackHoleOnFlaggedTile(GAME->actingUnit, GAME->actingUnit->x, GAME->actingUnit->y)) {
         func_020aff0c();
     }
     if (GAME->actingUnit->unk_0a_12 == 0) {

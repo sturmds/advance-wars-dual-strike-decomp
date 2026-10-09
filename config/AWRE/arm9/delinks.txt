@@ -1163,6 +1163,10 @@ src/game/main/map/map_is_tile_visible.c:
     complete
     .text       start:0x0209eb38 end:0x0209ec00
 
+src/game/main/units/unit_is_black_hole_on_flagged_tile.c:
+    complete
+    .text       start:0x0209ec00 end:0x0209eca8
+
 src/game/main/map/map_is_owned_non_repair_tile.c:
     complete
     .text       start:0x0209eca8 end:0x0209ed20
