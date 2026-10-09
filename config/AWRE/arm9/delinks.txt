@@ -539,6 +539,10 @@ src/game/main/ai/ai_unit_pick_direct_attack.c:
     complete
     .text       start:0x020b1fbc end:0x020b2904
 
+src/game/main/func_020bc6d0.c:
+    complete
+    .text       start:0x020bc6d0 end:0x020bc6e4
+
 src/game/main/menus/battle_menu_auto_co_off_hidden.c:
     complete
     .text       start:0x020be768 end:0x020be908
