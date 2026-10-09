@@ -8,13 +8,13 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void func_0208d3fc(MapUnit *unit);
-void func_0208d41c(MapUnit *unit);
+void AiUnit_ClearSupplyWanted(MapUnit *unit);
 void func_0208d478(MapUnit *unit);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Sets the active unit profile for each of the current player's units,
- * then runs the check for its serviceWanted mode (1: func_0208d41c, 2:
+ * then runs the check for its serviceWanted mode (1: AiUnit_ClearSupplyWanted, 2:
  * func_0208d3fc, else func_0208d478), which may change the mode. */
 void AiTurn_UpdateUnitModes(void)
 {
@@ -30,7 +30,7 @@ void AiTurn_UpdateUnitModes(void)
         gAiActiveUnitProfile = &gAiProfile->units[unit->type - 1];
         switch (unit->serviceWanted) {
         case 1:
-            func_0208d41c(unit);
+            AiUnit_ClearSupplyWanted(unit);
             break;
         case 2:
             func_0208d3fc(unit);
