@@ -16,7 +16,7 @@ void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 int Math_EaseInOut(int from, int to, int step, int steps);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void MapSelect_EnableSubSlideButtons(void);
-void func_0205f0ec(void);
+void MapSelect_OnSlideDone(void);
 void func_02060718(int x, int y, int a2);
 void func_02060bf8(int x, int y, int list);
 void MapSelect_LoadWarRoomRecords(void);
@@ -108,7 +108,7 @@ void MapSelect_Draw(void)
         }
         MENU->setup.slideFrames--;
         if (MENU->setup.slideFrames == 0) {
-            func_0205f0ec();
+            MapSelect_OnSlideDone();
         }
     }
     if (MENU->setup.subSlideFrames != 0) {
