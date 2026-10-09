@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void func_020c88fc(void);
+void Map_RebuildUnitTiles(void);
 void func_020f79a4(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -9,12 +9,12 @@ extern int data_027c0284;
 
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
-/* Runs func_020c88fc (it derives view values from the map data), then the
+/* Runs Map_RebuildUnitTiles (it derives view values from the map data), then the
  * two callbacks if set. Many menus and Map_PlacePredeployedUnits call it;
  * the purpose is not clear yet. */
 void func_020c8888(void)
 {
-    func_020c88fc();
+    Map_RebuildUnitTiles();
     if (HOOKS->first != NULL) {
         HOOKS->first();
     }
