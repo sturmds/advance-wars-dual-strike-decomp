@@ -13,7 +13,7 @@ extern u8 data_0229ea0c[];
 
 int Rng_Next(void);
 s32 HwMod32(s32 numer, s32 denom);
-int func_0209f8d0(MapUnit *unit);
+int Unit_GetUsableMovement(MapUnit *unit);
 int func_0212969c(void *p);
 
 /* Runs gAiQueueRoutine for the next queue entry. A unit entry becomes
@@ -55,7 +55,7 @@ void AiTurn_RunQueue(void)
         map->unitAt[unit->x + map->rowStart[unit->y]] = 0;
         GAME->actingUnit->flags |= MAP_UNIT_LOCKED;
         gAiTurnState->roll = HwMod32(Rng_Next(), 100);
-        gAiTurnState->unk_05 = func_0209f8d0(GAME->actingUnit);
+        gAiTurnState->unk_05 = Unit_GetUsableMovement(GAME->actingUnit);
     } else {
         gUnitAction.pending = 0;
     }

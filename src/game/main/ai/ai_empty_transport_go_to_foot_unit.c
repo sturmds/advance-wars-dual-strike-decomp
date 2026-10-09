@@ -13,7 +13,7 @@ void func_01ffb200(s8 *map);     /* points rangeMap's rows into map, so range fi
  * caller passes footMove without narrowing it. */
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 int Player_GetUnitMoveRange(int player, int unitType);
-int func_0209f8d0(MapUnit *unit);          /* move points this turn, capped by fuel */
+int Unit_GetUsableMovement(MapUnit *unit);          /* move points this turn, capped by fuel */
 int func_020a507c(int x, int y, int range);
 int func_020a50d4(int x, int y, int unitType, int movement);
 BOOL func_0209df28(int unitType, int x, int y);
@@ -76,7 +76,7 @@ void AiEmptyTransport_GoToFootUnit(void)
     func_01ffb200(MAP->unk_2d48);
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, UNLIMITED_MOVE, 1);
     func_01ffb200(MAP->unk_2840);
-    transportReach = func_0209f8d0(STATE->actingUnit) + 1;
+    transportReach = Unit_GetUsableMovement(STATE->actingUnit) + 1;
     for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
         unit = &STATE->units[i];
         if (unit->type == UNIT_NONE || unit->type > UNIT_MECH) {
