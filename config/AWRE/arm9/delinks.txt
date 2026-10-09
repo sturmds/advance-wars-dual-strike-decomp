@@ -212,6 +212,10 @@ src/game/main/skills/vision_increase.c:
     complete
     .text       start:0x020df7f8 end:0x020df900
 
+src/game/main/units/unit_type_get_max_range.c:
+    complete
+    .text       start:0x020dfc80 end:0x020dfc98
+
 
 src/game/main/co_stats/player_get_bad_luck.c:
     complete
