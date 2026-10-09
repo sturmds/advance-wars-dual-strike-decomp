@@ -15,20 +15,21 @@ int func_0209e814(int attackerType, int targetType, int arg);   /* damage of an 
 
 /* TRUE when the acting direct-attack unit's hit on the target is weak (the
  * simulated battle in combatants costs the target under 30 hp) and a
- * ground teammate that has not acted yet, within 4 tiles of the target would do clearly more
- * damage (hp times damage chart value, by more than 2000). The callers then
- * look for an attack position that leaves such a teammate room. */
+ * ground teammate that has not acted yet, within 4 tiles of the target,
+ * would do clearly more damage (hp times damage chart value, by more than
+ * 2000). The callers then look for an attack position that leaves such a
+ * teammate room. */
 int AiUnit_TeammateOutdamages(MapUnit *target)
 {
     int maxX;
-    int dist;
-    MapUnit *other;
     int minY;
-    int x;
-    int slot;
     int maxY;
     int minX;
+    MapUnit *other;
+    int dist;
+    int x;
     int y;
+    int slot;
 
     if (!(Ov000_gUnitStats[STATE->actingUnit->type].moveGroup
           & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD | MOVE_GROUP_SEA))) {
@@ -42,24 +43,24 @@ int AiUnit_TeammateOutdamages(MapUnit *target)
     }
     if (STATE->combatants[1].hpLost < 30) {
         if (target->x - 4 < 0) {
-            minX = 0;
-        } else {
-            minX = target->x - 4;
-        }
-        if (target->y - 4 < 0) {
-            minY = 0;
-        } else {
-            minY = target->y - 4;
-        }
-        maxX = STATE->unk_1c4->mapWidth - 1;
-        if (target->x + 4 < maxX) {
-            maxX = target->x + 4;
-        }
-        maxY = STATE->unk_1c4->mapHeight - 1;
-        if (target->y + 4 < maxY) {
-            maxY = target->y + 4;
-        }
-        for (y = minY; y <= maxY; y++) {
+        minX = 0;
+    } else {
+        minX = target->x - 4;
+    }
+    if (target->y - 4 < 0) {
+        minY = 0;
+    } else {
+        minY = target->y - 4;
+    }
+    maxX = STATE->unk_1c4->mapWidth - 1;
+    if (target->x + 4 < maxX) {
+        maxX = target->x + 4;
+    }
+    maxY = STATE->unk_1c4->mapHeight - 1;
+    if (target->y + 4 < maxY) {
+        maxY = target->y + 4;
+    }
+    for (y = minY; y <= maxY; y++) {
             for (x = minX; x <= maxX; x++) {
                 dist = 0;
                 if (target->x - x > 0) {
