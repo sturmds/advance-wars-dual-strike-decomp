@@ -104,6 +104,10 @@ src/game/main/sound/sound_start_stream.c:
     complete
     .text       start:0x0200b428 end:0x0200b444
 
+src/game/main/sound/sound_fade_se_volume.c:
+    complete
+    .text       start:0x0200b444 end:0x0200b4c8
+
 src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
