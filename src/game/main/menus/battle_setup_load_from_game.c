@@ -7,7 +7,7 @@
 #include "game/map_header.h"
 #include "game/design_map.h"
 
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 u8 func_020018a8(int player, int slot);
 int func_02017abc(int co, int player);
@@ -55,7 +55,7 @@ void BattleSetup_LoadFromGame(void)
     saved0280 = data_027c0280;
     func_0200acac(MAIN_MAP);
     saved027c = data_027c027c;
-    func_0200ac9c(MAIN_MAP);
+    Screen_SetCurrent(MAIN_MAP);
 
     /* Some stores go through this pointer and some name gMenuState:
      * the mix changes which loads the compiler repeats (closest shape
@@ -113,13 +113,13 @@ void BattleSetup_LoadFromGame(void)
             inner0280 = data_027c0280;
             func_0200acac(SECOND_MAP);
             inner027c = data_027c027c;
-            func_0200ac9c(SECOND_MAP);
+            Screen_SetCurrent(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_AI;
             } else {
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
-            func_0200ac9c(inner027c);
+            Screen_SetCurrent(inner027c);
             func_0200acac(inner0280);
             gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
@@ -163,19 +163,19 @@ void BattleSetup_LoadFromGame(void)
             inner0280 = data_027c0280;
             func_0200acac(SECOND_MAP);
             inner027c = data_027c027c;
-            func_0200ac9c(SECOND_MAP);
+            Screen_SetCurrent(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_AI;
             } else {
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
-            func_0200ac9c(inner027c);
+            Screen_SetCurrent(inner027c);
             func_0200acac(inner0280);
             gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
     }
 
-    func_0200ac9c(saved027c);
+    Screen_SetCurrent(saved027c);
     func_0200acac(saved0280);
 
     if (func_0207bd80() != 1) {

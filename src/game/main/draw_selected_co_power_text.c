@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_01ff8d60(int a);
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
 void func_02015258(int x, int y, void *target, u32 text, int a, int b);
@@ -28,7 +28,7 @@ void DrawSelectedCoPowerText(void)
 
     func_0200acac(data_027c0288.unk_04);
     saved027c = data_027c027c;
-    func_0200ac9c(data_027c0288.unk_04);
+    Screen_SetCurrent(data_027c0288.unk_04);
     list = func_02023724(data_021613d8);
     switch (data_021613a0[list->unk_32]) {
     case CO_ANDY:
@@ -62,6 +62,6 @@ void DrawSelectedCoPowerText(void)
                   0, 0);
     func_02015258(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
     func_01ff8d60(0);
-    func_0200ac9c(saved027c);
+    Screen_SetCurrent(saved027c);
     func_0200acac(saved0280);
 }

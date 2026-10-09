@@ -5,7 +5,7 @@
 #include "game/map_header.h"
 #include "game/menu_item.h"
 
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 
 extern Unk_02080440 *data_027c027c;
@@ -16,17 +16,17 @@ extern Unk_027c0288 data_027c0288;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* data_027c0288 holds two game states, one per front; func_0200acac and
- * func_0200ac9c load one into data_027c0280 and data_027c027c. */
+ * Screen_SetCurrent load one into data_027c0280 and data_027c027c. */
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
 #define SWITCH_TO(state)            \
     saved0280 = data_027c0280;      \
     func_0200acac(state);           \
     saved027c = data_027c027c;      \
-    func_0200ac9c(state)
+    Screen_SetCurrent(state)
 
 #define SWITCH_BACK()               \
-    func_0200ac9c(saved027c);       \
+    Screen_SetCurrent(saved027c);       \
     func_0200acac(saved0280)
 
 /* getFlags of the "Auto CO Off" battle menu item (gBattleMenuItems). The item is

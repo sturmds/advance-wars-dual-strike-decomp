@@ -15,7 +15,7 @@ void func_02003188(const void *src, int offset, u32 size);
 void func_02003bec(const void *src, void *dest);
 void func_0200970c(int a);
 void func_0200a810(const void *config);
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 void func_0200bb18(void *dest, const char *path, int a, int b);
 u8 *File_Load(const char *path);
@@ -89,7 +89,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
     saved027c = data_027c027c;
-    func_0200ac9c(data_027c0288.unk_00);
+    Screen_SetCurrent(data_027c0288.unk_00);
     func_0200970c(0);
     func_0200a810(data_0215b548);
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
@@ -129,13 +129,13 @@ void CampaignMap_Init(Unk_0204f960 *task)
     data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
-    func_0200ac9c(saved027c);
+    Screen_SetCurrent(saved027c);
     func_0200acac(saved0280);
 
     saved0280 = data_027c0280;
     func_0200acac(data_027c0288.unk_04);
     saved027c = data_027c027c;
-    func_0200ac9c(data_027c0288.unk_04);
+    Screen_SetCurrent(data_027c0288.unk_04);
     func_0200970c(0);
     func_0200a810(data_0215b598);
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
@@ -161,7 +161,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
-    func_0200ac9c(saved027c);
+    Screen_SetCurrent(saved027c);
     func_0200acac(saved0280);
 
     res = File_Load(data_0215b990);

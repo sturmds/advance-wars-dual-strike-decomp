@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
 
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 void func_0201ad64(void);
 void func_02080734(void);
@@ -29,7 +29,7 @@ extern MapHeader Ov000_gMapHeaders[];
 
 /* data_027c0288 holds two game states, one per map. A battle with a second
  * map (header variantMapIds[0] nonzero) uses both; data_027c0284 picks the current one.
- * func_0200acac and func_0200ac9c load a state into data_027c0280 and
+ * func_0200acac and Screen_SetCurrent load a state into data_027c0280 and
  * data_027c027c. */
 #define MAIN_MAP   (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
@@ -39,10 +39,10 @@ extern MapHeader Ov000_gMapHeaders[];
     saved0280 = data_027c0280;      \
     func_0200acac(state);           \
     saved027c = data_027c027c;      \
-    func_0200ac9c(state)
+    Screen_SetCurrent(state)
 
 #define SWITCH_BACK()               \
-    func_0200ac9c(saved027c);       \
+    Screen_SetCurrent(saved027c);       \
     func_0200acac(saved0280)
 
 /* Sets up a battle's maps: clears unk_30 in both game states, takes the

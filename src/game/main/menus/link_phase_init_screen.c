@@ -9,7 +9,7 @@ void func_01ff8d60(int a);
 void func_02002e50(const void *src, void *dst, u32 size);
 void func_02003188(const void *src, u32 offset, u32 size);
 void func_02003bec(const void *src, void *dst);
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 void *File_Load(const char *path);
 void Mem_Free(void *file);
@@ -53,7 +53,7 @@ extern const char gLinkCommonResPath[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* data_027c0288 holds two game states; func_0200acac and func_0200ac9c load
+/* data_027c0288 holds two game states; func_0200acac and Screen_SetCurrent load
  * one into data_027c0280 and data_027c027c. */
 #define MAIN_MAP   (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
@@ -62,10 +62,10 @@ extern const char gLinkCommonResPath[];
     saved0280 = data_027c0280;      \
     func_0200acac(state);           \
     saved027c = data_027c027c;      \
-    func_0200ac9c(state)
+    Screen_SetCurrent(state)
 
 #define SWITCH_BACK()               \
-    func_0200ac9c(saved027c);       \
+    Screen_SetCurrent(saved027c);       \
     func_0200acac(saved0280)
 
 #define LINK_STATE ((MenuState *)&gMenuState)

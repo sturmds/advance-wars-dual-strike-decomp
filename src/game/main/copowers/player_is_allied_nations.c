@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
 
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 int Co_GetNation(int co);
 
@@ -22,10 +22,10 @@ extern Unk_027c0288 data_027c0288;
     saved0280 = data_027c0280;      \
     func_0200acac(state);           \
     saved027c = data_027c027c;      \
-    func_0200ac9c(state)
+    Screen_SetCurrent(state)
 
 #define SWITCH_BACK()               \
-    func_0200ac9c(saved027c);       \
+    Screen_SetCurrent(saved027c);       \
     func_0200acac(saved0280)
 
 /* Campaign missions where every side counts as Allied Nations. */

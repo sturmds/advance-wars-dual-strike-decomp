@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/skills.h"
 
-void func_0200ac9c(void *state);
+void Screen_SetCurrent(void *state);
 void func_0200acac(void *state);
 u32 *GetCoPowerSkills(int co, int powerState);
 BOOL PartnerBoost1(int player);
@@ -53,9 +53,9 @@ void UpdatePlayerSkills(int player)
          * switch to the other one to read its unk_30. */
         func_0200acac((&data_027c0288.unk_00)[1 - data_027c0284]);
         saved027c = data_027c027c;
-        func_0200ac9c((&data_027c0288.unk_00)[1 - data_027c0284]);
+        Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
         otherUnk30 = data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_30;
-        func_0200ac9c(saved027c);
+        Screen_SetCurrent(saved027c);
         func_0200acac(saved0280);
 
         if (otherUnk30 == 0) {
