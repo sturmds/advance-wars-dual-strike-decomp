@@ -1192,7 +1192,7 @@ src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4
 
-src/game/main/func_020153d4.c:
+src/game/main/text/text_print_id.c:
     complete
     .text       start:0x020153d4 end:0x02015420
 

@@ -23,7 +23,7 @@ extern char data_02167c88[];
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void func_01ff8c84(int layer);
-void func_02014d14(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
+void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void func_02014e58(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 int func_0207a324(void);
 u8 func_0207a3a4(void);
@@ -60,10 +60,10 @@ void Link_DrawPlayerRows(void)
                     count++;
                 }
             }
-            func_02014d14(28, 1 + i * 5, data_027c0280->layer0Map, count, 0, 0);
+            Number_Draw(28, 1 + i * 5, data_027c0280->layer0Map, count, 0, 0);
             func_02014e58(29, 1 + i * 5, data_027c0280->layer0Map, data_02167c88, 0, 0);
             map = data_027c0280->layer0Map;
-            func_02014d14(30, 1 + i * 5, map, func_0207a324(), 0, 0);
+            Number_Draw(30, 1 + i * 5, map, func_0207a324(), 0, 0);
         }
     }
     Gfx_RequestLayerCopy(0);

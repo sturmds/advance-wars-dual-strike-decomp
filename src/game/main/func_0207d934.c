@@ -31,7 +31,7 @@ void OamBuffer_ClearTail(void);
 void OamBuffer_FlushTail(void);
 void func_0201d7fc(void);
 void Gfx_InitBothScreens(void);
-void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
+void Text_PrintId(int x, int y, void *map, u32 textId, int a, int b);
 #define MAIN_SCREEN (data_027c0288.unk_00)
 #define SUB_SCREEN  (data_027c0288.unk_04)
 #define RESET_SCREEN_STATE() \
@@ -85,7 +85,7 @@ void func_0207d934(void)
     Screen_SetCurrentGfx(MAIN_SCREEN);
     saved027c = data_027c027c;
     Screen_SetCurrent(MAIN_SCREEN);
-    func_020153d4(0, 9, data_027c0280->layer0Map, 0x48000008, 0, 0x100);
+    Text_PrintId(0, 9, data_027c0280->layer0Map, 0x48000008, 0, 0x100);
     Gfx_RequestLayerCopy(0);
     Palette_Load(data_021388f0, 0, 32);
     func_01ff8e58();

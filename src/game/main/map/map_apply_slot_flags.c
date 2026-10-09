@@ -15,8 +15,8 @@ void Map_ApplySlotFlags(void)
     for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
         flags = Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].slotFlags[slot].unk_0;
         if (flags != 0xff) {
-            data_027c027c->unk_48[data_027c0284]->players[slot].unk_2f |= flags;
-            data_027c027c->unk_48[data_027c0284]->players[slot].unk_30 |=
+            data_027c027c->unk_48[data_027c0284]->players[slot].hqX |= flags;
+            data_027c027c->unk_48[data_027c0284]->players[slot].hqY |=
                 Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].slotFlags[slot].unk_1;
         }
     }

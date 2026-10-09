@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
-BOOL Player_HasHq(int player); /* TRUE: bit 0x80 of Player.unk_2f is clear */
+BOOL Player_HasHq(int player); /* TRUE: bit 0x80 of Player.hqX is clear */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

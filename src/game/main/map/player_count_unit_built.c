@@ -2,7 +2,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-void func_020c74dc(int player);
+void Player_IncUnitCount(int player);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -16,7 +16,7 @@ void Player_CountUnitBuilt(int player, int unitType)
 {
     Player *players;
 
-    func_020c74dc(player);
+    Player_IncUnitCount(player);
     players = STATE->players;
     if (players[player].unitsBuilt[unitType] != 255) {
         players[player].unitsBuilt[unitType]++;

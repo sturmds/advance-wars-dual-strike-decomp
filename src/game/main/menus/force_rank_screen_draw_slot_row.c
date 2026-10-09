@@ -7,7 +7,7 @@ void Bg_ClearRect(u16 *map, u16 x, u16 y, int width, u16 height);
 void ForceRankScreen_PutNoSkillIcon(int x, int y);
 void ForceRankScreen_PutSkillIcon(int x, int y, int skill);
 void Gfx_RequestLayerCopy(int layer);
-void func_020153d4(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
+void Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -24,13 +24,13 @@ void ForceRankScreen_DrawSlotRow(int x, int y, int textTile, int skill)
     if (skill == 0) {
         if ((void *)data_027c027c == data_027c0288.unk_00) {
             ForceRankScreen_PutNoSkillIcon(x, y);
-            func_020153d4(x + 2, y, data_027c0280->layer0Map, 0x7b0000c0, 0, textTile);
+            Text_PrintId(x + 2, y, data_027c0280->layer0Map, 0x7b0000c0, 0, textTile);
         }
         Gfx_RequestLayerCopy(0);
         return;
     }
     ForceRankScreen_PutSkillIcon(x, y, skill);
-    func_020153d4(x + 2, y, data_027c0280->layer0Map, Ov000_gForceRankTable[skill].name.id, 0, textTile);
-    func_020153d4(x + 11, y, data_027c0280->layer0Map, Ov000_gForceRankTable[skill].description.id, 0, textTile + 16);
+    Text_PrintId(x + 2, y, data_027c0280->layer0Map, Ov000_gForceRankTable[skill].name.id, 0, textTile);
+    Text_PrintId(x + 11, y, data_027c0280->layer0Map, Ov000_gForceRankTable[skill].description.id, 0, textTile + 16);
     Gfx_RequestLayerCopy(0);
 }

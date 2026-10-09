@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 void func_ov000_022ae690(u8 *nibbles);
-void func_020c82f8(MapUnit *unit, int moveCost);
+void Unit_SubtractMoveFuel(MapUnit *unit, int moveCost);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -19,5 +19,5 @@ void func_020c8290(u8 *nibbles)
     if (STATE->unk_1c4->fog == 0 && STATE->unk_1c4->weather != WEATHER_RAIN) {
         return;
     }
-    func_020c82f8(STATE->actingUnit, STATE->unk_46);
+    Unit_SubtractMoveFuel(STATE->actingUnit, STATE->unk_46);
 }

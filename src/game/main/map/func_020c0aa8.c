@@ -35,7 +35,7 @@ void func_020c0aa8(void)
         STATE->players[i].unk_10[2] = 0;
         STATE->players[i].unk_10[3] = 0;
         STATE->players[i].comTowers = 0;
-        STATE->players[i].unk_2f |= 0x80;
+        STATE->players[i].hqX |= 0x80;
     }
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
@@ -45,8 +45,8 @@ void func_020c0aa8(void)
                 switch (tile & 0x1f) {
                 case TERRAIN_HQ:
                     player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
-                    player->unk_2f = x;
-                    player->unk_30 = y;
+                    player->hqX = x;
+                    player->hqY = y;
                     break;
                 case TERRAIN_BASE:
                     player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);

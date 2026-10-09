@@ -22,9 +22,9 @@ void Unit_AddDamageTaken(MapUnit *unit, int hpLost)
     u32 value = hpLost * Unit_GetValuePerHp(owner, unit->type);
     u32 total;
 
-    STATE->players[owner].unk_0c += value;
-    if (STATE->players[owner].unk_0c > DAMAGE_STAT_MAX) {
-        STATE->players[owner].unk_0c = DAMAGE_STAT_MAX;
+    STATE->players[owner].damageTaken += value;
+    if (STATE->players[owner].damageTaken > DAMAGE_STAT_MAX) {
+        STATE->players[owner].damageTaken = DAMAGE_STAT_MAX;
     }
     if (STATE->players[owner].controller != PLAYER_CONTROLLER_HUMAN) {
         return;

@@ -20,7 +20,7 @@ void Players_Reset(void)
     for (slot = 0; slot < 5; slot++) {
         STATE->players[slot].funds = 0;
         STATE->players[slot].unk_04 = 0;
-        STATE->players[slot].unk_0c = 0;
+        STATE->players[slot].damageTaken = 0;
         STATE->players[slot].unk_15 = 0;
         STATE->players[slot].unk_18 = 0;
         STATE->players[slot].defeated = 0;
@@ -49,7 +49,7 @@ void Players_Reset(void)
         STATE->players[slot].team = slot;
         STATE->players[slot].unk_33 = 0;
         STATE->players[slot].unk_34 = 0;
-        STATE->players[slot].unk_35 = 0;
+        STATE->players[slot].unitCount = 0;
         for (unitType = 0; unitType < UNIT_TYPE_COUNT; unitType++) {
             STATE->players[slot].unitsBuilt[unitType] = 0;
             STATE->players[slot].unitsLost[unitType] = 0;

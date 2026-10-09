@@ -13,7 +13,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 void Player_AddFunds(int playerIndex, int amount);
 void func_020c73b4(int player, int unitType);
-void func_020c82f8(MapUnit *unit, int tileCost); /* takes the fuel used for the move off the unit */
+void Unit_SubtractMoveFuel(MapUnit *unit, int tileCost); /* takes the fuel used for the move off the unit */
 void ActingUnit_StartAtDest(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -55,7 +55,7 @@ void UnitAction_Join(void)
     }
 
     if (data_0229eaec == 0 && GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) {
-        func_020c82f8(GAME->actingUnit, GAME->unk_46);
+        Unit_SubtractMoveFuel(GAME->actingUnit, GAME->unk_46);
         GAME->unk_46 = 0;
     }
 

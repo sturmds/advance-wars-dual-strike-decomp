@@ -19,7 +19,7 @@ void ActingUnit_StartAtDest(void);
 void func_020ceb60(void);
 void func_020ec058(int owner);
 void func_020ecb14(int x, int y, int oldProgress, int newProgress, int owner);
-void func_020f66a4(int x, int y);
+void Tile_SetOwner(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -35,7 +35,7 @@ void func_020f66a4(int x, int y);
 /* Unit action 3: the acting unit captures the tile it ends its move on.
  * Capture points added are the shown HP times the player's capture rate
  * (percent), plus CaptureIncrease, up to MAP_UNIT_CAPTURE_POINTS. At the
- * limit the tile changes owner (func_020f66a4) and an HQ or Lab marks its
+ * limit the tile changes owner (Tile_SetOwner) and an HQ or Lab marks its
  * old owner. The scene functions show the progress; with fog or rain they
  * are skipped for a tile the current player cannot see. Human players
  * count captures begun and finished in gPlayRecords. */
@@ -93,7 +93,7 @@ void UnitAction_Capture(void)
         if (MAP_TILE_TERRAIN(tile) == TERRAIN_HQ || MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
             GAME->players[MAP_TILE_OWNER(tile)].unk_34 = 1;
         }
-        func_020f66a4(GAME->actingUnitDestX, GAME->actingUnitDestY);
+        Tile_SetOwner(GAME->actingUnitDestX, GAME->actingUnitDestY);
     }
     func_020ceb60();
 }

@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 void ActingUnit_ResetCaptureIfMoved(void);
 void func_02017cf4(void);
-void func_020c82f8(MapUnit *unit, int tileCost); /* takes the fuel used for the move off the unit */
+void Unit_SubtractMoveFuel(MapUnit *unit, int tileCost); /* takes the fuel used for the move off the unit */
 void func_ov000_022ae560(void);
 void func_020c8888(void);
 void func_020c7398(int unitSlot); /* removes the unit */
@@ -24,7 +24,7 @@ void ActingUnit_FinishAction(void)
     GAME->actingUnit->x = GAME->actingUnitDestX;
     GAME->actingUnit->y = GAME->actingUnitDestY;
     if (GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) {
-        func_020c82f8(GAME->actingUnit, GAME->unk_46);
+        Unit_SubtractMoveFuel(GAME->actingUnit, GAME->unk_46);
     }
     func_ov000_022ae560();
     GAME->actingUnit->flags |= MAP_UNIT_WAITED;
