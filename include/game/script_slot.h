@@ -20,7 +20,8 @@ typedef struct ScriptSlot {
     void (*callback)(void);            /* set by opcode 1; while set, the script does not advance */
     u8 pad_0c[0x10 - 0x0c];
     u16 wait;                          /* frames left before the next command */
-    u8 pad_12[0x60 - 0x12];
+    u16 unk_12;                        /* set to 4 when a script starts, before its first run */
+    u8 pad_14[0x60 - 0x14];
 } ScriptSlot;
 
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
