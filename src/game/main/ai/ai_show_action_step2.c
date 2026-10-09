@@ -17,7 +17,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 int func_020b9664(void);
-void func_020b81c4(void);
+void AiShowAction_BlackBombExplode(void);
 void func_020b8230(void);
 void func_020b82a0(void);
 void func_020b8308(void);
@@ -147,7 +147,7 @@ void AiShowAction_Step2(void)
         }
         break;
     case 23:
-        func_020b81c4();
+        AiShowAction_BlackBombExplode();
         break;
     case 24:
         func_020de350(gUnitAction.target - 1);

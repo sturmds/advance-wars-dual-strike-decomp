@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020b0d94(void);
+BOOL AiUnit_NeedsService(void);
 void func_020b81a8(void);
 BOOL func_020a9c78(s16 *site);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -23,7 +23,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define FAR_AWAY 110                   /* movement of the fill from the site, and the distance of tiles it misses */
 
-/* Like AiUnit_RetreatToRepair, for a unit that func_020b0d94 says needs repair
+/* Like AiUnit_RetreatToRepair, for a unit that AiUnit_NeedsService says needs repair
  * (guess). func_020a9c78 picks a site (the unit's own tile when it finds
  * none); MapTiles.rangeScratch gets the distance from there. The unit moves to
  * the reachable free tile with the lowest threat where Unit_CanRepairAt or
@@ -46,7 +46,7 @@ void AiUnit_RetreatTowardSite(void)
     bestY = bestX;
     bestThreat = 0x7fff;
     bestDistance = bestThreat;
-    if (!func_020b0d94()) {
+    if (!AiUnit_NeedsService()) {
         return;
     }
     func_020b81a8();

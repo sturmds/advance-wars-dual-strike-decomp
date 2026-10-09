@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020b0d94(void);
+BOOL AiUnit_NeedsService(void);
 void func_020b81a8(void);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_CanRepairAt(MapUnit *unit, int x, int y);
@@ -18,7 +18,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* Runs when func_020b0d94 says the acting unit needs repair (guess from its
+/* Runs when AiUnit_NeedsService says the acting unit needs repair (guess from its
  * code: hp 90 or less, or low fuel). Like AiUnit_MoveToSafestTile, it moves the
  * unit to the free reachable tile with the lowest threat (MapTiles.threatMax
  * + 2 * threatSum), ties to the lower rangeMap value, but only to tiles where
@@ -41,7 +41,7 @@ void AiUnit_RetreatToRepair(void)
     bestY = bestX;
     bestThreat = 0x7fff;
     bestReach = bestThreat;
-    if (!func_020b0d94()) {
+    if (!AiUnit_NeedsService()) {
         return;
     }
     func_020b81a8();
