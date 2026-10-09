@@ -69,7 +69,9 @@ typedef struct UnitStats {
     u8 pad_1d[2];
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 unk_20;                         /* the document calls this "unit class"; the code uses unitClass */
-    u8 pad_21[0x6c - 0x21];
+    u8 pad_21[2];
+    u8 canHit[2][32];                  /* [weapon][damage chart column]: nonzero if the weapon can hit it */
+    u8 pad_63[0x6c - 0x63];
 } UnitStats;
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
