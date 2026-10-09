@@ -229,6 +229,10 @@ src/game/main/co_stats/player_get_good_luck.c:
     complete
     .text       start:0x020e0040 end:0x020e0108
 
+src/game/main/co_stats/co_get_nation.c:
+    complete
+    .text       start:0x020e0108 end:0x020e0120
+
 src/game/main/skills/increase_funds.c:
     complete
     .text       start:0x020e0158 end:0x020e0214
