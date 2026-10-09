@@ -7,7 +7,7 @@ void VsSetup_NextForceRankSet(int a);
 void VsSetup_PrevForceRankSet(int a);
 void func_02068e6c(MenuButton *button);
 void func_020690f4(MenuButton *button);
-void func_02069378(int a);
+void VsSetup_OpenForceRank(int a);
 void VsSetup_Confirm(int a);
 
 /* onKeys of the Vs setup buttons (COs, rules and so on). Left and right
@@ -53,7 +53,7 @@ void VsSetup_HandleKeys(MenuButton *button)
         VsSetup_NextForceRankSet(0);
     }
     if ((gKeypad->pressed & PAD_BUTTON_X) && !Skills_AreDisabled()) {
-        func_02069378(0);
+        VsSetup_OpenForceRank(0);
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
