@@ -3,8 +3,8 @@
 
 void *EventScript_Start(const void *script);
 int func_020d7b04(int id, u8 *buf);
-void func_ov006_0235864c(void);
-void func_ov006_02358388(void);
+void Ov006_ClearLayer1Box(void);
+void Ov006_ClearLayer0Box(void);
 void func_ov006_023583d8(void);
 int Ov006_HasNonSpace(u8 *buf);
 void func_ov006_02357bcc(int id);
@@ -17,8 +17,8 @@ extern u8 data_ov006_0236bd50[];
 
 void Ov006_StartIdScript(int id)
 {
-    func_ov006_0235864c();
-    func_ov006_02358388();
+    Ov006_ClearLayer1Box();
+    Ov006_ClearLayer0Box();
     func_ov006_023583d8();
     data_ov006_0236d640->unk_00 &= ~0x100;
     data_ov006_0236d640->unk_38 = id;
