@@ -48,7 +48,7 @@ typedef struct Task {
 typedef struct TaskScriptCmd {
     s16 op;                            /* TASK_CMD_* */
     s16 arg;                           /* TASK_CMD_LABEL: label id */
-    u8 pad_04[4];
+    u32 value;                         /* second argument of commands that take one (a sound id, a script pointer) */
 } TaskScriptCmd;
 
 #define TASK_CMD_END   0               /* last command of a script */
