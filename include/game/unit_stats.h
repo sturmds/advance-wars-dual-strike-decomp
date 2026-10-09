@@ -63,6 +63,9 @@ enum UnitType {
  * Sub or Stealth, which have their own columns. */
 #define DAMAGE_COLUMN_DIVED_SUB     27
 #define DAMAGE_COLUMN_DIVED_STEALTH 28
+#define DAMAGE_COLUMN_TILE          29 /* damage-chart target kind 6, a tile with hp */
+#define DAMAGE_COLUMN_OBJECT_A      30 /* map objects; which kinds use which is unconfirmed */
+#define DAMAGE_COLUMN_OBJECT_B      31
 
 /* Fixed stats of one unit type, 0x6c bytes, in ov000 at 0x022f4fb8.
  * Table address from romhacking.net doc 890 (RadioTails); the fields

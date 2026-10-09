@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
-int func_020d97dc(int target);                            /* damage chart column of target */
+int TargetKind_GetChartColumn(int target);                            /* damage chart column of target */
 int Unit_GetChartDamage(MapUnit *unit, int targetType, int weapon, int arg3);
 int UnitType_GetChartDamage(int unitType, int column, int weapon); /* base damage in percent; 0: cannot hit */
 BOOL func_ov000_022af56c(int target);                      /* checks the map id */
@@ -45,11 +45,11 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos)
     }
     Combatant_Init(&STATE->combatants[0], unitIndex);
     if (unit->ammo != 0) {
-        primaryDamage = Unit_GetChartDamage(unit, func_020d97dc(target), 0, 0);
+        primaryDamage = Unit_GetChartDamage(unit, TargetKind_GetChartColumn(target), 0, 0);
     } else {
-        canUseSecondary = UnitType_GetChartDamage(unit->type, func_020d97dc(target), 1);
+        canUseSecondary = UnitType_GetChartDamage(unit->type, TargetKind_GetChartColumn(target), 1);
         if (canUseSecondary) {
-            secondaryDamage = Unit_GetChartDamage(unit, func_020d97dc(target), 1, 0);
+            secondaryDamage = Unit_GetChartDamage(unit, TargetKind_GetChartColumn(target), 1, 0);
         }
     }
     if (primaryDamage <= secondaryDamage) {
