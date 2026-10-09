@@ -2524,6 +2524,10 @@ src/game/main/func_020fcb08.c:
     complete
     .text       start:0x020fcb08 end:0x020fcb18
 
+src/game/main/sound/sound_start_fade_out_task.c:
+    complete
+    .text       start:0x020fcb18 end:0x020fcb4c
+
 src/game/main/func_020fd85c.c:
     complete
     .text       start:0x020fd85c end:0x020fd874
