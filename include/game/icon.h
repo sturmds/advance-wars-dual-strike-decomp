@@ -29,4 +29,8 @@ extern u8 gIconSize[ICON_COUNT][2];      /* per icon: width, height in tiles */
 extern u8 gIconHeights[ICON_COUNT][2];   /* gIconSize one byte on: [i][0] is the height */
 extern u16 gIconBankFirstIcon[];         /* first icon id of each bank, every 4th u16 */
 
+int Icon_GetBank(int iconId);
+u32 Icon_GetFileOffset(int iconId, int bank);
+void Icon_Draw(int iconId, int x, int y, int tile, int list);
+
 #endif
