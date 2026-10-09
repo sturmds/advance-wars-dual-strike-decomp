@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffa44c(MapUnit *unit);
+void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int func_020a7fe0(s16 x, s16 y);
 void func_020b0794(void);
@@ -46,7 +46,7 @@ void AiUnit_MoveToSafestTile(void)
     if ((gAiTurnState->unk_08 & 1) && (gAiTurnState->unk_08 & 2)) {
         return;
     }
-    func_01ffa44c(STATE->actingUnit);
+    RangeMap_FillUnitMoves(STATE->actingUnit);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->unk_d0[y][x] < 0) {

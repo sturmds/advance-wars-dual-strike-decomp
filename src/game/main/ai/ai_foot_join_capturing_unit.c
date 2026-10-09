@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffa44c(MapUnit *unit);
+void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL func_0209ee54(u8 tile);      /* TRUE: HQ, airport, port, base or com tower */
 BOOL func_0209f08c(s16 unitSlot); /* TRUE: the slot belongs to the current player */
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -30,7 +30,7 @@ void AiFoot_JoinCapturingUnit(void)
     int targetHp;
     int ownHp;
 
-    func_01ffa44c(STATE->actingUnit);
+    RangeMap_FillUnitMoves(STATE->actingUnit);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->unk_d0[y][x] < 0) {

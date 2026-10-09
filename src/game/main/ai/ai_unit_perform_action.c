@@ -14,7 +14,7 @@ extern u32 data_0229eaec;
 void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 void func_020a3ab4(int action);
 void func_021296a8(void *p, int n);
-void func_01ffa44c(MapUnit *unit);
+void RangeMap_FillUnitMoves(MapUnit *unit);
 void func_01ffa02c(int x, int y, u8 *out);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
 void func_020b81b4(int x, int y, int action, int target, int arg);
@@ -36,7 +36,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
         unit->unk_08_7 = 1;
         func_021296a8(data_0229ea0c, 1);
     }
-    func_01ffa44c(unit);
+    RangeMap_FillUnitMoves(unit);
     func_01ffa02c(x, y, GAME->unk_170);
     PackNibblePairs(GAME->unk_170, gUnitAction.packed);
     func_020b81b4(x, y, action, target, arg);

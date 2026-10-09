@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffa44c(MapUnit *unit);
+void RangeMap_FillUnitMoves(MapUnit *unit);
 void func_01ffaa3c(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsTileVisible(s16 x, s16 y);
@@ -36,7 +36,7 @@ void AiFoot_AttackCapturingUnit(void)
     if (STATE->actingUnit->type > UNIT_MECH) {
         return;
     }
-    func_01ffa44c(STATE->actingUnit);
+    RangeMap_FillUnitMoves(STATE->actingUnit);
     func_01ffaa3c(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {

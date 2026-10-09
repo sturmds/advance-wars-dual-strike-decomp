@@ -8,7 +8,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ffa44c(MapUnit *unit);
+void RangeMap_FillUnitMoves(MapUnit *unit);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 int func_0209f560(MapUnit *unit); /* turns the unit needs to capture a property; 20 at 0 hp */
@@ -47,7 +47,7 @@ void AiFoot_PickCaptureTarget(void)
     if (STATE->actingUnit->type > UNIT_MECH) {
         return;
     }
-    func_01ffa44c(STATE->actingUnit);
+    RangeMap_FillUnitMoves(STATE->actingUnit);
     captureY = 9999;
     captureX = captureY;
     siloY = captureY;
