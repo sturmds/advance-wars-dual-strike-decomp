@@ -3573,6 +3573,10 @@ src/game/main/func_0207bfb8.c:
     complete
     .text       start:0x0207bfb8 end:0x0207bfe4
 
+src/game/main/func_0207c018.c:
+    complete
+    .text       start:0x0207c018 end:0x0207c044
+
 src/game/main/func_0207c044.c:
     complete
     .text       start:0x0207c044 end:0x0207c06c
@@ -5796,6 +5800,10 @@ src/game/main/func_020ce17c.c:
     complete
     .text       start:0x020ce17c end:0x020ce188
 
+src/game/main/func_020cfd30.c:
+    complete
+    .text       start:0x020cfd30 end:0x020cfd5c
+
 src/game/main/func_020cfe70.c:
     complete
     .text       start:0x020cfe70 end:0x020cfe80
@@ -6043,6 +6051,10 @@ src/game/main/func_020d80a8.c:
 src/game/main/func_020d80c4.c:
     complete
     .text       start:0x020d80c4 end:0x020d80e8
+
+src/game/main/func_020d8268.c:
+    complete
+    .text       start:0x020d8268 end:0x020d8294
 
 src/game/main/func_020d8310.c:
     complete
@@ -6877,6 +6889,10 @@ src/game/main/func_020eeddc.c:
     complete
     .text       start:0x020eeddc end:0x020eedf0
 
+src/game/main/func_020eedf0.c:
+    complete
+    .text       start:0x020eedf0 end:0x020eee1c
+
 src/game/main/func_020eee1c.c:
     complete
     .text       start:0x020eee1c end:0x020eee70
@@ -6932,6 +6948,10 @@ src/game/main/func_020ef234.c:
 src/game/main/func_020ef2c4.c:
     complete
     .text       start:0x020ef2c4 end:0x020ef2f0
+
+src/game/main/func_020f125c.c:
+    complete
+    .text       start:0x020f125c end:0x020f1288
 
 src/game/main/func_020f1288.c:
     complete
@@ -7032,6 +7052,10 @@ src/game/main/func_020f3110.c:
 src/game/main/func_020f3114.c:
     complete
     .text       start:0x020f3114 end:0x020f3178
+
+src/game/main/func_020f3178.c:
+    complete
+    .text       start:0x020f3178 end:0x020f31a4
 
 src/game/main/func_020f35cc.c:
     complete
@@ -7144,6 +7168,10 @@ src/game/main/func_020f5c58.c:
 src/game/main/func_020f5e44.c:
     complete
     .text       start:0x020f5e44 end:0x020f5e54
+
+src/game/main/func_020f788c.c:
+    complete
+    .text       start:0x020f788c end:0x020f78b8
 
 src/game/main/func_020f78b8.c:
     complete
