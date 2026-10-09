@@ -3,7 +3,7 @@
 void AiActingUnit_GetSearchMovement(void);
 void AiActingUnit_MarkAttackRange(void);
 BOOL func_020a870c(s16 *tile);
-BOOL func_020a7034(s16 *tile);
+BOOL AiUnit_FindFiringTile(s16 *tile);
 
 /* Runs the two setup passes, then two tile searches in turn. Writes the
  * tile to out only when both succeed. */
@@ -16,7 +16,7 @@ BOOL func_020aac60(s16 *out)
     if (!func_020a870c(tile)) {
         return FALSE;
     }
-    if (!func_020a7034(tile)) {
+    if (!AiUnit_FindFiringTile(tile)) {
         return FALSE;
     }
     out[0] = tile[0];

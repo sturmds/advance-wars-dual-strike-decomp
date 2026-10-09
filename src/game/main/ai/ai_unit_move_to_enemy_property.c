@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 int AiActingUnit_GetSearchMovement(void);
 void AiActingUnit_MarkAttackRange(int movement);
-BOOL func_020a7034(s16 *pos);
+BOOL AiUnit_FindFiringTile(s16 *pos);
 BOOL func_020a3dfc(int unitType, int tile);
 BOOL Unit_IsTileOwnedByTeam(int unitIndex, int tile);
 void AiUnit_MoveTowardTile(int x, int y);
@@ -16,7 +16,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 
 /* Moves the acting unit toward the reachable tile with the lowest rangeMap
  * value (the last one on a tie) whose owner is another team's and that
- * func_020a3dfc accepts for the unit type, if func_020a7034 agrees to the
+ * func_020a3dfc accepts for the unit type, if AiUnit_FindFiringTile agrees to the
  * tile in pos. AiActingUnit_MarkAttackRange runs first with the search movement. */
 void AiUnit_MoveToEnemyProperty(void)
 {
@@ -53,7 +53,7 @@ void AiUnit_MoveToEnemyProperty(void)
     if (bestReach == 0x7fff) {
         return;
     }
-    if (!func_020a7034(pos)) {
+    if (!AiUnit_FindFiringTile(pos)) {
         return;
     }
     AiUnit_MoveTowardTile(pos[0], pos[1]);

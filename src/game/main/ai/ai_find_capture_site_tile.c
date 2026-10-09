@@ -10,7 +10,7 @@ int UnitType_GetAttackKind(int unitType);
 BOOL Map_IsCapturableByActingUnit(s16 x, s16 y);
 void AiActingUnit_GetSearchMovement(void);
 void AiActingUnit_MarkAttackRange(void);
-BOOL func_020a7034(s16 *tile);
+BOOL AiUnit_FindFiringTile(s16 *tile);
 BOOL func_020a5100(int x, int y, int arg2, int arg3);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -23,7 +23,7 @@ BOOL func_020a5100(int x, int y, int arg2, int arg3);
  * Map_IsCapturableByActingUnit accepts, that func_020a5100 accepts, and
  * whose site counter is under the AI profile's limit. The counter is
  * unk_04 for a unit that is not indirect and unk_05 for an indirect one.
- * Passes the tile to func_020a7034 and writes the result to out. */
+ * Passes the tile to AiUnit_FindFiringTile and writes the result to out. */
 BOOL Ai_FindCaptureSiteTile(s16 *out)
 {
     int counterOffset;
@@ -61,7 +61,7 @@ BOOL Ai_FindCaptureSiteTile(s16 *out)
     if (best == NO_TILE) {
         return FALSE;
     }
-    if (!func_020a7034(tile)) {
+    if (!AiUnit_FindFiringTile(tile)) {
         return FALSE;
     }
     out[0] = tile[0];

@@ -6,12 +6,12 @@ extern int data_027c0284;
 
 void AiActingUnit_GetSearchMovement(void);
 void AiActingUnit_MarkAttackRange(void);
-BOOL func_020a7034(s16 *tile);
+BOOL AiUnit_FindFiringTile(s16 *tile);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Runs the two setup passes, then takes the acting unit's AI target if
- * the range map reaches it and hands it to func_020a7034. Writes the
+ * the range map reaches it and hands it to AiUnit_FindFiringTile. Writes the
  * tile that call leaves in tile to out when it succeeds. */
 BOOL func_020a9f9c(s16 *out)
 {
@@ -27,7 +27,7 @@ BOOL func_020a9f9c(s16 *out)
     }
     tile[0] = STATE->actingUnit->aiTargetX;
     tile[1] = STATE->actingUnit->aiTargetY;
-    if (!func_020a7034(tile)) {
+    if (!AiUnit_FindFiringTile(tile)) {
         return FALSE;
     }
     out[0] = tile[0];

@@ -11,7 +11,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int arg);
 MapObject *Map_GetObjectAt(int x, int y);
 int AiTile_GetLowestAdjacentReach(int x, int y);
-BOOL func_020a7034(s16 *pos);
+BOOL AiUnit_FindFiringTile(s16 *pos);
 void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -20,7 +20,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 /* For a unit that does at least 10 damage to target kind 4: picks the
  * reachable tile with the lowest AiTile_GetLowestAdjacentReach score that holds a tile
  * with hp or a map object (as gAiTurnState->flags allows), and, if
- * func_020a7034 accepts it, moves toward it with AiUnit_MoveTowardTile. */
+ * AiUnit_FindFiringTile accepts it, moves toward it with AiUnit_MoveTowardTile. */
 void AiUnit_HeadForObjectTarget(void)
 {
     int bestScore = 0x7fff;
@@ -57,7 +57,7 @@ void AiUnit_HeadForObjectTarget(void)
     if (bestScore == 0x7fff) {
         return;
     }
-    if (!func_020a7034(pos)) {
+    if (!AiUnit_FindFiringTile(pos)) {
         return;
     }
     AiUnit_MoveTowardTile(pos[0], pos[1]);

@@ -19,7 +19,7 @@ int Ai_BestDamageVsDived(int attacker, int target, int arg);
 int func_0209e814(int attacker, int target, int arg);
 int func_0209e8bc(int player, int x, int y);
 /* Checks the tile found and may move it; FALSE means the tile is not usable. */
-BOOL func_020a7034(s16 *tile);
+BOOL AiUnit_FindFiringTile(s16 *tile);
 void AiActingUnit_MarkAttackRange(void);
 s16 AiActingUnit_GetSearchMovement(void);
 
@@ -98,7 +98,7 @@ BOOL AiUnit_FindEnemyTarget(s16 *tile)
         }
         strong = weak;
     }
-    if (!func_020a7034(&strong.x)) {
+    if (!AiUnit_FindFiringTile(&strong.x)) {
         return 0;
     }
     tile[0] = strong.x;
