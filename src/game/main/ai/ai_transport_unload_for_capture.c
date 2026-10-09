@@ -12,7 +12,7 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL func_020a8804(int x, int y, s16 *stand); /* guess: picks where the transport stops to drop a unit on (x, y) */
-BOOL func_020a4d3c(int x, int y);
+BOOL Ai_IsCaptureSiteTaken(int x, int y);
 BOOL func_020a4a70(int x, int y, int distance, s16 *property); /* guess: a capturable property near (x, y) */
 int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction: 0 same tile, 1 up, 2 right, 3 down, 4 left */
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -93,7 +93,7 @@ void AiTransport_UnloadForCapture(void)
             }
             if (STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(x, y)]].unk_03 != 0
                 && !(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)
-                && func_020a4d3c(x, y) == TRUE) {
+                && Ai_IsCaptureSiteTaken(x, y) == TRUE) {
                 continue;
             }
             score = STATE->rangeMap[y][x];
