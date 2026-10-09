@@ -5945,6 +5945,13 @@ src/game/main/func_020b9c3c.c:
     complete
     .text       start:0x020b9c3c end:0x020b9c68
 
+src/game/main/menus/menu_depth_pop.c:
+    .text       start:0x020b9c68 end:0x020b9c9c
+
+src/game/main/menus/menu_depth_push.c:
+    complete
+    .text       start:0x020b9c9c end:0x020b9ccc
+
 src/game/main/func_020b9ccc.c:
     complete
     .text       start:0x020b9ccc end:0x020b9cf4

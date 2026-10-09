@@ -11,7 +11,7 @@ void func_020c4018(void);
 int func_020bc6b4(void);
 int func_020bc6ac(void);
 void PopupMenu_Create(MenuItem *items, int a, int b, int c, int d, int e);
-void func_020b9c9c(void);
+void MenuDepth_Push(void);
 
 /* Builds the battle map menu (gBattleMenuItems). */
 void BattleMenu_Open(void)
@@ -23,5 +23,5 @@ void BattleMenu_Open(void)
     func_020c4018();
     a = func_020bc6b4();
     PopupMenu_Create(gBattleMenuItems, a, func_020bc6ac(), 1, data_027c027c->unk_48[data_027c0284]->unk_10, 0);
-    func_020b9c9c();
+    MenuDepth_Push();
 }

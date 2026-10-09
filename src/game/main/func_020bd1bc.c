@@ -2,11 +2,11 @@
 
 void func_020ddc14(void);
 void func_0201e954(void);
-void func_020b9c9c(void);
+void MenuDepth_Push(void);
 
 void func_020bd1bc(void)
 {
     func_020ddc14();
     func_0201e954();
-    func_020b9c9c();
+    MenuDepth_Push();
 }
