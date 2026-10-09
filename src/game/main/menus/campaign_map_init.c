@@ -28,7 +28,7 @@ void Menu_Reset(void);
 void Wallpaper_LoadSingle(void);
 void ModeFont_ShowText(const void *text, int x, int y, int a, int b);
 void ModeFont_Load(int x, int y);
-void func_0204d6dc(void);
+void CampaignMap_MarkMissionDone(void);
 void CampaignMap_FindTopCos(void);
 BOOL func_020d5d2c(void);
 int Campaign_IsHardMode(void);
@@ -75,7 +75,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     int playerCount;
 
     if (task->unk_52 == 2 && func_020d5d2c()) {
-        func_0204d6dc();
+        CampaignMap_MarkMissionDone();
     }
     CampaignMap_FindTopCos();
     /* COs of the map's last player slot (probably the enemy). The (u8) casts get within
