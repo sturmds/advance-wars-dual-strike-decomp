@@ -5033,7 +5033,7 @@ func_02103d18 kind:function(arm,size=0x1c0) addr:0x02103d18
 func_02103ed8 kind:function(arm,size=0x1b4) addr:0x02103ed8
 func_0210408c kind:function(arm,size=0x50) addr:0x0210408c
 File_LocalizePath kind:function(arm,size=0x48) addr:0x021040dc
-func_02104124 kind:function(arm,size=0x14) addr:0x02104124
+LinkList_GetPrev kind:function(arm,size=0x14) addr:0x02104124
 LinkList_GetNext kind:function(arm,size=0x18) addr:0x02104138
 LinkList_Remove kind:function(arm,size=0x6c) addr:0x02104150
 func_021041bc kind:function(arm,size=0x80) addr:0x021041bc
@@ -5087,7 +5087,7 @@ func_02105240 kind:function(arm,size=0x60) addr:0x02105240
 func_021052a0 kind:function(arm,size=0x5c) addr:0x021052a0
 func_021052fc kind:function(arm,size=0x48) addr:0x021052fc
 func_02105344 kind:function(arm,size=0x5c) addr:0x02105344
-func_021053a0 kind:function(arm,size=0x60) addr:0x021053a0
+SoundSeqPlayer_Stop kind:function(arm,size=0x60) addr:0x021053a0
 func_02105400 kind:function(arm,size=0x7c) addr:0x02105400
 func_0210547c kind:function(arm,size=0xc) addr:0x0210547c
 func_02105488 kind:function(arm,size=0xbc) addr:0x02105488
@@ -5136,10 +5136,10 @@ func_021063d0 kind:function(arm,size=0x28) addr:0x021063d0
 func_021063f8 kind:function(arm,size=0x28) addr:0x021063f8
 func_02106420 kind:function(arm,size=0x64) addr:0x02106420
 func_02106484 kind:function(arm,size=0x64) addr:0x02106484
-func_021064e8 kind:function(arm,size=0x64) addr:0x021064e8
-func_0210654c kind:function(arm,size=0x64) addr:0x0210654c
-func_021065b0 kind:function(arm,size=0x64) addr:0x021065b0
-func_02106614 kind:function(arm,size=0x64) addr:0x02106614
+NNS_SndArcGetStrmInfo kind:function(arm,size=0x64) addr:0x021064e8
+NNS_SndArcGetWaveArcInfo kind:function(arm,size=0x64) addr:0x0210654c
+NNS_SndArcGetBankInfo kind:function(arm,size=0x64) addr:0x021065b0
+NNS_SndArcGetSeqArcInfo kind:function(arm,size=0x64) addr:0x02106614
 NNS_SndArcGetSeqInfo kind:function(arm,size=0x64) addr:0x02106678
 func_021066dc kind:function(arm,size=0x10) addr:0x021066dc
 func_021066ec kind:function(arm,size=0x18) addr:0x021066ec
@@ -5174,8 +5174,8 @@ func_021074a8 kind:function(arm,size=0xa8) addr:0x021074a8
 func_02107550 kind:function(arm,size=0x160) addr:0x02107550
 func_021076b0 kind:function(arm,size=0x70) addr:0x021076b0
 func_02107720 kind:function(arm,size=0xac) addr:0x02107720
-func_021077cc kind:function(arm,size=0x38) addr:0x021077cc
-func_02107804 kind:function(arm,size=0x38) addr:0x02107804
+NNS_SndArcLoadBank kind:function(arm,size=0x38) addr:0x021077cc
+NNS_SndArcLoadSeqArc kind:function(arm,size=0x38) addr:0x02107804
 func_0210783c kind:function(arm,size=0xd0) addr:0x0210783c
 func_0210790c kind:function(arm,size=0x10c) addr:0x0210790c
 NNS_SndArcPlayerStartSeqArc kind:function(arm,size=0x98) addr:0x02107a18
@@ -8939,7 +8939,7 @@ data_022a8048 kind:bss addr:0x022a8048
 data_022a804c kind:bss addr:0x022a804c
 data_022a8050 kind:bss addr:0x022a8050
 data_022a805c kind:bss addr:0x022a805c
-data_022a8068 kind:bss addr:0x022a8068
+gSoundSeqPlayers kind:bss addr:0x022a8068
 data_022a84a8 kind:bss addr:0x022a84a8
 data_022a84c0 kind:bss addr:0x022a84c0
 data_022a84c4 kind:bss addr:0x022a84c4

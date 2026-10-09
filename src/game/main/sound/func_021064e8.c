@@ -27,7 +27,7 @@ static inline const void *ArcInfoItem(const SoundArc *arc, u32 offset)
 /* Entry number index of the table at unk_24 in the current sound archive's
  * info block, or NULL when there is no such table or index is out of range.
  * Same shape as func_02106420. */
-const void *func_021064e8(int index)
+const void *NNS_SndArcGetStrmInfo(int index)
 {
     const SoundArcSeqInfoTable *table;
 

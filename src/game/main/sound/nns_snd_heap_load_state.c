@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/sound.h"
 #include "game/sound_heap.h"
+#include "game/link_list.h"
 
-void *func_02104124(LinkList *list, void *object);   /* previous object in list, last one for NULL */
 int func_02104ab4(void *frameHeap, int level);
 int func_02104b10(void *frameHeap, int level);
 void func_021069a8(void);
@@ -27,13 +27,13 @@ void NNS_SndHeapLoadState(void *heapArg, int level)
         void *none = item;   /* NULL; needed to match: a second copy of item */
 
         do {
-            saved = func_02104124(levels, none);
-            item = func_02104124(saved, item);
+            saved = LinkList_GetPrev(levels, none);
+            item = LinkList_GetPrev(saved, item);
             while (item != NULL) {
                 if (item->onUnload != NULL) {
                     item->onUnload(item->payload, item->unk_08, item->unk_10, item->unk_14);
                 }
-                item = func_02104124(saved, item);
+                item = LinkList_GetPrev(saved, item);
             }
             LinkList_Remove(levels, saved);
         } while (level < heap->levels.count);

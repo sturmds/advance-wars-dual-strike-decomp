@@ -2,7 +2,7 @@
 #include "game/sound.h"
 #include "game/sound_arc.h"
 
-const u32 *func_02106614(int seqArcNo);                /* sequence archive entry; first word is the offset of its data */
+const u32 *NNS_SndArcGetSeqArcInfo(int seqArcNo);                /* sequence archive entry; first word is the offset of its data */
 const void *func_02106304(u32 offset);
 const SoundArcSeqInfo *func_0210924c(const void *seqArc, int index);
 BOOL func_0210783c(SoundHandle *handle, int playerNo, int bankNo, int playerPrio,
@@ -16,7 +16,7 @@ BOOL NNS_SndArcPlayerStartSeqArc(SoundHandle *handle, int seqArcNo, int index)
     const void *seqArc;
     const SoundArcSeqInfo *info;
 
-    entry = func_02106614(seqArcNo);
+    entry = NNS_SndArcGetSeqArcInfo(seqArcNo);
     if (entry == NULL) {
         return FALSE;
     }

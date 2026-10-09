@@ -1,15 +1,14 @@
 #include "types.h"
 #include "game/sound.h"
+#include "game/sound_arc.h"
 
 /* Sound archive loaders: each loads one item into the sound heap and
  * returns TRUE on success. */
-BOOL func_02107804(int itemNo, void *heap);
-BOOL func_021077cc(int itemNo, void *heap);
 
-/* Loads the sound archive items the game keeps resident from boot:
- * item 1 through func_02107804 and item 0x30 through func_021077cc. */
+/* Loads the sound data the game keeps resident from boot: sequence
+ * archive 1 and bank 0x30. */
 void Sound_LoadResidentData(void)
 {
-    func_02107804(1, gSoundHeap);
-    func_021077cc(0x30, gSoundHeap);
+    NNS_SndArcLoadSeqArc(1, gSoundHeap);
+    NNS_SndArcLoadBank(0x30, gSoundHeap);
 }

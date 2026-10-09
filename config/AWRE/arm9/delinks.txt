@@ -7928,7 +7928,7 @@ src/game/main/func_02104f00.c:
     complete
     .text       start:0x02104f00 end:0x02104f2c
 
-src/game/main/sound/func_021053a0.c:
+src/game/main/sound/sound_seq_player_stop.c:
     complete
     .text       start:0x021053a0 end:0x02105400
 
@@ -8064,11 +8064,11 @@ src/game/main/func_02106f94.c:
     complete
     .text       start:0x02106f94 end:0x02106fb8
 
-src/game/main/sound/func_021077cc.c:
+src/game/main/sound/nns_snd_arc_load_bank.c:
     complete
     .text       start:0x021077cc end:0x02107804
 
-src/game/main/sound/func_02107804.c:
+src/game/main/sound/nns_snd_arc_load_seq_arc.c:
     complete
     .text       start:0x02107804 end:0x0210783c
 

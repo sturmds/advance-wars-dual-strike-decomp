@@ -32,4 +32,7 @@ typedef struct SoundHandle {
     SoundSeqPlayer *player;
 } SoundHandle;
 
+/* Stops player now, or fades it out over fadeFrames frames. */
+void SoundSeqPlayer_Stop(SoundSeqPlayer *player, int fadeFrames);
+
 #endif

@@ -21,6 +21,7 @@ typedef struct LinkList {
 void LinkList_Init(LinkList *list, u16 linkOffset);
 void LinkList_SetFirst(LinkList *list, void *object);
 void *LinkList_GetNext(LinkList *list, void *object);
+void *LinkList_GetPrev(LinkList *list, void *object);   /* the tail for NULL */
 void LinkList_Remove(LinkList *list, void *object);
 void LinkList_Append(LinkList *list, void *object);
 
