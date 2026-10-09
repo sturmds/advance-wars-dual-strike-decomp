@@ -8038,6 +8038,10 @@ src/game/main/func_020f2308.c:
     complete
     .text       start:0x020f2308 end:0x020f232c
 
+src/game/main/graphics/gfx_load_bmap085.c:
+    complete
+    .text       start:0x020f23a0 end:0x020f2528
+
 src/game/main/func_020f28a8.c:
     complete
     .text       start:0x020f28a8 end:0x020f28d4
