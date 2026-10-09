@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2718 / 6603 | 348512 / 1531944 | 22.75% | 0 | 0 |
+| game | 2723 / 6603 | 353764 / 1531944 | 23.09% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2856 / 7483 | 351932 / 1685994 | 20.87% | 1 | 30 |
+| all | 2861 / 7483 | 357184 / 1685994 | 21.19% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2321 / 5180 | 322488 / 1082632 | 29.79% | 0 |
+| main | game | 2326 / 5180 | 327740 / 1082632 | 30.27% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -39,7 +39,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_add_oozium_threat.c` | Ai_AddOoziumThreat | 492 |
-| `src/game/main/ai/ai_foot_board_transport_for_site.c` | AiFoot_BoardTransportForSite | 1040 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_unit_has_fuel_for_tile.c` | func_020a6554 | 528 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | func_020aff0c | 556 |
@@ -47,10 +46,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/ai/func_02091e40.c` | func_02091e40 | 112 |
 | `src/game/main/ai/func_0209462c.c` | func_0209462c | 976 |
-| `src/game/main/ai/func_0209b458.c` | func_0209b458 | 1216 |
-| `src/game/main/ai/func_020a7034.c` | func_020a7034 | 944 |
-| `src/game/main/ai/func_020aa4dc.c` | func_020aa4dc | 1256 |
-| `src/game/main/ai/func_020ab70c.c` | func_020ab70c | 796 |
 | `src/game/main/ai/func_020b46c4.c` | func_020b46c4 | 644 |
 | `src/game/main/ai/func_020b7e90.c` | func_020b7e90 | 436 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |

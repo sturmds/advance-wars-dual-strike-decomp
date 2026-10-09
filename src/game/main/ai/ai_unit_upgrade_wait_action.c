@@ -67,7 +67,6 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
     int unloadY;
     int unloadDist;
     int unload2X;
-    int unload2Y;
     int unload2Dist;
     int unloadEndY;
     int unloadMaxY;
@@ -389,7 +388,10 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
             unloadStartY = unloadMinY;
         }
         unloadEndX = x + 1 < STATE->unk_1c4->mapWidth - 1 ? x + 1 : STATE->unk_1c4->mapWidth - 1;
-        unloadEndY = y + 1 < STATE->unk_1c4->mapHeight - 1 ? y + 1 : STATE->unk_1c4->mapHeight - 1;
+        unloadEndY = STATE->unk_1c4->mapHeight - 1;
+        if (y + 1 < unloadEndY) {
+            unloadEndY = y + 1;
+        }
         for (unloadY = unloadStartY; unloadY <= unloadEndY; unloadY++) {
             /* needed to match: set inside the loop */
             chart = (const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT];
@@ -438,9 +440,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
         if (unloadMinX < 0) {
             unloadMinX = 0;
         }
-        if (unloadMinY < 0) {
-            unloadMinY = 0;
-        }
+        unloadMinY = unloadMinY < 0 ? 0 : unloadMinY; /* needed to match: not an if */
         unloadMaxX = STATE->unk_1c4->mapWidth - 1;
         if (x + 1 < unloadMaxX) {
             unloadMaxX = x + 1;
@@ -449,8 +449,13 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
         if (y + 1 < unloadMaxY) {
             unloadMaxY = y + 1;
         }
+        /* needed to match: chart loads after the row check, once; the rows
+         * count up in unloadMinY */
+        if (unloadMinY > unloadMaxY) {
+            return;
+        }
         chart = (const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT];
-        for (unload2Y = unloadMinY; unload2Y <= unloadMaxY; unload2Y++) {
+        do {
             for (unload2X = unloadMinX; unload2X <= unloadMaxX; unload2X++) {
                 unload2Dist = 0;
                 if (x - unload2X > 0) {
@@ -458,28 +463,28 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                 } else {
                     unload2Dist += unload2X - x;
                 }
-                if (y - unload2Y > 0) {
-                    unload2Dist += y - unload2Y;
+                if (y - unloadMinY > 0) {
+                    unload2Dist += y - unloadMinY;
                 } else {
-                    unload2Dist += unload2Y - y;
+                    unload2Dist += unloadMinY - y;
                 }
                 if (unload2Dist < 1 || unload2Dist > 1) {
                     continue;
                 }
-                if (MOVE_COST(secondCargo, unload2X, unload2Y) == -1) {
+                if (MOVE_COST(secondCargo, unload2X, unloadMinY) == -1) {
                     continue;
                 }
-                if (STATE->mapTiles->unitAt[TILE_INDEX(unload2X, unload2Y)] != 0) {
+                if (STATE->mapTiles->unitAt[TILE_INDEX(unload2X, unloadMinY)] != 0) {
                     continue;
                 }
-                if (STATE->mapTiles->threatMax[TILE_INDEX(unload2X, unload2Y)] + STATE->mapTiles->threatSum[TILE_INDEX(unload2X, unload2Y)] > UNLOAD_MAX_THREAT) {
+                if (STATE->mapTiles->threatMax[TILE_INDEX(unload2X, unloadMinY)] + STATE->mapTiles->threatSum[TILE_INDEX(unload2X, unloadMinY)] > UNLOAD_MAX_THREAT) {
                     continue;
                 }
                 if (unload2X - x != 0) {
                     *arg = 3 - (unload2X - x);
                 }
-                if (unload2Y - y != 0) {
-                    *arg = unload2Y - y + 2;
+                if (unloadMinY - y != 0) {
+                    *arg = unloadMinY - y + 2;
                 }
                 /* keep looking only while it matches the first cargo's direction */
                 if (*target != *arg) {
@@ -487,7 +492,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                 }
                 *arg = 0;
             }
-        }
+        } while (++unloadMinY <= unloadMaxY);
         return;
     }
 }
