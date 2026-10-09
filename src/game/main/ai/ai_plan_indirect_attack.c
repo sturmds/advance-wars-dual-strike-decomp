@@ -16,7 +16,7 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
 BOOL Map_IsOwnedNonRepairTile(int x, int y);             /* TRUE: tile owned by unk_04 and not a repair tile */
 MapObject *Map_GetObjectAt(int x, int y);       /* object at (x, y) with hp left, or NULL */
-int func_0209e424(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
+int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
 BOOL Map_IsTileVisible(s16 x, s16 y);
 BOOL func_020a770c(s16 x, s16 y);
 int AiAttack_Score(int target, s16 *pos);      /* score of attacking unit slot target (low byte) from pos */
@@ -139,7 +139,7 @@ void Ai_PlanIndirectAttack(void)
             }
             goto attack_unit;
 attack_tile:
-            damage = HwDiv32(func_0209e424(STATE->actingUnit, kind) * STATE->actingUnit->hp, 100);
+            damage = HwDiv32(Unit_BestDamageToTargetKind(STATE->actingUnit, kind) * STATE->actingUnit->hp, 100);
             if (damage < hp && damage < 10) {
                 continue;
             }

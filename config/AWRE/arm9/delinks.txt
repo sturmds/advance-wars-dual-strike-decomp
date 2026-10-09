@@ -467,6 +467,10 @@ src/game/main/units/unit_type_best_base_damage.c:
     complete
     .text       start:0x0209e3e8 end:0x0209e424
 
+src/game/main/combat/unit_best_damage_to_target_kind.c:
+    complete
+    .text       start:0x0209e424 end:0x0209e4b0
+
 src/game/main/map/map_is_tile_visible.c:
     complete
     .text       start:0x0209eb38 end:0x0209ec00

@@ -14,7 +14,7 @@ void func_01ffa44c(MapUnit *unit);
 void func_01ffaa3c(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
 int func_0209dc54(int x, int y);
-int func_0209e424(MapUnit *unit, int target); /* base damage percent against a target kind */
+int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* base damage percent against a target kind */
 BOOL Map_IsTileVisible(s16 x, s16 y);
 int func_020a30c4(void);
 BOOL func_020a3b54(int x, int y, MapUnit *target);
@@ -109,7 +109,7 @@ void AiUnit_PickDirectAttack(void)
                 goto attackUnit;
             }
         attackObject:
-            rating = HwDiv32(func_0209e424(STATE->actingUnit, targetKind) * STATE->actingUnit->hp, 100);
+            rating = HwDiv32(Unit_BestDamageToTargetKind(STATE->actingUnit, targetKind) * STATE->actingUnit->hp, 100);
             /* skip unless it destroys the object or deals at least 10 */
             if (rating < hp && rating < 10) {
                 continue;
