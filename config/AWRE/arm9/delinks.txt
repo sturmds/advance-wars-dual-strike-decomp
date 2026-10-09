@@ -9092,6 +9092,10 @@ src/game/main/func_02104f00.c:
     complete
     .text       start:0x02104f00 end:0x02104f2c
 
+src/game/main/sound/sound_seq_player_set_priority.c:
+    complete
+    .text       start:0x02105038 end:0x0210509c
+
 src/game/main/sound/sound_seq_player_stop_now.c:
     complete
     .text       start:0x02105204 end:0x02105240
