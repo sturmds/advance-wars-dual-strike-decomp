@@ -1,19 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-typedef struct Ov003Slot {
-    u8 pad_00;
-    u8 row : 4;                        /* 1 + row of cells; bit 0 picks unk_12_0 */
-    u8 pad_02[2];
-} Ov003Slot;
-
-typedef struct Ov003State {
-    Ov003Cell cells[5][31];
-    u8 pad_136[2];
-    Ov003Slot slots[1];
-} Ov003State;
-
-extern Ov003State *data_ov003_02364928;
 extern Ov003Unit data_ov003_02369538[16];
 
 int func_ov003_023622b8(void);
@@ -33,7 +20,7 @@ Ov003Unit *Ov003Unit_Create(int slot, int column, int x, int y)
     Ov003Cell *cell;
     row = data_ov003_02364928->slots[slot].row;
     unit = data_ov003_02369538;
-    cell = &data_ov003_02364928->cells[row - 1][column];
+    cell = &data_ov003_02364928->rows[row - 1].cells[column];
 
     if (slot < func_ov003_023622b8()) {
         unit += slot;

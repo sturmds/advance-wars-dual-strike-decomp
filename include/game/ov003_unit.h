@@ -47,4 +47,63 @@ typedef struct Ov003Cell {
     u8 unit;                           /* index in data_ov003_02369538 */
 } Ov003Cell;
 
+/* Five rows of 31 cells (62 bytes) at the start of Ov003State. The cell at
+ * index 29 holds the number of spawn records the row uses (read as a plain byte). */
+typedef struct Ov003Row {
+    Ov003Cell cells[29];
+    u8 spawnCount;
+    u8 pad_3b[3];
+} Ov003Row;
+
+typedef struct Ov003Slot {
+    u8 pad_00;
+    u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.unk_12_0 */
+    u8 pad_02[2];
+} Ov003Slot;
+
+/* 5 bytes at Ov003State.spawns: where a unit appears and how it starts. */
+typedef struct Ov003Spawn {
+    u8 x;                              /* passed to func_ov003_0235c42c */
+    u8 y;
+    u8 unk_2_0 : 3;                    /* becomes Ov003Unit.unk_12_0 */
+    u8 unk_2_3 : 3;                    /* bit 0 becomes Ov003Unit.unk_1e_0 */
+    u8 unk_2_6 : 1;                    /* becomes Ov003Unit.unk_1d_7 */
+    u8 unk_2_7 : 1;                    /* becomes Ov003Unit.unk_1d_6 */
+    u8 unk_3;                          /* becomes Ov003Unit.unk_1f */
+    u8 unk_4;                          /* becomes Ov003Unit.unk_1e_1 */
+} Ov003Spawn;
+
+/* Overlay 3 state, through data_ov003_02364928. */
+typedef struct Ov003State {
+    Ov003Row rows[5];
+    u8 pad_136[0x138 - 0x136];
+    Ov003Slot slots[7];                /* length unknown */
+    u8 pad_154[0x156 - 0x154];
+    Ov003Spawn spawns[1];              /* length unknown */
+    u8 pad_15b[0x1d5 - 0x15b];
+    u8 currentSlot;
+    u8 pad_1d6[0x1da - 0x1d6];
+    u8 unk_1da;
+    u8 row : 7;                        /* 1 to 5: the row spawns go to */
+    u8 unk_1db_7 : 1;
+    u8 pad_1dc;
+    u8 nextSpawn;                      /* index of the next record in spawns and cell in the row */
+    u8 pad_1de;
+    u8 unk_1df_0 : 1;
+    u8 unk_1df_1 : 1;
+} Ov003State;
+
+/* Map of overlay 3, through data_ov003_02364a88. */
+#define OV003_MAP_TILE_MAX 0x508
+
+typedef struct Ov003Map {
+    u8 width;
+    u8 height;
+    u16 cells[OV003_MAP_TILE_MAX];     /* tile code per tile, row by row */
+    u8 marks[OV003_MAP_TILE_MAX];      /* per tile: MARK_* bits (Ov003_MarkRowTiles) */
+} Ov003Map;
+
+extern Ov003State *data_ov003_02364928;
+extern Ov003Map *data_ov003_02364a88;
+
 #endif

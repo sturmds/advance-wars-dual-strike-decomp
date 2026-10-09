@@ -1,38 +1,6 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-/* Five rows of 31 cells (62 bytes) in data_ov003_02364928. The cell at index 29
- * holds the number of spawn records the row uses (read as a plain byte). */
-typedef struct Ov003Row {
-    Ov003Cell cells[29];
-    u8 spawnCount;
-    u8 pad_3b[3];
-} Ov003Row;
-
-/* 5 bytes at Ov003State.spawns: where a unit appears and how it starts. */
-typedef struct Ov003Spawn {
-    u8 x;                              /* passed to func_ov003_0235c42c */
-    u8 y;
-    u8 unk_2_0 : 3;                    /* becomes Ov003Unit.unk_12_0 */
-    u8 unk_2_3 : 3;                    /* bit 0 becomes Ov003Unit.unk_1e_0 */
-    u8 unk_2_6 : 1;                    /* becomes Ov003Unit.unk_1d_7 */
-    u8 unk_2_7 : 1;                    /* becomes Ov003Unit.unk_1d_6 */
-    u8 unk_3;                          /* becomes Ov003Unit.unk_1f */
-    u8 unk_4;                          /* becomes Ov003Unit.unk_1e_1 */
-} Ov003Spawn;
-
-typedef struct Ov003State {
-    Ov003Row rows[5];
-    u8 pad_136[0x156 - 0x136];
-    Ov003Spawn spawns[1];              /* length unknown */
-    u8 pad_15b[0x1db - 0x15b];
-    u8 row : 7;                        /* 1 to 5: the row spawns go to */
-    u8 unk_1db_7 : 1;
-    u8 pad_1dc;
-    u8 nextSpawn;                      /* index of the next record in spawns and cell in the row */
-} Ov003State;
-
-extern Ov003State *data_ov003_02364928;
 extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02364d8e[][20];
 

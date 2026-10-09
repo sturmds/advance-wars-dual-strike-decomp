@@ -1,11 +1,5 @@
 #include "types.h"
-
-typedef struct Ov003Map {
-    u8 width;
-    u8 height;
-} Ov003Map;
-
-extern Ov003Map *data_ov003_02364a88;
+#include "game/ov003_unit.h"
 
 void func_01ff8c84(int);
 void Gfx_RequestLayerCopy(int);

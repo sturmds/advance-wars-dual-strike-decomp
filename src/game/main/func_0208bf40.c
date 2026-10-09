@@ -1,16 +1,6 @@
 #include "types.h"
+#include "game/Unk_02160ac0.h"
 
-typedef struct Unk_0208bf40_0 {
-    u8 pad_00[0x18];
-    u8 unk_18;
-    u8 unk_19;
-    u8 pad_1a[0x7d - 0x1a];
-    u8 unk_7d;
-    u8 pad_7e[0x84 - 0x7e];
-    u8 unk_84;
-} Unk_0208bf40_0;
-
-extern Unk_0208bf40_0 *data_02160ac0;
 extern u8 data_0229e148[];
 
 void func_0208adac(void);

@@ -2,37 +2,11 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 
-#define MAP_TILE_MAX 0x508
-
-typedef struct Ov003Map {
-    u8 width;
-    u8 height;
-    u16 cells[MAP_TILE_MAX];           /* tile code per tile, row by row */
-    u8 marks[MAP_TILE_MAX];            /* per tile: MARK_* bits, set by this function */
-} Ov003Map;
-
 /* Ov003Map.marks bits. */
 #define MARK_OWNED    1                /* the tile belongs to the selected unit's row */
 #define MARK_NEXT_TO  2                /* a tile next to a marked one */
 #define MARK_UNIT     4                /* a unit of the current row stands here */
 
-typedef struct Ov003Slot {
-    u8 pad_00;
-    u8 row : 4;
-    u8 pad_02[2];
-} Ov003Slot;
-
-typedef struct Ov003State {
-    u8 pad_00[0x138];
-    Ov003Slot slots[1];                /* length unknown */
-    u8 pad_13c[0x1d5 - 0x13c];
-    u8 currentSlot;
-    u8 pad_1d6[0x1df - 0x1d6];
-    u8 unk_1df_0 : 1;
-} Ov003State;
-
-extern Ov003Map *data_ov003_02364a88;
-extern Ov003State *data_ov003_02364928;
 extern Ov003Unit *data_ov003_02369534;
 extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 row, bits 0-4 terrain */
@@ -63,7 +37,7 @@ void Ov003_MarkRowTiles(void)
 
     unit = data_ov003_02369538;
     if (func_ov003_02361f38() == 1 || !STATE->unk_1df_0) {
-        func_02002d9c(-1, MAP->marks, MAP_TILE_MAX);
+        func_02002d9c(-1, MAP->marks, OV003_MAP_TILE_MAX);
         GFX_DISPCNT(data_027c0280)->bg0 = 1;
         GFX_DISPCNT(data_027c0280)->bg1 = 0;
         GFX_DISPCNT(data_027c0280)->bg2 = 0;
@@ -71,7 +45,7 @@ void Ov003_MarkRowTiles(void)
         GFX_DISPCNT(data_027c0280)->obj = 1;
         return;
     }
-    Mem_Zero32(0, MAP->marks, MAP_TILE_MAX);
+    Mem_Zero32(0, MAP->marks, OV003_MAP_TILE_MAX);
     for (y = 0; y < MAP->height; y++) {
         for (x = 0; x < MAP->width; x++) {
             u8 tile = data_ov003_02365d10[MAP->cells[TILE_AT(x, y)]];
