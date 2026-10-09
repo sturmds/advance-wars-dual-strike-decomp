@@ -4539,6 +4539,10 @@ src/game/main/ai/func_02091904.c:
     complete
     .text       start:0x02091904 end:0x02091944
 
+src/game/main/ai/ai_turn_try_build_cruiser.c:
+    complete
+    .text       start:0x02091b74 end:0x02091c54
+
 src/game/main/ai/func_02091e40.c:
     .text       start:0x02091e40 end:0x02091eb0
 

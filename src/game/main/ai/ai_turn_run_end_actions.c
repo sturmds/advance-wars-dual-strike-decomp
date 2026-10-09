@@ -16,7 +16,7 @@ void func_02093720(void);
 BOOL func_02091e40(void);
 BOOL func_02091d34(void);
 BOOL func_02091c54(void);
-BOOL func_02091b74(void);
+BOOL AiTurn_TryBuildCruiser(void);
 BOOL func_02091944(void);
 void func_02092134(void);
 BOOL func_02090154(void);
@@ -94,7 +94,7 @@ void AiTurn_RunEndActions(void)
                 data_021619c0->step++;
                 break;
             }
-            if (func_02091b74()) {
+            if (AiTurn_TryBuildCruiser()) {
                 return;
             }
             data_021619c0->step++;
