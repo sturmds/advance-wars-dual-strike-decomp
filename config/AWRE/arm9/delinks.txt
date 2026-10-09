@@ -1039,6 +1039,10 @@ src/game/main/ai/ai_turn_clear_unit_marks.c:
     complete
     .text       start:0x0208d56c end:0x0208d62c
 
+src/game/main/ai/ai_turn_count_capture_targets.c:
+    complete
+    .text       start:0x0208d62c end:0x0208d6f4
+
 src/game/main/ai/ai_turn_clear_capture_marks.c:
     complete
     .text       start:0x0208d914 end:0x0208d964

@@ -14,7 +14,7 @@ void AiTurn_ClearCaptureMarks(void);
 void func_0208d6f4(void);
 void AiTurn_ClearUnitMarks(void);
 void func_0208d548(void);
-void func_0208d62c(void);
+void AiTurn_CountCaptureTargets(void);
 void func_0208d964(void);
 void func_0208d2f0(void);
 int func_0209dec0(void);
@@ -39,7 +39,7 @@ void AiTurn_Start(void)
     func_0208d6f4();
     AiTurn_ClearUnitMarks();
     func_0208d548();
-    func_0208d62c();
+    AiTurn_CountCaptureTargets();
     func_0208d964();
     func_0208d2f0();
 
