@@ -256,6 +256,10 @@ src/game/main/menus/menu_button_update_slide.c:
     complete
     .text       start:0x02025164 end:0x02025470
 
+src/game/main/menus/menu_button_handle_touch.c:
+    complete
+    .text       start:0x02025470 end:0x0202569c
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

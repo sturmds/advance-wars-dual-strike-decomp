@@ -12,7 +12,7 @@ typedef struct MenuButton {
     u8 id;                             /* menus use it as the cursor position */
     u8 active;
     u8 pad_02[0x03 - 0x02];
-    u8 touchState;                     /* read and written by func_020263f4 and func_020263fc */
+    u8 touchState;                     /* MENU_BUTTON_TOUCH_*, read and written by func_020263f4 and func_020263fc */
     u8 slideState;                     /* MENU_BUTTON_SLIDE_* */
     u8 pad_05[0x06 - 0x05];
     s16 slideFromX;
@@ -38,6 +38,7 @@ typedef struct MenuButton {
 } MenuButton;
 
 /* Bits of MenuButton.unk_1c, tested with func_02026404. */
+#define MENU_BUTTON_SELECT_ON_TOUCH  0x0001   /* a touch confirm also selects it */
 #define MENU_BUTTON_VISIBLE          0x0002
 #define MENU_BUTTON_SLIDE_IN_LEFT    0x0004   /* slides in from off the left edge */
 #define MENU_BUTTON_SLIDE_IN_RIGHT   0x0008
@@ -47,7 +48,9 @@ typedef struct MenuButton {
 #define MENU_BUTTON_SLIDE_OUT_RIGHT  0x0080
 #define MENU_BUTTON_SLIDE_OUT_TOP    0x0100
 #define MENU_BUTTON_SLIDE_OUT_BOTTOM 0x0200
+#define MENU_BUTTON_NO_TOUCH_CONFIRM 0x0400   /* releasing a touch on it does nothing */
 #define MENU_BUTTON_SEMI_TRANSPARENT 0x0800
+#define MENU_BUTTON_TOUCH_ANYWHERE   0x1000   /* func_0202576c counts any point as inside */
 
 /* Values of MenuButton.slideState. */
 enum {
@@ -57,6 +60,13 @@ enum {
     MENU_BUTTON_SLIDE_OUT_START,
     MENU_BUTTON_SLIDING_OUT,
     MENU_BUTTON_HIDDEN
+};
+
+/* Values of MenuButton.touchState. */
+enum {
+    MENU_BUTTON_TOUCH_NONE,
+    MENU_BUTTON_TOUCH_PRESSED,         /* touched and still on the button */
+    MENU_BUTTON_TOUCH_HELD             /* held; releasing no longer confirms */
 };
 
 extern MenuButton gMenuButtons[80];
@@ -79,5 +89,6 @@ void Menu_ConfirmSelected(void);
 void MenuButton_NotifySelected(MenuButton *button);
 void MenuButton_Draw(MenuButton *button);
 void MenuButton_UpdateSlide(MenuButton *button);
+BOOL MenuButton_HandleTouch(MenuButton *button);
 
 #endif
