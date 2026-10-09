@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 void AiFogDirect_ActOrder7(void);
 void AiFogDirect_ActOrders1_10(void);
-void func_020a0bfc(void);
+void AiFogDirect_ActOtherOrders(void);
 
 /* Queue routine for the direct units AiAction_QueueAllDirectUnitsFog
  * collects: runs one of three action sequences on the acting unit, chosen
@@ -28,7 +28,7 @@ void AiUnit_ActByOrderFog(void)
     case 6:
     case 8:
     case 9:
-        func_020a0bfc();
+        AiFogDirect_ActOtherOrders();
         break;
     case 1:
     case 10:

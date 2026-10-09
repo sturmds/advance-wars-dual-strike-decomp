@@ -583,6 +583,10 @@ src/game/main/ai/ai_fog_direct_act_orders1_10.c:
     complete
     .text       start:0x020a0bdc end:0x020a0bfc
 
+src/game/main/ai/ai_fog_direct_act_other_orders.c:
+    complete
+    .text       start:0x020a0bfc end:0x020a0c1c
+
 src/game/main/ai/ai_unit_adjust_action.c:
     complete
     .text       start:0x020a2f98 end:0x020a30c4
