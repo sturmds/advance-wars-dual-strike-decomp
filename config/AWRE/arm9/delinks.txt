@@ -3153,6 +3153,7 @@ src/game/main/menus/map_select_next_list.c:
     .text       start:0x0205d110 end:0x0205d2c0
 
 src/game/main/menus/map_select_prev_list.c:
+    complete
     .text       start:0x0205d2c0 end:0x0205d46c
 
 src/game/main/func_0205d56c.c:
