@@ -70,7 +70,7 @@ typedef struct UnitStats {
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 unk_20;                         /* the document calls this "unit class"; the code uses unitClass */
     u8 pad_21[2];
-    u8 canHit[2][32];                  /* [weapon][damage chart column]: nonzero if the weapon can hit it */
+    u8 chartDamage[2][32];             /* [weapon][damage chart column]: base damage in percent; 0: cannot hit */
     u8 pad_63[0x6c - 0x63];
 } UnitStats;
 
