@@ -13,7 +13,10 @@ typedef struct TextPrinter {
     u8 pad_30[0x36 - 0x30];
     u8 cursorX;                        /* 0x36: in tiles */
     u8 cursorY;                        /* 0x37: in tiles */
-    u8 pad_38[0x60 - 0x38];
+    u8 pad_38[0x3d - 0x38];
+    s8 unk_3d;
+    s8 unk_3e;
+    u8 pad_3f[0x60 - 0x3f];
 } TextPrinter;
 
 #endif

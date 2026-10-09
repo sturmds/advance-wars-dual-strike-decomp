@@ -225,6 +225,10 @@ src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4
 
+src/game/main/text/func_02015da8.c:
+    complete
+    .text       start:0x02015da8 end:0x02015dbc
+
 src/game/main/text_printer_get_cursor_entry.c:
     complete
     .text       start:0x02015ee0 end:0x02015ef8
