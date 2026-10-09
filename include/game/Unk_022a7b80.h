@@ -5,7 +5,8 @@
 
 /* data_022a7b80 (main bss). */
 typedef struct Unk_022a7b80 {
-    u8 pad_00[7];
+    u8 pad_00[6];
+    u8 unk_06;
     u8 unk_07;
 } Unk_022a7b80;
 
