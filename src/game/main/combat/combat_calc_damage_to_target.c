@@ -9,7 +9,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int TargetKind_GetChartColumn(int target);                            /* damage chart column of target */
 int Unit_GetChartDamage(MapUnit *unit, int targetType, int weapon, int arg3);
 int UnitType_GetChartDamage(int unitType, int column, int weapon); /* base damage in percent; 0: cannot hit */
-BOOL func_ov000_022af56c(int target);                      /* checks the map id */
+BOOL Mission_HasPendingEvent(int target);                      /* checks the map id */
 void Combatant_Init(Combatant *combatant, s16 unitIndex);
 void Combatant_CalcDamage(Combatant *combatant, int isCounter, int rollLuck);
 
@@ -65,7 +65,7 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos)
     Combatant_CalcDamage(&STATE->combatants[0], 0, 0);
     STATE->combatants[0].damage = HwDiv32(STATE->combatants[0].damageNoLuck * SHOWN_HP(STATE->combatants[0].unit), 10);
     STATE->combatants[0].damageNoLuck = STATE->combatants[0].damage;
-    if (func_ov000_022af56c(target) && STATE->combatants[0].damage > 0) {
+    if (Mission_HasPendingEvent(target) && STATE->combatants[0].damage > 0) {
         STATE->combatants[0].damage = 1;
         STATE->combatants[0].damageNoLuck = STATE->combatants[0].damage;
     }
