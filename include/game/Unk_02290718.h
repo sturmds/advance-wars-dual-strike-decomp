@@ -8,7 +8,8 @@
 /* data_02290718 (main bss), 0x38 bytes before the Force Rank table
  * that Co_GetForceRankSetIndex reads. */
 typedef struct Unk_02290718 {
-    u8 pad_00[0x0f];
+    u8 pad_00[0x0e];
+    u8 unk_0e;                         /* copied to Unk_02080440_48.musicReady by a rules reset */
     u8 unk_0f;
     u8 pad_10[0x12 - 0x10];
     u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */

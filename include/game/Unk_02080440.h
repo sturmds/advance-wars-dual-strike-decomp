@@ -57,7 +57,8 @@ typedef struct Unk_02080440_1c4 {
     u8 pad_2d[0x30 - 0x2d];
     u32 unk_30;
     u16 mapId;                         /* index into Ov000_gMapHeaders */
-    u8 pad_36[0x38 - 0x36];
+    u8 pad_36;
+    u8 unk_37;                         /* 3 after a rules reset */
     u8 fog;                            /* 1: Fog of War */
     u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
@@ -81,7 +82,7 @@ typedef struct Unk_02080440_48 {
     u8 unk_0d;                         /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
     u8 pad_0e[0x10 - 0x0e];
     u32 unk_10;                        /* passed to func_0201e9d8 when the battle menu opens (BattleMenu_Open) */
-    u8 pad_14[0x18 - 0x14];
+    u32 unk_14;
     u16 unk_18;                        /* AiShowAction_Step0 tests 16 and 21 */
     u8 pad_1a[0x1e - 0x1a];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
@@ -100,18 +101,24 @@ typedef struct Unk_02080440_48 {
     u8 pad_47[0x58 - 0x47];
     u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */
     u8 unk_59;
-    u8 pad_5a[0x5d - 0x5a];
+    u8 pad_5a[0x5c - 0x5a];
+    u8 unk_5c;
     u8 coEffectsOn;                    /* name is a guess; 0: no CO luck (good luck 10, bad luck 0) */
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
     u8 partnerBoostAi;                 /* nonzero: AI players get tag partner skills */
-    u8 pad_60[0x78 - 0x60];
+    u8 pad_60[0x64 - 0x60];
+    u32 unk_64;
+    u32 unk_68;
+    u32 unk_6c;
+    u32 unk_70;
+    u32 unk_74;
     s32 fundsPerProperty;              /* income from each city, base, airport, port and HQ */
     u32 unk_7c;
     u8 unk_80;                         /* from MapHeader.unk_30 */
     u8 unk_81;                         /* from MapHeader.unk_34 */
     u8 unk_82;
     u8 musicReady;                     /* 0: song requests are kept pending, see Sound_PlaySong; name a guess */
-    u8 pad_84[0x85 - 0x84];
+    u8 unk_84;
     u8 luckOnRequestOnly;              /* nonzero: Combatant_CalcDamage rolls luck only when its caller asks; name a guess */
     u8 unk_86;
     u8 pad_87[0x88 - 0x87];
@@ -123,7 +130,8 @@ typedef struct Unk_02080440_48 {
     u8 slotControllers[5];             /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
     u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */
     u8 team[5];                        /* team per slot, copied from the map header */
-    u8 pad_a6[0xba - 0xa6];
+    u8 pad_a6[0xaa - 0xa6];
+    u16 unk_aa[8];
     u8 coSelectPhase;                  /* 1 on maps where a player picks a CO; turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
     u8 pad_bb[0xd0 - 0xbb];
     s8 *rangeMap[40];                  /* one s8 per tile, by row; filled for a unit by RangeMap_FillUnitMoves and RangeMap_MarkAdjacentTiles; the AI skips negative tiles */
