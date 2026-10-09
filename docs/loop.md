@@ -5,14 +5,27 @@ How the top-level Claude session runs batches of agents, each matching one funct
 ## One batch
 
 1. **Pick.** `python3 tools/fn.py pick -n 40` lists functions not yet in any file: entries in `config/AWRE/interesting.txt` first, then fewest unmatched callees, then smallest. Choose a batch (5–10 at first) and skip functions that call each other, so two agents never need the same callee renamed.
-2. **Start agents.** One background agent per function, each with `isolation: worktree` (the worktree appears under `.claude/worktrees/`, which git ignores). The prompt names the function and points at the skill. Each agent runs `tools/wt_setup.sh` (links `orig/` and `.cache/`), works, and either commits on its branch or stops.
-3. **Collect.** Each agent ends with a `RESULT:` block: `matched` with a commit hash, or `partial`/`skipped` with notes.
-4. **Land.** For each matched commit, in any order, on `mainline`:
+2. **Start agents.** One background agent per function, each with `isolation: worktree` (the worktree appears under `.claude/worktrees/`, which git ignores). The prompt names the function and points at the skill. Each agent runs `tools/wt_setup.sh` (links `orig/` and `.cache/`), works, and either commits on its branch or stops. Agent commits do not carry `PROGRESS.md`: the hook skips it in a linked worktree.
+3. **Rebase.** Before reporting, each agent runs `python3 tools/rebase_onto_mainline.py`: it replays the agent's commits onto the current `mainline` with `apply_commit.py`, stops on a conflict or a failed build for the agent to fix (it has the context), and moves the branch there.
+4. **Collect.** Each agent ends with a `RESULT:` block: `matched` with the rebased commit hashes, or `partial`/`skipped` with notes.
+5. **Land.** For each matched commit, on `mainline`:
    ```sh
    python3 tools/apply_commit.py <hash>
    ```
-   It replays the commit by meaning (delinks entries by address, symbol renames by address, source files with a 3-way merge) and commits with the original message; the hooks run `make release`. On a conflict it stops with the changes staged.
-5. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and best percentage in the batch log below.
+   It replays the commit by meaning (delinks entries by address, symbol renames by address, headers as below, source files with a 3-way merge) and commits with the original message; the hooks run `make release` and write `PROGRESS.md`. A commit rebased onto the current `mainline` replays with nothing to merge; one that landed after other agents' commits merges only those. On a conflict it stops with the changes staged.
+6. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and best percentage in the batch log below.
+
+## Shared headers
+
+Agents add fields, typedefs and prototypes to the same headers at the same time. When `git merge-file` cannot merge a header under `include/` (or both sides added the same header), `apply_commit.py` merges it with `tools/header_merge.py`:
+
+- Struct fields are placed by byte offset, computed from their types. The result has the named fields of both sides, with the padding written again between them.
+- Where both sides name the same bytes differently, mainline's name stays, and the commit's C files are rewritten to it (`->name` and `.name` only). A struct the commit names differently for the same extern is merged into mainline's struct and renamed the same way.
+- Where mainline still has the base version of a field or declaration, the commit's edit wins, as in a 3-way merge.
+- Typedefs, structs, `#define`s, externs and prototypes that only one side has are kept; where both changed one, mainline's version stays. Fields that overlap without matching are reported as conflicts.
+- Afterwards, local prototypes in the commit's C files are dropped when an included header declares the function; the header's version wins.
+
+Each merged header prints one line (`merged include/game/x.h: +3 fields, ..., renamed a->b`). A "kept mainline's X (the commit has Y)" note means the commit's code may not build until it uses mainline's type; the agent fixes that during its rebase.
 
 ## Rules for the orchestrator
 
