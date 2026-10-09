@@ -6392,6 +6392,10 @@ src/game/main/units/unit_create.c:
     complete
     .text       start:0x020c7d8c end:0x020c7e20
 
+src/game/main/func_020c8290.c:
+    complete
+    .text       start:0x020c8290 end:0x020c82f8
+
 src/game/main/units/unit_get_fuel_used.c:
     complete
     .text       start:0x020c8330 end:0x020c83d0
