@@ -174,7 +174,9 @@ typedef struct Unk_02080440_50 {
     void (*second)(void);              /* run by func_020c8888 after first */
     u8 pad_08[0x18 - 0x08];
     void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
-    u8 pad_1c[0x54 - 0x1c];
+    u8 pad_1c[0x40 - 0x1c];
+    void (*afterBoxDraw)(void);        /* run by MenuBox_Draw after it draws a menu box */
+    u8 pad_44[0x54 - 0x44];
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
     u8 pad_58[100 - 0x58];
 } Unk_02080440_50;

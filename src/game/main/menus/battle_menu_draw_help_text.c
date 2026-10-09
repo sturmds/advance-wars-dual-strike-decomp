@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-void func_0201e5f8(int a, int b, int c, int d);
+void MenuBox_Draw(int a, int b, int c, int d);
 void ScriptSlot_StopByScript(const void *descriptor);
 void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
@@ -14,7 +14,7 @@ extern Unk_027c0280 *data_027c0280;
  * callers pass the text of the battle menu item they stand for. */
 void BattleMenu_DrawHelpText(u32 textId)
 {
-    func_0201e5f8(19, 18, 14, 6);
+    MenuBox_Draw(19, 18, 14, 6);
     ScriptSlot_StopByScript(data_021583b4);
     func_01ff8a2c(data_027c0280->layer0Map, 19, 18, 13, 6, 0);
     Gfx_RequestLayerCopy(0);
