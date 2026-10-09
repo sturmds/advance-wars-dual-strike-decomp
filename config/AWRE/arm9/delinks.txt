@@ -1804,6 +1804,10 @@ src/game/main/func_02024a40.c:
     complete
     .text       start:0x02024a40 end:0x02024a6c
 
+src/game/main/func_02024a6c.c:
+    complete
+    .text       start:0x02024a6c end:0x02024a98
+
 src/game/main/menus/rect_contains_point.c:
     complete
     .text       start:0x02024f80 end:0x02024fdc
@@ -6789,6 +6793,26 @@ src/game/main/func_020eef58.c:
 src/game/main/map/map_header_get.c:
     complete
     .text       start:0x020ef17c end:0x020ef190
+
+src/game/main/func_020ef190.c:
+    complete
+    .text       start:0x020ef190 end:0x020ef1bc
+
+src/game/main/func_020ef1bc.c:
+    complete
+    .text       start:0x020ef1bc end:0x020ef1e8
+
+src/game/main/func_020ef208.c:
+    complete
+    .text       start:0x020ef208 end:0x020ef234
+
+src/game/main/func_020ef234.c:
+    complete
+    .text       start:0x020ef234 end:0x020ef260
+
+src/game/main/func_020ef2c4.c:
+    complete
+    .text       start:0x020ef2c4 end:0x020ef2f0
 
 src/game/main/func_020f1288.c:
     complete
