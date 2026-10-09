@@ -2893,6 +2893,10 @@ src/game/main/func_020495b0.c:
     complete
     .text       start:0x020495b0 end:0x020495c4
 
+src/game/main/task/task_create_child_sharing_data.c:
+    complete
+    .text       start:0x020495c4 end:0x020495f4
+
 src/game/main/func_0204b3cc.c:
     complete
     .text       start:0x0204b3cc end:0x0204b3f4

@@ -30,7 +30,8 @@ typedef struct Task {
     u16 unk_32;                        /* frame counter of func_02081f6c */
     u16 unk_34;                        /* frame counter of func_02081900 */
     u16 unk_36;                        /* frame counter of func_020824e4 */
-    u8 pad_38[0x4c - 0x38];
+    void *unk_38;                      /* data some scripts get from their creator, beside unk_4c */
+    u8 pad_3c[0x4c - 0x3c];
     void *unk_4c;                      /* data some scripts get from their creator; a MapUnit * for the battle tasks of ActingUnit_StartAttack */
     u8 pad_50[0x52 - 0x50];
     u16 unk_52;                        /* palette slot PaletteCycle_Start animates */
