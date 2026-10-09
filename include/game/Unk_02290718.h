@@ -36,7 +36,8 @@ typedef struct Unk_02290718 {
     u32 suppliesAndRepairs;                       /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
     u8 pad_3f0[0x3f4 - 0x3f0];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
-    u8 pad_3f8[0x404 - 0x3f8];
+    u32 unitsBoarded;                   /* unit action 7 by human players, capped at 999999 (UnitAction_Board) */
+    u8 pad_3fc[0x404 - 0x3fc];
     u32 coSwaps;                       /* CO swaps by human players, capped at 999999 (UnitAction_SwapCo) */
     u8 pad_408[0x414 - 0x408];
     u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */

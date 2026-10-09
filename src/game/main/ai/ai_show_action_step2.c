@@ -40,7 +40,7 @@ void func_020dd9a0(void);
 void UnitAction_Supply(void);
 void UnitAction_Join(void);
 void UnitAction_Repair(int arg);
-void func_020de440(void);
+void UnitAction_Board(void);
 void UnitAction_Capture(void);
 void func_020deac4(void);
 
@@ -108,7 +108,7 @@ void AiShowAction_Step2(void)
         func_020b8a24();
         return;
     case 7:
-        func_020de440();
+        UnitAction_Board();
         func_020deac4();
         break;
     case 8:

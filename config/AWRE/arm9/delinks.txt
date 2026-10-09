@@ -7068,6 +7068,10 @@ src/game/main/unit_action_repair.c:
     complete
     .text       start:0x020de350 end:0x020de440
 
+src/game/main/unit_action_board.c:
+    complete
+    .text       start:0x020de440 end:0x020de5a4
+
 src/game/main/units/unit_action_capture.c:
     .text       start:0x020de5a4 end:0x020de9c0
 
