@@ -88,7 +88,8 @@ src/game/ov000/unit_info_panel/unit_info_panel_open_for_type.c:
     complete
     .text       start:0x022b1e70 end:0x022b1f90
 
-src/game/ov000/func_ov000_022b1f90.c:
+src/game/ov000/unit_info_panel/unit_info_panel_open_for_unit.c:
+    complete
     .text       start:0x022b1f90 end:0x022b20fc
 
 src/game/ov000/func_ov000_022b20fc.c:
