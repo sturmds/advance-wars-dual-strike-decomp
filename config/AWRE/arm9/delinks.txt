@@ -2257,6 +2257,10 @@ src/game/main/co_stats/player_get_firepower_bonus.c:
     complete
     .text       start:0x020e5c40 end:0x020e5d8c
 
+src/game/main/co_stats/player_get_slot_firepower.c:
+    complete
+    .text       start:0x020e5d8c end:0x020e5e84
+
 src/game/main/skills/repair_increase.c:
     complete
     .text       start:0x020e5ec4 end:0x020e5f60

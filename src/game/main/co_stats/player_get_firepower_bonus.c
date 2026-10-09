@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/co_data.h"
+#include "game/player_tag_power.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -10,21 +11,6 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 #define PLAYER(i) (data_027c027c->unk_48[data_027c0284]->players[i])
-
-static inline BOOL Player_InTagPower(int playerIndex)
-{
-    return PLAYER(playerIndex).tagPowerHalf == TAG_POWER_FRONT || PLAYER(playerIndex).tagPowerHalf == TAG_POWER_BACK;
-}
-
-static inline BOOL Player_TagPowerOn(int playerIndex)
-{
-    BOOL on = FALSE;
-
-    if (PLAYER(playerIndex).back.id != 0 && Player_InTagPower(playerIndex)) {
-        on = TRUE;
-    }
-    return on;
-}
 
 /* Firepower bonus in percent of a player's unit: the CO's bonus, the tag
  * partner's bonus during a tag power, and the flat bonus while a power is
