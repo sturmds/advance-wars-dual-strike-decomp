@@ -16,6 +16,8 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
+/* the site entry for the tile the acting unit is heading to */
+#define TARGET_SITE (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(STATE->actingUnit->aiTargetX, STATE->actingUnit->aiTargetY)]])
 
 #define AI_ACTION_BOARD 7
 
@@ -34,7 +36,6 @@ void AiFoot_BoardTransportForSite(int siteDistance)
     int y;
     MapUnit *transport;
     int type;
-    s8 claim;
 
     RangeMap_FillUnitMoves(STATE->actingUnit);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
@@ -93,7 +94,7 @@ void AiFoot_BoardTransportForSite(int siteDistance)
             }
             boatX = x;
             boatY = y;
-            boatType = type;
+            boatType = transport->type; /* needed to match: not type */
         }
     }
     if (boatX == -1) {
@@ -106,9 +107,8 @@ void AiFoot_BoardTransportForSite(int siteDistance)
     }
     if (boatType == UNIT_LANDER || boatType == UNIT_BLACK_BOAT) {
         if (STATE->actingUnit->aiTargetX != MAP_UNIT_NO_TARGET) {
-            claim = MAP->unk_1928[STATE->actingUnit->aiTargetX + MAP->rowStart[STATE->actingUnit->aiTargetY]];
-            if (STATE->unk_6088[claim].unk_03 != 0) {
-                STATE->unk_6088[claim].unk_03--;
+            if (TARGET_SITE.unk_03 != 0) {
+                TARGET_SITE.unk_03--;
             }
         }
         transport = &STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]];
