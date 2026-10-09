@@ -3959,6 +3959,10 @@ src/game/main/func_020802e8.c:
     complete
     .text       start:0x020802e8 end:0x0208038c
 
+src/game/main/unpack_nibble_pairs.c:
+    complete
+    .text       start:0x0208038c end:0x020803fc
+
 src/game/pack_nibbles.c:
     complete
     .text       start:0x020803fc end:0x02080440

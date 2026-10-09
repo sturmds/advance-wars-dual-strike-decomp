@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 void UnitShowTask_Create(MapUnit *unit);
 void func_020c8888(void);
-void func_0208038c(u8 *packed, u8 *nibbles);
+void UnpackNibblePairs(u8 *packed, u8 *nibbles);
 void func_020c8290(u8 *nibbles);
 
 /* Unpacks the nibbles saved in gUnitAction.packed back into
@@ -19,7 +19,7 @@ void AiShowAction_Step1(void)
 {
     UnitShowTask_Create(GAME->actingUnit);
     func_020c8888();
-    func_0208038c(gUnitAction.packed, GAME->unk_170);
+    UnpackNibblePairs(gUnitAction.packed, GAME->unk_170);
     func_020c8290(GAME->unk_170);
     gAiTurnState->actionStep = 2;
 }
