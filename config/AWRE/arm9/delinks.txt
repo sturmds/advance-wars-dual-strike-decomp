@@ -152,6 +152,10 @@ src/game/main/task/task_find_by_script.c:
     complete
     .text       start:0x02023724 end:0x02023760
 
+src/game/main/task/task_resume_script.c:
+    complete
+    .text       start:0x02023760 end:0x0202376c
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
