@@ -22,16 +22,25 @@ each agent lands its own branch:
 
 It never forces and never pushes.
 
-Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up.
+It refuses to start (exit code 4) while a replay is open in this worktree
+(rebase-onto-mainline.json exists: finish it with --continue or --abort)
+or while another land_self.py or rebase_onto_mainline.py runs in this
+worktree. A run that outlived a tool timeout keeps running in the
+background; wait for it with `flock <lock file> true` (the message names
+the file) instead of starting a second one, and never stop it with pkill.
+
+Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up,
+4 busy (a replay is open or another run is under way in this worktree).
 """
 
 import fcntl
+import os
 import subprocess
 import sys
 import time
 from pathlib import Path
 
-LANDED, CONFLICT, BUILD_FAILED, GAVE_UP = 0, 1, 2, 3
+LANDED, CONFLICT, BUILD_FAILED, GAVE_UP, BUSY = 0, 1, 2, 3, 4
 TRIES = 15
 WAIT_STEP, WAIT_MAX = 30, 600
 
@@ -47,16 +56,42 @@ def git(*args, cwd=None, check=True) -> str:
 ROOT = Path(git("rev-parse", "--show-toplevel"))
 COMMON = Path(git("rev-parse", "--path-format=absolute", "--git-common-dir"))
 MAIN = COMMON.parent  # the main checkout, where mainline is checked out
+STATE = Path(git("rev-parse", "--path-format=absolute", "--git-path", "rebase-onto-mainline.json"))
+# Per worktree, held for the whole run; rebase_onto_mainline.py takes it too.
+WORKTREE_LOCK = Path(git("rev-parse", "--path-format=absolute", "--git-path", "land-self.lock"))
 
 
 def run(*cmd) -> int:
-    return subprocess.run(list(cmd), cwd=ROOT).returncode
+    # The replay started here sees that this run holds the worktree lock.
+    return subprocess.run(list(cmd), cwd=ROOT, env={**os.environ, "LAND_SELF_LOCK_HELD": "1"}).returncode
+
+
+def lock_worktree():
+    """Take this worktree's lock, or None if another run holds it. The file
+    stays open, and locked, until the process exits."""
+    f = open(WORKTREE_LOCK, "a+")
+    try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        f.seek(0)
+        holder = f.read().strip()
+        f.close()
+        print(f"error: another land_self.py or rebase_onto_mainline.py runs in this worktree"
+              f"{' (' + holder + ')' if holder else ''}. Do not start a second one and do not"
+              f" stop it. Wait for it with\n    flock {WORKTREE_LOCK} true\nthen read its output"
+              f" or `git log -1` to see whether it landed.", file=sys.stderr)
+        return None
+    f.seek(0)
+    f.truncate()
+    f.write(f"pid {os.getpid()}, {' '.join(sys.argv)}\n")
+    f.flush()
+    return f
 
 
 def rebase() -> tuple[int | None, str]:
     """Step 1. Returns an exit code (or None to go on) and the mainline
     commit the branch now starts from."""
-    if Path(git("rev-parse", "--path-format=absolute", "--git-path", "rebase-onto-mainline.json")).exists():
+    if STATE.exists():
         print("a rebase is under way: finish it with rebase_onto_mainline.py --continue, then rerun this")
         return CONFLICT, ""
     onto = git("rev-parse", "refs/heads/mainline")
@@ -111,6 +146,14 @@ def fast_forward(onto: str, branch: str) -> str | None:
 
 def main() -> int:
     sys.stdout.reconfigure(line_buffering=True)  # progress shows up in a log while it waits
+    if STATE.exists():
+        print("error: a replay is open in this worktree. Finish it with\n"
+              "    python3 tools/rebase_onto_mainline.py --continue\n"
+              "(or --abort), then run land_self.py again.", file=sys.stderr)
+        return BUSY
+    lock = lock_worktree()
+    if lock is None:
+        return BUSY
     branch = git("branch", "--show-current")
     if not branch or branch == "mainline" or ROOT == MAIN:
         print("error: run this in an agent worktree, on its own branch", file=sys.stderr)

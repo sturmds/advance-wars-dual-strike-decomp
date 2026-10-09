@@ -225,6 +225,44 @@ class ConfigReplayTest(RepoCase):
                          + symbol("func_02000b00", 0x2000b00) + symbol("func_02000c00", 0x2000c00))
 
 
+class LandSelfBusyTest(RepoCase):
+    """Issue 0025: a land_self.py run left in the background by a tool
+    timeout overlapped a second run in the same worktree."""
+
+    def setUp(self):
+        super().setUp()
+        self.repo.commit({}, "base")
+        self.wt = Path(self.tmp.name) / "wt"
+        self.repo.git("worktree", "add", "-q", "-b", "agent", str(self.wt))
+        self.gitdir = Path(self.repo.git("-C", str(self.wt), "rev-parse", "--path-format=absolute", "--git-dir"))
+
+    def run_tool(self, *args: str):
+        env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_LOCK_HELD"}
+        return subprocess.run([sys.executable, *args], cwd=self.wt, capture_output=True, text=True, env=env)
+
+    def test_refuses_open_replay(self):
+        (self.gitdir / "rebase-onto-mainline.json").write_text("{}")
+        r = self.run_tool(str(TOOLS / "land_self.py"))
+        self.assertEqual(r.returncode, 4, r.stdout + r.stderr)
+        self.assertIn("a replay is open in this worktree", r.stderr)
+
+    def test_refuses_second_run(self):
+        import fcntl
+        with open(self.gitdir / "land-self.lock", "a+") as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            lock.write("pid 1, land_self.py\n")
+            lock.flush()
+            r = self.run_tool(str(TOOLS / "land_self.py"))
+            self.assertEqual(r.returncode, 4, r.stdout + r.stderr)
+            self.assertIn("another land_self.py or rebase_onto_mainline.py runs in this worktree (pid 1", r.stderr)
+            r = self.run_tool(str(TOOLS / "rebase_onto_mainline.py"), "--continue")
+            self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+            self.assertIn("another land_self.py or rebase_onto_mainline.py runs", r.stderr)
+        # Free again: the run goes past the lock (and stops later, at "nothing to land").
+        r = self.run_tool(str(TOOLS / "land_self.py"))
+        self.assertNotEqual(r.returncode, 4, r.stdout + r.stderr)
+
+
 sys.path.insert(0, str(TOOLS))
 
 if __name__ == "__main__":

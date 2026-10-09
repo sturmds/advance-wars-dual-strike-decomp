@@ -20,9 +20,14 @@ When a replay stops (a conflict, or a failed `make release`), the changes
 are staged. Fix them, `git add` the files, and run it with --continue.
 PROGRESS.md is never committed here: mainline writes it when the commit
 lands.
+
+It refuses to run while land_self.py or another rebase_onto_mainline.py
+runs in this worktree: both hold <git dir>/land-self.lock.
 """
 
+import fcntl
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -37,6 +42,27 @@ def git(*args, check=True) -> str:
 
 ROOT = Path(git("rev-parse", "--show-toplevel"))
 STATE = Path(git("rev-parse", "--path-format=absolute", "--git-path", "rebase-onto-mainline.json"))
+WORKTREE_LOCK = Path(git("rev-parse", "--path-format=absolute", "--git-path", "land-self.lock"))
+
+
+def lock_worktree():
+    """Take the worktree lock that land_self.py also holds, unless the
+    land_self.py run that started this one holds it already."""
+    if os.environ.get("LAND_SELF_LOCK_HELD") == "1":
+        return None
+    f = open(WORKTREE_LOCK, "a+")
+    try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        f.seek(0)
+        holder = f.read().strip()
+        sys.exit(f"error: another land_self.py or rebase_onto_mainline.py runs in this worktree"
+                 f"{' (' + holder + ')' if holder else ''}. Wait for it with\n    flock {WORKTREE_LOCK} true")
+    f.seek(0)
+    f.truncate()
+    f.write(f"pid {os.getpid()}, {' '.join(sys.argv)}\n")
+    f.flush()
+    return f
 
 
 def save(state: dict) -> None:
@@ -147,6 +173,7 @@ def abort() -> int:
 
 
 if __name__ == "__main__":
+    LOCK = lock_worktree()
     if "--continue" in sys.argv:
         sys.exit(resume())
     if "--abort" in sys.argv:
