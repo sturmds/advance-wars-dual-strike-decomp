@@ -243,6 +243,10 @@ src/game/main/func_02085dc4.c:
     complete
     .text       start:0x02085dc4 end:0x02085dd8
 
+src/game/main/func_020877e0.c:
+    complete
+    .text       start:0x020877e0 end:0x020877f4
+
 src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
