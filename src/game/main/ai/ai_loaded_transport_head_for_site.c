@@ -43,10 +43,10 @@ void AiLoadedTransport_HeadForSite(void)
     if (targetX != MAP_UNIT_NO_TARGET) {
         targetY = STATE->actingUnit->aiTargetY;
         if (STATE->rangeMap[targetY][targetX] >= 0 && Map_IsSiloOrCapturableTile(targetX, targetY)) {
-            if ((STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03 == 0
+            if ((STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].claimCount == 0
                  || (gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE))
                 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
-                STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03++;
+                STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].claimCount++;
                 AiUnit_MoveTowardTile(targetX, targetY);
             }
         }
@@ -64,7 +64,7 @@ void AiLoadedTransport_HeadForSite(void)
             if (!Map_IsSiloOrCapturableTile(x, y)) {
                 continue;
             }
-            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(x, y)]].unk_03 != 0
+            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(x, y)]].claimCount != 0
                 && !(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {
                 continue;
             }
@@ -99,7 +99,7 @@ void AiLoadedTransport_HeadForSite(void)
     if (bestScore == NO_TILE) {
         return;
     }
-    STATE->unk_6088[MAP->unk_1928[TILE_INDEX(bestX, bestY)]].unk_03++;
+    STATE->unk_6088[MAP->unk_1928[TILE_INDEX(bestX, bestY)]].claimCount++;
     STATE->actingUnit->aiTargetX = bestX;
     STATE->actingUnit->aiTargetY = bestY;
     AiUnit_MoveTowardTile(bestX, bestY);

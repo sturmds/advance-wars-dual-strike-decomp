@@ -18,8 +18,8 @@ void func_020f53e8(int x, int y, ...)
     if (!MapView_FindScroll(&x, &y)) {
         return;
     }
-    GAME->unk_1c4->unk_1e = x << 4;
-    GAME->unk_1c4->unk_20 = y << 4;
+    GAME->unk_1c4->scrollX = x << 4;
+    GAME->unk_1c4->scrollY = y << 4;
     if (STATE_50->callback == NULL) {
         return;
     }

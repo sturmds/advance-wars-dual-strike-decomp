@@ -24,13 +24,13 @@ BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);           /* fog, weather and terrain check of a tile */
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);        /* Black Hole unit on a tile with tileHp bit 7 */
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
-int func_0209e230(int player, int unitType);             /* max range with no power on */
+int GetUnitBaseMaxRange(int player, int unitType);             /* max range with no power on */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define ACTING (STATE->actingUnit)
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
 #define OWNER(unit) MAP_UNIT_OWNER(STATE, unit)
-#define MAX_RANGE(unit) func_0209e230(OWNER(unit), (unit)->type)
+#define MAX_RANGE(unit) GetUnitBaseMaxRange(OWNER(unit), (unit)->type)
 
 /* Adds the units of one enemy player to the threat maps of the acting AI
  * unit. Each enemy unit that can hurt the acting unit gets a threat of

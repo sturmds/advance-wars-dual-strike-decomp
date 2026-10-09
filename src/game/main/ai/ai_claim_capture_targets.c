@@ -19,7 +19,7 @@ s16 AiUnit_GetSearchMovement(MapUnit *unit);
  * AiTurn_ReleaseCaptureClaims. For each of the AI player's infantry and
  * mechs with MapUnit.unk_0c_5 set (see AiUnit_MarkFinishingCapture), picks
  * the nearest tile it can reach that is a silo or capturable and that no
- * other unit has claimed, claims it (Unk_02080440_6088.unk_03) and stores
+ * other unit has claimed, claims it (Unk_02080440_6088.claimCount) and stores
  * it as the unit's AI target. If the tile is within the distance
  * Unit_GetUsableMovement gives, the flag is cleared; if not, MapUnit.transportWanted is
  * set to 1 (meaning unknown). Ties go to the later tile. */
@@ -48,7 +48,7 @@ void AiTurn_ClaimCaptureTargets(void)
                     if (!Map_IsSiloOrCapturableTile(x, y)) {
                         continue;
                     }
-                    if (PROPERTY_AT(x, y).unk_03 != 0) {
+                    if (PROPERTY_AT(x, y).claimCount != 0) {
                         continue;
                     }
                     if (best >= STATE->rangeMap[y][x]) {
@@ -59,7 +59,7 @@ void AiTurn_ClaimCaptureTargets(void)
                 }
             }
             if (best != 0x7fff) {
-                PROPERTY_AT(bestX, bestY).unk_03++;
+                PROPERTY_AT(bestX, bestY).claimCount++;
                 unit->aiTargetX = bestX;
                 unit->aiTargetY = bestY;
                 if (best <= Unit_GetUsableMovement(unit)) {

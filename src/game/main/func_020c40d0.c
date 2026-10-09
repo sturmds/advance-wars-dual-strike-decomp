@@ -14,7 +14,7 @@ extern int data_027c0284;
  * AiTurn_ShowAction). Their purpose is unknown. */
 void func_020c40d0(void)
 {
-    if ((STATE->unk_1c4->unk_2a & 0xf) != 0) {
+    if ((STATE->unk_1c4->scrollFlags & 0xf) != 0) {
         return;
     }
     func_020ef8d8();

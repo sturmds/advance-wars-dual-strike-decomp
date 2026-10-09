@@ -14,7 +14,7 @@ extern u8 data_0229e5bf[][sizeof(AiSite)];
  * func_02094d94 fills the range map from it. If func_02093ef4 finds nothing
  * for the site, its kind becomes 0xfe, else func_0209316c queues an action
  * for it. Returns 1 when it picked a site. */
-BOOL func_02091e40(void)
+BOOL AiTurn_TrySiteAction(void)
 {
     int site = func_0209658c();
 

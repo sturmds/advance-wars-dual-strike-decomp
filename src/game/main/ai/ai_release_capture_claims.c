@@ -13,7 +13,7 @@ extern int data_027c0284;
 /* Queue routine run once at the end of the AI's unit actions (set by
  * func_0208e77c). For each of the AI player's infantry and mechs with
  * MapUnit.unk_0c_5 set (see AiUnit_MarkFinishingCapture), takes back the
- * claim it put on its capture target (Unk_02080440_6088.unk_03, raised
+ * claim it put on its capture target (Unk_02080440_6088.claimCount, raised
  * by AiFoot_PickCaptureTarget), or on the tile it stands on when it has no
  * target. Then clears the target and the flag. */
 void AiTurn_ReleaseCaptureClaims(void)
@@ -25,12 +25,12 @@ void AiTurn_ReleaseCaptureClaims(void)
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && unit->type <= UNIT_MECH && unit->unk_0c_5) {
             if (unit->aiTargetX != MAP_UNIT_NO_TARGET) {
-                if (PROPERTY_AT(unit->aiTargetX, unit->aiTargetY).unk_03 != 0) {
-                    PROPERTY_AT(unit->aiTargetX, unit->aiTargetY).unk_03--;
+                if (PROPERTY_AT(unit->aiTargetX, unit->aiTargetY).claimCount != 0) {
+                    PROPERTY_AT(unit->aiTargetX, unit->aiTargetY).claimCount--;
                 }
             } else {
-                if (PROPERTY_AT(unit->x, unit->y).unk_03 != 0) {
-                    PROPERTY_AT(unit->x, unit->y).unk_03--;
+                if (PROPERTY_AT(unit->x, unit->y).claimCount != 0) {
+                    PROPERTY_AT(unit->x, unit->y).claimCount--;
                 }
             }
             unit->aiTargetX = MAP_UNIT_NO_TARGET;

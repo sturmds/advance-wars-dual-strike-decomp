@@ -34,8 +34,8 @@ BOOL MapView_FindScroll(int *x, int *y, BOOL centre)
     viewW = data_021576fa[screenLayout][0];
     viewH = data_021576fb[screenLayout][0];
     func_020c4394((s16)*x, (s16)*y, &GAME->unk_28, &GAME->unk_2c);
-    scrollX = (s16)GAME->unk_1c4->unk_1e / 16;
-    scrollY = (s16)GAME->unk_1c4->unk_20 / 16;
+    scrollX = (s16)GAME->unk_1c4->scrollX / 16;
+    scrollY = (s16)GAME->unk_1c4->scrollY / 16;
     dx = 0;
     dy = 0;
     if (centre) {

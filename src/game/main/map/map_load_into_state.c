@@ -36,13 +36,13 @@ void Map_LoadIntoState(int mapId)
     Camera_ResetToPreset0(data_022a7d5c);
     STATE->unk_1c4->mapWidth = data_0229eadc[0];
     STATE->unk_1c4->mapHeight = data_0229eadc[1];
-    STATE->unk_1c4->unk_1e = 0;
-    STATE->unk_1c4->unk_20 = 0;
+    STATE->unk_1c4->scrollX = 0;
+    STATE->unk_1c4->scrollY = 0;
     STATE->unk_1c4->unk_22 = 0;
     STATE->unk_1c4->unk_24 = 0;
     STATE->unk_1c4->unk_26 = 0;
     STATE->unk_1c4->unk_28 = 0;
-    STATE->unk_1c4->unk_2a = 0;
+    STATE->unk_1c4->scrollFlags = 0;
     String_Copy(STATE->unk_1c4, Map_GetName(mapId));
     STATE->unk_1c4->playerCount = Map_GetPlayerCount(mapId);
     Map_BuildRowStarts();

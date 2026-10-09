@@ -12,7 +12,7 @@ extern u16 data_0229d8c4;
 void func_02080440(void)
 {
     func_020800c0();
-    if ((data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_2a & 0xf) != 0) {
+    if ((data_027c027c->unk_48[data_027c0284]->unk_1c4->scrollFlags & 0xf) != 0) {
         return;
     }
     AiTurn_ShowAction();

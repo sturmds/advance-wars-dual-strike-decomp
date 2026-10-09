@@ -21,13 +21,13 @@ BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
-int func_0209e230(int player, int unitType);
+int GetUnitBaseMaxRange(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define ACTING (STATE->actingUnit)
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
 #define OWNER(unit) MAP_UNIT_OWNER(STATE, unit)
-#define MAX_RANGE(unit) func_0209e230(OWNER(unit), (unit)->type)
+#define MAX_RANGE(unit) GetUnitBaseMaxRange(OWNER(unit), (unit)->type)
 
 /* A variant of Ai_AddEnemyThreat for the Black Bomb plans (func_0209b2b0):
  * adds the units of one enemy player to MapTiles.threatMax (direct

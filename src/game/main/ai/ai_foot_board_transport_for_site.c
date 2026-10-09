@@ -23,7 +23,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 /* Called by AiFoot_HeadForCaptureSite when the capture site is more than 2
  * tiles away (siteDistance). Like AiFoot_BoardTransport, but the unit also
- * gives up its claim on its old target site (Unk_02080440_6088.unk_03) when
+ * gives up its claim on its old target site (Unk_02080440_6088.claimCount) when
  * it takes a boat. A Lander or Black Boat is skipped when the unit has
  * unk_0c_4 set or the site is 4 tiles or less away, and a Black Boat or
  * Lander holding the pick is not replaced by an APC. */
@@ -107,8 +107,8 @@ void AiFoot_BoardTransportForSite(int siteDistance)
     }
     if (boatType == UNIT_LANDER || boatType == UNIT_BLACK_BOAT) {
         if (STATE->actingUnit->aiTargetX != MAP_UNIT_NO_TARGET) {
-            if (TARGET_SITE.unk_03 != 0) {
-                TARGET_SITE.unk_03--;
+            if (TARGET_SITE.claimCount != 0) {
+                TARGET_SITE.claimCount--;
             }
         }
         transport = &STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]];

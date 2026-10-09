@@ -13,7 +13,7 @@ void RangeMap_SetBuffer(void *tileMap);
 void RangeMap_Fill(int value);
 
 /* Sets every tile of a per-tile map to value, without touching rangeMap. */
-void TileMap_Fill(void *tileMap, int value);
+void TileMap_Fill(void *tileMap, u8 value);
 
 /* Breadth-first search that fills rangeMap with move costs. Two lists of
  * nodes take turns: one holds the tiles to expand, the other collects the

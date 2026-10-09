@@ -4966,7 +4966,7 @@ src/game/main/ai/ai_turn_try_build_fighter.c:
     complete
     .text       start:0x02091d34 end:0x02091e40
 
-src/game/main/ai/func_02091e40.c:
+src/game/main/ai/ai_turn_try_site_action.c:
     complete
     .text       start:0x02091e40 end:0x02091eb0
 
@@ -5153,7 +5153,7 @@ src/game/main/map/map_is_silo_or_capturable_tile.c:
     complete
     .text       start:0x0209e1ac end:0x0209e230
 
-src/game/main/func_0209e230.c:
+src/game/main/units/get_unit_base_max_range.c:
     complete
     .text       start:0x0209e230 end:0x0209e248
 

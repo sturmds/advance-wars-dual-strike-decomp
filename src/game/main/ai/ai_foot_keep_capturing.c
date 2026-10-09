@@ -22,7 +22,7 @@ void AiFoot_KeepCapturing(void)
         return;
     }
     if (Unit_CaptureTurnsLeft(STATE->actingUnit) >= 2) {
-        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(STATE->actingUnit->x, STATE->actingUnit->y)]].unk_03++;
+        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(STATE->actingUnit->x, STATE->actingUnit->y)]].claimCount++;
     }
     Ai_ClearActingUnitTarget();
     AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_CAPTURE, 0, 0);

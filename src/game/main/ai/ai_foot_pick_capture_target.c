@@ -130,7 +130,7 @@ void AiFoot_PickCaptureTarget(void)
         return;
     }
     if (Unit_CaptureTurnsLeft(STATE->actingUnit) >= 2) {
-        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].unk_03++;
+        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].claimCount++;
     }
     Ai_ClearActingUnitTarget();
     AiUnit_PerformAction(captureX, captureY, AI_ACTION_CAPTURE, 0, 0);

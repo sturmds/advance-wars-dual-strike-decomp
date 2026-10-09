@@ -71,7 +71,7 @@ BOOL Ai_FindCaptureSiteNear(int x, int y, int distance, s16 *property)
             if (!Map_IsSiloOrCapturableTile(cx, cy)) {
                 continue;
             }
-            if (PROPERTY_AT(cx, cy).unk_03 != 0 && Ai_IsCaptureSiteTaken(cx, cy)) {
+            if (PROPERTY_AT(cx, cy).claimCount != 0 && Ai_IsCaptureSiteTaken(cx, cy)) {
                 continue;
             }
             switch (MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(cx, cy)])) {

@@ -36,8 +36,8 @@ typedef struct Unk_02080440_6088 {
     u8 unk_00;                         /* 0xff ends the table */
     u8 x;
     u8 y;
-    u8 unk_03;                         /* raised when an AI foot unit heads for the tile to capture it */
-    u8 unk_04;                         /* cleared with unk_03 and unk_05 at the start of an AI turn */
+    u8 claimCount;                     /* AI units heading for the tile to capture it; cleared at the start of an AI turn */
+    u8 unk_04;                         /* cleared with claimCount and unk_05 at the start of an AI turn; AiFindCaptureSiteTile reads unk_04 (direct units) or unk_05 (indirect) */
     u8 unk_05;
 } Unk_02080440_6088;
 
@@ -53,13 +53,13 @@ typedef struct Unk_02080440_1c4 {
     u8 pad_00[0x1a];
     u16 mapWidth;                      /* in tiles */
     u16 mapHeight;
-    u16 unk_1e;
-    u16 unk_20;
+    s16 scrollX;                       /* view scroll in 1/16 tiles */
+    s16 scrollY;
     u16 unk_22;
     u16 unk_24;
     u16 unk_26;
     u16 unk_28;
-    u16 unk_2a;
+    u16 scrollFlags;                   /* scroll directions in progress: 1 right, 2 left, 4 up, 8 down (MapView_ScrollStep) */
     u8 playerCount;                    /* players on the loaded map; the loop bound in func_02031498 */
     u8 pad_2d[0x30 - 0x2d];
     u32 unk_30;
@@ -79,6 +79,15 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_SNOW  1
 #define WEATHER_RAIN  2
 #define WEATHER_SAND  3
+
+/* Which of the two map states is current: data_02183b08 (the first) or the
+ * other one. func_020f5344 takes it. Written as `state == &data_02183b08 ?
+ * MAP_STATE_FIRST : MAP_STATE_SECOND`: with enum constants mwcc keeps the
+ * cmp/moveq/movne shape, where 0 and 1 would fold into `!=`. */
+enum {
+    MAP_STATE_FIRST,
+    MAP_STATE_SECOND
+};
 
 /* Unk_02080440_48.gameMode values the code confirms. */
 #define GAME_MODE_CAMPAIGN 0           /* Mission_HasPendingEvent runs only here */

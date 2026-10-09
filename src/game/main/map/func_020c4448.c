@@ -46,7 +46,7 @@ void func_020c4448(void)
                 STATE->unk_6088[count].unk_00 = MAP_TILE_TERRAIN(tile);
                 STATE->unk_6088[count].x = x;
                 STATE->unk_6088[count].y = y;
-                STATE->unk_6088[count].unk_03 = 0;
+                STATE->unk_6088[count].claimCount = 0;
                 count++;
             }
         }

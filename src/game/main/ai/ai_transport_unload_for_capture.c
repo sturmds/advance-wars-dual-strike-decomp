@@ -91,7 +91,7 @@ void AiTransport_UnloadForCapture(void)
             if (!AiUnit_FindStandTileNextTo(x, y, stand)) {
                 continue;
             }
-            if (STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(x, y)]].unk_03 != 0
+            if (STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(x, y)]].claimCount != 0
                 && !(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)
                 && Ai_IsCaptureSiteTaken(x, y) == TRUE) {
                 continue;
@@ -133,7 +133,7 @@ void AiTransport_UnloadForCapture(void)
     if (bestScore != -1) {
         cargo->aiTargetX = unloadX;
         cargo->aiTargetY = unloadY;
-        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(unloadX, unloadY)]].unk_03++;
+        STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(unloadX, unloadY)]].claimCount++;
         AiUnit_PerformAction(standX, standY, AI_ACTION_UNLOAD, Tile_GetDirection(standX, standY, unloadX, unloadY), 0);
     }
 
@@ -231,6 +231,6 @@ void AiTransport_UnloadForCapture(void)
     }
     cargo->aiTargetX = captureX;
     cargo->aiTargetY = captureY;
-    STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].unk_03++;
+    STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].claimCount++;
     AiUnit_PerformAction(standX2, standY2, AI_ACTION_UNLOAD, Tile_GetDirection(standX2, standY2, unloadX2, unloadY2), 0);
 }

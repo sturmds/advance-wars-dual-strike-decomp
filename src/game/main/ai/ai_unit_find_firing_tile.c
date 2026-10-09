@@ -6,11 +6,11 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
-int func_0209e230(int player, int unitType);
+int GetUnitBaseMaxRange(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define NO_TILE 9999
-#define MAX_RANGE() func_0209e230(STATE->currentPlayer, STATE->actingUnit->type)
+#define MAX_RANGE() GetUnitBaseMaxRange(STATE->currentPlayer, STATE->actingUnit->type)
 
 /* For an indirect unit about to attack the tile in pos: replaces pos with
  * the reachable tile, 0 to 110 move cost, that is in the unit's firing range

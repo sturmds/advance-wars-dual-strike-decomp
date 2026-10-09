@@ -10,7 +10,7 @@ int abs(int x);
 int UnitType_GetAttackKind(int unitType);
 int Unit_GetUsableMovement(MapUnit *unit);
 int Player_GetUnitMoveRange(int player, int unitType);
-int func_0209e230(int player, int unitType);
+int GetUnitBaseMaxRange(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -32,7 +32,7 @@ BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int slack)
     if (UnitType_GetAttackKind(enemy->type) == ATTACK_KIND_DIRECT) {
         reach = slack + (Unit_GetUsableMovement(acting) + Player_GetUnitMoveRange(MAP_UNIT_OWNER(STATE, enemy), enemy->type) + 1);
     } else {
-        reach = slack + (Unit_GetUsableMovement(acting) + func_0209e230(MAP_UNIT_OWNER(STATE, enemy), enemy->type));
+        reach = slack + (Unit_GetUsableMovement(acting) + GetUnitBaseMaxRange(MAP_UNIT_OWNER(STATE, enemy), enemy->type));
     }
     if (distance > reach) {
         return FALSE;

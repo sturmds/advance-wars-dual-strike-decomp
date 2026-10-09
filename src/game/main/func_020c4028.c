@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void func_020c4028(void)
 {
-    if ((STATE->unk_1c4->unk_2a & 0xf) != 0) {
+    if ((STATE->unk_1c4->scrollFlags & 0xf) != 0) {
         return;
     }
     func_020ef664();

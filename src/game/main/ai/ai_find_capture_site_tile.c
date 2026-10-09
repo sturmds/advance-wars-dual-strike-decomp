@@ -43,7 +43,7 @@ BOOL Ai_FindCaptureSiteTile(s16 *out)
             if (!Map_IsCapturableByActingUnit(x, y)) {
                 continue;
             }
-            if ((&STATE->unk_6088[MAP->unk_1928[x + MAP->rowStart[y]]].unk_03)[counterOffset] >= gAiProfile->unk_08[5]) {
+            if ((&STATE->unk_6088[MAP->unk_1928[x + MAP->rowStart[y]]].claimCount)[counterOffset] >= gAiProfile->unk_08[5]) {
                 continue;
             }
             if (best < STATE->rangeMap[y][x]) {

@@ -8,12 +8,12 @@ extern int data_027c0284;
 int UnitType_BestBaseDamage(int unitType, int targetType);
 int UnitType_GetAttackKind(int unitType);
 void RangeMap_FillUnitMoves(MapUnit *unit);
-int func_0209e230(int player, int unitType);
+int GetUnitBaseMaxRange(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE(x, y) ((x) + MAP->rowStart[y])
-#define RANGE(unit) func_0209e230(STATE->currentPlayer, (unit)->type)
+#define RANGE(unit) GetUnitBaseMaxRange(STATE->currentPlayer, (unit)->type)
 
 /* Clears the threat maps (threatMax, threatSum) on tiles that the current
  * player's anti-air units cover, where rangeScratch is 0. A unit counts when

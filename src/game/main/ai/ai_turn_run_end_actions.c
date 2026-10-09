@@ -13,7 +13,7 @@ void AiEndActions_Start(void);
 void AiEndActions_BuildThreatMaps(void);
 BOOL func_02091eb0(void);
 void func_02093720(void);
-BOOL func_02091e40(void);
+BOOL AiTurn_TrySiteAction(void);
 BOOL AiTurn_TryBuildFighter(void);
 BOOL func_02091c54(void);
 BOOL AiTurn_TryBuildCruiser(void);
@@ -61,7 +61,7 @@ void AiTurn_RunEndActions(void)
                 data_021619c0->step++;
                 break;
             }
-            if (func_02091e40()) {
+            if (AiTurn_TrySiteAction()) {
                 return;
             }
             data_021619c0->step++;

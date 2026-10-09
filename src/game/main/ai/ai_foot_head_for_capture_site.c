@@ -40,7 +40,7 @@ void AiUnit_MoveTowardTile(int x, int y);
  * tile with the lowest score (2 * MapTiles.rangeScratch, minus 1 for an HQ,
  * base, airport, port or com tower), ties going to the higher rangeMap
  * value. On the first run tiles that another foot unit claimed
- * (Unk_02080440_6088.unk_03) are skipped; once AI_STEP_ATTACK_DONE is
+ * (Unk_02080440_6088.claimCount) are skipped; once AI_STEP_ATTACK_DONE is
  * set they are not. A unit above 60 hp claims its tile, and asks for an
  * APC when the tile is more than 2 away; with no tile left it asks for a
  * T-Copter. */
@@ -82,8 +82,8 @@ void AiFoot_HeadForCaptureSite(void)
     if (targetX != MAP_UNIT_NO_TARGET && acting->hp >= 61) {
         targetY = acting->aiTargetY;
         if (STATE->rangeMap[targetY][targetX] >= 0 && Map_IsSiloOrCapturableTile(targetX, targetY)) {
-            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03 == 0 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
-                STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03++;
+            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].claimCount == 0 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
+                STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].claimCount++;
                 if (MAP->rangeScratch[TILE_INDEX(targetX, targetY)] > 2) {
                     AiFoot_BoardTransportForSite(MAP->rangeScratch[TILE_INDEX(targetX, targetY)]);
                 }
@@ -105,7 +105,7 @@ void AiFoot_HeadForCaptureSite(void)
             if (!Map_IsSiloOrCapturableTile(x, y)) {
                 continue;
             }
-            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(x, y)]].unk_03 != 0
+            if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(x, y)]].claimCount != 0
                 && !(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {
                 continue;
             }
@@ -128,7 +128,7 @@ void AiFoot_HeadForCaptureSite(void)
     }
     if (bestRange != NO_TILE) {
         if (STATE->actingUnit->hp >= 61) {
-            STATE->unk_6088[MAP->unk_1928[TILE_INDEX(bestX, bestY)]].unk_03++;
+            STATE->unk_6088[MAP->unk_1928[TILE_INDEX(bestX, bestY)]].claimCount++;
         }
         STATE->actingUnit->aiTargetX = bestX;
         STATE->actingUnit->aiTargetY = bestY;

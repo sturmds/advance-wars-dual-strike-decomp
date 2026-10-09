@@ -13,14 +13,6 @@ extern Unk_02080440_48 data_02183b08;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Which of the two map states is current: data_02183b08 or the other one.
- * Needed to match: enum constants keep mwcc from turning the ternary below
- * into a plain `!=` (which would emit movne before moveq). */
-enum {
-    MAP_STATE_FIRST,
-    MAP_STATE_SECOND
-};
-
 /* Adds meter charge to one CO of a player (slot 0 front, 1 back), capped at
  * the Super CO Power cost. Skipped when CO effects are off or a power is on.
  * Star Power adds 10%. */

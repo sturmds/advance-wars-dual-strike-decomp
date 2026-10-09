@@ -11,7 +11,7 @@ void AiTurn_ClearCaptureMarks(void)
 
     entry = data_027c027c->unk_48[data_027c0284]->unk_6088;
     for (i = 0; i < 92; i++) {
-        entry->unk_03 = 0;
+        entry->claimCount = 0;
         entry->unk_04 = 0;
         entry->unk_05 = 0;
         entry++;

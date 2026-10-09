@@ -21,13 +21,13 @@ void Map_LoadCustomIntoState(int mapId)
 
     func_020d7808((u8)(mapId - MAP_CUSTOM_FIRST), STATE->unk_1c4);
     Camera_ResetToPreset0(data_022a7d5c);
-    STATE->unk_1c4->unk_1e = 0;
-    STATE->unk_1c4->unk_20 = 0;
+    STATE->unk_1c4->scrollX = 0;
+    STATE->unk_1c4->scrollY = 0;
     STATE->unk_1c4->unk_22 = 0;
     STATE->unk_1c4->unk_24 = 0;
     STATE->unk_1c4->unk_26 = 0;
     STATE->unk_1c4->unk_28 = 0;
-    STATE->unk_1c4->unk_2a = 0;
+    STATE->unk_1c4->scrollFlags = 0;
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] =

@@ -29,10 +29,10 @@ void Map_RebuildUnitTiles(void)
     int x;
     int y;
 
-    GAME->unk_1c4->unk_26 = (s16)GAME->unk_1c4->unk_1e / 16;
-    GAME->unk_1c4->unk_28 = (s16)GAME->unk_1c4->unk_20 / 16;
-    GAME->unk_1c4->unk_22 = *(s16 *)&GAME->unk_1c4->unk_1e;
-    GAME->unk_1c4->unk_24 = *(s16 *)&GAME->unk_1c4->unk_20;
+    GAME->unk_1c4->unk_26 = (s16)GAME->unk_1c4->scrollX / 16;
+    GAME->unk_1c4->unk_28 = (s16)GAME->unk_1c4->scrollY / 16;
+    GAME->unk_1c4->unk_22 = *(s16 *)&GAME->unk_1c4->scrollX;
+    GAME->unk_1c4->unk_24 = *(s16 *)&GAME->unk_1c4->scrollY;
     if (HOOKS->callback != NULL) {
         HOOKS->callback();
     }
