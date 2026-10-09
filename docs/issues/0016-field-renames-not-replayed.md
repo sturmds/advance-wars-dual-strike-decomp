@@ -14,6 +14,7 @@
 - Option A: when a replayed commit fails to build, look for `unk_XX` fields that a header on `mainline` has since renamed (same offset, same struct) and substitute.
 - Option B: tell agents not to rename fields in shared headers; collect field names in NOTES and apply them between batches.
 - Option B is simpler and also avoids the duplicate edits seen in `player.h` (issue 0002).
+- 2026-10-08: partly covered. When a commit's header conflicts with mainline, `tools/header_merge.py` matches fields by offset, and `apply_commit.py` rewrites the commit's `->old` and `.old` accesses to mainline's names. A commit that uses a renamed field without touching the header is still not rewritten: matching `unk_XX` by name alone would also hit other structs' fields.
 
 ## Done when
 

@@ -15,9 +15,12 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
 - PROGRESS.md: skipped; the pre-commit hook writes it again here.
 - Other files: written if this branch still has the parent's version,
   otherwise merged with `git merge-file`. A conflict in a header under
-  include/ is merged by meaning: struct fields by offset (padding
-  regenerated), #define and prototype lines by union. Any other conflict
-  stops the replay after the rest of the commit is applied.
+  include/ (also a header both sides added) is merged by meaning with
+  tools/header_merge.py: struct fields by offset with the padding written
+  again, other declarations by name, mainline's names and versions kept on
+  a clash. The commit's sources are then rewritten to mainline's field and
+  type names. Any other conflict stops the replay after the rest of the
+  commit is applied.
 
 Then it commits with the original message and author, which runs the hooks
 (so `make release` must pass).
@@ -28,7 +31,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent.parent
+import header_merge
+
+# The checkout the command runs in, which is not always the one holding this
+# script: tests run a copy of it against other commits.
+ROOT = Path(subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True,
+                           check=True).stdout.strip())
 TEXT = re.compile(r"\s+\.text\s+start:(0x[0-9a-f]+)")
 SYM = re.compile(r"^(\S+) (kind:\S+ addr:(0x[0-9a-f]+).*)$")
 
@@ -108,89 +116,8 @@ def apply_relocs(path: str, old: str, new: str) -> None:
     (ROOT / path).write_text("\n".join(cur) + "\n")
 
 
-# Sizes of the types used in shared structs, for merging padding by offset.
-TYPE_SIZES = {"u8": 1, "s8": 1, "char": 1, "u16": 2, "s16": 2, "u32": 4, "s32": 4,
-              "int": 4, "BOOL": 4, "fx32": 4, "TextRef": 4}
-FIELD = re.compile(r"^\s*(?:const\s+)?(\w+)\s*(\*?)\s*(\w+)((?:\[[^\]]+\])*)\s*;")
-STRUCT = re.compile(r"(typedef struct (\w+) \{\n)(.*?)(\} \2;)", re.S)
-
-
-def struct_fields(body: str):
-    """[(offset, size, line)] of the named fields, and the struct size.
-    Raises ValueError on anything it cannot size (nested structs, unions)."""
-    off, fields = 0, []
-    for line in body.splitlines(True):
-        m = FIELD.match(line)
-        if not m:
-            if line.strip() and not line.strip().startswith(("/*", "*", "//")):
-                raise ValueError(line)
-            continue
-        typ, ptr, name, dims = m.groups()
-        n = 4 if ptr else TYPE_SIZES.get(typ)
-        if n is None:
-            raise ValueError(line)
-        for d in re.findall(r"\[([^\]]+)\]", dims):
-            n *= eval(d, {})
-        if not name.startswith("pad_"):
-            fields.append((off, n, line))
-        off += n
-    return fields, off
-
-
-def merge_struct(ours: str, theirs: str) -> str:
-    """Keep every named field of both versions (ours wins where they
-    overlap) and regenerate the pad_ arrays between them."""
-    fa, ea = struct_fields(ours)
-    fb, eb = struct_fields(theirs)
-    out, taken = list(fa), [(o, o + n) for o, n, _ in fa]
-    for o, n, line in fb:
-        if not any(o < e and s < o + n for s, e in taken):
-            out.append((o, n, line))
-            taken.append((o, o + n))
-    lines, cur = [], 0
-    for o, n, line in sorted(out) + [(max(ea, eb), 0, "")]:
-        if o > cur:
-            lines.append(f"    u8 pad_{cur:02x}[0x{o:02x} - 0x{cur:02x}];\n" if cur else f"    u8 pad_00[0x{o:x}];\n")
-        lines.append(line)
-        cur = max(cur, o + n)
-    return "".join(lines)
-
-
-def merge_header(ours: str, theirs: str) -> str | None:
-    """Merge a shared header that both sides only added to: structs by field
-    offset, #define/#include/prototype lines by union (SKILL_ ids sorted).
-    None if a changed struct cannot be parsed."""
-    res = ours
-    so = {m.group(2): m for m in STRUCT.finditer(ours)}
-    for m in STRUCT.finditer(theirs):
-        mine = so.get(m.group(2))
-        if mine is None or mine.group(3) == m.group(3):
-            continue
-        try:
-            body = merge_struct(mine.group(3), m.group(3))
-        except ValueError:
-            return None
-        res = res.replace(mine.group(0), mine.group(1) + body + mine.group(4))
-    flat = re.compile(r"^(#define|#include|\w[\w\s\*]*\(.*\);$)")
-    for line in theirs.splitlines(True):
-        if flat.match(line) and line not in res:
-            anchor = res.rfind("\n#endif")
-            res = res[:anchor] + "\n" + line.rstrip("\n") + res[anchor:]
-    lines = res.splitlines(True)
-    ids = [ln for ln in lines if ln.startswith("#define SKILL_")]
-    if ids:
-        first = next(i for i, ln in enumerate(lines) if ln.startswith("#define SKILL_"))
-        rest = [ln for ln in lines if not ln.startswith("#define SKILL_")]
-        seen, uniq = set(), []
-        for ln in sorted(ids, key=lambda ln: int(ln.split()[2], 0)):
-            if ln.split()[1] not in seen:
-                seen.add(ln.split()[1])
-                uniq.append(ln)
-        res = "".join(rest[:first] + uniq + rest[first:])
-    return res.replace("\n\n\n", "\n\n")
-
-
 def merge_file(path: str, base: str | None, theirs: str | None) -> None:
+    """Write the commit's version of a file, merged with this branch's."""
     target = ROOT / path
     if theirs is None:
         if target.exists() and base is not None and target.read_text() == base:
@@ -213,16 +140,75 @@ def merge_file(path: str, base: str | None, theirs: str | None) -> None:
     r = subprocess.run(["git", "merge-file", "-L", "current", "-L", "base", "-L", "commit",
                         str(target), str(tmp / "base"), str(tmp / "theirs")], cwd=ROOT)
     if r.returncode:
-        if path.startswith("include/"):
-            merged = merge_header(ours, theirs)
-            if merged is not None:
-                target.write_text(merged)
-                print(f"merged {path} by struct offset")
-                return
+        if path.startswith("include/") and merge_header(path, ours, theirs, base or ""):
+            return
         CONFLICTS.append(path)
 
 
 CONFLICTS: list[str] = []
+MERGED_HEADERS: dict[str, header_merge.Report] = {}
+COMMIT = ""
+
+
+def merge_header(path: str, ours: str, theirs: str, base: str) -> bool:
+    """Merge a conflicting header by meaning (tools/header_merge.py). False
+    if it cannot be read; the conflict markers of git merge-file then stay."""
+    try:
+        text, rep = header_merge.merge(ours, theirs, base, header_types(path, ours, theirs))
+    except header_merge.MergeError as e:
+        print(f"{path}: cannot merge by meaning: {e}")
+        return False
+    (ROOT / path).write_text(text)
+    print(rep.summary(path))
+    MERGED_HEADERS[path] = rep
+    for c in rep.conflicts:
+        CONFLICTS.append(f"{path} ({c})")
+    return True
+
+
+def header_types(path: str, ours: str, theirs: str) -> header_merge.Types:
+    """Type sizes from the headers of both sides, to lay out struct fields."""
+    texts = [ours, theirs]
+    for p in sorted((ROOT / "include").rglob("*.h")):
+        if p != ROOT / path:
+            texts.append(p.read_text())
+    for name in git("diff-tree", "--no-commit-id", "-r", "--name-only", f"{COMMIT}^", COMMIT).splitlines():
+        if name.startswith("include/") and name != path:
+            texts.append(show(COMMIT, name) or "")
+    return header_merge.Types(texts)
+
+
+def member_access(name: str) -> re.Pattern:
+    return re.compile(rf"(->|\.)(\s*){re.escape(name)}(?!\w)")
+
+
+def apply_header_renames(paths: list[str]) -> None:
+    """After a header merge kept mainline's field and type names, rewrite
+    the commit's sources to use them. Fields match only as member accesses
+    (->name, .name), but of any struct: a wrong rename fails the build
+    rather than going unseen."""
+    fields, types = {}, {}
+    for rep in MERGED_HEADERS.values():
+        for old, new in rep.renames.items():
+            if fields.setdefault(old, new) != new:
+                print(f"warning: {old} maps to both {fields[old]} and {new}; renamed to {fields[old]}")
+        types.update(rep.type_renames)
+    for path in paths:
+        if path.endswith(".c") or (path.endswith(".h") and path not in MERGED_HEADERS):
+            rewrite(path, fields, types)
+
+
+def rewrite(path: str, fields: dict[str, str], types: dict[str, str]) -> None:
+    p = ROOT / path
+    if not p.exists():
+        return
+    text = new = p.read_text()
+    for old, name in fields.items():
+        new = member_access(old).sub(rf"\g<1>\g<2>{name}", new)
+    new = header_merge.rename_words(new, types)
+    if new != text:
+        p.write_text(new)
+        print(f"renamed fields and types in {path} to the merged header's names")
 
 
 def rename_in_sources(renames) -> None:
@@ -269,7 +255,8 @@ def fix_stale_names(paths) -> None:
 def main() -> int:
     if len(sys.argv) < 2:
         sys.exit(__doc__)
-    commit = git("rev-parse", sys.argv[1]).strip()
+    global COMMIT
+    commit = COMMIT = git("rev-parse", sys.argv[1]).strip()
     if git("status", "--porcelain", "--untracked-files=no").strip():
         sys.exit("error: working tree has uncommitted changes")
     changes = git("diff-tree", "--no-commit-id", "-r", "--name-status", f"{commit}^", commit).splitlines()
@@ -294,7 +281,9 @@ def main() -> int:
     rename_in_sources(renames)
     for old, new in renames:
         print(f"renamed {old} -> {new}")
-    fix_stale_names([ln.split("\t", 1)[1] for ln in changes])
+    paths = [ln.split("\t", 1)[1] for ln in changes]
+    apply_header_renames(paths)
+    fix_stale_names(paths)
     if CONFLICTS:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 

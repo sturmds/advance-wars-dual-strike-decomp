@@ -20,6 +20,7 @@ Each case was fixed by hand with helper scripts kept outside the repo (`work/loo
 - `apply_commit.py` also adds a second `delinks.txt` entry when a commit renames a file it added earlier, instead of moving the entry.
 
 - 2026-10-08: fixed in `apply_commit.py`. A conflict in `include/` is merged by meaning (struct fields by offset with padding regenerated; `#define`, `#include` and prototype lines by union; `SKILL_` ids sorted). Other conflicts no longer stop the replay early: the rest of the commit is applied first. A `delinks.txt` block the commit removes is removed. Tested on the two batch 4 conflicts.
+- 2026-10-08, after batch 8: the struct merge stopped at nested unions, bit-fields, struct-typed fields and function pointers, and kept only mainline's side when it gave up, so agents' fields, typedefs and prototypes were lost. The header merge is now in `tools/header_merge.py`: it lays out every struct in `include/`, merges top-level declarations by name, keeps mainline's name where both sides name the same bytes, and rewrites the commit's sources to it. All 12 batch 8 header conflicts merge with it.
 
 ## Done when
 
