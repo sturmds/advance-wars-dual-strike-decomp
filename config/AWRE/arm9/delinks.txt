@@ -7322,6 +7322,22 @@ src/game/main/func_020fccd8.c:
     complete
     .text       start:0x020fccd8 end:0x020fcd00
 
+src/game/main/func_020fcd28.c:
+    complete
+    .text       start:0x020fcd28 end:0x020fcd50
+
+src/game/main/func_020fcd50.c:
+    complete
+    .text       start:0x020fcd50 end:0x020fcd78
+
+src/game/main/func_020fcda0.c:
+    complete
+    .text       start:0x020fcda0 end:0x020fcdc8
+
+src/game/main/func_020fcdc8.c:
+    complete
+    .text       start:0x020fcdc8 end:0x020fcdf0
+
 src/game/main/func_020fcf94.c:
     complete
     .text       start:0x020fcf94 end:0x020fcfa0
