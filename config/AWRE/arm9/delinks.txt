@@ -401,6 +401,10 @@ src/game/main/units/get_co_range_bonus.c:
     complete
     .text       start:0x020e5678 end:0x020e57ac
 
+src/game/main/units/get_co_unit_max_range.c:
+    complete
+    .text       start:0x020e5a18 end:0x020e5a58
+
 src/game/main/skills/repair_increase.c:
     complete
     .text       start:0x020e5ec4 end:0x020e5f60
