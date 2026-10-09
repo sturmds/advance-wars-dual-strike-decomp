@@ -12,7 +12,7 @@ extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int UnitType_GetAttackKind(int unitType);
-void Combat_SimulateIfTarget(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle when defenderIndex != 0 */
+void Combat_SimulateChecked(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle; halts when defenderIndex is 0 */
 int UnitType_BestBaseDamage(int unitType, int targetType); /* best base damage of unitType against targetType, over both weapons */
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 int Unit_IsEnemyTile(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
@@ -42,7 +42,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
     u32 score;
 
     mult = 1;
-    Combat_SimulateIfTarget(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
+    Combat_SimulateChecked(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
     if (ATTACKER.weapon == COMBAT_WEAPON_NONE) {
         /* no weapon can hit */
         return 0;

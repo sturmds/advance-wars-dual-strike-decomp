@@ -759,6 +759,10 @@ src/game/main/combat/combat_calc_damage_to_target.c:
     complete
     .text       start:0x020c25b8 end:0x020c28ac
 
+src/game/main/combat/combat_simulate_checked.c:
+    complete
+    .text       start:0x020c28ac end:0x020c28ec
+
 src/game/main/combat/combat_simulate_battle.c:
     complete
     .text       start:0x020c2ed4 end:0x020c31ec
