@@ -4,13 +4,13 @@
 void MenuButton_Add(int x, int y, void *def, int id);
 void *MenuButton_Select(int id);
 void MenuButtons_RemoveSelectable(void);
-void func_0202f9a4(void);
+void MainMenu_ShowHelpText(void);
 
 extern u8 data_02159aec[];
 
 /* Adds one button per visible entry of the current page, 24 pixels apart and
  * centred on y = 112, and selects the cursor entry (moving the cursor off a
- * hidden one). Then runs func_0202f9a4. */
+ * hidden one). Then runs MainMenu_ShowHelpText. */
 void MainMenu_AddEntryButtons(void)
 {
     MainMenuPage *page = *data_0229c71c;
@@ -36,5 +36,5 @@ void MainMenu_AddEntryButtons(void)
         y += 24;
         entry++;
     }
-    func_0202f9a4();
+    MainMenu_ShowHelpText();
 }
