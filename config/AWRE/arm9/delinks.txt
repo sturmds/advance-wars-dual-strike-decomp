@@ -2198,6 +2198,14 @@ src/game/main/func_0205ec14.c:
     complete
     .text       start:0x0205ec14 end:0x0205ec20
 
+src/game/main/func_0205ec20.c:
+    complete
+    .text       start:0x0205ec20 end:0x0205ec5c
+
+src/game/main/func_0205ec5c.c:
+    complete
+    .text       start:0x0205ec5c end:0x0205ec98
+
 src/game/main/menus/map_select_enable_sub_slide_buttons.c:
     complete
     .text       start:0x0205f03c end:0x0205f060
@@ -2306,6 +2314,14 @@ src/game/main/func_02065214.c:
     complete
     .text       start:0x02065214 end:0x0206523c
 
+src/game/main/func_02065464.c:
+    complete
+    .text       start:0x02065464 end:0x020654a0
+
+src/game/main/func_020654a0.c:
+    complete
+    .text       start:0x020654a0 end:0x020654dc
+
 src/game/main/func_020654dc.c:
     complete
     .text       start:0x020654dc end:0x02065508
@@ -2329,6 +2345,10 @@ src/game/main/func_02066818.c:
 src/game/main/func_02066d70.c:
     complete
     .text       start:0x02066d70 end:0x02066d80
+
+src/game/main/func_0206714c.c:
+    complete
+    .text       start:0x0206714c end:0x02067188
 
 src/game/main/func_020678e0.c:
     complete
@@ -2365,6 +2385,10 @@ src/game/main/menus/vs_setup_open_force_rank.c:
 src/game/main/menus/vs_setup_confirm.c:
     complete
     .text       start:0x02069424 end:0x02069460
+
+src/game/main/func_02069460.c:
+    complete
+    .text       start:0x02069460 end:0x0206949c
 
 src/game/main/func_02069610.c:
     complete
