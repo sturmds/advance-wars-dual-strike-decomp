@@ -4,7 +4,7 @@
 
 void Sound_PlaySe(int id);
 void func_0202dd28(void);
-void func_02028750(void);
+void Gfx3d_SetPerspective(void);
 
 /* Starts a page flip: slide is 2 (left) or 3 (right), both play a sound. */
 void MainMenu_StartPageFlip(int page, int slide)
@@ -18,5 +18,5 @@ void MainMenu_StartPageFlip(int page, int slide)
     data_021599d0->slide = slide;
     MenuButtons_RemoveSelectable();
     func_0202dd28();
-    func_02028750();
+    Gfx3d_SetPerspective();
 }

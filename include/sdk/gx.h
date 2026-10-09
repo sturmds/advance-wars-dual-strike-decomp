@@ -38,6 +38,7 @@
 #define IO_OBJ_PIXELATE_SIZE ((volatile u8 *)0x0400004d)
 #define REG_BLDCNT ((volatile u16 *)0x04000050)
 #define REG_POWCNT1 ((volatile u16 *)0x04000304)
+#define REG_MTX_STORE ((volatile u32 *)0x0400044c)
 #define POWCNT1_DISPLAY_SWAP 0x8000 /* set: main engine on the top screen */
 
 /* Sub engine (2D graphics engine B) registers. */
