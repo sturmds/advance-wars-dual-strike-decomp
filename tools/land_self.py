@@ -17,7 +17,7 @@ each agent lands its own branch:
 4. Under an exclusive lock (<git common dir>/land.lock), check that
    mainline has not moved since step 1, and fast-forward the main
    checkout's mainline to the branch. If mainline moved, start again at
-   step 1 (at most 5 tries). If the main checkout has uncommitted changes,
+   step 1 (at most 15 tries). If the main checkout has uncommitted changes,
    wait for it (30 s steps, at most 10 minutes).
 
 It never forces and never pushes.
@@ -32,7 +32,7 @@ import time
 from pathlib import Path
 
 LANDED, CONFLICT, BUILD_FAILED, GAVE_UP = 0, 1, 2, 3
-TRIES = 5
+TRIES = 15
 WAIT_STEP, WAIT_MAX = 30, 600
 
 

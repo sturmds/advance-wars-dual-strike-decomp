@@ -49,3 +49,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0019](0019-ov000-relocations.md) | Relocations marked `overlays(0,4)` that can only be ov000 | open | tools | M3 |
 | [0020](0020-apply-commit-header-conflicts.md) | `apply_commit.py` stops at shared-header conflicts | closed | loop | M1 |
 | [0021](0021-auto-co-maps.md) | Name the Auto CO special case for Lightning Strikes and Ring of Fire | closed | decomp | M2 |
+| [0022](0022-army-style-colour-comments.md) | Player.armyStyle and armyColour comments are wrong | open | decomp | M2 |
+| [0023](0023-mod-build-repo.md) | A separate mod build on top of the matching source | open | build | later |
