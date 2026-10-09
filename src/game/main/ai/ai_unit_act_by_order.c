@@ -7,7 +7,7 @@ extern int data_027c0284;
 BOOL func_0209dd7c(void);
 BOOL func_020c0e3c(int player);
 void AiUnit_ActOrder10(void);
-void func_020a0954(void);
+void AiUnit_ActOrder9(void);
 void func_020a0988(void);
 void func_020a09bc(void);
 void func_020a0a0c(void);
@@ -59,7 +59,7 @@ void AiUnit_ActByOrder(void)
         func_020a0988();
         break;
     case 9:
-        func_020a0954();
+        AiUnit_ActOrder9();
         break;
     case 10:
         AiUnit_ActOrder10();
