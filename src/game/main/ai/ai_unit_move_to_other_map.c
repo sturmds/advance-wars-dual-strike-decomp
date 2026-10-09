@@ -7,7 +7,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-BOOL func_020c7650(MapUnit *unit, s16 x, s16 y);
+BOOL AiUnit_CanUseOtherMapFrom(MapUnit *unit, s16 x, s16 y);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ extern Unk_02080440_48 data_02189cd8;
 /* Name is a guess from the checks. In a two-map battle, when the other
  * map's state has unk_30 clear and the acting unit may use it (unk_0c_7
  * clear), moves the unit to the reachable tile with the lowest rangeMap
- * value that func_020c7650 accepts, with action 26. */
+ * value that AiUnit_CanUseOtherMapFrom accepts, with action 26. */
 void AiUnit_MoveToOtherMap(void)
 {
     Unk_027c0280 *saved0280;
@@ -67,7 +67,7 @@ void AiUnit_MoveToOtherMap(void)
             if (GAME->rangeMap[y][x] < 0) {
                 continue;
             }
-            if (func_020c7650(GAME->actingUnit, x, y) != 1) {
+            if (AiUnit_CanUseOtherMapFrom(GAME->actingUnit, x, y) != 1) {
                 continue;
             }
             if (GAME->rangeMap[y][x] <= bestReach) {
