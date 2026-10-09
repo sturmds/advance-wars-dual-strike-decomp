@@ -425,6 +425,10 @@ src/game/main/screen/screen_apply_sub.c:
 src/game/main/screen/screen_apply_main.c:
     .text       start:0x02008678 end:0x02009580
 
+src/game/main/screen/screen_set_bg0_mode.c:
+    complete
+    .text       start:0x020096d8 end:0x0200970c
+
 src/game/main/screen/screen_set_bg_mode.c:
     complete
     .text       start:0x0200970c end:0x020097a4

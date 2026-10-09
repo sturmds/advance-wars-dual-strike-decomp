@@ -12,7 +12,7 @@ void BgControl_SetCharBase(BgControl *bg, u32 charOffset);
 void BgControl_SetScreenBase(BgControl *bg, u32 offset);
 void BgControl_SetScreenSize(BgControl *bg, int screenSize);
 void func_02009b50(void);                /* resets the screen's graphics state */
-void func_020096d8(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
+void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
 BOOL func_01ff8ef8(int layer);
 BOOL func_0200ac2c(int layer);
 void func_01ff8c84(int layer);
@@ -67,9 +67,9 @@ void Screen_InitLayers(const GfxLayer *config)
     }
     if (data_027c027c == data_027c0288.unk_00) {
         if (has3dLayer) {
-            func_020096d8(1);
+            Screen_SetBg0Mode(1);
         } else {
-            func_020096d8(0);
+            Screen_SetBg0Mode(0);
         }
     }
     data_027c0280->dispCnt |= 0x100;
