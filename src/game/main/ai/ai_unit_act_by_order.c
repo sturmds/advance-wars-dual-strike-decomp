@@ -11,7 +11,7 @@ void AiUnit_ActOrder9(void);
 void AiUnit_ActOrder8(void);
 void AiUnit_ActOrder7(void);
 void AiUnit_ActOrder6(void);
-void func_020a0a44(void);
+void AiUnit_ActOrder5(void);
 void func_020a0a84(void);
 void func_020a0ac4(void);
 void func_020a0b04(void);
@@ -46,13 +46,13 @@ void AiUnit_ActByOrder(void)
         func_020a0a84();
         break;
     case 5:
-        func_020a0a44();
+        AiUnit_ActOrder5();
         break;
     case 6:
         if (func_020c0e3c(game->currentPlayer) == TRUE) {
             AiUnit_ActOrder6();
         } else {
-            func_020a0a44();
+            AiUnit_ActOrder5();
         }
         break;
     case 8:
