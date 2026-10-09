@@ -4,6 +4,7 @@
 #include "types.h"
 
 #define REG_MASTER_BRIGHT ((volatile u16 *)0x0400006c)
+#define REG_BG2CNT ((volatile u16 *)0x0400000c)
 
 /* What GX_SetMasterBrightness calls: writes a master brightness register.
  * brightness: 0 none, 1-16 towards white, -1 to -16 towards black. */
