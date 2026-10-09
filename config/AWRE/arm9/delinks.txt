@@ -443,6 +443,10 @@ src/game/main/copowers/power_star_charge.c:
     complete
     .text       start:0x020e2c60 end:0x020e2ce0
 
+src/game/main/copowers/player_is_power_active.c:
+    complete
+    .text       start:0x020e2d78 end:0x020e2dc0
+
 src/game/main/copowers/spend_power_charge.c:
     complete
     .text       start:0x020e2fc0 end:0x020e305c
