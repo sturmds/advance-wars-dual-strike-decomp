@@ -39,6 +39,39 @@
 #define REG_POWCNT1 ((volatile u16 *)0x04000304)
 #define POWCNT1_DISPLAY_SWAP 0x8000 /* set: main engine on the top screen */
 
+/* Sub engine (2D graphics engine B) registers. */
+#define REG_DB_DISPCNT ((volatile u32 *)0x04001000)
+#define REG_DB_BG0CNT ((volatile u16 *)0x04001008)
+#define REG_DB_BG1CNT ((volatile u16 *)0x0400100a)
+#define REG_DB_BG2CNT ((volatile u16 *)0x0400100c)
+#define REG_DB_BG3CNT ((volatile u16 *)0x0400100e)
+#define IO_SUB_BG0_SCROLL ((volatile u32 *)0x04001010)
+#define REG_DB_BG1OFS ((volatile u32 *)0x04001014)
+#define REG_DB_BG2OFS ((volatile u32 *)0x04001018)
+#define REG_DB_BG3OFS ((volatile u32 *)0x0400101c)
+#define REG_DB_BG2PA ((volatile s16 *)0x04001020)
+#define REG_DB_BG2PB ((volatile s16 *)0x04001022)
+#define REG_DB_BG2PC ((volatile s16 *)0x04001024)
+#define REG_DB_BG2PD ((volatile s16 *)0x04001026)
+#define REG_DB_BG2X ((volatile s32 *)0x04001028)
+#define REG_DB_BG2Y ((volatile s32 *)0x0400102c)
+#define REG_DB_BG3PA ((volatile s16 *)0x04001030)
+#define REG_DB_BG3PB ((volatile s16 *)0x04001032)
+#define REG_DB_BG3PC ((volatile s16 *)0x04001034)
+#define REG_DB_BG3PD ((volatile s16 *)0x04001036)
+#define REG_DB_BG3X ((volatile s32 *)0x04001038)
+#define REG_DB_BG3Y ((volatile s32 *)0x0400103c)
+#define REG_DB_WIN0H ((volatile u16 *)0x04001040)
+#define REG_DB_WIN1H ((volatile u16 *)0x04001042)
+#define REG_DB_WIN0V ((volatile u16 *)0x04001044)
+#define REG_DB_WIN1V ((volatile u16 *)0x04001046)
+#define REG_DB_WININ ((volatile u16 *)0x04001048)
+#define REG_DB_WINOUT ((volatile u16 *)0x0400104a)
+#define IO_SUB_BG_PIXELATE_SIZE ((volatile u8 *)0x0400104c)
+#define IO_SUB_OBJ_PIXELATE_SIZE ((volatile u8 *)0x0400104d)
+#define REG_DB_BLDCNT ((volatile u16 *)0x04001050)
+#define REG_DB_MASTER_BRIGHT ((volatile u16 *)0x0400106c)
+
 /* What GX_SetMasterBrightness calls: writes a master brightness register.
  * brightness: 0 none, 1-16 towards white, -1 to -16 towards black. */
 void GXx_SetMasterBrightness_(volatile u16 *reg, int brightness);

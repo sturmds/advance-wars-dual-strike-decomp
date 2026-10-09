@@ -80,6 +80,9 @@ src/game/main/screen/screen_apply_all.c:
     complete
     .text       start:0x02007830 end:0x02007850
 
+src/game/main/screen/screen_apply_sub.c:
+    .text       start:0x02007850 end:0x02008678
+
 src/game/main/screen/screen_apply_main.c:
     .text       start:0x02008678 end:0x02009580
 
