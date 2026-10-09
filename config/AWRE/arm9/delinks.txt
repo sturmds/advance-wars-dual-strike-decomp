@@ -467,6 +467,10 @@ src/game/main/menus/menu_cancel_callback.c:
     complete
     .text       start:0x02026410 end:0x0202641c
 
+src/game/main/sound/sound_reload_resident_data.c:
+    complete
+    .text       start:0x0202641c end:0x0202643c
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
