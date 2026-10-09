@@ -37,6 +37,7 @@ MenuButton *MenuButton_Find(int id);           /* active button with this id, or
 MenuButton *MenuButton_Select(int id);
 void MenuButton_Confirm(MenuButton *button);
 void Menu_CancelSelected(void);
+void Menu_ConfirmSelected(void);
 void MenuButton_NotifySelected(MenuButton *button);
 
 #endif
