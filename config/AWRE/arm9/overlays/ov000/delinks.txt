@@ -68,6 +68,10 @@ src/game/ov000/func_ov000_022b0500.c:
     complete
     .text       start:0x022b0500 end:0x022b052c
 
+src/game/ov000/palette_load_army_obj_row.c:
+    complete
+    .text       start:0x022b1190 end:0x022b11f0
+
 src/game/ov000/func_ov000_022b17cc.c:
     complete
     .text       start:0x022b17cc end:0x022b17f0
