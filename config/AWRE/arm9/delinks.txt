@@ -2275,6 +2275,10 @@ src/game/main/mem/heap_alloc_from_top.c:
     complete
     .text       start:0x0210465c end:0x02104720
 
+src/game/main/func_02104c78.c:
+    complete
+    .text       start:0x02104c78 end:0x02104c90
+
 src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
