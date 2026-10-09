@@ -14,7 +14,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void *File_Load(const char *path);
 void Mem_Free(void *file);
-void func_02015340(int x, int y, void *target, const void *text, int a, int b);
+void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Window_DrawOnLayer1(int x, int y, int w, int h);
 void Font_LoadDigits(int a);
@@ -160,7 +160,7 @@ void LinkPhase_InitScreen(void)
     Font_LoadDigits(0);
     Window_DrawOnLayer1(11, 20, 10, 4);
     target = data_027c0280->layer0Map;
-    func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
+    Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
     func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
     func_0202c520(18);
     func_01ff8d60(0);
@@ -178,7 +178,7 @@ void LinkPhase_InitScreen(void)
         Font_LoadDigits(0);
         Window_DrawOnLayer1(11, 20, 10, 4);
         target = data_027c0280->layer0Map;
-        func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
+        Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
         func_0202bdec(data_027c0280->objVram + 0x780, mapId);
         func_0202c520(19);
         func_01ff8d60(0);

@@ -19,7 +19,8 @@ typedef struct SpriteEntry {
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *unk_08;
-    u8 pad_0c[0x1c - 0x0c];
+    u8 pad_0c[0x18 - 0x0c];
+    void *textPrinter;                 /* text, position and target map of the text being printed */
     struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
     u8 pad_20[0x24 - 0x20];
     SpriteEntry *spriteLists;
