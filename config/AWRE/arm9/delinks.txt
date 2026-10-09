@@ -2450,6 +2450,10 @@ src/game/main/func_0202dd90.c:
     complete
     .text       start:0x0202dd90 end:0x0202dd9c
 
+src/game/main/menus/main_menu_add_entry_buttons.c:
+    complete
+    .text       start:0x0202de04 end:0x0202df78
+
 src/game/main/func_0202df78.c:
     complete
     .text       start:0x0202df78 end:0x0202df9c
