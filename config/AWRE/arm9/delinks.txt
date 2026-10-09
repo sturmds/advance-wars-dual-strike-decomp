@@ -544,6 +544,38 @@ src/game/main/gfx/gx_send_quad.c:
     complete
     .text       start:0x02012678 end:0x02012794
 
+src/game/main/func_02012794.c:
+    complete
+    .text       start:0x02012794 end:0x020128b0
+
+src/game/main/func_02012a88.c:
+    complete
+    .text       start:0x02012a88 end:0x02012ba4
+
+src/game/main/func_02012ba4.c:
+    complete
+    .text       start:0x02012ba4 end:0x02012cc0
+
+src/game/main/func_02012cc0.c:
+    complete
+    .text       start:0x02012cc0 end:0x02012ddc
+
+src/game/main/func_020130a0.c:
+    complete
+    .text       start:0x020130a0 end:0x020131bc
+
+src/game/main/func_020131bc.c:
+    complete
+    .text       start:0x020131bc end:0x020132d8
+
+src/game/main/func_020134b0.c:
+    complete
+    .text       start:0x020134b0 end:0x020135cc
+
+src/game/main/func_020135cc.c:
+    complete
+    .text       start:0x020135cc end:0x020136e8
+
 src/game/main/func_02014c24.c:
     complete
     .text       start:0x02014c24 end:0x02014c38
