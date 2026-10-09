@@ -156,6 +156,10 @@ src/game/main/menus/force_rank_screen_put_icons.c:
     complete
     .text       start:0x02041370 end:0x02041428
 
+src/game/main/menus/force_rank_screen_fill_columns.c:
+    complete
+    .text       start:0x02041428 end:0x02041594
+
 src/game/main/menus/co_select_screen_handle_keys.c:
     complete
     .text       start:0x020429f0 end:0x02042b3c
