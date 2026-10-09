@@ -2067,6 +2067,10 @@ src/game/main/skills/damage_to_funds.c:
     complete
     .text       start:0x020c86cc end:0x020c880c
 
+src/game/main/map/func_020c8888.c:
+    complete
+    .text       start:0x020c8888 end:0x020c88fc
+
 src/game/main/func_020cab68.c:
     complete
     .text       start:0x020cab68 end:0x020cab80
