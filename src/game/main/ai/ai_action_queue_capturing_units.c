@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Run on each queued unit; continues the capture (romhacking.net doc 890). */
-void func_020a0330(void);
+void AiFoot_ContinueCapture(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -32,6 +32,6 @@ void AiAction_QueueCapturingUnits(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    gAiQueueRoutine = func_020a0330;
+    gAiQueueRoutine = AiFoot_ContinueCapture;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
