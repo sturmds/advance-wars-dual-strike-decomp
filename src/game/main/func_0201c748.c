@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/task.h"
 
-BOOL func_02014f58(void);
+BOOL Text_IsPrinting(void);
 
 void func_0201c748(Task *task)
 {
-    if (func_02014f58() == FALSE) {
+    if (Text_IsPrinting() == FALSE) {
         task->pc = NULL;
     }
 }
