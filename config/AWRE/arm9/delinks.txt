@@ -787,6 +787,10 @@ src/game/main/map/map_load_variant.c:
     complete
     .text       start:0x020c4dfc end:0x020c4e2c
 
+src/game/main/combat/damage_chart_get_column.c:
+    complete
+    .text       start:0x020c6708 end:0x020c672c
+
 src/game/main/player_refresh_units.c:
     complete
     .text       start:0x020c6f98 end:0x020c703c

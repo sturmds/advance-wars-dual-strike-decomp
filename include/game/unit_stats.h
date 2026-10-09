@@ -51,6 +51,11 @@ enum UnitType {
 #define MOVE_GROUP_AIR   0x10
 #define MOVE_GROUP_SEA   0x20
 
+/* UnitStats.chartDamage columns: the target's unit type, except a dived
+ * Sub or Stealth, which have their own columns. */
+#define DAMAGE_COLUMN_DIVED_SUB     27
+#define DAMAGE_COLUMN_DIVED_STEALTH 28
+
 /* Fixed stats of one unit type, 0x6c bytes, in ov000 at 0x022f4fb8.
  * Table address from romhacking.net doc 890 (RadioTails); the fields
  * were read from AWRE and checked against warswiki for the Tank. */
