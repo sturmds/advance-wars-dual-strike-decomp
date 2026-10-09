@@ -884,6 +884,10 @@ src/game/main/func_02021b20.c:
     complete
     .text       start:0x02021b20 end:0x02021b34
 
+src/game/main/func_02021b80.c:
+    complete
+    .text       start:0x02021b80 end:0x02021bac
+
 src/game/main/func_0202244c.c:
     complete
     .text       start:0x0202244c end:0x02022478
@@ -1344,6 +1348,10 @@ src/game/main/rng/rng_next_mixed.c:
     complete
     .text       start:0x02027a48 end:0x02027a6c
 
+src/game/main/func_02027a6c.c:
+    complete
+    .text       start:0x02027a6c end:0x02027a98
+
 src/game/main/func_02027a98.c:
     complete
     .text       start:0x02027a98 end:0x02027aa0
@@ -1379,6 +1387,10 @@ src/game/main/graphics/wallpaper_load_both.c:
 src/game/main/func_0202a3c8.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0
+
+src/game/main/func_0202a7c0.c:
+    complete
+    .text       start:0x0202a7c0 end:0x0202a7ec
 
 src/game/main/text/mode_font_show_text.c:
     complete
@@ -2701,6 +2713,10 @@ src/game/main/func_02080440.c:
 src/game/main/func_02080668.c:
     complete
     .text       start:0x02080668 end:0x02080684
+
+src/game/main/func_02080708.c:
+    complete
+    .text       start:0x02080708 end:0x02080734
 
 src/game/main/func_02080734.c:
     complete
@@ -4864,6 +4880,10 @@ src/game/main/func_020dc704.c:
 src/game/main/func_020dc710.c:
     complete
     .text       start:0x020dc710 end:0x020dc71c
+
+src/game/main/func_020dc71c.c:
+    complete
+    .text       start:0x020dc71c end:0x020dc748
 
 src/game/main/combat/acting_unit_start_attack.c:
     complete
