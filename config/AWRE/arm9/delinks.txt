@@ -212,6 +212,10 @@ src/game/main/graphics/window_draw_on_layer1.c:
     complete
     .text       start:0x0201e6b4 end:0x0201e6e8
 
+src/game/main/func_0201e954.c:
+    complete
+    .text       start:0x0201e954 end:0x0201e980
+
 src/game/main/task/task_resume_script_visitor.c:
     complete
     .text       start:0x02023600 end:0x0202360c
