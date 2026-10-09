@@ -6181,6 +6181,10 @@ src/game/main/map/players_apply_battle_setup.c:
     complete
     .text       start:0x020c1444 end:0x020c1848
 
+src/game/main/map/map_rules_set_default_teams.c:
+    complete
+    .text       start:0x020c1848 end:0x020c18cc
+
 src/game/main/func_020c1c14.c:
     complete
     .text       start:0x020c1c14 end:0x020c1c40
