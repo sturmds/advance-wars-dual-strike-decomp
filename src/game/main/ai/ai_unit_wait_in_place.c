@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020b0794(void);
+void AiUnit_RetreatToRepair(void);
 void AiUnit_MoveToSafestTile(void);
 void func_020b81b0(void);
 void Ai_ClearActingUnitTarget(void);
@@ -18,7 +18,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 void AiUnit_WaitInPlace(void)
 {
     gAiTurnState->stepFlags |= AI_STEP_IGNORE_TERRAIN;
-    func_020b0794();
+    AiUnit_RetreatToRepair();
     AiUnit_MoveToSafestTile();
     func_020b81b0();
     Ai_ClearActingUnitTarget();

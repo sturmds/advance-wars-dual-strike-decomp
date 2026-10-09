@@ -18,7 +18,7 @@ void AiFoot_HeadForCaptureSite(void);
 void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
-void func_020b0794(void);
+void AiUnit_RetreatToRepair(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
 
@@ -46,7 +46,7 @@ void AiFoot_MoveAndAttack(void)
     AiUnit_PlanAttack();
     func_020ad704();
     if (GAME->actingUnit->hp <= 60) {
-        func_020b0794();
+        AiUnit_RetreatToRepair();
     }
     AiFoot_HeadForCaptureSite();
     AiUnit_SeekSeaTransport();

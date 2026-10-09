@@ -8,7 +8,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
-void func_020b0794(void);
+void AiUnit_RetreatToRepair(void);
 int Unit_GetTerrainStars(int player, int unitType, int terrain); /* terrain defence stars */
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -41,7 +41,7 @@ void AiUnit_MoveToSafestTile(void)
     bestReach = bestThreat;
     bestStars = bestX;
     if (!(gAiTurnState->stepFlags & AI_STEP_IGNORE_TERRAIN)) {
-        func_020b0794();
+        AiUnit_RetreatToRepair();
     }
     if ((gAiTurnState->stepFlags & AI_STEP_UNIT_AT_TARGET) && (gAiTurnState->stepFlags & AI_STEP_STAY)) {
         return;
