@@ -112,7 +112,8 @@ typedef struct Unk_02080440_48 {
     u8 pad_47[0x58 - 0x47];
     u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */
     u8 unk_59;
-    u8 pad_5a[0x5c - 0x5a];
+    u8 pad_5a;
+    u8 unk_5b;                         /* bit 1 set by func_020c0704 (map screen setup and Players_Reset) */
     u8 unk_5c;
     u8 coEffectsOn;                    /* name is a guess; 0: no CO luck (good luck 10, bad luck 0) */
     u8 partnerBoostHuman;              /* nonzero: non-AI players get tag partner skills */
