@@ -43,6 +43,10 @@ src/game/ov001/func_ov001_023517e4.c:
     complete
     .text       start:0x023517e4 end:0x023517f4
 
+src/game/ov001/func_ov001_023517f4.c:
+    complete
+    .text       start:0x023517f4 end:0x02351804
+
 src/game/ov001/func_ov001_02351d28.c:
     complete
     .text       start:0x02351d28 end:0x02351d3c
