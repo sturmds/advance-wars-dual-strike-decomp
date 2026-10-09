@@ -2267,6 +2267,10 @@ src/game/main/copowers/urban_blight.c:
     complete
     .text       start:0x020e3eb0 end:0x020e3f30
 
+src/game/main/units/unit_is_on_urban_terrain.c:
+    complete
+    .text       start:0x020e3f30 end:0x020e3f9c
+
 src/game/main/copowers/black_storm.c:
     complete
     .text       start:0x020e3f9c end:0x020e4014

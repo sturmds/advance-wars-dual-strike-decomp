@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/power_damage.h"
 
-BOOL IsOnUrbanTerrain(const void *unit);
+BOOL Unit_IsOnUrbanTerrain(const void *unit);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -15,5 +15,5 @@ void UrbanBlight(void *parent)
 {
     StartPowerDamage(gPowerEffectTaskDesc, data_02168990, data_02168994,
                      data_027c027c->unk_48[data_027c0284]->currentPlayer,
-                     30, 0, WEATHER_KEEP, FALSE, IsOnUrbanTerrain, parent);
+                     30, 0, WEATHER_KEEP, FALSE, Unit_IsOnUrbanTerrain, parent);
 }
