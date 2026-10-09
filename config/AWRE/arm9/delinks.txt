@@ -208,6 +208,10 @@ src/game/main/unlocks/gba_cart_is_game.c:
     complete
     .text       start:0x0200c348 end:0x0200c38c
 
+src/game/main/func_02014c24.c:
+    complete
+    .text       start:0x02014c24 end:0x02014c38
+
 src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4
