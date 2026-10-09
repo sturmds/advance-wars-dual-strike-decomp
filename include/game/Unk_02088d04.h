@@ -15,6 +15,44 @@ typedef struct SpriteEntry {
     const void *unk_0c;
 } SpriteEntry;
 
+/* DISPCNT bits 0-15 as Unk_027c0280.dispCnt keeps them. dispCnt is a
+ * plain u16 for the code that sets bits; GFX_DISPCNT reads it as this. */
+typedef struct DispCntBits {
+    u16 bgMode : 3;
+    u16 : 2;
+    u16 objHBlankProc : 1;             /* DISPCNT bit 23 */
+    u16 objMap1D : 1;                  /* DISPCNT bit 4 */
+    u16 displayOn : 1;
+    u16 bg0 : 1;                       /* bits 8-12: layers shown */
+    u16 bg1 : 1;
+    u16 bg2 : 1;
+    u16 bg3 : 1;
+    u16 obj : 1;
+    u16 win0 : 1;                      /* bits 13-15: windows on */
+    u16 win1 : 1;
+    u16 objWin : 1;
+} DispCntBits;
+
+#define GFX_DISPCNT(gfx) ((DispCntBits *)&(gfx)->dispCnt)
+
+/* Layers inside one window (WININ/WINOUT half). */
+typedef struct WindowPlanes {
+    u8 bg[4];
+    u16 obj : 1;
+    u16 effect : 1;                    /* colour effects apply inside */
+    u16 : 14;
+} WindowPlanes;
+
+/* BG2 or BG3 rotation and scaling registers. */
+typedef struct BgAffine {
+    s16 pa;
+    s16 pb;
+    s16 pc;
+    s16 pd;
+    s32 x;
+    s32 y;
+} BgAffine;
+
 /* Pointed to by Unk_027c0280.fontState. Only two fields are known. */
 typedef struct FontState {
     u8 unk_00;                         /* set to 1 when digitEndTile changes */
@@ -34,10 +72,23 @@ typedef struct Unk_027c0280 {
     u8 pad_20[0x24 - 0x20];
     SpriteEntry *spriteLists;
     SpriteEntry *spriteFree;           /* next unused entry */
-    u8 pad_2c[0x6c - 0x2c];
-    u16 dispCnt;                       /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on) */
+    u8 pad_2c[0x6a - 0x2c];
+    u16 : 3;
+    u16 vBlankIrq : 1;                 /* DISPSTAT bits 3-5 */
+    u16 hBlankIrq : 1;
+    u16 vCountIrq : 1;
+    u16 : 2;
+    u16 vCountMatch : 8;               /* DISPSTAT bits 8-15 */
+    u16 dispCnt;                       /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on); DispCntBits names the bits */
     BgControl bgCnt[4];                /* BG0CNT-BG3CNT */
-    u8 pad_76[0x90 - 0x76];
+    u16 bgMosaicH : 4;                 /* MOSAIC */
+    u16 bgMosaicV : 4;
+    u16 objMosaicH : 4;
+    u16 objMosaicV : 4;
+    WindowPlanes win0In;               /* WININ bits 0-5 */
+    WindowPlanes win1In;               /* WININ bits 8-13 */
+    WindowPlanes winOut;               /* WINOUT bits 0-5 */
+    WindowPlanes objWinIn;             /* WINOUT bits 8-13 */
     u8 blendTopBg[4];                  /* BLDCNT first target, per BG */
     u16 blendTopObj : 1;
     u16 blendTopBackdrop : 1;
@@ -45,16 +96,29 @@ typedef struct Unk_027c0280 {
     u16 : 12;
     u8 blendBottomBg[4];               /* BLDCNT second target, per BG */
     u16 blendBottomObj : 1;
-    u16 : 15;
-    u8 pad_9c[0xbc - 0x9c];
+    u16 blendBottomBackdrop : 1;
+    u16 : 14;
+    BgAffine bg2Affine;
+    BgAffine bg3Affine;
     u16 blendEva;
     u16 blendEvb;
     u16 blendEvy;
     u16 bgScrollX[4];
     u16 bgScrollY[4];
-    u8 pad_d2[0xdd - 0xd2];
+    u8 win0Left;                       /* WIN0H, WIN0V */
+    u8 win0Right;
+    u8 win0Top;
+    u8 win0Bottom;
+    u8 win1Left;                       /* WIN1H, WIN1V */
+    u8 win1Right;
+    u8 win1Top;
+    u8 win1Bottom;
+    u8 dispMode;                       /* GX_SetGraphicsMode arguments */
+    u8 bg0Mode;                        /* 1: BG0 shows the 3D engine */
+    u8 bgScreenOffset;                 /* DISPCNT bits 27-29 */
     u8 unk_dd;
-    u8 pad_de[0xe0 - 0xde];
+    s8 masterBrightness;               /* -16 (black) to 16 (white) */
+    u8 pad_df[0xe0 - 0xdf];
     u8 layer0Mode;                     /* GfxLayer.mode of layer 0 */
     /* Four layers of 0x14 bytes from 0xe0: +1 the BG they use, +0xc
      * their tile map buffer. */
