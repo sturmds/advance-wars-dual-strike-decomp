@@ -199,6 +199,10 @@ src/game/main/dma_tasks_destroy.c:
     complete
     .text       start:0x020035e0 end:0x020036a8
 
+src/game/main/graphics/transfer_queue_add.c:
+    complete
+    .text       start:0x02003a60 end:0x02003b44
+
 src/game/main/graphics/data_unpack.c:
     complete
     .text       start:0x02003bec end:0x02003c6c

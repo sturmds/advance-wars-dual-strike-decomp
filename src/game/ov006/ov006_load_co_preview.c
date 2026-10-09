@@ -8,7 +8,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern u8 gArmyPalettes[][32];
 
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_02003a60(const void *src, void *dst, u32 size);
+void TransferQueue_Add(const void *src, void *dst, u32 size);
 u8 *func_020c67bc(void);
 int func_020c6774(int player, int index);
 u8 *func_020ccbe4(int co);
@@ -36,9 +36,9 @@ void Ov006_LoadCoPreview(void)
     palette = data_027c027c->unk_48[data_027c0284]->players[player].armyColour;
     co = STATE->unk_1a & 0x3f;
     icons = func_020c67bc();
-    func_02003a60(icons + func_020c6774(player, co) * 32,
+    TransferQueue_Add(icons + func_020c6774(player, co) * 32,
                   (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5480, 128);
-    func_02003a60(func_020ccbe4(co), (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5500, 256);
+    TransferQueue_Add(func_020ccbe4(co), (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5500, 256);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;

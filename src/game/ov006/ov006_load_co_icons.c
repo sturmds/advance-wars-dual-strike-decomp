@@ -12,7 +12,7 @@ extern u8 gArmyPalettes[][32];
 
 int GameFlag_IsSet(int flag);
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_02003a60(const void *src, void *dst, u32 size);
+void TransferQueue_Add(const void *src, void *dst, u32 size);
 u8 *func_020c67bc(void);
 int func_020c6774(int player, int index);
 
@@ -42,7 +42,7 @@ void Ov006_LoadCoIcons(int player)
         count = 25;
     }
     for (i = 0; i < count; i++) {
-        func_02003a60(func_020c67bc() + func_020c6774(player, *table & 0x3f) * 32, dst, 128);
+        TransferQueue_Add(func_020c67bc() + func_020c6774(player, *table & 0x3f) * 32, dst, 128);
         dst += 128;
         table++;
     }
