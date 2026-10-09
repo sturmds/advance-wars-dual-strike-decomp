@@ -13,7 +13,7 @@ int UnitType_GetAttackKind(int unitType);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
-int func_0209dc54(int x, int y);
+int Ai_CountReachableAdjacentTiles(int x, int y);
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* base damage percent against a target kind */
 BOOL Map_IsTileVisible(s16 x, s16 y);
 int func_020a30c4(void);
@@ -139,7 +139,7 @@ void AiUnit_PickDirectAttack(void)
                     continue;
                 }
             }
-            if (aiBehaviour == AI_BEHAVIOUR_GENERAL && func_0209dc54(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
+            if (aiBehaviour == AI_BEHAVIOUR_GENERAL && Ai_CountReachableAdjacentTiles(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
                 if (STATE->mapTiles->threatSum[TILE(pos[0], pos[1])] >= gAiActiveUnitProfile->threatSumLimit) {
                     continue;
                 }
