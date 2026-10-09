@@ -107,6 +107,10 @@ src/game/main/graphics/co_unpack_picture.c:
     complete
     .text       start:0x02002b24 end:0x02002b74
 
+src/game/main/graphics/co_get_army_picture_variant.c:
+    complete
+    .text       start:0x02002bac end:0x02002c04
+
 src/game/main/graphics/co_get_picture_variant.c:
     complete
     .text       start:0x02002c04 end:0x02002c48
