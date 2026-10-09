@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Unit_IsTileOwnedByTeam(int unitIndex, int tile);
-int func_020c8f14(s16 x, s16 y);
+int Map_IsTeamUnitAt(s16 x, s16 y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define MAP  (GAME->mapTiles)
@@ -13,7 +13,7 @@ int func_020c8f14(s16 x, s16 y);
 /* TRUE when the current player can see the unit in slot unitSlot. Only dived
  * units (Sub, Stealth) can be hidden. They stay seen when they belong to the
  * current player's team, when their tile is owned by that team, or when
- * func_020c8f14 finds something on a neighbouring tile (it is not understood
+ * Map_IsTeamUnitAt finds something on a neighbouring tile (it is not understood
  * yet; its count is only tested against 0). */
 BOOL Unit_IsVisibleToCurrentPlayer(int unitSlot)
 {
@@ -38,16 +38,16 @@ BOOL Unit_IsVisibleToCurrentPlayer(int unitSlot)
         return TRUE;
     }
     if (x > 0) {
-        count += func_020c8f14(x - 1, y);
+        count += Map_IsTeamUnitAt(x - 1, y);
     }
     if (y > 0) {
-        count += func_020c8f14(x, y - 1);
+        count += Map_IsTeamUnitAt(x, y - 1);
     }
     if (x < GAME->unk_1c4->mapWidth - 1) {
-        count += func_020c8f14(x + 1, y);
+        count += Map_IsTeamUnitAt(x + 1, y);
     }
     if (y < GAME->unk_1c4->mapHeight - 1) {
-        count += func_020c8f14(x, y + 1);
+        count += Map_IsTeamUnitAt(x, y + 1);
     }
     return count != 0;
 }
