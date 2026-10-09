@@ -54,6 +54,16 @@ It compares the bytes outside relocations, the relocation offsets and kinds, and
 
 `build/fnindex.json` lists every function: module, mode, address, size, original bytes, relocations, a masked hash (equal for functions that differ only in what they call or load), the mnemonics before the literal pool, and whether a C file covers it. `make fnindex` builds it in about a second; `check` rebuilds it when `symbols.txt`, `relocs.txt` or `extract/` change. It does not watch `delinks.txt`, so `status` can lag behind `fn.py add` until the next `make fnindex`. Tools can `import fnindex` and call `fnindex.load()` once, then `fnindex.check(index, path, name)` per variant.
 
+## Tools that match many functions
+
+All three work from `build/fnindex.json`, check every candidate with the fast check, and `fn.py diff` each before `fn.py finish`. They write `src/game/<module>/func_XXXXXXXX.c`, `delinks.txt` entries and nothing else. Run them on `mainline` with a clean tree, build and commit the result in chunks (each commit must pass `make release`). All are based on khdays-decomp (`docs/third-party/khdays-decomp.md`).
+
+- `python3 tools/propagate.py [--dry-run] [--identical-only]`: copies the C of a matched function to unmatched functions with the same masked hash (identical twins) or the same shape with other immediates (near twins). `fn.py pick --families` ranks the unmatched families; match a head by hand, then run this.
+- `python3 tools/trivial.py [--pattern P] [--dry-run]`: writes C for functions of up to nine instructions: empty, constants, getters, stores, load-modify-store, tail calls, wrappers, comparisons. Patterns: empty, const, getter, tailcall, wrapper, store, modify, addr, compare, other.
+- `python3 tools/permute.py FILE.c NAME [--budget-seconds 120] [--apply]`: for a started function below 100%, tries declaration orders, statement swaps and local types, and prints the best variants. `--apply` replaces the source when the best one matches.
+
+What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
+
 ## 5. Mark it complete and review
 
 1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
@@ -68,6 +78,7 @@ It compares the bytes outside relocations, the relocation offsets and kinds, and
 | `python3 tools/fn.py show NAME\|ADDR` | Location and original disassembly |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
+| `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
 | `make fnindex` | Build `build/fnindex.json` |
 | `python3 tools/tests/test_fncheck.py` | Check that `check` agrees with `diff` |
 | `make` | Build `build/AWRE.nds` |
