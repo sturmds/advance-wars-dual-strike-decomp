@@ -10,14 +10,14 @@ typedef struct Combatant {
     MapUnit *unit;
     s16 terrain;                       /* terrain id under the unit */
     s16 terrainDefense;                /* percent, 10 per star, from DoubleTerrainStars */
-    s16 hp;                            /* copy of unit->hp, 100 = full */
+    s16 hp;                            /* unit->hp, then hp left after the battle */
     s16 ammo;                          /* copy of unit->ammo */
     s16 damage;
     s16 defense;                       /* percent; capped at 200 */
     s16 baseDamage;                    /* from the damage chart */
-    s16 unk_12;
+    s16 hpLost;                        /* hp the other side's hit takes, see func_020c33a8 */
     s16 damageNoLuck;                  /* damage before the luck rolls */
-    s16 unk_16;
+    s16 unk_16;                        /* 1 after a primary weapon hit, 5 after a secondary one */
 } Combatant;
 
 typedef char Combatant_size_check[sizeof(Combatant) == 0x18 ? 1 : -1];

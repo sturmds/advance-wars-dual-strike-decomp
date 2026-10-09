@@ -22,5 +22,5 @@ void Combatant_Init(Combatant *combatant, s16 unitIndex)
     combatant->ammo = combatant->unit->ammo;
     combatant->unk_16 = 0;
     combatant->baseDamage = 0;
-    combatant->unk_12 = 0;
+    combatant->hpLost = 0;
 }
