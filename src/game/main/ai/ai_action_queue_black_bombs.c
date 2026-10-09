@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_0209faf8(void); /* run on each queued Black Bomb */
+void AiBlackBomb_Act(void); /* run on each queued Black Bomb */
 
 /* Queues the current player's Black Bombs that have not acted yet. The scan
  * skips the player's first unit slot and covers the next 50. */
@@ -27,6 +27,6 @@ void AiAction_QueueBlackBombs(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    gAiQueueRoutine = func_0209faf8;
+    gAiQueueRoutine = AiBlackBomb_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

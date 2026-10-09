@@ -12,7 +12,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 BOOL CanUseSuperPower(int player, int slot);
-void func_0209faf8(void); /* run on each queued Black Bomb */
+void AiBlackBomb_Act(void); /* run on each queued Black Bomb */
 
 /* Same as AiAction_QueueBlackBombs, but only when the front CO is Eagle
  * and can use the Super CO Power; otherwise the queue stays empty. The
@@ -34,6 +34,6 @@ void AiAction_QueueBlackBombsForEagle(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    gAiQueueRoutine = func_0209faf8;
+    gAiQueueRoutine = AiBlackBomb_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
