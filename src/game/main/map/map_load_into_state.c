@@ -6,7 +6,7 @@ void Map_LoadData(u16 mapId); /* needed to match: each call narrows mapId itself
 const void *Map_GetName(u16 mapId);
 int Map_GetPlayerCount(u16 mapId);
 void func_020c4990(int mapId);
-void func_0200c5dc(void *a);
+void Camera_ResetToPreset0(void *a);
 void func_020c4e2c(void);
 void func_020c3e5c(void);
 void func_020d7b5c(Unk_02080440_1c4 *map, const void *name);
@@ -33,7 +33,7 @@ void Map_LoadIntoState(int mapId)
         return;
     }
     Map_LoadData(mapId);
-    func_0200c5dc(data_022a7d5c);
+    Camera_ResetToPreset0(data_022a7d5c);
     STATE->unk_1c4->mapWidth = data_0229eadc[0];
     STATE->unk_1c4->mapHeight = data_0229eadc[1];
     STATE->unk_1c4->unk_1e = 0;
