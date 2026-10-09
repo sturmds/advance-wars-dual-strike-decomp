@@ -73,7 +73,7 @@ typedef struct Unk_02080440_48 {
     u8 unk_8a;
     u8 pad_8b[0x8d - 0x8b];
     u8 army[5];                        /* army colour per slot, copied from the map header */
-    u8 unk_92[5];                      /* per slot: 1 or 2 */
+    u8 slotControllers[5];             /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
     u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */
     u8 team[5];                        /* team per slot, copied from the map header */
     u8 pad_a6[0xba - 0xa6];

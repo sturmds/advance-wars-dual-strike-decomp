@@ -22,7 +22,7 @@ extern MapHeader Ov000_gMapHeaders[];
 #define MAP_ID (STATE->unk_1c4->mapId)
 
 /* Applies the current map's header to the rules: fog, weather, tileset,
- * the tag partner flags and the per-player bytes unk_92, each by game
+ * the tag partner flags and who controls each slot (slotControllers), each by game
  * mode (gameMode). data_027c0288 holds two states; modes 0 and 1 switch to
  * one of them to write there, then switch back. */
 void SetupMapRules(void)
@@ -37,12 +37,12 @@ void SetupMapRules(void)
         func_0200acac(data_027c0288.unk_00);
         saved027c = data_027c027c;
         func_0200ac9c(data_027c0288.unk_00);
-        /* 2 for the slot that equals the map's player count, else 1 */
+        /* AI for the slot that equals the map's player count, else human */
         for (i = 1; i < 5; i++) {
             if (i == Map_GetPlayerCount(MAP_ID)) {
-                STATE->unk_92[i] = 2;
+                STATE->slotControllers[i] = PLAYER_CONTROLLER_AI;
             } else {
-                STATE->unk_92[i] = 1;
+                STATE->slotControllers[i] = PLAYER_CONTROLLER_HUMAN;
             }
         }
         if (Ov000_gMapHeaders[MAP_ID].fog != 0) {
@@ -58,10 +58,10 @@ void SetupMapRules(void)
         break;
     }
     case 1:
-        STATE->unk_92[1] = 1;
-        STATE->unk_92[2] = 2;
-        STATE->unk_92[3] = 2;
-        STATE->unk_92[4] = 2;
+        STATE->slotControllers[1] = PLAYER_CONTROLLER_HUMAN;
+        STATE->slotControllers[2] = PLAYER_CONTROLLER_AI;
+        STATE->slotControllers[3] = PLAYER_CONTROLLER_AI;
+        STATE->slotControllers[4] = PLAYER_CONTROLLER_AI;
         if (Ov000_gMapHeaders[MAP_ID].variantMapIds[0] != 0) {
             Unk_027c0280 *saved0280;
             Unk_02080440 *saved027c;
@@ -71,7 +71,7 @@ void SetupMapRules(void)
                 func_0200acac(data_027c0288.unk_04);
                 saved027c = data_027c027c;
                 func_0200ac9c(data_027c0288.unk_04);
-                STATE->unk_92[1] = 2;
+                STATE->slotControllers[1] = PLAYER_CONTROLLER_AI;
                 func_0200ac9c(saved027c);
                 func_0200acac(saved0280);
             } else {
@@ -79,7 +79,7 @@ void SetupMapRules(void)
                 func_0200acac(data_027c0288.unk_04);
                 saved027c = data_027c027c;
                 func_0200ac9c(data_027c0288.unk_04);
-                STATE->unk_92[1] = 1;
+                STATE->slotControllers[1] = PLAYER_CONTROLLER_HUMAN;
                 func_0200ac9c(saved027c);
                 func_0200acac(saved0280);
             }
@@ -87,9 +87,9 @@ void SetupMapRules(void)
             func_0200acac(data_027c0288.unk_04);
             saved027c = data_027c027c;
             func_0200ac9c(data_027c0288.unk_04);
-            STATE->unk_92[2] = 2;
-            STATE->unk_92[3] = 2;
-            STATE->unk_92[4] = 2;
+            STATE->slotControllers[2] = PLAYER_CONTROLLER_AI;
+            STATE->slotControllers[3] = PLAYER_CONTROLLER_AI;
+            STATE->slotControllers[4] = PLAYER_CONTROLLER_AI;
             func_0200ac9c(saved027c);
             func_0200acac(saved0280);
         }
@@ -113,10 +113,10 @@ void SetupMapRules(void)
         }
         break;
     case 3:
-        STATE->unk_92[1] = 1;
-        STATE->unk_92[2] = 2;
-        STATE->unk_92[3] = 2;
-        STATE->unk_92[4] = 2;
+        STATE->slotControllers[1] = PLAYER_CONTROLLER_HUMAN;
+        STATE->slotControllers[2] = PLAYER_CONTROLLER_AI;
+        STATE->slotControllers[3] = PLAYER_CONTROLLER_AI;
+        STATE->slotControllers[4] = PLAYER_CONTROLLER_AI;
         if (Ov000_gMapHeaders[MAP_ID].fog != 0) {
             STATE->unk_1c4->fog = 1;
         }

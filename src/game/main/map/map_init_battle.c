@@ -27,10 +27,6 @@ extern MapHeader Ov000_gMapHeaders[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* Campaign missions played on two maps at once. */
-#define MAP_LIGHTNING_STRIKES (MAP_CAMPAIGN_FIRST + 10)
-#define MAP_RING_OF_FIRE      (MAP_CAMPAIGN_FIRST + 21)
-
 /* data_027c0288 holds two game states, one per map. A battle with a second
  * map (header variantMapIds[0] nonzero) uses both; data_027c0284 picks the current one.
  * func_0200acac and func_0200ac9c load a state into data_027c0280 and
@@ -134,20 +130,23 @@ void Map_InitBattle(void)
 
     func_020f808c();
 
+    /* On the Auto CO missions the second map's slots keep their players'
+     * controllers, so the player can play that front. On other two-map
+     * missions the AI plays every used slot of the second map. */
     game = GAME;
     if (game->gameMode == 0 && game->secondMapId != 0) {
         if (!func_020e8ae4() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
                                   GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
             SWITCH_TO(SECOND_MAP);
             for (i = 1; i < 5; i++) {
-                GAME->unk_92[i] = GAME->players[i].controller;
+                GAME->slotControllers[i] = GAME->players[i].controller;
             }
             SWITCH_BACK();
         } else {
             SWITCH_TO(SECOND_MAP);
             for (i = 1; i < 5; i++) {
-                if (GAME->unk_92[i] != 0) {
-                    GAME->unk_92[i] = 2;
+                if (GAME->slotControllers[i] != PLAYER_CONTROLLER_NONE) {
+                    GAME->slotControllers[i] = PLAYER_CONTROLLER_AI;
                 }
             }
             SWITCH_BACK();
