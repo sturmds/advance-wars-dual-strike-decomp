@@ -941,6 +941,10 @@ src/game/main/menus/vs_setup_handle_keys.c:
     complete
     .text       start:0x02068624 end:0x02068790
 
+src/game/main/menus/vs_setup_confirm.c:
+    complete
+    .text       start:0x02069424 end:0x02069460
+
 src/game/main/func_02069610.c:
     complete
     .text       start:0x02069610 end:0x02069624

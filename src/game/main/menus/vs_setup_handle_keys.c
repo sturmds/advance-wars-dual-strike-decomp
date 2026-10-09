@@ -8,7 +8,7 @@ void VsSetup_PrevForceRankSet(int a);
 void func_02068e6c(MenuButton *button);
 void func_020690f4(MenuButton *button);
 void func_02069378(int a);
-void func_02069424(int a);
+void VsSetup_Confirm(int a);
 
 /* onKeys of the Vs setup buttons (COs, rules and so on). Left and right
  * step to the previous or next button id that exists, 0-15 with wrap; up
@@ -61,6 +61,6 @@ void VsSetup_HandleKeys(MenuButton *button)
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
-        func_02069424(0);
+        VsSetup_Confirm(0);
     }
 }
