@@ -94,10 +94,14 @@ typedef struct CampaignMapWork {
 /* Layout of MenuState read by func_0206d67c, which draws a unit's
  * firepower (through Player_GetShownFirepower). */
 typedef struct Unk_0206d67c {
-    u8 pad_020[0xa1 - 0x20];
+    u8 pad_020[0x91 - 0x20];
+    u8 coShown[4][2];                  /* nonzero: this CO of the player gets a button */
+    u8 pad_099[0xa0 - 0x99];
+    u8 playerCount;
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
-    u8 pad_0a3[0xa8 - 0xa3];
+    u8 page;                           /* 0-3; Down (func_0206d220) turns to the next */
+    u8 pad_0a4[0xa8 - 0xa4];
     u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses Player_GetSlotFirepower for every slot */
 } Unk_0206d67c;
 
