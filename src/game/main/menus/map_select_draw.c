@@ -8,7 +8,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator); /* remainder, hardware divider */
 int func_01ff9f7c(void);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
-void func_02003188(const void *src, int slideOffset, int size);
+void Palette_Load(const void *src, int slideOffset, int size);
 void Screen_SetCurrentGfx(void *state);
 void func_02021858(int a0, int x, int y, void *a3, int attr, int tile);
 void func_020218e4(int a0, int x, int y, void *a3, int attr, int tile);
@@ -278,11 +278,11 @@ void MapSelect_Draw(void)
     Screen_SetCurrentGfx(savedState2);
 
     if (STATE->gameMode == 1) {
-        func_02003188(&MENU->colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);
+        Palette_Load(&MENU->colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);
     }
     if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
         func_02021858(0, 172, 172, &data_027c0040, 0x3000, 0x5c4);
         func_02021858(0, 188, 172, &data_027c0108, 0x3000, 0x5e8);
-        func_02003188(&MENU->setup.colours2[(func_01ff9f7c() >> 2) & 15], 0x274, 2);
+        Palette_Load(&MENU->setup.colours2[(func_01ff9f7c() >> 2) & 15], 0x274, 2);
     }
 }

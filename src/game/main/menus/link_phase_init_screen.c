@@ -8,7 +8,7 @@
 
 void func_01ff8d60(int a);
 void func_02002e50(const void *src, void *dst, u32 size);
-void func_02003188(const void *src, u32 offset, u32 size);
+void Palette_Load(const void *src, u32 offset, u32 size);
 void func_02003bec(const void *src, void *dst);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -129,7 +129,7 @@ void LinkPhase_InitScreen(void)
     file = File_Load(gLinkPhaseResPath);
     SWITCH_TO(MAIN_MAP);
     func_02003bec(file, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
-    func_02003188(file + 0x2a4, 0, 0xa0);
+    Palette_Load(file + 0x2a4, 0, 0xa0);
     for (i = 0; i < gMenuState.link.playerCount; i++) {
         target = data_027c0280->layer2Map;
         func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[gMenuState.link.armyColours[i] - 1], 0);
@@ -143,9 +143,9 @@ void LinkPhase_InitScreen(void)
     Mem_Free(file);
 
     file = File_Load(gLinkCommonResPath);
-    func_02003188(file, 0x200, 0x20);
-    func_02003188(file, 0x220, 0x20);
-    func_02003188(file, 0x240, 0x20);
+    Palette_Load(file, 0x200, 0x20);
+    Palette_Load(file, 0x220, 0x20);
+    Palette_Load(file, 0x240, 0x20);
     func_02026bc8(data_027c0280->unk_08 + 0x240, 0, 8, 8);
     func_02002e50(file + 0x20, &gMenuState, 0x20);
     Mem_Free(file);
