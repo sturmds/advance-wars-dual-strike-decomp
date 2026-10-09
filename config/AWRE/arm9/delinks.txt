@@ -2363,6 +2363,10 @@ src/game/main/func_02028d50.c:
     complete
     .text       start:0x02028d50 end:0x02028d60
 
+src/game/main/graphics/wallpaper_destroy_tasks.c:
+    complete
+    .text       start:0x02028d60 end:0x02028de0
+
 src/game/main/graphics/wallpaper_load_single.c:
     complete
     .text       start:0x02029540 end:0x02029648
