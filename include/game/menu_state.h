@@ -8,7 +8,7 @@
 typedef struct MapList {
     u16 mapIds[50];                    /* length a guess */
     u8 unk_64;                         /* 0-12, indexes the rows of MapListTables */
-    u8 pad_65;
+    u8 mapCount;                       /* maps in the list; MapSelect pages = (mapCount - 1) / (rows * columns) + 1 */
 } MapList;
 
 /* Link screen layout of MenuState (LinkPhase_InitScreen). */
