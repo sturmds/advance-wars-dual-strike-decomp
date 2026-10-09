@@ -419,6 +419,10 @@ src/game/main/ai/ai_foot_continue_capture.c:
     complete
     .text       start:0x020a0330 end:0x020a03bc
 
+src/game/main/ai/ai_indirect_move_order10.c:
+    complete
+    .text       start:0x020a03bc end:0x020a0428
+
 src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854

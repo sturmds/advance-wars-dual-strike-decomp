@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 BOOL func_0209dd7c(void);
 BOOL func_020c0e3c(int player);
-void func_020a03bc(void);
+void AiIndirect_MoveOrder10(void);
 void func_020a0428(void);
 void func_020a0498(void);
 void func_020a0508(void);
@@ -65,7 +65,7 @@ void AiIndirect_MoveByOrder(void)
         func_020a0428();
         break;
     case 10:
-        func_020a03bc();
+        AiIndirect_MoveOrder10();
         break;
     }
 }
