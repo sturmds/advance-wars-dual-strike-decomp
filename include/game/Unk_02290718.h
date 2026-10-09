@@ -6,7 +6,7 @@
 #include "game/co_save.h"
 
 /* data_02290718 (main bss), 0x38 bytes before the Force Rank table
- * that func_02017abc reads. */
+ * that Co_GetForceRankSetIndex reads. */
 typedef struct Unk_02290718 {
     u8 pad_00[0x0f];
     u8 unk_0f;

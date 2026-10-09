@@ -29,7 +29,7 @@ typedef struct BattleSetupState {
     u8 pad_268[0x2b0 - 0x268];
     u8 controllers[4][2];              /* PLAYER_CONTROLLER_HUMAN or _AI, on the main and second map */
     u8 cos[4][2];                      /* front and back CO id */
-    u8 forceRankSets[4][2];            /* 0-3, from func_02017abc */
+    u8 forceRankSets[4][2];            /* 0-3, from Co_GetForceRankSetIndex */
     u8 teams[4];                       /* team of each player slot, 0-3 */
     u8 armyColours[4];
     u8 pad_2d0[0x2d4 - 0x2d0];

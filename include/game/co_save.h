@@ -10,7 +10,10 @@ typedef u8 ForceRankSet[4];
  * indexed by CO id. */
 typedef struct CoSaveRecord {
     u32 experience : 19;               /* func_020179c0 caps it at 100000 */
-    u32 unk_0_19 : 13;
+    u32 forceRankSetByPlayer : 8;      /* 2 bits per player 1-4: which Force Rank set the CO uses */
+    u32 paletteVariant : 3;            /* 0-7, see Co_LoadPalette */
+    u32 pictureVariant : 1;            /* alternate picture */
+    u32 unk_0_31 : 1;
     ForceRankSet setMode1;             /* ForceRank_GetSavedSet mode 1 */
     ForceRankSet setMode3;             /* mode 3 */
     ForceRankSet setsMode2[4];         /* mode 2 */

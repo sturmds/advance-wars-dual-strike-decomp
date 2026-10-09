@@ -10,7 +10,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 u8 func_020018a8(int player, int slot);
-int func_02017abc(int co, int player);
+int Co_GetForceRankSetIndex(int co, int player);
 void Map_LoadAndCountProperties(int mapId, u8 *a, u8 *b);
 u8 Map_GetLoadedPlayerCount(void);
 u8 BuildCoPickList(void);
@@ -134,8 +134,8 @@ void BattleSetup_LoadFromGame(void)
         for (i = 0; i < 4; i++) {
             gMenuState.setup.cos[i][0] = GAME->playerCos[i + 1][0] & PLAYER_CO_ID_MASK;
             gMenuState.setup.cos[i][1] = GAME->playerCos[i + 1][1] & PLAYER_CO_ID_MASK;
-            gMenuState.setup.forceRankSets[i][0] = func_02017abc(gMenuState.setup.cos[i][0], i + 1);
-            gMenuState.setup.forceRankSets[i][1] = func_02017abc(gMenuState.setup.cos[i][1], i + 1);
+            gMenuState.setup.forceRankSets[i][0] = Co_GetForceRankSetIndex(gMenuState.setup.cos[i][0], i + 1);
+            gMenuState.setup.forceRankSets[i][1] = Co_GetForceRankSetIndex(gMenuState.setup.cos[i][1], i + 1);
         }
         isDesignMap = FALSE;
         if (MAP_IS_CUSTOM(GAME->unk_1c4->mapId)) {
