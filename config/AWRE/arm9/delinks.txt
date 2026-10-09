@@ -6591,6 +6591,10 @@ src/game/main/func_020c9c70.c:
     complete
     .text       start:0x020c9c70 end:0x020c9c7c
 
+src/game/main/script/script_start_with_hook.c:
+    complete
+    .text       start:0x020ca288 end:0x020ca2e8
+
 src/game/main/ai/ai_flag_current_player_enter_state18.c:
     complete
     .text       start:0x020ca398 end:0x020ca3d8

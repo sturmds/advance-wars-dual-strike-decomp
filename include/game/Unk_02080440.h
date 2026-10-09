@@ -190,7 +190,8 @@ typedef struct Unk_02080440_50 {
     void (*afterBoxDraw)(void);        /* run by MenuBox_Draw after it draws a menu box */
     u8 pad_44[0x48 - 0x44];
     void (*unk_48)(void);              /* run by ScreenConfig_RunActionHook when set */
-    u8 pad_4c[0x54 - 0x4c];
+    void (*unk_4c)(void);              /* run by Script_StartWithHook when unk_48 is set */
+    u8 pad_50[0x54 - 0x50];
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
     u8 pad_58[0x5c - 0x58];
     BOOL (*unk_5c)(void);              /* func_020fa6f8 calls it; picks between two asset or chart variants */
