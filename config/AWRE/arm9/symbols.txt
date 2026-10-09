@@ -2782,11 +2782,11 @@ AiTurn_UpdateUnitModes kind:function(arm,size=0x10c) addr:0x0208d2f0
 func_0208d3fc kind:function(arm,size=0x20) addr:0x0208d3fc
 func_0208d41c kind:function(arm,size=0x5c) addr:0x0208d41c
 func_0208d478 kind:function(arm,size=0xd0) addr:0x0208d478
-func_0208d548 kind:function(arm,size=0x24) addr:0x0208d548
+Ai_ClearTransportsSentToUnit kind:function(arm,size=0x24) addr:0x0208d548
 AiTurn_ClearUnitMarks kind:function(arm,size=0xc0) addr:0x0208d56c
 AiTurn_CountCaptureTargets kind:function(arm,size=0xc8) addr:0x0208d62c
 AiTurn_MarkReachableTiles kind:function(arm,size=0x1c0) addr:0x0208d6f4
-func_0208d8b4 kind:function(arm,size=0x60) addr:0x0208d8b4
+Player_CountPropertiesPlusOne kind:function(arm,size=0x60) addr:0x0208d8b4
 AiTurn_ClearCaptureMarks kind:function(arm,size=0x50) addr:0x0208d914
 func_0208d964 kind:function(arm,size=0x20) addr:0x0208d964
 AiTurn_Start kind:function(arm,size=0x150) addr:0x0208d984
@@ -2965,7 +2965,7 @@ Ai_ClearThreatMaps kind:function(arm,size=0x84) addr:0x0209ca48
 Ai_AddEnemyThreat kind:function(arm,size=0xa14) addr:0x0209cacc
 Ai_AddObjectThreat kind:function(arm,size=0x130) addr:0x0209d4e0
 Ai_MarkObjectTileThreat kind:function(arm,size=0x128) addr:0x0209d610
-func_0209d738 kind:function(arm,size=0x1ec) addr:0x0209d738
+Ai_AddOoziumThreat kind:function(arm,size=0x1ec) addr:0x0209d738
 func_0209d924 kind:function(arm,size=0x170) addr:0x0209d924
 func_0209da94 kind:function(arm,size=0x50) addr:0x0209da94
 func_0209dae4 kind:function(arm,size=0x170) addr:0x0209dae4
@@ -3080,7 +3080,7 @@ Ai_ClearActingUnitTarget kind:function(arm,size=0x68) addr:0x020a491c
 func_020a4984 kind:function(arm,size=0xec) addr:0x020a4984
 func_020a4a70 kind:function(arm,size=0x2cc) addr:0x020a4a70
 func_020a4d3c kind:function(arm,size=0x30c) addr:0x020a4d3c
-func_020a5048 kind:function(arm,size=0x34) addr:0x020a5048
+Tile_GetDirection kind:function(arm,size=0x34) addr:0x020a5048
 func_020a507c kind:function(arm,size=0x58) addr:0x020a507c
 func_020a50d4 kind:function(arm,size=0x2c) addr:0x020a50d4
 func_020a5100 kind:function(arm,size=0x64) addr:0x020a5100
@@ -4123,8 +4123,8 @@ func_020dee24 kind:function(arm,size=0x150) addr:0x020dee24
 func_020def74 kind:function(arm,size=0x10) addr:0x020def74
 func_020def84 kind:function(arm,size=0x10) addr:0x020def84
 func_020def94 kind:function(arm,size=0xd4) addr:0x020def94
-func_020df068 kind:function(arm,size=0x124) addr:0x020df068
-func_020df18c kind:function(arm,size=0x16c) addr:0x020df18c
+Tile_HasUnitToSupply kind:function(arm,size=0x124) addr:0x020df068
+Tile_HasUnitToRepair kind:function(arm,size=0x16c) addr:0x020df18c
 func_020df2f8 kind:function(arm,size=0x20) addr:0x020df2f8
 func_020df318 kind:function(arm,size=0x8c) addr:0x020df318
 func_020df3a4 kind:function(arm,size=0xb0) addr:0x020df3a4
@@ -7583,7 +7583,7 @@ data_02161980 kind:data(any) addr:0x02161980
 data_021619c0 kind:data(any) addr:0x021619c0
 gAiProfile kind:data(any) addr:0x021619c4
 gAiTurnState kind:data(any) addr:0x021619c8
-data_021619cc kind:data(any) addr:0x021619cc
+gUnitFitsLander kind:data(any) addr:0x021619cc
 gUnitSupplyKind kind:data(any) addr:0x021619e8
 gTerrainIsProperty kind:data(any) addr:0x02161a04
 gTerrainFactoryKind kind:data(any) addr:0x02161a24
@@ -8816,7 +8816,7 @@ data_0229e184 kind:bss addr:0x0229e184
 gUnitAction kind:bss addr:0x0229e198
 data_0229e19e kind:bss addr:0x0229e19e
 data_0229e1a4 kind:bss addr:0x0229e1a4
-data_0229e1b0 kind:bss addr:0x0229e1b0
+gAiTransportsSentToUnit kind:bss addr:0x0229e1b0
 gAiQueue kind:bss addr:0x0229e1f0
 gAiQueueSortKeys kind:bss addr:0x0229e234
 data_0229e278 kind:bss addr:0x0229e278

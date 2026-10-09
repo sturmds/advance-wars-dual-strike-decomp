@@ -15,13 +15,13 @@ void AiUnit_LaunchSilo(void);
 void AiStep_DebugHook(void);
 
 /* Like func_020af5f8, but only runs AiUnit_GoToSupply and only when the acting
- * unit's unk_0a_12 is 1. */
+ * unit's serviceWanted is 1. */
 void AiUnit_SeekSupply(void)
 {
     if (!Unit_IsBlackHoleOnFlaggedTile(GAME->actingUnit, GAME->actingUnit->x, GAME->actingUnit->y)) {
         func_020aff0c();
     }
-    if (GAME->actingUnit->unk_0a_12 != 1) {
+    if (GAME->actingUnit->serviceWanted != 1) {
         return;
     }
     if (GAME->actingUnit->type <= UNIT_MECH) {

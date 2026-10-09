@@ -61,8 +61,8 @@ void Map_PlacePredeployedUnits(const PredeployedUnit *row)
             break;
         }
         unit->unk_0c_4 = row->unk_0a;
-        unit->unk_0a_12 = 0;
-        unit->unk_0a_14 = 0;
+        unit->serviceWanted = 0;
+        unit->transportWanted = 0;
         unit->unk_08_7 = 0;
         unit->unk_0c_5 = 0;
         unit->unk_0c_6 = 0;

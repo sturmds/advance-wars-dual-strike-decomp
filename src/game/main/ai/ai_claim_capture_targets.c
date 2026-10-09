@@ -21,7 +21,7 @@ s16 func_020a7640(MapUnit *unit);
  * the nearest tile it can reach that is a silo or capturable and that no
  * other unit has claimed, claims it (Unk_02080440_6088.unk_03) and stores
  * it as the unit's AI target. If the tile is within the distance
- * Unit_GetUsableMovement gives, the flag is cleared; if not, MapUnit.unk_0a_14 is
+ * Unit_GetUsableMovement gives, the flag is cleared; if not, MapUnit.transportWanted is
  * set to 1 (meaning unknown). Ties go to the later tile. */
 void AiTurn_ClaimCaptureTargets(void)
 {
@@ -65,7 +65,7 @@ void AiTurn_ClaimCaptureTargets(void)
                 if (best <= Unit_GetUsableMovement(unit)) {
                     unit->unk_0c_5 = 0;
                 } else {
-                    unit->unk_0a_14 = 1;
+                    unit->transportWanted = 1;
                 }
             }
         }

@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
-extern u8 data_0229e1b0[64];     /* per unit slot & 63: empty transports already sent to that foot unit this turn */
+extern u8 gAiTransportsSentToUnit[64];     /* per unit slot & 63: empty transports already sent to that foot unit this turn */
 
 /* movement is int here (s16 in fill_unit_moves.c): needed to match, the
  * caller passes footMove without narrowing it. */
@@ -82,7 +82,7 @@ void AiEmptyTransport_GoToFootUnit(void)
         if (unit->type == UNIT_NONE || unit->type > UNIT_MECH) {
             continue;
         }
-        if (data_0229e1b0[i & 63] != 0) {
+        if (gAiTransportsSentToUnit[i & 63] != 0) {
             continue;
         }
         if (unit->unk_0c_7) {
@@ -91,12 +91,12 @@ void AiEmptyTransport_GoToFootUnit(void)
         /* APCs only go for foot units marked 1, T-Copters for 1 to 3 */
         switch (STATE->actingUnit->type) {
         case UNIT_APC:
-            if (unit->unk_0a_14 != 1) {
+            if (unit->transportWanted != 1) {
                 continue;
             }
             break;
         case UNIT_T_COPTER:
-            if (unit->unk_0a_14 == 0) {
+            if (unit->transportWanted == 0) {
                 continue;
             }
             break;
@@ -191,7 +191,7 @@ void AiEmptyTransport_GoToFootUnit(void)
     if (meetX == -1) {
         return;
     }
-    data_0229e1b0[meetSlot & 63]++;
+    gAiTransportsSentToUnit[meetSlot & 63]++;
     if (meetDist < transportReach) {
         AiUnit_PerformAction(meetX, meetY, AI_ACTION_WAIT, 0, 0);
     } else {

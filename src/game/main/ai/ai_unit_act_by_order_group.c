@@ -12,7 +12,7 @@ void AiIndirect_ActOtherOrders(void);
  * action sequences on the active unit, chosen by its AI order. */
 void AiUnit_ActByOrderGroup(void)
 {
-    if (data_027c027c->unk_48[data_027c0284]->actingUnit->unk_0a_12 != 2) {
+    if (data_027c027c->unk_48[data_027c0284]->actingUnit->serviceWanted != 2) {
         gAiTurnState->stepFlags |= AI_STEP_NO_ADJUST;
     }
 

@@ -9,18 +9,18 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL FindAttackTile(int x, int y, s16 *pos);
-BOOL func_020df068(s16 x, s16 y);
+BOOL Tile_HasUnitToSupply(s16 x, s16 y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 #define AI_ACTION_SUPPLY 6 /* name is a guess */
 
-/* MapUnit.unk_0a_12 value that AiUnit_SeekSupply and func_020af5f8 act on;
+/* MapUnit.serviceWanted value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it supplies the unit. */
 #define WANTS_SUPPLY 1
 
-/* Picks, among the units in reach that pass func_020df068 and have
+/* Picks, among the units in reach that pass Tile_HasUnitToSupply and have
  * WANTS_SUPPLY set, the one with the least fuel, and supplies it from an
  * adjacent tile. Called by AiClass3_Act. */
 
@@ -46,7 +46,7 @@ void AiClass3_SupplyUnit(void)
             if (unit->type == UNIT_NONE) {
                 continue;
             }
-            if (func_020df068(x, y) && unit->unk_0a_12 == WANTS_SUPPLY && bestFuel >= unit->fuel) {
+            if (Tile_HasUnitToSupply(x, y) && unit->serviceWanted == WANTS_SUPPLY && bestFuel >= unit->fuel) {
                 if (FindAttackTile(x, y, pos)) {
                     bestFuel = unit->fuel;
                     bestX = pos[0];
@@ -59,6 +59,6 @@ void AiClass3_SupplyUnit(void)
     if (bestX == -1) {
         return;
     }
-    bestUnit->unk_0a_12 = 0;
+    bestUnit->serviceWanted = 0;
     AiUnit_PerformAction(bestX, bestY, AI_ACTION_SUPPLY, 0, 0);
 }

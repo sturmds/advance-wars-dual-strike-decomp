@@ -38,8 +38,8 @@ typedef struct MapUnit {
     u8 pad_09;
     u16 aiTargetX : 6;                 /* MAP_UNIT_NO_TARGET when unused */
     u16 aiTargetY : 6;
-    u16 unk_0a_12 : 2;
-    u16 unk_0a_14 : 2;
+    u16 serviceWanted : 2;             /* set by the AI: 1 the unit wants supplies (AiUnit_GoToSupply), 2 repairs (AiUnit_HeadForRepairTile) */
+    u16 transportWanted : 2;           /* set by the AI on a foot unit: 1 it waits for an APC, 2 for a T-Copter */
     u8 aiOrder : 4;                    /* 8, 9 and 10 use aiTargetX and aiTargetY */
     u8 unk_0c_4 : 1;
     u8 unk_0c_5 : 1;

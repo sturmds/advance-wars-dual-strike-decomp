@@ -14,7 +14,7 @@ BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL func_020a8804(int x, int y, s16 *stand); /* guess: picks where the transport stops to drop a unit on (x, y) */
 BOOL func_020a4d3c(int x, int y);
 BOOL func_020a4a70(int x, int y, int distance, s16 *property); /* guess: a capturable property near (x, y) */
-int func_020a5048(int fromX, int fromY, int toX, int toY); /* direction: 0 same tile, 1 up, 2 right, 3 down, 4 left */
+int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction: 0 same tile, 1 up, 2 right, 3 down, 4 left */
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -134,7 +134,7 @@ void AiTransport_UnloadForCapture(void)
         cargo->aiTargetX = unloadX;
         cargo->aiTargetY = unloadY;
         STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(unloadX, unloadY)]].unk_03++;
-        AiUnit_PerformAction(standX, standY, AI_ACTION_UNLOAD, func_020a5048(standX, standY, unloadX, unloadY), 0);
+        AiUnit_PerformAction(standX, standY, AI_ACTION_UNLOAD, Tile_GetDirection(standX, standY, unloadX, unloadY), 0);
     }
 
     unloadY2 = -1;
@@ -232,5 +232,5 @@ void AiTransport_UnloadForCapture(void)
     cargo->aiTargetX = captureX;
     cargo->aiTargetY = captureY;
     STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(captureX, captureY)]].unk_03++;
-    AiUnit_PerformAction(standX2, standY2, AI_ACTION_UNLOAD, func_020a5048(standX2, standY2, unloadX2, unloadY2), 0);
+    AiUnit_PerformAction(standX2, standY2, AI_ACTION_UNLOAD, Tile_GetDirection(standX2, standY2, unloadX2, unloadY2), 0);
 }

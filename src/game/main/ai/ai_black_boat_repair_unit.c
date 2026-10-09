@@ -9,19 +9,19 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL FindAttackTile(int x, int y, s16 *pos);
-BOOL func_020df18c(s16 x, s16 y);
-int func_020a5048(int fromX, int fromY, int toX, int toY); /* direction code from the first tile to the second; suggested name: Tile_GetDirection */
+BOOL Tile_HasUnitToRepair(s16 x, s16 y);
+int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction from the first tile to the second: 0 same tile, 1 up, 2 right, 3 down, 4 left */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 #define AI_ACTION_REPAIR 24 /* arg3: direction to the repaired unit; name is a guess */
 
-/* MapUnit.unk_0a_12 value that AiUnit_SeekSupply and func_020af5f8 act on;
+/* MapUnit.serviceWanted value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it repairs the unit. */
 #define WANTS_SUPPLY 1
 
-/* Same search as AiClass3_SupplyUnit, with func_020df18c as the filter:
+/* Same search as AiClass3_SupplyUnit, with Tile_HasUnitToRepair as the filter:
  * picks the unit in reach with WANTS_SUPPLY set and the least fuel, and
  * performs the repair action from an adjacent tile. Called by AiBlackBoat_Act. */
 void AiBlackBoat_RepairUnit(void)
@@ -46,7 +46,7 @@ void AiBlackBoat_RepairUnit(void)
             if (unit->type == UNIT_NONE) {
                 continue;
             }
-            if (func_020df18c(x, y) && unit->unk_0a_12 == WANTS_SUPPLY && bestFuel >= unit->fuel) {
+            if (Tile_HasUnitToRepair(x, y) && unit->serviceWanted == WANTS_SUPPLY && bestFuel >= unit->fuel) {
                 if (FindAttackTile(x, y, pos)) {
                     bestFuel = unit->fuel;
                     bestX = pos[0];
@@ -59,6 +59,6 @@ void AiBlackBoat_RepairUnit(void)
     if (bestX == -1) {
         return;
     }
-    bestUnit->unk_0a_12 = 0;
-    AiUnit_PerformAction(bestX, bestY, AI_ACTION_REPAIR, func_020a5048(bestX, bestY, bestUnit->x, bestUnit->y), 0);
+    bestUnit->serviceWanted = 0;
+    AiUnit_PerformAction(bestX, bestY, AI_ACTION_REPAIR, Tile_GetDirection(bestX, bestY, bestUnit->x, bestUnit->y), 0);
 }

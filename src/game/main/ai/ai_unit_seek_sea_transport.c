@@ -8,7 +8,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_021619cc[];             /* per unit type; nonzero: ground units a Lander carries, without Piperunner */
+extern u8 gUnitFitsLander[];             /* per unit type; nonzero: ground units a Lander carries, without Piperunner */
 
 BOOL func_02098590(void);              /* gAiProfile->unk_08[9] has bit 2 or 3 set */
 int Ai_CountUnitsOfType(int type);
@@ -61,7 +61,7 @@ void AiUnit_SeekSeaTransport(void)
     best = 0x7fff;
     bestX = -1;
     bestY = -1;
-    if (!(gAiTurnState->unk_0a_3 & 4)) {
+    if (!(gAiTurnState->domainsOwn & AI_DOMAIN_SEA)) {
         return;
     }
     if (!func_02098590() && Ai_CountUnitsOfType(UNIT_LANDER) == 0 && Ai_CountUnitsOfType(UNIT_BLACK_BOAT) == 0) {
@@ -73,7 +73,7 @@ void AiUnit_SeekSeaTransport(void)
     if (STATE->actingUnit->hp < 61) {
         return;
     }
-    if (data_021619cc[STATE->actingUnit->type] == 0) {
+    if (gUnitFitsLander[STATE->actingUnit->type] == 0) {
         return;
     }
     if (func_020a3294() == TRUE) {
@@ -81,7 +81,7 @@ void AiUnit_SeekSeaTransport(void)
     }
     func_020ab70c();
     unarmed = UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_NONE;
-    STATE->actingUnit->unk_0a_14 = 2;
+    STATE->actingUnit->transportWanted = 2;
     if (!unarmed) {
         RangeMap_SetBuffer(STATE->mapTiles->rangeScratch2);
         RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, ANY_DISTANCE, 0);

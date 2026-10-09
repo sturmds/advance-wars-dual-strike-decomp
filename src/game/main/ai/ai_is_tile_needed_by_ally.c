@@ -15,8 +15,8 @@ int UnitType_GetAttackKind(int unitType);
 
 /* AiUnit_MoveToSafestTile and other AI move pickers skip (x, y) when this
  * returns 1. It does so when:
- * - turn->unk_0a_3 has bit 2 and a unit of the current player's team with
- *   MapUnit.unk_0a_14 == 2 stands on a shoal or port next to (x, y), or
+ * - turn->domainsOwn has AI_DOMAIN_SEA and a unit of the current player's team with
+ *   MapUnit.transportWanted == 2 stands on a shoal or port next to (x, y), or
  * - an enemy next to (x, y) has exactly one free side the acting unit can
  *   reach, and an own direct-attack unit other than Infantry or Mech, in the
  *   acting unit's move group (ground or sea), stands within 4 tiles. That
@@ -60,7 +60,7 @@ int Ai_IsTileNeededByAlly(s16 x, s16 y)
     int farX;
 
     turn = gAiTurnState;
-    if (turn->unk_0a_3 & 4) {
+    if (turn->domainsOwn & AI_DOMAIN_SEA) {
         shoreMinX = x - 1;
         if (shoreMinX < 0) {
             shoreMinX = 0;
@@ -102,7 +102,7 @@ int Ai_IsTileNeededByAlly(s16 x, s16 y)
                     if (STATE->players[STATE->currentPlayer].team != STATE->players[(slot >> 6) + 1].team) {
                         continue;
                     }
-                    if (STATE->units[slot].unk_0a_14 == 2) {
+                    if (STATE->units[slot].transportWanted == 2) {
                         return 1;
                     }
                 }

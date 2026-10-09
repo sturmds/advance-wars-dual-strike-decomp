@@ -13,7 +13,7 @@ void AiTurn_FindUnitDomains(void);
 void AiTurn_ClearCaptureMarks(void);
 void AiTurn_MarkReachableTiles(void);
 void AiTurn_ClearUnitMarks(void);
-void func_0208d548(void);
+void Ai_ClearTransportsSentToUnit(void);
 void AiTurn_CountCaptureTargets(void);
 void func_0208d964(void);
 void AiTurn_UpdateUnitModes(void);
@@ -38,7 +38,7 @@ void AiTurn_Start(void)
     AiTurn_ClearCaptureMarks();
     AiTurn_MarkReachableTiles();
     AiTurn_ClearUnitMarks();
-    func_0208d548();
+    Ai_ClearTransportsSentToUnit();
     AiTurn_CountCaptureTargets();
     func_0208d964();
     AiTurn_UpdateUnitModes();

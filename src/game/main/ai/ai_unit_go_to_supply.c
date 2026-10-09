@@ -35,7 +35,7 @@ void func_020b2b70(int x, int y);
  * nonzero for the types this unit type takes aboard. */
 #define CARRY_TABLE(unitType) (*(const u8 **)((u8 *)&Ov000_gUnitStats[unitType] + 0x18))
 
-/* Run when the acting unit's unk_0a_12 is 1, the value that AiClass3_SupplyUnit
+/* Run when the acting unit's serviceWanted is 1, the value that AiClass3_SupplyUnit
  * and AiBlackBoat_RepairUnit look for. Moves the unit to where it is
  * supplied or repaired. A waited APC in reach: the unit moves next to it and
  * waits. A Cruiser or Carrier in reach (rangeMap value up to gAiTurnState->unk_05)

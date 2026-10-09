@@ -28,16 +28,16 @@ typedef struct AiTurnState {
     u8 actionStep;                     /* step of AiTurn_ShowAction */
     u8 phase;                         /* index into the unit phase tables */
     u8 roll;                           /* 0-99, rolled for each queued unit */
-    u8 captureTargets;                 /* set by AiTurn_CountCaptureTargets: sum of func_0208d8b4 for neutral and every enemy player in the game */
+    u8 captureTargets;                 /* set by AiTurn_CountCaptureTargets: sum of Player_CountPropertiesPlusOne for neutral and every enemy player in the game */
     u8 unk_05;
     u8 propertyRegions;                /* set by AiTurn_MarkReachableTiles */
     u8 flags;                          /* bits 0-1: cleared for each queued unit; 2, 3: see AiTurn_Start and AiTargetFlags */
     u8 stepFlags;                      /* AI_STEP_*; cleared for each queued unit */
     u8 pad_09;
-    u16 unk_0a_0 : 3;
-    u16 unk_0a_3 : 3;                  /* AiFoot_HeadForCaptureSite tests bit 2 */
-    u16 domainsEnemy : 3;              /* AI_DOMAIN_* bits, set by AiTurn_FindUnitDomains: players on other teams, and tiles the current player's team does not own; unk_0a_0 is the same for everyone, unk_0a_3 for the current player */
-    u16 factoryDomainsOwn : 3;         /* copy of unk_0a_3 before the units are counted */
+    u16 domainsAny : 3;                /* AI_DOMAIN_* bits, set by AiTurn_FindUnitDomains: every player and tile */
+    u16 domainsOwn : 3;                /* the same for the current player's units and tiles */
+    u16 domainsEnemy : 3;              /* AI_DOMAIN_* bits, set by AiTurn_FindUnitDomains: players on other teams, and tiles the current player's team does not own */
+    u16 factoryDomainsOwn : 3;         /* copy of domainsOwn before the units are counted */
     u16 factoryDomainsEnemy : 3;       /* copy of domainsEnemy before the units are counted */
 } AiTurnState;
 

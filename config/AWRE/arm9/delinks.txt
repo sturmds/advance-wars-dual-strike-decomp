@@ -4264,7 +4264,7 @@ src/game/main/func_0208d3fc.c:
     complete
     .text       start:0x0208d3fc end:0x0208d41c
 
-src/game/main/ai/func_0208d548.c:
+src/game/main/ai/ai_clear_transports_sent_to_unit.c:
     complete
     .text       start:0x0208d548 end:0x0208d56c
 

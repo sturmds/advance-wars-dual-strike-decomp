@@ -27,7 +27,7 @@ void func_020b2b70(int x, int y);
 
 #define NO_TILE 0x7fff
 
-/* MapUnit.unk_0a_14: the transport a foot unit waits for.
+/* MapUnit.transportWanted: the transport a foot unit waits for.
  * AiEmptyTransport_GoToFootUnit sends APCs to 1, T-Copters to 1 to 3. */
 #define WANTS_APC      1
 #define WANTS_T_COPTER 2
@@ -62,7 +62,7 @@ void AiFoot_HeadForCaptureSite(void)
     int y;
 
     /* Clear unk_0c_4 when an own Lander or Black Boat is in move range. */
-    if ((gAiTurnState->unk_0a_3 & 4) && STATE->actingUnit->unk_0c_4 == 1) {
+    if ((gAiTurnState->domainsOwn & AI_DOMAIN_SEA) && STATE->actingUnit->unk_0c_4 == 1) {
         RangeMap_FillUnitMoves(STATE->actingUnit);
         for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
             unit = &STATE->units[i];
@@ -134,11 +134,11 @@ void AiFoot_HeadForCaptureSite(void)
         STATE->actingUnit->aiTargetY = bestY;
         if ((bestScore >> 1) > 2 && STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
             func_020adf6c(bestScore >> 1);
-            STATE->actingUnit->unk_0a_14 = WANTS_APC;
+            STATE->actingUnit->transportWanted = WANTS_APC;
         }
         func_020b2b70(bestX, bestY);
     } else if (STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
         func_020adbac();
-        STATE->actingUnit->unk_0a_14 = WANTS_T_COPTER;
+        STATE->actingUnit->transportWanted = WANTS_T_COPTER;
     }
 }

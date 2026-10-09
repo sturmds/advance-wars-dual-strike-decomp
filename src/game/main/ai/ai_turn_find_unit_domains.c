@@ -22,7 +22,7 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 #define TILE(x, y) (STATE->mapTiles->tiles[TILE_INDEX(x, y)])
 
-/* Fills the AiTurnState domain fields (unk_0a_0: everyone, unk_0a_3: the
+/* Fills the AiTurnState domain fields (domainsAny: everyone, domainsOwn: the
  * current player, domainsEnemy: other teams). Factories (base, airport, port)
  * give ground, air and sea bits by tile ownership; then every unit of a
  * player in the game adds sea for ships and air for aircraft; ground
@@ -36,8 +36,8 @@ void AiTurn_FindUnitDomains(void)
     int slot;
     MapUnit *unit;
 
-    gAiTurnState->unk_0a_0 = 0;
-    gAiTurnState->unk_0a_3 = 0;
+    gAiTurnState->domainsAny = 0;
+    gAiTurnState->domainsOwn = 0;
     gAiTurnState->domainsEnemy = 0;
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
@@ -45,12 +45,12 @@ void AiTurn_FindUnitDomains(void)
                 gAiTurnState->domainsEnemy |= domainBit.bits[gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))]];
             }
             if (STATE->unk_04 == (TILE(x, y) & 0xe0)) {
-                gAiTurnState->unk_0a_3 |= domainBit.bits[gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))]];
+                gAiTurnState->domainsOwn |= domainBit.bits[gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))]];
             }
-            gAiTurnState->unk_0a_0 |= domainBit.bits[gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))]];
+            gAiTurnState->domainsAny |= domainBit.bits[gTerrainFactoryKind[MAP_TILE_TERRAIN(TILE(x, y))]];
         }
     }
-    gAiTurnState->factoryDomainsOwn = gAiTurnState->unk_0a_3;
+    gAiTurnState->factoryDomainsOwn = gAiTurnState->domainsOwn;
     gAiTurnState->factoryDomainsEnemy = gAiTurnState->domainsEnemy;
     for (player = 1; player < 5; player++) {
         if (!Player_IsInGame(player)) {
@@ -62,17 +62,17 @@ void AiTurn_FindUnitDomains(void)
                 continue;
             }
             if (Ov000_gUnitStats[unit->type].moveGroup & MOVE_GROUP_SEA) {
-                gAiTurnState->unk_0a_0 |= AI_DOMAIN_SEA;
+                gAiTurnState->domainsAny |= AI_DOMAIN_SEA;
                 if (Unit_IsCurrentPlayers(slot) == 1) {
-                    gAiTurnState->unk_0a_3 |= AI_DOMAIN_SEA;
+                    gAiTurnState->domainsOwn |= AI_DOMAIN_SEA;
                 }
                 if (STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
                     gAiTurnState->domainsEnemy |= AI_DOMAIN_SEA;
                 }
             } else if (Ov000_gUnitStats[unit->type].moveGroup & MOVE_GROUP_AIR) {
-                gAiTurnState->unk_0a_0 |= AI_DOMAIN_AIR;
+                gAiTurnState->domainsAny |= AI_DOMAIN_AIR;
                 if (Unit_IsCurrentPlayers(slot) == 1) {
-                    gAiTurnState->unk_0a_3 |= AI_DOMAIN_AIR;
+                    gAiTurnState->domainsOwn |= AI_DOMAIN_AIR;
                 }
                 if (STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
                     gAiTurnState->domainsEnemy |= AI_DOMAIN_AIR;

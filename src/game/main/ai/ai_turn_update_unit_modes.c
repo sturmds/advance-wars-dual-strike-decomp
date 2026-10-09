@@ -14,7 +14,7 @@ void func_0208d478(MapUnit *unit);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Sets the active unit profile for each of the current player's units,
- * then runs the check for its unk_0a_12 mode (1: func_0208d41c, 2:
+ * then runs the check for its serviceWanted mode (1: func_0208d41c, 2:
  * func_0208d3fc, else func_0208d478), which may change the mode. */
 void AiTurn_UpdateUnitModes(void)
 {
@@ -28,7 +28,7 @@ void AiTurn_UpdateUnitModes(void)
             continue;
         }
         gAiActiveUnitProfile = &gAiProfile->units[unit->type - 1];
-        switch (unit->unk_0a_12) {
+        switch (unit->serviceWanted) {
         case 1:
             func_0208d41c(unit);
             break;

@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
 void Ai_ClearThreatMaps(void);
-void func_0209d738(MapUnit *unit); /* adds one enemy unit to the threat maps */
+void Ai_AddOoziumThreat(MapUnit *unit); /* an Oozium in sight sets threatSum to 255 on the tiles next to it */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -26,7 +26,7 @@ void AiOozium_BuildThreatMaps(void)
             for (slot = Ov000_gPlayerFirstUnitSlot[player] + 1; slot < Ov000_gPlayerFirstUnitSlot[player] + 51; slot++) {
                 unit = &STATE->units[slot];
                 if (unit->type != 0) {
-                    func_0209d738(unit);
+                    Ai_AddOoziumThreat(unit);
                 }
             }
         }

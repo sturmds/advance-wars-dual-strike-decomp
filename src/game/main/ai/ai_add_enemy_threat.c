@@ -17,7 +17,7 @@ void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL func_0209dae4(int unitType);
-void func_0209d738(MapUnit *unit);
+void Ai_AddOoziumThreat(MapUnit *unit);
 int func_0209da94(int unitType, int targetType);         /* best base damage, scaled for Fighters vs Fighters and Anti-Air vs Fighters */
 BOOL func_0209d924(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL func_0209e768(int enemyType, int actingType, int arg2);
@@ -76,7 +76,7 @@ void Ai_AddEnemyThreat(u8 player)
         if (unit->type == UNIT_NONE) {
             continue;
         }
-        func_0209d738(unit);
+        Ai_AddOoziumThreat(unit);
         if (unit->flags & (MAP_UNIT_CARRIED | MAP_UNIT_PARALYSED)) {
             continue;
         }

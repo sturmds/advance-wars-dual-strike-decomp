@@ -80,6 +80,6 @@ void func_020aff0c(void)
     if (STATE->actingUnit->type <= UNIT_MECH) {
         AiUnit_LaunchSilo();
     }
-    STATE->actingUnit->unk_0a_12 = 0;
+    STATE->actingUnit->serviceWanted = 0;
     AiUnit_PerformAction(bestX, bestY, AI_ACTION_JOIN, 0, 0);
 }

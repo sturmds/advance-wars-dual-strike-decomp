@@ -15,9 +15,9 @@ int Player_GetUnitMoveRange(int player, int unitType); /* movement plus the CO's
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
 int UnitType_BestBaseDamage(int unitType, int targetType);
-BOOL func_020df068(s16 x, s16 y);                      /* guess: a unit on (x, y) the acting APC can supply */
-BOOL func_020df18c(s16 x, s16 y);                      /* guess: a unit on (x, y) the acting Black Boat can repair */
-int func_020a5048(int x, int y, int toX, int toY);     /* direction from (x, y) to (toX, toY): 1 up, 2 right, 3 down, 4 left, 0 same */
+BOOL Tile_HasUnitToSupply(s16 x, s16 y);              /* another unit of the current player on (x, y) short of ammo or fuel */
+BOOL Tile_HasUnitToRepair(s16 x, s16 y);              /* the same, or below 10 shown hp; never Oozium */
+int Tile_GetDirection(int x, int y, int toX, int toY);     /* direction from (x, y) to (toX, toY): 1 up, 2 right, 3 down, 4 left, 0 same */
 void func_0209c1f8(void);                              /* rebuilds the AI threat maps */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -46,7 +46,7 @@ void func_0209c1f8(void);                              /* rebuilds the AI threat
  * - A Sub or Stealth hides when Unit_CanRepairAt or Unit_IsBlackHoleOnFlaggedTile holds
  *   for the tile, or when an enemy within 8 tiles (Stealth: 10) can reach
  *   it and deal 10% or more; with no such enemy, a hidden one appears.
- * - An APC that moved supplies when func_020df068 finds a unit next to it.
+ * - An APC that moved supplies when Tile_HasUnitToSupply finds a unit next to it.
  * - A Black Boat that moved repairs the neighbour with the least fuel.
  * - A Cruiser or Carrier unloads each cargo unit that has full fuel onto a
  *   free, passable, low-threat neighbour tile; the second cargo has to go
@@ -306,7 +306,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                 if (supplyDist < 1 || supplyDist > 1) {
                     continue;
                 }
-                if (func_020df068(supplyX, supplyY)) {
+                if (Tile_HasUnitToSupply(supplyX, supplyY)) {
                     count++;
                 }
             }
@@ -351,7 +351,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                 if (repairDist < 1 || repairDist > 1) {
                     continue;
                 }
-                if (!func_020df18c(repairX, repairY)) {
+                if (!Tile_HasUnitToRepair(repairX, repairY)) {
                     continue;
                 }
                 repairTarget = &STATE->units[STATE->mapTiles->unitAt[TILE_INDEX(repairX, repairY)]];
@@ -363,7 +363,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
         if (best == NULL) {
             return;
         }
-        *target = func_020a5048(x, y, best->x, best->y);
+        *target = Tile_GetDirection(x, y, best->x, best->y);
         *action = AI_ACTION_REPAIR;
         return;
     case UNIT_CRUISER:
