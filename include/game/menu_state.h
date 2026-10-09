@@ -46,7 +46,7 @@ typedef struct BattleSetupState {
     u8 unk_2e2;
     u8 unk_2e3;                        /* number of player slots */
     u8 unk_2e4;
-    u8 pad_2e5[0x2e6 - 0x2e5];
+    u8 unk_2e5;
     u8 unk_2e6;
     u8 unk_2e7;                        /* filled by Map_LoadAndCountProperties */
     u8 unk_2e8;                        /* filled by Map_LoadAndCountProperties */

@@ -3156,6 +3156,10 @@ src/game/main/func_0206714c.c:
     complete
     .text       start:0x0206714c end:0x02067188
 
+src/game/main/menus/vs_setup_open_co_select.c:
+    complete
+    .text       start:0x020671e4 end:0x02067228
+
 src/game/main/func_020678e0.c:
     complete
     .text       start:0x020678e0 end:0x020678fc
