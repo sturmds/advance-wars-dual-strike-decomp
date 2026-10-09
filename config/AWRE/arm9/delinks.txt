@@ -2767,6 +2767,7 @@ src/game/main/mem/heap_block_list_remove.c:
     .text       start:0x02104a60 end:0x02104a88
 
 src/game/main/mem/heap_block_get_region.c:
+    complete
     .text       start:0x02104a88 end:0x02104ab4
 
 src/game/main/func_02104c78.c:
