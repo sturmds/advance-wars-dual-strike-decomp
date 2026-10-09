@@ -8,7 +8,7 @@ BOOL func_0209dd7c(void);
 BOOL func_020c0e3c(int player);
 void AiUnit_ActOrder10(void);
 void AiUnit_ActOrder9(void);
-void func_020a0988(void);
+void AiUnit_ActOrder8(void);
 void func_020a09bc(void);
 void func_020a0a0c(void);
 void func_020a0a44(void);
@@ -56,7 +56,7 @@ void AiUnit_ActByOrder(void)
         }
         break;
     case 8:
-        func_020a0988();
+        AiUnit_ActOrder8();
         break;
     case 9:
         AiUnit_ActOrder9();
