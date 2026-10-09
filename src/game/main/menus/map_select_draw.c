@@ -14,7 +14,7 @@ void Screen_SetCurrentGfx(void *state);
 void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 int Math_EaseInOut(int from, int to, int step, int steps);
-void func_0202b89c(s16 x, int y, int a2, int a3, int a4);
+void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void func_0205f03c(void);
 void func_0205f0ec(void);
 void func_02060718(int x, int y, int a2);
@@ -201,22 +201,22 @@ void MapSelect_Draw(void)
         if (MENU->setup.slideFrames != 0) {
             if (MENU->setup.slideBack != 0) {
                 if (LIST(TAB()).unk_64 == 12) {
-                    func_0202b89c(slideOffset + 128, 120, 0x2800, 0x600, 3);
+                    Sprite_QueuePicture192x160(slideOffset + 128, 120, 0x2800, 0x600, 3);
                 } else if (MENU->setup.lists[MENU->setup.prevList].unk_64 == 12) {
-                    func_0202b89c(slideOffset - 128, 120, 0x2800, 0x600, 3);
+                    Sprite_QueuePicture192x160(slideOffset - 128, 120, 0x2800, 0x600, 3);
                 }
             } else {
                 if (LIST(TAB()).unk_64 == 12) {
-                    func_0202b89c(128 - slideOffset, 120, 0x2800, 0x600, 3);
+                    Sprite_QueuePicture192x160(128 - slideOffset, 120, 0x2800, 0x600, 3);
                 } else if (MENU->setup.lists[MENU->setup.prevList].unk_64 == 12) {
-                    func_0202b89c(384 - slideOffset, 120, 0x2800, 0x600, 3);
+                    Sprite_QueuePicture192x160(384 - slideOffset, 120, 0x2800, 0x600, 3);
                 }
             }
         } else if (LIST(TAB()).unk_64 == 12) {
-            func_0202b89c(128, 120, 0x2800, 0x600, 3);
+            Sprite_QueuePicture192x160(128, 120, 0x2800, 0x600, 3);
         }
     } else if (MENU->setup.unk_4fc != 0) {
-        func_0202b89c(128, 112, 0x2800, 0x600, 3);
+        Sprite_QueuePicture192x160(128, 112, 0x2800, 0x600, 3);
     }
     Screen_SetCurrentGfx(savedState);
 
@@ -224,14 +224,14 @@ void MapSelect_Draw(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideBack != 0) {
-            func_0202b89c(slideOffset + 128, 96, 0x2c00, 0x400, 3);
-            func_0202b89c(slideOffset - 128, 96, 0x2c00, 0x600, 3);
+            Sprite_QueuePicture192x160(slideOffset + 128, 96, 0x2c00, 0x400, 3);
+            Sprite_QueuePicture192x160(slideOffset - 128, 96, 0x2c00, 0x600, 3);
         } else {
-            func_0202b89c(128 - slideOffset, 96, 0x2c00, 0x400, 3);
-            func_0202b89c(384 - slideOffset, 96, 0x2c00, 0x600, 3);
+            Sprite_QueuePicture192x160(128 - slideOffset, 96, 0x2c00, 0x400, 3);
+            Sprite_QueuePicture192x160(384 - slideOffset, 96, 0x2c00, 0x600, 3);
         }
     } else {
-        func_0202b89c(128, 96, 0x2c00, 0x400, 3);
+        Sprite_QueuePicture192x160(128, 96, 0x2c00, 0x400, 3);
     }
 
     if (STATE->gameMode == 1) {
