@@ -88,10 +88,17 @@ typedef struct Unk_02080440_48 {
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
 } Unk_02080440_48;
 
+/* Reached through Unk_02080440.unk_5c[i]. */
+typedef struct Unk_02080440_5c {
+    u8 pad_00[3];
+    u8 weatherDays[5];                 /* per player slot: days the current weather lasts; set by Weather_SetDays */
+} Unk_02080440_5c;
+
 /* Pointed to by data_027c027c (DTCM). */
 typedef struct Unk_02080440 {
     u8 pad_00[0x48];
-    Unk_02080440_48 *unk_48[1]; /* length unknown, indexed by data_027c0284 */
+    Unk_02080440_48 *unk_48[5]; /* indexed by data_027c0284; length is a guess (unk_5c follows) */
+    Unk_02080440_5c *unk_5c[1];        /* length unknown, indexed by data_027c0284 like unk_48 */
 } Unk_02080440;
 
 #endif
