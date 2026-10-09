@@ -29,7 +29,7 @@ typedef struct MenuButton {
     u16 slideDuration;                 /* frames */
     u16 tile;                          /* OAM character name of the sprite */
     u16 palette;                       /* OAM palette number */
-    void (*onUpdate)(struct MenuButton *button);   /* called every frame by func_020257f8 */
+    void (*onUpdate)(struct MenuButton *button);   /* called every frame by MenuButtons_Update */
     void (*onKeys)(struct MenuButton *button);
     void (*onConfirm)(struct MenuButton *button);  /* called by MenuButton_Confirm */
     void (*onCancel)(struct MenuButton *button);   /* called by Menu_CancelSelected on the selected button */
