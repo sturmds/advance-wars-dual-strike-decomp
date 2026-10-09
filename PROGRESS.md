@@ -33,5 +33,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
+| `src/game/main/co_stats/player_get_co_defense.c` | Player_GetCoDefense | 272 |
 | `src/game/main/menus/battle_setup_load_from_game.c` | BattleSetup_LoadFromGame | 1648 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
