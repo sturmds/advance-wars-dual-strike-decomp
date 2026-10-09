@@ -7,7 +7,7 @@ const void *Map_GetName(u16 mapId);
 int Map_GetPlayerCount(u16 mapId);
 void func_020c4990(int mapId);
 void Camera_ResetToPreset0(void *a);
-void func_020c4e2c(void);
+void Map_BuildRowStarts(void);
 void func_020c3e5c(void);
 void func_020d7b5c(Unk_02080440_1c4 *map, const void *name);
 
@@ -45,7 +45,7 @@ void Map_LoadIntoState(int mapId)
     STATE->unk_1c4->unk_2a = 0;
     func_020d7b5c(STATE->unk_1c4, Map_GetName(mapId));
     STATE->unk_1c4->playerCount = Map_GetPlayerCount(mapId);
-    func_020c4e2c();
+    Map_BuildRowStarts();
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             cell = ((u16 *)(data_0229eadc + 2))[x + STATE->mapTiles->rowStart[y]];
