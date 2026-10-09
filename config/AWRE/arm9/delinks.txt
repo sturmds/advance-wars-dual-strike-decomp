@@ -35,6 +35,10 @@ src/game/main/graphics/palette_load_obj_row.c:
     complete
     .text       start:0x02002b00 end:0x02002b24
 
+src/game/main/graphics/co_unpack_picture.c:
+    complete
+    .text       start:0x02002b24 end:0x02002b74
+
 src/game/main/graphics/co_get_picture_variant.c:
     complete
     .text       start:0x02002c04 end:0x02002c48

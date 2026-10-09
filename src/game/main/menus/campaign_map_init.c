@@ -9,7 +9,7 @@ void Gfx_RequestLayerCopy(int bg);
 void func_01ff9b48(void);
 void Co_LoadSmallPicture(int co, void *dest, int palette);
 void Palette_LoadObjRow(int a);
-void func_02002b24(int co, int a);
+void Co_UnpackPicture(int co, int a);
 void Mem_Copy32(const void *src, void *dest, u32 size);
 void Palette_Load(const void *src, int offset, u32 size);
 void Data_Unpack(const void *src, void *dest);
@@ -215,7 +215,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0, tile = 62, j = 98; i < 3; i++, tile += 12, j += 12) {
         if (gMenuState.campaignMap.topCos[i].co != 0) {
             Co_LoadSmallPicture(gMenuState.campaignMap.topCos[i].co, data_027c0280->objVram + ((u32)tile << 5), i + 20);
-            func_02002b24(gMenuState.campaignMap.topCos[i].co, j);
+            Co_UnpackPicture(gMenuState.campaignMap.topCos[i].co, j);
         }
     }
     Palette_LoadObjRow(1);
