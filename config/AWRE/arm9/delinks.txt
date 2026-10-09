@@ -116,6 +116,10 @@ src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378
 
+src/game/main/task/task_init_system.c:
+    complete
+    .text       start:0x02023ae4 end:0x02023bb0
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

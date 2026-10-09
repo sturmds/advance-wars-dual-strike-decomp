@@ -131,7 +131,12 @@ typedef struct Unk_02080440_5c {
 
 /* Pointed to by data_027c027c (DTCM). */
 typedef struct Unk_02080440 {
-    u8 pad_00[0x48];
+    u8 pad_00[0x2c];
+    struct Task *taskPool;             /* TASK_COUNT tasks */
+    struct Task **taskFreeStack;       /* TASK_COUNT + 1 entries, ends with NULL */
+    struct Task **taskFreeTop;         /* next free task in taskFreeStack */
+    struct Task **taskLists;           /* TASK_LEVELS lists of top-level tasks */
+    u8 pad_3c[0x48 - 0x3c];
     Unk_02080440_48 *unk_48[5]; /* indexed by data_027c0284; length is a guess (unk_5c follows) */
     Unk_02080440_5c *unk_5c[1];        /* length unknown, indexed by data_027c0284 like unk_48 */
 } Unk_02080440;
