@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void AiQueue_SortByMovement(int arg);
-void func_0209fc58(void);
+void AiIndirect_MoveByOrder(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -18,7 +18,7 @@ void func_0209fc58(void);
 
 /* Queues the current player's indirect units (AI_CLASS_INDIRECT) that
  * have not waited yet, hands the queue to AiQueue_SortByMovement (argument 1),
- * and runs func_0209fc58 on each. */
+ * and runs AiIndirect_MoveByOrder on each. */
 void AiAction_QueueIndirectMoves(void)
 {
     int i;
@@ -35,6 +35,6 @@ void AiAction_QueueIndirectMoves(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     AiQueue_SortByMovement(1);
-    gAiQueueRoutine = func_0209fc58;
+    gAiQueueRoutine = AiIndirect_MoveByOrder;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
