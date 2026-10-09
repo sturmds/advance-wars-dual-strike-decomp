@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Puts a unit of the given type for the current player at (x, y). */
-MapUnit *func_020c7d8c(int x, int y, int type);
+MapUnit *Unit_Create(int x, int y, int type);
 void func_020c8888(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -33,7 +33,7 @@ void Map_PlacePredeployedUnits(const PredeployedUnit *row)
             STATE->currentUnitBase = (STATE->currentPlayer - 1) * MAP_UNITS_PER_PLAYER;
             continue;
         }
-        unit = func_020c7d8c(row->x, row->y, row->type);
+        unit = Unit_Create(row->x, row->y, row->type);
         if (unit == NULL) {
             break;
         }

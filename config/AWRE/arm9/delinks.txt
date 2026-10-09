@@ -2047,6 +2047,10 @@ src/game/main/func_020c7388.c:
     complete
     .text       start:0x020c7388 end:0x020c7398
 
+src/game/main/units/unit_create.c:
+    complete
+    .text       start:0x020c7d8c end:0x020c7e20
+
 src/game/main/units/unit_get_fuel_used.c:
     complete
     .text       start:0x020c8330 end:0x020c83d0
