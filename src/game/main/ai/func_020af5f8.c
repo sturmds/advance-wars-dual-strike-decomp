@@ -12,12 +12,12 @@ BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 void func_020af700(void);
 void func_020afb58(void);
 void func_020aff0c(void);
-void func_020b0604(void);
+void AiUnit_LaunchSilo(void);
 void func_020b81ac(void);
 
 /* AI step shared by AiFoot_MoveAndAttack and many queue routines. When the
  * acting unit's unk_0a_12 is 1 or 2, runs func_020af700 or func_020afb58;
- * infantry and mechs first get func_020b0604. */
+ * infantry and mechs first get AiUnit_LaunchSilo. */
 void func_020af5f8(void)
 {
     if (!Unit_IsBlackHoleOnFlaggedTile(GAME->actingUnit, GAME->actingUnit->x, GAME->actingUnit->y)) {
@@ -27,7 +27,7 @@ void func_020af5f8(void)
         return;
     }
     if (GAME->actingUnit->type <= UNIT_MECH) {
-        func_020b0604();
+        AiUnit_LaunchSilo();
     }
     gAiTurnState->flags |= 2;
     func_020b81ac();
