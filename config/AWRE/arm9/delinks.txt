@@ -2987,6 +2987,10 @@ src/game/main/func_02046170.c:
     complete
     .text       start:0x02046170 end:0x0204618c
 
+src/game/main/func_02046d68.c:
+    complete
+    .text       start:0x02046d68 end:0x02046dac
+
 src/game/main/func_02046dac.c:
     complete
     .text       start:0x02046dac end:0x02046db8
@@ -4589,6 +4593,10 @@ src/game/main/func_0208acb0.c:
     complete
     .text       start:0x0208acb0 end:0x0208acd0
 
+src/game/main/func_0208ad2c.c:
+    complete
+    .text       start:0x0208ad2c end:0x0208ad70
+
 src/game/main/func_0208ad70.c:
     complete
     .text       start:0x0208ad70 end:0x0208ad7c
@@ -5038,6 +5046,10 @@ src/game/main/ai/ai_end_actions_build_threat_maps.c:
     complete
     .text       start:0x0209a064 end:0x0209a134
 
+src/game/main/func_0209a91c.c:
+    complete
+    .text       start:0x0209a91c end:0x0209a9ec
+
 src/game/main/ai/ai_oozium_build_threat_maps.c:
     complete
     .text       start:0x0209b1b0 end:0x0209b2b0
@@ -5052,6 +5064,10 @@ src/game/main/ai/func_0209b458.c:
 src/game/main/ai/ai_black_bomb_add_enemy_threat.c:
     complete
     .text       start:0x0209b918 end:0x0209c1f8
+
+src/game/main/func_0209c1f8.c:
+    complete
+    .text       start:0x0209c1f8 end:0x0209c2c8
 
 src/game/main/ai/ai_build_threat_maps.c:
     complete
@@ -6325,6 +6341,10 @@ src/game/main/units/acting_unit_save_start_pos.c:
     complete
     .text       start:0x020c0398 end:0x020c03d8
 
+src/game/main/func_020c06a4.c:
+    complete
+    .text       start:0x020c06a4 end:0x020c06d4
+
 src/game/main/func_020c0704.c:
     complete
     .text       start:0x020c0704 end:0x020c0734
@@ -6471,6 +6491,14 @@ src/game/main/func_020c4018.c:
 src/game/main/func_020c4024.c:
     complete
     .text       start:0x020c4024 end:0x020c4028
+
+src/game/main/func_020c4028.c:
+    complete
+    .text       start:0x020c4028 end:0x020c407c
+
+src/game/main/func_020c407c.c:
+    complete
+    .text       start:0x020c407c end:0x020c40d0
 
 src/game/main/func_020c40d0.c:
     complete
@@ -7245,6 +7273,10 @@ src/game/main/units/unit_action_capture.c:
 src/game/main/acting_unit_move_and_attack_object.c:
     complete
     .text       start:0x020de9c0 end:0x020de9f0
+
+src/game/main/func_020de9f0.c:
+    complete
+    .text       start:0x020de9f0 end:0x020dea20
 
 src/game/main/func_020dea20.c:
     complete
