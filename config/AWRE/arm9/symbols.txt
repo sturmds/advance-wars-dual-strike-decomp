@@ -8411,7 +8411,7 @@ data_0216d930 kind:data(any) addr:0x0216d930
 data_0216d934 kind:data(any) addr:0x0216d934
 data_0216d938 kind:data(any) addr:0x0216d938
 data_0216d93c kind:data(any) addr:0x0216d93c
-data_0216d940 kind:data(any) addr:0x0216d940
+gLanguageSuffix kind:data(any) addr:0x0216d940
 data_0216d954 kind:data(any) addr:0x0216d954
 data_0216d958 kind:data(any) addr:0x0216d958
 data_0216d95c kind:data(any) addr:0x0216d95c
@@ -8932,7 +8932,7 @@ data_022a7fa8 kind:bss addr:0x022a7fa8
 data_022a7fac kind:bss addr:0x022a7fac
 data_022a7fb8 kind:bss addr:0x022a7fb8
 data_022a7fc8 kind:bss addr:0x022a7fc8
-data_022a7fd0 kind:bss addr:0x022a7fd0
+gLocalizedPath kind:bss addr:0x022a7fd0
 data_022a8010 kind:bss addr:0x022a8010
 data_022a8014 kind:bss addr:0x022a8014
 data_022a8020 kind:bss addr:0x022a8020
