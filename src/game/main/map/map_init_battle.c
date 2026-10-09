@@ -16,7 +16,7 @@ void func_020f35e0(int a);
 void func_020f368c(void);
 void func_020f3ee4(void);
 void func_020f4098(void);
-void func_020f808c(void);
+void Screens_SelectConfigs(void);
 void Map_LoadHeaderSetup(int mapId);
 
 extern Unk_02080440 *data_027c027c;
@@ -127,7 +127,7 @@ void Map_InitBattle(void)
         SWITCH_BACK();
     }
 
-    func_020f808c();
+    Screens_SelectConfigs();
 
     /* On the Auto CO missions the second map's slots keep their players'
      * controllers, so the player can play that front. On other two-map

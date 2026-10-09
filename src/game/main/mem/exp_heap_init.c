@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/heap.h"
 
-
 #define EXP_HEAP_SIGNATURE 0x45585048 /* "EXPH" */
 
 /* Sets up an expanded heap in [start, end): the header, then one free block

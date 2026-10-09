@@ -2508,6 +2508,10 @@ src/game/main/func_020f5898.c:
     complete
     .text       start:0x020f5898 end:0x020f58a8
 
+src/game/main/graphics/screens_select_configs.c:
+    complete
+    .text       start:0x020f808c end:0x020f8344
+
 src/game/main/screen/screen_show_bg0.c:
     complete
     .text       start:0x020f8b58 end:0x020f8b74
