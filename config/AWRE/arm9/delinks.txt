@@ -752,6 +752,10 @@ src/game/main/text/mode_font_load.c:
     complete
     .text       start:0x0202aba8 end:0x0202ac14
 
+src/game/main/text/mode_font_load_here.c:
+    complete
+    .text       start:0x0202ac14 end:0x0202acbc
+
 src/game/main/menus/palette_cycle_start.c:
     complete
     .text       start:0x0202c520 end:0x0202c55c
