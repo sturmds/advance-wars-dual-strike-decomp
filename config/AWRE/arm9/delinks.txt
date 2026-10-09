@@ -783,6 +783,10 @@ src/game/main/skills/stealth_firepower.c:
     complete
     .text       start:0x020e6ae4 end:0x020e6b44
 
+src/game/main/skills/force_rank_get_saved_set.c:
+    complete
+    .text       start:0x020e6b7c end:0x020e6bf0
+
 src/game/main/skills/save_force_rank_sets.c:
     complete
     .text       start:0x020e6e88 end:0x020e6f48
