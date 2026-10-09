@@ -2059,6 +2059,10 @@ src/game/main/player_add_funds.c:
     complete
     .text       start:0x020c83d0 end:0x020c8480
 
+src/game/main/player_spend_funds.c:
+    complete
+    .text       start:0x020c8480 end:0x020c857c
+
 src/game/main/skills/damage_to_funds.c:
     complete
     .text       start:0x020c86cc end:0x020c880c
