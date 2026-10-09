@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2448 / 6603 | 290372 / 1531944 | 18.95% | 0 | 0 |
+| game | 2461 / 6603 | 293336 / 1531944 | 19.15% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2586 / 7483 | 293792 / 1685994 | 17.43% | 1 | 30 |
+| all | 2599 / 7483 | 296756 / 1685994 | 17.60% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2052 / 5180 | 264488 / 1082632 | 24.43% | 0 |
+| main | game | 2065 / 5180 | 267452 / 1082632 | 24.70% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -43,11 +43,13 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | func_020aff0c | 556 |
 | `src/game/main/ai/ai_unit_teammate_outdamages.c` | AiUnit_TeammateOutdamages | 772 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
+| `src/game/main/ai/func_02091e40.c` | func_02091e40 | 112 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/func_020342ac.c` | func_020342ac | 396 |
 | `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/map_view_scroll_step.c` | MapView_ScrollStep | 788 |
+| `src/game/main/map/tile_map_fill.c` | TileMap_Fill | 244 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/func_020682f8.c` | func_020682f8 | 680 |
 | `src/game/main/menus/map_preview_draw.c` | MapPreview_Draw | 880 |
