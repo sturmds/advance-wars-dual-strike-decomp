@@ -5,7 +5,10 @@
 
 /* State of the AI turn, first byte of *gAiTurnState. AiTurn_Update
  * switches on it. */
+#define AI_STATE_START       0  /* set up the turn */
+#define AI_STATE_RUN_PHASE   1  /* run the unit action step of the current phase */
 #define AI_STATE_RUN_QUEUE   2  /* call gAiQueueRoutine for each queue entry */
+#define AI_STATE_SHOW_ACTION 3  /* a queued unit acted; name is a guess */
 #define AI_STATE_END_ACTIONS 4  /* unit actions done */
 
 /* Queue entry that is not a unit index: the step runs once. */
