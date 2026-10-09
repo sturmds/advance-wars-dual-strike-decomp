@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/ai_build_state.h"
+#include "game/ai_site.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
@@ -7,20 +8,6 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* 12 bytes, count in AiBuildState.recordCount. Also used by the factory steps
- * of the end actions. */
-typedef struct Unk_0229e5bc {
-    u8 x;
-    u8 y;
-    u8 pad_02;
-    u8 status;                         /* 0xfd: skipped */
-    u8 pad_04[5];
-    u8 unk_09;
-    u8 unk_0a;
-    u8 pad_0b;
-} Unk_0229e5bc;
-
-extern Unk_0229e5bc data_0229e5bc[];
 extern u8 gUnitFitsLander[];
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -36,10 +23,10 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
  * reachable tile that holds one of the current player's units. An Infantry or
  * Mech lowers unk_09 to the range map value there if that is smaller; a unit
  * with gUnitFitsLander set that waits for a T-Copter (transportWanted 2) does the
- * same for unk_0a. What the records are is not known, so the name stays. */
+ * same for unk_0a. */
 void func_02092134(void)
 {
-    Unk_0229e5bc *record = data_0229e5bc;
+    AiSite *record = data_0229e5bc;
     MapUnit *unit;
     int slot;
     int i;
@@ -47,7 +34,7 @@ void func_02092134(void)
     int y;
 
     for (i = 0; i < data_021619c0->recordCount; i++, record++) {
-        if (record->status == 0xfd) {
+        if (record->kind == 0xfd) {
             continue;
         }
         RangeMap_FillMoves(record->x, record->y, UNIT_INFANTRY, FAR_AWAY, 0);
