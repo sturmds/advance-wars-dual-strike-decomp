@@ -6958,6 +6958,10 @@ src/game/main/func_02102b8c.c:
     complete
     .text       start:0x02102b8c end:0x02102b98
 
+src/game/main/func_02102b98.c:
+    complete
+    .text       start:0x02102b98 end:0x02102bc4
+
 src/game/main/func_02102c1c.c:
     complete
     .text       start:0x02102c1c end:0x02102c34
