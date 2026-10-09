@@ -15,7 +15,7 @@ BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL func_0209dae4(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
-int func_0209da94(int unitType, int targetType);
+int Ai_RatedBaseDamage(int unitType, int targetType);
 BOOL func_0209d924(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL func_0209e768(int enemyType, int actingType, int arg2);
 BOOL func_0209e8bc(u16 player, s16 x, s16 y);
@@ -74,7 +74,7 @@ void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
         if (unit->flags & (MAP_UNIT_CARRIED | MAP_UNIT_PARALYSED)) {
             continue;
         }
-        damage = func_0209da94(unit->type, ACTING->type);
+        damage = Ai_RatedBaseDamage(unit->type, ACTING->type);
         if (damage < 25) {
             continue;
         }
