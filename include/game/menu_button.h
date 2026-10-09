@@ -78,5 +78,6 @@ void Menu_CancelSelected(void);
 void Menu_ConfirmSelected(void);
 void MenuButton_NotifySelected(MenuButton *button);
 void MenuButton_Draw(MenuButton *button);
+void MenuButton_UpdateSlide(MenuButton *button);
 
 #endif
