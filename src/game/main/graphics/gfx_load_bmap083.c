@@ -5,7 +5,7 @@ void func_01ff9c48(const void *descriptor);
 void func_02000fa4(void);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
-void func_020097c8(void);
+void Screen_ResetWindows(void);
 void Screen_ResetBlend(void);
 void func_02009ac0(void);
 void FS_ChangeDir(const char *dir);
@@ -48,7 +48,7 @@ void Gfx_LoadBmap083(void)
     func_01ff9c48(func_02000fa4);
     Screen_SetBgMode(0);
     Screen_InitLayers(gBmap083Layers);
-    func_020097c8();
+    Screen_ResetWindows();
     Screen_ResetBlend();
     func_02009ac0();
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
