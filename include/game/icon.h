@@ -1,0 +1,32 @@
+#ifndef GAME_ICON_H
+#define GAME_ICON_H
+
+#include "types.h"
+
+/* Icons: small OBJ pictures in six banks, one file per bank
+ * (/icon/res_icon0_cg to /icon/res_icon5_cg). An icon id picks the bank,
+ * see Icon_GetBank. */
+#define ICON_COUNT      336
+#define ICON_BANK_COUNT 6
+#define ICON_BANK_SLOTS 32             /* icons one bank can hold in VRAM at once */
+
+/* An icon loaded into a bank's VRAM area. */
+typedef struct IconSlot {
+    u16 tile;                          /* first OBJ tile, from the bank's vram */
+    u16 iconId;
+} IconSlot;
+
+/* VRAM area of one icon bank, Unk_027c0280.iconBanks[bank]. */
+typedef struct IconBank {
+    u8 *vram;                          /* 32 bytes per tile */
+    u8 palette;                        /* OBJ palette slot */
+    u8 count;                          /* icons loaded */
+    IconSlot slots[ICON_BANK_SLOTS];   /* slots[count].tile: where the next icon goes */
+    u8 pad_86[0x88 - 0x86];
+} IconBank;
+
+extern u8 gIconSize[ICON_COUNT][2];      /* per icon: width, height in tiles */
+extern u8 gIconHeights[ICON_COUNT][2];   /* gIconSize one byte on: [i][0] is the height */
+extern u16 gIconBankFirstIcon[];         /* first icon id of each bank, every 4th u16 */
+
+#endif

@@ -120,6 +120,10 @@ src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
 
+src/game/main/icon/icon_get_file_offset.c:
+    complete
+    .text       start:0x02023bb0 end:0x02023c18
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

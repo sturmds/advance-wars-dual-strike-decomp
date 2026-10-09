@@ -8,7 +8,9 @@
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *unk_08;
-    u8 pad_0c[0x6c - 0x0c];
+    u8 pad_0c[0x1c - 0x0c];
+    struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
+    u8 pad_20[0x6c - 0x20];
     u16 dispCnt;                       /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on) */
     BgControl bgCnt[4];                /* BG0CNT-BG3CNT */
     u8 pad_76[0x90 - 0x76];

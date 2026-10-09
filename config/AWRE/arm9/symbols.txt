@@ -991,7 +991,7 @@ func_0202397c kind:function(arm,size=0x90) addr:0x0202397c
 Task_CreateChild kind:function(arm,size=0x4c) addr:0x02023a0c
 Task_Create kind:function(arm,size=0x8c) addr:0x02023a58
 Task_InitSystem kind:function(arm,size=0xcc) addr:0x02023ae4
-func_02023bb0 kind:function(arm,size=0x68) addr:0x02023bb0
+Icon_GetFileOffset kind:function(arm,size=0x68) addr:0x02023bb0
 func_02023c18 kind:function(arm,size=0x40) addr:0x02023c18
 func_02023c58 kind:function(arm,size=0xdc) addr:0x02023c58
 func_02023d34 kind:function(arm,size=0xcc) addr:0x02023d34
@@ -6992,10 +6992,10 @@ data_021589b0 kind:data(any) addr:0x021589b0
 data_021589c4 kind:data(any) addr:0x021589c4
 data_021589d8 kind:data(any) addr:0x021589d8
 data_021589f0 kind:data(any) addr:0x021589f0
-data_021589f4 kind:data(any) addr:0x021589f4
+gIconBankFirstIcon kind:data(any) addr:0x021589f4
 data_02158a20 kind:data(any) addr:0x02158a20
-data_02158c84 kind:data(any) addr:0x02158c84
-data_02158c85 kind:data(any) addr:0x02158c85
+gIconSize kind:data(any) addr:0x02158c84
+gIconHeights kind:data(any) addr:0x02158c85
 data_02158f28 kind:data(any) addr:0x02158f28
 data_02158f38 kind:data(any) addr:0x02158f38
 data_02158f3c kind:data(any) addr:0x02158f3c
