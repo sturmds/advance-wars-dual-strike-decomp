@@ -6755,6 +6755,10 @@ src/game/main/func_020d340c.c:
     complete
     .text       start:0x020d340c end:0x020d3428
 
+src/game/main/map/battle_run_setup_hooks.c:
+    complete
+    .text       start:0x020d34fc end:0x020d3554
+
 src/game/main/map/map_init_battle.c:
     complete
     .text       start:0x020d3554 end:0x020d3ad0
