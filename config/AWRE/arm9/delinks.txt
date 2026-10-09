@@ -838,6 +838,10 @@ src/game/main/menus/force_rank_screen_put_no_skill_icon.c:
     complete
     .text       start:0x0204171c end:0x020417a8
 
+src/game/main/menus/force_rank_screen_put_skill_icon.c:
+    complete
+    .text       start:0x020417a8 end:0x0204184c
+
 src/game/main/menus/co_select_screen_handle_keys.c:
     complete
     .text       start:0x020429f0 end:0x02042b3c
