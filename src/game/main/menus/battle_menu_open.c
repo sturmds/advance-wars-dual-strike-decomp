@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020d1a38(void);
+void ScreenConfig_RunActionHook(void);
 void Font_LoadDigits(int baseTile);
 void func_020c4018(void);
 int func_020bc6b4(void);
@@ -18,7 +18,7 @@ void BattleMenu_Open(void)
 {
     int a;
 
-    func_020d1a38();
+    ScreenConfig_RunActionHook();
     Font_LoadDigits(0);
     func_020c4018();
     a = func_020bc6b4();

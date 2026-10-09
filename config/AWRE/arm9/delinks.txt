@@ -6699,6 +6699,10 @@ src/game/main/func_020d1420.c:
     complete
     .text       start:0x020d1420 end:0x020d1440
 
+src/game/main/screen_config_run_action_hook.c:
+    complete
+    .text       start:0x020d1a38 end:0x020d1a84
+
 src/game/main/func_020d1bc4.c:
     complete
     .text       start:0x020d1bc4 end:0x020d1be0

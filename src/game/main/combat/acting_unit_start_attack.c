@@ -17,7 +17,7 @@ void Combat_SimulateChecked(int attackerIndex, int defenderIndex, s16 *pos);
 Task *Task_Create(const void *script, void *parentOrList);
 void func_020b9d48(void);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
-void func_020d1a38(void);
+void ScreenConfig_RunActionHook(void);
 void ActingUnit_FinishAction(void);
 void Player_AddPowerCharge(int player, int slot, int amount);      /* slot 0: front CO, 1: back CO */
 
@@ -84,13 +84,13 @@ void ActingUnit_StartAttack(int defenderSlot, int flag)
     case 2:
     case 3:
     default:
-        func_020d1a38();
+        ScreenConfig_RunActionHook();
         task = Task_Create(data_02168400, (void *)3);
         task->unk_64 = flag;
         task->unk_4c = defender;
         break;
     case 0:
-        func_020d1a38();
+        ScreenConfig_RunActionHook();
         task = Task_Create(data_02168328, (void *)3);
         task->unk_64 = flag;
         task->unk_4c = defender;
