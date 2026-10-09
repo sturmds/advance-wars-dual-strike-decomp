@@ -29,4 +29,21 @@ extern u8 *gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
 extern u8 gAiQueue[];
 
+/* What gAiTurnState points to. gAiTurnState stays declared as u8 * so
+ * that `*gAiTurnState = AI_STATE_...` keeps working; AI_TURN reads it
+ * as this struct. */
+typedef struct AiTurnState {
+    u8 state;                          /* AI_STATE_* */
+    u8 unk_01;
+    u8 phase;                          /* index into the unit phase tables */
+    u8 roll;                           /* 0-99, rolled for each queued unit */
+    u8 pad_04;
+    u8 unk_05;
+    u8 pad_06;
+    u8 flags;                          /* AI_TURN_* */
+    u8 unk_08;
+} AiTurnState;
+
+#define AI_TURN ((AiTurnState *)gAiTurnState)
+
 #endif
