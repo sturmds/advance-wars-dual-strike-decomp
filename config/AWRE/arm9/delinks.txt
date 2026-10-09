@@ -2031,6 +2031,10 @@ src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c
 
+src/game/main/units/unit_get_move_points.c:
+    complete
+    .text       start:0x020c67c8 end:0x020c689c
+
 src/game/main/player_refresh_units.c:
     complete
     .text       start:0x020c6f98 end:0x020c703c
