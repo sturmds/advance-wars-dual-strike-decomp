@@ -7118,6 +7118,10 @@ src/game/main/func_021063f8.c:
     complete
     .text       start:0x021063f8 end:0x02106420
 
+src/game/main/sound/func_02106420.c:
+    complete
+    .text       start:0x02106420 end:0x02106484
+
 src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc

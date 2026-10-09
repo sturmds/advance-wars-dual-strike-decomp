@@ -29,6 +29,12 @@ typedef struct SoundArcInfo {
     char signature[4];
     u32 blockSize;
     u32 seqOffset;                     /* SoundArcSeqInfoTable */
+    u32 unk_0c;
+    u32 unk_10;
+    u32 unk_14;
+    u32 unk_18;
+    u32 unk_1c;
+    u32 strmOffset;                    /* table of stream entries */
 } SoundArcInfo;
 
 /* NitroSystem NNSSndArc: an opened sound archive. */
