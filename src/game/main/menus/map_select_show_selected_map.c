@@ -11,7 +11,7 @@ u8 Map_IsFlagSet(u32 mapId);
 void Screen_SetCurrentGfx(void *state);
 void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
-void func_02002dbc(u32 value, void *dst, u32 size);
+void Mem_Zero32(u32 value, void *dst, u32 size);
 void func_0202bdcc(s8 *dst);
 void MapPreview_Draw(void *dst, int mapId);
 
@@ -54,7 +54,7 @@ void MapSelect_ShowSelectedMap(void)
         Bg_ClearRect(data_027c0280->layer1Map, 12, 21, 8, 2);
         Text_Print(12, 21, Gfx_GetLayer1Map(), Map_GetName(SELECTED_MAP_ID()), 0, 0x100);
     } else {
-        func_02002dbc(0, data_027c0280->objVram + 0x8000, 0x4000);
+        Mem_Zero32(0, data_027c0280->objVram + 0x8000, 0x4000);
         Bg_ClearRect(data_027c0280->layer1Map, 12, 21, 8, 2);
         Text_Print(12, 21, data_027c0280->layer1Map, data_02167c90, 0, 0x100);
     }
@@ -68,7 +68,7 @@ void MapSelect_ShowSelectedMap(void)
             if (Map_IsFlagSet(SELECTED_MAP_ID())) {
                 MapPreview_Draw(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
             } else {
-                func_02002dbc(0, data_027c0280->objVram + 0xc000, 0x4000);
+                Mem_Zero32(0, data_027c0280->objVram + 0xc000, 0x4000);
             }
         }
         savedState3 = data_027c0280;

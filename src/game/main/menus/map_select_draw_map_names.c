@@ -7,7 +7,7 @@ void Gfx_RequestLayerCopy(int a);
 const void *Map_GetName(u32 mapId);
 u8 Map_IsFlagSet(u32 mapId);
 int func_02101904(u32 mapId);
-void func_02002dbc(u32 value, void *dst, u32 size);
+void Mem_Zero32(u32 value, void *dst, u32 size);
 void func_020152a4(s16 x, s16 y, u16 *map, const void *text, int a4, u16 palette, u16 tile);
 void Bg_PutTileQuad(int x, int y, int tile, int size);
 int func_0206429c(int a, int mapId);
@@ -57,7 +57,7 @@ void MapSelect_DrawMapNames(int list, int page)
 
     x = STATE->gameMode == 1 ? 17 : 1;
     y = START_Y;
-    func_02002dbc(0, data_027c0280->layer0Map, 0x800);
+    Mem_Zero32(0, data_027c0280->layer0Map, 0x800);
     listBase = (MenuState *)((u8 *)&gMenuState + list * sizeof(MapList));
     for (i = 0; i < ROWS * COLS; i++) {
         index = page * (ROWS * COLS) + i;
