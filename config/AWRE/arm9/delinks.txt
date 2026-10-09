@@ -1019,6 +1019,10 @@ src/game/main/ai/ai_turn_update.c:
     complete
     .text       start:0x0208c2a4 end:0x0208c368
 
+src/game/main/ai/ai_turn_build_capture_map.c:
+    complete
+    .text       start:0x0208c560 end:0x0208c860
+
 src/game/main/ai/ai_profile_build_for_player.c:
     complete
     .text       start:0x0208c9f8 end:0x0208cba8
