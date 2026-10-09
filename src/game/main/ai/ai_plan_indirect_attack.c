@@ -14,7 +14,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int GetUnitMaxRange(int player, int unitType);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
-BOOL func_0209eca8(int x, int y);             /* TRUE: tile owned by unk_04 and not a repair tile */
+BOOL Map_IsOwnedNonRepairTile(int x, int y);             /* TRUE: tile owned by unk_04 and not a repair tile */
 MapObject *Map_GetObjectAt(int x, int y);       /* object at (x, y) with hp left, or NULL */
 int func_0209e424(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
 BOOL Map_IsTileVisible(s16 x, s16 y);
@@ -71,7 +71,7 @@ void Ai_PlanIndirectAttack(void)
     if (STATE->actingUnit->aiOrder != 7) {
         /* AI_ATTACK_TANK_VALUE: unit above 80 hp on its team's base.
          * AI_ATTACK_HEAVY_HIT: on its team's base, airport or port, or a
-         * ground unit at 70 hp or less not on a tile where func_0209eca8 holds. */
+         * ground unit at 70 hp or less not on a tile where Map_IsOwnedNonRepairTile holds. */
         if (Unit_IsTileOwnedByTeam(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
             && MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit)) == TERRAIN_BASE && STATE->actingUnit->hp > 80) {
             flags |= AI_ATTACK_TANK_VALUE;
@@ -79,7 +79,7 @@ void Ai_PlanIndirectAttack(void)
                     && gTerrainFactoryKind[MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit))] != 0)
                    || ((Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) != 0
                        && STATE->actingUnit->hp <= 70
-                       && func_0209eca8(STATE->actingUnit->x, STATE->actingUnit->y) == 0)) {
+                       && Map_IsOwnedNonRepairTile(STATE->actingUnit->x, STATE->actingUnit->y) == 0)) {
             flags |= AI_ATTACK_HEAVY_HIT;
         }
     }
