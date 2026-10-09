@@ -2,7 +2,7 @@
 #include "game/sound.h"
 
 void *func_02110554(int block);
-void func_02105544(void);
+void SoundSeqPlayer_UpdateAll(void);
 void SoundOutput_Update(void);
 void SoundStream_UpdateAll(void);
 void func_021102b0(int block);
@@ -13,7 +13,7 @@ void NNS_SndMain(void)
 {
     while (func_02110554(0) != NULL) {
     }
-    func_02105544();
+    SoundSeqPlayer_UpdateAll();
     SoundOutput_Update();
     SoundStream_UpdateAll();
     func_021102b0(0);

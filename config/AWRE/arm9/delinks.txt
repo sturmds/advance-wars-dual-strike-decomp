@@ -9108,6 +9108,10 @@ src/game/main/func_0210547c.c:
     complete
     .text       start:0x0210547c end:0x02105488
 
+src/game/main/sound/sound_seq_player_update_all.c:
+    complete
+    .text       start:0x02105544 end:0x021056a0
+
 src/game/main/sound/nns_snd_player_move_volume.c:
     complete
     .text       start:0x021057cc end:0x02105814
