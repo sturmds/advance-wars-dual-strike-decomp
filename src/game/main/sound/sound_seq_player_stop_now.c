@@ -3,7 +3,7 @@
 
 void func_0210fe48(int hwChannel, int volume);
 void func_0210fe60(int hwChannel);
-void func_021050f8(SoundSeqPlayer *player);
+void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 
 /* Stops a sequence player at once and returns it to the free list. A player
  * that was fading out is first set to the lowest volume so it cuts off
@@ -14,5 +14,5 @@ void SoundSeqPlayer_StopNow(SoundSeqPlayer *player)
         func_0210fe48(player->hwChannel, -723);
     }
     func_0210fe60(player->hwChannel);
-    func_021050f8(player);
+    SoundSeqPlayer_Release(player);
 }

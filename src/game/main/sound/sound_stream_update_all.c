@@ -3,7 +3,7 @@
 
 extern s16 data_02151534[];                /* volume table */
 
-void func_02108998(SoundStream *stream);
+void SoundStream_Close(SoundStream *stream);
 void func_02105cb4(SoundStream *stream);
 void func_02105c10(SoundStream *stream, int volume);
 BOOL func_0210928c(SoundFader *fader);
@@ -26,7 +26,7 @@ void SoundStream_UpdateAll(void)
             continue;
         }
         if (stream->unk_110 == 0) {
-            func_02108998(stream);
+            SoundStream_Close(stream);
             continue;
         }
         if (stream->flags.startPending && stream->unk_114 != 0) {
@@ -46,7 +46,7 @@ void SoundStream_UpdateAll(void)
             stream->appliedVolume = volume;
         }
         if (stream->flags.stopping && func_0210928c(&stream->volumeFader)) {
-            func_02108998(stream);
+            SoundStream_Close(stream);
         }
     }
 }

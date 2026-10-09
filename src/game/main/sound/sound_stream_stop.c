@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-void func_02108998(SoundStream *stream);
+void SoundStream_Close(SoundStream *stream);
 void func_021092f8(SoundFader *fader, int target, int frames);
 
 /* Stops a stream. With no fade frames, or when it never started playing, it
@@ -10,11 +10,11 @@ void func_021092f8(SoundFader *fader, int target, int frames);
 void SoundStream_Stop(SoundStream *stream, int fadeFrames)
 {
     if (!stream->flags.playing) {
-        func_02108998(stream);
+        SoundStream_Close(stream);
         return;
     }
     if (fadeFrames == 0) {
-        func_02108998(stream);
+        SoundStream_Close(stream);
         return;
     }
     func_021092f8(&stream->volumeFader, 0, fadeFrames);

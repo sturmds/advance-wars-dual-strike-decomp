@@ -9,7 +9,7 @@ extern s16 data_02151534[];                /* volume table */
 
 u32 func_02110968(void);
 BOOL func_021100fc(u32 tick);
-void func_021050f8(SoundSeqPlayer *player);
+void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 void func_0210fe48(int hwChannel, int volume);
 BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
@@ -41,7 +41,7 @@ void SoundSeqPlayer_UpdateAll(void)
             player->started = 1;
         }
         if (player->started && !(activeChannels & (1 << player->hwChannel))) {
-            func_021050f8(player);
+            SoundSeqPlayer_Release(player);
         } else {
             func_021092a4(&player->volumeFader);
             playerVolume = data_02151534[player->volume];

@@ -7,7 +7,7 @@ BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
 int func_021092bc(SoundFader *fader);
 void func_0210fc88(int arg0, int volume, int arg2);
-void func_021060f8(void);
+void SoundOutput_Close(void);
 
 /* Per-frame step: advances the volume fader, closes the output when a
  * closing fade ends, otherwise sends the new volume if it changed. */
@@ -26,7 +26,7 @@ void SoundOutput_Update(void)
     fader = &state->fader;
     func_021092a4(fader);
     if (state->closeWhenFaded != 0 && func_0210928c(fader)) {
-        func_021060f8();
+        SoundOutput_Close();
         return;
     }
     volume = func_021092bc(fader) >> 8;
