@@ -449,6 +449,10 @@ src/game/main/func_020097a4.c:
     complete
     .text       start:0x020097a4 end:0x020097c8
 
+src/game/main/screen/screen_reset_blend.c:
+    complete
+    .text       start:0x020099c8 end:0x02009ac0
+
 src/game/main/screen/screen_reset_bg_registers.c:
     complete
     .text       start:0x02009b50 end:0x02009bbc
