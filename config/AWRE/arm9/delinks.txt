@@ -1012,6 +1012,62 @@ src/game/main/script/task_run_script.c:
     complete
     .text       start:0x020227e8 end:0x020228c0
 
+src/game/main/task/func_02022c0c.c:
+    complete
+    .text       start:0x02022c0c end:0x02022c3c
+
+src/game/main/func_02022c3c.c:
+    complete
+    .text       start:0x02022c3c end:0x02022c6c
+
+src/game/main/func_02022cc4.c:
+    complete
+    .text       start:0x02022cc4 end:0x02022cf4
+
+src/game/main/func_02022cf4.c:
+    complete
+    .text       start:0x02022cf4 end:0x02022d24
+
+src/game/main/func_02022d24.c:
+    complete
+    .text       start:0x02022d24 end:0x02022d54
+
+src/game/main/func_02022d54.c:
+    complete
+    .text       start:0x02022d54 end:0x02022d84
+
+src/game/main/func_02022ddc.c:
+    complete
+    .text       start:0x02022ddc end:0x02022e0c
+
+src/game/main/func_02022e0c.c:
+    complete
+    .text       start:0x02022e0c end:0x02022e3c
+
+src/game/main/func_02022e94.c:
+    complete
+    .text       start:0x02022e94 end:0x02022ec4
+
+src/game/main/func_02022ec4.c:
+    complete
+    .text       start:0x02022ec4 end:0x02022ef4
+
+src/game/main/func_02022fa4.c:
+    complete
+    .text       start:0x02022fa4 end:0x02022fd4
+
+src/game/main/func_02022fd4.c:
+    complete
+    .text       start:0x02022fd4 end:0x02023004
+
+src/game/main/func_02023004.c:
+    complete
+    .text       start:0x02023004 end:0x02023034
+
+src/game/main/func_02023034.c:
+    complete
+    .text       start:0x02023034 end:0x02023064
+
 src/game/main/func_020230bc.c:
     complete
     .text       start:0x020230bc end:0x020230dc
