@@ -3,7 +3,7 @@
 
 int BattleSetup_IsCursorOnCo(void);
 void Sound_PlaySe(int id);
-void func_020696b4(void);
+void VsSetup_RedrawSkills(void);
 
 extern MenuState gMenuState;
 
@@ -28,5 +28,5 @@ void VsSetup_PrevForceRankSet(int unused)
     } else {
         SELECTED_SET()--;
     }
-    func_020696b4();
+    VsSetup_RedrawSkills();
 }
