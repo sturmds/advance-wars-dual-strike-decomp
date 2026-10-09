@@ -34,5 +34,6 @@ int Icon_GetBank(int iconId);
 u32 Icon_GetFileOffset(int iconId, int bank);
 void Icon_Draw(int iconId, int x, int y, int tile, int list);
 void Icon_Load(int iconId);
+void Icon_LoadTo(int iconId, u8 *vram, int tile);
 
 #endif
