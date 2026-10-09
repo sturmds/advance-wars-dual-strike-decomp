@@ -8,7 +8,7 @@ extern int data_027c0284;
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 int Unit_GetUsableMovement(MapUnit *unit);
-s16 func_020a7640(MapUnit *unit);
+s16 AiUnit_GetCaptureSearchRange(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -36,7 +36,7 @@ void AiTurn_ClaimCaptureTargets(void)
     for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1; i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && unit->type <= UNIT_MECH && unit->unk_0c_5) {
-            RangeMap_FillMoves(unit->x, unit->y, unit->type, func_020a7640(unit), 0);
+            RangeMap_FillMoves(unit->x, unit->y, unit->type, AiUnit_GetCaptureSearchRange(unit), 0);
             bestY = -1;
             bestX = -1;
             best = 0x7fff;
