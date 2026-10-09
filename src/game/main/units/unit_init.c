@@ -2,6 +2,9 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
+/* Sets up a new unit of the given type: full hp, the type's full fuel and
+ * ammo, no cargo, no capture progress and no AI target. Unit_Create and the
+ * unit info panel call it. */
 void Unit_Init(MapUnit *unit, u8 type)
 {
     unit->type = type;
