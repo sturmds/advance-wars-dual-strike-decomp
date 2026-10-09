@@ -6619,6 +6619,10 @@ src/game/main/func_020cb0f4.c:
     complete
     .text       start:0x020cb0f4 end:0x020cb11c
 
+src/game/main/graphics/palette_get_block.c:
+    complete
+    .text       start:0x020ccb80 end:0x020ccbb8
+
 src/game/main/func_020ccd70.c:
     complete
     .text       start:0x020ccd70 end:0x020ccd7c
