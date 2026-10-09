@@ -25,7 +25,7 @@ void func_02026bc8(void *dst, int a, int b, int c);
 void func_02028ae8(void);
 void func_02029648(void);
 void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
-void func_0202aba8(int a, int b);
+void ModeFont_Load(int a, int b);
 void func_0202bdec(void *dst, int mapId);
 void func_0202c520(int a);
 void func_020727d0(void);
@@ -186,7 +186,7 @@ void LinkPhase_InitScreen(void)
         SWITCH_BACK();
     }
 
-    func_0202aba8(0, 0);
+    ModeFont_Load(0, 0);
     if (GAME->twoMaps == 0) {
         ModeFont_ShowText(Text_Get(TEXT_LINK_ONE_MAP), 0, 0, 1, 0);
     } else {

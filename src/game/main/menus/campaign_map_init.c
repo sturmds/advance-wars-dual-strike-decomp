@@ -27,7 +27,7 @@ void IconBank_LoadPalette(int a, int b);
 void Menu_Reset(void);
 void func_02029540(void);
 void ModeFont_ShowText(const void *text, int x, int y, int a, int b);
-void func_0202aba8(int x, int y);
+void ModeFont_Load(int x, int y);
 void func_0204d6dc(void);
 void CampaignMap_FindTopCos(void);
 BOOL func_020d5d2c(void);
@@ -257,7 +257,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Screen_SetCurrentGfx(saved0280);
     Mem_Free(res);
 
-    func_0202aba8(178, 9);
+    ModeFont_Load(178, 9);
     if (Campaign_IsHardMode() == 0) {
         ModeFont_ShowText(Text_Get(0x7d000014), 178, 9, 0, 0);
     } else {
