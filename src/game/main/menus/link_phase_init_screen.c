@@ -16,7 +16,7 @@ void *File_Load(const char *path);
 void Mem_Free(void *file);
 void func_02015340(int x, int y, void *target, const void *text, int a, int b);
 void Gfx_LoadBmap09f(void *target, int a, int b);
-void func_0201e6b4(int x, int y, int w, int h);
+void Window_DrawOnLayer1(int x, int y, int w, int h);
 void func_02021380(int a);
 void MenuButtons_DisableTouch(void);
 void Menu_Reset(void);
@@ -158,7 +158,7 @@ void LinkPhase_InitScreen(void)
     SWITCH_TO(SECOND_MAP);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
-    func_0201e6b4(11, 20, 10, 4);
+    Window_DrawOnLayer1(11, 20, 10, 4);
     target = data_027c0280->layer0Map;
     func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
     func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
@@ -176,7 +176,7 @@ void LinkPhase_InitScreen(void)
         data_027c0280->bgCnt[data_027c0280->layer3Bg].priority = 3;
         Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
         func_02021380(0);
-        func_0201e6b4(11, 20, 10, 4);
+        Window_DrawOnLayer1(11, 20, 10, 4);
         target = data_027c0280->layer0Map;
         func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
         func_0202bdec(data_027c0280->objVram + 0x780, mapId);

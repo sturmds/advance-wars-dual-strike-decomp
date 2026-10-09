@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/skills.h"
 
-void func_0201e6b4(s16 x, s16 y, int w, int h);       /* window frame */
+void Window_DrawOnLayer1(s16 x, s16 y, int w, int h);       /* window frame */
 void func_02026d54(int x, int y, int tile, int size);  /* skill icon */
 void func_020277a4(u16 x, u16 y, u16 *map, int a);     /* empty skill slot */
 void func_02027804(u16 *map, u16 x, u16 y, int w, int h);
@@ -25,7 +25,7 @@ void BattleSetup_DrawSkills(int x, int y, int set)
     int cursor;
     MenuState *shifted;
 
-    func_0201e6b4(x, y, 10, 4);
+    Window_DrawOnLayer1(x, y, 10, 4);
     func_02027804(data_027c0280->layer0Map, x + 1, y + 1, 8, 2);
     if (func_02069920() != 1) {
         return;
