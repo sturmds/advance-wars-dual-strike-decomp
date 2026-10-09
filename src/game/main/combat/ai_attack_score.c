@@ -1,0 +1,247 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/combatant.h"
+#include "game/map_unit.h"
+#include "game/unit_stats.h"
+#include "game/terrain.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
+
+s32 HwDiv32(s32 numerator, s32 denominator);
+int UnitType_GetAttackKind(int unitType);
+void func_020c28ac(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle when defenderIndex != 0 */
+int func_0209e3e8(int unitType, int targetType); /* best base damage of unitType against targetType, over both weapons */
+int func_0209ed20(MapUnit *unit, int x, int y);
+int func_0209ef7c(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
+int func_0209f67c(MapUnit *unit); /* 1: the unit's capture finishes next turn */
+int func_020a3f2c(MapUnit *unit);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
+#define ATTACKER (STATE->combatants[0])
+#define DEFENDER (STATE->combatants[1])
+#define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
+
+/* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
+#define AI_ATTACK_DEFENDER_MASK  0xffff
+#define AI_ATTACK_HEAVY_HIT      0x10000  /* target armed, and killed or loses 30 hp or more */
+#define AI_ATTACK_SAFE           0x20000  /* attacker survives and loses under 10 hp */
+#define AI_ATTACK_TANK_VALUE     0x40000  /* target armed, damage worth 60% of a Tank or more */
+#define AI_ATTACK_COST_VALUE     0x80000  /* see below */
+#define AI_ATTACK_NO_CHIP        0x100000 /* AI behaviour not 0, target not a Sub: target killed or loses 20 hp or more, and not an unarmed ship */
+
+/* Scores an attack by the unit in slot STATE->unk_3c on the unit in the
+ * flags' low 16 bits, from pos. The battle is simulated with luck, then
+ * the score is (damage * mult - loss * 2) / 8, clamped to 1-0xffff, where
+ * damage and loss are the funds / 10 each side loses. Returns 0 when the
+ * flags' conditions fail or the attack is a bad trade. */
+int AiAttack_Score(u32 flags, s16 *pos)
+{
+    MapUnit *attacker;
+    MapUnit *defender;
+    int loss;
+    int damage;
+    int mult;
+    int terrain;
+    u32 cost;
+    u32 score;
+
+    mult = 1;
+    func_020c28ac(STATE->unk_3c, flags & AI_ATTACK_DEFENDER_MASK, pos);
+    if (ATTACKER.unk_16 == 0) {
+        /* no weapon can hit */
+        return 0;
+    }
+    attacker = ATTACKER.unit;
+    defender = DEFENDER.unit;
+    if (flags & AI_ATTACK_SAFE) {
+        if (ATTACKER.hpLost >= 10) {
+            return 0;
+        }
+        if (ATTACKER.hp == 0) {
+            return 0;
+        }
+    }
+    if (flags & AI_ATTACK_HEAVY_HIT) {
+        if (UnitType_GetAttackKind(defender->type) == 2) {
+            return 0;
+        }
+        if (DEFENDER.hp != 0 && DEFENDER.hpLost < 30) {
+            return 0;
+        }
+    }
+
+    loss = HwDiv32((attacker->hp - ATTACKER.hp) * Ov000_gUnitStats[attacker->type].costDiv10, 100);
+    damage = HwDiv32((defender->hp - DEFENDER.hp) * Ov000_gUnitStats[defender->type].costDiv10, 100);
+
+    /* An enemy about to finish capturing an HQ skips every check below. */
+    if (defender->captureProgress != 0
+        && MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) == TERRAIN_HQ
+        && func_0209ef7c(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) == 0
+        && func_0209f67c(defender) == 1) {
+        goto bonuses;
+    }
+
+    /* needed to match: the (u32) casts below; the original compares unsigned */
+    if (flags & AI_ATTACK_TANK_VALUE) {
+        if (UnitType_GetAttackKind(defender->type) == 2) {
+            return 0;
+        }
+        if ((u32)damage < HwDiv32(Ov000_gUnitStats[UNIT_TANK].costDiv10 * 60, 100)) {
+            return 0;
+        }
+    }
+    /* For vehicles other than Recon: target armed, damage worth 40% of a
+     * Medium Tank (40% of a Tank when the attacker costs less than a Medium
+     * Tank), target killed or loses 20 hp or more, and AI behaviour not 3. */
+    if ((flags & AI_ATTACK_COST_VALUE) && attacker->type > UNIT_MECH && attacker->type != UNIT_RECON) {
+        if (UnitType_GetAttackKind(defender->type) == 2) {
+            return 0;
+        }
+        if (Ov000_gUnitStats[UNIT_MEDIUM_TANK].costDiv10 <= Ov000_gUnitStats[attacker->type].costDiv10) {
+            if ((u32)damage < HwDiv32(Ov000_gUnitStats[UNIT_MEDIUM_TANK].costDiv10 * 40, 100)) {
+                return 0;
+            }
+        } else {
+            if ((u32)damage < HwDiv32(Ov000_gUnitStats[UNIT_TANK].costDiv10 * 40, 100)) {
+                return 0;
+            }
+        }
+        if (DEFENDER.hp != 0 && DEFENDER.hpLost < 20) {
+            return 0;
+        }
+        if (CURRENT_PLAYER.unk_2e == 3) {
+            return 0;
+        }
+    }
+    if ((flags & AI_ATTACK_NO_CHIP) && defender->type != UNIT_SUB && CURRENT_PLAYER.unk_2e != 0) {
+        if (DEFENDER.hp != 0 && DEFENDER.hpLost < 20) {
+            return 0;
+        }
+        if (UnitType_GetAttackKind(defender->type) == 2
+            && (Ov000_gUnitStats[defender->type].moveGroup & MOVE_GROUP_SEA)) {
+            return 0;
+        }
+    }
+
+    if (defender->type == UNIT_OOZIUM) {
+        if (DEFENDER.hp == 0) {
+            return 0xffff;
+        }
+        if (UnitType_GetAttackKind(attacker->type) == 1 || attacker->type <= UNIT_MECH) {
+            return 1;
+        }
+        return CURRENT_PLAYER.unk_2e == 0 ? 1 : -1;
+    }
+    /* Chip damage (10 hp or less) and costly trades count less. */
+    if (defender->type != UNIT_MEGATANK) {
+        if (DEFENDER.hp != 0 && defender->hp - DEFENDER.hp <= 10) {
+            damage >>= 2;
+        }
+        if (attacker->hp - ATTACKER.hp >= 70 && CURRENT_PLAYER.unk_2e != 0) {
+            damage >>= 2;
+        }
+    } else {
+        if (DEFENDER.hp != 0 && defender->hp - DEFENDER.hp <= 10
+            && func_0209ed20(defender, defender->x, defender->y) == 1) {
+            damage >>= 2;
+        }
+        if (defender->hp - DEFENDER.hp <= 10 && attacker->hp - ATTACKER.hp >= 70
+            && CURRENT_PLAYER.unk_2e != 0) {
+            damage >>= 1;
+        }
+    }
+
+bonuses:
+    if ((attacker->type == UNIT_FIGHTER && defender->type == UNIT_FIGHTER)
+        || (attacker->type == UNIT_BOMBER && defender->type == UNIT_CRUISER)
+        || (attacker->type == UNIT_BOMBER && defender->type == UNIT_ANTI_AIR)) {
+        damage += damage >> 1;
+        loss >>= 1;
+    } else if (defender->type == UNIT_MEGATANK) {
+        damage <<= 1;
+    }
+    if (DEFENDER.hp == 0 && func_0209ed20(defender, defender->x, defender->y) == 1) {
+        damage += HwDiv32(Ov000_gUnitStats[defender->type].costDiv10 * 20, 100);
+    }
+    /* Infantry and mech: worth more, and more again while capturing. */
+    if ((u8)(defender->type + 0xff) <= 1) { /* needed to match: + 0xff, not - 1 */
+        if (defender->type == UNIT_INFANTRY) {
+            damage <<= 1;
+        } else {
+            damage = (damage * 3) >> 1;
+        }
+        if (defender->captureProgress != 0
+            && func_0209ef7c(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) != 1) {
+            terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]);
+            if (terrain == TERRAIN_HQ) {
+                mult <<= 3;
+            } else if (terrain == TERRAIN_BASE) {
+                mult <<= 2;
+            } else if (terrain == TERRAIN_AIRPORT || terrain == TERRAIN_PORT || terrain == TERRAIN_COM_TOWER) {
+                mult <<= 1;
+            }
+            if (func_0209f67c(defender) == 1) {
+                if (DEFENDER.hp == 0 && defender->hp < 50) {
+                    damage = HwDiv32(damage * 50, defender->hp);
+                }
+                mult <<= 1;
+                if (MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) == TERRAIN_HQ) {
+                    mult <<= 1;
+                }
+            }
+        }
+    }
+
+    /* Unarmed targets: worth a quarter when empty, half when carrying and
+     * surviving. Black Bomb: a kill counts double, plus half its cost. */
+    if (UnitType_GetAttackKind(defender->type) == 2) {
+        if (defender->cargo[0] == 0) {
+            damage >>= 2;
+        } else if (DEFENDER.hp != 0) {
+            damage >>= 1;
+        }
+    } else if (UnitType_GetAttackKind(defender->type) == 0) {
+        mult <<= 1;
+    } else if (UnitType_GetAttackKind(defender->type) == 1) {
+        mult *= 3;
+    } else if (DEFENDER.hp == 0) {
+        if (DEFENDER.hp == 0 && defender->hp < 80) {
+            damage = HwDiv32(damage * 80, defender->hp);
+        }
+        mult <<= 1;
+        damage += HwDiv32(Ov000_gUnitStats[defender->type].costDiv10 * 50, 100);
+    } else {
+        damage >>= 1;
+    }
+
+    /* A losing trade is kept only when the target cannot hit back. */
+    if (damage * mult - loss * 2 < 0) {
+        if (func_0209e3e8(defender->type, attacker->type) <= 1 && ATTACKER.hp != 0) {
+            loss = 0;
+        } else {
+            return 0;
+        }
+    }
+    damage += (damage * func_020a3f2c(defender)) >> 5;
+    if (STATE->mapTiles->unk_3250[TILE_INDEX(pos[0], pos[1])] <= 50
+        && STATE->mapTiles->unk_3758[TILE_INDEX(pos[0], pos[1])] == 0
+        && !(attacker->flags & MAP_UNIT_DIVED)) {
+        cost = Ov000_gUnitStats[defender->type].costDiv10;
+        if (cost < 800) {
+            damage += cost;
+        } else {
+            damage += 800;
+        }
+    }
+    score = (damage * mult - loss * 2) >> 3;
+    if (score & 0xffff0000) {
+        score = 0xffff;
+    }
+    if (score == 0) {
+        score = 1;
+    }
+    return score;
+}

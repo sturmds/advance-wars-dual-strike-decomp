@@ -9,8 +9,14 @@
 /* Terrain and owner of every map tile, reached through
  * Unk_02080440_48.mapTiles. */
 typedef struct MapTiles {
-    u8 pad_00[0x1420];
-    u8 tiles[0x4168 - 0x1420];         /* length unknown; bits 0-4 terrain id, bits 5-7 owner */
+    u8 pad_00[0x508];
+    u8 unk_508[0x508];                 /* per tile, indexed like tiles; a unit slot, see AiAttack_Score */
+    u8 pad_a10[0x1420 - 0xa10];
+    u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
+    u8 pad_1928[0x3250 - 0x1928];
+    u8 unk_3250[0x508];                /* per tile; AiAttack_Score compares it with 50 */
+    u8 unk_3758[0x508];                /* per tile */
+    u8 pad_3c60[0x4168 - 0x3c60];
     u16 rowStart[1];                   /* length unknown; index into tiles of each row's first tile */
 } MapTiles;
 
@@ -51,7 +57,8 @@ typedef struct Unk_02080440_48 {
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
     u8 pad_08[0x38 - 0x08];
     MapUnit *activeUnit;               /* unit the AI is acting with */
-    u8 pad_3c[0x3e - 0x3c];
+    u8 unk_3c;                         /* a unit slot: attacker for func_020c28ac */
+    u8 pad_3d;
     s16 unk_3e;
     s16 unk_40;
     s16 unk_42;
