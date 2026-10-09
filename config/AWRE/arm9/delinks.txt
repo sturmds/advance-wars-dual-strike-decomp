@@ -2030,6 +2030,10 @@ src/game/main/ai/ai_step_debug_hook.c:
     complete
     .text       start:0x020b81ac end:0x020b81b0
 
+src/game/main/ai/ai_action_debug_hook.c:
+    complete
+    .text       start:0x020b81b4 end:0x020b81b8
+
 src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664

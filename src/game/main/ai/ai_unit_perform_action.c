@@ -17,7 +17,7 @@ void func_021296a8(void *p, int n);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void func_01ffa02c(int x, int y, u8 *out);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
-void func_020b81b4(int x, int y, int action, int target, int arg);
+void AiAction_DebugHook(int x, int y, int action, int target, int arg);
 int Unit_GetFuelUsed(MapUnit *unit, int n);
 void func_0208fda8(void);
 
@@ -39,7 +39,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     RangeMap_FillUnitMoves(unit);
     func_01ffa02c(x, y, GAME->unk_170);
     PackNibblePairs(GAME->unk_170, gUnitAction.packed);
-    func_020b81b4(x, y, action, target, arg);
+    AiAction_DebugHook(x, y, action, target, arg);
 
     gUnitAction.unitIndex = GAME->actingUnitIndex;
     gUnitAction.rngState = gRngState;
