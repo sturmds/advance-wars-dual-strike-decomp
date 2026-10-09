@@ -798,6 +798,10 @@ src/game/main/co_stats/player_get_shown_firepower.c:
     complete
     .text       start:0x0206e23c end:0x0206e418
 
+src/game/main/func_020729c4.c:
+    complete
+    .text       start:0x020729c4 end:0x020729d8
+
 src/game/main/menus/link_phase_init_screen.c:
     complete
     .text       start:0x02072f90 end:0x02073768
