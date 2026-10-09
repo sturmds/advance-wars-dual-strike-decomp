@@ -5909,6 +5909,10 @@ src/game/main/ai/ai_show_action_step7.c:
     complete
     .text       start:0x020b8850 end:0x020b8964
 
+src/game/main/ai/ai_show_action_action22.c:
+    complete
+    .text       start:0x020b8964 end:0x020b8a24
+
 src/game/main/ai/ai_show_action_attack_object.c:
     complete
     .text       start:0x020b8a24 end:0x020b8ad4

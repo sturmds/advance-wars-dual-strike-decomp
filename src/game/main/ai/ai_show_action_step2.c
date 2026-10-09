@@ -22,7 +22,7 @@ void func_020b8230(void);
 void AiShowAction_Emerge(void);
 void AiShowAction_Dive(void);
 void func_020b8370(int arg);
-void func_020b8964(void);
+void AiShowAction_Action22(void);
 void AiShowAction_AttackObject(void);
 void AiShowAction_AttackUnit(void);
 void func_020b8b80(void);
@@ -142,7 +142,7 @@ void AiShowAction_Step2(void)
             func_020dd9a0();
             ActingUnit_FinishAction();
         } else {
-            func_020b8964();
+            AiShowAction_Action22();
             return;
         }
         break;
