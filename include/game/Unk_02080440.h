@@ -46,7 +46,9 @@ typedef struct Unk_02080440_1c4 {
     u8 pad_00[0x1a];
     u16 mapWidth;                      /* in tiles */
     u16 mapHeight;
-    u8 pad_1e[0x2a - 0x1e];
+    u16 unk_1e;
+    u16 unk_20;
+    u8 pad_22[0x2a - 0x22];
     u16 unk_2a;
     u8 pad_2c[0x30 - 0x2c];
     u32 unk_30;

@@ -2493,6 +2493,10 @@ src/game/main/skills/deploy_city.c:
     complete
     .text       start:0x020f4b00 end:0x020f4c00
 
+src/game/main/func_020f53e8.c:
+    complete
+    .text       start:0x020f53e8 end:0x020f54a0
+
 src/game/main/func_020f5878.c:
     complete
     .text       start:0x020f5878 end:0x020f5888
