@@ -17,7 +17,7 @@ int UnitType_BestBaseDamage(int unitType, int targetType); /* best base damage o
 int func_0209ed20(MapUnit *unit, int x, int y);
 int Unit_IsEnemyTile(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
 int Unit_CaptureEndsNextTurn(MapUnit *unit); /* 1: the unit's capture finishes next turn */
-int func_020a3f2c(MapUnit *unit);
+int AiAttack_CountTeamUnitsInReach(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
@@ -218,7 +218,7 @@ bonuses:
             return 0;
         }
     }
-    damage += (damage * func_020a3f2c(defender)) >> 5;
+    damage += (damage * AiAttack_CountTeamUnitsInReach(defender)) >> 5;
     if (STATE->mapTiles->unk_3250[TILE_INDEX(pos[0], pos[1])] <= 50
         && STATE->mapTiles->unk_3758[TILE_INDEX(pos[0], pos[1])] == 0
         && !(attacker->flags & MAP_UNIT_DIVED)) {
