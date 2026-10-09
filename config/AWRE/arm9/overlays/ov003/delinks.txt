@@ -19,6 +19,14 @@ src/game/ov003/ov003_init.c:
     complete
     .text       start:0x02351944 end:0x023519e0
 
+src/game/ov003/func_ov003_023538c4.c:
+    complete
+    .text       start:0x023538c4 end:0x02353908
+
+src/game/ov003/func_ov003_02353908.c:
+    complete
+    .text       start:0x02353908 end:0x0235394c
+
 src/game/ov003/func_ov003_02353a84.c:
     complete
     .text       start:0x02353a84 end:0x02353a98
