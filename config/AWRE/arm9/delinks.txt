@@ -194,6 +194,10 @@ src/game/main/ai/ai_turn_update.c:
     complete
     .text       start:0x0208c2a4 end:0x0208c368
 
+src/game/main/ai/ai_turn_start.c:
+    complete
+    .text       start:0x0208d984 end:0x0208dad4
+
 src/game/main/ai/ai_turn_run_phase.c:
     complete
     .text       start:0x0208dad4 end:0x0208db78

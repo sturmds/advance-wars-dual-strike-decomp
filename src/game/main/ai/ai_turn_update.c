@@ -2,7 +2,7 @@
 #include "game/ai_unit_action.h"
 
 BOOL func_0201ad28(void);
-void func_0208d984(void);
+void AiTurn_Start(void);
 void AiTurn_RunPhase(void);
 void AiTurn_RunQueue(void);
 void func_020b9540(void);
@@ -19,7 +19,7 @@ void AiTurn_Update(void)
     }
     switch (*gAiTurnState) {
     case AI_STATE_START:
-        func_0208d984();
+        AiTurn_Start();
         break;
     case AI_STATE_RUN_PHASE:
         AiTurn_RunPhase();

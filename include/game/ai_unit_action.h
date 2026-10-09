@@ -43,7 +43,7 @@ typedef struct AiTurnState {
     u8 pad_04;
     u8 unk_05;
     u8 pad_06;
-    u8 flags;                          /* AI_TURN_* */
+    u8 flags;                          /* bits 0-1: cleared for each queued unit; 2, 3: see AiTurn_Start */
     u8 unk_08;
 } AiTurnState;
 
