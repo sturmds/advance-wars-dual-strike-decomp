@@ -26,7 +26,7 @@ void Battle_PickFrame(void);
 BOOL Battle_IsSideAir(int side);
 int func_ov002_0235e26c(int army);
 u8 Battle_GetSideMood(u8 side);
-u8 func_ov002_0235e3c4(u8 side);
+u8 Battle_GetStartMood(u8 side);
 void func_ov002_0235e58c(void *buf);
 
 /* Needed to match: the original adds the field offset to the address of
@@ -131,7 +131,7 @@ void Battle_ShowQuote(void)
         palette = left ? 10 : 11;
         bg = data_027c0280->layer1Bg;
         tile = left ? 304 : 334;
-        func_020021a8(Ov002_gBattleScene->sides[i].coId | (func_ov002_0235e3c4(i) << 8),
+        func_020021a8(Ov002_gBattleScene->sides[i].coId | (Battle_GetStartMood(i) << 8),
                       CHAR_BASE(bg) + tile * 32, palette,
                       func_ov002_0235e26c(Ov002_gBattleScene->sides[i].army));
         palette = left ? 10 : 11;

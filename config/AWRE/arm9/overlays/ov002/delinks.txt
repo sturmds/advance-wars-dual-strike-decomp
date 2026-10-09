@@ -26,3 +26,7 @@ src/game/ov002/battle_quotes_happy.c:
 src/game/ov002/battle_pick_frame.c:
     complete
     .text       start:0x0235dfe0 end:0x0235e138
+
+src/game/ov002/battle_get_start_mood.c:
+    complete
+    .text       start:0x0235e3c4 end:0x0235e58c
