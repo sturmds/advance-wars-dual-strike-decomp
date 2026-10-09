@@ -15,13 +15,20 @@ typedef struct SpriteEntry {
     const void *unk_0c;
 } SpriteEntry;
 
+/* Pointed to by Unk_027c0280.fontState. Only two fields are known. */
+typedef struct FontState {
+    u8 unk_00;                         /* set to 1 when digitEndTile changes */
+    u8 pad_01[0x358 - 0x01];
+    u16 digitEndTile;                  /* tile after the digit font (Font_LoadDigits) */
+} FontState;
+
 /* Pointed to by data_027c0280 (DTCM). */
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *paletteBuffer;                 /* BG and OBJ palettes, 0x400 bytes; Palette_Load writes, Palette_Flush uploads */
     u8 pad_0c[0x10 - 0x0c];
     u32 layerCopyMask;                 /* bit per layer: copy its tile map to VRAM (func_01ff8e58) */
-    u8 pad_14[0x18 - 0x14];
+    struct FontState *fontState;
     void *textPrinter;                 /* text, position and target map of the text being printed */
     struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
     u8 pad_20[0x24 - 0x20];

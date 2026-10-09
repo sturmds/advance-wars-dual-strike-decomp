@@ -280,6 +280,10 @@ src/game/main/graphics/font_load_digits.c:
     complete
     .text       start:0x02021380 end:0x020213c0
 
+src/game/main/graphics/font_set_digit_end_tile.c:
+    complete
+    .text       start:0x020213c0 end:0x020213e4
+
 src/game/main/graphics/sprite_queue.c:
     complete
     .text       start:0x02021858 end:0x020218e4
