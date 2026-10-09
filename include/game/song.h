@@ -10,8 +10,13 @@
 extern u16 gCurrentSong;         /* song playing, SONG_NONE: none */
 extern u16 gPendingSong;         /* song to start later, SONG_NONE: none */
 
+/* Task script that counts down while the song fades out, then clears
+ * gCurrentSong. Pairs of (opcode, argument) words. */
+extern const u32 gSongFadeOutScript[];
+
 void Sound_RestoreSongVolume(void);
 void Sound_LowerSongVolume(int volume);
 void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
+BOOL Sound_IsSongFadingOut(void);
 
 #endif
