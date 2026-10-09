@@ -14,6 +14,10 @@ typedef struct Unk_021694c0 {
     u8 pad_18[4];
     int unk_1c;
     int unk_20;
+    int unk_24;
+    int unk_28;
+    int unk_2c;
+    int unk_30;
 } Unk_021694c0;
 
 #endif
