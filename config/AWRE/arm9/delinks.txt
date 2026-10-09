@@ -1019,6 +1019,10 @@ src/game/main/ai/ai_profile_build.c:
     complete
     .text       start:0x0208cba8 end:0x0208cdb8
 
+src/game/main/ai/ai_profile_randomise.c:
+    complete
+    .text       start:0x0208cdb8 end:0x0208cdf8
+
 src/game/main/func_0208d3fc.c:
     complete
     .text       start:0x0208d3fc end:0x0208d41c

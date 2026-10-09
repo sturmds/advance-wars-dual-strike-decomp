@@ -12,7 +12,7 @@ extern AiProfileMods gAiProfileMods[];
 
 s32 Rng_Range(s32 min, s32 max);
 /* Returns base + spread * roll / 100 - spread / 2, kept within 1-255. */
-u8 AiProfile_Randomise(u8 base, u8 spread, int roll);
+int AiProfile_Randomise(u8 base, u8 spread, int roll);
 
 /* Fills the current player's AI profile from a template and a mods
  * entry. The template values given as base and spread are randomised
