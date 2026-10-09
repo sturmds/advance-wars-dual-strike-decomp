@@ -1077,7 +1077,7 @@ data_ov000_022f66c4 kind:data(any) addr:0x022f66c4 ambiguous
 data_ov000_022f66d8 kind:data(any) addr:0x022f66d8 ambiguous
 data_ov000_022f67d8 kind:data(any) addr:0x022f67d8 ambiguous
 data_ov000_022f6bd8 kind:data(any) addr:0x022f6bd8
-data_ov000_022f6bf0 kind:data(any) addr:0x022f6bf0
+gTextBanks kind:data(any) addr:0x022f6bf0
 data_ov000_022f6d78 kind:data(any) addr:0x022f6d78
 data_ov000_022f6d7c kind:data(any) addr:0x022f6d7c
 data_ov000_022f6d84 kind:data(any) addr:0x022f6d84
