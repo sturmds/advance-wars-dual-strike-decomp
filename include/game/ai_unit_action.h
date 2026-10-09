@@ -33,6 +33,9 @@ typedef struct AiTurnState {
     u8 pad_06;
     u8 flags;                          /* bits 0-1: cleared for each queued unit; 2, 3: see AiTurn_Start and AiTargetFlags */
     u8 stepFlags;                      /* AI_STEP_*; cleared for each queued unit */
+    u8 pad_09;
+    u16 unk_0a_0 : 3;
+    u16 unk_0a_3 : 3;                  /* AiFoot_HeadForCaptureSite tests bit 2 */
 } AiTurnState;
 
 /* AiTurnState.stepFlags bits. Names of bits without a decompiled setter

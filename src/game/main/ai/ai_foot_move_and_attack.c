@@ -14,7 +14,7 @@ void func_020ab014(void);
 void AiFoot_PickAttackTarget(void);
 void func_020ad704(void);
 void AiFoot_JoinCapturingUnit(void);
-void func_020ae37c(void);
+void AiFoot_HeadForCaptureSite(void);
 void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
@@ -48,10 +48,10 @@ void AiFoot_MoveAndAttack(void)
     if (GAME->actingUnit->hp <= 60) {
         func_020b0794();
     }
-    func_020ae37c();
+    AiFoot_HeadForCaptureSite();
     func_020ab014();
     gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
-    func_020ae37c();
+    AiFoot_HeadForCaptureSite();
     func_020a9854();
     AiUnit_WaitInPlace();
 }
