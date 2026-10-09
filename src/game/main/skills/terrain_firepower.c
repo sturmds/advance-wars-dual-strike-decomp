@@ -4,7 +4,7 @@
 #include "game/skills.h"
 #include "game/terrain.h"
 
-int func_020dfcf8(int playerIndex, int terrain);
+int Player_GetCoTerrainFirepower(int playerIndex, int terrain);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 
 extern Unk_02080440 *data_027c027c;
@@ -22,7 +22,7 @@ int TerrainFirepower(int playerIndex, int unitType, int x, int y)
     int terrain = MAP_TILE_TERRAIN(map->tiles[map->rowStart[y] + x]);
     int bonus = 0; /* needed to match: start at 0, then add */
 
-    bonus += func_020dfcf8(playerIndex, terrain);
+    bonus += Player_GetCoTerrainFirepower(playerIndex, terrain);
 
     if (CheckSkillsEquipped(PLAYER(playerIndex).skills[0], SKILL_TERRAIN_FIREPOWER)) {
         bonus += DoubleTerrainStars(playerIndex, unitType, terrain) >> 1;
