@@ -9,7 +9,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-u8 func_020018a8(int player, int slot);
+u8 Player_GetCoId(int player, int slot);
 int Co_GetForceRankSetIndex(int co, int player);
 void Map_LoadAndCountProperties(int mapId, u8 *a, u8 *b);
 u8 Map_GetLoadedPlayerCount(void);
@@ -160,8 +160,8 @@ void BattleSetup_LoadFromGame(void)
         gMenuState.setup.unk_2e1 = GAME->unk_82;
         gMenuState.setup.unk_2e2 = GAME->unk_8c;
         for (i = 0; i < 4; i++) {
-            gMenuState.setup.cos[i][0] = func_020018a8(i + 1, 0);
-            gMenuState.setup.cos[i][1] = func_020018a8(i + 1, 1);
+            gMenuState.setup.cos[i][0] = Player_GetCoId(i + 1, 0);
+            gMenuState.setup.cos[i][1] = Player_GetCoId(i + 1, 1);
             gMenuState.setup.armyColours[i] = GAME->players[i + 1].armyColour;
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
                 gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_AI;
