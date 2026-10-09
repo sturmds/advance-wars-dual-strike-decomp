@@ -6683,6 +6683,10 @@ src/game/main/func_020ce17c.c:
     complete
     .text       start:0x020ce17c end:0x020ce188
 
+src/game/main/map/weather_start_effect.c:
+    complete
+    .text       start:0x020cf884 end:0x020cf8e8
+
 src/game/main/func_020cfd30.c:
     complete
     .text       start:0x020cfd30 end:0x020cfd5c
