@@ -188,7 +188,9 @@ typedef struct Unk_02080440_50 {
     void (*afterBoxDraw)(void);        /* run by MenuBox_Draw after it draws a menu box */
     u8 pad_44[0x54 - 0x44];
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
-    u8 pad_58[100 - 0x58];
+    u8 pad_58[0x5c - 0x58];
+    BOOL (*unk_5c)(void);              /* func_020fa6f8 calls it; picks between two asset or chart variants */
+    u8 pad_60[100 - 0x60];
 } Unk_02080440_50;
 
 /* Pointed to by data_027c027c (DTCM). */
