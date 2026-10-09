@@ -359,6 +359,10 @@ src/game/main/ai/ai_action_queue_capturing_units.c:
     complete
     .text       start:0x0208f43c end:0x0208f574
 
+src/game/main/ai/ai_queue_sort_sea_transports.c:
+    complete
+    .text       start:0x0208f574 end:0x0208f688
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
