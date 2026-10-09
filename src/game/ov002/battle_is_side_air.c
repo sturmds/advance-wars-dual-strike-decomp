@@ -2,10 +2,6 @@
 #include "game/battle_scene.h"
 #include "game/unit_stats.h"
 
-/* Needed to match: the unit type of a side sits at scene offset 3 + 12 * side,
- * one byte before what BattleScene.sides[side] starts at. */
-#define BATTLE_SIDE_UNIT_TYPE(side) (((u8 *)Ov002_gBattleScene)[3 + (side) * sizeof(BattleSide)])
-
 /* Nonzero when the unit on that side is a plane or helicopter. 31 is not a
  * unit type in Ov000_gUnitStats; the value is set elsewhere in ov002. */
 BOOL Battle_IsSideAir(int side)

@@ -6,7 +6,7 @@
 int HwDiv32(int num, int den);
 int UnitType_BestBaseDamage(int unitType, int targetType);
 int UnitType_GetAttackKind(int unitType);
-int func_ov002_0235e138(int side);
+int Battle_GetSideUnitType(int side);
 int Battle_IsArmyNotHuman(int army);
 
 /* Picks the frame graphics of the battle screen into data_0229fb30.unk_03.
@@ -43,13 +43,13 @@ void Battle_PickFrame(void)
     } else {
         loserHp = HwDiv32(Ov002_gBattleScene->sides[loser].hpBefore - 1, 10) + 1;
     }
-    if (loserHp == 10 && func_ov002_0235e138(loser) > 2) {
-        if (UnitType_GetAttackKind((u8)func_ov002_0235e138(loser)) != ATTACK_KIND_NONE) {
+    if (loserHp == 10 && Battle_GetSideUnitType(loser) > 2) {
+        if (UnitType_GetAttackKind((u8)Battle_GetSideUnitType(loser)) != ATTACK_KIND_NONE) {
             data_0229fb30.unk_03 = 3;
             return;
         }
     }
-    if (UnitType_BestBaseDamage(func_ov002_0235e138(survivor), func_ov002_0235e138(loser)) <= 20) {
+    if (UnitType_BestBaseDamage(Battle_GetSideUnitType(survivor), Battle_GetSideUnitType(loser)) <= 20) {
         data_0229fb30.unk_03 = 2;
     } else {
         data_0229fb30.unk_03 = 1;

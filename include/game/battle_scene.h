@@ -25,4 +25,8 @@ typedef struct BattleScene {
 
 extern BattleScene *Ov002_gBattleScene;
 
+/* Needed to match: the unit type of a side sits at scene offset 3 + 12 * side,
+ * one byte before what BattleScene.sides[side] starts at. */
+#define BATTLE_SIDE_UNIT_TYPE(side) (((u8 *)Ov002_gBattleScene)[3 + (side) * sizeof(BattleSide)])
+
 #endif
