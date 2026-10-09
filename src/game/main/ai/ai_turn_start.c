@@ -16,7 +16,7 @@ void AiTurn_ClearUnitMarks(void);
 void func_0208d548(void);
 void AiTurn_CountCaptureTargets(void);
 void func_0208d964(void);
-void func_0208d2f0(void);
+void AiTurn_UpdateUnitModes(void);
 int func_0209dec0(void);
 int Player_TeamHasNoBlackHole(void);
 
@@ -41,7 +41,7 @@ void AiTurn_Start(void)
     func_0208d548();
     AiTurn_CountCaptureTargets();
     func_0208d964();
-    func_0208d2f0();
+    AiTurn_UpdateUnitModes();
 
     if (func_0209dec0() == 1) {
         gAiTurnState->flags |= 4;

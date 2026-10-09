@@ -1027,6 +1027,10 @@ src/game/main/ai/ai_profile_randomise.c:
     complete
     .text       start:0x0208cdb8 end:0x0208cdf8
 
+src/game/main/ai/ai_turn_update_unit_modes.c:
+    complete
+    .text       start:0x0208d2f0 end:0x0208d3fc
+
 src/game/main/func_0208d3fc.c:
     complete
     .text       start:0x0208d3fc end:0x0208d41c
