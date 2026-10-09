@@ -216,6 +216,10 @@ src/game/main/units/unit_type_get_max_range.c:
     complete
     .text       start:0x020dfc80 end:0x020dfc98
 
+src/game/main/units/unit_type_get_vision.c:
+    complete
+    .text       start:0x020dfc98 end:0x020dfcb0
+
 
 src/game/main/co_stats/player_get_bad_luck.c:
     complete
