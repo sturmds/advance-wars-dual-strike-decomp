@@ -32,4 +32,5 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
+| `src/game/main/menus/battle_setup_load_from_game.c` | BattleSetup_LoadFromGame | 1648 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |

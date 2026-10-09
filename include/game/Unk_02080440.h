@@ -33,6 +33,9 @@ typedef struct Unk_02080440_1c4 {
     u8 fog;                            /* 1: Fog of War */
     u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
+    u8 unk_3b;                         /* 1: menu weather setting 0 */
+    u8 pad_3c[0x3d - 0x3c];
+    u8 unk_3d;                         /* 0-3, mapped to menu weather settings 1-4 */
 } Unk_02080440_1c4;
 
 /* Unk_02080440_1c4.weather */
@@ -63,7 +66,7 @@ typedef struct Unk_02080440_48 {
     u32 unk_7c;
     u8 unk_80;                         /* from MapHeader.unk_30 */
     u8 unk_81;                         /* from MapHeader.unk_34 */
-    u8 pad_82[0x83 - 0x82];
+    u8 unk_82;
     u8 unk_83;                         /* 0: song requests are kept pending, see Sound_PlaySong */
     u8 pad_84[0x85 - 0x84];
     u8 unk_85;                         /* nonzero: Combatant_CalcDamage rolls luck only when its caller asks */
@@ -71,7 +74,8 @@ typedef struct Unk_02080440_48 {
     u8 pad_87[0x88 - 0x87];
     u16 secondMapId;                   /* second map of a two-map battle, from MapHeader.variantMapIds[0]; 0: none */
     u8 unk_8a;
-    u8 pad_8b[0x8d - 0x8b];
+    u8 pad_8b[0x8c - 0x8b];
+    u8 unk_8c;
     u8 army[5];                        /* army colour per slot, copied from the map header */
     u8 slotControllers[5];             /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
     u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */

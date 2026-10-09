@@ -111,6 +111,9 @@ src/game/main/func_02066818.c:
     complete
     .text       start:0x02066818 end:0x020668a8
 
+src/game/main/menus/battle_setup_load_from_game.c:
+    .text       start:0x0206c6f4 end:0x0206cd64
+
 src/game/main/menus/link_phase_init_screen.c:
     complete
     .text       start:0x02072f90 end:0x02073768
