@@ -418,6 +418,10 @@ src/game/main/skills/counter_first.c:
     complete
     .text       start:0x020c31ec end:0x020c329c
 
+src/game/main/combat/combatant_take_hit.c:
+    complete
+    .text       start:0x020c33a8 end:0x020c3468
+
 src/game/main/combat/combatant_calc_damage.c:
     complete
     .text       start:0x020c3468 end:0x020c3640
