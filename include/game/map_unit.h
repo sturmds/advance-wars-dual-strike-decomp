@@ -13,6 +13,9 @@
 #define MAP_UNIT_DIVED     0x20
 #define MAP_UNIT_PARALYSED 0x40
 
+/* MapUnit.captureProgress at which a tile changes owner. */
+#define MAP_UNIT_CAPTURE_POINTS 20
+
 /* Unit slots per player in Unk_02080440_48.units. */
 #define MAP_UNITS_PER_PLAYER 64
 

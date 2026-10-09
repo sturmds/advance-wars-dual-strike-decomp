@@ -41,7 +41,7 @@ void func_020ddc2c(void);
 void UnitAction_Join(void);
 void func_020de350(int arg);
 void func_020de440(void);
-void func_020de5a4(void);
+void UnitAction_Capture(void);
 void func_020deac4(void);
 
 /* Second display step: runs the display routine of the action in
@@ -98,7 +98,7 @@ void AiShowAction_Step2(void)
         func_020deac4();
         break;
     case 3:
-        func_020de5a4();
+        UnitAction_Capture();
         func_020deac4();
         break;
     case 4:

@@ -17,7 +17,10 @@ typedef struct Unk_02290718 {
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
     u8 pad_16[0x38 - 0x16];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
-    u8 pad_after_records[0x3c0 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
+    u8 pad_after_records[0x3b4 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
+    u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
+    u32 capturesCompleted;             /* captures finished by human players, capped at 999999 */
+    u8 pad_3bc[0x3c0 - 0x3bc];
     u32 humanFundsSpent;               /* funds spent by human players, capped at 999999999 (Player_SpendFunds) */
     u8 pad_3c4[0x3f4 - 0x3c4];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
