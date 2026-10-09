@@ -1888,6 +1888,10 @@ src/game/main/func_020bc974.c:
     complete
     .text       start:0x020bc974 end:0x020bc988
 
+src/game/main/menus/battle_menu_draw_help_text.c:
+    complete
+    .text       start:0x020bc9c4 end:0x020bca60
+
 src/game/main/func_020bdf08.c:
     complete
     .text       start:0x020bdf08 end:0x020bdf28
