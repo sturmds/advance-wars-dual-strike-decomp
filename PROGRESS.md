@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 627 / 6603 | 109420 / 1531944 | 7.14% | 0 | 0 |
+| game | 628 / 6603 | 110236 / 1531944 | 7.20% | 0 | 0 |
 | SDK/library | 6 / 880 | 648 / 154050 | 0.42% | 1 | 30 |
-| all | 633 / 7483 | 110068 / 1685994 | 6.53% | 1 | 30 |
+| all | 634 / 7483 | 110884 / 1685994 | 6.58% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 586 / 5180 | 105628 / 1082632 | 9.76% | 0 |
+| main | game | 587 / 5180 | 106444 / 1082632 | 9.83% | 0 |
 | main | SDK/library | 1 / 767 | 40 / 130618 | 0.03% | 1 |
 | itcm | SDK/library | 5 / 113 | 608 / 23432 | 2.59% | 0 |
 | ov000 | game | 1 / 121 | 16 / 25300 | 0.06% | 0 |
@@ -39,4 +39,3 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
-| `src/game/main/menus/menu_cursor_update.c` | MenuCursor_Update | 816 |

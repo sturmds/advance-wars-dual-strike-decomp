@@ -521,6 +521,7 @@ src/game/main/menus/menu_cursor_draw_at.c:
     .text       start:0x02025da0 end:0x02025e4c
 
 src/game/main/menus/menu_cursor_update.c:
+    complete
     .text       start:0x02025e4c end:0x0202617c
 
 src/game/main/menus/menu_dispatch_keys.c:

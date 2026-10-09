@@ -26,6 +26,7 @@ void MenuCursor_Update(void)
     int top;
     int right;
     int bottom;
+    int tile;
 
     mode = 0;
     MenuButton_Select(gMenuCursor->selectedId);
@@ -71,9 +72,10 @@ void MenuCursor_Update(void)
     }
     for (i = 0; i < 4; i++) {
         if (MainLoop_GetFrameCount() & 0x30) {
+            tile = gMenuCursor->tile + i * 2;
             Oam_PutSprite(gMenuCursor->corners[i][0] & 0x1ff,
                           mode | (gMenuCursor->corners[i][1] & 0xff), data_02158f3c,
-                          (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
+                          tile | (gMenuCursor->palette << 12));
         } else {
             /* left and top now hold the shake offsets; separate locals
              * get worse register allocation */
@@ -85,9 +87,10 @@ void MenuCursor_Update(void)
             if (i == 2 || i == 3) {
                 top = -top;
             }
+            tile = gMenuCursor->tile + i * 2;
             Oam_PutSprite((left + gMenuCursor->corners[i][0]) & 0x1ff,
                           mode | ((top + gMenuCursor->corners[i][1]) & 0xff), data_02158f3c,
-                          (gMenuCursor->tile + i * 2) | (gMenuCursor->palette << 12));
+                          tile | (gMenuCursor->palette << 12));
         }
     }
 }
