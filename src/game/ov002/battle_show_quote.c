@@ -24,7 +24,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void func_020021a8(u32 a, void *dst, int b, int c);
 void Battle_PickFrame(void);
 BOOL Battle_IsSideAir(int side);
-int func_ov002_0235e26c(int army);
+int Battle_FindArmySlot(int army);
 u8 Battle_GetSideMood(u8 side);
 u8 Battle_GetStartMood(u8 side);
 void func_ov002_0235e58c(void *buf);
@@ -133,13 +133,13 @@ void Battle_ShowQuote(void)
         tile = left ? 304 : 334;
         func_020021a8(Ov002_gBattleScene->sides[i].coId | (Battle_GetStartMood(i) << 8),
                       CHAR_BASE(bg) + tile * 32, palette,
-                      func_ov002_0235e26c(Ov002_gBattleScene->sides[i].army));
+                      Battle_FindArmySlot(Ov002_gBattleScene->sides[i].army));
         palette = left ? 10 : 11;
         bg2 = data_027c0280->layer1Bg;
         tile = left ? 364 : 394;
         func_020021a8(Ov002_gBattleScene->sides[i].coId | (Battle_GetSideMood(i) << 8),
                       CHAR_BASE(bg2) + tile * 32, palette,
-                      func_ov002_0235e26c(Ov002_gBattleScene->sides[i].army));
+                      Battle_FindArmySlot(Ov002_gBattleScene->sides[i].army));
         Palette_Load(res + 0xab4 + (Ov002_gBattleScene->sides[i].army - 1) * 32,
                       (u16)((left ? 8 : 9) * 32), 32); /* the u16 cast is needed to match */
     }
