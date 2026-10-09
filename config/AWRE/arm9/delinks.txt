@@ -523,6 +523,10 @@ src/game/main/sound/song_request_start.c:
     complete
     .text       start:0x02026758 end:0x02026768
 
+src/game/main/sound/sound_start_song.c:
+    complete
+    .text       start:0x020267a4 end:0x020267fc
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
