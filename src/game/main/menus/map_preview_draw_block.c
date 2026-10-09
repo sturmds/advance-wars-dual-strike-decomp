@@ -20,21 +20,22 @@ extern u16 data_02149080[];           /* pictures, 4 halfwords each, 2 halfwords
 /* Draws width by height map tiles, from tile (x, y) on, as one picture per
  * tile into dst. Used for the map preview: MapPreview_Draw calls it for
  * each block of the preview. Tiles outside the map get data_022a6b40. A
- * property takes the picture for its owner's army colour (gArmyColours). */
+ * property takes the picture for its owner's army colour (gArmyColours).
+ * Not matching yet (95%): the rowStart + col index and colour take r7/r8, not r6/r7,
+ * and startY is spilled before the loop guard instead of after it. */
 void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
 {
     u16 rowStart;
-    int startY;
-    int xEnd;
-    int yEnd;
-    int rowIndex;
+    /* Read through a local so the row offset is reloaded for each tile, as
+     * in the original. */
     u16 *rowTable = data_022a6b80;
+    /* Column of the offset table, then the map column being drawn. */
     int col;
     int row;
     int offset;
-    int xx;
-    int tileIndex;
+    int startY;
     u16 *cell;
+    int rowOff;
 
     offset = 0;
     for (col = 0; col < width; col++) {
@@ -55,28 +56,25 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
         }
     }
 
-    yEnd = y + height;
     rowStart = data_0229eadc->width * y;
     startY = y;
-    xEnd = x + width;
-    for (; y < yEnd; y++) {
-        rowIndex = y - startY;
-        for (xx = x, tileIndex = rowStart + x; xx < xEnd; xx++, tileIndex++) {
+    for (; y < startY + height; y++) {
+        for (col = x; col < x + width; col++) {
             u16 *picture;
             int colour;
             int terrain;
             int code;
-            int tile;
+            u8 tile;
             int base;
 
-            if (xx < 0 || xx >= data_0229eadc->width || y < 0 || y >= data_0229eadc->height) {
+            if (col < 0 || col >= data_0229eadc->width || y < 0 || y >= data_0229eadc->height) {
                 picture = data_022a6b40;
             } else {
-                code = data_0229eadc->tileCodes[tileIndex];
+                code = data_0229eadc->tileCodes[rowStart + col];
                 tile = data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[code];
                 colour = gArmyColours[tile >> 5];
                 if (data_027c027c->unk_48[data_027c0284]->gameMode == 0
-                    && data_027c027c->unk_48[data_027c0284]->mapTiles->unk_2338[xx + data_027c027c->unk_48[data_027c0284]->mapTiles->rowStart[y]] == 0
+                    && data_027c027c->unk_48[data_027c0284]->mapTiles->unk_2338[col + data_027c027c->unk_48[data_027c0284]->mapTiles->rowStart[y]] == 0
                     && MAP_TILE_TERRAIN(tile) != TERRAIN_HQ) {
                     colour = 0;
                 }
@@ -91,7 +89,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                 case 9:
                     base = data_02166e3c[terrain];
                     if (y > 0) {
-                        int above = MAP_TILE_TERRAIN(data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[data_0229eadc->tileCodes[tileIndex - data_0229eadc->width]]);
+                        int above = MAP_TILE_TERRAIN(data_027c027c->unk_48[data_027c0284]->tileCodeTerrain[data_0229eadc->tileCodes[rowStart + col - data_0229eadc->width]]);
 
                         if (above == TERRAIN_BLACK_CANNON || above == TERRAIN_BLACK_OBELISK) {
                             base = LARGE_OBJECT_PICTURE;
@@ -104,9 +102,10 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                 }
                 picture = data_02149080 + data_021587e0[base + colour];
             }
-            cell = dst + data_022a6bd0[xx - x];
-            cell[rowTable[rowIndex]] = picture[0];
-            cell += rowTable[rowIndex];
+            cell = dst + data_022a6bd0[col - x];
+            rowOff = rowTable[y - startY];
+            cell[rowOff] = picture[0];
+            cell += rowOff;
             cell[2] = picture[2];
             cell[4] = picture[4];
             cell[6] = picture[6];
