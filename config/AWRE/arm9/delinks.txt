@@ -199,6 +199,10 @@ src/game/main/callback_list_add.c:
     complete
     .text       start:0x020045f4 end:0x02004628
 
+src/game/main/func_020048f4.c:
+    complete
+    .text       start:0x020048f4 end:0x0200493c
+
 src/game/main/func_02004a14.c:
     complete
     .text       start:0x02004a14 end:0x02004a1c
