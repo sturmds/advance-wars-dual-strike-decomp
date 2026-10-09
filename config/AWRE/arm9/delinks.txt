@@ -2800,6 +2800,10 @@ src/game/main/sound/nns_snd_main.c:
     complete
     .text       start:0x02104e24 end:0x02104e58
 
+src/game/main/sound/func_021053a0.c:
+    complete
+    .text       start:0x021053a0 end:0x02105400
+
 src/game/main/sound/nns_snd_player_move_volume.c:
     complete
     .text       start:0x021057cc end:0x02105814
