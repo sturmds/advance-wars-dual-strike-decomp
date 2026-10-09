@@ -4,13 +4,13 @@
 #include "game/menu_button.h"
 
 void Sound_PlaySe(int id);
-void func_020418e0(void);
+void CoSelectScreen_HandleR(void);
 void func_02041944(void);
 void CoSelectScreen_BeginExit(void);
 void func_020b9890(void);
 
 /* onKeys of the CO select buttons. The cursor wraps around the grid; A and
- * B confirm and cancel, X calls func_02041944, R func_020418e0, and Start
+ * B confirm and cancel, X calls func_02041944, R CoSelectScreen_HandleR, and Start
  * plays sound 0x10006 and leaves through CoSelectScreen_BeginExit. */
 void CoSelectScreen_HandleKeys(MenuButton *button)
 {
@@ -57,7 +57,7 @@ void CoSelectScreen_HandleKeys(MenuButton *button)
         return;
     }
     if (keys & PAD_BUTTON_R) {
-        func_020418e0();
+        CoSelectScreen_HandleR();
         return;
     }
     if (keys & PAD_BUTTON_START) {
