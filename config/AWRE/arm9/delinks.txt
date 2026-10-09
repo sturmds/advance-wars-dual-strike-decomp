@@ -40,7 +40,7 @@ src/game/main/graphics/co_load_palette.c:
     complete
     .text       start:0x02002cec end:0x02002d3c
 
-src/game/main/mem/mem_clear32.c:
+src/game/main/mem/mem_zero32.c:
     complete
     .text       start:0x02002dbc end:0x02002de0
 
