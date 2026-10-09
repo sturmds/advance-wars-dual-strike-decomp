@@ -70,8 +70,8 @@ typedef struct Player {
     u8 pad_31[0x33 - 0x31];
     u8 unk_33;                         /* cleared by Players_Reset */
     u8 unk_34;
-    u8 unk_35;                         /* live unit count (doc 890) */
-    u8 unitsBuilt[27];                 /* per unit type (doc 890) */
+    u8 unk_35;                         /* +1 per unit built, up to 255 (func_020c74dc); doc 890: live unit count */
+    u8 unitsBuilt[27];                 /* per unit type, up to 255; see Player_CountUnitBuilt */
     u8 unitsLost[27];                  /* per unit type (doc 890) */
     PlayerCo front;
     PlayerCo back;

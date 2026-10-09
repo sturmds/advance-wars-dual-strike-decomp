@@ -3,7 +3,7 @@
 
 MapUnit *func_020c880c(int player); /* first free slot (type 0) of the player's units, or NULL */
 void func_020c8184(MapUnit *unit, u8 type);
-void func_020c7428(int player, int type);
+void Player_CountUnitBuilt(int player, int type);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,6 +22,6 @@ MapUnit *Unit_Create(int x, int y, int type)
     func_020c8184(unit, type);
     unit->x = x;
     unit->y = y;
-    func_020c7428(STATE->currentPlayer, type);
+    Player_CountUnitBuilt(STATE->currentPlayer, type);
     return unit;
 }
