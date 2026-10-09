@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/ai_unit_action.h"
 #include "game/combatant.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -23,14 +24,6 @@ int func_020a3f2c(MapUnit *unit);
 #define ATTACKER (STATE->combatants[0])
 #define DEFENDER (STATE->combatants[1])
 #define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
-
-/* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
-#define AI_ATTACK_DEFENDER_MASK  0xffff
-#define AI_ATTACK_HEAVY_HIT      0x10000  /* target armed, and killed or loses 30 hp or more */
-#define AI_ATTACK_SAFE           0x20000  /* attacker survives and loses under 10 hp */
-#define AI_ATTACK_TANK_VALUE     0x40000  /* target armed, damage worth 60% of a Tank or more */
-#define AI_ATTACK_COST_VALUE     0x80000  /* see below */
-#define AI_ATTACK_NO_CHIP        0x100000 /* AI behaviour not 0, target not a Sub: target killed or loses 20 hp or more, and not an unarmed ship */
 
 /* Scores an attack by the unit in slot STATE->actingUnitIndex on the unit in the
  * flags' low 16 bits, from pos. The battle is simulated with luck, then
@@ -95,7 +88,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
     }
     /* For vehicles other than Recon: target armed, damage worth 40% of a
      * Medium Tank (40% of a Tank when the attacker costs less than a Medium
-     * Tank), target killed or loses 20 hp or more, and AI behaviour not 3. */
+     * Tank), target killed or loses 20 hp or more, and aiBehaviour not AI_BEHAVIOUR_DEFENSE. */
     if ((flags & AI_ATTACK_COST_VALUE) && attacker->type > UNIT_MECH && attacker->type != UNIT_RECON) {
         if (UnitType_GetAttackKind(defender->type) == 2) {
             return 0;

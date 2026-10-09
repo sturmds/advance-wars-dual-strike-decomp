@@ -151,6 +151,9 @@ typedef struct CoPowerBlock {
     const CoStatRow *statRows[UNIT_CLASS_COUNT];
 } CoPowerBlock;
 
+/* CoRecord.nation of the Black Hole COs. */
+#define NATION_BLACK_HOLE 5
+
 /* One entry of gCoTable (main 0x0215360c), indexed by CO id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE. */
 typedef struct CoRecord {
@@ -162,7 +165,7 @@ typedef struct CoRecord {
     u32 superStars;                    /* Super CO Power cost in stars */
     u8 unk_24;                         /* always 1 */
     u8 armyStyle;                      /* 0-4: OS, BM, GE, YC, BH */
-    u8 nation;                         /* 1-5; picks power themes */
+    u8 nation;                         /* 1-5 (5: NATION_BLACK_HOLE); picks power themes */
     u8 pad_27;
     TextRef winQuotes[3];
     TextRef switchQuotes[2];

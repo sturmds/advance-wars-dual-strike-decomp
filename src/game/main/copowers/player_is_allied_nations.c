@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/map_header.h"
+#include "game/co_data.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -27,12 +28,6 @@ extern Unk_027c0288 data_027c0288;
 #define SWITCH_BACK()               \
     Screen_SetCurrent(saved027c);       \
     Screen_SetCurrentGfx(saved0280)
-
-/* Campaign missions where every side counts as Allied Nations. */
-#define MAP_JAKES_TRIAL   (MAP_CAMPAIGN_FIRST + 0)
-#define MAP_VERDANT_HILLS (MAP_CAMPAIGN_FIRST + 12)
-
-#define NATION_BLACK_HOLE 5
 
 /* TRUE when the player plays for the Allied Nations, which picks the
  * normal power themes over the Black Hole ones. When gameMode is not 0 the

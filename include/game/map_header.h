@@ -13,6 +13,11 @@
 #define MAP_LIGHTNING_STRIKES (MAP_CAMPAIGN_FIRST + 10)
 #define MAP_RING_OF_FIRE      (MAP_CAMPAIGN_FIRST + 21)
 
+/* Campaign missions where every side counts as Allied Nations
+ * (Player_IsAlliedNations, with MAP_LIGHTNING_STRIKES). */
+#define MAP_JAKES_TRIAL   (MAP_CAMPAIGN_FIRST + 0)
+#define MAP_VERDANT_HILLS (MAP_CAMPAIGN_FIRST + 12)
+
 /* Map ids 0x101-0x10c have no header: the map lookups read them from 12
  * records of 27 bytes in main bss (data_022a6c84) instead. Probably maps
  * made in the Design Room. */

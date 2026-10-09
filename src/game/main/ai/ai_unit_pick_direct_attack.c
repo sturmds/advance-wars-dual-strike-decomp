@@ -80,7 +80,7 @@ void AiUnit_PickDirectAttack(void)
     if (STATE->unk_1c4->mapId == 238) {
         flags = 0;
     } else if (func_020a30c4() == 1) {
-        flags = 0x100000;
+        flags = AI_ATTACK_NO_CHIP;
     } else {
         flags = 0;
     }
@@ -174,7 +174,7 @@ void AiUnit_PickDirectAttack(void)
                 || (STATE->mapTiles->unk_3250[tile] >= gAiActiveUnitProfile->unk_01 && target->cargo[0] == 0
                     && UnitType_GetAttackKind(target->type) == 2)) {
                 if (!func_020a3b54(pos[0], pos[1], target)) {
-                    tileFlag = 0x80000;
+                    tileFlag = AI_ATTACK_COST_VALUE;
                 }
             }
             rating = AiAttack_Score(flags | (tileFlag | STATE->mapTiles->unitAt[TILE(x, y)]), pos);

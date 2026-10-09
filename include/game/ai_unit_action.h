@@ -44,4 +44,12 @@ extern u8 *gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
 extern u8 gAiQueue[];
 
+/* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
+#define AI_ATTACK_DEFENDER_MASK  0xffff
+#define AI_ATTACK_HEAVY_HIT      0x10000  /* target armed, and killed or loses 30 hp or more */
+#define AI_ATTACK_SAFE           0x20000  /* attacker survives and loses under 10 hp */
+#define AI_ATTACK_TANK_VALUE     0x40000  /* target armed, damage worth 60% of a Tank or more */
+#define AI_ATTACK_COST_VALUE     0x80000  /* vehicles other than Recon: see AiAttack_Score */
+#define AI_ATTACK_NO_CHIP        0x100000 /* aiBehaviour not AI_BEHAVIOUR_STRIKE, target not a Sub: target killed or loses 20 hp or more, and not an unarmed ship */
+
 #endif

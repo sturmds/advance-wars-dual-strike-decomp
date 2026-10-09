@@ -69,18 +69,18 @@ void Ai_PlanIndirectAttack(void)
     flags = 0;
     bestTileHp = 0xff; /* none yet */
     if (STATE->actingUnit->aiOrder != 7) {
-        /* flags for AiAttack_Score: 0x40000 unit above 80 hp on its team's base,
-         * 0x10000 on its team's base, airport or port, or a ground unit at
-         * 70 hp or less not on a tile where func_0209eca8 holds */
+        /* AI_ATTACK_TANK_VALUE: unit above 80 hp on its team's base.
+         * AI_ATTACK_HEAVY_HIT: on its team's base, airport or port, or a
+         * ground unit at 70 hp or less not on a tile where func_0209eca8 holds. */
         if (Unit_IsTileOwnedByTeam(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
             && MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit)) == TERRAIN_BASE && STATE->actingUnit->hp > 80) {
-            flags |= 0x40000;
+            flags |= AI_ATTACK_TANK_VALUE;
         } else if ((Unit_IsTileOwnedByTeam(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
                     && gTerrainFactoryKind[MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit))] != 0)
                    || ((Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) != 0
                        && STATE->actingUnit->hp <= 70
                        && func_0209eca8(STATE->actingUnit->x, STATE->actingUnit->y) == 0)) {
-            flags |= 0x10000;
+            flags |= AI_ATTACK_HEAVY_HIT;
         }
     }
     pos[0] = STATE->actingUnit->x;
