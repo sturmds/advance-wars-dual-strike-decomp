@@ -35,12 +35,11 @@ enum {
  * instead and are not counted. */
 void MapPreview_Draw(u8 *dst, int mapId)
 {
-    int i;
-    int originX;
+    /* Needed to match: x and y hold the block origin first, then serve as
+     * loop counters. */
     int x;
     int y;
     u16 rowStart;
-    int originY;
 
     if (MAP_IS_CUSTOM(mapId)) {
         File_UnpackTo(dst, File_LocalizePath(data_02159964));
@@ -49,21 +48,21 @@ void MapPreview_Draw(u8 *dst, int mapId)
     Map_LoadData((u16)mapId);
     Map_LoadArmyColoursById(mapId);
 
-    originX = (data_0229eadc->width - 48) >> 1;
-    originY = (data_0229eadc->height - 40) >> 1;
-    MapPreview_DrawBlock(dst, originX, originY, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE, originX + 16, originY, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 2, originX + 32, originY, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 3, originX, originY + 16, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 4, originX + 16, originY + 16, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 5, originX + 32, originY + 16, 16, 16);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6, originX, originY + 32, 16, 8);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x400, originX + 16, originY + 32, 16, 8);
-    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x800, originX + 32, originY + 32, 16, 8);
+    x = (data_0229eadc->width - 48) >> 1;
+    y = (data_0229eadc->height - 40) >> 1;
+    MapPreview_DrawBlock(dst, x, y, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE, x + 16, y, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 2, x + 32, y, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 3, x, y + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 4, x + 16, y + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 5, x + 32, y + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6, x, y + 32, 16, 8);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x400, x + 16, y + 32, 16, 8);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x800, x + 32, y + 32, 16, 8);
 
     rowStart = 0;
-    for (i = 0; i < COUNT_KINDS; i++) {
-        gMapPreviewPropertyCounts[i] = 0;
+    for (x = 0; x < COUNT_KINDS; x++) {
+        gMapPreviewPropertyCounts[x] = 0;
     }
     for (y = 0; y < data_0229eadc->height; y++) {
         for (x = 0; x < data_0229eadc->width; x++) {

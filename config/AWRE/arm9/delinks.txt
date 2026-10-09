@@ -2516,6 +2516,7 @@ src/game/main/menus/map_preview_copy_counts.c:
     .text       start:0x0202bdcc end:0x0202bdec
 
 src/game/main/menus/map_preview_draw.c:
+    complete
     .text       start:0x0202bdec end:0x0202c15c
 
 src/game/main/menus/map_preview_draw_player_views.c:
