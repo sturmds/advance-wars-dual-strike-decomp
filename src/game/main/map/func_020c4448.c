@@ -3,7 +3,7 @@
 #include "game/range_map.h"
 #include "game/terrain.h"
 
-void func_020e5100(void);
+void Map_MarkCrystalObeliskRange(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -67,5 +67,5 @@ void func_020c4448(void)
     if (listed < 92) {
         STATE->unk_608c[listed].tile = 0xff;
     }
-    func_020e5100();
+    Map_MarkCrystalObeliskRange();
 }
