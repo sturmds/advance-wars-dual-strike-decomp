@@ -12,6 +12,10 @@ src/game/ov005/func_ov005_023536a4.c:
     complete
     .text       start:0x023536a4 end:0x023536bc
 
+src/game/ov005/func_ov005_02355224.c:
+    complete
+    .text       start:0x02355224 end:0x02355238
+
 src/game/ov005/ov005_load_co_picture.c:
     complete
     .text       start:0x023649b0 end:0x02364a1c
