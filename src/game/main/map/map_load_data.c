@@ -5,7 +5,7 @@ extern void *data_0229eadc;
 
 void *Mem_Alloc(u32 size);
 void Map_SetDataBuffer(void *buffer);
-void func_0201febc(int a, void *buffer);
+void Save_LoadRecord(int recordId, void *buffer); /* the definition takes only recordId; this call also passes r1 */
 int Campaign_IsHardMode(void);
 void func_0210f78c(const void *src, void *dst); /* SDK LZ77 unpack */
 
@@ -16,7 +16,7 @@ void Map_LoadData(u32 mapId)
 
     if (MAP_IS_CUSTOM(mapId)) {
         Map_SetDataBuffer(Mem_Alloc(0x724));
-        func_0201febc(10, data_0229eadc);
+        Save_LoadRecord(10, data_0229eadc);
         return;
     }
     Map_SetDataBuffer(Mem_Alloc(0xa14));

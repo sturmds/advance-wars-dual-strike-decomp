@@ -15,10 +15,10 @@ typedef struct SaveSlotTable {
 #define SAVE_SLOT_MARK 0x10
 
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
- * func_0201febc reads are known. The last 0x16 bytes hold the slot ids. */
+ * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
 typedef struct SaveBuffer {
     u8 pad_00[0x0c];
-    u8 unk_0c;                         /* bits 4-7 set: record is skipped by func_0201febc */
+    u8 unk_0c;                         /* bits 4-7 set: record is skipped by Save_LoadRecord */
     u8 pad_0d;
     u16 destOffset;                    /* where the record data goes in the load destination */
     u8 pad_10[0x64 - 0x10];

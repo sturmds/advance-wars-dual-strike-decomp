@@ -18,7 +18,7 @@ extern SaveBuffer data_02298050;
  *
  * Needed to match: n holds the result of func_0201fe28 and later counts the
  * bytes and slots of the two inner loops. */
-int func_0201febc(int recordId)
+int Save_LoadRecord(int recordId)
 {
     int n;
     u8 savedMarks[SAVE_SLOT_COUNT];
