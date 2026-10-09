@@ -6,13 +6,13 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void func_0201e954(void);
-void *func_0201ab18(const void *script);
+void *EventScript_Start(const void *script);
 
-/* Starts the current map's "Terms" script (header +0x04). func_0201ab18
+/* Starts the current map's "Terms" script (header +0x04). EventScript_Start
  * stores the script pointer in a free slot of a table, so it probably
  * starts a script; func_0201e954 runs first (meaning unknown). */
 void Map_StartTermsScript(void)
 {
     func_0201e954();
-    func_0201ab18(Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].termsScript);
+    EventScript_Start(Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].termsScript);
 }
