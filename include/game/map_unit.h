@@ -16,6 +16,10 @@
 /* Unit slots per player in Unk_02080440_48.units. */
 #define MAP_UNITS_PER_PLAYER 64
 
+/* First slot in Unk_02080440_48.units for each player slot: 0, 0, 64,
+ * 128, 192. */
+extern u16 data_ov000_022f5c2c[5];
+
 /* MapUnit.aiTargetX and aiTargetY when the unit has no target. */
 #define MAP_UNIT_NO_TARGET 63
 

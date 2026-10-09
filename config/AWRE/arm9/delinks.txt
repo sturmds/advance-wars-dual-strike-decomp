@@ -142,6 +142,10 @@ src/game/main/ai/ai_action_end_unit_actions.c:
     complete
     .text       start:0x0208db78 end:0x0208db90
 
+src/game/main/ai/ai_action_queue_ooziums.c:
+    complete
+    .text       start:0x0208db90 end:0x0208dcac
+
 src/game/main/ai/ai_action_queue_sea_transports.c:
     complete
     .text       start:0x0208e2a0 end:0x0208e3d4
