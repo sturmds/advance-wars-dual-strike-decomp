@@ -12,7 +12,7 @@ void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Palette_Load(const void *src, int slideOffset, int size);
 void Screen_SetCurrentGfx(void *state);
 void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
-void func_020218e4(int a0, int x, int y, void *a3, int attr, int tile);
+void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 int Math_EaseInOut(int from, int to, int step, int steps);
 void func_0202b89c(s16 x, int y, int a2, int a3, int a4);
 void func_0205f03c(void);
@@ -50,17 +50,17 @@ extern u8 data_027c0108;
  * the value in up to two digits under it. */
 #define DRAW_NUMBER_GRID(values, y)                                                             \
     for (i = 0; i < 6; i++) {                                                                   \
-        func_020218e4(1, (HwMod32(i, 3) * 21 + 4) & 0x1ff, (HwDiv32(i, 3) * 28 + (y)) & 0xff, \
+        Sprite_QueueAt(1, (HwMod32(i, 3) * 21 + 4) & 0x1ff, (HwDiv32(i, 3) * 28 + (y)) & 0xff, \
                       &data_027c0000, ((values)[i] != 0 ? 10 : 11) << 12, 124 + i * 8);         \
         value = (values)[i];                                                                    \
         if (value > 0) {                                                                        \
             int ones = HwMod32(value, 10);                                                \
-            func_020218e4(0, (HwMod32(i, 3) * 21 + 12) & 0x1ff,                           \
+            Sprite_QueueAt(0, (HwMod32(i, 3) * 21 + 12) & 0x1ff,                           \
                           (HwDiv32(i, 3) * 28 + (y) + 24) & 0xff, &data_027c0028, 0x3000,       \
                           ones * 2 + 104);                                                      \
             value = HwDiv32(value, 10);                                                         \
             if (value != 0) {                                                                   \
-                func_020218e4(0, (HwMod32(i, 3) * 21 + 4) & 0x1ff,                        \
+                Sprite_QueueAt(0, (HwMod32(i, 3) * 21 + 4) & 0x1ff,                        \
                               (HwDiv32(i, 3) * 28 + (y) + 24) & 0xff, &data_027c0028, 0x3000,   \
                               value * 2 + 104);                                                 \
             }                                                                                   \
@@ -243,7 +243,7 @@ void MapSelect_Draw(void)
                               (k + 4) << 12, k * 12 + 16, (k & 1) + 1);
             }
         }
-        func_020218e4(0, 208, (192 - count * 16) & 0xff, &data_027c00b8, 0x3000, 0);
+        Sprite_QueueAt(0, 208, (192 - count * 16) & 0xff, &data_027c00b8, 0x3000, 0);
     }
 
     DRAW_NUMBER_GRID(MENU->setup.unk_4ce, 128);

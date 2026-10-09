@@ -288,6 +288,10 @@ src/game/main/graphics/sprite_queue.c:
     complete
     .text       start:0x02021858 end:0x020218e4
 
+src/game/main/graphics/sprite_queue_at.c:
+    complete
+    .text       start:0x020218e4 end:0x02021980
+
 src/game/main/func_0202244c.c:
     complete
     .text       start:0x0202244c end:0x02022478
