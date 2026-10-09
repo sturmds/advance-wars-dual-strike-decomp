@@ -32,17 +32,4 @@ typedef struct CampaignTopCo {
     u8 pad_3;
 } CampaignTopCo;
 
-/* Layout of the screen work area data_0229eb30 while the world map is
- * up. Other screens use the same memory with another layout (see
- * Unk_02066818). */
-typedef struct CampaignMapWork {
-    u8 unk_000[0x20];                  /* handed to func_0200bb18 */
-    u8 unk_020[0xc4];                  /* the three blocks are copied from res_gmap */
-    u8 unk_0e4[0x160];
-    u8 unk_244[0x8c];
-    u8 pad_2d0[0x2d8 - 0x2d0];
-    CampaignTopCo topCos[3];
-    u8 enemyCos[2];                    /* front and back CO of the map's last player slot, probably the enemy */
-} CampaignMapWork;
-
 #endif

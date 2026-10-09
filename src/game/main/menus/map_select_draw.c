@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
-#include "game/Unk_02066818.h"
+#include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -33,7 +33,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern Unk_02066818 data_0229eb30;
+extern MenuState gMenuState;
 extern MapListTables data_0229c768;
 extern u8 data_027c0000;
 extern u8 data_027c0028;
@@ -44,12 +44,12 @@ extern u8 data_027c0108;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: through the cast the compiler keeps field offsets out of
  * the literal pool, as the original does. */
-#define MENU ((Unk_02066818 *)&data_0229eb30)
+#define MENU ((MenuState *)&gMenuState)
 #define TABLES data_0229c768
 /* Current tab of the menu, 0-3; each tab has its own map list. */
 #define TAB() func_020642e8()
 #define LIST_OF_TAB(tab) (TABLES.listOfTab[tab])
-#define LIST(tab) (MENU->lists[LIST_OF_TAB(tab)])
+#define LIST(tab) (MENU->setup.lists[LIST_OF_TAB(tab)])
 /* Writes value to the X scroll of the BG used by layer bg, then copies
  * it to the BG of layer copyBg. */
 #define SET_SCROLL(bg, copyBg, value)                                   \
@@ -109,14 +109,14 @@ void MapSelect_Draw(void)
     int j;
     int value;
 
-    if (MENU->slideFrames != 0) {
-        if (MENU->slideFrames == 15) {
+    if (MENU->setup.slideFrames != 0) {
+        if (MENU->setup.slideFrames == 15) {
             func_02063e04(LIST_OF_TAB(TAB()), PAGE());
             func_02062208();
             func_0206291c();
         }
-        slideOffset = func_0202795c(256, 0, 17 - MENU->slideFrames, 16);
-        if (MENU->slideBack != 0) {
+        slideOffset = func_0202795c(256, 0, 17 - MENU->setup.slideFrames, 16);
+        if (MENU->setup.slideBack != 0) {
             SET_SCROLL(layer1Bg, layer0Bg, -slideOffset);
             savedState = data_027c0280;
             func_0200acac(data_027c0288.unk_04);
@@ -129,23 +129,23 @@ void MapSelect_Draw(void)
             SET_SCROLL(layer2Bg, layer1Bg, slideOffset);
             func_0200acac(savedState);
         }
-        MENU->slideFrames--;
-        if (MENU->slideFrames == 0) {
+        MENU->setup.slideFrames--;
+        if (MENU->setup.slideFrames == 0) {
             func_0205f0ec();
         }
     }
-    if (MENU->subSlideFrames != 0) {
-        subSlideOffset = func_0202795c(256, 0, 17 - MENU->subSlideFrames, 16);
-        MENU->subSlideFrames--;
-        if (MENU->subSlideFrames == 0) {
+    if (MENU->setup.subSlideFrames != 0) {
+        subSlideOffset = func_0202795c(256, 0, 17 - MENU->setup.subSlideFrames, 16);
+        MENU->setup.subSlideFrames--;
+        if (MENU->setup.subSlideFrames == 0) {
             func_0205f03c();
         }
     }
 
     savedState = data_027c0280;
     func_0200acac(data_027c0288.unk_00);
-    if (MENU->slideFrames != 0) {
-        if (MENU->slideBack != 0) {
+    if (MENU->setup.slideFrames != 0) {
+        if (MENU->setup.slideBack != 0) {
             thumbOffset = slideOffset >> 1;
             func_02063958(thumbOffset - 128, 8, LIST_OF_TAB(TAB()) - 2);
             func_02063958(thumbOffset, 8, LIST_OF_TAB(TAB()) - 1);
@@ -155,13 +155,13 @@ void MapSelect_Draw(void)
                 func_02060718(slideOffset, 72, 0);
                 func_02060718(slideOffset - 256, 72, 1);
                 func_02060bf8(slideOffset + 200, 64, LIST_OF_TAB(TAB()));
-                func_02060bf8(slideOffset - 56, 64, MENU->prevList);
+                func_02060bf8(slideOffset - 56, 64, MENU->setup.prevList);
             } else if (STATE->unk_8a == 0) {
                 func_02060bf8(slideOffset + 192, 32, LIST_OF_TAB(TAB()));
-                func_02060bf8(slideOffset - 64, 32, MENU->prevList);
+                func_02060bf8(slideOffset - 64, 32, MENU->setup.prevList);
             } else {
                 func_02060bf8(slideOffset + 192, 48, LIST_OF_TAB(TAB()));
-                func_02060bf8(slideOffset - 64, 48, MENU->prevList);
+                func_02060bf8(slideOffset - 64, 48, MENU->setup.prevList);
             }
         } else {
             thumbOffset = slideOffset >> 1;
@@ -173,13 +173,13 @@ void MapSelect_Draw(void)
                 func_02060718(-slideOffset, 72, 0);
                 func_02060718(256 - slideOffset, 72, 1);
                 func_02060bf8(200 - slideOffset, 64, LIST_OF_TAB(TAB()));
-                func_02060bf8(456 - slideOffset, 64, MENU->prevList);
+                func_02060bf8(456 - slideOffset, 64, MENU->setup.prevList);
             } else if (STATE->unk_8a == 0) {
                 func_02060bf8(192 - slideOffset, 32, LIST_OF_TAB(TAB()));
-                func_02060bf8(448 - slideOffset, 32, MENU->prevList);
+                func_02060bf8(448 - slideOffset, 32, MENU->setup.prevList);
             } else {
                 func_02060bf8(192 - slideOffset, 48, LIST_OF_TAB(TAB()));
-                func_02060bf8(448 - slideOffset, 48, MENU->prevList);
+                func_02060bf8(448 - slideOffset, 48, MENU->setup.prevList);
             }
         }
     } else {
@@ -197,8 +197,8 @@ void MapSelect_Draw(void)
     }
 
     if (STATE->gameMode == 1) {
-        if (MENU->subSlideFrames != 0) {
-            if (MENU->subSlideBack != 0) {
+        if (MENU->setup.subSlideFrames != 0) {
+            if (MENU->setup.subSlideBack != 0) {
                 subSlideOffset >>= 1;
                 func_020636d8(subSlideOffset - 128, 40, TABLES.unk_108 - 2);
                 func_020636d8(subSlideOffset, 40, TABLES.unk_108 - 1);
@@ -221,32 +221,32 @@ void MapSelect_Draw(void)
     }
 
     if (STATE->gameMode == 1) {
-        if (MENU->slideFrames != 0) {
-            if (MENU->slideBack != 0) {
+        if (MENU->setup.slideFrames != 0) {
+            if (MENU->setup.slideBack != 0) {
                 if (LIST(TAB()).unk_64 == 12) {
                     func_0202b89c(slideOffset + 128, 120, 0x2800, 0x600, 3);
-                } else if (MENU->lists[MENU->prevList].unk_64 == 12) {
+                } else if (MENU->setup.lists[MENU->setup.prevList].unk_64 == 12) {
                     func_0202b89c(slideOffset - 128, 120, 0x2800, 0x600, 3);
                 }
             } else {
                 if (LIST(TAB()).unk_64 == 12) {
                     func_0202b89c(128 - slideOffset, 120, 0x2800, 0x600, 3);
-                } else if (MENU->lists[MENU->prevList].unk_64 == 12) {
+                } else if (MENU->setup.lists[MENU->setup.prevList].unk_64 == 12) {
                     func_0202b89c(384 - slideOffset, 120, 0x2800, 0x600, 3);
                 }
             }
         } else if (LIST(TAB()).unk_64 == 12) {
             func_0202b89c(128, 120, 0x2800, 0x600, 3);
         }
-    } else if (MENU->unk_4fc != 0) {
+    } else if (MENU->setup.unk_4fc != 0) {
         func_0202b89c(128, 112, 0x2800, 0x600, 3);
     }
     func_0200acac(savedState);
 
     savedState2 = data_027c0280;
     func_0200acac(data_027c0288.unk_04);
-    if (MENU->slideFrames != 0) {
-        if (MENU->slideBack != 0) {
+    if (MENU->setup.slideFrames != 0) {
+        if (MENU->setup.slideBack != 0) {
             func_0202b89c(slideOffset + 128, 96, 0x2c00, 0x400, 3);
             func_0202b89c(slideOffset - 128, 96, 0x2c00, 0x600, 3);
         } else {
@@ -269,20 +269,20 @@ void MapSelect_Draw(void)
         func_020218e4(0, 208, (192 - count * 16) & 0xff, &data_027c00b8, 0x3000, 0);
     }
 
-    DRAW_NUMBER_GRID(MENU->unk_4ce, 128);
+    DRAW_NUMBER_GRID(MENU->setup.unk_4ce, 128);
 
     /* The second grid shows on tab 2 and for a map with a second map. */
     if (TAB() == 2 || (STATE->gameMode == 1 && Ov000_gMapHeaders[SELECTED_MAP_ID()].variantMapIds[0] != 0)) {
-        DRAW_NUMBER_GRID(MENU->unk_4d4, 56);
+        DRAW_NUMBER_GRID(MENU->setup.unk_4d4, 56);
     }
     func_0200acac(savedState2);
 
     if (STATE->gameMode == 1) {
-        func_02003188(&MENU->mapSelect.colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);
+        func_02003188(&MENU->colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);
     }
     if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
         func_02021858(0, 172, 172, &data_027c0040, 0x3000, 0x5c4);
         func_02021858(0, 188, 172, &data_027c0108, 0x3000, 0x5e8);
-        func_02003188(&MENU->mapSelect.colours2[(func_01ff9f7c() >> 2) & 15], 0x274, 2);
+        func_02003188(&MENU->setup.colours2[(func_01ff9f7c() >> 2) & 15], 0x274, 2);
     }
 }

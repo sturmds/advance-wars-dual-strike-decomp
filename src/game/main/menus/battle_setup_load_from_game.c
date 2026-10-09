@@ -2,7 +2,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_02066818.h"
+#include "game/menu_state.h"
 #include "game/Unk_02290718.h"
 #include "game/map_header.h"
 #include "game/design_map.h"
@@ -24,8 +24,8 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern Unk_02066818 data_0229eb30;
-extern Unk_0229ed30 data_0229ed30;
+extern MenuState gMenuState;
+extern MenuStateFrom200 data_0229ed30;
 extern volatile u32 data_0229eaec;
 extern Unk_02290718 data_02290718;
 extern DesignMap data_022a6c84[];
@@ -37,7 +37,7 @@ extern DesignMap data_022a6c84[];
 #define SECOND_MAP (data_027c0288.unk_04)
 
 /* Copies the settings of the current battle into the battle setup state
- * (data_0229eb30): fog, weather, funds, controllers, COs, Force Rank sets,
+ * (gMenuState): fog, weather, funds, controllers, COs, Force Rank sets,
  * teams and army colours of players 1-4. With unk_2eb clear they come from
  * the map and the stored game rules; with it set, from the players of a
  * game in progress. Reads the main map's state and switches to the second
@@ -50,84 +50,84 @@ void BattleSetup_LoadFromGame(void)
     Unk_027c0280 *inner0280;
     Unk_02080440 *inner027c;
     BOOL isDesignMap;
-    Unk_02066818 *setup;
+    MenuState *state;
 
     saved0280 = data_027c0280;
     func_0200acac(MAIN_MAP);
     saved027c = data_027c027c;
     func_0200ac9c(MAIN_MAP);
 
-    /* Some stores go through this pointer and some name data_0229eb30:
+    /* Some stores go through this pointer and some name gMenuState:
      * the mix changes which loads the compiler repeats (closest shape
      * found so far, 99.5%). */
-    setup = &data_0229eb30;
-    setup->fog = GAME->unk_1c4->fog;
-    setup->unk_2dd = GAME->unk_1c4->tileset & PLAYER_CO_ID_MASK;
-    setup->coEffectsOn = GAME->coEffectsOn;
-    setup->unk_2de = GAME->unk_80;
+    state = &gMenuState;
+    state->setup.fog = GAME->unk_1c4->fog;
+    state->setup.unk_2dd = GAME->unk_1c4->tileset & PLAYER_CO_ID_MASK;
+    state->setup.coEffectsOn = GAME->coEffectsOn;
+    state->setup.unk_2de = GAME->unk_80;
     data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
-    setup->unk_2df = GAME->unk_81;
+    state->setup.unk_2df = GAME->unk_81;
     if (data_0229eaec != 0) {
-        setup->unk_2e1 = 1;
+        state->setup.unk_2e1 = 1;
     } else {
-        setup->unk_2e1 = data_02290718.unk_12;
+        state->setup.unk_2e1 = data_02290718.unk_12;
     }
     if (data_0229eaec != 0) {
-        data_0229eb30.unk_2e2 = 2;
+        gMenuState.setup.unk_2e2 = 2;
     } else {
-        data_0229eb30.unk_2e2 = data_02290718.unk_15;
+        gMenuState.setup.unk_2e2 = data_02290718.unk_15;
     }
 
     /* weather setting: 0 when unk_3b is 1, else 1-4 from unk_3d */
     if (GAME->unk_1c4->unk_3b == 1) {
-        setup->unk_2dc = 0;
+        state->setup.unk_2dc = 0;
     } else {
         switch (GAME->unk_1c4->unk_3d) {
         case 0:
         default:
-            data_0229eb30.unk_2dc = 1;
+            gMenuState.setup.unk_2dc = 1;
             break;
         case 1:
-            data_0229eb30.unk_2dc = 3;
+            gMenuState.setup.unk_2dc = 3;
             break;
         case 2:
-            data_0229eb30.unk_2dc = 2;
+            gMenuState.setup.unk_2dc = 2;
             break;
         case 3:
-            data_0229eb30.unk_2dc = 4;
+            gMenuState.setup.unk_2dc = 4;
             break;
         }
     }
 
-    if (data_0229eb30.unk_2eb == 0) {
-        func_020c47d0(GAME->unk_1c4->mapId, &setup->unk_2e7, &setup->unk_2e8);
-        data_0229eb30.coListCount = func_020e3478();
-        data_0229eb30.coList = func_020e3518();
-        data_0229eb30.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);
+    if (gMenuState.setup.unk_2eb == 0) {
+        func_020c47d0(GAME->unk_1c4->mapId, &state->setup.unk_2e7, &state->setup.unk_2e8);
+        gMenuState.setup.coListCount = func_020e3478();
+        gMenuState.setup.coList = func_020e3518();
+        gMenuState.setup.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);
         for (i = 0; i < 4; i++) {
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
-                data_0229eb30.controllers[i][0] = PLAYER_CONTROLLER_AI;
+                gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_AI;
             } else {
-                data_0229eb30.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
+                gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
             }
             inner0280 = data_027c0280;
             func_0200acac(SECOND_MAP);
             inner027c = data_027c027c;
             func_0200ac9c(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
-                data_0229eb30.controllers[i][1] = PLAYER_CONTROLLER_AI;
+                gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_AI;
             } else {
-                data_0229eb30.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
+                gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
             func_0200ac9c(inner027c);
             func_0200acac(inner0280);
-            data_0229eb30.unk_2c8[i] = GAME->team[i + 1];
+            gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
         for (i = 0; i < 4; i++) {
-            data_0229eb30.cos[i][0] = GAME->playerCos[i + 1][0] & PLAYER_CO_ID_MASK;
-            data_0229eb30.cos[i][1] = GAME->playerCos[i + 1][1] & PLAYER_CO_ID_MASK;
-            data_0229eb30.forceRankSets[i][0] = func_02017abc(data_0229eb30.cos[i][0], i + 1);
-            data_0229eb30.forceRankSets[i][1] = func_02017abc(data_0229eb30.cos[i][1], i + 1);
+            gMenuState.setup.cos[i][0] = GAME->playerCos[i + 1][0] & PLAYER_CO_ID_MASK;
+            gMenuState.setup.cos[i][1] = GAME->playerCos[i + 1][1] & PLAYER_CO_ID_MASK;
+            gMenuState.setup.forceRankSets[i][0] = func_02017abc(gMenuState.setup.cos[i][0], i + 1);
+            gMenuState.setup.forceRankSets[i][1] = func_02017abc(gMenuState.setup.cos[i][1], i + 1);
         }
         isDesignMap = FALSE;
         if (MAP_IS_CUSTOM(GAME->unk_1c4->mapId)) {
@@ -135,43 +135,43 @@ void BattleSetup_LoadFromGame(void)
         }
         /* needed to match: a byte pointer walking the struct */
         if (isDesignMap) {
-            u8 *m = (u8 *)&data_0229eb30;
+            u8 *m = (u8 *)&gMenuState;
             for (i = 0; i < 4; i++) {
-                ((Unk_02066818 *)m)->armyColours[0] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
+                ((MenuState *)m)->setup.armyColours[0] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
                 m++;
             }
         } else {
-            u8 *m = (u8 *)&data_0229eb30;
+            u8 *m = (u8 *)&gMenuState;
             for (i = 0; i < 4; i++) {
-                ((Unk_02066818 *)m)->armyColours[0] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
+                ((MenuState *)m)->setup.armyColours[0] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
                 m++;
             }
         }
     } else {
-        data_0229eb30.unk_2e3 = func_020c3e08();
-        data_0229eb30.unk_2e1 = GAME->unk_82;
-        data_0229eb30.unk_2e2 = GAME->unk_8c;
+        gMenuState.setup.unk_2e3 = func_020c3e08();
+        gMenuState.setup.unk_2e1 = GAME->unk_82;
+        gMenuState.setup.unk_2e2 = GAME->unk_8c;
         for (i = 0; i < 4; i++) {
-            data_0229eb30.cos[i][0] = func_020018a8(i + 1, 0);
-            data_0229eb30.cos[i][1] = func_020018a8(i + 1, 1);
-            data_0229eb30.armyColours[i] = GAME->players[i + 1].unk_19;
+            gMenuState.setup.cos[i][0] = func_020018a8(i + 1, 0);
+            gMenuState.setup.cos[i][1] = func_020018a8(i + 1, 1);
+            gMenuState.setup.armyColours[i] = GAME->players[i + 1].unk_19;
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
-                data_0229eb30.controllers[i][0] = PLAYER_CONTROLLER_AI;
+                gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_AI;
             } else {
-                data_0229eb30.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
+                gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
             }
             inner0280 = data_027c0280;
             func_0200acac(SECOND_MAP);
             inner027c = data_027c027c;
             func_0200ac9c(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
-                data_0229eb30.controllers[i][1] = PLAYER_CONTROLLER_AI;
+                gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_AI;
             } else {
-                data_0229eb30.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
+                gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
             func_0200ac9c(inner027c);
             func_0200acac(inner0280);
-            data_0229eb30.unk_2c8[i] = GAME->team[i + 1];
+            gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
     }
 
@@ -179,10 +179,10 @@ void BattleSetup_LoadFromGame(void)
     func_0200acac(saved0280);
 
     if (func_0207bd80() != 1) {
-        data_0229eb30.unk_2e4 = 8;
+        gMenuState.setup.unk_2e4 = 8;
     } else {
-        data_0229eb30.unk_2e4 = (func_020738d0(func_0207bd6c()) - 1) * 2 + 8;
+        gMenuState.setup.unk_2e4 = (func_020738d0(func_0207bd6c()) - 1) * 2 + 8;
     }
-    data_0229eb30.unk_2e6 = 0;
-    data_0229eb30.unk_2ea = 0;
+    gMenuState.setup.unk_2e6 = 0;
+    gMenuState.setup.unk_2ea = 0;
 }

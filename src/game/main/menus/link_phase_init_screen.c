@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_02066818.h"
+#include "game/menu_state.h"
 #include "game/map_header.h"
 #include "game/design_map.h"
 
@@ -43,7 +43,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern Unk_02066818 data_0229eb30;
+extern MenuState gMenuState;
 extern u8 data_0229c874[4];
 extern DesignMap data_022a6c84[];
 extern u16 gLinkPhaseArmyGfxOffsets[];
@@ -68,7 +68,7 @@ extern const char gLinkCommonResPath[];
     func_0200ac9c(saved027c);       \
     func_0200acac(saved0280)
 
-#define LINK_STATE ((Unk_02066818 *)&data_0229eb30)
+#define LINK_STATE ((MenuState *)&gMenuState)
 
 /* Message ids; which one shows depends on GAME->unk_8a. */
 #define TEXT_LINK_ONE_MAP  0x7d000017
@@ -76,7 +76,7 @@ extern const char gLinkCommonResPath[];
 
 /* Sets up the screen of the wireless link phase (graphics from
  * /ohashi/res_linkphase and /commo/res_linkcommon). Copies each player's
- * army colour from the current map into data_0229eb30, draws one army icon
+ * army colour from the current map into gMenuState, draws one army icon
  * per player, and writes the map name on the second game state's screen.
  * When GAME->unk_8a is 1 it writes the second map's name there, and the
  * main state's screen also gets the first map's name. */
@@ -90,23 +90,23 @@ void LinkPhase_InitScreen(void)
     BOOL customMap;
     void *target;                      /* needed to match: read before the call in the same argument list */
 
-    data_0229eb30.link.unk_02c = Map_GetPlayerCount(GAME->unk_1c4->mapId);
+    gMenuState.link.playerCount = Map_GetPlayerCount(GAME->unk_1c4->mapId);
     /* Needed to match: the flag is kept in a register, and the stores go
      * through a cast pointer so the compiler reloads data_027c027c and
      * data_027c0284 on every pass. */
     customMap = MAP_IS_CUSTOM(GAME->unk_1c4->mapId);
     if (customMap) {
-        for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
-            LINK_STATE->link.unk_024[i] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
+        for (i = 0; i < gMenuState.link.playerCount; i++) {
+            LINK_STATE->link.armyColours[i] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
         }
     } else {
-        for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
-            LINK_STATE->link.unk_024[i] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
+        for (i = 0; i < gMenuState.link.playerCount; i++) {
+            LINK_STATE->link.armyColours[i] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
         }
     }
     for (i = 0; i < 4; i++) {
-        data_0229eb30.link.unk_020[i] = data_0229c874[i] - 1;
-        data_0229eb30.link.unk_028[i] = 0;
+        gMenuState.link.unk_020[i] = data_0229c874[i] - 1;
+        gMenuState.link.unk_028[i] = 0;
     }
     func_02028ae8();
 
@@ -131,9 +131,9 @@ void LinkPhase_InitScreen(void)
     SWITCH_TO(MAIN_MAP);
     func_02003bec(file, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     func_02003188(file + 0x2a4, 0, 0xa0);
-    for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
+    for (i = 0; i < gMenuState.link.playerCount; i++) {
         target = data_027c0280->layer2Map;
-        func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[data_0229eb30.link.unk_024[i] - 1], 0);
+        func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[gMenuState.link.armyColours[i] - 1], 0);
     }
     func_01ff8d60(2);
     SWITCH_BACK();
@@ -148,7 +148,7 @@ void LinkPhase_InitScreen(void)
     func_02003188(file, 0x220, 0x20);
     func_02003188(file, 0x240, 0x20);
     func_02026bc8(data_027c0280->unk_08 + 0x240, 0, 8, 8);
-    func_02002e50(file + 0x20, &data_0229eb30, 0x20);
+    func_02002e50(file + 0x20, &gMenuState, 0x20);
     func_0200bf24(file);
 
     if (GAME->unk_8a == 1) {

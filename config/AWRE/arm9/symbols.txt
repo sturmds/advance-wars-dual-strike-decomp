@@ -8846,7 +8846,7 @@ data_0229eaf0 kind:bss addr:0x0229eaf0
 data_0229eaf1 kind:bss addr:0x0229eaf1
 data_0229eaf8 kind:bss addr:0x0229eaf8
 data_0229eaf9 kind:bss addr:0x0229eaf9
-data_0229eb30 kind:bss addr:0x0229eb30
+gMenuState kind:bss addr:0x0229eb30
 data_0229eb70 kind:bss addr:0x0229eb70
 data_0229ed30 kind:bss addr:0x0229ed30
 data_0229ef30 kind:bss addr:0x0229ef30

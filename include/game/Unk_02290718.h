@@ -7,9 +7,9 @@
  * that func_02017abc reads. */
 typedef struct Unk_02290718 {
     u8 pad_00[0x12];
-    u8 unk_12;                         /* copied to Unk_02066818.unk_2e1 */
+    u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */
     u8 pad_13[0x15 - 0x13];
-    u8 unk_15;                         /* copied to Unk_02066818.unk_2e2 */
+    u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
 } Unk_02290718;
 
 #endif

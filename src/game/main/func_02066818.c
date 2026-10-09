@@ -1,7 +1,7 @@
 #include "types.h"
-#include "game/Unk_02066818.h"
+#include "game/menu_state.h"
 
-extern Unk_02066818 data_0229eb30;
+extern MenuState gMenuState;
 
 BOOL HasTwoOrMoreTeams(void)
 {
@@ -12,8 +12,8 @@ BOOL HasTwoOrMoreTeams(void)
     for (i = 0; i < 4; i++) {
         teamUsed[i] = 0;
     }
-    for (i = 0; i < data_0229eb30.unk_2e3; i++) {
-        teamUsed[data_0229eb30.unk_2c8[i]] = 1;
+    for (i = 0; i < gMenuState.setup.unk_2e3; i++) {
+        teamUsed[gMenuState.setup.teams[i]] = 1;
     }
     teamCount = 0;
     for (i = 0; i < 4; i++) {
