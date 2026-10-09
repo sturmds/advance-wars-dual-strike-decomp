@@ -244,6 +244,10 @@ src/game/main/menus/menu_confirm_selected.c:
     complete
     .text       start:0x02025058 end:0x020250a8
 
+src/game/main/menus/menu_button_confirm.c:
+    complete
+    .text       start:0x020250a8 end:0x020250d4
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48
