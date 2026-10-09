@@ -2019,6 +2019,10 @@ src/game/main/map/map_load_and_count_properties.c:
     complete
     .text       start:0x020c47d0 end:0x020c4990
 
+src/game/main/map/map_load_into_state.c:
+    complete
+    .text       start:0x020c4b48 end:0x020c4dfc
+
 src/game/main/map/map_load_variant.c:
     complete
     .text       start:0x020c4dfc end:0x020c4e2c

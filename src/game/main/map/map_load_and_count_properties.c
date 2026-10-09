@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-void func_020c4b48(int mapId);
+void Map_LoadIntoState(int mapId);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -15,7 +15,7 @@ extern u8 data_022a6c9e[][27];
 /* Sets *total to the number of property tiles (urban terrain) on the map and
  * *most to the largest count held by one owner slot, plus 1 when that owner
  * does not hold them all. Custom maps read both from a table. Other maps are
- * loaded first (func_020c4b48), since the tiles are read from the loaded
+ * loaded first (Map_LoadIntoState), since the tiles are read from the loaded
  * state. BattleSetup_LoadFromGame stores the results in the battle setup. */
 void Map_LoadAndCountProperties(int mapId, u8 *most, u8 *total)
 {
@@ -30,7 +30,7 @@ void Map_LoadAndCountProperties(int mapId, u8 *most, u8 *total)
         *most = data_022a6c9e[mapId - MAP_CUSTOM_FIRST][0];
         return;
     }
-    func_020c4b48(mapId);
+    Map_LoadIntoState(mapId);
     for (i = 0; i < 6; i++) {
         counts[i] = 0;
     }

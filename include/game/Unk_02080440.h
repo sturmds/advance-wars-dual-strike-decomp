@@ -12,7 +12,7 @@
 typedef struct MapTiles {
     u8 unitAt[0x508];                  /* slot in Unk_02080440_48.units of the unit on each tile; 0: none */
     u8 unk_508[0x508];                 /* per tile: a unit slot too (Strike_ScoreSite, AiAttack_Score); how it differs from unitAt is unknown */
-    u8 pad_a10[0x1420 - 0xa10];
+    u16 mapCells[0x508];               /* per tile: the cell code from the map data; tiles[] holds the converted byte (Map_LoadIntoState) */
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
     s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
@@ -48,7 +48,10 @@ typedef struct Unk_02080440_1c4 {
     u16 mapHeight;
     u16 unk_1e;
     u16 unk_20;
-    u8 pad_22[0x2a - 0x22];
+    u16 unk_22;
+    u16 unk_24;
+    u16 unk_26;
+    u16 unk_28;
     u16 unk_2a;
     u8 playerCount;                    /* players on the loaded map; the loop bound in func_02031498 */
     u8 pad_2d[0x30 - 0x2d];
