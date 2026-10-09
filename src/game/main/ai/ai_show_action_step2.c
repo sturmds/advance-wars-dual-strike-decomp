@@ -32,7 +32,7 @@ void func_020c8888(void);
 void func_020ca398(void);
 void func_020dd404(void);
 void UnitAction_ActivateSuperPower(void);
-void func_020dd550(void);
+void UnitAction_ActivateCoPower(void);
 void func_020dd6bc(void);
 void func_020dd818(void);
 void func_020dd89c(void);
@@ -86,7 +86,7 @@ void AiShowAction_Step2(void)
         gAiTurnState->actionStep = 0;
         return;
     case 16:
-        func_020dd550();
+        UnitAction_ActivateCoPower();
         break;
     case 17:
         UnitAction_ActivateSuperPower();

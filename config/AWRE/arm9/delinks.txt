@@ -6999,7 +6999,8 @@ src/game/main/unit_action_activate_super_power.c:
     complete
     .text       start:0x020dd4c4 end:0x020dd550
 
-src/game/main/func_020dd550.c:
+src/game/main/unit_action_activate_co_power.c:
+    complete
     .text       start:0x020dd550 end:0x020dd5dc
 
 src/game/main/func_020dd5dc.c:
