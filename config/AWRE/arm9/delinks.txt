@@ -1047,6 +1047,10 @@ src/game/main/ai/ai_turn_count_capture_targets.c:
     complete
     .text       start:0x0208d62c end:0x0208d6f4
 
+src/game/main/ai/ai_turn_mark_reachable_tiles.c:
+    complete
+    .text       start:0x0208d6f4 end:0x0208d8b4
+
 src/game/main/ai/ai_turn_clear_capture_marks.c:
     complete
     .text       start:0x0208d914 end:0x0208d964

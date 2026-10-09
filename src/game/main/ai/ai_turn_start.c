@@ -11,7 +11,7 @@ int MainLoop_GetFrameCount(void);
 void func_0208c9f8(int player);
 void func_0208cdf8(void);
 void AiTurn_ClearCaptureMarks(void);
-void func_0208d6f4(void);
+void AiTurn_MarkReachableTiles(void);
 void AiTurn_ClearUnitMarks(void);
 void func_0208d548(void);
 void AiTurn_CountCaptureTargets(void);
@@ -36,7 +36,7 @@ void AiTurn_Start(void)
     func_0208c9f8(data_027c027c->unk_48[data_027c0284]->currentPlayer);
     func_0208cdf8();
     AiTurn_ClearCaptureMarks();
-    func_0208d6f4();
+    AiTurn_MarkReachableTiles();
     AiTurn_ClearUnitMarks();
     func_0208d548();
     AiTurn_CountCaptureTargets();

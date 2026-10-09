@@ -30,7 +30,7 @@ typedef struct AiTurnState {
     u8 roll;                           /* 0-99, rolled for each queued unit */
     u8 captureTargets;                 /* set by AiTurn_CountCaptureTargets: sum of func_0208d8b4 for neutral and every enemy player in the game */
     u8 unk_05;
-    u8 pad_06;
+    u8 propertyRegions;                /* set by AiTurn_MarkReachableTiles */
     u8 flags;                          /* bits 0-1: cleared for each queued unit; 2, 3: see AiTurn_Start and AiTargetFlags */
     u8 stepFlags;                      /* AI_STEP_*; cleared for each queued unit */
     u8 pad_09;

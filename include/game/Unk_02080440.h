@@ -33,7 +33,9 @@ typedef struct MapTiles {
 /* Reached through Unk_02080440_48.unk_6088, 6 bytes; indexed by
  * MapTiles.unk_1928. */
 typedef struct Unk_02080440_6088 {
-    u8 pad_00[3];
+    u8 unk_00;                         /* 0xff ends the table */
+    u8 x;
+    u8 y;
     u8 unk_03;                         /* raised when an AI foot unit heads for the tile to capture it */
     u8 unk_04;                         /* cleared with unk_03 and unk_05 at the start of an AI turn */
     u8 unk_05;
