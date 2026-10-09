@@ -6025,6 +6025,10 @@ src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
 
+src/game/main/menus/func_020bc4cc.c:
+    complete
+    .text       start:0x020bc4cc end:0x020bc548
+
 src/game/main/func_020bc548.c:
     complete
     .text       start:0x020bc548 end:0x020bc56c
