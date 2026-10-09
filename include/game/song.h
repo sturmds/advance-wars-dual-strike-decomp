@@ -26,5 +26,6 @@ void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
 BOOL Sound_IsSongFadingOut(void);
 void Sound_FadeOutSong(void);
 void Sound_FadeOutSongOver(int length);  /* over length * 16 frames; 0: 2 */
+void Sound_StopSong(void);
 
 #endif
