@@ -1,29 +1,31 @@
 #include "types.h"
+#include "game/ai_site.h"
 
 int func_0209658c(void);
-void func_02094d94(void);
-int func_02093ef4(int unit);
-void func_0209316c(int unit);
+void func_02094d94(int site);
+int func_02093ef4(int site);
+void func_0209316c(int site);
 
-extern u8 data_0229e5bf[][12];
+/* The kind byte of each AiSite record (data_0229e5bc + 3); the original
+ * addresses it through its own symbol. */
+extern u8 data_0229e5bf[][sizeof(AiSite)];
 
-/* End-actions step 2. func_0209658c picks an index (-1: none). If
- * func_02093ef4 finds nothing for it, the record's status in data_0229e5bf
- * becomes 0xfe, else func_0209316c takes the index. Returns 1 when it picked one.
- * Purposes are not known. Only the register holding -1 for the first compare
- * differs (r0 here, r1 in the original). */
+/* End-actions step 2. func_0209658c picks a site record (-1: none), then
+ * func_02094d94 fills the range map from it. If func_02093ef4 finds nothing
+ * for the site, its kind becomes 0xfe, else func_0209316c queues an action
+ * for it. Returns 1 when it picked a site. */
 BOOL func_02091e40(void)
 {
-    int unit = func_0209658c();
+    int site = func_0209658c();
 
-    if (unit == -1) {
+    if (site == -1) {
         return 0;
     }
-    func_02094d94();
-    if (func_02093ef4(unit) != -1) {
-        func_0209316c(unit);
+    func_02094d94(site);
+    if (func_02093ef4(site) != -1) {
+        func_0209316c(site);
         return 1;
     }
-    data_0229e5bf[unit][0] = 0xfe;
+    data_0229e5bf[site][0] = 0xfe;
     return 1;
 }

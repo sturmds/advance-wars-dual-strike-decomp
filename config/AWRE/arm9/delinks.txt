@@ -4959,6 +4959,7 @@ src/game/main/ai/ai_turn_try_build_fighter.c:
     .text       start:0x02091d34 end:0x02091e40
 
 src/game/main/ai/func_02091e40.c:
+    complete
     .text       start:0x02091e40 end:0x02091eb0
 
 src/game/main/ai/func_02091eb0.c:
