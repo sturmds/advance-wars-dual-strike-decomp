@@ -5353,6 +5353,10 @@ src/game/main/ai/ai_unit_pick_indirect_target.c:
     complete
     .text       start:0x020a1b1c end:0x020a1e78
 
+src/game/main/ai/ai_unit_find_best_adjacent_target.c:
+    complete
+    .text       start:0x020a1e78 end:0x020a2044
+
 src/game/main/ai/ai_unit_upgrade_wait_action.c:
     .text       start:0x020a2044 end:0x020a2f98
 
