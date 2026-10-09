@@ -2,8 +2,6 @@
 #include "game/co_data.h"
 #include "game/unit_stats.h"
 
-extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
-
 /* Returns the UnitClass of a unit type for the combat-based stat rows:
  * indirect, direct, the two units that explode, or transport (no attack). */
 int GetUnitCombatClass(int unitType)

@@ -18,8 +18,6 @@ void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Window_DrawOnLayer1(int x, int y, int w, int h);
 void Font_LoadDigits(int a);
-void MenuButtons_DisableTouch(void);
-void Menu_Reset(void);
 void Bg_PutTileBlock(void *target, int a, int b, const void *src, int c);
 void func_02026bc8(void *dst, int a, int b, int c);
 void func_02028ae8(void);

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: the item goes on sale once Hard Campaign is beaten (flag 0x22). */
 int Shop_BeatHardCampaign(u32 unlockId)
 {

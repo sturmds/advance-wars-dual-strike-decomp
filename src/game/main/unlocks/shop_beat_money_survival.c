@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: bought flag 0x31; on sale once Money Survival is beaten (flag 0x2e). */
 int Shop_BeatMoneySurvival(u32 unlockId)
 {

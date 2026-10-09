@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
 
-extern MapHeader Ov000_gMapHeaders[];
-
 /* Returns the id of the map whose header points at mapData, or MAP_COUNT
  * if none does. */
 u16 Map_FindIdByData(const void *mapData)

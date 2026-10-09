@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: Oozium (bought flag 0x2b) goes on sale once the Black Obelisk is
  * destroyed (flag 0x24). */
 int Shop_Oozium(u32 unlockId)

@@ -4,7 +4,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MapHeader Ov000_gMapHeaders[];
 
 void func_0201e954(void);
 void *func_0201ab18(const void *script);

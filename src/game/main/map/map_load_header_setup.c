@@ -4,7 +4,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MapHeader Ov000_gMapHeaders[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_MAP_HEADER (Ov000_gMapHeaders[GAME->unk_1c4->mapId])

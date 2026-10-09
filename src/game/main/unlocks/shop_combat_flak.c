@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: Flak for Combat (bought flag 0x32) goes on sale once save flag 0x2a
  * is set. */
 int Shop_CombatFlak(u32 unlockId)

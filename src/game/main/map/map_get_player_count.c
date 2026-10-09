@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
 
-extern MapHeader Ov000_gMapHeaders[];
-
 u8 func_020d7ab8(u8 customIndex);
 
 /* Returns the number of players on a map. */

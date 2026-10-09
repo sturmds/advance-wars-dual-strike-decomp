@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
 
-extern MapHeader Ov000_gMapHeaders[];
 extern void *data_0229eadc;
 
 void *Mem_Alloc(u32 size);

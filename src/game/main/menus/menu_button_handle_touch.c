@@ -3,9 +3,6 @@
 #include "game/touch.h"
 
 int MenuButton_TestFlags(MenuButton *entry, int mask);
-u8 MenuButton_GetTouchState(MenuButton *button);
-void MenuButton_SetTouchState(MenuButton *button, int touchState);
-BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
 BOOL func_0201ad28(void);
 
 /* Needed to match: the original builds this test as a 0/1 value first,

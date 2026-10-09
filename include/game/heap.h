@@ -57,4 +57,9 @@ typedef struct ExpHeap {
     ExpHeapData data;
 } ExpHeap;
 
+extern ExpHeap *gGameHeap;             /* Mem_Alloc and Mem_Free use it */
+
+void *Heap_Alloc(ExpHeap *heap, u32 size, int align); /* negative align takes the top end */
+void Heap_Free(ExpHeap *heap, void *memory);
+
 #endif

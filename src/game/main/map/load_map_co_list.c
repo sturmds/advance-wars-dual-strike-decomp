@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
 
-extern MapHeader Ov000_gMapHeaders[];
 extern u8 gDefaultCoList[];
 extern u8 data_022a7a68[];
 

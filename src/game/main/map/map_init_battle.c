@@ -23,7 +23,6 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern MapHeader Ov000_gMapHeaders[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 

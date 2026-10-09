@@ -4,7 +4,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MapHeader Ov000_gMapHeaders[];
 
 /* TRUE when the current map has no "Terms" script (header +0x04).
  * No direct callers: probably a menu callback that greys out the option. */

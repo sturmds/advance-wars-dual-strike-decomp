@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-void MenuButton_NotifySelected(MenuButton *button);
-
 /* Puts the cursor on a button. When the cursor moves off a selectable
  * button to a different one, MenuButton_NotifySelected runs the new button's
  * callback at 0x34. */

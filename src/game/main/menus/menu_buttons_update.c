@@ -6,9 +6,6 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Menu_DispatchKeys(void);
-void MenuButton_Draw(MenuButton *button);
-void MenuButton_UpdateSlide(MenuButton *button);
-BOOL MenuButton_HandleTouch(MenuButton *button);
 BOOL MenuButton_TouchSelect(MenuButton *button);
 void MenuCursor_Update(void);
 

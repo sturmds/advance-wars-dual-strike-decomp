@@ -8,7 +8,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int UnitType_GetAttackKind(int unitType);

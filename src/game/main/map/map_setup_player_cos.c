@@ -9,7 +9,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MapHeader Ov000_gMapHeaders[];
 extern u8 data_02167d30[5][2];
 extern u32 data_0229eaec;
 

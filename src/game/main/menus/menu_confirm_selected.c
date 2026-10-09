@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-BOOL MenuCursor_HasSelection(void);
-
 void Menu_ConfirmSelected(void)
 {
     MenuButton *button;

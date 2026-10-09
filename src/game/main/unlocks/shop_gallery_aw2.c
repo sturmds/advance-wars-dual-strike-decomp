@@ -1,7 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
 BOOL GbaCart_IsAdvanceWars2(void);
 
 /* Battle Maps shop: Advance Wars 2 gallery (bought flag 0x41), on sale while an

@@ -6,7 +6,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MapHeader Ov000_gMapHeaders[];
 extern u8 data_022a7a68[];             /* COs the player may pick, ends with CO_NONE */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

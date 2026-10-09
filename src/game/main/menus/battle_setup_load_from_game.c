@@ -27,7 +27,6 @@ extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
 extern u32 data_0229eaec;
-extern Unk_02290718 data_02290718;
 extern DesignMap data_022a6c84[];
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler

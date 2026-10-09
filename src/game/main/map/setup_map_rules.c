@@ -14,7 +14,6 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern MapHeader Ov000_gMapHeaders[];
 
 /* Shorthands for the current state and its map id; the original code
  * reloads both through the globals on every access. */

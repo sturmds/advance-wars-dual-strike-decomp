@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: the Combat level (bought flag 0x29) goes on sale once save flag 0x2a
  * is set. */
 int Shop_CombatLevel(u32 unlockId)

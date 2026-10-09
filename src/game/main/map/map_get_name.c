@@ -2,8 +2,6 @@
 #include "game/map_header.h"
 #include "game/text_ref.h"
 
-extern MapHeader Ov000_gMapHeaders[];
-
 const void *func_020d7ad0(u8 customIndex);
 const void *Text_Get(u32 textId);
 

@@ -6,8 +6,6 @@
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
 int UnitType_GetAttackKind(int unitType);
 
-extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
-
 /* Target score for the CO power strikes, like StrikeScore_HpDamage but
  * weighted by unit cost: the funds value the strike destroys, in units of
  * costDiv10 per hp point. */

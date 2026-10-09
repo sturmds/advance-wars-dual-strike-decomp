@@ -3,7 +3,6 @@
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
 
-extern MapHeader Ov000_gMapHeaders[];
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 

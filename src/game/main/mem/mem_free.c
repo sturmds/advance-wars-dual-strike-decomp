@@ -1,8 +1,5 @@
 #include "types.h"
-
-void Heap_Free(void *heap, void *block);
-
-extern void *gGameHeap;
+#include "game/heap.h"
 
 /* Frees a block from the game heap. */
 void Mem_Free(void *block)

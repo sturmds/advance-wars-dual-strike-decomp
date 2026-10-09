@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
 
-extern MapHeader Ov000_gMapHeaders[];
-
 void func_020c4b48(int mapId, int variant);
 
 /* Variant 0 loads mapId itself. Variant n > 0 loads the map id in the

@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: the Gallery (bought flag 0x25) goes on sale once the Campaign is
  * beaten (flag 0x21). */
 int Shop_Gallery(u32 unlockId)

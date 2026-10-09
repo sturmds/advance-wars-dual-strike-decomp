@@ -1,8 +1,6 @@
 #include "types.h"
 #include "game/unlocks.h"
 
-BOOL GameFlag_IsSet(int flag);
-
 /* Battle Maps shop: the item goes on sale once the Black Obelisk is destroyed (flag 0x24). */
 int Shop_SmashedObelisk(u32 unlockId)
 {
