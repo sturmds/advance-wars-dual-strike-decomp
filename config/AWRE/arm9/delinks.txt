@@ -96,6 +96,10 @@ src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
 
+src/game/main/ai/ai_action_end_unit_actions.c:
+    complete
+    .text       start:0x0208db78 end:0x0208db90
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
