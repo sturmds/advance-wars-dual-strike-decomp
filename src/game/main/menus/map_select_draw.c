@@ -20,7 +20,7 @@ void func_0205f0ec(void);
 void func_02060718(int x, int y, int a2);
 void func_02060bf8(int x, int y, int list);
 void MapSelect_LoadWarRoomRecords(void);
-void func_0206291c(void);
+void MapSelect_ShowSelectedMap(void);
 void func_020636d8(int x, int y, int a2);
 void func_02063868(int x, int y);
 void func_02063958(int x, int y, int list);
@@ -90,7 +90,7 @@ void MapSelect_Draw(void)
         if (MENU->setup.slideFrames == 15) {
             func_02063e04(LIST_OF_TAB(TAB()), PAGE());
             MapSelect_LoadWarRoomRecords();
-            func_0206291c();
+            MapSelect_ShowSelectedMap();
         }
         slideOffset = func_0202795c(256, 0, 17 - MENU->setup.slideFrames, 16);
         if (MENU->setup.slideBack != 0) {

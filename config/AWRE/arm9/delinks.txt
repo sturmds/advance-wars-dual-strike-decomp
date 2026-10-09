@@ -770,6 +770,10 @@ src/game/main/menus/map_select_load_war_room_records.c:
     complete
     .text       start:0x02062208 end:0x0206291c
 
+src/game/main/menus/map_select_show_selected_map.c:
+    complete
+    .text       start:0x0206291c end:0x020636d8
+
 src/game/main/func_02066818.c:
     complete
     .text       start:0x02066818 end:0x020668a8
