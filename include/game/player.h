@@ -22,6 +22,10 @@ typedef struct PlayerCo {
 #define PLAYER_CONTROLLER_HUMAN 1
 #define PLAYER_CONTROLLER_AI    2
 
+/* Player.unk_2e (AI behaviour), from doc 890: 0 strike, 1 assault,
+ * 2 general, 3 defense. Only 3 has been seen in code. */
+#define AI_BEHAVIOUR_DEFENSE 3
+
 /* One player slot, 0x98 bytes, in the array at Unk_02080440_48.players:
  * 5 slots, slot 0 neutral, then players 1-4. Layout from romhacking.net doc 890 (RadioTails);
  * fields named here have been seen in code, unk_ fields carry the
