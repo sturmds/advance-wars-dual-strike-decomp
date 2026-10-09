@@ -25,7 +25,15 @@ typedef struct IconBank {
     u8 pad_86[0x88 - 0x86];
 } IconBank;
 
-extern u8 gIconSize[ICON_COUNT][2];      /* per icon: width, height in tiles */
+/* gIconBankInfo[bank]. firstIcon is read through gIconBankFirstIcon. */
+typedef struct IconBankInfo {
+    const u16 *palette;                /* 16 colours */
+    u16 firstIcon;
+    u8 pad_06[2];
+} IconBankInfo;
+
+extern IconBankInfo gIconBankInfo[ICON_BANK_COUNT];
+extern u8 gIconSize[ICON_COUNT][2];     /* per icon: width, height in tiles */
 extern u8 gIconHeights[ICON_COUNT][2];   /* gIconSize one byte on: [i][0] is the height */
 extern u16 gIconBankFirstIcon[];         /* first icon id of each bank, every 4th u16 */
 extern const char *gIconBankFiles[ICON_BANK_COUNT];
@@ -35,5 +43,6 @@ u32 Icon_GetFileOffset(int iconId, int bank);
 void Icon_Draw(int iconId, int x, int y, int tile, int list);
 void Icon_Load(int iconId);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
+void Icon_LoadPalette(int iconId, int paletteSlot);
 
 #endif

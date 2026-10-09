@@ -996,7 +996,7 @@ Icon_GetBank kind:function(arm,size=0x40) addr:0x02023c18
 Icon_Draw kind:function(arm,size=0xdc) addr:0x02023c58
 Icon_Load kind:function(arm,size=0xcc) addr:0x02023d34
 Icon_LoadTo kind:function(arm,size=0x78) addr:0x02023e00
-func_02023e78 kind:function(arm,size=0x30) addr:0x02023e78
+Icon_LoadPalette kind:function(arm,size=0x30) addr:0x02023e78
 func_02023ea8 kind:function(arm,size=0x24) addr:0x02023ea8
 func_02023ecc kind:function(arm,size=0x6c) addr:0x02023ecc
 func_02023f38 kind:function(arm,size=0x5c) addr:0x02023f38
@@ -6991,7 +6991,7 @@ data_0215899c kind:data(any) addr:0x0215899c
 data_021589b0 kind:data(any) addr:0x021589b0
 data_021589c4 kind:data(any) addr:0x021589c4
 gIconBankFiles kind:data(any) addr:0x021589d8
-data_021589f0 kind:data(any) addr:0x021589f0
+gIconBankInfo kind:data(any) addr:0x021589f0
 gIconBankFirstIcon kind:data(any) addr:0x021589f4
 gObjShapeBySize kind:data(any) addr:0x02158a20
 gIconSize kind:data(any) addr:0x02158c84

@@ -140,6 +140,10 @@ src/game/main/icon/icon_load_to.c:
     complete
     .text       start:0x02023e00 end:0x02023e78
 
+src/game/main/icon/icon_load_palette.c:
+    complete
+    .text       start:0x02023e78 end:0x02023ea8
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48
