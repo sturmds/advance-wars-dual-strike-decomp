@@ -3,11 +3,10 @@
 
 int func_02026404(MenuButton *button, int mask);
 
-/* Returns TRUE if the point (x, y) is inside the button. Buttons with
- * flag 0x1000 take every point. */
+/* Returns TRUE if the point (x, y) is inside the button. */
 BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y)
 {
-    if (func_02026404(button, 0x1000)) {
+    if (func_02026404(button, MENU_BUTTON_TOUCH_ANYWHERE)) {
         return TRUE;
     }
     if (x < button->x || button->x + button->width - 1 < x) {

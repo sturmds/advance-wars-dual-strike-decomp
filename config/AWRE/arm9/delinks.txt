@@ -292,6 +292,10 @@ src/game/main/menus/menu_button_close.c:
     complete
     .text       start:0x02025b34 end:0x02025b6c
 
+src/game/main/menus/menu_buttons_enable_touch.c:
+    complete
+    .text       start:0x02025b6c end:0x02025bb4
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

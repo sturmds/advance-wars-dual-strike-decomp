@@ -19,7 +19,7 @@ BOOL MenuButton_TouchSelect(MenuButton *button)
     if (data_0216e4d0.phase == 0) {
         return FALSE;
     }
-    if (func_02026404(button, 0x1) == 0) {
+    if (func_02026404(button, MENU_BUTTON_SELECT_ON_TOUCH) == 0) {
         return FALSE;
     }
     if (!MenuButton_ContainsPoint(button, x, y)) {
@@ -28,7 +28,7 @@ BOOL MenuButton_TouchSelect(MenuButton *button)
     if (data_02158f38->selected == button) {
         return FALSE;
     }
-    if (func_02026404(button, 0x400)) {
+    if (func_02026404(button, MENU_BUTTON_NO_TOUCH_CONFIRM)) {
         return FALSE;
     }
     func_020262a0(button);
