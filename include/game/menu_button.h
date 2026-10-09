@@ -20,7 +20,7 @@ typedef struct MenuButton {
     s16 slideToX;
     s16 slideToY;
     s16 slideTimer;                    /* counts down from slideDuration */
-    u8 pad_10[0x14 - 0x10];
+    void *owner;                       /* the menu task a pop-up menu button belongs to (PopupMenu_AddButtons) */
     s16 x;                             /* screen position in pixels */
     s16 y;
     s16 width;
