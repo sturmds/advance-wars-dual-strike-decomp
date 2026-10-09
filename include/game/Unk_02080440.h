@@ -41,6 +41,13 @@ typedef struct Unk_02080440_6088 {
     u8 unk_05;
 } Unk_02080440_6088;
 
+/* Entry of Unk_02080440_48.unk_608c, 3 bytes. */
+typedef struct Unk_02080440_608c {
+    u8 tile;                           /* the MapTiles.tiles byte: terrain and owner */
+    u8 x;
+    u8 y;
+} Unk_02080440_608c;
+
 /* Reached through Unk_02080440.unk_48[i]->unk_1c4. */
 typedef struct Unk_02080440_1c4 {
     u8 pad_00[0x1a];
@@ -153,7 +160,7 @@ typedef struct Unk_02080440_48 {
     u8 *tileCodeTerrain;               /* per map tile code: bits 0-4 terrain id */
     u8 pad_5e60[0x6088 - 0x5e60];
     Unk_02080440_6088 *unk_6088;
-    u8 pad_608c[0x61a0 - 0x608c];
+    Unk_02080440_608c unk_608c[92];    /* tiles with urban terrain (or terrain 16 in game mode 4), filled by func_020c4448; the list ends at tile 0xff when not full */
     Combatant combatants[2];           /* attacker, defender */
 } Unk_02080440_48;
 

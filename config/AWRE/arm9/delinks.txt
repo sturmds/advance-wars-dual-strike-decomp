@@ -6285,6 +6285,9 @@ src/game/main/func_020c4394.c:
     complete
     .text       start:0x020c4394 end:0x020c43b0
 
+src/game/main/map/func_020c4448.c:
+    .text       start:0x020c4448 end:0x020c47d0
+
 src/game/main/map/map_load_and_count_properties.c:
     complete
     .text       start:0x020c47d0 end:0x020c4990
