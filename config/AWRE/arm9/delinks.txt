@@ -525,6 +525,10 @@ src/game/main/unlocks/shop_beat_campaign.c:
     complete
     .text       start:0x02101da8 end:0x02101de8
 
+src/game/main/unlocks/shop_smashed_obelisk.c:
+    complete
+    .text       start:0x02101de8 end:0x02101e28
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
