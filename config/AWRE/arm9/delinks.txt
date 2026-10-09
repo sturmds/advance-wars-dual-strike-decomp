@@ -140,6 +140,10 @@ src/game/main/ai/func_0208e8fc.c:
     complete
     .text       start:0x0208e8fc end:0x0208e95c
 
+src/game/main/units/strike_score_infantry_damage.c:
+    complete
+    .text       start:0x02098c34 end:0x02098d14
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
