@@ -1195,6 +1195,10 @@ src/game/main/screen/screen_show_bg0.c:
     complete
     .text       start:0x020f8b58 end:0x020f8b74
 
+src/game/main/func_020fa6c8.c:
+    complete
+    .text       start:0x020fa6c8 end:0x020fa6d8
+
 src/game/main/map/map_find_by_data.c:
     complete
     .text       start:0x021016f0 end:0x02101744
