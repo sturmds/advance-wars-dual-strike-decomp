@@ -599,6 +599,10 @@ src/game/main/rng/rng_next_mixed.c:
     complete
     .text       start:0x02027a48 end:0x02027a6c
 
+src/game/main/text/mode_font_show_text.c:
+    complete
+    .text       start:0x0202a9ac end:0x0202a9d4
+
 src/game/main/map/map_load_army_colours.c:
     complete
     .text       start:0x0202ca74 end:0x0202cadc

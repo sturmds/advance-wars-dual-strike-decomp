@@ -24,7 +24,7 @@ void func_020269b4(void *target, int a, int b, const void *src, int c);
 void func_02026bc8(void *dst, int a, int b, int c);
 void func_02028ae8(void);
 void func_02029648(void);
-void func_0202a9ac(const void *text, int a, int b, int c, int d);
+void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 void func_0202aba8(int a, int b);
 void func_0202bdec(void *dst, int mapId);
 void func_0202c520(int a);
@@ -188,9 +188,9 @@ void LinkPhase_InitScreen(void)
 
     func_0202aba8(0, 0);
     if (GAME->twoMaps == 0) {
-        func_0202a9ac(Text_Get(TEXT_LINK_ONE_MAP), 0, 0, 1, 0);
+        ModeFont_ShowText(Text_Get(TEXT_LINK_ONE_MAP), 0, 0, 1, 0);
     } else {
-        func_0202a9ac(Text_Get(TEXT_LINK_TWO_MAPS), 0, 0, 1, 0);
+        ModeFont_ShowText(Text_Get(TEXT_LINK_TWO_MAPS), 0, 0, 1, 0);
     }
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
