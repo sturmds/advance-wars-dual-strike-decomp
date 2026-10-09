@@ -3,7 +3,7 @@
 
 void Weather_SetDays(int weather);
 int Weather_ResolvePowerSnow(int weather);
-WeatherTaskWork *func_02017698(const void *descriptor, int arg); /* starts a task from descriptor, returns its work block */
+WeatherTaskWork *ScriptSlot_Start(const void *descriptor, int arg); /* starts a task from descriptor, returns its work block */
 
 extern const u32 data_02166d18[];
 
@@ -13,6 +13,6 @@ void Weather_Set(int weather)
     WeatherTaskWork *work;
 
     Weather_SetDays(weather);
-    work = func_02017698(data_02166d18, 0);
+    work = ScriptSlot_Start(data_02166d18, 0);
     work->weather = Weather_ResolvePowerSnow(weather);
 }
