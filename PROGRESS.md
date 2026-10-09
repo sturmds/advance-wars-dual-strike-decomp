@@ -39,6 +39,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | func_020aff0c | 556 |
+| `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/map_preview_draw.c` | MapPreview_Draw | 880 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |

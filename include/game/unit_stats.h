@@ -80,7 +80,8 @@ typedef struct UnitStats {
     u8 fuel;
     u8 unk_17[5];
     u8 unitClass;                      /* enum UnitClass in game/co_data.h */
-    u8 pad_1d[2];
+    u8 pad_1d;
+    u8 moveType;                       /* row of a CoPowerBlock.movementCost chart (32 terrain ids per row) */
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 aiClass;                        /* AI_CLASS_*; the document calls this "unit class" */
     u8 pad_21[2];
