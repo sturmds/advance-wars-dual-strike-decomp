@@ -1,10 +1,10 @@
 #include "types.h"
 
-void func_0207bec8(void);
+void Link_ResetBuffers(void);
 void func_0207a474(void);
 
 void func_0207bc14(void)
 {
-    func_0207bec8();
+    Link_ResetBuffers();
     func_0207a474();
 }

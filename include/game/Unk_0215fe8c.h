@@ -6,7 +6,8 @@
 /* Pointed to by data_0215fe8c. Read by link play code (LinkPhase_InitScreen,
  * map select, battle setup) through small getters. */
 typedef struct Unk_0215fe8c {
-    u8 pad_00[0x08];
+    u8 pad_00[0x06];
+    u16 unk_06;                        /* cleared by Link_ResetBuffers */
     u16 unk_08;                        /* func_0207a1dc result, stored when func_0207bb48 stops the task */
     u8 pad_0a[2];
     u8 unk_0c;                         /* func_0207bb48: 0 while the data_0215feb8 task runs, else 1 */
