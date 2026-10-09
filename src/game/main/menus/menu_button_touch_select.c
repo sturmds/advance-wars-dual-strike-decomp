@@ -3,7 +3,6 @@
 #include "game/touch.h"
 
 BOOL func_0201ad28(void);
-void func_020262a0(MenuButton *button);
 int func_02026404(MenuButton *button, int mask);
 
 /* Selects the button when the touch point is inside it. Returns TRUE if
@@ -31,6 +30,6 @@ BOOL MenuButton_TouchSelect(MenuButton *button)
     if (func_02026404(button, MENU_BUTTON_NO_TOUCH_CONFIRM)) {
         return FALSE;
     }
-    func_020262a0(button);
+    MenuCursor_SelectButton(button);
     return TRUE;
 }

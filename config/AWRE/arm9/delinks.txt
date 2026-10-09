@@ -351,6 +351,10 @@ src/game/main/menus/menu_cursor_set_selected.c:
     complete
     .text       start:0x0202621c end:0x020262a0
 
+src/game/main/menus/menu_cursor_select_button.c:
+    complete
+    .text       start:0x020262a0 end:0x020262b0
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868

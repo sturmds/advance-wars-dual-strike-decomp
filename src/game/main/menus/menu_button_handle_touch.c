@@ -6,7 +6,6 @@ int func_02026404(MenuButton *entry, int mask);
 u8 func_020263f4(MenuButton *button);
 void func_020263fc(MenuButton *button, int touchState);
 BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
-void func_020262a0(MenuButton *button);
 BOOL func_0201ad28(void);
 
 /* Needed to match: the original builds this test as a 0/1 value first,
@@ -63,7 +62,7 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
                 return FALSE;
             }
             if (func_02026404(button, MENU_BUTTON_SELECT_ON_TOUCH) != 0) {
-                func_020262a0(button);
+                MenuCursor_SelectButton(button);
             }
             if (Abs(x - startX) > 16 || Abs(y - startY) > 16) {
                 return FALSE;
