@@ -8,6 +8,7 @@
 typedef struct Unk_ov005_0236bb84 {
     u8 pad_00[0x8];
     int unk_08;
+    u8 pad_0c[0x24 - 0x0c];
 } Unk_ov005_0236bb84;
 
 #endif
