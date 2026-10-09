@@ -12,7 +12,7 @@ void func_0208c9f8(int player);
 void func_0208cdf8(void);
 void AiTurn_ClearCaptureMarks(void);
 void func_0208d6f4(void);
-void func_0208d56c(void);
+void AiTurn_ClearUnitMarks(void);
 void func_0208d548(void);
 void func_0208d62c(void);
 void func_0208d964(void);
@@ -37,7 +37,7 @@ void AiTurn_Start(void)
     func_0208cdf8();
     AiTurn_ClearCaptureMarks();
     func_0208d6f4();
-    func_0208d56c();
+    AiTurn_ClearUnitMarks();
     func_0208d548();
     func_0208d62c();
     func_0208d964();
