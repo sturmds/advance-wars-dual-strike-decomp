@@ -2694,7 +2694,8 @@ src/game/main/func_02032b28.c:
     complete
     .text       start:0x02032b28 end:0x02032b40
 
-src/game/main/func_020342ac.c:
+src/game/main/digit_sprite_queue_pop_in.c:
+    complete
     .text       start:0x020342ac end:0x02034438
 
 src/game/main/func_02035708.c:
