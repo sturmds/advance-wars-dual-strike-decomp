@@ -1203,6 +1203,10 @@ src/game/main/func_020fbb20.c:
     complete
     .text       start:0x020fbb20 end:0x020fbb34
 
+src/game/main/func_020fcb08.c:
+    complete
+    .text       start:0x020fcb08 end:0x020fcb18
+
 src/game/main/map/map_find_by_data.c:
     complete
     .text       start:0x021016f0 end:0x02101744
