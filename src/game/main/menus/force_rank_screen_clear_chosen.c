@@ -6,14 +6,14 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Sound_PlaySe(int id);
-void func_02041594(int a, int x, int y, int slot);
+void ForceRankScreen_DrawSlotRow(int x, int y, int textTile, int skill);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
 /* X button: selects slot 0, empties the four chosen skills and redraws each
- * slot row on the second screen (func_02041594). */
+ * slot row on the second screen (ForceRankScreen_DrawSlotRow). */
 void ForceRankScreen_ClearChosen(void)
 {
     int i;
@@ -27,7 +27,7 @@ void ForceRankScreen_ClearChosen(void)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedState = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_02041594(1, 15 + i * 2, 256 + i * 64, gForceRankScreen->chosenSkills[i]);
+        ForceRankScreen_DrawSlotRow(1, 15 + i * 2, 256 + i * 64, gForceRankScreen->chosenSkills[i]);
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
     }
