@@ -7,7 +7,8 @@ extern Unk_027c0280 *data_027c0280;
 void func_02002d3c(void *entries, int count);   /* moves OAM entries off screen (y = 192), 16 at a time */
 
 /* Throws away the sprites queued in the tail of the OAM buffer without
- * uploading them. The first store to unk_608 is dead but the build keeps it. */
+ * uploading them. The first store to unk_608 is overwritten at once; needed
+ * to match: the original has it. */
 void OamBuffer_ClearTail(void)
 {
     func_02002d3c(data_027c0280->oamBuffer->tail.src, data_027c0280->oamBuffer->tail.count);

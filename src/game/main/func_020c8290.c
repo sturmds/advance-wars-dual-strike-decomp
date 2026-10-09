@@ -11,8 +11,8 @@ extern int data_027c0284;
 
 /* Passes the move's nibbles on to an overlay 0 task (func_ov000_022ae690),
  * then, when the map has fog or the weather is rain, takes the fuel the
- * acting unit's move costs off the unit. AiShowAction_Step1 calls it. Why
- * only fog and rain is not clear. */
+ * acting unit's move costs off the unit. AiShowAction_Step1 calls it. Rain
+ * also brings fog of war, so both cases are moves the AI makes out of sight. */
 void func_020c8290(u8 *nibbles)
 {
     func_ov000_022ae690(nibbles);

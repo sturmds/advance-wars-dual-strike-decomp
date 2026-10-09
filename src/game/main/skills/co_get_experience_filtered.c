@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_02081aa4(int army, int coId);
+int Co_GetArmyExperience(int army, int coId);
 extern u32 data_0229eaec;
 
 int Co_GetExperienceFiltered(int coId, int army)
@@ -9,5 +9,5 @@ int Co_GetExperienceFiltered(int coId, int army)
     if (data_0229eaec == 0) {
         army = 0;
     }
-    return func_02081aa4(army, coId & 0x7f);
+    return Co_GetArmyExperience(army, coId & 0x7f);
 }

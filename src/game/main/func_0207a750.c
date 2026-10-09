@@ -5,7 +5,7 @@
 
 extern u8 data_0229c9a0[];
 
-void func_0200c054(void *a0);
+void func_0200c054(void *buffer);
 
 void func_0207a750(void)
 {
