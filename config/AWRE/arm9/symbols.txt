@@ -1060,7 +1060,7 @@ MenuButton_SetTouchState kind:function(arm,size=0x8) addr:0x020263fc
 MenuButton_TestFlags kind:function(arm,size=0xc) addr:0x02026404
 Menu_CancelCallback kind:function(arm,size=0xc) addr:0x02026410
 Sound_ReloadResidentData kind:function(arm,size=0x20) addr:0x0202641c
-func_0202643c kind:function(arm,size=0x64) addr:0x0202643c
+Sound_LoadBattleUnitData kind:function(arm,size=0x64) addr:0x0202643c
 func_020264a0 kind:function(arm,size=0x48) addr:0x020264a0
 func_020264e8 kind:function(arm,size=0x48) addr:0x020264e8
 func_02026530 kind:function(arm,size=0x10) addr:0x02026530
@@ -7004,7 +7004,7 @@ data_02158f54 kind:data(any) addr:0x02158f54
 data_02158f7c kind:data(any) addr:0x02158f7c
 data_02158fa4 kind:data(any) addr:0x02158fa4
 data_02158fcc kind:data(any) addr:0x02158fcc
-data_02158ff4 kind:data(any) addr:0x02158ff4
+gUnitSoundItems kind:data(any) addr:0x02158ff4
 data_021590cc kind:data(any) addr:0x021590cc
 data_021590ec kind:data(any) addr:0x021590ec
 data_02159114 kind:data(any) addr:0x02159114
