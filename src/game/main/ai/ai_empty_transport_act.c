@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Ai_BuildThreatMaps(void);
-void func_020a9854(void);
+void AiUnit_MoveToOtherMap(void);
 void func_020ac648(void);
 void AiEmptyTransport_GoToFootUnit(void);
 void func_020af5f8(void);
@@ -15,6 +15,6 @@ void AiEmptyTransport_Act(void)
     func_020af5f8();
     AiEmptyTransport_GoToFootUnit();
     func_020ac648();
-    func_020a9854();
+    AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }

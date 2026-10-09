@@ -1655,6 +1655,10 @@ src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854
 
+src/game/main/ai/ai_unit_move_to_other_map.c:
+    complete
+    .text       start:0x020a9854 end:0x020a9ac0
+
 src/game/main/ai/func_020a9e44.c:
     complete
     .text       start:0x020a9e44 end:0x020a9e7c

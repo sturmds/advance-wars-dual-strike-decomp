@@ -9,7 +9,7 @@ extern int data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 void Ai_BuildThreatMaps(void);
-void func_020a9854(void);
+void AiUnit_MoveToOtherMap(void);
 void func_020af540(void);
 void func_020af5f8(void);
 void AiUnit_WaitInPlace(void);
@@ -28,6 +28,6 @@ void AiSeaTransport_Act(void)
         func_020af540();
     }
     func_020b320c();
-    func_020a9854();
+    AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }

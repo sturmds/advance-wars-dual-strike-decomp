@@ -2,7 +2,7 @@
 #include "game/ai_unit_action.h"
 
 void Ai_BuildThreatMaps(void);
-void func_020a9854(void);
+void AiUnit_MoveToOtherMap(void);
 void AiUnit_SeekSeaTransport(void);
 void func_020aba28(void);
 void AiTransport_UnloadForCapture(void);
@@ -19,6 +19,6 @@ void AiLoadedTransport_Act(void)
     gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     AiTransport_UnloadForCapture();
     func_020aba28();
-    func_020a9854();
+    AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }
