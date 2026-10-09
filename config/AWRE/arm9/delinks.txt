@@ -812,6 +812,18 @@ src/game/main/func_0201b3b4.c:
     complete
     .text       start:0x0201b3b4 end:0x0201b46c
 
+src/game/main/func_0201b46c.c:
+    complete
+    .text       start:0x0201b46c end:0x0201b524
+
+src/game/main/func_0201b524.c:
+    complete
+    .text       start:0x0201b524 end:0x0201b5dc
+
+src/game/main/func_0201b5dc.c:
+    complete
+    .text       start:0x0201b5dc end:0x0201b694
+
 src/game/main/func_0201b788.c:
     complete
     .text       start:0x0201b788 end:0x0201b7ac
