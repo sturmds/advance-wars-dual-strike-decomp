@@ -1777,6 +1777,10 @@ src/game/main/ai/ai_unit_seek_sea_transport.c:
     complete
     .text       start:0x020ab014 end:0x020ab70c
 
+src/game/main/ai/ai_loaded_transport_head_for_site.c:
+    complete
+    .text       start:0x020aba28 end:0x020abe3c
+
 src/game/main/ai/ai_transport_unload_for_capture.c:
     complete
     .text       start:0x020abe3c end:0x020ac648

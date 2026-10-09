@@ -4,7 +4,7 @@
 void Ai_BuildThreatMaps(void);
 void AiUnit_MoveToOtherMap(void);
 void AiUnit_SeekSeaTransport(void);
-void func_020aba28(void);
+void AiLoadedTransport_HeadForSite(void);
 void AiTransport_UnloadForCapture(void);
 void AiUnit_WaitInPlace(void);
 
@@ -14,11 +14,11 @@ void AiUnit_WaitInPlace(void);
 void AiLoadedTransport_Act(void)
 {
     Ai_BuildThreatMaps();
-    func_020aba28();
+    AiLoadedTransport_HeadForSite();
     AiUnit_SeekSeaTransport();
     gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     AiTransport_UnloadForCapture();
-    func_020aba28();
+    AiLoadedTransport_HeadForSite();
     AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }
