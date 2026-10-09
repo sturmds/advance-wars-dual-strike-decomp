@@ -6,7 +6,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_02028d50(void);
 void Screen_InitLayers(const void *config);
-void func_02028ba0(void);
+void Screen_SetLayerDefaults(void);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -24,7 +24,7 @@ void func_02028a30(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     func_02028d50();
     Screen_InitLayers(data_0215948c);
-    func_02028ba0();
+    Screen_SetLayerDefaults();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
@@ -34,7 +34,7 @@ void func_02028a30(void)
     Screen_SetCurrent(data_027c0288.unk_04);
     func_02028d50();
     Screen_InitLayers(data_021594dc);
-    func_02028ba0();
+    Screen_SetLayerDefaults();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }
