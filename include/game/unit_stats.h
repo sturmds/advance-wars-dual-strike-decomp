@@ -55,7 +55,8 @@ enum UnitType {
  * were read from AWRE and checked against warswiki for the Tank. */
 typedef struct UnitStats {
     TextRef text[3];
-    u32 costDiv10;
+    u16 costDiv10;                     /* cost in funds / 10 */
+    u8 pad_0e[2];
     u8 movement;
     u8 ammo;
     u8 vision;

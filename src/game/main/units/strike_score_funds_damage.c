@@ -6,10 +6,7 @@
  * CO bonuses: 0 direct, 1 indirect, 2 no weapon, 3 Black Bomb, 4 Oozium. */
 int func_0209e134(int unitType);
 
-/* &Ov000_gUnitStats[0].costDiv10. Every reader loads it as a u16, but the
- * header still types costDiv10 as u32, and reading it through the struct
- * does not match. Use the field once it is a u16. */
-extern u8 data_ov000_022f4fc4[];
+extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 /* Target score for the CO power strikes, like StrikeScore_HpDamage but
  * weighted by unit cost: the funds value the strike destroys, in units of
@@ -29,7 +26,7 @@ int StrikeScore_FundsDamage(MapUnit *unit, int damage, int isEnemy)
         return 2;
     }
 
-    score = *(u16 *)(data_ov000_022f4fc4 + unit->type * sizeof(UnitStats));
+    score = Ov000_gUnitStats[unit->type].costDiv10;
     if (unit->hp > damage) {
         hpLost = damage;
     } else {

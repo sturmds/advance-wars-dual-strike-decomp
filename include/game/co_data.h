@@ -139,7 +139,7 @@ typedef struct CoPowerBlock {
     s16 towerFirepower;                /* per Com Tower */
     s16 towerDefense;                  /* per Com Tower */
     s16 terrainStarCut;
-    const u8 *terrainFirepower;        /* one value per terrain id */
+    const s8 *terrainFirepower;        /* one value per terrain id */
     u8 highlightEffect;
     u8 highlightColor;
     u8 pad_32[2];
