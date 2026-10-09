@@ -695,6 +695,10 @@ src/game/main/func_020d6a1c.c:
     complete
     .text       start:0x020d6a1c end:0x020d6a34
 
+src/game/main/func_020d7eb8.c:
+    complete
+    .text       start:0x020d7eb8 end:0x020d7ed0
+
 src/game/main/combat/combatant_get_counter_bonus.c:
     complete
     .text       start:0x020df74c end:0x020df7ac
