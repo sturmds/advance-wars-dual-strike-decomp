@@ -5,7 +5,7 @@
 
 int func_0207bd80(void);
 void func_02067c80(u8 a, u8 b);
-void func_02067d7c(u8 a, u8 b);
+void VsSetup_SetController(u8 a, u8 b);
 int func_020699fc(int index);
 
 extern MenuState gMenuState;
@@ -19,7 +19,7 @@ extern MenuState gMenuState;
     if (func_0207bd80() == 1) {                                                       \
         EventQueue_Push((u8)((id) + 1), (u8)value);                                   \
     } else {                                                                          \
-        func_02067d7c((id) + 1, value);                                               \
+        VsSetup_SetController((id) + 1, value);                                               \
     }
 #define STEP_CO(id)                                                                   \
     if (func_0207bd80() == 1) {                                                       \
