@@ -573,6 +573,10 @@ src/game/main/unlocks/shop_sound_room.c:
     complete
     .text       start:0x021020d0 end:0x02102114
 
+src/game/main/unlocks/shop_hard_campaign.c:
+    complete
+    .text       start:0x02102114 end:0x02102158
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
