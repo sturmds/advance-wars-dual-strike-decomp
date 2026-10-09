@@ -48,7 +48,7 @@ void func_020b2b70(int x, int y);
 void AiUnit_GoToSupply(void)
 {
     int bestX = -1;
-    int bestY = -1;
+    u32 bestY = -1; /* needed to match: found by tools/permute.py */
     int bestScore = NO_TILE;
     int slot;
     MapUnit *unit;

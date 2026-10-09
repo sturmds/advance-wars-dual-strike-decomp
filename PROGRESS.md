@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 929 / 6603 | 185840 / 1531944 | 12.13% | 0 | 0 |
+| game | 930 / 6603 | 186952 / 1531944 | 12.20% | 0 | 0 |
 | SDK/library | 6 / 880 | 648 / 154050 | 0.42% | 1 | 30 |
-| all | 935 / 7483 | 186488 / 1685994 | 11.06% | 1 | 30 |
+| all | 936 / 7483 | 187600 / 1685994 | 11.13% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 875 / 5180 | 178916 / 1082632 | 16.53% | 0 |
+| main | game | 876 / 5180 | 180028 / 1082632 | 16.63% | 0 |
 | main | SDK/library | 1 / 767 | 40 / 130618 | 0.03% | 1 |
 | itcm | SDK/library | 5 / 113 | 608 / 23432 | 2.59% | 0 |
 | ov000 | game | 3 / 121 | 628 / 25300 | 2.48% | 0 |
@@ -39,11 +39,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
-| `src/game/main/ai/ai_unit_go_to_supply.c` | AiUnit_GoToSupply | 1112 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | func_020aff0c | 556 |
 | `src/game/main/ai/ai_unit_teammate_outdamages.c` | AiUnit_TeammateOutdamages | 772 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
-| `src/game/main/ai/func_020af540.c` | no delinks entry | 0 |
 | `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
