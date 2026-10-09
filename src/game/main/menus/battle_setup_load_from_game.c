@@ -17,7 +17,7 @@ u8 BuildCoPickList(void);
 u8 *GetCoPickList(void);
 int func_0207bd80(void);
 int func_0207bd6c(void);
-int func_020738d0(int a);
+int Link_FindSlotOfPlayer(int a);
 u8 Map_GetPlayerCount(int mapId);
 
 extern Unk_02080440 *data_027c027c;
@@ -189,7 +189,7 @@ void BattleSetup_LoadFromGame(void)
     if (func_0207bd80() != 1) {
         gMenuState.setup.unk_2e4 = 8;
     } else {
-        gMenuState.setup.unk_2e4 = (func_020738d0(func_0207bd6c()) - 1) * 2 + 8;
+        gMenuState.setup.unk_2e4 = (Link_FindSlotOfPlayer(func_0207bd6c()) - 1) * 2 + 8;
     }
     gMenuState.setup.unk_2e6 = 0;
     gMenuState.setup.unk_2ea = 0;

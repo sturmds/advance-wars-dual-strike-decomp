@@ -798,6 +798,10 @@ src/game/main/menus/link_phase_init_screen.c:
     complete
     .text       start:0x02072f90 end:0x02073768
 
+src/game/main/link/link_find_slot_of_player.c:
+    complete
+    .text       start:0x020738d0 end:0x02073908
+
 src/game/main/func_02073af0.c:
     complete
     .text       start:0x02073af0 end:0x02073b04
