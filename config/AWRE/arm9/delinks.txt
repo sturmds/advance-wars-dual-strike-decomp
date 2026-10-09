@@ -3975,6 +3975,10 @@ src/game/main/unit_action_send.c:
     complete
     .text       start:0x0208012c end:0x020801dc
 
+src/game/main/link_send_weather.c:
+    complete
+    .text       start:0x020801dc end:0x02080278
+
 src/game/main/func_020802e8.c:
     complete
     .text       start:0x020802e8 end:0x0208038c

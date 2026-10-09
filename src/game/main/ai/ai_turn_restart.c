@@ -7,15 +7,15 @@ extern int data_027c0284;
 extern u32 data_0229eaec;
 
 void func_020ddb38(void);
-void func_020801dc(int arg);
+void Link_SendWeather(int arg);
 
 /* AI state 6: runs func_020ddb38 and goes back to AI_STATE_START. The name
- * is a guess from that; func_020801dc runs only when data_0229eaec is set. */
+ * is a guess from that; Link_SendWeather runs only when data_0229eaec is set. */
 void AiTurn_Restart(void)
 {
     func_020ddb38();
     gAiTurnState->state = AI_STATE_START;
     if (data_0229eaec != 0) {
-        func_020801dc(data_027c027c->unk_48[data_027c0284]->unk_1c4->nextWeather);
+        Link_SendWeather(data_027c027c->unk_48[data_027c0284]->unk_1c4->nextWeather);
     }
 }
