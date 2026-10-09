@@ -499,6 +499,10 @@ src/game/main/sound/song_fade_out_step.c:
     complete
     .text       start:0x02026664 end:0x0202669c
 
+src/game/main/sound/song_fade_out_end.c:
+    complete
+    .text       start:0x0202669c end:0x020266b4
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
