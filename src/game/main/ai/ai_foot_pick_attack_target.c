@@ -18,7 +18,7 @@ int func_020a6d30(MapUnit *target);
 BOOL FindAttackTile(int x, int y, s16 *pos);
 int AiAttack_Score(int arg, s16 *pos);
 int Unit_CaptureEndsNextTurn(MapUnit *unit);
-int func_0209f7ac(MapUnit *unit); /* capture points the unit adds per turn */
+int Unit_CapturePoints(MapUnit *unit); /* capture points the unit adds per turn */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -107,7 +107,7 @@ void AiFoot_PickAttackTarget(void)
                 if (target->captureProgress == 0 && target->hp <= 60) {
                     continue;
                 }
-                if (func_0209f7ac(STATE->actingUnit) >= 12) {
+                if (Unit_CapturePoints(STATE->actingUnit) >= 12) {
                     continue;
                 }
             }

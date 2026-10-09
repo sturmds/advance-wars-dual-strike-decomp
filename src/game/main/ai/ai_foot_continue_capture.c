@@ -7,7 +7,7 @@ extern int data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 void Ai_BuildThreatMaps(void);
-int func_0209f7ac(MapUnit *unit);
+int Unit_CapturePoints(MapUnit *unit);
 void AiFoot_PickCaptureTarget(void);
 void func_020aedec(void);
 void AiFoot_AttackCapturingUnit(void);
@@ -18,7 +18,7 @@ void AiFoot_AttackCapturingUnit(void);
 void AiFoot_ContinueCapture(void)
 {
     Ai_BuildThreatMaps();
-    if (func_0209f7ac(GAME->actingUnit) >= 20) {
+    if (Unit_CapturePoints(GAME->actingUnit) >= 20) {
         AiFoot_PickCaptureTarget();
     }
     if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
