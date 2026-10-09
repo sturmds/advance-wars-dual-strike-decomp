@@ -44,6 +44,13 @@ src/game/main/func_020015f4.c:
     complete
     .text       start:0x020015f4 end:0x02001618
 
+src/game/main/overlay/overlay_unload.c:
+    complete
+    .text       start:0x02001670 end:0x020016bc
+
+src/game/main/overlay/overlay_load.c:
+    .text       start:0x020016bc end:0x0200170c
+
 src/game/main/func_02001730.c:
     complete
     .text       start:0x02001730 end:0x0200174c
