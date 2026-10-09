@@ -66,7 +66,9 @@ typedef struct Unk_02080440_48 {
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
-    u8 pad_08[0x1e - 0x08];
+    u8 pad_08[0x0d - 0x08];
+    u8 unk_0d;                         /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
+    u8 pad_0e[0x1e - 0x0e];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
     u8 pad_20[0x38 - 0x20];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
