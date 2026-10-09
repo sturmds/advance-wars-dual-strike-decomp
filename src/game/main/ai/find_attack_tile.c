@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_01ff9f7c(void);           /* random number */
+int MainLoop_GetFrameCount(void);           /* random number */
 int func_020a8b20(int x, int y);   /* score of (x, y) as a tile to attack from; -1: unusable */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -64,7 +64,7 @@ BOOL FindAttackTile(int targetX, int targetY, s16 *pos)
             if (score < bestScore) {
                 continue;
             }
-            if (score == bestScore && (func_01ff9f7c() & 1)) {
+            if (score == bestScore && (MainLoop_GetFrameCount() & 1)) {
                 continue;
             }
             pos[0] = x;
