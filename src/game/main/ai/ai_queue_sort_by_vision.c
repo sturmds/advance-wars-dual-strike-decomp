@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Vision of a unit type for a player, after CO bonuses and rain. */
-int func_020e0214(int player, int unitType);
+int Player_GetUnitVision(int player, int unitType);
 void AiQueue_SortAscending(int count);
 void AiQueue_SortDescending(int count);
 
@@ -24,7 +24,7 @@ void AiQueue_SortByVision(BOOL descending)
         if (gAiQueue[i] == 0) {
             break;
         }
-        gAiQueueSortKeys[i] = func_020e0214(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
+        gAiQueueSortKeys[i] = Player_GetUnitVision(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
     }
     if (!descending) {
         AiQueue_SortAscending(i);
