@@ -5403,6 +5403,9 @@ src/game/main/ai/range_map_fill_moves_over_turns.c:
 src/game/main/ai/ai_unit_teammate_outdamages.c:
     .text       start:0x020a6d30 end:0x020a7034
 
+src/game/main/ai/func_020a7034.c:
+    .text       start:0x020a7034 end:0x020a73e4
+
 src/game/main/ai/ai_can_end_move_at.c:
     complete
     .text       start:0x020a770c end:0x020a7fe0
@@ -5466,6 +5469,9 @@ src/game/main/ai/ai_find_nearest_own_property_tile.c:
 src/game/main/ai/func_020aa4a4.c:
     complete
     .text       start:0x020aa4a4 end:0x020aa4dc
+
+src/game/main/ai/func_020aa4dc.c:
+    .text       start:0x020aa4dc end:0x020aa9c4
 
 src/game/main/ai/func_020aa9c4.c:
     complete
