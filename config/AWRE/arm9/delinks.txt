@@ -791,6 +791,10 @@ src/game/main/skills/save_force_rank_sets.c:
     complete
     .text       start:0x020e6e88 end:0x020e6f48
 
+src/game/main/skills/load_force_rank_sets.c:
+    complete
+    .text       start:0x020e6f48 end:0x020e6fb8
+
 src/game/main/skills/partner_boost1.c:
     complete
     .text       start:0x020e7054 end:0x020e70b8
