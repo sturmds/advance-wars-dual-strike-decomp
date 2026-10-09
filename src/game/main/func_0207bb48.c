@@ -1,0 +1,30 @@
+#include "types.h"
+#include "game/Unk_0215fe8c.h"
+
+extern Unk_0215fe8c *data_0215fe8c;
+extern u8 data_0215feb8[];
+
+void *Task_Create(const void *script, void *parentOrList);
+int Task_DestroyByScript(const void *script);
+u16 func_0207a1dc(void);
+int func_0207a27c(void);
+void func_02077f34(int a);
+void func_02077f48(int a);
+
+/* 1 starts the data_0215feb8 task, anything else stops it. */
+void func_0207bb48(int start)
+{
+    if (start == 1) {
+        data_0215fe8c->unk_0c = 0;
+        Task_Create(data_0215feb8, NULL);
+    } else {
+        data_0215fe8c->unk_0c = 1;
+        Task_DestroyByScript(data_0215feb8);
+        data_0215fe8c->unk_08 = func_0207a1dc();
+    }
+    if (func_0207a27c() == 4) {
+        func_02077f48(start);
+    } else {
+        func_02077f34(start);
+    }
+}
