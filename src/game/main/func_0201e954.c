@@ -6,8 +6,8 @@ void Task_DestroyByScript(const void *descriptor); /* calls Task_DestroyVisitor 
 extern u8 data_021583b4[];
 extern u8 data_021587a8[];
 
-/* Runs before a hint or terms script starts: passes two descriptors (each
- * starting with a handler) to the two slot systems, probably to stop them. */
+/* Runs before a hint or terms script starts: passes two descriptors to
+ * the two task slot systems, probably to stop the tasks using them. */
 void func_0201e954(void)
 {
     func_02017580(data_021583b4);
