@@ -16,7 +16,7 @@ void AiIndirect_MoveOrder4(void);
 void AiIndirect_MoveOrder3(void);
 void AiIndirect_MoveOrder2(void);
 void AiIndirect_MoveOrder1(void);
-void func_020a086c(void);
+void AiIndirect_MoveOrder0(void);
 
 /* Queue routine for indirect units, set by AiAction_QueueIndirectMoves:
  * runs the move sequence for the acting unit's AI order. Same shape as
@@ -27,7 +27,7 @@ void AiIndirect_MoveByOrder(void)
 
     switch (game->actingUnit->aiOrder) {
     case 0:
-        func_020a086c();
+        AiIndirect_MoveOrder0();
         break;
     case 1:
         AiIndirect_MoveOrder1();
@@ -36,7 +36,7 @@ void AiIndirect_MoveByOrder(void)
         if (func_0209dd7c() == TRUE) {
             AiIndirect_MoveOrder2();
         } else {
-            func_020a086c();
+            AiIndirect_MoveOrder0();
         }
         break;
     case 3:
