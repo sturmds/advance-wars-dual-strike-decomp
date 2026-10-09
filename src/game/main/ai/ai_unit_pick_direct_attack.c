@@ -16,7 +16,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues
 int Ai_CountReachableAdjacentTiles(int x, int y);
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* base damage percent against a target kind */
 BOOL Map_IsTileVisible(s16 x, s16 y);
-int func_020a30c4(void);
+int AiUnit_CruiserCanReachSub(void);
 BOOL AiTile_HasStrongAllyInReach(int x, int y, MapUnit *target);
 void Ai_ClearActingUnitTarget(void);
 int AiUnit_TeammateOutdamages(MapUnit *target);
@@ -79,7 +79,7 @@ void AiUnit_PickDirectAttack(void)
     objectHp = 255;
     if (STATE->unk_1c4->mapId == 238) {
         flags = 0;
-    } else if (func_020a30c4() == 1) {
+    } else if (AiUnit_CruiserCanReachSub() == 1) {
         flags = AI_ATTACK_NO_CHIP;
     } else {
         flags = 0;
