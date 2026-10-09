@@ -11,7 +11,7 @@ int func_02101904(u32 mapId);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void func_020152a4(s16 x, s16 y, u16 *map, const void *text, int a4, u16 palette, u16 tile);
 void Bg_PutTileQuad(int x, int y, int tile, int size);
-int func_0206429c(int a, int mapId);
+int MapSelect_GetRecordMarker(int a, int mapId);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -65,7 +65,7 @@ void MapSelect_DrawMapNames(int list, int page)
         if (STATE->gameMode == 1) {
             if (gWarRoomRecords[data_0229c768.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].unk_0a != 0) {
                 Bg_PutTileQuad(x + 9, y,
-                              0x400 - ROWS * COLS * 32 - ((4 - func_0206429c(data_0229c768.unk_108, MAP_ID)) << 2), 1);
+                              0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(data_0229c768.unk_108, MAP_ID)) << 2), 1);
             }
         }
         y += 2;
