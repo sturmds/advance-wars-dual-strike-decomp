@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2431 / 6603 | 284476 / 1531944 | 18.57% | 0 | 0 |
+| game | 2434 / 6603 | 287080 / 1531944 | 18.74% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2569 / 7483 | 287896 / 1685994 | 17.08% | 1 | 30 |
+| all | 2572 / 7483 | 290500 / 1685994 | 17.23% | 1 | 30 |
 
 ## By module
 
@@ -18,13 +18,13 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2037 / 5180 | 260420 / 1082632 | 24.05% | 0 |
+| main | game | 2038 / 5180 | 261196 / 1082632 | 24.13% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
 | ov001 | game | 20 / 76 | 412 / 7472 | 5.51% | 0 |
 | ov002 | game | 35 / 164 | 6084 / 64208 | 9.48% | 0 |
-| ov003 | game | 34 / 235 | 3396 / 82696 | 4.11% | 0 |
+| ov003 | game | 36 / 235 | 5224 / 82696 | 6.32% | 0 |
 | ov004 | game | 102 / 236 | 2844 / 67364 | 4.22% | 0 |
 | ov005 | game | 96 / 270 | 2360 / 96684 | 2.44% | 0 |
 | ov006 | game | 76 / 321 | 6220 / 105588 | 5.89% | 0 |
@@ -47,6 +47,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_020342ac.c` | func_020342ac | 396 |
 | `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
+| `src/game/main/map/map_view_scroll_step.c` | MapView_ScrollStep | 788 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/map_preview_draw.c` | MapPreview_Draw | 880 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
