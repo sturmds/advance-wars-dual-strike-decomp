@@ -6,7 +6,7 @@
 void Gfx_RequestLayerCopy(int a);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
+void Text_PrintImmediate(int x, int y, void *target, u32 text, int a, int b);
 void Text_PrintById(int x, int y, void *target, u32 text, int a, int b);
 Unk_02023724 *Task_FindByScript(void *key);
 void Bg_ClearRect(void *target, int x, int y, int w, int h);
@@ -57,7 +57,7 @@ void DrawSelectedCoPowerText(void)
     /* Needed to match: indexing from &gCoTable[0].blocks[POWER_CO] keeps
      * the 0x120 offset in the literal pool instead of the load. TextRefs
      * are passed as one u32. */
-    func_02014d88(19, 13, data_027c0280->layer0Map,
+    Text_PrintImmediate(19, 13, data_027c0280->layer0Map,
                   *(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])[data_021613a0[list->unk_32] & 0x7f].name,
                   0, 0);
     Text_PrintById(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
