@@ -644,6 +644,10 @@ src/game/main/sound/song_request_start.c:
     complete
     .text       start:0x02026758 end:0x02026768
 
+src/game/main/sound/sound_request_song.c:
+    complete
+    .text       start:0x02026768 end:0x020267a4
+
 src/game/main/sound/sound_start_song.c:
     complete
     .text       start:0x020267a4 end:0x020267fc

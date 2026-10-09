@@ -14,6 +14,9 @@ extern u16 gPendingSong;         /* song to start later, SONG_NONE: none */
  * gCurrentSong. Pairs of (opcode, argument) words. */
 extern const u32 gSongFadeOutScript[];
 
+/* Task script of Sound_RequestSong's task. */
+extern const u32 gSongRequestScript[];
+
 /* The task that runs gSongFadeOutScript (a 0x6c-byte task). */
 typedef struct SongFadeOutTask {
     u8 pad_00[0x64];
