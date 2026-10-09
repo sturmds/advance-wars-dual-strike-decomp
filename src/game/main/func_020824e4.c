@@ -8,7 +8,7 @@ int func_02078138(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
-void func_0207bd28(void);
+void Link_FlagError(void);
 int func_02124534(int a0, void *a1);
 void Task_ResumeScript(Task *task);
 
@@ -33,7 +33,7 @@ void func_020824e4(Task *task)
         func_0207b4b0(data_021606e4);
         task->unk_36++;
         if (task->unk_36 > 300) {
-            func_0207bd28();
+            Link_FlagError();
         }
     } else {
         task->unk_36 = 0;

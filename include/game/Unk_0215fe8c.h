@@ -12,7 +12,8 @@ typedef struct Unk_0215fe8c {
     u8 pad_0a[2];
     u8 unk_0c;                         /* func_0207bb48: 0 while the data_0215feb8 task runs, else 1 */
     u8 unk_0d;                         /* a player number, 0-3 (func_0207bd6c) */
-    u8 pad_0e[0x1c - 0x0e];
+    u8 pad_0e[0x18 - 0x0e];
+    u32 unk_18;                        /* set to 1 by Link_FlagError, e.g. when the event queue is full */
     u32 unk_1c;                        /* 1 in some link mode (func_0207bd80) */
 } Unk_0215fe8c;
 

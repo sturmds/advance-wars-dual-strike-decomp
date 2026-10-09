@@ -2,7 +2,7 @@
 
 /* The arg byte of each entry; the original addresses it through its own symbol. */
 extern u8 data_0229d89d[];
-void func_0207bd28(void);
+void Link_FlagError(void);
 
 void EventQueue_Push(int id, int arg)
 {
@@ -16,7 +16,7 @@ void EventQueue_Push(int id, int arg)
     }
     /* Full queue: the event is dropped. */
     if (next == gEventQueue.readIndex) {
-        func_0207bd28();
+        Link_FlagError();
         return;
     }
     gEventQueue.entries[writeIndex].id = id;

@@ -3763,6 +3763,10 @@ src/game/main/func_0207bc14.c:
     complete
     .text       start:0x0207bc14 end:0x0207bc30
 
+src/game/main/link_flag_error.c:
+    complete
+    .text       start:0x0207bd28 end:0x0207bd58
+
 src/game/main/func_0207bd58.c:
     complete
     .text       start:0x0207bd58 end:0x0207bd6c
