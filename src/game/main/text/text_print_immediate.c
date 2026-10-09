@@ -9,7 +9,7 @@ u16 *TextPrinter_GetCursorEntry(TextPrinter *printer);
 s8 func_02017130(const void *script);
 const void *Text_Get(u32 textId);
 int func_020157e4(TextPrinter *printer, u16 *entry);
-void func_02021118(TextPrinter *printer, u16 *entry, int arg);
+void TextPrinter_WriteRun(TextPrinter *printer, u16 *entry, int arg);
 
 /* Prints the string textId at tile (x, y) of map in one call. Takes a free
  * script slot as the printer. */
@@ -35,7 +35,7 @@ void Text_PrintImmediate(int x, int y, u16 *map, u32 textId, u16 unk_30, int arg
         case 0:
             return;
         case 1:
-            func_02021118(printer, entry, arg);
+            TextPrinter_WriteRun(printer, entry, arg);
             break;
         case 2:
         case 3:
