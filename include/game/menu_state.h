@@ -81,6 +81,16 @@ typedef struct CampaignMapWork {
  * its own way. Field names with an offset give it from the start of
  * MenuState. The symbols data_0229eb70, data_0229ed30 and data_0229ef30
  * point inside it, at 0x40, 0x200 and 0x400. */
+/* Layout of MenuState read by func_0206d67c, which draws a unit's
+ * firepower (through Player_GetShownFirepower). */
+typedef struct Unk_0206d67c {
+    u8 pad_020[0xa1 - 0x20];
+    u8 player;                         /* passed to Player_GetShownFirepower */
+    u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
+    u8 pad_0a3[0xa8 - 0xa3];
+    u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses func_020e5d8c for every slot */
+} Unk_0206d67c;
+
 typedef struct MenuState {
     u16 colours[16];                   /* a 16-colour palette: map select copies one entry to the
                                         * palette every 4 frames; the link screen and the world map
@@ -89,6 +99,7 @@ typedef struct MenuState {
         LinkScreenState link;
         BattleSetupState setup;
         CampaignMapWork campaignMap;
+        Unk_0206d67c unk_0206d67c;
     };
 } MenuState;
 
