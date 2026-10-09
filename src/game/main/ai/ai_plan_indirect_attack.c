@@ -21,14 +21,14 @@ BOOL func_0209eb38(s16 x, s16 y);
 BOOL func_020a770c(s16 x, s16 y);
 int AiAttack_Score(int target, s16 *pos);      /* score of attacking unit slot target (low byte) from pos */
 void func_020a491c(void);                     /* clears actingUnit's AI target */
-void func_0208fbb0(int x, int y, int action, u8 arg3, u8 arg4); /* queues an action for the unit at (x, y) */
+void AiUnit_PerformAction(int x, int y, int action, u8 arg3, u8 arg4); /* queues an action for the unit at (x, y) */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 #define UNIT_TILE(unit) (MAP->tiles[TILE_INDEX((unit)->x, (unit)->y)])
 
-/* func_0208fbb0 actions */
+/* AiUnit_PerformAction actions */
 #define AI_ACTION_ATTACK_UNIT 4 /* arg3: unit slot */
 #define AI_ACTION_ATTACK_TILE 5 /* arg3, arg4: x, y */
 
@@ -39,7 +39,7 @@ void func_0208fbb0(int x, int y, int action, u8 arg3, u8 arg4); /* queues an act
  * stands. Every tile in range is tried: a map object or a tile with hp when
  * gAiTurnState allows, otherwise an enemy unit there. The best unit (by
  * AiAttack_Score's score) and the best tile are each queued with
- * func_0208fbb0; a tile is kept only if the damage reaches 10 or its hp. */
+ * AiUnit_PerformAction; a tile is kept only if the damage reaches 10 or its hp. */
 
 void Ai_PlanIndirectAttack(void)
 {
@@ -191,11 +191,11 @@ attack_unit:
     }
     if (bestUnitScore != 0) {
         func_020a491c();
-        func_0208fbb0(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_UNIT, bestUnitSlot, 0);
+        AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_UNIT, bestUnitSlot, 0);
     }
     if (bestTileHp == 0xff) {
         return;
     }
     func_020a491c();
-    func_0208fbb0(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_TILE, bestTileX, bestTileY);
+    AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_TILE, bestTileX, bestTileY);
 }

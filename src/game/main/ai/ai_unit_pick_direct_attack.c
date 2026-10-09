@@ -12,7 +12,7 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 int UnitType_GetAttackKind(int unitType);
 void func_01ffa44c(MapUnit *unit);
 void func_01ffaa3c(int arg);
-void func_0208fbb0(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
+void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
 int func_0209dc54(int x, int y);
 int func_0209e424(MapUnit *unit, int target); /* base damage percent against a target kind */
 BOOL func_0209eb38(s16 x, s16 y);
@@ -250,11 +250,11 @@ void AiUnit_PickDirectAttack(void)
     }
     if (unitScore != 0) {
         func_020a491c();
-        func_0208fbb0(unitAttackX, unitAttackY, 4, unitTargetSlot, 0);
+        AiUnit_PerformAction(unitAttackX, unitAttackY, 4, unitTargetSlot, 0);
     }
     if (objectHp != 255) {
         func_020a491c();
-        func_0208fbb0(objectAttackX, objectAttackY, 5, objectX, objectY);
+        AiUnit_PerformAction(objectAttackX, objectAttackY, 5, objectX, objectY);
     }
     if (holdsLastSide) {
         func_020b0e1c();
