@@ -1781,6 +1781,10 @@ src/game/main/ai/ai_transport_unload_for_capture.c:
     complete
     .text       start:0x020abe3c end:0x020ac648
 
+src/game/main/ai/ai_empty_transport_wait_near_base.c:
+    complete
+    .text       start:0x020ac648 end:0x020ac9e8
+
 src/game/main/ai/ai_empty_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020ac9e8 end:0x020ad0d4

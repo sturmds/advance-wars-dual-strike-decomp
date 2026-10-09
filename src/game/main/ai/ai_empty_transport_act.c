@@ -2,7 +2,7 @@
 
 void Ai_BuildThreatMaps(void);
 void AiUnit_MoveToOtherMap(void);
-void func_020ac648(void);
+void AiEmptyTransport_WaitNearBase(void);
 void AiEmptyTransport_GoToFootUnit(void);
 void func_020af5f8(void);
 void AiUnit_WaitInPlace(void);
@@ -14,7 +14,7 @@ void AiEmptyTransport_Act(void)
     Ai_BuildThreatMaps();
     func_020af5f8();
     AiEmptyTransport_GoToFootUnit();
-    func_020ac648();
+    AiEmptyTransport_WaitNearBase();
     AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }
