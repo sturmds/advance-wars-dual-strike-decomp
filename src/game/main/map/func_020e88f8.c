@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 
 BOOL Map_IsCoSelectPhase(void);
-Unk_02023724 *func_02023724(const void *script);
+Unk_02023724 *Task_FindByScript(const void *script);
 void *Task_Create(const void *script, void *parentOrList);
 
 extern Unk_02080440 *data_027c027c;
@@ -21,7 +21,7 @@ void func_020e88f8(void)
     if (!Map_IsCoSelectPhase()) {
         return;
     }
-    if (func_02023724(data_02168b94) != NULL) {
+    if (Task_FindByScript(data_02168b94) != NULL) {
         return;
     }
     Task_Create(data_02168b94, (void *)3);

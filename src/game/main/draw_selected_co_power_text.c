@@ -8,7 +8,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
 void func_02015258(int x, int y, void *target, u32 text, int a, int b);
-Unk_02023724 *func_02023724(void *key);
+Unk_02023724 *Task_FindByScript(void *key);
 void func_02027804(void *target, int x, int y, int w, int h);
 
 extern Unk_02080440 *data_027c027c;
@@ -29,7 +29,7 @@ void DrawSelectedCoPowerText(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    list = func_02023724(data_021613d8);
+    list = Task_FindByScript(data_021613d8);
     switch (data_021613a0[list->unk_32]) {
     case CO_ANDY:
         text = 0x44000003;
