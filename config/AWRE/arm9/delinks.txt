@@ -2071,6 +2071,10 @@ src/game/main/map/func_020c8888.c:
     complete
     .text       start:0x020c8888 end:0x020c88fc
 
+src/game/main/units/player_count_units.c:
+    complete
+    .text       start:0x020c9704 end:0x020c9778
+
 src/game/main/func_020cab68.c:
     complete
     .text       start:0x020cab68 end:0x020cab80
