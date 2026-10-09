@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void func_0208f574(void);
-void func_0209fb5c(void);
+void AiSeaTransport_Act(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -17,7 +17,7 @@ void func_0209fb5c(void);
 #define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
 
 /* Queues the current player's Black Boats and Landers that have not
- * waited yet, hands the queue to func_0208f574, and runs func_0209fb5c
+ * waited yet, hands the queue to func_0208f574, and runs AiSeaTransport_Act
  * on each. */
 void AiAction_QueueSeaTransports(void)
 {
@@ -35,6 +35,6 @@ void AiAction_QueueSeaTransports(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     func_0208f574();
-    gAiQueueRoutine = func_0209fb5c;
+    gAiQueueRoutine = AiSeaTransport_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
