@@ -5089,6 +5089,10 @@ src/game/main/func_0209dec0.c:
     complete
     .text       start:0x0209dec0 end:0x0209df28
 
+src/game/main/ai/ai_is_transport_stop_tile.c:
+    complete
+    .text       start:0x0209df28 end:0x0209e078
+
 src/game/main/units/unit_type_get_attack_kind.c:
     complete
     .text       start:0x0209e134 end:0x0209e1ac

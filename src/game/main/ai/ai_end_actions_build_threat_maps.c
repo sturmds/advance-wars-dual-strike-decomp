@@ -13,8 +13,8 @@ void func_0209a134(u8 player);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Counterpart of Ai_BuildThreatMaps for the end-of-turn phase: same clearing and
- * object threat, but each enemy player is added by func_0209a134, which does not
- * depend on an acting unit. The name is a guess from the caller. */
+ * object threat, but each enemy player is added by func_0209a134 (not read
+ * yet). The name is a guess from the caller. */
 void AiEndActions_BuildThreatMaps(void)
 {
     u16 savedUnk1e;

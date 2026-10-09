@@ -16,7 +16,7 @@ int Player_GetUnitMoveRange(int player, int unitType);
 int Unit_GetUsableMovement(MapUnit *unit);          /* move points this turn, capped by fuel */
 int func_020a507c(int x, int y, int range);
 int func_020a50d4(int x, int y, int unitType, int movement);
-BOOL func_0209df28(int unitType, int x, int y);
+BOOL Ai_IsTransportStopTile(int unitType, int x, int y);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -139,7 +139,7 @@ void AiEmptyTransport_GoToFootUnit(void)
                 if (MAP->unitAt[TILE_INDEX(x, y)] != 0) {
                     continue;
                 }
-                if (!func_0209df28(STATE->actingUnit->type, x, y)) {
+                if (!Ai_IsTransportStopTile(STATE->actingUnit->type, x, y)) {
                     continue;
                 }
                 if (Map_IsSiloOrCapturableTile(x, y) == 1) {

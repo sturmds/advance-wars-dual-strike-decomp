@@ -5,14 +5,14 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int MainLoop_GetFrameCount(void);           /* random number */
-int func_0209df28(int unitType, int x, int y);
+int Ai_IsTransportStopTile(int unitType, int x, int y);
 int AiTile_ScoreAttackFrom(int x, int y);   /* score of (x, y) as a tile to attack from; -1: unusable */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define NO_TILE 9999
 
-/* Name is a guess. Like FindAttackTile, but a side must also pass func_0209df28 for the
+/* Name is a guess. Like FindAttackTile, but a side must also pass Ai_IsTransportStopTile for the
  * acting unit's type. Writes the best side to pos; ties go to a coin flip.
  * FALSE: no side qualifies. */
 BOOL AiUnit_FindStandTileNextTo(int targetX, int targetY, s16 *pos)
@@ -61,7 +61,7 @@ BOOL AiUnit_FindStandTileNextTo(int targetX, int targetY, s16 *pos)
             if (dist < 1 || dist > 1) {
                 continue;
             }
-            if (!func_0209df28(STATE->actingUnit->type, x, y)) {
+            if (!Ai_IsTransportStopTile(STATE->actingUnit->type, x, y)) {
                 continue;
             }
             score = AiTile_ScoreAttackFrom(x, y);
