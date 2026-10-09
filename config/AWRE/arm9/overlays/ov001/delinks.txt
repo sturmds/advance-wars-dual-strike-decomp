@@ -10,3 +10,7 @@ src/game/ov001/func_ov001_02350d44.c:
 src/game/ov001/ov001_set_weather_clear.c:
     complete
     .text       start:0x023517c4 end:0x023517d4
+
+src/game/ov001/func_ov001_02351dc8.c:
+    complete
+    .text       start:0x02351dc8 end:0x02351dd8
