@@ -13,7 +13,7 @@ void AiUnit_MoveToOtherMap(void);
 void AiUnit_SeekSupply(void);
 void func_020af5f8(void);
 void AiUnit_WaitInPlace(void);
-void func_020b320c(void);
+void AiSeaTransport_Move(void);
 
 /* Queue routine for Black Boats and Landers, set by
  * AiAction_QueueSeaTransports. An empty Lander takes func_020af5f8, the
@@ -27,7 +27,7 @@ void AiSeaTransport_Act(void)
     } else {
         AiUnit_SeekSupply();
     }
-    func_020b320c();
+    AiSeaTransport_Move();
     AiUnit_MoveToOtherMap();
     AiUnit_WaitInPlace();
 }
