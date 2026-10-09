@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 void func_020800c0(void);
-int func_0208c21c(void);
+int AiTurn_GetState(void);
 void AiTurn_ShowAction(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -16,7 +16,7 @@ void func_02080440(void)
         return;
     }
     AiTurn_ShowAction();
-    if (func_0208c21c() == 2) {
+    if (AiTurn_GetState() == 2) {
         data_0229d8c4 = 0;
     }
 }
