@@ -15,3 +15,7 @@ src/game/ov000/mission_has_pending_event.c:
 src/game/ov000/text/text_get.c:
     complete
     .text       start:0x022af7e8 end:0x022af828
+
+src/game/ov000/func_ov000_022b20fc.c:
+    complete
+    .text       start:0x022b20fc end:0x022b2114
