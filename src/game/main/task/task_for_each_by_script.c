@@ -1,0 +1,19 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/task.h"
+
+extern Unk_02080440 *data_027c027c;
+
+/* Calls visit on every task in the pool that was started with script. */
+void Task_ForEachByScript(void *script, void (*visit)(Task *task))
+{
+    Task *task;
+    int i;
+
+    task = data_027c027c->taskPool;
+    for (i = 0; i < TASK_COUNT; i++, task++) {
+        if (task->unk_00 == script) {
+            visit(task);
+        }
+    }
+}
