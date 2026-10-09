@@ -23,6 +23,16 @@ typedef struct MenuButton {
 
 extern MenuButton gMenuButtons[80];
 
+/* Menu button state reached through data_02158f38. */
+typedef struct MenuButtonState {
+    u8 pad_00[0x08];
+    u8 unk_08;                         /* set together with selected by func_0202621c */
+    u8 pad_09[0x0c - 0x09];
+    MenuButton *selected;
+} MenuButtonState;
+
+extern MenuButtonState *data_02158f38;
+
 MenuButton *MenuButton_Find(int id);           /* active button with this id, or NULL */
 MenuButton *MenuButton_Select(int id);
 void MenuButton_Confirm(MenuButton *button);
