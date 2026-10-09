@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL func_0209dd7c(void);
-BOOL func_020c0e3c(int player);
+BOOL Player_HasHq(int player);
 void AiIndirect_MoveOrder10(void);
 void AiIndirect_MoveOrder9(void);
 void AiIndirect_MoveOrder8(void);
@@ -49,7 +49,7 @@ void AiIndirect_MoveByOrder(void)
         func_020a0604();
         break;
     case 6:
-        if (func_020c0e3c(game->currentPlayer) == TRUE) {
+        if (Player_HasHq(game->currentPlayer) == TRUE) {
             func_020a0590();
         } else {
             func_020a0604();

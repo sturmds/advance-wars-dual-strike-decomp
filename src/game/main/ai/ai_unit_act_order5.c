@@ -13,7 +13,7 @@ void AiUnit_WaitInPlace(void);
 void func_020b297c(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 5, and
- * for order 6 when func_020c0e3c is FALSE for the current player. The
+ * for order 6 when Player_HasHq is FALSE for the current player. The
  * last one, AiUnit_WaitInPlace, makes the unit stay on its tile
  * (AiUnit_PerformAction with action 2). */
 void AiUnit_ActOrder5(void)
