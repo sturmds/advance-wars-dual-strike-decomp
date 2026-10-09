@@ -144,6 +144,10 @@ src/game/main/task/task_set_script.c:
     complete
     .text       start:0x020236d0 end:0x020236e4
 
+src/game/main/task/task_jump_to_label.c:
+    complete
+    .text       start:0x020236e4 end:0x02023724
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0

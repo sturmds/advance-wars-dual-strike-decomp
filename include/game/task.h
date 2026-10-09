@@ -25,4 +25,14 @@ typedef struct Task {
     u8 pad_29[0x6c - 0x29];
 } Task;
 
+/* One 8-byte command of a task script. */
+typedef struct TaskScriptCmd {
+    s16 op;                            /* TASK_CMD_* */
+    s16 arg;                           /* TASK_CMD_LABEL: label id */
+    u8 pad_04[4];
+} TaskScriptCmd;
+
+#define TASK_CMD_END   0               /* last command of a script */
+#define TASK_CMD_LABEL 11              /* jump target for Task_JumpToLabel */
+
 #endif
