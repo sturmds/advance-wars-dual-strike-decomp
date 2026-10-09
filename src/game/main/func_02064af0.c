@@ -9,11 +9,11 @@ struct Unk_gMenuState {
 
 void Sound_PlaySe(int);
 extern Unk_gMenuState gMenuState;
-int func_02064b1c(void *);
+int VsSetup_ShowSettingHelp2(void *);
 
 int func_02064af0(int a0)
 {
     Sound_PlaySe(0x10002);
     gMenuState.unk_2e6 = a0;
-    return func_02064b1c(&gMenuState);
+    return VsSetup_ShowSettingHelp2(&gMenuState);
 }

@@ -3112,6 +3112,10 @@ src/game/main/func_02064af0.c:
     complete
     .text       start:0x02064af0 end:0x02064b1c
 
+src/game/main/menus/vs_setup_show_setting_help2.c:
+    complete
+    .text       start:0x02064b1c end:0x02064e00
+
 src/game/main/func_02064e00.c:
     complete
     .text       start:0x02064e00 end:0x02064e2c
