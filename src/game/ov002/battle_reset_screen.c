@@ -1,0 +1,40 @@
+#include "types.h"
+#include "game/menu_state.h"
+
+extern MenuState gMenuState;
+extern u8 data_ov002_0236961c[];
+extern u8 data_ov002_0236963c[];
+extern u8 data_ov002_023604c4[];
+
+s8 Task_DestroyByScript(const void *script);
+void func_ov002_02356410(void);
+void func_ov002_0235ec84(void);
+void func_ov002_0235cd50(void);
+void func_ov002_0235cd3c(void);
+void func_ov002_02353218(void);
+void func_ov002_02358478(void);
+void func_ov002_02357434(void);
+
+/* Destroys the battle screen tasks, clears the BattleEntry words and runs the rest of the reset.
+ * The argument is not used. */
+void Battle_ResetScreen(u32 unused)
+{
+    int i;
+    int j;
+
+    Task_DestroyByScript(data_ov002_0236961c);
+    Task_DestroyByScript(data_ov002_0236963c);
+    Task_DestroyByScript(data_ov002_023604c4);
+    func_ov002_02356410();
+    func_ov002_0235ec84();
+    func_ov002_0235cd50();
+    func_ov002_0235cd3c();
+    for (i = 0; i < 2; i++) {
+        for (j = 0; j < 5; j++) {
+            gMenuState.battle.unk_310[i][j].unk_00 = 0;
+        }
+    }
+    func_ov002_02353218();
+    func_ov002_02358478();
+    func_ov002_02357434();
+}

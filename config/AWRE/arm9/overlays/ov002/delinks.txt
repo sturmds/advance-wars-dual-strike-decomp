@@ -55,6 +55,10 @@ src/game/ov002/func_ov002_0235710c.c:
     complete
     .text       start:0x0235710c end:0x02357124
 
+src/game/ov002/battle_reset_screen.c:
+    complete
+    .text       start:0x02357124 end:0x023571b8
+
 src/game/ov002/func_ov002_023571b8.c:
     complete
     .text       start:0x023571b8 end:0x023571d0

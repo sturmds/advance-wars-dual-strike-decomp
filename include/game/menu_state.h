@@ -102,8 +102,15 @@ typedef struct Unk_0206d67c {
 } Unk_0206d67c;
 
 /* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */
+typedef struct BattleEntry {
+    s32 unk_00;                        /* cleared by Battle_ResetScreen */
+    u8 pad_04[0x18 - 4];
+} BattleEntry;
+
 typedef struct BattleScreenWork {
-    u8 pad_020[0x408 - 0x20];
+    u8 pad_020[0x310 - 0x20];
+    BattleEntry unk_310[2][5];
+    u8 pad_400[0x408 - 0x400];
     u16 unk_408[2];                    /* cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init */
     u8 pad_410[0x490 - 0x410];
