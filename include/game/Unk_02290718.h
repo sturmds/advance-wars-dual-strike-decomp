@@ -35,6 +35,8 @@ typedef struct Unk_02290718 {
     u32 unk_3ec;                       /* counted for human players by func_020ddc2c and func_020ddcb8, capped at 999999; meaning unknown */
     u8 pad_3f0[0x3f4 - 0x3f0];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
+    u8 pad_3f8[0x414 - 0x3f8];
+    u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */
 } Unk_02290718;
 
 extern Unk_02290718 data_02290718;

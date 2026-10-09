@@ -34,7 +34,7 @@ void UnitAction_ActivateTagPower(void);
 void UnitAction_ActivateSuperPower(void);
 void UnitAction_ActivateCoPower(void);
 void func_020dd6bc(void);
-void func_020dd818(void);
+void UnitAction_MoveToOtherMap(void);
 void func_020dd89c(void);
 void func_020dd9a0(void);
 void func_020ddc2c(void);
@@ -159,7 +159,7 @@ void AiShowAction_Step2(void)
         break;
     case 26:
         func_020deac4();
-        func_020dd818();
+        UnitAction_MoveToOtherMap();
         break;
     case 27:
         saved0280 = data_027c0280;

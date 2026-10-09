@@ -7012,6 +7012,10 @@ src/game/main/func_020dd5f8.c:
     complete
     .text       start:0x020dd5f8 end:0x020dd620
 
+src/game/main/unit_action_move_to_other_map.c:
+    complete
+    .text       start:0x020dd818 end:0x020dd89c
+
 src/game/main/func_020dd928.c:
     complete
     .text       start:0x020dd928 end:0x020dd940
