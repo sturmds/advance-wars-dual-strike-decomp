@@ -7040,6 +7040,10 @@ src/game/main/func_020dda74.c:
     complete
     .text       start:0x020dda74 end:0x020dda8c
 
+src/game/main/func_020ddb38.c:
+    complete
+    .text       start:0x020ddb38 end:0x020ddc14
+
 src/game/main/func_020ddc14.c:
     complete
     .text       start:0x020ddc14 end:0x020ddc2c

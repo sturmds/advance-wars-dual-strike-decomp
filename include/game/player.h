@@ -67,7 +67,8 @@ typedef struct Player {
     u8 aiBehaviour;                    /* AI_BEHAVIOUR_* */
     u8 unk_2f;                         /* ORed with MapHeader.slotFlags[slot].unk_0 at map start */
     u8 unk_30;                         /* ORed with MapHeader.slotFlags[slot].unk_1 */
-    u8 pad_31[0x33 - 0x31];
+    u8 unk_31;                         /* set from Unk_02080440_48.unk_28 at turn start (func_020ddb38); likely a saved cursor x */
+    u8 unk_32;                         /* from unk_2a; likely cursor y */
     u8 unk_33;                         /* cleared by Players_Reset */
     u8 unk_34;
     u8 unk_35;                         /* +1 per unit built, up to 255 (func_020c74dc); doc 890: live unit count */
