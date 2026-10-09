@@ -1303,6 +1303,10 @@ src/game/main/script/script_slot_stop_by_script.c:
     complete
     .text       start:0x02017580 end:0x020175e0
 
+src/game/main/script/script_slot_stop.c:
+    complete
+    .text       start:0x020175e0 end:0x02017698
+
 src/game/main/script/script_slot_start.c:
     complete
     .text       start:0x02017698 end:0x020176f4

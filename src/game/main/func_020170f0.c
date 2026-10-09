@@ -1,9 +1,9 @@
 #include "types.h"
 
-void func_020175e0(void);
+void ScriptSlot_Stop(void);
 
 int func_020170f0(void)
 {
-    func_020175e0();
+    ScriptSlot_Stop();
     return 0;
 }

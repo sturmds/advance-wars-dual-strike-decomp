@@ -18,10 +18,12 @@ typedef struct ScriptSlot {
     ScriptCommand *start;              /* NULL: slot unused */
     ScriptCommand *pc;                 /* next command */
     void (*callback)(void);            /* set by opcode 1; while set, the script does not advance */
-    u8 pad_0c[0x10 - 0x0c];
+    void (*onStop)(struct ScriptSlot *slot);   /* called when the slot is stopped */
     u16 wait;                          /* frames left before the next command */
     u16 unk_12;                        /* set to 4 when a script starts, before its first run */
-    u8 pad_14[0x60 - 0x14];
+    u8 pad_14[0x26 - 0x14];
+    s16 unk_26;                        /* passed to func_0201751c when the script stops with bit 2 of unk_12 set */
+    u8 pad_28[0x60 - 0x28];
 } ScriptSlot;
 
 /* Runs one command of the slot; nonzero: run the next one this frame too. */

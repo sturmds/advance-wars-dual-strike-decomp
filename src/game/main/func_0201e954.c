@@ -1,6 +1,6 @@
 #include "types.h"
 
-s8 ScriptSlot_StopByScript(const void *descriptor);   /* finds the slot (of 30) using descriptor, calls func_020175e0 on it */
+s8 ScriptSlot_StopByScript(const void *descriptor);   /* finds the slot (of 30) using descriptor, calls ScriptSlot_Stop on it */
 void Task_DestroyByScript(const void *descriptor); /* calls Task_DestroyVisitor on each of 80 tasks running descriptor */
 
 extern u8 data_021583b4[];
