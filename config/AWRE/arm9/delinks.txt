@@ -4714,6 +4714,10 @@ src/game/main/menus/battle_menu_auto_co_on_hidden.c:
     complete
     .text       start:0x020be908 end:0x020beaa8
 
+src/game/main/func_020beda8.c:
+    complete
+    .text       start:0x020beda8 end:0x020bee00
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
