@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/heap.h"
 
-void Heap_Unlink(const void *src, void *dst, u32 size);
+void Heap_Unlink(HeapHead *heap);
 
-void func_02104bf0(const void *src, void *dst, u32 size)
+void func_02104bf0(HeapHead *heap)
 {
-    Heap_Unlink(src, dst, size);
+    Heap_Unlink(heap);
 }

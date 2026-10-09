@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 
-void Task_Destroy(const void *src, void *dst, u32 size);
+void Task_Destroy(Task *task);
 
-void func_020fccb0(const void *src, void *dst, u32 size)
+void func_020fccb0(Task *task)
 {
-    Task_Destroy(src, dst, size);
+    Task_Destroy(task);
 }

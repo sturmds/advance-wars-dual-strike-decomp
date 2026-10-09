@@ -8,10 +8,10 @@ struct Unk_020e36d8 {
     int unk_44;
 };
 
-void func_020f5888(int, int, int);
+void func_020f5888(int a0, int a1);
 
 void func_020e36d8(Unk_020e36d8 *a0)
 {
     int t0 = a0->unk_40;
-    func_020f5888((s16)t0, (s16)a0->unk_44, t0);
+    func_020f5888((s16)t0, (s16)a0->unk_44);
 }

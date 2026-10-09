@@ -1,8 +1,8 @@
 #include "types.h"
 
-void Menu_CancelSelected(const void *src, void *dst, u32 size);
+void Menu_CancelSelected(void);
 
-void func_0202dd90(const void *src, void *dst, u32 size)
+void func_0202dd90(void)
 {
-    Menu_CancelSelected(src, dst, size);
+    Menu_CancelSelected();
 }

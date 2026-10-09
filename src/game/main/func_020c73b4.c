@@ -1,8 +1,9 @@
 #include "types.h"
 
-void Player_DecUnitCount(const void *src, void *dst, u32 size);
+void Player_DecUnitCount(int player);
 
-void func_020c73b4(const void *src, void *dst, u32 size)
+/* UnitAction_Join's count update: the unit type is passed but not used. */
+void func_020c73b4(int player, int unitType)
 {
-    Player_DecUnitCount(src, dst, size);
+    Player_DecUnitCount(player);
 }

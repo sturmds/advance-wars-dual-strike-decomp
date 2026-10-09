@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_02075f6c(const void *src, void *dst, u32 size);
+void func_02075f6c(void);
 
-void func_02075f54(const void *src, void *dst, u32 size)
+void func_02075f54(void)
 {
-    func_02075f6c(src, dst, size);
+    func_02075f6c();
 }

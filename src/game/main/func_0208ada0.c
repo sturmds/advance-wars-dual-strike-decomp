@@ -1,8 +1,8 @@
 #include "types.h"
 
-void Menu_ConfirmSelected(const void *src, void *dst, u32 size);
+void Menu_ConfirmSelected(void);
 
-void func_0208ada0(const void *src, void *dst, u32 size)
+void func_0208ada0(void)
 {
-    Menu_ConfirmSelected(src, dst, size);
+    Menu_ConfirmSelected();
 }

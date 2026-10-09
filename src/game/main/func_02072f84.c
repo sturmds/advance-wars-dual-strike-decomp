@@ -1,8 +1,8 @@
 #include "types.h"
 
-void MenuButtons_EnableTouch(const void *src, void *dst, u32 size);
+void MenuButtons_EnableTouch(void);
 
-void func_02072f84(const void *src, void *dst, u32 size)
+void func_02072f84(void)
 {
-    MenuButtons_EnableTouch(src, dst, size);
+    MenuButtons_EnableTouch();
 }

@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_0204b558(const void *src, void *dst, u32 size);
+void func_0204b558(void *parentOrList);
 
-void func_0204cd4c(const void *src, void *dst, u32 size)
+void func_0204cd4c(void *parentOrList)
 {
-    func_0204b558(src, dst, size);
+    func_0204b558(parentOrList);
 }

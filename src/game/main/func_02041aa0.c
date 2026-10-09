@@ -1,8 +1,8 @@
 #include "types.h"
 
-void CoSelectScreen_HandleR(const void *src, void *dst, u32 size);
+void CoSelectScreen_HandleR(void);
 
-void func_02041aa0(const void *src, void *dst, u32 size)
+void func_02041aa0(void)
 {
-    CoSelectScreen_HandleR(src, dst, size);
+    CoSelectScreen_HandleR();
 }

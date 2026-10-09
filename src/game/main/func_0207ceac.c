@@ -1,8 +1,8 @@
 #include "types.h"
 
-void Link_DrawPlayerRows(const void *src, void *dst, u32 size);
+void Link_DrawPlayerRows(void);
 
-void func_0207ceac(const void *src, void *dst, u32 size)
+void func_0207ceac(void)
 {
-    Link_DrawPlayerRows(src, dst, size);
+    Link_DrawPlayerRows();
 }

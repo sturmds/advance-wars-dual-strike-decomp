@@ -12,7 +12,7 @@ extern u32 data_0229eaec;
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 void Player_AddFunds(int playerIndex, int amount);
-void func_020c73b4(int playerIndex, int unitType);
+void func_020c73b4(int player, int unitType);
 void func_020c82f8(MapUnit *unit, int tileCost); /* takes the fuel used for the move off the unit */
 void ActingUnit_StartAtDest(void);
 

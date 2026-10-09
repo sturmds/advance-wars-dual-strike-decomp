@@ -1,8 +1,8 @@
 #include "types.h"
 
-void ForceRankScreen_Close(const void *src, void *dst, u32 size);
+void ForceRankScreen_Close(void);
 
-void func_0203fbc4(const void *src, void *dst, u32 size)
+void func_0203fbc4(void)
 {
-    ForceRankScreen_Close(src, dst, size);
+    ForceRankScreen_Close();
 }
