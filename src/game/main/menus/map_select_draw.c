@@ -22,7 +22,7 @@ void func_02060bf8(int x, int y, int list);
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_ShowSelectedMap(void);
 void func_020636d8(int x, int y, int a2);
-void func_02063868(int x, int y);
+void MapSelect_DrawTwoMapsTitle(int x, int y);
 void func_02063958(int x, int y, int list);
 void func_02063e04(int list, int a1);
 int func_0207bd6c(void);
@@ -194,7 +194,7 @@ void MapSelect_Draw(void)
             func_020636d8(256, 40, TABLES.unk_108 + 1);
         }
     } else if (STATE->twoMaps == 1) {
-        func_02063868(128, 8);
+        MapSelect_DrawTwoMapsTitle(128, 8);
     }
 
     if (STATE->gameMode == 1) {
