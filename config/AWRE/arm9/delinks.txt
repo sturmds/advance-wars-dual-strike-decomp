@@ -72,6 +72,10 @@ src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48
 
+src/game/main/sound/sound_play_song.c:
+    complete
+    .text       start:0x020267fc end:0x02026868
+
 src/game/main/rng/rng_range.c:
     complete
     .text       start:0x02027a18 end:0x02027a48

@@ -62,7 +62,9 @@ typedef struct Unk_02080440_48 {
     u32 unk_7c;
     u8 unk_80;                         /* from MapHeader.unk_30 */
     u8 unk_81;                         /* from MapHeader.unk_34 */
-    u8 pad_82[0x86 - 0x82];
+    u8 pad_82[0x83 - 0x82];
+    u8 unk_83;                         /* 0: song requests are kept pending, see Sound_PlaySong */
+    u8 pad_84[0x86 - 0x84];
     u8 unk_86;
     u8 pad_87[0x88 - 0x87];
     u16 secondMapId;                   /* second map of a two-map battle, from MapHeader.variantMapIds[0]; 0: none */
