@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020a0c1c(int x, int y);
+void AiUnit_HandleUnitAtTarget(int x, int y);
 void func_020a1a08(int x, int y, u8 *action, u8 *target);
 void func_020a2044(int x, int y, u8 *action, u8 *target, u8 *arg);
 
@@ -40,7 +40,7 @@ void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg)
         }
         break;
     case 10:
-        func_020a0c1c(x, y);
+        AiUnit_HandleUnitAtTarget(x, y);
         break;
     }
     func_020a2044(x, y, action, target, arg);
