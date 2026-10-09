@@ -1175,6 +1175,10 @@ src/game/main/func_020f20ec.c:
     complete
     .text       start:0x020f20ec end:0x020f20fc
 
+src/game/main/func_020f2210.c:
+    complete
+    .text       start:0x020f2210 end:0x020f2224
+
 src/game/main/skills/deploy_city.c:
     complete
     .text       start:0x020f4b00 end:0x020f4c00
