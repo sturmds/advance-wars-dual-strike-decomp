@@ -24,7 +24,13 @@ typedef struct Task {
     u8 group;                          /* guess: Task_DestroyGroup destroys all tasks of one group */
     u8 flags;                          /* bit 1: child task, bit 3: being created */
     u8 childCount;                     /* live children the task waits on; its script holds while nonzero */
-    u8 pad_29[0x4c - 0x29];
+    u8 pad_29;
+    u16 waitFrames;                    /* func_02080db8 counts frames here */
+    u8 pad_2c[0x32 - 0x2c];
+    u16 unk_32;                        /* frame counter of func_02081f6c */
+    u16 unk_34;                        /* frame counter of func_02081900 */
+    u16 unk_36;                        /* frame counter of func_020824e4 */
+    u8 pad_38[0x4c - 0x38];
     void *unk_4c;                      /* data some scripts get from their creator; a MapUnit * for the battle tasks of ActingUnit_StartAttack */
     u8 pad_50[0x52 - 0x50];
     u16 unk_52;                        /* palette slot PaletteCycle_Start animates */
