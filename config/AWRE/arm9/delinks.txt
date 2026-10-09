@@ -503,6 +503,10 @@ src/game/main/sound/song_fade_out_end.c:
     complete
     .text       start:0x0202669c end:0x020266b4
 
+src/game/main/sound/func_020266b4.c:
+    complete
+    .text       start:0x020266b4 end:0x020266cc
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
