@@ -292,6 +292,10 @@ src/game/main/func_0200a690.c:
     complete
     .text       start:0x0200a690 end:0x0200a6a0
 
+src/game/main/func_0200a6b0.c:
+    complete
+    .text       start:0x0200a6b0 end:0x0200a6c0
+
 src/game/main/bg_set_screen_size.c:
     complete
     .text       start:0x0200a7b0 end:0x0200a7d0
@@ -2701,6 +2705,10 @@ src/game/main/func_020825a4.c:
 src/game/main/graphics/sprite_task_create.c:
     complete
     .text       start:0x02082614 end:0x02082718
+
+src/game/main/func_020828c0.c:
+    complete
+    .text       start:0x020828c0 end:0x020828d0
 
 src/game/main/func_020828d0.c:
     complete
@@ -5586,6 +5594,10 @@ src/game/main/func_020f216c.c:
     complete
     .text       start:0x020f216c end:0x020f2190
 
+src/game/main/func_020f2190.c:
+    complete
+    .text       start:0x020f2190 end:0x020f21a0
+
 src/game/main/func_020f21e8.c:
     complete
     .text       start:0x020f21e8 end:0x020f21fc
@@ -5665,6 +5677,10 @@ src/game/main/func_020f43f4.c:
 src/game/main/func_020f4624.c:
     complete
     .text       start:0x020f4624 end:0x020f4628
+
+src/game/main/func_020f4628.c:
+    complete
+    .text       start:0x020f4628 end:0x020f4638
 
 src/game/main/func_020f4638.c:
     complete
@@ -5789,6 +5805,10 @@ src/game/main/func_020fa448.c:
 src/game/main/func_020fa6c8.c:
     complete
     .text       start:0x020fa6c8 end:0x020fa6d8
+
+src/game/main/func_020fa6e8.c:
+    complete
+    .text       start:0x020fa6e8 end:0x020fa6f8
 
 src/game/main/func_020fabfc.c:
     complete
@@ -6553,6 +6573,10 @@ src/game/main/func_0210cbb0.c:
 src/game/main/func_0210cbc0.c:
     complete
     .text       start:0x0210cbc0 end:0x0210cbd0
+
+src/sdk/func_0210cc00.c:
+    complete
+    .text       start:0x0210cc00 end:0x0210cc10
 
 src/sdk/func_0210ccbc.c:
     complete

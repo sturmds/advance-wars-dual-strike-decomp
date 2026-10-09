@@ -7,6 +7,10 @@ src/game/ov006/func_ov006_023505c4.c:
     complete
     .text       start:0x023505c4 end:0x023505dc
 
+src/game/ov006/func_ov006_0235068c.c:
+    complete
+    .text       start:0x0235068c end:0x0235069c
+
 src/game/ov006/func_ov006_02350ec0.c:
     complete
     .text       start:0x02350ec0 end:0x02350ee8
@@ -14,6 +18,10 @@ src/game/ov006/func_ov006_02350ec0.c:
 src/game/ov006/func_ov006_02350ee8.c:
     complete
     .text       start:0x02350ee8 end:0x02350f10
+
+src/game/ov006/func_ov006_02350f10.c:
+    complete
+    .text       start:0x02350f10 end:0x02350f20
 
 src/game/ov006/func_ov006_023540ec.c:
     complete
@@ -46,6 +54,10 @@ src/game/ov006/func_ov006_0235432c.c:
 src/game/ov006/func_ov006_0235433c.c:
     complete
     .text       start:0x0235433c end:0x0235434c
+
+src/game/ov006/func_ov006_0235435c.c:
+    complete
+    .text       start:0x0235435c end:0x0235436c
 
 src/game/ov006/func_ov006_0235436c.c:
     complete
@@ -95,6 +107,10 @@ src/game/ov006/func_ov006_0235790c.c:
     complete
     .text       start:0x0235790c end:0x02357920
 
+src/game/ov006/func_ov006_02357aa8.c:
+    complete
+    .text       start:0x02357aa8 end:0x02357ab8
+
 src/game/ov006/func_ov006_02357ab8.c:
     complete
     .text       start:0x02357ab8 end:0x02357ac8
@@ -107,6 +123,10 @@ src/game/ov006/func_ov006_02357ca0.c:
     complete
     .text       start:0x02357ca0 end:0x02357cb8
 
+src/game/ov006/func_ov006_02357f94.c:
+    complete
+    .text       start:0x02357f94 end:0x02357fa4
+
 src/game/ov006/func_ov006_02357fa4.c:
     complete
     .text       start:0x02357fa4 end:0x02357fb4
@@ -114,6 +134,10 @@ src/game/ov006/func_ov006_02357fa4.c:
 src/game/ov006/ov006_update_id_flag.c:
     complete
     .text       start:0x02357fb4 end:0x023580c0
+
+src/game/ov006/func_ov006_023582d0.c:
+    complete
+    .text       start:0x023582d0 end:0x023582e0
 
 src/game/ov006/func_ov006_0235869c.c:
     complete
