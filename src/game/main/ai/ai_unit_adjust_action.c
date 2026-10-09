@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void AiUnit_HandleUnitAtTarget(int x, int y);
-void func_020a1a08(int x, int y, u8 *action, u8 *target);
+void AiUnit_WaitToAttack(int x, int y, u8 *action, u8 *target);
 void AiUnit_UpgradeWaitAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -36,7 +36,7 @@ void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg)
     switch (*action) {
     case 2:
         if (!(gAiTurnState->stepFlags & AI_STEP_UNIT_AT_TARGET)) {
-            func_020a1a08(x, y, action, target);
+            AiUnit_WaitToAttack(x, y, action, target);
         }
         break;
     case 10:

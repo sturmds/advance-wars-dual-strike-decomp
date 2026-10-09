@@ -1862,6 +1862,10 @@ src/game/main/ai/ai_switch_acting_unit.c:
     complete
     .text       start:0x020a189c end:0x020a1a08
 
+src/game/main/ai/ai_unit_wait_to_attack.c:
+    complete
+    .text       start:0x020a1a08 end:0x020a1b1c
+
 src/game/main/ai/ai_unit_upgrade_wait_action.c:
     .text       start:0x020a2044 end:0x020a2f98
 
