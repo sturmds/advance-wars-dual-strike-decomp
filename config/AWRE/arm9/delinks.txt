@@ -5436,6 +5436,10 @@ src/game/main/func_020bdf28.c:
     complete
     .text       start:0x020bdf28 end:0x020bdf48
 
+src/game/main/menus/func_020bdf48.c:
+    complete
+    .text       start:0x020bdf48 end:0x020be150
+
 src/game/main/menus/battle_menu_auto_co_off_hidden.c:
     complete
     .text       start:0x020be768 end:0x020be908
