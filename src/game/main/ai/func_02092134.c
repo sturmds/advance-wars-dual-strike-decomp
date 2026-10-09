@@ -33,7 +33,7 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 
 /* End-actions step 7. For each record that is not skipped, fills the range map
  * with an Infantry's moves (FAR_AWAY) from the record's tile, then visits every
- * reachable tile that holds one of the current player's units. A Infantry or
+ * reachable tile that holds one of the current player's units. An Infantry or
  * Mech lowers unk_09 to the range map value there if that is smaller; a unit
  * with gUnitFitsLander set that waits for a T-Copter (transportWanted 2) does the
  * same for unk_0a. What the records are is not known, so the name stays. */
