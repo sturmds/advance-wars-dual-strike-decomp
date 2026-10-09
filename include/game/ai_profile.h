@@ -56,4 +56,7 @@ typedef struct AiProfileMods {
     u8 units[26][2];                   /* per unit type: AiUnitProfile.unk_00 and unk_05 */
 } AiProfileMods;
 
+extern AiProfile *data_021619c4;
+extern AiUnitProfile *data_0229e160;    /* entry of the active unit's type */
+
 #endif
