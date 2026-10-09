@@ -1858,6 +1858,10 @@ src/game/main/ai/ai_unit_pick_direct_attack_in_reach_of.c:
     complete
     .text       start:0x020a12cc end:0x020a189c
 
+src/game/main/ai/ai_switch_acting_unit.c:
+    complete
+    .text       start:0x020a189c end:0x020a1a08
+
 src/game/main/ai/ai_unit_upgrade_wait_action.c:
     .text       start:0x020a2044 end:0x020a2f98
 
