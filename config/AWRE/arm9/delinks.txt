@@ -1602,6 +1602,10 @@ src/game/main/ai/ai_unit_retreat_to_repair.c:
     complete
     .text       start:0x020b0794 end:0x020b0a70
 
+src/game/main/ai/ai_unit_retreat_toward_site.c:
+    complete
+    .text       start:0x020b0a70 end:0x020b0d94
+
 src/game/main/ai/ai_unit_move_to_safest_tile.c:
     complete
     .text       start:0x020b0e1c end:0x020b1148

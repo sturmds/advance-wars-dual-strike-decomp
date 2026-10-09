@@ -7,7 +7,7 @@ void func_020aa4a4(void);
 void func_020aacc0(void);
 void AiUnit_SeekSeaTransport(void);
 void func_020af5f8(void);
-void func_020b0a70(void);
+void AiUnit_RetreatTowardSite(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
 void func_020b297c(void);
@@ -20,7 +20,7 @@ void AiUnit_ActOrder4(void)
     Ai_BuildThreatMaps();
     func_020af5f8();
     AiUnit_PlanAttack();
-    func_020b0a70();
+    AiUnit_RetreatTowardSite();
     func_020aa4a4();
     AiUnit_SeekSeaTransport();
     func_020b297c();
