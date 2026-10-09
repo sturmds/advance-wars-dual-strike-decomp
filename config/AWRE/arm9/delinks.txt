@@ -4974,6 +4974,10 @@ src/game/main/ai/ai_foot_join_capturing_unit.c:
     complete
     .text       start:0x020ad8f8 end:0x020adbac
 
+src/game/main/ai/ai_foot_board_transport.c:
+    complete
+    .text       start:0x020adbac end:0x020adf6c
+
 src/game/main/ai/ai_foot_head_for_capture_site.c:
     complete
     .text       start:0x020ae37c end:0x020ae9c0

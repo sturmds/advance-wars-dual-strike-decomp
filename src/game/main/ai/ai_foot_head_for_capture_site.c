@@ -13,7 +13,7 @@ void func_020a6764(int x, int y, int unitType, int movement); /* fills rangeMap 
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL Terrain_IsHqBaseAirportPortOrTower(u8 tile);
 void func_020adf6c(int distance);  /* called when the site is more than 2 away */
-void func_020adbac(void);          /* called when no site is in range */
+void AiFoot_BoardTransport(void);          /* called when no site is in range */
 void func_020b2b70(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -138,7 +138,7 @@ void AiFoot_HeadForCaptureSite(void)
         }
         func_020b2b70(bestX, bestY);
     } else if (STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
-        func_020adbac();
+        AiFoot_BoardTransport();
         STATE->actingUnit->transportWanted = WANTS_T_COPTER;
     }
 }
