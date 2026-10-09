@@ -112,7 +112,7 @@ src/game/ov000/unit_info_panel/unit_info_panel_open_for_unit.c:
     complete
     .text       start:0x022b1f90 end:0x022b20fc
 
-src/game/ov000/func_ov000_022b20fc.c:
+src/game/ov000/unit_info_panel/unit_info_panel_clear_unit.c:
     complete
     .text       start:0x022b20fc end:0x022b2114
 
