@@ -21,15 +21,16 @@ int func_0209e814(int attackerType, int targetType, int arg);   /* damage of an 
  * teammate room. */
 int AiUnit_TeammateOutdamages(MapUnit *target)
 {
-    int maxX;
-    int minY;
+    /* needed to match: declaration order, the two clamp forms below and the
+     * row loop starting from y itself set the registers and stack slots */
+    u8 slot;
+    int y;
     int maxY;
-    int minX;
+    int maxX;
     MapUnit *other;
     int dist;
     int x;
-    int y;
-    int slot;
+    int minX;
 
     if (!(Ov000_gUnitStats[STATE->actingUnit->type].moveGroup
           & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD | MOVE_GROUP_SEA))) {
@@ -42,25 +43,24 @@ int AiUnit_TeammateOutdamages(MapUnit *target)
         return 0;
     }
     if (STATE->combatants[1].hpLost < 30) {
-        if (target->x - 4 < 0) {
-        minX = 0;
-    } else {
         minX = target->x - 4;
-    }
-    if (target->y - 4 < 0) {
-        minY = 0;
-    } else {
-        minY = target->y - 4;
-    }
-    maxX = STATE->unk_1c4->mapWidth - 1;
-    if (target->x + 4 < maxX) {
-        maxX = target->x + 4;
-    }
-    maxY = STATE->unk_1c4->mapHeight - 1;
-    if (target->y + 4 < maxY) {
-        maxY = target->y + 4;
-    }
-    for (y = minY; y <= maxY; y++) {
+        if (minX < 0) {
+            minX = 0;
+        }
+        if (target->y - 4 < 0) {
+            y = 0;
+        } else {
+            y = target->y - 4;
+        }
+        maxX = STATE->unk_1c4->mapWidth - 1;
+        if (target->x + 4 < maxX) {
+            maxX = target->x + 4;
+        }
+        maxY = STATE->unk_1c4->mapHeight - 1;
+        if (target->y + 4 < maxY) {
+            maxY = target->y + 4;
+        }
+        for (; y <= maxY; y++) {
             for (x = minX; x <= maxX; x++) {
                 dist = 0;
                 if (target->x - x > 0) {
