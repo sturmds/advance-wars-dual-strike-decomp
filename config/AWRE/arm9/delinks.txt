@@ -684,6 +684,10 @@ src/game/main/graphics/bg_put_tile_block.c:
     complete
     .text       start:0x020269b4 end:0x02026a60
 
+src/game/main/math/math_ease.c:
+    complete
+    .text       start:0x02026a60 end:0x02026bc8
+
 src/game/main/graphics/palette_blend_color.c:
     complete
     .text       start:0x02026bc8 end:0x02026c7c
