@@ -123,6 +123,10 @@ src/game/main/callback_list_add.c:
     complete
     .text       start:0x020045f4 end:0x02004628
 
+src/game/main/func_02004a14.c:
+    complete
+    .text       start:0x02004a14 end:0x02004a1c
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710
@@ -1035,6 +1039,10 @@ src/game/main/func_02049598.c:
     complete
     .text       start:0x02049598 end:0x020495b0
 
+src/game/main/func_0204cc4c.c:
+    complete
+    .text       start:0x0204cc4c end:0x0204cc54
+
 src/game/main/func_0204cd00.c:
     complete
     .text       start:0x0204cd00 end:0x0204cd14
@@ -1545,6 +1553,10 @@ src/game/main/units/strike_score_hp_damage.c:
 src/game/main/units/strike_score_funds_damage.c:
     complete
     .text       start:0x02098dbc end:0x02098e7c
+
+src/game/main/func_02099520.c:
+    complete
+    .text       start:0x02099520 end:0x02099528
 
 src/game/main/ai/ai_player_try_use_power.c:
     complete
@@ -2095,6 +2107,18 @@ src/game/main/ai/ai_sea_transport_move.c:
     complete
     .text       start:0x020b320c end:0x020b3264
 
+src/game/main/func_020b4d04.c:
+    complete
+    .text       start:0x020b4d04 end:0x020b4d0c
+
+src/game/main/func_020b4e84.c:
+    complete
+    .text       start:0x020b4e84 end:0x020b4e8c
+
+src/game/main/func_020b52cc.c:
+    complete
+    .text       start:0x020b52cc end:0x020b52d4
+
 src/game/main/ai/ai_oozium_move_to_target.c:
     .text       start:0x020b7460 end:0x020b7a80
 
@@ -2177,6 +2201,14 @@ src/game/main/func_020b9890.c:
 src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
+
+src/game/main/func_020bc6ac.c:
+    complete
+    .text       start:0x020bc6ac end:0x020bc6b4
+
+src/game/main/func_020bc6b4.c:
+    complete
+    .text       start:0x020bc6b4 end:0x020bc6bc
 
 src/game/main/func_020bc6d0.c:
     complete
@@ -2340,6 +2372,10 @@ src/game/main/map/map_load_variant.c:
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c
+
+src/game/main/func_020c67a8.c:
+    complete
+    .text       start:0x020c67a8 end:0x020c67b0
 
 src/game/main/units/unit_get_move_points.c:
     complete
@@ -3174,6 +3210,10 @@ src/game/main/screen/screen_show_bg0.c:
     complete
     .text       start:0x020f8b58 end:0x020f8b74
 
+src/game/main/func_020f8ca8.c:
+    complete
+    .text       start:0x020f8ca8 end:0x020f8cb0
+
 src/game/main/func_020fa6c8.c:
     complete
     .text       start:0x020fa6c8 end:0x020fa6d8
@@ -3537,6 +3577,18 @@ src/game/main/sound/nns_snd_arc_strm_start.c:
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
+
+src/game/main/func_02112e4c.c:
+    complete
+    .text       start:0x02112e4c end:0x02112e54
+
+src/game/main/func_02112e54.c:
+    complete
+    .text       start:0x02112e54 end:0x02112e5c
+
+src/game/main/func_02112eec.c:
+    complete
+    .text       start:0x02112eec end:0x02112ef4
 
 src/sdk/fs/fs_overlay.c:
     complete
