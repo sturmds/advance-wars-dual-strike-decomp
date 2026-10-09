@@ -19,7 +19,9 @@ typedef struct Unk_02290718 {
     u8 unk_17;                         /* aiBehaviour of every slot but the last when gameMode is 0 (Players_ApplyBattleSetup) */
     u8 pad_18[0x38 - 0x18];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
-    u8 pad_after_records[0x3b4 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
+    u8 pad_after_records[0x380 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
+    u32 unk_380;                       /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
+    u8 pad_384[0x3b4 - 0x384];
     u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
     u32 capturesCompleted;             /* captures finished by human players, capped at 999999 */
     u8 pad_3bc[0x3c0 - 0x3bc];

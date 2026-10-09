@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2569 / 6603 | 316864 / 1531944 | 20.68% | 0 | 0 |
+| game | 2571 / 6603 | 319292 / 1531944 | 20.84% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2707 / 7483 | 320284 / 1685994 | 19.00% | 1 | 30 |
+| all | 2709 / 7483 | 322712 / 1685994 | 19.14% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2173 / 5180 | 290980 / 1082632 | 26.88% | 0 |
+| main | game | 2175 / 5180 | 293408 / 1082632 | 27.10% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -53,6 +53,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/link_send_packet.c` | no delinks entry | 0 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
+| `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
 | `src/game/main/map/map_view_scroll_step.c` | MapView_ScrollStep | 788 |
 | `src/game/main/map/tile_map_fill.c` | TileMap_Fill | 244 |
