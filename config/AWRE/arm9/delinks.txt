@@ -2425,6 +2425,10 @@ src/game/main/func_020f2210.c:
     complete
     .text       start:0x020f2210 end:0x020f2224
 
+src/game/main/func_020f2224.c:
+    complete
+    .text       start:0x020f2224 end:0x020f225c
+
 src/game/main/func_020f35cc.c:
     complete
     .text       start:0x020f35cc end:0x020f35e0
