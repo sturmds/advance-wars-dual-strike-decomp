@@ -27,6 +27,17 @@ void func_0210b528(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2, int br
 
 #define GFX data_027c0280
 
+/* Needed to match: the scroll values are read through a volatile view
+ * and passed to an inline function, so the compiler loads Y before X
+ * while the expression keeps X first. */
+#define VGFX ((volatile Unk_027c0280 *)data_027c0280)
+
+/* BGxOFS value: x in bits 0-8, y in bits 16-24. */
+static inline u32 BgOffset(int x, int y)
+{
+    return (x & 0x1ff) | ((y << 16) & 0x1ff0000);
+}
+
 #define BG_PLANES(bg, obj) \
     (((bg)[0] ? 1 : 0) | ((bg)[1] ? 2 : 0) | ((bg)[2] ? 4 : 0) | ((bg)[3] ? 8 : 0) | ((obj) ? 16 : 0))
 #define BLEND_TOP_PLANES (BG_PLANES(GFX->blendTopBg, GFX->blendTopObj) | (GFX->blendTopBackdrop ? 32 : 0))
@@ -40,8 +51,8 @@ void Screen_PrepareHBlankRegs(void)
                     (GFX_DISPCNT(GFX)->bg3 ? 8 : 0) | (GFX_DISPCNT(GFX)->obj ? 16 : 0);
     data_027c026c = (GFX_DISPCNT(GFX)->win0 ? 1 : 0) | (GFX_DISPCNT(GFX)->win1 ? 2 : 0) | (GFX_DISPCNT(GFX)->objWin ? 4 : 0);
 
-    data_027c0264 = ((GFX->bgScrollY[1] << 16) & 0x1ff0000) | (GFX->bgScrollX[1] & 0x1ff);
-    data_027c0274 = ((GFX->bgScrollY[2] << 16) & 0x1ff0000) | (GFX->bgScrollX[2] & 0x1ff);
+    data_027c0264 = BgOffset(VGFX->bgScrollX[1], VGFX->bgScrollY[1]);
+    data_027c0274 = BgOffset(VGFX->bgScrollX[2], VGFX->bgScrollY[2]);
 
     data_027c0254 = (GFX->bgCnt[1].screenSize << 14) | (*REG_BG1CNT & 0x40) | (GFX->bgCnt[1].colorMode << 7) |
                     (GFX->bgCnt[1].screenBase << 8) | (GFX->bgCnt[1].charBase << 2) | GFX->bgCnt[1].priority;
