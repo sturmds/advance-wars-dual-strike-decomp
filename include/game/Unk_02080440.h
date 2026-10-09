@@ -95,8 +95,8 @@ typedef struct Unk_02080440_48 {
     u8 pad_3d;
     s16 actingUnitStartX;              /* where the acting unit stood before it moved */
     s16 actingUnitStartY;
-    s16 unk_42;
-    s16 unk_44;
+    s16 actingUnitDestX;               /* where the acting unit's move ends; ActingUnit_CommitMove puts it there */
+    s16 actingUnitDestY;
     u8 unk_46;                         /* passed to Unit_GetFuelUsed with actingUnit to get fuel used */
     u8 pad_47[0x58 - 0x47];
     u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */

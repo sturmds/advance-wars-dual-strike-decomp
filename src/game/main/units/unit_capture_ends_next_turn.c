@@ -2,7 +2,7 @@
 #include "game/map_unit.h"
 
 /* Capture points the unit adds per turn: its shown hp times a percent from
- * func_020dff38 for its front CO, plus CaptureIncrease. */
+ * Co_GetCapturePercent for its front CO, plus CaptureIncrease. */
 int Unit_GetCapturePoints(MapUnit *unit);
 
 /* A property falls when its capture points reach 20. */

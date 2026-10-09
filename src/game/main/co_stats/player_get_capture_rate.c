@@ -5,11 +5,11 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020dff38(int co, int powerState);
+int Co_GetCapturePercent(int co, int powerState);
 
 /* Capture rate in percent of a player's front CO in its current power state. */
 int Player_GetCaptureRate(int playerIndex)
 {
-    return func_020dff38(data_027c027c->unk_48[data_027c0284]->players[playerIndex].front.id & PLAYER_CO_ID_MASK,
+    return Co_GetCapturePercent(data_027c027c->unk_48[data_027c0284]->players[playerIndex].front.id & PLAYER_CO_ID_MASK,
                          data_027c027c->unk_48[data_027c0284]->players[playerIndex].front.powerState);
 }

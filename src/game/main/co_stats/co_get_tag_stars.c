@@ -2,10 +2,6 @@
 #include "game/co_data.h"
 #include "game/player.h"
 
-/* CoTagPartner.stars of CO 0's first partner; the code addresses the field
- * through this label. */
-extern u16 data_0215367a;
-
 /* Tag stars (1-3) of a CO paired with a partner, or 0 for a pair with no
  * entry. */
 int Co_GetTagStars(int co, int partner)
@@ -16,7 +12,8 @@ int Co_GetTagStars(int co, int partner)
 
     for (i = 0; i < 3; i++) {
         if (partner == record->tagPartners[i].co) {
-            return *(u16 *)((u8 *)&data_0215367a + offset + i * sizeof(CoTagPartner));
+            /* needed to match: the address is rebuilt from field 0 of CO 0, not from record */
+            return *(u16 *)((u8 *)&gCoTable[0].tagPartners[0].stars + offset + i * sizeof(CoTagPartner));
         }
     }
     return 0;

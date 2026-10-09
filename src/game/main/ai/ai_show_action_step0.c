@@ -51,8 +51,8 @@ void AiShowAction_Step0(void)
     GAME->actingUnit = &GAME->units[GAME->actingUnitIndex];
     GAME->actingUnitStartX = gUnitAction.fromX;
     GAME->actingUnitStartY = gUnitAction.fromY;
-    GAME->unk_42 = gUnitAction.x;
-    GAME->unk_44 = gUnitAction.y;
+    GAME->actingUnitDestX = gUnitAction.x;
+    GAME->actingUnitDestY = gUnitAction.y;
     GAME->actingUnit->flags &= ~MAP_UNIT_LOCKED;
     if ((GAME->unk_18 == 16 && data_0229eaec != 0 && func_0207bd6c() != 0) || GAME->unk_18 == 21) {
         GAME->unk_46 = 0;

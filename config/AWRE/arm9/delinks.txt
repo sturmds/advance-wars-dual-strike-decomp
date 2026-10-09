@@ -5607,7 +5607,7 @@ src/game/main/skills/double_terrain_stars.c:
     complete
     .text       start:0x020c3a50 end:0x020c3b00
 
-src/game/main/func_020c3b00.c:
+src/game/main/combat/unit_get_charge_for_hp_lost.c:
     complete
     .text       start:0x020c3b00 end:0x020c3b1c
 
@@ -6368,7 +6368,7 @@ src/game/main/units/unit_get_value_per_hp.c:
     complete
     .text       start:0x020e0314 end:0x020e0350
 
-src/game/main/func_020e0350.c:
+src/game/main/combat/player_get_charge_per_hp.c:
     complete
     .text       start:0x020e0350 end:0x020e0360
 

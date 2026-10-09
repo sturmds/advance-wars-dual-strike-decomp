@@ -3519,7 +3519,7 @@ Combatant_PickWeapon kind:function(arm,size=0x1f4) addr:0x020c3640
 Combatant_Init kind:function(arm,size=0x120) addr:0x020c3834
 Unit_GetTerrainStars kind:function(arm,size=0xfc) addr:0x020c3954
 DoubleTerrainStars kind:function(arm,size=0xb0) addr:0x020c3a50
-func_020c3b00 kind:function(arm,size=0x1c) addr:0x020c3b00
+Unit_GetChargeForHpLost kind:function(arm,size=0x1c) addr:0x020c3b00
 func_020c3b1c kind:function(arm,size=0xbc) addr:0x020c3b1c
 func_020c3bd8 kind:function(arm,size=0x48) addr:0x020c3bd8
 Map_GetTileArmy kind:function(arm,size=0x80) addr:0x020c3c20
@@ -4115,7 +4115,7 @@ func_020dea40 kind:function(arm,size=0x20) addr:0x020dea40
 ActingUnit_CommitMove kind:function(arm,size=0x64) addr:0x020dea60
 func_020deac4 kind:function(arm,size=0x168) addr:0x020deac4
 func_020dec2c kind:function(arm,size=0x44) addr:0x020dec2c
-func_020dec70 kind:function(arm,size=0x54) addr:0x020dec70
+ActingUnit_ResetCaptureIfMoved kind:function(arm,size=0x54) addr:0x020dec70
 func_020decc4 kind:function(arm,size=0x60) addr:0x020decc4
 func_020ded24 kind:function(arm,size=0x8c) addr:0x020ded24
 Map_IsCapturableByActingUnit kind:function(arm,size=0x74) addr:0x020dedb0
@@ -4144,7 +4144,7 @@ UnitType_GetChartDamage kind:function(arm,size=0x1c) addr:0x020dfc64
 UnitType_GetMaxRange kind:function(arm,size=0x18) addr:0x020dfc80
 UnitType_GetVision kind:function(arm,size=0x18) addr:0x020dfc98
 func_020dfcb0 kind:function(arm,size=0x18) addr:0x020dfcb0
-func_020dfcc8 kind:function(arm,size=0x18) addr:0x020dfcc8
+UnitType_GetChargePerHp kind:function(arm,size=0x18) addr:0x020dfcc8
 UnitType_GetMovement kind:function(arm,size=0x18) addr:0x020dfce0
 Player_GetCoTerrainFirepower kind:function(arm,size=0x7c) addr:0x020dfcf8
 GetCoPowerSkills kind:function(arm,size=0x4c) addr:0x020dfd74
@@ -4152,7 +4152,7 @@ Player_GetCounterBonus kind:function(arm,size=0x70) addr:0x020dfdc0
 Player_GetFuelRate kind:function(arm,size=0x6c) addr:0x020dfe30
 func_020dfe9c kind:function(arm,size=0x4c) addr:0x020dfe9c
 Player_GetCaptureRate kind:function(arm,size=0x50) addr:0x020dfee8
-func_020dff38 kind:function(arm,size=0x50) addr:0x020dff38
+Co_GetCapturePercent kind:function(arm,size=0x50) addr:0x020dff38
 Player_GetBadLuck kind:function(arm,size=0xb8) addr:0x020dff88
 Player_GetGoodLuck kind:function(arm,size=0xc8) addr:0x020e0040
 Co_GetNation kind:function(arm,size=0x18) addr:0x020e0108
@@ -4162,7 +4162,7 @@ Player_GetUnitVision kind:function(arm,size=0x74) addr:0x020e0214
 GetUnitMaxRange kind:function(arm,size=0x5c) addr:0x020e0288
 GetUnitMovement kind:function(arm,size=0x30) addr:0x020e02e4
 Unit_GetValuePerHp kind:function(arm,size=0x3c) addr:0x020e0314
-func_020e0350 kind:function(arm,size=0x10) addr:0x020e0350
+Player_GetChargePerHp kind:function(arm,size=0x10) addr:0x020e0350
 func_020e0360 kind:function(arm,size=0x88) addr:0x020e0360
 func_020e03e8 kind:function(arm,size=0x188) addr:0x020e03e8
 func_020e0570 kind:function(arm,size=0x124) addr:0x020e0570
@@ -4227,7 +4227,7 @@ PowerStarCharge kind:function(arm,size=0x80) addr:0x020e2c60
 func_020e2ce0 kind:function(arm,size=0x98) addr:0x020e2ce0
 Player_IsPowerActive kind:function(arm,size=0x48) addr:0x020e2d78
 func_020e2dc0 kind:function(arm,size=0x50) addr:0x020e2dc0
-func_020e2e10 kind:function(arm,size=0x1b0) addr:0x020e2e10
+Player_AddPowerCharge kind:function(arm,size=0x1b0) addr:0x020e2e10
 SpendPowerCharge kind:function(arm,size=0x9c) addr:0x020e2fc0
 PlayTagPowerTheme kind:function(arm,size=0x3c) addr:0x020e305c
 PlaySuperPowerTheme kind:function(arm,size=0x3c) addr:0x020e3098
@@ -6832,24 +6832,19 @@ data_02153610 kind:data(any) addr:0x02153610
 data_02153614 kind:data(any) addr:0x02153614
 data_02153618 kind:data(any) addr:0x02153618
 data_0215361c kind:data(any) addr:0x0215361c
-data_02153620 kind:data(any) addr:0x02153620
-data_02153628 kind:data(any) addr:0x02153628
 data_0215362c kind:data(any) addr:0x0215362c
 data_02153632 kind:data(any) addr:0x02153632
 data_02153634 kind:data(any) addr:0x02153634
 data_02153640 kind:data(any) addr:0x02153640
 data_02153648 kind:data(any) addr:0x02153648
 gCoPictureData kind:data(any) addr:0x02153664
-data_0215367a kind:data(any) addr:0x0215367a
 data_02153690 kind:data(any) addr:0x02153690
-data_021536b0 kind:data(any) addr:0x021536b0
 data_021536c4 kind:data(any) addr:0x021536c4
 data_021536c6 kind:data(any) addr:0x021536c6
 data_021536c8 kind:data(any) addr:0x021536c8
 data_021536ca kind:data(any) addr:0x021536ca
 data_021536cc kind:data(any) addr:0x021536cc
 data_021536ce kind:data(any) addr:0x021536ce
-data_021536d0 kind:data(any) addr:0x021536d0
 data_021536d2 kind:data(any) addr:0x021536d2
 data_021536d4 kind:data(any) addr:0x021536d4
 data_021536d8 kind:data(any) addr:0x021536d8
@@ -6857,7 +6852,6 @@ data_021536dc kind:data(any) addr:0x021536dc
 data_021536dd kind:data(any) addr:0x021536dd
 data_021536e0 kind:data(any) addr:0x021536e0
 data_021536e4 kind:data(any) addr:0x021536e4
-data_021536e8 kind:data(any) addr:0x021536e8
 data_021536ec kind:data(any) addr:0x021536ec
 data_021536f0 kind:data(any) addr:0x021536f0
 data_02153700 kind:data(any) addr:0x02153700

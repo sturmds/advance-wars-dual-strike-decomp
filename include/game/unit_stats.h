@@ -77,7 +77,7 @@ typedef struct UnitStats {
     u8 movement;
     u8 ammo;
     u8 vision;
-    u8 unk_13;
+    u8 chargePerHp;                    /* power meter charge per shown HP lost (UnitType_GetChargePerHp); Infantry 2, Megatank 11 */
     u8 minRange;                       /* artillery 2, rockets 3; 0: no weapon (ATTACK_*) */
     u8 maxRange;
     u8 fuel;

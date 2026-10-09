@@ -60,8 +60,8 @@ void AiShowAction_Step2(void)
           || gUnitAction.action == 18 || gUnitAction.action == 19 || gUnitAction.action == 20
           || gUnitAction.action == 21 || gUnitAction.action == 27)) {
         GAME->actingUnit->flags |= MAP_UNIT_WAITED;
-        GAME->actingUnit->x = GAME->unk_42;
-        GAME->actingUnit->y = GAME->unk_44;
+        GAME->actingUnit->x = GAME->actingUnitDestX;
+        GAME->actingUnit->y = GAME->actingUnitDestY;
         func_020c8888();
     }
     switch (gUnitAction.action) {

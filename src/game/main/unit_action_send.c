@@ -19,8 +19,8 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg)
     MapUnit *unit = &GAME->units[unitIndex];
 
     data_0229d8c8.action = action;
-    data_0229d8c8.x = GAME->unk_42;
-    data_0229d8c8.y = GAME->unk_44;
+    data_0229d8c8.x = GAME->actingUnitDestX;
+    data_0229d8c8.y = GAME->actingUnitDestY;
     data_0229d8c8.fromX = GAME->actingUnitStartX;
     data_0229d8c8.fromY = GAME->actingUnitStartY;
     data_0229d8c8.unitIndex = unitIndex;
