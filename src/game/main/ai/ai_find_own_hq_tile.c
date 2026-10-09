@@ -5,7 +5,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_ov000_022f4fd7[][sizeof(UnitStats)];
 
 BOOL Player_HasHq(int player);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -20,7 +19,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
  * unit (not a sea unit) can reach it. */
 BOOL Ai_FindOwnHqTile(s16 *out)
 {
-    if (data_ov000_022f4fd7[STATE->actingUnit->type][0] & MOVE_GROUP_SEA) {
+    if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_SEA) {
         return FALSE;
     }
     if (!Player_HasHq(STATE->currentPlayer)) {

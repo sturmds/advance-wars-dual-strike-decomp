@@ -5,7 +5,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_ov000_022f4fd7[][sizeof(UnitStats)];
 
 int UnitType_GetAttackKind(int unitType);
 BOOL Terrain_IsProperty(u8 terrain);
@@ -32,7 +31,7 @@ BOOL Ai_FindNearestOwnPropertyTile(s16 *out)
     int x;
     int y;
 
-    if (data_ov000_022f4fd7[STATE->actingUnit->type][0] & MOVE_GROUP_SEA) {
+    if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_SEA) {
         return FALSE;
     }
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, FAR_AWAY, 0);

@@ -403,8 +403,8 @@ from:0x01ffcc34 kind:arm_call to:0x02002fa4 module:main
 from:0x01ffcc58 kind:arm_call to:0x01ffc890 module:itcm
 from:0x01ffcc68 kind:load to:0x027c0284 module:dtcm
 from:0x01ffcc6c kind:load to:0x027c027c module:dtcm
-from:0x01ffcc70 kind:load to:0x022f4fce module:overlays(0,4)
-from:0x01ffcc74 kind:load to:0x022f4fc9 module:overlays(0,4)
+from:0x01ffcc70 kind:load to:0x022f4fb8 add:0x16 module:overlays(0,4)
+from:0x01ffcc74 kind:load to:0x022f4fb8 add:0x11 module:overlays(0,4)
 from:0x01ffccec kind:arm_call to:0x01ffbc44 module:itcm
 from:0x01ffccf0 kind:arm_call to:0x020f125c module:main
 from:0x01ffceb0 kind:arm_call to:0x01ff9f7c module:itcm

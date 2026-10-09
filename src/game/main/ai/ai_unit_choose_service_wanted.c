@@ -3,11 +3,9 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
-extern u8 data_ov000_022f4fc9[];
-extern u8 data_ov000_022f4fce[];
 
-#define TYPE_AMMO(type) data_ov000_022f4fc9[(type) * sizeof(UnitStats)]
-#define TYPE_FUEL(type) data_ov000_022f4fce[(type) * sizeof(UnitStats)]
+#define TYPE_AMMO(type) Ov000_gUnitStats[type].ammo
+#define TYPE_FUEL(type) Ov000_gUnitStats[type].fuel
 
 s32 HwDiv32(s32 num, s32 den);
 

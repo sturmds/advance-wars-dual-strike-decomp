@@ -7,7 +7,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_ov000_022f4fd7[];       /* Ov000_gUnitStats[0].moveGroup, indexed by type * sizeof(UnitStats) */
 extern u8 gAiTransportsSentToUnit[64];
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -40,7 +39,7 @@ BOOL AiTransport_PickFootUnit(s16 *tile)
     bestY = -1;
     bestCost = 0x7fff;
 
-    if (data_ov000_022f4fd7[STATE->actingUnit->type * sizeof(UnitStats)] & MOVE_GROUP_SEA) {
+    if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_SEA) {
         return FALSE;
     }
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, AiActingUnit_GetSearchMovement(), 0);
