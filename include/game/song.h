@@ -20,6 +20,13 @@ typedef struct SongFadeOutTask {
     s16 framesLeft;                    /* frames until the fade ends */
 } SongFadeOutTask;
 
+/* The task Sound_RequestSong creates (script data_02158fa4): it waits
+ * while Sound_IsSongFadingOut, then starts songId. */
+typedef struct SongRequestTask {
+    u8 pad_00[0x54];
+    int songId;
+} SongRequestTask;
+
 void Sound_RestoreSongVolume(void);
 void Sound_LowerSongVolume(int volume);
 void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
