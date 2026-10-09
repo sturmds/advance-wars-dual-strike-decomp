@@ -49,7 +49,9 @@ typedef struct Unk_02080440_48 {
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */
-    u8 pad_08[0x3e - 0x08];
+    u8 pad_08[0x38 - 0x08];
+    MapUnit *activeUnit;               /* unit the AI is acting with */
+    u8 pad_3c[0x3e - 0x3c];
     s16 unk_3e;
     s16 unk_40;
     s16 unk_42;

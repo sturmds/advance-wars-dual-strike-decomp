@@ -222,6 +222,10 @@ src/game/main/units/strike_score_funds_damage.c:
     complete
     .text       start:0x02098dbc end:0x02098e7c
 
+src/game/main/ai/ai_unit_act_by_order_group.c:
+    complete
+    .text       start:0x0209fdb4 end:0x0209fe88
+
 src/game/main/menus/battle_menu_auto_co_off_hidden.c:
     complete
     .text       start:0x020be768 end:0x020be908

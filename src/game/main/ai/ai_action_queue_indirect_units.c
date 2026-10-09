@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern u16 data_ov000_022f5c2c[]; /* per player slot: 0, 0, 64, 128, 192 */
 
 void func_0208f7c4(void);
-void func_0209fdb4(void);
+void AiUnit_ActByOrderGroup(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -19,7 +19,7 @@ void func_0209fdb4(void);
 
 /* Queues the current player's indirect units (AI_CLASS_INDIRECT) that
  * have not waited yet, hands the queue to func_0208f7c4 (it reads each
- * unit's GetUnitMaxRange), and runs func_0209fdb4 on each. */
+ * unit's GetUnitMaxRange), and runs AiUnit_ActByOrderGroup on each. */
 void AiAction_QueueIndirectUnits(void)
 {
     int i;
@@ -36,6 +36,6 @@ void AiAction_QueueIndirectUnits(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     func_0208f7c4();
-    gAiQueueRoutine = func_0209fdb4;
+    gAiQueueRoutine = AiUnit_ActByOrderGroup;
     *gAiTurnState = AI_STATE_RUN_QUEUE;
 }

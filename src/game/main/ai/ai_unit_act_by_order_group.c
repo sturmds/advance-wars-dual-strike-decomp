@@ -1,0 +1,36 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/ai_unit_action.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+void func_020a08e8(void);
+void func_020a0904(void);
+
+/* Queue routine for the units AiAction_QueueIndirectUnits collects: runs one of two
+ * action sequences on the active unit, chosen by its AI order. */
+void AiUnit_ActByOrderGroup(void)
+{
+    if (data_027c027c->unk_48[data_027c0284]->activeUnit->unk_0a_12 != 2) {
+        gAiTurnState[8] |= 0x80;
+    }
+
+    switch (data_027c027c->unk_48[data_027c0284]->activeUnit->aiOrder) {
+    case 0:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 8:
+    case 9:
+        func_020a0904();
+        break;
+    case 1:
+    case 7:
+    case 10:
+        func_020a08e8();
+        break;
+    }
+}
