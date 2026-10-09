@@ -8,7 +8,7 @@ void Bg_PutTileQuad(int x, int y, int tile, int size);  /* skill icon */
 void Bg_PutSkillSlot(u16 x, u16 y, u16 *map, int a);     /* empty skill slot frame */
 void Bg_ClearRect(u16 *map, u16 x, u16 y, int w, int h);
 int func_02069920(void);                               /* 1: the cursor is on a CO (setup.unk_2e4 8-15) */
-void func_020e6cc8(u8 *out, int co, int set);          /* equipped skill ids of a set, ended by 0xff */
+void CoSet_ListEquippedSkills(u8 *out, int co, int set);          /* equipped skill ids of a set, ended by 0xff */
 int Co_GetRank(u32 co);
 
 extern Unk_027c0280 *data_027c0280;
@@ -55,7 +55,7 @@ void BattleSetup_DrawSkills(int x, int y, int set)
     for (i = 0; i < 4; i++) {
         skills[i] = 0;
     }
-    func_020e6cc8(skills, shifted->setup.cos[0][0], set);
+    CoSet_ListEquippedSkills(skills, shifted->setup.cos[0][0], set);
     for (i = 0; i < 4; i++) {
         if (skills[i] == 0 || skills[i] == 0xff) {
             return;
