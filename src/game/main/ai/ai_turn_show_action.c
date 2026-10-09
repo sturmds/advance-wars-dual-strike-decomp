@@ -13,7 +13,7 @@ void AiShowAction_Step6(void);
 void func_020b8850(void);
 void func_020b8798(void);
 void func_020b86e0(void);
-void func_020b8568(void);
+void AiShowAction_Step10(void);
 void AiShowAction_Step11(void);
 
 /* Runs one step of showing the action in gUnitAction, picked by
@@ -54,7 +54,7 @@ void AiTurn_ShowAction(void)
         func_020b86e0();
         break;
     case 10:
-        func_020b8568();
+        AiShowAction_Step10();
         break;
     case 11:
         AiShowAction_Step11();
