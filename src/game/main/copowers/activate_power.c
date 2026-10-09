@@ -4,7 +4,7 @@
 
 void CountPowerUse(int player);
 void SpendPowerCharge(int player, int power);
-void func_020d5630(int player, int power, BOOL startSecond);
+void Power_StartTasks(int player, int power, BOOL startSecond);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -18,8 +18,8 @@ void ActivatePower(int player, int power)
     SpendPowerCharge(player, power);
     data_027c027c->unk_48[data_027c0284]->players[player].front.powerReady = 0;
     if (data_027c027c->unk_48[data_027c0284]->players[player].tagPowerHalf != TAG_POWER_BACK) {
-        func_020d5630(player, power, TRUE);
+        Power_StartTasks(player, power, TRUE);
     } else {
-        func_020d5630(player, power, FALSE);
+        Power_StartTasks(player, power, FALSE);
     }
 }
