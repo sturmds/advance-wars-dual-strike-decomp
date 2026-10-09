@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType); /* 0 direct, 1 indirect, 2 unarmed */
 void RangeMap_FillUnitMoves(MapUnit *unit);
-void func_01ffaa3c(int arg);
+void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsTileVisible(s16 x, s16 y);
 void Ai_ClearActingUnitTarget(void);
@@ -70,7 +70,7 @@ void AiFoot_PickAttackTarget(void)
     bestSlot = 0;
     siloRank = 110;
     RangeMap_FillUnitMoves(STATE->actingUnit);
-    func_01ffaa3c(111);
+    RangeMap_MarkAdjacentTiles(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->unk_d0[y][x] < 0) {

@@ -11,7 +11,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 int UnitType_GetAttackKind(int unitType);
 void RangeMap_FillUnitMoves(MapUnit *unit);
-void func_01ffaa3c(int arg);
+void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
 int func_0209dc54(int x, int y);
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* base damage percent against a target kind */
@@ -85,7 +85,7 @@ void AiUnit_PickDirectAttack(void)
         flags = 0;
     }
     RangeMap_FillUnitMoves(STATE->actingUnit);
-    func_01ffaa3c(111);
+    RangeMap_MarkAdjacentTiles(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (STATE->unk_d0[y][x] < 0) {
