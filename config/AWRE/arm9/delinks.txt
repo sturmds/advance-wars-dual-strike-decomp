@@ -1655,6 +1655,10 @@ src/game/main/func_0201fb3c.c:
     complete
     .text       start:0x0201fb3c end:0x0201fb5c
 
+src/game/main/func_0201fe28.c:
+    complete
+    .text       start:0x0201fe28 end:0x0201febc
+
 src/game/main/save_load_record.c:
     complete
     .text       start:0x0201febc end:0x02020078
