@@ -9,7 +9,7 @@ int Rng_Next(void);
 void Rng_SetState(u32 state);
 int MainLoop_GetFrameCount(void);
 void AiProfile_BuildForPlayer(int player);
-void func_0208cdf8(void);
+void AiTurn_FindUnitDomains(void);
 void AiTurn_ClearCaptureMarks(void);
 void AiTurn_MarkReachableTiles(void);
 void AiTurn_ClearUnitMarks(void);
@@ -34,7 +34,7 @@ void AiTurn_Start(void)
     Rng_SetState(Rng_Next() + MainLoop_GetFrameCount());
 
     AiProfile_BuildForPlayer(data_027c027c->unk_48[data_027c0284]->currentPlayer);
-    func_0208cdf8();
+    AiTurn_FindUnitDomains();
     AiTurn_ClearCaptureMarks();
     AiTurn_MarkReachableTiles();
     AiTurn_ClearUnitMarks();

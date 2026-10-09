@@ -36,7 +36,16 @@ typedef struct AiTurnState {
     u8 pad_09;
     u16 unk_0a_0 : 3;
     u16 unk_0a_3 : 3;                  /* AiFoot_HeadForCaptureSite tests bit 2 */
+    u16 domainsEnemy : 3;              /* AI_DOMAIN_* bits, set by AiTurn_FindUnitDomains: players on other teams, and tiles the current player's team does not own; unk_0a_0 is the same for everyone, unk_0a_3 for the current player */
+    u16 factoryDomainsOwn : 3;         /* copy of unk_0a_3 before the units are counted */
+    u16 factoryDomainsEnemy : 3;       /* copy of domainsEnemy before the units are counted */
 } AiTurnState;
+
+/* Bits in the AiTurnState domain fields: ground (a base, or a unit that is not a ship or aircraft),
+ * air (airport, aircraft), sea (port, ship). */
+#define AI_DOMAIN_GROUND 1
+#define AI_DOMAIN_AIR    2
+#define AI_DOMAIN_SEA    4
 
 /* AiTurnState.stepFlags bits. Names of bits without a decompiled setter
  * or reader describe what the known side does. */
