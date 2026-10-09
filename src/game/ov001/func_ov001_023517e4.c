@@ -1,0 +1,8 @@
+#include "types.h"
+
+void Sound_PlaySubSe(int);
+
+void func_ov001_023517e4(void)
+{
+    Sound_PlaySubSe(96);
+}

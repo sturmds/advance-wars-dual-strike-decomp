@@ -7,6 +7,10 @@ src/game/ov001/func_ov001_02350d44.c:
     complete
     .text       start:0x02350d44 end:0x02350d60
 
+src/game/ov001/func_ov001_023516a4.c:
+    complete
+    .text       start:0x023516a4 end:0x023516b8
+
 src/game/ov001/func_ov001_0235172c.c:
     complete
     .text       start:0x0235172c end:0x02351738
@@ -19,6 +23,42 @@ src/game/ov001/ov001_set_weather_clear.c:
     complete
     .text       start:0x023517c4 end:0x023517d4
 
+src/game/ov001/func_ov001_023517d4.c:
+    complete
+    .text       start:0x023517d4 end:0x023517e4
+
+src/game/ov001/func_ov001_023517e4.c:
+    complete
+    .text       start:0x023517e4 end:0x023517f4
+
+src/game/ov001/func_ov001_02351d28.c:
+    complete
+    .text       start:0x02351d28 end:0x02351d3c
+
+src/game/ov001/func_ov001_02351d3c.c:
+    complete
+    .text       start:0x02351d3c end:0x02351d50
+
 src/game/ov001/func_ov001_02351dc8.c:
     complete
     .text       start:0x02351dc8 end:0x02351dd8
+
+src/game/ov001/func_ov001_02351dd8.c:
+    complete
+    .text       start:0x02351dd8 end:0x02351de8
+
+src/game/ov001/func_ov001_02351de8.c:
+    complete
+    .text       start:0x02351de8 end:0x02351e04
+
+src/game/ov001/func_ov001_02351e04.c:
+    complete
+    .text       start:0x02351e04 end:0x02351e20
+
+src/game/ov001/func_ov001_02351e20.c:
+    complete
+    .text       start:0x02351e20 end:0x02351e3c
+
+src/game/ov001/func_ov001_02352280.c:
+    complete
+    .text       start:0x02352280 end:0x02352290
