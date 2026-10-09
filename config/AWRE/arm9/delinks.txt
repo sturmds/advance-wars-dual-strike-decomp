@@ -2103,6 +2103,10 @@ src/game/main/map/map_load_header_setup.c:
     complete
     .text       start:0x020d3ad0 end:0x020d3bf8
 
+src/game/main/map/map_start_battle_task.c:
+    complete
+    .text       start:0x020d3c1c end:0x020d3c34
+
 src/game/main/map/map_set_data_buffer.c:
     complete
     .text       start:0x020d3c34 end:0x020d3c44

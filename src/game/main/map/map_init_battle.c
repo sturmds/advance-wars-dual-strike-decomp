@@ -8,7 +8,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_0201ad64(void);
 void func_02080734(void);
-void func_020d3c1c(void);
+void Map_StartBattleTask(void);
 void Map_SaveCoPicks(void);
 BOOL Map_IsCoSelectPhase(void);
 int func_020f35cc(void);
@@ -152,7 +152,7 @@ void Map_InitBattle(void)
         }
     }
 
-    func_020d3c1c();
+    Map_StartBattleTask();
     func_020f368c();
     func_02080734();
 }
