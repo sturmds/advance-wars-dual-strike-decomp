@@ -537,6 +537,10 @@ src/game/main/unlocks/co_color_set.c:
     complete
     .text       start:0x02101a68 end:0x02101a98
 
+src/game/main/unlocks/unlock_set.c:
+    complete
+    .text       start:0x02101a98 end:0x02101ac8
+
 src/game/main/map/map_set_flag.c:
     complete
     .text       start:0x02101af8 end:0x02101b64

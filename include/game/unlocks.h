@@ -17,4 +17,5 @@ u8 Unlock_IsSet(u32 id);
 BOOL GameFlag_IsSet(int id);
 void GameFlag_Set(int id, int value);
 void CoColor_Set(u32 coId, int value);
+void Unlock_Set(u32 id, int value);
 #endif
