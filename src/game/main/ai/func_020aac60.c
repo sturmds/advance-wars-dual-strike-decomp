@@ -1,7 +1,7 @@
 #include "types.h"
 
 void AiActingUnit_GetSearchMovement(void);
-void func_020a73e4(void);
+void AiActingUnit_MarkAttackRange(void);
 BOOL func_020a870c(s16 *tile);
 BOOL func_020a7034(s16 *tile);
 
@@ -12,7 +12,7 @@ BOOL func_020aac60(s16 *out)
     s16 tile[2];
 
     AiActingUnit_GetSearchMovement();
-    func_020a73e4();
+    AiActingUnit_MarkAttackRange();
     if (!func_020a870c(tile)) {
         return FALSE;
     }

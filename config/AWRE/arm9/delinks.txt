@@ -5430,6 +5430,10 @@ src/game/main/ai/ai_unit_teammate_outdamages.c:
 src/game/main/ai/func_020a7034.c:
     .text       start:0x020a7034 end:0x020a73e4
 
+src/game/main/ai/ai_mark_attack_range.c:
+    complete
+    .text       start:0x020a73e4 end:0x020a74f8
+
 src/game/main/ai/ai_acting_unit_get_search_movement.c:
     complete
     .text       start:0x020a756c end:0x020a7640
