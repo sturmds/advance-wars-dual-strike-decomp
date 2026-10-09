@@ -27,6 +27,28 @@ typedef struct SoundArcStrmInfo {
     u8 unk_07;
 } SoundArcStrmInfo;
 
+/* A bank entry: the file plus the wave archives it uses (0xffff: slot unused). */
+typedef struct SoundArcBankInfo {
+    u32 fileId;
+    u16 waveArc[4];
+} SoundArcBankInfo;
+
+#define SOUND_ARC_NO_WAVE_ARC 0xffff
+
+/* A wave archive entry: the file id in the low 24 bits and a flag byte on
+ * top. Needed to match: the flag byte is read on its own. */
+typedef struct SoundArcWaveArcFileId {
+    u32 fileId : 24;
+} SoundArcWaveArcFileId;
+
+typedef union SoundArcWaveArcInfo {
+    SoundArcWaveArcFileId id;
+    struct {
+        u8 pad_00[3];
+        u8 flags;                      /* bit 0: wave data is loaded on demand */
+    } b;
+} SoundArcWaveArcInfo;
+
 /* A sequence archive entry. */
 typedef struct SoundArcSeqArcInfo {
     u32 fileId;
