@@ -14,6 +14,12 @@ extern u16 gPendingSong;         /* song to start later, SONG_NONE: none */
  * gCurrentSong. Pairs of (opcode, argument) words. */
 extern const u32 gSongFadeOutScript[];
 
+/* The task that runs gSongFadeOutScript (a 0x6c-byte task). */
+typedef struct SongFadeOutTask {
+    u8 pad_00[0x64];
+    s16 framesLeft;                    /* frames until the fade ends */
+} SongFadeOutTask;
+
 void Sound_RestoreSongVolume(void);
 void Sound_LowerSongVolume(int volume);
 void Sound_DimSong(void);                /* Sound_LowerSongVolume(80) */
