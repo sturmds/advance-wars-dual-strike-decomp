@@ -3132,6 +3132,10 @@ src/game/main/sound/func_02107804.c:
     complete
     .text       start:0x02107804 end:0x0210783c
 
+src/game/main/sound/nns_snd_arc_player_start_seq.c:
+    complete
+    .text       start:0x02107ab0 end:0x02107b04
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
