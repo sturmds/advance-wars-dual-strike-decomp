@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2369 / 6603 | 257780 / 1531944 | 16.83% | 0 | 0 |
+| game | 2392 / 6603 | 261872 / 1531944 | 17.09% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2507 / 7483 | 261200 / 1685994 | 15.49% | 1 | 30 |
+| all | 2530 / 7483 | 265292 / 1685994 | 15.74% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 1997 / 5180 | 239164 / 1082632 | 22.09% | 0 |
+| main | game | 2015 / 5180 | 243036 / 1082632 | 22.45% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 26 / 121 | 2248 / 25300 | 8.89% | 0 |
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals.
 | ov002 | game | 28 / 164 | 4880 / 64208 | 7.60% | 0 |
 | ov003 | game | 30 / 235 | 1000 / 82696 | 1.21% | 0 |
 | ov004 | game | 102 / 236 | 2844 / 67364 | 4.22% | 0 |
-| ov005 | game | 91 / 270 | 2140 / 96684 | 2.21% | 0 |
+| ov005 | game | 96 / 270 | 2360 / 96684 | 2.44% | 0 |
 | ov006 | game | 75 / 321 | 5092 / 105588 | 4.82% | 0 |
 
 Modules with nothing done: none.
@@ -43,6 +43,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_unit_teammate_outdamages.c` | AiUnit_TeammateOutdamages | 772 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
+| `src/game/main/func_020342ac.c` | func_020342ac | 396 |
 | `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
