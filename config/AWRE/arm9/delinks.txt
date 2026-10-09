@@ -517,6 +517,10 @@ src/game/main/map/map_set_flag.c:
     complete
     .text       start:0x02101af8 end:0x02101b64
 
+src/game/main/unlocks/shop_beat_hard_campaign.c:
+    complete
+    .text       start:0x02101d68 end:0x02101da8
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
