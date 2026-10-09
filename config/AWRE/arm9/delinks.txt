@@ -4525,6 +4525,14 @@ src/game/main/func_020c67a8.c:
     complete
     .text       start:0x020c67a8 end:0x020c67b0
 
+src/game/main/func_020c67b0.c:
+    complete
+    .text       start:0x020c67b0 end:0x020c67bc
+
+src/game/main/func_020c67bc.c:
+    complete
+    .text       start:0x020c67bc end:0x020c67c8
+
 src/game/main/units/unit_get_move_points.c:
     complete
     .text       start:0x020c67c8 end:0x020c689c
@@ -6130,6 +6138,10 @@ src/game/main/func_021016c4.c:
     complete
     .text       start:0x021016c4 end:0x021016e4
 
+src/game/main/func_021016e4.c:
+    complete
+    .text       start:0x021016e4 end:0x021016f0
+
 src/game/main/map/map_find_by_data.c:
     complete
     .text       start:0x021016f0 end:0x02101744
@@ -6361,6 +6373,10 @@ src/game/main/func_0210375c.c:
 src/game/main/func_021037ac.c:
     complete
     .text       start:0x021037ac end:0x021037c8
+
+src/game/main/func_02103910.c:
+    complete
+    .text       start:0x02103910 end:0x0210391c
 
 src/game/main/func_0210391c.c:
     complete
@@ -7033,3 +7049,11 @@ src/sdk/func_021295b4.c:
 src/sdk/func_021295f8.c:
     complete
     .text       start:0x021295f8 end:0x02129600
+
+src/sdk/func_02129748.c:
+    complete
+    .text       start:0x02129748 end:0x02129754
+
+src/sdk/func_02129754.c:
+    complete
+    .text       start:0x02129754 end:0x02129760
