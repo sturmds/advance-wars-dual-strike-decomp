@@ -83,7 +83,10 @@ typedef struct Unk_02080440_48 {
     u32 unk_10;                        /* passed to func_0201e9d8 when the battle menu opens (BattleMenu_Open) */
     u8 pad_14[0x1e - 0x14];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
-    u8 pad_20[0x38 - 0x20];
+    u8 pad_20[0x28 - 0x20];
+    s16 unk_28;                        /* set from gUnitAction.target by AiShowAction_Step8 and Step9 */
+    s16 unk_2a;                        /* set from gUnitAction.unk_07 by the same steps */
+    u8 pad_2c[0x38 - 0x2c];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;

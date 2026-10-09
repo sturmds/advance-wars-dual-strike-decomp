@@ -11,8 +11,8 @@ void AiShowAction_Step4(void);
 void AiShowAction_Step5(void);
 void AiShowAction_Step6(void);
 void func_020b8850(void);
-void func_020b8798(void);
-void func_020b86e0(void);
+void AiShowAction_Step8(void);
+void AiShowAction_Step9(void);
 void AiShowAction_Step10(void);
 void AiShowAction_Step11(void);
 
@@ -48,10 +48,10 @@ void AiTurn_ShowAction(void)
         func_020b8850();
         break;
     case 8:
-        func_020b8798();
+        AiShowAction_Step8();
         break;
     case 9:
-        func_020b86e0();
+        AiShowAction_Step9();
         break;
     case 10:
         AiShowAction_Step10();
