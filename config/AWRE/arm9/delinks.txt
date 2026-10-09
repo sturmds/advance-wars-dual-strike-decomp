@@ -2239,6 +2239,10 @@ src/game/main/copowers/player_play_theme.c:
     complete
     .text       start:0x020e3298 end:0x020e3394
 
+src/game/main/co_stats/player_get_co_theme_song.c:
+    complete
+    .text       start:0x020e3394 end:0x020e33e4
+
 src/game/main/menus/build_co_pick_list.c:
     complete
     .text       start:0x020e3478 end:0x020e3518
