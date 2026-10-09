@@ -33,6 +33,10 @@ src/game/itcm/func_01ff9c28.c:
     complete
     .text       start:0x01ff9c28 end:0x01ff9c38
 
+src/game/itcm/func_01ff9c38.c:
+    complete
+    .text       start:0x01ff9c38 end:0x01ff9c48
+
 src/game/itcm/func_01ff9eac.c:
     complete
     .text       start:0x01ff9eac end:0x01ff9ebc
