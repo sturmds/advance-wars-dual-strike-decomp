@@ -387,6 +387,10 @@ src/game/main/ai/ai_transport_unload.c:
     complete
     .text       start:0x0209fc10 end:0x0209fc2c
 
+src/game/main/ai/ai_empty_transport_act.c:
+    complete
+    .text       start:0x0209fc2c end:0x0209fc58
+
 src/game/main/ai/ai_unit_act_by_order_group.c:
     complete
     .text       start:0x0209fdb4 end:0x0209fe88
