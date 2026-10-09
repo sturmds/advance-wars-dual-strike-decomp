@@ -4,14 +4,14 @@
 
 extern Unk_02080440 *data_027c027c;
 
-s8 func_02017130(const ScriptCommand *script);
+s8 ScriptSlot_Find(const ScriptCommand *script);
 void func_02017734(const ScriptCommand *script, u8 slot, int arg);
 
-/* Starts script in a free script slot (func_02017130 with NULL finds one) and
+/* Starts script in a free script slot (ScriptSlot_Find with NULL finds one) and
  * returns the slot, or NULL when all 30 are in use. arg goes to func_02017734. */
 ScriptSlot *ScriptSlot_Start(const ScriptCommand *script, int arg)
 {
-    s8 slot = func_02017130(NULL);
+    s8 slot = ScriptSlot_Find(NULL);
 
     if (slot == -1) {
         return NULL;

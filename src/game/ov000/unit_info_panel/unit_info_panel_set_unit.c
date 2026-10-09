@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 extern ScriptCommand data_ov000_0234f30c[];
 
-s8 func_02017130(const ScriptCommand *script);
+s8 ScriptSlot_Find(const ScriptCommand *script);
 u8 Player_GetArmyStyle(int playerIndex);
 void func_ov000_022b2484(ScriptSlot *slot);
 
@@ -17,7 +17,7 @@ void func_ov000_022b2484(ScriptSlot *slot);
  * army style (the sprite set) of the unit's owner. */
 void UnitInfoPanel_SetUnit(int owner, MapUnit *unit)
 {
-    s16 slot = func_02017130(data_ov000_0234f30c);
+    s16 slot = ScriptSlot_Find(data_ov000_0234f30c);
 
     data_ov000_0234ec8c->owner = owner;
     data_ov000_0234ec8c->unit = unit;

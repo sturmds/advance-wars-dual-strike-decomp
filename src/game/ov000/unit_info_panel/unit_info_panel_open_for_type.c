@@ -10,7 +10,7 @@ extern ScriptCommand data_ov000_0234f30c[];
 extern MapUnit data_ov000_02350510;
 
 int func_020f4638(int a0);
-s8 func_02017130(const ScriptCommand *script);
+s8 ScriptSlot_Find(const ScriptCommand *script);
 u8 Player_GetArmyStyle(int playerIndex);
 void func_020c8184(MapUnit *unit, int type);
 ScriptSlot *ScriptSlot_Start(const ScriptCommand *script, int arg);
@@ -27,7 +27,7 @@ void UnitInfoPanel_OpenForType(int owner, int unitType)
     if (func_020f4638(5) == 0) {
         return;
     }
-    running = func_02017130(data_ov000_0234f30c) != -1;
+    running = ScriptSlot_Find(data_ov000_0234f30c) != -1;
     if (running) {
         UnitInfoPanel_SetUnitType(owner, unitType);
         return;

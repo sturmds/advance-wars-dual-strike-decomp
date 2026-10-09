@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 
 u16 *TextPrinter_GetCursorEntry(TextPrinter *printer);
-s8 func_02017130(const void *script);
+s8 ScriptSlot_Find(const void *script);
 const void *Text_Get(u32 textId);
 int func_020157e4(TextPrinter *printer, u16 *entry);
 void TextPrinter_WriteRun(TextPrinter *printer, u16 *entry, int arg);
@@ -19,7 +19,7 @@ void Text_PrintImmediate(int x, int y, u16 *map, u32 textId, u16 unk_30, int arg
     u16 *entry;
     s16 slot;
 
-    slot = func_02017130(NULL);
+    slot = ScriptSlot_Find(NULL);
     printer = (TextPrinter *)&data_027c027c->scriptSlots[slot];
     printer->text = Text_Get(textId);
     printer->resumeText = NULL;
