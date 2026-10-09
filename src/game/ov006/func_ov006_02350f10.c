@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_ov006_02350f20(int arg);
+void Ov006_PostRequest(int arg);
 
 void func_ov006_02350f10(void)
 {
-    func_ov006_02350f20(1);
+    Ov006_PostRequest(1);
 }

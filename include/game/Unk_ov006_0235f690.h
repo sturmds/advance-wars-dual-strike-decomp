@@ -6,7 +6,10 @@
 /* Overlay 6 state reached through data_ov006_0236d640. */
 typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
-    u8 pad_02[0x1a - 0x02];
+    u8 pad_02[0x0a - 0x02];
+    u16 request;                       /* code set by Ov006_PostRequest (1, 2 or 4) */
+    u16 unk_0c;
+    u8 pad_0e[0x1a - 0x0e];
     u16 unk_1a;
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */

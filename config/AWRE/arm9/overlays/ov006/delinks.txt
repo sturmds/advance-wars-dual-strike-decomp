@@ -27,6 +27,10 @@ src/game/ov006/func_ov006_02350f10.c:
     complete
     .text       start:0x02350f10 end:0x02350f20
 
+src/game/ov006/ov006_post_request.c:
+    complete
+    .text       start:0x02350f20 end:0x02350f44
+
 src/game/ov006/func_ov006_02351aa4.c:
     complete
     .text       start:0x02351aa4 end:0x02351ac4
