@@ -375,6 +375,10 @@ src/game/main/ai/ai_queue_sort_by_max_range.c:
     complete
     .text       start:0x0208f7c4 end:0x0208f850
 
+src/game/main/ai/ai_queue_sort_by_movement.c:
+    complete
+    .text       start:0x0208f850 end:0x0208f920
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
