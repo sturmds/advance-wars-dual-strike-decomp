@@ -712,6 +712,10 @@ src/game/main/text/mode_font_show_text.c:
     complete
     .text       start:0x0202a9ac end:0x0202a9d4
 
+src/game/main/text/mode_font_show_text_on_screen.c:
+    complete
+    .text       start:0x0202a9d4 end:0x0202aa60
+
 src/game/main/text/mode_font_load.c:
     complete
     .text       start:0x0202aba8 end:0x0202ac14
