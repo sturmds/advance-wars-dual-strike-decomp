@@ -51,7 +51,7 @@ typedef struct Player {
     u8 unk_15;                         /* total properties */
     u16 defeated;                      /* nonzero once the player is out (Player_IsInGame) */
     u8 unk_18;                         /* cleared by Players_Reset */
-    u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (func_020c1444) */
+    u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (Players_ApplyBattleSetup) */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 unk_1b;
     u16 unk_1c;                        /* kills this turn */
@@ -63,7 +63,7 @@ typedef struct Player {
     s8 terrainDefense;                 /* added to terrain defense; enemy Sonja-style star cuts make it negative */
     u8 moveChart;                      /* enum MoveChart: index into CoPowerBlock.movementCost */
     u8 team;
-    u8 armyStyle;                      /* sprite set of the front CO's army: CoRecord.armyStyle + 1 (func_020c1444, func_020fed58); see Player_GetArmyStyle */
+    u8 armyStyle;                      /* sprite set of the front CO's army: CoRecord.armyStyle + 1 (Players_ApplyBattleSetup, func_020fed58); see Player_GetArmyStyle */
     u8 aiBehaviour;                    /* AI_BEHAVIOUR_* */
     u8 unk_2f;                         /* ORed with MapHeader.slotFlags[slot].unk_0 at map start */
     u8 unk_30;                         /* ORed with MapHeader.slotFlags[slot].unk_1 */

@@ -6,7 +6,7 @@
 void func_020b98bc(void);
 void Players_Reset(void);
 void MapRules_SetDefaults(void);
-void func_020c1444(void);
+void Players_ApplyBattleSetup(void);
 void func_020cafe4(void);
 void func_020c7104(void);
 void func_020db3c0(void);
@@ -33,7 +33,7 @@ void Battle_SetupWithPresetCos(void)
     STATE->unk_1c4->playerCount = 4;
     Players_Reset();
     MapRules_SetDefaults();
-    func_020c1444();
+    Players_ApplyBattleSetup();
 
     STATE->players[0].front.id = CO_NELL;
     STATE->players[1].front.id = CO_ANDY;

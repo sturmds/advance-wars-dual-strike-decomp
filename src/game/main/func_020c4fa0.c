@@ -3,7 +3,7 @@
 void Players_Reset(void);
 void func_020d2194(void);
 void func_020da650(void);
-void func_020c1444(void);
+void Players_ApplyBattleSetup(void);
 void func_020c1c40(void);
 void func_020e5100(void);
 void func_020e531c(void);
@@ -11,7 +11,7 @@ void func_020e531c(void);
 void func_020c4fa0(void)
 {
     Players_Reset();
-    func_020c1444();
+    Players_ApplyBattleSetup();
     func_020c1c40();
     func_020d2194();
     func_020da650();

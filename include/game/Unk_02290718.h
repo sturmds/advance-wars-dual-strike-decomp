@@ -15,7 +15,9 @@ typedef struct Unk_02290718 {
     u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */
     u8 pad_13[0x15 - 0x13];
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
-    u8 pad_16[0x38 - 0x16];
+    u8 unk_16;                         /* aiBehaviour of slot 1 when gameMode is 1 (Players_ApplyBattleSetup) */
+    u8 unk_17;                         /* aiBehaviour of every slot but the last when gameMode is 0 (Players_ApplyBattleSetup) */
+    u8 pad_18[0x38 - 0x18];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
     u8 pad_after_records[0x3b4 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
     u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */

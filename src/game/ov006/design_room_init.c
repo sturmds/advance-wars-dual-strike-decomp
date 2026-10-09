@@ -13,7 +13,7 @@ void func_020b98bc(void);
 void func_020f4a84(void);
 void Players_Reset(void);
 void MapRules_SetDefaults(void);
-void func_020c1444(void);
+void Players_ApplyBattleSetup(void);
 void func_ov006_02350cdc(int arg);
 void func_020c7104(void);
 void func_020db3c0(void);
@@ -51,7 +51,7 @@ extern const TaskScriptCmd data_ov006_0236a1e0[];
  * starts it): sets up overlay 6, which looks like the Design Room (a map
  * filled with one terrain, a name field, four armies). Allocates the
  * overlay state, then on both screens loads map 4 with default rules and
- * runs battle start (func_020c1444) as day 1, player 1. It gives each army
+ * runs battle start (Players_ApplyBattleSetup) as day 1, player 1. It gives each army
  * its default CO (Andy, Olaf, Eagle, Kanbei; Nell in the neutral slot),
  * puts the view at tile (7, 4) and starts the overlay's two tasks and song
  * 0x34. gameMode is left as it was. */
@@ -82,7 +82,7 @@ void DesignRoom_Init(Task *task)
     STATE->unk_1c4->mapId = 4;
     Players_Reset();
     MapRules_SetDefaults();
-    func_020c1444();
+    Players_ApplyBattleSetup();
     STATE->currentPlayer = 1;
     STATE->unk_00 = 1;
     STATE->unk_1c4->unk_37 = 0;
@@ -99,7 +99,7 @@ void DesignRoom_Init(Task *task)
     STATE->unk_1c4->mapId = 4;
     Players_Reset();
     MapRules_SetDefaults();
-    func_020c1444();
+    Players_ApplyBattleSetup();
     STATE->currentPlayer = 1;
     STATE->unk_00 = 1;
     STATE->unk_1c4->unk_37 = 0;

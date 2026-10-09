@@ -1,6 +1,6 @@
 # 0022: Player.armyStyle and armyColour comments are wrong
 
-- **Status:** open
+- **Status:** closed
 - **Area:** decomp
 - **Opened:** 2026-10-09
 - **Milestone:** M2
@@ -24,6 +24,8 @@ The comments mix up army style and army colour. From the code (func_020c1444 and
 Found by sturmds and a planning session while looking at an AW2-style War Room mod (issue 0023). Decompiling func_020c1444, func_020fed58 and the readers of +0x19 would confirm the palette reading.
 
 2026-10-09: the comments listed above are fixed (renames pass before batch 10). The issue stays open until func_020c1444 is decompiled.
+
+2026-10-09: func_020c1444 is decompiled as Players_ApplyBattleSetup. It sets armyColour from state->army[slot] and armyStyle from the front CO in state->playerCos (CoRecord.armyStyle + 1), as described above. func_020fed58 is committed as a 97% WIP; it writes armyStyle from the campaign map header's front CO.
 
 ## Done when
 
