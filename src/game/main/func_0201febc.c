@@ -16,11 +16,11 @@ extern SaveBuffer data_02298050;
  * Record 0 also replaces the slot ids with the ones the buffer holds.
  * Returns 1 on failure.
  *
- * Not matching yet (97%): the register for the copy loop counter is r2 where
- * the original has r1. */
+ * Needed to match: n holds the result of func_0201fe28 and later counts the
+ * bytes and slots of the two inner loops. */
 int func_0201febc(int recordId)
 {
-    int found;
+    int n;
     u8 savedMarks[SAVE_SLOT_COUNT];
     int i;
 
@@ -28,28 +28,26 @@ int func_0201febc(int recordId)
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
         savedMarks[i] = data_02297f3c.flags[i] & SAVE_SLOT_MARK;
     }
-    found = func_0201fe28(recordId);
+    n = func_0201fe28(recordId);
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
         data_02297f3c.flags[i] = savedMarks[i] | (data_02297f3c.flags[i] & ~SAVE_SLOT_MARK);
     }
-    if (found) {
+    if (n) {
         return 1;
     }
 
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
-        int j;
-
         if (recordId == data_02297f3c.id[i]) {
             if (func_0201fadc(i)) {
                 return 1;
             }
             data_02297f38 += data_02298050.dataLength;
-            for (j = 0; j < data_02298050.dataLength; j++) {
-                (data_02297f28 + data_02298050.destOffset)[j] = data_02298050.data[j];
+            for (n = 0; n < data_02298050.dataLength; n++) {
+                (data_02297f28 + data_02298050.destOffset)[n] = data_02298050.data[n];
             }
             if ((data_02298050.unk_0c & 0xf0) == 0 && recordId == 0) {
-                for (j = 0; j < SAVE_SLOT_COUNT; j++) {
-                    data_02297f3c.newId[j] = data_02298050.slotIds[j];
+                for (n = 0; n < SAVE_SLOT_COUNT; n++) {
+                    data_02297f3c.newId[n] = data_02298050.slotIds[n];
                 }
             }
         }
