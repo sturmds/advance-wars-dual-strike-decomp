@@ -23,7 +23,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_020021a8(u32 a, void *dst, int b, int c);
 void func_ov002_0235dfe0(void);
-BOOL func_ov002_023547ac(int side);
+BOOL Battle_IsSideAir(int side);
 int func_ov002_0235e26c(int army);
 u8 Battle_GetSideMood(u8 side);
 u8 func_ov002_0235e3c4(u8 side);
@@ -109,12 +109,12 @@ void Battle_ShowQuote(void)
     }
 
     /* Needed to match: the original turns each result into 0 or 1 first. */
-    if (!(func_ov002_023547ac(0) ? TRUE : FALSE)) {
+    if (!(Battle_IsSideAir(0) ? TRUE : FALSE)) {
         Data_Unpack(lang + 0xa80, data_027c0280->objVram + 0x1800);
     } else {
         Data_Unpack(lang + 0xc58, data_027c0280->objVram + 0x1800);
     }
-    if (!(func_ov002_023547ac(1) ? TRUE : FALSE)) {
+    if (!(Battle_IsSideAir(1) ? TRUE : FALSE)) {
         Data_Unpack(lang + 0xb6c, data_027c0280->objVram + 0x1c00);
     } else {
         Data_Unpack(lang + 0xd40, data_027c0280->objVram + 0x1c00);
