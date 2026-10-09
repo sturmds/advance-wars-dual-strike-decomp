@@ -168,6 +168,10 @@ src/game/main/task/task_unlink.c:
     complete
     .text       start:0x0202384c end:0x020238c0
 
+src/game/main/task/task_add_child.c:
+    complete
+    .text       start:0x020238c0 end:0x020238e0
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
