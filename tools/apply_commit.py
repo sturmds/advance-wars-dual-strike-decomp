@@ -19,8 +19,10 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
   tools/header_merge.py: struct fields by offset with the padding written
   again, other declarations by name, mainline's names and versions kept on
   a clash. The commit's sources are then rewritten to mainline's field and
-  type names. Any other conflict stops the replay after the rest of the
-  commit is applied.
+  type names; a field rename whose old name another struct also uses is
+  not applied but reported, since `->name` does not say which struct it
+  reads. Any other conflict stops the replay after the rest of the commit
+  is applied.
 - Source files: the commit's symbol renames are applied to both older
   versions before the merge. Afterwards, local prototypes of functions an
   included header declares are dropped from the commit's .c files, and
@@ -195,18 +197,38 @@ def member_access(name: str) -> re.Pattern:
 
 def apply_header_renames(paths: list[str]) -> None:
     """After a header merge kept mainline's field and type names, rewrite
-    the commit's sources to use them. Fields match only as member accesses
-    (->name, .name), but of any struct: a wrong rename fails the build
-    rather than going unseen."""
+    the commit's sources to use them. Fields match as member accesses
+    (->name, .name) without knowing the struct behind them, so a field is
+    renamed only when no struct in include/ still has a field of its old
+    name. Otherwise `p->mapWidth` of another struct would be renamed too;
+    the replay stops and lists the uses for the agent to fix."""
     fields, types = {}, {}
     for rep in MERGED_HEADERS.values():
         for old, new in rep.renames.items():
-            if fields.setdefault(old, new) != new:
-                print(f"warning: {old} maps to both {fields[old]} and {new}; renamed to {fields[old]}")
+            if fields.setdefault(old, (new, rep.rename_structs.get(old, "?")))[0] != new:
+                print(f"warning: {old} maps to both {fields[old][0]} and {new}; renamed to {fields[old][0]}")
         types.update(rep.type_renames)
+    texts = [p.read_text() for p in sorted((ROOT / "include").rglob("*.h"))]
+    owners = header_merge.struct_fields(texts)
+    safe = {}
+    for old, (new, where) in fields.items():
+        others = sorted(n for n, names in owners.items() if old in names)
+        if not others:
+            safe[old] = new
+            continue
+        uses = []
+        for path in paths:
+            if path.endswith((".c", ".h")) and (ROOT / path).exists():
+                text = (ROOT / path).read_text()
+                uses += [f"{path}:{text.count(chr(10), 0, m.start()) + 1}" for m in member_access(old).finditer(text)]
+        if uses:
+            CONFLICTS.append(f"{where}.{old} is {new} on mainline, but {', '.join(others)} also"
+                             f" {'has' if len(others) == 1 else 'have'} a field {old}, so its uses were not"
+                             f" renamed; change the ones that mean {where} to ->{new}"
+                             f" ({', '.join(dict.fromkeys(uses))})")
     for path in paths:
         if path.endswith(".c") or (path.endswith(".h") and path not in MERGED_HEADERS):
-            rewrite(path, fields, types)
+            rewrite(path, safe, types)
 
 
 def rewrite(path: str, fields: dict[str, str], types: dict[str, str]) -> None:

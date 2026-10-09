@@ -11,7 +11,7 @@ NINJA    ?= ninja
 DSD      := .cache/tools/dsd/dsd
 
 
-.PHONY: all configure fnindex progress setup release check check-rom check-modules check-out hooks extract clean
+.PHONY: all configure fnindex progress setup release check check-rom check-modules check-out hooks extract test clean
 
 all: check-rom configure
 	@$(NINJA)
@@ -64,6 +64,10 @@ release: setup
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
 	@echo "release: OK"
+
+# Tests of the landing tools on throwaway repos; no ROM or build needed.
+test:
+	@$(PYTHON) tools/tests/test_landing.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

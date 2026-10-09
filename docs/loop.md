@@ -22,7 +22,7 @@ How the top-level Claude session runs batches of agents, each matching one funct
 Agents add fields, typedefs and prototypes to the same headers at the same time. When `git merge-file` cannot merge a header under `include/` (or both sides added the same header), `apply_commit.py` merges it with `tools/header_merge.py`:
 
 - Struct fields are placed by byte offset, computed from their types. The result has the named fields of both sides, with the padding written again between them.
-- Where both sides name the same bytes differently, mainline's name stays, and the commit's C files are rewritten to it (`->name` and `.name` only). A struct the commit names differently for the same extern is merged into mainline's struct and renamed the same way.
+- Where both sides name the same bytes differently, mainline's name stays, and the commit's C files are rewritten to it (`->name` and `.name` only). `->name` does not say which struct it reads, so the rewrite happens only when no struct in `include/` still has a field of the old name; otherwise the replay stops and lists the uses (`file:line`) for the agent to change by hand. A struct the commit names differently for the same extern is merged into mainline's struct and renamed the same way.
 - Where mainline still has the base version of a field or declaration, the commit's edit wins, as in a 3-way merge.
 - Typedefs, structs, `#define`s, externs and prototypes that only one side has are kept; where both changed one, mainline's version stays. Fields that overlap without matching are reported as conflicts.
 - Afterwards, local prototypes in the commit's C files are dropped when an included header declares the function; the header's version wins.

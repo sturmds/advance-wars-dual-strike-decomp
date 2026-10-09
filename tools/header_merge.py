@@ -362,9 +362,14 @@ class Report:
     added_fields: int = 0
     added_decls: int = 0
     renames: dict[str, str] = field(default_factory=dict)       # commit's field name -> mainline's
+    rename_structs: dict[str, str] = field(default_factory=dict)  # commit's field name -> its struct
     type_renames: dict[str, str] = field(default_factory=dict)  # commit's type name -> mainline's
     notes: list[str] = field(default_factory=list)               # clashes, and what was kept
     conflicts: list[str] = field(default_factory=list)          # what a person has to fix
+
+    def rename(self, old: str, new: str, where: str) -> None:
+        self.renames[old] = new
+        self.rename_structs[old] = where
 
     def summary(self, path: str) -> str:
         parts = [f"+{self.added_fields} fields", f"+{self.added_decls} declarations"]
@@ -395,7 +400,7 @@ def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | 
             # a rename on mainline matters to the commit's sources.
             o = next((o for o in named if o.offset == t.offset and o.size == t.size), None)
             if o is not None and o.name != t.name and simple(o.name) and simple(t.name):
-                rep.renames[t.name] = o.name
+                rep.rename(t.name, o.name, where)
             continue
         merge_field(named, t, b_items, types, rep, where)
     pads = {(p.offset, p.offset + p.size): p for p in t_items + o_items if p.name is None}
@@ -433,7 +438,7 @@ def merge_field(named: list[Item], t: Item, base: list[Item], types: Types, rep:
     if len(clash) == 1 and old.offset == t.offset and simple(old.name) and simple(t.name) \
             and unchanged(old, base):
         # The commit retyped a field mainline left as it was.
-        named[named.index(old)] = renamed(t, old.name, rep)
+        named[named.index(old)] = renamed(t, old.name, rep, where)
         return
     names = ", ".join(f"{o.name} (0x{o.offset:x}, {o.size} bytes)" for o in clash)
     rep.conflicts.append(f"{where}.{t.name} (0x{t.offset:x}, {t.size} bytes) overlaps mainline's {names}")
@@ -453,7 +458,7 @@ def merge_same(named: list[Item], o: Item, t: Item, base: list[Item], types: Typ
         if o.name != t.name:
             rep.notes.append(f"took the commit's rename {where}.{o.name} -> {t.name}")
     elif o.name != t.name and simple(o.name) and simple(t.name):
-        rep.renames[t.name] = o.name
+        rep.rename(t.name, o.name, where)
         if o.code.replace(o.name, "") != t.code.replace(t.name, ""):
             rep.notes.append(f"kept mainline's {where}.{o.name} as `{o.code}` (the commit has `{t.code}`)")
     elif o.code != t.code:
@@ -475,10 +480,10 @@ def rename_keeping_columns(line: str, old: str, new: str) -> str:
     return out
 
 
-def renamed(t: Item, name: str, rep: Report) -> Item:
+def renamed(t: Item, name: str, rep: Report, where: str) -> Item:
     """The commit's field t under mainline's name."""
     if t.name != name:
-        rep.renames[t.name] = name
+        rep.rename(t.name, name, where)
         t.lines = [rename_keeping_columns(t.lines[0], t.name, name)] + t.lines[1:]
         t.name = name
     return t
@@ -723,6 +728,43 @@ def merge_entry(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) 
         o.lines = oh + merge_body(kind, ob, tb, bb, types, rep, o.key[1]) + ot
     elif (b is None or b.text != t.text) and o.code != t.code:
         rep.notes.append(f"kept mainline's {o.key[1] if len(o.key) > 1 else o.code[:40]}")
+
+
+def field_names(body: str) -> set[str]:
+    """Names of the fields of a struct or union body (code without
+    comments), nested members included."""
+    names = set()
+    for ch in code_chunks(body):
+        m = NESTED.match(ch.code)
+        if m:
+            names |= field_names(ch.code[ch.code.index("{") + 1:ch.code.rindex("}")])
+            names.add(m.group(2))
+            continue
+        m = FN_PTR.search(ch.code)
+        if m:
+            names.add(m.group(1))
+            continue
+        m = DECL.match(ch.code)
+        if m:
+            names.add(m.group(3))
+    names.discard("")
+    return names
+
+
+def struct_fields(texts: list[str]) -> dict[str, set[str]]:
+    """Struct or union name -> its field names, for every struct in texts.
+    A typedef'd struct appears under its typedef name only."""
+    out = {}
+    structs = Types(texts).structs
+    typedefs = {body for name, (_, body) in structs.items() if not name.startswith("struct ")}
+    for name, (_, body) in structs.items():
+        if name.startswith("struct ") and body in typedefs:
+            continue
+        try:
+            out[name] = field_names(body)
+        except MergeError:
+            pass
+    return out
 
 
 def declared_functions(text: str) -> set[str]:
