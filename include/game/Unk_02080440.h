@@ -81,7 +81,9 @@ typedef struct Unk_02080440_48 {
     u8 unk_0d;                         /* set to 1 by func_020b9890, 0 by func_020b9864, read by func_020b983c */
     u8 pad_0e[0x10 - 0x0e];
     u32 unk_10;                        /* passed to func_0201e9d8 when the battle menu opens (BattleMenu_Open) */
-    u8 pad_14[0x1e - 0x14];
+    u8 pad_14[0x18 - 0x14];
+    u16 unk_18;                        /* AiShowAction_Step0 tests 16 and 21 */
+    u8 pad_1a[0x1e - 0x1a];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
     u8 pad_20[0x28 - 0x20];
     s16 unk_28;                        /* x of the tile the AiShowAction steps point func_020c41c4 at; guess: the view scrolls there */

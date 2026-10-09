@@ -3,7 +3,7 @@
 
 extern u32 data_0229eac4;
 
-void func_020b91b0(void);
+void AiShowAction_Step0(void);
 void AiShowAction_Step1(void);
 void func_020b8cf0(void);
 void AiShowAction_Step3(void);
@@ -24,7 +24,7 @@ void AiTurn_ShowAction(void)
     data_0229eac4 = 0;
     switch (gAiTurnState->actionStep) {
     case 0:
-        func_020b91b0();
+        AiShowAction_Step0();
         break;
     case 1:
         AiShowAction_Step1();
