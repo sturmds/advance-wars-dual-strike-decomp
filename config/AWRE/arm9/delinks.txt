@@ -1881,6 +1881,10 @@ src/game/main/ai/ai_release_capture_claims.c:
     complete
     .text       start:0x020a363c end:0x020a37dc
 
+src/game/main/ai/ai_claim_capture_targets.c:
+    complete
+    .text       start:0x020a37dc end:0x020a3ab4
+
 src/game/main/ai/ai_unit_mark_finishing_capture.c:
     complete
     .text       start:0x020a3ab4 end:0x020a3b54
