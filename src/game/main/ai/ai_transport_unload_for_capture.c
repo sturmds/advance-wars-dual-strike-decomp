@@ -13,7 +13,7 @@ void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL AiUnit_FindStandTileNextTo(int x, int y, s16 *stand); /* guess: picks where the transport stops to drop a unit on (x, y) */
 BOOL Ai_IsCaptureSiteTaken(int x, int y);
-BOOL func_020a4a70(int x, int y, int distance, s16 *property); /* guess: a capturable property near (x, y) */
+BOOL Ai_FindCaptureSiteNear(int x, int y, int distance, s16 *property); /* guess: a capturable property near (x, y) */
 int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction: 0 same tile, 1 up, 2 right, 3 down, 4 left */
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -160,7 +160,7 @@ void AiTransport_UnloadForCapture(void)
                     continue;
                 }
                 if (!(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {
-                    if (!func_020a4a70(x2, y2, 3, capture)) {
+                    if (!Ai_FindCaptureSiteNear(x2, y2, 3, capture)) {
                         continue;
                     }
                 } else {
@@ -176,7 +176,7 @@ void AiTransport_UnloadForCapture(void)
                     continue;
                 }
                 if (!(gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE)) {
-                    if (!func_020a4a70(x2, y2, 2, capture)) {
+                    if (!Ai_FindCaptureSiteNear(x2, y2, 2, capture)) {
                         continue;
                     }
                 } else {
