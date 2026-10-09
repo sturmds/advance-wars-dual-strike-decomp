@@ -13,7 +13,7 @@ void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 void func_02002dbc(u32 value, void *dst, u32 size);
 void func_0202bdcc(s8 *dst);
-void func_0202bdec(void *dst, int mapId);
+void MapPreview_Draw(void *dst, int mapId);
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -34,7 +34,7 @@ static inline u16 *Gfx_GetLayer1Map(void)
  * data_02167c90 text while the map is locked (Map_IsFlagSet). In gameMode 1,
  * a map with a second map also gets a preview on the other screen and a
  * window. Then fills the number grids that MapSelect_Draw shows:
- * func_0202bdcc copies six counts that the last func_0202bdec call left. */
+ * func_0202bdcc copies six counts that the last MapPreview_Draw call left. */
 void MapSelect_ShowSelectedMap(void)
 {
     Unk_027c0280 *savedState;
@@ -46,10 +46,10 @@ void MapSelect_ShowSelectedMap(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (Map_IsFlagSet(SELECTED_MAP_ID())) {
         if (STATE->gameMode == 1 && SECOND_MAP_ID() != 0) {
-            func_0202bdec(data_027c0280->objVram + 0x8000, SECOND_MAP_ID());
+            MapPreview_Draw(data_027c0280->objVram + 0x8000, SECOND_MAP_ID());
             func_0202bdcc(MENU->setup.unk_4d4);
         } else {
-            func_0202bdec(data_027c0280->objVram + 0x8000, SELECTED_MAP_ID());
+            MapPreview_Draw(data_027c0280->objVram + 0x8000, SELECTED_MAP_ID());
         }
         Bg_ClearRect(data_027c0280->layer1Map, 12, 21, 8, 2);
         Text_Print(12, 21, Gfx_GetLayer1Map(), Map_GetName(SELECTED_MAP_ID()), 0, 0x100);
@@ -66,7 +66,7 @@ void MapSelect_ShowSelectedMap(void)
     if (STATE->gameMode == 1) {
         if (SECOND_MAP_ID() != 0) {
             if (Map_IsFlagSet(SELECTED_MAP_ID())) {
-                func_0202bdec(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
+                MapPreview_Draw(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
             } else {
                 func_02002dbc(0, data_027c0280->objVram + 0xc000, 0x4000);
             }

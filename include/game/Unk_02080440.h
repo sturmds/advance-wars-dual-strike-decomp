@@ -124,7 +124,9 @@ typedef struct Unk_02080440_48 {
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     u8 pad_5760[0x5a58 - 0x5760];
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
-    u8 pad_5a5c[0x6088 - 0x5a5c];
+    u8 pad_5a5c[0x5e5c - 0x5a5c];
+    u8 *tileCodeTerrain;               /* per map tile code: bits 0-4 terrain id */
+    u8 pad_5e60[0x6088 - 0x5e60];
     Unk_02080440_6088 *unk_6088;
     u8 pad_608c[0x61a0 - 0x608c];
     Combatant combatants[2];           /* attacker, defender */
