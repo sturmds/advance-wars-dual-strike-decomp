@@ -1647,6 +1647,10 @@ src/game/main/ai/find_attack_tile.c:
     complete
     .text       start:0x020a89ac end:0x020a8b20
 
+src/game/main/ai/ai_tile_score_attack_from.c:
+    complete
+    .text       start:0x020a8b20 end:0x020a8d80
+
 src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854
