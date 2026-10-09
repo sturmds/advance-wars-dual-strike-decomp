@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int GetUnitMaxRange(int player, int unitType);
-void func_0208f9c4(int count);
+void AiQueue_SortAscending(int count);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -23,5 +23,5 @@ void AiQueue_SortByMaxRange(void)
         }
         data_0229e234[i] = GetUnitMaxRange(STATE->currentPlayer, STATE->units[gAiQueue[i]].type);
     }
-    func_0208f9c4(i);
+    AiQueue_SortAscending(i);
 }
