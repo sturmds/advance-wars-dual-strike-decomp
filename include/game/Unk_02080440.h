@@ -14,7 +14,8 @@ typedef struct MapTiles {
     u8 pad_a10[0x1420 - 0xa10];
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
-    u8 pad_1e30[0x2d48 - 0x1e30];
+    s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
+    u8 pad_2338[0x2d48 - 0x2338];
     s8 unk_2d48[0x508];                /* per tile; AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->unk_08 bit 0 is set */
     u8 unk_3250[0x508];                /* per tile; AiAttack_Score compares it with 50 */
     u8 unk_3758[0x508];                /* per tile */
