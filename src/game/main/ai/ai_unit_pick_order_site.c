@@ -9,7 +9,7 @@ BOOL Player_HasHq(int player);
 BOOL AiUnit_FindEnemyTarget(s16 *tile);
 BOOL func_020aac60(s16 *tile);
 BOOL Ai_FindCaptureSiteTile(s16 *tile);
-BOOL func_020aa4dc(s16 *tile);
+BOOL AiTransport_PickFootUnit(s16 *tile);
 BOOL Ai_FindNearestOwnPropertyTile(s16 *tile);
 BOOL Ai_FindOwnHqTile(s16 *tile);
 BOOL func_020a9f9c(s16 *tile);
@@ -47,7 +47,7 @@ BOOL AiUnit_PickOrderSite(s16 *site)
         }
         break;
     case 4:
-        if (!func_020aa4dc(site)) {
+        if (!AiTransport_PickFootUnit(site)) {
             return FALSE;
         }
         break;

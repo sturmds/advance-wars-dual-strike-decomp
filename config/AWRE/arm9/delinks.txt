@@ -5600,7 +5600,8 @@ src/game/main/ai/func_020aa4a4.c:
     complete
     .text       start:0x020aa4a4 end:0x020aa4dc
 
-src/game/main/ai/func_020aa4dc.c:
+src/game/main/ai/ai_transport_pick_foot_unit.c:
+    complete
     .text       start:0x020aa4dc end:0x020aa9c4
 
 src/game/main/ai/func_020aa9c4.c:
