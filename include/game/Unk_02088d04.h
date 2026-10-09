@@ -154,9 +154,12 @@ typedef struct Unk_027c0280 {
 typedef struct GfxLayer {
     u8 mode;                           /* GFX_LAYER_NO_COPY: map copies and clears skip this layer */
     u8 bg;
-    u8 pad_02[0x0c - 0x02];
+    u8 pad_02[0x04 - 0x02];
+    u32 charBase;                      /* byte offset into BG VRAM */
+    u32 screenBase;                    /* byte offset into BG VRAM */
     u16 *map;
-    u8 pad_10[0x14 - 0x10];
+    u8 screenSize;                     /* BGxCNT screen size */
+    u8 pad_11[0x14 - 0x11];
 } GfxLayer;
 
 /* GfxLayer.mode */
