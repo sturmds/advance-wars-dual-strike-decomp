@@ -811,6 +811,10 @@ src/game/main/menus/force_rank_screen_handle_keys.c:
     complete
     .text       start:0x0204030c end:0x02040568
 
+src/game/main/menus/force_rank_screen_close.c:
+    complete
+    .text       start:0x02040708 end:0x02040754
+
 src/game/main/menus/force_rank_screen_put_icons.c:
     complete
     .text       start:0x02041370 end:0x02041428
