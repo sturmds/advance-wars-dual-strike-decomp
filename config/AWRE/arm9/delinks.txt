@@ -162,6 +162,10 @@ src/game/main/ai/ai_action_queue_black_boats.c:
     complete
     .text       start:0x0208e050 end:0x0208e170
 
+src/game/main/ai/ai_action_queue_class3_units.c:
+    complete
+    .text       start:0x0208e170 end:0x0208e2a0
+
 src/game/main/ai/ai_action_queue_sea_transports.c:
     complete
     .text       start:0x0208e2a0 end:0x0208e3d4

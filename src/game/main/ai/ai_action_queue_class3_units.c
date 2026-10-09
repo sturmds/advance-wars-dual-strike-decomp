@@ -1,0 +1,38 @@
+#include "types.h"
+#include "game/ai_unit_action.h"
+#include "game/Unk_02080440.h"
+#include "game/map_unit.h"
+#include "game/unit_stats.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+/* UnitStats.unk_20 value that no unit type has in retail. */
+#define UNIT_AI_CLASS_3 3
+
+void func_0209fb40(void); /* run on each queued unit */
+
+/* Queues the current player's units that have not acted yet and whose
+ * UnitStats.unk_20 is 3. No unit type has that value, so in retail the
+ * queue stays empty. The scan skips the player's first unit slot and
+ * covers the next 50. */
+void AiAction_QueueClass3Units(void)
+{
+    int i;
+    MapUnit *unit;
+
+    gAiQueueCursor = gAiQueue;
+    for (i = data_ov000_022f5c2c[STATE->currentPlayer] + 1; i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
+        unit = &STATE->units[i];
+        if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
+            && Ov000_gUnitStats[unit->type].unk_20 == UNIT_AI_CLASS_3) {
+            *gAiQueueCursor++ = i;
+        }
+    }
+    *gAiQueueCursor = 0;
+    gAiQueueCursor = gAiQueue;
+    gAiQueueRoutine = func_0209fb40;
+    *gAiTurnState = AI_STATE_RUN_QUEUE;
+}
