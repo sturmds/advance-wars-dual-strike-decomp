@@ -2287,6 +2287,10 @@ src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
 
+src/game/main/func_021066dc.c:
+    complete
+    .text       start:0x021066dc end:0x021066ec
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
