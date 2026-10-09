@@ -23,6 +23,8 @@ The comments mix up army style and army colour. From the code (func_020c1444 and
 
 Found by sturmds and a planning session while looking at an AW2-style War Room mod (issue 0023). Decompiling func_020c1444, func_020fed58 and the readers of +0x19 would confirm the palette reading.
 
+2026-10-09: the comments listed above are fixed (renames pass before batch 10). The issue stays open until func_020c1444 is decompiled.
+
 ## Done when
 
 The comments above say style for sprite set and colour for palette, and func_020c1444 is decompiled.

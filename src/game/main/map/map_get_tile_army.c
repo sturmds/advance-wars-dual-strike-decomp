@@ -8,9 +8,9 @@ extern int data_027c0284;
 
 u8 Player_GetArmyStyle(int player);
 
-/* Returns the army style (1 Orange Star ... 5 Black Hole, 0 none) a map
- * tile is drawn in: the owner's, unless the current map sets one style for
- * every tile but HQs. */
+/* Returns the army style, the sprite set (1 Orange Star ... 5 Black Hole,
+ * 0 none), a map tile is drawn with: the owner's, unless the current map
+ * sets one style for every tile but HQs. */
 u8 Map_GetTileArmy(int tile)
 {
     u8 army = Ov000_gMapHeaders[data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId].tileArmy;

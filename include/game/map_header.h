@@ -70,10 +70,10 @@ typedef struct MapHeader {
     const PredeployedUnit *hardUnits;  /* read with units as a two-entry array, indexed by Campaign_IsHardMode */
     u8 co[5][2];                       /* front and back CO per slot, row 0 unused; 0x1c: player picks */
     u8 unk_5e[0x88 - 0x5e];
-    u8 army[5];                        /* army colour per slot */
+    u8 army[5];                        /* army colour (palette) per slot */
     u8 team[5];                        /* team per slot */
     MapSlotFlags slotFlags[5];
-    u8 tileArmy;                       /* nonzero: army style of every tile but HQs, see Map_GetTileArmy */
+    u8 tileArmy;                       /* nonzero: army style (sprite set) of every tile but HQs, see Map_GetTileArmy */
     u8 pad_9d[0xa0 - 0x9d];
 } MapHeader;
 

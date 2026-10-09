@@ -164,7 +164,7 @@ typedef struct CoRecord {
     u32 powerStars;                    /* CO Power cost in stars */
     u32 superStars;                    /* Super CO Power cost in stars */
     u8 unk_24;                         /* always 1 */
-    u8 armyStyle;                      /* 0-4: OS, BM, GE, YC, BH */
+    u8 armyStyle;                      /* sprite set of the CO's army, 0-4: OS, BM, GE, YC, BH (Player.armyStyle is this + 1) */
     u8 nation;                         /* 1-5 (5: NATION_BLACK_HOLE); picks power themes */
     u8 pad_27;
     TextRef winQuotes[3];
