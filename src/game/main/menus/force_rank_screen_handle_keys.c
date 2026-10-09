@@ -31,7 +31,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
             cursor = (cursor & ~7) | (data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1);
         }
         data_0229c738->row = CURSOR_ROW(cursor);
-        if (CURSOR_COLUMN(cursor) == FORCE_RANK_LAST_COLUMN) {
+        if (CURSOR_COLUMN(cursor) == FORCE_RANK_COLUMN_NONE) {
             data_0229c738->row = 5;
         }
     }
@@ -42,7 +42,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
             cursor &= ~7;
         }
         data_0229c738->row = CURSOR_ROW(cursor);
-        if (CURSOR_COLUMN(cursor) == FORCE_RANK_LAST_COLUMN) {
+        if (CURSOR_COLUMN(cursor) == FORCE_RANK_COLUMN_NONE) {
             data_0229c738->row = 5;
         }
     }
@@ -53,7 +53,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
             if (column > 1) {
                 column--;
             } else {
-                column = FORCE_RANK_LAST_COLUMN;
+                column = FORCE_RANK_COLUMN_NONE;
             }
         } while (data_0229c738->columns[column].count == 0);
         cursor = (column << 3) | data_0229c738->row;
@@ -64,7 +64,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
     if (keys & PAD_KEY_RIGHT) {
         column = CURSOR_COLUMN(cursor);
         do {
-            if (column < FORCE_RANK_LAST_COLUMN) {
+            if (column < FORCE_RANK_COLUMN_NONE) {
                 column++;
             } else {
                 column = 0;
