@@ -88,7 +88,7 @@ void AiUnit_PickDirectAttack(void)
     RangeMap_MarkAdjacentTiles(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (STATE->unk_d0[y][x] < 0) {
+            if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
             if (AI_TARGET_FLAGS->attackObjects) {
@@ -134,13 +134,13 @@ void AiUnit_PickDirectAttack(void)
             aiBehaviour = STATE->players[STATE->currentPlayer].aiBehaviour;
             if (aiBehaviour == AI_BEHAVIOUR_DEFENSE && rating < hp && STATE->actingUnit->type > 2) {
                 tile = TILE(pos[0], pos[1]);
-                if (STATE->mapTiles->unk_3250[tile] >= gAiActiveUnitProfile->unk_01
-                    || STATE->mapTiles->unk_3758[tile] >= gAiActiveUnitProfile->unk_02) {
+                if (STATE->mapTiles->threatMax[tile] >= gAiActiveUnitProfile->threatMaxLimit
+                    || STATE->mapTiles->threatSum[tile] >= gAiActiveUnitProfile->threatSumLimit) {
                     continue;
                 }
             }
             if (aiBehaviour == AI_BEHAVIOUR_GENERAL && func_0209dc54(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
-                if (STATE->mapTiles->unk_3758[TILE(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_02) {
+                if (STATE->mapTiles->threatSum[TILE(pos[0], pos[1])] >= gAiActiveUnitProfile->threatSumLimit) {
                     continue;
                 }
             }
@@ -170,8 +170,8 @@ void AiUnit_PickDirectAttack(void)
             }
             tileFlag = 0;
             tile = TILE(pos[0], pos[1]);
-            if (STATE->mapTiles->unk_3758[tile] >= gAiActiveUnitProfile->unk_02
-                || (STATE->mapTiles->unk_3250[tile] >= gAiActiveUnitProfile->unk_01 && target->cargo[0] == 0
+            if (STATE->mapTiles->threatSum[tile] >= gAiActiveUnitProfile->threatSumLimit
+                || (STATE->mapTiles->threatMax[tile] >= gAiActiveUnitProfile->threatMaxLimit && target->cargo[0] == 0
                     && UnitType_GetAttackKind(target->type) == 2)) {
                 if (!func_020a3b54(pos[0], pos[1], target)) {
                     tileFlag = AI_ATTACK_COST_VALUE;
@@ -217,7 +217,7 @@ void AiUnit_PickDirectAttack(void)
                         if (dist < 1 || dist > 1) {
                             continue;
                         }
-                        if (STATE->unk_d0[yy][xx] < 0) {
+                        if (STATE->rangeMap[yy][xx] < 0) {
                             continue;
                         }
                         neighbour = &STATE->units[STATE->mapTiles->unitAt[TILE(xx, yy)]];

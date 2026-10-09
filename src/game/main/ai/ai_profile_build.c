@@ -33,7 +33,7 @@ void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
         roll = 0;
     } else if (player->aiBehaviour == AI_BEHAVIOUR_ASSAULT) {
         roll = 100;
-    } else if (player->unk_25 == 2) {
+    } else if (player->tagPowerHalf == TAG_POWER_BACK) {
         roll = 100;
     }
 
@@ -64,8 +64,8 @@ void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
     for (type = UNIT_INFANTRY; type < UNIT_TYPE_COUNT; type++) {
         profile->units[type - 1].unk_00 = mods->units[type - 1][0];
         profile->units[type - 1].unk_05 = mods->units[type - 1][1];
-        profile->units[type - 1].unk_01 = AiProfile_Randomise(template->units[type - 1].base1, template->units[type - 1].spread1, roll);
-        profile->units[type - 1].unk_02 = AiProfile_Randomise(template->units[type - 1].base2, template->units[type - 1].spread2, roll);
+        profile->units[type - 1].threatMaxLimit = AiProfile_Randomise(template->units[type - 1].base1, template->units[type - 1].spread1, roll);
+        profile->units[type - 1].threatSumLimit = AiProfile_Randomise(template->units[type - 1].base2, template->units[type - 1].spread2, roll);
         profile->units[type - 1].unk_03 = template->units[type - 1].unk_04;
         profile->units[type - 1].unk_04 = template->units[type - 1].unk_05;
         for (i = 0; i < 7; i++) {

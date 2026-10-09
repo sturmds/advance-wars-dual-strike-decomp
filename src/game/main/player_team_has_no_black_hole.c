@@ -13,12 +13,12 @@ BOOL Player_TeamHasNoBlackHole(void)
 {
     int player;
 
-    if (STATE->players[STATE->currentPlayer].unk_19 == ARMY_BLACK_HOLE) {
+    if (STATE->players[STATE->currentPlayer].armyColour == ARMY_BLACK_HOLE) {
         return FALSE;
     }
     for (player = 1; player < 5; player++) {
         if (STATE->players[STATE->currentPlayer].team == STATE->players[player].team
-            && STATE->players[player].unk_19 == ARMY_BLACK_HOLE) {
+            && STATE->players[player].armyColour == ARMY_BLACK_HOLE) {
             return FALSE;
         }
     }

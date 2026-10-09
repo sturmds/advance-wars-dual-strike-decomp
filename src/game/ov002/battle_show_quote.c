@@ -37,10 +37,9 @@ void func_ov002_0235e58c(void *buf);
 
 /* Sets up the battle animation screen: the HP drain of each side, the
  * frame graphics picked by data_0229fb30.unk_03, each CO's happy or angry
- * quote, and the CO portraits with their army palettes. A side's unk_00
- * holds its HP before the fight and unk_01 its HP after. Scene unk_00 is
- * the attacking side: the defender's bar always drains, the attacker's
- * only when the defender survives and hits back. */
+ * quote, and the CO portraits with their army palettes. The defender's bar
+ * always drains, the attacker's only when the defender survives and hits
+ * back. */
 void Battle_ShowQuote(void)
 {
     int i;
@@ -53,16 +52,16 @@ void Battle_ShowQuote(void)
     u8 bg2;
 
     for (i = 0; i < 2; i++) {
-        gMenuState.battle.hpStart[i] = Ov002_gBattleScene->sides[i].unk_00;
+        gMenuState.battle.hpStart[i] = Ov002_gBattleScene->sides[i].hpBefore;
         gMenuState.battle.unk_1000[i] = 0;
         gMenuState.battle.hpShown[i] = gMenuState.battle.hpStart[i] << 16;
-        hpLost = Ov002_gBattleScene->sides[i].unk_00 - Ov002_gBattleScene->sides[i].unk_01;
+        hpLost = Ov002_gBattleScene->sides[i].hpBefore - Ov002_gBattleScene->sides[i].hpAfter;
         /* Needed to match: the frame count is written out twice, not kept
          * in a local. The drain takes 20 frames plus one per 5 HP lost. */
         gMenuState.battle.hpStep[i] = func_0212911c(hpLost << 16, hpLost / 5 + 20);
         gMenuState.battle.unk_1008[i] = 0;
-        if (i != Ov002_gBattleScene->unk_00
-            || (Ov002_gBattleScene->sides[(i + 1) & 1].unk_01 != 0
+        if (i != Ov002_gBattleScene->attackerSide
+            || (Ov002_gBattleScene->sides[(i + 1) & 1].hpAfter != 0
                 && Ov002_gBattleScene->sides[(i + 1) & 1].counters != 0)) {
             gMenuState.battle.hpFrames[i] = hpLost / 5 + 20;
         } else {

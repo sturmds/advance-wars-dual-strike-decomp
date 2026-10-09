@@ -54,6 +54,6 @@ void AiTurn_Start(void)
         gAiTurnState->flags &= ~8;
     }
     gAiTurnState->phase = 0;
-    gAiTurnState->unk_01 = 0;
+    gAiTurnState->actionStep = 0;
     gAiTurnState->state = AI_STATE_RUN_PHASE;
 }

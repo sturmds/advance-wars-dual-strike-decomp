@@ -50,7 +50,7 @@ void AiFoot_MoveAndAttack(void)
     }
     func_020ae37c();
     func_020ab014();
-    gAiTurnState->unk_08 |= 0x20;
+    gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     func_020ae37c();
     func_020a9854();
     func_020b2904();

@@ -30,7 +30,7 @@ int Unit_CapturePoints(MapUnit *unit); /* capture points the unit adds per turn 
 #define ATTACK_KIND_INDIRECT 1
 
 /* Infantry and mechs. Among the tiles in reach, notes the free missile silo
- * with the lowest unk_d0 value and picks the enemy unit with the best
+ * with the lowest rangeMap value and picks the enemy unit with the best
  * AiAttack_Score. Vehicles are targets only when indirect, or for a mech with
  * ammo. Infantry and mechs are targets when their capture ends next turn, or
  * when they have over 30 hp, are capturing or have over 60 hp, and the acting
@@ -73,13 +73,13 @@ void AiFoot_PickAttackTarget(void)
     RangeMap_MarkAdjacentTiles(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (STATE->unk_d0[y][x] < 0) {
+            if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
             tile = TILE(x, y);
             if (MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]) == TERRAIN_SILO && STATE->mapTiles->unitAt[tile] == 0) {
-                if (STATE->unk_d0[y][x] < siloRank) {
-                    siloRank = STATE->unk_d0[y][x];
+                if (STATE->rangeMap[y][x] < siloRank) {
+                    siloRank = STATE->rangeMap[y][x];
                     siloX = x;
                     siloY = y;
                 }
@@ -164,7 +164,7 @@ void AiFoot_PickAttackTarget(void)
                         if (dist < 1 || dist > 1) {
                             continue;
                         }
-                        if (STATE->unk_d0[yy][xx] < 0) {
+                        if (STATE->rangeMap[yy][xx] < 0) {
                             continue;
                         }
                         neighbour = &STATE->units[STATE->mapTiles->unitAt[TILE(xx, yy)]];

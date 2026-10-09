@@ -219,8 +219,8 @@ bonuses:
         }
     }
     damage += (damage * AiAttack_CountTeamUnitsInReach(defender)) >> 5;
-    if (STATE->mapTiles->unk_3250[TILE_INDEX(pos[0], pos[1])] <= 50
-        && STATE->mapTiles->unk_3758[TILE_INDEX(pos[0], pos[1])] == 0
+    if (STATE->mapTiles->threatMax[TILE_INDEX(pos[0], pos[1])] <= 50
+        && STATE->mapTiles->threatSum[TILE_INDEX(pos[0], pos[1])] == 0
         && !(attacker->flags & MAP_UNIT_DIVED)) {
         cost = Ov000_gUnitStats[defender->type].costDiv10;
         if (cost < 800) {

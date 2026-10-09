@@ -163,7 +163,7 @@ void BattleSetup_LoadFromGame(void)
         for (i = 0; i < 4; i++) {
             gMenuState.setup.cos[i][0] = func_020018a8(i + 1, 0);
             gMenuState.setup.cos[i][1] = func_020018a8(i + 1, 1);
-            gMenuState.setup.armyColours[i] = GAME->players[i + 1].unk_19;
+            gMenuState.setup.armyColours[i] = GAME->players[i + 1].armyColour;
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
                 gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_AI;
             } else {

@@ -45,7 +45,7 @@ void AiTurn_RunQueue(void)
         GAME->actingUnitStartY = GAME->actingUnit->y;
         gAiTurnState->flags &= ~1;
         gAiTurnState->flags &= ~2;
-        gAiTurnState->unk_08 = 0;
+        gAiTurnState->stepFlags = 0;
         gUnitAction.action = 0;
         gUnitAction.pending = 0;
         gUnitAction.target = 0;

@@ -17,12 +17,12 @@ void func_020b8568(void);
 void func_020b8544(void);
 
 /* Runs one step of showing the action in gUnitAction, picked by
- * gAiTurnState->unk_01. The last steps set the state back to
- * AI_STATE_RUN_QUEUE and unk_01 to 0. */
+ * gAiTurnState->actionStep. The last steps set the state back to
+ * AI_STATE_RUN_QUEUE and actionStep to 0. */
 void AiTurn_ShowAction(void)
 {
     data_0229eac4 = 0;
-    switch (gAiTurnState->unk_01) {
+    switch (gAiTurnState->actionStep) {
     case 0:
         func_020b91b0();
         break;

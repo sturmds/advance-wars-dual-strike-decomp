@@ -5,8 +5,8 @@
 
 /* One side of the battle animation in ov002. */
 typedef struct BattleSide {
-    u8 unk_00;
-    u8 unk_01;
+    u8 hpBefore;                       /* HP before the fight */
+    u8 hpAfter;
     u8 pad_02[4];
     u8 counters;                       /* nonzero: hits back; a guess from Battle_ShowQuote */
     u8 pad_07;
@@ -18,7 +18,7 @@ typedef struct BattleSide {
 
 /* The battle animation state that Ov002_gBattleScene points to. */
 typedef struct BattleScene {
-    u8 unk_00;
+    u8 attackerSide;                   /* index into sides */
     u8 pad_01[3];
     BattleSide sides[2];
 } BattleScene;

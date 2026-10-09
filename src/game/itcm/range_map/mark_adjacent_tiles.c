@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-#define TILE(x, y) (STATE->unk_d0[y][x])
+#define TILE(x, y) (STATE->rangeMap[y][x])
 
 /* Writes mark into each out-of-reach tile (negative) next to a reached tile
  * (0 or more). AiUnit_PickDirectAttack passes 111 after

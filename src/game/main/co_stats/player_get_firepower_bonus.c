@@ -11,10 +11,9 @@ extern int data_027c0284;
 
 #define PLAYER(i) (data_027c027c->unk_48[data_027c0284]->players[i])
 
-/* Player.unk_25: 1 front, 2 back CO half of a tag power */
 static inline BOOL Player_InTagPower(int playerIndex)
 {
-    return PLAYER(playerIndex).unk_25 == 1 || PLAYER(playerIndex).unk_25 == 2;
+    return PLAYER(playerIndex).tagPowerHalf == TAG_POWER_FRONT || PLAYER(playerIndex).tagPowerHalf == TAG_POWER_BACK;
 }
 
 static inline BOOL Player_TagPowerOn(int playerIndex)

@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/battle_scene.h"
+#include "game/player.h"
 #include "game/co_data.h"
 
 s32 Rng_Range(s32 min, s32 max);
@@ -19,7 +20,7 @@ enum {
  * to conditional loads. */
 u32 Battle_PickAngryQuote(int side)
 {
-    switch (Ov002_gBattleScene->sides[side].coId & 0x7f) {
+    switch (Ov002_gBattleScene->sides[side].coId & PLAYER_CO_ID_MASK) {
     case CO_NONE:
     case CO_OLAF:
     case CO_SAMI:

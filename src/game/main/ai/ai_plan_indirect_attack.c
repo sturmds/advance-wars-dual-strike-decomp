@@ -156,10 +156,10 @@ attack_tile:
                 continue;
             }
             if (STATE->players[STATE->currentPlayer].aiBehaviour == AI_BEHAVIOUR_DEFENSE && damage < hp) {
-                if (MAP->unk_3250[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_01) {
+                if (MAP->threatMax[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->threatMaxLimit) {
                     continue;
                 }
-                if (MAP->unk_3758[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_02) {
+                if (MAP->threatSum[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->threatSumLimit) {
                     continue;
                 }
             }

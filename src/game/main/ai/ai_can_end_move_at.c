@@ -188,9 +188,7 @@ BOOL Ai_CanEndMoveAt(int x, int y)
         return TRUE;
     }
     if (data_021619e8[STATE->actingUnit->type] == data_02161a44[MAP_TILE_TERRAIN(TILE(x, y))]
-        /* bit 1 of gAiTurnState->flags (high bit of AiTargetFlags.unk_0);
-         * read with shifts to match */
-        && (((u32)gAiTurnState->flags << 30) >> 31)) {
+        && AI_TARGET_FLAGS->unk_1) {
         return TRUE;
     }
     /* Keep the player's own port free while it can afford a Battleship.

@@ -6,8 +6,8 @@
 /* How the AI rates one unit type, inside AiProfile. Field meanings unknown. */
 typedef struct AiUnitProfile {
     u8 unk_00;                         /* from AiProfileMods.units */
-    u8 unk_01;                         /* AiProfileTemplate value, randomised; AI unit code compares MapTiles.unk_3250 with it */
-    u8 unk_02;                         /* AiProfileTemplate value, randomised; compared with MapTiles.unk_3758 */
+    u8 threatMaxLimit;                 /* AiProfileTemplate value, randomised; a tile counts as dangerous when its MapTiles.threatMax reaches it */
+    u8 threatSumLimit;                 /* same for MapTiles.threatSum */
     u8 unk_03;
     u8 unk_04;
     u8 unk_05;                         /* from AiProfileMods.units */

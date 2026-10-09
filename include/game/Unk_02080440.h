@@ -16,9 +16,9 @@ typedef struct MapTiles {
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
     s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
     u8 pad_2338[0x2d48 - 0x2338];
-    s8 unk_2d48[0x508];                /* per tile; AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->unk_08 bit 0 is set */
-    u8 unk_3250[0x508];                /* per tile; AiAttack_Score compares it with 50 */
-    u8 unk_3758[0x508];                /* per tile */
+    s8 unk_2d48[0x508];                /* per tile; AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->stepFlags has AI_STEP_UNIT_AT_TARGET */
+    u8 threatMax[0x508];               /* per tile: highest threat of one enemy unit that can move next to it (func_0209cacc) */
+    u8 threatSum[0x508];               /* per tile: threat of enemy units in range, added up and capped at 255 */
     u8 pad_3c60[0x4168 - 0x3c60];
     u16 rowStart[1];                   /* length unknown; index into tiles of each row's first tile */
 } MapTiles;
@@ -108,7 +108,7 @@ typedef struct Unk_02080440_48 {
     u8 pad_a6[0xba - 0xa6];
     u8 coSelectPhase;                  /* 1 on maps where a player picks a CO; turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
     u8 pad_bb[0xd0 - 0xbb];
-    s8 *unk_d0[40];                    /* one s8 per tile, by row; filled for a unit by RangeMap_FillUnitMoves and RangeMap_MarkAdjacentTiles; the AI skips negative tiles */
+    s8 *rangeMap[40];                  /* one s8 per tile, by row; filled for a unit by RangeMap_FillUnitMoves and RangeMap_MarkAdjacentTiles; the AI skips negative tiles */
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
     u8 pad_17c[0x1c4 - 0x17c];
     Unk_02080440_1c4 *unk_1c4;

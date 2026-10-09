@@ -16,13 +16,13 @@ void PlayCoPowerTheme(int player);
 void PlaySuperPowerTheme(int player);
 void PlayTagPowerTheme(int player);
 
-/* TRUE when the player has a back CO and a tag power is on (unk_25 1 or 2). */
+/* TRUE when the player has a back CO and a tag power is on. */
 static inline BOOL Player_IsTagPowerOn(Player *player)
 {
     BOOL tag = FALSE;
     if (player->back.id != 0) {
         BOOL half = TRUE;
-        if (player->unk_25 != 1 && player->unk_25 != 2) {
+        if (player->tagPowerHalf != TAG_POWER_FRONT && player->tagPowerHalf != TAG_POWER_BACK) {
             half = FALSE;
         }
         if (half) {

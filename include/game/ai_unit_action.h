@@ -25,15 +25,24 @@ typedef struct AiTargetFlags {
 
 typedef struct AiTurnState {
     u8 state;                          /* AI_STATE_* */
-    u8 unk_01;
-    u8 phase;                          /* index into the unit phase tables */
+    u8 actionStep;                     /* step of AiTurn_ShowAction */
+    u8 phase;                         /* index into the unit phase tables */
     u8 roll;                           /* 0-99, rolled for each queued unit */
     u8 pad_04;
     u8 unk_05;
     u8 pad_06;
     u8 flags;                          /* bits 0-1: cleared for each queued unit; 2, 3: see AiTurn_Start and AiTargetFlags */
-    u8 unk_08;
+    u8 stepFlags;                      /* AI_STEP_*; cleared for each queued unit */
 } AiTurnState;
+
+/* AiTurnState.stepFlags bits. Names of bits without a decompiled setter
+ * or reader describe what the known side does. */
+#define AI_STEP_UNIT_AT_TARGET  0x01   /* AiUnit_HandleUnitAtTarget found an own unit on the target */
+#define AI_STEP_STAY            0x02   /* with AI_STEP_UNIT_AT_TARGET, AiUnit_MoveToSafestTile does nothing */
+#define AI_STEP_IGNORE_TERRAIN  0x10   /* AiUnit_MoveToSafestTile ignores terrain stars */
+#define AI_STEP_ATTACK_DONE     0x20   /* guess: set after the attack steps of a queue routine */
+#define AI_STEP_SWAP_CARGO      0x40   /* AiUnit_AdjustAction swaps the two cargo slots once */
+#define AI_STEP_NO_ADJUST       0x80   /* AiUnit_AdjustAction leaves the action alone */
 
 /* The unit action steps (pointer tables at 0x02161a68 and 0x02161ae8)
  * fill a queue of unit indices, ended by 0, and pick a routine to run

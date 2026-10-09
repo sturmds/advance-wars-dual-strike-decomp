@@ -8,7 +8,7 @@ extern int data_027c0284;
 MapHeader *MapHeader_Get(int mapId);
 
 /* TRUE in game mode 2, otherwise TRUE unless the current map header has bit
- * 0 of byte 0x42 set (campaign maps 0xe0-0x100 and four others do).
+ * 0 of MapHeader.unk_42 set (campaign maps 0xe0-0x100 and four others do).
  * AiTurn_Start copies the result into bit 2 of gAiTurnState->flags. */
 BOOL func_0209dec0(void)
 {
@@ -17,6 +17,5 @@ BOOL func_0209dec0(void)
     if (state->gameMode == 2) {
         return TRUE;
     }
-    /* Byte 2 of MapHeader.unk_40: the original loads that byte alone. */
-    return (((u8 *)&MapHeader_Get(state->unk_1c4->mapId)->unk_40)[2] & 1) == 0;
+    return (MapHeader_Get(state->unk_1c4->mapId)->unk_42 & 1) == 0;
 }

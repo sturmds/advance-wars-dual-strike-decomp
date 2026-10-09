@@ -57,7 +57,10 @@ typedef struct MapHeader {
     u16 unk_30[2];                     /* indexed by Campaign_IsHardMode */
     u16 unk_34[2];                     /* indexed by Campaign_IsHardMode */
     u8 unk_38[0x08];
-    u32 unk_40;
+    u8 unk_40;
+    u8 unk_41;
+    u8 unk_42;                         /* bit 0: see func_0209dec0 */
+    u8 unk_43;
     /* Map_LoadData reads mapData and hardMapData as a two-entry array
      * indexed by Campaign_IsHardMode. They stay separate fields: declared as
      * mapData[2], Map_LoadData no longer matches. */

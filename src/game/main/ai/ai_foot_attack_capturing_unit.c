@@ -40,7 +40,7 @@ void AiFoot_AttackCapturingUnit(void)
     RangeMap_MarkAdjacentTiles(111);
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (STATE->unk_d0[y][x] < 0) {
+            if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
             tile = STATE->mapTiles->tiles[TILE(x, y)];

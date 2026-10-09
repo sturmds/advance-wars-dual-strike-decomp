@@ -22,9 +22,9 @@ void Ai_ClearActingUnitTarget(void);
 #define AI_ACTION_LAUNCH_SILO 22 /* arg3, arg4: target x, y */
 
 /* Infantry and mechs: picks a free property tile in reach to capture, scored by
- * its unk_d0 value plus a bonus per terrain, or a missile silo to launch. A unit
+ * its rangeMap value plus a bonus per terrain, or a missile silo to launch. A unit
  * that would need 5 or more turns to capture only looks at silos. Ties go to
- * the tile with the lower unk_3250 + unk_3758 (enemy threat, a guess), then to
+ * the tile with the lower threatMax + threatSum, then to
  * the roll. */
 void AiFoot_PickCaptureTarget(void)
 {
@@ -58,7 +58,7 @@ void AiFoot_PickCaptureTarget(void)
     siloOnly = func_0209f560(STATE->actingUnit) >= 5;
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (STATE->unk_d0[y][x] < 0) {
+            if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
             if (STATE->mapTiles->unitAt[TILE(x, y)] != 0) {
@@ -74,7 +74,7 @@ void AiFoot_PickCaptureTarget(void)
             if (x == STATE->actingUnit->aiTargetX && y == STATE->actingUnit->aiTargetY) {
                 score = 4; /* the tile the unit was already heading for */
             } else {
-                score = STATE->unk_d0[y][x];
+                score = STATE->rangeMap[y][x];
             }
             switch (terrain) {
             case TERRAIN_HQ:
@@ -98,7 +98,7 @@ void AiFoot_PickCaptureTarget(void)
                 if (bestScore > score) {
                     continue;
                 }
-                threat = STATE->mapTiles->unk_3250[TILE(x, y)] + STATE->mapTiles->unk_3758[TILE(x, y)];
+                threat = STATE->mapTiles->threatMax[TILE(x, y)] + STATE->mapTiles->threatSum[TILE(x, y)];
                 if (bestScore == score) {
                     if (bestThreat < threat) {
                         continue;

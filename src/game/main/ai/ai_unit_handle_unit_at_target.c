@@ -42,7 +42,7 @@ void AiUnit_HandleUnitAtTarget(int x, int y)
     if (other->aiOrder == 7) {
         return;
     }
-    gAiTurnState->unk_08 |= 1;
+    gAiTurnState->stepFlags |= AI_STEP_UNIT_AT_TARGET;
     if (other->captureProgress != 0 || acting->hp < other->hp) {
         Ai_SwitchActingUnit(actingIndex, slot);
         gAiQueueCursor--;

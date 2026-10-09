@@ -13,7 +13,5 @@ BOOL Player_IsInGame(u8 player)
     if (PLAYERS[player].controller == PLAYER_CONTROLLER_NONE) {
         return FALSE;
     }
-    /* The original reads Player.unk_16 as a u16 (unk_16 and the pad byte
-     * after it). */
-    return *(u16 *)&PLAYERS[player].unk_16 == 0;
+    return PLAYERS[player].defeated == 0;
 }

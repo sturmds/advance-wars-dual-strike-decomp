@@ -22,8 +22,12 @@ typedef struct PlayerCo {
 #define PLAYER_CONTROLLER_HUMAN 1
 #define PLAYER_CONTROLLER_AI    2
 
-/* Army colour (Player.unk_19, MapHeader.army): 1 Orange Star ... 5 Black Hole. */
+/* Army colour (Player.armyColour, MapHeader.army): 1 Orange Star ... 5 Black Hole. */
 #define ARMY_BLACK_HOLE 5
+
+/* Player.tagPowerHalf: which CO's half of a tag power runs (doc 890). */
+#define TAG_POWER_FRONT 1
+#define TAG_POWER_BACK  2
 
 /* Player.aiBehaviour. Names from doc 890. */
 #define AI_BEHAVIOUR_STRIKE  0
@@ -43,15 +47,15 @@ typedef struct Player {
     u8 unk_10[4];                      /* bases, cities, airports, ports owned */
     u8 comTowers;                      /* Com Towers owned */
     u8 unk_15;                         /* total properties */
-    u8 unk_16;                         /* defeated */
-    u8 pad_17[2];
-    u8 unk_19;                         /* army colour */
+    u16 defeated;                      /* nonzero once the player is out (Player_IsInGame) */
+    u8 pad_18;
+    u8 armyColour;                     /* 1 Orange Star ... 5 Black Hole */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 unk_1b;
     u16 unk_1c;                        /* kills this turn */
     u16 unk_1e;                        /* most kills in one turn */
     u8 unk_20[5];
-    u8 unk_25;                         /* tag power active: 1 front, 2 back */
+    u8 tagPowerHalf;                   /* TAG_POWER_FRONT or TAG_POWER_BACK while a tag power is on */
     s16 firepowerBonus;                /* set to 10 while a power is on */
     s16 defenseBonus;                  /* set to 10 while a power is on */
     s8 terrainDefense;                 /* added to terrain defense; enemy Sonja-style star cuts make it negative */

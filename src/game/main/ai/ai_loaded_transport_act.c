@@ -16,7 +16,7 @@ void AiLoadedTransport_Act(void)
     Ai_BuildThreatMaps();
     func_020aba28();
     func_020ab014();
-    gAiTurnState->unk_08 |= 0x20;
+    gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     func_020abe3c();
     func_020aba28();
     func_020a9854();
