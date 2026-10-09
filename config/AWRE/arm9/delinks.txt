@@ -847,6 +847,10 @@ src/game/main/menus/co_select_screen_handle_r.c:
     complete
     .text       start:0x020418e0 end:0x02041944
 
+src/game/main/menus/co_select_screen_handle_x.c:
+    complete
+    .text       start:0x02041944 end:0x020419c8
+
 src/game/main/menus/co_select_screen_handle_keys.c:
     complete
     .text       start:0x020429f0 end:0x02042b3c
@@ -854,6 +858,10 @@ src/game/main/menus/co_select_screen_handle_keys.c:
 src/game/main/menus/co_select_screen_start_task.c:
     complete
     .text       start:0x02042b94 end:0x02042bc0
+
+src/game/main/skills/skills_are_disabled.c:
+    complete
+    .text       start:0x02045680 end:0x0204572c
 
 src/game/main/func_020457d8.c:
     complete

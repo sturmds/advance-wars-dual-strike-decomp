@@ -2,7 +2,7 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-BOOL func_02045680(void);
+BOOL Skills_AreDisabled(void);
 void VsSetup_NextForceRankSet(int a);
 void VsSetup_PrevForceRankSet(int a);
 void func_02068e6c(MenuButton *button);
@@ -52,7 +52,7 @@ void VsSetup_HandleKeys(MenuButton *button)
     if (gKeypad->pressed & PAD_BUTTON_R) {
         VsSetup_NextForceRankSet(0);
     }
-    if ((gKeypad->pressed & PAD_BUTTON_X) && !func_02045680()) {
+    if ((gKeypad->pressed & PAD_BUTTON_X) && !Skills_AreDisabled()) {
         func_02069378(0);
         return;
     }
