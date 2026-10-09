@@ -5,7 +5,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_01ff8d60(int bg);
+void Gfx_RequestLayerCopy(int bg);
 void func_01ff9b48(void);
 void func_0200215c(int co, void *dest, int palette);
 void func_02002b00(int a);
@@ -179,7 +179,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
         data_027c0280->layer1Map[i] += 0x2200;
     }
     Mem_Copy32(data_027c0280->layer1Map, data_027c0280->layer1Map + 0x400, 0x800);
-    func_01ff8d60(1);
+    Gfx_RequestLayerCopy(1);
     Palette_Load(res + 0x3b08, 0x60, 0x140);
     Data_Unpack(res + 0xed8, data_027c0280->objVram);
     Palette_Load(res + 0x1884, 0x200, 0x40);
@@ -200,7 +200,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer2Map[i] += 0x1000;
     }
-    func_01ff8d60(2);
+    Gfx_RequestLayerCopy(2);
     Data_Unpack(res + 0x1734, data_027c0280->objVram);
     Palette_Load(res + 0x1884, 0x200, 0x20);
     for (i = 0, objTile = 38; i < 3; i++, objTile += 8) {
@@ -241,7 +241,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer2Map[i] += 0x3000;
     }
-    func_01ff8d60(2);
+    Gfx_RequestLayerCopy(2);
     Screen_SetCurrentGfx(saved0280);
     Mem_Free(res);
 
@@ -253,7 +253,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer3Map[i + 0x400] += 0x3000;
     }
-    func_01ff8d60(3);
+    Gfx_RequestLayerCopy(3);
     Screen_SetCurrentGfx(saved0280);
     Mem_Free(res);
 

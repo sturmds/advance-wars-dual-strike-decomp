@@ -6,7 +6,7 @@
 #include "game/map_header.h"
 #include "game/design_map.h"
 
-void func_01ff8d60(int a);
+void Gfx_RequestLayerCopy(int a);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Data_Unpack(const void *src, void *dst);
@@ -134,7 +134,7 @@ void LinkPhase_InitScreen(void)
         target = data_027c0280->layer2Map;
         Bg_PutTileBlock(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[gMenuState.link.armyColours[i] - 1], 0);
     }
-    func_01ff8d60(2);
+    Gfx_RequestLayerCopy(2);
     SWITCH_BACK();
     Mem_Free(file);
 
@@ -163,8 +163,8 @@ void LinkPhase_InitScreen(void)
     Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
     func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
     func_0202c520(18);
-    func_01ff8d60(0);
-    func_01ff8d60(1);
+    Gfx_RequestLayerCopy(0);
+    Gfx_RequestLayerCopy(1);
     SWITCH_BACK();
 
     if (GAME->twoMaps == 1) {
@@ -181,8 +181,8 @@ void LinkPhase_InitScreen(void)
         Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
         func_0202bdec(data_027c0280->objVram + 0x780, mapId);
         func_0202c520(19);
-        func_01ff8d60(0);
-        func_01ff8d60(1);
+        Gfx_RequestLayerCopy(0);
+        Gfx_RequestLayerCopy(1);
         SWITCH_BACK();
     }
 

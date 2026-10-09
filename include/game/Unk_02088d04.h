@@ -19,7 +19,9 @@ typedef struct SpriteEntry {
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *unk_08;
-    u8 pad_0c[0x18 - 0x0c];
+    u8 pad_0c[0x10 - 0x0c];
+    u32 layerCopyMask;                 /* bit per layer: copy its tile map to VRAM (func_01ff8e58) */
+    u8 pad_14[0x18 - 0x14];
     void *textPrinter;                 /* text, position and target map of the text being printed */
     struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
     u8 pad_20[0x24 - 0x20];
@@ -45,7 +47,8 @@ typedef struct Unk_027c0280 {
     u16 bgScrollY[4];
     u8 pad_d2[0xdd - 0xd2];
     u8 unk_dd;
-    u8 pad_de[0xe1 - 0xde];
+    u8 pad_de[0xe0 - 0xde];
+    u8 layer0Mode;                     /* GfxLayer.mode of layer 0 */
     /* Four layers of 0x14 bytes from 0xe0: +1 the BG they use, +0xc
      * their tile map buffer. */
     u8 layer0Bg;
@@ -73,6 +76,21 @@ typedef struct Unk_027c0280 {
 } Unk_027c0280;
 
 /* data_027c0288 (DTCM). */
+/* One of the four layers at Unk_027c0280.layer0Mode, 0x14 bytes. */
+typedef struct GfxLayer {
+    u8 mode;                           /* GFX_LAYER_NO_COPY: map copies and clears skip this layer */
+    u8 bg;
+    u8 pad_02[0x0c - 0x02];
+    u16 *map;
+    u8 pad_10[0x14 - 0x10];
+} GfxLayer;
+
+/* GfxLayer.mode */
+#define GFX_LAYER_NO_COPY 2
+
+/* Layer i (0-3) of an Unk_027c0280. */
+#define GFX_LAYER(gfx, i) (&((GfxLayer *)&(gfx)->layer0Mode)[i])
+
 typedef struct Unk_027c0288 {
     void *unk_00;
     void *unk_04;                      /* loaded into data_027c027c and data_027c0280 */

@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_01ff8d60(int a);
+void Gfx_RequestLayerCopy(int a);
 
 void func_020fa6c8(void)
 {
-    func_01ff8d60(2);
+    Gfx_RequestLayerCopy(2);
 }
