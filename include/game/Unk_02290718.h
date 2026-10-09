@@ -24,7 +24,7 @@ typedef struct Unk_02290718 {
     u8 pad_384[0x3a0 - 0x384];
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */
     u32 superPowersActivated;          /* same for super powers (UnitAction_ActivateSuperPower) */
-    u32 tagPowersActivated;            /* same for tag powers (func_020dd404) */
+    u32 tagPowersActivated;            /* same for tag powers (UnitAction_ActivateTagPower) */
     u8 pad_3ac[0x3b4 - 0x3ac];
     u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
     u32 capturesCompleted;             /* captures finished by human players, capped at 999999 */

@@ -6992,7 +6992,8 @@ src/game/main/copowers/activate_current_super_power.c:
     complete
     .text       start:0x020dd3c0 end:0x020dd404
 
-src/game/main/func_020dd404.c:
+src/game/main/unit_action_activate_tag_power.c:
+    complete
     .text       start:0x020dd404 end:0x020dd4c4
 
 src/game/main/unit_action_activate_super_power.c:
