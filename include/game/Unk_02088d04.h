@@ -72,7 +72,7 @@ typedef struct Unk_027c0280 {
     struct FontState *fontState;
     void *textPrinter;                 /* text, position and target map of the text being printed */
     struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
-    u8 pad_20[0x24 - 0x20];
+    SpriteEntry *spritePool;           /* spriteFree starts here (Sprites_ResetLists) */
     SpriteEntry *spriteLists;
     SpriteEntry *spriteFree;           /* next unused entry */
     u8 pad_2c[0x6a - 0x2c];

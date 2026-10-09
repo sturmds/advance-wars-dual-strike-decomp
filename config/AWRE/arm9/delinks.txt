@@ -1691,6 +1691,10 @@ src/game/main/graphics/sprite_queue_at.c:
     complete
     .text       start:0x020218e4 end:0x02021980
 
+src/game/main/graphics/sprites_reset_lists.c:
+    complete
+    .text       start:0x02021980 end:0x020219e4
+
 src/game/main/func_02021b20.c:
     complete
     .text       start:0x02021b20 end:0x02021b34
