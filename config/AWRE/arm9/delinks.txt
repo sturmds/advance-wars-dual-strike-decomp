@@ -2215,6 +2215,10 @@ src/game/main/func_021023c4.c:
     complete
     .text       start:0x021023c4 end:0x021023d4
 
+src/game/main/func_02102c34.c:
+    complete
+    .text       start:0x02102c34 end:0x02102c4c
+
 src/game/main/map/campaign_is_hard_mode.c:
     complete
     .text       start:0x021039e4 end:0x02103a20
