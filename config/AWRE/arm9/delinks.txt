@@ -92,6 +92,10 @@ src/game/main/graphics/co_load_mood_picture.c:
     complete
     .text       start:0x020021a8 end:0x02002244
 
+src/game/main/func_02002244.c:
+    complete
+    .text       start:0x02002244 end:0x0200229c
+
 src/game/main/func_020023b0.c:
     complete
     .text       start:0x020023b0 end:0x0200244c
@@ -3086,6 +3090,10 @@ src/game/main/func_020495b0.c:
 src/game/main/task/task_create_child_sharing_data.c:
     complete
     .text       start:0x020495c4 end:0x020495f4
+
+src/game/main/func_02049ddc.c:
+    complete
+    .text       start:0x02049ddc end:0x02049f68
 
 src/game/main/func_0204b3cc.c:
     complete
