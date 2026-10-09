@@ -11,7 +11,7 @@ extern u32 gRngState;
 extern u8 data_0229ea0c[];
 extern u32 data_0229eaec;
 
-void func_020a2f98(int x, int y, u8 *action, u8 *target, u8 *arg);
+void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 void func_020a3ab4(int action);
 void func_021296a8(void *p, int n);
 void func_01ffa44c(MapUnit *unit);
@@ -22,14 +22,14 @@ int func_020c8330(MapUnit *unit, int n);
 void func_0208fda8(void);
 
 /* Makes the active unit move to (x, y) and do action there, and records
- * the action in gUnitAction so the turn can show it. func_020a2f98
+ * the action in gUnitAction so the turn can show it. AiUnit_AdjustAction
  * may change action, target and arg first. */
 void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
 {
     MapUnit *unit;
     int fuelUsed;
 
-    func_020a2f98(x, y, &action, &target, &arg);
+    AiUnit_AdjustAction(x, y, &action, &target, &arg);
     func_020a3ab4(action);
     unit = GAME->actingUnit;
     if (x == unit->x && y == unit->y && action == 2) {
