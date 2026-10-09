@@ -10,7 +10,7 @@ extern int data_027c0284;
 void ActivatePower(int player, int power);
 void func_020c4018(void);
 
-void func_020dd4c4(void)
+void UnitAction_ActivateSuperPower(void)
 {
     if (data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
         if (data_02290718.superPowersActivated < 999999) {

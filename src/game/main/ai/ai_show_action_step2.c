@@ -31,7 +31,7 @@ void func_020b8cb0(void);
 void func_020c8888(void);
 void func_020ca398(void);
 void func_020dd404(void);
-void func_020dd4c4(void);
+void UnitAction_ActivateSuperPower(void);
 void func_020dd550(void);
 void func_020dd6bc(void);
 void func_020dd818(void);
@@ -89,7 +89,7 @@ void AiShowAction_Step2(void)
         func_020dd550();
         break;
     case 17:
-        func_020dd4c4();
+        UnitAction_ActivateSuperPower();
         break;
     case 18:
         func_020dd404();
