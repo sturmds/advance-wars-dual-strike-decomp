@@ -9,7 +9,7 @@ extern int data_027c0284;
 void Ai_ClearThreatMaps(void);
 void func_020a9f64(void);
 void AiUnit_SeekSeaTransport(void);
-void func_020af540(void);
+void AiUnit_SeekSupply(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
 void func_020b297c(void);
@@ -19,7 +19,7 @@ void func_020b297c(void);
 void AiIndirect_MoveOrder10(void)
 {
     Ai_ClearThreatMaps();
-    func_020af540();
+    AiUnit_SeekSupply();
     /* rain also brings fog */
     if (GAME->unk_1c4->fog != 0 || GAME->unk_1c4->weather == WEATHER_RAIN) {
         AiUnit_PlanAttack();

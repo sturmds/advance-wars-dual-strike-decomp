@@ -1829,13 +1829,16 @@ src/game/main/ai/ai_class3_supply_unit.c:
     complete
     .text       start:0x020af374 end:0x020af540
 
-src/game/main/ai/func_020af540.c:
+src/game/main/ai/ai_unit_seek_supply.c:
     complete
     .text       start:0x020af540 end:0x020af5f8
 
 src/game/main/ai/func_020af5f8.c:
     complete
     .text       start:0x020af5f8 end:0x020af700
+
+src/game/main/ai/ai_unit_go_to_supply.c:
+    .text       start:0x020af700 end:0x020afb58
 
 src/game/main/ai/ai_unit_head_for_repair_tile.c:
     complete

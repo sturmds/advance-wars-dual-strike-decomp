@@ -17,7 +17,7 @@ int func_020a5048(int fromX, int fromY, int toX, int toY); /* direction code fro
 
 #define AI_ACTION_REPAIR 24 /* arg3: direction to the repaired unit; name is a guess */
 
-/* MapUnit.unk_0a_12 value that func_020af540 and func_020af5f8 act on;
+/* MapUnit.unk_0a_12 value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it repairs the unit. */
 #define WANTS_SUPPLY 1
 

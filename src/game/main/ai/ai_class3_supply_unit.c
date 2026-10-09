@@ -16,7 +16,7 @@ BOOL func_020df068(s16 x, s16 y);
 
 #define AI_ACTION_SUPPLY 6 /* name is a guess */
 
-/* MapUnit.unk_0a_12 value that func_020af540 and func_020af5f8 act on;
+/* MapUnit.unk_0a_12 value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it supplies the unit. */
 #define WANTS_SUPPLY 1
 

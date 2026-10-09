@@ -9,14 +9,14 @@ extern int data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
-void func_020af700(void);
+void AiUnit_GoToSupply(void);
 void AiUnit_HeadForRepairTile(void);
 void func_020aff0c(void);
 void AiUnit_LaunchSilo(void);
 void func_020b81ac(void);
 
 /* AI step shared by AiFoot_MoveAndAttack and many queue routines. When the
- * acting unit's unk_0a_12 is 1 or 2, runs func_020af700 or AiUnit_HeadForRepairTile;
+ * acting unit's unk_0a_12 is 1 or 2, runs AiUnit_GoToSupply or AiUnit_HeadForRepairTile;
  * infantry and mechs first get AiUnit_LaunchSilo. */
 void func_020af5f8(void)
 {
@@ -33,7 +33,7 @@ void func_020af5f8(void)
     func_020b81ac();
     switch (GAME->actingUnit->unk_0a_12) {
     case 1:
-        func_020af700();
+        AiUnit_GoToSupply();
         break;
     case 2:
         AiUnit_HeadForRepairTile();
