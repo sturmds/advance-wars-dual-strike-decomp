@@ -191,6 +191,10 @@ src/game/main/mem/mem_copy16.c:
     complete
     .text       start:0x02003ca0 end:0x02003cb0
 
+src/game/main/graphics/transfer_queue_clear.c:
+    complete
+    .text       start:0x02003cb0 end:0x02003d10
+
 src/game/main/func_02003f44.c:
     complete
     .text       start:0x02003f44 end:0x02003f6c

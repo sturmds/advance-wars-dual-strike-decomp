@@ -21,7 +21,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void func_01ff8e58(void);
 void func_01ff9c28(int a);
 void func_01ff9c48(int a);
-void func_02003cb0(void);
+void TransferQueue_Clear(void);
 void func_02004580(void);
 void func_02004628(void);
 void func_02017950(void);
@@ -35,7 +35,7 @@ void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
 #define MAIN_SCREEN (data_027c0288.unk_00)
 #define SUB_SCREEN  (data_027c0288.unk_04)
 #define RESET_SCREEN_STATE() \
-    func_02003cb0();         \
+    TransferQueue_Clear();         \
     func_02004580();         \
     func_02004628();         \
     func_02017950();         \
