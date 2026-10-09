@@ -3571,7 +3571,7 @@ func_020c6514 kind:function(arm,size=0x84) addr:0x020c6514
 func_020c6598 kind:function(arm,size=0x64) addr:0x020c6598
 func_020c65fc kind:function(arm,size=0x10c) addr:0x020c65fc
 DamageChart_GetColumn kind:function(arm,size=0x24) addr:0x020c6708
-func_020c672c kind:function(arm,size=0x48) addr:0x020c672c
+Player_GetPalette kind:function(arm,size=0x48) addr:0x020c672c
 func_020c6774 kind:function(arm,size=0x34) addr:0x020c6774
 func_020c67a8 kind:function(arm,size=0x8) addr:0x020c67a8
 func_020c67b0 kind:function(arm,size=0xc) addr:0x020c67b0
@@ -6147,7 +6147,7 @@ data_02140201 kind:data(any) addr:0x02140201
 data_0214020c kind:data(any) addr:0x0214020c
 data_02140212 kind:data(any) addr:0x02140212
 data_02140518 kind:data(any) addr:0x02140518
-data_021405b8 kind:data(any) addr:0x021405b8
+gArmyPalettes kind:data(any) addr:0x021405b8
 data_021406f8 kind:data(any) addr:0x021406f8
 data_021439f8 kind:data(any) addr:0x021439f8
 data_02143db8 kind:data(any) addr:0x02143db8

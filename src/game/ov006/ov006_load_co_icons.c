@@ -8,7 +8,7 @@ extern Unk_027c0288 data_027c0288;
 
 extern s8 data_ov006_0236a7b4[];
 extern s8 data_ov006_0236a7d0[];
-extern u8 data_021405b8[][32];
+extern u8 gArmyPalettes[][32];
 
 int GameFlag_IsSet(int flag);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -46,5 +46,5 @@ void Ov006_LoadCoIcons(int player)
         dst += 128;
         table++;
     }
-    Palette_Load(data_021405b8[data_027c027c->unk_48[data_027c0284]->players[player].armyColour - 1], 0x2c0, 32);
+    Palette_Load(gArmyPalettes[data_027c027c->unk_48[data_027c0284]->players[player].armyColour - 1], 0x2c0, 32);
 }

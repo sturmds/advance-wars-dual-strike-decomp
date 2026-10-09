@@ -5,7 +5,7 @@
 #include "game/screen_other_map.h"
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
-extern u8 data_021405b8[][32];
+extern u8 gArmyPalettes[][32];
 
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_02003a60(const void *src, void *dst, u32 size);
@@ -43,7 +43,7 @@ void Ov006_LoadCoPreview(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    Palette_Load(data_021405b8[palette - 1], 0x240, 32);
+    Palette_Load(gArmyPalettes[palette - 1], 0x240, 32);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }
