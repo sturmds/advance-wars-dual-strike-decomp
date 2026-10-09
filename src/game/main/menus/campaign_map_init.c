@@ -13,7 +13,7 @@ void Co_UnpackPicture(int co, int a);
 void Mem_Copy32(const void *src, void *dest, u32 size);
 void Palette_Load(const void *src, int offset, u32 size);
 void Data_Unpack(const void *src, void *dest);
-void func_0200970c(int a);
+void Screen_SetBgMode(int a);
 void func_0200a810(const void *config);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -90,7 +90,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_0200970c(0);
+    Screen_SetBgMode(0);
     func_0200a810(data_0215b548);
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
     data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 1;
@@ -136,7 +136,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_0200970c(0);
+    Screen_SetBgMode(0);
     func_0200a810(data_0215b598);
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
     data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 1;

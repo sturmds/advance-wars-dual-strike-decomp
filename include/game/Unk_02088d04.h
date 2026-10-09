@@ -33,6 +33,8 @@ typedef struct DispCntBits {
     u16 objWin : 1;
 } DispCntBits;
 
+#define GFX_BG_MODE(gfx) (((DispCntBits *)&(gfx)->dispCnt)->bgMode)
+
 #define GFX_DISPCNT(gfx) ((DispCntBits *)&(gfx)->dispCnt)
 
 /* Layers inside one window (WININ/WINOUT half). */
