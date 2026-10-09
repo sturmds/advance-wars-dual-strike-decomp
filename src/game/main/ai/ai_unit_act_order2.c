@@ -10,7 +10,7 @@ void func_020af5f8(void);
 void AiUnit_RetreatTowardSite(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
-void func_020b297c(void);
+void AiUnit_HeadForObjectTarget(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 2 when
  * func_0209dd7c is TRUE (otherwise the order 0 steps). The last one,
@@ -24,7 +24,7 @@ void AiUnit_ActOrder2(void)
     AiUnit_RetreatTowardSite();
     func_020aac28();
     AiUnit_SeekSeaTransport();
-    func_020b297c();
+    AiUnit_HeadForObjectTarget();
     AiUnit_MoveToEnemyProperty();
     func_020aacc0();
     AiUnit_MoveToOtherMap();

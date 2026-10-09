@@ -10,7 +10,7 @@ void func_020af5f8(void);
 void AiUnit_RetreatTowardSite(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
-void func_020b297c(void);
+void AiUnit_HeadForObjectTarget(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 5, and
  * for order 6 when Player_HasHq is FALSE for the current player. The
@@ -23,7 +23,7 @@ void AiUnit_ActOrder5(void)
     AiUnit_PlanAttack();
     AiUnit_RetreatTowardSite();
     func_020aa1ec();
-    func_020b297c();
+    AiUnit_HeadForObjectTarget();
     func_020aacc0();
     AiUnit_SeekSeaTransport();
     AiUnit_MoveToEnemyProperty();

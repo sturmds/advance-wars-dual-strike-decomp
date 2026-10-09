@@ -9,7 +9,7 @@ void AiUnit_SeekSeaTransport(void);
 void AiUnit_SeekSupply(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
-void func_020b297c(void);
+void AiUnit_HeadForObjectTarget(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 1. The
  * last one, AiUnit_WaitInPlace, makes the unit stay on its tile
@@ -21,7 +21,7 @@ void AiUnit_ActOrder1(void)
     AiUnit_PlanAttack();
     func_020aacc0();
     AiUnit_SeekSeaTransport();
-    func_020b297c();
+    AiUnit_HeadForObjectTarget();
     AiUnit_MoveToEnemyProperty();
     func_020aac28();
     AiUnit_MoveToOtherMap();

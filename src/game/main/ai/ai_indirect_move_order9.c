@@ -13,7 +13,7 @@ void func_020af5f8(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
 void AiUnit_RetreatTowardSite(void);
-void func_020b297c(void);
+void AiUnit_HeadForObjectTarget(void);
 
 /* AiIndirect_MoveByOrder step for an indirect unit with AI order 9.
  * AiUnit_PlanAttack only runs in Fog of War or rain. */
@@ -28,6 +28,6 @@ void AiIndirect_MoveOrder9(void)
     AiUnit_RetreatTowardSite();
     func_020a9e44();
     AiUnit_SeekSeaTransport();
-    func_020b297c();
+    AiUnit_HeadForObjectTarget();
     AiUnit_WaitInPlace();
 }

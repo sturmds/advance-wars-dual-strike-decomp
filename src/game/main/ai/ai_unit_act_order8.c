@@ -7,7 +7,7 @@ void func_020af5f8(void);
 void AiUnit_RetreatTowardSite(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
-void func_020b297c(void);
+void AiUnit_HeadForObjectTarget(void);
 
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 8. The
  * last one, AiUnit_WaitInPlace, makes the unit stay on its tile
@@ -20,6 +20,6 @@ void AiUnit_ActOrder8(void)
     AiUnit_RetreatTowardSite();
     func_020a9f64();
     AiUnit_SeekSeaTransport();
-    func_020b297c();
+    AiUnit_HeadForObjectTarget();
     AiUnit_WaitInPlace();
 }
