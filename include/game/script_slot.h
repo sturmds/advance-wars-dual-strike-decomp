@@ -21,9 +21,16 @@ typedef struct ScriptSlot {
     void (*onStop)(struct ScriptSlot *slot);   /* called when the slot is stopped */
     u16 wait;                          /* frames left before the next command */
     u16 unk_12;                        /* set to 4 when a script starts, before its first run */
-    u8 pad_14[0x26 - 0x14];
+    u8 pad_14[0x18 - 0x14];
+    u16 *textEntry;                    /* text printer: screen map entry the effect draws at */
+    u8 pad_1c[2];
+    u16 unk_1e;                        /* text printer effects: mode (0 or 1); 10 for the code 14 slot */
+    u8 pad_20[0x26 - 0x20];
     s16 unk_26;                        /* passed to func_0201751c when the script stops with bit 2 of unk_12 set */
-    u8 pad_28[0x60 - 0x28];
+    int unk_28;                        /* text printer: the cursor offset from func_02015ec8 */
+    void *unk_2c;                      /* text printer: TextPrinter.unk_40 */
+    u16 unk_30;                        /* text printer: TextPrinter.unk_30 */
+    u8 pad_32[0x60 - 0x32];
 } ScriptSlot;
 
 /* Runs one command of the slot; nonzero: run the next one this frame too. */

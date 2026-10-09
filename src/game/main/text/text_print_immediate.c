@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 u16 *TextPrinter_GetCursorEntry(TextPrinter *printer);
 s8 ScriptSlot_Find(const void *script);
 const void *Text_Get(u32 textId);
-int func_020157e4(TextPrinter *printer, u16 *entry);
+int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry);
 void TextPrinter_WriteRun(TextPrinter *printer, u16 *entry, int arg);
 
 /* Prints the string textId at tile (x, y) of map in one call. Takes a free
@@ -31,7 +31,7 @@ void Text_PrintImmediate(int x, int y, u16 *map, u32 textId, u16 unk_30, int arg
     printer->cursorY = y;
     while (1) {
         entry = TextPrinter_GetCursorEntry(printer);
-        switch (func_020157e4(printer, entry)) {
+        switch (TextPrinter_ReadControlCode(printer, entry)) {
         case 0:
             return;
         case 1:
