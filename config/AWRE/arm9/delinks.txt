@@ -9284,6 +9284,10 @@ src/game/main/sound/sound_stream_stop.c:
     complete
     .text       start:0x021089f4 end:0x02108a58
 
+src/game/main/sound/sound_stream_update_all.c:
+    complete
+    .text       start:0x02108e14 end:0x02108f2c
+
 src/game/main/func_02108f2c.c:
     complete
     .text       start:0x02108f2c end:0x02108f44
