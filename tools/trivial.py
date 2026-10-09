@@ -939,7 +939,7 @@ def main() -> int:
     with tempfile.TemporaryDirectory() as td:
         for e in rows:
             pat, text, info = fit(e, dis[(e["module"], e["addr"])], idx, Path(td), args.pattern)
-            if info == "skip pattern":
+            if info == "skip pattern" or args.pattern and isinstance(info, str) and info.startswith("bail"):
                 continue
             s = stats.setdefault(pat, {"candidates": 0, "matched": 0, "failed": 0})
             s["candidates"] += 1
