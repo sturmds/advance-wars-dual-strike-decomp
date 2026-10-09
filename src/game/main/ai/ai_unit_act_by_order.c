@@ -10,7 +10,7 @@ void AiUnit_ActOrder10(void);
 void AiUnit_ActOrder9(void);
 void AiUnit_ActOrder8(void);
 void AiUnit_ActOrder7(void);
-void func_020a0a0c(void);
+void AiUnit_ActOrder6(void);
 void func_020a0a44(void);
 void func_020a0a84(void);
 void func_020a0ac4(void);
@@ -50,7 +50,7 @@ void AiUnit_ActByOrder(void)
         break;
     case 6:
         if (func_020c0e3c(game->currentPlayer) == TRUE) {
-            func_020a0a0c();
+            AiUnit_ActOrder6();
         } else {
             func_020a0a44();
         }
