@@ -1607,6 +1607,10 @@ src/game/main/ai/ai_unit_pick_direct_attack.c:
     complete
     .text       start:0x020b1fbc end:0x020b2904
 
+src/game/main/ai/ai_unit_wait_in_place.c:
+    complete
+    .text       start:0x020b2904 end:0x020b297c
+
 src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664
