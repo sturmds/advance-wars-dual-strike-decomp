@@ -1,0 +1,90 @@
+#include "types.h"
+#include "game/menu_button.h"
+#include "game/menu_state.h"
+
+int func_0207bd80(void);
+void EventQueue_Push(u8 id, u8 arg);
+void func_02067c80(u8 a, u8 b);
+void func_02067d7c(u8 a, u8 b);
+int func_020699fc(int index);
+
+extern MenuState gMenuState;
+
+#define MENU ((MenuState *)&gMenuState)
+
+/* A controller entry: asks for the other of human and AI. */
+#define TOGGLE_CONTROLLER(id)                                                         \
+    value = MENU->setup.controllers[(id) >> 1][(id) & 1] == 1 ? 2 : 1;                \
+    if (func_0207bd80() == 1) {                                                       \
+        EventQueue_Push((id) + 1, value);                                             \
+    } else {                                                                          \
+        func_02067d7c((id) + 1, value);                                               \
+    }
+#define STEP_CO(id)                                                                   \
+    if (func_0207bd80() == 1) {                                                       \
+        EventQueue_Push((id) + 9, func_020699fc(id));                                 \
+    } else {                                                                          \
+        func_02067c80((id) + 9, func_020699fc(id));                                   \
+    }
+
+/* Down on the Vs setup screen, or a touch on the down arrow of a button.
+ * Button ids 0-7 are the controller entries and 8-15 the CO entries (index =
+ * slot * 2 + main or second map); the arrows have ids 16 + 2 * n and 17 + 2 * n
+ * for controller entry n (up, down), and 32 + 2 * n, 33 + 2 * n for CO entry n. A controller entry
+ * switches between human and AI; a CO entry steps to another CO with
+ * func_020699fc. In a link game the change goes through the event queue,
+ * else it is applied at once. Event ids: controllers 1-8, COs 9-16. */
+void VsSetup_ChangeSettingDown(MenuButton *button)
+{
+    int id = button->id;
+    int value;
+    int slot;
+
+    switch (id) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        TOGGLE_CONTROLLER(id)
+        break;
+    case 17:
+    case 19:
+    case 21:
+    case 23:
+    case 25:
+    case 27:
+    case 29:
+    case 31:
+        id = (id - 17) >> 1;
+        MenuButton_Select(id);
+        TOGGLE_CONTROLLER(id)
+        break;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+        slot = id - 8;
+        STEP_CO(slot)
+        break;
+    case 33:
+    case 35:
+    case 37:
+    case 39:
+    case 41:
+    case 43:
+    case 45:
+    case 47:
+        id = (id - 33) >> 1;
+        MenuButton_Select(id + 8);
+        STEP_CO(id)
+        break;
+    }
+}

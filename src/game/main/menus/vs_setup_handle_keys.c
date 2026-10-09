@@ -5,8 +5,8 @@
 BOOL Skills_AreDisabled(void);
 void VsSetup_NextForceRankSet(int a);
 void VsSetup_PrevForceRankSet(int a);
-void func_02068e6c(MenuButton *button);
-void func_020690f4(MenuButton *button);
+void VsSetup_ChangeSettingDown(MenuButton *button);
+void VsSetup_ChangeSettingUp(MenuButton *button);
 void VsSetup_OpenForceRank(int a);
 void VsSetup_Confirm(int a);
 
@@ -41,10 +41,10 @@ void VsSetup_HandleKeys(MenuButton *button)
         button = MenuButton_Select(cursor);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
-        func_020690f4(button);
+        VsSetup_ChangeSettingUp(button);
     }
     if (gKeypad->repeat & PAD_KEY_DOWN) {
-        func_02068e6c(button);
+        VsSetup_ChangeSettingDown(button);
     }
     if (gKeypad->pressed & PAD_BUTTON_L) {
         VsSetup_PrevForceRankSet(0);

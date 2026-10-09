@@ -1,0 +1,84 @@
+#include "types.h"
+#include "game/menu_button.h"
+#include "game/menu_state.h"
+
+int func_0207bd80(void);
+void EventQueue_Push(u8 id, u8 arg);
+void func_02067c80(u8 a, u8 b);
+void func_02067d7c(u8 a, u8 b);
+int func_0206996c(int index);
+
+extern MenuState gMenuState;
+
+#define MENU ((MenuState *)&gMenuState)
+
+#define TOGGLE_CONTROLLER(id)                                                         \
+    value = MENU->setup.controllers[(id) >> 1][(id) & 1] == 1 ? 2 : 1;                \
+    if (func_0207bd80() == 1) {                                                       \
+        EventQueue_Push((id) + 1, value);                                             \
+    } else {                                                                          \
+        func_02067d7c((id) + 1, value);                                               \
+    }
+#define STEP_CO(id)                                                                   \
+    if (func_0207bd80() == 1) {                                                       \
+        EventQueue_Push((id) + 9, func_0206996c(id));                                 \
+    } else {                                                                          \
+        func_02067c80((id) + 9, func_0206996c(id));                                   \
+    }
+
+/* Up on the Vs setup screen, or a touch on an up arrow; like the down
+ * handler, but a CO entry steps the other way with func_0206996c. */
+void VsSetup_ChangeSettingUp(MenuButton *button)
+{
+    int id = button->id;
+    int value;
+    int slot;
+
+    switch (id) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+        TOGGLE_CONTROLLER(id)
+        break;
+    case 16:
+    case 18:
+    case 20:
+    case 22:
+    case 24:
+    case 26:
+    case 28:
+    case 30:
+        id = (id - 16) >> 1;
+        MenuButton_Select(id);
+        TOGGLE_CONTROLLER(id)
+        break;
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+    case 12:
+    case 13:
+    case 14:
+    case 15:
+        slot = id - 8;
+        STEP_CO(slot)
+        break;
+    case 32:
+    case 34:
+    case 36:
+    case 38:
+    case 40:
+    case 42:
+    case 44:
+    case 46:
+        id = (id - 32) >> 1;
+        MenuButton_Select(id + 8);
+        STEP_CO(id)
+        break;
+    }
+}
