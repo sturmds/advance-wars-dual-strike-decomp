@@ -2123,6 +2123,10 @@ src/game/main/map/design_map_get_player_count.c:
     complete
     .text       start:0x020d7ab8 end:0x020d7ad0
 
+src/game/main/map/design_map_get_name.c:
+    complete
+    .text       start:0x020d7ad0 end:0x020d7b04
+
 src/game/main/func_020d7eb8.c:
     complete
     .text       start:0x020d7eb8 end:0x020d7ed0
