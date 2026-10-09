@@ -11,7 +11,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 u8 func_020018a8(int player, int slot);
 int func_02017abc(int co, int player);
-void func_020c47d0(int mapId, u8 *a, u8 *b);
+void Map_LoadAndCountProperties(int mapId, u8 *a, u8 *b);
 u8 Map_GetLoadedPlayerCount(void);
 u8 BuildCoPickList(void);
 u8 *GetCoPickList(void);
@@ -108,7 +108,7 @@ void BattleSetup_LoadFromGame(void)
     }
 
     if (gMenuState.setup.unk_2eb == 0) {
-        func_020c47d0(GAME->unk_1c4->mapId, SETUP_FIELD(unk_2e7), SETUP_FIELD(unk_2e8));
+        Map_LoadAndCountProperties(GAME->unk_1c4->mapId, SETUP_FIELD(unk_2e7), SETUP_FIELD(unk_2e8));
         gMenuState.setup.coListCount = BuildCoPickList();
         gMenuState.setup.coList = GetCoPickList();
         gMenuState.setup.unk_2e3 = Map_GetPlayerCount(GAME->unk_1c4->mapId);

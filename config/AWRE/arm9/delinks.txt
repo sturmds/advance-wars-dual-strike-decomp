@@ -2015,6 +2015,10 @@ src/game/main/map/map_load_data.c:
     complete
     .text       start:0x020c3e74 end:0x020c3f18
 
+src/game/main/map/map_load_and_count_properties.c:
+    complete
+    .text       start:0x020c47d0 end:0x020c4990
+
 src/game/main/map/map_load_variant.c:
     complete
     .text       start:0x020c4dfc end:0x020c4e2c

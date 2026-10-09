@@ -48,8 +48,8 @@ typedef struct BattleSetupState {
     u8 unk_2e4;
     u8 pad_2e5[0x2e6 - 0x2e5];
     u8 unk_2e6;
-    u8 unk_2e7;                        /* filled by func_020c47d0 */
-    u8 unk_2e8;                        /* filled by func_020c47d0 */
+    u8 unk_2e7;                        /* filled by Map_LoadAndCountProperties */
+    u8 unk_2e8;                        /* filled by Map_LoadAndCountProperties */
     u8 settingsChanged;            /* set by the first change of a setting on the Vs setup screen, which also plays a sound */
     u8 unk_2ea;
     u8 unk_2eb;                        /* nonzero: take the settings from the players of a running game */
