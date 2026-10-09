@@ -25,7 +25,7 @@ void func_01ff9c48(int a);
 void TransferQueue_Clear(void);
 void CallbackSlots_Clear(void);
 void CallbackList_Clear(void);
-void func_02017950(void);
+void ScriptSlot_ClearAll(void);
 void func_020224b0(void);
 void Keypad_Init(void);
 void OamBuffer_ClearTail(void);
@@ -41,7 +41,7 @@ void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
     TransferQueue_Clear();         \
     CallbackSlots_Clear();         \
     CallbackList_Clear();         \
-    func_02017950();         \
+    ScriptSlot_ClearAll();         \
     Task_InitSystem();       \
     Menu_Reset();            \
     func_020224b0();         \

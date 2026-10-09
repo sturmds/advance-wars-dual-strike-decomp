@@ -189,7 +189,8 @@ typedef struct Unk_02080440 {
     struct Task **taskFreeTop;         /* next free task in taskFreeStack */
     struct Task **taskLists;           /* TASK_LEVELS lists of top-level tasks */
     struct ScriptSlot *scriptSlots;    /* 30 slots, see game/script_slot.h */
-    u8 pad_40[0x48 - 0x40];
+    u16 *unk_40;                       /* ScriptSlot_ClearAll sets the u16 it points to to 0 */
+    s16 *scriptSlotCurrent;            /* the u16 holds the slot number being started; func_02017734 saves it and restores it afterwards (name from that use) */
     Unk_02080440_48 *unk_48[2];        /* indexed by data_027c0284 */
     Unk_02080440_50 *unk_50[2];        /* indexed by data_027c0284; set by Screens_SelectConfigs */
     u8 pad_58[0x5c - 0x58];

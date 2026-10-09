@@ -1303,6 +1303,10 @@ src/game/main/script/script_slot_start.c:
     complete
     .text       start:0x02017698 end:0x020176f4
 
+src/game/main/script/script_slot_clear_all.c:
+    complete
+    .text       start:0x02017950 end:0x020179a4
+
 src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0
