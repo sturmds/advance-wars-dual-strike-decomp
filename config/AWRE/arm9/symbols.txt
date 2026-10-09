@@ -3414,8 +3414,8 @@ func_020bdf48 kind:function(arm,size=0x208) addr:0x020bdf48
 func_020be150 kind:function(arm,size=0x208) addr:0x020be150
 func_020be358 kind:function(arm,size=0x208) addr:0x020be358
 func_020be560 kind:function(arm,size=0x208) addr:0x020be560
-func_020be768 kind:function(arm,size=0x1a0) addr:0x020be768
-func_020be908 kind:function(arm,size=0x1a0) addr:0x020be908
+BattleMenu_AutoCoOffHidden kind:function(arm,size=0x1a0) addr:0x020be768
+BattleMenu_AutoCoOnHidden kind:function(arm,size=0x1a0) addr:0x020be908
 func_020beaa8 kind:function(arm,size=0x154) addr:0x020beaa8
 func_020bebfc kind:function(arm,size=0x15c) addr:0x020bebfc
 func_020bed58 kind:function(arm,size=0x50) addr:0x020bed58
@@ -7611,7 +7611,7 @@ data_02165a84 kind:data(any) addr:0x02165a84
 data_02165aec kind:data(any) addr:0x02165aec
 data_02165bcc kind:data(any) addr:0x02165bcc
 data_02165d2c kind:data(any) addr:0x02165d2c
-data_02165e8c kind:data(any) addr:0x02165e8c
+gBattleMenuItems kind:data(any) addr:0x02165e8c
 data_0216600c kind:data(any) addr:0x0216600c
 data_021662ac kind:data(any) addr:0x021662ac
 data_021662b8 kind:data(any) addr:0x021662b8

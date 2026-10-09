@@ -8,6 +8,11 @@
 #define MAP_CAMPAIGN_FIRST 0xe0 /* campaign mission n is map id 0xe0 + n */
 #define MAP_COUNT          0x10d /* entries in Ov000_gMapHeaders */
 
+/* The two campaign missions with Auto CO: the battle menu lets the player
+ * play the other front instead of leaving it to the AI. */
+#define MAP_LIGHTNING_STRIKES (MAP_CAMPAIGN_FIRST + 10)
+#define MAP_RING_OF_FIRE      (MAP_CAMPAIGN_FIRST + 21)
+
 /* Map ids 0x101-0x10c have no header: the map lookups read them from 12
  * records of 27 bytes in main bss (data_022a6c84) instead. Probably maps
  * made in the Design Room. */
