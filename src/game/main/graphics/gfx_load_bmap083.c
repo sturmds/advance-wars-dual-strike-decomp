@@ -13,7 +13,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
-BOOL func_0200ac2c(int layer);
+BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280 *data_027c0280;
@@ -30,11 +30,11 @@ extern char gBmapFile082[];           /* "082" */
 extern u32 gTextMapBytes[];            /* map bytes of a text BG by screen size */
 extern u32 gAffineMapBytes[];            /* map bytes of a rotation/scaling BG by screen size */
 
-/* Size in bytes of the tile map of a layer. func_01ff8ef8 and func_0200ac2c
+/* Size in bytes of the tile map of a layer. func_01ff8ef8 and Screen_IsAffineBg
  * tell the BG kind; the last kind uses 16-bit entries, so twice the bytes. */
 #define LAYER_MAP_BYTES(layer, i)                                               \
     (func_01ff8ef8(i) ? gTextMapBytes[(layer)->screenSize]                      \
-     : func_0200ac2c(i) ? gAffineMapBytes[(layer)->screenSize]                    \
+     : Screen_IsAffineBg(i) ? gAffineMapBytes[(layer)->screenSize]                    \
                         : gAffineMapBytes[(layer)->screenSize] * 2)
 
 /* Sets up the current screen from /bmap files 07d to 084: layer priorities

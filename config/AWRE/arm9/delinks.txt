@@ -508,6 +508,10 @@ src/game/main/screen/screen_init_layers.c:
     complete
     .text       start:0x0200a810 end:0x0200ab64
 
+src/game/main/screen/screen_is_affine_bg.c:
+    complete
+    .text       start:0x0200ac2c end:0x0200ac9c
+
 src/game/main/screen/screen_set_current.c:
     complete
     .text       start:0x0200ac9c end:0x0200acac

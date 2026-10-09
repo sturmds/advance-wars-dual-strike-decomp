@@ -14,7 +14,7 @@ void BgControl_SetScreenSize(BgControl *bg, int screenSize);
 void Screen_ResetBgRegisters(void);                /* resets the screen's graphics state */
 void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
 BOOL func_01ff8ef8(int layer);
-BOOL func_0200ac2c(int layer);
+BOOL Screen_IsAffineBg(int layer);
 void func_01ff8c84(int layer);
 void func_01ff8c1c(int layer);
 void func_01ff8d94(int layer);
@@ -57,7 +57,7 @@ void Screen_InitLayers(const GfxLayer *config)
                 } else {
                     LAYER_BG_CNT(i).colorMode = 0;
                 }
-            } else if (func_0200ac2c(i) == 1) {
+            } else if (Screen_IsAffineBg(i) == 1) {
                 LAYER_BG_CNT(i).colorMode = 1;
             }
             func_01ff8c84(i);
