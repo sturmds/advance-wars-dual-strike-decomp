@@ -1,9 +1,10 @@
 # 0021: Name the Auto CO special case for Lightning Strikes and Ring of Fire
 
-- **Status:** open
+- **Status:** closed
 - **Area:** decomp
 - **Opened:** 2026-10-08
 - **Milestone:** M2
+- **Closed:** 2026-10-08. `MAP_LIGHTNING_STRIKES` and `MAP_RING_OF_FIRE` moved to `game/map_header.h` as the Auto CO missions; the menu checks are `BattleMenu_AutoCoOffHidden` and `BattleMenu_AutoCoOnHidden`, the table `gBattleMenuItems` (`MenuItem` in `game/menu_item.h`), and `unk_92` is `slotControllers`.
 
 ## Problem
 
