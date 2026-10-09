@@ -9,7 +9,7 @@ void func_020a73e4(void);
 BOOL func_020a7034(s16 *pos);
 BOOL func_020a3dfc(int unitType, int tile);
 BOOL Unit_IsTileOwnedByTeam(int unitIndex, int tile);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -58,5 +58,5 @@ void AiUnit_MoveToEnemyProperty(void)
     if (!func_020a7034(pos)) {
         return;
     }
-    func_020b2b70(pos[0], pos[1]);
+    AiUnit_MoveTowardTile(pos[0], pos[1]);
 }

@@ -11,7 +11,7 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int Map_GetDistance(int x1, int y1, int x2, int y2);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -87,8 +87,8 @@ void AiBlackBomb_MoveTowardEnemy(void)
         if (bestDist == 0x7fff) {
             return;
         }
-        func_020b2b70(nearestX, nearestY);
+        AiUnit_MoveTowardTile(nearestX, nearestY);
     } else {
-        func_020b2b70(valuableX, valuableY);
+        AiUnit_MoveTowardTile(valuableX, valuableY);
     }
 }

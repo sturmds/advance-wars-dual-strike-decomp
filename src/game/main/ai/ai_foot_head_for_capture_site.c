@@ -14,7 +14,7 @@ BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL Terrain_IsHqBaseAirportPortOrTower(u8 tile);
 void func_020adf6c(int distance);  /* called when the site is more than 2 away */
 void AiFoot_BoardTransport(void);          /* called when no site is in range */
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* The same state, written so that the compiler adds the scaled index
@@ -87,7 +87,7 @@ void AiFoot_HeadForCaptureSite(void)
                 if (MAP->rangeScratch[TILE_INDEX(targetX, targetY)] > 2) {
                     func_020adf6c(MAP->rangeScratch[TILE_INDEX(targetX, targetY)]);
                 }
-                func_020b2b70(targetX, targetY);
+                AiUnit_MoveTowardTile(targetX, targetY);
             }
         }
     }
@@ -136,7 +136,7 @@ void AiFoot_HeadForCaptureSite(void)
             func_020adf6c(bestScore >> 1);
             STATE->actingUnit->transportWanted = WANTS_APC;
         }
-        func_020b2b70(bestX, bestY);
+        AiUnit_MoveTowardTile(bestX, bestY);
     } else if (STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
         AiFoot_BoardTransport();
         STATE->actingUnit->transportWanted = WANTS_T_COPTER;

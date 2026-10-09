@@ -18,7 +18,7 @@ BOOL func_020a6554(s16 x, s16 y, int range);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 void Ai_ClearActingUnitTarget(void);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -115,6 +115,6 @@ void AiUnit_GoToSupply(void)
     if (STATE->rangeMap[bestY][bestX] <= gAiTurnState->unk_05) {
         AiUnit_PerformAction(bestX, bestY, AI_ACTION_WAIT, 0, 0);
     } else {
-        func_020b2b70(bestX, bestY);
+        AiUnit_MoveTowardTile(bestX, bestY);
     }
 }

@@ -17,7 +17,7 @@ void func_020ab70c(void);              /* boards an own Lander or Black Boat in 
 int UnitType_GetAttackKind(int type);
 void RangeMap_FillMoves(int x, int y, int unitType, s16 movement, int arg4);
 BOOL UnitSlot_OwnsTile(s16 slot, s16 x, s16 y);
-void func_020b2b70(int x, int y);      /* moves the acting unit toward (x, y) */
+void AiUnit_MoveTowardTile(int x, int y);      /* moves the acting unit toward (x, y) */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -163,7 +163,7 @@ void AiUnit_SeekSeaTransport(void)
         if (bestX == -1) {
             return;
         }
-        func_020b2b70(bestX, bestY);
+        AiUnit_MoveTowardTile(bestX, bestY);
         return;
     }
 
@@ -190,5 +190,5 @@ void AiUnit_SeekSeaTransport(void)
     if (bestX == -1) {
         return;
     }
-    func_020b2b70(bestX, bestY);
+    AiUnit_MoveTowardTile(bestX, bestY);
 }

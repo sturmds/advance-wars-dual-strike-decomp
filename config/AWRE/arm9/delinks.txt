@@ -5061,6 +5061,10 @@ src/game/main/ai/ai_unit_head_for_object_target.c:
     complete
     .text       start:0x020b297c end:0x020b2b70
 
+src/game/main/ai/ai_unit_move_toward_tile.c:
+    complete
+    .text       start:0x020b2b70 end:0x020b3004
+
 src/game/main/ai/ai_sea_transport_move.c:
     complete
     .text       start:0x020b320c end:0x020b3264

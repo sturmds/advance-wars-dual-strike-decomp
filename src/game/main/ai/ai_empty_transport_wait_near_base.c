@@ -11,7 +11,7 @@ extern int data_027c0284;
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -93,5 +93,5 @@ void AiEmptyTransport_WaitNearBase(void)
     if (bestX == -1) {
         return;
     }
-    func_020b2b70(bestX, bestY);
+    AiUnit_MoveTowardTile(bestX, bestY);
 }

@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -47,7 +47,7 @@ void AiLoadedTransport_HeadForSite(void)
                  || (gAiTurnState->stepFlags & AI_STEP_ATTACK_DONE))
                 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
                 STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03++;
-                func_020b2b70(targetX, targetY);
+                AiUnit_MoveTowardTile(targetX, targetY);
             }
         }
     }
@@ -102,5 +102,5 @@ void AiLoadedTransport_HeadForSite(void)
     STATE->unk_6088[MAP->unk_1928[TILE_INDEX(bestX, bestY)]].unk_03++;
     STATE->actingUnit->aiTargetX = bestX;
     STATE->actingUnit->aiTargetY = bestY;
-    func_020b2b70(bestX, bestY);
+    AiUnit_MoveTowardTile(bestX, bestY);
 }

@@ -15,7 +15,7 @@ BOOL func_020a6554(s16 x, s16 y, int moves);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -100,5 +100,5 @@ void AiUnit_HeadForRepairTile(void)
         AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, 2, 0, 0);
         return;
     }
-    func_020b2b70(bestX, bestY);
+    AiUnit_MoveTowardTile(bestX, bestY);
 }

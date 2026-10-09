@@ -20,7 +20,7 @@ BOOL func_0209df28(int unitType, int x, int y);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-void func_020b2b70(int x, int y);
+void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -41,7 +41,7 @@ void func_020b2b70(int x, int y);
  * silo, a capturable property or the team's own base, airport or port.
  * Of those it takes the tile closest to the transport. If the transport
  * gets there this turn it moves there and waits, otherwise
- * func_020b2b70 moves it towards the tile.
+ * AiUnit_MoveTowardTile moves it towards the tile.
  *
  * MapTiles.rangeScratch: transport's move cost to each tile.
  * MapTiles.rangeMapTiles: foot unit's move cost (where rangeMap points).
@@ -195,6 +195,6 @@ void AiEmptyTransport_GoToFootUnit(void)
     if (meetDist < transportReach) {
         AiUnit_PerformAction(meetX, meetY, AI_ACTION_WAIT, 0, 0);
     } else {
-        func_020b2b70(meetX, meetY);
+        AiUnit_MoveTowardTile(meetX, meetY);
     }
 }
