@@ -134,6 +134,13 @@ typedef struct MenuStateFrom200 {
     u16 fundsPerProperty;              /* BattleSetupState.fundsPerProperty */
 } MenuStateFrom200;
 
+/* data_0229ef30, gMenuState + 0x400. MapSelect_GetTab reads
+ * setup.unk_4fc through this symbol. */
+typedef struct MenuStateFrom400 {
+    u8 pad_400[0x4fc - 0x400];
+    u16 unk_4fc;                       /* BattleSetupState.unk_4fc */
+} MenuStateFrom400;
+
 /* Tables per map select tab (0-3, see MapSelect_GetTab), data_0229c768. */
 typedef struct MapListTables {
     u8 unk_000[4][13][4];              /* position of an entry's map on its page, by tab, entry (MapList.unk_64) and page */
