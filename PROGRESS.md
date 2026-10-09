@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2144 / 6603 | 220972 / 1531944 | 14.42% | 0 | 0 |
+| game | 2172 / 6603 | 225028 / 1531944 | 14.69% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2282 / 7483 | 224392 / 1685994 | 13.31% | 1 | 30 |
+| all | 2310 / 7483 | 228448 / 1685994 | 13.55% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 1803 / 5180 | 206988 / 1082632 | 19.12% | 0 |
+| main | game | 1829 / 5180 | 210956 / 1082632 | 19.49% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 19 / 121 | 928 / 25300 | 3.67% | 0 |
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals.
 | ov003 | game | 28 / 235 | 864 / 82696 | 1.04% | 0 |
 | ov004 | game | 101 / 236 | 2736 / 67364 | 4.06% | 0 |
 | ov005 | game | 91 / 270 | 2140 / 96684 | 2.21% | 0 |
-| ov006 | game | 57 / 321 | 2340 / 105588 | 2.22% | 0 |
+| ov006 | game | 59 / 321 | 2428 / 105588 | 2.30% | 0 |
 
 Modules with nothing done: none.
 
