@@ -14,7 +14,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int UnitType_GetAttackKind(int unitType);
 void Combat_SimulateIfTarget(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle when defenderIndex != 0 */
 int UnitType_BestBaseDamage(int unitType, int targetType); /* best base damage of unitType against targetType, over both weapons */
-int func_0209ed20(MapUnit *unit, int x, int y);
+int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 int Unit_IsEnemyTile(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
 int Unit_CaptureEndsNextTurn(MapUnit *unit); /* 1: the unit's capture finishes next turn */
 int AiAttack_CountTeamUnitsInReach(MapUnit *unit);
@@ -138,7 +138,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
         }
     } else {
         if (DEFENDER.hp != 0 && defender->hp - DEFENDER.hp <= 10
-            && func_0209ed20(defender, defender->x, defender->y) == 1) {
+            && Unit_CanRepairAt(defender, defender->x, defender->y) == 1) {
             damage >>= 2;
         }
         if (defender->hp - DEFENDER.hp <= 10 && attacker->hp - ATTACKER.hp >= 70
@@ -156,7 +156,7 @@ bonuses:
     } else if (defender->type == UNIT_MEGATANK) {
         damage <<= 1;
     }
-    if (DEFENDER.hp == 0 && func_0209ed20(defender, defender->x, defender->y) == 1) {
+    if (DEFENDER.hp == 0 && Unit_CanRepairAt(defender, defender->x, defender->y) == 1) {
         damage += HwDiv32(Ov000_gUnitStats[defender->type].costDiv10 * 20, 100);
     }
     /* Infantry and mech: worth more, and more again while capturing. */

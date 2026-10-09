@@ -85,7 +85,9 @@ typedef struct UnitStats {
     u8 aiClass;                        /* AI_CLASS_*; the document calls this "unit class" */
     u8 pad_21[2];
     u8 chartDamage[2][32];             /* [weapon][damage chart column]: base damage in percent; 0: cannot hit */
-    u8 pad_63[0x6c - 0x63];
+    u8 pad_63;
+    const s8 *repairTerrain;           /* per terrain id: nonzero where this type is repaired (ground: city, HQ, base; air: airport; sea: port) */
+    u8 pad_68[0x6c - 0x68];
 } UnitStats;
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
