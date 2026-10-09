@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/heap.h"
 
-LinkList *func_021043f8(HeapHead *heap);
+LinkList *Heap_FindParentList(HeapHead *heap);
 void func_021042a0(LinkList *list, void *object);
 
 extern BOOL gHeapRootListReady;
@@ -26,5 +26,5 @@ void Heap_InitHead(HeapHead *heap, u32 signature, void *start, void *end, u16 op
         gHeapRootListReady = TRUE;
     }
 
-    func_021042a0(func_021043f8(heap), heap);
+    func_021042a0(Heap_FindParentList(heap), heap);
 }

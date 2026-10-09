@@ -2031,6 +2031,10 @@ src/game/main/mem/heap_init_head.c:
     complete
     .text       start:0x02104368 end:0x021043f8
 
+src/game/main/mem/heap_find_parent_list.c:
+    complete
+    .text       start:0x021043f8 end:0x02104424
+
 src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
