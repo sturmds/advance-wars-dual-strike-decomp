@@ -2556,9 +2556,19 @@ src/game/main/unlocks/game_flags_low_set.c:
     complete
     .text       start:0x021018a0 end:0x02101904
 
+src/game/main/unlocks/co_color_is_set.c:
+    complete
+    .text       start:0x02101924 end:0x02101944
+
 src/game/main/unlocks/unlock_is_set.c:
     complete
     .text       start:0x02101944 end:0x02101964
+
+src/game/main/unlocks/func_02101964.c:
+    .text       start:0x02101964 end:0x02101984
+
+src/game/main/map/map_is_flag_set.c:
+    .text       start:0x02101984 end:0x021019a4
 
 src/game/main/unlocks/game_flags_mid_set.c:
     complete

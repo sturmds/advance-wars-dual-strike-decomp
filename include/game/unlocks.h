@@ -19,4 +19,5 @@ BOOL GameFlag_IsSet(int id);
 void GameFlag_Set(int id, int value);
 void CoColor_Set(u32 coId, int value);
 void Unlock_Set(u32 id, int value);
+u8 CoColor_IsSet(u32 coId);
 #endif
