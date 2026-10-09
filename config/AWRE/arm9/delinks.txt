@@ -4978,6 +4978,9 @@ src/game/main/ai/ai_foot_board_transport.c:
     complete
     .text       start:0x020adbac end:0x020adf6c
 
+src/game/main/ai/ai_foot_board_transport_for_site.c:
+    .text       start:0x020adf6c end:0x020ae37c
+
 src/game/main/ai/ai_foot_head_for_capture_site.c:
     complete
     .text       start:0x020ae37c end:0x020ae9c0

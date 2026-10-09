@@ -12,7 +12,7 @@ int func_020a756c(void);
 void func_020a6764(int x, int y, int unitType, int movement); /* fills rangeMap from (x, y) */
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL Terrain_IsHqBaseAirportPortOrTower(u8 tile);
-void func_020adf6c(int distance);  /* called when the site is more than 2 away */
+void AiFoot_BoardTransportForSite(int distance);  /* called when the site is more than 2 away */
 void AiFoot_BoardTransport(void);          /* called when no site is in range */
 void AiUnit_MoveTowardTile(int x, int y);
 
@@ -85,7 +85,7 @@ void AiFoot_HeadForCaptureSite(void)
             if (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03 == 0 && MAP->unitAt[TILE_INDEX(targetX, targetY)] == 0) {
                 STATE->unk_6088[MAP->unk_1928[TILE_INDEX(targetX, targetY)]].unk_03++;
                 if (MAP->rangeScratch[TILE_INDEX(targetX, targetY)] > 2) {
-                    func_020adf6c(MAP->rangeScratch[TILE_INDEX(targetX, targetY)]);
+                    AiFoot_BoardTransportForSite(MAP->rangeScratch[TILE_INDEX(targetX, targetY)]);
                 }
                 AiUnit_MoveTowardTile(targetX, targetY);
             }
@@ -133,7 +133,7 @@ void AiFoot_HeadForCaptureSite(void)
         STATE->actingUnit->aiTargetX = bestX;
         STATE->actingUnit->aiTargetY = bestY;
         if ((bestScore >> 1) > 2 && STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
-            func_020adf6c(bestScore >> 1);
+            AiFoot_BoardTransportForSite(bestScore >> 1);
             STATE->actingUnit->transportWanted = WANTS_APC;
         }
         AiUnit_MoveTowardTile(bestX, bestY);
