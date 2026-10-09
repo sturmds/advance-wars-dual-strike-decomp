@@ -72,6 +72,10 @@ src/game/main/sound/sound_load_resident_data.c:
     complete
     .text       start:0x0200b364 end:0x0200b39c
 
+src/game/main/mem/mem_free.c:
+    complete
+    .text       start:0x0200bf24 end:0x0200bf40
+
 src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0
