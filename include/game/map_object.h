@@ -9,7 +9,8 @@
 typedef struct MapObject {
     u8 x;
     u8 y;
-    u16 unk_02_0 : 6;
+    u16 width : 3;                     /* footprint in tiles */
+    u16 height : 3;
     u16 kind : 4;                      /* damage chart target kind */
     u16 unk_02_10 : 4;
     u16 variant : 2;                   /* index into data_02167e98 for kind 2 */
