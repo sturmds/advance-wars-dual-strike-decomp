@@ -8370,6 +8370,7 @@ src/game/main/func_020f5e44.c:
     .text       start:0x020f5e44 end:0x020f5e54
 
 src/game/main/map/map_view_scroll_step.c:
+    complete
     .text       start:0x020f7268 end:0x020f757c
 
 src/game/main/func_020f77bc.c:
