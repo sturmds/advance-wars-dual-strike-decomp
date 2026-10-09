@@ -10,7 +10,7 @@ void func_01ff9b48(void);
 void func_0200215c(int co, void *dest, int palette);
 void func_02002b00(int a);
 void func_02002b24(int co, int a);
-void func_02002e50(const void *src, void *dest, u32 size);
+void Mem_Copy32(const void *src, void *dest, u32 size);
 void Palette_Load(const void *src, int offset, u32 size);
 void Data_Unpack(const void *src, void *dest);
 void func_0200970c(int a);
@@ -178,7 +178,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer1Map[i] += 0x2200;
     }
-    func_02002e50(data_027c0280->layer1Map, data_027c0280->layer1Map + 0x400, 0x800);
+    Mem_Copy32(data_027c0280->layer1Map, data_027c0280->layer1Map + 0x400, 0x800);
     func_01ff8d60(1);
     Palette_Load(res + 0x3b08, 0x60, 0x140);
     Data_Unpack(res + 0xed8, data_027c0280->objVram);
@@ -226,9 +226,9 @@ void CampaignMap_Init(Unk_0204f960 *task)
     }
     Screen_SetCurrentGfx(saved0280);
 
-    func_02002e50(res + 0xe4c, WORK_FIELD(unk_244), sizeof(gMenuState.campaignMap.unk_244));
-    func_02002e50(res + 0xd08, WORK_FIELD(unk_020), sizeof(gMenuState.campaignMap.unk_020));
-    func_02002e50(res + 0x6d4, WORK_FIELD(unk_0e4), sizeof(gMenuState.campaignMap.unk_0e4));
+    Mem_Copy32(res + 0xe4c, WORK_FIELD(unk_244), sizeof(gMenuState.campaignMap.unk_244));
+    Mem_Copy32(res + 0xd08, WORK_FIELD(unk_020), sizeof(gMenuState.campaignMap.unk_020));
+    Mem_Copy32(res + 0x6d4, WORK_FIELD(unk_0e4), sizeof(gMenuState.campaignMap.unk_0e4));
     Mem_Free(res);
     Mem_Free(langRes);
     func_0200bb18(gMenuState.colours, data_0215b9bc, 0, 0x20);

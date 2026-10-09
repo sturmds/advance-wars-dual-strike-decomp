@@ -5,7 +5,7 @@
 
 typedef void (*UnpackFunc)(const void *src, void *dst);
 
-void func_02002e50(const void *src, void *dst, u32 size);   /* copies in 32-bit units */
+void Mem_Copy32(const void *src, void *dst, u32 size);   /* copies in 32-bit units */
 
 /* Two unpackers per compression type (header bits 4-7): [0] when dst is
  * outside main RAM (VRAM), [1] for main RAM. Type 0 (raw) has none. */
@@ -29,7 +29,7 @@ void Data_Unpack(const void *src, void *dst)
     unpack = gUnpackFuncs[((header & 0xf0) >> 3) + inMainRam];
     if (unpack == NULL) {
         /* raw: copy (size field * 16) | low nibble bytes */
-        func_02002e50(src, dst, (header & 0xf) | ((*(const u32 *)src & ~0xff) >> 4));
+        Mem_Copy32(src, dst, (header & 0xf) | ((*(const u32 *)src & ~0xff) >> 4));
         return;
     }
     /* needed to match: the original tests unpack a second time */

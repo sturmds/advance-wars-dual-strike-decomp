@@ -7,7 +7,7 @@
 #include "game/design_map.h"
 
 void func_01ff8d60(int a);
-void func_02002e50(const void *src, void *dst, u32 size);
+void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Data_Unpack(const void *src, void *dst);
 void Screen_SetCurrent(void *state);
@@ -147,7 +147,7 @@ void LinkPhase_InitScreen(void)
     Palette_Load(file, 0x220, 0x20);
     Palette_Load(file, 0x240, 0x20);
     func_02026bc8(data_027c0280->unk_08 + 0x240, 0, 8, 8);
-    func_02002e50(file + 0x20, &gMenuState, 0x20);
+    Mem_Copy32(file + 0x20, &gMenuState, 0x20);
     Mem_Free(file);
 
     if (GAME->twoMaps == 1) {
