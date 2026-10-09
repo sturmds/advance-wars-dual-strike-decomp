@@ -86,4 +86,10 @@ typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
 
 extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
+#define UNIT_AI_GROUP_FOOT          1
+#define UNIT_AI_GROUP_TRANSPORT     2
+#define UNIT_AI_GROUP_INDIRECT      4
+#define UNIT_AI_GROUP_DIRECT        5
+#define UNIT_AI_GROUP_SEA_TRANSPORT 6
+#define UNIT_AI_GROUP_BOMB          7
 #endif

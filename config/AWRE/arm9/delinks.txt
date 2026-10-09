@@ -278,6 +278,10 @@ src/game/main/ai/ai_action_queue_indirect_units.c:
     complete
     .text       start:0x0208ea94 end:0x0208ebc8
 
+src/game/main/ai/ai_action_queue_direct_units_order4.c:
+    complete
+    .text       start:0x0208ebc8 end:0x0208ed48
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
