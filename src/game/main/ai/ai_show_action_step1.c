@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-void func_ov000_022ae964(MapUnit *unit);
+void UnitShowTask_Create(MapUnit *unit);
 void func_020c8888(void);
 void func_0208038c(u8 *packed, u8 *nibbles);
 void func_020c8290(u8 *nibbles);
@@ -17,7 +17,7 @@ void func_020c8290(u8 *nibbles);
  * Unk_02080440_48.unk_170, then moves to step 2. */
 void AiShowAction_Step1(void)
 {
-    func_ov000_022ae964(GAME->actingUnit);
+    UnitShowTask_Create(GAME->actingUnit);
     func_020c8888();
     func_0208038c(gUnitAction.packed, GAME->unk_170);
     func_020c8290(GAME->unk_170);
