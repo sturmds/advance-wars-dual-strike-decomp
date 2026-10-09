@@ -1227,6 +1227,10 @@ src/game/main/ai/ai_turn_run_queue.c:
     complete
     .text       start:0x0208fe44 end:0x02090154
 
+src/game/main/ai/ai_turn_run_end_actions.c:
+    complete
+    .text       start:0x02093824 end:0x02093b50
+
 src/game/main/copowers/strike_find_best_site.c:
     complete
     .text       start:0x020985d0 end:0x02098888

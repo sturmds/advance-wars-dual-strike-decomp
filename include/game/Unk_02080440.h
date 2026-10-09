@@ -67,7 +67,7 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_SAND  3
 
 typedef struct Unk_02080440_48 {
-    u8 pad_00[0x2];
+    u16 unk_00;                        /* compared with 1 by AiTurn_RunEndActions (likely the day) */
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */

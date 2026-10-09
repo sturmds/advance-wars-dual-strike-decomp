@@ -6,7 +6,7 @@ void AiTurn_Start(void);
 void AiTurn_RunPhase(void);
 void AiTurn_RunQueue(void);
 void AiTurn_ShowAction(void);
-void func_02093824(void);
+void AiTurn_RunEndActions(void);
 void AiTurn_RunPowerStep(void);
 void AiTurn_Restart(void);
 
@@ -31,7 +31,7 @@ void AiTurn_Update(void)
         AiTurn_ShowAction();
         break;
     case AI_STATE_END_ACTIONS:
-        func_02093824();
+        AiTurn_RunEndActions();
         break;
     case 5:
         AiTurn_RunPowerStep();
