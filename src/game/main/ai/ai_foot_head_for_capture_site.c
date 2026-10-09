@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void RangeMap_FillUnitMoves(MapUnit *unit);
 int func_020a756c(void);
-void func_020a6764(int x, int y, int unitType, int movement); /* fills rangeMap from (x, y) */
+void RangeMap_FillMovesOverTurns(int x, int y, int unitType, int movement); /* fills rangeMap from (x, y) */
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
 BOOL Terrain_IsHqBaseAirportPortOrTower(u8 tile);
 void AiFoot_BoardTransportForSite(int distance);  /* called when the site is more than 2 away */
@@ -76,7 +76,7 @@ void AiFoot_HeadForCaptureSite(void)
         }
     }
     acting = STATE->actingUnit;
-    func_020a6764(acting->x, acting->y, acting->type, func_020a756c());
+    RangeMap_FillMovesOverTurns(acting->x, acting->y, acting->type, func_020a756c());
     acting = STATE_IDX_FIRST->actingUnit;
     targetX = acting->aiTargetX;
     if (targetX != MAP_UNIT_NO_TARGET && acting->hp >= 61) {

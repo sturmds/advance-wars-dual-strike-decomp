@@ -4887,6 +4887,10 @@ src/game/main/ai/ai_is_capture_site_taken.c:
     complete
     .text       start:0x020a4d3c end:0x020a5048
 
+src/game/main/ai/range_map_fill_moves_over_turns.c:
+    complete
+    .text       start:0x020a6764 end:0x020a6ac4
+
 src/game/main/ai/ai_unit_teammate_outdamages.c:
     .text       start:0x020a6d30 end:0x020a7034
 

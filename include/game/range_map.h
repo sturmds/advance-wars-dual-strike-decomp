@@ -15,4 +15,27 @@ void RangeMap_Fill(int value);
 /* Sets every tile of a per-tile map to value, without touching rangeMap. */
 void TileMap_Fill(void *tileMap, int value);
 
+/* Breadth-first search that fills rangeMap with move costs. Two lists of
+ * nodes take turns: one holds the tiles to expand, the other collects the
+ * tiles found from them. */
+#define MOVE_SEARCH_LIST_SIZE 350
+
+typedef struct MoveSearchNode {
+    u8 x;
+    u8 y;
+    u8 from;                           /* 0: end of list, 1: the start tile, else the direction taken to get here (2 up, 3 down, 4 left, 5 right) */
+    u8 turn;                           /* RangeMap_FillMovesOverTurns: turn count of the path to this tile */
+} MoveSearchNode;
+
+/* Pointed to by data_027c0758. */
+typedef struct MoveSearch {
+    u8 moveCost[0x20];                 /* per terrain id, filled by func_01ffb2c0 for the unit type */
+    s16 maxCost;                       /* cost limit of the search */
+    s16 moveRange;                     /* movement of the unit per turn */
+    u8 x;                              /* tile being expanded */
+    u8 y;
+    u8 pad_26[2];
+    MoveSearchNode lists[2][MOVE_SEARCH_LIST_SIZE];
+} MoveSearch;
+
 #endif
