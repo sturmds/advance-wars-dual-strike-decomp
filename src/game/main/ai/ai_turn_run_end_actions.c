@@ -9,7 +9,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 BOOL func_02093434(void);
-void func_02092fd4(void);
+void AiEndActions_Start(void);
 void AiEndActions_BuildThreatMaps(void);
 BOOL func_02091eb0(void);
 void func_02093720(void);
@@ -45,7 +45,7 @@ void AiTurn_RunEndActions(void)
         }
         switch (data_021619c0->step) {
         case 0:
-            func_02092fd4();
+            AiEndActions_Start();
             data_021619c0->step++;
             AiEndActions_BuildThreatMaps();
             break;

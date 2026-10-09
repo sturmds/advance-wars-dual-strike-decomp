@@ -4955,6 +4955,10 @@ src/game/main/ai/func_02092134.c:
     complete
     .text       start:0x02092134 end:0x02092350
 
+src/game/main/ai/ai_end_actions_start.c:
+    complete
+    .text       start:0x02092fd4 end:0x0209316c
+
 src/game/main/func_02093720.c:
     complete
     .text       start:0x02093720 end:0x0209373c
