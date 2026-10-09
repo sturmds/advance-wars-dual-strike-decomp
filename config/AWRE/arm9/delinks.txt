@@ -301,6 +301,10 @@ src/game/main/graphics/bg2_set_priority.c:
     complete
     .text       start:0x0201d818 end:0x0201d834
 
+src/game/main/graphics/gfx_load_bmap0a0_palette.c:
+    complete
+    .text       start:0x0201e2d4 end:0x0201e30c
+
 src/game/main/graphics/gfx_load_bmap09f.c:
     complete
     .text       start:0x0201e30c end:0x0201e338
