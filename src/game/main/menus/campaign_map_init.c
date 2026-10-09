@@ -7,7 +7,7 @@
 
 void Gfx_RequestLayerCopy(int bg);
 void func_01ff9b48(void);
-void func_0200215c(int co, void *dest, int palette);
+void Co_LoadSmallPicture(int co, void *dest, int palette);
 void Palette_LoadObjRow(int a);
 void func_02002b24(int co, int a);
 void Mem_Copy32(const void *src, void *dest, u32 size);
@@ -214,14 +214,14 @@ void CampaignMap_Init(Unk_0204f960 *task)
     IconBank_LoadPalette(1, 19);
     for (i = 0, tile = 62, j = 98; i < 3; i++, tile += 12, j += 12) {
         if (gMenuState.campaignMap.topCos[i].co != 0) {
-            func_0200215c(gMenuState.campaignMap.topCos[i].co, data_027c0280->objVram + ((u32)tile << 5), i + 20);
+            Co_LoadSmallPicture(gMenuState.campaignMap.topCos[i].co, data_027c0280->objVram + ((u32)tile << 5), i + 20);
             func_02002b24(gMenuState.campaignMap.topCos[i].co, j);
         }
     }
     Palette_LoadObjRow(1);
     for (j = 0, tile = 134; j < 2; j++, tile += 12) {
         if (gMenuState.campaignMap.enemyCos[j] != 0) {
-            func_0200215c(gMenuState.campaignMap.enemyCos[j], data_027c0280->objVram + ((u32)tile << 5), j + 23);
+            Co_LoadSmallPicture(gMenuState.campaignMap.enemyCos[j], data_027c0280->objVram + ((u32)tile << 5), j + 23);
         }
     }
     Screen_SetCurrentGfx(saved0280);
