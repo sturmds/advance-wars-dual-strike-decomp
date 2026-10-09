@@ -14,7 +14,7 @@ void RangeMap_MarkAdjacentTiles(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsTileVisible(s16 x, s16 y);
 void Ai_ClearActingUnitTarget(void);
-int func_020a6d30(MapUnit *target);
+int AiUnit_TeammateOutdamages(MapUnit *target);
 BOOL FindAttackTile(int x, int y, s16 *pos);
 int AiAttack_Score(int arg, s16 *pos);
 int Unit_CaptureEndsNextTurn(MapUnit *unit);
@@ -34,7 +34,7 @@ int Unit_CapturePoints(MapUnit *unit); /* capture points the unit adds per turn 
  * AiAttack_Score. Vehicles are targets only when indirect, or for a mech with
  * ammo. Infantry and mechs are targets when their capture ends next turn, or
  * when they have over 30 hp, are capturing or have over 60 hp, and the acting
- * unit adds under 12 capture points a turn. When func_020a6d30 holds for the
+ * unit adds under 12 capture points a turn. When AiUnit_TeammateOutdamages holds for the
  * target, it also needs two or more open sides the acting unit can reach.
  * A silo with a strike site worth launching at is chosen over the attack. */
 void AiFoot_PickAttackTarget(void)
@@ -129,7 +129,7 @@ void AiFoot_PickAttackTarget(void)
             if (score < bestScore) {
                 continue;
             }
-            if (func_020a6d30(target) == 1) {
+            if (AiUnit_TeammateOutdamages(target) == 1) {
                 openSides = 0;
                 minX = target->x - 1;
                 if (minX < 0) {

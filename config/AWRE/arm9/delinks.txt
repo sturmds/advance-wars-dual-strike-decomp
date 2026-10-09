@@ -1632,6 +1632,9 @@ src/game/main/ai/ai_clear_acting_unit_target.c:
     complete
     .text       start:0x020a491c end:0x020a4984
 
+src/game/main/ai/ai_unit_teammate_outdamages.c:
+    .text       start:0x020a6d30 end:0x020a7034
+
 src/game/main/ai/ai_can_end_move_at.c:
     complete
     .text       start:0x020a770c end:0x020a7fe0

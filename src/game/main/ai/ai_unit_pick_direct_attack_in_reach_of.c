@@ -10,7 +10,7 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 BOOL Map_IsTileVisible(s16 x, s16 y);
-int func_020a6d30(MapUnit *target);
+int AiUnit_TeammateOutdamages(MapUnit *target);
 BOOL FindAttackTile(int x, int y, s16 *pos);
 int AiAttack_Score(int arg, s16 *pos);
 void AiUnit_MoveToSafestTile(void);
@@ -86,7 +86,7 @@ void AiUnit_PickDirectAttackInReachOf(MapUnit *other)
             if (score == 0 || score < bestScore) {
                 continue;
             }
-            if (func_020a6d30(target) == 1) {
+            if (AiUnit_TeammateOutdamages(target) == 1) {
                 /* count the target's free sides; with one or none left, skip it */
                 openSides = 0;
                 minX = target->x - 1;

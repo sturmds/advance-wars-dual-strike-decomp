@@ -19,7 +19,7 @@ BOOL Map_IsTileVisible(s16 x, s16 y);
 int func_020a30c4(void);
 BOOL func_020a3b54(int x, int y, MapUnit *target);
 void Ai_ClearActingUnitTarget(void);
-int func_020a6d30(MapUnit *target);
+int AiUnit_TeammateOutdamages(MapUnit *target);
 BOOL Ai_CanEndMoveAt(int x, int y);
 BOOL FindAttackTile(int x, int y, s16 *pos); /* finds a tile to attack (x, y) from; FALSE: none */
 int AiAttack_Score(int arg, s16 *pos);      /* scores an attack on the unit slot in the low bits of arg from pos; 0: none */
@@ -181,7 +181,7 @@ void AiUnit_PickDirectAttack(void)
             if (rating == 0 || rating < unitScore) {
                 continue;
             }
-            if (func_020a6d30(target) == 1) {
+            if (AiUnit_TeammateOutdamages(target) == 1) {
                 openSides = 0;
                 onTargetSide = 0;
                 minX = target->x - 1;
