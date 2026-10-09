@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 void func_01ffa44c(MapUnit *unit);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-BOOL func_0209e1ac(int x, int y);
+BOOL Map_IsSiloOrCapturableTile(int x, int y);
 int func_0209f560(MapUnit *unit); /* turns the unit needs to capture a property; 20 at 0 hp */
 void Ai_ClearActingUnitTarget(void);
 
@@ -68,7 +68,7 @@ void AiFoot_PickCaptureTarget(void)
             if (siloOnly == 1 && terrain != TERRAIN_SILO) {
                 continue;
             }
-            if (!func_0209e1ac(x, y)) {
+            if (!Map_IsSiloOrCapturableTile(x, y)) {
                 continue;
             }
             if (x == STATE->actingUnit->aiTargetX && y == STATE->actingUnit->aiTargetY) {
