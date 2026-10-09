@@ -28,7 +28,7 @@ void func_0200c630(void *p);
 void func_ov006_023527ac(void);
 u8 func_ov006_02365ba8(void);
 void func_ov006_023659b4(void);
-void func_020d3428(void);
+void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(void (*callback)(void));
 void func_020d308c(void);
 void Font_SetDigitEndTile(int tile);
@@ -133,7 +133,7 @@ void DesignRoom_Init(Task *task)
         OV6->unk_2b = func_ov006_02365ba8();
         func_ov006_023659b4();
     }
-    func_020d3428();
+    Battle_RegisterFrameCallbacks();
     func_01ff9c48(func_020d308c);
     data_022a6b38 = 0;
     Font_SetDigitEndTile(0x45);

@@ -14,7 +14,7 @@ void func_020c1b90(void);
 void func_020c1950(void);
 void func_020c8888(void);
 void func_020f8058(int a);
-void func_020d3428(void);
+void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(const void *descriptor);
 
 extern Unk_02080440 *data_027c027c;
@@ -57,7 +57,7 @@ void Battle_SetupWithPresetCos(void)
     if (HOOKS->unk_54 != NULL) {
         HOOKS->unk_54(1);
     }
-    func_020d3428();
+    Battle_RegisterFrameCallbacks();
     func_01ff9c48(func_020d308c);
     data_022a6b38 = 0;
 }
