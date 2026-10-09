@@ -2,7 +2,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void *EventScript_Start(const void *script);
-int func_020d7b04(int id, u8 *buf);
+int DesignMap_CopyName(int id, u8 *buf);
 void Ov006_ClearLayer1Box(void);
 void Ov006_ClearLayer0Box(void);
 void Ov006_ClearWindowsAndBlend(void);
@@ -22,7 +22,7 @@ void Ov006_StartIdScript(int id)
     Ov006_ClearWindowsAndBlend();
     data_ov006_0236d640->unk_00 &= ~0x100;
     data_ov006_0236d640->unk_38 = id;
-    if (func_020d7b04(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb) == 0) {
+    if (DesignMap_CopyName(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb) == 0) {
         if (Ov006_HasNonSpace(data_ov006_0236d640->unk_d8) == 0) {
             Ov006_LoadIdText(id);
             data_ov006_0236d640->unk_00 |= 0x100;

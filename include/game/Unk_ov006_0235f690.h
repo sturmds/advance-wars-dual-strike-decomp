@@ -41,7 +41,7 @@ typedef struct Unk_ov006_0235f690 {
     s16 unk_d4;                        /* flags of that 8th slot */
     u8 pad_d6[0xd8 - 0xd6];
     u8 unk_d8[0xeb - 0xd8];            /* passed to Ov006_HasNonSpace */
-    u8 unk_eb;                         /* its address is passed to func_020d7b04 */
+    u8 unk_eb;                         /* its address is passed to DesignMap_CopyName */
     u8 pad_ec[0x10c - 0xec];           /* DesignRoom_Init allocates 0x10c bytes */
 } Unk_ov006_0235f690;
 
