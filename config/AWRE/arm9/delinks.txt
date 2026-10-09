@@ -5487,6 +5487,10 @@ src/game/main/ai/func_020aacc0.c:
     complete
     .text       start:0x020aacc0 end:0x020aacf8
 
+src/game/main/ai/ai_unit_find_enemy_target.c:
+    complete
+    .text       start:0x020aacf8 end:0x020ab014
+
 src/game/main/ai/ai_unit_seek_sea_transport.c:
     complete
     .text       start:0x020ab014 end:0x020ab70c
