@@ -1179,6 +1179,10 @@ src/game/main/ai/ai_queue_sort_by_movement.c:
     complete
     .text       start:0x0208f850 end:0x0208f920
 
+src/game/main/ai/ai_queue_sort_by_hp.c:
+    complete
+    .text       start:0x0208f920 end:0x0208f9c4
+
 src/game/main/ai/ai_queue_sort_ascending.c:
     complete
     .text       start:0x0208f9c4 end:0x0208fa5c
