@@ -18,7 +18,7 @@ void func_0208d62c(void);
 void func_0208d964(void);
 void func_0208d2f0(void);
 int func_0209dec0(void);
-int func_0209de14(void);
+int Player_TeamHasNoBlackHole(void);
 
 /* Sets up an AI turn: picks the player's first unit, reseeds the RNG,
  * runs the setup routines, then starts the unit phases. */
@@ -48,7 +48,7 @@ void AiTurn_Start(void)
     } else {
         gAiTurnState->flags &= ~4;
     }
-    if (func_0209de14() == 1) {
+    if (Player_TeamHasNoBlackHole() == 1) {
         gAiTurnState->flags |= 8;
     } else {
         gAiTurnState->flags &= ~8;

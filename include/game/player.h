@@ -22,6 +22,9 @@ typedef struct PlayerCo {
 #define PLAYER_CONTROLLER_HUMAN 1
 #define PLAYER_CONTROLLER_AI    2
 
+/* Army colour (Player.unk_19, MapHeader.army): 1 Orange Star ... 5 Black Hole. */
+#define ARMY_BLACK_HOLE 5
+
 /* Player.aiBehaviour. Names from doc 890. */
 #define AI_BEHAVIOUR_STRIKE  0
 #define AI_BEHAVIOUR_ASSAULT 1
