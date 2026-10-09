@@ -20,7 +20,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_0200bb18(void *dest, const char *path, int a, int b);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
-void func_0201e30c(void *a, int b, int c);
+void Gfx_LoadBmap09f(void *a, int b, int c);
 void func_02021380(int a);
 void Icon_LoadTo(int a, u8 *objVram, int b);
 void IconBank_LoadPalette(int a, int b);
@@ -169,7 +169,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_0201e30c(data_027c0280->unk_f8, 0, 0);
+    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
     Data_Unpack(res + 0x1ab0,
                   data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase << 14) + 0x4000);
@@ -191,7 +191,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_0201e30c(data_027c0280->unk_f8, 0, 0);
+    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
     Data_Unpack(langRes,
                   data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
