@@ -51,3 +51,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0021](0021-auto-co-maps.md) | Name the Auto CO special case for Lightning Strikes and Ring of Fire | closed | decomp | M2 |
 | [0022](0022-army-style-colour-comments.md) | Player.armyStyle and armyColour comments are wrong | open | decomp | M2 |
 | [0023](0023-mod-build-repo.md) | A separate mod build on top of the matching source | open | build | later |
+| [0024](0024-brute-force-tool-leftovers.md) | What propagate.py, trivial.py and permute.py leave unmatched | open | tools | M1 |
