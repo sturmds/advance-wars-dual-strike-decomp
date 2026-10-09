@@ -25,7 +25,7 @@ void func_020b8370(int arg);
 void AiShowAction_Action22(void);
 void AiShowAction_AttackObject(void);
 void AiShowAction_AttackUnit(void);
-void func_020b8b80(void);
+void AiShowAction_StartTurn(void);
 void AiShowAction_BuildUnitAlt(void);
 void AiShowAction_BuildUnit(void);
 void func_020c8888(void);
@@ -72,7 +72,7 @@ void AiShowAction_Step2(void)
         AiShowAction_BuildUnitAlt();
         break;
     case 13:
-        func_020b8b80();
+        AiShowAction_StartTurn();
         break;
     case 15:
         UnitAction_SwapCo();

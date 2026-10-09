@@ -5921,6 +5921,10 @@ src/game/main/ai/ai_show_action_attack_unit.c:
     complete
     .text       start:0x020b8ad4 end:0x020b8b80
 
+src/game/main/ai/ai_show_action_start_turn.c:
+    complete
+    .text       start:0x020b8b80 end:0x020b8c70
+
 src/game/main/ai/ai_show_action_build_unit_alt.c:
     complete
     .text       start:0x020b8c70 end:0x020b8cb0
