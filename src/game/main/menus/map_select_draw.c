@@ -17,7 +17,7 @@ int Math_EaseInOut(int from, int to, int step, int steps);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void MapSelect_EnableSubSlideButtons(void);
 void MapSelect_OnSlideDone(void);
-void func_02060718(int x, int y, int a2);
+void MapSelect_DrawStatsPanel(int x, int y, int a2);
 void MapSelect_DrawPageIndicator(int x, int y, int list);
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_ShowSelectedMap(void);
@@ -129,8 +129,8 @@ void MapSelect_Draw(void)
             MapSelect_DrawListThumbnail(thumbOffset + 128, 8, LIST_OF_TAB(TAB()));
             MapSelect_DrawListThumbnail(thumbOffset + 256, 8, LIST_OF_TAB(TAB()) + 1);
             if (STATE->gameMode == 1) {
-                func_02060718(slideOffset, 72, 0);
-                func_02060718(slideOffset - 256, 72, 1);
+                MapSelect_DrawStatsPanel(slideOffset, 72, 0);
+                MapSelect_DrawStatsPanel(slideOffset - 256, 72, 1);
                 MapSelect_DrawPageIndicator(slideOffset + 200, 64, LIST_OF_TAB(TAB()));
                 MapSelect_DrawPageIndicator(slideOffset - 56, 64, MENU->setup.prevList);
             } else if (STATE->twoMaps == 0) {
@@ -147,8 +147,8 @@ void MapSelect_Draw(void)
             MapSelect_DrawListThumbnail(256 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 1);
             MapSelect_DrawListThumbnail(384 - thumbOffset, 8, LIST_OF_TAB(TAB()) + 2);
             if (STATE->gameMode == 1) {
-                func_02060718(-slideOffset, 72, 0);
-                func_02060718(256 - slideOffset, 72, 1);
+                MapSelect_DrawStatsPanel(-slideOffset, 72, 0);
+                MapSelect_DrawStatsPanel(256 - slideOffset, 72, 1);
                 MapSelect_DrawPageIndicator(200 - slideOffset, 64, LIST_OF_TAB(TAB()));
                 MapSelect_DrawPageIndicator(456 - slideOffset, 64, MENU->setup.prevList);
             } else if (STATE->twoMaps == 0) {
@@ -165,7 +165,7 @@ void MapSelect_Draw(void)
         MapSelect_DrawListThumbnail(256, 8, LIST_OF_TAB(TAB()) + 1);
         if (STATE->gameMode == 1) {
             MapSelect_DrawPageIndicator(200, 64, LIST_OF_TAB(TAB()));
-            func_02060718(0, 72, 0);
+            MapSelect_DrawStatsPanel(0, 72, 0);
         } else if (STATE->twoMaps == 0) {
             MapSelect_DrawPageIndicator(192, 32, LIST_OF_TAB(TAB()));
         } else {

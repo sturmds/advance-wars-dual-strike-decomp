@@ -62,7 +62,11 @@ typedef struct BattleSetupState {
     u8 recordUnk_0a[3];                /* WarRoomRecord.unk_0a of each record */
     u8 pad_4e3;
     u16 recordUnk_14[3];               /* WarRoomRecord.unk_14 of each record */
-    u8 pad_4ea[0x4fc - 0x4ea];
+    u8 unk_4ea[6];
+    u8 unk_4f0[3];
+    u8 pad_4f3;
+    u16 unk_4f4[3];
+    u8 pad_4fa[0x4fc - 0x4fa];
     u16 unk_4fc;
     u8 pad_4fe;
     u8 slideFrames;                    /* frames left of the slide between lists; 15 on the first */
