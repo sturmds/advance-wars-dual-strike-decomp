@@ -381,6 +381,10 @@ src/game/main/copowers/count_power_use.c:
     complete
     .text       start:0x020e2748 end:0x020e27a0
 
+src/game/main/copowers/can_use_co_power.c:
+    complete
+    .text       start:0x020e2a14 end:0x020e2ac8
+
 src/game/main/copowers/super_power_cost.c:
     complete
     .text       start:0x020e2b70 end:0x020e2be8
