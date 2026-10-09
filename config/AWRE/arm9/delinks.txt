@@ -5428,6 +5428,9 @@ src/game/main/ai/ai_tile_get_lowest_adjacent_reach.c:
     complete
     .text       start:0x020a6450 end:0x020a6554
 
+src/game/main/ai/ai_unit_has_fuel_for_tile.c:
+    .text       start:0x020a6554 end:0x020a6764
+
 src/game/main/ai/range_map_fill_moves_over_turns.c:
     complete
     .text       start:0x020a6764 end:0x020a6ac4
