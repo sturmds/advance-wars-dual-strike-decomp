@@ -18,7 +18,7 @@ Task *Task_Create(const void *script, void *parentOrList);
 void func_020b9d48(void);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
 void func_020d1a38(void);
-void func_020deac4(void);
+void ActingUnit_FinishAction(void);
 void Player_AddPowerCharge(int player, int slot, int amount);      /* slot 0: front CO, 1: back CO */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -47,7 +47,7 @@ void ActingUnit_StartAttack(int defenderSlot, int flag)
     if (defenderSlot == 0) {
         STATE->actingUnit->ammo--;
         func_020b9d48();
-        func_020deac4();
+        ActingUnit_FinishAction();
         return;
     }
 

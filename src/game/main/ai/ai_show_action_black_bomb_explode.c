@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020deac4(void);
+void ActingUnit_FinishAction(void);
 void func_020dd940(int x, int y, int x2, int y2, int mode);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -16,6 +16,6 @@ void func_020dd940(int x, int y, int x2, int y2, int mode);
 void AiShowAction_BlackBombExplode(void)
 {
     STATE->actingUnit->hp = 0;
-    func_020deac4();
+    ActingUnit_FinishAction();
     func_020dd940(gUnitAction.x, gUnitAction.y, gUnitAction.x, gUnitAction.y, 3);
 }

@@ -42,7 +42,7 @@ void UnitAction_Join(void);
 void UnitAction_Repair(int arg);
 void UnitAction_Board(void);
 void UnitAction_Capture(void);
-void func_020deac4(void);
+void ActingUnit_FinishAction(void);
 
 /* Second display step: runs the display routine of the action in
  * gUnitAction. Unless the action is 1, 13 to 21 or 27, the acting unit
@@ -95,11 +95,11 @@ void AiShowAction_Step2(void)
         UnitAction_ActivateTagPower();
         break;
     case 2:
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 3:
         UnitAction_Capture();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 4:
         func_020b8ad4();
@@ -109,7 +109,7 @@ void AiShowAction_Step2(void)
         return;
     case 7:
         UnitAction_Board();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 8:
         func_020b8370(1);
@@ -118,18 +118,18 @@ void AiShowAction_Step2(void)
         return;
     case 10:
         UnitAction_Join();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 6:
         UnitAction_Supply();
         break;
     case 11:
         func_020b8308();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 12:
         func_020b82a0();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 20:
         func_020b8230();
@@ -140,7 +140,7 @@ void AiShowAction_Step2(void)
     case 22:
         if (GAME->gameMode == 0 && GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 18) {
             func_020dd9a0();
-            func_020deac4();
+            ActingUnit_FinishAction();
         } else {
             func_020b8964();
             return;
@@ -151,14 +151,14 @@ void AiShowAction_Step2(void)
         break;
     case 24:
         UnitAction_Repair(gUnitAction.target - 1);
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 25:
         func_020dd89c();
-        func_020deac4();
+        ActingUnit_FinishAction();
         break;
     case 26:
-        func_020deac4();
+        ActingUnit_FinishAction();
         UnitAction_MoveToOtherMap();
         break;
     case 27:
