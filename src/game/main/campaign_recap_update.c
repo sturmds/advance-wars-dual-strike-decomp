@@ -15,7 +15,6 @@ void func_020525a8(int mapId, int arg);
 void func_020ff4a8(Unk_020ffa50 *work);
 void func_020fed58(Unk_020ffa50 *work, int mapOffset);
 s32 HwMod32(s32 numerator, s32 denominator);
-Task *Task_Create(const TaskScriptCmd *script, void *parentOrList);
 Task *func_020fcdc8(CampaignRecapTask *parent, int frames);
 Task *func_020fcda0(CampaignRecapTask *parent, int frames);
 Task *func_020fcd78(CampaignRecapTask *parent, int frames);
@@ -108,7 +107,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
             work->unk_5c = work->unk_44 * 50 - 800;
             work->unk_60 = -work->unk_48 * 50 + 600;
             work->unk_64 = 0;
-            work->unk_4c = Task_Create(data_0216a898, (void *)3);
+            work->unk_4c = Task_Create(data_0216a898, TASK_LIST(3));
             task->step = work->firstStep;
         }
         break;

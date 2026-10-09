@@ -1,10 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_021694c0.h"
 
 extern Unk_021694c0 *data_021694c0;
-extern u8 data_02169878[];
-
-void *Task_Create(const void *script, void *parent);
+extern const TaskScriptCmd data_02169878[];
 
 /* Starts the data_02169878 task, then sets four starting values in the
  * data_021694c0 record: 0x80 and 60 in fields 0x24 and 0x28, 0 in 0x2c and

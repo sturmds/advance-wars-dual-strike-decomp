@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-Task *Task_Create(const void *script, Task *parent);
-extern u8 data_0215b1bc[];
+extern const TaskScriptCmd data_0215b1bc[];
 
 void Task_CreateChildSharingData(Task *parent)
 {

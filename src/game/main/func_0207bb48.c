@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_0215fe8c.h"
 
 extern Unk_0215fe8c *data_0215fe8c;
-extern u8 data_0215feb8[];
+extern const TaskScriptCmd data_0215feb8[];
 
-void *Task_Create(const void *script, void *parentOrList);
 int Task_DestroyByScript(const void *script);
 u16 func_0207a1dc(void);
 int func_0207a27c(void);

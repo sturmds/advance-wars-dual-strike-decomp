@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/mode_font_task.h"
 
-ModeFontTask *Task_Create(const void *script, int group);
 u32 func_021247ac(const char *str);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -11,7 +11,7 @@ void Screen_SetCurrentGfx(void *state);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02159870[];
+extern const TaskScriptCmd data_02159870[];
 
 /* Like ModeFont_ShowTextOnScreen with ModeFont_StartTextTask inlined, but
  * the task uses its own script (data_02159870) and draws at y = 48, below
@@ -27,7 +27,7 @@ void ModeFont_ShowSecondLine(const char *text, int tile, int paletteSlot, int un
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    task = Task_Create(data_02159870, 3);
+    task = (ModeFontTask *)Task_Create(data_02159870, TASK_LIST(3));
     task->length = func_021247ac(text);
     width = 0;
     for (i = 0; i < task->length; i++) {

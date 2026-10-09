@@ -2,6 +2,7 @@
 #define GAME_SONG_H
 
 #include "types.h"
+#include "game/task.h"
 
 /* Background music state (src/game/main/sound/). */
 
@@ -12,10 +13,10 @@ extern u16 gPendingSong;         /* song to start later, SONG_NONE: none */
 
 /* Task script that counts down while the song fades out, then clears
  * gCurrentSong. Pairs of (opcode, argument) words. */
-extern const u32 gSongFadeOutScript[];
+extern const TaskScriptCmd gSongFadeOutScript[];
 
 /* Task script of Sound_RequestSong's task. */
-extern const u32 gSongRequestScript[];
+extern const TaskScriptCmd gSongRequestScript[];
 
 /* The task that runs gSongFadeOutScript (a 0x6c-byte task). */
 typedef struct SongFadeOutTask {

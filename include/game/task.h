@@ -58,4 +58,11 @@ typedef struct TaskScriptCmd {
 /* Runs one command of a task's script; nonzero: run the next one too. */
 typedef BOOL (*TaskCommandFunc)(Task *task);
 
+/* Task_Create's second argument when it names a top-level list (below
+ * TASK_LEVELS) rather than a parent task. */
+#define TASK_LIST(level) ((void *)(level))
+
+Task *Task_Create(const TaskScriptCmd *script, void *parentOrList);
+Task *Task_CreateChild(const TaskScriptCmd *script, Task *parent);
+
 #endif

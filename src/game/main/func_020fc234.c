@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/task.h"
 
 void MenuButtons_DisableTouch(void);
-int Task_Create(void *, int);
-extern u8 data_0216a52c[];
+extern const TaskScriptCmd data_0216a52c[];
 
-int func_020fc234(void)
+Task *func_020fc234(void)
 {
     MenuButtons_DisableTouch();
-    return Task_Create(data_0216a52c, 3);
+    return Task_Create(data_0216a52c, TASK_LIST(3));
 }

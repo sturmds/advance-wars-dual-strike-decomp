@@ -2,10 +2,9 @@
 #include "game/popup_menu.h"
 #include "game/task.h"
 
-extern u8 data_021587a8[];
+extern const TaskScriptCmd data_021587a8[];
 
 void func_01ff9b48(void);
-Task *Task_Create(const void *script, int group);
 const void *Text_Get(u32 textId);
 int func_02014a3c(const void *text);
 void func_0201ee48(PopupMenuTask *menu);
@@ -36,7 +35,7 @@ PopupMenuTask *PopupMenu_Create(const MenuItem *items, int x, int y, int style, 
     heightPixels = 16;
 
     func_01ff9b48();
-    task = Task_Create(data_021587a8, 3);
+    task = Task_Create(data_021587a8, TASK_LIST(3));
     menu = (PopupMenuTask *)task;
     menu->style = style;
     switch (style) {

@@ -1,9 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 
-void Task_Create(void *, int);
-extern u8 data_ov002_0236961c[];
+extern const TaskScriptCmd data_ov002_0236961c[];
 
 void func_ov002_023571b8(void)
 {
-    Task_Create(data_ov002_0236961c, 1);
+    Task_Create(data_ov002_0236961c, TASK_LIST(1));
 }

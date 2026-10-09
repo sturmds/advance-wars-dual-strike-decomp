@@ -1,11 +1,11 @@
 #include "types.h"
+#include "game/task.h"
 
-int Task_Create(void *, int);
-extern u8 data_0215fea0[];
-int func_0207a3e0(int);
+extern const TaskScriptCmd data_0215fea0[];
+void func_0207a3e0(void);
 
-int func_0207bbd0(void)
+void func_0207bbd0(void)
 {
-    int t0 = Task_Create(data_0215fea0, 0);
-    return func_0207a3e0(t0);
+    Task_Create(data_0215fea0, TASK_LIST(0));
+    func_0207a3e0();
 }

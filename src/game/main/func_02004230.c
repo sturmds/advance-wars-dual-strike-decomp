@@ -4,7 +4,6 @@
 extern const TaskScriptCmd data_02157284[];
 extern const TaskScriptCmd data_02157420[];
 int func_02004a14(void);
-Task *Task_CreateChild(const TaskScriptCmd *script, Task *parent);
 
 /* Starts one of two child task scripts under parent, chosen by
  * func_02004a14, and stores arg in the child's unk_64. */

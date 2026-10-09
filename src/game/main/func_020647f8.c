@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_gMenuState Unk_gMenuState;
 
@@ -8,11 +9,10 @@ struct Unk_gMenuState {
 };
 
 extern Unk_gMenuState gMenuState;
-void Task_CreateChild(void *, int, void *, int);
-extern u8 data_0215d038[];
+extern const TaskScriptCmd data_0215d038[];
 
-void func_020647f8(int a0)
+void func_020647f8(Task *parent)
 {
     gMenuState.unk_2eb = 1;
-    Task_CreateChild(data_0215d038, a0, &gMenuState, 1);
+    Task_CreateChild(data_0215d038, parent);
 }

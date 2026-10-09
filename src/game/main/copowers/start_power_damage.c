@@ -1,18 +1,14 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/power_damage.h"
 
-/* Task system: the second argument is a priority when below 8, else the
- * parent task. */
-void *Task_CreateChild(const void *desc, void *parent);
-void *Task_Create(const void *desc, void *parent);
-
-extern u8 gPowerDamageTaskDesc[];
+extern const TaskScriptCmd gPowerDamageTaskDesc[];
 
 void StartPowerDamage(const void *effectDesc, const char *effectA, const char *effectB,
                       int player, int damage, int heal, int weather, BOOL halveFuel,
                       PowerDamageFilter filter, void *parent)
 {
-    PowerDamageTask *task = Task_CreateChild(gPowerDamageTaskDesc, parent);
+    PowerDamageTask *task = (PowerDamageTask *)Task_CreateChild(gPowerDamageTaskDesc, parent);
     PowerEffectTask *effect;
 
     task->player = player;
@@ -21,7 +17,7 @@ void StartPowerDamage(const void *effectDesc, const char *effectA, const char *e
     task->weather = weather;
     task->halveFuel = halveFuel;
     task->filter = filter;
-    effect = Task_Create(effectDesc, task);
+    effect = (PowerEffectTask *)Task_Create(effectDesc, task);
     effect->effectA = effectA;
     effect->effectB = effectB;
 }

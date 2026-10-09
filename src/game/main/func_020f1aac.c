@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/sound.h"
 
-void Task_Create(void **handle, int fadeFrames);
-extern void *data_021695b8;
+extern const TaskScriptCmd data_021695b8[];
 
-void func_020f1aac(int fadeFrames)
+void func_020f1aac(void *parentOrList)
 {
-    Task_Create(&data_021695b8, fadeFrames);
+    Task_Create(data_021695b8, parentOrList);
 }

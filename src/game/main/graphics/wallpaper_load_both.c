@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -10,13 +11,12 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
-void *Task_Create(const void *script, int group);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern char data_02159650[];           /* "/ohashi/res_wall_single" */
-extern u8 data_0215937c[];
+extern const TaskScriptCmd data_0215937c[];
 
 /* Loads the wallpaper file onto layer 3 of the current screen: tiles,
  * tile map and one palette (bank 15), then adds 0xf000 to every map entry
@@ -56,9 +56,9 @@ void Wallpaper_LoadBoth(void)
     saved0280 = data_027c0280;
     saved027c = data_027c027c;
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    Task_Create(data_0215937c, 0);
+    Task_Create(data_0215937c, TASK_LIST(0));
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    Task_Create(data_0215937c, 0);
+    Task_Create(data_0215937c, TASK_LIST(0));
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

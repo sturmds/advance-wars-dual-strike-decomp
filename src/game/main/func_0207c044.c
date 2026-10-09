@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_0207c044_0 Unk_0207c044_0;
 
@@ -7,11 +8,10 @@ struct Unk_0207c044_0 {
     int unk_2c;
 };
 
-Unk_0207c044_0 *Task_Create(void *, int, int);
-extern u8 data_0215ff9c[];
+extern const TaskScriptCmd data_0215ff9c[];
 
-void func_0207c044(int a0, int a1)
+void func_0207c044(void *parentOrList, int a1)
 {
-    Unk_0207c044_0 *t0 = Task_Create(data_0215ff9c, a0, a0);
+    Unk_0207c044_0 *t0 = (Unk_0207c044_0 *)Task_Create(data_0215ff9c, parentOrList);
     t0->unk_2c = a1;
 }

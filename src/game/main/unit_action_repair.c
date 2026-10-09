@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02290718.h"
 #include "game/player.h"
@@ -6,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern s16 data_021684d8[]; /* dx, dy per direction */
-extern u8 data_02168538[];
+extern const TaskScriptCmd data_02168538[];
 
 /* Work area of the repair task (script data_02168538). */
 typedef struct RepairTask {
@@ -16,8 +17,6 @@ typedef struct RepairTask {
     u8 pad_34[0x4c - 0x34];
     MapUnit *unit;
 } RepairTask;
-
-RepairTask *Task_Create(void *script, int level);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -43,7 +42,7 @@ void UnitAction_Repair(int direction)
             data_02290718.suppliesAndRepairs++;
         }
     }
-    task = Task_Create(data_02168538, 3);
+    task = (RepairTask *)Task_Create(data_02168538, TASK_LIST(3));
     task->tileX = x;
     task->tileY = y;
     task->unit = unit;

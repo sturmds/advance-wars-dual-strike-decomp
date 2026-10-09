@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/sprite_task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -6,12 +7,11 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 gSpriteTaskScript[];
+extern const TaskScriptCmd gSpriteTaskScript[];
 extern const char data_0216074c[];
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void *Task_Create(const void *script, void *parentOrList);
 void *File_Load(const char *path);
 void Mem_Free(void *file);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -32,7 +32,7 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    task = Task_Create(gSpriteTaskScript, (void *)3);
+    task = (SpriteTask *)Task_Create(gSpriteTaskScript, TASK_LIST(3));
     task->x = x;
     task->y = y;
     task->tile = tile;

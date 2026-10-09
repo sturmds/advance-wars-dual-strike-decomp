@@ -1,18 +1,18 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_02364a2c Unk_02364a2c;
 
 struct Unk_02364a2c {
     u8 pad_00[0x4c];
-    int unk_4c;
+    Task *unk_4c;
 };
 
-int Task_Create(void *, int);
-extern u8 data_ov005_0236aec4[];
+extern const TaskScriptCmd data_ov005_0236aec4[];
 
-int func_ov005_02364a2c(Unk_02364a2c *a0)
+Task *func_ov005_02364a2c(Unk_02364a2c *a0)
 {
-    int t0 = Task_Create(data_ov005_0236aec4, 3);
+    Task *t0 = Task_Create(data_ov005_0236aec4, TASK_LIST(3));
     a0->unk_4c = t0;
     return t0;
 }

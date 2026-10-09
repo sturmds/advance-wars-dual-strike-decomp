@@ -1,10 +1,8 @@
 #include "types.h"
-
-/* Starts a task that runs `script` as a child of `parent`; returns the task. */
-void *Task_CreateChild(const void *script, void *parent);
+#include "game/task.h"
 
 /* Script of (opcode, argument) pairs. */
-extern const u32 gCoNoPowerScript[];
+extern const TaskScriptCmd gCoNoPowerScript[];
 
 /* Power routine for COs whose power has no extra effect: it only runs the
  * common power script. */

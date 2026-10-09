@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 
 void Sound_PlaySe(int id);
@@ -22,10 +23,8 @@ typedef struct CoSoundRow {
     u16 unk_200[16];
 } CoSoundRow;
 
-Unk_020d5b58Task *Task_Create(const void *script, void *parentOrList);
-
-extern const u32 data_02166ed4[];
-extern const u32 data_02166efc[];
+extern const TaskScriptCmd data_02166ed4[];
+extern const TaskScriptCmd data_02166efc[];
 extern CoSoundRow data_021536ec[];
 extern int data_022a6c78;
 extern Unk_02080440 *data_027c027c;
@@ -45,9 +44,9 @@ void func_020d5b58(u8 a, u8 b, u16 c, int kind)
         data_022a6c78 = 0;
     }
     if (kind == 2) {
-        task = Task_Create(data_02166efc, (void *)3);
+        task = (Unk_020d5b58Task *)Task_Create(data_02166efc, TASK_LIST(3));
     } else {
-        task = Task_Create(data_02166ed4, (void *)3);
+        task = (Unk_020d5b58Task *)Task_Create(data_02166ed4, TASK_LIST(3));
     }
     Sound_PlaySe(data_021536ec[GAME->players[GAME->currentPlayer].front.id & PLAYER_CO_ID_MASK].byKind[kind][data_022a6c78]);
     task->unk_29 = a;

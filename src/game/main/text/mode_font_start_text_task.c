@@ -1,10 +1,10 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/mode_font_task.h"
 
-ModeFontTask *Task_Create(const void *script, int group);
 u32 func_021247ac(const char *str);
 
-extern u8 data_02159830[];
+extern const TaskScriptCmd data_02159830[];
 
 /* Starts a task that draws text in the mode font. Letters of either case, '*'
  * and '-' have glyphs; any other character is a 16 pixel gap. The line is
@@ -15,7 +15,7 @@ void ModeFont_StartTextTask(const char *text, int tile, int paletteSlot, int unk
     int i;
     u16 width;
 
-    task = Task_Create(data_02159830, 3);
+    task = (ModeFontTask *)Task_Create(data_02159830, TASK_LIST(3));
     task->length = func_021247ac(text);
     width = 0;
     for (i = 0; i < task->length; i++) {

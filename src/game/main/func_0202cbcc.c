@@ -1,12 +1,12 @@
 #include "types.h"
+#include "game/task.h"
 
 int func_0207bd80(void);
-void Task_CreateChild(void **handle, int fadeFrames);
-extern void *data_02159988;
+extern const TaskScriptCmd data_02159988[];
 
-void func_0202cbcc(int fadeFrames)
+void func_0202cbcc(Task *parent)
 {
     if (func_0207bd80() == 1) {
-        Task_CreateChild(&data_02159988, fadeFrames);
+        Task_CreateChild(data_02159988, parent);
     }
 }

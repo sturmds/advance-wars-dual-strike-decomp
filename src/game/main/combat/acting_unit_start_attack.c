@@ -14,7 +14,6 @@ extern const TaskScriptCmd data_02168400[];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Combat_SimulateChecked(int attackerIndex, int defenderIndex, s16 *pos);
-Task *Task_Create(const void *script, void *parentOrList);
 void func_020b9d48(void);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
 void ScreenConfig_RunActionHook(void);
@@ -85,13 +84,13 @@ void ActingUnit_StartAttack(int defenderSlot, int flag)
     case 3:
     default:
         ScreenConfig_RunActionHook();
-        task = Task_Create(data_02168400, (void *)3);
+        task = Task_Create(data_02168400, TASK_LIST(3));
         task->unk_64 = flag;
         task->unk_4c = defender;
         break;
     case 0:
         ScreenConfig_RunActionHook();
-        task = Task_Create(data_02168328, (void *)3);
+        task = Task_Create(data_02168328, TASK_LIST(3));
         task->unk_64 = flag;
         task->unk_4c = defender;
         break;

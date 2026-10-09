@@ -1,16 +1,16 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_02004a1c_0 {
     u8 pad_00[0x64];
     u16 unk_64;
 } Unk_02004a1c_0;
-Unk_02004a1c_0 *Task_CreateChild(void *script);
 void func_02004bac(void);
-extern u8 data_021572e4[];
+extern const TaskScriptCmd data_021572e4[];
 
-void func_02004b14(int value)
+void func_02004b14(int value, Task *parent)
 {
-    Unk_02004a1c_0 *task = Task_CreateChild(data_021572e4);
+    Unk_02004a1c_0 *task = (Unk_02004a1c_0 *)Task_CreateChild(data_021572e4, parent);
 
     if (task != NULL) {
         task->unk_64 = value;

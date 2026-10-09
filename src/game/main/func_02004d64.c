@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 
 typedef struct Unk_02004d64_0 Unk_02004d64_0;
 
@@ -7,12 +8,11 @@ struct Unk_02004d64_0 {
     u16 unk_64;
 };
 
-Unk_02004d64_0 *Task_Create(void *, int);
-extern u8 data_02157324[];
+extern const TaskScriptCmd data_02157324[];
 
 void func_02004d64(int a0)
 {
-    Unk_02004d64_0 *t0 = Task_Create(data_02157324, 3);
+    Unk_02004d64_0 *t0 = (Unk_02004d64_0 *)Task_Create(data_02157324, TASK_LIST(3));
     if ((int)t0 != 0) {
         t0->unk_64 = a0;
     }

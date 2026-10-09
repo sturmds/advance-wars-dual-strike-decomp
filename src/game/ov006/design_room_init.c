@@ -34,7 +34,6 @@ void func_020d308c(void);
 void Font_SetDigitEndTile(int tile);
 void func_020c4394(int x, int y, s16 *tile, u16 *pixel);
 void Ov006_PostRequest(int request);
-Task *Task_Create(const TaskScriptCmd *script, void *parentOrList);
 void Sound_StartSong(int songId);
 void func_ov006_02353304(void);
 
@@ -145,8 +144,8 @@ void DesignRoom_Init(Task *task)
     OV6->unk_27 = OV6->unk_25;
     OV6->unk_28 = OV6->unk_24;
     Ov006_PostRequest(0);
-    OV6->unk_5c = Task_Create(data_ov006_0236a218, (void *)3);
+    OV6->unk_5c = Task_Create(data_ov006_0236a218, TASK_LIST(3));
     Sound_StartSong(0x34);
     func_ov006_02353304();
-    OV6->unk_60 = Task_Create(data_ov006_0236a1e0, (void *)3);
+    OV6->unk_60 = Task_Create(data_ov006_0236a1e0, TASK_LIST(3));
 }

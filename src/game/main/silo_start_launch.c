@@ -1,11 +1,12 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02290718.h"
 #include "game/player.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_02169344[];
+extern const TaskScriptCmd data_02169344[];
 
 /* Work area of the silo launch task (script data_02169344). */
 typedef struct SiloLaunchTask {
@@ -19,15 +20,12 @@ typedef struct SiloLaunchTask {
     u16 siloY;
 } SiloLaunchTask;
 
-SiloLaunchTask *Task_Create(void *script, int parentOrList);
-SiloLaunchTask *Task_CreateChild(void *script, int parent);
-
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Starts the launch of the silo at (siloX, siloY) at the target tile
  * (targetX, targetY). parentOrList below 8 is a task list level, otherwise
  * the parent task. */
-void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY, int parentOrList)
+void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY, void *parentOrList)
 {
     SiloLaunchTask *task;
 
@@ -36,10 +34,10 @@ void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY, int parent
             data_02290718.silosLaunched++;
         }
     }
-    if (parentOrList < 8) {
-        task = Task_Create(data_02169344, parentOrList);
+    if ((int)parentOrList < TASK_LEVELS) {
+        task = (SiloLaunchTask *)Task_Create(data_02169344, parentOrList);
     } else {
-        task = Task_CreateChild(data_02169344, parentOrList);
+        task = (SiloLaunchTask *)Task_CreateChild(data_02169344, parentOrList);
     }
     task->siloX = siloX;
     task->siloY = siloY;

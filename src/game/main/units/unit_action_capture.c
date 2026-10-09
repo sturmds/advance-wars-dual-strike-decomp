@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/map_unit.h"
 #include "game/player.h"
 #include "game/terrain.h"
@@ -8,14 +9,13 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 data_0229eaec;
-extern u8 data_02168d88[];
+extern const TaskScriptCmd data_02168d88[];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Player_GetCaptureRate(int playerIndex);
 int CaptureIncrease(int player, int slot);
 void ActingUnit_ResetCaptureIfMoved(void);
 void ActingUnit_StartAtDest(void);
-void *Task_Create(const void *script, int parent);
 void func_020ceb60(void);
 void func_020ec058(int owner);
 void func_020ecb14(int x, int y, int oldProgress, int newProgress, int owner);
@@ -84,7 +84,7 @@ void UnitAction_Capture(void)
     } else if (data_0229eaec != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2)
                && GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_AI) {
         /* the tile is out of sight: no capture scene, but link play still needs the task */
-        Task_Create(data_02168d88, 3);
+        Task_Create(data_02168d88, TASK_LIST(3));
     }
 
     GAME->actingUnit->captureProgress = progress;

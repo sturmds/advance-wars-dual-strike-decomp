@@ -2,10 +2,9 @@
 #include "game/task.h"
 
 void Palette_Load(const void *src, u32 offset, u32 size);
-void *Task_Create(const void *script, void *parentOrList);
 
 extern const u16 data_02149280[];
-extern const u32 data_02159944[];
+extern const TaskScriptCmd data_02159944[];
 
 void PaletteCycle_Start(int palette)
 {
@@ -13,6 +12,6 @@ void PaletteCycle_Start(int palette)
 
     /* Palette index to byte offset, wrapped to 11 bits as the original does. */
     Palette_Load(data_02149280, ((u32)palette << 21) >> 16, 32);
-    task = Task_Create(data_02159944, (void *)3);
+    task = Task_Create(data_02159944, TASK_LIST(3));
     task->unk_52 = palette;
 }
