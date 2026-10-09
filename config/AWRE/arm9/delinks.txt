@@ -367,6 +367,10 @@ src/game/main/ai/ai_queue_sort_black_boats.c:
     complete
     .text       start:0x0208f688 end:0x0208f724
 
+src/game/main/ai/ai_queue_sort_by_vision.c:
+    complete
+    .text       start:0x0208f724 end:0x0208f7c4
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
