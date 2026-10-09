@@ -2086,6 +2086,10 @@ src/game/main/ai/ai_show_action_step7.c:
     complete
     .text       start:0x020b8850 end:0x020b8964
 
+src/game/main/ai/ai_show_action_step2.c:
+    complete
+    .text       start:0x020b8cf0 end:0x020b9114
+
 src/game/main/ai/ai_show_action_step1.c:
     complete
     .text       start:0x020b9114 end:0x020b91b0
