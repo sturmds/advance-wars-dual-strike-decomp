@@ -29,7 +29,7 @@ typedef struct Unk_ov006_0235f690 {
     s8 unk_28;
     s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
     s8 unk_2a;
-    u8 pad_2b;
+    u8 unk_2b;                         /* result of func_ov006_02365ba8, stored by Ov006_FillMapForScreen */
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
