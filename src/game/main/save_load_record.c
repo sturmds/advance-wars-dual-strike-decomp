@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/save_data.h"
 
-int func_0201fadc(u16 slot);
+int Save_ReadSlot(u16 slot);
 int func_0201fe28(int recordId);
 
 extern int data_02297f38;
@@ -9,7 +9,7 @@ extern u8 *data_02297f28;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 
-/* Loads the save record recordId (a guess: func_0201fe28 and func_0201fadc
+/* Loads the save record recordId (a guess: func_0201fe28 and Save_ReadSlot
  * look like a record check and a read from the save buffer). For each slot
  * that holds the record, the data in the save buffer is copied to
  * data_02297f28 + destOffset and its length is added to data_02297f38.
@@ -38,7 +38,7 @@ int Save_LoadRecord(int recordId)
 
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
         if (recordId == data_02297f3c.id[i]) {
-            if (func_0201fadc(i)) {
+            if (Save_ReadSlot(i)) {
                 return 1;
             }
             data_02297f38 += data_02298050.dataLength;

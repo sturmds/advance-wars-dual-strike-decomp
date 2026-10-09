@@ -3,7 +3,7 @@
 
 void func_0210c06c(int fovSin, int fovCos, int aspect, int nearZ, int farZ, int scale, BOOL load, void *mtx);
 
-/* Sets a 30 degree field of view, 4:3 aspect perspective projection, then
+/* Sets a 60 degree field of view, 4:3 aspect perspective projection, then
  * stores the matrix in slot 0 of the matrix stack. */
 void Gfx3d_SetPerspective(void)
 {
