@@ -5,7 +5,9 @@
 
 /* 16-byte record; the handlers step through an array of these. */
 typedef struct Unk_0201d320_Entry {
-    u8 pad_00[0xc];
+    u8 pad_00[0x8];
+    s16 unk_08;
+    u8 pad_0a[0x2];
     u32 unk_0c;
 } Unk_0201d320_Entry;
 
