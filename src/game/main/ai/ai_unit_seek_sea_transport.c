@@ -67,7 +67,7 @@ void AiUnit_SeekSeaTransport(void)
     if (!AiProfile_WantsSeaTransport() && Ai_CountUnitsOfType(UNIT_LANDER) == 0 && Ai_CountUnitsOfType(UNIT_BLACK_BOAT) == 0) {
         return;
     }
-    if (STATE->actingUnit->unk_0c_7) {
+    if (STATE->actingUnit->claimedLandmass) {
         return;
     }
     if (STATE->actingUnit->hp < 61) {

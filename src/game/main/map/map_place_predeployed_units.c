@@ -66,7 +66,7 @@ void Map_PlacePredeployedUnits(const PredeployedUnit *row)
         unit->unk_08_7 = 0;
         unit->unk_0c_5 = 0;
         unit->unk_0c_6 = 0;
-        unit->unk_0c_7 = 0;
+        unit->claimedLandmass = 0;
         if (row->cargo[0] != 0) {
             unit->cargo[0] = slots[row->cargo[0] - 1];
         }

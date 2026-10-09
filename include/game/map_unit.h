@@ -47,7 +47,7 @@ typedef struct MapUnit {
     u8 unk_0c_4 : 1;
     u8 unk_0c_5 : 1;
     u8 unk_0c_6 : 1;
-    u8 unk_0c_7 : 1;
+    u8 claimedLandmass : 1;            /* AI: the unit stays to hold its landmass (AiUnit_ClaimLandmass) */
     u8 pad_0d;
 } MapUnit;
 

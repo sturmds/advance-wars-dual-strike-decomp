@@ -85,7 +85,7 @@ void AiEmptyTransport_GoToFootUnit(void)
         if (gAiTransportsSentToUnit[i & 63] != 0) {
             continue;
         }
-        if (unit->unk_0c_7) {
+        if (unit->claimedLandmass) {
             continue;
         }
         /* APCs only go for foot units marked 1, T-Copters for 1 to 3 */

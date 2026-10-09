@@ -24,14 +24,14 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
  * started with a ground factory and now has sea units or a port. Fills
  * the range map as a Tank standing on the unit's tile would, then counts
  * what is on that landmass: properties other than silos, own units that
- * have unk_0c_7 set, and how many of those are Infantry or Mech. Returns
+ * have claimedLandmass set, and how many of those are Infantry or Mech. Returns
  * FALSE at once when an own base is among the properties.
  *
- * Sets unk_0c_7 on the unit when the landmass has few such units for its
+ * Sets claimedLandmass on the unit when the landmass has few such units for its
  * properties. Infantry and Mech: no Infantry or Mech with up to 3
  * properties, at most 1 with more. Other units: no marked unit with up to
  * 3 properties, no marked non-foot unit with up to 6, at most 1 above.
- * Returns whether unk_0c_7 is set. */
+ * Returns whether claimedLandmass is set. */
 BOOL AiUnit_ClaimLandmass(void)
 {
     /* needed to match: declaration order sets the registers */
@@ -55,7 +55,7 @@ BOOL AiUnit_ClaimLandmass(void)
     if (UnitType_GetAttackKind(STATE->actingUnit->type) != ATTACK_KIND_DIRECT) {
         return FALSE;
     }
-    if (STATE->actingUnit->unk_0c_7) {
+    if (STATE->actingUnit->claimedLandmass) {
         return FALSE;
     }
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, UNIT_TANK, ANY_DISTANCE, 0);
@@ -82,7 +82,7 @@ BOOL AiUnit_ClaimLandmass(void)
                 continue;
             }
             unit = &STATE->units[slot];
-            if (!unit->unk_0c_7) {
+            if (!unit->claimedLandmass) {
                 continue;
             }
             units++;
@@ -97,21 +97,21 @@ BOOL AiUnit_ClaimLandmass(void)
     if (STATE->actingUnit->type <= UNIT_MECH) {
         if (properties <= 3) {
             if (footUnits == 0) {
-                STATE->actingUnit->unk_0c_7 = 1;
+                STATE->actingUnit->claimedLandmass = 1;
             }
         } else if (footUnits <= 1) {
-            STATE->actingUnit->unk_0c_7 = 1;
+            STATE->actingUnit->claimedLandmass = 1;
         }
     } else if (properties <= 3) {
         if (units == 0) {
-            STATE->actingUnit->unk_0c_7 = 1;
+            STATE->actingUnit->claimedLandmass = 1;
         }
     } else if (properties <= 6) {
         if (units - footUnits == 0) {
-            STATE->actingUnit->unk_0c_7 = 1;
+            STATE->actingUnit->claimedLandmass = 1;
         }
     } else if (units - footUnits <= 1) {
-        STATE->actingUnit->unk_0c_7 = 1;
+        STATE->actingUnit->claimedLandmass = 1;
     }
-    return STATE->actingUnit->unk_0c_7 ? TRUE : FALSE;
+    return STATE->actingUnit->claimedLandmass ? TRUE : FALSE;
 }

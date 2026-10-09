@@ -26,7 +26,7 @@ int AiActingUnit_GetSearchMovement(void)
     if (!(Ov000_gUnitStats[unit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))) {
         return SEARCH_RANGE_MAX;
     }
-    if (unit->unk_0c_7) {
+    if (unit->claimedLandmass) {
         return SEARCH_RANGE_MAX;
     }
     if (unit->type <= UNIT_MECH) {

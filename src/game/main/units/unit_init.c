@@ -24,5 +24,5 @@ void Unit_Init(MapUnit *unit, u8 type)
     unit->unk_08_7 = 0;
     unit->unk_0c_5 = 0;
     unit->unk_0c_6 = 0;
-    unit->unk_0c_7 = 0;
+    unit->claimedLandmass = 0;
 }

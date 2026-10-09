@@ -132,12 +132,12 @@ void AiFoot_HeadForCaptureSite(void)
         }
         STATE->actingUnit->aiTargetX = bestX;
         STATE->actingUnit->aiTargetY = bestY;
-        if ((bestScore >> 1) > 2 && STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
+        if ((bestScore >> 1) > 2 && STATE->actingUnit->hp >= 61 && !STATE->actingUnit->claimedLandmass) {
             AiFoot_BoardTransportForSite(bestScore >> 1);
             STATE->actingUnit->transportWanted = WANTS_APC;
         }
         AiUnit_MoveTowardTile(bestX, bestY);
-    } else if (STATE->actingUnit->hp >= 61 && !STATE->actingUnit->unk_0c_7) {
+    } else if (STATE->actingUnit->hp >= 61 && !STATE->actingUnit->claimedLandmass) {
         AiFoot_BoardTransport();
         STATE->actingUnit->transportWanted = WANTS_T_COPTER;
     }

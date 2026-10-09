@@ -36,7 +36,7 @@ void AiFoot_BoardTransport(void)
     MapUnit *transport;
     int type;
 
-    if (STATE->actingUnit->unk_0c_7 || AiUnit_ClaimLandmass() == 1) {
+    if (STATE->actingUnit->claimedLandmass || AiUnit_ClaimLandmass() == 1) {
         STATE->actingUnit->transportWanted = 0;
         return;
     }

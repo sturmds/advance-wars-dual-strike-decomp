@@ -21,7 +21,7 @@ extern Unk_02080440_48 data_02189cd8;
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
 /* Name is a guess from the checks. In a two-map battle, when the other
- * map's state has unk_30 clear and the acting unit may use it (unk_0c_7
+ * map's state has unk_30 clear and the acting unit may use it (claimedLandmass
  * clear), moves the unit to the reachable tile with the lowest rangeMap
  * value that AiUnit_CanUseOtherMapFrom accepts, with action 26. */
 void AiUnit_MoveToOtherMap(void)
@@ -54,7 +54,7 @@ void AiUnit_MoveToOtherMap(void)
     if (GAME == &data_02189cd8) {
         return;
     }
-    if (GAME->actingUnit->unk_0c_7) {
+    if (GAME->actingUnit->claimedLandmass) {
         return;
     }
     if (gAiTurnState->factoryDomainsOwn == 0) {
