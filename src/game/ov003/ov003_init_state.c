@@ -25,7 +25,7 @@ void func_ov003_02351a5c(void);
 void func_ov003_0235e22c(void);
 u32 MainLoop_GetFrameCount(void);
 void Ov003_RandSeed(u32 seed);
-void func_0200a574(void);
+void Keypad_Init(void);
 
 /* Seeds the random generator with the frame count, or with a fixed seed when
  * the byte at 0x7c of data_02160ac0 is set (same flag func_ov003_023622b8 reads). */
@@ -43,6 +43,6 @@ void Ov003_InitState(void)
     } else {
         Ov003_RandSeed(0x31527396);
     }
-    func_0200a574();
+    Keypad_Init();
     data_ov003_02364928->unk_1df &= ~2;
 }
