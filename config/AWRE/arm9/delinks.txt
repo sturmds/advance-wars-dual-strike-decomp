@@ -5611,6 +5611,10 @@ src/game/main/combat/unit_get_charge_for_hp_lost.c:
     complete
     .text       start:0x020c3b00 end:0x020c3b1c
 
+src/game/main/map/map_get_tile_colour.c:
+    complete
+    .text       start:0x020c3bd8 end:0x020c3c20
+
 src/game/main/map/map_get_tile_army.c:
     complete
     .text       start:0x020c3c20 end:0x020c3ca0
