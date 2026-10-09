@@ -48,7 +48,7 @@ typedef struct MenuButton {
 #define MENU_BUTTON_SLIDE_OUT_RIGHT  0x0080
 #define MENU_BUTTON_SLIDE_OUT_TOP    0x0100
 #define MENU_BUTTON_SLIDE_OUT_BOTTOM 0x0200
-#define MENU_BUTTON_NO_TOUCH_CONFIRM 0x0400   /* releasing a touch on it does nothing */
+#define MENU_BUTTON_NO_TOUCH_CONFIRM 0x0400   /* touch neither selects nor confirms it */
 #define MENU_BUTTON_SEMI_TRANSPARENT 0x0800
 #define MENU_BUTTON_TOUCH_ANYWHERE   0x1000   /* func_0202576c counts any point as inside */
 
@@ -71,12 +71,33 @@ enum {
 
 extern MenuButton gMenuButtons[80];
 
+/* What a button is made from; copied into MenuButton from x on, with
+ * x and y moved by the position passed to the maker. */
+typedef struct MenuButtonTemplate {
+    s16 x;
+    s16 y;
+    s16 width;
+    s16 height;
+    u16 flags;                         /* becomes MenuButton.unk_1c */
+    u16 unk_0a;
+    u16 unk_0c;
+    u16 unk_0e;
+    void (*onUpdate)(MenuButton *button);
+    void (*onKeys)(MenuButton *button);
+    void (*onConfirm)(MenuButton *button);
+    void (*onCancel)(MenuButton *button);
+    u32 unk_20;
+    u32 unk_24;
+} MenuButtonTemplate;
+
 /* Menu button state reached through data_02158f38. */
 typedef struct MenuButtonState {
     u8 pad_00[0x08];
     u8 unk_08;                         /* set together with selected by func_0202621c */
     u8 pad_09[0x0c - 0x09];
     MenuButton *selected;
+    u8 pad_10[0x20 - 0x10];
+    u8 screen;                         /* 0 when the buttons were made on data_027c0288.unk_00, else 1 */
 } MenuButtonState;
 
 extern MenuButtonState *data_02158f38;
