@@ -10,7 +10,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 gUnitFitsLander[];             /* per unit type; nonzero: ground units a Lander carries, without Piperunner */
 
-BOOL func_02098590(void);              /* gAiProfile->unk_08[9] has bit 2 or 3 set */
+BOOL AiProfile_WantsSeaTransport(void);              /* gAiProfile->unk_08[9] has bit 2 or 3 set */
 int Ai_CountUnitsOfType(int type);
 BOOL AiUnit_ClaimLandmass(void);
 void func_020ab70c(void);              /* boards an own Lander or Black Boat in reach, if there is one */
@@ -64,7 +64,7 @@ void AiUnit_SeekSeaTransport(void)
     if (!(gAiTurnState->domainsOwn & AI_DOMAIN_SEA)) {
         return;
     }
-    if (!func_02098590() && Ai_CountUnitsOfType(UNIT_LANDER) == 0 && Ai_CountUnitsOfType(UNIT_BLACK_BOAT) == 0) {
+    if (!AiProfile_WantsSeaTransport() && Ai_CountUnitsOfType(UNIT_LANDER) == 0 && Ai_CountUnitsOfType(UNIT_BLACK_BOAT) == 0) {
         return;
     }
     if (STATE->actingUnit->unk_0c_7) {
