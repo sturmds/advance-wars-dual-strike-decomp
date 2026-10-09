@@ -17,7 +17,7 @@ BOOL func_02091e40(void);
 BOOL AiTurn_TryBuildFighter(void);
 BOOL func_02091c54(void);
 BOOL AiTurn_TryBuildCruiser(void);
-BOOL func_02091944(void);
+BOOL AiTurn_TryBuildFootUnit(void);
 void func_02092134(void);
 BOOL func_02090154(void);
 int func_02094adc(int arg);
@@ -101,7 +101,7 @@ void AiTurn_RunEndActions(void)
             func_02093720();
             break;
         case 6:
-            if (func_02091944()) {
+            if (AiTurn_TryBuildFootUnit()) {
                 return;
             }
             data_021619c0->step++;
