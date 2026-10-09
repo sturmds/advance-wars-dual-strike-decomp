@@ -2039,6 +2039,10 @@ src/game/main/player_refresh_units.c:
     complete
     .text       start:0x020c6f98 end:0x020c703c
 
+src/game/main/units/unit_remove.c:
+    complete
+    .text       start:0x020c72c0 end:0x020c7388
+
 src/game/main/func_020c7388.c:
     complete
     .text       start:0x020c7388 end:0x020c7398
