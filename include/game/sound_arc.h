@@ -35,6 +35,7 @@ typedef struct SoundArcInfo {
     u32 unk_18;
     u32 unk_1c;
     u32 strmOffset;                    /* table of stream entries */
+    u32 unk_24;
 } SoundArcInfo;
 
 /* NitroSystem NNSSndArc: an opened sound archive. */
