@@ -19,7 +19,6 @@ void func_0201e30c(void *target, int a, int b);
 void func_0201e6b4(int x, int y, int w, int h);
 void func_02021380(int a);
 void MenuButtons_DisableTouch(void);
-void func_020262f0(int a, int b, int c, int d);
 void func_02026394(void);
 void func_020269b4(void *target, int a, int b, const void *src, int c);
 void func_02026bc8(void *dst, int a, int b, int c);
@@ -194,7 +193,7 @@ void LinkPhase_InitScreen(void)
         func_0202a9ac(Text_Get(TEXT_LINK_TWO_MAPS), 0, 0, 1, 0);
     }
     func_02026394();
-    func_020262f0(0, -16, 0x100, -16);
+    MenuCursor_SetRect(0, -16, 0x100, -16);
     MenuButton_Select(0);
     func_020727d0();
     MenuButtons_DisableTouch();
