@@ -64,7 +64,8 @@ typedef struct FontState {
 
 /* Pointed to by data_027c0280 (DTCM). */
 typedef struct Unk_027c0280 {
-    u8 pad_00[0x08];
+    struct OamBuffer *oamBuffer;       /* sprite entries waiting to be uploaded */
+    u8 pad_04[0x08 - 0x04];
     u8 *paletteBuffer;                 /* BG and OBJ palettes, 0x400 bytes; Palette_Load writes, Palette_Flush uploads */
     u32 paletteUploadQueued;           /* set by Palette_Flush when the upload is queued, until it runs */
     u32 layerCopyMask;                 /* bit per layer: copy its tile map to VRAM (func_01ff8e58) */
@@ -147,6 +148,8 @@ typedef struct Unk_027c0280 {
     u8 *bgVram;                        /* BG character base 0 */
     u8 *objVram;                       /* CO pictures load here, 32 bytes per tile */
     u8 *paletteCopy;                   /* 0x400 bytes; Screen_ResetAndShowMessage copies paletteBuffer here */
+    u8 pad_13c[0x140 - 0x13c];
+    u8 *oamDest;                       /* the OAM copy that OamBuffer entries are uploaded to */
 } Unk_027c0280;
 
 /* data_027c0288 (DTCM). */
