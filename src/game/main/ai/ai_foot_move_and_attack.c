@@ -11,7 +11,7 @@ void func_0209c948(void);
 int func_0209f7ac(MapUnit *unit);
 void func_020a9854(void);
 void func_020ab014(void);
-void func_020ad0d4(void);
+void AiFoot_PickAttackTarget(void);
 void func_020ad704(void);
 void AiFoot_JoinCapturingUnit(void);
 void func_020ae37c(void);
@@ -33,7 +33,7 @@ void AiFoot_MoveAndAttack(void)
     }
     if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
         AiFoot_AttackCapturingUnit();
-        func_020ad0d4();
+        AiFoot_PickAttackTarget();
     }
     if (GAME->actingUnit->hp <= 60) {
         AiFoot_JoinCapturingUnit();
