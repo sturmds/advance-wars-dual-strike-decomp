@@ -20,7 +20,7 @@ BOOL AiTurn_TryBuildCruiser(void);
 BOOL AiTurn_TryBuildFootUnit(void);
 void func_02092134(void);
 BOOL func_02090154(void);
-int func_02094adc(int arg);
+int Ai_WantsBlackBomb(int arg);
 void func_0209b2b0(int arg);
 void func_0209462c(void);
 BOOL func_02091904(void);
@@ -117,7 +117,7 @@ void AiTurn_RunEndActions(void)
             }
             data_021619c0->step++;
             func_02093720();
-            if (func_02094adc(0) == 1) {
+            if (Ai_WantsBlackBomb(0) == 1) {
                 func_0209b2b0(1);
             }
             func_0209462c();
