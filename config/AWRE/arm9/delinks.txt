@@ -2473,6 +2473,10 @@ src/game/main/func_020f3ecc.c:
     complete
     .text       start:0x020f3ecc end:0x020f3ee4
 
+src/game/main/func_020f4098.c:
+    complete
+    .text       start:0x020f4098 end:0x020f416c
+
 src/game/main/func_020f47e8.c:
     complete
     .text       start:0x020f47e8 end:0x020f4870
