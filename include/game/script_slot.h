@@ -25,7 +25,8 @@ typedef struct ScriptSlot {
     u16 *textEntry;                    /* text printer: screen map entry the effect draws at */
     u8 pad_1c[2];
     u16 unk_1e;                        /* text printer effects: mode (0 or 1); 10 for the code 14 slot */
-    u8 pad_20[0x26 - 0x20];
+    u16 unk_20;
+    u8 pad_22[0x26 - 0x22];
     s16 unk_26;                        /* passed to func_0201751c when the script stops with bit 2 of unk_12 set */
     int unk_28;                        /* text printer: the cursor offset from func_02015ec8 */
     void *unk_2c;                      /* text printer: TextPrinter.unk_40 */
