@@ -16,7 +16,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
-BOOL func_0209dae4(int unitType);
+BOOL Ai_UnitUsesThreatMaps(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);         /* best base damage, scaled for Fighters vs Fighters and Anti-Air vs Fighters */
 BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
@@ -56,7 +56,7 @@ void Ai_AddEnemyThreat(u8 player)
     BOOL counterFirst = skipDirectEnemies;
     int slot;
 
-    if (!func_0209dae4(ACTING->type)) {
+    if (!Ai_UnitUsesThreatMaps(ACTING->type)) {
         return;
     }
     if (UnitType_GetAttackKind(ACTING->type) == ATTACK_KIND_DIRECT) {

@@ -13,18 +13,18 @@ typedef struct TilePos {
  * tiles, ended by an x of 0xffff. */
 extern TilePos *data_02167e98[4];
 
-BOOL func_0209dae4(int unitType);
+BOOL Ai_UnitUsesThreatMaps(int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Sets threatSum to 255 on the tiles listed for the first active object of
- * kind 2 (unk_06 is 1), for unit types func_0209dae4 accepts. */
+ * kind 2 (unk_06 is 1), for unit types Ai_UnitUsesThreatMaps accepts. */
 void Ai_MarkObjectTileThreat(void)
 {
     MapObject *object;
     TilePos *tile;
 
-    if (!func_0209dae4(STATE->actingUnit->type)) {
+    if (!Ai_UnitUsesThreatMaps(STATE->actingUnit->type)) {
         return;
     }
     for (object = STATE->objects; object->kind != 0; object++) {

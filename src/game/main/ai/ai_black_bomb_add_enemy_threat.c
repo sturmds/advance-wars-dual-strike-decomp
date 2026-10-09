@@ -13,7 +13,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
-BOOL func_0209dae4(int unitType);
+BOOL Ai_UnitUsesThreatMaps(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
 BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
@@ -33,7 +33,7 @@ int func_0209e230(int player, int unitType);
  * adds the units of one enemy player to MapTiles.threatMax (direct
  * attackers, on the tiles they can reach or stand next to) and threatSum
  * (indirect attackers, on the tiles in range), with the same threat value.
- * Differences: it runs when func_0209dae4 passes for a Black Bomb, skips the
+ * Differences: it runs when Ai_UnitUsesThreatMaps passes for a Black Bomb, skips the
  * counter-first test and the per-tile func_0209e8bc and in-sight checks, and
  * marks every tile a non-air enemy threatens with 1 in
  * MapTiles.rangeScratch. skipEnemyCheck nonzero skips Ai_EnemyWithinReach. */
@@ -54,7 +54,7 @@ void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
     BOOL skipDirectEnemies = FALSE;
     int slot;
 
-    if (!func_0209dae4(UNIT_BLACK_BOMB)) {
+    if (!Ai_UnitUsesThreatMaps(UNIT_BLACK_BOMB)) {
         return;
     }
     /* Assault AI: direct and unarmed units ignore enemy direct attackers */
