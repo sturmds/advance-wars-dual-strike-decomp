@@ -4937,6 +4937,10 @@ src/game/main/func_020dc538.c:
     complete
     .text       start:0x020dc538 end:0x020dc548
 
+src/game/main/func_020dc548.c:
+    complete
+    .text       start:0x020dc548 end:0x020dc55c
+
 src/game/main/func_020dc55c.c:
     complete
     .text       start:0x020dc55c end:0x020dc58c
@@ -5630,6 +5634,10 @@ src/game/main/map/map_is_co_select_phase.c:
     complete
     .text       start:0x020e8ae4 end:0x020e8b18
 
+src/game/main/func_020e8c28.c:
+    complete
+    .text       start:0x020e8c28 end:0x020e8c3c
+
 src/game/main/map/map_rules_set_defaults.c:
     complete
     .text       start:0x020e8c3c end:0x020e9274
@@ -5990,6 +5998,10 @@ src/game/main/func_020fbaf0.c:
     complete
     .text       start:0x020fbaf0 end:0x020fbb0c
 
+src/game/main/func_020fbb0c.c:
+    complete
+    .text       start:0x020fbb0c end:0x020fbb20
+
 src/game/main/func_020fbb20.c:
     complete
     .text       start:0x020fbb20 end:0x020fbb34
@@ -6017,6 +6029,10 @@ src/game/main/func_020fc7d8.c:
 src/game/main/func_020fcad8.c:
     complete
     .text       start:0x020fcad8 end:0x020fcaf4
+
+src/game/main/func_020fcaf4.c:
+    complete
+    .text       start:0x020fcaf4 end:0x020fcb08
 
 src/game/main/func_020fcb08.c:
     complete
