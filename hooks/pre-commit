@@ -3,7 +3,9 @@
 # 1. Refuse files that must never enter git (D5).
 # 2. Run `make release`. It builds the working tree, not only the staged
 #    changes, so stage everything you built with before committing.
-# 3. Rewrite PROGRESS.md and stage it, so it goes into this commit.
+# 3. Rewrite PROGRESS.md and stage it, so it goes into this commit. Not in
+#    a linked worktree (an agent's): mainline writes it when the commit
+#    lands, and agent commits that carry it conflict with each other.
 set -eu
 
 bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)(orig|extract|build)/|\.(nds|bin|o|exe)$' || true)
@@ -14,5 +16,7 @@ if [ -n "$bad" ]; then
 fi
 
 make release
-python3 tools/progress.py --write PROGRESS.md
-git add PROGRESS.md
+if [ "$(git rev-parse --path-format=absolute --git-dir)" = "$(git rev-parse --path-format=absolute --git-common-dir)" ]; then
+    python3 tools/progress.py --write PROGRESS.md
+    git add PROGRESS.md
+fi
