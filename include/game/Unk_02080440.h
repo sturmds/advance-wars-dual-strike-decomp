@@ -89,7 +89,9 @@ typedef struct Unk_02080440_48 {
     u8 pad_20[0x28 - 0x20];
     s16 unk_28;                        /* x of the tile the AiShowAction steps point func_020c41c4 at; guess: the view scrolls there */
     s16 unk_2a;                        /* y of the same tile */
-    u8 pad_2c[0x38 - 0x2c];
+    u16 unk_2c;
+    u16 unk_2e;
+    u8 pad_30[0x38 - 0x30];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;
@@ -170,7 +172,9 @@ typedef struct Unk_02080440_50 {
     void (*second)(void);              /* run by func_020c8888 after first */
     u8 pad_08[0x18 - 0x08];
     void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
-    u8 pad_1c[100 - 0x1c];
+    u8 pad_1c[0x54 - 0x1c];
+    void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
+    u8 pad_58[100 - 0x58];
 } Unk_02080440_50;
 
 /* Pointed to by data_027c027c (DTCM). */
