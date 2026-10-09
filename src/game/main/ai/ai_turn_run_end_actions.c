@@ -14,7 +14,7 @@ void func_0209a064(void);
 BOOL func_02091eb0(void);
 void func_02093720(void);
 BOOL func_02091e40(void);
-BOOL func_02091d34(void);
+BOOL AiTurn_TryBuildFighter(void);
 BOOL func_02091c54(void);
 BOOL AiTurn_TryBuildCruiser(void);
 BOOL func_02091944(void);
@@ -72,7 +72,7 @@ void AiTurn_RunEndActions(void)
                 data_021619c0->step++;
                 break;
             }
-            if (func_02091d34()) {
+            if (AiTurn_TryBuildFighter()) {
                 return;
             }
             data_021619c0->step++;
