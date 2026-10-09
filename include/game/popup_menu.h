@@ -9,7 +9,9 @@
 typedef struct PopupMenuTask {
     u8 pad_00[0x2c];
     const MenuItem *items;             /* item table */
-    u8 pad_30[0x51 - 0x30];
+    s8 flags[10];                      /* getFlags result of each listed item */
+    u8 itemIndex[10];                  /* index in items of each listed item */
+    u8 pad_44[0x51 - 0x44];
     u8 selected;                       /* cursor position */
     u8 pad_52[0x58 - 0x52];
     s16 x;                             /* top-left tile */

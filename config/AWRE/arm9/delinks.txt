@@ -1635,6 +1635,10 @@ src/game/main/func_0201ee24.c:
     complete
     .text       start:0x0201ee24 end:0x0201ee48
 
+src/game/main/menus/popup_menu_call_item_handler.c:
+    complete
+    .text       start:0x0201ef84 end:0x0201efd8
+
 src/game/main/screen/screen_reset_and_show_message.c:
     complete
     .text       start:0x0201efd8 end:0x0201f304
