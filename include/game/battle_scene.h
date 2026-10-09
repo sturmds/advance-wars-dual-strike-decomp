@@ -7,7 +7,9 @@
 typedef struct BattleSide {
     u8 hpBefore;                       /* HP before the fight */
     u8 hpAfter;
-    u8 pad_02[4];
+    u8 pad_02;
+    u8 unk_03;                         /* tens of it are drawn as cells by Battle_PutSideCells */
+    u8 pad_04[2];
     u8 counters;                       /* nonzero: hits back; a guess from Battle_ShowQuote */
     u8 pad_07;
     u8 coId; /* low 7 bits: enum CoId */

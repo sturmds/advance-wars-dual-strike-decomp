@@ -3,7 +3,7 @@
 BOOL Battle_IsSideAir(int side);
 void Battle_PutSideBlock490(void *tilemap, u8 side, u8 isAir);
 void Battle_PutSideHpBlock(void *tilemap, u8 side, u8 isAir);
-void func_ov002_0235e720(void *tilemap, u8 side, u8 isAir);
+void Battle_PutSideCells(void *tilemap, u8 side, u8 isAir);
 void Battle_PutSideBlock750(void *tilemap, u8 side, u8 isAir);
 
 /* Writes the tile maps of both sides into tilemap in four steps (callees not
@@ -17,7 +17,7 @@ void Battle_BuildSideTilemaps(void *tilemap)
         isAir = Battle_IsSideAir(side) ? TRUE : FALSE;
         Battle_PutSideBlock490(tilemap, side, isAir);
         Battle_PutSideHpBlock(tilemap, side, isAir);
-        func_ov002_0235e720(tilemap, side, isAir);
+        Battle_PutSideCells(tilemap, side, isAir);
         Battle_PutSideBlock750(tilemap, side, isAir);
     }
 }
