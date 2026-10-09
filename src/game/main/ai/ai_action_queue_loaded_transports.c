@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void AiQueue_SortByMovement(int arg);
-void func_0209fbc8(void);
+void AiLoadedTransport_Act(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -18,7 +18,7 @@ void func_0209fbc8(void);
 
 /* Queues the current player's APCs and T-Copters that carry a unit and
  * have not waited yet, hands the queue to AiQueue_SortByMovement, and runs
- * func_0209fbc8 on each. */
+ * AiLoadedTransport_Act on each. */
 void AiAction_QueueLoadedTransports(void)
 {
     int i;
@@ -36,6 +36,6 @@ void AiAction_QueueLoadedTransports(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     AiQueue_SortByMovement(0);
-    gAiQueueRoutine = func_0209fbc8;
+    gAiQueueRoutine = AiLoadedTransport_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
