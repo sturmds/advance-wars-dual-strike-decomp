@@ -67,6 +67,7 @@ void Heap_Free(ExpHeap *heap, void *memory);
 void *Heap_AllocFromBottom(ExpHeap *heap, u32 size, int align);
 void *Heap_TakeFromFreeBlock(ExpHeapData *data, HeapBlock *freeBlock, void *memory, u32 size, u16 fromTop);
 ExpHeap *ExpHeap_Init(void *start, void *end, u16 options);
+void Heap_InitHead(HeapHead *heap, u32 signature, void *start, void *end, u16 options);
 
 HeapBlock *HeapBlock_InitInRegion(HeapRegion *region, u16 signature);
 void HeapBlock_GetRegion(HeapRegion *region, HeapBlock *block);
