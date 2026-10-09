@@ -86,6 +86,9 @@ src/game/main/screen/screen_apply_sub.c:
 src/game/main/screen/screen_apply_main.c:
     .text       start:0x02008678 end:0x02009580
 
+src/game/main/screen/screen_prepare_h_blank_regs.c:
+    .text       start:0x02009bbc end:0x0200a234
+
 src/game/main/func_0200a630.c:
     complete
     .text       start:0x0200a630 end:0x0200a644

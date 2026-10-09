@@ -44,3 +44,5 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/map_preview_draw.c` | MapPreview_Draw | 880 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
+| `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
+| `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
