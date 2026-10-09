@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/map_unit.h"
+#include "game/combatant.h"
 
 /* Terrain and owner of every map tile, reached through
  * Unk_02080440_48.mapTiles. */
@@ -86,6 +87,8 @@ typedef struct Unk_02080440_48 {
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     u8 pad_5760[0x5a58 - 0x5760];
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
+    u8 pad_5a5c[0x61a0 - 0x5a5c];
+    Combatant combatants[2];           /* attacker, defender */
 } Unk_02080440_48;
 
 /* Reached through Unk_02080440.unk_5c[i]. */
@@ -93,6 +96,10 @@ typedef struct Unk_02080440_5c {
     u8 pad_00[3];
     u8 weatherDays[5];                 /* per player slot: days the current weather lasts; set by Weather_SetDays */
 } Unk_02080440_5c;
+
+/* Player slot that owns a unit in state->units: slot 0 is neutral, so the
+ * first MAP_UNITS_PER_PLAYER (64) units belong to slot 1. */
+#define MAP_UNIT_OWNER(state, unit) ((((unit) - (state)->units) >> 6) + 1)
 
 /* Pointed to by data_027c027c (DTCM). */
 typedef struct Unk_02080440 {
