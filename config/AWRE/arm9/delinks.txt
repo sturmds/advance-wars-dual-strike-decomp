@@ -1963,6 +1963,10 @@ src/game/main/combat/combat_clamp_hp.c:
     complete
     .text       start:0x020c329c end:0x020c32fc
 
+src/game/main/combat/combat_strike_and_counter.c:
+    complete
+    .text       start:0x020c32fc end:0x020c33a8
+
 src/game/main/combat/combatant_take_hit.c:
     complete
     .text       start:0x020c33a8 end:0x020c3468
