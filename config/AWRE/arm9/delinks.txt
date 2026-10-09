@@ -371,6 +371,10 @@ src/game/main/menus/menu_cursor_has_selection.c:
     complete
     .text       start:0x0202634c end:0x02026394
 
+src/game/main/menus/menu_reset.c:
+    complete
+    .text       start:0x02026394 end:0x020263f4
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868

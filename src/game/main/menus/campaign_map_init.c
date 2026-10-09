@@ -24,7 +24,7 @@ void func_0201e30c(void *a, int b, int c);
 void func_02021380(int a);
 void Icon_LoadTo(int a, u8 *objVram, int b);
 void IconBank_LoadPalette(int a, int b);
-void func_02026394(void);
+void Menu_Reset(void);
 void func_02029540(void);
 void func_0202a9ac(const void *text, int x, int y, int a, int b);
 void func_0202aba8(int x, int y);
@@ -265,5 +265,5 @@ void CampaignMap_Init(Unk_0204f960 *task)
     }
     func_02029540();
     func_01ff9b48();
-    func_02026394();
+    Menu_Reset();
 }
