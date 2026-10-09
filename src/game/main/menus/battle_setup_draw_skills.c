@@ -4,7 +4,7 @@
 #include "game/skills.h"
 
 void Window_DrawOnLayer1(s16 x, s16 y, int w, int h);       /* window frame */
-void func_02026d54(int x, int y, int tile, int size);  /* skill icon */
+void Bg_PutTileQuad(int x, int y, int tile, int size);  /* skill icon */
 void Bg_PutSkillSlot(u16 x, u16 y, u16 *map, int a);     /* empty skill slot frame */
 void Bg_ClearRect(u16 *map, u16 x, u16 y, int w, int h);
 int func_02069920(void);                               /* 1: the cursor is on a CO (setup.unk_2e4 8-15) */
@@ -61,6 +61,6 @@ void BattleSetup_DrawSkills(int x, int y, int set)
             return;
         }
         /* Force Rank icons: 4 tiles each from tile 0x100 */
-        func_02026d54(x + 1 + i * 2, y + 1, (skills[i] - SKILL_RANK_BRUISER) * 4 + 0x100, 2);
+        Bg_PutTileQuad(x + 1 + i * 2, y + 1, (skills[i] - SKILL_RANK_BRUISER) * 4 + 0x100, 2);
     }
 }
