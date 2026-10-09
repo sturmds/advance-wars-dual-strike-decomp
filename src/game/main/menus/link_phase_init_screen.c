@@ -20,7 +20,7 @@ void Window_DrawOnLayer1(int x, int y, int w, int h);
 void Font_LoadDigits(int a);
 void Bg_PutTileBlock(void *target, int a, int b, const void *src, int c);
 void Palette_BlendWithColor(void *dst, int a, int b, int c);
-void func_02028ae8(void);
+void Gfx_InitBothScreens(void);
 void func_02029648(void);
 void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 void ModeFont_Load(int a, int b);
@@ -105,7 +105,7 @@ void LinkPhase_InitScreen(void)
         gMenuState.link.unk_020[i] = data_0229c874[i] - 1;
         gMenuState.link.unk_028[i] = 0;
     }
-    func_02028ae8();
+    Gfx_InitBothScreens();
 
     SWITCH_TO(MAIN_MAP);
     data_027c0280->blendMode = 1;

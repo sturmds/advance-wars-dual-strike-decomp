@@ -716,6 +716,10 @@ src/game/main/rng/rng_next_mixed.c:
     complete
     .text       start:0x02027a48 end:0x02027a6c
 
+src/game/main/graphics/gfx_init_both_screens.c:
+    complete
+    .text       start:0x02028ae8 end:0x02028ba0
+
 src/game/main/func_0202a3c8.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0
