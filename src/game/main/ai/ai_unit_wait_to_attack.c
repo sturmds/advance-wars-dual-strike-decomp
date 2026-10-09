@@ -9,7 +9,7 @@ extern int data_027c0284;
 #define AI_ACTION_ATTACK_UNIT 4
 
 int UnitType_GetAttackKind(int unitType);
-int func_020a1b1c(int x, int y);
+int AiUnit_PickIndirectTarget(int x, int y);
 int func_020a1e78(int x, int y);
 
 /* AiUnit_AdjustAction calls this for action 2 (wait) at (x, y). If a
@@ -28,7 +28,7 @@ void AiUnit_WaitToAttack(int x, int y, u8 *action, u8 *target)
         }
     } else if (UnitType_GetAttackKind(GAME->actingUnit->type) == 1) {
         if (x == GAME->actingUnit->x && y == GAME->actingUnit->y) {
-            slot = func_020a1b1c(x, y);
+            slot = AiUnit_PickIndirectTarget(x, y);
             if (slot != 0) {
                 *action = AI_ACTION_ATTACK_UNIT;
                 *target = slot;
