@@ -73,7 +73,7 @@ enum UnitType {
 typedef struct UnitStats {
     TextRef text[3];
     u16 costDiv10;                     /* cost in funds / 10 */
-    u8 pad_0e[2];
+    u16 ammoCost;                      /* guess: funds per shown HP for each ammo point (Unit_Rearm) */
     u8 movement;
     u8 ammo;
     u8 vision;
