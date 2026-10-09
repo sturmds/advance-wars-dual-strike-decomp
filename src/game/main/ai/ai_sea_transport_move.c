@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-void func_020b3c84(void);
+void AiSeaTransport_GoToFootUnit(void);
 void func_020b46c4(void);
 
 /* Moves the acting sea transport: one routine when it carries a unit,
@@ -17,6 +17,6 @@ void AiSeaTransport_Move(void)
     if (GAME->actingUnit->cargo[0] != 0) {
         func_020b46c4();
     } else {
-        func_020b3c84();
+        AiSeaTransport_GoToFootUnit();
     }
 }
