@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_0208f850(int arg);
+void AiQueue_SortByMovement(int arg);
 void func_0209fc58(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -17,7 +17,7 @@ void func_0209fc58(void);
 #define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
 
 /* Queues the current player's indirect units (AI_CLASS_INDIRECT) that
- * have not waited yet, hands the queue to func_0208f850 (argument 1),
+ * have not waited yet, hands the queue to AiQueue_SortByMovement (argument 1),
  * and runs func_0209fc58 on each. */
 void AiAction_QueueIndirectMoves(void)
 {
@@ -34,7 +34,7 @@ void AiAction_QueueIndirectMoves(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    func_0208f850(1);
+    AiQueue_SortByMovement(1);
     gAiQueueRoutine = func_0209fc58;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

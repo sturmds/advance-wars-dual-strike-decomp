@@ -8,7 +8,7 @@ extern int data_027c0284;
 s32 HwDiv32(s32 numerator, s32 denominator);
 int func_020d97dc(int target);                            /* damage chart column of target */
 int Unit_GetChartDamage(MapUnit *unit, int targetType, int weapon, int arg3);
-int UnitType_CanHitWithWeapon(int unitType, int targetType, int weapon); /* nonzero: weapon can hit targetType */
+int UnitType_GetChartDamage(int unitType, int column, int weapon); /* base damage in percent; 0: cannot hit */
 BOOL func_ov000_022af56c(int target);                      /* checks the map id */
 void Combatant_Init(Combatant *combatant, s16 unitIndex);
 void Combatant_CalcDamage(Combatant *combatant, int isCounter, int rollLuck);
@@ -47,7 +47,7 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos)
     if (unit->ammo != 0) {
         primaryDamage = Unit_GetChartDamage(unit, func_020d97dc(target), 0, 0);
     } else {
-        canUseSecondary = UnitType_CanHitWithWeapon(unit->type, func_020d97dc(target), 1);
+        canUseSecondary = UnitType_GetChartDamage(unit->type, func_020d97dc(target), 1);
         if (canUseSecondary) {
             secondaryDamage = Unit_GetChartDamage(unit, func_020d97dc(target), 1, 0);
         }

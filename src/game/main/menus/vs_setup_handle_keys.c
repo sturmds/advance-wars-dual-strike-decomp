@@ -2,9 +2,6 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-MenuButton *func_02025d58(int id);
-MenuButton *func_020262b0(int id);
-void func_02025008(void);
 BOOL func_02045680(void);
 void VsSetup_NextForceRankSet(int a);
 void VsSetup_PrevForceRankSet(int a);
@@ -29,7 +26,7 @@ void VsSetup_HandleKeys(MenuButton *button)
             } else {
                 cursor--;
             }
-        } while (func_02025d58(cursor) == NULL);
+        } while (MenuButton_Find(cursor) == NULL);
     }
     if (gKeypad->repeat & PAD_KEY_RIGHT) {
         do {
@@ -38,10 +35,10 @@ void VsSetup_HandleKeys(MenuButton *button)
             } else {
                 cursor++;
             }
-        } while (func_02025d58(cursor) == NULL);
+        } while (MenuButton_Find(cursor) == NULL);
     }
     if (cursor != button->id) {
-        button = func_020262b0(cursor);
+        button = MenuButton_Select(cursor);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
         func_020690f4(button);
@@ -60,7 +57,7 @@ void VsSetup_HandleKeys(MenuButton *button)
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
-        func_02025008();
+        Menu_CancelSelected();
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {

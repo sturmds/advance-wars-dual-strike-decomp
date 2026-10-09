@@ -3,9 +3,6 @@
 #include "game/main_menu.h"
 #include "game/menu_button.h"
 
-MenuButton *func_020262b0(int id);
-void func_020250a8(MenuButton *button);
-void func_02025008(void);
 int func_0203142c(int page);
 void func_0202e7b8(int page, int slide);
 
@@ -58,13 +55,13 @@ void MainMenu_HandleKeys(MenuButton *button)
         return;
     }
     if (cursor != button->id) {
-        button = func_020262b0(cursor);
+        button = MenuButton_Select(cursor);
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
-        func_020250a8(button);
+        MenuButton_Confirm(button);
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
-        func_02025008();
+        Menu_CancelSelected();
     }
 }

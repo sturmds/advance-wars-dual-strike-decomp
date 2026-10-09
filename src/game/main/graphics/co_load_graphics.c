@@ -4,7 +4,7 @@
 
 void FS_ChangeDir(const char *dir);
 int Co_GetPictureVariant(int coId);
-void File_LoadTo(void *dest, const char *fileName);
+void File_UnpackTo(void *dest, const char *fileName);
 
 extern char data_02151e44[];                         /* "/syogun" */
 extern Unk_027c0280 *data_027c0280;
@@ -17,6 +17,6 @@ void Co_LoadGraphics(int coId, int firstTile)
 
     FS_ChangeDir(data_02151e44);
     variant = Co_GetPictureVariant(coId);
-    File_LoadTo(data_027c0280->objVram + firstTile * 32,
+    File_UnpackTo(data_027c0280->objVram + firstTile * 32,
                   gCoGraphics[coId & 0x7f].pictures[variant].name);
 }

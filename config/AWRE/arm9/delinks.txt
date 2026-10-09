@@ -84,7 +84,7 @@ src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
 
-src/game/main/file/file_load_to.c:
+src/game/main/file/file_unpack_to.c:
     complete
     .text       start:0x0200bcf0 end:0x0200be6c
 
@@ -507,7 +507,7 @@ src/game/main/combat/unit_get_chart_damage.c:
     complete
     .text       start:0x020dfb0c end:0x020dfc04
 
-src/game/main/units/unit_type_can_hit_with_weapon.c:
+src/game/main/units/unit_type_get_chart_damage.c:
     complete
     .text       start:0x020dfc64 end:0x020dfc80
 
@@ -907,7 +907,7 @@ src/game/main/map/setup_co_selection.c:
     complete
     .text       start:0x020e89e0 end:0x020e8a88
 
-src/game/main/map/func_020e8a88.c:
+src/game/main/map/map_set_co_select_phase.c:
     complete
     .text       start:0x020e8a88 end:0x020e8ab0
 

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/menu_button.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
@@ -18,7 +19,6 @@ void func_0201e30c(void *target, int a, int b);
 void func_0201e6b4(int x, int y, int w, int h);
 void func_02021380(int a);
 void func_02025bb4(void);
-void func_020262b0(int a);
 void func_020262f0(int a, int b, int c, int d);
 void func_02026394(void);
 void func_020269b4(void *target, int a, int b, const void *src, int c);
@@ -195,7 +195,7 @@ void LinkPhase_InitScreen(void)
     }
     func_02026394();
     func_020262f0(0, -16, 0x100, -16);
-    func_020262b0(0);
+    MenuButton_Select(0);
     func_020727d0();
     func_02025bb4();
     func_02029648();

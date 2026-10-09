@@ -27,7 +27,7 @@ typedef struct AiProfile {
 } AiProfile;
 
 /* One unit type in AiProfileTemplate. A value given as a base and a
- * spread is randomised by func_0208cdb8. */
+ * spread is randomised by AiProfile_Randomise. */
 typedef struct AiUnitProfileTemplate {
     u8 base1;
     u8 spread1;

@@ -15,16 +15,16 @@ void func_01ffaa3c(int arg);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4); /* queues the move to (x, y) and the action */
 int func_0209dc54(int x, int y);
 int func_0209e424(MapUnit *unit, int target); /* base damage percent against a target kind */
-BOOL func_0209eb38(s16 x, s16 y);
+BOOL Map_IsTileVisible(s16 x, s16 y);
 int func_020a30c4(void);
 BOOL func_020a3b54(int x, int y, MapUnit *target);
-void func_020a491c(void);
+void Ai_ClearActingUnitTarget(void);
 int func_020a6d30(MapUnit *target);
 BOOL func_020a770c(int x, int y);
-BOOL func_020a89ac(int x, int y, s16 *pos); /* finds a tile to attack (x, y) from; FALSE: none */
+BOOL FindAttackTile(int x, int y, s16 *pos); /* finds a tile to attack (x, y) from; FALSE: none */
 int AiAttack_Score(int arg, s16 *pos);      /* scores an attack on the unit slot in the low bits of arg from pos; 0: none */
 void func_020b0e1c(void);
-MapObject *func_020db148(int x, int y);     /* object standing at (x, y); NULL: none or destroyed */
+MapObject *Map_GetObjectAt(int x, int y);     /* object standing at (x, y); NULL: none or destroyed */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -92,7 +92,7 @@ void AiUnit_PickDirectAttack(void)
                 continue;
             }
             if (AI_TARGET_FLAGS->attackObjects) {
-                object = func_020db148(x, y);
+                object = Map_GetObjectAt(x, y);
                 if (object != NULL) {
                     hp = object->hp;
                     targetKind = object->kind;
@@ -114,7 +114,7 @@ void AiUnit_PickDirectAttack(void)
             if (rating < hp && rating < 10) {
                 continue;
             }
-            if (!func_020a89ac(x, y, pos)) {
+            if (!FindAttackTile(x, y, pos)) {
                 continue;
             }
             Combat_CalcDamageToTarget(STATE->actingUnitIndex, targetKind, pos);
@@ -162,10 +162,10 @@ void AiUnit_PickDirectAttack(void)
             if (STATE->players[(STATE->actingUnitIndex >> 6) + 1].team == STATE->players[MAP_UNIT_OWNER(STATE, target)].team) {
                 continue;
             }
-            if (!func_0209eb38(x, y)) {
+            if (!Map_IsTileVisible(x, y)) {
                 continue;
             }
-            if (!func_020a89ac(x, y, pos)) {
+            if (!FindAttackTile(x, y, pos)) {
                 continue;
             }
             tileFlag = 0;
@@ -246,11 +246,11 @@ void AiUnit_PickDirectAttack(void)
         }
     }
     if (unitScore != 0) {
-        func_020a491c();
+        Ai_ClearActingUnitTarget();
         AiUnit_PerformAction(unitAttackX, unitAttackY, 4, unitTargetSlot, 0);
     }
     if (objectHp != 255) {
-        func_020a491c();
+        Ai_ClearActingUnitTarget();
         AiUnit_PerformAction(objectAttackX, objectAttackY, 5, objectX, objectY);
     }
     if (holdsLastSide) {

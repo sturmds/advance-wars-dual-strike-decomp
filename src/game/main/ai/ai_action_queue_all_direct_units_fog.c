@@ -7,10 +7,10 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Sort gAiQueue by each unit's vision (func_0208f724) or movement
- * (func_0208f850); 0 sorts smallest first. */
-void func_0208f724(BOOL descending);
-void func_0208f850(BOOL descending);
+/* Sort gAiQueue by each unit's vision (AiQueue_SortByVision) or movement
+ * (AiQueue_SortByMovement); 0 sorts smallest first. */
+void AiQueue_SortByVision(BOOL descending);
+void AiQueue_SortByMovement(BOOL descending);
 /* Direct combat unit action, a variant of AiUnit_ActByOrder that only this
  * step uses; switches on the unit's AI order. */
 void func_0209ffe4(void);
@@ -39,9 +39,9 @@ void AiAction_QueueAllDirectUnitsFog(void)
     gAiQueueCursor = gAiQueue;
     /* rain also brings fog */
     if (STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) {
-        func_0208f724(TRUE);
+        AiQueue_SortByVision(TRUE);
     } else {
-        func_0208f850(FALSE);
+        AiQueue_SortByMovement(FALSE);
     }
     gAiQueueRoutine = func_0209ffe4;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;

@@ -13,14 +13,14 @@ extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, e
 s32 HwDiv32(s32 numerator, s32 denominator);
 int GetUnitMaxRange(int player, int unitType);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
-int func_020c09e0(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
+int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
 BOOL func_0209eca8(int x, int y);             /* TRUE: tile owned by unk_04 and not a repair tile */
-MapObject *func_020db148(int x, int y);       /* object at (x, y) with hp left, or NULL */
+MapObject *Map_GetObjectAt(int x, int y);       /* object at (x, y) with hp left, or NULL */
 int func_0209e424(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
-BOOL func_0209eb38(s16 x, s16 y);
+BOOL Map_IsTileVisible(s16 x, s16 y);
 BOOL func_020a770c(s16 x, s16 y);
 int AiAttack_Score(int target, s16 *pos);      /* score of attacking unit slot target (low byte) from pos */
-void func_020a491c(void);                     /* clears actingUnit's AI target */
+void Ai_ClearActingUnitTarget(void);                     /* clears actingUnit's AI target */
 void AiUnit_PerformAction(int x, int y, int action, u8 arg3, u8 arg4); /* queues an action for the unit at (x, y) */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -72,10 +72,10 @@ void Ai_PlanIndirectAttack(void)
         /* flags for AiAttack_Score: 0x40000 unit above 80 hp on its team's base,
          * 0x10000 on its team's base, airport or port, or a ground unit at
          * 70 hp or less not on a tile where func_0209eca8 holds */
-        if (func_020c09e0(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
+        if (Unit_IsTileOwnedByTeam(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
             && MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit)) == TERRAIN_BASE && STATE->actingUnit->hp > 80) {
             flags |= 0x40000;
-        } else if ((func_020c09e0(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
+        } else if ((Unit_IsTileOwnedByTeam(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
                     && gTerrainFactoryKind[MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit))] != 0)
                    || ((Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) != 0
                        && STATE->actingUnit->hp <= 70
@@ -123,7 +123,7 @@ void Ai_PlanIndirectAttack(void)
                 continue;
             }
             if (AI_TARGET_FLAGS->attackObjects) {
-                object = func_020db148(x, y);
+                object = Map_GetObjectAt(x, y);
                 if (object != NULL) {
                     hp = object->hp;
                     kind = object->kind;
@@ -179,7 +179,7 @@ attack_unit:
                 == STATE->players[MAP_UNIT_OWNER(STATE, target)].team) {
                 continue;
             }
-            if (func_0209eb38(x, y) == 0) {
+            if (Map_IsTileVisible(x, y) == 0) {
                 continue;
             }
             score = AiAttack_Score(flags | MAP->unitAt[TILE_INDEX(target->x, target->y)], pos);
@@ -190,12 +190,12 @@ attack_unit:
         }
     }
     if (bestUnitScore != 0) {
-        func_020a491c();
+        Ai_ClearActingUnitTarget();
         AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_UNIT, bestUnitSlot, 0);
     }
     if (bestTileHp == 0xff) {
         return;
     }
-    func_020a491c();
+    Ai_ClearActingUnitTarget();
     AiUnit_PerformAction(STATE->actingUnit->x, STATE->actingUnit->y, AI_ACTION_ATTACK_TILE, bestTileX, bestTileY);
 }

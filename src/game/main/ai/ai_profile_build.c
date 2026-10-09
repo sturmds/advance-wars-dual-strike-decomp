@@ -12,7 +12,7 @@ extern AiProfileMods gAiProfileMods[];
 
 s32 Rng_Range(s32 min, s32 max);
 /* Returns base + spread * roll / 100 - spread / 2, kept within 1-255. */
-u8 func_0208cdb8(u8 base, u8 spread, int roll);
+u8 AiProfile_Randomise(u8 base, u8 spread, int roll);
 
 /* Fills the current player's AI profile from a template and a mods
  * entry. The template values given as base and spread are randomised
@@ -64,8 +64,8 @@ void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
     for (type = UNIT_INFANTRY; type < UNIT_TYPE_COUNT; type++) {
         profile->units[type - 1].unk_00 = mods->units[type - 1][0];
         profile->units[type - 1].unk_05 = mods->units[type - 1][1];
-        profile->units[type - 1].unk_01 = func_0208cdb8(template->units[type - 1].base1, template->units[type - 1].spread1, roll);
-        profile->units[type - 1].unk_02 = func_0208cdb8(template->units[type - 1].base2, template->units[type - 1].spread2, roll);
+        profile->units[type - 1].unk_01 = AiProfile_Randomise(template->units[type - 1].base1, template->units[type - 1].spread1, roll);
+        profile->units[type - 1].unk_02 = AiProfile_Randomise(template->units[type - 1].base2, template->units[type - 1].spread2, roll);
         profile->units[type - 1].unk_03 = template->units[type - 1].unk_04;
         profile->units[type - 1].unk_04 = template->units[type - 1].unk_05;
         for (i = 0; i < 7; i++) {

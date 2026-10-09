@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 /* Sets coSelectPhase; 1 turns off the Scout and Eagle Eye vision bonus
  * (Map_IsCoSelectPhase, VisionIncrease). */
-void func_020e8a88(u8 value)
+void Map_SetCoSelectPhase(u8 value)
 {
     data_027c027c->unk_48[data_027c0284]->coSelectPhase = value;
 }

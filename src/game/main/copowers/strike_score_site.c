@@ -4,7 +4,7 @@
 #include "game/unit_stats.h"
 
 /* Nonzero when tile (x, y) is visible to the current player under fog. */
-int func_0209eb38(int x, int y);
+int Map_IsTileVisible(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -73,7 +73,7 @@ int Strike_ScoreSite(int playerSlot, int x, int y, int radius, int damage, int v
             if (unit->type == UNIT_NONE) {
                 continue;
             }
-            if (visibleOnly == 1 && func_0209eb38(unit->x, unit->y) == 0) {
+            if (visibleOnly == 1 && Map_IsTileVisible(unit->x, unit->y) == 0) {
                 continue;
             }
             {

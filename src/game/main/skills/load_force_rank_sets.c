@@ -3,7 +3,7 @@
 
 int ForceRank_SetCount(int mode);                     /* skill sets per CO: 4 in mode 2, else 1 */
 u8 *ForceRank_GetSavedSet(int mode, int co, int set); /* a set's saved skill list, or NULL */
-void func_020e7004(const u8 *list, u32 *skills);      /* clears skills, then turns on each id in list */
+void Skills_SetFromList(const u8 *list, u32 *skills);      /* clears skills, then turns on each id in list */
 
 /* Skills each CO has equipped in each set, as Player.skills-style bitfields. */
 extern u32 gCoEquippedSkills[CO_COUNT][4][4];
@@ -19,7 +19,7 @@ void ForceRank_LoadSets(int mode)
     setCount = ForceRank_SetCount(mode);
     for (co = 0; co < CO_COUNT; co++) {
         for (set = 0; set < setCount; set++) {
-            func_020e7004(ForceRank_GetSavedSet(mode, co, set), gCoEquippedSkills[co][set]);
+            Skills_SetFromList(ForceRank_GetSavedSet(mode, co, set), gCoEquippedSkills[co][set]);
         }
     }
 }

@@ -7,9 +7,9 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int GetUnitMaxRange(int player, int unitType);
-int UnitType_CanHitWithWeapon(int unitType, int targetType, int weapon);
+int UnitType_GetChartDamage(int unitType, int column, int weapon);
 int Unit_GetChartDamage(MapUnit *unit, int targetType, int weapon, BOOL targetDived);
-int func_020c6708(int targetType, BOOL targetDived);   /* damage chart column */
+int DamageChart_GetColumn(int targetType, BOOL targetDived);   /* damage chart column */
 int Unit_GetDefense(MapUnit *unit, int attackerType);   /* percent: 100 plus bonuses */
 
 /* Sets attacker->defense, then picks the weapon attacker uses on defender
@@ -30,8 +30,8 @@ void Combatant_PickWeapon(Combatant *attacker, Combatant *defender, s16 distance
     stats = &Ov000_gUnitStats[attacker->unit->type];
     attacker->defense = Unit_GetDefense(attacker->unit, defender->unit->type);
     if (distance == 1) {
-        canUseSecondary = UnitType_CanHitWithWeapon(attacker->unit->type,
-                                                    func_020c6708(defender->unit->type, defender->unit->flags & MAP_UNIT_DIVED), 1);
+        canUseSecondary = UnitType_GetChartDamage(attacker->unit->type,
+                                                    DamageChart_GetColumn(defender->unit->type, defender->unit->flags & MAP_UNIT_DIVED), 1);
         if (canUseSecondary) {
             secondaryDamage = Unit_GetChartDamage(attacker->unit, defender->unit->type, 1, defender->unit->flags & MAP_UNIT_DIVED);
         }

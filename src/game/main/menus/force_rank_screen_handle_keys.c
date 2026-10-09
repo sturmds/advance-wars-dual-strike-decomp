@@ -3,8 +3,6 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-MenuButton *func_020262b0(int id);
-void func_020250a8(MenuButton *button);
 void func_02040568(void);
 void func_0204062c(void);
 void func_0204069c(void);
@@ -76,7 +74,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
         }
     }
     if (cursor != button->id) {
-        button = func_020262b0(cursor);
+        button = MenuButton_Select(cursor);
     }
     if (gKeypad->pressed & PAD_BUTTON_L) {
         func_0204069c();
@@ -85,7 +83,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
         func_0204062c();
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
-        func_020250a8(button);
+        MenuButton_Confirm(button);
     }
     if (gKeypad->pressed & PAD_BUTTON_X) {
         func_02040568();

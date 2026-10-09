@@ -7,7 +7,7 @@ void Map_InitBattle(void);
 BOOL func_020e7f30(int mapId);
 void Map_SetupPlayerCos(void);
 void func_020e88f8(void);
-void func_020e8a88(u8 value);
+void Map_SetCoSelectPhase(u8 value);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -19,7 +19,7 @@ void func_020e8970(void)
 {
     Map_SetupPlayerCos();
     if (func_020e7f30(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId)) {
-        func_020e8a88(1);
+        Map_SetCoSelectPhase(1);
         Map_InitBattle();
         func_020e88f8();
         func_020b9890();

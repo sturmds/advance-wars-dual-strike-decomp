@@ -6,10 +6,10 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int func_020e5c40(int playerIndex, int slot, int powerState, int unitType); /* CO firepower, percent */
-int func_020c6708(int targetType, BOOL targetDived);                         /* damage chart column */
+int DamageChart_GetColumn(int targetType, BOOL targetDived);                         /* damage chart column */
 int TerrainAndStealthFirepower(int playerIndex, int unitType, int column, int x, int y, BOOL dived);
 /* chart damage * firepower / 100, at least 1 when the weapon can hit */
-int func_020dfc04(int firepower, int unitType, int targetType, int weapon, BOOL targetDived);
+int ScaleChartDamage(int firepower, int unitType, int targetType, int weapon, BOOL targetDived);
 
 /* Damage a unit's weapon (0 primary, 1 secondary) deals to a target unit
  * type: the damage chart value times the attacker's firepower in percent
@@ -23,6 +23,6 @@ int Unit_GetChartDamage(MapUnit *unit, int targetType, int weapon, BOOL targetDi
     int firepower = func_020e5c40(player, 0, state->players[player].front.powerState, unitType) + 100;
     BOOL dived = (unit->flags & MAP_UNIT_DIVED) ? TRUE : FALSE;
 
-    firepower += TerrainAndStealthFirepower(player, unitType, func_020c6708(targetType, targetDived), unit->x, unit->y, dived);
-    return func_020dfc04(firepower, unitType, targetType, weapon, targetDived);
+    firepower += TerrainAndStealthFirepower(player, unitType, DamageChart_GetColumn(targetType, targetDived), unit->x, unit->y, dived);
+    return ScaleChartDamage(firepower, unitType, targetType, weapon, targetDived);
 }

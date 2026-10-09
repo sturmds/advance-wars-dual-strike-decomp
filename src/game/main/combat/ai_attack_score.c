@@ -11,11 +11,11 @@ extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int UnitType_GetAttackKind(int unitType);
-void func_020c28ac(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle when defenderIndex != 0 */
-int func_0209e3e8(int unitType, int targetType); /* best base damage of unitType against targetType, over both weapons */
+void Combat_SimulateIfTarget(int attackerIndex, int defenderIndex, s16 *pos); /* Combat_SimulateBattle when defenderIndex != 0 */
+int UnitType_BestBaseDamage(int unitType, int targetType); /* best base damage of unitType against targetType, over both weapons */
 int func_0209ed20(MapUnit *unit, int x, int y);
-int func_0209ef7c(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
-int func_0209f67c(MapUnit *unit); /* 1: the unit's capture finishes next turn */
+int Unit_IsEnemyTile(int unitIndex, int x, int y); /* 1: tile (x, y) is owned by a team other than the unit's */
+int Unit_CaptureEndsNextTurn(MapUnit *unit); /* 1: the unit's capture finishes next turn */
 int func_020a3f2c(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -49,7 +49,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
     u32 score;
 
     mult = 1;
-    func_020c28ac(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
+    Combat_SimulateIfTarget(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
     if (ATTACKER.weapon == COMBAT_WEAPON_NONE) {
         /* no weapon can hit */
         return 0;
@@ -79,8 +79,8 @@ int AiAttack_Score(u32 flags, s16 *pos)
     /* An enemy about to finish capturing an HQ skips every check below. */
     if (defender->captureProgress != 0
         && MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]) == TERRAIN_HQ
-        && func_0209ef7c(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) == 0
-        && func_0209f67c(defender) == 1) {
+        && Unit_IsEnemyTile(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) == 0
+        && Unit_CaptureEndsNextTurn(defender) == 1) {
         goto bonuses;
     }
 
@@ -174,7 +174,7 @@ bonuses:
             damage = (damage * 3) >> 1;
         }
         if (defender->captureProgress != 0
-            && func_0209ef7c(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) != 1) {
+            && Unit_IsEnemyTile(STATE->mapTiles->unk_508[TILE_INDEX(attacker->x, attacker->y)], defender->x, defender->y) != 1) {
             terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(defender->x, defender->y)]);
             if (terrain == TERRAIN_HQ) {
                 mult <<= 3;
@@ -183,7 +183,7 @@ bonuses:
             } else if (terrain == TERRAIN_AIRPORT || terrain == TERRAIN_PORT || terrain == TERRAIN_COM_TOWER) {
                 mult <<= 1;
             }
-            if (func_0209f67c(defender) == 1) {
+            if (Unit_CaptureEndsNextTurn(defender) == 1) {
                 if (DEFENDER.hp == 0 && defender->hp < 50) {
                     damage = HwDiv32(damage * 50, defender->hp);
                 }
@@ -219,7 +219,7 @@ bonuses:
 
     /* A losing trade is kept only when the target cannot hit back. */
     if (damage * mult - loss * 2 < 0) {
-        if (func_0209e3e8(defender->type, attacker->type) <= 1 && ATTACKER.hp != 0) {
+        if (UnitType_BestBaseDamage(defender->type, attacker->type) <= 1 && ATTACKER.hp != 0) {
             loss = 0;
         } else {
             return 0;
