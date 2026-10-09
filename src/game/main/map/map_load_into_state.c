@@ -9,7 +9,7 @@ void Map_LoadCustomIntoState(int mapId);
 void Camera_ResetToPreset0(void *a);
 void Map_BuildRowStarts(void);
 void func_020c3e5c(void);
-void func_020d7b5c(Unk_02080440_1c4 *map, const void *name);
+void String_Copy(Unk_02080440_1c4 *map, const void *name);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -43,7 +43,7 @@ void Map_LoadIntoState(int mapId)
     STATE->unk_1c4->unk_26 = 0;
     STATE->unk_1c4->unk_28 = 0;
     STATE->unk_1c4->unk_2a = 0;
-    func_020d7b5c(STATE->unk_1c4, Map_GetName(mapId));
+    String_Copy(STATE->unk_1c4, Map_GetName(mapId));
     STATE->unk_1c4->playerCount = Map_GetPlayerCount(mapId);
     Map_BuildRowStarts();
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {

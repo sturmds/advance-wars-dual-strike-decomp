@@ -6903,6 +6903,10 @@ src/game/main/map/design_map_copy_name.c:
     complete
     .text       start:0x020d7b04 end:0x020d7b5c
 
+src/game/main/text/string_copy.c:
+    complete
+    .text       start:0x020d7b5c end:0x020d7bb4
+
 src/game/main/func_020d7bf0.c:
     complete
     .text       start:0x020d7bf0 end:0x020d7c04
