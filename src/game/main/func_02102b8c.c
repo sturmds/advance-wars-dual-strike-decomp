@@ -1,8 +1,8 @@
 #include "types.h"
 
-int func_02089210(u32 co);
+void func_02089210(void);
 
-int func_02102b8c(u32 co)
+void func_02102b8c(void)
 {
-    return func_02089210(co);
+    func_02089210();
 }

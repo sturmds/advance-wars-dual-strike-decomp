@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Ov006_ClearLayer1MenuBox(u32 co);
-int func_ov006_02350f10(int exp);
+void Ov006_ClearLayer1MenuBox(void);
+void func_ov006_02350f10(void);
 
-int func_ov006_023546a0(u32 co)
+void func_ov006_023546a0(void)
 {
-    return func_ov006_02350f10(Ov006_ClearLayer1MenuBox(co));
+    Ov006_ClearLayer1MenuBox();
+    func_ov006_02350f10();
 }

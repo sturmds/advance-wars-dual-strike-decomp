@@ -1,7 +1,7 @@
 #include "types.h"
 
 void func_0210d124(int, int, void *, int);
-void func_0210d014(void);
+int func_0210d014(void);
 
 void func_0210d064(int a0)
 {

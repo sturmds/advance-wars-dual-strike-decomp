@@ -1,10 +1,10 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int Script_StartWithHook(int);
+void Sound_PlaySe(u32 soundId);
+void Script_StartWithHook(void);
 
-int func_020d1420(void)
+void func_020d1420(void)
 {
-    int t0 = Sound_PlaySe(69);
-    return Script_StartWithHook(t0);
+    Sound_PlaySe(69);
+    Script_StartWithHook();
 }

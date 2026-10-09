@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 MenuButtons_EnableTouch(u32 co);
-int VsSetup_AddPlayerButtons(int exp);
+void MenuButtons_EnableTouch(void);
+void VsSetup_AddPlayerButtons(void);
 
-int func_020678e0(u32 co)
+void func_020678e0(void)
 {
-    return VsSetup_AddPlayerButtons(MenuButtons_EnableTouch(co));
+    MenuButtons_EnableTouch();
+    VsSetup_AddPlayerButtons();
 }

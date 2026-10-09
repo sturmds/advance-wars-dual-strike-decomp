@@ -1,10 +1,10 @@
 #include "types.h"
 
-void Sound_StopSubSe(int);
-int Sound_PlaySe(int);
+void Sound_StopSubSe(int fadeFrames);
+void Sound_PlaySe(u32 soundId);
 
-int func_ov001_02351d50(void)
+void func_ov001_02351d50(void)
 {
     Sound_StopSubSe(20);
-    return Sound_PlaySe(165);
+    Sound_PlaySe(165);
 }

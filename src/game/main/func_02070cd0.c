@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 MenuButtons_EnableTouch(u32 co);
-int TabList_RebuildButtons(int exp);
+void MenuButtons_EnableTouch(void);
+void TabList_RebuildButtons(void);
 
-int func_02070cd0(u32 co)
+void func_02070cd0(void)
 {
-    return TabList_RebuildButtons(MenuButtons_EnableTouch(co));
+    MenuButtons_EnableTouch();
+    TabList_RebuildButtons();
 }

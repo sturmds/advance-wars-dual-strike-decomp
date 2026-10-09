@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Screen_ResetBlend(u32 co);
-int Screen_ResetWindows(int exp);
+void Screen_ResetBlend(void);
+void Screen_ResetWindows(void);
 
-int func_020f8b90(u32 co)
+void func_020f8b90(void)
 {
-    return Screen_ResetWindows(Screen_ResetBlend(co));
+    Screen_ResetBlend();
+    Screen_ResetWindows();
 }

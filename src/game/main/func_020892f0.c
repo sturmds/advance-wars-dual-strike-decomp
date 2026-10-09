@@ -1,10 +1,10 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int Menu_DrawSelectedHelpText(int);
+void Sound_PlaySe(u32 soundId);
+void Menu_DrawSelectedHelpText(void);
 
-int func_020892f0(void)
+void func_020892f0(void)
 {
-    int t0 = Sound_PlaySe(0x10002);
-    return Menu_DrawSelectedHelpText(t0);
+    Sound_PlaySe(0x10002);
+    Menu_DrawSelectedHelpText();
 }

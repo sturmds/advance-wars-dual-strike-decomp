@@ -1,11 +1,11 @@
 #include "types.h"
 
-int Task_ResumeByScript(void *);
+void Task_ResumeByScript(void *script);
 void data_ov000_0234f264(void);
-int MenuButtons_CloseAll(int);
+void MenuButtons_CloseAll(void);
 
-int func_ov000_022b17cc(void)
+void func_ov000_022b17cc(void)
 {
-    int t0 = Task_ResumeByScript((void *)data_ov000_0234f264);
-    return MenuButtons_CloseAll(t0);
+    Task_ResumeByScript((void *)data_ov000_0234f264);
+    MenuButtons_CloseAll();
 }

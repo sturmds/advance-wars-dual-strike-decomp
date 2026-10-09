@@ -1,9 +1,9 @@
 #include "types.h"
 
-int MenuButton_EnableTouch(int);
+void MenuButton_EnableTouch(int id);
 
-int func_0202dd04(void)
+void func_0202dd04(void)
 {
     MenuButton_EnableTouch(253);
-    return MenuButton_EnableTouch(254);
+    MenuButton_EnableTouch(254);
 }

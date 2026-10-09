@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_020f4658(int);
+int func_020f4658(int a0);
 
 void func_020eee88(void)
 {

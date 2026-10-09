@@ -1,6 +1,6 @@
 #include "types.h"
 
-void Player_SetCo(int, int, int);
+void Player_SetCo(int slot, int which, int coId);
 
 void func_02001a20(int a0, int a1, int a2)
 {

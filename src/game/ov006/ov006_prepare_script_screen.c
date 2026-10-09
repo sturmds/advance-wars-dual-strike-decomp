@@ -3,7 +3,7 @@
 void PopupMenu_PushState(void);
 void func_0201e954(void);
 void func_01ff8c84(int a);
-void Gfx_RequestLayerCopy(int bg);
+void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void func_ov006_023505c4(void);
 

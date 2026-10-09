@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Font_LoadDigits(int);
-int PopupMenu_PopState(int);
-int MenuDepth_Push(int);
+void Font_LoadDigits(int baseTile);
+void PopupMenu_PopState(void);
+void MenuDepth_Push(void);
 
-int func_020bc548(void)
+void func_020bc548(void)
 {
-    int t0 = Font_LoadDigits(0);
-    int t1 = PopupMenu_PopState(t0);
-    return MenuDepth_Push(t1);
+    Font_LoadDigits(0);
+    PopupMenu_PopState();
+    MenuDepth_Push();
 }

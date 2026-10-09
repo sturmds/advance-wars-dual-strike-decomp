@@ -1,10 +1,10 @@
 #include "types.h"
 
 void Sprites_ResetLists(void);
-int OamBuffer_Split(int);
+void OamBuffer_Split(int headCount);
 
-int func_020032a8(void)
+void func_020032a8(void)
 {
     Sprites_ResetLists();
-    return OamBuffer_Split(16);
+    OamBuffer_Split(16);
 }

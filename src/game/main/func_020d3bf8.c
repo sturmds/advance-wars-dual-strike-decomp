@@ -1,14 +1,14 @@
 #include "types.h"
 
-int Battle_RunSetupHooks(void);
-int Map_LoadPredeployedUnits(int);
-int Battle_RegisterFrameCallbacks(int);
-int func_020e88f8(int);
+void Battle_RunSetupHooks(void);
+void Map_LoadPredeployedUnits(void);
+void Battle_RegisterFrameCallbacks(void);
+void func_020e88f8(void);
 
-int func_020d3bf8(void)
+void func_020d3bf8(void)
 {
-    int t0 = Battle_RunSetupHooks();
-    int t1 = Map_LoadPredeployedUnits(t0);
-    int t2 = Battle_RegisterFrameCallbacks(t1);
-    return func_020e88f8(t2);
+    Battle_RunSetupHooks();
+    Map_LoadPredeployedUnits();
+    Battle_RegisterFrameCallbacks();
+    func_020e88f8();
 }

@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_0210cfdc(int arg);
+void func_0210cfdc(int a0);
 void func_021155e4(int arg, int flag);
 
 void func_02115400(int arg)

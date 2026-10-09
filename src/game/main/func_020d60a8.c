@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Save_LoadProgress(u32 co);
-int func_0210322c(int exp);
+void Save_LoadProgress(void);
+void func_0210322c(void);
 
-int func_020d60a8(u32 co)
+void func_020d60a8(void)
 {
-    return func_0210322c(Save_LoadProgress(co));
+    Save_LoadProgress();
+    func_0210322c();
 }

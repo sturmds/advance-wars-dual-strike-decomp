@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Save_LoadProfiles(u32 co);
-int func_02001250(int exp);
+void Save_LoadProfiles(void);
+void func_02001250(void);
 
-int func_021037ac(u32 co)
+void func_021037ac(void)
 {
-    return func_02001250(Save_LoadProfiles(co));
+    Save_LoadProfiles();
+    func_02001250();
 }

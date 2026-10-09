@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int CoSelectScreen_BeginExit(int);
-int func_020b9890(int);
+void Sound_PlaySe(u32 soundId);
+void CoSelectScreen_BeginExit(void);
+void func_020b9890(void);
 
-int func_02041aac(void)
+void func_02041aac(void)
 {
-    int t0 = Sound_PlaySe(0x10006);
-    int t1 = CoSelectScreen_BeginExit(t0);
-    return func_020b9890(t1);
+    Sound_PlaySe(0x10006);
+    CoSelectScreen_BeginExit();
+    func_020b9890();
 }

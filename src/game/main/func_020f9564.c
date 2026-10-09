@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Screen_SetLayerPriorities(u32 co);
-int Screen_ResetBlend(int exp);
+void Screen_SetLayerPriorities(void);
+void Screen_ResetBlend(void);
 
-int func_020f9564(u32 co)
+void func_020f9564(void)
 {
-    return Screen_ResetBlend(Screen_SetLayerPriorities(co));
+    Screen_SetLayerPriorities();
+    Screen_ResetBlend();
 }

@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 MapSelect_AddMapButtons(u32 co);
-int MenuButtons_EnableTouch(int exp);
+void MapSelect_AddMapButtons(void);
+void MenuButtons_EnableTouch(void);
 
-int func_02060f84(u32 co)
+void func_02060f84(void)
 {
-    return MenuButtons_EnableTouch(MapSelect_AddMapButtons(co));
+    MapSelect_AddMapButtons();
+    MenuButtons_EnableTouch();
 }

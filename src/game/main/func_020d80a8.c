@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 CallbackSlots_Clear(u32 co);
-int Wallpaper_DestroyTasks(int exp);
+void CallbackSlots_Clear(void);
+void Wallpaper_DestroyTasks(void);
 
-int func_020d80a8(u32 co)
+void func_020d80a8(void)
 {
-    return Wallpaper_DestroyTasks(CallbackSlots_Clear(co));
+    CallbackSlots_Clear();
+    Wallpaper_DestroyTasks();
 }

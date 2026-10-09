@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Weather_StartEffect(int);
-int MenuButtons_CloseAll(int);
-int MenuDepth_Pop(int);
+void Weather_StartEffect(int weather);
+void MenuButtons_CloseAll(void);
+void MenuDepth_Pop(void);
 
-int func_020bba60(void)
+void func_020bba60(void)
 {
-    int t0 = Weather_StartEffect(1);
-    int t1 = MenuButtons_CloseAll(t0);
-    return MenuDepth_Pop(t1);
+    Weather_StartEffect(1);
+    MenuButtons_CloseAll();
+    MenuDepth_Pop();
 }

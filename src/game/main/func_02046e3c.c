@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int func_020b9864(int);
-int func_02046f74(int);
+void Sound_PlaySe(u32 soundId);
+void func_020b9864(void);
+void func_02046f74(void);
 
-int func_02046e3c(void)
+void func_02046e3c(void)
 {
-    int t0 = Sound_PlaySe(0x10009);
-    int t1 = func_020b9864(t0);
-    return func_02046f74(t1);
+    Sound_PlaySe(0x10009);
+    func_020b9864();
+    func_02046f74();
 }

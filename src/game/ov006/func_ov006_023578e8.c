@@ -1,10 +1,10 @@
 #include "types.h"
 
 void PopupMenu_PopState(void);
-int Sound_PlaySe(int);
+void Sound_PlaySe(u32 soundId);
 
-int func_ov006_023578e8(void)
+void func_ov006_023578e8(void)
 {
     PopupMenu_PopState();
-    return Sound_PlaySe(0x10009);
+    Sound_PlaySe(0x10009);
 }

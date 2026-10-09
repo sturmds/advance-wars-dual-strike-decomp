@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 Overlay_SwapSlot1ForSlot3(u32 co);
-int Ov003_Init(int exp);
+void Overlay_SwapSlot1ForSlot3(void);
+void Ov003_Init(void);
 
-int func_02083020(u32 co)
+void func_02083020(void)
 {
-    return Ov003_Init(Overlay_SwapSlot1ForSlot3(co));
+    Overlay_SwapSlot1ForSlot3();
+    Ov003_Init();
 }

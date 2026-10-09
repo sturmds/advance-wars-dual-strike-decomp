@@ -1,6 +1,6 @@
 #include "types.h"
 
-void MenuButton_Close(int);
+void MenuButton_Close(int id);
 
 void func_0208aca0(void)
 {

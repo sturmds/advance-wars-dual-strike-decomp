@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 MenuButtons_EnableTouch(u32 co);
-int VsSetup_AddMapAndCoButtons(int exp);
+void MenuButtons_EnableTouch(void);
+void VsSetup_AddMapAndCoButtons(void);
 
-int func_0206a324(u32 co)
+void func_0206a324(void)
 {
-    return VsSetup_AddMapAndCoButtons(MenuButtons_EnableTouch(co));
+    MenuButtons_EnableTouch();
+    VsSetup_AddMapAndCoButtons();
 }

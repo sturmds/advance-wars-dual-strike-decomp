@@ -1,14 +1,14 @@
 #include "types.h"
 
-int ActingUnit_SaveStartPos(void);
-int ActingUnit_FinishAction(int);
-int ActingUnitStart_Restore(int);
-int func_020b9d48(int);
+void ActingUnit_SaveStartPos(void);
+void ActingUnit_FinishAction(void);
+void ActingUnitStart_Restore(void);
+void func_020b9d48(void);
 
-int func_020eef58(void)
+void func_020eef58(void)
 {
-    int t0 = ActingUnit_SaveStartPos();
-    int t1 = ActingUnit_FinishAction(t0);
-    int t2 = ActingUnitStart_Restore(t1);
-    return func_020b9d48(t2);
+    ActingUnit_SaveStartPos();
+    ActingUnit_FinishAction();
+    ActingUnitStart_Restore();
+    func_020b9d48();
 }

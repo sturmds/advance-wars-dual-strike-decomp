@@ -1,10 +1,10 @@
 #include "types.h"
 
-void Overlay_Unload(int);
-int Overlay_Load(int);
+void Overlay_Unload(int slot);
+void Overlay_Load(int slot);
 
-int func_020014f8(void)
+void func_020014f8(void)
 {
     Overlay_Unload(3);
-    return Overlay_Load(1);
+    Overlay_Load(1);
 }

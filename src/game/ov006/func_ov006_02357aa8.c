@@ -1,6 +1,6 @@
 #include "types.h"
 
-void Ov006_StartIdScript(int arg);
+void Ov006_StartIdScript(int id);
 
 void func_ov006_02357aa8(void)
 {

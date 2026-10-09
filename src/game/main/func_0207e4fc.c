@@ -1,6 +1,6 @@
 #include "types.h"
 
-void Sound_PlaySe(int id);
+void Sound_PlaySe(u32 soundId);
 
 void func_0207e4fc(void)
 {

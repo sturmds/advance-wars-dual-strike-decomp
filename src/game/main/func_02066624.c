@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int func_020b9890(int);
-int VsSetup_OpenCoSelect(int);
+void Sound_PlaySe(u32 soundId);
+void func_020b9890(void);
+void *VsSetup_OpenCoSelect(void);
 
-int func_02066624(void)
+void *func_02066624(void)
 {
-    int t0 = Sound_PlaySe(0x10006);
-    int t1 = func_020b9890(t0);
-    return VsSetup_OpenCoSelect(t1);
+    Sound_PlaySe(0x10006);
+    func_020b9890();
+    return VsSetup_OpenCoSelect();
 }

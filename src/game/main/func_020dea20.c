@@ -1,10 +1,10 @@
 #include "types.h"
 
 void ActingUnit_CommitMove(void);
-int ActingUnit_StartAttack(int, int);
+void ActingUnit_StartAttack(int defenderSlot, int flag);
 
-int func_020dea20(int a0)
+void func_020dea20(int a0)
 {
     ActingUnit_CommitMove();
-    return ActingUnit_StartAttack(a0, 0);
+    ActingUnit_StartAttack(a0, 0);
 }

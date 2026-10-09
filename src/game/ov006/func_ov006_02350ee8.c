@@ -1,10 +1,10 @@
 #include "types.h"
 
-void Sound_PlaySe(int);
-int Ov006_PostRequest(int);
+void Sound_PlaySe(u32 soundId);
+void Ov006_PostRequest(int request);
 
-int func_ov006_02350ee8(void)
+void func_ov006_02350ee8(void)
 {
     Sound_PlaySe(0x10009);
-    return Ov006_PostRequest(1);
+    Ov006_PostRequest(1);
 }

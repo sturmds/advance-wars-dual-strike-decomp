@@ -1,6 +1,6 @@
 #include "types.h"
 
-void Unit_Remove(int, int);
+void Unit_Remove(int unitIndex, int destroyed);
 
 void func_020c7398(int a0)
 {

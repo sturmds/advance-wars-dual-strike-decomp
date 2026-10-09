@@ -1,12 +1,12 @@
 #include "types.h"
 
-int Sound_PlaySe(int);
-int func_0204cd00(int);
-int MenuButtons_CloseAll(int);
+void Sound_PlaySe(u32 soundId);
+int func_0204cd00(void);
+void MenuButtons_CloseAll(void);
 
-int func_0204ccc0(void)
+void func_0204ccc0(void)
 {
-    int t0 = Sound_PlaySe(0x10006);
-    int t1 = func_0204cd00(t0);
-    return MenuButtons_CloseAll(t1);
+    Sound_PlaySe(0x10006);
+    func_0204cd00();
+    MenuButtons_CloseAll();
 }

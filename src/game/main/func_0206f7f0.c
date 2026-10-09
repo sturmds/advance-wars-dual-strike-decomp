@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 PlayerInfo_AddPageButtons(u32 co);
-int PlayerInfo_AddCoButtons(int exp);
+void PlayerInfo_AddPageButtons(void);
+void PlayerInfo_AddCoButtons(void);
 
-int func_0206f7f0(u32 co)
+void func_0206f7f0(void)
 {
-    return PlayerInfo_AddCoButtons(PlayerInfo_AddPageButtons(co));
+    PlayerInfo_AddPageButtons();
+    PlayerInfo_AddCoButtons();
 }

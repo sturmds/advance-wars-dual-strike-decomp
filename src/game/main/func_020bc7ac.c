@@ -1,6 +1,6 @@
 #include "types.h"
 
-void BattleMenu_DrawHelpText(int);
+void BattleMenu_DrawHelpText(u32 textId);
 
 void func_020bc7ac(void)
 {
