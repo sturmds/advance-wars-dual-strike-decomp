@@ -107,6 +107,10 @@ src/game/main/rng/rng_set_state.c:
     complete
     .text       start:0x02004498 end:0x020044a8
 
+src/game/main/callback_list_add.c:
+    complete
+    .text       start:0x020045f4 end:0x02004628
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710
