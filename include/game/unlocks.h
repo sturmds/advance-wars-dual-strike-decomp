@@ -14,4 +14,5 @@ u8 Unlock_IsSet(u32 id);
 #define SHOP_ITEM_LOCKED   0
 #define SHOP_ITEM_FOR_SALE 1
 
+BOOL GameFlag_IsSet(int id);
 #endif

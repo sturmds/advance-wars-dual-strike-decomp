@@ -4921,7 +4921,7 @@ func_021016ac kind:function(arm,size=0x18) addr:0x021016ac
 func_021016c4 kind:function(arm,size=0x20) addr:0x021016c4
 func_021016e4 kind:function(arm,size=0xc) addr:0x021016e4
 Map_FindIdByData kind:function(arm,size=0x54) addr:0x021016f0
-func_02101744 kind:function(arm,size=0xb0) addr:0x02101744
+GameFlag_IsSet kind:function(arm,size=0xb0) addr:0x02101744
 func_021017f4 kind:function(arm,size=0x88) addr:0x021017f4
 func_0210187c kind:function(arm,size=0x24) addr:0x0210187c
 func_021018a0 kind:function(arm,size=0x64) addr:0x021018a0
@@ -8631,7 +8631,7 @@ data_02290118 kind:bss addr:0x02290118
 data_02290128 kind:bss addr:0x02290128
 gCoPicksMode0 kind:bss addr:0x02290198
 data_022901a4 kind:bss addr:0x022901a4
-data_0229024e kind:bss addr:0x0229024e
+gGameFlagsHigh kind:bss addr:0x0229024e
 data_02290256 kind:bss addr:0x02290256
 data_02290298 kind:bss addr:0x02290298
 data_02290718 kind:bss addr:0x02290718
