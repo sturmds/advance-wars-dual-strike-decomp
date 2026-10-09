@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void AiFogDirect_ActOrder7(void);
-void func_020a0bdc(void);
+void AiFogDirect_ActOrders1_10(void);
 void func_020a0bfc(void);
 
 /* Queue routine for the direct units AiAction_QueueAllDirectUnitsFog
@@ -32,7 +32,7 @@ void AiUnit_ActByOrderFog(void)
         break;
     case 1:
     case 10:
-        func_020a0bdc();
+        AiFogDirect_ActOrders1_10();
         break;
     case 7:
         AiFogDirect_ActOrder7();
