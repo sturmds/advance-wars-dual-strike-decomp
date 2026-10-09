@@ -26,6 +26,10 @@ typedef struct MainMenu {
     u8 cursors[14];                    /* cursor of each page */
     u8 page : 4;
     u8 prevPage : 4;
+    u8 nextPage : 4;                   /* page to show after the slide */
+    u8 unk_0f_4 : 4;
+    u8 slide : 3;                      /* 2: slide left, 3: slide right */
+    u8 unk_10_3 : 5;
 } MainMenu;
 
 extern MainMenuPage **data_0229c71c;

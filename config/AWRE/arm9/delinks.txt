@@ -776,6 +776,10 @@ src/game/main/menus/main_menu_handle_keys.c:
     complete
     .text       start:0x0202e5f0 end:0x0202e7b8
 
+src/game/main/menus/main_menu_start_page_flip.c:
+    complete
+    .text       start:0x0202e7b8 end:0x0202e868
+
 src/game/main/func_0202eccc.c:
     complete
     .text       start:0x0202eccc end:0x0202ece0

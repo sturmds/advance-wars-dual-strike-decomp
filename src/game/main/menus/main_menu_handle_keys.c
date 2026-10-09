@@ -4,7 +4,7 @@
 #include "game/menu_button.h"
 
 int MainMenu_IsFirstSidePage(int page);
-void func_0202e7b8(int page, int slide);
+void MainMenu_StartPageFlip(int page, int slide);
 
 /* onKeys of the main menu buttons: up and down move the cursor past hidden
  * entries, left, right, L and R flip the page (MainMenu_IsFirstSidePage picks the side),
@@ -39,18 +39,18 @@ void MainMenu_HandleKeys(MenuButton *button)
     if (keys & (PAD_KEY_LEFT | PAD_BUTTON_L)) {
         data_021599d0->cursors[data_021599d0->page] = cursor;
         if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
-            func_0202e7b8(6, 2);
+            MainMenu_StartPageFlip(6, 2);
         } else {
-            func_0202e7b8(0, 2);
+            MainMenu_StartPageFlip(0, 2);
         }
         return;
     }
     if (keys & (PAD_KEY_RIGHT | PAD_BUTTON_R)) {
         data_021599d0->cursors[data_021599d0->page] = cursor;
         if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
-            func_0202e7b8(6, 3);
+            MainMenu_StartPageFlip(6, 3);
         } else {
-            func_0202e7b8(0, 3);
+            MainMenu_StartPageFlip(0, 3);
         }
         return;
     }
