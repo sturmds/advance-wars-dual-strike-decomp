@@ -7559,6 +7559,10 @@ src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
 
+src/game/main/map/map_init_tile_hp.c:
+    complete
+    .text       start:0x020e531c end:0x020e5400
+
 src/game/main/skills/experience_to_rank.c:
     complete
     .text       start:0x020e5450 end:0x020e5488

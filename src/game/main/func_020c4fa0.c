@@ -6,7 +6,7 @@ void func_020da650(void);
 void Players_ApplyBattleSetup(void);
 void Turn_AdvanceToNextPlayer(void);
 void func_020e5100(void);
-void func_020e531c(void);
+void Map_InitTileHp(void);
 
 void func_020c4fa0(void)
 {
@@ -15,6 +15,6 @@ void func_020c4fa0(void)
     Turn_AdvanceToNextPlayer();
     func_020d2194();
     func_020da650();
-    func_020e531c();
+    Map_InitTileHp();
     func_020e5100();
 }
