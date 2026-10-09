@@ -23,7 +23,8 @@ typedef struct Unk_027c0280 {
     u16 unk_bc;
     u16 unk_be;
     u16 unk_c0;
-    u8 pad_c2[0xe1 - 0xc2];
+    u16 unk_c2[4];                     /* indexed by unk_e1, unk_f5 and unk_109; a scroll offset per background (a guess) */
+    u8 pad_ca[0xe1 - 0xca];
     u8 unk_e1;                         /* a BG number */
     u8 pad_e2[0xec - 0xe2];
     void *unk_ec;                      /* passed to the text drawing calls */

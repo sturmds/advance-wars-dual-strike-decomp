@@ -90,23 +90,23 @@ void LinkPhase_InitScreen(void)
     BOOL customMap;
     void *target;                      /* needed to match: read before the call in the same argument list */
 
-    data_0229eb30.unk_02c = Map_GetPlayerCount(GAME->unk_1c4->mapId);
+    data_0229eb30.link.unk_02c = Map_GetPlayerCount(GAME->unk_1c4->mapId);
     /* Needed to match: the flag is kept in a register, and the stores go
      * through a cast pointer so the compiler reloads data_027c027c and
      * data_027c0284 on every pass. */
     customMap = MAP_IS_CUSTOM(GAME->unk_1c4->mapId);
     if (customMap) {
-        for (i = 0; i < data_0229eb30.unk_02c; i++) {
-            LINK_STATE->unk_024[i] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
+        for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
+            LINK_STATE->link.unk_024[i] = data_022a6c84[GAME->unk_1c4->mapId - MAP_CUSTOM_FIRST].armyColours[i + 1];
         }
     } else {
-        for (i = 0; i < data_0229eb30.unk_02c; i++) {
-            LINK_STATE->unk_024[i] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
+        for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
+            LINK_STATE->link.unk_024[i] = Ov000_gMapHeaders[GAME->unk_1c4->mapId].army[i + 1];
         }
     }
     for (i = 0; i < 4; i++) {
-        data_0229eb30.unk_020[i] = data_0229c874[i] - 1;
-        data_0229eb30.unk_028[i] = 0;
+        data_0229eb30.link.unk_020[i] = data_0229c874[i] - 1;
+        data_0229eb30.link.unk_028[i] = 0;
     }
     func_02028ae8();
 
@@ -131,9 +131,9 @@ void LinkPhase_InitScreen(void)
     SWITCH_TO(MAIN_MAP);
     func_02003bec(file, data_027c0280->unk_130 + (data_027c0280->bgControl[data_027c0280->unk_109].charBase << 14));
     func_02003188(file + 0x2a4, 0, 0xa0);
-    for (i = 0; i < data_0229eb30.unk_02c; i++) {
+    for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
         target = data_027c0280->unk_114;
-        func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[data_0229eb30.unk_024[i] - 1], 0);
+        func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[data_0229eb30.link.unk_024[i] - 1], 0);
     }
     func_01ff8d60(2);
     SWITCH_BACK();
