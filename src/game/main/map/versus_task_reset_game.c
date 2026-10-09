@@ -1,0 +1,32 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+void func_020e8b18(void);
+u32 func_0207bd80(void);
+void Map_SetupPlayerCos(void);
+void func_02064774(void);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern int data_0229eaec;
+
+/* First step of the data_021673dc task script, which func_02103544 starts
+ * after it sets gameMode 2 (Versus, going by the other mode readers).
+ * func_020e8b18 puts the game settings back to their boot defaults (gameMode
+ * 2 again) and clears the link flag data_0229eaec; musicReady survives the
+ * reset. In link play (func_0207bd80 returns 1) the flag is set again and
+ * func_02064774 clears the link buffers in data_0229c768. */
+void VersusTask_ResetGame(void)
+{
+    u8 musicReady = data_027c027c->unk_48[data_027c0284]->musicReady;
+
+    func_020e8b18();
+    if (func_0207bd80() == 1) {
+        data_0229eaec = 1;
+    }
+    data_027c027c->unk_48[data_027c0284]->musicReady = musicReady;
+    Map_SetupPlayerCos();
+    if (func_0207bd80() == 1) {
+        func_02064774();
+    }
+}
