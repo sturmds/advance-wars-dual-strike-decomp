@@ -79,15 +79,15 @@ typedef struct MenuButtonTemplate {
     s16 width;
     s16 height;
     u16 flags;                         /* becomes MenuButton.unk_1c */
-    u16 unk_0a;
-    u16 unk_0c;
-    u16 unk_0e;
+    u16 slideDuration;
+    u16 tile;
+    u16 palette;
     void (*onUpdate)(MenuButton *button);
     void (*onKeys)(MenuButton *button);
     void (*onConfirm)(MenuButton *button);
     void (*onCancel)(MenuButton *button);
-    u32 unk_20;
-    u32 unk_24;
+    void (*onSelect)(MenuButton *button);
+    void (*onSlideOutDone)(MenuButton *button);
 } MenuButtonTemplate;
 
 /* Menu button state reached through data_02158f38. */
