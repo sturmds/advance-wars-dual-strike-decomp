@@ -751,6 +751,10 @@ src/game/main/func_02049598.c:
     complete
     .text       start:0x02049598 end:0x020495b0
 
+src/game/main/func_0204cd00.c:
+    complete
+    .text       start:0x0204cd00 end:0x0204cd14
+
 src/game/main/menus/campaign_map_init.c:
     .text       start:0x0204f960 end:0x0205053c
 
