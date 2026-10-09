@@ -6,12 +6,12 @@ extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
 void Ai_ClearThreatMaps(void);
-void func_01ffb200(s8 *tileMap);
+void func_01ffb200(void *tileMap);
 void func_01ffb3a0(int value);
 void func_0209b458(void);
 void func_0209b918(u8 player, int arg);
-void func_0209d4e0(void);
-void func_0209d610(void);
+void Ai_AddObjectThreat(void);
+void Ai_MarkObjectTileThreat(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -30,8 +30,8 @@ void func_0209b2b0(int arg)
     func_01ffb3a0(0);
     func_01ffb200(STATE->mapTiles->unk_2840);
     Ai_ClearThreatMaps();
-    func_0209d4e0();
-    func_0209d610();
+    Ai_AddObjectThreat();
+    Ai_MarkObjectTileThreat();
     for (player = 1; player < 5; player++) {
         if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
             func_0209b918(player, arg);

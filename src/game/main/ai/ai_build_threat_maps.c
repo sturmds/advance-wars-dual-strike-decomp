@@ -8,8 +8,8 @@ extern int data_027c0284;
 BOOL Player_IsInGame(u8 player); /* TRUE: the player is still in the game */
 void Ai_ClearThreatMaps(void);       /* clears MapTiles.threatMax and threatSum */
 void Ai_AddEnemyThreat(u8 player);  /* adds one enemy player's units to the maps */
-void func_0209d4e0(void);
-void func_0209d610(void);
+void Ai_AddObjectThreat(void);
+void Ai_MarkObjectTileThreat(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -27,8 +27,8 @@ void Ai_BuildThreatMaps(void)
     }
     AI_TARGET_FLAGS->threatMapsBuilt = TRUE;
     Ai_ClearThreatMaps();
-    func_0209d4e0();
-    func_0209d610();
+    Ai_AddObjectThreat();
+    Ai_MarkObjectTileThreat();
     for (player = 1; player < 5; player++) {
         if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
             Ai_AddEnemyThreat(player);

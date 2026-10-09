@@ -12,7 +12,7 @@ void func_0209d738(MapUnit *unit); /* adds one enemy unit to the threat maps */
 
 /* Clears the threat maps and adds the threat of each unit of every enemy
  * player still in the game. Unlike Ai_BuildThreatMaps it does not call
- * func_0209d4e0 and func_0209d610. Units use slots 1 to 50 of the player's
+ * Ai_AddObjectThreat and Ai_MarkObjectTileThreat. Units use slots 1 to 50 of the player's
  * block. */
 void AiOozium_BuildThreatMaps(void)
 {

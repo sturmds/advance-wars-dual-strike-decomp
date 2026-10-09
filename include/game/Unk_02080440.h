@@ -5,6 +5,7 @@
 #include "game/player.h"
 #include "game/map_unit.h"
 #include "game/combatant.h"
+#include "game/map_object.h"
 
 /* Terrain and owner of every map tile, reached through
  * Unk_02080440_48.mapTiles. */
@@ -116,7 +117,7 @@ typedef struct Unk_02080440_48 {
     u8 pad_1c8[0x43d0 - 0x1c8];
     MapTiles *mapTiles;
     u8 tileHp[0x508];                  /* per tile like MapTiles; bits 0-6: hp of a tile units can attack (pipe seams) */
-    u8 pad_48dc[0x575c - 0x48dc];
+    MapObject objects[0x1d0];          /* the list ends at the first object with kind 0 */
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     u8 pad_5760[0x5a58 - 0x5760];
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
