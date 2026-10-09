@@ -426,6 +426,10 @@ src/game/main/combat/combatant_calc_damage.c:
     complete
     .text       start:0x020c3468 end:0x020c3640
 
+src/game/main/combat/combatant_pick_weapon.c:
+    complete
+    .text       start:0x020c3640 end:0x020c3834
+
 src/game/main/combat/combatant_init.c:
     complete
     .text       start:0x020c3834 end:0x020c3954
