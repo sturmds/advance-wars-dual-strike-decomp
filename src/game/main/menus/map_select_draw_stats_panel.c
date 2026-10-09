@@ -4,7 +4,7 @@
 int MapSelect_GetTab(void);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
-void func_02060ae0(int x, int y, int value);
+void MapSelect_DrawNumber(int x, int y, int value);
 
 extern MenuState gMenuState;
 extern u8 data_027c0020;
@@ -51,8 +51,8 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
                     func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 4) << 12,
                                   (i * 2 + 1) * 12 + 0x1ca, ((i * 2 + 1) & 1) + 1);
                 }
-                func_02060ae0(x + 64, y + 16 + i * 32, MENU->setup.recordUnk_0a[i]);
-                func_02060ae0(x + 96, y + 16 + i * 32, MENU->setup.recordUnk_14[i]);
+                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.recordUnk_0a[i]);
+                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.recordUnk_14[i]);
             }
         } else {
             if (MENU->setup.unk_4f0[i] != 0) {
@@ -64,8 +64,8 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
                     func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 10) << 12,
                                   (i * 2 + 7) * 12 + 0x1ca, ((i * 2 + 7) & 1) + 1);
                 }
-                func_02060ae0(x + 64, y + 16 + i * 32, MENU->setup.unk_4f0[i]);
-                func_02060ae0(x + 96, y + 16 + i * 32, MENU->setup.unk_4f4[i]);
+                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.unk_4f0[i]);
+                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.unk_4f4[i]);
             }
         }
     }

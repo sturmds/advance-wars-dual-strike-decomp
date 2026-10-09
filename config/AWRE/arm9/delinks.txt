@@ -3184,6 +3184,10 @@ src/game/main/menus/map_select_draw_stats_panel.c:
     complete
     .text       start:0x02060718 end:0x02060ae0
 
+src/game/main/menus/map_select_draw_number.c:
+    complete
+    .text       start:0x02060ae0 end:0x02060bf8
+
 src/game/main/menus/map_select_draw_page_indicator.c:
     complete
     .text       start:0x02060bf8 end:0x02060d78
