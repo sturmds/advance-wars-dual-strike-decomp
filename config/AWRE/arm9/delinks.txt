@@ -3172,6 +3172,10 @@ src/game/main/func_02067b0c.c:
     complete
     .text       start:0x02067b0c end:0x02067b34
 
+src/game/main/menus/vs_setup_cancel.c:
+    complete
+    .text       start:0x02067b34 end:0x02067b94
+
 src/game/main/menus/vs_setup_handle_keys.c:
     complete
     .text       start:0x02068624 end:0x02068790
