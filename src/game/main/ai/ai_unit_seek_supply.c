@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 void AiUnit_GoToSupply(void);
-void func_020aff0c(void);
+void AiUnit_JoinDamagedUnit(void);
 void AiUnit_LaunchSilo(void);
 void AiStep_DebugHook(void);
 
@@ -19,7 +19,7 @@ void AiStep_DebugHook(void);
 void AiUnit_SeekSupply(void)
 {
     if (!Unit_IsBlackHoleOnFlaggedTile(GAME->actingUnit, GAME->actingUnit->x, GAME->actingUnit->y)) {
-        func_020aff0c();
+        AiUnit_JoinDamagedUnit();
     }
     if (GAME->actingUnit->serviceWanted != 1) {
         return;

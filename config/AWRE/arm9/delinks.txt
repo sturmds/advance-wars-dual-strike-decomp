@@ -56,7 +56,7 @@ src/game/main/func_02001730.c:
     complete
     .text       start:0x02001730 end:0x0200174c
 
-src/game/main/co_stats/player_get_co_byte_dual.c:
+src/game/main/co_stats/player_get_co_byte_fallback.c:
     complete
     .text       start:0x0200174c end:0x020018a8
 
@@ -188,7 +188,7 @@ src/game/main/graphics/oam_buffer_flush_tail.c:
     complete
     .text       start:0x020033a8 end:0x02003430
 
-src/game/main/graphics/oam_buffer_init.c:
+src/game/main/graphics/oam_buffer_split.c:
     complete
     .text       start:0x02003430 end:0x020034d0
 
@@ -533,7 +533,7 @@ src/game/main/screen/screen_set_current_gfx.c:
     complete
     .text       start:0x0200acac end:0x0200acbc
 
-src/game/main/Screen_SetCurrentBoth.c:
+src/game/main/screen/screen_set_current_both.c:
     complete
     .text       start:0x0200acbc end:0x0200acd8
 
@@ -1668,7 +1668,7 @@ src/game/main/graphics/gfx_load_player_bmap0a0_palette.c:
     complete
     .text       start:0x0201e364 end:0x0201e3b8
 
-src/game/main/graphics/palette_load_player_row.c:
+src/game/main/graphics/palette_load_player_army_bg_row.c:
     complete
     .text       start:0x0201e3b8 end:0x0201e41c
 
@@ -1824,7 +1824,7 @@ src/game/main/task/func_02022c0c.c:
     complete
     .text       start:0x02022c0c end:0x02022c3c
 
-src/game/main/func_02022c3c.c:
+src/game/main/task/func_02022c3c.c:
     complete
     .text       start:0x02022c3c end:0x02022c6c
 
@@ -1836,19 +1836,19 @@ src/game/main/func_02022c98.c:
     complete
     .text       start:0x02022c98 end:0x02022cc4
 
-src/game/main/func_02022cc4.c:
+src/game/main/task/func_02022cc4.c:
     complete
     .text       start:0x02022cc4 end:0x02022cf4
 
-src/game/main/func_02022cf4.c:
+src/game/main/task/func_02022cf4.c:
     complete
     .text       start:0x02022cf4 end:0x02022d24
 
-src/game/main/func_02022d24.c:
+src/game/main/task/func_02022d24.c:
     complete
     .text       start:0x02022d24 end:0x02022d54
 
-src/game/main/func_02022d54.c:
+src/game/main/task/func_02022d54.c:
     complete
     .text       start:0x02022d54 end:0x02022d84
 
@@ -1860,11 +1860,11 @@ src/game/main/func_02022db0.c:
     complete
     .text       start:0x02022db0 end:0x02022ddc
 
-src/game/main/func_02022ddc.c:
+src/game/main/task/func_02022ddc.c:
     complete
     .text       start:0x02022ddc end:0x02022e0c
 
-src/game/main/func_02022e0c.c:
+src/game/main/task/func_02022e0c.c:
     complete
     .text       start:0x02022e0c end:0x02022e3c
 
@@ -1876,11 +1876,11 @@ src/game/main/func_02022e68.c:
     complete
     .text       start:0x02022e68 end:0x02022e94
 
-src/game/main/func_02022e94.c:
+src/game/main/task/func_02022e94.c:
     complete
     .text       start:0x02022e94 end:0x02022ec4
 
-src/game/main/func_02022ec4.c:
+src/game/main/task/func_02022ec4.c:
     complete
     .text       start:0x02022ec4 end:0x02022ef4
 
@@ -1900,19 +1900,19 @@ src/game/main/func_02022f78.c:
     complete
     .text       start:0x02022f78 end:0x02022fa4
 
-src/game/main/func_02022fa4.c:
+src/game/main/task/func_02022fa4.c:
     complete
     .text       start:0x02022fa4 end:0x02022fd4
 
-src/game/main/func_02022fd4.c:
+src/game/main/task/func_02022fd4.c:
     complete
     .text       start:0x02022fd4 end:0x02023004
 
-src/game/main/func_02023004.c:
+src/game/main/task/func_02023004.c:
     complete
     .text       start:0x02023004 end:0x02023034
 
-src/game/main/func_02023034.c:
+src/game/main/task/func_02023034.c:
     complete
     .text       start:0x02023034 end:0x02023064
 
@@ -2368,7 +2368,7 @@ src/game/main/math/math_ease.c:
     complete
     .text       start:0x02026a60 end:0x02026bc8
 
-src/game/main/graphics/palette_blend_color.c:
+src/game/main/graphics/palette_blend_with_color.c:
     complete
     .text       start:0x02026bc8 end:0x02026c7c
 
@@ -2919,7 +2919,7 @@ src/game/main/func_02042b68.c:
     complete
     .text       start:0x02042b68 end:0x02042b94
 
-src/game/main/menus/co_select_screen_start_task.c:
+src/game/main/menus/co_select_screen_begin_exit.c:
     complete
     .text       start:0x02042b94 end:0x02042bc0
 
@@ -3494,7 +3494,7 @@ src/game/main/func_0206664c.c:
     complete
     .text       start:0x0206664c end:0x02066674
 
-src/game/main/func_02066818.c:
+src/game/main/has_two_or_more_teams.c:
     complete
     .text       start:0x02066818 end:0x020668a8
 
@@ -4198,7 +4198,7 @@ src/game/main/func_020800c0.c:
     complete
     .text       start:0x020800c0 end:0x0208012c
 
-src/game/main/unit_action_send.c:
+src/game/main/units/unit_action_send.c:
     complete
     .text       start:0x0208012c end:0x020801dc
 
@@ -5417,7 +5417,7 @@ src/game/main/ai/ai_unit_handle_unit_at_target.c:
     complete
     .text       start:0x020a0c1c end:0x020a0dec
 
-src/game/main/ai/ai_indirect_attack_in_place.c:
+src/game/main/ai/ai_unit_attack_from_place_then_move.c:
     complete
     .text       start:0x020a0dec end:0x020a12cc
 
@@ -5472,7 +5472,7 @@ src/game/main/ai/ai_tile_has_strong_ally_in_reach.c:
     complete
     .text       start:0x020a3b54 end:0x020a3dfc
 
-src/game/main/ai/ai_unit_type_tile_filter.c:
+src/game/main/ai/func_020a3dfc.c:
     complete
     .text       start:0x020a3dfc end:0x020a3f2c
 
@@ -5504,11 +5504,11 @@ src/game/main/ai/tile_get_direction.c:
     complete
     .text       start:0x020a5048 end:0x020a507c
 
-src/game/main/ai/ai_path_reach_within_range.c:
+src/game/main/ai/func_020a507c.c:
     complete
     .text       start:0x020a507c end:0x020a50d4
 
-src/game/main/ai/ai_path_reach_for_unit_type.c:
+src/game/main/ai/func_020a50d4.c:
     complete
     .text       start:0x020a50d4 end:0x020a5100
 
@@ -5918,7 +5918,7 @@ src/game/main/ai/ai_show_action_dive.c:
     complete
     .text       start:0x020b8308 end:0x020b8370
 
-src/game/main/ai/ai_show_action_unload.c:
+src/game/main/ai/ai_show_action_show_cargo_unit.c:
     complete
     .text       start:0x020b8370 end:0x020b8544
 
@@ -7028,7 +7028,7 @@ src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
 
-src/game/main/graphics/army_colours_copy.c:
+src/game/main/graphics/player_save_army_colours.c:
     complete
     .text       start:0x020d6e6c end:0x020d6ec4
 
@@ -7220,15 +7220,15 @@ src/game/main/copowers/activate_current_super_power.c:
     complete
     .text       start:0x020dd3c0 end:0x020dd404
 
-src/game/main/unit_action_activate_tag_power.c:
+src/game/main/units/unit_action_activate_tag_power.c:
     complete
     .text       start:0x020dd404 end:0x020dd4c4
 
-src/game/main/unit_action_activate_super_power.c:
+src/game/main/units/unit_action_activate_super_power.c:
     complete
     .text       start:0x020dd4c4 end:0x020dd550
 
-src/game/main/unit_action_activate_co_power.c:
+src/game/main/units/unit_action_activate_co_power.c:
     complete
     .text       start:0x020dd550 end:0x020dd5dc
 
@@ -7240,11 +7240,11 @@ src/game/main/func_020dd5f8.c:
     complete
     .text       start:0x020dd5f8 end:0x020dd620
 
-src/game/main/unit_action_swap_co.c:
+src/game/main/units/unit_action_swap_co.c:
     complete
     .text       start:0x020dd6bc end:0x020dd818
 
-src/game/main/unit_action_move_to_other_map.c:
+src/game/main/units/unit_action_move_to_other_map.c:
     complete
     .text       start:0x020dd818 end:0x020dd89c
 
@@ -7260,7 +7260,7 @@ src/game/main/func_020dd9a0.c:
     complete
     .text       start:0x020dd9a0 end:0x020dd9b4
 
-src/game/main/silo_start_launch.c:
+src/game/main/units/silo_start_launch.c:
     complete
     .text       start:0x020dd9b4 end:0x020dda74
 
@@ -7276,7 +7276,7 @@ src/game/main/func_020ddc14.c:
     complete
     .text       start:0x020ddc14 end:0x020ddc2c
 
-src/game/main/unit_action_supply.c:
+src/game/main/units/unit_action_supply.c:
     complete
     .text       start:0x020ddc2c end:0x020ddcb8
 
@@ -7288,18 +7288,18 @@ src/game/main/units/unit_action_join.c:
     complete
     .text       start:0x020ddd30 end:0x020de090
 
-src/game/main/unit_action_repair.c:
+src/game/main/units/unit_action_repair.c:
     complete
     .text       start:0x020de350 end:0x020de440
 
-src/game/main/unit_action_board.c:
+src/game/main/units/unit_action_board.c:
     complete
     .text       start:0x020de440 end:0x020de5a4
 
 src/game/main/units/unit_action_capture.c:
     .text       start:0x020de5a4 end:0x020de9c0
 
-src/game/main/acting_unit_move_and_attack_object.c:
+src/game/main/units/acting_unit_move_and_attack_object.c:
     complete
     .text       start:0x020de9c0 end:0x020de9f0
 
@@ -7319,7 +7319,7 @@ src/game/main/units/acting_unit_commit_move.c:
     complete
     .text       start:0x020dea60 end:0x020deac4
 
-src/game/main/acting_unit_finish_action.c:
+src/game/main/units/acting_unit_finish_action.c:
     complete
     .text       start:0x020deac4 end:0x020dec2c
 
@@ -8739,7 +8739,7 @@ src/game/main/func_021016e4.c:
     complete
     .text       start:0x021016e4 end:0x021016f0
 
-src/game/main/map/map_find_by_data.c:
+src/game/main/map/map_find_id_by_data.c:
     complete
     .text       start:0x021016f0 end:0x02101744
 

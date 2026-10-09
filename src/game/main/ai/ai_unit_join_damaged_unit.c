@@ -20,7 +20,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
  * and Unit_IsBlackHoleOnFlaggedTile says no. Picks the one with the highest hp, the last on
  * ties. Infantry and mechs try AiUnit_LaunchSilo first. Matches 98.9%: only
  * the register numbers of the map state pointer and two temporaries differ. */
-void func_020aff0c(void)
+void AiUnit_JoinDamagedUnit(void)
 {
     int bestX;
     int bestY;
