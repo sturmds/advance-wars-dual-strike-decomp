@@ -7,10 +7,10 @@ int HwDiv32(int num, int den);
 int UnitType_BestBaseDamage(int unitType, int targetType);
 int UnitType_GetAttackKind(int unitType);
 int func_ov002_0235e138(int side);
-int func_ov002_0235e1b8(int army);
+int Battle_IsArmyNotHuman(int army);
 
 /* Picks the frame graphics of the battle screen into data_0229fb30.unk_03.
- * 0: nobody or both sides died, or func_ov002_0235e1b8 returns 1 for the
+ * 0: nobody or both sides died, or Battle_IsArmyNotHuman returns 1 for the
  * survivor's army. 3: the survivor wiped out a full-HP unit that is not
  * indirect. Otherwise 1 or 2 by the survivor's best base damage on the loser. */
 void Battle_PickFrame(void)
@@ -33,7 +33,7 @@ void Battle_PickFrame(void)
         data_0229fb30.unk_03 = 0;
         return;
     }
-    if (func_ov002_0235e1b8(Ov002_gBattleScene->sides[survivor].army) == 1) {
+    if (Battle_IsArmyNotHuman(Ov002_gBattleScene->sides[survivor].army) == 1) {
         data_0229fb30.unk_03 = 0;
         return;
     }

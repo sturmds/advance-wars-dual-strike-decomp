@@ -87,6 +87,10 @@ src/game/ov002/battle_pick_frame.c:
     complete
     .text       start:0x0235dfe0 end:0x0235e138
 
+src/game/ov002/battle_is_army_not_human.c:
+    complete
+    .text       start:0x0235e1b8 end:0x0235e26c
+
 src/game/ov002/battle_find_army_slot.c:
     complete
     .text       start:0x0235e26c end:0x0235e2ec
