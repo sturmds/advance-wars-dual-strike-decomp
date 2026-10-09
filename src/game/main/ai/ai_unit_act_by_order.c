@@ -9,7 +9,7 @@ BOOL func_020c0e3c(int player);
 void AiUnit_ActOrder10(void);
 void AiUnit_ActOrder9(void);
 void AiUnit_ActOrder8(void);
-void func_020a09bc(void);
+void AiUnit_ActOrder7(void);
 void func_020a0a0c(void);
 void func_020a0a44(void);
 void func_020a0a84(void);
@@ -66,7 +66,7 @@ void AiUnit_ActByOrder(void)
         break;
     /* needed to match: case 7 comes last */
     case 7:
-        func_020a09bc();
+        AiUnit_ActOrder7();
         break;
     }
 }
