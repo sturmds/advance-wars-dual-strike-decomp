@@ -4315,6 +4315,10 @@ src/game/main/ai/ai_turn_build_capture_map.c:
     complete
     .text       start:0x0208c560 end:0x0208c860
 
+src/game/main/ai/ai_profile_rerandomise_for_player.c:
+    complete
+    .text       start:0x0208c860 end:0x0208c948
+
 src/game/main/ai/ai_profile_build_for_player.c:
     complete
     .text       start:0x0208c9f8 end:0x0208cba8

@@ -13,7 +13,7 @@ BOOL CanUseSuperPower(int player, int slot);
 int CoPowerCost(int player, int slot);
 int SuperPowerCost(int player, int slot);
 s32 HwDiv32(s32 numerator, s32 denominator);
-void func_0208c860(int player);
+void AiProfile_RerandomiseForPlayer(int player);
 void AiPlayer_PerformAction(int action);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -52,13 +52,13 @@ void AiPlayer_TryUsePower(void)
         if (POWER_HOOK(2) != TRUE) {
             return;
         }
-        func_0208c860(STATE->currentPlayer);
+        AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
         AiPlayer_PerformAction(18);
         return;
     }
     if ((CURRENT.front.id & PLAYER_CO_ID_MASK) == CO_COLIN && CanUseCoPower(STATE->currentPlayer, 0) == TRUE
         && POWER_HOOK != NULL && POWER_HOOK(1) == TRUE) {
-        func_0208c860(STATE->currentPlayer);
+        AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
         AiPlayer_PerformAction(16);
         return;
     }
@@ -74,7 +74,7 @@ void AiPlayer_TryUsePower(void)
             }
         }
         if (POWER_HOOK != NULL && POWER_HOOK(2) == TRUE) {
-            func_0208c860(STATE->currentPlayer);
+            AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
             AiPlayer_PerformAction(17);
             return;
         }
@@ -101,6 +101,6 @@ void AiPlayer_TryUsePower(void)
     if (POWER_HOOK(1) != TRUE) {
         return;
     }
-    func_0208c860(STATE->currentPlayer);
+    AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
     AiPlayer_PerformAction(16);
 }
