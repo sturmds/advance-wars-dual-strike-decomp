@@ -2047,6 +2047,10 @@ src/game/main/mem/heap_alloc.c:
     complete
     .text       start:0x021044d4 end:0x02104518
 
+src/game/main/mem/heap_create.c:
+    complete
+    .text       start:0x02104518 end:0x02104564
+
 src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
