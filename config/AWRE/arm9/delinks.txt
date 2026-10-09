@@ -176,6 +176,10 @@ src/game/main/task/task_add_to_list.c:
     complete
     .text       start:0x020238e0 end:0x02023914
 
+src/game/main/task/task_free.c:
+    complete
+    .text       start:0x02023914 end:0x0202393c
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
