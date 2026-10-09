@@ -9,7 +9,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_0201ad64(void);
 void func_02080734(void);
 void func_020d3c1c(void);
-void func_020e85d0(void);
+void Map_SaveCoPicks(void);
 BOOL Map_IsCoSelectPhase(void);
 int func_020f35cc(void);
 void func_020f35e0(int a);
@@ -59,13 +59,13 @@ void Map_InitBattle(void)
 
     switch (GAME->gameMode) {
     case 2:
-        func_020e85d0();
+        Map_SaveCoPicks();
         break;
     case 0:
     case 1:
     case 3:
         if (!Map_IsCoSelectPhase()) {
-            func_020e85d0();
+            Map_SaveCoPicks();
         }
         break;
     }
