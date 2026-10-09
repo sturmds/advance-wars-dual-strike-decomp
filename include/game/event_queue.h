@@ -17,6 +17,16 @@ typedef struct EventQueue {
     u8 writeIndex;
 } EventQueue;
 
-extern EventQueue data_0229d89c;
+extern EventQueue gEventQueue;
+
+/* Adds (id, arg); drops it when the queue is full. */
+void EventQueue_Push(int id, int arg);
+
+/* Empties the queue. */
+void EventQueue_Reset(void);
+
+/* Takes up to 4 events off the queue and hands them, padded with id 0,
+ * to func_0207b4b0. */
+void EventQueue_Drain(void);
 
 #endif

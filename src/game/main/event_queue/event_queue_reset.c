@@ -2,6 +2,6 @@
 
 void EventQueue_Reset(void)
 {
-    data_0229d89c.readIndex = 0;
-    data_0229d89c.writeIndex = 0;
+    gEventQueue.readIndex = 0;
+    gEventQueue.writeIndex = 0;
 }

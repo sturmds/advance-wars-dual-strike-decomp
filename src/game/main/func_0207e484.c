@@ -1,6 +1,5 @@
 #include "types.h"
-
-void EventQueue_Push(int, int);
+#include "game/event_queue.h"
 
 void func_0207e484(u8 *a0)
 {

@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/menu_button.h"
 #include "game/menu_state.h"
+#include "game/event_queue.h"
 
 int func_0207bd80(void);
-void EventQueue_Push(u8 id, u8 arg);
 void func_02067c80(u8 a, u8 b);
 void func_02067d7c(u8 a, u8 b);
 int func_0206996c(int index);
@@ -12,16 +12,17 @@ extern MenuState gMenuState;
 
 #define MENU ((MenuState *)&gMenuState)
 
+/* needed to match: the u8 casts on EventQueue_Push arguments */
 #define TOGGLE_CONTROLLER(id)                                                         \
     value = MENU->setup.controllers[(id) >> 1][(id) & 1] == 1 ? 2 : 1;                \
     if (func_0207bd80() == 1) {                                                       \
-        EventQueue_Push((id) + 1, value);                                             \
+        EventQueue_Push((u8)((id) + 1), (u8)value);                                   \
     } else {                                                                          \
         func_02067d7c((id) + 1, value);                                               \
     }
 #define STEP_CO(id)                                                                   \
     if (func_0207bd80() == 1) {                                                       \
-        EventQueue_Push((id) + 9, func_0206996c(id));                                 \
+        EventQueue_Push((u8)((id) + 9), (u8)func_0206996c(id));                       \
     } else {                                                                          \
         func_02067c80((id) + 9, func_0206996c(id));                                   \
     }

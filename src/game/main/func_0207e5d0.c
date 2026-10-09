@@ -1,7 +1,5 @@
 #include "types.h"
-
-/* Adds (id, arg) to a 16-entry ring queue at data_0229d89c. */
-void EventQueue_Push(int id, int arg);
+#include "game/event_queue.h"
 
 void func_0207e5d0(void)
 {

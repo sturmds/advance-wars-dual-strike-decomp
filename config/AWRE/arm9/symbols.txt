@@ -2406,7 +2406,7 @@ func_0207cf04 kind:function(arm,size=0xc) addr:0x0207cf04
 func_0207cf10 kind:function(arm,size=0x3cc) addr:0x0207cf10
 func_0207d2dc kind:function(arm,size=0x368) addr:0x0207d2dc
 func_0207d644 kind:function(arm,size=0x1b0) addr:0x0207d644
-func_0207d7f4 kind:function(arm,size=0xc0) addr:0x0207d7f4
+EventQueue_Drain kind:function(arm,size=0xc0) addr:0x0207d7f4
 EventQueue_Push kind:function(arm,size=0x64) addr:0x0207d8b4
 EventQueue_Reset kind:function(arm,size=0x18) addr:0x0207d918
 func_0207d930 kind:function(arm,size=0x4) addr:0x0207d930
@@ -8783,7 +8783,7 @@ data_0229cf7c kind:bss addr:0x0229cf7c
 data_0229cf7d kind:bss addr:0x0229cf7d
 data_0229d88c kind:bss addr:0x0229d88c
 data_0229d894 kind:bss addr:0x0229d894
-data_0229d89c kind:bss addr:0x0229d89c
+gEventQueue kind:bss addr:0x0229d89c
 data_0229d89d kind:bss addr:0x0229d89d
 data_0229d8c0 kind:bss addr:0x0229d8c0
 data_0229d8c4 kind:bss addr:0x0229d8c4

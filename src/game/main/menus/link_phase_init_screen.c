@@ -5,6 +5,7 @@
 #include "game/menu_state.h"
 #include "game/map_header.h"
 #include "game/design_map.h"
+#include "game/event_queue.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -29,7 +30,6 @@ void PaletteCycle_Start(int a);
 void LinkScreen_AddButtons(void);
 int LinkScreen_GetPlayerRow(int player);
 int func_0207bd80(void);
-void EventQueue_Reset(void);
 void SpriteTask_Create(int a, int b, int c, int d);
 const char *File_LocalizePath(const char *path);
 u8 Map_GetPlayerCount(u32 mapId);
