@@ -50,7 +50,7 @@ typedef struct MenuButton {
 #define MENU_BUTTON_SLIDE_OUT_BOTTOM 0x0200
 #define MENU_BUTTON_NO_TOUCH_CONFIRM 0x0400   /* touch neither selects nor confirms it */
 #define MENU_BUTTON_SEMI_TRANSPARENT 0x0800
-#define MENU_BUTTON_TOUCH_ANYWHERE   0x1000   /* func_0202576c counts any point as inside */
+#define MENU_BUTTON_TOUCH_ANYWHERE   0x1000   /* MenuButton_ContainsPoint counts any point as inside */
 
 /* Values of MenuButton.slideState. */
 enum {

@@ -5,7 +5,7 @@
 int func_02026404(MenuButton *entry, int mask);
 u8 func_020263f4(MenuButton *button);
 void func_020263fc(MenuButton *button, int touchState);
-BOOL func_0202576c(MenuButton *button, int x, int y);
+BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
 void func_020262a0(MenuButton *button);
 BOOL func_0201ad28(void);
 
@@ -36,7 +36,7 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
 
     switch (func_020263f4(button)) {
     case MENU_BUTTON_TOUCH_HELD:   /* needed to match: this case comes first */
-        if (func_0202576c(button, x, y) == FALSE) {
+        if (MenuButton_ContainsPoint(button, x, y) == FALSE) {
             func_020263fc(button, MENU_BUTTON_TOUCH_NONE);
             break;
         }
@@ -45,12 +45,12 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
         }
         break;
     case MENU_BUTTON_TOUCH_NONE:
-        if (Touch_Is(TOUCH_PRESSED) && func_0202576c(button, x, y) == TRUE) {
+        if (Touch_Is(TOUCH_PRESSED) && MenuButton_ContainsPoint(button, x, y) == TRUE) {
             func_020263fc(button, MENU_BUTTON_TOUCH_PRESSED);
         }
         break;
     case MENU_BUTTON_TOUCH_PRESSED:
-        if (func_0202576c(button, x, y) == FALSE) {
+        if (MenuButton_ContainsPoint(button, x, y) == FALSE) {
             func_020263fc(button, MENU_BUTTON_TOUCH_NONE);
             break;
         }

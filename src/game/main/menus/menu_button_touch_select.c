@@ -3,7 +3,6 @@
 #include "game/touch.h"
 
 BOOL func_0201ad28(void);
-BOOL func_0202576c(MenuButton *button, int x, int y);
 void func_020262a0(MenuButton *button);
 int func_02026404(MenuButton *button, int mask);
 
@@ -23,7 +22,7 @@ BOOL MenuButton_TouchSelect(MenuButton *button)
     if (func_02026404(button, 0x1) == 0) {
         return FALSE;
     }
-    if (!func_0202576c(button, x, y)) {
+    if (!MenuButton_ContainsPoint(button, x, y)) {
         return FALSE;
     }
     if (data_02158f38->selected == button) {
