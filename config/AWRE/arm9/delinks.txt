@@ -71,6 +71,10 @@ src/game/main/graphics/palette_load.c:
     complete
     .text       start:0x02003188 end:0x020031bc
 
+src/game/main/graphics/palette_flush.c:
+    complete
+    .text       start:0x020031bc end:0x02003250
+
 src/game/main/dma_stop_channel1.c:
     complete
     .text       start:0x020034d0 end:0x020034fc

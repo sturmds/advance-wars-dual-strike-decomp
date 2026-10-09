@@ -64,7 +64,7 @@ typedef struct FontState {
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *paletteBuffer;                 /* BG and OBJ palettes, 0x400 bytes; Palette_Load writes, Palette_Flush uploads */
-    u8 pad_0c[0x10 - 0x0c];
+    u32 paletteUploadQueued;           /* set by Palette_Flush when the upload is queued, until it runs */
     u32 layerCopyMask;                 /* bit per layer: copy its tile map to VRAM (func_01ff8e58) */
     struct FontState *fontState;
     void *textPrinter;                 /* text, position and target map of the text being printed */
