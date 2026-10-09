@@ -164,6 +164,10 @@ src/game/main/task/task_run_tree.c:
     complete
     .text       start:0x02023794 end:0x0202384c
 
+src/game/main/task/task_unlink.c:
+    complete
+    .text       start:0x0202384c end:0x020238c0
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
