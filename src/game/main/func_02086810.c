@@ -9,11 +9,11 @@ struct Unk_0229fb30 {
 
 void Sound_PlaySe(int);
 extern Unk_0229fb30 data_0229fb30;
-int func_02087064(void *);
+int LinkMenu_DrawHelpText(void *);
 
 int func_02086810(int a0)
 {
     Sound_PlaySe(0x10002);
     data_0229fb30.unk_45b = a0;
-    return func_02087064(&data_0229fb30);
+    return LinkMenu_DrawHelpText(&data_0229fb30);
 }
