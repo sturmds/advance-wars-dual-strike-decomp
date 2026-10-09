@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2710 / 6603 | 344180 / 1531944 | 22.47% | 0 | 0 |
+| game | 2715 / 6603 | 347048 / 1531944 | 22.65% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2848 / 7483 | 347600 / 1685994 | 20.62% | 1 | 30 |
+| all | 2853 / 7483 | 350468 / 1685994 | 20.79% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2313 / 5180 | 318156 / 1082632 | 29.39% | 0 |
+| main | game | 2318 / 5180 | 321024 / 1082632 | 29.65% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -55,8 +55,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_020b7e90.c` | func_020b7e90 | 436 |
 | `src/game/main/copowers/player_add_power_charge.c` | Player_AddPowerCharge | 432 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
-| `src/game/main/func_020342ac.c` | func_020342ac | 396 |
-| `src/game/main/graphics/func_02001f50.c` | func_02001f50 | 88 |
 | `src/game/main/link_send_packet.c` | no delinks entry | 0 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
@@ -64,9 +62,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/map_view_scroll_step.c` | MapView_ScrollStep | 788 |
 | `src/game/main/map/tile_map_fill.c` | TileMap_Fill | 244 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
-| `src/game/main/menus/func_02044c94.c` | func_02044c94 | 824 |
-| `src/game/main/menus/func_020682f8.c` | func_020682f8 | 680 |
-| `src/game/main/menus/map_preview_draw.c` | MapPreview_Draw | 880 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
