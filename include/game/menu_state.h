@@ -56,7 +56,11 @@ typedef struct BattleSetupState {
     u8 pad_2ec[0x4ce - 0x2ec];
     s8 unk_4ce[6];                     /* drawn as two-digit numbers in a 3 by 2 grid */
     s8 unk_4d4[6];                     /* same, for a second grid */
-    u8 pad_4da[0x4fc - 0x4da];
+    u8 recordCos[6];                   /* War Room: front and back CO of each of the three best records */
+    u8 recordUnk_0a[3];                /* WarRoomRecord.unk_0a of each record */
+    u8 pad_4e3;
+    u16 recordUnk_14[3];               /* WarRoomRecord.unk_14 of each record */
+    u8 pad_4ea[0x4fc - 0x4ea];
     u16 unk_4fc;
     u8 pad_4fe;
     u8 slideFrames;                    /* frames left of the slide between lists; 15 on the first */

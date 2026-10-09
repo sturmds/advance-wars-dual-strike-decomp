@@ -766,6 +766,10 @@ src/game/main/menus/map_select_draw.c:
     complete
     .text       start:0x0205f5c4 end:0x02060718
 
+src/game/main/menus/map_select_load_war_room_records.c:
+    complete
+    .text       start:0x02062208 end:0x0206291c
+
 src/game/main/func_02066818.c:
     complete
     .text       start:0x02066818 end:0x020668a8

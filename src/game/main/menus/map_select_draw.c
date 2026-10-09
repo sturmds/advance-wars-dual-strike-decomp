@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/map_header.h"
+#include "game/map_select.h"
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
@@ -18,38 +19,24 @@ void func_0205f03c(void);
 void func_0205f0ec(void);
 void func_02060718(int x, int y, int a2);
 void func_02060bf8(int x, int y, int list);
-void func_02062208(void);
+void MapSelect_LoadWarRoomRecords(void);
 void func_0206291c(void);
 void func_020636d8(int x, int y, int a2);
 void func_02063868(int x, int y);
 void func_02063958(int x, int y, int list);
 void func_02063e04(int list, int a1);
-int MapSelect_GetTab(void);
 int func_0207bd6c(void);
 int func_0207bd80(void);
 int Map_GetPlayerCount(int mapId);
 
-extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
-extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern MenuState gMenuState;
-extern MapListTables data_0229c768;
 extern u8 data_027c0000;
 extern u8 data_027c0028;
 extern u8 data_027c0040;
 extern u8 data_027c00b8;
 extern u8 data_027c0108;
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
-/* Needed to match: through the cast the compiler keeps field offsets out of
- * the literal pool, as the original does. */
-#define MENU ((MenuState *)&gMenuState)
-#define TABLES data_0229c768
-/* Current tab of the menu, 0-3; each tab has its own map list. */
-#define TAB() MapSelect_GetTab()
-#define LIST_OF_TAB(tab) (TABLES.listOfTab[tab])
-#define LIST(tab) (MENU->setup.lists[LIST_OF_TAB(tab)])
 /* Writes value to the X scroll of the BG used by layer bg, then copies
  * it to the BG of layer copyBg. */
 #define SET_SCROLL(bg, copyBg, value)                                   \
@@ -80,16 +67,6 @@ extern u8 data_027c0108;
         }                                                                                       \
     }
 
-/* Map list layout: COLS by ROWS maps per page. */
-#define COLS (STATE->gameMode == 1 ? 7 : (STATE->twoMaps == 0 ? 9 : 8))
-#define ROWS (STATE->gameMode == 1 ? 1 : 3)
-/* Page of the selected entry; the map's index is page * ROWS * COLS plus its
- * position on the page. */
-#define PAGE() (TABLES.unk_0d0[TAB()][LIST(TAB()).unk_64])
-#define SELECTED_MAP_ID() \
-    (LIST(TAB()).mapIds[ \
-        TABLES.unk_000[TAB()][LIST(TAB()).unk_64][PAGE()] + PAGE() * (ROWS * COLS)])
-
 /* Draws one frame of the map select menu. data_027c0288 holds a draw state
  * per screen; Screen_SetCurrentGfx switches between them. While slideFrames runs
  * (15 down to 1) the lists slide sideways, eased from 256 pixels to 0; the
@@ -112,7 +89,7 @@ void MapSelect_Draw(void)
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideFrames == 15) {
             func_02063e04(LIST_OF_TAB(TAB()), PAGE());
-            func_02062208();
+            MapSelect_LoadWarRoomRecords();
             func_0206291c();
         }
         slideOffset = func_0202795c(256, 0, 17 - MENU->setup.slideFrames, 16);
