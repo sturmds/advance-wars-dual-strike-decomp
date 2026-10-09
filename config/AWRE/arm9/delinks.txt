@@ -136,6 +136,10 @@ src/game/main/sound/sound_play_on_handle.c:
     complete
     .text       start:0x0200b680 end:0x0200b6ec
 
+src/game/main/sound/sound_stop_sub_se.c:
+    complete
+    .text       start:0x0200b6ec end:0x0200b72c
+
 src/game/main/file/file_load.c:
     complete
     .text       start:0x0200bc28 end:0x0200bcf0
