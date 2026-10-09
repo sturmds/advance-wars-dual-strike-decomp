@@ -2,7 +2,7 @@
 #include "game/sound.h"
 #include "game/sound_heap.h"
 
-int func_02104ab4(void *frameHeap, int level);
+int FrameHeap_FreeByState(void *frameHeap, int level);
 int func_02104b10(void *frameHeap, int level);
 int func_021069cc(SoundHeap *heap);
 
@@ -18,6 +18,6 @@ int NNS_SndHeapSaveState(void *heapArg)
     if (func_021069cc(heap) != 0) {
         return heap->levels.count - 1;
     }
-    func_02104ab4(heap->frameHeap, 0);
+    FrameHeap_FreeByState(heap->frameHeap, 0);
     return -1;
 }
