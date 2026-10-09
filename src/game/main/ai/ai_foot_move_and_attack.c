@@ -22,7 +22,7 @@ void func_020b0794(void);
 void func_020b162c(void);
 void func_020b2904(void);
 
-/* Queue routine for infantry and mechs (func_0208f1d4 collects units
+/* Queue routine for infantry and mechs (AiAction_QueueFootUnits2 collects units
  * whose UnitStats.unk_20 is 1). func_020b162c picks direct or indirect
  * combat; the other steps are not named yet. */
 void AiFoot_MoveAndAttack(void)

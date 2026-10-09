@@ -294,6 +294,10 @@ src/game/main/ai/ai_action_queue_all_direct_units_fog.c:
     complete
     .text       start:0x0208f060 end:0x0208f1d4
 
+src/game/main/ai/ai_action_queue_foot_units2.c:
+    complete
+    .text       start:0x0208f1d4 end:0x0208f308
+
 src/game/main/ai/ai_unit_perform_action.c:
     complete
     .text       start:0x0208fbb0 end:0x0208fda8
