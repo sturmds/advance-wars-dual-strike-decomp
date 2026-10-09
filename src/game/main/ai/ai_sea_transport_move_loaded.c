@@ -26,7 +26,7 @@ void func_020b4ca4(void);
  * slot 0 goes behind whatever is in slot 1. Then the unit in slot 0
  * picks the routine: foot units and APCs use func_020b5604, the others
  * go by their AI order, like AiUnit_ActByOrder. */
-void func_020b46c4(void)
+void AiSeaTransport_MoveLoaded(void)
 {
     u8 swap;
     u8 first;
@@ -44,8 +44,10 @@ void func_020b46c4(void)
     if (unit->type == UNIT_APC && STATE->actingUnit->cargo[1] != 0) {
         STATE->actingUnit->cargo[0] = STATE->actingUnit->cargo[1];
         STATE->actingUnit->cargo[1] = first;
-        gAiTurnState->stepFlags |= AI_STEP_SWAP_CARGO;
+        /* needed to match: unit is read before the flag store, so the store
+         * makes case 6 below read the state again */
         unit = CARGO_UNIT(0);
+        gAiTurnState->stepFlags |= AI_STEP_SWAP_CARGO;
     }
     if (unit->type <= UNIT_MECH || unit->type == UNIT_APC) {
         func_020b5604();

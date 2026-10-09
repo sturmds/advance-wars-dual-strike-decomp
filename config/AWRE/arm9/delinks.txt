@@ -5780,7 +5780,8 @@ src/game/main/ai/ai_sea_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020b3c84 end:0x020b4138
 
-src/game/main/ai/func_020b46c4.c:
+src/game/main/ai/ai_sea_transport_move_loaded.c:
+    complete
     .text       start:0x020b46c4 end:0x020b4948
 
 src/game/main/ai/func_020b4ca4.c:
