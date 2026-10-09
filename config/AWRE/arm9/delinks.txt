@@ -275,9 +275,21 @@ src/game/main/frame_callback_remove.c:
     complete
     .text       start:0x02004510 end:0x02004548
 
+src/game/main/callback_slots_add.c:
+    complete
+    .text       start:0x02004548 end:0x02004580
+
+src/game/main/callback_slots_clear.c:
+    complete
+    .text       start:0x02004580 end:0x020045a8
+
 src/game/main/callback_list_add.c:
     complete
     .text       start:0x020045f4 end:0x02004628
+
+src/game/main/callback_list_clear.c:
+    complete
+    .text       start:0x02004628 end:0x0200465c
 
 src/game/main/func_020048f4.c:
     complete

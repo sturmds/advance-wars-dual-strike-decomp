@@ -23,8 +23,8 @@ void func_01ff8e58(void);
 void func_01ff9c28(int a);
 void func_01ff9c48(int a);
 void TransferQueue_Clear(void);
-void func_02004580(void);
-void func_02004628(void);
+void CallbackSlots_Clear(void);
+void CallbackList_Clear(void);
 void func_02017950(void);
 void func_020224b0(void);
 void func_0200a574(void);
@@ -39,8 +39,8 @@ void func_020153d4(int x, int y, void *map, u32 textId, int a, int b);
 
 #define RESET_SCREEN_STATE() \
     TransferQueue_Clear();         \
-    func_02004580();         \
-    func_02004628();         \
+    CallbackSlots_Clear();         \
+    CallbackList_Clear();         \
     func_02017950();         \
     Task_InitSystem();       \
     Menu_Reset();            \
