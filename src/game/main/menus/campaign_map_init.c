@@ -23,7 +23,7 @@ void Mem_Free(void *res);
 void func_0201e30c(void *a, int b, int c);
 void func_02021380(int a);
 void Icon_LoadTo(int a, u8 *objVram, int b);
-void func_02023ea8(int a, int b);
+void IconBank_LoadPalette(int a, int b);
 void func_02026394(void);
 void func_02029540(void);
 void func_0202a9ac(const void *text, int x, int y, int a, int b);
@@ -206,12 +206,12 @@ void CampaignMap_Init(Unk_0204f960 *task)
     for (i = 0, objTile = 38; i < 3; i++, objTile += 8) {
         Icon_LoadTo(i + 0xbc, data_027c0280->objVram, objTile);
     }
-    func_02023ea8(4, 18);
+    IconBank_LoadPalette(4, 18);
     for (i = 0, objTile2 = 158; i < 4; i++, objTile2 += 4) {
         Icon_LoadTo(i + 0x55, data_027c0280->objVram, objTile2);
     }
     Icon_LoadTo(0xc6, data_027c0280->objVram, 174);
-    func_02023ea8(1, 19);
+    IconBank_LoadPalette(1, 19);
     for (i = 0, tile = 62, j = 98; i < 3; i++, tile += 12, j += 12) {
         if (gMenuState.campaignMap.topCos[i].co != 0) {
             func_0200215c(gMenuState.campaignMap.topCos[i].co, data_027c0280->objVram + ((u32)tile << 5), i + 20);
