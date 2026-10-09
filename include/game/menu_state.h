@@ -66,9 +66,9 @@ typedef struct BattleSetupState {
     u8 unk_4f0[3];
     u8 pad_4f3;
     u16 unk_4f4[3];
-    u8 pad_4fa[0x4fc - 0x4fa];
+    u16 prevMapId;                     /* map selected before the list changed */
     u16 unk_4fc;
-    u8 pad_4fe;
+    u8 listChanged;                    /* set by the first change of list, which plays a sound */
     u8 slideFrames;                    /* frames left of the slide between lists; 15 on the first */
     u8 slideBack;                      /* nonzero: the slide runs the other way */
     u8 subSlideFrames;                 /* frames left of a second slide, of the strip at MapListTables.unk_108 */
@@ -157,7 +157,8 @@ typedef struct MenuStateFrom200 {
 /* data_0229ef30, gMenuState + 0x400. MapSelect_GetTab reads
  * setup.unk_4fc through this symbol. */
 typedef struct MenuStateFrom400 {
-    u8 pad_400[0x4fc - 0x400];
+    u8 pad_400[0x4fa - 0x400];
+    u16 prevMapId;                     /* BattleSetupState.prevMapId */
     u16 unk_4fc;                       /* BattleSetupState.unk_4fc */
 } MenuStateFrom400;
 

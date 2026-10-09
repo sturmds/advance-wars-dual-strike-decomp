@@ -3148,6 +3148,13 @@ src/game/main/func_0205cd80.c:
     complete
     .text       start:0x0205cd80 end:0x0205cd98
 
+src/game/main/menus/map_select_next_list.c:
+    complete
+    .text       start:0x0205d110 end:0x0205d2c0
+
+src/game/main/menus/map_select_prev_list.c:
+    .text       start:0x0205d2c0 end:0x0205d46c
+
 src/game/main/func_0205d56c.c:
     complete
     .text       start:0x0205d56c end:0x0205d594
