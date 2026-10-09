@@ -559,6 +559,10 @@ src/game/main/func_020bc974.c:
     complete
     .text       start:0x020bc974 end:0x020bc988
 
+src/game/main/func_020bdf08.c:
+    complete
+    .text       start:0x020bdf08 end:0x020bdf28
+
 src/game/main/menus/battle_menu_auto_co_off_hidden.c:
     complete
     .text       start:0x020be768 end:0x020be908
