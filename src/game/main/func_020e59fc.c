@@ -1,9 +1,9 @@
 #include "types.h"
 
-int func_020e5578(void);
+int Player_GetCoRepairBonus(void);
 
 int func_020e59fc(void)
 {
-    int t0 = func_020e5578();
+    int t0 = Player_GetCoRepairBonus();
     return t0 + 2;
 }
