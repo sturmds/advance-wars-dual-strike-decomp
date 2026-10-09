@@ -3,14 +3,14 @@
 #include "game/Unk_02080440.h"
 
 void Player_AddFunds(int playerIndex, int amount);
-void func_0200b76c(int id);
+void Sound_PlaySe(int id);
 void func_020e2670(int priority);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Colin's CO Power: funds x1.5. Adds half of the current funds to the
- * current player, then passes id 0xdf to func_0200b76c (doc 890 calls
+ * current player, then passes id 0xdf to Sound_PlaySe (doc 890 calls
  * it a sound) and starts the task shared with other CO Powers. */
 void GoldRush(int priority)
 {
@@ -18,6 +18,6 @@ void GoldRush(int priority)
 
     /* needed to match: unsigned shift (lsr) */
     Player_AddFunds(state->currentPlayer, (u32)state->players[state->currentPlayer].funds >> 1);
-    func_0200b76c(0xdf);
+    Sound_PlaySe(0xdf);
     func_020e2670(priority);
 }

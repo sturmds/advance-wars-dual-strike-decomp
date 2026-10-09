@@ -3,7 +3,7 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-void func_0200b76c(int id);
+void Sound_PlaySe(int id);
 void func_020418e0(void);
 void func_02041944(void);
 void func_02042b94(void);
@@ -61,7 +61,7 @@ void CoSelectScreen_HandleKeys(MenuButton *button)
         return;
     }
     if (keys & PAD_BUTTON_START) {
-        func_0200b76c(0x10006);
+        Sound_PlaySe(0x10006);
         func_02042b94();
         func_020b9890();
     }

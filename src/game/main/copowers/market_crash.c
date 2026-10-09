@@ -4,7 +4,7 @@
 #include "game/Unk_02080440.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
-void func_0200b76c(int id);
+void Sound_PlaySe(int id);
 BOOL Player_IsInGame(u8 player);
 void func_020e2670(int priority);
 int SuperPowerCost(int player, int slot);
@@ -23,7 +23,7 @@ void MarketCrash(int priority)
     int player;
     int slot;
 
-    func_0200b76c(0xe3);
+    Sound_PlaySe(0xe3);
     func_020e2670(priority);
     percent = HwDiv32(data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].funds, 500);
     if (percent > 100) {
