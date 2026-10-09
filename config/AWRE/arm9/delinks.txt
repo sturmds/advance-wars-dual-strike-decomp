@@ -3152,6 +3152,10 @@ src/game/main/func_02066818.c:
     complete
     .text       start:0x02066818 end:0x020668a8
 
+src/game/main/menus/vs_setup_add_player_buttons.c:
+    complete
+    .text       start:0x02066b18 end:0x02066c3c
+
 src/game/main/func_02066d70.c:
     complete
     .text       start:0x02066d70 end:0x02066d80
