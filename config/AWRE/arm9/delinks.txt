@@ -359,6 +359,10 @@ src/game/main/menus/menu_button_select.c:
     complete
     .text       start:0x020262b0 end:0x020262cc
 
+src/game/main/menus/menu_cursor_get_center_y.c:
+    complete
+    .text       start:0x020262cc end:0x020262f0
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
