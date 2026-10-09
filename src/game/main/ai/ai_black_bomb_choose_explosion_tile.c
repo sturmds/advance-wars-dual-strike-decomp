@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int AiBlackBomb_GetStartScore(void);
-int func_020b7e90(int x, int y);
+int AiBlackBomb_ScoreExplosionAt(int x, int y);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -14,7 +14,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* Scores every empty tile the acting Black Bomb can reach with
- * func_020b7e90 and acts on the last tile that scores at least as much
+ * AiBlackBomb_ScoreExplosionAt and acts on the last tile that scores at least as much
  * as the start value: AiBlackBomb_GetStartScore, or 1 when the bomb has under 10
  * fuel. Action 23 is the explosion (guess from the caller). */
 void AiBlackBomb_ChooseExplosionTile(void)
@@ -41,7 +41,7 @@ void AiBlackBomb_ChooseExplosionTile(void)
             if (STATE->mapTiles->unitAt[TILE(x, y)] != 0) {
                 continue;
             }
-            score = func_020b7e90(x, y);
+            score = AiBlackBomb_ScoreExplosionAt(x, y);
             if (score >= bestScore) {
                 bestX = x;
                 bestY = y;

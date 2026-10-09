@@ -14,27 +14,27 @@ int func_020b80d0(MapUnit *unit);
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 
-#define ABS_DIFF(a, b) ((a) - (b) > 0 ? (a) - (b) : (b) - (a))
-
 /* Radius of a Black Bomb explosion in tiles. */
 #define BLOMB_RADIUS 3
 
 /* Adds up func_020b80d0 over the units within 3 tiles (by taxicab
  * distance, not on the centre tile) of (x, y). Skipped: Black Bombs,
  * Oozium, unarmed units, units at 10 hp or less and tiles out of sight. */
-int func_020b7e90(int x, int y)
+int AiBlackBomb_ScoreExplosionAt(int x, int y)
 {
-    int total = 0;
-    int minX = x - BLOMB_RADIUS;
-    int minY;
-    int maxX;
+    /* needed to match: declaration order sets the register choice */
     int maxY;
-    int tx;
-    int ty;
     int dist;
-    int rowDist;
+    int ty;
     MapUnit *unit;
+    int maxX;
+    int total;
+    int minX;
+    int tx;
+    int minY;
 
+    total = 0;
+    minX = x - BLOMB_RADIUS;
     if (minX < 0) {
         minX = 0;
     }
@@ -42,19 +42,27 @@ int func_020b7e90(int x, int y)
     if (minY < 0) {
         minY = 0;
     }
-    maxX = x + BLOMB_RADIUS;
-    if (maxX > STATE->unk_1c4->mapWidth - 1) {
-        maxX = STATE->unk_1c4->mapWidth - 1;
+    maxX = STATE->unk_1c4->mapWidth - 1;
+    if (x + BLOMB_RADIUS < maxX) {
+        maxX = x + BLOMB_RADIUS;
     }
-    maxY = y + BLOMB_RADIUS;
-    if (maxY > STATE->unk_1c4->mapHeight - 1) {
-        maxY = STATE->unk_1c4->mapHeight - 1;
+    maxY = STATE->unk_1c4->mapHeight - 1;
+    if (y + BLOMB_RADIUS < maxY) {
+        maxY = y + BLOMB_RADIUS;
     }
     for (ty = minY; ty <= maxY; ty++) {
-        rowDist = 0;
         for (tx = minX; tx <= maxX; tx++) {
-            dist = rowDist + ABS_DIFF(x, tx);
-            dist += ABS_DIFF(y, ty);
+            dist = 0;
+            if (x - tx > 0) {
+                dist += x - tx;
+            } else {
+                dist += tx - x;
+            }
+            if (y - ty > 0) {
+                dist += y - ty;
+            } else {
+                dist += ty - y;
+            }
             if (dist < 1 || dist > BLOMB_RADIUS) {
                 continue;
             }
