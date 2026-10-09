@@ -3,7 +3,7 @@
 #include "game/touch.h"
 
 int func_02026404(MenuButton *entry, int mask);
-u8 func_020263f4(MenuButton *button);
+u8 MenuButton_GetTouchState(MenuButton *button);
 void func_020263fc(MenuButton *button, int touchState);
 BOOL MenuButton_ContainsPoint(MenuButton *button, int x, int y);
 BOOL func_0201ad28(void);
@@ -33,7 +33,7 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
     u8 startX = data_0216e4d0.startX;
     u8 startY = data_0216e4d0.startY;
 
-    switch (func_020263f4(button)) {
+    switch (MenuButton_GetTouchState(button)) {
     case MENU_BUTTON_TOUCH_HELD:   /* needed to match: this case comes first */
         if (MenuButton_ContainsPoint(button, x, y) == FALSE) {
             func_020263fc(button, MENU_BUTTON_TOUCH_NONE);

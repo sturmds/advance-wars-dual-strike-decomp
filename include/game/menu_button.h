@@ -12,7 +12,7 @@ typedef struct MenuButton {
     u8 id;                             /* menus use it as the cursor position */
     u8 active;
     u8 pad_02[0x03 - 0x02];
-    u8 touchState;                     /* MENU_BUTTON_TOUCH_*, read and written by func_020263f4 and func_020263fc */
+    u8 touchState;                     /* MENU_BUTTON_TOUCH_*, read and written by MenuButton_GetTouchState and func_020263fc */
     u8 slideState;                     /* MENU_BUTTON_SLIDE_* */
     u8 pad_05[0x06 - 0x05];
     s16 slideFromX;
