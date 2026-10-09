@@ -9140,6 +9140,10 @@ src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
 
+src/game/main/sound/sound_output_update.c:
+    complete
+    .text       start:0x021061f4 end:0x021062a4
+
 src/game/main/func_021062a4.c:
     complete
     .text       start:0x021062a4 end:0x021062c4
