@@ -4,8 +4,6 @@
 
 s32 Rng_Range(s32 min, s32 max);
 
-extern BattleScene *data_ov002_02360040;
-
 /* Byte offsets of the happy lines in the battle quote text file. */
 enum {
     HAPPY_QUOTE_0 = 0xe28,
@@ -21,7 +19,7 @@ enum {
  * to conditional loads. */
 u32 Battle_PickHappyQuote(int side)
 {
-    switch (data_ov002_02360040->sides[side].coId & 0x7f) {
+    switch (Ov002_gBattleScene->sides[side].coId & 0x7f) {
     case CO_NONE:
     case CO_NELL:
     case CO_ANDY:

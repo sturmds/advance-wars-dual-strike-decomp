@@ -22,7 +22,7 @@ void VsSetup_HandleKeys(MenuButton *button)
     int cursor;
 
     cursor = button->id;
-    if (data_0216e4e0->repeat & PAD_KEY_LEFT) {
+    if (gKeypad->repeat & PAD_KEY_LEFT) {
         do {
             if (cursor == 0) {
                 cursor = 15;
@@ -31,7 +31,7 @@ void VsSetup_HandleKeys(MenuButton *button)
             }
         } while (func_02025d58(cursor) == NULL);
     }
-    if (data_0216e4e0->repeat & PAD_KEY_RIGHT) {
+    if (gKeypad->repeat & PAD_KEY_RIGHT) {
         do {
             if (cursor == 15) {
                 cursor = 0;
@@ -43,27 +43,27 @@ void VsSetup_HandleKeys(MenuButton *button)
     if (cursor != button->id) {
         button = func_020262b0(cursor);
     }
-    if (data_0216e4e0->repeat & PAD_KEY_UP) {
+    if (gKeypad->repeat & PAD_KEY_UP) {
         func_020690f4(button);
     }
-    if (data_0216e4e0->repeat & PAD_KEY_DOWN) {
+    if (gKeypad->repeat & PAD_KEY_DOWN) {
         func_02068e6c(button);
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_L) {
+    if (gKeypad->pressed & PAD_BUTTON_L) {
         VsSetup_PrevForceRankSet(0);
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_R) {
+    if (gKeypad->pressed & PAD_BUTTON_R) {
         VsSetup_NextForceRankSet(0);
     }
-    if ((data_0216e4e0->pressed & PAD_BUTTON_X) && !func_02045680()) {
+    if ((gKeypad->pressed & PAD_BUTTON_X) && !func_02045680()) {
         func_02069378(0);
         return;
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_B) {
+    if (gKeypad->pressed & PAD_BUTTON_B) {
         func_02025008();
         return;
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_A) {
+    if (gKeypad->pressed & PAD_BUTTON_A) {
         func_02069424(0);
     }
 }

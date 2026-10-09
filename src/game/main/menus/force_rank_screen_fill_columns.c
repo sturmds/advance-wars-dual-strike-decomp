@@ -15,15 +15,15 @@ void ForceRankScreen_FillColumns(void)
 
     for (i = 0; i < FORCE_RANK_COLUMN_COUNT; i++) {
         if (i == FORCE_RANK_COLUMN_NONE) {
-            data_0229c738->columns[i].skills[0] = 0;
-            data_0229c738->columns[i].count = 1;
+            gForceRankScreen->columns[i].skills[0] = 0;
+            gForceRankScreen->columns[i].count = 1;
         } else {
-            data_0229c738->columns[i].count = 0;
+            gForceRankScreen->columns[i].count = 0;
         }
     }
 
     for (i = 0; i < 128; i++) {
-        column = data_ov000_022f5ecc[i].column;
+        column = Ov000_gForceRankTable[i].column;
         if (column == 0) {
             continue;
         }
@@ -43,11 +43,11 @@ void ForceRankScreen_FillColumns(void)
                 }
                 break;
             }
-            data_0229c738->columns[column].skills[data_0229c738->columns[column].count] = i;
-            data_0229c738->columns[column].count++;
-        } else if (column <= data_0229c738->unk_7a) {
-            data_0229c738->columns[column].skills[data_0229c738->columns[column].count] = i;
-            data_0229c738->columns[column].count++;
+            gForceRankScreen->columns[column].skills[gForceRankScreen->columns[column].count] = i;
+            gForceRankScreen->columns[column].count++;
+        } else if (column <= gForceRankScreen->unk_7a) {
+            gForceRankScreen->columns[column].skills[gForceRankScreen->columns[column].count] = i;
+            gForceRankScreen->columns[column].count++;
         }
     }
 }

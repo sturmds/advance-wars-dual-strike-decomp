@@ -9,7 +9,6 @@ extern u32 data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 extern AiProfileMods gAiProfileMods[];
-extern AiProfileTemplate data_02162a90[];
 
 s32 Rng_Range(s32 min, s32 max);
 /* Returns base + spread * roll / 100 - spread / 2, kept within 1-255. */
@@ -21,7 +20,7 @@ u8 func_0208cdb8(u8 base, u8 spread, int roll);
 void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
 {
     AiProfileMods *mods = &gAiProfileMods[modsId];
-    AiProfileTemplate *template = &data_02162a90[templateId];
+    AiProfileTemplate *template = &gAiProfileTemplates[templateId];
     int roll;
     Player *player;
     int type;

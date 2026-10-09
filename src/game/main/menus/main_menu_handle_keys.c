@@ -19,7 +19,7 @@ void MainMenu_HandleKeys(MenuButton *button)
     int cursor;
 
     cursor = button->id;
-    keys = data_0216e4e0->repeat;
+    keys = gKeypad->repeat;
     page = *data_0229c71c;
     if (keys & PAD_KEY_UP) {
         do {
@@ -60,11 +60,11 @@ void MainMenu_HandleKeys(MenuButton *button)
     if (cursor != button->id) {
         button = func_020262b0(cursor);
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_A) {
+    if (gKeypad->pressed & PAD_BUTTON_A) {
         func_020250a8(button);
         return;
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_B) {
+    if (gKeypad->pressed & PAD_BUTTON_B) {
         func_02025008();
     }
 }

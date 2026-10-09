@@ -6,8 +6,8 @@
 /* How the AI rates one unit type, inside AiProfile. Field meanings unknown. */
 typedef struct AiUnitProfile {
     u8 unk_00;                         /* from AiProfileMods.units */
-    u8 unk_01;                         /* AiProfileTemplate value, randomised */
-    u8 unk_02;                         /* AiProfileTemplate value, randomised */
+    u8 unk_01;                         /* AiProfileTemplate value, randomised; AI unit code compares MapTiles.unk_3250 with it */
+    u8 unk_02;                         /* AiProfileTemplate value, randomised; compared with MapTiles.unk_3758 */
     u8 unk_03;
     u8 unk_04;
     u8 unk_05;                         /* from AiProfileMods.units */
@@ -38,7 +38,7 @@ typedef struct AiUnitProfileTemplate {
     s8 unk_06[7];
 } AiUnitProfileTemplate;
 
-/* 0x15c bytes; table at data_02162a90. */
+/* 0x15c bytes; table at gAiProfileTemplates. */
 typedef struct AiProfileTemplate {
     u32 unk_00;
     u8 unk_04;                         /* used without a tag partner */
@@ -56,7 +56,8 @@ typedef struct AiProfileMods {
     u8 units[26][2];                   /* per unit type: AiUnitProfile.unk_00 and unk_05 */
 } AiProfileMods;
 
-extern AiProfile *data_021619c4;
-extern AiUnitProfile *data_0229e160;    /* entry of the active unit's type */
+extern AiProfileTemplate gAiProfileTemplates[];
+extern AiProfile *gAiProfile;
+extern AiUnitProfile *gAiActiveUnitProfile;    /* entry of the active unit's type */
 
 #endif

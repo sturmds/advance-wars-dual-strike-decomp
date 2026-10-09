@@ -24,29 +24,29 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
     u16 keys;
 
     cursor = button->id;
-    if (data_0216e4e0->repeat & PAD_KEY_UP) {
+    if (gKeypad->repeat & PAD_KEY_UP) {
         if (CURSOR_ROW(cursor) != 0) {
             cursor--;
         } else {
-            cursor = (cursor & ~7) | (data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1);
+            cursor = (cursor & ~7) | (gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1);
         }
-        data_0229c738->row = CURSOR_ROW(cursor);
+        gForceRankScreen->row = CURSOR_ROW(cursor);
         if (CURSOR_COLUMN(cursor) == FORCE_RANK_COLUMN_NONE) {
-            data_0229c738->row = 5;
+            gForceRankScreen->row = 5;
         }
     }
-    if (data_0216e4e0->repeat & PAD_KEY_DOWN) {
-        if (CURSOR_ROW(cursor) < data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1) {
+    if (gKeypad->repeat & PAD_KEY_DOWN) {
+        if (CURSOR_ROW(cursor) < gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1) {
             cursor++;
         } else {
             cursor &= ~7;
         }
-        data_0229c738->row = CURSOR_ROW(cursor);
+        gForceRankScreen->row = CURSOR_ROW(cursor);
         if (CURSOR_COLUMN(cursor) == FORCE_RANK_COLUMN_NONE) {
-            data_0229c738->row = 5;
+            gForceRankScreen->row = 5;
         }
     }
-    keys = data_0216e4e0->repeat;
+    keys = gKeypad->repeat;
     if (keys & PAD_KEY_LEFT) {
         column = CURSOR_COLUMN(cursor);
         do {
@@ -55,10 +55,10 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
             } else {
                 column = FORCE_RANK_COLUMN_NONE;
             }
-        } while (data_0229c738->columns[column].count == 0);
-        cursor = (column << 3) | data_0229c738->row;
-        if (CURSOR_ROW(cursor) > data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1) {
-            cursor = (column << 3) | (data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1);
+        } while (gForceRankScreen->columns[column].count == 0);
+        cursor = (column << 3) | gForceRankScreen->row;
+        if (CURSOR_ROW(cursor) > gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1) {
+            cursor = (column << 3) | (gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1);
         }
     }
     if (keys & PAD_KEY_RIGHT) {
@@ -69,28 +69,28 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
             } else {
                 column = 0;
             }
-        } while (data_0229c738->columns[column].count == 0);
-        cursor = (column << 3) | data_0229c738->row;
-        if (CURSOR_ROW(cursor) > data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1) {
-            cursor = (column << 3) | (data_0229c738->columns[CURSOR_COLUMN(cursor)].count - 1);
+        } while (gForceRankScreen->columns[column].count == 0);
+        cursor = (column << 3) | gForceRankScreen->row;
+        if (CURSOR_ROW(cursor) > gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1) {
+            cursor = (column << 3) | (gForceRankScreen->columns[CURSOR_COLUMN(cursor)].count - 1);
         }
     }
     if (cursor != button->id) {
         button = func_020262b0(cursor);
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_L) {
+    if (gKeypad->pressed & PAD_BUTTON_L) {
         func_0204069c();
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_R) {
+    if (gKeypad->pressed & PAD_BUTTON_R) {
         func_0204062c();
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_A) {
+    if (gKeypad->pressed & PAD_BUTTON_A) {
         func_020250a8(button);
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_X) {
+    if (gKeypad->pressed & PAD_BUTTON_X) {
         func_02040568();
     }
-    if (data_0216e4e0->pressed & PAD_BUTTON_B) {
+    if (gKeypad->pressed & PAD_BUTTON_B) {
         ForceRankScreen_Close();
     }
 }

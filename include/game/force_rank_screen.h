@@ -4,7 +4,7 @@
 #include "types.h"
 #include "game/text_ref.h"
 
-/* One entry of the Force Rank table in ov000 (data_ov000_022f5ecc),
+/* One entry of the Force Rank table in ov000 (Ov000_gForceRankTable),
  * indexed by skill id. */
 typedef struct ForceRankInfo {
     u8 column;                         /* 0: not listed; 1-9 rank needed; 10 special (game flags) */
@@ -26,7 +26,7 @@ typedef struct ForceRankColumn {
     u8 count;                          /* 0: the cursor skips the column */
 } ForceRankColumn;
 
-/* Work area of the Force Rank selection screen, through data_0229c738. */
+/* Work area of the Force Rank selection screen, through gForceRankScreen. */
 typedef struct ForceRankScreen {
     ForceRankColumn columns[FORCE_RANK_COLUMN_COUNT];
     u8 pad_54[0x7a - 0x54];
@@ -36,7 +36,7 @@ typedef struct ForceRankScreen {
     u8 row;                            /* row the cursor keeps when it changes column */
 } ForceRankScreen;
 
-extern ForceRankScreen *data_0229c738;
-extern ForceRankInfo data_ov000_022f5ecc[128];
+extern ForceRankScreen *gForceRankScreen;
+extern ForceRankInfo Ov000_gForceRankTable[128];
 
 #endif

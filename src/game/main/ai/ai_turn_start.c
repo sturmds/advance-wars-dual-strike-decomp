@@ -5,9 +5,6 @@
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
 
-/* First slot in Unk_02080440_48.units of each player slot: 0, 0, 64, 128, 192. */
-extern u16 data_ov000_022f5c2c[];
-
 int Rng_Next(void);
 void Rng_SetState(u32 state);
 int func_01ff9f7c(void);
@@ -30,7 +27,7 @@ void AiTurn_Start(void)
     Unk_02080440_48 *state;
 
     data_027c027c->unk_48[data_027c0284]->actingUnitIndex =
-        data_ov000_022f5c2c[data_027c027c->unk_48[data_027c0284]->currentPlayer];
+        Ov000_gPlayerFirstUnitSlot[data_027c027c->unk_48[data_027c0284]->currentPlayer];
     state = data_027c027c->unk_48[data_027c0284];
     state->actingUnit = &state->units[state->actingUnitIndex];
 

@@ -6,7 +6,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_ov000_022f5c2c[]; /* per player slot: first slot in units */
 
 /* Sorts gAiQueue by hp, largest first; a unit with an AI target counts
  * as half a point more. */
@@ -26,8 +25,8 @@ void AiAction_QueueFootUnits2(void)
     MapUnit *unit;
 
     gAiQueueCursor = gAiQueue;
-    for (i = data_ov000_022f5c2c[STATE->currentPlayer] + 1;
-         i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
+    for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1;
+         i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
             && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_FOOT) {

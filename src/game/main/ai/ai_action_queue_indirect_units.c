@@ -6,7 +6,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_ov000_022f5c2c[]; /* per player slot: 0, 0, 64, 128, 192 */
 
 void func_0208f7c4(void);
 void AiUnit_ActByOrderGroup(void);
@@ -15,7 +14,7 @@ void AiUnit_ActByOrderGroup(void);
 
 /* Slots 1-50 of the current player's 64; slot 0 would read as the end of
  * the queue for player 1. */
-#define FIRST_UNIT (data_ov000_022f5c2c[STATE->currentPlayer] + 1)
+#define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
 
 /* Queues the current player's indirect units (AI_CLASS_INDIRECT) that
  * have not waited yet, hands the queue to func_0208f7c4 (it reads each

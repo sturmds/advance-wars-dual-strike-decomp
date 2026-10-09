@@ -21,7 +21,7 @@ void CoSelectScreen_HandleKeys(MenuButton *button)
     u16 keys;
 
     cursor = button->id;
-    keys = data_0216e4e0->repeat;
+    keys = gKeypad->repeat;
     if ((keys & (PAD_KEY_UP | PAD_KEY_DOWN)) && data_0229c73c->rowCount == 2) {
         if (cursor & 1) {
             cursor = cursor - 1;
@@ -46,7 +46,7 @@ void CoSelectScreen_HandleKeys(MenuButton *button)
     if (cursor != button->id) {
         button = func_020262b0(cursor);
     }
-    keys = data_0216e4e0->pressed;
+    keys = gKeypad->pressed;
     if (keys & PAD_BUTTON_A) {
         func_020250a8(button);
         return;

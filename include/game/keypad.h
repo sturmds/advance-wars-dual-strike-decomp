@@ -17,13 +17,13 @@
 #define PAD_BUTTON_X      0x0400
 #define PAD_BUTTON_Y      0x0800
 
-/* Key state of the current frame, reached through data_0216e4e0. */
+/* Key state of the current frame, reached through gKeypad. */
 typedef struct Keypad {
     u16 unk_00;
     u16 repeat;                        /* menus move the cursor on these keys; probably newly pressed plus auto-repeat */
     u16 pressed;                       /* menus confirm and cancel on these keys; probably newly pressed only */
 } Keypad;
 
-extern Keypad *data_0216e4e0;
+extern Keypad *gKeypad;
 
 #endif

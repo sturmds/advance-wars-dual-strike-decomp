@@ -4,8 +4,6 @@
 
 s32 Rng_Range(s32 min, s32 max);
 
-extern BattleScene *data_ov002_02360040;
-
 /* Byte offsets of the angry lines in the battle quote text file. */
 enum {
     ANGRY_QUOTE_0 = 0x1168,
@@ -21,7 +19,7 @@ enum {
  * to conditional loads. */
 u32 Battle_PickAngryQuote(int side)
 {
-    switch (data_ov002_02360040->sides[side].coId & 0x7f) {
+    switch (Ov002_gBattleScene->sides[side].coId & 0x7f) {
     case CO_NONE:
     case CO_OLAF:
     case CO_SAMI:

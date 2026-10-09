@@ -13,7 +13,7 @@ void func_0210f9a8(const void *src, void *dest);             /* SDK run-length u
 void func_0210a424(volatile u16 *reg, int brightness);       /* sets a master brightness register */
 void func_0210eb88(void);                                    /* halts for good */
 
-extern void *data_0218ff50;                                  /* game heap */
+extern void *gGameHeap;                                  /* game heap */
 
 #define REG_MASTER_BRIGHT ((volatile u16 *)0x0400006c)
 
@@ -37,7 +37,7 @@ u32 File_LoadTo(void *dest, const char *path)
     func_02112bb4(&file);
     if (func_02112864(&file, path)) {
         size = file.bottom - file.top;
-        packed = func_021044d4(data_0218ff50, size, -16);
+        packed = func_021044d4(gGameHeap, size, -16);
         if (packed == NULL) {
             func_0211281c(&file);
             func_0210a424(REG_MASTER_BRIGHT, 12);
@@ -45,7 +45,7 @@ u32 File_LoadTo(void *dest, const char *path)
             return 0;
         }
         if (size != func_02112718(&file, packed, size)) {
-            func_02104494(data_0218ff50, packed);
+            func_02104494(gGameHeap, packed);
             func_0211281c(&file);
             func_0210a424(REG_MASTER_BRIGHT, 12);
             func_0210eb88();
@@ -70,6 +70,6 @@ u32 File_LoadTo(void *dest, const char *path)
         func_0210f9a8(packed, dest);
         break;
     }
-    func_02104494(data_0218ff50, packed);
+    func_02104494(gGameHeap, packed);
     return unpackedSize;
 }

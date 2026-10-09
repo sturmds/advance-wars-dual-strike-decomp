@@ -8,7 +8,6 @@ extern u32 data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 extern u32 gRngState;
-extern u8 data_0229e1a4[];
 extern u8 data_0229ea0c[];
 extern u32 data_0229eaec;
 
@@ -23,7 +22,7 @@ int func_020c8330(MapUnit *unit, int n);
 void func_0208fda8(void);
 
 /* Makes the active unit move to (x, y) and do action there, and records
- * the action in data_0229e198 so the turn can show it. func_020a2f98
+ * the action in gUnitAction so the turn can show it. func_020a2f98
  * may change action, target and arg first. */
 void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
 {
@@ -39,21 +38,21 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     }
     func_01ffa44c(unit);
     func_01ffa02c(x, y, GAME->unk_170);
-    PackNibblePairs(GAME->unk_170, data_0229e1a4);
+    PackNibblePairs(GAME->unk_170, gUnitAction.packed);
     func_020b81b4(x, y, action, target, arg);
 
-    data_0229e198.unitIndex = GAME->actingUnitIndex;
-    data_0229e198.rngState = gRngState;
-    data_0229e198.fromX = GAME->actingUnitStartX;
-    data_0229e198.fromY = GAME->actingUnitStartY;
-    data_0229e198.x = x;
-    data_0229e198.y = y;
-    data_0229e198.action = action;
-    data_0229e198.target = target;
-    data_0229e198.unk_07 = arg;
+    gUnitAction.unitIndex = GAME->actingUnitIndex;
+    gUnitAction.rngState = gRngState;
+    gUnitAction.fromX = GAME->actingUnitStartX;
+    gUnitAction.fromY = GAME->actingUnitStartY;
+    gUnitAction.x = x;
+    gUnitAction.y = y;
+    gUnitAction.action = action;
+    gUnitAction.target = target;
+    gUnitAction.unk_07 = arg;
     fuelUsed = func_020c8330(GAME->actingUnit, GAME->unk_46);
-    data_0229e198.fuelLeft = GAME->actingUnit->fuel - fuelUsed;
-    data_0229e198.pending = TRUE;
+    gUnitAction.fuelLeft = GAME->actingUnit->fuel - fuelUsed;
+    gUnitAction.pending = TRUE;
     if (data_0229eaec != 0) {
         func_0208fda8();
     }

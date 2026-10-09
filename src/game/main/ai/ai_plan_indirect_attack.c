@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/ai_profile.h"
 #include "game/ai_unit_action.h"
 #include "game/map_object.h"
 #include "game/terrain.h"
@@ -7,8 +8,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_02161a24[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
-extern u8 *data_0229e160;   /* bytes 1 and 2: limits for MapTiles.unk_3250 and unk_3758 */
+extern u8 gTerrainFactoryKind[]; /* per terrain id: 1 base, 2 airport, 3 port, else 0 */
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int GetUnitMaxRange(int player, int unitType);
@@ -76,7 +76,7 @@ void Ai_PlanIndirectAttack(void)
             && MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit)) == TERRAIN_BASE && STATE->actingUnit->hp > 80) {
             flags |= 0x40000;
         } else if ((func_020c09e0(STATE->actingUnitIndex, UNIT_TILE(STATE->actingUnit)) == 1
-                    && data_02161a24[MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit))] != 0)
+                    && gTerrainFactoryKind[MAP_TILE_TERRAIN(UNIT_TILE(STATE->actingUnit))] != 0)
                    || ((Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) != 0
                        && STATE->actingUnit->hp <= 70
                        && func_0209eca8(STATE->actingUnit->x, STATE->actingUnit->y) == 0)) {
@@ -156,10 +156,10 @@ attack_tile:
                 continue;
             }
             if (STATE->players[STATE->currentPlayer].aiBehaviour == AI_BEHAVIOUR_DEFENSE && damage < hp) {
-                if (MAP->unk_3250[TILE_INDEX(pos[0], pos[1])] >= data_0229e160[1]) {
+                if (MAP->unk_3250[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_01) {
                     continue;
                 }
-                if (MAP->unk_3758[TILE_INDEX(pos[0], pos[1])] >= data_0229e160[2]) {
+                if (MAP->unk_3758[TILE_INDEX(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_02) {
                     continue;
                 }
             }

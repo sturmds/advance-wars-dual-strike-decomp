@@ -7581,12 +7581,12 @@ data_02161900 kind:data(any) addr:0x02161900
 data_02161940 kind:data(any) addr:0x02161940
 data_02161980 kind:data(any) addr:0x02161980
 data_021619c0 kind:data(any) addr:0x021619c0
-data_021619c4 kind:data(any) addr:0x021619c4
+gAiProfile kind:data(any) addr:0x021619c4
 gAiTurnState kind:data(any) addr:0x021619c8
 data_021619cc kind:data(any) addr:0x021619cc
 data_021619e8 kind:data(any) addr:0x021619e8
 data_02161a04 kind:data(any) addr:0x02161a04
-data_02161a24 kind:data(any) addr:0x02161a24
+gTerrainFactoryKind kind:data(any) addr:0x02161a24
 data_02161a44 kind:data(any) addr:0x02161a44
 data_02161a64 kind:data(any) addr:0x02161a64
 gAiUnitPhases kind:data(any) addr:0x02161a68
@@ -7596,7 +7596,7 @@ data_02161b8c kind:data(any) addr:0x02161b8c
 data_02161b8d kind:data(any) addr:0x02161b8d
 data_02161baa kind:data(any) addr:0x02161baa
 gAiProfileMods kind:data(any) addr:0x02162050
-data_02162a90 kind:data(any) addr:0x02162a90
+gAiProfileTemplates kind:data(any) addr:0x02162a90
 data_021658c8 kind:data(any) addr:0x021658c8
 data_021658d0 kind:data(any) addr:0x021658d0
 data_021658d8 kind:data(any) addr:0x021658d8
@@ -8500,7 +8500,7 @@ data_0216e4b8 kind:bss addr:0x0216e4b8
 data_0216e4c0 kind:bss addr:0x0216e4c0
 data_0216e4c8 kind:bss addr:0x0216e4c8
 data_0216e4d0 kind:bss addr:0x0216e4d0
-data_0216e4e0 kind:bss addr:0x0216e4e0
+gKeypad kind:bss addr:0x0216e4e0
 data_0216e4e4 kind:bss addr:0x0216e4e4
 data_0216e594 kind:bss addr:0x0216e594
 data_0216e5ac kind:bss addr:0x0216e5ac
@@ -8569,7 +8569,7 @@ data_0218feb8 kind:bss addr:0x0218feb8
 data_0218febc kind:bss addr:0x0218febc
 data_0218fec0 kind:bss addr:0x0218fec0
 data_0218fec4 kind:bss addr:0x0218fec4
-data_0218ff50 kind:bss addr:0x0218ff50
+gGameHeap kind:bss addr:0x0218ff50
 data_0218ff54 kind:bss addr:0x0218ff54
 data_0218ff58 kind:bss addr:0x0218ff58
 data_02190100 kind:bss addr:0x02190100
@@ -8720,7 +8720,7 @@ data_0229b380 kind:bss addr:0x0229b380
 data_0229b384 kind:bss addr:0x0229b384
 data_0229b388 kind:bss addr:0x0229b388
 data_0229b38c kind:bss addr:0x0229b38c
-data_0229b3b0 kind:bss addr:0x0229b3b0
+gMenuButtons kind:bss addr:0x0229b3b0
 data_0229c634 kind:bss addr:0x0229c634
 gCurrentSong kind:bss addr:0x0229c670
 gPendingSong kind:bss addr:0x0229c674
@@ -8732,7 +8732,7 @@ data_0229c714 kind:bss addr:0x0229c714
 data_0229c71c kind:bss addr:0x0229c71c
 data_0229c720 kind:bss addr:0x0229c720
 data_0229c734 kind:bss addr:0x0229c734
-data_0229c738 kind:bss addr:0x0229c738
+gForceRankScreen kind:bss addr:0x0229c738
 data_0229c73c kind:bss addr:0x0229c73c
 data_0229c740 kind:bss addr:0x0229c740
 data_0229c744 kind:bss addr:0x0229c744
@@ -8805,7 +8805,7 @@ data_0229e0ac kind:bss addr:0x0229e0ac
 data_0229e0bc kind:bss addr:0x0229e0bc
 data_0229e144 kind:bss addr:0x0229e144
 data_0229e148 kind:bss addr:0x0229e148
-data_0229e160 kind:bss addr:0x0229e160
+gAiActiveUnitProfile kind:bss addr:0x0229e160
 data_0229e164 kind:bss addr:0x0229e164
 gAiQueueCursor kind:bss addr:0x0229e168
 data_0229e16c kind:bss addr:0x0229e16c
@@ -8813,7 +8813,7 @@ gAiQueueRoutine kind:bss addr:0x0229e170
 data_0229e174 kind:bss addr:0x0229e174
 data_0229e178 kind:bss addr:0x0229e178
 data_0229e184 kind:bss addr:0x0229e184
-data_0229e198 kind:bss addr:0x0229e198
+gUnitAction kind:bss addr:0x0229e198
 data_0229e19e kind:bss addr:0x0229e19e
 data_0229e1a4 kind:bss addr:0x0229e1a4
 data_0229e1b0 kind:bss addr:0x0229e1b0

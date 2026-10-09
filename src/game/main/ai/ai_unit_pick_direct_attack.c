@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/ai_profile.h"
 #include "game/ai_unit_action.h"
 #include "game/map_object.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 *data_0229e160;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
@@ -134,13 +134,13 @@ void AiUnit_PickDirectAttack(void)
             aiBehaviour = STATE->players[STATE->currentPlayer].aiBehaviour;
             if (aiBehaviour == AI_BEHAVIOUR_DEFENSE && rating < hp && STATE->actingUnit->type > 2) {
                 tile = TILE(pos[0], pos[1]);
-                if (STATE->mapTiles->unk_3250[tile] >= data_0229e160[1]
-                    || STATE->mapTiles->unk_3758[tile] >= data_0229e160[2]) {
+                if (STATE->mapTiles->unk_3250[tile] >= gAiActiveUnitProfile->unk_01
+                    || STATE->mapTiles->unk_3758[tile] >= gAiActiveUnitProfile->unk_02) {
                     continue;
                 }
             }
             if (aiBehaviour == AI_BEHAVIOUR_GENERAL && func_0209dc54(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
-                if (STATE->mapTiles->unk_3758[TILE(pos[0], pos[1])] >= data_0229e160[2]) {
+                if (STATE->mapTiles->unk_3758[TILE(pos[0], pos[1])] >= gAiActiveUnitProfile->unk_02) {
                     continue;
                 }
             }
@@ -170,8 +170,8 @@ void AiUnit_PickDirectAttack(void)
             }
             tileFlag = 0;
             tile = TILE(pos[0], pos[1]);
-            if (STATE->mapTiles->unk_3758[tile] >= data_0229e160[2]
-                || (STATE->mapTiles->unk_3250[tile] >= data_0229e160[1] && target->cargo[0] == 0
+            if (STATE->mapTiles->unk_3758[tile] >= gAiActiveUnitProfile->unk_02
+                || (STATE->mapTiles->unk_3250[tile] >= gAiActiveUnitProfile->unk_01 && target->cargo[0] == 0
                     && UnitType_GetAttackKind(target->type) == 2)) {
                 if (!func_020a3b54(pos[0], pos[1], target)) {
                     tileFlag = 0x80000;

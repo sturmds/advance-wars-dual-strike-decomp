@@ -35,7 +35,7 @@ void AiTurn_RunQueue(void)
     if (entry != AI_QUEUE_RUN_ONCE) {
         GAME->actingUnitIndex = entry;
         GAME->actingUnit = &GAME->units[GAME->actingUnitIndex];
-        data_0229e160 = &data_021619c4->units[GAME->actingUnit->type - 1];
+        gAiActiveUnitProfile = &gAiProfile->units[GAME->actingUnit->type - 1];
         unit = GAME->actingUnit;
         if ((unit->flags & MAP_UNIT_WAITED) || unit->type == 0) {
             gAiQueueCursor++;
@@ -46,10 +46,10 @@ void AiTurn_RunQueue(void)
         gAiTurnState->flags &= ~1;
         gAiTurnState->flags &= ~2;
         gAiTurnState->unk_08 = 0;
-        data_0229e198.action = 0;
-        data_0229e198.pending = 0;
-        data_0229e198.target = 0;
-        data_0229e198.unk_07 = 0;
+        gUnitAction.action = 0;
+        gUnitAction.pending = 0;
+        gUnitAction.target = 0;
+        gUnitAction.unk_07 = 0;
         map = GAME->mapTiles;
         unit = GAME->actingUnit;
         map->unitAt[unit->x + map->rowStart[unit->y]] = 0;
@@ -57,14 +57,14 @@ void AiTurn_RunQueue(void)
         gAiTurnState->roll = HwMod32(Rng_Next(), 100);
         gAiTurnState->unk_05 = func_0209f8d0(GAME->actingUnit);
     } else {
-        data_0229e198.pending = 0;
+        gUnitAction.pending = 0;
     }
 
     if (func_0212969c(data_0229ea0c) == 0) {
         gAiQueueRoutine();
     }
 
-    if (data_0229e198.pending == 0) {
+    if (gUnitAction.pending == 0) {
         if (*gAiQueueCursor != AI_QUEUE_RUN_ONCE) {
             game = GAME;
             map = game->mapTiles;

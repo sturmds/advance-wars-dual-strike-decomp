@@ -6,7 +6,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_ov000_022f5c2c[]; /* per player slot: first slot in units */
 
 /* Sort gAiQueue by each unit's vision (func_0208f724) or movement
  * (func_0208f850); 0 sorts smallest first. */
@@ -29,8 +28,8 @@ void AiAction_QueueDirectUnits(void)
     MapUnit *unit;
 
     gAiQueueCursor = gAiQueue;
-    for (i = data_ov000_022f5c2c[STATE->currentPlayer] + 1;
-         i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
+    for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1;
+         i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
             && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_DIRECT

@@ -15,8 +15,8 @@ void ForceRankScreen_PutIcons(void)
         if (column == FORCE_RANK_COLUMN_NONE) {
             func_0204171c(30, 17);
         } else {
-            for (i = 0; i < data_0229c738->columns[column].count; i++) {
-                func_020417a8((column - 1) * 3, 7 + i * 2, data_0229c738->columns[column].skills[i]);
+            for (i = 0; i < gForceRankScreen->columns[column].count; i++) {
+                func_020417a8((column - 1) * 3, 7 + i * 2, gForceRankScreen->columns[column].skills[i]);
             }
         }
     }

@@ -25,7 +25,7 @@ void AiAction_QueueBlackBombsForEagle(void)
     gAiQueueCursor = gAiQueue;
     if ((STATE->players[STATE->currentPlayer].front.id & PLAYER_CO_ID_MASK) == CO_EAGLE
         && CanUseSuperPower(STATE->currentPlayer, 0)) {
-        for (i = data_ov000_022f5c2c[STATE->currentPlayer] + 1; i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
+        for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1; i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
             unit = &STATE->units[i];
             if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0 && unit->type == UNIT_BLACK_BOMB) {
                 *gAiQueueCursor++ = i;
