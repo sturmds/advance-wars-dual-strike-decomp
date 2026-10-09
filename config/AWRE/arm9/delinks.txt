@@ -7318,6 +7318,10 @@ src/game/main/func_020fccc4.c:
     complete
     .text       start:0x020fccc4 end:0x020fccd8
 
+src/game/main/func_020fccd8.c:
+    complete
+    .text       start:0x020fccd8 end:0x020fcd00
+
 src/game/main/func_020fcf94.c:
     complete
     .text       start:0x020fcf94 end:0x020fcfa0
