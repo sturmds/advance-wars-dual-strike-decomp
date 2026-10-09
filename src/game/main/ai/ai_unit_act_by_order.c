@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 BOOL func_0209dd7c(void);
 BOOL func_020c0e3c(int player);
-void func_020a0924(void);
+void AiUnit_ActOrder10(void);
 void func_020a0954(void);
 void func_020a0988(void);
 void func_020a09bc(void);
@@ -62,7 +62,7 @@ void AiUnit_ActByOrder(void)
         func_020a0954();
         break;
     case 10:
-        func_020a0924();
+        AiUnit_ActOrder10();
         break;
     /* needed to match: case 7 comes last */
     case 7:

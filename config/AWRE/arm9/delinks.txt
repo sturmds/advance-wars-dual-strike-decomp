@@ -531,6 +531,10 @@ src/game/main/ai/ai_indirect_act_other_orders.c:
     complete
     .text       start:0x020a0904 end:0x020a0924
 
+src/game/main/ai/ai_unit_act_order10.c:
+    complete
+    .text       start:0x020a0924 end:0x020a0954
+
 src/game/main/ai/ai_unit_adjust_action.c:
     complete
     .text       start:0x020a2f98 end:0x020a30c4
