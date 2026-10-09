@@ -1,6 +1,6 @@
 # 0025: Faults in the landing tools seen in batch 10
 
-- **Status:** open
+- **Status:** closed
 - **Area:** loop
 - **Opened:** 2026-10-09
 - **Milestone:** M1
@@ -25,3 +25,13 @@ Batch 10 ran 43 agents that landed their own work. Each fault below cost an agen
 ## Done when
 
 The header merge scopes renames and unions defines, `relocs.txt` removals replay, the first build after a replay succeeds, and `land_self.py` refuses to overlap a running replay.
+
+## Fixed (2026-10-09)
+
+- Field renames: `apply_commit.py` rewrites `->old` only when no struct in `include/` still has a field `old`; otherwise the replay stops and lists the uses (`file:line`). Scoping by the type behind `->` would need a C parser.
+- Enums merge constant by constant, the commit's new constants written with their values; a `#define` or constant with two values is a conflict.
+- `relocs.txt` and `symbols.txt` lines the commit removed or changed are replayed (by `from:` address and by name); a change to the section list at the top of `delinks.txt` is taken.
+- The missing `_dsd_gap@...o`: two builds in one worktree at once. When `delinks.txt` changes while one build links, the other build's delink step deletes `build/delinks`. A single build after a checkout or replay is fine. `make`, `fn.py` and `progress.py` now run ninja under `flock build/.ninja.lock`.
+- `land_self.py` exits 4 while a replay is open or another `land_self.py` or `rebase_onto_mainline.py` holds `<worktree git dir>/land-self.lock`; `rebase_onto_mainline.py` refuses the same way.
+
+Tests: `make test` (`tools/tests/test_landing.py`).
