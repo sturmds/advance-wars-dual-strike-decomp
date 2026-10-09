@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void func_01ffa44c(MapUnit *unit);
-BOOL func_020a770c(s16 x, s16 y);
+BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int func_020a7fe0(s16 x, s16 y);
 void func_020b0794(void);
 int func_020c3954(int player, int unitType, int terrain); /* terrain defence stars */
@@ -64,7 +64,7 @@ void AiUnit_MoveToSafestTile(void)
             if (func_020a7fe0(x, y) == 1) {
                 continue;
             }
-            if (!func_020a770c(x, y)) {
+            if (!Ai_CanEndMoveAt(x, y)) {
                 continue;
             }
             tile = TILE(x, y);

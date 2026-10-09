@@ -20,7 +20,7 @@ int func_020a30c4(void);
 BOOL func_020a3b54(int x, int y, MapUnit *target);
 void Ai_ClearActingUnitTarget(void);
 int func_020a6d30(MapUnit *target);
-BOOL func_020a770c(int x, int y);
+BOOL Ai_CanEndMoveAt(int x, int y);
 BOOL FindAttackTile(int x, int y, s16 *pos); /* finds a tile to attack (x, y) from; FALSE: none */
 int AiAttack_Score(int arg, s16 *pos);      /* scores an attack on the unit slot in the low bits of arg from pos; 0: none */
 void AiUnit_MoveToSafestTile(void);
@@ -144,7 +144,7 @@ void AiUnit_PickDirectAttack(void)
                     continue;
                 }
             }
-            if (!func_020a770c(pos[0], pos[1])) {
+            if (!Ai_CanEndMoveAt(pos[0], pos[1])) {
                 continue;
             }
             objectHp = hp;

@@ -18,7 +18,7 @@ BOOL Map_IsOwnedNonRepairTile(int x, int y);             /* TRUE: tile owned by 
 MapObject *Map_GetObjectAt(int x, int y);       /* object at (x, y) with hp left, or NULL */
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
 BOOL Map_IsTileVisible(s16 x, s16 y);
-BOOL func_020a770c(s16 x, s16 y);
+BOOL Ai_CanEndMoveAt(s16 x, s16 y);
 int AiAttack_Score(int target, s16 *pos);      /* score of attacking unit slot target (low byte) from pos */
 void Ai_ClearActingUnitTarget(void);                     /* clears actingUnit's AI target */
 void AiUnit_PerformAction(int x, int y, int action, u8 arg3, u8 arg4); /* queues an action for the unit at (x, y) */
@@ -163,7 +163,7 @@ attack_tile:
                     continue;
                 }
             }
-            if (func_020a770c(pos[0], pos[1]) == 0) {
+            if (Ai_CanEndMoveAt(pos[0], pos[1]) == 0) {
                 continue;
             }
             bestTileX = x;
