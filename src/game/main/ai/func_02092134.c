@@ -1,0 +1,81 @@
+#include "types.h"
+#include "game/ai_build_state.h"
+#include "game/map_unit.h"
+#include "game/unit_stats.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* 12 bytes, count in AiBuildState.recordCount. Also used by the factory steps
+ * of the end actions. */
+typedef struct Unk_0229e5bc {
+    u8 x;
+    u8 y;
+    u8 pad_02;
+    u8 status;                         /* 0xfd: skipped */
+    u8 pad_04[5];
+    u8 unk_09;
+    u8 unk_0a;
+    u8 pad_0b;
+} Unk_0229e5bc;
+
+extern Unk_0229e5bc data_0229e5bc[];
+extern u8 gUnitFitsLander[];
+
+void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
+BOOL Unit_IsCurrentPlayers(s16 unitSlot);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
+
+#define FAR_AWAY 110
+
+/* End-actions step 7. For each record that is not skipped, fills the range map
+ * with an Infantry's moves (FAR_AWAY) from the record's tile, then visits every
+ * reachable tile that holds one of the current player's units. A Infantry or
+ * Mech lowers unk_09 to the range map value there if that is smaller; a unit
+ * with gUnitFitsLander set that waits for a T-Copter (transportWanted 2) does the
+ * same for unk_0a. What the records are is not known, so the name stays. */
+void func_02092134(void)
+{
+    Unk_0229e5bc *record = data_0229e5bc;
+    MapUnit *unit;
+    int slot;
+    int i;
+    int x;
+    int y;
+
+    for (i = 0; i < data_021619c0->recordCount; i++, record++) {
+        if (record->status == 0xfd) {
+            continue;
+        }
+        RangeMap_FillMoves(record->x, record->y, UNIT_INFANTRY, FAR_AWAY, 0);
+        for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+            for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+                if (STATE->rangeMap[y][x] < 0) {
+                    continue;
+                }
+                slot = STATE->mapTiles->unitAt[TILE(x, y)];
+                if (slot == 0) {
+                    continue;
+                }
+                if (Unit_IsCurrentPlayers(slot) != 1) {
+                    continue;
+                }
+                unit = &STATE->units[slot];
+                if (unit->type == UNIT_INFANTRY || unit->type == UNIT_MECH) {
+                    if (record->unk_09 > STATE->rangeMap[y][x]) {
+                        record->unk_09 = STATE->rangeMap[y][x];
+                    }
+                }
+                if (gUnitFitsLander[unit->type] == 0 || unit->transportWanted != 2) {
+                    continue;
+                }
+                if (record->unk_0a > STATE->rangeMap[y][x]) {
+                    record->unk_0a = STATE->rangeMap[y][x];
+                }
+            }
+        }
+    }
+}
