@@ -11,6 +11,10 @@ src/game/ov002/func_ov002_0235059c.c:
     complete
     .text       start:0x0235059c end:0x023505b8
 
+src/game/ov002/func_ov002_02350d20.c:
+    complete
+    .text       start:0x02350d20 end:0x02350d40
+
 src/game/ov002/func_ov002_02350e1c.c:
     complete
     .text       start:0x02350e1c end:0x02350e34

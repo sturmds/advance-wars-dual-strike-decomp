@@ -2350,6 +2350,10 @@ src/game/main/func_02070cd0.c:
     complete
     .text       start:0x02070cd0 end:0x02070cec
 
+src/game/main/func_020724f0.c:
+    complete
+    .text       start:0x020724f0 end:0x02072510
+
 src/game/main/link/link_screen_add_buttons.c:
     complete
     .text       start:0x020727d0 end:0x0207287c
@@ -4318,6 +4322,10 @@ src/game/main/func_020bcf28.c:
     complete
     .text       start:0x020bcf28 end:0x020bcf44
 
+src/game/main/func_020bd1bc.c:
+    complete
+    .text       start:0x020bd1bc end:0x020bd1dc
+
 src/game/main/func_020bd1dc.c:
     complete
     .text       start:0x020bd1dc end:0x020bd1f8
@@ -4325,6 +4333,10 @@ src/game/main/func_020bd1dc.c:
 src/game/main/func_020bdf08.c:
     complete
     .text       start:0x020bdf08 end:0x020bdf28
+
+src/game/main/func_020bdf28.c:
+    complete
+    .text       start:0x020bdf28 end:0x020bdf48
 
 src/game/main/menus/battle_menu_auto_co_off_hidden.c:
     complete
@@ -4500,6 +4512,10 @@ src/game/main/map/map_load_into_state.c:
 src/game/main/map/map_load_variant.c:
     complete
     .text       start:0x020c4dfc end:0x020c4e2c
+
+src/game/main/func_020c4f20.c:
+    complete
+    .text       start:0x020c4f20 end:0x020c4f40
 
 src/game/main/combat/damage_chart_get_column.c:
     complete
