@@ -5,7 +5,9 @@
 
 /* Overlay 4 state reached through data_ov004_022bf158. */
 typedef struct Unk_ov004_022bf158 {
-    u8 pad_000[0x998];
+    u8 pad_000[0x4];
+    u32 unk_004;
+    u8 pad_008[0x998 - 0x8];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
 } Unk_ov004_022bf158;
 
