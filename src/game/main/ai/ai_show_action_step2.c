@@ -29,7 +29,7 @@ void func_020b8b80(void);
 void func_020b8c70(void);
 void func_020b8cb0(void);
 void func_020c8888(void);
-void func_020ca398(void);
+void Ai_FlagCurrentPlayerEnterState18(void);
 void UnitAction_ActivateTagPower(void);
 void UnitAction_ActivateSuperPower(void);
 void UnitAction_ActivateCoPower(void);
@@ -135,7 +135,7 @@ void AiShowAction_Step2(void)
         func_020b8230();
         break;
     case 21:
-        func_020ca398();
+        Ai_FlagCurrentPlayerEnterState18();
         break;
     case 22:
         if (GAME->gameMode == 0 && GAME->unk_1c4->mapId == MAP_CAMPAIGN_FIRST + 18) {
