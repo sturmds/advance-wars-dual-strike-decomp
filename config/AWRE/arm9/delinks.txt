@@ -8078,6 +8078,10 @@ src/game/main/func_020f35f4.c:
     complete
     .text       start:0x020f35f4 end:0x020f3604
 
+src/game/main/func_020f3604.c:
+    complete
+    .text       start:0x020f3604 end:0x020f3660
+
 src/game/main/func_020f3660.c:
     complete
     .text       start:0x020f3660 end:0x020f3670
