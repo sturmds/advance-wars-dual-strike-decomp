@@ -123,6 +123,10 @@ src/game/ov002/battle_put_side_block750.c:
     complete
     .text       start:0x0235e694 end:0x0235e720
 
+src/game/ov002/battle_put_side_hp_block.c:
+    complete
+    .text       start:0x0235e874 end:0x0235e920
+
 src/game/ov002/battle_put_side_block490.c:
     complete
     .text       start:0x0235e920 end:0x0235e9b0
