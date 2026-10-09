@@ -1,0 +1,15 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+int func_020e57ac(int player, int coSlot, int powerState, int unitType);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+/* Movement change for a unit type from a player's front CO in that CO's
+ * current power state. */
+int GetUnitMoveBonus(int player, int unitType)
+{
+    return func_020e57ac(player, 0, data_027c027c->unk_48[data_027c0284]->players[player].front.powerState,
+                         unitType);
+}
