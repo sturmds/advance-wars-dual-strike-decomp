@@ -167,8 +167,8 @@ void Screen_ApplySub(void)
                   | (GFX_DISPCNT(GFX)->objWin ? 4 : 0));
     SetObjVramModeChar((GFX_DISPCNT(GFX)->objMap1D << 4) | (VGFX->unk_dd << 20));
     SetObjHBlankProc(GFX_DISPCNT(GFX)->objHBlankProc);
-    /* The set bit clears DISPCNT bit 16 (engine B output off). */
-    if (GFX_DISPCNT(GFX)->displayOn) {
+    /* DISPCNT bit 16 is the sub engine's display mode: 0 off, 1 on. */
+    if (GFX_DISPCNT(GFX)->displayOff) {
         *REG_DB_DISPCNT &= ~0x10000;
     } else {
         *REG_DB_DISPCNT |= 0x10000;

@@ -22,7 +22,7 @@ typedef struct DispCntBits {
     u16 : 2;
     u16 objHBlankProc : 1;             /* DISPCNT bit 23 */
     u16 objMap1D : 1;                  /* DISPCNT bit 4 */
-    u16 displayOn : 1;
+    u16 displayOff : 1;                /* DISPCNT bit 7 (forced blank); set: Screen_ApplyMain calls GX_DispOff, Screen_ApplySub clears DISPCNT bit 16 */
     u16 bg0 : 1;                       /* bits 8-12: layers shown */
     u16 bg1 : 1;
     u16 bg2 : 1;
