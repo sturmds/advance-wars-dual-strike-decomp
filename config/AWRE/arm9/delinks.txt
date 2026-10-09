@@ -883,6 +883,10 @@ src/game/main/combat/unit_get_chart_damage.c:
     complete
     .text       start:0x020dfb0c end:0x020dfc04
 
+src/game/main/combat/scale_chart_damage.c:
+    complete
+    .text       start:0x020dfc04 end:0x020dfc64
+
 src/game/main/units/unit_type_get_chart_damage.c:
     complete
     .text       start:0x020dfc64 end:0x020dfc80
