@@ -277,6 +277,10 @@ src/game/main/map/map_load_predeployed_units.c:
     complete
     .text       start:0x02019f90 end:0x02019ff8
 
+src/game/main/script/event_script_is_running.c:
+    complete
+    .text       start:0x0201ad28 end:0x0201ad64
+
 src/game/main/func_0201b130.c:
     complete
     .text       start:0x0201b130 end:0x0201b150

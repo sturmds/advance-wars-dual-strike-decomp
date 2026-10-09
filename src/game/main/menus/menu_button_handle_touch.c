@@ -3,7 +3,7 @@
 #include "game/touch.h"
 
 int MenuButton_TestFlags(MenuButton *entry, int mask);
-BOOL func_0201ad28(void);
+BOOL EventScript_IsRunning(void);
 
 /* Needed to match: the original builds this test as a 0/1 value first,
  * as an inline function does. */
@@ -55,7 +55,7 @@ BOOL MenuButton_HandleTouch(MenuButton *button)
             if (MenuButton_TestFlags(button, MENU_BUTTON_NO_TOUCH_CONFIRM) != 0) {
                 return FALSE;
             }
-            if (func_0201ad28() != FALSE) {
+            if (EventScript_IsRunning() != FALSE) {
                 return FALSE;
             }
             if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH) != 0) {

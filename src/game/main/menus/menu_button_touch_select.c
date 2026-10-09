@@ -2,7 +2,7 @@
 #include "game/menu_button.h"
 #include "game/touch.h"
 
-BOOL func_0201ad28(void);
+BOOL EventScript_IsRunning(void);
 int MenuButton_TestFlags(MenuButton *button, int mask);
 
 /* Selects the button when the touch point is inside it. Returns TRUE if
@@ -12,7 +12,7 @@ BOOL MenuButton_TouchSelect(MenuButton *button)
     int x = gTouch.x;
     int y = gTouch.y;
 
-    if (func_0201ad28()) {
+    if (EventScript_IsRunning()) {
         return FALSE;
     }
     if (gTouch.phase == 0) {

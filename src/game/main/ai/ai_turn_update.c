@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
 
-BOOL func_0201ad28(void);
+BOOL EventScript_IsRunning(void);
 void AiTurn_Start(void);
 void AiTurn_RunPhase(void);
 void AiTurn_RunQueue(void);
@@ -10,11 +10,11 @@ void AiTurn_RunEndActions(void);
 void AiTurn_RunPowerStep(void);
 void AiTurn_Restart(void);
 
-/* Runs one step of the AI turn. Does nothing while func_0201ad28
+/* Runs one step of the AI turn. Does nothing while EventScript_IsRunning
  * returns nonzero. */
 void AiTurn_Update(void)
 {
-    if (func_0201ad28()) {
+    if (EventScript_IsRunning()) {
         return;
     }
     switch (gAiTurnState->state) {
