@@ -26,7 +26,7 @@ void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 void ModeFont_Load(int a, int b);
 void func_0202bdec(void *dst, int mapId);
 void func_0202c520(int a);
-void func_020727d0(void);
+void LinkScreen_AddButtons(void);
 int LinkScreen_GetPlayerRow(int player);
 int func_0207bd80(void);
 void EventQueue_Reset(void);
@@ -193,7 +193,7 @@ void LinkPhase_InitScreen(void)
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     MenuButton_Select(0);
-    func_020727d0();
+    LinkScreen_AddButtons();
     MenuButtons_DisableTouch();
     func_02029648();
     EventQueue_Reset();
