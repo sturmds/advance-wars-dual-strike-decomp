@@ -7162,6 +7162,10 @@ src/game/main/map/tile_has_unit_to_supply.c:
     complete
     .text       start:0x020df068 end:0x020df18c
 
+src/game/main/map/tile_has_unit_to_repair.c:
+    complete
+    .text       start:0x020df18c end:0x020df2f8
+
 src/game/main/func_020df2f8.c:
     complete
     .text       start:0x020df2f8 end:0x020df318
