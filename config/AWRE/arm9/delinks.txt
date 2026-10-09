@@ -217,6 +217,10 @@ src/game/main/mem/mem_alloc.c:
     complete
     .text       start:0x0200bf40 end:0x0200bf64
 
+src/game/main/unlocks/gba_cart_is_advance_wars2.c:
+    complete
+    .text       start:0x0200c310 end:0x0200c32c
+
 src/game/main/unlocks/gba_cart_is_advance_wars.c:
     complete
     .text       start:0x0200c32c end:0x0200c348
