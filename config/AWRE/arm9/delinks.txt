@@ -2083,6 +2083,10 @@ src/game/main/func_020cfe70.c:
     complete
     .text       start:0x020cfe70 end:0x020cfe80
 
+src/game/main/weather/weather_set.c:
+    complete
+    .text       start:0x020d2aa8 end:0x020d2ae4
+
 src/game/main/weather/weather_set_days.c:
     complete
     .text       start:0x020d2b4c end:0x020d2bfc
