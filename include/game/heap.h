@@ -16,6 +16,8 @@ typedef struct HeapHead {
     u32 options;                /* bits 0-7: option flags given at creation */
 } HeapHead;
 
+#define HEAP_LINK_OFFSET 4      /* offset of HeapHead.link, for LinkList_Init */
+
 /* Header in front of every free or used block, 0x10 bytes. The caller's
  * pointer is the address just after it. */
 typedef struct HeapBlock {

@@ -5042,7 +5042,7 @@ func_021042a0 kind:function(arm,size=0x68) addr:0x021042a0
 LinkList_SetFirst kind:function(arm,size=0x2c) addr:0x02104308
 LinkList_Init kind:function(arm,size=0x18) addr:0x02104334
 Heap_Unlink kind:function(arm,size=0x1c) addr:0x0210434c
-func_02104368 kind:function(arm,size=0x90) addr:0x02104368
+Heap_InitHead kind:function(arm,size=0x90) addr:0x02104368
 func_021043f8 kind:function(arm,size=0x2c) addr:0x021043f8
 func_02104424 kind:function(arm,size=0x70) addr:0x02104424
 Heap_Free kind:function(arm,size=0x40) addr:0x02104494
@@ -8933,8 +8933,8 @@ data_022a7fac kind:bss addr:0x022a7fac
 data_022a7fb8 kind:bss addr:0x022a7fb8
 data_022a7fc8 kind:bss addr:0x022a7fc8
 gLocalizedPath kind:bss addr:0x022a7fd0
-data_022a8010 kind:bss addr:0x022a8010
-data_022a8014 kind:bss addr:0x022a8014
+gHeapRootListReady kind:bss addr:0x022a8010
+gHeapRootList kind:bss addr:0x022a8014
 data_022a8020 kind:bss addr:0x022a8020
 data_022a8024 kind:bss addr:0x022a8024
 data_022a8028 kind:bss addr:0x022a8028
