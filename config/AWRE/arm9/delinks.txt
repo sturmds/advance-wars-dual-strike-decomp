@@ -171,6 +171,10 @@ src/game/main/menus/vs_setup_handle_keys.c:
     complete
     .text       start:0x02068624 end:0x02068790
 
+src/game/main/menus/battle_setup_draw_skills.c:
+    complete
+    .text       start:0x02069754 end:0x02069920
+
 src/game/main/menus/battle_setup_load_from_game.c:
     .text       start:0x0206c6f4 end:0x0206cd64
 
