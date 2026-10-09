@@ -11,18 +11,24 @@ int func_0209e230(int player, int unitType);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAX_RANGE() func_0209e230(STATE->currentPlayer, STATE->actingUnit->type)
 
+/* For an indirect unit about to attack the tile in pos: replaces pos with
+ * the reachable tile, 0 to 110 move cost, that is in the unit's firing range
+ * of it, nearest first and then cheapest to reach. Returns FALSE when no
+ * tile qualifies. Other unit kinds keep pos and return TRUE.
+ * WIP: the compiler keeps xMax and yMax in registers and spills the zero
+ * for dist; the original does the opposite. */
 BOOL func_020a7034(s16 *pos)
 {
-    int bestX;
-    int bestY;
-    int bestDist;
     int xMin;
-    int xMax;
-    int yMax;
-    int x;
-    int y;
-    int dist;
     int cost;
+    int yMax;
+    int bestX;
+    int bestDist;
+    int y;
+    int xMax;
+    int x;
+    int dist;
+    int bestY;
 
     if (UnitType_GetAttackKind(STATE->actingUnit->type) != ATTACK_KIND_INDIRECT) {
         return TRUE;
