@@ -24,7 +24,7 @@ void AiShowAction_Dive(void);
 void func_020b8370(int arg);
 void func_020b8964(void);
 void func_020b8a24(void);
-void func_020b8ad4(void);
+void AiShowAction_AttackUnit(void);
 void func_020b8b80(void);
 void AiShowAction_BuildUnitAlt(void);
 void AiShowAction_BuildUnit(void);
@@ -102,7 +102,7 @@ void AiShowAction_Step2(void)
         ActingUnit_FinishAction();
         break;
     case 4:
-        func_020b8ad4();
+        AiShowAction_AttackUnit();
         return;
     case 5:
         func_020b8a24();
