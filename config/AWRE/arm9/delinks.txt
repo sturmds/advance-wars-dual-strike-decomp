@@ -1179,6 +1179,10 @@ src/game/main/text/text_print_by_id.c:
     complete
     .text       start:0x02015258 end:0x020152a4
 
+src/game/main/text/text_print_with_tile.c:
+    complete
+    .text       start:0x020152a4 end:0x02015340
+
 src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4

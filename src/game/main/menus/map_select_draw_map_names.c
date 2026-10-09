@@ -9,7 +9,7 @@ const void *Map_GetName(u32 mapId);
 u8 Map_IsFlagSet(u32 mapId);
 int func_02101904(u32 mapId);
 void Mem_Zero32(u32 value, void *dst, u32 size);
-void func_020152a4(s16 x, s16 y, u16 *map, const void *text, int a4, u16 palette, u16 tile);
+void Text_PrintWithTile(s16 x, s16 y, u16 *map, const void *text, int a4, u16 palette, u16 tile);
 void Bg_PutTileQuad(int x, int y, int tile, int size);
 int MapSelect_GetRecordMarker(int a, int mapId);
 
@@ -55,12 +55,12 @@ void MapSelect_DrawMapNames(int list, int page)
         }
         palette = func_02101904(MAP_ID) != 0 ? 0 : 1;
         if (MAP_ID < 0x101 && !Map_IsFlagSet(MAP_ID)) {
-            func_020152a4(x, y, data_027c0280->layer0Map, &data_02167c90, 0, palette,
+            Text_PrintWithTile(x, y, data_027c0280->layer0Map, &data_02167c90, 0, palette,
                           i * 16 + (0x400 - ROWS * COLS * 32));
         } else {
             tile = i * 16 + (0x400 - ROWS * COLS * 32);
             map = data_027c0280->layer0Map;
-            func_020152a4(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
+            Text_PrintWithTile(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
         }
         if (STATE->gameMode == 1) {
             if (gWarRoomRecords[data_0229c768.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].unk_0a != 0) {
