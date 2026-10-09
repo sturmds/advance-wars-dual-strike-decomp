@@ -25,7 +25,7 @@ void Wallpaper_LoadBoth(void);
 void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 void ModeFont_Load(int a, int b);
 void func_0202bdec(void *dst, int mapId);
-void func_0202c520(int a);
+void PaletteCycle_Start(int a);
 void LinkScreen_AddButtons(void);
 int LinkScreen_GetPlayerRow(int player);
 int func_0207bd80(void);
@@ -160,7 +160,7 @@ void LinkPhase_InitScreen(void)
     target = data_027c0280->layer0Map;
     Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
     func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
-    func_0202c520(18);
+    PaletteCycle_Start(18);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     SWITCH_BACK();
@@ -178,7 +178,7 @@ void LinkPhase_InitScreen(void)
         target = data_027c0280->layer0Map;
         Text_Print(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
         func_0202bdec(data_027c0280->objVram + 0x780, mapId);
-        func_0202c520(19);
+        PaletteCycle_Start(19);
         Gfx_RequestLayerCopy(0);
         Gfx_RequestLayerCopy(1);
         SWITCH_BACK();

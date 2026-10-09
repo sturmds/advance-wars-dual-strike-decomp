@@ -24,7 +24,9 @@ typedef struct Task {
     u8 group;                          /* guess: Task_DestroyGroup destroys all tasks of one group */
     u8 flags;                          /* bit 1: child task, bit 3: being created */
     u8 childCount;                     /* live children the task waits on; its script holds while nonzero */
-    u8 pad_29[0x6c - 0x29];
+    u8 pad_29[0x52 - 0x29];
+    u16 unk_52;                        /* palette slot PaletteCycle_Start animates */
+    u8 pad_54[0x6c - 0x54];
 } Task;
 
 /* Task.flags bits */
