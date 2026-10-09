@@ -9,7 +9,7 @@ BOOL Player_HasHq(int player);
 void AiIndirect_MoveOrder10(void);
 void AiIndirect_MoveOrder9(void);
 void AiIndirect_MoveOrder8(void);
-void func_020a0508(void);
+void AiIndirect_MoveOrder7(void);
 void func_020a0590(void);
 void func_020a0604(void);
 void func_020a0680(void);
@@ -56,7 +56,7 @@ void AiIndirect_MoveByOrder(void)
         }
         break;
     case 7:
-        func_020a0508();
+        AiIndirect_MoveOrder7();
         break;
     case 8:
         AiIndirect_MoveOrder8();
