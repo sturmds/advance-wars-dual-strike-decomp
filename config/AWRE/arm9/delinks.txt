@@ -216,6 +216,10 @@ src/game/main/text/text_print.c:
     complete
     .text       start:0x02015340 end:0x020153d4
 
+src/game/main/text_printer_get_cursor_entry.c:
+    complete
+    .text       start:0x02015ee0 end:0x02015ef8
+
 src/game/main/script/script_slot_run.c:
     complete
     .text       start:0x02017320 end:0x02017414
