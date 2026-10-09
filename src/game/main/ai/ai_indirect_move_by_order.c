@@ -15,7 +15,7 @@ void AiIndirect_MoveOrder5(void);
 void AiIndirect_MoveOrder4(void);
 void AiIndirect_MoveOrder3(void);
 void AiIndirect_MoveOrder2(void);
-void func_020a07f4(void);
+void AiIndirect_MoveOrder1(void);
 void func_020a086c(void);
 
 /* Queue routine for indirect units, set by AiAction_QueueIndirectMoves:
@@ -30,7 +30,7 @@ void AiIndirect_MoveByOrder(void)
         func_020a086c();
         break;
     case 1:
-        func_020a07f4();
+        AiIndirect_MoveOrder1();
         break;
     case 2:
         if (func_0209dd7c() == TRUE) {
