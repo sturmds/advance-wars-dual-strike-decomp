@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg);
 int UnitType_GetAttackKind(int unitType);
-void func_020a0dec(MapUnit *unit);
+void AiUnit_AttackFromPlaceThenMove(MapUnit *unit);
 void AiUnit_PickDirectAttackInReachOf(MapUnit *unit);
 
 /* Puts unit fromSlot back on its tile and makes toSlot the acting unit:
@@ -55,7 +55,7 @@ void AiUnit_HandleUnitAtTarget(int x, int y)
             AiUnit_PickDirectAttackInReachOf(acting);
             break;
         case 1:
-            func_020a0dec(acting);
+            AiUnit_AttackFromPlaceThenMove(acting);
             break;
         }
         Ai_SwitchActingUnit(slot, actingIndex);
@@ -68,7 +68,7 @@ void AiUnit_HandleUnitAtTarget(int x, int y)
             AiUnit_PickDirectAttackInReachOf(other);
             break;
         case 1:
-            func_020a0dec(other);
+            AiUnit_AttackFromPlaceThenMove(other);
             break;
         }
         gAiQueueCursor++;
