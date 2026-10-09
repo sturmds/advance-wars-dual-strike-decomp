@@ -12,7 +12,7 @@ void AiUnit_ActOrder8(void);
 void AiUnit_ActOrder7(void);
 void AiUnit_ActOrder6(void);
 void AiUnit_ActOrder5(void);
-void func_020a0a84(void);
+void AiUnit_ActOrder4(void);
 void func_020a0ac4(void);
 void func_020a0b04(void);
 void func_020a0b44(void);
@@ -43,7 +43,7 @@ void AiUnit_ActByOrder(void)
         func_020a0ac4();
         break;
     case 4:
-        func_020a0a84();
+        AiUnit_ActOrder4();
         break;
     case 5:
         AiUnit_ActOrder5();
