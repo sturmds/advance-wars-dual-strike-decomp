@@ -15,7 +15,7 @@ void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 int Math_EaseInOut(int from, int to, int step, int steps);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
-void func_0205f03c(void);
+void MapSelect_EnableSubSlideButtons(void);
 void func_0205f0ec(void);
 void func_02060718(int x, int y, int a2);
 void func_02060bf8(int x, int y, int list);
@@ -115,7 +115,7 @@ void MapSelect_Draw(void)
         subSlideOffset = Math_EaseInOut(256, 0, 17 - MENU->setup.subSlideFrames, 16);
         MENU->setup.subSlideFrames--;
         if (MENU->setup.subSlideFrames == 0) {
-            func_0205f03c();
+            MapSelect_EnableSubSlideButtons();
         }
     }
 
