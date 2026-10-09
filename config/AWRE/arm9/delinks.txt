@@ -144,6 +144,7 @@ src/game/main/check_unit_type.c:
     .text       start:0x020df7ac end:0x020df7f8
 
 src/game/main/skills/vision_increase.c:
+    complete
     .text       start:0x020df7f8 end:0x020df900
 
 

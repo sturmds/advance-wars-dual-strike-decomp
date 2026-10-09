@@ -5,9 +5,8 @@
 
 BOOL func_020e8ae4(void);
 
-
-extern int data_027c0284;
 extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
 
 /* Skill words of the front CO of a player. */
 #define FRONT_CO_SKILLS(player) \
@@ -18,14 +17,12 @@ extern Unk_02080440 *data_027c027c;
 int VisionIncrease(int player)
 {
     int bonus = 0;
-    Unk_02080440_48 *game = data_027c027c->unk_48[data_027c0284];
 
-    if (game->unk_5d) {
-        Player *p = &game->players[player];
-        /* needed to match: the CO id comes from a byte load and the
-         * power state from shifts, not from the PLAYER_ macros */
-        bonus += gCoTable[*(u8 *)&p->frontCo & PLAYER_CO_ID_MASK]
-                     .blocks[(p->frontCo << 20) >> 30]
+    /* needed to match: no local for the battle state, or the two globals
+     * load in the other order */
+    if (data_027c027c->unk_48[data_027c0284]->unk_5d) {
+        bonus += gCoTable[data_027c027c->unk_48[data_027c0284]->players[player].front.id & PLAYER_CO_ID_MASK]
+                     .blocks[data_027c027c->unk_48[data_027c0284]->players[player].front.powerState]
                      .visionBonus;
     }
 
