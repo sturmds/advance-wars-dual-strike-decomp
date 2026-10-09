@@ -1,9 +1,9 @@
 #include "types.h"
 
-u32 func_02039f9c(u32 co);
-int Mem_Free(int exp);
+void *ResultObj_Load(int firstTile, int palette);
+void Mem_Free(void *res);
 
-int func_02039f80(u32 co)
+void func_02039f80(int firstTile, int palette)
 {
-    return Mem_Free(func_02039f9c(co));
+    Mem_Free(ResultObj_Load(firstTile, palette));
 }
