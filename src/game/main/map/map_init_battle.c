@@ -10,7 +10,7 @@ void func_0201ad64(void);
 void func_02080734(void);
 void func_020d3c1c(void);
 void func_020e85d0(void);
-BOOL func_020e8ae4(void);
+BOOL Map_IsCoSelectPhase(void);
 int func_020f35cc(void);
 void func_020f35e0(int a);
 void func_020f368c(void);
@@ -65,7 +65,7 @@ void Map_InitBattle(void)
     case 0:
     case 1:
     case 3:
-        if (!func_020e8ae4()) {
+        if (!Map_IsCoSelectPhase()) {
             func_020e85d0();
         }
         break;
@@ -135,7 +135,7 @@ void Map_InitBattle(void)
      * missions the AI plays every used slot of the second map. */
     game = GAME;
     if (game->gameMode == 0 && game->secondMapId != 0) {
-        if (!func_020e8ae4() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
+        if (!Map_IsCoSelectPhase() && (GAME->unk_1c4->mapId == MAP_LIGHTNING_STRIKES ||
                                   GAME->unk_1c4->mapId == MAP_RING_OF_FIRE)) {
             SWITCH_TO(SECOND_MAP);
             for (i = 1; i < 5; i++) {

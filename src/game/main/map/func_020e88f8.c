@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-BOOL func_020e8ae4(void);
+BOOL Map_IsCoSelectPhase(void);
 Unk_02023724 *func_02023724(const void *script);
 void *Task_Create(const void *script, void *parentOrList);
 
@@ -18,7 +18,7 @@ void func_020e88f8(void)
     if (data_027c027c != data_027c0288.unk_00) {
         return;
     }
-    if (!func_020e8ae4()) {
+    if (!Map_IsCoSelectPhase()) {
         return;
     }
     if (func_02023724(data_02168b94) != NULL) {

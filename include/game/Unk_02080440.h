@@ -81,7 +81,7 @@ typedef struct Unk_02080440_48 {
     u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */
     u8 team[5];                        /* team per slot, copied from the map header */
     u8 pad_a6[0xba - 0xa6];
-    u8 visionRanksOff;                 /* name is a guess; 1 turns off Scout and Eagle Eye, see func_020e8ae4 */
+    u8 visionRanksOff;                 /* name is a guess; 1 turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
     u8 pad_bb[0x170 - 0xbb];
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
     u8 pad_17c[0x1c4 - 0x17c];

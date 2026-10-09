@@ -3,7 +3,7 @@
 #include "game/co_data.h"
 #include "game/skills.h"
 
-BOOL func_020e8ae4(void);
+BOOL Map_IsCoSelectPhase(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -26,7 +26,7 @@ int VisionIncrease(int player)
                      .visionBonus;
     }
 
-    if (!func_020e8ae4()) {
+    if (!Map_IsCoSelectPhase()) {
         if (CheckSkillsEquipped(FRONT_CO_SKILLS(player), SKILL_RANK_SCOUT)) {
             bonus += 1;
         }

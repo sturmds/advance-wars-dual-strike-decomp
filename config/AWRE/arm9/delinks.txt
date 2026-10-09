@@ -651,6 +651,10 @@ src/game/main/map/func_020e8a88.c:
     complete
     .text       start:0x020e8a88 end:0x020e8ab0
 
+src/game/main/map/map_is_co_select_phase.c:
+    complete
+    .text       start:0x020e8ae4 end:0x020e8b18
+
 src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
