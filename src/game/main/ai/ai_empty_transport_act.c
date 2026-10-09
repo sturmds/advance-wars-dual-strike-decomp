@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_0209c948(void);
+void Ai_BuildThreatMaps(void);
 void func_020a9854(void);
 void func_020ac648(void);
 void func_020ac9e8(void);
@@ -11,7 +11,7 @@ void func_020b2904(void);
  * AiAction_QueueEmptyTransports. */
 void AiEmptyTransport_Act(void)
 {
-    func_0209c948();
+    Ai_BuildThreatMaps();
     func_020af5f8();
     func_020ac9e8();
     func_020ac648();

@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-void func_0209c948(void);
+void Ai_BuildThreatMaps(void);
 void func_020a9854(void);
 void func_020af540(void);
 void func_020af5f8(void);
@@ -21,7 +21,7 @@ void func_020b320c(void);
  * func_020af540. */
 void AiSeaTransport_Act(void)
 {
-    func_0209c948();
+    Ai_BuildThreatMaps();
     if (GAME->actingUnit->type == UNIT_LANDER && GAME->actingUnit->cargo[0] == 0) {
         func_020af5f8();
     } else {

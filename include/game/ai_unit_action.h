@@ -16,7 +16,8 @@
 
 /* gAiTurnState->flags, as what an indirect unit may shoot besides units. */
 typedef struct AiTargetFlags {
-    u8 unk_0 : 2;
+    u8 threatMapsBuilt : 1;            /* set by Ai_BuildThreatMaps, cleared for each queued unit */
+    u8 unk_1 : 1;
     u8 attackTiles : 1;                /* tiles with hp (Unk_02080440_48.tileHp) */
     u8 attackObjects : 1;              /* MapObject */
     u8 unk_4 : 4;
