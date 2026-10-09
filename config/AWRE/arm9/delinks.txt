@@ -80,6 +80,10 @@ src/game/main/sound/sound_load_resident_data.c:
     complete
     .text       start:0x0200b364 end:0x0200b39c
 
+src/game/main/file/file_load.c:
+    complete
+    .text       start:0x0200bc28 end:0x0200bcf0
+
 src/game/main/mem/mem_free.c:
     complete
     .text       start:0x0200bf24 end:0x0200bf40

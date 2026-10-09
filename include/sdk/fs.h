@@ -11,6 +11,14 @@ typedef struct FSFileID {
     u32 file_id;
 } FSFileID;
 
+/* An open file, 0x44 bytes in this SDK version. */
+typedef struct FSFile {
+    u8 pad_00[0x20];
+    u32 top;                           /* first byte of the file in the archive */
+    u32 bottom;                        /* one past its last byte */
+    u8 pad_28[0x44 - 0x28];
+} FSFile;
+
 /* One entry of the ROM's ARM9 overlay table (y9.bin), 32 bytes. */
 typedef struct OverlayTableRow {
     u32 id;
