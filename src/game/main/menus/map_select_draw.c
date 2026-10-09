@@ -10,7 +10,7 @@ int func_01ff9f7c(void);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Palette_Load(const void *src, int slideOffset, int size);
 void Screen_SetCurrentGfx(void *state);
-void func_02021858(int a0, int x, int y, void *a3, int attr, int tile);
+void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
 void func_020218e4(int a0, int x, int y, void *a3, int attr, int tile);
 int func_0202795c(int from, int to, int step, int steps);
 void func_0202b89c(s16 x, int y, int a2, int a3, int a4);
@@ -281,8 +281,8 @@ void MapSelect_Draw(void)
         Palette_Load(&MENU->colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);
     }
     if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
-        func_02021858(0, 172, 172, &data_027c0040, 0x3000, 0x5c4);
-        func_02021858(0, 188, 172, &data_027c0108, 0x3000, 0x5e8);
+        Sprite_Queue(0, 172, 172, &data_027c0040, 0x3000, 0x5c4);
+        Sprite_Queue(0, 188, 172, &data_027c0108, 0x3000, 0x5e8);
         Palette_Load(&MENU->setup.colours2[(func_01ff9f7c() >> 2) & 15], 0x274, 2);
     }
 }

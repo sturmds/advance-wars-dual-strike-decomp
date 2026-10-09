@@ -4,13 +4,27 @@
 #include "types.h"
 #include "game/BgControl.h"
 
+/* One sprite queued for drawing. Each sprite list starts with an entry
+ * of this type whose next field points to the newest sprite. */
+typedef struct SpriteEntry {
+    struct SpriteEntry *next;
+    u16 x;                             /* OAM attribute 1 bits: x and flip flags */
+    u16 y;                             /* OAM attribute 0 bits: y and above */
+    u16 unk_08;
+    u16 unk_0a;
+    const void *unk_0c;
+} SpriteEntry;
+
 /* Pointed to by data_027c0280 (DTCM). */
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *unk_08;
     u8 pad_0c[0x1c - 0x0c];
     struct IconBank *iconBanks;        /* ICON_BANK_COUNT banks */
-    u8 pad_20[0x6c - 0x20];
+    u8 pad_20[0x24 - 0x20];
+    SpriteEntry *spriteLists;
+    SpriteEntry *spriteFree;           /* next unused entry */
+    u8 pad_2c[0x6c - 0x2c];
     u16 dispCnt;                       /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on) */
     BgControl bgCnt[4];                /* BG0CNT-BG3CNT */
     u8 pad_76[0x90 - 0x76];

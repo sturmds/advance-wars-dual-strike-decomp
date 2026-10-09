@@ -3,7 +3,7 @@
 #include "game/icon.h"
 
 /* Adds one sprite to draw list `list`; attr holds the tile and palette. */
-void func_02021858(int list, int x, int y, void *shape, int attr, int arg5);
+void Sprite_Queue(int list, int x, int y, void *shape, int attr, int arg5);
 
 extern Unk_027c0280 *data_027c0280;
 extern void *gObjShapeBySize[][17];    /* OBJ shape for a sprite of [height][width] tiles */
@@ -19,7 +19,7 @@ void Icon_Draw(int iconId, int x, int y, int tile, int list)
     bank = &data_027c0280->iconBanks[Icon_GetBank(iconId)];
     for (i = 0; i < bank->count; i++) {
         if (iconId == bank->slots[i].iconId) {
-            func_02021858(list, x, y, gObjShapeBySize[gIconHeights[iconId][0]][gIconSize[iconId][0]],
+            Sprite_Queue(list, x, y, gObjShapeBySize[gIconHeights[iconId][0]][gIconSize[iconId][0]],
                           tile + bank->slots[i].tile + (bank->palette - 16) * 0x1000, 0);
             return;
         }

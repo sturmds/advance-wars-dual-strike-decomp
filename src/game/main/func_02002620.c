@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_02021858(int list, int packedX, int packedY, void *data, int arg4, int arg5);
+void Sprite_Queue(int list, int packedX, int packedY, void *data, int arg4, int arg5);
 
 extern u8 data_02151dac[];
 
@@ -14,5 +14,5 @@ void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip)
     if (flip) {
         x |= 0x1000;
     }
-    func_02021858(list, x | xHigh, y | yHigh, data_02151dac, arg2, arg3);
+    Sprite_Queue(list, x | xHigh, y | yHigh, data_02151dac, arg2, arg3);
 }

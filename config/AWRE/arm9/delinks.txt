@@ -220,6 +220,10 @@ src/game/main/graphics/font_load_digits.c:
     complete
     .text       start:0x02021380 end:0x020213c0
 
+src/game/main/graphics/sprite_queue.c:
+    complete
+    .text       start:0x02021858 end:0x020218e4
+
 src/game/main/task/task_resume_script_visitor.c:
     complete
     .text       start:0x02023600 end:0x0202360c
