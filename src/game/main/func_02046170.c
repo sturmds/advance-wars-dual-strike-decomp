@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 MenuButtons_EnableTouch(u32 co);
-int func_020458e0(int exp);
+void MenuButtons_EnableTouch(void);
+void PageStrip_AddButtons(void);
 
-int func_02046170(u32 co)
+void func_02046170(void)
 {
-    return func_020458e0(MenuButtons_EnableTouch(co));
+    MenuButtons_EnableTouch();
+    PageStrip_AddButtons();
 }

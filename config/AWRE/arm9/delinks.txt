@@ -2813,6 +2813,10 @@ src/game/main/func_020458c0.c:
     complete
     .text       start:0x020458c0 end:0x020458e0
 
+src/game/main/menus/page_strip_add_buttons.c:
+    complete
+    .text       start:0x020458e0 end:0x020459cc
+
 src/game/main/func_020459cc.c:
     complete
     .text       start:0x020459cc end:0x020459f0
