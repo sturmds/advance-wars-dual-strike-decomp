@@ -30,7 +30,7 @@ void AiAction_QueueFootUnits(void)
          i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == UNIT_AI_GROUP_FOOT) {
+            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_FOOT) {
             *gAiQueueCursor++ = i;
         }
     }
