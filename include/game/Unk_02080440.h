@@ -84,8 +84,8 @@ typedef struct Unk_02080440_48 {
     u8 pad_14[0x1e - 0x14];
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
     u8 pad_20[0x28 - 0x20];
-    s16 unk_28;                        /* set from gUnitAction.target by AiShowAction_Step8 and Step9 */
-    s16 unk_2a;                        /* set from gUnitAction.unk_07 by the same steps */
+    s16 unk_28;                        /* x of the tile the AiShowAction steps point func_020c41c4 at; guess: the view scrolls there */
+    s16 unk_2a;                        /* y of the same tile */
     u8 pad_2c[0x38 - 0x2c];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */

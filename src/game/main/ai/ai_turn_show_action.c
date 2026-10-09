@@ -10,7 +10,7 @@ void AiShowAction_Step3(void);
 void AiShowAction_Step4(void);
 void AiShowAction_Step5(void);
 void AiShowAction_Step6(void);
-void func_020b8850(void);
+void AiShowAction_Step7(void);
 void AiShowAction_Step8(void);
 void AiShowAction_Step9(void);
 void AiShowAction_Step10(void);
@@ -45,7 +45,7 @@ void AiTurn_ShowAction(void)
         AiShowAction_Step6();
         break;
     case 7:
-        func_020b8850();
+        AiShowAction_Step7();
         break;
     case 8:
         AiShowAction_Step8();
