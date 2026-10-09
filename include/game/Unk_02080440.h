@@ -80,6 +80,12 @@ typedef struct Unk_02080440_1c4 {
 #define WEATHER_RAIN  2
 #define WEATHER_SAND  3
 
+/* data_027c027c->unk_48[data_027c0284], written so that the compiler adds the
+ * scaled index before the field offset; needed to match in some places. The
+ * including file declares data_027c027c and data_027c0284. */
+#define STATE_IDX_FIRST (*(Unk_02080440_48 **)((u8 *)data_027c027c + data_027c0284 * sizeof(Unk_02080440_48 *) \
+                                    + (u32)&((Unk_02080440 *)0)->unk_48))
+
 /* Which of the two map states is current: data_02183b08 (the first) or the
  * other one. func_020f5344 takes it. Written as `state == &data_02183b08 ?
  * MAP_STATE_FIRST : MAP_STATE_SECOND`: with enum constants mwcc keeps the

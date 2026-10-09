@@ -11,9 +11,6 @@ BOOL Map_IsTileVisible(s16 x, s16 y);
 int AiAttack_Score(u32 flags, s16 *pos);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-/* The same state, with the scaled index added before the field offset; needed to match in two places. */
-#define STATE_IDX_FIRST (*(Unk_02080440_48 **)((u8 *)data_027c027c + data_027c0284 * sizeof(Unk_02080440_48 *) \
-                                    + (u32)&((Unk_02080440 *)0)->unk_48))
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 #define MAX_RANGE() GetUnitMaxRange(STATE->currentPlayer, STATE->actingUnit->type)
 

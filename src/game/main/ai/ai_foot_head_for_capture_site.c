@@ -17,10 +17,6 @@ void AiFoot_BoardTransport(void);          /* called when no site is in range */
 void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-/* The same state, written so that the compiler adds the scaled index
- * before the field offset; needed to match in some places. */
-#define STATE_IDX_FIRST (*(Unk_02080440_48 **)((u8 *)data_027c027c + data_027c0284 * sizeof(Unk_02080440_48 *) \
-                                    + (u32)&((Unk_02080440 *)0)->unk_48))
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 #define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
