@@ -543,6 +543,10 @@ src/game/main/func_02026870.c:
     complete
     .text       start:0x02026870 end:0x02026874
 
+src/game/main/sound/sound_reset_songs.c:
+    complete
+    .text       start:0x02026874 end:0x020268b8
+
 src/game/main/graphics/bg_put_three_tiles.c:
     complete
     .text       start:0x02026ce8 end:0x02026d54
