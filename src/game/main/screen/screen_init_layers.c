@@ -11,7 +11,7 @@ extern u8 *data_02297790;
 void BgControl_SetCharBase(BgControl *bg, u32 charOffset);
 void BgControl_SetScreenBase(BgControl *bg, u32 offset);
 void BgControl_SetScreenSize(BgControl *bg, int screenSize);
-void func_02009b50(void);                /* resets the screen's graphics state */
+void Screen_ResetBgRegisters(void);                /* resets the screen's graphics state */
 void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
 BOOL func_01ff8ef8(int layer);
 BOOL func_0200ac2c(int layer);
@@ -32,7 +32,7 @@ void Screen_InitLayers(const GfxLayer *config)
     int i;
     GfxLayer *layer;
 
-    func_02009b50();
+    Screen_ResetBgRegisters();
     has3dLayer = FALSE;
     for (i = 0; i < 4; i++, config++) {
         layer = GFX_LAYER(data_027c0280, i);
