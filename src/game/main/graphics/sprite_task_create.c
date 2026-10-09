@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_0216072c[];
+extern u8 gSpriteTaskScript[];
 extern const char data_0216074c[];
 
 void Screen_SetCurrent(void *state);
@@ -17,7 +17,7 @@ void Mem_Free(void *file);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u16 offset, u32 size);
 
-/* Starts the data_0216072c task for the first game state in data_027c0288, then loads its 0x200-byte
+/* Starts the gSpriteTaskScript task for the first game state in data_027c0288, then loads its 0x200-byte
  * picture and 16-colour palette into the second state's object VRAM and palette slot paletteSlot + 16. */
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot)
 {
@@ -32,7 +32,7 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    task = Task_Create(data_0216072c, (void *)3);
+    task = Task_Create(gSpriteTaskScript, (void *)3);
     task->x = x;
     task->y = y;
     task->tile = tile;

@@ -3813,6 +3813,10 @@ src/game/main/func_020825a4.c:
     complete
     .text       start:0x020825a4 end:0x020825b0
 
+src/game/main/graphics/sprite_task_destroy_all_first_screen.c:
+    complete
+    .text       start:0x020825b0 end:0x02082614
+
 src/game/main/graphics/sprite_task_create.c:
     complete
     .text       start:0x02082614 end:0x02082718

@@ -2531,7 +2531,7 @@ func_02082078 kind:function(arm,size=0x24c) addr:0x02082078
 func_020822c4 kind:function(arm,size=0x220) addr:0x020822c4
 func_020824e4 kind:function(arm,size=0xc0) addr:0x020824e4
 func_020825a4 kind:function(arm,size=0xc) addr:0x020825a4
-func_020825b0 kind:function(arm,size=0x64) addr:0x020825b0
+SpriteTask_DestroyAllFirstScreen kind:function(arm,size=0x64) addr:0x020825b0
 SpriteTask_Create kind:function(arm,size=0x104) addr:0x02082614
 func_02082718 kind:function(arm,size=0x98) addr:0x02082718
 func_020827b0 kind:function(arm,size=0x110) addr:0x020827b0
@@ -7480,7 +7480,7 @@ data_021606a4 kind:data(any) addr:0x021606a4
 data_021606ac kind:data(any) addr:0x021606ac
 data_021606e4 kind:data(any) addr:0x021606e4
 data_021606ec kind:data(any) addr:0x021606ec
-data_0216072c kind:data(any) addr:0x0216072c
+gSpriteTaskScript kind:data(any) addr:0x0216072c
 data_0216074c kind:data(any) addr:0x0216074c
 data_02160768 kind:data(any) addr:0x02160768
 data_02160a14 kind:data(any) addr:0x02160a14
