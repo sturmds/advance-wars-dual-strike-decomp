@@ -2015,6 +2015,10 @@ src/game/main/file/file_localize_path.c:
     complete
     .text       start:0x021040dc end:0x02104124
 
+src/game/main/mem/link_list_set_first.c:
+    complete
+    .text       start:0x02104308 end:0x02104334
+
 src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
