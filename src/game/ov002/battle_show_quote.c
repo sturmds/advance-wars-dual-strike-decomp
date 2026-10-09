@@ -22,7 +22,7 @@ void Data_Unpack(const void *src, void *dst);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_020021a8(u32 a, void *dst, int b, int c);
-void func_ov002_0235dfe0(void);
+void Battle_PickFrame(void);
 BOOL Battle_IsSideAir(int side);
 int func_ov002_0235e26c(int army);
 u8 Battle_GetSideMood(u8 side);
@@ -74,7 +74,7 @@ void Battle_ShowQuote(void)
     func_01ff8c84(1);
     res = File_Load(Ov002_gBattleResPath);
     lang = File_Load(File_LocalizePath(Ov002_gBattleLangResPath));
-    func_ov002_0235dfe0();
+    Battle_PickFrame();
 
     switch (data_0229fb30.unk_03) {
     case 1:
