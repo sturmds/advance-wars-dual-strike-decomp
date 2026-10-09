@@ -1411,6 +1411,10 @@ src/game/main/ai/ai_can_end_move_at.c:
     complete
     .text       start:0x020a770c end:0x020a7fe0
 
+src/game/main/ai/ai_is_tile_needed_by_ally.c:
+    complete
+    .text       start:0x020a7fe0 end:0x020a870c
+
 src/game/main/ai/find_attack_tile.c:
     complete
     .text       start:0x020a89ac end:0x020a8b20
