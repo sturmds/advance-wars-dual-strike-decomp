@@ -18,7 +18,7 @@ void func_02015340(int x, int y, void *target, const void *text, int a, int b);
 void func_0201e30c(void *target, int a, int b);
 void func_0201e6b4(int x, int y, int w, int h);
 void func_02021380(int a);
-void func_02025bb4(void);
+void MenuButtons_DisableTouch(void);
 void func_020262f0(int a, int b, int c, int d);
 void func_02026394(void);
 void func_020269b4(void *target, int a, int b, const void *src, int c);
@@ -197,7 +197,7 @@ void LinkPhase_InitScreen(void)
     func_020262f0(0, -16, 0x100, -16);
     MenuButton_Select(0);
     func_020727d0();
-    func_02025bb4();
+    MenuButtons_DisableTouch();
     func_02029648();
     func_0207d918();
     if (func_0207bd80() == 1) {
