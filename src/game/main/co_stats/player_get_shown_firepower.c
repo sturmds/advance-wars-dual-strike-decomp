@@ -2,36 +2,14 @@
 #include "game/player.h"
 #include "game/menu_state.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02088d04.h"
+#include "game/screen_other_map.h"
 
-void Screen_SetCurrent(void *state);
-void Screen_SetCurrentGfx(void *state);
 int Player_GetFirepowerBonus(int playerIndex, int slot, int powerState, int unitType);
 int Player_GetSlotFirepower(int playerIndex, int slot, int powerState, int unitType, int unk);
 
-extern Unk_02080440 *data_027c027c;
-extern Unk_027c0280 *data_027c0280;
-extern int data_027c0284;
-extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
-
-/* unk_30 of the other map's game state. */
-static inline u32 OtherMap_GetUnk30(void)
-{
-    Unk_027c0280 *saved0280 = data_027c0280;
-    Unk_02080440 *saved027c;
-    u32 value;
-
-    Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
-    saved027c = data_027c027c;
-    Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
-    value = GAME->unk_1c4->unk_30;
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
-    return value;
-}
 
 /* Firepower bonus of a player's CO slot (0 front, 1 back) for a unit type,
  * as the unit info drawn by func_0206d67c shows it. Slot 0 uses
