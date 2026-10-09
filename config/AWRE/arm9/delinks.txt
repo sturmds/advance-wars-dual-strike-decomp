@@ -52,6 +52,10 @@ src/game/main/bg_set_screen_base.c:
     complete
     .text       start:0x0200a7f0 end:0x0200a810
 
+src/game/main/sound/sound_load_resident_data.c:
+    complete
+    .text       start:0x0200b364 end:0x0200b39c
+
 src/game/main/map/map_place_predeployed_units.c:
     complete
     .text       start:0x02019c54 end:0x02019f90
