@@ -10,7 +10,7 @@ extern int data_027c0284;
 void Ai_BuildThreatMaps(void);
 int Unit_CapturePoints(MapUnit *unit);
 void func_020a9854(void);
-void func_020ab014(void);
+void AiUnit_SeekSeaTransport(void);
 void AiFoot_PickAttackTarget(void);
 void func_020ad704(void);
 void AiFoot_JoinCapturingUnit(void);
@@ -49,7 +49,7 @@ void AiFoot_MoveAndAttack(void)
         func_020b0794();
     }
     AiFoot_HeadForCaptureSite();
-    func_020ab014();
+    AiUnit_SeekSeaTransport();
     gAiTurnState->stepFlags |= AI_STEP_ATTACK_DONE;
     AiFoot_HeadForCaptureSite();
     func_020a9854();

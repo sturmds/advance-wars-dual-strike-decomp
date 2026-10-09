@@ -5,7 +5,7 @@ void func_020a9854(void);
 void func_020a9ac0(void);
 void func_020aa9c4(void);
 void func_020aacc0(void);
-void func_020ab014(void);
+void AiUnit_SeekSeaTransport(void);
 void func_020af5f8(void);
 void func_020b0a70(void);
 void AiUnit_PlanAttack(void);
@@ -22,7 +22,7 @@ void AiUnit_ActOrder3(void)
     AiUnit_PlanAttack();
     func_020b0a70();
     func_020aa9c4();
-    func_020ab014();
+    AiUnit_SeekSeaTransport();
     func_020b297c();
     func_020a9ac0();
     func_020aacc0();

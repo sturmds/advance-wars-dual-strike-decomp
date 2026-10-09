@@ -3,7 +3,7 @@
 void Ai_BuildThreatMaps(void);
 void func_020a9854(void);
 void func_020aa068(void);
-void func_020ab014(void);
+void AiUnit_SeekSeaTransport(void);
 void func_020af5f8(void);
 void func_020b0a70(void);
 void AiUnit_PlanAttack(void);
@@ -21,7 +21,7 @@ void AiUnit_ActOrder6(void)
     AiUnit_PlanAttack();
     func_020b0a70();
     func_020aa068();
-    func_020ab014();
+    AiUnit_SeekSeaTransport();
     func_020b297c();
     func_020a9854();
     AiUnit_WaitInPlace();

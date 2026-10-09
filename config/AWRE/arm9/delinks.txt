@@ -1343,6 +1343,10 @@ src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854
 
+src/game/main/ai/ai_unit_seek_sea_transport.c:
+    complete
+    .text       start:0x020ab014 end:0x020ab70c
+
 src/game/main/ai/ai_empty_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020ac9e8 end:0x020ad0d4

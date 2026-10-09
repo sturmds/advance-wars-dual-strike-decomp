@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 void Ai_ClearThreatMaps(void);
 void func_020a9f64(void);
-void func_020ab014(void);
+void AiUnit_SeekSeaTransport(void);
 void func_020af540(void);
 void AiUnit_PlanAttack(void);
 void AiUnit_WaitInPlace(void);
@@ -25,7 +25,7 @@ void AiIndirect_MoveOrder10(void)
         AiUnit_PlanAttack();
     }
     func_020a9f64();
-    func_020ab014();
+    AiUnit_SeekSeaTransport();
     func_020b297c();
     AiUnit_WaitInPlace();
 }
