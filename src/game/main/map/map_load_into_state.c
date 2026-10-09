@@ -5,7 +5,7 @@
 void Map_LoadData(u16 mapId); /* needed to match: each call narrows mapId itself */
 const void *Map_GetName(u16 mapId);
 int Map_GetPlayerCount(u16 mapId);
-void func_020c4990(int mapId);
+void Map_LoadCustomIntoState(int mapId);
 void Camera_ResetToPreset0(void *a);
 void Map_BuildRowStarts(void);
 void func_020c3e5c(void);
@@ -21,7 +21,7 @@ extern u8 data_022a7d5c[];
 /* Loads a map's data into the game state: size, name, player count, and
  * every tile (the cell code is kept in mapCells, converted through
  * tileCodeTerrain into tiles). Frees the map data buffer at the end. Custom
- * maps go through func_020c4990. */
+ * maps go through Map_LoadCustomIntoState. */
 void Map_LoadIntoState(int mapId)
 {
     int x;
@@ -29,7 +29,7 @@ void Map_LoadIntoState(int mapId)
     u16 cell;
 
     if (MAP_IS_CUSTOM(mapId)) {
-        func_020c4990(mapId);
+        Map_LoadCustomIntoState(mapId);
         return;
     }
     Map_LoadData(mapId);
