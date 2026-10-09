@@ -76,6 +76,10 @@ src/game/ov000/func_ov000_022b0500.c:
     complete
     .text       start:0x022b0500 end:0x022b052c
 
+src/game/ov000/second_screen_task_is_running.c:
+    complete
+    .text       start:0x022b0680 end:0x022b06ec
+
 src/game/ov000/palette_load_army_obj_row.c:
     complete
     .text       start:0x022b1190 end:0x022b11f0

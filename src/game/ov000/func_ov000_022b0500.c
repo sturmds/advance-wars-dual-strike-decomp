@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-MenuButton *func_ov000_022b0680(int id);
+MenuButton *SecondScreenTask_IsRunning(int id);
 void func_ov000_022b04ec(MenuButton *button);
 
 void func_ov000_022b0500(int id)
 {
-    MenuButton *button = func_ov000_022b0680(id);
+    MenuButton *button = SecondScreenTask_IsRunning(id);
 
     if (button == NULL) {
         return;
