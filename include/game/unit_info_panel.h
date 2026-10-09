@@ -8,7 +8,7 @@
  * data_ov000_0234ec8c. The panel shows one unit with a frame in the
  * owner's army palette and sprite set. */
 typedef struct UnitInfoPanel {
-    u8 unk_00;                         /* 120 when shown by func_ov000_022b1e70 and func_ov000_022b1f90; passed to the drawing code */
+    u8 unk_00;                         /* 120 when shown by UnitInfoPanel_OpenForType and func_ov000_022b1f90; passed to the drawing code */
     u8 pad_01[0x04 - 0x01];
     MapUnit *unit;                     /* unit shown, or the scratch copy in data_ov000_02350510 */
     u8 owner;                          /* player slot of the unit */
