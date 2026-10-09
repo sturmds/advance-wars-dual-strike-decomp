@@ -2,7 +2,7 @@
 #include "game/task.h"
 
 void Task_Unlink(Task *task);
-void func_0202397c(Task *task);
+void Task_FreeTree(Task *task);
 
 /* Unlinks task and frees it with all its children. NULL is allowed. */
 void Task_Destroy(Task *task)
@@ -11,5 +11,5 @@ void Task_Destroy(Task *task)
         return;
     }
     Task_Unlink(task);
-    func_0202397c(task);
+    Task_FreeTree(task);
 }
