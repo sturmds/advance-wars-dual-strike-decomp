@@ -305,6 +305,10 @@ src/game/main/graphics/gfx_load_bmap09f.c:
     complete
     .text       start:0x0201e30c end:0x0201e338
 
+src/game/main/graphics/window_draw.c:
+    complete
+    .text       start:0x0201e664 end:0x0201e68c
+
 src/game/main/graphics/window_draw_on_layer1.c:
     complete
     .text       start:0x0201e6b4 end:0x0201e6e8
