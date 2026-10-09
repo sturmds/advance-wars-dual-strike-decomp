@@ -4,7 +4,7 @@
 #include "game/menu_button.h"
 
 void func_02040568(void);
-void func_0204062c(void);
+void ForceRankScreen_NextSet(void);
 void ForceRankScreen_PrevSet(void);
 void ForceRankScreen_Close(void);
 
@@ -14,7 +14,7 @@ void ForceRankScreen_Close(void);
 /* onKeys of the Force Rank selection buttons. Up and down wrap within the
  * column; left and right skip empty columns (left wraps from column 1 to
  * the last one) and keep the row when the new column has it. L and R call
- * ForceRankScreen_PrevSet and func_0204062c, X calls func_02040568. */
+ * ForceRankScreen_PrevSet and ForceRankScreen_NextSet, X calls func_02040568. */
 void ForceRankScreen_HandleKeys(MenuButton *button)
 {
     int cursor;
@@ -80,7 +80,7 @@ void ForceRankScreen_HandleKeys(MenuButton *button)
         ForceRankScreen_PrevSet();
     }
     if (gKeypad->pressed & PAD_BUTTON_R) {
-        func_0204062c();
+        ForceRankScreen_NextSet();
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
         MenuButton_Confirm(button);
