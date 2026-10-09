@@ -33,12 +33,16 @@ typedef struct Unk_ov006_0235f690 {
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
-    u8 pad_39[0x80 - 0x39];
+    u8 pad_39[0x5c - 0x39];
+    struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
+    struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
+    u8 pad_64[0x80 - 0x64];
     Ov006Slot unk_80[7];               /* an 8th slot starts at 0xd4 */
     s16 unk_d4;                        /* flags of that 8th slot */
     u8 pad_d6[0xd8 - 0xd6];
     u8 unk_d8[0xeb - 0xd8];            /* passed to Ov006_HasNonSpace */
     u8 unk_eb;                         /* its address is passed to func_020d7b04 */
+    u8 pad_ec[0x10c - 0xec];           /* DesignRoom_Init allocates 0x10c bytes */
 } Unk_ov006_0235f690;
 
 #endif

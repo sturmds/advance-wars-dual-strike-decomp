@@ -1,0 +1,152 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/co_data.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/Unk_022977a4.h"
+#include "game/Unk_ov006_0235f690.h"
+#include "game/screen_other_map.h"
+
+void *Mem_Alloc(u32 size);
+void func_0210f52c(void *dst, int value, int size);
+void func_020b98bc(void);
+void func_020f4a84(void);
+void Players_Reset(void);
+void MapRules_SetDefaults(void);
+void func_020c1444(void);
+void func_ov006_02350cdc(int arg);
+void func_020c7104(void);
+void func_020db3c0(void);
+void func_020e7a80(int a0, int mapId);
+void MovementCost(void);
+void func_020c1b90(void);
+void func_020c1950(void);
+void func_020c8888(void);
+void Screens_SelectConfigs(void);
+void func_01ff9a90(void);
+void func_0200c630(void *p);
+void func_ov006_023527ac(void);
+u8 func_ov006_02365ba8(void);
+void func_ov006_023659b4(void);
+void func_020d3428(void);
+void func_01ff9c48(void (*callback)(void));
+void func_020d308c(void);
+void Font_SetDigitEndTile(int tile);
+void func_020c4394(int x, int y, s16 *tile, u16 *pixel);
+void Ov006_PostRequest(int request);
+Task *Task_Create(const TaskScriptCmd *script, void *parentOrList);
+void Sound_StartSong(int songId);
+void func_ov006_02353304(void);
+
+extern Unk_ov006_0235f690 *data_ov006_0236d640;
+extern u8 data_022a7d5c[];
+extern u32 data_022a6b38;
+extern const TaskScriptCmd data_ov006_0236a218[];
+extern const TaskScriptCmd data_ov006_0236a1e0[];
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define OV6   data_ov006_0236d640
+
+/* Second step of the data_ov006_0236a1f0 task script (func_ov006_02350ec0
+ * starts it): sets up overlay 6, which looks like the Design Room (a map
+ * filled with one terrain, a name field, four armies). Allocates the
+ * overlay state, then on both screens loads map 4 with default rules and
+ * runs battle start (func_020c1444) as day 1, player 1. It gives each army
+ * its default CO (Andy, Olaf, Eagle, Kanbei; Nell in the neutral slot),
+ * puts the view at tile (7, 4) and starts the overlay's two tasks and song
+ * 0x34. gameMode is left as it was. */
+void DesignRoom_Init(Task *task)
+{
+    /* The code reads the upper half of task->prev as an s16. The task is new
+     * and alone in its list here, so it is likely always 0; what the field
+     * meant in the original task struct is unknown. */
+    s16 keep = ((s16 *)&task->prev)[1];
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+    void (*callback)(int);
+
+    OV6 = Mem_Alloc(sizeof(Unk_ov006_0235f690));
+    func_0210f52c(OV6, 0, sizeof(Unk_ov006_0235f690));
+    OV6->unk_d8[0] = 0;
+    if (keep == 0) {
+        func_0210f52c(OV6, 0, sizeof(Unk_ov006_0235f690));
+    }
+    func_020b98bc();
+    STATE->unk_1c4->playerCount = 4;
+    func_020f4a84();
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    STATE->unk_1c4->mapId = 4;
+    Players_Reset();
+    MapRules_SetDefaults();
+    func_020c1444();
+    STATE->currentPlayer = 1;
+    STATE->unk_00 = 1;
+    STATE->unk_1c4->unk_37 = 0;
+    func_ov006_02350cdc(keep);
+    func_020c7104();
+    func_020db3c0();
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    STATE->unk_1c4->mapId = 4;
+    Players_Reset();
+    MapRules_SetDefaults();
+    func_020c1444();
+    STATE->currentPlayer = 1;
+    STATE->unk_00 = 1;
+    STATE->unk_1c4->unk_37 = 0;
+    func_ov006_02350cdc(keep);
+    func_020c7104();
+    func_020db3c0();
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    STATE->players[0].front.id = CO_NELL;
+    STATE->players[1].front.id = CO_ANDY;
+    STATE->players[2].front.id = CO_OLAF;
+    STATE->players[3].front.id = CO_EAGLE;
+    STATE->players[4].front.id = CO_KANBEI;
+    func_020e7a80(4, STATE->unk_1c4->mapId);
+    MovementCost();
+    func_020c1b90();
+    func_020c1950();
+    func_020c8888();
+    data_022977a4.unk_04 = 0x13a;
+    Screens_SelectConfigs();
+    callback = data_027c027c->unk_50[data_027c0284]->unk_54;
+    if (callback != NULL) {
+        callback(1);
+    }
+    func_01ff9a90();
+    func_0200c630(data_022a7d5c);
+    func_ov006_023527ac();
+    if (keep == 0) {
+        OV6->unk_00 |= 0x1000;
+        OV6->unk_2b = func_ov006_02365ba8();
+        func_ov006_023659b4();
+    }
+    func_020d3428();
+    func_01ff9c48(func_020d308c);
+    data_022a6b38 = 0;
+    Font_SetDigitEndTile(0x45);
+    func_020c4394(7, 4, &STATE->unk_28, &STATE->unk_2c);
+    *(s8 *)&OV6->unk_38 = -1; /* needed to match: stored as a signed -1 */
+    OV6->unk_1c = 1;
+    OV6->unk_25 = 1;
+    OV6->unk_24 = 1;
+    OV6->unk_27 = OV6->unk_25;
+    OV6->unk_28 = OV6->unk_24;
+    Ov006_PostRequest(0);
+    OV6->unk_5c = Task_Create(data_ov006_0236a218, (void *)3);
+    Sound_StartSong(0x34);
+    func_ov006_02353304();
+    OV6->unk_60 = Task_Create(data_ov006_0236a1e0, (void *)3);
+}
