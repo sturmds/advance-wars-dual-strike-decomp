@@ -1928,6 +1928,9 @@ src/game/main/map/unit_is_tile_owned_by_team.c:
     complete
     .text       start:0x020c09e0 end:0x020c0a44
 
+src/game/main/map/func_020c0aa8.c:
+    .text       start:0x020c0aa8 end:0x020c0e3c
+
 src/game/main/map/map_apply_slot_flags.c:
     complete
     .text       start:0x020c0e80 end:0x020c0f44
