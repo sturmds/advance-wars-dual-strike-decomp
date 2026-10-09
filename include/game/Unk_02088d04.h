@@ -7,6 +7,8 @@
 typedef struct Unk_027c0280 {
     u8 pad_00[0xec];
     void *unk_ec;                      /* passed to the text drawing calls */
+    u8 pad_f0[0x134 - 0xf0];
+    u8 *charBase;                      /* CO pictures load here, 32 bytes per tile */
 } Unk_027c0280;
 
 /* data_027c0288 (DTCM). */
