@@ -11,7 +11,7 @@ void AiUnit_TryAttackBeforeRepair(void);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
-BOOL func_020a6554(s16 x, s16 y, int moves);
+BOOL AiUnit_HasFuelForTile(s16 x, s16 y, int moves);
 int Ai_IsTileNeededByAlly(s16 x, s16 y);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -57,7 +57,7 @@ void AiUnit_HeadForRepairTile(void)
             if (MAP->unitAt[TILE(x, y)] != 0) {
                 continue;
             }
-            if (!func_020a6554(x, y, gAiTurnState->unk_05)) {
+            if (!AiUnit_HasFuelForTile(x, y, gAiTurnState->unk_05)) {
                 continue;
             }
             reach = STATE->rangeMap[y][x];

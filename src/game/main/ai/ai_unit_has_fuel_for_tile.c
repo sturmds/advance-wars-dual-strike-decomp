@@ -11,6 +11,15 @@ int func_020e0360(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
+/* Needed to match: at these two points the original reads data_027c0284 and
+ * then data_027c027c again instead of reusing the state pointer it already
+ * holds. Volatile reads, index first, are the only form found that does this. */
+#define RELOAD_STATE(dst)                                                    \
+    {                                                                        \
+        int index_ = *(volatile int *)&data_027c0284;                        \
+        dst = (*(Unk_02080440 *volatile *)&data_027c027c)->unk_48[index_];   \
+    }
+
 /* Daily fuel use added on top of func_020e0360's value, per turn spent
  * travelling. */
 #define FUEL_PER_DAY_STEALTH 8
@@ -21,11 +30,10 @@ int func_020e0360(int player, int unitType);
  * extra days. rangeMap holds the move cost there; the days are the whole
  * turns beyond the first at movesPerTurn. Ground units and unreached tiles
  * (cost 0) always pass. */
-BOOL func_020a6554(int x, int y, int movesPerTurn)
+BOOL AiUnit_HasFuelForTile(int x, int y, int movesPerTurn)
 {
     int days;
     int unitType;
-    int fuelRate;
     Unk_02080440_48 *state;
 
     if (!(Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & (MOVE_GROUP_AIR | MOVE_GROUP_SEA))) {
@@ -35,21 +43,22 @@ BOOL func_020a6554(int x, int y, int movesPerTurn)
         return TRUE;
     }
     days = HwDiv32(STATE->rangeMap[y][x] - 1, movesPerTurn);
-    state = STATE;
+    RELOAD_STATE(state);
     unitType = state->actingUnit->type;
     if (unitType == UNIT_STEALTH) {
-        fuelRate = Player_GetFuelRate(state->currentPlayer);
-        if (state->actingUnit->fuel - fuelRate * state->rangeMap[y][x] < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_STEALTH)) {
+        if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
+            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_STEALTH)) {
             return FALSE;
         }
     } else if ((Ov000_gUnitStats[unitType].moveGroup & MOVE_GROUP_AIR) || unitType == UNIT_SUB) {
-        fuelRate = Player_GetFuelRate(STATE->currentPlayer);
-        if (STATE->actingUnit->fuel - fuelRate * STATE->rangeMap[y][x] < days * (func_020e0360(STATE->currentPlayer, unitType) + FUEL_PER_DAY_AIR_SUB)) {
+        RELOAD_STATE(state);
+        if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
+            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_AIR_SUB)) {
             return FALSE;
         }
     } else {
-        fuelRate = Player_GetFuelRate(state->currentPlayer);
-        if (state->actingUnit->fuel - fuelRate * state->rangeMap[y][x] < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_OTHER)) {
+        if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
+            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_OTHER)) {
             return FALSE;
         }
     }
