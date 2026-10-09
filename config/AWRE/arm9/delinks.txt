@@ -251,6 +251,10 @@ src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
 
+src/game/main/func_02089244.c:
+    complete
+    .text       start:0x02089244 end:0x02089260
+
 src/game/main/ai/ai_turn_update.c:
     complete
     .text       start:0x0208c2a4 end:0x0208c368
