@@ -7291,6 +7291,10 @@ src/game/main/co_stats/co_get_tag_stars.c:
     complete
     .text       start:0x020e1948 end:0x020e19b4
 
+src/game/main/menus/co_select_reset_to_unlocked_cos.c:
+    complete
+    .text       start:0x020e1a70 end:0x020e1acc
+
 src/game/main/copowers/func_020e1acc.c:
     complete
     .text       start:0x020e1acc end:0x020e1bc8
