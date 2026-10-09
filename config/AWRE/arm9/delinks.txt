@@ -7015,6 +7015,10 @@ src/game/main/func_020d9ea8.c:
     complete
     .text       start:0x020d9ea8 end:0x020d9eb4
 
+src/game/main/map/map_object_draw.c:
+    complete
+    .text       start:0x020da068 end:0x020da1dc
+
 src/game/main/func_020da63c.c:
     complete
     .text       start:0x020da63c end:0x020da650
