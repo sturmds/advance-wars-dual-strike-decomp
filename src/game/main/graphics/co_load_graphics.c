@@ -17,6 +17,6 @@ void Co_LoadGraphics(int coId, int firstTile)
 
     func_02112658(data_02151e44);
     variant = func_02002c04(coId);
-    func_0200bcf0(data_027c0280->charBase + firstTile * 32,
+    func_0200bcf0(data_027c0280->objVram + firstTile * 32,
                   data_02152b38[coId & 0x7f].pictures[variant].name);
 }

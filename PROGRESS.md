@@ -30,4 +30,6 @@ Modules with nothing done: itcm, ov000, ov001, ov002, ov004.
 
 Source files in `src/` that the build does not use yet (not marked `complete`).
 
-None.
+| File | Functions | Bytes |
+|---|---|---:|
+| `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |

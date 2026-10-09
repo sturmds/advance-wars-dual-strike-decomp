@@ -50,14 +50,14 @@ extern u8 data_027c0108;
 #define TAB() func_020642e8()
 #define LIST_OF_TAB(tab) (TABLES.listOfTab[tab])
 #define LIST(tab) (MENU->lists[LIST_OF_TAB(tab)])
-/* Writes value to the unk_c2 entry of background bg (probably its scroll
- * offset), then copies it to copyBg. */
+/* Writes value to the X scroll of the BG used by layer bg, then copies
+ * it to the BG of layer copyBg. */
 #define SET_SCROLL(bg, copyBg, value)                                   \
     {                                                                   \
         u8 from = data_027c0280->bg;                                    \
         u8 to = data_027c0280->copyBg;                                  \
-        data_027c0280->unk_c2[from] = (value);                          \
-        data_027c0280->unk_c2[to] = data_027c0280->unk_c2[from];        \
+        data_027c0280->bgScrollX[from] = (value);                       \
+        data_027c0280->bgScrollX[to] = data_027c0280->bgScrollX[from]; \
     }
 /* Six values in a 3 by 2 grid: an icon (grey when the value is 0), then
  * the value in up to two digits under it. */
@@ -117,16 +117,16 @@ void MapSelect_Draw(void)
         }
         slideOffset = func_0202795c(256, 0, 17 - MENU->slideFrames, 16);
         if (MENU->slideBack != 0) {
-            SET_SCROLL(unk_f5, unk_e1, -slideOffset);
+            SET_SCROLL(layer1Bg, layer0Bg, -slideOffset);
             savedState = data_027c0280;
             func_0200acac(data_027c0288.unk_04);
-            SET_SCROLL(unk_109, unk_f5, -slideOffset);
+            SET_SCROLL(layer2Bg, layer1Bg, -slideOffset);
             func_0200acac(savedState);
         } else {
-            SET_SCROLL(unk_f5, unk_e1, slideOffset);
+            SET_SCROLL(layer1Bg, layer0Bg, slideOffset);
             savedState = data_027c0280;
             func_0200acac(data_027c0288.unk_04);
-            SET_SCROLL(unk_109, unk_f5, slideOffset);
+            SET_SCROLL(layer2Bg, layer1Bg, slideOffset);
             func_0200acac(savedState);
         }
         MENU->slideFrames--;

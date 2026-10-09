@@ -111,28 +111,28 @@ void LinkPhase_InitScreen(void)
     func_02028ae8();
 
     SWITCH_TO(MAIN_MAP);
-    data_027c0280->unk_94_2 = 1;
-    data_027c0280->unk_bc = 10;
-    data_027c0280->unk_be = 6;
-    data_027c0280->unk_c0 = 0;
-    data_027c0280->unk_90[data_027c0280->unk_e1] = 0;
-    data_027c0280->unk_90[data_027c0280->unk_f5] = 0;
-    data_027c0280->unk_90[data_027c0280->unk_109] = 1;
-    data_027c0280->unk_90[data_027c0280->unk_11d] = 0;
-    data_027c0280->unk_94_0 = 0;
-    data_027c0280->unk_96[data_027c0280->unk_e1] = 0;
-    data_027c0280->unk_96[data_027c0280->unk_f5] = 0;
-    data_027c0280->unk_96[data_027c0280->unk_109] = 0;
-    data_027c0280->unk_96[data_027c0280->unk_11d] = 0;
-    data_027c0280->unk_9a_0 = 1;
+    data_027c0280->blendMode = 1;
+    data_027c0280->blendEva = 10;
+    data_027c0280->blendEvb = 6;
+    data_027c0280->blendEvy = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer0Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer1Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer2Bg] = 1;
+    data_027c0280->blendTopBg[data_027c0280->layer3Bg] = 0;
+    data_027c0280->blendTopObj = 0;
+    data_027c0280->blendBottomBg[data_027c0280->layer0Bg] = 0;
+    data_027c0280->blendBottomBg[data_027c0280->layer1Bg] = 0;
+    data_027c0280->blendBottomBg[data_027c0280->layer2Bg] = 0;
+    data_027c0280->blendBottomBg[data_027c0280->layer3Bg] = 0;
+    data_027c0280->blendBottomObj = 1;
     SWITCH_BACK();
 
     file = func_0200bc28(gLinkPhaseResPath);
     SWITCH_TO(MAIN_MAP);
-    func_02003bec(file, data_027c0280->unk_130 + (data_027c0280->bgControl[data_027c0280->unk_109].charBase << 14));
+    func_02003bec(file, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     func_02003188(file + 0x2a4, 0, 0xa0);
     for (i = 0; i < data_0229eb30.link.unk_02c; i++) {
-        target = data_027c0280->unk_114;
+        target = data_027c0280->layer2Map;
         func_020269b4(target, 4, func_02073768(i), file + gLinkPhaseArmyGfxOffsets[data_0229eb30.link.unk_024[i] - 1], 0);
     }
     func_01ff8d60(2);
@@ -140,7 +140,7 @@ void LinkPhase_InitScreen(void)
     func_0200bf24(file);
 
     file = func_0200bc28(func_021040dc(gLinkCommonLangResPath));
-    func_02003bec(file, data_027c0280->charBase);
+    func_02003bec(file, data_027c0280->objVram);
     func_0200bf24(file);
 
     file = func_0200bc28(gLinkCommonResPath);
@@ -162,7 +162,7 @@ void LinkPhase_InitScreen(void)
     func_0201e6b4(11, 20, 10, 4);
     target = data_027c0280->unk_ec;
     func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
-    func_0202bdec(data_027c0280->charBase + 0x4000, mapId);
+    func_0202bdec(data_027c0280->objVram + 0x4000, mapId);
     func_0202c520(18);
     func_01ff8d60(0);
     func_01ff8d60(1);
@@ -171,16 +171,16 @@ void LinkPhase_InitScreen(void)
     if (GAME->unk_8a == 1) {
         mapId = GAME->unk_1c4->mapId;
         SWITCH_TO(MAIN_MAP);
-        data_027c0280->bgControl[data_027c0280->unk_e1].priority = 1;
-        data_027c0280->bgControl[data_027c0280->unk_f5].priority = 2;
-        data_027c0280->bgControl[data_027c0280->unk_109].priority = 0;
-        data_027c0280->bgControl[data_027c0280->unk_11d].priority = 3;
+        data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 1;
+        data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 2;
+        data_027c0280->bgCnt[data_027c0280->layer2Bg].priority = 0;
+        data_027c0280->bgCnt[data_027c0280->layer3Bg].priority = 3;
         func_0201e30c(data_027c0280->unk_f8, 0, 0);
         func_02021380(0);
         func_0201e6b4(11, 20, 10, 4);
         target = data_027c0280->unk_ec;
         func_02015340(12, 21, target, Map_GetName((u16)mapId), 0, 0x100);
-        func_0202bdec(data_027c0280->charBase + 0x780, mapId);
+        func_0202bdec(data_027c0280->objVram + 0x780, mapId);
         func_0202c520(19);
         func_01ff8d60(0);
         func_01ff8d60(1);

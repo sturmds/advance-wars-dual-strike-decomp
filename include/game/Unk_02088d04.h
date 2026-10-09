@@ -8,39 +8,49 @@
 typedef struct Unk_027c0280 {
     u8 pad_00[0x08];
     u8 *unk_08;
-    u8 pad_0c[0x6e - 0x0c];
-    BgControl bgControl[8];            /* indexed by BG number; values for the BGxCNT registers */
-    u8 pad_7e[0x90 - 0x7e];
-    u8 unk_90[4];                      /* indexed by BG number */
-    u16 unk_94_0 : 1;
-    u16 unk_94_1 : 1;
-    u16 unk_94_2 : 2;
-    u16 unk_94_4 : 12;
-    u8 unk_96[4];                      /* indexed by BG number */
-    u16 unk_9a_0 : 1;
-    u16 unk_9a_1 : 15;
+    u8 pad_0c[0x6c - 0x0c];
+    u16 dispCnt;                       /* DISPCNT bits 0-15 (bit 8-12: BG0-3 and OBJ on) */
+    BgControl bgCnt[4];                /* BG0CNT-BG3CNT */
+    u8 pad_76[0x90 - 0x76];
+    u8 blendTopBg[4];                  /* BLDCNT first target, per BG */
+    u16 blendTopObj : 1;
+    u16 blendTopBackdrop : 1;
+    u16 blendMode : 2;                 /* 0 none, 1 alpha */
+    u16 : 12;
+    u8 blendBottomBg[4];               /* BLDCNT second target, per BG */
+    u16 blendBottomObj : 1;
+    u16 : 15;
     u8 pad_9c[0xbc - 0x9c];
-    u16 unk_bc;
-    u16 unk_be;
-    u16 unk_c0;
-    u16 unk_c2[4];                     /* indexed by unk_e1, unk_f5 and unk_109; a scroll offset per background (a guess) */
-    u8 pad_ca[0xe1 - 0xca];
-    u8 unk_e1;                         /* a BG number */
+    u16 blendEva;
+    u16 blendEvb;
+    u16 blendEvy;
+    u16 bgScrollX[4];
+    u16 bgScrollY[4];
+    u8 pad_d2[0xdd - 0xd2];
+    u8 unk_dd;
+    u8 pad_de[0xe1 - 0xde];
+    /* Four layers of 0x14 bytes from 0xe0: +1 the BG they use, +0xc
+     * their tile map buffer. */
+    u8 layer0Bg;
     u8 pad_e2[0xec - 0xe2];
     void *unk_ec;                      /* passed to the text drawing calls */
     u8 pad_f0[0xf5 - 0xf0];
-    u8 unk_f5;                         /* a BG number */
+    u8 layer1Bg;
     u8 pad_f6[0xf8 - 0xf6];
     void *unk_f8;
-    u8 pad_fc[0x109 - 0xfc];
-    u8 unk_109;                        /* a BG number */
+    u8 pad_fc[0x100 - 0xfc];
+    u16 *layer1Map;
+    u8 pad_104[0x109 - 0x104];
+    u8 layer2Bg;
     u8 pad_10a[0x114 - 0x10a];
-    void *unk_114;
+    u16 *layer2Map;
     u8 pad_118[0x11d - 0x118];
-    u8 unk_11d;                        /* a BG number */
-    u8 pad_11e[0x130 - 0x11e];
-    u8 *unk_130;                       /* character base 0 of a BG; base n starts n * 0x4000 bytes on */
-    u8 *charBase;                      /* CO pictures load here, 32 bytes per tile */
+    u8 layer3Bg;
+    u8 pad_11e[0x128 - 0x11e];
+    u16 *layer3Map;
+    u8 pad_12c[0x130 - 0x12c];
+    u8 *bgVram;                        /* BG character base 0 */
+    u8 *objVram;                       /* CO pictures load here, 32 bytes per tile */
 } Unk_027c0280;
 
 /* data_027c0288 (DTCM). */

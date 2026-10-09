@@ -100,6 +100,9 @@ src/game/main/map/map_load_army_colours_by_id.c:
     complete
     .text       start:0x0202cb34 end:0x0202cbcc
 
+src/game/main/menus/campaign_map_init.c:
+    .text       start:0x0204f960 end:0x0205053c
+
 src/game/main/menus/map_select_draw.c:
     complete
     .text       start:0x0205f5c4 end:0x02060718
