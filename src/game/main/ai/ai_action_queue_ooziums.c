@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_0209fadc(void); /* run on each queued Oozium */
+void AiOozium_Act(void); /* run on each queued Oozium */
 
 /* Queues the current player's Oozium that have not acted yet. The scan
  * skips the player's first unit slot and covers the next 50. */
@@ -27,6 +27,6 @@ void AiAction_QueueOoziums(void)
     }
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
-    gAiQueueRoutine = func_0209fadc;
+    gAiQueueRoutine = AiOozium_Act;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

@@ -355,6 +355,10 @@ src/game/main/ai/ai_count_units_of_type.c:
     complete
     .text       start:0x0209fa3c end:0x0209fadc
 
+src/game/main/ai/ai_oozium_act.c:
+    complete
+    .text       start:0x0209fadc end:0x0209faf8
+
 src/game/main/ai/ai_unit_act_by_order_group.c:
     complete
     .text       start:0x0209fdb4 end:0x0209fe88
