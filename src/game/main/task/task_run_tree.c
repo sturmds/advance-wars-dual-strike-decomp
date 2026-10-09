@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern u32 data_0229b380;              /* set to 1 by Task_InitSystem; name unknown */
 
-void func_020227e8(Task *task);
+void Task_RunScript(Task *task);
 
 /* Runs one frame of task, of the tasks after it in its list (those first),
  * then of its children. A task waiting for children does not run, and
@@ -20,7 +20,7 @@ void Task_RunTree(Task *task)
     }
     if (task->childCount == 0 && !(task->flags & TASK_FLAG_CREATING)) {
         if (task->update == NULL) {
-            func_020227e8(task);
+            Task_RunScript(task);
         }
         if (task->update != NULL) {
             task->update(task);

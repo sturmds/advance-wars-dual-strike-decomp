@@ -906,7 +906,7 @@ func_0202269c kind:function(arm,size=0x38) addr:0x0202269c
 func_020226d4 kind:function(arm,size=0x10) addr:0x020226d4
 func_020226e4 kind:function(arm,size=0x90) addr:0x020226e4
 func_02022774 kind:function(arm,size=0x74) addr:0x02022774
-func_020227e8 kind:function(arm,size=0xd8) addr:0x020227e8
+Task_RunScript kind:function(arm,size=0xd8) addr:0x020227e8
 func_020228c0 kind:function(arm,size=0x38) addr:0x020228c0
 func_020228f8 kind:function(arm,size=0x34) addr:0x020228f8
 func_0202292c kind:function(arm,size=0xbc) addr:0x0202292c
@@ -6983,7 +6983,7 @@ data_021587e0 kind:data(any) addr:0x021587e0
 data_02158820 kind:data(any) addr:0x02158820
 data_02158838 kind:data(any) addr:0x02158838
 data_02158850 kind:data(any) addr:0x02158850
-data_02158868 kind:data(any) addr:0x02158868
+gTaskCommands kind:data(any) addr:0x02158868
 data_02158960 kind:data(any) addr:0x02158960
 data_02158974 kind:data(any) addr:0x02158974
 data_02158988 kind:data(any) addr:0x02158988

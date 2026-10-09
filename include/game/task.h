@@ -40,4 +40,7 @@ typedef struct TaskScriptCmd {
 #define TASK_CMD_END   0               /* last command of a script */
 #define TASK_CMD_LABEL 11              /* jump target for Task_JumpToLabel */
 
+/* Runs one command of a task's script; nonzero: run the next one too. */
+typedef BOOL (*TaskCommandFunc)(Task *task);
+
 #endif
