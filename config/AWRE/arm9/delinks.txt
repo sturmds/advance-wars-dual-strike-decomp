@@ -1762,6 +1762,10 @@ src/game/main/ai/ai_indirect_move_order6.c:
     complete
     .text       start:0x020a0590 end:0x020a0604
 
+src/game/main/ai/ai_indirect_move_order5.c:
+    complete
+    .text       start:0x020a0604 end:0x020a0680
+
 src/game/main/ai/ai_indirect_act_orders1_7_10.c:
     complete
     .text       start:0x020a08e8 end:0x020a0904

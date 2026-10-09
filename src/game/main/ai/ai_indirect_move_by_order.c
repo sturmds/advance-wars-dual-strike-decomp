@@ -11,7 +11,7 @@ void AiIndirect_MoveOrder9(void);
 void AiIndirect_MoveOrder8(void);
 void AiIndirect_MoveOrder7(void);
 void AiIndirect_MoveOrder6(void);
-void func_020a0604(void);
+void AiIndirect_MoveOrder5(void);
 void func_020a0680(void);
 void func_020a06fc(void);
 void func_020a0778(void);
@@ -46,13 +46,13 @@ void AiIndirect_MoveByOrder(void)
         func_020a0680();
         break;
     case 5:
-        func_020a0604();
+        AiIndirect_MoveOrder5();
         break;
     case 6:
         if (Player_HasHq(game->currentPlayer) == TRUE) {
             AiIndirect_MoveOrder6();
         } else {
-            func_020a0604();
+            AiIndirect_MoveOrder5();
         }
         break;
     case 7:
