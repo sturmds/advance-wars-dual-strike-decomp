@@ -52,7 +52,7 @@ void MenuButtons_Update(void)
     button = gMenuButtons;
     for (i = 0; i < 80; i++, button++) {
         if (button->active) {
-            if (button->slideState == 2) {
+            if (button->slideState == MENU_BUTTON_SHOWN) {
                 done = MenuButton_HandleTouch(button);
             }
             if (done) {
