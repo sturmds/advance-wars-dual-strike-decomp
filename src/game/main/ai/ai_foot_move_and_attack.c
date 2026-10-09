@@ -23,7 +23,7 @@ void func_020b162c(void);
 void func_020b2904(void);
 
 /* Queue routine for infantry and mechs (AiAction_QueueFootUnits2 collects units
- * whose UnitStats.unk_20 is 1). func_020b162c picks direct or indirect
+ * whose UnitStats.aiClass is AI_CLASS_FOOT). func_020b162c picks direct or indirect
  * combat; the other steps are not named yet. */
 void AiFoot_MoveAndAttack(void)
 {
@@ -31,7 +31,7 @@ void AiFoot_MoveAndAttack(void)
     if (func_0209f7ac(GAME->actingUnit) >= 20) {
         func_020ae9c0();
     }
-    if (GAME->players[GAME->currentPlayer].unk_2e != AI_BEHAVIOUR_DEFENSE) {
+    if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
         func_020aeefc();
         func_020ad0d4();
     }
@@ -50,7 +50,7 @@ void AiFoot_MoveAndAttack(void)
     }
     func_020ae37c();
     func_020ab014();
-    gAiTurnState[8] |= 0x20;
+    gAiTurnState->unk_08 |= 0x20;
     func_020ae37c();
     func_020a9854();
     func_020b2904();

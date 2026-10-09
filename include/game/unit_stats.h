@@ -36,7 +36,8 @@ enum UnitType {
     UNIT_TYPE_COUNT
 };
 
-/* UnitStats.attackType */
+/* UnitStats.minRange, read as the kind of attack: no weapon, direct
+ * (range 1), or indirect (2 or more). */
 #define ATTACK_NONE     0
 #define ATTACK_DIRECT   1
 #define ATTACK_INDIRECT 2
@@ -61,14 +62,14 @@ typedef struct UnitStats {
     u8 ammo;
     u8 vision;
     u8 unk_13;
-    u8 attackType;                     /* ATTACK_* */
+    u8 minRange;                       /* artillery 2, rockets 3; 0: no weapon (ATTACK_*) */
     u8 maxRange;
     u8 fuel;
     u8 unk_17[5];
     u8 unitClass;                      /* enum UnitClass in game/co_data.h */
     u8 pad_1d[2];
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
-    u8 unk_20;                         /* the document calls this "unit class"; the code uses unitClass */
+    u8 aiClass;                        /* AI_CLASS_*; the document calls this "unit class" */
     u8 pad_21[2];
     u8 chartDamage[2][32];             /* [weapon][damage chart column]: base damage in percent; 0: cannot hit */
     u8 pad_63[0x6c - 0x63];
@@ -76,7 +77,7 @@ typedef struct UnitStats {
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];
 
-/* UnitStats.unk_20 values: the group the AI unit action steps pick units
+/* UnitStats.aiClass values: the group the AI unit action steps pick units
  * by. Read from the table; no unit type uses 3. */
 #define AI_CLASS_OOZIUM         0
 #define AI_CLASS_FOOT           1

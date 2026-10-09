@@ -30,7 +30,7 @@ void AiAction_QueueFootUnits2(void)
          i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_FOOT) {
+            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_FOOT) {
             *gAiQueueCursor++ = i;
         }
     }
@@ -38,5 +38,5 @@ void AiAction_QueueFootUnits2(void)
     gAiQueueCursor = gAiQueue;
     AiQueue_SortByHp();
     gAiQueueRoutine = AiFoot_MoveAndAttack;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

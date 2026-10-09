@@ -47,16 +47,16 @@ void AiTurn_Start(void)
     func_0208d2f0();
 
     if (func_0209dec0() == 1) {
-        AI_TURN->flags |= 4;
+        gAiTurnState->flags |= 4;
     } else {
-        AI_TURN->flags &= ~4;
+        gAiTurnState->flags &= ~4;
     }
     if (func_0209de14() == 1) {
-        AI_TURN->flags |= 8;
+        gAiTurnState->flags |= 8;
     } else {
-        AI_TURN->flags &= ~8;
+        gAiTurnState->flags &= ~8;
     }
-    AI_TURN->phase = 0;
-    AI_TURN->unk_01 = 0;
-    AI_TURN->state = AI_STATE_RUN_PHASE;
+    gAiTurnState->phase = 0;
+    gAiTurnState->unk_01 = 0;
+    gAiTurnState->state = AI_STATE_RUN_PHASE;
 }

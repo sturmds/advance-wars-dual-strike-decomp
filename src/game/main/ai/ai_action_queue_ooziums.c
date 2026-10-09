@@ -28,5 +28,5 @@ void AiAction_QueueOoziums(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     gAiQueueRoutine = func_0209fadc;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

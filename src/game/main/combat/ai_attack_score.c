@@ -112,11 +112,11 @@ int AiAttack_Score(u32 flags, s16 *pos)
         if (DEFENDER.hp != 0 && DEFENDER.hpLost < 20) {
             return 0;
         }
-        if (CURRENT_PLAYER.unk_2e == 3) {
+        if (CURRENT_PLAYER.aiBehaviour == AI_BEHAVIOUR_DEFENSE) {
             return 0;
         }
     }
-    if ((flags & AI_ATTACK_NO_CHIP) && defender->type != UNIT_SUB && CURRENT_PLAYER.unk_2e != 0) {
+    if ((flags & AI_ATTACK_NO_CHIP) && defender->type != UNIT_SUB && CURRENT_PLAYER.aiBehaviour != AI_BEHAVIOUR_STRIKE) {
         if (DEFENDER.hp != 0 && DEFENDER.hpLost < 20) {
             return 0;
         }
@@ -133,14 +133,14 @@ int AiAttack_Score(u32 flags, s16 *pos)
         if (UnitType_GetAttackKind(attacker->type) == 1 || attacker->type <= UNIT_MECH) {
             return 1;
         }
-        return CURRENT_PLAYER.unk_2e == 0 ? 1 : -1;
+        return CURRENT_PLAYER.aiBehaviour == AI_BEHAVIOUR_STRIKE ? 1 : -1;
     }
     /* Chip damage (10 hp or less) and costly trades count less. */
     if (defender->type != UNIT_MEGATANK) {
         if (DEFENDER.hp != 0 && defender->hp - DEFENDER.hp <= 10) {
             damage >>= 2;
         }
-        if (attacker->hp - ATTACKER.hp >= 70 && CURRENT_PLAYER.unk_2e != 0) {
+        if (attacker->hp - ATTACKER.hp >= 70 && CURRENT_PLAYER.aiBehaviour != AI_BEHAVIOUR_STRIKE) {
             damage >>= 2;
         }
     } else {
@@ -149,7 +149,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
             damage >>= 2;
         }
         if (defender->hp - DEFENDER.hp <= 10 && attacker->hp - ATTACKER.hp >= 70
-            && CURRENT_PLAYER.unk_2e != 0) {
+            && CURRENT_PLAYER.aiBehaviour != AI_BEHAVIOUR_STRIKE) {
             damage >>= 1;
         }
     }

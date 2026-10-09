@@ -4,5 +4,5 @@
 /* Last entry of both AI unit action tables. */
 void AiAction_EndUnitActions(void)
 {
-    *gAiTurnState = AI_STATE_END_ACTIONS;
+    gAiTurnState->state = AI_STATE_END_ACTIONS;
 }

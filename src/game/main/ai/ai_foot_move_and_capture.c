@@ -23,7 +23,7 @@ void AiFoot_MoveAndCapture(void)
     if (func_0209f7ac(GAME->actingUnit) >= 20) {
         func_020ae9c0();
     }
-    if (GAME->players[GAME->currentPlayer].unk_2e != AI_BEHAVIOUR_DEFENSE) {
+    if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
         func_020aeefc();
         func_020ad0d4();
     }

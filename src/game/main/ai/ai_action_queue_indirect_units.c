@@ -29,7 +29,7 @@ void AiAction_QueueIndirectUnits(void)
     for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_INDIRECT) {
+            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_INDIRECT) {
             *gAiQueueCursor++ = i;
         }
     }
@@ -37,5 +37,5 @@ void AiAction_QueueIndirectUnits(void)
     gAiQueueCursor = gAiQueue;
     func_0208f7c4();
     gAiQueueRoutine = AiUnit_ActByOrderGroup;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

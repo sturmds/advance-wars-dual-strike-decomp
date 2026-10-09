@@ -30,9 +30,9 @@ void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
 
     roll = Rng_Range(0, 100);
     player = &GAME->players[GAME->currentPlayer];
-    if (player->unk_2e == 3) {
+    if (player->aiBehaviour == AI_BEHAVIOUR_DEFENSE) {
         roll = 0;
-    } else if (player->unk_2e == 1) {
+    } else if (player->aiBehaviour == AI_BEHAVIOUR_ASSAULT) {
         roll = 100;
     } else if (player->unk_25 == 2) {
         roll = 100;

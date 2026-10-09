@@ -35,10 +35,10 @@ void Combatant_PickWeapon(Combatant *attacker, Combatant *defender, s16 distance
         if (canUseSecondary) {
             secondaryDamage = Unit_GetChartDamage(attacker->unit, defender->unit->type, 1, defender->unit->flags & MAP_UNIT_DIVED);
         }
-        if (stats->attackType == ATTACK_DIRECT && attacker->unit->ammo != 0) {
+        if (stats->minRange == ATTACK_DIRECT && attacker->unit->ammo != 0) {
             primaryDamage = Unit_GetChartDamage(attacker->unit, defender->unit->type, 0, defender->unit->flags & MAP_UNIT_DIVED);
         }
-    } else if (stats->attackType <= distance /* attackType doubles as the minimum range */ && distance <= GetUnitMaxRange(player, attacker->unit->type)
+    } else if (stats->minRange <= distance && distance <= GetUnitMaxRange(player, attacker->unit->type)
                && attacker->unit->ammo != 0 && isAttack == 1) {
         primaryDamage = Unit_GetChartDamage(attacker->unit, defender->unit->type, 0, defender->unit->flags & MAP_UNIT_DIVED);
     }

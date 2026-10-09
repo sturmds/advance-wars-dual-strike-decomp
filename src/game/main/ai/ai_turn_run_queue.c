@@ -29,7 +29,7 @@ void AiTurn_RunQueue(void)
     Unk_02080440_48 *game;
 
     if (entry == 0) {
-        AI_TURN->state = AI_STATE_RUN_PHASE;
+        gAiTurnState->state = AI_STATE_RUN_PHASE;
         return;
     }
     if (entry != AI_QUEUE_RUN_ONCE) {
@@ -43,9 +43,9 @@ void AiTurn_RunQueue(void)
         }
         GAME->unk_3e = unit->x;
         GAME->unk_40 = GAME->actingUnit->y;
-        AI_TURN->flags &= ~1;
-        AI_TURN->flags &= ~2;
-        AI_TURN->unk_08 = 0;
+        gAiTurnState->flags &= ~1;
+        gAiTurnState->flags &= ~2;
+        gAiTurnState->unk_08 = 0;
         data_0229e198.action = 0;
         data_0229e198.pending = 0;
         data_0229e198.target = 0;
@@ -54,8 +54,8 @@ void AiTurn_RunQueue(void)
         unit = GAME->actingUnit;
         map->unitAt[unit->x + map->rowStart[unit->y]] = 0;
         GAME->actingUnit->flags |= MAP_UNIT_LOCKED;
-        AI_TURN->roll = HwMod32(Rng_Next(), 100);
-        AI_TURN->unk_05 = func_0209f8d0(GAME->actingUnit);
+        gAiTurnState->roll = HwMod32(Rng_Next(), 100);
+        gAiTurnState->unk_05 = func_0209f8d0(GAME->actingUnit);
     } else {
         data_0229e198.pending = 0;
     }
@@ -77,6 +77,6 @@ void AiTurn_RunQueue(void)
         gAiQueueCursor++;
     } else {
         gAiQueueCursor++;
-        AI_TURN->state = AI_STATE_SHOW_ACTION;
+        gAiTurnState->state = AI_STATE_SHOW_ACTION;
     }
 }

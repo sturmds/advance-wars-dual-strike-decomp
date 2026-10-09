@@ -29,7 +29,7 @@ void AiAction_QueueSeaTransports(void)
     for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_SEA_TRANSPORT) {
+            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_SEA_TRANSPORT) {
             *gAiQueueCursor++ = i;
         }
     }
@@ -37,5 +37,5 @@ void AiAction_QueueSeaTransports(void)
     gAiQueueCursor = gAiQueue;
     func_0208f574();
     gAiQueueRoutine = func_0209fb5c;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

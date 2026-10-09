@@ -27,9 +27,6 @@ void func_020b0e1c(void);
 MapObject *func_020db148(int x, int y);     /* object standing at (x, y); NULL: none or destroyed */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-/* Bits of byte 7 of the AI turn state: bit 3 lets units attack map objects,
- * bit 2 lets them attack tiles with hp (see Unk_02080440_48.tileHp). */
-#define AI_TURN_FLAG(bit) ((u32)(gAiTurnState[7] << (31 - (bit))) >> 31)
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* Picks what the AI's acting direct-attack unit hits this turn and queues it:
@@ -58,7 +55,7 @@ void AiUnit_PickDirectAttack(void)
     int hp;
     int targetKind;
     int rating;                        /* needed to match: damage to an object, then the score of a unit attack */
-    int aiStyle;
+    int aiBehaviour;
     int tileFlag;
     MapObject *object;
     MapUnit *target;
@@ -94,7 +91,7 @@ void AiUnit_PickDirectAttack(void)
             if (STATE->unk_d0[y][x] < 0) {
                 continue;
             }
-            if (AI_TURN_FLAG(3)) {
+            if (AI_TARGET_FLAGS->attackObjects) {
                 object = func_020db148(x, y);
                 if (object != NULL) {
                     hp = object->hp;
@@ -102,7 +99,7 @@ void AiUnit_PickDirectAttack(void)
                     goto attackObject;
                 }
             }
-            if (!AI_TURN_FLAG(2)) {
+            if (!AI_TARGET_FLAGS->attackTiles) {
                 goto attackUnit;
             }
             targetKind = 6;
@@ -134,15 +131,15 @@ void AiUnit_PickDirectAttack(void)
             } else if (objectHp < hp) {
                 continue;
             }
-            aiStyle = STATE->players[STATE->currentPlayer].unk_2e;
-            if (aiStyle == 3 && rating < hp && STATE->actingUnit->type > 2) {
+            aiBehaviour = STATE->players[STATE->currentPlayer].aiBehaviour;
+            if (aiBehaviour == AI_BEHAVIOUR_DEFENSE && rating < hp && STATE->actingUnit->type > 2) {
                 tile = TILE(pos[0], pos[1]);
                 if (STATE->mapTiles->unk_3250[tile] >= data_0229e160[1]
                     || STATE->mapTiles->unk_3758[tile] >= data_0229e160[2]) {
                     continue;
                 }
             }
-            if (aiStyle == 2 && func_0209dc54(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
+            if (aiBehaviour == AI_BEHAVIOUR_GENERAL && func_0209dc54(unitAttackX, unitAttackY) >= 2 && STATE->actingUnit->type > 2) {
                 if (STATE->mapTiles->unk_3758[TILE(pos[0], pos[1])] >= data_0229e160[2]) {
                     continue;
                 }

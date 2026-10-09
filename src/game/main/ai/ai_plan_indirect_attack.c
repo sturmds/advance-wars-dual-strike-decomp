@@ -116,7 +116,7 @@ void Ai_PlanIndirectAttack(void)
             } else {
                 distance += y - STATE->actingUnit->y;
             }
-            if (distance < Ov000_gUnitStats[STATE->actingUnit->type].attackType) { /* holds the minimum range */
+            if (distance < Ov000_gUnitStats[STATE->actingUnit->type].minRange) {
                 continue;
             }
             if (distance > GetUnitMaxRange(STATE->currentPlayer, STATE->actingUnit->type)) {
@@ -155,7 +155,7 @@ attack_tile:
             } else if (bestTileHp < hp) {
                 continue;
             }
-            if (STATE->players[STATE->currentPlayer].unk_2e == 3 && damage < hp) {
+            if (STATE->players[STATE->currentPlayer].aiBehaviour == AI_BEHAVIOUR_DEFENSE && damage < hp) {
                 if (MAP->unk_3250[TILE_INDEX(pos[0], pos[1])] >= data_0229e160[1]) {
                     continue;
                 }

@@ -22,8 +22,10 @@ typedef struct PlayerCo {
 #define PLAYER_CONTROLLER_HUMAN 1
 #define PLAYER_CONTROLLER_AI    2
 
-/* Player.unk_2e (AI behaviour), from doc 890: 0 strike, 1 assault,
- * 2 general, 3 defense. Only 3 has been seen in code. */
+/* Player.aiBehaviour. Names from doc 890. */
+#define AI_BEHAVIOUR_STRIKE  0
+#define AI_BEHAVIOUR_ASSAULT 1
+#define AI_BEHAVIOUR_GENERAL 2
 #define AI_BEHAVIOUR_DEFENSE 3
 
 /* One player slot, 0x98 bytes, in the array at Unk_02080440_48.players:
@@ -35,7 +37,8 @@ typedef struct Player {
     u32 unk_04;                        /* money spent */
     u32 unk_08;                        /* income */
     u32 unk_0c;                        /* damage taken, in funds */
-    u8 unk_10[5];                      /* bases, cities, airports, ports, towers owned */
+    u8 unk_10[4];                      /* bases, cities, airports, ports owned */
+    u8 comTowers;                      /* Com Towers owned */
     u8 unk_15;                         /* total properties */
     u8 unk_16;                         /* defeated */
     u8 pad_17[2];
@@ -52,7 +55,7 @@ typedef struct Player {
     u8 moveChart;                      /* enum MoveChart: index into CoPowerBlock.movementCost */
     u8 team;
     u8 armyStyle;
-    u8 unk_2e;                         /* AI behaviour */
+    u8 aiBehaviour;                    /* AI_BEHAVIOUR_* */
     u8 unk_2f;                         /* ORed with MapHeader.slotFlags[slot].unk_0 at map start */
     u8 unk_30;                         /* ORed with MapHeader.slotFlags[slot].unk_1 */
     u8 pad_31[0x6c - 0x31];

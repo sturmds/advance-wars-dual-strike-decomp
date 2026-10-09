@@ -11,5 +11,5 @@ void func_0208e89c(void)
     *gAiQueueCursor = 0;
     gAiQueueCursor = gAiQueue;
     gAiQueueRoutine = func_0208d548;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

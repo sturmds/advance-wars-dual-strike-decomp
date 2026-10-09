@@ -32,5 +32,5 @@ void AiAction_QueueBlackBoats(void)
     gAiQueueCursor = gAiQueue;
     func_0208f688();
     gAiQueueRoutine = func_0209fb24;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

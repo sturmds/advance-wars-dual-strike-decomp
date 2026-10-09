@@ -13,7 +13,7 @@ void func_020a0904(void);
 void AiUnit_ActByOrderGroup(void)
 {
     if (data_027c027c->unk_48[data_027c0284]->actingUnit->unk_0a_12 != 2) {
-        gAiTurnState[8] |= 0x80;
+        gAiTurnState->unk_08 |= 0x80;
     }
 
     switch (data_027c027c->unk_48[data_027c0284]->actingUnit->aiOrder) {

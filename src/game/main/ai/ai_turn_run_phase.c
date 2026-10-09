@@ -16,9 +16,9 @@ void AiTurn_RunPhase(void)
 
     /* Rain brings fog too. */
     if (map->fog == 0 && map->weather != WEATHER_RAIN) {
-        gAiUnitPhases[AI_TURN->phase]();
+        gAiUnitPhases[gAiTurnState->phase]();
     } else {
-        gAiUnitPhasesFog[AI_TURN->phase]();
+        gAiUnitPhasesFog[gAiTurnState->phase]();
     }
-    AI_TURN->phase++;
+    gAiTurnState->phase++;
 }

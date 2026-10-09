@@ -8,12 +8,12 @@ extern UnitStats Ov000_gUnitStats[UNIT_TYPE_COUNT];
  * indirect, direct, the two units that explode, or transport (no attack). */
 int GetUnitCombatClass(int unitType)
 {
-    u8 attackType = Ov000_gUnitStats[unitType].attackType;
+    u8 minRange = Ov000_gUnitStats[unitType].minRange;
 
-    if (attackType >= ATTACK_INDIRECT) {
+    if (minRange >= ATTACK_INDIRECT) {
         return UNIT_CLASS_INDIRECT_COMBAT;
     }
-    if (attackType == ATTACK_DIRECT) {
+    if (minRange == ATTACK_DIRECT) {
         return UNIT_CLASS_DIRECT_COMBAT;
     }
     if (unitType == UNIT_BLACK_BOMB || unitType == UNIT_OOZIUM) {

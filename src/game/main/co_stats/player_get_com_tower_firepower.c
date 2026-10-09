@@ -22,5 +22,5 @@ int Player_GetComTowerFirepower(int playerIndex, int slot, int powerState)
                         .towerFirepower;
     }
     perTower += TowerFirepower(playerIndex, slot);
-    return perTower * data_027c027c->unk_48[data_027c0284]->players[playerIndex].unk_10[4];
+    return perTower * data_027c027c->unk_48[data_027c0284]->players[playerIndex].comTowers;
 }

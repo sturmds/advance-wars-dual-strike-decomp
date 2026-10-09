@@ -30,7 +30,7 @@ void AiAction_QueueTransportUnloads(void)
     for (i = FIRST_UNIT; i < FIRST_UNIT + 50; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_TRANSPORT
+            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_TRANSPORT
             && unit->cargo[0] != 0) {
             *gAiQueueCursor++ = i;
         }
@@ -39,5 +39,5 @@ void AiAction_QueueTransportUnloads(void)
     gAiQueueCursor = gAiQueue;
     func_0208f850(0);
     gAiQueueRoutine = func_0209fc10;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

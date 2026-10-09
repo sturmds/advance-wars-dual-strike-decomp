@@ -17,7 +17,7 @@ void AiTurn_Update(void)
     if (func_0201ad28()) {
         return;
     }
-    switch (*gAiTurnState) {
+    switch (gAiTurnState->state) {
     case AI_STATE_START:
         AiTurn_Start();
         break;

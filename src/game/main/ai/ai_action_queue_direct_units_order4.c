@@ -29,7 +29,7 @@ void AiAction_QueueDirectUnitsOrder4(void)
          i < data_ov000_022f5c2c[STATE->currentPlayer] + 51; i++) {
         unit = &STATE->units[i];
         if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].unk_20 == AI_CLASS_DIRECT
+            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_DIRECT
             && unit->aiOrder == 4) {
             *gAiQueueCursor++ = i;
         }
@@ -43,5 +43,5 @@ void AiAction_QueueDirectUnitsOrder4(void)
         func_0208f850(FALSE);
     }
     gAiQueueRoutine = AiUnit_ActByOrder;
-    *gAiTurnState = AI_STATE_RUN_QUEUE;
+    gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
