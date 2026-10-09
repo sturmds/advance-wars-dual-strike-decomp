@@ -388,6 +388,10 @@ src/game/main/task/task_create_child.c:
     complete
     .text       start:0x02023a0c end:0x02023a58
 
+src/game/main/task/task_create.c:
+    complete
+    .text       start:0x02023a58 end:0x02023ae4
+
 src/game/main/task/task_init_system.c:
     complete
     .text       start:0x02023ae4 end:0x02023bb0
