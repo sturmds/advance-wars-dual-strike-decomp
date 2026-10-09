@@ -2569,6 +2569,7 @@ src/game/main/unlocks/func_02101964.c:
     .text       start:0x02101964 end:0x02101984
 
 src/game/main/map/map_is_flag_set.c:
+    complete
     .text       start:0x02101984 end:0x021019a4
 
 src/game/main/unlocks/game_flags_mid_set.c:
