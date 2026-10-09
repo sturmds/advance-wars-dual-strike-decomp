@@ -26,8 +26,8 @@ void func_020b8964(void);
 void func_020b8a24(void);
 void func_020b8ad4(void);
 void func_020b8b80(void);
-void func_020b8c70(void);
-void func_020b8cb0(void);
+void AiShowAction_BuildUnitAlt(void);
+void AiShowAction_BuildUnit(void);
 void func_020c8888(void);
 void Ai_FlagCurrentPlayerEnterState18(void);
 void UnitAction_ActivateTagPower(void);
@@ -66,10 +66,10 @@ void AiShowAction_Step2(void)
     }
     switch (gUnitAction.action) {
     case 1:
-        func_020b8cb0();
+        AiShowAction_BuildUnit();
         break;
     case 14:
-        func_020b8c70();
+        AiShowAction_BuildUnitAlt();
         break;
     case 13:
         func_020b8b80();

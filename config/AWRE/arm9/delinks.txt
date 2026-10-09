@@ -5901,6 +5901,14 @@ src/game/main/ai/ai_show_action_step7.c:
     complete
     .text       start:0x020b8850 end:0x020b8964
 
+src/game/main/ai/ai_show_action_build_unit_alt.c:
+    complete
+    .text       start:0x020b8c70 end:0x020b8cb0
+
+src/game/main/ai/ai_show_action_build_unit.c:
+    complete
+    .text       start:0x020b8cb0 end:0x020b8cf0
+
 src/game/main/ai/ai_show_action_step2.c:
     complete
     .text       start:0x020b8cf0 end:0x020b9114
