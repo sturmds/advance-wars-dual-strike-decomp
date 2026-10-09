@@ -5,7 +5,7 @@
 #include "game/skills.h"
 
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 u32 *GetCoPowerSkills(int co, int powerState);
 BOOL PartnerBoost1(int player);
 
@@ -51,12 +51,12 @@ void UpdatePlayerSkills(int player)
 
         /* data_027c0288 holds two states, indexed like data_027c0284;
          * switch to the other one to read its unk_30. */
-        func_0200acac((&data_027c0288.unk_00)[1 - data_027c0284]);
+        Screen_SetCurrentGfx((&data_027c0288.unk_00)[1 - data_027c0284]);
         saved027c = data_027c027c;
         Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
         otherUnk30 = data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_30;
         Screen_SetCurrent(saved027c);
-        func_0200acac(saved0280);
+        Screen_SetCurrentGfx(saved0280);
 
         if (otherUnk30 == 0) {
             /* Only the front CO gets skills; the lent set depends on

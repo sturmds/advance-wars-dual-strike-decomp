@@ -5,7 +5,7 @@
 #include "game/map_header.h"
 
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 int Co_GetNation(int co);
 
 extern Unk_02080440 *data_027c027c;
@@ -20,13 +20,13 @@ extern Unk_027c0288 data_027c0288;
 
 #define SWITCH_TO(state)            \
     saved0280 = data_027c0280;      \
-    func_0200acac(state);           \
+    Screen_SetCurrentGfx(state);           \
     saved027c = data_027c027c;      \
     Screen_SetCurrent(state)
 
 #define SWITCH_BACK()               \
     Screen_SetCurrent(saved027c);       \
-    func_0200acac(saved0280)
+    Screen_SetCurrentGfx(saved0280)
 
 /* Campaign missions where every side counts as Allied Nations. */
 #define MAP_JAKES_TRIAL   (MAP_CAMPAIGN_FIRST + 0)

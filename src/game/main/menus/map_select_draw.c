@@ -9,7 +9,7 @@ s32 HwMod32(s32 numerator, s32 denominator); /* remainder, hardware divider */
 int func_01ff9f7c(void);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
 void func_02003188(const void *src, int slideOffset, int size);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 void func_02021858(int a0, int x, int y, void *a3, int attr, int tile);
 void func_020218e4(int a0, int x, int y, void *a3, int attr, int tile);
 int func_0202795c(int from, int to, int step, int steps);
@@ -91,7 +91,7 @@ extern u8 data_027c0108;
         TABLES.unk_000[TAB()][LIST(TAB()).unk_64][PAGE()] + PAGE() * (ROWS * COLS)])
 
 /* Draws one frame of the map select menu. data_027c0288 holds a draw state
- * per screen; func_0200acac switches between them. While slideFrames runs
+ * per screen; Screen_SetCurrentGfx switches between them. While slideFrames runs
  * (15 down to 1) the lists slide sideways, eased from 256 pixels to 0; the
  * second slide does the same for the strip at TABLES.unk_108. Then: the map
  * list thumbnails, a marker per player for the selected map's player count,
@@ -119,15 +119,15 @@ void MapSelect_Draw(void)
         if (MENU->setup.slideBack != 0) {
             SET_SCROLL(layer1Bg, layer0Bg, -slideOffset);
             savedState = data_027c0280;
-            func_0200acac(data_027c0288.unk_04);
+            Screen_SetCurrentGfx(data_027c0288.unk_04);
             SET_SCROLL(layer2Bg, layer1Bg, -slideOffset);
-            func_0200acac(savedState);
+            Screen_SetCurrentGfx(savedState);
         } else {
             SET_SCROLL(layer1Bg, layer0Bg, slideOffset);
             savedState = data_027c0280;
-            func_0200acac(data_027c0288.unk_04);
+            Screen_SetCurrentGfx(data_027c0288.unk_04);
             SET_SCROLL(layer2Bg, layer1Bg, slideOffset);
-            func_0200acac(savedState);
+            Screen_SetCurrentGfx(savedState);
         }
         MENU->setup.slideFrames--;
         if (MENU->setup.slideFrames == 0) {
@@ -143,7 +143,7 @@ void MapSelect_Draw(void)
     }
 
     savedState = data_027c0280;
-    func_0200acac(data_027c0288.unk_00);
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideBack != 0) {
             thumbOffset = slideOffset >> 1;
@@ -241,10 +241,10 @@ void MapSelect_Draw(void)
     } else if (MENU->setup.unk_4fc != 0) {
         func_0202b89c(128, 112, 0x2800, 0x600, 3);
     }
-    func_0200acac(savedState);
+    Screen_SetCurrentGfx(savedState);
 
     savedState2 = data_027c0280;
-    func_0200acac(data_027c0288.unk_04);
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (MENU->setup.slideFrames != 0) {
         if (MENU->setup.slideBack != 0) {
             func_0202b89c(slideOffset + 128, 96, 0x2c00, 0x400, 3);
@@ -275,7 +275,7 @@ void MapSelect_Draw(void)
     if (TAB() == 2 || (STATE->gameMode == 1 && Ov000_gMapHeaders[SELECTED_MAP_ID()].variantMapIds[0] != 0)) {
         DRAW_NUMBER_GRID(MENU->setup.unk_4d4, 56);
     }
-    func_0200acac(savedState2);
+    Screen_SetCurrentGfx(savedState2);
 
     if (STATE->gameMode == 1) {
         func_02003188(&MENU->colours[(func_01ff9f7c() >> 2) & 15], 0x238, 2);

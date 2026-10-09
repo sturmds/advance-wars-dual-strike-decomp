@@ -16,7 +16,7 @@ void func_02003bec(const void *src, void *dest);
 void func_0200970c(int a);
 void func_0200a810(const void *config);
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 void func_0200bb18(void *dest, const char *path, int a, int b);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
@@ -87,7 +87,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
     gMenuState.campaignMap.enemyCos[1] = Ov000_gMapHeaders[gCampaignMissions[gCampaignMapState.mission].mapId].co[(u8)playerCount][1];
 
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_00);
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     func_0200970c(0);
@@ -130,10 +130,10 @@ void CampaignMap_Init(Unk_0204f960 *task)
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
     Screen_SetCurrent(saved027c);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_04);
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     func_0200970c(0);
@@ -162,13 +162,13 @@ void CampaignMap_Init(Unk_0204f960 *task)
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
     Screen_SetCurrent(saved027c);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 
     res = File_Load(data_0215b990);
     langRes = File_Load(File_LocalizePath(data_0215b9a4));
 
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_00);
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
     func_0201e30c(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
     func_02003bec(res + 0x1ab0,
@@ -187,10 +187,10 @@ void CampaignMap_Init(Unk_0204f960 *task)
     func_02003bec(res + 0xdcc, data_027c0280->objVram + 0x2f80);
     func_02003bec(res, data_027c0280->objVram + 0x3140);
     func_02003188(res + 0x834, 0x240, 0x20);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_04);
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
     func_0201e30c(data_027c0280->unk_f8, 0, 0);
     func_02021380(0);
     func_02003bec(langRes,
@@ -224,7 +224,7 @@ void CampaignMap_Init(Unk_0204f960 *task)
             func_0200215c(gMenuState.campaignMap.enemyCos[j], data_027c0280->objVram + ((u32)tile << 5), j + 23);
         }
     }
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 
     func_02002e50(res + 0xe4c, WORK_FIELD(unk_244), sizeof(gMenuState.campaignMap.unk_244));
     func_02002e50(res + 0xd08, WORK_FIELD(unk_020), sizeof(gMenuState.campaignMap.unk_020));
@@ -235,26 +235,26 @@ void CampaignMap_Init(Unk_0204f960 *task)
 
     res = File_Load(data_0215b9d4);
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_00);
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
     func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     func_02003bec(res + 0x53bc, data_027c0280->layer2Map);
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer2Map[i] += 0x3000;
     }
     func_01ff8d60(2);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
     Mem_Free(res);
 
     res = File_Load(data_0215b9ec);
     saved0280 = data_027c0280;
-    func_0200acac(data_027c0288.unk_00);
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
     func_02003bec(res, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
     func_02003bec(res + 0x4c7c, data_027c0280->layer3Map + 0x400);
     for (i = 0; i < 0x400; i++) {
         data_027c0280->layer3Map[i + 0x400] += 0x3000;
     }
     func_01ff8d60(3);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
     Mem_Free(res);
 
     func_0202aba8(178, 9);

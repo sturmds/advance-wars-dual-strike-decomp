@@ -4,7 +4,7 @@
 #include "game/Unk_ov005_0236bbac.h"
 
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 void Co_LoadGraphics(int coId, int firstTile);
 void Co_LoadPalette(int coId, int paletteSlot);
 
@@ -19,11 +19,11 @@ void Ov005_LoadCoPicture(Unk_ov005_0236bbac *state)
     Unk_027c0280 *saved0280 = data_027c0280;
     Unk_02080440 *saved027c;
 
-    func_0200acac(data_027c0288.unk_04);
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     Co_LoadGraphics(state->coId, 0x180);
     Co_LoadPalette(state->coId, 26);
     Screen_SetCurrent(saved027c);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 }

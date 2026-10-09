@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 int Map_GetPlayerCount(int mapId);          /* MapHeader.playerCount for most map ids */
 void SetMapWeather(int weather);       /* sets unk_1c4 weather and default weather */
 void func_020e8c3c(void);
@@ -34,7 +34,7 @@ void SetupMapRules(void)
         Unk_02080440 *saved027c;
         int i;
 
-        func_0200acac(data_027c0288.unk_00);
+        Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
         /* AI for the slot that equals the map's player count, else human */
@@ -54,7 +54,7 @@ void SetupMapRules(void)
         STATE->partnerBoostHuman = 1;
         STATE->partnerBoostAi = 1;
         Screen_SetCurrent(saved027c);
-        func_0200acac(saved0280);
+        Screen_SetCurrentGfx(saved0280);
         break;
     }
     case 1:
@@ -68,30 +68,30 @@ void SetupMapRules(void)
 
             if (STATE->unk_59 <= 1) {
                 saved0280 = data_027c0280;
-                func_0200acac(data_027c0288.unk_04);
+                Screen_SetCurrentGfx(data_027c0288.unk_04);
                 saved027c = data_027c027c;
                 Screen_SetCurrent(data_027c0288.unk_04);
                 STATE->slotControllers[1] = PLAYER_CONTROLLER_AI;
                 Screen_SetCurrent(saved027c);
-                func_0200acac(saved0280);
+                Screen_SetCurrentGfx(saved0280);
             } else {
                 saved0280 = data_027c0280;
-                func_0200acac(data_027c0288.unk_04);
+                Screen_SetCurrentGfx(data_027c0288.unk_04);
                 saved027c = data_027c027c;
                 Screen_SetCurrent(data_027c0288.unk_04);
                 STATE->slotControllers[1] = PLAYER_CONTROLLER_HUMAN;
                 Screen_SetCurrent(saved027c);
-                func_0200acac(saved0280);
+                Screen_SetCurrentGfx(saved0280);
             }
             saved0280 = data_027c0280;
-            func_0200acac(data_027c0288.unk_04);
+            Screen_SetCurrentGfx(data_027c0288.unk_04);
             saved027c = data_027c027c;
             Screen_SetCurrent(data_027c0288.unk_04);
             STATE->slotControllers[2] = PLAYER_CONTROLLER_AI;
             STATE->slotControllers[3] = PLAYER_CONTROLLER_AI;
             STATE->slotControllers[4] = PLAYER_CONTROLLER_AI;
             Screen_SetCurrent(saved027c);
-            func_0200acac(saved0280);
+            Screen_SetCurrentGfx(saved0280);
         }
         switch (STATE->unk_59) {
         case 0:

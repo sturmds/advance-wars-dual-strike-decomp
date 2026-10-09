@@ -5,7 +5,7 @@
 
 void func_01ff8d60(int a);
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
 void func_02015258(int x, int y, void *target, u32 text, int a, int b);
 Unk_02023724 *func_02023724(void *key);
@@ -26,7 +26,7 @@ void DrawSelectedCoPowerText(void)
     Unk_027c0280 *saved0280 = data_027c0280;
     Unk_02080440 *saved027c;
 
-    func_0200acac(data_027c0288.unk_04);
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     list = func_02023724(data_021613d8);
@@ -63,5 +63,5 @@ void DrawSelectedCoPowerText(void)
     func_02015258(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
     func_01ff8d60(0);
     Screen_SetCurrent(saved027c);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 }

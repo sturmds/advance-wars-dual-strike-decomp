@@ -8,7 +8,7 @@
 #include "game/design_map.h"
 
 void Screen_SetCurrent(void *state);
-void func_0200acac(void *state);
+void Screen_SetCurrentGfx(void *state);
 u8 func_020018a8(int player, int slot);
 int func_02017abc(int co, int player);
 void func_020c47d0(int mapId, u8 *a, u8 *b);
@@ -53,7 +53,7 @@ void BattleSetup_LoadFromGame(void)
     MenuState *state;
 
     saved0280 = data_027c0280;
-    func_0200acac(MAIN_MAP);
+    Screen_SetCurrentGfx(MAIN_MAP);
     saved027c = data_027c027c;
     Screen_SetCurrent(MAIN_MAP);
 
@@ -111,7 +111,7 @@ void BattleSetup_LoadFromGame(void)
                 gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
             }
             inner0280 = data_027c0280;
-            func_0200acac(SECOND_MAP);
+            Screen_SetCurrentGfx(SECOND_MAP);
             inner027c = data_027c027c;
             Screen_SetCurrent(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
@@ -120,7 +120,7 @@ void BattleSetup_LoadFromGame(void)
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
             Screen_SetCurrent(inner027c);
-            func_0200acac(inner0280);
+            Screen_SetCurrentGfx(inner0280);
             gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
         for (i = 0; i < 4; i++) {
@@ -161,7 +161,7 @@ void BattleSetup_LoadFromGame(void)
                 gMenuState.setup.controllers[i][0] = PLAYER_CONTROLLER_HUMAN;
             }
             inner0280 = data_027c0280;
-            func_0200acac(SECOND_MAP);
+            Screen_SetCurrentGfx(SECOND_MAP);
             inner027c = data_027c027c;
             Screen_SetCurrent(SECOND_MAP);
             if (GAME->slotControllers[i + 1] == PLAYER_CONTROLLER_AI) {
@@ -170,13 +170,13 @@ void BattleSetup_LoadFromGame(void)
                 gMenuState.setup.controllers[i][1] = PLAYER_CONTROLLER_HUMAN;
             }
             Screen_SetCurrent(inner027c);
-            func_0200acac(inner0280);
+            Screen_SetCurrentGfx(inner0280);
             gMenuState.setup.teams[i] = GAME->team[i + 1];
         }
     }
 
     Screen_SetCurrent(saved027c);
-    func_0200acac(saved0280);
+    Screen_SetCurrentGfx(saved0280);
 
     if (func_0207bd80() != 1) {
         gMenuState.setup.unk_2e4 = 8;
