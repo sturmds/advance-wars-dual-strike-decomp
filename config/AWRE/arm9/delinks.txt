@@ -4718,6 +4718,18 @@ src/game/main/func_020beda8.c:
     complete
     .text       start:0x020beda8 end:0x020bee00
 
+src/game/main/func_020bee00.c:
+    complete
+    .text       start:0x020bee00 end:0x020bee58
+
+src/game/main/func_020beed8.c:
+    complete
+    .text       start:0x020beed8 end:0x020bef30
+
+src/game/main/func_020bef30.c:
+    complete
+    .text       start:0x020bef30 end:0x020bef88
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
