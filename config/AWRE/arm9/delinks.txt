@@ -2873,6 +2873,10 @@ src/game/main/func_02048270.c:
     complete
     .text       start:0x02048270 end:0x02048294
 
+src/game/main/menus/menu_dismiss.c:
+    complete
+    .text       start:0x02048294 end:0x020482c8
+
 src/game/main/func_0204870c.c:
     complete
     .text       start:0x0204870c end:0x02048718
