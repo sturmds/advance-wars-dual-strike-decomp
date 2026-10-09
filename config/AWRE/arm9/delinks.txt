@@ -116,6 +116,10 @@ src/game/main/ai/func_0208e89c.c:
     complete
     .text       start:0x0208e89c end:0x0208e8fc
 
+src/game/main/ai/func_0208e8fc.c:
+    complete
+    .text       start:0x0208e8fc end:0x0208e95c
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
