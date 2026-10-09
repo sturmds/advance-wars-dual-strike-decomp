@@ -553,6 +553,10 @@ src/game/main/unlocks/shop_combat_adder.c:
     complete
     .text       start:0x02101f7c end:0x02101fc0
 
+src/game/main/unlocks/shop_combat_lash.c:
+    complete
+    .text       start:0x02101fc0 end:0x02102004
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
