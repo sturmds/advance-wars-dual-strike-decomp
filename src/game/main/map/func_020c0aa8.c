@@ -21,20 +21,21 @@ extern Unk_022a7b80 data_022a7b80;
  * costs one instruction at the y increment. */
 void func_020c0aa8(void)
 {
+    int i;
     int slot;
     u8 tile;
     Player *player;
     int x;
     u8 y;
 
-    for (slot = 0; slot < ARMY_SLOT_COUNT; slot++) {
-        STATE->players[slot].unk_08 = 0;
-        STATE->players[slot].unk_10[0] = 0;
-        STATE->players[slot].unk_10[1] = 0;
-        STATE->players[slot].unk_10[2] = 0;
-        STATE->players[slot].unk_10[3] = 0;
-        STATE->players[slot].comTowers = 0;
-        STATE->players[slot].unk_2f |= 0x80;
+    for (i = 0; i < ARMY_SLOT_COUNT; i++) {
+        STATE->players[i].unk_08 = 0;
+        STATE->players[i].unk_10[0] = 0;
+        STATE->players[i].unk_10[1] = 0;
+        STATE->players[i].unk_10[2] = 0;
+        STATE->players[i].unk_10[3] = 0;
+        STATE->players[i].comTowers = 0;
+        STATE->players[i].unk_2f |= 0x80;
     }
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
