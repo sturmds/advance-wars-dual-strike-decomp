@@ -13,7 +13,7 @@ void AiIndirect_MoveOrder7(void);
 void AiIndirect_MoveOrder6(void);
 void AiIndirect_MoveOrder5(void);
 void AiIndirect_MoveOrder4(void);
-void func_020a06fc(void);
+void AiIndirect_MoveOrder3(void);
 void func_020a0778(void);
 void func_020a07f4(void);
 void func_020a086c(void);
@@ -40,7 +40,7 @@ void AiIndirect_MoveByOrder(void)
         }
         break;
     case 3:
-        func_020a06fc();
+        AiIndirect_MoveOrder3();
         break;
     case 4:
         AiIndirect_MoveOrder4();
