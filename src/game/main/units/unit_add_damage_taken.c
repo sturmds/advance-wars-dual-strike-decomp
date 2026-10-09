@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 #define DAMAGE_STAT_MAX 999999999
 
@@ -9,7 +9,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern Unk_02290718 data_02290718;
+extern PlayRecords gPlayRecords;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -32,10 +32,10 @@ void Unit_AddDamageTaken(MapUnit *unit, int hpLost)
     if (STATE->gameMode == 4) {
         return;
     }
-    total = data_02290718.humanDamageTaken + value;
+    total = gPlayRecords.humanDamageTaken + value;
     if (total < DAMAGE_STAT_MAX) {
-        data_02290718.humanDamageTaken = total;
+        gPlayRecords.humanDamageTaken = total;
     } else {
-        data_02290718.humanDamageTaken = DAMAGE_STAT_MAX;
+        gPlayRecords.humanDamageTaken = DAMAGE_STAT_MAX;
     }
 }

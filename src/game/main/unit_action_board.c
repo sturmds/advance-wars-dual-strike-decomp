@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/player.h"
 #include "game/unit_stats.h"
 
@@ -18,8 +18,8 @@ void UnitAction_Board(void)
     MapUnit *transport;
 
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (data_02290718.unitsBoarded < 999999) {
-            data_02290718.unitsBoarded++;
+        if (gPlayRecords.unitsBoarded < 999999) {
+            gPlayRecords.unitsBoarded++;
         }
     }
     transport = &GAME->units[GAME->mapTiles->unitAt[GAME->actingUnitDestX + GAME->mapTiles->rowStart[GAME->actingUnitDestY]]];

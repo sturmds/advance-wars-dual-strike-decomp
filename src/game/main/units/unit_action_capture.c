@@ -4,7 +4,7 @@
 #include "game/player.h"
 #include "game/terrain.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -38,7 +38,7 @@ void func_020f66a4(int x, int y);
  * limit the tile changes owner (func_020f66a4) and an HQ or Lab marks its
  * old owner. The scene functions show the progress; with fog or rain they
  * are skipped for a tile the current player cannot see. Human players
- * count captures begun and finished in data_02290718. */
+ * count captures begun and finished in gPlayRecords. */
 void UnitAction_Capture(void)
 {
     int shownHp;
@@ -60,13 +60,13 @@ void UnitAction_Capture(void)
 
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
         if (oldProgress == 0) {
-            if (data_02290718.capturesStarted < 999999) {
-                data_02290718.capturesStarted++;
+            if (gPlayRecords.capturesStarted < 999999) {
+                gPlayRecords.capturesStarted++;
             }
         }
         if (progress == MAP_UNIT_CAPTURE_POINTS) {
-            if (data_02290718.capturesCompleted < 999999) {
-                data_02290718.capturesCompleted++;
+            if (gPlayRecords.capturesCompleted < 999999) {
+                gPlayRecords.capturesCompleted++;
             }
         }
     }

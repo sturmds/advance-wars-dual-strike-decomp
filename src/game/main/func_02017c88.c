@@ -1,17 +1,17 @@
 #include "types.h"
 
-typedef struct Unk_02290718 Unk_02290718;
+typedef struct PlayRecords PlayRecords;
 
-struct Unk_02290718 {
+struct PlayRecords {
     u8 pad_00[0x4];
     int unk_4;
 };
 
-extern Unk_02290718 data_02290718;
+extern PlayRecords gPlayRecords;
 
 void func_02017c88(int a0)
 {
-    if ((u32)data_02290718.unk_4 >= (u32)a0) {
-        data_02290718.unk_4 = a0;
+    if ((u32)gPlayRecords.unk_4 >= (u32)a0) {
+        gPlayRecords.unk_4 = a0;
     }
 }

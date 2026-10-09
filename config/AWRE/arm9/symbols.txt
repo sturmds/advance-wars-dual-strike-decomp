@@ -8628,7 +8628,7 @@ data_022901a4 kind:bss addr:0x022901a4
 gGameFlagsHigh kind:bss addr:0x0229024e
 data_02290256 kind:bss addr:0x02290256
 data_02290298 kind:bss addr:0x02290298
-data_02290718 kind:bss addr:0x02290718
+gPlayRecords kind:bss addr:0x02290718
 data_02290720 kind:bss addr:0x02290720
 data_02290721 kind:bss addr:0x02290721
 data_02290722 kind:bss addr:0x02290722

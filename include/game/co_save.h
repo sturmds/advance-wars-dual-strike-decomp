@@ -6,7 +6,7 @@
 /* Skill ids of one saved Force Rank set, ended by 0 when fewer than 4. */
 typedef u8 ForceRankSet[4];
 
-/* Saved progress of one CO. The records sit in Unk_02290718.coRecords,
+/* Saved progress of one CO. The records sit in PlayRecords.coRecords,
  * indexed by CO id. */
 typedef struct CoSaveRecord {
     u32 experience : 19;               /* func_020179c0 caps it at 100000 */

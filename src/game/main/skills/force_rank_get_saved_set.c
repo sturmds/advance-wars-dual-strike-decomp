@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 extern ForceRankSet data_02290128[];
 
@@ -9,13 +9,13 @@ u8 *ForceRank_GetSavedSet(int mode, int co, int set)
 {
     switch (mode) {
     case 1:
-        return data_02290718.coRecords[co].setMode1;
+        return gPlayRecords.coRecords[co].setMode1;
     case 0:
         return data_02290128[co];
     case 2:
-        return data_02290718.coRecords[co].setsMode2[set];
+        return gPlayRecords.coRecords[co].setsMode2[set];
     case 3:
-        return data_02290718.coRecords[co].setMode3;
+        return gPlayRecords.coRecords[co].setMode3;
     }
     return NULL;
 }

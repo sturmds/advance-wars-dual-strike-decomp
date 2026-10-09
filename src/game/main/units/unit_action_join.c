@@ -3,7 +3,7 @@
 #include "game/player.h"
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -31,8 +31,8 @@ void UnitAction_Join(void)
     MapUnit *other;
 
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (data_02290718.unitsJoined < 999999) {
-            data_02290718.unitsJoined++;
+        if (gPlayRecords.unitsJoined < 999999) {
+            gPlayRecords.unitsJoined++;
         }
     }
 

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/Unk_02290118.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/save_progress.h"
 
 /* Needed to match: the original copies 96 saved sets (0x180 bytes) as one unit. */
@@ -31,7 +31,7 @@ void Save_LoadProfiles(void)
     }
     for (i = 0; i < 3; i++) {
         data_02290298[i] = *(ProfileBlock *)((u8 *)&((ProfileBlock *)progress)[i] + SAVE_PROFILE_BLOCKS_OFFSET);
-        data_02290718.unk_348[i] = progress->unk_3a0[i];
+        gPlayRecords.unk_348[i] = progress->unk_3a0[i];
         data_022900bc[i] = progress->unk_1534[i];
     }
     func_02103b24(data_02290118.unk_00);

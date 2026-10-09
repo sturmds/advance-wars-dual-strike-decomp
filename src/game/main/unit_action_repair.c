@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/player.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -38,8 +38,8 @@ void UnitAction_Repair(int direction)
         return;
     }
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (data_02290718.suppliesAndRepairs < 999999) {
-            data_02290718.suppliesAndRepairs++;
+        if (gPlayRecords.suppliesAndRepairs < 999999) {
+            gPlayRecords.suppliesAndRepairs++;
         }
     }
     task = (RepairTask *)Task_Create(data_02168538, TASK_LIST(3));

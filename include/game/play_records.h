@@ -1,13 +1,14 @@
-#ifndef GAME_UNK_02290718_H
-#define GAME_UNK_02290718_H
+#ifndef GAME_PLAY_RECORDS_H
+#define GAME_PLAY_RECORDS_H
 
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
 
-/* data_02290718 (main bss), 0x38 bytes before the Force Rank table
- * that Co_GetForceRankSetIndex reads. */
-typedef struct Unk_02290718 {
+/* gPlayRecords (main bss, 0x02290718): saved settings, per-CO records
+ * (coRecords, the Force Rank table Co_GetForceRankSetIndex reads) and
+ * counters of what human players did, each capped at 999999 or 999999999. */
+typedef struct PlayRecords {
     u8 pad_00[0x0e];
     u8 unk_0e;                         /* copied to Unk_02080440_48.musicReady by a rules reset */
     u8 unk_0f;
@@ -34,16 +35,16 @@ typedef struct Unk_02290718 {
     u32 humanDamageTaken;              /* funds value of hp lost by units of human players, capped at 999999999 (Unit_AddDamageTaken) */
     u32 silosLaunched;                 /* silo launches by human players, capped at 999999 (Silo_StartLaunch) */
     u8 pad_3cc[0x3ec - 0x3cc];
-    u32 suppliesAndRepairs;                       /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
+    u32 suppliesAndRepairs;            /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
     u8 pad_3f0[0x3f4 - 0x3f0];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
-    u32 unitsBoarded;                   /* unit action 7 by human players, capped at 999999 (UnitAction_Board) */
+    u32 unitsBoarded;                  /* unit action 7 by human players, capped at 999999 (UnitAction_Board) */
     u8 pad_3fc[0x404 - 0x3fc];
     u32 coSwaps;                       /* CO swaps by human players, capped at 999999 (UnitAction_SwapCo) */
     u8 pad_408[0x414 - 0x408];
     u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */
-} Unk_02290718;
+} PlayRecords;
 
-extern Unk_02290718 data_02290718;
+extern PlayRecords gPlayRecords;
 
 #endif

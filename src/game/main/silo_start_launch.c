@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/player.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -30,8 +30,8 @@ void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY, void *pare
     SiloLaunchTask *task;
 
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (data_02290718.silosLaunched < 999999) {
-            data_02290718.silosLaunched++;
+        if (gPlayRecords.silosLaunched < 999999) {
+            gPlayRecords.silosLaunched++;
         }
     }
     if ((int)parentOrList < TASK_LEVELS) {

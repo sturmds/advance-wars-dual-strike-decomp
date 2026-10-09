@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/player.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -20,8 +20,8 @@ void UnitAction_SwapCo(void)
     switch (GAME->players[GAME->currentPlayer].tagPowerHalf) {
     case 0:
         if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-            if (data_02290718.coSwaps < 999999) {
-                data_02290718.coSwaps++;
+            if (gPlayRecords.coSwaps < 999999) {
+                gPlayRecords.coSwaps++;
             }
         }
         func_020e19b4(GAME->currentPlayer);
@@ -29,8 +29,8 @@ void UnitAction_SwapCo(void)
         break;
     case TAG_POWER_FRONT:
         if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-            if (data_02290718.coSwaps < 999999) {
-                data_02290718.coSwaps++;
+            if (gPlayRecords.coSwaps < 999999) {
+                gPlayRecords.coSwaps++;
             }
         }
         GAME->players[GAME->currentPlayer].tagPowerHalf = TAG_POWER_BACK;

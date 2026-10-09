@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/menu_state.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/map_header.h"
 #include "game/design_map.h"
 
@@ -78,12 +78,12 @@ void BattleSetup_LoadFromGame(void)
     if (data_0229eaec != 0) {
         state->setup.unk_2e1 = 1;
     } else {
-        state->setup.unk_2e1 = data_02290718.unk_12;
+        state->setup.unk_2e1 = gPlayRecords.unk_12;
     }
     if (data_0229eaec != 0) {
         gMenuState.setup.unk_2e2 = 2;
     } else {
-        gMenuState.setup.unk_2e2 = data_02290718.unk_15;
+        gMenuState.setup.unk_2e2 = gPlayRecords.unk_15;
     }
 
     /* weather setting: 0 when unk_3b is 1, else 1-4 from unk_3d */

@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 #define FUNDS_STAT_MAX 999999999
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern Unk_02290718 data_02290718;
+extern PlayRecords gPlayRecords;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -17,12 +17,12 @@ extern Unk_02290718 data_02290718;
 void Player_SpendFunds(int playerIndex, int amount)
 {
     if (STATE->players[STATE->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        u32 total = data_02290718.humanFundsSpent + amount;
+        u32 total = gPlayRecords.humanFundsSpent + amount;
 
         if (total < FUNDS_STAT_MAX) {
-            data_02290718.humanFundsSpent = total;
+            gPlayRecords.humanFundsSpent = total;
         } else {
-            data_02290718.humanFundsSpent = FUNDS_STAT_MAX;
+            gPlayRecords.humanFundsSpent = FUNDS_STAT_MAX;
         }
     }
     STATE->players[playerIndex].funds -= amount;

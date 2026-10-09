@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 #include "game/screen_other_map.h"
 
 extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
-extern Unk_02290718 data_02290718;
+extern PlayRecords gPlayRecords;
 
 int func_020c2108(void);
 void func_02017cb8(void);
@@ -31,7 +31,7 @@ BOOL Player_IsInGame(int player);
     Screen_SetCurrentGfx(saved0280)
 
 /* Passes the turn to the next player still in the game. When the order wraps
- * from player 4 to 1, data_02290718.unk_380 goes up by one if tally is set
+ * from player 4 to 1, gPlayRecords.unk_380 goes up by one if tally is set
  * and this is the first state. In a two-map battle whose other map is not
  * over, the other state's currentPlayer is then set to this player and its
  * per-turn setup runs.
@@ -70,8 +70,8 @@ next:
         if (GAME->currentPlayer == 5) {
             func_02017cb8();
             GAME->currentPlayer = 1;
-            if (tally != 0 && firstState != 0 && data_02290718.unk_380 < 999999) {
-                data_02290718.unk_380++;
+            if (tally != 0 && firstState != 0 && gPlayRecords.unk_380 < 999999) {
+                gPlayRecords.unk_380++;
             }
         }
     } while (!Player_IsInGame(GAME->currentPlayer & 0xff));

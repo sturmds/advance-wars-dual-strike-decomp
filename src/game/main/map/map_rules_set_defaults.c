@@ -3,7 +3,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -101,8 +101,8 @@ void MapRules_SetDefaults(void)
     STATE->unk_5c = 1;
     STATE->partnerBoostHuman = 1;
     STATE->partnerBoostAi = 1;
-    STATE->unk_82 = data_02290718.unk_12;
-    STATE->musicReady = data_02290718.unk_0e;
+    STATE->unk_82 = gPlayRecords.unk_12;
+    STATE->musicReady = gPlayRecords.unk_0e;
     Map_SetCoSelectPhase(0);
     func_0200a630();
 }

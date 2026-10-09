@@ -3,7 +3,7 @@
 #include "game/map_unit.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
-#include "game/Unk_02290718.h"
+#include "game/play_records.h"
 
 u8 Map_GetLoadedPlayerCount(void);
 void Player_SetCo(int slot, int which, int coId);
@@ -57,14 +57,14 @@ void Players_ApplyBattleSetup(void)
             if (i - 1 == Map_GetLoadedPlayerCount() - 1) {
                 STATE->players[i].aiBehaviour = AI_BEHAVIOUR_GENERAL;
             } else {
-                STATE->players[i].aiBehaviour = data_02290718.unk_17;
+                STATE->players[i].aiBehaviour = gPlayRecords.unk_17;
             }
             break;
         case 1: /* War Room: slot 1 is the player */
             if (i != 1) {
                 STATE->players[i].aiBehaviour = AI_BEHAVIOUR_GENERAL;
             } else {
-                STATE->players[i].aiBehaviour = data_02290718.unk_16;
+                STATE->players[i].aiBehaviour = gPlayRecords.unk_16;
             }
             break;
         default:
