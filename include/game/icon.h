@@ -45,5 +45,6 @@ void Icon_Load(int iconId);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void Icon_LoadPalette(int iconId, int paletteSlot);
 void IconBank_LoadPalette(int bank, int paletteSlot);
+void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 
 #endif
