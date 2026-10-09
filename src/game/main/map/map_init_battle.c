@@ -6,7 +6,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0201ad64(void);
+void EventScript_Init(void);
 void func_02080734(void);
 void Map_StartBattleTask(void);
 void Map_SaveCoPicks(void);
@@ -55,7 +55,7 @@ void Map_InitBattle(void)
     u32 otherUnk30;
     int i;
 
-    func_0201ad64();
+    EventScript_Init();
 
     switch (GAME->gameMode) {
     case 2:
