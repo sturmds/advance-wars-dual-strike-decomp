@@ -11,7 +11,7 @@ int func_0209f7ac(MapUnit *unit);
 void func_020ad0d4(void);
 void func_020ad8f8(void);
 void func_020ae9c0(void);
-void func_020aeefc(void);
+void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
 
 /* Queue routine for infantry and mechs set by AiAction_QueueFootUnits. Runs the
@@ -24,7 +24,7 @@ void AiFoot_MoveAndCapture(void)
         func_020ae9c0();
     }
     if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
-        func_020aeefc();
+        AiFoot_AttackCapturingUnit();
         func_020ad0d4();
     }
     if (GAME->actingUnit->hp <= 60) {

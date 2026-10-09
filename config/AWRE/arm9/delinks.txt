@@ -371,6 +371,10 @@ src/game/main/combat/ai_attack_score.c:
     complete
     .text       start:0x020a8d80 end:0x020a9854
 
+src/game/main/ai/ai_foot_attack_capturing_unit.c:
+    complete
+    .text       start:0x020aeefc end:0x020af18c
+
 src/game/main/ai/func_020af5f8.c:
     complete
     .text       start:0x020af5f8 end:0x020af700

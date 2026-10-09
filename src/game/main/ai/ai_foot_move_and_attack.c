@@ -16,7 +16,7 @@ void func_020ad704(void);
 void func_020ad8f8(void);
 void func_020ae37c(void);
 void func_020ae9c0(void);
-void func_020aeefc(void);
+void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
 void func_020b0794(void);
 void func_020b162c(void);
@@ -32,7 +32,7 @@ void AiFoot_MoveAndAttack(void)
         func_020ae9c0();
     }
     if (GAME->players[GAME->currentPlayer].aiBehaviour != AI_BEHAVIOUR_DEFENSE) {
-        func_020aeefc();
+        AiFoot_AttackCapturingUnit();
         func_020ad0d4();
     }
     if (GAME->actingUnit->hp <= 60) {
