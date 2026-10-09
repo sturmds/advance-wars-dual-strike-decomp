@@ -4,9 +4,9 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Sets visionRanksOff; 1 turns off the Scout and Eagle Eye vision bonus
+/* Sets coSelectPhase; 1 turns off the Scout and Eagle Eye vision bonus
  * (Map_IsCoSelectPhase, VisionIncrease). */
 void func_020e8a88(u8 value)
 {
-    data_027c027c->unk_48[data_027c0284]->visionRanksOff = value;
+    data_027c027c->unk_48[data_027c0284]->coSelectPhase = value;
 }

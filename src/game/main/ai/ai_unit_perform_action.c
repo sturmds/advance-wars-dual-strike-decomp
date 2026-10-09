@@ -44,8 +44,8 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
 
     data_0229e198.unitIndex = GAME->actingUnitIndex;
     data_0229e198.rngState = gRngState;
-    data_0229e198.fromX = GAME->unk_3e;
-    data_0229e198.fromY = GAME->unk_40;
+    data_0229e198.fromX = GAME->actingUnitStartX;
+    data_0229e198.fromY = GAME->actingUnitStartY;
     data_0229e198.x = x;
     data_0229e198.y = y;
     data_0229e198.action = action;

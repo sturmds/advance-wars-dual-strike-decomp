@@ -20,7 +20,7 @@ void Combatant_Init(Combatant *combatant, s16 unitIndex)
         MAP_UNIT_OWNER(data_027c027c->unk_48[data_027c0284], combatant->unit), combatant->unit->type, combatant->terrain);
     combatant->hp = combatant->unit->hp;
     combatant->ammo = combatant->unit->ammo;
-    combatant->unk_16 = 0;
+    combatant->weapon = COMBAT_WEAPON_NONE;
     combatant->baseDamage = 0;
     combatant->hpLost = 0;
 }

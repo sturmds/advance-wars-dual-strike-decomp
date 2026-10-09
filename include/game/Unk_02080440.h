@@ -59,8 +59,8 @@ typedef struct Unk_02080440_48 {
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;
-    s16 unk_3e;
-    s16 unk_40;
+    s16 actingUnitStartX;              /* where the acting unit stood before it moved */
+    s16 actingUnitStartY;
     s16 unk_42;
     s16 unk_44;
     u8 unk_46;                         /* passed to func_020c8330 with actingUnit to get fuel used */
@@ -91,7 +91,7 @@ typedef struct Unk_02080440_48 {
     u8 playerCos[5][2];                /* front and back CO id per slot; 0: none */
     u8 team[5];                        /* team per slot, copied from the map header */
     u8 pad_a6[0xba - 0xa6];
-    u8 visionRanksOff;                 /* name is a guess; 1 turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
+    u8 coSelectPhase;                  /* 1 on maps where a player picks a CO; turns off Scout and Eagle Eye, see Map_IsCoSelectPhase */
     u8 pad_bb[0xd0 - 0xbb];
     s8 *unk_d0[40];                    /* one s8 per tile, by row; filled for a unit by func_01ffa44c and func_01ffaa3c; the AI skips negative tiles */
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */

@@ -41,8 +41,8 @@ void AiTurn_RunQueue(void)
             gAiQueueCursor++;
             return;
         }
-        GAME->unk_3e = unit->x;
-        GAME->unk_40 = GAME->actingUnit->y;
+        GAME->actingUnitStartX = unit->x;
+        GAME->actingUnitStartY = GAME->actingUnit->y;
         gAiTurnState->flags &= ~1;
         gAiTurnState->flags &= ~2;
         gAiTurnState->unk_08 = 0;

@@ -144,7 +144,7 @@ attack_tile:
                 continue;
             }
             Combat_CalcDamageToTarget(STATE->actingUnitIndex, kind, pos);
-            if (STATE->combatants[0].unk_16 == 0) {
+            if (STATE->combatants[0].weapon == COMBAT_WEAPON_NONE) {
                 continue;
             }
             /* order between tiles; meaning unclear */

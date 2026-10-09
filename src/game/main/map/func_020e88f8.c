@@ -10,7 +10,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0288 data_027c0288;
 extern const u32 data_02168b94[];     /* task script of (opcode, argument) pairs */
 
-/* On the first of the two game states (data_027c0288), while visionRanksOff is 1,
+/* On the first of the two game states (data_027c0288), while coSelectPhase is 1,
  * starts the data_02168b94 task on top-level list 3 unless it is already
  * running. */
 void func_020e88f8(void)

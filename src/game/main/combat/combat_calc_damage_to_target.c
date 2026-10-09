@@ -54,11 +54,11 @@ void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos)
     }
     if (primaryDamage <= secondaryDamage) {
         if (canUseSecondary) {
-            STATE->combatants[0].unk_16 = 5;
+            STATE->combatants[0].weapon = COMBAT_WEAPON_SECONDARY;
             STATE->combatants[0].baseDamage = secondaryDamage;
         }
     } else {
-        STATE->combatants[0].unk_16 = 1;
+        STATE->combatants[0].weapon = COMBAT_WEAPON_PRIMARY;
         STATE->combatants[0].baseDamage = primaryDamage;
         STATE->combatants[0].ammo--;
     }

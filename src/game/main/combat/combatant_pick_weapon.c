@@ -44,11 +44,11 @@ void Combatant_PickWeapon(Combatant *attacker, Combatant *defender, s16 distance
     }
     if (primaryDamage <= secondaryDamage) {
         if (canUseSecondary) {
-            attacker->unk_16 = 5;
+            attacker->weapon = COMBAT_WEAPON_SECONDARY;
             attacker->baseDamage = secondaryDamage;
         }
     } else {
-        attacker->unk_16 = 1;
+        attacker->weapon = COMBAT_WEAPON_PRIMARY;
         attacker->baseDamage = primaryDamage;
         attacker->ammo--;
     }

@@ -50,7 +50,7 @@ int AiAttack_Score(u32 flags, s16 *pos)
 
     mult = 1;
     func_020c28ac(STATE->actingUnitIndex, flags & AI_ATTACK_DEFENDER_MASK, pos);
-    if (ATTACKER.unk_16 == 0) {
+    if (ATTACKER.weapon == COMBAT_WEAPON_NONE) {
         /* no weapon can hit */
         return 0;
     }
