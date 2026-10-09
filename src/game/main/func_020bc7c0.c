@@ -1,0 +1,8 @@
+#include "types.h"
+
+void BattleMenu_DrawHelpText(int);
+
+void func_020bc7c0(void)
+{
+    BattleMenu_DrawHelpText(-0x3ffffd0f);
+}
