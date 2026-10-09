@@ -28,6 +28,12 @@ typedef struct HeapBlock {
     struct HeapBlock *next;
 } HeapBlock;
 
+/* HeapBlock.signature values */
+#define HEAP_BLOCK_FREE 0x4652  /* "FR" */
+
+/* First byte after a block's memory. Size first: needed to match. */
+#define HEAP_BLOCK_END(block) ((void *)((block)->size + (u32)((block) + 1)))
+
 typedef struct HeapBlockList {
     HeapBlock *head;
     HeapBlock *tail;
