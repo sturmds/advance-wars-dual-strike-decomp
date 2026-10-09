@@ -107,7 +107,7 @@ typedef struct BattleScreenWork {
     u8 unk_490[0x80];                  /* copied from res_battle 0x828 */
     u8 unk_510[0x240];                 /* copied from res_battle 0x88c */
     u8 unk_750[0x80];                  /* copied from res_battle 0xb54 */
-    u8 unk_7d0[0x800];                 /* cleared, then handed to func_ov002_0235e58c */
+    u8 unk_7d0[0x800];                 /* cleared, then handed to Battle_BuildSideTilemaps */
     u16 unk_fd0[16];                   /* palette picked by data_0229fb30 */
     s32 hpShown[2];                    /* 16.16 fixed point, per side */
     s32 hpStep[2];                     /* 16.16 fixed point, taken off hpShown each frame */

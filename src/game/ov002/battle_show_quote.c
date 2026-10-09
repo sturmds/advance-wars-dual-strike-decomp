@@ -27,7 +27,7 @@ BOOL Battle_IsSideAir(int side);
 int Battle_FindArmySlot(int army);
 u8 Battle_GetSideMood(u8 side);
 u8 Battle_GetStartMood(u8 side);
-void func_ov002_0235e58c(void *buf);
+void Battle_BuildSideTilemaps(void *buf);
 
 /* Needed to match: the original adds the field offset to the address of
  * gMenuState at run time instead of folding it into the relocation. */
@@ -146,6 +146,6 @@ void Battle_ShowQuote(void)
 
     Mem_Free(res);
     Mem_Free(lang);
-    func_ov002_0235e58c(BATTLE_FIELD(unk_7d0));
+    Battle_BuildSideTilemaps(BATTLE_FIELD(unk_7d0));
     Gfx_RequestLayerCopy(1);
 }
