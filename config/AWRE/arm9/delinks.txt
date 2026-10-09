@@ -1800,6 +1800,10 @@ src/game/main/func_020242c0.c:
     complete
     .text       start:0x020242c0 end:0x020242e0
 
+src/game/main/func_02024a40.c:
+    complete
+    .text       start:0x02024a40 end:0x02024a6c
+
 src/game/main/menus/rect_contains_point.c:
     complete
     .text       start:0x02024f80 end:0x02024fdc

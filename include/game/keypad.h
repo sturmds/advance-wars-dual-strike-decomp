@@ -22,6 +22,8 @@ typedef struct Keypad {
     u16 unk_00;
     u16 repeat;                        /* menus move the cursor on these keys; probably newly pressed plus auto-repeat */
     u16 pressed;                       /* menus confirm and cancel on these keys; probably newly pressed only */
+    u8 pad_06[6];
+    u16 unk_0c;
 } Keypad;
 
 extern Keypad *gKeypad;
