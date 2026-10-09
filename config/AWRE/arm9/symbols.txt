@@ -2925,11 +2925,11 @@ func_02098310 kind:function(arm,size=0x158) addr:0x02098310
 func_02098468 kind:function(arm,size=0x128) addr:0x02098468
 func_02098590 kind:function(arm,size=0x20) addr:0x02098590
 func_020985b0 kind:function(arm,size=0x20) addr:0x020985b0
-func_020985d0 kind:function(arm,size=0x2b8) addr:0x020985d0
+Strike_FindBestSite kind:function(arm,size=0x2b8) addr:0x020985d0
 func_02098888 kind:function(arm,size=0x374) addr:0x02098888
-func_02098bfc kind:function(arm,size=0x10) addr:0x02098bfc
-func_02098c0c kind:function(arm,size=0x10) addr:0x02098c0c
-func_02098c1c kind:function(arm,size=0x18) addr:0x02098c1c
+StrikeSiteScore_OwnTimes2 kind:function(arm,size=0x10) addr:0x02098bfc
+StrikeSiteScore_OwnTimes4 kind:function(arm,size=0x10) addr:0x02098c0c
+StrikeSiteScore_NetFunds kind:function(arm,size=0x18) addr:0x02098c1c
 StrikeScore_InfantryDamage kind:function(arm,size=0xe0) addr:0x02098c34
 StrikeScore_HpDamage kind:function(arm,size=0xa8) addr:0x02098d14
 StrikeScore_FundsDamage kind:function(arm,size=0xc0) addr:0x02098dbc
@@ -8830,8 +8830,8 @@ data_0229e5c0 kind:bss addr:0x0229e5c0
 data_0229ea0c kind:bss addr:0x0229ea0c
 data_0229ea4c kind:bss addr:0x0229ea4c
 data_0229ea84 kind:bss addr:0x0229ea84
-data_0229eabc kind:bss addr:0x0229eabc
-data_0229eac0 kind:bss addr:0x0229eac0
+gStrikeUnitScore kind:bss addr:0x0229eabc
+gStrikeSiteScore kind:bss addr:0x0229eac0
 data_0229eac4 kind:bss addr:0x0229eac4
 data_0229eac8 kind:bss addr:0x0229eac8
 data_0229eacc kind:bss addr:0x0229eacc
