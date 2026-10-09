@@ -10,19 +10,19 @@ void func_0209ca48(void);
 void func_020a9f64(void);
 void func_020ab014(void);
 void func_020af540(void);
-void func_020b162c(void);
+void AiUnit_PlanAttack(void);
 void func_020b2904(void);
 void func_020b297c(void);
 
 /* AiIndirect_MoveByOrder step for an indirect unit with AI order 10.
- * func_020b162c only runs in Fog of War or rain. */
+ * AiUnit_PlanAttack only runs in Fog of War or rain. */
 void AiIndirect_MoveOrder10(void)
 {
     func_0209ca48();
     func_020af540();
     /* rain also brings fog */
     if (GAME->unk_1c4->fog != 0 || GAME->unk_1c4->weather == WEATHER_RAIN) {
-        func_020b162c();
+        AiUnit_PlanAttack();
     }
     func_020a9f64();
     func_020ab014();

@@ -32,7 +32,7 @@ MapObject *Map_GetObjectAt(int x, int y);     /* object standing at (x, y); NULL
 /* Picks what the AI's acting direct-attack unit hits this turn and queues it:
  * the best-scored enemy unit (action 4) and an object or hp tile, preferring
  * low hp (action 5). Called from the AI unit actions through
- * func_020b162c when UnitType_GetAttackKind gives 0. */
+ * AiUnit_PlanAttack when UnitType_GetAttackKind gives 0. */
 void AiUnit_PickDirectAttack(void)
 {
     /* needed to match: declaration order sets the stack slots */

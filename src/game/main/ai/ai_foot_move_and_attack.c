@@ -19,11 +19,11 @@ void AiFoot_PickCaptureTarget(void);
 void AiFoot_AttackCapturingUnit(void);
 void func_020af5f8(void);
 void func_020b0794(void);
-void func_020b162c(void);
+void AiUnit_PlanAttack(void);
 void func_020b2904(void);
 
 /* Queue routine for infantry and mechs (AiAction_QueueFootUnits2 collects units
- * whose UnitStats.aiClass is AI_CLASS_FOOT). func_020b162c picks direct or indirect
+ * whose UnitStats.aiClass is AI_CLASS_FOOT). AiUnit_PlanAttack picks direct or indirect
  * combat; the other steps are not named yet. */
 void AiFoot_MoveAndAttack(void)
 {
@@ -43,7 +43,7 @@ void AiFoot_MoveAndAttack(void)
     if (GAME->actingUnit->hp > 60) {
         AiFoot_JoinCapturingUnit();
     }
-    func_020b162c();
+    AiUnit_PlanAttack();
     func_020ad704();
     if (GAME->actingUnit->hp <= 60) {
         func_020b0794();
