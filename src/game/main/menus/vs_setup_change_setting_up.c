@@ -4,7 +4,7 @@
 #include "game/event_queue.h"
 
 int func_0207bd80(void);
-void func_02067c80(u8 a, u8 b);
+void VsSetup_SetCo(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
 int VsSetup_PrevCo(int index);
 
@@ -24,7 +24,7 @@ extern MenuState gMenuState;
     if (func_0207bd80() == 1) {                                                       \
         EventQueue_Push((u8)((id) + 9), (u8)VsSetup_PrevCo(id));                       \
     } else {                                                                          \
-        func_02067c80((id) + 9, VsSetup_PrevCo(id));                                   \
+        VsSetup_SetCo((id) + 9, VsSetup_PrevCo(id));                                   \
     }
 
 /* Up on the Vs setup screen, or a touch on an up arrow; like the down

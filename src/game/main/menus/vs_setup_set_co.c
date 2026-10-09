@@ -1,0 +1,47 @@
+#include "types.h"
+#include "game/menu_state.h"
+#include "game/screen_other_map.h"
+
+void Sound_PlaySe(int id);
+int func_0207bd80(void);
+int func_0207bd6c(void);
+int Link_FindSlotOfPlayer(int player);
+void func_02001bcc(int co, void *dest, int paletteSlot, int player);
+void VsSetup_RedrawSkills(void);
+void func_02069624(void);
+
+extern MenuState gMenuState;
+
+/* Needed to match: the cast keeps the field offset out of the literal pool. */
+#define MENU ((MenuState *)&gMenuState)
+
+/* Sets the CO of entry event - 9 of the setup screen, loads its picture and
+ * redraws the skills. In a link game only the entry of this machine's own
+ * player is redrawn. The first change plays a sound. */
+void VsSetup_SetCo(int event, int co)
+{
+    u8 index;
+    int player;
+
+    if (MENU->setup.settingsChanged == 0 && MENU->setup.unk_2ea == 0) {
+        Sound_PlaySe(0x10002);
+        MENU->setup.settingsChanged = 1;
+    }
+    index = event - 9;
+    player = index >> 1;
+    MENU->setup.cos[player][index & 1] = co;
+    if (MENU->setup.cos[player][index & 1] != 0 && MENU->setup.unk_2ea == 0) {
+        func_02001bcc(MENU->setup.cos[player][index & 1], data_027c0280->objVram + (552 + index * 18) * 32, index + 18, player + 1);
+    }
+    /* Needed to match: the two calls are written out in both branches. */
+    if (func_0207bd80() == 1) {
+        if (player != Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
+            return;
+        }
+        VsSetup_RedrawSkills();
+        func_02069624();
+    } else {
+        VsSetup_RedrawSkills();
+        func_02069624();
+    }
+}

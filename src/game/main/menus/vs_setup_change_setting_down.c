@@ -4,7 +4,7 @@
 #include "game/event_queue.h"
 
 int func_0207bd80(void);
-void func_02067c80(u8 a, u8 b);
+void VsSetup_SetCo(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
 int VsSetup_NextCo(int index);
 
@@ -25,7 +25,7 @@ extern MenuState gMenuState;
     if (func_0207bd80() == 1) {                                                       \
         EventQueue_Push((u8)((id) + 9), (u8)VsSetup_NextCo(id));                       \
     } else {                                                                          \
-        func_02067c80((id) + 9, VsSetup_NextCo(id));                                   \
+        VsSetup_SetCo((id) + 9, VsSetup_NextCo(id));                                   \
     }
 
 /* Down on the Vs setup screen, or a touch on the down arrow of a button.
