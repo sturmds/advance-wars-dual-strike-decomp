@@ -47,3 +47,7 @@ src/game/ov005/func_ov005_02365a8c.c:
 src/game/ov005/func_ov005_02365ec0.c:
     complete
     .text       start:0x02365ec0 end:0x02365ed0
+
+src/game/ov005/func_ov005_02367e38.c:
+    complete
+    .text       start:0x02367e38 end:0x02367e50
