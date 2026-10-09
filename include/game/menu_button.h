@@ -90,17 +90,19 @@ typedef struct MenuButtonTemplate {
     void (*onSlideOutDone)(MenuButton *button);
 } MenuButtonTemplate;
 
-/* Menu button state reached through data_02158f38. */
-typedef struct MenuButtonState {
-    u8 pad_00[0x08];
-    u8 unk_08;                         /* set together with selected by func_0202621c */
+/* The menu cursor, reached through data_02158f38: the selected button and
+ * the four corner sprites drawn around it. */
+typedef struct MenuCursor {
+    u32 tile;                          /* OAM character name of the corner sprites */
+    u32 palette;
+    u8 selectedId;                     /* set together with selected by func_0202621c */
     u8 pad_09[0x0c - 0x09];
     MenuButton *selected;
-    u8 pad_10[0x20 - 0x10];
+    s16 corners[4][2];                 /* x, y of each corner sprite */
     u8 screen;                         /* 0 when the buttons were made on data_027c0288.unk_00, else 1 */
-} MenuButtonState;
+} MenuCursor;
 
-extern MenuButtonState *data_02158f38;
+extern MenuCursor *data_02158f38;
 
 MenuButton *MenuButton_Find(int id);           /* active button with this id, or NULL */
 MenuButton *MenuButton_Select(int id);
