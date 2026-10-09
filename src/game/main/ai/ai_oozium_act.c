@@ -1,11 +1,11 @@
 #include "types.h"
 
-void func_0209b1b0(void);
+void AiOozium_BuildThreatMaps(void);
 void func_020b7460(void);
 
 /* Queue routine for Ooziums, set by AiAction_QueueOoziums. */
 void AiOozium_Act(void)
 {
-    func_0209b1b0();
+    AiOozium_BuildThreatMaps();
     func_020b7460();
 }
