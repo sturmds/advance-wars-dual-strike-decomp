@@ -34,7 +34,9 @@ typedef struct Unk_027c0280 {
     /* Four layers of 0x14 bytes from 0xe0: +1 the BG they use, +0xc
      * their tile map buffer. */
     u8 layer0Bg;
-    u8 pad_e2[0xec - 0xe2];
+    u8 pad_e2[0xe4 - 0xe2];
+    u8 *unk_e4;                        /* tile data that the digit font loads into */
+    u8 pad_e8[0xec - 0xe8];
     u16 *layer0Map;
     u8 pad_f0[0xf5 - 0xf0];
     u8 layer1Bg;
