@@ -353,6 +353,12 @@ def main() -> int:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
     git("add", "-A", "config", "src", "include", "docs")
+    # Also stage the commit's other paths (tools/, hooks/, Makefile, CLAUDE.md,
+    # skills): without this, a replayed tools commit landed without its files.
+    other = sorted({p for ln in changes for p in ln.split("\t")[1:]
+                    if p != "PROGRESS.md" and not p.startswith(("config/", "src/", "include/", "docs/"))})
+    if other:
+        git("add", "-A", "--", *other)
     if not git("diff", "--cached", "--name-only"):
         print("error: nothing left to commit: this branch already has the change, or the merge"
               " kept this branch's version (see the notes above)", file=sys.stderr)
