@@ -37,9 +37,9 @@ void func_020dd6bc(void);
 void UnitAction_MoveToOtherMap(void);
 void func_020dd89c(void);
 void func_020dd9a0(void);
-void func_020ddc2c(void);
+void UnitAction_Supply(void);
 void UnitAction_Join(void);
-void func_020de350(int arg);
+void UnitAction_Repair(int arg);
 void func_020de440(void);
 void UnitAction_Capture(void);
 void func_020deac4(void);
@@ -121,7 +121,7 @@ void AiShowAction_Step2(void)
         func_020deac4();
         break;
     case 6:
-        func_020ddc2c();
+        UnitAction_Supply();
         break;
     case 11:
         func_020b8308();
@@ -150,7 +150,7 @@ void AiShowAction_Step2(void)
         AiShowAction_BlackBombExplode();
         break;
     case 24:
-        func_020de350(gUnitAction.target - 1);
+        UnitAction_Repair(gUnitAction.target - 1);
         func_020deac4();
         break;
     case 25:

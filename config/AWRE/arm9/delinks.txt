@@ -7048,7 +7048,7 @@ src/game/main/func_020ddc14.c:
     complete
     .text       start:0x020ddc14 end:0x020ddc2c
 
-src/game/main/func_020ddc2c.c:
+src/game/main/unit_action_supply.c:
     complete
     .text       start:0x020ddc2c end:0x020ddcb8
 
@@ -7059,6 +7059,10 @@ src/game/main/func_020ddcb8.c:
 src/game/main/units/unit_action_join.c:
     complete
     .text       start:0x020ddd30 end:0x020de090
+
+src/game/main/unit_action_repair.c:
+    complete
+    .text       start:0x020de350 end:0x020de440
 
 src/game/main/units/unit_action_capture.c:
     .text       start:0x020de5a4 end:0x020de9c0

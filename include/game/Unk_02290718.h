@@ -33,7 +33,7 @@ typedef struct Unk_02290718 {
     u32 humanDamageTaken;              /* funds value of hp lost by units of human players, capped at 999999999 (Unit_AddDamageTaken) */
     u32 silosLaunched;                 /* silo launches by human players, capped at 999999 (Silo_StartLaunch) */
     u8 pad_3cc[0x3ec - 0x3cc];
-    u32 unk_3ec;                       /* counted for human players by func_020ddc2c and func_020ddcb8, capped at 999999; meaning unknown */
+    u32 suppliesAndRepairs;                       /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
     u8 pad_3f0[0x3f4 - 0x3f0];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
     u8 pad_3f8[0x414 - 0x3f8];
