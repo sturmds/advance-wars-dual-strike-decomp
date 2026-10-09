@@ -154,6 +154,10 @@ src/game/main/ai/ai_action_queue_transport_unloads.c:
     complete
     .text       start:0x0208e50c end:0x0208e644
 
+src/game/main/ai/ai_action_queue_empty_transports.c:
+    complete
+    .text       start:0x0208e644 end:0x0208e77c
+
 src/game/main/ai/func_0208e77c.c:
     complete
     .text       start:0x0208e77c end:0x0208e7dc
