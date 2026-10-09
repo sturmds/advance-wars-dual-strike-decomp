@@ -1,9 +1,10 @@
 #include "types.h"
 
-u32 func_02046dc4(u32 co);
-int MenuButtons_EnableTouch(int exp);
+void func_02046dc4(void);
+void MenuButtons_EnableTouch(void);
 
-int func_02047168(u32 co)
+void func_02047168(void)
 {
-    return MenuButtons_EnableTouch(func_02046dc4(co));
+    func_02046dc4();
+    MenuButtons_EnableTouch();
 }

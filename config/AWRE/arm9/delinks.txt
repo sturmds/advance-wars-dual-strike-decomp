@@ -2833,6 +2833,10 @@ src/game/main/func_02046db8.c:
     complete
     .text       start:0x02046db8 end:0x02046dc4
 
+src/game/main/menus/func_02046dc4.c:
+    complete
+    .text       start:0x02046dc4 end:0x02046e18
+
 src/game/main/func_02046e18.c:
     complete
     .text       start:0x02046e18 end:0x02046e3c
