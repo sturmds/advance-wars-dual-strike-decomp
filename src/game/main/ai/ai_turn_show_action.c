@@ -6,9 +6,9 @@ extern u32 data_0229eac4;
 void func_020b91b0(void);
 void func_020b9114(void);
 void func_020b8cf0(void);
-void func_020b869c(void);
-void func_020b8654(void);
-void func_020b8604(void);
+void AiShowAction_Step3(void);
+void AiShowAction_Step4(void);
+void AiShowAction_Step5(void);
 void AiShowAction_Step6(void);
 void func_020b8850(void);
 void func_020b8798(void);
@@ -33,13 +33,13 @@ void AiTurn_ShowAction(void)
         func_020b8cf0();
         break;
     case 3:
-        func_020b869c();
+        AiShowAction_Step3();
         break;
     case 4:
-        func_020b8654();
+        AiShowAction_Step4();
         break;
     case 5:
-        func_020b8604();
+        AiShowAction_Step5();
         break;
     case 6:
         AiShowAction_Step6();
