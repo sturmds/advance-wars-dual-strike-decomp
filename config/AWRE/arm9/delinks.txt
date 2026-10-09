@@ -4923,9 +4923,17 @@ src/game/main/func_020b4d04.c:
     complete
     .text       start:0x020b4d04 end:0x020b4d0c
 
+src/game/main/ai/func_020b4e24.c:
+    complete
+    .text       start:0x020b4e24 end:0x020b4e84
+
 src/game/main/func_020b4e84.c:
     complete
     .text       start:0x020b4e84 end:0x020b4e8c
+
+src/game/main/ai/func_020b501c.c:
+    complete
+    .text       start:0x020b501c end:0x020b507c
 
 src/game/main/func_020b507c.c:
     complete
@@ -4935,6 +4943,10 @@ src/game/main/func_020b5098.c:
     complete
     .text       start:0x020b5098 end:0x020b50bc
 
+src/game/main/ai/func_020b5138.c:
+    complete
+    .text       start:0x020b5138 end:0x020b5198
+
 src/game/main/func_020b5198.c:
     complete
     .text       start:0x020b5198 end:0x020b51b4
@@ -4942,6 +4954,10 @@ src/game/main/func_020b5198.c:
 src/game/main/func_020b52cc.c:
     complete
     .text       start:0x020b52cc end:0x020b52d4
+
+src/game/main/ai/func_020b5464.c:
+    complete
+    .text       start:0x020b5464 end:0x020b54c4
 
 src/game/main/ai/ai_oozium_move_to_target.c:
     .text       start:0x020b7460 end:0x020b7a80
