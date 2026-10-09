@@ -14,8 +14,11 @@ typedef struct SaveProgress {
     u32 unk_5c;                        /* passed to func_02017c88 */
     u8 pad_60[0x90 - 0x60];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
-    u8 pad_after_records[0x10c4 - 0x90 - CO_COUNT * sizeof(CoSaveRecord)];
+    SaveHalfwords16 unk_3a0[3];        /* one per profile; Save_LoadProfiles copies them to data_02290718 */
+    u8 pad_3d0[0x10c4 - 0x3d0];
     ForceRankSet profileSets[1][96];   /* [Unk_02290118.unk_00][CO id]; more profiles may follow */
+    u8 pad_1244[0x1534 - 0x1244];
+    SaveBytes30 unk_1534[3];           /* one per profile; Save_LoadProfiles copies them to data_022900bc */
 } SaveProgress;
 
 extern SaveProgress data_02291774;

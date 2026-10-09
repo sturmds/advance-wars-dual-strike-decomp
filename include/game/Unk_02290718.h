@@ -19,7 +19,8 @@ typedef struct Unk_02290718 {
     u8 unk_17;                         /* aiBehaviour of every slot but the last when gameMode is 0 (Players_ApplyBattleSetup) */
     u8 pad_18[0x38 - 0x18];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
-    u8 pad_after_records[0x380 - 0x38 - CO_COUNT * sizeof(CoSaveRecord)];
+    SaveHalfwords16 unk_348[3];        /* one per profile; Save_LoadProfiles fills them from the save */
+    u8 pad_378[0x380 - 0x378];
     u32 unk_380;                       /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
     u8 pad_384[0x3a0 - 0x384];
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */

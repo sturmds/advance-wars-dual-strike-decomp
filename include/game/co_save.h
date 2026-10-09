@@ -19,4 +19,15 @@ typedef struct CoSaveRecord {
     ForceRankSet setsMode2[4];         /* mode 2 */
 } CoSaveRecord;
 
+/* Per-profile blocks in the save record and the live data. Save_LoadProfiles
+ * copies each as a unit; the wrappers make the compiler copy by halfword and
+ * by byte, as the original does. */
+typedef struct SaveHalfwords16 {
+    u16 value[8];
+} SaveHalfwords16;
+
+typedef struct SaveBytes30 {
+    u8 value[30];
+} SaveBytes30;
+
 #endif
