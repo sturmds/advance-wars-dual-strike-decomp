@@ -11,7 +11,7 @@ extern u8 *data_02297790;
 
 void func_0210187c(void);
 void func_0201d7a8(void);
-void func_0201dba4(void);
+void EventScript_ClearTextMap(void);
 void func_0201dbdc(void);
 
 /* Clears the event script slots and related state when a battle map starts
@@ -33,7 +33,7 @@ void EventScript_Init(void)
     data_02297778 = 0;
     data_0229777c = 0;
     func_0201d7a8();
-    func_0201dba4();
+    EventScript_ClearTextMap();
     func_0201dbdc();
     data_022977a4.unk_08 = 0;
     data_022977a4.unk_00 = 0;
