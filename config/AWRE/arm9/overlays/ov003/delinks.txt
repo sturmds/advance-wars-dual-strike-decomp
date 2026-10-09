@@ -15,6 +15,10 @@ src/game/ov003/ov003_init.c:
     complete
     .text       start:0x02351944 end:0x023519e0
 
+src/game/ov003/func_ov003_02353a84.c:
+    complete
+    .text       start:0x02353a84 end:0x02353a98
+
 src/game/ov003/func_ov003_0235dd38.c:
     complete
     .text       start:0x0235dd38 end:0x0235dd48

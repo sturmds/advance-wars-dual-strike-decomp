@@ -4030,6 +4030,10 @@ src/game/main/func_0210e25c.c:
     complete
     .text       start:0x0210e25c end:0x0210e270
 
+src/game/main/func_0210e270.c:
+    complete
+    .text       start:0x0210e270 end:0x0210e284
+
 src/game/main/func_0210e494.c:
     complete
     .text       start:0x0210e494 end:0x0210e4a8
@@ -4037,6 +4041,10 @@ src/game/main/func_0210e494.c:
 src/game/main/func_0210e4a8.c:
     complete
     .text       start:0x0210e4a8 end:0x0210e4bc
+
+src/game/main/func_0210ee7c.c:
+    complete
+    .text       start:0x0210ee7c end:0x0210ee8c
 
 src/game/main/func_02110a90.c:
     complete
@@ -4058,6 +4066,22 @@ src/sdk/fs/fs_overlay.c:
     complete
     .text       start:0x021135c4 end:0x021135ec
 
+src/game/main/func_02115370.c:
+    complete
+    .text       start:0x02115370 end:0x02115378
+
+src/game/main/func_0211ba5c.c:
+    complete
+    .text       start:0x0211ba5c end:0x0211ba80
+
 src/game/main/func_0211be3c.c:
     complete
     .text       start:0x0211be3c end:0x0211be50
+
+src/game/main/func_0211bfb8.c:
+    complete
+    .text       start:0x0211bfb8 end:0x0211bfc8
+
+src/game/main/func_02122348.c:
+    complete
+    .text       start:0x02122348 end:0x0212235c
