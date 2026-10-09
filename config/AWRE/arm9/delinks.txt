@@ -2201,6 +2201,10 @@ src/game/main/copowers/covering_fire.c:
     complete
     .text       start:0x020e4614 end:0x020e462c
 
+src/game/main/func_020e462c.c:
+    complete
+    .text       start:0x020e462c end:0x020e46cc
+
 src/game/main/func_020e4700.c:
     complete
     .text       start:0x020e4700 end:0x020e4718
