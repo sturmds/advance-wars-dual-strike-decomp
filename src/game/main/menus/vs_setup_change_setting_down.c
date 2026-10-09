@@ -6,7 +6,7 @@
 int func_0207bd80(void);
 void func_02067c80(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
-int func_020699fc(int index);
+int VsSetup_NextCo(int index);
 
 extern MenuState gMenuState;
 
@@ -23,9 +23,9 @@ extern MenuState gMenuState;
     }
 #define STEP_CO(id)                                                                   \
     if (func_0207bd80() == 1) {                                                       \
-        EventQueue_Push((u8)((id) + 9), (u8)func_020699fc(id));                       \
+        EventQueue_Push((u8)((id) + 9), (u8)VsSetup_NextCo(id));                       \
     } else {                                                                          \
-        func_02067c80((id) + 9, func_020699fc(id));                                   \
+        func_02067c80((id) + 9, VsSetup_NextCo(id));                                   \
     }
 
 /* Down on the Vs setup screen, or a touch on the down arrow of a button.
@@ -33,7 +33,7 @@ extern MenuState gMenuState;
  * slot * 2 + main or second map); the arrows have ids 16 + 2 * n and 17 + 2 * n
  * for controller entry n (up, down), and 32 + 2 * n, 33 + 2 * n for CO entry n. A controller entry
  * switches between human and AI; a CO entry steps to another CO with
- * func_020699fc. In a link game the change goes through the event queue,
+ * VsSetup_NextCo. In a link game the change goes through the event queue,
  * else it is applied at once. Event ids: controllers 1-8, COs 9-16. */
 void VsSetup_ChangeSettingDown(MenuButton *button)
 {

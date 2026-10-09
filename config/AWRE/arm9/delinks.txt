@@ -3228,6 +3228,14 @@ src/game/main/menus/battle_setup_is_cursor_on_co.c:
     complete
     .text       start:0x02069920 end:0x0206996c
 
+src/game/main/menus/vs_setup_prev_co.c:
+    complete
+    .text       start:0x0206996c end:0x020699fc
+
+src/game/main/menus/vs_setup_next_co.c:
+    complete
+    .text       start:0x020699fc end:0x02069a90
+
 src/game/main/func_02069b14.c:
     complete
     .text       start:0x02069b14 end:0x02069b40

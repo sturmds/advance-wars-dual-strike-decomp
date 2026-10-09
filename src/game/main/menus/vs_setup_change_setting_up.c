@@ -6,7 +6,7 @@
 int func_0207bd80(void);
 void func_02067c80(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
-int func_0206996c(int index);
+int VsSetup_PrevCo(int index);
 
 extern MenuState gMenuState;
 
@@ -22,13 +22,13 @@ extern MenuState gMenuState;
     }
 #define STEP_CO(id)                                                                   \
     if (func_0207bd80() == 1) {                                                       \
-        EventQueue_Push((u8)((id) + 9), (u8)func_0206996c(id));                       \
+        EventQueue_Push((u8)((id) + 9), (u8)VsSetup_PrevCo(id));                       \
     } else {                                                                          \
-        func_02067c80((id) + 9, func_0206996c(id));                                   \
+        func_02067c80((id) + 9, VsSetup_PrevCo(id));                                   \
     }
 
 /* Up on the Vs setup screen, or a touch on an up arrow; like the down
- * handler, but a CO entry steps the other way with func_0206996c. */
+ * handler, but a CO entry steps the other way with VsSetup_PrevCo. */
 void VsSetup_ChangeSettingUp(MenuButton *button)
 {
     int id = button->id;
