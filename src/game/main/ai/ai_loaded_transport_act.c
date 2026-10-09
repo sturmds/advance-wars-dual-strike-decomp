@@ -9,7 +9,7 @@ void func_020abe3c(void);
 void func_020b2904(void);
 
 /* Queue routine for APCs and T-Copters that carry a unit, set by
- * AiAction_QueueLoadedTransports. func_0209fc10 runs
+ * AiAction_QueueLoadedTransports. AiTransport_Unload runs
  * func_020abe3c alone on the same units. */
 void AiLoadedTransport_Act(void)
 {
