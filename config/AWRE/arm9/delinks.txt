@@ -443,6 +443,10 @@ src/game/main/ai/ai_build_threat_maps.c:
     complete
     .text       start:0x0209c948 end:0x0209ca48
 
+src/game/main/func_0209dd7c.c:
+    complete
+    .text       start:0x0209dd7c end:0x0209de14
+
 src/game/main/map/map_is_silo_or_capturable_tile.c:
     complete
     .text       start:0x0209e1ac end:0x0209e230
