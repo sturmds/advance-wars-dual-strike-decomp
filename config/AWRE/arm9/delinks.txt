@@ -807,6 +807,10 @@ src/game/main/skills/check_skills_equipped.c:
     complete
     .text       start:0x020e7ee0 end:0x020e7f18
 
+src/game/main/skills/force_rank_set_count.c:
+    complete
+    .text       start:0x020e7f18 end:0x020e7f30
+
 src/game/main/map/func_020e7f30.c:
     complete
     .text       start:0x020e7f30 end:0x020e7fa8
