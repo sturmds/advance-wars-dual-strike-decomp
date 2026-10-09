@@ -21,6 +21,10 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
   a clash. The commit's sources are then rewritten to mainline's field and
   type names. Any other conflict stops the replay after the rest of the
   commit is applied.
+- Source files: the commit's symbol renames are applied to both older
+  versions before the merge. Afterwards, local prototypes of functions an
+  included header declares are dropped from the commit's .c files, and
+  conflict blocks whose two sides have become equal are resolved.
 
 Then it commits with the original message and author, which runs the hooks
 (so `make release` must pass).
@@ -116,8 +120,10 @@ def apply_relocs(path: str, old: str, new: str) -> None:
     (ROOT / path).write_text("\n".join(cur) + "\n")
 
 
-def merge_file(path: str, base: str | None, theirs: str | None) -> None:
-    """Write the commit's version of a file, merged with this branch's."""
+def merge_file(path: str, base: str | None, theirs: str | None, renames: dict[str, str]) -> None:
+    """Write the commit's version of a file, merged with this branch's.
+    renames: the commit's symbol renames, applied to both older versions
+    first so that a renamed call does not conflict with a nearby edit."""
     target = ROOT / path
     if theirs is None:
         if target.exists() and base is not None and target.read_text() == base:
@@ -128,6 +134,10 @@ def merge_file(path: str, base: str | None, theirs: str | None) -> None:
         target.write_text(theirs)
         return
     ours = target.read_text()
+    if renames and path.startswith(("src/", "include/")):
+        base = header_merge.rename_words(base, renames) if base else base
+        ours = header_merge.rename_words(ours, renames)
+        target.write_text(ours)
     if ours == theirs:
         return
     if base is not None and ours == base:
@@ -146,6 +156,7 @@ def merge_file(path: str, base: str | None, theirs: str | None) -> None:
 
 
 CONFLICTS: list[str] = []
+CONFLICT_BLOCK = re.compile(r"^<<<<<<< current\n(.*?)^=======\n(.*?)^>>>>>>> commit\n", re.M | re.S)
 MERGED_HEADERS: dict[str, header_merge.Report] = {}
 COMMIT = ""
 
@@ -211,6 +222,42 @@ def rewrite(path: str, fields: dict[str, str], types: dict[str, str]) -> None:
         print(f"renamed fields and types in {path} to the merged header's names")
 
 
+INCLUDE = re.compile(r'^\s*#\s*include\s+"([^"]+)"', re.M)
+
+
+def included(path: Path) -> list[Path]:
+    """Headers a file includes, directly and one level down."""
+    out = []
+    for name in INCLUDE.findall(path.read_text()):
+        h = ROOT / "include" / name
+        if h.exists():
+            out.append(h)
+            out += [ROOT / "include" / n for n in INCLUDE.findall(h.read_text()) if (ROOT / "include" / n).exists()]
+    return out
+
+
+PROTOTYPE = re.compile(r"^(?:extern[ \t]+)?[A-Za-z_][\w \t\*]*?\b(\w+)\s*\([^;{}]*\)\s*;[ \t]*(?:/\*.*\*/)?[ \t]*\n", re.M)
+
+
+def drop_header_prototypes(paths: list[str]) -> None:
+    """Remove local prototypes of functions that an included header declares.
+    Agents declare callees at the top of their file until a header has
+    them; a 3-way merge brings such lines back after a header gained the
+    function. The header's version wins, also when the parameter types differ."""
+    for path in paths:
+        p = ROOT / path
+        if not (path.endswith(".c") and p.exists()):
+            continue
+        declared = set()
+        for h in included(p):
+            declared |= header_merge.declared_functions(h.read_text())
+        text = p.read_text()
+        new = PROTOTYPE.sub(lambda m: "" if m.group(1) in declared else m.group(0), text)
+        if new != text:
+            p.write_text(re.sub(r"\n\n\n+", "\n\n", new))
+            print(f"dropped prototypes in {path} that its headers declare")
+
+
 def rename_in_sources(renames) -> None:
     files = list((ROOT / "src").rglob("*.[ch]")) + list((ROOT / "include").rglob("*.h"))
     for old, new in renames:
@@ -252,6 +299,22 @@ def fix_stale_names(paths) -> None:
             print(f"updated stale address names in {path}")
 
 
+def resolve_equal_sides() -> None:
+    """Take conflict blocks whose two sides became equal once names were
+    updated and prototypes dropped."""
+    for path in list(CONFLICTS):
+        p = ROOT / path
+        if not p.is_file():
+            continue
+        text = p.read_text()
+        new = CONFLICT_BLOCK.sub(lambda m: m.group(1) if m.group(1) == m.group(2) else m.group(0), text)
+        if new != text:
+            p.write_text(new)
+        if not CONFLICT_BLOCK.search(new):
+            CONFLICTS.remove(path)
+            print(f"merged {path}: both sides of each conflict were equal after the renames")
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         sys.exit(__doc__)
@@ -277,13 +340,15 @@ def main() -> int:
         elif path.startswith("config/") and name == "relocs.txt":
             apply_relocs(path, old, new)
         else:
-            merge_file(path, old, new)
+            merge_file(path, old, new, dict(renames))
     rename_in_sources(renames)
     for old, new in renames:
         print(f"renamed {old} -> {new}")
     paths = [ln.split("\t", 1)[1] for ln in changes]
     apply_header_renames(paths)
     fix_stale_names(paths)
+    drop_header_prototypes(paths)
+    resolve_equal_sides()
     if CONFLICTS:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
