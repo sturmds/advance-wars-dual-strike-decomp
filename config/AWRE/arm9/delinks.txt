@@ -632,6 +632,10 @@ src/game/main/func_02015ef8.c:
     complete
     .text       start:0x02015ef8 end:0x02015efc
 
+src/game/main/script/func_02015efc.c:
+    complete
+    .text       start:0x02015efc end:0x02015f50
+
 src/game/main/script/func_02015f50.c:
     complete
     .text       start:0x02015f50 end:0x02015fa4
