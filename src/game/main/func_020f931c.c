@@ -12,11 +12,11 @@ struct Unk_02057ef8_1 {
 };
 extern Unk_02057ef8_0 *data_027c027c;
 extern int data_027c0284;
-void func_0201e364(int, void *);
+void Gfx_LoadPlayerBmap0a0Palette(int, void *);
 
 void func_020f931c(void)
 {
     Unk_02057ef8_0 *t0 = data_027c027c;
     int t1 = data_027c0284;
-    func_0201e364(t0->unk_48[t1]->unk_2, t0);
+    Gfx_LoadPlayerBmap0a0Palette(t0->unk_48[t1]->unk_2, t0);
 }
