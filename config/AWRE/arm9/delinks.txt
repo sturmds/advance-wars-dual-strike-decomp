@@ -7206,6 +7206,10 @@ src/game/main/units/unit_type_get_vision.c:
     complete
     .text       start:0x020dfc98 end:0x020dfcb0
 
+src/game/main/units/unit_type_get_cost_div10.c:
+    complete
+    .text       start:0x020dfcb0 end:0x020dfcc8
+
 src/game/main/units/unit_type_get_movement.c:
     complete
     .text       start:0x020dfce0 end:0x020dfcf8
