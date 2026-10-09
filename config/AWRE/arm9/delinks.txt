@@ -1219,6 +1219,10 @@ src/game/main/func_020ffa50.c:
     complete
     .text       start:0x020ffa50 end:0x020ffa64
 
+src/game/main/func_021016c4.c:
+    complete
+    .text       start:0x021016c4 end:0x021016e4
+
 src/game/main/map/map_find_by_data.c:
     complete
     .text       start:0x021016f0 end:0x02101744
