@@ -148,6 +148,10 @@ src/game/main/units/strike_score_hp_damage.c:
     complete
     .text       start:0x02098d14 end:0x02098dbc
 
+src/game/main/units/strike_score_funds_damage.c:
+    complete
+    .text       start:0x02098dbc end:0x02098e7c
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
