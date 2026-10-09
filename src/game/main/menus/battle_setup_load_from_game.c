@@ -12,7 +12,7 @@ void Screen_SetCurrentGfx(void *state);
 u8 func_020018a8(int player, int slot);
 int func_02017abc(int co, int player);
 void func_020c47d0(int mapId, u8 *a, u8 *b);
-u8 func_020c3e08(void);
+u8 Map_GetLoadedPlayerCount(void);
 u8 BuildCoPickList(void);
 u8 *GetCoPickList(void);
 int func_0207bd80(void);
@@ -156,7 +156,7 @@ void BattleSetup_LoadFromGame(void)
             }
         }
     } else {
-        gMenuState.setup.unk_2e3 = func_020c3e08();
+        gMenuState.setup.unk_2e3 = Map_GetLoadedPlayerCount();
         gMenuState.setup.unk_2e1 = GAME->unk_82;
         gMenuState.setup.unk_2e2 = GAME->unk_8c;
         for (i = 0; i < 4; i++) {

@@ -50,7 +50,8 @@ typedef struct Unk_02080440_1c4 {
     u16 unk_20;
     u8 pad_22[0x2a - 0x22];
     u16 unk_2a;
-    u8 pad_2c[0x30 - 0x2c];
+    u8 playerCount;                    /* players on the loaded map; the loop bound in func_02031498 */
+    u8 pad_2d[0x30 - 0x2d];
     u32 unk_30;
     u16 mapId;                         /* index into Ov000_gMapHeaders */
     u8 pad_36[0x38 - 0x36];
