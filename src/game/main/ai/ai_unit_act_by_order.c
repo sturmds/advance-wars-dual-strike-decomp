@@ -16,7 +16,7 @@ void AiUnit_ActOrder4(void);
 void AiUnit_ActOrder3(void);
 void AiUnit_ActOrder2(void);
 void AiUnit_ActOrder1(void);
-void func_020a0b80(void);
+void AiUnit_ActOrder0(void);
 
 /* Queue routine for the units AiAction_QueueDirectUnits, AiAction_QueueAllDirectUnits and
  * AiAction_QueueAllDirectUnitsFog collect: runs the action sequence for the active unit's
@@ -27,7 +27,7 @@ void AiUnit_ActByOrder(void)
 
     switch (game->actingUnit->aiOrder) {
     case 0:
-        func_020a0b80();
+        AiUnit_ActOrder0();
         break;
     case 1:
         AiUnit_ActOrder1();
@@ -36,7 +36,7 @@ void AiUnit_ActByOrder(void)
         if (func_0209dd7c() == TRUE) {
             AiUnit_ActOrder2();
         } else {
-            func_020a0b80();
+            AiUnit_ActOrder0();
         }
         break;
     case 3:

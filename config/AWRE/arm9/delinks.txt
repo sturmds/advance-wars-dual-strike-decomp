@@ -571,6 +571,10 @@ src/game/main/ai/ai_unit_act_order1.c:
     complete
     .text       start:0x020a0b44 end:0x020a0b80
 
+src/game/main/ai/ai_unit_act_order0.c:
+    complete
+    .text       start:0x020a0b80 end:0x020a0bc0
+
 src/game/main/ai/ai_unit_adjust_action.c:
     complete
     .text       start:0x020a2f98 end:0x020a30c4
