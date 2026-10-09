@@ -811,6 +811,9 @@ src/game/main/menus/force_rank_screen_handle_keys.c:
     complete
     .text       start:0x0204030c end:0x02040568
 
+src/game/main/menus/force_rank_screen_clear_sets.c:
+    .text       start:0x02040568 end:0x0204062c
+
 src/game/main/menus/force_rank_screen_next_set.c:
     complete
     .text       start:0x0204062c end:0x0204069c
@@ -830,6 +833,10 @@ src/game/main/menus/force_rank_screen_put_icons.c:
 src/game/main/menus/force_rank_screen_fill_columns.c:
     complete
     .text       start:0x02041428 end:0x02041594
+
+src/game/main/menus/force_rank_screen_put_no_skill_icon.c:
+    complete
+    .text       start:0x0204171c end:0x020417a8
 
 src/game/main/menus/co_select_screen_handle_keys.c:
     complete
