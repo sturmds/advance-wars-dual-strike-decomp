@@ -1735,6 +1735,14 @@ src/game/main/menus/co_select_screen_handle_keys.c:
     complete
     .text       start:0x020429f0 end:0x02042b3c
 
+src/game/main/func_02042b3c.c:
+    complete
+    .text       start:0x02042b3c end:0x02042b68
+
+src/game/main/func_02042b68.c:
+    complete
+    .text       start:0x02042b68 end:0x02042b94
+
 src/game/main/menus/co_select_screen_start_task.c:
     complete
     .text       start:0x02042b94 end:0x02042bc0
@@ -1818,6 +1826,10 @@ src/game/main/func_02046e3c.c:
 src/game/main/func_02046e64.c:
     complete
     .text       start:0x02046e64 end:0x02046e8c
+
+src/game/main/func_02046f74.c:
+    complete
+    .text       start:0x02046f74 end:0x02046fa0
 
 src/game/main/func_02046fa0.c:
     complete
@@ -2090,6 +2102,10 @@ src/game/main/menus/map_select_on_slide_done.c:
     complete
     .text       start:0x0205f0ec end:0x0205f12c
 
+src/game/main/func_0205f538.c:
+    complete
+    .text       start:0x0205f538 end:0x0205f564
+
 src/game/main/menus/map_select_draw.c:
     complete
     .text       start:0x0205f5c4 end:0x02060718
@@ -2186,6 +2202,10 @@ src/game/main/func_02065214.c:
     complete
     .text       start:0x02065214 end:0x0206523c
 
+src/game/main/func_020654dc.c:
+    complete
+    .text       start:0x020654dc end:0x02065508
+
 src/game/main/func_02066244.c:
     complete
     .text       start:0x02066244 end:0x02066250
@@ -2254,6 +2274,10 @@ src/game/main/menus/battle_setup_is_cursor_on_co.c:
     complete
     .text       start:0x02069920 end:0x0206996c
 
+src/game/main/func_02069b14.c:
+    complete
+    .text       start:0x02069b14 end:0x02069b40
+
 src/game/main/func_0206a324.c:
     complete
     .text       start:0x0206a324 end:0x0206a340
@@ -2290,6 +2314,10 @@ src/game/main/co_stats/player_get_shown_firepower.c:
     complete
     .text       start:0x0206e23c end:0x0206e418
 
+src/game/main/func_0206ef54.c:
+    complete
+    .text       start:0x0206ef54 end:0x0206ef80
+
 src/game/main/func_0206f7ec.c:
     complete
     .text       start:0x0206f7ec end:0x0206f7f0
@@ -2305,6 +2333,10 @@ src/game/main/func_02070238.c:
 src/game/main/func_02070800.c:
     complete
     .text       start:0x02070800 end:0x02070824
+
+src/game/main/func_02070824.c:
+    complete
+    .text       start:0x02070824 end:0x02070850
 
 src/game/main/func_02070ccc.c:
     complete
