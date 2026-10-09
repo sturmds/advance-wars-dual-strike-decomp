@@ -9,18 +9,25 @@ typedef struct TextPrinter {
     u8 pad_00[0x20];
     const void *text;                  /* 0x20: from Text_Get */
     const void *resumeText;            /* 0x24: continued after text ends; NULL: none */
-    u8 pad_28[0x2c - 0x28];
+    u8 *tiles;                         /* 0x28: glyph tile data */
     u16 *screen;                       /* 0x2c: BG screen map, 32 entries per row */
     u16 unk_30;
     u16 unk_32;                        /* 0 when printing starts */
     u8 startX;                         /* 0x34: in tiles */
-    u8 pad_35[0x36 - 0x35];
+    u8 startY;                         /* 0x35: in tiles */
     u8 cursorX;                        /* 0x36: in tiles */
     u8 cursorY;                        /* 0x37: in tiles */
-    u8 pad_38[0x3d - 0x38];
+    u16 unk_38;
+    u16 unk_3a;                        /* same value as unk_38 when set up */
+    u8 unk_3c;
     s8 unk_3d;
     s8 unk_3e;
-    u8 pad_3f[0x60 - 0x3f];
+    u8 pad_3f[0x40 - 0x3f];
+    void *unk_40;                      /* from func_0200a644(0) */
+    u8 unk_44;
+    u8 pad_45[0x46 - 0x45];
+    u16 unk_46;
+    u8 pad_48[0x60 - 0x48];
 } TextPrinter;
 
 #endif
