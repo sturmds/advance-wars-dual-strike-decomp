@@ -21,7 +21,6 @@ void Ai_AddOoziumThreat(MapUnit *unit)
     int y;
     int maxY;
     int x;
-    int minY;
     int minX;
     int distance;
 
@@ -31,23 +30,27 @@ void Ai_AddOoziumThreat(MapUnit *unit)
     if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
         return;
     }
-    minY = unit->y - 1;
-    if (minY < 0) {
-        minY = 0;
+    /* Needed to match: minX and the first row clamp in different forms, and
+     * the row loop starts from y itself (no minY), which sets the register
+     * and stack slot choice. */
+    minX = unit->x - 1;
+    if (minX < 0) {
+        minX = 0;
+    }
+    if (unit->y - 1 < 0) {
+        y = 0;
+    } else {
+        y = unit->y - 1;
     }
     maxX = STATE->unk_1c4->mapWidth - 1;
     if (unit->x + 1 < maxX) {
         maxX = unit->x + 1;
     }
-    minX = unit->x - 1;
-    if (minX < 0) {
-        minX = 0;
-    }
     maxY = STATE->unk_1c4->mapHeight - 1;
     if (unit->y + 1 < maxY) {
         maxY = unit->y + 1;
     }
-    for (y = minY; y <= maxY; y++) {
+    for (; y <= maxY; y++) {
         for (x = minX; x <= maxX; x++) {
             distance = 0;
             if (unit->x - x > 0) {
