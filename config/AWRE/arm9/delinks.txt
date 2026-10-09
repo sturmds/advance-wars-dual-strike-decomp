@@ -739,6 +739,10 @@ src/game/main/units/get_co_range_bonus.c:
     complete
     .text       start:0x020e5678 end:0x020e57ac
 
+src/game/main/co_stats/player_get_com_tower_firepower.c:
+    complete
+    .text       start:0x020e593c end:0x020e59fc
+
 src/game/main/units/get_co_unit_max_range.c:
     complete
     .text       start:0x020e5a18 end:0x020e5a58
