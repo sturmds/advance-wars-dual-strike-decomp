@@ -4343,6 +4343,10 @@ src/game/main/ai/ai_unit_clear_supply_wanted.c:
     complete
     .text       start:0x0208d41c end:0x0208d478
 
+src/game/main/ai/ai_unit_choose_service_wanted.c:
+    complete
+    .text       start:0x0208d478 end:0x0208d548
+
 src/game/main/ai/ai_clear_transports_sent_to_unit.c:
     complete
     .text       start:0x0208d548 end:0x0208d56c
