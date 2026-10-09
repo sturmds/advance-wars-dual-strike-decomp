@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
 int Player_GetUnitMoveRange(int player, int unitType);            /* movement plus the CO's move bonus */
-int func_020a4434(MapUnit *unit);                        /* the same count for an indirect unit */
+int AiAttack_CountTeamUnitsInFireRange(MapUnit *unit);                        /* the same count for an indirect unit */
 BOOL Unit_CanBeAttackedBy(MapUnit *target, MapUnit *attacker);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -33,7 +33,7 @@ int AiAttack_CountTeamUnitsInReach(MapUnit *unit)
     int dist;
 
     if (UnitType_GetAttackKind(unit->type) == ATTACK_KIND_INDIRECT) {
-        return func_020a4434(unit);
+        return AiAttack_CountTeamUnitsInFireRange(unit);
     }
     if (UnitType_GetAttackKind(unit->type) != ATTACK_KIND_DIRECT) {
         return count;

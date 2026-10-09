@@ -1628,6 +1628,10 @@ src/game/main/combat/ai_attack_count_team_units_in_reach.c:
     complete
     .text       start:0x020a3f2c end:0x020a4434
 
+src/game/main/combat/ai_attack_count_team_units_in_fire_range.c:
+    complete
+    .text       start:0x020a4434 end:0x020a4880
+
 src/game/main/combat/unit_can_be_attacked_by.c:
     complete
     .text       start:0x020a4880 end:0x020a491c
