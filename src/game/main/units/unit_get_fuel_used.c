@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
-int func_020dfe30(int player); /* fuel per movement point: 2 in snow unless the front CO is Olaf; 1 with coEffectsOn clear */
+int func_020dfe30(int player); /* fuel per movement point: 2 in snow unless the front CO is Olaf (checked only with coEffectsOn set) */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
