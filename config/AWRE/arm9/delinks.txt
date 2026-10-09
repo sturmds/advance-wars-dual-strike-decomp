@@ -811,6 +811,10 @@ src/game/main/func_020c7388.c:
     complete
     .text       start:0x020c7388 end:0x020c7398
 
+src/game/main/units/unit_get_fuel_used.c:
+    complete
+    .text       start:0x020c8330 end:0x020c83d0
+
 src/game/main/player_add_funds.c:
     complete
     .text       start:0x020c83d0 end:0x020c8480

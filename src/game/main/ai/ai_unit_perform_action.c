@@ -18,7 +18,7 @@ void func_01ffa44c(MapUnit *unit);
 void func_01ffa02c(int x, int y, u8 *out);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
 void func_020b81b4(int x, int y, int action, int target, int arg);
-int func_020c8330(MapUnit *unit, int n);
+int Unit_GetFuelUsed(MapUnit *unit, int n);
 void func_0208fda8(void);
 
 /* Makes the active unit move to (x, y) and do action there, and records
@@ -50,7 +50,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     gUnitAction.action = action;
     gUnitAction.target = target;
     gUnitAction.unk_07 = arg;
-    fuelUsed = func_020c8330(GAME->actingUnit, GAME->unk_46);
+    fuelUsed = Unit_GetFuelUsed(GAME->actingUnit, GAME->unk_46);
     gUnitAction.fuelLeft = GAME->actingUnit->fuel - fuelUsed;
     gUnitAction.pending = TRUE;
     if (data_0229eaec != 0) {

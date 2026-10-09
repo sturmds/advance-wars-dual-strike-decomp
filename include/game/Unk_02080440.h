@@ -76,7 +76,7 @@ typedef struct Unk_02080440_48 {
     s16 actingUnitStartY;
     s16 unk_42;
     s16 unk_44;
-    u8 unk_46;                         /* passed to func_020c8330 with actingUnit to get fuel used */
+    u8 unk_46;                         /* passed to Unit_GetFuelUsed with actingUnit to get fuel used */
     u8 pad_47[0x58 - 0x47];
     u8 gameMode;                       /* values 0-3; meaning of each unconfirmed */
     u8 unk_59;
