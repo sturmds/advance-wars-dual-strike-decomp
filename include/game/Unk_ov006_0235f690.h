@@ -17,9 +17,14 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_26;
     s8 unk_27;
     s8 unk_28;
-    s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_SelectEntry updates */
+    s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
     u8 pad_2a[0x2c - 0x2a];
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
+    u8 pad_30[0x38 - 0x30];
+    u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
+    u8 pad_39[0xd8 - 0x39];
+    u8 unk_d8[0xeb - 0xd8];            /* passed to func_ov006_023586ac */
+    u8 unk_eb;                         /* its address is passed to func_020d7b04 */
 } Unk_ov006_0235f690;
 
 #endif

@@ -1,7 +1,7 @@
 #include "types.h"
 
-void func_ov006_02357ac8(int id);
+void Ov006_StartIdScript(int id);
 
 void func_ov006_02357ab8(void) {
-    func_ov006_02357ac8(0);
+    Ov006_StartIdScript(0);
 }
