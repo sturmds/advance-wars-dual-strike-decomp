@@ -8,7 +8,7 @@ u32 File_UnpackTo(void *dest, const char *path);
 const char *File_LocalizePath(const char *path);
 void Map_LoadData(u32 mapId);
 void Map_LoadArmyColoursById(u32 mapId);
-void func_0202c760(void *dst, s16 x, s16 y, int width, int height);
+void MapPreview_DrawBlock(void *dst, s16 x, s16 y, int width, int height);
 void func_020c3e5c(void);
 
 extern const char data_02159964[];
@@ -51,15 +51,15 @@ void MapPreview_Draw(u8 *dst, int mapId)
 
     originX = (data_0229eadc->width - 48) >> 1;
     originY = (data_0229eadc->height - 40) >> 1;
-    func_0202c760(dst, originX, originY, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE, originX + 16, originY, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 2, originX + 32, originY, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 3, originX, originY + 16, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 4, originX + 16, originY + 16, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 5, originX + 32, originY + 16, 16, 16);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 6, originX, originY + 32, 16, 8);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 6 + 0x400, originX + 16, originY + 32, 16, 8);
-    func_0202c760(dst + PREVIEW_BLOCK_SIZE * 6 + 0x800, originX + 32, originY + 32, 16, 8);
+    MapPreview_DrawBlock(dst, originX, originY, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE, originX + 16, originY, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 2, originX + 32, originY, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 3, originX, originY + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 4, originX + 16, originY + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 5, originX + 32, originY + 16, 16, 16);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6, originX, originY + 32, 16, 8);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x400, originX + 16, originY + 32, 16, 8);
+    MapPreview_DrawBlock(dst + PREVIEW_BLOCK_SIZE * 6 + 0x800, originX + 32, originY + 32, 16, 8);
 
     rowStart = 0;
     for (i = 0; i < COUNT_KINDS; i++) {

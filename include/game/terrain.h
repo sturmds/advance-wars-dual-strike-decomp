@@ -22,7 +22,11 @@ enum TerrainId {
     TERRAIN_BASE = 14,
     TERRAIN_SILO = 17,
     TERRAIN_LAB = 20,
-    TERRAIN_COM_TOWER = 22
+    TERRAIN_MINICANNON = 21,
+    TERRAIN_COM_TOWER = 22,
+    TERRAIN_BLACK_CANNON = 26,
+    TERRAIN_VOLCANO = 28,
+    TERRAIN_BLACK_OBELISK = 29
 };
 
 /* Fixed stats of one terrain id, 0x18 bytes, in ov000 at 0x022f4ccc.

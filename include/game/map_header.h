@@ -17,6 +17,8 @@
  * (Player_IsAlliedNations, with MAP_LIGHTNING_STRIKES). */
 #define MAP_JAKES_TRIAL   (MAP_CAMPAIGN_FIRST + 0)
 #define MAP_VERDANT_HILLS (MAP_CAMPAIGN_FIRST + 12)
+#define MAP_MUCK_AMOK     (MAP_CAMPAIGN_FIRST + 16)
+#define MAP_DARK_AMBITION (MAP_CAMPAIGN_FIRST + 19)
 
 /* Map ids 0x101-0x10c have no header: the map lookups read them from 12
  * records of 27 bytes in main bss (data_022a6c84) instead. Probably maps
