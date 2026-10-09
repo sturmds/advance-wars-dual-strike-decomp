@@ -11,7 +11,7 @@ extern int data_0229eac8;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 int func_0207bd80(void);
-void func_020c41c4(int arg);
+void Map_ScrollViewToTile(int arg);
 
 /* Holds this step for 30 frames, or until A is held when func_0207bd80
  * returns 0, then moves to step 4. data_0229eac8 counts the frames. */
@@ -24,7 +24,7 @@ void AiShowAction_Step8(void)
     }
     GAME->unk_28 = gUnitAction.target;
     GAME->unk_2a = gUnitAction.unk_07;
-    func_020c41c4(2);
+    Map_ScrollViewToTile(2);
     data_0229eac8++;
     if (data_0229eac8 > 30 || skip) {
         gAiTurnState->actionStep = 4;

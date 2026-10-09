@@ -96,7 +96,7 @@ typedef struct Unk_02080440_48 {
     u16 unk_20;                        /* index of a 0x508-byte per-tile grid counted from MapTiles.inSight; func_020fed58 fills it */
     u16 unk_22;                        /* a second grid index, like unk_20 */
     u8 pad_24[0x28 - 0x24];
-    s16 unk_28;                        /* x of the tile the AiShowAction steps point func_020c41c4 at; guess: the view scrolls there */
+    s16 unk_28;                        /* x of the tile the AiShowAction steps point Map_ScrollViewToTile at; guess: the view scrolls there */
     s16 unk_2a;                        /* y of the same tile */
     u16 unk_2c;
     u16 unk_2e;
