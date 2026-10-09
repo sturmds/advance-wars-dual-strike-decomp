@@ -235,6 +235,14 @@ src/game/main/func_02007710.c:
     complete
     .text       start:0x02007710 end:0x02007730
 
+src/game/main/func_02007730.c:
+    complete
+    .text       start:0x02007730 end:0x02007748
+
+src/game/main/func_02007748.c:
+    complete
+    .text       start:0x02007748 end:0x02007760
+
 src/game/main/screen/screen_apply_all.c:
     complete
     .text       start:0x02007830 end:0x02007850
@@ -408,6 +416,10 @@ src/game/main/mem/mem_alloc.c:
     complete
     .text       start:0x0200bf40 end:0x0200bf64
 
+src/game/main/func_0200c020.c:
+    complete
+    .text       start:0x0200c020 end:0x0200c034
+
 src/game/main/func_0200c034.c:
     complete
     .text       start:0x0200c034 end:0x0200c044
@@ -475,6 +487,10 @@ src/game/main/text/text_print.c:
 src/game/main/text/func_02015da8.c:
     complete
     .text       start:0x02015da8 end:0x02015dbc
+
+src/game/main/func_02015ec8.c:
+    complete
+    .text       start:0x02015ec8 end:0x02015ee0
 
 src/game/main/text_printer_get_cursor_entry.c:
     complete
@@ -2082,6 +2098,10 @@ src/game/main/link/link_find_slot_of_player.c:
     complete
     .text       start:0x020738d0 end:0x02073908
 
+src/game/main/func_02073908.c:
+    complete
+    .text       start:0x02073908 end:0x02073920
+
 src/game/main/func_02073af0.c:
     complete
     .text       start:0x02073af0 end:0x02073b04
@@ -2169,6 +2189,14 @@ src/game/main/func_0207a1c0.c:
 src/game/main/func_0207a1dc.c:
     complete
     .text       start:0x0207a1dc end:0x0207a1f0
+
+src/game/main/func_0207a1f0.c:
+    complete
+    .text       start:0x0207a1f0 end:0x0207a208
+
+src/game/main/func_0207a260.c:
+    complete
+    .text       start:0x0207a260 end:0x0207a27c
 
 src/game/main/func_0207a324.c:
     complete
@@ -2329,6 +2357,10 @@ src/game/main/func_0207eec8.c:
 src/game/main/func_0207f544.c:
     complete
     .text       start:0x0207f544 end:0x0207f550
+
+src/game/main/func_0207fc34.c:
+    complete
+    .text       start:0x0207fc34 end:0x0207fc3c
 
 src/game/main/func_0207fc3c.c:
     complete
@@ -4393,6 +4425,10 @@ src/game/main/map/map_find_object_covering.c:
     complete
     .text       start:0x020db31c end:0x020db3c0
 
+src/game/main/func_020dc524.c:
+    complete
+    .text       start:0x020dc524 end:0x020dc538
+
 src/game/main/func_020dc55c.c:
     complete
     .text       start:0x020dc55c end:0x020dc58c
@@ -6073,6 +6109,10 @@ src/game/main/func_0210ed9c.c:
 src/game/main/func_0210ee7c.c:
     complete
     .text       start:0x0210ee7c end:0x0210ee8c
+
+src/game/main/func_0210f0a4.c:
+    complete
+    .text       start:0x0210f0a4 end:0x0210f0c8
 
 src/game/main/func_0210fa9c.c:
     complete
