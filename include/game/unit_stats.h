@@ -81,7 +81,8 @@ typedef struct UnitStats {
     u8 minRange;                       /* artillery 2, rockets 3; 0: no weapon (ATTACK_*) */
     u8 maxRange;
     u8 fuel;
-    u8 unk_17[5];
+    u8 unk_17;                         /* 1 for Infantry to Recon, Neotank, Fighter, B-Copter, Cruiser; 0 for the rest */
+    const u8 *carryTypes;              /* NULL for non-transports; [type + 1] nonzero: takes that unit type aboard */
     u8 unitClass;                      /* enum UnitClass in game/co_data.h */
     u8 pad_1d;
     u8 moveType;                       /* row of a CoPowerBlock.movementCost chart (32 terrain ids per row) */

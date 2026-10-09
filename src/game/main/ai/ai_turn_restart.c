@@ -16,6 +16,6 @@ void AiTurn_Restart(void)
     func_020ddb38();
     gAiTurnState->state = AI_STATE_START;
     if (data_0229eaec != 0) {
-        func_020801dc(data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_3c);
+        func_020801dc(data_027c027c->unk_48[data_027c0284]->unk_1c4->nextWeather);
     }
 }

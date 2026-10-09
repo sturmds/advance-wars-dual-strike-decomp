@@ -73,7 +73,7 @@ void MapRules_SetDefaults(void)
     STATE->unk_1c4->unk_3d = 0;
     STATE->unk_1c4->weather = WEATHER_CLEAR;
     STATE->unk_1c4->unk_3b = 0;
-    STATE->unk_1c4->unk_3c = 0;
+    STATE->unk_1c4->nextWeather = 0;
     STATE->unk_1c4->unk_37 = 3;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
@@ -87,7 +87,7 @@ void MapRules_SetDefaults(void)
     STATE->unk_1c4->unk_3d = 0;
     STATE->unk_1c4->weather = WEATHER_CLEAR;
     STATE->unk_1c4->unk_3b = 0;
-    STATE->unk_1c4->unk_3c = 0;
+    STATE->unk_1c4->nextWeather = 0;
     STATE->unk_1c4->unk_37 = 3;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

@@ -10,6 +10,6 @@ void SetMapWeather(int weather)
 {
     data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_3d = weather;
     data_027c027c->unk_48[data_027c0284]->unk_1c4->weather = weather;
-    data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_3c = weather;
+    data_027c027c->unk_48[data_027c0284]->unk_1c4->nextWeather = weather;
     data_027c027c->unk_48[data_027c0284]->unk_1c4->unk_3b = 0;
 }

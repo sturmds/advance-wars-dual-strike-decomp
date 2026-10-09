@@ -30,10 +30,7 @@ void func_020b2b70(int x, int y);
 #define AI_ACTION_WAIT 2
 #define AI_ACTION_LOAD 7 /* name is a guess */
 
-/* The pointer at offset 0x18 of an Ov000_gUnitStats entry is hidden in
- * UnitStats.unk_17. It points at a byte table; entry [acting type + 1] is
- * nonzero for the types this unit type takes aboard. */
-#define CARRY_TABLE(unitType) (*(const u8 **)((u8 *)&Ov000_gUnitStats[unitType] + 0x18))
+#define CARRY_TABLE(unitType) (Ov000_gUnitStats[unitType].carryTypes)
 
 /* Run when the acting unit's serviceWanted is 1, the value that AiClass3_SupplyUnit
  * and AiBlackBoat_RepairUnit look for. Moves the unit to where it is
