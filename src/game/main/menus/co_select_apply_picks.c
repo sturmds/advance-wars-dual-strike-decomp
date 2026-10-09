@@ -6,7 +6,9 @@
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-#define PICKS (&data_0229c73c->coGrid[(column - 1) * 2])
+/* The CO the player picked for player slot column (1-4), front or back row.
+ * Needed to match: coGrid read as rows of 2. */
+#define PICKED_CO(column, row) (((u8 (*)[2])data_0229c73c->coGrid)[(column) - 1][row])
 #define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
 
 int Campaign_IsHardMode(void);
@@ -14,7 +16,12 @@ void MovementCost(void);
 void Player_SetCo(int column, int row, int co);
 void func_020e7a80(int gameMode, int mapId);
 
-void func_02044c94(void)
+/* Ends CO select: writes the picked COs into the player slots. In a
+ * campaign map on normal mode, a CO set by the map header stays unless the
+ * header says the player picks. Then sets up the map (func_020e7a80,
+ * MovementCost), and runs MovementCost for the second map too when there
+ * is one. */
+void CoSelect_ApplyPicks(void)
 {
     int column;
     int row;
@@ -23,8 +30,8 @@ void func_02044c94(void)
     if (STATE->gameMode != 0 || Campaign_IsHardMode() == 1) {
         for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
             for (row = 0; row < data_0229c73c->rowCount; row++) {
-                STATE->playerCos[column][row] = PICKS[row];
-                Player_SetCo(column, row, PICKS[row]);
+                STATE->playerCos[column][row] = PICKED_CO(column, row);
+                Player_SetCo(column, row, PICKED_CO(column, row));
             }
         }
     } else {
@@ -32,8 +39,8 @@ void func_02044c94(void)
             for (row = 0; row < data_0229c73c->rowCount; row++) {
                 co = Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[column][row];
                 if (co == MAP_CO_PICKED) {
-                    STATE->playerCos[column][row] = PICKS[row];
-                    Player_SetCo(column, row, PICKS[row]);
+                    STATE->playerCos[column][row] = PICKED_CO(column, row);
+                    Player_SetCo(column, row, PICKED_CO(column, row));
                 } else {
                     STATE->playerCos[column][row] = co;
                     Player_SetCo(column, row, Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[column][row]);
