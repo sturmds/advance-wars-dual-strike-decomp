@@ -1,0 +1,30 @@
+#include "types.h"
+
+typedef struct Unk_021063d0_0 Unk_021063d0_0;
+typedef struct Unk_021063d0_1 Unk_021063d0_1;
+typedef struct Unk_021063d0_2 Unk_021063d0_2;
+
+struct Unk_021063d0_0 {
+    u8 pad_00[0x8];
+    int unk_8;
+};
+
+struct Unk_021063d0_1 {
+    u8 pad_00[0x10];
+    int unk_10;
+};
+
+struct Unk_021063d0_2 {
+    u8 pad_00[0x80];
+    Unk_021063d0_0 *unk_80;
+};
+
+extern Unk_021063d0_2 *data_022a8a60;
+
+int func_021063d0(int a0)
+{
+    Unk_021063d0_0 *t0 = data_022a8a60->unk_80;
+    if ((u32)a0 < (u32)t0->unk_8) {
+    }
+    return ((u32)a0 >= (u32)t0->unk_8) ? 0 : ((Unk_021063d0_1 *)((int)t0 + (a0 << 4)))->unk_10;
+}
