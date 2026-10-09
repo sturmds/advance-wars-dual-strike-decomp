@@ -17,6 +17,8 @@ typedef struct Unk_ov004_022bf158 {
     Unk_ov004_022bf158_818 unk_818;
     u8 pad_828[0x998 - 0x828];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
+    u8 pad_99c[0x1bf0 - 0x99c];
+    u32 unk_1bf0;
 } Unk_ov004_022bf158;
 
 /* Task run by overlay 4's script steps. The first 0x2c bytes belong to the
