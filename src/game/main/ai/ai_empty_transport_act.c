@@ -3,7 +3,7 @@
 void Ai_BuildThreatMaps(void);
 void func_020a9854(void);
 void func_020ac648(void);
-void func_020ac9e8(void);
+void AiEmptyTransport_GoToFootUnit(void);
 void func_020af5f8(void);
 void AiUnit_WaitInPlace(void);
 
@@ -13,7 +13,7 @@ void AiEmptyTransport_Act(void)
 {
     Ai_BuildThreatMaps();
     func_020af5f8();
-    func_020ac9e8();
+    AiEmptyTransport_GoToFootUnit();
     func_020ac648();
     func_020a9854();
     AiUnit_WaitInPlace();

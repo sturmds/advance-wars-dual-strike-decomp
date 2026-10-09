@@ -15,11 +15,12 @@ typedef struct MapTiles {
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
     s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
-    u8 pad_2338[0x2d48 - 0x2338];
+    u8 pad_2338[0x2840 - 0x2338];
+    s8 unk_2840[0x508];                /* per tile; scratch range map for AiEmptyTransport_GoToFootUnit */
     s8 unk_2d48[0x508];                /* per tile; AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->stepFlags has AI_STEP_UNIT_AT_TARGET */
     u8 threatMax[0x508];               /* per tile: highest threat of one enemy unit that can move next to it (Ai_AddEnemyThreat) */
     u8 threatSum[0x508];               /* per tile: threat of enemy units in range, added up and capped at 255 */
-    u8 pad_3c60[0x4168 - 0x3c60];
+    s8 unk_3c60[0x508];                /* per tile; AiEmptyTransport_GoToFootUnit fills it with the acting unit's moves */
     u16 rowStart[1];                   /* length unknown; index into tiles of each row's first tile */
 } MapTiles;
 
