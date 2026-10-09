@@ -7,12 +7,12 @@ extern int data_027c0284;
 extern UnitAction data_0229d8c8;
 extern u8 data_0229d8d4[];
 
-void func_0207b744(void *p);
+void Link_SendPacket(void *p);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* Copies the current action into data_0229d8c8 and hands it to func_0207b744, which sends a packet
+/* Copies the current action into data_0229d8c8 and hands it to Link_SendPacket, which sends a packet
  * with a counter (probably link play). Used when data_0229eaec is set. */
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg)
 {
@@ -28,5 +28,5 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg)
     data_0229d8c8.unk_07 = arg;
     data_0229d8c8.fuelLeft = unit->fuel;
     PackNibblePairs(GAME->unk_170, data_0229d8d4);
-    func_0207b744(&data_0229d8c8);
+    Link_SendPacket(&data_0229d8c8);
 }

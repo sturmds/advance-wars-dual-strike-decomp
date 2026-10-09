@@ -3751,6 +3751,10 @@ src/game/main/func_0207b4c8.c:
     complete
     .text       start:0x0207b4c8 end:0x0207b4e8
 
+src/game/main/link_send_packet.c:
+    complete
+    .text       start:0x0207b744 end:0x0207b7b4
+
 src/game/main/func_0207bb48.c:
     complete
     .text       start:0x0207bb48 end:0x0207bbd0

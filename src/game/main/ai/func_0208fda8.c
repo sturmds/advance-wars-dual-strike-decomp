@@ -3,10 +3,10 @@
 
 extern UnitAction data_0229d8c8;
 
-void func_0207b744(UnitAction *action);
+void Link_SendPacket(UnitAction *action);
 
 /* Copies gUnitAction to data_0229d8c8, except pending, and passes it to
- * func_0207b744. Purpose of the copy unknown. */
+ * Link_SendPacket. Purpose of the copy unknown. */
 void func_0208fda8(void)
 {
     int i;
@@ -24,5 +24,5 @@ void func_0208fda8(void)
     for (i = 0; i < 6; i++) {
         data_0229d8c8.packed[i] = gUnitAction.packed[i];
     }
-    func_0207b744(&data_0229d8c8);
+    Link_SendPacket(&data_0229d8c8);
 }
