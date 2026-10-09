@@ -91,7 +91,7 @@ func_020029e4 kind:function(arm,size=0x54) addr:0x020029e4
 func_02002a38 kind:function(arm,size=0x2c) addr:0x02002a38
 func_02002a64 kind:function(arm,size=0x4c) addr:0x02002a64
 func_02002ab0 kind:function(arm,size=0x50) addr:0x02002ab0
-func_02002b00 kind:function(arm,size=0x24) addr:0x02002b00
+Palette_LoadObjRow kind:function(arm,size=0x24) addr:0x02002b00
 func_02002b24 kind:function(arm,size=0x50) addr:0x02002b24
 func_02002b74 kind:function(arm,size=0x38) addr:0x02002b74
 func_02002bac kind:function(arm,size=0x58) addr:0x02002bac
@@ -6075,7 +6075,7 @@ data_02134b14 kind:data(any) addr:0x02134b14
 data_02134bb8 kind:data(any) addr:0x02134bb8
 data_02134c48 kind:data(any) addr:0x02134c48
 data_02134cf4 kind:data(any) addr:0x02134cf4
-data_02134d48 kind:data(any) addr:0x02134d48
+gObjRowPalette kind:data(any) addr:0x02134d48
 data_02134d68 kind:data(any) addr:0x02134d68
 data_02134e6c kind:data(any) addr:0x02134e6c
 data_02134e7c kind:data(any) addr:0x02134e7c
