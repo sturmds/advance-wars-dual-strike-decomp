@@ -280,6 +280,14 @@ src/game/main/mem/mem_alloc.c:
     complete
     .text       start:0x0200bf40 end:0x0200bf64
 
+src/game/main/func_0200c034.c:
+    complete
+    .text       start:0x0200c034 end:0x0200c044
+
+src/game/main/func_0200c044.c:
+    complete
+    .text       start:0x0200c044 end:0x0200c054
+
 src/game/main/unlocks/gba_cart_is_advance_wars2.c:
     complete
     .text       start:0x0200c310 end:0x0200c32c
@@ -391,6 +399,10 @@ src/game/main/func_0201d320.c:
 src/game/main/script/event_script_start_wait.c:
     complete
     .text       start:0x0201d6f8 end:0x0201d730
+
+src/game/main/func_0201d798.c:
+    complete
+    .text       start:0x0201d798 end:0x0201d7a8
 
 src/game/main/graphics/bg2_set_priority.c:
     complete
@@ -959,6 +971,10 @@ src/game/main/func_02038150.c:
     complete
     .text       start:0x02038150 end:0x02038164
 
+src/game/main/func_02038164.c:
+    complete
+    .text       start:0x02038164 end:0x02038178
+
 src/game/main/func_0203b194.c:
     complete
     .text       start:0x0203b194 end:0x0203b1a8
@@ -1202,9 +1218,21 @@ src/game/main/func_0207a170.c:
     complete
     .text       start:0x0207a170 end:0x0207a184
 
+src/game/main/func_0207a1ac.c:
+    complete
+    .text       start:0x0207a1ac end:0x0207a1c0
+
+src/game/main/func_0207a1dc.c:
+    complete
+    .text       start:0x0207a1dc end:0x0207a1f0
+
 src/game/main/func_0207a324.c:
     complete
     .text       start:0x0207a324 end:0x0207a338
+
+src/game/main/func_0207a3a4.c:
+    complete
+    .text       start:0x0207a3a4 end:0x0207a3b8
 
 src/game/main/link/func_0207a474.c:
     complete
@@ -1225,6 +1253,10 @@ src/game/main/func_0207bd6c.c:
 src/game/main/func_0207bd80.c:
     complete
     .text       start:0x0207bd80 end:0x0207bd94
+
+src/game/main/func_0207bd94.c:
+    complete
+    .text       start:0x0207bd94 end:0x0207bda8
 
 src/game/main/link/link_reset_buffers.c:
     complete
@@ -2190,6 +2222,10 @@ src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664
 
+src/game/main/func_020b983c.c:
+    complete
+    .text       start:0x020b983c end:0x020b9864
+
 src/game/main/func_020b9864.c:
     complete
     .text       start:0x020b9864 end:0x020b9890
@@ -2197,6 +2233,18 @@ src/game/main/func_020b9864.c:
 src/game/main/func_020b9890.c:
     complete
     .text       start:0x020b9890 end:0x020b98bc
+
+src/game/main/func_020b9914.c:
+    complete
+    .text       start:0x020b9914 end:0x020b993c
+
+src/game/main/func_020b9ccc.c:
+    complete
+    .text       start:0x020b9ccc end:0x020b9cf4
+
+src/game/main/func_020b9cf4.c:
+    complete
+    .text       start:0x020b9cf4 end:0x020b9d1c
 
 src/game/main/menus/battle_menu_open.c:
     complete
@@ -2352,6 +2400,10 @@ src/game/main/map/map_get_player_count.c:
 src/game/main/map/map_get_loaded_player_count.c:
     complete
     .text       start:0x020c3e08 end:0x020c3e34
+
+src/game/main/func_020c3e34.c:
+    complete
+    .text       start:0x020c3e34 end:0x020c3e5c
 
 src/game/main/map/map_load_data.c:
     complete
@@ -3126,6 +3178,10 @@ src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
 
+src/game/main/func_020eaa8c.c:
+    complete
+    .text       start:0x020eaa8c end:0x020eaa9c
+
 src/game/main/func_020eb394.c:
     complete
     .text       start:0x020eb394 end:0x020eb3b0
@@ -3149,6 +3205,10 @@ src/game/main/func_020f1368.c:
 src/game/main/func_020f20ec.c:
     complete
     .text       start:0x020f20ec end:0x020f20fc
+
+src/game/main/func_020f21fc.c:
+    complete
+    .text       start:0x020f21fc end:0x020f2210
 
 src/game/main/func_020f2210.c:
     complete
@@ -3230,6 +3290,14 @@ src/game/main/sound/sound_start_fade_out_task.c:
     complete
     .text       start:0x020fcb18 end:0x020fcb4c
 
+src/game/main/func_020fccbc.c:
+    complete
+    .text       start:0x020fccbc end:0x020fccc4
+
+src/game/main/func_020fd624.c:
+    complete
+    .text       start:0x020fd624 end:0x020fd62c
+
 src/game/main/func_020fd85c.c:
     complete
     .text       start:0x020fd85c end:0x020fd874
@@ -3241,6 +3309,10 @@ src/game/main/func_020fd904.c:
 src/game/main/func_020ffa50.c:
     complete
     .text       start:0x020ffa50 end:0x020ffa64
+
+src/game/main/func_02101698.c:
+    complete
+    .text       start:0x02101698 end:0x021016ac
 
 src/game/main/func_021016c4.c:
     complete
@@ -3394,9 +3466,29 @@ src/game/main/unlocks/shop_map_war_room.c:
     complete
     .text       start:0x02102274 end:0x021022b4
 
+src/game/main/func_02102394.c:
+    complete
+    .text       start:0x02102394 end:0x021023a4
+
+src/game/main/func_021023a4.c:
+    complete
+    .text       start:0x021023a4 end:0x021023b4
+
+src/game/main/func_021023b4.c:
+    complete
+    .text       start:0x021023b4 end:0x021023c4
+
 src/game/main/func_021023c4.c:
     complete
     .text       start:0x021023c4 end:0x021023d4
+
+src/game/main/func_021023d4.c:
+    complete
+    .text       start:0x021023d4 end:0x021023e4
+
+src/game/main/func_021023e4.c:
+    complete
+    .text       start:0x021023e4 end:0x021023f4
 
 src/game/main/func_02102c34.c:
     complete
@@ -3578,6 +3670,26 @@ src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
 
+src/game/main/func_0210cf88.c:
+    complete
+    .text       start:0x0210cf88 end:0x0210cf90
+
+src/game/main/func_0210d354.c:
+    complete
+    .text       start:0x0210d354 end:0x0210d35c
+
+src/game/main/func_0210e494.c:
+    complete
+    .text       start:0x0210e494 end:0x0210e4a8
+
+src/game/main/func_0210e4a8.c:
+    complete
+    .text       start:0x0210e4a8 end:0x0210e4bc
+
+src/game/main/func_02110a90.c:
+    complete
+    .text       start:0x02110a90 end:0x02110a98
+
 src/game/main/func_02112e4c.c:
     complete
     .text       start:0x02112e4c end:0x02112e54
@@ -3593,3 +3705,7 @@ src/game/main/func_02112eec.c:
 src/sdk/fs/fs_overlay.c:
     complete
     .text       start:0x021135c4 end:0x021135ec
+
+src/game/main/func_0211be3c.c:
+    complete
+    .text       start:0x0211be3c end:0x0211be50
