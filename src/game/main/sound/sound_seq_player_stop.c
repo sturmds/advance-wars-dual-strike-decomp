@@ -3,7 +3,7 @@
 
 void func_021092f8(SoundFader *fader, int target, int frames);
 void func_02105038(SoundSeqPlayer *player, int arg);
-void func_02105204(SoundSeqPlayer *player);
+void SoundSeqPlayer_StopNow(SoundSeqPlayer *player);
 
 /* Stops a sequence player. With no fade frames it stops at once; otherwise it fades the volume to 0
  * and the player stops when the fade ends. */
@@ -16,7 +16,7 @@ void SoundSeqPlayer_Stop(SoundSeqPlayer *player, int fadeFrames)
         return;
     }
     if (fadeFrames == 0) {
-        func_02105204(player);
+        SoundSeqPlayer_StopNow(player);
         return;
     }
     func_021092f8(&player->volumeFader, 0, fadeFrames);

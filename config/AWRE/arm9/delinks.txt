@@ -9088,6 +9088,10 @@ src/game/main/func_02104f00.c:
     complete
     .text       start:0x02104f00 end:0x02104f2c
 
+src/game/main/sound/sound_seq_player_stop_now.c:
+    complete
+    .text       start:0x02105204 end:0x02105240
+
 src/game/main/sound/sound_seq_player_stop.c:
     complete
     .text       start:0x021053a0 end:0x02105400

@@ -21,7 +21,9 @@ typedef struct SoundSeqPlayer {
     u8 pad_00[0x1c];
     SoundFader volumeFader;            /* 0x1c */
     u8 state;                          /* 0x2c */
-    u8 pad_2d[0x14];
+    u8 pad_2d[0x0f];
+    u8 hwChannel;                      /* 0x3c: hardware channel number */
+    u8 pad_3d[4];
     u8 volume;                         /* 0x41: set by NNS_SndPlayerSetVolume (NNS_SndPlayerSetVolume) */
     u8 pad_42[2];
 } SoundSeqPlayer;
