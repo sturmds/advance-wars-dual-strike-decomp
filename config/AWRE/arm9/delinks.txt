@@ -4053,6 +4053,10 @@ src/game/main/func_02088c2c.c:
     complete
     .text       start:0x02088c2c end:0x02088c38
 
+src/game/main/func_02088c38.c:
+    complete
+    .text       start:0x02088c38 end:0x02088c9c
+
 src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
@@ -7020,6 +7024,10 @@ src/game/main/func_020f2a18.c:
 src/game/main/func_020f3110.c:
     complete
     .text       start:0x020f3110 end:0x020f3114
+
+src/game/main/func_020f3114.c:
+    complete
+    .text       start:0x020f3114 end:0x020f3178
 
 src/game/main/func_020f35cc.c:
     complete
