@@ -739,6 +739,10 @@ src/game/main/menus/co_select_screen_handle_keys.c:
     complete
     .text       start:0x020429f0 end:0x02042b3c
 
+src/game/main/func_020457d8.c:
+    complete
+    .text       start:0x020457d8 end:0x020457f0
+
 src/game/main/menus/campaign_map_init.c:
     .text       start:0x0204f960 end:0x0205053c
 
