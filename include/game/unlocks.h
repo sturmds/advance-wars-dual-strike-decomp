@@ -15,4 +15,5 @@ u8 Unlock_IsSet(u32 id);
 #define SHOP_ITEM_FOR_SALE 1
 
 BOOL GameFlag_IsSet(int id);
+void GameFlag_Set(int id, int value);
 #endif

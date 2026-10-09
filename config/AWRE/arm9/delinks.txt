@@ -513,9 +513,25 @@ src/game/main/unlocks/game_flag_is_set.c:
     complete
     .text       start:0x02101744 end:0x021017f4
 
+src/game/main/unlocks/game_flag_set.c:
+    complete
+    .text       start:0x021017f4 end:0x0210187c
+
+src/game/main/unlocks/game_flags_low_set.c:
+    complete
+    .text       start:0x021018a0 end:0x02101904
+
 src/game/main/unlocks/unlock_is_set.c:
     complete
     .text       start:0x02101944 end:0x02101964
+
+src/game/main/unlocks/game_flags_mid_set.c:
+    complete
+    .text       start:0x021019d4 end:0x02101a04
+
+src/game/main/unlocks/game_flags_high_set.c:
+    complete
+    .text       start:0x02101a04 end:0x02101a68
 
 src/game/main/map/map_set_flag.c:
     complete
