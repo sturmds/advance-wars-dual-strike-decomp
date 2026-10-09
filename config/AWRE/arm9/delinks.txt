@@ -7571,6 +7571,10 @@ src/game/main/co_stats/player_get_tag_firepower.c:
     complete
     .text       start:0x020e5508 end:0x020e5578
 
+src/game/main/co_stats/player_get_co_cost_percent.c:
+    complete
+    .text       start:0x020e55fc end:0x020e5678
+
 src/game/main/units/get_co_range_bonus.c:
     complete
     .text       start:0x020e5678 end:0x020e57ac

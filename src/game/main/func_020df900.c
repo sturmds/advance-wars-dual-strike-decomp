@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-int func_020e55fc(int player, int coSlot, int powerState, int unitType);
+int Player_GetCoCostPercent(int player, int coSlot, int powerState, int unitType);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int func_020df900(int player, int unitType)
 {
-    return func_020e55fc(player, 0, data_027c027c->unk_48[data_027c0284]->players[player].front.powerState,
+    return Player_GetCoCostPercent(player, 0, data_027c027c->unk_48[data_027c0284]->players[player].front.powerState,
                          unitType);
 }
