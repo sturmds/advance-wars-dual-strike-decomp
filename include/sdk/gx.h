@@ -73,6 +73,12 @@
 #define REG_DB_BLDCNT ((volatile u16 *)0x04001050)
 #define REG_DB_MASTER_BRIGHT ((volatile u16 *)0x0400106c)
 
+/* 3D engine registers. */
+#define REG_DISP3DCNT ((volatile u16 *)0x04000060)
+#define REG_MTX_STORE ((volatile u32 *)0x0400044c)
+#define REG_SWAP_BUFFERS ((volatile u32 *)0x04000540)
+#define REG_VIEWPORT ((volatile u32 *)0x04000580)
+
 /* What GX_SetMasterBrightness calls: writes a master brightness register.
  * brightness: 0 none, 1-16 towards white, -1 to -16 towards black. */
 void GXx_SetMasterBrightness_(volatile u16 *reg, int brightness);

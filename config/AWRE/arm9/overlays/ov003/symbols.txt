@@ -6,7 +6,7 @@ func_ov003_02350de0 kind:function(arm,size=0xa8) addr:0x02350de0
 func_ov003_02350e88 kind:function(arm,size=0x28) addr:0x02350e88
 func_ov003_02350eb0 kind:function(arm,size=0x94) addr:0x02350eb0
 func_ov003_02350f44 kind:function(arm,size=0x268) addr:0x02350f44
-func_ov003_023511ac kind:function(arm,size=0x634) addr:0x023511ac
+Ov003_InitScreens kind:function(arm,size=0x634) addr:0x023511ac
 func_ov003_023517e0 kind:function(arm,size=0x4) addr:0x023517e0
 Ov003_RandNext kind:function(arm,size=0x30) addr:0x023517e4
 Ov003_RandSeed kind:function(arm,size=0x10) addr:0x02351814
@@ -234,8 +234,8 @@ func_ov003_0236470c kind:function(arm,size=0xf4) addr:0x0236470c
 func_ov003_02364800 kind:function(arm,size=0x54) addr:0x02364800
 func_ov003_02364854 kind:function(arm,size=0x14) addr:0x02364854
 data_ov003_02364880 kind:data(any) addr:0x02364880
-data_ov003_02364888 kind:data(any) addr:0x02364888
-data_ov003_023648d8 kind:data(any) addr:0x023648d8
+Ov003_gMainLayerConfig kind:data(any) addr:0x02364888
+Ov003_gSubLayerConfig kind:data(any) addr:0x023648d8
 data_ov003_02364928 kind:data(any) addr:0x02364928
 data_ov003_0236492c kind:data(any) addr:0x0236492c
 data_ov003_02364934 kind:data(any) addr:0x02364934

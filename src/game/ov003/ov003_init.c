@@ -4,7 +4,7 @@
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void func_ov003_023517e0(void);
-void func_ov003_023511ac(void);
+void Ov003_InitScreens(void);
 void Ov003_InitState(void);
 void func_ov003_02364854(void);
 void func_020d2ef8(void);
@@ -24,7 +24,7 @@ void Ov003_Init(void)
     func_01ff9c28(NULL);
     func_01ff9c48(NULL);
     func_ov003_023517e0();
-    func_ov003_023511ac();
+    Ov003_InitScreens();
     Ov003_InitState();
     func_ov003_02364854();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
