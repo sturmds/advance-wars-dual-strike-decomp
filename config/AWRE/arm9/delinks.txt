@@ -316,6 +316,10 @@ src/game/main/menus/menu_button_remove.c:
     complete
     .text       start:0x02025cbc end:0x02025ce8
 
+src/game/main/menus/menu_button_deactivate.c:
+    complete
+    .text       start:0x02025ce8 end:0x02025cf4
+
 src/game/main/sound/sound_play_song.c:
     complete
     .text       start:0x020267fc end:0x02026868
