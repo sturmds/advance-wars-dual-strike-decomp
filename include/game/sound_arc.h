@@ -27,6 +27,11 @@ typedef struct SoundArcStrmInfo {
     u8 unk_07;
 } SoundArcStrmInfo;
 
+/* A sequence archive entry. */
+typedef struct SoundArcSeqArcInfo {
+    u32 fileId;
+} SoundArcSeqArcInfo;
+
 /* Table of sequence entries, each given as an offset into the info block. */
 typedef struct SoundArcSeqInfoTable {
     u32 count;
