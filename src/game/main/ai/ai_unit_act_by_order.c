@@ -14,7 +14,7 @@ void AiUnit_ActOrder6(void);
 void AiUnit_ActOrder5(void);
 void AiUnit_ActOrder4(void);
 void AiUnit_ActOrder3(void);
-void func_020a0b04(void);
+void AiUnit_ActOrder2(void);
 void func_020a0b44(void);
 void func_020a0b80(void);
 
@@ -34,7 +34,7 @@ void AiUnit_ActByOrder(void)
         break;
     case 2:
         if (func_0209dd7c() == TRUE) {
-            func_020a0b04();
+            AiUnit_ActOrder2();
         } else {
             func_020a0b80();
         }
