@@ -2761,6 +2761,7 @@ src/game/main/mem/heap_block_init_in_region.c:
     .text       start:0x02104a00 end:0x02104a30
 
 src/game/main/mem/heap_block_list_insert.c:
+    complete
     .text       start:0x02104a30 end:0x02104a60
 
 src/game/main/mem/heap_block_list_remove.c:
