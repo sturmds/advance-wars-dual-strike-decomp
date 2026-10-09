@@ -3326,6 +3326,10 @@ src/game/main/func_0208c138.c:
     complete
     .text       start:0x0208c138 end:0x0208c158
 
+src/game/main/func_0208c158.c:
+    complete
+    .text       start:0x0208c158 end:0x0208c180
+
 src/game/main/func_0208c1cc.c:
     complete
     .text       start:0x0208c1cc end:0x0208c1e0
@@ -4985,6 +4989,10 @@ src/game/main/func_020d4288.c:
     complete
     .text       start:0x020d4288 end:0x020d42b0
 
+src/game/main/func_020d5324.c:
+    complete
+    .text       start:0x020d5324 end:0x020d534c
+
 src/game/main/func_020d55f4.c:
     complete
     .text       start:0x020d55f4 end:0x020d5608
@@ -5200,6 +5208,10 @@ src/game/main/copowers/activate_current_super_power.c:
 src/game/main/func_020dd5dc.c:
     complete
     .text       start:0x020dd5dc end:0x020dd5f8
+
+src/game/main/func_020dd5f8.c:
+    complete
+    .text       start:0x020dd5f8 end:0x020dd620
 
 src/game/main/func_020dd928.c:
     complete
