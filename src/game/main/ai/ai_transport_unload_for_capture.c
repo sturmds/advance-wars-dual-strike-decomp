@@ -11,7 +11,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(int arg);
 BOOL Map_IsSiloOrCapturableTile(int x, int y);
-BOOL func_020a8804(int x, int y, s16 *stand); /* guess: picks where the transport stops to drop a unit on (x, y) */
+BOOL AiUnit_FindStandTileNextTo(int x, int y, s16 *stand); /* guess: picks where the transport stops to drop a unit on (x, y) */
 BOOL Ai_IsCaptureSiteTaken(int x, int y);
 BOOL func_020a4a70(int x, int y, int distance, s16 *property); /* guess: a capturable property near (x, y) */
 int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction: 0 same tile, 1 up, 2 right, 3 down, 4 left */
@@ -88,7 +88,7 @@ void AiTransport_UnloadForCapture(void)
             if (!Map_IsSiloOrCapturableTile(x, y)) {
                 continue;
             }
-            if (!func_020a8804(x, y, stand)) {
+            if (!AiUnit_FindStandTileNextTo(x, y, stand)) {
                 continue;
             }
             if (STATE->unk_6088[STATE->mapTiles->unk_1928[TILE(x, y)]].unk_03 != 0
@@ -151,7 +151,7 @@ void AiTransport_UnloadForCapture(void)
             if (STATE->mapTiles->unitAt[TILE(x2, y2)] != 0) {
                 continue;
             }
-            if (!func_020a8804(x2, y2, stand)) {
+            if (!AiUnit_FindStandTileNextTo(x2, y2, stand)) {
                 continue;
             }
             switch (cargo->type) {
