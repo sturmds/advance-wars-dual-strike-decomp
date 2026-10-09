@@ -5,7 +5,7 @@ void *EventScript_Start(const void *script);
 int func_020d7b04(int id, u8 *buf);
 void Ov006_ClearLayer1Box(void);
 void Ov006_ClearLayer0Box(void);
-void func_ov006_023583d8(void);
+void Ov006_ClearWindowsAndBlend(void);
 int Ov006_HasNonSpace(u8 *buf);
 void Ov006_LoadIdText(int id);
 
@@ -19,7 +19,7 @@ void Ov006_StartIdScript(int id)
 {
     Ov006_ClearLayer1Box();
     Ov006_ClearLayer0Box();
-    func_ov006_023583d8();
+    Ov006_ClearWindowsAndBlend();
     data_ov006_0236d640->unk_00 &= ~0x100;
     data_ov006_0236d640->unk_38 = id;
     if (func_020d7b04(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb) == 0) {
