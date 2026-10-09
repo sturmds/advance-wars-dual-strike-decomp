@@ -17,7 +17,7 @@ int Ai_CountReachableAdjacentTiles(int x, int y);
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* base damage percent against a target kind */
 BOOL Map_IsTileVisible(s16 x, s16 y);
 int func_020a30c4(void);
-BOOL func_020a3b54(int x, int y, MapUnit *target);
+BOOL AiTile_HasStrongAllyInReach(int x, int y, MapUnit *target);
 void Ai_ClearActingUnitTarget(void);
 int AiUnit_TeammateOutdamages(MapUnit *target);
 BOOL Ai_CanEndMoveAt(int x, int y);
@@ -173,7 +173,7 @@ void AiUnit_PickDirectAttack(void)
             if (STATE->mapTiles->threatSum[tile] >= gAiActiveUnitProfile->threatSumLimit
                 || (STATE->mapTiles->threatMax[tile] >= gAiActiveUnitProfile->threatMaxLimit && target->cargo[0] == 0
                     && UnitType_GetAttackKind(target->type) == 2)) {
-                if (!func_020a3b54(pos[0], pos[1], target)) {
+                if (!AiTile_HasStrongAllyInReach(pos[0], pos[1], target)) {
                     tileFlag = AI_ATTACK_COST_VALUE;
                 }
             }
