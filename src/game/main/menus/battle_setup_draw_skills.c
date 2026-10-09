@@ -6,7 +6,7 @@
 void Window_DrawOnLayer1(s16 x, s16 y, int w, int h);       /* window frame */
 void func_02026d54(int x, int y, int tile, int size);  /* skill icon */
 void func_020277a4(u16 x, u16 y, u16 *map, int a);     /* empty skill slot */
-void func_02027804(u16 *map, u16 x, u16 y, int w, int h);
+void Bg_ClearRect(u16 *map, u16 x, u16 y, int w, int h);
 int func_02069920(void);                               /* 1: the cursor is on a CO (setup.unk_2e4 8-15) */
 void func_020e6cc8(u8 *out, int co, int set);          /* equipped skill ids of a set, ended by 0xff */
 int Co_GetRank(u32 co);
@@ -26,7 +26,7 @@ void BattleSetup_DrawSkills(int x, int y, int set)
     MenuState *shifted;
 
     Window_DrawOnLayer1(x, y, 10, 4);
-    func_02027804(data_027c0280->layer0Map, x + 1, y + 1, 8, 2);
+    Bg_ClearRect(data_027c0280->layer0Map, x + 1, y + 1, 8, 2);
     if (func_02069920() != 1) {
         return;
     }

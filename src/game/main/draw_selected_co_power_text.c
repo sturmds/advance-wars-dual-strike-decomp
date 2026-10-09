@@ -9,7 +9,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_02014d88(int x, int y, void *target, u32 text, int a, int b);
 void func_02015258(int x, int y, void *target, u32 text, int a, int b);
 Unk_02023724 *Task_FindByScript(void *key);
-void func_02027804(void *target, int x, int y, int w, int h);
+void Bg_ClearRect(void *target, int x, int y, int w, int h);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -53,7 +53,7 @@ void DrawSelectedCoPowerText(void)
         text = 0x44000009;
         break;
     }
-    func_02027804(data_027c0280->layer0Map, 17, 13, 15, 8);
+    Bg_ClearRect(data_027c0280->layer0Map, 17, 13, 15, 8);
     /* Needed to match: indexing from &gCoTable[0].blocks[POWER_CO] keeps
      * the 0x120 offset in the literal pool instead of the load. TextRefs
      * are passed as one u32. */
