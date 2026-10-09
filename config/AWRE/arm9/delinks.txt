@@ -23,6 +23,10 @@ src/game/main/graphics/co_load_small_picture.c:
     complete
     .text       start:0x0200215c end:0x020021a8
 
+src/game/main/graphics/co_load_mood_picture.c:
+    complete
+    .text       start:0x020021a8 end:0x02002244
+
 src/game/main/func_02002620.c:
     complete
     .text       start:0x02002620 end:0x02002694

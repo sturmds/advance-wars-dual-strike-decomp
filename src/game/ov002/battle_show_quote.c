@@ -21,7 +21,7 @@ void Gfx_RequestLayerCopy(int a);
 void Data_Unpack(const void *src, void *dst);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_020021a8(u32 a, void *dst, int b, int c);
+void Co_LoadMoodPicture(u32 a, void *dst, int b, int c);
 void Battle_PickFrame(void);
 BOOL Battle_IsSideAir(int side);
 int Battle_FindArmySlot(int army);
@@ -131,13 +131,13 @@ void Battle_ShowQuote(void)
         palette = left ? 10 : 11;
         bg = data_027c0280->layer1Bg;
         tile = left ? 304 : 334;
-        func_020021a8(Ov002_gBattleScene->sides[i].coId | (Battle_GetStartMood(i) << 8),
+        Co_LoadMoodPicture(Ov002_gBattleScene->sides[i].coId | (Battle_GetStartMood(i) << 8),
                       CHAR_BASE(bg) + tile * 32, palette,
                       Battle_FindArmySlot(Ov002_gBattleScene->sides[i].army));
         palette = left ? 10 : 11;
         bg2 = data_027c0280->layer1Bg;
         tile = left ? 364 : 394;
-        func_020021a8(Ov002_gBattleScene->sides[i].coId | (Battle_GetSideMood(i) << 8),
+        Co_LoadMoodPicture(Ov002_gBattleScene->sides[i].coId | (Battle_GetSideMood(i) << 8),
                       CHAR_BASE(bg2) + tile * 32, palette,
                       Battle_FindArmySlot(Ov002_gBattleScene->sides[i].army));
         Palette_Load(res + 0xab4 + (Ov002_gBattleScene->sides[i].army - 1) * 32,
