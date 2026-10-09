@@ -248,6 +248,10 @@ src/game/main/func_0201b130.c:
     complete
     .text       start:0x0201b130 end:0x0201b150
 
+src/game/main/func_0201ce98.c:
+    complete
+    .text       start:0x0201ce98 end:0x0201ceac
+
 src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378
