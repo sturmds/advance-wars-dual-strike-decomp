@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 
-void func_02023958(Task *task);
+void Task_Destroy(Task *task);
 
 /* Destroys every task in the pool whose unk_26 equals group. */
 void Task_DestroyGroup(int group)
@@ -15,7 +15,7 @@ void Task_DestroyGroup(int group)
     task = data_027c027c->taskPool;
     for (i = 0; i < TASK_COUNT; i++, task++) {
         if (task->unk_26 == group) {
-            func_02023958(task);
+            Task_Destroy(task);
         }
     }
 }
