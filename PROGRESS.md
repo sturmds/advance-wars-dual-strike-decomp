@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2715 / 6603 | 347048 / 1531944 | 22.65% | 0 | 0 |
+| game | 2718 / 6603 | 348512 / 1531944 | 22.75% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2853 / 7483 | 350468 / 1685994 | 20.79% | 1 | 30 |
+| all | 2856 / 7483 | 351932 / 1685994 | 20.87% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2318 / 5180 | 321024 / 1082632 | 29.65% | 0 |
+| main | game | 2321 / 5180 | 322488 / 1082632 | 29.79% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 31 / 121 | 2740 / 25300 | 10.83% | 0 |
@@ -53,14 +53,11 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_020ab70c.c` | func_020ab70c | 796 |
 | `src/game/main/ai/func_020b46c4.c` | func_020b46c4 | 644 |
 | `src/game/main/ai/func_020b7e90.c` | func_020b7e90 | 436 |
-| `src/game/main/copowers/player_add_power_charge.c` | Player_AddPowerCharge | 432 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/link_send_packet.c` | no delinks entry | 0 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
-| `src/game/main/map/map_view_scroll_step.c` | MapView_ScrollStep | 788 |
-| `src/game/main/map/tile_map_fill.c` | TileMap_Fill | 244 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |

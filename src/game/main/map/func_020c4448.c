@@ -18,13 +18,15 @@ extern s8 data_ov000_022f4578[32];
  * does not match yet. */
 void func_020c4448(void)
 {
-    int y;
-    u32 urban;
-    int count;
     int listed;
-    int x;
-    int tile;
+    int y;
+    int count;
+    int col;
+    u32 urban;
     int i;
+    int x;
+    int row;
+    int tile;
 
     count = 0;
     RangeMap_SetBuffer(&STATE->mapTiles->unk_1928);
@@ -51,14 +53,14 @@ void func_020c4448(void)
     }
     STATE->unk_6088[count].unk_00 = 0xff;
     listed = 0;
-    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-        for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
+    for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
+        for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
+            tile = STATE->mapTiles->tiles[col + STATE->mapTiles->rowStart[row]];
             if (data_ov000_022f4578[MAP_TILE_TERRAIN(tile)] != 0 || (STATE->gameMode == 4 && MAP_TILE_TERRAIN(tile) == 16)) {
                 if (listed < 92) {
                     STATE->unk_608c[listed].tile = tile;
-                    STATE->unk_608c[listed].x = x;
-                    STATE->unk_608c[listed].y = y;
+                    STATE->unk_608c[listed].x = col;
+                    STATE->unk_608c[listed].y = row;
                 }
                 listed++;
             }
