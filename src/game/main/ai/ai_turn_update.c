@@ -7,7 +7,7 @@ void AiTurn_RunPhase(void);
 void AiTurn_RunQueue(void);
 void AiTurn_ShowAction(void);
 void func_02093824(void);
-void func_02099f88(void);
+void AiTurn_RunPowerStep(void);
 void func_0208c230(void);
 
 /* Runs one step of the AI turn. Does nothing while func_0201ad28
@@ -34,7 +34,7 @@ void AiTurn_Update(void)
         func_02093824();
         break;
     case 5:
-        func_02099f88();
+        AiTurn_RunPowerStep();
         break;
     case 6:
         func_0208c230();
