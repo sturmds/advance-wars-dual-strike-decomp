@@ -5925,6 +5925,10 @@ src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664
 
+src/game/main/func_020b97e8.c:
+    complete
+    .text       start:0x020b97e8 end:0x020b983c
+
 src/game/main/func_020b983c.c:
     complete
     .text       start:0x020b983c end:0x020b9864
@@ -6276,6 +6280,9 @@ src/game/main/func_020c02f0.c:
 src/game/main/func_020c0330.c:
     complete
     .text       start:0x020c0330 end:0x020c033c
+
+src/game/main/map/acting_unit_start_restore.c:
+    .text       start:0x020c033c end:0x020c0398
 
 src/game/main/units/acting_unit_save_start_pos.c:
     complete

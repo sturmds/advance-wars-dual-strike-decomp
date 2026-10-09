@@ -3,7 +3,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern s16 data_0229ead4[2]; /* x, y; func_020c033c copies them back */
+extern s16 data_0229ead4[2]; /* x, y; ActingUnitStart_Restore copies them back */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
