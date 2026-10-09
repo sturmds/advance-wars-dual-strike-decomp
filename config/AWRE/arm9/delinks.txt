@@ -228,6 +228,10 @@ src/game/main/icon/icon_bank_init.c:
     complete
     .text       start:0x02023ecc end:0x02023f38
 
+src/game/main/menus/rect_contains_point.c:
+    complete
+    .text       start:0x02024f80 end:0x02024fdc
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48
