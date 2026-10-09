@@ -2696,6 +2696,10 @@ src/game/main/file/file_localize_path.c:
     complete
     .text       start:0x021040dc end:0x02104124
 
+src/game/main/mem/link_list_get_next.c:
+    complete
+    .text       start:0x02104138 end:0x02104150
+
 src/game/main/mem/link_list_set_first.c:
     complete
     .text       start:0x02104308 end:0x02104334

@@ -19,5 +19,6 @@ typedef struct LinkList {
 } LinkList;
 
 void LinkList_Init(LinkList *list, u16 linkOffset);
+void *LinkList_GetNext(LinkList *list, void *object);
 
 #endif
