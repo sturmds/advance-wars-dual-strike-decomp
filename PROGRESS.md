@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 118 / 6603 | 19812 / 1531944 | 1.29% | 0 | 0 |
+| game | 119 / 6603 | 20240 / 1531944 | 1.32% | 0 | 0 |
 | SDK/library | 1 / 880 | 40 / 154050 | 0.03% | 1 | 30 |
-| all | 119 / 7483 | 19852 / 1685994 | 1.18% | 1 | 30 |
+| all | 120 / 7483 | 20280 / 1685994 | 1.20% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 115 / 5180 | 19644 / 1082632 | 1.81% | 0 |
+| main | game | 116 / 5180 | 20072 / 1082632 | 1.85% | 0 |
 | main | SDK/library | 1 / 767 | 40 / 130618 | 0.03% | 1 |
 | ov003 | game | 2 / 235 | 64 / 82696 | 0.08% | 0 |
 | ov006 | game | 1 / 321 | 104 / 105588 | 0.10% | 0 |
@@ -31,5 +31,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
-| `src/game/main/copowers/market_crash.c` | MarketCrash | 428 |
 | `src/game/main/map/map_apply_slot_flags.c` | Map_ApplySlotFlags | 196 |

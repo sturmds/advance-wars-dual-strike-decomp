@@ -12,14 +12,6 @@ int SuperPowerCost(int player, int slot);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Byte view of frontCo/backCo. The game reads the CO id here with ldrb
- * and indexes by slot; a plain u8 cast of the word does not compile the
- * same way. */
-typedef struct CoSlotByte {
-    u8 id;
-    u8 pad_01[3];
-} CoSlotByte;
-
 /* Sasha's CO Power: each CO (front and back) of every enemy still in the
  * game loses meter charge equal to percent of its Super cost, where
  * percent is the current player's funds / 500, capped at 100. */
@@ -47,9 +39,7 @@ void MarketCrash(int priority)
             continue;
         }
         for (slot = 0; slot < 2; slot++) {
-            Player *p = &data_027c027c->unk_48[data_027c0284]->players[player];
-
-            if (((CoSlotByte *)&p->frontCo)[slot].id & PLAYER_CO_ID_MASK) {
+            if ((&data_027c027c->unk_48[data_027c0284]->players[player].front)[slot].id & PLAYER_CO_ID_MASK) {
                 int cost;
 
                 charge = PLAYER_CO_STATUS((&data_027c027c->unk_48[data_027c0284]->players[player].frontCo)[slot])->charge;
