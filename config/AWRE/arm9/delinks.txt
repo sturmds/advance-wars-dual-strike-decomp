@@ -3743,6 +3743,10 @@ src/game/main/link/func_0207a474.c:
     complete
     .text       start:0x0207a474 end:0x0207a514
 
+src/game/main/func_0207a514.c:
+    complete
+    .text       start:0x0207a514 end:0x0207a5b0
+
 src/game/main/func_0207a750.c:
     complete
     .text       start:0x0207a750 end:0x0207a7a4
