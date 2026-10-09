@@ -1399,6 +1399,10 @@ src/game/main/script/event_script_stop.c:
     complete
     .text       start:0x0201ac78 end:0x0201ac94
 
+src/game/main/script/event_script_find_slot.c:
+    complete
+    .text       start:0x0201acec end:0x0201ad28
+
 src/game/main/script/event_script_is_running.c:
     complete
     .text       start:0x0201ad28 end:0x0201ad64
