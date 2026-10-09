@@ -403,6 +403,10 @@ src/game/main/ai/ai_unit_act_by_order.c:
     complete
     .text       start:0x0209fe88 end:0x0209ffe4
 
+src/game/main/ai/ai_unit_act_by_order_fog.c:
+    complete
+    .text       start:0x0209ffe4 end:0x020a00c8
+
 src/game/main/ai/ai_foot_move_and_attack.c:
     complete
     .text       start:0x020a00c8 end:0x020a022c

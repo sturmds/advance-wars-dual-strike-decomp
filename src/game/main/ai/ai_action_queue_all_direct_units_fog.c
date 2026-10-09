@@ -13,7 +13,7 @@ void AiQueue_SortByVision(BOOL descending);
 void AiQueue_SortByMovement(BOOL descending);
 /* Direct combat unit action, a variant of AiUnit_ActByOrder that only this
  * step uses; switches on the unit's AI order. */
-void func_0209ffe4(void);
+void AiUnit_ActByOrderFog(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -43,6 +43,6 @@ void AiAction_QueueAllDirectUnitsFog(void)
     } else {
         AiQueue_SortByMovement(FALSE);
     }
-    gAiQueueRoutine = func_0209ffe4;
+    gAiQueueRoutine = AiUnit_ActByOrderFog;
     gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }
