@@ -296,6 +296,10 @@ src/game/main/func_0200a6b0.c:
     complete
     .text       start:0x0200a6b0 end:0x0200a6c0
 
+src/game/main/func_0200a6c0.c:
+    complete
+    .text       start:0x0200a6c0 end:0x0200a6d0
+
 src/game/main/bg_set_screen_size.c:
     complete
     .text       start:0x0200a7b0 end:0x0200a7d0
@@ -679,6 +683,10 @@ src/game/main/func_0201b888.c:
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
+
+src/game/main/func_0201c600.c:
+    complete
+    .text       start:0x0201c600 end:0x0201c610
 
 src/game/main/func_0201c87c.c:
     complete
@@ -1331,6 +1339,10 @@ src/game/main/func_02028644.c:
 src/game/main/graphics/gfx_init_both_screens.c:
     complete
     .text       start:0x02028ae8 end:0x02028ba0
+
+src/game/main/func_02028d50.c:
+    complete
+    .text       start:0x02028d50 end:0x02028d60
 
 src/game/main/graphics/wallpaper_load_single.c:
     complete
@@ -2153,6 +2165,10 @@ src/game/main/func_0206664c.c:
 src/game/main/func_02066818.c:
     complete
     .text       start:0x02066818 end:0x020668a8
+
+src/game/main/func_02066d70.c:
+    complete
+    .text       start:0x02066d70 end:0x02066d80
 
 src/game/main/func_020678e0.c:
     complete
@@ -4509,6 +4525,10 @@ src/game/main/func_020cce70.c:
     complete
     .text       start:0x020cce70 end:0x020cce88
 
+src/game/main/func_020cce88.c:
+    complete
+    .text       start:0x020cce88 end:0x020cce98
+
 src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc
@@ -5462,6 +5482,10 @@ src/game/main/func_020e8878.c:
     complete
     .text       start:0x020e8878 end:0x020e888c
 
+src/game/main/func_020e889c.c:
+    complete
+    .text       start:0x020e889c end:0x020e88ac
+
 src/game/main/map/func_020e88f8.c:
     complete
     .text       start:0x020e88f8 end:0x020e8970
@@ -5694,6 +5718,10 @@ src/game/main/func_020f47e8.c:
     complete
     .text       start:0x020f47e8 end:0x020f4870
 
+src/game/main/func_020f4a84.c:
+    complete
+    .text       start:0x020f4a84 end:0x020f4a94
+
 src/game/main/skills/deploy_city.c:
     complete
     .text       start:0x020f4b00 end:0x020f4c00
@@ -5801,6 +5829,10 @@ src/game/main/func_020f9838.c:
 src/game/main/func_020fa448.c:
     complete
     .text       start:0x020fa448 end:0x020fa45c
+
+src/game/main/func_020fa6b8.c:
+    complete
+    .text       start:0x020fa6b8 end:0x020fa6c8
 
 src/game/main/func_020fa6c8.c:
     complete
@@ -6577,6 +6609,10 @@ src/game/main/func_0210cbc0.c:
 src/sdk/func_0210cc00.c:
     complete
     .text       start:0x0210cc00 end:0x0210cc10
+
+src/sdk/func_0210cc10.c:
+    complete
+    .text       start:0x0210cc10 end:0x0210cc20
 
 src/sdk/func_0210ccbc.c:
     complete

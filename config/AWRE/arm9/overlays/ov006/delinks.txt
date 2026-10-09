@@ -11,6 +11,10 @@ src/game/ov006/func_ov006_0235068c.c:
     complete
     .text       start:0x0235068c end:0x0235069c
 
+src/game/ov006/func_ov006_02350eb0.c:
+    complete
+    .text       start:0x02350eb0 end:0x02350ec0
+
 src/game/ov006/func_ov006_02350ec0.c:
     complete
     .text       start:0x02350ec0 end:0x02350ee8
@@ -138,6 +142,10 @@ src/game/ov006/ov006_update_id_flag.c:
 src/game/ov006/func_ov006_023582d0.c:
     complete
     .text       start:0x023582d0 end:0x023582e0
+
+src/game/ov006/func_ov006_023582e0.c:
+    complete
+    .text       start:0x023582e0 end:0x023582f0
 
 src/game/ov006/func_ov006_0235869c.c:
     complete
