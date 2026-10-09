@@ -1856,6 +1856,10 @@ src/game/main/ai/ai_turn_show_action.c:
     complete
     .text       start:0x020b9540 end:0x020b9664
 
+src/game/main/func_020b9864.c:
+    complete
+    .text       start:0x020b9864 end:0x020b9890
+
 src/game/main/func_020b9890.c:
     complete
     .text       start:0x020b9890 end:0x020b98bc
