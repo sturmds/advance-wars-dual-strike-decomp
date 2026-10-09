@@ -7597,6 +7597,7 @@ src/game/main/copowers/player_commit_power_state.c:
     .text       start:0x020e2dc0 end:0x020e2e10
 
 src/game/main/copowers/player_add_power_charge.c:
+    complete
     .text       start:0x020e2e10 end:0x020e2fc0
 
 src/game/main/copowers/spend_power_charge.c:

@@ -13,10 +13,17 @@ extern Unk_02080440_48 data_02183b08;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
+/* Which of the two map states is current: data_02183b08 or the other one.
+ * Needed to match: enum constants keep mwcc from turning the ternary below
+ * into a plain `!=` (which would emit movne before moveq). */
+enum {
+    MAP_STATE_FIRST,
+    MAP_STATE_SECOND
+};
+
 /* Adds meter charge to one CO of a player (slot 0 front, 1 back), capped at
  * the Super CO Power cost. Skipped when CO effects are off or a power is on.
- * Star Power adds 10%. WIP: 2 of 108 instructions differ (the argument of
- * func_020f5344 compiles as movne/moveq instead of moveq/movne). */
+ * Star Power adds 10%. */
 void Player_AddPowerCharge(int player, int slot, int amount)
 {
     if (STATE->unk_5c == 0) {
@@ -25,7 +32,7 @@ void Player_AddPowerCharge(int player, int slot, int amount)
     if (Player_IsPowerActive(player)) {
         return;
     }
-    if (!func_020f5344(STATE == &data_02183b08 ? 0 : 1)) {
+    if (!func_020f5344(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
         return;
     }
     if (CheckSkillsEquipped(STATE->players[player].skills[slot], SKILL_RANK_STAR_POWER)) {
