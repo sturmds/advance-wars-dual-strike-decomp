@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 BOOL func_02093434(void);
 void func_02092fd4(void);
-void func_0209a064(void);
+void AiEndActions_BuildThreatMaps(void);
 BOOL func_02091eb0(void);
 void func_02093720(void);
 BOOL func_02091e40(void);
@@ -47,7 +47,7 @@ void AiTurn_RunEndActions(void)
         case 0:
             func_02092fd4();
             data_021619c0->step++;
-            func_0209a064();
+            AiEndActions_BuildThreatMaps();
             break;
         case 1:
             if (func_02091eb0()) {
