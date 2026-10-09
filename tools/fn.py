@@ -13,7 +13,8 @@
 
 Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
-listings side by side (lines marked | differ), and exits 0 only at 100%.
+listings side by side (lines marked | differ; lines marked = name another
+symbol at the same address, and count as matching), and exits 0 only at 100%.
 """
 
 import argparse
@@ -432,15 +433,65 @@ def cmd_diff(args) -> int:
         return out
 
     left, right = rows(orig), rows(ours_sym)
+    # objdiff compares relocations by symbol name. Rows where both sides
+    # point at the same address under different names (issue 0017) match.
+    same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours_sym.get("instructions", [])))
+            if a.get("diff_kind") and same_target(data, a, b)}
     width = max((len(t) for t, _ in left), default=10) + 2
     print(f"{'original':<{width}}   ours")
+    differ = 0
     for i in range(max(len(left), len(right))):
-        a, ka = left[i] if i < len(left) else ("", None)
-        b, kb = right[i] if i < len(right) else ("", None)
-        mark = "|" if (ka or kb) else " "
+        a, ka = left[i] if i < len(left) else ("", "missing")
+        b, kb = right[i] if i < len(right) else ("", "missing")
+        mark = "=" if i in same else "|" if (ka or kb) else " "
+        differ += mark == "|"
         print(f"{a:<{width}} {mark} {b}")
+    if same and not differ:
+        percent = 100.0
+    if same:
+        print(f"\n= : {len(same)} relocation(s) name different symbols at the same address; counted as matching.")
     print(f"\n{f.name}: {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
+
+
+@cache
+def symbol_addresses() -> dict[str, int | None]:
+    """Name -> address over all modules; None when a name has two addresses."""
+    out = {}
+    for mod in modules().values():
+        for line in (mod.dir / "symbols.txt").read_text().splitlines():
+            m = ANY_SYM.match(line)
+            if m:
+                addr = int(m.group(3), 16)
+                out[m.group(1)] = addr if out.get(m.group(1), addr) == addr else None
+    return out
+
+
+def same_target(data, left, right) -> bool:
+    """True when two objdiff rows differ only in a relocation's symbol name,
+    and both relocations resolve to the same address plus addend."""
+    if left.get("diff_kind") != "DIFF_ARG_MISMATCH" or right.get("diff_kind") != "DIFF_ARG_MISMATCH":
+        return False
+    targets = []
+    for key, row in (("left", left), ("right", right)):
+        ins = row["instruction"]
+        args = [p["arg"] for p in ins.get("parts", []) if "arg" in p]
+        # Every argument that differs must be the relocation.
+        for arg, d in zip(args, row.get("arg_diff", [])):
+            if "diff_index" in d and not arg.get("reloc"):
+                return False
+        rel = ins.get("relocation")
+        if not rel:
+            return False
+        name = data[key]["symbols"][rel["target_symbol"]]["name"]
+        addr = symbol_addresses().get(name)
+        if addr is None:
+            return False
+        targets.append((rel["type"], addr + int(rel.get("addend", 0))))
+    left_ins, right_ins = left["instruction"], right["instruction"]
+    if [p for p in left_ins["parts"] if "arg" not in p] != [p for p in right_ins["parts"] if "arg" not in p]:
+        return False
+    return targets[0] == targets[1]
 
 
 def main() -> int:

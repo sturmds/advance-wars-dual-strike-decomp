@@ -1,6 +1,6 @@
 # 0017: `fn.py diff` shows less than 100% for table accesses that match
 
-- **Status:** open
+- **Status:** closed
 - **Area:** tools
 - **Opened:** 2026-10-08
 - **Milestone:** M1
@@ -13,6 +13,8 @@ dsd gives a symbol to every address code points at, including addresses inside a
 
 - `fn.py diff` could resolve both sides of each relocation to an address before comparing, and count equal addresses as a match.
 - Or remove the inner symbols from `symbols.txt` once a table has a struct type, so dsd names the relocation after the table.
+
+- 2026-10-08: fixed in `fn.py diff`. When objdiff marks a row as differing only in a relocation, both sides are looked up in `symbols.txt` and compared as address plus addend. Equal addresses are marked `=` and count as matching. 29 complete functions went from 99.x% to 100%; C with a wrong field offset still fails.
 
 ## Done when
 
