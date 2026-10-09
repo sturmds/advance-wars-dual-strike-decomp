@@ -1865,6 +1865,10 @@ src/game/main/ai/ai_unit_adjust_action.c:
     complete
     .text       start:0x020a2f98 end:0x020a30c4
 
+src/game/main/ai/ai_unit_mark_finishing_capture.c:
+    complete
+    .text       start:0x020a3ab4 end:0x020a3b54
+
 src/game/main/ai/ai_tile_has_strong_ally_in_reach.c:
     complete
     .text       start:0x020a3b54 end:0x020a3dfc

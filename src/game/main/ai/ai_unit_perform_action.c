@@ -12,7 +12,7 @@ extern u8 data_0229ea0c[];
 extern u32 data_0229eaec;
 
 void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
-void func_020a3ab4(int action);
+void AiUnit_MarkFinishingCapture(int action);
 void func_021296a8(void *p, int n);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void func_01ffa02c(int x, int y, u8 *out);
@@ -30,7 +30,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     int fuelUsed;
 
     AiUnit_AdjustAction(x, y, &action, &target, &arg);
-    func_020a3ab4(action);
+    AiUnit_MarkFinishingCapture(action);
     unit = GAME->actingUnit;
     if (x == unit->x && y == unit->y && action == 2) {
         unit->unk_08_7 = 1;
