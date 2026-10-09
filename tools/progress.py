@@ -142,7 +142,7 @@ def markdown() -> str:
 
 
 def table() -> int:
-    subprocess.run(["ninja", "objdiff.json"], cwd=ROOT, check=True, capture_output=True)
+    subprocess.run(fn.ninja("objdiff.json"), cwd=ROOT, check=True, capture_output=True)
     subprocess.run([fn.OBJDIFF, "report", "generate", "-p", ".", "-o", "build/report.json"],
                    cwd=ROOT, check=True, capture_output=True)
     rows = count()

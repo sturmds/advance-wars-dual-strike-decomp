@@ -18,7 +18,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - `make release` must work as the first command after cloning, and must work offline once `make setup` has run.
 - The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 and the MD5 match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068), checked 2026-10-06.
 - Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
-- System packages needed: `make`, `ninja-build`, `python3` (3.11+), `libc6:i386` (the metroskrew binaries are 32-bit).
+- System packages needed: `make`, `ninja-build`, `python3` (3.11+), `libc6:i386` (the metroskrew binaries are 32-bit), `flock` from `util-linux` (part of every Ubuntu install; `make` and `fn.py` run ninja under `build/.ninja.lock`, one build per checkout at a time).
 - Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 and the file system come from `extract/` unchanged.
 - `make check` runs `dsd check modules`, then `config/AWRE/modules.sha1`, then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
 - Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking`; linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.

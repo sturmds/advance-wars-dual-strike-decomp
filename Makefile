@@ -9,12 +9,17 @@ OUT      := build/AWRE.nds
 PYTHON   ?= python3
 NINJA    ?= ninja
 DSD      := .cache/tools/dsd/dsd
+# One ninja run at a time per checkout. Two runs in one build/ delete each
+# other's delinked objects (dsd delink starts with rm -rf build/delinks), and
+# the link then misses a _dsd_gap@...o file (issue 0025). tools/fn.py takes
+# the same lock.
+LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
 .PHONY: all configure fnindex progress setup release check check-rom check-modules check-out hooks extract test clean
 
 all: check-rom configure
-	@$(NINJA)
+	@$(LOCKED_NINJA)
 
 # Cheap, and rewrites build.ninja only when it changes.
 configure:
@@ -30,7 +35,7 @@ hooks:
 	fi
 
 extract: check-rom configure
-	@$(NINJA) extract/config.yaml
+	@$(LOCKED_NINJA) extract/config.yaml
 
 check-rom:
 	@if [ ! -e $(ROM) ]; then \

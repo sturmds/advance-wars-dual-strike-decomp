@@ -54,6 +54,13 @@ TEXT = re.compile(r"\s+\.text\s+start:(0x[0-9a-f]+) end:(0x[0-9a-f]+)")
 CALL_KINDS = {"arm_call", "thumb_call", "arm_call_thumb", "thumb_call_arm", "arm_branch"}
 
 
+def ninja(*targets: str) -> list[str]:
+    """A ninja command line that waits for the checkout's build lock, as
+    `make` does: two ninja runs in one build/ break each other's delink step."""
+    (ROOT / "build").mkdir(exist_ok=True)
+    return ["flock", "build/.ninja.lock", "ninja", *targets]
+
+
 @dataclass
 class Func:
     module: str
@@ -455,7 +462,7 @@ def cmd_diff(args) -> int:
     subprocess.run([sys.executable, ROOT / "tools/configure.py"], check=True)
     unit = str(Path(path).with_suffix(""))
     ours = ROOT / "build" / Path(path).with_suffix(".o")
-    r = subprocess.run(["ninja", str(ours.relative_to(ROOT)), "objdiff.json", "build/delink.stamp"],
+    r = subprocess.run(ninja(str(ours.relative_to(ROOT)), "objdiff.json", "build/delink.stamp"),
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode:
         sys.stdout.write(r.stdout + r.stderr)
