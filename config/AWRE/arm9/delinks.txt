@@ -3124,6 +3124,10 @@ src/game/main/sound/nns_snd_heap_destroy.c:
     complete
     .text       start:0x02106cc4 end:0x02106ce0
 
+src/game/main/sound/func_021077cc.c:
+    complete
+    .text       start:0x021077cc end:0x02107804
+
 src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
