@@ -232,6 +232,10 @@ src/game/main/menus/rect_contains_point.c:
     complete
     .text       start:0x02024f80 end:0x02024fdc
 
+src/game/main/menus/menu_button_notify_selected.c:
+    complete
+    .text       start:0x02024fdc end:0x02025008
+
 src/game/main/func_02025bfc.c:
     complete
     .text       start:0x02025bfc end:0x02025c48

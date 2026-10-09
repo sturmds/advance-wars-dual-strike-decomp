@@ -17,7 +17,8 @@ typedef struct MenuButton {
     void (*onKeys)(struct MenuButton *button);
     void (*onConfirm)(struct MenuButton *button);  /* called by MenuButton_Confirm */
     void (*onCancel)(struct MenuButton *button);   /* called by Menu_CancelSelected on the selected button */
-    u8 pad_34[0x3c - 0x34];
+    void (*onSelect)(struct MenuButton *button);   /* called when the button becomes the selected one */
+    u8 pad_38[0x3c - 0x38];
 } MenuButton;
 
 extern MenuButton gMenuButtons[80];
@@ -26,5 +27,6 @@ MenuButton *MenuButton_Find(int id);           /* active button with this id, or
 MenuButton *MenuButton_Select(int id);
 void MenuButton_Confirm(MenuButton *button);
 void Menu_CancelSelected(void);
+void MenuButton_NotifySelected(MenuButton *button);
 
 #endif
