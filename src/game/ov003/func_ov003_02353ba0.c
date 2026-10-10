@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_ov003_02354094(const void *src, void *dst, u32 size);
+void Ov003_StepAnims(void);
 
-void func_ov003_02353ba0(const void *src, void *dst, u32 size)
+void func_ov003_02353ba0(void)
 {
-    func_ov003_02354094(src, dst, size);
+    Ov003_StepAnims();
 }

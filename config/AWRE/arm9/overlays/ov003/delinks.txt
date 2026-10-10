@@ -75,6 +75,10 @@ src/game/ov003/func_ov003_02353bd8.c:
     complete
     .text       start:0x02353bd8 end:0x02353c04
 
+src/game/ov003/ov003_step_anims.c:
+    complete
+    .text       start:0x02354094 end:0x023543b4
+
 src/game/ov003/ov003_draw_all_tiles.c:
     complete
     .text       start:0x023543b4 end:0x02354444

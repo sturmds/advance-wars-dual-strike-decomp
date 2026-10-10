@@ -83,7 +83,7 @@ typedef struct Ov003State {
     u8 pad_154[0x156 - 0x154];
     Ov003Spawn spawns[1];              /* length unknown */
     u8 pad_15b[0x1c8 - 0x15b];
-    u32 unk_1c8;
+    u32 frameCount;                    /* frames on which func_ov003_02362258 returns 1 */
     u32 unk_1cc;
     u16 unk_1d0;
     u16 unk_1d2;

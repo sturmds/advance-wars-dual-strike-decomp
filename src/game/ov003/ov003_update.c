@@ -66,7 +66,7 @@ void Ov003_Update(void)
     func_ov003_02350cf8();
     func_ov003_02350bdc();
     if (func_ov003_02362258() == 1) {
-        data_ov003_02364928->unk_1c8++;
+        data_ov003_02364928->frameCount++;
     }
     if (func_ov003_023621f4() == 1) {
         data_ov003_02364928->unk_1cc++;
