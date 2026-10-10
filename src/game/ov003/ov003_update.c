@@ -22,7 +22,7 @@
 void Ov003_ReadInput(void);
 void Ov003_AdvanceMode(void);
 void func_ov003_02350e88(void);
-void func_ov003_0235fee4(void);
+void Ov003_DrawHudSprites(void);
 void func_ov003_02364800(void);
 void Ov003_DrawTimeLeft(void);
 void Ov003_UpdateLinkStart(void);
@@ -53,7 +53,7 @@ void Ov003_Update(void)
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02350e88();
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    func_ov003_0235fee4();
+    Ov003_DrawHudSprites();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02364800();
     Ov003_DrawTimeLeft();
