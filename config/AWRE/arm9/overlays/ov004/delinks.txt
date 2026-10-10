@@ -623,6 +623,10 @@ src/game/ov004/func_ov004_022b8af0.c:
     complete
     .text       start:0x022b8af0 end:0x022b8afc
 
+src/game/ov004/ov004_task_run_picture_timeline.c:
+    complete
+    .text       start:0x022b8afc end:0x022b9340
+
 src/game/ov004/func_ov004_022b99f0.c:
     complete
     .text       start:0x022b99f0 end:0x022b9a08
