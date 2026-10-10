@@ -706,6 +706,10 @@ src/game/ov003/ov003_show_warped_message.c:
     complete
     .text       start:0x02362db0 end:0x02362f78
 
+src/game/ov003/ov003_show_bouncing_message.c:
+    complete
+    .text       start:0x02362f78 end:0x02363220
+
 src/game/ov003/func_ov003_02363220.c:
     complete
     .text       start:0x02363220 end:0x0236322c
