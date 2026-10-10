@@ -627,6 +627,10 @@ src/game/ov006/ov006_place_roads_at_marks.c:
     complete
     .text       start:0x02359db4 end:0x02359e94
 
+src/game/ov006/ov006_mark_link_path.c:
+    complete
+    .text       start:0x02359e94 end:0x0235a1ac
+
 src/game/ov006/ov006_pick_link_tiles.c:
     complete
     .text       start:0x0235a1ac end:0x0235a7c0
