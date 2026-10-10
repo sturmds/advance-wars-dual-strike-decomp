@@ -22,7 +22,7 @@ void func_0210bb9c(int sin, int cos);
 void func_ov002_02353158(int side);
 void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);
-void func_ov002_023540cc(void);
+void Battle_SetupCamera(void);
 int func_ov002_023540a0(void);
 void func_ov002_023545a8(void);
 void Battle_SetSideProjection(int side);
@@ -43,7 +43,7 @@ void Battle_DrawScene(void)
     *REG_VIEWPORT = 0xbfff0000;
     func_ov002_023545a8();
     *REG_MTX_PUSH = side;
-    func_ov002_023540cc();
+    Battle_SetupCamera();
     func_ov002_023540a0();
     Task_RunList(data_027c027c->taskLists[1]);
     Task_RunList(data_027c027c->taskLists[2]);
