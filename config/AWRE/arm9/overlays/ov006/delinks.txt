@@ -495,6 +495,10 @@ src/game/ov006/ov006_pick_link_tiles.c:
     complete
     .text       start:0x0235a1ac end:0x0235a7c0
 
+src/game/ov006/ov006_pick_random_cell_near.c:
+    complete
+    .text       start:0x0235aa60 end:0x0235ab7c
+
 src/game/ov006/ov006_find_random_clear_cell.c:
     complete
     .text       start:0x0235ab7c end:0x0235ac78
