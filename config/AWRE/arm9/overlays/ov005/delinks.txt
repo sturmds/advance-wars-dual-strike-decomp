@@ -204,6 +204,10 @@ src/game/ov005/func_ov005_0235d4fc.c:
     complete
     .text       start:0x0235d4fc end:0x0235d514
 
+src/game/ov005/func_ov005_0235d5bc.c:
+    complete
+    .text       start:0x0235d5bc end:0x0235d5cc
+
 src/game/ov005/func_ov005_0235d6fc.c:
     complete
     .text       start:0x0235d6fc end:0x0235d714
