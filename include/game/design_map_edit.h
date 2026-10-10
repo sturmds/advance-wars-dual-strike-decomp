@@ -8,7 +8,10 @@
 #define DESIGN_NB_LEFT  4
 #define DESIGN_NB_UP    8
 
-/* Map cell codes (MapTiles.mapCells) of the two bridge pieces. */
+/* Map cell codes (MapTiles.mapCells). */
+#define MAP_CELL_SEA 42
+
+/* The two bridge pieces. */
 #define MAP_CELL_BRIDGE_HORIZONTAL 21  /* runs left to right */
 #define MAP_CELL_BRIDGE_VERTICAL   22  /* runs top to bottom */
 
