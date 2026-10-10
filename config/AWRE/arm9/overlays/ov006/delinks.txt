@@ -459,6 +459,10 @@ src/game/ov006/ov006_has_non_space.c:
     complete
     .text       start:0x023586ac end:0x023586e0
 
+src/game/ov006/func_ov006_023586e0.c:
+    complete
+    .text       start:0x023586e0 end:0x02358750
+
 src/game/ov006/func_ov006_02358fec.c:
     complete
     .text       start:0x02358fec end:0x02359030
