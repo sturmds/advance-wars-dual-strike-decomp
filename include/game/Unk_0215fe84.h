@@ -5,7 +5,8 @@
 
 /* Pointed to by data_0215fe84 (main data). */
 typedef struct Unk_0215fe84 {
-    u8 pad_00[0x18];
+    u8 pad_00[0x14];
+    int unk_14;                        /* set to 1 by Wireless_OnEvent */
     int unk_18;                        /* returned by func_02077f20 */
     u8 pad_1c[0x20 - 0x1c];
     int unk_20;                        /* set to 1 by func_02079180 */
