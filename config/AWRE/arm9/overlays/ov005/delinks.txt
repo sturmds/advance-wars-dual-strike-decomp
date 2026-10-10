@@ -636,6 +636,10 @@ src/game/ov005/ov005_move_co_palette_cursor.c:
     complete
     .text       start:0x02363110 end:0x02363210
 
+src/game/ov005/ov005_move_co_grid_cursor.c:
+    complete
+    .text       start:0x0236329c end:0x023634b0
+
 src/game/ov005/func_ov005_023634b0.c:
     complete
     .text       start:0x023634b0 end:0x023634c8
