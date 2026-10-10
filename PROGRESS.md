@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2853 / 6603 | 397772 / 1531944 | 25.97% | 0 | 0 |
+| game | 2858 / 6603 | 400060 / 1531944 | 26.11% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 2991 / 7483 | 401192 / 1685994 | 23.80% | 1 | 30 |
+| all | 2996 / 7483 | 403480 / 1685994 | 23.93% | 1 | 30 |
 
 ## By module
 
@@ -21,7 +21,7 @@ Rows with nothing done are left out, but count in the totals.
 | main | game | 2359 / 5180 | 339992 / 1082632 | 31.40% | 0 |
 | main | SDK/library | 111 / 767 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
-| ov000 | game | 59 / 121 | 13536 / 25300 | 53.50% | 0 |
+| ov000 | game | 64 / 121 | 15824 / 25300 | 62.55% | 0 |
 | ov001 | game | 22 / 76 | 952 / 7472 | 12.74% | 0 |
 | ov002 | game | 78 / 164 | 19352 / 64208 | 30.14% | 0 |
 | ov003 | game | 45 / 235 | 6932 / 82696 | 8.38% | 0 |
@@ -53,6 +53,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
 | `src/game/ov000/func_ov000_022afbf0.c` | func_ov000_022afbf0 | 760 |
+| `src/game/ov000/player_hud_draw_slot.c` | no delinks entry | 0 |
+| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | func_ov000_022b2114 | 300 |
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02353254.c` | func_ov002_02353254 | 308 |
