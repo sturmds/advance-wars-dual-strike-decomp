@@ -24,6 +24,16 @@ typedef struct Ov006SlotButton {
     u8 state;                          /* see Ov006Slot.state */
 } Ov006SlotButton;
 
+/* Ov006Slot.state and Ov006SlotButton.state */
+#define OV006_SLIDE_NONE      0
+#define OV006_SLIDE_IN_START  10
+#define OV006_SLIDE_IN        11
+#define OV006_SLIDE_SHOWN     20
+#define OV006_SLIDE_OUT_START 30
+#define OV006_SLIDE_OUT       31
+#define OV006_SLIDE_OUT_LAST  32       /* button 39 after sliding out: acts on chosenButton */
+#define OV006_SLIDE_DONE      40
+
 /* Overlay 6 state reached through data_ov006_0236d640. */
 typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
