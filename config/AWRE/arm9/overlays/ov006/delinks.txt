@@ -55,6 +55,7 @@ src/game/ov006/func_ov006_02352708.c:
     .text       start:0x02352708 end:0x02352764
 
 src/game/ov006/func_ov006_02352764.c:
+    complete
     .text       start:0x02352764 end:0x023527ac
 
 src/game/ov006/ov006_load_co_preview.c:
