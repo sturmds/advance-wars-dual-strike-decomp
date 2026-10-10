@@ -39,7 +39,9 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
-    u8 pad_3a[0x5c - 0x3a];
+    u8 pad_3a[0x4c - 0x3a];
+    s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */
+    u8 pad_50[0x5c - 0x50];
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
     u8 pad_64[0x80 - 0x64];
