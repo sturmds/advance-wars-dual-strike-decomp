@@ -12,6 +12,7 @@ typedef struct BattleSideData_10 {
     u8 sameAltitude : 4;               /* value for Battle_GetAirGroundMatchup 0 */
     u8 groundVsAir : 4;                /* matchup 1 */
     u8 airVsGround : 4;                /* matchup 2 */
+    u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideData_10;
 
 /* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
@@ -37,6 +38,8 @@ typedef struct BattleSideWeapon {
     u8 unk_28_hi : 4;
     u8 unk_29_lo : 4;
     u8 unk_29_hi : 4;
+    u8 pad_2a;
+    u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideWeapon;
 
 /* What BattleScreenWork.unk_27c points to, one per side of the battle in ov002. */

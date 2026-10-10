@@ -28,7 +28,7 @@ typedef struct BattleCellTask {
     s16 unk_50;                        /* cleared by BattleCellTask_Reset */
     u8 pad_52[0x56 - 0x52];
     u8 phase;                          /* frame phase of the bobbing, starts at cell * 16 */
-    u8 pad_57;
+    u8 unk_57;
     u8 hasPos2 : 1;
     u8 pos2Index : 7;
     u8 flag0 : 1;
@@ -49,6 +49,7 @@ void BattleCellTask_Bob(BattleCellTask *task);
 void BattleCellTask_Move(BattleCellTask *task);
 void BattleCellTask_RemakeSprites(BattleCellTask *task);
 void BattleCellTask_StartMove(BattleCellTask *task);
+void BattleCellTask_RemakeSpritesWithEffect(BattleCellTask *task);
 
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */

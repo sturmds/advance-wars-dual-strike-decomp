@@ -141,16 +141,19 @@ typedef struct BattleStepList {
 
 typedef struct BattleScreenWork {
     u16 unk_20[2];                     /* per side */
-    u8 pad_024[0x026 - 0x024];
+    u16 unk_24;                        /* palette entry of the extra sprite of BattleCellTask_RemakeSpritesWithEffect */
     u16 pipeTexture;                   /* texture drawn under a Piperunner, in 32-byte units of texture VRAM */
     const u32 *spriteTables[2];        /* table argument of BattleSpriteTask_Create for the HP cells, per side */
     const u32 *unk_30[2];              /* per side, like spriteTables */
     const u32 *unk_38[2];              /* per side, like spriteTables */
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
-    u8 pad_050[0x060 - 0x050];
+    u8 pad_050[0x058 - 0x050];
+    const u32 *unk_58[2];              /* per side, like spriteTables */
     const u32 *unk_60[2];              /* per side, like spriteTables */
-    u8 pad_068[0x22c - 0x068];
+    u8 pad_068[0x070 - 0x068];
+    const u32 *unk_70;                 /* sprite table, the same for both sides */
+    u8 pad_074[0x22c - 0x074];
     BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
