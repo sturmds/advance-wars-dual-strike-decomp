@@ -1,0 +1,124 @@
+#include "types.h"
+#include "game/ov003_unit.h"
+#include "game/Unk_02160ac0.h"
+
+extern Unk_02160ac0 *data_02160ac0;
+extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 row, bits 0-4 terrain */
+/* Byte 4 of the 20-byte Ov003TileInfo entries in data_ov003_02364d88: index
+ * with tile * 20. The reach in tiles, minus 1, for func_ov003_0235f8e8. */
+extern u8 data_ov003_02364d8c[];
+
+void Ov003Unit_Move(Ov003Unit *unit, int dir, int arg2, int arg3);
+int func_ov003_0235d518(int player, int kind, int terrain);
+int func_ov003_0235f1a0(Ov003Unit *unit);
+void func_ov003_0235f81c(Ov003Unit *unit);
+void func_ov003_0235f8e8(Ov003Unit *unit);
+void func_ov003_0235f9b4(Ov003Unit *unit);
+u32 func_ov003_0235fa38(void);
+u32 func_ov003_0235fa80(Ov003Unit *unit, s8 *target);  /* distance to target, 16 per tile */
+u32 Ov003_RandNext(void);
+
+#define STATE data_ov003_02364928
+#define MAP data_ov003_02364a88
+#define TERRAIN_AT(tile) (data_ov003_02365d10[MAP->cells[tile]] & 31)
+
+/* Points the unit in direction d (1 up, 2 down, 3 left, 4 right). */
+#define SET_DIR(unit, d)                                    \
+    do {                                                    \
+        (unit)->unk_12_0 = (d);                             \
+        Ov003Unit_Move((unit), (unit)->unk_12_0, -1, 1); \
+        (unit)->unk_16++;                                   \
+    } while (0)
+
+/* Turns the unit towards the centre of its tile (64 of 128) when it is more
+ * than one step (func_ov003_0235d518) away, then runs func_ov003_0235f9b4. */
+#define STEP_TO_CENTRE(unit)                                                                  \
+    do {                                                                                      \
+        int step;                                                                             \
+        (unit)->unk_1c_0 = 0;                                                                 \
+        step = func_ov003_0235d518((unit)->unk_12_3, (unit)->tile,                            \
+            TERRAIN_AT(((unit)->y >> 7) * MAP->width + ((unit)->x >> 7)));                    \
+        if (((unit)->y & ~127) + 64 < (unit)->y - step) {                                     \
+            SET_DIR(unit, 1);                                                                 \
+        } else if (((unit)->y & ~127) + 64 > (unit)->y + step) {                              \
+            SET_DIR(unit, 2);                                                                 \
+        } else if (((unit)->x & ~127) + 64 < (unit)->x - step) {                              \
+            SET_DIR(unit, 3);                                                                 \
+        } else if (((unit)->x & ~127) + 64 > (unit)->x + step) {                              \
+            SET_DIR(unit, 4);                                                                 \
+        }                                                                                     \
+        func_ov003_0235f9b4(unit);                                                            \
+    } while (0)
+
+/* One frame of a computer unit. It wakes (unk_1e_0) when its wake group
+ * unk_1e_1 is set in Ov003State.unk_1de, when it is hurt, or when its target
+ * is closer than unk_1f tiles; waking also sets groups 0 to unk_1e_1. A unit
+ * that is capturing (unk_04 still counting) or has unk_17_0 set stays at the
+ * centre of its tile instead, under the conditions below; the range from
+ * func_ov003_0235fa38 is 0 or 8 tiles. Otherwise an awake unit heads for its
+ * target every 32 frames when func_ov003_0235f1a0 gives a direction, or turns
+ * at random every 256 frames and whenever it has not moved since
+ * Ov003_SnapshotUnits (blocked). Then a target in reach goes to
+ * func_ov003_0235f8e8, anything else to func_ov003_0235f81c. */
+void Ov003Unit_UpdateAi(Ov003Unit *unit)
+{
+    u32 dist;
+    u32 range;
+    u8 dir;
+
+    dist = func_ov003_0235fa80(unit, &unit->unk_1a);
+    range = func_ov003_0235fa38();
+
+    if (!unit->unk_1e_0) {
+        if (unit->unk_1e_1 != 0 && (STATE->unk_1de & (1 << unit->unk_1e_1))) {
+            unit->unk_1e_0 = 1;
+        } else if (unit->hp != 100 || dist < ((unit->unk_1f << 7) >> 3)) {
+            unit->unk_1e_0 = 1;
+            if (unit->unk_1e_1 != 0) {
+                STATE->unk_1de |= ~(0xff << (unit->unk_1e_1 + 1));
+            }
+        }
+    }
+    unit->unk_1c_0 = 0;
+
+    if (unit->unk_04 != 0 && (unit->unk_04 != unit->startUnk_04 || unit->unk_11 != 0)) {
+        if (data_02160ac0->unk_7c == 0 && (unit->unk_1d_6 || TERRAIN_AT(unit->lastTile) == 8)) {
+            if (dist >= range || (!STATE->unk_1df_5 && (unit->unk_04 > 30 || TERRAIN_AT(unit->lastTile) == 8))) {
+                STEP_TO_CENTRE(unit);
+                return;
+            }
+        }
+    } else if (unit->unk_17_0 != 0 && dist >= range) {
+        STEP_TO_CENTRE(unit);
+        return;
+    }
+
+    if (!unit->unk_1e_0) {
+        return;
+    }
+    dir = 0;
+    if (STATE->unk_1df_5 && dist < 128 && unit->unk_1a != -1 && (unit->unk_18 & 31) == 0) {
+        dir = func_ov003_0235f1a0(unit);
+    }
+    if (dir != 0) {
+        unit->unk_12_0 = dir;
+    } else if (unit->unk_18 == 0) {
+        unit->unk_12_0 = (u8)((Ov003_RandNext() & 3) + 1);
+    }
+    Ov003Unit_Move(unit, unit->unk_12_0, -1, 1);
+    if (!unit->unk_1c_0 && (!unit->unk_1c_1 || unit->tile == 5 || !unit->unk_1d_7) &&
+        unit->x == unit->startX && unit->y == unit->unk_0c) {
+        unit->unk_12_0 = (u8)((Ov003_RandNext() & 3) + 1);
+        Ov003Unit_Move(unit, unit->unk_12_0, -1, 1);
+    }
+    if (unit->unk_1a == -1 || dist > (((data_ov003_02364d8c[unit->tile * 20] + 1) << 7) >> 3)) {
+        func_ov003_0235f81c(unit);
+    } else {
+        func_ov003_0235f8e8(unit);
+    }
+    if (unit->unk_19 != 0) {
+        unit->unk_19--;
+    }
+    unit->unk_16++;
+    unit->unk_18++;
+}
