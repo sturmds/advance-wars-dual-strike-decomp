@@ -2,6 +2,7 @@
 #define GAME_OV003_SPRITE_H
 
 #include "types.h"
+#include "game/ov003_unit.h"
 
 /* Where a sprite of Ov003_CreateRowSprite was made and which row it belongs to. */
 typedef struct Ov003SpriteSpot {
@@ -16,5 +17,12 @@ typedef struct Ov003Sprite {
     u8 pad_00[0x60];
     Ov003SpriteSpot spot;
 } Ov003Sprite;
+
+/* A sprite from Ov003_CreateUnitSprite that follows one unit; its callback is
+ * func_ov003_02364300. */
+typedef struct Ov003UnitSprite {
+    u8 pad_00[0x60];
+    Ov003Unit *unit;
+} Ov003UnitSprite;
 
 #endif

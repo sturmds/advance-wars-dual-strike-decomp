@@ -829,6 +829,10 @@ src/game/ov003/ov003_create_anchored_sprite.c:
     complete
     .text       start:0x02364104 end:0x02364204
 
+src/game/ov003/ov003_create_unit_sprite.c:
+    complete
+    .text       start:0x02364204 end:0x02364300
+
 src/game/ov003/func_ov003_02364300.c:
     complete
     .text       start:0x02364300 end:0x02364314
