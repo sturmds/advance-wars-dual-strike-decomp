@@ -143,10 +143,13 @@ typedef struct BattleScreenWork {
     u16 unk_20[2];                     /* per side */
     u8 pad_024[0x028 - 0x024];
     const u32 *spriteTables[2];        /* table argument of BattleSpriteTask_Create for the HP cells, per side */
-    u8 pad_030[0x040 - 0x030];
+    const u32 *unk_30[2];              /* per side, like spriteTables */
+    const u32 *unk_38[2];              /* per side, like spriteTables */
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
-    u8 pad_050[0x22c - 0x050];
+    u8 pad_050[0x060 - 0x050];
+    const u32 *unk_60[2];              /* per side, like spriteTables */
+    u8 pad_068[0x22c - 0x068];
     BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
