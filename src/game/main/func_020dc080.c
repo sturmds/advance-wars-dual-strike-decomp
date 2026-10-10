@@ -1,13 +1,10 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/unit_target_entry.h"
 
 BOOL Tile_HasUnitToSupply(s16 x, s16 y);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-typedef struct UnitTargetEntry {
-    u16 unitSlot;
-    u8 pad_02[6];
-} UnitTargetEntry;
 extern UnitTargetEntry *data_022a6dcc;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

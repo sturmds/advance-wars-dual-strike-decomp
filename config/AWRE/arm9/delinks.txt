@@ -7516,6 +7516,10 @@ src/game/main/map/map_object_draw.c:
     complete
     .text       start:0x020da068 end:0x020da1dc
 
+src/game/main/ai/ai_target_list_add.c:
+    complete
+    .text       start:0x020da5e0 end:0x020da63c
+
 src/game/main/func_020da63c.c:
     complete
     .text       start:0x020da63c end:0x020da650
