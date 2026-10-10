@@ -8,6 +8,8 @@
 #define OV004_EASE_COUNT 8             /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
 
+/* Same layout as the AffineParams of Screens_SetBg3Zoom: source point (unk_00,
+ * unk_04), centre (unk_08, unk_0a), scale (unk_0c, unk_0e) and angle (unk_10). */
 typedef struct Unk_ov004_022bf158_818 {
     u32 unk_00;
     u32 unk_04;

@@ -14,7 +14,7 @@ void MenuButton_Remove(int id);
 void func_020fcb08(int a);
 void Task_ResumeScript(void *task);
 void Ov004_DestroySlotTasks(Unk_ov004_022bf158 *state);
-void func_ov004_022baf8c(Unk_ov004_022bf158 *state);
+void Ov004_ApplyBg3Affine(Unk_ov004_022bf158 *state);
 void func_ov004_022bb388(Unk_ov004_022bf158 *state);
 
 extern const TaskScriptCmd data_ov004_022be3b8[];
@@ -144,6 +144,6 @@ void Ov004_RunSceneSequence(Ov004Task *task) {
         Task_ResumeScript(task);
         break;
     }
-    func_ov004_022baf8c(state);
+    Ov004_ApplyBg3Affine(state);
     func_ov004_022bb388(state);
 }
