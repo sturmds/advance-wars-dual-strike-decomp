@@ -52,6 +52,10 @@ src/game/ov000/task/unit_show_task_place_sprite.c:
     complete
     .text       start:0x022ae1c4 end:0x022ae2dc
 
+src/game/ov000/map/map_view_scroll_to_pixel.c:
+    complete
+    .text       start:0x022ae2dc end:0x022ae47c
+
 src/game/ov000/func_ov000_022ae47c.c:
     complete
     .text       start:0x022ae47c end:0x022ae488
