@@ -275,6 +275,10 @@ src/game/ov003/ov003_update_unit_terrain.c:
     complete
     .text       start:0x02358904 end:0x023589dc
 
+src/game/ov003/ov003_unit_handle_input.c:
+    complete
+    .text       start:0x023589dc end:0x02359064
+
 src/game/ov003/ov003_is_terrain_special.c:
     complete
     .text       start:0x02359b04 end:0x02359b70

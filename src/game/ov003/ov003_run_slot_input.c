@@ -17,7 +17,7 @@ extern u8 data_ov003_02365b04[];
 u16 func_0207a1dc(void);
 LinkInput *func_02078138(int player);
 void func_0200a4b8(Keypad *keypad, int keys);
-void func_ov003_023589dc(Ov003Unit *unit, Keypad *keypad, void *a2);
+void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *keypad, void *a2);
 void func_ov003_02360110(int slot, Keypad *keypad, void *a2);
 void Ov003_ScrollWithDpad(void);
 
@@ -36,7 +36,7 @@ void Ov003_RunSlotInput(void)
         case 0:
             break;
         case 1:
-            func_ov003_023589dc(data_ov003_02369534, gKeypad, data_ov003_02365b04);
+            Ov003Unit_HandleInput(data_ov003_02369534, gKeypad, data_ov003_02365b04);
             break;
         case 2:
             func_ov003_02360110(STATE->currentSlot, gKeypad, data_ov003_02365b04);
@@ -54,7 +54,7 @@ void Ov003_RunSlotInput(void)
                 case 0:
                     break;
                 case 1:
-                    func_ov003_023589dc(&data_ov003_02369538[i], &data_0216e4e4[i], input);
+                    Ov003Unit_HandleInput(&data_ov003_02369538[i], &data_0216e4e4[i], input);
                     break;
                 case 2:
                     func_ov003_02360110(i, &data_0216e4e4[i], input);

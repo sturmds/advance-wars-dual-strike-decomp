@@ -40,6 +40,12 @@ typedef struct Ov003Unit {
     u8 unk_1f;
 } Ov003Unit;
 
+/* Ov003Unit.unk_12_0 (facing) and the direction passed to func_ov003_02359064. */
+#define OV003_DIR_UP    1
+#define OV003_DIR_DOWN  2
+#define OV003_DIR_LEFT  3
+#define OV003_DIR_RIGHT 4
+
 /* One of the 80 14-byte entries in data_ov003_02369738. */
 typedef struct Unk_ov003_02369738 {
     u8 pad_00[12];
