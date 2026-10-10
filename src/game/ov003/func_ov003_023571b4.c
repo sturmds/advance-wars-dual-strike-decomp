@@ -12,7 +12,7 @@ void Ov003_UpdateObjects(void);
 void Ov003_HealUnitsOnOwnTiles(void);
 void Ov003_UpdateTileClaims(void);
 void Ov003Rows_TickCountdowns(void);
-void func_ov003_0235bb64(void);
+void Ov003_UpdateSpawns(void);
 
 void func_ov003_023571b4(void)
 {
@@ -32,5 +32,5 @@ void func_ov003_023571b4(void)
     Ov003_HealUnitsOnOwnTiles();
     Ov003_UpdateTileClaims();
     Ov003Rows_TickCountdowns();
-    func_ov003_0235bb64();
+    Ov003_UpdateSpawns();
 }
