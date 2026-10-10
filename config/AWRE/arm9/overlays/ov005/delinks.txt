@@ -80,6 +80,10 @@ src/game/ov005/func_ov005_02355280.c:
     complete
     .text       start:0x02355280 end:0x02355290
 
+src/game/ov005/func_ov005_02355bb0.c:
+    complete
+    .text       start:0x02355bb0 end:0x02355f80
+
 src/game/ov005/func_ov005_02357804.c:
     complete
     .text       start:0x02357804 end:0x02357830
