@@ -119,6 +119,10 @@ src/game/ov003/ov003_tick_units.c:
     complete
     .text       start:0x02358658 end:0x023586d4
 
+src/game/ov003/ov003_scroll_with_dpad.c:
+    complete
+    .text       start:0x02358848 end:0x02358904
+
 src/game/ov003/ov003_is_terrain_special.c:
     complete
     .text       start:0x02359b04 end:0x02359b70
