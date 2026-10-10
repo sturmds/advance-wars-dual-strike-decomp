@@ -140,6 +140,10 @@ src/game/ov001/map_objects_clear_kind2_variants.c:
     complete
     .text       start:0x023518cc end:0x02351988
 
+src/game/ov001/other_map_objects_clear_kind2_variants.c:
+    complete
+    .text       start:0x02351988 end:0x02351a4c
+
 src/game/ov001/func_ov001_02351a4c.c:
     complete
     .text       start:0x02351a4c end:0x02351af0
