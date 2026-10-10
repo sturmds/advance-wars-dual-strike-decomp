@@ -351,6 +351,10 @@ src/game/ov006/func_ov006_02363198.c:
     complete
     .text       start:0x02363198 end:0x023631a8
 
+src/game/ov006/ov006_place_mountain.c:
+    complete
+    .text       start:0x023631a8 end:0x02363238
+
 src/game/ov006/ov006_get_shoal_graphic.c:
     complete
     .text       start:0x0236352c end:0x02363cb8
