@@ -559,6 +559,10 @@ src/game/ov004/ov004_clear_slots.c:
     complete
     .text       start:0x022bb244 end:0x022bb268
 
+src/game/ov004/ov004_reset_control.c:
+    complete
+    .text       start:0x022bb268 end:0x022bb290
+
 src/game/ov004/ov004_start_clock.c:
     complete
     .text       start:0x022bb2f8 end:0x022bb318

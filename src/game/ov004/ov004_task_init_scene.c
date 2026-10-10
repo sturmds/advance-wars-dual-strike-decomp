@@ -8,7 +8,7 @@ void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void Sound_StopSong(void);
 void Ov004_LoadRikiishiTextures(Unk_ov004_022bf158 *state);
-void func_ov004_022bb268(Unk_ov004_022bf158 *state);
+void Ov004_ResetControl(Unk_ov004_022bf158 *state);
 void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 void func_ov004_022bb074(Unk_ov004_022bf158 *state);
 void func_ov004_022bb744(Unk_ov004_022bf158 *state);
@@ -63,7 +63,7 @@ void Ov004Task_InitScene(Ov004Task *task)
     Screen_SetCurrentGfx(savedGfx);
 
     REG_DISPCNT &= ~0x7000000;
-    func_ov004_022bb268(state);
+    Ov004_ResetControl(state);
     Ov004_ClearSlots(state);
     func_ov004_022bb074(state);
     Sound_StopSong();

@@ -4,6 +4,8 @@
 #include "types.h"
 
 #define OV004_SLOT_COUNT 32            /* task slots in the state */
+#define OV004_EASE_COUNT 8             /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
+#define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
 
 typedef struct Unk_ov004_022bf158_818 {
     u8 pad_00[0xc];
@@ -30,7 +32,8 @@ typedef struct Unk_ov004_022bf158 {
     Unk_ov004_022bf158_818 unk_818;
     u8 pad_828[0x82c - 0x828];
     Ov004Entry entries[7];             /* count is a guess; indexed by the task parameter at 0x44 */
-    u8 pad_8f0[0x8f8 - 0x8f0];
+    struct Task *controlTask;          /* made by Ov004_StartControlTask, 0 when none */
+    u32 controlRunning;                /* 1 while controlTask runs; guess */
     int unk_8f8;                       /* eased each frame by func_ov004_022b0984 */
     int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 and func_ov004_022b1e78 */
     int unk_900;                       /* eased each frame by func_ov004_022b061c */
