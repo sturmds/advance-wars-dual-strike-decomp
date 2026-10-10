@@ -44,6 +44,10 @@ src/game/ov000/func_ov000_022add3c.c:
     complete
     .text       start:0x022add3c end:0x022add48
 
+src/game/ov000/task/unit_show_task_place_sprite.c:
+    complete
+    .text       start:0x022ae1c4 end:0x022ae2dc
+
 src/game/ov000/func_ov000_022ae47c.c:
     complete
     .text       start:0x022ae47c end:0x022ae488
