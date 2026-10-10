@@ -30,7 +30,7 @@ typedef struct Unk_ov005_0236bb90 {
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
     Task *unk_8348;                    /* started by Ov005Screen_LoadPalettes */
-    s32 unk_834c;                      /* 64 at the start */
+    u32 unk_834c;                      /* 64 at the start */
     s32 unk_8350;
     s32 unk_8354;
     s32 unk_8358;
