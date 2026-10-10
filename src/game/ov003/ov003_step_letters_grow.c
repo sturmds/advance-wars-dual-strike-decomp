@@ -22,7 +22,7 @@ void Task_ResumeScript(Unk_ov003_0235dd38 *task);
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-/* Script command that runs for 3 * letterCount + 8 steps, then resumes the
+/* Script command that runs for 3 * count + 8 steps, then resumes the
  * script (see Ov003_StepCoPowerBanner for the fields). Task.slideX eases from
  * 0 to -240 and moves the banner sprite. Letter i is drawn at rest until step
  * 3 * i; for the next 8 steps it is drawn through affine matrix i + 1, which

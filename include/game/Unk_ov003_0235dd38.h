@@ -7,7 +7,7 @@
  * which both clear its halfword at 0x4c. */
 typedef struct Unk_ov003_0235dd38 {
     u8 pad_00[0x2c];
-    s32 slideX;                        /* eased from 0 to -240 while the letters pop in */
+    s32 slideX;                        /* banner sprite x offset, eased by the letter steps */
     u8 pad_30[0x4c - 0x30];
     union {
         u16 unk_4c;

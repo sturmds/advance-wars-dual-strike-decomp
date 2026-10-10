@@ -22,7 +22,7 @@ void Task_ResumeScript(Unk_ov003_0235dd38 *task);
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-/* Mirror of Ov003_StepLettersGrow. Task.slideX eases from 128 to 0. Letter i
+/* Reverse of Ov003_StepLettersGrow. Task.slideX eases from 128 to 0. Letter i
  * is not drawn until step 3 * i; for the next 8 steps it is drawn through
  * affine matrix i + 1, which shrinks it from double size to its size; then
  * it is drawn at rest. */
