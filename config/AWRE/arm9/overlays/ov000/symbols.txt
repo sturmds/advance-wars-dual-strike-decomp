@@ -118,7 +118,7 @@ Layers_ClearLeftBlock kind:function(arm,size=0x78) addr:0x022b2f30
 Layer0_ResetScroll kind:function(arm,size=0x30) addr:0x022b2fa8
 SecondScreen_DrawTerrainPanel kind:function(arm,size=0x1a8) addr:0x022b2fd8
 SecondScreen_DrawTerrainDetails kind:function(arm,size=0x324) addr:0x022b3180
-func_ov000_022b34a4 kind:function(arm,size=0x390) addr:0x022b34a4
+SecondScreen_DrawTerrainMoveCosts kind:function(arm,size=0x390) addr:0x022b34a4
 data_ov000_022b3834 kind:data(any) addr:0x022b3834
 data_ov000_022b3850 kind:data(any) addr:0x022b3850
 data_ov000_022b3851 kind:data(any) addr:0x022b3851
@@ -6382,12 +6382,12 @@ data_ov000_0234f9eb kind:data(any) addr:0x0234f9eb
 data_ov000_0234fa28 kind:data(any) addr:0x0234fa28
 data_ov000_023500a8 kind:data(any) addr:0x023500a8
 data_ov000_023500b4 kind:data(any) addr:0x023500b4
-data_ov000_023500c0 kind:data(any) addr:0x023500c0
-data_ov000_023500d4 kind:data(any) addr:0x023500d4
+Ov000_gTerrainPanelMoveTypeTiles kind:data(any) addr:0x023500c0
+Ov000_gTerrainPanelMoveTypes kind:data(any) addr:0x023500d4
 data_ov000_023500f8 kind:data(any) addr:0x023500f8
 gTerrainStarOffsets kind:data(any) addr:0x02350128
-data_ov000_02350168 kind:data(any) addr:0x02350168
-data_ov000_023501a8 kind:data(any) addr:0x023501a8
+Ov000_gTerrainPanelIconPos kind:data(any) addr:0x02350168
+Ov000_gTerrainPanelCostPos kind:data(any) addr:0x023501a8
 data_ov000_023501e8 kind:data(any) addr:0x023501e8
 data_ov000_023501ec kind:data(any) addr:0x023501ec
 data_ov000_02350278 kind:data(any) addr:0x02350278

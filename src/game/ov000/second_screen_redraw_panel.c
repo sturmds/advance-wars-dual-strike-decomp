@@ -8,7 +8,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Text_StopPrinting(void);
 void Text_PrintId(int x, int y, u16 *map, u32 textId, u16 a, u16 b);
 void SecondScreen_DrawTerrainDetails(int arg0, int arg1);
-void func_ov000_022b34a4(int arg0, int arg1);
+void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 
 extern Unk_027c0280 *data_027c0280;
 extern int data_ov000_02350530;
@@ -32,7 +32,7 @@ extern void *data_ov000_0235027c[][6];
  * from per-owner tables indexed by data_ov000_0235053c; another terrain without a
  * picture of its own uses data_ov000_022f65c0[data_ov000_023503a0]. The picture goes
  * to OBJ VRAM, then either the name text goes to layer 0 (data_ov000_02350548 is 0)
- * or func_ov000_022b34a4 draws the numbers. The names are guesses. */
+ * or SecondScreen_DrawTerrainMoveCosts draws the numbers. The names are guesses. */
 void SecondScreen_RedrawPanel(void)
 {
     void *picture;
@@ -67,7 +67,7 @@ void SecondScreen_RedrawPanel(void)
     case 1:
     default:
         SecondScreen_DrawTerrainDetails(data_ov000_02350540, data_ov000_02350530);
-        func_ov000_022b34a4((u8)data_ov000_02350540, (u8)data_ov000_02350530);
+        SecondScreen_DrawTerrainMoveCosts((u8)data_ov000_02350540, (u8)data_ov000_02350530);
         return;
     case 0:
         SecondScreen_DrawTerrainDetails(data_ov000_02350540, data_ov000_02350530);

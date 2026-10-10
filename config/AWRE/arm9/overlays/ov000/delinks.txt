@@ -273,3 +273,7 @@ src/game/ov000/second_screen_draw_terrain_panel.c:
 src/game/ov000/second_screen_draw_terrain_details.c:
     complete
     .text       start:0x022b3180 end:0x022b34a4
+
+src/game/ov000/second_screen_draw_terrain_move_costs.c:
+    complete
+    .text       start:0x022b34a4 end:0x022b3834
