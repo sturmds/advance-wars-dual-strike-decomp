@@ -21,9 +21,8 @@ extern void *data_ov003_02365b0c;
 #define STATE data_ov003_02364928
 
 /* Needed to match: the original reads the frame counter as a signed
- * halfword, and the high byte of unk_1d6 on its own. */
+ * halfword. */
 #define FRAME (*(s16 *)&task->unk_4c)
-#define PAUSED (((u8 *)&STATE->unk_1d6)[1])
 
 #define TEXT_BANNER_TOP    0x7d000021
 #define TEXT_BANNER_BOTTOM 0x7d000022
@@ -56,8 +55,8 @@ extern void *data_ov003_02365b0c;
 
 /* Task update: shows two centred lines of text, top at y 64 and bottom at
  * y 96, one letter every LETTER_DELAY frames. Each letter grows in over
- * LETTER_FRAMES frames. The frame counter stops while the high byte of
- * unk_1d6 is set. Frame 1 copies 0x2000 bytes from data_ov003_02365b0c into
+ * LETTER_FRAMES frames. The frame counter stops while Ov003State.unk_1d7
+ * is set. Frame 1 copies 0x2000 bytes from data_ov003_02365b0c into
  * OBJ VRAM. When the last letter is done, the task's script goes on. */
 void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
 {
@@ -67,7 +66,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
     u16 scaleX;
     u16 scaleY;
 
-    if (PAUSED == 0) {
+    if (STATE->unk_1d7 == 0) {
         FRAME++;
     }
     if (FRAME == 1) {
