@@ -116,6 +116,9 @@ src/game/ov000/unit_info_panel/unit_info_panel_clear_unit.c:
     complete
     .text       start:0x022b20fc end:0x022b2114
 
+src/game/ov000/unit_info_panel/unit_info_panel_start_task.c:
+    .text       start:0x022b2240 end:0x022b228c
+
 src/game/ov000/func_ov000_022b2410.c:
     complete
     .text       start:0x022b2410 end:0x022b241c
@@ -127,6 +130,10 @@ src/game/ov000/unit_info_panel/unit_info_panel_redraw.c:
 src/game/ov000/func_ov000_022b2c64.c:
     complete
     .text       start:0x022b2c64 end:0x022b2c74
+
+src/game/ov000/layer1_put_block.c:
+    complete
+    .text       start:0x022b2c74 end:0x022b2cb8
 
 src/game/ov000/func_ov000_022b2cb8.c:
     complete
