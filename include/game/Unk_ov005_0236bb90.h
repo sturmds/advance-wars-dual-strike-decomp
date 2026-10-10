@@ -4,15 +4,18 @@
 #include "types.h"
 #include "game/task.h"
 
-/* One of the 24-byte entries in the large overlay 5 work block. A first
- * halfword of 0 ends a list of entries. */
+/* One of the 24-byte entries in the large overlay 5 work block: one text
+ * line of a list. A first halfword of 0 ends a list of entries. */
 typedef struct Ov005SlideEntry {
     u16 id;
-    u8 pad_02[0x0c - 0x02];
+    u16 textLength;                    /* strlen of text */
+    const char *text;
+    s16 unk_08;                        /* 64 times the line's slot */
+    s16 kind;                          /* Ov005MenuItem.kind; 2 makes the line 8 pixels taller */
     u16 angle;                         /* eased by Ov005Entry_WaitThenTurn */
-    u8 pad_0e[0x10 - 0x0e];
+    s16 offsetX;                       /* minus half the text width, 4 pixels per character */
     s16 pos;                           /* moved by the slide tasks */
-    u8 pad_12[0x14 - 0x12];
+    s16 unk_12;
     Task *slideTask;                   /* task that moves pos */
 } Ov005SlideEntry;
 
@@ -22,7 +25,8 @@ typedef struct Ov005SlideEntry {
  * allocates into Ov005Task.work and data_ov005_0236bb90. Unk_ov005_0235a30c
  * and the palette data at 0x8360 probably belong to the same block. */
 typedef struct Unk_ov005_0236bb90 {
-    u8 pad_0000[0x8018];
+    u8 pad_0000[0x8014];
+    u32 unk_8014;                      /* set by func_ov005_0235b754 from the table it reads */
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
     Task *unk_8348;                    /* started by Ov005Screen_LoadPalettes */
@@ -33,7 +37,7 @@ typedef struct Unk_ov005_0236bb90 {
     s32 unk_835c;
     u8 unk_8360[0x83e0 - 0x8360];      /* loaded from a file; Ov005Screen_StartPaletteTask passes it on */
     u8 palettes[4][8][64];             /* 8 chunks of 64 bytes per set */
-    u8 palettesOut[8][6][64];          /* chunk k of set s lands in [k][column] */
+    u8 palettesOut[8][6][64];          /* chunk k of a set is copied to [k][column] */
 } Unk_ov005_0236bb90;
 
 void Ov005Work_CopyPaletteSet(Unk_ov005_0236bb90 *work, int set, int column);
