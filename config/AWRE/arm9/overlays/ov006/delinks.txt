@@ -375,6 +375,10 @@ src/game/ov006/ov006_counts_as_river.c:
     complete
     .text       start:0x023625c8 end:0x023629ac
 
+src/game/ov006/ov006_is_river_or_bridge_on_river.c:
+    complete
+    .text       start:0x023629ac end:0x02362cd0
+
 src/game/ov006/ov006_is_water_tile.c:
     complete
     .text       start:0x02362cd0 end:0x02362d78
