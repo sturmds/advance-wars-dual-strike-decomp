@@ -2432,6 +2432,10 @@ src/game/main/func_02028644.c:
     complete
     .text       start:0x02028644 end:0x02028664
 
+src/game/main/graphics/gfx3d_set_default_light.c:
+    complete
+    .text       start:0x02028700 end:0x02028750
+
 src/game/main/graphics/gfx3d_set_perspective.c:
     complete
     .text       start:0x02028750 end:0x020287ac
