@@ -3,12 +3,12 @@
 #include "game/BattleSideData.h"
 
 void func_ov002_0235fc68(int side);
-BOOL func_ov002_0235986c(int side);
+BOOL Battle_IsAttackerWeaponShown(int side);
 
 #define MENU ((MenuState *)&gMenuState)
 
 /* Adds one entry to the steps ring of the task of each HP cell with a nonzero fill (only the
- * first cell's task when the side's unk_48 is set): 1 when func_ov002_0235986c is true for the
+ * first cell's task when the side's unk_48 is set): 1 when Battle_IsAttackerWeaponShown is true for the
  * side, else 0. */
 void BattleCells_PushStep(void)
 {
@@ -22,7 +22,7 @@ void BattleCells_PushStep(void)
             for (cell = 0; cell < 5; cell++) {
                 if (MENU->battle.unk_310[side][cell].fillBefore != 0) {
                     task = (BattleCellTask *)MENU->battle.unk_310[side][cell].unk_00;
-                    if (func_ov002_0235986c(side) == 1) {
+                    if (Battle_IsAttackerWeaponShown(side) == 1) {
                         task->steps[task->stepIndex] = 1;
                     } else {
                         task->steps[task->stepIndex] = 0;

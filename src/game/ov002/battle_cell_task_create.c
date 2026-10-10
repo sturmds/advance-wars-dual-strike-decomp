@@ -5,7 +5,7 @@
 
 extern const TaskScriptCmd data_ov002_0236963c[];
 
-BOOL func_ov002_0235986c(int side);
+BOOL Battle_IsAttackerWeaponShown(int side);
 
 /* Makes the task of one HP cell. pos2Index is -1 for no second position. */
 BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index)
@@ -29,7 +29,7 @@ BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index)
         task->pos2Y = positions[pos2Index].y;
         task->pos2Z = positions[pos2Index].z;
     }
-    if (func_ov002_0235986c(side) == 1) {
+    if (Battle_IsAttackerWeaponShown(side) == 1) {
         task->posX += 50;
         task->pos2X += 50;
     }
