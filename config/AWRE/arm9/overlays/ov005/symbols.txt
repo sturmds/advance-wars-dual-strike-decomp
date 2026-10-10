@@ -77,7 +77,7 @@ Ov005Screen_StartPaletteTask kind:function(arm,size=0x48) addr:0x0235a82c
 Ov005Slide_StartEntryB kind:function(arm,size=0x8c) addr:0x0235a874
 Ov005Slide_StartEntryA kind:function(arm,size=0x8c) addr:0x0235a900
 Ov005Slide_Update kind:function(arm,size=0xc8) addr:0x0235a98c
-func_ov005_0235aa54 kind:function(arm,size=0x44) addr:0x0235aa54
+Ov005_CreateEntryTask kind:function(arm,size=0x44) addr:0x0235aa54
 Ov005Entry_WaitThenTurn kind:function(arm,size=0x134) addr:0x0235aa98
 func_ov005_0235abcc kind:function(arm,size=0x18) addr:0x0235abcc
 func_ov005_0235abe4 kind:function(arm,size=0x18) addr:0x0235abe4
@@ -381,7 +381,7 @@ data_ov005_023695bc kind:data(any) addr:0x023695bc
 data_ov005_023695c0 kind:data(any) addr:0x023695c0
 data_ov005_023695c4 kind:data(any) addr:0x023695c4
 data_ov005_023695d0 kind:data(any) addr:0x023695d0
-data_ov005_023695dc kind:data(any) addr:0x023695dc
+gOv005EntryTaskScript kind:data(any) addr:0x023695dc
 data_ov005_023695f4 kind:data(any) addr:0x023695f4
 data_ov005_0236960c kind:data(any) addr:0x0236960c
 data_ov005_02369634 kind:data(any) addr:0x02369634

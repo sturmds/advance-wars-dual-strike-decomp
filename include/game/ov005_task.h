@@ -15,7 +15,9 @@ typedef struct Ov005Task {
     u8 pad_38[0x3c - 0x38];
     int frame;
     int frames;
-    u8 pad_44[0x64 - 0x44];
+    int entryIndex;                    /* index into the entry table the task works for */
+    int unk_48;
+    u8 pad_4c[0x64 - 0x4c];
     struct Task *paletteTask;          /* set by Ov005Screen_StartPaletteTask */
 } Ov005Task;
 
