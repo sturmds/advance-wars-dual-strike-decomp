@@ -127,9 +127,17 @@ src/game/ov000/task/unit_show_task_destroy.c:
     complete
     .text       start:0x022ae530 end:0x022ae560
 
+src/game/ov000/task/unit_show_task_destroy_running.c:
+    complete
+    .text       start:0x022ae560 end:0x022ae594
+
 src/game/ov000/task/unit_show_task_create_moving.c:
     complete
     .text       start:0x022ae594 end:0x022ae5c0
+
+src/game/ov000/task/unit_show_task_start_path.c:
+    complete
+    .text       start:0x022ae690 end:0x022ae6c0
 
 src/game/ov000/task/unit_show_task_get_obj_base.c:
     complete
