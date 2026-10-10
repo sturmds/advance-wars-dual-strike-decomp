@@ -60,6 +60,10 @@ src/game/ov005/ov005_ripple_free_buffers.c:
     complete
     .text       start:0x02353224 end:0x02353268
 
+src/game/ov005/ov005_update_bg_wave.c:
+    complete
+    .text       start:0x02353268 end:0x02353574
+
 src/game/ov005/func_ov005_02353574.c:
     complete
     .text       start:0x02353574 end:0x02353580

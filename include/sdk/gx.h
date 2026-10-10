@@ -48,6 +48,8 @@
 #define REG_DB_BG2CNT ((volatile u16 *)0x0400100c)
 #define REG_DB_BG3CNT ((volatile u16 *)0x0400100e)
 #define IO_SUB_BG0_SCROLL ((volatile u32 *)0x04001010)
+#define REG_DB_BG0HOFS ((volatile u16 *)0x04001010)
+#define REG_DB_BG0VOFS ((volatile u16 *)0x04001012)
 #define REG_DB_BG1OFS ((volatile u32 *)0x04001014)
 #define REG_DB_BG2OFS ((volatile u32 *)0x04001018)
 #define REG_DB_BG3OFS ((volatile u32 *)0x0400101c)

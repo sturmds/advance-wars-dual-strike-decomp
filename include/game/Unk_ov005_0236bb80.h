@@ -13,10 +13,16 @@ typedef struct Unk_ov005_0236bb80 {
     fx32 blendEva;                     /* sub screen blendEva and blendEvb as fx32 (0 to 16.0) */
     fx32 blendEvb;
     struct ScriptSlot *unk_14;         /* from func_020150f8 */
-    u8 pad_18[0x2c - 0x18];
+    u8 pad_18[0x28 - 0x18];
+    BOOL unk_28;                       /* set once the blend-in is done */
     u32 xUsesBufferB;                  /* which of the two x line buffers xLines points at */
     u32 yUsesBufferB;
-    u8 pad_34[0x4c - 0x34];
+    int xWaveAmplitude;                /* fx32 pixels */
+    int xWaveStep;                     /* fx32 */
+    int xWavePhase;                    /* fx32, +1 each frame */
+    int yWaveAmplitude;
+    int yWaveStep;
+    int yWavePhase;
     int *xOffsets;                     /* fx32 offset of each line */
     int *yOffsets;
     s16 *xLines;                       /* per-line offsets the hardware reads */
