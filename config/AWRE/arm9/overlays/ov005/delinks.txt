@@ -28,6 +28,10 @@ src/game/ov005/func_ov005_02352790.c:
     complete
     .text       start:0x02352790 end:0x023527bc
 
+src/game/ov005/ov005_ripple_release_objects.c:
+    complete
+    .text       start:0x023527bc end:0x02352860
+
 src/game/ov005/func_ov005_023531d8.c:
     complete
     .text       start:0x023531d8 end:0x023531e4

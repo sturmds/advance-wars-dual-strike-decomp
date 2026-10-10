@@ -2,6 +2,7 @@
 #define GAME_UNK_OV005_0236BB80_H
 
 #include "types.h"
+#include "game/task.h"
 
 /* Overlay 5 work block (0xc4 bytes) that func_ov005_02352790 allocates
  * into Ov005Task.work and data_ov005_0236bb80. */
@@ -24,9 +25,14 @@ typedef struct Unk_ov005_0236bb80 {
     s16 *yBufferA;
     s16 *xBufferB;
     s16 *yBufferB;
-    u8 pad_6c[0x78 - 0x6c];
+    u8 pad_6c[0x70 - 0x6c];
+    u32 hasTaskA;                      /* nonzero while taskA exists */
+    Task *taskA;
     u32 unk_78;
-    u8 pad_7c[0xb4 - 0x7c];
+    Task *taskB;                       /* exists while unk_78 is nonzero */
+    void *block80;                     /* freed last */
+    u32 *spriteHandles[4];             /* cleared with func_0202244c */
+    u8 pad_94[0xb4 - 0x94];
     void *unk_b4;                      /* file loaded by Ov005_SetupScreensWithAffineBg */
     u8 pad_b8[0xc4 - 0xb8];
 } Unk_ov005_0236bb80;
