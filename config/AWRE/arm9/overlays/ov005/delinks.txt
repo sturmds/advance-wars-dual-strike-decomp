@@ -432,6 +432,10 @@ src/game/ov005/ov005_set_scroll_speed_minus_on_touch.c:
     complete
     .text       start:0x0235cf0c end:0x0235cf38
 
+src/game/ov005/ov005_add_co_list_buttons.c:
+    complete
+    .text       start:0x0235cf38 end:0x0235d0f4
+
 src/game/ov005/ov005_select_co_list_entry.c:
     complete
     .text       start:0x0235d0f4 end:0x0235d13c

@@ -18,7 +18,7 @@ void func_0202b6f8(u8 *dest);
 void Ov005_AddStateScreenButtons(Ov005Task *task);
 int Ov005_FindSavedCoListEntry(void);
 u8 func_ov005_0235d5bc(int entry);
-void func_ov005_0235cf38(Ov005Task *task);
+void Ov005_AddCoListButtons(Ov005Task *task);
 void func_02029248(int co);
 void ModeFont_Load(int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
@@ -151,7 +151,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     work->selectedEntry = Ov005_FindSavedCoListEntry();
     work->unk_83c = func_ov005_0235d5bc(work->selectedEntry);
     work->unk_840 = work->selectedEntry;
-    func_ov005_0235cf38(task);
+    Ov005_AddCoListButtons(task);
     work->unk_844 = work->selectedEntry;
     work->unk_848 = work->unk_844;
     work->unk_84c = 1;

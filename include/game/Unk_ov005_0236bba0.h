@@ -27,7 +27,8 @@ typedef struct Unk_ov005_0236bba0 {
     int unk_84c;
     u8 buttonIds[33];                  /* MenuButton id of each entry */
     u8 entryActive[33];                /* nonzero when the entry has a button */
-    u8 pad_892[0x918 - 0x892];
+    u8 pad_892[0x894 - 0x892];
+    int nameSlots[33];                 /* what Text_PrintId returned for each entry's name */
 } Unk_ov005_0236bba0;
 
 #endif
