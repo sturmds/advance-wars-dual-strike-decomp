@@ -415,6 +415,10 @@ src/game/ov006/ov006_draw_menu_line_with_icon.c:
     complete
     .text       start:0x023581d8 end:0x02358284
 
+src/game/ov006/ov006_draw_menu_line_fixed_text.c:
+    complete
+    .text       start:0x02358284 end:0x023582c0
+
 src/game/ov006/func_ov006_023582c0.c:
     complete
     .text       start:0x023582c0 end:0x023582d0
