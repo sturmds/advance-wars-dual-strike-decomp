@@ -264,6 +264,10 @@ src/game/ov001/ov001_start_unit_task_at9_12.c:
     complete
     .text       start:0x02351eb8 end:0x02351f34
 
+src/game/ov001/ov001_start_unit_task_at3_10.c:
+    complete
+    .text       start:0x02351f34 end:0x02351fb0
+
 src/game/ov001/ov001_spawn_oozium_at15_10.c:
     complete
     .text       start:0x02351fb0 end:0x02351fe4
