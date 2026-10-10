@@ -31,7 +31,9 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_04[0x0a - 0x04];
     u16 request;                       /* code set by Ov006_PostRequest (1, 2 or 4) */
     u16 unk_0c;
-    u8 pad_0e[0x1a - 0x0e];
+    s16 unk_0e;                        /* tile x that Ov006_DeleteMarkedUnit removes a unit from */
+    s16 unk_10;                        /* tile y of the same */
+    u8 pad_12[0x1a - 0x12];
     u16 unk_1a;
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */
@@ -49,7 +51,9 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_30[0x38 - 0x30];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
-    u8 pad_3a[0x4c - 0x3a];
+    u8 pad_3a[0x3c - 0x3a];
+    u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
+    u8 pad_3d[0x4c - 0x3d];
     s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */
     u8 pad_50[0x5c - 0x50];
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
