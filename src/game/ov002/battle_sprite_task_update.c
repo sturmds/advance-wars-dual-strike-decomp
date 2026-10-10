@@ -5,7 +5,7 @@
 
 u32 HwDiv32(u32 num, u32 den);
 void Task_ResumeScript(BattleSpriteTask *task);
-void func_ov002_02353200(int side);
+void Battle_StartSideShake(int side);
 void Battle_DrawSpriteCells(u32 frame, int x, int y, int z, int unk_48, int unk_4a, int unk_4c,
                          int unk_4e, int unk_50, int unk_54, int unk_56, int unk_59, int unk_5a);
 void func_ov002_0235f9d8(void);
@@ -70,7 +70,7 @@ void BattleSpriteTask_Update(BattleSpriteTask *task)
         case 0xfc00:
             switch (entry & 0xff) {
             case 0x02:
-                func_ov002_02353200(task->unk_5a);
+                Battle_StartSideShake(task->unk_5a);
                 break;
             case 0x20:
                 Battle_PlayFighterStartSe(task->unk_5a);
