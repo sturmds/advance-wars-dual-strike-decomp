@@ -3354,6 +3354,10 @@ src/game/main/func_020526e0.c:
     complete
     .text       start:0x020526e0 end:0x020526f8
 
+src/game/main/screen/screen_fade_sprites.c:
+    complete
+    .text       start:0x02053a20 end:0x02053af0
+
 src/game/main/func_02055c88.c:
     complete
     .text       start:0x02055c88 end:0x02055c94
