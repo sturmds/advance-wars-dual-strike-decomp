@@ -335,6 +335,10 @@ src/game/ov006/ov006_toggle_chosen_button.c:
     complete
     .text       start:0x02354b2c end:0x02354bac
 
+src/game/ov006/ov006_press_menu_button.c:
+    complete
+    .text       start:0x02354bac end:0x02354fd4
+
 src/game/ov006/func_ov006_02354fd4.c:
     complete
     .text       start:0x02354fd4 end:0x02354ffc

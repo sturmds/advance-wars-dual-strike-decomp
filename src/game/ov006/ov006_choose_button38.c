@@ -2,7 +2,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 int Ov006_SlotsAreShown(void);
-void func_ov006_02354bac(int buttonId);
+void Ov006_PressMenuButton(int buttonId);
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* Chooses slot button 38 once the slots are shown. */
@@ -12,5 +12,5 @@ void Ov006_ChooseButton38(void)
         return;
     }
     data_ov006_0236d640->chosenButton = -1;
-    func_ov006_02354bac(38);
+    Ov006_PressMenuButton(38);
 }
