@@ -117,12 +117,23 @@ typedef struct BattleEntry {
 
 struct BattleSideData;
 
+/* The cells of one side's HP bar to update, one per step. */
+typedef struct BattleStepList {
+    struct {
+        u8 cell : 3;                   /* index into the side's BattleEntry list */
+        u8 unk_3 : 5;
+    } steps[17];
+    u8 count;                          /* steps in use */
+} BattleStepList;
+
 typedef struct BattleScreenWork {
     u8 pad_020[0x48 - 0x20];
     u32 unk_48[2];
     u8 pad_50[0x27c - 0x50];
     struct BattleSideData *unk_27c[2];
-    u8 pad_284[0x310 - 0x284];
+    u8 pad_284[0x2c8 - 0x284];
+    BattleStepList stepLists[2];
+    u8 pad_2ec[0x310 - 0x2ec];
     BattleEntry unk_310[2][5];
     const void *unk_400[2];
     u16 unk_408[2];                    /* cleared by Battle_Init */
