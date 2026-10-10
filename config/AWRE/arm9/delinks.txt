@@ -1852,9 +1852,17 @@ src/game/main/task_cmd_start_child_on_both_screens.c:
     complete
     .text       start:0x0202292c end:0x020229e8
 
+src/game/main/func_020229e8.c:
+    complete
+    .text       start:0x020229e8 end:0x02022aa4
+
 src/game/main/task_cmd_start_task_on_both_screens.c:
     complete
     .text       start:0x02022aa4 end:0x02022b58
+
+src/game/main/func_02022b58.c:
+    complete
+    .text       start:0x02022b58 end:0x02022c0c
 
 src/game/main/task/func_02022c0c.c:
     complete
@@ -3906,6 +3914,10 @@ src/game/main/link/link_screen_get_player_row.c:
     complete
     .text       start:0x02073768 end:0x020737a8
 
+src/game/main/func_020737a8.c:
+    complete
+    .text       start:0x020737a8 end:0x02073868
+
 src/game/main/func_02073868.c:
     complete
     .text       start:0x02073868 end:0x02073874
@@ -4313,6 +4325,10 @@ src/game/main/func_0207eb2c.c:
 src/game/main/func_0207edec.c:
     complete
     .text       start:0x0207edec end:0x0207ee08
+
+src/game/main/func_0207ee08.c:
+    complete
+    .text       start:0x0207ee08 end:0x0207eec8
 
 src/game/main/func_0207eec8.c:
     complete
@@ -5328,6 +5344,10 @@ src/game/main/units/player_get_unit_move_range.c:
 src/game/main/units/current_player_get_unit_move_range.c:
     complete
     .text       start:0x0209e280 end:0x0209e334
+
+src/game/main/func_0209e334.c:
+    complete
+    .text       start:0x0209e334 end:0x0209e3e8
 
 src/game/main/units/unit_type_best_base_damage.c:
     complete
@@ -8303,6 +8323,10 @@ src/game/main/func_020eb2d4.c:
 src/game/main/func_020eb394.c:
     complete
     .text       start:0x020eb394 end:0x020eb3b0
+
+src/game/main/func_020eb434.c:
+    complete
+    .text       start:0x020eb434 end:0x020eb4e8
 
 src/game/main/func_020eb4e8.c:
     complete
