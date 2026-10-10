@@ -58,14 +58,18 @@ src/game/ov002/func_ov002_0235323c.c:
 src/game/ov002/func_ov002_02353254.c:
     .text       start:0x02353254 end:0x02353388
 
-src/game/ov002/func_ov002_02353c08.c:
+src/game/ov002/battle_draw_sprite_cells.c:
+    complete
+    .text       start:0x023538c0 end:0x02353c08
+
+src/game/ov002/battle_draw_textured_quad.c:
     .text       start:0x02353c08 end:0x02353d90
 
-src/game/ov002/func_ov002_02353d90.c:
+src/game/ov002/battle_get_tex_height.c:
     complete
     .text       start:0x02353d90 end:0x02353dd4
 
-src/game/ov002/func_ov002_02353dd4.c:
+src/game/ov002/battle_get_tex_width.c:
     complete
     .text       start:0x02353dd4 end:0x02353e18
 

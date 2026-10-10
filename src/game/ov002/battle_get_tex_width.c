@@ -1,6 +1,7 @@
 #include "types.h"
 
-u32 func_ov002_02353dd4(u32 index)
+/* Texture width in texels for a size index (0-3: 8 to 64). */
+u32 Battle_GetTexWidth(u32 index)
 {
     switch (index) {
     case 0:
