@@ -43,6 +43,10 @@ src/game/ov002/func_ov002_023540a0.c:
     complete
     .text       start:0x023540a0 end:0x023540cc
 
+src/game/ov002/func_ov002_02354124.c:
+    complete
+    .text       start:0x02354124 end:0x02354174
+
 src/game/ov002/battle_is_side_air.c:
     complete
     .text       start:0x023547ac end:0x02354814
