@@ -4,7 +4,7 @@
 extern Ov003Unit data_ov003_02369538[16];
 
 /* Copies x, y, unk_04 and hp of each live unit into its start fields. It runs
- * every frame (from func_ov003_02358658), so they hold the previous frame's
+ * every frame (from Ov003_TickUnits), so they hold the previous frame's
  * values, not the values at creation. */
 void Ov003_SnapshotUnits(void)
 {
