@@ -70,9 +70,11 @@ release: setup
 	@$(MAKE) --no-print-directory check
 	@echo "release: OK"
 
-# Tests of the landing tools on throwaway repos; no ROM or build needed.
+# Tests of the landing tools on throwaway repos and of propagate.py's C text
+# handling; no ROM or build needed.
 test:
 	@$(PYTHON) tools/tests/test_landing.py
+	@$(PYTHON) tools/tests/test_propagate.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

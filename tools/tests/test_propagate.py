@@ -48,6 +48,20 @@ def test_chunks():
     assert cs[2].is_type and cs[2].declared() == set()
 
 
+def test_fnptr_param():
+    # A prototype with a pointer-to-function parameter declares the function,
+    # not the parameter; a pointer-to-function object declares the pointer.
+    proto = P.Chunk("void *Load(int id, void (*loader)(void), void *heap);", "decl")
+    assert proto.declared() == {"Load"}, proto.declared()
+    ptr = P.Chunk("extern void (*gCallback)(int x, void (*done)(void));", "decl")
+    assert ptr.declared() == {"gCallback"}, ptr.declared()
+    src = "void Cb(void);\nvoid *Load(int id, void (*loader)(void));\nvoid *T(int i)\n{\n    return Load(i, Cb);\n}\n"
+    tpl = P.Template({"name": "T"}, None)
+    tpl._parsed = P.chunks(src)
+    keep, body, calls = P.extract(tpl)
+    assert [c.text for c in keep] == ["void Cb(void);", "void *Load(int id, void (*loader)(void));"], keep
+
+
 def test_rename():
     text = "x = gFoo->gFoo + gFoo2; gFoo(); s.gFoo = 1;"
     out = P.rename(text, {"gFoo": "data_1", "gFoo2": "data_2"})

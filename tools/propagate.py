@@ -92,7 +92,9 @@ class Chunk:
     def name(self) -> str | None:
         """The function a definition or prototype declares."""
         head = self.text.split("{", 1)[0] if self.kind == "func" else self.text
-        m = re.search(r"\(\s*\*\s*(\w+)\s*\)\s*\(", head)  # pointer to function
+        # A pointer to function: `(*f)(` as the first parenthesis. A later
+        # one is a parameter, as in `void g(int x, void (*cb)(void))`.
+        m = re.match(r"[^(]*\(\s*\*\s*(\w+)\s*\)\s*\(", head)
         if m and self.kind == "decl":
             return m.group(1)
         # `u8 (*f(int mode))[2]`: skip the `u8 (*` of a declarator.
