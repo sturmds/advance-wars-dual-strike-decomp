@@ -49,6 +49,7 @@ void BattleCellTask_DestroySprites(BattleCellTask *task);
 void BattleCellTask_RestartSprite(BattleCellTask *task);
 void BattleCellTask_Bob(BattleCellTask *task);
 void BattleCellTask_Flash(BattleCellTask *task);
+void BattleCellTask_MakeMatchupSprites(BattleCellTask *task);
 void BattleCellTask_Move(BattleCellTask *task);
 void BattleCellTask_RemakeSprites(BattleCellTask *task);
 void BattleCellTask_StartMove(BattleCellTask *task);
