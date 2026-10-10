@@ -339,6 +339,10 @@ src/game/ov006/func_ov006_02360308.c:
     complete
     .text       start:0x02360308 end:0x023603d0
 
+src/game/ov006/func_ov006_023624b4.c:
+    complete
+    .text       start:0x023624b4 end:0x02362548
+
 src/game/ov006/ov006_is_plain_river.c:
     complete
     .text       start:0x02362548 end:0x023625c8
