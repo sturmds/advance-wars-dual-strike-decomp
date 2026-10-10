@@ -36,7 +36,7 @@ void SecondScreen_DrawTerrainPanel(int x, int terrain)
     defensePercent = DoubleTerrainStars(data_027c027c->unk_48[data_027c0284]->currentPlayer, 0, terrain & 0x1f);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
-    /* needed to match: a switch compiles the dead compare with 1 */
+    /* needed to match: a switch compiles the unused compare with 1 */
     switch (data_ov000_02350548) {
     case 0:
         return;

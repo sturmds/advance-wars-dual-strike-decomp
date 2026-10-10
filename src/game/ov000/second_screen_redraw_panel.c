@@ -28,7 +28,7 @@ extern void *data_ov000_02350278[][6];
 extern void *data_ov000_0235027c[][6];
 
 /* Second screen: clears the left block, then redraws the panel for the terrain in
- * data_ov000_02350530 (0: none, panel stays empty). Terrain 8 and 6 take their picture
+ * data_ov000_02350530 (0: none, nothing is drawn). Terrain 8 and 6 take their picture
  * from per-owner tables indexed by data_ov000_0235053c; another terrain without a
  * picture of its own uses data_ov000_022f65c0[data_ov000_023503a0]. The picture goes
  * to OBJ VRAM, then either the name text goes to layer 0 (data_ov000_02350548 is 0)

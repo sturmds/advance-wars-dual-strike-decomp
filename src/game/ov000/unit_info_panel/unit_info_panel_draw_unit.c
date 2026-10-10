@@ -20,7 +20,7 @@ extern void *data_ov000_0234eef0;
  * owner's army style, the unit type's icon and two more icons, then fuel and
  * the type's maximum fuel as numbers (one digit shifts 4 pixels left to line
  * up). The numbers are skipped for Oozium (UNIT_CLASS_ALL), which has no fuel
- * display. The panel's unk_00 is the x origin of everything drawn. The shifts
+ * display. Everything is drawn relative to the panel's unk_00, an x origin. The shifts
  * and the 37 and 6 icons are guesses. */
 void UnitInfoPanel_DrawUnit(void)
 {
