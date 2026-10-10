@@ -635,6 +635,10 @@ src/game/ov004/func_ov004_022baccc.c:
     complete
     .text       start:0x022baccc end:0x022bacd8
 
+src/game/ov004/func_ov004_022baffc.c:
+    complete
+    .text       start:0x022baffc end:0x022bb014
+
 src/game/ov004/func_ov004_022bb014.c:
     complete
     .text       start:0x022bb014 end:0x022bb020
