@@ -1,4 +1,4 @@
-func_ov001_02350560 kind:function(arm,size=0x60) addr:0x02350560
+Ov001_MapLacksObjectKinds11To13 kind:function(arm,size=0x60) addr:0x02350560
 Ov001_MapLacksObjectKind10 kind:function(arm,size=0x28) addr:0x023505c0
 Ov001_MapLacksObjectKind9 kind:function(arm,size=0x28) addr:0x023505e8
 Ov001_MapLacksObjectKind4 kind:function(arm,size=0x28) addr:0x02350610
