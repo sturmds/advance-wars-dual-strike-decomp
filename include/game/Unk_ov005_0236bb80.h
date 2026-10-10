@@ -15,7 +15,9 @@ typedef struct Unk_ov005_0236bb80 {
     u8 pad_18[0x2c - 0x18];
     u32 xUsesBufferB;                  /* which of the two x line buffers xLines points at */
     u32 yUsesBufferB;
-    u8 pad_34[0x54 - 0x34];
+    u8 pad_34[0x4c - 0x34];
+    int *xOffsets;                     /* fx32 offset of each line */
+    int *yOffsets;
     s16 *xLines;                       /* per-line offsets the hardware reads */
     s16 *yLines;
     s16 *xBufferA;
