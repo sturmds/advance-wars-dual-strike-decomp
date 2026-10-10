@@ -7,7 +7,7 @@ void Ov003_RunSlotInput(void);
 void Ov003_UpdateRowUnits(void);
 void func_ov003_0235e258(void);
 void Ov003_TickUnits(void);
-void func_ov003_0235de88(void);
+void Ov003_UpdatePickups(void);
 void Ov003_UpdateObjects(void);
 void Ov003_HealUnitsOnOwnTiles(void);
 void Ov003_UpdateTileClaims(void);
@@ -27,7 +27,7 @@ void func_ov003_023571b4(void)
         return;
     }
     Ov003_TickUnits();
-    func_ov003_0235de88();
+    Ov003_UpdatePickups();
     Ov003_UpdateObjects();
     Ov003_HealUnitsOnOwnTiles();
     Ov003_UpdateTileClaims();

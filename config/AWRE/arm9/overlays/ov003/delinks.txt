@@ -438,6 +438,10 @@ src/game/ov003/func_ov003_0235dd38.c:
     complete
     .text       start:0x0235dd38 end:0x0235dd48
 
+src/game/ov003/ov003_update_pickups.c:
+    complete
+    .text       start:0x0235de88 end:0x0235dfe8
+
 src/game/ov003/ov003_apply_pickup.c:
     complete
     .text       start:0x0235e068 end:0x0235e16c
