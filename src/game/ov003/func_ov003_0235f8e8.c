@@ -4,7 +4,7 @@
 void Ov003Unit_FireScatteredBurst(Ov003Unit *unit);
 void Ov003Unit_FireAtLockedTarget(Ov003Unit *unit);
 void Ov003Unit_FireForwardOnce(Ov003Unit *unit);
-void func_ov003_0235fce8(Ov003Unit *unit);
+void Ov003Unit_FireByMode(Ov003Unit *unit);
 #define STATE data_ov003_02364928
 
 void func_ov003_0235f8e8(Ov003Unit *unit)
@@ -27,5 +27,5 @@ void func_ov003_0235f8e8(Ov003Unit *unit)
     if (unit->unk_19 != 0) {
         return;
     }
-    func_ov003_0235fce8(unit);
+    Ov003Unit_FireByMode(unit);
 }

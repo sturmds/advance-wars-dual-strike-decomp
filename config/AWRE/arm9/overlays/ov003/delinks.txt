@@ -486,6 +486,10 @@ src/game/ov003/ov003_unit_fire_forward_burst.c:
     complete
     .text       start:0x0235fc58 end:0x0235fce8
 
+src/game/ov003/ov003_unit_fire_by_mode.c:
+    complete
+    .text       start:0x0235fce8 end:0x0235fdd8
+
 src/game/ov003/ov003_unit_fire_forward.c:
     complete
     .text       start:0x0235fdd8 end:0x0235fde4
