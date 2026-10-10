@@ -4,7 +4,7 @@
 #include "game/ov003_unit.h"
 
 extern Unk_027c0280 *data_027c0280;
-void func_ov003_0235d850(int rowNumber);
+void Ov003_StartRowPower(int rowNumber);
 
 void func_ov003_0235cb08(Unk_ov003_0235dd38 *obj)
 {
@@ -14,5 +14,5 @@ void func_ov003_0235cb08(Unk_ov003_0235dd38 *obj)
     data_027c0280->blendEvy = 0;
     /* clears the high nibble of unk_1da */
     data_ov003_02364928->unk_1da &= ~0xf0;
-    func_ov003_0235d850(obj->unk_52);
+    Ov003_StartRowPower(obj->unk_52);
 }
