@@ -15,7 +15,7 @@ int Co_GetArmyPictureVariant(int coId, int army);
 void TransferQueue_Add(const void *src, void *dest, int size);
 BOOL func_020f5344(int screen);
 void PowerMeter_Draw(int x, int y, int player, int kind, int palette, int flag);
-void func_ov000_022b105c(int x, int y, int player, int palette);
+void PlayerHud_QueuePowerIcon(int x, int y, int player, int palette);
 
 static inline BOOL Player_BackCoPowerIsOn(Unk_02080440_48 *state, int player)
 {
@@ -32,7 +32,7 @@ static inline BOOL Player_BackCoPowerIsOn(Unk_02080440_48 *state, int player)
  * copied to object tile tile and drawn with portraitPalette. The meter is
  * left out when the back CO's power is on (the front CO's meter shows the
  * tag power) unless frontMeter is set, which makes the meter code read the
- * front CO's charge. altMeter picks func_ov000_022b105c for the meter. */
+ * front CO's charge. altMeter picks PlayerHud_QueuePowerIcon for the meter. */
 void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, int screen, int tile, int portraitPalette, int meterPalette, int frontMeter)
 {
     Sprite_QueueAt(0, x + 32, y, data_ov000_0234ebf0, tile | (portraitPalette << 12), 0);
@@ -47,7 +47,7 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, 
     }
     if (coSlot == 0 || coSlot != 1) {
         if (altMeter != 0) {
-            func_ov000_022b105c(x, y, player, meterPalette);
+            PlayerHud_QueuePowerIcon(x, y, player, meterPalette);
             return;
         }
         PowerMeter_Draw(x, y, player, coSlot, meterPalette, 0);
@@ -55,7 +55,7 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, 
     }
     if (frontMeter != 0) {
         if (altMeter != 0) {
-            func_ov000_022b105c(x, y, player, meterPalette);
+            PlayerHud_QueuePowerIcon(x, y, player, meterPalette);
             return;
         }
         PowerMeter_Draw(x, y, player, coSlot, meterPalette, frontMeter);
