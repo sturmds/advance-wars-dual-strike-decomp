@@ -396,6 +396,10 @@ src/game/ov002/func_ov002_0235f3c0.c:
     complete
     .text       start:0x0235f3c0 end:0x0235f3f8
 
+src/game/ov002/battle_fighter_task_spawn_step_or_finish.c:
+    complete
+    .text       start:0x0235f3f8 end:0x0235f5fc
+
 src/game/ov002/func_ov002_0235f9b0.c:
     complete
     .text       start:0x0235f9b0 end:0x0235f9d8

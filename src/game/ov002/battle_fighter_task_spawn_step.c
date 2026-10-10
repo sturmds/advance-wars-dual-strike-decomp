@@ -2,22 +2,11 @@
 #include "game/task.h"
 #include "game/FighterTask.h"
 
-extern MenuState gMenuState;
-
-/* Needed to match: the original adds the table offsets in the load, on top of
- * the address of gMenuState. */
-typedef struct SideTables {
-    u8 pad_00[0x0c];
-    u16 tint[2];
-    u8 pad_10[0x40 - 0x10];
-    u32 table[2];
-    u32 unk_48[2];
-} SideTables;
-#define TABLES ((SideTables *)&gMenuState)
+#include "game/map_select.h"
 
 void Task_ResumeScript(Task *task);
 int Battle_GetMatchupValue(int side);
-void func_ov002_0235643c(u32 table, int index, int x, int y, int a4, int a5, int a6, int a7,
+void func_ov002_0235643c(void *table, int index, int x, int y, int a4, int a5, int a6, int a7,
                          int a8, int a9, int a10, int a11, int a12, int side);
 void func_ov002_02357e5c(int side, int step);
 
@@ -38,17 +27,17 @@ void BattleFighterTask_SpawnStep(FighterTask *task)
         step = task->step;
         if (task->steps->count != step) {
             side = task->side;
-            if (TABLES->table[side] != 0) {
+            if (MENU->battle.unk_40[side] != 0) {
                 scale = task->scale;
                 anim = task->anim;
-                func_ov002_0235643c(TABLES->table[task->side], Battle_GetMatchupValue(side),
+                func_ov002_0235643c(MENU->battle.unk_40[task->side], Battle_GetMatchupValue(side),
                                     task->fighter->unk_38, task->fighter->unk_3a,
                                     task->fighter->unk_3c,
                                     scale * anim->offsets[step].x >> 8,
                                     scale * anim->offsets[step].y >> 8, -1, scale, scale,
-                                    TABLES->tint[side], 8, 0, side);
+                                    (&MENU->colours[6])[side], 8, 0, side);
             }
-            if (TABLES->unk_48[task->side] != 0) {
+            if (MENU->battle.unk_48[task->side] != 0) {
                 func_ov002_02357e5c(task->side, task->step);
             }
             task->step++;

@@ -10,7 +10,7 @@ int Battle_GetMatchupNibble1(int side);
     (MENU->battle.unk_310[(task)->fighter->side][(task)->fighter->unk_59_5])
 
 /* Start of a side's fighter task: finds the fighter, the side's step list
- * and animation data, drops the fighter's old sprite task and makes a new
+ * and animation data, destroys the fighter's old sprite task and makes a new
  * one from the side's sprite table. Partial: 96%; the original reads
  * task->fighter twice where this reads it once. */
 void BattleFighterTask_Setup(FighterTask *task)
