@@ -1,0 +1,40 @@
+#include "types.h"
+#include "game/battle_fighter_sprites.h"
+#include "game/battle_fighter.h"
+#include "game/BattleSideData.h"
+#include "game/BattleSpriteTask.h"
+
+BOOL func_ov002_02353824(int side);
+
+/* One frame of a fighter that adds 1 to unk_38 and unk_3e, for 128 frames,
+ * and puts its place into its three sprite tasks. Runs while the side's BattleSideData.unk_48
+ * is 0 and the side passes func_ov002_02353824; the name is a guess from what moves. */
+void BattleFighter_StepSlideMode0(BattleFighter *fighter)
+{
+    if (!fighter->active) {
+        return;
+    }
+    if (!func_ov002_02353824(fighter->side)) {
+        return;
+    }
+    if (BATTLE_SIDE_DATA(fighter->side)->unk_48 != 0) {
+        return;
+    }
+    if (fighter->unk_57 == 0x80) {
+        fighter->active = 0;
+        return;
+    }
+    fighter->unk_38++;
+    fighter->unk_3e++;
+    BATTLE_FIGHTER_ENTRY(fighter).sprites[0]->unk_3c = fighter->unk_38;
+    BATTLE_FIGHTER_ENTRY(fighter).sprites[0]->unk_42 = fighter->unk_3e;
+    if (BATTLE_FIGHTER_ENTRY(fighter).sprites[1] != 0) {
+        BATTLE_FIGHTER_ENTRY(fighter).sprites[1]->unk_3c = fighter->unk_38;
+        BATTLE_FIGHTER_ENTRY(fighter).sprites[1]->unk_42 = fighter->unk_3e;
+    }
+    if (BATTLE_FIGHTER_ENTRY(fighter).sprites[2] != 0) {
+        BATTLE_FIGHTER_ENTRY(fighter).sprites[2]->unk_3c = fighter->unk_38;
+        BATTLE_FIGHTER_ENTRY(fighter).sprites[2]->unk_42 = fighter->unk_3e;
+    }
+    fighter->unk_57++;
+}

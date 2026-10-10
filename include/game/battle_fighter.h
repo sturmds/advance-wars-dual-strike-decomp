@@ -30,16 +30,25 @@ typedef struct BattleFighterShapes {
 typedef struct BattleFighter {
     u8 pad_00[0x18];
     const BattleFighterShapes *shapes;
-    u8 pad_1c[0x44 - 0x1c];
+    u8 pad_1c[0x38 - 0x1c];
+    s16 unk_38;
+    s16 unk_3a;
+    u8 pad_3c[2];
+    s16 unk_3e;
+    s16 unk_40;
+    u8 pad_42[2];
     u16 unk_44;                        /* copied to the animation tasks */
     u8 pad_46[0x48 - 0x46];
     u8 unk_48;
     u8 unk_49[3];                      /* indexed by BattleSide.usesSecondary of the same side */
     const BattleSounds *sounds;
-    u8 pad_50[0x59 - 0x50];
-    u8 unk_59_0 : 4;
+    u8 pad_50[0x57 - 0x50];
+    u8 unk_57;                         /* frame counter of the motion steps */
+    u8 pad_58;
+    u8 unk_59_0 : 3;
+    u8 active : 1;                     /* the motion steps do nothing while clear */
     u8 side : 1;                       /* 0 or 1 */
-    u8 unk_59_5 : 3;
+    u8 unk_59_5 : 3;                   /* index into the side's BattleEntry list */
     u8 pad_5a[0x78 - 0x5a];
 } BattleFighter;
 
