@@ -732,6 +732,10 @@ src/game/ov005/func_ov005_02365ec0.c:
     complete
     .text       start:0x02365ec0 end:0x02365ed0
 
+src/game/ov005/shop/ov005_set_up_shop_screen.c:
+    complete
+    .text       start:0x02366b40 end:0x02366eec
+
 src/game/ov005/func_ov005_02366eec.c:
     complete
     .text       start:0x02366eec end:0x02366f28
