@@ -272,6 +272,10 @@ src/game/ov005/ov005_slide_update.c:
     complete
     .text       start:0x0235a98c end:0x0235aa54
 
+src/game/ov005/ov005_entry_wait_then_turn.c:
+    complete
+    .text       start:0x0235aa98 end:0x0235abcc
+
 src/game/ov005/func_ov005_0235abcc.c:
     complete
     .text       start:0x0235abcc end:0x0235abe4

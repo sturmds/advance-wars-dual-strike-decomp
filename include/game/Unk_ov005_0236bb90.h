@@ -8,7 +8,9 @@
  * halfword of 0 ends a list of entries. */
 typedef struct Ov005SlideEntry {
     u16 id;
-    u8 pad_02[0x10 - 0x02];
+    u8 pad_02[0x0c - 0x02];
+    u16 angle;                         /* eased by Ov005Entry_WaitThenTurn */
+    u8 pad_0e[0x10 - 0x0e];
     s16 pos;                           /* moved by the slide tasks */
     u8 pad_12[0x14 - 0x12];
     Task *slideTask;                   /* task that moves pos */
