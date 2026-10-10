@@ -123,6 +123,10 @@ src/game/ov000/func_ov000_022ae488.c:
     complete
     .text       start:0x022ae488 end:0x022ae4a8
 
+src/game/ov000/task/unit_show_task_create_at_tile.c:
+    complete
+    .text       start:0x022ae4a8 end:0x022ae530
+
 src/game/ov000/task/unit_show_task_destroy.c:
     complete
     .text       start:0x022ae530 end:0x022ae560
