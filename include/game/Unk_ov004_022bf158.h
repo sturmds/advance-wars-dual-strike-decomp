@@ -57,7 +57,9 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_90c[0x918 - 0x90c];
     struct Ov004Task *slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
-    u8 pad_99c[0xb1c - 0x99c];
+    u8 pad_99c[0xad8 - 0x99c];
+    struct Task *childTasks[16];       /* destroyed together by Ov004_DestroyChildTasks */
+    u8 pad_b18[0xb1c - 0xb18];
     Ov004Resource resources[128];      /* looked up by Ov004_FindResource */
     u8 pad_131c[0x1320 - 0x131c];
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
@@ -70,7 +72,13 @@ typedef struct Unk_ov004_022bf158 {
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
     u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */
     u32 unk_1bf0;
-    u8 pad_1bf4[0x1c10 - 0x1bf4];
+    struct Task *unk_1bf4;             /* the six tasks from 0x1bf4 to 0x1c08 are destroyed by func_ov004_022bdb7c */
+    struct Task *unk_1bf8;
+    struct Task *unk_1bfc;
+    struct Task *unk_1c00;
+    struct Task *unk_1c04;
+    struct Task *unk_1c08;
+    int unk_1c0c;                      /* Ov004_QueueBottomSprites draws only while this is nonzero */
 } Unk_ov004_022bf158;
 
 /* Task run by overlay 4's script steps. The first 0x2c bytes belong to the
