@@ -103,6 +103,14 @@ src/game/ov003/func_ov003_02357178.c:
     complete
     .text       start:0x02357178 end:0x0235718c
 
+src/game/ov003/ov003_point_task_create.c:
+    complete
+    .text       start:0x0235758c end:0x023575c0
+
+src/game/ov003/ov003_point_task_update.c:
+    complete
+    .text       start:0x023575c0 end:0x023575fc
+
 src/game/ov003/func_ov003_023575fc.c:
     complete
     .text       start:0x023575fc end:0x02357608
