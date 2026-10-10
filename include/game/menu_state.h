@@ -141,7 +141,9 @@ typedef struct BattleStepList {
 
 typedef struct BattleScreenWork {
     u16 unk_20[2];                     /* per side */
-    u8 pad_024[0x40 - 0x24];
+    u8 pad_024[0x028 - 0x024];
+    const u32 *spriteTables[2];        /* table argument of BattleSpriteTask_Create for the HP cells, per side */
+    u8 pad_030[0x040 - 0x030];
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
     u8 pad_050[0x22c - 0x050];

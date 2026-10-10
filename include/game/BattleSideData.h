@@ -19,9 +19,17 @@ typedef struct BattleCellPos {
     s16 z;
 } BattleCellPos;
 
+/* Reached through BattleSideData.weapons. */
+typedef struct BattleSideWeapon {
+    u8 pad_00[0x28];
+    u8 spriteIndex : 4;                /* index argument of BattleSpriteTask_Create for the HP cells */
+    u8 unk_28_hi : 4;
+} BattleSideWeapon;
+
 /* What BattleScreenWork.unk_27c points to, one per side of the battle in ov002. */
 typedef struct BattleSideData {
-    u8 pad_00[0x10];
+    const BattleSideWeapon *weapons[2]; /* by BattleSide.usesSecondary */
+    u8 pad_08[8];
     BattleSideData_10 *unk_10;
     u8 pad_14[4];
     const BattleCellPos *cellPositions; /* by cell */

@@ -41,6 +41,7 @@ typedef struct BattleCellTask {
 void BattleCellTask_Reset(BattleCellTask *task);
 BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index);
 void BattleCellTask_DestroySprites(BattleCellTask *task);
+void BattleCellTask_RestartSprite(BattleCellTask *task);
 
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */
