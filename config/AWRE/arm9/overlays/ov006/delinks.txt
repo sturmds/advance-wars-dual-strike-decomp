@@ -707,6 +707,10 @@ src/game/ov006/ov006_find_army_layout.c:
     complete
     .text       start:0x02365680 end:0x02365754
 
+src/game/ov006/ov006_is_map_playable.c:
+    complete
+    .text       start:0x02365754 end:0x0236589c
+
 src/game/ov006/ov006_count_property_tiles_matching.c:
     complete
     .text       start:0x02365adc end:0x02365ba8
