@@ -16,6 +16,10 @@ src/game/ov004/ov004_setup_ortho3d.c:
     complete
     .text       start:0x022adb18 end:0x022adbd0
 
+src/game/ov004/ov004_setup_perspective3d.c:
+    complete
+    .text       start:0x022adbd0 end:0x022adc8c
+
 src/game/ov004/func_ov004_022ade10.c:
     complete
     .text       start:0x022ade10 end:0x022ade28
