@@ -122,6 +122,7 @@ src/game/ov002/battle_draw_sprite_cells.c:
     .text       start:0x023538c0 end:0x02353c08
 
 src/game/ov002/battle_draw_textured_quad.c:
+    complete
     .text       start:0x02353c08 end:0x02353d90
 
 src/game/ov002/battle_get_tex_height.c:

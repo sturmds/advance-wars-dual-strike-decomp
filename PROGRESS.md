@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 3694 / 6600 | 697732 / 1531944 | 45.55% | 0 | 0 |
+| game | 3698 / 6600 | 699484 / 1531944 | 45.66% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 3832 / 7481 | 701152 / 1685994 | 41.59% | 1 | 30 |
+| all | 3836 / 7481 | 702904 / 1685994 | 41.69% | 1 | 30 |
 
 ## By module
 
@@ -21,12 +21,12 @@ Rows with nothing done are left out, but count in the totals.
 | main | game | 2470 / 5180 | 357236 / 1082632 | 33.00% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
-| ov000 | game | 117 / 121 | 23924 / 25300 | 94.56% | 0 |
+| ov000 | game | 119 / 121 | 24896 / 25300 | 98.40% | 0 |
 | ov001 | game | 73 / 76 | 6832 / 7472 | 91.43% | 0 |
-| ov002 | game | 146 / 164 | 50440 / 64208 | 78.56% | 0 |
+| ov002 | game | 147 / 164 | 50832 / 64208 | 79.17% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 231 / 236 | 64704 / 67364 | 96.05% | 0 |
-| ov005 | game | 229 / 267 | 66688 / 96684 | 68.98% | 0 |
+| ov005 | game | 230 / 267 | 67076 / 96684 | 69.38% | 0 |
 | ov006 | game | 196 / 321 | 46088 / 105588 | 43.65% | 0 |
 
 Modules with nothing done: none.
@@ -52,8 +52,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
-| `src/game/ov000/func_ov000_022afbf0.c` | func_ov000_022afbf0 | 760 |
-| `src/game/ov000/func_ov000_022afee8.c` | func_ov000_022afee8 | 212 |
 | `src/game/ov000/player_hud_draw_slot.c` | no delinks entry | 0 |
 | `src/game/ov000/task/unit_path_count_steps.c` | func_ov000_022ad560 | 104 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
@@ -62,7 +60,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
 | `src/game/ov002/battle_cell_sprite_arrived.c` | BattleCellSprite_Arrived | 312 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
-| `src/game/ov002/battle_draw_textured_quad.c` | Battle_DrawTexturedQuad | 392 |
 | `src/game/ov002/battle_fighter_task_setup.c` | BattleFighterTask_Setup | 544 |
 | `src/game/ov002/battle_footstep_task_start.c` | BattleFootstepTask_Start | 712 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
@@ -91,7 +88,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov005/func_ov005_0235a320.c` | func_ov005_0235a320 | 576 |
 | `src/game/ov005/func_ov005_0235ac48.c` | func_ov005_0235ac48 | 132 |
 | `src/game/ov005/func_ov005_0235ad60.c` | func_ov005_0235ad60 | 44 |
-| `src/game/ov005/func_ov005_0235b148.c` | func_ov005_0235b148 | 388 |
 | `src/game/ov005/func_ov005_0235b3d4.c` | func_ov005_0235b3d4 | 236 |
 | `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 |
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
