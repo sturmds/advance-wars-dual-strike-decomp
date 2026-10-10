@@ -391,6 +391,10 @@ src/game/ov006/ov006_pack_army_slots.c:
     complete
     .text       start:0x02364ddc end:0x02365680
 
+src/game/ov006/ov006_count_property_tiles.c:
+    complete
+    .text       start:0x02365ba8 end:0x02365c60
+
 src/game/ov006/ov006_get_tile_property_kind.c:
     complete
     .text       start:0x02365c60 end:0x02365cb4
