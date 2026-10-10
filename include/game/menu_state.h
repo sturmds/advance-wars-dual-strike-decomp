@@ -138,7 +138,8 @@ typedef struct BattleStepList {
 } BattleStepList;
 
 typedef struct BattleScreenWork {
-    u8 pad_020[0x40 - 0x20];
+    u16 unk_20[2];                     /* per side */
+    u8 pad_024[0x40 - 0x24];
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
     u8 pad_050[0x22c - 0x050];
@@ -146,7 +147,8 @@ typedef struct BattleScreenWork {
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
     BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */
-    u8 pad_294[0x29c - 0x294];
+    u8 pad_294[0x298 - 0x294];
+    u16 unk_298[2];                    /* per side, like unk_29c */
     u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
     u8 pad_2a0[4];
     BattleHitList hitLists[2];         /* per side, built by Battle_BuildHitLists */

@@ -20,6 +20,14 @@ typedef struct BattleAnimBytes {
     u8 unk_09;
 } BattleAnimBytes;
 
+/* Three values read from the side's animation data when the fighter object is made. */
+typedef struct BattleAnimStart {
+    u8 pad_00[0x18];
+    s16 unk_18;
+    s16 unk_1a;
+    s16 unk_1c;
+} BattleAnimStart;
+
 /* Animation data of one side of the ov002 battle screen. The lists hold one entry per
  * weapon (BattleSide.usesSecondary). */
 typedef struct BattleSideAnim {
@@ -27,6 +35,9 @@ typedef struct BattleSideAnim {
     BattleAnimNibbles *unk_08[2];
     u8 pad_10[0x1c - 0x10];
     BattleAnimBytes *unk_1c[2];
+    u8 pad_24[0x44 - 0x24];
+    BattleAnimStart *unk_44;
+    u8 unk_48;                         /* zero: the fighters are made from the entry list, else one fighter */
 } BattleSideAnim;
 
 #endif
