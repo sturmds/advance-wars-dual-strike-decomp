@@ -12,12 +12,12 @@ void Screen_SetCurrentGfx(void *state);
 u8 Map_GetLoadedPlayerCount(void);
 int MainLoop_GetFrameCount(void);
 void PlayerHud_DrawPlayer(int a0, int a1, int player);
-void func_ov000_022b157c(int player, int frame);
+void Player_AnimatePaletteColour(int player, int frame);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* On the second screen: for each player slot 1-4 that has a controller, calls
- * PlayerHud_DrawPlayer and func_ov000_022b157c (the latter checks CanUseCoPower)
+ * PlayerHud_DrawPlayer and Player_AnimatePaletteColour (the latter checks CanUseCoPower)
  * with a column from data_ov000_0234eb84 (rows indexed by the loaded player count). */
 void SecondScreen_UpdatePlayerPanels(void)
 {
@@ -29,7 +29,7 @@ void SecondScreen_UpdatePlayerPanels(void)
         if (STATE->players[i].controller != PLAYER_CONTROLLER_NONE) {
             int column = data_ov000_0234eb84[Map_GetLoadedPlayerCount()][i];
             PlayerHud_DrawPlayer(192, (column << 3) + 4, i);
-            func_ov000_022b157c(i, MainLoop_GetFrameCount());
+            Player_AnimatePaletteColour(i, MainLoop_GetFrameCount());
         }
     }
     Screen_SetCurrentGfx(savedGfx);
