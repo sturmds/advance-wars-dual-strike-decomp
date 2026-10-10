@@ -84,6 +84,10 @@ src/game/ov000/task/unit_show_task_create.c:
     complete
     .text       start:0x022ae964 end:0x022ae9ec
 
+src/game/ov000/event_triggers_run.c:
+    complete
+    .text       start:0x022aeaf4 end:0x022af22c
+
 src/game/ov000/gfx_load_current_army_palette.c:
     complete
     .text       start:0x022af400 end:0x022af45c
