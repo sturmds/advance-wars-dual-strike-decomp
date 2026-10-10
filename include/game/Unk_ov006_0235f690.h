@@ -21,7 +21,7 @@ typedef struct Unk_ov006_0235f690 {
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */
     u16 unk_20;                        /* entry index that unk_1c was set for */
-    u8 pad_22[0x24 - 0x22];
+    u16 oldCell;                       /* cell code of the tile an edit is about to overwrite (Ov006_BreakCellBlock) */
     s8 unk_24;
     s8 unk_25;
     u8 pad_26;
