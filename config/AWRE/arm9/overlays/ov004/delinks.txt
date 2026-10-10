@@ -52,6 +52,10 @@ src/game/ov004/func_ov004_022b0050.c:
     complete
     .text       start:0x022b0050 end:0x022b0070
 
+src/game/ov004/ov004_task_slide_bg_scroll_x.c:
+    complete
+    .text       start:0x022b0070 end:0x022b0174
+
 src/game/ov004/func_ov004_022b0174.c:
     complete
     .text       start:0x022b0174 end:0x022b0198
