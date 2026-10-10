@@ -225,6 +225,10 @@ extern Ov003Map *data_ov003_02364a88;
 #define OV003_SCROLL_X ((s16)data_ov003_02364928->unk_1d0)
 #define OV003_SCROLL_Y ((s16)data_ov003_02364928->unk_1d2)
 
+/* Frames left on a slot's cursor (halfword at 0x136 + 4 * slot, just before
+ * Ov003Slot.unk_00). */
+#define OV003_SLOT_TIMER(slot) (((u16 *)((u8 *)data_ov003_02364928 + 0x136))[(slot) * 2])
+
 /* Cast view of Ov003State.unk_1da: the phase this frame runs in and the
  * one asked for. */
 typedef struct Ov003Phase {

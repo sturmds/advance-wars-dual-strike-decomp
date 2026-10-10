@@ -9,7 +9,7 @@ extern Ov003Unit *data_ov003_02369534;
 u16 func_0207a1dc(void);
 void Ov003Rows_ClearCells(void);
 void Ov003Row_AppendCell(u8 row, int tile, int kind);
-void func_ov003_02360bb8(int player);
+void Ov003_StartSlotPlacing(int player);
 void func_ov003_0235bcc8(u32 value);
 int func_ov003_0235be30(void);
 
@@ -32,7 +32,7 @@ typedef struct Ov003LinkRecord {
  * the row of the first unit to 1 (or, with data_02160ac0->unk_7c set, of unit i to
  * the row of slot i), selects the unit of the current slot, puts the scroll on the
  * tile in unk_38 and unk_39 of its row, then passes every cell of each other row's record in
- * data_02160ac0 to Ov003Row_AppendCell. Finally it calls func_ov003_02360bb8 for each
+ * data_02160ac0 to Ov003Row_AppendCell. Finally it calls Ov003_StartSlotPlacing for each
  * linked player and func_ov003_0235be30 up to unk_1dc times. */
 void Ov003_InitUnitsAndCamera(void)
 {
@@ -70,7 +70,7 @@ void Ov003_InitUnitsAndCamera(void)
     }
     for (i = 0; i < 8; i++) {
         if ((func_0207a1dc() | 1) & (1 << i)) {
-            func_ov003_02360bb8(i);
+            Ov003_StartSlotPlacing(i);
         }
     }
     func_ov003_0235bcc8(STATE->preset->unk_04);
