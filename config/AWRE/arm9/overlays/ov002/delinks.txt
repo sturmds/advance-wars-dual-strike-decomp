@@ -227,6 +227,10 @@ src/game/ov002/battle_is_motion_out_of_bounds.c:
     complete
     .text       start:0x02358418 end:0x02358478
 
+src/game/ov002/battle_clear_motions.c:
+    complete
+    .text       start:0x02358478 end:0x023584e0
+
 src/game/ov002/battle_screen_task_init.c:
     complete
     .text       start:0x023587f8 end:0x0235882c
