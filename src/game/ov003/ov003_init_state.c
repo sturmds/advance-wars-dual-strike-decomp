@@ -8,7 +8,7 @@ void Ov003_LoadMap(void);
 void Ov003_ResetView(void);
 void func_ov003_02353bd8(void);
 void Ov003_InitUnitsAndCamera(void);
-void func_ov003_0235e22c(void);
+void Ov003_ClearItems(void);
 u32 MainLoop_GetFrameCount(void);
 void Ov003_RandSeed(u32 seed);
 void Keypad_Init(void);
@@ -23,7 +23,7 @@ void Ov003_InitState(void)
     Ov003_ResetView();
     func_ov003_02353bd8();
     Ov003_InitUnitsAndCamera();
-    func_ov003_0235e22c();
+    Ov003_ClearItems();
     if (data_02160ac0->unk_7c == 0) {
         Ov003_RandSeed(MainLoop_GetFrameCount());
     } else {
