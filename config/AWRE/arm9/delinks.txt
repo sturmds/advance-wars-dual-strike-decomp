@@ -5855,6 +5855,10 @@ src/game/main/func_020b5098.c:
     complete
     .text       start:0x020b5098 end:0x020b50bc
 
+src/game/main/func_020b50bc.c:
+    complete
+    .text       start:0x020b50bc end:0x020b5138
+
 src/game/main/ai/func_020b5138.c:
     complete
     .text       start:0x020b5138 end:0x020b5198
@@ -5862,6 +5866,10 @@ src/game/main/ai/func_020b5138.c:
 src/game/main/func_020b5198.c:
     complete
     .text       start:0x020b5198 end:0x020b51b4
+
+src/game/main/func_020b51ec.c:
+    complete
+    .text       start:0x020b51ec end:0x020b5268
 
 src/game/main/func_020b52cc.c:
     complete
