@@ -562,6 +562,10 @@ src/game/ov003/ov003_replace_row_special_tiles.c:
     complete
     .text       start:0x02361abc end:0x02361c18
 
+src/game/ov003/ov003_exit.c:
+    complete
+    .text       start:0x02361c18 end:0x02361c7c
+
 src/game/ov003/ov003_row_kind_group.c:
     complete
     .text       start:0x0236207c end:0x02362098
