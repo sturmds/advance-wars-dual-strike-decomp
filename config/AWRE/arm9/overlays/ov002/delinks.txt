@@ -120,6 +120,10 @@ src/game/ov002/battle_compare_hp_to_cell_step.c:
     complete
     .text       start:0x023558cc end:0x02355920
 
+src/game/ov002/battle_sort_hit_list.c:
+    complete
+    .text       start:0x02355920 end:0x02355a98
+
 src/game/ov002/battle_pick_hp_drain_profiles.c:
     complete
     .text       start:0x02355f08 end:0x02355ff0
