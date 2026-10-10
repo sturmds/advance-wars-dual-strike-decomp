@@ -13,7 +13,7 @@ void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 void Ov004_InitScale(Unk_ov004_022bf158 *state);
 void func_ov004_022bb744(Unk_ov004_022bf158 *state);
 void Ov004_SetupPerspective3d(void);
-void func_ov004_022bb5ac(const void *table, int size, int offset);
+void Ov004_LoadResourcePalette(const void *table, int size, int offset);
 void func_ov004_022bb38c(Unk_ov004_022bf158 *state);
 void Ov004_ResetClock(Unk_ov004_022bf158 *state);
 
@@ -71,14 +71,14 @@ void Ov004Task_InitScene(Ov004Task *task)
     func_ov004_022bb744(state);
     Ov004_LoadRikiishiTextures(state);
     Ov004_SetupPerspective3d();
-    func_ov004_022bb5ac(data_ov004_022bde84, 0x9d90, 0);
-    func_ov004_022bb5ac(data_ov004_022bde54, 0xadac, 0x200);
-    func_ov004_022bb5ac(data_ov004_022bde74, 0x5020, 0x400);
-    func_ov004_022bb5ac(data_ov004_022bdec4, 0x5bf8, 0x600);
-    func_ov004_022bb5ac(data_ov004_022bde94, 0x6060, 0x800);
-    func_ov004_022bb5ac(data_ov004_022bde64, 0x4c1c, 0xa00);
-    func_ov004_022bb5ac(data_ov004_022bdea4, 0x3ffc, 0xc00);
-    func_ov004_022bb5ac(data_ov004_022bdeb4, 0x4330, 0xe00);
+    Ov004_LoadResourcePalette(data_ov004_022bde84, 0x9d90, 0);
+    Ov004_LoadResourcePalette(data_ov004_022bde54, 0xadac, 0x200);
+    Ov004_LoadResourcePalette(data_ov004_022bde74, 0x5020, 0x400);
+    Ov004_LoadResourcePalette(data_ov004_022bdec4, 0x5bf8, 0x600);
+    Ov004_LoadResourcePalette(data_ov004_022bde94, 0x6060, 0x800);
+    Ov004_LoadResourcePalette(data_ov004_022bde64, 0x4c1c, 0xa00);
+    Ov004_LoadResourcePalette(data_ov004_022bdea4, 0x3ffc, 0xc00);
+    Ov004_LoadResourcePalette(data_ov004_022bdeb4, 0x4330, 0xe00);
     func_ov004_022bb38c(state);
     Ov004_ResetClock(state);
 }
