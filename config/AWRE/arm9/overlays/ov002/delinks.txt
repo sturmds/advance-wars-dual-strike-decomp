@@ -239,6 +239,10 @@ src/game/ov002/battle_actor_enter_phase4.c:
     complete
     .text       start:0x0235b3fc end:0x0235b468
 
+src/game/ov002/battle_actor_update_shadow.c:
+    complete
+    .text       start:0x0235b468 end:0x0235b4f8
+
 src/game/ov002/battle_cell_task_remake_sprites.c:
     complete
     .text       start:0x0235ba34 end:0x0235bf94
