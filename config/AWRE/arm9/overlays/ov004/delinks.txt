@@ -123,6 +123,10 @@ src/game/ov004/func_ov004_022b0484.c:
     complete
     .text       start:0x022b0484 end:0x022b04a4
 
+src/game/ov004/ov004_slide_layers1_and2_y.c:
+    complete
+    .text       start:0x022b04a4 end:0x022b05b4
+
 src/game/ov004/func_ov004_022b05b4.c:
     complete
     .text       start:0x022b05b4 end:0x022b05d8
