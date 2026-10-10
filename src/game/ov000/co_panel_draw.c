@@ -14,7 +14,7 @@ void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 int Co_GetArmyPictureVariant(int coId, int army);
 void TransferQueue_Add(const void *src, void *dest, int size);
 BOOL func_020f5344(int screen);
-void func_ov000_022b0954(int x, int y, int player, int kind, int palette, int flag);
+void PowerMeter_Draw(int x, int y, int player, int kind, int palette, int flag);
 void func_ov000_022b105c(int x, int y, int player, int palette);
 
 static inline BOOL Player_BackCoPowerIsOn(Unk_02080440_48 *state, int player)
@@ -50,7 +50,7 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, 
             func_ov000_022b105c(x, y, player, meterPalette);
             return;
         }
-        func_ov000_022b0954(x, y, player, coSlot, meterPalette, 0);
+        PowerMeter_Draw(x, y, player, coSlot, meterPalette, 0);
         return;
     }
     if (frontMeter != 0) {
@@ -58,11 +58,11 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, 
             func_ov000_022b105c(x, y, player, meterPalette);
             return;
         }
-        func_ov000_022b0954(x, y, player, coSlot, meterPalette, frontMeter);
+        PowerMeter_Draw(x, y, player, coSlot, meterPalette, frontMeter);
         return;
     }
     if (Player_BackCoPowerIsOn(data_027c027c->unk_48[data_027c0284], player)) {
         return;
     }
-    func_ov000_022b0954(x, y, player, coSlot, meterPalette, frontMeter);
+    PowerMeter_Draw(x, y, player, coSlot, meterPalette, frontMeter);
 }

@@ -124,6 +124,10 @@ src/game/ov000/power_meter_queue_stars.c:
     complete
     .text       start:0x022b07bc end:0x022b0954
 
+src/game/ov000/power_meter_draw.c:
+    complete
+    .text       start:0x022b0954 end:0x022b0b9c
+
 src/game/ov000/co_panel_draw.c:
     complete
     .text       start:0x022b0b9c end:0x022b0de0
