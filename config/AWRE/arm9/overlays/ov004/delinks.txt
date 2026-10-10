@@ -515,6 +515,10 @@ src/game/ov004/func_ov004_022b71a4.c:
     complete
     .text       start:0x022b71a4 end:0x022b71c4
 
+src/game/ov004/ov004_slide_layers1_and2_x.c:
+    complete
+    .text       start:0x022b71c4 end:0x022b7380
+
 src/game/ov004/func_ov004_022b7380.c:
     complete
     .text       start:0x022b7380 end:0x022b738c
