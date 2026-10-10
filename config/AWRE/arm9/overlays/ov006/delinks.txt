@@ -543,6 +543,10 @@ src/game/ov006/ov006_roll_cell_chance.c:
     complete
     .text       start:0x0235c0e8 end:0x0235c224
 
+src/game/ov006/ov006_count_cell_neighbors.c:
+    complete
+    .text       start:0x0235c224 end:0x0235c3a0
+
 src/game/ov006/ov006_mark_map_border.c:
     complete
     .text       start:0x0235c4fc end:0x0235c5ec
