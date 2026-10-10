@@ -21,12 +21,14 @@ typedef struct Unk_ov004_022bf158 {
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
     u8 pad_1334[0x1bf0 - 0x1334];
     u32 unk_1bf0;
+    u8 pad_1bf4[0x1c10 - 0x1bf4];
 } Unk_ov004_022bf158;
 
 /* Task run by overlay 4's script steps. The first 0x2c bytes belong to the
  * task system (Task_Create). */
 typedef struct Ov004Task {
-    u8 pad_00[0x30];
+    u8 pad_00[0x2c];
+    struct Unk_ov004_022bf158 *state;  /* allocated by Ov004_AllocState */
     int slot;                          /* index into Unk_ov004_022bf158.unk_998 */
     int step;                          /* progress inside the current script step */
     u8 pad_38[0x44 - 0x38];
