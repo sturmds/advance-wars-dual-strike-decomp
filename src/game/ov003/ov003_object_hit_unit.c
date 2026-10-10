@@ -20,10 +20,10 @@ void Ov003_CreateSpriteVariant2(int x, int y);
 
 /* An object (a shot, kinds 0 to 7) hits a unit of another army. The damage
  * is a base value plus a random -3 to 4. A hit that would drop the unit's hp
- * to 0 kills it (unless the 02160abc flag is set), calls
- * Ov003Row_AddGauge for both armies and counts the kill for the attacker's army, with tile 2 counted as
- * tile 1. Any other hit takes off hp and starts the unit's hurt timer of 15.
- * The object is spent either way. */
+ * to 0 kills it (unless the 02160abc flag is set), calls Ov003Row_AddGauge
+ * for both armies and counts the kill for the attacker's army, with tile 2
+ * counted as tile 1. Any other hit takes off hp and starts the unit's hurt
+ * timer of 15. The object is spent either way. */
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
 {
     int damage = func_ov003_0235d5d4(object->variant, object->kind, unit->unk_12_3, unit->tile);
