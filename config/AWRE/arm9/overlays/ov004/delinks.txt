@@ -184,6 +184,10 @@ src/game/ov004/func_ov004_022b1d18.c:
     complete
     .text       start:0x022b1d18 end:0x022b1d38
 
+src/game/ov004/func_ov004_022b1d38.c:
+    complete
+    .text       start:0x022b1d38 end:0x022b1dec
+
 src/game/ov004/func_ov004_022b1dec.c:
     complete
     .text       start:0x022b1dec end:0x022b1e10
