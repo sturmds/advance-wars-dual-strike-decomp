@@ -351,6 +351,10 @@ src/game/ov002/func_ov002_0235f9d8.c:
     complete
     .text       start:0x0235f9d8 end:0x0235f9ec
 
+src/game/ov002/battle_play_fighter_se.c:
+    complete
+    .text       start:0x0235f9ec end:0x0235fa50
+
 src/game/ov002/battle_fade_attacker_sub_se.c:
     complete
     .text       start:0x0235fc2c end:0x0235fc68
