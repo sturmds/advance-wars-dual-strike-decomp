@@ -618,6 +618,10 @@ src/game/ov003/ov003_move_cursor_down.c:
     complete
     .text       start:0x0236095c end:0x02360a88
 
+src/game/ov003/ov003_move_cursor_up.c:
+    complete
+    .text       start:0x02360a88 end:0x02360bb8
+
 src/game/ov003/ov003_start_slot_placing.c:
     complete
     .text       start:0x02360bb8 end:0x02360cc4

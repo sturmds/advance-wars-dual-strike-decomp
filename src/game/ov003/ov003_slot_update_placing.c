@@ -10,7 +10,7 @@ BOOL func_ov003_0235c194(int slot, int column, int x, int y);
 void Ov003_MoveCursorRight(int slot);
 void Ov003_MoveCursorLeft(int slot);
 int Ov003_MoveCursorDown(int slot);
-void func_ov003_02360a88(int slot);
+void Ov003_MoveCursorUp(int slot);
 int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int radius);
 
 #define STATE data_ov003_02364928
@@ -27,7 +27,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
     int i;
 
     if (keypad->repeat & PAD_KEY_UP) {
-        func_ov003_02360a88(slot);
+        Ov003_MoveCursorUp(slot);
     }
     if (keypad->repeat & PAD_KEY_DOWN) {
         Ov003_MoveCursorDown(slot);
