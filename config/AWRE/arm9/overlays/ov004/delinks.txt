@@ -551,6 +551,10 @@ src/game/ov004/ov004_init_scale.c:
     complete
     .text       start:0x022bb074 end:0x022bb0a8
 
+src/game/ov004/ov004_skip_on_input.c:
+    complete
+    .text       start:0x022bb0a8 end:0x022bb134
+
 src/game/ov004/ov004_destroy_all_slot_tasks.c:
     complete
     .text       start:0x022bb134 end:0x022bb168

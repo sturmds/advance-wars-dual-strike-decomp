@@ -33,7 +33,9 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
     u32 unk_004;
     u32 unk_008;
-    u8 pad_00c[0x818 - 0xc];
+    u8 pad_00c[0x810 - 0xc];
+    struct Task *unk_810;              /* destroyed by Ov004_SkipOnInput */
+    struct Task *unk_814;              /* destroyed by Ov004_SkipOnInput */
     Unk_ov004_022bf158_818 unk_818;
     Ov004Entry entries[7];             /* count is a guess; indexed by the task parameter at 0x44 */
     struct Task *controlTask;          /* made by Ov004_StartControlTask, 0 when none */
