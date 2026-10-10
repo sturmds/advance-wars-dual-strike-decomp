@@ -12,7 +12,7 @@ extern MenuState gMenuState;
 /* Needed to match: the side's record is reached as a byte offset of the scene. */
 #define SIDE_WEAPON(side) (((u8 *)Ov002_gBattleScene + (side) * sizeof(BattleSide))[9])
 
-BOOL func_ov002_02357d24(int side, int cell)
+BOOL BattleCellSprite_Arrived(int side, int cell)
 {
     int reached = 0;
     int axis;

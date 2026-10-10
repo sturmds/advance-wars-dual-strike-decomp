@@ -11,7 +11,7 @@ extern MenuState gMenuState;
 BOOL func_0207bd80(void);
 void Battle_EnsureTask(void);
 void Battle_ReleaseSideTasks(void);
-void func_ov002_02357924(void);
+void BattleCellSprites_Move(void);
 void Battle_UpdateFx(void);
 void func_ov002_0235882c(Task *task);
 void func_ov002_02358c40(Task *task);
@@ -45,7 +45,7 @@ void Battle_TaskUpdate(Task *task)
     }
     task->waitFrames = data_0229fb30.unk_10;
     Battle_UpdateFx();
-    func_ov002_02357924();
+    BattleCellSprites_Move();
     Battle_ReleaseSideTasks();
     func_ov002_0235d224();
     if ((gKeypad->pressed & PAD_BUTTON_A) || (gTouch.phase == TOUCH_PRESSED && gTouch.active == 1)) {
