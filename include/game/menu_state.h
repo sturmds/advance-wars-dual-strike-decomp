@@ -165,7 +165,7 @@ typedef struct BattleScreenWork {
     const u32 *unk_38[2];              /* per side, like spriteTables */
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];                     /* tables BattleSpriteTask_Create makes the sprites of a side from */
-    u8 pad_050[0x058 - 0x050];
+    const u32 *hitSpriteTables[2];     /* per side: sprite made on a hit of the second hit list, a guess */
     const u32 *unk_58[2];              /* per side, like spriteTables */
     const u32 *unk_60[2];              /* per side, like spriteTables */
     u8 pad_068[0x070 - 0x068];
