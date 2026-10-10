@@ -235,6 +235,10 @@ src/game/ov002/battle_cell_task_get_cell_offset_x.c:
     complete
     .text       start:0x023584e0 end:0x02358570
 
+src/game/ov002/battle_cell_task_get_cell_offset_y.c:
+    complete
+    .text       start:0x02358570 end:0x02358600
+
 src/game/ov002/battle_cell_task_get_offset_x.c:
     complete
     .text       start:0x02358600 end:0x0235867c
