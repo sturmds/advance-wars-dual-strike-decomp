@@ -296,6 +296,10 @@ src/game/ov005/func_ov005_0235d5cc.c:
     complete
     .text       start:0x0235d5cc end:0x0235d5dc
 
+src/game/ov005/ov005_get_cursor_ranges.c:
+    complete
+    .text       start:0x0235d5dc end:0x0235d674
+
 src/game/ov005/ov005_add_state_screen_buttons.c:
     complete
     .text       start:0x0235d674 end:0x0235d6fc
