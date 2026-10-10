@@ -24,6 +24,7 @@ Agents never change the state, so it cannot touch landing.
     loop_state.py close-batches         queue partials, renames, wrapup for finished batches
     loop_state.py claimed               functions held by open groups
     loop_state.py worktrees             worktrees safe to remove
+    loop_state.py procs [--kill-waits]  hung shell processes under this session
     loop_state.py report [N]            functions and tokens per batch
     loop_state.py log TEXT              append a line to journal.md
 
@@ -395,6 +396,63 @@ def cmd_worktrees(a, s):
     return 0
 
 
+WAIT_LOOP = re.compile(r"\b(while|until)\b.*\b(pgrep|sleep|kill -0)\b")
+LONG_JOB = re.compile(r"land_self|rebase_onto_mainline|apply_commit|propagate|trivial|permute|fn\.py|\bmake\b|ninja|flock")
+
+
+def proc_table():
+    """{pid: (ppid, age in seconds, command)} for this user's processes."""
+    out = {}
+    hz, boot = os.sysconf("SC_CLK_TCK"), time.time() - float(Path("/proc/uptime").read_text().split()[0])
+    for d in Path("/proc").iterdir():
+        if not d.name.isdigit():
+            continue
+        try:
+            if d.stat().st_uid != os.getuid():
+                continue
+            stat = (d / "stat").read_text()
+            fields = stat[stat.rindex(")") + 2:].split()
+            cmd = (d / "cmdline").read_bytes().replace(b"\0", b" ").decode(errors="replace").strip()
+        except OSError:
+            continue
+        out[int(d.name)] = (int(fields[1]), time.time() - (boot + int(fields[19]) / hz), cmd)
+    return out
+
+
+def cmd_procs(a, s):
+    """Shell processes under this Claude session that look hung: wait loops
+    (while/until around pgrep, sleep or kill -0) older than 30 minutes, which
+    --kill-waits stops, and build or landing commands older than 90 minutes,
+    which are only listed."""
+    root = int(os.environ.get("CLAUDE_PID", "0"))
+    procs = proc_table()
+
+    def under(pid):
+        seen = set()
+        while pid > 1 and pid not in seen:
+            seen.add(pid)
+            if pid == root:
+                return True
+            pid = procs.get(pid, (0,))[0]
+        return False
+
+    found = 0
+    for pid, (ppid, age, cmd) in sorted(procs.items(), key=lambda x: -x[1][1]):
+        if pid == root or not under(pid) or procs.get(ppid, (0, 0, ""))[2] and WAIT_LOOP.search(procs[ppid][2]):
+            continue  # report a wait loop once, not its sleep child
+        body = cmd.split("eval ", 1)[-1][:160]
+        if WAIT_LOOP.search(cmd) and age > 1800:
+            found += 1
+            if a.kill_waits:
+                os.kill(pid, 15)
+            print(f"WAIT {'killed ' if a.kill_waits else ''}{pid} {age / 3600:.1f}h {body}")
+        elif LONG_JOB.search(cmd) and age > 5400:
+            found += 1
+            print(f"LONG {pid} {age / 3600:.1f}h {body}")
+    print(f"procs: {found} flagged")
+    return 0
+
+
 def cmd_report(a, s):
     done = done_addrs()
     by = {}
@@ -455,6 +513,7 @@ def main() -> int:
     sub.add_parser("close-batches")
     sub.add_parser("claimed")
     sub.add_parser("worktrees")
+    sub.add_parser("procs").add_argument("--kill-waits", action="store_true")
     sub.add_parser("report").add_argument("n", type=int, nargs="?")
     sub.add_parser("log").add_argument("text")
     a = p.parse_args()
