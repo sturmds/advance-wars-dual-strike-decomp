@@ -1,7 +1,7 @@
 Ov003_Update kind:function(arm,size=0x458) addr:0x02350560
 func_ov003_023509b8 kind:function(arm,size=0x224) addr:0x023509b8
 func_ov003_02350bdc kind:function(arm,size=0x11c) addr:0x02350bdc
-func_ov003_02350cf8 kind:function(arm,size=0xe8) addr:0x02350cf8
+Ov003_UpdateLinkStart kind:function(arm,size=0xe8) addr:0x02350cf8
 Ov003_AdvanceMode kind:function(arm,size=0xa8) addr:0x02350de0
 func_ov003_02350e88 kind:function(arm,size=0x28) addr:0x02350e88
 Ov003_GetScrollToCentreUnit kind:function(arm,size=0x94) addr:0x02350eb0
@@ -233,7 +233,7 @@ func_ov003_02364618 kind:function(arm,size=0xf4) addr:0x02364618
 func_ov003_0236470c kind:function(arm,size=0xf4) addr:0x0236470c
 func_ov003_02364800 kind:function(arm,size=0x54) addr:0x02364800
 func_ov003_02364854 kind:function(arm,size=0x14) addr:0x02364854
-data_ov003_02364880 kind:data(any) addr:0x02364880
+Ov003_StartMessage kind:data(any) addr:0x02364880
 Ov003_gMainLayerConfig kind:data(any) addr:0x02364888
 Ov003_gSubLayerConfig kind:data(any) addr:0x023648d8
 data_ov003_02364928 kind:data(any) addr:0x02364928

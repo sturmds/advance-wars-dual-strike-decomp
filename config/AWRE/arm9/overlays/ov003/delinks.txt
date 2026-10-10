@@ -7,7 +7,8 @@ src/game/ov003/ov003_update.c:
     complete
     .text       start:0x02350560 end:0x023509b8
 
-src/game/ov003/func_ov003_02350cf8.c:
+src/game/ov003/ov003_update_link_start.c:
+    complete
     .text       start:0x02350cf8 end:0x02350de0
 
 src/game/ov003/ov003_advance_mode.c:

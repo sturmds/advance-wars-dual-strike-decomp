@@ -31,7 +31,7 @@ void func_ov003_02350e88(void);
 void func_ov003_0235fee4(void);
 void func_ov003_02364800(void);
 void func_ov003_023509b8(void);
-void func_ov003_02350cf8(void);
+void Ov003_UpdateLinkStart(void);
 void func_ov003_02350bdc(void);
 int func_ov003_02362258(void);
 int func_ov003_023621f4(void);
@@ -63,7 +63,7 @@ void Ov003_Update(void)
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02364800();
     func_ov003_023509b8();
-    func_ov003_02350cf8();
+    Ov003_UpdateLinkStart();
     func_ov003_02350bdc();
     if (func_ov003_02362258() == 1) {
         data_ov003_02364928->frameCount++;
