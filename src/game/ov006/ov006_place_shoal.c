@@ -4,7 +4,7 @@
 
 int func_ov006_02363d80(int x, int y);
 void func_ov006_0235ddac(int x, int y);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_GetShoalGraphic(int x, int y);
 void func_ov006_02351828(int x, int y, int value);
 int func_ov006_02351780(int x, int y, int terrain);
@@ -28,10 +28,10 @@ int Ov006_PlaceShoal(int x, int y)
     }
     func_ov006_0235ddac(x, y);
     oldTile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
-    func_ov006_02351714(x, y, TERRAIN_SHOAL);
+    Ov006_SetTerrain(x, y, TERRAIN_SHOAL);
     result = Ov006_GetShoalGraphic(x, y);
     if (result < 0) {
-        func_ov006_02351714(x, y, oldTile);
+        Ov006_SetTerrain(x, y, oldTile);
         return 0;
     }
     func_ov006_02351828(x, y, result);

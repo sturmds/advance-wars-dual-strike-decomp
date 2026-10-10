@@ -10,7 +10,7 @@ int Ov006_IsSpecialCell(int x, int y);
 int func_ov006_02361114(int x, int y);
 int func_ov006_023622bc(int x, int y);
 int Ov006_MouthHasNoOutlet(int x, int y);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02351828(int x, int y, int cell);
 void func_ov006_02361684(int x, int y);
 
@@ -20,7 +20,7 @@ void func_ov006_02361684(int x, int y);
     if (Ov006_IsSpecialCell(nx, ny)) {                                   \
         if (func_ov006_02361114(nx, ny) scoreTooLow                      \
             || !func_ov006_023622bc(nx, ny) || !Ov006_MouthHasNoOutlet(nx, ny)) { \
-            func_ov006_02351714(nx, ny, TERRAIN_SEA);                    \
+            Ov006_SetTerrain(nx, ny, TERRAIN_SEA);                    \
             func_ov006_02351828(nx, ny, MAP_CELL_SEA);          \
             func_ov006_02361684(nx, ny);                                 \
         }                                                                \

@@ -4,7 +4,7 @@
 
 int func_ov006_0235db00(int x, int y);
 void func_ov006_02351828(int x, int y, int value);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -27,6 +27,6 @@ void func_ov006_0235e04c(int x, int y)
     }
     func_ov006_02351828(x, y, cell);
     if (cell == 42) {
-        func_ov006_02351714(x, y, TERRAIN_SEA);
+        Ov006_SetTerrain(x, y, TERRAIN_SEA);
     }
 }

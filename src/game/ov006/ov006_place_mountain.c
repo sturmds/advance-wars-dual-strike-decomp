@@ -2,7 +2,7 @@
 #include "game/terrain.h"
 
 int func_ov006_02351288(int x, int y);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
 void func_ov006_0236146c(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
@@ -15,9 +15,9 @@ void Ov006_BreakCellBlock(int x, int y);
 void Ov006_PlaceMountain(int x, int y)
 {
     if (!func_ov006_02351288(x, y)) {
-        func_ov006_02351714(x, y, TERRAIN_PLAIN);
+        Ov006_SetTerrain(x, y, TERRAIN_PLAIN);
     }
-    func_ov006_02351714(x, y, TERRAIN_MOUNTAIN);
+    Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);
     func_ov006_02363198(x, y);
     func_ov006_0236146c(x, y);
     Ov006_ResetNeighborsToSea(x, y);

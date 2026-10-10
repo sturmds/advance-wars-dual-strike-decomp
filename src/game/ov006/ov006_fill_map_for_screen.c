@@ -6,7 +6,7 @@
 void func_020c7104(void);
 void func_020c4448(void);
 void func_ov006_0235cfc0(void);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
 void Ov006_FindHqs(void);
 u8 Ov006_CountPropertyTiles(void);
@@ -49,7 +49,7 @@ void Ov006_FillMapForScreen(int screenId)
                 (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] = TERRAIN_PLAIN;
                 break;
             case 3:
-                func_ov006_02351714(x, y, TERRAIN_MOUNTAIN);
+                Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);
                 func_ov006_02363198(x, y);
                 break;
             case 4:

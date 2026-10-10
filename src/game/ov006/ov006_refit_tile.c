@@ -3,7 +3,7 @@
 #include "game/terrain.h"
 
 int func_ov006_0235db00(int x, int y);
-void func_ov006_02351714(int x, int y, int terrain);
+void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02351828(int x, int y, int cell);
 void func_ov006_02361de0(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
@@ -35,7 +35,7 @@ void Ov006_RefitTile(int x, int y, int refitRivers)
     }
     if (terrain != TERRAIN_RIVER) {
         if (cell == CELL_SEA) {
-            func_ov006_02351714(x, y, TERRAIN_SEA);
+            Ov006_SetTerrain(x, y, TERRAIN_SEA);
         }
         func_ov006_02351828(x, y, cell);
     }
