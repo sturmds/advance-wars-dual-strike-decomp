@@ -312,6 +312,10 @@ src/game/ov005/func_ov005_0235d4fc.c:
     complete
     .text       start:0x0235d4fc end:0x0235d514
 
+src/game/ov005/ov005_find_co_list_entry_at.c:
+    complete
+    .text       start:0x0235d56c end:0x0235d5bc
+
 src/game/ov005/func_ov005_0235d5bc.c:
     complete
     .text       start:0x0235d5bc end:0x0235d5cc
