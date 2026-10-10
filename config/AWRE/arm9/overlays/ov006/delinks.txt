@@ -164,6 +164,7 @@ src/game/ov006/func_ov006_023545dc.c:
     .text       start:0x023545dc end:0x023545ec
 
 src/game/ov006/func_ov006_023545ec.c:
+    complete
     .text       start:0x023545ec end:0x02354648
 
 src/game/ov006/ov006_open_popup_menu.c:
