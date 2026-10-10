@@ -33,7 +33,8 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
     u32 unk_004;
     u32 unk_008;
-    u8 pad_00c[0x810 - 0xc];
+    u32 unk_00c;                       /* passed by address to a task helper by Ov004Task_RunBannerTimeline */
+    u8 pad_010[0x810 - 0x010];
     struct Task *unk_810;              /* destroyed by Ov004_SkipOnInput */
     struct Task *unk_814;              /* destroyed by Ov004_SkipOnInput */
     Unk_ov004_022bf158_818 unk_818;

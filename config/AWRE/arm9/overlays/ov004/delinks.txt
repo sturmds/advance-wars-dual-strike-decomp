@@ -395,6 +395,10 @@ src/game/ov004/func_ov004_022b48ac.c:
     complete
     .text       start:0x022b48ac end:0x022b48c0
 
+src/game/ov004/ov004_task_run_banner_timeline.c:
+    complete
+    .text       start:0x022b48c0 end:0x022b4b90
+
 src/game/ov004/func_ov004_022b4f2c.c:
     complete
     .text       start:0x022b4f2c end:0x022b4f4c
