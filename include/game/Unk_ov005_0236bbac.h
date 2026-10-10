@@ -2,10 +2,11 @@
 #define GAME_UNK_OV005_0236BBAC_H
 
 #include "types.h"
+#include "game/text_ref.h"
 
 /* One cell of the CO grid: 8 bytes, 8 cells per page. */
 typedef struct Ov005CoCell {
-    u8 pad_00[0x04];
+    TextRef name;
     u16 unk_04;
     u8 coId;                           /* OV005_CO_RANDOM_FIRST to OV005_CO_RANDOM_LAST: random pick from a group */
     u8 unk_07;
