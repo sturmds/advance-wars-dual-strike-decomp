@@ -308,6 +308,10 @@ src/game/ov005/func_ov005_0235d72c.c:
     complete
     .text       start:0x0235d72c end:0x0235d744
 
+src/game/ov005/ov005_free_state_work.c:
+    complete
+    .text       start:0x0235d744 end:0x0235d780
+
 src/game/ov005/ov005_alloc_state_work.c:
     complete
     .text       start:0x0235ea58 end:0x0235ea90
