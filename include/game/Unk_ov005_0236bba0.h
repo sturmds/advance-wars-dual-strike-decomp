@@ -12,7 +12,7 @@ typedef struct Unk_ov005_0236bba0 {
     int unk_82c;                       /* 0x1000 or -0x1000, set from the key state */
     int unk_830;                       /* nonzero while the button with id 243 exists */
     int unk_834;                       /* nonzero while the button with id 244 exists */
-    int unk_838;
+    int selectedEntry;                  /* index of the entry whose button was selected last */
     int unk_83c;
     u8 pad_840[0x850 - 0x840];
     u8 buttonIds[33];                  /* MenuButton id of each entry */
