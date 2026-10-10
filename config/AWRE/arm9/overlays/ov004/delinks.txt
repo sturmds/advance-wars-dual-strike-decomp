@@ -140,6 +140,10 @@ src/game/ov004/func_ov004_022b188c.c:
     complete
     .text       start:0x022b188c end:0x022b18ac
 
+src/game/ov004/func_ov004_022b19d4.c:
+    complete
+    .text       start:0x022b19d4 end:0x022b1a00
+
 src/game/ov004/func_ov004_022b1a58.c:
     complete
     .text       start:0x022b1a58 end:0x022b1a78

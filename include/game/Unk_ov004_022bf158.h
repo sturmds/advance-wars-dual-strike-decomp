@@ -31,9 +31,11 @@ typedef struct Ov004Task {
     int step;                          /* progress inside the current script step */
     u8 pad_38[0x44 - 0x38];
     int tweenFrames;                   /* length of the next slide, in frames */
-    u8 pad_48[0x54 - 0x48];
+    int unk_48;                        /* set to the same frame count as tweenFrames */
+    u8 pad_4c[0x54 - 0x4c];
     int tweenFrom;                     /* start and end values of the slide, */
     int tweenTo;                       /* eased by Math_Ease */
+    int unk_5c;
 } Ov004Task;
 
 #endif
