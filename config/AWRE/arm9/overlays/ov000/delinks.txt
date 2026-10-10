@@ -143,6 +143,10 @@ src/game/ov000/co_panel_draw.c:
     complete
     .text       start:0x022b0b9c end:0x022b0de0
 
+src/game/ov000/player_hud_draw_slot.c:
+    complete
+    .text       start:0x022b0de0 end:0x022b105c
+
 src/game/ov000/player_hud_queue_power_icon.c:
     complete
     .text       start:0x022b105c end:0x022b1190
