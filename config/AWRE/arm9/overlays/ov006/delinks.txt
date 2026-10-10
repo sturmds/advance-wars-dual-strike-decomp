@@ -135,6 +135,10 @@ src/game/ov006/ov006_load_terrain_palettes.c:
     complete
     .text       start:0x023520b4 end:0x023521b4
 
+src/game/ov006/ov006_queue_terrain_entry_sprites.c:
+    complete
+    .text       start:0x023521b4 end:0x02352400
+
 src/game/ov006/func_ov006_02352400.c:
     complete
     .text       start:0x02352400 end:0x0235248c
