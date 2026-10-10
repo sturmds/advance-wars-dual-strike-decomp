@@ -1,0 +1,76 @@
+#include "types.h"
+#include "game/BattleCellTask.h"
+#include "game/BattleScreenTask.h"
+#include "game/BattleSideData.h"
+#include "game/BattleSpriteTask.h"
+#include "game/battle_hit_list.h"
+
+#define MENU ((MenuState *)&gMenuState)
+#define DUE (list->flags[list->cursor])
+
+void Battle_StartSideShake(u8 side);
+int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int index);
+int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int index);
+
+/* Runs the entries of each side's unk_2ec list that are due on this frame. An entry with unk_6
+ * clear makes a sprite at its cell (cell 0 when the side runs a fighter task) and keeps it in
+ * unk_22c; one with unk_6 set gives the cell step 5. Partial (93%): the original reloads the
+ * list cursor inside the body where mwcc keeps it in a register. */
+void func_ov002_0235882c(BattleScreenTask *screen)
+{
+    int side;
+    BattleHitList *list;
+    BattleCellTask *task;
+    int scale;
+
+    for (side = 0; side < 2; side++) {
+        list = &MENU->battle.unk_2ec[side];
+        while (list->cursor != list->count && screen->frame == list->key[list->cursor]) {
+            if (MENU->battle.unk_27c[side]->unk_48 == 0) {
+                if (!DUE.unk_6) {
+                    if (MENU->battle.unk_58[side] != NULL) {
+                        task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.unk_0].unk_00;
+                        scale = task->scale * 384 >> 8;
+                        MENU->battle.unk_22c[side][DUE.unk_3] = (BattleCounterTask *)BattleSpriteTask_Create(
+                            MENU->battle.unk_58[task->side], 0, task->posX, task->posY, task->posZ,
+                            BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
+                            task->angle + BattleCellTask_GetCellOffsetX(task, DUE.unk_3), -1, scale, scale,
+                            (&MENU->colours[12])[task->side], 8, 0, task->side, task->hasPos2,
+                            task->pos2X, task->pos2Y, task->pos2Z, 8);
+                    }
+                } else {
+                    task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.unk_0].unk_00;
+                    task->steps[task->stepIndex] = 5;
+                    task->stepIndex++;
+                    if (task->stepIndex == 8) {
+                        task->stepIndex = 0;
+                    }
+                }
+            } else {
+                if (!DUE.unk_6) {
+                    if (MENU->battle.unk_58[side] != NULL) {
+                        task = (BattleCellTask *)MENU->battle.unk_310[side][0].unk_00;
+                        scale = task->scale * 384 >> 8;
+                        MENU->battle.unk_22c[side][DUE.unk_3] = (BattleCounterTask *)BattleSpriteTask_Create(
+                            MENU->battle.unk_58[task->side], 0, task->posX, task->posY, task->posZ,
+                            BattleCellTask_GetCellOffsetY(task, DUE.unk_3),
+                            task->angle + BattleCellTask_GetCellOffsetX(task, DUE.unk_3), -1, scale, scale,
+                            (&MENU->colours[12])[task->side], 8, 0, task->side, task->hasPos2,
+                            task->pos2X, task->pos2Y, task->pos2Z, 8);
+                    }
+                } else {
+                    task = (BattleCellTask *)MENU->battle.unk_310[side][0].unk_00;
+                    task->steps[task->stepIndex] = 5;
+                    task->stepIndex++;
+                    if (task->stepIndex == 8) {
+                        task->stepIndex = 0;
+                    }
+                }
+            }
+            if (MENU->battle.unk_58[side] != NULL) {
+                Battle_StartSideShake(side);
+            }
+            list->cursor++;
+        }
+    }
+}
