@@ -6374,6 +6374,10 @@ src/game/main/func_020b9ae4.c:
     complete
     .text       start:0x020b9ae4 end:0x020b9b5c
 
+src/game/main/menus/menu_depth_pop_on_current_screen.c:
+    complete
+    .text       start:0x020b9b5c end:0x020b9bcc
+
 src/game/main/func_020b9c3c.c:
     complete
     .text       start:0x020b9c3c end:0x020b9c68
