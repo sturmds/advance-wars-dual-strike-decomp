@@ -10,7 +10,7 @@ void Battle_PutMeterRow(u16 *tilemap, u8 x, u8 y, u16 tile, u8 palette, u8 fill,
                          u8 upper, u8 lower);
 
 /* Puts the four rows of the side's HP bar into the tile map. The bar has 34
- * steps, 8 or 9 in each row; the fill is the starting HP in thirds, plus one. */
+ * steps, 8 or 9 in each row. The fill length is (starting HP + 2) / 3 + 1. */
 void Battle_PutSideHpBar(u16 *tilemap, int side, int isAir)
 {
     BOOL left = (side == 0);

@@ -7,7 +7,7 @@
 BOOL Battle_IsSideAir(int side);
 BOOL Battle_IsSideSea(int side);
 
-/* Like BattleFighter_StepSlideMode0, for a plane, helicopter or ship side whose
+/* Like BattleFighter_StepSlideMode0, for a plane, helicopter or boat side whose
  * BattleSideData.unk_48 is 1. */
 void BattleFighter_StepSlideAirSeaMode1(BattleFighter *fighter)
 {

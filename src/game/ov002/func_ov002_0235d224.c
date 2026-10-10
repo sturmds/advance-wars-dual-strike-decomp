@@ -26,7 +26,7 @@ void Gfx_RequestLayerCopy(int a);
  * from both edges. Then it steps the HP drain of each side that has one running,
  * redrawing the HP bar and block. When the screen counters match it draws the
  * final blocks and starts the task at data_ov002_02369664.
- * WIP: 87%, only the register numbers of side, side * 12 and side + gMenuState
+ * WIP: 99.3%, only the register numbers of side, side * 12 and side + gMenuState
  * differ in the first loop. */
 void func_ov002_0235d224(void)
 {
