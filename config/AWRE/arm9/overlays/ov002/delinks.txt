@@ -59,6 +59,10 @@ src/game/ov002/func_ov002_02354124.c:
     complete
     .text       start:0x02354124 end:0x02354174
 
+src/game/ov002/battle_get_air_ground_matchup.c:
+    complete
+    .text       start:0x0235461c end:0x02354670
+
 src/game/ov002/battle_is_side_air.c:
     complete
     .text       start:0x023547ac end:0x02354814
