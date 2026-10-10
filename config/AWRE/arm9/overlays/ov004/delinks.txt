@@ -883,6 +883,10 @@ src/game/ov004/ov004_create_child_tasks.c:
     complete
     .text       start:0x022bcadc end:0x022bd124
 
+src/game/ov004/ov004_load_sprite_graphics_both_screens.c:
+    complete
+    .text       start:0x022bd124 end:0x022bd244
+
 src/game/ov004/func_ov004_022bd244.c:
     complete
     .text       start:0x022bd244 end:0x022bd254

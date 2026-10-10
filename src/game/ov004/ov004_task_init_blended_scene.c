@@ -21,7 +21,7 @@ void func_0210c81c(void);
 void Ov004_SetupPerspective3d(void);
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158 *state);
 void Ov004_InitVramBanksInOrder(void);
-void func_ov004_022bd124(Unk_ov004_022bf158 *state);
+void Ov004_LoadSpriteGraphicsBothScreens(Unk_ov004_022bf158 *state);
 void Ov004_LoadBgLayer0(Unk_ov004_022bf158 *state);
 void func_ov004_022bdc08(Unk_ov004_022bf158 *state);
 /* These two are defined without parameters; the original call still passes
@@ -161,7 +161,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     func_0210c874(buffer, 0, 0x400);
     func_0210c81c();
     Ov004_SetupPerspective3d();
-    func_ov004_022bd124(state);
+    Ov004_LoadSpriteGraphicsBothScreens(state);
     Ov004_LoadBottomSpriteGraphics(state);
     state->unk_000 = 0;
     state->unk_1bf0 = 0;
