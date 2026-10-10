@@ -27,6 +27,10 @@ src/game/ov003/random_seed.c:
     complete
     .text       start:0x02351814 end:0x02351824
 
+src/game/ov003/ov003_read_input.c:
+    complete
+    .text       start:0x02351824 end:0x02351894
+
 src/game/ov003/ov003_init.c:
     complete
     .text       start:0x02351944 end:0x023519e0
