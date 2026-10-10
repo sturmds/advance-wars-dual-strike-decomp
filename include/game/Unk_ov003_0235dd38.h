@@ -7,7 +7,10 @@
  * which both clear its halfword at 0x4c. */
 typedef struct Unk_ov003_0235dd38 {
     u8 pad_00[0x4c];
-    u16 unk_4c;
+    union {
+        u16 unk_4c;
+        s16 frame;                     /* counts up to a fade length */
+    };
     u8 pad_4e[0x52 - 0x4e];
     u16 unk_52;                        /* row number, 1 to 5 */
     u8 pad_54[0x64 - 0x54];

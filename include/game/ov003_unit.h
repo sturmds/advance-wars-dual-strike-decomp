@@ -136,7 +136,13 @@ typedef struct Ov003State {
     };
     u8 activeRows;                     /* bit per row with Ov003Row.active set */
     u8 currentSlot;
-    u16 unk_1d6;
+    union {
+        u16 unk_1d6;
+        struct {
+            u8 pad_1d6;
+            u8 unk_1d7;                /* nonzero: Ov003_FadeEvyStep and func_ov003_0235ce7c wait */
+        };
+    };
     u8 rowCount;                       /* rows in use */
     u8 unk_1d9;
     union {
