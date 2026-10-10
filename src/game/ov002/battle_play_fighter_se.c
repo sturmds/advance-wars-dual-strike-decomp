@@ -4,7 +4,7 @@
 extern MenuState gMenuState;
 
 void Sound_PlaySe(u32 soundId);
-void func_ov002_0235fa50(int side);
+void Battle_PlayDefaultFighterSe(int side);
 
 /* Plays the fighter's own sound for this event, or a default one picked by
  * its unit type when the fighter has none. The inner check can never be true;
@@ -19,6 +19,6 @@ void Battle_PlayFighterSe(int side)
         }
         Sound_PlaySe(sound);
     } else {
-        func_ov002_0235fa50(side);
+        Battle_PlayDefaultFighterSe(side);
     }
 }
