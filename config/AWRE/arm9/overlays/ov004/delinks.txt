@@ -535,6 +535,10 @@ src/game/ov004/func_ov004_022b8894.c:
     complete
     .text       start:0x022b8894 end:0x022b88b4
 
+src/game/ov004/ov004_ease_scale_settle.c:
+    complete
+    .text       start:0x022b88b4 end:0x022b89c0
+
 src/game/ov004/func_ov004_022b89c0.c:
     complete
     .text       start:0x022b89c0 end:0x022b89cc
