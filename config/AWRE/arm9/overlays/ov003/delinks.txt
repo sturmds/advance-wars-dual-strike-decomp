@@ -123,6 +123,14 @@ src/game/ov003/ov003_write_fx_colors.c:
     complete
     .text       start:0x02353c04 end:0x02353d14
 
+src/game/ov003/ov003_upload_fx_tiles.c:
+    complete
+    .text       start:0x02353d14 end:0x02353ef4
+
+src/game/ov003/ov003_upload_fx_colors_and_tiles.c:
+    complete
+    .text       start:0x02353ef4 end:0x02354094
+
 src/game/ov003/ov003_step_anims.c:
     complete
     .text       start:0x02354094 end:0x023543b4
