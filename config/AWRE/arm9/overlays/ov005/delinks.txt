@@ -28,6 +28,10 @@ src/game/ov005/ov005_setup_screens_with_blend.c:
     complete
     .text       start:0x023512dc end:0x02351b50
 
+src/game/ov005/ov005_update_scrolling_text_prompt_screen.c:
+    complete
+    .text       start:0x02351b50 end:0x02351dd4
+
 src/game/ov005/ov005_screen_wait_task_then_resume.c:
     complete
     .text       start:0x02351dd4 end:0x02351e18
