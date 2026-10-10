@@ -667,6 +667,10 @@ src/game/ov004/func_ov004_022bb9c4.c:
     complete
     .text       start:0x022bb9c4 end:0x022bba30
 
+src/game/ov004/ov004_init_vram_banks.c:
+    complete
+    .text       start:0x022bba30 end:0x022bba9c
+
 src/game/ov004/ov004_destroy_child_tasks.c:
     complete
     .text       start:0x022bca9c end:0x022bcadc

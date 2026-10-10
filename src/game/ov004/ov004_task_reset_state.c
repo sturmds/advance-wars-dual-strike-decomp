@@ -4,7 +4,7 @@
 
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void Palette_Flush(void);
-void func_ov004_022bba30(void);
+void Ov004_InitVramBanks(void);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 extern void *data_ov004_022bf14c;
@@ -16,7 +16,7 @@ void Ov004Task_ResetState(Ov004Task *task)
     Unk_02080440 *savedState;
 
     Mem_Zero32(0, data_ov004_022bf158, 0x1c10);
-    func_ov004_022bba30();
+    Ov004_InitVramBanks();
     state->unk_000 = 0;
     state->unk_004 = 0;
     state->unk_008 = 0;
