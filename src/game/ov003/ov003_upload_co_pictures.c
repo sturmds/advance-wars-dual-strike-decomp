@@ -1,0 +1,44 @@
+#include "types.h"
+#include "game/screen_other_map.h"
+#include "game/Unk_02160ac0.h"
+#include "game/menu_state.h"
+#include "game/ov003_unit.h"
+
+extern MenuState gMenuState;
+extern u8 data_022a2130[];
+
+void Mem_Copy32(const void *src, void *dst, u32 size);
+int func_0208bed4(int value);
+void Co_LoadPalette(int coId, int paletteSlot);
+void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
+
+/* Puts the CO pictures of the rows into object VRAM of the second screen and
+ * loads their palettes (slots 18 and up). Without data_02160ac0->unk_7c, the
+ * pictures of rows 0 and 1 come from the 0x3600-byte buffers that
+ * Ov003_LoadScreenGraphics filled. With it, a picture is loaded from its file
+ * for each active row, 36 tiles apart. */
+void Ov003_UploadCoPictures(void)
+{
+    int i;
+    Unk_027c0280 *savedGfx;
+    Unk_02080440 *savedScreen;
+
+    savedGfx = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    savedScreen = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    if (data_02160ac0->unk_7c == 0) {
+        Mem_Copy32(&gMenuState, data_027c0280->objVram + 0x1a00, 0x3600);
+        Co_LoadPalette(func_0208bed4(data_ov003_02364928->rows[0].unk_3b_0), 18);
+        Mem_Copy32(data_022a2130, data_027c0280->objVram + 0x5000, 0x3600);
+        Co_LoadPalette(func_0208bed4(data_ov003_02364928->rows[1].unk_3b_0), 19);
+    } else {
+        for (i = 0; i < data_ov003_02364928->rowCount; i++) {
+            if (data_ov003_02364928->rows[i].active) {
+                func_020023b0(func_0208bed4(data_ov003_02364928->rows[i].unk_3b_0), data_027c0280->objVram + (208 + i * 36) * 32, i + 18, i + 1);
+            }
+        }
+    }
+    Screen_SetCurrent(savedScreen);
+    Screen_SetCurrentGfx(savedGfx);
+}

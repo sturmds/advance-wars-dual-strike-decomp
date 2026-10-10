@@ -550,6 +550,10 @@ src/game/ov003/ov003_row_draw_cells.c:
     complete
     .text       start:0x02361040 end:0x02361418
 
+src/game/ov003/ov003_upload_co_pictures.c:
+    complete
+    .text       start:0x02361418 end:0x02361584
+
 src/game/ov003/ov003_replace_row_special_tiles.c:
     complete
     .text       start:0x02361abc end:0x02361c18

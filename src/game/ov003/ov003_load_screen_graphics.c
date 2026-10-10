@@ -27,7 +27,7 @@ void Ov003_LoadGraphics(void *file);
 void Ov003_LoadMainScreenGraphics(void *file, void *localized);
 void Ov003_LoadObjGraphics(void *file, void *localized);
 void func_ov003_02361584(void *file, void *localized);
-void func_ov003_02361418(void);
+void Ov003_UploadCoPictures(void);
 
 /* Loads the files for the screens on both screens, then a 0x3600-byte picture
  * (func_02002864, a CO graphics loader) for each active row. Pictures 0 and 1
@@ -78,5 +78,5 @@ void Ov003_LoadScreenGraphics(void)
             func_02002864(func_0208bed4(row->unk_3b_0), dst, i + 1);
         }
     }
-    func_ov003_02361418();
+    Ov003_UploadCoPictures();
 }
