@@ -7752,6 +7752,10 @@ src/game/main/menus/get_co_pick_list.c:
     complete
     .text       start:0x020e3518 end:0x020e3524
 
+src/game/main/func_020e3524.c:
+    complete
+    .text       start:0x020e3524 end:0x020e353c
+
 src/game/main/func_020e36d8.c:
     complete
     .text       start:0x020e36d8 end:0x020e36fc
