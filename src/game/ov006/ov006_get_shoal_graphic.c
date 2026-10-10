@@ -7,7 +7,7 @@ extern s16 Ov006_gShoalGraphicTable[];
 
 int func_ov006_02351380(int x, int y);   /* guess: 1 when tile x, y is water (sea, shoal, reef, ...) */
 int func_ov006_02363cb8(int x, int y);   /* shoal neighbours: 8 above, 4 left, 2 right, 1 below */
-int func_ov006_02363eb0(int x, int y);   /* 1 when tile x, y is shoal */
+int Ov006_IsBareShoal(int x, int y);   /* 1 when tile x, y is shoal */
 
 #define MAP (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 
@@ -57,77 +57,77 @@ s16 Ov006_GetShoalGraphic(int x, int y)
     switch (tile & 0x7e00) {
     case 0x400:
         if (x > 0) {
-            tile = func_ov006_02363eb0(x - 1, y) ? 243 : 182;
+            tile = Ov006_IsBareShoal(x - 1, y) ? 243 : 182;
         } else {
             tile = 182;
         }
         break;
     case 0x200:
         if (x < MAP->mapWidth - 1) {
-            tile = func_ov006_02363eb0(x + 1, y) ? 242 : 183;
+            tile = Ov006_IsBareShoal(x + 1, y) ? 242 : 183;
         } else {
             tile = 183;
         }
         break;
     case 0x800:
         if (x > 0) {
-            tile = func_ov006_02363eb0(x, y - 1) ? 210 : 182;
+            tile = Ov006_IsBareShoal(x, y - 1) ? 210 : 182;
         } else {
             tile = 182;
         }
         break;
     case 0x4a00:
         if (x < MAP->mapWidth - 1) {
-            tile = func_ov006_02363eb0(x + 1, y) ? 109 : 143;
+            tile = Ov006_IsBareShoal(x + 1, y) ? 109 : 143;
         } else {
             tile = 143;
         }
         break;
     case 0x4c00:
         if (x > 0) {
-            tile = func_ov006_02363eb0(x - 1, y) ? 110 : 143;
+            tile = Ov006_IsBareShoal(x - 1, y) ? 110 : 143;
         } else {
             tile = 143;
         }
         break;
     case 0x5200:
         if (x < MAP->mapWidth - 1) {
-            tile = func_ov006_02363eb0(x + 1, y) ? 205 : 239;
+            tile = Ov006_IsBareShoal(x + 1, y) ? 205 : 239;
         } else {
             tile = 239;
         }
         break;
     case 0x5400:
         if (x > 0) {
-            tile = func_ov006_02363eb0(x - 1, y) ? 206 : 239;
+            tile = Ov006_IsBareShoal(x - 1, y) ? 206 : 239;
         } else {
             tile = 239;
         }
         break;
     case 0x2c00:
         if (y > 0) {
-            tile = func_ov006_02363eb0(x, y - 1) ? 207 : 146;
+            tile = Ov006_IsBareShoal(x, y - 1) ? 207 : 146;
         } else {
             tile = 146;
         }
         break;
     case 0x3400:
         if (y < MAP->mapHeight - 1) {
-            tile = func_ov006_02363eb0(x, y + 1) ? 175 : 146;
+            tile = Ov006_IsBareShoal(x, y + 1) ? 175 : 146;
         } else {
             tile = 146;
         }
         break;
     case 0x2a00:
         if (y > 0) {
-            tile = func_ov006_02363eb0(x, y - 1) ? 208 : 147;
+            tile = Ov006_IsBareShoal(x, y - 1) ? 208 : 147;
         } else {
             tile = 147;
         }
         break;
     case 0x3200:
         if (y < MAP->mapHeight - 1) {
-            tile = func_ov006_02363eb0(x, y + 1) ? 176 : 147;
+            tile = Ov006_IsBareShoal(x, y + 1) ? 176 : 147;
         } else {
             tile = 147;
         }
