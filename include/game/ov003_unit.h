@@ -93,6 +93,12 @@ typedef struct Ov003Slot {
     u8 pad_02[2];
 } Ov003Slot;
 
+/* Ov003Slot.unk_01_4, as Ov003_RunSlotInput dispatches it. */
+#define OV003_SLOT_STATE_1  1          /* Ov003Unit_HandleInput runs the slot */
+#define OV003_SLOT_PLACING  2          /* Ov003Slot_UpdatePlacing: cursor moves, a button places a unit */
+#define OV003_SLOT_SCROLLING 3         /* Ov003_ScrollWithDpad */
+#define OV003_SLOT_PLACED   4          /* unit created; nothing runs */
+
 /* 5 bytes at Ov003State.spawns: where a unit appears and how it starts. */
 typedef struct Ov003Spawn {
     u8 x;                              /* passed to func_ov003_0235c42c */
@@ -170,6 +176,15 @@ typedef struct Ov003State {
     u8 unk_1df_6 : 1;
     u8 pauseCursor : 1;                /* pause menu: 0 top button, 1 bottom button */
 } Ov003State;
+
+/* Cast view of the slots from pad_136: each slot's u16 cooldown sits in the
+ * 2 bytes before its Ov003Slot, so the slot record really starts at 0x136. */
+typedef struct Ov003SlotCooldown {
+    u16 cooldown;
+    u8 pad_02[2];
+} Ov003SlotCooldown;
+
+#define OV003_SLOT_COOLDOWN(state, slot) (((Ov003SlotCooldown *)(state)->pad_136)[slot].cooldown)
 
 /* View of Ov003State.unk_1da as two nibbles: func_ov003_02362258 switches on
  * the low one (0 to 6); Ov003_AdvanceMode copies the high one into it. */
