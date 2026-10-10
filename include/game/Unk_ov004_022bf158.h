@@ -16,6 +16,7 @@ typedef struct Unk_ov004_022bf158_818 {
     u16 unk_0c;                        /* Ov004_EaseScaleToHalf eases both from */
     u16 unk_0e;                        /* 256 to 128: maybe a scale */
     u16 unk_10;
+    u8 pad_12[2];
 } Unk_ov004_022bf158_818;
 
 /* One 0x1c-byte element of Unk_ov004_022bf158.entries. */

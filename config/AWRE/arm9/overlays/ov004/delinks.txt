@@ -671,6 +671,10 @@ src/game/ov004/func_ov004_022bb020.c:
     complete
     .text       start:0x022bb020 end:0x022bb038
 
+src/game/ov004/func_ov004_022bb038.c:
+    complete
+    .text       start:0x022bb038 end:0x022bb074
+
 src/game/ov004/ov004_init_scale.c:
     complete
     .text       start:0x022bb074 end:0x022bb0a8
