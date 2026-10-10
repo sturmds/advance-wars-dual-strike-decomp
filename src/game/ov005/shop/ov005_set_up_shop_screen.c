@@ -51,7 +51,7 @@ extern char data_ov005_0236b4ec[];     /* "044" */
  * (0x7d000001) and Hachi's pictures. On data_027c0288.unk_00: the
  * background from /rikiishi, the digit font, BG palette 0 copied to
  * palette 9, the icons of bank 4 (212 and the digits 140-149 that
- * func_ov005_02367420 draws the points with), then the list of items for
+ * Ov005_DrawShopPoints draws the points with), then the list of items for
  * sale (func_ov005_02367ad8) and its first page. Starts song 12 and resets
  * task->step to 0 for the next update function. */
 void Ov005_SetUpShopScreen(Ov005Task *task)

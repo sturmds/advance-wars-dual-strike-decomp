@@ -8,7 +8,7 @@
  * items with prices (from the 28-byte records at data_0216cb60), six rows
  * per page. */
 typedef struct Unk_ov005_0236bbb0 {
-    u8 pad_00[0x4];
+    int points;                        /* shown at the top (Ov005_DrawShopPoints); func_ov005_02367ad8 copies the first word of gPlayRecords */
     int unk_04;
     u32 unk_08;
     int unk_0c;
