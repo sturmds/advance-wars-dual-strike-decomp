@@ -15,7 +15,10 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_004;
     u8 pad_008[0x818 - 0x8];
     Unk_ov004_022bf158_818 unk_818;
-    u8 pad_828[0x998 - 0x828];
+    u8 pad_828[0x8fc - 0x828];
+    int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 */
+    int unk_900;                       /* eased each frame by func_ov004_022b061c */
+    u8 pad_904[0x998 - 0x904];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
     u8 pad_99c[0x1330 - 0x99c];
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
@@ -31,7 +34,9 @@ typedef struct Ov004Task {
     struct Unk_ov004_022bf158 *state;  /* allocated by Ov004_AllocState */
     int slot;                          /* index into Unk_ov004_022bf158.unk_998 */
     int step;                          /* progress inside the current script step */
-    u8 pad_38[0x44 - 0x38];
+    u8 pad_38[0x3c - 0x38];
+    int frame;                         /* frames elapsed in the current ease */
+    int duration;                      /* length of the ease, in frames */
     int tweenFrames;                   /* length of the next slide, in frames */
     int unk_48;                        /* set to the same frame count as tweenFrames */
     u8 pad_4c[0x54 - 0x4c];
