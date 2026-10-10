@@ -6,7 +6,7 @@ Ov005_UpdateSlideInTextScreen kind:function(arm,size=0x4b0) addr:0x02350e2c
 Ov005_SetupScreensWithBlend kind:function(arm,size=0x874) addr:0x023512dc
 Ov005_UpdateScrollingTextPromptScreen kind:function(arm,size=0x284) addr:0x02351b50
 Ov005Screen_WaitTaskThenResume kind:function(arm,size=0x44) addr:0x02351dd4
-func_ov005_02351e18 kind:function(arm,size=0x978) addr:0x02351e18
+Ov005_SetupDarkenedScreensWithSong kind:function(arm,size=0x978) addr:0x02351e18
 func_ov005_02352790 kind:function(arm,size=0x2c) addr:0x02352790
 Ov005Ripple_ReleaseObjects kind:function(arm,size=0xa4) addr:0x023527bc
 func_ov005_02352860 kind:function(arm,size=0x978) addr:0x02352860
@@ -286,7 +286,7 @@ data_ov005_02368070 kind:data(any) addr:0x02368070
 data_ov005_02368098 kind:data(any) addr:0x02368098
 data_ov005_023680c0 kind:data(any) addr:0x023680c0
 data_ov005_023680f0 kind:data(any) addr:0x023680f0
-data_ov005_02368140 kind:data(any) addr:0x02368140
+gOv005DarkenedSubLayers kind:data(any) addr:0x02368140
 gOv005BlendSubLayers kind:data(any) addr:0x02368190
 gOv005AffineSubLayers kind:data(any) addr:0x023681e0
 data_ov005_02368230 kind:data(any) addr:0x02368230
@@ -305,11 +305,11 @@ gRikiishiFile009 kind:data(any) addr:0x023682bc
 gRikiishiFile00a kind:data(any) addr:0x023682c0
 gRikiishiFile00b kind:data(any) addr:0x023682c4
 gRikiishiFile00c kind:data(any) addr:0x023682c8
-data_ov005_023682cc kind:data(any) addr:0x023682cc
-data_ov005_023682d0 kind:data(any) addr:0x023682d0
-data_ov005_023682d4 kind:data(any) addr:0x023682d4
-data_ov005_023682d8 kind:data(any) addr:0x023682d8
-data_ov005_023682dc kind:data(any) addr:0x023682dc
+gRikiishiFile000 kind:data(any) addr:0x023682cc
+gRikiishiFile001 kind:data(any) addr:0x023682d0
+gRikiishiFile002 kind:data(any) addr:0x023682d4
+gRikiishiFile003 kind:data(any) addr:0x023682d8
+gRikiishiFile004 kind:data(any) addr:0x023682dc
 data_ov005_023682e0 kind:data(any) addr:0x023682e0
 data_ov005_02368328 kind:data(any) addr:0x02368328
 data_ov005_02368378 kind:data(any) addr:0x02368378
