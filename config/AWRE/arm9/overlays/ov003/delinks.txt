@@ -390,6 +390,10 @@ src/game/ov003/func_ov003_0235d518.c:
     complete
     .text       start:0x0235d518 end:0x0235d5d4
 
+src/game/ov003/ov003_row_add_gauge.c:
+    complete
+    .text       start:0x0235d6e8 end:0x0235d7a4
+
 src/game/ov003/ov003_rows_tick_countdowns.c:
     complete
     .text       start:0x0235d7a4 end:0x0235d81c
