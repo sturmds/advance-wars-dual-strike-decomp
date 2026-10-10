@@ -579,6 +579,10 @@ src/game/ov004/ov004_update_elapsed_frames.c:
     complete
     .text       start:0x022bb290 end:0x022bb2c4
 
+src/game/ov004/ov004_check_timed_event.c:
+    complete
+    .text       start:0x022bb2c4 end:0x022bb2f8
+
 src/game/ov004/ov004_start_clock.c:
     complete
     .text       start:0x022bb2f8 end:0x022bb318

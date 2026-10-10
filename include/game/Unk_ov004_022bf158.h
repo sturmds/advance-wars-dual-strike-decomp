@@ -53,7 +53,7 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_132c[0x1330 - 0x132c];
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
     u8 pad_1334[0x1b44 - 0x1334];
-    u32 elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
+    int elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
     u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */
     u32 unk_1bf0;
