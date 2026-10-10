@@ -4,17 +4,17 @@
 #include "game/BattleSideData.h"
 #include "game/BattleSpriteTask.h"
 
-BOOL func_ov002_02353824(int side);
+BOOL Battle_IsSideDrawnInAir(int side);
 
 /* One frame of a fighter that adds 1 to unk_38 and unk_3e, for 128 frames,
  * and puts its place into its three sprite tasks. Runs while the side's BattleSideData.unk_48
- * is 0 and the side passes func_ov002_02353824; the name is a guess from what moves. */
+ * is 0 and the side passes Battle_IsSideDrawnInAir; the name is a guess from what moves. */
 void BattleFighter_StepSlideMode0(BattleFighter *fighter)
 {
     if (!fighter->active) {
         return;
     }
-    if (!func_ov002_02353824(fighter->side)) {
+    if (!Battle_IsSideDrawnInAir(fighter->side)) {
         return;
     }
     if (BATTLE_SIDE_DATA(fighter->side)->unk_48 != 0) {

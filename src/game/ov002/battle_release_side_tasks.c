@@ -5,9 +5,9 @@
 extern MenuState gMenuState;
 
 void Task_Destroy(Task *task);
-int func_ov002_02353824(int side);
+int Battle_IsSideDrawnInAir(int side);
 
-/* Per frame, for each task kept in the two per-side lists: when func_ov002_02353824 reports 1
+/* Per frame, for each task kept in the two per-side lists: when Battle_IsSideDrawnInAir reports 1
  * for the side, advance the task's two counters; destroy the task once its unk_5d is zero.
  * Needed to match: the two lists are read through a ternary on j, not as one array. */
 void Battle_ReleaseSideTasks(void)
@@ -18,7 +18,7 @@ void Battle_ReleaseSideTasks(void)
     int j;
 
     for (side = 0; side < 2; side++) {
-        found[side] = func_ov002_02353824(side);
+        found[side] = Battle_IsSideDrawnInAir(side);
     }
     for (side = 0; side < 2; side++) {
         for (i = 0; i < 5; i++) {

@@ -7,7 +7,7 @@ extern Unk_027c0280 *data_027c0280;
 
 u32 File_UnpackTo(void *dest, const char *path);
 void func_0200be6c(void *dest, const char *path); /* guess: reads a whole file into dest */
-int func_ov002_02353824(int side);                /* 1: the side is drawn in the sky */
+int Battle_IsSideDrawnInAir(int side);                /* 1: the side is drawn in the sky */
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 
@@ -96,7 +96,7 @@ void Battle_LoadSideTerrainLayers(void)
             tiles = CHAR_BASE(data_027c0280->layer3Bg);
             map = data_027c0280->layer3Map;
         }
-        if (func_ov002_02353824(side) == 1) {
+        if (Battle_IsSideDrawnInAir(side) == 1) {
             File_UnpackTo(tiles, data_ov002_023600ec);
             File_UnpackTo(map, data_ov002_023600f0);
             if (Ov002_gBattleScene->tileset == 1) {
