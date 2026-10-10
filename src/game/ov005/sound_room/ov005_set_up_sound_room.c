@@ -19,7 +19,7 @@ void Ov005CoSelect_StartTask(void);
 void func_ov005_02364428(Unk_ov005_0236bbac *work);
 void func_ov005_02364718(Unk_ov005_0236bbac *work);
 void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
-void func_ov005_02364f3c(Unk_ov005_0236bbac *work);
+void Ov005CoSelect_LoadIcons(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void func_ov005_02365100(Unk_ov005_0236bbac *work);
 void func_ov005_023656d8(Unk_ov005_0236bbac *work);
@@ -148,7 +148,7 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     Ov005CoSelect_PickCellCo(work);
     func_ov005_02365100(work);
     func_ov005_02365010(work);
-    func_ov005_02364f3c(work);
+    Ov005CoSelect_LoadIcons(work);
     func_ov005_02364428(work);
     func_ov005_02364a2c(work);
     Ov005CoSelect_StartTask();
