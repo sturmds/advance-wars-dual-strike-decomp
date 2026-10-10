@@ -19,7 +19,7 @@ extern MenuStateFrom400 data_0229ef30;
 void func_0210b97c(void);
 void func_0210bbd8(void *cam, void *up, void *target, int load, void *mtx);
 void func_0210bb9c(int sin, int cos);
-void func_ov002_02353158(int side);
+void Battle_StepSideShake(int side);
 void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);
 void Battle_SetupCamera(void);
@@ -66,7 +66,7 @@ void Battle_DrawScene(void)
         *REG_MTX_TRANS = -64 - data_0229ed30.sway[0].x;
         *REG_MTX_TRANS = y;
         *REG_MTX_TRANS = z;
-        func_ov002_02353158(0);
+        Battle_StepSideShake(0);
         idx = ((data_0229ed30.sway[0].angle + 0x600) & 0xffff) >> 4;
         func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
         *REG_MTX_SCALE = 0x2000;
@@ -94,7 +94,7 @@ void Battle_DrawScene(void)
         *REG_MTX_TRANS = data_0229ed30.sway[1].x + 64;
         *REG_MTX_TRANS = y;
         *REG_MTX_TRANS = z;
-        func_ov002_02353158(1);
+        Battle_StepSideShake(1);
         idx = ((data_0229ed30.sway[1].angle + 0x600) & 0xffff) >> 4;
         func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
         *REG_MTX_SCALE = 0x2000;

@@ -83,6 +83,10 @@ src/game/ov002/battle_load_side_backgrounds.c:
     complete
     .text       start:0x023521e4 end:0x02352754
 
+src/game/ov002/battle_step_side_shake.c:
+    complete
+    .text       start:0x02353158 end:0x02353200
+
 src/game/ov002/battle_start_side_shake.c:
     complete
     .text       start:0x02353200 end:0x02353218
