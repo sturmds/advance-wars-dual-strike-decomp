@@ -4,7 +4,7 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8 *work);
-void func_ov005_023627e4(Unk_ov005_0236bba8 *work);
+void Ov005_DrawCoGridRowIcon(Unk_ov005_0236bba8 *work);
 void func_ov005_0236297c(Unk_ov005_0236bba8 *work, int x, int y);
 void func_ov005_02362b00(Unk_ov005_0236bba8 *work);
 
@@ -56,5 +56,5 @@ void Ov005_UpdateCoPicture(Ov005Task *task)
         task->step = 1;
         break;
     }
-    func_ov005_023627e4(work);
+    Ov005_DrawCoGridRowIcon(work);
 }
