@@ -127,3 +127,7 @@ src/game/ov000/func_ov000_022b2c64.c:
 src/game/ov000/func_ov000_022b2cb8.c:
     complete
     .text       start:0x022b2cb8 end:0x022b2cc4
+
+src/game/ov000/layer0_reset_scroll.c:
+    complete
+    .text       start:0x022b2fa8 end:0x022b2fd8
