@@ -3,7 +3,7 @@
 #include "game/terrain.h"
 
 int func_ov006_0235db00(int x, int y);
-void func_ov006_02351828(int x, int y, int value);
+void Ov006_StoreMapCell(int x, int y, int value);
 void Ov006_SetTerrain(int x, int y, int terrain);
 
 extern Unk_02080440 *data_027c027c;
@@ -25,7 +25,7 @@ void func_ov006_0235e04c(int x, int y)
             cell = 42;
         }
     }
-    func_ov006_02351828(x, y, cell);
+    Ov006_StoreMapCell(x, y, cell);
     if (cell == 42) {
         Ov006_SetTerrain(x, y, TERRAIN_SEA);
     }

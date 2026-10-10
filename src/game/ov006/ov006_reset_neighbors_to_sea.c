@@ -11,7 +11,7 @@ int func_ov006_02361114(int x, int y);
 int func_ov006_023622bc(int x, int y);
 int Ov006_MouthHasNoOutlet(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_02351828(int x, int y, int cell);
+void Ov006_StoreMapCell(int x, int y, int cell);
 void func_ov006_02361684(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -21,7 +21,7 @@ void func_ov006_02361684(int x, int y);
         if (func_ov006_02361114(nx, ny) scoreTooLow                      \
             || !func_ov006_023622bc(nx, ny) || !Ov006_MouthHasNoOutlet(nx, ny)) { \
             Ov006_SetTerrain(nx, ny, TERRAIN_SEA);                    \
-            func_ov006_02351828(nx, ny, MAP_CELL_SEA);          \
+            Ov006_StoreMapCell(nx, ny, MAP_CELL_SEA);          \
             func_ov006_02361684(nx, ny);                                 \
         }                                                                \
     }

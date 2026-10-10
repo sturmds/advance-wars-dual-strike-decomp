@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_ov006_02351828(int x, int y, int value);
+void Ov006_StoreMapCell(int x, int y, int value);
 int func_ov006_02351780(int x, int y, int value);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235d7dc(int x, int y);
@@ -12,12 +12,12 @@ void func_ov006_0236146c(int x, int y);
  * and redraws around it (func_ov006_0235d7dc, func_ov006_0236146c). */
 void func_ov006_0235da70(int x, int y, int value)
 {
-    func_ov006_02351828(x, y, value);
+    Ov006_StoreMapCell(x, y, value);
     if (value == 42) {
         return;
     }
     if (value == 1 && func_ov006_02351780(x, y - 1, 1)) {
-        func_ov006_02351828(x, y - 1, 1);
+        Ov006_StoreMapCell(x, y - 1, 1);
     }
     if (value == 1) {
         Ov006_ResetNeighborsToSea(x, y);

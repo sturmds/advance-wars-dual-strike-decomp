@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_ov006_02351828(int x, int y, int value);
+void Ov006_StoreMapCell(int x, int y, int value);
 int func_ov006_02351780(int x, int y, int value);
 void func_ov006_0235dd24(int x, int y);
 
@@ -10,9 +10,9 @@ void func_ov006_0235dd24(int x, int y);
  * guess from this. */
 void func_ov006_0235da1c(int x, int y, int value)
 {
-    func_ov006_02351828(x, y, value);
+    Ov006_StoreMapCell(x, y, value);
     if (func_ov006_02351780(x, y - 1, 1)) {
-        func_ov006_02351828(x, y - 1, 1);
+        Ov006_StoreMapCell(x, y - 1, 1);
     }
     func_ov006_0235dd24(x, y);
 }

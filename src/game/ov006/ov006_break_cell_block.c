@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_ov006_02351828(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
+void Ov006_StoreMapCell(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
 void Ov006_SetCellAndFit(int x, int y, int cell);
 void func_ov006_02366f9c(int x, int y);
 
@@ -54,18 +54,18 @@ void Ov006_BreakCellBlock(int x, int y)
         cell = CELL_AT(x - 1, y - 1);
         if (cell == BLOCK_CENTER) {
             Ov006_SetCellAndFit(x - 2, y - 2, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x - 1, y - 2, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x - 1, y - 2, BLOCK_TOP_RIGHT);
             Ov006_SetCellAndFit(x, y - 2, CELL_WOOD);
             Ov006_SetCellAndFit(x - 2, y - 1, BLOCK_BOTTOM_LEFT);
-            func_ov006_02351828(x - 1, y - 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x - 1, y - 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x, y - 1, CELL_WOOD);
             Ov006_SetCellAndFit(x - 2, y, CELL_WOOD);
             Ov006_SetCellAndFit(x - 1, y, CELL_WOOD);
         } else if (cell == BLOCK_LEFT_ALT || cell == BLOCK_LEFT) {
             Ov006_SetCellAndFit(x - 1, y - 2, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x, y - 2, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x, y - 2, BLOCK_TOP_RIGHT);
             Ov006_SetCellAndFit(x - 1, y - 1, BLOCK_BOTTOM_LEFT);
-            func_ov006_02351828(x, y - 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x, y - 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x - 1, y, CELL_WOOD);
         } else if (cell == BLOCK_TOP_LEFT_ALT || cell == BLOCK_TOP_LEFT) {
             Ov006_SetCellAndFit(x - 1, y - 1, CELL_WOOD);
@@ -79,17 +79,17 @@ void Ov006_BreakCellBlock(int x, int y)
         if (cell == BLOCK_CENTER) {
             Ov006_SetCellAndFit(x, y - 2, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y - 2, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x + 2, y - 2, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x + 2, y - 2, BLOCK_TOP_RIGHT);
             Ov006_SetCellAndFit(x, y - 1, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y - 1, BLOCK_BOTTOM_LEFT);
-            func_ov006_02351828(x + 2, y - 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x + 2, y - 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x + 1, y, CELL_WOOD);
             Ov006_SetCellAndFit(x + 2, y, CELL_WOOD);
         } else if (cell == BLOCK_RIGHT) {
             Ov006_SetCellAndFit(x, y - 2, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x + 1, y - 2, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x + 1, y - 2, BLOCK_TOP_RIGHT);
             Ov006_SetCellAndFit(x, y - 1, BLOCK_BOTTOM_LEFT);
-            func_ov006_02351828(x + 1, y - 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x + 1, y - 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x + 1, y, CELL_WOOD);
         } else if (cell == BLOCK_TOP_RIGHT) {
             Ov006_SetCellAndFit(x, y - 1, CELL_WOOD);
@@ -100,8 +100,8 @@ void Ov006_BreakCellBlock(int x, int y)
     case BLOCK_TOP_RIGHT:
         cell = CELL_AT(x - 1, y + 1);
         if (cell == BLOCK_CENTER) {
-            func_ov006_02351828(x - 1, y, BLOCK_TOP_RIGHT);
-            func_ov006_02351828(x - 1, y + 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x - 1, y, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x - 1, y + 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x - 2, y + 1, BLOCK_BOTTOM_LEFT);
             Ov006_SetCellAndFit(x, y + 1, CELL_WOOD);
             Ov006_SetCellAndFit(x, y + 2, CELL_WOOD);
@@ -123,14 +123,14 @@ void Ov006_BreakCellBlock(int x, int y)
         } else if (cell == BLOCK_RIGHT) {
             Ov006_SetCellAndFit(x + 1, y, CELL_WOOD);
             Ov006_SetCellAndFit(x, y + 1, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x + 1, y + 1, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x + 1, y + 1, BLOCK_TOP_RIGHT);
         } else if (cell == BLOCK_CENTER) {
             Ov006_SetCellAndFit(x, y + 1, CELL_WOOD);
             Ov006_SetCellAndFit(x, y + 2, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y, BLOCK_TOP_LEFT);
             Ov006_SetCellAndFit(x + 1, y + 1, BLOCK_BOTTOM_LEFT);
             Ov006_SetCellAndFit(x + 1, y + 2, CELL_WOOD);
-            func_ov006_02351828(x + 2, y + 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x + 2, y + 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x + 2, y + 2, CELL_WOOD);
         }
         break;
@@ -139,7 +139,7 @@ void Ov006_BreakCellBlock(int x, int y)
         if (CELL_AT(x + 1, y) == BLOCK_CENTER) {
             Ov006_SetCellAndFit(x + 1, y - 1, BLOCK_TOP_LEFT);
             Ov006_SetCellAndFit(x + 1, y, BLOCK_BOTTOM_LEFT);
-            func_ov006_02351828(x + 2, y, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x + 2, y, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x, y - 1, CELL_WOOD);
             Ov006_SetCellAndFit(x, y + 1, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y + 1, CELL_WOOD);
@@ -148,8 +148,8 @@ void Ov006_BreakCellBlock(int x, int y)
         break;
     case BLOCK_RIGHT:
         if (CELL_AT(x - 1, y) == BLOCK_CENTER) {
-            func_ov006_02351828(x - 1, y - 1, BLOCK_TOP_RIGHT);
-            func_ov006_02351828(x - 1, y, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x - 1, y - 1, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x - 1, y, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x - 2, y, BLOCK_BOTTOM_LEFT);
             Ov006_SetCellAndFit(x, y - 1, CELL_WOOD);
             Ov006_SetCellAndFit(x, y + 1, CELL_WOOD);
@@ -159,8 +159,8 @@ void Ov006_BreakCellBlock(int x, int y)
         break;
     case BLOCK_BOTTOM:
         if (CELL_AT(x, y - 1) == BLOCK_CENTER) {
-            func_ov006_02351828(x, y - 2, BLOCK_TOP_RIGHT);
-            func_ov006_02351828(x, y - 1, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x, y - 2, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x, y - 1, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x - 1, y - 1, BLOCK_BOTTOM_LEFT);
             Ov006_SetCellAndFit(x - 1, y, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y, CELL_WOOD);
@@ -171,8 +171,8 @@ void Ov006_BreakCellBlock(int x, int y)
     case BLOCK_TOP:
         if (CELL_AT(x, y + 1) == BLOCK_CENTER) {
             Ov006_SetCellAndFit(x - 1, y + 1, BLOCK_TOP_LEFT);
-            func_ov006_02351828(x, y + 1, BLOCK_TOP_RIGHT);
-            func_ov006_02351828(x, y + 2, BLOCK_BOTTOM_RIGHT);
+            Ov006_StoreMapCell(x, y + 1, BLOCK_TOP_RIGHT);
+            Ov006_StoreMapCell(x, y + 2, BLOCK_BOTTOM_RIGHT);
             Ov006_SetCellAndFit(x - 1, y, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y, CELL_WOOD);
             Ov006_SetCellAndFit(x + 1, y + 1, CELL_WOOD);

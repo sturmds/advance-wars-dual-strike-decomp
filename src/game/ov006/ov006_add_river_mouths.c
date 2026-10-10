@@ -5,7 +5,7 @@
 BOOL func_ov006_02351304(int x, int y);           /* FALSE when the tile is sea, shoal or reef */
 BOOL Ov006_CountNeighborsOnSide(int x, int y, int side); /* side: 0 left, 1 right, 2 up, 4 down */
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_02351828(int x, int y, int cell);
+void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_PlaceShoal(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
@@ -37,7 +37,7 @@ void Ov006_AddRiverMouths(int x, int y)
         if (x > 0 && !func_ov006_02351304(x - 1, y) && CELL_AT(x, y) == CELL_RIVER_HORIZONTAL
             && !Ov006_CountNeighborsOnSide(x - 1, y, 0)) {
             Ov006_SetTerrain(x - 1, y, TERRAIN_RIVER);
-            func_ov006_02351828(x - 1, y, CELL_MOUTH_LEFT);
+            Ov006_StoreMapCell(x - 1, y, CELL_MOUTH_LEFT);
             if (TILE_AT(x - 1, y - 1) == TERRAIN_SHOAL) {
                 Ov006_PlaceShoal(x - 1, y - 1);
             }
@@ -45,7 +45,7 @@ void Ov006_AddRiverMouths(int x, int y)
         if (x < STATE->unk_1c4->mapWidth - 1 && !func_ov006_02351304(x + 1, y)
             && CELL_AT(x, y) == CELL_RIVER_HORIZONTAL && !Ov006_CountNeighborsOnSide(x + 1, y, 1)) {
             Ov006_SetTerrain(x + 1, y, TERRAIN_RIVER);
-            func_ov006_02351828(x + 1, y, CELL_MOUTH_RIGHT);
+            Ov006_StoreMapCell(x + 1, y, CELL_MOUTH_RIGHT);
             if (TILE_AT(x + 1, y - 1) == TERRAIN_SHOAL) {
                 Ov006_PlaceShoal(x + 1, y - 1);
             }
@@ -57,7 +57,7 @@ void Ov006_AddRiverMouths(int x, int y)
     if (y > 0 && !func_ov006_02351304(x, y - 1) && CELL_AT(x, y) == CELL_RIVER_VERTICAL
         && !Ov006_CountNeighborsOnSide(x, y - 1, 2)) {
         Ov006_SetTerrain(x, y - 1, TERRAIN_RIVER);
-        func_ov006_02351828(x, y - 1, CELL_MOUTH_UP);
+        Ov006_StoreMapCell(x, y - 1, CELL_MOUTH_UP);
         if (TILE_AT(x - 1, y - 1) == TERRAIN_SHOAL) {
             Ov006_PlaceShoal(x - 1, y - 1);
         }
@@ -65,7 +65,7 @@ void Ov006_AddRiverMouths(int x, int y)
     if (y < STATE->unk_1c4->mapHeight - 1 && !func_ov006_02351304(x, y + 1)
         && CELL_AT(x, y) == CELL_RIVER_VERTICAL && !Ov006_CountNeighborsOnSide(x, y + 1, 4)) {
         Ov006_SetTerrain(x, y + 1, TERRAIN_RIVER);
-        func_ov006_02351828(x, y + 1, CELL_MOUTH_DOWN);
+        Ov006_StoreMapCell(x, y + 1, CELL_MOUTH_DOWN);
         if (TILE_AT(x - 1, y + 1) == TERRAIN_SHOAL) {
             Ov006_PlaceShoal(x - 1, y + 1);
         }

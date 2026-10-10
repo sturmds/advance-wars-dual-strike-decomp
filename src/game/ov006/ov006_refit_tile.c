@@ -4,7 +4,7 @@
 
 int func_ov006_0235db00(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_02351828(int x, int y, int cell);
+void Ov006_StoreMapCell(int x, int y, int cell);
 void func_ov006_02361de0(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235da70(int x, int y, int arg);
@@ -37,7 +37,7 @@ void Ov006_RefitTile(int x, int y, int refitRivers)
         if (cell == CELL_SEA) {
             Ov006_SetTerrain(x, y, TERRAIN_SEA);
         }
-        func_ov006_02351828(x, y, cell);
+        Ov006_StoreMapCell(x, y, cell);
     }
     if (refitRivers) {
         if (TERRAIN_AT(x, y - 1) == TERRAIN_RIVER) {
@@ -57,11 +57,11 @@ void Ov006_RefitTile(int x, int y, int refitRivers)
     if (terrain == TERRAIN_PLAIN) {
         func_ov006_0235da70(x, y, 1);
     } else if (terrain == TERRAIN_ROAD) {
-        func_ov006_02351828(x, y, func_ov006_023670ec(x, y));
-        func_ov006_02351828(x, y, func_ov006_02351238(x, y));
+        Ov006_StoreMapCell(x, y, func_ov006_023670ec(x, y));
+        Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
     } else if (terrain == TERRAIN_MOUNTAIN) {
         func_ov006_02363198(x, y);
     } else if (terrain == TERRAIN_WOOD) {
-        func_ov006_02351828(x, y, func_ov006_02351238(x, y));
+        Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
     }
 }

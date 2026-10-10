@@ -4,7 +4,7 @@
 int func_ov006_02369e04(int x, int y, int dir);      /* guess: how tile x, y joins its neighbour in direction dir (0: not at all) */
 int func_ov006_023681b0(int x, int y, int flag);     /* guess: picks the cell code for tile x, y */
 int func_ov006_0236766c(int x, int y);               /* guess: picks the cell code for tile x, y */
-void func_ov006_02351828(int x, int y, int cell);    /* guess: sets the cell code of tile x, y */
+void Ov006_StoreMapCell(int x, int y, int cell);    /* guess: sets the cell code of tile x, y */
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -47,14 +47,14 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         }
         if (func_ov006_02369e04(x, y, i) != 0
             && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
-            func_ov006_02351828(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
-            func_ov006_02351828(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
         }
     }
     cell = CELL_AT(x, y);
     if (IS_JOINED_CELL(cell)) {
-        func_ov006_02351828(x, y, func_ov006_023681b0(x, y, 0));
+        Ov006_StoreMapCell(x, y, func_ov006_023681b0(x, y, 0));
     }
 
     for (i = 0; i < 4; i++) {
@@ -63,14 +63,14 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         }
         if (func_ov006_02369e04(x, y, i) != 0
             && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
-            func_ov006_02351828(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
-            func_ov006_02351828(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
         }
     }
     cell = CELL_AT(x, y);
     if (IS_JOINED_CELL(cell)) {
-        func_ov006_02351828(x, y, func_ov006_0236766c(x, y));
+        Ov006_StoreMapCell(x, y, func_ov006_0236766c(x, y));
     }
 
     for (i = 0; i < 4; i++) {
@@ -79,9 +79,9 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         }
         if (func_ov006_02369e04(x, y, i) != 0
             && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
-            func_ov006_02351828(NX, NY, func_ov006_0236766c(NX, NY));
+            Ov006_StoreMapCell(NX, NY, func_ov006_0236766c(NX, NY));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
-            func_ov006_02351828(NX, NY, func_ov006_0236766c(NX, NY));
+            Ov006_StoreMapCell(NX, NY, func_ov006_0236766c(NX, NY));
         }
     }
 }

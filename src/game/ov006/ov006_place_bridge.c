@@ -13,7 +13,7 @@ int Ov006_IsPlainRiver(int x, int y);
 void Ov006_RemoveProperty(int x, int y);
 void func_ov006_0235ddac(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_02351828(int x, int y, int cell);
+void Ov006_StoreMapCell(int x, int y, int cell);
 void func_ov006_0235d7dc(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -25,7 +25,7 @@ void func_ov006_0235d7dc(int x, int y);
         func_ov006_0235ddac(x, y);                   \
     }                                                \
     Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);       \
-    func_ov006_02351828(x, y, cell);                 \
+    Ov006_StoreMapCell(x, y, cell);                 \
     func_ov006_0235d7dc(x, y)
 
 /* Puts a bridge on tile x, y where Ov006_CanPlaceBridge allows one, with the
@@ -84,7 +84,7 @@ void Ov006_PlaceBridge(int x, int y)
             if (cell > 0) {
                 Ov006_RemoveProperty(x, y);
                 Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);
-                func_ov006_02351828(x, y, cell);
+                Ov006_StoreMapCell(x, y, cell);
             }
             return;
         case DESIGN_NB_RIGHT | DESIGN_NB_DOWN:
@@ -123,6 +123,6 @@ void Ov006_PlaceBridge(int x, int y)
     if (cell > 0) {
         Ov006_RemoveProperty(x, y);
         Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);
-        func_ov006_02351828(x, y, cell);
+        Ov006_StoreMapCell(x, y, cell);
     }
 }

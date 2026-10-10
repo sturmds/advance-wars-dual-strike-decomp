@@ -7,7 +7,7 @@ int func_ov006_02360308(int x, int y);
 int Ov006_GetNeighborMask(int x, int y);
 void Ov006_RemoveProperty(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_02351828(int x, int y, int value);
+void Ov006_StoreMapCell(int x, int y, int value);
 void func_ov006_0235d7dc(int x, int y);
 
 /* Puts a bridge on tile x, y: a horizontal piece when func_ov006_02360308
@@ -42,7 +42,7 @@ void Ov006_PlaceBridgeByPattern(int x, int y)
     if (cell > 0) {
         Ov006_RemoveProperty(x, y);
         Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);
-        func_ov006_02351828(x, y, cell);
+        Ov006_StoreMapCell(x, y, cell);
         func_ov006_0235d7dc(x, y);
     }
 }
