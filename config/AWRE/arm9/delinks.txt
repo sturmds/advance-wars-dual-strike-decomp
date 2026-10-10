@@ -5325,6 +5325,10 @@ src/game/main/units/player_get_unit_move_range.c:
     complete
     .text       start:0x0209e248 end:0x0209e280
 
+src/game/main/units/current_player_get_unit_move_range.c:
+    complete
+    .text       start:0x0209e280 end:0x0209e334
+
 src/game/main/units/unit_type_best_base_damage.c:
     complete
     .text       start:0x0209e3e8 end:0x0209e424
