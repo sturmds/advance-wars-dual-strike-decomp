@@ -53,7 +53,7 @@ Battle_InitHpCells kind:function(arm,size=0x6c) addr:0x02355860
 Battle_CompareHpToCellStep kind:function(arm,size=0x54) addr:0x023558cc
 func_ov002_02355920 kind:function(arm,size=0x178) addr:0x02355920
 func_ov002_02355a98 kind:function(arm,size=0x470) addr:0x02355a98
-func_ov002_02355f08 kind:function(arm,size=0xe8) addr:0x02355f08
+Battle_PickHpDrainProfiles kind:function(arm,size=0xe8) addr:0x02355f08
 func_ov002_02355ff0 kind:function(arm,size=0x134) addr:0x02355ff0
 Battle_GetSideMatchupValue kind:function(arm,size=0xbc) addr:0x02356124
 func_ov002_023561e0 kind:function(arm,size=0x120) addr:0x023561e0
@@ -2014,11 +2014,11 @@ data_ov002_023698dc kind:data(any) addr:0x023698dc
 data_ov002_023698e4 kind:data(any) addr:0x023698e4
 data_ov002_023698ec kind:data(any) addr:0x023698ec
 data_ov002_023698f4 kind:data(any) addr:0x023698f4
-data_ov002_023698fc kind:data(any) addr:0x023698fc
-data_ov002_02369910 kind:data(any) addr:0x02369910
-data_ov002_02369924 kind:data(any) addr:0x02369924
-data_ov002_02369938 kind:data(any) addr:0x02369938
-data_ov002_0236994c kind:data(any) addr:0x0236994c
+gBattleDrainProfile0 kind:data(any) addr:0x023698fc
+gBattleDrainProfile1 kind:data(any) addr:0x02369910
+gBattleDrainProfile2 kind:data(any) addr:0x02369924
+gBattleDrainProfile3 kind:data(any) addr:0x02369938
+gBattleDrainProfile4 kind:data(any) addr:0x0236994c
 data_ov002_02369960 kind:data(any) addr:0x02369960
 data_ov002_0236996c kind:data(any) addr:0x0236996c
 data_ov002_02369978 kind:data(any) addr:0x02369978

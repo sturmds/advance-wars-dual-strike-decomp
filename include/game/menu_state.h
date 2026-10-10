@@ -135,7 +135,7 @@ typedef struct BattleScreenWork {
     BattleStepList stepLists[2];
     u8 pad_2ec[0x310 - 0x2ec];
     BattleEntry unk_310[2][5];
-    const void *unk_400[2];
+    const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
     u16 unk_408[2];                    /* cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init */
     u8 pad_410[0x490 - 0x410];
