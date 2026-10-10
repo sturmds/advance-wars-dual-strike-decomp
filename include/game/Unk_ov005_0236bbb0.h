@@ -26,7 +26,7 @@ typedef struct ShopButton {
  * items with prices (from the 28-byte records at data_0216cb60), six rows
  * per page. */
 typedef struct Unk_ov005_0236bbb0 {
-    int points;                        /* shown at the top (Ov005_DrawShopPoints); func_ov005_02367ad8 copies the first word of gPlayRecords */
+    int points;                        /* shown at the top (Ov005_DrawShopPoints); Ov005_LoadShopItems copies the first word of gPlayRecords */
     int unk_04;
     u32 unk_08;
     int unk_0c;
@@ -34,7 +34,7 @@ typedef struct Unk_ov005_0236bbb0 {
     int unk_14;
     int redrawRows;                    /* 1: Ov005_DrawShopPage clears the rows first */
     int unk_1c;
-    u32 shopItemCount;                 /* records of data_0216cb60 that func_ov005_02367ad8 scans */
+    u32 shopItemCount;                 /* records of data_0216cb60 that Ov005_LoadShopItems scans */
     int cursorRow;                     /* row on the page, 0-5 */
     int unk_28;
     int unk_2c;                        /* set to cursorRow when it changes */
@@ -46,7 +46,7 @@ typedef struct Unk_ov005_0236bbb0 {
     int itemCount;                     /* items in `items` */
     int highlightCursorRow;                       /* 1: the cursor row's name and price use palette 9 */
     int showCursor;                       /* 1: the menu cursor shows on the cursor row */
-    ShopItem *items;                   /* the items for sale, filled by func_ov005_02367ad8 */
+    ShopItem *items;                   /* the items for sale, filled by Ov005_LoadShopItems */
     ShopItem itemBuf[256];             /* items points here */
     ShopButton *buttons;               /* points at buttonBuf */
     ShopButton buttonBuf[6];

@@ -27,7 +27,7 @@ void Font_LoadDigits(int baseTile);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void func_020fd62c(u8 *palette, int a, int b, int c);
 void Palette_Flush(void);
-void func_ov005_02367ad8(Unk_ov005_0236bbb0 *work);
+void Ov005_LoadShopItems(Unk_ov005_0236bbb0 *work);
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work);
 struct Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
 
@@ -52,7 +52,7 @@ extern char data_ov005_0236b4ec[];     /* "044" */
  * background from /rikiishi, the digit font, BG palette 0 copied to
  * palette 9, the icons of bank 4 (212 and the digits 140-149 that
  * Ov005_DrawShopPoints draws the points with), then the list of items for
- * sale (func_ov005_02367ad8) and its first page. Starts song 12 and resets
+ * sale (Ov005_LoadShopItems) and its first page. Starts song 12 and resets
  * task->step to 0 for the next update function. */
 void Ov005_SetUpShopScreen(Ov005Task *task)
 {
@@ -124,7 +124,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     work->shopItemCount = 0x100;
     work->highlightCursorRow = 0;
     work->showCursor = 0;
-    func_ov005_02367ad8(work);
+    Ov005_LoadShopItems(work);
     Ov005_InitShopPaging(work);
     work->unk_04 = 0;
     work->unk_08 = 0;

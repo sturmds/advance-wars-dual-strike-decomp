@@ -800,6 +800,10 @@ src/game/ov005/shop/ov005_collect_shop_items.c:
     complete
     .text       start:0x02367a60 end:0x02367ad8
 
+src/game/ov005/shop/ov005_load_shop_items.c:
+    complete
+    .text       start:0x02367ad8 end:0x02367b68
+
 src/game/ov005/shop/ov005_copy_shop_item_if_for_sale.c:
     complete
     .text       start:0x02367b68 end:0x02367bd0
