@@ -207,6 +207,10 @@ src/game/ov006/ov006_choose_button39.c:
     complete
     .text       start:0x02355318 end:0x0235535c
 
+src/game/ov006/ov006_choose_button34.c:
+    complete
+    .text       start:0x0235535c end:0x023553a0
+
 src/game/ov006/ov006_add_screen0_button.c:
     complete
     .text       start:0x023554a4 end:0x02355514
