@@ -7,7 +7,7 @@ void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 /* Queues two sprites 128 pixels apart, the second 32 tiles after the first.
  * An offscreen y is replaced by 192. `flags` goes to bits 10 and up of the
  * y word. */
-void Ov005_QueueSpritePair(int unused, int x, int y, int tile, u16 flags)
+void Ov005_QueueSpritePair(void *work, int x, int y, int tile, u16 flags)
 {
     int attrY;
 
