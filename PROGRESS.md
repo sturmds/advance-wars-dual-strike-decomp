@@ -67,8 +67,10 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov002/battle_footstep_task_start.c` | BattleFootstepTask_Start | 712 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
+| `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 |
 | `src/game/ov002/func_ov002_02353254.c` | func_ov002_02353254 | 308 |
 | `src/game/ov002/func_ov002_02354814.c` | func_ov002_02354814 | 216 |
+| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 |
 | `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 |
 | `src/game/ov002/func_ov002_0235d224.c` | func_ov002_0235d224 | 644 |

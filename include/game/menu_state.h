@@ -168,7 +168,7 @@ typedef struct BattleScreenWork {
     const u32 *hitSpriteTables[2];     /* per side: sprite made on a hit of the second hit list, a guess */
     const u32 *unk_58[2];              /* per side, like spriteTables */
     const u32 *unk_60[2];              /* per side, like spriteTables */
-    u8 pad_068[0x070 - 0x068];
+    const void *unk_68[2];             /* per side */
     const u32 *unk_70;                 /* sprite table, the same for both sides */
     BattleMotion motions[2][5];        /* by side, then by cell */
     union {
@@ -190,7 +190,8 @@ typedef struct BattleScreenWork {
     const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
     u16 unk_408[2];                    /* cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init; func_ov002_02353254 sets them to sway[0].x >> 4 */
-    u8 pad_410[0x490 - 0x410];
+    u16 unk_410[32];                   /* unk_450 brightened halfway to white */
+    u16 unk_450[32];                   /* a side's palette, loaded by func_0200be6c */
     u8 unk_490[0x80];                  /* copied from res_battle 0x828 */
     u8 unk_510[0x240];                 /* copied from res_battle 0x88c */
     u8 unk_750[0x80];                  /* copied from res_battle 0xb54 */

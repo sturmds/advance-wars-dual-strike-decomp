@@ -1,0 +1,239 @@
+#include "types.h"
+#include "game/battle_scene.h"
+#include "game/battle_gfx.h"
+#include "game/menu_state.h"
+#include "game/BattleSideData.h"
+#include "game/unit_stats.h"
+
+extern MenuState gMenuState;
+
+u32 File_UnpackTo(void *dest, const char *path);
+int FS_ChangeDir(const char *path);
+void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
+void func_0210c930(void);              /* guess: undoes func_0210cb04 */
+void func_0210c8e8(void);
+void func_0210c81c(void);
+void func_0200be6c(void *dest, const char *path);
+void func_0210e138(void *start, u32 size);
+void func_0210c874(const void *src, u32 offset, u32 size);
+
+extern char data_ov002_023600e4[];
+extern const BattleGfxFile *data_ov002_02369830;
+extern const u32 data_ov002_02360b90[];
+extern char data_ov002_0236049c[];
+extern char data_ov002_023604a0[];
+extern char data_ov002_023604a4[];
+extern char data_ov002_023604a8[];
+
+#define BATTLE (gMenuState.battle)
+#define SCENE Ov002_gBattleScene
+
+/* VRAM bank A while it is mapped to the CPU, in 32-byte tiles. */
+#define VRAM_LCDC_A 0x06800000
+#define TILE_ADDR(tile) ((void *)(VRAM_LCDC_A + (tile) * 32))
+
+/* Unpacks a file to the tile and gives the tiles it takes. Unpacks it twice, as the
+ * original does. */
+#define LOAD_TILES(path) \
+    (File_UnpackTo(TILE_ADDR(tile), path) & 31 ? (File_UnpackTo(TILE_ADDR(tile), path) >> 5) + 1 \
+                                                : File_UnpackTo(TILE_ADDR(tile), path) >> 5)
+
+/* First tile of graphics kind k of the side. In the battle screen the first 0x24 bytes
+ * of MenuState hold these, two per kind. */
+#define TILE_START(k) (((u16(*)[2])gMenuState.colours)[k][side])
+
+/* A unit type past UNIT_OOZIUM; it gets the same extra file as UNIT_PIPERUNNER. */
+#define UNIT_TYPE_30 30
+
+/* This function reads BattleSideData.effects[0-8] as graphics records: 0-1 by weapon,
+ * 2-3 and 4-5 by the other side's weapon, then 6, 7 and 8. Needed to match: entries 2-5
+ * are indexed from &effects[2] and &effects[4]. */
+#define GFX_FILE(effect) ((const BattleGfxFile *)(effect))
+#define BY_STYLE(effect) ((const BattleGfxByStyle *)(effect))
+
+/* Needed to match: the empty-name test loads the first character signed. */
+#define IS_EMPTY(path) ((s8)(path)[0] == '\0')
+
+/* Loads the sprite graphics of both sides of the battle screen from /battle into VRAM bank A,
+ * from tile 0x300 on, and keeps the first tile and the sprite table of each in MenuState.
+ * Most files come in one version per army style. Then loads each side's palette by army,
+ * with a copy brightened halfway to white, and copies both to palette memory.
+ * Partial match: the palette pointer of the brightening loop comes from the literal pool,
+ * and the artillery test recomputes the side's record address. */
+void func_ov002_02352754(void)
+{
+    u8 weapon;
+    int tile;
+    int side;
+    int other;
+    int i;
+    BOOL isFirst;
+    u8 otherWeapon;
+    MenuState *menu;                   /* needed to match: the palette offsets are added at run time */
+    const u16 *palette;
+
+    tile = 0x300;
+    FS_ChangeDir(data_ov002_023600e4);
+    func_0210cb04();
+    for (side = 0; side < 2; side++) {
+        const BattleGfxByStyle *byStyle;
+        const BattleGfxFile *file;
+        const BattleGfxFile *main;
+        const char *path;
+
+        other = (side + 1) & 1;
+        weapon = SCENE->sides[side].usesSecondary;
+        otherWeapon = SCENE->sides[other].usesSecondary;
+
+        TILE_START(0) = tile;
+        byStyle = &BATTLE.unk_27c[side]->weapons[weapon]->gfx;
+        if (byStyle != NULL) {
+            path = byStyle->files[SCENE->sides[side].armyStyle - 1];
+            if (IS_EMPTY(path)) {
+                BATTLE.spriteTables[side] = NULL;
+            } else {
+                tile += LOAD_TILES(path);
+                BATTLE.spriteTables[side] = BATTLE.unk_27c[side]->weapons[weapon]->gfx.tables[SCENE->sides[side].armyStyle - 1];
+            }
+        } else {
+            BATTLE.spriteTables[side] = NULL;
+        }
+
+        TILE_START(1) = tile;
+        byStyle = &BATTLE.unk_27c[side]->unk_08[weapon]->gfx;
+        if (byStyle != NULL) {
+            path = byStyle->files[SCENE->sides[side].armyStyle - 1];
+            if (IS_EMPTY(path)) {
+                BATTLE.unk_30[side] = NULL;
+            } else {
+                tile += LOAD_TILES(path);
+                BATTLE.unk_30[side] = BATTLE.unk_27c[side]->unk_08[weapon]->gfx.tables[SCENE->sides[side].armyStyle - 1];
+            }
+        } else {
+            BATTLE.unk_30[side] = NULL;
+        }
+
+        TILE_START(2) = tile;
+        byStyle = &BATTLE.unk_27c[side]->unk_10->gfx;
+        if (byStyle != NULL) {
+            path = byStyle->files[SCENE->sides[side].armyStyle - 1];
+            if (IS_EMPTY(path)) {
+                BATTLE.unk_38[side] = NULL;
+            } else {
+                tile += LOAD_TILES(path);
+                BATTLE.unk_38[side] = BATTLE.unk_27c[side]->unk_10->gfx.tables[SCENE->sides[side].armyStyle - 1];
+            }
+        } else {
+            BATTLE.unk_38[side] = NULL;
+        }
+
+        TILE_START(3) = tile;
+        file = BATTLE.unk_27c[side]->unk_1c[weapon];
+        if (file != NULL) {
+            tile += LOAD_TILES(file->file);
+            BATTLE.unk_40[side] = (void *)BATTLE.unk_27c[side]->unk_1c[weapon]->table;
+        } else {
+            BATTLE.unk_40[side] = NULL;
+        }
+
+        TILE_START(4) = tile;
+        byStyle = BY_STYLE(BATTLE.unk_27c[side]->effects[weapon]);
+        if (byStyle != NULL) {
+            tile += LOAD_TILES(byStyle->files[0]);
+            BATTLE.unk_48[side] = (u32)BY_STYLE(BATTLE.unk_27c[side]->effects[weapon])->tables[0];
+        } else {
+            BATTLE.unk_48[side] = 0;
+        }
+
+        TILE_START(5) = tile;
+        file = GFX_FILE((&BATTLE.unk_27c[other]->effects[2])[otherWeapon]);
+        if (file != NULL) {
+            tile += LOAD_TILES(file->file);
+            BATTLE.hitSpriteTables[side] = GFX_FILE((&BATTLE.unk_27c[other]->effects[2])[otherWeapon])->table;
+        } else {
+            BATTLE.hitSpriteTables[side] = NULL;
+        }
+
+        TILE_START(6) = tile;
+        main = GFX_FILE(BATTLE.unk_27c[side]->effects[6]);
+        if (main != NULL && main != data_ov002_02369830) {
+            tile += LOAD_TILES(main->file);
+            BATTLE.unk_58[side] = GFX_FILE(BATTLE.unk_27c[side]->effects[6])->table;
+        } else {
+            file = GFX_FILE((&BATTLE.unk_27c[other]->effects[4])[otherWeapon]);
+            if (file != NULL) {
+                tile += LOAD_TILES(file->file);
+                BATTLE.unk_58[side] = GFX_FILE((&BATTLE.unk_27c[other]->effects[4])[otherWeapon])->table;
+            } else if (main != NULL) {
+                tile += LOAD_TILES(main->file);
+                BATTLE.unk_58[side] = GFX_FILE(BATTLE.unk_27c[side]->effects[6])->table;
+            } else {
+                BATTLE.unk_58[side] = NULL;
+            }
+        }
+
+        TILE_START(7) = tile;
+        file = GFX_FILE(BATTLE.unk_27c[side]->effects[7]);
+        if (file != NULL) {
+            tile += LOAD_TILES(file->file);
+            BATTLE.unk_60[side] = GFX_FILE(BATTLE.unk_27c[side]->effects[7])->table;
+        } else {
+            BATTLE.unk_60[side] = NULL;
+        }
+
+        BATTLE.unk_20[side] = tile;
+        /* BATTLE_SIDE_UNIT_TYPE(side), written from the side's record to match. */
+        if (((u8 *)&SCENE->sides[side])[-1] == UNIT_ARTILLERY && side != SCENE->attackerSide) {
+            BATTLE.unk_68[side] = NULL;
+        } else {
+            byStyle = BY_STYLE(BATTLE.unk_27c[side]->effects[8]);
+            if (byStyle != NULL) {
+                path = byStyle->files[SCENE->sides[side].armyStyle - 1];
+            if (IS_EMPTY(path)) {
+                    BATTLE.unk_68[side] = NULL;
+                } else {
+                    tile += LOAD_TILES(path);
+                    BATTLE.unk_68[side] = BY_STYLE(BATTLE.unk_27c[side]->effects[8])->tables[0];
+                }
+            } else {
+                BATTLE.unk_68[side] = NULL;
+            }
+        }
+    }
+
+    BATTLE.unk_24 = tile;
+    BATTLE.unk_70 = data_ov002_02360b90;
+    tile += LOAD_TILES(data_ov002_0236049c);
+    BATTLE.pipeTexture = tile;
+    if (BATTLE_SIDE_UNIT_TYPE(0) == UNIT_PIPERUNNER || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_PIPERUNNER
+        || BATTLE_SIDE_UNIT_TYPE(0) == UNIT_TYPE_30 || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_TYPE_30) {
+        tile += LOAD_TILES(data_ov002_023604a0);
+    }
+    func_0210c930();
+    func_0210c8e8();
+    menu = &gMenuState;
+    palette = menu->battle.unk_450;
+
+    for (side = 0; side < 2; side++) {
+        func_0200be6c(menu->battle.unk_450, menu->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
+        /* Each colour halfway to white. */
+        for (i = 0; i < 32; i++) {
+            int colour = palette[i];
+
+            menu->battle.unk_410[i] = ((((colour & 0x7c00) >> 10) + 31) >> 1) << 10
+                | ((((colour & 0x3e0) >> 5) + 31) >> 1) << 5
+                | (((colour & 31) + 31) >> 1);
+        }
+        func_0210e138(menu->battle.unk_410, sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
+        isFirst = side == 0 ? TRUE : FALSE;
+        func_0210c874(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
+        func_0210c874(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
+    }
+    func_0200be6c((void *)0x06890100, data_ov002_023604a4);
+    func_0200be6c((void *)0x06890100, data_ov002_023604a4);
+    if (BATTLE_SIDE_UNIT_TYPE(0) == UNIT_PIPERUNNER || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_PIPERUNNER
+        || BATTLE_SIDE_UNIT_TYPE(0) == UNIT_TYPE_30 || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_TYPE_30) {
+        func_0200be6c((void *)0x068901c0, data_ov002_023604a8);
+    }
+    func_0210c81c();
+}

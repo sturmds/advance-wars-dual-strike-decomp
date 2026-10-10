@@ -2,11 +2,12 @@
 #define GAME_BATTLESIDEDATA_H
 
 #include "types.h"
+#include "game/battle_gfx.h"
 #include "game/battle_fighter.h"
 
 /* Reached through BattleSideData.unk_10. mwcc packs bit fields from the low end. */
 typedef struct BattleSideData_10 {
-    u8 pad_00[0x28];
+    BattleGfxByStyle gfx;
     u8 unk_28_lo : 4;
     u8 unk_28_hi : 4;
     u8 unk_29_lo : 4;
@@ -55,7 +56,7 @@ typedef struct BattleCellPos {
 
 /* Reached through BattleSideData.weapons. */
 typedef struct BattleSideWeapon {
-    u8 pad_00[0x28];
+    BattleGfxByStyle gfx;              /* the HP cell sprites (BattleScreenWork.spriteTables) */
     u8 spriteIndex : 4;                /* index argument of BattleSpriteTask_Create for the HP cells */
     u8 unk_28_hi : 4;
     u8 unk_29_lo : 4;
@@ -69,9 +70,9 @@ typedef struct BattleSideData {
     const BattleSideWeapon *weapons[2]; /* by BattleSide.usesSecondary */
     const BattleSideWeapon *unk_08[2]; /* by BattleSide.usesSecondary */
     BattleSideData_10 *unk_10;
-    u8 pad_14[4];
+    const char *const *paletteFiles;   /* by BattleSide.army - 1 */
     const BattleCellPos *cellPositions; /* by cell */
-    u8 pad_1c[0x24 - 0x1c];
+    const BattleGfxFile *unk_1c[2];    /* by BattleSide.usesSecondary */
     BattleEffectParams *effects[9];    /* indexed by byte 9 of the side's 12-byte record in the scene; length a guess */
     u8 unk_48;                         /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
     u8 unk_49[1];                      /* length unknown; indexed by byte 9 of the side's 12-byte record in the scene */

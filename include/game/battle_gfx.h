@@ -1,0 +1,20 @@
+#ifndef GAME_BATTLE_GFX_H
+#define GAME_BATTLE_GFX_H
+
+#include "types.h"
+
+/* A graphics file of the ov002 battle screen, one per army style (1-5), and the sprite
+ * table that goes with each. The file names are short paths stored in place; an empty
+ * name means the style has none. */
+typedef struct BattleGfxByStyle {
+    char files[5][4];                  /* by army style - 1 */
+    const void *tables[5];             /* by army style - 1 */
+} BattleGfxByStyle;
+
+/* A graphics file of the ov002 battle screen and its sprite table. */
+typedef struct BattleGfxFile {
+    char file[4];
+    const void *table;
+} BattleGfxFile;
+
+#endif
