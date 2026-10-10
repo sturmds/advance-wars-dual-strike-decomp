@@ -4,7 +4,7 @@
 
 int func_ov003_0235d518(int player, int kind, int terrain);
 void func_ov003_02361fc0(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
-void func_ov003_02359064(Ov003Unit *unit, int dir, int distance, int flag);
+void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight);
 int func_ov003_0235d940(int player);
 void func_ov003_0235ca50(int player);
 int func_ov003_0236211c(Ov003Input *input, int x, int y, int size);
@@ -77,16 +77,16 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
         unit->unk_16++;
     }
     if (dx < 0) {
-        func_ov003_02359064(unit, OV003_DIR_LEFT, -dx, straight);
+        Ov003Unit_Move(unit, OV003_DIR_LEFT, -dx, straight);
     }
     if (dx > 0) {
-        func_ov003_02359064(unit, OV003_DIR_RIGHT, dx, straight);
+        Ov003Unit_Move(unit, OV003_DIR_RIGHT, dx, straight);
     }
     if (dy < 0) {
-        func_ov003_02359064(unit, OV003_DIR_UP, -dy, straight);
+        Ov003Unit_Move(unit, OV003_DIR_UP, -dy, straight);
     }
     if (dy > 0) {
-        func_ov003_02359064(unit, OV003_DIR_DOWN, dy, straight);
+        Ov003Unit_Move(unit, OV003_DIR_DOWN, dy, straight);
     }
 
     switch (unit->unk_12_0) {

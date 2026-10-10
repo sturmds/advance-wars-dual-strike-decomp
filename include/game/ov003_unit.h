@@ -40,7 +40,7 @@ typedef struct Ov003Unit {
     u8 unk_1f;
 } Ov003Unit;
 
-/* Ov003Unit.unk_12_0 (facing) and the direction passed to func_ov003_02359064. */
+/* Ov003Unit.unk_12_0 (facing) and the direction passed to Ov003Unit_Move. */
 #define OV003_DIR_UP    1
 #define OV003_DIR_DOWN  2
 #define OV003_DIR_LEFT  3
