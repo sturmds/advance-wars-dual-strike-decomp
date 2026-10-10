@@ -348,7 +348,9 @@ def layout(chs: list[Chunk], kind: str, types: Types) -> tuple[list[Item], int, 
         it.offset = 0 if kind == "union" else align_up(off, it.align)
         if it.name == "@":
             it.name = f"@{it.offset:x}"  # an anonymous struct or union: known by its offset
-        if it.name.startswith("pad") and not it.nested:
+        if it.name.startswith("pad") and not it.nested and it.width is None:
+            # Padding is written again on a merge. A bit-field named pad_*
+            # stays a field: the bit-fields after it share its storage unit.
             it.name = None
             carry, it.lead = it.lead, []
         items.append(it)
@@ -394,7 +396,7 @@ def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | 
     t_items, t_size, _ = layout(chunks("".join(theirs))[0], kind, types)
     b_items = layout(chunks("".join(base))[0], kind, types)[0] if base else []
     if kind == "union":
-        return merge_union(o_items, t_items, b_items, o_tail, rep)
+        return merge_union(o_items, t_items, b_items, o_tail, types, rep, where)
     named = [it for it in o_items if it.name]
     for t in t_items:
         if not t.name:
@@ -459,7 +461,7 @@ def merge_same(named: list[Item], o: Item, t: Item, base: list[Item], types: Typ
         # wins, as in a 3-way merge. Mainline's newer users of an old name
         # then fail to build; the summary names the field.
         named[named.index(o)] = t
-        if o.name != t.name:
+        if o.name != t.name and simple(o.name) and simple(t.name):
             rep.notes.append(f"took the commit's rename {where}.{o.name} -> {t.name}")
     elif o.name != t.name and simple(o.name) and simple(t.name):
         rep.rename(t.name, o.name, where)
@@ -504,8 +506,10 @@ def merge_nested(o: Item, t: Item, base: list[Item], types: Types, rep: Report, 
     o.size = max(o.size, t.size)
 
 
-def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: list[str], rep: Report) -> list[str]:
-    """Members of a union all start at 0: merge them by name."""
+def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: list[str],
+                types: Types, rep: Report, where: str) -> list[str]:
+    """Members of a union all start at 0: merge them by name. Two versions
+    of an anonymous struct member are merged field by field."""
     out = list(ours)
     by_name = {it.name: it for it in out}
     based = {it.name: it for it in base}
@@ -514,8 +518,14 @@ def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: li
         if o is None:
             out.append(t)
             rep.added_fields += 1
-        elif o.text != t.text and t.name in based and based[t.name].text == o.text:
+        elif o.text == t.text:
+            continue
+        elif t.name in based and based[t.name].text == o.text:
             out[out.index(o)] = t
+        elif o.nested and t.nested and o.name.startswith("@"):
+            merge_nested(o, t, base, types, rep, where)
+        elif o.code != t.code:
+            rep.notes.append(f"kept mainline's {where}.{o.name} as `{o.code}` (the commit has `{t.code}`)")
     return [line for it in out for line in it.lead + it.lines] + tail
 
 

@@ -124,6 +124,40 @@ class FieldRenameTest(RepoCase):
         self.assertIn("foo->width", self.repo.read("src/f.c"))
 
 
+class AnonymousUnionTest(RepoCase):
+    """Both sides lay an anonymous union over the same field (b12/o3s2:
+    Ov003State.unk_1d6, Unk_ov003_0235dd38.unk_4c)."""
+    BASE = "    u8 a;\n    u8 b;\n    u16 unk_2;\n    u8 c;\n"
+    VIEW = ("    u8 a;\n    u8 b;\n    union {{\n        u16 unk_2;\n        struct {{\n"
+            "{inner}        }};\n    }};\n    u8 c;\n{tail}")
+
+    def test_both_sides_add_members(self):
+        r = self.repo.replay(
+            base={"include/foo.h": struct("Foo", self.BASE)},
+            ours={"include/foo.h": struct("Foo", self.VIEW.format(
+                inner="            u8 pad_2;\n            u8 unk_3;  /* waits while nonzero */\n", tail=""))},
+            theirs={"include/foo.h": struct("Foo", self.VIEW.format(
+                inner="            u8 flags;\n            u8 pad_3;\n", tail="    u8 d;\n"))})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        text = self.repo.read("include/foo.h")
+        for name in ("u8 flags;", "u8 unk_3;  /* waits while nonzero */", "u16 unk_2;", "u8 d;"):
+            self.assertEqual(text.count(name), 1, name + "\n" + text)
+
+    def test_bit_field_named_pad(self):
+        """A bit-field named pad_* followed by another one in the same byte
+        crashed the merge (TypeError at `last.name +=`)."""
+        r = self.repo.replay(
+            base={"include/foo.h": struct("Foo", self.BASE)},
+            ours={"include/foo.h": struct("Foo", self.VIEW.format(
+                inner="            u8 pad_2;\n            u8 unk_3;\n", tail=""))},
+            theirs={"include/foo.h": struct("Foo", self.VIEW.format(
+                inner="            u8 pad_2_0 : 4;\n            u8 unk_2_4 : 4;\n            u8 unk_3;\n",
+                tail=""))})
+        self.assertNotIn("Traceback", r.stderr)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("u8 unk_2_4 : 4;", self.repo.read("include/foo.h"))
+
+
 def header(body: str) -> str:
     return f'#ifndef T_H\n#define T_H\n\n#include "types.h"\n\n{body}\n#endif\n'
 
