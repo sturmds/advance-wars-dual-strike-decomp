@@ -127,4 +127,8 @@ typedef struct Ov003Input {
 extern Ov003State *data_ov003_02364928;
 extern Ov003Map *data_ov003_02364a88;
 
+/* Camera position in pixels: Ov003State.unk_1d0 and unk_1d2, read as s16. */
+#define OV003_SCROLL_X ((s16)data_ov003_02364928->unk_1d0)
+#define OV003_SCROLL_Y ((s16)data_ov003_02364928->unk_1d2)
+
 #endif
