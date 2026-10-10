@@ -1,0 +1,25 @@
+#ifndef GAME_OV003_OBJECT_H
+#define GAME_OV003_OBJECT_H
+
+#include "types.h"
+
+#define OV003_OBJECT_COUNT 80
+
+/* One of the 80 14-byte entries in data_ov003_02369738 (overlay 3). A free
+ * entry has active 0. */
+typedef struct Ov003Object {
+    s16 x;                             /* 8 per tile */
+    s16 y;
+    u8 pad_04[4];
+    u16 unk_08;
+    u8 unk_0a;
+    u8 kind;                           /* 5 and 7 are drawn and updated apart from the others */
+    u8 active;
+    u8 variant;                        /* added to 10 for the sprite */
+} Ov003Object;
+
+typedef char Ov003Object_size_check[sizeof(Ov003Object) == 14 ? 1 : -1];
+
+extern Ov003Object data_ov003_02369738[OV003_OBJECT_COUNT];
+
+#endif
