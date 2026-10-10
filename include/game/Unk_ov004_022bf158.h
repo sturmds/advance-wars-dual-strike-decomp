@@ -42,10 +42,12 @@ typedef struct Ov004Task {
     int duration;                      /* length of the ease, in frames */
     int tweenFrames;                   /* length of the next slide, in frames */
     int unk_48;                        /* set to the same frame count as tweenFrames */
-    u8 pad_4c[0x54 - 0x4c];
+    int unk_4c;
+    u8 pad_50[4];
     int tweenFrom;                     /* start and end values of the slide, */
     int tweenTo;                       /* eased by Math_Ease */
     int unk_5c;
+    int unk_60;
 } Ov004Task;
 
 #endif
