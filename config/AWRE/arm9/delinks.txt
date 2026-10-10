@@ -2460,6 +2460,10 @@ src/game/main/func_02028644.c:
     complete
     .text       start:0x02028644 end:0x02028664
 
+src/game/main/graphics/gfx3d_init_scene.c:
+    complete
+    .text       start:0x02028664 end:0x02028700
+
 src/game/main/graphics/gfx3d_set_default_light.c:
     complete
     .text       start:0x02028700 end:0x02028750
