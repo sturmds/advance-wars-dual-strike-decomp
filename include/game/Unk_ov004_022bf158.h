@@ -99,6 +99,7 @@ typedef struct Ov004Task {
     int tweenTo;                       /* eased by Math_Ease */
     int unk_5c;
     int unk_60;
+    struct ShowSprite *sprite;         /* made by Ov004Task_InitSprite */
 } Ov004Task;
 
 #endif
