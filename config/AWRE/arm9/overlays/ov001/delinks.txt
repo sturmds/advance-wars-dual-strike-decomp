@@ -35,6 +35,10 @@ src/game/ov001/ov001_has_no_ready_ship_or_b_copter.c:
     complete
     .text       start:0x02350a1c end:0x02350b28
 
+src/game/ov001/ov001_player2_has_no_piperunner.c:
+    complete
+    .text       start:0x02350be4 end:0x02350c60
+
 src/game/ov001/ov001_is_move_dest_player1_airport.c:
     complete
     .text       start:0x02350c60 end:0x02350cd4
