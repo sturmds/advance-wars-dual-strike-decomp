@@ -13,7 +13,7 @@ void func_ov002_0235cd50(void);
 void func_ov002_0235cd3c(void);
 void func_ov002_02353218(void);
 void func_ov002_02358478(void);
-void func_ov002_02357434(void);
+void Battle_ClearCounterTasks(void);
 
 /* Destroys the battle screen tasks, clears the BattleEntry words and runs the rest of the reset. */
 void Battle_ResetScreen(void)
@@ -35,5 +35,5 @@ void Battle_ResetScreen(void)
     }
     func_ov002_02353218();
     func_ov002_02358478();
-    func_ov002_02357434();
+    Battle_ClearCounterTasks();
 }
