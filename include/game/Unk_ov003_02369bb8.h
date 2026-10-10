@@ -6,7 +6,7 @@
 /* One of four 12-byte entries at data_ov003_02369bb8 (overlay 3), found by
  * tile with func_ov003_0235e8fc. */
 typedef struct Unk_ov003_02369bb8 {
-    u8 pad_00[4];
+    struct Ov003Unit *target;          /* unit it follows; NULL when none */
     s16 x;                             /* tile column of terrain 21 or 26 (Ov003_LoadMap) */
     s16 y;
     u8 unk_08_0 : 4;                   /* 6 on terrain 21, 7 on 26 */

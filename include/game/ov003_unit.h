@@ -58,7 +58,11 @@ typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 /* 20-byte entry of data_ov003_02364d88, indexed by Ov003Unit.tile. */
 typedef struct Ov003TileInfo {
     u16 unk_00;                        /* divisor for Ov003Unit.unk_04 in Ov003_DrawUnitAnims */
-    u8 pad_02[0x14 - 0x02];
+    u8 pad_02[2];
+    u8 unk_04;                         /* Unk_ov003_02369bb8 only sees units within this + 2 tiles */
+    u8 unk_05;                         /* Unk_ov003_02369bb8: frames in its cycle (unk_09_1 counts them) */
+    u8 unk_06;                         /* Unk_ov003_02369bb8: frames to wait (unk_0b) */
+    u8 pad_07[0x14 - 0x07];
 } Ov003TileInfo;
 
 /* 2-byte cell of a 31-cell row in data_ov003_02364928 (62 bytes per row). */
