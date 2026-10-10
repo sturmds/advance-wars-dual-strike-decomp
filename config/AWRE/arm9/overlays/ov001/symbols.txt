@@ -1,5 +1,5 @@
 func_ov001_02350560 kind:function(arm,size=0x60) addr:0x02350560
-func_ov001_023505c0 kind:function(arm,size=0x28) addr:0x023505c0
+Ov001_MapLacksObjectKind10 kind:function(arm,size=0x28) addr:0x023505c0
 func_ov001_023505e8 kind:function(arm,size=0x28) addr:0x023505e8
 func_ov001_02350610 kind:function(arm,size=0x28) addr:0x02350610
 func_ov001_02350638 kind:function(arm,size=0x34) addr:0x02350638
