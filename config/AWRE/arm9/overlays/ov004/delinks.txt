@@ -670,6 +670,9 @@ src/game/ov004/ov004_blit_block.c:
     complete
     .text       start:0x022badcc end:0x022badec
 
+src/game/ov004/func_ov004_022badec.c:
+    .text       start:0x022badec end:0x022baeec
+
 src/game/ov004/func_ov004_022baeec.c:
     .text       start:0x022baeec end:0x022baf54
 
