@@ -39,6 +39,10 @@ src/game/ov002/battle_load_side_terrain_layers.c:
     complete
     .text       start:0x02351288 end:0x023518ac
 
+src/game/ov002/battle_load_side_background_palettes.c:
+    complete
+    .text       start:0x023518ac end:0x023521e4
+
 src/game/ov002/battle_load_side_backgrounds.c:
     complete
     .text       start:0x023521e4 end:0x02352754
