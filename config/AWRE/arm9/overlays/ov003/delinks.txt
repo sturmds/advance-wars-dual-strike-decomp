@@ -335,6 +335,10 @@ src/game/ov003/ov003_object_move_and_hit.c:
     complete
     .text       start:0x0235a9e8 end:0x0235ad3c
 
+src/game/ov003/ov003_object_impact.c:
+    complete
+    .text       start:0x0235ad3c end:0x0235af7c
+
 src/game/ov003/ov003_object_hit_at.c:
     complete
     .text       start:0x0235af7c end:0x0235aff4
@@ -389,7 +393,7 @@ src/game/ov003/ov003_unit_create.c:
     complete
     .text       start:0x0235c210 end:0x0235c42c
 
-src/game/ov003/ov003_find_free_tile_near.c:
+src/game/ov003/ov003_find_open_tile_near.c:
     complete
     .text       start:0x0235c42c end:0x0235c628
 

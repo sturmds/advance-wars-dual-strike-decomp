@@ -3,11 +3,11 @@
 
 int func_020279c4(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
-void func_ov003_0235ad3c(Ov003Object *object);
+void Ov003Object_Impact(Ov003Object *object);
 
 /* Kind 7: moves the object along the vector (offsetX, offsetY) by active
  * units per frame. On the frame it would pass the end of the vector it clears
- * active, moves nothing and calls func_ov003_0235ad3c. */
+ * active, moves nothing and calls Ov003Object_Impact. */
 void Ov003Object_Travel(Ov003Object *object)
 {
     int deltaX;
@@ -28,6 +28,6 @@ void Ov003Object_Travel(Ov003Object *object)
         object->y += deltaY;
         object->travelled += object->active;
     } else {
-        func_ov003_0235ad3c(object);
+        Ov003Object_Impact(object);
     }
 }
