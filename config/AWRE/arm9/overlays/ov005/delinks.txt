@@ -325,6 +325,10 @@ src/game/ov005/func_ov005_0235ad8c.c:
     complete
     .text       start:0x0235ad8c end:0x0235ad90
 
+src/game/ov005/ov005_queue_sprite_pair.c:
+    complete
+    .text       start:0x0235ae34 end:0x0235aec8
+
 src/game/ov005/func_ov005_0235b148.c:
     .text       start:0x0235b148 end:0x0235b2cc
 
