@@ -26,7 +26,9 @@ typedef struct BattleCellTask {
     s16 accelX;                        /* 8.8 fixed point, added to velX each frame */
     s16 accelY;
     s16 unk_50;                        /* cleared by BattleCellTask_Reset */
-    u8 pad_52[0x56 - 0x52];
+    u8 pad_52[0x54 - 0x52];
+    u8 flashCount;                     /* flashes left while flag2 is set */
+    u8 flashTimer;                     /* frame within one flash, 0 to 6 */
     u8 phase;                          /* frame phase of the bobbing, starts at cell * 16 */
     u8 unk_57;
     u8 hasPos2 : 1;
@@ -46,6 +48,7 @@ BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index);
 void BattleCellTask_DestroySprites(BattleCellTask *task);
 void BattleCellTask_RestartSprite(BattleCellTask *task);
 void BattleCellTask_Bob(BattleCellTask *task);
+void BattleCellTask_Flash(BattleCellTask *task);
 void BattleCellTask_Move(BattleCellTask *task);
 void BattleCellTask_RemakeSprites(BattleCellTask *task);
 void BattleCellTask_StartMove(BattleCellTask *task);

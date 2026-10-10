@@ -3,7 +3,6 @@
 
 void BattleCellTask_RunStep(BattleCellTask *task, int step);
 void BattleActor_UpdateShadow(BattleCellTask *task);
-void func_ov002_0235af38(BattleCellTask *task);
 void BattleFighter_StepFootHop(BattleCellTask *task);
 void BattleFighter_StepSlideMode0(BattleCellTask *task);
 void BattleFighter_StepSlideAirSeaMode1(BattleCellTask *task);
@@ -22,7 +21,7 @@ void BattleCellTask_Update(BattleCellTask *task)
     BattleCellTask_Bob(task);
     BattleCellTask_Move(task);
     BattleActor_UpdateShadow(task);
-    func_ov002_0235af38(task);
+    BattleCellTask_Flash(task);
     BattleFighter_StepFootHop(task);
     BattleFighter_StepSlideMode0(task);
     BattleFighter_StepSlideAirSeaMode1(task);
