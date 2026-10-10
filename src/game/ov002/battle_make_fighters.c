@@ -14,7 +14,7 @@ typedef struct BattleEntryAt310 {
     BattleEntry entry;
 } BattleEntryAt310;
 
-int func_ov002_0235972c(int side, int slot, int entry);
+int BattleCellTask_Create(int side, int slot, int entry);
 int func_ov002_02359674(int side);
 void BattleSpriteTask_CreateDefaultWrapper(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11);
 
@@ -34,9 +34,9 @@ void func_ov002_023571d0(void)
 
             for (slot = 0; slot < 5; slot++) {
                 if (at->entry.fillBefore == 2) {
-                    at->entry.unk_00 = func_ov002_0235972c(side, slot, (gMenuState.battle.unk_298[side] >> (slot * 3)) & 7);
+                    at->entry.unk_00 = BattleCellTask_Create(side, slot, (gMenuState.battle.unk_298[side] >> (slot * 3)) & 7);
                 } else if (at->entry.fillBefore != 0) {
-                    at->entry.unk_00 = func_ov002_0235972c(side, slot, -1);
+                    at->entry.unk_00 = BattleCellTask_Create(side, slot, -1);
                 }
                 at = (BattleEntryAt310 *)((u8 *)at + sizeof(BattleEntry));
             }

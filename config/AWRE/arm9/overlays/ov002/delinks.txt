@@ -199,6 +199,10 @@ src/game/ov002/battle_release_side_tasks.c:
     complete
     .text       start:0x02357334 end:0x02357434
 
+src/game/ov002/battle_cell_task_create.c:
+    complete
+    .text       start:0x0235972c end:0x0235986c
+
 src/game/ov002/battle_cell_task_reset.c:
     complete
     .text       start:0x02359b78 end:0x02359c7c

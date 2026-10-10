@@ -38,6 +38,9 @@ typedef struct BattleCellTask {
     u8 stepIndex : 4;                  /* index into steps; wraps to 0 at 8 */
 } BattleCellTask;
 
+void BattleCellTask_Reset(BattleCellTask *task);
+BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index);
+
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */
 #define BATTLE_CELL_ENTRY(side, cell)                                                            \
