@@ -48,6 +48,10 @@ src/game/ov000/task/unit_show_task_get_terrain_sound.c:
     complete
     .text       start:0x022add48 end:0x022adedc
 
+src/game/ov000/task/unit_show_task_check_visible.c:
+    complete
+    .text       start:0x022adff4 end:0x022ae1c4
+
 src/game/ov000/task/unit_show_task_place_sprite.c:
     complete
     .text       start:0x022ae1c4 end:0x022ae2dc
