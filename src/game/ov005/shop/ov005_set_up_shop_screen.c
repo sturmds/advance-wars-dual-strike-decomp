@@ -122,8 +122,8 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
 
     work->unk_1c = 0;
     work->shopItemCount = 0x100;
-    work->unk_10c = 0;
-    work->unk_110 = 0;
+    work->highlightCursorRow = 0;
+    work->showCursor = 0;
     func_ov005_02367ad8(work);
     func_ov005_023671f4(work);
     work->unk_04 = 0;
