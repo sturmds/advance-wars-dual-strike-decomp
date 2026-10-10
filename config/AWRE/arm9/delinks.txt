@@ -104,6 +104,10 @@ src/game/main/graphics/func_02002510.c:
     complete
     .text       start:0x02002510 end:0x02002598
 
+src/game/main/func_02002598.c:
+    complete
+    .text       start:0x02002598 end:0x02002620
+
 src/game/main/func_02002620.c:
     complete
     .text       start:0x02002620 end:0x02002694
@@ -2851,6 +2855,10 @@ src/game/main/text/text_get_string_width.c:
     complete
     .text       start:0x02039df4 end:0x02039e34
 
+src/game/main/Text_GetCharWidth.c:
+    complete
+    .text       start:0x02039e34 end:0x02039e54
+
 src/game/main/text/sprite_font_queue_char.c:
     complete
     .text       start:0x02039e54 end:0x02039f20
@@ -2858,6 +2866,10 @@ src/game/main/text/sprite_font_queue_char.c:
 src/game/main/func_02039f20.c:
     complete
     .text       start:0x02039f20 end:0x02039f60
+
+src/game/main/func_02039f60.c:
+    complete
+    .text       start:0x02039f60 end:0x02039f80
 
 src/game/main/func_02039f80.c:
     complete
@@ -3183,6 +3195,10 @@ src/game/main/func_02048d98.c:
     complete
     .text       start:0x02048d98 end:0x02048db0
 
+src/game/main/func_02048f80.c:
+    complete
+    .text       start:0x02048f80 end:0x02049020
+
 src/game/main/func_02049020.c:
     complete
     .text       start:0x02049020 end:0x0204902c
@@ -3210,6 +3226,10 @@ src/game/main/func_02049c9c.c:
 src/game/main/func_02049ddc.c:
     complete
     .text       start:0x02049ddc end:0x02049f68
+
+src/game/main/func_02049f68.c:
+    complete
+    .text       start:0x02049f68 end:0x0204a00c
 
 src/game/main/func_0204b3cc.c:
     complete
@@ -6254,6 +6274,10 @@ src/game/main/menus/menu_depth_pop_both_screens.c:
     complete
     .text       start:0x020b993c end:0x020b99d4
 
+src/game/main/func_020b99d4.c:
+    complete
+    .text       start:0x020b99d4 end:0x020b9a6c
+
 src/game/main/func_020b9c3c.c:
     complete
     .text       start:0x020b9c3c end:0x020b9c68
@@ -6549,6 +6573,10 @@ src/game/main/func_020bef30.c:
 src/game/main/ai/func_020bf6f4.c:
     complete
     .text       start:0x020bf6f4 end:0x020bf790
+
+src/game/main/func_020bf8b8.c:
+    complete
+    .text       start:0x020bf8b8 end:0x020bf954
 
 src/game/main/map/map_has_no_hint_script.c:
     complete
