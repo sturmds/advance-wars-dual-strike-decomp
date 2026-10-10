@@ -4,7 +4,7 @@
 int Ov006_IsLandTile(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
-void func_ov006_0236146c(int x, int y);
+void Ov006_RefreshNeighborTiles(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void Ov006_RefitCellsAround(int x, int y);
 void Ov006_CheckReefsAround(int x, int y);
@@ -19,7 +19,7 @@ void Ov006_PlaceMountain(int x, int y)
     }
     Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);
     func_ov006_02363198(x, y);
-    func_ov006_0236146c(x, y);
+    Ov006_RefreshNeighborTiles(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     Ov006_RefitCellsAround(x, y);
     Ov006_CheckReefsAround(x, y);
