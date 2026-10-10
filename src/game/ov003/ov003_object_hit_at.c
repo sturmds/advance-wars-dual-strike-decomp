@@ -2,7 +2,7 @@
 #include "game/ov003_object.h"
 #include "game/ov003_unit.h"
 
-Ov003Unit *func_ov003_0235ba10(int x, int y, int skipUnit);
+Ov003Unit *Ov003_FindUnitNear(int x, int y, int skipUnit);
 void func_ov003_0235b64c(Ov003Object *object, Ov003Unit *unit);
 int func_ov003_0235b8ac(int x, int y, Ov003Object *object);
 void func_ov003_0235aff4(Ov003Object *object, int tileX, int tileY);
@@ -13,7 +13,7 @@ void func_ov003_0235aff4(Ov003Object *object, int tileX, int tileY);
  * tile. Returns 1 for either hit. */
 int Ov003Object_HitAt(Ov003Object *object, int x, int y)
 {
-    Ov003Unit *unit = func_ov003_0235ba10(x, y, object->unk_0a);
+    Ov003Unit *unit = Ov003_FindUnitNear(x, y, object->unk_0a);
 
     if (unit != NULL) {
         func_ov003_0235b64c(object, unit);
