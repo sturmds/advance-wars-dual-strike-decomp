@@ -355,6 +355,10 @@ src/game/ov003/ov003_unit_count_in_current_row.c:
     complete
     .text       start:0x0235bc50 end:0x0235bcc8
 
+src/game/ov003/ov003_load_spawns.c:
+    complete
+    .text       start:0x0235bcc8 end:0x0235bdd8
+
 src/game/ov003/func_ov003_0235bdd8.c:
     .text       start:0x0235bdd8 end:0x0235be30
 

@@ -115,11 +115,25 @@ typedef struct Ov003Spawn {
     u8 unk_4;                          /* becomes Ov003Unit.unk_1e_1 */
 } Ov003Spawn;
 
+/* 6-byte record in a spawn list that ends with a record whose tag is 0.
+ * Ov003_LoadSpawns turns each one into an Ov003Spawn. */
+typedef struct Ov003SpawnDef {
+    u8 tag;                            /* cell tile written for it; 0 ends the list */
+    u8 x;
+    u8 y;
+    u8 flags_0 : 3;                    /* becomes Ov003Spawn.unk_2_0 */
+    u8 flags_3 : 3;                    /* becomes Ov003Spawn.unk_2_3 */
+    u8 flags_6 : 1;                    /* becomes Ov003Spawn.unk_2_6 */
+    u8 flags_7 : 1;                    /* becomes Ov003Spawn.unk_2_7 */
+    u8 unk_4;
+    u8 unk_5;
+} Ov003SpawnDef;
+
 /* 20-byte entry of data_ov003_02364e50, picked by data_02160ac0->unk_7d:
  * how Ov003_InitRows sets up the rows. */
 typedef struct Ov003Preset {
     u8 pad_00[4];
-    u32 unk_04;                        /* passed to func_ov003_0235bcc8 */
+    u32 unk_04;                        /* passed to Ov003_LoadSpawns */
     u8 colors[4];                      /* Ov003Row.color per row */
     u8 unk_0c[4];                      /* Ov003Row.unk_3b_0 per row */
     u8 rowCount : 3;

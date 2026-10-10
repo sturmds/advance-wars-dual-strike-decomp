@@ -10,7 +10,7 @@ u16 func_0207a1dc(void);
 void Ov003Rows_ClearCells(void);
 void Ov003Row_AppendCell(u8 row, int tile, int kind);
 void Ov003_StartSlotPlacing(int player);
-void func_ov003_0235bcc8(u32 value);
+void Ov003_LoadSpawns(u32 value);
 int func_ov003_0235be30(void);
 
 #define STATE data_ov003_02364928
@@ -73,7 +73,7 @@ void Ov003_InitUnitsAndCamera(void)
             Ov003_StartSlotPlacing(i);
         }
     }
-    func_ov003_0235bcc8(STATE->preset->unk_04);
+    Ov003_LoadSpawns(STATE->preset->unk_04);
     for (i = 0; i < STATE->unk_1dc; i++) {
         if (func_ov003_0235be30() == 0) {
             break;
