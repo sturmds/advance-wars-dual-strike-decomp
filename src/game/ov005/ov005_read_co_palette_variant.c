@@ -3,7 +3,7 @@
 
 int Co_GetSavedPaletteVariant(int coId);
 
-void func_ov005_023627a8(Unk_ov005_0236bba8 *work)
+void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work)
 {
     work->unk_210 = Co_GetSavedPaletteVariant(work->coId & 0x7f);
     work->unk_20c = work->unk_210;

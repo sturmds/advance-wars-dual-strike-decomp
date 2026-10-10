@@ -364,7 +364,8 @@ src/game/ov005/func_ov005_0236279c.c:
     complete
     .text       start:0x0236279c end:0x023627a8
 
-src/game/ov005/func_ov005_023627a8.c:
+src/game/ov005/ov005_read_co_palette_variant.c:
+    complete
     .text       start:0x023627a8 end:0x023627e4
 
 src/game/ov005/func_ov005_02362bf0.c:
