@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void Ov006_ReefToSeaIfRejected(int x, int y);   /* a reef at x, y becomes sea unless func_ov006_02364a08 accepts it */
+void Ov006_ReefToSeaIfRejected(int x, int y);   /* a reef at x, y becomes sea unless Ov006_IsSurroundedByWater accepts it */
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
