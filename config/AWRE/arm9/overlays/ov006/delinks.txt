@@ -519,6 +519,10 @@ src/game/ov006/ov006_place_hq.c:
     complete
     .text       start:0x0235b0e4 end:0x0235b300
 
+src/game/ov006/ov006_try_place_bridge.c:
+    complete
+    .text       start:0x0235b300 end:0x0235b404
+
 src/game/ov006/ov006_is_area_clear.c:
     complete
     .text       start:0x0235b404 end:0x0235b46c
