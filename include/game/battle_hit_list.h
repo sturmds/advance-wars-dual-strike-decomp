@@ -20,4 +20,14 @@ typedef struct BattleHitList {
     u8 count;
 } BattleHitList;
 
+/* Layout of the 20-byte drain profile (BattleScreenWork.drainProfile) that the keys of a
+ * BattleHitList come from (Battle_BuildHitLists). */
+typedef struct BattleHitTimes {
+    u8 pad_00[4];
+    u16 unk_04;                        /* added to every key */
+    u8 pad_06[4];
+    u8 unk_0a[5];                      /* key offsets of the attacking side */
+    u8 unk_0f[5];                      /* key offsets of the other side */
+} BattleHitTimes;
+
 #endif

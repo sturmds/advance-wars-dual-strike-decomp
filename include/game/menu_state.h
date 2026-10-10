@@ -5,6 +5,7 @@
 #include "game/campaign_map.h"
 #include "game/battle_fighter.h"
 #include "game/battle_side_anim.h"
+#include "game/battle_hit_list.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -145,7 +146,10 @@ typedef struct BattleScreenWork {
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
     BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */
-    u8 pad_294[0x2c8 - 0x294];
+    u8 pad_294[0x29c - 0x294];
+    u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
+    u8 pad_2a0[4];
+    BattleHitList hitLists[2];         /* per side, built by Battle_BuildHitLists */
     BattleStepList stepLists[2];
     u8 pad_2ec[0x310 - 0x2ec];
     BattleEntry unk_310[2][5];

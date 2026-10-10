@@ -5,7 +5,7 @@ u32 HwDiv32(u32 num, u32 den);
 void Battle_PickHpDrainProfiles(void);
 void func_ov002_02355a98(void);
 void Battle_InitHpCells(int side, int shownHpBefore, int shownHpAfter);
-void func_ov002_023556e4(void);
+void Battle_BuildHitLists(void);
 void func_ov002_023552d0(void);
 void func_ov002_023549c8(void);
 
@@ -29,7 +29,7 @@ void Battle_InitHpDisplay(void)
     shownAfter = SHOWN_HP(SIDE(1).hpAfter);
     shownBefore = SHOWN_HP(SIDE(1).hpBefore);
     Battle_InitHpCells(1, shownBefore, shownAfter);
-    func_ov002_023556e4();
+    Battle_BuildHitLists();
     func_ov002_023552d0();
     func_ov002_023549c8();
 }

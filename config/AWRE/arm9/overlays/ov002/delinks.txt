@@ -112,6 +112,10 @@ src/game/ov002/battle_init_hp_display.c:
     complete
     .text       start:0x023548ec end:0x023549c8
 
+src/game/ov002/battle_build_hit_lists.c:
+    complete
+    .text       start:0x023556e4 end:0x02355860
+
 src/game/ov002/battle_init_hp_cells.c:
     complete
     .text       start:0x02355860 end:0x023558cc
