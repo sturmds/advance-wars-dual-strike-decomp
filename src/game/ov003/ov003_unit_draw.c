@@ -3,7 +3,7 @@
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
-int func_ov003_0236207c(int a0);
+int Ov003_RowKindGroup(int a0);
 int func_ov003_02362258(void);
 void Ov003_DrawTexturedQuad(int x, int y, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
 void Ov003Unit_DrawMarker(Ov003Unit *unit);
@@ -33,7 +33,7 @@ void Ov003Unit_Draw(Ov003Unit *unit)
     switch (unit->tile) {
     case 1:
     case 2:
-        if (func_ov003_0236207c(STATE->rows[unit->unk_12_3 - 1].unk_3b_0) == 5) {
+        if (Ov003_RowKindGroup(STATE->rows[unit->unk_12_3 - 1].unk_3b_0) == 5) {
             base = 684;
         } else {
             base = 108;
