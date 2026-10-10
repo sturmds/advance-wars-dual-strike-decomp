@@ -891,6 +891,10 @@ src/game/ov004/func_ov004_022bd244.c:
     complete
     .text       start:0x022bd244 end:0x022bd254
 
+src/game/ov004/ov004_task_move_sprite_outward.c:
+    complete
+    .text       start:0x022bd254 end:0x022bd448
+
 src/game/ov004/ov004_task_init_sprite.c:
     complete
     .text       start:0x022bd448 end:0x022bd4c8
