@@ -256,6 +256,10 @@ src/game/ov005/func_ov005_0235b2f0.c:
     complete
     .text       start:0x0235b2f0 end:0x0235b3d4
 
+src/game/ov005/ov005_char_to_glyph_index.c:
+    complete
+    .text       start:0x0235b698 end:0x0235b6ec
+
 src/game/ov005/func_ov005_0235bab4.c:
     complete
     .text       start:0x0235bab4 end:0x0235bab8
