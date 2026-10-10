@@ -6793,6 +6793,10 @@ src/game/main/map/map_load_data.c:
     complete
     .text       start:0x020c3e74 end:0x020c3f18
 
+src/game/main/map/map_is_vacant_deploy_tile.c:
+    complete
+    .text       start:0x020c3f18 end:0x020c3f98
+
 src/game/main/func_020c4018.c:
     complete
     .text       start:0x020c4018 end:0x020c4024
