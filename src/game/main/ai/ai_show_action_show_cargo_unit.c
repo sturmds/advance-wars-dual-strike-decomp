@@ -9,7 +9,7 @@ extern u16 data_021658c8[];
 extern int data_0229eac4;
 extern int data_022a6dd4;
 
-void *func_ov000_022ae594(int x, int y, int owner, int unitType, void *arg);
+void *UnitShowTask_CreateMoving(int x, int y, int owner, int unitType, void *arg);
 void func_020de090(int cargoSlot);
 void func_020ce2a0(int unitType);
 
@@ -37,7 +37,7 @@ void AiShowAction_ShowCargoUnit(int cargoSlot)
         state->unk_170[0] = 10;
         GAME->unk_170[1] = 4; /* needed to match: GAME is read again */
         state = GAME;
-        data_0229eacc[cargoSlot] = func_ov000_022ae594(
+        data_0229eacc[cargoSlot] = UnitShowTask_CreateMoving(
             (u16)state->actingUnitDestX, (u16)state->actingUnitDestY,
             OWNER_INDEX(state), cargo->type, state->unk_170);
         return;
@@ -48,7 +48,7 @@ void AiShowAction_ShowCargoUnit(int cargoSlot)
     data_022a6dd4 = saved - 1;
     state = GAME;
     cargo = &state->units[state->actingUnit->cargo[cargoSlot]];
-    data_0229eacc[cargoSlot] = func_ov000_022ae594(
+    data_0229eacc[cargoSlot] = UnitShowTask_CreateMoving(
         (u16)state->actingUnitDestX, (u16)state->actingUnitDestY,
         OWNER_INDEX(state), cargo->type, &data_021658c8[saved - 1]);
     func_020de090(cargoSlot);
