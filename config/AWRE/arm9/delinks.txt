@@ -9347,6 +9347,10 @@ src/game/main/sound/sound_arc_forget_loaded_item.c:
     complete
     .text       start:0x02107064 end:0x021070d0
 
+src/game/main/sound/func_02107204.c:
+    complete
+    .text       start:0x02107204 end:0x02107280
+
 src/game/main/sound/sound_arc_get_bank.c:
     complete
     .text       start:0x02107550 end:0x021076b0
