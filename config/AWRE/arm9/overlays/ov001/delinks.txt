@@ -19,6 +19,10 @@ src/game/ov001/func_ov001_02350e34.c:
     complete
     .text       start:0x02350e34 end:0x02350e6c
 
+src/game/ov001/ov001_is_tile_owned_by_player1_x7y6.c:
+    complete
+    .text       start:0x02350e6c end:0x02350ec4
+
 src/game/ov001/func_ov001_02350fa8.c:
     complete
     .text       start:0x02350fa8 end:0x02350fb8
