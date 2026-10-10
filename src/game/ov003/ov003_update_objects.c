@@ -3,7 +3,7 @@
 
 void Ov003Object_Travel(Ov003Object *object);
 void func_ov003_0235a8d8(Ov003Object *object);
-void func_ov003_0235a9e8(Ov003Object *object);
+void Ov003Object_MoveAndHit(Ov003Object *object);
 
 void Ov003_UpdateObjects(void)
 {
@@ -20,7 +20,7 @@ void Ov003_UpdateObjects(void)
                 Ov003Object_Travel(object);
                 break;
             default:
-                func_ov003_0235a9e8(object);
+                Ov003Object_MoveAndHit(object);
                 break;
             }
         }

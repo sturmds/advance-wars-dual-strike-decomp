@@ -23,4 +23,12 @@ typedef char Ov003Object_size_check[sizeof(Ov003Object) == 14 ? 1 : -1];
 
 extern Ov003Object data_ov003_02369738[OV003_OBJECT_COUNT];
 
+/* 20 bytes per object kind, in data_ov003_02364d8c. */
+typedef struct Ov003ObjectKind {
+    u8 range;                          /* how far the object moves, in 128-unit steps */
+    u8 pad_01[19];
+} Ov003ObjectKind;
+
+extern Ov003ObjectKind data_ov003_02364d8c[];
+
 #endif
