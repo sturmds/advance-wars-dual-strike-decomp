@@ -57,9 +57,7 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_90c[0x918 - 0x90c];
     struct Ov004Task *slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
-    u8 pad_99c[0xad8 - 0x99c];
-    struct Task *childTasks[16];       /* destroyed together by Ov004_DestroyChildTasks */
-    u8 pad_b18[0xb1c - 0xb18];
+    u8 pad_99c[0xb1c - 0x99c];
     Ov004Resource resources[128];      /* looked up by Ov004_FindResource */
     u8 pad_131c[0x1320 - 0x131c];
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
