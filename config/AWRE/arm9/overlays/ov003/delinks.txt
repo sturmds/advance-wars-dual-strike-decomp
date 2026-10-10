@@ -187,6 +187,10 @@ src/game/ov003/func_ov003_02357178.c:
     complete
     .text       start:0x02357178 end:0x0235718c
 
+src/game/ov003/func_ov003_0235718c.c:
+    complete
+    .text       start:0x0235718c end:0x023571b4
+
 src/game/ov003/func_ov003_023571b4.c:
     complete
     .text       start:0x023571b4 end:0x0235721c
@@ -394,6 +398,10 @@ src/game/ov003/func_ov003_02363220.c:
     complete
     .text       start:0x02363220 end:0x0236322c
 
+src/game/ov003/func_ov003_0236322c.c:
+    complete
+    .text       start:0x0236322c end:0x023632b0
+
 src/game/ov003/func_ov003_02363ba4.c:
     complete
     .text       start:0x02363ba4 end:0x02363bbc
@@ -401,6 +409,10 @@ src/game/ov003/func_ov003_02363ba4.c:
 src/game/ov003/func_ov003_02363d5c.c:
     complete
     .text       start:0x02363d5c end:0x02363d9c
+
+src/game/ov003/func_ov003_02363dbc.c:
+    complete
+    .text       start:0x02363dbc end:0x02363e40
 
 src/game/ov003/func_ov003_02363e40.c:
     complete
@@ -425,6 +437,10 @@ src/game/ov003/func_ov003_02364514.c:
 src/game/ov003/func_ov003_02364524.c:
     complete
     .text       start:0x02364524 end:0x02364618
+
+src/game/ov003/func_ov003_0236470c.c:
+    complete
+    .text       start:0x0236470c end:0x02364800
 
 src/game/ov003/func_ov003_02364854.c:
     complete

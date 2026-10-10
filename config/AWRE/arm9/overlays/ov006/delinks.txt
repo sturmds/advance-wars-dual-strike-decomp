@@ -171,6 +171,10 @@ src/game/ov006/ov006_add_screen0_button.c:
     complete
     .text       start:0x023554a4 end:0x02355514
 
+src/game/ov006/func_ov006_02355514.c:
+    complete
+    .text       start:0x02355514 end:0x02355584
+
 src/game/ov006/func_ov006_02355d84.c:
     complete
     .text       start:0x02355d84 end:0x02355d98
@@ -214,6 +218,10 @@ src/game/ov006/func_ov006_0235790c.c:
 src/game/ov006/func_ov006_02357920.c:
     complete
     .text       start:0x02357920 end:0x0235794c
+
+src/game/ov006/func_ov006_02357a6c.c:
+    complete
+    .text       start:0x02357a6c end:0x02357a98
 
 src/game/ov006/func_ov006_02357a98.c:
     complete

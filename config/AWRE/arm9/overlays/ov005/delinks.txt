@@ -80,6 +80,10 @@ src/game/ov005/func_ov005_02355280.c:
     complete
     .text       start:0x02355280 end:0x02355290
 
+src/game/ov005/func_ov005_0235560c.c:
+    complete
+    .text       start:0x0235560c end:0x023559dc
+
 src/game/ov005/ov005_update_event_script_screen.c:
     complete
     .text       start:0x023559dc end:0x02355bb0
@@ -207,6 +211,10 @@ src/game/ov005/func_ov005_0235d4fc.c:
 src/game/ov005/func_ov005_0235d5bc.c:
     complete
     .text       start:0x0235d5bc end:0x0235d5cc
+
+src/game/ov005/func_ov005_0235d5cc.c:
+    complete
+    .text       start:0x0235d5cc end:0x0235d5dc
 
 src/game/ov005/func_ov005_0235d6fc.c:
     complete
