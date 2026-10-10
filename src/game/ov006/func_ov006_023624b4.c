@@ -1,18 +1,18 @@
 #include "types.h"
 
-int func_ov006_023612bc(int x, int y);
+int Ov006_GetNeighborTile(int x, int y);
 int func_ov006_02360f90(int x, int y);
 int func_ov006_02360e10(int x, int y);
 
-/* Combines three lookups for the tile at (x, y). When func_ov006_023612bc
+/* Combines three lookups for the tile at (x, y). When Ov006_GetNeighborTile
  * returns 0, the result is func_ov006_02360f90's value, replaced by
  * func_ov006_02360e10's when both are nonzero. Otherwise the result is
- * func_ov006_023612bc's value, replaced by func_ov006_02360e10's when that is
+ * Ov006_GetNeighborTile's value, replaced by func_ov006_02360e10's when that is
  * nonzero and bits 9-15 of the first value are 0, 0x2000 or 0x4000. The
  * repeated group tests are needed to match. */
 int func_ov006_023624b4(int x, int y)
 {
-    int result = func_ov006_023612bc(x, y);
+    int result = Ov006_GetNeighborTile(x, y);
     int other;
     int group;
 

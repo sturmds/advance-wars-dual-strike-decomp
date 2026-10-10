@@ -1,15 +1,15 @@
 #include "types.h"
 
-int func_ov006_023612bc(int x, int y);
+int Ov006_GetNeighborTile(int x, int y);
 int func_ov006_02360f90(int x, int y);
 int func_ov006_02360e10(int x, int y);
 
 /* Yes/no version of func_ov006_023624b4 for the tile at (x, y): 1 when it ends
- * up with a positive value, 0 for a negative func_ov006_023612bc. The repeated
+ * up with a positive value, 0 for a negative Ov006_GetNeighborTile. The repeated
  * group tests are needed to match. */
 int func_ov006_023604a4(int x, int y)
 {
-    int first = func_ov006_023612bc(x, y);
+    int first = Ov006_GetNeighborTile(x, y);
     int other;
     int group;
 
@@ -37,7 +37,7 @@ int func_ov006_023604a4(int x, int y)
                 return 1;
             }
         }
-    } else if (func_ov006_023612bc(x, y) >= 0) {
+    } else if (Ov006_GetNeighborTile(x, y) >= 0) {
         first = func_ov006_02360f90(x, y);
         if (first != 0) {
             other = func_ov006_02360e10(x, y);
