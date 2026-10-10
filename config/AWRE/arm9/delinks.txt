@@ -2723,6 +2723,10 @@ src/game/main/func_02031480.c:
     complete
     .text       start:0x02031480 end:0x02031498
 
+src/game/main/func_020317f4.c:
+    complete
+    .text       start:0x020317f4 end:0x02031894
+
 src/game/main/func_02031894.c:
     complete
     .text       start:0x02031894 end:0x020318ac
