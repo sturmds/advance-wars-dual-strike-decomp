@@ -19,6 +19,9 @@ Agents never change the state, so it cannot touch landing.
     loop_state.py status [--all]        one line per open group, then totals
     loop_state.py next K                up to K queued groups ready to start
     loop_state.py set NAME key=value... (tokens+=N adds; tries+=1 counts)
+    loop_state.py tokens NAME AGENT N   an agent's token total (idempotent)
+    loop_state.py plan-ahead            add a planned batch; queue a planner if needed
+    loop_state.py close-batches         queue partials, renames, wrapup for finished batches
     loop_state.py claimed               functions held by open groups
     loop_state.py worktrees             worktrees safe to remove
     loop_state.py report [N]            functions and tokens per batch
@@ -232,7 +235,8 @@ def cmd_collect(a, s):
         print(f"{n} {g['status']} {g['result']}")
         for b in blocks:
             commits = b.get("COMMIT", "none").split()
-            if b["RESULT"].lower().startswith("matched") and commits != ["none"] and not landed:
+            own = [h for h in b.get("LANDED", "").split() if re.fullmatch(r"[0-9a-f]{7,40}", h)]
+            if b["RESULT"].lower().startswith("matched") and commits != ["none"] and not own:
                 print(f"  UNLANDED {b.get('FUNCTION', '?')}: {' '.join(commits)}")
     return 0
 
@@ -254,7 +258,11 @@ def cmd_status(a, s):
     for n, g in rows:
         fns = f"{g['done']}/{len(g['funcs'])}" if g["funcs"] else "job"
         lost = " lost" if g.get("lost") or (g["status"] == "stopped" and g.get("session") != sid) else ""
-        print(f"{n:28} {g['status']:8}{lost} {g['model']:6} {fns:>7} tries={g['tries']} agent={g['agent']} {g['result'][:60]}")
+        age = ""
+        if g["status"] == "running" and g.get("started"):
+            mins = (time.time() - time.mktime(time.strptime(g["started"], "%Y-%m-%d %H:%M"))) / 60
+            age = f" {mins / 60:.1f}h" + (" STUCK?" if mins > 240 else "")
+        print(f"{n:28} {g['status']:8}{lost}{age} {g['model']:6} {fns:>7} tries={g['tries']} agent={g['agent']} {g['result'][:50]}")
     counts = {}
     for g in s["groups"].values():
         counts[g["status"]] = counts.get(g["status"], 0) + 1
@@ -300,6 +308,64 @@ def cmd_set(a, s):
             g.pop("lost", None)
         if k == "status" and v in FINISHED:
             g["ended"] = now()
+    return 0
+
+
+def cmd_tokens(a, s):
+    """Tokens of one agent: setting the same notification twice counts once."""
+    g = s["groups"].get(a.name) or sys.exit(f"{a.name}: not in the state")
+    g.setdefault("agent_tokens", {})[a.agent] = a.n
+    g["tokens"] = sum(g["agent_tokens"].values())
+    print(f"{a.name} tokens {g['tokens']:,}")
+    return 0
+
+
+def batch_groups(s, n):
+    return {k: g for k, g in s["groups"].items() if k.startswith(f"b{n}/")}
+
+
+def queue_job(a, s, name, template, model, batch, after=None):
+    a.name, a.template, a.prompt, a.model, a.batch, a.after, a.cls, a.fill = name, template, None, model, batch, after, None, None
+    cmd_add_job(a, s)
+
+
+def cmd_plan_ahead(a, s):
+    """Add the groups of a finished planner's batch; queue a planner when
+    fewer than `cap` model groups are queued and none is open."""
+    for n, g in list(s["groups"].items()):
+        b = g.get("batch")
+        if g["cls"] == "plan" and g["status"] == "done" and not batch_groups(s, b):
+            if (PROMPTS / f"batch{b}" / "plan.json").exists():
+                a.n, a.dir = b, None
+                cmd_add_batch(a, s)
+            else:
+                print(f"{n} done but loop-prompts/batch{b}/plan.json is missing: relaunch or triage it")
+    queued = sum(g["status"] == "queued" and bool(g["funcs"]) for g in s["groups"].values())
+    planning = [n for n, g in s["groups"].items() if g["cls"] == "plan" and g["status"] in OPEN]
+    if queued < int(s["meta"].get("cap", 20)) and not planning:
+        b = next_batch(s)
+        queue_job(a, s, f"plan{b}", "plan", "opus", b)
+    else:
+        print(f"queued model groups {queued}, open planners: {' '.join(planning) or 'none'}")
+    return 0
+
+
+def cmd_close_batches(a, s):
+    """Queue partials, renames and wrapup jobs for each batch whose groups
+    have all finished."""
+    done = None
+    for b in sorted({g["batch"] for g in s["groups"].values() if g.get("batch") is not None}):
+        groups = batch_groups(s, b)
+        if not groups or any(g["status"] in OPEN for g in groups.values()) or f"renames{b}" in s["groups"]:
+            continue
+        done = done if done is not None else done_addrs()
+        left = any(g["status"] == "partial" or any((m, x) not in done for m, x, _ in g["funcs"]) for g in groups.values())
+        after = f"partials{b}" if f"partials{b}" in s["groups"] else None
+        if left and not after:
+            queue_job(a, s, f"partials{b}", "partials", "opus", b)
+            after = f"partials{b}"
+        queue_job(a, s, f"renames{b}", "renames", "opus", b, after)
+        queue_job(a, s, f"wrapup{b}", "wrapup", "sonnet", b, f"renames{b}")
     return 0
 
 
@@ -381,6 +447,12 @@ def main() -> int:
     x = sub.add_parser("set")
     x.add_argument("name")
     x.add_argument("pairs", nargs="+")
+    x = sub.add_parser("tokens")
+    x.add_argument("name")
+    x.add_argument("agent")
+    x.add_argument("n", type=int)
+    sub.add_parser("plan-ahead")
+    sub.add_parser("close-batches")
     sub.add_parser("claimed")
     sub.add_parser("worktrees")
     sub.add_parser("report").add_argument("n", type=int, nargs="?")
