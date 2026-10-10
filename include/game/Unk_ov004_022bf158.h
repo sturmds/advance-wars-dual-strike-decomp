@@ -68,7 +68,11 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_1328;                      /* set to 0x06860000, an LCDC VRAM address */
     u8 pad_132c[0x1330 - 0x132c];
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
-    u8 pad_1334[0x1b44 - 0x1334];
+    u16 viewX;                         /* position of the scrolling tile view; eased by Ov004_EaseLayer1View */
+    u16 viewY;
+    u16 viewScrollX;                   /* viewX and viewY wrapped to the BG; set by func_ov004_022bacd8 */
+    u16 viewScrollY;
+    u8 pad_133c[0x1b44 - 0x133c];
     int elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
     u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */

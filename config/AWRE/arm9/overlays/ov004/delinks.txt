@@ -499,6 +499,10 @@ src/game/ov004/func_ov004_022b6f08.c:
     complete
     .text       start:0x022b6f08 end:0x022b6f28
 
+src/game/ov004/ov004_ease_layer1_view.c:
+    complete
+    .text       start:0x022b6f28 end:0x022b7120
+
 src/game/ov004/func_ov004_022b7120.c:
     complete
     .text       start:0x022b7120 end:0x022b714c
