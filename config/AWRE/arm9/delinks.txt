@@ -1508,6 +1508,10 @@ src/game/main/script/event_script_play_song.c:
     complete
     .text       start:0x0201b2bc end:0x0201b318
 
+src/game/main/func_0201b358.c:
+    complete
+    .text       start:0x0201b358 end:0x0201b3b4
+
 src/game/main/func_0201b3b4.c:
     complete
     .text       start:0x0201b3b4 end:0x0201b46c
@@ -1599,6 +1603,10 @@ src/game/main/func_0201d378.c:
 src/game/main/script/event_script_scroll_map_and_wait.c:
     complete
     .text       start:0x0201d3d0 end:0x0201d428
+
+src/game/main/func_0201d428.c:
+    complete
+    .text       start:0x0201d428 end:0x0201d480
 
 src/game/main/func_0201d5f0.c:
     complete
@@ -3753,6 +3761,10 @@ src/game/main/func_02067b0c.c:
 src/game/main/menus/vs_setup_cancel.c:
     complete
     .text       start:0x02067b34 end:0x02067b94
+
+src/game/main/func_02067b94.c:
+    complete
+    .text       start:0x02067b94 end:0x02067bec
 
 src/game/main/menus/vs_setup_set_co.c:
     complete
@@ -7216,6 +7228,10 @@ src/game/main/func_020d1bc4.c:
     complete
     .text       start:0x020d1bc4 end:0x020d1be0
 
+src/game/main/func_020d1be0.c:
+    complete
+    .text       start:0x020d1be0 end:0x020d1c3c
+
 src/game/main/weather/weather_change.c:
     complete
     .text       start:0x020d207c end:0x020d2104
@@ -7571,6 +7587,10 @@ src/game/main/func_020dc080.c:
 src/game/main/func_020dc1a8.c:
     complete
     .text       start:0x020dc1a8 end:0x020dc2e8
+
+src/game/main/func_020dc4c8.c:
+    complete
+    .text       start:0x020dc4c8 end:0x020dc524
 
 src/game/main/func_020dc524.c:
     complete
