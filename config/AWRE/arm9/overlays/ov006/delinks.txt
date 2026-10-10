@@ -83,6 +83,10 @@ src/game/ov006/ov006_load_slot_tiles.c:
     complete
     .text       start:0x02351b2c end:0x02351bf0
 
+src/game/ov006/ov006_queue_slot_sprites.c:
+    complete
+    .text       start:0x02351bf0 end:0x02351c80
+
 src/game/ov006/ov006_load_terrain_icons.c:
     complete
     .text       start:0x02351f4c end:0x02351fac
