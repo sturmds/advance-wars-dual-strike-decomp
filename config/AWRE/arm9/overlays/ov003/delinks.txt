@@ -75,6 +75,10 @@ src/game/ov003/ov003_init_rows.c:
     complete
     .text       start:0x02352e88 end:0x02353744
 
+src/game/ov003/ov003_draw_textured_quad.c:
+    complete
+    .text       start:0x02353744 end:0x023538c4
+
 src/game/ov003/func_ov003_023538c4.c:
     complete
     .text       start:0x023538c4 end:0x02353908

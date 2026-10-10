@@ -12,7 +12,7 @@ extern u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 t
 
 Unk_ov003_02369bb8 *func_ov003_0235e8fc(int x, int y);
 int func_ov003_02361f38(void);
-void func_ov003_02353744(int x, int y, int depth, int arg3, int arg4, int tile, int palette, int arg7, int arg8);
+void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int tile, int palette, int arg7, int arg8);
 
 #define MAP data_ov003_02364a88
 #define STATE data_ov003_02364928
@@ -62,7 +62,7 @@ void func_ov003_02353744(int x, int y, int depth, int arg3, int arg4, int tile, 
 
 /* A 16x16 sprite over map tile (x, y). */
 #define SPRITE(x, y, depth, tile, palette) \
-    func_ov003_02353744((x) * 16 - SCROLL_X, (y) * 16 - SCROLL_Y, depth, 1, 1, tile, palette, 0, 0)
+    Ov003_DrawTexturedQuad((x) * 16 - SCROLL_X, (y) * 16 - SCROLL_Y, depth, 1, 1, tile, palette, 0, 0)
 
 /* Draws map tile (x, y) when it is on screen: its lower half into layers 3
  * and 2, its upper half into layer 1 one row up, and the sprites that stand
@@ -359,6 +359,6 @@ void Ov003_DrawTile(u8 x, u8 y)
     }
 
     if (func_ov003_02361f38() == 0 && STATE->unk_1df_0 && mark == 0 && terrain == TERRAIN_WOOD) {
-        func_ov003_02353744(x * 16 - SCROLL_X, (u8)(y - 1) * 16 - SCROLL_Y, 50, 1, 1, 4, 2, 0, 0);
+        Ov003_DrawTexturedQuad(x * 16 - SCROLL_X, (u8)(y - 1) * 16 - SCROLL_Y, 50, 1, 1, 4, 2, 0, 0);
     }
 }
