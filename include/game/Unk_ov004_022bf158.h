@@ -13,7 +13,7 @@ typedef struct Unk_ov004_022bf158_818 {
     u32 unk_04;
     u16 unk_08;
     u16 unk_0a;
-    u16 unk_0c;                        /* func_ov004_022b877c eases both from */
+    u16 unk_0c;                        /* Ov004_EaseScaleToHalf eases both from */
     u16 unk_0e;                        /* 256 to 128: maybe a scale */
     u16 unk_10;
 } Unk_ov004_022bf158_818;
