@@ -167,6 +167,10 @@ src/game/ov006/func_ov006_023547bc.c:
     complete
     .text       start:0x023547bc end:0x02354870
 
+src/game/ov006/ov006_init_slot_buttons.c:
+    complete
+    .text       start:0x023549f0 end:0x02354a20
+
 src/game/ov006/ov006_remove_slot_buttons.c:
     complete
     .text       start:0x02354a20 end:0x02354a44
