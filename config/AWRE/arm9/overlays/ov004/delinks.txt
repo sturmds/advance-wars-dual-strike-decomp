@@ -607,6 +607,10 @@ src/game/ov004/func_ov004_022b89cc.c:
     complete
     .text       start:0x022b89cc end:0x022b89ec
 
+src/game/ov004/ov004_task_ease_bg1_scroll_y.c:
+    complete
+    .text       start:0x022b89ec end:0x022b8af0
+
 src/game/ov004/func_ov004_022b8af0.c:
     complete
     .text       start:0x022b8af0 end:0x022b8afc
