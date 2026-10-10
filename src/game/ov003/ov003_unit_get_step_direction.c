@@ -4,13 +4,13 @@
 extern Ov003Unit data_ov003_02369538[16];
 
 int Ov003_IsRouteClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
-int func_ov003_0235f54c(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
+int Ov003_IsPathClearRowFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
 
 /* Direction for the unit to move toward its target, the unit
  * data_ov003_02369538[unit->unk_1a]: 1 up, 2 down, 3 left, 4 right, 0 none. On
  * the same tile column or row it takes the larger pixel distance. Otherwise it
  * takes the larger tile distance's axis if a route that starts along it is
- * clear (func_ov003_0235f54c, the row first, for left and right), else the other
+ * clear (Ov003_IsPathClearRowFirst, the row first, for left and right), else the other
  * axis. Needed to match: separate dx and dy variables for the two parts. */
 int Ov003Unit_GetStepDirection(Ov003Unit *unit)
 {
@@ -47,7 +47,7 @@ int Ov003Unit_GetStepDirection(Ov003Unit *unit)
         tileDx = -tileDx;
     }
     if (tileDx > tileDy) {
-        if (func_ov003_0235f54c(unit, col, row, targetCol, targetRow) == 1) {
+        if (Ov003_IsPathClearRowFirst(unit, col, row, targetCol, targetRow) == 1) {
             return col > targetCol ? 3 : 4;
         }
         if (Ov003_IsRouteClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
@@ -57,7 +57,7 @@ int Ov003Unit_GetStepDirection(Ov003Unit *unit)
         if (Ov003_IsRouteClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
             return row > targetRow ? 1 : 2;
         }
-        if (func_ov003_0235f54c(unit, col, row, targetCol, targetRow) == 1) {
+        if (Ov003_IsPathClearRowFirst(unit, col, row, targetCol, targetRow) == 1) {
             return col > targetCol ? 3 : 4;
         }
     }

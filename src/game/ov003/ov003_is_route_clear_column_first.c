@@ -11,7 +11,7 @@ int Ov003Unit_CanEnterTerrain(Ov003Unit *unit, u8 terrain);
 /* Walks the L-shaped route from (fromX, fromY) to (toX, toY) by tile: along
  * column fromX to row toY, then along row toY. Returns 0 if
  * Ov003Unit_CanEnterTerrain refuses the terrain of a tile on it. The two ends and the
- * corner (fromX, toY) are not checked. The sibling func_ov003_0235f54c
+ * corner (fromX, toY) are not checked. The sibling Ov003_IsPathClearRowFirst
  * walks the row first. */
 int Ov003_IsRouteClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY)
 {
