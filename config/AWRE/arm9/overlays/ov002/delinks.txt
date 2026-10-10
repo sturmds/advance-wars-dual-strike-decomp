@@ -51,6 +51,10 @@ src/game/ov002/func_ov002_02350e1c.c:
     complete
     .text       start:0x02350e1c end:0x02350e34
 
+src/game/ov002/battle_fade_in_step.c:
+    complete
+    .text       start:0x02350e34 end:0x02350ea8
+
 src/game/ov002/battle_init_screen_windows.c:
     complete
     .text       start:0x02350ea8 end:0x023511ac
