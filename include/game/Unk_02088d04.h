@@ -40,6 +40,9 @@ typedef struct DispCntBits {
 /* Unk_027c0280.blendMode value: darken by blendEvy / 16 (BLDCNT mode 3). */
 #define BLEND_MODE_DARKEN 3
 
+/* Unk_027c0280.blendMode value: brighten by blendEvy / 16 (BLDCNT mode 2). */
+#define BLEND_MODE_BRIGHTEN 2
+
 /* Unk_027c0280.blendMode value: alpha blend with blendEva and blendEvb (BLDCNT mode 1). */
 #define BLEND_MODE_ALPHA 1
 

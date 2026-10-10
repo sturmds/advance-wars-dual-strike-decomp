@@ -726,6 +726,10 @@ src/game/ov003/func_ov003_0236249c.c:
     complete
     .text       start:0x0236249c end:0x02362520
 
+src/game/ov003/ov003_fill_screens_white_or_black.c:
+    complete
+    .text       start:0x02362520 end:0x02362850
+
 src/game/ov003/ov003_object_reset_chime.c:
     complete
     .text       start:0x02362be4 end:0x02362c44
