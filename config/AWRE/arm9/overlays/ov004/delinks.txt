@@ -479,6 +479,10 @@ src/game/ov004/func_ov004_022b6d20.c:
     complete
     .text       start:0x022b6d20 end:0x022b6d40
 
+src/game/ov004/ov004_ease_masked_value_twice.c:
+    complete
+    .text       start:0x022b6d40 end:0x022b6ebc
+
 src/game/ov004/func_ov004_022b6ebc.c:
     complete
     .text       start:0x022b6ebc end:0x022b6ee4
