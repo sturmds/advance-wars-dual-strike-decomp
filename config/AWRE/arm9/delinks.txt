@@ -8000,6 +8000,10 @@ src/game/main/func_020e4700.c:
     complete
     .text       start:0x020e4700 end:0x020e4718
 
+src/game/main/graphics/blend_fade_out_update.c:
+    complete
+    .text       start:0x020e4718 end:0x020e47cc
+
 src/game/main/screen/screen_start_layer0_blend.c:
     complete
     .text       start:0x020e47cc end:0x020e48c0

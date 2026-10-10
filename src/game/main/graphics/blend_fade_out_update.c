@@ -1,0 +1,33 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/screen_other_map.h"
+
+#define FADE_FRAMES 80
+
+int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+void func_0200abf0(int layer, int screenSize);
+void func_01ff8c84(int layer);
+void Gfx_RequestLayerCopy(int layer);
+void Task_ResumeScript(Task *task);
+
+/* The frame counter is signed in the original; Task.unk_64 is unsigned. */
+#define FRAME(task) (*(s16 *)&(task)->unk_64)
+
+/* Task update: alpha-blends the screen for FADE_FRAMES frames, the first
+ * target's weight easing from 16 down to 0 against a second weight of 16.
+ * Afterwards it resets layer 0's screen size, requests a copy of layer 0
+ * and resumes the script. */
+void BlendFadeOut_Update(Task *task)
+{
+    data_027c0280->blendMode = 1;
+    data_027c0280->blendEva = Math_Ease(0, 16, 0, FRAME(task), FADE_FRAMES);
+    data_027c0280->blendEvb = 16;
+    data_027c0280->blendEvy = 0;
+    FRAME(task)++;
+    if (FRAME(task) > FADE_FRAMES) {
+        func_0200abf0(0, 0);
+        func_01ff8c84(0);
+        Gfx_RequestLayerCopy(0);
+        Task_ResumeScript(task);
+    }
+}
