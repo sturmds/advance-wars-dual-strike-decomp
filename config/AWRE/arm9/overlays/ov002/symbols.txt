@@ -12,7 +12,7 @@ func_ov002_02350d40 kind:function(arm,size=0x48) addr:0x02350d40
 func_ov002_02350d88 kind:function(arm,size=0x94) addr:0x02350d88
 func_ov002_02350e1c kind:function(arm,size=0x18) addr:0x02350e1c
 func_ov002_02350e34 kind:function(arm,size=0x74) addr:0x02350e34
-func_ov002_02350ea8 kind:function(arm,size=0x304) addr:0x02350ea8
+Battle_InitScreenWindows kind:function(arm,size=0x304) addr:0x02350ea8
 func_ov002_023511ac kind:function(arm,size=0xa8) addr:0x023511ac
 func_ov002_02351254 kind:function(arm,size=0x34) addr:0x02351254
 func_ov002_02351288 kind:function(arm,size=0x624) addr:0x02351288
@@ -165,7 +165,7 @@ func_ov002_0235ffa8 kind:function(arm,size=0x88) addr:0x0235ffa8
 Ov002_gBattleScene kind:data(any) addr:0x02360040
 data_ov002_02360044 kind:data(any) addr:0x02360044
 data_ov002_02360054 kind:data(any) addr:0x02360054
-data_ov002_02360094 kind:data(any) addr:0x02360094
+Ov002_gBattleLayerConfig kind:data(any) addr:0x02360094
 data_ov002_023600e4 kind:data(any) addr:0x023600e4
 data_ov002_023600ec kind:data(any) addr:0x023600ec
 data_ov002_023600f0 kind:data(any) addr:0x023600f0
