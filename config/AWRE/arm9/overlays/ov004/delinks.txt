@@ -360,6 +360,10 @@ src/game/ov004/func_ov004_022b6a9c.c:
     complete
     .text       start:0x022b6a9c end:0x022b6ad0
 
+src/game/ov004/func_ov004_022b6ad0.c:
+    complete
+    .text       start:0x022b6ad0 end:0x022b6b04
+
 src/game/ov004/func_ov004_022b6b04.c:
     complete
     .text       start:0x022b6b04 end:0x022b6b24
