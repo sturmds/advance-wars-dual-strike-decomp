@@ -155,6 +155,10 @@ src/game/ov006/ov006_popup_choice_start_script_a.c:
     complete
     .text       start:0x023546bc end:0x023546ec
 
+src/game/ov006/ov006_popup_choice_start_script_b.c:
+    complete
+    .text       start:0x023546ec end:0x02354724
+
 src/game/ov006/ov006_clear_layer1_menu_box.c:
     complete
     .text       start:0x02354724 end:0x02354778
