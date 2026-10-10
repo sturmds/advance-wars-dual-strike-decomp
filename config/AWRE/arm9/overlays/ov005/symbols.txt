@@ -30,7 +30,7 @@ func_ov005_023536d4 kind:function(arm,size=0x10) addr:0x023536d4
 func_ov005_023536e4 kind:function(arm,size=0x3a4) addr:0x023536e4
 func_ov005_02353a88 kind:function(arm,size=0x3c0) addr:0x02353a88
 func_ov005_02353e48 kind:function(arm,size=0x274) addr:0x02353e48
-func_ov005_023540bc kind:function(arm,size=0x508) addr:0x023540bc
+Ov005_SetupMainScreenLayers2And3 kind:function(arm,size=0x508) addr:0x023540bc
 func_ov005_023545c4 kind:function(arm,size=0x2b0) addr:0x023545c4
 func_ov005_02354874 kind:function(arm,size=0x984) addr:0x02354874
 func_ov005_023551f8 kind:function(arm,size=0x2c) addr:0x023551f8
@@ -324,11 +324,11 @@ data_ov005_02368a08 kind:data(any) addr:0x02368a08
 data_ov005_02368a14 kind:data(any) addr:0x02368a14
 data_ov005_02368a18 kind:data(any) addr:0x02368a18
 data_ov005_02368a1c kind:data(any) addr:0x02368a1c
-data_ov005_02368a20 kind:data(any) addr:0x02368a20
-data_ov005_02368a24 kind:data(any) addr:0x02368a24
-data_ov005_02368a28 kind:data(any) addr:0x02368a28
-data_ov005_02368a2c kind:data(any) addr:0x02368a2c
-data_ov005_02368a30 kind:data(any) addr:0x02368a30
+gRikiishiFile022 kind:data(any) addr:0x02368a20
+gRikiishiFile023 kind:data(any) addr:0x02368a24
+gRikiishiFile024 kind:data(any) addr:0x02368a28
+gRikiishiFile025 kind:data(any) addr:0x02368a2c
+gRikiishiFile026 kind:data(any) addr:0x02368a30
 data_ov005_02368a34 kind:data(any) addr:0x02368a34
 data_ov005_02368a38 kind:data(any) addr:0x02368a38
 data_ov005_02368a3c kind:data(any) addr:0x02368a3c
