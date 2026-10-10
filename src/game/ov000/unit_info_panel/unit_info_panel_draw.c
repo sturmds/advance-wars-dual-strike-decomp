@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 
 void func_0201710c(int slot);
-void func_ov000_022b2838(void);
+void UnitInfoPanel_DrawUnit(void);
 void func_ov000_022b2a3c(void);
 
 /* Script callback of the panel: draws the unit each frame. With no unit it
@@ -19,6 +19,6 @@ void UnitInfoPanel_Draw(void)
         func_0201710c((u8)*data_027c027c->scriptSlotCurrent);
         return;
     }
-    func_ov000_022b2838();
+    UnitInfoPanel_DrawUnit();
     func_ov000_022b2a3c();
 }
