@@ -24,7 +24,7 @@ extern u8 data_ov006_0236d5b8[];
 extern u8 data_ov006_0236d5c8[][16];
 extern u8 data_ov006_0236d5d8[];
 
-int func_ov006_0236589c(int tile);   /* guess: finds a tile with this byte; below 0 when there is none */
+int Ov006_CountArmyFactories(int tile);   /* guess: finds a tile with this byte; below 0 when there is none */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -82,10 +82,10 @@ int Ov006_PackArmySlots(int restore, int hqMask)
     if (restore == 0) {
         hqMask = 0;
         /* HQ tile bytes of owners 1-4 */
-        hqMask |= (func_ov006_0236589c(0x28) >= 0) << 3;
-        hqMask |= (func_ov006_0236589c(0x48) >= 0) << 2;
-        hqMask |= (func_ov006_0236589c(0x68) >= 0) << 1;
-        hqMask |= (func_ov006_0236589c(0x88) >= 0);
+        hqMask |= (Ov006_CountArmyFactories(0x28) >= 0) << 3;
+        hqMask |= (Ov006_CountArmyFactories(0x48) >= 0) << 2;
+        hqMask |= (Ov006_CountArmyFactories(0x68) >= 0) << 1;
+        hqMask |= (Ov006_CountArmyFactories(0x88) >= 0);
         STATE->army[1] = Ov006_gSlotArmyColours[(data_ov006_0236d578[hqMask] >> 1) - 1];
         STATE->army[2] = Ov006_gSlotArmyColours[(data_ov006_0236d598[hqMask] >> 1) - 1];
         STATE->army[3] = Ov006_gSlotArmyColours[(data_ov006_0236d5b8[hqMask] >> 1) - 1];
