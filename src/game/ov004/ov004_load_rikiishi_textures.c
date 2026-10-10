@@ -27,7 +27,7 @@ extern char gRikiishiFile0a5[];
 extern char gRikiishiFile0a8[];
 extern char gRikiishiFile0b1[];
 
-void Ov004_LoadRikiishiTextures(void)
+void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
 {
     u8 *buffer = data_ov004_022bf150;
 
