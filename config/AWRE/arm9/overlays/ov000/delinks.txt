@@ -234,6 +234,9 @@ src/game/ov000/second_screen_draw_player_row.c:
 src/game/ov000/func_ov000_022afbf0.c:
     .text       start:0x022afbf0 end:0x022afee8
 
+src/game/ov000/func_ov000_022afee8.c:
+    .text       start:0x022afee8 end:0x022affbc
+
 src/game/ov000/ov000_clear_right_panel_box.c:
     complete
     .text       start:0x022affbc end:0x022b0054
