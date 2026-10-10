@@ -10,6 +10,8 @@ struct Task;
 typedef struct Unk_ov005_023559dc {
     u8 pad_00[0x10];
     struct Task *fadeTask;             /* from the func_020fcd78 family */
+    struct Task *fadeTask2;
+    struct Task *songFadeTask;         /* func_020fcb08 */
 } Unk_ov005_023559dc;
 
 #endif
