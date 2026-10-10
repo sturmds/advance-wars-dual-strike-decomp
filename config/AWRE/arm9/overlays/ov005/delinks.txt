@@ -872,6 +872,10 @@ src/game/ov005/shop/ov005_init_shop_paging.c:
     complete
     .text       start:0x023671f4 end:0x02367258
 
+src/game/ov005/ov005_draw_item_page_number.c:
+    complete
+    .text       start:0x02367258 end:0x02367420
+
 src/game/ov005/shop/ov005_draw_shop_points.c:
     complete
     .text       start:0x02367420 end:0x0236772c
