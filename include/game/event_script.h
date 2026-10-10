@@ -13,7 +13,8 @@ typedef struct EventScriptCommand {
     u8 opcode;
     u8 pad_01[0x03];
     void (*handler)(struct EventScriptSlot *slot); /* EventScript_RunCommand calls it with the running slot */
-    u8 pad_08[0x04];
+    s16 unk_08;
+    s16 unk_0a;
     u32 arg;                           /* wait command: frames to wait */
 } EventScriptCommand;
 
