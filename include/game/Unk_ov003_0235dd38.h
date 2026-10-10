@@ -13,7 +13,9 @@ typedef struct Unk_ov003_0235dd38 {
     };
     u8 pad_4e[0x52 - 0x4e];
     u16 unk_52;                        /* row number, 1 to 5 */
-    u8 pad_54[0x64 - 0x54];
+    u8 pad_54[0x58 - 0x54];
+    int count;                         /* how many of the 16 slots are filled (func_ov003_0235ce7c) */
+    u8 pad_5c[0x64 - 0x5c];
     u16 unk_64;
 } Unk_ov003_0235dd38;
 
