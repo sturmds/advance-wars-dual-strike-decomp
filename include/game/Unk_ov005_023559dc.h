@@ -12,6 +12,8 @@ typedef struct Unk_ov005_023559dc {
     struct Task *fadeTask;             /* from the func_020fcd78 family */
     struct Task *fadeTask2;
     struct Task *songFadeTask;         /* func_020fcbd8 or func_020fcb08 */
+    u32 scrollFrame;                   /* frame of the BG scroll tween */
+    u32 scrollFrames;
 } Unk_ov005_023559dc;
 
 #endif

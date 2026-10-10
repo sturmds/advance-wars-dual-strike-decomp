@@ -116,6 +116,10 @@ src/game/ov005/ov005_set_up_main_screen.c:
     complete
     .text       start:0x02353a88 end:0x02353e48
 
+src/game/ov005/ov005_update_scrolling_event_script_screen.c:
+    complete
+    .text       start:0x02353e48 end:0x023540bc
+
 src/game/ov005/ov005_setup_main_screen_layers2_and3.c:
     complete
     .text       start:0x023540bc end:0x023545c4
