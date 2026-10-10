@@ -7,7 +7,7 @@ extern MenuState gMenuState;
 void Sound_LoadBattleUnitData(int unitType1, int unitType2);
 void Battle_PickSideVariants(void);
 void Battle_SelectUnitRecords(int unitType1, int unitType2);
-void func_ov002_02351254(void);
+void Battle_LoadScreen(void);
 void Battle_InitHpDisplay(void);
 void func_ov002_023571d0(void);
 void func_ov002_023571b8(void);
@@ -25,7 +25,7 @@ int Battle_Init(int unused)
     Sound_LoadBattleUnitData(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
     Battle_PickSideVariants();
     Battle_SelectUnitRecords(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
-    func_ov002_02351254();
+    Battle_LoadScreen();
     Battle_InitHpDisplay();
     func_ov002_023571d0();
     func_ov002_023571b8();
