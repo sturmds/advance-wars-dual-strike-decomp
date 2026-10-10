@@ -315,6 +315,10 @@ src/game/ov003/ov003_draw_objects.c:
     complete
     .text       start:0x0235a62c end:0x0235a670
 
+src/game/ov003/ov003_object_draw.c:
+    complete
+    .text       start:0x0235a670 end:0x0235a79c
+
 src/game/ov003/ov003_update_objects.c:
     complete
     .text       start:0x0235a79c end:0x0235a810
