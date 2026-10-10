@@ -1184,6 +1184,10 @@ src/game/main/graphics/quad/gx_send_plain_quad_020137d4.c:
     complete
     .text       start:0x020137d4 end:0x020138c0
 
+src/game/main/size_flag_to_index.c:
+    complete
+    .text       start:0x020138c0 end:0x02013924
+
 src/game/main/graphics/quad/gx_send_obj_sized_quad.c:
     complete
     .text       start:0x02013988 end:0x0201403c
