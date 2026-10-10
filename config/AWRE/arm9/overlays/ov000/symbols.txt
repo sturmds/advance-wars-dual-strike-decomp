@@ -1,6 +1,6 @@
 func_ov000_022ad560 kind:function(arm,size=0x68) addr:0x022ad560
 func_ov000_022ad5c8 kind:function(arm,size=0x4) addr:0x022ad5c8
-func_ov000_022ad5cc kind:function(arm,size=0x44) addr:0x022ad5cc
+UnitShowTask_FindFreeSlot kind:function(arm,size=0x44) addr:0x022ad5cc
 func_ov000_022ad610 kind:function(arm,size=0x20) addr:0x022ad610
 func_ov000_022ad630 kind:function(arm,size=0x44) addr:0x022ad630
 func_ov000_022ad674 kind:function(arm,size=0x80) addr:0x022ad674

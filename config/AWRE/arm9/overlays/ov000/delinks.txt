@@ -8,6 +8,10 @@ src/game/ov000/func_ov000_022ad5c8.c:
     complete
     .text       start:0x022ad5c8 end:0x022ad5cc
 
+src/game/ov000/task/unit_show_task_find_free_slot.c:
+    complete
+    .text       start:0x022ad5cc end:0x022ad610
+
 src/game/ov000/func_ov000_022ad610.c:
     complete
     .text       start:0x022ad610 end:0x022ad630

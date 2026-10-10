@@ -16,7 +16,7 @@ typedef struct Unk_022a7c5c {
 } Unk_022a7c5c;
 extern Unk_022a7c5c *data_022a7c5c;
 
-int func_ov000_022ad5cc(void);
+int UnitShowTask_FindFreeSlot(void);
 const char *func_ov000_022adedc(int type);
 const char *func_ov000_022adf24(UnitShowTask *task);
 int func_ov000_022adf98(int entry);
@@ -44,7 +44,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     void *file;
     UnitShowTask *task;
 
-    slot = func_ov000_022ad5cc();
+    slot = UnitShowTask_FindFreeSlot();
     if (slot == -1) {
         return NULL;
     }
