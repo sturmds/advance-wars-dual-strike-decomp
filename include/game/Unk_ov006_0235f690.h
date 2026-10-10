@@ -41,7 +41,7 @@ typedef struct Unk_ov006_0235f690 {
     u16 oldCell;                       /* cell code of the tile an edit is about to overwrite (Ov006_BreakCellBlock) */
     s8 unk_24;
     s8 unk_25;
-    u8 pad_26;
+    s8 unk_26;
     s8 unk_27;
     s8 unk_28;
     s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
