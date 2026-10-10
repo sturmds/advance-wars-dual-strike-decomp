@@ -52,6 +52,7 @@ src/game/ov006/func_ov006_023526c8.c:
     .text       start:0x023526c8 end:0x02352708
 
 src/game/ov006/func_ov006_02352708.c:
+    complete
     .text       start:0x02352708 end:0x02352764
 
 src/game/ov006/func_ov006_02352764.c:
