@@ -91,9 +91,29 @@ src/game/ov002/func_ov002_0235643c.c:
     complete
     .text       start:0x0235643c end:0x023564bc
 
+src/game/ov002/battle_sprite_task_create_if_set.c:
+    complete
+    .text       start:0x023564bc end:0x02356594
+
+src/game/ov002/battle_sprite_task_create_default_wrapper.c:
+    complete
+    .text       start:0x02356594 end:0x02356604
+
 src/game/ov002/func_ov002_02356604.c:
     complete
     .text       start:0x02356604 end:0x02356684
+
+src/game/ov002/battle_sprite_task_create_default.c:
+    complete
+    .text       start:0x02356684 end:0x02356700
+
+src/game/ov002/battle_sprite_task_create.c:
+    complete
+    .text       start:0x02356700 end:0x023567d4
+
+src/game/ov002/battle_sprite_task_init.c:
+    complete
+    .text       start:0x023567d4 end:0x02356884
 
 src/game/ov002/func_ov002_0235710c.c:
     complete
