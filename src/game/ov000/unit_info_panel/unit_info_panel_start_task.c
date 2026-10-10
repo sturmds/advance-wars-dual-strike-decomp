@@ -3,7 +3,7 @@
 #include "game/unit_info_panel.h"
 
 void Map_ScrollViewToTile(int arg);
-void func_ov000_022b1658(void);
+void UnitInfoPanel_AddButtons(void);
 
 extern const TaskScriptCmd data_ov000_0234ef28[];
 
@@ -14,5 +14,5 @@ void UnitInfoPanel_StartTask(void *parent)
     data_ov000_0234ec8c->unk_0d = -1;
     Map_ScrollViewToTile(2);
     Task_Create(data_ov000_0234ef28, parent);
-    func_ov000_022b1658();
+    UnitInfoPanel_AddButtons();
 }
