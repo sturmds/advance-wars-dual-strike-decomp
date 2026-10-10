@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* One of the 4 8-byte items in data_ov003_02369b98 (overlay 3). func_ov003_0235dfe8
+/* One of the 4 8-byte items in data_ov003_02369b98 (overlay 3). Ov003_SpawnItem
  * drops one at a position (5 in 6 of the time, kind 1 to 5); one with time
  * 0 is free. A unit within 48 of its position picks it up. */
 typedef struct Ov003Pickup {

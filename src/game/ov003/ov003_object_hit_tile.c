@@ -12,7 +12,7 @@ extern u8 data_ov003_02364d9a[];
 
 int func_ov003_0235d5d4(int row, int kind, int arg2, int targetType);
 void Ov003Row_AddGauge(int row, int arg1);
-int func_ov003_0235dfe8(int x, int y);
+int Ov003_SpawnItem(int x, int y);
 Unk_ov003_02369bb8 *func_ov003_0235e8fc(int x, int y);
 void func_ov003_0236179c(int team);
 void func_ov003_02364524(int x, int y);
@@ -145,7 +145,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         }
         if (targetType == 8 && object->variant != STATE->row) {
             STATE->unk_1d9++;
-            if (STATE->unk_1d9 >= 4 && func_ov003_0235dfe8(px, py) == 1) {
+            if (STATE->unk_1d9 >= 4 && Ov003_SpawnItem(px, py) == 1) {
                 STATE->unk_1d9 = 0;
             }
         }
