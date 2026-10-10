@@ -219,6 +219,10 @@ src/game/ov003/ov003_update_units.c:
     complete
     .text       start:0x02358168 end:0x02358280
 
+src/game/ov003/ov003_unit_draw.c:
+    complete
+    .text       start:0x02358280 end:0x02358568
+
 src/game/ov003/ov003_unit_draw_marker.c:
     complete
     .text       start:0x02358568 end:0x02358658
