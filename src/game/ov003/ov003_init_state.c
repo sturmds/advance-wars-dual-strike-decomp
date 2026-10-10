@@ -3,7 +3,7 @@
 #include "game/Unk_02160ac0.h"
 
 void Ov003_InitRows(void);
-void func_ov003_02352090(void);
+void Ov003_LoadScreenGraphics(void);
 void func_ov003_02351da0(void);
 void Ov003_ResetView(void);
 void func_ov003_02353bd8(void);
@@ -18,7 +18,7 @@ void Keypad_Init(void);
 void Ov003_InitState(void)
 {
     Ov003_InitRows();
-    func_ov003_02352090();
+    Ov003_LoadScreenGraphics();
     func_ov003_02351da0();
     Ov003_ResetView();
     func_ov003_02353bd8();
