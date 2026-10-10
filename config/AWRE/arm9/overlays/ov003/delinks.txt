@@ -251,6 +251,10 @@ src/game/ov003/ov003_object_spawn_effect.c:
     complete
     .text       start:0x02359bbc end:0x02359d24
 
+src/game/ov003/ov003_unit_spawn_effect_toward.c:
+    complete
+    .text       start:0x02359d24 end:0x02359f58
+
 src/game/ov003/ov003_unit_spawn_facing_effect.c:
     complete
     .text       start:0x02359f58 end:0x0235a140
