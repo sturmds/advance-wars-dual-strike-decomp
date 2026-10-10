@@ -20,7 +20,7 @@ func_ov000_022add0c kind:function(arm,size=0x4) addr:0x022add0c
 ShowEntryTask_Update kind:function(arm,size=0x2c) addr:0x022add10
 func_ov000_022add3c kind:function(arm,size=0xc) addr:0x022add3c
 UnitShowTask_GetTerrainSound kind:function(arm,size=0x194) addr:0x022add48
-func_ov000_022adedc kind:function(arm,size=0x48) addr:0x022adedc
+UnitShowEntry_GetSpritePath kind:function(arm,size=0x48) addr:0x022adedc
 func_ov000_022adf24 kind:function(arm,size=0x74) addr:0x022adf24
 func_ov000_022adf98 kind:function(arm,size=0x5c) addr:0x022adf98
 UnitShowTask_CheckVisible kind:function(arm,size=0x1d0) addr:0x022adff4
@@ -784,7 +784,7 @@ data_ov000_022db6b4 kind:data(any) addr:0x022db6b4
 data_ov000_022db6cc kind:data(any) addr:0x022db6cc
 data_ov000_022db6e4 kind:data(any) addr:0x022db6e4
 data_ov000_022db70c kind:data(any) addr:0x022db70c
-data_ov000_022db734 kind:data(any) addr:0x022db734
+gUnitShowEntries kind:data(any) addr:0x022db734
 data_ov000_022db748 kind:data(any) addr:0x022db748
 data_ov000_022db74c kind:data(any) addr:0x022db74c
 data_ov000_022db760 kind:data(any) addr:0x022db760

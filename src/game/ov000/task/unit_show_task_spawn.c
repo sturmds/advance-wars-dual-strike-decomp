@@ -17,7 +17,7 @@ typedef struct Unk_022a7c5c {
 extern Unk_022a7c5c *data_022a7c5c;
 
 int UnitShowTask_FindFreeSlot(void);
-const char *func_ov000_022adedc(int type);
+const char *UnitShowEntry_GetSpritePath(int type);
 const char *func_ov000_022adf24(UnitShowTask *task);
 int func_ov000_022adf98(int entry);
 u32 func_ov000_022ae6c0(int slot);
@@ -50,7 +50,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     }
     data_027c027c->unk_58[slot] = 1;
     FS_ChangeDir(data_ov000_022dbd1c);
-    file = File_Load(func_ov000_022adedc(type));
+    file = File_Load(UnitShowEntry_GetSpritePath(type));
     task = (UnitShowTask *)Task_Create(data_ov000_022db6cc, TASK_LIST(5));
     if ((void *)data_027c027c == data_027c0288) {
         task->sprite = func_02022478(file, 2, 14);
