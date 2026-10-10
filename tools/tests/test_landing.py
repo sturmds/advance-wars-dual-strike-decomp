@@ -346,6 +346,56 @@ class ReviewStampTest(RepoCase):
         self.assertEqual(len(list((self.repo.path / ".git/tenets-review").iterdir())), 2)
 
 
+class LandSelfReexecTest(RepoCase):
+    """2026-10-09: a land_self.py run that started before the review check
+    reached mainline kept its old code after the replay and landed commits
+    without a review. A replay that changes the tool now restarts the run
+    from the new copy."""
+
+    TOOL_FILES = ("land_self.py", "review_stamp.py", "rebase_onto_mainline.py",
+                  "apply_commit.py", "header_merge.py")
+
+    def setUp(self):
+        super().setUp()
+        self.repo.commit({f"tools/{t}": (TOOLS / t).read_text() for t in self.TOOL_FILES}, "base")
+        self.wt = Path(self.tmp.name) / "wt"
+        self.repo.git("worktree", "add", "-q", "-b", "agent", str(self.wt))
+
+    def land(self):
+        env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_LOCK_HELD"}
+        return subprocess.run([sys.executable, "tools/land_self.py"], cwd=self.wt,
+                              capture_output=True, text=True, env=env)
+
+    def agent_commit(self):
+        (self.wt / "notes.txt").write_text("notes\n")
+        self.repo.git("-C", str(self.wt), "add", "-A")
+        self.repo.git("-C", str(self.wt), "commit", "-q", "-m", "Add notes")
+
+    def test_restarts_with_new_copy(self):
+        self.agent_commit()
+        land = (TOOLS / "land_self.py").read_text()
+        marker = 'def main() -> int:\n    print("NEW COPY RAN", sys.argv[1:])\n    return 3\n\n\ndef old_main() -> int:'
+        self.repo.commit({"tools/land_self.py": land.replace("def main() -> int:", marker, 1)},
+                         "mainline changes land_self.py")
+        r = self.land()
+        self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+        self.assertIn("starting again with the new copy", r.stdout)
+        self.assertIn("NEW COPY RAN []", r.stdout)
+
+    def test_no_restart_when_tools_unchanged(self):
+        self.agent_commit()
+        self.repo.commit({"other.txt": "x\n"}, "mainline change")
+        r = self.land()
+        self.assertNotIn("starting again", r.stdout + r.stderr)
+        self.assertEqual(r.returncode, 2, r.stdout + r.stderr)  # replayed, then no Makefile for make release
+
+    def test_review_stamp_help(self):
+        r = subprocess.run([sys.executable, str(TOOLS / "review_stamp.py"), "--help"],
+                           cwd=self.wt, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("--missing", r.stdout)
+
+
 sys.path.insert(0, str(TOOLS))
 
 if __name__ == "__main__":

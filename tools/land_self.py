@@ -34,6 +34,10 @@ touches src/ or include/ (tools/review_stamp.py; the exemptions are listed
 there). Commits without a review stamp stop the run with exit code 5 and a
 message that says how to review and stamp them.
 
+When a replay changes tools/land_self.py or tools/review_stamp.py, the run
+starts again from the replayed copy (os.execv) before it builds or lands,
+so a newer check on mainline holds for a run that started with older code.
+
 Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up,
 4 busy (a replay is open or another run is under way in this worktree),
 5 commits without a tenets review stamp.
@@ -67,6 +71,17 @@ MAIN = COMMON.parent  # the main checkout, where mainline is checked out
 STATE = Path(git("rev-parse", "--path-format=absolute", "--git-path", "rebase-onto-mainline.json"))
 # Per worktree, held for the whole run; rebase_onto_mainline.py takes it too.
 WORKTREE_LOCK = Path(git("rev-parse", "--path-format=absolute", "--git-path", "land-self.lock"))
+
+
+# Read at start; a replay that changes them makes the run start again from the new copy.
+SELF_TOOLS = ("tools/land_self.py", "tools/review_stamp.py")
+
+
+def tool_texts() -> list[bytes | None]:
+    return [(ROOT / t).read_bytes() if (ROOT / t).exists() else None for t in SELF_TOOLS]
+
+
+STARTED_WITH = tool_texts()
 
 
 def run(*cmd) -> int:
@@ -200,6 +215,11 @@ def main() -> int:
         if git("rev-parse", "HEAD") == onto:
             print("nothing to land: the branch has no commits of its own")
             return GAVE_UP
+        if tool_texts() != STARTED_WITH:
+            # The worktree lock is not inherited across exec; the new run takes it again.
+            print("the replay changed land_self.py or review_stamp.py; starting again with the new copy")
+            sys.stdout.flush()
+            os.execv(sys.executable, [sys.executable, str(ROOT / "tools/land_self.py"), *sys.argv[1:]])
         if run("make", "release"):
             return BUILD_FAILED
         code = write_progress()

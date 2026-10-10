@@ -31,6 +31,7 @@ A commit needs a stamp when it touches src/ or include/, except:
   shared header needs a stamp.
 """
 
+import argparse
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -119,14 +120,23 @@ def describe(rev: str) -> str:
 
 
 def main() -> int:
-    args = sys.argv[1:]
-    if args and args[0] == "--missing":
-        todo = missing(args[1] if len(args) > 1 else "mainline")
+    ap = argparse.ArgumentParser(description="Record that the tenets review ran on a change, or list"
+                                 " commits that need a review stamp and have none.")
+    ap.add_argument("revs", nargs="*", metavar="REV",
+                    help="commits to stamp (default: the staged change, or HEAD if nothing is staged)")
+    ap.add_argument("--missing", nargs="?", const="mainline", metavar="UPSTREAM",
+                    help="list commits in UPSTREAM..HEAD (default mainline) that need a stamp and"
+                    " have none; exit 1 if any")
+    args = ap.parse_args()
+    if args.missing is not None:
+        if args.revs:
+            ap.error("--missing takes no REV")
+        todo = missing(args.missing)
         for c in todo:
             print(describe(c))
         return 1 if todo else 0
-    if args:
-        for rev in args:
+    if args.revs:
+        for rev in args.revs:
             pid = commit_patch_id(rev)
             if pid is None:
                 print(f"{describe(rev)}: no changes to stamp")
