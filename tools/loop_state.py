@@ -2,31 +2,42 @@
 """State of the automated loop (docs/loop.md, .claude/skills/decomp-orchestrate).
 
 The state lives outside git, in $LOOP_DIR (default
-work/loop): state.json, journal.md, steer.md. Agents in
-worktrees never read or write it, so it cannot touch landing.
+work/loop): state.json, journal.md, steer.md, and
+results/<group>.txt, where each agent writes its RESULT blocks. Batch prompts
+live next to it in loop-prompts/batchN/. Relative paths given to this tool
+resolve against the directory that holds both (work).
+Agents never change the state, so it cannot touch landing.
 
     loop_state.py lease                 take or refresh the orchestrator lease
-    loop_state.py add-batch N DIR       queue DIR/plan.json's groups as batch N
-    loop_state.py add-job NAME PROMPT --model M [--after A,B] [--class C]
+    loop_state.py meta [key=value...]   print or set loop facts (cron job, dates)
+    loop_state.py next-batch            the number the next batch gets
+    loop_state.py add-batch N [DIR]     queue plan.json's groups as batch N
+    loop_state.py add-job NAME (--template T | --prompt FILE) --model M
+                  [--batch N] [--after A,B] [--class C] [--fill KEY=VALUE...]
+    loop_state.py collect               read results/ for running and stopped groups
     loop_state.py reconcile             count each group's functions now in C
     loop_state.py status [--all]        one line per open group, then totals
     loop_state.py next K                up to K queued groups ready to start
     loop_state.py set NAME key=value... (tokens+=N adds; tries+=1 counts)
     loop_state.py claimed               functions held by open groups
+    loop_state.py worktrees             worktrees safe to remove
     loop_state.py report [N]            functions and tokens per batch
     loop_state.py log TEXT              append a line to journal.md
 
 A group is one agent's work: a plan.json entry (with functions) or a job
-(planner, partial retry, renames, tool fix) with only a prompt. Statuses:
-queued, running, stopped (usage limit or lost session: resume or relaunch),
-done, partial, failed. Functions count as done by address, from the
-`complete` files in delinks.txt, so renames do not matter.
+(planner, partial retry, renames, wrap-up, triage) with only a prompt.
+Statuses: queued, running, stopped (usage limit, or lost with a dead
+session: resume or relaunch), done, partial, failed. Functions count as done
+by address, from the `complete` files in delinks.txt, so renames do not
+matter.
 """
 
 import argparse
 import fcntl
 import json
 import os
+import re
+import subprocess
 import sys
 import time
 from contextlib import contextmanager
@@ -36,7 +47,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fn  # noqa: E402
 
 LOOP_DIR = Path(os.environ.get("LOOP_DIR", Path("work/loop")))
+BASE = LOOP_DIR.parent
+PROMPTS = BASE / "loop-prompts"
+RESULTS = LOOP_DIR / "results"
 STATE = LOOP_DIR / "state.json"
+TEMPLATES = fn.ROOT / ".claude/skills/decomp-orchestrate/jobs"
 OPEN = ("queued", "running", "stopped")
 FINISHED = ("done", "partial", "failed")
 
@@ -45,12 +60,23 @@ def now() -> str:
     return time.strftime("%Y-%m-%d %H:%M")
 
 
+def path(p: str) -> Path:
+    q = Path(p).expanduser()
+    return (q if q.is_absolute() else BASE / q).resolve()
+
+
+def result_file(name: str) -> Path:
+    return RESULTS / (name.replace("/", "-") + ".txt")
+
+
 @contextmanager
 def state(write: bool = True):
     LOOP_DIR.mkdir(parents=True, exist_ok=True)
     with open(LOOP_DIR / ".lock", "w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
-        s = json.loads(STATE.read_text()) if STATE.exists() else {"lease": None, "seq": 0, "groups": {}}
+        s = json.loads(STATE.read_text()) if STATE.exists() else {}
+        for k, v in (("lease", None), ("seq", 0), ("meta", {}), ("groups", {})):
+            s.setdefault(k, v)
         yield s
         if write:
             tmp = STATE.with_suffix(".tmp")
@@ -98,9 +124,29 @@ def cmd_lease(a, s):
             s["groups"][n]["status"] = "stopped"
             s["groups"][n]["lost"] = True
         print(f"TOOK lease for {sid}; {len(lost)} running groups from earlier sessions marked stopped (lost): {' '.join(lost)}")
+        print("meta:", json.dumps(s["meta"]))
     else:
         print(f"OK lease held by this session since {held['since']}")
     s["lease"]["seen"] = now()
+    return 0
+
+
+def cmd_meta(a, s):
+    for kv in a.pairs:
+        k, v = kv.split("=", 1)
+        s["meta"][k] = v
+    print(json.dumps(s["meta"]))
+    return 0
+
+
+def next_batch(s) -> int:
+    nums = [int(m.group(1)) for d in PROMPTS.glob("batch*") if (m := re.fullmatch(r"batch(\d+)", d.name))]
+    nums += [g["batch"] for g in s["groups"].values() if g.get("batch") is not None]
+    return max(nums, default=0) + 1
+
+
+def cmd_next_batch(a, s):
+    print(next_batch(s))
     return 0
 
 
@@ -115,7 +161,7 @@ def add_group(s, name, **fields):
 
 
 def cmd_add_batch(a, s):
-    d = Path(a.dir).expanduser().resolve()
+    d = path(a.dir) if a.dir else PROMPTS / f"batch{a.n}"
     plan = json.loads((d / "plan.json").read_text())["groups"]
     order = [ln.split()[0] for ln in (d / "order.txt").read_text().splitlines()
              if ln.strip() and not ln.startswith("#") and not ln.endswith(":")] if (d / "order.txt").exists() else []
@@ -124,14 +170,70 @@ def cmd_add_batch(a, s):
         g = plan[n]
         add_group(s, f"b{a.n}/{n}", batch=a.n, model=g["model"], prompt=str(d / f"{n}.md"),
                   funcs=[[f[0], f[1], f[3]] for f in g["funcs"]], after=g.get("after", []), cls=g.get("cls"))
-    print(f"queued {len(names)} groups of batch {a.n}")
+    print(f"queued {len(names)} groups of batch {a.n} from {d}")
     return 0
 
 
 def cmd_add_job(a, s):
-    add_group(s, a.name, batch=a.batch, model=a.model, prompt=str(Path(a.prompt).expanduser().resolve()),
-              after=[x for x in (a.after or "").split(",") if x], cls=a.cls)
-    print(f"queued job {a.name}")
+    if a.template:
+        text = (TEMPLATES / f"{a.template}.md").read_text()
+        fills = {"N": str(a.batch)} if a.batch is not None else {}
+        fills.update(kv.split("=", 1) for kv in a.fill or [])
+        for k, v in fills.items():
+            text = text.replace("{" + k + "}", v)
+        if left := sorted(set(re.findall(r"\{([A-Z]+)\}", text))):
+            sys.exit(f"{a.template}.md: no value for {', '.join(left)} (use --batch or --fill KEY=VALUE)")
+        prompt = PROMPTS / (f"batch{a.batch}" if a.batch is not None else "jobs") / f"{a.name}.md"
+        prompt.parent.mkdir(parents=True, exist_ok=True)
+        prompt.write_text(text)
+    elif a.prompt:
+        prompt = path(a.prompt)
+    else:
+        sys.exit("add-job: give --template or --prompt")
+    add_group(s, a.name, batch=a.batch, model=a.model, prompt=str(prompt), cls=a.cls or a.template,
+              after=[x for x in (a.after or "").split(",") if x])
+    print(f"queued job {a.name} ({prompt})")
+    return 0
+
+
+def parse_results(text: str):
+    """[{RESULT, FUNCTION, COMMIT, LANDED, BEST, ...}] from RESULT blocks."""
+    blocks, cur = [], None
+    for ln in text.splitlines():
+        m = re.match(r"\s*([A-Z]+):\s*(.*)", ln)
+        if not m:
+            continue
+        k, v = m.groups()
+        if k == "RESULT":
+            cur = {}
+            blocks.append(cur)
+        if cur is not None:
+            cur[k] = v.strip()
+    return blocks
+
+
+def cmd_collect(a, s):
+    for n, g in sorted(s["groups"].items(), key=lambda x: x[1]["order"]):
+        f = result_file(n)
+        if g["status"] not in ("running", "stopped") or not f.exists():
+            continue
+        if g.get("started") and time.strftime("%Y-%m-%d %H:%M", time.localtime(f.stat().st_mtime)) < g["started"]:
+            continue  # left by an earlier try
+        blocks = parse_results(f.read_text())
+        if not blocks:
+            print(f"{n}: results file has no RESULT block")
+            continue
+        kinds = [b["RESULT"].split()[0].lower() for b in blocks]
+        good = sum(k in ("matched", "done") for k in kinds)
+        landed = sorted({h for b in blocks for h in b.get("LANDED", "").split() if re.fullmatch(r"[0-9a-f]{7,40}", h)})
+        g["status"] = "done" if good == len(kinds) else "partial" if good else "failed"
+        g["result"] = f"{good}/{len(kinds)} landed {' '.join(h[:9] for h in landed) or 'none'}"
+        g["ended"] = now()
+        print(f"{n} {g['status']} {g['result']}")
+        for b in blocks:
+            commits = b.get("COMMIT", "none").split()
+            if b["RESULT"].lower().startswith("matched") and commits != ["none"] and not landed:
+                print(f"  UNLANDED {b.get('FUNCTION', '?')}: {' '.join(commits)}")
     return 0
 
 
@@ -148,14 +250,17 @@ def cmd_reconcile(a, s):
 def cmd_status(a, s):
     rows = [(n, g) for n, g in sorted(s["groups"].items(), key=lambda x: x[1]["order"])
             if a.all or g["status"] in ("running", "stopped")]
+    sid = session()[0]
     for n, g in rows:
         fns = f"{g['done']}/{len(g['funcs'])}" if g["funcs"] else "job"
-        lost = " lost" if g.get("lost") else ""
+        lost = " lost" if g.get("lost") or (g["status"] == "stopped" and g.get("session") != sid) else ""
         print(f"{n:28} {g['status']:8}{lost} {g['model']:6} {fns:>7} tries={g['tries']} agent={g['agent']} {g['result'][:60]}")
     counts = {}
     for g in s["groups"].values():
         counts[g["status"]] = counts.get(g["status"], 0) + 1
-    print("totals:", " ".join(f"{k}={v}" for k, v in sorted(counts.items())), "| ready:", len(ready(s)))
+    queued_work = sum(g["status"] == "queued" and bool(g["funcs"]) for g in s["groups"].values())
+    print("totals:", " ".join(f"{k}={v}" for k, v in sorted(counts.items())),
+          f"| ready: {len(ready(s))} | queued model groups: {queued_work} | next batch: {next_batch(s)}")
     return 0
 
 
@@ -177,7 +282,7 @@ def ready(s):
 def cmd_next(a, s):
     for n in ready(s)[: a.k]:
         g = s["groups"][n]
-        print(f"{n}\t{g['model']}\t{g['prompt']}")
+        print(f"{n}\t{g['model']}\t{g['prompt']}\t{result_file(n)}")
     return 0
 
 
@@ -206,22 +311,42 @@ def cmd_claimed(a, s):
     return 0
 
 
+def cmd_worktrees(a, s):
+    """Worktrees under .claude/worktrees/ whose branch is in mainline, with
+    no uncommitted changes, not locked (the harness locks a live agent's
+    worktree), and whose agent is not one of an open group."""
+    held = {g["agent"] for g in s["groups"].values() if g["status"] in OPEN and g["agent"]}
+    out = subprocess.run(["git", "worktree", "list", "--porcelain"], cwd=fn.ROOT, capture_output=True, text=True).stdout
+    for chunk in out.strip().split("\n\n"):
+        wt = dict((ln.split(" ", 1) + [""])[:2] for ln in chunk.splitlines())
+        p, br = wt.get("worktree", ""), wt.get("branch", "").removeprefix("refs/heads/")
+        if "/.claude/worktrees/" not in p or not br or "locked" in wt or Path(p).name.removeprefix("agent-") in held:
+            continue
+        dirty = subprocess.run(["git", "status", "--porcelain"], cwd=p, capture_output=True, text=True).stdout.strip()
+        merged = subprocess.run(["git", "merge-base", "--is-ancestor", br, "mainline"], cwd=fn.ROOT).returncode == 0
+        if merged and not dirty:
+            print(f"{p}\t{br}")
+    return 0
+
+
 def cmd_report(a, s):
     done = done_addrs()
     by = {}
     for g in s["groups"].values():
-        b = by.setdefault(g.get("batch"), {"groups": 0, "open": 0, "funcs": 0, "done": 0, "tokens": 0})
+        b = by.setdefault(g.get("batch"), {"groups": 0, "open": 0, "funcs": 0, "done": 0, "tokens": 0, "models": {}})
         b["groups"] += 1
         b["open"] += g["status"] in OPEN
         b["funcs"] += len(g["funcs"])
         b["done"] += sum((m, addr) in done for m, addr, _ in g["funcs"])
         b["tokens"] += g["tokens"]
+        b["models"][g["model"]] = b["models"].get(g["model"], 0) + g["tokens"]
     for b, r in sorted(by.items(), key=lambda x: (x[0] is None, x[0] or 0)):
         if a.n is not None and b != a.n:
             continue
         rate = r["done"] / r["tokens"] * 1e6 if r["tokens"] else 0
-        print(f"batch {b}: groups {r['groups']} (open {r['open']}), functions {r['done']}/{r['funcs']}, "
-              f"tokens {r['tokens']:,}, {rate:.0f} functions per 1M tokens (agent-matched only)")
+        models = ", ".join(f"{m} {t:,}" for m, t in sorted(r["models"].items()))
+        print(f"batch {b}: groups {r['groups']} (open {r['open']}), planned functions in C {r['done']}/{r['funcs']}, "
+              f"tokens {r['tokens']:,} ({models}), {rate:.0f} per 1M tokens")
     return 0
 
 
@@ -235,16 +360,21 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
     sub.add_parser("lease").add_argument("--force", action="store_true")
+    sub.add_parser("meta").add_argument("pairs", nargs="*")
+    sub.add_parser("next-batch")
     x = sub.add_parser("add-batch")
     x.add_argument("n", type=int)
-    x.add_argument("dir")
+    x.add_argument("dir", nargs="?")
     x = sub.add_parser("add-job")
     x.add_argument("name")
-    x.add_argument("prompt")
+    x.add_argument("--template", choices=["plan", "partials", "renames", "wrapup", "triage"])
+    x.add_argument("--prompt")
     x.add_argument("--model", required=True)
     x.add_argument("--batch", type=int)
     x.add_argument("--after")
     x.add_argument("--class", dest="cls")
+    x.add_argument("--fill", nargs="*")
+    sub.add_parser("collect")
     sub.add_parser("reconcile").add_argument("--all", action="store_true")
     sub.add_parser("status").add_argument("--all", action="store_true")
     sub.add_parser("next").add_argument("k", type=int)
@@ -252,11 +382,13 @@ def main() -> int:
     x.add_argument("name")
     x.add_argument("pairs", nargs="+")
     sub.add_parser("claimed")
+    sub.add_parser("worktrees")
     sub.add_parser("report").add_argument("n", type=int, nargs="?")
     sub.add_parser("log").add_argument("text")
     a = p.parse_args()
     handler = globals()["cmd_" + a.cmd.replace("-", "_")]
-    with state(write=a.cmd not in ("status", "next", "claimed", "report", "log")) as s:
+    readonly = ("status", "next", "next-batch", "claimed", "worktrees", "report", "log")
+    with state(write=a.cmd not in readonly and not (a.cmd == "meta" and not a.pairs)) as s:
         return handler(a, s)
 
 
