@@ -474,6 +474,10 @@ src/game/ov003/ov003_unit_fire_forward.c:
     complete
     .text       start:0x0235fdd8 end:0x0235fde4
 
+src/game/ov003/ov003_unit_fire_at_unit_scattered.c:
+    complete
+    .text       start:0x0235fde4 end:0x0235fe9c
+
 src/game/ov003/ov003_unit_fire_at_unit.c:
     complete
     .text       start:0x0235fe9c end:0x0235fee4
