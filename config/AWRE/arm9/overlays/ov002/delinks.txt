@@ -35,6 +35,10 @@ src/game/ov002/battle_draw_frame.c:
     complete
     .text       start:0x02350cb4 end:0x02350ce0
 
+src/game/ov002/battle_ensure_task.c:
+    complete
+    .text       start:0x02350ce0 end:0x02350d20
+
 src/game/ov002/func_ov002_02350d20.c:
     complete
     .text       start:0x02350d20 end:0x02350d40
