@@ -15,7 +15,7 @@ typedef struct BattleEntryAt310 {
 } BattleEntryAt310;
 
 int BattleCellTask_Create(int side, int slot, int entry);
-int func_ov002_02359674(int side);
+int BattleCellTask_CreateFighter(int side);
 void BattleSpriteTask_CreateDefaultWrapper(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11);
 
 /* Makes the fighter objects of both sides: one per entry with unk_14 set (or one for the
@@ -41,7 +41,7 @@ void func_ov002_023571d0(void)
                 at = (BattleEntryAt310 *)((u8 *)at + sizeof(BattleEntry));
             }
         } else {
-            ((BattleEntryAt310 *)row)->entry.unk_00 = func_ov002_02359674(side);
+            ((BattleEntryAt310 *)row)->entry.unk_00 = BattleCellTask_CreateFighter(side);
         }
         if (((int *)&gMenuState + side)[0x68 / 4] != 0) {
             BattleSideAnim *anim = BATTLE_SIDE_ANIM(side);
