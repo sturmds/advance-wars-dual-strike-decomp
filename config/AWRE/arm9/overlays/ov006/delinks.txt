@@ -407,6 +407,10 @@ src/game/ov006/ov006_update_id_flag.c:
     complete
     .text       start:0x02357fb4 end:0x023580c0
 
+src/game/ov006/func_ov006_023580c0.c:
+    complete
+    .text       start:0x023580c0 end:0x02358148
+
 src/game/ov006/ov006_draw_menu_line.c:
     complete
     .text       start:0x02358148 end:0x023581d8
