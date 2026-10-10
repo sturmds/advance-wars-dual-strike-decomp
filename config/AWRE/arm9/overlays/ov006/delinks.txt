@@ -487,6 +487,10 @@ src/game/ov006/ov006_is_bridge_cell.c:
     complete
     .text       start:0x023603d0 end:0x02360428
 
+src/game/ov006/ov006_is_bridge_tile.c:
+    complete
+    .text       start:0x02360428 end:0x023604a4
+
 src/game/ov006/func_ov006_023604a4.c:
     complete
     .text       start:0x023604a4 end:0x02360590
