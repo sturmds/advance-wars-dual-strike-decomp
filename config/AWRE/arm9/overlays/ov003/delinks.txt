@@ -111,7 +111,8 @@ src/game/ov003/ov003_draw_icon_at.c:
     complete
     .text       start:0x02357608 end:0x023576d0
 
-src/game/ov003/func_ov003_023576d0.c:
+src/game/ov003/ov003_draw_frame_at.c:
+    complete
     .text       start:0x023576d0 end:0x0235779c
 
 src/game/ov003/ov003_capture_property.c:
