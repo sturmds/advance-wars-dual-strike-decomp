@@ -105,7 +105,7 @@ typedef struct Ov003Slot {
 
 /* 5 bytes at Ov003State.spawns: where a unit appears and how it starts. */
 typedef struct Ov003Spawn {
-    u8 x;                              /* passed to func_ov003_0235c42c */
+    u8 x;                              /* passed to Ov003_FindOpenTileNear */
     u8 y;
     u8 unk_2_0 : 3;                    /* becomes Ov003Unit.unk_12_0 */
     u8 unk_2_3 : 3;                    /* bit 0 becomes Ov003Unit.unk_1e_0 */

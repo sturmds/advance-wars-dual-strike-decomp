@@ -4,14 +4,14 @@
 extern Ov003Unit data_ov003_02369538[16];
 
 int func_ov003_023622b8(void);
-int func_ov003_0235c42c(int tile, int *x, int *y);
+int Ov003_FindOpenTileNear(int tile, int *x, int *y);
 
 /* Fills the Ov003Unit for slot with a unit at the cell column of its row in
  * data_ov003_02364928 and links the cell to it. A slot below
  * func_ov003_023622b8() is used as is; otherwise the first free entry from that
- * number up is taken. x and y go to func_ov003_0235c42c, which turns them into
+ * number up is taken. x and y go to Ov003_FindOpenTileNear, which turns them into
  * the unit's tile position. Returns NULL when no entry is free or
- * func_ov003_0235c42c returns 0. Needed to match: row is a u8 and the
+ * Ov003_FindOpenTileNear returns 0. Needed to match: row is a u8 and the
  * declarations are split from their assignments. */
 Ov003Unit *Ov003Unit_Create(int slot, int column, int x, int y)
 {
@@ -36,7 +36,7 @@ Ov003Unit *Ov003Unit_Create(int slot, int column, int x, int y)
             return NULL;
         }
     }
-    if (func_ov003_0235c42c(cell->tile, &x, &y) == 0) {
+    if (Ov003_FindOpenTileNear(cell->tile, &x, &y) == 0) {
         return NULL;
     }
     unit->x = (x << 7) + 64;

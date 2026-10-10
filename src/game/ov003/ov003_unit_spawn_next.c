@@ -5,14 +5,14 @@ extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02364d8e[][20];
 
 int func_ov003_023622b8(void);
-int func_ov003_0235c42c(int tile, int *x, int *y);
+int Ov003_FindOpenTileNear(int tile, int *x, int *y);
 
 #define STATE data_ov003_02364928
 
 /* Creates the unit for the next spawn record of the current row and links
  * its cell to it. Returns NULL when the row has no records left or no entry
  * from func_ov003_023622b8() up is free (hp 0 and unk_17_7 clear), or when
- * func_ov003_0235c42c rejects the position. Afterwards the record index moves
+ * Ov003_FindOpenTileNear rejects the position. Afterwards the record index moves
  * on; on row 5 it wraps to 0 at the row's spawnCount. */
 Ov003Unit *Ov003Unit_SpawnNext(void)
 {
@@ -44,7 +44,7 @@ Ov003Unit *Ov003Unit_SpawnNext(void)
     }
     x = spawn->x;
     y = spawn->y;
-    if (func_ov003_0235c42c(cell->tile, &x, &y) == 0) {
+    if (Ov003_FindOpenTileNear(cell->tile, &x, &y) == 0) {
         return NULL;
     }
     unit->x = (x << 7) + 64;
