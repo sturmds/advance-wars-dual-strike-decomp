@@ -54,7 +54,7 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_50[0x5c - 0x50];
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
-    void *unk_64;                      /* passed with 8 to func_020ffb04 by func_ov006_023545ac */
+    struct Task *unk_64;               /* task of script data_ov006_0236acc4 (func_ov006_02354444) */
     u8 pad_68[0x78 - 0x68];
     union {
         Ov006SlotButton slotButtons[8];

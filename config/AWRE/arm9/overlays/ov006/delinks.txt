@@ -43,6 +43,9 @@ src/game/ov006/func_ov006_02351ac4.c:
     complete
     .text       start:0x02351ac4 end:0x02351b2c
 
+src/game/ov006/func_ov006_02352400.c:
+    .text       start:0x02352400 end:0x0235248c
+
 src/game/ov006/ov006_load_co_icons.c:
     complete
     .text       start:0x0235248c end:0x0235257c
@@ -67,6 +70,12 @@ src/game/ov006/ov006_load_entry_terrain_graphics.c:
     complete
     .text       start:0x02353d44 end:0x02353e24
 
+src/game/ov006/func_ov006_02353f7c.c:
+    .text       start:0x02353f7c end:0x0235402c
+
+src/game/ov006/func_ov006_0235402c.c:
+    .text       start:0x0235402c end:0x02354090
+
 src/game/ov006/func_ov006_02354090.c:
     complete
     .text       start:0x02354090 end:0x023540ec
@@ -74,6 +83,10 @@ src/game/ov006/func_ov006_02354090.c:
 src/game/ov006/func_ov006_023540ec.c:
     complete
     .text       start:0x023540ec end:0x02354108
+
+src/game/ov006/func_ov006_02354108.c:
+    complete
+    .text       start:0x02354108 end:0x02354168
 
 src/game/ov006/func_ov006_02354168.c:
     complete
@@ -154,6 +167,9 @@ src/game/ov006/func_ov006_023543e8.c:
 src/game/ov006/func_ov006_02354414.c:
     complete
     .text       start:0x02354414 end:0x02354444
+
+src/game/ov006/func_ov006_02354444.c:
+    .text       start:0x02354444 end:0x023544c4
 
 src/game/ov006/func_ov006_023545ac.c:
     complete
