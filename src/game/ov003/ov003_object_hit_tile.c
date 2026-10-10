@@ -16,8 +16,8 @@ int Ov003_SpawnItem(int x, int y);
 Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
 void Ov003_DefeatTeam(int team);
 void func_ov003_02364524(int x, int y);
-void func_ov003_02364618(int x, int y);
-void func_ov003_0236470c(int x, int y);
+void Ov003_CreateSpriteVariant0(int x, int y);
+void Ov003_CreateSpriteVariant2(int x, int y);
 int Ov003_IsRowDone(void);
 u32 Ov003_RandNext(void);
 
@@ -54,7 +54,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             if (object->kind == 5 || object->kind == 7) {
                 return;
             }
-            func_ov003_0236470c(object->x >> 3, object->y >> 3);
+            Ov003_CreateSpriteVariant2(object->x >> 3, object->y >> 3);
             return;
         }
         targetType = 6;
@@ -69,7 +69,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             if (object->kind == 5 || object->kind == 7) {
                 return;
             }
-            func_ov003_0236470c(object->x >> 3, object->y >> 3);
+            Ov003_CreateSpriteVariant2(object->x >> 3, object->y >> 3);
             return;
         }
         targetType = 7;
@@ -81,7 +81,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         if (object->kind == 5 || object->kind == 7) {
             return;
         }
-        func_ov003_0236470c(object->x >> 3, object->y >> 3);
+        Ov003_CreateSpriteVariant2(object->x >> 3, object->y >> 3);
         return;
     }
 
@@ -137,7 +137,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         if (targetType == 7) {
             py = (y << 7) + 64;
             px = (x << 7) + 64;
-            func_ov003_02364618(px >> 3, py >> 3);
+            Ov003_CreateSpriteVariant0(px >> 3, py >> 3);
         } else {
             py = (y << 7) + 64;
             px = (x << 7) + 64;
@@ -163,6 +163,6 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         if (object->kind == 5 || object->kind == 7) {
             return;
         }
-        func_ov003_0236470c(object->x >> 3, object->y >> 3);
+        Ov003_CreateSpriteVariant2(object->x >> 3, object->y >> 3);
     }
 }

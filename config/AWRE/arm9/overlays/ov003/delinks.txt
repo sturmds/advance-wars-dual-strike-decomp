@@ -845,7 +845,11 @@ src/game/ov003/func_ov003_02364524.c:
     complete
     .text       start:0x02364524 end:0x02364618
 
-src/game/ov003/func_ov003_0236470c.c:
+src/game/ov003/ov003_create_sprite_variant0.c:
+    complete
+    .text       start:0x02364618 end:0x0236470c
+
+src/game/ov003/ov003_create_sprite_variant2.c:
     complete
     .text       start:0x0236470c end:0x02364800
 

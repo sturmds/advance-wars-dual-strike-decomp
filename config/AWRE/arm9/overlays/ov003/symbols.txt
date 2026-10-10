@@ -229,8 +229,8 @@ Ov003_CreateSprite kind:function(arm,size=0xf4) addr:0x02364314
 Ov003_CreateSpriteWithCallback kind:function(arm,size=0x10c) addr:0x02364408
 Ov003_SpriteCallback kind:function(arm,size=0x10) addr:0x02364514
 func_ov003_02364524 kind:function(arm,size=0xf4) addr:0x02364524
-func_ov003_02364618 kind:function(arm,size=0xf4) addr:0x02364618
-func_ov003_0236470c kind:function(arm,size=0xf4) addr:0x0236470c
+Ov003_CreateSpriteVariant0 kind:function(arm,size=0xf4) addr:0x02364618
+Ov003_CreateSpriteVariant2 kind:function(arm,size=0xf4) addr:0x0236470c
 Ov003_PlayPendingSound kind:function(arm,size=0x54) addr:0x02364800
 func_ov003_02364854 kind:function(arm,size=0x14) addr:0x02364854
 Ov003_StartMessage kind:data(any) addr:0x02364880

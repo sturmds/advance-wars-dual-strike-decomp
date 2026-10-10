@@ -8,7 +8,9 @@ void func_02027aa0(void *sprite, void *a);
 extern u32 data_ov003_02369c08;
 extern u8 data_ov003_023655e0[];
 
-void func_ov003_0236470c(int x, int y)
+/* Like Ov003_CreateSprite, with 2 as the third argument of func_02027ab4
+ * (Ov003_CreateSprite passes 1) and sound flag 2, which plays quieter. */
+void Ov003_CreateSpriteVariant2(int x, int y)
 {
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedScreen;
