@@ -188,6 +188,10 @@ src/game/ov005/func_ov005_02356768.c:
     complete
     .text       start:0x02356768 end:0x02356b38
 
+src/game/ov005/ov005_update_blend_event_script_screen_b.c:
+    complete
+    .text       start:0x02356b38 end:0x02356e1c
+
 src/game/ov005/func_ov005_02357804.c:
     complete
     .text       start:0x02357804 end:0x02357830
