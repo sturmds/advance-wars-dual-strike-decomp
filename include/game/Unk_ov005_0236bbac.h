@@ -53,7 +53,8 @@ typedef struct Unk_ov005_0236bbac {
     int unk_3c;
     fx32 pictureX;
     fx32 pictureY;
-    u8 pad_48[0x50 - 0x48];
+    struct Task *unk_48;               /* task of data_ov005_0236aedc */
+    u8 pad_4c[0x50 - 0x4c];
     void *unk_50;                      /* passed to Task_Destroy (task system) */
     u8 pad_54[0x58 - 0x54];
     int musicId;                       /* music asked for; -1: none */
