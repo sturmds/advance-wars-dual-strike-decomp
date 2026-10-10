@@ -3,7 +3,7 @@
 
 void Task_Destroy(void *task);
 s16 func_ov002_0235867c(BattleActor *actor);
-int func_ov002_02358600(BattleActor *actor);
+int BattleCellTask_GetOffsetX(BattleActor *actor);
 
 /* Destroys the actor's shadow task once the shadow is done, otherwise moves it
  * with the actor. The second NULL check is needed to match. */
@@ -27,5 +27,5 @@ void BattleActor_UpdateShadow(BattleActor *actor)
         return;
     }
     actor->shadow->x = func_ov002_0235867c(actor);
-    actor->shadow->y = actor->unk_46 + func_ov002_02358600(actor);
+    actor->shadow->y = actor->unk_46 + BattleCellTask_GetOffsetX(actor);
 }

@@ -19,10 +19,10 @@ typedef struct BattleLayout {
     u8 pad_06[6];
     u16 scale;                         /* 8.8 fixed point */
     u8 pad_0e[0x1e - 0x0e];
-    BattleOffset sideOffsets[2];       /* by BattleSide.usesSecondary */
+    BattleOffset weaponOffsets[2];     /* by BattleSide.usesSecondary */
     BattleOffset base;                 /* shared by all objects */
     BattleOffset unitOffsets[5];       /* one for each cell; some code reads base and these as one array of 6 */
-    BattleOffset sideUnitOffsets[2][5]; /* by BattleSide.usesSecondary, then by BattleSide.armyStyle - 1 */
+    BattleOffset weaponStyleOffsets[2][5]; /* by BattleSide.usesSecondary, then by BattleSide.armyStyle - 1 */
 } BattleLayout;
 
 /* Position and speed of a moving piece of the battle animation. */
