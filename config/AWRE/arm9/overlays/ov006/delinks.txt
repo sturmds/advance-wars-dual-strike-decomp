@@ -199,6 +199,10 @@ src/game/ov006/func_ov006_02357770.c:
     complete
     .text       start:0x02357770 end:0x0235779c
 
+src/game/ov006/func_ov006_023578bc.c:
+    complete
+    .text       start:0x023578bc end:0x023578e8
+
 src/game/ov006/func_ov006_023578e8.c:
     complete
     .text       start:0x023578e8 end:0x0235790c
