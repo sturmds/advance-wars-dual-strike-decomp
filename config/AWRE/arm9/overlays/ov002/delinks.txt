@@ -271,6 +271,10 @@ src/game/ov002/battle_cell_task_restart_sprite.c:
     complete
     .text       start:0x02359c7c end:0x02359e58
 
+src/game/ov002/battle_cell_task_run_step.c:
+    complete
+    .text       start:0x02359e58 end:0x02359ee4
+
 src/game/ov002/battle_cell_task_bob.c:
     complete
     .text       start:0x02359ee4 end:0x0235a158

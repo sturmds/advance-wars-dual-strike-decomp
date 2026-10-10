@@ -5,7 +5,7 @@
 
 extern MenuState gMenuState;
 
-/* Case 4 of the six-way switch in func_ov002_02359e58 (the name is a guess).
+/* Case 4 of the six-way switch in BattleCellTask_RunStep (the name is a guess).
  * Sets unk_54 to 12 when the other side's fighter has 2 at unk_49 for its
  * current pose, else 1. */
 void BattleActor_EnterPhase4(BattleActor *actor)
