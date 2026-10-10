@@ -14,7 +14,7 @@ typedef struct UnitInfoPanel {
     u8 owner;                          /* player slot of the unit */
     u8 palette;                        /* Player.armyColour - 1 */
     u8 style;                          /* Player_GetArmyStyle - 1 */
-    u8 buffer;                         /* flipped each time func_ov000_022b2628 draws the panel */
+    u8 buffer;                         /* flipped each time UnitInfoPanel_DrawPictureAndStats draws the panel */
     u8 unk_0c;                         /* set to 0 by UnitInfoPanel_StartTask */
     s8 unk_0d;                         /* set to -1 by UnitInfoPanel_StartTask */
 } UnitInfoPanel;
