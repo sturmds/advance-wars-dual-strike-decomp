@@ -707,6 +707,10 @@ src/game/ov004/func_ov004_022bd978.c:
     complete
     .text       start:0x022bd978 end:0x022bdb7c
 
+src/game/ov004/ov004_destroy_scene_tasks.c:
+    complete
+    .text       start:0x022bdb7c end:0x022bdc08
+
 src/game/ov004/func_ov004_022bdc08.c:
     complete
     .text       start:0x022bdc08 end:0x022bdc2c

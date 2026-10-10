@@ -72,7 +72,7 @@ typedef struct Unk_ov004_022bf158 {
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
     u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */
     u32 unk_1bf0;
-    struct Task *unk_1bf4;             /* the six tasks from 0x1bf4 to 0x1c08 are destroyed by func_ov004_022bdb7c */
+    struct Task *unk_1bf4;             /* the six tasks from 0x1bf4 to 0x1c08 are destroyed by Ov004_DestroySceneTasks */
     struct Task *unk_1bf8;
     struct Task *unk_1bfc;
     struct Task *unk_1c00;
