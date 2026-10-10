@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/unit_show_task.h"
 
-/* One (dx, dy) pair of tile steps per sprite frame: the frame is the direction. */
+/* One (dx, dy) pair of tile steps per sprite frame (the frame gives the direction). */
 extern s16 data_ov000_022db6a4[];
 
 #define DIR_DX(task) (data_ov000_022db6a4[(task)->frame * 2])

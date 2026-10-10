@@ -10,7 +10,7 @@ void Sound_PlaySe(int se);
 void Sound_PlaySubSe(int se);
 int UnitShowTask_GetTerrainSound(UnitShowTask *task);
 
-/* Plays the sound of a step. The entry is the unit type. Infantry and Mech
+/* Plays the sound of a step; the entry number equals the unit type. Infantry and Mech
  * play the sound for the terrain under them, when the entry has one; a
  * dived Sub plays its dive sound; the rest play the entry's own sound. */
 void UnitShowTask_PlayStepSound(UnitShowTask *task)
