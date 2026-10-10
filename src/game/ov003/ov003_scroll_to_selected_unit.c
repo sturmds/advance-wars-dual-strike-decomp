@@ -14,9 +14,9 @@ void Screen_SetCurrentBoth(void *state);
 #define SELECTED data_ov003_02369534
 
 /* Centres the map scroll on the selected unit (data_ov003_02369534), or when it
- * has hp 0 and bit 7 of unk_17 clear, on the last cell of its row (bytes 56 and 57 of
- * the row, read as x and y in 128ths of a tile), unless the current slot is in state 3. The
- * scroll stays inside the map. The low 4 bits of it go to the scroll of BG layers 3, 2
+ * has hp 0 and bit 7 of unk_17 clear, on the tile
+ * in unk_38 and unk_39 of its row, unless the current slot is in state 3. The
+ * scroll is kept inside the map. The low 4 bits of it go to the scroll of BG layers 3, 2
  * and 1. Units use 128 per tile, the scroll 16 per tile, so one is shifted right by 3. */
 void Ov003_ScrollToSelectedUnit(void)
 {
@@ -30,8 +30,8 @@ void Ov003_ScrollToSelectedUnit(void)
             STATE->scrollX = (SELECTED->x >> 3) - 128;
             STATE->scrollY = (SELECTED->y >> 3) - 96;
         } else {
-            STATE->scrollX = (((u8 *)STATE->rows[SELECTED->unk_12_3 - 1].cells)[56] * 128 + 64 >> 3) - 128;
-            STATE->scrollY = (((u8 *)STATE->rows[SELECTED->unk_12_3 - 1].cells)[57] * 128 + 64 >> 3) - 96;
+            STATE->scrollX = (STATE->rows[SELECTED->unk_12_3 - 1].unk_38 * 128 + 64 >> 3) - 128;
+            STATE->scrollY = (STATE->rows[SELECTED->unk_12_3 - 1].unk_39 * 128 + 64 >> 3) - 96;
         }
     }
     if (STATE->scrollX < 0) {

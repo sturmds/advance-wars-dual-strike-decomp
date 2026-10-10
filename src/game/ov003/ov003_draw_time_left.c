@@ -21,7 +21,7 @@ void func_ov003_0236179c(int a);
 #define COLON_TILE 0x58c
 
 /* Draws the time left as m:ss with digit sprites at the top right of the screen.
- * The time limit is preset->timeLimitMinutes; elapsedFrames counts up 60 per second.
+ * The time limit is preset->timeLimitMinutes; unk_1cc counts up 60 per second.
  * In the last second, func_ov003_0236179c(1) runs once per call. */
 void Ov003_DrawTimeLeft(void)
 {

@@ -31,7 +31,7 @@ typedef struct Ov003LinkRecord {
 /* Frees all 16 Ov003Units and clears the 80 entries of data_ov003_02369738. Sets
  * the row of the first unit to 1 (or, with data_02160ac0->unk_7c set, of unit i to
  * the row of slot i), selects the unit of the current slot, puts the scroll on the
- * last cell of its row, then passes every cell of each other row's record in
+ * tile in unk_38 and unk_39 of its row, then passes every cell of each other row's record in
  * data_02160ac0 to func_ov003_0235c92c. Finally it calls func_ov003_02360bb8 for each
  * linked player and func_ov003_0235be30 up to unk_1dc times. */
 void Ov003_InitUnitsAndCamera(void)
@@ -58,8 +58,8 @@ void Ov003_InitUnitsAndCamera(void)
         }
     }
     SELECTED = &data_ov003_02369538[STATE->currentSlot];
-    STATE->scrollX = (((u8 *)STATE->rows[SELECTED->unk_12_3 - 1].cells)[56] * 128 + 64 >> 3) - 128;
-    STATE->scrollY = (((u8 *)STATE->rows[SELECTED->unk_12_3 - 1].cells)[57] * 128 + 64 >> 3) - 96;
+    STATE->scrollX = (STATE->rows[SELECTED->unk_12_3 - 1].unk_38 * 128 + 64 >> 3) - 128;
+    STATE->scrollY = (STATE->rows[SELECTED->unk_12_3 - 1].unk_39 * 128 + 64 >> 3) - 96;
     func_ov003_0235c9ac();
     for (i = 1; i < STATE->rowCount + 1; i++) {
         if (i != STATE->row) {
