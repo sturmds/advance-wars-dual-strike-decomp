@@ -63,6 +63,10 @@ src/game/ov002/battle_init_screen_windows.c:
     complete
     .text       start:0x02350ea8 end:0x023511ac
 
+src/game/ov002/battle_start_fade_in.c:
+    complete
+    .text       start:0x023511ac end:0x02351254
+
 src/game/ov002/battle_load_screen.c:
     complete
     .text       start:0x02351254 end:0x02351288
