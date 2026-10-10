@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/campaign_map.h"
+#include "game/battle_layout.h"
 #include "game/battle_fighter.h"
 #include "game/battle_side_anim.h"
 #include "game/battle_hit_list.h"
@@ -153,7 +154,8 @@ typedef struct BattleScreenWork {
     const u32 *unk_60[2];              /* per side, like spriteTables */
     u8 pad_068[0x070 - 0x068];
     const u32 *unk_70;                 /* sprite table, the same for both sides */
-    u8 pad_074[0x22c - 0x074];
+    BattleMotion motions[2][5];        /* by side, then by cell */
+    BattleEntry unk_13c[2][5];         /* only unk_00 is cleared (Battle_ClearMotions) */
     BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
