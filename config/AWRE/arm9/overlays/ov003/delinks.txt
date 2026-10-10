@@ -7,6 +7,9 @@ src/game/ov003/ov003_update.c:
     complete
     .text       start:0x02350560 end:0x023509b8
 
+src/game/ov003/func_ov003_02350de0.c:
+    .text       start:0x02350de0 end:0x02350e88
+
 src/game/ov003/func_ov003_02350e88.c:
     complete
     .text       start:0x02350e88 end:0x02350eb0
@@ -34,6 +37,10 @@ src/game/ov003/random_seed.c:
 src/game/ov003/ov003_read_input.c:
     complete
     .text       start:0x02351824 end:0x02351894
+
+src/game/ov003/ov003_draw_frame.c:
+    complete
+    .text       start:0x02351894 end:0x02351944
 
 src/game/ov003/ov003_init.c:
     complete
