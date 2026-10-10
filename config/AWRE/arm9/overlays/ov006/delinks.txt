@@ -359,6 +359,10 @@ src/game/ov006/ov006_count_neighbors_on_side.c:
     complete
     .text       start:0x02360a78 end:0x02360e10
 
+src/game/ov006/ov006_add_river_mouths.c:
+    complete
+    .text       start:0x02361978 end:0x02361de0
+
 src/game/ov006/func_ov006_023624b4.c:
     complete
     .text       start:0x023624b4 end:0x02362548
