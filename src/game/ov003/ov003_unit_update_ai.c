@@ -15,7 +15,7 @@ void func_ov003_0235f81c(Ov003Unit *unit);
 void func_ov003_0235f8e8(Ov003Unit *unit);
 void Ov003Unit_FireIfLocked(Ov003Unit *unit);
 u32 Ov003_GetTargetRange(void);
-u32 func_ov003_0235fa80(Ov003Unit *unit, s8 *target);  /* distance to target, 16 per tile */
+u32 Ov003Unit_FindNearest(Ov003Unit *unit, s8 *target);  /* distance to target, 16 per tile */
 u32 Ov003_RandNext(void);
 
 #define STATE data_ov003_02364928
@@ -66,7 +66,7 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit)
     u32 range;
     u8 dir;
 
-    dist = func_ov003_0235fa80(unit, &unit->unk_1a);
+    dist = Ov003Unit_FindNearest(unit, &unit->unk_1a);
     range = Ov003_GetTargetRange();
 
     if (!unit->unk_1e_0) {
