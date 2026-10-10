@@ -671,6 +671,10 @@ src/game/ov006/ov006_is_bare_shoal.c:
     complete
     .text       start:0x02363eb0 end:0x02363f04
 
+src/game/ov006/ov006_refit_tile.c:
+    complete
+    .text       start:0x02363f04 end:0x023641a4
+
 src/game/ov006/ov006_reef_to_sea_if_rejected.c:
     complete
     .text       start:0x023649a8 end:0x02364a08
