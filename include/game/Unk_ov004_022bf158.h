@@ -20,7 +20,7 @@ typedef struct Unk_ov004_022bf158 {
     int unk_8f8;                       /* eased each frame by func_ov004_022b0984 */
     int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 and func_ov004_022b1e78 */
     int unk_900;                       /* eased each frame by func_ov004_022b061c */
-    u8 pad_904[4];
+    int unk_904;                       /* eased in two stages by Ov004_EaseUnk904Twice */
     int unk_908;                       /* eased each frame by func_ov004_022b1d38 */
     u8 pad_90c[0x998 - 0x90c];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
