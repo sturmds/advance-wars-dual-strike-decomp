@@ -16,7 +16,7 @@ void func_01ff8c84(int arg);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void func_020f5fb8(void);
-void func_ov006_023520b4(void);
+void Ov006_LoadTerrainPalettes(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern u32 data_022a6b38;
@@ -48,5 +48,5 @@ void func_ov006_023544c4(void)
     Gfx_RequestLayerCopy(1);
     func_020c4018();
     func_020f5fb8();
-    func_ov006_023520b4();
+    Ov006_LoadTerrainPalettes();
 }
