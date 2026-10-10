@@ -14,7 +14,7 @@ extern Unk_027c0280 *data_027c0280;
 
 int func_ov003_023622b8(void);
 int func_ov003_02361f38(void);
-void func_ov003_02356614(void);
+void Ov003_DrawMarksAndUnits(void);
 void Mem_Fill32(u32 value, void *dst, u32 size);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 
@@ -91,7 +91,7 @@ void Ov003_MarkRowTiles(void)
             MAP->marks[TILE_AT(x, y + 1)] |= MARK_NEXT_TO;
         }
     }
-    func_ov003_02356614();
+    Ov003_DrawMarksAndUnits();
     GFX_DISPCNT(data_027c0280)->bg0 = 1;
     GFX_DISPCNT(data_027c0280)->bg1 = 1;
     GFX_DISPCNT(data_027c0280)->bg2 = 1;
