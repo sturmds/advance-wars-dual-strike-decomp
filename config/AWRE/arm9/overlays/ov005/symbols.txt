@@ -263,7 +263,7 @@ func_ov005_02367e8c kind:function(arm,size=0x10) addr:0x02367e8c
 func_ov005_02367e9c kind:function(arm,size=0x10) addr:0x02367e9c
 func_ov005_02367eac kind:function(arm,size=0x14) addr:0x02367eac
 func_ov005_02367ec0 kind:function(arm,size=0x1c) addr:0x02367ec0
-func_ov005_02367edc kind:function(arm,size=0x30) addr:0x02367edc
+Ov005_StartEventScriptTask kind:function(arm,size=0x30) addr:0x02367edc
 data_ov005_02367f0c kind:data(any) addr:0x02367f0c
 data_ov005_02367f1c kind:data(any) addr:0x02367f1c
 data_ov005_02367f2c kind:data(any) addr:0x02367f2c
