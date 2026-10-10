@@ -10,7 +10,7 @@ extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 row, bits 0-4 
 extern u8 data_ov003_02364d99[];
 extern u8 data_ov003_02364d9a[];
 
-int func_ov003_0235d5d4(int row, int kind, int arg2, int targetType);
+int Ov003_RollValue(int row, int kind, int arg2, int targetType);
 void Ov003Row_AddGauge(int row, int arg1);
 int Ov003_SpawnItem(int x, int y);
 Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
@@ -27,7 +27,7 @@ u32 Ov003_RandNext(void);
 
 /* A shot (object) has hit map tile (x, y), and stops. A Minicannon, Black
  * Cannon (terrain 26, or 9 through its main tile), pipe seam or terrain 3
- * tile takes damage from func_ov003_0235d5d4 plus -3 to 4 at random; the
+ * tile takes damage from Ov003_RollValue plus -3 to 4 at random; the
  * shooter's own row cannot hurt its cannons. Target types 6-9 index the
  * same table as Ov003Unit.tile. When the tile's hp runs out it turns into
  * its broken tile code, the shooter's row counts it, and a freed
@@ -85,7 +85,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         return;
     }
 
-    damage = func_ov003_0235d5d4(object->variant, object->kind, 0, targetType);
+    damage = Ov003_RollValue(object->variant, object->kind, 0, targetType);
     damage += (Ov003_RandNext() & 7) - 3;
     if (MAP->unk_f1a[TILE_AT(x, y)] <= damage) {
         MAP->unk_f1a[TILE_AT(x, y)] = 0;

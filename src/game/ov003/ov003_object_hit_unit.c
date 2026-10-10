@@ -8,7 +8,7 @@ extern u8 data_ov003_02364d9a[][20];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Ov003_RandNext(void);
-int func_ov003_0235d5d4(int a, int b, int c, int d);
+int Ov003_RollValue(int a, int b, int c, int d);
 int func_ov003_0235d468(int row);
 void Ov003Row_AddGauge(int a, int b);
 void Ov003_CreateSpriteWithCallback(int x, int y, Ov003Unit *unit);
@@ -26,7 +26,7 @@ void Ov003_CreateSpriteVariant2(int x, int y);
  * timer of 15. The object is spent either way. */
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
 {
-    int damage = func_ov003_0235d5d4(object->variant, object->kind, unit->unk_12_3, unit->tile);
+    int damage = Ov003_RollValue(object->variant, object->kind, unit->unk_12_3, unit->tile);
 
     object->active = 0;
     if (object->variant == unit->unk_12_3) {
