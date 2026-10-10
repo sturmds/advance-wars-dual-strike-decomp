@@ -244,6 +244,10 @@ src/game/ov005/ov005_update_timed_screen.c:
     complete
     .text       start:0x023589b0 end:0x02358cb8
 
+src/game/ov005/ov005_set_up_main_screen_layer2.c:
+    complete
+    .text       start:0x02358cb8 end:0x02359034
+
 src/game/ov005/ov005_skip_on_input.c:
     complete
     .text       start:0x023598e8 end:0x02359a6c
