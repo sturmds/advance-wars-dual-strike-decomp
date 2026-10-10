@@ -2,6 +2,8 @@
 #define GAME_UNK_OV005_0236BB80_H
 
 #include "types.h"
+
+struct Task;
 #include "game/task.h"
 
 /* Overlay 5 work block (0xc4 bytes) that func_ov005_02352790 allocates
@@ -15,7 +17,7 @@ typedef struct Unk_ov005_0236bb80 {
     struct ScriptSlot *unk_14;         /* from func_020150f8 */
     struct Task *fadeTask;             /* from the func_020fcd78 family */
     struct Task *fadeTask2;
-    u8 pad_20[0x24 - 0x20];
+    struct Task *songTask;             /* song fade task */
     struct Task *waveTask;             /* runs data_ov005_02368048 (Ov005_UpdateBgWave) */
     BOOL unk_28;                       /* set once the blend-in is done */
     u32 xUsesBufferB;                  /* which of the two x line buffers xLines points at */
@@ -34,7 +36,7 @@ typedef struct Unk_ov005_0236bb80 {
     s16 *yBufferA;
     s16 *xBufferB;
     s16 *yBufferB;
-    u8 pad_6c[0x70 - 0x6c];
+    struct Task *textTask;             /* text box task */
     u32 hasTaskA;                      /* nonzero while taskA exists */
     Task *taskA;
     u32 unk_78;

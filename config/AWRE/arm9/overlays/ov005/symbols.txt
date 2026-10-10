@@ -1,6 +1,6 @@
 func_ov005_02350560 kind:function(arm,size=0x18) addr:0x02350560
 func_ov005_02350578 kind:function(arm,size=0x10) addr:0x02350578
-func_ov005_02350588 kind:function(arm,size=0x258) addr:0x02350588
+Ov005_UpdateTextPromptScreen kind:function(arm,size=0x258) addr:0x02350588
 Ov005_SetupScreensWithAffineBg kind:function(arm,size=0x64c) addr:0x023507e0
 Ov005_UpdateSlideInTextScreen kind:function(arm,size=0x4b0) addr:0x02350e2c
 Ov005_SetupScreensWithBlend kind:function(arm,size=0x874) addr:0x023512dc
