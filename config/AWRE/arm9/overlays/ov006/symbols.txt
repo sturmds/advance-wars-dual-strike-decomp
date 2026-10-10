@@ -12,7 +12,7 @@ func_ov006_02350ec0 kind:function(arm,size=0x28) addr:0x02350ec0
 func_ov006_02350ee8 kind:function(arm,size=0x28) addr:0x02350ee8
 func_ov006_02350f10 kind:function(arm,size=0x10) addr:0x02350f10
 Ov006_PostRequest kind:function(arm,size=0x24) addr:0x02350f20
-func_ov006_02350f44 kind:function(arm,size=0x2f4) addr:0x02350f44
+Ov006_MatchCellToLeftTile kind:function(arm,size=0x2f4) addr:0x02350f44
 func_ov006_02351238 kind:function(arm,size=0x50) addr:0x02351238
 Ov006_IsLandTile kind:function(arm,size=0x7c) addr:0x02351288
 Ov006_IsNotSeaTile kind:function(arm,size=0x7c) addr:0x02351304
@@ -324,8 +324,8 @@ data_ov006_0236a1f0 kind:data(any) addr:0x0236a1f0
 data_ov006_0236a218 kind:data(any) addr:0x0236a218
 data_ov006_0236a258 kind:data(any) addr:0x0236a258
 data_ov006_0236a308 kind:data(any) addr:0x0236a308
-data_ov006_0236a408 kind:data(any) addr:0x0236a408
-data_ov006_0236a46a kind:data(any) addr:0x0236a46a
+Ov006_gCellsOpen kind:data(any) addr:0x0236a408
+Ov006_gCellsBesideTall kind:data(any) addr:0x0236a46a
 data_ov006_0236a4cc kind:data(any) addr:0x0236a4cc
 data_ov006_0236a4d0 kind:data(any) addr:0x0236a4d0
 data_ov006_0236a4d8 kind:data(any) addr:0x0236a4d8

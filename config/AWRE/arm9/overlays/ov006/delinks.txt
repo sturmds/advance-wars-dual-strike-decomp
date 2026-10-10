@@ -59,6 +59,10 @@ src/game/ov006/ov006_post_request.c:
     complete
     .text       start:0x02350f20 end:0x02350f44
 
+src/game/ov006/ov006_match_cell_to_left_tile.c:
+    complete
+    .text       start:0x02350f44 end:0x02351238
+
 src/game/ov006/func_ov006_02351238.c:
     complete
     .text       start:0x02351238 end:0x02351288
