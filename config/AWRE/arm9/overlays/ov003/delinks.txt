@@ -821,6 +821,10 @@ src/game/ov003/ov003_clear_fade.c:
     complete
     .text       start:0x02363f88 end:0x02364008
 
+src/game/ov003/ov003_create_row_sprite.c:
+    complete
+    .text       start:0x02364008 end:0x02364104
+
 src/game/ov003/ov003_create_anchored_sprite.c:
     complete
     .text       start:0x02364104 end:0x02364204
