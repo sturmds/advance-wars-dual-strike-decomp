@@ -32,7 +32,7 @@ void func_ov003_0235fee4(void);
 void func_ov003_02364800(void);
 void func_ov003_023509b8(void);
 void Ov003_UpdateLinkStart(void);
-void func_ov003_02350bdc(void);
+void Ov003_ResetSlotStates(void);
 int func_ov003_02362258(void);
 int func_ov003_023621f4(void);
 int Ov003_InputTouchedRect(Ov003Input *input, int x, int y, int width, int height);
@@ -64,7 +64,7 @@ void Ov003_Update(void)
     func_ov003_02364800();
     func_ov003_023509b8();
     Ov003_UpdateLinkStart();
-    func_ov003_02350bdc();
+    Ov003_ResetSlotStates();
     if (func_ov003_02362258() == 1) {
         data_ov003_02364928->frameCount++;
     }
