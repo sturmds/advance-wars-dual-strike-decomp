@@ -259,6 +259,10 @@ src/game/ov002/func_ov002_0235cd64.c:
     complete
     .text       start:0x0235cd64 end:0x0235cd88
 
+src/game/ov002/battle_cue_task_setup.c:
+    complete
+    .text       start:0x0235d1c4 end:0x0235d224
+
 src/game/ov002/func_ov002_0235d514.c:
     complete
     .text       start:0x0235d514 end:0x0235d530
@@ -350,3 +354,7 @@ src/game/ov002/func_ov002_0235f9d8.c:
 src/game/ov002/battle_fade_attacker_sub_se.c:
     complete
     .text       start:0x0235fc2c end:0x0235fc68
+
+src/game/ov002/battle_cue_task_update.c:
+    complete
+    .text       start:0x0235ffa8 end:0x02360030

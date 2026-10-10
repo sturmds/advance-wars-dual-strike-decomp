@@ -120,7 +120,7 @@ func_ov002_0235cd3c kind:function(arm,size=0x14) addr:0x0235cd3c
 func_ov002_0235cd50 kind:function(arm,size=0x14) addr:0x0235cd50
 func_ov002_0235cd64 kind:function(arm,size=0x24) addr:0x0235cd64
 func_ov002_0235cd88 kind:function(arm,size=0x43c) addr:0x0235cd88
-func_ov002_0235d1c4 kind:function(arm,size=0x60) addr:0x0235d1c4
+BattleCueTask_Setup kind:function(arm,size=0x60) addr:0x0235d1c4
 func_ov002_0235d224 kind:function(arm,size=0x284) addr:0x0235d224
 func_ov002_0235d4a8 kind:function(arm,size=0x6c) addr:0x0235d4a8
 func_ov002_0235d514 kind:function(arm,size=0x1c) addr:0x0235d514
@@ -161,7 +161,7 @@ func_ov002_0235fb98 kind:function(arm,size=0x94) addr:0x0235fb98
 Battle_FadeAttackerSubSe kind:function(arm,size=0x3c) addr:0x0235fc2c
 func_ov002_0235fc68 kind:function(arm,size=0x78) addr:0x0235fc68
 func_ov002_0235fce0 kind:function(arm,size=0x2c8) addr:0x0235fce0
-func_ov002_0235ffa8 kind:function(arm,size=0x88) addr:0x0235ffa8
+BattleCueTask_Update kind:function(arm,size=0x88) addr:0x0235ffa8
 Ov002_gBattleScene kind:data(any) addr:0x02360040
 data_ov002_02360044 kind:data(any) addr:0x02360044
 data_ov002_02360054 kind:data(any) addr:0x02360054
