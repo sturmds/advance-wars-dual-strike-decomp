@@ -1,18 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
-
-/* Input of func_02009580, which turns it into the matrix of a BgAffine. */
-typedef struct AffineParams {
-    s32 srcX;                          /* 256: BG pixel drawn at (centerX, centerY) */
-    s32 srcY;
-    s16 centerX;
-    s16 centerY;
-    s16 scaleX;
-    s16 scaleY;
-    u16 angle;
-} AffineParams;
-
-void func_02009580(AffineParams *params, BgAffine *dest);
+#include "game/affine_params.h"
 
 /* Sets the BG3 affine matrix of both screens to one scale and angle. The
  * screens differ in centerY: 0 on the first, 192 on the second. */

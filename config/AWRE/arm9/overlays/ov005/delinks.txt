@@ -12,6 +12,10 @@ src/game/ov005/func_ov005_02350578.c:
     complete
     .text       start:0x02350578 end:0x02350588
 
+src/game/ov005/ov005_setup_screens_with_affine_bg.c:
+    complete
+    .text       start:0x023507e0 end:0x02350e2c
+
 src/game/ov005/func_ov005_02352790.c:
     complete
     .text       start:0x02352790 end:0x023527bc

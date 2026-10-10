@@ -1,16 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
-
-typedef struct AffineParams {
-    s32 srcX;                           
-    s32 srcY;
-    s16 centerX;
-    s16 centerY;
-    s16 scaleX;
-    s16 scaleY;
-    u16 angle;
-} AffineParams;
-void func_02009580(AffineParams *params, BgAffine *dest);
+#include "game/affine_params.h"
 
 void func_020523e0(int scale, int angle)
 {

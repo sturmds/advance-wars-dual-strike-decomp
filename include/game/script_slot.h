@@ -31,7 +31,9 @@ typedef struct ScriptSlot {
     int unk_28;                        /* text printer: the cursor offset from func_02015ec8 */
     void *unk_2c;                      /* text printer: TextPrinter.unk_40 */
     u16 unk_30;                        /* text printer: TextPrinter.unk_30 */
-    u8 pad_32[0x60 - 0x32];
+    u8 pad_32[0x3e - 0x32];
+    u8 unk_3e;
+    u8 pad_3f[0x60 - 0x3f];
 } ScriptSlot;
 
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
