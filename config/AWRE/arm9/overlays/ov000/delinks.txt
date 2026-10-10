@@ -180,6 +180,10 @@ src/game/ov000/unit_info_panel/unit_info_panel_draw_unit.c:
     complete
     .text       start:0x022b2838 end:0x022b2a3c
 
+src/game/ov000/unit_info_panel/unit_info_panel_draw_ammo_and_range.c:
+    complete
+    .text       start:0x022b2a3c end:0x022b2c64
+
 src/game/ov000/func_ov000_022b2c64.c:
     complete
     .text       start:0x022b2c64 end:0x022b2c74

@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 
 void func_0201710c(int slot);
 void UnitInfoPanel_DrawUnit(void);
-void func_ov000_022b2a3c(void);
+void UnitInfoPanel_DrawAmmoAndRange(void);
 
 /* Script callback of the panel: draws the unit each frame. With no unit it
  * clears the callback of the running script slot. */
@@ -20,5 +20,5 @@ void UnitInfoPanel_Draw(void)
         return;
     }
     UnitInfoPanel_DrawUnit();
-    func_ov000_022b2a3c();
+    UnitInfoPanel_DrawAmmoAndRange();
 }

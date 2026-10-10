@@ -1,0 +1,45 @@
+#include "types.h"
+#include "game/Unk_02088d04.h"
+#include "game/icon.h"
+#include "game/unit_info_panel.h"
+#include "game/unit_stats.h"
+
+void Screen_SetCurrentGfx(void *state);
+void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
+void func_020caee4(int list, u16 x, int y, u32 value);
+int GetUnitMaxRange(int player, int unitType);
+
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern void *data_ov000_0234eef0;
+
+/* Draws ammo against the type's maximum ammo on the second screen, and for a unit
+ * whose longest range is above 1 an icon with the minimum and maximum range.
+ * Nothing is drawn for types without ammo. A one-digit number shifts 4 pixels left
+ * (the range shift is 3 when the maximum has two digits). The separator sprites
+ * 0xf36a and 0xf36b are guesses. */
+void UnitInfoPanel_DrawAmmoAndRange(void)
+{
+    MapUnit *unit = data_ov000_0234ec8c->unit;
+    int ammo = unit->ammo;
+    int maxAmmo = Ov000_gUnitStats[unit->type].ammo;
+    int minRange = Ov000_gUnitStats[unit->type].minRange;
+    int maxRange = GetUnitMaxRange(data_ov000_0234ec8c->owner, unit->type);
+    Unk_027c0280 *savedGfx = data_027c0280;
+    int shift;
+
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    if (Ov000_gUnitStats[unit->type].ammo != 0) {
+        func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 80 + (unit->ammo < 10 ? -4 : 0), 88, ammo);
+        func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 89 + (Ov000_gUnitStats[unit->type].ammo < 10 ? -4 : 0), 96, maxAmmo);
+        Sprite_QueueAt(0, (u8)data_ov000_0234ec8c->unk_00 + 81, 92, &data_ov000_0234eef0, 0xf36a, 0);
+        if (maxRange > 1) {
+            Icon_Draw(63, (u8)data_ov000_0234ec8c->unk_00 + 100, 88, 0, 0);
+            shift = maxRange < 10 ? 0 : 3;
+            func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 104 - shift, 96, minRange);
+            Sprite_QueueAt(0, (u8)data_ov000_0234ec8c->unk_00 + 112 - shift, 97, &data_ov000_0234eef0, 0xf36b, 0);
+            func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 120 + shift, 96, maxRange);
+        }
+    }
+    Screen_SetCurrentGfx(savedGfx);
+}
