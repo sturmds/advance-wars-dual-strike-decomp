@@ -459,6 +459,10 @@ src/game/ov006/func_ov006_02358fec.c:
     complete
     .text       start:0x02358fec end:0x02359030
 
+src/game/ov006/func_ov006_02359030.c:
+    complete
+    .text       start:0x02359030 end:0x023590c0
+
 src/game/ov006/ov006_scatter_reefs.c:
     complete
     .text       start:0x02359344 end:0x023593c8
