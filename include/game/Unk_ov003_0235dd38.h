@@ -8,7 +8,9 @@
 typedef struct Unk_ov003_0235dd38 {
     u8 pad_00[0x4c];
     u16 unk_4c;
-    u8 pad_4e[0x64 - 0x4e];
+    u8 pad_4e[0x52 - 0x4e];
+    u16 unk_52;                        /* row number, 1 to 5 */
+    u8 pad_54[0x64 - 0x54];
     u16 unk_64;
 } Unk_ov003_0235dd38;
 

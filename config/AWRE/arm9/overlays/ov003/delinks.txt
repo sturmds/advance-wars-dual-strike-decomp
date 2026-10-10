@@ -354,6 +354,10 @@ src/game/ov003/func_ov003_0235ca24.c:
     complete
     .text       start:0x0235ca24 end:0x0235ca50
 
+src/game/ov003/func_ov003_0235cb08.c:
+    complete
+    .text       start:0x0235cb08 end:0x0235cb6c
+
 src/game/ov003/func_ov003_0235d468.c:
     complete
     .text       start:0x0235d468 end:0x0235d4c0
