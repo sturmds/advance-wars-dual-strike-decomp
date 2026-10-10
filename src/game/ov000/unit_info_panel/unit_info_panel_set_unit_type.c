@@ -8,7 +8,7 @@ u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit *unit, int type);
 void func_01ff9ac4(void);
 void UnitInfoPanel_PutFrameBlock(void);
-void func_ov000_022b1b1c(void);
+void UnitInfoPanel_DrawContents(void);
 
 /* Like UnitInfoPanel_SetUnit, for a unit type instead of a unit on the map:
  * Unit_Init builds a fresh unit of that type in data_ov000_02350510 and the
@@ -27,6 +27,6 @@ void UnitInfoPanel_SetUnitType(int owner, int unitType)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     func_01ff9ac4();
     UnitInfoPanel_PutFrameBlock();
-    func_ov000_022b1b1c();
+    UnitInfoPanel_DrawContents();
     Screen_SetCurrentGfx(saved0280);
 }
