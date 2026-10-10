@@ -19,6 +19,10 @@ src/game/ov001/func_ov001_02350fa8.c:
     complete
     .text       start:0x02350fa8 end:0x02350fb8
 
+src/game/ov001/func_ov001_02350fb8.c:
+    complete
+    .text       start:0x02350fb8 end:0x02350ff0
+
 src/game/ov001/ov001_show_low_fuel_stealth.c:
     complete
     .text       start:0x02351334 end:0x02351444
