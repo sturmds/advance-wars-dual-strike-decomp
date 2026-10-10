@@ -13,7 +13,7 @@ extern u8 data_ov003_02364d9a[];
 int func_ov003_0235d5d4(int row, int kind, int arg2, int targetType);
 void Ov003Row_AddGauge(int row, int arg1);
 int Ov003_SpawnItem(int x, int y);
-Unk_ov003_02369bb8 *func_ov003_0235e8fc(int x, int y);
+Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
 void func_ov003_0236179c(int team);
 void func_ov003_02364524(int x, int y);
 void func_ov003_02364618(int x, int y);
@@ -61,7 +61,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         break;
     case 9:
         /* a structure over several tiles: damage goes to its main tile */
-        structure = func_ov003_0235e8fc(x, y);
+        structure = Ov003_FindEntryAtTile(x, y);
         x = structure->x;
         y = structure->y;
     case TERRAIN_BLACK_CANNON:
@@ -94,7 +94,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         case 0x183:
         case 0x184:
         case 0x185:
-            func_ov003_0235e8fc(x, y)->busy = 0;
+            Ov003_FindEntryAtTile(x, y)->busy = 0;
             if (Ov003_IsRowDone() == 1) {
                 rowDone = TRUE;
             }
@@ -111,7 +111,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             MAP->cells[TILE_AT(x, y)] = 0x122;
             break;
         case 0x187:
-            func_ov003_0235e8fc(x, y)->busy = 0;
+            Ov003_FindEntryAtTile(x, y)->busy = 0;
             if (Ov003_IsRowDone() == 1) {
                 rowDone = TRUE;
             }
@@ -154,7 +154,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         }
     } else {
         if (targetType == 6 || targetType == 7) {
-            func_ov003_0235e8fc(x, y)->unk_09_6 = 2;
+            Ov003_FindEntryAtTile(x, y)->unk_09_6 = 2;
         }
         MAP->unk_f1a[TILE_AT(x, y)] -= damage;
         if (object->kind < 6) {
