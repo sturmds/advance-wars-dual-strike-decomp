@@ -44,7 +44,7 @@ func_ov005_0235560c kind:function(arm,size=0x3d0) addr:0x0235560c
 Ov005_UpdateEventScriptScreen kind:function(arm,size=0x1d4) addr:0x023559dc
 func_ov005_02355bb0 kind:function(arm,size=0x3d0) addr:0x02355bb0
 func_ov005_02355f80 kind:function(arm,size=0x1d4) addr:0x02355f80
-func_ov005_02356154 kind:function(arm,size=0x3dc) addr:0x02356154
+Ov005_SetupMainScreenAndStartSong kind:function(arm,size=0x3dc) addr:0x02356154
 func_ov005_02356530 kind:function(arm,size=0x238) addr:0x02356530
 func_ov005_02356768 kind:function(arm,size=0x3d0) addr:0x02356768
 func_ov005_02356b38 kind:function(arm,size=0x2e4) addr:0x02356b38
@@ -353,9 +353,9 @@ data_ov005_02369454 kind:data(any) addr:0x02369454
 data_ov005_02369458 kind:data(any) addr:0x02369458
 data_ov005_0236945c kind:data(any) addr:0x0236945c
 data_ov005_02369460 kind:data(any) addr:0x02369460
-data_ov005_02369464 kind:data(any) addr:0x02369464
-data_ov005_02369468 kind:data(any) addr:0x02369468
-data_ov005_0236946c kind:data(any) addr:0x0236946c
+gRikiishiFile036 kind:data(any) addr:0x02369464
+gRikiishiFile037 kind:data(any) addr:0x02369468
+gRikiishiFile038 kind:data(any) addr:0x0236946c
 data_ov005_02369470 kind:data(any) addr:0x02369470
 data_ov005_02369474 kind:data(any) addr:0x02369474
 data_ov005_02369478 kind:data(any) addr:0x02369478
