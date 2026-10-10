@@ -11,6 +11,10 @@ src/game/ov001/ov001_map_lacks_object_kind9.c:
     complete
     .text       start:0x023505e8 end:0x02350610
 
+src/game/ov001/ov001_map_lacks_object_kind4.c:
+    complete
+    .text       start:0x02350610 end:0x02350638
+
 src/game/ov001/ov001_has_no_ready_ship_or_b_copter.c:
     complete
     .text       start:0x02350a1c end:0x02350b28

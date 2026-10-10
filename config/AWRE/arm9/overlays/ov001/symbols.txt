@@ -1,7 +1,7 @@
 func_ov001_02350560 kind:function(arm,size=0x60) addr:0x02350560
 Ov001_MapLacksObjectKind10 kind:function(arm,size=0x28) addr:0x023505c0
 Ov001_MapLacksObjectKind9 kind:function(arm,size=0x28) addr:0x023505e8
-func_ov001_02350610 kind:function(arm,size=0x28) addr:0x02350610
+Ov001_MapLacksObjectKind4 kind:function(arm,size=0x28) addr:0x02350610
 func_ov001_02350638 kind:function(arm,size=0x34) addr:0x02350638
 func_ov001_0235066c kind:function(arm,size=0x9c) addr:0x0235066c
 func_ov001_02350708 kind:function(arm,size=0xa0) addr:0x02350708
