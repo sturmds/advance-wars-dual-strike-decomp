@@ -147,6 +147,10 @@ src/game/ov006/ov006_load_co_icons.c:
     complete
     .text       start:0x0235248c end:0x0235257c
 
+src/game/ov006/ov006_queue_entry_sprites.c:
+    complete
+    .text       start:0x0235257c end:0x023526c8
+
 src/game/ov006/func_ov006_023526c8.c:
     complete
     .text       start:0x023526c8 end:0x02352708
