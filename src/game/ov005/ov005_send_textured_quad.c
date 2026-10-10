@@ -7,7 +7,17 @@
 #define GXFIFO_BEGIN_VTXS ((volatile u32 *)0x04000500)
 #define GXFIFO_END_VTXS ((volatile u32 *)0x04000504)
 
-void func_ov005_0235b148(int unused, int x, int y, int z, int sizeS, int sizeT, int width,
+/* Packs and writes the TEXIMAGE_PARAM register (0x040004a8). Needed to match: as an inline function its
+ * arguments get their own registers, which a plain expression does not. */
+static inline void G3_TexImageParam(int texFmt, int texGen, int s, int t, int repeat, int flip, int pltt0, u32 addr)
+{
+    *GXFIFO_TEXIMAGE_PARAM = (u32)((addr >> 3) | (texFmt << 26) | (texGen << 30) | (s << 20) | (t << 23) | (repeat << 16) | (flip << 18) | (pltt0 << 29));
+}
+
+/* Sends one quad at (x, y), size width by height, showing the same-sized part
+ * of a 16-colour texture that starts at (texS, texT). sizeS and sizeT are the
+ * texture size codes (TEXIMAGE_PARAM bits 20-25). */
+void Ov005_SendTexturedQuad(int unused, int x, int y, int z, int sizeS, int sizeT, int width,
                          int height, int texS, int texT, u32 texAddr, u32 palAddr)
 {
     /* Texture coordinates are 12.4 fixed point. */
@@ -21,7 +31,8 @@ void func_ov005_0235b148(int unused, int x, int y, int z, int sizeS, int sizeT, 
     s16 s1 = (width + texS) << 4;
     s16 x1 = x + width;
 
-    *GXFIFO_TEXIMAGE_PARAM = (texAddr >> 3) | 0x4c000000 | (sizeS << 20) | (sizeT << 23) | 0x20000000;
+    /* 16 colours, texture coordinates as given, no repeat or flip, colour 0 transparent. */
+    G3_TexImageParam(3, 1, sizeS, sizeT, 0, 0, 1, texAddr);
     *GXFIFO_PLTT_BASE = palAddr >> 4;
     *GXFIFO_BEGIN_VTXS = 1;
 
