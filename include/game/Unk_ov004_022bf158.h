@@ -9,9 +9,13 @@
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
 
 typedef struct Unk_ov004_022bf158_818 {
-    u8 pad_00[0xc];
+    u32 unk_00;
+    u32 unk_04;
+    u16 unk_08;
+    u16 unk_0a;
     u16 unk_0c;                        /* func_ov004_022b877c eases both from */
     u16 unk_0e;                        /* 256 to 128: maybe a scale */
+    u16 unk_10;
 } Unk_ov004_022bf158_818;
 
 /* One 0x1c-byte element of Unk_ov004_022bf158.entries. */
@@ -31,7 +35,6 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_008;
     u8 pad_00c[0x818 - 0xc];
     Unk_ov004_022bf158_818 unk_818;
-    u8 pad_828[0x82c - 0x828];
     Ov004Entry entries[7];             /* count is a guess; indexed by the task parameter at 0x44 */
     struct Task *controlTask;          /* made by Ov004_StartControlTask, 0 when none */
     u32 controlRunning;                /* 1 while controlTask runs; guess */
