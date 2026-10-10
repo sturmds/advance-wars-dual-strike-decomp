@@ -321,6 +321,10 @@ src/game/ov000/unit_info_panel/unit_info_panel_request_copies.c:
     complete
     .text       start:0x022b16d0 end:0x022b1704
 
+src/game/ov000/unit_info_panel/unit_info_panel_reset_screen.c:
+    complete
+    .text       start:0x022b1704 end:0x022b1770
+
 src/game/ov000/unit_info_panel/unit_info_panel_task_create.c:
     complete
     .text       start:0x022b1770 end:0x022b17cc
