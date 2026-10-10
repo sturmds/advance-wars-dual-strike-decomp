@@ -28,7 +28,9 @@ typedef struct Unk_ov005_0236bb90 {
     u8 pad_0000[0x4];
     Task *fadeTask;                    /* from the func_020fcdc8 family */
     Task *fadeTask2;
-    u8 pad_000c[0x8014 - 0xc];
+    u8 pad_000c[0x0010 - 0x000c];
+    u8 buffer_0010[0x2000];            /* see Unk_ov005_0235b574 */
+    u8 pad_2010[0x8014 - 0x2010];
     u32 unk_8014;                      /* set by func_ov005_0235b754 from the table it reads */
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
