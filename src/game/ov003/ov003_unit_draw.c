@@ -4,7 +4,7 @@
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
 int Ov003_RowKindGroup(int a0);
-int func_ov003_02362258(void);
+int Ov003_IsPhase0OrAbove6(void);
 void Ov003_DrawTexturedQuad(int x, int y, int a2, int a3, int a4, int a5, int a6, int a7, int a8);
 void Ov003Unit_DrawMarker(Ov003Unit *unit);
 
@@ -75,7 +75,7 @@ void Ov003Unit_Draw(Ov003Unit *unit)
         Ov003_DrawTexturedQuad((unit->x >> 3) - (s16)STATE->unk_1d0, (unit->y >> 3) - (s16)STATE->unk_1d2 + 1, 22, 0, 0,
                             hpStep + 828, unit->unk_12_3 + 10, 0, 0);
         if (unit->unk_17_0 >= 30) {
-            if ((STATE->frameCount & 16) == 0 || func_ov003_02362258() == 0) {
+            if ((STATE->frameCount & 16) == 0 || Ov003_IsPhase0OrAbove6() == 0) {
                 Ov003_DrawTexturedQuad((unit->x >> 3) - (s16)STATE->unk_1d0 - 8, (unit->y >> 3) - (s16)STATE->unk_1d2, 22, 0, 0,
                                     1232, 17, 0, 0);
             }

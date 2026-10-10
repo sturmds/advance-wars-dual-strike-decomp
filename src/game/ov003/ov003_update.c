@@ -27,7 +27,7 @@ void func_ov003_02364800(void);
 void Ov003_DrawTimeLeft(void);
 void Ov003_UpdateLinkStart(void);
 void Ov003_ResetSlotStates(void);
-int func_ov003_02362258(void);
+int Ov003_IsPhase0OrAbove6(void);
 int func_ov003_023621f4(void);
 int Ov003_InputTouchedRect(Ov003Input *input, int x, int y, int width, int height);
 void func_ov003_02362334(void);
@@ -59,7 +59,7 @@ void Ov003_Update(void)
     Ov003_DrawTimeLeft();
     Ov003_UpdateLinkStart();
     Ov003_ResetSlotStates();
-    if (func_ov003_02362258() == 1) {
+    if (Ov003_IsPhase0OrAbove6() == 1) {
         data_ov003_02364928->frameCount++;
     }
     if (func_ov003_023621f4() == 1) {

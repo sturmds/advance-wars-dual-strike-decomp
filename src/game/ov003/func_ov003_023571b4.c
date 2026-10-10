@@ -2,7 +2,7 @@
 
 int Ov003_IsPhase0Or1(void);
 int Ov003_IsPlayPhase(void);
-int func_ov003_02362258(void);
+int Ov003_IsPhase0OrAbove6(void);
 void Ov003_RunSlotInput(void);
 void Ov003_UpdateRowUnits(void);
 void func_ov003_0235e258(void);
@@ -23,7 +23,7 @@ void func_ov003_023571b4(void)
         Ov003_UpdateRowUnits();
         func_ov003_0235e258();
     }
-    if (func_ov003_02362258() != 1) {
+    if (Ov003_IsPhase0OrAbove6() != 1) {
         return;
     }
     Ov003_TickUnits();

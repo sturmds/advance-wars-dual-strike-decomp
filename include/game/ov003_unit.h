@@ -140,7 +140,7 @@ typedef struct Ov003State {
     u8 pad_15b[0x1bc - 0x15b];
     Ov003Preset *preset;
     u8 unk_1c0[8];
-    u32 frameCount;                    /* frames on which func_ov003_02362258 returns 1 */
+    u32 frameCount;                    /* frames on which Ov003_IsPhase0OrAbove6 returns 1 */
     u32 unk_1cc;
     union {
         u16 unk_1d0;
@@ -190,7 +190,7 @@ typedef struct Ov003SlotCooldown {
 
 #define OV003_SLOT_COOLDOWN(state, slot) (((Ov003SlotCooldown *)(state)->pad_136)[slot].cooldown)
 
-/* View of Ov003State.unk_1da as two nibbles: func_ov003_02362258 switches on
+/* View of Ov003State.unk_1da as two nibbles: Ov003_IsPhase0OrAbove6 switches on
  * the low one (0 to 6); Ov003_AdvanceMode copies the high one into it. */
 typedef struct Ov003NibblePair {
     u8 low : 4;

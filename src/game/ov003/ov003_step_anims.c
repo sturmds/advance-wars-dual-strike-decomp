@@ -2,14 +2,14 @@
 #include "game/ov003_anim.h"
 #include "game/ov003_unit.h"
 
-int func_ov003_02362258(void);
+int Ov003_IsPhase0OrAbove6(void);
 s32 HwMod32(s32 numerator, s32 denominator);
 
 /* Steps the overlay's animation counters from the frame counter
- * Ov003State.frameCount, on frames where func_ov003_02362258 lets it run. */
+ * Ov003State.frameCount, on frames where Ov003_IsPhase0OrAbove6 lets it run. */
 void Ov003_StepAnims(void)
 {
-    if (func_ov003_02362258() == 0) {
+    if (Ov003_IsPhase0OrAbove6() == 0) {
         return;
     }
 

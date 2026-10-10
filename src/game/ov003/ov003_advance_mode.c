@@ -3,14 +3,14 @@
 #include "game/Unk_02160ac0.h"
 
 int func_0207bd94(void);
-int func_ov003_02362258(void);
+int Ov003_IsPhase0OrAbove6(void);
 
 #define STATE_BYTE_1D6 (((u8 *)&data_ov003_02364928->unk_1d6)[0])
 #define STATE_BYTE_1D7 (((u8 *)&data_ov003_02364928->unk_1d6)[1])
 
 /* Copies the high nibble of Ov003State.unk_1da into the low one, then sets
  * the bytes at 0x1d7 (1 when Unk_02160ac0.unk_7c is set and func_0207bd94
- * returns 0) and 0x1d6 (1 when func_ov003_02362258 returns 0). */
+ * returns 0) and 0x1d6 (1 when Ov003_IsPhase0OrAbove6 returns 0). */
 void Ov003_AdvanceMode(void)
 {
     Ov003NibblePair *modes = (Ov003NibblePair *)&data_ov003_02364928->unk_1da;
@@ -21,7 +21,7 @@ void Ov003_AdvanceMode(void)
     } else {
         STATE_BYTE_1D7 = 0;
     }
-    if (func_ov003_02362258() == 0) {
+    if (Ov003_IsPhase0OrAbove6() == 0) {
         STATE_BYTE_1D6 = 1;
     } else {
         STATE_BYTE_1D6 = 0;
