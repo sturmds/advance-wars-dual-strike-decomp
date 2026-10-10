@@ -69,9 +69,9 @@ typedef struct Unk_ov005_0236bbac {
     int musicChanging;                 /* 1 during the fade out */
     int musicPlaying;
     struct Task *unk_70;
-    u8 pad_74[0x78 - 0x74];
+    void *spriteFileA;                 /* sprite file the sprites below are made from */
     struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
-    u8 pad_88[0x8c - 0x88];
+    void *spriteFileB;
     struct Unk_02022404 *subObjects[5]; /* placed on the sub screen each frame */
     s16 objScale1;                     /* OBJ affine matrix 1 scale, 0x100 = 1x; -1: none */
     s16 objScale2;                     /* OBJ affine matrix 2 scale */
