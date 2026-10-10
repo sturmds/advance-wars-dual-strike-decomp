@@ -320,6 +320,10 @@ src/game/ov005/func_ov005_0235ec40.c:
     complete
     .text       start:0x0235ec40 end:0x0235ec60
 
+src/game/ov005/ov005_run_state.c:
+    complete
+    .text       start:0x0235ec60 end:0x0235eca0
+
 src/game/ov005/ov005_state_is_enabled.c:
     complete
     .text       start:0x0235eca0 end:0x0235ecc4
