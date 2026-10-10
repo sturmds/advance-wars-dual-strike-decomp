@@ -359,6 +359,14 @@ src/game/ov006/ov006_reef_to_sea_if_rejected.c:
     complete
     .text       start:0x023649a8 end:0x02364a08
 
+src/game/ov006/ov006_is_bare_sea.c:
+    complete
+    .text       start:0x02364d14 end:0x02364d78
+
+src/game/ov006/ov006_is_bare_reef_or_sea.c:
+    complete
+    .text       start:0x02364d78 end:0x02364ddc
+
 src/game/ov006/ov006_pack_army_slots.c:
     complete
     .text       start:0x02364ddc end:0x02365680
