@@ -25,7 +25,8 @@ typedef struct BattleHitList {
 typedef struct BattleHitTimes {
     u8 pad_00[4];
     u16 unk_04;                        /* added to every key */
-    u8 pad_06[4];
+    u16 unk_06;                        /* added to the keys of the other side's step list */
+    u16 unk_08;
     u8 unk_0a[5];                      /* key offsets of the attacking side */
     u8 unk_0f[5];                      /* key offsets of the other side */
 } BattleHitTimes;

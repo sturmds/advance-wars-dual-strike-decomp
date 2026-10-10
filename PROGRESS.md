@@ -69,6 +69,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02353254.c` | func_ov002_02353254 | 308 |
 | `src/game/ov002/func_ov002_02354814.c` | func_ov002_02354814 | 216 |
+| `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 |
 | `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 |
 | `src/game/ov002/func_ov002_0235d224.c` | func_ov002_0235d224 | 644 |
 | `src/game/ov002/func_ov002_0235d4a8.c` | func_ov002_0235d4a8 | 108 |

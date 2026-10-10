@@ -182,7 +182,7 @@ typedef struct BattleScreenWork {
     u8 pad_294[0x298 - 0x294];
     u16 unk_298[2];                    /* per side, like unk_29c */
     u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
-    u8 pad_2a0[4];
+    u16 unk_2a0[2];                    /* per side, like unk_29c */
     BattleHitList hitLists[2];         /* per side, built by Battle_BuildHitLists */
     BattleStepList stepLists[2];
     u8 pad_2ec[0x310 - 0x2ec];
