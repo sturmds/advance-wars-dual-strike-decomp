@@ -65,7 +65,7 @@ typedef struct Unk_ov004_022bf158 {
     struct Ov004Task *slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
     u8 pad_99c[0xa18 - 0x99c];
-    struct Task *slotTask[24];         /* tasks made by func_ov004_022ba9b4, one per slot */
+    struct Task *slotTask[24];         /* tasks made by Ov004_CreateSlotTasks, one per slot */
     int slotState[24];                 /* per slot: 0 unused, 1 running, 2 set by func_ov004_022ba98c */
     struct Task *childTasks[16];       /* destroyed together by Ov004_DestroyChildTasks */
     u8 pad_b18[0xb1c - 0xb18];
@@ -104,18 +104,31 @@ typedef struct Ov004Task {
     struct Unk_ov004_022bf158 *state;  /* allocated by Ov004_AllocState */
     int slot;                          /* index into Unk_ov004_022bf158.unk_998 */
     int step;                          /* progress inside the current script step */
-    u8 pad_38[0x3c - 0x38];
+    int unk_38;
     int frame;                         /* frames elapsed in the current ease */
     int duration;                      /* length of the ease, in frames */
     int tweenFrames;                   /* length of the next slide, in frames */
     int unk_48;                        /* set to the same frame count as tweenFrames */
     int unk_4c;
-    u8 pad_50[4];
+    int unk_50;
     int tweenFrom;                     /* start and end values of the slide, */
     int tweenTo;                       /* eased by Math_Ease */
     int unk_5c;
     int unk_60;
     struct ShowSprite *sprite;         /* made by Ov004Task_InitSprite */
 } Ov004Task;
+
+/* One row of the table that Ov004_CreateSlotTasks copies into its new tasks
+ * (data_ov004_022bea58): the values go to Ov004Task unk_38, tweenFrom,
+ * tweenTo, tweenFrames, unk_48, unk_4c and unk_50. */
+typedef struct Ov004SlotInit {
+    int unk_38;
+    int tweenFrom;
+    int tweenTo;
+    int tweenFrames;
+    int unk_48;
+    int unk_4c;
+    int unk_50;
+} Ov004SlotInit;
 
 #endif
