@@ -9,7 +9,7 @@ struct Unk_02364514 {
 
 void func_ov003_0235c734(int);
 
-void func_ov003_02364514(Unk_02364514 *a0)
+void Ov003_SpriteCallback(Unk_02364514 *a0)
 {
     func_ov003_0235c734(a0->unk_60);
 }
