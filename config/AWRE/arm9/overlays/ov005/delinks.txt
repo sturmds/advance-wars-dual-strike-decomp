@@ -268,6 +268,14 @@ src/game/ov005/func_ov005_0235bad0.c:
     complete
     .text       start:0x0235bad0 end:0x0235bae0
 
+src/game/ov005/ov005_alloc_co_list_work.c:
+    complete
+    .text       start:0x0235cc18 end:0x0235cc48
+
+src/game/ov005/ov005_find_saved_co_list_entry.c:
+    complete
+    .text       start:0x0235cc48 end:0x0235cc80
+
 src/game/ov005/func_ov005_0235cc80.c:
     complete
     .text       start:0x0235cc80 end:0x0235cc9c

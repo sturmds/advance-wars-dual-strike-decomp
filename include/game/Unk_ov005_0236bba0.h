@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Overlay 5 work block (0x918 bytes) that func_ov005_0235cc18 allocates
+/* Overlay 5 work block (0x918 bytes) that Ov005_AllocCoListWork allocates
  * into Ov005Task.work and data_ov005_0236bba0. It belongs to a screen with
  * 33 selectable entries (the rows of the table at data_ov005_0236a5a0), one
  * menu button per entry. */
