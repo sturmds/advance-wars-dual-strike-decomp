@@ -11,7 +11,7 @@ void func_ov003_023606ec(int slot);
 void func_ov003_0236082c(int slot);
 int func_ov003_0236095c(int slot);
 void func_ov003_02360a88(int slot);
-int func_ov003_0236211c(Ov003Input *input, int x, int y, int radius);
+int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int radius);
 
 #define STATE data_ov003_02364928
 
@@ -44,7 +44,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
     if (OV003_SLOT_COOLDOWN(STATE, slot) == 2) {
         OV003_SLOT_COOLDOWN(STATE, slot) = 3;
     }
-    if (func_ov003_0236211c(input, 240, 176, 24) != 1 && !(keypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_Y))
+    if (Ov003_InputTouchedCircle(input, 240, 176, 24) != 1 && !(keypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_Y))
         && OV003_SLOT_COOLDOWN(STATE, slot) != 0) {
         return;
     }

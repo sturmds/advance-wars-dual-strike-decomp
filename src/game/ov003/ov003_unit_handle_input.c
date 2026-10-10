@@ -7,7 +7,7 @@ void func_ov003_02361fc0(int x1, int y1, int x2, int y2, int length, int *outX, 
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight);
 int func_ov003_0235d940(int player);
 void func_ov003_0235ca50(int player);
-int func_ov003_0236211c(Ov003Input *input, int x, int y, int size);
+int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int size);
 void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int x, int y);
 void Ov003Unit_SpawnEffectToward(Ov003Unit *unit, u8 dirX, u8 dirY);
 void Ov003Unit_SpawnFacingEffect(Ov003Unit *unit);
@@ -143,7 +143,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     if (func_ov003_0235d940(unit->unk_12_3) == 1) {
         if (pad->pressed & PAD_BUTTON_L) {
             func_ov003_0235ca50(unit->unk_12_3);
-        } else if (func_ov003_0236211c(input, 240, 176, 24) == 1) {
+        } else if (Ov003_InputTouchedCircle(input, 240, 176, 24) == 1) {
             func_ov003_0235ca50(unit->unk_12_3);
             touchUsed = TRUE;
         }
