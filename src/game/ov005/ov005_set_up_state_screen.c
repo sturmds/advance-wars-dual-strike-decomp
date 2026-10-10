@@ -13,7 +13,7 @@ void Ov005_InitStateWork(Unk_ov005_0236bba4 *work);
 void Ov005_RunState(Unk_ov005_0236bba4 *work);
 void func_0202b764(void);
 void func_0202b6f8(u8 *dest);
-void func_0202b68c(u8 *dest);
+void TpIcon3_LoadTo(u8 *dest);
 void ModeFont_LoadHere(int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 /* Needed to match: this call passes a seventh argument that the function
@@ -135,7 +135,7 @@ void Ov005_SetUpStateScreen(Ov005Task *task)
     Screen_SetCurrent(data_027c0288.unk_00);
     func_0202b764();
     func_0202b6f8(data_027c0280->objVram + 0x5400);
-    func_0202b68c(data_027c0280->objVram + 0x4800);
+    TpIcon3_LoadTo(data_027c0280->objVram + 0x4800);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
