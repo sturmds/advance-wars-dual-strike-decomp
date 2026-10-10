@@ -175,6 +175,10 @@ src/game/ov006/func_ov006_023547bc.c:
     complete
     .text       start:0x023547bc end:0x02354870
 
+src/game/ov006/ov006_load_slot_button_graphics.c:
+    complete
+    .text       start:0x02354870 end:0x02354910
+
 src/game/ov006/ov006_slots_are_shown.c:
     complete
     .text       start:0x02354910 end:0x02354968
