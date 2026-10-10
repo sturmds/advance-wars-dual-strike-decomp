@@ -158,6 +158,31 @@ class AnonymousUnionTest(RepoCase):
         self.assertIn("u8 unk_2_4 : 4;", self.repo.read("include/foo.h"))
 
 
+class EmbeddedStructSizeTest(RepoCase):
+    """b12/o4s2: mainline grew a struct that another one embeds, and the
+    commit's fields after it were placed with mainline's size, 4 bytes late
+    (Unk_ov004_022bf158: false renames, then a field clash)."""
+    INNER = "typedef struct Inner {{\n{0}    u16 unk_0c;\n    u16 unk_0e;\n{1}}} Inner;\n\n"
+    OUTER = "typedef struct Outer {{\n    u8 pad_00[0x8];\n    Inner inner;\n{0}    u32 {1};\n}} Outer;\n"
+
+    def version(self, inner_head: str, inner_tail: str, pad: str, name: str) -> str:
+        return header(self.INNER.format(inner_head, inner_tail) + self.OUTER.format(pad, name))
+
+    def test_commit_fields_after_a_grown_struct(self):
+        r = self.repo.replay(
+            base={"include/t.h": self.version("    u8 pad_00[0xc];\n", "", "    u8 pad_18[0x40 - 0x18];\n", "unk_40")},
+            ours={"include/t.h": self.version("    u8 pad_00[0xc];\n", "    u16 unk_10;\n",
+                                              "    u8 pad_1c[0x40 - 0x1c];\n", "unk_40")},
+            theirs={"include/t.h": self.version("    u32 unk_00;\n    u8 pad_04[0x8];\n", "",
+                                                "    u8 pad_18[0x40 - 0x18];\n", "count")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotIn("renamed", r.stdout)
+        text = self.repo.read("include/t.h")
+        for line in ("u32 unk_00;", "u16 unk_10;", "u32 count;"):
+            self.assertEqual(text.count(line), 1, line + "\n" + text)
+        self.assertNotIn("unk_40", text)
+
+
 def header(body: str) -> str:
     return f'#ifndef T_H\n#define T_H\n\n#include "types.h"\n\n{body}\n#endif\n'
 

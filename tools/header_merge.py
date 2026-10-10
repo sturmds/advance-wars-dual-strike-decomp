@@ -165,8 +165,13 @@ class Types:
         self.scalars: dict[str, int] = {}               # enums, function pointers
         self.defines: dict[str, str] = {}
         self.cache: dict[str, tuple[int, int]] = {}
+        self.texts = list(texts)
         for text in texts:
             self.scan(strip_comments(text))
+
+    def first(self, *texts: str) -> "Types":
+        """These types with the definitions in texts taking precedence."""
+        return Types(list(texts) + self.texts)
 
     def scan(self, code: str) -> None:
         for m in re.finditer(r"\b(typedef\s+)?(struct|union)\s*(\w*)\s*\{", code):
@@ -363,6 +368,17 @@ def layout(chs: list[Chunk], kind: str, types: Types) -> tuple[list[Item], int, 
 # ------------------------------------------------------------ struct merge
 
 @dataclass
+class Sides:
+    """Types to lay out each version with. A struct one side embeds can
+    have another size on the other side (b12/o4s2: mainline had grown
+    Unk_ov004_022bf158_818 by 4 bytes, and the commit's fields after it
+    were placed 4 bytes late)."""
+    ours: Types
+    theirs: Types
+    base: Types
+
+
+@dataclass
 class Report:
     """What a merge did, for the summary line and for apply_commit."""
     added_fields: int = 0
@@ -389,14 +405,16 @@ def overlaps(a: Item, b: Item) -> bool:
 
 
 def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | None,
-               types: Types, rep: Report, where: str) -> list[str]:
-    """Merge the lines between the braces of one struct or union."""
+               sides: Sides, rep: Report, where: str) -> list[str]:
+    """Merge the lines between the braces of one struct or union. Each
+    side is laid out with its own types: a struct it embeds may have
+    another size on the other side."""
     o_chs, o_tail = chunks("".join(ours))
-    o_items, o_size, o_align = layout(o_chs, kind, types)
-    t_items, t_size, _ = layout(chunks("".join(theirs))[0], kind, types)
-    b_items = layout(chunks("".join(base))[0], kind, types)[0] if base else []
+    o_items, o_size, o_align = layout(o_chs, kind, sides.ours)
+    t_items, t_size, _ = layout(chunks("".join(theirs))[0], kind, sides.theirs)
+    b_items = layout(chunks("".join(base))[0], kind, sides.base)[0] if base else []
     if kind == "union":
-        return merge_union(o_items, t_items, b_items, o_tail, types, rep, where)
+        return merge_union(o_items, t_items, b_items, o_tail, sides, rep, where)
     named = [it for it in o_items if it.name]
     for t in t_items:
         if not t.name:
@@ -408,11 +426,11 @@ def merge_body(kind: str, ours: list[str], theirs: list[str], base: list[str] | 
             if o is not None and o.name != t.name and simple(o.name) and simple(t.name):
                 rep.rename(t.name, o.name, where)
             continue
-        merge_field(named, t, b_items, types, rep, where)
+        merge_field(named, t, b_items, sides, rep, where)
     pads = {(p.offset, p.offset + p.size): p for p in t_items + o_items if p.name is None}
     end = max([o_size, t_size] + [it.offset + it.size for it in named])
     body = render(named, end, max(o_align, *(it.align for it in named), 1), pads, o_items) + o_tail
-    check_layout(body, named, end, types)
+    check_layout(body, named, end, sides.ours)
     return body
 
 
@@ -421,14 +439,14 @@ def simple(name: str) -> bool:
     return "," not in name and not name.startswith(("@", "("))
 
 
-def merge_field(named: list[Item], t: Item, base: list[Item], types: Types, rep: Report, where: str) -> None:
+def merge_field(named: list[Item], t: Item, base: list[Item], sides: Sides, rep: Report, where: str) -> None:
     """Add the commit's field t to mainline's fields `named`. Where both
     sides changed the same bytes, mainline's name stays so that its other
     users keep building; the commit's sources are rewritten to it
     (rep.renames)."""
     same = next((o for o in named if o.offset == t.offset and (o.size == t.size or o.name == t.name)), None)
     if same is not None:
-        merge_same(named, same, t, base, types, rep, where)
+        merge_same(named, same, t, base, sides, rep, where)
         return
     clash = [o for o in named if overlaps(o, t)]
     if not clash:
@@ -450,12 +468,13 @@ def merge_field(named: list[Item], t: Item, base: list[Item], types: Types, rep:
     rep.conflicts.append(f"{where}.{t.name} (0x{t.offset:x}, {t.size} bytes) overlaps mainline's {names}")
 
 
-def merge_same(named: list[Item], o: Item, t: Item, base: list[Item], types: Types, rep: Report, where: str) -> None:
+def merge_same(named: list[Item], o: Item, t: Item, base: list[Item], sides: Sides, rep: Report,
+               where: str) -> None:
     """Both sides declare the same bytes."""
     if o.text == t.text:
         return
     if o.nested and t.nested and o.name.startswith("@"):
-        merge_nested(o, t, base, types, rep, where)
+        merge_nested(o, t, base, sides, rep, where)
     elif unchanged(o, base):
         # Mainline left the field as it was in the base: the commit's edit
         # wins, as in a 3-way merge. Mainline's newer users of an old name
@@ -495,19 +514,19 @@ def renamed(t: Item, name: str, rep: Report, where: str) -> Item:
     return t
 
 
-def merge_nested(o: Item, t: Item, base: list[Item], types: Types, rep: Report, where: str) -> None:
+def merge_nested(o: Item, t: Item, base: list[Item], sides: Sides, rep: Report, where: str) -> None:
     """Merge two anonymous unions or structs at the same offset."""
     oh, ob, ot = split_braces(o.lines)
     tb = split_braces(t.lines)[1]
     b = next((b for b in base if b.nested and b.name == o.name), None)
     bb = split_braces(b.lines)[1] if b is not None else None
-    o.lines = oh + merge_body(o.nested, ob, tb, bb, types, rep, where) + ot
+    o.lines = oh + merge_body(o.nested, ob, tb, bb, sides, rep, where) + ot
     o.code = " ".join(strip_comments(o.text).split())
     o.size = max(o.size, t.size)
 
 
 def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: list[str],
-                types: Types, rep: Report, where: str) -> list[str]:
+                sides: Sides, rep: Report, where: str) -> list[str]:
     """Members of a union all start at 0: merge them by name. Two versions
     of an anonymous struct member are merged field by field."""
     out = list(ours)
@@ -523,7 +542,7 @@ def merge_union(ours: list[Item], theirs: list[Item], base: list[Item], tail: li
         elif t.name in based and based[t.name].text == o.text:
             out[out.index(o)] = t
         elif o.nested and t.nested and o.name.startswith("@"):
-            merge_nested(o, t, base, types, rep, where)
+            merge_nested(o, t, base, sides, rep, where)
         elif o.code != t.code:
             rep.notes.append(f"kept mainline's {where}.{o.name} as `{o.code}` (the commit has `{t.code}`)")
     return [line for it in out for line in it.lead + it.lines] + tail
@@ -681,12 +700,15 @@ def rename_words(text: str, names: dict[str, str]) -> str:
     return text
 
 
-def merge(ours: str, theirs: str, base: str, types: Types) -> tuple[str, Report]:
+def merge(ours: str, theirs: str, base: str, types: Types, theirs_types: Types | None = None) -> tuple[str, Report]:
     """Merge the commit's version of a header (theirs) into mainline's (ours).
-    Raises MergeError when a part cannot be read or laid out."""
+    types has mainline's type definitions first, theirs_types the commit's
+    (by default types with theirs read first). Raises MergeError when a
+    part cannot be read or laid out."""
     rep = Report()
     o_entries, o_tail = parse_header(ours)
     rep.type_renames = find_aliases(o_entries, parse_header(theirs)[0])
+    sides = Sides(types, theirs_types or types.first(rename_words(theirs, rep.type_renames)), types.first(base))
     t_entries = parse_header(rename_words(theirs, rep.type_renames))[0]
     b_by_key = {e.key: e for e in parse_header(rename_words(base, rep.type_renames))[0]}
     res = list(o_entries)
@@ -696,7 +718,7 @@ def merge(ours: str, theirs: str, base: str, types: Types) -> tuple[str, Report]
         keys = [e.key for e in res]
         if t.key in keys:
             i = keys.index(t.key)
-            merge_entry(res[i], t, b_by_key.get(t.key), types, rep)
+            merge_entry(res[i], t, b_by_key.get(t.key), sides, rep)
             pos = i + 1
         elif t.key in b_by_key:
             if b_by_key[t.key].text != t.text:
@@ -728,7 +750,7 @@ def guard_end(entries: list[Entry]) -> int:
     return len(entries) - 1 if entries and entries[-1].key == ("guard", 2) else len(entries)
 
 
-def merge_entry(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) -> None:
+def merge_entry(o: Entry, t: Entry, b: Entry | None, sides: Sides, rep: Report) -> None:
     """Merge the commit's version t of a declaration into mainline's o."""
     if o.full == t.full:
         return
@@ -738,13 +760,13 @@ def merge_entry(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) 
     if b is not None and b.lead == o.lead:
         o.lead = t.lead
     if "{" in o.code and "{" in t.code and o.code.startswith(("enum", "typedef enum")):
-        o.lines = merge_enum(o, t, b, types, rep)
+        o.lines = merge_enum(o, t, b, sides, rep)
     elif o.key[0] == "type" and "{" in o.code and "{" in t.code:
         kind = "union" if re.match(r"(typedef\s+)?union\b", o.code) else "struct"
         oh, ob, ot = split_braces(o.lines)
         tb = split_braces(t.lines)[1]
         bb = split_braces(b.lines)[1] if b is not None and "{" in b.code else None
-        o.lines = oh + merge_body(kind, ob, tb, bb, types, rep, o.key[1]) + ot
+        o.lines = oh + merge_body(kind, ob, tb, bb, sides, rep, o.key[1]) + ot
     elif o.key[0] == "define" and (b is None or b.text != t.text) and define_body(o) != define_body(t):
         rep.conflicts.append(f"#define {o.key[1]} is `{define_body(o)}` on mainline"
                              f" and `{define_body(t)}` in the commit")
@@ -792,7 +814,7 @@ def enum_members(body: list[str], types: Types) -> list[Member]:
     return out
 
 
-def merge_enum(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) -> list[str]:
+def merge_enum(o: Entry, t: Entry, b: Entry | None, sides: Sides, rep: Report) -> list[str]:
     """Merge two versions of an enum as the union of their constants. A
     constant only the commit has is written with its value (`NAME = 24,`)
     and placed by value, so no constant of mainline changes value. A
@@ -802,7 +824,7 @@ def merge_enum(o: Entry, t: Entry, b: Entry | None, types: Types, rep: Report) -
     oh, ob, ot = split_braces(o.lines)
     tb = split_braces(t.lines)[1]
     bb = split_braces(b.lines)[1] if b is not None and "{" in b.code else []
-    ours, theirs, base = (enum_members(x, types) for x in (ob, tb, bb))
+    ours, theirs, base = (enum_members(x, ts) for x, ts in ((ob, sides.ours), (tb, sides.theirs), (bb, sides.base)))
     o_by, b_by = {m.name: m for m in ours}, {m.name: m for m in base}
     body = list(ob)
     inserts: dict[int, list[tuple[int, str]]] = {}  # index in ob to insert before -> (value, line)

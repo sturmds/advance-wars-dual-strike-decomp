@@ -56,3 +56,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0026](0026-land-self-old-code.md) | land_self.py kept its old code after a replay and skipped the review check | closed | loop | M1 |
 | [0027](0027-land-self-livelock.md) | Many land_self.py runs at once rebuilt after every landing | closed | loop | M1 |
 | [0028](0028-header-merge-anonymous-members.md) | `header_merge.py` crashed on bit-fields named `pad_*` and dropped anonymous struct members | closed | loop | M1 |
+| [0029](0029-header-merge-embedded-struct-size.md) | `header_merge.py` placed the commit's fields with mainline's struct sizes | closed | loop | M1 |

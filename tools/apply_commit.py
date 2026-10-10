@@ -201,7 +201,7 @@ def merge_header(path: str, ours: str, theirs: str, base: str) -> bool:
     """Merge a conflicting header by meaning (tools/header_merge.py). False
     if it cannot be read; the conflict markers of git merge-file then stay."""
     try:
-        text, rep = header_merge.merge(ours, theirs, base, header_types(path, ours, theirs))
+        text, rep = header_merge.merge(ours, theirs, base, *header_types(path, ours, theirs))
     except header_merge.MergeError as e:
         print(f"{path}: cannot merge by meaning: {e}")
         return False
@@ -213,16 +213,16 @@ def merge_header(path: str, ours: str, theirs: str, base: str) -> bool:
     return True
 
 
-def header_types(path: str, ours: str, theirs: str) -> header_merge.Types:
-    """Type sizes from the headers of both sides, to lay out struct fields."""
-    texts = [ours, theirs]
-    for p in sorted((ROOT / "include").rglob("*.h")):
-        if p != ROOT / path:
-            texts.append(p.read_text())
-    for name in git("diff-tree", "--no-commit-id", "-r", "--name-only", f"{COMMIT}^", COMMIT).splitlines():
-        if name.startswith("include/") and name != path:
-            texts.append(show(COMMIT, name) or "")
-    return header_merge.Types(texts)
+def header_types(path: str, ours: str, theirs: str) -> tuple[header_merge.Types, header_merge.Types]:
+    """Type sizes to lay out struct fields: this branch's, and the commit's.
+    Each has its own side's definitions first, since a struct both sides
+    declare can have a different size on each."""
+    mine = [p.read_text() for p in sorted((ROOT / "include").rglob("*.h")) if p != ROOT / path]
+    commit = [show(COMMIT, name) or "" for name in
+              git("diff-tree", "--no-commit-id", "-r", "--name-only", f"{COMMIT}^", COMMIT).splitlines()
+              if name.startswith("include/") and name != path]
+    return (header_merge.Types([ours] + mine + [theirs] + commit),
+            header_merge.Types([theirs] + commit + [ours] + mine))
 
 
 def member_access(name: str) -> re.Pattern:
