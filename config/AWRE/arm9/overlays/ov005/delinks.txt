@@ -104,6 +104,10 @@ src/game/ov005/func_ov005_023536d4.c:
     complete
     .text       start:0x023536d4 end:0x023536e4
 
+src/game/ov005/ov005_update_song_event_script_screen.c:
+    complete
+    .text       start:0x023536e4 end:0x02353a88
+
 src/game/ov005/ov005_setup_main_screen_layers2_and3.c:
     complete
     .text       start:0x023540bc end:0x023545c4
