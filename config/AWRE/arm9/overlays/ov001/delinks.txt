@@ -43,6 +43,10 @@ src/game/ov001/func_ov001_02350900.c:
     complete
     .text       start:0x02350900 end:0x02350940
 
+src/game/ov001/ov001_rockets_and_missiles_waited_and_anti_air_has_waited.c:
+    complete
+    .text       start:0x02350940 end:0x02350a1c
+
 src/game/ov001/ov001_has_no_ready_ship_or_b_copter.c:
     complete
     .text       start:0x02350a1c end:0x02350b28
