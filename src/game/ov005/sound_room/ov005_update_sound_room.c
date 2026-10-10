@@ -23,7 +23,7 @@ void func_ov005_02364708(Unk_ov005_0236bbac *work);
 void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
 void func_ov005_02364d90(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
-void func_ov005_02365124(Unk_ov005_0236bbac *work);
+void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
 void func_ov005_02365b04(Unk_ov005_0236bbac *work);
 void func_ov005_02365b90(Unk_ov005_0236bbac *work);
 void func_ov005_02365cec(Unk_ov005_0236bbac *work);
@@ -186,7 +186,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         Sound_PlaySe(0x10002);
     }
     work->shownSelection = work->selection;
-    func_ov005_02365124(work);
+    Ov005_UpdateSoundRoomSprites(work);
     func_ov005_02365cec(work);
     func_ov005_02365b90(work);
     func_ov005_02364d90(work);

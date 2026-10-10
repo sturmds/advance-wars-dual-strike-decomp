@@ -692,6 +692,10 @@ src/game/ov005/func_ov005_02365100.c:
     complete
     .text       start:0x02365100 end:0x02365124
 
+src/game/ov005/sound_room/ov005_update_sound_room_sprites.c:
+    complete
+    .text       start:0x02365124 end:0x023656d8
+
 src/game/ov005/func_ov005_023659b8.c:
     complete
     .text       start:0x023659b8 end:0x023659dc

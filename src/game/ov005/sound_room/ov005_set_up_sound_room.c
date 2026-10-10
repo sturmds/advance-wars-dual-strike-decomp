@@ -113,9 +113,9 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    work->unk_a0 = -1;
-    work->unk_a2 = -1;
-    work->unk_a4 = -1;
+    work->objScale1 = -1;
+    work->objScale2 = -1;
+    work->objScaleBoth = -1;
     func_ov005_023656d8(work);
 
     saved0280 = data_027c0280;

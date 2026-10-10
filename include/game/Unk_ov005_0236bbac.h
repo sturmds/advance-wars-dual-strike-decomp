@@ -24,12 +24,12 @@ typedef struct Unk_ov005_0236bbac {
     u8 pad_40[0x50 - 0x40];
     void *unk_50;                      /* passed to Task_Destroy (task system) */
     u8 pad_54[0x78 - 0x54];
-    void *unk_78[4];                   /* sprites placed with func_02022404 */
+    struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
     u8 pad_88[0x8c - 0x88];
-    void *unk_8c[5];                   /* sprites placed with func_02022404 */
-    s16 unk_a0;
-    s16 unk_a2;
-    s16 unk_a4;
+    struct Unk_02022404 *subObjects[5]; /* placed on the sub screen each frame */
+    s16 objScale1;                     /* OBJ affine matrix 1 scale, 0x100 = 1x; -1: none */
+    s16 objScale2;                     /* OBJ affine matrix 2 scale */
+    s16 objScaleBoth;                  /* used for both when 1 and 2 are -1; -1: 0x100 */
 } Unk_ov005_0236bbac;
 
 #endif
