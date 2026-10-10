@@ -1,0 +1,52 @@
+#include "types.h"
+#include "game/screen_other_map.h"
+#include "game/Unk_ov006_0235f690.h"
+
+int func_020b983c(void);
+u8 *func_021016e4(void);
+int func_02124534(const char *a, const char *b);
+char *func_021246d4(char *dest, const char *src);  /* strcpy */
+void Ov006_DrawNameField(void);
+void Screens_SelectConfigs(void);
+void Battle_RegisterFrameCallbacks(void);
+void func_01ff9c48(void (*callback)(void));
+void func_020d308c(void);
+void Camera_ResetToPreset1(void *p);
+void func_01ff8c84(int arg);
+void Gfx_RequestLayerCopy(int layer);
+void func_020c4018(void);
+void func_020f5fb8(void);
+void func_ov006_023520b4(void);
+
+extern Unk_ov006_0235f690 *data_ov006_0236d640;
+extern u32 data_022a6b38;
+extern u8 data_022a7d5c[];
+
+void func_ov006_023544c4(void)
+{
+    void (*callback)(int);
+
+    if (func_020b983c() == 1) {
+        char *name = (char *)func_021016e4();
+
+        if (func_02124534(name, (char *)data_ov006_0236d640->unk_d8)) {
+            func_021246d4((char *)data_ov006_0236d640->unk_d8, name);
+            data_ov006_0236d640->unk_00 |= 0x1000;
+        }
+        Ov006_DrawNameField();
+    }
+    Screens_SelectConfigs();
+    callback = data_027c027c->unk_50[data_027c0284]->unk_54;
+    if (callback != NULL) {
+        callback(1);
+    }
+    Battle_RegisterFrameCallbacks();
+    func_01ff9c48(func_020d308c);
+    data_022a6b38 = 0;
+    Camera_ResetToPreset1(data_022a7d5c);
+    func_01ff8c84(1);
+    Gfx_RequestLayerCopy(1);
+    func_020c4018();
+    func_020f5fb8();
+    func_ov006_023520b4();
+}

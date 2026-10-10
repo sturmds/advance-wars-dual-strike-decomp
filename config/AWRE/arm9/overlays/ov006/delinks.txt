@@ -63,6 +63,14 @@ src/game/ov006/func_ov006_02352764.c:
     complete
     .text       start:0x02352764 end:0x023527ac
 
+src/game/ov006/ov006_load_army_terrain_graphics.c:
+    complete
+    .text       start:0x02353304 end:0x023533f0
+
+src/game/ov006/ov006_draw_name_field.c:
+    complete
+    .text       start:0x0235382c end:0x023538e8
+
 src/game/ov006/ov006_load_co_preview.c:
     complete
     .text       start:0x02353c28 end:0x02353d44
@@ -174,6 +182,10 @@ src/game/ov006/func_ov006_02354414.c:
 src/game/ov006/func_ov006_02354444.c:
     complete
     .text       start:0x02354444 end:0x023544c4
+
+src/game/ov006/func_ov006_023544c4.c:
+    complete
+    .text       start:0x023544c4 end:0x023545ac
 
 src/game/ov006/func_ov006_023545ac.c:
     complete

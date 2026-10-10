@@ -35,7 +35,7 @@ void Font_SetDigitEndTile(int tile);
 void func_020c4394(int x, int y, s16 *tile, u16 *pixel);
 void Ov006_PostRequest(int request);
 void Sound_StartSong(int songId);
-void func_ov006_02353304(void);
+void Ov006_LoadArmyTerrainGraphics(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern u8 data_022a7d5c[];
@@ -146,6 +146,6 @@ void DesignRoom_Init(Task *task)
     Ov006_PostRequest(0);
     OV6->unk_5c = Task_Create(data_ov006_0236a218, TASK_LIST(3));
     Sound_StartSong(0x34);
-    func_ov006_02353304();
+    Ov006_LoadArmyTerrainGraphics();
     OV6->unk_60 = Task_Create(data_ov006_0236a1e0, TASK_LIST(3));
 }
