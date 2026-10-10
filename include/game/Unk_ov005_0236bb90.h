@@ -25,7 +25,13 @@ typedef struct Unk_ov005_0236bb90 {
     u8 pad_0000[0x8018];
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
-    u8 pad_8348[0x83e0 - 0x8348];
+    Task *unk_8348;                    /* started by Ov005Screen_LoadPalettes */
+    s32 unk_834c;                      /* 64 at the start */
+    s32 unk_8350;
+    s32 unk_8354;
+    s32 unk_8358;
+    s32 unk_835c;
+    u8 unk_8360[0x83e0 - 0x8360];      /* loaded from a file; Ov005Screen_StartPaletteTask passes it on */
     u8 palettes[4][8][64];             /* 8 chunks of 64 bytes per set */
     u8 palettesOut[8][6][64];          /* chunk k of set s lands in [k][column] */
 } Unk_ov005_0236bb90;
