@@ -72,6 +72,10 @@ src/game/ov004/func_ov004_022b01fc.c:
     complete
     .text       start:0x022b01fc end:0x022b021c
 
+src/game/ov004/ov004_scroll_layer3_up.c:
+    complete
+    .text       start:0x022b021c end:0x022b02f8
+
 src/game/ov004/func_ov004_022b02f8.c:
     complete
     .text       start:0x022b02f8 end:0x022b0304
