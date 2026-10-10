@@ -331,6 +331,10 @@ src/game/ov006/func_ov006_0235f690.c:
     complete
     .text       start:0x0235f690 end:0x0235f6f8
 
+src/game/ov006/ov006_can_place_bridge.c:
+    complete
+    .text       start:0x0235f6f8 end:0x0235fa7c
+
 src/game/ov006/ov006_get_neighbor_mask.c:
     complete
     .text       start:0x02360240 end:0x02360308
