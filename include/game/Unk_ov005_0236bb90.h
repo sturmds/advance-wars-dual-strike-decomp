@@ -25,7 +25,11 @@ typedef struct Unk_ov005_0236bb90 {
     u8 pad_0000[0x8018];
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
-    u8 pad_8348[0x97e0 - 0x8348];
+    u8 pad_8348[0x83e0 - 0x8348];
+    u8 palettes[4][8][64];             /* 8 chunks of 64 bytes per set */
+    u8 palettesOut[8][6][64];          /* chunk k of set s lands in [k][column] */
 } Unk_ov005_0236bb90;
+
+void Ov005Work_CopyPaletteSet(Unk_ov005_0236bb90 *work, int set, int column);
 
 #endif
