@@ -28,6 +28,14 @@ typedef struct Ov004Entry {
     int unk_18;                        /* eased from 190 to 128 */
 } Ov004Entry;
 
+/* One 16-byte slot of Unk_ov004_022bf158.resources. */
+typedef struct Ov004Resource {
+    u32 unk_00;
+    const char *name;                  /* matched by pointer or by string compare */
+    void *data;
+    u32 size;
+} Ov004Resource;
+
 /* Overlay 4 state reached through data_ov004_022bf158. */
 typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
@@ -49,7 +57,9 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_90c[0x918 - 0x90c];
     struct Ov004Task *slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
-    u8 pad_99c[0x1320 - 0x99c];
+    u8 pad_99c[0xb1c - 0x99c];
+    Ov004Resource resources[128];      /* looked up by Ov004_FindResource */
+    u8 pad_131c[0x1320 - 0x131c];
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
     u8 pad_1324[0x1328 - 0x1324];
     u32 unk_1328;                      /* set to 0x06860000, an LCDC VRAM address */
