@@ -1,0 +1,20 @@
+#include "types.h"
+#include "game/BattleCellTask.h"
+
+/* Puts a cell task back to its start state and forgets its sprites. */
+void BattleCellTask_Reset(BattleCellTask *task)
+{
+    task->unk_50 = 0;
+    task->angle = 0;
+    task->phase = task->cell * 16;
+    task->flag0 = 0;
+    task->flag1 = 0;
+    task->flag2 = 0;
+    task->flag3 = 0;
+    task->unk_5a_lo = 0;
+    CELL_TASK_ENTRY(task).sprites[0] = NULL;
+    CELL_TASK_ENTRY(task).sprites[1] = NULL;
+    CELL_TASK_ENTRY(task).sprites[2] = NULL;
+    CELL_TASK_ENTRY(task).sprites[3] = NULL;
+    task->unk_2c = 0;
+}
