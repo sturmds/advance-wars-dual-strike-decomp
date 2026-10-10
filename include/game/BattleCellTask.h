@@ -21,7 +21,10 @@ typedef struct BattleCellTask {
     s16 pos2Z;
     u16 scale;                         /* starts at 0x100 */
     s16 angle;                         /* bobbing offset, copied to the sprites; a guess */
-    u8 pad_48[0x50 - 0x48];
+    s16 velX;                          /* 8.8 fixed point, added to the positions each frame while flag0 is set */
+    s16 velY;
+    s16 accelX;                        /* 8.8 fixed point, added to velX each frame */
+    s16 accelY;
     s16 unk_50;                        /* cleared by BattleCellTask_Reset */
     u8 pad_52[0x56 - 0x52];
     u8 phase;                          /* frame phase of the bobbing, starts at cell * 16 */
@@ -43,6 +46,7 @@ BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index);
 void BattleCellTask_DestroySprites(BattleCellTask *task);
 void BattleCellTask_RestartSprite(BattleCellTask *task);
 void BattleCellTask_Bob(BattleCellTask *task);
+void BattleCellTask_Move(BattleCellTask *task);
 
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */
