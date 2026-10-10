@@ -147,6 +147,10 @@ src/game/ov003/ov003_find_unit_near.c:
     complete
     .text       start:0x0235ba10 end:0x0235baa8
 
+src/game/ov003/ov003_is_row_done.c:
+    complete
+    .text       start:0x0235baa8 end:0x0235bb64
+
 src/game/ov003/func_ov003_0235bdd8.c:
     .text       start:0x0235bdd8 end:0x0235be30
 
