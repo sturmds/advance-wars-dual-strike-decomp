@@ -18,7 +18,7 @@ void func_ov004_022bb1d8(Unk_ov004_022bf158 *state);
 /* name: a resource name, or a resource id below 0x10000 cast to a pointer. */
 void Ov004_CopyResource(const char *name, void *dest);
 void Ov004_UnpackResource(const char *name, void *dest);
-void func_ov004_022badcc(Unk_ov004_022bf158 *state, int col, int row, const char *name);
+void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *name);
 void func_ov004_022baeec(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void func_ov004_022baf54(Unk_ov004_022bf158 *state, int cols, int rows);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
@@ -188,11 +188,11 @@ void Ov004Task_PlayTurningQuadScene(Ov004Task *task)
         func_ov004_022baeec(state, 0, 0, 0);
         func_ov004_022baeec(state, 1, 0, 0);
         func_ov004_022baeec(state, 2, 0, 0);
-        func_ov004_022badcc(state, 0, 1, data_ov004_022bddc8);
-        func_ov004_022badcc(state, 1, 1, data_ov004_022bddc4);
+        Ov004_BlitBlock(state, 0, 1, data_ov004_022bddc8);
+        Ov004_BlitBlock(state, 1, 1, data_ov004_022bddc4);
         func_ov004_022baeec(state, 2, 1, 0);
-        func_ov004_022badcc(state, 0, 2, data_ov004_022bdd78);
-        func_ov004_022badcc(state, 1, 2, data_ov004_022bdd7c);
+        Ov004_BlitBlock(state, 0, 2, data_ov004_022bdd78);
+        Ov004_BlitBlock(state, 1, 2, data_ov004_022bdd7c);
         func_ov004_022baeec(state, 2, 2, 0);
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
