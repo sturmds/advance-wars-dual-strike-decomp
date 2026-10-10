@@ -7204,6 +7204,10 @@ src/game/main/func_020d947c.c:
     complete
     .text       start:0x020d947c end:0x020d9494
 
+src/game/main/func_020d96e0.c:
+    complete
+    .text       start:0x020d96e0 end:0x020d9708
+
 src/game/main/combat/target_kind_get_chart_column.c:
     complete
     .text       start:0x020d97dc end:0x020d9864
