@@ -587,6 +587,10 @@ src/game/ov006/ov006_refit_joined_cells_around.c:
     complete
     .text       start:0x02367a70 end:0x02368114
 
+src/game/ov006/ov006_is_joined_piece_connected.c:
+    complete
+    .text       start:0x023694d0 end:0x02369bc4
+
 src/game/ov006/func_ov006_0236a1d0.c:
     complete
     .text       start:0x0236a1d0 end:0x0236a1d4
