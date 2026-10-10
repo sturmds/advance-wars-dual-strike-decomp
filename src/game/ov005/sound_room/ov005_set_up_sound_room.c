@@ -23,7 +23,7 @@ void func_ov005_02364f3c(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void func_ov005_02365100(Unk_ov005_0236bbac *work);
 void func_ov005_023656d8(Unk_ov005_0236bbac *work);
-void func_ov005_02365b04(Unk_ov005_0236bbac *work);
+void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *work);
 void func_ov005_02365e90(Unk_ov005_0236bbac *work);
 
 extern u8 data_ov005_0236b0bc[];
@@ -145,7 +145,7 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     work->coId = -1;
     work->unk_3c = -1;
     func_ov005_02364718(work);
-    func_ov005_02365b04(work);
+    Ov005CoSelect_PickCellCo(work);
     func_ov005_02365100(work);
     func_ov005_02365010(work);
     func_ov005_02364f3c(work);

@@ -784,6 +784,10 @@ src/game/ov005/func_ov005_02365aec.c:
     complete
     .text       start:0x02365aec end:0x02365b04
 
+src/game/ov005/ov005_co_select_pick_cell_co.c:
+    complete
+    .text       start:0x02365b04 end:0x02365b90
+
 src/game/ov005/func_ov005_02365e90.c:
     complete
     .text       start:0x02365e90 end:0x02365ea8

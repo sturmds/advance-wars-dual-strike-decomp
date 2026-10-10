@@ -5933,7 +5933,7 @@ func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
 .L_02128f20 kind:label(arm) addr:0x02128f20
 func_02128f6c kind:function(arm,size=0x1b0) addr:0x02128f6c
 func_0212911c kind:function(arm,size=0x20c) addr:0x0212911c
-func_02129328 kind:function(arm,size=0x1e4) addr:0x02129328
+_u32_div_f kind:function(arm,size=0x1e4) addr:0x02129328
 .L_02129330 kind:label(arm) addr:0x02129330
 func_0212950c kind:function(arm,size=0x34) addr:0x0212950c
 func_02129540 kind:function(arm,size=0x28) addr:0x02129540

@@ -24,7 +24,7 @@ void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
 void func_ov005_02364d90(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
-void func_ov005_02365b04(Unk_ov005_0236bbac *work);
+void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *work);
 void func_ov005_02365b90(Unk_ov005_0236bbac *work);
 void func_ov005_02365cec(Unk_ov005_0236bbac *work);
 
@@ -105,7 +105,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
             Ov005CoSelect_SetSlideDirection(work);
-            func_ov005_02365b04(work);
+            Ov005CoSelect_PickCellCo(work);
         } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_34 == 1) {
             work->unk_34 = 0;
             if (work->page >= work->lastPage) {
@@ -118,7 +118,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
             Ov005CoSelect_SetSlideDirection(work);
-            func_ov005_02365b04(work);
+            Ov005CoSelect_PickCellCo(work);
         }
         break;
     case 100:

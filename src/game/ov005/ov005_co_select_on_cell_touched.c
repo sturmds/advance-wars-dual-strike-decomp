@@ -2,7 +2,7 @@
 #include "game/Unk_ov005_0236bbac.h"
 
 void Ov005CoSelect_SetSlideDirection(Unk_ov005_0236bbac *state);
-void func_ov005_02365b04(Unk_ov005_0236bbac *state);
+void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *state);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
@@ -13,6 +13,6 @@ void Ov005CoSelect_OnCellTouched(u8 *buttonId)
 
     state->selection = *buttonId - 0x80;
     Ov005CoSelect_SetSlideDirection(state);
-    func_ov005_02365b04(state);
+    Ov005CoSelect_PickCellCo(state);
     state->pageStartSelection = state->selection;
 }
