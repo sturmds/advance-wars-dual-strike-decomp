@@ -14,7 +14,7 @@ int func_ov003_0235f1a0(Ov003Unit *unit);
 void func_ov003_0235f81c(Ov003Unit *unit);
 void func_ov003_0235f8e8(Ov003Unit *unit);
 void func_ov003_0235f9b4(Ov003Unit *unit);
-u32 func_ov003_0235fa38(void);
+u32 Ov003_GetTargetRange(void);
 u32 func_ov003_0235fa80(Ov003Unit *unit, s8 *target);  /* distance to target, 16 per tile */
 u32 Ov003_RandNext(void);
 
@@ -55,7 +55,7 @@ u32 Ov003_RandNext(void);
  * is closer than unk_1f tiles; waking also sets groups 0 to unk_1e_1. A unit
  * that is capturing (unk_04 still counting) or has unk_17_0 set stays at the
  * centre of its tile instead, under the conditions below; the range from
- * func_ov003_0235fa38 is 0 or 8 tiles. Otherwise an awake unit heads for its
+ * Ov003_GetTargetRange is 0 or 8 tiles. Otherwise an awake unit heads for its
  * target every 32 frames when func_ov003_0235f1a0 gives a direction, or turns
  * at random every 256 frames and whenever it has not moved since
  * Ov003_SnapshotUnits (blocked). Then a target in reach goes to
@@ -67,7 +67,7 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit)
     u8 dir;
 
     dist = func_ov003_0235fa80(unit, &unit->unk_1a);
-    range = func_ov003_0235fa38();
+    range = Ov003_GetTargetRange();
 
     if (!unit->unk_1e_0) {
         if (unit->unk_1e_1 != 0 && (STATE->unk_1de & (1 << unit->unk_1e_1))) {
