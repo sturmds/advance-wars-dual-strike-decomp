@@ -48,7 +48,7 @@ void func_ov002_023571d0(void)
             BattleAnimStart *start = anim->unk_44;
 
             BattleSpriteTask_CreateDefaultWrapper(0, 0, start->unk_18, start->unk_1a, start->unk_1c, 0, 0, 0,
-                                gMenuState.battle.unk_20[side], side == 0 ? 0 : 2, 0, side);
+                                                   gMenuState.battle.unk_20[side], side == 0 ? 0 : 2, 0, side);
         }
     }
 }

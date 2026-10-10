@@ -143,7 +143,7 @@ typedef struct BattleScreenWork {
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
     u8 pad_050[0x22c - 0x050];
-    BattleCounterTask *unk_22c[2][5];   /* per side */
+    BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
     BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */

@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-/* Two 4-bit values in a byte, which of them to read depends on the matchup of the
- * two sides (Battle matchup: both on the ground, one in the air, ...). */
+/* Four 4-bit values; which one to read depends on the air/ground matchup of the two
+ * sides (Battle_GetAirGroundMatchup). */
 typedef struct BattleAnimNibbles {
     u8 pad_00[0x29];
     u8 unk_29_0 : 4;
