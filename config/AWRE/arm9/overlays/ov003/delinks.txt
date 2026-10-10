@@ -470,6 +470,10 @@ src/game/ov003/ov003_step_entries.c:
     complete
     .text       start:0x0235e258 end:0x0235e2c4
 
+src/game/ov003/ov003_step_entry.c:
+    complete
+    .text       start:0x0235e2c4 end:0x0235e358
+
 src/game/ov003/ov003_marker_fire_at_nearest_unit.c:
     complete
     .text       start:0x0235e358 end:0x0235e524
