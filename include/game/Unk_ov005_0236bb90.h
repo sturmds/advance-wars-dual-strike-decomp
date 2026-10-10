@@ -25,7 +25,10 @@ typedef struct Ov005SlideEntry {
  * allocates into Ov005Task.work and data_ov005_0236bb90. Unk_ov005_0235a30c
  * and the palette data at 0x8360 probably belong to the same block. */
 typedef struct Unk_ov005_0236bb90 {
-    u8 pad_0000[0x8014];
+    u8 pad_0000[0x4];
+    Task *fadeTask;                    /* from the func_020fcdc8 family */
+    Task *fadeTask2;
+    u8 pad_000c[0x8014 - 0xc];
     u32 unk_8014;                      /* set by func_ov005_0235b754 from the table it reads */
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
