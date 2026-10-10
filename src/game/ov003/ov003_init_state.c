@@ -5,7 +5,7 @@
 void func_ov003_02352e88(void);
 void func_ov003_02352090(void);
 void func_ov003_02351da0(void);
-void func_ov003_02351cf0(void);
+void Ov003_ResetView(void);
 void func_ov003_02353bd8(void);
 void func_ov003_02351a5c(void);
 void func_ov003_0235e22c(void);
@@ -20,7 +20,7 @@ void Ov003_InitState(void)
     func_ov003_02352e88();
     func_ov003_02352090();
     func_ov003_02351da0();
-    func_ov003_02351cf0();
+    Ov003_ResetView();
     func_ov003_02353bd8();
     func_ov003_02351a5c();
     func_ov003_0235e22c();

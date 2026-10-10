@@ -7,6 +7,9 @@ src/game/ov003/ov003_update.c:
     complete
     .text       start:0x02350560 end:0x023509b8
 
+src/game/ov003/func_ov003_02350cf8.c:
+    .text       start:0x02350cf8 end:0x02350de0
+
 src/game/ov003/ov003_advance_mode.c:
     complete
     .text       start:0x02350de0 end:0x02350e88
@@ -50,6 +53,10 @@ src/game/ov003/ov003_init.c:
 src/game/ov003/ov003_init_state.c:
     complete
     .text       start:0x023519e0 end:0x02351a5c
+
+src/game/ov003/ov003_reset_view.c:
+    complete
+    .text       start:0x02351cf0 end:0x02351da0
 
 src/game/ov003/ov003_load_obj_graphics.c:
     complete
@@ -138,6 +145,9 @@ src/game/ov003/ov003_draw_corner_icons.c:
 src/game/ov003/func_ov003_023572b0.c:
     complete
     .text       start:0x023572b0 end:0x02357308
+
+src/game/ov003/func_ov003_02357308.c:
+    .text       start:0x02357308 end:0x023573d0
 
 src/game/ov003/ov003_draw_unit_anims.c:
     complete
