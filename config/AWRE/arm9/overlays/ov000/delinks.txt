@@ -63,6 +63,10 @@ src/game/ov000/task/show_entry_play_sound.c:
     complete
     .text       start:0x022adad8 end:0x022adb50
 
+src/game/ov000/task/unit_show_task_play_entry_sound.c:
+    complete
+    .text       start:0x022adb50 end:0x022adbc0
+
 src/game/ov000/task/show_entry_finish.c:
     complete
     .text       start:0x022adbc0 end:0x022adc10
