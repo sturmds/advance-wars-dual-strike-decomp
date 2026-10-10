@@ -141,7 +141,8 @@ typedef struct BattleStepList {
 
 typedef struct BattleScreenWork {
     u16 unk_20[2];                     /* per side */
-    u8 pad_024[0x028 - 0x024];
+    u8 pad_024[0x026 - 0x024];
+    u16 pipeTexture;                   /* texture drawn under a Piperunner, in 32-byte units of texture VRAM */
     const u32 *spriteTables[2];        /* table argument of BattleSpriteTask_Create for the HP cells, per side */
     const u32 *unk_30[2];              /* per side, like spriteTables */
     const u32 *unk_38[2];              /* per side, like spriteTables */

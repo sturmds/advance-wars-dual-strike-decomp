@@ -20,7 +20,7 @@ void func_0210b97c(void);
 void func_0210bbd8(void *cam, void *up, void *target, int load, void *mtx);
 void func_0210bb9c(int sin, int cos);
 void func_ov002_02353158(int side);
-void func_ov002_02353450(int side);
+void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);
 void func_ov002_023540cc(void);
 int func_ov002_023540a0(void);
@@ -72,7 +72,7 @@ void Battle_DrawScene(void)
         *REG_MTX_SCALE = 0x2000;
         *REG_MTX_SCALE = 0x1000;
         *REG_MTX_SCALE = 0x1000;
-        func_ov002_02353450(0);
+        Battle_DrawSideGround(0);
         Task_RunList(data_027c027c->taskLists[4]);
     }
 
@@ -100,7 +100,7 @@ void Battle_DrawScene(void)
         *REG_MTX_SCALE = 0x2000;
         *REG_MTX_SCALE = 0x1000;
         *REG_MTX_SCALE = 0x1000;
-        func_ov002_02353450(1);
+        Battle_DrawSideGround(1);
         Task_RunList(data_027c027c->taskLists[5]);
     }
 

@@ -58,6 +58,10 @@ src/game/ov002/func_ov002_0235323c.c:
 src/game/ov002/func_ov002_02353254.c:
     .text       start:0x02353254 end:0x02353388
 
+src/game/ov002/battle_draw_side_ground.c:
+    complete
+    .text       start:0x02353450 end:0x02353824
+
 src/game/ov002/battle_draw_sprite_cells.c:
     complete
     .text       start:0x023538c0 end:0x02353c08
