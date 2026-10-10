@@ -14,7 +14,7 @@ int Ov003Unit_CompareOnTile(Ov003Unit *unit);
 int func_ov003_0235d4c0(int row);
 void Ov003_CaptureProperty(int tile, int terrain, int row);
 int func_ov003_02362098(int row);
-void func_ov003_0235c92c(int row, int tile, int flag);
+void Ov003Row_AppendCell(int row, int tile, int flag);
 void Ov003_PointTaskCreate(int x, int y);
 
 /* Per frame, for each unit that is in use: a unit standing on a tile that
@@ -80,7 +80,7 @@ void Ov003_UpdateTileClaims(void)
                     Ov003_CaptureProperty(tileIndex, terrain, unit->unk_12_3);
                     unit->unk_04 = 0;
                     if (func_ov003_02362098(unit->unk_12_3) == 1 && row == 0 && (terrain & 31) == 14) {
-                        func_ov003_0235c92c(unit->unk_12_3, unit->tile, 1);
+                        Ov003Row_AppendCell(unit->unk_12_3, unit->tile, 1);
                     }
                     Ov003_PointTaskCreate((unit->x & ~127) >> 3, (unit->y & ~127) >> 3);
                 }
