@@ -24,7 +24,7 @@ void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);
 void Battle_SetupCamera(void);
 int func_ov002_023540a0(void);
-void func_ov002_023545a8(void);
+void Battle_SetupProjection(void);
 void Battle_SetSideProjection(int side);
 BOOL Battle_IsSideAir(int side);
 void Task_RunList(Task *task);
@@ -41,7 +41,7 @@ void Battle_DrawScene(void)
     func_0210bbd8(data_ov002_023604ac, data_ov002_023604b8, data_ov002_0236bbe0, 1, NULL);
     func_ov002_02354124();
     *REG_VIEWPORT = 0xbfff0000;
-    func_ov002_023545a8();
+    Battle_SetupProjection();
     *REG_MTX_PUSH = side;
     Battle_SetupCamera();
     func_ov002_023540a0();
