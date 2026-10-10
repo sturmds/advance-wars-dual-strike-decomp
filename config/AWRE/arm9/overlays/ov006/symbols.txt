@@ -283,7 +283,7 @@ func_ov006_023649a8 kind:function(arm,size=0x60) addr:0x023649a8
 func_ov006_02364a08 kind:function(arm,size=0x30c) addr:0x02364a08
 func_ov006_02364d14 kind:function(arm,size=0x64) addr:0x02364d14
 func_ov006_02364d78 kind:function(arm,size=0x64) addr:0x02364d78
-func_ov006_02364ddc kind:function(arm,size=0x8a4) addr:0x02364ddc
+Ov006_PackArmySlots kind:function(arm,size=0x8a4) addr:0x02364ddc
 func_ov006_02365680 kind:function(arm,size=0xd4) addr:0x02365680
 func_ov006_02365754 kind:function(arm,size=0x148) addr:0x02365754
 func_ov006_0236589c kind:function(arm,size=0x118) addr:0x0236589c
@@ -548,13 +548,13 @@ data_ov006_0236cadc kind:data(any) addr:0x0236cadc
 data_ov006_0236cedc kind:data(any) addr:0x0236cedc
 data_ov006_0236cfe4 kind:data(any) addr:0x0236cfe4 ambiguous
 data_ov006_0236d2dc kind:data(any) addr:0x0236d2dc
-data_ov006_0236d534 kind:data(any) addr:0x0236d534
-data_ov006_0236d538 kind:data(any) addr:0x0236d538
-data_ov006_0236d540 kind:data(any) addr:0x0236d540
-data_ov006_0236d548 kind:data(any) addr:0x0236d548
-data_ov006_0236d550 kind:data(any) addr:0x0236d550
-data_ov006_0236d558 kind:data(any) addr:0x0236d558
-data_ov006_0236d560 kind:data(any) addr:0x0236d560
+Ov006_gSlotArmyColours kind:data(any) addr:0x0236d534
+Ov006_gComTowerCells kind:data(any) addr:0x0236d538
+Ov006_gAirportCells kind:data(any) addr:0x0236d540
+Ov006_gCityCells kind:data(any) addr:0x0236d548
+Ov006_gBaseCells kind:data(any) addr:0x0236d550
+Ov006_gHqCells kind:data(any) addr:0x0236d558
+Ov006_gPortCells kind:data(any) addr:0x0236d560
 data_ov006_0236d568 kind:data(any) addr:0x0236d568
 data_ov006_0236d578 kind:data(any) addr:0x0236d578
 data_ov006_0236d588 kind:data(any) addr:0x0236d588
