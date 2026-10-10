@@ -283,6 +283,13 @@ src/game/ov002/battle_clear_counter_tasks.c:
     complete
     .text       start:0x02357434 end:0x02357488
 
+src/game/ov002/battle_cell_sprite_arrived.c:
+    .text       start:0x02357d24 end:0x02357e5c
+
+src/game/ov002/battle_fx_update.c:
+    complete
+    .text       start:0x023582dc end:0x02358418
+
 src/game/ov002/battle_is_motion_out_of_bounds.c:
     complete
     .text       start:0x02358418 end:0x02358478

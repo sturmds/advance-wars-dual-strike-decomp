@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/campaign_map.h"
+#include "game/BattleSideData.h"
 #include "game/battle_layout.h"
 #include "game/battle_fighter.h"
 #include "game/battle_side_anim.h"
@@ -140,6 +141,21 @@ typedef struct BattleStepList {
     u8 count;                          /* steps in use */
 } BattleStepList;
 
+/* A sprite on one cell of a side's HP bar, 5 per side. */
+struct BattleSpriteTask;
+
+typedef struct BattleCellSprite {
+    struct BattleSpriteTask *task;
+    BattlePoint pos;                   /* start position */
+    BattlePoint step;                  /* added to pos each frame */
+    BattlePoint direction;
+    BattlePoint target;
+    u8 cell : 3;
+    u8 unk_14_3 : 1;
+    u8 unk_14_hi : 4;
+    u8 pad_15[3];
+} BattleCellSprite;
+
 typedef struct BattleScreenWork {
     u16 unk_20[2];                     /* per side */
     u16 unk_24;                        /* palette entry of the extra sprite of BattleCellTask_RemakeSpritesWithEffect */
@@ -148,7 +164,7 @@ typedef struct BattleScreenWork {
     const u32 *unk_30[2];              /* per side, like spriteTables */
     const u32 *unk_38[2];              /* per side, like spriteTables */
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
-    u32 unk_48[2];
+    u32 unk_48[2];                     /* tables BattleSpriteTask_Create makes the sprites of a side from */
     u8 pad_050[0x058 - 0x050];
     const u32 *unk_58[2];              /* per side, like spriteTables */
     const u32 *unk_60[2];              /* per side, like spriteTables */

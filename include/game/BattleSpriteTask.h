@@ -17,7 +17,10 @@ typedef struct BattleSpriteTask {
     s16 unk_3e;
     s16 unk_40;
     s16 unk_42;
-    s16 unk_44;
+    union {
+        s16 unk_44;
+        u16 scale;                     /* 8.8 fixed point */
+    };
     s16 unk_46;
     u16 unk_48;
     u16 unk_4a;
@@ -28,8 +31,21 @@ typedef struct BattleSpriteTask {
     u16 unk_54;
     u8 unk_56;
     u8 unk_57;
-    u8 unk_58;
-    u8 unk_59;
+    union {
+        u8 unk_58;
+        struct {
+            u8 unk_58_flag : 1;
+            u8 kind : 7;
+        };
+    };
+    union {
+        u8 unk_59;
+        struct {
+            u8 unk_59_lo : 4;
+            u8 side : 1;               /* battle side the sprite belongs to */
+            u8 unk_59_hi : 3;
+        };
+    };
     u8 unk_5a;
     u8 unk_5b;                         /* starts at 0xff */
     u8 unk_5c;                         /* starts at 0 */

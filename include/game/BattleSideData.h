@@ -2,6 +2,7 @@
 #define GAME_BATTLESIDEDATA_H
 
 #include "types.h"
+#include "game/battle_fighter.h"
 
 /* Reached through BattleSideData.unk_10. mwcc packs bit fields from the low end. */
 typedef struct BattleSideData_10 {
@@ -14,6 +15,27 @@ typedef struct BattleSideData_10 {
     u8 airVsGround : 4;                /* matchup 2 */
     u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideData_10;
+
+/* Reached through BattleSideData.unk_18: a table of points, one per cell of the
+ * side's HP bar in each of its two sets (index 0-5 and 6-). */
+typedef struct BattleSideData_18 {
+    u8 pad_00[0x0e];
+    BattlePoint points[10];            /* length a guess */
+} BattleSideData_18;
+
+/* One entry of BattleSideData.effects: how a flying sprite of a side starts and moves.
+ * Values are 8.8 fixed point; Battle_StartCellSprite and friends scale them by the
+ * sprite's scale. */
+typedef struct BattleEffectParams {
+    u8 pad_00[0x18];
+    BattlePoint offset;                /* start offset, scaled */
+    u16 delay;                         /* frames before the sprite moves */
+    BattlePoint velocity;              /* scaled */
+    BattlePoint acceleration;          /* added to the velocity every frame */
+    BattlePoint unk_26;                /* added to the point for the cell to get the step */
+    BattlePoint direction;             /* BattleCellSprite.direction when it starts */
+    BattlePoint unk_2e;                /* signs: which way the sprite is heading, per axis; 0: no check */
+} BattleEffectParams;
 
 /* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
 typedef struct BattleAnimData {
@@ -49,7 +71,8 @@ typedef struct BattleSideData {
     BattleSideData_10 *unk_10;
     u8 pad_14[4];
     const BattleCellPos *cellPositions; /* by cell */
-    u8 pad_1c[0x48 - 0x1c];
+    u8 pad_1c[0x24 - 0x1c];
+    BattleEffectParams *effects[9];    /* indexed by byte 9 of the side's 12-byte record in the scene; length a guess */
     u8 unk_48;                         /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
     u8 unk_49[1];                      /* length unknown; indexed by byte 9 of the side's 12-byte record in the scene */
 } BattleSideData;

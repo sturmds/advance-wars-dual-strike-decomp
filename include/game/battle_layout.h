@@ -32,7 +32,10 @@ typedef struct BattleMotion {
     s16 y;
     s16 speedX;
     s16 speedY;
-    u8 pad_0c[8];
+    s16 velocityX;                     /* 8.8 fixed point */
+    s16 velocityY;
+    u16 delay;                         /* frames left before it moves */
+    u8 pad_12[2];
 } BattleMotion;
 
 #endif

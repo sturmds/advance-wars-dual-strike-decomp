@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/menu_state.h"
+#include "game/BattleSpriteTask.h"
 #include "game/keypad.h"
 #include "game/touch.h"
 #include "game/Unk_0229fb30.h"
@@ -11,7 +12,7 @@ BOOL func_0207bd80(void);
 void Battle_EnsureTask(void);
 void Battle_ReleaseSideTasks(void);
 void func_ov002_02357924(void);
-void func_ov002_023582dc(void);
+void Battle_UpdateFx(void);
 void func_ov002_0235882c(Task *task);
 void func_ov002_02358c40(Task *task);
 void BattleCells_RunSequence(Task *task);
@@ -43,7 +44,7 @@ void Battle_TaskUpdate(Task *task)
         MENU->battle.frames++;
     }
     task->waitFrames = data_0229fb30.unk_10;
-    func_ov002_023582dc();
+    Battle_UpdateFx();
     func_ov002_02357924();
     Battle_ReleaseSideTasks();
     func_ov002_0235d224();
