@@ -3,13 +3,13 @@
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
-extern s8 data_ov006_0236d744[][30];   /* per tile, 30 a row: nonzero marks a planned tile (2: road) */
+extern s8 data_ov006_0236d744[][30];   /* per tile, 30 a row: random map marks, see Ov006_SettleSeedTiles */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + (x)])
 
 /* Counts how many of the four neighbours of x, y hold map cell code `cell`;
- * a side off the map counts too. A tile marked in the plan grid gets 0. */
+ * a side off the map counts too. A tile with a mark gets 0. */
 int Ov006_CountCellNeighbors(int x, int y, int cell)
 {
     int count;

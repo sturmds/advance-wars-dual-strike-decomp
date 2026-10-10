@@ -4,7 +4,7 @@ s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int *x, int *y, int cell);
 void Ov006_SetMapCell(int x, int y, int cell);
 void func_ov006_0235a7c0(int a, int b);
-void func_ov006_0235c3a0(void);
+void Ov006_SettleSeedTiles(void);
 void Ov006_MarkMapBorder(void);
 
 extern u8 data_ov006_0236d744[][30];
@@ -27,6 +27,6 @@ void Ov006_ScatterMountains(void)
         Ov006_SetMapCell(x, y, 32);
         data_ov006_0236d744[y][x] = 2;
     }
-    func_ov006_0235c3a0();
+    Ov006_SettleSeedTiles();
     func_ov006_0235a7c0(32, 1);
 }
