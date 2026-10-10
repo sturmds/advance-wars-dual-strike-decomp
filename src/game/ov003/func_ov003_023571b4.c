@@ -10,7 +10,7 @@ void Ov003_TickUnits(void);
 void func_ov003_0235de88(void);
 void Ov003_UpdateObjects(void);
 void Ov003_HealUnitsOnOwnTiles(void);
-void func_ov003_0235779c(void);
+void Ov003_UpdateTileClaims(void);
 void func_ov003_0235d7a4(void);
 void func_ov003_0235bb64(void);
 
@@ -30,7 +30,7 @@ void func_ov003_023571b4(void)
     func_ov003_0235de88();
     Ov003_UpdateObjects();
     Ov003_HealUnitsOnOwnTiles();
-    func_ov003_0235779c();
+    Ov003_UpdateTileClaims();
     func_ov003_0235d7a4();
     func_ov003_0235bb64();
 }

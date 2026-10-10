@@ -9,7 +9,7 @@ typedef struct Ov003Unit {
     s16 x;                             /* 128 per tile, plus 64 to centre it */
     s16 y;
     u16 unk_04;
-    u8 pad_06[2];
+    u16 lastTile;                      /* index of the map tile checked last (Ov003_UpdateTileClaims) */
     s16 unk_08;
     s16 startX;                        /* copy of x when created */
     s16 unk_0c;                        /* copy of x too, not of y */

@@ -203,6 +203,10 @@ src/game/ov003/ov003_draw_frame_at.c:
     complete
     .text       start:0x023576d0 end:0x0235779c
 
+src/game/ov003/ov003_update_tile_claims.c:
+    complete
+    .text       start:0x0235779c end:0x02357a90
+
 src/game/ov003/ov003_capture_property.c:
     complete
     .text       start:0x02357a90 end:0x023580ac
