@@ -1,0 +1,69 @@
+#include "types.h"
+#include "game/keypad.h"
+#include "game/ov003_unit.h"
+#include "game/Unk_02160ac0.h"
+
+/* What func_02078138 returns for one linked player. */
+typedef struct LinkInput {
+    u8 pad_00[4];
+    u16 keys;
+} LinkInput;
+
+extern Keypad data_0216e4e4[];
+extern Ov003Unit *data_ov003_02369534;
+extern Ov003Unit data_ov003_02369538[];
+extern u8 data_ov003_02365b04[];
+
+u16 func_0207a1dc(void);
+LinkInput *func_02078138(int player);
+void func_0200a4b8(Keypad *keypad, int keys);
+void func_ov003_023589dc(Ov003Unit *unit, Keypad *keypad, void *a2);
+void func_ov003_02360110(int slot, Keypad *keypad, void *a2);
+void Ov003_ScrollWithDpad(void);
+
+#define STATE data_ov003_02364928
+
+/* Runs the input routine that the slot's unk_01_4 picks. Alone, that is the
+ * current slot with the local keypad; linked, each of the 8 slots whose bit
+ * is set in func_0207a1dc() | 1 gets the keys received for its player. */
+void Ov003_RunSlotInput(void)
+{
+    int i;
+    LinkInput *input;
+
+    if (data_02160ac0->unk_7c == 0) {
+        switch (STATE->slots[STATE->currentSlot].unk_01_4) {
+        case 0:
+            break;
+        case 1:
+            func_ov003_023589dc(data_ov003_02369534, gKeypad, data_ov003_02365b04);
+            break;
+        case 2:
+            func_ov003_02360110(STATE->currentSlot, gKeypad, data_ov003_02365b04);
+            break;
+        case 3:
+            Ov003_ScrollWithDpad();
+            break;
+        }
+    } else {
+        for (i = 0; i < 8; i++) {
+            if ((func_0207a1dc() | 1) & (1 << i)) {
+                input = func_02078138((u16)i);
+                func_0200a4b8(&data_0216e4e4[i], input->keys);
+                switch (STATE->slots[i].unk_01_4) {
+                case 0:
+                    break;
+                case 1:
+                    func_ov003_023589dc(&data_ov003_02369538[i], &data_0216e4e4[i], input);
+                    break;
+                case 2:
+                    func_ov003_02360110(i, &data_0216e4e4[i], input);
+                    break;
+                case 3:
+                    Ov003_ScrollWithDpad();
+                    break;
+                }
+            }
+        }
+    }
+}

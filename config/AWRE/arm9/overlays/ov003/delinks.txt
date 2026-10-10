@@ -227,6 +227,10 @@ src/game/ov003/ov003_tick_units.c:
     complete
     .text       start:0x02358658 end:0x023586d4
 
+src/game/ov003/ov003_run_slot_input.c:
+    complete
+    .text       start:0x023586d4 end:0x02358848
+
 src/game/ov003/ov003_scroll_with_dpad.c:
     complete
     .text       start:0x02358848 end:0x02358904

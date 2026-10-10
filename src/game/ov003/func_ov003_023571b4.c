@@ -3,7 +3,7 @@
 int func_ov003_023621b0(void);
 int func_ov003_02362174(void);
 int func_ov003_02362258(void);
-void func_ov003_023586d4(void);
+void Ov003_RunSlotInput(void);
 void func_ov003_0235e9f0(void);
 void func_ov003_0235e258(void);
 void Ov003_TickUnits(void);
@@ -17,7 +17,7 @@ void func_ov003_0235bb64(void);
 void func_ov003_023571b4(void)
 {
     if (func_ov003_023621b0() == 1) {
-        func_ov003_023586d4();
+        Ov003_RunSlotInput();
     }
     if (func_ov003_02362174() == 1) {
         func_ov003_0235e9f0();
