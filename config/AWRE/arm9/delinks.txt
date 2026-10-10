@@ -4082,6 +4082,10 @@ src/game/main/func_02079368.c:
     complete
     .text       start:0x02079368 end:0x020793a4
 
+src/game/main/link/wireless_on_event_next_step.c:
+    complete
+    .text       start:0x020793a4 end:0x02079424
+
 src/game/main/func_02079424.c:
     complete
     .text       start:0x02079424 end:0x02079460
