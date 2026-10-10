@@ -463,6 +463,10 @@ src/game/ov004/func_ov004_022b5190.c:
     complete
     .text       start:0x022b5190 end:0x022b51b0
 
+src/game/ov004/ov004_task_play_two_turning_quads_scene.c:
+    complete
+    .text       start:0x022b51b0 end:0x022b645c
+
 src/game/ov004/ov004_task_init_sprite_scene.c:
     complete
     .text       start:0x022b645c end:0x022b6814
