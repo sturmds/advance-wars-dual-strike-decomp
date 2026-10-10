@@ -136,6 +136,7 @@ src/game/ov006/func_ov006_023543e8.c:
     .text       start:0x023543e8 end:0x02354414
 
 src/game/ov006/func_ov006_02354414.c:
+    complete
     .text       start:0x02354414 end:0x02354444
 
 src/game/ov006/func_ov006_023545ac.c:
