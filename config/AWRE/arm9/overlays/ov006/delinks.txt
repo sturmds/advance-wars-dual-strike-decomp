@@ -135,6 +135,10 @@ src/game/ov006/func_ov006_023545dc.c:
     complete
     .text       start:0x023545dc end:0x023545ec
 
+src/game/ov006/ov006_open_popup_menu.c:
+    complete
+    .text       start:0x02354648 end:0x02354680
+
 src/game/ov006/func_ov006_02354680.c:
     complete
     .text       start:0x02354680 end:0x02354684
