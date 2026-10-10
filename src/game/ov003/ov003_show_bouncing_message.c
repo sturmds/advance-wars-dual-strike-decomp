@@ -10,7 +10,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
 int func_ov003_02363d5c(const u8 *str);
-int func_ov003_02363bbc(u8 ch, u16 x, u16 y);
+int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Task_ResumeScript(Ov003MessageTask *task);
 
 extern void *data_ov003_02365b0c;
@@ -132,7 +132,7 @@ void Ov003_ShowBouncingMessage(Ov003MessageTask *task)
         }
     }
     for (i = 0; i < func_021247ac(Text_Get(MESSAGE_TEXT)); i++) {
-        x += func_ov003_02363bbc(Text_Get(MESSAGE_TEXT)[i], x & 0x1ff, (offset + 80) & 0xff);
+        x += Ov003_DrawLetter(Text_Get(MESSAGE_TEXT)[i], x & 0x1ff, (offset + 80) & 0xff);
     }
     if (task->frames == MESSAGE_FRAMES) {
         task->frames = 0;

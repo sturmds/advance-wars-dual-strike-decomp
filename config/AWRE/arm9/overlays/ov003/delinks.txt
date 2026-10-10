@@ -781,6 +781,10 @@ src/game/ov003/func_ov003_02363ba4.c:
     complete
     .text       start:0x02363ba4 end:0x02363bbc
 
+src/game/ov003/ov003_draw_letter.c:
+    complete
+    .text       start:0x02363bbc end:0x02363c88
+
 src/game/ov003/func_ov003_02363d5c.c:
     complete
     .text       start:0x02363d5c end:0x02363d9c

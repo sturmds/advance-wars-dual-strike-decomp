@@ -9,7 +9,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
 int func_ov003_02363d5c(const u8 *str);
-int func_ov003_02363bbc(u8 ch, u16 x, u16 y);
+int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask *task);
 
@@ -56,7 +56,7 @@ void Ov003_ShowWarpedMessage(Ov003MessageTask *task)
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     x = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TEXT)) >> 1);
     for (i = 0; i < func_021247ac(Text_Get(MESSAGE_TEXT)); i++) {
-        x += func_ov003_02363bbc(Text_Get(MESSAGE_TEXT)[i], (x & 0x1ff) | (MESSAGE_MATRIX << 9), 848);
+        x += Ov003_DrawLetter(Text_Get(MESSAGE_TEXT)[i], (x & 0x1ff) | (MESSAGE_MATRIX << 9), 848);
     }
     if (task->frames == MESSAGE_FRAMES) {
         task->frames = 0;
