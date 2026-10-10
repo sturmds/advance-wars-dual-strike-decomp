@@ -737,6 +737,10 @@ src/game/ov003/ov003_object_reset_chime.c:
     complete
     .text       start:0x02362be4 end:0x02362c44
 
+src/game/ov003/func_ov003_02362c44.c:
+    complete
+    .text       start:0x02362c44 end:0x02362cac
+
 src/game/ov003/ov003_set_slots_to_state3.c:
     complete
     .text       start:0x02362cac end:0x02362db0
