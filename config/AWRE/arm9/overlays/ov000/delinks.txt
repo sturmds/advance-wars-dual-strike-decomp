@@ -155,6 +155,10 @@ src/game/ov000/task/unit_show_task_clear_slots.c:
     complete
     .text       start:0x022ae9ec end:0x022aea20
 
+src/game/ov000/map_script/map_script_get.c:
+    complete
+    .text       start:0x022aea20 end:0x022aea98
+
 src/game/ov000/event_triggers_run.c:
     complete
     .text       start:0x022aeaf4 end:0x022af22c
