@@ -9,7 +9,7 @@ extern int data_027c0284;
 int Ov006_IsSpecialCell(int x, int y);
 int func_ov006_02361114(int x, int y);
 int func_ov006_023622bc(int x, int y);
-int func_ov006_02362d78(int x, int y);
+int Ov006_MouthHasNoOutlet(int x, int y);
 void func_ov006_02351714(int x, int y, int terrain);
 void func_ov006_02351828(int x, int y, int cell);
 void func_ov006_02361684(int x, int y);
@@ -19,7 +19,7 @@ void func_ov006_02361684(int x, int y);
 #define FIX_NEIGHBOR(nx, ny, scoreTooLow)                                 \
     if (Ov006_IsSpecialCell(nx, ny)) {                                   \
         if (func_ov006_02361114(nx, ny) scoreTooLow                      \
-            || !func_ov006_023622bc(nx, ny) || !func_ov006_02362d78(nx, ny)) { \
+            || !func_ov006_023622bc(nx, ny) || !Ov006_MouthHasNoOutlet(nx, ny)) { \
             func_ov006_02351714(nx, ny, TERRAIN_SEA);                    \
             func_ov006_02351828(nx, ny, MAP_CELL_SEA);          \
             func_ov006_02361684(nx, ny);                                 \
@@ -28,7 +28,7 @@ void func_ov006_02361684(int x, int y);
 
 /* Checks the eight tiles around x, y. A neighbour with one of the cells
  * Ov006_IsSpecialCell accepts (codes 252, 253, 284, 285) that no longer
- * passes func_ov006_02361114, func_ov006_023622bc and func_ov006_02362d78
+ * passes func_ov006_02361114, func_ov006_023622bc and Ov006_MouthHasNoOutlet
  * turns back into plain sea; func_ov006_02361684 then updates the tiles
  * around it. Corner tiles fail at a score of 0, side tiles only below 0. */
 void Ov006_ResetNeighborsToSea(int x, int y)

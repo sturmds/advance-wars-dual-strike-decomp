@@ -383,6 +383,10 @@ src/game/ov006/ov006_is_water_tile.c:
     complete
     .text       start:0x02362cd0 end:0x02362d78
 
+src/game/ov006/ov006_mouth_has_no_outlet.c:
+    complete
+    .text       start:0x02362d78 end:0x0236311c
+
 src/game/ov006/ov006_is_special_cell.c:
     complete
     .text       start:0x0236311c end:0x02363198
