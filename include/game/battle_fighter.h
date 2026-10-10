@@ -15,9 +15,22 @@ typedef struct BattleSounds {
     u32 unk_14;                        /* Battle_PlayFighterSe; without it Battle_PlayDefaultFighterSe */
 } BattleSounds;
 
+typedef struct BattlePoint {
+    s16 x;
+    s16 y;
+} BattlePoint;
+
+/* The table BattleFighter.shapes points to. */
+typedef struct BattleFighterShapes {
+    u8 pad_00[0x0e];
+    BattlePoint points[1];             /* one per pose; length unknown */
+} BattleFighterShapes;
+
 /* A 0x78-byte object of the ov002 battle animation, one per side. */
 typedef struct BattleFighter {
-    u8 pad_00[0x44];
+    u8 pad_00[0x18];
+    const BattleFighterShapes *shapes;
+    u8 pad_1c[0x44 - 0x1c];
     u16 unk_44;                        /* copied to the animation tasks */
     u8 pad_46[0x48 - 0x46];
     u8 unk_48;

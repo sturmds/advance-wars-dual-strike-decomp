@@ -18,7 +18,12 @@ typedef struct BattleShadow {
 typedef struct BattleActor {
     u8 pad_00[0x2c];
     struct BattleShadow *shadow;               /* follows the actor; destroyed when it ends */
-    u8 pad_30[0x46 - 0x30];
+    u8 pad_30[0x38 - 0x30];
+    s16 unk_38;
+    s16 unk_3a;
+    s16 unk_3c;
+    u8 pad_3e[0x44 - 0x3e];
+    u16 scale;                         /* 8.8 fixed point */
     s16 unk_46;
     u8 pad_48[0x54 - 0x48];
     u8 unk_54;

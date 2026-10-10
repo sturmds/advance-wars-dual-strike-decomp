@@ -342,6 +342,10 @@ src/game/ov002/battle_put_meter_row.c:
     complete
     .text       start:0x0235eb44 end:0x0235ebb4
 
+src/game/ov002/battle_put_fighter_sprite.c:
+    complete
+    .text       start:0x0235ebb4 end:0x0235ec84
+
 src/game/ov002/func_ov002_0235ec84.c:
     complete
     .text       start:0x0235ec84 end:0x0235ecbc
