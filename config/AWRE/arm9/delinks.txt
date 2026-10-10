@@ -2615,6 +2615,10 @@ src/game/main/func_0202cbfc.c:
     complete
     .text       start:0x0202cbfc end:0x0202cc0c
 
+src/game/main/link/link_task_wait_for_peer_reply.c:
+    complete
+    .text       start:0x0202d188 end:0x0202d248
+
 src/game/main/func_0202d248.c:
     complete
     .text       start:0x0202d248 end:0x0202d254
