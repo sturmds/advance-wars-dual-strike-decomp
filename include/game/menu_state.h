@@ -120,7 +120,7 @@ typedef struct BattleSway {
     s16 x;
     s16 y;
     s16 z;
-    u16 pad_06;
+    u16 angle;                         /* (angle + 0x600) >> 4 picks a sine and cosine pair in data_0214d4c4 */
 } BattleSway;
 
 struct BattleSideData;
@@ -181,15 +181,18 @@ typedef struct MenuState {
  * changes which loads the compiler repeats. */
 typedef struct MenuStateFrom200 {
     u8 pad_200[0x284 - 0x200];
-    s16 sway0x;                        /* BattleSway.x of the first screen */
-    u8 pad_286[0x2d8 - 0x286];
+    BattleSway sway[2];                /* BattleScreenWork.sway */
+    u8 pad_294[0x2d8 - 0x294];
     u16 fundsPerProperty;              /* BattleSetupState.fundsPerProperty */
 } MenuStateFrom200;
 
 /* data_0229ef30, gMenuState + 0x400. MapSelect_GetTab reads
  * setup.unk_4fc through this symbol. */
 typedef struct MenuStateFrom400 {
-    u8 pad_400[0x4fa - 0x400];
+    u8 pad_400[0x408 - 0x400];
+    u16 unk_408[2];                    /* BattleScreenWork.unk_408 */
+    u16 unk_40c[2];                    /* BattleScreenWork.unk_40c */
+    u8 pad_410[0x4fa - 0x410];
     u16 prevMapId;                     /* BattleSetupState.prevMapId */
     u16 unk_4fc;                       /* BattleSetupState.unk_4fc */
 } MenuStateFrom400;

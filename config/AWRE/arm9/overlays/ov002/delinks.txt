@@ -77,6 +77,10 @@ src/game/ov002/func_ov002_02354124.c:
     complete
     .text       start:0x02354124 end:0x02354174
 
+src/game/ov002/battle_draw_scene.c:
+    complete
+    .text       start:0x02354174 end:0x02354464
+
 src/game/ov002/battle_set_side_projection.c:
     complete
     .text       start:0x02354464 end:0x023545a8

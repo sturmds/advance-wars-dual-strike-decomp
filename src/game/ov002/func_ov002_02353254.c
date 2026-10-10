@@ -23,7 +23,7 @@ void func_ov002_02353254(SwayTask *task)
         gMenuState.battle.sway[i].x = Math_Ease(4, data_ov002_023604dc[(i == 0) ? task->row[0] : task->row[1]][0], 0, task->frame, 50);
         gMenuState.battle.sway[i].y = Math_Ease(4, data_ov002_023604dc[(i == 0) ? task->row[0] : task->row[1]][1], 0, task->frame, 50);
         gMenuState.battle.sway[i].z = Math_Ease(4, data_ov002_023604dc[(i == 0) ? task->row[0] : task->row[1]][2], 0, task->frame, 50);
-        gMenuState.battle.unk_40c[i] = data_0229ed30.sway0x >> 4;
+        gMenuState.battle.unk_40c[i] = data_0229ed30.sway[0].x >> 4;
     }
     if (task->frame != 50) {
         task->frame++;
