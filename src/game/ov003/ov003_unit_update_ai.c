@@ -10,7 +10,7 @@ extern u8 data_ov003_02364d8c[];
 
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int arg2, int arg3);
 int func_ov003_0235d518(int player, int kind, int terrain);
-int func_ov003_0235f1a0(Ov003Unit *unit);
+int Ov003Unit_GetStepDirection(Ov003Unit *unit);
 void func_ov003_0235f81c(Ov003Unit *unit);
 void func_ov003_0235f8e8(Ov003Unit *unit);
 void Ov003Unit_FireIfLocked(Ov003Unit *unit);
@@ -56,7 +56,7 @@ u32 Ov003_RandNext(void);
  * that is capturing (unk_04 still counting) or has unk_17_0 set stays at the
  * centre of its tile instead, under the conditions below; the range from
  * Ov003_GetTargetRange is 0 or 8 tiles. Otherwise an awake unit heads for its
- * target every 32 frames when func_ov003_0235f1a0 gives a direction, or turns
+ * target every 32 frames when Ov003Unit_GetStepDirection gives a direction, or turns
  * at random every 256 frames and whenever it has not moved since
  * Ov003_SnapshotUnits (blocked). Then a target in reach goes to
  * func_ov003_0235f8e8, anything else to func_ov003_0235f81c. */
@@ -98,7 +98,7 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit)
     }
     dir = 0;
     if (STATE->unk_1df_5 && dist < 128 && unit->unk_1a != -1 && (unit->unk_18 & 31) == 0) {
-        dir = func_ov003_0235f1a0(unit);
+        dir = Ov003Unit_GetStepDirection(unit);
     }
     if (dir != 0) {
         unit->unk_12_0 = dir;

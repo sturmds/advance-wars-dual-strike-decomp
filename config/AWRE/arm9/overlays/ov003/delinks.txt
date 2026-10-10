@@ -458,6 +458,10 @@ src/game/ov003/ov003_unit_update_ai.c:
     complete
     .text       start:0x0235ead0 end:0x0235f1a0
 
+src/game/ov003/ov003_unit_get_step_direction.c:
+    complete
+    .text       start:0x0235f1a0 end:0x0235f350
+
 src/game/ov003/ov003_is_route_clear_column_first.c:
     complete
     .text       start:0x0235f350 end:0x0235f54c
