@@ -599,6 +599,10 @@ src/game/ov004/ov004_reset_clock.c:
     complete
     .text       start:0x022bb318 end:0x022bb344
 
+src/game/ov004/ov004_ticks_to_frames.c:
+    complete
+    .text       start:0x022bb344 end:0x022bb388
+
 src/game/ov004/func_ov004_022bb388.c:
     complete
     .text       start:0x022bb388 end:0x022bb38c
