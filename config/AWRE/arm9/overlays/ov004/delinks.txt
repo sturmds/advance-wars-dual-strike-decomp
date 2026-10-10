@@ -299,6 +299,9 @@ src/game/ov004/func_ov004_022b1f74.c:
     complete
     .text       start:0x022b1f74 end:0x022b1f98
 
+src/game/ov004/func_ov004_022b1f98.c:
+    .text       start:0x022b1f98 end:0x022b2660
+
 src/game/ov004/ov004_task_setup_layer2_scene.c:
     complete
     .text       start:0x022b2660 end:0x022b29d4
