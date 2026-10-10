@@ -82,7 +82,9 @@ typedef struct Ov003State {
     Ov003Slot slots[7];                /* length unknown */
     u8 pad_154[0x156 - 0x154];
     Ov003Spawn spawns[1];              /* length unknown */
-    u8 pad_15b[0x1d0 - 0x15b];
+    u8 pad_15b[0x1c8 - 0x15b];
+    u32 unk_1c8;
+    u32 unk_1cc;
     u16 unk_1d0;
     u16 unk_1d2;
     u8 pad_1d4;
@@ -98,6 +100,8 @@ typedef struct Ov003State {
     u8 unk_1df_0 : 1;
     u8 unk_1df_1 : 1;
     u8 unk_1df_2 : 3;
+    u8 unk_1df_5 : 2;
+    u8 pauseCursor : 1;                /* pause menu: 0 top button, 1 bottom button */
 } Ov003State;
 
 /* Map of overlay 3, through data_ov003_02364a88. */
@@ -109,6 +113,16 @@ typedef struct Ov003Map {
     u16 cells[OV003_MAP_TILE_MAX];     /* tile code per tile, row by row */
     u8 marks[OV003_MAP_TILE_MAX];      /* per tile: MARK_* bits (Ov003_MarkRowTiles) */
 } Ov003Map;
+
+/* This frame's touch and key input, copied by Ov003_ReadInput into
+ * data_ov003_02365b04. */
+typedef struct Ov003Input {
+    u8 phase;                          /* TouchState.phase */
+    u8 active;                         /* low byte of TouchState.active */
+    u8 x;
+    u8 y;
+    u16 keys;                          /* Keypad.unk_00 */
+} Ov003Input;
 
 extern Ov003State *data_ov003_02364928;
 extern Ov003Map *data_ov003_02364a88;
