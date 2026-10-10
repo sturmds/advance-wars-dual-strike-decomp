@@ -47,6 +47,10 @@ src/game/ov004/func_ov004_022ade44.c:
     complete
     .text       start:0x022ade44 end:0x022ade64
 
+src/game/ov004/ov004_run_scene_sequence.c:
+    complete
+    .text       start:0x022ade64 end:0x022ae42c
+
 src/game/ov004/ov004_task_init_scene.c:
     complete
     .text       start:0x022ae42c end:0x022ae6ac
