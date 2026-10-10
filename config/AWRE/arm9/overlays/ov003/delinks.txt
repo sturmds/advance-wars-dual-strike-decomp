@@ -123,6 +123,10 @@ src/game/ov003/ov003_unit_compare_on_tile.c:
     complete
     .text       start:0x023580ac end:0x02358168
 
+src/game/ov003/ov003_unit_draw_marker.c:
+    complete
+    .text       start:0x02358568 end:0x02358658
+
 src/game/ov003/ov003_tick_units.c:
     complete
     .text       start:0x02358658 end:0x023586d4
