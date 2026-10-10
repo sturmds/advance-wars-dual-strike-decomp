@@ -185,6 +185,7 @@ typedef struct BattleScreenWork {
     u8 mood[2];                        /* 0 none, 1 happy quote, 2 angry quote */
     u16 unk_1008[2];
     u16 hpFrames[2];                   /* frames the HP drain takes; 0: no drain */
+    u32 frames;                        /* Unk_0229fb30.unk_10: battle screen frame counter */
 } BattleScreenWork;
 
 typedef struct MenuState {

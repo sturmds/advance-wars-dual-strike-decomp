@@ -1,0 +1,55 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/menu_state.h"
+#include "game/keypad.h"
+#include "game/touch.h"
+#include "game/Unk_0229fb30.h"
+
+extern MenuState gMenuState;
+
+BOOL func_0207bd80(void);
+void Battle_EnsureTask(void);
+void Battle_ReleaseSideTasks(void);
+void func_ov002_02357924(void);
+void func_ov002_023582dc(void);
+void func_ov002_0235882c(Task *task);
+void func_ov002_02358c40(Task *task);
+void BattleCells_RunSequence(Task *task);
+void BattleCells_PushStep2(void);
+void BattleCells_PushStep(void);
+void func_ov002_0235d224(void);
+
+/* Needed to match: the counter is read through data_0229fb30 and written through gMenuState. */
+#define MENU ((MenuState *)&gMenuState)
+
+/* Per-frame task of the battle screen: runs the two events of the attacker's HP drain
+ * profile when the task's frame (waitFrames) reaches them, steps the screen parts, and
+ * calls Battle_EnsureTask on A or a touch (what that does is not known yet). */
+void Battle_TaskUpdate(Task *task)
+{
+    const u16 *profile;
+
+    profile = MENU->battle.drainProfile[0];
+    if (task->waitFrames == profile[0]) {
+        BattleCells_PushStep();
+    }
+    if (task->waitFrames == ((const u16 *)MENU->battle.drainProfile[0])[1]) {
+        BattleCells_PushStep2();
+    }
+    BattleCells_RunSequence(task);
+    func_ov002_02358c40(task);
+    func_ov002_0235882c(task);
+    if (data_0229fb30.unk_10 != 0xffff) {
+        MENU->battle.frames++;
+    }
+    task->waitFrames = data_0229fb30.unk_10;
+    func_ov002_023582dc();
+    func_ov002_02357924();
+    Battle_ReleaseSideTasks();
+    func_ov002_0235d224();
+    if ((gKeypad->pressed & PAD_BUTTON_A) || (gTouch.phase == TOUCH_PRESSED && gTouch.active == 1)) {
+        if (func_0207bd80() == 0) {
+            Battle_EnsureTask();
+        }
+    }
+}

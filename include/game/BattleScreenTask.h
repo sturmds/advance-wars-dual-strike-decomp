@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* The task that runs the battle screen in ov002 (func_ov002_023586f8 is its update). The
+/* The task that runs the battle screen in ov002 (Battle_TaskUpdate is its update). The
  * first 0x2a bytes belong to the task system. */
 typedef struct BattleScreenTask {
     u8 pad_00[0x2a];
