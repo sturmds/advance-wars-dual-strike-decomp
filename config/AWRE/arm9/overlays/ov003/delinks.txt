@@ -111,6 +111,10 @@ src/game/ov003/ov003_capture_property.c:
     complete
     .text       start:0x02357a90 end:0x023580ac
 
+src/game/ov003/ov003_snapshot_units.c:
+    complete
+    .text       start:0x02359b70 end:0x02359bbc
+
 src/game/ov003/ov003_draw_objects.c:
     complete
     .text       start:0x0235a62c end:0x0235a670
