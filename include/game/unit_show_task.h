@@ -4,6 +4,8 @@
 #include "types.h"
 #include "game/map_unit.h"
 
+#define UNIT_SHOW_SLOT_COUNT 2         /* show tasks that can run at once (Unk_02080440.showSlotBusy) */
+
 /* Sprite handle of a UnitShowTask (func_02022478 makes it from a loaded file). */
 typedef struct ShowSprite {
     u8 pad_00[0x20];
