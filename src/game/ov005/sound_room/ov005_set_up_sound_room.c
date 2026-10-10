@@ -15,15 +15,15 @@ void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int 
 const char *Text_Get(u32 textId);
 void func_02028a30(void);
 void func_02029978(void);
-void Ov005CoSelect_StartTask(void);
+void Ov005SoundRoom_StartTask(void);
 void func_ov005_02364428(Unk_ov005_0236bbac *work);
 void func_ov005_02364718(Unk_ov005_0236bbac *work);
 void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
-void Ov005CoSelect_LoadIcons(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_LoadIcons(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void func_ov005_02365100(Unk_ov005_0236bbac *work);
 void func_ov005_023656d8(Unk_ov005_0236bbac *work);
-void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
 void func_ov005_02365e90(Unk_ov005_0236bbac *work);
 
 extern u8 data_ov005_0236b0bc[];
@@ -145,12 +145,12 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     work->coId = -1;
     work->unk_3c = -1;
     func_ov005_02364718(work);
-    Ov005CoSelect_PickCellCo(work);
+    Ov005SoundRoom_PickCellCo(work);
     func_ov005_02365100(work);
     func_ov005_02365010(work);
-    Ov005CoSelect_LoadIcons(work);
+    Ov005SoundRoom_LoadIcons(work);
     func_ov005_02364428(work);
     func_ov005_02364a2c(work);
-    Ov005CoSelect_StartTask();
+    Ov005SoundRoom_StartTask();
     task->step = 0;
 }

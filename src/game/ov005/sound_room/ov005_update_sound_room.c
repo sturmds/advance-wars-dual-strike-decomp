@@ -13,18 +13,18 @@ BOOL func_02004828(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void Screen1_DestroyTextTasks(void);
-BOOL Ov005CoSelect_CellChanged(void);
+BOOL Ov005SoundRoom_CellChanged(void);
 int func_ov005_023640a4(void);
 void func_ov005_023640b8(void);
-void Ov005CoSelect_SaveCell(void);
-void Ov005CoSelect_SetSlideDirection(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_SaveCell(void);
+void Ov005SoundRoom_SetSlideDirection(Unk_ov005_0236bbac *work);
 void func_ov005_02364418(Unk_ov005_0236bbac *work);
 void func_ov005_02364708(Unk_ov005_0236bbac *work);
 void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
 void func_ov005_02364d90(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
-void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
 void func_ov005_02365b90(Unk_ov005_0236bbac *work);
 void func_ov005_02365cec(Unk_ov005_0236bbac *work);
 
@@ -78,9 +78,9 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         break;
     case 10:
         if ((gKeypad->pressed & PAD_BUTTON_A) || work->aTouched == 1) {
-            if (Ov005CoSelect_CellChanged() && !func_ov005_023640a4()) {
+            if (Ov005SoundRoom_CellChanged() && !func_ov005_023640a4()) {
                 Sound_PlaySe(0x10006);
-                Ov005CoSelect_SaveCell();
+                Ov005SoundRoom_SaveCell();
             }
             work->aTouched = 0;
         } else if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched == 1) {
@@ -104,8 +104,8 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
-            Ov005CoSelect_SetSlideDirection(work);
-            Ov005CoSelect_PickCellCo(work);
+            Ov005SoundRoom_SetSlideDirection(work);
+            Ov005SoundRoom_PickCellCo(work);
         } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_34 == 1) {
             work->unk_34 = 0;
             if (work->page >= work->lastPage) {
@@ -117,8 +117,8 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
-            Ov005CoSelect_SetSlideDirection(work);
-            Ov005CoSelect_PickCellCo(work);
+            Ov005SoundRoom_SetSlideDirection(work);
+            Ov005SoundRoom_PickCellCo(work);
         }
         break;
     case 100:

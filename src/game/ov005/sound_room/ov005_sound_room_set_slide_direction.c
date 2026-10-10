@@ -4,7 +4,7 @@
 /* Sets which way the slide task moves after the cursor moved. unk_18 and unk_1c
  * hold the previous cell (guess). A jump of more than 20 cells counts as the
  * other way round, as does a wrap. */
-void Ov005CoSelect_SetSlideDirection(Unk_ov005_0236bbac *state)
+void Ov005SoundRoom_SetSlideDirection(Unk_ov005_0236bbac *state)
 {
     Ov005CoSlideTask *task = state->unk_50;
     int oldIndex;

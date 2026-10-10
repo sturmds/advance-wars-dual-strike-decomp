@@ -6,7 +6,7 @@ void MenuButton_Select(int id);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
-void Ov005CoSelect_MoveCursorOnKeys(void)
+void Ov005SoundRoom_MoveCursorOnKeys(void)
 {
     Unk_ov005_0236bbac *state = data_ov005_0236bbac;
     int cursor = state->selection;

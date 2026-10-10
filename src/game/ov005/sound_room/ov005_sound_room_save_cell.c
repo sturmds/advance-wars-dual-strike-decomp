@@ -3,7 +3,7 @@
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
-void Ov005CoSelect_SaveCell(void)
+void Ov005SoundRoom_SaveCell(void)
 {
     Unk_ov005_0236bbac *state = data_ov005_0236bbac;
     Ov005CoCell *cell = &state->cells[state->selection + state->page * 8];

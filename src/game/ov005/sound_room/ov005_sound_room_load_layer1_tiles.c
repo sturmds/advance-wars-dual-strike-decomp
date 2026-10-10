@@ -20,7 +20,7 @@ extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
 /* Unpacks a tile file into the second screen's layer 1 character data, 0x6000
  * bytes after its base, and loads a 32-byte palette file at offset 64. */
-void Ov005CoSelect_LoadLayer1Tiles(void)
+void Ov005SoundRoom_LoadLayer1Tiles(void)
 {
     Unk_ov005_0236bbac *state = data_ov005_0236bbac;
     Unk_027c0280 *saved0280 = data_027c0280;

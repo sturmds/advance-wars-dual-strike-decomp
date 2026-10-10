@@ -664,7 +664,7 @@ src/game/ov005/sound_room/ov005_set_up_sound_room.c:
     complete
     .text       start:0x02363b60 end:0x02364014
 
-src/game/ov005/ov005_co_select_cell_changed.c:
+src/game/ov005/sound_room/ov005_sound_room_cell_changed.c:
     complete
     .text       start:0x02364058 end:0x023640a4
 
@@ -676,7 +676,7 @@ src/game/ov005/func_ov005_023640b8.c:
     complete
     .text       start:0x023640b8 end:0x023640d4
 
-src/game/ov005/ov005_co_select_save_cell.c:
+src/game/ov005/sound_room/ov005_sound_room_save_cell.c:
     complete
     .text       start:0x023640d4 end:0x02364108
 
@@ -684,7 +684,7 @@ src/game/ov005/func_ov005_02364108.c:
     complete
     .text       start:0x02364108 end:0x02364124
 
-src/game/ov005/ov005_co_select_start_task.c:
+src/game/ov005/sound_room/ov005_sound_room_start_task.c:
     complete
     .text       start:0x02364124 end:0x02364170
 
@@ -696,7 +696,7 @@ src/game/ov005/func_ov005_02364380.c:
     complete
     .text       start:0x02364380 end:0x0236438c
 
-src/game/ov005/ov005_co_select_set_slide_direction.c:
+src/game/ov005/sound_room/ov005_sound_room_set_slide_direction.c:
     complete
     .text       start:0x0236438c end:0x02364418
 
@@ -728,11 +728,11 @@ src/game/ov005/ov005_update_co_picture_swap.c:
     complete
     .text       start:0x0236474c end:0x023648e4
 
-src/game/ov005/ov005_co_select_load_picture_step.c:
+src/game/ov005/sound_room/ov005_sound_room_load_picture_step.c:
     complete
     .text       start:0x023648e4 end:0x02364928
 
-src/game/ov005/ov005_co_select_queue_sprite.c:
+src/game/ov005/sound_room/ov005_sound_room_queue_sprite.c:
     complete
     .text       start:0x02364928 end:0x023649b0
 
@@ -748,15 +748,15 @@ src/game/ov005/func_ov005_02364a2c.c:
     complete
     .text       start:0x02364a2c end:0x02364a50
 
-src/game/ov005/ov005_co_select_load_layer1_tiles.c:
+src/game/ov005/sound_room/ov005_sound_room_load_layer1_tiles.c:
     complete
     .text       start:0x02364cd0 end:0x02364d90
 
-src/game/ov005/ov005_co_select_load_icons.c:
+src/game/ov005/sound_room/ov005_sound_room_load_icons.c:
     complete
     .text       start:0x02364f3c end:0x02365010
 
-src/game/ov005/func_ov005_02365010.c:
+src/game/ov005/sound_room/func_ov005_02365010.c:
     .text       start:0x02365010 end:0x02365100
 
 src/game/ov005/func_ov005_02365100.c:
@@ -767,7 +767,7 @@ src/game/ov005/sound_room/ov005_update_sound_room_sprites.c:
     complete
     .text       start:0x02365124 end:0x023656d8
 
-src/game/ov005/ov005_co_select_on_cell_touched.c:
+src/game/ov005/sound_room/ov005_sound_room_on_cell_touched.c:
     complete
     .text       start:0x0236597c end:0x023659b8
 
@@ -775,7 +775,7 @@ src/game/ov005/func_ov005_023659b8.c:
     complete
     .text       start:0x023659b8 end:0x023659dc
 
-src/game/ov005/ov005_co_select_move_cursor_on_keys.c:
+src/game/ov005/sound_room/ov005_sound_room_move_cursor_on_keys.c:
     complete
     .text       start:0x023659dc end:0x02365a8c
 
@@ -799,7 +799,7 @@ src/game/ov005/func_ov005_02365aec.c:
     complete
     .text       start:0x02365aec end:0x02365b04
 
-src/game/ov005/ov005_co_select_pick_cell_co.c:
+src/game/ov005/sound_room/ov005_sound_room_pick_cell_co.c:
     complete
     .text       start:0x02365b04 end:0x02365b90
 

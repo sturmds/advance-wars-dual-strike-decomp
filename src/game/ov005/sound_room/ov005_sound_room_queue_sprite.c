@@ -12,7 +12,7 @@ extern Unk_027c0288 data_027c0288;
 
 /* Queues one sprite (attribute 0xa580, list 5) at x, y on the second screen.
  * `state` is not used. */
-void Ov005CoSelect_QueueSprite(void *state, int x, int y)
+void Ov005SoundRoom_QueueSprite(void *state, int x, int y)
 {
     Unk_027c0280 *saved0280 = data_027c0280;
     Unk_02080440 *saved027c;

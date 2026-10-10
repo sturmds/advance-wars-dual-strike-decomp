@@ -5,7 +5,7 @@
 extern const TaskScriptCmd data_ov005_0236af0c[];
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
-void Ov005CoSelect_StartTask(void)
+void Ov005SoundRoom_StartTask(void)
 {
     Unk_ov005_0236bbac *state = data_ov005_0236bbac;
 

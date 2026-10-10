@@ -12,7 +12,7 @@ extern Unk_027c0288 data_027c0288;
 
 /* Sets up icon bank 4 on the first screen (tile 576, palette slot 23) and loads
  * icons 150 to 159 and 162 into it. 162 is loaded twice. */
-void Ov005CoSelect_LoadIcons(void)
+void Ov005SoundRoom_LoadIcons(void)
 {
     Unk_027c0280 *saved0280 = data_027c0280;
     Unk_02080440 *saved027c;

@@ -8,7 +8,7 @@ extern u8 *data_ov005_0236af24[];
 /* Sets state->coId from the cell under the cursor. Cell ids 0x80 to 0x85 stand
  * for a group of COs (table data_ov005_0236af24: a count, then the CO ids):
  * one is picked at random. */
-void Ov005CoSelect_PickCellCo(Unk_ov005_0236bbac *state)
+void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *state)
 {
     int coId = state->cells[state->selection + state->page * 8].coId;
 

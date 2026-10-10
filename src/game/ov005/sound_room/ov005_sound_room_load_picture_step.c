@@ -8,7 +8,7 @@ extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
 /* Update step: shows the picture of the chosen CO and goes back to step 0;
  * with no CO chosen, jumps to step 10. */
-void Ov005CoSelect_LoadPictureStep(Ov005Task *task)
+void Ov005SoundRoom_LoadPictureStep(Ov005Task *task)
 {
     if (data_ov005_0236bbac->coId == -1) {
         task->step = 10;
