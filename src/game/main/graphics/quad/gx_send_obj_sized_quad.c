@@ -50,8 +50,8 @@ void Gx_SendPlainQuad_020123b4(void);
 #define QUAD_FLIP_V 0x2000
 
 /* Sends the textured quad for an OBJ-sized image: width and height in
- * pixels (the twelve DS OBJ sizes) and the flip bits pick one of 48
- * Gx_SendPlainQuad_* functions. Other sizes send nothing. A height not
+ * pixels (the twelve DS OBJ sizes) and the flip bits pick one of the
+ * Gx_SendPlainQuad_* functions (64x32 and 64x64 share one). Other sizes send nothing. A height not
  * listed under its width falls through to the next width's cases, as in
  * the original. */
 void Gx_SendObjSizedQuad(int width, int height, int flip)
