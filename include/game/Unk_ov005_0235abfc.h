@@ -9,9 +9,11 @@
  * first entry whose `id` is 0. Each entry owns one task. */
 typedef struct Unk_ov005_0235abfc {
     u16 id;
-    u8 pad_02[0x08 - 0x02];
+    u16 length;                        /* characters in `text` */
+    const u8 *text;                    /* character codes, mapped to glyphs by Ov005_CharToGlyphIndex */
     u16 tile;                          /* first tile of the entry's sprites */
-    u8 pad_0a[0x0e - 0x0a];
+    s16 style;                         /* 2 and 3 pick the second glyph set */
+    u8 pad_0c[0x0e - 0x0c];
     s16 x;
     s16 y;
     u8 pad_12[0x14 - 0x12];
