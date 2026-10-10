@@ -60,6 +60,7 @@ typedef struct Ov003Row {
 typedef struct Ov003Slot {
     u8 pad_00;
     u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.unk_12_0 */
+    u8 unk_01_4 : 4;                   /* func_ov003_023572b0 tests it for 2 */
     u8 pad_02[2];
 } Ov003Slot;
 
