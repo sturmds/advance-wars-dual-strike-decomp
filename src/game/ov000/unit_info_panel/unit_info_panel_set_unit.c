@@ -10,7 +10,7 @@ extern ScriptCommand data_ov000_0234f30c[];
 
 s8 ScriptSlot_Find(const ScriptCommand *script);
 u8 Player_GetArmyStyle(int playerIndex);
-void func_ov000_022b2484(ScriptSlot *slot);
+void UnitInfoPanel_Redraw(ScriptSlot *slot);
 
 /* Points the panel (already open, with its script running) at another unit and
  * redraws it. palette reads Player.armyColour (the palette); style reads the
@@ -23,5 +23,5 @@ void UnitInfoPanel_SetUnit(int owner, MapUnit *unit)
     data_ov000_0234ec8c->unit = unit;
     data_ov000_0234ec8c->palette = data_027c027c->unk_48[data_027c0284]->players[data_ov000_0234ec8c->owner].armyColour - 1;
     data_ov000_0234ec8c->style = Player_GetArmyStyle(data_ov000_0234ec8c->owner) - 1;
-    func_ov000_022b2484(&data_027c027c->scriptSlots[slot]);
+    UnitInfoPanel_Redraw(&data_027c027c->scriptSlots[slot]);
 }
