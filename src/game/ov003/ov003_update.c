@@ -23,7 +23,7 @@ void Ov003_ReadInput(void);
 void Ov003_AdvanceMode(void);
 void func_ov003_02350e88(void);
 void Ov003_DrawHudSprites(void);
-void func_ov003_02364800(void);
+void Ov003_PlayPendingSound(void);
 void Ov003_DrawTimeLeft(void);
 void Ov003_UpdateLinkStart(void);
 void Ov003_ResetSlotStates(void);
@@ -55,7 +55,7 @@ void Ov003_Update(void)
     Screen_SetCurrentBoth(data_027c0288.unk_04);
     Ov003_DrawHudSprites();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_ov003_02364800();
+    Ov003_PlayPendingSound();
     Ov003_DrawTimeLeft();
     Ov003_UpdateLinkStart();
     Ov003_ResetSlotStates();

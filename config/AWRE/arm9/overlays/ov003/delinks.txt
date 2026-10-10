@@ -825,6 +825,10 @@ src/game/ov003/func_ov003_0236470c.c:
     complete
     .text       start:0x0236470c end:0x02364800
 
+src/game/ov003/ov003_play_pending_sound.c:
+    complete
+    .text       start:0x02364800 end:0x02364854
+
 src/game/ov003/func_ov003_02364854.c:
     complete
     .text       start:0x02364854 end:0x02364868
