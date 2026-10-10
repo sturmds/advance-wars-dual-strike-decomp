@@ -2,7 +2,7 @@
 #include "game/Unk_ov005_0236bbb0.h"
 
 int Ov005_CopyShopItemIfForSale(const ShopItem *src, ShopItem *dst);
-void func_ov005_02367bfc(Unk_ov005_0236bbb0 *work, int iconId);
+void Ov005_LoadShopIcon(Unk_ov005_0236bbb0 *work, int iconId);
 
 extern ShopItem data_0216cb60[];
 
@@ -21,7 +21,7 @@ void Ov005_CollectShopItems(Unk_ov005_0236bbb0 *work)
             return;
         }
         if (result != 0) {
-            func_ov005_02367bfc(work, dst->iconId);
+            Ov005_LoadShopIcon(work, dst->iconId);
             dst++;
             count++;
         }

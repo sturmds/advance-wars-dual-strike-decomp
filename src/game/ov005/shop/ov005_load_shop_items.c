@@ -4,7 +4,7 @@
 
 int Ov005_CopyShopItemIfForSale(const ShopItem *src, ShopItem *dst);
 void Ov005_InitShopIconBank(Unk_ov005_0236bbb0 *work);
-void func_ov005_02367bfc(Unk_ov005_0236bbb0 *work, int iconId);
+void Ov005_LoadShopIcon(Unk_ov005_0236bbb0 *work, int iconId);
 
 extern ShopItem data_0216cb60[];
 
@@ -29,7 +29,7 @@ void Ov005_LoadShopItems(Unk_ov005_0236bbb0 *work)
             break;
         }
         if (result != 0) {
-            func_ov005_02367bfc(work, dst->iconId);
+            Ov005_LoadShopIcon(work, dst->iconId);
             dst++;
             count++;
         }
