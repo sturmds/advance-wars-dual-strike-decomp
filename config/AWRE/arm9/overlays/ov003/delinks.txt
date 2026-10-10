@@ -163,6 +163,10 @@ src/game/ov003/func_ov003_02357308.c:
     complete
     .text       start:0x02357308 end:0x023573d0
 
+src/game/ov003/ov003_heal_units_on_own_tiles.c:
+    complete
+    .text       start:0x023573d0 end:0x023574e8
+
 src/game/ov003/ov003_draw_unit_anims.c:
     complete
     .text       start:0x023574e8 end:0x0235758c
