@@ -31,6 +31,10 @@ src/game/ov003/ov003_get_scroll_to_centre_unit.c:
     complete
     .text       start:0x02350eb0 end:0x02350f44
 
+src/game/ov003/ov003_scroll_to_selected_unit.c:
+    complete
+    .text       start:0x02350f44 end:0x023511ac
+
 src/game/ov003/ov003_init_screens.c:
     complete
     .text       start:0x023511ac end:0x023517e0

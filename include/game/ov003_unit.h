@@ -119,8 +119,14 @@ typedef struct Ov003State {
     u8 unk_1c0[8];
     u32 frameCount;                    /* frames on which func_ov003_02362258 returns 1 */
     u32 unk_1cc;
-    u16 unk_1d0;
-    u16 unk_1d2;
+    union {
+        u16 unk_1d0;
+        s16 scrollX;                   /* map scroll in pixels */
+    };
+    union {
+        u16 unk_1d2;
+        s16 scrollY;
+    };
     u8 activeRows;                     /* bit per row with Ov003Row.active set */
     u8 currentSlot;
     u16 unk_1d6;
