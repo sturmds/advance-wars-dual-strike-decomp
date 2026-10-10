@@ -8,7 +8,7 @@ extern int data_ov000_02350544;
 extern int data_ov000_0235054c;
 
 /* True when the unit requested for the second screen (data_ov000_02350530,
- * 0235054c, 0235053c, set by func_ov000_022b06ec and SecondScreen_ShowCursorInfo)
+ * 0235054c, 0235053c, set by SecondScreenTask_Create and SecondScreen_ShowCursorInfo)
  * differs from the one data_ov000_02350538, 02350534 and 02350544 hold. */
 BOOL SecondScreenUnit_IsStale(void)
 {
