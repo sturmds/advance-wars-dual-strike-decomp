@@ -455,6 +455,10 @@ src/game/ov006/ov006_fill_map_for_screen.c:
     complete
     .text       start:0x0235cd04 end:0x0235cfc0
 
+src/game/ov006/func_ov006_0235da1c.c:
+    complete
+    .text       start:0x0235da1c end:0x0235da70
+
 src/game/ov006/func_ov006_0235f690.c:
     complete
     .text       start:0x0235f690 end:0x0235f6f8
