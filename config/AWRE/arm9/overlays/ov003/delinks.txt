@@ -147,6 +147,10 @@ src/game/ov003/ov003_update_objects.c:
     complete
     .text       start:0x0235a79c end:0x0235a810
 
+src/game/ov003/ov003_object_travel.c:
+    complete
+    .text       start:0x0235a810 end:0x0235a8d8
+
 src/game/ov003/ov003_object_hit_at.c:
     complete
     .text       start:0x0235af7c end:0x0235aff4

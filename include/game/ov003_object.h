@@ -10,11 +10,12 @@
 typedef struct Ov003Object {
     s16 x;                             /* 8 per tile */
     s16 y;
-    u8 pad_04[4];
-    u16 unk_08;
+    s16 offsetX;                       /* kind 7: where it ends up, relative to its start; 8 per tile */
+    s16 offsetY;
+    u16 travelled;                     /* distance moved so far (kind 7) */
     u8 unk_0a;
     u8 kind;                           /* 5 and 7 are drawn and updated apart from the others */
-    u8 active;
+    u8 active;                         /* 0 = free entry; kind 7 also moves this far per frame */
     u8 variant;                        /* added to 10 for the sprite */
 } Ov003Object;
 

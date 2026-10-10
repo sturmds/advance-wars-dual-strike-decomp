@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
 
-void func_ov003_0235a810(Ov003Object *object);
+void Ov003Object_Travel(Ov003Object *object);
 void func_ov003_0235a8d8(Ov003Object *object);
 void func_ov003_0235a9e8(Ov003Object *object);
 
@@ -17,7 +17,7 @@ void Ov003_UpdateObjects(void)
                 func_ov003_0235a8d8(object);
                 break;
             case 7:
-                func_ov003_0235a810(object);
+                Ov003Object_Travel(object);
                 break;
             default:
                 func_ov003_0235a9e8(object);
