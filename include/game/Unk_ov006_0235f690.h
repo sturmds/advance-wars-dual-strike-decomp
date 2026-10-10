@@ -37,7 +37,8 @@ typedef struct Unk_ov006_0235f690 {
     s16 unk_10;                        /* tile y of the same */
     s16 unk_12;
     s16 unk_14;
-    u8 pad_16[0x1a - 0x16];
+    u16 unk_16;
+    u16 unk_18;
     u16 unk_1a;
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */
