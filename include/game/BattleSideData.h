@@ -14,6 +14,15 @@ typedef struct BattleSideData_10 {
     u8 airVsGround : 4;                /* matchup 2 */
 } BattleSideData_10;
 
+/* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
+typedef struct BattleAnimData {
+    u8 pad_00[14];
+    struct {
+        s16 x;
+        s16 y;
+    } offsets[1];                      /* one per step; length unknown */
+} BattleAnimData;
+
 /* Position of one HP cell on the battle screen. */
 typedef struct BattleCellPos {
     s16 x;

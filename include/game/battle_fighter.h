@@ -30,7 +30,8 @@ typedef struct BattleFighterShapes {
 typedef struct BattleFighter {
     u8 pad_00[0x18];
     const BattleFighterShapes *shapes;
-    u8 pad_1c[0x38 - 0x1c];
+    u8 pad_1c[0x30 - 0x1c];
+    u8 unk_30[8];                      /* ring of flags; unk_5a_4 is the next to clear */
     s16 unk_38;
     s16 unk_3a;
     s16 unk_3c;
@@ -50,7 +51,9 @@ typedef struct BattleFighter {
     u8 active : 1;                     /* the motion steps do nothing while clear */
     u8 side : 1;                       /* 0 or 1 */
     u8 unk_59_5 : 3;                   /* index into the side's BattleEntry list */
-    u8 pad_5a[0x78 - 0x5a];
+    u8 unk_5a_0 : 4;
+    u8 unk_5a_4 : 4;                   /* index into unk_30, 0 to 7 */
+    u8 pad_5b[0x78 - 0x5b];
 } BattleFighter;
 
 /* Task of the ov002 battle animation that Battle_ReleaseSideTasks counts frames on. */
