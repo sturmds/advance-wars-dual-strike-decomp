@@ -635,6 +635,10 @@ src/game/ov004/func_ov004_022b9b38.c:
     complete
     .text       start:0x022b9b38 end:0x022b9b50
 
+src/game/ov004/ov004_task_fade_hold_fade.c:
+    complete
+    .text       start:0x022ba3fc end:0x022ba558
+
 src/game/ov004/ov004_task_init_layer1_scene_dark.c:
     complete
     .text       start:0x022ba558 end:0x022ba920
