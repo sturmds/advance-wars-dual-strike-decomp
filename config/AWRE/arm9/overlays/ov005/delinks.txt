@@ -303,6 +303,10 @@ src/game/ov005/ov005_destroy_entry_tasks.c:
     complete
     .text       start:0x0235abfc end:0x0235ac48
 
+src/game/ov005/ov005_create_entry_tasks.c:
+    complete
+    .text       start:0x0235accc end:0x0235ad30
+
 src/game/ov005/func_ov005_0235ad30.c:
     complete
     .text       start:0x0235ad30 end:0x0235ad48
