@@ -11,6 +11,10 @@ typedef struct Ov005CoCell {
     u8 unk_07;
 } Ov005CoCell;
 
+#define OV005_CO_CELL_COUNT 67          /* cells over all pages */
+#define OV005_CELLS_PER_PAGE 8
+#define OV005_CELL_BUTTON_ID 0x80       /* MenuButton id of cell 0 of a page */
+
 #define OV005_CO_RANDOM_FIRST 0x80
 #define OV005_CO_RANDOM_LAST  0x85
 

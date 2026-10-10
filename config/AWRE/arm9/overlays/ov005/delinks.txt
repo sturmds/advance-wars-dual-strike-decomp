@@ -756,6 +756,9 @@ src/game/ov005/ov005_co_select_load_icons.c:
     complete
     .text       start:0x02364f3c end:0x02365010
 
+src/game/ov005/func_ov005_02365010.c:
+    .text       start:0x02365010 end:0x02365100
+
 src/game/ov005/func_ov005_02365100.c:
     complete
     .text       start:0x02365100 end:0x02365124
