@@ -498,6 +498,10 @@ src/game/ov003/ov003_slot_update_placing.c:
     complete
     .text       start:0x02360110 end:0x02360528
 
+src/game/ov003/ov003_draw_slot_markers.c:
+    complete
+    .text       start:0x02360528 end:0x02360604
+
 src/game/ov003/ov003_draw_slot_marker.c:
     complete
     .text       start:0x02360604 end:0x023606ec
