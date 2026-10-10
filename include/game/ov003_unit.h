@@ -40,6 +40,13 @@ typedef struct Ov003Unit {
     u8 unk_1f;
 } Ov003Unit;
 
+/* One of the 80 14-byte entries in data_ov003_02369738. */
+typedef struct Unk_ov003_02369738 {
+    u8 pad_00[12];
+    u8 unk_0c;                         /* cleared by Ov003_InitUnitsAndCamera */
+    u8 pad_0d;
+} Unk_ov003_02369738;
+
 typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 
 /* 20-byte entry of data_ov003_02364d88, indexed by Ov003Unit.tile. */
@@ -143,7 +150,7 @@ typedef struct Ov003State {
     u8 unk_1db_7 : 1;
     u8 unk_1dc;
     u8 nextSpawn;                      /* index of the next record in spawns and cell in the row */
-    u8 pad_1de;
+    u8 unk_1de;
     u8 unk_1df_0 : 1;
     u8 unk_1df_1 : 1;
     u8 unk_1df_2 : 3;

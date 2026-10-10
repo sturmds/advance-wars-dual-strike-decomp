@@ -67,6 +67,10 @@ src/game/ov003/ov003_init_state.c:
     complete
     .text       start:0x023519e0 end:0x02351a5c
 
+src/game/ov003/ov003_init_units_and_camera.c:
+    complete
+    .text       start:0x02351a5c end:0x02351cf0
+
 src/game/ov003/ov003_reset_view.c:
     complete
     .text       start:0x02351cf0 end:0x02351da0
