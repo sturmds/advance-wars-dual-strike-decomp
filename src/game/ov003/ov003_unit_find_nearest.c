@@ -6,7 +6,7 @@ extern Ov003Unit data_ov003_02369538[16];
 u32 func_020279c4(int x1, int y1, int x2, int y2);
 int func_ov003_023622b8(void);
 
-/* Returns the distance (in 8-pixel steps) to the nearest other entry in the
+/* Returns the distance (in 8-pixel steps) to the nearest entry in the
  * unit table that is in use and has unk_17_6 clear, and stores its index in
  * *nearestIndex (-1 when there is none; the distance is then 0xffffffff). */
 u32 Ov003Unit_FindNearest(Ov003Unit *unit, s8 *nearestIndex)
