@@ -19,7 +19,7 @@ extern Unk_022a7c5c *data_022a7c5c;
 int UnitShowTask_FindFreeSlot(void);
 const char *UnitShowEntry_GetSpritePath(int type);
 const char *func_ov000_022adf24(UnitShowTask *task);
-int func_ov000_022adf98(int entry);
+int UnitShowEntry_GetStepSize(int entry);
 u32 func_ov000_022ae6c0(int slot);
 int FS_ChangeDir(const char *path);
 void *File_Load(const char *path);
@@ -71,7 +71,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     task->waitFrames = 0;
     task->unk_39 = 0;
     task->entry = type;
-    task->unk_3e = func_ov000_022adf98(task->entry);
+    task->unk_3e = UnitShowEntry_GetStepSize(task->entry);
     task->owner = owner;
     task->unk_44 = File_Load(func_ov000_022adf24(task));
     task->unk_48 = file;

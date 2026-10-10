@@ -76,6 +76,10 @@ src/game/ov000/task/unit_show_entry_get_sprite_path.c:
     complete
     .text       start:0x022adedc end:0x022adf24
 
+src/game/ov000/task/unit_show_entry_get_step_size.c:
+    complete
+    .text       start:0x022adf98 end:0x022adff4
+
 src/game/ov000/task/unit_show_task_check_visible.c:
     complete
     .text       start:0x022adff4 end:0x022ae1c4
