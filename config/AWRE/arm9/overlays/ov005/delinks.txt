@@ -420,6 +420,10 @@ src/game/ov005/ov005_remove_scroll_buttons.c:
     complete
     .text       start:0x0235cd50 end:0x0235cddc
 
+src/game/ov005/ov005_update_scroll_buttons.c:
+    complete
+    .text       start:0x0235cddc end:0x0235cee4
+
 src/game/ov005/func_ov005_0235cee4.c:
     complete
     .text       start:0x0235cee4 end:0x0235cf0c
