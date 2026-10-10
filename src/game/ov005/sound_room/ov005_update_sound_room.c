@@ -12,7 +12,7 @@ void Task_ResumeScript(Ov005Task *task);
 BOOL func_02004828(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
-void func_0202a764(void);
+void Screen1_DestroyTextTasks(void);
 BOOL func_ov005_02364058(void);
 int func_ov005_023640a4(void);
 void func_ov005_023640b8(void);
@@ -148,7 +148,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         break;
     case 104:
         Wallpaper_DestroyTasks();
-        func_0202a764();
+        Screen1_DestroyTextTasks();
         func_ov005_02364708(work);
         func_ov005_02364a1c(work);
         func_ov005_02364418(work);
