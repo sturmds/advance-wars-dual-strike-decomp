@@ -200,6 +200,10 @@ src/game/ov005/ov005_slide_start_entry_b.c:
     complete
     .text       start:0x0235a874 end:0x0235a900
 
+src/game/ov005/ov005_slide_start_entry_a.c:
+    complete
+    .text       start:0x0235a900 end:0x0235a98c
+
 src/game/ov005/func_ov005_0235abcc.c:
     complete
     .text       start:0x0235abcc end:0x0235abe4
