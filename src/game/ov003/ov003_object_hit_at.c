@@ -4,12 +4,12 @@
 
 Ov003Unit *Ov003_FindUnitNear(int x, int y, int skipUnit);
 void func_ov003_0235b64c(Ov003Object *object, Ov003Unit *unit);
-int func_ov003_0235b8ac(int x, int y, Ov003Object *object);
+int Ov003Object_HitsTerrainAt(int x, int y, Ov003Object *object);
 void Ov003Object_HitTile(Ov003Object *object, int tileX, int tileY);
 
 /* Tests the point (x, y), in 8-pixel units, for object. A unit near it (not
  * the unit named by object->unk_0a) goes to func_ov003_0235b64c; else a hit
- * found by func_ov003_0235b8ac goes to Ov003Object_HitTile with the 16-pixel
+ * found by Ov003Object_HitsTerrainAt goes to Ov003Object_HitTile with the 16-pixel
  * tile. Returns 1 for either hit. */
 int Ov003Object_HitAt(Ov003Object *object, int x, int y)
 {
@@ -19,7 +19,7 @@ int Ov003Object_HitAt(Ov003Object *object, int x, int y)
         func_ov003_0235b64c(object, unit);
         return 1;
     }
-    if (func_ov003_0235b8ac(x, y, object) != 1) {
+    if (Ov003Object_HitsTerrainAt(x, y, object) != 1) {
         return 0;
     }
     Ov003Object_HitTile(object, x >> 4, y >> 4);

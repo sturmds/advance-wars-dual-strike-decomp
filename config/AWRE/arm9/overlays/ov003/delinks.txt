@@ -343,6 +343,10 @@ src/game/ov003/ov003_object_hit_tile.c:
     complete
     .text       start:0x0235aff4 end:0x0235b64c
 
+src/game/ov003/ov003_object_hits_tile.c:
+    complete
+    .text       start:0x0235b8ac end:0x0235ba10
+
 src/game/ov003/ov003_find_unit_near.c:
     complete
     .text       start:0x0235ba10 end:0x0235baa8
