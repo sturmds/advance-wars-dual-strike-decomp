@@ -2,12 +2,12 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
 
-void func_ov003_0236179c(int row);
+void Ov003_DefeatTeam(int row);
 
 /* Puts the slot's cursor on the first free cell (state 1) of its row, in
  * unit-placing mode (unk_01_4 = 2) with a 900 frame timer. With no free cell,
  * a linked game whose row holds a unit (state 2) switches the slot to scroll
- * mode (3); otherwise func_ov003_0236179c runs for the row. */
+ * mode (3); otherwise Ov003_DefeatTeam runs for the row. */
 void Ov003_StartSlotPlacing(int slot)
 {
     int row;
@@ -33,5 +33,5 @@ void Ov003_StartSlotPlacing(int slot)
         data_ov003_02364928->slots[slot].unk_01_4 = 3;
         return;
     }
-    func_ov003_0236179c(row);
+    Ov003_DefeatTeam(row);
 }

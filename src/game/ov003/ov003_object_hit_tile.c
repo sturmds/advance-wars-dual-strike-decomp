@@ -14,7 +14,7 @@ int func_ov003_0235d5d4(int row, int kind, int arg2, int targetType);
 void Ov003Row_AddGauge(int row, int arg1);
 int Ov003_SpawnItem(int x, int y);
 Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
-void func_ov003_0236179c(int team);
+void Ov003_DefeatTeam(int team);
 void func_ov003_02364524(int x, int y);
 void func_ov003_02364618(int x, int y);
 void func_ov003_0236470c(int x, int y);
@@ -32,7 +32,7 @@ u32 Ov003_RandNext(void);
  * same table as Ov003Unit.tile. When the tile's hp runs out it turns into
  * its broken tile code, the shooter's row counts it, and a freed
  * cannon entry can make Ov003_IsRowDone return 1, which goes on to
- * func_ov003_0236179c. A shot that breaks nothing puffs where it is, except
+ * Ov003_DefeatTeam. A shot that breaks nothing puffs where it is, except
  * kinds 5 and 7. */
 void Ov003Object_HitTile(Ov003Object *object, int x, int y)
 {
@@ -150,7 +150,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             }
         }
         if (rowDone == TRUE) {
-            func_ov003_0236179c(STATE->row);
+            Ov003_DefeatTeam(STATE->row);
         }
     } else {
         if (targetType == 6 || targetType == 7) {

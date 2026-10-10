@@ -2,14 +2,14 @@
 #include "game/ov003_unit.h"
 #include "game/terrain.h"
 
-void func_ov003_0236179c(int team);  /* called with the team that lost its HQ */
+void Ov003_DefeatTeam(int team);  /* called with the team that lost its HQ */
 
 #define MAP data_ov003_02364a88
 
 /* Gives the property at map index tile to team (1 to 5) by changing its tile
  * code to that team's version. info holds the old terrain (bits 0-4) and old
  * owner (bits 5-7). A captured HQ turns into a city of the new team, and the
- * old owner is passed to func_ov003_0236179c. */
+ * old owner is passed to Ov003_DefeatTeam. */
 void Ov003_CaptureProperty(int tile, int info, int team)
 {
     switch (info & 31) {
@@ -75,7 +75,7 @@ void Ov003_CaptureProperty(int tile, int info, int team)
         case 4: MAP->cells[tile] = 0x1d6; break;
         case 5: MAP->cells[tile] = 0x1e2; break;
         }
-        func_ov003_0236179c((info >> 5) & 7);
+        Ov003_DefeatTeam((info >> 5) & 7);
         break;
     }
 }

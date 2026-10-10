@@ -15,14 +15,14 @@ s32 HwMod32(s32 numerator, s32 denominator);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_ov003_0236179c(int a);
+void Ov003_DefeatTeam(int a);
 
 #define DIGIT_TILE(digit) (0x578 + (digit) * 2)
 #define COLON_TILE 0x58c
 
 /* Draws the time left as m:ss with digit sprites at the top right of the screen.
  * The time limit is preset->timeLimitMinutes; unk_1cc counts up 60 per second.
- * In the last second, func_ov003_0236179c(1) runs once per call. */
+ * In the last second, Ov003_DefeatTeam(1) runs once per call. */
 void Ov003_DrawTimeLeft(void)
 {
     Ov003State *state = data_ov003_02364928;
@@ -43,7 +43,7 @@ void Ov003_DrawTimeLeft(void)
     limitFrames = state->preset->timeLimitMinutes * 3600;
     if (limitFrames - 60 <= state->unk_1cc) {
         if (state->rows[0].active && data_02160abc[10] == 0) {
-            func_ov003_0236179c(1);
+            Ov003_DefeatTeam(1);
         }
         framesLeft = 0;
     } else {

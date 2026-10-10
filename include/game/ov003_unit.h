@@ -69,7 +69,7 @@ typedef struct Ov003TileInfo {
 typedef struct Ov003Cell {
     u8 tile : 6;
     u8 state : 2;                      /* 2: an Ov003Unit sits here */
-    u8 unit;                           /* index in data_ov003_02369538 */
+    s8 unit;                           /* index in data_ov003_02369538, -1 for none */
 } Ov003Cell;
 
 /* Five 62-byte rows at the start of Ov003State: 20 cells, then the row's
