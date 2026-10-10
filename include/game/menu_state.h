@@ -185,7 +185,7 @@ typedef struct BattleScreenWork {
     u16 unk_2a0[2];                    /* per side, like unk_29c */
     BattleHitList hitLists[2];         /* per side, built by Battle_BuildHitLists */
     BattleStepList stepLists[2];
-    u8 pad_2ec[0x310 - 0x2ec];
+    BattleHitList unk_2ec[2];          /* per side, built by func_ov002_023549c8 from stepLists */
     BattleEntry unk_310[2][5];
     const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
     u16 unk_408[2];                    /* cleared by Battle_Init */
