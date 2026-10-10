@@ -7,7 +7,7 @@ void Data_Unpack(const void *src, void *dest);
 void Palette_Load(const void *src, int offset, u32 size);
 void Text_StopPrinting(void);
 void Text_PrintId(int x, int y, u16 *map, u32 textId, u16 a, u16 b);
-void func_ov000_022b3180(int arg0, int arg1);
+void SecondScreen_DrawTerrainDetails(int arg0, int arg1);
 void func_ov000_022b34a4(int arg0, int arg1);
 
 extern Unk_027c0280 *data_027c0280;
@@ -66,11 +66,11 @@ void SecondScreen_RedrawPanel(void)
     switch (data_ov000_02350548) {
     case 1:
     default:
-        func_ov000_022b3180(data_ov000_02350540, data_ov000_02350530);
+        SecondScreen_DrawTerrainDetails(data_ov000_02350540, data_ov000_02350530);
         func_ov000_022b34a4((u8)data_ov000_02350540, (u8)data_ov000_02350530);
         return;
     case 0:
-        func_ov000_022b3180(data_ov000_02350540, data_ov000_02350530);
+        SecondScreen_DrawTerrainDetails(data_ov000_02350540, data_ov000_02350530);
         Text_StopPrinting();
         Text_PrintId((short)(data_ov000_02350540 / 8 + 1), 11, data_027c0280->layer0Map,
                      data_ov000_022f4cc8[data_ov000_02350530][0], 0, 256);

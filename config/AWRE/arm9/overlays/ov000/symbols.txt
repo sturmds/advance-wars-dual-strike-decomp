@@ -117,7 +117,7 @@ SecondScreen_RedrawPanel kind:function(arm,size=0x1e8) addr:0x022b2d48
 Layers_ClearLeftBlock kind:function(arm,size=0x78) addr:0x022b2f30
 Layer0_ResetScroll kind:function(arm,size=0x30) addr:0x022b2fa8
 SecondScreen_DrawTerrainPanel kind:function(arm,size=0x1a8) addr:0x022b2fd8
-func_ov000_022b3180 kind:function(arm,size=0x324) addr:0x022b3180
+SecondScreen_DrawTerrainDetails kind:function(arm,size=0x324) addr:0x022b3180
 func_ov000_022b34a4 kind:function(arm,size=0x390) addr:0x022b34a4
 data_ov000_022b3834 kind:data(any) addr:0x022b3834
 data_ov000_022b3850 kind:data(any) addr:0x022b3850
