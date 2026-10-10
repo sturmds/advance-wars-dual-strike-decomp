@@ -34,7 +34,8 @@ typedef struct Unk_ov004_022bf158 {
     int unk_900;                       /* eased each frame by func_ov004_022b061c */
     int unk_904;                       /* eased in two stages by Ov004_EaseUnk904Twice */
     int unk_908;                       /* eased each frame by func_ov004_022b1d38 */
-    u8 pad_90c[0x998 - 0x90c];
+    u8 pad_90c[0x918 - 0x90c];
+    struct Ov004Task *slotTasks[32];        /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
     u8 pad_99c[0x1320 - 0x99c];
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
