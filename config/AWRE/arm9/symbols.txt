@@ -5920,15 +5920,13 @@ func_02125fe8 kind:function(arm,size=0x3c) addr:0x02125fe8
 func_02126024 kind:function(arm,size=0x40) addr:0x02126024
 func_02126064 kind:function(arm,size=0x2dc) addr:0x02126064
 func_0212676c kind:function(arm,size=0x568) addr:0x0212676c
-func_02126cd4 kind:function(arm,size=0x460) addr:0x02126cd4
+_fadd kind:function(arm,size=0x460) addr:0x02126cd4
 func_02127134 kind:function(arm,size=0x9e4) addr:0x02127134
 .L_0212769c kind:label(arm) addr:0x0212769c
 .L_02127788 kind:label(arm) addr:0x02127788
 func_02127cac kind:function(arm,size=0x380) addr:0x02127cac
-func_0212839c kind:function(arm,size=0x9c) addr:0x0212839c
+_ffix kind:function(arm,size=0x9c) addr:0x0212839c
 func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
-func_02128498 kind:function(arm,size=0x148) addr:0x02128498
-.L_02128514 kind:label(arm) addr:0x02128514
 func_021285e0 kind:function(arm,size=0x1ec) addr:0x021285e0
 func_02128acc kind:function(arm,size=0x448) addr:0x02128acc
 func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
@@ -9118,3 +9116,5 @@ data_022ad524 kind:bss addr:0x022ad524
 data_022ad540 kind:bss addr:0x022ad540
 data_022ad544 kind:bss addr:0x022ad544
 data_022ad548 kind:bss addr:0x022ad548
+_ffltu kind:function(arm,size=0x7c) addr:0x02128498
+_fflt kind:function(arm,size=0xcc) addr:0x02128514
