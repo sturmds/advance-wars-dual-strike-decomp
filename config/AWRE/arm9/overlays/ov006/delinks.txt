@@ -407,6 +407,10 @@ src/game/ov006/func_ov006_02355d84.c:
     complete
     .text       start:0x02355d84 end:0x02355d98
 
+src/game/ov006/ov006_entry_button_keys.c:
+    complete
+    .text       start:0x02355d98 end:0x02356328
+
 src/game/ov006/ov006_update_entry_view.c:
     complete
     .text       start:0x02356328 end:0x023564b0
