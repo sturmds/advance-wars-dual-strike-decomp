@@ -68,6 +68,7 @@ src/game/ov006/ov006_load_entry_terrain_graphics.c:
     .text       start:0x02353d44 end:0x02353e24
 
 src/game/ov006/func_ov006_02354090.c:
+    complete
     .text       start:0x02354090 end:0x023540ec
 
 src/game/ov006/func_ov006_023540ec.c:
