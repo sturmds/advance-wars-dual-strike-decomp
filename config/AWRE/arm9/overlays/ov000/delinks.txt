@@ -24,6 +24,10 @@ src/game/ov000/func_ov000_022ad7e4.c:
     complete
     .text       start:0x022ad7e4 end:0x022ad7f4
 
+src/game/ov000/task/unit_show_task_state_script.c:
+    complete
+    .text       start:0x022ad7f4 end:0x022ad820
+
 src/game/ov000/func_ov000_022ad820.c:
     complete
     .text       start:0x022ad820 end:0x022ad840

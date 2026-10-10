@@ -15,7 +15,7 @@ typedef struct ShowSprite {
 } ShowSprite;
 
 /* Task made by UnitShowTask_Create for a unit the AI is showing. The first
- * 0x30 bytes belong to the task system (Task_Create). */
+ * 0x2c bytes belong to the task system (Task_Create). */
 typedef struct UnitShowTask {
     u8 pad_00[0x2c];
     ShowSprite *sprite;                /* 2D or 3D sprite handle */
@@ -36,5 +36,11 @@ typedef struct UnitShowTask {
     void *unk_48;                      /* first loaded file */
     s8 script[0x20];                   /* commands of UnitShowTask_RunScript */
 } UnitShowTask;
+
+/* UnitShowTask.state */
+#define UNIT_SHOW_STATE_NONE   0       /* no handler: the task runs its script first */
+#define UNIT_SHOW_STATE_MOVE   2
+#define UNIT_SHOW_STATE_DELAY  3
+#define UNIT_SHOW_STATE_SCRIPT 4
 
 #endif
