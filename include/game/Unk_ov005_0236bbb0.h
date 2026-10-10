@@ -18,7 +18,9 @@ typedef struct ShopItem {
 typedef struct ShopButton {
     s16 shown;                         /* nonzero: the button exists */
     s16 buttonId;                      /* MenuButton id */
-    u8 pad_04[0xc - 0x4];
+    s16 x;
+    s16 y;
+    u8 pad_08[0xc - 0x8];
 } ShopButton;
 
 /* Overlay 5 work block (0x1d68 bytes) that Ov005_AllocShopWork allocates
