@@ -8512,6 +8512,10 @@ src/game/main/func_020ebb98.c:
     complete
     .text       start:0x020ebb98 end:0x020ebbbc
 
+src/game/main/func_020ebecc.c:
+    complete
+    .text       start:0x020ebecc end:0x020ebf38
+
 src/game/main/func_020ebf98.c:
     complete
     .text       start:0x020ebf98 end:0x020ebfa4
