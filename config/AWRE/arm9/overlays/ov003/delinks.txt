@@ -95,6 +95,10 @@ src/game/ov003/ov003_draw_marks_and_units.c:
     complete
     .text       start:0x02356614 end:0x02356afc
 
+src/game/ov003/ov003_put_owned_window_piece.c:
+    complete
+    .text       start:0x02356afc end:0x02357178
+
 src/game/ov003/func_ov003_02357178.c:
     complete
     .text       start:0x02357178 end:0x0235718c

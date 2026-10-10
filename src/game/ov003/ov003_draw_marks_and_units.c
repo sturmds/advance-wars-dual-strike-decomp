@@ -16,7 +16,7 @@ extern u8 data_ov003_023653fc[];
 extern u8 data_ov003_02365448[];
 extern u8 data_ov003_02365494[];
 
-void func_ov003_02356afc(int x, int y);
+void Ov003_PutOwnedWindowPiece(int x, int y);
 int func_ov003_023622b8(void);
 u16 func_0207a1dc(void);
 void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size);
@@ -32,7 +32,7 @@ void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size
 #define DRAW(data, size) \
     func_01ff85d8(x - SCROLL_X, y - SCROLL_Y, 0, 0x800, data, 0, size)
 
-/* Draws the tile marks (func_ov003_02356afc) of every 2 by 2 tile block that
+/* Draws the tile marks (Ov003_PutOwnedWindowPiece) of every 2 by 2 tile block that
  * is on screen or within 47 pixels of it, then each unit of the current slot's
  * row. The unit's tile code (1-5) and unk_12_0 (1-4) pick its picture. When
  * data_02160ac0->unk_7c is set there are 8 units, and only unit 0 and those in
@@ -51,7 +51,7 @@ void Ov003_DrawMarksAndUnits(void)
         }
         for (x = 0; x < MAP->width; x += 2) {
             if (x * 16 >= SCROLL_X - 47 && x * 16 <= SCROLL_X + 272) {
-                func_ov003_02356afc(x, y);
+                Ov003_PutOwnedWindowPiece(x, y);
             }
         }
     }
