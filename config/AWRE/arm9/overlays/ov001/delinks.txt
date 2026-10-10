@@ -256,6 +256,10 @@ src/game/ov001/func_ov001_02351e20.c:
     complete
     .text       start:0x02351e20 end:0x02351e3c
 
+src/game/ov001/ov001_start_unit_task_at15_10.c:
+    complete
+    .text       start:0x02351e3c end:0x02351eb8
+
 src/game/ov001/ov001_spawn_oozium_at15_10.c:
     complete
     .text       start:0x02351fb0 end:0x02351fe4
