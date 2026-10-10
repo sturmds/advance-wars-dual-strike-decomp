@@ -693,6 +693,10 @@ src/game/ov003/ov003_update_rows_and_palette.c:
     complete
     .text       start:0x02360cc4 end:0x02360d54
 
+src/game/ov003/ov003_row_draw_gauge.c:
+    complete
+    .text       start:0x02360d54 end:0x02360fdc
+
 src/game/ov003/ov003_draw_rows.c:
     complete
     .text       start:0x02360fdc end:0x02361040
