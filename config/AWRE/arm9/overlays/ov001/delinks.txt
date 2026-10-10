@@ -35,6 +35,10 @@ src/game/ov001/ov001_player1_has_no_infantry.c:
     complete
     .text       start:0x023507a8 end:0x02350824
 
+src/game/ov001/ov001_infantry_and_apc_waited_and_artillery_has_waited.c:
+    complete
+    .text       start:0x02350824 end:0x02350900
+
 src/game/ov001/func_ov001_02350900.c:
     complete
     .text       start:0x02350900 end:0x02350940
