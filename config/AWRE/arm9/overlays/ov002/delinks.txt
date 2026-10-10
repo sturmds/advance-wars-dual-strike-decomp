@@ -71,6 +71,10 @@ src/game/ov002/battle_is_side_foot_unit.c:
     complete
     .text       start:0x023546d4 end:0x02354738
 
+src/game/ov002/battle_is_side_sea.c:
+    complete
+    .text       start:0x02354738 end:0x023547ac
+
 src/game/ov002/battle_is_side_air.c:
     complete
     .text       start:0x023547ac end:0x02354814
