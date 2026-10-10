@@ -15,6 +15,8 @@ typedef struct Ov005Task {
     u8 pad_38[0x3c - 0x38];
     int frame;
     int frames;
+    u8 pad_44[0x64 - 0x44];
+    struct Task *paletteTask;          /* set by Ov005Screen_StartPaletteTask */
 } Ov005Task;
 
 #endif
