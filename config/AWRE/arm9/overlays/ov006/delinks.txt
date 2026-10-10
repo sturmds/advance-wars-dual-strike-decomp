@@ -355,6 +355,10 @@ src/game/ov006/ov006_reset_neighbors_to_sea.c:
     complete
     .text       start:0x02360590 end:0x02360a78
 
+src/game/ov006/ov006_count_neighbors_on_side.c:
+    complete
+    .text       start:0x02360a78 end:0x02360e10
+
 src/game/ov006/func_ov006_023624b4.c:
     complete
     .text       start:0x023624b4 end:0x02362548
