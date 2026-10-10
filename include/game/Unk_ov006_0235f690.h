@@ -14,6 +14,16 @@ typedef struct Ov006Slot {
     u8 pad_04[8];
 } Ov006Slot;
 
+/* The slot of one slot button, as Ov006_AddSlotButtons fills it. The button
+ * slides in from x = -32 (fixed point, 12 fraction bits). */
+typedef struct Ov006SlotButton {
+    s32 x;
+    s32 speed;
+    s16 flags;
+    u8 unk_0a;                         /* 32 for every slot */
+    u8 state;                          /* see Ov006Slot.state */
+} Ov006SlotButton;
+
 /* Overlay 6 state reached through data_ov006_0236d640. */
 typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
@@ -44,10 +54,16 @@ typedef struct Unk_ov006_0235f690 {
     u8 pad_50[0x5c - 0x50];
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
-    u8 pad_64[0x80 - 0x64];
-    Ov006Slot unk_80[7];               /* an 8th slot starts at 0xd4 */
-    s16 unk_d4;                        /* flags of that 8th slot */
-    u8 pad_d6[0xd8 - 0xd6];
+    u8 pad_64[0x78 - 0x64];
+    union {
+        Ov006SlotButton slotButtons[8];
+        struct {
+            u8 pad_78[0x80 - 0x78];
+            Ov006Slot unk_80[7];       /* an 8th slot starts at 0xd4 */
+            s16 unk_d4;                /* flags of that 8th slot */
+            u8 pad_d6[0xd8 - 0xd6];
+        };
+    };
     u8 unk_d8[0xeb - 0xd8];            /* passed to Ov006_HasNonSpace */
     u8 unk_eb;                         /* its address is passed to DesignMap_CopyName */
     u8 pad_ec[0x10c - 0xec];           /* DesignRoom_Init allocates 0x10c bytes */
