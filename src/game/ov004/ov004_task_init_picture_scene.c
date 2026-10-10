@@ -13,7 +13,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void Ov004_UnpackResource(const void *name, void *dest);   /* unpacks a named file */
 void Ov004_CopyResource(const void *name, void *dest);   /* copies a named file */
-void func_ov004_022baa4c(Unk_ov004_022bf158 *state);
+void Ov004_LoadObjGraphics(Unk_ov004_022bf158 *state);
 void func_ov004_022ba9b4(Unk_ov004_022bf158 *state);     /* creates 24 tasks from a table */
 void Ov004_SetupOrtho3d(void);
 void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
@@ -88,7 +88,7 @@ void Ov004Task_InitPictureScene(Ov004Task *task)
     /* unk_00c starts a 0x400-byte copy of the palette */
     Mem_Copy32(data_027c0280->paletteBuffer, &state->unk_00c, 0x400);
     Mem_Zero32(0, data_027c0280->paletteBuffer, 0x100);
-    func_ov004_022baa4c(state);
+    Ov004_LoadObjGraphics(state);
     func_ov004_022ba9b4(state);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);

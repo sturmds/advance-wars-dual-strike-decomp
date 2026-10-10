@@ -14,7 +14,7 @@ void Ov004_SetupOrtho3d(void);
 void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 void Ov004_UnpackResource(const char *name, void *dest);
 void Ov004_CopyResource(const char *name, void *dest);
-void func_ov004_022baa4c(Unk_ov004_022bf158 *state);
+void Ov004_LoadObjGraphics(Unk_ov004_022bf158 *state);
 void func_ov004_022ba964(Unk_ov004_022bf158 *state);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
@@ -80,7 +80,7 @@ void Ov004Task_SetupLayer2Scene(Ov004Task *task) {
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0);
     Gfx_RequestLayerCopy(2);
     Palette_Flush();
-    func_ov004_022baa4c(state);
+    Ov004_LoadObjGraphics(state);
     func_ov004_022ba964(state);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
