@@ -174,6 +174,7 @@ typedef struct Ov003Map {
     u8 height;
     u16 cells[OV003_MAP_TILE_MAX];     /* tile code per tile, row by row */
     u8 marks[OV003_MAP_TILE_MAX];      /* per tile: MARK_* bits (Ov003_MarkRowTiles) */
+    u8 unk_f1a[OV003_MAP_TILE_MAX];    /* per tile: 100 for terrain 3, 16, 21 and 26, else 0 (Ov003_LoadMap) */
 } Ov003Map;
 
 /* This frame's touch and key input, copied by Ov003_ReadInput into

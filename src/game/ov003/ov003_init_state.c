@@ -4,7 +4,7 @@
 
 void Ov003_InitRows(void);
 void Ov003_LoadScreenGraphics(void);
-void func_ov003_02351da0(void);
+void Ov003_LoadMap(void);
 void Ov003_ResetView(void);
 void func_ov003_02353bd8(void);
 void Ov003_InitUnitsAndCamera(void);
@@ -19,7 +19,7 @@ void Ov003_InitState(void)
 {
     Ov003_InitRows();
     Ov003_LoadScreenGraphics();
-    func_ov003_02351da0();
+    Ov003_LoadMap();
     Ov003_ResetView();
     func_ov003_02353bd8();
     Ov003_InitUnitsAndCamera();

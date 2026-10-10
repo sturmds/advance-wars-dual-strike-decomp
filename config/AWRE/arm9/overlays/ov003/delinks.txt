@@ -75,6 +75,10 @@ src/game/ov003/ov003_reset_view.c:
     complete
     .text       start:0x02351cf0 end:0x02351da0
 
+src/game/ov003/ov003_load_map.c:
+    complete
+    .text       start:0x02351da0 end:0x02352090
+
 src/game/ov003/ov003_load_screen_graphics.c:
     complete
     .text       start:0x02352090 end:0x02352240
