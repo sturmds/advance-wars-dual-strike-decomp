@@ -16,6 +16,10 @@ src/game/ov000/func_ov000_022ad610.c:
     complete
     .text       start:0x022ad610 end:0x022ad630
 
+src/game/ov000/task/unit_show_task_on_destroy.c:
+    complete
+    .text       start:0x022ad630 end:0x022ad674
+
 src/game/ov000/func_ov000_022ad7dc.c:
     complete
     .text       start:0x022ad7dc end:0x022ad7e0
