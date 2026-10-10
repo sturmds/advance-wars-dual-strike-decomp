@@ -33,7 +33,9 @@ typedef struct Unk_ov006_0235f690 {
     u16 unk_0c;
     s16 unk_0e;                        /* tile x that Ov006_DeleteMarkedUnit removes a unit from */
     s16 unk_10;                        /* tile y of the same */
-    u8 pad_12[0x1a - 0x12];
+    s16 unk_12;
+    s16 unk_14;
+    u8 pad_16[0x1a - 0x16];
     u16 unk_1a;
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */
