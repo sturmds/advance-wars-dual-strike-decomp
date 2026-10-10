@@ -672,6 +672,10 @@ src/game/ov005/func_ov005_023640b8.c:
     complete
     .text       start:0x023640b8 end:0x023640d4
 
+src/game/ov005/ov005_co_select_save_cell.c:
+    complete
+    .text       start:0x023640d4 end:0x02364108
+
 src/game/ov005/func_ov005_02364108.c:
     complete
     .text       start:0x02364108 end:0x02364124

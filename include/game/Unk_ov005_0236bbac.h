@@ -3,6 +3,33 @@
 
 #include "types.h"
 
+/* One cell of the CO grid: 8 bytes, 8 cells per page. */
+typedef struct Ov005CoCell {
+    u8 pad_00[0x04];
+    u16 unk_04;
+    u8 coId;                           /* OV005_CO_RANDOM_FIRST to OV005_CO_RANDOM_LAST: random pick from a group */
+    u8 unk_07;
+} Ov005CoCell;
+
+#define OV005_CO_RANDOM_FIRST 0x80
+#define OV005_CO_RANDOM_LAST  0x85
+
+/* One touch button of the page: 8 bytes. */
+typedef struct Ov005CoButton {
+    s16 unk_00;
+    s16 id;                            /* MenuButton id */
+    s16 x;
+    s16 y;
+} Ov005CoButton;
+
+/* Task data of the cursor slide task (unk_50 below). */
+typedef struct Ov005CoSlideTask {
+    u8 pad_00[0x34];
+    u32 step;                          /* state of the update function */
+    u8 pad_38[0x44 - 0x38];
+    int slideBack;                     /* 1 or 0, set by func_ov005_0236438c from the cursor move */
+} Ov005CoSlideTask;
+
 #define MUSIC_KIND_SEQ    0           /* sequence, Sound_StartMusicSeq */
 #define MUSIC_KIND_STREAM 1           /* stream, Sound_StartStream */
 
@@ -16,7 +43,7 @@ typedef struct Unk_ov005_0236bbac {
     int unk_14;
     int unk_18;
     int unk_1c;
-    u8 pad_20[0x24 - 0x20];
+    int buttonCount;                   /* buttons on the current page, at most 8 */
     int aTouched;                      /* set by touch buttons, cleared when handled */
     int bTouched;
     int xTouched;
@@ -42,6 +69,11 @@ typedef struct Unk_ov005_0236bbac {
     s16 objScale1;                     /* OBJ affine matrix 1 scale, 0x100 = 1x; -1: none */
     s16 objScale2;                     /* OBJ affine matrix 2 scale */
     s16 objScaleBoth;                  /* used for both when 1 and 2 are -1; -1: 0x100 */
+    Ov005CoCell *cells;
+    u8 pad_ac[0xec - 0xac];
+    Ov005CoButton *buttons;
+    u8 pad_f0[0x1114 - 0xf0];
+    int unk_1114;
 } Unk_ov005_0236bbac;
 
 #endif

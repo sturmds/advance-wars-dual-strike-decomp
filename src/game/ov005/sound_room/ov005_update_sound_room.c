@@ -16,7 +16,7 @@ void Screen1_DestroyTextTasks(void);
 BOOL func_ov005_02364058(void);
 int func_ov005_023640a4(void);
 void func_ov005_023640b8(void);
-void func_ov005_023640d4(void);
+void Ov005CoSelect_SaveCell(void);
 void func_ov005_0236438c(Unk_ov005_0236bbac *work);
 void func_ov005_02364418(Unk_ov005_0236bbac *work);
 void func_ov005_02364708(Unk_ov005_0236bbac *work);
@@ -80,7 +80,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         if ((gKeypad->pressed & PAD_BUTTON_A) || work->aTouched == 1) {
             if (func_ov005_02364058() && !func_ov005_023640a4()) {
                 Sound_PlaySe(0x10006);
-                func_ov005_023640d4();
+                Ov005CoSelect_SaveCell();
             }
             work->aTouched = 0;
         } else if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched == 1) {
