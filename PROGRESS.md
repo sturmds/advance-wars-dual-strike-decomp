@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 3424 / 6603 | 579716 / 1531944 | 37.84% | 0 | 0 |
+| game | 3436 / 6603 | 580456 / 1531944 | 37.89% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 3562 / 7484 | 583136 / 1685994 | 34.59% | 1 | 30 |
+| all | 3574 / 7484 | 583876 / 1685994 | 34.63% | 1 | 30 |
 
 ## By module
 
@@ -25,7 +25,7 @@ Rows with nothing done are left out, but count in the totals.
 | ov001 | game | 73 / 76 | 6832 / 7472 | 91.43% | 0 |
 | ov002 | game | 146 / 164 | 50440 / 64208 | 78.56% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
-| ov004 | game | 197 / 236 | 35568 / 67364 | 52.80% | 0 |
+| ov004 | game | 209 / 236 | 36308 / 67364 | 53.90% | 0 |
 | ov005 | game | 156 / 270 | 22544 / 96684 | 23.32% | 0 |
 | ov006 | game | 85 / 321 | 7404 / 105588 | 7.01% | 0 |
 
@@ -84,3 +84,5 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov003/func_ov003_02364514.c` | no delinks entry | 0 |
 | `src/game/ov003/ov003_find_free_tile_near.c` | no delinks entry | 0 |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 |
+| `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
+| `src/game/ov004/func_ov004_022baeec.c` | func_ov004_022baeec | 104 |
