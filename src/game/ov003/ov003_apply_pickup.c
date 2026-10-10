@@ -4,7 +4,7 @@
 
 void Sound_PlaySe(u32 soundId);
 void Ov003Row_AddGauge(int a0, int a1);
-void func_ov003_0235e16c(int a0, int a1, int a2);
+void Ov003_DamageUnitsAround(int a0, int a1, int a2);
 void func_ov003_02364618(int a0, int a1);
 
 /* Gives the unit that touched the pickup its effect, by kind: 1 adds 20 hp
@@ -30,7 +30,7 @@ void Ov003_ApplyPickup(Ov003Unit *unit, Ov003Pickup *pickup)
         Ov003Row_AddGauge(unit->unk_12_3, 100);
         break;
     case 4:
-        func_ov003_0235e16c(unit->unk_12_3, pickup->x, pickup->y);
+        Ov003_DamageUnitsAround(unit->unk_12_3, pickup->x, pickup->y);
         func_ov003_02364618(pickup->x >> 3, pickup->y >> 3);
         break;
     case 5:
