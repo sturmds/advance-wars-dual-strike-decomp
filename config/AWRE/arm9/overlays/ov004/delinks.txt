@@ -334,6 +334,10 @@ src/game/ov004/ov004_task_play_turning_quad_scene2.c:
     complete
     .text       start:0x022b2c74 end:0x022b3860
 
+src/game/ov004/ov004_task_setup_layer3_scene_with_layers1_and2.c:
+    complete
+    .text       start:0x022b3860 end:0x022b3f38
+
 src/game/ov004/func_ov004_022b3f38.c:
     complete
     .text       start:0x022b3f38 end:0x022b3f58
