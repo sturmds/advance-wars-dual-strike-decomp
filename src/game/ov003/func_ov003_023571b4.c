@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_ov003_023621b0(void);
+int Ov003_IsPhase0Or1(void);
 int Ov003_IsPlayPhase(void);
 int func_ov003_02362258(void);
 void Ov003_RunSlotInput(void);
@@ -16,7 +16,7 @@ void Ov003_UpdateSpawns(void);
 
 void func_ov003_023571b4(void)
 {
-    if (func_ov003_023621b0() == 1) {
+    if (Ov003_IsPhase0Or1() == 1) {
         Ov003_RunSlotInput();
     }
     if (Ov003_IsPlayPhase() == 1) {

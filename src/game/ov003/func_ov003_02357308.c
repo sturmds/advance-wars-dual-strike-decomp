@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-int func_ov003_023621b0(void);
+int Ov003_IsPhase0Or1(void);
 int func_ov003_0235d940(int arg);
 extern Ov003Unit *data_ov003_02369534;
 
@@ -10,7 +10,7 @@ extern Ov003Unit *data_ov003_02369534;
  * to pick the first sprite. */
 int func_ov003_02357308(void)
 {
-    if (func_ov003_023621b0() == 0) {
+    if (Ov003_IsPhase0Or1() == 0) {
         return 0;
     }
     if (data_ov003_02364928->slots[data_ov003_02364928->currentSlot].unk_01_4 != 1) {

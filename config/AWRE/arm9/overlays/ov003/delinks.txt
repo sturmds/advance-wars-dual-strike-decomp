@@ -570,6 +570,10 @@ src/game/ov003/ov003_is_play_phase.c:
     complete
     .text       start:0x02362174 end:0x023621b0
 
+src/game/ov003/ov003_is_phase0_or1.c:
+    complete
+    .text       start:0x023621b0 end:0x023621f4
+
 src/game/ov003/func_ov003_023622b8.c:
     complete
     .text       start:0x023622b8 end:0x023622d8
