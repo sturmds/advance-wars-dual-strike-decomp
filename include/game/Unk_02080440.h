@@ -27,6 +27,7 @@ typedef struct MapTiles {
 
 #define MAP_TILE_TERRAIN(t) ((t) & 0x1f)
 #define MAP_TILE_OWNER(t)   (((t) & 0xe0) >> 5)
+#define MAP_TILE_MAKE(terrain, owner) ((terrain) | ((owner) << 5))
 #define MAP_TILE(terrain, owner) ((terrain) | ((owner) << 5))
 
 /* Terrain ids (MAP_TILE_TERRAIN) are in game/terrain.h. */

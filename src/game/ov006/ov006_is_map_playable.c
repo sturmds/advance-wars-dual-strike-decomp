@@ -1,17 +1,12 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/terrain.h"
 
-int Ov006_CountArmyFactories(int hqCell);   /* -1: no HQ; else that army's base, airport and port cells */
+int Ov006_CountArmyFactories(int hqTile);
 int Player_CountUnits(int player);
 
-/* HQ cell codes of armies 1-4 (each army's cells are 32 codes apart). */
-#define CELL_HQ_ARMY1 40
-#define CELL_HQ_ARMY2 72
-#define CELL_HQ_ARMY3 104
-#define CELL_HQ_ARMY4 136
-
 /* Checks the map on the main screen before it can be used: each army that
- * has an HQ also needs a production building or a unit, and at least two
+ * has an HQ also needs a base, airport, port or unit, and at least two
  * armies need to be in play. An army without an HQ is allowed (left out). */
 BOOL Ov006_IsMapPlayable(void)
 {
@@ -28,7 +23,7 @@ BOOL Ov006_IsMapPlayable(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     armies = 0;
 
-    army1 = Ov006_CountArmyFactories(CELL_HQ_ARMY1);
+    army1 = Ov006_CountArmyFactories(MAP_TILE_MAKE(TERRAIN_HQ, 1));
     if (army1 == 0) {
         if (Player_CountUnits(1) > 0) {
             armies++;
@@ -37,7 +32,7 @@ BOOL Ov006_IsMapPlayable(void)
     } else if (army1 > 0) {
         armies++;
     }
-    army2 = Ov006_CountArmyFactories(CELL_HQ_ARMY2);
+    army2 = Ov006_CountArmyFactories(MAP_TILE_MAKE(TERRAIN_HQ, 2));
     if (army2 == 0) {
         if (Player_CountUnits(2) > 0) {
             armies++;
@@ -46,7 +41,7 @@ BOOL Ov006_IsMapPlayable(void)
     } else if (army2 > 0) {
         armies++;
     }
-    army3 = Ov006_CountArmyFactories(CELL_HQ_ARMY3);
+    army3 = Ov006_CountArmyFactories(MAP_TILE_MAKE(TERRAIN_HQ, 3));
     if (army3 == 0) {
         if (Player_CountUnits(3) > 0) {
             armies++;
@@ -55,7 +50,7 @@ BOOL Ov006_IsMapPlayable(void)
     } else if (army3 > 0) {
         armies++;
     }
-    army4 = Ov006_CountArmyFactories(CELL_HQ_ARMY4);
+    army4 = Ov006_CountArmyFactories(MAP_TILE_MAKE(TERRAIN_HQ, 4));
     if (army4 == 0) {
         if (Player_CountUnits(4) > 0) {
             armies++;
