@@ -20,6 +20,10 @@ src/game/ov004/func_ov004_022ade28.c:
     complete
     .text       start:0x022ade28 end:0x022ade44
 
+src/game/ov004/func_ov004_022ade44.c:
+    complete
+    .text       start:0x022ade44 end:0x022ade64
+
 src/game/ov004/func_ov004_022b0000.c:
     complete
     .text       start:0x022b0000 end:0x022b0020

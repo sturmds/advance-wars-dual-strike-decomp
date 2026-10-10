@@ -11,7 +11,7 @@ typedef struct Unk_ov004_022bf158_818 {
 
 /* Overlay 4 state reached through data_ov004_022bf158. */
 typedef struct Unk_ov004_022bf158 {
-    u8 pad_000[0x4];
+    u32 unk_000;
     u32 unk_004;
     u8 pad_008[0x818 - 0x8];
     Unk_ov004_022bf158_818 unk_818;
