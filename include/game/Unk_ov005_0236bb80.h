@@ -12,7 +12,17 @@ typedef struct Unk_ov005_0236bb80 {
     fx32 blendEva;                     /* sub screen blendEva and blendEvb as fx32 (0 to 16.0) */
     fx32 blendEvb;
     struct ScriptSlot *unk_14;         /* from func_020150f8 */
-    u8 pad_18[0x78 - 0x18];
+    u8 pad_18[0x2c - 0x18];
+    u32 xUsesBufferB;                  /* which of the two x line buffers xLines points at */
+    u32 yUsesBufferB;
+    u8 pad_34[0x54 - 0x34];
+    s16 *xLines;                       /* per-line offsets the hardware reads */
+    s16 *yLines;
+    s16 *xBufferA;
+    s16 *yBufferA;
+    s16 *xBufferB;
+    s16 *yBufferB;
+    u8 pad_6c[0x78 - 0x6c];
     u32 unk_78;
     u8 pad_7c[0xb4 - 0x7c];
     void *unk_b4;                      /* file loaded by Ov005_SetupScreensWithAffineBg */
