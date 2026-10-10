@@ -307,9 +307,17 @@ src/game/ov006/ov006_get_neighbor_mask.c:
     complete
     .text       start:0x02360240 end:0x02360308
 
+src/game/ov006/func_ov006_02360308.c:
+    complete
+    .text       start:0x02360308 end:0x023603d0
+
 src/game/ov006/func_ov006_02363198.c:
     complete
     .text       start:0x02363198 end:0x023631a8
+
+src/game/ov006/func_ov006_02363cb8.c:
+    complete
+    .text       start:0x02363cb8 end:0x02363d80
 
 src/game/ov006/func_ov006_0236a1d0.c:
     complete
