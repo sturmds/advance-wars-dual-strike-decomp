@@ -3,7 +3,7 @@
 
 void Sound_PlaySe(int se);
 void Sound_StopSubSe(int se);
-int func_ov000_022adc10(Unk_ov000_022db768_Owner *owner);
+int UnitShowTask_PlayStepSound(Unk_ov000_022db768_Owner *owner);
 
 void ShowEntry_PlaySound(Unk_ov000_022db768_Owner *owner)
 {
@@ -14,7 +14,7 @@ void ShowEntry_PlaySound(Unk_ov000_022db768_Owner *owner)
     }
     switch (sound) {
     case SHOW_SOUND_SPECIAL:
-        func_ov000_022adc10(owner);
+        UnitShowTask_PlayStepSound(owner);
         break;
     case SHOW_SOUND_STOP:
         Sound_StopSubSe(20);

@@ -12,7 +12,7 @@ typedef struct Unk_ov000_022db768 {
 
 #define SHOW_SOUND_NONE    0
 #define SHOW_SOUND_STOP    0x4000      /* stop sub sound effect 20 */
-#define SHOW_SOUND_SPECIAL 0x8000      /* func_ov000_022adc10 picks the sound */
+#define SHOW_SOUND_SPECIAL 0x8000      /* UnitShowTask_PlayStepSound picks the sound */
 
 extern Unk_ov000_022db768 data_ov000_022db768[];
 
