@@ -21,8 +21,9 @@ extern u16 data_02149080[];           /* pictures, 4 halfwords each, 2 halfwords
  * tile into dst. Used for the map preview: MapPreview_Draw calls it for
  * each block of the preview. Tiles outside the map get data_022a6b40. A
  * property takes the picture for its owner's army colour (gArmyColours).
- * Not matching yet (95%): the rowStart + col index and colour take r7/r8, not r6/r7,
- * and startY is spilled before the loop guard instead of after it. */
+ * Not matching yet (97%): picture is in r3, not r4, and startY is spilled
+ * before the loop guard instead of after it. picture, code and tile are
+ * declared at function scope because that fixes the other registers. */
 void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
 {
     u16 rowStart;
@@ -36,6 +37,9 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
     int startY;
     u16 *cell;
     int rowOff;
+    u16 *picture;
+    int code;
+    int tile;
 
     offset = 0;
     for (col = 0; col < width; col++) {
@@ -60,11 +64,8 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
     startY = y;
     for (; y < startY + height; y++) {
         for (col = x; col < x + width; col++) {
-            u16 *picture;
             int colour;
             int terrain;
-            int code;
-            u8 tile;
             int base;
 
             if (col < 0 || col >= data_0229eadc->width || y < 0 || y >= data_0229eadc->height) {
