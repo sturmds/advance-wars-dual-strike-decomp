@@ -34,7 +34,8 @@ typedef struct MoveSearch {
     s16 moveRange;                     /* movement of the unit per turn */
     u8 x;                              /* tile being expanded */
     u8 y;
-    u8 pad_26[2];
+    u8 unitType;                       /* MoveSearch_FindTile: unit type searched for */
+    u8 pad_27[1];
     MoveSearchNode lists[2][MOVE_SEARCH_LIST_SIZE];
 } MoveSearch;
 
