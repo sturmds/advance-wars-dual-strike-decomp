@@ -111,6 +111,10 @@ src/game/ov004/func_ov004_022b0304.c:
     complete
     .text       start:0x022b0304 end:0x022b0324
 
+src/game/ov004/ov004_blend_alpha_tween.c:
+    complete
+    .text       start:0x022b0324 end:0x022b0444
+
 src/game/ov004/func_ov004_022b0444.c:
     complete
     .text       start:0x022b0444 end:0x022b0464
