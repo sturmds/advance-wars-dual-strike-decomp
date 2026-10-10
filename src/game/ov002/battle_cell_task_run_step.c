@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/BattleCellTask.h"
 
-void func_ov002_0235c8cc(BattleCellTask *task);
+void BattleCellTask_MakeSprites(BattleCellTask *task);
 void func_ov002_0235b4f8(BattleCellTask *task);
 void BattleActor_EnterPhase4(BattleCellTask *task);
 
@@ -10,7 +10,7 @@ void BattleCellTask_RunStep(BattleCellTask *task, int command)
 {
     switch (command) {
     case 0:
-        func_ov002_0235c8cc(task);
+        BattleCellTask_MakeSprites(task);
         break;
     case 1:
         BattleCellTask_StartMove(task);

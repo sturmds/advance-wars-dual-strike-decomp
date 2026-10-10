@@ -424,6 +424,10 @@ src/game/ov002/battle_cell_task_start_move.c:
     complete
     .text       start:0x0235c2fc end:0x0235c8cc
 
+src/game/ov002/battle_cell_task_make_sprites.c:
+    complete
+    .text       start:0x0235c8cc end:0x0235cd3c
+
 src/game/ov002/func_ov002_0235cd3c.c:
     complete
     .text       start:0x0235cd3c end:0x0235cd50
