@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-void func_ov003_0235fb38(Ov003Unit *unit);
+void Ov003Unit_FireScatteredBurst(Ov003Unit *unit);
 void Ov003Unit_FireAtLockedTarget(Ov003Unit *unit);
 void Ov003Unit_FireForwardOnce(Ov003Unit *unit);
 void func_ov003_0235fce8(Ov003Unit *unit);
@@ -13,7 +13,7 @@ void func_ov003_0235f8e8(Ov003Unit *unit)
         return;
     }
     if (unit->unk_1b != -1 && STATE->unk_1df_2 >= 2) {
-        func_ov003_0235fb38(unit);
+        Ov003Unit_FireScatteredBurst(unit);
         return;
     }
     if (unit->unk_1c_0) {
