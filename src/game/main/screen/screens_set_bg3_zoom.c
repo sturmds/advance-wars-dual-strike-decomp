@@ -1,0 +1,51 @@
+#include "types.h"
+#include "game/screen_other_map.h"
+
+/* Input of func_02009580, which turns it into the matrix of a BgAffine. */
+typedef struct AffineParams {
+    s32 srcX;                          /* 256: BG pixel drawn at (centerX, centerY) */
+    s32 srcY;
+    s16 centerX;
+    s16 centerY;
+    s16 scaleX;
+    s16 scaleY;
+    u16 angle;
+} AffineParams;
+
+void func_02009580(AffineParams *params, BgAffine *dest);
+
+/* Sets the BG3 affine matrix of both screens to one scale and angle. The
+ * screens differ in centerY: 0 on the first, 192 on the second. */
+void Screens_SetBg3Zoom(int scale, int angle)
+{
+    s16 scale16;
+    AffineParams params;
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+
+    params.srcX = 256;
+    scale16 = scale; /* needed to match: assigned between the two 256 stores */
+    params.srcY = 256;
+    params.scaleX = scale16;
+    params.scaleY = scale16;
+    params.angle = angle;
+    params.centerX = 128;
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    params.centerY = 0;
+    func_02009580(&params, &data_027c0280->bg3Affine);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    params.centerY = 192;
+    func_02009580(&params, &data_027c0280->bg3Affine);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+}
