@@ -10,12 +10,12 @@ extern u8 data_ov003_02364d8d[][20];
 extern Ov003Unit data_ov003_02369538[];
 
 void Sound_PlaySe(int se);
-void func_ov003_02361fc0(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
+void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
 
 /* Starts an effect for the unit in the first free entry of its group. dirX
  * (3 left, 4 right) and dirY (1 up, 2 down) pick the velocity, which is the
  * table speed (data_ov003_02364d8c) on each axis; kind 5 then limits the speed
- * with func_ov003_02361fc0. Sets the unit's unk_11 to 30. The sound plays only
+ * with Ov003_StepToward. Sets the unit's unk_11 to 30. The sound plays only
  * for the current slot's unit. */
 void Ov003Unit_SpawnEffectToward(Ov003Unit *unit, int dirX, int dirY)
 {
@@ -65,7 +65,7 @@ void Ov003Unit_SpawnEffectToward(Ov003Unit *unit, int dirX, int dirY)
         break;
     }
     if (effect->kind == 5) {
-        func_ov003_02361fc0(0, 0, effect->velX, effect->velY, speed, &newX, &newY);
+        Ov003_StepToward(0, 0, effect->velX, effect->velY, speed, &newX, &newY);
         effect->velX = newX;
         effect->velY = newY;
     }

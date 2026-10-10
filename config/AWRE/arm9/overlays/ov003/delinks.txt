@@ -574,6 +574,10 @@ src/game/ov003/ov003_is_current_slot_row_open.c:
     complete
     .text       start:0x02361f38 end:0x02361fc0
 
+src/game/ov003/ov003_step_toward.c:
+    complete
+    .text       start:0x02361fc0 end:0x0236207c
+
 src/game/ov003/ov003_row_kind_group.c:
     complete
     .text       start:0x0236207c end:0x02362098

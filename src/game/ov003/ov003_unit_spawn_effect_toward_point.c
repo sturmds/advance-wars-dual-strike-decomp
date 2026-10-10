@@ -12,7 +12,7 @@ extern Ov003Unit data_ov003_02369538[];
 void Sound_PlaySe(int se);
 u32 func_020279e0(u32 value);
 void Ov003_GetScrollToCentreUnit(Ov003Unit *unit, s16 *x, s16 *y);
-void func_ov003_02361fc0(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
+void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
 
 /* Same as Ov003Unit_SpawnEffect, but sets the velocity to the target minus the
  * unit's position (x >> 3, relative to the point Ov003_GetScrollToCentreUnit gives)
@@ -49,7 +49,7 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int targetX, int targetY)
     if (effect->kind == 5) {
         limit = (data_ov003_02364d8c[effect->kind][0] << 7) >> 3;
         if (func_020279e0(effect->velX * effect->velX + effect->velY * effect->velY) > limit) {
-            func_ov003_02361fc0(0, 0, effect->velX, effect->velY, limit, &newX, &newY);
+            Ov003_StepToward(0, 0, effect->velX, effect->velY, limit, &newX, &newY);
             effect->velX = newX;
             effect->velY = newY;
         }

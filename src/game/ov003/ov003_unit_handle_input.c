@@ -3,7 +3,7 @@
 #include "game/ov003_unit.h"
 
 int func_ov003_0235d518(int player, int kind, int terrain);
-void func_ov003_02361fc0(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
+void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight);
 int func_ov003_0235d940(int player);
 void func_ov003_0235ca50(int player);
@@ -18,7 +18,7 @@ extern u8 data_ov003_02365d10[];
 #define TERRAIN_AT(unit) (data_ov003_02365d10[MAP->cells[((unit)->y >> 7) * MAP->width + ((unit)->x >> 7)]] & 31)
 
 /* One frame of a player's unit: the d-pad moves it (diagonals through
- * func_ov003_02361fc0) at the speed for its kind and terrain and turns it, L or
+ * Ov003_StepToward) at the speed for its kind and terrain and turns it, L or
  * a touch on the bottom-right corner calls func_ov003_0235ca50 for its player,
  * and A, Y or a touch fires. Kinds 1 to 3 fire while A or Y is held, the others
  * once per press. */
@@ -52,13 +52,13 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     dx = 0;
     dy = 0;
     if ((pad->unk_00 & PAD_KEY_UP) && (pad->unk_00 & PAD_KEY_LEFT)) {
-        func_ov003_02361fc0(0, 0, -1, -1, speed, &dx, &dy);
+        Ov003_StepToward(0, 0, -1, -1, speed, &dx, &dy);
     } else if ((pad->unk_00 & PAD_KEY_UP) && (pad->unk_00 & PAD_KEY_RIGHT)) {
-        func_ov003_02361fc0(0, 0, 1, -1, speed, &dx, &dy);
+        Ov003_StepToward(0, 0, 1, -1, speed, &dx, &dy);
     } else if ((pad->unk_00 & PAD_KEY_DOWN) && (pad->unk_00 & PAD_KEY_LEFT)) {
-        func_ov003_02361fc0(0, 0, -1, 1, speed, &dx, &dy);
+        Ov003_StepToward(0, 0, -1, 1, speed, &dx, &dy);
     } else if ((pad->unk_00 & PAD_KEY_DOWN) && (pad->unk_00 & PAD_KEY_RIGHT)) {
-        func_ov003_02361fc0(0, 0, 1, 1, speed, &dx, &dy);
+        Ov003_StepToward(0, 0, 1, 1, speed, &dx, &dy);
     } else if (pad->unk_00 & PAD_KEY_UP) {
         dy = -speed;
         straight = 1;

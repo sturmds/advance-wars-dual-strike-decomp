@@ -10,7 +10,7 @@ extern u8 data_ov003_02364d8d[][20];
 extern Ov003Unit data_ov003_02369538[];
 
 u32 func_020279e0(u32 value);
-void func_ov003_02361fc0(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
+void Ov003_StepToward(int a0, int a1, int x, int y, int limit, int *outX, int *outY);
 
 /* Starts an effect for the unit in the first free entry of its group, with the
  * given velocity. Kind 5 limits the speed to its table value (data_ov003_02364d8c).
@@ -45,7 +45,7 @@ void Ov003Unit_SpawnEffect(Ov003Unit *unit, int velX, int velY)
     if (effect->kind == 5) {
         limit = (data_ov003_02364d8c[effect->kind][0] << 7) >> 3;
         if (func_020279e0(effect->velX * effect->velX + effect->velY * effect->velY) > limit) {
-            func_ov003_02361fc0(0, 0, effect->velX, effect->velY, limit, &newX, &newY);
+            Ov003_StepToward(0, 0, effect->velX, effect->velY, limit, &newX, &newY);
             effect->velX = newX;
             effect->velY = newY;
         }

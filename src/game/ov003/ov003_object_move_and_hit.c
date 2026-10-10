@@ -2,7 +2,7 @@
 #include "game/ov003_object.h"
 
 s32 HwMod32(s32 numerator, s32 denominator);
-void func_ov003_02361fc0(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
+void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 int Ov003Object_HitAt(Ov003Object *object, int x, int y);
 
 /* Default kind: moves the object along (offsetX, offsetY) by active units per
@@ -26,7 +26,7 @@ void Ov003Object_MoveAndHit(Ov003Object *object)
         object->active = 0;
         step = range - travelled;
     }
-    func_ov003_02361fc0(0, 0, object->offsetX, object->offsetY, step, &deltaX, &deltaY);
+    Ov003_StepToward(0, 0, object->offsetX, object->offsetY, step, &deltaX, &deltaY);
     stepX = deltaX >> 3;
     stepY = deltaY >> 3;
     if (stepX == 0) {
