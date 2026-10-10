@@ -19,6 +19,10 @@ src/game/ov006/design_room_init.c:
     complete
     .text       start:0x02350874 end:0x02350cdc
 
+src/game/ov006/design_room_exit.c:
+    complete
+    .text       start:0x02350e38 end:0x02350eb0
+
 src/game/ov006/func_ov006_02350eb0.c:
     complete
     .text       start:0x02350eb0 end:0x02350ec0
