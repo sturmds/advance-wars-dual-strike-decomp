@@ -15,10 +15,13 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_004;
     u8 pad_008[0x818 - 0x8];
     Unk_ov004_022bf158_818 unk_818;
-    u8 pad_828[0x8fc - 0x828];
-    int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 */
+    u8 pad_828[0x8f8 - 0x828];
+    int unk_8f8;                       /* eased each frame by func_ov004_022b0984 */
+    int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 and func_ov004_022b1e78 */
     int unk_900;                       /* eased each frame by func_ov004_022b061c */
-    u8 pad_904[0x998 - 0x904];
+    u8 pad_904[4];
+    int unk_908;                       /* eased each frame by func_ov004_022b1d38 */
+    u8 pad_90c[0x998 - 0x90c];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
     u8 pad_99c[0x1330 - 0x99c];
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
