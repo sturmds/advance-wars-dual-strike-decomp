@@ -69,7 +69,7 @@ typedef struct Ov003Row {
     u8 unk_28[10];
     u16 unk_32;
     u16 unk_34;
-    u8 pad_36[2];
+    u16 unk_36;
     u8 unk_38;
     u8 unk_39;
     u8 spawnCount;
