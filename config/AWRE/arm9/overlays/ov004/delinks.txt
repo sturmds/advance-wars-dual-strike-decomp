@@ -848,6 +848,10 @@ src/game/ov004/ov004_init_vram_banks.c:
     complete
     .text       start:0x022bba30 end:0x022bba9c
 
+src/game/ov004/ov004_task_init_blended_scene.c:
+    complete
+    .text       start:0x022bc200 end:0x022bc984
+
 src/game/ov004/ov004_queue_bottom_sprites.c:
     complete
     .text       start:0x022bc984 end:0x022bc9fc
