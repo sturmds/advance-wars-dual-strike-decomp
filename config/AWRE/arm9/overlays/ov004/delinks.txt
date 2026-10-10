@@ -555,6 +555,10 @@ src/game/ov004/ov004_set_slot_task.c:
     complete
     .text       start:0x022bb1e8 end:0x022bb200
 
+src/game/ov004/ov004_start_clock.c:
+    complete
+    .text       start:0x022bb2f8 end:0x022bb318
+
 src/game/ov004/func_ov004_022bb388.c:
     complete
     .text       start:0x022bb388 end:0x022bb38c
