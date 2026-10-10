@@ -21,7 +21,7 @@ void Battle_BuildHitLists(void)
     for (side = 0; side < 2; side++) {
         BattleHitList *list = (BattleHitList *)BATTLE_FIELD(hitLists) + side;
 
-        list->pad_10 = 0;
+        list->cursor = 0;
         list->count = 0;
         if (Ov002_gBattleScene->sides[side].counters != 0) {
             for (slot = 0; slot < 5; slot++) {

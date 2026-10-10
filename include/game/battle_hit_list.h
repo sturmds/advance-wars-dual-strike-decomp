@@ -16,7 +16,7 @@ typedef struct BattleHitFlags {
 typedef struct BattleHitList {
     BattleHitFlags flags[6];
     u16 key[5];
-    u8 pad_10;
+    u8 cursor;                         /* next entry BattleCells_RunSequence runs */
     u8 count;
 } BattleHitList;
 

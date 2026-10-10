@@ -199,6 +199,10 @@ src/game/ov002/battle_release_side_tasks.c:
     complete
     .text       start:0x02357334 end:0x02357434
 
+src/game/ov002/battle_cells_run_sequence.c:
+    complete
+    .text       start:0x0235919c end:0x02359420
+
 src/game/ov002/battle_cells_push_step.c:
     complete
     .text       start:0x0235951c end:0x02359674

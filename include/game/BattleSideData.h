@@ -34,7 +34,7 @@ typedef struct BattleSideData {
     u8 pad_14[4];
     const BattleCellPos *cellPositions; /* by cell */
     u8 pad_1c[0x48 - 0x1c];
-    u8 unk_48;                         /* nonzero: BattleCellTask steps are all 0 for the side */
+    u8 unk_48;                         /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
     u8 unk_49[1];                      /* length unknown; indexed by byte 9 of the side's 12-byte record in the scene */
 } BattleSideData;
 
