@@ -66,4 +66,22 @@ typedef struct BattleCounterTask {
     u8 unk_5d;                         /* zero: the task is done */
 } BattleCounterTask;
 
+/* Task of the ov002 battle animation that func_ov002_0235f3c0 makes from the script at
+ * data_ov002_02369724. It puts a sprite on the first HP cell of its side. */
+struct BattleCellTask;
+struct BattleHitList;
+struct BattleSpriteTask;
+struct BattleCellPos;
+
+typedef struct BattleCellSpriteTask {
+    u8 pad_00[0x2c];
+    struct BattleCellTask *cell;       /* cell task of the side's first cell */
+    struct BattleHitList *hitList;     /* BattleScreenWork.hitLists of the side */
+    struct BattleSpriteTask *sprite;   /* the sprite made for the cell */
+    const struct BattleCellPos *cellPositions; /* BattleSideData.cellPositions of the side */
+    u32 unk_3c;
+    u16 unk_40;                        /* BattleFighter.unk_44 */
+    u8 side;
+} BattleCellSpriteTask;
+
 #endif
