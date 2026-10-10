@@ -12,7 +12,7 @@ int func_ov006_023622bc(int x, int y);
 int Ov006_MouthHasNoOutlet(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
-void func_ov006_02361684(int x, int y);
+void Ov006_RefreshNeighborRivers(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -22,14 +22,14 @@ void func_ov006_02361684(int x, int y);
             || !func_ov006_023622bc(nx, ny) || !Ov006_MouthHasNoOutlet(nx, ny)) { \
             Ov006_SetTerrain(nx, ny, TERRAIN_SEA);                    \
             Ov006_StoreMapCell(nx, ny, MAP_CELL_SEA);          \
-            func_ov006_02361684(nx, ny);                                 \
+            Ov006_RefreshNeighborRivers(nx, ny);                                 \
         }                                                                \
     }
 
 /* Checks the eight tiles around x, y. A neighbour with one of the cells
  * Ov006_IsSpecialCell accepts (codes 252, 253, 284, 285) that no longer
  * passes func_ov006_02361114, func_ov006_023622bc and Ov006_MouthHasNoOutlet
- * turns back into plain sea; func_ov006_02361684 then updates the tiles
+ * turns back into plain sea; Ov006_RefreshNeighborRivers then updates the tiles
  * around it. Corner tiles fail at a score of 0, side tiles only below 0. */
 void Ov006_ResetNeighborsToSea(int x, int y)
 {
