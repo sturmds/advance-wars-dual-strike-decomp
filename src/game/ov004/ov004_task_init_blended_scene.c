@@ -20,7 +20,7 @@ void func_0210c874(const void *src, u32 offset, u32 size);  /* guess: copies to 
 void func_0210c81c(void);
 void Ov004_SetupPerspective3d(void);
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158 *state);
-void func_ov004_022bdc2c(void);
+void Ov004_InitVramBanksInOrder(void);
 void func_ov004_022bd124(Unk_ov004_022bf158 *state);
 void func_ov004_022bd864(Unk_ov004_022bf158 *state);
 void func_ov004_022bdc08(Unk_ov004_022bf158 *state);
@@ -50,7 +50,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     Unk_02080440 *savedState;
     u8 *buffer;
 
-    func_ov004_022bdc2c();
+    Ov004_InitVramBanksInOrder();
 
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
