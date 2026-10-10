@@ -7,7 +7,7 @@ void func_ov006_02363198(int x, int y);
 void func_ov006_0236146c(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235d7dc(int x, int y);
-void func_ov006_02364844(int x, int y);
+void Ov006_CheckReefsAround(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 
 /* Puts a mountain at (x, y), going through plain first when
@@ -22,6 +22,6 @@ void Ov006_PlaceMountain(int x, int y)
     func_ov006_0236146c(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     func_ov006_0235d7dc(x, y);
-    func_ov006_02364844(x, y);
+    Ov006_CheckReefsAround(x, y);
     Ov006_BreakCellBlock(x, y);
 }
