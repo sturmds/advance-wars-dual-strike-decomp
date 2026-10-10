@@ -5,7 +5,9 @@
 
 /* Reached through BattleSideData.unk_10. mwcc packs bit fields from the low end. */
 typedef struct BattleSideData_10 {
-    u8 pad_00[0x29];
+    u8 pad_00[0x28];
+    u8 unk_28_lo : 4;
+    u8 unk_28_hi : 4;
     u8 unk_29_lo : 4;
     u8 sameAltitude : 4;               /* value for Battle_GetAirGroundMatchup 0 */
     u8 groundVsAir : 4;                /* matchup 1 */

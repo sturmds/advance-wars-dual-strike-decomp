@@ -48,6 +48,7 @@ void BattleCellTask_RestartSprite(BattleCellTask *task);
 void BattleCellTask_Bob(BattleCellTask *task);
 void BattleCellTask_Move(BattleCellTask *task);
 void BattleCellTask_RemakeSprites(BattleCellTask *task);
+void BattleCellTask_StartMove(BattleCellTask *task);
 
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */
