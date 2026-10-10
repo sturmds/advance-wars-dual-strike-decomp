@@ -312,7 +312,7 @@ func_ov006_02367560 kind:function(arm,size=0x80) addr:0x02367560
 func_ov006_023675e0 kind:function(arm,size=0x8c) addr:0x023675e0
 func_ov006_0236766c kind:function(arm,size=0x374) addr:0x0236766c
 func_ov006_023679e0 kind:function(arm,size=0x90) addr:0x023679e0
-func_ov006_02367a70 kind:function(arm,size=0x6a4) addr:0x02367a70
+Ov006_RefitJoinedCellsAround kind:function(arm,size=0x6a4) addr:0x02367a70
 func_ov006_02368114 kind:function(arm,size=0x9c) addr:0x02368114
 func_ov006_023681b0 kind:function(arm,size=0x1320) addr:0x023681b0
 func_ov006_023694d0 kind:function(arm,size=0x6f4) addr:0x023694d0
@@ -564,9 +564,9 @@ data_ov006_0236d5b8 kind:data(any) addr:0x0236d5b8
 data_ov006_0236d5c8 kind:data(any) addr:0x0236d5c8
 data_ov006_0236d5d8 kind:data(any) addr:0x0236d5d8
 data_ov006_0236d5e8 kind:data(any) addr:0x0236d5e8
-data_ov006_0236d5f0 kind:data(any) addr:0x0236d5f0
+Ov006_gNeighborDy kind:data(any) addr:0x0236d5f0
 data_ov006_0236d5f8 kind:data(any) addr:0x0236d5f8
-data_ov006_0236d600 kind:data(any) addr:0x0236d600
+Ov006_gNeighborDx kind:data(any) addr:0x0236d600
 data_ov006_0236d608 kind:data(any) addr:0x0236d608
 data_ov006_0236d610 kind:data(any) addr:0x0236d610
 data_ov006_0236d618 kind:data(any) addr:0x0236d618

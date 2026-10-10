@@ -583,6 +583,10 @@ src/game/ov006/ov006_break_cell_block.c:
     complete
     .text       start:0x0236652c end:0x02366e4c
 
+src/game/ov006/ov006_refit_joined_cells_around.c:
+    complete
+    .text       start:0x02367a70 end:0x02368114
+
 src/game/ov006/func_ov006_0236a1d0.c:
     complete
     .text       start:0x0236a1d0 end:0x0236a1d4
