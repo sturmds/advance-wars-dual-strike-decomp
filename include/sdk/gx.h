@@ -74,6 +74,7 @@
 #define IO_SUB_BG_PIXELATE_SIZE ((volatile u8 *)0x0400104c)
 #define IO_SUB_OBJ_PIXELATE_SIZE ((volatile u8 *)0x0400104d)
 #define REG_DB_BLDCNT ((volatile u16 *)0x04001050)
+#define REG_DB_BLDALPHA ((volatile u16 *)0x04001052)
 #define REG_DB_MASTER_BRIGHT ((volatile u16 *)0x0400106c)
 
 /* 3D engine registers. */
