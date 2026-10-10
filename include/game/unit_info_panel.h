@@ -9,7 +9,9 @@
  * owner's army palette and sprite set. */
 typedef struct UnitInfoPanel {
     u8 unk_00;                         /* 120 when shown by UnitInfoPanel_OpenForType and UnitInfoPanel_OpenForUnit; passed to the drawing code */
-    u8 pad_01[0x04 - 0x01];
+    u8 pad_01[0x02 - 0x01];
+    u8 tileX;                          /* top left of the panel text area, in tiles; the text starts one tile in */
+    u8 tileY;
     MapUnit *unit;                     /* unit shown, or the scratch copy in data_ov000_02350510 */
     u8 owner;                          /* player slot of the unit */
     u8 palette;                        /* Player.armyColour - 1 */
