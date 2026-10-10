@@ -37,7 +37,7 @@ typedef struct BattleSetupState {
     u8 forceRankSets[4][2];            /* 0-3, from Co_GetForceRankSetIndex */
     u8 teams[4];                       /* team of each player slot, 0-3 */
     u8 armyColours[4];
-    u8 pad_2d0[0x2d4 - 0x2d0];
+    u8 unk_2d0[4];                     /* by player slot; 0 set by func_02066674 */
     u8 *coList;                        /* COs to pick from, filled by BuildCoPickList */
     u16 fundsPerProperty;
     u8 coListCount;

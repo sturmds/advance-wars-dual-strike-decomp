@@ -3718,6 +3718,10 @@ src/game/main/func_0206664c.c:
     complete
     .text       start:0x0206664c end:0x02066674
 
+src/game/main/menus/func_02066674.c:
+    complete
+    .text       start:0x02066674 end:0x020666cc
+
 src/game/main/has_two_or_more_teams.c:
     complete
     .text       start:0x02066818 end:0x020668a8
