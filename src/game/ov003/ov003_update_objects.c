@@ -2,7 +2,7 @@
 #include "game/ov003_object.h"
 
 void Ov003Object_Travel(Ov003Object *object);
-void func_ov003_0235a8d8(Ov003Object *object);
+void Ov003Object_Ease(Ov003Object *object);
 void Ov003Object_MoveAndHit(Ov003Object *object);
 
 void Ov003_UpdateObjects(void)
@@ -14,7 +14,7 @@ void Ov003_UpdateObjects(void)
         if (object->active != 0) {
             switch (object->kind) {
             case 5:
-                func_ov003_0235a8d8(object);
+                Ov003Object_Ease(object);
                 break;
             case 7:
                 Ov003Object_Travel(object);
