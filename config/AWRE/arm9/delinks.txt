@@ -2811,6 +2811,10 @@ src/game/main/text/text_get_string_width.c:
     complete
     .text       start:0x02039df4 end:0x02039e34
 
+src/game/main/text/sprite_font_queue_char.c:
+    complete
+    .text       start:0x02039e54 end:0x02039f20
+
 src/game/main/func_02039f20.c:
     complete
     .text       start:0x02039f20 end:0x02039f60
