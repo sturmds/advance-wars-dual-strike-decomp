@@ -812,6 +812,10 @@ src/game/ov005/shop/ov005_get_selected_shop_item_index.c:
     complete
     .text       start:0x02367be8 end:0x02367bfc
 
+src/game/ov005/shop/ov005_init_shop_icon_bank.c:
+    complete
+    .text       start:0x02367cac end:0x02367d28
+
 src/game/ov005/func_ov005_02367d28.c:
     complete
     .text       start:0x02367d28 end:0x02367d4c
