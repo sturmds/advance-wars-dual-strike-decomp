@@ -433,6 +433,10 @@ src/game/ov003/ov003_fade_evy_step.c:
     complete
     .text       start:0x0235cb6c end:0x0235cbf0
 
+src/game/ov003/ov003_step_letters_grow.c:
+    complete
+    .text       start:0x0235cbf0 end:0x0235ce7c
+
 src/game/ov003/func_ov003_0235ce7c.c:
     complete
     .text       start:0x0235ce7c end:0x0235cf68

@@ -6,7 +6,9 @@
 /* Overlay 3 object passed to func_ov003_0235dd38 and func_ov003_02363ba4,
  * which both clear its halfword at 0x4c. */
 typedef struct Unk_ov003_0235dd38 {
-    u8 pad_00[0x4c];
+    u8 pad_00[0x2c];
+    s32 slideX;                        /* eased from 0 to -240 while the letters pop in */
+    u8 pad_30[0x4c - 0x30];
     union {
         u16 unk_4c;
         s16 frame;                     /* counts up to a fade length */
