@@ -1,0 +1,182 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/keypad.h"
+#include "game/menu_button.h"
+#include "game/script_slot.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/ov005_task.h"
+#include "game/Unk_ov005_0236bb8c.h"
+
+Task *func_020fcdc8(Ov005Task *parent, int frames);
+Task *func_020fcda0(Ov005Task *parent, int frames);
+Task *func_020fcd78(Ov005Task *parent, int frames);
+Task *func_020fcd50(Ov005Task *parent, int frames);
+BOOL func_020fd624(Task *task);
+void func_020fd618(Task *task);
+void func_020fd560(void);
+Task *func_020fcb08(int arg);
+BOOL func_020fccbc(Task *task);
+void func_020fccb0(Task *task);
+void Task_ResumeScript(Ov005Task *task);
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentGfx(void *state);
+int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+ScriptSlot *func_020150f8(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+BOOL Text_IsPrinting(void);
+void Text_StopPrinting(void);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern const MenuButtonTemplate gOv005MessageScreenButton; /* confirm: func_ov005_02358958 */
+
+#define MESSAGE_BUTTON_ID 0xfd
+
+/* Per-frame update of an overlay 5 screen (task script data_ov005_023694cc):
+ * fade both screens in (64 frames), wait 32 frames, alpha-blend the sub
+ * screen's first target in over 64 frames, print a message on the main
+ * screen's layer 0, then show a button and wait for A or the button. Then
+ * fade out, stop the song task, hide every layer and OBJ on both screens,
+ * fade out the song and resume the task script. */
+void Ov005_UpdateMessageScreen(Ov005Task *task)
+{
+    Unk_ov005_0236bb8c *work = task->work;
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+    ScriptSlot *slot;
+    int eva;
+
+    switch (task->step) {
+    case 0:
+        work->fadeTask = func_020fcdc8(task, 64);
+        work->fadeTask2 = func_020fcda0(task, 64);
+        task->step++;
+    case 1:
+        if (func_020fd624(work->fadeTask)) {
+            return;
+        }
+        if (func_020fd624(work->fadeTask2)) {
+            return;
+        }
+        func_020fd618(work->fadeTask);
+        func_020fd618(work->fadeTask2);
+        task->step = 2;
+        return;
+    case 2:
+        task->frame = 0;
+        task->frames = 32;
+        task->step++;
+    case 3:
+        if (task->frame < task->frames) {
+            task->frame++;
+        } else {
+            task->step++;
+        }
+        return;
+    case 4:
+        task->frame = 0;
+        task->frames = 64;
+        task->step++;
+    case 5:
+        saved0280 = data_027c0280;
+        Screen_SetCurrentGfx(data_027c0288.unk_04);
+        saved027c = data_027c027c;
+        Screen_SetCurrent(data_027c0288.unk_04);
+        eva = Math_Ease(0, 0, 16, task->frame, task->frames);
+        data_027c0280->blendMode = BLEND_MODE_ALPHA;
+        data_027c0280->blendEva = eva;
+        data_027c0280->blendEvb = 16 - eva;
+        data_027c0280->blendEvy = 0;
+        Screen_SetCurrent(saved027c);
+        Screen_SetCurrentGfx(saved0280);
+        if (task->frame < task->frames) {
+            task->frame++;
+        } else {
+            task->step = 10;
+        }
+        return;
+    case 10:
+        saved0280 = data_027c0280;
+        Screen_SetCurrentGfx(data_027c0288.unk_00);
+        saved027c = data_027c027c;
+        Screen_SetCurrent(data_027c0288.unk_00);
+        slot = func_020150f8(2, 4, data_027c0280->layer0Map, 0x21000003, 0, 0x41);
+        work->textSlot = slot;
+        slot->unk_3e = 6;
+        Screen_SetCurrent(saved027c);
+        Screen_SetCurrentGfx(saved0280);
+        task->step++;
+    case 11:
+        if (!Text_IsPrinting()) {
+            task->step++;
+        }
+        return;
+    case 12:
+        MenuButton_Add(0, 0, &gOv005MessageScreenButton, MESSAGE_BUTTON_ID);
+        MenuButton_Select(MESSAGE_BUTTON_ID);
+        work->confirmed = 0;
+        task->step++;
+    case 13:
+        if (gKeypad->pressed & PAD_BUTTON_A) {
+            task->step = 100;
+            return;
+        }
+        if (work->confirmed) {
+            task->step = 100;
+        }
+        return;
+    case 100:
+        work->fadeTask = func_020fcd78(task, 64);
+        work->fadeTask2 = func_020fcd50(task, 64);
+        task->step++;
+        return;
+    case 101:
+        if (func_020fd624(work->fadeTask)) {
+            return;
+        }
+        if (func_020fd624(work->fadeTask2)) {
+            return;
+        }
+        func_020fccb0(work->songTask);
+        func_020fd560();
+        saved0280 = data_027c0280;
+        Screen_SetCurrentGfx(data_027c0288.unk_04);
+        saved027c = data_027c027c;
+        Screen_SetCurrent(data_027c0288.unk_04);
+        data_027c0280->dispCnt &= ~0x100;
+        data_027c0280->dispCnt &= ~0x200;
+        data_027c0280->dispCnt &= ~0x400;
+        data_027c0280->dispCnt &= ~0x800;
+        data_027c0280->dispCnt &= ~0x1000;
+        Screen_SetCurrent(saved027c);
+        Screen_SetCurrentGfx(saved0280);
+        saved0280 = data_027c0280;
+        Screen_SetCurrentGfx(data_027c0288.unk_00);
+        saved027c = data_027c027c;
+        Screen_SetCurrent(data_027c0288.unk_00);
+        data_027c0280->dispCnt &= ~0x100;
+        data_027c0280->dispCnt &= ~0x200;
+        data_027c0280->dispCnt &= ~0x400;
+        data_027c0280->dispCnt &= ~0x800;
+        data_027c0280->dispCnt &= ~0x1000;
+        Screen_SetCurrent(saved027c);
+        Screen_SetCurrentGfx(saved0280);
+        func_020fd618(work->fadeTask);
+        func_020fd618(work->fadeTask2);
+        MenuButton_Remove(MESSAGE_BUTTON_ID);
+        Text_StopPrinting();
+        task->step++;
+        return;
+    case 102:
+        work->songTask = func_020fcb08(1);
+        task->step++;
+    case 103:
+        if (func_020fccbc(work->songTask)) {
+            return;
+        }
+        func_020fccb0(work->songTask);
+        Task_ResumeScript(task);
+        return;
+    }
+}

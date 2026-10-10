@@ -55,7 +55,7 @@ func_ov005_02357844 kind:function(arm,size=0x18) addr:0x02357844
 func_ov005_0235785c kind:function(arm,size=0x18) addr:0x0235785c
 func_ov005_02357874 kind:function(arm,size=0x18) addr:0x02357874
 func_ov005_0235788c kind:function(arm,size=0x10) addr:0x0235788c
-func_ov005_0235789c kind:function(arm,size=0x570) addr:0x0235789c
+Ov005_UpdateMessageScreen kind:function(arm,size=0x570) addr:0x0235789c
 func_ov005_02357e0c kind:function(arm,size=0xb1c) addr:0x02357e0c
 func_ov005_02358928 kind:function(arm,size=0x2c) addr:0x02358928
 func_ov005_02358954 kind:function(arm,size=0x4) addr:0x02358954
@@ -369,7 +369,7 @@ data_ov005_02369494 kind:data(any) addr:0x02369494
 data_ov005_02369498 kind:data(any) addr:0x02369498
 data_ov005_0236949c kind:data(any) addr:0x0236949c
 data_ov005_023694a0 kind:data(any) addr:0x023694a0
-data_ov005_023694a4 kind:data(any) addr:0x023694a4
+gOv005MessageScreenButton kind:data(any) addr:0x023694a4
 data_ov005_023694cc kind:data(any) addr:0x023694cc
 data_ov005_023694f4 kind:data(any) addr:0x023694f4
 data_ov005_02369544 kind:data(any) addr:0x02369544
