@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 3019 / 6603 | 435992 / 1531944 | 28.46% | 0 | 0 |
+| game | 3022 / 6603 | 437176 / 1531944 | 28.54% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 3157 / 7483 | 439412 / 1685994 | 26.06% | 1 | 30 |
+| all | 3160 / 7483 | 440596 / 1685994 | 26.13% | 1 | 30 |
 
 ## By module
 
@@ -23,7 +23,7 @@ Rows with nothing done are left out, but count in the totals.
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 117 / 121 | 23924 / 25300 | 94.56% | 0 |
 | ov001 | game | 72 / 76 | 6768 / 7472 | 90.58% | 0 |
-| ov002 | game | 136 / 164 | 41368 / 64208 | 64.43% | 0 |
+| ov002 | game | 139 / 164 | 42552 / 64208 | 66.27% | 0 |
 | ov003 | game | 45 / 235 | 6932 / 82696 | 8.38% | 0 |
 | ov004 | game | 105 / 236 | 4104 / 67364 | 6.09% | 0 |
 | ov005 | game | 103 / 270 | 5700 / 96684 | 5.90% | 0 |
@@ -60,9 +60,12 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov001/func_ov001_02351174.c` | func_ov001_02351174 | 244 |
 | `src/game/ov001/func_ov001_02351268.c` | func_ov001_02351268 | 132 |
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
+| `src/game/ov002/battle_cell_sprite_arrived.c` | func_ov002_02357d24 | 312 |
+| `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
 | `src/game/ov002/battle_draw_textured_quad.c` | Battle_DrawTexturedQuad | 392 |
 | `src/game/ov002/battle_fighter_task_setup.c` | BattleFighterTask_Setup | 544 |
 | `src/game/ov002/battle_footstep_task_start.c` | BattleFootstepTask_Start | 712 |
+| `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02353254.c` | func_ov002_02353254 | 308 |
 | `src/game/ov002/func_ov002_02354814.c` | func_ov002_02354814 | 216 |

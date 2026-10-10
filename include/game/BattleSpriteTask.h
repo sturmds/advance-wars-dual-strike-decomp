@@ -12,7 +12,13 @@ typedef struct BattleSpriteTask {
     u32 unk_2c;                        /* first word of the table the task is made from */
     u32 unk_30;                        /* word at index + 1 of the same table */
     u32 frame;                         /* frame being drawn, from the unk_2c table; 0: none */
-    const u16 *script;                 /* script position */
+    union {
+        const u16 *script;             /* script position */
+        struct {
+            s16 unk_38;                /* fighter sprites: position read by the battle screen */
+            s16 unk_3a;
+        };
+    };
     s16 unk_3c;
     s16 unk_3e;
     s16 unk_40;

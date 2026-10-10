@@ -171,7 +171,10 @@ typedef struct BattleScreenWork {
     u8 pad_068[0x070 - 0x068];
     const u32 *unk_70;                 /* sprite table, the same for both sides */
     BattleMotion motions[2][5];        /* by side, then by cell */
-    BattleEntry unk_13c[2][5];         /* only unk_00 is cleared (Battle_ClearMotions) */
+    union {
+        BattleEntry unk_13c[2][5];     /* only unk_00 is cleared (Battle_ClearMotions) */
+        BattleCellSprite cellSprites[2][5];
+    };
     BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
