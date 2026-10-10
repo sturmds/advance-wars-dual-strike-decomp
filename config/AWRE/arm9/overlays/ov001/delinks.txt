@@ -23,6 +23,10 @@ src/game/ov001/ov001_acting_unit_dest_x_above7.c:
     complete
     .text       start:0x02350638 end:0x0235066c
 
+src/game/ov001/ov001_all_current_player_units_waited.c:
+    complete
+    .text       start:0x0235066c end:0x02350708
+
 src/game/ov001/ov001_player1_has_no_infantry.c:
     complete
     .text       start:0x023507a8 end:0x02350824
