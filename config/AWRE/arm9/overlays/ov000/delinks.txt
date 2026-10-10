@@ -120,6 +120,10 @@ src/game/ov000/second_screen_task_is_running.c:
     complete
     .text       start:0x022b0680 end:0x022b06ec
 
+src/game/ov000/power_meter_queue_stars.c:
+    complete
+    .text       start:0x022b07bc end:0x022b0954
+
 src/game/ov000/palette_load_army_obj_row.c:
     complete
     .text       start:0x022b1190 end:0x022b11f0
