@@ -81,6 +81,10 @@ typedef struct Unk_ov005_0236bbac {
     Ov005CoButton *buttons;
     u8 pad_f0[0x1114 - 0xf0];
     int unk_1114;
+    u8 pad_1118[0x1220 - 0x1118];
+    s16 barHeights[16];                /* 0 to 10 tiles */
+    u8 pad_1240[0x1320 - 0x1240];
+    s16 shownBarHeights[16];           /* barHeights as last drawn */
 } Unk_ov005_0236bbac;
 
 #endif
