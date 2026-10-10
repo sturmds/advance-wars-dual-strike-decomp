@@ -1,0 +1,202 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/ov005_task.h"
+#include "game/Unk_ov005_0236bba0.h"
+
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentGfx(void *state);
+void func_02028a30(void);
+void FS_ChangeDir(const char *dir);
+void File_UnpackTo(void *dest, const char *fileName);
+void Gfx_RequestLayerCopy(int layer);
+void Font_LoadDigits(int baseTile);
+void Gfx_LoadBmap09f(void *dst, int unused, int paletteSlot);
+void func_0202b764(void);
+void func_0202b6f8(u8 *dest);
+/* Defined with no parameters; this call passes the task in r0 anyway. */
+void Ov005_AddStateScreenButtons(Ov005Task *task);
+int Ov005_FindSavedCoListEntry(void);
+u8 func_ov005_0235d5bc(int entry);
+void func_ov005_0235cf38(Ov005Task *task);
+void func_02029248(int co);
+void ModeFont_Load(int tile, int paletteSlot);
+const void *Text_Get(u32 textId);
+void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
+void func_02027488(int tile, int a);
+void func_020272e0(u32 textId, int tile);
+void func_02023f38(void);
+void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
+void Icon_Load(int iconId);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern char data_ov005_0236a624[];     /* "/rikiishi" */
+extern char data_ov005_0236a630[];     /* "039" */
+extern u8 data_ov005_0236a48c[33];     /* CO id of each list entry */
+
+/* First step of the CO list screen (work block Unk_ov005_0236bba0). Both
+ * screens: BG0, BG3 and OBJ on (the main screen also BG1), layer priorities
+ * 0 to 3, darken blend on layer 3 with no fade yet, no scroll. Loads the main
+ * screen's layer 1 map from /rikiishi/039, the digit font and the buttons,
+ * puts the cursor on the CO saved in gPlayRecords, passes that CO id to
+ * func_02029248 (probably loads its picture), and writes the sub screen's
+ * title and help text. */
+void Ov005_SetUpCoListScreen(Ov005Task *task)
+{
+    Unk_ov005_0236bba0 *work;
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+
+    work = task->work;
+    func_02028a30();
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    data_027c0280->dispCnt |= 0x100;
+    data_027c0280->dispCnt &= ~0x200;
+    data_027c0280->dispCnt &= ~0x400;
+    data_027c0280->dispCnt |= 0x800;
+    data_027c0280->dispCnt |= 0x1000;
+    data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
+    data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 1;
+    data_027c0280->bgCnt[data_027c0280->layer2Bg].priority = 2;
+    data_027c0280->bgCnt[data_027c0280->layer3Bg].priority = 3;
+    data_027c0280->blendMode = BLEND_MODE_DARKEN;
+    data_027c0280->blendEva = 0;
+    data_027c0280->blendEvb = 0;
+    data_027c0280->blendEvy = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer0Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer1Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer2Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer3Bg] = 1;
+    data_027c0280->blendTopObj = 0;
+    data_027c0280->dispCnt |= 0x40;
+    data_027c0280->unk_dd = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer1Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    data_027c0280->dispCnt |= 0x100;
+    data_027c0280->dispCnt |= 0x200;
+    data_027c0280->dispCnt &= ~0x400;
+    data_027c0280->dispCnt |= 0x800;
+    data_027c0280->dispCnt |= 0x1000;
+    data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
+    data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 1;
+    data_027c0280->bgCnt[data_027c0280->layer2Bg].priority = 2;
+    data_027c0280->bgCnt[data_027c0280->layer3Bg].priority = 3;
+    data_027c0280->blendMode = BLEND_MODE_DARKEN;
+    data_027c0280->blendEva = 0;
+    data_027c0280->blendEvb = 0;
+    data_027c0280->blendEvy = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer0Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer1Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer2Bg] = 0;
+    data_027c0280->blendTopBg[data_027c0280->layer3Bg] = 1;
+    data_027c0280->blendTopObj = 0;
+    data_027c0280->dispCnt |= 0x40;
+    data_027c0280->unk_dd = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer1Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
+    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    FS_ChangeDir(data_ov005_0236a624);
+    File_UnpackTo(data_027c0280->layer1Map, data_ov005_0236a630);
+    Gfx_RequestLayerCopy(1);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    Font_LoadDigits(0);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
+    func_0202b764();
+    func_0202b6f8(data_027c0280->objVram + 0x2000);
+    Ov005_AddStateScreenButtons(task);
+    work->unk_04 = 0;
+    work->unk_08 = 0;
+    work->unk_0c = 0;
+    work->unk_10 = 0;
+    work->selectedEntry = Ov005_FindSavedCoListEntry();
+    work->unk_83c = func_ov005_0235d5bc(work->selectedEntry);
+    work->unk_840 = work->selectedEntry;
+    func_ov005_0235cf38(task);
+    work->unk_844 = work->selectedEntry;
+    work->unk_848 = work->unk_844;
+    work->unk_84c = 1;
+    func_02029248(data_ov005_0236a48c[work->selectedEntry]);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    ModeFont_Load(0, 0);
+    ModeFont_ShowText(Text_Get(0x7d000011), 0, 0, 0, 0);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    func_02027488(0x3f8, 1);
+    func_020272e0(0x80000030, 0x40);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    work->scrollX = 0;
+    work->scrollY = 0;
+    work->unk_82c = 0;
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = work->scrollY >> 12;
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = work->scrollX >> 12;
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_00);
+    func_02023f38();
+    IconBank_Init(4, data_027c0280->objVram, 0x200, 24);
+    Icon_Load(0xd6);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+
+    task->step = 0;
+}
