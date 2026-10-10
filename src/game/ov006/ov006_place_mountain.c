@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/terrain.h"
 
-int func_ov006_02351288(int x, int y);
+int Ov006_IsLandTile(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
 void func_ov006_0236146c(int x, int y);
@@ -11,10 +11,10 @@ void Ov006_CheckReefsAround(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 
 /* Puts a mountain at (x, y), going through plain first when
- * func_ov006_02351288 returns 0, then runs the follow-up fixes for the tile. */
+ * Ov006_IsLandTile returns 0, then runs the follow-up fixes for the tile. */
 void Ov006_PlaceMountain(int x, int y)
 {
-    if (!func_ov006_02351288(x, y)) {
+    if (!Ov006_IsLandTile(x, y)) {
         Ov006_SetTerrain(x, y, TERRAIN_PLAIN);
     }
     Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);

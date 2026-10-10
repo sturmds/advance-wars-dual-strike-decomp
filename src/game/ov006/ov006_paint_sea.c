@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/terrain.h"
 
-int func_ov006_02351304(int x, int y);   /* TRUE unless the tile is sea, shoal or reef */
+int Ov006_IsNotSeaTile(int x, int y);   /* TRUE unless the tile is sea, shoal or reef */
 int Ov006_IsBridgeTile(int x, int y);   /* checks bridge tiles only */
 int Ov006_GetTilePropertyKind(int x, int y);
 void Ov006_RemoveProperty(int x, int y);
@@ -29,7 +29,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * the plain sea cell. Last, Ov006_RemoveUnitOnImpassableTile refits the tile. */
 void Ov006_PaintSea(int x, int y)
 {
-    if (func_ov006_02351304(x, y)) {
+    if (Ov006_IsNotSeaTile(x, y)) {
         if (Ov006_IsBridgeTile(x, y)) {
             return;
         }

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-BOOL func_ov006_02351304(int x, int y);           /* FALSE when the tile is sea, shoal or reef */
+BOOL Ov006_IsNotSeaTile(int x, int y);           /* FALSE when the tile is sea, shoal or reef */
 BOOL Ov006_CountNeighborsOnSide(int x, int y, int side); /* side: 0 left, 1 right, 2 up, 4 down */
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
@@ -34,7 +34,7 @@ void Ov006_AddRiverMouths(int x, int y)
     int cell = CELL_AT(x, y);
 
     if (cell == CELL_RIVER_HORIZONTAL) {
-        if (x > 0 && !func_ov006_02351304(x - 1, y) && CELL_AT(x, y) == CELL_RIVER_HORIZONTAL
+        if (x > 0 && !Ov006_IsNotSeaTile(x - 1, y) && CELL_AT(x, y) == CELL_RIVER_HORIZONTAL
             && !Ov006_CountNeighborsOnSide(x - 1, y, 0)) {
             Ov006_SetTerrain(x - 1, y, TERRAIN_RIVER);
             Ov006_StoreMapCell(x - 1, y, CELL_MOUTH_LEFT);
@@ -42,7 +42,7 @@ void Ov006_AddRiverMouths(int x, int y)
                 Ov006_PlaceShoal(x - 1, y - 1);
             }
         }
-        if (x < STATE->unk_1c4->mapWidth - 1 && !func_ov006_02351304(x + 1, y)
+        if (x < STATE->unk_1c4->mapWidth - 1 && !Ov006_IsNotSeaTile(x + 1, y)
             && CELL_AT(x, y) == CELL_RIVER_HORIZONTAL && !Ov006_CountNeighborsOnSide(x + 1, y, 1)) {
             Ov006_SetTerrain(x + 1, y, TERRAIN_RIVER);
             Ov006_StoreMapCell(x + 1, y, CELL_MOUTH_RIGHT);
@@ -54,7 +54,7 @@ void Ov006_AddRiverMouths(int x, int y)
     if (cell != CELL_RIVER_VERTICAL) {
         return;
     }
-    if (y > 0 && !func_ov006_02351304(x, y - 1) && CELL_AT(x, y) == CELL_RIVER_VERTICAL
+    if (y > 0 && !Ov006_IsNotSeaTile(x, y - 1) && CELL_AT(x, y) == CELL_RIVER_VERTICAL
         && !Ov006_CountNeighborsOnSide(x, y - 1, 2)) {
         Ov006_SetTerrain(x, y - 1, TERRAIN_RIVER);
         Ov006_StoreMapCell(x, y - 1, CELL_MOUTH_UP);
@@ -62,7 +62,7 @@ void Ov006_AddRiverMouths(int x, int y)
             Ov006_PlaceShoal(x - 1, y - 1);
         }
     }
-    if (y < STATE->unk_1c4->mapHeight - 1 && !func_ov006_02351304(x, y + 1)
+    if (y < STATE->unk_1c4->mapHeight - 1 && !Ov006_IsNotSeaTile(x, y + 1)
         && CELL_AT(x, y) == CELL_RIVER_VERTICAL && !Ov006_CountNeighborsOnSide(x, y + 1, 4)) {
         Ov006_SetTerrain(x, y + 1, TERRAIN_RIVER);
         Ov006_StoreMapCell(x, y + 1, CELL_MOUTH_DOWN);
