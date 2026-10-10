@@ -6538,6 +6538,10 @@ src/game/main/func_020bef30.c:
     complete
     .text       start:0x020bef30 end:0x020bef88
 
+src/game/main/ai/func_020bf6f4.c:
+    complete
+    .text       start:0x020bf6f4 end:0x020bf790
+
 src/game/main/map/map_has_no_hint_script.c:
     complete
     .text       start:0x020bfca8 end:0x020bfcfc
