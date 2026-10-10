@@ -503,6 +503,10 @@ src/game/ov006/ov006_find_random_clear_cell.c:
     complete
     .text       start:0x0235ab7c end:0x0235ac78
 
+src/game/ov006/ov006_pick_random_cell_block.c:
+    complete
+    .text       start:0x0235ac78 end:0x0235ae48
+
 src/game/ov006/ov006_find_random_cell.c:
     complete
     .text       start:0x0235ae48 end:0x0235af38
