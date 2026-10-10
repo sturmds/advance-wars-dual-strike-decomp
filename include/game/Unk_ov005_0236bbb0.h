@@ -21,7 +21,7 @@ typedef struct ShopButton {
     u8 pad_04[0xc - 0x4];
 } ShopButton;
 
-/* Overlay 5 work block (0x1d68 bytes) that func_ov005_02366eec allocates
+/* Overlay 5 work block (0x1d68 bytes) that Ov005_AllocShopWork allocates
  * into Ov005Task.work and data_ov005_0236bbb0: Hachi's shop, a list of
  * items with prices (from the 28-byte records at data_0216cb60), six rows
  * per page. */
