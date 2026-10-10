@@ -5,7 +5,7 @@
 int Ov006_GetWaterCell(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
-void func_ov006_02361de0(int x, int y);
+void Ov006_PlaceRiver(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235da70(int x, int y, int arg);
 int func_ov006_023670ec(int x, int y);
@@ -41,16 +41,16 @@ void Ov006_RefitTile(int x, int y, int refitRivers)
     }
     if (refitRivers) {
         if (TERRAIN_AT(x, y - 1) == TERRAIN_RIVER) {
-            func_ov006_02361de0(x, y - 1);
+            Ov006_PlaceRiver(x, y - 1);
         }
         if (TERRAIN_AT(x, y + 1) == TERRAIN_RIVER) {
-            func_ov006_02361de0(x, y + 1);
+            Ov006_PlaceRiver(x, y + 1);
         }
         if (TERRAIN_AT(x - 1, y) == TERRAIN_RIVER) {
-            func_ov006_02361de0(x - 1, y);
+            Ov006_PlaceRiver(x - 1, y);
         }
         if (TERRAIN_AT(x + 1, y) == TERRAIN_RIVER) {
-            func_ov006_02361de0(x + 1, y);
+            Ov006_PlaceRiver(x + 1, y);
         }
     }
     Ov006_ResetNeighborsToSea(x, y);
