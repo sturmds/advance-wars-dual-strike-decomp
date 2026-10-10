@@ -2140,6 +2140,10 @@ src/game/main/func_02024a6c.c:
     complete
     .text       start:0x02024a6c end:0x02024a98
 
+src/game/main/menus/touch_press_on_screen.c:
+    complete
+    .text       start:0x02024e00 end:0x02024ec0
+
 src/game/main/menus/rect_contains_point.c:
     complete
     .text       start:0x02024f80 end:0x02024fdc
