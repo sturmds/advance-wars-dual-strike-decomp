@@ -54,6 +54,14 @@ src/game/ov002/func_ov002_02353dd4.c:
     complete
     .text       start:0x02353dd4 end:0x02353e18
 
+src/game/ov002/gx_send_quad_xz.c:
+    complete
+    .text       start:0x02353e18 end:0x02353f58
+
+src/game/ov002/gx_send_quad_xy.c:
+    complete
+    .text       start:0x02353f58 end:0x023540a0
+
 src/game/ov002/func_ov002_023540a0.c:
     complete
     .text       start:0x023540a0 end:0x023540cc
