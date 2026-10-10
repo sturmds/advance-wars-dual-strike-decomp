@@ -3,7 +3,7 @@
     .data       start:0x0236a1e0 end:0x0236d640 kind:data align:32
     .bss        start:0x0236d640 end:0x0236d9a0 kind:bss align:32
 
-src/game/ov006/func_ov006_02350560.c:
+src/game/ov006/ov006_refresh_slots.c:
     complete
     .text       start:0x02350560 end:0x023505c4
 

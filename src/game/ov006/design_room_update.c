@@ -7,7 +7,7 @@ void func_ov006_0235eb7c(void);
 void func_ov006_023564c4(void);
 void func_ov006_02353f7c(void);
 void func_ov006_02351aa4(void);
-void func_ov006_02350560(void);
+void Ov006_RefreshSlots(void);
 void Ov006_StartScriptAfterDelay(void);
 void Task_ResumeScript(Task *task);
 
@@ -34,7 +34,7 @@ void DesignRoom_Update(void)
         func_ov006_02353f7c();
         break;
     case 5:
-        func_ov006_02350560();
+        Ov006_RefreshSlots();
         break;
     case 7:
         break;

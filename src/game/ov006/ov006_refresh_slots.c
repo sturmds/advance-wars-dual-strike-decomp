@@ -6,10 +6,10 @@ void Ov006_QueueSlotSprites(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
-/* Takes a request posted by Ov006_PostRequest (flag 0x8000): clears the flag
- * and unk_0c, then runs Ov006_LoadSlotTiles. While unk_0c is 0, also runs
- * Ov006_QueueSlotSprites. */
-void func_ov006_02350560(void)
+/* Handles request 5 in DesignRoom_Update. When a request was just posted
+ * (flag 0x8000), clears the flag and unk_0c and loads the slot tiles. While
+ * unk_0c is 0, queues the slot sprites. */
+void Ov006_RefreshSlots(void)
 {
     if (data_ov006_0236d640->unk_00 & 0x8000) {
         data_ov006_0236d640->unk_00 &= ~0x8000;
