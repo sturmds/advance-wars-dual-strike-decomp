@@ -450,6 +450,10 @@ src/game/ov003/func_ov003_0235f8e8.c:
     complete
     .text       start:0x0235f8e8 end:0x0235f9b4
 
+src/game/ov003/ov003_unit_fire_if_locked.c:
+    complete
+    .text       start:0x0235f9b4 end:0x0235fa38
+
 src/game/ov003/ov003_get_target_range.c:
     complete
     .text       start:0x0235fa38 end:0x0235fa80

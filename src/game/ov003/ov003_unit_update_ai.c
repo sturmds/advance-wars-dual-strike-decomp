@@ -13,7 +13,7 @@ int func_ov003_0235d518(int player, int kind, int terrain);
 int func_ov003_0235f1a0(Ov003Unit *unit);
 void func_ov003_0235f81c(Ov003Unit *unit);
 void func_ov003_0235f8e8(Ov003Unit *unit);
-void func_ov003_0235f9b4(Ov003Unit *unit);
+void Ov003Unit_FireIfLocked(Ov003Unit *unit);
 u32 Ov003_GetTargetRange(void);
 u32 func_ov003_0235fa80(Ov003Unit *unit, s8 *target);  /* distance to target, 16 per tile */
 u32 Ov003_RandNext(void);
@@ -31,7 +31,7 @@ u32 Ov003_RandNext(void);
     } while (0)
 
 /* Turns the unit towards the centre of its tile (64 of 128) when it is more
- * than one step (func_ov003_0235d518) away, then runs func_ov003_0235f9b4. */
+ * than one step (func_ov003_0235d518) away, then runs Ov003Unit_FireIfLocked. */
 #define STEP_TO_CENTRE(unit)                                                                  \
     do {                                                                                      \
         int step;                                                                             \
@@ -47,7 +47,7 @@ u32 Ov003_RandNext(void);
         } else if (((unit)->x & ~127) + 64 > (unit)->x + step) {                              \
             SET_DIR(unit, 4);                                                                 \
         }                                                                                     \
-        func_ov003_0235f9b4(unit);                                                            \
+        Ov003Unit_FireIfLocked(unit);                                                            \
     } while (0)
 
 /* One frame of a computer unit. It wakes (unk_1e_0) when its wake group
