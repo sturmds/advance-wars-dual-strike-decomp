@@ -195,3 +195,7 @@ src/game/ov000/layers_clear_left_block.c:
 src/game/ov000/layer0_reset_scroll.c:
     complete
     .text       start:0x022b2fa8 end:0x022b2fd8
+
+src/game/ov000/second_screen_draw_terrain_panel.c:
+    complete
+    .text       start:0x022b2fd8 end:0x022b3180
