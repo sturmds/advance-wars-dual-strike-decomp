@@ -250,6 +250,10 @@ src/game/ov000/second_screen_unit_is_stale.c:
     complete
     .text       start:0x022b03d8 end:0x022b0448
 
+src/game/ov000/second_screen_tasks_destroy.c:
+    complete
+    .text       start:0x022b0448 end:0x022b04ec
+
 src/game/ov000/func_ov000_022b04ec.c:
     complete
     .text       start:0x022b04ec end:0x022b0500
