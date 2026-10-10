@@ -443,6 +443,10 @@ src/game/ov006/ov006_scatter_reefs.c:
     complete
     .text       start:0x02359344 end:0x023593c8
 
+src/game/ov006/ov006_scatter_woods.c:
+    complete
+    .text       start:0x02359584 end:0x02359608
+
 src/game/ov006/ov006_pick_link_tiles.c:
     complete
     .text       start:0x0235a1ac end:0x0235a7c0
