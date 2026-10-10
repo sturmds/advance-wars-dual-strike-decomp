@@ -11,6 +11,10 @@ src/game/ov003/func_ov003_02350e88.c:
     complete
     .text       start:0x02350e88 end:0x02350eb0
 
+src/game/ov003/ov003_get_scroll_to_centre_unit.c:
+    complete
+    .text       start:0x02350eb0 end:0x02350f44
+
 src/game/ov003/ov003_init_screens.c:
     complete
     .text       start:0x023511ac end:0x023517e0
