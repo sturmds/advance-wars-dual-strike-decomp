@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_ov006_0235069c(void);
+void Ov006_UpdateTouch(void);
 void func_ov006_0235eb7c(void);
 void func_ov006_023564c4(void);
 void func_ov006_02353f7c(void);
@@ -19,7 +19,7 @@ extern int data_0229eae4;
  * flag 2, and when flag 0x4000 is set resumes the script task unk_5c. */
 void DesignRoom_Update(void)
 {
-    func_ov006_0235069c();
+    Ov006_UpdateTouch();
     switch (data_ov006_0236d640->request) {
     case 0:
         Ov006_StartScriptAfterDelay();

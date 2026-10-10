@@ -13,7 +13,8 @@
 /* Touch screen state of the current frame, in screen pixels. */
 typedef struct TouchState {
     u8 phase;                          /* TOUCH_* */
-    u8 pad_01[0x04 - 0x01];
+    u8 unk_01;                         /* 1 or 2 on release: Ov006 reads it as the kind of touch that ended */
+    u8 pad_02[0x04 - 0x02];
     u32 active;                        /* menu buttons ignore phase while this is 0 */
     u8 x;
     u8 y;
