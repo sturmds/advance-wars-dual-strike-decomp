@@ -25,7 +25,7 @@ void func_020c8888(void);
 void Screens_SelectConfigs(void);
 void func_01ff9a90(void);
 void Camera_ResetToPreset1(void *p);
-void func_ov006_023527ac(void);
+void Ov006_SetUpScreens(void);
 u8 Ov006_CountPropertyTiles(void);
 void Ov006_FindHqs(void);
 void Battle_RegisterFrameCallbacks(void);
@@ -126,7 +126,7 @@ void DesignRoom_Init(Task *task)
     }
     func_01ff9a90();
     Camera_ResetToPreset1(data_022a7d5c);
-    func_ov006_023527ac();
+    Ov006_SetUpScreens();
     if (keep == 0) {
         OV6->unk_00 |= 0x1000;
         OV6->unk_2b = Ov006_CountPropertyTiles();

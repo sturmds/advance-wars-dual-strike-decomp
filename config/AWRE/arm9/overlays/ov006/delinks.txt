@@ -159,6 +159,10 @@ src/game/ov006/func_ov006_02352764.c:
     complete
     .text       start:0x02352764 end:0x023527ac
 
+src/game/ov006/ov006_set_up_screens.c:
+    complete
+    .text       start:0x023527ac end:0x02352ab8
+
 src/game/ov006/ov006_load_army_terrain_graphics.c:
     complete
     .text       start:0x02353304 end:0x023533f0
