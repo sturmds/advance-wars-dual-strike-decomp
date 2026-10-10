@@ -28,6 +28,16 @@ typedef struct BattleScene {
     BattleSide sides[2];
 } BattleScene;
 
+/* The fields of a battle animation task that func_ov002_02353254 and
+ * Battle_InitSway use (Task.unk_4c and unk_64 mean other things for other
+ * scripts). */
+typedef struct BattleAnimTask {
+    u8 pad_00[0x4c];
+    s16 progress;                      /* frames into the 50 frame ease */
+    u8 pad_4e[0x64 - 0x4e];
+    s16 phase[2];                      /* per side: picks a row of data_ov002_023604dc */
+} BattleAnimTask;
+
 extern BattleScene *Ov002_gBattleScene;
 
 /* Needed to match: the unit type of a side sits at scene offset 3 + 12 * side,
