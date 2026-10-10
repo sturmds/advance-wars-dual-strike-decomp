@@ -11,6 +11,10 @@ src/game/ov006/func_ov006_023505c4.c:
     complete
     .text       start:0x023505c4 end:0x023505dc
 
+src/game/ov006/ov006_start_script_after_delay.c:
+    complete
+    .text       start:0x023505dc end:0x0235068c
+
 src/game/ov006/func_ov006_0235068c.c:
     complete
     .text       start:0x0235068c end:0x0235069c

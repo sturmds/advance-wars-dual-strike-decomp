@@ -52,7 +52,8 @@ typedef struct Unk_ov006_0235f690 {
     s8 hqY[4];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
-    u8 pad_3a[0x3c - 0x3a];
+    u8 pad_3a;
+    s8 unk_3b;                         /* frame countdown, set to 30 on a request; at 0 a script starts (Ov006_StartScriptAfterDelay) */
     u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
     u8 pad_3d[0x4c - 0x3d];
     s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */

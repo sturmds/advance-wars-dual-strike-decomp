@@ -1,6 +1,6 @@
 func_ov006_02350560 kind:function(arm,size=0x64) addr:0x02350560
 func_ov006_023505c4 kind:function(arm,size=0x18) addr:0x023505c4
-func_ov006_023505dc kind:function(arm,size=0xb0) addr:0x023505dc
+Ov006_StartScriptAfterDelay kind:function(arm,size=0xb0) addr:0x023505dc
 func_ov006_0235068c kind:function(arm,size=0x10) addr:0x0235068c
 func_ov006_0235069c kind:function(arm,size=0x100) addr:0x0235069c
 func_ov006_0235079c kind:function(arm,size=0xd8) addr:0x0235079c
