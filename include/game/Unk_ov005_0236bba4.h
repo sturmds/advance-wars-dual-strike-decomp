@@ -23,10 +23,13 @@ typedef struct Unk_ov005_0236bba4 {
     u32 leftTouched;                   /* set while the Left button is pressed or held; the screen then acts as if the Left key were down */
     u32 rightTouched;                  /* same for the Right button */
     u32 state;                         /* index into stateTable */
-    u8 pad_1c[0x2c - 0x1c];
+    u32 unk_1c;
+    u32 unk_20;
+    u32 unk_24;
+    u32 unk_28;
     u32 button245Shown;
     u32 button246Shown;
-    u8 pad_34[0x38 - 0x34];
+    u32 unk_34;
     u32 unk_38;                        /* GameFlag 61 */
     u32 unk_3c;                        /* GameFlag 62 */
     u32 unk_40;                        /* GameFlag 34 */
@@ -36,7 +39,7 @@ typedef struct Unk_ov005_0236bba4 {
     u32 unk_50;
     Unk_ov005_0236bba4_State states[41]; /* copy of data_ov005_0236a74c */
     Unk_ov005_0236bba4_State *stateTable; /* points at states */
-    u8 pad_38c[0x390 - 0x38c];
+    void *spriteFile;                  /* /rikiishi/050; func_02022478 makes the unk_390 sprites from it */
     void *unk_390[3];
 } Unk_ov005_0236bba4;
 
