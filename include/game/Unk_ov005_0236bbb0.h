@@ -7,9 +7,19 @@
 typedef struct ShopItem {
     int iconId;
     u32 textId;                        /* name */
-    int price;
-    u8 pad_0c[0x1c - 0x0c];
+    int price;                         /* -1 ends the table */
+    int (*isForSale)(int arg);         /* 1: the item is offered */
+    void (*onBuy)(int arg, int flag);  /* run when the item is bought */
+    int arg;                           /* passed to isForSale and onBuy */
+    u8 pad_18[0x1c - 0x18];
 } ShopItem;
+
+/* One of the six buttons of a page, 12 bytes. */
+typedef struct ShopButton {
+    s16 shown;                         /* nonzero: the button exists */
+    s16 buttonId;                      /* MenuButton id */
+    u8 pad_04[0xc - 0x4];
+} ShopButton;
 
 /* Overlay 5 work block (0x1d68 bytes) that func_ov005_02366eec allocates
  * into Ov005Task.work and data_ov005_0236bbb0: Hachi's shop, a list of
@@ -26,14 +36,20 @@ typedef struct Unk_ov005_0236bbb0 {
     int unk_1c;
     u32 shopItemCount;                 /* records of data_0216cb60 that func_ov005_02367ad8 scans */
     int cursorRow;                     /* row on the page, 0-5 */
-    u8 pad_28[0x34 - 0x28];
+    int unk_28;
+    int unk_2c;                        /* set to cursorRow when it changes */
+    int buttonCount;                   /* buttons on the current page */
     int page;                          /* six items per page */
-    u8 pad_38[0x108 - 0x38];
+    int pageCount;
+    u32 iconCount;                     /* entries of icons in use */
+    u32 icons[50];                     /* icon ids loaded so far (Ov005_LoadShopIcon) */
     int itemCount;                     /* items in `items` */
     int highlightCursorRow;                       /* 1: the cursor row's name and price use palette 9 */
     int showCursor;                       /* 1: the menu cursor shows on the cursor row */
     ShopItem *items;                   /* the items for sale, filled by func_ov005_02367ad8 */
-    u8 pad_118[0x1d64 - 0x118];
+    ShopItem itemBuf[256];             /* items points here */
+    ShopButton *buttons;               /* points at buttonBuf */
+    ShopButton buttonBuf[6];
     struct Task *songTask;             /* func_020fcbd8(12, 0): fades to song 12 */
 } Unk_ov005_0236bbb0;
 

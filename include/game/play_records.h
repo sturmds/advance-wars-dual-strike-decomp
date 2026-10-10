@@ -9,7 +9,8 @@
  * (coRecords, the Force Rank table Co_GetForceRankSetIndex reads) and
  * counters of what human players did, each capped at 999999 or 999999999. */
 typedef struct PlayRecords {
-    u8 pad_00[0x0e];
+    u32 unk_00;
+    u8 pad_04[0x0e - 0x04];
     u8 unk_0e;                         /* copied to Unk_02080440_48.musicReady by a rules reset */
     u8 unk_0f;
     u8 pad_10[0x12 - 0x10];
