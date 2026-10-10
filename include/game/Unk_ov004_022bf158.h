@@ -21,9 +21,10 @@ typedef struct Unk_ov004_022bf158_818 {
 /* One 0x1c-byte element of Unk_ov004_022bf158.entries. */
 typedef struct Ov004Entry {
     int active;                        /* set to 1 by Ov004_EntryAppear */
-    u8 pad_04[4];
+    int unk_04;                        /* 0-6, set per entry by Ov004Task_SetupEntryScene */
     int unk_08;                        /* eased from 31 to 0 by Ov004_EntryAppear */
-    u8 pad_0c[8];
+    int unk_0c;                        /* -128 to 64 in steps of 32: maybe an x position */
+    int unk_10;                        /* -64 for every entry */
     int unk_14;                        /* eased from 2 to 64 */
     int unk_18;                        /* eased from 190 to 128 */
 } Ov004Entry;
@@ -66,7 +67,7 @@ typedef struct Unk_ov004_022bf158 {
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
     u8 pad_1324[0x1328 - 0x1324];
     u32 unk_1328;                      /* set to 0x06860000, an LCDC VRAM address */
-    u8 pad_132c[0x1330 - 0x132c];
+    u32 unk_132c;
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
     u16 viewX;                         /* position of the scrolling tile view; eased by Ov004_EaseLayer1View */
     u16 viewY;

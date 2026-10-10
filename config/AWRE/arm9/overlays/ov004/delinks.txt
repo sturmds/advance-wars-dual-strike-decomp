@@ -63,6 +63,10 @@ src/game/ov004/ov004_alloc_state.c:
     complete
     .text       start:0x022ae7c8 end:0x022ae83c
 
+src/game/ov004/ov004_task_setup_entry_scene.c:
+    complete
+    .text       start:0x022afc78 end:0x022b0000
+
 src/game/ov004/func_ov004_022b0000.c:
     complete
     .text       start:0x022b0000 end:0x022b0020
