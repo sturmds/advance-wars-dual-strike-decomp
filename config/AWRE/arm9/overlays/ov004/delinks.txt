@@ -439,6 +439,10 @@ src/game/ov004/func_ov004_022b6904.c:
     complete
     .text       start:0x022b6904 end:0x022b6924
 
+src/game/ov004/ov004_task_ease_unk_818_slide.c:
+    complete
+    .text       start:0x022b6924 end:0x022b6a9c
+
 src/game/ov004/func_ov004_022b6a9c.c:
     complete
     .text       start:0x022b6a9c end:0x022b6ad0
