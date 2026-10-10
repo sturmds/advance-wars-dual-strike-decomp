@@ -196,6 +196,10 @@ src/game/ov002/battle_sprite_task_init.c:
     complete
     .text       start:0x023567d4 end:0x02356884
 
+src/game/ov002/battle_sprite_task_update.c:
+    complete
+    .text       start:0x02356884 end:0x0235710c
+
 src/game/ov002/func_ov002_0235710c.c:
     complete
     .text       start:0x0235710c end:0x02357124

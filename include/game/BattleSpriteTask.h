@@ -11,7 +11,8 @@ typedef struct BattleSpriteTask {
     u8 pad_00[0x2c];
     u32 unk_2c;                        /* first word of the table the task is made from */
     u32 unk_30;                        /* word at index + 1 of the same table */
-    u8 pad_34[0x3c - 0x34];
+    u32 frame;                         /* frame being drawn, from the unk_2c table; 0: none */
+    const u16 *script;                 /* script position */
     s16 unk_3c;
     s16 unk_3e;
     s16 unk_40;
@@ -23,7 +24,7 @@ typedef struct BattleSpriteTask {
     u16 unk_4c;
     u16 unk_4e;                        /* 0x100 when made by BattleSpriteTask_CreateDefault */
     u16 unk_50;                        /* same */
-    u8 pad_52[2];
+    u16 entryFrames;                   /* frames the current script entry has been shown */
     u16 unk_54;
     u8 unk_56;
     u8 unk_57;
@@ -67,5 +68,8 @@ void BattleSpriteTask_CreateIfSet(const u32 *table, int index, int unk_3c, int u
                                   int unk_48, int unk_4a, int unk_4c, int unk_4e, int unk_50,
                                   int unk_54, int unk_56, int unk_59, int unk_5a, int unk_57,
                                   int unk_42, int unk_44, int unk_46, int unk_58);
+
+/* Per-frame callback: draws the task's frame and steps its script. */
+void BattleSpriteTask_Update(BattleSpriteTask *task);
 
 #endif
