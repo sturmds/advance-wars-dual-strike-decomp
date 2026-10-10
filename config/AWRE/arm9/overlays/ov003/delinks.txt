@@ -75,6 +75,10 @@ src/game/ov003/ov003_draw_all_tiles.c:
     complete
     .text       start:0x023543b4 end:0x02354444
 
+src/game/ov003/ov003_draw_tile.c:
+    complete
+    .text       start:0x02354444 end:0x02356230
+
 src/game/ov003/ov003_mark_row_tiles.c:
     complete
     .text       start:0x02356230 end:0x02356614

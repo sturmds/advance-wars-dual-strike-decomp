@@ -3,9 +3,9 @@
 
 void func_01ff8c84(int);
 void Gfx_RequestLayerCopy(int);
-void func_ov003_02354444(u8 x, u8 y);
+void Ov003_DrawTile(u8 x, u8 y);
 
-/* Draws every tile of the map with func_ov003_02354444, then requests copies of layers 1 to 3.
+/* Draws every tile of the map with Ov003_DrawTile, then requests copies of layers 1 to 3.
  * The argument is not used. */
 int Ov003_DrawAllTiles(int unused)
 {
@@ -15,7 +15,7 @@ int Ov003_DrawAllTiles(int unused)
     func_01ff8c84(1);
     for (y = 0; y < data_ov003_02364a88->height; y++) {
         for (x = 0; x < data_ov003_02364a88->width; x++) {
-            func_ov003_02354444(x, y);
+            Ov003_DrawTile(x, y);
         }
     }
     Gfx_RequestLayerCopy(1);
