@@ -512,6 +512,10 @@ src/game/ov005/ov005_free_state_work.c:
     complete
     .text       start:0x0235d744 end:0x0235d780
 
+src/game/ov005/ov005_update_state_screen.c:
+    complete
+    .text       start:0x0235d780 end:0x0235e380
+
 src/game/ov005/ov005_set_up_state_screen.c:
     complete
     .text       start:0x0235e380 end:0x0235ea58

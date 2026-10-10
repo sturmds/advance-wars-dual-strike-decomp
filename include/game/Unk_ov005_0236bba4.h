@@ -9,7 +9,7 @@ struct Unk_ov005_0236bba4;
  * calls run(work, arg). */
 typedef struct Unk_ov005_0236bba4_State {
     u32 unk_00;                        /* nonzero: the state is in use (Ov005_StateIsEnabled) */
-    u8 pad_04[0x8 - 0x4];
+    int number;                        /* shown on the main screen as two digits */
     int scrollMax;                     /* fx32 rows; the scroll is clamped to 0..scrollMax */
     void (*run)(struct Unk_ov005_0236bba4 *work, int arg);
     int arg;
@@ -18,7 +18,8 @@ typedef struct Unk_ov005_0236bba4_State {
 /* Work block (0x39c bytes) that Ov005_AllocStateWork allocates into
  * Ov005Task.work and data_ov005_0236bba4. */
 typedef struct Unk_ov005_0236bba4 {
-    u8 pad_00[0x8];
+    u32 unk_00;                        /* 1: the screen acts as if R were pressed */
+    u32 unk_04;                        /* 1: the screen acts as if B were pressed */
     u32 unk_08;
     u32 unk_0c;
     u32 leftTouched;                   /* set while the Left button is pressed or held; the screen then acts as if the Left key were down */
