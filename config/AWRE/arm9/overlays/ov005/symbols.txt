@@ -81,12 +81,8 @@ func_ov005_0235aa54 kind:function(arm,size=0x44) addr:0x0235aa54
 Ov005Entry_WaitThenTurn kind:function(arm,size=0x134) addr:0x0235aa98
 func_ov005_0235abcc kind:function(arm,size=0x18) addr:0x0235abcc
 func_ov005_0235abe4 kind:function(arm,size=0x18) addr:0x0235abe4
-func_ov005_0235abfc kind:function(arm,size=0x40) addr:0x0235abfc
-func_ov005_0235ac3c kind:function(arm,size=0xc) addr:0x0235ac3c
-func_ov005_0235ac48 kind:function(arm,size=0x7c) addr:0x0235ac48
-func_ov005_0235acc4 kind:function(arm,size=0x8) addr:0x0235acc4
-func_ov005_0235accc kind:function(arm,size=0x58) addr:0x0235accc
-func_ov005_0235ad24 kind:function(arm,size=0xc) addr:0x0235ad24
+func_ov005_0235ac48 kind:function(arm,size=0x84) addr:0x0235ac48
+func_ov005_0235accc kind:function(arm,size=0x64) addr:0x0235accc
 func_ov005_0235ad30 kind:function(arm,size=0x18) addr:0x0235ad30
 func_ov005_0235ad48 kind:function(arm,size=0x18) addr:0x0235ad48
 func_ov005_0235ad60 kind:function(arm,size=0x2c) addr:0x0235ad60
@@ -687,3 +683,4 @@ data_ov005_0236bba8 kind:bss addr:0x0236bba8
 data_ov005_0236bbac kind:bss addr:0x0236bbac
 data_ov005_0236bbb0 kind:bss addr:0x0236bbb0
 data_ov005_0236bbb4 kind:bss addr:0x0236bbb4
+Ov005_DestroyEntryTasks kind:function(arm,size=0x4c) addr:0x0235abfc

@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_ov005_0235abfc(int, int);
+void Ov005_DestroyEntryTasks(int, int);
 
 void func_ov005_0235abe4(int a0)
 {
-    func_ov005_0235abfc(a0, a0 + 0x8018);
+    Ov005_DestroyEntryTasks(a0, a0 + 0x8018);
 }
