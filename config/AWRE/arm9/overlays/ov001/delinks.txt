@@ -7,6 +7,10 @@ src/game/ov001/ov001_has_no_ready_ship_or_b_copter.c:
     complete
     .text       start:0x02350a1c end:0x02350b28
 
+src/game/ov001/ov001_is_kind4_object_count_not4.c:
+    complete
+    .text       start:0x02350cd4 end:0x02350d44
+
 src/game/ov001/func_ov001_02350d44.c:
     complete
     .text       start:0x02350d44 end:0x02350d60
