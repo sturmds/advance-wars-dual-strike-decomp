@@ -1848,6 +1848,14 @@ src/game/main/script/task_run_script.c:
     complete
     .text       start:0x020227e8 end:0x020228c0
 
+src/game/main/task_cmd_start_child_on_both_screens.c:
+    complete
+    .text       start:0x0202292c end:0x020229e8
+
+src/game/main/task_cmd_start_task_on_both_screens.c:
+    complete
+    .text       start:0x02022aa4 end:0x02022b58
+
 src/game/main/task/func_02022c0c.c:
     complete
     .text       start:0x02022c0c end:0x02022c3c
