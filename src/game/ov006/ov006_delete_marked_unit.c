@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void func_020c4018(void);
-int func_ov006_0235f304(int withEffect, int x, int y);
+int Ov006_RemoveUnitAt(int withEffect, int x, int y);
 void func_ov006_0235f690(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -22,7 +22,7 @@ int Ov006_DeleteMarkedUnit(void)
     STATE->currentPlayer = data_ov006_0236d640->unk_24;
     STATE->currentUnitBase = (STATE->currentPlayer - 1) << 6;
     result = 0;
-    if (func_ov006_0235f304(1, data_ov006_0236d640->unk_0e, data_ov006_0236d640->unk_10)) {
+    if (Ov006_RemoveUnitAt(1, data_ov006_0236d640->unk_0e, data_ov006_0236d640->unk_10)) {
         func_020c4018();
         result = 2;
     }
