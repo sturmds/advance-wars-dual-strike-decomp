@@ -2448,6 +2448,10 @@ src/game/main/func_02028118.c:
     complete
     .text       start:0x02028118 end:0x0202815c
 
+src/game/main/graphics/quad/gx_send_textured_rect.c:
+    complete
+    .text       start:0x0202815c end:0x02028294
+
 src/game/main/func_02028644.c:
     complete
     .text       start:0x02028644 end:0x02028664
