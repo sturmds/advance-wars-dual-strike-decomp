@@ -75,6 +75,10 @@ src/game/ov002/battle_is_side_air.c:
     complete
     .text       start:0x023547ac end:0x02354814
 
+src/game/ov002/battle_init_hp_cells.c:
+    complete
+    .text       start:0x02355860 end:0x023558cc
+
 src/game/ov002/battle_compare_hp_to_cell_step.c:
     complete
     .text       start:0x023558cc end:0x02355920

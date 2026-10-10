@@ -108,7 +108,11 @@ typedef struct Unk_0206d67c {
 /* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */
 typedef struct BattleEntry {
     s32 unk_00;                        /* cleared by Battle_ResetScreen */
-    u8 pad_04[0x18 - 4];
+    u8 pad_04[0x14 - 4];
+    u8 fillBefore;                     /* Battle_CompareHpToCellStep of the HP before the fight */
+    u8 fillAfter;                      /* the same for the HP after it */
+    u8 fillShown;                      /* starts as fillBefore */
+    u8 pad_17;
 } BattleEntry;
 
 typedef struct BattleScreenWork {
