@@ -112,6 +112,10 @@ src/game/ov000/func_ov000_022b0500.c:
     complete
     .text       start:0x022b0500 end:0x022b052c
 
+src/game/ov000/second_screen_show_cursor_info.c:
+    complete
+    .text       start:0x022b052c end:0x022b0640
+
 src/game/ov000/second_screen_task_is_running.c:
     complete
     .text       start:0x022b0680 end:0x022b06ec
