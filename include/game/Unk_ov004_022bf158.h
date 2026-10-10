@@ -9,6 +9,16 @@ typedef struct Unk_ov004_022bf158_818 {
     u16 unk_0e;                        /* 256 to 128: maybe a scale */
 } Unk_ov004_022bf158_818;
 
+/* One 0x1c-byte element of Unk_ov004_022bf158.entries. */
+typedef struct Ov004Entry {
+    int active;                        /* set to 1 by Ov004_EntryAppear */
+    u8 pad_04[4];
+    int unk_08;                        /* eased from 31 to 0 by Ov004_EntryAppear */
+    u8 pad_0c[8];
+    int unk_14;                        /* eased from 2 to 64 */
+    int unk_18;                        /* eased from 190 to 128 */
+} Ov004Entry;
+
 /* Overlay 4 state reached through data_ov004_022bf158. */
 typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
@@ -16,7 +26,9 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_008;
     u8 pad_00c[0x818 - 0xc];
     Unk_ov004_022bf158_818 unk_818;
-    u8 pad_828[0x8f8 - 0x828];
+    u8 pad_828[0x82c - 0x828];
+    Ov004Entry entries[7];             /* count is a guess; indexed by the task parameter at 0x44 */
+    u8 pad_8f0[0x8f8 - 0x8f0];
     int unk_8f8;                       /* eased each frame by func_ov004_022b0984 */
     int unk_8fc;                       /* eased each frame by func_ov004_022b06d0 and func_ov004_022b1e78 */
     int unk_900;                       /* eased each frame by func_ov004_022b061c */

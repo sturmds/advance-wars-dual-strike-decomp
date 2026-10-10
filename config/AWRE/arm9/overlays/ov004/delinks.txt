@@ -159,6 +159,10 @@ src/game/ov004/func_ov004_022b0790.c:
     complete
     .text       start:0x022b0790 end:0x022b07b0
 
+src/game/ov004/ov004_entry_appear.c:
+    complete
+    .text       start:0x022b07b0 end:0x022b08dc
+
 src/game/ov004/func_ov004_022b08dc.c:
     complete
     .text       start:0x022b08dc end:0x022b08f0
