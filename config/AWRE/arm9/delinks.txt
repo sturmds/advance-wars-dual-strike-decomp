@@ -5831,6 +5831,10 @@ src/game/main/func_020b4d04.c:
     complete
     .text       start:0x020b4d04 end:0x020b4d0c
 
+src/game/main/func_020b4da8.c:
+    complete
+    .text       start:0x020b4da8 end:0x020b4e24
+
 src/game/main/ai/func_020b4e24.c:
     complete
     .text       start:0x020b4e24 end:0x020b4e84
