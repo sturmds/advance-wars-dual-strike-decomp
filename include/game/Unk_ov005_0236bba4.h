@@ -20,8 +20,8 @@ typedef struct Unk_ov005_0236bba4 {
     u8 pad_00[0x8];
     u32 unk_08;
     u32 unk_0c;
-    u32 unk_10;
-    u32 unk_14;
+    u32 leftTouched;                   /* set while the Left button is pressed or held; the screen then acts as if the Left key were down */
+    u32 rightTouched;                  /* same for the Right button */
     u32 state;                         /* index into stateTable */
     u8 pad_1c[0x2c - 0x1c];
     u32 unk_2c;                        /* nonzero: button 245 exists */

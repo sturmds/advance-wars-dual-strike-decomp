@@ -316,6 +316,14 @@ src/game/ov005/ov005_state_is_enabled.c:
     complete
     .text       start:0x0235eca0 end:0x0235ecc4
 
+src/game/ov005/ov005_update_right_touched.c:
+    complete
+    .text       start:0x02361484 end:0x023614b4
+
+src/game/ov005/ov005_update_left_touched.c:
+    complete
+    .text       start:0x023614b4 end:0x023614e4
+
 src/game/ov005/func_ov005_023614e4.c:
     complete
     .text       start:0x023614e4 end:0x023614fc
