@@ -8,5 +8,6 @@
 #define OV005_RIPPLE_LINES 192
 
 void Ov005Ripple_FillOffsets(int *offsets, int value);
+void Ov005Ripple_PackOffsets(int *offsets, s16 *packed);
 
 #endif

@@ -48,6 +48,10 @@ src/game/ov005/func_ov005_02353574.c:
     complete
     .text       start:0x02353574 end:0x02353580
 
+src/game/ov005/ov005_ripple_pack_offsets.c:
+    complete
+    .text       start:0x02353580 end:0x023535a4
+
 src/game/ov005/ov005_ripple_fill_offsets.c:
     complete
     .text       start:0x02353618 end:0x02353630
