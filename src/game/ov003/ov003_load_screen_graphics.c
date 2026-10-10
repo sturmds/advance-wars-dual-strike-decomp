@@ -24,7 +24,7 @@ int func_0208bed4(int value);
 void func_02002864(int a, void *dst, int b);
 void Ov003_LoadMapPanelGraphics(void);
 void Ov003_LoadGraphics(void *file);
-void func_ov003_023522cc(void *file, void *localized);
+void Ov003_LoadMainScreenGraphics(void *file, void *localized);
 void Ov003_LoadObjGraphics(void *file, void *localized);
 void func_ov003_02361584(void *file, void *localized);
 void func_ov003_02361418(void);
@@ -48,7 +48,7 @@ void Ov003_LoadScreenGraphics(void)
 
     file = File_Load(data_ov003_0236494c);
     localized = File_Load(File_LocalizePath(data_ov003_02364964));
-    func_ov003_023522cc(file, localized);
+    Ov003_LoadMainScreenGraphics(file, localized);
     Mem_Free(localized);
     Mem_Free(file);
 
