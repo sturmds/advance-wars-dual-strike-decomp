@@ -442,6 +442,10 @@ src/game/ov003/ov003_is_row_power_active.c:
     complete
     .text       start:0x0235da18 end:0x0235da44
 
+src/game/ov003/ov003_damage_units_near.c:
+    complete
+    .text       start:0x0235da44 end:0x0235db04
+
 src/game/ov003/func_ov003_0235db04.c:
     complete
     .text       start:0x0235db04 end:0x0235db28
