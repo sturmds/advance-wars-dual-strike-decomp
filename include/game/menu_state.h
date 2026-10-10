@@ -115,10 +115,16 @@ typedef struct BattleEntry {
     u8 pad_17;
 } BattleEntry;
 
+struct BattleSideData;
+
 typedef struct BattleScreenWork {
-    u8 pad_020[0x310 - 0x20];
+    u8 pad_020[0x48 - 0x20];
+    u32 unk_48[2];
+    u8 pad_50[0x27c - 0x50];
+    struct BattleSideData *unk_27c[2];
+    u8 pad_284[0x310 - 0x284];
     BattleEntry unk_310[2][5];
-    u8 pad_400[0x408 - 0x400];
+    const void *unk_400[2];
     u16 unk_408[2];                    /* cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init */
     u8 pad_410[0x490 - 0x410];
