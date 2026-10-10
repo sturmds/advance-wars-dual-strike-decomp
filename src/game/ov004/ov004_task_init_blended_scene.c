@@ -22,7 +22,7 @@ void Ov004_SetupPerspective3d(void);
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158 *state);
 void Ov004_InitVramBanksInOrder(void);
 void func_ov004_022bd124(Unk_ov004_022bf158 *state);
-void func_ov004_022bd864(Unk_ov004_022bf158 *state);
+void Ov004_LoadBgLayer0(Unk_ov004_022bf158 *state);
 void func_ov004_022bdc08(Unk_ov004_022bf158 *state);
 /* These two are defined without parameters; the original call still passes
  * the state. */
@@ -181,7 +181,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_ov004_022bd864(state);
+    Ov004_LoadBgLayer0(state);
     Ov004_LoadBgLayers1And2(state);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
