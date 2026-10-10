@@ -47,6 +47,10 @@ src/game/ov002/battle_fade_out_step.c:
     complete
     .text       start:0x02350d40 end:0x02350d88
 
+src/game/ov002/battle_start_fade_out.c:
+    complete
+    .text       start:0x02350d88 end:0x02350e1c
+
 src/game/ov002/func_ov002_02350e1c.c:
     complete
     .text       start:0x02350e1c end:0x02350e34

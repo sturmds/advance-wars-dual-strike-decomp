@@ -37,6 +37,9 @@ typedef struct DispCntBits {
 
 #define GFX_DISPCNT(gfx) ((DispCntBits *)&(gfx)->dispCnt)
 
+/* Unk_027c0280.blendMode value: darken by blendEvy / 16 (BLDCNT mode 3). */
+#define BLEND_MODE_DARKEN 3
+
 /* Layers inside one window (WININ/WINOUT half). */
 typedef struct WindowPlanes {
     u8 bg[4];
