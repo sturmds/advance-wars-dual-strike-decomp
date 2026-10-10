@@ -44,6 +44,7 @@ src/game/ov006/func_ov006_02351ac4.c:
     .text       start:0x02351ac4 end:0x02351b2c
 
 src/game/ov006/func_ov006_02352400.c:
+    complete
     .text       start:0x02352400 end:0x0235248c
 
 src/game/ov006/ov006_load_co_icons.c:
