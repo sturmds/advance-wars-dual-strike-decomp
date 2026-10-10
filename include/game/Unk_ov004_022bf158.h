@@ -54,7 +54,8 @@ typedef struct Unk_ov004_022bf158 {
     int unk_900;                       /* eased each frame by func_ov004_022b061c */
     int unk_904;                       /* eased in two stages by Ov004_EaseUnk904Twice */
     int unk_908;                       /* eased each frame by func_ov004_022b1d38 */
-    u8 pad_90c[0x918 - 0x90c];
+    int unk_90c;                       /* eased like unk_908 by Ov004_EaseUnk908Twice */
+    u8 pad_910[0x918 - 0x910];
     struct Ov004Task *slotTasks[OV004_SLOT_COUNT]; /* task of each slot, 0 when free */
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
     u8 pad_99c[0xad8 - 0x99c];
