@@ -24,8 +24,8 @@ typedef struct Unk_ov005_0236bba4 {
     u32 rightTouched;                  /* same for the Right button */
     u32 state;                         /* index into stateTable */
     u8 pad_1c[0x2c - 0x1c];
-    u32 unk_2c;                        /* nonzero: button 245 exists */
-    u32 unk_30;                        /* nonzero: button 246 exists */
+    u32 button245Shown;
+    u32 button246Shown;
     u8 pad_34[0x38 - 0x34];
     u32 unk_38;                        /* GameFlag 61 */
     u32 unk_3c;                        /* GameFlag 62 */
