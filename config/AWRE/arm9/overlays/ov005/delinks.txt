@@ -664,6 +664,10 @@ src/game/ov005/sound_room/ov005_set_up_sound_room.c:
     complete
     .text       start:0x02363b60 end:0x02364014
 
+src/game/ov005/ov005_co_select_cell_changed.c:
+    complete
+    .text       start:0x02364058 end:0x023640a4
+
 src/game/ov005/func_ov005_023640a4.c:
     complete
     .text       start:0x023640a4 end:0x023640b8

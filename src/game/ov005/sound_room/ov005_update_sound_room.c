@@ -13,7 +13,7 @@ BOOL func_02004828(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void Screen1_DestroyTextTasks(void);
-BOOL func_ov005_02364058(void);
+BOOL Ov005CoSelect_CellChanged(void);
 int func_ov005_023640a4(void);
 void func_ov005_023640b8(void);
 void Ov005CoSelect_SaveCell(void);
@@ -78,7 +78,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         break;
     case 10:
         if ((gKeypad->pressed & PAD_BUTTON_A) || work->aTouched == 1) {
-            if (func_ov005_02364058() && !func_ov005_023640a4()) {
+            if (Ov005CoSelect_CellChanged() && !func_ov005_023640a4()) {
                 Sound_PlaySe(0x10006);
                 Ov005CoSelect_SaveCell();
             }
