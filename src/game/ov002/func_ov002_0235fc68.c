@@ -6,7 +6,7 @@ extern MenuState gMenuState;
 
 void Sound_PlaySubSe(u32 soundId);
 int Battle_IsSideFootUnit(void);
-void func_ov002_0235fce0(int side);
+void BattleFootstepTask_Start(int side);
 
 /* Starts the attacker's looping sound (sub sound effect) unless
  * Battle_IsSideFootUnit says otherwise. */
@@ -18,7 +18,7 @@ void func_ov002_0235fc68(int side)
         return;
     }
     if (Battle_IsSideFootUnit() == 1) {
-        func_ov002_0235fce0(side);
+        BattleFootstepTask_Start(side);
         return;
     }
     sound = BATTLE_FIGHTER(side)->sounds->unk_00;

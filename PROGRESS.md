@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 2944 / 6603 | 421208 / 1531944 | 27.49% | 0 | 0 |
+| game | 2946 / 6603 | 422040 / 1531944 | 27.55% | 0 | 0 |
 | SDK/library | 138 / 880 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 3082 / 7483 | 424628 / 1685994 | 25.19% | 1 | 30 |
+| all | 3084 / 7483 | 425460 / 1685994 | 25.23% | 1 | 30 |
 
 ## By module
 
@@ -23,7 +23,7 @@ Rows with nothing done are left out, but count in the totals.
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 104 / 121 | 22168 / 25300 | 87.62% | 0 |
 | ov001 | game | 46 / 76 | 3972 / 7472 | 53.16% | 0 |
-| ov002 | game | 100 / 164 | 31136 / 64208 | 48.49% | 0 |
+| ov002 | game | 102 / 164 | 31968 / 64208 | 49.79% | 0 |
 | ov003 | game | 45 / 235 | 6932 / 82696 | 8.38% | 0 |
 | ov004 | game | 105 / 236 | 4104 / 67364 | 6.09% | 0 |
 | ov005 | game | 103 / 270 | 5700 / 96684 | 5.90% | 0 |
@@ -60,6 +60,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov001/func_ov001_02351174.c` | func_ov001_02351174 | 244 |
 | `src/game/ov001/func_ov001_02351268.c` | func_ov001_02351268 | 132 |
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
+| `src/game/ov002/battle_fighter_task_setup.c` | BattleFighterTask_Setup | 544 |
+| `src/game/ov002/battle_footstep_task_start.c` | BattleFootstepTask_Start | 712 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02353254.c` | func_ov002_02353254 | 308 |
 | `src/game/ov002/func_ov002_02353c08.c` | func_ov002_02353c08 | 392 |

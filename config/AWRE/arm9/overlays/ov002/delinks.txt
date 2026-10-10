@@ -431,6 +431,9 @@ src/game/ov002/battle_fade_attacker_sub_se.c:
 src/game/ov002/func_ov002_0235fc68.c:
     .text       start:0x0235fc68 end:0x0235fce0
 
+src/game/ov002/battle_footstep_task_start.c:
+    .text       start:0x0235fce0 end:0x0235ffa8
+
 src/game/ov002/battle_cue_task_update.c:
     complete
     .text       start:0x0235ffa8 end:0x02360030
