@@ -79,6 +79,10 @@ src/game/ov006/ov006_load_terrain_icons.c:
     complete
     .text       start:0x02351f4c end:0x02351fac
 
+src/game/ov006/ov006_load_army_tiles.c:
+    complete
+    .text       start:0x02351fac end:0x02352048
+
 src/game/ov006/ov006_load_terrain_tiles.c:
     complete
     .text       start:0x02352048 end:0x023520b4
