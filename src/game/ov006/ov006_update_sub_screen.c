@@ -5,7 +5,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_ov006_02353e24(void);
+void Ov006_QueueScreen1Sprites(void);
 int Ov006_IsMapPlayable(void);
 int func_0210a184(int a, int b);
 BOOL func_020219e4(void *sprites, int frame, int a, int x, int y, int attr, int b, int c);
@@ -38,7 +38,7 @@ void Ov006_UpdateSubScreen(void)
     Unk_02080440 *mainSaved027c;
     Unk_027c0280 *subSaved0280;
 
-    func_ov006_02353e24();
+    Ov006_QueueScreen1Sprites();
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
