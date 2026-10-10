@@ -2791,6 +2791,10 @@ src/game/main/digit_sprite_queue_pop_in.c:
     complete
     .text       start:0x020342ac end:0x02034438
 
+src/game/main/graphics/digit_sprite_queue_small_number.c:
+    complete
+    .text       start:0x02034438 end:0x020344dc
+
 src/game/main/func_02035708.c:
     complete
     .text       start:0x02035708 end:0x0203570c
