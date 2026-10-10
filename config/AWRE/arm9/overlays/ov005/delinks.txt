@@ -60,6 +60,10 @@ src/game/ov005/ov005_ripple_swap_y_buffer.c:
     complete
     .text       start:0x02353630 end:0x02353668
 
+src/game/ov005/ov005_ripple_swap_x_buffer.c:
+    complete
+    .text       start:0x02353668 end:0x023536a0
+
 src/game/ov005/func_ov005_023536a0.c:
     complete
     .text       start:0x023536a0 end:0x023536a4
