@@ -14,7 +14,7 @@ void Screen_SetCurrentGfx(void *state);
 void Mem_CopyAuto(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_ov000_022afbf0(void);
-void func_ov000_022b14bc(void);
+void Ov000_LoadObjGfx(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -41,6 +41,6 @@ void func_ov000_022afee8(void)
     Mem_CopyAuto(data_ov000_022dabfc, data_027c0280->unk_e4 + 0x4000, 0x800);
     Palette_Load(data_ov000_022db3fc, 32, 352);
     func_ov000_022afbf0();
-    func_ov000_022b14bc();
+    Ov000_LoadObjGfx();
     Screen_SetCurrentGfx(savedGfx);
 }
