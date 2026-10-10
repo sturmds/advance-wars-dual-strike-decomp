@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_ov000_022af308(int, int);
+void MapScript_RunList10(int, int);
 
 void func_020dd9a0(void)
 {
-    func_ov000_022af308(50, 0);
+    MapScript_RunList10(50, 0);
 }

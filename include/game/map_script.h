@@ -16,7 +16,7 @@ typedef struct MapScriptCommand {
 typedef struct MapScript {
     const MapScriptCommand *list00;    /* run by func_020ba198 when a turn starts (after the player theme) */
     u8 pad_04[0x10 - 0x04];
-    const MapScriptCommand *list10;    /* run with an id and a unit by func_ov000_022af308 */
+    const MapScriptCommand *list10;    /* run with an id and a unit by MapScript_RunList10 */
     const MapScriptCommand *list14;    /* run by func_020cf840 */
     const MapScriptCommand *list18;    /* run by func_020c05d8 with a flag */
 } MapScript;
