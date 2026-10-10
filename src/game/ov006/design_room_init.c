@@ -27,7 +27,7 @@ void func_01ff9a90(void);
 void Camera_ResetToPreset1(void *p);
 void func_ov006_023527ac(void);
 u8 Ov006_CountPropertyTiles(void);
-void func_ov006_023659b4(void);
+void Ov006_FindHqs(void);
 void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(void (*callback)(void));
 void func_020d308c(void);
@@ -130,7 +130,7 @@ void DesignRoom_Init(Task *task)
     if (keep == 0) {
         OV6->unk_00 |= 0x1000;
         OV6->unk_2b = Ov006_CountPropertyTiles();
-        func_ov006_023659b4();
+        Ov006_FindHqs();
     }
     Battle_RegisterFrameCallbacks();
     func_01ff9c48(func_020d308c);

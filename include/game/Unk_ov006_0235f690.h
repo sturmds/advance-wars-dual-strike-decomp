@@ -48,7 +48,8 @@ typedef struct Unk_ov006_0235f690 {
     s8 unk_2a;
     u8 unk_2b;                         /* result of Ov006_CountPropertyTiles, stored by Ov006_FillMapForScreen */
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
-    u8 pad_30[0x38 - 0x30];
+    s8 hqX[4];                         /* per army 1-4: HQ tile, -1 when none (Ov006_FindHqs) */
+    s8 hqY[4];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
     u8 pad_3a[0x3c - 0x3a];

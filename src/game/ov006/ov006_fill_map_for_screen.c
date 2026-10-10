@@ -8,7 +8,7 @@ void func_020c4448(void);
 void func_ov006_0235cfc0(void);
 void func_ov006_02351714(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
-void func_ov006_023659b4(void);
+void Ov006_FindHqs(void);
 u8 Ov006_CountPropertyTiles(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -60,6 +60,6 @@ void Ov006_FillMapForScreen(int screenId)
         }
     }
     func_020c4448();
-    func_ov006_023659b4();
+    Ov006_FindHqs();
     data_ov006_0236d640->unk_2b = Ov006_CountPropertyTiles();
 }
