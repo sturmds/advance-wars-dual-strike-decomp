@@ -14,9 +14,10 @@ typedef struct BattleAnimNibbles {
 } BattleAnimNibbles;
 
 typedef struct BattleAnimBytes {
-    u8 unk_00_0 : 4;
-    u8 unk_00_4 : 4;
-    u8 unk_01;
+    u8 pad_00[8];
+    u8 unk_08_0 : 4;
+    u8 unk_08_4 : 4;
+    u8 unk_09;
 } BattleAnimBytes;
 
 /* Animation data of one side of the ov002 battle screen. The lists hold one entry per

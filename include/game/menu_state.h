@@ -138,7 +138,7 @@ typedef struct BattleStepList {
 
 typedef struct BattleScreenWork {
     u8 pad_020[0x40 - 0x20];
-    void *unk_40[2];
+    void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];
     u8 pad_050[0x22c - 0x050];
     BattleCounterTask *unk_22c[2][5];   /* per side */

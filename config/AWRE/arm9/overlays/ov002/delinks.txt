@@ -124,9 +124,17 @@ src/game/ov002/battle_pick_hp_drain_profiles.c:
     complete
     .text       start:0x02355f08 end:0x02355ff0
 
+src/game/ov002/battle_get_matchup_value.c:
+    complete
+    .text       start:0x02355ff0 end:0x02356124
+
 src/game/ov002/battle_get_side_matchup_value.c:
     complete
     .text       start:0x02356124 end:0x023561e0
+
+src/game/ov002/battle_get_matchup_nibble1.c:
+    complete
+    .text       start:0x023561e0 end:0x02356300
 
 src/game/ov002/battle_get_matchup_nibble0.c:
     complete
