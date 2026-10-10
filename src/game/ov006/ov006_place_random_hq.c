@@ -7,14 +7,14 @@ extern u32 data_027c0284;
 
 s32 Rng_Range(s32 min, s32 max);
 void Ov006_SetMapCell(int x, int y, int cell);
-TilePoint func_ov006_0235b0e4(int x, int y, int owner, int baseCount, int airportCount);
+TilePoint Ov006_PlaceHq(int x, int y, int owner, int baseCount, int airportCount);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_PLAIN 1
 
 /* Picks a random 5x5 area inside the map with no owned tile, turns it all
  * into plain, and puts owner's HQ with its bases and airports in it
- * (func_ov006_0235b0e4). Returns the HQ tile. */
+ * (Ov006_PlaceHq). Returns the HQ tile. */
 TilePoint Ov006_PlaceRandomHq(int owner, int baseCount, int airportCount)
 {
     int x;
@@ -43,5 +43,5 @@ pick:
             Ov006_SetMapCell(i, j, CELL_PLAIN);
         }
     }
-    return func_ov006_0235b0e4(x, y, owner, baseCount, airportCount);
+    return Ov006_PlaceHq(x, y, owner, baseCount, airportCount);
 }

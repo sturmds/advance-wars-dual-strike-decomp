@@ -515,6 +515,10 @@ src/game/ov006/ov006_place_random_hq.c:
     complete
     .text       start:0x0235af38 end:0x0235b0e4
 
+src/game/ov006/ov006_place_hq.c:
+    complete
+    .text       start:0x0235b0e4 end:0x0235b300
+
 src/game/ov006/ov006_is_area_clear.c:
     complete
     .text       start:0x0235b404 end:0x0235b46c
