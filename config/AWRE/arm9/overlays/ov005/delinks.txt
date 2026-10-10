@@ -552,6 +552,10 @@ src/game/ov005/ov005_free_co_screen_work.c:
     complete
     .text       start:0x0236155c end:0x02361598
 
+src/game/ov005/ov005_init_co_screen.c:
+    complete
+    .text       start:0x02362118 end:0x02362618
+
 src/game/ov005/func_ov005_02362618.c:
     complete
     .text       start:0x02362618 end:0x02362644
