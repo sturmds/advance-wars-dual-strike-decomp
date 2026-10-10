@@ -6,14 +6,8 @@
 
 #include "game/Unk_02160abc.h"
 
-/* Cast view of Ov003State.unk_1da: the phase this frame runs in and the
- * one asked for. func_ov003_02362334 asks for phase 7 (probably quit). */
-typedef struct Ov003Phase {
-    u8 current : 4;
-    u8 next : 4;
-} Ov003Phase;
-
-#define PHASE(state) ((Ov003Phase *)&(state)->unk_1da)
+/* func_ov003_02362334 asks for phase 7 (probably quit). */
+#define PHASE(state) OV003_PHASE(state)
 
 #define PHASE_PLAY  0
 #define PHASE_PAUSE 2

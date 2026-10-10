@@ -225,4 +225,17 @@ extern Ov003Map *data_ov003_02364a88;
 #define OV003_SCROLL_X ((s16)data_ov003_02364928->unk_1d0)
 #define OV003_SCROLL_Y ((s16)data_ov003_02364928->unk_1d2)
 
+/* Cast view of Ov003State.unk_1da: the phase this frame runs in and the
+ * one asked for. */
+typedef struct Ov003Phase {
+    u8 current : 4;
+    u8 next : 4;
+} Ov003Phase;
+
+#define OV003_PHASE(state) ((Ov003Phase *)&(state)->unk_1da)
+
+/* Byte 0x1d7 of Ov003State: the high byte of unk_1d6 (a halfword that is also
+ * passed to func_02027aa0). */
+#define OV003_UNK_1D7(state) (((u8 *)&(state)->unk_1d6)[1])
+
 #endif

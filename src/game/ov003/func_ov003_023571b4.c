@@ -1,7 +1,7 @@
 #include "types.h"
 
 int func_ov003_023621b0(void);
-int func_ov003_02362174(void);
+int Ov003_IsPlayPhase(void);
 int func_ov003_02362258(void);
 void Ov003_RunSlotInput(void);
 void Ov003_UpdateRowUnits(void);
@@ -19,7 +19,7 @@ void func_ov003_023571b4(void)
     if (func_ov003_023621b0() == 1) {
         Ov003_RunSlotInput();
     }
-    if (func_ov003_02362174() == 1) {
+    if (Ov003_IsPlayPhase() == 1) {
         Ov003_UpdateRowUnits();
         func_ov003_0235e258();
     }
