@@ -3446,6 +3446,10 @@ src/game/main/screen/screen_fade_sprites.c:
     complete
     .text       start:0x02053a20 end:0x02053af0
 
+src/game/main/screen/screen_fade_in_from_black_update.c:
+    complete
+    .text       start:0x02055714 end:0x02055788
+
 src/game/main/func_02055c88.c:
     complete
     .text       start:0x02055c88 end:0x02055c94
