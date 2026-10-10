@@ -7,7 +7,7 @@ extern Unk_027c0280 *data_027c0280;
 
 u32 File_UnpackTo(void *dest, const char *path);
 void func_0200be6c(void *dest, const char *path); /* guess: reads a whole file into dest */
-int Battle_IsSideDrawnInAir(int side);                /* 1: the side is drawn in the sky */
+int Battle_IsSideDrawnInAir(int side);           /* 1: the side is drawn in the sky */
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 

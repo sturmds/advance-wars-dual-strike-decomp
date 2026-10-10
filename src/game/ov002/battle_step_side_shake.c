@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/gx.h"
 #include "game/screen_other_map.h"
 
 /* Step counter of each side, set to 1 by Battle_StartSideShake. */
@@ -22,9 +23,9 @@ void Battle_StepSideShake(u32 side)
     if (dy == 0) {
         return;
     }
-    *(s32 *)0x4000470 = 0;
-    *(s32 *)0x4000470 = dy;
-    *(s32 *)0x4000470 = 0;
+    *REG_MTX_TRANS = 0;
+    *REG_MTX_TRANS = dy;
+    *REG_MTX_TRANS = 0;
     if (side == 0) {
         data_027c0280->bgScrollY[data_027c0280->layer2Bg] = data_ov002_023604f4[step];
     } else {

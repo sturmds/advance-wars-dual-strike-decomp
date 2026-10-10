@@ -19,7 +19,7 @@ void func_020f75dc(int a, int b, int c, int d, int e, int f);
  * the table's third byte. */
 void UnitInfoPanel_DrawPageMarker(void)
 {
-    int page = *(s8 *)&data_ov000_0234ec8c->unk_0c; /* signed read; the field is declared u8 */
+    int page = data_ov000_0234ec8c->page;
     int base = data_ov000_0234f9e8[page][0];
     int x = data_ov000_0234f9e8[page][1];
     int value = data_ov000_0234f9e8[page][2];

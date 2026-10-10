@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-#define REG_MTX_MODE ((volatile u32 *)0x04000440)
-
 BOOL Battle_IsSideAir(int side);
 /* Orthographic projection (a guess from the arguments): top, bottom, left, right, near, far, scale. */
 void func_0210c25c(int top, int bottom, int left, int right, int nearZ, int farZ, int scale, BOOL load, void *mtx);

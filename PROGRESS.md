@@ -56,7 +56,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov000/func_ov000_022afee8.c` | func_ov000_022afee8 | 212 |
 | `src/game/ov000/player_hud_draw_slot.c` | no delinks entry | 0 |
 | `src/game/ov000/task/unit_path_count_steps.c` | func_ov000_022ad560 | 104 |
-| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | func_ov000_022b2114 | 300 |
+| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
 | `src/game/ov001/func_ov001_02351174.c` | func_ov001_02351174 | 244 |
 | `src/game/ov001/func_ov001_02351268.c` | func_ov001_02351268 | 132 |
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |

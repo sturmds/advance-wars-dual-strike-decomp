@@ -4,8 +4,8 @@
 extern s8 data_ov000_022b3850[];
 extern const void *data_ov000_0234fa28[][16];
 
-/* UnitInfoPanel.unk_0c, read as the signed page number 0-15 */
-#define PAGE (*(s8 *)&data_ov000_0234ec8c->unk_0c)
+/* Page number 0-15 */
+#define PAGE (data_ov000_0234ec8c->page)
 
 void Sound_PlaySe(u32 soundId);
 
