@@ -13,7 +13,8 @@ typedef struct Unk_ov004_022bf158_818 {
 typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
     u32 unk_004;
-    u8 pad_008[0x818 - 0x8];
+    u32 unk_008;
+    u8 pad_00c[0x818 - 0xc];
     Unk_ov004_022bf158_818 unk_818;
     u8 pad_828[0x8f8 - 0x828];
     int unk_8f8;                       /* eased each frame by func_ov004_022b0984 */
@@ -23,7 +24,11 @@ typedef struct Unk_ov004_022bf158 {
     int unk_908;                       /* eased each frame by func_ov004_022b1d38 */
     u8 pad_90c[0x998 - 0x90c];
     u32 unk_998[1];                    /* indexed by Ov004Task.slot; length unknown */
-    u8 pad_99c[0x1330 - 0x99c];
+    u8 pad_99c[0x1320 - 0x99c];
+    void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
+    u8 pad_1324[0x1328 - 0x1324];
+    u32 unk_1328;                      /* set to 0x06860000, an LCDC VRAM address */
+    u8 pad_132c[0x1330 - 0x132c];
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */
     u8 pad_1334[0x1bf0 - 0x1334];
     u32 unk_1bf0;

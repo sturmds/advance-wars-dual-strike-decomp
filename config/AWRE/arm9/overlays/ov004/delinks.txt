@@ -32,6 +32,10 @@ src/game/ov004/func_ov004_022ade44.c:
     complete
     .text       start:0x022ade44 end:0x022ade64
 
+src/game/ov004/ov004_task_reset_state.c:
+    complete
+    .text       start:0x022ae6ac end:0x022ae7c8
+
 src/game/ov004/ov004_alloc_state.c:
     complete
     .text       start:0x022ae7c8 end:0x022ae83c
