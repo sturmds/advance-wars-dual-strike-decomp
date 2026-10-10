@@ -354,6 +354,10 @@ src/game/ov002/battle_start_fighter_task.c:
     complete
     .text       start:0x0235ecbc end:0x0235ecf4
 
+src/game/ov002/battle_update_cue_spawner.c:
+    complete
+    .text       start:0x0235ecf4 end:0x0235ee18
+
 src/game/ov002/func_ov002_0235f02c.c:
     complete
     .text       start:0x0235f02c end:0x0235f064
