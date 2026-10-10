@@ -9,7 +9,7 @@ extern char data_ov003_0236492c[];
 
 void FS_ChangeDir(const char *dir);
 u32 File_UnpackTo(void *dest, const void *path);
-void func_ov003_02361abc(int row);
+void Ov003_ReplaceRowSpecialTiles(int row);
 
 #define STATE data_ov003_02364928
 #define MAP data_ov003_02364a88
@@ -22,7 +22,7 @@ void func_ov003_02361abc(int row);
  * 3, 16, 21 and 26 set unk_f1a to 100 and the rest set it to 0; 21 and 26 also fill
  * the next of the 4 data_ov003_02369bb8 entries; 8 stores its x and y in unk_38 and unk_39
  * of the tile's row (the cell Ov003_ScrollToSelectedUnit scrolls to). With
- * data_02160ac0->unk_7c set, calls func_ov003_02361abc for each row whose active flag is clear. */
+ * data_02160ac0->unk_7c set, calls Ov003_ReplaceRowSpecialTiles for each row whose active flag is clear. */
 void Ov003_LoadMap(void)
 {
     int y;
@@ -79,7 +79,7 @@ void Ov003_LoadMap(void)
     }
     for (row = 0; row < STATE->rowCount; row++) {
         if (!STATE->rows[row].active) {
-            func_ov003_02361abc(row + 1);
+            Ov003_ReplaceRowSpecialTiles(row + 1);
         }
     }
 }
