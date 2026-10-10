@@ -11,6 +11,8 @@ extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_ov003_02364b74[];
 
+/* Sets the next mode (high nibble of Ov003State.unk_1da) to 6 and starts the
+ * task of data_ov003_02364b74 on the first screen. */
 void func_ov003_0236322c(void)
 {
     Unk_027c0280 *savedGfx = data_027c0280;
