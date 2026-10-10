@@ -115,6 +115,14 @@ typedef struct BattleEntry {
     u8 pad_17;
 } BattleEntry;
 
+/* Offset of the 3D scene on one screen. */
+typedef struct BattleSway {
+    s16 x;
+    s16 y;
+    s16 z;
+    u16 pad_06;
+} BattleSway;
+
 struct BattleSideData;
 
 /* The cells of one side's HP bar to update, one per step. */
@@ -131,13 +139,14 @@ typedef struct BattleScreenWork {
     u32 unk_48[2];
     u8 pad_50[0x27c - 0x50];
     struct BattleSideData *unk_27c[2];
-    u8 pad_284[0x2c8 - 0x284];
+    BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */
+    u8 pad_294[0x2c8 - 0x294];
     BattleStepList stepLists[2];
     u8 pad_2ec[0x310 - 0x2ec];
     BattleEntry unk_310[2][5];
     const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
     u16 unk_408[2];                    /* cleared by Battle_Init */
-    u16 unk_40c[2];                    /* cleared by Battle_Init */
+    u16 unk_40c[2];                    /* cleared by Battle_Init; func_ov002_02353254 sets them to sway[0].x >> 4 */
     u8 pad_410[0x490 - 0x410];
     u8 unk_490[0x80];                  /* copied from res_battle 0x828 */
     u8 unk_510[0x240];                 /* copied from res_battle 0x88c */
@@ -171,7 +180,9 @@ typedef struct MenuState {
  * setup.fundsPerProperty through this symbol: naming gMenuState there
  * changes which loads the compiler repeats. */
 typedef struct MenuStateFrom200 {
-    u8 pad_200[0x2d8 - 0x200];
+    u8 pad_200[0x284 - 0x200];
+    s16 sway0x;                        /* BattleSway.x of the first screen */
+    u8 pad_286[0x2d8 - 0x286];
     u16 fundsPerProperty;              /* BattleSetupState.fundsPerProperty */
 } MenuStateFrom200;
 
