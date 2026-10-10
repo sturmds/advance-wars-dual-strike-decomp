@@ -4,7 +4,6 @@
 extern u8 data_ov000_022db6cc[];
 
 UnitShowTask *Task_FindByScript(void *script);
-void func_ov000_022ae5c0(UnitShowTask *task, u8 *path);
 
 /* Gives the running unit show task a path to walk; does nothing when there is none. */
 void UnitShowTask_StartPath(u8 *path)
@@ -14,5 +13,5 @@ void UnitShowTask_StartPath(u8 *path)
     if (task == NULL) {
         return;
     }
-    func_ov000_022ae5c0(task, path);
+    UnitShowTask_SetPath(task, path);
 }

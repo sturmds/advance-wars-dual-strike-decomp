@@ -4,7 +4,9 @@
 #include "types.h"
 #include "game/map_unit.h"
 
-#define UNIT_SHOW_SLOT_COUNT 2         /* show tasks that can run at once (Unk_02080440.showSlotBusy) */
+#define UNIT_SHOW_SLOT_COUNT 2         /* show tasks that can run at once (Unk_02080440.unk_58) */
+
+#define UNIT_SHOW_PATH_LENGTH 16
 
 /* Sprite handle of a UnitShowTask (func_02022478 makes it from a loaded file). */
 typedef struct ShowSprite {
@@ -39,6 +41,9 @@ typedef struct UnitShowTask {
     void *unk_48;                      /* first loaded file */
     s8 script[0x20];                   /* commands of UnitShowTask_RunScript */
 } UnitShowTask;
+
+/* path: UNIT_SHOW_PATH_LENGTH signed steps, read as bytes */
+void UnitShowTask_SetPath(UnitShowTask *task, const u8 *path);
 
 /* UnitShowTask.unk_35, the state: picks the handler in data_ov000_022db6b4. */
 #define UNIT_SHOW_STATE_NONE   0       /* no handler: the task runs its script first */
