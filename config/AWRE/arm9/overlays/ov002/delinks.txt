@@ -275,6 +275,10 @@ src/game/ov002/battle_cell_task_destroy_sprites.c:
     complete
     .text       start:0x023598d8 end:0x02359a90
 
+src/game/ov002/battle_cell_task_update.c:
+    complete
+    .text       start:0x02359a90 end:0x02359b78
+
 src/game/ov002/battle_cell_task_reset.c:
     complete
     .text       start:0x02359b78 end:0x02359c7c
