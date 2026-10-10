@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 
 void func_ov003_0235fb38(Ov003Unit *unit);
-void func_ov003_0235fbd4(Ov003Unit *unit);
+void Ov003Unit_FireAtLockedTarget(Ov003Unit *unit);
 void Ov003Unit_FireForwardOnce(Ov003Unit *unit);
 void func_ov003_0235fc58(Ov003Unit *unit);
 
@@ -18,7 +18,7 @@ void func_ov003_0235f81c(Ov003Unit *unit)
         return;
     }
     if (unit->unk_1c_0) {
-        func_ov003_0235fbd4(unit);
+        Ov003Unit_FireAtLockedTarget(unit);
         return;
     }
     if (unit->unk_1c_1 && unit->unk_1d_7) {
