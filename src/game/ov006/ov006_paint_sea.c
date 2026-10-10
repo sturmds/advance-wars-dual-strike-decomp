@@ -1,0 +1,59 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_ov006_0235f690.h"
+#include "game/terrain.h"
+
+int func_ov006_02351304(int x, int y);   /* TRUE unless the tile is sea, shoal or reef */
+int Ov006_IsBridgeTile(int x, int y);   /* checks bridge tiles only */
+int Ov006_GetTilePropertyKind(int x, int y);
+void func_ov006_02365eec(int x, int y);
+void Ov006_BreakCellBlock(int x, int y);
+void func_ov006_02351828(int x, int y, int cell);
+void func_ov006_02351714(int x, int y, int terrain);
+void func_ov006_0235d7dc(int x, int y);
+void func_ov006_0235ddac(int x, int y);
+void Ov006_RemoveUnitOnImpassableTile(int x, int y);
+
+extern Unk_02080440 *data_027c027c;
+extern u32 data_027c0284;
+extern Unk_ov006_0235f690 *data_ov006_0236d640;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
+
+#define CELL_SEA 42   /* the cell Ov006_FillMapForScreen uses for sea */
+
+/* Paints sea on tile x, y in the editor. A land tile (some bridges excepted)
+ * first clears what Ov006_GetTilePropertyKind finds there and breaks any cell block
+ * it was part of. Sea, shoal and reef stay; sea only gets its cell reset to
+ * the plain sea cell. Last, Ov006_RemoveUnitOnImpassableTile refits the tile. */
+void Ov006_PaintSea(int x, int y)
+{
+    if (func_ov006_02351304(x, y)) {
+        if (Ov006_IsBridgeTile(x, y)) {
+            return;
+        }
+        if (Ov006_GetTilePropertyKind(x, y)) {
+            func_ov006_02365eec(x, y);
+        }
+        data_ov006_0236d640->oldCell = STATE->mapTiles->mapCells[TILE_INDEX(x, y)];
+        Ov006_BreakCellBlock(x, y);
+        func_ov006_02351828(x, y, CELL_SEA);
+        func_ov006_02351714(x, y, TERRAIN_SEA);
+        func_ov006_0235d7dc(x, y);
+    } else {
+        switch (STATE->mapTiles->tiles[TILE_INDEX(x, y)]) {
+        case TERRAIN_SEA:
+            func_ov006_0235ddac(x, y);
+            if (STATE->mapTiles->mapCells[TILE_INDEX(x, y)] != CELL_SEA) {
+                func_ov006_02351828(x, y, CELL_SEA);
+                func_ov006_02351714(x, y, TERRAIN_SEA);
+            }
+            break;
+        case TERRAIN_SHOAL:
+        case TERRAIN_REEF:
+            break;
+        }
+    }
+    Ov006_RemoveUnitOnImpassableTile(x, y);
+}
