@@ -4,6 +4,9 @@
     .data       start:0x022bdce0 end:0x022bf140 kind:data align:32
     .bss        start:0x022bf140 end:0x02353960 kind:bss align:32
 
+src/game/ov004/func_ov004_022ad71c.c:
+    .text       start:0x022ad71c end:0x022ad87c
+
 src/game/ov004/func_ov004_022ada10.c:
     complete
     .text       start:0x022ada10 end:0x022ada34
