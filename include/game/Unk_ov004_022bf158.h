@@ -77,7 +77,10 @@ typedef struct Unk_ov004_022bf158 {
     u16 viewY;
     u16 viewScrollX;                   /* viewX and viewY wrapped to the BG; set by func_ov004_022bacd8 */
     u16 viewScrollY;
-    u8 pad_133c[0x1b44 - 0x133c];
+    u16 blocksWide;                    /* set by Ov004_InitTileMap: size of the block tile map */
+    u16 blocksHigh;
+    void *tileMap;                     /* u16 entries; filled by Ov004_BlitBlock and func_ov004_022baeec */
+    u8 pad_1344[0x1b44 - 0x1344];
     int elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
     u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */

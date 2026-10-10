@@ -655,6 +655,10 @@ src/game/ov004/ov004_blit_block.c:
     complete
     .text       start:0x022badcc end:0x022badec
 
+src/game/ov004/ov004_init_tile_map.c:
+    complete
+    .text       start:0x022baf54 end:0x022baf8c
+
 src/game/ov004/func_ov004_022baffc.c:
     complete
     .text       start:0x022baffc end:0x022bb014

@@ -20,7 +20,7 @@ void Ov004_CopyResource(const char *name, void *dest);
 void Ov004_UnpackResource(const char *name, void *dest);
 void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *name);
 void func_ov004_022baeec(Unk_ov004_022bf158 *state, int col, int row, int fill);
-void func_ov004_022baf54(Unk_ov004_022bf158 *state, int cols, int rows);
+void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
 Task *func_020fcd78(void *parent, int frames);
 void func_0210bb60(int sin, int cos);
@@ -184,7 +184,7 @@ void Ov004Task_PlayTurningQuadScene(Ov004Task *task)
                             data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase << 14));
         Ov004_CopyResource(data_ov004_022bdd48, data_027c0280->paletteBuffer + 0x20);
         Palette_Flush();
-        func_ov004_022baf54(state, 3, 3);
+        Ov004_InitTileMap(state, 3, 3);
         func_ov004_022baeec(state, 0, 0, 0);
         func_ov004_022baeec(state, 1, 0, 0);
         func_ov004_022baeec(state, 2, 0, 0);
