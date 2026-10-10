@@ -4786,6 +4786,10 @@ src/game/main/func_02086b6c.c:
     complete
     .text       start:0x02086b6c end:0x02086b80
 
+src/game/main/sub_screen_reset_menu.c:
+    complete
+    .text       start:0x02086d2c end:0x02086d90
+
 src/game/main/link/link_menu_draw_help_text.c:
     complete
     .text       start:0x02087064 end:0x020871c8
