@@ -764,6 +764,10 @@ src/game/ov005/func_ov005_023659b8.c:
     complete
     .text       start:0x023659b8 end:0x023659dc
 
+src/game/ov005/ov005_co_select_move_cursor_on_keys.c:
+    complete
+    .text       start:0x023659dc end:0x02365a8c
+
 src/game/ov005/func_ov005_02365a8c.c:
     complete
     .text       start:0x02365a8c end:0x02365aa4
