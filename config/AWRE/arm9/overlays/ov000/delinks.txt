@@ -188,6 +188,10 @@ src/game/ov000/second_screen_refresh_if_changed.c:
     complete
     .text       start:0x022b2cc4 end:0x022b2d48
 
+src/game/ov000/second_screen_redraw_panel.c:
+    complete
+    .text       start:0x022b2d48 end:0x022b2f30
+
 src/game/ov000/layers_clear_left_block.c:
     complete
     .text       start:0x022b2f30 end:0x022b2fa8
