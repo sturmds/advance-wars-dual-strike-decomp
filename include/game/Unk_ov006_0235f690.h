@@ -3,10 +3,15 @@
 
 #include "types.h"
 
-/* One 12-byte slot; bit 0 of flags is tested by func_ov006_023547bc. */
+/* One 12-byte slot; bit 0 of flags is tested by func_ov006_023547bc.
+ * A slot belongs to a slot button: Ov006_AddSlotButtons treats the array as
+ * starting at 0x78, so this view begins 8 bytes into each slot. */
 typedef struct Ov006Slot {
     s16 flags;
-    u8 pad_02[10];
+    u8 pad_02;
+    u8 state;                          /* slide animation: 10 start in, 11 sliding in, 20 shown,
+                                           30 start out, 31 sliding out, 32 and 40 done */
+    u8 pad_04[8];
 } Ov006Slot;
 
 /* Overlay 6 state reached through data_ov006_0236d640. */
