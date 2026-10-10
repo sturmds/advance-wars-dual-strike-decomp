@@ -42,6 +42,12 @@ typedef struct Ov003Unit {
 
 typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 
+/* 20-byte entry of data_ov003_02364d88, indexed by Ov003Unit.tile. */
+typedef struct Ov003TileInfo {
+    u16 unk_00;                        /* divisor for Ov003Unit.unk_04 in Ov003_DrawUnitAnims */
+    u8 pad_02[0x14 - 0x02];
+} Ov003TileInfo;
+
 /* 2-byte cell of a 31-cell row in data_ov003_02364928 (62 bytes per row). */
 typedef struct Ov003Cell {
     u8 tile : 6;

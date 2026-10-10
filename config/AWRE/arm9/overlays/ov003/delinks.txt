@@ -131,7 +131,8 @@ src/game/ov003/func_ov003_023572b0.c:
     complete
     .text       start:0x023572b0 end:0x02357308
 
-src/game/ov003/func_ov003_023574e8.c:
+src/game/ov003/ov003_draw_unit_anims.c:
+    complete
     .text       start:0x023574e8 end:0x0235758c
 
 src/game/ov003/ov003_point_task_create.c:
