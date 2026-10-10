@@ -60,7 +60,10 @@ typedef struct Ov003Cell {
 typedef struct Ov003Row {
     Ov003Cell cells[29];
     u8 spawnCount;
-    u8 pad_3b[3];
+    u8 pad_3b;
+    u8 color : 7;                      /* 1-based: picks this row's palette colours and tiles */
+    u8 unk_3c_7 : 1;
+    u8 pad_3d;
 } Ov003Row;
 
 typedef struct Ov003Slot {
@@ -97,7 +100,8 @@ typedef struct Ov003State {
     u8 pad_1d4;
     u8 currentSlot;
     u16 unk_1d6;
-    u8 pad_1d8[0x1da - 0x1d8];
+    u8 rowCount;                       /* rows in use */
+    u8 pad_1d9;
     u8 unk_1da;
     u8 row : 7;                        /* 1 to 5: the row spawns go to */
     u8 unk_1db_7 : 1;

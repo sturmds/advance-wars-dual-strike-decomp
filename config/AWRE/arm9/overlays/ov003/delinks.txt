@@ -63,6 +63,10 @@ src/game/ov003/ov003_load_obj_graphics.c:
     complete
     .text       start:0x02352240 end:0x023522cc
 
+src/game/ov003/ov003_load_graphics.c:
+    complete
+    .text       start:0x023524e8 end:0x02352e04
+
 src/game/ov003/ov003_load_map_panel_graphics.c:
     complete
     .text       start:0x02352e04 end:0x02352e88
