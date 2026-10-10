@@ -21,7 +21,7 @@ void Ov005SoundRoom_SetSlideDirection(Unk_ov005_0236bbac *work);
 void func_ov005_02364418(Unk_ov005_0236bbac *work);
 void func_ov005_02364708(Unk_ov005_0236bbac *work);
 void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
-void func_ov005_02364d90(Unk_ov005_0236bbac *work);
+void Ov005_DrawPageNumber(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
@@ -189,5 +189,5 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
     Ov005_UpdateSoundRoomSprites(work);
     Ov005_DrawEntryPage(work);
     Ov005_DrawSelectedEntryName(work);
-    func_ov005_02364d90(work);
+    Ov005_DrawPageNumber(work);
 }
