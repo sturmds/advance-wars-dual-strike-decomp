@@ -7,12 +7,12 @@
 
 /* Sound effect ids (Sound_PlaySe) of one fighter on the battle animation screen. */
 typedef struct BattleSounds {
-    u32 unk_00;
-    u32 unk_04;                        /* played for a side with no CO */
-    u32 unk_08;                        /* played for a side with a CO */
-    u32 unk_0c;
-    u32 unk_10;
-    u32 unk_14;
+    u32 unk_00;                        /* Sound_PlaySubSe id of the attacker (func_ov002_0235fc68) */
+    u32 unk_04;                        /* Battle_PlayFighterStartSe, BattleSide.usesSecondary of 0 */
+    u32 unk_08;                        /* Battle_PlayFighterStartSe, otherwise */
+    u32 unk_0c;                        /* Battle_PlayFighterReactSe, other fighter's state not 2 */
+    u32 unk_10;                        /* Battle_PlayFighterReactSe, other fighter's state 2 */
+    u32 unk_14;                        /* Battle_PlayFighterSe; without it Battle_PlayDefaultFighterSe */
 } BattleSounds;
 
 /* A 0x78-byte object of the ov002 battle animation, one per side. */

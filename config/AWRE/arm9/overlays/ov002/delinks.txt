@@ -374,6 +374,10 @@ src/game/ov002/battle_play_default_fighter_se.c:
     complete
     .text       start:0x0235fa50 end:0x0235fae4
 
+src/game/ov002/battle_play_fighter_react_se.c:
+    complete
+    .text       start:0x0235fae4 end:0x0235fb98
+
 src/game/ov002/battle_play_fighter_start_se.c:
     complete
     .text       start:0x0235fb98 end:0x0235fc2c
