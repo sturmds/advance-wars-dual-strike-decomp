@@ -373,6 +373,10 @@ src/game/ov000/unit_info_panel/unit_info_panel_draw_contents.c:
     complete
     .text       start:0x022b1b1c end:0x022b1b6c
 
+src/game/ov000/unit_info_panel/unit_info_panel_draw_icons.c:
+    complete
+    .text       start:0x022b1b6c end:0x022b1c54
+
 src/game/ov000/unit_info_panel/unit_info_panel_draw_icon_pair.c:
     complete
     .text       start:0x022b1c54 end:0x022b1cf4
