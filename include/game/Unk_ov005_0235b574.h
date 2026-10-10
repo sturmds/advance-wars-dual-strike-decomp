@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Bitmap work block of the screen step func_ov005_02359a6c: three pixel
+/* Bitmap work block of the screen step Ov005_SetUpStaffCreditsScreen: three pixel
  * buffers, copied between by func_ov005_0235b3d4 and its callees. */
 typedef struct Unk_ov005_0235b574 {
     u8 pad_0000[0x10];

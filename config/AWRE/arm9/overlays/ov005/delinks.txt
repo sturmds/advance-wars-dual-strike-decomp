@@ -256,6 +256,10 @@ src/game/ov005/ov005_skip_on_input.c:
     complete
     .text       start:0x023598e8 end:0x02359a6c
 
+src/game/ov005/ov005_set_up_staff_credits_screen.c:
+    complete
+    .text       start:0x02359a6c end:0x0235a2d0
+
 src/game/ov005/ov005_screen_alloc_large_work.c:
     complete
     .text       start:0x0235a2d0 end:0x0235a30c
