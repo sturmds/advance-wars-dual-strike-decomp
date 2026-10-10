@@ -1,0 +1,30 @@
+#include "types.h"
+#include "game/Ov003Fx.h"
+
+void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
+/* LCDC address of colour 13 in row i of the 16-colour rows in bank F. */
+#define BANK_F_COLOR(i) ((void *)(0x06890000 + 0x1a + (i) * 0x20 + 0x80))
+
+void func_0210c8e8(void);   /* guess: maps VRAM bank F to the CPU (LCDC) */
+
+void func_0210c81c(void);   /* guess: undoes func_0210c8e8 */
+
+/* Writes the two colours into bank F, at palette entry 13 of four 16-colour
+ * rows. Mode 11 sends the first 4 bytes of the state instead (kept as the
+ * original reads it). */
+void Ov003_WriteFxColors(void)
+{
+    func_0210c8e8();
+    if (data_ov003_02364a84->mode == 0) {
+        Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(0), 4, 16);
+        Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(1), 4, 16);
+        Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(2), 4, 16);
+        Mem_CopyUnits(&data_ov003_02364a84->colors, BANK_F_COLOR(3), 4, 16);
+    } else if (data_ov003_02364a84->mode == 11) {
+        Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(0), 4, 16);
+        Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(1), 4, 16);
+        Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(2), 4, 16);
+        Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(3), 4, 16);
+    }
+    func_0210c81c();
+}
