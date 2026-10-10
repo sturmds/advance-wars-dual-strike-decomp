@@ -7,7 +7,7 @@ void func_ov006_0235ddac(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_GetShoalGraphic(int x, int y);
 void Ov006_StoreMapCell(int x, int y, int value);
-int func_ov006_02351780(int x, int y, int terrain);
+int Ov006_TileMatches(int x, int y, int terrain);
 void func_ov006_02363238(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
@@ -35,7 +35,7 @@ int Ov006_PlaceShoal(int x, int y)
         return 0;
     }
     Ov006_StoreMapCell(x, y, result);
-    if (func_ov006_02351780(x, y, TERRAIN_SEA)) {
+    if (Ov006_TileMatches(x, y, TERRAIN_SEA)) {
         return 1;
     }
     func_ov006_02363238(x, y);

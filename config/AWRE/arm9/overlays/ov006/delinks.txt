@@ -59,6 +59,10 @@ src/game/ov006/ov006_set_terrain.c:
     complete
     .text       start:0x02351714 end:0x02351780
 
+src/game/ov006/ov006_tile_matches.c:
+    complete
+    .text       start:0x02351780 end:0x02351828
+
 src/game/ov006/ov006_store_map_cell.c:
     complete
     .text       start:0x02351828 end:0x0235189c

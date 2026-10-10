@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Ov006_StoreMapCell(int x, int y, int value);
-int func_ov006_02351780(int x, int y, int value);
+int Ov006_TileMatches(int x, int y, int value);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235d7dc(int x, int y);
 void func_ov006_0235dd24(int x, int y);
@@ -16,7 +16,7 @@ void func_ov006_0235da70(int x, int y, int value)
     if (value == 42) {
         return;
     }
-    if (value == 1 && func_ov006_02351780(x, y - 1, 1)) {
+    if (value == 1 && Ov006_TileMatches(x, y - 1, 1)) {
         Ov006_StoreMapCell(x, y - 1, 1);
     }
     if (value == 1) {
