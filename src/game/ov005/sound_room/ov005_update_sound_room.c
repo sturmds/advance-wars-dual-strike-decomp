@@ -26,7 +26,7 @@ void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
 void Ov005_DrawSelectedEntryName(Unk_ov005_0236bbac *work);
-void func_ov005_02365cec(Unk_ov005_0236bbac *work);
+void Ov005_DrawEntryPage(Unk_ov005_0236bbac *work);
 
 /* Per-frame update of the Sound Room. Fades in, opens window 0 on the sub
  * screen (x 40-216, y 168-184; BG0 hidden outside it), then handles input:
@@ -187,7 +187,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
     }
     work->shownSelection = work->selection;
     Ov005_UpdateSoundRoomSprites(work);
-    func_ov005_02365cec(work);
+    Ov005_DrawEntryPage(work);
     Ov005_DrawSelectedEntryName(work);
     func_ov005_02364d90(work);
 }

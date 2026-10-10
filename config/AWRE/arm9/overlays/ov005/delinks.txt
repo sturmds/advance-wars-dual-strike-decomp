@@ -820,6 +820,10 @@ src/game/ov005/ov005_draw_selected_entry_name.c:
     complete
     .text       start:0x02365b90 end:0x02365cec
 
+src/game/ov005/ov005_draw_entry_page.c:
+    complete
+    .text       start:0x02365cec end:0x02365e90
+
 src/game/ov005/func_ov005_02365e90.c:
     complete
     .text       start:0x02365e90 end:0x02365ea8
