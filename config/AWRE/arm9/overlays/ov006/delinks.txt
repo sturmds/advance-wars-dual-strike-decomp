@@ -414,6 +414,7 @@ src/game/ov006/func_ov006_02357d40.c:
     .text       start:0x02357d40 end:0x02357dc8
 
 src/game/ov006/func_ov006_02357dc8.c:
+    complete
     .text       start:0x02357dc8 end:0x02357e14
 
 src/game/ov006/func_ov006_02357e14.c:
