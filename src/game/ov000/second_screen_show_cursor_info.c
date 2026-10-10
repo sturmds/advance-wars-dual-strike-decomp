@@ -9,7 +9,7 @@ extern u32 data_ov000_02350544;
 int SecondScreenTask_IsRunning(void);
 u8 Player_GetArmyStyle(int playerIndex);
 void func_ov000_022b0054(void);
-void func_ov000_022b00b8(void);
+void FirstScreenTask_StartOrRefresh(void);
 void UnitInfoPanel_Close(void);
 void UnitInfoPanel_OpenForUnit(MapUnit *unit);
 void func_020f3280(int a, int b, int c, int d, int e);
@@ -40,7 +40,7 @@ void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit)
         UnitInfoPanel_OpenForUnit(unit);
     } else {
         UnitInfoPanel_Close();
-        func_ov000_022b00b8();
+        FirstScreenTask_StartOrRefresh();
     }
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
