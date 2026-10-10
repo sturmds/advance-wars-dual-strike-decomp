@@ -323,6 +323,10 @@ src/game/ov004/func_ov004_022b414c.c:
     complete
     .text       start:0x022b414c end:0x022b416c
 
+src/game/ov004/ov004_task_pulse_alpha_blend.c:
+    complete
+    .text       start:0x022b416c end:0x022b43c8
+
 src/game/ov004/func_ov004_022b43c8.c:
     complete
     .text       start:0x022b43c8 end:0x022b43d4
