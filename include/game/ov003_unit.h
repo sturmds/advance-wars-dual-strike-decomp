@@ -80,9 +80,13 @@ typedef struct Ov003State {
     Ov003Slot slots[7];                /* length unknown */
     u8 pad_154[0x156 - 0x154];
     Ov003Spawn spawns[1];              /* length unknown */
-    u8 pad_15b[0x1d5 - 0x15b];
+    u8 pad_15b[0x1d0 - 0x15b];
+    u16 unk_1d0;
+    u16 unk_1d2;
+    u8 pad_1d4;
     u8 currentSlot;
-    u8 pad_1d6[0x1da - 0x1d6];
+    u16 unk_1d6;
+    u8 pad_1d8[0x1da - 0x1d8];
     u8 unk_1da;
     u8 row : 7;                        /* 1 to 5: the row spawns go to */
     u8 unk_1db_7 : 1;
