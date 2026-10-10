@@ -27,6 +27,10 @@ src/game/ov001/ov001_all_current_player_units_waited.c:
     complete
     .text       start:0x0235066c end:0x02350708
 
+src/game/ov001/ov001_all_current_player_units_out_of_fuel.c:
+    complete
+    .text       start:0x02350708 end:0x023507a8
+
 src/game/ov001/ov001_player1_has_no_infantry.c:
     complete
     .text       start:0x023507a8 end:0x02350824
