@@ -270,7 +270,7 @@ func_ov006_02363198 kind:function(arm,size=0x10) addr:0x02363198
 func_ov006_023631a8 kind:function(arm,size=0x90) addr:0x023631a8
 func_ov006_02363238 kind:function(arm,size=0x200) addr:0x02363238
 func_ov006_02363438 kind:function(arm,size=0xf4) addr:0x02363438
-func_ov006_0236352c kind:function(arm,size=0x78c) addr:0x0236352c
+Ov006_GetShoalGraphic kind:function(arm,size=0x78c) addr:0x0236352c
 func_ov006_02363cb8 kind:function(arm,size=0xc8) addr:0x02363cb8
 func_ov006_02363d80 kind:function(arm,size=0x130) addr:0x02363d80
 func_ov006_02363eb0 kind:function(arm,size=0x54) addr:0x02363eb0
@@ -543,7 +543,7 @@ data_ov006_0236c0d4 kind:data(any) addr:0x0236c0d4
 data_ov006_0236c0d8 kind:data(any) addr:0x0236c0d8
 data_ov006_0236c0dc kind:data(any) addr:0x0236c0dc
 data_ov006_0236c2dc kind:data(any) addr:0x0236c2dc
-data_ov006_0236c6dc kind:data(any) addr:0x0236c6dc
+Ov006_gShoalGraphicTable kind:data(any) addr:0x0236c6dc
 data_ov006_0236cadc kind:data(any) addr:0x0236cadc
 data_ov006_0236cedc kind:data(any) addr:0x0236cedc
 data_ov006_0236cfe4 kind:data(any) addr:0x0236cfe4 ambiguous
