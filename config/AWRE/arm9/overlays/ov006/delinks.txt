@@ -451,6 +451,10 @@ src/game/ov006/func_ov006_0235c5ec.c:
     complete
     .text       start:0x0235c5ec end:0x0235c5f8
 
+src/game/ov006/ov006_random_map_coord.c:
+    complete
+    .text       start:0x0235c5f8 end:0x0235c684
+
 src/game/ov006/ov006_fill_map_for_screen.c:
     complete
     .text       start:0x0235cd04 end:0x0235cfc0
