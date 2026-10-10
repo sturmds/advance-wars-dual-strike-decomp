@@ -504,6 +504,10 @@ src/game/ov005/ov005_remove_state_screen_arrows.c:
     complete
     .text       start:0x0235ea90 end:0x0235eb1c
 
+src/game/ov005/ov005_update_state_screen_buttons.c:
+    complete
+    .text       start:0x0235eb1c end:0x0235ec40
+
 src/game/ov005/func_ov005_0235ec40.c:
     complete
     .text       start:0x0235ec40 end:0x0235ec60

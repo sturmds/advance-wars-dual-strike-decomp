@@ -9,7 +9,8 @@ struct Unk_ov005_0236bba4;
  * calls run(work, arg). */
 typedef struct Unk_ov005_0236bba4_State {
     u32 unk_00;                        /* nonzero: the state is in use (Ov005_StateIsEnabled) */
-    u8 pad_04[0xc - 0x4];
+    u8 pad_04[0x8 - 0x4];
+    int scrollMax;                     /* fx32 rows; the scroll is clamped to 0..scrollMax */
     void (*run)(struct Unk_ov005_0236bba4 *work, int arg);
     int arg;
 } Unk_ov005_0236bba4_State;
