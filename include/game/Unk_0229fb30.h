@@ -8,7 +8,8 @@ typedef struct Unk_0229fb30 {
     u8 pad_00[2];
     u8 unk_02;                         /* Battle_ShowQuote sets it to 1 */
     u8 unk_03;                         /* 1-3: which of three frame graphics the battle screen loads */
-    u8 pad_04[0x08 - 0x04];
+    u8 pad_04[2];
+    u8 unk_06[2];                      /* per side; nonzero: BattleZoomTask_Update draws a sprite pair for the side */
     u16 unk_08;                        /* the battle screen ends when unk_08 == unk_0c and unk_0a == unk_0e */
     u16 unk_0a;
     u16 unk_0c;
