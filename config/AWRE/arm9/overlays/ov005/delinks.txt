@@ -168,6 +168,10 @@ src/game/ov005/ov005_screen_end_set_flag57.c:
     complete
     .text       start:0x02358988 end:0x023589b0
 
+src/game/ov005/ov005_screen_alloc_large_work.c:
+    complete
+    .text       start:0x0235a2d0 end:0x0235a30c
+
 src/game/ov005/func_ov005_0235a30c.c:
     complete
     .text       start:0x0235a30c end:0x0235a320
