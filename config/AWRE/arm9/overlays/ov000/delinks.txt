@@ -231,10 +231,12 @@ src/game/ov000/second_screen_draw_player_row.c:
     complete
     .text       start:0x022af8f0 end:0x022afbf0
 
-src/game/ov000/func_ov000_022afbf0.c:
+src/game/ov000/player_panels_refresh.c:
+    complete
     .text       start:0x022afbf0 end:0x022afee8
 
-src/game/ov000/func_ov000_022afee8.c:
+src/game/ov000/player_panels_init.c:
+    complete
     .text       start:0x022afee8 end:0x022affbc
 
 src/game/ov000/ov000_clear_right_panel_box.c:

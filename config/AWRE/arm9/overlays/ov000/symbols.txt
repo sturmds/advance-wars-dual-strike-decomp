@@ -55,8 +55,8 @@ Campaign_IsMap248FirstState kind:function(arm,size=0x58) addr:0x022af790
 Text_Get kind:function(arm,size=0x40) addr:0x022af7e8
 SecondScreen_UpdatePlayerPanels kind:function(arm,size=0xc8) addr:0x022af828
 SecondScreen_DrawPlayerRow kind:function(arm,size=0x300) addr:0x022af8f0
-func_ov000_022afbf0 kind:function(arm,size=0x2f8) addr:0x022afbf0
-func_ov000_022afee8 kind:function(arm,size=0xd4) addr:0x022afee8
+PlayerPanels_Refresh kind:function(arm,size=0x2f8) addr:0x022afbf0
+PlayerPanels_Init kind:function(arm,size=0xd4) addr:0x022afee8
 Ov000_ClearRightPanelBox kind:function(arm,size=0x98) addr:0x022affbc
 func_ov000_022b0054 kind:function(arm,size=0x64) addr:0x022b0054
 FirstScreenTask_StartOrRefresh kind:function(arm,size=0x80) addr:0x022b00b8
@@ -6473,7 +6473,6 @@ data_ov000_023504c4 kind:bss addr:0x023504c4
 data_ov000_023504c8 kind:bss addr:0x023504c8
 data_ov000_023504cc kind:bss addr:0x023504cc
 data_ov000_023504d0 kind:bss addr:0x023504d0
-data_ov000_023504e0 kind:bss addr:0x023504e0
 data_ov000_02350510 kind:bss addr:0x02350510
 data_ov000_02350520 kind:bss addr:0x02350520
 data_ov000_02350530 kind:bss addr:0x02350530
@@ -6484,3 +6483,4 @@ data_ov000_02350540 kind:bss addr:0x02350540
 data_ov000_02350544 kind:bss addr:0x02350544
 data_ov000_02350548 kind:bss addr:0x02350548
 data_ov000_0235054c kind:bss addr:0x0235054c
+Ov000_gPlayerPanelCache kind:bss addr:0x023504d4

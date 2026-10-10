@@ -1,14 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/player.h"
+#include "game/player_panel_cache.h"
 
-typedef struct PlayerCounts {
-    int unitCount;
-    int properties;
-    int inGame;
-} PlayerCounts;
-
-extern PlayerCounts data_ov000_023504e0[4];
 extern int data_ov000_0234eb84[][5];
 extern int data_ov000_0234eb88[][5];
 
@@ -23,7 +17,11 @@ void SecondScreen_DrawPlayerRow(int a, int b, int player, int style, int propert
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_ov000_022afbf0(void)
+/* Compares each player's unit count, property count and in-game flag with
+ * Ov000_gPlayerPanelCache and, when any changed, redraws all player rows on
+ * the second screen. The property count shows as -1 under fog or rain unless
+ * bit 1 of unk_1b is set. */
+void PlayerPanels_Refresh(void)
 {
     u8 changed;
     int properties;
@@ -34,17 +32,18 @@ void func_ov000_022afbf0(void)
     Unk_027c0280 *savedGfx3;
     int i;
     Player *player;
+    PlayerPanelCache *cache;
     int j;
-    PlayerCounts *counts;
     changed = 0;
     savedGfx = data_027c0280;
 
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    for (i = 1, counts = data_ov000_023504e0; i < 5; i++, counts++) {
+    for (i = 1; i < 5; i++) {
         player = &STATE->players[i];
-        if (player->controller != 0) {
+        cache = &Ov000_gPlayerPanelCache[i];
+        if (player->controller != PLAYER_CONTROLLER_NONE) {
             properties = player->unk_15;
             if (STATE->unk_81 == 0) {
                 if (STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) {
@@ -53,10 +52,10 @@ void func_ov000_022afbf0(void)
                     }
                 }
             }
-            if (counts->unitCount != player->unitCount || properties != counts->properties || counts->inGame != Player_IsInGame(i)) {
-                counts->unitCount = STATE->players[i].unitCount;
-                counts->properties = properties;
-                counts->inGame = Player_IsInGame(i);
+            if (cache->unitCount != player->unitCount || properties != cache->properties || cache->inGame != Player_IsInGame(i)) {
+                cache->unitCount = STATE->players[i].unitCount;
+                cache->properties = properties;
+                cache->inGame = Player_IsInGame(i);
                 changed = 1;
             }
         }
@@ -73,10 +72,11 @@ void func_ov000_022afbf0(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     savedGfx3 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    for (j = 1, counts = data_ov000_023504e0; j < 5; j++, counts++) {
+    for (j = 1; j < 5; j++) {
         player = &STATE->players[j];
-        if (player->controller != 0) {
-            SecondScreen_DrawPlayerRow(14, data_ov000_0234eb84[Map_GetLoadedPlayerCount()][j], j, Player_GetArmyStyle(j), player->armyColour, counts->unitCount, counts->properties, counts->inGame);
+        cache = &Ov000_gPlayerPanelCache[j];
+        if (player->controller != PLAYER_CONTROLLER_NONE) {
+            SecondScreen_DrawPlayerRow(14, data_ov000_0234eb84[Map_GetLoadedPlayerCount()][j], j, Player_GetArmyStyle(j), player->armyColour, cache->unitCount, cache->properties, cache->inGame);
         }
     }
     func_0201e6e8(14, (s16)data_ov000_0234eb88[Map_GetLoadedPlayerCount()][0], 8,
