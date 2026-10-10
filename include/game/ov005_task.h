@@ -10,7 +10,7 @@
 typedef struct Ov005Task {
     u8 pad_00[0x2c];
     void *work;
-    u8 pad_30[0x34 - 0x30];
+    u32 unk_30;
     u32 step;                          /* state of the update function */
     u8 pad_38[0x3c - 0x38];
     int frame;
