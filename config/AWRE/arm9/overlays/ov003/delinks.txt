@@ -546,6 +546,10 @@ src/game/ov003/ov003_draw_slot_marker.c:
     complete
     .text       start:0x02360604 end:0x023606ec
 
+src/game/ov003/ov003_draw_rows.c:
+    complete
+    .text       start:0x02360fdc end:0x02361040
+
 src/game/ov003/ov003_row_draw_cells.c:
     complete
     .text       start:0x02361040 end:0x02361418
