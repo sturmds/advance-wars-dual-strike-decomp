@@ -329,7 +329,11 @@ src/game/ov000/func_ov000_022b17cc.c:
     complete
     .text       start:0x022b17cc end:0x022b17f0
 
-src/game/ov000/unit_info_panel/unit_info_panel_button_on_keys.c:
+src/game/ov000/unit_info_panel/unit_info_panel_button_on_keys_right_down.c:
+    complete
+    .text       start:0x022b1988 end:0x022b19ec
+
+src/game/ov000/unit_info_panel/unit_info_panel_button_on_keys_left_up.c:
     complete
     .text       start:0x022b19ec end:0x022b1a40
 
