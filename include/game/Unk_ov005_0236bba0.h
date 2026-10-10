@@ -10,8 +10,8 @@
 typedef struct Unk_ov005_0236bba0 {
     u8 pad_00[0x82c];
     int unk_82c;                       /* 0x1000 or -0x1000, set from the key state */
-    int unk_830;                       /* nonzero while the button with id 243 exists */
-    int unk_834;                       /* nonzero while the button with id 244 exists */
+    int button243Added;                       /* nonzero while the button with id 243 exists */
+    int button244Added;                       /* nonzero while the button with id 244 exists */
     int selectedEntry;                  /* index of the entry whose button was selected last */
     int unk_83c;
     u8 pad_840[0x850 - 0x840];
