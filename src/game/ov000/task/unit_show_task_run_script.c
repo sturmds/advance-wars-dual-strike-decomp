@@ -15,7 +15,7 @@ void func_02021f44(void *sprite, int frame);
 void func_020d048c(int x, int y);
 int func_020800a4(void);
 void func_ov000_022ad610(UnitShowTask *task);
-void func_ov000_022ada98(UnitShowTask *task);
+void UnitShowTask_PlaySpecialSound(UnitShowTask *task);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -62,7 +62,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
         case 1:
         case 2:
         case 3:
-            func_ov000_022ada98(task);
+            UnitShowTask_PlaySpecialSound(task);
             if (cmd == task->frame) {
                 return;
             }
