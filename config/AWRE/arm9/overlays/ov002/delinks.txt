@@ -213,6 +213,10 @@ src/game/ov002/battle_sort_hit_list.c:
     complete
     .text       start:0x02355920 end:0x02355a98
 
+src/game/ov002/battle_shuffle_cell_orders.c:
+    complete
+    .text       start:0x02355a98 end:0x02355f08
+
 src/game/ov002/battle_pick_hp_drain_profiles.c:
     complete
     .text       start:0x02355f08 end:0x02355ff0

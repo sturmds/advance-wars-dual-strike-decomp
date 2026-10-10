@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 3338 / 6603 | 538812 / 1531944 | 35.17% | 0 | 0 |
+| game | 3340 / 6603 | 540972 / 1531944 | 35.31% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 3476 / 7484 | 542232 / 1685994 | 32.16% | 1 | 30 |
+| all | 3478 / 7484 | 544392 / 1685994 | 32.29% | 1 | 30 |
 
 ## By module
 
@@ -23,7 +23,7 @@ Rows with nothing done are left out, but count in the totals.
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 117 / 121 | 23924 / 25300 | 94.56% | 0 |
 | ov001 | game | 73 / 76 | 6832 / 7472 | 91.43% | 0 |
-| ov002 | game | 144 / 164 | 48280 / 64208 | 75.19% | 0 |
+| ov002 | game | 146 / 164 | 50440 / 64208 | 78.56% | 0 |
 | ov003 | game | 203 / 235 | 71848 / 82696 | 86.88% | 0 |
 | ov004 | game | 187 / 236 | 19648 / 67364 | 29.17% | 0 |
 | ov005 | game | 122 / 270 | 11724 / 96684 | 12.13% | 0 |
@@ -60,7 +60,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov001/func_ov001_02351174.c` | func_ov001_02351174 | 244 |
 | `src/game/ov001/func_ov001_02351268.c` | func_ov001_02351268 | 132 |
 | `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
-| `src/game/ov002/battle_cell_sprite_arrived.c` | func_ov002_02357d24 | 312 |
+| `src/game/ov002/battle_cell_sprite_arrived.c` | BattleCellSprite_Arrived | 312 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
 | `src/game/ov002/battle_draw_textured_quad.c` | Battle_DrawTexturedQuad | 392 |
 | `src/game/ov002/battle_fighter_task_setup.c` | BattleFighterTask_Setup | 544 |
@@ -72,6 +72,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov002/func_ov002_02354814.c` | func_ov002_02354814 | 216 |
 | `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 |
+| `src/game/ov002/func_ov002_0235882c.c` | func_ov002_0235882c | 1044 |
 | `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 |
 | `src/game/ov002/func_ov002_0235d224.c` | func_ov002_0235d224 | 644 |
 | `src/game/ov002/func_ov002_0235d4a8.c` | func_ov002_0235d4a8 | 108 |

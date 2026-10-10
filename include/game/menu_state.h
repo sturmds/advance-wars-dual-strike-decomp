@@ -179,7 +179,7 @@ typedef struct BattleScreenWork {
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
     BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */
-    u8 pad_294[0x298 - 0x294];
+    u16 unk_294[2];                    /* per side, like unk_29c */
     u16 unk_298[2];                    /* per side, like unk_29c */
     u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
     u16 unk_2a0[2];                    /* per side, like unk_29c */
