@@ -354,6 +354,10 @@ src/game/ov003/ov003_can_place_unit.c:
     complete
     .text       start:0x0235c628 end:0x0235c734
 
+src/game/ov003/ov003_rows_clear_cells.c:
+    complete
+    .text       start:0x0235c9ac end:0x0235ca24
+
 src/game/ov003/func_ov003_0235ca24.c:
     complete
     .text       start:0x0235ca24 end:0x0235ca50
@@ -370,7 +374,11 @@ src/game/ov003/func_ov003_0235d4c0.c:
     complete
     .text       start:0x0235d4c0 end:0x0235d518
 
-src/game/ov003/func_ov003_0235d81c.c:
+src/game/ov003/ov003_rows_tick_countdowns.c:
+    complete
+    .text       start:0x0235d7a4 end:0x0235d81c
+
+src/game/ov003/ov003_row_stop_countdown.c:
     complete
     .text       start:0x0235d81c end:0x0235d850
 

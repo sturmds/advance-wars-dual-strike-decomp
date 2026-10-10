@@ -7,7 +7,7 @@ extern Unk_ov003_02369738 data_ov003_02369738[80];
 extern Ov003Unit *data_ov003_02369534;
 
 u16 func_0207a1dc(void);
-void func_ov003_0235c9ac(void);
+void Ov003Rows_ClearCells(void);
 void func_ov003_0235c92c(u8 row, int tile, int kind);
 void func_ov003_02360bb8(int player);
 void func_ov003_0235bcc8(u32 value);
@@ -60,7 +60,7 @@ void Ov003_InitUnitsAndCamera(void)
     SELECTED = &data_ov003_02369538[STATE->currentSlot];
     STATE->scrollX = (STATE->rows[SELECTED->unk_12_3 - 1].unk_38 * 128 + 64 >> 3) - 128;
     STATE->scrollY = (STATE->rows[SELECTED->unk_12_3 - 1].unk_39 * 128 + 64 >> 3) - 96;
-    func_ov003_0235c9ac();
+    Ov003Rows_ClearCells();
     for (i = 1; i < STATE->rowCount + 1; i++) {
         if (i != STATE->row) {
             for (j = 0; j < RECORDS[i - 1].count; j++) {

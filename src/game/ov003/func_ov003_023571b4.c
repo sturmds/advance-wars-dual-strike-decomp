@@ -11,7 +11,7 @@ void func_ov003_0235de88(void);
 void Ov003_UpdateObjects(void);
 void Ov003_HealUnitsOnOwnTiles(void);
 void Ov003_UpdateTileClaims(void);
-void func_ov003_0235d7a4(void);
+void Ov003Rows_TickCountdowns(void);
 void func_ov003_0235bb64(void);
 
 void func_ov003_023571b4(void)
@@ -31,6 +31,6 @@ void func_ov003_023571b4(void)
     Ov003_UpdateObjects();
     Ov003_HealUnitsOnOwnTiles();
     Ov003_UpdateTileClaims();
-    func_ov003_0235d7a4();
+    Ov003Rows_TickCountdowns();
     func_ov003_0235bb64();
 }
