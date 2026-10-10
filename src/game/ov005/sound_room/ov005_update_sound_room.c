@@ -17,7 +17,7 @@ BOOL Ov005CoSelect_CellChanged(void);
 int func_ov005_023640a4(void);
 void func_ov005_023640b8(void);
 void Ov005CoSelect_SaveCell(void);
-void func_ov005_0236438c(Unk_ov005_0236bbac *work);
+void Ov005CoSelect_SetSlideDirection(Unk_ov005_0236bbac *work);
 void func_ov005_02364418(Unk_ov005_0236bbac *work);
 void func_ov005_02364708(Unk_ov005_0236bbac *work);
 void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
@@ -104,7 +104,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
-            func_ov005_0236438c(work);
+            Ov005CoSelect_SetSlideDirection(work);
             func_ov005_02365b04(work);
         } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_34 == 1) {
             work->unk_34 = 0;
@@ -117,7 +117,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
             func_ov005_02365010(work);
-            func_ov005_0236438c(work);
+            Ov005CoSelect_SetSlideDirection(work);
             func_ov005_02365b04(work);
         }
         break;

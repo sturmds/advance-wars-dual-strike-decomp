@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bbac.h"
 
-void func_ov005_0236438c(Unk_ov005_0236bbac *state);
+void Ov005CoSelect_SetSlideDirection(Unk_ov005_0236bbac *state);
 void func_ov005_02365b04(Unk_ov005_0236bbac *state);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
@@ -12,7 +12,7 @@ void Ov005CoSelect_OnCellTouched(u8 *buttonId)
     Unk_ov005_0236bbac *state = data_ov005_0236bbac;
 
     state->selection = *buttonId - 0x80;
-    func_ov005_0236438c(state);
+    Ov005CoSelect_SetSlideDirection(state);
     func_ov005_02365b04(state);
     state->pageStartSelection = state->selection;
 }

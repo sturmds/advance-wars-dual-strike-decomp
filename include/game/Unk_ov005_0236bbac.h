@@ -27,7 +27,7 @@ typedef struct Ov005CoSlideTask {
     u8 pad_00[0x34];
     u32 step;                          /* state of the update function */
     u8 pad_38[0x44 - 0x38];
-    int slideBack;                     /* 1 or 0, set by func_ov005_0236438c from the cursor move */
+    int slideBack;                     /* 1: the cursor moved to a lower cell, see Ov005CoSelect_SetSlideDirection */
 } Ov005CoSlideTask;
 
 #define MUSIC_KIND_SEQ    0           /* sequence, Sound_StartMusicSeq */
