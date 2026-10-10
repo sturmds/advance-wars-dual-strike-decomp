@@ -3,6 +3,19 @@
 
 #include "types.h"
 
+/* CO picture screen work block (0x2f4 bytes) that func_ov005_02362618
+ * allocates into Ov005Task.work and data_ov005_0236bba8. */
+/* One palette variant button, an entry of Unk_ov005_0236bba8.unk_288:
+ * 8 in row 0, one more in row 1. */
+typedef struct CoPaletteButton {
+    u8 pad_00[0x6];
+    s16 col;
+    s16 row;
+    s16 buttonId;                      /* MenuButton id */
+} CoPaletteButton;
+
+#define CO_PALETTE_BUTTONS 9
+
 struct Ov005Task;
 
 /* One cell of the CO picture screen's grid, 16 bytes. The grid is 4
@@ -20,8 +33,6 @@ typedef struct Ov005CoGridEntry {
 
 #define OV005_CO_GRID_ENTRIES 28
 
-/* CO picture screen work block (0x2f4 bytes) that func_ov005_02362618
- * allocates into Ov005Task.work and data_ov005_0236bba8. */
 typedef struct Unk_ov005_0236bba8 {
     u32 unk_00;
     u8 pad_04[0x20 - 0x04];
