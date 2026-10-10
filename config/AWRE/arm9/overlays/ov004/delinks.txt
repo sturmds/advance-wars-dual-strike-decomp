@@ -400,6 +400,10 @@ src/game/ov004/func_ov004_022b738c.c:
     complete
     .text       start:0x022b738c end:0x022b73ac
 
+src/game/ov004/func_ov004_022b7524.c:
+    complete
+    .text       start:0x022b7524 end:0x022b7554
+
 src/game/ov004/func_ov004_022b875c.c:
     complete
     .text       start:0x022b875c end:0x022b877c
