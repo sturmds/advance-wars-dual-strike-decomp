@@ -22,7 +22,7 @@
 
 BOOL Battle_IsSideAir(int side);
 int MainLoop_GetFrameCount(void);
-int func_ov002_0235a158(int phase);
+int Battle_BobStepLong(int phase);
 int Battle_BobStep(int phase);
 
 /* Bobs the sprites of an HP cell on an air side: adds an offset by the phase to the task's
@@ -45,7 +45,7 @@ void BattleCellTask_Bob(BattleCellTask *task)
         if (task->phase == 0xc0) {
             task->phase = 0;
         }
-        task->angle += func_ov002_0235a158(task->phase);
+        task->angle += Battle_BobStepLong(task->phase);
         SET_SPRITE_ANGLES(task);
     }
     if (MainLoop_GetFrameCount() & 1) {

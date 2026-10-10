@@ -255,6 +255,10 @@ src/game/ov002/battle_cell_task_bob.c:
     complete
     .text       start:0x02359ee4 end:0x0235a158
 
+src/game/ov002/battle_bob_step_long.c:
+    complete
+    .text       start:0x0235a158 end:0x0235a214
+
 src/game/ov002/battle_bob_step.c:
     complete
     .text       start:0x0235a214 end:0x0235a26c
