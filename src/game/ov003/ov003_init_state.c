@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
 
-void func_ov003_02352e88(void);
+void Ov003_InitRows(void);
 void func_ov003_02352090(void);
 void func_ov003_02351da0(void);
 void Ov003_ResetView(void);
@@ -17,7 +17,7 @@ void Keypad_Init(void);
  * data_02160ac0->unk_7c is set (same flag func_ov003_023622b8 reads). */
 void Ov003_InitState(void)
 {
-    func_ov003_02352e88();
+    Ov003_InitRows();
     func_ov003_02352090();
     func_ov003_02351da0();
     Ov003_ResetView();

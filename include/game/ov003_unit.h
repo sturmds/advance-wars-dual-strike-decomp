@@ -55,19 +55,26 @@ typedef struct Ov003Cell {
     u8 unit;                           /* index in data_ov003_02369538 */
 } Ov003Cell;
 
-/* Five rows of 31 cells (62 bytes) at the start of Ov003State. The cell at
- * index 29 holds the number of spawn records the row uses (read as a plain byte). */
+/* Five 62-byte rows at the start of Ov003State: 20 cells, then the row's
+ * settings. Ov003_InitRows clears 0x28-0x39. */
 typedef struct Ov003Row {
-    Ov003Cell cells[29];
+    Ov003Cell cells[20];
+    u8 unk_28[10];
+    u16 unk_32;
+    u16 unk_34;
+    u8 pad_36[2];
+    u8 unk_38;
+    u8 unk_39;
     u8 spawnCount;
-    u8 pad_3b;
+    u8 unk_3b_0 : 4;                   /* 1-3; 8-10 are resolved by Ov003_InitRows */
+    u8 unk_3b_4 : 4;                   /* even number per active row, then shifted to centre them */
     u8 color : 7;                      /* 1-based: picks this row's palette colours and tiles */
-    u8 unk_3c_7 : 1;
+    u8 active : 1;
     u8 pad_3d;
 } Ov003Row;
 
 typedef struct Ov003Slot {
-    u8 pad_00;
+    u8 unk_00;
     u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.unk_12_0 */
     u8 unk_01_4 : 4;                   /* func_ov003_023572b0 tests it for 2 */
     u8 pad_02[2];
@@ -85,6 +92,19 @@ typedef struct Ov003Spawn {
     u8 unk_4;                          /* becomes Ov003Unit.unk_1e_1 */
 } Ov003Spawn;
 
+/* 20-byte entry of data_ov003_02364e50, picked by data_02160ac0->unk_7d:
+ * how Ov003_InitRows sets up the rows. */
+typedef struct Ov003Preset {
+    u8 pad_00[8];
+    u8 colors[4];                      /* Ov003Row.color per row */
+    u8 unk_0c[4];                      /* Ov003Row.unk_3b_0 per row */
+    u8 rowCount : 3;
+    u8 unk_10_3 : 1;                   /* default for Ov003State.unk_1df_0 */
+    u8 unk_10_4 : 4;                   /* default for Ov003State.unk_1df_2 */
+    u8 unk_11;                         /* default for Ov003State.unk_1dc */
+    u8 pad_12[2];
+} Ov003Preset;
+
 /* Overlay 3 state, through data_ov003_02364928. */
 typedef struct Ov003State {
     Ov003Row rows[5];
@@ -92,26 +112,29 @@ typedef struct Ov003State {
     Ov003Slot slots[7];                /* length unknown */
     u8 pad_154[0x156 - 0x154];
     Ov003Spawn spawns[1];              /* length unknown */
-    u8 pad_15b[0x1c8 - 0x15b];
+    u8 pad_15b[0x1bc - 0x15b];
+    Ov003Preset *preset;
+    u8 unk_1c0[8];
     u32 frameCount;                    /* frames on which func_ov003_02362258 returns 1 */
     u32 unk_1cc;
     u16 unk_1d0;
     u16 unk_1d2;
-    u8 pad_1d4;
+    u8 activeRows;                     /* bit per row with Ov003Row.active set */
     u8 currentSlot;
     u16 unk_1d6;
     u8 rowCount;                       /* rows in use */
-    u8 pad_1d9;
+    u8 unk_1d9;
     u8 unk_1da;
     u8 row : 7;                        /* 1 to 5: the row spawns go to */
     u8 unk_1db_7 : 1;
-    u8 pad_1dc;
+    u8 unk_1dc;
     u8 nextSpawn;                      /* index of the next record in spawns and cell in the row */
     u8 pad_1de;
     u8 unk_1df_0 : 1;
     u8 unk_1df_1 : 1;
     u8 unk_1df_2 : 3;
-    u8 unk_1df_5 : 2;
+    u8 unk_1df_5 : 1;
+    u8 unk_1df_6 : 1;
     u8 pauseCursor : 1;                /* pause menu: 0 top button, 1 bottom button */
 } Ov003State;
 
