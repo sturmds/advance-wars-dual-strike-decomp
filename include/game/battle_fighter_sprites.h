@@ -14,10 +14,13 @@ extern MenuState gMenuState;
 #define BATTLE_SIDE_DATA(side) \
     (*(BattleSideData **)((u8 *)&gMenuState + (side) * 4 + BATTLE_OFFSET(unk_27c)))
 
+/* The BattleEntry of a side's cell. Needed to match, like BATTLE_SIDE_DATA. */
+#define BATTLE_ENTRY(side, cell) \
+    (*(BattleEntry *)((u8 *)&gMenuState + (side) * sizeof(gMenuState.battle.unk_310[0]) + \
+                      (cell) * sizeof(BattleEntry) + BATTLE_OFFSET(unk_310)))
+
 /* The BattleEntry of a fighter's side and cell, whose sprite tasks the motion
- * steps move. Needed to match, like BATTLE_SIDE_DATA. */
-#define BATTLE_FIGHTER_ENTRY(fighter) \
-    (*(BattleEntry *)((u8 *)&gMenuState + (fighter)->side * sizeof(gMenuState.battle.unk_310[0]) + \
-                      (fighter)->unk_59_5 * sizeof(BattleEntry) + BATTLE_OFFSET(unk_310)))
+ * steps move. */
+#define BATTLE_FIGHTER_ENTRY(fighter) BATTLE_ENTRY((fighter)->side, (fighter)->unk_59_5)
 
 #endif

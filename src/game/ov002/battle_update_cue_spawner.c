@@ -1,32 +1,12 @@
 #include "types.h"
-#include "game/BattleSpriteTask.h"
+#include "game/battle_fighter_task.h"
 
-/* The sprite object the spawned task is placed at. */
-typedef struct CueSource {
-    u8 pad_00[0x38];
-    s16 x;
-    s16 y;
-    s16 z;
-} CueSource;
-
+/* What BattleSideData.cellPositions points to, read at the offsets 0x22 and 0x24. */
 typedef struct CueSize {
     u8 pad_00[0x22];
     s16 width;
     s16 height;
 } CueSize;
-
-/* A task that waits for its sprite task to reach cue 5, then starts another
- * sprite task at the sprite's place. A guess from the fields it reads. */
-typedef struct CueSpawnerTask {
-    u8 pad_00[0x2c];
-    CueSource *source;
-    u8 pad_30[4];
-    BattleSpriteTask *sprite;
-    CueSize *size;
-    u32 spawnCount;                    /* passed on as the second argument of func_ov002_02357e5c */
-    u16 scale;                         /* 8.8 fixed point */
-    u8 side;
-} CueSpawnerTask;
 
 #define CUE_SPAWN 5
 
@@ -41,29 +21,31 @@ void Task_ResumeScript(void *task);
 #define MENU_WORD(offset, side) (*(u32 *)((u8 *)&gMenuState + (side) * 4 + (offset)))
 #define SPRITE_TABLE(side) ((const u32 *)MENU_WORD(0x40, side))
 
-void Battle_UpdateCueSpawner(CueSpawnerTask *task)
+/* A task that waits for its sprite task to reach cue 5, then starts another
+ * sprite task at the fighter's place. A guess from the fields it reads. */
+void Battle_UpdateCueSpawner(BattleFighterTask *task)
 {
     int side;
     int scale;
     CueSize *size;
-    CueSource *source;
+    BattleFighter *fighter;
 
     if (task->sprite->unk_5b == CUE_SPAWN) {
         task->sprite->unk_5b = 0;
         side = task->side;
         if (SPRITE_TABLE(side) != 0) {
-            source = task->source;
+            fighter = task->fighter;
             scale = task->scale;
-            size = task->size;
-            func_ov002_0235643c(SPRITE_TABLE(task->side), Battle_GetMatchupValue(side), source->x,
-                                source->y, source->z, size->width * scale >> 8,
+            size = (CueSize *)task->cells;
+            func_ov002_0235643c(SPRITE_TABLE(task->side), Battle_GetMatchupValue(side), fighter->unk_38,
+                                fighter->unk_3a, fighter->unk_3c, size->width * scale >> 8,
                                 size->height * scale >> 8, -1, scale, scale,
                                 *(u16 *)((u32)&gMenuState + side * 2 + 12), 8, 0, side);
         }
         if (MENU_WORD(0x48, task->side) != 0) {
-            func_ov002_02357e5c(task->side, task->spawnCount);
+            func_ov002_02357e5c(task->side, task->counter);
         }
-        task->spawnCount++;
+        task->counter++;
     }
     if (task->sprite->unk_5c != 0) {
         Task_ResumeScript(task);
