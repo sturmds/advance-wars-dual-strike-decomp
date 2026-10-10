@@ -2695,6 +2695,10 @@ src/game/main/func_02031894.c:
     complete
     .text       start:0x02031894 end:0x020318ac
 
+src/game/main/func_02031a14.c:
+    complete
+    .text       start:0x02031a14 end:0x02031a48
+
 src/game/main/func_02031f48.c:
     complete
     .text       start:0x02031f48 end:0x02031f54
