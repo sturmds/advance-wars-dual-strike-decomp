@@ -341,6 +341,14 @@ src/game/ov000/func_ov000_022b17cc.c:
     complete
     .text       start:0x022b17cc end:0x022b17f0
 
+src/game/ov000/unit_info_panel/unit_info_panel_next_page.c:
+    complete
+    .text       start:0x022b17f0 end:0x022b18bc
+
+src/game/ov000/unit_info_panel/unit_info_panel_prev_page.c:
+    complete
+    .text       start:0x022b18bc end:0x022b1988
+
 src/game/ov000/unit_info_panel/unit_info_panel_button_on_keys_right_down.c:
     complete
     .text       start:0x022b1988 end:0x022b19ec
