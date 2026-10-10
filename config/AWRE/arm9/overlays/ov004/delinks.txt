@@ -903,6 +903,10 @@ src/game/ov004/func_ov004_022bd4d8.c:
     complete
     .text       start:0x022bd4d8 end:0x022bd4f4
 
+src/game/ov004/ov004_task_scroll_layers1_and2_parallax.c:
+    complete
+    .text       start:0x022bd4f4 end:0x022bd654
+
 src/game/ov004/func_ov004_022bd654.c:
     complete
     .text       start:0x022bd654 end:0x022bd660
