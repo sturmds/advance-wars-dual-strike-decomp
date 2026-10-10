@@ -120,7 +120,9 @@ typedef struct Unk_02080440_48 {
     s16 unk_2a;                        /* y of the same tile */
     u16 unk_2c;
     u16 unk_2e;
-    u8 pad_30[0x38 - 0x30];
+    s16 unk_30;                        /* tile x where the current touch began (MapCursor_UpdateFromTouch); 0xff: none */
+    s16 unk_32;                        /* tile y of the same */
+    u8 pad_34[0x38 - 0x34];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;
