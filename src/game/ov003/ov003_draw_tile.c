@@ -11,7 +11,7 @@ extern u16 data_ov003_02366110[512][4]; /* layer 1 map entries per 16x16 tile */
 extern u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 tile */
 
 Unk_ov003_02369bb8 *func_ov003_0235e8fc(int x, int y);
-int func_ov003_02361f38(void);
+int Ov003_IsCurrentSlotRowOpen(void);
 void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int tile, int palette, int arg7, int arg8);
 
 #define MAP data_ov003_02364a88
@@ -159,7 +159,7 @@ void Ov003_DrawTile(u8 x, u8 y)
             break;
         }
 
-        if (func_ov003_02361f38() == 0 && STATE->unk_1df_0 && mark == 0) {
+        if (Ov003_IsCurrentSlotRowOpen() == 0 && STATE->unk_1df_0 && mark == 0) {
             /* When a tree or reef sprite went here, the top of the tile
              * below is drawn here as a sprite too, at depth 40. */
             drawn = FALSE;
@@ -358,7 +358,7 @@ void Ov003_DrawTile(u8 x, u8 y)
         break;
     }
 
-    if (func_ov003_02361f38() == 0 && STATE->unk_1df_0 && mark == 0 && terrain == TERRAIN_WOOD) {
+    if (Ov003_IsCurrentSlotRowOpen() == 0 && STATE->unk_1df_0 && mark == 0 && terrain == TERRAIN_WOOD) {
         Ov003_DrawTexturedQuad(x * 16 - SCROLL_X, (u8)(y - 1) * 16 - SCROLL_Y, 50, 1, 1, 4, 2, 0, 0);
     }
 }
