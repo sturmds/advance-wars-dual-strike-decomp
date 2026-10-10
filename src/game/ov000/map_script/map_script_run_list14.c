@@ -3,7 +3,7 @@
 #include "game/map_unit.h"
 
 MapScript *MapScript_Get(void);
-int EventTriggers_Run(const MapScriptCommand *list, MapUnit *unit, int id, int flag);
+int EventTriggers_Run(const EventTrigger *list, MapUnit *unit, int id, int flag);
 
 /* Runs the map's list 14 (see MapScript); 0 when the map has none. */
 int MapScript_RunList14(void)
