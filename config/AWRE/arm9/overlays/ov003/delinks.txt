@@ -789,6 +789,10 @@ src/game/ov003/ov003_fade_with_text_step.c:
     complete
     .text       start:0x02362850 end:0x023629f8
 
+src/game/ov003/ov003_shake_text_step.c:
+    complete
+    .text       start:0x023629f8 end:0x02362be4
+
 src/game/ov003/ov003_object_reset_chime.c:
     complete
     .text       start:0x02362be4 end:0x02362c44
