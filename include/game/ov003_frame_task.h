@@ -6,7 +6,7 @@
 /* Overlay 3 task whose script counts frames in a halfword at 0x4c. */
 typedef struct Ov003FrameTask {
     u8 pad_00[0x4c];
-    u16 frame;
+    s16 frame;
 } Ov003FrameTask;
 
 #endif
