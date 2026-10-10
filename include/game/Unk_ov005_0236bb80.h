@@ -13,7 +13,10 @@ typedef struct Unk_ov005_0236bb80 {
     fx32 blendEva;                     /* sub screen blendEva and blendEvb as fx32 (0 to 16.0) */
     fx32 blendEvb;
     struct ScriptSlot *unk_14;         /* from func_020150f8 */
-    u8 pad_18[0x28 - 0x18];
+    struct Task *fadeTask;             /* from the func_020fcd78 family */
+    struct Task *fadeTask2;
+    u8 pad_20[0x24 - 0x20];
+    struct Task *waveTask;             /* runs data_ov005_02368048 (Ov005_UpdateBgWave) */
     BOOL unk_28;                       /* set once the blend-in is done */
     u32 xUsesBufferB;                  /* which of the two x line buffers xLines points at */
     u32 yUsesBufferB;
