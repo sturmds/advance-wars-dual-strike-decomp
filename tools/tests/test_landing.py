@@ -13,6 +13,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import time
 import unittest
 from pathlib import Path
 
@@ -389,11 +390,68 @@ class LandSelfReexecTest(RepoCase):
         self.assertNotIn("starting again", r.stdout + r.stderr)
         self.assertEqual(r.returncode, 2, r.stdout + r.stderr)  # replayed, then no Makefile for make release
 
+    def test_keeps_queue_turn_across_restart(self):
+        self.agent_commit()
+        land = (TOOLS / "land_self.py").read_text()
+        marker = ('def main() -> int:\n    fd = int(os.environ["LAND_QUEUE_FD"])\n'
+                  '    print("QUEUE FD OPEN", os.fstat(fd).st_ino == QUEUE_LOCK.stat().st_ino)\n'
+                  '    return 3\n\n\ndef old_main() -> int:')
+        self.repo.commit({"tools/land_self.py": land.replace("def main() -> int:", marker, 1)},
+                         "mainline changes land_self.py")
+        r = self.land()
+        self.assertEqual(r.returncode, 3, r.stdout + r.stderr)
+        self.assertIn("QUEUE FD OPEN True", r.stdout)
+
     def test_review_stamp_help(self):
         r = subprocess.run([sys.executable, str(TOOLS / "review_stamp.py"), "--help"],
                            cwd=self.wt, capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         self.assertIn("--missing", r.stdout)
+
+
+class LandQueueTest(RepoCase):
+    """2026-10-09: 11 agents landing at once each rebuilt after every other
+    landing (each success moved mainline under the rest), so the work grew
+    with the square of the agents. Landings now take turns."""
+
+    def setUp(self):
+        super().setUp()
+        self.log = Path(self.tmp.name) / "release.log"
+        tools = {f"tools/{t}": (TOOLS / t).read_text() for t in LandSelfReexecTest.TOOL_FILES}
+        tools["tools/progress.py"] = "pass\n"
+        # make release logs its start and end, and takes long enough to overlap.
+        tools["Makefile"] = f"release:\n\techo start >> {self.log}\n\tsleep 1\n\techo end >> {self.log}\n"
+        self.repo.commit(tools, "base")
+        self.wts = []
+        for name in ("a", "b"):
+            wt = Path(self.tmp.name) / name
+            self.repo.git("worktree", "add", "-q", "-b", name, str(wt))
+            (wt / f"{name}.txt").write_text(f"{name}\n")
+            self.repo.git("-C", str(wt), "add", "-A")
+            self.repo.git("-C", str(wt), "commit", "-q", "-m", f"Add {name}")
+            self.wts.append(wt)
+
+    def land(self, wt: Path) -> subprocess.Popen:
+        env = {k: v for k, v in os.environ.items() if k not in ("LAND_SELF_LOCK_HELD", "LAND_QUEUE_FD")}
+        return subprocess.Popen([sys.executable, "tools/land_self.py"], cwd=wt, env=env, text=True,
+                                stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+    def test_second_landing_waits(self):
+        first = self.land(self.wts[0])
+        # Start the second run once the first one builds, so it has to wait.
+        for _ in range(300):
+            if self.log.exists():
+                break
+            time.sleep(0.1)
+        second = self.land(self.wts[1])
+        out = [p.communicate(timeout=120)[0] for p in (first, second)]
+        self.assertEqual([first.returncode, second.returncode], [0, 0], "\n".join(out))
+        self.assertIn("waiting for the landing queue, held by pid", out[1])
+        self.assertNotIn("mainline moved", out[1])
+        # One build at a time, one build each.
+        self.assertEqual(self.log.read_text().split(), ["start", "end", "start", "end"])
+        self.assertEqual(self.repo.git("log", "--format=%s", "-3", "mainline").splitlines(),
+                         ["Add b", "Add a", "base"])
 
 
 sys.path.insert(0, str(TOOLS))

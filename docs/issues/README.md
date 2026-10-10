@@ -54,3 +54,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0024](0024-brute-force-tool-leftovers.md) | What propagate.py, trivial.py and permute.py leave unmatched | open | tools | M1 |
 | [0025](0025-landing-tool-faults.md) | Faults in the landing tools seen in batch 10 | closed | loop | M1 |
 | [0026](0026-land-self-old-code.md) | land_self.py kept its old code after a replay and skipped the review check | closed | loop | M1 |
+| [0027](0027-land-self-livelock.md) | Many land_self.py runs at once rebuilt after every landing | closed | loop | M1 |

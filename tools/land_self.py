@@ -7,17 +7,21 @@ Run it as the last step, once the work is committed. With 20 agents at
 once, one orchestrator replaying every commit becomes the bottleneck, so
 each agent lands its own branch:
 
+0. Wait for its turn in the landing queue (<git common dir>/land-queue.lock),
+   so landings run one at a time and a waiting run uses no CPU. While it
+   waits it prints who holds the queue. It keeps its turn through step 4.
 1. Replay the branch onto the current mainline (tools/rebase_onto_mainline.py).
-   If that stops, fix the files, run `rebase_onto_mainline.py --continue`,
-   then run this again.
+   If that stops, the run leaves the queue. Fix the files, run
+   `rebase_onto_mainline.py --continue`, then run this again.
 2. Run `make release`.
 3. Write PROGRESS.md for the rebased tree and amend it into the branch's
    last commit, so mainline's copy stays current. This is the only amend
    in the loop.
 4. Under an exclusive lock (<git common dir>/land.lock), check that
    mainline has not moved since step 1, and fast-forward the main
-   checkout's mainline to the branch. If mainline moved, start again at
-   step 1 (at most 15 tries). If the main checkout has uncommitted changes,
+   checkout's mainline to the branch. If mainline moved (the orchestrator
+   or a run of an older land_self.py, which does not queue, landed first),
+   start again at step 1 (at most 15 tries). If the main checkout has uncommitted changes,
    wait for it (30 s steps, at most 10 minutes).
 
 It never forces and never pushes.
@@ -37,6 +41,8 @@ message that says how to review and stamp them.
 When a replay changes tools/land_self.py or tools/review_stamp.py, the run
 starts again from the replayed copy (os.execv) before it builds or lands,
 so a newer check on mainline holds for a run that started with older code.
+The new copy keeps the queue turn: the locked file is passed on in
+LAND_QUEUE_FD.
 
 Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up,
 4 busy (a replay is open or another run is under way in this worktree),
@@ -71,6 +77,8 @@ MAIN = COMMON.parent  # the main checkout, where mainline is checked out
 STATE = Path(git("rev-parse", "--path-format=absolute", "--git-path", "rebase-onto-mainline.json"))
 # Per worktree, held for the whole run; rebase_onto_mainline.py takes it too.
 WORKTREE_LOCK = Path(git("rev-parse", "--path-format=absolute", "--git-path", "land-self.lock"))
+# Shared by all worktrees, held from the replay to the fast-forward.
+QUEUE_LOCK = COMMON / "land-queue.lock"
 
 
 # Read at start; a replay that changes them makes the run start again from the new copy.
@@ -107,6 +115,30 @@ def lock_worktree():
     f.seek(0)
     f.truncate()
     f.write(f"pid {os.getpid()}, {' '.join(sys.argv)}\n")
+    f.flush()
+    return f
+
+
+def join_queue():
+    """Wait for the landing queue and return its open, locked file. A run
+    restarted by os.execv gets the file from the run before it."""
+    fd = os.environ.pop("LAND_QUEUE_FD", None)
+    if fd is not None:
+        return os.fdopen(int(fd), "a+")
+    f = open(QUEUE_LOCK, "a+")
+    try:
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError:
+        f.seek(0)
+        holder = f.read().strip() or "another run"
+        print(f"waiting for the landing queue, held by {holder}.\n"
+              "This run is not hung: it lands when its turn comes. Do not start a second one.")
+        start = time.monotonic()
+        fcntl.flock(f, fcntl.LOCK_EX)
+        print(f"my turn in the landing queue after {time.monotonic() - start:.0f} s")
+    f.seek(0)
+    f.truncate()
+    f.write(f"pid {os.getpid()}, branch {git('branch', '--show-current')}, since {time.strftime('%H:%M:%S')}\n")
     f.flush()
     return f
 
@@ -208,6 +240,7 @@ def main() -> int:
         return GAVE_UP
     if unreviewed():
         return UNREVIEWED
+    queue = join_queue()
     for attempt in range(1, TRIES + 1):
         code, onto = rebase()
         if code is not None:
@@ -219,6 +252,8 @@ def main() -> int:
             # The worktree lock is not inherited across exec; the new run takes it again.
             print("the replay changed land_self.py or review_stamp.py; starting again with the new copy")
             sys.stdout.flush()
+            os.set_inheritable(queue.fileno(), True)
+            os.environ["LAND_QUEUE_FD"] = str(queue.fileno())
             os.execv(sys.executable, [sys.executable, str(ROOT / "tools/land_self.py"), *sys.argv[1:]])
         if run("make", "release"):
             return BUILD_FAILED
