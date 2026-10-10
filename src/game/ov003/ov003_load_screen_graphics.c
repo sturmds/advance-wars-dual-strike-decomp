@@ -26,7 +26,7 @@ void Ov003_LoadMapPanelGraphics(void);
 void Ov003_LoadGraphics(void *file);
 void Ov003_LoadMainScreenGraphics(void *file, void *localized);
 void Ov003_LoadObjGraphics(void *file, void *localized);
-void func_ov003_02361584(void *file, void *localized);
+void Ov003_LoadSubScreenGraphics(void *file, void *localized);
 void Ov003_UploadCoPictures(void);
 
 /* Loads the files for the screens on both screens, then a 0x3600-byte picture
@@ -61,7 +61,7 @@ void Ov003_LoadScreenGraphics(void)
     file = File_Load(data_ov003_023649c0);
     localized = File_Load(File_LocalizePath(data_ov003_023649d8));
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    func_ov003_02361584(file, localized);
+    Ov003_LoadSubScreenGraphics(file, localized);
     Mem_Free(localized);
     Mem_Free(file);
 

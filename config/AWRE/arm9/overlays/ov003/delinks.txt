@@ -705,6 +705,10 @@ src/game/ov003/ov003_upload_co_pictures.c:
     complete
     .text       start:0x02361418 end:0x02361584
 
+src/game/ov003/ov003_load_sub_screen_graphics.c:
+    complete
+    .text       start:0x02361584 end:0x0236179c
+
 src/game/ov003/ov003_defeat_team.c:
     complete
     .text       start:0x0236179c end:0x02361abc
