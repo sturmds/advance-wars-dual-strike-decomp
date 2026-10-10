@@ -267,6 +267,10 @@ src/game/ov004/func_ov004_022b29d4.c:
     complete
     .text       start:0x022b29d4 end:0x022b29f4
 
+src/game/ov004/ov004_slide_layers1_and3_y.c:
+    complete
+    .text       start:0x022b29f4 end:0x022b2b04
+
 src/game/ov004/func_ov004_022b2b04.c:
     complete
     .text       start:0x022b2b04 end:0x022b2b28
