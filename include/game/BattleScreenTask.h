@@ -9,6 +9,7 @@ typedef struct BattleScreenTask {
     u8 pad_00[0x2a];
     u16 frame;                         /* screen frame; BattleHitList.key is compared with it */
     u8 fighterStarted[2];              /* per side: a fighter task was started */
+    u8 unk_2e[2];                      /* per side; cleared by BattleScreenTask_Init */
 } BattleScreenTask;
 
 #endif
