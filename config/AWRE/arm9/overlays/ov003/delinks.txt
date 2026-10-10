@@ -430,6 +430,10 @@ src/game/ov003/ov003_row_stop_countdown.c:
     complete
     .text       start:0x0235d81c end:0x0235d850
 
+src/game/ov003/ov003_heal_row_units.c:
+    complete
+    .text       start:0x0235d8fc end:0x0235d940
+
 src/game/ov003/ov003_is_row_power_active.c:
     complete
     .text       start:0x0235da18 end:0x0235da44
