@@ -3470,6 +3470,10 @@ src/game/main/func_020526e0.c:
     complete
     .text       start:0x020526e0 end:0x020526f8
 
+src/game/main/screen/screen_fade_in_from_white_update.c:
+    complete
+    .text       start:0x020539b0 end:0x02053a20
+
 src/game/main/screen/screen_fade_sprites.c:
     complete
     .text       start:0x02053a20 end:0x02053af0
