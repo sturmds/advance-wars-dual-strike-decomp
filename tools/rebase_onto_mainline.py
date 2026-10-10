@@ -21,6 +21,9 @@ are staged. Fix them, `git add` the files, and run it with --continue.
 PROGRESS.md is never committed here: mainline writes it when the commit
 lands.
 
+A replayed commit keeps its tenets review stamp (tools/review_stamp.py),
+also when the merge or a fix during --continue changed its diff.
+
 It refuses to run while land_self.py or another rebase_onto_mainline.py
 runs in this worktree: both hold <git dir>/land-self.lock.
 """
@@ -31,6 +34,8 @@ import os
 import subprocess
 import sys
 from pathlib import Path
+
+import review_stamp
 
 
 def git(*args, check=True) -> str:
@@ -104,7 +109,7 @@ def start() -> int:
 def replay(state: dict) -> int:
     while state["todo"]:
         commit = state["todo"][0]
-        r = subprocess.run([sys.executable, str(ROOT / "tools/apply_commit.py"), commit], cwd=ROOT)
+        r = subprocess.run([sys.executable, str(Path(__file__).resolve().parent / "apply_commit.py"), commit], cwd=ROOT)
         if r.returncode:
             stop(commit)
             return 1
@@ -113,7 +118,10 @@ def replay(state: dict) -> int:
 
 
 def done(state: dict, commit: str) -> None:
-    state["done"].append([commit, git("rev-parse", "HEAD")])
+    new = git("rev-parse", "HEAD")
+    # The merge may have changed the diff; a reviewed commit stays reviewed.
+    review_stamp.carry(commit, new)
+    state["done"].append([commit, new])
     state["todo"].pop(0)
     save(state)
 

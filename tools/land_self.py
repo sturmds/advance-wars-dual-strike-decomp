@@ -29,8 +29,14 @@ worktree. A run that outlived a tool timeout keeps running in the
 background; wait for it with `flock <lock file> true` (the message names
 the file) instead of starting a second one, and never stop it with pkill.
 
+Before step 1 it checks that the tenets review ran on each commit that
+touches src/ or include/ (tools/review_stamp.py; the exemptions are listed
+there). Commits without a review stamp stop the run with exit code 5 and a
+message that says how to review and stamp them.
+
 Exit codes: 0 landed, 1 conflict to fix, 2 build failed, 3 gave up,
-4 busy (a replay is open or another run is under way in this worktree).
+4 busy (a replay is open or another run is under way in this worktree),
+5 commits without a tenets review stamp.
 """
 
 import fcntl
@@ -40,7 +46,9 @@ import sys
 import time
 from pathlib import Path
 
-LANDED, CONFLICT, BUILD_FAILED, GAVE_UP, BUSY = 0, 1, 2, 3, 4
+import review_stamp
+
+LANDED, CONFLICT, BUILD_FAILED, GAVE_UP, BUSY, UNREVIEWED = 0, 1, 2, 3, 4, 5
 TRIES = 15
 WAIT_STEP, WAIT_MAX = 30, 600
 
@@ -144,6 +152,28 @@ def fast_forward(onto: str, branch: str) -> str | None:
         return git("rev-parse", "refs/heads/mainline")
 
 
+def unreviewed() -> bool:
+    """Print what to do and return True if commits lack a review stamp."""
+    todo = review_stamp.missing("refs/heads/mainline")
+    if not todo:
+        return False
+    lines = "\n".join("    " + review_stamp.describe(c) for c in todo)
+    hashes = " ".join(c[:10] for c in todo)
+    print(f"error: the tenets review has no record for these commits:\n{lines}\n"
+          "Every commit that changes src/ or include/ must pass the review in\n"
+          ".claude/skills/tenets-review/SKILL.md before it lands. For each commit above:\n"
+          "  1. Read it (`git show <hash>`) and do the review: run tools/style_check.py on\n"
+          "     its changed files and on its message, and check its C against TENETS.md.\n"
+          "  2. If the review finds problems, fix them in a new commit, reviewed the same\n"
+          "     way: stage the fix, review it, run `python3 tools/review_stamp.py`, commit.\n"
+          "  3. Record that each listed commit was reviewed:\n"
+          f"         python3 tools/review_stamp.py {hashes}\n"
+          "Then run `python3 tools/land_self.py` again. Never stamp a commit you have not\n"
+          "reviewed. `python3 tools/review_stamp.py --missing` lists what is left.",
+          file=sys.stderr)
+    return True
+
+
 def main() -> int:
     sys.stdout.reconfigure(line_buffering=True)  # progress shows up in a log while it waits
     if STATE.exists():
@@ -161,6 +191,8 @@ def main() -> int:
     if git("status", "--porcelain", "--untracked-files=no"):
         print("error: commit your work first", file=sys.stderr)
         return GAVE_UP
+    if unreviewed():
+        return UNREVIEWED
     for attempt in range(1, TRIES + 1):
         code, onto = rebase()
         if code is not None:

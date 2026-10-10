@@ -263,6 +263,89 @@ class LandSelfBusyTest(RepoCase):
         self.assertNotEqual(r.returncode, 4, r.stdout + r.stderr)
 
 
+class ReviewStampTest(RepoCase):
+    """2026-10-09: two agent groups landed commits that skipped the tenets
+    review; land_self.py now refuses commits without a review stamp."""
+
+    def setUp(self):
+        super().setUp()
+        self.repo.commit({"include/t.h": header("#define FLAG_A 1\n"),
+                          "src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 2;\n}\n"},
+                         "base")
+        self.wt = Path(self.tmp.name) / "wt"
+        self.repo.git("worktree", "add", "-q", "-b", "agent", str(self.wt))
+
+    def tool(self, name: str, *args: str):
+        env = {k: v for k, v in os.environ.items() if k != "LAND_SELF_LOCK_HELD"}
+        return subprocess.run([sys.executable, str(TOOLS / name), *args], cwd=self.wt,
+                              capture_output=True, text=True, env=env)
+
+    def commit(self, files: dict[str, str], msg: str) -> str:
+        for rel, text in files.items():
+            p = self.wt / rel
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(text)
+        self.repo.git("-C", str(self.wt), "add", "-A")
+        self.repo.git("-C", str(self.wt), "commit", "-q", "-m", msg)
+        return self.repo.git("-C", str(self.wt), "rev-parse", "HEAD")
+
+    def missing(self) -> list[str]:
+        r = self.tool("review_stamp.py", "--missing")
+        return [line.split()[0] for line in r.stdout.splitlines()]
+
+    def test_land_refuses_unreviewed(self):
+        c = self.commit({"src/f.c": "int f(void) { return 0; }\n"}, "Decompile f (main 0x02000900)")
+        r = self.tool("land_self.py")
+        self.assertEqual(r.returncode, 5, r.stdout + r.stderr)
+        self.assertIn(c[:7], r.stderr)
+        self.assertIn(f"python3 tools/review_stamp.py {c[:10]}", r.stderr)
+        self.assertIn("tenets-review/SKILL.md", r.stderr)
+        self.assertEqual(self.tool("review_stamp.py", c).returncode, 0)
+        r = self.tool("land_self.py")
+        self.assertNotEqual(r.returncode, 5, r.stdout + r.stderr)  # goes on (no Makefile here)
+
+    def test_stamp_staged_change(self):
+        (self.wt / "src/f.c").write_text("int f(void) { return 0; }\n")
+        self.repo.git("-C", str(self.wt), "add", "-A")
+        r = self.tool("review_stamp.py")
+        self.assertIn("stamped the staged change", r.stdout)
+        self.repo.git("-C", str(self.wt), "commit", "-q", "-m", "Decompile f")
+        self.assertEqual(self.missing(), [])
+        # PROGRESS.md amended into the commit does not change its stamp.
+        (self.wt / "PROGRESS.md").write_text("progress\n")
+        self.repo.git("-C", str(self.wt), "add", "-A")
+        self.repo.git("-C", str(self.wt), "commit", "-q", "--amend", "--no-edit")
+        self.assertEqual(self.missing(), [])
+        # An edit after the stamp needs a new review.
+        self.commit({"src/f.c": "int f(void) { return 1; }\n"}, "Fix f")
+        self.assertEqual(len(self.missing()), 1)
+
+    def test_exemptions(self):
+        self.commit({"docs/notes.md": "notes\n"}, "Add notes")
+        self.commit({"src/twin.c": "int twin(void) { return 3; }\n"}, "Propagate f to 1 near twin")
+        self.commit({"src/wip.c": "int wip(void) { return 4; }\n"}, "WIP wip (95%)")
+        self.assertEqual(self.missing(), [])
+        wip = self.commit({"src/wip.c": "int wip(void) { return 5; }\n",
+                           "include/t.h": header("#define FLAG_A 1\n#define FLAG_B 2\n")}, "WIP wip (97%)")
+        prop = self.commit({"src/a.c": "int a(void)\n{\n    return 7;\n}\n"}, "Propagate a to 1 near twin")
+        self.assertEqual(self.missing(), [wip[:7], prop[:7]])
+
+    def test_stamp_survives_replay(self):
+        c = self.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 3;\n}\n"},
+                        "Decompile b")
+        self.tool("review_stamp.py", c)
+        # Mainline changes a line next to the commit's hunk, so the replayed
+        # diff has other context lines and another patch ID.
+        self.repo.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void) /* b */\n{\n    return 2;\n}\n"},
+                         "mainline change")
+        r = self.tool("rebase_onto_mainline.py")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertNotEqual(self.repo.git("-C", str(self.wt), "rev-parse", "HEAD"), c)
+        self.assertEqual(self.missing(), [])
+        # Two stamps: the patch ID changed and the replay carried the stamp over.
+        self.assertEqual(len(list((self.repo.path / ".git/tenets-review").iterdir())), 2)
+
+
 sys.path.insert(0, str(TOOLS))
 
 if __name__ == "__main__":
