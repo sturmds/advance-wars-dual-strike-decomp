@@ -8,7 +8,13 @@ typedef struct Unk_0229fb30 {
     u8 pad_00[2];
     u8 unk_02;                         /* Battle_ShowQuote sets it to 1 */
     u8 unk_03;                         /* 1-3: which of three frame graphics the battle screen loads */
-    u8 pad_04[0x45b - 0x04];
+    u8 pad_04[0x08 - 0x04];
+    u16 unk_08;                        /* the battle screen ends when unk_08 == unk_0c and unk_0a == unk_0e */
+    u16 unk_0a;
+    u16 unk_0c;
+    u16 unk_0e;
+    u32 unk_10;                        /* frame counter of the battle screen */
+    u8 pad_14[0x45b - 0x14];
     s8 unk_45b;                        /* menu entry 0-4 whose help text LinkMenu_DrawHelpText shows */
 } Unk_0229fb30;
 
