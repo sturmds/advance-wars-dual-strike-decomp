@@ -19,7 +19,7 @@ u8 Player_GetArmyStyle(int playerIndex);
 u8 Map_GetLoadedPlayerCount(void);
 void Font_LoadDigits(int baseTile);
 void func_0201e6e8(int a, int b, int c, int d);
-void func_ov000_022af8f0(int a, int b, int player, int style, int properties, int unitCount, int props2, int inGame);
+void SecondScreen_DrawPlayerRow(int a, int b, int player, int style, int properties, int unitCount, int props2, int inGame);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -76,7 +76,7 @@ void func_ov000_022afbf0(void)
     for (j = 1, counts = data_ov000_023504e0; j < 5; j++, counts++) {
         player = &STATE->players[j];
         if (player->controller != 0) {
-            func_ov000_022af8f0(14, data_ov000_0234eb84[Map_GetLoadedPlayerCount()][j], j, Player_GetArmyStyle(j), player->armyColour, counts->unitCount, counts->properties, counts->inGame);
+            SecondScreen_DrawPlayerRow(14, data_ov000_0234eb84[Map_GetLoadedPlayerCount()][j], j, Player_GetArmyStyle(j), player->armyColour, counts->unitCount, counts->properties, counts->inGame);
         }
     }
     func_0201e6e8(14, (s16)data_ov000_0234eb88[Map_GetLoadedPlayerCount()][0], 8,
