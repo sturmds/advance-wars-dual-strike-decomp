@@ -74,6 +74,7 @@ src/game/ov006/func_ov006_02353f7c.c:
     .text       start:0x02353f7c end:0x0235402c
 
 src/game/ov006/func_ov006_0235402c.c:
+    complete
     .text       start:0x0235402c end:0x02354090
 
 src/game/ov006/func_ov006_02354090.c:
