@@ -40,6 +40,18 @@ typedef struct Ov004Resource {
     u32 size;
 } Ov004Resource;
 
+/* One row of the list Ov004_LoadResources reads (data_ov004_022becf8). In
+ * the "/syogun" directory, name is a code instead: OV004_RESOURCE_CO_* plus
+ * a CO id. */
+typedef struct Ov004ResourceFile {
+    const char *dir;                   /* NULL ends the list */
+    const char *name;
+} Ov004ResourceFile;
+
+#define OV004_RESOURCE_KIND_MASK 0xfffff000
+#define OV004_RESOURCE_CO_PICTURE 0x1000
+#define OV004_RESOURCE_CO_PALETTE 0x2000
+
 /* Overlay 4 state reached through data_ov004_022bf158. */
 typedef struct Unk_ov004_022bf158 {
     u32 unk_000;
@@ -70,11 +82,11 @@ typedef struct Unk_ov004_022bf158 {
     struct Task *slotTask[24];         /* tasks made by Ov004_CreateSlotTasks, one per slot */
     int slotState[24];                 /* per slot: 0 unused, 1 running, 2 set by func_ov004_022ba98c */
     struct Task *childTasks[16];       /* destroyed together by Ov004_DestroyChildTasks */
-    u8 pad_b18[0xb1c - 0xb18];
+    int resourceCount;                 /* entries of resources in use, from Ov004_LoadResources */
     Ov004Resource resources[128];      /* looked up by Ov004_FindResource */
-    u8 pad_131c[0x1320 - 0x131c];
+    u32 bufferUsed;                    /* bytes of unk_1320 taken by resources */
     void *unk_1320;                    /* set from data_ov004_022bf14c by Ov004Task_ResetState */
-    u8 pad_1324[0x1328 - 0x1324];
+    u32 vramUsed;                      /* bytes from unk_1328 taken by resources */
     u32 unk_1328;                      /* set to 0x06860000, an LCDC VRAM address */
     u32 unk_132c;
     u32 bgCharBase;                    /* DISPCNT bits 24-26, set by Ov004_ApplyBgCharBase */

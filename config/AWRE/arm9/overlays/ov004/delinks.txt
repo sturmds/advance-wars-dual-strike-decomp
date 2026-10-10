@@ -847,6 +847,10 @@ src/game/ov004/ov004_find_resource.c:
     complete
     .text       start:0x022bb6ac end:0x022bb744
 
+src/game/ov004/ov004_load_resources.c:
+    complete
+    .text       start:0x022bb744 end:0x022bb980
+
 src/game/ov004/ov004_get_file_size.c:
     complete
     .text       start:0x022bb980 end:0x022bb9c4
