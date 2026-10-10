@@ -1,5 +1,5 @@
 Ov003_Update kind:function(arm,size=0x458) addr:0x02350560
-func_ov003_023509b8 kind:function(arm,size=0x224) addr:0x023509b8
+Ov003_DrawTimeLeft kind:function(arm,size=0x224) addr:0x023509b8
 Ov003_ResetSlotStates kind:function(arm,size=0x11c) addr:0x02350bdc
 Ov003_UpdateLinkStart kind:function(arm,size=0xe8) addr:0x02350cf8
 Ov003_AdvanceMode kind:function(arm,size=0xa8) addr:0x02350de0

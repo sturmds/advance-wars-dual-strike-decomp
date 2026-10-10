@@ -30,7 +30,7 @@ void Ov003_AdvanceMode(void);
 void func_ov003_02350e88(void);
 void func_ov003_0235fee4(void);
 void func_ov003_02364800(void);
-void func_ov003_023509b8(void);
+void Ov003_DrawTimeLeft(void);
 void Ov003_UpdateLinkStart(void);
 void Ov003_ResetSlotStates(void);
 int func_ov003_02362258(void);
@@ -62,7 +62,7 @@ void Ov003_Update(void)
     func_ov003_0235fee4();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02364800();
-    func_ov003_023509b8();
+    Ov003_DrawTimeLeft();
     Ov003_UpdateLinkStart();
     Ov003_ResetSlotStates();
     if (func_ov003_02362258() == 1) {

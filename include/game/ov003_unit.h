@@ -95,14 +95,16 @@ typedef struct Ov003Spawn {
 /* 20-byte entry of data_ov003_02364e50, picked by data_02160ac0->unk_7d:
  * how Ov003_InitRows sets up the rows. */
 typedef struct Ov003Preset {
-    u8 pad_00[8];
+    u8 pad_00[4];
+    u32 unk_04;                        /* passed to func_ov003_0235bcc8 */
     u8 colors[4];                      /* Ov003Row.color per row */
     u8 unk_0c[4];                      /* Ov003Row.unk_3b_0 per row */
     u8 rowCount : 3;
     u8 unk_10_3 : 1;                   /* default for Ov003State.unk_1df_0 */
     u8 unk_10_4 : 4;                   /* default for Ov003State.unk_1df_2 */
     u8 unk_11;                         /* default for Ov003State.unk_1dc */
-    u8 pad_12[2];
+    u8 timeLimitMinutes;               /* 0: no time limit (Ov003_DrawTimeLeft) */
+    u8 pad_13;
 } Ov003Preset;
 
 /* Overlay 3 state, through data_ov003_02364928. */
