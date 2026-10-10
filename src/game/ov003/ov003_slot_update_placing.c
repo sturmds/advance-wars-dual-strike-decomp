@@ -7,8 +7,8 @@ BOOL Ov003Unit_TryCreate(int slot, int column, int x, int y);
 void Sound_PlaySe(u32 soundId);
 u16 func_0207a1dc(void);
 BOOL func_ov003_0235c194(int slot, int column, int x, int y);
-void func_ov003_023606ec(int slot);
-void func_ov003_0236082c(int slot);
+void Ov003_MoveCursorRight(int slot);
+void Ov003_MoveCursorLeft(int slot);
 int Ov003_MoveCursorDown(int slot);
 void func_ov003_02360a88(int slot);
 int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int radius);
@@ -33,10 +33,10 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
         Ov003_MoveCursorDown(slot);
     }
     if (keypad->repeat & PAD_KEY_LEFT) {
-        func_ov003_0236082c(slot);
+        Ov003_MoveCursorLeft(slot);
     }
     if (keypad->repeat & PAD_KEY_RIGHT) {
-        func_ov003_023606ec(slot);
+        Ov003_MoveCursorRight(slot);
     }
     /* Counts down to 3 and stops there. Only a failed placement sets it to 1,
      * so the next frame tries again without a button. */
