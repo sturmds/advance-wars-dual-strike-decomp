@@ -72,7 +72,8 @@ typedef struct Unk_ov006_0235f690 {
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
     struct Task *unk_64;               /* task of script data_ov006_0236acc4 (func_ov006_02354444) */
-    u8 pad_68[0x70 - 0x68];
+    void *unk_68;                      /* file /mapedit/00a, loaded by Ov006_LoadMapeditGraphics */
+    u8 pad_6c[0x70 - 0x6c];
     void *unk_70;                      /* sprite set drawn by Ov006_UpdateSubScreen */
     void *unk_74;                      /* file /mapedit/00c, loaded when request 6 opens */
     union {

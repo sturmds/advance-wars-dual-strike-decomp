@@ -11,7 +11,7 @@ void func_01ff8b9c(int x, int y);
 void func_01ff8b70(int x, int y);
 void func_01ff8b44(int x, int y);
 void func_01ff8b18(int x, int y);
-void func_ov006_02353598(void);
+void Ov006_LoadMapeditGraphics(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -37,7 +37,7 @@ extern u8 data_021575c8[];             /* main screen layer config */
 /* Design Room screen setup, called once from DesignRoom_Init. Main screen:
  * mode 0, BG0-BG2 and OBJ on, BG3 and the windows off. Both screens: layer
  * priorities 0 to 3, no blending, no scroll. Then loads the graphics
- * (func_ov006_02353598). */
+ * (Ov006_LoadMapeditGraphics). */
 void Ov006_SetUpScreens(void)
 {
     Unk_027c0280 *saved0280;
@@ -69,5 +69,5 @@ void Ov006_SetUpScreens(void)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    func_ov006_02353598();
+    Ov006_LoadMapeditGraphics();
 }
