@@ -5,7 +5,7 @@
 int Ov006_IsPlainRiver(int x, int y);
 int func_ov006_02360308(int x, int y);
 int Ov006_GetNeighborMask(int x, int y);
-void func_ov006_02365eec(int x, int y);
+void Ov006_RemoveProperty(int x, int y);
 void func_ov006_02351714(int x, int y, int terrain);
 void func_ov006_02351828(int x, int y, int value);
 void func_ov006_0235d7dc(int x, int y);
@@ -40,7 +40,7 @@ void Ov006_PlaceBridgeByPattern(int x, int y)
         break;
     }
     if (cell > 0) {
-        func_ov006_02365eec(x, y);
+        Ov006_RemoveProperty(x, y);
         func_ov006_02351714(x, y, TERRAIN_BRIDGE);
         func_ov006_02351828(x, y, cell);
         func_ov006_0235d7dc(x, y);

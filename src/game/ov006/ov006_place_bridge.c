@@ -10,7 +10,7 @@ int Ov006_GetNeighborMask(int x, int y);
 int func_ov006_02360308(int x, int y);
 int func_ov006_023600e8(int x, int y);
 int Ov006_IsPlainRiver(int x, int y);
-void func_ov006_02365eec(int x, int y);
+void Ov006_RemoveProperty(int x, int y);
 void func_ov006_0235ddac(int x, int y);
 void func_ov006_02351714(int x, int y, int terrain);
 void func_ov006_02351828(int x, int y, int cell);
@@ -20,7 +20,7 @@ void func_ov006_0235d7dc(int x, int y);
 #define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
 #define PUT_SEA_BRIDGE(cell)                         \
-    func_ov006_02365eec(x, y);                       \
+    Ov006_RemoveProperty(x, y);                       \
     if (terrain == TERRAIN_SHOAL) {                  \
         func_ov006_0235ddac(x, y);                   \
     }                                                \
@@ -77,12 +77,12 @@ void Ov006_PlaceBridge(int x, int y)
         case 0:
         default:
             if (terrain == TERRAIN_SHOAL) {
-                func_ov006_02365eec(x, y);
+                Ov006_RemoveProperty(x, y);
                 func_ov006_0235ddac(x, y);
             }
             cell = func_ov006_023600e8(x, y);
             if (cell > 0) {
-                func_ov006_02365eec(x, y);
+                Ov006_RemoveProperty(x, y);
                 func_ov006_02351714(x, y, TERRAIN_BRIDGE);
                 func_ov006_02351828(x, y, cell);
             }
@@ -121,7 +121,7 @@ void Ov006_PlaceBridge(int x, int y)
         break;
     }
     if (cell > 0) {
-        func_ov006_02365eec(x, y);
+        Ov006_RemoveProperty(x, y);
         func_ov006_02351714(x, y, TERRAIN_BRIDGE);
         func_ov006_02351828(x, y, cell);
     }
