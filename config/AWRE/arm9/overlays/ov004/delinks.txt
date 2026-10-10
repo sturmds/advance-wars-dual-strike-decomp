@@ -579,6 +579,10 @@ src/game/ov004/ov004_init_tween.c:
     complete
     .text       start:0x022b7554 end:0x022b7580
 
+src/game/ov004/ov004_task_run_picture_quad_timeline.c:
+    complete
+    .text       start:0x022b7580 end:0x022b8378
+
 src/game/ov004/ov004_task_init_layer1_scene.c:
     complete
     .text       start:0x022b8378 end:0x022b875c
