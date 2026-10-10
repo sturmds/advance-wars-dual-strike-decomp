@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/campaign_map.h"
 #include "game/battle_fighter.h"
+#include "game/battle_side_anim.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -136,7 +137,8 @@ typedef struct BattleStepList {
 } BattleStepList;
 
 typedef struct BattleScreenWork {
-    u8 pad_020[0x48 - 0x20];
+    u8 pad_020[0x40 - 0x20];
+    void *unk_40[2];
     u32 unk_48[2];
     u8 pad_050[0x22c - 0x050];
     BattleCounterTask *unk_22c[2][5];   /* per side */
@@ -178,6 +180,11 @@ typedef struct MenuState {
         BattleScreenWork battle;
     };
 } MenuState;
+
+/* The animation data of a side of the ov002 battle screen. Needed to match: the compiler
+ * adds the 0x27c of BattleScreenWork.anim after the side index, so the array is
+ * reached through gMenuState's own address. */
+#define BATTLE_SIDE_ANIM(side) (((BattleSideAnim **)&gMenuState + (side))[0x27c / 4])
 
 /* data_0229ed30, gMenuState + 0x200. BattleSetup_LoadFromGame stores
  * setup.fundsPerProperty through this symbol: naming gMenuState there
