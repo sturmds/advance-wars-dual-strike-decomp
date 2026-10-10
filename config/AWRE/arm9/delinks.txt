@@ -2144,6 +2144,10 @@ src/game/main/menus/touch_press_on_screen.c:
     complete
     .text       start:0x02024e00 end:0x02024ec0
 
+src/game/main/func_02024ec0.c:
+    complete
+    .text       start:0x02024ec0 end:0x02024f80
+
 src/game/main/menus/rect_contains_point.c:
     complete
     .text       start:0x02024f80 end:0x02024fdc
@@ -3199,6 +3203,10 @@ src/game/main/func_0204cb34.c:
     complete
     .text       start:0x0204cb34 end:0x0204cb40
 
+src/game/main/func_0204cb40.c:
+    complete
+    .text       start:0x0204cb40 end:0x0204cc0c
+
 src/game/main/func_0204cc0c.c:
     complete
     .text       start:0x0204cc0c end:0x0204cc4c
@@ -3397,6 +3405,10 @@ src/game/main/func_02059280.c:
 src/game/main/func_0205c014.c:
     complete
     .text       start:0x0205c014 end:0x0205c02c
+
+src/game/main/func_0205c09c.c:
+    complete
+    .text       start:0x0205c09c end:0x0205c16c
 
 src/game/main/func_0205cd74.c:
     complete
@@ -3713,6 +3725,10 @@ src/game/main/func_0206b974.c:
 src/game/main/func_0206bb5c.c:
     complete
     .text       start:0x0206bb5c end:0x0206bb68
+
+src/game/main/func_0206bb68.c:
+    complete
+    .text       start:0x0206bb68 end:0x0206bc44
 
 src/game/main/func_0206bc44.c:
     complete
@@ -6987,6 +7003,10 @@ src/game/main/func_020ce17c.c:
 src/game/main/link/link_check_players.c:
     complete
     .text       start:0x020cee5c end:0x020cef2c
+
+src/game/main/func_020cef2c.c:
+    complete
+    .text       start:0x020cef2c end:0x020ceffc
 
 src/game/main/map/weather_start_effect.c:
     complete
