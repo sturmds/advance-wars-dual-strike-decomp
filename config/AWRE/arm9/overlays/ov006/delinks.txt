@@ -455,6 +455,10 @@ src/game/ov006/ov006_set_map_cell.c:
     complete
     .text       start:0x0235b958 end:0x0235c0e8
 
+src/game/ov006/ov006_mark_map_border.c:
+    complete
+    .text       start:0x0235c4fc end:0x0235c5ec
+
 src/game/ov006/func_ov006_0235c5ec.c:
     complete
     .text       start:0x0235c5ec end:0x0235c5f8
