@@ -5,7 +5,7 @@ void Ov003Row_DrawCells(int row);
 void Ov003_DrawSlotMarkers(void);
 void Gfx_RequestLayerCopy(int layer);
 
-/* Draws each row whose bit is set in rowMask (rows count from 1), then requests a copy of layer 0. */
+/* Draws each row whose bit is set in activeRows (rows count from 1), then requests a copy of layer 0. */
 void Ov003_DrawRows(void)
 {
     int i;
