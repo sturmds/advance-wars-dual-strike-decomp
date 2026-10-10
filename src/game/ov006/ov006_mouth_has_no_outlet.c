@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-BOOL func_ov006_02351380(int x, int y); /* guess: TRUE on water a river can run into (sea, shoal, reef, river mouth) */
+BOOL Ov006_IsLandNeighbor(int x, int y); /* guess: TRUE on water a river can run into (sea, shoal, reef, river mouth) */
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -17,7 +17,7 @@ extern u32 data_027c0284;
 
 /* Map editor: for a river mouth at x, y, looks at the tile on its open side,
  * then at the tiles on either side of that one, stopping at the first that
- * func_ov006_02351380 accepts. TRUE when none does, and for any other cell. */
+ * Ov006_IsLandNeighbor accepts. TRUE when none does, and for any other cell. */
 BOOL Ov006_MouthHasNoOutlet(int x, int y)
 {
     int found = 0;
@@ -25,20 +25,20 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y)
     switch (CELL_AT(x, y)) {
     case CELL_MOUTH_UP:
         if (y > 0) {
-            if (func_ov006_02351380(x, y - 1)) {
+            if (Ov006_IsLandNeighbor(x, y - 1)) {
                 found++;
             }
             if (found == 0 && x > 0) {
-                if (func_ov006_02351380(x - 1, y - 1)) {
+                if (Ov006_IsLandNeighbor(x - 1, y - 1)) {
                     found++;
-                } else if (func_ov006_02351380(x - 1, y)) {
+                } else if (Ov006_IsLandNeighbor(x - 1, y)) {
                     found++;
                 }
             }
             if (found == 0 && x < STATE->unk_1c4->mapWidth - 1) {
-                if (func_ov006_02351380(x + 1, y - 1)) {
+                if (Ov006_IsLandNeighbor(x + 1, y - 1)) {
                     found++;
-                } else if (func_ov006_02351380(x + 1, y)) {
+                } else if (Ov006_IsLandNeighbor(x + 1, y)) {
                     found++;
                 }
             }
@@ -46,20 +46,20 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y)
         break;
     case CELL_MOUTH_RIGHT:
         if (x < STATE->unk_1c4->mapWidth - 1) {
-            if (func_ov006_02351380(x + 1, y)) {
+            if (Ov006_IsLandNeighbor(x + 1, y)) {
                 found++;
             }
             if (found == 0 && y > 0) {
-                if (func_ov006_02351380(x + 1, y - 1)) {
+                if (Ov006_IsLandNeighbor(x + 1, y - 1)) {
                     found++;
-                } else if (func_ov006_02351380(x, y - 1)) {
+                } else if (Ov006_IsLandNeighbor(x, y - 1)) {
                     found++;
                 }
             }
             if (found == 0 && y < STATE->unk_1c4->mapHeight - 1) {
-                if (func_ov006_02351380(x + 1, y + 1)) {
+                if (Ov006_IsLandNeighbor(x + 1, y + 1)) {
                     found++;
-                } else if (func_ov006_02351380(x, y + 1)) {
+                } else if (Ov006_IsLandNeighbor(x, y + 1)) {
                     found++;
                 }
             }
@@ -67,20 +67,20 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y)
         break;
     case CELL_MOUTH_DOWN:
         if (y < STATE->unk_1c4->mapHeight - 1) {
-            if (func_ov006_02351380(x, y + 1)) {
+            if (Ov006_IsLandNeighbor(x, y + 1)) {
                 found++;
             }
             if (found == 0 && x > 0) {
-                if (func_ov006_02351380(x - 1, y + 1)) {
+                if (Ov006_IsLandNeighbor(x - 1, y + 1)) {
                     found++;
-                } else if (func_ov006_02351380(x - 1, y)) {
+                } else if (Ov006_IsLandNeighbor(x - 1, y)) {
                     found++;
                 }
             }
             if (found == 0 && x < STATE->unk_1c4->mapWidth - 1) {
-                if (func_ov006_02351380(x + 1, y + 1)) {
+                if (Ov006_IsLandNeighbor(x + 1, y + 1)) {
                     found++;
-                } else if (func_ov006_02351380(x + 1, y)) {
+                } else if (Ov006_IsLandNeighbor(x + 1, y)) {
                     found++;
                 }
             }
@@ -88,20 +88,20 @@ BOOL Ov006_MouthHasNoOutlet(int x, int y)
         break;
     case CELL_MOUTH_LEFT:
         if (x > 0) {
-            if (func_ov006_02351380(x - 1, y)) {
+            if (Ov006_IsLandNeighbor(x - 1, y)) {
                 found++;
             }
             if (found == 0 && y > 0) {
-                if (func_ov006_02351380(x - 1, y - 1)) {
+                if (Ov006_IsLandNeighbor(x - 1, y - 1)) {
                     found++;
-                } else if (func_ov006_02351380(x, y - 1)) {
+                } else if (Ov006_IsLandNeighbor(x, y - 1)) {
                     found++;
                 }
             }
             if (found == 0 && y < STATE->unk_1c4->mapHeight - 1) {
-                if (func_ov006_02351380(x - 1, y + 1)) {
+                if (Ov006_IsLandNeighbor(x - 1, y + 1)) {
                     found++;
-                } else if (func_ov006_02351380(x, y + 1)) {
+                } else if (Ov006_IsLandNeighbor(x, y + 1)) {
                     found++;
                 }
             }

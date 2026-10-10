@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern s16 Ov006_gShoalGraphicTable[];
 
-int func_ov006_02351380(int x, int y);   /* guess: 1 when tile x, y is water (sea, shoal, reef, ...) */
+int Ov006_IsLandNeighbor(int x, int y);   /* guess: 1 when tile x, y is water (sea, shoal, reef, ...) */
 int func_ov006_02363cb8(int x, int y);   /* shoal neighbours: 8 above, 4 left, 2 right, 1 below */
 int Ov006_IsBareShoal(int x, int y);   /* 1 when tile x, y is shoal */
 
@@ -26,27 +26,27 @@ s16 Ov006_GetShoalGraphic(int x, int y)
 
     if (y > 0) {
         if (x > 0) {
-            mask |= func_ov006_02351380(x - 1, y - 1) << 8;
+            mask |= Ov006_IsLandNeighbor(x - 1, y - 1) << 8;
         }
-        mask |= func_ov006_02351380(x, y - 1) << 7;
+        mask |= Ov006_IsLandNeighbor(x, y - 1) << 7;
         if (x < MAP->mapWidth - 1) {
-            mask |= func_ov006_02351380(x + 1, y - 1) << 6;
+            mask |= Ov006_IsLandNeighbor(x + 1, y - 1) << 6;
         }
     }
     if (x > 0) {
-        mask |= func_ov006_02351380(x - 1, y) << 5;
+        mask |= Ov006_IsLandNeighbor(x - 1, y) << 5;
     }
-    mask |= func_ov006_02351380(x, y) << 4;
+    mask |= Ov006_IsLandNeighbor(x, y) << 4;
     if (x < MAP->mapWidth - 1) {
-        mask |= func_ov006_02351380(x + 1, y) << 3;
+        mask |= Ov006_IsLandNeighbor(x + 1, y) << 3;
     }
     if (y < MAP->mapHeight - 1) {
         if (x > 0) {
-            mask |= func_ov006_02351380(x - 1, y + 1) << 2;
+            mask |= Ov006_IsLandNeighbor(x - 1, y + 1) << 2;
         }
-        mask |= func_ov006_02351380(x, y + 1) << 1;
+        mask |= Ov006_IsLandNeighbor(x, y + 1) << 1;
         if (x < MAP->mapWidth - 1) {
-            mask |= func_ov006_02351380(x + 1, y + 1);
+            mask |= Ov006_IsLandNeighbor(x + 1, y + 1);
         }
     }
 
@@ -197,13 +197,13 @@ s16 Ov006_GetShoalGraphic(int x, int y)
         if (shoals == 2) {
             tile = 242;
         } else if (shoals == 8) {
-            if (x > 0 && y > 0 && func_ov006_02351380(x - 1, y - 1)) {
+            if (x > 0 && y > 0 && Ov006_IsLandNeighbor(x - 1, y - 1)) {
                 tile = 211;
             } else {
                 tile = 183;
             }
         } else if (shoals == 10) {
-            if (x > 0 && y > 0 && func_ov006_02351380(x - 1, y - 1)) {
+            if (x > 0 && y > 0 && Ov006_IsLandNeighbor(x - 1, y - 1)) {
                 tile = 49;
             } else {
                 tile = 242;

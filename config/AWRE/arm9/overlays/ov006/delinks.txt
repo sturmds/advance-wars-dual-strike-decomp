@@ -63,6 +63,10 @@ src/game/ov006/ov006_is_not_sea_tile.c:
     complete
     .text       start:0x02351304 end:0x02351380
 
+src/game/ov006/ov006_is_land_neighbor.c:
+    complete
+    .text       start:0x02351380 end:0x02351458
+
 src/game/ov006/ov006_set_terrain.c:
     complete
     .text       start:0x02351714 end:0x02351780
