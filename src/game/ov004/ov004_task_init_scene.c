@@ -15,7 +15,7 @@ void func_ov004_022bb744(Unk_ov004_022bf158 *state);
 void Ov004_SetupPerspective3d(void);
 void func_ov004_022bb5ac(const void *table, int size, int offset);
 void func_ov004_022bb38c(Unk_ov004_022bf158 *state);
-void func_ov004_022bb318(Unk_ov004_022bf158 *state);
+void Ov004_ResetClock(Unk_ov004_022bf158 *state);
 
 extern u8 data_ov004_022be868[];
 extern u8 data_ov004_022be9a8[];
@@ -80,5 +80,5 @@ void Ov004Task_InitScene(Ov004Task *task)
     func_ov004_022bb5ac(data_ov004_022bdea4, 0x3ffc, 0xc00);
     func_ov004_022bb5ac(data_ov004_022bdeb4, 0x4330, 0xe00);
     func_ov004_022bb38c(state);
-    func_ov004_022bb318(state);
+    Ov004_ResetClock(state);
 }

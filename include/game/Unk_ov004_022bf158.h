@@ -4,6 +4,7 @@
 #include "types.h"
 
 #define OV004_SLOT_COUNT 32            /* task slots in the state */
+#define OV004_TIMED_EVENT_COUNT 40     /* flags in timedEventFired */
 #define OV004_EASE_COUNT 8             /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
 
@@ -51,7 +52,7 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_1334[0x1b44 - 0x1334];
     u32 elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
-    u32 timedEventFired[40];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */
+    u32 timedEventFired[OV004_TIMED_EVENT_COUNT];           /* set once elapsedFrames passes the event's frame, see Ov004_CheckTimedEvent */
     u32 unk_1bf0;
     u8 pad_1bf4[0x1c10 - 0x1bf4];
 } Unk_ov004_022bf158;
