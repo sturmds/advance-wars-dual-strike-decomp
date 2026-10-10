@@ -9,7 +9,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
 int func_ov003_02363d5c(const u8 *str);
-int func_ov003_02363c88(u8 ch, u16 x, u16 y);
+int Ov003_DrawLetterAlt(u8 ch, u16 x, u16 y);
 void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask *task);
 
@@ -57,11 +57,11 @@ void Ov003_ShowWarpedTwoLineMessage(Ov003MessageTask *task)
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     topX = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TOP_TEXT)) >> 1);
     for (topChar = 0; topChar < func_021247ac(Text_Get(MESSAGE_TOP_TEXT)); topChar++) {
-        topX += func_ov003_02363c88(Text_Get(MESSAGE_TOP_TEXT)[topChar], topX & 0x1ff, 832);
+        topX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_TOP_TEXT)[topChar], topX & 0x1ff, 832);
     }
     bottomX = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_BOTTOM_TEXT)) >> 1);
     for (bottomChar = 0; bottomChar < func_021247ac(Text_Get(MESSAGE_BOTTOM_TEXT)); bottomChar++) {
-        bottomX += func_ov003_02363c88(Text_Get(MESSAGE_BOTTOM_TEXT)[bottomChar], bottomX & 0x1ff, 864);
+        bottomX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_BOTTOM_TEXT)[bottomChar], bottomX & 0x1ff, 864);
     }
     if (task->frames == MESSAGE_FRAMES) {
         task->frames = 0;

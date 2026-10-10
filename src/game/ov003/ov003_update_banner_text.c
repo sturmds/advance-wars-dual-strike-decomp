@@ -10,7 +10,7 @@ const u8 *Text_Get(u32 textId);
 void Task_ResumeScript(void *task);
 int func_021247ac(const u8 *str);  /* string length */
 void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);  /* sets OBJ affine matrix index */
-int func_ov003_02363c88(int ch, u16 attr1, u16 attr0);  /* queues one letter, returns its width */
+int Ov003_DrawLetterAlt(int ch, u16 attr1, u16 attr0);  /* queues one letter, returns its width */
 int func_ov003_02363d5c(const u8 *str);  /* text width in pixels */
 
 /* Sine table: [0] sin 0, [64] cos 0. Needed to match: const, so the
@@ -49,7 +49,7 @@ extern void *data_ov003_02365b0c;
                           HwDiv32(data_021389e8[0] * 16, d2),                           \
                           HwDiv32(data_021389e8[64] * 16, d3));                         \
         }                                                                               \
-        x += func_ov003_02363c88(Text_Get(text)[ch], (x & 0x1ff) | ((n) << 9),          \
+        x += Ov003_DrawLetterAlt(Text_Get(text)[ch], (x & 0x1ff) | ((n) << 9),          \
                                  OAM_AFFINE_DOUBLE | (y));                              \
     } while (0)
 
@@ -81,7 +81,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
         if (FRAME < top * LETTER_DELAY + LETTER_FRAMES) {
             DRAW_GROWING_LETTER(TEXT_BANNER_TOP, top, top, 64);
         } else {
-            x += func_ov003_02363c88(Text_Get(TEXT_BANNER_TOP)[top], x & 0x1ff, 64);
+            x += Ov003_DrawLetterAlt(Text_Get(TEXT_BANNER_TOP)[top], x & 0x1ff, 64);
         }
     }
 
@@ -94,7 +94,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
         if (FRAME < (top + bottom) * LETTER_DELAY + LETTER_FRAMES) {
             DRAW_GROWING_LETTER(TEXT_BANNER_BOTTOM, bottom, top + bottom, 96);
         } else {
-            x += func_ov003_02363c88(Text_Get(TEXT_BANNER_BOTTOM)[bottom], x & 0x1ff, 96);
+            x += Ov003_DrawLetterAlt(Text_Get(TEXT_BANNER_BOTTOM)[bottom], x & 0x1ff, 96);
         }
     }
 

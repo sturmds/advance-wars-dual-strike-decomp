@@ -785,6 +785,10 @@ src/game/ov003/ov003_draw_letter.c:
     complete
     .text       start:0x02363bbc end:0x02363c88
 
+src/game/ov003/ov003_draw_letter_alt.c:
+    complete
+    .text       start:0x02363c88 end:0x02363d5c
+
 src/game/ov003/func_ov003_02363d5c.c:
     complete
     .text       start:0x02363d5c end:0x02363d9c
