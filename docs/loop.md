@@ -29,6 +29,10 @@ Agents add fields, typedefs and prototypes to the same headers at the same time.
 
 Each merged header prints one line (`merged include/game/x.h: +3 fields, ..., renamed a->b`). A "kept mainline's X (the commit has Y)" note means the commit's code may not build until it uses mainline's type; the agent fixes that during its rebase.
 
+## Running on its own
+
+`/decomp-orchestrate` (`.claude/skills/decomp-orchestrate/`) runs the steps above with no one at the keyboard. It keeps its state outside git in `work/loop/` (`state.json` through `tools/loop_state.py`, `journal.md`, `steer.md`), so agents never see it and a new session continues where the last one stopped. A recurring cron job in the session wakes it every 23 minutes, which also brings it back after a usage limit; agent notifications wake it in between. There are no separate phases: the next batch's planner, the partial retries, the renames pass and the wrap-up (tools rerun, batch row, issues, worktree cleanup) are jobs that take agent slots beside the running groups, so slots stay full. `steer.md` holds sturmds's direction for planning and one-off requests; a `PAUSE` line stops new launches. A lease in `state.json` (session ID and process ID) keeps two sessions from running the loop at once.
+
 ## Rules for the orchestrator
 
 - Nothing lands unless `make release` passes on `mainline` after the replay.
