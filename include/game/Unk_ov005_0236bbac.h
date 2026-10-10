@@ -21,7 +21,9 @@ typedef struct Unk_ov005_0236bbac {
     u32 unk_34;
     int coId;                          /* CO whose picture is shown; -1: none */
     int unk_3c;
-    u8 pad_40[0x50 - 0x40];
+    fx32 pictureX;
+    fx32 pictureY;
+    u8 pad_48[0x50 - 0x48];
     void *unk_50;                      /* passed to Task_Destroy (task system) */
     u8 pad_54[0x78 - 0x54];
     struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
