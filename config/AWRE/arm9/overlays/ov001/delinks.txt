@@ -19,6 +19,10 @@ src/game/ov001/func_ov001_02350d44.c:
     complete
     .text       start:0x02350d44 end:0x02350d60
 
+src/game/ov001/ov001_has_no_player1_lander.c:
+    complete
+    .text       start:0x02350d60 end:0x02350ddc
+
 src/game/ov001/ov001_is_tile_owned_by_player1_x9y1.c:
     complete
     .text       start:0x02350ddc end:0x02350e34
