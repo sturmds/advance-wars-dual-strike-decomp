@@ -84,6 +84,10 @@ src/game/main/graphics/co_queue_army_small_picture.c:
     complete
     .text       start:0x02002008 end:0x0200208c
 
+src/game/main/func_0200208c.c:
+    complete
+    .text       start:0x0200208c end:0x02002110
+
 src/game/main/graphics/co_queue_small_picture.c:
     complete
     .text       start:0x02002110 end:0x0200215c
@@ -4098,6 +4102,10 @@ src/game/main/func_02079664.c:
     complete
     .text       start:0x02079664 end:0x020796a0
 
+src/game/main/func_020796a0.c:
+    complete
+    .text       start:0x020796a0 end:0x02079720
+
 src/game/main/func_02079ee0.c:
     complete
     .text       start:0x02079ee0 end:0x02079f10
@@ -6797,6 +6805,10 @@ src/game/main/map/map_is_vacant_deploy_tile.c:
     complete
     .text       start:0x020c3f18 end:0x020c3f98
 
+src/game/main/func_020c3f98.c:
+    complete
+    .text       start:0x020c3f98 end:0x020c4018
+
 src/game/main/func_020c4018.c:
     complete
     .text       start:0x020c4018 end:0x020c4024
@@ -8895,6 +8907,10 @@ src/game/main/graphics/camera_pan_init_from_scroll_tile.c:
 src/game/main/func_020fb868.c:
     complete
     .text       start:0x020fb868 end:0x020fb87c
+
+src/game/main/func_020fb938.c:
+    complete
+    .text       start:0x020fb938 end:0x020fb9b4
 
 src/game/main/func_020fb9ec.c:
     complete
