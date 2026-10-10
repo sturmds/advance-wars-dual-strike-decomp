@@ -684,6 +684,10 @@ src/game/ov005/func_ov005_02364108.c:
     complete
     .text       start:0x02364108 end:0x02364124
 
+src/game/ov005/ov005_co_select_start_task.c:
+    complete
+    .text       start:0x02364124 end:0x02364170
+
 src/game/ov005/ov005_update_music.c:
     complete
     .text       start:0x02364170 end:0x02364380

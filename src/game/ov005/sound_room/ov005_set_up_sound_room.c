@@ -15,7 +15,7 @@ void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int 
 const char *Text_Get(u32 textId);
 void func_02028a30(void);
 void func_02029978(void);
-void func_ov005_02364124(void);
+void Ov005CoSelect_StartTask(void);
 void func_ov005_02364428(Unk_ov005_0236bbac *work);
 void func_ov005_02364718(Unk_ov005_0236bbac *work);
 void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
@@ -151,6 +151,6 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     func_ov005_02364f3c(work);
     func_ov005_02364428(work);
     func_ov005_02364a2c(work);
-    func_ov005_02364124();
+    Ov005CoSelect_StartTask();
     task->step = 0;
 }

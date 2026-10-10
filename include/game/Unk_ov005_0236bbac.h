@@ -63,7 +63,8 @@ typedef struct Unk_ov005_0236bbac {
     int playingMusicKind;
     int musicChanging;                 /* 1 during the fade out */
     int musicPlaying;
-    u8 pad_70[0x78 - 0x70];
+    struct Task *unk_70;
+    u8 pad_74[0x78 - 0x74];
     struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
     u8 pad_88[0x8c - 0x88];
     struct Unk_02022404 *subObjects[5]; /* placed on the sub screen each frame */
