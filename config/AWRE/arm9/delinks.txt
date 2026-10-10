@@ -5528,6 +5528,10 @@ src/game/main/ai/move_search_find_tile.c:
     complete
     .text       start:0x020a5724 end:0x020a5aa8
 
+src/game/main/func_020a5cc8.c:
+    complete
+    .text       start:0x020a5cc8 end:0x020a604c
+
 src/game/main/ai/ai_tile_get_lowest_adjacent_reach.c:
     complete
     .text       start:0x020a6450 end:0x020a6554
