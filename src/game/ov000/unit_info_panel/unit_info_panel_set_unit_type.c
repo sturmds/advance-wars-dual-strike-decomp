@@ -7,7 +7,7 @@ extern MapUnit data_ov000_02350510;
 u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit *unit, int type);
 void func_01ff9ac4(void);
-void func_ov000_022b1ad8(void);
+void UnitInfoPanel_PutFrameBlock(void);
 void func_ov000_022b1b1c(void);
 
 /* Like UnitInfoPanel_SetUnit, for a unit type instead of a unit on the map:
@@ -26,7 +26,7 @@ void UnitInfoPanel_SetUnitType(int owner, int unitType)
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     func_01ff9ac4();
-    func_ov000_022b1ad8();
+    UnitInfoPanel_PutFrameBlock();
     func_ov000_022b1b1c();
     Screen_SetCurrentGfx(saved0280);
 }

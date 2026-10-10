@@ -329,6 +329,10 @@ src/game/ov000/func_ov000_022b1a40.c:
     complete
     .text       start:0x022b1a40 end:0x022b1ad8
 
+src/game/ov000/unit_info_panel/unit_info_panel_draw_frame.c:
+    complete
+    .text       start:0x022b1ad8 end:0x022b1b1c
+
 src/game/ov000/unit_info_panel/unit_info_panel_draw_icon_pair.c:
     complete
     .text       start:0x022b1c54 end:0x022b1cf4
