@@ -1,10 +1,6 @@
 #include "types.h"
+#include "game/ov003_message_task.h"
 #include "game/ov003_unit.h"
-
-typedef struct Ov003MessageTask {
-    u8 pad_00[0x4c];
-    s16 frames;                        /* frames shown, counted while the byte at 0x1d7 of the state is 0 */
-} Ov003MessageTask;
 
 #define STATE_BYTE_1D7 (((u8 *)&data_ov003_02364928->unk_1d6)[1])
 
