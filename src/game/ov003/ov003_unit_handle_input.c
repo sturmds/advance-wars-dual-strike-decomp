@@ -5,7 +5,7 @@
 int func_ov003_0235d518(int player, int kind, int terrain);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight);
-int func_ov003_0235d940(int player);
+int Ov003_IsPowerReady(int player);
 void func_ov003_0235ca50(int player);
 int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int size);
 void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int x, int y);
@@ -140,7 +140,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
         break;
     }
 
-    if (func_ov003_0235d940(unit->unk_12_3) == 1) {
+    if (Ov003_IsPowerReady(unit->unk_12_3) == 1) {
         if (pad->pressed & PAD_BUTTON_L) {
             func_ov003_0235ca50(unit->unk_12_3);
         } else if (Ov003_InputTouchedCircle(input, 240, 176, 24) == 1) {

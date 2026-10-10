@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-int func_ov003_0235d940(int row);
+int Ov003_IsPowerReady(int row);
 void func_ov003_0235ca50(int row);
 int func_ov003_02362098(int row);
 void Ov003Unit_UpdateAi(Ov003Unit *unit);
@@ -12,7 +12,7 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit);
 
 /* Runs Ov003Unit_UpdateAi on every unit in use whose row is the current one
  * (func_ov003_02362098 returns 0 for it), unless unk_1db_7 is set. Before
- * that, func_ov003_0235ca50 runs when func_ov003_0235d940 says 1, slot 0 is in
+ * that, func_ov003_0235ca50 runs when Ov003_IsPowerReady says 1, slot 0 is in
  * state 1 and unit 0 is in use. The ead0 callee is not decompiled yet. */
 void Ov003_UpdateRowUnits(void)
 {
@@ -22,7 +22,7 @@ void Ov003_UpdateRowUnits(void)
     if (STATE->unk_1db_7) {
         return;
     }
-    if (func_ov003_0235d940(STATE->row) == 1 && STATE->slots[0].unk_01_4 == 1 && data_ov003_02369538[0].hp != 0) {
+    if (Ov003_IsPowerReady(STATE->row) == 1 && STATE->slots[0].unk_01_4 == 1 && data_ov003_02369538[0].hp != 0) {
         func_ov003_0235ca50(STATE->row);
     }
     for (i = 0; i < 16; i++, unit++) {
