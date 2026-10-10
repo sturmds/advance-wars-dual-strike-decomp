@@ -56,7 +56,8 @@ typedef struct Unk_ov006_0235f690 {
     u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
     u8 pad_3d[0x4c - 0x3d];
     s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */
-    u8 pad_50[0x5c - 0x50];
+    s32 unk_50;                        /* last button id of a run starting at 64, removed by func_ov006_02355b44 */
+    u8 pad_54[0x5c - 0x54];
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
     struct Task *unk_64;               /* task of script data_ov006_0236acc4 (func_ov006_02354444) */
