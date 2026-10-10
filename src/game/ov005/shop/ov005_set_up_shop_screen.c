@@ -28,7 +28,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void func_020fd62c(u8 *palette, int a, int b, int c);
 void Palette_Flush(void);
 void func_ov005_02367ad8(Unk_ov005_0236bbb0 *work);
-void func_ov005_023671f4(Unk_ov005_0236bbb0 *work);
+void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work);
 struct Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
@@ -125,7 +125,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     work->highlightCursorRow = 0;
     work->showCursor = 0;
     func_ov005_02367ad8(work);
-    func_ov005_023671f4(work);
+    Ov005_InitShopPaging(work);
     work->unk_04 = 0;
     work->unk_08 = 0;
     work->unk_0c = 0;
