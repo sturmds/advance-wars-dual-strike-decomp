@@ -371,6 +371,10 @@ src/game/ov004/func_ov004_022b4774.c:
     complete
     .text       start:0x022b4774 end:0x022b4794
 
+src/game/ov004/ov004_task_ease_layer3_scroll_y.c:
+    complete
+    .text       start:0x022b4794 end:0x022b4898
+
 src/game/ov004/func_ov004_022b4898.c:
     complete
     .text       start:0x022b4898 end:0x022b48ac
@@ -382,6 +386,9 @@ src/game/ov004/func_ov004_022b48ac.c:
 src/game/ov004/func_ov004_022b4f2c.c:
     complete
     .text       start:0x022b4f2c end:0x022b4f4c
+
+src/game/ov004/ov004_task_slide_layer2_scroll_x.c:
+    .text       start:0x022b4f4c end:0x022b5050
 
 src/game/ov004/func_ov004_022b5050.c:
     complete
