@@ -17,7 +17,7 @@ extern u8 data_ov003_023655e0[];
 
 /* Like Ov003_CreateSprite, but stores value at 0x60 of the sprite and sets
  * Ov003_SpriteCallback as its callback (which passes the value to
- * func_ov003_0235c734). */
+ * Ov003Unit_Remove). */
 void Ov003_CreateSpriteWithCallback(int x, int y, int value)
 {
     Unk_027c0280 *savedGfx;

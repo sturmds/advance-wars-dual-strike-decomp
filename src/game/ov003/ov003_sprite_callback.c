@@ -7,9 +7,9 @@ struct Unk_02364514 {
     int unk_60;
 };
 
-void func_ov003_0235c734(int);
+void Ov003Unit_Remove(int);
 
 void Ov003_SpriteCallback(Unk_02364514 *a0)
 {
-    func_ov003_0235c734(a0->unk_60);
+    Ov003Unit_Remove(a0->unk_60);
 }
