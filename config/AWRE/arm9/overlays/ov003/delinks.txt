@@ -147,6 +147,7 @@ src/game/ov003/func_ov003_023572b0.c:
     .text       start:0x023572b0 end:0x02357308
 
 src/game/ov003/func_ov003_02357308.c:
+    complete
     .text       start:0x02357308 end:0x023573d0
 
 src/game/ov003/ov003_draw_unit_anims.c:
