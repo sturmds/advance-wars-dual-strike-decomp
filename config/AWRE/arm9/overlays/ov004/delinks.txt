@@ -283,6 +283,10 @@ src/game/ov004/func_ov004_022b2b28.c:
     complete
     .text       start:0x022b2b28 end:0x022b2b48
 
+src/game/ov004/ov004_blend_fade_in.c:
+    complete
+    .text       start:0x022b2b48 end:0x022b2c68
+
 src/game/ov004/func_ov004_022b2c68.c:
     complete
     .text       start:0x022b2c68 end:0x022b2c74
