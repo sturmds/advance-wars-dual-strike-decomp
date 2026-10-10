@@ -124,7 +124,13 @@ typedef struct Ov003State {
     u16 unk_1d6;
     u8 rowCount;                       /* rows in use */
     u8 unk_1d9;
-    u8 unk_1da;
+    union {
+        u8 unk_1da;
+        struct {
+            u8 unk_1da_0 : 4;          /* 1: the row of the current slot (or Ov003State.row) is picked */
+            u8 unk_1da_4 : 4;
+        };
+    };
     u8 row : 7;                        /* 1 to 5: the row spawns go to */
     u8 unk_1db_7 : 1;
     u8 unk_1dc;
