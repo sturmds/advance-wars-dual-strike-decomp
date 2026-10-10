@@ -4,7 +4,7 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov005_LoadCoPicture(Unk_ov005_0236bbac *state);
-void func_ov005_02364928(Unk_ov005_0236bbac *state, int x, int y);
+void Ov005CoSelect_QueueSprite(Unk_ov005_0236bbac *state, int x, int y);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
@@ -35,7 +35,7 @@ void Ov005_UpdateCoPictureSwap(Ov005Task *task)
         if (task->frame >= task->frames) {
             task->step++;
         }
-        func_ov005_02364928(state, (state->pictureX + offset) >> 12, state->pictureY >> 12);
+        Ov005CoSelect_QueueSprite(state, (state->pictureX + offset) >> 12, state->pictureY >> 12);
         break;
     case 2:
         Ov005_LoadCoPicture(state);
