@@ -124,6 +124,10 @@ src/game/main/graphics/func_02002694.c:
     complete
     .text       start:0x02002694 end:0x0200270c
 
+src/game/main/func_0200270c.c:
+    complete
+    .text       start:0x0200270c end:0x02002784
+
 src/game/main/graphics/co_load_obj_picture.c:
     complete
     .text       start:0x02002784 end:0x02002804
@@ -2508,6 +2512,10 @@ src/game/main/graphics/tex_size_to_pixels.c:
     complete
     .text       start:0x02028424 end:0x02028498
 
+src/game/main/func_02028498.c:
+    complete
+    .text       start:0x02028498 end:0x0202850c
+
 src/game/main/func_0202850c.c:
     complete
     .text       start:0x0202850c end:0x02028644
@@ -3446,6 +3454,10 @@ src/game/main/screen/screen_fade_sprites.c:
     complete
     .text       start:0x02053a20 end:0x02053af0
 
+src/game/main/func_02055074.c:
+    complete
+    .text       start:0x02055074 end:0x020550e8
+
 src/game/main/screen/screen_fade_in_from_black_update.c:
     complete
     .text       start:0x02055714 end:0x02055788
@@ -3489,6 +3501,14 @@ src/game/main/func_0205c014.c:
 src/game/main/func_0205c09c.c:
     complete
     .text       start:0x0205c09c end:0x0205c16c
+
+src/game/main/func_0205c82c.c:
+    complete
+    .text       start:0x0205c82c end:0x0205c8a0
+
+src/game/main/func_0205cd00.c:
+    complete
+    .text       start:0x0205cd00 end:0x0205cd74
 
 src/game/main/func_0205cd74.c:
     complete
@@ -6317,6 +6337,10 @@ src/game/main/func_020b99d4.c:
 src/game/main/menus/menu_depth_pop_other_screen.c:
     complete
     .text       start:0x020b9a6c end:0x020b9ae4
+
+src/game/main/func_020b9ae4.c:
+    complete
+    .text       start:0x020b9ae4 end:0x020b9b5c
 
 src/game/main/func_020b9c3c.c:
     complete
