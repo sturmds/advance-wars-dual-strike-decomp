@@ -14,7 +14,7 @@ typedef struct Unk_ov005_0236bba4_State {
     int arg;
 } Unk_ov005_0236bba4_State;
 
-/* Work block (0x39c bytes) that func_ov005_0235ea58 allocates into
+/* Work block (0x39c bytes) that Ov005_AllocStateWork allocates into
  * Ov005Task.work and data_ov005_0236bba4. */
 typedef struct Unk_ov005_0236bba4 {
     u8 pad_00[0x8];
