@@ -762,6 +762,10 @@ src/game/ov003/ov003_show_two_line_message.c:
     complete
     .text       start:0x02363598 end:0x023636e8
 
+src/game/ov003/ov003_update_banner_text.c:
+    complete
+    .text       start:0x023636e8 end:0x02363ba4
+
 src/game/ov003/func_ov003_02363ba4.c:
     complete
     .text       start:0x02363ba4 end:0x02363bbc
