@@ -111,6 +111,13 @@ typedef struct Ov003State {
     u8 pauseCursor : 1;                /* pause menu: 0 top button, 1 bottom button */
 } Ov003State;
 
+/* View of Ov003State.unk_1da as two nibbles: func_ov003_02362258 switches on
+ * the low one (0 to 6); Ov003_AdvanceMode copies the high one into it. */
+typedef struct Ov003NibblePair {
+    u8 low : 4;
+    u8 high : 4;
+} Ov003NibblePair;
+
 /* Map of overlay 3, through data_ov003_02364a88. */
 #define OV003_MAP_TILE_MAX 0x508
 

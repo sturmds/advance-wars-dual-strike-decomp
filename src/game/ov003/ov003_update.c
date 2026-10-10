@@ -26,7 +26,7 @@ typedef struct Ov003Phase {
 #define PAUSE_BUTTON_HEIGHT 32
 
 void Ov003_ReadInput(void);
-void func_ov003_02350de0(void);
+void Ov003_AdvanceMode(void);
 void func_ov003_02350e88(void);
 void func_ov003_0235fee4(void);
 void func_ov003_02364800(void);
@@ -55,7 +55,7 @@ void Ov003_Update(void)
     int current;
 
     Ov003_ReadInput();
-    func_ov003_02350de0();
+    Ov003_AdvanceMode();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02350e88();
     Screen_SetCurrentBoth(data_027c0288.unk_04);
