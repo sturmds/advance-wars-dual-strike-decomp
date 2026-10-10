@@ -655,6 +655,10 @@ src/game/ov004/ov004_unpack_resource.c:
     complete
     .text       start:0x022bb66c end:0x022bb6ac
 
+src/game/ov004/ov004_get_file_size.c:
+    complete
+    .text       start:0x022bb980 end:0x022bb9c4
+
 src/game/ov004/func_ov004_022bb9c4.c:
     complete
     .text       start:0x022bb9c4 end:0x022bba30
