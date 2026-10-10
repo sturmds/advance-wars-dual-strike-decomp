@@ -9,7 +9,7 @@ u16 func_0207a1dc(void);
 BOOL func_ov003_0235c194(int slot, int column, int x, int y);
 void func_ov003_023606ec(int slot);
 void func_ov003_0236082c(int slot);
-int func_ov003_0236095c(int slot);
+int Ov003_MoveCursorDown(int slot);
 void func_ov003_02360a88(int slot);
 int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int radius);
 
@@ -30,7 +30,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
         func_ov003_02360a88(slot);
     }
     if (keypad->repeat & PAD_KEY_DOWN) {
-        func_ov003_0236095c(slot);
+        Ov003_MoveCursorDown(slot);
     }
     if (keypad->repeat & PAD_KEY_LEFT) {
         func_ov003_0236082c(slot);
@@ -64,7 +64,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
                     && STATE->slots[i].unk_01_4 == OV003_SLOT_PLACING
                     && STATE->slots[i].row == STATE->slots[slot].row
                     && STATE->slots[i].unk_00 == STATE->slots[slot].unk_00) {
-                    func_ov003_0236095c(i);
+                    Ov003_MoveCursorDown(i);
                 }
             }
             STATE->slots[slot].unk_01_4 = OV003_SLOT_PLACED;
@@ -84,7 +84,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
                         && STATE->slots[i].unk_01_4 == OV003_SLOT_PLACING
                         && STATE->slots[i].row == STATE->slots[slot].row
                         && STATE->slots[i].unk_00 == STATE->slots[slot].unk_00) {
-                        if (func_ov003_0236095c(i) == 0) {
+                        if (Ov003_MoveCursorDown(i) == 0) {
                             STATE->slots[i].unk_01_4 = OV003_SLOT_SCROLLING;
                         }
                     }
