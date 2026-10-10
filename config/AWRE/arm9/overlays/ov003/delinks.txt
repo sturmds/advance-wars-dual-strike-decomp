@@ -502,6 +502,10 @@ src/game/ov003/ov003_unit_fire_at_unit.c:
     complete
     .text       start:0x0235fe9c end:0x0235fee4
 
+src/game/ov003/ov003_step_frame_cycles.c:
+    complete
+    .text       start:0x02360018 end:0x02360110
+
 src/game/ov003/ov003_slot_update_placing.c:
     complete
     .text       start:0x02360110 end:0x02360528
