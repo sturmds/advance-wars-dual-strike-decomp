@@ -29,7 +29,9 @@ typedef struct Ov003Unit {
     u8 unk_19;
     s8 unk_1a;
     s8 unk_1b;
-    u8 pad_1c;
+    u8 unk_1c_0 : 1;
+    u8 unk_1c_1 : 1;
+    u8 unk_1c_2 : 6;
     u8 unk_1d_0 : 6;
     u8 unk_1d_6 : 1;
     u8 unk_1d_7 : 1;
@@ -95,6 +97,7 @@ typedef struct Ov003State {
     u8 pad_1de;
     u8 unk_1df_0 : 1;
     u8 unk_1df_1 : 1;
+    u8 unk_1df_2 : 3;
 } Ov003State;
 
 /* Map of overlay 3, through data_ov003_02364a88. */
