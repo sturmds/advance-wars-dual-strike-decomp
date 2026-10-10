@@ -528,6 +528,10 @@ src/game/ov005/ov005_state_show_layer2_both_screens.c:
     complete
     .text       start:0x02360fec end:0x02361344
 
+src/game/ov005/ov005_state_show_picture.c:
+    complete
+    .text       start:0x02361344 end:0x02361484
+
 src/game/ov005/ov005_update_right_touched.c:
     complete
     .text       start:0x02361484 end:0x023614b4
