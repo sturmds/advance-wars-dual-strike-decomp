@@ -76,6 +76,10 @@ src/game/ov000/task/unit_show_task_destroy.c:
     complete
     .text       start:0x022ae530 end:0x022ae560
 
+src/game/ov000/task/unit_show_task_spawn.c:
+    complete
+    .text       start:0x022ae6e4 end:0x022ae964
+
 src/game/ov000/task/unit_show_task_create.c:
     complete
     .text       start:0x022ae964 end:0x022ae9ec

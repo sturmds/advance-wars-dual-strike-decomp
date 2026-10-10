@@ -1,0 +1,92 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/task.h"
+#include "game/unit_show_task.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern void *data_027c0288;
+extern char data_ov000_022dbd1c[];
+extern const TaskScriptCmd data_ov000_022db6cc[];
+extern u8 gArmyPalettes[][32];
+
+typedef struct Unk_022a7c5c {
+    u8 pad_00[0x64];
+    void *unk_64;
+} Unk_022a7c5c;
+extern Unk_022a7c5c *data_022a7c5c;
+
+int func_ov000_022ad5cc(void);
+const char *func_ov000_022adedc(int type);
+const char *func_ov000_022adf24(UnitShowTask *task);
+int func_ov000_022adf98(int entry);
+u32 func_ov000_022ae6c0(int slot);
+int FS_ChangeDir(const char *path);
+void *File_Load(const char *path);
+void Palette_Load(const void *src, u32 offset, u32 size);
+void func_0200c998(const void *src, void *dst, u32 size);
+ShowSprite *func_02022478(void *file, int a, int b);
+void func_02021f44(ShowSprite *sprite, int frame);
+int UnitShowTask_CheckVisible(UnitShowTask *task);
+void UnitShowTask_PlaceSprite(UnitShowTask *task);
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Makes a show task for a unit of the given type at tile (x, y). It takes a
+ * free show slot (NULL when both are taken), loads the unit's sprite files
+ * into a new sprite and gives it the owner's army palette. owner is the
+ * player slot minus 1. The first screen draws the sprite in 3D and the
+ * other in 2D, so the palette goes to different places. frame starts at 1
+ * for owners 0 and 2. */
+UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
+{
+    int slot;
+    void *file;
+    UnitShowTask *task;
+
+    slot = func_ov000_022ad5cc();
+    if (slot == -1) {
+        return NULL;
+    }
+    data_027c027c->unk_58[slot] = 1;
+    FS_ChangeDir(data_ov000_022dbd1c);
+    file = File_Load(func_ov000_022adedc(type));
+    task = (UnitShowTask *)Task_Create(data_ov000_022db6cc, TASK_LIST(5));
+    if ((void *)data_027c027c == data_027c0288) {
+        task->sprite = func_02022478(file, 2, 14);
+        task->sprite->flags |= 0x20;
+    } else {
+        task->sprite = func_02022478(file, 2, 2);
+    }
+    task->slot = slot;
+    task->unit = NULL;
+    task->unk_35 = 1;
+    task->x = x << 4;
+    task->y = y << 4;
+    if (owner == 0 || owner == 2) {
+        task->frame = 1;
+    } else {
+        task->frame = 0;
+    }
+    task->waitFrames = 0;
+    task->unk_39 = 0;
+    task->entry = type;
+    task->unk_3e = func_ov000_022adf98(task->entry);
+    task->owner = owner;
+    task->unk_44 = File_Load(func_ov000_022adf24(task));
+    task->unk_48 = file;
+    func_02021f44(task->sprite, task->frame);
+    task->sprite->unk_2c = task->unk_44;
+    if ((void *)data_027c027c == data_027c0288) {
+        task->sprite->unk_24 = func_ov000_022ae6c0(task->slot);
+        task->sprite->unk_28 = (u32)data_022a7c5c->unk_64;
+        func_0200c998(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1], data_022a7c5c->unk_64, 32);
+    } else {
+        task->sprite->unk_24 = (task->slot << 4) + 0x264 | 0x4000;
+        Palette_Load(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1], 640, 32);
+    }
+    if (UnitShowTask_CheckVisible(task)) {
+        UnitShowTask_PlaceSprite(task);
+    }
+    return task;
+}

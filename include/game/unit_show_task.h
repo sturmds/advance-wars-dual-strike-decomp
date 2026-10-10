@@ -4,22 +4,36 @@
 #include "types.h"
 #include "game/map_unit.h"
 
+/* Sprite handle of a UnitShowTask (func_02022478 makes it from a loaded file). */
+typedef struct ShowSprite {
+    u8 pad_00[0x20];
+    u8 flags;                          /* 0x20 set for the first screen's 3D sprite */
+    u8 pad_21[0x24 - 0x21];
+    u32 unk_24;                        /* palette or layer word the task sets */
+    u32 unk_28;
+    void *unk_2c;                      /* the task's second loaded file */
+} ShowSprite;
+
 /* Task made by UnitShowTask_Create for a unit the AI is showing. The first
  * 0x30 bytes belong to the task system (Task_Create). */
 typedef struct UnitShowTask {
     u8 pad_00[0x2c];
-    void *sprite;                      /* 2D or 3D sprite handle */
+    ShowSprite *sprite;                /* 2D or 3D sprite handle */
     MapUnit *unit;                     /* flags have SELECTED and LOCKED set while the task lives */
     u8 scriptPos;                      /* next byte of script */
     u8 unk_35;
-    u8 pad_36[0x38 - 0x36];
+    u8 entry;                          /* unit type, index into data_ov000_022db768 */
+    u8 owner;                          /* player slot 0-4 of the army whose colour the sprite wears */
     s8 frame;                          /* sprite frame last set with func_02021f44 */
-    u8 pad_39[0x3c - 0x39];
+    u8 unk_39;
+    s8 slot;                           /* show slot (flag in Unk_02080440.unk_58) the task holds */
+    u8 pad_3b;
     u16 waitFrames;                    /* UnitShowTask_RunScript runs only while this is 0 */
-    u8 pad_3e[0x40 - 0x3e];
+    u16 unk_3e;
     s16 x;                             /* pixels: tile * 16 */
     s16 y;
-    u8 pad_44[0x4c - 0x44];
+    void *unk_44;                      /* second loaded file */
+    void *unk_48;                      /* first loaded file */
     s8 script[0x20];                   /* commands of UnitShowTask_RunScript */
 } UnitShowTask;
 
