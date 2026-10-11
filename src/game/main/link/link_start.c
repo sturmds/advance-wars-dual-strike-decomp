@@ -16,5 +16,5 @@ void Link_Start(void)
     func_0207a5b0();
     Task_Create(data_0215fea0, NULL);
     Task_Create(data_0215feb8, NULL);
-    data_0215fe8c->unk_1c = 1;
+    data_0215fe8c->linkActive = 1;
 }

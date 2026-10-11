@@ -13,22 +13,22 @@ void Link_PollPeerReply(void)
 {
     u16 reply;
 
-    if (data_0215fe8c->unk_1c == 0) {
+    if (data_0215fe8c->linkActive == 0) {
         return;
     }
-    if (data_0215fe8c->unk_0b == 2) {
+    if (data_0215fe8c->linkState == 2) {
         if (Wireless_StepDataSharing(data_0229ca48, &reply) && reply == (func_0207a1dc() | 1)) {
-            data_0215fe8c->unk_14 = 1;
-            data_0215fe8c->unk_00 = 0;
+            data_0215fe8c->replyOk = 1;
+            data_0215fe8c->replyTimer = 0;
             return;
         }
-        data_0215fe8c->unk_14 = 0;
-        data_0215fe8c->unk_00++;
-        if (data_0215fe8c->unk_00 > 600) {
-            data_0215fe8c->unk_18 = 1;
+        data_0215fe8c->replyOk = 0;
+        data_0215fe8c->replyTimer++;
+        if (data_0215fe8c->replyTimer > 600) {
+            data_0215fe8c->error = 1;
         }
     } else {
-        data_0215fe8c->unk_14 = 0;
-        data_0215fe8c->unk_00 = 0;
+        data_0215fe8c->replyOk = 0;
+        data_0215fe8c->replyTimer = 0;
     }
 }

@@ -11,5 +11,5 @@ void Link_Init(void)
 {
     Wireless_Init();
     func_020fcaf4();
-    data_0215fe8c->unk_1c = 0;
+    data_0215fe8c->linkActive = 0;
 }

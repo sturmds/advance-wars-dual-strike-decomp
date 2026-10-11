@@ -17,7 +17,7 @@ typedef struct Unk_022a8a10 {
     int unk_1c;                        /* 0x1c: nonzero when channels were locked */
     int unk_20;                        /* 0x20: first argument of the volume call */
     int unk_24;                        /* 0x24: second argument of the volume call, nonzero when set up */
-    int channel;                       /* 0x28: hardware channel, negative for none */
+    int alarm;                         /* 0x28: SND alarm number (bit of the alarm mask), negative for none */
     u8 pad_2c[0xc];
     SoundFader fader;                  /* 0x38 */
     int closeWhenFaded;                /* 0x48: close the output once the fader ends */

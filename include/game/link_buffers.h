@@ -3,9 +3,7 @@
 
 #include "types.h"
 
-/* Link play buffers that Link_ResetBuffers resets. Each has two bytes of
- * bookkeeping after its data, both cleared together; what they mean is not
- * worked out yet. */
+/* Link play buffers that Link_ResetBuffers resets. */
 
 /* A packet as the senders build it. The queues hold all 24 bytes. */
 typedef struct LinkPacket {
@@ -30,29 +28,29 @@ typedef struct LinkQueueSlot {
     u8 bytes[24];
 } LinkQueueSlot;
 
-/* Each queue below is a ring buffer. The first of its two trailing bytes is
- * the read index, the second the write index; the queue is empty when they
+/* Each queue below is a ring buffer. Its two trailing bytes are
+ * the read and write indexes; the queue is empty when they
  * are equal and full when the write index is one behind the read index. */
 
 /* data_0229ca88: packets waiting to be sent, 8 slots */
 typedef struct Unk_0229ca88 {
     LinkQueueSlot slots[8];
-    u8 unk_c0;
-    u8 unk_c1;
+    u8 readIndex;
+    u8 writeIndex;
 } Unk_0229ca88;
 
 /* data_0229cdfc, 7 entries, one per peer: 16 slots */
 typedef struct Unk_0229cdfc {
     LinkQueueSlot slots[16];
-    u8 unk_180;
-    u8 unk_181;
+    u8 readIndex;
+    u8 writeIndex;
 } Unk_0229cdfc;
 
 /* data_0229cb4c, 7 entries, one per peer: 4 slots */
 typedef struct Unk_0229cb4c {
     LinkQueueSlot slots[4];
-    u8 unk_60;
-    u8 unk_61;
+    u8 readIndex;
+    u8 writeIndex;
 } Unk_0229cb4c;
 
 #endif

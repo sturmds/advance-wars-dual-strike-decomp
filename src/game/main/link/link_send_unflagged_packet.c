@@ -13,7 +13,7 @@ void Link_SendUnflaggedPacket(void *data)
     LinkPacket packet;
 
     packet.header = data_0215fe8c->unk_0e & 0x7f;
-    Mem_CopyBytes(data, &packet.type, data_0215fe8c->unk_0f);
+    Mem_CopyBytes(data, &packet.type, data_0215fe8c->packetSize);
     data_0215fe8c->unk_0e++;
     Link_QueuePacket(&packet);
 }

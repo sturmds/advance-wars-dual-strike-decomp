@@ -20,13 +20,13 @@ void Link_CheckAbort(void)
     if (data_0215fe8c->unk_0c != 0 && func_02077f20() == 0) {
         link = data_0215fe8c;
         if (link->unk_08 != func_0207a1dc()) {
-            link->unk_18 = 1;
+            link->error = 1;
         }
     }
     if (data_0215fe8c->unk_0c != 0 && func_0207a184() == 1) {
-        data_0215fe8c->unk_18 = 1;
+        data_0215fe8c->error = 1;
     }
-    if (data_0215fe8c->unk_18 != 1 && func_0207a27c() != 1) {
+    if (data_0215fe8c->error != 1 && func_0207a27c() != 1) {
         return;
     }
     Link_Stop();

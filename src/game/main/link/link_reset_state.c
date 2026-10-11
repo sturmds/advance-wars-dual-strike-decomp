@@ -35,15 +35,15 @@ void Link_ResetState(void)
         func_0207a7a4(GAME->unk_8b, 2);
         break;
     }
-    data_0215fe8c->unk_0b = 0;
-    data_0215fe8c->unk_14 = 0;
-    data_0215fe8c->unk_18 = 0;
-    data_0215fe8c->unk_1c = 0;
+    data_0215fe8c->linkState = 0;
+    data_0215fe8c->replyOk = 0;
+    data_0215fe8c->error = 0;
+    data_0215fe8c->linkActive = 0;
     data_0215fe8c->unk_0e = 0;
     data_0215fe8c->unk_0c = 0;
-    data_0215fe8c->unk_0f = 23;
+    data_0215fe8c->packetSize = 23;
     data_0215fe8c->nameSendAid = 0;
     data_0215fe8c->unk_06 = 0;
-    data_0215fe8c->unk_00 = 0;
+    data_0215fe8c->replyTimer = 0;
     Link_ResetBuffers();
 }

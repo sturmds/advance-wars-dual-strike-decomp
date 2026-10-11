@@ -48,19 +48,19 @@ void Link_ChildHandlePackets(void)
             break;
         case LINK_PACKET_SHARING_START:
             Wireless_StartDataSharing();
-            data_0215fe8c->unk_0b = 1;
+            data_0215fe8c->linkState = 1;
             Link_SendCommand(LINK_PACKET_SHARING_STARTED);
             break;
         case LINK_PACKET_SHARING_STARTED:
-            data_0215fe8c->unk_0b = 2;
+            data_0215fe8c->linkState = 2;
             break;
         case LINK_PACKET_SHARING_END:
             Wireless_EndDataSharing();
-            data_0215fe8c->unk_0b = 3;
+            data_0215fe8c->linkState = 3;
             Link_SendCommand(LINK_PACKET_SHARING_ENDED);
             break;
         case LINK_PACKET_SHARING_ENDED:
-            data_0215fe8c->unk_0b = 0;
+            data_0215fe8c->linkState = 0;
             break;
         case LINK_PACKET_ACTION + 0:
         case LINK_PACKET_ACTION + 1:

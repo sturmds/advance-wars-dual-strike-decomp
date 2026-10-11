@@ -16,13 +16,13 @@ void Link_ResetBuffers(void)
 {
     int i;
 
-    data_0229ca88.unk_c1 = 0;
-    data_0229ca88.unk_c0 = data_0229ca88.unk_c1;
+    data_0229ca88.writeIndex = 0;
+    data_0229ca88.readIndex = data_0229ca88.writeIndex;
     for (i = 0; i < 7; i++) {
-        data_0229cdfc[i].unk_181 = 0;
-        data_0229cdfc[i].unk_180 = data_0229cdfc[i].unk_181;
-        data_0229cb4c[i].unk_61 = 0;
-        data_0229cb4c[i].unk_60 = data_0229cb4c[i].unk_61;
+        data_0229cdfc[i].writeIndex = 0;
+        data_0229cdfc[i].readIndex = data_0229cdfc[i].writeIndex;
+        data_0229cb4c[i].writeIndex = 0;
+        data_0229cb4c[i].readIndex = data_0229cb4c[i].writeIndex;
         data_0229ca40[i] = 0x80;
     }
     for (i = 0; i < 8; i++) {

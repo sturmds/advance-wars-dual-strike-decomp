@@ -64,7 +64,7 @@ void Link_ParentHandlePackets(void)
                 }
                 if (i == 8) {
                     Wireless_StartDataSharing();
-                    data_0215fe8c->unk_0b = 2;
+                    data_0215fe8c->linkState = 2;
                     Link_SendCommand(LINK_PACKET_SHARING_STARTED);
                 }
                 break;
@@ -77,7 +77,7 @@ void Link_ParentHandlePackets(void)
                 }
                 if (i == 8) {
                     Wireless_EndDataSharing();
-                    data_0215fe8c->unk_0b = 0;
+                    data_0215fe8c->linkState = 0;
                     Link_SendCommand(LINK_PACKET_SHARING_ENDED);
                 }
                 break;

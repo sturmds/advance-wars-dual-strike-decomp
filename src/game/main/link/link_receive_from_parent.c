@@ -25,26 +25,26 @@ void Link_ReceiveFromParent(LinkPacket *packet, u16 length)
     }
     data_0229ca40[0] = packet->header & 0x7f;
     if (packet->header & 0x80) {
-        next = data_0229cb4c[0].unk_61 + 1;
+        next = data_0229cb4c[0].writeIndex + 1;
         if (next == 4) {
             next = 0;
         }
-        if (next == data_0229cb4c[0].unk_60) {
-            data_0215fe8c->unk_18 = 1;
+        if (next == data_0229cb4c[0].readIndex) {
+            data_0215fe8c->error = 1;
             return;
         }
-        Mem_CopyBytes(packet, &data_0229cb4c[0].slots[data_0229cb4c[0].unk_61], sizeof(LinkPacket));
-        data_0229cb4c[0].unk_61 = next;
+        Mem_CopyBytes(packet, &data_0229cb4c[0].slots[data_0229cb4c[0].writeIndex], sizeof(LinkPacket));
+        data_0229cb4c[0].writeIndex = next;
     } else {
-        next = data_0229cdfc[0].unk_181 + 1;
+        next = data_0229cdfc[0].writeIndex + 1;
         if (next == 16) {
             next = 0;
         }
-        if (next == data_0229cdfc[0].unk_180) {
-            data_0215fe8c->unk_18 = 1;
+        if (next == data_0229cdfc[0].readIndex) {
+            data_0215fe8c->error = 1;
             return;
         }
-        Mem_CopyBytes(packet, &data_0229cdfc[0].slots[data_0229cdfc[0].unk_181], sizeof(LinkPacket));
-        data_0229cdfc[0].unk_181 = next;
+        Mem_CopyBytes(packet, &data_0229cdfc[0].slots[data_0229cdfc[0].writeIndex], sizeof(LinkPacket));
+        data_0229cdfc[0].writeIndex = next;
     }
 }

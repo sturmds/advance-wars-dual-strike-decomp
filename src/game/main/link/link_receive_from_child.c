@@ -37,7 +37,7 @@ void Link_ReceiveFromChild(u16 aid, LinkPacket *packet, u16 length)
             next = 0;
         }
         if (next == data_0229cbac[aid][0]) {
-            data_0215fe8c->unk_18 = 1;
+            data_0215fe8c->error = 1;
             return;
         }
         Mem_CopyBytes(packet, &data_0229cb4c[aid][data_0229cbad[aid][0] * 24], sizeof(LinkPacket));
@@ -48,7 +48,7 @@ void Link_ReceiveFromChild(u16 aid, LinkPacket *packet, u16 length)
             next = 0;
         }
         if (next == data_0229cf7c[aid][0]) {
-            data_0215fe8c->unk_18 = 1;
+            data_0215fe8c->error = 1;
             return;
         }
         Mem_CopyBytes(packet, &data_0229cdfc[aid][data_0229cf7d[aid][0] * 24], sizeof(LinkPacket));

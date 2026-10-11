@@ -12,8 +12,8 @@ void Wireless_Stop(void);
 /* Leaves link mode: clears the mode and peer flags and stops the two link tasks. */
 void Link_Stop(void)
 {
-    data_0215fe8c->unk_1c = 0;
-    data_0215fe8c->unk_14 = 0;
+    data_0215fe8c->linkActive = 0;
+    data_0215fe8c->replyOk = 0;
     data_0215fe8c->unk_0c = 0;
     Wireless_Stop();
     Task_DestroyByScript(data_0215fea0);
