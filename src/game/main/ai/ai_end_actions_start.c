@@ -42,6 +42,6 @@ void AiEndActions_Start(void)
     if (data_021619c0->unk_0c < 1000) {
         data_021619c0->unk_0c = 1000;
     }
-    data_021619c0->unk_10 = 0;
-    data_021619c0->unk_05 = 2;
+    data_021619c0->savingTarget = 0;
+    data_021619c0->savingSkips = 2;
 }

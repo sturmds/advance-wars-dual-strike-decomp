@@ -9953,7 +9953,7 @@ src/game/main/func_020b5098.c:
     complete
     .text       start:0x020b5098 end:0x020b50bc
 
-src/game/main/func_020b50bc.c:
+src/game/main/ai/func_020b50bc.c:
     complete
     .text       start:0x020b50bc end:0x020b5138
 
@@ -9969,7 +9969,7 @@ src/game/main/ai/ai_sea_transport_properties_outweigh_armed.c:
     complete
     .text       start:0x020b51b4 end:0x020b51ec
 
-src/game/main/func_020b51ec.c:
+src/game/main/ai/func_020b51ec.c:
     complete
     .text       start:0x020b51ec end:0x020b5268
 

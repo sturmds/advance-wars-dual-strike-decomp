@@ -37,9 +37,9 @@ int Ai_CountUnitsOfType(int type);
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
  * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
  * more is marked (kind 0xff) and the next one tried. When funds are short and
- * allowSaving is 1, func_02098238 may set AiBuildState.unk_10 to the funds
- * still missing after next income; while unk_10 is set, a build must leave
- * that much (unk_05 times it may skip the check for a type the player has
+ * allowSaving is 1, func_02098238 may set AiBuildState.savingTarget to the funds
+ * still missing after next income; while savingTarget is set, a build must leave
+ * that much (savingSkips times it may skip the check for a type the player has
  * none of). Black Bomb and Piperunner builds go through AiSite_PickBlackBombAirport and
  * AiSite_PickPiperunnerSite. A type that fails gets weight 0 and the pick starts again.
  * Returns the factory's site index with gUnitAction.target set, or -1. */
@@ -129,7 +129,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
         if (cost > (u32)PLAYER.funds) {
             if (allowSaving == 1 && func_02098238(cost) == 1) {
-                data_021619c0->unk_10 = cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+                data_021619c0->savingTarget = cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
             }
             goto reject;
         }
@@ -137,7 +137,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
             gUnitAction.target = UNIT_BLACK_BOMB;
             return AiSite_PickBlackBombAirport();
         }
-        if (data_021619c0->unk_10 != 0) {
+        if (data_021619c0->savingTarget != 0) {
             if (AiBuild_CanAffordPiperunnerInstead(best) == 1) {
                 gUnitAction.target = UNIT_PIPERUNNER;
                 return AiSite_PickPiperunnerSite();
@@ -146,7 +146,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
             pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
             if (pipeCost > (u32)PLAYER.funds) {
                 if (allowSaving == 1 && func_02098238(pipeCost) == 1) {
-                    data_021619c0->unk_10 = pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+                    data_021619c0->savingTarget = pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
                     continue;
                 }
             } else {
@@ -154,12 +154,12 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 return AiSite_PickPiperunnerSite();
             }
         }
-        if (data_021619c0->unk_10 != 0 && data_021619c0->unk_05 != 0) {
-            data_021619c0->unk_05--;
-            if (Ai_CountUnitsOfType(best) != 0 && cost > PLAYER.funds - data_021619c0->unk_10) {
+        if (data_021619c0->savingTarget != 0 && data_021619c0->savingSkips != 0) {
+            data_021619c0->savingSkips--;
+            if (Ai_CountUnitsOfType(best) != 0 && cost > PLAYER.funds - data_021619c0->savingTarget) {
                 goto reject;
             }
-        } else if (cost > PLAYER.funds - data_021619c0->unk_10) {
+        } else if (cost > PLAYER.funds - data_021619c0->savingTarget) {
             goto reject;
         }
         gUnitAction.target = best;
