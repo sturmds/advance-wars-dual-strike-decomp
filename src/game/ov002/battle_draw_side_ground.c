@@ -20,7 +20,7 @@ extern s16 data_0214d4c4[];
 #define SIDE_SWAY(side) (((MenuState *)((BattleSway *)&gMenuState + (side)))->battle.sway[0])
 #define SIDE_SCROLL(side) (((MenuState *)((u8 *)&gMenuState + (side) * 2))->battle.bgScroll[0])
 
-void func_0210bb9c(int sin, int cos);
+void G3_RotX(int sin, int cos);
 BOOL Battle_IsSideDrawnInAir(int side);
 BOOL Battle_IsSideSea(int side);
 int MainLoop_GetFrameCount(void);
@@ -55,7 +55,7 @@ void Battle_DrawSideGround(int side)
     *REG_PLTT_BASE = ((u32)(leftSide ? 10 : 11) << 5) >> 4;
     *REG_MTX_PUSH = 0;
     idx = (-((SIDE_STATE(side)->battle.sway[0].angle + 0x600) & 0xffff) & 0xffff) >> 4;
-    func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+    G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     transZ = -(SIDE_SWAY(side).z >> 1);
     if (side == 0) {
         transX = -SIDE_SWAY(side).x;

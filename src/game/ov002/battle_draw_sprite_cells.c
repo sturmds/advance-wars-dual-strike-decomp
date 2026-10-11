@@ -17,7 +17,7 @@ extern s16 data_0214d4c4[];
 #define SIDE_DATA(side) (((BattleSideData **)((u8 *)&gMenuState + (side) * 4))[0x27c / 4])
 #define SIDE_DATA_AGAIN(side) (((BattleSideData **)&gMenuState + (side))[0x27c / 4])
 
-void func_0210bb9c(int sin, int cos);
+void G3_RotX(int sin, int cos);
 BOOL Battle_IsSideAir(int side);
 int Battle_GetTexHeight(u32 index);
 int Battle_GetTexWidth(u32 index);
@@ -62,7 +62,7 @@ void Battle_DrawSpriteCells(u16 *cells, int x, int y, int z, int offX, int offY,
     *REG_MTX_TRANS = z;
     idx = (-((SIDE_STATE(side)->battle.sway[0].angle + 0x600) & 0xffff) & 0xffff) >> 4;
     cells++;
-    func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+    G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *REG_MTX_TRANS = 0;
     *REG_MTX_TRANS = -y;
     *REG_MTX_TRANS = -z;

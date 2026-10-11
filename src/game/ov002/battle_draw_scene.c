@@ -18,7 +18,7 @@ extern MenuStateFrom400 data_0229ef30;
 
 void G3X_Reset(void);
 void func_0210bbd8(void *cam, void *up, void *target, int load, void *mtx);
-void func_0210bb9c(int sin, int cos);
+void G3_RotX(int sin, int cos);
 void Battle_StepSideShake(int side);
 void Battle_DrawSideGround(int side);
 void func_ov002_02354124(void);
@@ -68,7 +68,7 @@ void Battle_DrawScene(void)
         *REG_MTX_TRANS = z;
         Battle_StepSideShake(0);
         idx = ((data_0229ed30.sway[0].angle + 0x600) & 0xffff) >> 4;
-        func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+        G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
         *REG_MTX_SCALE = 0x2000;
         *REG_MTX_SCALE = 0x1000;
         *REG_MTX_SCALE = 0x1000;
@@ -96,7 +96,7 @@ void Battle_DrawScene(void)
         *REG_MTX_TRANS = z;
         Battle_StepSideShake(1);
         idx = ((data_0229ed30.sway[1].angle + 0x600) & 0xffff) >> 4;
-        func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+        G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
         *REG_MTX_SCALE = 0x2000;
         *REG_MTX_SCALE = 0x1000;
         *REG_MTX_SCALE = 0x1000;

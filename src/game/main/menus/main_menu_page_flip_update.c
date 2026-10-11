@@ -2,7 +2,7 @@
 #include "game/main_menu.h"
 
 void Gfx3d_InitScene(void);
-void func_0210bb9c(int sin, int cos);
+void G3_RotX(int sin, int cos);
 void MainMenu_DrawPage(void);
 void MainMenu_DrawPicture192x144(void);
 void func_02028644(void);
@@ -27,7 +27,7 @@ void MainMenu_PageFlipUpdate(MainMenuTask *task)
     if (turn != 0) {
         angle = turn < 8 ? (u16)(-turn << 11) : (u16)(-(turn - 16) << 11);
         idx = angle >> 4;
-        func_0210bb9c(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+        G3_RotX(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
         if (turn > 8) {
             MainMenu_DrawPicture192x144();
         } else if (turn < 8) {
