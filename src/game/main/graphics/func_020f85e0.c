@@ -4,7 +4,7 @@
 
 void Screen_FillWhite(void);
 void Screen_FillBlack(void);
-void Screens_SetUp2dLayers(void *a);
+void Screens_SetUp2dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
 void func_020f8994(void);

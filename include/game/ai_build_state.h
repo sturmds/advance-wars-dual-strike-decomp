@@ -32,4 +32,19 @@ typedef struct AiBuildState {
 
 extern AiBuildState *data_021619c0;
 
+/* Target groups of AiBuild_GetTargetGroup: the unit types the AI builds
+ * against, in nine groups. The Megatank, the Oozium and out-of-range types
+ * are in none. */
+#define TARGET_GROUP_FOOT         0
+#define TARGET_GROUP_LIGHT        1
+#define TARGET_GROUP_TANK         2
+#define TARGET_GROUP_PLANE        3
+#define TARGET_GROUP_COPTER       4
+#define TARGET_GROUP_BATTLESHIP   5
+#define TARGET_GROUP_CRUISER      6
+#define TARGET_GROUP_TRANSPORT    7  /* transports and the Carrier */
+#define TARGET_GROUP_SUB          8
+#define TARGET_GROUP_COUNT        9
+#define TARGET_GROUP_NONE         10
+
 #endif

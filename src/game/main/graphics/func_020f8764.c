@@ -5,7 +5,7 @@
 void Screen_FillBlack(void);
 void Screen_FillWhite(void);
 void func_01ffd7b8(void);
-void Screens_SetUp3dLayers(void *a);
+void Screens_SetUp3dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);

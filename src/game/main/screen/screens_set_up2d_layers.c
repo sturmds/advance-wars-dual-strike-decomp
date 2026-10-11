@@ -12,8 +12,9 @@ void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 
 /* Gives the current screen BG mode 0 and its layer config. On the main
- * screen BG0 shows tile maps, not the 3D engine. */
-void Screens_SetUp2dLayers(void)
+ * screen BG0 shows tile maps, not the 3D engine. Every caller passes
+ * data_02166dc8, which it does not read. */
+void Screens_SetUp2dLayers(const void *unused)
 {
     if (data_027c027c == data_027c0288.unk_00) {
         Screen_SetBg0Mode(0);

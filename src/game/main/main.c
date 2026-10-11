@@ -39,7 +39,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_020097a4(void);
 void Screen_ApplyAll(void);
 void Screen_InitSystems(void);
-void Screens_SetUp2dLayers(void *a);
+void Screens_SetUp2dLayers(const void *unused);
 void func_01ff9b48(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));

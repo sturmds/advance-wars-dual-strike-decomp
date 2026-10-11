@@ -1,19 +1,8 @@
 #include "types.h"
+#include "game/ai_build_state.h"
 #include "game/unit_stats.h"
 
-#define TARGET_GROUP_FOOT         0
-#define TARGET_GROUP_LIGHT        1
-#define TARGET_GROUP_TANK         2
-#define TARGET_GROUP_PLANE        3
-#define TARGET_GROUP_COPTER       4
-#define TARGET_GROUP_BATTLESHIP   5
-#define TARGET_GROUP_CRUISER      6
-#define TARGET_GROUP_TRANSPORT    7
-#define TARGET_GROUP_SUB          8
-#define TARGET_GROUP_NONE         10
-
-/* Target group of a unit type (AiBuild_WeighUnitTypes). Sorts the unit types the AI builds against into nine target groups; the
- * Megatank, the Oozium and out-of-range types are in none. */
+/* Target group (TARGET_GROUP_*) of a unit type, for AiBuild_WeighUnitTypes. */
 int AiBuild_GetTargetGroup(u32 unitType)
 {
     switch (unitType) {

@@ -25,12 +25,6 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Target groups (AiBuild_GetTargetGroup): foot, light vehicles, tanks, planes,
- * copters, Battleship, Cruiser, transports and Carrier, Sub. */
-#define TARGET_GROUP_COUNT     9
-#define TARGET_GROUP_TRANSPORT 7
-#define TARGET_GROUP_NONE      10
-
 /* Fills gAiBuildScores with a build weight for each unit type. It sums the
  * enemy hp per target group, takes off what the current team's units would
  * deal to each group, then weighs every type the AI may build by
