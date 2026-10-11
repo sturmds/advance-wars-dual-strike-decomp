@@ -8,7 +8,7 @@ void BattleCellTask_Reset(BattleCellTask *task)
     task->angle = 0;
     task->phase = task->cell * 16;
     task->moving = 0;
-    task->flag1 = 0;
+    task->hasShadow = 0;
     task->flashing = 0;
     task->flag3 = 0;
     task->unk_5a_lo = 0;
@@ -16,5 +16,5 @@ void BattleCellTask_Reset(BattleCellTask *task)
     CELL_TASK_ENTRY(task).sprites[1] = NULL;
     CELL_TASK_ENTRY(task).sprites[2] = NULL;
     CELL_TASK_ENTRY(task).sprites[3] = NULL;
-    task->unk_2c = 0;
+    task->shadow = NULL;
 }

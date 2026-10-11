@@ -2,7 +2,6 @@
 #include "game/BattleCellTask.h"
 
 void BattleCellTask_RunStep(BattleCellTask *task, int step);
-void BattleActor_UpdateShadow(BattleCellTask *task);
 void BattleFighter_StepFootHop(BattleCellTask *task);
 void BattleFighter_StepSlideMode0(BattleCellTask *task);
 void BattleFighter_StepSlideAirSeaMode1(BattleCellTask *task);
@@ -20,7 +19,7 @@ void BattleCellTask_Update(BattleCellTask *task)
     }
     BattleCellTask_Bob(task);
     BattleCellTask_Move(task);
-    BattleActor_UpdateShadow(task);
+    BattleCellTask_UpdateShadow(task);
     BattleCellTask_Flash(task);
     BattleFighter_StepFootHop(task);
     BattleFighter_StepSlideMode0(task);

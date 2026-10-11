@@ -2,7 +2,6 @@
 #include "game/BattleCellTask.h"
 
 void BattleCellTask_MakeSprites(BattleCellTask *task);
-void BattleActor_EnterPhase4(BattleCellTask *task);
 
 /* Runs one step (0-5) of a cell task's steps ring; other values do nothing. */
 void BattleCellTask_RunStep(BattleCellTask *task, int command)
@@ -21,7 +20,7 @@ void BattleCellTask_RunStep(BattleCellTask *task, int command)
         BattleCellTask_MakeMatchupSprites(task);
         break;
     case 4:
-        BattleActor_EnterPhase4(task);
+        BattleCellTask_StartFlash(task);
         break;
     case 5:
         BattleCellTask_RemakeSpritesWithEffect(task);

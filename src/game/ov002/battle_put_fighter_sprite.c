@@ -1,5 +1,6 @@
 #include "types.h"
-#include "game/battle_actor.h"
+#include "game/BattleCellTask.h"
+#include "game/BattleSpriteTask.h"
 #include "game/menu_state.h"
 
 extern MenuState gMenuState;
@@ -13,7 +14,7 @@ void func_ov002_0235643c(void *a, int b, int c, int d, int e, int f, int g, int 
 /* Needed to match: the side index is added to the address of gMenuState
  * first and the offset of the field last. */
 #define SIDE_ACTOR(side) \
-    ((BattleActor *)((BattleEntry *)((u8 *)&gMenuState + (side) * sizeof(BattleEntry[5]) \
+    ((BattleCellTask *)((BattleEntry *)((u8 *)&gMenuState + (side) * sizeof(BattleEntry[5]) \
                                      + MENU_OFFSET(unk_310)))->unk_00)
 #define SIDE_UNK_040(side) (*(void **)((u8 *)&gMenuState + (side) * 4 + MENU_OFFSET(unk_40)))
 #define SIDE_DATA(side) (*(BattleSideData **)((u8 *)&gMenuState + (side) * sizeof(BattleSideData *) \
@@ -26,14 +27,14 @@ void func_ov002_0235643c(void *a, int b, int c, int d, int e, int f, int g, int 
  * guess. */
 void Battle_PutFighterSprite(int slot, int pose)
 {
-    BattleActor *source = SIDE_ACTOR(slot);
+    BattleCellTask *source = SIDE_ACTOR(slot);
     u16 scale = source->scale;
     int side = source->side;
-    BattleActor *actor = SIDE_ACTOR(side);
+    BattleCellTask *actor = SIDE_ACTOR(side);
     const BattleFighterShapes *shapes = (const BattleFighterShapes *)SIDE_DATA(side)->cellPositions;
     int tile = Battle_GetMatchupValue(side);
 
-    func_ov002_0235643c(SIDE_UNK_040(side), tile, actor->unk_38, actor->unk_3a, actor->unk_3c,
+    func_ov002_0235643c(SIDE_UNK_040(side), tile, actor->posX, actor->posY, actor->posZ,
                         shapes->points[pose].x * scale >> 8, shapes->points[pose].y * scale >> 8, -1, scale,
                         scale, SIDE_COLOUR(side), 8, 0, side);
 }

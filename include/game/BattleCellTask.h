@@ -6,12 +6,14 @@
 
 extern MenuState gMenuState;
 
+struct BattleSpriteTask;
+
 /* Task that moves the sprites of one HP cell of the battle animation in ov002.
  * It is made from the script at data_ov002_0236963c and stored in BattleEntry.unk_00.
  * The first 0x30 bytes belong to the task system. mwcc packs bit fields from the low end. */
 typedef struct BattleCellTask {
     u8 pad_00[0x2c];
-    u32 unk_2c;                        /* cleared by BattleCellTask_Reset */
+    struct BattleSpriteTask *shadow;   /* sprite from battle.unk_40 that follows the cell (BattleCellTask_MakeMatchupSprites) */
     u8 steps[8];                       /* what the cell does at each step, indexed by stepIndex */
     s16 posX;                          /* position of the sprites */
     s16 posY;
@@ -34,7 +36,7 @@ typedef struct BattleCellTask {
     u8 hasPos2 : 1;
     u8 pos2Index : 7;
     u8 moving : 1;
-    u8 flag1 : 1;
+    u8 hasShadow : 1;
     u8 flashing : 1;
     u8 flag3 : 1;                      /* the fighter motion steps run only while set; BattleCellTask_Bob skips while set */
     u8 side : 1;
@@ -44,6 +46,8 @@ typedef struct BattleCellTask {
 } BattleCellTask;
 
 void BattleCellTask_Reset(BattleCellTask *task);
+int BattleCellTask_GetOffsetX(BattleCellTask *task);
+int BattleCellTask_GetOffsetY(BattleCellTask *task);
 BattleCellTask *BattleCellTask_Create(int side, int cell, int pos2Index);
 void BattleCellTask_DestroySprites(BattleCellTask *task);
 void BattleCellTask_RestartSprite(BattleCellTask *task);
@@ -54,6 +58,8 @@ void BattleCellTask_Move(BattleCellTask *task);
 void BattleCellTask_RemakeSprites(BattleCellTask *task);
 void BattleCellTask_StartMove(BattleCellTask *task);
 void BattleCellTask_RemakeSpritesWithEffect(BattleCellTask *task);
+void BattleCellTask_StartFlash(BattleCellTask *task);
+void BattleCellTask_UpdateShadow(BattleCellTask *task);
 
 /* Needed to match: the compiler folds the offset of the array into the field offset only when
  * the address is built from gMenuState's start with the indices added to it. */

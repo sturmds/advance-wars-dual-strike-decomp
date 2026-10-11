@@ -14,12 +14,10 @@ int Battle_GetMatchupNibble0(int side);
 int Battle_GetMatchupNibble1(int side);
 int Battle_GetSideMatchupValue(int side);
 int Battle_GetMatchupValue(int side);
-int BattleCellTask_GetOffsetX(BattleCellTask *task);
-int BattleCellTask_GetOffsetY(BattleCellTask *task);
 
 /* Makes the sprites of an HP cell again, at the task's position: the first one always, the
- * second and third when the side has a table for them, and the task's own sprite (unk_2c) when
- * battle.unk_40 has one. Each frame comes from the side's matchup. Sets flag1. */
+ * second and third when the side has a table for them, and the task's own shadow sprite when
+ * battle.unk_40 has one. Each frame comes from the side's matchup. Sets hasShadow. */
 void BattleCellTask_MakeMatchupSprites(BattleCellTask *task)
 {
     u16 scale;
@@ -84,10 +82,10 @@ void BattleCellTask_MakeMatchupSprites(BattleCellTask *task)
         int offsetY = BattleCellTask_GetOffsetY(task);
         int offsetX = BattleCellTask_GetOffsetX(task);
 
-        task->unk_2c = (u32)BattleSpriteTask_Create(
+        task->shadow = BattleSpriteTask_Create(
             MENU->battle.unk_40[task->side], frame, task->posX, task->posY, task->posZ, offsetY,
             task->angle + offsetX, -1, scale, scale, SIDE_COLOUR(3, side), 8, 0, side,
             task->hasPos2, task->pos2X, task->pos2Y, task->pos2Z, 8);
     }
-    task->flag1 = 1;
+    task->hasShadow = 1;
 }
