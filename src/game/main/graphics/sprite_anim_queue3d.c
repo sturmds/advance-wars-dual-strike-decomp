@@ -2,7 +2,7 @@
 #include "game/sprite_anim.h"
 
 void SpriteCells_Draw3d(const void *cells, const VecFx32 *pos, u32 tileBase, u32 unk28, int arg, int drawFlag);
-void func_02021de8(SpriteAnim *sprite);
+void SpriteAnim_UploadTiles(SpriteAnim *sprite);
 int func_020224d4(void);
 int func_020224ec(void);
 
@@ -33,6 +33,6 @@ void SpriteAnim_Queue3d(SpriteAnim *sprite, const VecFx32 *pos, int arg)
                       sprite->flags & SPRITE_ANIM_DRAW_FLAG);
     }
     if (sprite->tileSource != NULL && (sprite->flags & SPRITE_ANIM_TILES_PENDING)) {
-        func_02021de8(sprite);
+        SpriteAnim_UploadTiles(sprite);
     }
 }

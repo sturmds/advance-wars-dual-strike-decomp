@@ -887,7 +887,7 @@ SpriteAnim_Find kind:function(arm,size=0x3c) addr:0x02021c84
 SpriteAnim_Init kind:function(arm,size=0x60) addr:0x02021cc0
 SpriteAnim_Restart kind:function(arm,size=0x38) addr:0x02021d20
 SpriteAnim_SetFile kind:function(arm,size=0x90) addr:0x02021d58
-func_02021de8 kind:function(arm,size=0x15c) addr:0x02021de8
+SpriteAnim_UploadTiles kind:function(arm,size=0x15c) addr:0x02021de8
 SpriteAnim_SetAnimation kind:function(arm,size=0xb0) addr:0x02021f44
 func_02021ff4 kind:function(arm,size=0x14c) addr:0x02021ff4
 func_02022140 kind:function(arm,size=0x208) addr:0x02022140
@@ -6972,7 +6972,7 @@ data_021587d0 kind:data(any) addr:0x021587d0
 data_021587d8 kind:data(any) addr:0x021587d8
 data_021587dc kind:data(any) addr:0x021587dc
 data_021587e0 kind:data(any) addr:0x021587e0
-data_02158820 kind:data(any) addr:0x02158820
+gObjSizeInTiles kind:data(any) addr:0x02158820
 data_02158838 kind:data(any) addr:0x02158838
 data_02158850 kind:data(any) addr:0x02158850
 gTaskCommands kind:data(any) addr:0x02158868

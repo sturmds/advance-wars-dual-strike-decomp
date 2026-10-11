@@ -2,7 +2,7 @@
 #include "game/sprite_anim.h"
 
 void Sprite_Queue(int list, int x, int y, const void *data, int unk08, int unk0a);
-void func_02021de8(SpriteAnim *sprite);
+void SpriteAnim_UploadTiles(SpriteAnim *sprite);
 void func_02021ff4(SpriteAnim *sprite);
 
 /* Queues the sprite's current cells at (x, y) on its layer. With affine
@@ -27,6 +27,6 @@ void SpriteAnim_Queue(SpriteAnim *sprite, int x, int y)
     }
     Sprite_Queue(sprite->layer, x | affineBits, y, sprite->cells, sprite->tileBase, 0);
     if (sprite->tileSource != NULL && (sprite->flags & SPRITE_ANIM_TILES_PENDING)) {
-        func_02021de8(sprite);
+        SpriteAnim_UploadTiles(sprite);
     }
 }

@@ -3445,6 +3445,10 @@ src/game/main/graphics/sprite_anim_set_file.c:
     complete
     .text       start:0x02021d58 end:0x02021de8
 
+src/game/main/graphics/sprite_anim_upload_tiles.c:
+    complete
+    .text       start:0x02021de8 end:0x02021f44
+
 src/game/main/graphics/sprite_anim_set_animation.c:
     complete
     .text       start:0x02021f44 end:0x02021ff4
