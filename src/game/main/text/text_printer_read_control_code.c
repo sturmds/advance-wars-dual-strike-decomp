@@ -17,7 +17,7 @@ void func_02015da8(TextPrinter *printer);
 void func_0201d730(void);
 void PopupMenu_SetItemIcon(int arg);
 void DialogueCursor_Animate(void);
-void func_020f7da0(u16 *dest, int unitType, int base, int cargo, int a4, int hp, int a6, int a7, int a8, int a9, int a10);
+void UnitIcon_DrawEntries(u16 *dest, int unitType, int base, int cargo, int a4, int hp, int a6, int a7, int a8, int a9, int a10);
 
 #define TEXT ((const u8 *)printer->text) /* TextPrinter.text is a bare pointer */
 #define ADVANCE(n) (*(const u8 **)&printer->text += (n))
@@ -146,7 +146,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         if (text[1] == 17) {
             unit = &STATE->units[STATE->actingUnit->cargo[0]];
             hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
-            func_020f7da0(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
+            UnitIcon_DrawEntries(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
                           STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0, 0, 0);
             printer->cursorX += 2;
             ADVANCE(2);
@@ -154,7 +154,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         } else { /* needed to match: the original has both copies in full */
             unit = &STATE->units[STATE->actingUnit->cargo[1]];
             hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
-            func_020f7da0(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
+            UnitIcon_DrawEntries(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
                           STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0, 0, 0);
             printer->cursorX += 2;
             ADVANCE(2);

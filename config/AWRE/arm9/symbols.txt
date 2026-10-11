@@ -4699,7 +4699,7 @@ func_020f79a4 kind:function(arm,size=0x4) addr:0x020f79a4
 func_020f79a8 kind:function(arm,size=0x304) addr:0x020f79a8
 func_020f7cac kind:function(arm,size=0xa4) addr:0x020f7cac
 UnitIcon_Draw kind:function(arm,size=0x50) addr:0x020f7d50
-func_020f7da0 kind:function(arm,size=0x2b8) addr:0x020f7da0
+UnitIcon_DrawEntries kind:function(arm,size=0x2b8) addr:0x020f7da0
 ScreenConfig_Select kind:function(arm,size=0x34) addr:0x020f8058
 Screens_SelectConfigs kind:function(arm,size=0x2b8) addr:0x020f808c
 func_020f8344 kind:function(arm,size=0x50) addr:0x020f8344
@@ -6175,10 +6175,10 @@ data_0214a69c kind:data(any) addr:0x0214a69c
 data_0214a79c kind:data(any) addr:0x0214a79c
 data_0214c79c kind:data(any) addr:0x0214c79c
 data_0214d19c kind:data(any) addr:0x0214d19c
-data_0214d39c kind:data(any) addr:0x0214d39c
+gUnitIconTileBase kind:data(any) addr:0x0214d39c
 data_0214d3a8 kind:data(any) addr:0x0214d3a8
 data_0214d3b8 kind:data(any) addr:0x0214d3b8
-data_0214d3c8 kind:data(any) addr:0x0214d3c8
+gUnitIconHpDigit kind:data(any) addr:0x0214d3c8
 data_0214d3e0 kind:data(any) addr:0x0214d3e0
 data_0214d3f0 kind:data(any) addr:0x0214d3f0
 data_0214d400 kind:data(any) addr:0x0214d400

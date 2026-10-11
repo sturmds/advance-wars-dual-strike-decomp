@@ -12,7 +12,7 @@ void func_020f7cac(u16 x, u16 y);
 BOOL UnitSlot_IsVisible(int slot);
 u16 *Bg_GetMapEntry(int layer, int x, int y);
 s32 HwDiv32(s32 numerator, s32 denominator);
-void func_020f7da0(u16 *entry, int type, int look, u8 carrying, u8 capture, u16 shownHp, u16 dived, u8 hpHidden,
+void UnitIcon_DrawEntries(u16 *entry, int type, int look, u8 carrying, u8 capture, u16 shownHp, u16 dived, u8 hpHidden,
                    BOOL lowFuel, BOOL lowAmmo, BOOL paralysed);
 
 /* Draws the unit shown on map tile (x, y) into BG layer 1, or clears the
@@ -88,6 +88,6 @@ void func_020f79a8(int x, int y)
         shownHp = HwDiv32(unit->hp - 1, 10) + 1;
     }
     hpHidden = CheckSkillsEquipped(STATE->players[(slot >> 6) + 1].skills[0], SKILL_HIDDEN_HP);
-    func_020f7da0(entry, STATE->units[slot].type, look, unit->cargo[0] | unit->cargo[1], unit->captureProgress,
+    UnitIcon_DrawEntries(entry, STATE->units[slot].type, look, unit->cargo[0] | unit->cargo[1], unit->captureProgress,
                   shownHp, unit->flags & MAP_UNIT_DIVED, hpHidden, lowFuel, lowAmmo, paralysed);
 }

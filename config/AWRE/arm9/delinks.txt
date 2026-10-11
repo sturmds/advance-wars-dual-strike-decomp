@@ -18588,6 +18588,10 @@ src/game/main/map/unit_icon_draw.c:
     complete
     .text       start:0x020f7d50 end:0x020f7da0
 
+src/game/main/map/unit_icon_draw_entries.c:
+    complete
+    .text       start:0x020f7da0 end:0x020f8058
+
 src/game/main/map/screen_config_select.c:
     complete
     .text       start:0x020f8058 end:0x020f808c
