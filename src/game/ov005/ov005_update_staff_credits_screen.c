@@ -19,7 +19,7 @@ void Sound_StopStream(int fadeFrames);
 void Task_ResumeScript(Ov005Task *task);
 void *Ov005_LoadCreditsPage(Unk_ov005_0235a30c *work, int page);
 void Ov005_CreateEntryTasks(Unk_ov005_0235a30c *work);
-void func_ov005_0235b3d4(Unk_ov005_0235a30c *work);
+void Ov005_DrawCreditsEntryText(Unk_ov005_0235a30c *work);
 void Ov005_InitCenteredEntries(Unk_ov005_0235a30c *work);
 BOOL func_ov005_0235ad48(Unk_ov005_0235a30c *work);
 BOOL func_ov005_0235ad30(Unk_ov005_0235a30c *work);
@@ -142,7 +142,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         savedScreen = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        func_ov005_0235b3d4(work);
+        Ov005_DrawCreditsEntryText(work);
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
         task->frame = 0;
@@ -173,7 +173,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         savedScreen = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
         Ov005_InitCenteredEntries(work);
-        func_ov005_0235b3d4(work);
+        Ov005_DrawCreditsEntryText(work);
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
         task->frame = 0;
