@@ -220,7 +220,10 @@ typedef struct Unk_02080440_5c {
 typedef struct Unk_02080440_50 {
     void (*first)(void);               /* run by func_020c8888 when set */
     void (*second)(void);              /* run by func_020c8888 after first */
-    u8 pad_08[0x18 - 0x08];
+    void (*unk_08)(void);              /* unk_08, unk_10, unk_0c, then unk_14: run by MapView_DrawScrolledEdges after it draws a new tile row or column */
+    void (*unk_0c)(void);
+    void (*unk_10)(void);
+    void (*unk_14)(void);
     void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
     u8 pad_1c[0x38 - 0x1c];
     void (*unk_38)(void);              /* run by func_020f77bc when set */

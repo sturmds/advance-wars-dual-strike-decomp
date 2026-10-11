@@ -10026,19 +10026,19 @@ src/game/main/func_020f5e44.c:
     complete
     .text       start:0x020f5e44 end:0x020f5e54
 
-src/game/main/func_020f6728.c:
+src/game/main/map/map_view_draw_bottom_row.c:
     complete
     .text       start:0x020f6728 end:0x020f678c
 
-src/game/main/func_020f678c.c:
+src/game/main/map/map_view_draw_top_row.c:
     complete
     .text       start:0x020f678c end:0x020f67f0
 
-src/game/main/func_020f67f0.c:
+src/game/main/map/map_view_draw_right_column.c:
     complete
     .text       start:0x020f67f0 end:0x020f6854
 
-src/game/main/func_020f6854.c:
+src/game/main/map/map_view_draw_left_column.c:
     complete
     .text       start:0x020f6854 end:0x020f68b8
 
@@ -10137,6 +10137,10 @@ src/game/main/func_020f9838.c:
 src/game/main/graphics/screen_set_layer_priorities.c:
     complete
     .text       start:0x020f9ca0 end:0x020f9d28
+
+src/game/main/map/map_view_draw_scrolled_edges.c:
+    complete
+    .text       start:0x020f9d28 end:0x020fa0b4
 
 src/game/main/func_020fa448.c:
     complete
