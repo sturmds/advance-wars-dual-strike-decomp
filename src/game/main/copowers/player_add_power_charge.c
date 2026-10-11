@@ -4,7 +4,7 @@
 
 BOOL Player_IsPowerActive(int player);
 int SuperPowerCost(int player, int slot);
-BOOL func_020f5344(int arg);
+BOOL PowerMeter_IsShown(int arg);
 s32 HwDiv32(s32 numerator, s32 denominator);
 
 extern Unk_02080440 *data_027c027c;
@@ -24,7 +24,7 @@ void Player_AddPowerCharge(int player, int slot, int amount)
     if (Player_IsPowerActive(player)) {
         return;
     }
-    if (!func_020f5344(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
+    if (!PowerMeter_IsShown(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
         return;
     }
     if (CheckSkillsEquipped(STATE->players[player].skills[slot], SKILL_RANK_STAR_POWER)) {

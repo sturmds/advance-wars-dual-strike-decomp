@@ -20,7 +20,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 int Co_GetArmyPictureVariant(int coId, int army);
 void TransferQueue_Add(const void *src, void *dest, int size);
-BOOL func_020f5344(int mapState);
+BOOL PowerMeter_IsShown(int mapState);
 void PowerPanelLeft_QueuePowerIcon(int x, int y, int player);
 void PowerPanelLeft_DrawMeter(int x, int y, int player, int coSlot);
 
@@ -41,7 +41,7 @@ void PowerPanelLeft_Draw(int x, int y, int player, int coSlot, int tile, int pal
     } else {
         TransferQueue_Add(data_021304b8 + ((PANEL_CO_ID & PLAYER_CO_ID_MASK) - 1) * 256, data_027c0280->objVram + tile * 32, 256);
     }
-    if (!func_020f5344(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
+    if (!PowerMeter_IsShown(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
         return;
     }
     if (coSlot == 0) {

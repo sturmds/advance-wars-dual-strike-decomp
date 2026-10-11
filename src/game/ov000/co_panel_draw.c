@@ -13,7 +13,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 int Co_GetArmyPictureVariant(int coId, int army);
 void TransferQueue_Add(const void *src, void *dest, int size);
-BOOL func_020f5344(int screen);
+BOOL PowerMeter_IsShown(int screen);
 void PowerMeter_Draw(int x, int y, int player, int kind, int palette, int flag);
 void PlayerHud_QueuePowerIcon(int x, int y, int player, int palette);
 
@@ -42,7 +42,7 @@ void CoPanel_Draw(int x, int y, int player, int coSlot, int coId, int altMeter, 
     } else {
         TransferQueue_Add(data_021304b8 + ((coId & 127) - 1) * 256, data_027c0280->objVram + tile * 32, 256);
     }
-    if (!func_020f5344(screen)) {
+    if (!PowerMeter_IsShown(screen)) {
         return;
     }
     if (coSlot == 0 || coSlot != 1) {

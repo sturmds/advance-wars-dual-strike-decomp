@@ -8,7 +8,7 @@ extern u16 data_022a7290;
 extern u16 data_0213fdcc[16];
 extern u16 data_0213fdec[16];
 
-BOOL func_020f5344(int screen);
+BOOL PowerMeter_IsShown(int screen);
 BOOL CanUseCoPower(int player, int slot);
 void Palette_LoadWithCopy(const void *src, u16 offset, u32 size);
 
@@ -23,7 +23,7 @@ void PowerPanel_AnimatePaletteColour(int frame)
     if (data_022a7290 < 1 || data_022a7290 > 4) {
         return;
     }
-    if (!func_020f5344(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
+    if (!PowerMeter_IsShown(STATE == &data_02183b08 ? MAP_STATE_FIRST : MAP_STATE_SECOND)) {
         return;
     }
     if (CanUseCoPower(data_022a7290, 0)) {

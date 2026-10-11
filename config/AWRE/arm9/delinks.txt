@@ -17988,6 +17988,10 @@ src/game/main/screen/splash_letter_init.c:
     complete
     .text       start:0x020f5310 end:0x020f5344
 
+src/game/main/power_meter/power_meter_is_shown.c:
+    complete
+    .text       start:0x020f5344 end:0x020f53e8
+
 src/game/main/func_020f53e8.c:
     complete
     .text       start:0x020f53e8 end:0x020f54a0
