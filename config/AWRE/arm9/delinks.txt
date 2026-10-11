@@ -20885,6 +20885,10 @@ src/sdk/gx/g3x_get_mtx_stack_level_pv.c:
     complete
     .text       start:0x0210b6c0 end:0x0210b6ec
 
+src/sdk/gx/g3x_init_table.c:
+    complete
+    .text       start:0x0210b6ec end:0x0210b7a4
+
 src/sdk/gx/g3x_set_clear_color.c:
     complete
     .text       start:0x0210b7a4 end:0x0210b7d4

@@ -113,6 +113,9 @@
 #define REG_CLEAR_COLOR ((volatile u32 *)0x04000350)
 #define REG_CLEAR_DEPTH ((volatile u16 *)0x04000354)
 #define CLEAR_COLOR_FOG 0x8000
+#define REG_EDGE_COLOR ((volatile u16 *)0x04000330)
+#define REG_FOG_TABLE ((volatile u8 *)0x04000360) /* fog table (32 bytes), then toon table (64 bytes) */
+#define REG_SHININESS ((volatile u32 *)0x040004d0)
 #define REG_POLYGON_ATTR ((volatile u32 *)0x040004a4)
 #define REG_TEXIMAGE_PARAM ((volatile u32 *)0x040004a8)
 #define REG_PLTT_BASE ((volatile u32 *)0x040004ac)
@@ -138,6 +141,7 @@ void G3X_ResetMtxStack(void);
 void G3X_InitMtxStack(void);
 void G3X_ClearFifo(void);
 void G3X_Reset(void);
+void G3X_InitTable(void);
 void G3X_SetClearColor(int color, int alpha, int depth, int polygonId, BOOL fog);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
