@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6650 / 6700 | 1504884 / 1553840 | 96.85% | 0 | 0 |
+| ARM9 game | 6651 / 6700 | 1505500 / 1553840 | 96.89% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7084 / 7481 | 1556496 / 1685994 | 92.32% | 33 | 2126 |
+| ARM9 all | 7085 / 7481 | 1557112 / 1685994 | 92.36% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6650 / 6700 | 1504884 / 1553840 | 96.85% | 0 | 0 |
+| game | 6651 / 6700 | 1505500 / 1553840 | 96.89% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7084 / 8495 | 1556496 / 1840290 | 84.58% | 33 | 2126 |
+| all | 7085 / 8495 | 1557112 / 1840290 | 84.61% | 33 | 2126 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5145 / 5180 | 1046384 / 1082632 | 96.65% | 0 |
+| main | game | 5146 / 5180 | 1047000 / 1082632 | 96.71% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -74,7 +74,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
-| `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |

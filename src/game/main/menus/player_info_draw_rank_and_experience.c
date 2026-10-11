@@ -8,34 +8,31 @@ extern u8 data_027c0040;
 extern u8 data_027c0060;
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-int Co_GetRankFiltered(u32 co);
-u32 Co_GetExperienceFiltered(u32 co);
+int Co_GetRankFiltered(int coId, int army);
+int Co_GetExperienceFiltered(int coId, int army);
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
 
 #define MENU (gMenuState.unk_0206d67c)
 
-/* MENU.coShown[player - 1][slot], operands in this order for the closest
- * register match. Needed to match: the original adds the
+/* MENU.coShown[player - 1][slot]. Needed to match: the original adds the
  * offset of coShown to gMenuState's address at run time. */
 #define SHOWN_CO_OFFSET ((u32) & ((MenuState *)0)->unk_0206d67c.coShown)
-#define SHOWN_CO ((MENU.slot + (MENU.player - 1) * 2 + (u8 *)&gMenuState)[SHOWN_CO_OFFSET])
+#define SHOWN_CO (((u8 *)&gMenuState + (MENU.player - 1) * 2 + MENU.slot)[SHOWN_CO_OFFSET])
 
 /* Rank and experience sprites of the shown CO on the player info screen:
  * the rank (Co_GetRankFiltered, ExperienceToRank of the experience) as up to two
  * digits, or one sprite at rank 100, then the experience modulo 1000 as up
- * to three digits.
- * WIP: 8 instructions differ, registers only. The original keeps player - 1
- * in a register apart from player in both coShown reads. */
-void func_0206f3f8(void)
+ * to three digits. Both lookups pass the player as the army argument. */
+void PlayerInfo_DrawRankAndExperience(void)
 {
     int rank;
     int exp;
     int tens;
     BOOL shown;
 
-    rank = Co_GetRankFiltered(SHOWN_CO);
-    exp = Co_GetExperienceFiltered(SHOWN_CO);
+    rank = Co_GetRankFiltered(SHOWN_CO, MENU.player);
+    exp = Co_GetExperienceFiltered(SHOWN_CO, MENU.player);
     Sprite_QueueAt(0, 56, 16, &data_027c0060, 0x2000, 48);
     if (rank == 100) {
         Sprite_QueueAt(0, 88, 16, &data_027c0040, 0x2000, 76);

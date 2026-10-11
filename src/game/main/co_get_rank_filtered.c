@@ -1,9 +1,9 @@
 #include "types.h"
 
-u32 Co_GetExperienceFiltered(u32 co);
+int Co_GetExperienceFiltered(int coId, int army);
 int ExperienceToRank(int exp);
 
-int Co_GetRankFiltered(u32 co)
+int Co_GetRankFiltered(int coId, int army)
 {
-    return ExperienceToRank(Co_GetExperienceFiltered(co));
+    return ExperienceToRank(Co_GetExperienceFiltered(coId, army));
 }
