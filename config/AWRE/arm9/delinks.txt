@@ -2682,6 +2682,10 @@ src/game/main/script/func_020233c0.c:
     complete
     .text       start:0x020233c0 end:0x020233ec
 
+src/game/main/task/task_cmd_wait_for_script_end.c:
+    complete
+    .text       start:0x020233ec end:0x02023420
+
 src/game/main/script/func_020234b0.c:
     complete
     .text       start:0x020234b0 end:0x020234dc
