@@ -34,7 +34,7 @@ void Ov006_RemoveProperty(int x, int y)
             break;
         }
         if (STATE->unk_608c[i].tile != 0 && x == STATE->unk_608c[i].x && y == STATE->unk_608c[i].y) {
-            STATE->unk_6088[i].unk_00 = 0;
+            STATE->unk_6088[i].terrain = 0;
             STATE->unk_608c[i].tile = 0;
             data_ov006_0236d640->propertyCount--;
             if (data_ov006_0236d640->propertyCount < 0) {

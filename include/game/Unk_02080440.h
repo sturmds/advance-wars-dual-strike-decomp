@@ -35,7 +35,7 @@ typedef struct MapTiles {
 /* Reached through Unk_02080440_48.unk_6088, 6 bytes; indexed by
  * MapTiles.unk_1928. */
 typedef struct Unk_02080440_6088 {
-    u8 unk_00;                         /* 0xff ends the table */
+    u8 terrain;                        /* property terrain (func_020c4448); 0xff ends the table */
     u8 x;
     u8 y;
     u8 claimCount;                     /* AI units heading for the tile to capture it; cleared at the start of an AI turn */

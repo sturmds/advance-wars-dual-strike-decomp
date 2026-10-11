@@ -60,7 +60,7 @@ typedef struct Unk_ov006_0235f690 {
     s8 terrainPage;                    /* entry list page in terrain mode: army 0-4 whose properties it shows (Ov006_SetEntryPage) */
     s8 unitPage;                       /* entry list page in unit mode: army 1-4 whose CO icons and units it shows */
     s8 unitMode;                       /* 1: the editor places units; 0: it paints terrain */
-    s8 unk_2a;
+    s8 toolResult;                     /* Ov006_CheckToolAtCursor: 1 allowed, 5 delete mode, 6 refused */
     s8 propertyCount;                  /* property tiles on the map (Ov006_CountPropertyTiles); at most 60 */
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
     s8 hqX[4];                         /* per army 1-4: HQ tile, -1 when none (Ov006_FindHqs) */

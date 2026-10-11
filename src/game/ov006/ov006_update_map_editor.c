@@ -104,7 +104,7 @@ void Ov006_UpdateMapEditor(void)
     action = Ov006_ReadEditInput();
     if (action == 1) {
         if (OV6->unitMode == 0) {
-            if (OV6->unk_2a != 6) {
+            if (OV6->toolResult != 6) {
                 Ov006_PaintTerrainAtCursor();
                 if (STATE_50->first != NULL) {
                     STATE_50->first();
@@ -131,7 +131,7 @@ void Ov006_UpdateMapEditor(void)
                 OV6->unk_00 |= 4;
             }
         }
-        if (OV6->unk_2a == 6 && (gKeypad->pressed & PAD_BUTTON_A)) {
+        if (OV6->toolResult == 6 && (gKeypad->pressed & PAD_BUTTON_A)) {
             Sound_PlaySe(0x10008);
         }
     } else if (action == 2) {

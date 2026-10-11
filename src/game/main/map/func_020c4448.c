@@ -43,7 +43,7 @@ void func_020c4448(void)
             }
             if (urban != 0 || MAP_TILE_TERRAIN(tile) == TERRAIN_SILO) {
                 STATE->mapTiles->unk_1928[x + STATE->mapTiles->rowStart[y]] = count;
-                STATE->unk_6088[count].unk_00 = MAP_TILE_TERRAIN(tile);
+                STATE->unk_6088[count].terrain = MAP_TILE_TERRAIN(tile);
                 STATE->unk_6088[count].x = x;
                 STATE->unk_6088[count].y = y;
                 STATE->unk_6088[count].claimCount = 0;
@@ -51,7 +51,7 @@ void func_020c4448(void)
             }
         }
     }
-    STATE->unk_6088[count].unk_00 = 0xff;
+    STATE->unk_6088[count].terrain = 0xff;
     listed = 0;
     for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
         for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {

@@ -37,7 +37,7 @@ void AiTurn_BuildCaptureMap(void)
     /* needed to match: the pointer starts one entry back and moves first */
     entry--;
     for (;;) {
-        if ((++entry)->unk_00 == 0xff) {
+        if ((++entry)->terrain == 0xff) {
             break;
         }
         if (Unit_IsTileOwnedByTeam((s16)STATE->currentUnitBase, STATE->mapTiles->tiles[TILE_INDEX(entry->x, entry->y)]) == 1) {

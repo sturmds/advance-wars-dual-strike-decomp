@@ -34,7 +34,7 @@ typedef struct EventScriptDataCommand {
 typedef struct EventScriptSlot {
     const EventScriptCommand *start;   /* script start; NULL: slot free */
     const EventScriptCommand *pc;      /* next command */
-    u32 hold;                          /* while nonzero the script does not advance */
+    u32 hold;                          /* hold callback, stored as an address; while nonzero the script does not advance */
     u16 wait;                          /* frames left before the next command */
     s16 counter;                       /* step count of the hold function (the screen slide) */
     s8 unk_10;                         /* set by the code that starts a script; a few scripts read it */

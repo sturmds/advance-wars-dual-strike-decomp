@@ -23,7 +23,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 #define CHART ((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 
 /* Checks whether the chosen tool can be used on the cursor tile (cursorX,
- * cursorY) and stores the answer in unk_2a: 1 allowed, 6 not allowed, 5 when
+ * cursorY) and stores the answer in toolResult: 1 allowed, 6 not allowed, 5 when
  * flag 0x40 is set in unit mode. In terrain mode (unitMode == 0) toolTile holds
  * the terrain to paint, and shoal, river, reef, bridge, road over a river
  * and pipe seam each have their own test; any other terrain is refused only
@@ -76,7 +76,7 @@ int Ov006_CheckToolAtCursor(void)
     } else {
         result = 6;
     }
-    OV6->unk_2a = result;
+    OV6->toolResult = result;
     if (result != 5) {
         result = 1;
     }

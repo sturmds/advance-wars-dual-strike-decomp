@@ -28,11 +28,11 @@ void Ov006_AddProperty(int x, int y, int tile)
 
     tiles = STATE->mapTiles;
     tiles->unk_1928[x + tiles->rowStart[y]] = count;
-    STATE->unk_6088[count].unk_00 = tile;
+    STATE->unk_6088[count].terrain = tile;
     STATE->unk_6088[count].x = x;
     STATE->unk_6088[count].y = y;
     STATE->unk_6088[count].claimCount = 0;
-    STATE->unk_6088[count + 1].unk_00 = 0xff;
+    STATE->unk_6088[count + 1].terrain = 0xff;
     STATE->unk_608c[count].tile = tile;
     STATE->unk_608c[count].x = x;
     STATE->unk_608c[count].y = y;
