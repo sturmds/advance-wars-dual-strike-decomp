@@ -21402,6 +21402,10 @@ src/sdk/func_02112f40.c:
     complete
     .text       start:0x02112f40 end:0x02112f50
 
+src/sdk/fs/fs_unload_overlay.c:
+    complete
+    .text       start:0x02112f50 end:0x02112fa4
+
 src/game/main/func_02113000.c:
     complete
     .text       start:0x02113000 end:0x0211301c

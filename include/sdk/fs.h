@@ -139,6 +139,9 @@ typedef struct OverlayTableRow {
 
 typedef struct FSOverlayInfo {
     OverlayTableRow header;
+    u32 target;                        /* processor the overlay is for */
+    u32 romTop;                        /* first byte of the overlay file in the ROM */
+    u32 romSize;                       /* length of the overlay file */
 } FSOverlayInfo;
 
 /* The archive for the cartridge ROM file system. */
@@ -147,6 +150,8 @@ extern FSArchive gRomFileArchive;
 FSFileID FS_GetOverlayFileID(const FSOverlayInfo *info);
 void FS_Init(u32 dmaNo);
 void FS_InitFile(FSFile *file);
+BOOL FS_LoadOverlay(int target, u32 overlayId);
+BOOL FS_UnloadOverlay(int target, u32 overlayId);
 BOOL FS_OpenFile(FSFile *file, const char *path);
 s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
 BOOL FS_CloseFile(FSFile *file);
