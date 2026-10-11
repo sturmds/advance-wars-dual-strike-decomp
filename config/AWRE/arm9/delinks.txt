@@ -20397,7 +20397,7 @@ src/game/main/sound/sound_wave_arc_unload_wave.c:
     complete
     .text       start:0x02106f40 end:0x02106f94
 
-src/game/main/func_02106f94.c:
+src/game/main/sound/sound_wave_arc_on_unload.c:
     complete
     .text       start:0x02106f94 end:0x02106fb8
 
@@ -20416,6 +20416,10 @@ src/game/main/sound/sound_arc_unload_data.c:
 src/game/main/sound/sound_arc_forget_loaded_item.c:
     complete
     .text       start:0x02107064 end:0x021070d0
+
+src/game/main/sound/sound_arc_load_wave_arc_table.c:
+    complete
+    .text       start:0x021070d0 end:0x02107204
 
 src/game/main/sound/func_02107204.c:
     complete

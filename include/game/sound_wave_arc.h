@@ -16,4 +16,7 @@ typedef struct SoundWaveArc {
     u32 table[1];                      /* 0x3c */
 } SoundWaveArc;
 
+/* Bytes before the wave table. */
+#define SOUND_WAVE_ARC_HEADER_SIZE 0x3c
+
 #endif

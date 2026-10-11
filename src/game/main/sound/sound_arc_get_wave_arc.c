@@ -10,12 +10,12 @@
 
 const SoundArcWaveArcInfo *NNS_SndArcGetWaveArcInfo(int waveArcNo);
 void *func_02106304(int fileId);
-void *func_021070d0(int fileId, void *heap, int cache);
+void *SoundArc_LoadWaveArcTable(int fileId, void *heap, int cache);
 void *func_02107204(int fileId, void *heap, int cache);
 
 /* Gets wave archive waveArcNo into memory. With SOUND_FETCH_WANT_SAMPLES in
  * loadFlags it loads the archive into heap (the on-demand kind through
- * func_021070d0); without, it only looks the archive up. Stores the
+ * SoundArc_LoadWaveArcTable); without, it only looks the archive up. Stores the
  * archive's address in *loadedOut when that is not NULL. Returns 0 on
  * success, or a SOUND_FETCH_* code. */
 int SoundArc_GetWaveArc(int waveArcNo, int loadFlags, void *heap, int cache, void **loadedOut)
@@ -28,7 +28,7 @@ int SoundArc_GetWaveArc(int waveArcNo, int loadFlags, void *heap, int cache, voi
     }
     if (loadFlags & SOUND_FETCH_WANT_SAMPLES) {
         if (info->b.flags & 1) {
-            wave = func_021070d0(info->id.fileId, heap, cache);
+            wave = SoundArc_LoadWaveArcTable(info->id.fileId, heap, cache);
         } else {
             wave = func_02107204(info->id.fileId, heap, cache);
         }
