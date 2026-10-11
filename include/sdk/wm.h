@@ -189,6 +189,8 @@ typedef struct WMStatus {
     u16 unk_190;
 } WMStatus;
 
+typedef void (*WMCallbackFunc)(void *arg);
+
 /* The ARM9 side's work area. */
 typedef struct WMArm9Buf {
     u8 pad_00[4];
@@ -196,8 +198,8 @@ typedef struct WMArm9Buf {
     u8 pad_08[4];
     void *requestBuf;                  /* where a command's arguments are written */
     u8 pad_10[0xac];
-    void *indCallback;
-    void *portCallback[16];
+    WMCallbackFunc indCallback;
+    WMCallbackFunc portCallback[16];
     void *portCallbackArg[16];
 } WMArm9Buf;
 
