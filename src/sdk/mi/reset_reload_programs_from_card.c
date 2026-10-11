@@ -7,7 +7,7 @@
 #define SECURE_AREA_END 0x8000
 
 /* Reads size bytes from the cartridge at romOffset into dest. */
-void func_01ffdae8(u32 romOffset, void *dest, u32 size);
+void OSi_ReadCardRom32(u32 romOffset, void *dest, u32 size);
 void func_0210e0d4(void);
 void func_0210e154(void);
 void func_0210e160(void);
@@ -25,7 +25,7 @@ void Reset_ReloadProgramsFromCard(void)
     base = ROM_IMAGE_BASE;
 
     if (base >= SECURE_AREA_END) {
-        func_01ffdae8(base, ROM_HEADER_BUF, sizeof(RomHeader));
+        OSi_ReadCardRom32(base, ROM_HEADER_BUF, sizeof(RomHeader));
     }
     arm9Offset = ROM_HEADER_BUF->arm9RomOffset;
     arm9Dest = ROM_HEADER_BUF->arm9RamAddress;
@@ -44,6 +44,6 @@ void Reset_ReloadProgramsFromCard(void)
         arm9Dest += skip;
         arm9Size -= skip;
     }
-    func_01ffdae8(arm9Offset, (void *)arm9Dest, arm9Size);
-    func_01ffdae8(arm7Offset, (void *)arm7Dest, arm7Size);
+    OSi_ReadCardRom32(arm9Offset, (void *)arm9Dest, arm9Size);
+    OSi_ReadCardRom32(arm7Offset, (void *)arm7Dest, arm7Size);
 }

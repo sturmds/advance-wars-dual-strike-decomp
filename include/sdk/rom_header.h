@@ -14,7 +14,9 @@ typedef struct RomHeader {
     u32 pad_34;
     u32 arm7RamAddress;
     u32 arm7Size;
-    u8 pad_40[0x120];
+    u8 pad_40[0x20];
+    u32 cardControl;               /* ROMCTRL setting for normal card reads */
+    u8 pad_64[0xfc];
 } RomHeader;
 
 /* Copy of the cartridge header in main RAM, 0x160 bytes. */
