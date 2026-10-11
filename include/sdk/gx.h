@@ -98,6 +98,11 @@
 #define REG_MTX_STORE ((volatile u32 *)0x0400044c)
 #define REG_MTX_IDENTITY ((volatile u32 *)0x04000454)
 #define REG_MTX_TRANS ((volatile u32 *)0x04000470)
+#define REG_POLYGON_ATTR ((volatile u32 *)0x040004a4)
+#define REG_TEXIMAGE_PARAM ((volatile u32 *)0x040004a8)
+#define REG_PLTT_BASE ((volatile u32 *)0x040004ac)
+#define REG_BEGIN_VTXS ((volatile u32 *)0x04000500)
+#define REG_END_VTXS ((volatile u32 *)0x04000504)
 #define REG_SWAP_BUFFERS ((volatile u32 *)0x04000540)
 #define REG_VIEWPORT ((volatile u32 *)0x04000580)
 
