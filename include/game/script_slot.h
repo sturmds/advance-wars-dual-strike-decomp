@@ -63,6 +63,13 @@ typedef struct SupplySlot {
     s16 unk_20;                        /* 0: at the end, unk_28/unk_2a get the acting unit's tile and unit action 6 is sent when gLinkPlay is set */
 } SupplySlot;
 
+/* The same slot as the callback of the hook script data_02166948 uses it. */
+typedef struct MapViewSlot {
+    u8 pad_00[0x20];
+    s16 scrollX;                       /* map view scroll the callback compares with the current one */
+    s16 scrollY;
+} MapViewSlot;
+
 /* The same slot as the map scroll script gMapScrollScript uses it. Positions
  * are map view scroll values in 1/16 tiles. */
 typedef struct MapScrollSlot {
