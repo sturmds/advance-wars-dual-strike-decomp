@@ -9833,6 +9833,10 @@ src/game/main/map/game_is_campaign.c:
     complete
     .text       start:0x020d8310 end:0x020d8344
 
+src/game/main/map/object_heal_task_repair_units.c:
+    complete
+    .text       start:0x020d8344 end:0x020d84b8
+
 src/game/main/func_020d8a24.c:
     complete
     .text       start:0x020d8a24 end:0x020d8a30
