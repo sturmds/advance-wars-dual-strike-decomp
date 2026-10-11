@@ -19517,15 +19517,15 @@ src/game/main/menus/name_entry_move_from_key.c:
     complete
     .text       start:0x02101524 end:0x02101698
 
-src/game/main/func_02101698.c:
+src/game/main/menus/name_entry_is_script_running.c:
     complete
     .text       start:0x02101698 end:0x021016ac
 
-src/game/main/func_021016ac.c:
+src/game/main/menus/name_entry_end_script.c:
     complete
     .text       start:0x021016ac end:0x021016c4
 
-src/game/main/func_021016c4.c:
+src/game/main/menus/name_entry_start_script.c:
     complete
     .text       start:0x021016c4 end:0x021016e4
 

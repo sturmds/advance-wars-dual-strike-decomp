@@ -28,10 +28,10 @@ typedef struct NameEntry {
 
     int cursor;                        /* index into keys; NAME_ENTRY_KEY_COUNT and above: a control key */
     int lastColumn;                    /* keyboard column that up and down from the control keys return to; -1: none */
-    int unk_10c;
+    int prevCursor;                    /* cursor of the last frame: a move plays SE 0x10002 */
     int textLength;                    /* characters typed so far */
     int unk_114;                       /* text length when the screen opened */
-    u32 unk_118;
+    u32 scriptRunning;                 /* 1 from NameEntry_StartScript until the script runs NameEntry_EndScript */
     int unk_11c;
     int unk_120;                       /* set to 1 when control key 2 is confirmed */
     int unk_124;                       /* set to 1 when control key 0 is confirmed */

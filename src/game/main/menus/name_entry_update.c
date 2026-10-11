@@ -10,8 +10,8 @@
 void func_02004984(u16 frames);
 void func_020049cc(u16 frames);
 int ScreenTransition_IsRunning(void);
-void func_021016c4(const void *script);
-int func_02101698(void);
+void NameEntry_StartScript(const void *script);
+int NameEntry_IsScriptRunning(void);
 int func_020b983c(void);
 void func_020b9864(void);
 void func_020b9890(void);
@@ -72,26 +72,26 @@ void NameEntry_Update(NameEntryTask *task)
         }
         break;
     case 2:
-        func_021016c4(data_0216ac44);
+        NameEntry_StartScript(data_0216ac44);
         task->step++;
     case 3:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             task->step++;
         }
         break;
     case 4:
-        func_021016c4(data_0216ab84);
+        NameEntry_StartScript(data_0216ab84);
         task->step++;
     case 5:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             task->step++;
         }
         break;
     case 6:
-        func_021016c4(data_0216ab54);
+        NameEntry_StartScript(data_0216ab54);
         task->step++;
     case 7:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             task->step = 10;
         }
         break;
@@ -150,22 +150,22 @@ void NameEntry_Update(NameEntryTask *task)
         }
         break;
     case 90:
-        func_021016c4(data_0216ac44);
+        NameEntry_StartScript(data_0216ac44);
         task->step++;
     case 91:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             task->step++;
         }
         break;
     case 92:
         if (task->maxLength != 0) {
-            func_021016c4(data_0216abb4);
+            NameEntry_StartScript(data_0216abb4);
         } else {
-            func_021016c4(data_0216abe4);
+            NameEntry_StartScript(data_0216abe4);
         }
         task->step++;
     case 93:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             if (gEventChoiceAnswer == 0) {
                 if (task->maxLength != 0) {
                     func_020b9890();
@@ -180,10 +180,10 @@ void NameEntry_Update(NameEntryTask *task)
         }
         break;
     case 94:
-        func_021016c4(data_0216ab54);
+        NameEntry_StartScript(data_0216ab54);
         task->step++;
     case 95:
-        if (func_02101698() == 0) {
+        if (NameEntry_IsScriptRunning() == 0) {
             task->step = task->maxLength;
         }
         break;
@@ -206,10 +206,10 @@ void NameEntry_Update(NameEntryTask *task)
         return;
     }
 
-    if (work->cursor != work->unk_10c) {
+    if (work->cursor != work->prevCursor) {
         Sound_PlaySe(0x10002);
     }
-    work->unk_10c = work->cursor;
+    work->prevCursor = work->cursor;
     NameEntry_PlaceButtonSprites(work);
     {
         Unk_027c0280 *savedGfx = data_027c0280;

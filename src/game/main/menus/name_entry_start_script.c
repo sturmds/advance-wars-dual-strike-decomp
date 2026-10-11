@@ -5,8 +5,8 @@ extern NameEntry *gNameEntry;
 
 void *EventScript_Start(const void *script);
 
-void func_021016c4(const void *script)
+void NameEntry_StartScript(const void *script)
 {
-    gNameEntry->unk_118 = 1;
+    gNameEntry->scriptRunning = 1;
     EventScript_Start(script);
 }

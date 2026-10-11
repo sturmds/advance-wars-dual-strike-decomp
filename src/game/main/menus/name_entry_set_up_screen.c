@@ -180,7 +180,7 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     work->cursor = 0;
     work->lastColumn = 0;
-    work->unk_10c = 0;
+    work->prevCursor = 0;
     work->unk_11c = 0;
     work->unk_120 = 0;
     work->unk_124 = 0;
@@ -192,7 +192,7 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
     if (work->textLength >= work->maxLength * 2) {
         work->textLength = work->maxLength * 2 - 1;
     }
-    work->unk_118 = 0;
+    work->scriptRunning = 0;
 
     {
         Unk_027c0280 *savedGfx = data_027c0280;
