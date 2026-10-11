@@ -17,7 +17,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 #define UNLIMITED_MOVE 110
 #define NO_TILE 0x7fff
 
-/* Run by func_020b5bf4 after func_020b60e0, which unloads the acting
+/* Run by func_020b5bf4 after AiTransport_UnloadInReach, which unloads the acting
  * transport on a tile in reach when it can. This one looks past this turn:
  * among the tiles with a nonzero MapTiles.rangeScratch2 value (a score
  * from code not read yet) that AiTransport_CountUnloadTiles accepts and that lie beyond

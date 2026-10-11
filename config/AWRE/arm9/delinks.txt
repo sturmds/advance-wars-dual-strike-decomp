@@ -11785,6 +11785,10 @@ src/game/main/ai/ai_transport_head_for_flagged_unload_tile.c:
     complete
     .text       start:0x020b5e54 end:0x020b60e0
 
+src/game/main/ai/ai_transport_unload_in_reach.c:
+    complete
+    .text       start:0x020b60e0 end:0x020b62e4
+
 src/game/main/ai/ai_transport_find_drop_tiles.c:
     complete
     .text       start:0x020b6454 end:0x020b67d4
