@@ -9400,6 +9400,9 @@ src/game/main/link/link_draw_player_rows.c:
     complete
     .text       start:0x0207d644 end:0x0207d7f4
 
+src/game/main/event_queue/event_queue_drain.c:
+    .text       start:0x0207d7f4 end:0x0207d8b4
+
 src/game/main/event_queue/event_queue_push.c:
     complete
     .text       start:0x0207d8b4 end:0x0207d918
