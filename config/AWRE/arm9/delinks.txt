@@ -20993,6 +20993,13 @@ src/sdk/fs/archive_cmd_set_dir_position.c:
     complete
     .text       start:0x02111974 end:0x02111a0c
 
+src/sdk/fs/fs_write_file_command.c:
+    complete
+    .text       start:0x02111a0c end:0x02111a44
+
+src/sdk/fs/fs_read_file_command.c:
+    .text       start:0x02111a44 end:0x02111a7c
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
