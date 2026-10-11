@@ -8641,6 +8641,10 @@ src/game/main/menus/combat_setup_start_variant_sync.c:
     complete
     .text       start:0x02082f88 end:0x02082ff4
 
+src/game/main/menus/combat_setup_end_link.c:
+    complete
+    .text       start:0x02082ff4 end:0x02083020
+
 src/game/main/func_02083020.c:
     complete
     .text       start:0x02083020 end:0x0208303c
