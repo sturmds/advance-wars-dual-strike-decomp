@@ -4591,6 +4591,10 @@ src/game/main/menus/survival_select_load_co_pictures.c:
     complete
     .text       start:0x02046594 end:0x0204697c
 
+src/game/main/menus/survival_select_draw_map_record.c:
+    complete
+    .text       start:0x0204697c end:0x02046bcc
+
 src/game/main/func_02046d68.c:
     complete
     .text       start:0x02046d68 end:0x02046dac

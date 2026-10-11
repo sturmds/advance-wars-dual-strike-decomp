@@ -29,7 +29,7 @@ void func_01ff8c84(int layer);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_020458c0(void);
 void SurvivalSelect_LoadCoPictures(void);
-void func_0204697c(void);
+void SurvivalSelect_DrawMapRecord(void);
 void func_02046ca0(void);
 int func_0204779c(void);
 int func_020478b0(int mode);
@@ -76,7 +76,7 @@ void SurvivalSelect_Init(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
-    func_0204697c();
+    SurvivalSelect_DrawMapRecord();
     func_0201e6e8(12, 18, 16, 6);
     Data_Unpack(res + 0x234, data_027c0280->objVram + 0xc00);
     Data_Unpack(res + 0x2dc, data_027c0280->objVram + 0x1000);
