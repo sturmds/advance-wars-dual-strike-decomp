@@ -14105,6 +14105,10 @@ src/game/main/func_020fa448.c:
     complete
     .text       start:0x020fa448 end:0x020fa45c
 
+src/game/main/map/map_view_draw_all_tiles.c:
+    complete
+    .text       start:0x020fa45c end:0x020fa510
+
 src/game/main/func_020fa6b8.c:
     complete
     .text       start:0x020fa6b8 end:0x020fa6c8
