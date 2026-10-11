@@ -20761,6 +20761,10 @@ src/sdk/func_0210a994.c:
     complete
     .text       start:0x0210a994 end:0x0210a9a8
 
+src/sdk/gx/vram_return_banks_to_lcdc.c:
+    complete
+    .text       start:0x0210a9a8 end:0x0210a9e0
+
 src/game/main/func_0210ac20.c:
     complete
     .text       start:0x0210ac20 end:0x0210ac40
