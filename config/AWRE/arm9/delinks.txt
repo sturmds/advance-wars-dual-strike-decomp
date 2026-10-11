@@ -20107,6 +20107,10 @@ src/game/main/sound/sound_stream_release_buffer.c:
     complete
     .text       start:0x02108728 end:0x02108790
 
+src/game/main/sound/sound_stream_request_free.c:
+    complete
+    .text       start:0x02108790 end:0x021087c8
+
 src/game/main/sound/sound_stream_stop.c:
     complete
     .text       start:0x021089f4 end:0x02108a58

@@ -11,7 +11,7 @@ void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
 SoundStreamRequest *func_02108814(void);
 void func_02107c28(SoundStreamRequest *request);
-void func_02108790(SoundStreamRequest *request);
+void SoundStreamRequest_Free(SoundStreamRequest *request);
 
 /* Entry of the sound stream thread. Sleeps on a message queue; each message
  * means refill requests are waiting, and it handles them all before it
@@ -32,7 +32,7 @@ void SoundStream_ThreadMain(void)
                 break;
             }
             func_02107c28(request);
-            func_02108790(request);
+            SoundStreamRequest_Free(request);
             func_0210dfc4(data_022a8ad8);
         }
     }
