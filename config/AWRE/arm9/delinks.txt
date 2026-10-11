@@ -15600,6 +15600,10 @@ src/game/main/map/map_is_silo_tile.c:
     complete
     .text       start:0x020decc4 end:0x020ded24
 
+src/game/main/map/map_cursor_is_on_idle_own_unit.c:
+    complete
+    .text       start:0x020ded24 end:0x020dedb0
+
 src/game/main/map/map_is_capturable_by_acting_unit.c:
     complete
     .text       start:0x020dedb0 end:0x020dee24
