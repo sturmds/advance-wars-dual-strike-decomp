@@ -124,6 +124,8 @@ struct FSArchive {
     u32 tableBufferSize;
 };
 
+#define OVERLAY_STORED_PACKED 0x1     /* bit 0 of OverlayTableRow.flag */
+
 /* One entry of the ROM's ARM9 overlay table (y9.bin), 32 bytes. */
 typedef struct OverlayTableRow {
     u32 id;
