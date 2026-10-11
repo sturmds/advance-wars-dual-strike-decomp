@@ -5314,6 +5314,10 @@ src/game/main/func_0205cd80.c:
     complete
     .text       start:0x0205cd80 end:0x0205cd98
 
+src/game/main/menus/map_select_select_page_position.c:
+    complete
+    .text       start:0x0205cd98 end:0x0205cef4
+
 src/game/main/menus/map_select_next_list.c:
     complete
     .text       start:0x0205d110 end:0x0205d2c0
