@@ -2094,6 +2094,10 @@ src/game/main/script/event_script_stop.c:
     complete
     .text       start:0x0201ac78 end:0x0201ac94
 
+src/game/main/script/event_script_start_queued_if_requested.c:
+    complete
+    .text       start:0x0201ac94 end:0x0201acec
+
 src/game/main/script/event_script_find_slot.c:
     complete
     .text       start:0x0201acec end:0x0201ad28
