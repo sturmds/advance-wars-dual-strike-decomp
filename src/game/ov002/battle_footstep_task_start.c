@@ -7,12 +7,16 @@
 
 extern const TaskScriptCmd data_ov002_02369790[];
 
+/* The unit type of the side at byte offset `offset` (side * sizeof(BattleSide)),
+ * as BATTLE_SIDE_UNIT_TYPE reads it. */
+#define UNIT_TYPE_AT(offset) (((u8 *)Ov002_gBattleScene + (offset))[3])
+
 #define SOUND(group, variant) (((group) << 16) | (variant))
 
 /* Needed to match: the original has one copy of this switch for each group,
  * with the store and the return in every case. */
 #define PICK_SOUND(group)                                                   \
-    switch (sideBase[6]) {                      \
+    switch (((BattleSide *)((u8 *)Ov002_gBattleScene->sides + offset))->terrain) { \
     case TERRAIN_MOUNTAIN:                                                  \
         task->sound = SOUND(group, 5);                                      \
         return;                                                             \
@@ -60,17 +64,18 @@ extern const TaskScriptCmd data_ov002_02369790[];
  * depends on the unit's group (3 for these two, 4 for other foot units) and
  * on the terrain it stands on, else on the battle's tileset. Probably the
  * marching sound; the task script stops the sound effect when it ends.
- * Partial: 97%; the original computes side * 12 once, before the stores. */
+ * Needed to match: side * 12 kept in `offset`, and the unit type and the
+ * terrain read from two different bases so the sums are not shared. */
 void BattleFootstepTask_Start(int side)
 {
     BattleFootstepTask *task = (BattleFootstepTask *)Task_Create(data_ov002_02369790, TASK_LIST(2));
-    u8 *sideBase;
+    int offset;
 
     task->unk_4c = 0;
     task->unk_4e = 0;
+    offset = side * sizeof(BattleSide);
     task->side = side;
-    sideBase = (u8 *)Ov002_gBattleScene + side * sizeof(BattleSide);
-    if (sideBase[3] == UNIT_INFANTRY || sideBase[3] == 27) {
+    if (UNIT_TYPE_AT(offset) == UNIT_INFANTRY || UNIT_TYPE_AT(offset) == 27) {
         PICK_SOUND(3)
     } else {
         PICK_SOUND(4)

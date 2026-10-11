@@ -635,6 +635,7 @@ src/game/ov002/battle_start_attacker_move_sound.c:
     .text       start:0x0235fc68 end:0x0235fce0
 
 src/game/ov002/battle_footstep_task_start.c:
+    complete
     .text       start:0x0235fce0 end:0x0235ffa8
 
 src/game/ov002/battle_cue_task_update.c:
