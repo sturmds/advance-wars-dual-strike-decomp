@@ -1,13 +1,12 @@
 #include "types.h"
 #include "sdk/gx.h"
-extern u16 data_022a9878[13];
-void Vram_PowerOnBanks(u32 banks);
+extern u16 gGxVramBankMasks[13];
 void func_0210aa6c(int bank)
 {
-    u32 t = data_022a9878[11];
-    data_022a9878[11] = bank;
-    t = t | data_022a9878[0];
-    data_022a9878[0] = t & ~bank;
+    u32 t = gGxVramBankMasks[11];
+    gGxVramBankMasks[11] = bank;
+    t = t | gGxVramBankMasks[0];
+    gGxVramBankMasks[0] = t & ~bank;
     if (bank != 0) {
         if (bank == 0x80) {
             *REG_DB_DISPCNT |= 0x40000000;
@@ -16,5 +15,5 @@ void func_0210aa6c(int bank)
     } else {
         *REG_DB_DISPCNT &= ~0x40000000;
     }
-    Vram_PowerOnBanks(data_022a9878[0]);
+    Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }

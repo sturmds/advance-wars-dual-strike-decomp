@@ -27,7 +27,7 @@ static inline void G3_Translate(fx32 x, fx32 y, fx32 z)
  * projection matrix data_022a7c6c. tile is a byte offset from
  * data_022a7c5c->unk_38, palette a 32-byte block from unk_3c. Draws
  * nothing for tile -1 or hidden 1. */
-void Map3D_DrawIcon(VecFx32 *pos, int tile, int palette, int hidden)
+void Map3d_DrawIcon(VecFx32 *pos, int tile, int palette, int hidden)
 {
     VecFx32 screen;
 

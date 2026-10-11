@@ -8961,9 +8961,9 @@ gSoundStreamThread kind:bss addr:0x022a8aec
 gSoundStreamRequests kind:bss addr:0x022a8b80
 data_022a8d00 kind:bss addr:0x022a8d00
 data_022a9300 kind:bss addr:0x022a9300
-data_022a9870 kind:bss addr:0x022a9870
+GXi_VRamLockId kind:bss addr:0x022a9870
 gGxDispMode kind:bss addr:0x022a9874
-data_022a9878 kind:bss addr:0x022a9878
+gGxVramBankMasks kind:bss addr:0x022a9878
 data_022a987a kind:bss addr:0x022a987a
 data_022a987c kind:bss addr:0x022a987c
 data_022a9880 kind:bss addr:0x022a9880

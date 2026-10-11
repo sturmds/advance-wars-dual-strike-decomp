@@ -26,7 +26,7 @@ static inline void G3_Translate(fx32 x, fx32 y, fx32 z)
 /* Draws one textured quad at the camera's x and y and at z pos->z + 0x300.
  * The texture moves with the camera's offset from its preset and scrolls
  * with the frame count. */
-void Map3D_DrawScrollingQuad(VecFx32 *pos, Camera *camera)
+void Map3d_DrawScrollingQuad(VecFx32 *pos, Camera *camera)
 {
     /* needed to match: both preset fields are read at one byte offset */
     int offset = gCameraPresetIndex * sizeof(CameraPreset);

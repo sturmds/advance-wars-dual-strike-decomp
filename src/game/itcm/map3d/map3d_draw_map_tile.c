@@ -10,8 +10,8 @@ extern u8 data_02157b24[80][2]; /* per tall tile graphic: [0] TILE_DRAW_* */
 u8 Map_GetTileColour(int tile);
 MapObject *Map_FindObjectCovering(int x, int y);
 int MapTile3d_GetTextureOffset(int graphic); /* byte offset of a tile graphic in the tile texture */
-void Map3D_DrawTile(VecFx32 *pos, int tile, int palette, int shaded, int reverse, int swapPairs);
-void Map3D_DrawTallTile(VecFx32 *pos, int tile, int palette, int shaded);
+void Map3d_DrawTile(VecFx32 *pos, int tile, int palette, int shaded, int reverse, int swapPairs);
+void Map3d_DrawTallTile(VecFx32 *pos, int tile, int palette, int shaded);
 void MapTile3d_DrawQuadA(VecFx32 *pos, int tile, int palette, int shaded); /* 64x64 tile */
 void MapTile3d_DrawQuadB(VecFx32 *pos, int tile, int palette, int shaded); /* 64x64 tile */
 
@@ -34,8 +34,8 @@ static inline void G3_Translate(fx32 x, fx32 y, fx32 z)
 /* Draws the map tile at (x, y) with the current matrix: graphic picks the
  * tile picture, tile is the MapTiles.tiles byte (terrain and owner) that
  * picks its palette. highlight 1-3 draws it with palette 5, 15 or 14. The
- * last three flags go to Map3D_DrawTile. */
-void Map3D_DrawMapTile(VecFx32 *pos, int x, int y, int graphic, u8 tile, int highlight, int shaded,
+ * last three flags go to Map3d_DrawTile. */
+void Map3d_DrawMapTile(VecFx32 *pos, int x, int y, int graphic, u8 tile, int highlight, int shaded,
                    int reverse, int swapPairs)
 {
     int palette = data_02157ae4[MAP_TILE_TERRAIN(tile)];
@@ -69,12 +69,12 @@ void Map3D_DrawMapTile(VecFx32 *pos, int x, int y, int graphic, u8 tile, int hig
         switch (data_02157b24[graphic][0]) {
         case TILE_DRAW_TALL_OWNED:
         case TILE_DRAW_TALL:
-            Map3D_DrawTile(pos, MapTile3d_GetTextureOffset(GRAPHIC_FLAT_FIRST), groundPalette, shaded, reverse, swapPairs);
+            Map3d_DrawTile(pos, MapTile3d_GetTextureOffset(GRAPHIC_FLAT_FIRST), groundPalette, shaded, reverse, swapPairs);
             G3_Translate(0, 32, 0);
-            Map3D_DrawTallTile(pos, MapTile3d_GetTextureOffset(graphic), palette, shaded);
+            Map3d_DrawTallTile(pos, MapTile3d_GetTextureOffset(graphic), palette, shaded);
             return;
         case TILE_DRAW_OBJECT:
-            Map3D_DrawTile(pos, MapTile3d_GetTextureOffset(GRAPHIC_FLAT_FIRST), groundPalette, shaded, 0, 0);
+            Map3d_DrawTile(pos, MapTile3d_GetTextureOffset(GRAPHIC_FLAT_FIRST), groundPalette, shaded, 0, 0);
             object = Map_FindObjectCovering(x, y);
             if (object == NULL) {
                 return;
@@ -96,6 +96,6 @@ void Map3D_DrawMapTile(VecFx32 *pos, int x, int y, int graphic, u8 tile, int hig
             break;
         }
     } else {
-        Map3D_DrawTile(pos, MapTile3d_GetTextureOffset(graphic), palette, shaded, reverse, swapPairs);
+        Map3d_DrawTile(pos, MapTile3d_GetTextureOffset(graphic), palette, shaded, reverse, swapPairs);
     }
 }

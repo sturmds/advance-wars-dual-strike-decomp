@@ -20,7 +20,7 @@ void Gx_SendPlainQuad_020132d8(void);
  * block from texPaletteOffset. shaded sends vertex colours with polygon
  * mode 2. reverse sends the four texcoords in reverse order, swapPairs
  * swaps the first two and the last two. */
-void Map3D_DrawTile(VecFx32 *pos, int tile, int palette, int shaded, int reverse, int swapPairs)
+void Map3d_DrawTile(VecFx32 *pos, int tile, int palette, int shaded, int reverse, int swapPairs)
 {
     int polygonMode = shaded ? 2 : 0;
 

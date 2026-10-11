@@ -2,11 +2,11 @@
 
 int FSi_TranslateCommand(FSFile *file, u32 command);
 
-/* Marks the file busy and runs the seek-directory command at the
+/* Marks the call synchronous and runs the seek-directory command at the
  * start of directory dirId. */
 int FsDir_SyncJumpToDirStart(FSFile *file, int dirId)
 {
-    file->flags |= FS_FILE_STATUS_BUSY;
+    file->flags |= FS_FILE_STATUS_SYNC;
     file->arg.seekDir.pos.arc = file->arc;
     file->arg.seekDir.pos.pos = 0;
     file->arg.seekDir.pos.index = 0;

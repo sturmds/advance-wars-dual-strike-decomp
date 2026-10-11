@@ -2,7 +2,7 @@
 #include "sdk/gx.h"
 #include "sdk/os.h"
 
-extern u16 data_022a9870;   /* VRAM lock id */
+extern u16 GXi_VRamLockId;
 extern u32 data_0216d958;   /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
 
 int OS_GetLockID(void);
@@ -25,12 +25,12 @@ void GX_Init(void)
     *REG_POWCNT1 |= POWCNT1_LCD;
     Vram_ClearAllBankControl();
 
-    while (data_022a9870 == 0) {
+    while (GXi_VRamLockId == 0) {
         int lockId = OS_GetLockID();
         if (lockId == OS_LOCK_ID_ERROR) {
             OS_Terminate();
         }
-        data_022a9870 = lockId;
+        GXi_VRamLockId = lockId;
     }
 
     *REG_DISPSTAT = 0;

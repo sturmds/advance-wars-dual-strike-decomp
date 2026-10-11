@@ -3,14 +3,14 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 1 the
  * banks given to main engine BG data. */
-extern u16 data_022a9878[];
+extern u16 gGxVramBankMasks[];
 
 /* bg is any mix of A-D, or any mix of E-G; the banks are mapped one after
  * another in BG VRAM, lowest bank first. */
 void GX_SetBankForBG(int bg)
 {
-    data_022a9878[0] = ~bg & (data_022a9878[0] | data_022a9878[1]);
-    data_022a9878[1] = bg;
+    gGxVramBankMasks[0] = ~bg & (gGxVramBankMasks[0] | gGxVramBankMasks[1]);
+    gGxVramBankMasks[1] = bg;
 
     switch (bg) {
     case GX_VRAM_D:
@@ -78,5 +78,5 @@ void GX_SetBankForBG(int bg)
     case 0:
         break;
     }
-    Vram_PowerOnBanks(data_022a9878[0]);
+    Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }

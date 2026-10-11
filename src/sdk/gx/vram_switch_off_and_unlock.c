@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-extern u16 data_022a9870;
+extern u16 GXi_VRamLockId;
 void OSi_UnlockVram(u16 banks, u16 lockId);
 
 /* Clears the VRAMCNT of every bank whose bit (A = bit 0 ... I = bit 8) is set in *banks. Returns the old mask. */
@@ -37,6 +37,6 @@ u32 Vram_SwitchOffAndUnlock(u16 *banks)
     if (mask & 0x100) {
         *REG_VRAMCNT_I = 0;
     }
-    OSi_UnlockVram(mask, data_022a9870);
+    OSi_UnlockVram(mask, GXi_VRamLockId);
     return mask;
 }

@@ -12,7 +12,7 @@ extern Unk_02080440 *data_027c027c;
 s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL UnitSlot_IsVisible(u16 slot);
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
-void Map3D_DrawUnit(VecFx32 *pos, int type, int ownerBits, int shownHp, u32 marks, int highlight, int stateIs8);
+void Map3d_DrawUnit(VecFx32 *pos, int type, int ownerBits, int shownHp, u32 marks, int highlight, int stateIs8);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* needed to match: the first read loads the index before the base. */
@@ -103,5 +103,5 @@ void Map3d_DrawTileUnit(VecFx32 *pos, u16 x, u16 y, int highlight, int stateIs8)
     } else {
         shownHp = HwDiv32(unit->hp - 1, 10) + 1;
     }
-    Map3D_DrawUnit(pos, unit->type, ownerBits, shownHp, marks, highlight, stateIs8);
+    Map3d_DrawUnit(pos, unit->type, ownerBits, shownHp, marks, highlight, stateIs8);
 }

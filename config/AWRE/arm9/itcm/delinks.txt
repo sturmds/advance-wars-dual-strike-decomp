@@ -307,15 +307,15 @@ src/game/itcm/range_map/fill_moves.c:
     complete
     .text       start:0x01ffb614 end:0x01ffb95c
 
-src/game/itcm/map3d/draw_scrolling_quad.c:
+src/game/itcm/map3d/map3d_draw_scrolling_quad.c:
     complete
     .text       start:0x01ffbc44 end:0x01ffbda8
 
-src/game/itcm/map3d/draw_icon.c:
+src/game/itcm/map3d/map3d_draw_icon.c:
     complete
     .text       start:0x01ffbda8 end:0x01ffbf20
 
-src/game/itcm/map3d/draw_unit_sprite.c:
+src/game/itcm/map3d/map3d_draw_unit_sprite.c:
     complete
     .text       start:0x01ffbf20 end:0x01ffc070
 
@@ -327,11 +327,11 @@ src/game/itcm/map3d/map_tile3d_draw_quad_b.c:
     complete
     .text       start:0x01ffc168 end:0x01ffc260
 
-src/game/itcm/map3d/draw_tall_tile.c:
+src/game/itcm/map3d/map3d_draw_tall_tile.c:
     complete
     .text       start:0x01ffc260 end:0x01ffc36c
 
-src/game/itcm/map3d/draw_tile.c:
+src/game/itcm/map3d/map3d_draw_tile.c:
     complete
     .text       start:0x01ffc36c end:0x01ffc4c8
 
@@ -355,7 +355,7 @@ src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
 
-src/game/itcm/map3d/draw_map_tile.c:
+src/game/itcm/map3d/map3d_draw_map_tile.c:
     complete
     .text       start:0x01ffc5c8 end:0x01ffc844
 
@@ -363,7 +363,7 @@ src/game/itcm/map3d/unit3d_draw.c:
     complete
     .text       start:0x01ffc844 end:0x01ffc890
 
-src/game/itcm/map3d/draw_unit.c:
+src/game/itcm/map3d/map3d_draw_unit.c:
     complete
     .text       start:0x01ffc890 end:0x01ffca00
 

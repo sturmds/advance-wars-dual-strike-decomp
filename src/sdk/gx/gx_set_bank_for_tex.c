@@ -3,15 +3,15 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 4 the
  * banks given to texture images. */
-extern u16 data_022a9878[];
+extern u16 gGxVramBankMasks[];
 
 /* tex is a mask of banks A-D; each bank in it gets the next texture image
  * slot, counting from the lowest bank. With no banks, texturing is switched
  * off in DISP3DCNT. */
 void GX_SetBankForTex(int tex)
 {
-    data_022a9878[0] = ~tex & (data_022a9878[0] | data_022a9878[4]);
-    data_022a9878[4] = tex;
+    gGxVramBankMasks[0] = ~tex & (gGxVramBankMasks[0] | gGxVramBankMasks[4]);
+    gGxVramBankMasks[4] = tex;
 
     if (tex == 0) {
         /* writes 0 to the two acknowledge bits, which leaves their flags alone */
@@ -67,5 +67,5 @@ void GX_SetBankForTex(int tex)
             break;
         }
     }
-    Vram_PowerOnBanks(data_022a9878[0]);
+    Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }

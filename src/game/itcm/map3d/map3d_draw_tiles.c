@@ -16,12 +16,12 @@ extern u16 data_02157f84[];        /* the same for map 248 */
 extern int data_022a7c58;          /* tile brightness when no range is shown, 0-31 */
 extern int data_022a7c60;          /* 0: no range shown; else tiles out of range are this much darker (up to 8) */
 
-void Map3D_DrawScrollingQuad(VecFx32 *origin, Camera *camera);
+void Map3d_DrawScrollingQuad(VecFx32 *origin, Camera *camera);
 BOOL TouchMarker_Exists(void);
 int MainLoop_GetFrameCount(void); /* needed to match: u32 in its own file, shifted as signed here */
 BOOL Map_IsObjectTargetInRange(int x, int y);
 void Gx_SetGreyEmission(int brightness); /* sets the material emission to grey level brightness */
-void Map3D_DrawMapTile(VecFx32 *pos, u16 x, u16 y, int model, int tile, int fog, int highlight, int flag4000,
+void Map3d_DrawMapTile(VecFx32 *pos, u16 x, u16 y, int model, int tile, int fog, int highlight, int flag4000,
                    int flag8000);
 void Map3d_DrawTileUnit(VecFx32 *pos, u16 x, u16 y, int highlight, int stateIs8);
 
@@ -68,7 +68,7 @@ void Map3d_DrawTiles(VecFx32 *origin, int border)
     startY = ((gCameraPresets[gCameraPresetIndex].y - data_022a7d5c.y) >> 9) - 4;
     endX = startX + 22;
     endY = startY + 18;
-    Map3D_DrawScrollingQuad(origin, &data_022a7d5c);
+    Map3d_DrawScrollingQuad(origin, &data_022a7d5c);
     if (TouchMarker_Exists()) {
         touch = 1;
     } else {
@@ -163,7 +163,7 @@ void Map3d_DrawTiles(VecFx32 *origin, int border)
                 Map3d_DrawTileUnit(&pos, x, y, highlight, stateIs8);
             }
             Gx_SetGreyEmission(brightness);
-            Map3D_DrawMapTile(&pos, x, y, model, tile, fog, highlight, flag4000, flag8000);
+            Map3d_DrawMapTile(&pos, x, y, model, tile, fog, highlight, flag4000, flag8000);
             *REG_MTX_POP = 1;
         }
     }

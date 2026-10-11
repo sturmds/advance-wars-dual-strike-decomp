@@ -20,7 +20,7 @@ void Gx_SendPlainQuad_0201299c(void);
  * palette a 32-byte block from unk_34. flip sends the texcoords in
  * reverse order, shaded sends vertex colours with polygon mode 2 (toon or
  * highlight), translucent sets alpha 6 of 31. */
-void Map3D_DrawUnitSprite(VecFx32 *pos, int tile, int palette, int flip, int shaded, int translucent)
+void Map3d_DrawUnitSprite(VecFx32 *pos, int tile, int palette, int flip, int shaded, int translucent)
 {
     int polygonMode = shaded ? 2 : 0;
 

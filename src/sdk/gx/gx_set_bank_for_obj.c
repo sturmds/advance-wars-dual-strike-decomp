@@ -3,14 +3,14 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 2 the
  * banks given to main engine OBJ data. */
-extern u16 data_022a9878[];
+extern u16 gGxVramBankMasks[];
 
 /* obj is A, B or both, or any mix of E, F and G; the banks are mapped one
  * after another in OBJ VRAM, lowest bank first. */
 void GX_SetBankForOBJ(int obj)
 {
-    data_022a9878[0] = ~obj & (data_022a9878[0] | data_022a9878[2]);
-    data_022a9878[2] = obj;
+    gGxVramBankMasks[0] = ~obj & (gGxVramBankMasks[0] | gGxVramBankMasks[2]);
+    gGxVramBankMasks[2] = obj;
 
     switch (obj) {
     case GX_VRAM_A | GX_VRAM_B:
@@ -43,5 +43,5 @@ void GX_SetBankForOBJ(int obj)
     case 0:
         break;
     }
-    Vram_PowerOnBanks(data_022a9878[0]);
+    Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }

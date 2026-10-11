@@ -3,14 +3,14 @@
 
 /* Bank assignment: index 0 holds the banks not given to any use, index 7 the
  * banks given to main engine BG extended palettes. */
-extern u16 data_022a9878[];
+extern u16 gGxVramBankMasks[];
 
 /* bgExtPltt is E (all four slots), F (slots 0-1), G (slots 2-3) or F and G.
  * With no banks, extended BG palettes are switched off in DISPCNT. */
 void GX_SetBankForBGExtPltt(int bgExtPltt)
 {
-    data_022a9878[0] = ~bgExtPltt & (data_022a9878[0] | data_022a9878[7]);
-    data_022a9878[7] = bgExtPltt;
+    gGxVramBankMasks[0] = ~bgExtPltt & (gGxVramBankMasks[0] | gGxVramBankMasks[7]);
+    gGxVramBankMasks[7] = bgExtPltt;
 
     switch (bgExtPltt) {
     case GX_VRAM_E:
@@ -31,5 +31,5 @@ void GX_SetBankForBGExtPltt(int bgExtPltt)
         *REG_DISPCNT &= ~DISPCNT_BG_EXT_PLTT;
         break;
     }
-    Vram_PowerOnBanks(data_022a9878[0]);
+    Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }
