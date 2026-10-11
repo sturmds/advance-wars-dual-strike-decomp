@@ -5057,6 +5057,10 @@ src/game/main/screen/sub_screen_sprite_zoom_in_update.c:
     complete
     .text       start:0x02076c50 end:0x02076de0
 
+src/game/main/screen/sub_screen_layer2_slide_in_update.c:
+    complete
+    .text       start:0x02077030 end:0x02077158
+
 src/game/main/func_020772d4.c:
     complete
     .text       start:0x020772d4 end:0x020772d8
