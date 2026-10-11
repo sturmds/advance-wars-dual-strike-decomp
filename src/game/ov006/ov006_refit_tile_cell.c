@@ -7,7 +7,7 @@ void Ov006_StoreMapCell(int x, int y, int cell);
 int func_ov006_023670ec(int x, int y);
 int Ov006_GetShoalGraphic(int x, int y);
 void func_ov006_0235ddac(int x, int y);
-int func_ov006_0235db00(int x, int y);
+int Ov006_GetWaterCell(int x, int y);
 int func_ov006_02351238(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
@@ -49,7 +49,7 @@ void Ov006_RefitTileCell(int x, int y)
         }
     }
     if (Ov006_TileMatches(x, y, TERRAIN_SEA)) {
-        Ov006_StoreMapCell(x, y, func_ov006_0235db00(x, y));
+        Ov006_StoreMapCell(x, y, Ov006_GetWaterCell(x, y));
     }
     Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
 }
