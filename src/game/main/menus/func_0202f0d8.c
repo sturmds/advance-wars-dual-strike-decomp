@@ -37,7 +37,7 @@ void MainMenu_BuildPage9(void);
 void MainMenu_BuildPage11(void);
 void MainMenu_ShowHelpText(void);
 void func_01ff9b48(void);
-void func_020287ac(void);
+void Gfx3d_SetOrthoCentered(void);
 void func_020288c0(void);
 void func_02028978(void);
 void TpIcon2_LoadTo(u8 *dest);
@@ -220,7 +220,7 @@ void func_0202f0d8(MainMenuTask *task)
             break;
         }
         Task_JumpToLabel(task, 0);
-        func_020287ac();
+        Gfx3d_SetOrthoCentered();
     } else {
         switch (data_021599d0->unk_0f_4) {
         case 0:

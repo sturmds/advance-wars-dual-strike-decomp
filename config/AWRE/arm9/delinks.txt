@@ -4368,6 +4368,10 @@ src/game/main/graphics/gfx3d_set_perspective.c:
     complete
     .text       start:0x02028750 end:0x020287ac
 
+src/game/main/graphics/gfx3d_set_ortho_centered.c:
+    complete
+    .text       start:0x020287ac end:0x02028808
+
 src/game/main/func_02028808.c:
     complete
     .text       start:0x02028808 end:0x020288c0
