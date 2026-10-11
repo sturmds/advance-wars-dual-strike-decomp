@@ -7563,6 +7563,10 @@ src/game/main/func_02064820.c:
     complete
     .text       start:0x02064820 end:0x02064848
 
+src/game/main/menus/vs_setup_add_setting_buttons.c:
+    complete
+    .text       start:0x02064848 end:0x020648b8
+
 src/game/main/func_020648b8.c:
     complete
     .text       start:0x020648b8 end:0x020648d0
