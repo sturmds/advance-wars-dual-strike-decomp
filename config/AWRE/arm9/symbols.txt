@@ -4543,7 +4543,7 @@ func_020f1aa0 kind:function(arm,size=0xc) addr:0x020f1aa0
 func_020f1aac kind:function(arm,size=0x18) addr:0x020f1aac
 func_020f1ac4 kind:function(arm,size=0x2c) addr:0x020f1ac4
 func_020f1af0 kind:function(arm,size=0x1c) addr:0x020f1af0
-func_020f1b0c kind:function(arm,size=0xac) addr:0x020f1b0c
+EffectScene_ShakeStep kind:function(arm,size=0xac) addr:0x020f1b0c
 func_020f1bb8 kind:function(arm,size=0x2c) addr:0x020f1bb8
 func_020f1be4 kind:function(arm,size=0x20) addr:0x020f1be4
 func_020f1c04 kind:function(arm,size=0xc0) addr:0x020f1c04
@@ -8016,7 +8016,7 @@ data_02169510 kind:data(any) addr:0x02169510
 data_0216951c kind:data(any) addr:0x0216951c
 data_0216952c kind:data(any) addr:0x0216952c
 data_0216953c kind:data(any) addr:0x0216953c
-data_0216954c kind:data(any) addr:0x0216954c
+gEffectSceneShakeOffsets kind:data(any) addr:0x0216954c
 data_0216955c kind:data(any) addr:0x0216955c
 data_0216956c kind:data(any) addr:0x0216956c
 data_0216957c kind:data(any) addr:0x0216957c
