@@ -11,7 +11,7 @@ typedef struct ShopItem {
     int (*isForSale)(int arg);         /* 1: the item is offered */
     void (*onBuy)(int arg, int flag);  /* run when the item is bought */
     int arg;                           /* passed to isForSale and onBuy */
-    u8 pad_18[0x1c - 0x18];
+    const struct EventScriptCommand *confirmScript; /* asks whether to buy (Ov005_UpdateShopScreen) */
 } ShopItem;
 
 /* One of the six buttons of a page, 12 bytes. */
