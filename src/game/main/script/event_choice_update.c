@@ -16,7 +16,7 @@ u16 EventChoice_ReadKeys(void);
 u16 Touch_TestButtonRects(void *buttons, int count);
 void DialogueCursor_Animate(void);
 void EventChoice_DrawRecord(int choice, int x, int y);
-void func_0201a4f0(Task *task);
+void EventChoice_DrawCursor(Task *task);
 void func_0201d730(void *text);
 void Task_ResumeScript(Task *task);
 void Sound_PlaySe(int se);
@@ -68,7 +68,7 @@ void EventChoice_Update(Task *task)
     }
     if (oldCursor != CURSOR(task)) {
         EventChoice_DrawRecord(CURSOR(task), 7, 3);
-        func_0201a4f0(task);
+        EventChoice_DrawCursor(task);
         Sound_PlaySe(0x10002);
     }
     if ((keys & CHOICE_KEY_CONFIRM) || (touched & 0x10)) {

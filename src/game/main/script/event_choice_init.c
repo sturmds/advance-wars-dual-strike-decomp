@@ -7,7 +7,7 @@ extern u16 data_02297be0[][32];       /* tile map of the event text window */
 extern Rect data_022977d0[4];          /* touch buttons of the four choices */
 
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
-void func_0201a4f0(Task *task);
+void EventChoice_DrawCursor(Task *task);
 void DialogueCursor_Animate(void);
 void TileMap_GetPixelPos(u16 *tile, u16 *tileMap, s16 *pixelPos);
 void EventScript_GetTextWindowRect(Rect *rect);
@@ -27,7 +27,7 @@ void EventChoice_Init(Task *task)
     int i;
 
     Text_PrintId(7, 1, data_02297be0[0], 0xc00002dd, data_022977a4.unk_00 << 12, data_022977a4.unk_04);
-    func_0201a4f0(task);
+    EventChoice_DrawCursor(task);
     DialogueCursor_Animate();
     /* unk_34 holds a tile pointer here (EventCmd_StartTextMapTask); pos is not used */
     TileMap_GetPixelPos(*(u16 **)&task->unk_34, data_02297be0[0], pos);
