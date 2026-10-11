@@ -12,6 +12,7 @@ typedef struct FSFile FSFile;
 #define FS_RESULT_PROC_ASYNC 6             /* the archive finishes the command later */
 
 /* Commands an archive runs for a file, in the order of its command table. */
+#define ARCHIVE_OP_SET_DIR_POS 2
 #define ARCHIVE_OP_OPEN_BY_ID 6
 #define ARCHIVE_OP_OPEN_BY_EXTENT 7
 #define ARCHIVE_OP_RELEASE_HANDLE 8
@@ -21,6 +22,7 @@ typedef struct FSFileID {
     u32 file_id;
 } FSFileID;
 
+#define FS_FILE_STATUS_IS_DIR 0x4
 #define FS_FILE_STATUS_IS_FILE 0x10
 
 /* Position inside a directory listing. */
