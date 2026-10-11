@@ -9,7 +9,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 int AiUnit_ClaimLandmass(void);
-int func_020a4984(MapUnit *unit);
+int AiUnit_CanReachCaptureSite(MapUnit *unit);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -101,7 +101,7 @@ void AiFoot_BoardTransportForSite(int siteDistance)
         return;
     }
     if (boatType == UNIT_APC) {
-        if (func_020a4984(&STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]]) == 0) {
+        if (AiUnit_CanReachCaptureSite(&STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]]) == 0) {
             return;
         }
     }

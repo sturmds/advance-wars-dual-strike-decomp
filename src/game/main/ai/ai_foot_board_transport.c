@@ -9,7 +9,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 int AiUnit_ClaimLandmass(void);
-int func_020a4984(MapUnit *unit);
+int AiUnit_CanReachCaptureSite(MapUnit *unit);
 void Ai_ClearActingUnitTarget(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
@@ -24,7 +24,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
  * reach: an APC, T-Copter, Black Boat or Lander. Later finds replace
  * earlier ones, except that a T-Copter is never replaced, a Lander is not
  * replaced by an APC, and a Black Boat is replaced only by another Black
- * Boat or a T-Copter. An APC is taken only if func_020a4984 accepts it. A
+ * Boat or a T-Copter. An APC is taken only if AiUnit_CanReachCaptureSite accepts it. A
  * boat gets the tile as its AI target. */
 void AiFoot_BoardTransport(void)
 {
@@ -96,7 +96,7 @@ void AiFoot_BoardTransport(void)
         return;
     }
     if (boatType == UNIT_APC) {
-        if (func_020a4984(&STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]]) == 0) {
+        if (AiUnit_CanReachCaptureSite(&STATE->units[MAP->unitAt[TILE_INDEX(boatX, boatY)]]) == 0) {
             return;
         }
     }
