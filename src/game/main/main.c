@@ -43,7 +43,7 @@ void func_0200a6d0(void *a);
 void func_01ff9b48(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
-void func_02000d24(void);
+void MainLoop_DefaultVBlank(void);
 void func_02000fa4(void);
 BOOL func_02001268(u16 keys);
 void func_02001250(void);
@@ -64,7 +64,7 @@ void func_01ff9c7c(void);
     func_020013f4();                            \
     func_0200a6d0(data_02166dc8);               \
     func_01ff9b48();                            \
-    func_01ff9c28(func_02000d24);               \
+    func_01ff9c28(MainLoop_DefaultVBlank);      \
     func_01ff9c48(func_02000fa4);               \
     Screen_SetCurrent(savedState);              \
     Screen_SetCurrentGfx(savedGfx)

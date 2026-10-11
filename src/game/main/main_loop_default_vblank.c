@@ -1,0 +1,70 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "game/task.h"
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+
+int func_01ff9f0c(void);
+void func_01ff9f1c(int value);
+void func_0200caf8(void);
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentGfx(void *state);
+void Task_RunList(Task *task);
+void func_020044c4(void);
+void func_0200332c(void);
+void OamBuffer_FlushTail(void);
+void Screen_ApplyAll(void);
+void func_020038fc(void);
+void func_01ff8e58(void);
+void func_020045a8(void);
+int func_0207bd80(void);
+void func_0207d930(void);
+
+/* Runs `body` with `screen` as the current screen, then restores the
+ * previous one. */
+#define ON_SCREEN(screen, body)          \
+    savedGfx = data_027c0280;            \
+    Screen_SetCurrentGfx(screen);        \
+    savedState = data_027c027c;          \
+    Screen_SetCurrent(screen);           \
+    body;                                \
+    Screen_SetCurrent(savedState);       \
+    Screen_SetCurrentGfx(savedGfx)
+
+#define ON_BOTH_SCREENS(body)                  \
+    ON_SCREEN(data_027c0288.unk_00, body);     \
+    ON_SCREEN(data_027c0288.unk_04, body)
+
+/* Default for the gMainLoop callback that func_01ff9c28 sets (main and
+ * Map_ResetFrameCallbacks install it; probably run at VBlank). Runs task
+ * list 0 on both screens every time. When the main loop step has finished a
+ * frame (func_01ff9f0c, set at the end of func_01ff9c7c), it clears that flag
+ * and sends the frame to the hardware: OAM, screen registers, palettes. */
+void MainLoop_DefaultVBlank(void)
+{
+    Unk_027c0280 *savedGfx;
+    Unk_02080440 *savedState;
+
+    if (func_01ff9f0c()) {
+        func_0200caf8();
+    }
+    ON_BOTH_SCREENS(Task_RunList(data_027c027c->taskLists[0]));
+    func_020044c4();
+    ON_BOTH_SCREENS(func_0200332c());
+    if (func_01ff9f0c()) {
+        func_01ff9f1c(0);
+        ON_BOTH_SCREENS(OamBuffer_FlushTail());
+        Screen_ApplyAll();
+        func_020038fc();
+        ON_BOTH_SCREENS(func_01ff8e58());
+        func_020045a8();
+    } else {
+        func_01ff9f1c(0);
+        if (func_0207bd80() == 1) {
+            func_0207d930();
+        }
+    }
+}

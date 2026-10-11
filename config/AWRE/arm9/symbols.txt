@@ -26,7 +26,7 @@ func_02000afc kind:function(arm,size=0x4) addr:0x02000afc
 BuildInfo kind:data(any) addr:0x02000b00
 main kind:function(arm,size=0x1d8) addr:0x02000b24
 func_02000cfc kind:function(arm,size=0x28) addr:0x02000cfc
-func_02000d24 kind:function(arm,size=0x280) addr:0x02000d24
+MainLoop_DefaultVBlank kind:function(arm,size=0x280) addr:0x02000d24
 func_02000fa4 kind:function(arm,size=0x84) addr:0x02000fa4
 func_02001028 kind:function(arm,size=0x5c) addr:0x02001028
 func_02001084 kind:function(arm,size=0xa4) addr:0x02001084

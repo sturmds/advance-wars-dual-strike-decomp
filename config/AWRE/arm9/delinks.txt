@@ -12,6 +12,10 @@ src/game/main/main.c:
     complete
     .text       start:0x02000b24 end:0x02000cfc
 
+src/game/main/main_loop_default_vblank.c:
+    complete
+    .text       start:0x02000d24 end:0x02000fa4
+
 src/game/main/func_02001250.c:
     complete
     .text       start:0x02001250 end:0x02001268
