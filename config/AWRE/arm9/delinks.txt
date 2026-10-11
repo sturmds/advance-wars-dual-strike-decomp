@@ -18517,6 +18517,10 @@ src/game/main/map/map_gfx_get_palette_file.c:
     complete
     .text       start:0x020f9254 end:0x020f92b8
 
+src/game/main/map/map_gfx_get_weather_palette_file.c:
+    complete
+    .text       start:0x020f92b8 end:0x020f931c
+
 src/game/main/func_020f931c.c:
     complete
     .text       start:0x020f931c end:0x020f934c

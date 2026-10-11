@@ -4731,7 +4731,7 @@ Rgb_ToGrey kind:function(arm,size=0x70) addr:0x020f90a8
 MapGfx_Load kind:function(arm,size=0x60) addr:0x020f9118
 MapGfx_LoadTilesetAndWeather kind:function(arm,size=0xdc) addr:0x020f9178
 MapGfx_GetPaletteFile kind:function(arm,size=0x64) addr:0x020f9254
-func_020f92b8 kind:function(arm,size=0x64) addr:0x020f92b8
+MapGfx_GetWeatherPaletteFile kind:function(arm,size=0x64) addr:0x020f92b8
 func_020f931c kind:function(arm,size=0x30) addr:0x020f931c
 Bg0AnimTask_Update kind:function(arm,size=0x104) addr:0x020f934c
 func_020f9450 kind:function(arm,size=0xf0) addr:0x020f9450
@@ -7781,7 +7781,7 @@ data_02167d48 kind:data(any) addr:0x02167d48
 data_02167d58 kind:data(any) addr:0x02167d58
 gDefaultCoList kind:data(any) addr:0x02167d70
 gOwnerCellCodes kind:data(any) addr:0x02167d8c
-data_02167dd4 kind:data(any) addr:0x02167dd4
+gMapPaletteFiles kind:data(any) addr:0x02167dd4
 gWeatherInfo kind:data(any) addr:0x02167de4
 data_02167e24 kind:data(any) addr:0x02167e24
 data_02167e2c kind:data(any) addr:0x02167e2c
@@ -8116,7 +8116,7 @@ data_0216a1cc kind:data(any) addr:0x0216a1cc
 data_0216a1d0 kind:data(any) addr:0x0216a1d0
 data_0216a1d4 kind:data(any) addr:0x0216a1d4
 data_0216a1d8 kind:data(any) addr:0x0216a1d8
-data_0216a1dc kind:data(any) addr:0x0216a1dc
+gMapF8PaletteFile kind:data(any) addr:0x0216a1dc
 data_0216a1e0 kind:data(any) addr:0x0216a1e0
 data_0216a1e4 kind:data(any) addr:0x0216a1e4
 data_0216a1e8 kind:data(any) addr:0x0216a1e8
