@@ -88,7 +88,7 @@ What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 Some original files were built with other optimisation settings: the name entry screen only matches with `#pragma optimization_level 0`, and `NameEntry_MoveFromKey` only with `#pragma opt_common_subs off`. permute.py changes the C, never these settings.
 
 - `python3 tools/pragmas.py FILE.c NAME [--jobs N] [--apply]`: compiles the C as it is under each pragma that changes code generation and prints the best scores. It tries `optimization_level` 0-3, `optimize_for_size` and each `opt_*` switch and `peephole` both on and off, alone, then in pairs and triples of the ones that changed the function. Each goes at the top of the file and around the function alone (`#pragma push` ... `#pragma pop`). A few hundred compiles, one to a few minutes. `--apply` writes the matching variant; move the pragma below the file comment, say why it is there, and confirm with `fn.py diff`. `--accepted` checks that mwccarm 2.0-72 still accepts every pragma in the list (`scheduling`, `register_coloring` and `opt_cse` do not exist in this version; an unknown pragma is only a warning). `make test` runs `tools/tests/test_pragmas.py` (no ROM).
-- `python3 tools/triage_partials.py --out FILE.md [--jobs 3] [NAME ...]`: for every started, unlinked function, sorts the `fn.py diff` result into register-only, order, missing/extra and structural, runs the pragma sweep, and names the nearest file in the same module that uses a pragma. A pragma'd neighbour hints that the original object was built with that setting; a sweep that gets closer but not to 100% can mean the C was shaped for the wrong flags.
+- `python3 tools/triage_partials.py --out FILE.md [--jobs 3] [NAME ...]`: for every started, unlinked function, sorts the `fn.py diff` result into register-only, order, missing/extra and structural, runs the pragma sweep, and names the nearest file in the same module that uses a pragma. A pragma'd neighbour hints that the original object was built with that setting; a sweep that gets closer but not to 100% can mean the C was shaped for the wrong flags. The `proto` column counts what `protocheck.py` reports for the file.
 
 Run the sweep on a partial before trying C variants by hand or with permute.py.
 
@@ -102,6 +102,7 @@ Terms: *registers swap* means the same instructions with two register numbers ex
 
 1. Rule out a bug. 7 of the 74 retry matches were not about C shape at all:
    - a callee prototype missing an argument (a temp in r1 where ours uses r0 means r0 is still a live argument of the next call; AiTurn_TrySiteAction, Battle_StartAttackerMoveSound);
+   - a local declaration that disagrees with the callee's later definition: fewer arguments (UnitAction_Capture, AiUnit_JoinDamagedUnit, PlayerInfo_DrawRankAndExperience, FS_LoadOverlayInfo, func_ov002_02358c40), or an `int` where the definition takes `u8` or `s16`, which changes how the caller narrows the value. Run `python3 tools/protocheck.py FILE.c`; it lists these by kind (`count`, `call`, `width`, `ret`). A `count` row means the original passes a value the C does not: look for the register the original keeps live into the call;
    - one trailing `bx lr` too many: dsd split the function's 4-byte tail off as its own symbol. Look for a size 0x4 function right after yours in `symbols.txt` and merge it back (UnitPath_CountSteps);
    - a pointer walk whose registers swap with the `i * sizeof` induction: the array may start one entry before its symbol (PlayerPanels_Init);
    - a wrong argument value or slot (Player_GetCoDefense, func_ov002_023571d0);
@@ -230,6 +231,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
 | `python3 tools/pragmas.py FILE.c NAME` | Score one function under each optimisation pragma |
 | `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
+| `python3 tools/protocheck.py [FILE.c ...]` | Declarations and calls in the unlinked files that disagree with the callee's definition or header; `--all` for every file |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
 | `python3 tools/fn.py pick --arm7` | Candidates in ARM7 (also with `--families`) |
 | `make fnindex` | Build `build/fnindex.json` |

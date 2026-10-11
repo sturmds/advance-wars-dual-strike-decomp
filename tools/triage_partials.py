@@ -14,6 +14,8 @@ For each function in a source file that is not marked `complete`
   sweep      the best score of `tools/pragmas.py`, and its setting
   neighbour  the nearest file in the same module that uses a #pragma, with
              its distance in bytes; `adjacent` when it is the next file
+  proto      what tools/protocheck.py reports for the file, by kind (count,
+             call, width, ret); fix a count or call row first
 
 Writes a Markdown table to FILE.md (and FILE.json next to it). The sweep
 costs CPU only: --jobs functions run at once, one compile each.
@@ -32,6 +34,7 @@ import fn  # noqa: E402
 import fnindex  # noqa: E402
 import pragmas  # noqa: E402
 import progress  # noqa: E402
+import protocheck  # noqa: E402
 
 ROOT = fn.ROOT
 PRAGMA = re.compile(r"^\s*#pragma\s+(?!once\b|thumb\b|push\b|pop\b)(.+?)\s*$", re.M)
@@ -136,12 +139,15 @@ def main() -> int:
                 funcs.append((path, n))
     by_name = {f.name: f for mod in fn.all_modules().values() for f in mod.funcs}
     table = pragma_files()
+    protos = protocheck.load()
     rows = {}
     for path, n in funcs:
         f = by_name[n]
         d, pct = diff_rows(n)
         row = {"file": path, "name": n, "module": f.module, "size": f.size, "pct": pct}
         row.update(classify(d) if d else {"class": "no diff"})
+        kinds = Counter(kind for _, kind, _, _ in protocheck.report(protos, [path], everything=False))
+        row["proto"] = dict(kinds)
         nb = nearest(f.module, f.addr, f.end, path, table)
         if nb:
             row["neighbour"] = {"dist": nb[0], "file": nb[1], "pragmas": nb[2]}
@@ -184,8 +190,8 @@ def markdown(rows) -> str:
            "`tools/pragmas.py` score (instructions that differ after alignment) against the build flags.",
            "", "| Class | Functions |", "|---|---:|"]
     out += [f"| {c} | {counts[c]} |" for c in order if counts[c]]
-    out += ["", "| Function | Module | Bytes | Match | Class | Differ rows | Instr. orig/ours | Sweep: flags -> best | Best setting | Nearest pragma file |",
-            "|---|---|---:|---:|---|---:|---|---|---|---|"]
+    out += ["", "| Function | Module | Bytes | Match | Class | Differ rows | Instr. orig/ours | Sweep: flags -> best | Best setting | Nearest pragma file | Proto |",
+            "|---|---|---:|---:|---|---:|---|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: (order.index(r["class"]) if r["class"] in order else 9, -(r["pct"] or 0))):
         sw = r.get("sweep", {})
         if sw.get("best") is not None:
@@ -200,8 +206,12 @@ def markdown(rows) -> str:
             nbs = f"{Path(nb['file']).name}: {'; '.join(nb['pragmas'])} ({where})"
         out.append(f"| {r['name']} | {r['module']} | {r['size']} | {r['pct'] if r['pct'] is not None else '?'}% | "
                    f"{r['class']} | {r.get('differ', '')} | {r.get('orig', '')}/{r.get('ours', '')} | {gain} | "
-                   f"{setting} | {nbs} |")
+                   f"{setting} | {nbs} | {proto_text(r.get('proto', {}))} |")
     return "\n".join(out) + "\n"
+
+
+def proto_text(kinds: dict) -> str:
+    return " ".join(f"{k} {kinds[k]}" for k in ("count", "call", "width", "ret") if kinds.get(k))
 
 
 if __name__ == "__main__":
