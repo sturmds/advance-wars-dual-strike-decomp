@@ -8,7 +8,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void SpriteStrip_Queue(int affineIndex);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(Task *task);
-void func_020509b8(int affineIndex);
+void TitleCall_DrawNumber(int affineIndex);
 
 extern Unk_027c0280 *data_027c0280;
 extern const s16 data_021389e8[];
@@ -26,7 +26,7 @@ extern u8 data_027c0048[];
  * screen. Layer 0 is alpha-blended in (EVA up to 16 by frame 8, then down
  * to 1) while it scrolls from the right to the left, with one sprite
  * moving along with it. From frame 4 the sprite strip and the campaign
- * record number (func_020509b8) are drawn; frames 4-19 grow them from a
+ * record number (TitleCall_DrawNumber) are drawn; frames 4-19 grow them from a
  * flat line to full height through affine matrix 31. Frame 8 starts the
  * data_0215bb88 task under this one. The script resumes after frame 64. */
 void TitleCall_NumberSlideIn(Task *task)
@@ -62,10 +62,10 @@ void TitleCall_NumberSlideIn(Task *task)
             Oam_SetAffineParams(31, HwDiv32(cosValue, 256), HwDiv32(-sinValue << 4, pbDivisor),
                                 HwDiv32(sinValue << 4, 256), HwDiv32(cosValue, pdDivisor));
             SpriteStrip_Queue(31);
-            func_020509b8(31);
+            TitleCall_DrawNumber(31);
         } else {
             SpriteStrip_Queue(0);
-            func_020509b8(0);
+            TitleCall_DrawNumber(0);
         }
     }
     if (FRAME(task) == 8) {
