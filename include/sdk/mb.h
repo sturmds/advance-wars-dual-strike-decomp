@@ -360,6 +360,30 @@ typedef struct DlPlayChildFileAsk {
 } DlPlayChildFileAsk;
 
 /* Where one block of a file is. */
+/* A child's request (DLPLAY_FILE_ASK_BYTES bytes) arrives in pieces that each
+ * fit one message. The parent collects them per child in DlPlayFragmentStore. */
+#define DLPLAY_FRAGMENT_SLOT_BYTES 32
+#define DLPLAY_FRAGMENT_TOTAL_BYTES 30
+
+typedef struct DlPlayFragmentStore {
+    u8 data[DLPLAY_CHILD_SLOTS][DLPLAY_FRAGMENT_SLOT_BYTES];
+    u32 received[DLPLAY_CHILD_SLOTS];      /* bit n set once piece n of a child arrived */
+} DlPlayFragmentStore;
+
+typedef struct DlPlayFragmentGeometry {
+    int pieceSize;                     /* bytes of data in one piece */
+    int pieceCount;
+    int dataSize;
+} DlPlayFragmentGeometry;
+
+/* A child message that carries one piece (type 7). */
+typedef struct DlPlayRequestFragment {
+    u8 type;
+    u8 pad_01;
+    u8 index;
+    u8 data[1];
+} DlPlayRequestFragment;
+
 typedef struct DlPlayBlockSpot {
     u32 unk_00;
     u32 size;
