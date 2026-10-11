@@ -17,7 +17,7 @@ void ForceRank_LoadSets(int mode);
  * the current screen and, in a two-map battle, the map on the other screen
  * (BattleSave_LoadMap), then the RNG state, the low game flags, the event
  * script state, data_022a7b98, the Force Rank sets of the game mode and the
- * skills tag partners lend. Undoes func_02018a28. */
+ * skills tag partners lend. Undoes BattleSave_Pack. */
 void BattleSave_Unpack(void)
 {
     BattleSaveRecord *record = (BattleSaveRecord *)data_02291774;
