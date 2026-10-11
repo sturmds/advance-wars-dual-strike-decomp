@@ -12019,6 +12019,14 @@ src/game/main/func_020b9664.c:
     complete
     .text       start:0x020b9664 end:0x020b96e8
 
+src/game/main/game_get_days_left.c:
+    complete
+    .text       start:0x020b96e8 end:0x020b9710
+
+src/game/main/game_get_day_limit.c:
+    complete
+    .text       start:0x020b9710 end:0x020b97e8
+
 src/game/main/func_020b97e8.c:
     complete
     .text       start:0x020b97e8 end:0x020b983c

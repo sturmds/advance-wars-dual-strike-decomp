@@ -3,7 +3,7 @@
 #include "game/task.h"
 
 BOOL TimeLimit_GetRemaining(int *value);
-BOOL func_020b9710(void);
+BOOL Game_GetDayLimit(void);
 BOOL func_020f3178(void);
 void NumberSpriteTask_Start(int style, int x, int y, int firstTile, int palette, Task *parent);
 
@@ -40,7 +40,7 @@ void NumberSpriteTask_StartCounter(int x, int y, int firstTile, int palette, Tas
 
     if (TimeLimit_GetRemaining(&seconds)) {
         style = 0;
-    } else if (func_020b9710()) {
+    } else if (Game_GetDayLimit()) {
         style = 1;
     } else {
         style = 2;

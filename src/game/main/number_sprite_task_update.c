@@ -9,8 +9,8 @@ void NumberSprite_PutHoursMinutes(int x, int y, int seconds, int firstTile, int 
 void NumberSprite_PutLabelAfterNumber(int x, int y, int value, int firstTile, int palette);
 void NumberSprite_PutLabelBeforeNumber(int x, int y, int value, int firstTile, int palette);
 BOOL TimeLimit_GetRemaining(int *value);
-BOOL func_020b9710(void);
-int func_020b96e8(void);
+BOOL Game_GetDayLimit(void);
+int Game_GetDaysLeft(void);
 int Game_GetShownDay(void);
 
 /* unk_30 of the first map's state. */
@@ -31,7 +31,7 @@ static inline u32 FirstMap_GetUnk30(void)
 
 /* Per-frame update of the number task: slides the number in, then draws it
  * by style. Style 0 shows the time left from TimeLimit_GetRemaining, style 1 the days
- * left (func_020b96e8) under a day limit (func_020b9710), style 2 the day
+ * left (Game_GetDaysLeft) under a day limit (Game_GetDayLimit), style 2 the day
  * from Game_GetShownDay while neither limit applies. When its value no longer
  * applies, or the first map's unk_1c4->unk_30 is set (styles 0 and 1), the
  * number slides out instead. */
@@ -61,17 +61,17 @@ void NumberSpriteTask_Update(NumberSpriteTask *task)
         NumberSprite_PutHoursMinutes(x & 0x1ff, y & 0xff, seconds, task->firstTile, task->palette);
         break;
     case 1:
-        if (FirstMap_GetUnk30() != 0 || !func_020b9710()) {
+        if (FirstMap_GetUnk30() != 0 || !Game_GetDayLimit()) {
             task->slideOffset = 32;
             Task_ResumeScript((Task *)task);
             NumberSpriteTask_SlideOut(task);
             return;
         }
-        task->value = func_020b96e8();
-        NumberSprite_PutLabelAfterNumber(x & 0x1ff, y & 0xff, func_020b96e8(), task->firstTile, task->palette);
+        task->value = Game_GetDaysLeft();
+        NumberSprite_PutLabelAfterNumber(x & 0x1ff, y & 0xff, Game_GetDaysLeft(), task->firstTile, task->palette);
         break;
     case 2:
-        if (TimeLimit_GetRemaining(&seconds) || func_020b9710()) {
+        if (TimeLimit_GetRemaining(&seconds) || Game_GetDayLimit()) {
             task->value = Game_GetShownDay();
             task->slideOffset = 32;
             Task_ResumeScript((Task *)task);
