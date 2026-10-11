@@ -13662,6 +13662,10 @@ src/game/main/func_020c9c70.c:
     complete
     .text       start:0x020c9c70 end:0x020c9c7c
 
+src/game/main/units/attack_tasks_running.c:
+    complete
+    .text       start:0x020c9c7c end:0x020c9ccc
+
 src/game/main/units/attack_target_select_finish.c:
     complete
     .text       start:0x020c9ccc end:0x020c9e10
