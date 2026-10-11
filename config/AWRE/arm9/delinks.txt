@@ -12519,6 +12519,13 @@ src/game/main/graphics/palette_queue_block_copy.c:
     complete
     .text       start:0x020dbc94 end:0x020dbd08
 
+src/game/main/graphics/weather_load_tile_graphics.c:
+    complete
+    .text       start:0x020dbd08 end:0x020dbde8
+
+src/game/main/graphics/palette_get_army_block.c:
+    .text       start:0x020dbde8 end:0x020dbe18
+
 src/game/main/ai/ai_foot_list_reachable_silos.c:
     complete
     .text       start:0x020dbe18 end:0x020dbf58
