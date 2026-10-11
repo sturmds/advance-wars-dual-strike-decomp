@@ -3829,6 +3829,10 @@ src/game/main/menus/co_select_screen_list_slot_right.c:
     complete
     .text       start:0x02042338 end:0x02042578
 
+src/game/main/menus/co_select_screen_list_slot_left.c:
+    complete
+    .text       start:0x02042578 end:0x020427c8
+
 src/game/main/func_020428f4.c:
     complete
     .text       start:0x020428f4 end:0x0204291c
