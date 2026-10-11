@@ -10815,6 +10815,10 @@ src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
 
+src/game/main/sound/sound_output_restart.c:
+    complete
+    .text       start:0x02105ff8 end:0x02106098
+
 src/game/main/sound/sound_output_update.c:
     complete
     .text       start:0x021061f4 end:0x021062a4
