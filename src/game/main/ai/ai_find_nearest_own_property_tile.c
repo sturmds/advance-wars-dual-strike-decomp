@@ -9,7 +9,7 @@ extern int data_027c0284;
 int UnitType_GetAttackKind(int unitType);
 BOOL Terrain_IsProperty(u8 terrain);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-BOOL func_020a5100(int x, int y, int arg2, int arg3);
+BOOL Ai_HasEnemyWithinMoves(int x, int y, int arg2, int arg3);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -20,7 +20,7 @@ BOOL func_020a5100(int x, int y, int arg2, int arg3);
 #define FAR_AWAY 110
 
 /* For a land or air unit: finds the nearest reachable property tile of the
- * current player that func_020a5100 accepts, and writes its x and y to
+ * current player that Ai_HasEnemyWithinMoves accepts, and writes its x and y to
  * out. An indirect unit skips tiles whose enemy threat sum has reached its
  * profile's limit. Returns FALSE when there is none. */
 BOOL Ai_FindNearestOwnPropertyTile(s16 *out)
@@ -49,7 +49,7 @@ BOOL Ai_FindNearestOwnPropertyTile(s16 *out)
             if (best < STATE->rangeMap[y][x]) {
                 continue;
             }
-            if (!func_020a5100(x, y, 1, 5)) {
+            if (!Ai_HasEnemyWithinMoves(x, y, 1, 5)) {
                 continue;
             }
             if (UnitType_GetAttackKind(STATE->actingUnit->type) == ATTACK_KIND_INDIRECT) {

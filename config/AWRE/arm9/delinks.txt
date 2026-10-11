@@ -11227,6 +11227,10 @@ src/game/main/ai/func_020a50d4.c:
     complete
     .text       start:0x020a50d4 end:0x020a5100
 
+src/game/main/ai/ai_has_enemy_within_moves.c:
+    complete
+    .text       start:0x020a5100 end:0x020a5164
+
 src/game/main/ai/move_search_find_tile_by_mech_steps.c:
     complete
     .text       start:0x020a5164 end:0x020a54e4
@@ -11242,6 +11246,15 @@ src/game/main/ai/move_search_find_tile.c:
 src/game/main/ai/func_020a5cc8.c:
     complete
     .text       start:0x020a5cc8 end:0x020a604c
+
+src/game/main/ai/func_020a6260.c:
+    .text       start:0x020a6260 end:0x020a633c
+
+src/game/main/ai/func_020a633c.c:
+    .text       start:0x020a633c end:0x020a63d0
+
+src/game/main/ai/func_020a63d0.c:
+    .text       start:0x020a63d0 end:0x020a6450
 
 src/game/main/ai/ai_tile_get_lowest_adjacent_reach.c:
     complete

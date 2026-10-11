@@ -11,7 +11,7 @@ BOOL Map_IsCapturableByActingUnit(s16 x, s16 y);
 int AiActingUnit_GetSearchMovement(void);
 void AiActingUnit_MarkAttackRange(int movement);
 BOOL AiUnit_FindFiringTile(s16 *tile);
-BOOL func_020a5100(int x, int y, int arg2, int arg3);
+BOOL Ai_HasEnemyWithinMoves(int x, int y, int arg2, int arg3);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -20,7 +20,7 @@ BOOL func_020a5100(int x, int y, int arg2, int arg3);
 
 /* Finds a capture site (an entry of the unk_6088 table) for the acting
  * unit: the reachable tile with the lowest range map value that
- * Map_IsCapturableByActingUnit accepts, that func_020a5100 accepts, and
+ * Map_IsCapturableByActingUnit accepts, that Ai_HasEnemyWithinMoves accepts, and
  * whose site counter is under the AI profile's limit. The counter is
  * unk_04 for a unit that is not indirect and unk_05 for an indirect one.
  * Passes the tile to AiUnit_FindFiringTile and writes the result to out. */
@@ -49,7 +49,7 @@ BOOL Ai_FindCaptureSiteTile(s16 *out)
             if (best < STATE->rangeMap[y][x]) {
                 continue;
             }
-            if (!func_020a5100(x, y, 1, 5)) {
+            if (!Ai_HasEnemyWithinMoves(x, y, 1, 5)) {
                 continue;
             }
             tile[0] = x;
