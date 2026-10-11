@@ -8423,6 +8423,10 @@ src/game/main/func_020b9d48.c:
     complete
     .text       start:0x020b9d48 end:0x020b9d74
 
+src/game/main/menus/game_state22_reopen_popup.c:
+    complete
+    .text       start:0x020b9d74 end:0x020b9e04
+
 src/game/main/func_020b9e04.c:
     complete
     .text       start:0x020b9e04 end:0x020b9e30
