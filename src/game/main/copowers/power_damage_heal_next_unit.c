@@ -11,7 +11,7 @@
 
 void Task_ResumeScript(Task *task);
 s16 ScriptSlot_Find(const ScriptCommand *script);
-void func_020e36fc(int x, int y, int player);
+void PowerHitEffect_Start(int x, int y, int player);
 
 extern ScriptCommand data_02169e38[];
 
@@ -55,7 +55,7 @@ void PowerDamage_HealNextUnit(PowerDamageTask *task)
             unit->hp += task->heal;
         if (data_027c027c->unk_50[data_027c0284]->second != NULL)
             data_027c027c->unk_50[data_027c0284]->second();
-        func_020e36fc(unit->x, unit->y, task->player);
+        PowerHitEffect_Start(unit->x, unit->y, task->player);
         break;
     }
     task->unitIndex = i + 1;

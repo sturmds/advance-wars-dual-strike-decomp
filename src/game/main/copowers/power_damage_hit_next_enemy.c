@@ -14,14 +14,14 @@ s16 ScriptSlot_Find(const ScriptCommand *script);
 BOOL Player_IsInGame(u8 player);
 void Unit_DamageAtTile(int x, int y, int damage);
 void Unit_HalveFuelAtTile(int x, int y);
-void func_020e36fc(int x, int y, int player);
+void PowerHitEffect_Start(int x, int y, int player);
 
 extern ScriptCommand data_02169e38[];
 
 /* Script step of gPowerDamageTaskDesc: every POWER_DAMAGE_HIT_DELAY + 1
  * frames, while no map scroll script runs, damages the next unit of a
  * player on another team that passes the power's filter, halves its fuel
- * for Drake's powers and passes its tile to func_020e36fc (probably the hit
+ * for Drake's powers and passes its tile to PowerHitEffect_Start (probably the hit
  * effect, or a scroll to the tile). data_02169e38 is the map scroll script. Carried units
  * and Oozium-class units are skipped. Resumes the script once every player
  * slot has been walked, or at once when the power does no damage. */
@@ -68,7 +68,7 @@ void PowerDamage_HitNextEnemy(PowerDamageTask *task)
             Unit_HalveFuelAtTile(unit->x, unit->y);
         if (data_027c027c->unk_50[data_027c0284]->second != NULL)
             data_027c027c->unk_50[data_027c0284]->second();
-        func_020e36fc(unit->x, unit->y, task->player);
+        PowerHitEffect_Start(unit->x, unit->y, task->player);
         break;
     }
     task->unitIndex = i + 1;
