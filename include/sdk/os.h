@@ -205,4 +205,7 @@ void OsTag_SendCommandWord(u32 command);
 /* PXI receive callback: sets the reset flag when the ARM7 answers the reset command, else halts. */
 void Reset_OnOsTagMessage(u32 tag, u32 data, int err);
 
+/* Registers Reset_OnOsTagMessage once the ARM7 is ready for OS commands. */
+void OS_InitReset(void);
+
 #endif

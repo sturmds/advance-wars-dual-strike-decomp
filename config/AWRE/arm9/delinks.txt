@@ -21336,6 +21336,10 @@ src/sdk/os/reset_on_os_tag_message.c:
     complete
     .text       start:0x0210ec74 end:0x0210ecb8
 
+src/sdk/os/os_init_reset.c:
+    complete
+    .text       start:0x0210ecb8 end:0x0210ed20
+
 src/game/main/func_0210ed9c.c:
     complete
     .text       start:0x0210ed9c end:0x0210edb8

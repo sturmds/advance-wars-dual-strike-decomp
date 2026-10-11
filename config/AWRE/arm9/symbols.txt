@@ -5415,7 +5415,7 @@ OS_Terminate kind:function(arm,size=0x14) addr:0x0210eb88
 Reset_StopAndRequestArm7 kind:function(arm,size=0xa8) addr:0x0210eb9c
 OsTag_SendCommandWord kind:function(arm,size=0x30) addr:0x0210ec44
 Reset_OnOsTagMessage kind:function(arm,size=0x44) addr:0x0210ec74
-func_0210ecb8 kind:function(arm,size=0x68) addr:0x0210ecb8
+OS_InitReset kind:function(arm,size=0x68) addr:0x0210ecb8
 func_0210ed20 kind:function(arm,size=0x7c) addr:0x0210ed20
 func_0210ed9c kind:function(arm,size=0x1c) addr:0x0210ed9c
 func_0210edb8 kind:function(arm,size=0x8) addr:0x0210edb8
@@ -9010,7 +9010,7 @@ gOsVAlarmInitialized kind:bss addr:0x022a9c1c
 data_022a9c20 kind:bss addr:0x022a9c20
 data_022a9c24 kind:bss addr:0x022a9c24
 data_022a9c28 kind:bss addr:0x022a9c28
-data_022a9c30 kind:bss addr:0x022a9c30
+gOsResetInitialized kind:bss addr:0x022a9c30
 data_022a9c34 kind:bss addr:0x022a9c34
 data_022a9c38 kind:bss addr:0x022a9c38
 data_022a9c3c kind:bss addr:0x022a9c3c

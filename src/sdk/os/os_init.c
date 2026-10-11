@@ -8,7 +8,7 @@ void func_0210ced0(void);
 void func_0210fa9c(void);
 void func_0210ee48(void);
 void func_0210d790(void);
-void func_0210ecb8(void);
+void OS_InitReset(void);
 void func_0211e8a0(void);
 void func_02115fe8(void);
 void func_02115258(void);
@@ -29,7 +29,7 @@ void OS_Init(void)
     OS_InitVAlarm();
     func_0210ee48();
     func_0210d790();
-    func_0210ecb8();
+    OS_InitReset();
     func_0211e8a0();
     func_02115fe8();
     func_02115258();
