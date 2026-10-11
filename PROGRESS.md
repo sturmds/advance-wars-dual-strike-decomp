@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6122 / 6598 | 1379900 / 1531944 | 90.08% | 0 | 0 |
+| game | 6129 / 6598 | 1380628 / 1531944 | 90.12% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6261 / 7479 | 1383364 / 1685994 | 82.05% | 1 | 30 |
+| all | 6268 / 7479 | 1384092 / 1685994 | 82.09% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4732 / 5180 | 948076 / 1082632 | 87.57% | 0 |
+| main | game | 4739 / 5180 | 948804 / 1082632 | 87.64% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -54,7 +54,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_0205327c.c` | func_0205327c | 212 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
-| `src/game/main/func_020c0764.c` | func_020c0764 | 116 |
 | `src/game/main/func_020f20b4 5.c` | no delinks entry | 0 |
 | `src/game/main/func_020f20fc 4.c` | no delinks entry | 0 |
 | `src/game/main/func_020f2134 3.c` | no delinks entry | 0 |
@@ -63,9 +62,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_020f67f0.c` | no delinks entry | 0 |
 | `src/game/main/func_020f6854.c` | no delinks entry | 0 |
 | `src/game/main/graphics/func_0200c500.c` | func_0200c500 | 216 |
-| `src/game/main/graphics/gfx_queue_add_kind4.c` | GfxQueue_AddKind4 | 128 |
-| `src/game/main/graphics/image4bpp_set_pixel_linear.c` | Image4bpp_SetPixelLinear | 84 |
-| `src/game/main/graphics/palette_get_army_block.c` | func_020dbde8 | 48 |
 | `src/game/main/graphics/sprite_anim_queue3d.c` | SpriteAnim_Queue3d | 196 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |
@@ -79,8 +75,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 |
 | `src/game/main/menus/combat_setup_add_shop_buttons.c` | func_020842e0 | 240 |
-| `src/game/main/menus/combat_setup_player_ready.c` | CombatSetup_SetPlayerReady | 148 |
-| `src/game/main/menus/combat_setup_player_unready.c` | CombatSetup_SetPlayerUnready | 116 |
 | `src/game/main/menus/combat_setup_update_co_pick.c` | CombatSetup_UpdateCoPick | 524 |
 | `src/game/main/menus/func_0202f0d8.c` | func_0202f0d8 | 2164 |
 | `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 |
@@ -92,7 +86,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/func_020d3dec.c` | func_020d3dec | 148 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
-| `src/game/main/menus/player_info_toggle_last_page_view.c` | PlayerInfo_ToggleLastPageView | 88 |
 | `src/game/main/save_write_record.c` | Save_WriteRecord | 1428 |
 | `src/game/main/screen/func_02006a20.c` | func_02006a20 | 192 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |

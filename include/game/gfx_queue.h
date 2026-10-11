@@ -10,7 +10,7 @@ typedef struct GfxQueueEntry {
     const void *src;
     void *volatile dst;
     volatile u32 size;                 /* bytes */
-    volatile u8 kind;                  /* 2, 3 and 4 are queued so far */
+    volatile u8 kind;                  /* 1 to 4 are queued so far */
     u8 pad_0d[3];
 } GfxQueueEntry;
 
