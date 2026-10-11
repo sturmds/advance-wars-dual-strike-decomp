@@ -11,7 +11,7 @@
 
 void Battle_StartFighterTask(BattleCellTask *cellTask);
 void func_ov002_02357e5c(int side, int cell);
-void func_ov002_02358048(int side, int cell);
+void Battle_StartCellEffect(int side, int cell);
 void Battle_PutFighterSprite(int side, int cell);
 void func_ov002_0235f02c(BattleCellTask *cellTask);
 void func_ov002_0235f3c0(BattleCellTask *cellTask);
@@ -35,7 +35,7 @@ void BattleCells_RunSequence(BattleScreenTask *screen)
                 cellTask = (BattleCellTask *)BATTLE_CELL_ENTRY(side, DUE_CELL).unk_00;
                 cellTask->steps[cellTask->stepIndex] = 3;
                 if (MENU->battle.unk_48[side] != 0) {
-                    func_ov002_02358048(side, DUE_CELL);
+                    Battle_StartCellEffect(side, DUE_CELL);
                 }
                 cellTask->stepIndex++;
                 if (cellTask->stepIndex == 8) {
