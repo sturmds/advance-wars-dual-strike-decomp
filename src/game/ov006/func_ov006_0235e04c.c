@@ -14,7 +14,7 @@ extern int data_027c0284;
 /* Stores the cell Ov006_GetWaterCell picks for tile x, y: 42 (sea) when it
  * returns 0, or when it returns a negative value on a sea tile. A cell of 42
  * also sets the terrain to sea. */
-void func_ov006_0235e04c(int x, int y)
+void Ov006_FitWaterCell(int x, int y)
 {
     int cell = Ov006_GetWaterCell(x, y);
 

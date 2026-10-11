@@ -9,7 +9,7 @@ void Ov006_RemoveProperty(int x, int y);
 int Ov006_IsRiverOrBridgeOnRiver(int x, int y);
 int Ov006_IsSpecialCell(int x, int y);
 void func_ov006_0235da70(int x, int y, int cell);
-void func_ov006_0235dedc(int x, int y);
+void Ov006_FitWaterCellsInBlock(int x, int y);
 void func_ov006_0236146c(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void Ov006_RefitCellsAround(int x, int y);
@@ -44,7 +44,7 @@ void Ov006_TurnToSea(int x, int y)
         return;
     }
     Ov006_SetTerrain(x, y, TERRAIN_SEA);
-    func_ov006_0235dedc(x, y);
+    Ov006_FitWaterCellsInBlock(x, y);
     func_ov006_0236146c(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     Ov006_RefitCellsAround(x, y);

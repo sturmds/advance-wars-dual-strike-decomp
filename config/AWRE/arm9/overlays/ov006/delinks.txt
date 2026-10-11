@@ -863,7 +863,11 @@ src/game/ov006/ov006_turn_to_sea.c:
     complete
     .text       start:0x0235ddac end:0x0235dedc
 
-src/game/ov006/func_ov006_0235e04c.c:
+src/game/ov006/ov006_fit_water_cells_in_block.c:
+    complete
+    .text       start:0x0235dedc end:0x0235e04c
+
+src/game/ov006/ov006_fit_water_cell.c:
     complete
     .text       start:0x0235e04c end:0x0235e0f0
 
