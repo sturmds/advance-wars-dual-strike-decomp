@@ -16,7 +16,7 @@ void Mem_Free(void *res);
 void Bg_PutTileBlock(void *target, int a, int b, const void *src, int c);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void EventScript_ClearTextMap(void);
-void func_0201d908(u16 coMood);
+void EventPicture_Show(u16 coMood);
 void CallbackList_Add(void *callback);
 void func_0201dc48(void);
 void EventHold_StepScreenSlideOut(EventScriptSlot *slot);
@@ -34,7 +34,7 @@ void EventScript_StartScreenSlideOut(int index)
     Mem_Free(file);
     TransferQueue_Add(data_022978e0, data_027c0280->bgVram + 0x1f800, 0x180);
     EventScript_ClearTextMap();
-    func_0201d908(data_022977a4.unk_02);
+    EventPicture_Show(data_022977a4.unk_02);
     data_022977fe[index].counter = 47;
     data_02297780 = data_022977fe[index].counter;
     CallbackList_Add(func_0201dc48);

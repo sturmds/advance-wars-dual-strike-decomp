@@ -3003,6 +3003,10 @@ src/game/main/func_0201d8f0.c:
     complete
     .text       start:0x0201d8f0 end:0x0201d908
 
+src/game/main/script/event_picture_show.c:
+    complete
+    .text       start:0x0201d908 end:0x0201da48
+
 src/game/main/script/event_hold_step_screen_slide_out.c:
     complete
     .text       start:0x0201da48 end:0x0201dac4
