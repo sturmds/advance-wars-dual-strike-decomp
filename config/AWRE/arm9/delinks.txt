@@ -12425,6 +12425,18 @@ src/game/main/units/neighbor_tile_picker_update.c:
     complete
     .text       start:0x020ce58c end:0x020ce6cc
 
+src/game/main/units/neighbor_dir_prev.c:
+    complete
+    .text       start:0x020ce7c0 end:0x020ce7e8
+
+src/game/main/units/neighbor_dir_next.c:
+    complete
+    .text       start:0x020ce7e8 end:0x020ce810
+
+src/game/main/units/neighbor_dir_find_at_tile.c:
+    complete
+    .text       start:0x020ce810 end:0x020ce898
+
 src/game/main/game_enter_state18.c:
     complete
     .text       start:0x020ceb60 end:0x020cebac

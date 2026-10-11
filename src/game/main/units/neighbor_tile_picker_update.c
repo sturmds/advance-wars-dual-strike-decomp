@@ -10,8 +10,8 @@ extern s8 data_0216637a[];
 
 u32 func_020ef208(void);
 u32 func_020ef234(void);
-int func_020ce7e8(int direction, int mask); /* next direction in mask */
-int func_020ce7c0(int direction, int mask); /* previous direction in mask */
+int NeighborDir_Next(int direction, int mask); /* next direction in mask */
+int NeighborDir_Prev(int direction, int mask); /* previous direction in mask */
 void MapTouch_UpdateNeighborCursor(int *direction, int mask);
 u32 MapTouch_ReadNeighborTileTap(int mask);
 void Sound_PlaySe(u32 soundId);
@@ -38,10 +38,10 @@ u32 NeighborTilePicker_Update(int *direction, int mask)
     u16 input;
 
     if (keys & INPUT_NEXT) {
-        picked = func_020ce7e8(picked, mask);
+        picked = NeighborDir_Next(picked, mask);
     }
     if (keys & INPUT_PREV) {
-        picked = func_020ce7c0(picked, mask);
+        picked = NeighborDir_Prev(picked, mask);
     }
     MapTouch_UpdateNeighborCursor(&picked, mask);
     if (picked != old) {

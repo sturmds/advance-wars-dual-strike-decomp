@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/touch.h"
 
-int func_020ce810(int tileX, int tileY, int mask);
+int NeighborDir_FindAtTile(int tileX, int tileY, int mask);
 void func_020f129c(void);
 void func_020f12d4(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
@@ -25,7 +25,7 @@ static inline BOOL IsTouchInPhase(int phase)
 
 /* Cursor update from touch for the four-direction tile picker in
  * NeighborTilePicker_Update. When the touched tile is one of the directions in `mask`
- * (func_020ce810), the cursor (cursorX, cursorY) moves there and *direction
+ * (NeighborDir_FindAtTile), the cursor (cursorX, cursorY) moves there and *direction
  * gets its index. A new touch remembers its tile in unk_30 and unk_32 and
  * starts the touch marker task; moving to another tile ends both, as in
  * MapCursor_UpdateFromTouch. */
@@ -54,7 +54,7 @@ void MapTouch_UpdateNeighborCursor(int *direction, int mask)
         tileX = pos[0] >> 9;
         tileY = pos[1] >> 9;
     }
-    found = func_020ce810(tileX, tileY, mask);
+    found = NeighborDir_FindAtTile(tileX, tileY, mask);
     if (found >= 0) {
         GAME->cursorX = tileX;
         GAME->cursorY = tileY;

@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/touch.h"
 
-int func_020ce810(int tileX, int tileY, int mask);
+int NeighborDir_FindAtTile(int tileX, int tileY, int mask);
 void func_020f1288(void);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
@@ -30,7 +30,7 @@ static inline BOOL IsTouchInPhase(int phase)
  * tile (NeighborTilePicker_Update). The tile under the point where the touch ended is
  * worked out as in MapCursor_UpdateFromTouch. A release on the tile where the
  * touch began resumes the touch marker task, then confirms when
- * func_020ce810 finds that tile among the directions in `mask` and cancels
+ * NeighborDir_FindAtTile finds that tile among the directions in `mask` and cancels
  * otherwise. */
 u32 MapTouch_ReadNeighborTileTap(int mask)
 {
@@ -58,7 +58,7 @@ u32 MapTouch_ReadNeighborTileTap(int mask)
     }
     if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
         func_020f1288();
-        if (func_020ce810(tileX, tileY, mask) >= 0) {
+        if (NeighborDir_FindAtTile(tileX, tileY, mask) >= 0) {
             return INPUT_CONFIRM;
         }
         return INPUT_CANCEL;
