@@ -12226,6 +12226,10 @@ src/game/main/screen/screen_start_layer0_blend.c:
     complete
     .text       start:0x020e47cc end:0x020e48c0
 
+src/game/main/copowers/ex_machina_bolt_play_anim.c:
+    complete
+    .text       start:0x020e48c0 end:0x020e49cc
+
 src/game/main/func_020e4e7c.c:
     complete
     .text       start:0x020e4e7c end:0x020e4e98
