@@ -21362,6 +21362,10 @@ src/sdk/fs/fs_init_file.c:
     complete
     .text       start:0x02112bb4 end:0x02112bdc
 
+src/sdk/fs/fs_init.c:
+    complete
+    .text       start:0x02112bdc end:0x02112c18
+
 src/game/main/func_02112c8c.c:
     complete
     .text       start:0x02112c8c end:0x02112cac

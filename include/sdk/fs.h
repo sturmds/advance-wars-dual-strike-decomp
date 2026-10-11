@@ -140,6 +140,7 @@ typedef struct FSOverlayInfo {
 extern FSArchive gRomFileArchive;
 
 FSFileID FS_GetOverlayFileID(const FSOverlayInfo *info);
+void FS_Init(u32 dmaNo);
 void FS_InitFile(FSFile *file);
 BOOL FS_OpenFile(FSFile *file, const char *path);
 s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
