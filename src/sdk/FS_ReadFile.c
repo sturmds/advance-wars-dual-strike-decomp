@@ -1,8 +1,8 @@
-#include "types.h"
+#include "sdk/fs.h"
 
-void func_021129cc(int, int, int, int);
+s32 FSi_ReadFileCore(FSFile *file, void *dest, s32 length, BOOL async);
 
-void FS_ReadFile(int a0, int a1, int a2)
+s32 FS_ReadFile(FSFile *file, void *dest, s32 length)
 {
-    func_021129cc(a0, a1, a2, 0);
+    return FSi_ReadFileCore(file, dest, length, FALSE);
 }

@@ -11,6 +11,9 @@ typedef struct FSFile FSFile;
 #define FS_RESULT_SUCCESS 0
 #define FS_RESULT_FAILURE 1
 #define FS_RESULT_PROC_ASYNC 6             /* the archive finishes the command later */
+
+/* Commands an archive runs for a file, in the order of its command table. */
+#define ARCHIVE_OP_COPY_OUT 0
 #define FS_RESULT_UNSUPPORTED 4
 #define FS_RESULT_PROC_UNKNOWN 8           /* the archive does not handle the command */
 
