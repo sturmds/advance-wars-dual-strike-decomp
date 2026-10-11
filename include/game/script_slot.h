@@ -86,6 +86,14 @@ typedef struct MapScrollSlot {
     u8 pad_2e[0x60 - 0x2e];
 } MapScrollSlot;
 
+/* The same slot as the map overview script data_02166948 uses it. */
+typedef struct MapOverviewSlot {
+    u8 pad_00[0x1e];
+    s16 frame;                         /* frames of the fade so far (MapOverview_DimStep) */
+    s16 savedScrollX;                  /* map view scroll when the overview opens */
+    s16 savedScrollY;
+} MapOverviewSlot;
+
 /* The same slot as the battle resume script data_02158468 uses it
  * (Battle_ResumeFromSave); func_02017cf8 sets recordId. */
 typedef struct BattleResumeSlot {
