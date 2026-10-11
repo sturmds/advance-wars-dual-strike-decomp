@@ -16553,6 +16553,10 @@ src/game/main/skills/load_force_rank_sets.c:
     complete
     .text       start:0x020e6f48 end:0x020e6fb8
 
+src/game/main/skills/skills_copy.c:
+    complete
+    .text       start:0x020e6fb8 end:0x020e7004
+
 src/game/main/skills/skills_set_from_list.c:
     complete
     .text       start:0x020e7004 end:0x020e7054

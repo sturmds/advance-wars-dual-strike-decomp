@@ -9,7 +9,7 @@ extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 void *Mem_Alloc(u32 size);
 int Co_GetForceRankSetIndex(int coId, int player);
-void func_020e6fb8(u32 *src, u8 *dst);
+void Skills_Copy(u32 *src, u8 *dst);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -26,7 +26,7 @@ void LinkSkillSyncTask_Init(LinkSyncTask *task)
         for (slot = 0; slot < 2; slot++) {
             co = STATE->playerCos[player][slot] & 0x7f;
             if (co != 0) {
-                func_020e6fb8(gCoEquippedSkills[co][Co_GetForceRankSetIndex(co, player)],
+                Skills_Copy(gCoEquippedSkills[co][Co_GetForceRankSetIndex(co, player)],
                               task->skills + ((player - 1) * 2 + slot) * 16);
             }
         }

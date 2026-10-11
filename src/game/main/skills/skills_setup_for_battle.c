@@ -18,7 +18,7 @@ extern u32 data_022a72e8[4][2][4];
 #define PLAYER_SKILLS (data_022a72e8 - 1)
 extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
-void func_020e6fb8(const u32 *src, u32 *dst);
+void Skills_Copy(const u32 *src, u32 *dst);
 const u32 *LinkSkills_GetPlayerSet(int player, int set);
 BOOL Campaign_IsHardMode(void);
 int Co_GetForceRankSetIndex(int co, int player);
@@ -51,7 +51,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet)
 
     for (player = 1; player < 5; player++) {
         for (i = 0; i < 2; i++) {
-            func_020e6fb8(data_022a72b8, PLAYER_SKILLS[player][sets[i]]);
+            Skills_Copy(data_022a72b8, PLAYER_SKILLS[player][sets[i]]);
         }
     }
     if (STATE->gameMode == GAME_MODE_DESIGN_ROOM) {
@@ -62,7 +62,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet)
             if (STATE->players[linkPlayer].controller != PLAYER_CONTROLLER_NONE) {
                 for (linkI = 0; linkI < 2; linkI++) {
                     if ((&STATE->players[linkPlayer].front)[linkI].id & PLAYER_CO_ID_MASK) {
-                        func_020e6fb8(LinkSkills_GetPlayerSet(linkPlayer, sets[linkI]),
+                        Skills_Copy(LinkSkills_GetPlayerSet(linkPlayer, sets[linkI]),
                                       PLAYER_SKILLS[linkPlayer][sets[linkI]]);
                     }
                 }
@@ -76,7 +76,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet)
             for (humanI = 0; humanI < 2; humanI++) {
                 humanCo = (&STATE->players[humanPlayer].front)[humanI].id & PLAYER_CO_ID_MASK;
                 if (humanCo != 0) {
-                    func_020e6fb8(gCoEquippedSkills[humanCo][mode == GAME_MODE_VERSUS ? Co_GetForceRankSetIndex(humanCo, humanPlayer) : 0],
+                    Skills_Copy(gCoEquippedSkills[humanCo][mode == GAME_MODE_VERSUS ? Co_GetForceRankSetIndex(humanCo, humanPlayer) : 0],
                                   PLAYER_SKILLS[humanPlayer][sets[humanI]]);
                 }
             }
@@ -102,7 +102,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet)
                 for (versusI = 0; versusI < 2; versusI++) {
                     versusCo = (&STATE->players[player].front)[versusI].id & PLAYER_CO_ID_MASK;
                     if (versusCo != 0) {
-                        func_020e6fb8(gCoEquippedSkills[versusCo][Co_GetForceRankSetIndex(versusCo, player)],
+                        Skills_Copy(gCoEquippedSkills[versusCo][Co_GetForceRankSetIndex(versusCo, player)],
                                       PLAYER_SKILLS[player][sets[versusI]]);
                     }
                 }
