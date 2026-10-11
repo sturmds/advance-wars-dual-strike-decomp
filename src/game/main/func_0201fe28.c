@@ -3,9 +3,9 @@
 
 extern SaveSlotTable data_02297f3c;
 
-int func_0201f750(void);
+int Save_FindNewestRecord(void);
 
-/* Returns 1 when recordId cannot be used: it is 0xff, func_0201f750 returns
+/* Returns 1 when recordId cannot be used: it is 0xff, Save_FindNewestRecord returns
  * 0xffff, a slot without the mark holds it, or a marked slot holds another
  * id. Returns 0 otherwise. The meaning of the checks is not clear yet. */
 int func_0201fe28(int recordId)
@@ -15,7 +15,7 @@ int func_0201fe28(int recordId)
     if (recordId == 0xff) {
         return 1;
     }
-    if (func_0201f750() == 0xffff) {
+    if (Save_FindNewestRecord() == 0xffff) {
         return 1;
     }
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {

@@ -9,8 +9,13 @@
 typedef struct SaveSlotTable {
     u8 id[SAVE_SLOT_COUNT];            /* id of the record in each slot, 0xff: none (guess) */
     u8 newId[SAVE_SLOT_COUNT];         /* ids that the save buffer holds; copied to id after a full load */
-    u8 flags[SAVE_SLOT_COUNT];         /* bit 4: marked by func_0201fe28 and func_0201f750, restored after */
+    u8 flags[SAVE_SLOT_COUNT];         /* bit 4: marked by func_0201fe28 and Save_FindNewestRecord, restored after */
+    u8 part[SAVE_SLOT_COUNT];          /* bits 4-7: part index of the slot in its record; bits 0-3: part count - 1 */
+    u8 unk_54[SAVE_SLOT_COUNT];
 } SaveSlotTable;
+
+/* data_02297fa8: one save counter per slot. Save_FindNewestRecord takes the highest. */
+extern u32 data_02297fa8[SAVE_SLOT_COUNT];
 
 #define SAVE_SLOT_MARK 0x10
 
