@@ -4051,6 +4051,18 @@ src/game/main/func_02031f54.c:
     complete
     .text       start:0x02031f54 end:0x02031f6c
 
+src/game/main/menus/co_exp_add_cells_centered.c:
+    complete
+    .text       start:0x02031f6c end:0x0203204c
+
+src/game/main/menus/co_exp_add_cells_main_left.c:
+    complete
+    .text       start:0x0203204c end:0x0203212c
+
+src/game/main/menus/co_exp_add_cells_main_right.c:
+    complete
+    .text       start:0x0203212c end:0x0203220c
+
 src/game/main/func_02032264.c:
     complete
     .text       start:0x02032264 end:0x02032298
