@@ -51,7 +51,7 @@ void func_02044950(void);
 void func_02044b3c(void);
 int func_02044c04(int a0);
 int func_02044c28(u8 column);
-void func_02045540(u8 *src, u8 a1, u8 a2, u8 column);
+void CoSelectScreen_DrawColumnFrame(u8 *src, u8 a1, u8 a2, u8 column);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -117,7 +117,7 @@ void CoSelectScreen_Init(void)
     }
     frameOffset = data_0229c73c->rowCount == 2 ? 0x57c : 0x5f0;
     for (column = 1; column < data_0229c73c->columnCount + 1; column++) {
-        func_02045540(res + frameOffset, func_02044c28(column), func_02044c04(0), column);
+        CoSelectScreen_DrawColumnFrame(res + frameOffset, func_02044c28(column), func_02044c04(0), column);
     }
     Gfx_RequestLayerCopy(1);
     Data_Unpack(res, data_027c0280->objVram);
