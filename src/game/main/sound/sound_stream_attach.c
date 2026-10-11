@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-void func_02108f2c(void **handle);
+void SoundStreamHandle_Detach(void **handle);
 void SoundStream_Close(SoundStream *stream);
 
 /* Claims stream slot slotNo for handle. The handle lets go of the stream it
@@ -13,19 +13,19 @@ SoundStream *SoundStream_Attach(void **handle, int slotNo, int priority)
     SoundStream *stream;
 
     if (*handle != NULL) {
-        func_02108f2c(handle);
+        SoundStreamHandle_Detach(handle);
     }
     stream = &data_022a9300[slotNo];
     if (stream->buffer == NULL) {
         return NULL;
     }
     if (stream->flags.fileOpen) {
-        if (priority < (int)stream->unk_14c) {
+        if (priority < stream->priority) {
             return NULL;
         }
         SoundStream_Close(stream);
     }
-    stream->unk_14c = priority;
+    stream->priority = priority;
     stream->flags.fileOpen = 1;
     stream->handle = handle;
     *handle = stream;

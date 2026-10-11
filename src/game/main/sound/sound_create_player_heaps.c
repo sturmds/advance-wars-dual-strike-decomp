@@ -4,8 +4,8 @@
 
 #define SOUND_SLOT_COUNT 32
 
-const void *func_02106484(int index);
-void *func_021066dc(void);
+const void *SoundArc_GetPlayerGroupInfo(int index);
+void *SoundArc_GetCurrent(void);
 void SoundSlot_SetMaxPlayers(int slotNo, int maxPlayers);
 void SoundSlot_SetTrackChannelMask(int slotNo, u32 mask);
 BOOL SoundPlayerHeap_Create(int slotNo, SoundHeap *heap, u32 size);
@@ -19,9 +19,9 @@ BOOL Sound_CreatePlayerHeaps(SoundHeap *heap)
     const SoundArcPlayerGroupInfo *group;
     int i;
 
-    func_021066dc();
+    SoundArc_GetCurrent();
     for (slotNo = 0; slotNo < SOUND_SLOT_COUNT; slotNo++) {
-        group = func_02106484(slotNo);
+        group = SoundArc_GetPlayerGroupInfo(slotNo);
         if (group == NULL) {
             continue;
         }

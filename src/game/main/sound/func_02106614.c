@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-extern SoundArc *data_022a8a60;             /* current sound archive */
+extern SoundArc *gCurrentSoundArc;
 
 /* Pointer to the item at offset inside the info block, NULL for offset 0. */
 static inline const void *InfoItem(const SoundArcInfo *info, u32 offset)
@@ -31,7 +31,7 @@ const void *NNS_SndArcGetSeqArcInfo(int index)
 {
     const SoundArcSeqInfoTable *table;
 
-    table = InfoItem(data_022a8a60->info, data_022a8a60->info->unk_0c);
+    table = InfoItem(gCurrentSoundArc->info, gCurrentSoundArc->info->unk_0c);
     if (table == NULL) {
         return NULL;
     }
@@ -41,5 +41,5 @@ const void *NNS_SndArcGetSeqArcInfo(int index)
     if (index >= table->count) {
         return NULL;
     }
-    return ArcInfoItem(data_022a8a60, table->offset[index]);
+    return ArcInfoItem(gCurrentSoundArc, table->offset[index]);
 }

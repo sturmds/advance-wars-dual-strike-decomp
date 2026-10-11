@@ -9,7 +9,7 @@ void SoundStream_UnlockChannels(SoundStream *stream);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 void SoundArc_GetRange(SoundArcRange *out);
 BOOL FS_OpenFileFast(FSFile *file, SoundArcRange range);
-u32 func_021063f8(u32 fileNo);
+u32 SoundArc_GetFileOffset(u32 fileNo);
 void func_02109328(SoundFader *fader);
 void SoundFader_Start(SoundFader *fader, int target, int frames);
 BOOL SoundStrm_Setup(SoundStrm *strm, int format, void *buffer, u32 length, int timer, int blockCount,
@@ -21,12 +21,12 @@ void SoundStream_QueueRefill(int status, int channelCount, void *blocks[], u32 b
 /* Takes a stream slot of group slotNo for handle and opens stream file
  * info->fileId on it: reads its header, sets the start offsetMs milliseconds
  * in, the callbacks, and the volume from info. Then locks hardware channels
- * (two when info->unk_07 bit 0 is set, else the file's count, at most the
+ * (two when info->flags bit 0 is set, else the file's count, at most the
  * slot's) and sets up the stream driver with four blocks; two channels play
  * hard left and hard right. Returns FALSE and gives the slot back when a step
  * fails. */
 BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo, int priority, int strmNo,
-                   u32 offsetMs, SoundStrmCallback callback, void *callbackArg, void *nextStreamCallback,
+                   u32 offsetMs, SoundStrmCallback callback, void *callbackArg, SoundNextStreamCallback nextStreamCallback,
                    void *nextStreamArg)
 {
     SoundStream *stream;
@@ -48,7 +48,7 @@ BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo
         return FALSE;
     }
 
-    stream->fileOffset = func_021063f8(info->fileId);
+    stream->fileOffset = SoundArc_GetFileOffset(info->fileId);
     stream->samplePos = stream->sampleRate * offsetMs / 1000;
     if (stream->samplePos != 0 && stream->format == SOUND_STREAM_FORMAT_ADPCM) {
         stream->flags.skipToPosition = 1;
@@ -68,7 +68,7 @@ BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo
     stream->nextStreamArg = nextStreamArg;
     stream->strmNo = strmNo;
     stream->appliedVolume = 0;
-    stream->volumeIndex = info->unk_04;
+    stream->volumeIndex = info->volume;
     func_02109328(&stream->volumeFader);
     SoundFader_Start(&stream->volumeFader, 127 << 8, 1);
 
@@ -83,7 +83,7 @@ BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo
     }
 
     channelCount = stream->channelCount;
-    if (info->unk_07 & 1) {
+    if (info->flags & 1) {
         channelCount = 2;
     }
     if (channelCount > stream->slotChannelCount) {

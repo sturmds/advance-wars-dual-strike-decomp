@@ -10,7 +10,7 @@
 #define SOUND_FETCH_WANT_SONG_PACK 8
 
 const SoundArcSeqArcInfo *NNS_SndArcGetSeqArcInfo(int seqArcNo);
-void *func_02106304(int fileId);
+void *SoundArc_GetFileAddress(int fileId);
 void *func_021072fc(int fileId, void *heap, int cache);
 
 /* Gets sequence archive seqArcNo into memory, loading it into heap when
@@ -30,7 +30,7 @@ int SoundArc_GetSeqArc(int seqArcNo, int loadFlags, void *heap, int cache, void 
             return SOUND_FETCH_ERR_PACK_READ;
         }
     } else {
-        loaded = func_02106304(info->fileId);
+        loaded = SoundArc_GetFileAddress(info->fileId);
     }
     if (loadedOut != NULL) {
         *loadedOut = loaded;

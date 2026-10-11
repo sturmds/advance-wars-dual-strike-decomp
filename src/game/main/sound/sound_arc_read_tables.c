@@ -48,14 +48,14 @@ BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad)
         }
 
         if (symbolLoad && arc->symbolSize != 0) {
-            arc->unk_84 = (u32)SoundHeap_AllocItem(heap, arc->symbolSize, SoundArc_ForgetSymbols, arc, 0);
-            if (arc->unk_84 == 0) {
+            arc->symbols = SoundHeap_AllocItem(heap, arc->symbolSize, SoundArc_ForgetSymbols, arc, 0);
+            if (arc->symbols == NULL) {
                 return FALSE;
             }
             if (!FS_SeekFile(&arc->file, arc->symbolOffset, 0)) {
                 return FALSE;
             }
-            readSize = FS_ReadFile(&arc->file, (void *)arc->unk_84, arc->symbolSize);
+            readSize = FS_ReadFile(&arc->file, arc->symbols, arc->symbolSize);
             if (readSize != arc->symbolSize) {
                 return FALSE;
             }

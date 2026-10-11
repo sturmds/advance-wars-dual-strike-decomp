@@ -35,6 +35,24 @@ typedef struct AdpcmState {
 
 /* NitroSystem sound stream (NNSSndStrm), only the fields the game code
  * reads. */
+/* What SoundStream.nextStreamCallback is told about the stream playing. */
+typedef struct SoundNextStreamParam {
+    u32 slotNo;
+    int strmNo;
+} SoundNextStreamParam;
+
+/* What SoundStream.nextStreamCallback fills in: the stream to play next and
+ * where to start in it, in milliseconds. */
+typedef struct SoundNextStreamInfo {
+    int strmNo;
+    u32 offsetMs;
+} SoundNextStreamInfo;
+
+/* Returns FALSE when there is no next stream. status is 0 in the one call the
+ * code makes. */
+typedef BOOL (*SoundNextStreamCallback)(int status, const SoundNextStreamParam *param,
+                                        SoundNextStreamInfo *info, void *arg);
+
 typedef struct SoundStream {
     SoundStrm strm;                    /* 0x00 */
     FSFile file;                       /* 0x5c */
@@ -69,34 +87,16 @@ typedef struct SoundStream {
     u32 bufferSize;                    /* 0x12c */
     SoundStrmCallback callback;        /* 0x130: called after each refill */
     void *callbackArg;                 /* 0x134 */
-    void *nextStreamCallback;          /* 0x138: asked for the stream to play once the data ends */
+    SoundNextStreamCallback nextStreamCallback; /* 0x138: asked for the stream to play once the data ends */
     void *nextStreamArg;               /* 0x13c: passed to nextStreamCallback */
     int strmNo;                        /* 0x140: stream number in the sound archive */
     u32 slotNo;                        /* 0x144: index in data_022a9300 */
     void **handle;                     /* 0x148: the caller's stream handle, which points back here */
-    u32 unk_14c;
+    int priority;                      /* 0x14c: of the handle that holds the slot */
     int volumeIndex;                   /* 0x150: index into the volume table */
     int appliedVolume;                 /* 0x154: last volume sent to the hardware */
     u32 samplePos;                     /* 0x158: next sample to read */
 } SoundStream;
-
-/* What SoundStream.nextStreamCallback is told about the stream playing. */
-typedef struct SoundNextStreamParam {
-    u32 slotNo;
-    int strmNo;
-} SoundNextStreamParam;
-
-/* What SoundStream.nextStreamCallback fills in: the stream to play next and
- * where to start in it, in milliseconds. */
-typedef struct SoundNextStreamInfo {
-    int strmNo;
-    u32 offsetMs;
-} SoundNextStreamInfo;
-
-/* Returns FALSE when there is no next stream. status is 0 in the one call the
- * code makes. */
-typedef BOOL (*SoundNextStreamCallback)(int status, const SoundNextStreamParam *param,
-                                        SoundNextStreamInfo *info, void *arg);
 
 /* A refill of a stream's blocks, queued by the stream driver's callback and
  * handled by the sound thread. */

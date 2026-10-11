@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-extern SoundArc *data_022a8a60;             /* current sound archive */
+extern SoundArc *gCurrentSoundArc;
 
 BOOL FS_ConvertPathToFileID(SoundArcRange *range, const char *path);
 BOOL FS_OpenFileFast(FSFile *file, SoundArcRange range);
@@ -14,7 +14,7 @@ void SoundArc_Open(SoundArc *arc, const char *path, void *heap, int symbolLoad)
 {
     arc->info = NULL;
     arc->files = NULL;
-    arc->unk_84 = 0;
+    arc->symbols = NULL;
     if (!FS_ConvertPathToFileID(&arc->range, path)) {
         return;
     }
@@ -24,6 +24,6 @@ void SoundArc_Open(SoundArc *arc, const char *path, void *heap, int symbolLoad)
     }
     arc->opened = 1;
     if (SoundArc_ReadTables(arc, heap, symbolLoad)) {
-        data_022a8a60 = arc;
+        gCurrentSoundArc = arc;
     }
 }

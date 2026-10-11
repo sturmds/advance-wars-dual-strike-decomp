@@ -7,7 +7,7 @@ struct Unk_02108f2c_0 {
     int unk_148;
 };
 
-void func_02108f2c(Unk_02108f2c_0 **a0)
+void SoundStreamHandle_Detach(Unk_02108f2c_0 **a0)
 {
     Unk_02108f2c_0 *t0 = *a0;
     if ((int)t0 != 0) {

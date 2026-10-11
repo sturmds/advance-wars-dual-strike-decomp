@@ -9,7 +9,7 @@ int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int irqState);
 void SND_SetupChannelPcm(int channel, int format, u32 buffer, int loop, int loopStart, u32 loopLength,
                    int volume, int shift, int timer, int pan);
-void func_0210fd14(int alarm, u32 tick, u32 period, void (*handler)(SoundStrm *), SoundStrm *arg);
+void SND_SetupAlarm(int alarm, u32 tick, u32 period, void (*handler)(SoundStrm *), SoundStrm *arg);
 
 extern LinkList data_022a892c;             /* active streams */
 extern SoundStrmChannel data_022a8978[SOUND_STRM_CHANNEL_COUNT];
@@ -53,7 +53,7 @@ BOOL SoundStrm_Setup(SoundStrm *strm, int format, u32 buffer, u32 length, int ti
         SND_SetupChannelPcm(channel, format, data_022a8978[channel].buffer, 1, 0, strm->bufferSize >> 2,
                       127, 0, timer * 32, 64);
     }
-    func_0210fd14(strm->alarm, period, period, SoundStrm_OnAlarm, strm);
+    SND_SetupAlarm(strm->alarm, period, period, SoundStrm_OnAlarm, strm);
     LinkList_Append(&data_022a892c, strm);
 
     strm->format = format;

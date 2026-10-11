@@ -9,7 +9,7 @@
 #define SOUND_FETCH_WANT_SAMPLES 4
 
 const SoundArcWaveArcInfo *NNS_SndArcGetWaveArcInfo(int waveArcNo);
-void *func_02106304(int fileId);
+void *SoundArc_GetFileAddress(int fileId);
 void *SoundArc_LoadWaveArcTable(int fileId, void *heap, int cache);
 void *func_02107204(int fileId, void *heap, int cache);
 
@@ -36,7 +36,7 @@ int SoundArc_GetWaveArc(int waveArcNo, int loadFlags, void *heap, int cache, voi
             return SOUND_FETCH_ERR_SAMPLES_READ;
         }
     } else {
-        wave = func_02106304(info->id.fileId);
+        wave = SoundArc_GetFileAddress(info->id.fileId);
     }
     if (loadedOut != NULL) {
         *loadedOut = wave;

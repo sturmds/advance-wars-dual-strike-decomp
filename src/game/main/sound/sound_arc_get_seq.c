@@ -10,7 +10,7 @@
 
 int SoundArc_GetBank(int bankNo, int loadFlags, void *heap, int cache, void **loadedOut);
 const SoundArcSeqInfo *NNS_SndArcGetSeqInfo(int seqNo);
-void *func_02106304(int fileId);
+void *SoundArc_GetFileAddress(int fileId);
 void *func_02107378(int fileId, void *heap, int cache);
 
 /* Gets sequence seqNo into memory, loading it into heap when loadFlags asks
@@ -36,7 +36,7 @@ int SoundArc_GetSeq(int seqNo, int loadFlags, void *heap, int cache, void **load
             return SOUND_FETCH_ERR_SONG_READ;
         }
     } else {
-        loaded = func_02106304(info->fileId);
+        loaded = SoundArc_GetFileAddress(info->fileId);
     }
     if (loadedOut != NULL) {
         *loadedOut = loaded;

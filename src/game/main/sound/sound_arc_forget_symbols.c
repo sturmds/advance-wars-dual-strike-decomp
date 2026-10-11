@@ -5,5 +5,5 @@
  * heap: clears arc's pointer to it. */
 void SoundArc_ForgetSymbols(void *payload, u32 size, SoundArc *arc)
 {
-    arc->unk_84 = 0;
+    arc->symbols = NULL;
 }

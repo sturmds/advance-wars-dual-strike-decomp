@@ -8,8 +8,8 @@
 typedef struct SoundFader {
     s32 start;
     s32 target;
-    u32 elapsed;
-    u32 frames;
+    s32 elapsed;
+    s32 frames;
 } SoundFader;
 
 /* SoundSeqPlayer.state */

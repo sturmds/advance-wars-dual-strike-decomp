@@ -13,9 +13,9 @@ struct Unk_021062e8_1 {
     int unk_80;
 };
 
-extern Unk_021062e8_1 *data_022a8a60;
+extern Unk_021062e8_1 *gCurrentSoundArc;
 
-void func_021062e8(int a0, int a1)
+void SoundArc_SetFileAddress(int a0, int a1)
 {
-    ((Unk_021062e8_0 *)(data_022a8a60->unk_80 + (a0 << 4)))->unk_14 = a1;
+    ((Unk_021062e8_0 *)(gCurrentSoundArc->unk_80 + (a0 << 4)))->unk_14 = a1;
 }

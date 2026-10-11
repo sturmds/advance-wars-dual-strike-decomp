@@ -20376,11 +20376,11 @@ src/game/main/sound/sound_arc_forget_info.c:
     complete
     .text       start:0x021062dc end:0x021062e8
 
-src/game/main/func_021062e8.c:
+src/game/main/sound/sound_arc_set_file_address.c:
     complete
     .text       start:0x021062e8 end:0x02106304
 
-src/game/main/func_02106304.c:
+src/game/main/sound/sound_arc_get_file_address.c:
     complete
     .text       start:0x02106304 end:0x0210632c
 
@@ -20396,7 +20396,7 @@ src/game/main/func_021063d0.c:
     complete
     .text       start:0x021063d0 end:0x021063f8
 
-src/game/main/func_021063f8.c:
+src/game/main/sound/sound_arc_get_file_offset.c:
     complete
     .text       start:0x021063f8 end:0x02106420
 
@@ -20404,7 +20404,7 @@ src/game/main/sound/func_02106420.c:
     complete
     .text       start:0x02106420 end:0x02106484
 
-src/game/main/sound/func_02106484.c:
+src/game/main/sound/sound_arc_get_player_group_info.c:
     complete
     .text       start:0x02106484 end:0x021064e8
 
@@ -20428,7 +20428,7 @@ src/game/main/sound/nns_snd_arc_get_seq_info.c:
     complete
     .text       start:0x02106678 end:0x021066dc
 
-src/game/main/func_021066dc.c:
+src/game/main/sound/sound_arc_get_current.c:
     complete
     .text       start:0x021066dc end:0x021066ec
 
@@ -20655,7 +20655,7 @@ src/game/main/sound/sound_stream_update_all.c:
     complete
     .text       start:0x02108e14 end:0x02108f2c
 
-src/game/main/func_02108f2c.c:
+src/game/main/sound/sound_stream_handle_detach.c:
     complete
     .text       start:0x02108f2c end:0x02108f44
 
@@ -21610,7 +21610,7 @@ src/sdk/snd/snd_lock_channel.c:
     complete
     .text       start:0x0210fce8 end:0x0210fd14
 
-src/sdk/snd/func_0210fd14.c:
+src/sdk/snd/snd_setup_alarm.c:
     complete
     .text       start:0x0210fd14 end:0x0210fd58
 

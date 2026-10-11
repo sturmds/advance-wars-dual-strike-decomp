@@ -19,5 +19,5 @@ void SoundStream_Stop(SoundStream *stream, int fadeFrames)
     }
     SoundFader_Start(&stream->volumeFader, 0, fadeFrames);
     stream->flags.stopping = 1;
-    stream->unk_14c = 0;
+    stream->priority = 0;
 }

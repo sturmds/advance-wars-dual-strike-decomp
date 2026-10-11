@@ -3,7 +3,7 @@
 #include "game/sound_stream.h"
 
 const SoundArcStrmInfo *NNS_SndArcGetStrmInfo(int strmNo);
-u32 func_021063f8(u32 fileNo);
+u32 SoundArc_GetFileOffset(u32 fileNo);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 
 /* Asks the stream's next-stream callback what to play once the data ends.
@@ -22,7 +22,7 @@ void SoundStream_SetupNext(SoundStream *stream)
     param.strmNo = stream->strmNo;
     info.strmNo = stream->strmNo;
     info.offsetMs = 0;
-    if (!((SoundNextStreamCallback)stream->nextStreamCallback)(0, &param, &info, stream->nextStreamArg)) {
+    if (!stream->nextStreamCallback(0, &param, &info, stream->nextStreamArg)) {
         return;
     }
     strmInfo = NNS_SndArcGetStrmInfo(info.strmNo);
@@ -32,7 +32,7 @@ void SoundStream_SetupNext(SoundStream *stream)
 
     oldFormat = stream->format;
     oldSampleRate = stream->sampleRate;
-    stream->fileOffset = func_021063f8(strmInfo->fileId);
+    stream->fileOffset = SoundArc_GetFileOffset(strmInfo->fileId);
     SoundArc_ReadFile(strmInfo->fileId, stream->head, SOUND_STREAM_HEAD_SIZE, 0);
     if (oldSampleRate != stream->sampleRate) {
         return;

@@ -19,11 +19,11 @@ struct Unk_021063f8_2 {
     Unk_021063f8_0 *unk_80;
 };
 
-extern Unk_021063f8_2 *data_022a8a60;
+extern Unk_021063f8_2 *gCurrentSoundArc;
 
-int func_021063f8(int a0)
+int SoundArc_GetFileOffset(int a0)
 {
-    Unk_021063f8_0 *t0 = data_022a8a60->unk_80;
+    Unk_021063f8_0 *t0 = gCurrentSoundArc->unk_80;
     if ((u32)a0 < (u32)t0->unk_8) {
     }
     return ((u32)a0 >= (u32)t0->unk_8) ? 0 : ((Unk_021063f8_1 *)((int)t0 + (a0 << 4)))->unk_c;

@@ -22,10 +22,10 @@ typedef struct SoundArcSeqInfo {
 /* A stream entry: the file plus its playback parameters. */
 typedef struct SoundArcStrmInfo {
     u32 fileId;
-    u8 unk_04;
-    u8 unk_05;
-    u8 unk_06;
-    u8 unk_07;
+    u8 volume;                         /* 0x04: index into the stream volume table */
+    u8 priority;
+    u8 slotNo;                         /* 0x06: stream slot */
+    u8 flags;                          /* 0x07: bit 0 forces two channels */
 } SoundArcStrmInfo;
 
 /* A bank entry: the file plus the wave archives it uses (0xffff: slot unused). */
@@ -131,7 +131,7 @@ typedef struct SoundArc {
     FSFile file;                      /* 0x34: the archive file */
     SoundArcRange range;               /* 0x78: handed to the ROM direct file open call */
     SoundArcFileTable *files;          /* 0x80 */
-    u32 unk_84;
+    void *symbols;                     /* 0x84: symbol block in a sound heap; NULL when not read */
     SoundArcInfo *info;
 } SoundArc;
 
