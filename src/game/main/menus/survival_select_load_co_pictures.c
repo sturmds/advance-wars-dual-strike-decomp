@@ -1,0 +1,78 @@
+#include "types.h"
+#include "game/map_header.h"
+#include "game/page_strip.h"
+#include "game/survival_record.h"
+#include "game/Unk_022a7b80.h"
+#include "game/Unk_02088d04.h"
+
+void Co_QueueSmallPicture(int coId, void *dest, int paletteSlot);
+void Mem_Zero32(u32 value, void *dst, u32 size);
+u8 Map_GetPlayerCount(u16 mapId);
+BOOL func_02046bcc(int index);
+int func_0204779c(void);
+int func_020eaad8(int mode, int index);
+int func_020eab10(int mode, int index);
+
+extern Unk_022a7b80 data_022a7b80;
+extern Unk_027c0280 *data_027c0280;
+
+/* Record COs of the map at the strip cursor, for the current mode. */
+#define RECORD(cursor) (data_02291588[func_020eab10(data_022a7b80.unk_07, cursor)])
+#define RECORD1(cursor) (data_0229158c[func_020eab10(data_022a7b80.unk_07, cursor)])
+
+/* Loads the 12-tile picture of CO coId into OBJ VRAM at byte offset
+ * offset, or clears those tiles when coId is 0. */
+#define LOAD_CO(coId, offset, palette)                                       \
+    co = coId;                                                               \
+    if (co != 0) {                                                           \
+        Co_QueueSmallPicture(co, data_027c0280->objVram + (offset), palette); \
+    } else {                                                                 \
+        Mem_Zero32(0, data_027c0280->objVram + (offset), 0x180);             \
+    }
+
+/* Survival map select: loads the CO pictures for the map at the strip
+ * cursor. When func_02046bcc reports a record for the current mode, its
+ * two COs go to palettes 22 and 23; otherwise those tiles are cleared.
+ * Then the map's own COs for slots 2 up to the player count (the
+ * opponents), two per slot, go to tiles 0, 12, 24, ... with palettes from
+ * 16. */
+void SurvivalSelect_LoadCoPictures(void)
+{
+    int i;
+    int cursor = data_0229c744->lists[func_0204779c()].cursor;
+    int playerCount = Map_GetPlayerCount(func_020eaad8(data_022a7b80.unk_07, cursor));
+    int j;
+    int co;
+
+    if (func_02046bcc(cursor)) {
+        switch (data_022a7b80.unk_07) {
+        case 0:
+        case 3:
+            LOAD_CO(RECORD(cursor).mode0Co, 0x900, 22);
+            LOAD_CO(RECORD(cursor).mode0TagCo, 0xa80, 23);
+            break;
+        case 2:
+        case 5:
+            LOAD_CO(RECORD(cursor).mode2Co, 0x900, 22);
+            LOAD_CO(RECORD(cursor).mode2TagCo, 0xa80, 23);
+            break;
+        default:
+            LOAD_CO(RECORD1(cursor).mode1Co, 0x900, 22);
+            LOAD_CO(RECORD1(cursor).mode1TagCo, 0xa80, 23);
+            break;
+        }
+    } else {
+        Mem_Zero32(0, data_027c0280->objVram + 0x900, 0x300);
+    }
+    for (i = 0; i < playerCount - 1; i++) {
+        for (j = 0; j <= 1; j++) {
+            co = Ov000_gMapHeaders[func_020eaad8(data_022a7b80.unk_07, cursor)].co[i + 2][j];
+            if (co != 0) {
+                Co_QueueSmallPicture(co,
+                                     data_027c0280->objVram + (((j + i * 2) * 12) << 5), j + i * 2 + 16);
+            } else {
+                Mem_Zero32(0, data_027c0280->objVram + (((j + i * 2) * 12) << 5), 0x180);
+            }
+        }
+    }
+}

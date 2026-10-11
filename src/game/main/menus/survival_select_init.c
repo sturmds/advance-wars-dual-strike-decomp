@@ -28,7 +28,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_01ff8c84(int layer);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_020458c0(void);
-void func_02046594(void);
+void SurvivalSelect_LoadCoPictures(void);
 void func_0204697c(void);
 void func_02046ca0(void);
 int func_0204779c(void);
@@ -88,7 +88,7 @@ void SurvivalSelect_Init(void)
     }
     Icon_LoadTo(203, data_027c0280->objVram, 112);
     IconBank_LoadPalette(4, 26);
-    func_02046594();
+    SurvivalSelect_LoadCoPictures();
     MapPreview_Draw(data_027c0280->objVram + 0x8000, func_020eaad8(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
     Screen_SetCurrentGfx(savedState);
 

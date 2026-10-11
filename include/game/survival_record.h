@@ -1,0 +1,33 @@
+#ifndef GAME_SURVIVAL_RECORD_H
+#define GAME_SURVIVAL_RECORD_H
+
+#include "types.h"
+
+/* 12-byte entries from data_02291588, indexed by func_020eab10 (probably
+ * one per Survival map). Each mode pair (data_022a7b80.unk_07 0/3,
+ * 1/4, 2/5) keeps the two COs of its record here, 5 bits each; 0: none. */
+typedef struct SurvivalRecordCos {
+    u32 unk_00_0 : 10;
+    u32 mode0Co : 5;                   /* modes 0 and 3 */
+    u32 mode0TagCo : 5;
+    u32 mode2Co : 5;                   /* modes 2 and 5 */
+    u32 mode2TagCo : 5;
+    u32 unk_00_30 : 2;
+    u32 unk_04;                        /* see SurvivalRecordCos1 */
+    u32 unk_08;
+} SurvivalRecordCos;
+
+/* Needed to match: the original reaches the second word through its own
+ * symbol, data_0229158c. */
+typedef struct SurvivalRecordCos1 {
+    u32 mode1Co : 5;                   /* modes 1 and 4 */
+    u32 mode1TagCo : 5;
+    u32 unk_04_10 : 22;
+    u32 unk_08;
+    u32 unk_0c;
+} SurvivalRecordCos1;
+
+extern SurvivalRecordCos data_02291588[];
+extern SurvivalRecordCos1 data_0229158c[];
+
+#endif
