@@ -12789,6 +12789,10 @@ src/game/main/units/neighbor_dir_find_at_tile.c:
     complete
     .text       start:0x020ce810 end:0x020ce898
 
+src/game/main/units/target_list_picker_update.c:
+    complete
+    .text       start:0x020ce898 end:0x020cead4
+
 src/game/main/units/target_list_picker_init.c:
     complete
     .text       start:0x020cead4 end:0x020ceb08

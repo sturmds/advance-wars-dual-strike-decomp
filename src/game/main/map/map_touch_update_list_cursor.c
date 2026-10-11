@@ -23,7 +23,7 @@ static inline BOOL IsTouchInPhase(int phase)
     return FALSE;
 }
 
-/* Cursor update from touch for the target list picker in func_020ce898.
+/* Cursor update from touch for the target list picker in TargetListPicker_Update.
  * When the touched tile is one of the `count` tiles in the list
  * (func_020f06a0), the cursor (cursorX, cursorY) moves there and *index gets
  * its position in the list. The touch marker handling is the same as in

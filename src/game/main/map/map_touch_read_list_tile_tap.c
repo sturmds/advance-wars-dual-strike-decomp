@@ -27,7 +27,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Touch input while the player picks one tile from a list of `count` target
- * tiles (func_020ce898). A release on the tile where the touch began resumes
+ * tiles (TargetListPicker_Update). A release on the tile where the touch began resumes
  * the touch marker task, then confirms when func_020f06a0 finds that tile in
  * the list and cancels otherwise. */
 u32 MapTouch_ReadListTileTap(int count)

@@ -5,7 +5,7 @@ int func_020dc538(void); /* number of entries in the target list */
 void func_020f5c58(Task *parent);
 void Sound_PlaySe(u32 soundId);
 
-/* Script step that starts the target list picker (func_020ce898): unk_64 is
+/* Script step that starts the target list picker (TargetListPicker_Update): unk_64 is
  * the picked index, unk_66 the entry count. */
 void TargetListPicker_Init(Task *task)
 {
