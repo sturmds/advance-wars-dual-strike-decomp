@@ -10049,6 +10049,10 @@ src/game/main/func_020ca550.c:
     complete
     .text       start:0x020ca550 end:0x020ca560
 
+src/game/main/units/unit_play_dive_effect.c:
+    complete
+    .text       start:0x020ca560 end:0x020ca860
+
 src/game/main/script_start_on_both_screens.c:
     complete
     .text       start:0x020ca860 end:0x020ca9d8
