@@ -60,11 +60,19 @@ typedef struct SoundStream {
     SoundStreamFlags flags;            /* 0x10c */
     int unk_110;                       /* 0: close at once */
     int unk_114;                       /* nonzero when the data is ready */
-    u8 pad_118[0x18];
+    int pendingRequests;               /* 0x118: refill requests queued for the sound thread */
+    int channelLockCount;              /* 0x11c: users of the hardware channels; locked on the first, unlocked on the last */
+    u8 slotChannelCount;               /* 0x120: hardware channels the stream's slot may use */
+    u8 pad_121;
+    u8 slotChannels[6];                /* 0x122: their numbers */
+    void *buffer;                      /* 0x128: block memory taken from the sound heap; NULL: slot unused */
+    u32 bufferSize;                    /* 0x12c */
     SoundStrmCallback callback;        /* 0x130: called after each refill */
     void *callbackArg;                 /* 0x134 */
     void *nextStreamCallback;          /* 0x138: asked for the stream to play once the data ends */
-    u8 pad_13c[0x10];
+    u8 pad_13c[8];
+    u32 slotNo;                        /* 0x144: index in data_022a9300 */
+    void **handle;                     /* 0x148: the caller's stream handle, which points back here */
     u32 unk_14c;
     int volumeIndex;                   /* 0x150: index into the volume table */
     int appliedVolume;                 /* 0x154: last volume sent to the hardware */
