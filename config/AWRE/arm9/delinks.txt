@@ -21906,6 +21906,10 @@ src/sdk/fs/fs_load_overlay_image.c:
 src/sdk/fs/fs_load_overlay_info.c:
     .text       start:0x021133a0 end:0x021134b4
 
+src/sdk/fs/fs_load_overlay_info_core.c:
+    complete
+    .text       start:0x021134b4 end:0x021135c4
+
 src/sdk/fs/fs_overlay.c:
     complete
     .text       start:0x021135c4 end:0x021135ec
