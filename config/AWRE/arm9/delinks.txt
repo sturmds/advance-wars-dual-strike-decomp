@@ -13448,6 +13448,13 @@ src/game/main/units/map_can_send_to_other_map_from.c:
     complete
     .text       start:0x020c7bc0 end:0x020c7d30
 
+src/game/main/units/unit_spawn.c:
+    complete
+    .text       start:0x020c7d30 end:0x020c7d58
+
+src/game/main/units/unit_spawn_waited.c:
+    .text       start:0x020c7d58 end:0x020c7d8c
+
 src/game/main/units/unit_create.c:
     complete
     .text       start:0x020c7d8c end:0x020c7e20
