@@ -5654,6 +5654,10 @@ src/game/main/menus/vs_setup_update_settings_menu.c:
     complete
     .text       start:0x02065f8c end:0x020660b8
 
+src/game/main/menus/vs_setup_handle_settings_keys.c:
+    complete
+    .text       start:0x020660b8 end:0x02066244
+
 src/game/main/func_02066244.c:
     complete
     .text       start:0x02066244 end:0x02066250

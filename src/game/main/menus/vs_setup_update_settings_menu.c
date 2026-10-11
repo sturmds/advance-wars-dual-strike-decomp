@@ -12,7 +12,7 @@ void func_020651ec(void);
 void func_02065214(void);
 void VsSetup_IncreaseSetting(void);
 void VsSetup_DecreaseSetting(void);
-void func_020660b8(void);
+void VsSetup_HandleSettingsKeys(void);
 void Task_ResumeScript(Task *task);
 
 /* Player 0 hosts in link play. Needed to match: the flag is built as a
@@ -30,8 +30,8 @@ static inline BOOL IsLinkHost(void)
 }
 
 /* Task step of the Vs setup settings menu. Outside link play, and on the
- * link host, func_020660b8 handles the keys. In link play every machine
- * then applies the host's messages from the event queue, so all screens
+ * link host, VsSetup_HandleSettingsKeys handles the keys. In link play
+ * every machine then applies the host's messages from the event queue, so all screens
  * change together; confirm or cancel closes the menu and resumes the
  * task's script. */
 void VsSetup_UpdateSettingsMenu(Task *task)
@@ -44,7 +44,7 @@ void VsSetup_UpdateSettingsMenu(Task *task)
     confirm = 0;
     cancel = 0;
     if (!func_0207bd80() || IsLinkHost() == TRUE) {
-        func_020660b8();
+        VsSetup_HandleSettingsKeys();
     }
     if (func_0207bd80() != 1) {
         return;
