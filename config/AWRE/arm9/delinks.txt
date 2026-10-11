@@ -12305,6 +12305,10 @@ src/game/main/func_020ed774.c:
     complete
     .text       start:0x020ed774 end:0x020ed7a4
 
+src/game/main/map/map_object_destroy_minicannon.c:
+    complete
+    .text       start:0x020ed7a4 end:0x020ed86c
+
 src/game/main/units/unit_destroy_task_play_effect_and_remove.c:
     complete
     .text       start:0x020eda04 end:0x020edb2c
