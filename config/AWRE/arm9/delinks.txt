@@ -20761,6 +20761,10 @@ src/sdk/fx/vec_mult_add.c:
     complete
     .text       start:0x0210a1a0 end:0x0210a200
 
+src/sdk/fx/vec_normalize.c:
+    complete
+    .text       start:0x0210a200 end:0x0210a340
+
 src/sdk/fx/vec_cross_product.c:
     complete
     .text       start:0x0210a340 end:0x0210a3dc
