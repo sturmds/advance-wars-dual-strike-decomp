@@ -7,7 +7,7 @@ extern MenuState gMenuState;
 void Sound_PlaySe(u32 soundId);
 int func_0207a260(void);
 void func_0207fc88(u8 index);
-void func_0207df6c(void);
+void LinkMenu_RestoreStage2Buttons(void);
 
 /* Called for a player whose pick marker is up: clears the flag and ends the marker task. On the
  * local player's side it goes on to stage 2. */
@@ -25,5 +25,5 @@ void LinkMenu_FinishPick(int player)
         return;
     }
     data_0229fb30.unk_630 = 2;
-    func_0207df6c();
+    LinkMenu_RestoreStage2Buttons();
 }
