@@ -6,7 +6,7 @@
 
 /* Loads the picture of a CO (id in the low 7 bits; 0 clears dest) to dest,
  * 18 tiles, and its palette in the colours of the given army. */
-void func_02001c90(int co, void *dest, int paletteSlot, int army);
+void Co_LoadArmyMediumPicture(int co, void *dest, int paletteSlot, int army);
 void Screen_SetCurrentBoth(void *state);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -43,11 +43,11 @@ void VsSetup_ShowTeamScreen(Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
         if (MENU->setup.cos[player][0] != 0) {
-            func_02001c90(MENU->setup.cos[player][0], data_027c0280->objVram + CO_PICTURE_TILE(player * 2) * 32,
+            Co_LoadArmyMediumPicture(MENU->setup.cos[player][0], data_027c0280->objVram + CO_PICTURE_TILE(player * 2) * 32,
                           CO_PICTURE_PALETTE(player * 2), player + 1);
         }
         if (MENU->setup.cos[player][1] != 0) {
-            func_02001c90(MENU->setup.cos[player][1], data_027c0280->objVram + CO_PICTURE_TILE(player * 2 + 1) * 32,
+            Co_LoadArmyMediumPicture(MENU->setup.cos[player][1], data_027c0280->objVram + CO_PICTURE_TILE(player * 2 + 1) * 32,
                           CO_PICTURE_PALETTE(player * 2 + 1), player + 1);
         }
     }
