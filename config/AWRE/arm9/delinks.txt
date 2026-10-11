@@ -2011,6 +2011,10 @@ src/game/main/script/event_cmd_set_player_controller.c:
     complete
     .text       start:0x0201bbe8 end:0x0201bc80
 
+src/game/main/script/event_cmd_jump_if_true.c:
+    complete
+    .text       start:0x0201bc80 end:0x0201bce0
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
