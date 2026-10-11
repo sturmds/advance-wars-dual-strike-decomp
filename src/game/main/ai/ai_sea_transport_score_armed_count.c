@@ -1,0 +1,32 @@
+#include "types.h"
+
+int func_020b6e4c(void);
+int Ai_CountTeamArmedGroundUnitsInRange(void);
+
+/* Score of a drop tile for the order 0 and 1 routine. Bits 0-6: how far the
+ * armed ground units reached are from func_020b6e4c's result (name not known
+ * yet), plus 1, capped at 127. Bit 7: they are within 5 of it (less, when
+ * its result is below 5). Whether a higher score is better is not known. */
+int AiSeaTransport_ScoreArmedCount(void)
+{
+    int limit = func_020b6e4c();
+    int armed = Ai_CountTeamArmedGroundUnitsInRange();
+    int margin = limit > 5 ? 5 : limit;
+    int flag;
+    int dist;
+
+    if (limit - margin < armed && limit + margin > armed) {
+        flag = 0x80;
+    } else {
+        flag = 0;
+    }
+    if (limit > armed) {
+        dist = limit - armed + 1;
+    } else {
+        dist = armed - limit + 1;
+    }
+    if (dist & 0x80) {
+        dist = 0x7f;
+    }
+    return dist | flag;
+}
