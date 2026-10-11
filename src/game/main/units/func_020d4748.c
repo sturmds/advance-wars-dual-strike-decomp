@@ -10,8 +10,8 @@ void MovePath_AppendSteps(void);
 void MovePath_Truncate(int count);
 void func_020d5308(u16 x, u16 y);
 int func_020d4fb0(s8 x, s8 y);
-void func_020d4cc0(void);
-void func_020d4c6c(void);
+void MovePath_FillRangeFromEnd(void);
+void MovePath_RebuildToTarget(void);
 BOOL MovePath_HasNoRepeatedTile(void);
 void func_01ffa02c(int x, int y, u8 *steps);
 
@@ -93,15 +93,15 @@ void func_020d4748(void)
     }
 
     RangeMap_SetBuffer(GAME->mapTiles->rangeScratch);
-    func_020d4cc0();
+    MovePath_FillRangeFromEnd();
     RELOAD_STATE(state);
     if (state->rangeMap[state->unk_2a][state->unk_28] == -1) {
-        func_020d4c6c();
+        MovePath_RebuildToTarget();
     } else {
         func_01ffa02c(state->unk_28, state->unk_2a, state->unk_170);
         MovePath_AppendSteps();
         if (!MovePath_HasNoRepeatedTile()) {
-            func_020d4c6c();
+            MovePath_RebuildToTarget();
         }
     }
     RangeMap_SetBuffer(GAME->mapTiles->rangeMapTiles);
