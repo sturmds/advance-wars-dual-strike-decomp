@@ -12251,6 +12251,10 @@ src/game/main/func_020bba60.c:
     complete
     .text       start:0x020bba60 end:0x020bba84
 
+src/game/main/menus/build_menu_snap_side_panel_left.c:
+    complete
+    .text       start:0x020bba84 end:0x020bbaa8
+
 src/game/main/menus/build_menu_setup.c:
     complete
     .text       start:0x020bbaa8 end:0x020bbbb0
