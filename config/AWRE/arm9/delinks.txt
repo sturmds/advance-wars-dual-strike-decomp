@@ -8912,9 +8912,17 @@ src/game/main/menus/combat_result_draw.c:
     complete
     .text       start:0x0208afe8 end:0x0208b1a4
 
+src/game/main/menus/combat_result_on_keys.c:
+    complete
+    .text       start:0x0208b1a4 end:0x0208b1dc
+
 src/game/main/func_0208b1dc.c:
     complete
     .text       start:0x0208b1dc end:0x0208b208
+
+src/game/main/menus/combat_result_fade_in.c:
+    complete
+    .text       start:0x0208b208 end:0x0208b2e4
 
 src/game/main/menus/combat_result_init.c:
     complete

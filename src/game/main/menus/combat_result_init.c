@@ -47,7 +47,7 @@ extern const TaskScriptCmd data_0216168c[];
     Screen_SetCurrent(saved027c);   \
     Screen_SetCurrentGfx(saved0280)
 
-/* Fade frame counter; func_0208b208 counts it up to 32. */
+/* Fade frame counter; CombatResult_FadeIn counts it up to 32. */
 #define FADE_FRAME(task) (*(s16 *)&(task)->unk_4c)
 
 /* Nonzero: the score list gets the bonus rows 21 and 13-16. */
