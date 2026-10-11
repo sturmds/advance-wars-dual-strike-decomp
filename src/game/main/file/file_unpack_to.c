@@ -4,8 +4,8 @@
 #include "sdk/os.h"
 #include "game/heap.h"
 
-void func_0210f78c(const void *src, void *dest);             /* SDK LZ77 unpack */
-void func_0210f864(const void *src, void *dest);             /* SDK Huffman unpack */
+void MI_UncompressLZ8(const void *src, void *dest);             /* SDK LZ77 unpack */
+void Unpack_HuffmanToWords(const void *src, void *dest);             /* SDK Huffman unpack */
 void func_0210f9a8(const void *src, void *dest);             /* SDK run-length unpack */
 
 /* DS compression header, first word of a packed file: type in bits
@@ -52,10 +52,10 @@ u32 File_UnpackTo(void *dest, const char *path)
     unpackedSize = ((*packed >> 8) + 15) & ~15;
     switch (*packed & 0xf0) {
     case COMPRESS_LZ77:
-        func_0210f78c(packed, dest);
+        MI_UncompressLZ8(packed, dest);
         break;
     case COMPRESS_HUFFMAN:
-        func_0210f864(packed, dest);
+        Unpack_HuffmanToWords(packed, dest);
         break;
     case COMPRESS_RL:
         func_0210f9a8(packed, dest);
