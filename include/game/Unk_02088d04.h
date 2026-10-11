@@ -195,6 +195,15 @@ typedef struct GfxLayer {
 /* Layer i (0-3) of an Unk_027c0280. */
 #define GFX_LAYER(gfx, i) (&((GfxLayer *)&(gfx)->layer0Mode)[i])
 
+/* Unk_027c0280 seen as its layer array; reaching a layer this way adds the
+ * layer's offset before the field's, as some ITCM code does. */
+typedef struct GfxLayerView {
+    u8 pad_00[0xe0];
+    GfxLayer layer[4];
+} GfxLayerView;
+
+#define GFX_LAYERS(gfx) (((GfxLayerView *)(gfx))->layer)
+
 typedef struct Unk_027c0288 {
     void *unk_00;
     void *unk_04;                      /* loaded into data_027c027c and data_027c0280 */
