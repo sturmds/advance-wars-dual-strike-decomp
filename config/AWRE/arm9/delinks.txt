@@ -13961,6 +13961,10 @@ src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc
 
+src/game/main/units/service_cost_popup_start_zoom.c:
+    complete
+    .text       start:0x020cdccc end:0x020cdd08
+
 src/game/main/units/unit_repair.c:
     complete
     .text       start:0x020cdd84 end:0x020cdf0c
