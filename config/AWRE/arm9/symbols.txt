@@ -5662,7 +5662,7 @@ func_02116850 kind:function(arm,size=0x40) addr:0x02116850
 func_02116890 kind:function(arm,size=0x6c) addr:0x02116890
 func_021168fc kind:function(arm,size=0x38) addr:0x021168fc
 WmClearFifoRecvFlag kind:function(arm,size=0x1c) addr:0x02116934
-func_02116950 kind:function(arm,size=0x3a0) addr:0x02116950
+WmReceiveFifo kind:function(arm,size=0x3a0) addr:0x02116950
 func_02116cf0 kind:function(arm,size=0xa8) addr:0x02116cf0
 func_02116d98 kind:function(arm,size=0x5c) addr:0x02116d98
 func_02116df4 kind:function(arm,size=0x1c) addr:0x02116df4
@@ -9068,7 +9068,7 @@ data_022ac328 kind:bss addr:0x022ac328
 data_022ac32c kind:bss addr:0x022ac32c
 data_022ac330 kind:bss addr:0x022ac330
 data_022ac344 kind:bss addr:0x022ac344
-data_022ac36c kind:bss addr:0x022ac36c
+gWmConnectPortArg kind:bss addr:0x022ac36c
 data_022ac380 kind:bss addr:0x022ac380
 data_022ac390 kind:bss addr:0x022ac390
 data_022ac3c0 kind:bss addr:0x022ac3c0

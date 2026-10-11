@@ -41,6 +41,7 @@ typedef struct WMCallback {
 #define WM_ERRCODE_TIMEOUT 9
 #define WM_ERRCODE_INVALID_POLLBITMAP 13
 #define WM_ERRCODE_SEND_FAILED 15
+#define WM_ERRCODE_FLASH_ERROR 19          /* the ARM7 could not read the wireless firmware */
 
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
@@ -55,6 +56,18 @@ typedef struct WMCallback {
 #define WM_APIID_END_SCAN 11
 #define WM_APIID_START_CONNECT 12
 #define WM_APIID_DISCONNECT 13
+#define WM_APIID_END 2
+#define WM_APIID_START_MP 14
+#define WM_APIID_SET_MP_DATA 15
+#define WM_NUM_OF_CALLBACK 41              /* ids below this have a slot in callbackTable */
+#define WM_APIID_INDICATION 0x80
+#define WM_APIID_PORT_SEND 0x81
+#define WM_APIID_PORT_RECV 0x82
+
+#define WM_NUM_OF_PORT 16
+#define WM_FIFO_BUF_SIZE 0x100             /* one command or reply in shared memory */
+#define WM_STATUS_BUF_SIZE 0x800
+#define WM_API_REQUEST_ACCEPTED 0x8000     /* set in a buffer's apiid once it may be reused */
 
 /* What an indication callback receives (unsolicited ARM7 events). */
 typedef struct RadioNotice {
@@ -141,6 +154,8 @@ typedef struct WMStartMPCallback {
     u16 apiid;
     u16 errcode;
     u16 state;
+    u8 pad_06[2];
+    void *recvBuf;
 } WMStartMPCallback;
 
 /* Start of the reply to the connect command; only these fields are read. */
@@ -162,7 +177,21 @@ typedef struct WMPortRecvCallback {
     void *data;
     u16 length;
     u16 aid;                           /* the sender */
+    u8 macAddress[6];                  /* who connected or disconnected */
+    u16 seqNo;                         /* 0xffff: none */
+    void *arg;                         /* what WM_SetPortCallback was given */
+    u16 myAid;
+    u8 pad_22[2];
+    u8 ssid[24];
 } WMPortRecvCallback;
+
+/* Start of the reply to a port send; only these fields are read. */
+typedef struct WMPortSendCallback {
+    u16 apiid;
+    u16 errcode;
+    u8 pad_04[0x18];
+    void (*callback)(void *arg);       /* run when the data has been sent */
+} WMPortSendCallback;
 
 /* One child's data in an MP receive buffer; length 0xffff or 0 means none
  * arrived. Only these fields are read so far. */
@@ -197,7 +226,9 @@ typedef struct WMStatus {
     u16 state;                         /* WIRELESS_PHASE_* */
     u8 pad_02[0x0a];
     u32 unk_0c;
-    u8 pad_10[0xa8];
+    u8 pad_10[0x36];
+    u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
+    u8 pad_48[0x70];
     u16 linkLevel;
     u8 pad_ba[0x3a];
     u16 unk_f4;
@@ -238,7 +269,10 @@ typedef struct WMArm9Buf {
     WMStatus *status;
     u8 pad_08[4];
     void *requestBuf;                  /* where a command's arguments are written */
-    u8 pad_10[0xac];
+    void *replyBuf;                    /* where the ARM7 writes its replies */
+    u16 dmaNo;
+    u16 scanOnlyFlag;                  /* 0: the status block is read after each reply */
+    WMCallbackFunc callbackTable[WM_NUM_OF_CALLBACK];
     WMCallbackFunc indCallback;
     WMCallbackFunc portCallback[16];
     void *portCallbackArg[16];
