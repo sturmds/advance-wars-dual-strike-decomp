@@ -5,7 +5,7 @@
  * same address, without advancing it. At the geometry FIFO port the 128
  * zero words are 128 NOP commands, which push earlier commands out.
  */
-asm void GXi_NopClearFifo128_(void *fifo)
+asm void GXi_NopClearFifo128_(volatile u32 *fifo)
 {
     mov r1, #0
     mov r2, #0

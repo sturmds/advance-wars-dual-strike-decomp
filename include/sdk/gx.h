@@ -108,6 +108,8 @@
 #define GXSTAT_PJ_LEVEL 0x2000 /* projection stack level */
 #define GXSTAT_MTX_STACK_ERROR 0x4000 /* stack overflow or underflow */
 #define GXSTAT_MTX_STACK_ERROR_ACK 0x8000 /* written 1 to clear the error */
+#define GXSTAT_GEOMETRY_BUSY 0x08000000
+#define REG_GXFIFO ((volatile u32 *)0x04000400)
 
 /* MTX_MODE values. */
 #define GX_MTXMODE_PROJECTION 0
@@ -121,11 +123,12 @@
 
 void Vram_PowerOnBanks(u32 banks);
 void GX_SetBankForTexPltt(int texPltt);
-void GXi_NopClearFifo128_(void *fifo);
+void GXi_NopClearFifo128_(volatile u32 *fifo);
 int G3X_GetMtxStackLevelPJ(int *level);
 int G3X_GetMtxStackLevelPV(int *level);
 void G3X_ResetMtxStack(void);
 void G3X_InitMtxStack(void);
+void G3X_ClearFifo(void);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */

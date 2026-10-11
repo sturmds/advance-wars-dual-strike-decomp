@@ -20897,6 +20897,10 @@ src/sdk/gx/g3x_init_mtx_stack.c:
     complete
     .text       start:0x0210b898 end:0x0210b948
 
+src/sdk/gx/g3x_clear_fifo.c:
+    complete
+    .text       start:0x0210b948 end:0x0210b97c
+
 src/game/main/func_0210c610.c:
     complete
     .text       start:0x0210c610 end:0x0210c634
