@@ -6356,6 +6356,10 @@ src/game/main/link/unit_action_is_valid.c:
     complete
     .text       start:0x02080518 end:0x0208053c
 
+src/game/main/link/link_action_update.c:
+    complete
+    .text       start:0x0208053c end:0x0208059c
+
 src/game/main/func_02080668.c:
     complete
     .text       start:0x02080668 end:0x02080684
