@@ -9810,6 +9810,10 @@ src/game/main/map/map_has_no_terms_script.c:
     complete
     .text       start:0x020bfcfc end:0x020bfd50
 
+src/game/main/func_020bfd50.c:
+    complete
+    .text       start:0x020bfd50 end:0x020bfdac
+
 src/game/main/map/map_start_hint_script.c:
     complete
     .text       start:0x020bfdac end:0x020bfe04
