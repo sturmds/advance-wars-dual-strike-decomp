@@ -9101,9 +9101,9 @@ data_022ad008 kind:bss addr:0x022ad008
 data_022ad00c kind:bss addr:0x022ad00c
 data_022ad010 kind:bss addr:0x022ad010
 gMslExitHook kind:bss addr:0x022ad018
-data_022ad01c kind:bss addr:0x022ad01c
+gMslShutdownHook kind:bss addr:0x022ad01c
 gMslExitFuncCount kind:bss addr:0x022ad020
-data_022ad024 kind:bss addr:0x022ad024
+gMslSkipShutdown kind:bss addr:0x022ad024
 gMslExitFuncs kind:bss addr:0x022ad028
 data_022ad128 kind:bss addr:0x022ad128
 data_022ad14c kind:bss addr:0x022ad14c

@@ -22182,6 +22182,10 @@ src/sdk/msl/msl_exit.c:
     complete
     .text       start:0x02121bd0 end:0x02121d04
 
+src/sdk/msl/exit.c:
+    complete
+    .text       start:0x02121d04 end:0x02121d58
+
 src/sdk/abs.c:
     complete
     .text       start:0x021220ac end:0x021220b8
