@@ -7,7 +7,7 @@ BOOL Player_IsInGame(u8 player);
 void Ai_ClearThreatMaps(void);
 void Ai_AddObjectThreat(void);
 void Ai_MarkObjectTileThreat(void);
-void func_0209a9ec(u8 player);
+void Ai_AddEnemyThreatToFighter(u8 player);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 void func_0209a91c(void)
@@ -21,7 +21,7 @@ void func_0209a91c(void)
     Ai_MarkObjectTileThreat();
     for (player = 1; player < 5; player++) {
         if (Player_IsInGame(player) && STATE->players[STATE->currentPlayer].team != STATE->players[player].team) {
-            func_0209a9ec(player);
+            Ai_AddEnemyThreatToFighter(player);
         }
     }
     STATE->unk_1e = savedUnk1e;
