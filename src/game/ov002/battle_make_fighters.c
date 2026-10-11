@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/BattleSpriteTask.h"
 
 extern MenuState gMenuState;
 
@@ -16,16 +17,18 @@ typedef struct BattleEntryAt310 {
 
 int BattleCellTask_Create(int side, int slot, int entry);
 int BattleCellTask_CreateFighter(int side);
-void BattleSpriteTask_CreateDefaultWrapper(int a0, int a1, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9, int a10, int a11);
 
 /* Makes the fighter objects of both sides: one per entry with unk_14 set (or one for the
- * side when its animation data has unk_48 set), then the side's start effect when its
- * gMenuState slot at 0x68 is filled. Partial (88.8%): the original reloads the base of
- * gMenuState for the animation data, ours reuses the register of the 0x68 check. */
+ * side when its animation data has unk_48 set), then the side's start sprite from the
+ * table in battle.unk_68 when it is set. Partial (91.9%): the original reads unk_68 as
+ * base + side * 4 + 0x68 without sharing that sum with the unk_27c read; reading it as a
+ * plain field shares it (90.0%), reading it through `colours` as below stops the sharing
+ * but adds the 0x68 before the shift. */
 void func_ov002_023571d0(void)
 {
     int side;
     int slot;
+    const u32 *table;
     BattleRow *row = (BattleRow *)&gMenuState;
 
     for (side = 0; side < 2; side++, row++) {
@@ -43,11 +46,12 @@ void func_ov002_023571d0(void)
         } else {
             ((BattleEntryAt310 *)row)->entry.unk_00 = BattleCellTask_CreateFighter(side);
         }
-        if (((int *)&gMenuState + side)[0x68 / 4] != 0) {
-            BattleSideData *data = BATTLE_SIDE_DATA_AT(side);
+        table = ((const u32 **)gMenuState.colours)[side + 0x68 / 4]; /* battle.unk_68[side] */
+        if (table != NULL) {
+            BattleSideData *data = gMenuState.battle.unk_27c[side];
             BattleEffectParams *start = data->effects[8];
 
-            BattleSpriteTask_CreateDefaultWrapper(0, 0, start->offset.x, start->offset.y, (s16)start->delay, 0, 0, 0,
+            BattleSpriteTask_CreateDefaultWrapper(table, 0, start->offset.x, start->offset.y, (s16)start->delay, 0, 0, 0,
                                                    gMenuState.battle.unk_20[side], side == 0 ? 0 : 2, 0, side);
         }
     }
