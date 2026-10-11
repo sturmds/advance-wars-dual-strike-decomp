@@ -44,7 +44,7 @@ void ModeFont_ShowTextOnScreen(const void *text, int tile, int paletteSlot, int 
 void Menu_Reset(void);
 void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void MenuButton_Select(int button);
-void func_0205e72c(void);
+void MapSelect_AddTouchButtons(void);
 void MenuButtons_DisableTouch(void);
 void Wallpaper_LoadBoth(void);
 void SpriteTask_Create(int a, int b, int c, int d);
@@ -252,7 +252,7 @@ void MapSelect_Init(void)
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     MenuButton_Select(TABLES.unk_000[TAB()][LIST(TAB()).unk_64][PAGE()]);
-    func_0205e72c();
+    MapSelect_AddTouchButtons();
     MenuButtons_DisableTouch();
     Wallpaper_LoadBoth();
     MENU->setup.slideFrames = 0;
