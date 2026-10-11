@@ -3,16 +3,11 @@
 #include "game/play_records.h"
 #include "game/save_progress.h"
 
-/* Needed to match: the original copies 96 saved sets (0x180 bytes) as one unit. */
-typedef struct ProfileBlock {
-    u32 sets[96];
-} ProfileBlock;
-
 /* Where the three profile blocks start in the save record. This is 16 bytes
  * before SaveProgress.profileSets. */
 #define SAVE_PROFILE_BLOCKS_OFFSET 0x10b4
 
-extern ProfileBlock data_02290298[3];
+extern SaveProfileBlock data_02290298[3];
 extern SaveBytes30 data_022900bc[3];
 extern Unk_02290118 data_02290118;
 
@@ -30,7 +25,7 @@ void Save_LoadProfiles(void)
         return;
     }
     for (i = 0; i < 3; i++) {
-        data_02290298[i] = *(ProfileBlock *)((u8 *)&((ProfileBlock *)progress)[i] + SAVE_PROFILE_BLOCKS_OFFSET);
+        data_02290298[i] = *(SaveProfileBlock *)((u8 *)&((SaveProfileBlock *)progress)[i] + SAVE_PROFILE_BLOCKS_OFFSET);
         gPlayRecords.unk_348[i] = progress->unk_3a0[i];
         data_022900bc[i] = progress->unk_1534[i];
     }

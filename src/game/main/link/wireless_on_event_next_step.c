@@ -1,9 +1,5 @@
 #include "types.h"
-
-typedef struct WirelessEvent {
-    u16 apiId;
-    u16 errorCode;
-} WirelessEvent;
+#include "game/wireless_event.h"
 
 extern u32 data_0229c880;
 extern u32 data_0229c88c;
