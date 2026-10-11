@@ -14113,6 +14113,10 @@ src/game/main/map/map_view_draw_all_bg_rows.c:
     complete
     .text       start:0x020fa510 end:0x020fa5f8
 
+src/game/main/map/map_view_draw_all_bg_rows_ground_only.c:
+    complete
+    .text       start:0x020fa5f8 end:0x020fa6b8
+
 src/game/main/func_020fa6b8.c:
     complete
     .text       start:0x020fa6b8 end:0x020fa6c8
