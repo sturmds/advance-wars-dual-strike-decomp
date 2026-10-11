@@ -15,6 +15,6 @@ void NameEntry_OnControlKeySelect(MenuButton *button)
 
     entry->cursor = button->id - NAME_ENTRY_KEY_BUTTON_ID;
     if ((gKeypad->repeat & (PAD_KEY_UP | PAD_KEY_DOWN)) == 0) {
-        entry->unk_108 = -1;
+        entry->lastColumn = -1;
     }
 }

@@ -26,7 +26,7 @@ typedef struct Unk_022a7ea8 {
     int maxLength;                     /* 8 or 16: width of the text field in characters */
     u8 pad_04[0x104 - 0x04];
     int cursor;                        /* index into keys; NAME_ENTRY_KEY_COUNT and above: a control key */
-    int unk_108;                       /* set to -1 when a control key is selected other than by up or down */
+    int lastColumn;                    /* keyboard column that up and down from the control keys return to; -1: none */
     u8 pad_10c[0x110 - 0x10c];
     int textLength;                    /* characters typed so far */
     u8 pad_114[0x118 - 0x114];
