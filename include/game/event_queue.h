@@ -5,6 +5,13 @@
 
 #define EVENT_QUEUE_SIZE 16
 
+/* Link messages of the Vs setup settings menu, sent by the host. */
+#define EVENT_VS_SETTING_SELECT_ROW 29 /* arg: setting row */
+#define EVENT_VS_SETTING_INCREASE   30
+#define EVENT_VS_SETTING_DECREASE   31
+#define EVENT_VS_SETTINGS_CONFIRM   32
+#define EVENT_VS_SETTINGS_CANCEL    33
+
 typedef struct EventQueueEntry {
     u8 id;
     u8 arg;
