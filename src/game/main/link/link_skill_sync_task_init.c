@@ -1,0 +1,39 @@
+#include "types.h"
+#include "game/co_data.h"
+#include "game/Unk_02080440.h"
+#include "game/link_sync_task.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern u32 gCoEquippedSkills[CO_COUNT][4][4];
+
+void *Mem_Alloc(u32 size);
+int Co_GetForceRankSetIndex(int coId, int player);
+void func_020e6fb8(u32 *src, u8 *dst);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+/* Fills the 128 bytes the skill sync sends: for each of the 4 players and their 2 COs, the
+ * 16 bytes of skills that CO has equipped in the Force Rank set the player uses. */
+void LinkSkillSyncTask_Init(LinkSyncTask *task)
+{
+    int co;
+    int player;
+    int slot;
+
+    task->skills = Mem_Alloc(128);
+    for (player = 1; player <= 4; player++) {
+        for (slot = 0; slot < 2; slot++) {
+            co = STATE->playerCos[player][slot] & 0x7f;
+            if (co != 0) {
+                func_020e6fb8(gCoEquippedSkills[co][Co_GetForceRankSetIndex(co, player)],
+                              task->skills + ((player - 1) * 2 + slot) * 16);
+            }
+        }
+    }
+    task->sentBytes = 0;
+    task->receivedBytes = 0;
+    task->sendDone = 0;
+    task->started = 0;
+    task->receiveStarted = 0;
+}

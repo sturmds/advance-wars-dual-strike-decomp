@@ -19,7 +19,7 @@ typedef struct LinkCoRecord {
 typedef struct LinkSyncTask {
     u8 pad_00[0x2c];
     LinkCoRecord *experience;          /* 28 entries (112 bytes) to send, allocated by LinkExperienceSyncTask_Init */
-    u8 *skills;                        /* 128 bytes to send: 4 players x 2 COs x 16, filled by func_02081478 */
+    u8 *skills;                        /* 128 bytes to send: 4 players x 2 COs x 16, filled by LinkSkillSyncTask_Init */
     u16 sentBytes;
     u16 receivedBytes;
     u16 sendDone;                      /* set when sentBytes reaches the block size */
