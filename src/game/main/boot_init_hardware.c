@@ -4,7 +4,7 @@
 void OS_Init(void);
 void OS_SetArenaLo(int a, int b);
 void OS_SetArenaHi(int a, int b);
-void func_0210e67c(int a);
+void OS_SetProtectionRegion1(int a);
 void func_0210a420(void);
 void OS_SetIrqFunction(int a, void (*callback)(void));
 void OS_EnableIrqMask(int a);
@@ -25,7 +25,7 @@ void Boot_InitHardware(void)
     OS_Init();
     OS_SetArenaLo(2, 0x2400000);
     OS_SetArenaHi(2, 0x2700000);
-    func_0210e67c(0x200002d);
+    OS_SetProtectionRegion1(0x200002d);
     func_0210a420();
     *REG_POWCNT1 = *REG_POWCNT1 & ~POWCNT1_ENGINES;
     GX_Init();
