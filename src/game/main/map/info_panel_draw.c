@@ -33,7 +33,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void SpriteFile_Queue(void *data, int frame, int b, int x, int y, int tile, int c, int d);
 void func_020cb0cc(u16 x, u16 y);
 void func_020cb0f4(u16 x, u16 y);
-BOOL func_020c08cc(int type, int player, int slot);
+BOOL UnitType_HidesCargo(int type, int player, int slot);
 void func_020cb3c8(s16 x, s16 y, int slot);
 void *Task_FindByScript(void *script);
 void func_020cb848(int panelX, int panelY, int side);
@@ -139,7 +139,7 @@ void InfoPanel_Draw(void)
         }
 
         state = STATE;
-        if (func_020c08cc(unit->type, state->currentPlayer, (u16)MAP_UNIT_OWNER(state, unit))) {
+        if (UnitType_HidesCargo(unit->type, state->currentPlayer, (u16)MAP_UNIT_OWNER(state, unit))) {
             /* cargo not shown: one mark per seat */
             if (Ov000_gUnitStats[unit->type].carryTypes[0] == 1) {
                 func_020cb3c8(ITEM_X(data_02166360[side][0], cargoOnly) & 0x1ff, ITEM_Y(cargoOnly), 1);
