@@ -6303,6 +6303,10 @@ src/game/main/ai/ai_black_boat_repair_damaged_unit.c:
     complete
     .text       start:0x020b3570 end:0x020b377c
 
+src/game/main/ai/ai_sea_transport_wait_near_port.c:
+    complete
+    .text       start:0x020b38c4 end:0x020b3c84
+
 src/game/main/ai/ai_sea_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020b3c84 end:0x020b4138

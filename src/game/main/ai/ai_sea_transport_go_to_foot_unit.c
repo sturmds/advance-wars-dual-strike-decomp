@@ -19,7 +19,7 @@ int func_020b4138(MapUnit *unit, s16 *dest);
 void AiUnit_MoveTowardTile(int x, int y);
 void AiBlackBoat_GoToUnitInNeed(void);
 void AiBlackBoat_RepairDamagedUnit(void);
-void func_020b38c4(void);
+void AiSeaTransport_WaitNearPort(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -146,5 +146,5 @@ void AiSeaTransport_GoToFootUnit(void)
         AiBlackBoat_RepairDamagedUnit();
         AiBlackBoat_GoToUnitInNeed();
     }
-    func_020b38c4();
+    AiSeaTransport_WaitNearPort();
 }
