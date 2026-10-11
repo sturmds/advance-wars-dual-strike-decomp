@@ -15683,6 +15683,10 @@ src/game/main/map/two_maps_merge_other_front.c:
     complete
     .text       start:0x020f3914 end:0x020f3c48
 
+src/game/main/map/two_maps_start_result_script.c:
+    complete
+    .text       start:0x020f3c48 end:0x020f3ec8
+
 src/game/main/func_020f3ec8.c:
     complete
     .text       start:0x020f3ec8 end:0x020f3ecc
