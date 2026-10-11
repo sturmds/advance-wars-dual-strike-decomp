@@ -2214,6 +2214,10 @@ src/game/main/script/event_choice_draw_record.c:
     complete
     .text       start:0x0201a1b8 end:0x0201a3bc
 
+src/game/main/script/event_choice_init.c:
+    complete
+    .text       start:0x0201a3bc end:0x0201a4f0
+
 src/game/main/script/choice_prompt_draw_cursor.c:
     complete
     .text       start:0x0201a774 end:0x0201a7e0
