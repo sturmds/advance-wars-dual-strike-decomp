@@ -15,7 +15,7 @@ void Wireless_Stop(void)
     case 2:
     case 3:
         data_0229c880 = 0;
-        data_0215fe84->unk_14 = 0;
+        data_0215fe84->scanning = 0;
         break;
     case 4:
     case 5:

@@ -11,7 +11,7 @@ BOOL func_0207930c(void);
 void Wireless_StartChannelSurvey(int arg);
 int Wireless_PrepareScan(void);
 void func_02079ee0(void);
-BOOL Wireless_StartRequest(void);
+BOOL Wireless_StartScan(void);
 
 /* Callback of the SDK request func_02079424 starts. Same steps as
  * func_020791f8 without the unk_06 reset; mode 4 also runs func_0207930c
@@ -38,9 +38,9 @@ void func_02079460(WMCallback *cb)
                 func_02079ee0();
                 return;
             }
-            data_0215fe84->unk_14 = 1;
+            data_0215fe84->scanning = 1;
             data_0229c88c = 3;
-            if (Wireless_StartRequest()) {
+            if (Wireless_StartScan()) {
                 return;
             }
             data_0229c880 = 0;

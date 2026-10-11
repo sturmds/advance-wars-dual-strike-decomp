@@ -7,7 +7,7 @@ void Mem_Zero32(u32 value, void *dst, u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 int LargeFont_FindGlyph(u16 c);
 
-/* Glyphs of the 16x16 font that func_020828d0 unpacks into LCDC VRAM bank A,
+/* Glyphs of the 16x16 font that LargeFont_Load unpacks into LCDC VRAM bank A,
  * 4 tiles (0x80 bytes) each. */
 #define LARGE_FONT_GLYPHS ((const u8 *)0x6800000)
 

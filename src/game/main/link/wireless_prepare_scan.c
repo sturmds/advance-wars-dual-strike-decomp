@@ -2,7 +2,7 @@
 #include "game/Unk_0215fe84.h"
 #include "sdk/wm.h"
 
-extern WMBssDesc *data_0229c8a8;
+extern WMBssDesc *gWirelessScanBuffer;
 extern WMScanParam *data_0229c8b4;
 
 BOOL Wireless_NextScanChannel(u16 *channel);
@@ -15,7 +15,7 @@ BOOL Wireless_PrepareScan(void)
     if (!Wireless_NextScanChannel(&data_0215fe84->channel)) {
         return FALSE;
     }
-    data_0229c8b4->scanBuf = data_0229c8a8;
+    data_0229c8b4->scanBuf = gWirelessScanBuffer;
     data_0229c8b4->channel = data_0215fe84->channel;
     data_0229c8b4->maxChannelTime = func_0211721c();
     data_0229c8b4->bssid[0] = 0xff;

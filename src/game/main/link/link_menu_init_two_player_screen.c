@@ -14,7 +14,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
-void func_020828d0(void);
+void LargeFont_Load(void);
 void *File_Load(const char *path);
 const char *File_LocalizePath(const char *path);
 void Data_Unpack(const void *src, void *dst);
@@ -83,7 +83,7 @@ void LinkMenu_InitTwoPlayerScreen(Task *task)
     Font_LoadDigits(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_020828d0();
+    LargeFont_Load();
 
     file = File_Load(gLinkTwoPlayerLoginResPath);
     Data_Unpack(file + 0x4d4, data_027c0280->layer2Map);

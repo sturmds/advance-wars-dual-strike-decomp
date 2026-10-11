@@ -10,11 +10,11 @@ extern void *data_0229c890;
 extern void *gWirelessSystemBuf;
 extern s32 data_0229c89c;
 extern s32 data_0229c8a4;
-extern WMBssDesc *data_0229c8a8;
+extern WMBssDesc *gWirelessScanBuffer;
 extern void *data_0229c8ac;
 extern void *data_0229c8b0;
 extern WMScanParam *data_0229c8b4;
-extern WMBssDesc *data_0229c8cc[4];
+extern WMBssDesc *gWirelessParents[4];
 
 void *Mem_Alloc(u32 size);
 void func_0207aa04(void);
@@ -32,17 +32,17 @@ void Wireless_Init(void)
     data_0215fe84->unk_08 = 0;
     data_0215fe84->unk_0c = 1;
     data_0215fe84->dataSharingActive = 0;
-    data_0215fe84->unk_14 = 0;
+    data_0215fe84->scanning = 0;
     data_0215fe84->unk_30 = 0;
     data_0215fe84->unk_06 = -1;
     func_0207aa04();
     gWirelessSystemBuf = Mem_Alloc(0x1700);
     data_0229c8a0 = Mem_Alloc(0x40);
     data_0229c8b4 = Mem_Alloc(0x20);
-    data_0229c8a8 = Mem_Alloc(sizeof(WMBssDesc));
+    gWirelessScanBuffer = Mem_Alloc(sizeof(WMBssDesc));
     data_0229c888 = Mem_Alloc(sizeof(WMBssDesc));
     for (i = 0; i < 4; i++) {
-        data_0229c8cc[i] = Mem_Alloc(sizeof(WMBssDesc));
+        gWirelessParents[i] = Mem_Alloc(sizeof(WMBssDesc));
     }
     data_0229c8ac = Mem_Alloc(0x820);
     data_0229c8b0 = Mem_Alloc(0x200);

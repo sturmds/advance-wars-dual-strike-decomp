@@ -14,7 +14,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
-void func_020828d0(void);
+void LargeFont_Load(void);
 void *File_Load(const char *path);
 const char *File_LocalizePath(const char *path);
 void Data_Unpack(const void *src, void *dst);
@@ -49,7 +49,7 @@ extern const char gLinkMenuCommonResPath[];
  * /commo/res_linklogin, /commo/res_linkcommon_lang and /commo/res_linkcommon:
  * two layer 2 maps (the player list into gMenuState, and a second view picked
  * by func_0207a324, 2, 4 or 8, into data_0229f330), both moved to palette 1.
- * LinkMenuState.redraw picks the view: 0 shows the player list
+ * LinkMenuState.view picks the view: 0 shows the player list
  * (Link_DrawPlayerRows), 1 the second view (LinkMenu_DrawSecondView). GAME->unk_8b
  * picks the title text. */
 
@@ -75,7 +75,7 @@ void LinkMenu_InitScreen(Task *task)
     Font_LoadDigits(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_020828d0();
+    LargeFont_Load();
 
     file = File_Load(gLinkLoginResPath);
     Data_Unpack(file, &gMenuState);
@@ -101,7 +101,7 @@ void LinkMenu_InitScreen(Task *task)
     for (i = 0; i < 0x300; i++) {
         map[i] += 0x1000;
     }
-    if (data_0215fed0->redraw == 0) {
+    if (data_0215fed0->view == 0) {
         Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
     } else {
         Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
@@ -124,7 +124,7 @@ void LinkMenu_InitScreen(Task *task)
     Mem_Free(file);
     func_01ff9b48();
 
-    if (data_0215fed0->redraw == 0) {
+    if (data_0215fed0->view == 0) {
         Link_DrawPlayerRows();
     } else {
         LinkMenu_DrawSecondView();
@@ -151,7 +151,7 @@ void LinkMenu_InitScreen(Task *task)
     ModeFont_ShowText(Text_Get(textId), 0, 0, 0, 0);
     SpriteTask_Create(0xe8, 8, 0x3f0, 15);
     Menu_Reset();
-    if (data_0215fed0->redraw == 0) {
+    if (data_0215fed0->view == 0) {
         LinkMenu_AddAllButtons();
     } else {
         LinkMenu_AddBackButtons();

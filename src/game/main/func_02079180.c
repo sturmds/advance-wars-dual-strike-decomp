@@ -9,7 +9,7 @@ void func_020791f8(void);
 
 int func_02079180(void)
 {
-    data_0215fe84->unk_34 = 0;
+    data_0215fe84->parentCount = 0;
     data_0215fe84->unk_30 = 0;
     if (data_0215fe84->unk_18 == 0) {
         data_0215fe84->unk_20 = 1;

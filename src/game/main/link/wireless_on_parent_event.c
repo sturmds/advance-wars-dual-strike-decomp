@@ -46,7 +46,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             Wireless_CountChildren();
             ssid = cb->ssid;
             Wireless_SetPlayerName(cb->aid, ssid);
-            data_0229c910.unk_14 = data_0215fe84->childAids | 1;
+            data_0229c910.usedAids = data_0215fe84->childAids | 1;
             Wireless_SetGameInfo();
             Wireless_SetPlayerName(cb->aid, ssid);
             data_0215fe84->childrenChanged = 1;
@@ -55,7 +55,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             /* needed to match: ~(1 << aid) gives mvn instead of eor */
             data_0215fe84->childAids &= ~0 ^ (1 << cb->aid);
             Wireless_CountChildren();
-            data_0229c910.unk_14 = data_0215fe84->childAids | 1;
+            data_0229c910.usedAids = data_0215fe84->childAids | 1;
             Wireless_SetGameInfo();
             Wireless_ClearPlayerName(cb->aid);
             data_0215fe84->childrenChanged = 1;

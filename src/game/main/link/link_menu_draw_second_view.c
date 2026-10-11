@@ -36,7 +36,7 @@ extern u8 data_027c0040;
 #define SIN_0 data_021389e8[0]
 #define COS_0 data_021389e8[64]
 
-/* Draws the second view of the link player list (LinkMenuState.redraw 1;
+/* Draws the second view of the link player list (LinkMenuState.view 1;
  * switches to it from the list first). Top row: entry 0 and
  * "func_0207a1f0() + 1 / func_0207a324()". Then each entry whose bit is set
  * in func_0207a1dc() (entry 0 always) gets a row, two tiles apart, starting
@@ -63,12 +63,12 @@ void LinkMenu_DrawSecondView(void)
         row = 12;
         break;
     }
-    if (data_0215fed0->redraw == 0) {
+    if (data_0215fed0->view == 0) {
         Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
         Gfx_RequestLayerCopy(2);
         func_0207c380();
         LinkMenu_ResetBackButton();
-        data_0215fed0->redraw = 1;
+        data_0215fed0->view = 1;
     }
     func_01ff8c84(0);
     LargeFont_DrawName(Wireless_GetPlayerName(0), 1, 1, 0x200);

@@ -13,14 +13,14 @@ typedef struct Unk_0215fe84 {
     int unk_08;                        /* Wireless_SendChildData and Wireless_SendParentData send only while it is nonzero and clear it; Wireless_SendMpData sets it to 1 when the send fails */
     int unk_0c;                        /* 1 after link init; passed to the MP start and data sharing start calls */
     int dataSharingActive;             /* 1 while data sharing runs */
-    int unk_14;                        /* set to 1 by Wireless_OnEvent */
+    int scanning;                      /* 1 while a scan runs: Wireless_OnEvent sets it before Wireless_StartScan, Wireless_EndScan clears it */
     int unk_18;                        /* returned by func_02077f20 */
     int childrenChanged;               /* set to 1 when a child connects or leaves */
     int unk_20;                        /* set to 1 by func_02079180 */
     int unk_24;                        /* set to 1 when Wireless_StartConnect fails to start */
     u8 pad_28[0x30 - 0x28];
     int unk_30;                        /* returned by func_0207a170 */
-    u8 unk_34;                         /* returned by func_0207a3a4 */
+    u8 parentCount;                    /* parents found by the scan, in gWirelessParents (at most 4) */
     u8 unk_35;                         /* set by func_0207a7a4 */
 } Unk_0215fe84;
 

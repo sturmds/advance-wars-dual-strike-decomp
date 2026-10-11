@@ -4,19 +4,19 @@
 #include "sdk/wm.h"
 
 extern u32 data_0229c880;
-extern WMBssDesc *data_0229c8a8;
+extern WMBssDesc *gWirelessScanBuffer;
 
-void func_0210e100(void *start, u32 size);
+void DC_InvalidateRange(void *start, u32 size);
 int func_02079180(void);
 int Wireless_EndScan(void);
 int Wireless_PrepareScan(void);
 void func_02079ee0(void);
 void Wireless_AddParent(u8 linkLevel);
-BOOL Wireless_StartRequest(void);
+BOOL Wireless_StartScan(void);
 
-/* Scan callback (Wireless_StartRequest passes it to the SDK). In state 3 a
+/* Scan callback (Wireless_StartScan passes it to the SDK). In state 3 a
  * found parent with our game group id and no download play flag goes to
- * Wireless_AddParent, then the scan restarts while data_0215fe84->unk_14 is set. */
+ * Wireless_AddParent, then the scan restarts while data_0215fe84->scanning is set. */
 void Wireless_OnScan(WMStartScanCallback *cb)
 {
     if (cb->errcode == 0) {
@@ -39,23 +39,23 @@ void Wireless_OnScan(WMStartScanCallback *cb)
         case 3:
             switch (cb->state) {
             case WM_STATECODE_PARENT_FOUND:
-                func_0210e100(data_0229c8a8, sizeof(WMBssDesc));
+                DC_InvalidateRange(gWirelessScanBuffer, sizeof(WMBssDesc));
                 /* the beacon must reach past gameInfo.ggid (0x48 bytes) */
-                if (data_0229c8a8->length * 2 >= 0x48
-                    && data_0229c8a8->gameInfo.ggid == data_0229c960.ggid
-                    && !(data_0229c8a8->gameInfo.attribute & WM_ATTR_FLAG_MB)) {
+                if (gWirelessScanBuffer->length * 2 >= 0x48
+                    && gWirelessScanBuffer->gameInfo.ggid == data_0229c960.ggid
+                    && !(gWirelessScanBuffer->gameInfo.attribute & WM_ATTR_FLAG_MB)) {
                     Wireless_AddParent(cb->linkLevel);
                 }
                 /* fall through */
             case WM_STATECODE_PARENT_NOT_FOUND:
-                if (data_0215fe84->unk_14 == 0) {
+                if (data_0215fe84->scanning == 0) {
                     return;
                 }
                 if (!Wireless_PrepareScan()) {
                     func_02079ee0();
                     return;
                 }
-                if (Wireless_StartRequest()) {
+                if (Wireless_StartScan()) {
                     return;
                 }
                 func_02079180();

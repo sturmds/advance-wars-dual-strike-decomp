@@ -22,7 +22,7 @@ void func_01ff8c84(int layer);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 int func_0207a324(void);
-u8 func_0207a3a4(void);
+u8 Wireless_GetParentCount(void);
 LinkPlayerInfo *Wireless_GetParent(u8 index);
 void LinkMenu_AddRowButtons(void);
 void LargeFont_DrawName(LinkPlayerData *data, int a, u16 b, int c);
@@ -38,14 +38,14 @@ void Link_DrawPlayerRows(void)
     int bit;
     int count;
 
-    if (data_0215fed0->redraw == 1) {
+    if (data_0215fed0->view == 1) {
         Mem_Copy32(gMenuState, data_027c0280->layer2Map, 0x600);
         Gfx_RequestLayerCopy(2);
         LinkMenu_AddRowButtons();
-        data_0215fed0->redraw = 0;
+        data_0215fed0->view = 0;
     }
     func_01ff8c84(0);
-    for (i = 0; i < func_0207a3a4(); i++) {
+    for (i = 0; i < Wireless_GetParentCount(); i++) {
         info = Wireless_GetParent(i);
         if (info != 0) {
             data = &info->data;

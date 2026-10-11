@@ -12,7 +12,7 @@ extern u32 data_0229c88c;
 
 int func_02079180(void);
 int Wireless_StartParent(void);
-int Wireless_StartRequest(void);
+int Wireless_StartScan(void);
 int Wireless_PrepareScan(void);
 void func_02079ee0(void);
 
@@ -35,9 +35,9 @@ void Wireless_OnEvent(WirelessEvent *event)
                 func_02079ee0();
                 return;
             }
-            data_0215fe84->unk_14 = 1;
+            data_0215fe84->scanning = 1;
             data_0229c88c = 3;
-            if (Wireless_StartRequest()) {
+            if (Wireless_StartScan()) {
                 return;
             }
             data_0229c880 = 3;

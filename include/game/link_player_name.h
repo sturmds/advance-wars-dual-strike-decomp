@@ -9,7 +9,7 @@ typedef struct LinkPlayerName {
     u16 chars[10];
 } LinkPlayerName;
 
-/* data_0229c9a0 (main bss): one name per aid. Slot 0 is this console. */
-extern LinkPlayerName data_0229c9a0[];
+/* gLinkPlayerNames (main bss): one name per aid. Slot 0 is this console. */
+extern LinkPlayerName gLinkPlayerNames[];
 
 #endif
