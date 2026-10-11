@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#define MODE_FONT_MAX_CHARS 33
+#define MODE_FONT_MAX_CHARS 16
 #define MODE_FONT_SPACE     127        /* glyph for a character the font lacks */
 
 /* The task ModeFont_StartTextTask makes (a 0x6c-byte Task) to draw one line
@@ -11,6 +11,8 @@
 typedef struct ModeFontTask {
     u8 pad_00[0x29];
     s8 glyphs[MODE_FONT_MAX_CHARS];    /* 0-25: a-z, 26: '*', 27: '-', 127: none */
+    u8 letterStart[MODE_FONT_MAX_CHARS]; /* frame each letter starts to slide in (func_0202b590) */
+    u8 pad_49;
     u16 frame;                         /* frames into the current animation step */
     u16 x;                             /* left edge in pixels */
     u16 y;
