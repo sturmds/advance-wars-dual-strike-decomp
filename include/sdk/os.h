@@ -208,4 +208,39 @@ void Reset_OnOsTagMessage(u32 tag, u32 data, int err);
 /* Registers Reset_OnOsTagMessage once the ARM7 is ready for OS commands. */
 void OS_InitReset(void);
 
+/* The console owner's profile, as OS_GetOwnerInfo hands it out. */
+typedef struct OSOwnerInfo {
+    u8 favoriteColor;
+    u8 birthMonth;
+    u8 birthDay;
+    u8 unk_03;
+    u16 nickname[10];          /* UTF-16 */
+    u16 nicknameLength;
+    u16 comment[26];           /* UTF-16 */
+    u16 commentLength;
+} OSOwnerInfo;
+
+/* The user settings the boot code leaves in shared main RAM (0x027ffc80). */
+typedef struct FirmwareUserSettings {
+    u8 unk_00[2];
+    u8 birthMonth : 4;
+    u8 : 4;
+    u8 birthDay;
+    u8 unk_04;
+    u8 pad_05;
+    u16 nickname[10];
+    u8 nicknameLength;
+    u8 pad_1b;
+    u16 comment[26];
+    u8 commentLength;
+    u8 pad_51[0x13];
+    u16 favoriteColor : 3;
+    u16 : 13;
+} FirmwareUserSettings;
+
+#define FIRMWARE_SETTINGS_COPY ((FirmwareUserSettings *)0x027ffc80)
+
+/* Copies the console owner's profile out of the boot settings. */
+void OS_GetOwnerInfo(OSOwnerInfo *info);
+
 #endif
