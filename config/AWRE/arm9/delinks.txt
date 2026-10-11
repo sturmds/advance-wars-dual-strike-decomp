@@ -8126,6 +8126,10 @@ src/game/main/func_020bd564.c:
     complete
     .text       start:0x020bd564 end:0x020bd590
 
+src/game/main/menus/menu_pick_next_weather.c:
+    complete
+    .text       start:0x020bd590 end:0x020bd5f4
+
 src/game/main/func_020bd8c0.c:
     complete
     .text       start:0x020bd8c0 end:0x020bd900
