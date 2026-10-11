@@ -37,6 +37,9 @@ typedef struct PlayerCo {
 #define AI_BEHAVIOUR_GENERAL 2
 #define AI_BEHAVIOUR_DEFENSE 3
 
+/* Index into Player.unk_20: Oozium destroyed, up to 99 (Combat_ApplyResult). */
+#define PLAYER_DESTROYED_OOZIUM 3
+
 /* One player slot, 0x98 bytes, in the array at Unk_02080440_48.players:
  * 5 slots, slot 0 neutral, then players 1-4. Layout from romhacking.net doc 890 (RadioTails);
  * fields named here have been seen in code, unk_ fields carry the
