@@ -5,7 +5,7 @@
 extern PowerHookEntry *data_022ab8f0; /* pre-sleep callbacks */
 extern PowerHookEntry *data_022ab8f8; /* post-sleep callbacks */
 
-void func_0210eb70(void);
+void OS_Halt(void);
 BOOL Cartridge_HeaderStillMatches(void);
 int PM_GetBackLight(int *topBackLight, int *bottomBackLight);
 int PM_ForceToPowerOff(void);
@@ -84,7 +84,7 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern)
     while (Power_AskArm7ToSleep(command, logic) != 0) {
     }
 
-    func_0210eb70();
+    OS_Halt();
     OS_SpinWait(0x332340);
 
     if (trigger & PM_TRIGGER_CARD) {

@@ -4,7 +4,7 @@
 void MI_StopDma(u32 dmaNo);
 u32 OS_GetLockID(void);   /* OS_GetLockID */
 u32 func_0210cfc0(u16 lockID);   /* takes the card lock; nonzero while another user holds it */
-void func_0210eb70(void);   /* halts the CPU until an interrupt */
+void OS_Halt(void);   /* halts the CPU until an interrupt */
 void OS_ResetSystem(void);
 
 /* Stops DMA and interrupts, tells the ARM7 to reset, and waits for it. */
@@ -17,7 +17,7 @@ void Reset_StopAndRequestArm7(u32 parameter)
     }
     lockID = OS_GetLockID();
     while (func_0210cfc0(lockID) != 0) {
-        func_0210eb70();
+        OS_Halt();
     }
     MI_StopDma(0);
     MI_StopDma(1);
