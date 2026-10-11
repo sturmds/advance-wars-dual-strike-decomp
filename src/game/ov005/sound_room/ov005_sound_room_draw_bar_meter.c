@@ -9,7 +9,7 @@ void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
 BOOL SND_IsFinishedCommandTag(u32 tick);
 u32 SND_GetCurrentCommandTag(void);
-u32 func_02110934(void);
+u32 SND_GetChannelStatus(void);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 extern u32 data_ov005_02367fec[];      /* map bytes of a rotation/scaling BG by screen size */
@@ -25,7 +25,7 @@ extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
 
 /* While music plays: draws barHeights as 16 bars, two tiles wide and up to
  * 10 tiles high, standing on row 20 of layer 1 of the data_027c0288.unk_04
- * screen. Then sets both OBJ scales from a 16-bit mask that func_02110934
+ * screen. Then sets both OBJ scales from a 16-bit mask that SND_GetChannelStatus
  * returns: 0x100 plus 16 per set bit. With no music it clears the layer and
  * sets both scales to -1. */
 void Ov005SoundRoom_DrawBarMeter(void)
@@ -95,7 +95,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         u32 bit;
         u32 mask;
 
-        mask = func_02110934();
+        mask = SND_GetChannelStatus();
         i = 0;
         bit = 0;
         row = 0;
