@@ -24,7 +24,7 @@ u32 UnitShowTask_GetObjBase(int slot);
 int FS_ChangeDir(const char *path);
 void *File_Load(const char *path);
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_0200c998(const void *src, void *dst, u32 size);
+void GfxQueue_AddKind2(const void *src, void *dst, u32 size);
 ShowSprite *func_02022478(void *file, int a, int b);
 void func_02021f44(ShowSprite *sprite, int frame);
 int UnitShowTask_CheckVisible(UnitShowTask *task);
@@ -80,7 +80,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     if ((void *)data_027c027c == data_027c0288) {
         task->sprite->unk_24 = UnitShowTask_GetObjBase(task->slot);
         task->sprite->unk_28 = (u32)data_022a7c5c->unk_64;
-        func_0200c998(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1], data_022a7c5c->unk_64, 32);
+        GfxQueue_AddKind2(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1], data_022a7c5c->unk_64, 32);
     } else {
         task->sprite->unk_24 = (task->slot << 4) + 0x264 | 0x4000;
         Palette_Load(gArmyPalettes[GAME->players[task->owner + 1].armyColour - 1], 640, 32);
