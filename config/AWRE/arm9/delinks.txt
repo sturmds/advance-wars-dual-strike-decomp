@@ -21967,6 +21967,10 @@ src/sdk/tp/tp_calc_calibrate_param.c:
     complete
     .text       start:0x0211405c end:0x021142cc
 
+src/sdk/tp/tp_wait_raw_result.c:
+    complete
+    .text       start:0x021142cc end:0x02114324
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc

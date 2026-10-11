@@ -75,7 +75,7 @@ typedef struct TPiWork {
     TPiCalibrateParam calibrate;
     u16 calibrate_flg;             /* TRUE once TP_SetCalibrateParam got a param */
     u16 state;                     /* TOUCH_CLIENT_* */
-    u16 err_flg;                   /* one bit per request: it failed */
+    volatile u16 err_flg;          /* one bit per request: it failed */
     volatile u16 command_flg;      /* one bit per request: waiting for the ARM7 */
 } TPiWork;
 
