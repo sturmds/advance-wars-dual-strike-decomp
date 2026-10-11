@@ -39,7 +39,7 @@ void Task_ResumeScript(void *task);
 void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 void HelpBand_Stop(void);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 void func_020d7d9c(Ov005Task *task);
 void Ov005_DrawCoGridCells(Ov005Task *task);
 void Ov005_CopyCoPaletteToBothScreens(Unk_ov005_0236bba8 *work);
@@ -280,7 +280,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         Screen1_DestroyTextTasks();
         HelpBand_Stop();
         MenuButtons_RemoveUnselectable();
-        func_020fd560();
+        Screens_BlackOut();
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;

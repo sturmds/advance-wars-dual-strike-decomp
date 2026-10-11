@@ -10288,6 +10288,10 @@ src/game/main/palette_fade_update.c:
     complete
     .text       start:0x020fd3ec end:0x020fd560
 
+src/game/main/graphics/screens_black_out.c:
+    complete
+    .text       start:0x020fd560 end:0x020fd618
+
 src/game/main/func_020fd618.c:
     complete
     .text       start:0x020fd618 end:0x020fd624

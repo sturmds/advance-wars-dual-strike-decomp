@@ -11,7 +11,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 void func_02015da8(ScriptSlot *textSlot);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
@@ -109,7 +109,7 @@ void Ov005_UpdateSlideInTextScreen(Ov005Task *task)
         if (func_020fd624(work->fadeTask2)) {
             return;
         }
-        func_020fd560();
+        Screens_BlackOut();
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedScreen = data_027c027c;

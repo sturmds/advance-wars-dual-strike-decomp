@@ -9,7 +9,7 @@ BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 BOOL func_020fd7b0(void);
 BOOL func_020fd790(void);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 BOOL func_02004828(void);
 void func_0200493c(u16 value);
 void func_020077a4(int weather);
@@ -171,7 +171,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         if (func_02004828()) {
             break;
         }
-        func_020fd560();
+        Screens_BlackOut();
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedState = data_027c027c;

@@ -12,7 +12,7 @@ void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 void DmaTask_Start(const void *src, volatile void *dest, int unk2, int unk3, void (*callback)(void));
 void DmaTasks_Destroy(void);
 void Sound_StopStream(int fadeFrames);
@@ -230,7 +230,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         DmaTasks_Destroy();
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
-        func_020fd560();
+        Screens_BlackOut();
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedScreen = data_027c027c;

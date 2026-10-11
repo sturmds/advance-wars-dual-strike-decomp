@@ -8,7 +8,7 @@
 
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 void Task_ResumeScript(Ov005Task *task);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -67,7 +67,7 @@ void Ov005_UpdateTimedScreen(Ov005Task *task)
         if (func_020fd624(work->fadeTask2)) {
             return;
         }
-        func_020fd560();
+        Screens_BlackOut();
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;

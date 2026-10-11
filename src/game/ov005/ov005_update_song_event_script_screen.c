@@ -9,7 +9,7 @@
 void Sound_FadeMusicVolume(int from, int to, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 Task *func_020fcb08(int arg);
 BOOL func_020fccbc(Task *task);
 void func_020fccb0(Task *task);
@@ -78,7 +78,7 @@ void Ov005_UpdateSongEventScriptScreen(Ov005Task *task)
         if (func_020fd624(work->fadeTask2)) {
             return;
         }
-        func_020fd560();
+        Screens_BlackOut();
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedScreen = data_027c027c;

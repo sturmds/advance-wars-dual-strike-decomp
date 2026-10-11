@@ -19,7 +19,7 @@ s32 HwMod32(s32 numerator, s32 denominator);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_020fd560(void);
+void Screens_BlackOut(void);
 void func_020ff07c(CampaignRecap *work);
 Task *func_020fcb08(int arg);
 BOOL func_020fccbc(Task *task);
@@ -257,7 +257,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
         if (func_020fd624(work->fadeTask2)) {
             break;
         }
-        func_020fd560();
+        Screens_BlackOut();
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         savedScreen = data_027c027c;
