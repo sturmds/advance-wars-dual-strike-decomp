@@ -18,7 +18,7 @@ BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
 BOOL AiBuild_HasEnoughGroundIndirects(int info);
 int AiSite_PickForBuild(int supplyKind);
 int func_0209770c(int x, int y, int unitType);
-void func_0209373c(void);
+void AiSites_ClearRejectedMarks(void);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_02098238(u32 cost);
 int Ai_WantsBlackBomb(int unitType);
@@ -123,7 +123,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 site->kind = 0xff;
                 continue;
             }
-            func_0209373c();
+            AiSites_ClearRejectedMarks();
             break;
         }
         cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
@@ -166,6 +166,6 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         return index;
     reject:
         gAiBuildScores[best] = 0;
-        func_0209373c();
+        AiSites_ClearRejectedMarks();
     }
 }

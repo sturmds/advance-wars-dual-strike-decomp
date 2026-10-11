@@ -10083,6 +10083,10 @@ src/game/main/func_02093720.c:
     complete
     .text       start:0x02093720 end:0x0209373c
 
+src/game/main/ai/ai_sites_clear_rejected_marks.c:
+    complete
+    .text       start:0x0209373c end:0x0209378c
+
 src/game/main/ai/func_0209378c.c:
     complete
     .text       start:0x0209378c end:0x020937dc
