@@ -24,4 +24,6 @@ typedef struct SoundHeap {
     LinkList levels;                   /* 0x04: levels.count is the number of levels */
 } SoundHeap;
 
+BOOL SoundHeap_AddLevel(SoundHeap *heap);
+
 #endif
