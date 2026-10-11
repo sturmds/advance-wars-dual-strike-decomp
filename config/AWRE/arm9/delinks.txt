@@ -8496,6 +8496,10 @@ src/game/main/menus/unit_list_pick_row.c:
     complete
     .text       start:0x02073f28 end:0x02073f8c
 
+src/game/main/menus/unit_list_scroll_to_picked_unit.c:
+    complete
+    .text       start:0x02073f8c end:0x02073ff8
+
 src/game/main/menus/unit_list_draw.c:
     complete
     .text       start:0x02074048 end:0x020742d4
