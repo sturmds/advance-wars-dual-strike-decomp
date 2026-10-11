@@ -7341,6 +7341,10 @@ src/game/main/func_02071e90.c:
     complete
     .text       start:0x02071e90 end:0x02071f80
 
+src/game/main/tab_list_draw_entry_with_icon.c:
+    complete
+    .text       start:0x02071f80 end:0x02072084
+
 src/game/main/tab_list_draw_entry_plain.c:
     complete
     .text       start:0x02072284 end:0x02072364
