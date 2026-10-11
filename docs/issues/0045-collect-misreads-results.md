@@ -13,6 +13,7 @@ In batch 18 and the batch 19 relaunches, `collect` read these files wrongly:
 - `b18/s13` has one line saying all 15 matched, with a landing hash. The group shows "landed none".
 - `b19/s06` wrote a one-line `RESULT`; `collect` called it failed and reconcile closed it.
 - `partials18` landed nothing and `collect` called it failed; it was set to done by hand (0 of 8 improved is a valid result for a partials job).
+- `renames21` was closed three times by `collect` from an early results file whose `LANDED` lines came before the final `NOTES` (in batch 21, 2026-10-11); the orchestrator reset it to running each time.
 
 Each time the notes in the file (partial percentages, suggested names) were not read into the state.
 
