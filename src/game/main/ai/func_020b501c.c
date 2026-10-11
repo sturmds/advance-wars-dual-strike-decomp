@@ -1,20 +1,17 @@
 #include "types.h"
 #include "game/ai_unit_action.h"
 
-extern void (*data_0229e164)(void);
-extern int (*data_0229e16c)(void);
-void func_020b5098(void);
+BOOL func_020b5098(void);
 int func_020b507c(void);
 void func_020b5464(void);
-void AiSeaTransport_ScoreUnloadTiles(void);
 void func_020b5bf4(void);
 
 void func_020b501c(void)
 {
-    data_0229e164 = func_020b5098;
-    data_0229e16c = func_020b507c;
+    gAiUnloadTest = func_020b5098;
+    gAiUnloadScore = func_020b507c;
     AiSeaTransport_ScoreUnloadTiles();
-    if (gAiTurnState->stepFlags & AI_STEP_BIT_08) {
+    if (gAiTurnState->stepFlags & AI_STEP_UNLOAD_SCORED) {
         func_020b5bf4();
     }
     func_020b5464();

@@ -6,8 +6,6 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern BOOL (*data_0229e164)(void);
-extern int (*data_0229e16c)(void);
 
 int AiUnit_GetUnloadMovement(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -19,12 +17,12 @@ BOOL AiSeaTransport_FindShoreTile(s16 *out);
 
 #define UNLIMITED_MOVE 110
 
-/* The caller sets data_0229e164 (a test) and data_0229e16c (a score). For
+/* The caller sets gAiUnloadTest (a test) and gAiUnloadScore (a score). For
  * each Shoal or Port tile the acting sea transport can reach, this fills
  * rangeMap with the first cargo unit's moves from that tile (in
  * MapTiles.rangeScratch) and runs the test. When it passes, every Shoal
  * and Port tile in the cargo's reach gets the score in
- * MapTiles.rangeScratch2 if higher, and AI_STEP_BIT_08 is set. Those tiles
+ * MapTiles.rangeScratch2 if higher, and AI_STEP_UNLOAD_SCORED is set. Those tiles
  * are then struck from the transport's own range map, so each shore group
  * is handled once. */
 void AiSeaTransport_ScoreUnloadTiles(void)
@@ -53,8 +51,8 @@ void AiSeaTransport_ScoreUnloadTiles(void)
         }
         RangeMap_SetBuffer(MAP->rangeScratch);
         RangeMap_FillMoves(shore[0], shore[1], cargo->type, cargoMove, 0);
-        if (data_0229e164() == TRUE) {
-            score = data_0229e16c();
+        if (gAiUnloadTest() == TRUE) {
+            score = gAiUnloadScore();
             for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
                 for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
                     if (STATE->rangeMap[y][x] < 0) {
@@ -64,7 +62,7 @@ void AiSeaTransport_ScoreUnloadTiles(void)
                     if (terrain == TERRAIN_SHOAL || terrain == TERRAIN_PORT) {
                         if ((u8)MAP->rangeScratch2[TILE(x, y)] < score) {
                             MAP->rangeScratch2[TILE(x, y)] = score;
-                            gAiTurnState->stepFlags |= AI_STEP_BIT_08;
+                            gAiTurnState->stepFlags |= AI_STEP_UNLOAD_SCORED;
                         }
                         MAP->rangeMapTiles[TILE(x, y)] = -1;
                     }

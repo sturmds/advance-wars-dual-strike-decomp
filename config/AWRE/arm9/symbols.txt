@@ -8798,9 +8798,9 @@ data_0229e0bc kind:bss addr:0x0229e0bc
 data_0229e144 kind:bss addr:0x0229e144
 data_0229e148 kind:bss addr:0x0229e148
 gAiActiveUnitProfile kind:bss addr:0x0229e160
-data_0229e164 kind:bss addr:0x0229e164
+gAiUnloadTest kind:bss addr:0x0229e164
 gAiQueueCursor kind:bss addr:0x0229e168
-data_0229e16c kind:bss addr:0x0229e16c
+gAiUnloadScore kind:bss addr:0x0229e16c
 gAiQueueRoutine kind:bss addr:0x0229e170
 data_0229e174 kind:bss addr:0x0229e174
 data_0229e178 kind:bss addr:0x0229e178

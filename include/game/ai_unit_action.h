@@ -52,7 +52,7 @@ typedef struct AiTurnState {
 #define AI_STEP_UNIT_AT_TARGET  0x01   /* AiUnit_HandleUnitAtTarget found an own unit on the target */
 #define AI_STEP_STAY            0x02   /* with AI_STEP_UNIT_AT_TARGET, AiUnit_MoveToSafestTile does nothing */
 #define AI_STEP_IGNORE_TERRAIN  0x10   /* AiUnit_MoveToSafestTile ignores terrain stars */
-#define AI_STEP_BIT_08          0x08   /* meaning not known yet; func_020b4ca4 runs func_020b5bf4 when set */
+#define AI_STEP_UNLOAD_SCORED   0x08   /* AiSeaTransport_ScoreUnloadTiles scored a tile; the sea transport routines then run func_020b5bf4 */
 #define AI_STEP_ATTACK_DONE     0x20   /* guess: set after the attack steps of a queue routine */
 #define AI_STEP_SWAP_CARGO      0x40   /* AiUnit_AdjustAction swaps the two cargo slots once */
 #define AI_STEP_NO_ADJUST       0x80   /* AiUnit_AdjustAction leaves the action alone */
@@ -67,6 +67,12 @@ extern u8 *gAiQueueCursor;            /* write position in gAiQueue */
 extern void (*gAiQueueRoutine)(void); /* run on each entry */
 extern u8 gAiQueue[];
 extern u8 gAiQueueSortKeys[];         /* sort key of each gAiQueue entry, same index */
+
+/* Each sea transport routine sets the test and the score that
+ * AiSeaTransport_ScoreUnloadTiles uses on the tiles it reaches. */
+extern BOOL (*gAiUnloadTest)(void);
+extern int (*gAiUnloadScore)(void);
+void AiSeaTransport_ScoreUnloadTiles(void);
 
 /* AiAttack_Score flags. The low 16 bits hold the defender's unit slot. */
 #define AI_ATTACK_DEFENDER_MASK  0xffff
