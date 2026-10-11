@@ -5984,6 +5984,10 @@ src/game/main/menus/co_select_screen_picture_task_init.c:
     complete
     .text       start:0x02043234 end:0x020432a8
 
+src/game/main/menus/co_select_screen_draw_column_info.c:
+    complete
+    .text       start:0x020432a8 end:0x02043558
+
 src/game/main/menus/co_select_screen_draw.c:
     complete
     .text       start:0x02043690 end:0x020441e8

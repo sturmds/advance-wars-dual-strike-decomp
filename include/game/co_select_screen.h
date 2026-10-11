@@ -31,6 +31,15 @@ extern CoSelectScreen *data_0229c73c;
 /* The CO in the cursor cell. Needed to match: coGrid read as rows of 2. */
 #define CO_SELECT_CURSOR_CO (((u8 (*)[2])data_0229c73c->coGrid)[data_0229c73c->cursorColumn - 1][data_0229c73c->cursorRow])
 
+/* Skill ids of the COs in each grid column, 5 per CO, at coGrid + 0x0c; 0
+ * or 0xff ends a list. Read through this view: coGrid covers the bytes. */
+typedef struct CoSelectSkills {
+    u8 pad_00[0x0c];
+    u8 skills[3][2][5];                /* [cursorColumn - 1][cursorRow][n] */
+} CoSelectSkills;
+
+#define CO_SELECT_SKILLS(column, row) (((CoSelectSkills *)data_0229c73c)->skills[(column) - 1][row])
+
 /* Task that slides the big CO pictures on the bottom screen, one per grid
  * row (CoSelectScreen_SlidePictures). Fields are per row. */
 typedef struct CoSelectPictureTask {
