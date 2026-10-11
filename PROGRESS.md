@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5513 / 6598 | 1253844 / 1531944 | 81.85% | 0 | 0 |
+| game | 5528 / 6598 | 1255384 / 1531944 | 81.95% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 5652 / 7479 | 1257308 / 1685994 | 74.57% | 1 | 30 |
+| all | 5667 / 7479 | 1258848 / 1685994 | 74.67% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4125 / 5180 | 822732 / 1082632 | 75.99% | 0 |
+| main | game | 4140 / 5180 | 824272 / 1082632 | 76.14% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -46,7 +46,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_0209770c.c` | func_0209770c | 1736 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
-| `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/func_020f20b4 5.c` | no delinks entry | 0 |
@@ -57,6 +56,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_020f67f0.c` | no delinks entry | 0 |
 | `src/game/main/func_020f6854.c` | no delinks entry | 0 |
 | `src/game/main/graphics/func_0200c500.c` | func_0200c500 | 216 |
+| `src/game/main/graphics/gfx_queue_add_kind4.c` | GfxQueue_AddKind4 | 128 |
 | `src/game/main/graphics/palette_get_army_block.c` | func_020dbde8 | 48 |
 | `src/game/main/graphics/sprite_anim_queue3d.c` | SpriteAnim_Queue3d | 196 |
 | `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |

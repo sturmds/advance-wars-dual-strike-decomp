@@ -20,8 +20,8 @@ extern u8 data_021488c4[];
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
 /* Defined returning void, but leaves the new task in r0, and this caller uses it. */
 SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
@@ -41,8 +41,8 @@ void TileListTask_PlayEffect(Unk_02168140Task *task)
 
     if (data_027c027c == data_027c0288.unk_00) {
         FS_ChangeDir(data_021681d8);
-        func_0200ba0c(data_02168204, data_022a7c5c->unk_68);
-        func_0200b9d8(data_021681fc, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueUnpackedFileCopy(data_02168204, data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(data_021681fc, data_022a7c5c->unk_6c, 32);
         pos.x = (task->unk_2c * 16 + 32) * 0x2000 / 256;
         pos.y = (task->unk_30 * 16 + 8) * 0x6000 / 768;
         pos.z = 8;

@@ -25,8 +25,8 @@ extern const TaskScriptCmd data_02166410[];
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
 void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
@@ -88,8 +88,8 @@ void Unit_PlayDiveEffect(int unitType, BOOL emerge)
     }
     if (data_027c027c == data_027c0288.unk_00) {
         FS_ChangeDir(data_02166cc8);
-        func_0200ba0c(gfx3d, data_022a7c5c->unk_68);
-        func_0200b9d8(palette, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueUnpackedFileCopy(gfx3d, data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(palette, data_022a7c5c->unk_6c, 32);
         pos.x = (STATE->actingUnitDestX * 16 + 8) * 0x2000 / 256;
         pos.y = (STATE->actingUnitDestY * 16 + 8) * 0x6000 / 768;
         pos.z = 8;

@@ -13,7 +13,7 @@ extern volatile u8 data_027c052c[][16];
  * volatile does here, but loads it twice before the first store. With every
  * array volatile the first store comes between those loads (75%); with
  * data_027c0520 not volatile, as here, that store sinks to the end. */
-void func_0200c898(u32 a, u32 b, u32 size)
+void GfxQueue_AddKind4(u32 a, u32 b, u32 size)
 {
     data_027c0520[data_027c051c][0] = a;
     data_027c0524[data_027c051c][0] = b;

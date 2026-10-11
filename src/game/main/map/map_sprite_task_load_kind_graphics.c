@@ -58,8 +58,8 @@ Unk_02022404 *SpriteAnim_Create(void *file, int layer, int flags);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 s32 HwDiv32(s32 numer, s32 denom);
 
 /* First step of a map sprite task: picks the effect graphics for the task's
@@ -208,8 +208,8 @@ void MapSpriteTask_LoadKindGraphics(MapSpriteTask *task)
         FS_ChangeDir(data_02169180);
         task->sprite->unk_24 = (u32)data_022a7c5c->unk_68;
         task->sprite->unk_28 = (u32)data_022a7c5c->unk_6c;
-        func_0200ba0c(file3d, data_022a7c5c->unk_68);
-        func_0200b9d8(palette, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueUnpackedFileCopy(file3d, data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(palette, data_022a7c5c->unk_6c, 32);
     } else {
         task->sprite = SpriteAnim_Create(anim, 1, 2);
         task->sprite->unk_24 = (5 << 12) | 404; /* sprite attribute 2: palette 5, tile 404 */

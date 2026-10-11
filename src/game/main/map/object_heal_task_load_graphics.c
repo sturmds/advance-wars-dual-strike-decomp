@@ -20,8 +20,8 @@ extern char data_021681f4[];
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 void Task_Destroy(void *task);
 void func_020f5878(s16 x, s16 y);
 
@@ -35,8 +35,8 @@ void ObjectHealTask_LoadGraphics(ObjectHealTask *task)
     case MAP_OBJECT_BLACK_CRYSTAL:
         if (data_027c027c == data_027c0288.unk_00) {
             FS_ChangeDir(data_021681d8);
-            func_0200ba0c(data_021681e0, data_022a7c5c->unk_68);
-            func_0200b9d8(data_021681e4, data_022a7c5c->unk_6c, 32);
+            Gfx_QueueUnpackedFileCopy(data_021681e0, data_022a7c5c->unk_68);
+            Gfx_QueueFileCopy(data_021681e4, data_022a7c5c->unk_6c, 32);
         } else {
             FS_ChangeDir(data_021681d8);
             File_UnpackTo(data_027c0280->objVram + 0x3280, data_021681e8);
@@ -46,8 +46,8 @@ void ObjectHealTask_LoadGraphics(ObjectHealTask *task)
     case MAP_OBJECT_BLACK_OBELISK:
         if (data_027c027c == data_027c0288.unk_00) {
             FS_ChangeDir(data_021681d8);
-            func_0200ba0c(data_021681ec, data_022a7c5c->unk_68);
-            func_0200b9d8(data_021681f0, data_022a7c5c->unk_6c, 32);
+            Gfx_QueueUnpackedFileCopy(data_021681ec, data_022a7c5c->unk_68);
+            Gfx_QueueFileCopy(data_021681f0, data_022a7c5c->unk_6c, 32);
         } else {
             FS_ChangeDir(data_021681d8);
             File_UnpackTo(data_027c0280->objVram + 0x3280, data_021681f4);

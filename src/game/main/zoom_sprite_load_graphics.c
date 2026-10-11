@@ -17,8 +17,8 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void SpriteAnim_SetAnimation(void *sprite, int frame);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 
 /* Sets the sprite's animation (the next one when the sprite is on the right
  * half of the screen), then loads the graphics for the game language from
@@ -34,9 +34,9 @@ void ZoomSprite_LoadGraphics(int screenX, int screenY, int animation, void *spri
     }
     if (data_027c027c == data_027c0288.unk_00) {
         FS_ChangeDir(data_02166cd0);
-        func_0200ba0c(data_ov000_022f6674[data_ov000_023503a0], data_022a7c5c->unk_68);
+        Gfx_QueueUnpackedFileCopy(data_ov000_022f6674[data_ov000_023503a0], data_022a7c5c->unk_68);
         FS_ChangeDir(data_02166cc8);
-        func_0200b9d8(data_02166cdc, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueFileCopy(data_02166cdc, data_022a7c5c->unk_6c, 32);
     } else {
         FS_ChangeDir(data_02166cd0);
         File_UnpackTo(data_027c0280->objVram + 0x3280, data_ov000_022f6688[data_ov000_023503a0]);

@@ -19,8 +19,8 @@ int MapScript_RunList10(int id, MapUnit *unit);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, u16 paletteOffset, int size);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 
 /* Runs map script list 10 with id 45, loads the explosion graphics from
  * /bmap (for the 3D engine on its screen; on the other screen into sprite
@@ -34,8 +34,8 @@ void BlackBombBlast_Start(int x, int y, int gfxTile, int palette, int damage, Ta
     MapScript_RunList10(45, 0);
     if (data_027c027c == data_027c0288.unk_00) {
         FS_ChangeDir(data_02169180);
-        func_0200ba0c(data_0216919c, data_022a7c5c->unk_68);
-        func_0200b9d8(data_021691a0, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueUnpackedFileCopy(data_0216919c, data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(data_021691a0, data_022a7c5c->unk_6c, 32);
     } else {
         FS_ChangeDir(data_02169180);
         File_UnpackTo(data_027c0280->objVram + gfxTile * 32, data_021691a4);

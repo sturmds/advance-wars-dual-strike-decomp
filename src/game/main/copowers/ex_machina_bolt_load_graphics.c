@@ -24,8 +24,8 @@ void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -53,8 +53,8 @@ void ExMachinaBolt_LoadGraphics(ExMachinaBoltTask *task)
     Palette_LoadFromFile(data_02168b70, 0, 32, 32);
     Gfx_RequestLayerCopy(0);
     if (data_027c027c == data_027c0288.unk_00) {
-        func_0200ba0c(data_02168b74, data_022a7c5c->unk_68);
-        func_0200b9d8(data_02168b78, data_022a7c5c->unk_6c, 32);
+        Gfx_QueueUnpackedFileCopy(data_02168b74, data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(data_02168b78, data_022a7c5c->unk_6c, 32);
     } else {
         File_UnpackTo(data_027c0280->objVram + 0x3280, data_02168b7c);
         Palette_LoadFromFile(data_02168b78, 0, 0x260, 32);

@@ -17,8 +17,8 @@ extern char data_0216820c[];
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
-void func_0200ba0c(const char *fileName, void *dest);
-void func_0200b9d8(const char *fileName, void *dest, int size);
+void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
+void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
 SpriteAnim3dTask *SpriteAnim3dTask_StartAltFlagged(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
 void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
@@ -45,8 +45,8 @@ void CannonShotTask_PlayMuzzleFlash(CannonShotTask *task)
     CannonShot_GetMuzzleOffset(&x, &y, task->cannonKind);
     if (data_027c027c == data_027c0288.unk_00) {
         FS_ChangeDir(data_021681d8);
-        func_0200ba0c(CannonShot_Get3dGraphicsFile(task->cannonKind), data_022a7c5c->unk_68);
-        func_0200b9d8(data_0216820c, data_022a7c5c->unk_6c, 64);
+        Gfx_QueueUnpackedFileCopy(CannonShot_Get3dGraphicsFile(task->cannonKind), data_022a7c5c->unk_68);
+        Gfx_QueueFileCopy(data_0216820c, data_022a7c5c->unk_6c, 64);
         pos.x = (x + task->cannonX * 16) * 0x2000 / 256;
         pos.y = (y + task->cannonY * 16) * 0x6000 / 768;
         pos.z = 8;
