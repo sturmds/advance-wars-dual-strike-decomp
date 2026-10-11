@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-extern u16 data_02297784;
+extern u16 gEventChoiceAnswer;
 extern u8 data_022977d0[];
 
 /* func_0201a160 bits */
@@ -28,7 +28,7 @@ void Sound_PlaySe(int se);
 /* Update of an event script prompt with four choices side by side. Left and
  * right move the cursor, B jumps to the last choice, touch buttons 0-3 pick
  * one. A cursor move redraws the choice text at tile (7, 3). A or touch
- * button 4 confirms: data_02297784 gets 2, 3, 4 for choices 0-2 and 1 for the
+ * button 4 confirms: gEventChoiceAnswer gets 2, 3, 4 for choices 0-2 and 1 for the
  * last one, then the task passes unk_38 + 0x4e to func_0201d730, calls
  * unk_3c and resumes its script. */
 void EventChoice_Update(Task *task)
@@ -74,17 +74,17 @@ void EventChoice_Update(Task *task)
     if ((keys & CHOICE_KEY_CONFIRM) || (touched & 0x10)) {
         switch (CURSOR(task)) {
         case 0:
-            data_02297784 = 2;
+            gEventChoiceAnswer = 2;
             break;
         case 1:
-            data_02297784 = 3;
+            gEventChoiceAnswer = 3;
             break;
         case 2:
-            data_02297784 = 4;
+            gEventChoiceAnswer = 4;
             break;
         case CHOICE_LAST:
         default:
-            data_02297784 = 1;
+            gEventChoiceAnswer = 1;
             break;
         }
         func_0201d730((u8 *)task->unk_38 + 0x4e);

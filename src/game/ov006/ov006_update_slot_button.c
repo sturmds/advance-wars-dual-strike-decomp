@@ -3,7 +3,7 @@
 #include "game/menu_button.h"
 #include "game/keypad.h"
 
-fx32 func_0210a184(fx32 a, fx32 b);    /* probably a * b in fx32 */
+fx32 FX_Div(fx32 numer, fx32 denom);
 int Ov006_SlotsAreShown(void);
 void Ov006_RemoveSlotButtons(void);
 void Ov006_PressMenuButton(int buttonId);
@@ -42,7 +42,7 @@ void Ov006_UpdateSlotButton(MenuButton *button)
         /* Eases toward 16 pixels past the button's place (index * 32) and
          * stops there. */
         target = index * (32 * FX32_ONE);
-        slide->x += func_0210a184(target + 16 * FX32_ONE - slide->x, 0x6000);
+        slide->x += FX_Div(target + 16 * FX32_ONE - slide->x, 6 * FX32_ONE);
         if (slide->x >= target) {
             slide->x = target;
             slide->state = OV006_SLIDE_SHOWN;
@@ -65,7 +65,7 @@ void Ov006_UpdateSlotButton(MenuButton *button)
         slide->state = OV006_SLIDE_OUT;
         slide->flags &= ~1;
     case OV006_SLIDE_OUT:
-        slide->x += func_0210a184(-48 * FX32_ONE - slide->x, 0x5000);
+        slide->x += FX_Div(-48 * FX32_ONE - slide->x, 5 * FX32_ONE);
         if (slide->x < -32 * FX32_ONE) {
             slide->x = -32 * FX32_ONE;
             button->flags = 0;

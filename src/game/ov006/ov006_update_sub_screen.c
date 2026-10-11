@@ -7,7 +7,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Ov006_QueueScreen1Sprites(void);
 int Ov006_IsMapPlayable(void);
-int func_0210a184(int a, int b);
+fx32 FX_Div(fx32 numer, fx32 denom);
 BOOL func_020219e4(void *sprites, int frame, int a, int x, int y, int attr, int b, int c);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
 void Screen_SetLayer3Scroll(int x, int y);
@@ -45,7 +45,7 @@ void Ov006_UpdateSubScreen(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     if (Ov006_IsMapPlayable() != 0) {
-        OV6->unk_58 += func_0210a184(0x20012 - OV6->unk_58, 0x3000);
+        OV6->unk_58 += FX_Div(0x20012 - OV6->unk_58, 3 * FX32_ONE);
         if (OV6->unk_58 > 0x12000) {
             OV6->unk_58 = 0x12000;
         }

@@ -49,7 +49,7 @@ void func_ov005_02367ec0(const EventScriptCommand *script);
 void Ov005_AddShopPageButtons(Unk_ov005_0236bbb0 *work);   /* adds the page's buttons */
 void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work);   /* draws the page numbers */
 
-extern u16 data_02297784;                  /* answer of the yes/no question, 0: yes */
+extern u16 gEventChoiceAnswer;          /* answer of the yes/no question, 0: yes */
 extern u8 data_02297be0[];
 extern u8 data_022978e0[];
 extern const TaskScriptCmd data_ov005_0236b35c[];
@@ -197,7 +197,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         break;
     case 32:
         if (!Ov005_IsShopScriptRunning()) {
-            if (data_02297784 == 0) {
+            if (gEventChoiceAnswer == 0) {
                 if (PlayRecords_SpendPoints(work->items[Ov005_GetSelectedShopItemIndex(work)].price)) {
                     task->step = 40;
                 } else {

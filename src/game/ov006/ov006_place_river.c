@@ -8,7 +8,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 int Ov006_GetNeighborTile(int x, int y);
-void Ov006_RefreshNeighborTiles(int x, int y);
+void Ov006_RefreshNeighborRiverCells(int x, int y);
 int Ov006_GetRiverPiece(int x, int y);
 int Ov006_GetLandMaskPiece(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
@@ -41,7 +41,7 @@ int Ov006_PlaceRiver(int x, int y)
         if (cell == 0) {
             Ov006_SetTerrain(x, y, TERRAIN_RIVER);
             Ov006_StoreMapCell(x, y, blockCell);
-            Ov006_RefreshNeighborTiles(x, y);
+            Ov006_RefreshNeighborRiverCells(x, y);
         } else if (cell > 0) {
             blockCell &= 0xfe00;
             /* needed to match: each flag value is tested twice */
@@ -57,7 +57,7 @@ int Ov006_PlaceRiver(int x, int y)
                 Ov006_SetTerrain(x, y, TERRAIN_RIVER);
                 Ov006_StoreMapCell(x, y, cell);
             }
-            Ov006_RefreshNeighborTiles(x, y);
+            Ov006_RefreshNeighborRiverCells(x, y);
         } else {
             return 0;
         }
@@ -72,7 +72,7 @@ int Ov006_PlaceRiver(int x, int y)
         if (cell > 0) {
             Ov006_SetTerrain(x, y, TERRAIN_RIVER);
             Ov006_StoreMapCell(x, y, cell);
-            Ov006_RefreshNeighborTiles(x, y);
+            Ov006_RefreshNeighborRiverCells(x, y);
         } else {
             return 0;
         }

@@ -5223,11 +5223,11 @@ func_02109914 kind:function(arm,size=0x394) addr:0x02109914
 func_02109ca8 kind:function(arm,size=0xb8) addr:0x02109ca8
 func_02109d60 kind:function(arm,size=0x28) addr:0x02109d60
 func_02109d88 kind:function(arm,size=0x324) addr:0x02109d88
-func_0210a0ac kind:function(arm,size=0x38) addr:0x0210a0ac
+FX_DivAsync kind:function(arm,size=0x38) addr:0x0210a0ac
 func_0210a0e4 kind:function(arm,size=0x3c) addr:0x0210a0e4
-func_0210a120 kind:function(arm,size=0x3c) addr:0x0210a120
+FX_GetDivResult kind:function(arm,size=0x3c) addr:0x0210a120
 func_0210a15c kind:function(arm,size=0x28) addr:0x0210a15c
-func_0210a184 kind:function(arm,size=0x1c) addr:0x0210a184
+FX_Div kind:function(arm,size=0x1c) addr:0x0210a184
 func_0210a1a0 kind:function(arm,size=0x60) addr:0x0210a1a0
 func_0210a200 kind:function(arm,size=0x140) addr:0x0210a200
 func_0210a340 kind:function(arm,size=0x9c) addr:0x0210a340
@@ -8664,7 +8664,7 @@ data_02297774 kind:bss addr:0x02297774
 data_02297778 kind:bss addr:0x02297778
 data_0229777c kind:bss addr:0x0229777c
 data_02297780 kind:bss addr:0x02297780
-data_02297784 kind:bss addr:0x02297784
+gEventChoiceAnswer kind:bss addr:0x02297784
 data_02297788 kind:bss addr:0x02297788
 data_0229778c kind:bss addr:0x0229778c
 data_02297790 kind:bss addr:0x02297790

@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern u16 data_02297784;
+extern u16 gEventChoiceAnswer;
 
 int func_020199a4(void)
 {
-    return (data_02297784 == 0) ? 1 : 0;
+    return (gEventChoiceAnswer == 0) ? 1 : 0;
 }

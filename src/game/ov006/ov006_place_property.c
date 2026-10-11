@@ -16,7 +16,7 @@ int Ov006_GetPropertyCell(int tile);   /* cell code for a tile byte (guess) */
 void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_0235da70(int x, int y, int value);
 void Ov006_RefitCellsAround(int x, int y);
-void Ov006_RefreshNeighborTiles(int x, int y);
+void Ov006_RefreshNeighborRiverCells(int x, int y);
 void func_020c4448(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -74,7 +74,7 @@ int Ov006_PlaceProperty(int x, int y, int tile)
     Ov006_AddProperty(x, y, tile);
     func_020c4448();
     Ov006_SetHqPosition(tile, x, y);
-    Ov006_RefreshNeighborTiles(x, y);
+    Ov006_RefreshNeighborRiverCells(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     Ov006_RefitCellsAround(x, y);
     Ov006_CheckReefsAround(x, y);

@@ -12,7 +12,7 @@ void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_0235da70(int x, int y, int value);
 void func_ov006_0235dd24(int x, int y);
 void Ov006_RefitCellsAround(int x, int y);
-void Ov006_RefreshNeighborTiles(int x, int y);
+void Ov006_RefreshNeighborRiverCells(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -44,7 +44,7 @@ void Ov006_PlaceWood(int x, int y)
         func_ov006_0235da70(x, y, MAP_CELL_WOOD);
         func_ov006_0235dd24(x, y);
     }
-    Ov006_RefreshNeighborTiles(x, y);
+    Ov006_RefreshNeighborRiverCells(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     Ov006_RefitCellsAround(x, y);
     Ov006_CheckReefsAround(x, y);

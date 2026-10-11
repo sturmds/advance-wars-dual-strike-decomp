@@ -1022,7 +1022,7 @@ src/game/ov006/ov006_get_neighbor_tile.c:
     complete
     .text       start:0x023612bc end:0x0236146c
 
-src/game/ov006/ov006_refresh_neighbor_tiles.c:
+src/game/ov006/ov006_refresh_neighbor_river_cells.c:
     complete
     .text       start:0x0236146c end:0x02361684
 
