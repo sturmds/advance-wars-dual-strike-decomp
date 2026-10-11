@@ -22339,6 +22339,7 @@ src/sdk/card/card_rom_on_page_dma_done.c:
     .text       start:0x0211642c end:0x021164a0
 
 src/sdk/card/card_rom_start_page_dma.c:
+    complete
     .text       start:0x021164a0 end:0x021164f8
 
 src/sdk/card/card_rom_load_command_bytes.c:
