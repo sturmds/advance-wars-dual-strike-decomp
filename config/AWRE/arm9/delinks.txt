@@ -5058,6 +5058,10 @@ src/game/main/screen/screen_fade_sprites.c:
     complete
     .text       start:0x02053a20 end:0x02053af0
 
+src/game/main/copowers/super_break_flash_update.c:
+    complete
+    .text       start:0x02053af0 end:0x02053cc8
+
 src/game/main/copowers/super_break_set_up_screen.c:
     complete
     .text       start:0x0205443c end:0x02054ab0
