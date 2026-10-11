@@ -3,15 +3,15 @@
 
 void *func_02110a10(SoundWaveArc *wave, u32 waveNo);
 void func_02110a58(SoundWaveArc *wave, u32 waveNo, void *data);
-void func_0210fb80(void *start, void *end);
+void SND_InvalidateWaveData(void *start, void *end);
 
 /* Unload callback of a wave loaded by SoundWaveArc_LoadWave. Clears the
  * wave in its archive if the archive still points at it, then passes the
- * freed range (size bytes from data) to func_0210fb80. */
+ * freed range (size bytes from data) to SND_InvalidateWaveData. */
 void SoundWaveArc_UnloadWave(void *data, u32 size, SoundWaveArc *wave, u32 waveNo)
 {
     if (data == func_02110a10(wave, waveNo)) {
         func_02110a58(wave, waveNo, NULL);
     }
-    func_0210fb80(data, (u8 *)data + size);
+    SND_InvalidateWaveData(data, (u8 *)data + size);
 }
