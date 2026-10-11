@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c23d0(int killerSlot, int victimSlot, int victimType); /* counts a kill for killerSlot */
+void Player_AddKill(int killerSlot, int victimSlot, int victimType); /* counts a kill for killerSlot */
 void func_020c2ce0(MapUnit *unit);                                   /* counts the unit and its cargo as destroyed */
 void func_020c2e08(Combatant *combatant, Combatant *other);           /* damage taken and funds damage */
 void func_020c2d9c(Combatant *combatant, Combatant *other);           /* writes hp and ammo back to the unit; at 0 hp calls func_020edb84 */
@@ -23,7 +23,7 @@ void func_020c2d9c(Combatant *combatant, Combatant *other);           /* writes 
 void Combat_ApplyResult(void)
 {
     if (STATE->combatants[0].hp <= 0) {
-        func_020c23d0(COMBATANT_OWNER(1), COMBATANT_OWNER(0), STATE->combatants[0].unit->type);
+        Player_AddKill(COMBATANT_OWNER(1), COMBATANT_OWNER(0), STATE->combatants[0].unit->type);
         if (STATE->players[COMBATANT_OWNER(1)].controller == PLAYER_CONTROLLER_HUMAN) {
             func_020c2ce0(STATE->combatants[0].unit);
         }
@@ -36,7 +36,7 @@ void Combat_ApplyResult(void)
         }
     }
     if (STATE->combatants[1].hp <= 0) {
-        func_020c23d0(COMBATANT_OWNER(0), COMBATANT_OWNER(1), STATE->combatants[1].unit->type);
+        Player_AddKill(COMBATANT_OWNER(0), COMBATANT_OWNER(1), STATE->combatants[1].unit->type);
         if (STATE->players[COMBATANT_OWNER(0)].controller == PLAYER_CONTROLLER_HUMAN) {
             func_020c2ce0(STATE->combatants[1].unit);
         }
