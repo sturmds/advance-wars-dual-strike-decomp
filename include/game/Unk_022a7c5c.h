@@ -6,7 +6,7 @@
 /* Object reached through data_022a7c5c (main bss); only the fields the
  * overlay 0 show tasks read are listed. */
 typedef struct Unk_022a7c5c {
-    u8 pad_00[0x04];
+    u32 unk_00;                        /* base of the texture offsets added to tile numbers by MapTile3d_DrawQuadA */
     u32 mapTexOffset;                  /* texture image offset of the map tiles; army sprites at + 0xa00 (MapGfx_LoadTextures) */
     u32 mapTex2Offset;                 /* texture image offset of a second map file (MapGfx_LoadTextures) */
     u8 *animDst;                       /* where MapAnim_QueueFramePart queues the animated map graphics */

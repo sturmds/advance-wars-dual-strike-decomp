@@ -179,6 +179,10 @@ src/game/itcm/range_map/fill.c:
     complete
     .text       start:0x01ffb3a0 end:0x01ffb448
 
+src/game/itcm/map3d/map_tile3d_draw_quad_a.c:
+    complete
+    .text       start:0x01ffc070 end:0x01ffc168
+
 src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
