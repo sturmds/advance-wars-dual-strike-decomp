@@ -30,7 +30,8 @@ typedef struct ForceRankColumn {
 typedef struct ForceRankScreen {
     ForceRankColumn columns[FORCE_RANK_COLUMN_COUNT];
     u8 chosenSkills[4];                /* skill id picked in each of the 4 slots; 0: empty */
-    u8 pad_58[0x79 - 0x58];
+    u8 pad_58[0x59 - 0x58];
+    u8 cycleColors[0x20];              /* 16 colors, unaligned; the slot cursor shows one every 4 frames */
     u8 co;                             /* CO whose skills are being edited */
     u8 unk_7a;                         /* columns up to this one are listed; L and R cycle unk_7b through 0 to min(4, unk_7a) - 1 */
     u8 unk_7b;

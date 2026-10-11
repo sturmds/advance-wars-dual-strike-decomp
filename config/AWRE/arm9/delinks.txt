@@ -4327,6 +4327,10 @@ src/game/main/menus/force_rank_screen_close.c:
     complete
     .text       start:0x02040708 end:0x02040754
 
+src/game/main/menus/force_rank_screen_draw.c:
+    complete
+    .text       start:0x02040754 end:0x02040930
+
 src/game/main/func_02040c34.c:
     complete
     .text       start:0x02040c34 end:0x02040c38
