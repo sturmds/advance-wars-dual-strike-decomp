@@ -4,13 +4,13 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Ov005Task *task);
-void func_0201cbbc(u32 level);
+void EventPicture_DrawAtStep(u32 level);
 
 extern Unk_ov005_0236bbb0 *data_ov005_0236bbb0;
 
 /* Eases a level over 8 frames, from 6 down to 0 when transition is 1 and from 0
- * up to 6 otherwise, and passes it to func_0201cbbc each frame (meaning
- * unknown). Step 2 clears transition and resumes the task script. */
+ * up to 6 otherwise, and passes it to EventPicture_DrawAtStep each frame, which slides the 6 by 6
+ * picture in or out. Step 2 clears transition and resumes the task script. */
 void Ov005_UpdateShopTransition(Ov005Task *task)
 {
     Unk_ov005_0236bbb0 *work = data_ov005_0236bbb0;
@@ -32,7 +32,7 @@ void Ov005_UpdateShopTransition(Ov005Task *task)
         } else {
             task->frame++;
         }
-        func_0201cbbc((level >> 12) & 0xff);
+        EventPicture_DrawAtStep((level >> 12) & 0xff);
         return;
     case 2:
         work->transition = 0;

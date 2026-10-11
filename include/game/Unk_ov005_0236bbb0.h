@@ -33,7 +33,7 @@ typedef struct Unk_ov005_0236bbb0 {
     u32 leaveRequested;                /* set by a touch button; acts like B */
     int prevPageRequested;             /* set by a touch button; acts like L */
     int nextPageRequested;             /* set by a touch button; acts like R */
-    int transition;                    /* 1: func_0201cbbc level eases 6 to 0, 2: 0 to 6 (Ov005_UpdateShopTransition); 0 when done */
+    int transition;                    /* 1: EventPicture_DrawAtStep level eases 6 to 0, 2: 0 to 6 (Ov005_UpdateShopTransition); 0 when done */
     int redrawRows;                    /* 1: Ov005_DrawShopPage clears the rows first */
     int boughtSomething;               /* 1 once an item was bought; changes how the shop exits (steps 100-103) */
     u32 shopItemCount;                 /* records of data_0216cb60 that Ov005_LoadShopItems scans */
