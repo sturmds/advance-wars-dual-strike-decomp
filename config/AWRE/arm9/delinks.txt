@@ -3004,6 +3004,10 @@ src/game/main/save_init.c:
     complete
     .text       start:0x02020690 end:0x020206d4
 
+src/game/main/mem/mem_fill_bytes_ff.c:
+    complete
+    .text       start:0x020206d4 end:0x020206f0
+
 src/game/main/save_read_backup.c:
     complete
     .text       start:0x020206f0 end:0x02020754
