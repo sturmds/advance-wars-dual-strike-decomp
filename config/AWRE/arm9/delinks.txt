@@ -8434,6 +8434,10 @@ src/game/main/ai/ai_add_sub_reach.c:
 src/game/main/ai/func_0209770c.c:
     .text       start:0x0209770c end:0x02097dd4
 
+src/game/main/ai/ai_site_rate_landmass.c:
+    complete
+    .text       start:0x02097e2c end:0x02098238
+
 src/game/main/ai/ai_build_has_enough_ground_indirects.c:
     complete
     .text       start:0x02098310 end:0x02098468

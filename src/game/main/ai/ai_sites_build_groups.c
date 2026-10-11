@@ -14,7 +14,7 @@ int GetUnitMaxRange(int player, int unitType);
 BOOL Terrain_IsProperty(u8 terrain);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);
 BOOL func_0209e0fc(MapUnit *unit);
-int func_02097e2c(int x, int y);
+int AiSite_RateLandmass(int x, int y);
 void func_02092350(int group);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -110,7 +110,7 @@ int AiSites_BuildGroups(void)
         if (!(airFlags & 1) && (airFlags & 2)) {
             group->needAntiAir = 1;
         }
-        result = func_02097e2c(site->x, site->y);
+        result = AiSite_RateLandmass(site->x, site->y);
         if ((result & 0x100) || !(result & 0xff)) {
             group->unk_03_2 = 0;
         } else {

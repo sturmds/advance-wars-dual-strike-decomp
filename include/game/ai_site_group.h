@@ -12,7 +12,7 @@ typedef struct AiSiteGroup {
     u8 propertyCount;                  /* properties in reach not owned by the current team */
     u8 skipFoot : 1;                   /* set when an own foot unit above 60 hp or an enemy non-foot ground unit is in reach, or no property to take; AiTurn_TryBuildFootUnit sets it when it builds and checks it */
     u8 needAntiAir : 1;                /* an enemy air unit (not a T-Copter) is in reach and no own Anti-Air or Fighter above 60 hp; func_02091eb0 clears it */
-    u8 unk_03_2 : 1;                   /* from func_02097e2c at the first site */
+    u8 unk_03_2 : 1;                   /* from AiSite_RateLandmass at the first site */
     u8 pad_03_3 : 5;
 } AiSiteGroup;
 
