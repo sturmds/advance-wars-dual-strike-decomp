@@ -8,7 +8,12 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern MoveSearch *data_027c0758;
 
-#define STATE (data_027c027c->unk_48[data_027c0284])
+#define STATE  (data_027c027c->unk_48[data_027c0284])
+#define PLAYER (STATE->players[STATE->unk_1e])
+
+/* A movement cost chart: one row of 32 terrain costs per move type, -1 where
+ * the move type cannot enter. */
+typedef const s8 MoveCostRow[32];
 
 /* Copies the move cost of each terrain id for a unit type into the move
  * search, from the movement chart of the CO that unk_1e points to. No CO
@@ -16,7 +21,7 @@ extern MoveSearch *data_027c0758;
 void MoveSearch_LoadMoveCosts(int unitType)
 {
     UnitStats *stats = &Ov000_gUnitStats[unitType];
-    int row = stats->moveType << 5;
+    int moveType = stats->moveType;
     int terrain;
     int coId;
 
@@ -24,10 +29,12 @@ void MoveSearch_LoadMoveCosts(int unitType)
         if (STATE->coEffectsOn == 0) {
             coId = 0;
         } else {
-            coId = STATE->players[STATE->unk_1e].front.id & PLAYER_CO_ID_MASK;
+            coId = PLAYER.front.id & PLAYER_CO_ID_MASK;
         }
+        /* Needed to match: index the chart as rows; a byte offset of
+         * moveType * 32 compiles to other registers. */
         data_027c0758->moveCost[terrain] =
-            (((const s8 *)gCoTable[coId].blocks[STATE->players[STATE->unk_1e].front.powerState]
-                  .movementCost[STATE->players[STATE->unk_1e].moveChart]) + row)[terrain];
+            ((MoveCostRow *)gCoTable[coId].blocks[PLAYER.front.powerState]
+                 .movementCost[PLAYER.moveChart])[moveType][terrain];
     }
 }

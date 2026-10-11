@@ -293,6 +293,7 @@ src/game/itcm/range_map/set_buffer.c:
     .text       start:0x01ffb200 end:0x01ffb2c0
 
 src/game/itcm/range_map/load_move_costs.c:
+    complete
     .text       start:0x01ffb2c0 end:0x01ffb3a0
 
 src/game/itcm/range_map/fill.c:

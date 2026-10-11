@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6636 / 6700 | 1495580 / 1553840 | 96.25% | 0 | 0 |
+| ARM9 game | 6637 / 6700 | 1495804 / 1553840 | 96.26% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7070 / 7481 | 1547192 / 1685994 | 91.77% | 33 | 2126 |
+| ARM9 all | 7071 / 7481 | 1547416 / 1685994 | 91.78% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6636 / 6700 | 1495580 / 1553840 | 96.25% | 0 | 0 |
+| game | 6637 / 6700 | 1495804 / 1553840 | 96.26% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7070 / 8495 | 1547192 / 1840290 | 84.07% | 33 | 2126 |
+| all | 7071 / 8495 | 1547416 / 1840290 | 84.09% | 33 | 2126 |
 
 ## By module
 
@@ -28,7 +28,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 |---|---|---:|---:|---:|---:|
 | main | game | 5140 / 5180 | 1040028 / 1082632 | 96.06% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
-| itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
+| itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
@@ -47,7 +47,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
-| `src/game/itcm/range_map/load_move_costs.c` | MoveSearch_LoadMoveCosts | 224 |
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
