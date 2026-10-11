@@ -12,7 +12,7 @@ extern const TaskScriptCmd data_02166828[];
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Starts the task at data_02166828 and returns TRUE, unless this is the
- * first screen, the first map, or a human-controlled player's turn. What the
+ * second screen, the first map, or a human-controlled player's turn. What the
  * task does is unknown. */
 BOOL func_020ba208(void)
 {
