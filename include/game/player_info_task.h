@@ -13,4 +13,18 @@ typedef struct PlayerInfoTask {
     u16 unk_68;                        /* 1 when the caller passed player and unk_66, 0 when they come from the game state */
 } PlayerInfoTask;
 
+/* Task of the script that draws the player info screen's sprites (the one
+ * whose callbacks are PlayerInfo_SpriteTaskInit and PlayerInfo_DrawSprites).
+ * The first 0x2a bytes belong to the task system. */
+typedef struct PlayerInfoSpriteTask {
+    u8 pad_00[0x2a];
+    u16 unk_2a;                        /* 8 at start */
+    u16 unk_2c;
+    u16 unk_2e;
+    u16 unk_30;
+    u8 coButton;                       /* (player - 1) * 2 + slot: the id of the shown CO's button */
+    u8 prevCoButton;                   /* same at start */
+    u8 unk_34;                         /* 1 at start */
+} PlayerInfoSpriteTask;
+
 #endif

@@ -6868,6 +6868,10 @@ src/game/main/func_0206ef54.c:
     complete
     .text       start:0x0206ef54 end:0x0206ef80
 
+src/game/main/menus/player_info_sprite_task_init.c:
+    complete
+    .text       start:0x0206f16c end:0x0206f1c4
+
 src/game/main/func_0206f7ec.c:
     complete
     .text       start:0x0206f7ec end:0x0206f7f0
