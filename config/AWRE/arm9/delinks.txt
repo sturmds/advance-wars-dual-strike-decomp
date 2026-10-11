@@ -4090,6 +4090,10 @@ src/game/main/func_02073af0.c:
     complete
     .text       start:0x02073af0 end:0x02073b04
 
+src/game/main/menus/func_02073ed8.c:
+    complete
+    .text       start:0x02073ed8 end:0x02073f28
+
 src/game/main/func_020742f8.c:
     complete
     .text       start:0x020742f8 end:0x02074314
