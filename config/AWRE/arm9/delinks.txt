@@ -6209,6 +6209,10 @@ src/game/main/func_020742f8.c:
     complete
     .text       start:0x020742f8 end:0x02074314
 
+src/game/main/menus/unit_list_clear_and_count.c:
+    complete
+    .text       start:0x02075384 end:0x02075448
+
 src/game/main/func_02075448.c:
     complete
     .text       start:0x02075448 end:0x02075460
