@@ -21386,6 +21386,10 @@ src/game/main/func_02112e54.c:
     complete
     .text       start:0x02112e54 end:0x02112e5c
 
+src/sdk/fs/fs_rom_archive_proc.c:
+    complete
+    .text       start:0x02112e5c end:0x02112eec
+
 src/game/main/func_02112eec.c:
     complete
     .text       start:0x02112eec end:0x02112ef4

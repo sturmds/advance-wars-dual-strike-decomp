@@ -11,13 +11,18 @@ typedef struct FSFile FSFile;
 #define FS_RESULT_SUCCESS 0
 #define FS_RESULT_FAILURE 1
 #define FS_RESULT_PROC_ASYNC 6             /* the archive finishes the command later */
+#define FS_RESULT_UNSUPPORTED 4
+#define FS_RESULT_PROC_UNKNOWN 8           /* the archive does not handle the command */
 
 /* Commands an archive runs for a file, in the order of its command table. */
 #define FS_COMMAND_INVALID 14
+#define ARCHIVE_OP_COPY_IN 1
 #define ARCHIVE_OP_SET_DIR_POS 2
 #define ARCHIVE_OP_OPEN_BY_ID 6
 #define ARCHIVE_OP_OPEN_BY_EXTENT 7
 #define ARCHIVE_OP_RELEASE_HANDLE 8
+#define FS_COMMAND_ACTIVATE 9
+#define FS_COMMAND_IDLE 10
 
 typedef struct FSFileID {
     FSArchive *arc;
