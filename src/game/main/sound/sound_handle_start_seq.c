@@ -10,7 +10,7 @@ void func_0210547c(SoundSeqPlayer *player);
 void SoundSeqPlayer_Start(SoundSeqPlayer *player, const void *seqData, u32 offset, void *bank);
 void func_02105814(SoundHandle *handle, int volume);
 void func_0210579c(SoundHandle *handle, int channelPrio);
-void func_02105780(SoundHandle *handle, int seqNo);
+void SoundHandle_SetSourceSeq(SoundHandle *handle, int seqNo);
 
 /* Starts sequence seqNo of the current sound archive on handle: takes a
  * player, loads the bank and the sequence into its heap, then starts it.
@@ -39,6 +39,6 @@ BOOL SoundHandle_StartSeq(SoundHandle *handle, int playerNo, int bankNo, int pla
     SoundSeqPlayer_Start(player, (const u8 *)seq + seq->dataOffset, 0, bank);
     func_02105814(handle, info->volume);
     func_0210579c(handle, info->channelPrio);
-    func_02105780(handle, seqNo);
+    SoundHandle_SetSourceSeq(handle, seqNo);
     return TRUE;
 }
