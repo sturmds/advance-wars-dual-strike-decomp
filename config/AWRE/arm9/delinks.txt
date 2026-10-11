@@ -5222,6 +5222,10 @@ src/game/main/menus/co_select_screen_slide_pictures.c:
     complete
     .text       start:0x02042f20 end:0x02043234
 
+src/game/main/menus/co_select_screen_draw.c:
+    complete
+    .text       start:0x02043690 end:0x020441e8
+
 src/game/main/func_020441e8.c:
     complete
     .text       start:0x020441e8 end:0x020441ec

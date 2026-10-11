@@ -16,7 +16,7 @@ typedef struct CoSelectScreen {
     u8 coBeforeList;                   /* CO of the cursor cell when the CO list opened; cancel puts it back */
     u8 columnCount;
     u8 rowCount;                       /* up and down change row only when this is 2 */
-    u8 pad_37;
+    u8 unk_37;                         /* CO list slot; the draw frames it and marks empty cells beside it */
     u8 listAnchor;                     /* CO list slot set on opening and by up and down; left and right look in its row first */
 } CoSelectScreen;
 
