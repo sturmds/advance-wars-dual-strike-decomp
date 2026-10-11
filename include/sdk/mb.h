@@ -300,6 +300,8 @@ typedef struct DlPlayOfferedFile {
     u32 *segmentAddresses;
 } DlPlayOfferedFile;
 
+typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
+
 /* The comm work area behind data_022aced4. Child arrays are indexed by
  * aid - 1 (aid 0 is the parent). */
 typedef struct DlPlayHostLinkArea {
@@ -308,7 +310,7 @@ typedef struct DlPlayHostLinkArea {
     DlPlayPlayerBadge childUsers[DLPLAY_CHILD_SLOTS];
     u16 childVersions[DLPLAY_CHILD_SLOTS];
     u32 childGgids[DLPLAY_CHILD_SLOTS];
-    void (*callback)(u32 aid, u32 state, void *arg);  /* application callback for comm events */
+    DlPlayLinkEventFunc callback;           /* application callback for comm events */
     int commState[DLPLAY_CHILD_SLOTS];
     u8 fileCount;
     u8 currentFile;
@@ -325,6 +327,7 @@ typedef struct DlPlayHostLinkArea {
 
 int MbComm_IsChildAid(u32 aid);
 int MbComm_Respond(u32 aid, int response);
+void MbComm_SetCallback(DlPlayLinkEventFunc callback);
 DlPlayPlayerBadge *MbComm_GetChildUser(u16 aid);
 void MbComm_NotifyState(u32 aid, u32 state, void *arg);
 

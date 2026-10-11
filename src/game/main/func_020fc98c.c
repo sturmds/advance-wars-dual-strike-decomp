@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/mb.h"
 #include "game/wireless_host.h"
 
 extern int data_022a7e68;
@@ -13,8 +14,7 @@ void *Mem_Alloc(u32 size);
 void WirelessHost_FillInfo(void);
 void func_0211c534(void *work, WirelessHostUser *user, u32 id, u16 tick, int dma);
 void DownloadPlay_SetSendSizeAndChildren(int size, int count);
-void func_0211a5e8(void (*callback)(void *, int));
-void func_020fc700(void *arg, int index);
+void func_020fc700(u32 aid, u32 state, void *arg);
 BOOL func_020fc698(void);
 
 /* Stops the sound, then sets up the wireless host with a 0xc000-byte work
@@ -32,6 +32,6 @@ void DownloadPlay_Start(void)
     tick = *(volatile u32 *)VBLANK_COUNT_ADDR;
     func_0211c534(data_022a7e6c, &gWirelessHostUser, WIRELESS_HOST_ID, tick, 2);
     DownloadPlay_SetSendSizeAndChildren(0x100, 8);
-    func_0211a5e8(func_020fc700);
+    MbComm_SetCallback(func_020fc700);
     func_020fc698();
 }
