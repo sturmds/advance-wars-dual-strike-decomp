@@ -9712,6 +9712,14 @@ src/game/main/ai/ai_turn_update.c:
     complete
     .text       start:0x0208c2a4 end:0x0208c368
 
+src/game/main/ai/player_reset_units_ai_state.c:
+    complete
+    .text       start:0x0208c368 end:0x0208c400
+
+src/game/main/ai/map_unit_reset_ai_state.c:
+    complete
+    .text       start:0x0208c400 end:0x0208c46c
+
 src/game/main/map/tile_map_fill.c:
     complete
     .text       start:0x0208c46c end:0x0208c560
