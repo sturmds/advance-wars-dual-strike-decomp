@@ -9044,6 +9044,10 @@ src/game/main/link/wireless_request_parent_role.c:
     complete
     .text       start:0x0207a660 end:0x0207a6f8
 
+src/game/main/link/wireless_clear_parents.c:
+    complete
+    .text       start:0x0207a6f8 end:0x0207a750
+
 src/game/main/func_0207a750.c:
     complete
     .text       start:0x0207a750 end:0x0207a7a4
