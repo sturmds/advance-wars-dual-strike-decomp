@@ -15129,6 +15129,10 @@ src/game/main/map/game_mode_finish_map.c:
     complete
     .text       start:0x020d6300 end:0x020d63b0
 
+src/game/main/campaign/campaign_task_set_clear_flags.c:
+    complete
+    .text       start:0x020d63b0 end:0x020d64d0
+
 src/game/main/menus/survival_start_variant.c:
     complete
     .text       start:0x020d64d0 end:0x020d6538
