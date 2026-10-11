@@ -25,6 +25,10 @@ src/game/itcm/screen/screen_set_layer2_scroll.c:
     complete
     .text       start:0x01ff8b44 end:0x01ff8b70
 
+src/game/itcm/screen/screen_set_layer1_scroll.c:
+    complete
+    .text       start:0x01ff8b70 end:0x01ff8b9c
+
 src/game/itcm/gfx_request_layer_copy.c:
     complete
     .text       start:0x01ff8d60 end:0x01ff8d94
