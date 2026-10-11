@@ -12,7 +12,7 @@ int MainLoop_GetFrameCount(void);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_02040b04(int x, int y, int count);
 void func_02040a38(void);
-void func_02040930(void);
+void ForceRankScreen_MarkChosenSkills(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -20,9 +20,10 @@ extern Unk_027c0288 data_027c0288;
 extern u8 data_027c0040[];
 
 /* Queues the Force Rank screen's sprites each frame. Top screen: the rank
- * number (func_02040b04), func_02040a38's sprites, the marks on chosen skills
- * (func_02040930), the cursor on the selected slot with its color changing
- * every 4 frames, and the icon of each chosen skill in the slots from x 160.
+ * number (func_02040b04), func_02040a38's sprites, the marks on chosen
+ * skills (ForceRankScreen_MarkChosenSkills), the cursor on the selected slot
+ * with its color changing every 4 frames, and the icon of each chosen skill
+ * in the slots from x 160.
  * Bottom screen: one sprite at (72, 160). Skill icons start at skill id 32. */
 void ForceRankScreen_Draw(void)
 {
@@ -38,7 +39,7 @@ void ForceRankScreen_Draw(void)
     Sprite_QueueDefault(32, 9, 0x1000, 1);
     func_02040b04(0x51, 8, gForceRankScreen->unk_7a);
     func_02040a38();
-    func_02040930();
+    ForceRankScreen_MarkChosenSkills();
     Sprite_QueueAt(2, (gForceRankScreen->unk_7b * 16 + 160) & 0x1ff, 8, data_027c0040, 0x205a, 0);
     Palette_Load(&gForceRankScreen->cycleColors[((MainLoop_GetFrameCount() >> 2) & 15) * 2], 600, 2);
     slotCount = gForceRankScreen->unk_7a;

@@ -4331,6 +4331,10 @@ src/game/main/menus/force_rank_screen_draw.c:
     complete
     .text       start:0x02040754 end:0x02040930
 
+src/game/main/menus/force_rank_screen_mark_chosen_skills.c:
+    complete
+    .text       start:0x02040930 end:0x02040a38
+
 src/game/main/func_02040c34.c:
     complete
     .text       start:0x02040c34 end:0x02040c38
