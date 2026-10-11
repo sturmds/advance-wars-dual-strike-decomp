@@ -15,7 +15,7 @@ int Ov003_GetTextWidth(const u8 *str);  /* text width in pixels */
 
 /* Sine table: [0] sin 0, [64] cos 0. Needed to match: const, so the
  * loads move out of the loops. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern void *data_ov003_02365b0c;
 
 #define STATE data_ov003_02364928
@@ -44,10 +44,10 @@ extern void *data_ov003_02365b0c;
             int d2 = DIVISOR(scaleX);                                                   \
             int d1 = DIVISOR(scaleY);                                                   \
             int d0 = DIVISOR(scaleX);                                                   \
-            Oam_SetAffineParams((n), HwDiv32(data_021389e8[64] * 16, d0),                     \
-                          HwDiv32(-data_021389e8[0] * 16, d1),                          \
-                          HwDiv32(data_021389e8[0] * 16, d2),                           \
-                          HwDiv32(data_021389e8[64] * 16, d3));                         \
+            Oam_SetAffineParams((n), HwDiv32(gSineTable[64] * 16, d0),                     \
+                          HwDiv32(-gSineTable[0] * 16, d1),                          \
+                          HwDiv32(gSineTable[0] * 16, d2),                           \
+                          HwDiv32(gSineTable[64] * 16, d3));                         \
         }                                                                               \
         x += Ov003_DrawLetterAlt(Text_Get(text)[ch], (x & 0x1ff) | ((n) << 9),          \
                                  OAM_AFFINE_DOUBLE | (y));                              \

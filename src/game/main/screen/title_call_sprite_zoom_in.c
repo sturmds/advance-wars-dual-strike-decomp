@@ -7,7 +7,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(Task *task);
 
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c0030[];
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -23,8 +23,8 @@ extern u8 data_027c0030[];
 
 /* Task script step (data_0215bb88, started by TitleCall_NumberSlideIn):
  * over 32 frames, zooms one sprite at (64, 32) from almost nothing to twice
- * its size through affine matrix 1, then resumes the script. data_021389e8
- * looks like a sine table (index 64 = cosine of 0). */
+ * its size through affine matrix 1, then resumes the script. gSineTable
+ * has 256 steps per turn (index 64 = cosine of 0). */
 void TitleCall_SpriteZoomIn(Task *task)
 {
     int scale;
@@ -37,8 +37,8 @@ void TitleCall_SpriteZoomIn(Task *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] << 4;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] << 4;
 
         Oam_SetAffineParams(ZOOM_AFFINE, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
                             HwDiv32(cosValue, d3));

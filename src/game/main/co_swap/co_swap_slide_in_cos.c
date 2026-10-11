@@ -12,7 +12,7 @@ void Task_ResumeScript(Task *task);
 /* Looks like a 256-entry sine table: index 0 is the sine of 0, index 64 its
  * cosine, so the matrices below have no rotation. const lets the compiler
  * read it once before the loop, as the original does. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 
 #define LETTER_DELAY  4                /* frames between two letters starting */
 #define LETTER_FRAMES 24               /* frames one letter takes to grow */
@@ -44,10 +44,10 @@ void CoSwap_SlideInCos(Task *task)
             height = Math_Ease(4, 16, 256, CO_SWAP_FRAME(task) - i * LETTER_DELAY, LETTER_FRAMES);
             pdDivisor = height ? height : 2;
             pbDivisor = height ? height : 2;
-            Oam_SetAffineParams(i + 1, HwDiv32(data_021389e8[64] * 16, 256),
-                                HwDiv32(-data_021389e8[0] * 16, pbDivisor),
-                                HwDiv32(data_021389e8[0] * 16, 256),
-                                HwDiv32(data_021389e8[64] * 16, pdDivisor));
+            Oam_SetAffineParams(i + 1, HwDiv32(gSineTable[64] * 16, 256),
+                                HwDiv32(-gSineTable[0] * 16, pbDivisor),
+                                HwDiv32(gSineTable[0] * 16, 256),
+                                HwDiv32(gSineTable[64] * 16, pdDivisor));
             BreakText_QueueLetter(i, (BreakText_GetScreenX(i) & 0x1ff) | OBJ_MATRIX(i + 1),
                           CO_SWAP_TITLE_Y | OBJ_AFFINE, 0, 1);
         } else {

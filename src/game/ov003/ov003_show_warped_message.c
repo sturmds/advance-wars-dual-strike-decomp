@@ -13,7 +13,7 @@ int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask *task);
 
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 #define MESSAGE_TEXT 0x7d000024
 #define MESSAGE_FRAMES 16
@@ -50,8 +50,8 @@ void Ov003_ShowWarpedMessage(Ov003MessageTask *task)
     d2 = DIVISOR(scaleX);
     d1 = DIVISOR(scaleY);
     d0 = DIVISOR(scaleX);
-    cosValue = data_021389e8[64] * 16;
-    sinValue = data_021389e8[0];
+    cosValue = gSineTable[64] * 16;
+    sinValue = gSineTable[0];
     Oam_SetAffineParams(MESSAGE_MATRIX, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     x = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TEXT)) >> 1);

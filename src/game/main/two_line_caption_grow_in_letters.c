@@ -13,7 +13,7 @@ void Task_ResumeScript(CaptionTask *task);
 
 /* Needed to match: const lets mwcc load the sine and cosine once, before
  * the loop. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -51,10 +51,10 @@ void TwoLineCaption_GrowInLetters(CaptionTask *task)
                 int dy = DIVISOR(scaleY);
                 int dx = DIVISOR(scaleX);
 
-                Oam_SetAffineParams(i + 1, HwDiv32(data_021389e8[64] * 16, dx),
-                                    HwDiv32(-data_021389e8[0] * 16, dy),
-                                    HwDiv32(data_021389e8[0] * 16, dx2),
-                                    HwDiv32(data_021389e8[64] * 16, dy2));
+                Oam_SetAffineParams(i + 1, HwDiv32(gSineTable[64] * 16, dx),
+                                    HwDiv32(-gSineTable[0] * 16, dy),
+                                    HwDiv32(gSineTable[0] * 16, dx2),
+                                    HwDiv32(gSineTable[64] * 16, dy2));
             }
             x += SpriteFont_QueueChar(Text_Get(TWO_LINE_CAPTION_TEXT_A)[i], (x & 0x1ff) | ((i + 1) << 9),
                                       80 | 0x300, 0x1000, 0, 6);

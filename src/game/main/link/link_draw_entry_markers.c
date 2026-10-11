@@ -23,15 +23,15 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern const s16 data_021389e8[];      /* needed to match: const lets the compiler move the loads out of the loop */
+extern const s16 gSineTable[];      /* needed to match: const lets the compiler move the loads out of the loop */
 extern u8 data_027c0040;
 extern u8 data_027c0108;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-/* data_021389e8 looks like a 256-entry sine table; index 64 gives the cosine. */
-#define SIN_0 data_021389e8[0]
-#define COS_0 data_021389e8[64]
+/* gSineTable has 256 steps per turn; index 64 gives the cosine. */
+#define SIN_0 gSineTable[0]
+#define COS_0 gSineTable[64]
 
 /* Script command of a link screen, run each frame. Draws one sprite per
  * entry below func_0207a324() whose bit is set in func_0207a1dc() (entry 0

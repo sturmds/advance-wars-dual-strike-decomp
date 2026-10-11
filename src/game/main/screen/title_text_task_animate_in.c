@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const s16 data_021389e8[];            /* sine table, 256 steps per turn */
+extern const s16 gSineTable[];            /* sine table, 256 steps per turn */
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screen_SetCurrent(void *state);
@@ -25,8 +25,8 @@ void Task_ResumeScript(Task *task);
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 
-#define SIN0 (data_021389e8[0])
-#define COS0 (data_021389e8[64])
+#define SIN0 (gSineTable[0])
+#define COS0 (gSineTable[64])
 
 #define DIV_SCALE(v, s) HwDiv32(v, (s) != 0 ? (s) : 2)
 

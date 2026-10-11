@@ -11,7 +11,7 @@ void func_020772d8(int x);
 void func_020773a0(int x);
 
 extern u8 data_027c0060;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -22,7 +22,7 @@ extern s16 data_021389e8[];
 /* Task update: over 4 frames, draws one sprite on the sub screen through
  * affine matrix 1, scaled from 2x down to 1x, then resumes the task's
  * script. func_020773a0 and func_020772d8 draw the rest of the scene.
- * data_021389e8 looks like a sine table (index 64 = cosine of 0). */
+ * gSineTable has 256 steps per turn (index 64 = cosine of 0). */
 void SubScreenSprite_ZoomInUpdate(Task *task)
 {
     Unk_027c0280 *saved0280;
@@ -45,8 +45,8 @@ void SubScreenSprite_ZoomInUpdate(Task *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int cosValue = data_021389e8[64] * 16;
-        int sinValue = data_021389e8[0];
+        int cosValue = gSineTable[64] * 16;
+        int sinValue = gSineTable[0];
 
         Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

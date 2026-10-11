@@ -11,7 +11,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
-extern s16 data_021389e8[];            /* sine table, index 64 = cosine of 0 */
+extern s16 gSineTable[];            /* sine table, index 64 = cosine of 0 */
 extern u8 data_027c0038;
 extern u8 data_027c0040;
 extern u8 data_027c0048;
@@ -42,8 +42,8 @@ void VsSetup_DrawSettingRow(int row, int x, int y)
         int d2 = ZOOM_DIVISOR(scale);
         int d1 = ZOOM_DIVISOR(scale);
         int d0 = ZOOM_DIVISOR(scale);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] << 4;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] << 4;
 
         Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
                             HwDiv32(cosValue, d3));

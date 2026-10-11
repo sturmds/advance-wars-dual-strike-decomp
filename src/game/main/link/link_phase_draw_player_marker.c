@@ -13,13 +13,13 @@ int LinkScreen_FindPanelOfPlayer(u8 player);
 int LinkScreen_GetPlayerRow(int panel);
 
 extern MenuState gMenuState;
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c0040;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-#define SIN_0 data_021389e8[0]
-#define COS_0 data_021389e8[64]
+#define SIN_0 gSineTable[0]
+#define COS_0 gSineTable[64]
 
 /* Draws a player's marker beside its panel on the link phase screen. A
  * player whose bit is clear in func_0207a1dc() (bit 0 always counts) gets

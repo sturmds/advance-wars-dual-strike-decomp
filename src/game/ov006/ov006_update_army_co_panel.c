@@ -31,7 +31,7 @@ void func_ov006_02355bd4(void);
 void Ov006_AddEntryButtons(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
-extern s16 data_021389e8[];                /* looks like a sine table: index 64 = cosine of 0 */
+extern s16 gSineTable[];                /* looks like a sine table: index 64 = cosine of 0 */
 /* Matrix scales per frame (256 = 1x): 256, 224, 160, 112, 16 (zoom out or
  * squash), then 0, 0, 0, 0, 128, 224, 256 (way back), then -1. */
 extern s16 Ov006_gPanelScaleSteps[];
@@ -57,8 +57,8 @@ extern const char data_ov006_0236b8b4[];   /* "001" */
         int sinValue;                                                                  \
         int cosValue;                                                                  \
                                                                                        \
-        cosValue = data_021389e8[64] * 16;                                             \
-        sinValue = data_021389e8[0];                                                   \
+        cosValue = gSineTable[64] * 16;                                             \
+        sinValue = gSineTable[0];                                                   \
                                                                                        \
         Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),           \
                       HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));              \

@@ -13,7 +13,7 @@ void TitleCall_StartNumberTask(void *parentOrList);
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern const u8 data_0215bb60[];
 extern const TaskScriptCmd data_0215bc10[];
 extern u8 data_027c0018[];
@@ -45,8 +45,8 @@ void TitleCall_SubLettersGrowIn(Task *task)
                 scale = Math_Ease(0, 2, 256, FRAME(task) - i * 4, 20);
                 d1 = scale != 0 ? scale : 2;
                 d0 = scale != 0 ? scale : 2;
-                Oam_SetAffineParams(i + 1, HwDiv32(data_021389e8[64] << 4, d0), HwDiv32(-data_021389e8[0] << 4, 256),
-                                    HwDiv32(data_021389e8[0] << 4, d1), HwDiv32(data_021389e8[64] << 4, 256));
+                Oam_SetAffineParams(i + 1, HwDiv32(gSineTable[64] << 4, d0), HwDiv32(-gSineTable[0] << 4, 256),
+                                    HwDiv32(gSineTable[0] << 4, d1), HwDiv32(gSineTable[64] << 4, 256));
                 Sprite_Queue(0, (data_0215bb60[i] & 0x1ff) | ((i + 1) << 9), 320, data_027c0018, 0, i * 32);
             } else {
                 Sprite_Queue(0, data_0215bb60[i] & 0x1ff, 320, data_027c0018, 0, i * 32);

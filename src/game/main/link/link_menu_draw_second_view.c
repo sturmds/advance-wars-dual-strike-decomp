@@ -27,14 +27,14 @@ void LargeFont_DrawName(void *data, int a, u16 b, int c);
 extern Unk_027c0280 *data_027c0280;
 extern u16 data_0229f330[0x300];
 extern char data_02167c88[];
-extern const s16 data_021389e8[];      /* needed to match: const lets the compiler move the loads out of the loop */
+extern const s16 gSineTable[];      /* needed to match: const lets the compiler move the loads out of the loop */
 extern u8 data_027c0040;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-/* data_021389e8 looks like a 256-entry sine table; index 64 gives the cosine. */
-#define SIN_0 data_021389e8[0]
-#define COS_0 data_021389e8[64]
+/* gSineTable has 256 steps per turn; index 64 gives the cosine. */
+#define SIN_0 gSineTable[0]
+#define COS_0 gSineTable[64]
 
 /* Draws the second view of the link player list (LinkMenuState.view 1;
  * switches to it from the list first). Top row: entry 0 and

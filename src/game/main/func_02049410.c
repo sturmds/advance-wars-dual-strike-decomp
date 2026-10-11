@@ -7,7 +7,7 @@ void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Unk_02031a14 *task);
 extern u8 data_027c0030;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
 void func_02049410(Unk_02031a14 *task)
@@ -24,8 +24,8 @@ void func_02049410(Unk_02031a14 *task)
         int sinValue;
         int cosValue;
 
-        cosValue = data_021389e8[angle + 64] * 16;
-        sinValue = data_021389e8[angle];
+        cosValue = gSineTable[angle + 64] * 16;
+        sinValue = gSineTable[angle];
 
         Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

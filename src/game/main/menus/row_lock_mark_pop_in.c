@@ -7,7 +7,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c0060;
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -37,9 +37,9 @@ void RowLockMark_PopIn(RowLockMarkTask *task)
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
 
-        Oam_SetAffineParams(task->affineIndex, HwDiv32(data_021389e8[64] * 16, d0),
-                            HwDiv32(-data_021389e8[0] * 16, d1), HwDiv32(data_021389e8[0] * 16, d2),
-                            HwDiv32(data_021389e8[64] * 16, d3));
+        Oam_SetAffineParams(task->affineIndex, HwDiv32(gSineTable[64] * 16, d0),
+                            HwDiv32(-gSineTable[0] * 16, d1), HwDiv32(gSineTable[0] * 16, d2),
+                            HwDiv32(gSineTable[64] * 16, d3));
         /* Affine double-size sprite (0x300): the 32x16 box grows to 64x32, so x and y move back by 16 and 8. */
         Sprite_Queue(1, ((task->x - 16) & 0x1ff) | (task->affineIndex << 9), ((task->y - 8) & 0xff) | 0x300,
                      &data_027c0060, 0, MARK_TILE);

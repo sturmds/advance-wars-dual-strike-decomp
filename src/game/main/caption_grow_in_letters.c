@@ -13,10 +13,10 @@ void Task_ResumeScript(void *task);
 
 /* Sine table, index 64 = cosine of 0. Needed to match: const lets mwcc
  * load the sine and cosine once, before the loop. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 
-#define SIN0 (data_021389e8[0])
-#define COS0 (data_021389e8[64])
+#define SIN0 (gSineTable[0])
+#define COS0 (gSineTable[64])
 
 /* Divides v by the eased scale s, or by 2 if s is 0. */
 #define DIV_SCALE(v, s) HwDiv32(v, (s) != 0 ? (s) : 2)

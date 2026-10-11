@@ -8,7 +8,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Unk_02031a14 *task);
 
 extern u8 data_027c0030;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -16,8 +16,8 @@ extern s16 data_021389e8[];
 /* A step of the data_02159d78 script (see func_020318ac). Over frames 0
  * to 16, draws sprite tile 0x2ac at (x - 32, y - 48) through affine matrix
  * task->matrix with double size, turning one full circle while it shrinks from
- * 2x to 1x. Then resumes the script. data_021389e8 looks like a sine
- * table of 256 steps per circle (index 64 = cosine of 0). */
+ * 2x to 1x. Then resumes the script. gSineTable has 256
+ * steps per turn (index 64 = cosine of 0). */
 void func_02031dc0(Unk_02031a14 *task)
 {
     int scale = Math_Ease(4, 512, 256, task->frame, 16);
@@ -33,8 +33,8 @@ void func_02031dc0(Unk_02031a14 *task)
         int sinValue;
         int cosValue;
 
-        cosValue = data_021389e8[angle + 64] * 16;
-        sinValue = data_021389e8[angle];
+        cosValue = gSineTable[angle + 64] * 16;
+        sinValue = gSineTable[angle];
 
         Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

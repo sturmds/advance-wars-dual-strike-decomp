@@ -5,13 +5,13 @@ int HwDiv32(int num, int den);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c00d8[];
 extern u8 data_027c0128[];
 
 /* Sine table, index 64 = cosine of 0. */
-#define SIN0 (data_021389e8[0])
-#define COS0 (data_021389e8[64])
+#define SIN0 (gSineTable[0])
+#define COS0 (gSineTable[64])
 
 /* Divides v by the eased scale s, or by 2 if s is 0. */
 #define DIV_SCALE(v, s) HwDiv32(v, (s) != 0 ? (s) : 2)

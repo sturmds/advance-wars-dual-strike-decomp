@@ -3,7 +3,7 @@
 #include "game/capture_picture_task.h"
 
 extern const u8 data_0214a670[];
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 Unk_02022404 *SpriteAnim_Create(const void *file, int a, int b);
 void SpriteAnim_SetAnimation(void *sprite, int animation);
@@ -21,8 +21,8 @@ void CaptureDone_Init(CaptureDoneTask *task)
     task->sprite = SpriteAnim_Create(data_0214a670, 0, 2);
     SpriteAnim_SetAnimation(task->sprite, 1);
     task->sprite->unk_24 = (3 << 12) | 0x194; /* tile 0x194, palette 3 */
-    cosValue = data_021389e8[64] * 16;
-    sinValue = data_021389e8[0];
+    cosValue = gSineTable[64] * 16;
+    sinValue = gSineTable[0];
     Oam_SetAffineParams(0, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, 256),
                         HwDiv32(sinValue * 16, 256), HwDiv32(cosValue, 256));
     task->frame = 0;

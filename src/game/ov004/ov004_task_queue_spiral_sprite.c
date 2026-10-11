@@ -2,7 +2,7 @@
 #include "game/Unk_ov004_022bf158.h"
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 extern u8 data_027c0028;
 extern u8 data_027c0040;
 
@@ -44,9 +44,9 @@ void Ov004Task_QueueSpiralSprite(Ov004Task *task) {
         radius = Math_Ease(4, 0, 512, task->frame, task->duration);
         task->tweenFrames += task->unk_4c;
         x = 0;
-        y = (task->unk_50 * -data_021389e8[task->tweenFrames & 0xff]) >> 12;
-        x += (radius * data_021389e8[48]) >> 12;
-        y += (radius * -data_021389e8[112]) >> 12;
+        y = (task->unk_50 * -gSineTable[task->tweenFrames & 0xff]) >> 12;
+        x += (radius * gSineTable[48]) >> 12;
+        y += (radius * -gSineTable[112]) >> 12;
         x += task->tweenFrom;
         y += task->tweenTo;
         if (x > 288) {

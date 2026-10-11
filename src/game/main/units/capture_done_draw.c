@@ -2,7 +2,7 @@
 #include "game/Unk_02022404.h"
 #include "game/capture_picture_task.h"
 
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -14,7 +14,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 /* Frame step of the task shown when a capture completes: places its sprite
  * above (x, y) through affine matrix 0, which grows it from nothing to full
  * size over 10 frames (an ease from 0 to 0x100). Same matrix shape as
- * DigitSprite_QueuePopIn; data_021389e8 looks like a sine table. */
+ * DigitSprite_QueuePopIn; gSineTable has 256 steps per turn. */
 void CaptureDone_Draw(CaptureDoneTask *task)
 {
     int scale = Math_Ease(1, 0, 0x100, task->frame, 10);
@@ -27,8 +27,8 @@ void CaptureDone_Draw(CaptureDoneTask *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] * 16;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] * 16;
 
         Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

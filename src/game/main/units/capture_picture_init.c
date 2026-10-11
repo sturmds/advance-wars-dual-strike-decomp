@@ -12,7 +12,7 @@ extern char data_021691bc[];                /* "0ba", the text's palette */
 extern u8 data_0214a568[];                  /* sprite animation data */
 extern u8 data_0214a618[];
 extern u8 data_0214a670[];
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 void PropertyPicture_Load(int tile, int gfxTile, int palette);
 void CaptureArmyGfx_Load(int owner, int gfxTile, int palette);
@@ -60,8 +60,8 @@ void CapturePicture_Init(CapturePictureTask *task)
     SpriteAnim_SetAnimation(task->picture, 0);
     task->picture->unk_24 = SPRITE_ATTR2(3, 404);
 
-    cosValue = data_021389e8[64] * 16;
-    sinValue = data_021389e8[0];
+    cosValue = gSineTable[64] * 16;
+    sinValue = gSineTable[0];
     Oam_SetAffineParams(1, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, 256),
                         HwDiv32(sinValue * 16, 256), HwDiv32(cosValue, 256));
     /* a scale of 0 would divide by 0; use 2 then */

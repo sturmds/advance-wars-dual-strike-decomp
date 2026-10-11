@@ -11,7 +11,7 @@ void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern u8 data_027c0030;
 extern u8 data_027c0060;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -37,8 +37,8 @@ void CoRankTask_PopInSprite(CoRankTask *task)
         int sinValue;
         int cosValue;
 
-        cosValue = data_021389e8[64] * 16;
-        sinValue = data_021389e8[0];
+        cosValue = gSineTable[64] * 16;
+        sinValue = gSineTable[0];
 
         Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

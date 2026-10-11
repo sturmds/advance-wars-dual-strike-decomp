@@ -8,7 +8,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 
 /* Needed to match: const lets mwcc load the sine and cosine once. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c0060[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
@@ -37,10 +37,10 @@ void LinkMarkerTask_GrowIn(LinkMarkerTask *task)
             int pbDiv = DIVISOR(scale);
             int paDiv = DIVISOR(scale);
 
-            Oam_SetAffineParams(task->unk_52, HwDiv32(data_021389e8[64] * 16, paDiv),
-                                HwDiv32(-data_021389e8[0] * 16, pbDiv),
-                                HwDiv32(data_021389e8[0] * 16, pcDiv),
-                                HwDiv32(data_021389e8[64] * 16, pdDiv));
+            Oam_SetAffineParams(task->unk_52, HwDiv32(gSineTable[64] * 16, paDiv),
+                                HwDiv32(-gSineTable[0] * 16, pbDiv),
+                                HwDiv32(gSineTable[0] * 16, pcDiv),
+                                HwDiv32(gSineTable[64] * 16, pdDiv));
         }
         Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->unk_52 << 9), ((task->y - 8) & 0xff) | 0x300,
                      data_027c0060, 0, 52);

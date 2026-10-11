@@ -10,7 +10,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(DayBannerTask *task);
 void DayBanner_RefreshLayer(void);
 
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern u8 data_027c0048[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -73,8 +73,8 @@ void DayBanner_CloseUpdate(DayBannerTask *task)
             int d1 = DIVISOR(scaleY);
             int d0 = DIVISOR(scaleX);
 
-            Oam_SetAffineParams(i + 1, HwDiv32(data_021389e8[64] * 16, d0), HwDiv32(-data_021389e8[0] * 16, d1),
-                                HwDiv32(data_021389e8[0] * 16, d2), HwDiv32(data_021389e8[64] * 16, d3));
+            Oam_SetAffineParams(i + 1, HwDiv32(gSineTable[64] * 16, d0), HwDiv32(-gSineTable[0] * 16, d1),
+                                HwDiv32(gSineTable[0] * 16, d2), HwDiv32(gSineTable[64] * 16, d3));
             /* Affine double-size sprites (0x300): the 32-pixel box grows to 64, so x and y move back by 16. */
             if (i < WORD_SPRITES) {
                 Sprite_Queue(0, ((task->wordX + i * 32 - 16) & 0x1ff) | ((i + 1) << 9), ((BANNER_Y - 16) & 0xff) | 0x300,

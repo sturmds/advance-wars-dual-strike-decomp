@@ -12,7 +12,7 @@ struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 
 
 extern MenuState gMenuState;
 extern u8 data_027c0030;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -22,7 +22,7 @@ extern s16 data_021389e8[];
  * matrix task->matrix, its matrix entries going from 1x (256) to 16 as the eased
  * divisor rises from 16 to 256; on frame 0 it also starts SpriteAnimTask_Start
  * with id 0xc2ec at (x + 24, y + 24). Then resumes the script.
- * data_021389e8 looks like a sine table (index 64 = cosine of 0). */
+ * gSineTable has 256 steps per turn (index 64 = cosine of 0). */
 void func_02031a48(Unk_02031a14 *task)
 {
     int scale = Math_Ease(1, 16, 256, task->frame, 4);
@@ -34,8 +34,8 @@ void func_02031a48(Unk_02031a14 *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] * 16;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] * 16;
 
         Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

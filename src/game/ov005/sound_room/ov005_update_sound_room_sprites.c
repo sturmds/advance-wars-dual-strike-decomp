@@ -7,7 +7,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 int MainLoop_GetFrameCount(void);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
@@ -17,7 +17,7 @@ extern s16 data_021389e8[];
 /* Per-frame sprite update of the Sound Room. Sets OBJ affine matrices 1 and
  * 2 on both screens to scale by objScale1 and objScale2; on frames 6 to 15
  * of every 16 the scale is pulled toward 1x and back, so the sprites pulse.
- * Then places the screen's objects. data_021389e8 looks like a sine table
+ * Then places the screen's objects. gSineTable has 256 steps per turn
  * (index 64 = cosine of 0), so the matrices have no rotation. */
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
 {
@@ -79,8 +79,8 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         int d1 = DIVISOR(scale1);
         int d0 = DIVISOR(scale1);
 
-        cosValue = data_021389e8[64] * 16;
-        sinValue = data_021389e8[0];
+        cosValue = gSineTable[64] * 16;
+        sinValue = gSineTable[0];
         negSin = -sinValue * 16;
         sinValue = sinValue * 16;
         Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),

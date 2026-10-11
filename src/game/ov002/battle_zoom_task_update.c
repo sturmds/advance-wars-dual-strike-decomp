@@ -6,7 +6,7 @@
 extern MenuState gMenuState;
 extern u8 data_ov002_023696ac;
 extern u8 data_027c0008;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -93,8 +93,8 @@ void BattleZoomTask_Update(BattleZoomTask *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int cosValue = data_021389e8[64] * 16;
-        int sinValue = data_021389e8[0];
+        int cosValue = gSineTable[64] * 16;
+        int sinValue = gSineTable[0];
 
         Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                       HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

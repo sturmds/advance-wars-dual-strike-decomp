@@ -11,7 +11,7 @@ void *SpriteAnimTask_Start(void *file, int x, int y, int id, int a, int b);
 
 extern MenuState gMenuState;
 extern u8 data_027c0030;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -33,8 +33,8 @@ void CoRankMarker_GrowIn(Unk_02031a14 *task)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] * 16;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] * 16;
 
         Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

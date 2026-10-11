@@ -11,7 +11,7 @@ void Task_ResumeScript(Task *task);
 void TitleCall_DrawNumber(int affineIndex);
 
 extern Unk_027c0280 *data_027c0280;
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 extern const TaskScriptCmd data_0215bb88[];
 extern u8 data_027c0048[];
 
@@ -19,8 +19,8 @@ extern u8 data_027c0048[];
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 #define HOLD(task) (((s16 *)&(task)->unk_4c)[1])
 
-#define SIN0 (data_021389e8[0])
-#define COS0 (data_021389e8[64])
+#define SIN0 (gSineTable[0])
+#define COS0 (gSineTable[64])
 
 /* Title call task script step (data_0215bbc8), 64 frames on the current
  * screen. Layer 0 is alpha-blended in (EVA up to 16 by frame 8, then down

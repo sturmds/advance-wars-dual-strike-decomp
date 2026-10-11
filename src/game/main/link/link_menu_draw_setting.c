@@ -8,7 +8,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 int Math_SinDegrees(int degrees);
 
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 extern u8 data_027c0038;
 extern u8 data_027c0040;
 extern u8 data_027c0048;
@@ -36,8 +36,8 @@ void LinkMenu_DrawSetting(int x, int y, int entry, int affine)
         int sinValue;
         int cosValue;
 
-        cosValue = data_021389e8[64] * 16;
-        sinValue = data_021389e8[0];
+        cosValue = gSineTable[64] * 16;
+        sinValue = gSineTable[0];
 
         Oam_SetAffineParams(affine, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

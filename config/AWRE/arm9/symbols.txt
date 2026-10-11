@@ -6082,7 +6082,7 @@ data_02137c88 kind:data(any) addr:0x02137c88
 data_02137ca8 kind:data(any) addr:0x02137ca8
 data_021388f0 kind:data(any) addr:0x021388f0
 gSinTable kind:data(any) addr:0x02138930
-data_021389e8 kind:data(any) addr:0x021389e8
+gSineTable kind:data(any) addr:0x021389e8
 data_02138a68 kind:data(any) addr:0x02138a68
 data_02138ae8 kind:data(any) addr:0x02138ae8
 data_02138be8 kind:data(any) addr:0x02138be8

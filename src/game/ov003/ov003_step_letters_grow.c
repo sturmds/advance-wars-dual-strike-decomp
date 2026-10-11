@@ -3,7 +3,7 @@
 #include "game/Unk_ov003_0235dd38.h"
 
 /* Needed to match: const, so the sine reads move out of the loop. */
-extern const s16 data_021389e8[];
+extern const s16 gSineTable[];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -48,9 +48,9 @@ void Ov003_StepLettersGrow(Unk_ov003_0235dd38 *task)
                 int d2 = DIVISOR(scale);
                 int d1 = DIVISOR(scale);
                 int d0 = DIVISOR(scale);
-                int cosValue = data_021389e8[64] * 16;
-                int sinPos = data_021389e8[0] * 16;
-                int sinNeg = -data_021389e8[0] * 16;
+                int cosValue = gSineTable[64] * 16;
+                int sinPos = gSineTable[0] * 16;
+                int sinNeg = -gSineTable[0] * 16;
                 Oam_SetAffineParams(i + 1, HwDiv32(cosValue, d0), HwDiv32(sinNeg, d1),
                               HwDiv32(sinPos, d2), HwDiv32(cosValue, d3));
             }

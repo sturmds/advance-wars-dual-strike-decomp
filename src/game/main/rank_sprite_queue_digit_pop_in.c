@@ -7,7 +7,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 extern u8 data_027c0038;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
@@ -32,8 +32,8 @@ void RankSprite_QueueDigitPopIn(int x, int y, int digit, int matrixIndex, int fr
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        int cosValue = data_021389e8[64] * 16;
-        int sinValue = data_021389e8[0];
+        int cosValue = gSineTable[64] * 16;
+        int sinValue = gSineTable[0];
 
         Oam_SetAffineParams(matrixIndex, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));

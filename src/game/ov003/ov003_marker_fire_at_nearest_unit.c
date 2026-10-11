@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/ov003_marker.h"
 
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 extern s16 data_02138ae8[];
 extern s16 data_02138be8[];
 extern Ov003TileInfo data_ov003_02364d88[];
@@ -31,8 +31,8 @@ void Ov003Marker_FireAtNearestUnit(Ov003Marker *marker)
     dx = (target->x >> 3) - (((marker->x << 7) + 64) >> 3);
     dy = (target->y >> 3) - (((marker->y << 7) + 64) >> 3);
     Ov003Marker_SpawnEffect(marker, dx, dy);
-    leftX = dx + ((data_021389e8[85] * dx) >> 12) - ((data_021389e8[21] * dy) >> 12);
-    leftY = dy + ((data_021389e8[21] * dx) >> 12) + ((data_021389e8[85] * dy) >> 12);
+    leftX = dx + ((gSineTable[85] * dx) >> 12) - ((gSineTable[21] * dy) >> 12);
+    leftY = dy + ((gSineTable[21] * dx) >> 12) + ((gSineTable[85] * dy) >> 12);
     rightX = dx + ((data_02138be8[43] * dx) >> 12) - ((data_02138ae8[107] * dy) >> 12);
     rightY = dy + ((data_02138ae8[107] * dx) >> 12) + ((data_02138be8[43] * dy) >> 12);
     switch (marker->unk_08_4) {

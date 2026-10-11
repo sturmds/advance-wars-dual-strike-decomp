@@ -5,7 +5,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void SpriteAnim_Draw(struct ShowSprite *sprite, int x, int y);  /* guess: sets the sprite's screen position */
 
-extern s16 data_021389e8[];            /* looks like a 256-entry sine table */
+extern s16 gSineTable[];            /* looks like a 256-entry sine table */
 extern s16 data_02138a68[];            /* the same table from entry 64: cosine */
 
 /* Script step: waits unk_50 frames, then moves the task's sprite out from
@@ -39,7 +39,7 @@ void Ov004Task_MoveSpriteOutward(Ov004Task *task)
         task->step++;
     case 3:
         distance = Math_Ease(4, 0, 512, task->frame, task->duration);
-        x = (distance * data_021389e8[angle & 0xff]) >> 12;
+        x = (distance * gSineTable[angle & 0xff]) >> 12;
         x += task->tweenFrom;
         y = (distance * -data_02138a68[angle & 0xff]) >> 12;
         y += task->tweenTo;

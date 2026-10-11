@@ -10,7 +10,7 @@ void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 int Math_SinDegrees(int degrees);
 
 extern MenuState gMenuState;
-extern s16 data_021389e8[];
+extern s16 gSineTable[];
 extern u8 data_027c0040;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
@@ -45,8 +45,8 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y)
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);
         int d0 = DIVISOR(scale);
-        s32 cosValue = data_021389e8[64] * 16;
-        s32 sinValue = data_021389e8[0];
+        s32 cosValue = gSineTable[64] * 16;
+        s32 sinValue = gSineTable[0];
 
         Oam_SetAffineParams(30, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1), HwDiv32(sinValue * 16, d2),
                             HwDiv32(cosValue, d3));

@@ -26,7 +26,7 @@ typedef struct ZoomSpriteTask {
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 data_021389e8[];            /* sine table, index 64 = cosine of 0 */
+extern s16 gSineTable[];            /* sine table, index 64 = cosine of 0 */
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
@@ -56,8 +56,8 @@ static inline void ZoomSpriteTask_Draw(ZoomSpriteTask *task)
         int d2 = ZOOM_DIVISOR(s);
         int d1 = ZOOM_DIVISOR(s);
         int d0 = ZOOM_DIVISOR(s);
-        int sinValue = data_021389e8[0];
-        int cosValue = data_021389e8[64] << 4;
+        int sinValue = gSineTable[0];
+        int cosValue = gSineTable[64] << 4;
 
         Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
                             HwDiv32(cosValue, d3));
