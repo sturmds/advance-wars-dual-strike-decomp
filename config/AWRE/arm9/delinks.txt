@@ -13368,6 +13368,10 @@ src/game/main/func_020d80c4.c:
     complete
     .text       start:0x020d80c4 end:0x020d80e8
 
+src/game/main/task/battle_record_task_exit_if_player_out.c:
+    complete
+    .text       start:0x020d80e8 end:0x020d8148
+
 src/game/main/func_020d8148.c:
     complete
     .text       start:0x020d8148 end:0x020d8268
