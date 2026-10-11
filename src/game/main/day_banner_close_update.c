@@ -8,7 +8,7 @@ void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(DayBannerTask *task);
-void func_0205327c(void);
+void DayBanner_RefreshLayer(void);
 
 extern const s16 data_021389e8[];
 extern u8 data_027c0048[];
@@ -47,7 +47,7 @@ void DayBanner_CloseUpdate(DayBannerTask *task)
     data_027c0280->bgScrollX[bg] = Math_Ease(1, 0, 128, task->frame, TOTAL_FRAMES(task));
     bg = data_027c0280->layer0Bg;
     data_027c0280->bgScrollY[bg] = Math_Ease(1, 0, 96, task->frame, TOTAL_FRAMES(task)) + 32;
-    func_0205327c();
+    DayBanner_RefreshLayer();
 
     for (i = 0; i < SPRITE_COUNT(task); i++) {
         int start;

@@ -4,7 +4,7 @@
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
-void func_0205327c(void);
+void DayBanner_RefreshLayer(void);
 
 #define WORD_WIDTH  104                /* the three word sprites */
 #define DIGIT_WIDTH 28
@@ -33,7 +33,7 @@ void DayBanner_Init(DayBannerTask *task)
 
     data_027c0280->bgScrollX[data_027c0280->layer0Bg] = -128;
     data_027c0280->bgScrollY[data_027c0280->layer0Bg] = -64;
-    func_0205327c();
+    DayBanner_RefreshLayer();
 
     task->wordX = 128 - ((task->digitCount * DIGIT_WIDTH + WORD_WIDTH) >> 1);
     task->digitsX = 128 + WORD_WIDTH - ((task->digitCount * DIGIT_WIDTH + WORD_WIDTH) >> 1);
