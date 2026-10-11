@@ -92,6 +92,10 @@ src/game/main/overlay/overlay_swap_slot4_for_slots0_and_1.c:
     complete
     .text       start:0x02001618 end:0x02001644
 
+src/game/main/overlay/overlay_swap_slots0_and_1_for_slot4.c:
+    complete
+    .text       start:0x02001644 end:0x02001670
+
 src/game/main/overlay/overlay_unload.c:
     complete
     .text       start:0x02001670 end:0x020016bc
