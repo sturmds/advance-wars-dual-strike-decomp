@@ -14339,6 +14339,10 @@ src/game/main/co_stats/co_get_tag_stars.c:
     complete
     .text       start:0x020e1948 end:0x020e19b4
 
+src/game/main/co_swap/player_swap_cos.c:
+    complete
+    .text       start:0x020e19b4 end:0x020e1a70
+
 src/game/main/menus/co_select_reset_to_unlocked_cos.c:
     complete
     .text       start:0x020e1a70 end:0x020e1acc

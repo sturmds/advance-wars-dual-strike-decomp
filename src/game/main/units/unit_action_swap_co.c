@@ -10,7 +10,7 @@ extern const TaskScriptCmd data_021684f8[];
 extern const TaskScriptCmd data_02168578[];
 
 void Player_EndPower(int player);
-void func_020e19b4(int player);
+void Player_SwapCos(int player);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -24,7 +24,7 @@ void UnitAction_SwapCo(void)
                 gPlayRecords.coSwaps++;
             }
         }
-        func_020e19b4(GAME->currentPlayer);
+        Player_SwapCos(GAME->currentPlayer);
         Task_Create(data_021684f8, TASK_LIST(3));
         break;
     case TAG_POWER_FRONT:
@@ -34,7 +34,7 @@ void UnitAction_SwapCo(void)
             }
         }
         GAME->players[GAME->currentPlayer].tagPowerHalf = TAG_POWER_BACK;
-        func_020e19b4(GAME->currentPlayer);
+        Player_SwapCos(GAME->currentPlayer);
         Task_Create(data_02168578, TASK_LIST(3));
         break;
     case TAG_POWER_BACK:
