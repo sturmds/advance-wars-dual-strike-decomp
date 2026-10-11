@@ -5026,6 +5026,10 @@ src/game/main/screen/screen_fade_in_from_black_update.c:
     complete
     .text       start:0x02055714 end:0x02055788
 
+src/game/main/copowers/co_power_screen_set_up.c:
+    complete
+    .text       start:0x02055788 end:0x02055c14
+
 src/game/main/screen/screen_fade_to_black_update.c:
     complete
     .text       start:0x02055c14 end:0x02055c88
