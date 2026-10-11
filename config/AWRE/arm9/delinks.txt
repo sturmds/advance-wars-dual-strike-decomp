@@ -5741,6 +5741,10 @@ src/game/main/menus/vs_setup_show_settings_menu.c:
     complete
     .text       start:0x0206491c end:0x02064a34
 
+src/game/main/menus/vs_setup_handle_setting_row_keys.c:
+    complete
+    .text       start:0x02064a34 end:0x02064acc
+
 src/game/main/func_02064acc.c:
     complete
     .text       start:0x02064acc end:0x02064af0
