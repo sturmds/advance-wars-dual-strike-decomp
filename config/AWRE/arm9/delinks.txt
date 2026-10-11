@@ -3345,6 +3345,7 @@ src/game/main/menus/map_preview_draw_upper_half.c:
     .text       start:0x02020aac end:0x02020e0c
 
 src/game/main/text/font_draw_glyph.c:
+    complete
     .text       start:0x02020e0c end:0x02020f80
 
 src/game/main/text/text_add_spacer_codes.c:

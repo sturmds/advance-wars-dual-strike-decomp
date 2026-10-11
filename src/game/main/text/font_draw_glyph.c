@@ -14,18 +14,17 @@ typedef union GlyphRow {
  * at pixel x & 7 of the tile column. The glyph spills into the next tile
  * column (32 halfwords on) when it does not fit. Pixels 0xa take colour
  * 0xa + colour. A tile column is cleared before the first pixel is drawn
- * into it. Returns the glyph width.
- * Not matching yet (96.7%): shift, bytes and i get other registers. */
+ * into it. Returns the glyph width. */
 int Font_DrawGlyph(int c, u16 *dst, int x, int colour)
 {
-    int bytes;
-    GlyphRow rows[2];
-    int b;
-    u8 width;
-    int shift;
     int row;
+    u8 width;
+    GlyphRow rows[2];
+    int col;
     int i;
+    int b;
     u8 *src;
+    int shift;
 
     shift = x & 7;
     width = Ov000_gGlyphWidths[c];
@@ -42,12 +41,13 @@ int Font_DrawGlyph(int c, u16 *dst, int x, int colour)
         }
     }
     if (width != 0) {
-        bytes = (width + 1) >> 1;
         src = Ov000_gGlyphPixels[c];
+        /* needed to match: x is reused for the bytes per glyph row */
+        x = (width + 1) >> 1;
         for (row = 0; row < 16; row++) {
             rows[1].word = 0;
             rows[0].word = 0;
-            for (i = 0; i < bytes; i++) {
+            for (col = 0; col < x; col++) {
                 b = *src;
                 if ((b & 0xf0) == 0xa0) {
                     b += colour << 4;
@@ -55,8 +55,8 @@ int Font_DrawGlyph(int c, u16 *dst, int x, int colour)
                 if ((b & 0xf) == 10) {
                     b += colour;
                 }
-                rows[1].byte[i] = b;
-                rows[0].byte[i] = rows[1].byte[i];
+                rows[1].byte[col] = b;
+                rows[0].byte[col] = rows[1].byte[col];
                 src++;
             }
             rows[0].word <<= shift * 4;
