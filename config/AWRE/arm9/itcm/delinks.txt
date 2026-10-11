@@ -390,3 +390,7 @@ src/sdk/mi/reset_reload_programs_from_card.c:
 src/sdk/mi/os_reset_system.c:
     complete
     .text       start:0x01ffdcdc end:0x01ffdd1c
+
+src/sdk/mi/dma_load_channel_and_settle.c:
+    complete
+    .text       start:0x01ffdd1c end:0x01ffdd7c
