@@ -15,9 +15,9 @@ typedef struct SplashTask {
     s16 unk_30;
     u8 pad_32;
     u8 unk_33;
-    u8 pad_34;
+    u8 riseStep;                       /* letter task: height added next frame while rising, halved each frame */
     u8 unk_35;
-    u8 pad_36;
+    u8 holdFrames;                     /* letter task: frames left resting after the bounces */
     u8 unk_37;
     u16 waitFrames;                    /* frames counted by Splash_WaitUpdate */
     u8 pad_3a[0x54 - 0x3a];

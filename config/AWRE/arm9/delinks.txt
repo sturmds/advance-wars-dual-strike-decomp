@@ -18398,6 +18398,10 @@ src/game/main/screen/splash_init.c:
     complete
     .text       start:0x020f5120 end:0x020f51a0
 
+src/game/main/screen/splash_letter_update.c:
+    complete
+    .text       start:0x020f51a0 end:0x020f5310
+
 src/game/main/screen/splash_letter_init.c:
     complete
     .text       start:0x020f5310 end:0x020f5344
