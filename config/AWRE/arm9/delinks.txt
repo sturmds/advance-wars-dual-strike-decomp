@@ -5682,6 +5682,10 @@ src/game/main/has_two_or_more_teams.c:
     complete
     .text       start:0x02066818 end:0x020668a8
 
+src/game/main/menus/vs_setup_add_link_slot_buttons.c:
+    complete
+    .text       start:0x020668a8 end:0x02066a40
+
 src/game/main/menus/vs_setup_add_player_buttons.c:
     complete
     .text       start:0x02066b18 end:0x02066c3c
