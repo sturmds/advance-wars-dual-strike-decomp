@@ -12977,6 +12977,7 @@ src/game/main/graphics/func_020f8344.c:
     .text       start:0x020f8344 end:0x020f8394
 
 src/game/main/graphics/func_020f8394.c:
+    complete
     .text       start:0x020f8394 end:0x020f83d8
 
 src/game/main/func_020f882c.c:
