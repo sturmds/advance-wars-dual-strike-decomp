@@ -5671,6 +5671,10 @@ src/game/main/link/link_start.c:
     complete
     .text       start:0x0207bc30 end:0x0207bc80
 
+src/game/main/link/link_check_abort.c:
+    complete
+    .text       start:0x0207bc80 end:0x0207bd28
+
 src/game/main/link/link_flag_error.c:
     complete
     .text       start:0x0207bd28 end:0x0207bd58
