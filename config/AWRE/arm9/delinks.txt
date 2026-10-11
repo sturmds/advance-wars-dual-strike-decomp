@@ -12984,6 +12984,10 @@ src/game/main/sound/sound_strm_set_volume.c:
     complete
     .text       start:0x02105c10 end:0x02105c84
 
+src/game/main/sound/sound_strm_stop_if_active.c:
+    complete
+    .text       start:0x02105c84 end:0x02105cb4
+
 src/game/main/sound/sound_output_restart.c:
     complete
     .text       start:0x02105ff8 end:0x02106098
