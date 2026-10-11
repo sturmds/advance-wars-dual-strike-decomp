@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 BOOL Game_IsCampaign(void);
 int func_020d82c8(void);
-void func_02103ed8(int campaignSlot, int day);
+void Save_StoreProfile(int campaignSlot, int day);
 int func_02019330(int mode, int campaignSlot);
 void func_020d8028(int arg);
 void BattleSave_Save(int recordId, int flag);
@@ -23,7 +23,7 @@ void Save_SaveCurrentGame(void)
 
     if (Game_IsCampaign()) {
         campaignSlot = func_020d82c8();
-        func_02103ed8(campaignSlot, STATE->day);
+        Save_StoreProfile(campaignSlot, STATE->day);
         recordId = func_02019330(0, campaignSlot);
         func_020d8028(recordId);
         BattleSave_Save(recordId, 0);

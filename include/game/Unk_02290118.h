@@ -21,7 +21,7 @@ typedef struct Unk_02290118 {
     u8 unk_00;                         /* picks the Force Rank profile Save_LoadProgress reads from the save buffer */
     u8 unk_01;
     u8 hardMode;                       /* 1: the campaign is in hard mode (Campaign_IsHardMode) */
-    u8 pad_03;
+    u8 unk_03;                         /* counts the times the profile was stored, up to 255 (Save_StoreProfile) */
     u8 unk_04;
     u8 unk_05;
     u16 unk_06;
