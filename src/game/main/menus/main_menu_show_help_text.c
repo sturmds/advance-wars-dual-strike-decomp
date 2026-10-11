@@ -3,14 +3,14 @@
 #include "game/menu_button.h"
 
 void func_020272e0(u32 textId, int tile);
-void func_0202fc98(int a);
+void MainMenu_ShowRecordHelp(int a);
 
 /* Text group 0x8000 holds the help text of the main menu entries. */
 #define HELP_TEXT(index) (0x80000000 + (index))
 
 /* Shows the help text of the selected main menu entry on the second screen,
  * picked by the entry's kind (MainMenuEntry.unk_00) and, for some kinds, by
- * the page. Kinds 31-33 draw something else with func_0202fc98. Page 0 has
+ * the page. Kinds 31-33 draw something else with MainMenu_ShowRecordHelp. Page 0 has
  * no text for kinds 11 and 12: textId is then unset, as in the original. */
 void MainMenu_ShowHelpText(void)
 {
@@ -157,13 +157,13 @@ void MainMenu_ShowHelpText(void)
         textId = HELP_TEXT(0x28);
         break;
     case 31:
-        func_0202fc98(0);
+        MainMenu_ShowRecordHelp(0);
         return;
     case 32:
-        func_0202fc98(1);
+        MainMenu_ShowRecordHelp(1);
         return;
     case 33:
-        func_0202fc98(2);
+        MainMenu_ShowRecordHelp(2);
         return;
     default:
         return;
