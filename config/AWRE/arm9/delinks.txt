@@ -10598,6 +10598,10 @@ src/game/main/ai/ai_is_transport_stop_tile.c:
     complete
     .text       start:0x0209df28 end:0x0209e078
 
+src/game/main/units/unit_get_co_max_range.c:
+    complete
+    .text       start:0x0209e078 end:0x0209e0fc
+
 src/game/main/units/unit_is_harmless.c:
     complete
     .text       start:0x0209e0fc end:0x0209e134

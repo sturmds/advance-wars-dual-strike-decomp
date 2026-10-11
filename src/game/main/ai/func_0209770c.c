@@ -11,7 +11,7 @@ int UnitType_BestBaseDamage(int unitType, int targetType);
 int Player_GetUnitMoveRange(int player, int unitType);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_MarkAdjacentTiles(int arg);
-int func_0209e078(MapUnit *unit);
+int Unit_GetCoMaxRange(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -158,7 +158,7 @@ int func_0209770c(int x, int y, int unitType)
                 total += damage;
                 continue;
             }
-            range = func_0209e078(unit);
+            range = Unit_GetCoMaxRange(unit);
             if (range <= 1 || range < dist || Ov000_gUnitStats[unit->type].minRange > dist) {
                 continue;
             }

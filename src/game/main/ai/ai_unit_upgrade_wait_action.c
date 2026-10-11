@@ -10,7 +10,7 @@ extern int data_027c0284;
 int Map_IsCapturableByActingUnit(s16 x, s16 y);
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
-int func_0209e078(MapUnit *unit);                     /* max range with the CO's range bonus */
+int Unit_GetCoMaxRange(MapUnit *unit);                     /* max range with the CO's range bonus */
 int Player_GetUnitMoveRange(int player, int unitType); /* movement plus the CO's move bonus */
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_MarkAdjacentTiles(s8 mark);
@@ -164,7 +164,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                     continue;
                 }
                 unit = &STATE->units[subSlot];
-                subRange = func_0209e078(unit);
+                subRange = Unit_GetCoMaxRange(unit);
                 if (subRange > 1) {
                     /* ships with indirect fire reach one tile further */
                     if (Ov000_gUnitStats[unit->type].moveGroup & MOVE_GROUP_SEA) {
@@ -245,7 +245,7 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8 *action, u8 *target, u8 *arg)
                     continue;
                 }
                 unit = &STATE->units[stealthSlot];
-                stealthRange = func_0209e078(unit);
+                stealthRange = Unit_GetCoMaxRange(unit);
                 if (stealthRange > 1) {
                     if (stealthRange + 1 < stealthDist) {
                         continue;
