@@ -7,22 +7,32 @@
  * bookkeeping after its data, both cleared together; what they mean is not
  * worked out yet. */
 
+/* One queued packet: the first 24 bytes of a LinkPacket. */
+typedef struct LinkQueueSlot {
+    u8 bytes[24];
+} LinkQueueSlot;
+
+/* Each queue below is a ring buffer. The first of its two trailing bytes is
+ * the read index, the second the write index; the queue is empty when they
+ * are equal and full when the write index is one behind the read index. */
+
+/* data_0229ca88: packets waiting to be sent, 8 slots */
 typedef struct Unk_0229ca88 {
-    u8 pad_00[0xc0];
+    LinkQueueSlot slots[8];
     u8 unk_c0;
     u8 unk_c1;
 } Unk_0229ca88;
 
-/* data_0229cdfc, 7 entries */
+/* data_0229cdfc, 7 entries, one per peer: 16 slots */
 typedef struct Unk_0229cdfc {
-    u8 pad_000[0x180];
+    LinkQueueSlot slots[16];
     u8 unk_180;
     u8 unk_181;
 } Unk_0229cdfc;
 
-/* data_0229cb4c, 7 entries */
+/* data_0229cb4c, 7 entries, one per peer: 4 slots */
 typedef struct Unk_0229cb4c {
-    u8 pad_00[0x60];
+    LinkQueueSlot slots[4];
     u8 unk_60;
     u8 unk_61;
 } Unk_0229cb4c;
