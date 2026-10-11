@@ -94,7 +94,7 @@ void __num2dec(const DecimalFormat *format, double x, Decimal *dec);
 /* Converts x to its exact digit string, digits as values 0-9. */
 void __num2dec_internal(Decimal *dec, double x);
 /* Sets dec to 2^exponent. */
-void func_02124ed8(Decimal *dec, int exponent);
+void __two_exp(Decimal *dec, long exponent);
 /* Sets result to x * y. */
 void func_0212537c(Decimal *result, const Decimal *x, const Decimal *y);
 /* Sets dec to the digits of value. */

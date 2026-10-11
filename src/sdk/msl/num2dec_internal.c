@@ -42,12 +42,12 @@ void __num2dec_internal(Decimal *dec, double x)
         int exponent;
         double fraction = frexp(x, &exponent);
         int bits = 53 - CountTrailingZeros(fraction);
-        Decimal fracPart;
-        Decimal intPart;
+        Decimal mantissa;
+        Decimal power;
 
-        func_02124ed8(&intPart, exponent - bits);
-        func_02125524(&fracPart, func_02125e7c(ldexp(fraction, bits)));
-        func_0212537c(dec, &fracPart, &intPart);
+        __two_exp(&power, exponent - bits);
+        func_02125524(&mantissa, func_02125e7c(ldexp(fraction, bits)));
+        func_0212537c(dec, &mantissa, &power);
         dec->sign = sign;
     }
 }
