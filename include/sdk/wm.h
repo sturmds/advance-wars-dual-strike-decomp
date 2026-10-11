@@ -29,7 +29,12 @@ typedef struct WMCallback {
 #define WM_STATECODE_MP_START 10
 #define WM_STATECODE_MPEND_IND 11
 #define WM_STATECODE_MP_IND 12
+#define WIRELESS_NOTICE_HEARD_BEACON 16
+#define WIRELESS_NOTICE_STATION_DROPPED 17
+#define WIRELESS_NOTICE_STATION_BACK 18
+#define WIRELESS_NOTICE_AUTHED 19
 #define WM_STATECODE_PORT_RECV 21
+#define WIRELESS_NOTICE_QUEUE_REFUSED 22
 
 /* WMCallback.errcode values. */
 #define WM_ERRCODE_SUCCESS 0
@@ -187,6 +192,16 @@ typedef struct WMStartMPCallback {
     u8 pad_06[2];
     void *recvBuf;
 } WMStartMPCallback;
+
+/* Start of the reply to the disconnect command; only these fields are read. */
+typedef struct RadioDropReply {
+    u16 apiid;
+    u16 errcode;
+    u16 wlCmdID;
+    u16 wlResult;
+    u16 tryBitmap;
+    u16 disconnectedBitmap;            /* bit n set: the child with aid n left */
+} RadioDropReply;
 
 /* Start of the reply to the connect command; only these fields are read. */
 typedef struct WMStartConnectCallback {

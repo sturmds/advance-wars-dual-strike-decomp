@@ -122,16 +122,20 @@ typedef struct DlPlayStationArea {
     u16 unk_12;
     u16 unk_14;
     u16 unk_16;
-    u8 pad_18[0x320 - 0x18];
+    u8 pad_18[0x40 - 0x18];
+    u16 mpSendBuffer[2];               /* 0x40: given to WM_StartMPEx, length unknown */
+    u8 pad_44[0x320 - 0x44];
     u32 unk_320;                       /* 0 until the game starts Download Play */
     u8 pad_324[0x500 - 0x324];
     u16 sendSize;                      /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_502;
-    u8 pad_504[4];
+    u16 *mpRecvBuffer;                 /* given to WM_StartMPEx */
     void (*sendCallback)(void);        /* callback for the MP send */
     u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
     u8 unk_50d;
-    u8 pad_50e[0x51c - 0x50e];
+    u8 pad_50e[0x518 - 0x50e];
+    u16 mpSendSize;                    /* sizes given to WM_StartMPEx */
+    u16 mpRecvSize;
     void (*errorCallback)(u32 type, void *arg);
     u8 pad_520[4];
     u16 unk_524;
@@ -155,11 +159,20 @@ typedef struct DlPlayBufferArea {
 /* Event types of the parent's callbacks (errorCallback, MbParent_CommCallback). */
 #define DLPLAY_EVENT_CHILD_JOINED 0
 #define DLPLAY_EVENT_CHILD_LEFT 1
+#define DLPLAY_EVENT_HOST_FRAME_OUT 2
 #define DLPLAY_EVENT_HOST_FRAME_IN 3
 #define DLPLAY_EVENT_SHUTDOWN_DONE 17
+#define DLPLAY_EVENT_TRANSMIT_FAILED 19
+#define DLPLAY_EVENT_HOST_SETTINGS_DONE 21
 #define DLPLAY_EVENT_STARTUP_DONE 21
 #define DLPLAY_EVENT_MAY_TRANSMIT 25
 #define DLPLAY_EVENT_BEACON_OUT 28
+#define DLPLAY_EVENT_HEARD_BEACON 29
+#define DLPLAY_EVENT_STATION_DROPPED 31
+#define DLPLAY_EVENT_STATION_REJOINED 32
+#define DLPLAY_EVENT_STATION_AUTHED 33
+#define DLPLAY_EVENT_OUTBOX_FULL 42
+#define DLPLAY_EVENT_CALL_REFUSED 0x100        /* a WM call failed or sent an unexpected state */
 #define DLPLAY_EVENT_RADIO_FAULT_OLD 0x100         /* a WM call failed; the argument is its WMCallback */
 
 /* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
@@ -513,9 +526,12 @@ typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
  * aid - 1 (aid 0 is the parent). */
 typedef struct DlPlayHostLinkArea {
     u8 sendBuffer[4];                  /* length unknown */
-    u8 pad_04[0x1318 - 4];
+    u8 pad_04[0x1316 - 4];
+    u16 unk_1316;
     u32 blockSizeMax;                  /* bytes of file data in one parent message */
-    u8 pad_131c[0x1340 - 0x131c];
+    u32 mpStarting;                    /* 1 from WM_StartMPEx until its callback */
+    u32 unk_1320;                      /* DlPlayBufferArea.parent.unk_320 */
+    u8 pad_1324[0x1340 - 0x1324];
     DlPlayPlayerBadge childUsers[DLPLAY_CHILD_SLOTS];
     u16 childVersions[DLPLAY_CHILD_SLOTS];
     u32 childGgids[DLPLAY_CHILD_SLOTS];
@@ -530,7 +546,8 @@ typedef struct DlPlayHostLinkArea {
     u16 childRequests[DLPLAY_CHILD_SLOTS];
     DlPlayPlayerBadge userInfoCopy;           /* filled by MbComm_GetChildUser */
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
-    u8 pad_74c8[0x7ce0 - 0x74c8];
+    u32 unk_74c8;
+    u8 pad_74cc[0x7ce0 - 0x74cc];
     DlPlayWorkerJob task;
     u8 pad_7cf8[0x7d00 - 0x7cf8];
 } DlPlayHostLinkArea;
