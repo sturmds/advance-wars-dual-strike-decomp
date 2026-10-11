@@ -316,6 +316,7 @@ typedef struct DlPlayHostLinkArea {
     DlPlayWorkerJob task;
 } DlPlayHostLinkArea;
 
+int MbComm_IsChildAid(u32 aid);
 void MbComm_NotifyState(u32 aid, u32 state, void *arg);
 
 /* A file of the comm work area. A macro, not a function: to match, the
