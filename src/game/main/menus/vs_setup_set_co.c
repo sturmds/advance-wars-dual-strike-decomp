@@ -6,7 +6,7 @@ void Sound_PlaySe(int id);
 int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
-void func_02001bcc(int co, void *dest, int paletteSlot, int player);
+void Co_QueueArmyMediumPicture(int co, void *dest, int paletteSlot, int player);
 void VsSetup_RedrawSkills(void);
 void func_02069624(void);
 
@@ -31,7 +31,7 @@ void VsSetup_SetCo(int event, int co)
     player = index >> 1;
     MENU->setup.cos[player][index & 1] = co;
     if (MENU->setup.cos[player][index & 1] != 0 && MENU->setup.unk_2ea == 0) {
-        func_02001bcc(MENU->setup.cos[player][index & 1], data_027c0280->objVram + (552 + index * 18) * 32, index + 18, player + 1);
+        Co_QueueArmyMediumPicture(MENU->setup.cos[player][index & 1], data_027c0280->objVram + (552 + index * 18) * 32, index + 18, player + 1);
     }
     /* Needed to match: the two calls are written out in both branches. */
     if (func_0207bd80() == 1) {
