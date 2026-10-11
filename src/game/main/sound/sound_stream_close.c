@@ -1,0 +1,25 @@
+#include "types.h"
+#include "game/sound_stream.h"
+
+extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
+
+void func_0210e034(void *mutex);
+void func_0210dfc4(void *mutex);
+void SoundStrm_StopIfActive(SoundStrm *strm);
+void func_02112728(FSFile *file);
+void SoundStream_Release(SoundStream *stream);
+
+/* Closes a stream: stops its playback, cancels a file read in progress and
+ * releases it, all under the mutex. */
+void SoundStream_Close(SoundStream *stream)
+{
+    func_0210e034(data_022a8ad8);
+    if (stream->flags.playing) {
+        SoundStrm_StopIfActive(&stream->strm);
+    }
+    if (stream->flags.fileOpen) {
+        func_02112728(&stream->file);
+    }
+    SoundStream_Release(stream);
+    func_0210dfc4(data_022a8ad8);
+}
