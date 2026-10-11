@@ -311,7 +311,7 @@ func_ov006_023673b4 kind:function(arm,size=0x1ac) addr:0x023673b4
 Ov006_PlacePipeSeam kind:function(arm,size=0x80) addr:0x02367560
 func_ov006_023675e0 kind:function(arm,size=0x8c) addr:0x023675e0
 Ov006_GetPipeEndCell kind:function(arm,size=0x374) addr:0x0236766c
-func_ov006_023679e0 kind:function(arm,size=0x90) addr:0x023679e0
+Ov006_RefitJoinedCellsInCross kind:function(arm,size=0x90) addr:0x023679e0
 Ov006_RefitJoinedCellsAround kind:function(arm,size=0x6a4) addr:0x02367a70
 Ov006_GetPipeSeamCell kind:function(arm,size=0x9c) addr:0x02368114
 Ov006_FitPipeCell kind:function(arm,size=0x1320) addr:0x023681b0
@@ -569,8 +569,8 @@ data_ov006_0236d5f8 kind:data(any) addr:0x0236d5f8
 Ov006_gNeighborDx kind:data(any) addr:0x0236d600
 data_ov006_0236d608 kind:data(any) addr:0x0236d608
 Ov006_gDirStepY kind:data(any) addr:0x0236d610
-data_ov006_0236d618 kind:data(any) addr:0x0236d618
-data_ov006_0236d624 kind:data(any) addr:0x0236d624
+Ov006_gCrossDy kind:data(any) addr:0x0236d618
+Ov006_gCrossDx kind:data(any) addr:0x0236d624
 data_ov006_0236d640 kind:bss addr:0x0236d640
 data_ov006_0236d644 kind:bss addr:0x0236d644
 data_ov006_0236d744 kind:bss addr:0x0236d744
