@@ -5,7 +5,7 @@
 extern DesignMapRecord data_02291774;
 extern u8 data_021674c4[];
 
-void func_020d73d4(void *template, DesignMapRecord *record, int flag);
+void DesignMap_BuildRecord(void *template, DesignMapRecord *record, int flag);
 void Map_SetDataBuffer(void *buffer);
 void Player_SaveArmyColours(void);
 void MapPreview_Start(void *vram, u16 *tileMap, int firstTile, int palette);
@@ -18,7 +18,7 @@ void DesignMap_DrawTemplatePreview(int x, int y, int firstTile, int palette)
 {
     DesignMapRecord *const record = &data_02291774; /* const: needed to match */
 
-    func_020d73d4(data_021674c4, record, 1);
+    DesignMap_BuildRecord(data_021674c4, record, 1);
     Map_SetDataBuffer(record);
     Player_SaveArmyColours();
     MapPreview_Start(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),

@@ -15,7 +15,7 @@ BOOL UnitType_HidesCargo(int type, int viewer, int owner);
 u8 *func_020c67b0(void);
 int func_020c67a8(void);
 u8 *func_020c67bc(void);
-int Player_GetCoIconTile(int player, int coId);
+int Player_GetUnitIconTile(int player, int unitType);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
 
@@ -70,7 +70,7 @@ void InfoPanel_DrawUnit(s16 x, s16 y, int type, int owner, u8 carrying, u8 captu
         }
     }
     tile = slot * 4;
-    TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(owner, type) * 32, GFX->objVram + (tile + UNIT_TILE) * 32,
+    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(owner, type) * 32, GFX->objVram + (tile + UNIT_TILE) * 32,
                       128);
     /* semi-transparent, palette 12 */
     Oam_PutSprite(x, y | 0x400, badges ? data_021663b4[owner - 1] : data_021663c8[owner - 1], tile | 0xc000);

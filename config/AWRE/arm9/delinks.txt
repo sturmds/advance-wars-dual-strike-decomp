@@ -14141,7 +14141,7 @@ src/game/main/graphics/player_get_palette.c:
     complete
     .text       start:0x020c672c end:0x020c6774
 
-src/game/main/co_stats/player_get_co_icon_tile.c:
+src/game/main/co_stats/player_get_unit_icon_tile.c:
     complete
     .text       start:0x020c6774 end:0x020c67a8
 
@@ -14221,7 +14221,7 @@ src/game/main/func_020c7398.c:
     complete
     .text       start:0x020c7398 end:0x020c73a8
 
-src/game/main/func_020c73a8.c:
+src/game/main/map/player_count_arriving_unit.c:
     complete
     .text       start:0x020c73a8 end:0x020c73b4
 
@@ -14612,7 +14612,7 @@ src/game/main/graphics/terrain_get_icon_tiles.c:
     complete
     .text       start:0x020ccbb8 end:0x020ccbe4
 
-src/game/main/graphics/co_get_preview_tiles.c:
+src/game/main/graphics/unit_type_get_picture_tiles.c:
     complete
     .text       start:0x020ccbe4 end:0x020ccc14
 
@@ -15284,7 +15284,7 @@ src/game/main/units/move_path_dir_to_prev.c:
     complete
     .text       start:0x020d46e0 end:0x020d4748
 
-src/game/main/units/func_020d4748.c:
+src/game/main/units/move_path_follow_cursor.c:
     .text       start:0x020d4748 end:0x020d4adc
 
 src/game/main/units/move_path_start.c:
@@ -15563,7 +15563,7 @@ src/game/main/map/design_map_spawn_units.c:
     complete
     .text       start:0x020d727c end:0x020d73d4
 
-src/game/main/map/func_020d73d4.c:
+src/game/main/map/design_map_build_record.c:
     .text       start:0x020d73d4 end:0x020d76f0
 
 src/game/main/map/design_map_save.c:

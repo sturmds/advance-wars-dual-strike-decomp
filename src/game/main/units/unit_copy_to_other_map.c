@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 MapUnit *Unit_FindFreeSlot(int player);
-void func_020c73a8(int player);
+void Player_CountArrivingUnit(int player);
 void MapUnit_ResetAiState(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -26,7 +26,7 @@ int Unit_CopyToOtherMap(MapUnit *unit, int x, int y)
     savedState = data_027c027c;
     Screen_SetCurrent((&data_027c0288.unk_00)[1 - data_027c0284]);
     copy = Unit_FindFreeSlot(player);
-    func_020c73a8(player);
+    Player_CountArrivingUnit(player);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
     *copy = *unit;

@@ -8,7 +8,7 @@ void Sound_PlaySe(int id);
 void Ov006_ChooseButton38(void);
 void Ov006_ChooseButton34(void);
 int Ov006_GetUnitCodeAt(int x, int y);
-void Ov006_LoadCoPreview(void);
+void Ov006_LoadToolUnitPreview(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -50,7 +50,7 @@ void Ov006_PickToolAtCursor(int mode)
         }
         OV6->toolUnit = code & 63;
         OV6->unitArmy = (code >> 6) + 1;
-        Ov006_LoadCoPreview();
+        Ov006_LoadToolUnitPreview();
         Sound_PlaySe(0x1000a);
         Ov006_ChooseButton34();
         break;

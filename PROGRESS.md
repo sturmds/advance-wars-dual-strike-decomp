@@ -68,10 +68,10 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/link/func_02072a50.c` | func_02072a50 | 176 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |
+| `src/game/main/map/design_map_build_record.c` | DesignMap_BuildRecord | 796 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 |
-| `src/game/main/map/func_020d73d4.c` | func_020d73d4 | 796 |
 | `src/game/main/map/func_020f79a8.c` | func_020f79a8 | 772 |
 | `src/game/main/map/func_020f7cac.c` | func_020f7cac | 164 |
 | `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 |
@@ -101,7 +101,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/script/func_0201a4f0.c` | func_0201a4f0 | 196 |
 | `src/game/main/sound/sound_stream_fill_blocks.c` | func_02107c28 | 2184 |
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
-| `src/game/main/units/func_020d4748.c` | func_020d4748 | 916 |
+| `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
 | `src/game/ov000/player_hud_draw_slot.c` | no delinks entry | 0 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |

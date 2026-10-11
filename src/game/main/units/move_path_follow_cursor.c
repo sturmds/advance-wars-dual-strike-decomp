@@ -37,7 +37,7 @@ extern int data_027c0284;
  * the path back to it; a reachable tile next to the path's end is appended;
  * anything else rebuilds the path by search (func_01ffa02c). unk_46 gets the
  * move points the path uses. */
-void func_020d4748(void)
+void MovePath_FollowCursor(void)
 {
     Unk_02080440_48 *state;
     s8 range;

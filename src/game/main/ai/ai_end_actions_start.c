@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
-u8 AiSites_Collect(void);
+int AiSites_Collect(void);
 u8 AiSites_BuildGroups(void);
 int AiPlayer_FrontCoNearerToSuper(void);
 int AiUnit_GetRepairValue(int player, BOOL flag, MapUnit *unit);

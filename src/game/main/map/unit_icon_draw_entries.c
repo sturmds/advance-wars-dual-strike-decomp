@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern u16 gUnitIconTileBase[];        /* palette and first tile: [0] grey (waited), then players 1-4 */
 extern s16 gUnitIconHpDigit[];         /* per shown HP 0-10: negative when no digit is drawn (0 and 10) */
 
-int Player_GetCoIconTile(int player, int type);
+int Player_GetUnitIconTile(int player, int unitType);
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -49,7 +49,7 @@ void UnitIcon_DrawEntries(u16 *entry, int type, int look, int carrying, u8 captu
     if (carrying != 0) {
         carrying = TRUE;
     }
-    tile = Player_GetCoIconTile(player, type);
+    tile = Player_GetUnitIconTile(player, type);
     if (UnitType_HidesCargo(type, STATE->currentPlayer, (u16)player)) {
         badge = BADGE_HIDDEN_CARGO;
     } else if (carrying) {

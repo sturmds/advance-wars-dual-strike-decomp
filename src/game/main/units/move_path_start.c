@@ -16,14 +16,14 @@ int Unit_GetMovePoints(MapUnit *unit);
 void MovePath_Truncate(int count);
 void MovePath_AddTile(s8 x, s8 y);
 void MovePath_SetCursor(int a, int b);
-void func_020d4748(void);
+void MovePath_FollowCursor(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Starts a move path for the acting unit: loads the path graphics unless
  * data_027c027c and data_027c0288 hold the same pointer, empties the path,
  * puts the unit's own tile first with its full move points, and runs
- * func_020d4748. */
+ * MovePath_FollowCursor. */
 void MovePath_Start(void)
 {
     if (data_027c027c != data_027c0288) {
@@ -36,5 +36,5 @@ void MovePath_Start(void)
     MovePath_AddTile(GAME->actingUnit->x, GAME->actingUnit->y);
     gMovePath->movesLeft[0] = gMovePath->startMoves;
     MovePath_SetCursor(0xffff, 0xffff);
-    func_020d4748();
+    MovePath_FollowCursor();
 }

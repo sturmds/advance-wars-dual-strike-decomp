@@ -195,7 +195,7 @@ src/game/ov006/ov006_update_sub_screen.c:
     complete
     .text       start:0x023538e8 end:0x02353c28
 
-src/game/ov006/ov006_load_co_preview.c:
+src/game/ov006/ov006_load_tool_unit_preview.c:
     complete
     .text       start:0x02353c28 end:0x02353d44
 

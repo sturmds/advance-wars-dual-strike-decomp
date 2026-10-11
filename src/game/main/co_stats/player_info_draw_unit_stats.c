@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 
 BOOL UnitRow_IsAvailable(int row);
-int Player_GetCoIconTile(int player, int index);
+int Player_GetUnitIconTile(int player, int unitType);
 int Player_GetShownRangeBonus(int player, int slot, int unitType);
 int Player_GetShownMoveBonus(int player, int slot, int unitType);
 int Player_GetShownFirepower(int player, int slot, int unitType);
@@ -48,7 +48,7 @@ void PlayerInfo_DrawUnitStats(void)
                 continue;
             }
             unitType = gUnitRowTypes[row * 5 + col];
-            Bg_PutTileQuad(1 + col * 6, 5 + row * 3, Player_GetCoIconTile(MENU.player, unitType) + UNIT_ICON_TILE,
+            Bg_PutTileQuad(1 + col * 6, 5 + row * 3, Player_GetUnitIconTile(MENU.player, unitType) + UNIT_ICON_TILE,
                            MENU.player + 4);
             bonus = Player_GetShownRangeBonus(MENU.player, MENU.slot, unitType);
             if (bonus != 0) {

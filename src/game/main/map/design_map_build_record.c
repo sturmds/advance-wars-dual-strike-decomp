@@ -15,7 +15,7 @@ extern s8 Ov000_gUrbanTerrain[32]; /* nonzero for urban terrain, indexed by terr
 /* Writes the loaded map into a design map record: size, name, the cell code
  * and unit of each tile, urban tile counts and the army colours. With
  * countHqs set to 1 the player count is the number of HQ tiles, else 0. */
-void func_020d73d4(const char *name, DesignMapRecord *record, int countHqs)
+void DesignMap_BuildRecord(const char *name, DesignMapRecord *record, int countHqs)
 {
     u8 urbanCounts[6];
     u16 hqs;

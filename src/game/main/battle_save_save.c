@@ -9,7 +9,7 @@ extern u32 gLinkPlay;
 void func_02019920(void);
 u8 func_020193bc(int recordId);
 void BattleSave_SetRecordFlag(int recordId, int value);
-void DesignMap_SaveToSlot(int slot, void *map, int unk); /* the definition takes two arguments; this call also passes 1 in r2 */
+void DesignMap_SaveToSlot(int slot, void *map, int unused);
 void BattleSave_Pack(u8 flag);
 void Save_WriteRecord(u8 recordId, void *buffer, int size);
 void *PlayRecords_TakeSnapshot(void);
