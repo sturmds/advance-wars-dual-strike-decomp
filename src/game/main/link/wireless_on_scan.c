@@ -8,7 +8,7 @@ extern WMBssDesc *data_0229c8a8;
 
 void func_0210e100(void *start, u32 size);
 int func_02079180(void);
-int func_02078864(void);
+int Wireless_EndScan(void);
 int Wireless_PrepareScan(void);
 void func_02079ee0(void);
 void Wireless_AddParent(u8 linkLevel);
@@ -25,13 +25,13 @@ void Wireless_OnScan(WMStartScanCallback *cb)
             func_02079180();
             return;
         case 4:
-            if (func_02078864()) {
+            if (Wireless_EndScan()) {
                 return;
             }
             func_02079180();
             return;
         case 5:
-            if (func_02078864()) {
+            if (Wireless_EndScan()) {
                 return;
             }
             func_02079180();
