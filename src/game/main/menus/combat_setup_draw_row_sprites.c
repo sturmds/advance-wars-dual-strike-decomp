@@ -39,25 +39,24 @@ extern u8 data_027c0040;
  * and the CO's nation (1 or other), four unit icons, then one icon per cell
  * of the row, four to a line. Sub screen: a sprite for each row with memberCount
  * set, and five LinkMenu_DrawSetting entries.
- * Not matched (95%): the original keeps the first loop's counter and the
- * cell loop's icon index in registers and spills constants instead. */
-void func_0208395c(void)
+ * Needed to match: one variable, type, counts the marker lines and also
+ * holds each cell's icon index. */
+void CombatSetup_DrawRowSprites(void)
 {
     void *kindSprite;
-    u8 kind;
     Unk_027c0280 *subSaved0280;
-    u16 y;
-    u8 nation;
-    int i;
-    Unk_02080440 *subSaved027c;
-    Unk_02080440 *saved027c;
+    u8 kind;
     u16 x;
-    int j;
+    Unk_02080440 *subSaved027c;
     u8 row;
-    u8 index;
-    UnitCountTable table;
+    u16 y;
+    int i;
+    int type;
+    u8 nation;
     Unk_027c0280 *saved0280;
     u16 tiles[4];
+    UnitCountTable table;
+    Unk_02080440 *saved027c;
     table = data_02160afc;
 
     row = MENU->combat.players[data_0229fb30.unk_45a].row;
@@ -69,9 +68,9 @@ void func_0208395c(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     Co_QueueSmallPictureSpriteAtTile(0x10e0, 24, (row + 1) << 12, (row - 1) * 12 + 0x490, 0);
     Sprite_QueueDefaultTile(0x8c, 8, 0xb000, LINK_ROWS[row - 1].unk_19 * 12 + 0x4c0, 0);
-    for (i = 0; i < 4; i++) {
-        for (j = 0; j < table.counts[kind * 4 + i]; j++) {
-            Sprite_QueueAt(0, (88 + j * 8) & 0x1ff, (92 + i * 16) & 0xff, &data_027c0028, 0xa000, 0x638);
+    for (type = 0; type < 4; type++) {
+        for (i = 0; i < table.counts[kind * 4 + type]; i++) {
+            Sprite_QueueAt(0, (88 + i * 8) & 0x1ff, (92 + type * 16) & 0xff, &data_027c0028, 0xa000, 0x638);
         }
     }
     if (nation == 1) {
@@ -121,19 +120,19 @@ void func_0208395c(void)
         switch (LINK_ROWS[row - 1].cells[i].tile) {
         case 1:
         case 2:
-            index = 0;
+            type = 0;
             break;
         case 3:
-            index = 1;
+            type = 1;
             break;
         case 4:
-            index = 2;
+            type = 2;
             break;
         case 5:
-            index = 3;
+            type = 3;
             break;
         }
-        Sprite_QueueAt(2, x & 0x1ff, y & 0xff, &data_027c0040, 0x9400, tiles[index]);
+        Sprite_QueueAt(2, x & 0x1ff, y & 0xff, &data_027c0040, 0x9400, tiles[type]);
         x += 24;
         if (HwMod32(i, 4) == 3) {
             x -= 96;

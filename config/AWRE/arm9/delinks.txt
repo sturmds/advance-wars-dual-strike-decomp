@@ -10160,7 +10160,8 @@ src/game/main/menus/combat_setup_shop_on_keys.c:
     complete
     .text       start:0x02083828 end:0x0208395c
 
-src/game/main/menus/func_0208395c.c:
+src/game/main/menus/combat_setup_draw_row_sprites.c:
+    complete
     .text       start:0x0208395c end:0x02083f00
 
 src/game/main/menus/combat_setup_clear_screens.c:
