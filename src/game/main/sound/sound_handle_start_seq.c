@@ -2,7 +2,7 @@
 #include "game/sound.h"
 #include "game/sound_arc.h"
 
-SoundSeqPlayer *func_02105488(SoundHandle *handle, int playerNo, int playerPrio);
+SoundSeqPlayer *SoundSeqPlayer_Acquire(SoundHandle *handle, int playerNo, int playerPrio);
 void *SoundSeqPlayer_AttachHeap(int playerNo, SoundSeqPlayer *player);
 int SoundArc_GetBank(int bankNo, int loadFlags, void *heap, int cache, void **loadedOut);
 int func_02107720(int seqNo, int loadFlags, void *heap, int cache, void **loadedOut);
@@ -23,7 +23,7 @@ BOOL SoundHandle_StartSeq(SoundHandle *handle, int playerNo, int bankNo, int pla
     SoundSeqArcFile *seq;
     void *bank;
 
-    player = func_02105488(handle, playerNo, playerPrio);
+    player = SoundSeqPlayer_Acquire(handle, playerNo, playerPrio);
     if (player == NULL) {
         return FALSE;
     }
