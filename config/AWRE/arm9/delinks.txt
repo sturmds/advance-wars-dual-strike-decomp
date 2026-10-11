@@ -7080,6 +7080,10 @@ src/game/main/copowers/co_power_screen_grow_out_name.c:
     complete
     .text       start:0x0205515c end:0x020553cc
 
+src/game/main/copowers/co_power_screen_hold_name.c:
+    complete
+    .text       start:0x020553cc end:0x0205549c
+
 src/game/main/copowers/co_power_screen_shrink_in_name.c:
     complete
     .text       start:0x0205549c end:0x02055714
