@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 int func_ov006_02369e04(int x, int y, int dir);      /* guess: how tile x, y joins its neighbour in direction dir (0: not at all) */
-int func_ov006_023681b0(int x, int y, int flag);     /* guess: picks the cell code for tile x, y */
+int Ov006_FitPipeCell(int x, int y, int flag);     /* guess: picks the cell code for tile x, y */
 int func_ov006_0236766c(int x, int y);               /* guess: picks the cell code for tile x, y */
 void Ov006_StoreMapCell(int x, int y, int cell);    /* guess: sets the cell code of tile x, y */
 
@@ -34,7 +34,7 @@ extern s16 Ov006_gNeighborDy[4];
  * passes over the four neighbours on the map. A neighbour that x, y joins
  * with kind 2 or 3, or whose cell is 0x162 or 0x163, gets a new cell code.
  * Between passes, x, y itself is refitted when it holds a joined cell.
- * The first pass and the first refit pick with func_ov006_023681b0, the
+ * The first pass and the first refit pick with Ov006_FitPipeCell, the
  * rest with func_ov006_0236766c. */
 void Ov006_RefitJoinedCellsAround(int x, int y)
 {
@@ -47,14 +47,14 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         }
         if (func_ov006_02369e04(x, y, i) != 0
             && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
-            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
-            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         }
     }
     cell = CELL_AT(x, y);
     if (IS_JOINED_CELL(cell)) {
-        Ov006_StoreMapCell(x, y, func_ov006_023681b0(x, y, 0));
+        Ov006_StoreMapCell(x, y, Ov006_FitPipeCell(x, y, 0));
     }
 
     for (i = 0; i < 4; i++) {
@@ -63,9 +63,9 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         }
         if (func_ov006_02369e04(x, y, i) != 0
             && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
-            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
-            Ov006_StoreMapCell(NX, NY, func_ov006_023681b0(NX, NY, 0));
+            Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         }
     }
     cell = CELL_AT(x, y);
