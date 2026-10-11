@@ -25,7 +25,7 @@ void ResultPoint_Init(int firstTile, int paletteSlot);
 void ResultPoint_LoadPart(int part);
 BOOL ScoreList_AddRow(int kind);
 void func_0203b194(int value);
-void func_0203ae00(void);
+void ScoreList_FitFirstPage(void);
 void Screens_SetBg3Zoom(int scale, int angle);
 void func_01ff9af0(void);
 int Player_GetCurrentOrFirstInGame(void);
@@ -277,7 +277,7 @@ void ResultScreen_Init(Task *task)
         rowsAdded++;
     }
     func_0203b194(rowsAdded);
-    func_0203ae00();
+    ScoreList_FitFirstPage();
     Screens_SetBg3Zoom(0x100, 0x80);
     func_01ff9af0();
 

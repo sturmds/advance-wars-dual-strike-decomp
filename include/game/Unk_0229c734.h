@@ -8,7 +8,7 @@ typedef struct ScoreRow {
     u16 points;
     u8 kind;                           /* ScoreList_AddRow's argument, 1-21 */
     u8 count;                          /* the number the points come from, or 0 */
-    u8 height;                         /* 16 or 32; func_0203ae00 fits rows into 144 */
+    u8 height;                         /* 16 or 32; ScoreList_FitFirstPage fits rows into 144 */
     u8 pad_05;
 } ScoreRow;
 

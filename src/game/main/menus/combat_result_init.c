@@ -26,7 +26,7 @@ void ResultPoint_Init(int firstTile, int paletteSlot);
 void ResultPoint_LoadPart(int part);
 BOOL ScoreList_AddRow(int kind);
 void func_0203b194(int value);
-void func_0203ae00(void);
+void ScoreList_FitFirstPage(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -199,7 +199,7 @@ void CombatResult_Init(Task *task)
         ScoreList_AddRow(16);
     }
     func_0203b194(rowsAdded);
-    func_0203ae00();
+    ScoreList_FitFirstPage();
     Task_Create(data_0216168c, task);
     FADE_FRAME(task) = 0;
 }
