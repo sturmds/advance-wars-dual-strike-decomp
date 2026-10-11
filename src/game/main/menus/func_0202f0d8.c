@@ -75,7 +75,7 @@ extern char data_02159c34[]; /* "/ohashi/res_history_medal" */
  * whose first field is the page. */
 #define WORK ((MainMenuWork *)data_0229c71c)
 
-/* Sets up the main (mode) menu: allocates its work block and page, loads
+/* Sets up the main (mode) res: allocates its work block and page, loads
  * res_modemenu_lang, res_modemenu, the res_icon_cl palette and
  * res_history_medal into VRAM and palettes on both screens, then builds a
  * page. On the first visit (MainMenu.unk_11 bit 0 clear) it builds page 0 or
@@ -83,53 +83,54 @@ extern char data_02159c34[]; /* "/ohashi/res_history_medal" */
  * and sets the default cursor of pages 1-5 and 10 from unlock checks. On a
  * return visit it rebuilds the saved page and jumps the task to label 0.
  * WIP: matches 95%; the res_modemenu pointer gets r6 where the original
- * has r4 (and the loop and save registers shift with it). */
+ * has r4 (and the loop and save registers shift with it). Tried without
+ * effect: separate or shared variables per file, block scopes, loop shapes
+ * (while, do, goto, pointer walk, explicit offset), static inline helpers
+ * for the loop or the screen loads, void * for the file pointer. */
 void func_0202f0d8(MainMenuTask *task)
 {
-    u8 *lang;
-    u8 *menu;
-    u8 *res;
-    Unk_027c0280 *saved0280;
+    MainMenuEntry *entry;
     Unk_02080440 *saved027c;
     MainMenuPage *page;
-    MainMenuEntry *entry;
-    int count;
+    u8 count;
     int i;
+    u8 *res;
+    Unk_027c0280 *saved0280;
 
     func_020288c0();
     *(MainMenuWork **)&data_0229c71c = Mem_Alloc(sizeof(MainMenuWork));
     WORK->page = Mem_Alloc(14); /* 2 header bytes and 6 entries; sizeof(MainMenuPage) counts 7 */
     func_02028978();
 
-    lang = File_Load(File_LocalizePath(data_02159bec));
+    res = File_Load(File_LocalizePath(data_02159bec));
     func_0210cb04();
-    Data_Unpack(lang, (void *)0x06800000);
+    Data_Unpack(res, (void *)0x06800000);
     func_0210c930();
-    func_0210e138(lang + 0x5c78, 32);
+    func_0210e138(res + 0x5c78, 32);
     func_0210c8e8();
-    func_0210c874(lang + 0x5c78, 0x240, 32);
+    func_0210c874(res + 0x5c78, 0x240, 32);
     func_0210c81c();
-    Mem_Free(lang);
+    Mem_Free(res);
 
-    menu = File_Load(data_02159c08);
-    func_0210e138(menu + 0x1dc, 0x120);
-    func_0210e138(menu + 0x2fc, 0x120);
+    res = File_Load(data_02159c08);
+    func_0210e138(res + 0x1dc, 0x120);
+    func_0210e138(res + 0x2fc, 0x120);
     func_0210c8e8();
-    func_0210c874(menu + 0x1dc, 0, 0x120);
-    func_0210c874(menu + 0x2fc, 0x120, 0x120);
+    func_0210c874(res + 0x1dc, 0, 0x120);
+    func_0210c874(res + 0x2fc, 0x120, 0x120);
     func_0210c81c();
     for (i = 0; i < 9; i++) {
-        WORK->unk_08[i] = *(u16 *)(menu + 0x1e4 + i * 32);
+        WORK->unk_08[i] = *(u16 *)(res + 0x1e4 + i * 32);
     }
-    Mem_Copy32(menu + 0x41c, WORK->unk_1c, 32);
+    Mem_Copy32(res + 0x41c, WORK->unk_1c, 32);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    Data_Unpack(menu, data_027c0280->objVram + 0x140);
-    Data_Unpack(menu + 0x184, data_027c0280->objVram);
-    Palette_Load(menu + 0x43c, 0x200, 32);
+    Data_Unpack(res, data_027c0280->objVram + 0x140);
+    Data_Unpack(res + 0x184, data_027c0280->objVram);
+    Palette_Load(res + 0x43c, 0x200, 32);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
@@ -137,13 +138,13 @@ void func_0202f0d8(MainMenuTask *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    Data_Unpack(menu + 0x184, data_027c0280->objVram);
-    Palette_Load(menu + 0x43c, 0x200, 32);
+    Data_Unpack(res + 0x184, data_027c0280->objVram);
+    Palette_Load(res + 0x43c, 0x200, 32);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    Mem_Free(menu);
+    Mem_Free(res);
 
     res = Mem_Alloc(32);
     File_ReadAt(res, data_02159c20, 32, 32);
