@@ -4027,6 +4027,10 @@ src/game/main/result_stats_draw_sub_screen.c:
     complete
     .text       start:0x0203b8f8 end:0x0203ba50
 
+src/game/main/result_stats_draw_stat.c:
+    complete
+    .text       start:0x0203ba50 end:0x0203bae4
+
 src/game/main/func_0203bae4.c:
     .text       start:0x0203bae4 end:0x0203bc5c
 

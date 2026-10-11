@@ -7,7 +7,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0203ba50(int x, int y, int stat, Task *task);
+void ResultStats_DrawStat(int x, int y, int stat, Task *task);
 void func_0203bdf0(int x, int y, int coSlot);
 void func_0203be58(int x, int y, int coSlot);
 void func_0203bec8(int x, int y, int index);
@@ -34,11 +34,11 @@ void ResultStats_DrawSubScreen(int offset, Task *task)
         func_0203be58(offset + 132, 40, (task->unk_66 - 1) * 2 + 1);
         func_0203bdf0(offset + 182, 41, (task->unk_66 - 1) * 2 + 1);
     }
-    func_0203ba50(offset + 40, 102, 1, task);
-    func_0203ba50(offset + 108, 102, 2, task);
-    func_0203ba50(offset + 176, 102, 3, task);
-    func_0203ba50(offset + 40, 136, 0, task);
-    func_0203ba50(offset + 108, 136, 4, task);
+    ResultStats_DrawStat(offset + 40, 102, 1, task);
+    ResultStats_DrawStat(offset + 108, 102, 2, task);
+    ResultStats_DrawStat(offset + 176, 102, 3, task);
+    ResultStats_DrawStat(offset + 40, 136, 0, task);
+    ResultStats_DrawStat(offset + 108, 136, 4, task);
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
 }
