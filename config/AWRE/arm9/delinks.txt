@@ -11718,6 +11718,10 @@ src/game/main/weather/weather_fx_update_clouds.c:
     complete
     .text       start:0x020d25b4 end:0x020d2794
 
+src/game/main/weather/weather_start_next.c:
+    complete
+    .text       start:0x020d2918 end:0x020d29c0
+
 src/game/main/weather/weather_set.c:
     complete
     .text       start:0x020d2aa8 end:0x020d2ae4
