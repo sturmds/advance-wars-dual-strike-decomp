@@ -57,6 +57,10 @@ src/game/itcm/screen/gfx_copy_requested_layers.c:
     complete
     .text       start:0x01ff8e58 end:0x01ff8ef8
 
+src/game/itcm/screen/screen_is_text_bg.c:
+    complete
+    .text       start:0x01ff8ef8 end:0x01ff8f64
+
 src/game/itcm/func_01ff94e4.c:
     complete
     .text       start:0x01ff94e4 end:0x01ff94fc

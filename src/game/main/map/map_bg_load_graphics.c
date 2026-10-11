@@ -7,7 +7,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -28,7 +28,7 @@ extern u32 data_0214d3a8[];  /* map bytes of a rotation/scaling BG by screen siz
 
 /* Map bytes of layer i, by its BG kind and screen size. */
 #define LAYER_MAP_BYTES(i)                                                   \
-    (func_01ff8ef8(i) ? data_0214d3b8[GFX_LAYER(data_027c0280, i)->screenSize] \
+    (Screen_IsTextBg(i) ? data_0214d3b8[GFX_LAYER(data_027c0280, i)->screenSize] \
      : Screen_IsAffineBg(i) ? data_0214d3a8[GFX_LAYER(data_027c0280, i)->screenSize] \
                             : data_0214d3a8[GFX_LAYER(data_027c0280, i)->screenSize] * 2)
 

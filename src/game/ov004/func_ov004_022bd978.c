@@ -5,7 +5,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 extern Unk_027c0280 *data_027c0280;
@@ -19,7 +19,7 @@ extern char data_ov004_022bf138[];
 extern u32 data_ov004_022bdca4[];
 extern u32 data_ov004_022bdcb4[];
 #define LAYER_MAP_BYTES(layer, i)                                               \
-    (func_01ff8ef8(i) ? data_ov004_022bdca4[(layer)->screenSize]                \
+    (Screen_IsTextBg(i) ? data_ov004_022bdca4[(layer)->screenSize]                \
      : Screen_IsAffineBg(i) ? data_ov004_022bdcb4[(layer)->screenSize]          \
                             : data_ov004_022bdcb4[(layer)->screenSize] * 2)
 

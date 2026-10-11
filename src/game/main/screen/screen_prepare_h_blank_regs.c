@@ -21,7 +21,7 @@ extern s16 data_027c0244;  /* BG2Y */
 extern u32 data_027c0268;  /* BLDCNT */
 extern u8 data_027c0238;
 
-BOOL func_01ff8ef8(int bg);
+BOOL Screen_IsTextBg(int bg);
 void func_0210b580(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2);
 void func_0210b528(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2, int brightness);
 
@@ -57,7 +57,7 @@ void Screen_PrepareHBlankRegs(void)
     data_027c0254 = (GFX->bgCnt[1].screenSize << 14) | (*REG_BG1CNT & 0x40) | (GFX->bgCnt[1].colorMode << 7) |
                     (GFX->bgCnt[1].screenBase << 8) | (GFX->bgCnt[1].charBase << 2) | GFX->bgCnt[1].priority;
 
-    if (func_01ff8ef8(2) == TRUE) {
+    if (Screen_IsTextBg(2) == TRUE) {
         data_027c0258 = (GFX->bgCnt[2].screenSize << 14) | (*REG_BG2CNT & 0x40) | (GFX->bgCnt[2].colorMode << 7) |
                         (GFX->bgCnt[2].screenBase << 8) | (GFX->bgCnt[2].charBase << 2) | GFX->bgCnt[2].priority;
     } else {

@@ -71,14 +71,14 @@ void Ov004_CopyResource(const char *name, void *dst);
 void Ov004_LoadBg3FromResource(const char *name, int tilesOffset, int mapOffset, int palette);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 
 /* Byte size of layer i's tile map. */
 #define LAYER_MAP_BYTES(i)                                                                  \
-    (func_01ff8ef8(i) ? data_ov004_022bdc94[GFX_LAYER(data_027c0280, i)->screenSize]        \
+    (Screen_IsTextBg(i) ? data_ov004_022bdc94[GFX_LAYER(data_027c0280, i)->screenSize]        \
      : Screen_IsAffineBg(i) ? data_ov004_022bdc84[GFX_LAYER(data_027c0280, i)->screenSize]  \
                             : data_ov004_022bdc84[GFX_LAYER(data_027c0280, i)->screenSize] * 2)
 

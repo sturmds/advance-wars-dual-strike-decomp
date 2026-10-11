@@ -13,7 +13,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
@@ -169,7 +169,7 @@ void Ov005_SetupScreensWithBlend(Ov005Task *task)
         Palette_LoadFromFile(gRikiishiFile00c, 0, 0x1e0, 32);
         map = data_027c0280->layer0Map;
         TileMap_AddToEntries(map,
-                      func_01ff8ef8(0) ? data_ov005_02367f0c[GFX_LAYER(data_027c0280, 0)->screenSize]
+                      Screen_IsTextBg(0) ? data_ov005_02367f0c[GFX_LAYER(data_027c0280, 0)->screenSize]
                       : Screen_IsAffineBg(0) ? data_ov005_02367f1c[GFX_LAYER(data_027c0280, 0)->screenSize]
                                              : data_ov005_02367f1c[GFX_LAYER(data_027c0280, 0)->screenSize] * 2,
                       0xf000);

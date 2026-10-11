@@ -11,7 +11,7 @@ extern volatile s16 data_0216e2ac;
 
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
-BOOL func_01ff8ef8(int bg);
+BOOL Screen_IsTextBg(int bg);
 void GXS_SetGraphicsMode(int bgMode);
 void func_0210b528(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
 void func_0210b580(volatile u16 *reg, int top, int bottom, int eva, int evb);
@@ -181,7 +181,7 @@ void Screen_ApplySub(void)
 
     SET_BG_CONTROL_TEXT(REG_DB_BG0CNT, 0);
     SET_BG_CONTROL_TEXT(REG_DB_BG1CNT, 1);
-    if (func_01ff8ef8(2) == TRUE) {
+    if (Screen_IsTextBg(2) == TRUE) {
         SET_BG_CONTROL_TEXT(REG_DB_BG2CNT, 2);
     } else {
         SET_BG_CONTROL_AFFINE(REG_DB_BG2CNT, 2);
@@ -192,7 +192,7 @@ void Screen_ApplySub(void)
         *REG_DB_BG2X = GFX->bg2Affine.x;
         *REG_DB_BG2Y = GFX->bg2Affine.y;
     }
-    if (func_01ff8ef8(3) == TRUE) {
+    if (Screen_IsTextBg(3) == TRUE) {
         SET_BG_CONTROL_TEXT(REG_DB_BG3CNT, 3);
     } else {
         SET_BG_CONTROL_AFFINE(REG_DB_BG3CNT, 3);

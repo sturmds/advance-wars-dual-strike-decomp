@@ -13,7 +13,7 @@ void BgControl_SetScreenBase(BgControl *bg, u32 offset);
 void BgControl_SetScreenSize(BgControl *bg, int screenSize);
 void Screen_ResetBgRegisters(void);                /* resets the screen's graphics state */
 void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_ClearLayerBlankTile(int layer);
@@ -51,7 +51,7 @@ void Screen_InitLayers(const GfxLayer *config)
             BgControl_SetCharBase(&LAYER_BG_CNT(i), layer->charBase);
             BgControl_SetScreenBase(&LAYER_BG_CNT(i), layer->screenBase);
             BgControl_SetScreenSize(&LAYER_BG_CNT(i), layer->screenSize);
-            if (func_01ff8ef8(i) == 1) {
+            if (Screen_IsTextBg(i) == 1) {
                 if (layer->mode == 1) {
                     LAYER_BG_CNT(i).colorMode = 1;
                 } else {

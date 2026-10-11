@@ -14,7 +14,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
@@ -99,7 +99,7 @@ void Ov005_SetupMainScreenAndStartSong(Ov005Task *task)
         File_UnpackTo(data_027c0280->layer2Map, gRikiishiFile037);
         map = data_027c0280->layer2Map;
         TileMap_AddToEntries(map,
-                      func_01ff8ef8(2) ? data_ov005_02367f4c[GFX_LAYER(data_027c0280, 2)->screenSize]
+                      Screen_IsTextBg(2) ? data_ov005_02367f4c[GFX_LAYER(data_027c0280, 2)->screenSize]
                       : Screen_IsAffineBg(2) ? data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize]
                                              : data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                       0x6000);

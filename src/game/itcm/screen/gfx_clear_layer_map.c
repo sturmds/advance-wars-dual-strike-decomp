@@ -6,7 +6,7 @@ extern Unk_027c0280 *data_027c0280;
 extern u32 gBgTextMapBytes[4];
 extern u32 gBgAffineMapBytes[4];
 
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 
 /* Zeroes the layer's tile map buffer. Affine maps use one byte per entry;
@@ -22,7 +22,7 @@ void Gfx_ClearLayerMap(int layer)
         return;
     }
     map = GFX_LAYERS(data_027c0280)[layer].map;
-    if (func_01ff8ef8(layer)) {
+    if (Screen_IsTextBg(layer)) {
         size = gBgTextMapBytes[GFX_LAYERS(data_027c0280)[layer].screenSize];
     } else if (Screen_IsAffineBg(layer)) {
         size = gBgAffineMapBytes[GFX_LAYERS(data_027c0280)[layer].screenSize];

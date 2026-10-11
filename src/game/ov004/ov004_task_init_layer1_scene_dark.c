@@ -3,7 +3,7 @@
 #include "game/Unk_ov004_022bf158.h"
 
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
@@ -20,7 +20,7 @@ extern u32 data_ov004_022bdc84[];       /* map bytes of a rotation/scaling BG by
 
 /* Size in bytes of the tile map of a layer (as in Gfx_LoadBmap083). */
 #define LAYER_MAP_BYTES(layer, i)                                               \
-    (func_01ff8ef8(i) ? data_ov004_022bdc94[(layer)->screenSize]                \
+    (Screen_IsTextBg(i) ? data_ov004_022bdc94[(layer)->screenSize]                \
      : Screen_IsAffineBg(i) ? data_ov004_022bdc84[(layer)->screenSize]          \
                             : data_ov004_022bdc84[(layer)->screenSize] * 2)
 

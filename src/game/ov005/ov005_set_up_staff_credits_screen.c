@@ -12,7 +12,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Ov005Screen_Init3dAndEntries(Unk_ov005_0235a30c *work);
@@ -107,7 +107,7 @@ void Ov005_SetUpStaffCreditsScreen(Ov005Task *task)
     File_UnpackTo(data_027c0280->layer2Map, gRikiishiFile05f);
     map = data_027c0280->layer2Map;
     TileMap_AddToEntries(map,
-                  func_01ff8ef8(2) ? data_ov005_02367f8c[GFX_LAYER(data_027c0280, 2)->screenSize]
+                  Screen_IsTextBg(2) ? data_ov005_02367f8c[GFX_LAYER(data_027c0280, 2)->screenSize]
                   : Screen_IsAffineBg(2) ? data_ov005_02367f9c[GFX_LAYER(data_027c0280, 2)->screenSize]
                                          : data_ov005_02367f9c[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                   0x8000);
@@ -119,7 +119,7 @@ void Ov005_SetUpStaffCreditsScreen(Ov005Task *task)
     File_UnpackTo(data_027c0280->layer3Map, gRikiishiFile062);
     map = data_027c0280->layer3Map;
     TileMap_AddToEntries(map,
-                  func_01ff8ef8(3) ? data_ov005_02367f8c[GFX_LAYER(data_027c0280, 3)->screenSize]
+                  Screen_IsTextBg(3) ? data_ov005_02367f8c[GFX_LAYER(data_027c0280, 3)->screenSize]
                   : Screen_IsAffineBg(3) ? data_ov005_02367f9c[GFX_LAYER(data_027c0280, 3)->screenSize]
                                          : data_ov005_02367f9c[GFX_LAYER(data_027c0280, 3)->screenSize] * 2,
                   0x9000);

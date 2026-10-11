@@ -31,7 +31,7 @@ void Ov004_StartClock(Unk_ov004_022bf158 *state);
 void Ov004_UnpackResource(const char *name, void *dst);
 void Ov004_CopyResource(const char *name, void *dst);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
@@ -42,7 +42,7 @@ void Palette_Darken(u8 *palettes, int first, int count, int level);
 
 /* Byte size of layer i's tile map. */
 #define LAYER_MAP_BYTES(i)                                                                  \
-    (func_01ff8ef8(i) ? data_ov004_022bdc94[GFX_LAYER(data_027c0280, i)->screenSize]        \
+    (Screen_IsTextBg(i) ? data_ov004_022bdc94[GFX_LAYER(data_027c0280, i)->screenSize]        \
      : Screen_IsAffineBg(i) ? data_ov004_022bdc84[GFX_LAYER(data_027c0280, i)->screenSize]  \
                             : data_ov004_022bdc84[GFX_LAYER(data_027c0280, i)->screenSize] * 2)
 

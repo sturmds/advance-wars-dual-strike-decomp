@@ -11,7 +11,7 @@ extern volatile s16 data_0216e2ac;
 
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
-BOOL func_01ff8ef8(int bg);
+BOOL Screen_IsTextBg(int bg);
 void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0Mode);
 void GX_DispOn(void);  /* puts back the display mode (DISPCNT bits 16-17) GX_DispOff saved */
 void GX_DispOff(void); /* saves the display mode and clears it: main engine output off */
@@ -212,7 +212,7 @@ void Screen_ApplyMain(void)
         SET_BG_CONTROL_TEXT(REG_BG0CNT, 0);
     }
     SET_BG_CONTROL_TEXT(REG_BG1CNT, 1);
-    if (func_01ff8ef8(2) == TRUE) {
+    if (Screen_IsTextBg(2) == TRUE) {
         SET_BG_CONTROL_TEXT(REG_BG2CNT, 2);
     } else {
         SET_BG_CONTROL_AFFINE(REG_BG2CNT, 2);
@@ -223,7 +223,7 @@ void Screen_ApplyMain(void)
         *REG_BG2X = GFX->bg2Affine.x;
         *REG_BG2Y = GFX->bg2Affine.y;
     }
-    if (func_01ff8ef8(3) == TRUE) {
+    if (Screen_IsTextBg(3) == TRUE) {
         SET_BG_CONTROL_TEXT(REG_BG3CNT, 3);
     } else {
         SET_BG_CONTROL_AFFINE(REG_BG3CNT, 3);

@@ -6,7 +6,7 @@ void Gfx_RequestLayerCopy(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL func_021100fc(u32 tick);
 u32 func_02110150(void);
 u32 func_02110934(void);
@@ -82,7 +82,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         }
         map = data_027c0280->layer1Map;
         TileMap_AddToEntries(map,
-                      func_01ff8ef8(1) ? data_ov005_02367ffc[GFX_LAYER(data_027c0280, 1)->screenSize]
+                      Screen_IsTextBg(1) ? data_ov005_02367ffc[GFX_LAYER(data_027c0280, 1)->screenSize]
                       : Screen_IsAffineBg(1) ? data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize]
                                              : data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize] * 2,
                       0x2300);

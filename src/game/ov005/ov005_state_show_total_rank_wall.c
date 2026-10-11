@@ -16,7 +16,7 @@ void *File_Load(const char *path);
 void Mem_Free(void *block);
 void Mem_Fill32(u32 value, void *dst, u32 size);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-BOOL func_01ff8ef8(int layer);
+BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -79,7 +79,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             File_UnpackTo(data_027c0280->layer2Map, data_ov005_0236aa9c);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -106,7 +106,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x9a14, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -120,7 +120,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x9a14, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -144,7 +144,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             File_UnpackTo(data_027c0280->layer2Map, data_ov005_0236aa9c);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -171,7 +171,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x7864, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -185,7 +185,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x7864, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -209,7 +209,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             File_UnpackTo(data_027c0280->layer2Map, data_ov005_0236aaf4);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -236,7 +236,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x84b0, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
@@ -250,7 +250,7 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
             Data_Unpack(file + 0x84b0, data_027c0280->layer2Map);
             map = data_027c0280->layer2Map;
             TileMap_AddToEntries(map,
-                          func_01ff8ef8(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
+                          Screen_IsTextBg(2) ? data_ov005_02367fac[GFX_LAYER(data_027c0280, 2)->screenSize]
                           : Screen_IsAffineBg(2) ? data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize]
                                                  : data_ov005_02367fbc[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
                           0x6000);
