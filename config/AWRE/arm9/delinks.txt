@@ -7840,6 +7840,14 @@ src/game/main/map/map_object_clear_variant.c:
     complete
     .text       start:0x020da938 end:0x020da948
 
+src/game/main/map/map_objects_has_kind.c:
+    complete
+    .text       start:0x020da948 end:0x020da9d0
+
+src/game/main/map/map_object_is_standing.c:
+    complete
+    .text       start:0x020da9d0 end:0x020daa44
+
 src/game/main/map/map_object_get_target_tile.c:
     complete
     .text       start:0x020dafc4 end:0x020db054
