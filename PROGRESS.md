@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5049 / 6598 | 1121740 / 1531944 | 73.22% | 0 | 0 |
+| game | 5053 / 6598 | 1124468 / 1531944 | 73.40% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 5188 / 7479 | 1125204 / 1685994 | 66.74% | 1 | 30 |
+| all | 5192 / 7479 | 1127932 / 1685994 | 66.90% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 3661 / 5180 | 690628 / 1082632 | 63.79% | 0 |
+| main | game | 3665 / 5180 | 693356 / 1082632 | 64.04% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -70,13 +70,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
-| `src/game/main/menus/func_0204f3b0.c` | func_0204f3b0 | 160 |
 | `src/game/main/menus/func_02082cf4.c` | func_02082cf4 | 556 |
-| `src/game/main/menus/func_020834dc.c` | func_020834dc | 592 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
-| `src/game/main/menus/page_strip_task_draw.c` | PageStripTask_Draw | 736 |
-| `src/game/main/menus/survival_select_draw.c` | SurvivalSelect_Draw | 1240 |
 | `src/game/main/save_write_record.c` | Save_WriteRecord | 1428 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
