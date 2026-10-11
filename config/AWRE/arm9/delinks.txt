@@ -5525,6 +5525,10 @@ src/game/main/func_0209c1f8.c:
     complete
     .text       start:0x0209c1f8 end:0x0209c2c8
 
+src/game/main/ai/ai_add_indirect_enemy_threat.c:
+    complete
+    .text       start:0x0209c2c8 end:0x0209c948
+
 src/game/main/ai/ai_build_threat_maps.c:
     complete
     .text       start:0x0209c948 end:0x0209ca48
