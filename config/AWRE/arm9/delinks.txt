@@ -12784,6 +12784,14 @@ src/game/main/func_020eec7c.c:
     complete
     .text       start:0x020eec7c end:0x020eec8c
 
+src/game/main/map/func_020eed64.c:
+    complete
+    .text       start:0x020eed64 end:0x020eeda0
+
+src/game/main/map/func_020eeda0.c:
+    complete
+    .text       start:0x020eeda0 end:0x020eeddc
+
 src/game/main/func_020eeddc.c:
     complete
     .text       start:0x020eeddc end:0x020eedf0
@@ -12804,9 +12812,17 @@ src/game/main/func_020eee88.c:
     complete
     .text       start:0x020eee88 end:0x020eee98
 
+src/game/main/silo/tile_effect_task_start_missile_fall.c:
+    complete
+    .text       start:0x020eee98 end:0x020eeec8
+
 src/game/main/func_020eeec8.c:
     complete
     .text       start:0x020eeec8 end:0x020eeee0
+
+src/game/main/silo/tile_effect_task_start_missile_fall_no_effect.c:
+    complete
+    .text       start:0x020eeee0 end:0x020eef10
 
 src/game/main/func_020eef10.c:
     complete
@@ -12844,6 +12860,10 @@ src/game/main/func_020ef1bc.c:
     complete
     .text       start:0x020ef1bc end:0x020ef1e8
 
+src/game/main/func_020ef1e8.c:
+    complete
+    .text       start:0x020ef1e8 end:0x020ef208
+
 src/game/main/func_020ef208.c:
     complete
     .text       start:0x020ef208 end:0x020ef234
@@ -12852,9 +12872,17 @@ src/game/main/func_020ef234.c:
     complete
     .text       start:0x020ef234 end:0x020ef260
 
+src/game/main/func_020ef260.c:
+    complete
+    .text       start:0x020ef260 end:0x020ef2c4
+
 src/game/main/func_020ef2c4.c:
     complete
     .text       start:0x020ef2c4 end:0x020ef2f0
+
+src/game/main/func_020ef2f0.c:
+    complete
+    .text       start:0x020ef2f0 end:0x020ef310
 
 src/game/main/units/unit_move_select_handle_buttons.c:
     complete
@@ -12868,9 +12896,41 @@ src/game/main/map/map_cursor_move_by_keys.c:
     complete
     .text       start:0x020ef664 end:0x020ef7f0
 
+src/game/main/map/func_020ef7f0.c:
+    complete
+    .text       start:0x020ef7f0 end:0x020ef8d8
+
 src/game/main/map/map_cursor_step_past_view_edge.c:
     complete
     .text       start:0x020ef8d8 end:0x020efab0
+
+src/game/main/oam_put_sized_cells.c:
+    complete
+    .text       start:0x020efab0 end:0x020efaf4
+
+src/game/main/func_020efaf4.c:
+    complete
+    .text       start:0x020efaf4 end:0x020efb2c
+
+src/game/main/func_020efb2c.c:
+    complete
+    .text       start:0x020efb2c end:0x020efb64
+
+src/game/main/func_020efb64.c:
+    complete
+    .text       start:0x020efb64 end:0x020efb9c
+
+src/game/main/func_020efb9c.c:
+    complete
+    .text       start:0x020efb9c end:0x020efbc8
+
+src/game/main/func_020efbc8.c:
+    complete
+    .text       start:0x020efbc8 end:0x020efbf4
+
+src/game/main/func_020efbf4.c:
+    complete
+    .text       start:0x020efbf4 end:0x020efc20
 
 src/game/main/map/map_touch_read_tile_tap_or_back.c:
     complete
