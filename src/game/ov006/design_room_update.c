@@ -4,7 +4,7 @@
 
 void Ov006_UpdateTouch(void);
 void func_ov006_0235eb7c(void);
-void func_ov006_023564c4(void);
+void Ov006_UpdateArmyCoPanel(void);
 void func_ov006_02353f7c(void);
 void func_ov006_02351aa4(void);
 void Ov006_RefreshSlots(void);
@@ -28,7 +28,7 @@ void DesignRoom_Update(void)
         func_ov006_0235eb7c();
         break;
     case 2:
-        func_ov006_023564c4();
+        Ov006_UpdateArmyCoPanel();
         break;
     case 3:
         func_ov006_02353f7c();

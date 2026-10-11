@@ -57,10 +57,14 @@ typedef struct Unk_ov006_0235f690 {
     s8 hqY[4];
     u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
-    u8 pad_3a;
+    s8 unk_3a;                         /* step in Ov006_gPanelScaleSteps of the OBJ matrix 0 squash (states 30-32 of Ov006_UpdateArmyCoPanel) */
     s8 unk_3b;                         /* frame countdown, set to 30 on a request; at 0 a script starts (Ov006_StartScriptAfterDelay) */
     u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
-    u8 pad_3d[0x4c - 0x3d];
+    u8 pad_3d[0x44 - 0x3d];
+    s16 winLeft;                       /* window 0 rectangle that Ov006_UpdateArmyCoPanel animates, in pixels */
+    s16 winTop;
+    s16 winRight;
+    s16 winBottom;
     s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */
     s32 unk_50;                        /* last button id of a run starting at 64, removed by func_ov006_02355b44 */
     u8 pad_54[0x5c - 0x54];

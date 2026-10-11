@@ -451,6 +451,10 @@ src/game/ov006/func_ov006_023564b0.c:
     complete
     .text       start:0x023564b0 end:0x023564c4
 
+src/game/ov006/ov006_update_army_co_panel.c:
+    complete
+    .text       start:0x023564c4 end:0x02357674
+
 src/game/ov006/func_ov006_02357674.c:
     complete
     .text       start:0x02357674 end:0x02357694

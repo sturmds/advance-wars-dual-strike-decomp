@@ -122,7 +122,7 @@ func_ov006_02355d84 kind:function(arm,size=0x14) addr:0x02355d84
 Ov006_EntryButtonKeys kind:function(arm,size=0x590) addr:0x02355d98
 Ov006_UpdateEntryView kind:function(arm,size=0x188) addr:0x02356328
 func_ov006_023564b0 kind:function(arm,size=0x14) addr:0x023564b0
-func_ov006_023564c4 kind:function(arm,size=0x11b0) addr:0x023564c4
+Ov006_UpdateArmyCoPanel kind:function(arm,size=0x11b0) addr:0x023564c4
 func_ov006_02357674 kind:function(arm,size=0x20) addr:0x02357674
 func_ov006_02357694 kind:function(arm,size=0x30) addr:0x02357694
 func_ov006_023576c4 kind:function(arm,size=0x30) addr:0x023576c4
@@ -506,7 +506,7 @@ data_ov006_0236b774 kind:data(any) addr:0x0236b774
 data_ov006_0236b790 kind:data(any) addr:0x0236b790
 data_ov006_0236b7ac kind:data(any) addr:0x0236b7ac
 data_ov006_0236b7c8 kind:data(any) addr:0x0236b7c8
-data_ov006_0236b7e4 kind:data(any) addr:0x0236b7e4
+Ov006_gPanelScaleSteps kind:data(any) addr:0x0236b7e4
 data_ov006_0236b800 kind:data(any) addr:0x0236b800
 data_ov006_0236b81c kind:data(any) addr:0x0236b81c
 data_ov006_0236b838 kind:data(any) addr:0x0236b838
