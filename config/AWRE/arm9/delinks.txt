@@ -14110,6 +14110,13 @@ src/game/main/func_020df2f8.c:
     complete
     .text       start:0x020df2f8 end:0x020df318
 
+src/game/main/units/unit_can_attack_indirect.c:
+    complete
+    .text       start:0x020df318 end:0x020df3a4
+
+src/game/main/units/unit_can_attack_direct.c:
+    .text       start:0x020df3a4 end:0x020df454
+
 src/game/main/units/unit_get_drop_directions.c:
     complete
     .text       start:0x020df510 end:0x020df63c
