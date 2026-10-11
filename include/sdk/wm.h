@@ -93,6 +93,7 @@ typedef struct WMCallback {
 
 #define PXI_PROC_ARM7 1
 #define PXI_FIFO_TAG_WM 10                 /* PXI FIFO tag of messages between the WM halves */
+#define PXI_FIFO_TAG_WVR 15                /* best guess: the wireless library kept in ARM7 VRAM */
 #define WM_NUM_OF_PORT 16
 #define WM_FIFO_BUF_SIZE 0x100             /* one command or reply in shared memory */
 /* The work area given to WM_Init holds, in order: WMArm9Buf, the ARM7 side's

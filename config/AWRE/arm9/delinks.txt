@@ -22963,6 +22963,10 @@ src/game/main/func_0211c0d8.c:
     complete
     .text       start:0x0211c0d8 end:0x0211c0fc
 
+src/sdk/mb/mb_parent_start_core.c:
+    complete
+    .text       start:0x0211c0fc end:0x0211c320
+
 src/sdk/mb/mb_parent_init_wm.c:
     complete
     .text       start:0x0211c320 end:0x0211c420

@@ -116,14 +116,20 @@ typedef struct DlPlayRosterFrame {
 /* The parent's work area, behind data_022aced8. Only the fields the beacon
  * and send code read are named. */
 typedef struct DlPlayStationArea {
-    u8 pad_00[0x0c];
+    u8 pad_00[0x08];
+    u32 ggid;
     u16 unk_0c;
     u16 unk_0e;
     u16 maxChildren;                   /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_12;
     u16 unk_14;
     u16 unk_16;
-    u8 pad_18[0x40 - 0x18];
+    u16 beaconPeriod;                  /* milliseconds */
+    u8 pad_1a[0x32 - 0x1a];
+    u16 channel;
+    u16 parentMaxSize;                 /* bytes in one parent MP packet */
+    u16 childMaxSize;
+    u8 pad_38[0x40 - 0x38];
     u16 mpSendBuffer[2];               /* 0x40: given to WM_StartMPEx, length unknown */
     u8 pad_44[0x320 - 0x44];
     u32 unk_320;                       /* 0 until the game starts Download Play */
@@ -538,7 +544,8 @@ typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
  * aid - 1 (aid 0 is the parent). */
 typedef struct DlPlayHostLinkArea {
     u8 sendBuffer[4];                  /* length unknown */
-    u8 pad_04[0x1316 - 4];
+    u8 pad_04[0x1300 - 4];
+    DlPlayPlayerBadge user;                   /* the parent's user info */
     u16 unk_1316;
     u32 blockSizeMax;                  /* bytes of file data in one parent message */
     u32 mpStarting;                    /* 1 from WM_StartMPEx until its callback */
@@ -554,7 +561,7 @@ typedef struct DlPlayHostLinkArea {
     u8 childFiles[DLPLAY_CHILD_SLOTS];     /* file each child picked */
     u8 childCount;
     u16 childEntryBitmap;
-    u8 pad_1538[0x1754 - 0x1538];
+    u8 pieceBuffer[0x1754 - 0x1538];   /* request pieces from children (func_0211e1f4) */
     u16 childRequests[DLPLAY_CHILD_SLOTS];
     DlPlayPlayerBadge userInfoCopy;           /* filled by MbComm_GetChildUser */
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
