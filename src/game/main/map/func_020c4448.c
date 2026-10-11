@@ -18,15 +18,16 @@ extern s8 data_ov000_022f4578[32];
  * does not match yet. */
 void func_020c4448(void)
 {
+    int tile;
     int listed;
-    int y;
+    int terrain;
+    int i;
+    int urban;
     int count;
     int col;
-    u32 urban;
-    int i;
     int x;
+    int y;
     int row;
-    int tile;
 
     count = 0;
     RangeMap_SetBuffer(&STATE->mapTiles->unk_1928);
@@ -37,13 +38,14 @@ void func_020c4448(void)
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
-            urban = Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(tile)];
+            terrain = MAP_TILE_TERRAIN(tile);
+            urban = Ov000_gUrbanTerrain[terrain];
             if (urban != 0) {
                 STATE->players[MAP_TILE_OWNER(tile)].propertyCount++;
             }
-            if (urban != 0 || MAP_TILE_TERRAIN(tile) == TERRAIN_SILO) {
+            if (urban != 0 || terrain == TERRAIN_SILO) {
                 STATE->mapTiles->unk_1928[x + STATE->mapTiles->rowStart[y]] = count;
-                STATE->unk_6088[count].terrain = MAP_TILE_TERRAIN(tile);
+                STATE->unk_6088[count].terrain = terrain;
                 STATE->unk_6088[count].x = x;
                 STATE->unk_6088[count].y = y;
                 STATE->unk_6088[count].claimCount = 0;
@@ -56,7 +58,8 @@ void func_020c4448(void)
     for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
         for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
             tile = STATE->mapTiles->tiles[col + STATE->mapTiles->rowStart[row]];
-            if (data_ov000_022f4578[MAP_TILE_TERRAIN(tile)] != 0 || (STATE->gameMode == 4 && MAP_TILE_TERRAIN(tile) == 16)) {
+            terrain = MAP_TILE_TERRAIN(tile);
+            if (data_ov000_022f4578[terrain] != 0 || (STATE->gameMode == 4 && terrain == 16)) {
                 if (listed < 92) {
                     STATE->unk_608c[listed].tile = tile;
                     STATE->unk_608c[listed].x = col;
