@@ -13044,6 +13044,10 @@ src/game/main/func_020f8b90.c:
     complete
     .text       start:0x020f8b90 end:0x020f8bac
 
+src/game/main/graphics/screen_set_darken_blend.c:
+    complete
+    .text       start:0x020f8bac end:0x020f8ca8
+
 src/game/main/func_020f8ca8.c:
     complete
     .text       start:0x020f8ca8 end:0x020f8cb0
