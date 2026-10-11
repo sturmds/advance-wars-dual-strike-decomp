@@ -9,8 +9,8 @@ extern const ShopButton data_ov005_0236b498[6];
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work)
 {
     work->cursorRow = 0;
-    work->unk_28 = 0;
-    work->unk_2c = 0;
+    work->drawnCursorRow = 0;
+    work->savedCursorRow = 0;
     work->buttons = work->buttonBuf;
     work->page = 0;
     work->lastPage = HwDiv32(work->itemCount - 1, 6);

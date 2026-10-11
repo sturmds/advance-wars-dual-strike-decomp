@@ -83,7 +83,7 @@ extern const EventScriptCommand data_ov005_0236ba00[];
  * Hachi greets (one script on the first visit, a random one of 17 after,
  * another when nothing is left), then the list runs: L/Y/Left and
  * R/X/Right turn the page, A asks whether to buy the item, B leaves (the
- * flags unk_04-unk_10 do the same, probably set by touch). Buying counts
+ * touch buttons set flags that do the same). Buying counts
  * the points down on screen and removes the item from the list. On
  * leaving, Hachi says goodbye (one of four scripts by visit count), the
  * screens fade out and the task script resumes. Every frame ends by
@@ -140,46 +140,46 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         break;
     case 20: /* list input; with nothing for sale only B works */
         if (Ov005_IsShopSoldOut()) {
-            if ((gKeypad->pressed & PAD_BUTTON_B) || work->unk_08 == 1) {
+            if ((gKeypad->pressed & PAD_BUTTON_B) || work->leaveRequested == 1) {
                 Sound_PlaySe(0x10009);
-                work->unk_08 = 0;
+                work->leaveRequested = 0;
                 task->step = 90;
             }
             break;
         }
         keys = gKeypad->pressed;
-        if ((keys & PAD_BUTTON_A) || work->unk_04 == 1) {
+        if ((keys & PAD_BUTTON_A) || work->buyRequested == 1) {
             Sound_PlaySe(0x10006);
-            work->unk_04 = 0;
+            work->buyRequested = 0;
             Ov005_RemoveShopButtons(work);
             MenuButtons_DisableTouch();
             task->step = 30;
-        } else if ((keys & PAD_BUTTON_B) || work->unk_08 == 1) {
+        } else if ((keys & PAD_BUTTON_B) || work->leaveRequested == 1) {
             Sound_PlaySe(0x10009);
-            work->unk_08 = 0;
+            work->leaveRequested = 0;
             Ov005_RemoveShopButtons(work);
             MenuButtons_DisableTouch();
             task->step = 90;
-        } else if ((keys & (PAD_BUTTON_L | PAD_BUTTON_Y)) || (gKeypad->repeat & PAD_KEY_LEFT) || work->unk_0c == 1) {
-            work->unk_0c = 0;
+        } else if ((keys & (PAD_BUTTON_L | PAD_BUTTON_Y)) || (gKeypad->repeat & PAD_KEY_LEFT) || work->prevPageRequested == 1) {
+            work->prevPageRequested = 0;
             if (work->page <= 0) {
                 work->page = work->lastPage;
             } else {
                 work->page--;
             }
-            work->cursorRow = work->unk_2c;
-            work->unk_28 = -1;
+            work->cursorRow = work->savedCursorRow;
+            work->drawnCursorRow = -1;
             Ov005_RemoveShopButtons(work);
             Ov005_AddShopPageButtons(work);
-        } else if ((keys & (PAD_BUTTON_R | PAD_BUTTON_X)) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_10 == 1) {
-            work->unk_10 = 0;
+        } else if ((keys & (PAD_BUTTON_R | PAD_BUTTON_X)) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->nextPageRequested == 1) {
+            work->nextPageRequested = 0;
             if (work->page >= work->lastPage) {
                 work->page = 0;
             } else {
                 work->page++;
             }
-            work->cursorRow = work->unk_2c;
-            work->unk_28 = -1;
+            work->cursorRow = work->savedCursorRow;
+            work->drawnCursorRow = -1;
             Ov005_RemoveShopButtons(work);
             Ov005_AddShopPageButtons(work);
         }
@@ -251,7 +251,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
             func_0201d7d0();
             SWITCH_BACK();
             work->points = gPlayRecords.points;
-            work->unk_1c = 1;
+            work->boughtSomething = 1;
             Ov005_BuySelectedShopItem(work);
             work->itemCount--;
             work->lastPage = HwDiv32(work->itemCount - 1, 6);
@@ -292,10 +292,10 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
             work->showCursor = 0;
             Ov005_AddShopPageButtons(work);
             MenuButtons_EnableTouch();
-            work->unk_04 = 0;
-            work->unk_08 = 0;
-            work->unk_0c = 0;
-            work->unk_10 = 0;
+            work->buyRequested = 0;
+            work->leaveRequested = 0;
+            work->prevPageRequested = 0;
+            work->nextPageRequested = 0;
             task->step = 20;
         }
         break;
@@ -342,7 +342,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Ov005_AddShopVisit();
         MenuButtons_RemoveSelectable();
         MenuButtons_RemoveUnselectable();
-        if (work->unk_1c == 0) {
+        if (work->boughtSomething == 0) {
             work->songTask = func_020fcb08(1);
         }
         func_0200493c(32);
@@ -372,7 +372,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         task->step++;
         break;
     case 103:
-        if (work->unk_1c != 0) {
+        if (work->boughtSomething != 0) {
             EventSequenceTask_StartWithSongFade(task);
             Task_ResumeScript(task);
             return;
@@ -388,10 +388,10 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         break;
     }
 
-    if (work->cursorRow != work->unk_28) {
+    if (work->cursorRow != work->drawnCursorRow) {
         Sound_PlaySe(0x10002);
     }
-    work->unk_28 = work->cursorRow;
+    work->drawnCursorRow = work->cursorRow;
     SWITCH_TO(data_027c0288.unk_04);
     func_0200270c(200, 160, 0xaa00, 0, 0);
     SWITCH_BACK();

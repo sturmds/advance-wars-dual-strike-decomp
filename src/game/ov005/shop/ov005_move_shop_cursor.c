@@ -28,7 +28,7 @@ void Ov005_MoveShopCursorOnKeys(void)
     }
     if (next != work->cursorRow) {
         MenuButton_Select(work->buttons[next].buttonId);
-        work->unk_2c = next;
+        work->savedCursorRow = next;
     }
     work->cursorRow = next;
 }

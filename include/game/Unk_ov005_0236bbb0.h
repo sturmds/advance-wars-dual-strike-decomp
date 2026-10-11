@@ -29,17 +29,17 @@ typedef struct ShopButton {
  * per page. */
 typedef struct Unk_ov005_0236bbb0 {
     int points;                        /* shown at the top (Ov005_DrawShopPoints); Ov005_LoadShopItems copies gPlayRecords.points */
-    int unk_04;
-    u32 unk_08;
-    int unk_0c;
-    int unk_10;
+    int buyRequested;                  /* set by a row's touch button (Ov005_RequestShopBuy); acts like A */
+    u32 leaveRequested;                /* set by a touch button; acts like B */
+    int prevPageRequested;             /* set by a touch button; acts like L */
+    int nextPageRequested;             /* set by a touch button; acts like R */
     int transition;                    /* 1: func_0201cbbc level eases 6 to 0, 2: 0 to 6 (Ov005_UpdateShopTransition); 0 when done */
     int redrawRows;                    /* 1: Ov005_DrawShopPage clears the rows first */
-    int unk_1c;
+    int boughtSomething;               /* 1 once an item was bought; changes how the shop exits (steps 100-103) */
     u32 shopItemCount;                 /* records of data_0216cb60 that Ov005_LoadShopItems scans */
     int cursorRow;                     /* row on the page, 0-5 */
-    int unk_28;
-    int unk_2c;                        /* set to cursorRow when it changes */
+    int drawnCursorRow;                /* cursorRow of the last frame; -1 forces a redraw */
+    int savedCursorRow;                /* cursorRow, restored after a page turn */
     int buttonCount;                   /* buttons on the current page */
     int page;                          /* six items per page */
     int lastPage;                      /* (itemCount - 1) / 6 */

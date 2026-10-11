@@ -120,16 +120,16 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     TpIcon3_LoadTo(data_027c0280->objVram + 0x4800);
     SWITCH_BACK();
 
-    work->unk_1c = 0;
+    work->boughtSomething = 0;
     work->shopItemCount = 0x100;
     work->highlightCursorRow = 0;
     work->showCursor = 0;
     Ov005_LoadShopItems(work);
     Ov005_InitShopPaging(work);
-    work->unk_04 = 0;
-    work->unk_08 = 0;
-    work->unk_0c = 0;
-    work->unk_10 = 0;
+    work->buyRequested = 0;
+    work->leaveRequested = 0;
+    work->prevPageRequested = 0;
+    work->nextPageRequested = 0;
     work->transition = 0;
     work->redrawRows = 1;
     work->songTask = func_020fcbd8(12, 0);
