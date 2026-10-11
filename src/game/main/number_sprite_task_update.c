@@ -11,7 +11,7 @@ void NumberSprite_PutLabelBeforeNumber(int x, int y, int value, int firstTile, i
 BOOL func_020240fc(int *value);
 BOOL func_020b9710(void);
 int func_020b96e8(void);
-int func_020f33ac(void);
+int Game_GetShownDay(void);
 
 /* unk_30 of the first map's state. */
 static inline u32 FirstMap_GetUnk30(void)
@@ -32,7 +32,7 @@ static inline u32 FirstMap_GetUnk30(void)
 /* Per-frame update of the number task: slides the number in, then draws it
  * by style. Style 0 shows the time left from func_020240fc, style 1 the days
  * left (func_020b96e8) under a day limit (func_020b9710), style 2 the day
- * from func_020f33ac while neither limit applies. When its value no longer
+ * from Game_GetShownDay while neither limit applies. When its value no longer
  * applies, or the first map's unk_1c4->unk_30 is set (styles 0 and 1), the
  * number slides out instead. */
 void NumberSpriteTask_Update(NumberSpriteTask *task)
@@ -72,13 +72,13 @@ void NumberSpriteTask_Update(NumberSpriteTask *task)
         break;
     case 2:
         if (func_020240fc(&seconds) || func_020b9710()) {
-            task->value = func_020f33ac();
+            task->value = Game_GetShownDay();
             task->slideOffset = 32;
             Task_ResumeScript((Task *)task);
             NumberSpriteTask_SlideOut(task);
             return;
         }
-        NumberSprite_PutLabelBeforeNumber(x & 0x1ff, y & 0xff, func_020f33ac(), task->firstTile, task->palette);
+        NumberSprite_PutLabelBeforeNumber(x & 0x1ff, y & 0xff, Game_GetShownDay(), task->firstTile, task->palette);
         break;
     }
 }
