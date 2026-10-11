@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern BOOL (*data_0229e164)(void);
 extern int (*data_0229e16c)(void);
 
-int func_020a74f8(MapUnit *unit);
+int AiUnit_GetUnloadMovement(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL AiSeaTransport_FindShoreTile(s16 *out);
 
@@ -44,7 +44,7 @@ void AiSeaTransport_ScoreUnloadTiles(void)
     if (cargo->type == 0) {
         return;
     }
-    cargoMove = func_020a74f8(cargo);
+    cargoMove = AiUnit_GetUnloadMovement(cargo);
     RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, UNLIMITED_MOVE, 0);
     TileMap_Fill(MAP->rangeScratch2, 0);
     for (;;) {

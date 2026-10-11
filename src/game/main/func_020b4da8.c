@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020a74f8(MapUnit *unit);
+int AiUnit_GetUnloadMovement(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void AiSeaTransport_CargoReachesHq(void);
 
@@ -19,6 +19,6 @@ void func_020b4da8(int x, int y)
     int slot = STATE->actingUnit->cargo[1];
     MapUnit *carried = &units[slot];
 
-    RangeMap_FillMoves(x, y, carried->type, func_020a74f8(carried), 0);
+    RangeMap_FillMoves(x, y, carried->type, AiUnit_GetUnloadMovement(carried), 0);
     AiSeaTransport_CargoReachesHq();
 }

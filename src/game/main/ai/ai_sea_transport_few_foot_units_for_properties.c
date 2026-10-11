@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020a74f8(MapUnit *unit);
+int AiUnit_GetUnloadMovement(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 int Ai_CountTeamFootUnitsInRange(void);
 int Ai_ScoreReachableEnemyProperties(void);
@@ -22,7 +22,7 @@ BOOL AiSeaTransport_FewFootUnitsForProperties(int x, int y)
     MapUnit *carried = &units[slot];
     int footUnits;
 
-    RangeMap_FillMoves(x, y, carried->type, func_020a74f8(carried), 0);
+    RangeMap_FillMoves(x, y, carried->type, AiUnit_GetUnloadMovement(carried), 0);
     footUnits = Ai_CountTeamFootUnitsInRange();
     return footUnits < Ai_ScoreReachableEnemyProperties() + 2;
 }
