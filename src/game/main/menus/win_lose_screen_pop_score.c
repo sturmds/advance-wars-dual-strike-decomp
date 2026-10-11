@@ -5,7 +5,7 @@
 void Task_ResumeScript(WinLoseTask *task);
 void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
 void func_0203b614(void);
-void func_0203f340(s32 added, s32 total, int popFrame);   /* likely draws the points, like PointsTally_Draw */
+void WinLoseScreen_DrawPointsBox(s32 added, s32 total, int popFrame);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -19,7 +19,7 @@ extern int data_027c0284;
 void WinLoseScreen_PopScore(WinLoseTask *task)
 {
     WinLoseScreen_DrawPicturesTwoSides(task);
-    func_0203f340(task->pointsAdded, task->pointsTotal, task->frame);
+    WinLoseScreen_DrawPointsBox(task->pointsAdded, task->pointsTotal, task->frame);
     if (task->frame == (s16)task->scoreWidth) {
         if (GAME->gameMode == GAME_MODE_SURVIVAL) {
             task->frame = 12;
