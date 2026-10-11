@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern u8 data_ov000_022c9750[];
 
 BOOL Screen0_AllowsMode(int mode);
-int func_020fbf88(int *x, int *y, int mode);
+int MapCursor_GetAnimation(int *x, int *y, int style);
 void Sprite3d_DrawAnimation(const VecFx32 *pos, int animation);
 int MainLoop_GetFrameCount(void);
 BOOL func_020219e4(void *set, int index, int arg, int x, int y, int attr, int tile, int list);
@@ -15,17 +15,17 @@ BOOL func_020219e4(void *set, int index, int arg, int x, int y, int attr, int ti
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 
 /* Draws the map cursor sprite at map pixel position (x, y) in the given
- * style (func_020fbf88 picks the animation and nudges the position). On
- * the 3D map screen it goes through Sprite3d_DrawAnimation (32 world units
- * per pixel); otherwise it is drawn as a 2D sprite relative to the view
+ * style (MapCursor_GetAnimation picks the animation and moves the position).
+ * On the 3D map screen it goes through Sprite3d_DrawAnimation (32 world
+ * units per pixel); otherwise it is drawn as a 2D sprite relative to the view
  * scroll, and skipped when off screen. */
-void MapCursor_DrawAt(int x, int y, int mode)
+void MapCursor_DrawAt(int x, int y, int style)
 {
     int animation;
     VecFx32 pos;
 
-    if (Screen0_AllowsMode(mode)) {
-        animation = func_020fbf88(&x, &y, mode);
+    if (Screen0_AllowsMode(style)) {
+        animation = MapCursor_GetAnimation(&x, &y, style);
         pos.x = (x << 13) / 256;
         pos.y = y * 0x6000 / 768;
         pos.z = 8;
@@ -34,7 +34,7 @@ void MapCursor_DrawAt(int x, int y, int mode)
     }
     x -= VIEW->scrollX;
     y -= VIEW->scrollY;
-    animation = func_020fbf88(&x, &y, mode);
+    animation = MapCursor_GetAnimation(&x, &y, style);
     if (x < 0 || y < 0 || x > 256 || y > 192) {
         return;
     }

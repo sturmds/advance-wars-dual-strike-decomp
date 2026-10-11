@@ -15156,6 +15156,10 @@ src/game/main/screen/screen0_allows_mode.c:
     complete
     .text       start:0x020fbf50 end:0x020fbf88
 
+src/game/main/map/map_cursor_get_animation.c:
+    complete
+    .text       start:0x020fbf88 end:0x020fc134
+
 src/game/main/func_020fc134.c:
     complete
     .text       start:0x020fc134 end:0x020fc160
