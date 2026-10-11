@@ -61,7 +61,7 @@ typedef struct PlayRecords {
     u32 humanDamageTaken;              /* funds value of hp lost by units of human players, capped at 999999999 (Unit_AddDamageTaken) */
     u32 silosLaunched;                 /* silo launches by human players, capped at 999999 (Silo_StartLaunch) */
     u32 unk_3cc;                       /* capped at 999999; UnitShowTask_RunScript adds 1 for a human player */
-    u8 pad_3d0[0x3d4 - 0x3d0];
+    u32 cannonHitsTaken;               /* cannon shots at human players' units, capped at 999999 (MapObjectFireTask_ShowNextShot) */
     u32 tilesMoved;                    /* tiles moved by human players' units, capped at 999999 (UnitMoveSelect_TryMoveTo) */
     u32 blackCannonsDestroyed;         /* map objects destroyed by human players' units, capped at 999999 (ObjectAttack_ShowHit) */
     u32 minicannonsDestroyed;

@@ -13460,6 +13460,10 @@ src/game/main/map/map_object_turn_task_target_next.c:
     complete
     .text       start:0x020d9978 end:0x020d9b30
 
+src/game/main/map/map_object_fire_task_show_next_shot.c:
+    complete
+    .text       start:0x020d9be0 end:0x020d9e70
+
 src/game/main/func_020d9ea8.c:
     complete
     .text       start:0x020d9ea8 end:0x020d9eb4

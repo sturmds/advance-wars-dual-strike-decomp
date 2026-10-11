@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* Task of script data_02168088 that shows a Black Cannon or Minicannon
- * shot (func_020d9758 starts it): the muzzle flash on the cannon, then the
+ * shot (CannonShotTask_Start starts it): the muzzle flash on the cannon, then the
  * impact on the target tile. The first 0x54 bytes belong to the task
  * system. */
 typedef struct CannonShotTask {
