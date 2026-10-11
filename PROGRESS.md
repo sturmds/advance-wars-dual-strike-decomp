@@ -41,6 +41,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | AiUnit_JoinDamagedUnit | 556 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
+| `src/game/main/ai/func_02092350.c` | func_02092350 | 1584 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
