@@ -5,7 +5,7 @@
 #include "game/task.h"
 #include "game/Unk_02022404.h"
 
-/* A task that draws one sprite object on the map (func_020ee6b0,
+/* A task that draws one sprite object on the map (TileEffectTask_Update,
  * func_020ed114 place it against the map view scroll). Up to 0x50 it has
  * the Task layout; from 0x50 its own fields, where Task has fields that
  * other tasks use differently. */

@@ -80,6 +80,8 @@
 /* 3D engine registers. */
 #define REG_DISP3DCNT ((volatile u16 *)0x04000060)
 #define REG_MTX_MODE ((volatile u32 *)0x04000440)
+#define REG_MTX_PUSH ((volatile u32 *)0x04000444)
+#define REG_MTX_POP ((volatile u32 *)0x04000448)
 #define REG_MTX_STORE ((volatile u32 *)0x0400044c)
 #define REG_MTX_TRANS ((volatile u32 *)0x04000470)
 #define REG_SWAP_BUFFERS ((volatile u32 *)0x04000540)

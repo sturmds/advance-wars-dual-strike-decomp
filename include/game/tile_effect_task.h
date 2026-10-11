@@ -1,0 +1,17 @@
+#ifndef GAME_TILE_EFFECT_TASK_H
+#define GAME_TILE_EFFECT_TASK_H
+
+#include "types.h"
+
+/* Task func_020eec8c makes to play an effect on a map tile. The first
+ * 0x2c bytes belong to the task system (Task_Create). */
+typedef struct TileEffectTask {
+    u8 pad_00[0x2c];
+    int x;                             /* tile */
+    int y;
+    u8 pad_34[0x50 - 0x34];
+    void *sprite;                      /* NULL until made; func_020eec7c frees it */
+    int effect;                        /* effect id, 0-35 (MapSpriteTask_PlayKindEffects) */
+} TileEffectTask;
+
+#endif
