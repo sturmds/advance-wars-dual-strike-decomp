@@ -6,7 +6,7 @@ extern int data_0216d958;
 
 /* SDK DMA fills (async, with callback; sync) and CPU 32-bit fill. */
 void MI_DmaFill32Async(int dmaNo, void *dest, u32 data, u32 size, void *callback, void *arg);
-void func_0210f33c(int dmaNo, void *dest, u32 data, u32 size);
+void MI_DmaFill32(int dmaNo, void *dest, u32 data, u32 size);
 void func_0210f474(u32 data, void *dest, u32 size);
 
 /* Zeroes the edge color table, the fog and toon tables, and the shininess
@@ -17,7 +17,7 @@ void G3X_InitTable(void)
 
     if (data_0216d958 != -1) {
         MI_DmaFill32Async(data_0216d958, (void *)REG_EDGE_COLOR, 0, 16, NULL, NULL);
-        func_0210f33c(data_0216d958, (void *)REG_FOG_TABLE, 0, 96);
+        MI_DmaFill32(data_0216d958, (void *)REG_FOG_TABLE, 0, 96);
     } else {
         volatile u32 zeroEdge = 0;
         volatile u32 zeroFog;

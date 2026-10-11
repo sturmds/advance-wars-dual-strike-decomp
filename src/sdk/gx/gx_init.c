@@ -6,7 +6,7 @@ extern u16 data_022a9870;   /* VRAM lock id */
 extern u32 data_0216d958;   /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
 
 int func_0210cef0(void);   /* OS_GetLockID */
-void func_0210f33c(u32 dmaNo, void *dest, u32 data, u32 size);   /* MI_DmaFill32 */
+void MI_DmaFill32(u32 dmaNo, void *dest, u32 data, u32 size);   /* MI_DmaFill32 */
 void func_0210f474(u32 data, void *dest, u32 size);   /* MIi_CpuClear32 */
 
 static inline void CpuFill32(void *dest, u32 data, u32 size)
@@ -37,9 +37,9 @@ void GX_Init(void)
     *REG_DISPCNT = 0;
     if (data_0216d958 != GX_DMA_NOT_USE) {
         /* Main engine: BG0CNT up to 0x04000068. Sub engine: DISPCNT through MASTER_BRIGHT. */
-        func_0210f33c(data_0216d958, (void *)REG_BG0CNT, 0, 0x60);
+        MI_DmaFill32(data_0216d958, (void *)REG_BG0CNT, 0, 0x60);
         *REG_MASTER_BRIGHT = 0;
-        func_0210f33c(data_0216d958, (void *)REG_DB_DISPCNT, 0, 0x70);
+        MI_DmaFill32(data_0216d958, (void *)REG_DB_DISPCNT, 0, 0x70);
     } else {
         CpuFill32((void *)REG_BG0CNT, 0, 0x60);
         *REG_MASTER_BRIGHT = 0;
