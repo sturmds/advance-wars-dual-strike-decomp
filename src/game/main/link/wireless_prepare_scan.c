@@ -6,7 +6,7 @@ extern WMBssDesc *gWirelessScanBuffer;
 extern WMScanParam *data_0229c8b4;
 
 BOOL Wireless_NextScanChannel(u16 *channel);
-u16 func_0211721c(void);
+u16 WM_GetDispersionScanPeriod(void);
 
 /* Moves to the next scan channel and fills the scan request for it. False
  * when no channel is allowed. */
@@ -17,7 +17,7 @@ BOOL Wireless_PrepareScan(void)
     }
     data_0229c8b4->scanBuf = gWirelessScanBuffer;
     data_0229c8b4->channel = data_0215fe84->channel;
-    data_0229c8b4->maxChannelTime = func_0211721c();
+    data_0229c8b4->maxChannelTime = WM_GetDispersionScanPeriod();
     data_0229c8b4->bssid[0] = 0xff;
     data_0229c8b4->bssid[1] = 0xff;
     data_0229c8b4->bssid[2] = 0xff;
