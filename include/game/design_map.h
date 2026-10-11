@@ -19,10 +19,17 @@ typedef char DesignMap_size_check[sizeof(DesignMap) == 0x1b ? 1 : -1];
 /* A player-made map as Map_LoadData reads it (Save_LoadRecord, 0x724 bytes):
  * the map data (game/map_data.h) first. */
 typedef struct DesignMapRecord {
-    u8 pad_000[0x4c3];
+    u8 width;                          /* like MapData */
+    u8 height;
+    u16 tileCodes[600];                /* MapTiles.mapCells, row by row */
+    char name[0x10];
+    u8 unk_4c2;                        /* func_020d73d4 clears it */
     u8 playerCount;                    /* 0xff or 0: no map in this record */
     u8 armyColours[5];                 /* per slot, like DesignMap.armyColours */
-    u8 pad_4c9[0x724 - 0x4c9];
+    u8 propertyCount;                  /* urban tiles (Ov000_gUrbanTerrain) on the map */
+    u8 unk_4ca;                        /* 1 + the most urban tiles one owner has, the neutral slot included */
+    u8 units[600];                     /* per tile: 0, or the unit type with an owner code in bits 6-7 (func_020d73d4) */
+    u8 pad_723[0x724 - 0x723];
 } DesignMapRecord;
 
 typedef char DesignMapRecord_size_check[sizeof(DesignMapRecord) == 0x724 ? 1 : -1];
