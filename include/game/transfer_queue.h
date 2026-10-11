@@ -5,7 +5,7 @@
 
 #define TRANSFER_QUEUE_SIZE 48
 
-/* A copy queued for the next frame update (func_020038fc runs the queue).
+/* A copy queued for the next frame update (TransferQueue_Run runs the queue).
  * The volatile qualifiers are needed to match the code that fills entries. */
 typedef struct TransferEntry {
     const void *src;
@@ -14,6 +14,13 @@ typedef struct TransferEntry {
     volatile u8 kind;                  /* 0 = copy, 4 = other (see func_02003b44) */
     u8 pad_0b;
 } TransferEntry;
+
+/* TransferEntry.kind; TransferQueue_Run treats kind 1 like kind 0 */
+#define TRANSFER_COPY    0
+#define TRANSFER_COPY16  2             /* copy in 16-bit units */
+#define TRANSFER_UNPACK  3             /* Data_Unpack */
+#define TRANSFER_CLEAR16 4             /* clear `size` bytes at `src`, 16-bit units */
+#define TRANSFER_CLEAR32 5             /* clear `size` bytes at `src`, 32-bit units */
 
 extern volatile int data_0216e04c;     /* entries queued */
 extern volatile int data_0216e050;     /* bytes queued */

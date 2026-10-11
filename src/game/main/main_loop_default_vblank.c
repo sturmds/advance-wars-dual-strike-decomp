@@ -17,7 +17,7 @@ void func_020044c4(void);
 void func_0200332c(void);
 void OamBuffer_FlushTail(void);
 void Screen_ApplyAll(void);
-void func_020038fc(void);
+void TransferQueue_Run(void);
 void func_01ff8e58(void);
 void func_020045a8(void);
 int func_0207bd80(void);
@@ -58,7 +58,7 @@ void MainLoop_DefaultVBlank(void)
         func_01ff9f1c(0);
         ON_BOTH_SCREENS(OamBuffer_FlushTail());
         Screen_ApplyAll();
-        func_020038fc();
+        TransferQueue_Run();
         ON_BOTH_SCREENS(func_01ff8e58());
         func_020045a8();
     } else {
