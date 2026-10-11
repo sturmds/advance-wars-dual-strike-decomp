@@ -10,7 +10,7 @@ typedef struct BuildMenuEntry {
     u8 state;                          /* BUILD_ENTRY_* */
 } BuildMenuEntry;
 
-/* BuildMenuEntry.state, set by func_020bbe78 from the player's funds. */
+/* BuildMenuEntry.state, set by BuildMenu_FillList from the player's funds. */
 #define BUILD_ENTRY_AFFORDABLE    0
 #define BUILD_ENTRY_TOO_EXPENSIVE 2
 

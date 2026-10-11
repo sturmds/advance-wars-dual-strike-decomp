@@ -7890,6 +7890,10 @@ src/game/main/func_020bbe54.c:
     complete
     .text       start:0x020bbe54 end:0x020bbe78
 
+src/game/main/menus/build_menu_fill_list.c:
+    complete
+    .text       start:0x020bbe78 end:0x020bbfb0
+
 src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
