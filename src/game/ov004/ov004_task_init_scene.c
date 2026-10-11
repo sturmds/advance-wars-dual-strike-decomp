@@ -13,20 +13,20 @@ void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 void Ov004_ResetBg3Params(Unk_ov004_022bf158 *state);
 void Ov004_LoadResources(Unk_ov004_022bf158 *state);
 void Ov004_SetupPerspective3d(void);
-void Ov004_LoadResourcePalette(const void *table, int size, int offset);
+void Ov004_LoadResourcePalette(const char *name, int dataOffset, int paletteOffset);
 void func_ov004_022bb38c(Unk_ov004_022bf158 *state);
 void Ov004_ResetClock(Unk_ov004_022bf158 *state);
 
 extern u8 data_ov004_022be868[];
 extern u8 data_ov004_022be9a8[];
-extern u8 data_ov004_022bde54[];
-extern u8 data_ov004_022bde64[];
-extern u8 data_ov004_022bde74[];
-extern u8 data_ov004_022bde84[];
-extern u8 data_ov004_022bde94[];
-extern u8 data_ov004_022bdea4[];
-extern u8 data_ov004_022bdeb4[];
-extern u8 data_ov004_022bdec4[];
+extern char data_ov004_022bde54[];
+extern char data_ov004_022bde64[];
+extern char data_ov004_022bde74[];
+extern char data_ov004_022bde84[];
+extern char data_ov004_022bde94[];
+extern char data_ov004_022bdea4[];
+extern char data_ov004_022bdeb4[];
+extern char data_ov004_022bdec4[];
 
 /* Shows BG0 to BG3 and OBJ on the current screen. */
 #define SHOW_ALL_LAYERS()                       \

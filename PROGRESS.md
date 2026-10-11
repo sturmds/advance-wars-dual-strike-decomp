@@ -100,7 +100,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 |
 | `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
-| `src/game/ov004/func_ov004_022badec.c` | func_ov004_022badec | 256 |
+| `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 |
 | `src/game/ov005/func_ov005_0235a320.c` | func_ov005_0235a320 | 576 |
 | `src/game/ov005/func_ov005_0235ac48.c` | func_ov005_0235ac48 | 132 |
 | `src/game/ov005/func_ov005_0235b3d4.c` | func_ov005_0235b3d4 | 236 |

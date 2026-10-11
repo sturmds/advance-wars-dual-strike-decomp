@@ -6,7 +6,7 @@ void Ov004_UnpackResource(const char *name, void *dst);
 /* Unpacks a 32x32 tile map block from the named resource and ORs flags into
  * each entry as it copies the block into the big map at (blockX, blockY).
  * With flag 0x400 (horizontal flip) each row is copied mirrored. */
-void func_ov004_022badec(Unk_ov004_022bf158 *state, int blockX, int blockY, const char *name, u16 flags) {
+void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158 *state, int blockX, int blockY, const char *name, u16 flags) {
     int stride = state->blocksWide;
     u16 *block = state->mapBlock;
     u16 *map = state->tileMap;
