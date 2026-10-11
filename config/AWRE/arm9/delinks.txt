@@ -22031,6 +22031,14 @@ src/sdk/card/card_identify_backup.c:
     complete
     .text       start:0x02115a30 end:0x02115ad4
 
+src/sdk/card/cardi_verify_backup_core.c:
+    complete
+    .text       start:0x02115ad4 end:0x02115ba4
+
+src/sdk/card/cardi_write_backup_core.c:
+    complete
+    .text       start:0x02115ba4 end:0x02115c74
+
 src/sdk/card/cardi_read_backup_core.c:
     complete
     .text       start:0x02115c74 end:0x02115d44
