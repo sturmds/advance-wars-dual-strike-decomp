@@ -22,7 +22,7 @@ typedef struct AiBuildState {
 } AiBuildState;
 
 /* AiBuildState.antiAirPick: which of Anti-Air and Cruiser fits the enemy
- * aircraft better (func_02095508). The _MORE values add that the enemy
+ * aircraft better (AiBuild_PickAntiAir). The _MORE values add that the enemy
  * aircraft have more hp than the current team's units that can hit planes. */
 #define AI_ANTI_AIR_NONE         0
 #define AI_ANTI_AIR_AA           1

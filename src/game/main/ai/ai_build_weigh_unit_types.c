@@ -12,7 +12,7 @@ extern u16 data_0229ea4c[];          /* per unit type: total hp of the enemy tea
 extern u16 data_0229ea84[];          /* per unit type: total hp of the current team's units (AiBuild_SumUnitHp) */
 extern u8 gAiTargetGroupType[];           /* per target group: the unit type that stands for it */
 
-int func_02095508(void);
+int AiBuild_PickAntiAir(void);
 int AiBuild_GetTargetGroup(u8 type);
 BOOL AiProfile_AllowsBuild(u8 type);
 int AiBuild_RateAttackerVsTarget(u8 type, int targetType);
@@ -54,7 +54,7 @@ void AiBuild_WeighUnitTypes(void)
     int count;
     int groupHp[TARGET_GROUP_COUNT];
 
-    data_021619c0->unk_06 = func_02095508();
+    data_021619c0->unk_06 = AiBuild_PickAntiAir();
     for (hp = 0; hp < UNIT_TYPE_COUNT; hp++) {
         data_0229e278[hp] = 0;
     }
@@ -88,7 +88,7 @@ void AiBuild_WeighUnitTypes(void)
             }
             damage = func_02095a7c(damage, attacker, 0);
             if (Ov000_gUnitStats[gAiTargetGroupType[group]].moveGroup & MOVE_GROUP_AIR) {
-                /* Of Anti-Air and Cruiser, the one func_02095508 did not pick counts half. */
+                /* Of Anti-Air and Cruiser, the one AiBuild_PickAntiAir did not pick counts half. */
                 if (attacker == UNIT_ANTI_AIR) {
                     if (data_021619c0->unk_06 == AI_ANTI_AIR_CRUISER || data_021619c0->unk_06 == AI_ANTI_AIR_CRUISER_MORE) {
                         damage >>= 1;

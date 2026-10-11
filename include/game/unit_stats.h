@@ -59,6 +59,10 @@ enum UnitType {
 #define MOVE_GROUP_AIR   0x10
 #define MOVE_GROUP_SEA   0x20
 
+/* UnitStats.categoryMask bits (and targetMask), read from the table. */
+#define UNIT_CATEGORY_PLANE  0x01
+#define UNIT_CATEGORY_COPTER 0x02
+
 /* UnitStats.chartDamage columns: the target's unit type, except a dived
  * Sub or Stealth, which have their own columns. */
 #define DAMAGE_COLUMN_DIVED_SUB     27

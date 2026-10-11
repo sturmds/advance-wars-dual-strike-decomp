@@ -6834,6 +6834,10 @@ src/game/main/ai/ai_build_weigh_unit_types.c:
     complete
     .text       start:0x02095014 end:0x02095508
 
+src/game/main/ai/ai_build_pick_anti_air.c:
+    complete
+    .text       start:0x02095508 end:0x0209581c
+
 src/game/main/ai/ai_build_rate_attacker_vs_target.c:
     complete
     .text       start:0x02095888 end:0x02095a7c
