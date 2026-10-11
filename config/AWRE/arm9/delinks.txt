@@ -21202,6 +21202,10 @@ src/sdk/mi/mii_check_dma0_source_address.c:
     complete
     .text       start:0x0210ee8c end:0x0210eefc
 
+src/sdk/mi/dma_halt_on_start_mode_clash.c:
+    complete
+    .text       start:0x0210eefc end:0x0210efb0
+
 src/game/main/func_0210f0a4.c:
     complete
     .text       start:0x0210f0a4 end:0x0210f0c8
