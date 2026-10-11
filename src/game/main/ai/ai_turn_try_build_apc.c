@@ -16,12 +16,12 @@ extern int data_027c0284;
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_02096914(int arg);
+int AiSite_PickNearestFootWithProperty(int arg);
 void func_0209316c(int index);
 
 /* End-actions step 8, last sub-step. Tries to start building an APC: needs
  * the funds for one and, when the profile's unk_08[10] is nonzero, a
- * state->unk_00 (likely the day) no greater than it. func_02096914(1) picks
+ * state->unk_00 (likely the day) no greater than it. AiSite_PickNearestFootWithProperty(1) picks
  * the factory (-1: none). Builds when APCs and T-Copters together make up
  * less than unk_08[4] percent of data_021619c0->unk_08 (func_0209f980(1)).
  * The name is a guess from the unit type. Returns 1 when it queued an
@@ -39,7 +39,7 @@ BOOL AiTurn_TryBuildApc(void)
     if (gAiProfile->unk_08[10] != 0 && state->day > gAiProfile->unk_08[10]) {
         return 0;
     }
-    index = func_02096914(1);
+    index = AiSite_PickNearestFootWithProperty(1);
     if (index == -1) {
         return 0;
     }
