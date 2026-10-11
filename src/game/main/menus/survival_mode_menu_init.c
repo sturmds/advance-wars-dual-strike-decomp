@@ -28,7 +28,7 @@ void SurvivalModeMenu_DrawRecords(void);
 int SurvivalSelect_GetList(void);
 int SurvivalModeMenu_GetRowMode(int row);
 int SurvivalRecord_GetRankIcon(int mode);
-int func_02047924(int mode, int a1);
+int SurvivalRecord_GetCo(int mode, int a1);
 int func_02047944(int mode);
 int func_02047960(void);
 
@@ -81,10 +81,10 @@ void SurvivalModeMenu_Init(void)
     for (row = 0; row < 2; row++) {
         mode = SurvivalModeMenu_GetRowMode(row);
         if (func_02047944(mode) != 0) {
-            Co_LoadSmallPicture(func_02047924(mode, 0), data_027c0280->objVram + ((row * 24) << 5), row * 2 + 16);
-            if (func_02047924(mode, 1) != 0) {
+            Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 0), data_027c0280->objVram + ((row * 24) << 5), row * 2 + 16);
+            if (SurvivalRecord_GetCo(mode, 1) != 0) {
                 picture = row * 2 + 1;
-                Co_LoadSmallPicture(func_02047924(mode, 1), data_027c0280->objVram + ((picture * 12) << 5), row * 2 + 17);
+                Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 1), data_027c0280->objVram + ((picture * 12) << 5), row * 2 + 17);
             }
             Icon_LoadTo(SurvivalRecord_GetRankIcon(mode) + 85, data_027c0280->objVram, 112 + row * 4);
         }

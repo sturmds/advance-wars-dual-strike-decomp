@@ -14,7 +14,7 @@ void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 void SurvivalSelect_DrawPageCount(int pages);
 int SurvivalSelect_GetList(void);
-int func_02047924(int mode, int a1);
+int SurvivalRecord_GetCo(int mode, int a1);
 int func_02047944(int mode);
 int Survival_GetMapId(int mode, int index);
 
@@ -108,7 +108,7 @@ void SurvivalSelect_Draw(void)
     }
     if (func_02047944(mode) == 1) {
         Co_QueueSmallPictureSprite(48, 136, 0x2000, 0);
-        if (func_02047924(mode, 1) != 0) {
+        if (SurvivalRecord_GetCo(mode, 1) != 0) {
             Co_QueueSmallPictureSprite(80, 136, 0x300c, 1);
         }
         Sprite_QueueAt(0, 216, 120, &data_027c0040, 0x5058, 0);
