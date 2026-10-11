@@ -29,6 +29,8 @@ extern SndCommand data_022a9f40[256]; /* command pool */
 void SND_Init(void);
 SndCommand *SND_PopFreeCommand(void);
 void Sound_PingArm7Driver(void);
+void Sound_WaitForArm7Listener(void);
+void SoundAlarm_OnArm7Message(int tag, u32 data, int err);
 
 /* Allocate and queue a command (guessed names; see func_021104b8 and func_02110470). */
 SndCommand *func_021104b8(int block);
