@@ -643,6 +643,10 @@ src/game/ov006/ov006_clear_windows_and_blend.c:
     complete
     .text       start:0x023583d8 end:0x023584e0
 
+src/game/ov006/ov006_darken_preview_box.c:
+    complete
+    .text       start:0x023584e0 end:0x0235864c
+
 src/game/ov006/ov006_clear_layer1_box.c:
     complete
     .text       start:0x0235864c end:0x0235869c

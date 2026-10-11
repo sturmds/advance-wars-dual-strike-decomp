@@ -6,7 +6,7 @@ int DesignMap_CopyName(u8 index, u8 *dest);
 void Ov006_ClearLayer0Box(void);
 void Ov006_ClearWindowsAndBlend(void);
 void func_020d7a04(int a, int b, int c, int d, u8 e);
-void func_ov006_023584e0(void);
+void Ov006_DarkenPreviewBox(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern Unk_027c0280 *data_027c0280;
@@ -20,7 +20,7 @@ void func_ov006_023582f0(int id)
         func_020d7a04(16, 5, 68, 7, id);
         data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 0;
         data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0;
-        func_ov006_023584e0();
+        Ov006_DarkenPreviewBox();
     } else {
         Ov006_ClearWindowsAndBlend();
     }
