@@ -12996,13 +12996,29 @@ src/game/main/graphics/func_020f85b0.c:
     complete
     .text       start:0x020f85b0 end:0x020f85e0
 
+src/game/main/graphics/func_020f85e0.c:
+    complete
+    .text       start:0x020f85e0 end:0x020f869c
+
+src/game/main/graphics/func_020f869c.c:
+    .text       start:0x020f869c end:0x020f8764
+
+src/game/main/graphics/func_020f8764.c:
+    .text       start:0x020f8764 end:0x020f882c
+
 src/game/main/func_020f882c.c:
     complete
     .text       start:0x020f882c end:0x020f8848
 
+src/game/main/graphics/func_020f8848.c:
+    .text       start:0x020f8848 end:0x020f88b8
+
 src/game/main/func_020f88b8.c:
     complete
     .text       start:0x020f88b8 end:0x020f88ec
+
+src/game/main/graphics/func_020f88ec.c:
+    .text       start:0x020f88ec end:0x020f8994
 
 src/game/main/func_020f8b20.c:
     complete
