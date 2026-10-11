@@ -25,7 +25,7 @@ BOOL func_ov005_0235ad48(Unk_ov005_0235a30c *work);
 BOOL func_ov005_0235ad30(Unk_ov005_0235a30c *work);
 void func_ov005_0235abe4(Unk_ov005_0235a30c *work);
 void func_ov005_0235abcc(Unk_ov005_0235a30c *work);
-void func_ov005_0235ac48(Unk_ov005_0235a30c *work);
+void Ov005Slide_StartAll(Unk_ov005_0235a30c *work);
 void func_ov005_0235a30c(Unk_ov005_0235a30c *work);
 void Ov005_SkipOnInput(Unk_ov005_0235a30c *work, Ov005Task *task);
 void func_ov005_0235aec8(Unk_ov005_0235a30c *work);
@@ -188,7 +188,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         }
         break;
     case 80:
-        func_ov005_0235ac48(work);
+        Ov005Slide_StartAll(work);
         task->step++;
     case 81:
         if (func_ov005_0235ad48(work)) {

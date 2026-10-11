@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6267 / 6598 | 1405108 / 1531944 | 91.72% | 0 | 0 |
+| game | 6270 / 6598 | 1405600 / 1531944 | 91.75% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6406 / 7479 | 1408572 / 1685994 | 83.55% | 1 | 30 |
+| all | 6409 / 7479 | 1409064 / 1685994 | 83.57% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4877 / 5180 | 973284 / 1082632 | 89.90% | 0 |
+| main | game | 4879 / 5180 | 973644 / 1082632 | 89.93% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals.
 | ov002 | game | 152 / 164 | 53176 / 64208 | 82.82% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
-| ov005 | game | 259 / 266 | 94560 / 96684 | 97.80% | 0 |
+| ov005 | game | 260 / 266 | 94692 / 96684 | 97.94% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
 
 Modules with nothing done: none.
@@ -52,7 +52,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
 | `src/game/main/copowers/tag_gauge_pop_in.c` | func_02057fb8 | 124 |
 | `src/game/main/func_0200a6c0.c` | no delinks entry | 0 |
-| `src/game/main/func_0205327c.c` | func_0205327c | 212 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/func_020d8a6c.c` | no delinks entry | 0 |
@@ -87,7 +86,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
-| `src/game/main/menus/func_020d3dec.c` | func_020d3dec | 148 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/save_write_record.c` | Save_WriteRecord | 1428 |
 | `src/game/main/screen/func_02006a20.c` | func_02006a20 | 192 |
@@ -122,7 +120,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
 | `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 |
 | `src/game/ov005/func_ov005_0235a320.c` | func_ov005_0235a320 | 576 |
-| `src/game/ov005/func_ov005_0235ac48.c` | func_ov005_0235ac48 | 132 |
 | `src/game/ov005/func_ov005_0235aec8.c` | func_ov005_0235aec8 | 640 |
 | `src/game/ov005/func_ov005_0235b3d4.c` | func_ov005_0235b3d4 | 236 |
 | `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 |
