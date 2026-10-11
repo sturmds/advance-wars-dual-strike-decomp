@@ -4461,7 +4461,7 @@ src/game/main/result_point_scroll_all_update.c:
     complete
     .text       start:0x02038410 end:0x020384c0
 
-src/game/main/result_point_draw_all.c:
+src/game/main/result_point_draw_update.c:
     complete
     .text       start:0x020384c0 end:0x0203850c
 
@@ -4469,9 +4469,13 @@ src/game/main/result_point_slide_in_update.c:
     complete
     .text       start:0x020387cc end:0x02038858
 
-src/game/main/result_point_start_list.c:
+src/game/main/result_point_sum_points.c:
     complete
     .text       start:0x02038858 end:0x020388dc
+
+src/game/main/result_point_draw_rows.c:
+    complete
+    .text       start:0x020388dc end:0x02038964
 
 src/game/main/score_list_draw_row.c:
     complete
