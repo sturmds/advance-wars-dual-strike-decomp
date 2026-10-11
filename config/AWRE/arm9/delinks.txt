@@ -8000,6 +8000,14 @@ src/game/main/func_0207eec8.c:
     complete
     .text       start:0x0207eec8 end:0x0207eed4
 
+src/game/main/link/link_task_wait_for_ready.c:
+    complete
+    .text       start:0x0207eed4 end:0x0207ef28
+
+src/game/main/link/func_0207ef28.c:
+    complete
+    .text       start:0x0207ef28 end:0x0207ef54
+
 src/game/main/link/link_draw_entry_markers.c:
     complete
     .text       start:0x0207ef54 end:0x0207f2e0
