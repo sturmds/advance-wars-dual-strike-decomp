@@ -349,6 +349,7 @@ src/game/main/func_02003d10.c:
     .text       start:0x02003d10 end:0x02003d84
 
 src/game/main/func_02003d84.c:
+    complete
     .text       start:0x02003d84 end:0x02003df8
 
 src/game/main/func_02003f44.c:
