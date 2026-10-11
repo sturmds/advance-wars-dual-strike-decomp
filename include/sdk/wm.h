@@ -143,6 +143,23 @@ typedef struct WMPortRecvCallback {
     u16 aid;                           /* the sender */
 } WMPortRecvCallback;
 
+/* One child's data in an MP receive buffer; length 0xffff or 0 means none
+ * arrived. Only these fields are read so far. */
+typedef struct WMMpRecvData {
+    u16 length;
+    u16 unk_02;
+    u16 aid;                           /* the sender */
+} WMMpRecvData;
+
+/* Receive buffer of an MP exchange: count entries, stride bytes apart. */
+typedef struct WMMpRecvBuf {
+    u8 pad_00[4];
+    u16 count;
+    u16 stride;
+    u8 pad_08[2];
+    u8 firstEntry[1];                  /* a WMMpRecvData */
+} WMMpRecvBuf;
+
 /* What WMStatus.state holds. */
 #define WM_STATE_IDLE 2
 #define WM_STATE_CLASS1 3
