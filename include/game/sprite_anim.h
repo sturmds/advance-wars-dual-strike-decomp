@@ -2,6 +2,7 @@
 #define GAME_SPRITE_ANIM_H
 
 #include "types.h"
+#include "sdk/fx.h"
 
 #define SPRITE_ANIM_COUNT 16
 
@@ -24,7 +25,7 @@ typedef struct SpriteAnim {
     const void *cells;                 /* OAM cells of the current frame (Sprite_Queue's data) */
     const void *affine;                /* affine parameter sets of the current frame */
     u16 unk_18;
-    u16 unk_1a;                        /* 0x100 on a fresh sprite, restored after a reset */
+    u16 unk_1a;                        /* 0x100 on a new sprite, restored after a reset */
     u16 unk_1c;
     u16 layer;                         /* sprite list for Sprite_Queue */
     u8 flags;                          /* SPRITE_ANIM_* */
@@ -35,15 +36,21 @@ typedef struct SpriteAnim {
     void *tileSource;                  /* tiles copied to VRAM while SPRITE_ANIM_TILES_PENDING is set */
 } SpriteAnim;
 
-/* A task started by func_02021c24 or func_02022774. The first 0x50 bytes
- * belong to the task system (Task_Create). */
+/* Task that draws a SpriteAnim at a screen position every frame. The first
+ * 0x50 bytes belong to the task system (Task_Create). */
 typedef struct SpriteAnimTask {
     u8 pad_00[0x50];
     SpriteAnim *sprite;
-    int x;                             /* position; for the 3D task a Vec3 starts here */
+    int x;
     int y;
-    int z;
 } SpriteAnimTask;
+
+/* Same for a sprite drawn in 3D space. */
+typedef struct SpriteAnim3dTask {
+    u8 pad_00[0x50];
+    SpriteAnim *sprite;
+    VecFx32 pos;
+} SpriteAnim3dTask;
 
 extern SpriteAnim data_0229b080[SPRITE_ANIM_COUNT];
 

@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 
-void func_02021c24(void *work, int x, int y, int id, int a, int b);
+void SpriteAnimTask_Start(void *work, int x, int y, int id, int a, int b);
 BOOL func_02021b34(void);
 int Sound_PlaySe(int id);
 void Task_ResumeByScript(const void *script);
@@ -29,7 +29,7 @@ void func_0204e808(CampaignMapTask *task)
         mission = gCampaignMapState.mission;
         gfx = data_027c0280;
         bg = gfx->layer3Bg;
-        func_02021c24(WORK_FIELD(unk_020), (gCampaignMissions[mission].x - gfx->bgScrollX[bg] + 8) & 0x1ff,
+        SpriteAnimTask_Start(WORK_FIELD(unk_020), (gCampaignMissions[mission].x - gfx->bgScrollX[bg] + 8) & 0x1ff,
                       (gCampaignMissions[mission].y - gfx->bgScrollY[bg] + 16) & 0xff, 0x904, 0, 3);
         Sound_PlaySe(0x57);
     }
