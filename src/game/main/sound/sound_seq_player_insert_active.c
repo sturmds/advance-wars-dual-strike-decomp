@@ -3,8 +3,6 @@
 
 extern LinkList data_022a805c;             /* sequence players in use, sorted by priority */
 
-void func_021041bc(LinkList *list, void *before, void *object);
-
 /* Puts a player in the list of players in use, after the players of equal
  * or lower priority. */
 void SoundSeqPlayer_InsertActive(SoundSeqPlayer *player)
@@ -19,5 +17,5 @@ void SoundSeqPlayer_InsertActive(SoundSeqPlayer *player)
             next = LinkList_GetNext(&data_022a805c, next);
         } while (next != NULL);
     }
-    func_021041bc(&data_022a805c, next, player);
+    LinkList_InsertBefore(&data_022a805c, next, player);
 }

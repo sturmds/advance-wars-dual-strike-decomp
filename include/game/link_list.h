@@ -24,5 +24,7 @@ void *LinkList_GetNext(LinkList *list, void *object);
 void *LinkList_GetPrev(LinkList *list, void *object);   /* the tail for NULL */
 void LinkList_Remove(LinkList *list, void *object);
 void LinkList_Append(LinkList *list, void *object);
+void LinkList_Prepend(LinkList *list, void *object);
+void LinkList_InsertBefore(LinkList *list, void *position, void *object);
 
 #endif
