@@ -20877,6 +20877,14 @@ src/game/main/func_0210b684.c:
     complete
     .text       start:0x0210b684 end:0x0210b694
 
+src/sdk/gx/g3x_get_mtx_stack_level_pj.c:
+    complete
+    .text       start:0x0210b694 end:0x0210b6c0
+
+src/sdk/gx/g3x_get_mtx_stack_level_pv.c:
+    complete
+    .text       start:0x0210b6c0 end:0x0210b6ec
+
 src/game/main/func_0210b7d4.c:
     complete
     .text       start:0x0210b7d4 end:0x0210b7ec

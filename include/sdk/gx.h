@@ -102,6 +102,12 @@
 #define GX_VRAM_H 0x080
 #define GX_VRAM_I 0x100
 
+/* Geometry engine status register. */
+#define REG_GXSTAT ((volatile u32 *)0x04000600)
+#define GXSTAT_PV_LEVEL 0x1f00 /* position/vector stack level */
+#define GXSTAT_PJ_LEVEL 0x2000 /* projection stack level */
+#define GXSTAT_MTX_STACK_ERROR 0x4000 /* stack overflow or underflow */
+
 /* BLDCNT color effect field (bits 6-7). */
 #define BLDCNT_EFFECT_ALPHA 0x40
 #define BLDCNT_EFFECT_BRIGHTEN 0x80
@@ -110,6 +116,8 @@
 void Vram_PowerOnBanks(u32 banks);
 void GX_SetBankForTexPltt(int texPltt);
 void GXi_NopClearFifo128_(void *fifo);
+int G3X_GetMtxStackLevelPJ(int *level);
+int G3X_GetMtxStackLevelPV(int *level);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */
