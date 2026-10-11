@@ -71,6 +71,7 @@ typedef struct PlayRecords {
     WarRoomRecord warRoomRecords[4][44][3]; /* the same bytes as gWarRoomRecords */
     u8 pad_d5c[0xe3c - 0xd5c];
     SurvivalRecord survivalRecords[6]; /* by Survival mode variant */
+    u8 pad_e6c[0x105c - 0xe6c];
 } PlayRecords;
 
 extern PlayRecords gPlayRecords;

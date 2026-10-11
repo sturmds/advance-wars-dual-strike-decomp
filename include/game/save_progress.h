@@ -4,6 +4,9 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
+#include "game/play_records.h"
+#include "game/Unk_022a7b80.h"
+#include "game/Unk_0229e148.h"
 
 /* data_02291774 (main bss): the buffer that Save_LoadRecord(0, ...) fills.
  * Save_LoadProgress copies its CO records and Force Rank sets into the live
@@ -20,6 +23,36 @@ typedef struct SaveProgress {
     u8 pad_1244[0x1534 - 0x1244];
     SaveBytes30 unk_1534[3];           /* one per profile; Save_LoadProfiles copies them to data_022900bc */
 } SaveProgress;
+
+/* Blocks of save record 0, each copied as one unit. */
+typedef struct SaveGameFlagsMid {
+    u8 value[86];                      /* gGameFlagsMid */
+} SaveGameFlagsMid;
+
+typedef struct SaveProfileBlock {
+    u32 sets[96];                      /* data_02290298[profile] */
+} SaveProfileBlock;
+
+typedef struct SaveLinkReactionTexts {
+    u8 value[198];                     /* data_0229da8c, see LinkReaction_LoadTexts */
+} SaveLinkReactionTexts;
+
+/* Save record 0 as Save_PackProgress and Save_UnpackProgress see it: the
+ * live data that the record keeps, in order. 0x1684 bytes. */
+typedef struct SaveProgressBlocks {
+    SaveGameFlagsMid gameFlagsMid;
+    u8 pad_56[0x58 - 0x56];
+    PlayRecords playRecords;
+    SaveProfileBlock profileBlocks[3];
+    SaveBytes30 unk_1534[3];           /* data_022900bc */
+    u8 pad_158e[0x1590 - 0x158e];
+    Unk_022a7b80 unk_1590;             /* data_022a7b80 */
+    Unk_0229e148 unk_15a4;             /* data_0229e148 */
+    SaveLinkReactionTexts linkReactionTexts;
+    u8 pad_1682[0x1684 - 0x1682];
+} SaveProgressBlocks;
+
+typedef char SaveProgressBlocks_size_check[sizeof(SaveProgressBlocks) == 0x1684 ? 1 : -1];
 
 extern SaveProgress data_02291774;
 

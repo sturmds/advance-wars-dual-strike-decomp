@@ -7,6 +7,7 @@
 typedef struct Unk_0229e148 {
     u8 pad_00[0x16];
     u8 unk_16;
+    u8 pad_17[0x18 - 0x17];
 } Unk_0229e148;
 
 #endif
