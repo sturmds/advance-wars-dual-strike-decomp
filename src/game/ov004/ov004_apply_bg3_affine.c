@@ -2,8 +2,6 @@
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
 
-void func_02009580(Unk_ov004_022bf158_818 *params, BgAffine *dest);
-
 /* Sets the first screen's BG3 affine matrix from the affine parameters in the state. */
 void Ov004_ApplyBg3Affine(Unk_ov004_022bf158 *state) {
     Unk_027c0280 *saved0280 = data_027c0280;
@@ -12,7 +10,7 @@ void Ov004_ApplyBg3Affine(Unk_ov004_022bf158 *state) {
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_02009580(&state->unk_818, &data_027c0280->bg3Affine);
+    BgAffine_FromParams(&state->bg3Params, &data_027c0280->bg3Affine);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

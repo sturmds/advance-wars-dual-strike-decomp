@@ -4,7 +4,6 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
-void func_ov004_022bb020(Unk_ov004_022bf158 *state, u16 a, u16 b);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 
@@ -25,7 +24,7 @@ void Ov004_EaseScaleToHalf(Ov004Task *task) {
         savedScreen = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
         scale = Math_Ease(0, 256, 128, task->frame, task->duration);
-        func_ov004_022bb020(state, scale, scale);
+        Ov004_SetBg3Scale(state, scale, scale);
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
         if (task->frame <= task->duration) {

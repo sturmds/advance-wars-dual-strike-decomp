@@ -16,7 +16,6 @@ void Ov004_Init3d(void);
 void Ov004_SendTexturedQuad(int x, int y, int z, int sSize, int tSize, int w, int h, int s0, int t0, u32 texAddr, u32 palAddr);
 int func_ov004_022ada10(void);
 void func_ov004_022bb1d8(Unk_ov004_022bf158 *state);
-void func_ov004_022bb038(Unk_ov004_022bf158 *state, u32 a, u32 b, u16 c, u16 d, u16 e, u16 f, u16 g);
 /* name: a resource name, or a resource id below 0x10000 cast to a pointer. */
 void Ov004_CopyResource(const char *name, void *dest);
 void Ov004_UnpackResource(const char *name, void *dest);
@@ -220,7 +219,7 @@ void Ov004Task_PlayTwoTurningQuadsScene(Ov004Task *task)
     }
 
     if (Ov004_CheckTimedEvent(state, 4, 223)) {
-        func_ov004_022bb038(state, 96, 96, 352, 96, 256, 256, 0);
+        Ov004_SetBg3Params(state, 96, 96, 352, 96, 256, 256, 0);
         state->unk_8f8 = 256;
         state->unk_900 = 0;
         state->unk_908 = 384;

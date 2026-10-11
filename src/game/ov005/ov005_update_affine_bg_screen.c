@@ -205,7 +205,7 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
         params.srcY = 96;
         params.centerY = 96;
         params.angle = 0;
-        func_02009580(&params, &data_027c0280->bg2Affine);
+        BgAffine_FromParams(&params, &data_027c0280->bg2Affine);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
         ADVANCE_FRAME(100);

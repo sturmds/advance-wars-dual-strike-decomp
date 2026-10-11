@@ -12,7 +12,6 @@ void Ov004_Init3d(void);
 void Ov004_SendTexturedQuad(int x, int y, int z, int sSize, int tSize, int w, int h, int s0, int t0, u32 texAddr, u32 palAddr);
 int func_ov004_022ada10(void);
 void func_ov004_022bb1d8(Unk_ov004_022bf158 *state);
-void func_ov004_022bb038(Unk_ov004_022bf158 *state, u32 a, u32 b, u16 c, u16 d, u16 e, u16 f, u16 g);
 void Ov004_UnpackResource(const char *name, void *dest);
 void Ov004_CopyResource(const char *name, void *dest);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
@@ -129,7 +128,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
             SHOW_LAYERS(0, 0, 0, 1, 0);
             RESTORE_SCREEN();
         }
-        func_ov004_022bb038(state, 128, 96, 128, 96, 336, 336, 0);
+        Ov004_SetBg3Params(state, 128, 96, 128, 96, 336, 336, 0);
         ADD_SLOT_TASK(Task_Create(data_ov004_022be4b8, TASK_LIST(5)));
     }
     if (Ov004_CheckTimedEvent(state, 3, 120)) {
@@ -199,7 +198,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
             SHOW_LAYERS(0, 0, 0, 1, 0);
             RESTORE_SCREEN();
         }
-        func_ov004_022bb038(state, 128, 96, 128, 96, 256, 256, 0);
+        Ov004_SetBg3Params(state, 128, 96, 128, 96, 256, 256, 0);
         ADD_SLOT_TASK(Task_Create(data_ov004_022be4d8, TASK_LIST(5)));
     }
     if (Ov004_CheckTimedEvent(state, 14, 200)) {

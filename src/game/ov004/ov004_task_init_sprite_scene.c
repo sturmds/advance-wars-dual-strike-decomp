@@ -6,8 +6,7 @@ void Screen_InitLayers(const void *config);
 void Gfx_RequestLayerCopy(int layer);
 void Ov004_UnpackResource(const char *file, void *dest);   /* unpacks a file, see FILE_ID */
 void Ov004_CopyResource(const char *file, void *dest);   /* copies a file, see FILE_ID */
-/* Stores its arguments into state->unk_818, in field order. */
-void func_ov004_022bb038(Unk_ov004_022bf158 *state, u32 unk00, u32 unk04, u16 unk08, u16 unk0a, u16 unk0c, u16 unk0e, u16 unk10);
+/* Stores its arguments into state->bg3Params, in field order. */
 void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
@@ -24,7 +23,7 @@ extern char data_ov004_022bddd0[];      /* "07a": palette */
  * to 3, no windows, blending or scroll, and normal brightness. Loads two
  * sprite tile sets with their palettes (0x1015 and 0x1014, OBJ palettes 0
  * and 1), a picture into layer 3 (079, 07b) and the BG palette (07a). Then
- * sets the unk_818 block and the eased values to their start. */
+ * sets bg3Params and the eased values to their start. */
 void Ov004Task_InitSpriteScene(Ov004Task *task)
 {
     Unk_ov004_022bf158 *state;
@@ -83,7 +82,7 @@ void Ov004Task_InitSpriteScene(Ov004Task *task)
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
 
-    func_ov004_022bb038(state, 0x60, 0x60, 0x160, 0x60, 0x100, 0x100, 0);
+    Ov004_SetBg3Params(state, 0x60, 0x60, 0x160, 0x60, 0x100, 0x100, 0);
     Ov004_ClearSlots(state);
     state->unk_8f8 = 0x100;
     state->unk_8fc = 0x100;

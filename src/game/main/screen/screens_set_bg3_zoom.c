@@ -24,7 +24,7 @@ void Screens_SetBg3Zoom(int scale, int angle)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     params.centerY = 0;
-    func_02009580(&params, &data_027c0280->bg3Affine);
+    BgAffine_FromParams(&params, &data_027c0280->bg3Affine);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
@@ -33,7 +33,7 @@ void Screens_SetBg3Zoom(int scale, int angle)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     params.centerY = 192;
-    func_02009580(&params, &data_027c0280->bg3Affine);
+    BgAffine_FromParams(&params, &data_027c0280->bg3Affine);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

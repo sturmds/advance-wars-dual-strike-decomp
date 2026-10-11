@@ -4,7 +4,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-/* Input of func_02009580, which turns it into the matrix of a BgAffine. */
+/* Input of BgAffine_FromParams, which turns it into the matrix of a BgAffine. */
 typedef struct AffineParams {
     s32 srcX;                          /* 256: BG pixel drawn at (centerX, centerY) */
     s32 srcY;
@@ -15,6 +15,6 @@ typedef struct AffineParams {
     u16 angle;
 } AffineParams;
 
-void func_02009580(AffineParams *params, BgAffine *dest);
+void BgAffine_FromParams(AffineParams *params, BgAffine *dest);
 
 #endif

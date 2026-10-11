@@ -133,7 +133,7 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
     params.centerY = 0;
     params.scaleX = 256;
     params.scaleY = 256;
-    func_02009580(&params, &data_027c0280->bg2Affine);
+    BgAffine_FromParams(&params, &data_027c0280->bg2Affine);
     Screen_SetCurrentGfx(saved0280);
 
     saved0280 = data_027c0280;

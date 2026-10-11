@@ -10,7 +10,7 @@ void Sound_StopSong(void);
 void Ov004_LoadRikiishiTextures(Unk_ov004_022bf158 *state);
 void Ov004_ResetControl(Unk_ov004_022bf158 *state);
 void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
-void Ov004_InitScale(Unk_ov004_022bf158 *state);
+void Ov004_ResetBg3Params(Unk_ov004_022bf158 *state);
 void Ov004_LoadResources(Unk_ov004_022bf158 *state);
 void Ov004_SetupPerspective3d(void);
 void Ov004_LoadResourcePalette(const void *table, int size, int offset);
@@ -65,7 +65,7 @@ void Ov004Task_InitScene(Ov004Task *task)
     REG_DISPCNT &= ~0x7000000;
     Ov004_ResetControl(state);
     Ov004_ClearSlots(state);
-    Ov004_InitScale(state);
+    Ov004_ResetBg3Params(state);
     Sound_StopSong();
     task->step = 10;
     Ov004_LoadResources(state);

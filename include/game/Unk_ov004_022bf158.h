@@ -2,24 +2,12 @@
 #define GAME_UNK_OV004_022BF158_H
 
 #include "types.h"
+#include "game/affine_params.h"
 
 #define OV004_SLOT_COUNT 32            /* task slots in the state */
 #define OV004_TIMED_EVENT_COUNT 40     /* flags in timedEventFired */
 #define OV004_EASE_COUNT 8             /* eased values from unk_8f8 on (unk_8f8 to unk_914) */
 #define OV004_EASE_VALUES(state) (&(state)->unk_8f8)
-
-/* Same layout as the AffineParams of Screens_SetBg3Zoom: source point (unk_00,
- * unk_04), centre (unk_08, unk_0a), scale (unk_0c, unk_0e) and angle (unk_10). */
-typedef struct Unk_ov004_022bf158_818 {
-    u32 unk_00;
-    u32 unk_04;
-    u16 unk_08;
-    u16 unk_0a;
-    u16 unk_0c;                        /* Ov004_EaseScaleToHalf eases both from */
-    u16 unk_0e;                        /* 256 to 128: maybe a scale */
-    u16 unk_10;
-    u8 pad_12[2];
-} Unk_ov004_022bf158_818;
 
 /* One 0x1c-byte element of Unk_ov004_022bf158.entries. */
 typedef struct Ov004Entry {
@@ -65,7 +53,7 @@ typedef struct Unk_ov004_022bf158 {
     u8 pad_110[0x810 - 0x110];
     struct Task *unk_810;              /* destroyed by Ov004_SkipOnInput */
     struct Task *unk_814;              /* destroyed by Ov004_SkipOnInput */
-    Unk_ov004_022bf158_818 unk_818;
+    AffineParams bg3Params;            /* first screen's BG3 (Ov004_ApplyBg3Affine) */
     Ov004Entry entries[7];             /* count is a guess; indexed by the task parameter at 0x44 */
     struct Task *controlTask;          /* made by Ov004_StartControlTask, 0 when none */
     u32 controlRunning;                /* 1 while controlTask runs; guess */
@@ -144,5 +132,10 @@ typedef struct Ov004SlotInit {
     int unk_4c;
     int unk_50;
 } Ov004SlotInit;
+
+/* Setters of Unk_ov004_022bf158.bg3Params. */
+void Ov004_SetBg3Center(Unk_ov004_022bf158 *state, u16 x, u16 y);
+void Ov004_SetBg3Scale(Unk_ov004_022bf158 *state, u16 x, u16 y);
+void Ov004_SetBg3Params(Unk_ov004_022bf158 *state, u32 srcX, u32 srcY, u16 centerX, u16 centerY, u16 scaleX, u16 scaleY, u16 angle);
 
 #endif
