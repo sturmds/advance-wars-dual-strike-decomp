@@ -4513,7 +4513,8 @@ src/game/main/result_sprite_pop_in.c:
     complete
     .text       start:0x020353d4 end:0x0203552c
 
-src/game/main/result_sprite_slide_in_bg.c:
+src/game/main/result_sprite_scroll_layer.c:
+    complete
     .text       start:0x020355c0 end:0x02035644
 
 src/game/main/func_02035708.c:
