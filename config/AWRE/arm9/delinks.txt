@@ -9684,6 +9684,10 @@ src/game/main/power_meter/power_panel_right_draw_player.c:
     complete
     .text       start:0x020e0970 end:0x020e0b80
 
+src/game/main/power_meter/power_panel_left_queue_stars.c:
+    complete
+    .text       start:0x020e0b80 end:0x020e0d08
+
 src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948
