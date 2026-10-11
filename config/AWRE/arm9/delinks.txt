@@ -2995,6 +2995,10 @@ src/game/main/text/text_add_spacer_codes.c:
     complete
     .text       start:0x02020f80 end:0x02021040
 
+src/game/main/text/text_put_glyph_tiles.c:
+    complete
+    .text       start:0x02021040 end:0x02021098
+
 src/game/main/text/text_printer_write_run.c:
     complete
     .text       start:0x02021118 end:0x02021164
