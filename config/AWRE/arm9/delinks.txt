@@ -5002,6 +5002,10 @@ src/game/main/day_banner_close_update.c:
     complete
     .text       start:0x02052798 end:0x02052bcc
 
+src/game/main/day_banner_open_update.c:
+    complete
+    .text       start:0x02052cf4 end:0x02053124
+
 src/game/main/screen/screen_fade_in_from_white_update.c:
     complete
     .text       start:0x020539b0 end:0x02053a20
