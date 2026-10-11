@@ -10981,6 +10981,10 @@ src/game/main/func_020ebb98.c:
     complete
     .text       start:0x020ebb98 end:0x020ebbbc
 
+src/game/main/units/black_bomb_blast_start.c:
+    complete
+    .text       start:0x020ebbbc end:0x020ebcc0
+
 src/game/main/func_020ebecc.c:
     complete
     .text       start:0x020ebecc end:0x020ebf38
