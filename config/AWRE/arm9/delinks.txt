@@ -13000,6 +13000,10 @@ src/game/main/sound/sound_strm_lock_channels.c:
     complete
     .text       start:0x02105f10 end:0x02105f74
 
+src/game/main/sound/sound_strm_init.c:
+    complete
+    .text       start:0x02105f74 end:0x02105ff8
+
 src/game/main/sound/sound_output_restart.c:
     complete
     .text       start:0x02105ff8 end:0x02106098
