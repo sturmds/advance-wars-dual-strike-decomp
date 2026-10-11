@@ -10174,6 +10174,10 @@ src/game/main/graphics/map_anim_queue_frame_part.c:
     complete
     .text       start:0x020faf28 end:0x020fb30c
 
+src/game/main/graphics/map_anim_queue_second_frame_part.c:
+    complete
+    .text       start:0x020fb30c end:0x020fb660
+
 src/game/main/graphics/camera_pan_init_from_scroll_tile.c:
     complete
     .text       start:0x020fb7b4 end:0x020fb830
