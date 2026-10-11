@@ -21,6 +21,9 @@ typedef struct FSFile FSFile;
 #define FS_COMMAND_INVALID 14
 #define ARCHIVE_OP_COPY_IN 1
 #define ARCHIVE_OP_SET_DIR_POS 2
+#define ARCHIVE_OP_NEXT_DIR_ENTRY 3
+#define ARCHIVE_OP_RESOLVE_PATH 4
+#define ARCHIVE_OP_BUILD_FULL_PATH 5
 #define ARCHIVE_OP_OPEN_BY_ID 6
 #define ARCHIVE_OP_OPEN_BY_EXTENT 7
 #define ARCHIVE_OP_RELEASE_HANDLE 8
@@ -54,6 +57,29 @@ typedef struct FSDirPos {
     u16 index;                         /* entry within the directory */
     u32 pos;                           /* byte offset of that entry in the FNT */
 } FSDirPos;
+
+/* Ids above 0xffff mean "none" in the path commands. */
+#define FILE_ID_NONE 0x10000
+#define FS_FILE_NAME_MAX 127
+
+/* One entry of a directory listing, as the read-directory command fills it. */
+typedef struct DirListingEntry {
+    union {
+        FSFileID fileId;               /* when the entry is a file */
+        FSDirPos dirId;                /* when the entry is a directory */
+    };
+    u32 isDirectory;
+    u32 nameLength;
+    char name[FS_FILE_NAME_MAX + 1];
+} DirListingEntry;
+
+/* Arguments of the get-path command. */
+typedef struct FSGetPathInfo {
+    u8 *buffer;                        /* NULL to ask only for the length */
+    u32 bufferSize;
+    u16 totalLength;                   /* path length with its NUL, 0 until known */
+    u16 dirId;                         /* directory of the file, cached with totalLength */
+} FSGetPathInfo;
 
 /* An open file or directory, 0x44 bytes in this SDK version. */
 struct FSFile {
@@ -94,8 +120,21 @@ struct FSFile {
         struct {
             FSDirPos pos;
         } seekDir;
+        struct {
+            DirListingEntry *entry;
+            BOOL skipName;             /* fill in nameLength but not name */
+        } readDir;
+        struct {
+            FSDirPos pos;              /* where the search starts */
+            const char *path;
+            BOOL findDirectory;
+            union {
+                FSFileID *file;
+                FSDirPos *dir;
+            } result;
+        } findPath;
+        FSGetPathInfo getPath;
     } arg;
-    u8 pad_38[0x44 - 0x38];
 };
 
 /* The ternary under the != 0 is how the original compiles these tests. */

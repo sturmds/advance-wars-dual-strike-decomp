@@ -5514,7 +5514,7 @@ func_021110d0 kind:function(arm,size=0x10c) addr:0x021110d0
 func_021111dc kind:function(arm,size=0x8) addr:0x021111dc
 FSi_OpenFileDirectCommand kind:function(arm,size=0x28) addr:0x021111e4
 FSi_OpenFileFastCommand kind:function(arm,size=0x7c) addr:0x0211120c
-func_02111288 kind:function(arm,size=0x3c0) addr:0x02111288
+FSi_GetPathCommand kind:function(arm,size=0x3c0) addr:0x02111288
 func_02111648 kind:function(arm,size=0x21c) addr:0x02111648
 func_02111864 kind:function(arm,size=0x110) addr:0x02111864
 Archive_CmdSetDirPosition kind:function(arm,size=0x98) addr:0x02111974
@@ -8408,7 +8408,7 @@ gGxDispOn kind:data(any) addr:0x0216d954
 data_0216d958 kind:data(any) addr:0x0216d958
 gOsIrqBitBySlot kind:data(any) addr:0x0216d95c
 data_0216d96c kind:data(any) addr:0x0216d96c
-data_0216d970 kind:data(any) addr:0x0216d970
+gArchiveNameColonSlash kind:data(any) addr:0x0216d970
 data_0216d974 kind:data(any) addr:0x0216d974
 gOverlayDigestKey kind:data(any) addr:0x0216d978
 gOverlayDigestKeySize kind:data(any) addr:0x0216d97c
