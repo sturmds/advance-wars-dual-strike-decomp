@@ -8,7 +8,7 @@ void func_020772d8(int x);
 void func_020773a0(int x);
 void func_020d618c(void);
 void Score_ToRank(void);
-void func_0203572c(void);
+void ResultRank_PlaySe(void);
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -45,7 +45,7 @@ void SubScreenLayers01_SlideInUpdate(Task *task)
     }
     func_020d618c();
     Score_ToRank();
-    func_0203572c();
+    ResultRank_PlaySe();
     FRAME(task) = 0;
     Task_ResumeScript(task);
 }
