@@ -4509,6 +4509,10 @@ src/game/main/result_screen_close_to_white.c:
     complete
     .text       start:0x020357b4 end:0x02035930
 
+src/game/main/result_path_draw_sprite_offset.c:
+    complete
+    .text       start:0x020359a8 end:0x02035a7c
+
 src/game/main/result_path_draw_sprite.c:
     complete
     .text       start:0x02035a7c end:0x02035b48
