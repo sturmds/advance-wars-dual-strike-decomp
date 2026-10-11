@@ -5825,6 +5825,10 @@ src/game/main/func_02066244.c:
     complete
     .text       start:0x02066244 end:0x02066250
 
+src/game/main/menus/vs_setup_reopen_settings_menu.c:
+    complete
+    .text       start:0x02066250 end:0x02066344
+
 src/game/main/menus/vs_setup_show_setting_help.c:
     complete
     .text       start:0x02066344 end:0x02066624
