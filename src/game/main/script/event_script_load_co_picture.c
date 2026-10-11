@@ -9,7 +9,7 @@ extern u32 data_0229eaec;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 void func_02003b44(void *dest, int size);
-void func_0200244c(int coMood, void *dest, int paletteSlot);
+void Co_LoadLargePicture(int coMood, void *dest, int paletteSlot);
 void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
 
 /* Picture slot in the layer 0 tile data: 0x480 bytes at this offset. */
@@ -25,7 +25,7 @@ void EventScript_LoadCoPicture(int coMood)
         return;
     }
     if (data_0229eaec == 0) {
-        func_0200244c(coMood, data_02297790 + 0x3660, 1);
+        Co_LoadLargePicture(coMood, data_02297790 + 0x3660, 1);
         return;
     }
     func_020023b0(coMood, data_02297790 + 0x3660, 1, STATE->currentPlayer);

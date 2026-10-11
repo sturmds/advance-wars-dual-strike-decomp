@@ -4,7 +4,7 @@
 #include "game/Unk_02160ac0.h"
 
 void Sound_PlaySe(u32 soundId);
-void func_020022fc(int coId, void *dest, int paletteSlot, int army);
+void Co_QueueLargePictureCopy(int coId, void *dest, int paletteSlot, int army);
 
 extern MenuState gMenuState;
 extern u8 data_02160ae0[];
@@ -36,5 +36,5 @@ void CombatSetup_PrevCo(int player)
     } else {
         *coIndex = 6;
     }
-    func_020022fc(data_02160ae0[LINK_ROWS[index].unk_19], data_027c0280->objVram + ((row - 1) * 36 + 1024) * 32, row + 17, row);
+    Co_QueueLargePictureCopy(data_02160ae0[LINK_ROWS[index].unk_19], data_027c0280->objVram + ((row - 1) * 36 + 1024) * 32, row + 17, row);
 }
