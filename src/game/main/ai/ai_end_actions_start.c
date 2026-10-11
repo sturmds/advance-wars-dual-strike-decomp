@@ -9,7 +9,7 @@ extern int data_027c0284;
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 u8 func_02091fbc(void);
 u8 func_02092a6c(void);
-int func_02099a64(void);
+int AiPlayer_FrontCoNearerToSuper(void);
 int func_02092ef4(int player, BOOL flag, MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -26,7 +26,7 @@ void AiEndActions_Start(void)
 
     data_021619c0->recordCount = func_02091fbc();
     data_021619c0->slotCount = func_02092a6c();
-    flag = func_02099a64() == 1;
+    flag = AiPlayer_FrontCoNearerToSuper() == 1;
     data_021619c0->unk_07 = 0;
     data_021619c0->unk_0c = 0;
     for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1; i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
