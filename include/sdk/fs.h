@@ -32,6 +32,8 @@ typedef struct FSFileID {
 /* Low four bits of flags: set while a command runs on the file. */
 #define FILE_HANDLE_BUSY_BITS 0xf
 #define FS_FILE_STATUS_BUSY 0x4
+#define FS_FILE_STATUS_SYNC 0x04           /* a thread waits for the command (the bit named BUSY above) */
+#define FS_FILE_STATUS_ASYNC 0x08          /* the archive runs the command in the background */
 #define FS_FILE_STATUS_IS_FILE 0x10
 
 /* Position inside a directory listing. */
