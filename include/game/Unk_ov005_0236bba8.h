@@ -8,7 +8,9 @@
 /* One palette variant button, an entry of Unk_ov005_0236bba8.unk_288:
  * 8 in row 0, one more in row 1. */
 typedef struct CoPaletteButton {
-    u8 pad_00[0x6];
+    u8 pad_00[0x2];
+    s16 x;                             /* pixels */
+    s16 y;
     s16 col;
     s16 row;
     s16 buttonId;                      /* MenuButton id */
