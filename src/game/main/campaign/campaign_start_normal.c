@@ -5,7 +5,7 @@
 
 extern const TaskScriptCmd data_021670d4[];
 
-int func_02103950(void);
+int Campaign_FindFreeProfile(void);
 void func_02103ca8(void);
 void func_020e6d24(void);
 void func_02103c84(void);
@@ -15,7 +15,7 @@ void ForceRank_LoadSets(int mode);
 /* Same as Campaign_StartHard with hardMode 0. */
 void Campaign_StartNormal(void)
 {
-    int slot = func_02103950();
+    int slot = Campaign_FindFreeProfile();
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 

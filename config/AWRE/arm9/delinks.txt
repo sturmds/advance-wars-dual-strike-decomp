@@ -12922,6 +12922,10 @@ src/game/main/func_0210394c.c:
     complete
     .text       start:0x0210394c end:0x02103950
 
+src/game/main/campaign/campaign_find_free_profile.c:
+    complete
+    .text       start:0x02103950 end:0x021039e4
+
 src/game/main/map/campaign_is_hard_mode.c:
     complete
     .text       start:0x021039e4 end:0x02103a20
