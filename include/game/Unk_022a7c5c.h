@@ -18,6 +18,9 @@ typedef struct Unk_022a7c5c {
     u8 pad_40[0x5c - 0x40];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */
+    u8 pad_64[0x68 - 0x64];
+    void *unk_68;                      /* destination of the graphics func_020d8fac loads */
+    void *unk_6c;                      /* destination of its palette */
 } Unk_022a7c5c;
 
 extern Unk_022a7c5c *data_022a7c5c;
