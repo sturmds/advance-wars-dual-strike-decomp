@@ -12,7 +12,7 @@ void MbGame_Init(DlPlayGameEntry *game, const DlPlayGameSource *registry, const 
 void MbBeacon_AppendGame(DlPlayGameEntry *game);
 BOOL func_0211dd18(void);              /* task thread running */
 void func_0211dd04(void *task);        /* clear a task */
-void func_0211dd34(void *stack, u32 size);   /* start the task thread */
+void MbTask_Start(void *stack, u32 size);   /* start the task thread */
 
 /* Adds a child program to the files the parent offers and puts its game on
  * the beacon. buffer holds the program's ROM header, auth code, cache list
@@ -65,7 +65,7 @@ BOOL DownloadPlay_OfferChildProgram(const DlPlayGameSource *registry, const void
     data_022aced4->files[fileId].cardMapping = (DlPlayProgramRomOffsets *)((u8 *)buffer + DLPLAY_SOURCE_ROM_OFFSETS_AT);
     if (data_022aced4->files[fileId].cacheList->list[3].state != 0 && !func_0211dd18()) {
         func_0211dd04(data_022aced4->currentTask);
-        func_0211dd34(data_022aced4->taskThreadStack, DLPLAY_WORKER_STACK_BYTES);
+        MbTask_Start(data_022aced4->taskThreadStack, DLPLAY_WORKER_STACK_BYTES);
     }
     data_022aced4->files[fileId].active = 1;
     data_022aced4->fileCount++;

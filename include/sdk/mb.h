@@ -267,9 +267,13 @@ typedef struct DlPlayProgramChunkSet {
 
 /* The task thread's work area, behind data_022acf00: an OSThread, then the
  * queue of tasks it runs. */
+#define DLPLAY_WORKER_STACK_AT 0xb8
+
 typedef struct DlPlayWorkerArea {
-    u8 pad_00[0x98];
-    u8 queue[1];                       /* size not known yet */
+    u8 pad_00[0x94];
+    u32 unk_94;                        /* cleared when the thread starts */
+    u8 queue[0x20];
+    u8 stack[1];                       /* the thread's stack runs to the end of the work area */
 } DlPlayWorkerArea;
 
 /* Download Play comm layer, parent side. */

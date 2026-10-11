@@ -22935,6 +22935,10 @@ src/game/main/func_0211dd18.c:
     complete
     .text       start:0x0211dd18 end:0x0211dd34
 
+src/sdk/mb/mb_task_start.c:
+    complete
+    .text       start:0x0211dd34 end:0x0211ddbc
+
 src/game/main/func_0211e1f4.c:
     complete
     .text       start:0x0211e1f4 end:0x0211e214
