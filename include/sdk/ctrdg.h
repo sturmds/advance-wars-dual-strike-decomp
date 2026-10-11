@@ -88,4 +88,7 @@ u16 CTRDG_GetAgbMakerCode(void);
 /* Game code saved from the GBA cartridge header, 0 when no GBA cartridge was seen. */
 u32 Cartridge_GbaGameCodeOrZero(void);
 
+/* The same, 0 also when the cartridge was pulled out. */
+u32 CTRDG_GetAgbGameCode(void);
+
 #endif
