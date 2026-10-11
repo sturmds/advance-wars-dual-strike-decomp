@@ -4372,6 +4372,10 @@ src/game/main/task/table_sprite_task_init.c:
     complete
     .text       start:0x02027b38 end:0x02027bec
 
+src/game/main/task/anim_sprite_task_update.c:
+    complete
+    .text       start:0x02027bec end:0x02027d68
+
 src/game/main/graphics/quad/gx_draw_textured_quad.c:
     complete
     .text       start:0x02027f4c end:0x020280d4
