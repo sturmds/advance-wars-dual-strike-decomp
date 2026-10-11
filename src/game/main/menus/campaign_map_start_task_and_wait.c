@@ -1,17 +1,17 @@
 #include "types.h"
 #include "game/campaign_map.h"
 
-void func_0204ed54(void);
+void CampaignMap_StartPlayedMissionTask(void);
 BOOL func_0204ec78(void);
 void Task_ResumeScript(CampaignMapTask *task);
 
-/* Script step: starts the task of func_0204ed54 on the first call, then
+/* Script step: starts the task of CampaignMap_StartPlayedMissionTask on the first call, then
  * waits while func_0204ec78 finds one of the tasks of data_0215b470 or
  * data_0215b4a0, and resumes the script. */
 void CampaignMap_StartTaskAndWait(CampaignMapTask *task)
 {
     if (task->step == 0) {
-        func_0204ed54();
+        CampaignMap_StartPlayedMissionTask();
         task->step++;
         return;
     }
