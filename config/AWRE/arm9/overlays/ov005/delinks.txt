@@ -703,7 +703,8 @@ src/game/ov005/ov005_draw_co_grid_cells.c:
     complete
     .text       start:0x02362ea8 end:0x02363014
 
-src/game/ov005/func_ov005_02363014.c:
+src/game/ov005/ov005_load_co_grid_textures.c:
+    complete
     .text       start:0x02363014 end:0x023630c0
 
 src/game/ov005/ov005_set_co_variant_from_button.c:

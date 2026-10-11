@@ -48,7 +48,7 @@ void Ov005_InitCoPaletteButtons(Ov005Task *task);
 void func_ov005_02362cf8(Ov005Task *task);
 void func_ov005_02362d68(Ov005Task *task);
 void Ov005_AddCoGridButtons(Ov005Task *task);
-void func_ov005_02363014(Ov005Task *task);
+void Ov005_LoadCoGridTextures(Ov005Task *task);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -153,7 +153,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         data_027c0280->dispCnt |= 0x400;
         data_027c0280->dispCnt |= 0x800;
         data_027c0280->dispCnt |= 0x1000;
-        func_ov005_02363014(task);
+        Ov005_LoadCoGridTextures(task);
         SHOW_SUB_TEXT(0x80000035);
         MenuButtons_RemoveUnselectable();
         func_ov005_02362d68(task);

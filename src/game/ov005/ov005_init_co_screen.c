@@ -35,7 +35,7 @@ void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8 *work);
 void IconBanks_ClearSlots(void);
 void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 void Icon_Load(int iconId);
-void func_ov005_02363014(Ov005Task *task);
+void Ov005_LoadCoGridTextures(Ov005Task *task);
 ShowSprite *SpriteAnim_Create(void *file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 
@@ -168,7 +168,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    func_ov005_02363014(task);
+    Ov005_LoadCoGridTextures(task);
     work->childTask = (Ov005Task *)Task_Create(data_ov005_0236ab6c, task);
     work->childTask->work = task->work;
 
