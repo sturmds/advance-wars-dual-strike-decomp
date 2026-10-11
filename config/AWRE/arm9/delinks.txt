@@ -20717,6 +20717,10 @@ src/sdk/gx/gx_vblank_intr.c:
     complete
     .text       start:0x0210a574 end:0x0210a5a4
 
+src/sdk/gx/gx_hblank_intr.c:
+    complete
+    .text       start:0x0210a5a4 end:0x0210a5d4
+
 src/game/main/func_0210a5d4.c:
     complete
     .text       start:0x0210a5d4 end:0x0210a5fc

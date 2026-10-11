@@ -13,7 +13,7 @@ void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
 BOOL Screen_IsTextBg(int bg);
 void GX_VBlankIntr(BOOL enable);
-void func_0210a5a4(BOOL enable);
+void GX_HBlankIntr(BOOL enable);
 void func_0210a5d4(int line);
 void func_0210b528(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
 void func_0210b580(volatile u16 *reg, int top, int bottom, int eva, int evb);
@@ -190,7 +190,7 @@ void Screen_ApplyMain(void)
     } else {
         GX_DispOn();
     }
-    func_0210a5a4(GFX->hBlankIrq ? TRUE : FALSE);
+    GX_HBlankIntr(GFX->hBlankIrq ? TRUE : FALSE);
     GX_VBlankIntr(GFX->vBlankIrq ? TRUE : FALSE);
     SetVCountIrq(GFX->vCountIrq);
     func_0210a5d4(GFX->vCountMatch);
