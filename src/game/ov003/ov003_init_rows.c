@@ -10,11 +10,9 @@ u16 func_0207a1dc(void);
 
 #define STATE data_ov003_02364928
 #define SETUP data_02160ac0
-/* Byte 0x19 of the i-th 28-byte record at the start of data_02160ac0. */
-#define SETUP_UNK_19(i) ((&SETUP->unk_19)[(i) * 28])
 
 /* Ov003Row.co values the preset uses for "decide at start". */
-#define ROW_UNK_3B_FROM_SETUP 8        /* take SETUP_UNK_19 of the row */
+#define ROW_UNK_3B_FROM_SETUP 8        /* take Unk_02160ac0_Row.unk_19 of the row */
 #define ROW_UNK_3B_FROM_ROW0_A 9       /* derived from row 0's value */
 #define ROW_UNK_3B_FROM_ROW0_B 10
 
@@ -155,7 +153,7 @@ void Ov003_InitRows(void)
     for (i = 0; i < STATE->rowCount; i++) {
         switch (STATE->rows[i].co) {
         case ROW_UNK_3B_FROM_SETUP:
-            STATE->rows[i].co = SETUP_UNK_19(i);
+            STATE->rows[i].co = LINK_ROWS[i].unk_19;
             break;
         case ROW_UNK_3B_FROM_ROW0_A:
             switch (STATE->rows[0].co) {

@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
+#include "game/ov003_object.h"
 #include "game/ov003_unit.h"
 
 extern Ov003Unit data_ov003_02369538[16];
-extern Unk_ov003_02369738 data_ov003_02369738[80];
 extern Ov003Unit *data_ov003_02369534;
 
 u16 func_0207a1dc(void);
@@ -16,18 +16,6 @@ int func_ov003_0235be30(void);
 #define STATE data_ov003_02364928
 #define SELECTED data_ov003_02369534
 
-/* 28 bytes per record at the start of data_02160ac0: 24 cells, then their count. */
-typedef struct Ov003LinkRecord {
-    struct {
-        u8 tile : 6;
-        u8 kind : 2;
-    } cells[24];
-    u8 count;
-    u8 pad_19[3];
-} Ov003LinkRecord;
-
-#define RECORDS ((Ov003LinkRecord *)data_02160ac0)
-
 /* Frees all 16 Ov003Units and clears the 80 entries of data_ov003_02369738. Sets
  * the row of the first unit to 1 (or, with data_02160ac0->unk_7c set, of unit i to
  * the row of slot i), selects the unit of the current slot, puts the scroll on the
@@ -39,15 +27,15 @@ void Ov003_InitUnitsAndCamera(void)
     int j;
     Ov003Unit *unit;
     int i;
-    Unk_ov003_02369738 *entry;
+    Ov003Object *object;
 
     unit = data_ov003_02369538;
-    entry = data_ov003_02369738;
+    object = data_ov003_02369738;
     for (i = 0; i < 16; i++, unit++) {
         unit->hp = 0;
     }
-    for (i = 0; i < 80; i++, entry++) {
-        entry->unk_0c = 0;
+    for (i = 0; i < OV003_OBJECT_COUNT; i++, object++) {
+        object->active = 0;
     }
     unit = data_ov003_02369538;
     if (data_02160ac0->unk_7c == 0) {
@@ -63,8 +51,8 @@ void Ov003_InitUnitsAndCamera(void)
     Ov003Rows_ClearCells();
     for (i = 1; i < STATE->rowCount + 1; i++) {
         if (i != STATE->row) {
-            for (j = 0; j < RECORDS[i - 1].count; j++) {
-                Ov003Row_AppendCell(i, RECORDS[i - 1].cells[j].tile, RECORDS[i - 1].cells[j].kind);
+            for (j = 0; j < LINK_ROWS[i - 1].spawnCount; j++) {
+                Ov003Row_AppendCell(i, LINK_ROWS[i - 1].cells[j].tile, LINK_ROWS[i - 1].cells[j].state);
             }
         }
     }

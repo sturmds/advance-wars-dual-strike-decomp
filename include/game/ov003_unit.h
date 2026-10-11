@@ -46,13 +46,6 @@ typedef struct Ov003Unit {
 #define OV003_DIR_LEFT  3
 #define OV003_DIR_RIGHT 4
 
-/* One of the 80 14-byte entries in data_ov003_02369738. */
-typedef struct Unk_ov003_02369738 {
-    u8 pad_00[12];
-    u8 unk_0c;                         /* cleared by Ov003_InitUnitsAndCamera */
-    u8 pad_0d;
-} Unk_ov003_02369738;
-
 typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 
 /* 20-byte entry of data_ov003_02364d88, indexed by Ov003Unit.tile. */
