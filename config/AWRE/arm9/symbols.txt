@@ -2520,7 +2520,7 @@ Co_SetArmyPaletteVariant kind:function(arm,size=0x38) addr:0x02081a6c
 Co_GetArmyExperience kind:function(arm,size=0x54) addr:0x02081aa4
 Co_GetArmyPictureVariantRaw kind:function(arm,size=0x54) addr:0x02081af8
 Co_GetArmyPaletteVariantRaw kind:function(arm,size=0x54) addr:0x02081b4c
-func_02081ba0 kind:function(arm,size=0x40) addr:0x02081ba0
+LinkCoVariantSyncTask_Create kind:function(arm,size=0x40) addr:0x02081ba0
 LinkCoVariantSyncTask_Update kind:function(arm,size=0x2b0) addr:0x02081be0
 func_02081e90 kind:function(arm,size=0xdc) addr:0x02081e90
 func_02081f6c kind:function(arm,size=0xc0) addr:0x02081f6c
@@ -7469,7 +7469,7 @@ data_02160624 kind:data(any) addr:0x02160624
 data_0216065c kind:data(any) addr:0x0216065c
 data_0216069c kind:data(any) addr:0x0216069c
 data_021606a4 kind:data(any) addr:0x021606a4
-data_021606ac kind:data(any) addr:0x021606ac
+gLinkCoVariantSyncTaskScript kind:data(any) addr:0x021606ac
 data_021606e4 kind:data(any) addr:0x021606e4
 data_021606ec kind:data(any) addr:0x021606ec
 gSpriteTaskScript kind:data(any) addr:0x0216072c
