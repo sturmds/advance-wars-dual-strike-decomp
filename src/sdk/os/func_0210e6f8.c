@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern void func_0210e70c(void);
+extern void Exception_FillContextRecord(void);
 extern void func_0210e79c(void);
 
 /*
@@ -11,7 +11,7 @@ extern void func_0210e79c(void);
 asm void func_0210e6f8(void)
 {
     stmdb sp!, {lr}
-    bl func_0210e70c
+    bl Exception_FillContextRecord
     bl func_0210e79c
     ldmia sp!, {lr}
     bx lr
