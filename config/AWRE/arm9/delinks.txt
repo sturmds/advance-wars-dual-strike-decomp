@@ -6863,6 +6863,10 @@ src/game/main/menus/combat_setup_lock_row.c:
     complete
     .text       start:0x02084de8 end:0x02084e7c
 
+src/game/main/menus/combat_setup_next_co.c:
+    complete
+    .text       start:0x02084e7c end:0x02084f54
+
 src/game/main/func_0208502c.c:
     complete
     .text       start:0x0208502c end:0x02085040
