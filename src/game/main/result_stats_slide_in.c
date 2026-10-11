@@ -8,7 +8,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
-void func_0203b84c(int offset, Task *task);
+void ResultStats_Draw(int offset, Task *task);
 void ResultStats_AddButtons(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -41,7 +41,7 @@ void ResultStats_SlideIn(Task *task)
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = -offset;
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
-    func_0203b84c(offset, task);
+    ResultStats_Draw(offset, task);
     if (FRAME(task) == SLIDE_FRAMES) {
         FRAME(task) = 0;
         ResultStats_AddButtons();
