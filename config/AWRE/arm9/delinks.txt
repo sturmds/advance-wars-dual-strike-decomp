@@ -5538,6 +5538,10 @@ src/game/main/func_0205c82c.c:
     complete
     .text       start:0x0205c82c end:0x0205c8a0
 
+src/game/main/copowers/co_swap_screen_set_up.c:
+    complete
+    .text       start:0x0205c8a0 end:0x0205cd00
+
 src/game/main/func_0205cd00.c:
     complete
     .text       start:0x0205cd00 end:0x0205cd74
