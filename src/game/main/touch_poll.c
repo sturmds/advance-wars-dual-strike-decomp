@@ -6,7 +6,7 @@ extern u32 gTouchRawSample[2];
 
 u32 func_021142cc(u32 *raw);
 void func_02114324(void);
-void func_02113f2c(TouchSample *sample, u32 *raw);
+void TP_GetCalibratedPoint(TouchSample *sample, u32 *raw);
 void Touch_Release(void);
 void Touch_UpdateTouched(TouchSample *sample);
 
@@ -17,7 +17,7 @@ void Touch_Poll(void)
     do {
         func_02114324();
     } while (func_021142cc(gTouchRawSample));
-    func_02113f2c(&gTouchSample, gTouchRawSample);
+    TP_GetCalibratedPoint(&gTouchSample, gTouchRawSample);
     if (gTouchSample.touch != 0 && gTouchSample.touch == 1) {
         Touch_UpdateTouched(&gTouchSample);
     } else {
