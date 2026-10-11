@@ -17,7 +17,25 @@ typedef struct IrqSlotEntry {
     void *arg;
 } IrqSlotEntry;
 
+/*
+ * The original reads the keepEnabled and arg fields of each IrqSlotEntry
+ * through their own symbols (data_022a98c0, data_022a98c4, and the same
+ * addresses 0x30 bytes on for the timer slots), so these two views of the
+ * table are needed to match.
+ */
+typedef struct {
+    BOOL keepEnabled;
+    u8 pad_04[8];
+} IrqSlotKeepAlias;
+
+typedef struct {
+    void *arg;
+    u8 pad_04[8];
+} IrqSlotArgAlias;
+
 extern IrqSlotEntry gOsIrqSlots[];
+extern IrqSlotKeepAlias data_022a98c0[];
+extern IrqSlotArgAlias data_022a98c4[];
 
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
