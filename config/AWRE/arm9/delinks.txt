@@ -715,9 +715,17 @@ src/game/main/screen/screen_wipe_shrink_corners_start.c:
     complete
     .text       start:0x020055c0 end:0x02005718
 
+src/game/main/screen/screen_wipe_shrink_corners_start_current.c:
+    complete
+    .text       start:0x02005718 end:0x02005784
+
 src/game/main/screen/screen_wipe_grow_corners_start.c:
     complete
     .text       start:0x02005784 end:0x02005960
+
+src/game/main/screen/screen_wipe_grow_corners_start_current.c:
+    complete
+    .text       start:0x02005960 end:0x02005a0c
 
 src/game/main/func_02005a0c.c:
     complete
