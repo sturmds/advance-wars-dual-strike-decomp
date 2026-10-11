@@ -18,12 +18,12 @@ extern u8 data_0215abe4[]; /* unk_2c table everywhere else */
 void *Mem_Alloc(u32 size);
 int Campaign_IsHardMode(void);
 u8 func_020c3d08(u32 mapId);
-BOOL func_02045414(void);
+BOOL CoSelect_HasTagRow(void);
 int func_020457f0(int co);
 
 /* Allocates the CO select work area and fills the grid: one column per
  * player of the map, two rows unless tag COs are off (a campaign map with
- * no back CO for player 1, or func_02045414 says no). On a normal-mode
+ * no back CO for player 1, or CoSelect_HasTagRow says no). On a normal-mode
  * campaign map, cells whose CO the map header sets are locked. The grid
  * starts with the players' current COs and the cursor on the first cell.
  * Needed to match: each loop has its own counters. */
@@ -64,7 +64,7 @@ void CoSelectScreen_Create(void)
         }
     } else {
         data_0229c73c->unk_2c = data_0215abe4;
-        if (func_02045414() == 0) {
+        if (CoSelect_HasTagRow() == 0) {
             data_0229c73c->rowCount = 1;
         }
     }

@@ -4523,6 +4523,10 @@ src/game/main/menus/co_select_can_leave_back_co_empty.c:
     complete
     .text       start:0x020452fc end:0x02045414
 
+src/game/main/menus/co_select_has_tag_row.c:
+    complete
+    .text       start:0x02045414 end:0x02045540
+
 src/game/main/skills/skills_are_disabled.c:
     complete
     .text       start:0x02045680 end:0x0204572c
