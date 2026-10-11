@@ -22,7 +22,7 @@ extern u8 data_027c0010;
 extern u8 data_027c0038;
 extern u8 data_027c0028;
 
-void func_020cb418(void);
+void InfoPanel_StepAwayFromCursor(void);
 int func_020cb770(u8 x, u8 y);
 void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY, int side);
 int func_020d9864(int x, int y);
@@ -78,7 +78,7 @@ void InfoPanel_Draw(void)
     volatile int unusedA = 0;
     volatile int unusedB = 0;
 
-    func_020cb418();
+    InfoPanel_StepAwayFromCursor();
     state = STATE;
     tileX = state->infoTileX;
     tileY = state->infoTileY;
