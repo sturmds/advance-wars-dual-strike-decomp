@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+struct Task;
+
 /* Overlay 5 work block (0x918 bytes) that Ov005_AllocCoListWork allocates
  * into Ov005Task.work and data_ov005_0236bba0. It belongs to a screen with
  * 33 selectable entries (the rows of the table at data_ov005_0236a5a0), one
@@ -13,7 +15,11 @@ typedef struct Unk_ov005_0236bba0 {
     int unk_08;
     int unk_0c;
     int unk_10;
-    u8 pad_14[0x824 - 0x14];
+    u8 pad_14[0x18 - 0x14];
+    struct Task *fadeTask;             /* palette fade (func_020fd128, func_020fd1a0) */
+    u8 pad_1c[0x41c - 0x1c];
+    u8 savedPalettes[0x400];           /* copy of the sub screen's paletteBuffer */
+    u8 pad_81c[0x824 - 0x81c];
     int scrollX;                       /* layer 3 scroll, 20.12 fixed point */
     int scrollY;
     int unk_82c;                       /* 0x1000 or -0x1000, set from the key state */
