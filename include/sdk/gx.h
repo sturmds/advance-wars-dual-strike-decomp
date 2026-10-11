@@ -107,6 +107,12 @@
 #define GXSTAT_PV_LEVEL 0x1f00 /* position/vector stack level */
 #define GXSTAT_PJ_LEVEL 0x2000 /* projection stack level */
 #define GXSTAT_MTX_STACK_ERROR 0x4000 /* stack overflow or underflow */
+#define GXSTAT_MTX_STACK_ERROR_ACK 0x8000 /* written 1 to clear the error */
+
+/* MTX_MODE values. */
+#define GX_MTXMODE_PROJECTION 0
+#define GX_MTXMODE_POSITION_VECTOR 2
+#define GX_MTXMODE_TEXTURE 3
 
 /* BLDCNT color effect field (bits 6-7). */
 #define BLDCNT_EFFECT_ALPHA 0x40
@@ -118,6 +124,8 @@ void GX_SetBankForTexPltt(int texPltt);
 void GXi_NopClearFifo128_(void *fifo);
 int G3X_GetMtxStackLevelPJ(int *level);
 int G3X_GetMtxStackLevelPV(int *level);
+void G3X_ResetMtxStack(void);
+void G3X_InitMtxStack(void);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */
