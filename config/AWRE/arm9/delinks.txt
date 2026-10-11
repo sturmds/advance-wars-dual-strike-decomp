@@ -8138,6 +8138,10 @@ src/game/main/menus/power_menu_activate_tag.c:
     complete
     .text       start:0x020bd740 end:0x020bd7c0
 
+src/game/main/menus/power_menu_activate_super.c:
+    complete
+    .text       start:0x020bd7c0 end:0x020bd840
+
 src/game/main/func_020bd8c0.c:
     complete
     .text       start:0x020bd8c0 end:0x020bd900
