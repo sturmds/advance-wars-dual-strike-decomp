@@ -6,7 +6,6 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Free(void *block);
 void Palette_Flush(void);
-void func_020fd6d4(u8 *palettes, int first, int count, int level);
 
 void PaletteFade_Update(PaletteFadeTask *fade, int startLevel, int endLevel)
 {
@@ -22,7 +21,7 @@ void PaletteFade_Update(PaletteFadeTask *fade, int startLevel, int endLevel)
     case 1:
         level = Math_Ease(0, startLevel, endLevel, fade->frame, fade->frames);
         Mem_Copy32(fade->colors, palettes, fade->paletteCount * 32);
-        func_020fd6d4(palettes, 0, fade->paletteCount, level);
+        Palette_Darken(palettes, 0, fade->paletteCount, level);
         if (screen == 0) {
             savedGfx = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);

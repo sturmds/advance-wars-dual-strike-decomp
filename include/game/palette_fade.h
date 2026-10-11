@@ -30,7 +30,7 @@ Task *PaletteFade_StartFromBlackScreen1(void *parentOrList, const void *palettes
 Task *PaletteFade_StartFromBlack(void *parentOrList, const void *palettes, int duration, int firstSlot, int slotCount);
 
 /* Darkens slotCount palettes from firstSlot by level (0 to 16). */
-void func_020fd6d4(u8 *palettes, int firstSlot, int slotCount, int level);
+void Palette_Darken(u8 *palettes, int firstSlot, int slotCount, int level);
 
 /* Fields of the task PaletteFade_Start creates: it darkens a run of 16-color
  * BG palettes of one screen from one level to another (0 none, 16 black). */

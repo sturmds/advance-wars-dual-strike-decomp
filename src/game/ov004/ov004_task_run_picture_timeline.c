@@ -38,7 +38,7 @@ void Palette_Flush(void);
 void *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
 void *PaletteFade_StartLevels(int a, int b, int c, int d, int e, int f);
 void *PaletteFade_StartToBlack(int a, int b, int c, int d);
-void func_020fd6d4(u8 *palettes, int first, int count, int level);
+void Palette_Darken(u8 *palettes, int first, int count, int level);
 
 /* Byte size of layer i's tile map. */
 #define LAYER_MAP_BYTES(i)                                                                  \
@@ -68,13 +68,13 @@ void func_020fd6d4(u8 *palettes, int first, int count, int level);
         func_01ff8a00(map, LAYER_MAP_BYTES(2), 0x1000);                                     \
         Gfx_RequestLayerCopy(2);                                                            \
         Palette_Flush();                                                                    \
-        func_020fd6d4(data_027c0280->paletteBuffer, 1, 8, 4);                               \
+        Palette_Darken(data_027c0280->paletteBuffer, 1, 8, 4);                               \
         Screen_SetCurrent(savedState);                                                      \
         Screen_SetCurrentGfx(savedGfx);                                                     \
     } while (0)
 
 /* PaletteFade_StartLevels, PaletteFade_StartToBlack and PaletteFade_StartFromBlack wrap PaletteFade_Start, which
- * makes a task that changes BG palettes over time with func_020fd6d4. */
+ * makes a task that changes BG palettes over time with Palette_Darken. */
 #define START_PALETTE_FADE_TASK()                                                           \
     do {                                                                                    \
         int id = task->duration++;                                                          \

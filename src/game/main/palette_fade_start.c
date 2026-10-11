@@ -7,7 +7,6 @@ extern const TaskScriptCmd data_0216a698[];
 void *Mem_Alloc(u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Flush(void);
-void func_020fd6d4(u8 *palettes, int first, int count, int level);
 
 Task *PaletteFade_Start(void *parentOrList, int fromCurrent, const void *colors, int screen, int frames,
                     int firstPalette, int paletteCount, int startLevel, int endLevel)
@@ -49,7 +48,7 @@ Task *PaletteFade_Start(void *parentOrList, int fromCurrent, const void *colors,
     if (fromCurrent == 0) {
         /* Fade in to the given colors: start from black. */
         Mem_Copy32(colors, fade->colors, fade->paletteCount * 32);
-        func_020fd6d4(fade->palettes, 0, fade->paletteCount, 16);
+        Palette_Darken(fade->palettes, 0, fade->paletteCount, 16);
     } else {
         Mem_Copy32(fade->palettes, fade->colors, fade->paletteCount * 32);
     }

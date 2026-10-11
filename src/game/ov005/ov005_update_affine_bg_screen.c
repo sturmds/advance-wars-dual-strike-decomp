@@ -16,7 +16,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 u32 *func_02022478(void *file, int a, int b);
 void func_02021f44(u32 *sprite, int frame);
 void func_02022404(u32 *sprite, int x, int y);
-void func_020fd6d4(u8 *palettes, int first, int count, int level);
+void Palette_Darken(u8 *palettes, int first, int count, int level);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -34,7 +34,7 @@ extern TaskScriptCmd data_ov005_023680c0[];
         level = Math_Ease(0, 0x10000, 0, task->frame, task->frames);             \
         Mem_Copy32((u8 *)work->block80 + (palette) * 32,                         \
                    data_027c0280->paletteBuffer + (palette) * 32, 32);           \
-        func_020fd6d4(data_027c0280->paletteBuffer, (palette), 1, level >> 12);  \
+        Palette_Darken(data_027c0280->paletteBuffer, (palette), 1, level >> 12);  \
         Palette_Flush();                                                         \
         Screen_SetCurrentGfx(saved0280);                                         \
     }
@@ -94,7 +94,7 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
         work->spritePos[3][1] = 144;
         work->block80 = Mem_Alloc(0x400);
         Mem_Copy32(data_027c0280->paletteBuffer, work->block80, 0x400);
-        func_020fd6d4(data_027c0280->paletteBuffer, 0, 32, 16);
+        Palette_Darken(data_027c0280->paletteBuffer, 0, 32, 16);
         Palette_Flush();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);

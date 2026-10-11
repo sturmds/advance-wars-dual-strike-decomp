@@ -10296,6 +10296,10 @@ src/game/main/func_020fd624.c:
     complete
     .text       start:0x020fd624 end:0x020fd62c
 
+src/game/main/graphics/palette_darken.c:
+    complete
+    .text       start:0x020fd6d4 end:0x020fd770
+
 src/game/main/func_020fd85c.c:
     complete
     .text       start:0x020fd85c end:0x020fd874
