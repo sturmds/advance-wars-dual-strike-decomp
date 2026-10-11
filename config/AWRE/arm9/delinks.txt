@@ -12273,6 +12273,10 @@ src/game/main/silo/silo_missile_fall_update.c:
     complete
     .text       start:0x020ed114 end:0x020ed1bc
 
+src/game/main/silo/silo_missile_fall_init.c:
+    complete
+    .text       start:0x020ed1bc end:0x020ed248
+
 src/game/main/silo/silo_missile_gfx_load.c:
     complete
     .text       start:0x020ed448 end:0x020ed4b0
