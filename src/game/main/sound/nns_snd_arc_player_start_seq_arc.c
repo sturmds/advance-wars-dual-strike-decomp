@@ -4,7 +4,7 @@
 
 const u32 *NNS_SndArcGetSeqArcInfo(int seqArcNo);                /* sequence archive entry; first word is the offset of its data */
 const SoundSeqArcFile *func_02106304(u32 offset);
-const SoundArcSeqInfo *func_0210924c(const SoundSeqArcFile *seqArc, int index);
+const SoundArcSeqInfo *SoundSeqArc_GetSeqInfo(const SoundSeqArcFile *seqArc, int index);
 BOOL SoundHandle_StartSeqArcSeq(SoundHandle *handle, int playerNo, int bankNo, int playerPrio,
                    const SoundArcSeqInfo *info, const SoundSeqArcFile *seqArc, int seqArcNo, int index);
 
@@ -24,7 +24,7 @@ BOOL NNS_SndArcPlayerStartSeqArc(SoundHandle *handle, int seqArcNo, int index)
     if (seqArc == NULL) {
         return FALSE;
     }
-    info = func_0210924c(seqArc, index);
+    info = SoundSeqArc_GetSeqInfo(seqArc, index);
     if (info == NULL) {
         return FALSE;
     }

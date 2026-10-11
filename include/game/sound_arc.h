@@ -59,6 +59,8 @@ typedef struct SoundArcSeqArcInfo {
 typedef struct SoundSeqArcFile {
     u8 pad_00[0x18];
     u32 dataOffset;                    /* start of the sequence data, from the start of the file */
+    u32 seqCount;                      /* 0x1c */
+    SoundArcSeqInfo seqs[1];           /* 0x20: seqCount entries; fileId 0xffffffff: unused */
 } SoundSeqArcFile;
 
 /* Table of sequence entries, each given as an offset into the info block. */
