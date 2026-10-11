@@ -22,8 +22,8 @@ void WindowWipe_StartHide(Task *task)
         return;
     }
     task->unk_64 = 1;
-    if (func_020076f8() == WIPE_SCREEN_BOTH || func_020076f8() == WIPE_SCREEN_MAIN
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == WIPE_SCREEN_CURRENT)) {
+    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_MAIN
+        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -32,8 +32,8 @@ void WindowWipe_StartHide(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == WIPE_SCREEN_BOTH || func_020076f8() == WIPE_SCREEN_SUB
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == WIPE_SCREEN_CURRENT)) {
+    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_SUB
+        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
@@ -45,13 +45,13 @@ void WindowWipe_StartHide(Task *task)
     data_0216e29c = 0;
     data_0216e2a8 = 0;
     switch (func_020076f8()) {
-    case WIPE_SCREEN_BOTH:
+    case EFFECT_SCREEN_BOTH:
         func_020036dc(data_0216e338, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
-    case WIPE_SCREEN_MAIN:
+    case EFFECT_SCREEN_MAIN:
         DmaTask_Start(data_0216e338, REG_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
-    case WIPE_SCREEN_SUB:
+    case EFFECT_SCREEN_SUB:
         DmaTask_Start(data_0216e338, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     }

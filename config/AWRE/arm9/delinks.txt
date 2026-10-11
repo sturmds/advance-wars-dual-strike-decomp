@@ -608,6 +608,10 @@ src/game/main/screen/window_wipe_build_edges_in.c:
     complete
     .text       start:0x02006c1c end:0x02006d5c
 
+src/game/main/screen/blend_fade_from_black_update.c:
+    complete
+    .text       start:0x02006d5c end:0x02006ed0
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710
