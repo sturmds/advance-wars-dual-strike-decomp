@@ -22,7 +22,7 @@ void func_ov005_02364418(Unk_ov005_0236bbac *work);
 void func_ov005_02364708(Unk_ov005_0236bbac *work);
 void func_ov005_02364a1c(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_DrawPageNumber(Unk_ov005_0236bbac *work);
-void func_ov005_02365010(Unk_ov005_0236bbac *work);
+void Ov005_SoundRoom_AddCellButtons(Unk_ov005_0236bbac *work);
 void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_DrawSelectedCellName(Unk_ov005_0236bbac *work);
@@ -103,7 +103,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->selection = work->pageStartSelection;
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
-            func_ov005_02365010(work);
+            Ov005_SoundRoom_AddCellButtons(work);
             Ov005SoundRoom_SetSlideDirection(work);
             Ov005SoundRoom_PickCellCo(work);
         } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_34 == 1) {
@@ -116,7 +116,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             work->selection = work->pageStartSelection;
             work->shownSelection = -1;
             MenuButtons_RemoveSelectable();
-            func_ov005_02365010(work);
+            Ov005_SoundRoom_AddCellButtons(work);
             Ov005SoundRoom_SetSlideDirection(work);
             Ov005SoundRoom_PickCellCo(work);
         }

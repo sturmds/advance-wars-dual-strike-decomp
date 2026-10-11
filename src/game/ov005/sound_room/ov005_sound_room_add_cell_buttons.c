@@ -14,20 +14,22 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-void func_ov005_02365010(Unk_ov005_0236bbac *state)
+void Ov005_SoundRoom_AddCellButtons(Unk_ov005_0236bbac *state)
 {
-    int count = OV005_CO_CELL_COUNT - state->page * OV005_CELLS_PER_PAGE;
+    Ov005CoButton *button;
     int i;
+    int count;
 
+    count = OV005_CO_CELL_COUNT - state->page * OV005_CELLS_PER_PAGE;
     if (count > OV005_CELLS_PER_PAGE) {
         count = OV005_CELLS_PER_PAGE;
     }
     state->buttonCount = count;
     for (i = 0; i < count; i++) {
-        Ov005CoButton *button = &state->buttons[i];
         Unk_027c0280 *saved0280;
         Unk_02080440 *saved027c;
 
+        button = &state->buttons[i];
         button->unk_00 = 1;
         button->id = OV005_CELL_BUTTON_ID + i;
         saved0280 = data_027c0280;

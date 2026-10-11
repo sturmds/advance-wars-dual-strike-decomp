@@ -20,7 +20,7 @@ void func_ov005_02364428(Unk_ov005_0236bbac *work);
 void func_ov005_02364718(Unk_ov005_0236bbac *work);
 void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_LoadIcons(Unk_ov005_0236bbac *work);
-void func_ov005_02365010(Unk_ov005_0236bbac *work);
+void Ov005_SoundRoom_AddCellButtons(Unk_ov005_0236bbac *work);
 void func_ov005_02365100(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
@@ -147,7 +147,7 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     func_ov005_02364718(work);
     Ov005SoundRoom_PickCellCo(work);
     func_ov005_02365100(work);
-    func_ov005_02365010(work);
+    Ov005_SoundRoom_AddCellButtons(work);
     Ov005SoundRoom_LoadIcons(work);
     func_ov005_02364428(work);
     func_ov005_02364a2c(work);
