@@ -1,0 +1,29 @@
+#include "types.h"
+
+void func_0210f52c(void *dst, u32 value, u32 size);   /* SDK byte fill */
+void func_0210f440(u16 value, void *dst, u32 size);   /* SDK 16-bit fill */
+void func_0210f474(u32 value, void *dst, u32 size);   /* SDK 32-bit fill */
+
+/* Zeroes size bytes in units of unitBits (8, 16 or 32) bits. The first
+ * argument is ignored; callers pass 0. Any other unitBits zeroes bytes. The
+ * volatile temps are needed to match. */
+void Mem_ZeroUnits(u32 ignored, void *dst, u32 size, u32 unitBits)
+{
+    volatile u16 zero16;
+    volatile u32 zero32;
+
+    switch (unitBits) {
+    default:
+    case 8:
+        func_0210f52c(dst, 0, size);
+        break;
+    case 16:
+        zero16 = 0;
+        func_0210f440(zero16, dst, size);
+        break;
+    case 32:
+        zero32 = 0;
+        func_0210f474(zero32, dst, size);
+        break;
+    }
+}

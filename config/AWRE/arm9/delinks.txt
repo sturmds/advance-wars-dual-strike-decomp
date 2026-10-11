@@ -204,6 +204,10 @@ src/game/main/mem/mem_zero32.c:
     complete
     .text       start:0x02002dbc end:0x02002de0
 
+src/game/main/mem/mem_zero_units.c:
+    complete
+    .text       start:0x02002de0 end:0x02002e50
+
 src/game/main/mem/mem_copy32.c:
     complete
     .text       start:0x02002e50 end:0x02002e5c

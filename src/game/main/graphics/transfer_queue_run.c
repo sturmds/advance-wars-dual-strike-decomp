@@ -4,7 +4,7 @@
 void Mem_CopyAuto(const void *src, void *dst, u32 size);
 void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 void Data_Unpack(const void *src, void *dst);
-void func_02002de0(u32 value, const void *dst, u32 size, u32 unitBits);
+void Mem_ZeroUnits(u32 value, const void *dst, u32 size, u32 unitBits);
 void Mem_Zero32(u32 value, const void *dst, u32 size);
 void TransferQueue_Clear(void);
 
@@ -31,7 +31,7 @@ void TransferQueue_Run(void)
             Data_Unpack(data_0216e05c[data_0216e04c].src, data_0216e05c[data_0216e04c].dst);
             break;
         case TRANSFER_CLEAR16:
-            func_02002de0(0, data_0216e05c[data_0216e04c].src, data_0216e05c[data_0216e04c].size, 16);
+            Mem_ZeroUnits(0, data_0216e05c[data_0216e04c].src, data_0216e05c[data_0216e04c].size, 16);
             break;
         case TRANSFER_CLEAR32:
             Mem_Zero32(0, data_0216e05c[data_0216e04c].src, data_0216e05c[data_0216e04c].size);
