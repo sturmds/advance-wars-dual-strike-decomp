@@ -2444,6 +2444,10 @@ src/game/main/script/event_choice_init.c:
 src/game/main/script/func_0201a4f0.c:
     .text       start:0x0201a4f0 end:0x0201a5b4
 
+src/game/main/script/choice_prompt_update.c:
+    complete
+    .text       start:0x0201a5b4 end:0x0201a6a4
+
 src/game/main/script/choice_prompt_draw_cursor.c:
     complete
     .text       start:0x0201a774 end:0x0201a7e0
