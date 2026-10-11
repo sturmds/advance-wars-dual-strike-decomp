@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* Fields of the tasks that swap a block of data between players over the
- * link, 8 bytes a frame (LinkSkillSyncTask_Update: equipped skills, func_020815dc: CO
+ * link, 8 bytes a frame (LinkSkillSyncTask_Update: equipped skills, LinkExperienceSyncTask_Update: CO
  * experience). Each task uses one of the two data pointers. The first 0x2a
  * bytes belong to the task system (Task_Create). */
 typedef struct LinkSyncTask {

@@ -71,7 +71,7 @@ void LinkSkillSyncTask_Update(LinkSyncTask *task)
         }
         task->started = 1;
     } else if (task->sendDone == 0) {
-        u8 *out = chunk; /* needed to match: chunk[i] keeps the text pointer in the wrong register */
+        u8 *out = chunk; /* needed to match: chunk[i] keeps the data pointer in the wrong register */
         u8 *data = task->skills;
 
         for (i = 0; i < 8; i++) {
