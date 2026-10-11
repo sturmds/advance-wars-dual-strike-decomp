@@ -9,7 +9,7 @@
 #define SPRITE (MENU->battle.cellSprites[side][i])
 #define TARGET_CELL_TASK ((BattleCellTask *)MENU->battle.unk_310[side][SPRITE.cell].unk_00)
 
-void func_ov002_02354814(int side, int step);
+void BattleCell_ApplyStep(int side, int step);
 BOOL BattleCellSprite_Arrived(int side, int cell);
 int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int shot);
 int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int shot);
@@ -67,7 +67,7 @@ void BattleCellSprites_Move(void)
                     if (task->stepIndex == 8) {
                         task->stepIndex = 0;
                     }
-                    func_ov002_02354814(side, SPRITE.unk_14_hi);
+                    BattleCell_ApplyStep(side, SPRITE.unk_14_hi);
                 }
             }
         }

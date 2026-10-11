@@ -17,7 +17,7 @@
     ((BattleCellTask *)MENU->battle.unk_310[side][LIST(side)->flags[cursor].cell].unk_00)
 #define SIDE_COLOUR(sprite, side) (((u16(*)[2])MENU->colours)[sprite][side])
 
-void func_ov002_02354814(int side, int index);
+void BattleCell_ApplyStep(int side, int index);
 void func_ov002_02357488(int side, int unk_3);
 void Battle_StartCellSpriteOnSlot(int side, int cell, int unk_3, int unk_6, int index);
 int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int unk_3);
@@ -39,7 +39,7 @@ int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
 
 /* Runs the entries of each side's second hit list that are due on this frame, like
  * BattleCells_RunSequence. When the other side is artillery or a battleship (or the entry has
- * unk_7 set) it only calls func_ov002_02354814. Otherwise it hands the entry to
+ * unk_7 set) it only calls BattleCell_ApplyStep. Otherwise it hands the entry to
  * Battle_StartCellSpriteOnSlot or func_ov002_02357488 when the other side has battle.unk_48, or makes a
  * hit sprite at the cell and sets step 4 in the cell task. */
 void func_ov002_02358c40(BattleScreenTask *screen)
@@ -59,7 +59,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
             flags = &hitList->flags[hitList->cursor];
             if (flags->unk_7 || BATTLE_SIDE_UNIT_TYPE(other) == UNIT_ARTILLERY ||
                 BATTLE_SIDE_UNIT_TYPE(other) == UNIT_BATTLESHIP) {
-                func_ov002_02354814(side, hitList->cursor);
+                BattleCell_ApplyStep(side, hitList->cursor);
             } else if (MENU->battle.unk_27c[side]->unk_48 == 0) {
                 if (MENU->battle.unk_48[other] != 0) {
                     Battle_StartCellSpriteOnSlot(side, hitList->flags[hitList->cursor].cell,
@@ -81,7 +81,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
                     if (cellTask->stepIndex == 8) {
                         cellTask->stepIndex = 0;
                     }
-                    func_ov002_02354814(side, LIST(side)->cursor);
+                    BattleCell_ApplyStep(side, LIST(side)->cursor);
                 }
             } else {
                 if (MENU->battle.unk_48[other] != 0) {
@@ -96,7 +96,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
                     if (cellTask->stepIndex == 8) {
                         cellTask->stepIndex = 0;
                     }
-                    func_ov002_02354814(side, LIST(side)->cursor);
+                    BattleCell_ApplyStep(side, LIST(side)->cursor);
                 }
             }
             LIST(side)->cursor++;

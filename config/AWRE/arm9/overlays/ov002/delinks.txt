@@ -186,7 +186,8 @@ src/game/ov002/battle_is_side_air.c:
     complete
     .text       start:0x023547ac end:0x02354814
 
-src/game/ov002/func_ov002_02354814.c:
+src/game/ov002/battle_cell_apply_step.c:
+    complete
     .text       start:0x02354814 end:0x023548ec
 
 src/game/ov002/battle_init_hp_display.c:
