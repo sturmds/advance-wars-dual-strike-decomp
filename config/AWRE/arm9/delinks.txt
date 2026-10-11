@@ -21054,6 +21054,10 @@ src/game/main/func_0210d114.c:
     complete
     .text       start:0x0210d114 end:0x0210d124
 
+src/sdk/os/os_do_unlock_by_word.c:
+    complete
+    .text       start:0x0210d124 end:0x0210d1b4
+
 src/game/main/func_0210d1b4.c:
     complete
     .text       start:0x0210d1b4 end:0x0210d1c4

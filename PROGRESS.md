@@ -9,8 +9,8 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | game | 6609 / 6700 | 1482084 / 1553840 | 95.38% | 0 | 0 |
-| SDK/library | 173 / 779 | 8532 / 132154 | 6.46% | 5 | 310 |
-| all | 6782 / 7479 | 1490616 / 1685994 | 88.41% | 5 | 310 |
+| SDK/library | 181 / 779 | 9336 / 132154 | 7.06% | 7 | 350 |
+| all | 6790 / 7479 | 1491420 / 1685994 | 88.46% | 7 | 350 |
 
 ## By module
 
@@ -19,7 +19,7 @@ Rows with nothing done are left out, but count in the totals.
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5131 / 5180 | 1036632 / 1082632 | 95.75% | 0 |
-| main | SDK/library | 173 / 768 | 8532 / 130618 | 6.53% | 5 |
+| main | SDK/library | 181 / 768 | 9336 / 130618 | 7.15% | 7 |
 | itcm | game | 87 / 102 | 13496 / 21896 | 61.64% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
@@ -118,3 +118,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/gx/gx_set_bank_for_sub_bg_ext_pltt.c` | func_0210aa6c | 140 |
 | `src/sdk/gx/gx_set_bank_for_sub_obj.c` | func_0210aaf8 | 124 |
 | `src/sdk/gx/gx_set_bank_for_sub_obj_ext_pltt.c` | func_0210a9e0 | 140 |
+| `src/sdk/os/os_release_lock_id.c` | func_0210cf48 | 48 |
+| `src/sdk/os/os_set_dma_irq_handler.c` | func_0210cdf4 | 76 |
+| `src/sdk/os/timer_install_irq_slot.c` | func_0210cda8 | 76 |
