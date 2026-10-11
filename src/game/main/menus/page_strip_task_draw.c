@@ -25,9 +25,7 @@ extern u8 data_027c00b8;
  * SurvivalSelect_Draw but from the task's fields and with palettes 6 and 7:
  * one tab per entry (the selected one 32 pixels wide, the others 16) with a
  * link piece between tabs, one marker per player for the map's player count,
- * and two palette colours that cycle every 4 frames.
- * Not matched yet: the original loads the constant 6 before 7 ahead of the
- * first loop; this C loads 7 first (same problem as SurvivalSelect_Draw). */
+ * and two palette colours that cycle every 4 frames. */
 void PageStripTask_Draw(PageStripTask *task)
 {
     int playerCount = Map_GetPlayerCount(task->mapId);
@@ -46,6 +44,8 @@ void PageStripTask_Draw(PageStripTask *task)
         if (task->pages >= 2) {
             if (i < HwMod32(task->unk_66, task->count)) {
                 pal = 7;
+            } else {
+                pal = 6; /* needed to match: makes mwcc load 6 before 7 */
             }
         }
         if (i == task->cursor) {

@@ -4552,6 +4552,7 @@ src/game/main/func_02045b44.c:
     .text       start:0x02045b44 end:0x02045b7c
 
 src/game/main/menus/survival_select_draw.c:
+    complete
     .text       start:0x02045b7c end:0x02046054
 
 src/game/main/func_02046170.c:
@@ -4663,6 +4664,7 @@ src/game/main/menus/menu_dismiss.c:
     .text       start:0x02048294 end:0x020482c8
 
 src/game/main/menus/page_strip_task_draw.c:
+    complete
     .text       start:0x02048310 end:0x020485f0
 
 src/game/main/func_0204870c.c:

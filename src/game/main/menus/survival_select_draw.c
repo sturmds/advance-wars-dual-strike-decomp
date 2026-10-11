@@ -33,9 +33,7 @@ extern u8 data_027c01c0;
  * link piece between tabs; when the list has 2 or more pages (unk_03), the
  * entries before unk_02 use palette 9. Then two cycling palette colours and
  * one marker per player for the selected map's player count. Bottom screen:
- * a list label and, when func_02047944 reports it, two more icons.
- * Not matched yet: the original loads the constant 8 before 9 ahead of the
- * first loop; this C loads 9 first. */
+ * a list label and, when func_02047944 reports it, two more icons. */
 void SurvivalSelect_Draw(void)
 {
     int mode = data_022a7b80.unk_07;
@@ -56,6 +54,8 @@ void SurvivalSelect_Draw(void)
         if (data_0229c744->lists[list].unk_03 >= 2) {
             if (i < HwMod32(data_0229c744->lists[list].unk_02, data_0229c744->lists[list].count)) {
                 pal = 9;
+            } else {
+                pal = 8; /* needed to match: makes mwcc load 8 before 9 */
             }
         }
         if (i == data_0229c744->lists[list].cursor) {
