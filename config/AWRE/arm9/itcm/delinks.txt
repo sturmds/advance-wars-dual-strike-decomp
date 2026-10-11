@@ -299,6 +299,10 @@ src/game/itcm/map3d/unit3d_draw.c:
     complete
     .text       start:0x01ffc844 end:0x01ffc890
 
+src/game/itcm/map3d/draw_unit.c:
+    complete
+    .text       start:0x01ffc890 end:0x01ffca00
+
 src/game/itcm/map3d/map3d_draw.c:
     complete
     .text       start:0x01ffd648 end:0x01ffd6f4
