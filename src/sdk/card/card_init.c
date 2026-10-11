@@ -4,7 +4,7 @@
 extern u32 data_022ac0e0;      /* offset added to every ROM address; CARD_Init clears it */
 
 void func_021154e8(void);      /* sets up the lock, the command buffer and the card thread */
-void func_021161d8(CARDiRomPage *page);   /* reads ROM pages with the CPU */
+void CardRom_ReadPagesByCpu(CARDiRomPage *page);   /* reads ROM pages with the CPU */
 void Card_RegisterRemovalHandler(void);
 
 void CARD_Init(void)
@@ -21,6 +21,6 @@ void CARD_Init(void)
     common->callbackArg = NULL;
     data_022ac0e0 = 0;
     func_021154e8();
-    data_022ac100.task = (BOOL (*)(CARDiRomPage *))func_021161d8;   /* the field type claims a BOOL result; this function returns nothing */
+    data_022ac100.task = (BOOL (*)(CARDiRomPage *))CardRom_ReadPagesByCpu;   /* the field type claims a BOOL result; this function returns nothing */
     Card_RegisterRemovalHandler();
 }
