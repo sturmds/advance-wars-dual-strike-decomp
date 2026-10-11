@@ -3628,6 +3628,10 @@ src/game/main/func_020230dc.c:
     complete
     .text       start:0x020230dc end:0x020230f0
 
+src/game/main/task/task_cmd_destroy_other_with_script.c:
+    complete
+    .text       start:0x020230f0 end:0x02023154
+
 src/game/main/task/task_cmd_exit_if_script_running.c:
     complete
     .text       start:0x02023154 end:0x020231c8
