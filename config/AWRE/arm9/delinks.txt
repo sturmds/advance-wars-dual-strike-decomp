@@ -21580,6 +21580,10 @@ src/sdk/snd/snd_start_timer.c:
     complete
     .text       start:0x0210fdc8 end:0x0210fdfc
 
+src/sdk/snd/func_0210fdfc.c:
+    complete
+    .text       start:0x0210fdfc end:0x0210fe30
+
 src/game/main/func_0210fe30.c:
     complete
     .text       start:0x0210fe30 end:0x0210fe48
