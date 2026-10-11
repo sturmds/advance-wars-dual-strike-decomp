@@ -12,10 +12,11 @@ extern u8 data_027c0060;
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 
-/* Task update: for 8 frames, draws the sprite that the step before it in
- * the script zooms in, at a different spot each frame within 2 pixels of
- * (222, 144) on the sub screen, so it shakes; then resumes the task's
- * script. func_020773a0 and func_020772d8 draw the rest of the scene. */
+/* Task update: for 8 frames, draws the sprite that
+ * SubScreenSprite_ZoomInUpdate zooms in, at a different spot each frame
+ * within 2 pixels of (222, 144) on the sub screen, so it shakes; then
+ * resumes the task's script. func_020773a0 and func_020772d8 draw the rest
+ * of the scene. */
 void SubScreenSprite_ShakeUpdate(Task *task)
 {
     Unk_027c0280 *saved0280;
