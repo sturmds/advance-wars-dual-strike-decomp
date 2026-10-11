@@ -7,7 +7,7 @@ void Sprite_QueueAt(int list, int x, u8 y, void *data, int attr, int tile);
 int Player_GetCoIconTile(int player, int type);
 int func_020c7614(int player, int unitType);
 int Player_GetUnitsLost(int player, int unitType);
-BOOL func_0203bf2c(int x, int width);
+BOOL Sprite_IsOnScreenX(int x, int width);
 void ResultStats_DrawCount(int x, int y, int value);
 
 extern const u8 data_0215a51c[];               /* unit types, 7 rows of 4; 0 leaves a cell empty */
@@ -37,7 +37,7 @@ void ResultStats_DrawUnitGrid(int offset, Task *task)
                 continue;
             }
             x = col * 54 + 25 + offset;
-            if (!func_0203bf2c(x, 40)) {
+            if (!Sprite_IsOnScreenX(x, 40)) {
                 continue;
             }
             Sprite_QueueAt(0, x & 0x1ff, 48 + row * 16, &data_027c0040, (task->unk_66 + 1) << 12,
