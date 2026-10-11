@@ -10157,6 +10157,10 @@ src/game/main/units/tile_has_own_unit_of_listed_type.c:
     complete
     .text       start:0x020cd380 end:0x020cd420
 
+src/game/main/script/service_cost_popup_set_shown.c:
+    complete
+    .text       start:0x020cd6c8 end:0x020cd6f4
+
 src/game/main/func_020cdadc.c:
     complete
     .text       start:0x020cdadc end:0x020cdb14
