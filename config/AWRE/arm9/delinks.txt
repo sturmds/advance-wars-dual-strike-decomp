@@ -21254,6 +21254,10 @@ src/sdk/mi/mi_dma_copy16.c:
     complete
     .text       start:0x0210f248 end:0x0210f2c0
 
+src/sdk/mi/mi_dma_copy32.c:
+    complete
+    .text       start:0x0210f2c0 end:0x0210f33c
+
 src/game/main/func_0210fa9c.c:
     complete
     .text       start:0x0210fa9c end:0x0210fac0
