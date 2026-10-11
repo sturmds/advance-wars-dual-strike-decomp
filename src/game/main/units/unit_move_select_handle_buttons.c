@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 data_0229eaec;
 
-BOOL func_020d0a14(int x, int y);
+BOOL UnitMoveSelect_TryMoveTo(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_020f5888(int x, int y);
 void UnitShowTask_DestroyRunning(void);
@@ -18,7 +18,7 @@ void Sound_PlaySe(int se);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Buttons while the player picks where the acting unit moves. A: tries the
- * cursor tile (func_020d0a14 counts the path). B: cancels, puts the cursor
+ * cursor tile (UnitMoveSelect_TryMoveTo counts the path). B: cancels, puts the cursor
  * back on the unit and, when data_0229eaec is set, sends unit action 19.
  * Returns TRUE when either button was handled. */
 BOOL UnitMoveSelect_HandleButtons(void)
@@ -26,7 +26,7 @@ BOOL UnitMoveSelect_HandleButtons(void)
     u16 keys = gKeypad->pressed;
 
     if (keys & PAD_BUTTON_A) {
-        func_020d0a14(GAME->unk_28, GAME->unk_2a);
+        UnitMoveSelect_TryMoveTo(GAME->unk_28, GAME->unk_2a);
         return TRUE;
     }
     if (keys & PAD_BUTTON_B) {

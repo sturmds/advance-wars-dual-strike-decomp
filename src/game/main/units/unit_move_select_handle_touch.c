@@ -9,7 +9,7 @@ extern u32 data_0229eaec;
 extern s16 data_0229777c;
 
 BOOL ActingUnit_CanMoveTo(int x, int y);
-BOOL func_020d0a14(int x, int y);
+BOOL UnitMoveSelect_TryMoveTo(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_020f1288(void);
 void func_020f5888(int x, int y);
@@ -43,7 +43,7 @@ BOOL UnitMoveSelect_HandleTouch(void)
     if (GAME->unk_28 == GAME->unk_30 && GAME->unk_2a == GAME->unk_32) {
         func_020f1288();
         if (ActingUnit_CanMoveTo(GAME->unk_28, GAME->unk_2a)) {
-            func_020d0a14(GAME->unk_28, GAME->unk_2a);
+            UnitMoveSelect_TryMoveTo(GAME->unk_28, GAME->unk_2a);
             return TRUE;
         }
         if (data_0229eaec != 0) {
