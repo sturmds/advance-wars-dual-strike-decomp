@@ -13,7 +13,7 @@ void OS_WakeupThreadDirect(OSThread *thread);
 void func_02111064(int tag, void (*callback)(int tag, u32 data, int err));
 void func_0211549c(u32 state);
 void CARDi_TaskThread(void *arg);
-void func_02115808(int tag, u32 data, int err);
+void Card_OnRequestTagMessage(int tag, u32 data, int err);
 
 void func_021154e8(void)
 {
@@ -34,7 +34,7 @@ void func_021154e8(void)
     common->priorityMode = 4;
     OS_CreateThread(&common->thread, CARDi_TaskThread, NULL, data_022ac0e0, GAMECARD_WORKER_STACK_BYTES, common->priorityMode);
     OS_WakeupThreadDirect(&common->thread);
-    func_02111064(11, func_02115808);
+    func_02111064(11, Card_OnRequestTagMessage);
     if (*BOOT_ORIGIN_WORD != BOOT_ORIGIN_WIRELESS) {
         func_0211549c(1);
     }

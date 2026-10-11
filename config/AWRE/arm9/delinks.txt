@@ -22020,6 +22020,10 @@ src/sdk/card/cardi_task_thread.c:
     complete
     .text       start:0x021157b4 end:0x02115808
 
+src/sdk/card/card_on_request_tag_message.c:
+    complete
+    .text       start:0x02115808 end:0x02115858
+
 src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c
