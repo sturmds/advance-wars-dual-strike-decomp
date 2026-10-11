@@ -6605,6 +6605,10 @@ src/game/main/ai/ai_sea_transport_cargo_reaches_hq.c:
     complete
     .text       start:0x020b4e8c end:0x020b4f48
 
+src/game/main/ai/ai_sea_transport_foot_units_outnumber_armed.c:
+    complete
+    .text       start:0x020b4f48 end:0x020b501c
+
 src/game/main/ai/func_020b501c.c:
     complete
     .text       start:0x020b501c end:0x020b507c

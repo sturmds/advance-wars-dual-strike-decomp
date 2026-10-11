@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 BOOL func_020b4bd0(int x, int y);
 BOOL func_020b4da8(int x, int y);
-BOOL func_020b4f48(int x, int y);
+BOOL AiSeaTransport_FootUnitsOutnumberArmed(int x, int y);
 BOOL func_020b50bc(int x, int y);
 BOOL func_020b51ec(int x, int y);
 BOOL func_020b53c0(int x, int y);
@@ -44,7 +44,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
             check = func_020b50bc;
             break;
         case 4:
-            check = func_020b4f48;
+            check = AiSeaTransport_FootUnitsOutnumberArmed;
             break;
         case 6:
             check = func_020b4da8;
@@ -80,7 +80,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
         unit->aiTargetY = MAP_UNIT_NO_TARGET;
         return TRUE;
     }
-    if (func_020b4f48(x, y) == TRUE) {
+    if (AiSeaTransport_FootUnitsOutnumberArmed(x, y) == TRUE) {
         unit->aiOrder = 4;
         unit->aiTargetX = MAP_UNIT_NO_TARGET;
         unit->aiTargetY = MAP_UNIT_NO_TARGET;
