@@ -2975,6 +2975,14 @@ src/game/main/func_0201d834.c:
     complete
     .text       start:0x0201d834 end:0x0201d850
 
+src/game/main/graphics/bg2_set_control.c:
+    complete
+    .text       start:0x0201d850 end:0x0201d888
+
+src/game/main/graphics/bg1_set_control.c:
+    complete
+    .text       start:0x0201d888 end:0x0201d8c0
+
 src/game/main/func_0201d8c0.c:
     complete
     .text       start:0x0201d8c0 end:0x0201d8d8

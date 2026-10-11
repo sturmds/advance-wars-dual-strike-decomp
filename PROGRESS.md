@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5959 / 6598 | 1350692 / 1531944 | 88.17% | 0 | 0 |
+| game | 5972 / 6598 | 1352232 / 1531944 | 88.27% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6098 / 7479 | 1354156 / 1685994 | 80.32% | 1 | 30 |
+| all | 6111 / 7479 | 1355696 / 1685994 | 80.41% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4569 / 5180 | 918868 / 1082632 | 84.87% | 0 |
+| main | game | 4582 / 5180 | 920408 / 1082632 | 85.02% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -96,6 +96,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
 | `src/game/main/script/event_script_step_slot.c` | EventScript_StepSlot | 276 |
+| `src/game/main/script/func_0201a4f0.c` | func_0201a4f0 | 196 |
 | `src/game/main/sound/sound_stream_fill_blocks.c` | func_02107c28 | 2184 |
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
 | `src/game/main/units/func_020d4748.c` | func_020d4748 | 916 |
