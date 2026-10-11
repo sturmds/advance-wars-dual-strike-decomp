@@ -8,7 +8,7 @@ extern u8 data_022a8ad8[];             /* mutex around the stream slots and requ
 void OS_InitMessageQueue(void *queue, void *messages, int count);
 int OS_ReceiveMessage(void *queue, void *message, int flags);
 void func_0210e034(void *mutex);
-void func_0210dfc4(void *mutex);
+void OS_UnlockMutex(void *mutex);
 SoundStreamRequest *SoundStreamRequest_PopPending(void);
 void SoundStream_FillBlocks(SoundStreamRequest *request);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
@@ -28,12 +28,12 @@ void SoundStream_ThreadMain(void)
             func_0210e034(data_022a8ad8);
             request = SoundStreamRequest_PopPending();
             if (request == NULL) {
-                func_0210dfc4(data_022a8ad8);
+                OS_UnlockMutex(data_022a8ad8);
                 break;
             }
             SoundStream_FillBlocks(request);
             SoundStreamRequest_Free(request);
-            func_0210dfc4(data_022a8ad8);
+            OS_UnlockMutex(data_022a8ad8);
         }
     }
 }

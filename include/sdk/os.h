@@ -92,7 +92,8 @@ struct OSThread {
     OSThread *next;
     u32 id;
     u32 priority;
-    u8 pad_74[8];
+    u8 pad_74[4];
+    OSMutex *mutex;                /* the mutex this thread is waiting for */
     OSMutexQueue mutexQueue;
     u8 pad_84[0xc];
     OSThreadQueue joinQueue;

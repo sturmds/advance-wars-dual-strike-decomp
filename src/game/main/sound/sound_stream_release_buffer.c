@@ -4,7 +4,7 @@
 extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
 
 void func_0210e034(void *mutex);
-void func_0210dfc4(void *mutex);
+void OS_UnlockMutex(void *mutex);
 void SoundStream_Close(SoundStream *stream);
 void SoundStrm_UnlockChannels(SoundStrm *strm);
 
@@ -25,5 +25,5 @@ void SoundStream_ReleaseBuffer(void *buffer, u32 unused, SoundStream *stream)
         SoundStrm_UnlockChannels(&stream->strm);
         stream->channelLockCount = 0;
     }
-    func_0210dfc4(data_022a8ad8);
+    OS_UnlockMutex(data_022a8ad8);
 }
