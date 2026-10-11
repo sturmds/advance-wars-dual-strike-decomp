@@ -177,6 +177,7 @@ typedef struct DlPlayWorkerArea {
 #define DLPLAY_CHILD_TOLD_TO_BOOT 8
 #define DLPLAY_CHILD_ASKED_FILE 10
 #define DLPLAY_CHILD_NO_ROOM 11
+#define DLPLAY_CHILD_FINISHED 12
 #define DLPLAY_CHILD_FAULT 13
 #define DLPLAY_CHILD_AWAITING_START 14
 
@@ -194,6 +195,12 @@ typedef struct DlPlayWorkerArea {
 #define DLPLAY_FROM_CHILD_GOT_LAYOUT 9
 #define DLPLAY_FROM_CHILD_NEXT_BLOCK 10
 #define DLPLAY_FROM_CHILD_HALT 11
+
+/* What the application answers to a child (MbComm_Respond). */
+#define DLPLAY_ANSWER_TURN_AWAY 0
+#define DLPLAY_ANSWER_ADMIT 1
+#define DLPLAY_ANSWER_BEGIN_UPLOAD 2
+#define DLPLAY_ANSWER_START_PROGRAM 3
 
 /* childRequest values: what the application asked for a child. */
 #define DLPLAY_APP_WANTS_NOTHING 0
@@ -317,6 +324,7 @@ typedef struct DlPlayHostLinkArea {
 } DlPlayHostLinkArea;
 
 int MbComm_IsChildAid(u32 aid);
+int MbComm_Respond(u32 aid, int response);
 void MbComm_NotifyState(u32 aid, u32 state, void *arg);
 
 /* A file of the comm work area. A macro, not a function: to match, the

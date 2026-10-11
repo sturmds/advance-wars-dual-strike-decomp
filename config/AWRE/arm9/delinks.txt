@@ -22598,6 +22598,10 @@ src/sdk/mb/mb_comm_set_state.c:
     complete
     .text       start:0x0211a400 end:0x0211a450
 
+src/sdk/mb/mb_comm_respond.c:
+    complete
+    .text       start:0x0211a450 end:0x0211a54c
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770

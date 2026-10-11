@@ -1,22 +1,24 @@
 #include "types.h"
+#include "sdk/mb.h"
 
-void func_0211a450(void *arg, int mode);
 BOOL func_020fc558(void);
 
-void func_020fc700(void *arg, int index)
+/* Comm callback of the download play parent (see MbComm_SetCallback): answers
+ * a child at the states where the application has to. */
+void func_020fc700(u32 aid, u32 state, void *arg)
 {
-    switch (index) {
-    case 7:
-        func_0211a450(arg, 3);
+    switch (state) {
+    case DLPLAY_CHILD_HAS_PROGRAM:
+        MbComm_Respond(aid, DLPLAY_ANSWER_START_PROGRAM);
         break;
-    case 10:
-        func_0211a450(arg, 1);
+    case DLPLAY_CHILD_ASKED_FILE:
+        MbComm_Respond(aid, DLPLAY_ANSWER_ADMIT);
         break;
-    case 12:
+    case DLPLAY_CHILD_FINISHED:
         func_020fc558();
         break;
-    case 14:
-        func_0211a450(arg, 2);
+    case DLPLAY_CHILD_AWAITING_START:
+        MbComm_Respond(aid, DLPLAY_ANSWER_BEGIN_UPLOAD);
         break;
     }
 }
