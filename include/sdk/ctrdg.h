@@ -82,6 +82,9 @@ BOOL Cartridge_HeaderStillMatches(void);
 /* TRUE when a GBA cartridge was seen at start-up (does not check it is still there). */
 BOOL Cartridge_HasGbaGame(void);
 
+/* TRUE when a GBA cartridge was seen at start-up and is still in the slot. */
+BOOL CTRDG_IsAgbCartridge(void);
+
 /* Maker code saved from the GBA cartridge header, 0 when no GBA cartridge was seen. */
 u16 Cartridge_GbaMakerCodeOrZero(void);
 

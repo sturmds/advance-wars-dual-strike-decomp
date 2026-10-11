@@ -1,22 +1,18 @@
 #include "types.h"
+#include "sdk/ctrdg.h"
 
-void Cartridge_HeaderStillMatches(void);
-BOOL func_0211e5ac(void);
-u32 CTRDG_GetAgbMakerCode(void);    /* game code from the GBA cartridge header, 0 if none */
-u16 CTRDG_GetAgbGameCode(void);    /* maker code from the GBA cartridge header, 0 if none */
-
-/* TRUE when the cartridge in the GBA slot has this game code and maker
- * code, both in header byte order ("AWRE" reads as 0x45525741). */
-BOOL GbaCart_IsGame(u32 gameCode, u16 makerCode)
+/* TRUE when the cartridge in the GBA slot has this maker code and game code,
+ * both in header byte order (0x3130 is "01", 0x45525741 is "AWRE"). */
+BOOL GbaCart_IsGame(u32 makerCode, u32 gameCode)
 {
-    u32 cartGameCode;
     u16 cartMakerCode;
+    u32 cartGameCode;
 
     Cartridge_HeaderStillMatches();
-    func_0211e5ac();
-    cartGameCode = CTRDG_GetAgbMakerCode();
-    cartMakerCode = CTRDG_GetAgbGameCode();
-    if (cartGameCode == gameCode && cartMakerCode == makerCode) {
+    CTRDG_IsAgbCartridge();
+    cartMakerCode = CTRDG_GetAgbMakerCode();
+    cartGameCode = CTRDG_GetAgbGameCode();
+    if (cartMakerCode == makerCode && cartGameCode == gameCode) {
         return TRUE;
     }
     return FALSE;

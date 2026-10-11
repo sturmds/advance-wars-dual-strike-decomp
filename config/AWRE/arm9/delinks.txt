@@ -22347,6 +22347,10 @@ src/sdk/ctrdg/cartridge_has_gba_game.c:
     complete
     .text       start:0x0211e594 end:0x0211e5ac
 
+src/sdk/ctrdg/ctrdg_is_agb_cartridge.c:
+    complete
+    .text       start:0x0211e5ac end:0x0211e5e8
+
 src/game/main/func_0211e628.c:
     complete
     .text       start:0x0211e628 end:0x0211e648
