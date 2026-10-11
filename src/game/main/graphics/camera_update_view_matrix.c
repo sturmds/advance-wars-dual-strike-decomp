@@ -4,7 +4,7 @@
 
 void func_021096bc(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: rotation about Y */
 void func_021096d8(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: rotation about Z */
-void func_021096f4(MtxFx43 *a, MtxFx43 *b, MtxFx43 *dest);             /* SDK: 4x3 product */
+void MTX_Concat43(MtxFx43 *a, MtxFx43 *b, MtxFx43 *dest);             /* SDK: 4x3 product */
 void MI_Copy36B(MtxFx43 *src, MtxFx33 *dest);                       /* SDK: copy 36 bytes */
 void Matrix_Invert3x3(MtxFx33 *src, MtxFx33 *dest);                       /* SDK: 3x3 inverse */
 
@@ -26,9 +26,9 @@ void Camera_UpdateViewMatrix(Camera *camera)
     func_021096bc(&rotY, SIN(camera->rotY), COS(camera->rotY));
     func_021096d8(&rotZ, SIN(camera->rotZ), COS(camera->rotZ));
     MTX_Identity43(&camera->mtx43);
-    func_021096f4(&camera->mtx43, &rotX, &camera->mtx43);
-    func_021096f4(&camera->mtx43, &rotY, &camera->mtx43);
-    func_021096f4(&camera->mtx43, &rotZ, &camera->mtx43);
+    MTX_Concat43(&camera->mtx43, &rotX, &camera->mtx43);
+    MTX_Concat43(&camera->mtx43, &rotY, &camera->mtx43);
+    MTX_Concat43(&camera->mtx43, &rotZ, &camera->mtx43);
     Matrix_MoveAlongLocalAxes43(&camera->mtx43, &camera->mtx43, -camera->x, -camera->y, -camera->z);
     MI_Copy36B(&camera->mtx43, &rot);
     Matrix_Invert3x3(&rot, &camera->invRot);

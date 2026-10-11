@@ -20721,6 +20721,10 @@ src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
 
+src/sdk/fx/mtx_concat43.c:
+    complete
+    .text       start:0x021096f4 end:0x02109914
+
 src/sdk/fx/matrix_move_along_local_axes43.c:
     complete
     .text       start:0x02109ca8 end:0x02109d60
