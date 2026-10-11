@@ -13,7 +13,7 @@ void func_0200caf8(void);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Task_RunList(Task *task);
-void func_020044c4(void);
+void CallbackSlots_RunAll(void);
 void OamBuffer_FlushHead(void);
 void OamBuffer_FlushTail(void);
 void Screen_ApplyAll(void);
@@ -52,7 +52,7 @@ void MainLoop_DefaultVBlank(void)
         func_0200caf8();
     }
     ON_BOTH_SCREENS(Task_RunList(data_027c027c->taskLists[0]));
-    func_020044c4();
+    CallbackSlots_RunAll();
     ON_BOTH_SCREENS(OamBuffer_FlushHead());
     if (func_01ff9f0c()) {
         func_01ff9f1c(0);

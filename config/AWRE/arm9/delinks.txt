@@ -444,6 +444,10 @@ src/game/main/func_020044a8.c:
     complete
     .text       start:0x020044a8 end:0x020044c4
 
+src/game/main/callback_slots_run_all.c:
+    complete
+    .text       start:0x020044c4 end:0x02004510
+
 src/game/main/frame_callback_remove.c:
     complete
     .text       start:0x02004510 end:0x02004548

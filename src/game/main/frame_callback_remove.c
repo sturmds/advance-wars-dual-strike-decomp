@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern void (*gCallbackSlots[16])(void);   /* callbacks run by func_020044c4 */
+extern void (*gCallbackSlots[16])(void);   /* callbacks run by CallbackSlots_RunAll */
 
 /* Removes a callback from the list of 16; nothing happens if it is not there. */
 void FrameCallback_Remove(void (*callback)(void))
