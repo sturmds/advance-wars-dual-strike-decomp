@@ -3,7 +3,7 @@
 #include "game/menu_button.h"
 
 void MapSelect_LoadWarRoomRecords(void);
-void func_02063b2c(int list, int page);
+void MapSelect_DrawRecordMarkers(int list, int page);
 
 /* Starts the second slide of the map select (the strip at TABLES.unk_108),
  * 16 frames, and blocks the two arrow buttons until it ends. Reloads the
@@ -15,5 +15,5 @@ void MapSelect_StartSubSlide(int slideBack)
     MenuButton_DisableTouch(249);
     MenuButton_DisableTouch(248);
     MapSelect_LoadWarRoomRecords();
-    func_02063b2c(LIST_OF_TAB(TAB()), PAGE());
+    MapSelect_DrawRecordMarkers(LIST_OF_TAB(TAB()), PAGE());
 }
