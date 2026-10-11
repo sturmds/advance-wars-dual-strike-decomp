@@ -2139,6 +2139,7 @@ src/game/main/battle_save_clear_record_flag.c:
     .text       start:0x02019458 end:0x02019484
 
 src/game/main/battle_save_delete.c:
+    complete
     .text       start:0x02019484 end:0x020194e0
 
 src/game/main/save_unpack_progress.c:

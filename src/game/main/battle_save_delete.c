@@ -11,11 +11,11 @@ void *func_02103c84(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Drops battle save record recordId: clears its marker byte, then
+/* Deletes battle save record recordId (a guess from the callee): clears its marker byte, then
  * func_02020078 runs for the record. In game mode 0 it also calls
  * func_02103c84, which copies two words of gPlayRecords. Record 0 does
  * nothing. */
-void func_02019484(int recordId)
+void BattleSave_Delete(int recordId)
 {
     if (recordId == 0) {
         return;
