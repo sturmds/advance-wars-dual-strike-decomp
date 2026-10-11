@@ -13985,6 +13985,10 @@ src/game/main/units/unload_task_step.c:
     complete
     .text       start:0x020ce188 end:0x020ce2a0
 
+src/game/main/units/unit_play_unload_sound.c:
+    complete
+    .text       start:0x020ce2a0 end:0x020ce2d4
+
 src/game/main/units/unload_task_pick_tile.c:
     complete
     .text       start:0x020ce2d4 end:0x020ce58c

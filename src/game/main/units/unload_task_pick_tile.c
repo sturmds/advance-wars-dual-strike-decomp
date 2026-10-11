@@ -21,7 +21,7 @@ void UnitMenu_Open(void);
 int UnitPath_StopAtEnemy(int startX, int startY, int unitType, s8 *path, int end);
 int UnitPath_CountSteps(const s8 *path);
 void *UnitShowTask_CreateMoving(int x, int y, int owner, int unitType, void *arg);
-void func_020ce2a0(int unitType);
+void UnitType_PlayUnloadSound(int unitType);
 
 /* Bits NeighborTilePicker_Update returns: A and B. */
 #define INPUT_CONFIRM 0x10
@@ -78,5 +78,5 @@ void UnloadTask_PickTile(Task *task)
         }
     }
     Task_ResumeScript(task);
-    func_020ce2a0(cargo->type);
+    UnitType_PlayUnloadSound(cargo->type);
 }
