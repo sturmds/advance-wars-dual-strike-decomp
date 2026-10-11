@@ -24,8 +24,8 @@ void func_0200b9d8(const char *fileName, void *dest, int size);
  * half of the screen), then loads the graphics for the game language from
  * /national and a palette from /bmap: into the buffers of data_022a7c5c on
  * the screen that shows the 3D engine, into sprite VRAM and the palette buffer
- * on the other. Name kept: what the graphics show is unknown. */
-void func_020cfd5c(int screenX, int screenY, int animation, void *sprite)
+ * on the other, for the sprite of a ZoomSpriteTask. */
+void ZoomSprite_LoadGraphics(int screenX, int screenY, int animation, void *sprite)
 {
     if (screenX >= 128) {
         SpriteAnim_SetAnimation(sprite, animation + 1);

@@ -9875,7 +9875,7 @@ src/game/main/func_020cfd30.c:
     complete
     .text       start:0x020cfd30 end:0x020cfd5c
 
-src/game/main/func_020cfd5c.c:
+src/game/main/zoom_sprite_load_graphics.c:
     complete
     .text       start:0x020cfd5c end:0x020cfe70
 
