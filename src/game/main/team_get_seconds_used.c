@@ -11,7 +11,7 @@ extern int data_027c0284;
 
 /* Whole seconds on the timers (Player.unk_94, frames) of player 1 and every
  * player on its team. */
-u32 Team_GetSecondsUsed(void)
+u32 Team_GetSecondsUsed(int unused)
 {
     u32 seconds;
     int slot;
