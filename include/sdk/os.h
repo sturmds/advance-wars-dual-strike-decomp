@@ -144,6 +144,17 @@ typedef struct OSThreadInfo {
     OSThread *threads[16];
 } OSThreadInfo;
 
+/* Memory areas the OS hands out as heaps. */
+typedef enum OSArenaId {
+    OS_ARENA_MAIN = 0,
+    OS_ARENA_MAIN_SUBPRIV = 1,
+    OS_ARENA_MAINEX = 2,
+    OS_ARENA_ITCM = 3,
+    OS_ARENA_DTCM = 4,
+    OS_ARENA_SHARED = 5,
+    OS_ARENA_WRAM_MAIN = 6
+} OSArenaId;
+
 void OS_InitContext(OSContext *context, u32 pc, u32 sp);
 
 #define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */
