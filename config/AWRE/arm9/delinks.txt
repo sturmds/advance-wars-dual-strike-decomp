@@ -2038,9 +2038,17 @@ src/game/main/func_0201e954.c:
     complete
     .text       start:0x0201e954 end:0x0201e980
 
+src/game/main/menus/popup_menu_open_with_sound.c:
+    complete
+    .text       start:0x0201e980 end:0x0201e9d8
+
 src/game/main/menus/popup_menu_create.c:
     complete
     .text       start:0x0201e9d8 end:0x0201eb8c
+
+src/game/main/menus/popup_menu_open.c:
+    complete
+    .text       start:0x0201eb8c end:0x0201ebd8
 
 src/game/main/func_0201ece4.c:
     complete
