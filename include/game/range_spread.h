@@ -17,4 +17,7 @@ typedef struct RangeSpreadDot {
     s16 vy;
 } RangeSpreadDot;
 
+/* The dot count in Task.unk_64, read as the s16 the code uses. */
+#define RANGE_SPREAD_COUNT(task) (*(s16 *)&(task)->unk_64)
+
 #endif

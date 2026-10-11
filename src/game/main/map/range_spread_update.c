@@ -39,14 +39,14 @@ void RangeSpread_Update(Task *task)
     }
     task->unk_66++;
     if (data_027c027c == data_027c0288.unk_00) {
-        if ((s16)task->unk_64 > RANGE_SPREAD_MAX_DOTS) {
+        if (RANGE_SPREAD_COUNT(task) > RANGE_SPREAD_MAX_DOTS) {
             return;
         }
         func_020224ec();
-    } else if ((s16)task->unk_64 > 16) {
+    } else if (RANGE_SPREAD_COUNT(task) > 16) {
         return;
     }
-    for (i = 0; i < (s16)task->unk_64; i++) {
+    for (i = 0; i < RANGE_SPREAD_COUNT(task); i++) {
         dots[i].x += dots[i].vx;
         dots[i].y += dots[i].vy;
         if (data_027c027c == data_027c0288.unk_00) {
