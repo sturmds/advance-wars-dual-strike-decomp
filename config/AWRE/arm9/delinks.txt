@@ -21256,6 +21256,13 @@ src/game/main/func_0210e0c0.c:
     complete
     .text       start:0x0210e0c0 end:0x0210e0d4
 
+src/sdk/os/func_0210e188.c:
+    .text       start:0x0210e188 end:0x0210e1d4
+
+src/sdk/os/os_alloc_from_arena_lo.c:
+    complete
+    .text       start:0x0210e1d4 end:0x0210e25c
+
 src/game/main/func_0210e25c.c:
     complete
     .text       start:0x0210e25c end:0x0210e270
