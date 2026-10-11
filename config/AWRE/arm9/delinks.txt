@@ -18529,6 +18529,9 @@ src/game/main/graphics/bg0_anim_task_update.c:
     complete
     .text       start:0x020f934c end:0x020f9450
 
+src/game/main/map/func_020f9450.c:
+    .text       start:0x020f9450 end:0x020f9540
+
 src/game/main/func_020f9540.c:
     complete
     .text       start:0x020f9540 end:0x020f954c
