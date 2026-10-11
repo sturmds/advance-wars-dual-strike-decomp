@@ -723,6 +723,10 @@ src/game/main/screen/screen_blend_darken_start.c:
     complete
     .text       start:0x02007494 end:0x02007510
 
+src/game/main/screen/screen_fill_white.c:
+    complete
+    .text       start:0x02007510 end:0x02007568
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710

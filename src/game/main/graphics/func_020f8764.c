@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_02007568(void);
-void func_02007510(void);
+void Screen_FillWhite(void);
 void func_01ffd7b8(void);
 void func_0200a740(void *a);
 void func_02009ac0(void);
@@ -26,7 +26,7 @@ void func_020f8764(int mode)
         func_02007568();
     }
     if (mode == 0) {
-        func_02007510();
+        Screen_FillWhite();
     }
     func_01ffd7b8();
     func_0200a740(data_02166dc8);
