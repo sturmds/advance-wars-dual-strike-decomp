@@ -19,7 +19,7 @@ BOOL func_020fc698(void);
 
 /* Stops the sound, then sets up the wireless host with a 0xc000-byte work
  * area and state 3. */
-void func_020fc98c(void)
+void DownloadPlay_Start(void)
 {
     u32 tick;
 
