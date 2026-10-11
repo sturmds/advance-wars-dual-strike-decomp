@@ -6,7 +6,7 @@ int func_02091538(void);
 int AiTurn_TryBuildLander(void);
 int AiTurn_TryBuildBlackBoatTransport(void);
 int AiTurn_TryBuildBlackBoat(void);
-int func_020913e8(void);
+int AiTurn_TryBuildApc(void);
 
 /* End-actions step 8. Tries five sub-steps in order and returns 1 at the first
  * one that returns 1 (needs another frame). Their purposes are not known. */
@@ -25,5 +25,5 @@ BOOL func_02090154(void)
     if (AiTurn_TryBuildBlackBoat() == 1) {
         return 1;
     }
-    return func_020913e8() == 1;
+    return AiTurn_TryBuildApc() == 1;
 }
