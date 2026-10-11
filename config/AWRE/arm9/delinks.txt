@@ -2098,6 +2098,10 @@ src/game/main/func_02018e84.c:
     complete
     .text       start:0x02018e84 end:0x02018ea0
 
+src/game/main/save_load_combat_setup.c:
+    complete
+    .text       start:0x02018ea0 end:0x02018f0c
+
 src/game/main/battle_save_restore.c:
     complete
     .text       start:0x02018f80 end:0x0201912c

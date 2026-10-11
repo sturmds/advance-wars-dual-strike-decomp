@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-void func_02018ea0(void);
+void Save_LoadCombatSetup(void);
 void func_020305e4(void);
 void func_02103714(void);
 void func_02082a5c(void);
@@ -12,7 +12,7 @@ void func_02082a5c(void);
 void func_0208af80(Task *task)
 {
     if (task->unk_52 != 0) {
-        func_02018ea0();
+        Save_LoadCombatSetup();
         func_020305e4();
         func_02103714();
     } else {
