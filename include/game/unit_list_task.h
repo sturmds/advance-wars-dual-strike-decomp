@@ -13,11 +13,11 @@ typedef struct UnitListTask {
     u8 topRow;                         /* first list row on screen */
     u8 scrollDelay;                    /* frames until scroll takes its next step */
     u8 unitCount;                      /* from UnitList_ClearAndCount */
-    u8 unk_2f;                         /* set to 10 when the menu opens */
-    u8 unk_30;                         /* set to 10 when the menu opens */
+    u8 upRepeatDelay;                  /* frames until the held up button scrolls again: 10, then 4 */
+    u8 downRepeatDelay;                /* same for the down button */
     u8 pad_31[0x34 - 0x31];
-    int unk_34;
-    int unk_38;
+    int upTouched;                     /* the up button was touched last frame */
+    int downTouched;
     u16 pickedSlot;                    /* gUnitListRows entry of the row picked with A (UnitList_PickRow) */
 } UnitListTask;
 

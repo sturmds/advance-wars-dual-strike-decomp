@@ -12,7 +12,7 @@ typedef struct VsSetupSlotTask {
     u8 pad_34[0x4c - 0x34];
     s16 frame;                         /* frames since the step started */
     u8 pad_4e[0x52 - 0x4e];
-    u16 id;                            /* 25 + slot */
+    u16 matrix;                        /* 25 + slot: OAM affine matrix of the slot sprite */
 } VsSetupSlotTask;
 
 #endif

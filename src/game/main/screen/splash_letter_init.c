@@ -6,8 +6,8 @@ void SplashLetter_Init(SplashTask *task)
 {
     task->x = (task->letterIndex * 4 + 8) * 8;
     task->y = 80;
-    task->unk_33 = 80;
-    task->unk_35 = 0;
-    task->unk_37 = 0;
-    task->unk_30 = 0;
+    task->height = 80;
+    task->bounces = 0;
+    task->restedOnce = 0;
+    task->letterState = 0;
 }

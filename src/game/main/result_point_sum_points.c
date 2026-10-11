@@ -12,8 +12,8 @@ void ResultPoint_SumPoints(ResultPointTask *task)
     int i;
 
     task->frame = 0;
-    task->unk_34 = 0;
-    task->unk_38 = 0;
+    task->tallyPopFrame = 0;
+    task->countStep = 0;
     data_0229c734->tally = 0;
     task->totalPoints = 0;
     for (i = 0; i < SCORE_ROW_COUNT; i++) {

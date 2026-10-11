@@ -53,7 +53,7 @@ typedef struct Player {
     u8 comTowers;                      /* Com Towers owned */
     u8 propertyCount;                  /* properties owned (func_020c4448 counts them) */
     u16 defeated;                      /* nonzero once the player is out (Player_IsInGame) */
-    u8 unk_18;                         /* cleared by Players_Reset */
+    u8 defeatCode;                     /* why the player went out (LinkPlayer_MarkDefeated); cleared by Players_Reset */
     u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (Players_ApplyBattleSetup) */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 visionGrids;                    /* vision grids its sight goes into, bit n for grid visionGrid<n> (game/vision.h); Players_AssignVisionGrids sets it each turn */

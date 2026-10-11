@@ -52,10 +52,10 @@ void UnitList_Init(UnitListTask *task)
     task->topRow = 0;
     task->scrollDelay = 0;
     task->pickedSlot = 0;
-    task->unk_2f = 10;
-    task->unk_30 = 10;
-    task->unk_34 = 0;
-    task->unk_38 = 0;
+    task->upRepeatDelay = 10;
+    task->downRepeatDelay = 10;
+    task->upTouched = 0;
+    task->downTouched = 0;
     UnitList_Build(task->sortMode, task->reverse);
     Gfx_ClearLayerMap(0);
     Gfx_ClearLayerMap(1);

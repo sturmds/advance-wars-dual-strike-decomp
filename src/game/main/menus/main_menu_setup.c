@@ -164,7 +164,7 @@ void MainMenu_Setup(MainMenuTask *task)
     Mem_Free(res);
 
     data_021599d0->slide = 0;
-    data_021599d0->unk_10_3 = 0;
+    data_021599d0->flipFrames = 0;
     NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x940);

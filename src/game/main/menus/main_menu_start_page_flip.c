@@ -14,7 +14,7 @@ void MainMenu_StartPageFlip(int page, int slide)
     }
     data_021599d0->prevPage = data_021599d0->page;
     data_021599d0->nextPage = page;
-    data_021599d0->unk_10_3 = 16;
+    data_021599d0->flipFrames = 16;
     data_021599d0->slide = slide;
     MenuButtons_RemoveSelectable();
     func_0202dd28();

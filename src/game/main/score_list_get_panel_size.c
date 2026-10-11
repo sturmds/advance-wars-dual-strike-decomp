@@ -11,7 +11,7 @@ int ScoreList_GetPanelSize(int points)
     int size = 40;
 
     if (ScoreList_HasMoreRows() == 1) {
-        points = data_0229c734->unk_98;
+        points = data_0229c734->pageMaxPoints;
     } else {
         size -= 16;
     }

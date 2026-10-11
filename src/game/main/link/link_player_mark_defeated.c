@@ -16,13 +16,13 @@ extern int data_027c0284;
 #define DEFEAT_CODE_2        2
 
 /* Marks player out of the battle: Player.defeated gets the current day and
- * Player.unk_18 the defeat code. Then counts the defeat in gPlayRecords: a
+ * Player.defeatCode the defeat code. Then counts the defeat in gPlayRecords: a
  * human player beaten outside Survival, and a defeat of another player on a
  * human player's turn. */
 void LinkPlayer_MarkDefeated(int player, int code)
 {
     STATE->players[player].defeated = STATE->day;
-    STATE->players[player].unk_18 = code;
+    STATE->players[player].defeatCode = code;
     if (STATE->gameMode != GAME_MODE_SURVIVAL && STATE->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
         if (gPlayRecords.unk_410 < RECORD_MAX) {
             gPlayRecords.unk_410++;

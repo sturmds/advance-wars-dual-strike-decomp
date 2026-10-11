@@ -22,7 +22,7 @@ void Players_Reset(void)
         STATE->players[slot].unk_04 = 0;
         STATE->players[slot].damageTaken = 0;
         STATE->players[slot].propertyCount = 0;
-        STATE->players[slot].unk_18 = 0;
+        STATE->players[slot].defeatCode = 0;
         STATE->players[slot].defeated = 0;
         STATE->players[slot].turnKills = 0;
         STATE->players[slot].mostTurnKills = 0;

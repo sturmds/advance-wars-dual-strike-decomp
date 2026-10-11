@@ -23,12 +23,12 @@ typedef struct Unk_0229c734 {
     u8 *gfxFile;                       /* /ohashi/res_result_point_obj */
     u16 nextTile;                      /* next free OBJ tile */
     u16 paletteSlot;                   /* first OBJ palette used */
-    u16 unk_98;
+    u16 pageMaxPoints;                 /* most points of a row on the shown page (ScoreList_UpdatePageMax) */
     s16 tally;                         /* points counted up on the result screen, later handed out to the COs (CoExp_TallyStep) */
     u8 firstRow;                       /* first score row on the shown page */
     u8 pageRowCount;                   /* rows on the shown page; also set by func_0203b194 */
     u8 topMargin;                      /* pixels above the first row, centring the page */
-    u8 unk_9f;
+    u8 pageIndex;                      /* page the tally counts; 0: the first */
     u8 rowCount;
     u8 nations[2];                     /* Co_GetNation of the two COs in data_02160abc */
     u8 pad_a3[0xa4 - 0xa3];
@@ -39,9 +39,9 @@ typedef struct Unk_0229c734 {
 typedef struct ResultPointTask {
     u8 pad_00[0x32];
     s16 frame;                         /* frames the current slide has run */
-    s16 unk_34;
+    s16 tallyPopFrame;                 /* frame of the tally's pop-in (ResultPoint_DrawTallyPopIn) */
     s16 totalPoints;                   /* sum of the points of the rows in use */
-    s16 unk_38;
+    s16 countStep;                     /* points value the tally has counted up to on this page */
     s16 value;                         /* set by ResultPoint_RestartScript; the slide's frame count */
     u8 rank;                           /* ScoreList_GetPanelSize of totalPoints */
 } ResultPointTask;

@@ -27,7 +27,7 @@ void Gfx3d_SetOrthoCentered(void);
 
 extern s16 data_0214d4c4[];            /* a sine and cosine pair per 16 angle units */
 
-/* Per-frame 3D drawing of the main menu. While a page flip runs (unk_10_3
+/* Per-frame 3D drawing of the main menu. While a page flip runs (flipFrames
  * counts its 16 frames down), turns the page by up to a quarter turn each
  * way, with G3_RotY for slides 2 and 3 and G3_RotX otherwise.
  * Halfway through it builds the next page; on the last frame it puts the
@@ -39,20 +39,20 @@ void MainMenu_DrawFrame(void)
     u16 angle;
 
     Gfx3d_InitScene();
-    if (data_021599d0->unk_10_3 != 0) {
-        data_021599d0->unk_10_3--;
+    if (data_021599d0->flipFrames != 0) {
+        data_021599d0->flipFrames--;
         slide = data_021599d0->slide;
         if (slide == 3 || slide == 0) {
-            if (data_021599d0->unk_10_3 < 8) {
-                angle = data_021599d0->unk_10_3 << 11;
+            if (data_021599d0->flipFrames < 8) {
+                angle = data_021599d0->flipFrames << 11;
             } else {
-                angle = (data_021599d0->unk_10_3 - 16) << 11;
+                angle = (data_021599d0->flipFrames - 16) << 11;
             }
         } else {
-            if (data_021599d0->unk_10_3 < 8) {
-                angle = -data_021599d0->unk_10_3 << 11;
+            if (data_021599d0->flipFrames < 8) {
+                angle = -data_021599d0->flipFrames << 11;
             } else {
-                angle = -(data_021599d0->unk_10_3 - 16) << 11;
+                angle = -(data_021599d0->flipFrames - 16) << 11;
             }
         }
         if (slide == 2 || slide == 3) {
@@ -60,7 +60,7 @@ void MainMenu_DrawFrame(void)
         } else {
             G3_RotX(data_0214d4c4[(angle >> 4) * 2], data_0214d4c4[(angle >> 4) * 2 + 1]);
         }
-        if (data_021599d0->unk_10_3 == 8) {
+        if (data_021599d0->flipFrames == 8) {
             switch (data_021599d0->nextPage) {
             case 0:
                 MainMenu_BuildPage0();
@@ -109,10 +109,10 @@ void MainMenu_DrawFrame(void)
         } else {
             MainMenu_DrawPage();
         }
-        if (data_021599d0->unk_10_3 == 1) {
+        if (data_021599d0->flipFrames == 1) {
             lastStep = TRUE;
         }
-        if (data_021599d0->unk_10_3 == 0) {
+        if (data_021599d0->flipFrames == 0) {
             MainMenu_AddEntryButtons();
             func_0202dd04();
         }

@@ -43,8 +43,8 @@ void ResultPoint_Init(int firstTile, int paletteSlot)
     data_0229c734->firstRow = 0;
     data_0229c734->pageRowCount = 0;
     data_0229c734->topMargin = 0;
-    data_0229c734->unk_9f = 0;
-    data_0229c734->unk_98 = 0;
+    data_0229c734->pageIndex = 0;
+    data_0229c734->pageMaxPoints = 0;
     data_0229c734->rowCount = 0;
     data_0229c734->unk_a4 = 1;
 }

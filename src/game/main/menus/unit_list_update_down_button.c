@@ -24,22 +24,22 @@ void UnitList_UpdateDownButton(MenuButton *button)
     if ((u8)(button->touchState + 255) <= 1) {
         touching = 1;
     }
-    wasTouching = task->unk_38;
+    wasTouching = task->downTouched;
     if (wasTouching == 0) {
         if (touching == 1) {
             scrollNow = 1;
         }
     }
     if (touching == 1 && wasTouching == 1) {
-        task->unk_30--;
-        if (task->unk_30 == 0) {
-            task->unk_30 = 4;
+        task->downRepeatDelay--;
+        if (task->downRepeatDelay == 0) {
+            task->downRepeatDelay = 4;
             scrollNow = 1;
         }
     } else {
-        task->unk_30 = 10;
+        task->downRepeatDelay = 10;
     }
-    task->unk_38 = touching;
+    task->downTouched = touching;
     if (scrollNow == 1) {
         UnitList_ScrollDown(task);
     }

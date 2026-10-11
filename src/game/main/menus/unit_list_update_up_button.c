@@ -23,22 +23,22 @@ void UnitList_UpdateUpButton(MenuButton *button)
     if ((u8)(button->touchState + 255) <= 1) {
         touching = 1;
     }
-    wasTouching = task->unk_34;
+    wasTouching = task->upTouched;
     if (wasTouching == 0) {
         if (touching == 1) {
             scrollNow = 1;
         }
     }
     if (touching == 1 && wasTouching == 1) {
-        task->unk_2f--;
-        if (task->unk_2f == 0) {
-            task->unk_2f = 4;
+        task->upRepeatDelay--;
+        if (task->upRepeatDelay == 0) {
+            task->upRepeatDelay = 4;
             scrollNow = 1;
         }
     } else {
-        task->unk_2f = 10;
+        task->upRepeatDelay = 10;
     }
-    task->unk_34 = touching;
+    task->upTouched = touching;
     if (scrollNow == 1) {
         UnitList_ScrollUp(task);
     }

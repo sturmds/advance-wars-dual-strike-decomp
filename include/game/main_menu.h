@@ -29,7 +29,7 @@ typedef struct MainMenu {
     u8 nextPage : 4;                   /* page to show after the slide */
     u8 unk_0f_4 : 4;
     u8 slide : 3;                      /* 2: slide left, 3: slide right */
-    u8 unk_10_3 : 5;
+    u8 flipFrames : 5;                 /* page flip frames left, from 16 */
     u8 unk_11;                         /* bit 0 cleared by MainMenu_ClearCursors */
 } MainMenu;
 

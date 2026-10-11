@@ -29,5 +29,5 @@ void VsSetup_StartPlayerTask(int slot, u16 x, int y)
     }
     task->x = x;
     task->y = y;
-    task->id = slot + 25;
+    task->matrix = slot + 25;
 }

@@ -17,7 +17,7 @@ extern s16 gSineTable[];            /* index 64 = cosine of 0 */
 
 /* Step of the player slot task scripts (gVsSetupSlot0TaskScript and the next three).
  * Over frames 0 to 3 it draws sprite tile 0x634 through affine matrix
- * task->id while the scale eases from 512 to 256, so the sprite grows from
+ * task->matrix while the scale eases from 512 to 256, so the sprite grows from
  * half to full size. From frame 4 on it draws the sprite without the matrix
  * and waits for VsSetup_ResumePlayerTask. Nothing is drawn while
  * setup.unk_2ea is 2. */
@@ -43,10 +43,10 @@ void VsSetupSlotTask_GrowIn(VsSetupSlotTask *task)
             int sinValue = gSineTable[0];
             int cosValue = gSineTable[64] << 4;
 
-            Oam_SetAffineParams(task->id, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1),
+            Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1),
                                 HwDiv32(sinValue << 4, d2), HwDiv32(cosValue, d3));
             /* 0x300 sets OAM attribute 0 bits 8-9: affine, double size */
-            Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->id << 9), ((task->y - 8) & 0xff) | 0x300,
+            Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->matrix << 9), ((task->y - 8) & 0xff) | 0x300,
                          &data_027c0060, 0xe000, 0x634);
         }
         task->frame++;

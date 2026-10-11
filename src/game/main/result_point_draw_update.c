@@ -10,7 +10,7 @@ void ResultPoint_DrawBar(int x, int y);
  * x 8. */
 void ResultPoint_DrawUpdate(ResultPointTask *task)
 {
-    ResultPoint_DrawRows(8, 16, task->unk_38);
+    ResultPoint_DrawRows(8, 16, task->countStep);
     ResultPoint_DrawBar(8, 160);
     ResultPoint_DrawPanel(8, 160, data_0229c734->tally);
 }
