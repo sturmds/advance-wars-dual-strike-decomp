@@ -8382,6 +8382,7 @@ src/game/main/link/link_screen_on_player_button_confirm.c:
     .text       start:0x020728c4 end:0x0207291c
 
 src/game/main/link/link_screen_handle_keys.c:
+    complete
     .text       start:0x0207291c end:0x020729c4
 
 src/game/main/func_020729c4.c:
@@ -8392,11 +8393,11 @@ src/game/main/link/link_screen_push_ready.c:
     complete
     .text       start:0x020729d8 end:0x020729ec
 
-src/game/main/func_020729ec.c:
+src/game/main/link/link_screen_push_move_down.c:
     complete
     .text       start:0x020729ec end:0x02072a00
 
-src/game/main/func_02072a00.c:
+src/game/main/link/link_screen_push_move_up.c:
     complete
     .text       start:0x02072a00 end:0x02072a14
 
