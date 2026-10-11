@@ -14217,6 +14217,10 @@ src/game/main/func_020fbb44.c:
     complete
     .text       start:0x020fbb44 end:0x020fbb58
 
+src/game/main/screen/screen_add_corner_index.c:
+    complete
+    .text       start:0x020fbd24 end:0x020fbd4c
+
 src/game/main/func_020fc134.c:
     complete
     .text       start:0x020fc134 end:0x020fc160
