@@ -7408,6 +7408,14 @@ src/game/main/menus/map_select_add_map_buttons.c:
     complete
     .text       start:0x0205dea0 end:0x0205e168
 
+src/game/main/menus/map_select_on_map_button.c:
+    complete
+    .text       start:0x0205e168 end:0x0205e1a0
+
+src/game/main/menus/map_select_cancel.c:
+    complete
+    .text       start:0x0205e1a0 end:0x0205e224
+
 src/game/main/menus/map_select_pick_map.c:
     complete
     .text       start:0x0205e224 end:0x0205e5ac

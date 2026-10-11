@@ -1,0 +1,29 @@
+#include "types.h"
+#include "game/map_select.h"
+
+u32 func_0207bd80(void);
+void EventQueue_Push(int id, int arg);
+/* Cancel handler: undoes the first pick of a two-map battle if there is one,
+ * otherwise leaves the screen (func_0205d56c). In link mode the request is
+ * queued as event 8 or 6 instead. */
+void MapSelect_CancelFirstMap(void);
+void func_0205d56c(void);
+
+extern MenuStateFrom400 data_0229ef30;
+
+void MapSelect_Cancel(void)
+{
+    if (data_0229ef30.unk_4fc != 0) {
+        if (func_0207bd80() == 1) {
+            EventQueue_Push(8, 0);
+        } else {
+            MapSelect_CancelFirstMap();
+        }
+    } else {
+        if (func_0207bd80() == 1) {
+            EventQueue_Push(6, 0);
+        } else {
+            func_0205d56c();
+        }
+    }
+}
