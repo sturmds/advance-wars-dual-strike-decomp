@@ -5,7 +5,7 @@
 u32 File_UnpackTo(void *dest, const char *path);
 u8 Player_GetArmyStyle(int playerIndex);
 void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
-void func_0210c930(void);              /* guess: undoes func_0210cb04 */
+void GX_EndLoadTex(void);              /* guess: undoes func_0210cb04 */
 BOOL Battle_IsSideSea(int side);     /* TRUE: the side's unit is a naval unit */
 
 extern char data_ov002_0236038c[];
@@ -213,5 +213,5 @@ void Battle_LoadSideBackgrounds(void)
         File_UnpackTo((void *)(VRAM_LCDC_A + (isFirst ? 512 : 640) * 32), mapFile);
         File_UnpackTo((void *)(VRAM_LCDC_A + (isFirst ? 0 : 256) * 32), tileFile);
     }
-    func_0210c930();
+    GX_EndLoadTex();
 }

@@ -25,6 +25,14 @@ extern int data_022a9898;
 extern int data_022a98ac;
 extern int data_022a98a8;
 
+/* State of the texture image load (set by func_0210cb04, the Begin function):
+ * the banks mapped for loading, and three LCDC addresses taken from the bank
+ * mask. What each address stands for is not worked out yet. */
+extern int data_022a98b0;
+extern int data_022a98a4;
+extern int data_022a98b4;
+extern int data_022a98b8;
+
 /* Waits until the DMA channel is idle (best guess: MI_WaitDma). */
 void func_0210f034(int dmaNo);
 /* Starts a DMA copy (best guess: MI_DmaCopy32 with callback arguments 0, 0). */

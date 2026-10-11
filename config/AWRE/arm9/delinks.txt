@@ -20953,6 +20953,10 @@ src/sdk/gx/gx_begin_load_tex_pltt.c:
     complete
     .text       start:0x0210c8e8 end:0x0210c930
 
+src/sdk/gx/gx_end_load_tex.c:
+    complete
+    .text       start:0x0210c930 end:0x0210c9a0
+
 src/sdk/os/func_0210cb84.c:
     complete
     .text       start:0x0210cb84 end:0x0210cba0

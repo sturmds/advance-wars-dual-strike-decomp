@@ -59,7 +59,7 @@ s8 func_021023e4(void);
 void GX_EndLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTexPltt(void);
-void func_0210c930(void);
+void GX_EndLoadTex(void);
 void func_0210cb04(void);
 void DC_FlushRange(const void *start, u32 size);
 
@@ -105,7 +105,7 @@ void func_0202f0d8(MainMenuTask *task)
     res = File_Load(File_LocalizePath(data_02159bec));
     func_0210cb04();
     Data_Unpack(res, (void *)0x06800000);
-    func_0210c930();
+    GX_EndLoadTex();
     DC_FlushRange(res + 0x5c78, 32);
     GX_BeginLoadTexPltt();
     GX_LoadTexPltt(res + 0x5c78, 0x240, 32);

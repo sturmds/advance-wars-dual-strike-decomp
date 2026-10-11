@@ -17,7 +17,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void File_UnpackTo(void *dest, const char *fileName);
 void GX_EndLoadTexPltt(void);
 void GX_BeginLoadTexPltt(void);
-void func_0210c930(void);
+void GX_EndLoadTex(void);
 void func_0210cb04(void);
 
 #define STATE data_ov003_02364928
@@ -112,7 +112,7 @@ void Ov003_LoadGraphics(u8 *res)
     for (i = 0; i < STATE->rowCount; i++) {
         Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * 128, (void *)(((8 + i * 4) << 5) + VRAM_LCDC_A), 0x80);
     }
-    func_0210c930();
+    GX_EndLoadTex();
 
     GX_BeginLoadTexPltt();
     Mem_Copy32(res + 0x1a90, (void *)VRAM_LCDC_F, 0x160);

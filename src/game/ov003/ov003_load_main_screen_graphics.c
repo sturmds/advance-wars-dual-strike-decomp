@@ -7,7 +7,7 @@ extern MenuState gMenuState;
 void Data_Unpack(const void *src, void *dst);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void func_0210cb04(void);
-void func_0210c930(void);
+void GX_EndLoadTex(void);
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 
@@ -33,7 +33,7 @@ void Ov003_LoadMainScreenGraphics(u8 *file, void *localizedFile)
     Data_Unpack(file + 0x2310, VRAM_LCDC_A(0x9a20));
     Data_Unpack(file + 0x24f0, VRAM_LCDC_A(0x9ca0));
     Data_Unpack(file + 0x1d30, VRAM_LCDC_A(0xa4a0));
-    func_0210c930();
+    GX_EndLoadTex();
     GX_BeginLoadTexPltt();
     Mem_Copy32(file + 0x1084, VRAM_LCDC_F(0x160), 160);
     Mem_Copy32(file + 0x1084, &gMenuState, 160);

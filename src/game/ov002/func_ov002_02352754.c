@@ -10,7 +10,7 @@ extern MenuState gMenuState;
 u32 File_UnpackTo(void *dest, const char *path);
 int FS_ChangeDir(const char *path);
 void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
-void func_0210c930(void);              /* guess: undoes func_0210cb04 */
+void GX_EndLoadTex(void);              /* guess: undoes func_0210cb04 */
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
@@ -210,7 +210,7 @@ void func_ov002_02352754(void)
         || BATTLE_SIDE_UNIT_TYPE(0) == UNIT_TYPE_30 || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_TYPE_30) {
         tile += LOAD_TILES(data_ov002_023604a0);
     }
-    func_0210c930();
+    GX_EndLoadTex();
     GX_BeginLoadTexPltt();
     menu = &gMenuState;
 

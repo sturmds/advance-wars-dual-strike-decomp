@@ -6,7 +6,7 @@ void File_ReadTo(void *dest, const char *fileName);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210cb04(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM, between begin and end calls */
-void func_0210c930(void);
+void GX_EndLoadTex(void);
 void GX_BeginLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
 void GX_EndLoadTexPltt(void);
@@ -37,14 +37,14 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0, 0x8000);
-    func_0210c930();
+    GX_EndLoadTex();
 
     File_UnpackTo(buffer, gRikiishiFile0a6);
     File_UnpackTo(buffer + 0x4000, gRikiishiFile0a7);
     DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0x8000, 0x8000);
-    func_0210c930();
+    GX_EndLoadTex();
 
     File_UnpackTo(buffer, gRikiishiFile0aa);
     File_UnpackTo(buffer + 0x1000, gRikiishiFile0ab);
@@ -56,7 +56,7 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0x10000, 0x8000);
-    func_0210c930();
+    GX_EndLoadTex();
 
     File_ReadTo(buffer, gRikiishiFile0a5);
     File_ReadTo(buffer + 0xa0, gRikiishiFile0a8);
