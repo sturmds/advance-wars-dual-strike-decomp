@@ -63,3 +63,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0033](0033-collect-crash-empty-result.md) | `loop_state.py collect` crashed on a RESULT line with no value | closed | loop | M1 |
 | [0034](0034-planner-overlaps-open-groups.md) | The planner puts functions of open groups into the next batch | open | loop | M1 |
 | [0035](0035-family-groups-skip-propagate.md) | Family groups do not run `propagate.py` on their twins | open | loop | M1 |
+| [0036](0036-agents-share-session-scratchpad.md) | Agents wrote scratch files into the shared session scratchpad | open | loop | M1 |
+| [0037](0037-duplicate-structs-across-groups.md) | Groups that work on the same object define separate structs for it | open | decomp | M2 |
