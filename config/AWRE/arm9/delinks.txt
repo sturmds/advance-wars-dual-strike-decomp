@@ -20123,6 +20123,10 @@ src/game/main/sound/sound_stream_unlock_channels.c:
     complete
     .text       start:0x02108870 end:0x021088b8
 
+src/game/main/sound/sound_stream_lock_channels.c:
+    complete
+    .text       start:0x021088b8 end:0x021088f8
+
 src/game/main/sound/sound_stream_stop.c:
     complete
     .text       start:0x021089f4 end:0x02108a58
