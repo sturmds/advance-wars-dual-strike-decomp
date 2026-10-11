@@ -33,14 +33,20 @@ typedef struct WMCallback {
 
 /* WMCallback.errcode values. */
 #define WM_ERRCODE_SUCCESS 0
+#define WM_ERRCODE_FAILED 1
 #define WM_ERRCODE_OPERATING 2             /* the command was sent and its callback will follow */
 #define WM_ERRCODE_ILLEGAL_STATE 3
 #define WM_ERRCODE_WM_DISABLE 4            /* the ARM7 side of WM is not running */
+#define WM_ERRCODE_NO_DATASET 5
 #define WM_ERRCODE_INVALID_PARAM 6
 #define WM_ERRCODE_NO_CHILD 7
 #define WM_ERRCODE_FIFO_ERROR 8
 #define WM_ERRCODE_TIMEOUT 9
+#define WM_ERRCODE_SEND_QUEUE_FULL 10
+#define WM_ERRCODE_NO_ENTRY 11
+#define WM_ERRCODE_OVER_MAX_ENTRY 12
 #define WM_ERRCODE_INVALID_POLLBITMAP 13
+#define WM_ERRCODE_NO_DATA 14
 #define WM_ERRCODE_SEND_FAILED 15
 #define WM_ERRCODE_FLASH_ERROR 19          /* the ARM7 could not read the wireless firmware */
 

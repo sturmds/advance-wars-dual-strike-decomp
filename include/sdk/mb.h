@@ -152,6 +152,16 @@ typedef struct DlPlayBufferArea {
     DlPlayStationArea parent;
 } DlPlayBufferArea;
 
+/* Event types of the parent's callbacks (errorCallback, MbParent_CommCallback). */
+#define DLPLAY_EVENT_CHILD_JOINED 0
+#define DLPLAY_EVENT_CHILD_LEFT 1
+#define DLPLAY_EVENT_HOST_FRAME_IN 3
+#define DLPLAY_EVENT_SHUTDOWN_DONE 17
+#define DLPLAY_EVENT_STARTUP_DONE 21
+#define DLPLAY_EVENT_MAY_TRANSMIT 25
+#define DLPLAY_EVENT_BEACON_OUT 28
+#define DLPLAY_EVENT_RADIO_FAULT_OLD 0x100         /* a WM call failed; the argument is its WMCallback */
+
 /* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
 #define DLPLAY_EVENT_RADIO_FAULT 0xff
 #define DLPLAY_EVENT_PORT_DATA 9            /* data arrived on the MB port */
@@ -281,17 +291,27 @@ typedef struct DlPlayWorkerArea {
 #define DLPLAY_NOTHING_TRANSMITTED 21           /* one past the last WM error code: nothing was sent */
 
 /* commState values, one per child. */
+#define DLPLAY_CHILD_UNUSED 0
+#define DLPLAY_CHILD_LINK_READY 1
 #define DLPLAY_CHILD_JOINED 2
+#define DLPLAY_CHILD_GONE 3
 #define DLPLAY_CHILD_REFUSED 4
 #define DLPLAY_CHILD_ADMITTED 5
 #define DLPLAY_CHILD_RECEIVING 6
 #define DLPLAY_CHILD_HAS_PROGRAM 7
 #define DLPLAY_CHILD_TOLD_TO_BOOT 8
+#define DLPLAY_CHILD_CAN_BOOT 9
 #define DLPLAY_CHILD_ASKED_FILE 10
 #define DLPLAY_CHILD_NO_ROOM 11
 #define DLPLAY_CHILD_FINISHED 12
 #define DLPLAY_CHILD_FAULT 13
 #define DLPLAY_CHILD_AWAITING_START 14
+
+/* Error codes sent with DLPLAY_CHILD_FAULT. */
+#define DLPLAY_FAULT_RADIO_CALL 8
+#define DLPLAY_FAULT_UNRECOVERABLE 9
+
+#define DLPLAY_NO_FILE_CHOSEN (-1)               /* childFiles value: no file picked */
 
 /* Message types the parent sends. */
 #define DLPLAY_TO_CHILD_EMPTY 0
@@ -424,7 +444,7 @@ typedef struct DlPlayWorkerJob {
 /* One file the parent offers. */
 typedef struct DlPlayOfferedFile {
     u8 dlFileInfo[DLPLAY_LAYOUT_SENT_BYTES];
-    u8 pad_0e4[0x5a4 - 0xe4];
+    DlPlayGameEntry gameInfo;               /* the beacon entry for this file */
     u32 segmentOffsets[5];             /* block table: where each segment starts in the file */
     DlPlayGameSource *registry;
     u8 pad_5bc[4];
@@ -462,6 +482,7 @@ typedef struct DlPlayHostLinkArea {
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
     u8 pad_74c8[0x7ce0 - 0x74c8];
     DlPlayWorkerJob task;
+    u8 pad_7cf8[0x7d00 - 0x7cf8];
 } DlPlayHostLinkArea;
 
 int MbComm_IsChildAid(u32 aid);

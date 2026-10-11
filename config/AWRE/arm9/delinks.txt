@@ -22727,6 +22727,10 @@ src/sdk/mb/mb_parent_handle_child_message.c:
     complete
     .text       start:0x021199ec end:0x02119ee4
 
+src/sdk/mb/mb_comm_parent_callback.c:
+    complete
+    .text       start:0x02119ee4 end:0x0211a3c4
+
 src/sdk/mb/mb_comm_notify.c:
     complete
     .text       start:0x0211a3c4 end:0x0211a400
