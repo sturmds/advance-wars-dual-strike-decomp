@@ -2811,6 +2811,10 @@ src/game/main/script/event_cmd_change_picture.c:
     complete
     .text       start:0x0201ccfc end:0x0201cdc0
 
+src/game/main/script/event_cmd_stop_other_scripts.c:
+    complete
+    .text       start:0x0201cdc0 end:0x0201ce1c
+
 src/game/main/func_0201ce1c.c:
     complete
     .text       start:0x0201ce1c end:0x0201ce50
