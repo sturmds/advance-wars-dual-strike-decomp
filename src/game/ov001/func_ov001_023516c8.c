@@ -1,11 +1,11 @@
 #include "types.h"
 
-BOOL func_020240fc(int *value);
+BOOL TimeLimit_GetRemaining(int *value);
 
 BOOL func_ov001_023516c8(void) {
     int value;
 
-    if (!func_020240fc(&value)) {
+    if (!TimeLimit_GetRemaining(&value)) {
         return 0;
     }
     if (value == 0) {

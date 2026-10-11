@@ -3880,6 +3880,10 @@ src/game/main/time_limit_get_frames_left.c:
     complete
     .text       start:0x020240a4 end:0x020240fc
 
+src/game/main/time_limit_get_remaining.c:
+    complete
+    .text       start:0x020240fc end:0x020241dc
+
 src/game/main/func_020242c0.c:
     complete
     .text       start:0x020242c0 end:0x020242e0
