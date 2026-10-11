@@ -14,7 +14,7 @@ int Map_GetDistance(int x1, int y1, s16 x2, s16 y2);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Terrain_IsProperty(u8 tile);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);
-BOOL func_02092980(int siteIndex, MapUnit *unit);
+BOOL AiSite_UnitCanReach(int siteIndex, MapUnit *unit);
 BOOL Unit_IsHarmless(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -24,7 +24,7 @@ BOOL Unit_IsHarmless(MapUnit *unit);
 #define FAR_AWAY 110
 
 /* Rates the area around each AiSite of one group:
- * - enemyDistance: distance to the nearest enemy unit that func_02092980 lets
+ * - enemyDistance: distance to the nearest enemy unit that AiSite_UnitCanReach lets
  *   count for the site.
  * - unitBalance, enemyCount: units within gAiProfile->unk_08[8] tiles that a
  *   Tank could reach, skipping unarmed units with no cargo (Unit_IsHarmless).
@@ -61,7 +61,7 @@ void AiSiteGroup_RateSurroundings(int group)
                 if (site->group != group) {
                     continue;
                 }
-                if (!func_02092980(i, unit)) {
+                if (!AiSite_UnitCanReach(i, unit)) {
                     continue;
                 }
                 dist = Map_GetDistance(site->x, site->y, x, y);
@@ -119,7 +119,7 @@ void AiSiteGroup_RateSurroundings(int group)
                     continue;
                 }
                 unit = &STATE->units[slot];
-                if (!func_02092980(i, unit)) {
+                if (!AiSite_UnitCanReach(i, unit)) {
                     continue;
                 }
                 if (Unit_IsHarmless(unit) == TRUE) {
