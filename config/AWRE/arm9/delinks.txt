@@ -6045,6 +6045,10 @@ src/game/main/ai/ai_co_pair_best_damage_vs_dived.c:
     complete
     .text       start:0x0209e4b0 end:0x0209e60c
 
+src/game/main/ai/ai_co_pair_best_damage.c:
+    complete
+    .text       start:0x0209e60c end:0x0209e768
+
 src/game/main/ai/ai_best_damage_vs_dived.c:
     complete
     .text       start:0x0209e768 end:0x0209e814
