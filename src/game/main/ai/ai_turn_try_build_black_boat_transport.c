@@ -13,21 +13,21 @@ extern int data_027c0284;
 
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-BOOL func_020985b0(int mask);
+BOOL AiProfile_HasBuildFlag(int mask);
 int AiTurn_TryBuildBlackBoatNearSite(void);
 int AiSite_PickNearestFoot(int arg);
 int AiSite_PickFirst(int arg);
-int func_02090fa8(void);
-int func_02091068(void);
-int func_02091128(int type);
+int Ai_CountVehiclesWantingTransport(void);
+int Ai_CountFootWantingTransport(void);
+int Ai_CountEmptyTransports(int type);
 void func_0209316c(int index);
 
 /* End-actions step 8, third sub-step. Tries to start building a Black Boat
  * to carry foot units, the way AiTurn_TryBuildLander does for Landers:
- * needs bit 2 of the profile byte that func_020985b0 tests and the funds
+ * needs bit 2 of the profile byte that AiProfile_HasBuildFlag tests and the funds
  * for one. AiTurn_TryBuildBlackBoatNearSite runs first and ends the step when it returns 1.
  * AiSite_PickNearestFoot(3), then AiSite_PickFirst(3), pick the factory (-1: none).
- * With no foot unit waiting (func_02091068) nothing is built. When the
+ * With no foot unit waiting (Ai_CountFootWantingTransport) nothing is built. When the
  * player has a Lander or a Black Boat, the new one needs four waiting foot
  * units per empty Black Boat, itself included, and four more per empty
  * Lander left over after one per four waiting vehicles. The name is a
@@ -42,7 +42,7 @@ BOOL AiTurn_TryBuildBlackBoatTransport(void)
     int boats;
     int landers;
 
-    if (func_020985b0(4) == 0) {
+    if (AiProfile_HasBuildFlag(4) == 0) {
         return 0;
     }
     state = STATE;
@@ -61,14 +61,14 @@ BOOL AiTurn_TryBuildBlackBoatTransport(void)
     }
     landers = Ai_CountUnitsOfType(UNIT_LANDER);
     boats = Ai_CountUnitsOfType(UNIT_BLACK_BOAT);
-    footWaiting = func_02091068();
+    footWaiting = Ai_CountFootWantingTransport();
     if (footWaiting == 0) {
         return 0;
     }
     if (landers + boats != 0) {
-        landers = func_02091128(UNIT_LANDER);
-        emptyBoatsAfter = func_02091128(UNIT_BLACK_BOAT) + 1;
-        spareLanders = landers - (func_02090fa8() >> 2);
+        landers = Ai_CountEmptyTransports(UNIT_LANDER);
+        emptyBoatsAfter = Ai_CountEmptyTransports(UNIT_BLACK_BOAT) + 1;
+        spareLanders = landers - (Ai_CountVehiclesWantingTransport() >> 2);
         if (spareLanders < 0) {
             spareLanders = 0;
         }

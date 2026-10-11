@@ -13,9 +13,9 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 int GetUnitMaxRange(int player, int unitType);
 BOOL Terrain_IsProperty(u8 terrain);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);
-BOOL func_0209e0fc(MapUnit *unit);
+BOOL Unit_IsHarmless(MapUnit *unit);
 int AiSite_RateLandmass(int x, int y);
-void func_02092350(int group);
+void AiSiteGroup_RateSurroundings(int group);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -25,7 +25,7 @@ void func_02092350(int group);
 /* Groups the AI sites: each site with no group yet starts one, and every site
  * an Infantry can reach from it (FAR_AWAY moves) joins it. Fills the group's
  * AiSiteGroup from the units and properties in that reach, lowers the first
- * site's propertyDistance, then hands the group to func_02092350. Returns the
+ * site's propertyDistance, then hands the group to AiSiteGroup_RateSurroundings. Returns the
  * number of groups. */
 int AiSites_BuildGroups(void)
 {
@@ -83,7 +83,7 @@ int AiSites_BuildGroups(void)
                         if ((unit->type == UNIT_ANTI_AIR || unit->type == UNIT_FIGHTER) && unit->hp >= 61) {
                             airFlags |= 1;
                         }
-                    } else if (!func_0209e0fc(unit)) {
+                    } else if (!Unit_IsHarmless(unit)) {
                         group->threat += 2;
                         stats = &Ov000_gUnitStats[unit->type];
                         if ((stats->moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) && unit->type > UNIT_MECH) {
@@ -116,7 +116,7 @@ int AiSites_BuildGroups(void)
         } else {
             group->unk_03_2 = 1;
         }
-        func_02092350(count);
+        AiSiteGroup_RateSurroundings(count);
         count++;
         group++;
     }

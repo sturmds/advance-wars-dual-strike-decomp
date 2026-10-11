@@ -29,7 +29,7 @@ int GetUnitBaseMaxRange(int player, int unitType);
 #define MAX_RANGE(unit) GetUnitBaseMaxRange(OWNER(unit), (unit)->type)
 
 /* A variant of Ai_AddEnemyThreat for the Fighter build check
- * (AiTurn_TryBuildFighter, through func_0209a91c): adds the units of one
+ * (AiTurn_TryBuildFighter, through Ai_BuildFighterThreatMaps): adds the units of one
  * enemy player to the threat maps as seen by a Fighter, whatever the acting
  * unit is. Enemies a Fighter hits for a base damage of 50 or more are
  * skipped. Threat is worked out as in Ai_AddEnemyThreat, but a direct

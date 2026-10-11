@@ -13,7 +13,7 @@ extern int data_027c0284;
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int func_02093b50(void);
 int func_02093bfc(void);
-void func_0209a91c(void);
+void Ai_BuildFighterThreatMaps(void);
 int AiSite_PickAirport(void);
 void func_0209316c(int index);
 
@@ -42,7 +42,7 @@ BOOL AiTurn_TryBuildFighter(void)
     if (func_02093bfc() == 0) {
         return 0;
     }
-    func_0209a91c();
+    Ai_BuildFighterThreatMaps();
     index = AiSite_PickAirport();
     if (index == -1) {
         return 0;

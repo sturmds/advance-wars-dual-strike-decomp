@@ -12,7 +12,7 @@ BOOL FindAttackTile(int x, int y, s16 *pos);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int Tile_GetDirection(int fromX, int fromY, int toX, int toY);
-BOOL func_020b377c(MapUnit *best, MapUnit *unit);
+BOOL AiBlackBoat_IsBetterRepairTarget(MapUnit *best, MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -25,7 +25,7 @@ BOOL func_020b377c(MapUnit *best, MapUnit *unit);
  * current player's units it can reach next to (not Oozium, not itself)
  * with less than 10 shown HP, and whose one-HP repair cost
  * (Unit_GetValuePerHp) the player can pay, it keeps the one
- * func_020b377c prefers and repairs it from an adjacent tile. */
+ * AiBlackBoat_IsBetterRepairTarget prefers and repairs it from an adjacent tile. */
 void AiBlackBoat_RepairDamagedUnit(void)
 {
     /* declaration order needed to match (register allocation) */
@@ -64,7 +64,7 @@ void AiBlackBoat_RepairDamagedUnit(void)
             if ((u32)STATE->players[STATE->currentPlayer].funds < (u32)Unit_GetValuePerHp(STATE->currentPlayer, unit->type)) {
                 continue;
             }
-            if (func_020b377c(bestUnit, unit) != TRUE) {
+            if (AiBlackBoat_IsBetterRepairTarget(bestUnit, unit) != TRUE) {
                 continue;
             }
             if (FindAttackTile(x, y, pos)) {

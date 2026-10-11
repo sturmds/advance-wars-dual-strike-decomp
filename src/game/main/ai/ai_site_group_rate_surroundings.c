@@ -15,7 +15,7 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Terrain_IsProperty(u8 tile);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);
 BOOL func_02092980(int siteIndex, MapUnit *unit);
-BOOL func_0209e0fc(MapUnit *unit);
+BOOL Unit_IsHarmless(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -27,10 +27,10 @@ BOOL func_0209e0fc(MapUnit *unit);
  * - enemyDistance: distance to the nearest enemy unit that func_02092980 lets
  *   count for the site.
  * - unitBalance, enemyCount: units within gAiProfile->unk_08[8] tiles that a
- *   Tank could reach, skipping indirect units that func_0209e0fc picks out.
+ *   Tank could reach, skipping unarmed units with no cargo (Unit_IsHarmless).
  * - propertyMoves (when still 0xff): Infantry move cost to the nearest
  *   property the current team does not own. */
-void func_02092350(int group)
+void AiSiteGroup_RateSurroundings(int group)
 {
     int maxY;
     AiSite *site;
@@ -122,7 +122,7 @@ void func_02092350(int group)
                 if (!func_02092980(i, unit)) {
                     continue;
                 }
-                if (func_0209e0fc(unit) == TRUE) {
+                if (Unit_IsHarmless(unit) == TRUE) {
                     continue;
                 }
                 if ((Ov000_gUnitStats[unit->type].moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))

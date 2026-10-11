@@ -13,15 +13,15 @@ extern int data_027c0284;
 
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-BOOL func_020985b0(int mask);
+BOOL AiProfile_HasBuildFlag(int mask);
 int AiSite_PickForBuild(int arg);
-int func_02090ed4(void);
+int Ai_CountArmedShips(void);
 void func_0209316c(int index);
 
 /* End-actions step 8, fourth sub-step. Tries to start building a Black
- * Boat: needs bit 2 of the profile byte that func_020985b0 tests and the
+ * Boat: needs bit 2 of the profile byte that AiProfile_HasBuildFlag tests and the
  * funds for one. AiSite_PickForBuild(3) picks the factory (-1: none).
- * func_02090ed4 counts the player's ships that have a weapon; the AI wants
+ * Ai_CountArmedShips counts the player's ships that have a weapon; the AI wants
  * one Black Boat per three of them, the new one included (a ship count of
  * 2 is enough for the first). The name is a guess from the unit type.
  * Returns 1 when it queued an action. */
@@ -31,7 +31,7 @@ BOOL AiTurn_TryBuildBlackBoat(void)
     int index;
     int boats;
 
-    if (func_020985b0(4) == 0) {
+    if (AiProfile_HasBuildFlag(4) == 0) {
         return 0;
     }
     state = STATE;
@@ -43,7 +43,7 @@ BOOL AiTurn_TryBuildBlackBoat(void)
         return 0;
     }
     boats = Ai_CountUnitsOfType(UNIT_BLACK_BOAT);
-    if (func_02090ed4() + 1 < (boats + 1) * 3) {
+    if (Ai_CountArmedShips() + 1 < (boats + 1) * 3) {
         return 0;
     }
     gUnitAction.target = UNIT_BLACK_BOAT;

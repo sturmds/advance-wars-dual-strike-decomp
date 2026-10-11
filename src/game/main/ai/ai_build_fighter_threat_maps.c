@@ -10,7 +10,7 @@ void Ai_MarkObjectTileThreat(void);
 void Ai_AddEnemyThreatToFighter(u8 player);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_0209a91c(void)
+void Ai_BuildFighterThreatMaps(void)
 {
     u16 savedUnk1e;
     int player;
