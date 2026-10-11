@@ -8,7 +8,7 @@ extern int data_027c0284;
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
-int func_020b6984(int x, int y);
+int AiTransport_CountUnloadTiles(int x, int y);
 void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -20,7 +20,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 /* Run by func_020b5bf4 after func_020b60e0, which unloads the acting
  * transport on a tile in reach when it can. This one looks past this turn:
  * among the tiles with a nonzero MapTiles.rangeScratch2 value (a score
- * from code not read yet) that func_020b6984 accepts and that lie beyond
+ * from code not read yet) that AiTransport_CountUnloadTiles accepts and that lie beyond
  * one turn's move (gAiTurnState->unk_05, likely the move per turn), it
  * takes the fewest turns away, then the highest score, and heads there
  * with AiUnit_MoveTowardTile. */
@@ -52,7 +52,7 @@ void AiTransport_HeadForUnloadTile(void)
             if (STATE->mapTiles->rangeScratch2[TILE(x, y)] == 0) {
                 continue;
             }
-            if (!func_020b6984(x, y)) {
+            if (!AiTransport_CountUnloadTiles(x, y)) {
                 continue;
             }
             turns = HwDiv32(STATE->rangeMap[y][x], gAiTurnState->unk_05) + 1;

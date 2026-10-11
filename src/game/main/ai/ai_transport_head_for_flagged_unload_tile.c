@@ -8,7 +8,7 @@ extern int data_027c0284;
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
-int func_020b6984(int x, int y);
+int AiTransport_CountUnloadTiles(int x, int y);
 void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -53,7 +53,7 @@ void AiTransport_HeadForFlaggedUnloadTile(void)
             if (STATE->mapTiles->rangeScratch2[TILE(x, y)] == 0) {
                 continue;
             }
-            if (!func_020b6984(x, y)) {
+            if (!AiTransport_CountUnloadTiles(x, y)) {
                 continue;
             }
             turns = HwDiv32(STATE->rangeMap[y][x], gAiTurnState->unk_05) + 1;
