@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
 int func_020995a4(void);
-BOOL func_0209f040(u8 terrain); /* a property other than a missile silo */
+BOOL Terrain_IsPropertyNotSilo(u8 terrain); /* a property other than a missile silo */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -36,7 +36,7 @@ BOOL AiPowerCheck_EnemiesOnProperties(int powerKind)
                 for (i = Ov000_gPlayerFirstUnitSlot[player] + 1; i < Ov000_gPlayerFirstUnitSlot[player] + 51; i++) {
                     unit = &STATE->units[i];
                     if (unit->type != UNIT_NONE && unit->type != UNIT_OOZIUM && !(unit->flags & MAP_UNIT_CARRIED)) {
-                        if (func_0209f040(MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(unit->x, unit->y)])) == TRUE) {
+                        if (Terrain_IsPropertyNotSilo(MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(unit->x, unit->y)])) == TRUE) {
                             onProperty++;
                         }
                         total++;

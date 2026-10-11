@@ -10888,6 +10888,10 @@ src/game/main/units/unit_type_can_enter_terrain.c:
     complete
     .text       start:0x0209f004 end:0x0209f040
 
+src/game/main/terrain_is_property_not_silo.c:
+    complete
+    .text       start:0x0209f040 end:0x0209f06c
+
 src/game/main/terrain_is_property.c:
     complete
     .text       start:0x0209f06c end:0x0209f08c
@@ -10928,6 +10932,9 @@ src/game/main/ai/unit_capture_points.c:
     complete
     .text       start:0x0209f7ac end:0x0209f868
 
+src/game/main/map/func_0209f868.c:
+    .text       start:0x0209f868 end:0x0209f890
+
 src/game/main/map/map_get_distance.c:
     complete
     .text       start:0x0209f890 end:0x0209f8d0
@@ -10935,6 +10942,9 @@ src/game/main/map/map_get_distance.c:
 src/game/main/units/unit_get_usable_movement.c:
     complete
     .text       start:0x0209f8d0 end:0x0209f980
+
+src/game/main/ai/func_0209f980.c:
+    .text       start:0x0209f980 end:0x0209fa3c
 
 src/game/main/ai/ai_count_units_of_type.c:
     complete

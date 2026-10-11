@@ -10,7 +10,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
-BOOL func_0209f040(u8 tile); /* guess: the tile is a property other than a silo */
+BOOL Terrain_IsPropertyNotSilo(u8 tile); /* guess: the tile is a property other than a silo */
 int UnitType_GetAttackKind(int type);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 
@@ -67,7 +67,7 @@ BOOL AiUnit_ClaimLandmass(void)
             if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
-            if (func_0209f040(STATE->mapTiles->tiles[TILE(x, y)])) {
+            if (Terrain_IsPropertyNotSilo(STATE->mapTiles->tiles[TILE(x, y)])) {
                 if (STATE->unk_04 == (STATE->mapTiles->tiles[TILE(x, y)] & 0xe0)
                     && MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]) == TERRAIN_BASE) {
                     return FALSE;
