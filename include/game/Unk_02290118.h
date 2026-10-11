@@ -18,7 +18,9 @@ typedef struct Unk_02290118 {
     u16 unk_0a;
     u16 unk_0c;
     u16 unk_0e;
-    u8 pad_010[0x11a - 0x10];
+    u8 pad_010[0x8c - 0x10];
+    u32 unk_8c;                        /* bits 8-19 are cleared when a campaign starts (Campaign_ResetProgress) */
+    u8 pad_090[0x11a - 0x90];
     u8 coScore[CO_COUNT];              /* per CO id; the world map shows the three highest */
 } Unk_02290118;
 

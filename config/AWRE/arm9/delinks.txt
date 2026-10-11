@@ -12942,6 +12942,10 @@ src/game/main/func_02103c84.c:
     complete
     .text       start:0x02103c84 end:0x02103ca8
 
+src/game/main/campaign/campaign_reset_progress.c:
+    complete
+    .text       start:0x02103ca8 end:0x02103d18
+
 src/game/main/file/file_localize_path.c:
     complete
     .text       start:0x021040dc end:0x02104124
