@@ -11299,6 +11299,10 @@ src/game/main/ai/move_search_find_tile.c:
     complete
     .text       start:0x020a5724 end:0x020a5aa8
 
+src/game/main/ai/move_search_try_step.c:
+    complete
+    .text       start:0x020a5aa8 end:0x020a5cc8
+
 src/game/main/ai/func_020a5cc8.c:
     complete
     .text       start:0x020a5cc8 end:0x020a604c
