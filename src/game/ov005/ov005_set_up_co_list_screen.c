@@ -19,7 +19,7 @@ void Ov005_AddStateScreenButtons(Ov005Task *task);
 int Ov005_FindSavedCoListEntry(void);
 u8 func_ov005_0235d5bc(int entry);
 void Ov005_AddCoListButtons(Ov005Task *task);
-void func_02029248(int co);
+void Wallpaper_LoadBothOnLayer3(int co);
 void ModeFont_Load(int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
@@ -41,7 +41,7 @@ extern u8 data_ov005_0236a48c[33];     /* CO id of each list entry */
  * 0 to 3, darken blend on layer 3 with no fade yet, no scroll. Loads the main
  * screen's layer 1 map from /rikiishi/039, the digit font and the buttons,
  * puts the cursor on the CO saved in gPlayRecords, passes that CO id to
- * func_02029248 (probably loads its picture), and writes the sub screen's
+ * Wallpaper_LoadBothOnLayer3 (probably loads its picture), and writes the sub screen's
  * title and help text. */
 void Ov005_SetUpCoListScreen(Ov005Task *task)
 {
@@ -155,7 +155,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     work->unk_844 = work->selectedEntry;
     work->unk_848 = work->unk_844;
     work->unk_84c = 1;
-    func_02029248(data_ov005_0236a48c[work->selectedEntry]);
+    Wallpaper_LoadBothOnLayer3(data_ov005_0236a48c[work->selectedEntry]);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

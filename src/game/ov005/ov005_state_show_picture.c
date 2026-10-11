@@ -2,17 +2,17 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bba4.h"
 
-void func_02029248(int picture);
+void Wallpaper_LoadBothOnLayer3(int picture);
 
 /* State run function (the `run` of many entries in data_ov005_0236a74c):
- * loads picture `picture` with func_02029248, then shows only BG3 and OBJ
+ * loads picture `picture` with Wallpaper_LoadBothOnLayer3, then shows only BG3 and OBJ
  * on the main screen and only BG3 on the sub screen. */
 void Ov005State_ShowPicture(Unk_ov005_0236bba4 *work, int picture)
 {
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    func_02029248((u8)picture);
+    Wallpaper_LoadBothOnLayer3((u8)picture);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
