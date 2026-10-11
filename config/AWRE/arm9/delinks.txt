@@ -21394,6 +21394,10 @@ src/game/main/func_02112eec.c:
     complete
     .text       start:0x02112eec end:0x02112ef4
 
+src/sdk/fs/fs_read_rom_callback.c:
+    complete
+    .text       start:0x02112ef4 end:0x02112f40
+
 src/sdk/func_02112f40.c:
     complete
     .text       start:0x02112f40 end:0x02112f50
