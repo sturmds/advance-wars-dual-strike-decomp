@@ -25,7 +25,7 @@ void MapView_ScrollStep(int step);
 void AiTurn_Update(void);
 void LinkAction_Update(void);
 void func_ov000_022b0500(void);
-void func_020bace0(void);
+void Game_State1_CheckDayLimit(void);
 void Game_State2_LoadNextArmyIcon(void);
 void Game_State3_NextTurnScreen(void);
 void Game_State4_WaitSongFade(void);
@@ -106,7 +106,7 @@ void Game_RunStateFrame(void)
         } else if (func_020b9ccc() == 0 && func_020b9914() == 0) {
             switch (GAME->unk_18) {
             case 1:
-                func_020bace0();
+                Game_State1_CheckDayLimit();
                 break;
             case 2:
                 Game_State2_LoadNextArmyIcon();

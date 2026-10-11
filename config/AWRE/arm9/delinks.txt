@@ -12152,6 +12152,10 @@ src/game/main/menus/game_state2_load_next_army_icon.c:
     complete
     .text       start:0x020babd8 end:0x020bace0
 
+src/game/main/menus/game_state1_check_day_limit.c:
+    complete
+    .text       start:0x020bace0 end:0x020bae64
+
 src/game/main/func_020bb02c.c:
     complete
     .text       start:0x020bb02c end:0x020bb05c
