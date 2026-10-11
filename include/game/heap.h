@@ -80,6 +80,10 @@ typedef struct FrameHeap {
     FrameHeapData data;
 } FrameHeap;
 
+/* FrameHeap_Free flags: which end to drop all allocations from */
+#define FRAME_HEAP_FREE_HEAD 1
+#define FRAME_HEAP_FREE_TAIL 2
+
 extern ExpHeap *gGameHeap;             /* Mem_Alloc and Mem_Free use it */
 
 void *Heap_Alloc(ExpHeap *heap, u32 size, int align); /* negative align takes the top end */
@@ -88,6 +92,15 @@ void *Heap_AllocFromBottom(ExpHeap *heap, u32 size, int align);
 void *Heap_TakeFromFreeBlock(ExpHeapData *data, HeapBlock *freeBlock, void *memory, u32 size, u16 fromTop);
 ExpHeap *ExpHeap_Init(void *start, void *end, u16 options);
 void Heap_InitHead(HeapHead *heap, u32 signature, void *start, void *end, u16 options);
+
+FrameHeap *FrameHeap_Create(u32 start, u32 size, u16 options);
+FrameHeap *FrameHeap_Init(void *start, void *end, u16 options);
+void *FrameHeap_Alloc(FrameHeap *heap, u32 size, int align); /* negative align takes the tail end */
+void *FrameHeap_AllocFromHead(FrameHeapData *data, u32 size, int align);
+void *FrameHeap_AllocFromTail(FrameHeapData *data, u32 size, int align);
+void FrameHeap_FreeHead(FrameHeap *heap);
+void FrameHeap_FreeTail(FrameHeap *heap);
+void FrameHeap_Free(FrameHeap *heap, int flags);
 
 HeapBlock *HeapBlock_InitInRegion(HeapRegion *region, u16 signature);
 void HeapBlock_GetRegion(HeapRegion *region, HeapBlock *block);

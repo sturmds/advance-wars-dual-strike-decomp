@@ -2,7 +2,7 @@
 #include "game/sound_heap.h"
 
 void func_02104bf0(void *frameHeap);
-void *func_02104bfc(u32 start, u32 size, int flags);
+void *FrameHeap_Create(u32 start, u32 size, int flags);
 BOOL SoundHeap_Init(SoundHeap *heap, void *frameHeap);
 
 /* Creates a sound heap in the memory at mem. The SoundHeap sits at the
@@ -22,7 +22,7 @@ SoundHeap *SoundHeap_Create(u32 mem, u32 size)
     if (left < 16) {
         return NULL;
     }
-    frameHeap = func_02104bfc((u32)heap + 16, left - 16, 0);
+    frameHeap = FrameHeap_Create((u32)heap + 16, left - 16, 0);
     if (frameHeap == NULL) {
         return NULL;
     }

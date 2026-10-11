@@ -11,7 +11,7 @@ void func_021102b0(int arg0);
 int func_0210dd20(void *arg0, int arg1, int arg2);
 void func_02104f90(int arg0);
 void Sound_UnlockChannels(u32 channelMask);
-void func_02104f2c(int channel);
+void SoundAlarm_Free(int channel);
 void func_0210fb4c(int arg0, int arg1, int arg2, int arg3);
 
 /* Stops the output and gives back its hardware channel, the locked channels and
@@ -40,7 +40,7 @@ void SoundOutput_Close(void)
         Sound_UnlockChannels(state->unk_1c);
     }
     if (hasChannel) {
-        func_02104f2c(state->channel);
+        SoundAlarm_Free(state->channel);
     }
     if (state->unk_04 == 1) {
         func_0210fb4c(0, 0, 0, 0);

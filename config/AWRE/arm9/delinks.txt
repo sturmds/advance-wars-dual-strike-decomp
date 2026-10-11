@@ -14499,25 +14499,73 @@ src/game/main/sound/frame_heap_save_state.c:
     complete
     .text       start:0x02104b10 end:0x02104b68
 
+src/game/main/mem/frame_heap_free_all.c:
+    complete
+    .text       start:0x02104b68 end:0x02104ba8
+
+src/game/main/mem/frame_heap_alloc.c:
+    complete
+    .text       start:0x02104ba8 end:0x02104bf0
+
 src/game/main/func_02104bf0.c:
     complete
     .text       start:0x02104bf0 end:0x02104bfc
 
-src/game/main/func_02104c78.c:
+src/game/main/mem/frame_heap_create.c:
+    complete
+    .text       start:0x02104bfc end:0x02104c48
+
+src/game/main/mem/frame_heap_free_tail.c:
+    complete
+    .text       start:0x02104c48 end:0x02104c78
+
+src/game/main/mem/frame_heap_free_head.c:
     complete
     .text       start:0x02104c78 end:0x02104c90
+
+src/game/main/mem/frame_heap_alloc_from_tail.c:
+    complete
+    .text       start:0x02104c90 end:0x02104d0c
+
+src/game/main/mem/frame_heap_alloc_from_head.c:
+    complete
+    .text       start:0x02104d0c end:0x02104d8c
+
+src/game/main/mem/frame_heap_init.c:
+    complete
+    .text       start:0x02104d8c end:0x02104ddc
 
 src/game/main/func_02104ddc.c:
     complete
     .text       start:0x02104ddc end:0x02104de8
 
+src/game/main/sound/func_02104de8.c:
+    complete
+    .text       start:0x02104de8 end:0x02104e24
+
 src/game/main/sound/nns_snd_main.c:
     complete
     .text       start:0x02104e24 end:0x02104e58
 
+src/game/main/sound/sound_system_init.c:
+    complete
+    .text       start:0x02104e58 end:0x02104f00
+
 src/game/main/func_02104f00.c:
     complete
     .text       start:0x02104f00 end:0x02104f2c
+
+src/game/main/sound/sound_alarm_free.c:
+    complete
+    .text       start:0x02104f2c end:0x02104f4c
+
+src/game/main/sound/sound_alarm_alloc.c:
+    complete
+    .text       start:0x02104f4c end:0x02104f90
+
+src/game/main/sound/func_02104f90.c:
+    complete
+    .text       start:0x02104f90 end:0x02104fac
 
 src/game/main/sound/sound_unlock_channels.c:
     complete

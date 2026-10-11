@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/sound_heap.h"
 
-void func_02104b68(void *frameHeap, int flags);
+void FrameHeap_Free(void *frameHeap, int flags);
 void func_021069a8(void);
-BOOL SoundHeap_AddLevel(SoundHeap *heap);
 
 /* Drops every save point of the sound heap, running the unload callback of
  * each item in them, then empties the frame heap and starts again with one
@@ -25,7 +24,7 @@ void SoundHeap_Reset(SoundHeap *heap)
         LinkList_Remove(&heap->levels, saved);
         saved = LinkList_GetPrev(&heap->levels, NULL);
     }
-    func_02104b68(heap->frameHeap, 3);
+    FrameHeap_Free(heap->frameHeap, 3);
     func_021069a8();
     SoundHeap_AddLevel(heap);
 }
