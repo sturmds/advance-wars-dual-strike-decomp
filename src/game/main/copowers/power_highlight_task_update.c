@@ -5,7 +5,7 @@
 #include "game/Unk_02080440.h"
 
 void Task_Destroy(Task *task);
-void func_020e1be0(int player);
+void PowerHighlight_LoadEffect(int player);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,7 +22,7 @@ void PowerHighlightTask_Update(Task *task)
         Task_Destroy(task);
         return;
     }
-    func_020e1be0(STATE->currentPlayer);
+    PowerHighlight_LoadEffect(STATE->currentPlayer);
     task->unk_68 = 1;
     task->unk_64 = 0;
 }

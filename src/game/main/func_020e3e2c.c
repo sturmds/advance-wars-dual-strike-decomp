@@ -7,9 +7,9 @@ struct Unk_020e3e2c {
     u8 unk_2c;
 };
 
-void func_020e1be0(int);
+void PowerHighlight_LoadEffect(int);
 
 void func_020e3e2c(Unk_020e3e2c *a0)
 {
-    func_020e1be0(a0->unk_2c);
+    PowerHighlight_LoadEffect(a0->unk_2c);
 }
