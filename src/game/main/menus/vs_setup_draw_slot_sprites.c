@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
-void func_02001b94(int x, int y, int unk08, int unk0a, int list);
+void CoPicture_QueueSprite(int x, int y, int unk08, int unk0a, int list);
 int func_0206b5cc(int player);
 int VsSetup_GetPlayerOfSlot(int slot);
 
@@ -52,10 +52,10 @@ void VsSetup_DrawSlotSprites(void)
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
         Sprite_QueueAt(1, (func_0206b5cc(player) * 8 + 8) & 0x1ff, 80, &data_027c01dc, 0x1000, 0x204);
         if (MENU->setup.cos[player][0] != 0) {
-            func_02001b94((func_0206b5cc(player) * 8 + 8) & 0x1ff, 80, (player * 2 + 2) << 12, 552 + player * 2 * 18, 2);
+            CoPicture_QueueSprite((func_0206b5cc(player) * 8 + 8) & 0x1ff, 80, (player * 2 + 2) << 12, 552 + player * 2 * 18, 2);
         }
         if (MENU->setup.cos[player][1] != 0) {
-            func_02001b94((func_0206b5cc(player) * 8 + 32) & 0x1ff, 80, (player * 2 + 3) << 12, 552 + (player * 2 + 1) * 18, 2);
+            CoPicture_QueueSprite((func_0206b5cc(player) * 8 + 32) & 0x1ff, 80, (player * 2 + 3) << 12, 552 + (player * 2 + 1) * 18, 2);
         }
     }
     Screen_SetCurrentGfx(saved);

@@ -132,6 +132,10 @@ src/game/main/map/player_set_co.c:
     complete
     .text       start:0x02001a30 end:0x02001b94
 
+src/game/main/graphics/co_picture_queue_sprite.c:
+    complete
+    .text       start:0x02001b94 end:0x02001bcc
+
 src/game/main/graphics/image4bpp_get_pixel.c:
     complete
     .text       start:0x02001d94 end:0x02001e04
