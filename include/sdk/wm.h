@@ -305,6 +305,16 @@ typedef struct WMParentParam {
     u8 pad_38[8];
 } WMParentParam;
 
+/* Arguments of the channel measurement command, written into
+ * WMArm9Buf.requestBuf. */
+typedef struct WMMeasureChannelReq {
+    u16 apiid;
+    u16 ccaMode;
+    u16 edThreshold;
+    u16 channel;
+    u16 measureTime;                   /* milliseconds */
+} WMMeasureChannelReq;
+
 typedef void (*WMCallbackFunc)(void *arg);
 
 /* The ARM9 side's work area. */

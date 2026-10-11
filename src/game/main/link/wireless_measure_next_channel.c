@@ -2,7 +2,7 @@
 #include "game/Unk_0215fe88.h"
 #include "sdk/wm.h"
 
-int func_02118f94(void (*callback)(WMMeasureChannelCallback *cb), int ccaMode, int edThreshold, int channel, int measureTime);
+int WM_MeasureChannel(void (*callback)(WMMeasureChannelCallback *cb), int ccaMode, int edThreshold, int channel, int measureTime);
 void Wireless_OnChannelMeasured(WMMeasureChannelCallback *cb);
 
 /* Moves to the next allowed channel and starts measuring it. False when
@@ -25,7 +25,7 @@ BOOL Wireless_MeasureNextChannel(void)
     if (data_0215fe88->channel >= 15) {
         return FALSE;
     }
-    if (func_02118f94(Wireless_OnChannelMeasured, 3, 17, data_0215fe88->channel, 30) != 2) {
+    if (WM_MeasureChannel(Wireless_OnChannelMeasured, 3, 17, data_0215fe88->channel, 30) != 2) {
         data_0215fe88->bestChannel = 0;
         return FALSE;
     }
