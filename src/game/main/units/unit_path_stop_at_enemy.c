@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/move_path.h"
+#include "game/unit_stats.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -11,7 +12,7 @@ extern int data_027c0284;
  * unit of another team (a hidden unit in fog), cuts the path there with
  * PATH_STEP_BLOCKED and `end`, moves the move's destination to the tile
  * before it and returns 1. Returns 0 when nothing blocks the path, and right
- * away for unit type 26, which no unit has (UNIT_OOZIUM is 25). */
+ * away for Oozium, which moves onto enemy units. */
 int UnitPath_StopAtEnemy(int startX, int startY, int unitType, s8 *path, int end)
 {
     s16 x = startX;
@@ -20,7 +21,7 @@ int UnitPath_StopAtEnemy(int startX, int startY, int unitType, s8 *path, int end
     s16 curY = y;
     u8 slot;
 
-    if (unitType == 26) {
+    if (unitType == UNIT_OOZIUM) {
         return 0;
     }
     while (*path != PATH_STEP_END && *path != -1) {
