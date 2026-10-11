@@ -1840,7 +1840,7 @@ TagPowerScreen_FadeInFromBlack kind:function(arm,size=0xdc) addr:0x020569cc
 TagPowerScreen_SetUp kind:function(arm,size=0x1444) addr:0x02056aa8
 func_02057eec kind:function(arm,size=0xc) addr:0x02057eec
 func_02057ef8 kind:function(arm,size=0x30) addr:0x02057ef8
-func_02057f28 kind:function(arm,size=0x44) addr:0x02057f28
+TagGauge_IsAnimating kind:function(arm,size=0x44) addr:0x02057f28
 TagGauge_Hold kind:function(arm,size=0x4c) addr:0x02057f6c
 func_02057fb8 kind:function(arm,size=0x7c) addr:0x02057fb8
 TagGauge_CountUp kind:function(arm,size=0x84) addr:0x02058034
@@ -7261,7 +7261,7 @@ data_0215c2a0 kind:data(any) addr:0x0215c2a0
 data_0215c2bc kind:data(any) addr:0x0215c2bc
 data_0215c2d4 kind:data(any) addr:0x0215c2d4
 data_0215c2fc kind:data(any) addr:0x0215c2fc
-data_0215c32c kind:data(any) addr:0x0215c32c
+gTagGaugeScript kind:data(any) addr:0x0215c32c
 gSparkBurstOffsets kind:data(any) addr:0x0215c35c
 data_0215c3a4 kind:data(any) addr:0x0215c3a4
 data_0215c3f4 kind:data(any) addr:0x0215c3f4
