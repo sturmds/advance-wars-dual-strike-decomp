@@ -13021,6 +13021,7 @@ src/game/main/func_020f88b8.c:
     .text       start:0x020f88b8 end:0x020f88ec
 
 src/game/main/graphics/func_020f88ec.c:
+    complete
     .text       start:0x020f88ec end:0x020f8994
 
 src/game/main/func_020f8b20.c:
