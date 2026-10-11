@@ -5211,6 +5211,10 @@ src/game/main/func_02045a9c.c:
     complete
     .text       start:0x02045a9c end:0x02045ac0
 
+src/game/main/menus/survival_select_move_cursor.c:
+    complete
+    .text       start:0x02045ac0 end:0x02045b44
+
 src/game/main/func_02045b44.c:
     complete
     .text       start:0x02045b44 end:0x02045b7c
