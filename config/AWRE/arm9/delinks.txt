@@ -14224,6 +14224,10 @@ src/game/main/menus/name_entry_draw_key_labels.c:
     complete
     .text       start:0x0210114c end:0x02101268
 
+src/game/main/menus/name_entry_on_control_key_select.c:
+    complete
+    .text       start:0x02101268 end:0x021012b4
+
 src/game/main/func_02101500.c:
     complete
     .text       start:0x02101500 end:0x02101524

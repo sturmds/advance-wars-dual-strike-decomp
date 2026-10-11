@@ -26,12 +26,16 @@ typedef struct Unk_022a7ea8 {
     int maxLength;                     /* 8 or 16: width of the text field in characters */
     u8 pad_04[0x104 - 0x04];
     int cursor;                        /* index into keys; NAME_ENTRY_KEY_COUNT and above: a control key */
-    u8 pad_108[0x110 - 0x108];
+    int unk_108;                       /* set to -1 when a control key is selected other than by up or down */
+    u8 pad_10c[0x110 - 0x10c];
     int textLength;                    /* characters typed so far */
     u8 pad_114[0x118 - 0x114];
     u32 unk_118;
     int unk_11c;
-    u8 pad_120[0x134 - 0x120];
+    int unk_120;                       /* set to 1 when control key 2 is confirmed */
+    int unk_124;                       /* set to 1 when control key 0 is confirmed */
+    int unk_128;                       /* set to 1 when control key 1 is confirmed */
+    u8 pad_12c[0x134 - 0x12c];
     NameEntryKey keys[NAME_ENTRY_KEY_COUNT];
     u8 unk_4b8[0x24];
     void *spriteFile;                  /* loaded sprite file */
