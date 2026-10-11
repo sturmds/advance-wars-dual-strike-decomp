@@ -11,7 +11,7 @@ extern u16 data_02139348[];
 BOOL Player_IsInGame(u8 player);
 void func_020c03d8(void);
 BOOL func_020c5fd4(u16 player);
-void func_020c610c(u16 player, int gridMask);  /* sets unk_1b of player's allies */
+void Player_SetAlliesVisionGrids(u16 player, int gridMask);  /* sets unk_1b of player's allies */
 BOOL func_020c6514(u16 player);                /* TRUE: an ally has data_0229eaf0 kind 1 */
 int Player_GetSlotRelation(u16 player, u16 other);      /* SLOT_RELATION_* */
 
@@ -46,7 +46,7 @@ void Players_AssignVisionGrids(void)
         gridMask |= 2;
     }
     STATE->players[STATE->currentPlayer].unk_1b = gridMask;
-    func_020c610c(STATE->currentPlayer, gridMask);
+    Player_SetAlliesVisionGrids(STATE->currentPlayer, gridMask);
     if (func_020c5fd4(STATE->currentPlayer)) {
         for (i = 1; i < 4; i++) {
             enemy = SLOT_WRAP(STATE->currentPlayer + i);
@@ -67,7 +67,7 @@ void Players_AssignVisionGrids(void)
     for (i = 1; i < 6; i++) {
         if (i > 4) {
             STATE->players[STATE->currentPlayer].unk_1b |= 2;
-            func_020c610c(STATE->currentPlayer, STATE->players[STATE->currentPlayer].unk_1b);
+            Player_SetAlliesVisionGrids(STATE->currentPlayer, STATE->players[STATE->currentPlayer].unk_1b);
             break;
         }
         if (Player_IsInGame(i) && data_0229eaf0[i] == 1) {
