@@ -21966,6 +21966,10 @@ src/sdk/pm/power_hook_call_all.c:
     complete
     .text       start:0x02114904 end:0x02114934
 
+src/sdk/pm/power_hook_unlink.c:
+    complete
+    .text       start:0x02114934 end:0x02114980
+
 src/game/main/func_02114e04.c:
     complete
     .text       start:0x02114e04 end:0x02114e1c
