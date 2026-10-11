@@ -20,7 +20,7 @@ void DC_FlushAll(void);
 #define AGB_HEADER_TAIL_OFFSET 0x80
 #define AGB_HEADER_TAIL_SIZE 0x40
 
-extern u32 data_022acf18;
+extern u32 gCtrdgHeaderRead;
 extern GbaRomHeader data_022acf40;
 extern u8 data_022acf44[];
 
@@ -49,10 +49,10 @@ void Cartridge_CopyGbaHeaderOnce(void)
     u32 oldSlotOwner;
     u16 oldIme;
 
-    if (data_022acf18 != 0) {
+    if (gCtrdgHeaderRead != 0) {
         return;
     }
-    data_022acf18 = 1;
+    gCtrdgHeaderRead = 1;
     if ((REG_POSTFLG & 1) == 0) {
         return;
     }

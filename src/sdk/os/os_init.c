@@ -7,7 +7,7 @@ void func_0210d21c(void);
 void func_0210ced0(void);
 void func_0210fa9c(void);
 void OS_InitThread(void);
-void func_0211e8a0(void);
+void CTRDG_Init(void);
 void func_02115fe8(void);
 void func_02115258(void);
 void func_0210e4bc(void);
@@ -28,7 +28,7 @@ void OS_Init(void)
     OSi_InitVramExclusive();
     OS_InitThread();
     OS_InitReset();
-    func_0211e8a0();
+    CTRDG_Init();
     func_02115fe8();
     func_02115258();
 }

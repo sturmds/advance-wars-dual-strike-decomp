@@ -5814,7 +5814,7 @@ func_0211e628 kind:function(arm,size=0x20) addr:0x0211e628
 Cartridge_OnRemovalMessage kind:function(arm,size=0x60) addr:0x0211e648
 Cartridge_OnInitDoneMessage kind:function(arm,size=0x3c) addr:0x0211e6a8
 Cartridge_CopyGbaHeaderOnce kind:function(arm,size=0x1bc) addr:0x0211e6e4
-func_0211e8a0 kind:function(arm,size=0x9c) addr:0x0211e8a0
+CTRDG_Init kind:function(arm,size=0x9c) addr:0x0211e8a0
 func_0211e93c kind:function(arm,size=0x44) addr:0x0211e93c
 func_0211e980 kind:function(arm,size=0x1360) addr:0x0211e980
 func_0211fce4 kind:function(arm,size=0x128) addr:0x0211fce4
@@ -9088,9 +9088,9 @@ data_022acf00 kind:bss addr:0x022acf00
 data_022acf04 kind:bss addr:0x022acf04
 data_022acf08 kind:bss addr:0x022acf08
 data_022acf14 kind:bss addr:0x022acf14
-data_022acf18 kind:bss addr:0x022acf18
-data_022acf1c kind:bss addr:0x022acf1c
-data_022acf20 kind:bss addr:0x022acf20
+gCtrdgHeaderRead kind:bss addr:0x022acf18
+gCtrdgInitialized kind:bss addr:0x022acf1c
+gCtrdgPulledOutHook kind:bss addr:0x022acf20
 data_022acf40 kind:bss addr:0x022acf40
 data_022acf44 kind:bss addr:0x022acf44
 data_022ad000 kind:bss addr:0x022ad000

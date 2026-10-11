@@ -4,7 +4,7 @@
 
 int func_0211e628(void);
 
-extern int (*data_022acf20)(void);
+extern int (*gCtrdgPulledOutHook)(void);
 
 void Cartridge_OnRemovalMessage(u32 tag, u32 data, int err)
 {
@@ -12,8 +12,8 @@ void Cartridge_OnRemovalMessage(u32 tag, u32 data, int err)
 
     if ((data & GBA_SLOT_MSG_OPCODE_BITS) == GBA_SLOT_MSG_REMOVED) {
         result = 0;
-        if (data_022acf20 != NULL) {
-            result = data_022acf20();
+        if (gCtrdgPulledOutHook != NULL) {
+            result = gCtrdgPulledOutHook();
         }
         if (result != 0) {
             func_0211e628();

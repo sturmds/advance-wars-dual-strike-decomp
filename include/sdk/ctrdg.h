@@ -84,6 +84,14 @@ void Cartridge_StashAndSlowRomWaits(GbaSlotWaitStates *saved);
 /* TRUE while the cartridge seen at start-up is still in the slot; marks it pulled out otherwise. */
 BOOL Cartridge_HeaderStillMatches(void);
 
+void Cartridge_ZeroStateTakeLockId(void);
+
+/* Reads the GBA cartridge header and hands it to the ARM7. */
+void Cartridge_CopyGbaHeaderOnce(void);
+
+/* Starts the cartridge library once; called from OS_Init. */
+void CTRDG_Init(void);
+
 /* PXI receive callbacks of the cartridge channel. */
 void Cartridge_OnInitDoneMessage(u32 tag, u32 data, int err);
 void Cartridge_OnRemovalMessage(u32 tag, u32 data, int err);
