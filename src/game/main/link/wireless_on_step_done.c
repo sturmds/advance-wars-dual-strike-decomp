@@ -4,7 +4,7 @@
 extern u32 data_0229c880;
 extern u32 data_0229c88c;
 
-void func_0207a5b0(void);
+void Wireless_RequestChildRole(void);
 void func_0207a660(void);
 
 /* Callback of the request in func_02079578. On success clears data_0229c88c
@@ -24,7 +24,7 @@ void Wireless_OnStepDone(WirelessEvent *event)
         case 3:
         case 5:
             data_0229c88c = 0;
-            func_0207a5b0();
+            Wireless_RequestChildRole();
             return;
         }
     } else {
