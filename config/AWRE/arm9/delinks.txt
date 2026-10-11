@@ -5514,6 +5514,10 @@ src/game/main/func_02064e00.c:
     complete
     .text       start:0x02064e00 end:0x02064e2c
 
+src/game/main/menus/vs_setup_decrease_setting.c:
+    complete
+    .text       start:0x02064e2c end:0x02065008
+
 src/game/main/func_020651ec.c:
     complete
     .text       start:0x020651ec end:0x02065214
