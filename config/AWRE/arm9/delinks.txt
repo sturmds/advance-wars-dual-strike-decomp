@@ -10756,6 +10756,7 @@ src/game/main/func_020f225c.c:
     .text       start:0x020f225c end:0x020f2280
 
 src/game/main/func_020f2280.c:
+    complete
     .text       start:0x020f2280 end:0x020f22c8
 
 src/game/main/func_020f22c8.c:
