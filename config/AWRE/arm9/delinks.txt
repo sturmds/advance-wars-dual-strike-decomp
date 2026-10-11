@@ -1871,6 +1871,10 @@ src/game/main/script/event_script_set_player_palette.c:
     complete
     .text       start:0x0201ae50 end:0x0201ae7c
 
+src/game/main/script/event_script_set_palette.c:
+    complete
+    .text       start:0x0201ae7c end:0x0201aecc
+
 src/game/main/func_0201b130.c:
     complete
     .text       start:0x0201b130 end:0x0201b150
