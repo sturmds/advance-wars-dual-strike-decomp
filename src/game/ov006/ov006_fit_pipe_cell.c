@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
 
-int func_ov006_02368114(int x, int y);   /* guess: the seam cell that fits tile x, y */
+int Ov006_GetPipeSeamCell(int x, int y);   /* guess: the seam cell that fits tile x, y */
 int Ov006_IsJoinedPieceConnected(int x, int y);   /* nonzero: keep the cell at x, y as it is */
 int func_ov006_02369bc4(int x, int y, int dir);   /* 0-2: how firmly the neighbour in dir links on; 2 off the map */
 int Ov006_GetPipeLink(int x, int y, int dir);   /* 0-3: what the neighbour in dir is; 0 nothing to join */
@@ -14,7 +14,7 @@ int Ov006_GetPipeLink(int x, int y, int dir);   /* 0-3: what the neighbour in di
 
 /* Map cell codes. The cell set is 32 cells wide: the four corners form a 2x2
  * block at rows 10-11, with the straight pieces and the seams beside them.
- * Taken as pipes because func_ov006_02368114 turns 0x142 into the seam
+ * Taken as pipes because Ov006_GetPipeSeamCell turns 0x142 into the seam
  * 0x162 and 0x143 into 0x163. */
 #define PIPE_DOWN_RIGHT      0x140
 #define PIPE_UP_RIGHT        0x141
@@ -46,7 +46,7 @@ int Ov006_FitPipeCell(int x, int y, int replaceSeam)
 
     /* needed to match: the seam test adds a u16 constant */
     if (replaceSeam == 0 && (u16)(CELL_AT(x, y) + (u16)-PIPE_SEAM_VERTICAL) <= 1) {
-        return func_ov006_02368114(x, y);
+        return Ov006_GetPipeSeamCell(x, y);
     }
     if (Ov006_IsJoinedPieceConnected(x, y)) {
         return CELL_AT(x, y);
