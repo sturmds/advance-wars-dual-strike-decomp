@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* Task that runs the script data_02168140. The creator fills three
- * arguments after Task_Create or Task_CreateChild (func_020d9260 takes them
+ * arguments after Task_Create or Task_CreateChild (TileListTask_StartChild takes them
  * as parameters). What the script does with them is not known yet. */
 typedef struct Unk_02168140Task {
     u8 pad_00[0x2c];
