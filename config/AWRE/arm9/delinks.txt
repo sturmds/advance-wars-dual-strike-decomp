@@ -5653,6 +5653,10 @@ src/game/main/ai/ai_build_has_enough_ground_indirects.c:
     complete
     .text       start:0x02098310 end:0x02098468
 
+src/game/main/ai/ai_build_has_enough_indirects_for_artillery.c:
+    complete
+    .text       start:0x02098468 end:0x02098590
+
 src/game/main/ai/ai_profile_wants_sea_transport.c:
     complete
     .text       start:0x02098590 end:0x020985b0
