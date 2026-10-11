@@ -1167,6 +1167,10 @@ src/game/main/graphics/gfx_load_tex_palette_file.c:
     complete
     .text       start:0x0200ba70 end:0x0200baac
 
+src/game/main/graphics/gfx_load_tex_image_file.c:
+    complete
+    .text       start:0x0200baac end:0x0200bb18
+
 src/game/main/file/file_read_at.c:
     complete
     .text       start:0x0200bb18 end:0x0200bc28
