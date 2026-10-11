@@ -10,7 +10,7 @@ void Co_LoadArmyMediumPicture(int co, void *dest, int paletteSlot, int army);
 void Screen_SetCurrentBoth(void *state);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
-void func_0206affc(void);
+void VsSetup_DrawTeamSlotPanels(void);
 void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddTeamArrowButtons(void);
 void HelpText_Show(u32 textId, int tile);
@@ -76,7 +76,7 @@ void VsSetup_ShowTeamScreen(Task *task)
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
 
-    func_0206affc();
+    VsSetup_DrawTeamSlotPanels();
     VsSetup_DrawSubSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);

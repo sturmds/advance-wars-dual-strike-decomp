@@ -8015,6 +8015,10 @@ src/game/main/menus/vs_setup_draw_sub_slot_panels.c:
     complete
     .text       start:0x0206ad18 end:0x0206affc
 
+src/game/main/menus/vs_setup_draw_team_slot_panels.c:
+    complete
+    .text       start:0x0206affc end:0x0206b28c
+
 src/game/main/menus/vs_setup_draw_slot_panels.c:
     complete
     .text       start:0x0206b28c end:0x0206b5cc
