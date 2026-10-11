@@ -12138,6 +12138,10 @@ src/game/main/func_020e37c0.c:
     complete
     .text       start:0x020e37c0 end:0x020e37e4
 
+src/game/main/copowers/power_damage_start_blend.c:
+    complete
+    .text       start:0x020e38d4 end:0x020e39d8
+
 src/game/main/func_020e3dfc.c:
     complete
     .text       start:0x020e3dfc end:0x020e3e14
