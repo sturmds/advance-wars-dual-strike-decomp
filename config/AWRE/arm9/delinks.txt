@@ -5317,6 +5317,10 @@ src/game/main/link/link_reset_buffers.c:
     complete
     .text       start:0x0207bec8 end:0x0207bf88
 
+src/game/main/link/link_init.c:
+    complete
+    .text       start:0x0207bf88 end:0x0207bfb8
+
 src/game/main/func_0207bfb8.c:
     complete
     .text       start:0x0207bfb8 end:0x0207bfe4
