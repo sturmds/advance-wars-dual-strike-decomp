@@ -12,7 +12,7 @@ BOOL AiSeaTransport_FootUnitsOutnumberArmed(int x, int y);
 BOOL func_020b50bc(int x, int y);
 BOOL func_020b51ec(int x, int y);
 BOOL AiSeaTransport_FewArmedUnitsInRange(int x, int y);
-BOOL func_020b5570(int x, int y);
+BOOL AiSeaTransport_FewFootUnitsForProperties(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -29,7 +29,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
     MapUnit *unit = &STATE->units[STATE->actingUnit->cargo[1]];
 
     if (unit->type <= UNIT_MECH || unit->type == UNIT_APC) {
-        check = func_020b5570;
+        check = AiSeaTransport_FewFootUnitsForProperties;
     } else {
         switch (unit->aiOrder) {
         case 0:

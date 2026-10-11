@@ -6669,6 +6669,10 @@ src/game/main/ai/ai_sea_transport_few_armed_units_no_target.c:
     complete
     .text       start:0x020b5528 end:0x020b5570
 
+src/game/main/ai/ai_sea_transport_few_foot_units_for_properties.c:
+    complete
+    .text       start:0x020b5570 end:0x020b5604
+
 src/game/main/func_020b5604.c:
     complete
     .text       start:0x020b5604 end:0x020b5668
