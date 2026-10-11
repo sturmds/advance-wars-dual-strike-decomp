@@ -12289,6 +12289,10 @@ src/game/main/silo/silo_missile_launch_init.c:
     complete
     .text       start:0x020ed33c end:0x020ed404
 
+src/game/main/silo/silo_missile_launch_task_create.c:
+    complete
+    .text       start:0x020ed404 end:0x020ed448
+
 src/game/main/silo/silo_missile_gfx_load.c:
     complete
     .text       start:0x020ed448 end:0x020ed4b0
