@@ -389,6 +389,7 @@ src/game/main/screen/screen_flash_update_hold.c:
     .text       start:0x020040a4 end:0x020040fc
 
 src/game/main/screen/screen_flash_update_fade_in.c:
+    complete
     .text       start:0x020040fc end:0x02004188
 
 src/game/main/func_02004230.c:
