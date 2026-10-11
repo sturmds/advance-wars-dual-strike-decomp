@@ -871,6 +871,10 @@ src/game/ov006/ov006_fit_water_cell.c:
     complete
     .text       start:0x0235e04c end:0x0235e0f0
 
+src/game/ov006/ov006_move_cursor.c:
+    complete
+    .text       start:0x0235e498 end:0x0235e620
+
 src/game/ov006/ov006_remove_unit_on_impassable_tile.c:
     complete
     .text       start:0x0235f1c0 end:0x0235f288
