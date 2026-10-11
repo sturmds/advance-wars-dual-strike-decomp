@@ -8228,6 +8228,10 @@ src/game/main/link/link_skill_sync_task_init.c:
     complete
     .text       start:0x02081478 end:0x02081548
 
+src/game/main/link/link_experience_sync_task_finish.c:
+    complete
+    .text       start:0x02081548 end:0x020815dc
+
 src/game/main/link/link_experience_sync_task_update.c:
     complete
     .text       start:0x020815dc end:0x02081800
