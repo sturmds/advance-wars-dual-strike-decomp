@@ -5,7 +5,7 @@
 BOOL MapCursor_SelectTile(int x, int y, int allowBuild, int allowMenu);
 BOOL MapCursor_ShowRange(int x, int y);
 BOOL Map_IsCoSelectPhase(void);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -46,7 +46,7 @@ BOOL MapTouch_HandleTileTap(void)
     case TOUCH_RELEASED:
         if (IsTouchInPhase(TOUCH_RELEASED)) {
             if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
-                func_020f1288();
+                TouchMarker_Resume();
                 if (!Map_IsCoSelectPhase()) {
                     if (MapCursor_SelectTile(GAME->cursorX, GAME->cursorY, TRUE, FALSE)) {
                         return TRUE;

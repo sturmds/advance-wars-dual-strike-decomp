@@ -12,7 +12,7 @@ extern u8 gUnitSupplyKind[];      /* per unit type: 1 ground, 2 air, 3 sea */
 
 int UnitType_GetAttackKind(int unitType);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_0209770c(int x, int y, int unitType);
+int AiBuild_RateSiteDanger(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -20,7 +20,7 @@ int func_0209770c(int x, int y, int unitType);
  * in gAiBuildScores, skipping ground indirect units, whose supply kind matches
  * the site type (base, airport or port).
  * A type the player cannot afford, or that fails, gets score 0 and the search
- * starts again. A type passes when func_0209770c rates it below 90; a ground
+ * starts again. A type passes when AiBuild_RateSiteDanger rates it below 90; a ground
  * or sea type rated 90 or more gets one more pass that only asks for its cost
  * to be at most half the income or half the funds. Stores the type in
  * gUnitAction.target and returns siteIndex; -1 when nothing is left. */
@@ -68,7 +68,7 @@ int AiSite_ChooseUnitToBuild(int siteIndex)
             goto reject;
         }
         if (!retried || (Ov000_gUnitStats[bestType].moveGroup & MOVE_GROUP_AIR)) {
-            if (func_0209770c(site->x, site->y, bestType) < 90) {
+            if (AiBuild_RateSiteDanger(site->x, site->y, bestType) < 90) {
                 goto found;
             }
             if (Ov000_gUnitStats[bestType].moveGroup & MOVE_GROUP_AIR) {

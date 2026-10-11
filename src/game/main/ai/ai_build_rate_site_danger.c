@@ -35,7 +35,7 @@ int Unit_GetCoMaxRange(MapUnit *unit);
  * moves by 4. Declaration order, block scope and the hybrids of `state` and
  * STATE did not move it. Without `state`, the slot order is right but Fighter
  * units are read through the outer STATE copy. */
-int func_0209770c(int x, int y, int unitType)
+int AiBuild_RateSiteDanger(int x, int y, int unitType)
 {
     /* needed to match: declaration order sets the stack slots */
     int maxY;

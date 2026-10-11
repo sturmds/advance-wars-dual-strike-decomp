@@ -10866,7 +10866,7 @@ src/game/main/func_0208c1f4.c:
     complete
     .text       start:0x0208c1f4 end:0x0208c208
 
-src/game/main/func_0208c208.c:
+src/game/main/ai/ai_turn_set_state.c:
     complete
     .text       start:0x0208c208 end:0x0208c21c
 
@@ -11459,7 +11459,7 @@ src/game/main/ai/ai_tile_has_enemy_oozium.c:
     complete
     .text       start:0x02096ea8 end:0x02096f44
 
-src/game/main/func_02096f44.c:
+src/game/main/ai/ai_build_enemy_sub_reach_map.c:
     complete
     .text       start:0x02096f44 end:0x02097050
 
@@ -11475,7 +11475,7 @@ src/game/main/ai/ai_add_sub_reach.c:
     complete
     .text       start:0x020973fc end:0x0209770c
 
-src/game/main/ai/func_0209770c.c:
+src/game/main/ai/ai_build_rate_site_danger.c:
     .text       start:0x0209770c end:0x02097dd4
 
 src/game/main/ai/ai_site_rate_base_landmass.c:
@@ -13175,11 +13175,11 @@ src/game/main/func_020bc6f8.c:
     complete
     .text       start:0x020bc6f8 end:0x020bc70c
 
-src/game/main/func_020bc70c.c:
+src/game/main/menus/battle_menu_draw_auto_co_off_help.c:
     complete
     .text       start:0x020bc70c end:0x020bc720
 
-src/game/main/func_020bc720.c:
+src/game/main/menus/battle_menu_draw_auto_co_on_help.c:
     complete
     .text       start:0x020bc720 end:0x020bc734
 
@@ -13966,7 +13966,7 @@ src/game/main/func_020c4388.c:
     complete
     .text       start:0x020c4388 end:0x020c4394
 
-src/game/main/func_020c4394.c:
+src/game/main/map/map_cursor_set_tile.c:
     complete
     .text       start:0x020c4394 end:0x020c43b0
 
@@ -17902,11 +17902,11 @@ src/game/main/map/map_touch_read_buttons.c:
     complete
     .text       start:0x020f1154 end:0x020f125c
 
-src/game/main/func_020f125c.c:
+src/game/main/touch_marker_exists.c:
     complete
     .text       start:0x020f125c end:0x020f1288
 
-src/game/main/func_020f1288.c:
+src/game/main/touch_marker_resume.c:
     complete
     .text       start:0x020f1288 end:0x020f129c
 

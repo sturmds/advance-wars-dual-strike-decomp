@@ -8,7 +8,9 @@ BOOL Player_IsInGame(u8 player);
 void Ai_MarkEnemySubReach(u8 player);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_02096f44(void)
+/* Fills MapTiles.rangeScratch with 127, then marks the reach of every enemy
+ * player's Subs on it (Ai_MarkEnemySubReach). */
+void Ai_BuildEnemySubReachMap(void)
 {
     u16 savedUnk1e;
     int player;

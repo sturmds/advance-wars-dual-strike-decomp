@@ -10,8 +10,8 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void PopupMenu_Refresh(void);
 void Player_ResetUnitsAiState(int player);
-void func_020bc70c(int a0, int a1, u32 flags);
-void func_020bc720(int a0, int a1, u32 flags);
+void BattleMenu_DrawAutoCoOffHelp(int a0, int a1, u32 flags);
+void BattleMenu_DrawAutoCoOnHelp(int a0, int a1, u32 flags);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -43,12 +43,12 @@ void Menu_ToggleAutoCo(int a0, int a1, u32 flags)
     switch (*controller) {
     case PLAYER_CONTROLLER_HUMAN:
         *controller = PLAYER_CONTROLLER_AI;
-        help = func_020bc720;
+        help = BattleMenu_DrawAutoCoOnHelp;
         Player_ResetUnitsAiState((u8)player);
         break;
     case PLAYER_CONTROLLER_AI:
         *controller = PLAYER_CONTROLLER_HUMAN;
-        help = func_020bc70c;
+        help = BattleMenu_DrawAutoCoOffHelp;
         break;
     default:
         return;

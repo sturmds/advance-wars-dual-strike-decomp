@@ -30,8 +30,8 @@ void Ov006_ResetMapView(int keep)
     }
     STATE->cursorX = 0;
     STATE->cursorY = 0;
-    STATE->unk_2c = 0;
-    STATE->unk_2e = 0;
+    STATE->cursorPixelX = 0;
+    STATE->cursorPixelY = 0;
     OV6->viewX = 0;
     OV6->viewY = 0;
     Panels_PlaceForCursor();

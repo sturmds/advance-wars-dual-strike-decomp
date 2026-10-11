@@ -142,8 +142,8 @@ typedef struct Unk_02080440_48 {
     u8 pad_24[0x28 - 0x24];
     s16 cursorX;                       /* map cursor tile; AiShowAction steps also point it at the tile they act on */
     s16 cursorY;
-    u16 unk_2c;
-    u16 unk_2e;
+    u16 cursorPixelX;                  /* the cursor in pixels, 16 per tile (MapCursor_SetTile) */
+    u16 cursorPixelY;
     s16 unk_30;                        /* tile x where the current touch began (MapCursor_UpdateFromTouch); 0xff: none */
     s16 unk_32;                        /* tile y of the same */
     s16 cycleUnitIndex;                /* index (within the current player's slots) of the unit L last jumped to; see CurrentPlayer_NextIdleUnit */

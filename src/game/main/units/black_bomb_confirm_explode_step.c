@@ -12,7 +12,7 @@ BOOL MapView_IsAtRest(void);
 u32 func_020ef190(void);
 u32 MapTouch_ReadCursorTileTap(void);
 void BlackBomb_RemoveActingUnit(Task *task);
-void func_020dd940(int x, int y, int targetX, int targetY, void *parentOrList);
+void BlackBombExplosion_Start(int x, int y, int targetX, int targetY, void *parentOrList);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void Task_ResumeScript(Task *task);
 void Task_JumpToLabel(Task *task, int label);
@@ -27,7 +27,7 @@ void MapCursor_DrawTwoStyles(int a, int b);
 
 /* Task step while the player confirms a Black Bomb explosion. Confirm
  * removes the bomb (BlackBomb_RemoveActingUnit), starts the explosion
- * (func_020dd940) from the bomb's tile at the cursor tile (cursorX, cursorY)
+ * (BlackBombExplosion_Start) from the bomb's tile at the cursor tile (cursorX, cursorY)
  * and, when gLinkPlay is set, sends unit action 23 for it. Cancel puts
  * the cursor back on the bomb and jumps the script to label 0. Same shape
  * as SiloLaunch_PickTargetStep, but the cursor does not move here. */
@@ -47,7 +47,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
     input = buttons | MapTouch_ReadCursorTileTap();
     if (input & INPUT_CONFIRM) {
         BlackBomb_RemoveActingUnit(task);
-        func_020dd940(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
+        BlackBombExplosion_Start(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
         MenuButtons_CloseAll();
         if (gLinkPlay != 0) {
             UnitAction_Send(23, GAME->actingUnitIndex, 0, 0);

@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c4394(int x, int y, s16 *tile, u16 *pixel);
+void MapCursor_SetTile(int x, int y, s16 *tile, u16 *pixel);
 void func_020b9d48(void);
 void ActingUnit_FinishAction(void);
 
@@ -16,7 +16,7 @@ void ActingUnit_FinishAction(void);
  * cursor. */
 void Game_State15_EndBlockedMove(void)
 {
-    func_020c4394(GAME->actingUnitDestX, GAME->actingUnitDestY, &GAME->cursorX, &GAME->unk_2c);
+    MapCursor_SetTile(GAME->actingUnitDestX, GAME->actingUnitDestY, &GAME->cursorX, &GAME->cursorPixelX);
     func_020b9d48();
     ActingUnit_FinishAction();
     GAME->unk_1c = 0;

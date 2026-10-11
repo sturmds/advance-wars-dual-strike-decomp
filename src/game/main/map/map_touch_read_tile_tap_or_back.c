@@ -3,7 +3,7 @@
 #include "game/touch.h"
 
 BOOL MapTouch_InBackButton(int x, int y);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -53,7 +53,7 @@ u32 MapTouch_ReadTileTapOrBack(void)
     case TOUCH_RELEASED:
         if (IsTouchInPhase(TOUCH_RELEASED)) {
             if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
-                func_020f1288();
+                TouchMarker_Resume();
                 return INPUT_CONFIRM;
             }
         }

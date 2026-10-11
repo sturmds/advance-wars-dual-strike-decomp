@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void Ai_CountEnemySubReach(void);
 int AiSite_NearUnguardedOozium(int x, int y);
-int func_0209770c(int x, int y, int unitType);
+int AiBuild_RateSiteDanger(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -46,7 +46,7 @@ int AiSite_PickPortAgainstSubs(void)
         if (bestValue >= value) {
             continue;
         }
-        if (func_0209770c(site->x, site->y, UNIT_CRUISER) < BUILD_RATING_MAX) {
+        if (AiBuild_RateSiteDanger(site->x, site->y, UNIT_CRUISER) < BUILD_RATING_MAX) {
             bestValue = value;
             best = i;
         }

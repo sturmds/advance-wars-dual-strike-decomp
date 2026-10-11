@@ -9,7 +9,7 @@ extern u16 data_0229ead8[2];
 
 /* Moves the drawn cursor position (map pixels) toward (x, y): 4 pixels per
  * call on each axis, or straight there when it is more than 16 pixels away on
- * either axis. The position is STATE->unk_2c/unk_2e, or data_0229ead8 for
+ * either axis. The position is STATE->cursorPixelX/cursorPixelY, or data_0229ead8 for
  * mode 3 (PopupMenu_DestroyCommon sets it). Writes the new position to outX/outY. */
 void MapCursor_SlideToward(s16 x, s16 y, s16 mode, s16 *outX, s16 *outY)
 {
@@ -23,7 +23,7 @@ void MapCursor_SlideToward(s16 x, s16 y, s16 mode, s16 *outX, s16 *outY)
     if (mode == 3) {
         pos = data_0229ead8;
     } else {
-        pos = &STATE->unk_2c;
+        pos = &STATE->cursorPixelX;
     }
     posX = pos[0];
     posY = pos[1];

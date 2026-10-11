@@ -15,5 +15,5 @@ void func_ov006_0235402c(void)
 {
     data_ov006_0236d640->unk_00 &= ~0x8000;
     Font_SetDigitEndTile(220);
-    func_020c4388(16, 16, &STATE->unk_2c);
+    func_020c4388(16, 16, &STATE->cursorPixelX);
 }

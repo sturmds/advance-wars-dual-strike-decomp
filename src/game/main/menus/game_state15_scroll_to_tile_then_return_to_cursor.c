@@ -10,7 +10,7 @@ void MapView_ScrollStep(int step);
 void Map_ScrollViewToTile(int arg);
 BOOL func_020ef2f0(void);
 BOOL MapTouch_IsIdle(void);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void UnitShowTask_DestroyRunning(void);
 void func_020c8888(void);
 void func_020f77bc(void);
@@ -31,7 +31,7 @@ void Game_State15_ScrollToTileThenReturnToCursor(void)
     if (!MapTouch_IsIdle()) {
         return;
     }
-    func_020f1288();
+    TouchMarker_Resume();
     UnitShowTask_DestroyRunning();
     func_020c8888();
     func_020f77bc();

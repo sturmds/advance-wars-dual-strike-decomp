@@ -4,7 +4,7 @@
 #include "game/touch.h"
 
 int TargetList_FindTile(int count, int tileX, int tileY);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
@@ -55,7 +55,7 @@ u32 MapTouch_ReadListTileTap(int count)
         return 0;
     }
     if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
-        func_020f1288();
+        TouchMarker_Resume();
         if (TargetList_FindTile(count, tileX, tileY) >= 0) {
             return INPUT_CONFIRM;
         }

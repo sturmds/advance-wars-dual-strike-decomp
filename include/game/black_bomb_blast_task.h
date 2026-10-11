@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* Work area of the Black Bomb blast task (script data_02168f10), a child of
- * the explosion task func_020dd940 starts. */
+ * the explosion task BlackBombExplosion_Start starts. */
 typedef struct BlackBombBlastTask {
     u8 pad_00[0x2c];
     int tileX;                         /* centre of the blast */
@@ -20,7 +20,7 @@ typedef struct BlackBombBlastTask {
     s16 scrollY;                       /* BlackBombBlast_InitPosition copies Unk_02080440_1c4.scrollY here */
 } BlackBombBlastTask;
 
-/* Work area of the explosion task func_020dd940 starts (script
+/* Work area of the explosion task BlackBombExplosion_Start starts (script
  * data_02168f90). */
 typedef struct BlackBombExplosionTask {
     u8 pad_00[0x2c];

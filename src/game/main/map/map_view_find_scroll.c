@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void func_020c4394(int a0, int a1, void *a2, void *a3);
+void MapCursor_SetTile(int x, int y, s16 *tile, u16 *pixel);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -33,7 +33,7 @@ BOOL MapView_FindScroll(int *x, int *y, BOOL centre)
     screenLayout = gCameraPresetIndex;
     viewW = data_021576fa[screenLayout][0];
     viewH = data_021576fb[screenLayout][0];
-    func_020c4394((s16)*x, (s16)*y, &GAME->cursorX, &GAME->unk_2c);
+    MapCursor_SetTile((s16)*x, (s16)*y, &GAME->cursorX, &GAME->cursorPixelX);
     scrollX = (s16)GAME->unk_1c4->scrollX / 16;
     scrollY = (s16)GAME->unk_1c4->scrollY / 16;
     dx = 0;

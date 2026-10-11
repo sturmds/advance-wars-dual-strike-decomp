@@ -4,7 +4,7 @@
 #include "game/touch.h"
 
 int NeighborDir_FindAtTile(int tileX, int tileY, int mask);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
@@ -57,7 +57,7 @@ u32 MapTouch_ReadNeighborTileTap(int mask)
         return 0;
     }
     if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
-        func_020f1288();
+        TouchMarker_Resume();
         if (NeighborDir_FindAtTile(tileX, tileY, mask) >= 0) {
             return INPUT_CONFIRM;
         }

@@ -32,7 +32,7 @@ void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_MapFrame(void);
 void Font_SetDigitEndTile(int tile);
-void func_020c4394(int x, int y, s16 *tile, u16 *pixel);
+void MapCursor_SetTile(int x, int y, s16 *tile, u16 *pixel);
 void Ov006_PostRequest(int request);
 void Sound_StartSong(int songId);
 void Ov006_LoadArmyTerrainGraphics(void);
@@ -136,7 +136,7 @@ void DesignRoom_Init(Task *task)
     func_01ff9c48(MainLoop_MapFrame);
     data_022a6b38 = 0;
     Font_SetDigitEndTile(0x45);
-    func_020c4394(7, 4, &STATE->cursorX, &STATE->unk_2c);
+    MapCursor_SetTile(7, 4, &STATE->cursorX, &STATE->cursorPixelX);
     *(s8 *)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */
     OV6->toolTile = 1;
     OV6->tileArmy = 1;

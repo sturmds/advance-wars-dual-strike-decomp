@@ -6,11 +6,11 @@ extern u16 data_0229d8c4;
 void func_020800c0(void);
 int LinkActionQueue_Pop(UnitAction *action);
 int UnitAction_IsValid(UnitAction *action);
-void func_0208c208(int a0);
+void AiTurn_SetState(int state);
 void func_0208c1f4(int a0);
 
 /* State 0 of LinkAction_Update. Takes the next queued action into gUnitAction; when it is a valid
- * one, calls func_0208c208(3) and func_0208c1f4(0) and moves to state 4, which shows it. */
+ * one, calls AiTurn_SetState(3) and func_0208c1f4(0) and moves to state 4, which shows it. */
 void LinkAction_StartNext(void)
 {
     func_020800c0();
@@ -20,7 +20,7 @@ void LinkAction_StartNext(void)
     if (UnitAction_IsValid(&gUnitAction) != 1) {
         return;
     }
-    func_0208c208(3);
+    AiTurn_SetState(3);
     func_0208c1f4(0);
     data_0229d8c4 = 4;
 }

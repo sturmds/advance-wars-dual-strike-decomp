@@ -17,7 +17,7 @@ int UnitType_GetAttackKind(u8 unitType);
 BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
 BOOL AiBuild_HasEnoughGroundIndirects(int info);
 int AiSite_PickForBuild(int supplyKind);
-int func_0209770c(int x, int y, int unitType);
+int AiBuild_RateSiteDanger(int x, int y, int unitType);
 void AiSites_ClearRejectedMarks(void);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_02098238(u32 cost);
@@ -35,7 +35,7 @@ int Ai_CountUnitsOfType(int type);
  * gAiBuildScores and a factory for it (AiSite_PickForBuild by gUnitSupplyKind).
  * AiSite_RateBaseLandmass returns flags (bit 8) and a count (bits 0-7) that rule out
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
- * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
+ * Anti-Air (at half weight). An airport or port where AiBuild_RateSiteDanger gives 90 or
  * more is marked (kind 0xff) and the next one tried. When funds are short and
  * allowSaving is 1, func_02098238 may set AiBuildState.savingTarget to the funds
  * still missing after next income; while savingTarget is set, a build must leave
@@ -119,7 +119,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 break;
             }
             site = &data_0229e5bc[index];
-            if (func_0209770c(site->x, site->y, best) >= 90) {
+            if (AiBuild_RateSiteDanger(site->x, site->y, best) >= 90) {
                 site->kind = 0xff;
                 continue;
             }

@@ -11,7 +11,7 @@ extern s16 data_0229777c;
 BOOL ActingUnit_CanMoveTo(int x, int y);
 BOOL UnitMoveSelect_TryMoveTo(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
-void func_020f1288(void);
+void TouchMarker_Resume(void);
 void func_020f5888(int x, int y);
 void UnitShowTask_DestroyRunning(void);
 void func_020c8888(void);
@@ -41,7 +41,7 @@ BOOL UnitMoveSelect_HandleTouch(void)
         return FALSE;
     }
     if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
-        func_020f1288();
+        TouchMarker_Resume();
         if (ActingUnit_CanMoveTo(GAME->cursorX, GAME->cursorY)) {
             UnitMoveSelect_TryMoveTo(GAME->cursorX, GAME->cursorY);
             return TRUE;

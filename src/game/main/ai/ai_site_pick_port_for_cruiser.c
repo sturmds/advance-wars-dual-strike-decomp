@@ -7,9 +7,9 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_02096f44(void);
+void Ai_BuildEnemySubReachMap(void);
 int AiSite_NearUnguardedOozium(int x, int y);
-int func_0209770c(int x, int y, int unitType);
+int AiBuild_RateSiteDanger(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -19,8 +19,8 @@ int func_0209770c(int x, int y, int unitType);
 
 /* Picks the port site (type 3) to build a Cruiser at: not skipped, not
  * rejected by AiSite_NearUnguardedOozium, and rated below BUILD_RATING_MAX for a Cruiser
- * by func_0209770c. Of those, the one with the lowest value in
- * MapTiles.rangeScratch (filled by func_02096f44), at most SCRATCH_FAR; a
+ * by AiBuild_RateSiteDanger. Of those, the one with the lowest value in
+ * MapTiles.rangeScratch (filled by Ai_BuildEnemySubReachMap), at most SCRATCH_FAR; a
  * later site wins a tie. Returns the site index, or -1. */
 int AiSite_PickPortForCruiser(void)
 {
@@ -33,7 +33,7 @@ int AiSite_PickPortForCruiser(void)
     site = data_0229e5bc;
     bestValue = SCRATCH_FAR;
     best = -1;
-    func_02096f44();
+    Ai_BuildEnemySubReachMap();
     for (i = 0; i < data_021619c0->recordCount; i++, site++) {
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
@@ -48,7 +48,7 @@ int AiSite_PickPortForCruiser(void)
         if (bestValue < value) {
             continue;
         }
-        if (func_0209770c(site->x, site->y, UNIT_CRUISER) < BUILD_RATING_MAX) {
+        if (AiBuild_RateSiteDanger(site->x, site->y, UNIT_CRUISER) < BUILD_RATING_MAX) {
             bestValue = value;
             best = i;
         }

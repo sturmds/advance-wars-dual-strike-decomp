@@ -44,8 +44,8 @@ void Battle_SetupWithPresetCos(void)
     STATE->unk_18 = 0;
     STATE->cursorX = 0;
     STATE->cursorY = 0;
-    STATE->unk_2c = 0;
-    STATE->unk_2e = 0;
+    STATE->cursorPixelX = 0;
+    STATE->cursorPixelY = 0;
 
     Panels_PlaceForCursor();
     Units_ClearAll();

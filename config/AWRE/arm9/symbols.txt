@@ -2764,7 +2764,7 @@ CombatIntro_StartEventScript kind:function(arm,size=0x4c) addr:0x0208c180
 func_0208c1cc kind:function(arm,size=0x14) addr:0x0208c1cc
 func_0208c1e0 kind:function(arm,size=0x14) addr:0x0208c1e0
 func_0208c1f4 kind:function(arm,size=0x14) addr:0x0208c1f4
-func_0208c208 kind:function(arm,size=0x14) addr:0x0208c208
+AiTurn_SetState kind:function(arm,size=0x14) addr:0x0208c208
 AiTurn_GetState kind:function(arm,size=0x14) addr:0x0208c21c
 AiTurn_Restart kind:function(arm,size=0x74) addr:0x0208c230
 AiTurn_Update kind:function(arm,size=0xc4) addr:0x0208c2a4
@@ -2913,11 +2913,11 @@ AiSite_NearUnguardedOozium kind:function(arm,size=0x138) addr:0x02096c60
 AiTile_HasAdjacentOwnTeamUnit kind:function(arm,size=0x90) addr:0x02096d98
 AiTile_HasOwnTeamUnit kind:function(arm,size=0x80) addr:0x02096e28
 AiTile_HasEnemyOozium kind:function(arm,size=0x9c) addr:0x02096ea8
-func_02096f44 kind:function(arm,size=0x10c) addr:0x02096f44
+Ai_BuildEnemySubReachMap kind:function(arm,size=0x10c) addr:0x02096f44
 Ai_MarkEnemySubReach kind:function(arm,size=0x2a0) addr:0x02097050
 Ai_CountEnemySubReach kind:function(arm,size=0x10c) addr:0x020972f0
 Ai_AddSubReach kind:function(arm,size=0x310) addr:0x020973fc
-func_0209770c kind:function(arm,size=0x6c8) addr:0x0209770c
+AiBuild_RateSiteDanger kind:function(arm,size=0x6c8) addr:0x0209770c
 AiSite_RateBaseLandmass kind:function(arm,size=0x58) addr:0x02097dd4
 AiSite_RateLandmass kind:function(arm,size=0x40c) addr:0x02097e2c
 func_02098238 kind:function(arm,size=0xd8) addr:0x02098238
@@ -3344,8 +3344,8 @@ func_020bc6bc kind:function(arm,size=0x14) addr:0x020bc6bc
 func_020bc6d0 kind:function(arm,size=0x14) addr:0x020bc6d0
 func_020bc6e4 kind:function(arm,size=0x14) addr:0x020bc6e4
 func_020bc6f8 kind:function(arm,size=0x14) addr:0x020bc6f8
-func_020bc70c kind:function(arm,size=0x14) addr:0x020bc70c
-func_020bc720 kind:function(arm,size=0x14) addr:0x020bc720
+BattleMenu_DrawAutoCoOffHelp kind:function(arm,size=0x14) addr:0x020bc70c
+BattleMenu_DrawAutoCoOnHelp kind:function(arm,size=0x14) addr:0x020bc720
 func_020bc734 kind:function(arm,size=0x14) addr:0x020bc734
 func_020bc748 kind:function(arm,size=0x14) addr:0x020bc748
 func_020bc75c kind:function(arm,size=0x14) addr:0x020bc75c
@@ -3542,7 +3542,7 @@ Map_ScrollViewToTile kind:function(arm,size=0x88) addr:0x020c41c4
 MapCursor_SlideToward kind:function(arm,size=0x120) addr:0x020c424c
 func_020c436c kind:function(arm,size=0x1c) addr:0x020c436c
 func_020c4388 kind:function(arm,size=0xc) addr:0x020c4388
-func_020c4394 kind:function(arm,size=0x1c) addr:0x020c4394
+MapCursor_SetTile kind:function(arm,size=0x1c) addr:0x020c4394
 MapSiteList_RefreshTiles kind:function(arm,size=0x98) addr:0x020c43b0
 func_020c4448 kind:function(arm,size=0x388) addr:0x020c4448
 Map_LoadAndCountProperties kind:function(arm,size=0x1c0) addr:0x020c47d0
@@ -4093,7 +4093,7 @@ UnitAction_SwapCo kind:function(arm,size=0x15c) addr:0x020dd6bc
 UnitAction_MoveToOtherMap kind:function(arm,size=0x84) addr:0x020dd818
 func_020dd89c kind:function(arm,size=0x8c) addr:0x020dd89c
 func_020dd928 kind:function(arm,size=0x18) addr:0x020dd928
-func_020dd940 kind:function(arm,size=0x60) addr:0x020dd940
+BlackBombExplosion_Start kind:function(arm,size=0x60) addr:0x020dd940
 func_020dd9a0 kind:function(arm,size=0x14) addr:0x020dd9a0
 Silo_StartLaunch kind:function(arm,size=0xc0) addr:0x020dd9b4
 func_020dda74 kind:function(arm,size=0x18) addr:0x020dda74
@@ -4527,8 +4527,8 @@ MapTouch_HandleTileTap kind:function(arm,size=0x184) addr:0x020f0b10
 MapCursor_UpdateFromTouch kind:function(arm,size=0x260) addr:0x020f0c94
 MapCursor_UpdateFromTouchFree kind:function(arm,size=0x260) addr:0x020f0ef4
 MapTouch_ReadButtons kind:function(arm,size=0x108) addr:0x020f1154
-func_020f125c kind:function(arm,size=0x2c) addr:0x020f125c
-func_020f1288 kind:function(arm,size=0x14) addr:0x020f1288
+TouchMarker_Exists kind:function(arm,size=0x2c) addr:0x020f125c
+TouchMarker_Resume kind:function(arm,size=0x14) addr:0x020f1288
 TouchMarker_Destroy kind:function(arm,size=0x38) addr:0x020f129c
 TouchMarker_Create kind:function(arm,size=0x4c) addr:0x020f12d4
 TouchMarker_WaitStep kind:function(arm,size=0x3c) addr:0x020f1320
@@ -8000,7 +8000,7 @@ data_02169344 kind:data(any) addr:0x02169344
 data_021693bc kind:data(any) addr:0x021693bc
 data_02169454 kind:data(any) addr:0x02169454
 data_02169456 kind:data(any) addr:0x02169456
-data_02169494 kind:data(any) addr:0x02169494
+gTouchMarkerScript kind:data(any) addr:0x02169494
 data_021694bc kind:data(any) addr:0x021694bc
 data_021694c0 kind:data(any) addr:0x021694c0
 data_021694c4 kind:data(any) addr:0x021694c4

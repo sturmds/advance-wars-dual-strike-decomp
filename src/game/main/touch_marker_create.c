@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/touch_marker_task.h"
 
-extern const TaskScriptCmd data_02169494[];
+extern const TaskScriptCmd gTouchMarkerScript[];
 
 Task *Task_FindByScript(const TaskScriptCmd *script);
 
@@ -11,10 +11,10 @@ void TouchMarker_Create(int tileX, int tileY)
 {
     TouchMarkerTask *task;
 
-    if (Task_FindByScript(data_02169494) != NULL) {
+    if (Task_FindByScript(gTouchMarkerScript) != NULL) {
         return;
     }
-    task = (TouchMarkerTask *)Task_Create(data_02169494, TASK_LIST(3));
+    task = (TouchMarkerTask *)Task_Create(gTouchMarkerScript, TASK_LIST(3));
     task->tileX = tileX;
     task->tileY = tileY;
 }

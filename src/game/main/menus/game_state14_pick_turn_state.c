@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void SidePanel_Place(int mode);
 void Gfx_LoadPlayerBmap0a0Palette(int player);
-void func_0208c208(int a0);
+void AiTurn_SetState(int state);
 
 /* Handler for game state 14. Picks the state that runs the current player's
  * turn from its controller: 15 for a human, 16 for the AI (with the AI turn
@@ -26,7 +26,7 @@ void Game_State14_PickTurnState(void)
         break;
     case PLAYER_CONTROLLER_AI:
         STATE->unk_18 = 16;
-        func_0208c208(0);
+        AiTurn_SetState(0);
         break;
     /* needed to match: one case per controller, not a shared case */
     case 3:

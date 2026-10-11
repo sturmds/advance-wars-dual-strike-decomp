@@ -7,7 +7,7 @@ extern const TaskScriptCmd data_02168f90[];
 /* Starts the Black Bomb explosion task for a bomb at (bombX, bombY) that
  * blasts around (tileX, tileY). parentOrList is a top-level list number
  * (below TASK_LEVELS) or the parent task. */
-void func_020dd940(int bombX, int bombY, int tileX, int tileY, void *parentOrList)
+void BlackBombExplosion_Start(int bombX, int bombY, int tileX, int tileY, void *parentOrList)
 {
     BlackBombExplosionTask *task;
 
