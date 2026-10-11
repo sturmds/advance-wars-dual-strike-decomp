@@ -5829,8 +5829,8 @@ Isd_StringLength kind:function(arm,size=0x38) addr:0x02120a9c
 func_02120ad4 kind:function(arm,size=0x90) addr:0x02120ad4
 Isd_CartRingWriteByte kind:function(arm,size=0xb4) addr:0x02120b64
 Isd_PrintTargetWrite kind:function(arm,size=0x118) addr:0x02120c18
-func_02120d30 kind:function(arm,size=0x6c) addr:0x02120d30
-func_02120d9c kind:function(arm,size=0x58) addr:0x02120d9c
+Isd_Printf kind:function(arm,size=0x6c) addr:0x02120d30
+Isd_ReportFailure kind:function(arm,size=0x58) addr:0x02120d9c
 Isd_BusRestore kind:function(arm,size=0x84) addr:0x02120df4
 Isd_BusSave kind:function(arm,size=0x70) addr:0x02120e78
 Isd_ReleaseCartridge kind:function(arm,size=0x30) addr:0x02120ee8
@@ -6199,8 +6199,8 @@ data_02151978 kind:data(any) addr:0x02151978
 gIsdSpaces kind:data(any) addr:0x02151990
 data_021519a4 kind:data(any) addr:0x021519a4
 data_021519ac kind:data(any) addr:0x021519ac
-data_021519b0 kind:data(any) addr:0x021519b0
-data_021519e4 kind:data(any) addr:0x021519e4
+gIsdAssertionFormat kind:data(any) addr:0x021519b0
+gIsdWarningFormat kind:data(any) addr:0x021519e4
 data_02151a0c kind:data(any) addr:0x02151a0c
 data_02151a1c kind:data(any) addr:0x02151a1c
 data_02151a3c kind:data(any) addr:0x02151a3c

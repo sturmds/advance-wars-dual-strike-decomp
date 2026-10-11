@@ -54,8 +54,12 @@ struct IsdPrintTarget {
     u32 limit;
     u32 total;
     u32 stored;
-    void (*write)(IsdPrintTarget *target, const char *text, int length);
+    void (*write)(IsdPrintTarget *target, const char *text, u32 length);
 };
+
+void Isd_PrintTargetWrite(IsdPrintTarget *target, const char *text, u32 length);
+
+void Isd_Printf(const char *format, ...);
 
 /* A halfword in the shared block that holds the debugger's current mode. */
 #define ISD_SHARED_MODE (*(vu16 *)0x027fff72)
