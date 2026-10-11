@@ -16174,9 +16174,21 @@ src/game/main/map/map_view_scroll_step.c:
     complete
     .text       start:0x020f7268 end:0x020f757c
 
+src/game/main/map/vram_init_banks.c:
+    complete
+    .text       start:0x020f757c end:0x020f75dc
+
+src/game/main/map/screen_config_run_frame_hook.c:
+    complete
+    .text       start:0x020f76dc end:0x020f7728
+
 src/game/main/func_020f77bc.c:
     complete
     .text       start:0x020f77bc end:0x020f783c
+
+src/game/main/map/func_020f783c.c:
+    complete
+    .text       start:0x020f783c end:0x020f788c
 
 src/game/main/func_020f788c.c:
     complete

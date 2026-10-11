@@ -246,7 +246,8 @@ typedef struct Unk_02080440_50 {
     void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
     void (*unk_1c)(void);              /* run by MainLoop_MapFrame each frame on the second screen, when set */
     void (*unk_20)(int player, int frame); /* run by PowerMeter_UpdateFlash for each player in the game: the power meter flash frame, 0-15 */
-    u8 pad_24[0x2c - 0x24];
+    u8 pad_24[0x28 - 0x24];
+    void (*unk_28)(int frame);         /* run by MapScreen_UpdateAnimations (ScreenConfig_RunFrameHook) when set */
     void (*unk_2c)(void);              /* run by MapCursor_ShowRange when set, after it shows a range */
     void (*unk_30)(void);              /* run by MapCursor_SelectTile when set, after a unit is picked to move */
     u8 pad_34[0x38 - 0x34];
@@ -260,7 +261,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
     void (*unk_58)(int weather, int tileset); /* run by func_020c9778 and func_020c98b4 on each screen when set */
     BOOL (*unk_5c)(void);              /* func_020fa6f8 calls it; picks between two asset or chart variants */
-    u8 pad_60[100 - 0x60];
+    const struct TaskScriptCmd *unk_60; /* script of the task func_020f783c creates when set */
 } Unk_02080440_50;
 
 /* Pointed to by data_027c027c (DTCM). */

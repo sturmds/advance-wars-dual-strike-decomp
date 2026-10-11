@@ -7,7 +7,7 @@ extern Unk_02080440_48 data_02183b08;
 
 int MainLoop_GetFrameCount(void);
 /* These take the frame count; the matched ones ignore it. */
-void func_020f76dc(int frame);
+void ScreenConfig_RunFrameHook(int frame);
 void PowerMeter_UpdateFlash(int frame);
 void func_020f63b0(int frame);
 void PowerPanel_AnimatePaletteColour(int frame);
@@ -22,7 +22,7 @@ void MapAnim_QueueFramePartMapF8(int frame);
  * instead of MapAnim_QueueFramePart. */
 void MapScreen_UpdateAnimations(void)
 {
-    func_020f76dc(MainLoop_GetFrameCount());
+    ScreenConfig_RunFrameHook(MainLoop_GetFrameCount());
     PowerMeter_UpdateFlash(MainLoop_GetFrameCount());
     func_020f63b0(MainLoop_GetFrameCount());
     PowerPanel_AnimatePaletteColour(MainLoop_GetFrameCount());
