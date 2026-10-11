@@ -79,6 +79,20 @@ typedef struct Decimal {
     u8 digits[37];
 } Decimal;
 
+/* How many digits a float conversion asks for. */
+typedef struct DecimalFormat {
+    u8 style;
+    u8 pad_01;
+    s16 digits;
+} DecimalFormat;
+
+#define DECIMAL_SIG_DIGITS 32
+
+/* Converts x to at most format->digits significant digits, as ASCII. */
+void __num2dec(const DecimalFormat *format, double x, Decimal *dec);
+/* Converts x to its exact digit string, digits as values 0-9. */
+void func_02124c80(Decimal *dec, double x);
+
 /* Adds one to the digit string at its first count digits; a carry out of the first digit raises exp. */
 void func_02125658(Decimal *dec, int count);
 /* Returns 1 to round the digits at count up, -1 to round down; an exact half goes to the even digit. */

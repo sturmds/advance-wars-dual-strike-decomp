@@ -23235,6 +23235,10 @@ src/sdk/msl/ldexp.c:
     complete
     .text       start:0x021248d4 end:0x02124bb8
 
+src/sdk/msl/num2dec.c:
+    complete
+    .text       start:0x02124bb8 end:0x02124c80
+
 src/sdk/msl/__rounddec.c:
     complete
     .text       start:0x021255f4 end:0x02125658
