@@ -22,4 +22,17 @@ typedef struct CoSelectScreen {
 
 extern CoSelectScreen *data_0229c73c;
 
+/* Task that slides the big CO pictures on the bottom screen, one per grid
+ * row (CoSelectScreen_SlidePictures). Fields are per row. */
+typedef struct CoSelectPictureTask {
+    u8 pad_00[0x2a];                   /* Task header */
+    u16 frame[2];                      /* frames into the current slide, up to 8 */
+    u16 waitFrames[2];                 /* frames the picture has stayed out before the new CO loads */
+    s16 slideFrom[2];
+    s16 slideOffset[2];                /* pixels the picture is moved off screen; 144 is fully out */
+    u8 co[2];                          /* CO under the cursor */
+    u8 shownCo[2];                     /* CO whose picture is loaded */
+    u8 slidingIn[2];
+} CoSelectPictureTask;
+
 #endif
