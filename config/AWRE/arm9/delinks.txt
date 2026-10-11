@@ -13312,6 +13312,10 @@ src/game/main/task/palette_anim_task_step.c:
     complete
     .text       start:0x020d7e24 end:0x020d7e60
 
+src/game/main/task/palette_anim_task_load_frame.c:
+    complete
+    .text       start:0x020d7e60 end:0x020d7e98
+
 src/game/main/func_020d7e98.c:
     complete
     .text       start:0x020d7e98 end:0x020d7ea4
