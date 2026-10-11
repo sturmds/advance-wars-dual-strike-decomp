@@ -9411,6 +9411,10 @@ src/game/main/map/tile_strike_task_update_impact3d.c:
     complete
     .text       start:0x020d8cb8 end:0x020d8d40
 
+src/game/main/map/tile_strike_task_update_fall3d.c:
+    complete
+    .text       start:0x020d8d40 end:0x020d8e24
+
 src/game/main/func_020d8e70.c:
     complete
     .text       start:0x020d8e70 end:0x020d8e9c

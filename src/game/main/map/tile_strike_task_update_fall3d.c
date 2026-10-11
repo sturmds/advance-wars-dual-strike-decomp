@@ -1,0 +1,29 @@
+#include "types.h"
+#include "game/tile_strike_task.h"
+
+void Task_ResumeScript(TileStrikeTask *task);
+void Sound_PlaySe(int songId);
+void ScreenShake_Start(int tableIndex, int steps, void *parent);
+void func_02021f44(struct Unk_02022404 *sprite, int animation);
+int func_020225c8(struct Unk_02022404 *sprite, TileStrikePos *pos, TileStrikePos *rot);
+
+/* The sprite falls 10 units a frame from height 100. At 0 it switches to
+ * the impact animation, with a sound and a screen shake. */
+void TileStrikeTask_UpdateFall3d(TileStrikeTask *task)
+{
+    TileStrikePos pos;
+
+    pos.x = (task->x << 13) / 256;
+    pos.y = (task->y - task->height) * 0x6000 / 0x300;
+    pos.z = (task->height << 13) / 256;
+    func_020225c8(task->sprite, &pos, NULL);
+    task->height -= 10;
+    if (task->height > 0) {
+        return;
+    }
+    func_02021f44(task->sprite, 1);
+    task->y = task->tileY * 16 + 8;
+    Sound_PlaySe(159);
+    ScreenShake_Start(0, 8, NULL);
+    Task_ResumeScript(task);
+}
