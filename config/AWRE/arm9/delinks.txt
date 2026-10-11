@@ -4802,9 +4802,17 @@ src/game/main/menus/main_menu_draw_rank_icon.c:
     complete
     .text       start:0x02030590 end:0x020305e4
 
+src/game/main/menus/main_menu_return_to_page5.c:
+    complete
+    .text       start:0x020305e4 end:0x0203067c
+
 src/game/main/menus/main_menu_build_page10.c:
     complete
     .text       start:0x0203067c end:0x02030830
+
+src/game/main/menus/main_menu_build_page13.c:
+    complete
+    .text       start:0x02030830 end:0x020308c8
 
 src/game/main/func_020308c8.c:
     complete

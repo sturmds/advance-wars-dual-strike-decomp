@@ -11,7 +11,7 @@ void Screen_SetBothNibbles(int value);
 void Screens_HideWithWindows(void);
 void Save_LoadCombatSetup(void);
 void CombatSetup_StartKeepingSettings(void);
-void func_020305e4(void);
+void MainMenu_ReturnToPage5(void);
 void func_02103714(void);
 void func_0208af34(void);
 
@@ -33,7 +33,7 @@ void Ov003ExitTask_Run(void)
         Save_LoadCombatSetup();
         Screen_SetBothNibbles(1);
         Screens_HideWithWindows();
-        func_020305e4();
+        MainMenu_ReturnToPage5();
         func_02103714();
     } else {
         func_0208af34();

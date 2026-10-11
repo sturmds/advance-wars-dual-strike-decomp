@@ -2,7 +2,7 @@
 #include "game/task.h"
 
 void Save_LoadCombatSetup(void);
-void func_020305e4(void);
+void MainMenu_ReturnToPage5(void);
 void func_02103714(void);
 void func_02082a5c(void);
 
@@ -13,7 +13,7 @@ void func_0208af80(Task *task)
 {
     if (task->unk_52 != 0) {
         Save_LoadCombatSetup();
-        func_020305e4();
+        MainMenu_ReturnToPage5();
         func_02103714();
     } else {
         func_02082a5c();

@@ -46,7 +46,7 @@ void func_0202d888(void);
 void func_0202e8d0(void);
 void func_0202e970(void);
 void MainMenu_BuildPage10(void);
-void func_02030830(void);
+void MainMenu_BuildPage13(void);
 void func_020308c8(void);
 void MainMenu_BuildPage7(void);
 int func_02102378(void);
@@ -216,7 +216,7 @@ void func_0202f0d8(MainMenuTask *task)
             func_020308c8();
             break;
         case 13:
-            func_02030830();
+            MainMenu_BuildPage13();
             break;
         }
         Task_JumpToLabel(task, 0);
