@@ -16525,6 +16525,10 @@ src/game/main/skills/co_set_skills_from_list.c:
     complete
     .text       start:0x020e6bf0 end:0x020e6c48
 
+src/game/main/skills/player_list_equipped_skills.c:
+    complete
+    .text       start:0x020e6c48 end:0x020e6cc8
+
 src/game/main/skills/co_set_list_equipped_skills.c:
     complete
     .text       start:0x020e6cc8 end:0x020e6d14
