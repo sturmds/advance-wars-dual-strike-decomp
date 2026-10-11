@@ -143,5 +143,6 @@ void FS_InitFile(FSFile *file);
 BOOL FS_OpenFile(FSFile *file, const char *path);
 s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
 BOOL FS_CloseFile(FSFile *file);
+void FSi_ReleaseCommand(FSFile *file, int result);
 
 #endif
