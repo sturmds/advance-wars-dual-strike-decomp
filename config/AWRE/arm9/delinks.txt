@@ -9128,6 +9128,14 @@ src/game/main/func_02086754.c:
     complete
     .text       start:0x02086754 end:0x02086760
 
+src/game/main/menus/combat_setup_press_ready.c:
+    complete
+    .text       start:0x02086760 end:0x020867a8
+
+src/game/main/menus/combat_setup_press_row_button.c:
+    complete
+    .text       start:0x020867a8 end:0x02086810
+
 src/game/main/link/link_menu_select_entry.c:
     complete
     .text       start:0x02086810 end:0x0208683c
