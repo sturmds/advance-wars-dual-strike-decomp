@@ -1,0 +1,110 @@
+#include "types.h"
+#include "game/player.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_022a7a9c.h"
+#include "game/Unk_02290118.h"
+#include "game/play_records.h"
+
+int Player_GetCurrentOrFirstInGame(void);
+int BattleScore_Speed(int player);
+int BattleScore_Power(int player);
+int BattleScore_Technique(int player);
+int func_020e9bc0(int player); /* speed + power + technique */
+int func_020e5428(int score);  /* rank 2-5 for a score */
+BOOL Player1Team_HasPlayerInGame(void);
+int Campaign_IsHardMode(void);
+int ProfileHeaders_UpdateBest(int profile, int value);
+void func_020ea14c(void);
+void BattleResults_Fill(void);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+/* End-of-battle score into data_022a7a9c: speed (unk_00), power (unk_01)
+ * and technique (unk_02) of the current player (unk_04), their sum (score)
+ * and its rank (unk_03); Survival halves all but the rank. Then the
+ * Player.unk_20 counts of the human players summed into unk_08-unk_0c,
+ * unk_0d set on maps 242 and 247, and the total (unk_14): the sum plus
+ * the bonus points, 0 when player 1's team is out or in Versus, doubled on
+ * campaign hard mode. In the campaign, unk_18 gets the profile's earlier
+ * best from ProfileHeaders_UpdateBest. Last, runs func_020ea14c and
+ * BattleResults_Fill. */
+void BattleScore_Compute(void)
+{
+    int i;
+    int total;
+    int oozium;
+    int best;
+
+    data_022a7a9c.unk_04 = Player_GetCurrentOrFirstInGame();
+    data_022a7a9c.unk_00 = BattleScore_Speed(data_022a7a9c.unk_04);
+    data_022a7a9c.unk_01 = BattleScore_Power(data_022a7a9c.unk_04);
+    data_022a7a9c.unk_02 = BattleScore_Technique(data_022a7a9c.unk_04);
+    data_022a7a9c.score = func_020e9bc0(data_022a7a9c.unk_04);
+    data_022a7a9c.unk_03 = func_020e5428(data_022a7a9c.score);
+    if (STATE->gameMode == GAME_MODE_SURVIVAL) {
+        data_022a7a9c.unk_00 >>= 1;
+        data_022a7a9c.unk_01 >>= 1;
+        data_022a7a9c.unk_02 >>= 1;
+        data_022a7a9c.score >>= 1;
+    }
+
+    data_022a7a9c.unk_08 = 0;
+    data_022a7a9c.unk_09 = 0;
+    data_022a7a9c.unk_0a = 0;
+    data_022a7a9c.unk_0b = 0;
+    data_022a7a9c.unk_0c = 0;
+    data_022a7a9c.unk_0d = 0;
+    for (i = 1; i < 5; i++) {
+        if (STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
+            data_022a7a9c.unk_08 += STATE->players[i].unk_20[0];
+            data_022a7a9c.unk_09 += STATE->players[i].unk_20[1];
+            data_022a7a9c.unk_0a += STATE->players[i].unk_20[4];
+            data_022a7a9c.unk_0b += STATE->players[i].unk_20[2];
+            data_022a7a9c.unk_0c += STATE->players[i].unk_20[PLAYER_DESTROYED_OOZIUM];
+            if (STATE->unk_1c4->mapId == 242 || STATE->unk_1c4->mapId == 247) {
+                data_022a7a9c.unk_0d = 1;
+            } else {
+                data_022a7a9c.unk_0d = 0;
+            }
+        }
+    }
+
+    /* bonus points per count; Oozium destroyed give at most 999 */
+    total = data_022a7a9c.score;
+    total += data_022a7a9c.unk_08 * 30;
+    total += data_022a7a9c.unk_09 * 10;
+    total += data_022a7a9c.unk_0a * 20;
+    total += data_022a7a9c.unk_0b * 5;
+    oozium = data_022a7a9c.unk_0c * 40;
+    if (oozium >= 999) {
+        oozium = 999;
+    }
+    total += oozium;
+    total += data_022a7a9c.unk_0d * 30;
+    if (!Player1Team_HasPlayerInGame()) {
+        total = 0;
+    }
+    switch (STATE->gameMode) {
+    case GAME_MODE_CAMPAIGN:
+        if (Campaign_IsHardMode()) {
+            total *= 2;
+        }
+        break;
+    case GAME_MODE_VERSUS:
+        total = 0;
+        break;
+    }
+    if (STATE->gameMode != GAME_MODE_CAMPAIGN) {
+        best = 0;
+    } else {
+        best = ProfileHeaders_UpdateBest(data_02290118.unk_00, total);
+    }
+    data_022a7a9c.unk_18 = best;
+    data_022a7a9c.unk_14 = total;
+    data_022a7a9c.unk_10 = gPlayRecords.points - best;
+    func_020ea14c();
+    BattleResults_Fill();
+}

@@ -20,7 +20,7 @@ static inline u16 CurrentMap_GetMapId(void)
     return mapId;
 }
 
-/* Called at the end of a campaign battle (func_020ea240) with the current
+/* Called at the end of a campaign battle (BattleScore_Compute) with the current
  * profile, which it does not use, and a value. Keeps the larger of value and
  * data_02290118.unk_0e in unk_0e (0 unless unk_05 is set) and returns the
  * smaller. Raises unk_0e of every profile in use with the same unk_01,
