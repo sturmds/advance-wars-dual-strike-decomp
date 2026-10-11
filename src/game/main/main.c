@@ -19,7 +19,7 @@ void Screens_InitDisplay(void);
 void Sound_InitSystem(void);
 void Sound_Init(void);
 void Sound_LoadResidentData(void);
-void func_0200170c(void);
+void Overlay_ClearLoadedFlags(void);
 void Overlay_Load(int slot);
 void func_0200c0b0(void);
 u8 OwnerInfo_GetFavoriteColor(void);
@@ -90,7 +90,7 @@ void main(void)
     Sound_InitSystem();
     Sound_Init();
     Sound_LoadResidentData();
-    func_0200170c();
+    Overlay_ClearLoadedFlags();
     Overlay_Load(0);
     Overlay_Load(1);
     func_0200c0b0();
