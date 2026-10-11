@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 u8 func_02091fbc(void);
-u8 func_02092a6c(void);
+u8 AiSites_BuildGroups(void);
 int AiPlayer_FrontCoNearerToSuper(void);
 int func_02092ef4(int player, BOOL flag, MapUnit *unit);
 
@@ -25,7 +25,7 @@ void AiEndActions_Start(void)
     BOOL flag;
 
     data_021619c0->recordCount = func_02091fbc();
-    data_021619c0->slotCount = func_02092a6c();
+    data_021619c0->slotCount = AiSites_BuildGroups();
     flag = AiPlayer_FrontCoNearerToSuper() == 1;
     data_021619c0->unk_07 = 0;
     data_021619c0->unk_0c = 0;

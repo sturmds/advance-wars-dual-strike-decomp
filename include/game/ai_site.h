@@ -10,7 +10,7 @@ typedef struct AiSite {
     u8 y;
     u8 active;                         /* 1: the record is in use */
     u8 kind;                           /* 0xfd: the record is skipped; 0xfe: no action found (AiTurn_TrySiteAction); 254 and up reset to 127 by func_0209378c */
-    s8 group;                          /* func_02092350 works on the records of one group; -1 marks a group's first record (func_02092a6c) */
+    s8 group;                          /* func_02092350 works on the records of one group; -1 marks a group's first record (AiSites_BuildGroups) */
     s8 unitBalance;                    /* func_02092350: +1 per enemy foot unit near the site (+2 for others), -1 per own-team unit */
     u8 enemyCount;                     /* func_02092350: enemy units near the site */
     u8 enemyDistance;                  /* func_02092350: distance to the nearest enemy unit that can reach the site */
