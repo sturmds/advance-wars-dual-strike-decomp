@@ -394,3 +394,7 @@ src/sdk/mi/os_reset_system.c:
 src/sdk/mi/dma_load_channel_and_settle.c:
     complete
     .text       start:0x01ffdd1c end:0x01ffdd7c
+
+src/sdk/mi/mii_dma_set_params.c:
+    complete
+    .text       start:0x01ffdd7c end:0x01ffddb4

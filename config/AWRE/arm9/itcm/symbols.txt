@@ -108,7 +108,7 @@ func_01ffdae8 kind:function(arm,size=0x130) addr:0x01ffdae8
 Reset_ReloadProgramsFromCard kind:function(arm,size=0xc4) addr:0x01ffdc18
 OS_ResetSystem kind:function(arm,size=0x40) addr:0x01ffdcdc
 Dma_LoadChannelAndSettle kind:function(arm,size=0x60) addr:0x01ffdd1c
-func_01ffdd7c kind:function(arm,size=0x38) addr:0x01ffdd7c
+MIi_DmaSetParams kind:function(arm,size=0x38) addr:0x01ffdd7c
 func_01ffddb4 kind:function(arm,size=0x74) addr:0x01ffddb4
 func_01ffde28 kind:function(arm,size=0x50) addr:0x01ffde28
 data_01ff8f64 kind:data(any) addr:0x01ff8f64
