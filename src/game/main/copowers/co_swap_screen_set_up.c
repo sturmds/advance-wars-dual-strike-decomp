@@ -18,7 +18,7 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot, int army
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
-int func_0202a16c(const void *text, int arg1, int arg2);
+int BreakText_LoadChangeFont(const void *text, int arg1, int arg2);
 void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 
@@ -107,7 +107,7 @@ void CoSwapScreen_SetUp(Task *task)
 
     Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
     Co_LoadArmyGraphicsAndPalette(PLAYER->back.id, 0x1c0, 1, GAME->currentPlayer);
-    task->unk_58 = func_0202a16c(Text_Get(0x7d00001d), 0x370, 2);
+    task->unk_58 = BreakText_LoadChangeFont(Text_Get(0x7d00001d), 0x370, 2);
     if (data_027c027c != data_027c0288.unk_00 && func_0207bd80() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }

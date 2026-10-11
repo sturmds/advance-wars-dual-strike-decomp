@@ -24,7 +24,7 @@ void Co_LoadArmyGraphics(int coId, int tile, int army);
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
-int func_0202a16c(const void *text, int arg1, int arg2);
+int BreakText_LoadChangeFont(const void *text, int arg1, int arg2);
 void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 
@@ -323,7 +323,7 @@ void TagPowerScreen_SetUp(Task *task)
     if (func_0207bd80() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
-    task->unk_58 = func_0202a16c(Text_Get(0x7d00001d), 0x61a, 2);
+    task->unk_58 = BreakText_LoadChangeFont(Text_Get(0x7d00001d), 0x61a, 2);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
