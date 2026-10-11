@@ -21,6 +21,10 @@ src/game/itcm/oam/oam_put_clipped_cells.c:
     complete
     .text       start:0x01ff85d8 end:0x01ff8748
 
+src/game/itcm/oam/oam_put_cells.c:
+    complete
+    .text       start:0x01ff8748 end:0x01ff8850
+
 src/game/itcm/screen/tile_map_add_to_entries.c:
     complete
     .text       start:0x01ff8a00 end:0x01ff8a2c
