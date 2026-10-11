@@ -102,6 +102,12 @@ enum {
 #define GAME_MODE_WAR_ROOM 1           /* MapSelect_LoadWarRoomRecords runs only here */
 #define GAME_MODE_SURVIVAL 3           /* BattleRecord_SaveWin keeps time, funds and turn records here */
 
+/* Unk_02080440_48.unk_184: a 0x40-byte block that a battle save copies
+ * whole (BattleSaveMap.unk_6c). */
+typedef struct Unk_02080440_184 {
+    u32 words[16];
+} Unk_02080440_184;
+
 typedef struct Unk_02080440_48 {
     u16 day;                           /* current day; map event triggers compare it (EventTriggers_Run) */
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
@@ -188,14 +194,15 @@ typedef struct Unk_02080440_48 {
     u8 pad_ce[0xd0 - 0xce];
     s8 *rangeMap[40];                  /* one s8 per tile, by row; filled for a unit by RangeMap_FillUnitMoves and RangeMap_MarkAdjacentTiles; the AI skips negative tiles */
     u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
-    u8 pad_17c[0x1c4 - 0x17c];
+    u8 pad_17c[0x184 - 0x17c];
+    Unk_02080440_184 unk_184;
     Unk_02080440_1c4 *unk_1c4;
     u8 pad_1c8[0x43d0 - 0x1c8];
     MapTiles *mapTiles;
     u8 tileHp[0x508];                  /* per tile like MapTiles; bits 0-6: hp of a tile units can attack (pipe seams) */
     MapObject objects[0x1d0];          /* the list ends at the first object with kind 0 */
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
-    u8 pad_5760[0x5a58 - 0x5760];
+    Player playerSlots[5];             /* the slots players points to, probably */
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
     u8 pad_5a5c[0x5e5c - 0x5a5c];
     u8 *tileCodeTerrain;               /* per map tile code: bits 0-4 terrain id */
@@ -211,6 +218,7 @@ typedef struct Unk_02080440_5c {
     u8 unk_01;                         /* same */
     u8 unk_02;                         /* same */
     u8 weatherDays[5];                 /* per player slot: days the current weather lasts; set by Weather_SetDays */
+    u8 unk_08;                         /* the struct is 9 bytes: battle saves copy it bytewise (BattleSaveMap.unk_e34) */
 } Unk_02080440_5c;
 
 /* Player slot that owns a unit in state->units: slot 0 is neutral, so the

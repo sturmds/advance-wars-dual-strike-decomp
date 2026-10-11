@@ -1811,6 +1811,10 @@ src/game/main/func_02017d1c.c:
     complete
     .text       start:0x02017d1c end:0x02017d28
 
+src/game/main/battle_save_load_map.c:
+    complete
+    .text       start:0x02017f08 end:0x02018484
+
 src/game/main/save_load_progress.c:
     complete
     .text       start:0x02018c70 end:0x02018e84
