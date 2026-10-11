@@ -19,7 +19,7 @@ void Ov006_RemoveScreen0Button241(void);
 void func_ov006_02355514(void);
 void func_ov006_02355444(void);
 int func_ov006_02359030(void);
-void func_ov006_023589fc(void);
+void Ov006_DrawTextPage2(void);
 void func_ov006_02358b20(void);
 void func_ov006_02358dd0(void);
 
@@ -69,7 +69,7 @@ void Ov006_UpdateTextPages(void)
         }
         break;
     case 10:
-        func_ov006_023589fc();
+        Ov006_DrawTextPage2();
         data_ov006_0236d640->unk_0c = 11;
     case 11:
         func_ov006_02358dd0();
