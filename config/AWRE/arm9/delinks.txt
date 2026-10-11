@@ -5450,6 +5450,10 @@ src/game/main/menus/map_select_get_tab.c:
     complete
     .text       start:0x020642e8 end:0x02064344
 
+src/game/main/menus/map_select_get_page_map_count.c:
+    complete
+    .text       start:0x02064344 end:0x02064488
+
 src/game/main/link/link_wait_for_peers.c:
     complete
     .text       start:0x02064488 end:0x02064564
