@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* data_02290a18 (main bss), set up by func_0201980c. The main menu reads
+/* data_02290a18 (main bss), set up by Save_ResetProgress. The main menu reads
  * unk_78 and unk_7a as scores (func_020e5400 turns them into a rank) for
  * page 11 entry kinds 25 and 26. */
 typedef struct Unk_02290a18 {

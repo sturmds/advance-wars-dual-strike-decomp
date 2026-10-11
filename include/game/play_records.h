@@ -21,12 +21,18 @@ typedef struct SurvivalRecord {
 typedef struct PlayRecords {
     u32 unk_00;
     u32 unk_04;                        /* capped at 99999; PlayRecords_AddCoins adds to it with unk_00 and unk_384 */
-    u8 pad_08[0x0e - 0x08];
+    u8 unk_08;
+    u8 unk_09;
+    u8 unk_0a;
+    u8 unk_0b;
+    u8 unk_0c;
+    u8 unk_0d;
     u8 unk_0e;                         /* copied to Unk_02080440_48.musicReady by a rules reset */
     u8 unk_0f;
-    u8 pad_10[0x12 - 0x10];
+    u8 unk_10;
+    u8 unk_11;
     u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */
-    u8 pad_13;
+    u8 unk_13;
     u8 unk_14;                         /* CO slot of the CO-select screen cursor: data_ov005_0236a48c[cursor] (Ov005 Ov005_SaveCoListEntry), searched by Ov005_FindSavedCoListEntry */
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
     u8 unk_16;                         /* aiBehaviour of slot 1 when gameMode is 1 (Players_ApplyBattleSetup) */
