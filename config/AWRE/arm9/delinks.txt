@@ -8074,6 +8074,10 @@ src/game/main/menus/unit_menu_emerge.c:
     complete
     .text       start:0x020bd054 end:0x020bd0c8
 
+src/game/main/menus/unit_menu_dive.c:
+    complete
+    .text       start:0x020bd0c8 end:0x020bd13c
+
 src/game/main/func_020bd1bc.c:
     complete
     .text       start:0x020bd1bc end:0x020bd1dc
