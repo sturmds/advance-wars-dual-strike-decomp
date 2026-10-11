@@ -40,7 +40,7 @@ void NameEntry_PlaceCaret(NameEntry *entry)
         x -= 32;
     }
     entry->caret->unk_24 = 0xb380;
-    func_02022404(entry->caret, x + 96, 24);
+    SpriteAnim_Draw(entry->caret, x + 96, 24);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

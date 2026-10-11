@@ -30,9 +30,9 @@ void CapturePicture_Draw(CapturePictureTask *task)
 
     /* needed to match: assigned here, not in the declaration */
     unk34Y = (top + (s16)(-(20 - task->points) * 2)) & 0xff;
-    func_02022404(task->picture, x | 0x200, y | 0x100);
-    func_02022404(task->unk_38, x | 0x600, (s16)((top + drop) & 0xff) | 0x100);
-    func_02022404(task->unk_34, x | 0x400, unk34Y | 0x100);
+    SpriteAnim_Draw(task->picture, x | 0x200, y | 0x100);
+    SpriteAnim_Draw(task->unk_38, x | 0x600, (s16)((top + drop) & 0xff) | 0x100);
+    SpriteAnim_Draw(task->unk_34, x | 0x400, unk34Y | 0x100);
     d1 = scale ? scale : 2;
     d0 = scale ? scale : 2;
     cosValue = data_021389e8[64] * 16;

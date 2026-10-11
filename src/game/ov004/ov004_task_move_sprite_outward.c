@@ -3,7 +3,7 @@
 #include "game/Unk_ov004_022bf158.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02022404(struct ShowSprite *sprite, int x, int y);  /* guess: sets the sprite's screen position */
+void SpriteAnim_Draw(struct ShowSprite *sprite, int x, int y);  /* guess: sets the sprite's screen position */
 
 extern s16 data_021389e8[];            /* looks like a 256-entry sine table */
 extern s16 data_02138a68[];            /* the same table from entry 64: cosine */
@@ -54,7 +54,7 @@ void Ov004Task_MoveSpriteOutward(Ov004Task *task)
             Screen_SetCurrentGfx(data_027c0288.unk_00);
             savedState = data_027c027c;
             Screen_SetCurrent(data_027c0288.unk_00);
-            func_02022404(sprite, x & 0x1ff, y & 0xff);
+            SpriteAnim_Draw(sprite, x & 0x1ff, y & 0xff);
             Screen_SetCurrent(savedState);
             Screen_SetCurrentGfx(savedGfx);
         } else {
@@ -62,7 +62,7 @@ void Ov004Task_MoveSpriteOutward(Ov004Task *task)
             Screen_SetCurrentGfx(data_027c0288.unk_04);
             savedState = data_027c027c;
             Screen_SetCurrent(data_027c0288.unk_04);
-            func_02022404(sprite, x & 0x1ff, y & 0xff);
+            SpriteAnim_Draw(sprite, x & 0x1ff, y & 0xff);
             Screen_SetCurrent(savedState);
             Screen_SetCurrentGfx(savedGfx);
         }

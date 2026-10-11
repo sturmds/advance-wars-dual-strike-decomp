@@ -15,7 +15,7 @@ void func_0202244c(void *handle);
  * the view it is freed and the script goes on. */
 void SiloMissileLaunch_Update(SiloMissileTask *task)
 {
-    func_02022404(task->sprite, task->x - STATE->unk_1c4->scrollX,
+    SpriteAnim_Draw(task->sprite, task->x - STATE->unk_1c4->scrollX,
                   task->y - STATE->unk_1c4->scrollY);
     task->y -= 5;
     if (task->y - STATE->unk_1c4->scrollY >= 0) {

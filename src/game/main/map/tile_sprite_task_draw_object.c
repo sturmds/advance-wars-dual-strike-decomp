@@ -4,12 +4,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/tile_sprite_task.h"
+#include "game/Unk_02022404.h"
 
 void Task_ResumeScript(void *task);
-/* Unk_02022404.h declares func_02022404 as void; the code here reads its
- * result. */
-int func_02022404(struct Unk_02022404 *sprite, int x, int y);
-int func_020225c8(struct Unk_02022404 *sprite, VecFx32 *pos, VecFx32 *rot);
+int SpriteAnim_Draw3d(struct Unk_02022404 *sprite, VecFx32 *pos, VecFx32 *rot);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -31,10 +29,10 @@ void TileSpriteTask_DrawObject(TileSpriteTask *task)
         pos.x = ((task->x * 16 + 8) << 13) / 256;
         pos.y = (task->y * 16 + 8) * 0x6000 / 0x300;
         pos.z = 8;
-        drawn = func_020225c8(task->sprite, &pos, NULL);
+        drawn = SpriteAnim_Draw3d(task->sprite, &pos, NULL);
         *REG_MTX_POP = 1;
     } else {
-        drawn = func_02022404(task->sprite, (task->x * 16 - GAME->unk_1c4->scrollX + 8) & 0x1ff,
+        drawn = SpriteAnim_Draw(task->sprite, (task->x * 16 - GAME->unk_1c4->scrollX + 8) & 0x1ff,
                               (task->y * 16 - GAME->unk_1c4->scrollY + 8) & 0xff);
     }
     if (drawn) {

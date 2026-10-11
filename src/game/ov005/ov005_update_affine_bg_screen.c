@@ -15,7 +15,7 @@ void Palette_Flush(void);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 u32 *SpriteAnim_Create(void *file, int a, int b);
 void SpriteAnim_SetAnimation(u32 *sprite, int frame);
-void func_02022404(u32 *sprite, int x, int y);
+void SpriteAnim_Draw(u32 *sprite, int x, int y);
 void Palette_Darken(u8 *palettes, int first, int count, int level);
 
 extern Unk_02080440 *data_027c027c;
@@ -219,10 +219,10 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_02022404(work->spriteHandles[0], work->spritePos[0][0], work->spritePos[0][1]);
-    func_02022404(work->spriteHandles[1], work->spritePos[1][0], work->spritePos[1][1]);
-    func_02022404(work->spriteHandles[2], work->spritePos[2][0], work->spritePos[2][1]);
-    func_02022404(work->spriteHandles[3], work->spritePos[3][0], work->spritePos[3][1]);
+    SpriteAnim_Draw(work->spriteHandles[0], work->spritePos[0][0], work->spritePos[0][1]);
+    SpriteAnim_Draw(work->spriteHandles[1], work->spritePos[1][0], work->spritePos[1][1]);
+    SpriteAnim_Draw(work->spriteHandles[2], work->spritePos[2][0], work->spritePos[2][1]);
+    SpriteAnim_Draw(work->spriteHandles[3], work->spritePos[3][0], work->spritePos[3][1]);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

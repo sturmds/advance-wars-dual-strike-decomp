@@ -16,8 +16,8 @@ extern Unk_027c0288 data_027c0288;
 
 void Task_ResumeScript(TileEffectTask *task);
 void MapSpriteTask_PlayKindEffects(TileEffectTask *task);
-int func_02022404(void *sprite, int x, int y);
-int func_020225c8(void *sprite, Vec3 *pos, Vec3 *rot);
+int SpriteAnim_Draw(void *sprite, int x, int y);
+int SpriteAnim_Draw3d(void *sprite, Vec3 *pos, Vec3 *rot);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -39,12 +39,12 @@ void TileEffectTask_Update(TileEffectTask *task)
         pos.x = ((task->x * 16 + 8) << 13) / 256;
         pos.y = (task->y * 16 + 16) * 0x6000 / 0x300;
         pos.z = 8;
-        if (!func_020225c8(task->sprite, &pos, NULL)) {
+        if (!SpriteAnim_Draw3d(task->sprite, &pos, NULL)) {
             Task_ResumeScript(task);
         }
         *REG_MTX_POP = 1;
     } else {
-        if (!func_02022404(task->sprite, task->x * 16 + 8 - GAME->unk_1c4->scrollX, task->y * 16 + 16 - GAME->unk_1c4->scrollY)) {
+        if (!SpriteAnim_Draw(task->sprite, task->x * 16 + 8 - GAME->unk_1c4->scrollX, task->y * 16 + 16 - GAME->unk_1c4->scrollY)) {
             Task_ResumeScript(task);
         }
     }

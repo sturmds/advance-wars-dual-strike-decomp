@@ -336,9 +336,9 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
     SpriteAnim_SetAnimation(work->unk_390[1], tens);
     SpriteAnim_SetAnimation(work->unk_390[2], number - tens * 10);
     x = 96;
-    func_02022404(work->unk_390[0], x, 64);
+    SpriteAnim_Draw(work->unk_390[0], x, 64);
     x += 42;
-    func_02022404(work->unk_390[1], x, 64);
+    SpriteAnim_Draw(work->unk_390[1], x, 64);
     switch (tens) {
     case 0:
     case 2:
@@ -355,7 +355,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         x += 8;
         break;
     }
-    func_02022404(work->unk_390[2], x, 64);
+    SpriteAnim_Draw(work->unk_390[2], x, 64);
     Screen_SetCurrent(digitSaved027c);
     Screen_SetCurrentGfx(digitSaved0280);
 }

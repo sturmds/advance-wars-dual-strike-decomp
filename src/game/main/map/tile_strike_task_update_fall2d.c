@@ -21,7 +21,7 @@ Unk_02022404 *SpriteAnim_Create(void *file, int a, int b);
  * replaced by the impact animation, with a sound and a screen shake. */
 void TileStrikeTask_UpdateFall2d(TileStrikeTask *task)
 {
-    func_02022404(task->sprite, (task->x - GAME->unk_1c4->scrollX) & 0x1ff, (task->y - GAME->unk_1c4->scrollY) & 0xff);
+    SpriteAnim_Draw(task->sprite, (task->x - GAME->unk_1c4->scrollX) & 0x1ff, (task->y - GAME->unk_1c4->scrollY) & 0xff);
     task->y += 10;
     if (task->tileY * 16 + 16 >= task->y) {
         return;

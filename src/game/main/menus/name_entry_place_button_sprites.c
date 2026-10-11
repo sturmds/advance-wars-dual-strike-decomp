@@ -27,9 +27,9 @@ void NameEntry_PlaceButtonSprites(NameEntry *entry)
     entry->buttonSprites[0]->unk_24 = 0xc200;
     entry->buttonSprites[1]->unk_24 = 0xc200;
     entry->buttonSprites[2]->unk_24 = 0xc200;
-    func_02022404(entry->buttonSprites[0], 42, 128);
-    func_02022404(entry->buttonSprites[1], 122, 128);
-    func_02022404(entry->buttonSprites[2], 210, 128);
+    SpriteAnim_Draw(entry->buttonSprites[0], 42, 128);
+    SpriteAnim_Draw(entry->buttonSprites[1], 122, 128);
+    SpriteAnim_Draw(entry->buttonSprites[2], 210, 128);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

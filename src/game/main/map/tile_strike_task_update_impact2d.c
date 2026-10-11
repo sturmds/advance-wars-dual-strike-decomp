@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Task_ResumeScript(TileStrikeTask *task);
-int func_02022404(struct Unk_02022404 *sprite, int x, int y);
+int SpriteAnim_Draw(struct Unk_02022404 *sprite, int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -15,7 +15,7 @@ int func_02022404(struct Unk_02022404 *sprite, int x, int y);
  * its draw call returns 0 (taken to mean the animation ended). */
 void TileStrikeTask_UpdateImpact2d(TileStrikeTask *task)
 {
-    if (!func_02022404(task->sprite, (task->x - GAME->unk_1c4->scrollX) & 0x1ff, (task->y - GAME->unk_1c4->scrollY) & 0xff)) {
+    if (!SpriteAnim_Draw(task->sprite, (task->x - GAME->unk_1c4->scrollX) & 0x1ff, (task->y - GAME->unk_1c4->scrollY) & 0xff)) {
         Task_ResumeScript(task);
     }
 }

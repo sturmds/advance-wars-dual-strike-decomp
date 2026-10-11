@@ -13,9 +13,9 @@ extern int data_027c0284;
 extern void *data_027c0288;
 extern Vec3 data_ov000_022db698;
 
-void func_02022404(void *sprite, int x, int y);
+void SpriteAnim_Draw(void *sprite, int x, int y);
 void func_020224d4(void);
-void func_020225c8(void *sprite, Vec3 *pos, Vec3 *rot);
+void SpriteAnim_Draw3d(void *sprite, Vec3 *pos, Vec3 *rot);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -34,9 +34,9 @@ void UnitShowTask_PlaceSprite(UnitShowTask *task)
         pos.y = (task->y + 16) * 0x6000 / 0x300;
         pos.z = 0;
         func_020224d4();
-        func_020225c8(task->sprite, &pos, &rot);
+        SpriteAnim_Draw3d(task->sprite, &pos, &rot);
         *(volatile int *)0x04000448 = 1;
     } else {
-        func_02022404(task->sprite, task->x - GAME->unk_1c4->scrollX + 8, task->y - GAME->unk_1c4->scrollY + 8);
+        SpriteAnim_Draw(task->sprite, task->x - GAME->unk_1c4->scrollX + 8, task->y - GAME->unk_1c4->scrollY + 8);
     }
 }

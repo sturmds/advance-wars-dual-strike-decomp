@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/sprite_anim.h"
 
-int func_02022404(SpriteAnim *sprite, int x, int y);
+int SpriteAnim_Draw(SpriteAnim *sprite, int x, int y);
 void Task_Destroy(Task *task);
 
 /* Draws the task's sprite each frame. The task ends when the sprite has
@@ -12,7 +12,7 @@ void SpriteAnimTask_Update(SpriteAnimTask *task)
 {
     BOOL slotFree;
 
-    if (func_02022404(task->sprite, task->x, task->y)) {
+    if (SpriteAnim_Draw(task->sprite, task->x, task->y)) {
         return;
     }
     slotFree = TRUE;

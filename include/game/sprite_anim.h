@@ -14,7 +14,7 @@
 #define SPRITE_ANIM_ALT_REGISTER  0x10 /* draw with func_020224ec instead of func_020224d4 */
 #define SPRITE_ANIM_SKIP_DRAW     0x20 /* skip the next draw, then clears itself */
 
-/* One of the SPRITE_ANIM_COUNT animated sprites in data_0229b080, 0x30 bytes
+/* One of the SPRITE_ANIM_COUNT animated sprites in gSpriteAnims, 0x30 bytes
  * each. A sprite is free while data is 0. It plays an animation from a loaded
  * sprite file. Task scripts hold pointers to these. */
 typedef struct SpriteAnim {
@@ -77,6 +77,6 @@ typedef struct SpriteAnimStep {
 #define SPRITE_ANIM_CMD_LOOP    0xff /* jump back to the first step */
 #define SPRITE_ANIM_AFFINE_CELLS 0x8000 /* cell set starts with affine parameter sets */
 
-extern SpriteAnim data_0229b080[SPRITE_ANIM_COUNT];
+extern SpriteAnim gSpriteAnims[SPRITE_ANIM_COUNT];
 
 #endif

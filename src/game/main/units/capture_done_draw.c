@@ -19,7 +19,7 @@ void CaptureDone_Draw(CaptureDoneTask *task)
 {
     int scale = Math_Ease(1, 0, 0x100, task->frame, 10);
 
-    func_02022404(task->sprite, task->x & 0x1ff, ((task->y - 16) & 0xff) | 0x100);
+    SpriteAnim_Draw(task->sprite, task->x & 0x1ff, ((task->y - 16) & 0xff) | 0x100);
     /* Needed to match: the divisor is evaluated once per entry, before the
      * table reads. */
     {

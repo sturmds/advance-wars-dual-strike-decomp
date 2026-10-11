@@ -100,11 +100,11 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
     work->subObjects[2]->unk_24 = 0xb380;
     work->subObjects[3]->unk_24 = 0xb380;
     work->subObjects[4]->unk_24 = 0xb380;
-    func_02022404(work->subObjects[0], 128, 176);
-    func_02022404(work->subObjects[1], 16, 176);
-    func_02022404(work->subObjects[2], 240, 176);
-    func_02022404(work->subObjects[3], 512, 928);
-    func_02022404(work->subObjects[4], 1248, 928);
+    SpriteAnim_Draw(work->subObjects[0], 128, 176);
+    SpriteAnim_Draw(work->subObjects[1], 16, 176);
+    SpriteAnim_Draw(work->subObjects[2], 240, 176);
+    SpriteAnim_Draw(work->subObjects[3], 512, 928);
+    SpriteAnim_Draw(work->subObjects[4], 1248, 928);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
@@ -134,10 +134,10 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
     work->mainObjects[1]->unk_24 = 0xb380;
     work->mainObjects[2]->unk_24 = 0xb380;
     work->mainObjects[3]->unk_24 = 0xb380;
-    func_02022404(work->mainObjects[0], 16, 16);
-    func_02022404(work->mainObjects[1], 240, 16);
-    func_02022404(work->mainObjects[2], 512, 768);
-    func_02022404(work->mainObjects[3], 1248, 768);
+    SpriteAnim_Draw(work->mainObjects[0], 16, 16);
+    SpriteAnim_Draw(work->mainObjects[1], 240, 16);
+    SpriteAnim_Draw(work->mainObjects[2], 512, 768);
+    SpriteAnim_Draw(work->mainObjects[3], 1248, 768);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

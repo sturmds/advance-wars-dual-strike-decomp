@@ -18,7 +18,7 @@ void func_0202244c(void *handle);
  * is freed, the screen shakes and flashes, and the script goes on. */
 void SiloMissileFall_Update(SiloMissileTask *task)
 {
-    func_02022404(task->sprite, task->pixelX - STATE->unk_1c4->scrollX,
+    SpriteAnim_Draw(task->sprite, task->pixelX - STATE->unk_1c4->scrollX,
                   task->fallY - STATE->unk_1c4->scrollY);
     task->fallY += 8;
     if (task->fallY <= task->y * 16) {

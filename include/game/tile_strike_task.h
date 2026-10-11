@@ -20,7 +20,7 @@ typedef struct TileStrikeTask {
     int height;                        /* 3D only: counts down from 100 to 0 */
 } TileStrikeTask;
 
-/* Position of a 3D sprite, as func_020225c8 takes it. */
+/* Position of a 3D sprite, as SpriteAnim_Draw3d takes it. */
 typedef struct TileStrikePos {
     int x;
     int y;

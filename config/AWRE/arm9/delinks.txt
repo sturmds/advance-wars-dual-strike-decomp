@@ -3467,7 +3467,7 @@ src/game/main/graphics/sprite_anim_queue.c:
     complete
     .text       start:0x02022348 end:0x02022404
 
-src/game/main/graphics/func_02022404.c:
+src/game/main/graphics/sprite_anim_draw.c:
     complete
     .text       start:0x02022404 end:0x0202244c
 
@@ -3479,7 +3479,7 @@ src/game/main/graphics/sprite_anim_create.c:
     complete
     .text       start:0x02022478 end:0x020224b0
 
-src/game/main/func_020224b0.c:
+src/game/main/graphics/sprite_anim_free_all.c:
     complete
     .text       start:0x020224b0 end:0x020224d4
 
@@ -3494,7 +3494,7 @@ src/game/main/func_020224ec.c:
 src/game/main/graphics/sprite_anim_queue3d.c:
     .text       start:0x02022504 end:0x020225c8
 
-src/game/main/func_020225c8.c:
+src/game/main/graphics/sprite_anim_draw3d.c:
     complete
     .text       start:0x020225c8 end:0x02022610
 

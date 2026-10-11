@@ -30,8 +30,8 @@ extern s16 data_021389e8[];            /* sine table, index 64 = cosine of 0 */
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void func_02022404(SpriteAnim *sprite, int x, int y);
-int func_020225c8(SpriteAnim *sprite, VecFx32 *pos, VecFx32 *scale);
+int SpriteAnim_Draw(SpriteAnim *sprite, int x, int y);
+int SpriteAnim_Draw3d(SpriteAnim *sprite, VecFx32 *pos, VecFx32 *scale);
 
 #define ZOOM_DIVISOR(scale) ((scale) ? (scale) : 2)
 
@@ -49,7 +49,7 @@ static inline void ZoomSpriteTask_Draw(ZoomSpriteTask *task)
         pos.x = (task->x << 13) / 256;
         pos.y = task->y * 0x6000 / 0x300;
         pos.z = 8;
-        func_020225c8(task->sprite, &pos, &scale);
+        SpriteAnim_Draw3d(task->sprite, &pos, &scale);
     } else {
         s16 s = task->scale;
         int d3 = ZOOM_DIVISOR(s);
@@ -62,7 +62,7 @@ static inline void ZoomSpriteTask_Draw(ZoomSpriteTask *task)
         Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
                             HwDiv32(cosValue, d3));
         /* 0x300 sets OAM attribute 0 bits 8-9: affine, double size */
-        func_02022404(task->sprite,
+        SpriteAnim_Draw(task->sprite,
                       (task->x - data_027c027c->unk_48[data_027c0284]->unk_1c4->scrollX - 32) & 0x1ff,
                       ((task->y - data_027c027c->unk_48[data_027c0284]->unk_1c4->scrollY - 16) & 0xff) | 0x300);
     }

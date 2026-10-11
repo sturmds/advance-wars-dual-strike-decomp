@@ -892,14 +892,14 @@ SpriteAnim_SetAnimation kind:function(arm,size=0xb0) addr:0x02021f44
 SpriteAnim_LoadAffineParams kind:function(arm,size=0x14c) addr:0x02021ff4
 SpriteAnim_Advance kind:function(arm,size=0x208) addr:0x02022140
 SpriteAnim_Queue kind:function(arm,size=0xbc) addr:0x02022348
-func_02022404 kind:function(arm,size=0x48) addr:0x02022404
+SpriteAnim_Draw kind:function(arm,size=0x48) addr:0x02022404
 func_0202244c kind:function(arm,size=0x2c) addr:0x0202244c
 SpriteAnim_Create kind:function(arm,size=0x38) addr:0x02022478
-func_020224b0 kind:function(arm,size=0x24) addr:0x020224b0
+SpriteAnim_FreeAll kind:function(arm,size=0x24) addr:0x020224b0
 func_020224d4 kind:function(arm,size=0x18) addr:0x020224d4
 func_020224ec kind:function(arm,size=0x18) addr:0x020224ec
 SpriteAnim_Queue3d kind:function(arm,size=0xc4) addr:0x02022504
-func_020225c8 kind:function(arm,size=0x48) addr:0x020225c8
+SpriteAnim_Draw3d kind:function(arm,size=0x48) addr:0x020225c8
 SpriteFile_Draw3d kind:function(arm,size=0x54) addr:0x02022610
 SpriteAnim3dTask_StartAltFlagged kind:function(arm,size=0x38) addr:0x02022664
 SpriteAnim3dTask_StartAlt kind:function(arm,size=0x38) addr:0x0202269c
@@ -8707,7 +8707,7 @@ gMapPreviewRowSteps kind:bss addr:0x0229b06c
 gTextDrawWidth kind:bss addr:0x0229b074
 gTextDrawGlyphWidth kind:bss addr:0x0229b078
 gTextDrawTilePixel kind:bss addr:0x0229b07c
-data_0229b080 kind:bss addr:0x0229b080
+gSpriteAnims kind:bss addr:0x0229b080
 gTaskSystemReady kind:bss addr:0x0229b380
 gChoicePromptTouchedOption kind:bss addr:0x0229b384
 gTouchPressedButton kind:bss addr:0x0229b388

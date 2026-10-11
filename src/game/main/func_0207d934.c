@@ -26,7 +26,7 @@ void TransferQueue_Clear(void);
 void CallbackSlots_Clear(void);
 void CallbackList_Clear(void);
 void ScriptSlot_ClearAll(void);
-void func_020224b0(void);
+void SpriteAnim_FreeAll(void);
 void Keypad_Init(void);
 void OamBuffer_ClearTail(void);
 void OamBuffer_FlushTail(void);
@@ -41,7 +41,7 @@ void Gfx_InitBothScreens(void);
     ScriptSlot_ClearAll();         \
     Task_InitSystem();       \
     Menu_Reset();            \
-    func_020224b0();         \
+    SpriteAnim_FreeAll();         \
     Keypad_Init();         \
     OamBuffer_ClearTail();         \
     OamBuffer_FlushTail();         \

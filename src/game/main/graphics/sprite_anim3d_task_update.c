@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/sprite_anim.h"
 
-int func_020225c8(SpriteAnim *sprite, const VecFx32 *pos, int arg);
+int SpriteAnim_Draw3d(SpriteAnim *sprite, const VecFx32 *pos, int arg);
 void Task_Destroy(Task *task);
 
 /* Draws the task's sprite at its position each frame, as SpriteAnimTask_Update
@@ -15,7 +15,7 @@ void SpriteAnim3dTask_Update(SpriteAnim3dTask *task)
     pos.x = task->pos.x;
     pos.y = task->pos.y;
     pos.z = task->pos.z;
-    if (func_020225c8(task->sprite, &pos, 0)) {
+    if (SpriteAnim_Draw3d(task->sprite, &pos, 0)) {
         return;
     }
     slotFree = TRUE;

@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 
-void func_02022404(struct ShowSprite *sprite, int x, int y);
+void SpriteAnim_Draw(struct ShowSprite *sprite, int x, int y);
 s32 Rng_Range(s32 min, s32 max);
 
 extern Unk_027c0280 *data_027c0280;
@@ -27,11 +27,11 @@ extern MenuState gMenuState;
 void CampaignMap_UpdateCrossingSprites(CampaignMapTask *task)
 {
     if (task->unk_64 == CROSS_MOVING) {
-        func_02022404(gMenuState.campaignMap.sprites[0], (task->fromX - SCROLL_X) & 0x1ff,
+        SpriteAnim_Draw(gMenuState.campaignMap.sprites[0], (task->fromX - SCROLL_X) & 0x1ff,
                       (task->fromY - SCROLL_Y) & 0xff);
     }
     if (task->unk_66 == CROSS_MOVING) {
-        func_02022404(gMenuState.campaignMap.sprites[1], (task->toX - SCROLL_X) & 0x1ff,
+        SpriteAnim_Draw(gMenuState.campaignMap.sprites[1], (task->toX - SCROLL_X) & 0x1ff,
                       (task->toY - SCROLL_Y) & 0xff);
     }
     if (task->step & 2) {

@@ -33,7 +33,7 @@ void Co_LoadGraphics(int coId, int firstTile);
 void func_02002804(int coId, int firstTile);
 void Co_SetSavedPaletteVariant(int coId, int variant);
 int Co_GetRank(u32 co);
-void func_02022404(void *sprite, int x, int y);
+void SpriteAnim_Draw(void *sprite, int x, int y);
 void Task_Destroy(void *task);
 void Task_ResumeScript(void *task);
 void Wallpaper_DestroyTasks(void);
@@ -327,7 +327,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         for (i = 0; i < 9; i++) {
             /* the picture swap button only shows from rank 10 */
             if (Co_GetRank(work->coId) >= 10 || i != CO_PICTURE_SWAP_VARIANT) {
-                func_02022404(work->unk_21c[i], work->extraX[i] - 1, work->extraY[i]);
+                SpriteAnim_Draw(work->unk_21c[i], work->extraX[i] - 1, work->extraY[i]);
             }
         }
         Screen_SetCurrent(saved027c);
