@@ -22413,6 +22413,9 @@ src/sdk/card/card_rom_read_pages_by_cpu.c:
     complete
     .text       start:0x021161d8 end:0x021162d8
 
+src/sdk/card/cardi_start_rom_dma.c:
+    .text       start:0x021162d8 end:0x0211642c
+
 src/sdk/card/card_rom_on_page_dma_done.c:
     complete
     .text       start:0x0211642c end:0x021164a0

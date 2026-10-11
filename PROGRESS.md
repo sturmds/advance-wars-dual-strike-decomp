@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 554 / 781 | 68796 / 132154 | 52.06% | 69 | 3394 |
-| ARM9 all | 7208 / 7481 | 1575416 / 1685994 | 93.44% | 69 | 3394 |
+| ARM9 SDK/library | 561 / 781 | 70084 / 132154 | 53.03% | 69 | 3394 |
+| ARM9 all | 7215 / 7481 | 1576704 / 1685994 | 93.52% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 554 / 1795 | 68796 / 286450 | 24.02% | 69 | 3394 |
-| all | 7208 / 8495 | 1575416 / 1840290 | 85.61% | 69 | 3394 |
+| SDK/library | 561 / 1795 | 70084 / 286450 | 24.47% | 69 | 3394 |
+| all | 7215 / 8495 | 1576704 / 1840290 | 85.68% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 547 / 770 | 67884 / 130618 | 51.97% | 65 |
+| main | SDK/library | 554 / 770 | 69172 / 130618 | 52.96% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -93,7 +93,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 |
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
+| `src/sdk/card/cardi_end_task.c` | no delinks entry | 0 |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 |
+| `src/sdk/card/cardi_start_rom_dma.c` | func_021162d8 | 340 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 |
 | `src/sdk/fx/matrix_invert3x3.c` | Matrix_Invert3x3 | 760 |
 | `src/sdk/fx/mtx_inverse43.c` | MTX_Inverse43 | 916 |
