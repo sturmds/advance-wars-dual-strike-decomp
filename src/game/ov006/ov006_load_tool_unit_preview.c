@@ -9,7 +9,7 @@ extern u8 gArmyPalettes[][32];
 
 void Palette_Load(const void *src, u32 offset, u32 size);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
-u8 *func_020c67bc(void);
+u8 *UnitIcons_GetTiles(void);
 int Player_GetUnitIconTile(int player, int unitType);
 u8 *UnitType_GetPictureTiles(int unitType);
 
@@ -35,7 +35,7 @@ void Ov006_LoadToolUnitPreview(void)
     }
     palette = data_027c027c->unk_48[data_027c0284]->players[player].armyColour;
     unitType = STATE->toolUnit & 0x3f;
-    icons = func_020c67bc();
+    icons = UnitIcons_GetTiles();
     TransferQueue_Add(icons + Player_GetUnitIconTile(player, unitType) * 32,
                   (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5480, 128);
     TransferQueue_Add(UnitType_GetPictureTiles(unitType), (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5500, 256);

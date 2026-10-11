@@ -17,7 +17,7 @@ typedef struct MapPowerLine {
 
 extern MapPowerLine *data_02166f9c[];
 
-void func_020d5560(u32 script);
+void CoQuote_StartText(u32 script);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -34,7 +34,7 @@ BOOL CoQuote_StartMapLine(int player)
         if (line->co == (GAME->players[player].front.id & PLAYER_CO_ID_MASK)
             && line->powerUses == GAME->players[player].front.powerUses
             && (line->player == 0 || line->player == player)) {
-            func_020d5560(line->script);
+            CoQuote_StartText(line->script);
             return TRUE;
         }
     }

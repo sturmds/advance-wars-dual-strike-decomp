@@ -8,8 +8,8 @@ u8 *func_02078138(int player);
 void func_0207b48c(void);
 u32 Link_IsActive(void);
 int func_0207bd94(void);
-void func_0205ec08(int unused);
-void func_0205ec14(int unused);
+void MapSelect_NextSubStripKey(int unused);
+void MapSelect_PrevSubStripKey(int unused);
 void MapSelect_Leave(void);
 void MapSelect_PrevList(void);
 void MapSelect_NextList(void);
@@ -40,9 +40,9 @@ void MapSelect_Update(Task *task)
     leave = 0;
     if (STATE->gameMode == GAME_MODE_WAR_ROOM && MENU->setup.subSlideFrames == 0) {
         if (gKeypad->repeat & PAD_KEY_LEFT) {
-            func_0205ec14(0);
+            MapSelect_PrevSubStripKey(0);
         } else if (gKeypad->repeat & PAD_KEY_RIGHT) {
-            func_0205ec08(0);
+            MapSelect_NextSubStripKey(0);
         }
     }
     if (Link_IsActive() != 1) {

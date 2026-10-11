@@ -4,7 +4,7 @@
 void CoRankTask_StartStaggeredItems(CoRankTask *task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 void LevelGauge_Draw(CoRankEntry *entries, int x, int y, int index, int frame);
-BOOL func_02048eb8(void);
+BOOL CoRank_AreMarkersRunning(void);
 void CoRankTask_StartRankPopInEvent(CoRankTask *task);
 void CoRankTask_StartRank10Event(CoRankTask *task);
 void CoRankTask_StartMaxRankEvent(CoRankTask *task);
@@ -15,7 +15,7 @@ void Task_ResumeScript(CoRankTask *task);
 /* Script step: on frame 0 starts the rank-up items for COs whose frame is
  * set (CoRankTask_StartStaggeredItems), then draws the experience gained
  * and the rank of each CO for 16 frames. After that it waits while those
- * tasks run (func_02048eb8) and while each once-only event script plays,
+ * tasks run (CoRank_AreMarkersRunning) and while each once-only event script plays,
  * then adds the button of func_0204cc54 and resumes the script. */
 void CoRankTask_ShowRankUps(CoRankTask *task)
 {
@@ -28,7 +28,7 @@ void CoRankTask_ShowRankUps(CoRankTask *task)
         LevelGauge_Draw(task->cos, 176, 144, 1, task->frame);
     }
     if (task->frame == 16) {
-        if (func_02048eb8() == TRUE) {
+        if (CoRank_AreMarkersRunning() == TRUE) {
             return;
         }
         CoRankTask_StartRankPopInEvent(task);

@@ -15,7 +15,7 @@ void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL Screen_IsTextBg(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
-void func_020ff994(CampaignRecap *work);
+void CampaignRecap_LoadTitleCallSprites(CampaignRecap *work);
 void CampaignRecap_FillEntries(CampaignRecap *work);
 void Battle_SetupWithPresetCos(CampaignRecap *work); /* needed to match: the call passes work in r0, which the callee ignores */
 Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
@@ -35,7 +35,7 @@ extern u32 data_0214d3f0[];            /* map bytes of a rotation/scaling BG by 
  * and CampaignRecap_Update. Sub screen (data_027c0288.unk_04): BG2 and OBJ
  * on, layer priorities 0 to 3, alpha blending of BG2 over the rest, layer 2
  * tiles, map (palette 8) and palette from /rikiishi 013-015, then the
- * res_titlecall sprites (func_020ff994). Main screen: BG0 only, no blending,
+ * res_titlecall sprites (CampaignRecap_LoadTitleCallSprites). Main screen: BG0 only, no blending,
  * the preset-CO battle setup. Then it clears the recap work, starts song 42
  * and blacks out both screens. */
 void CampaignRecap_SetUpScreens(CampaignRecapTask *task)
@@ -126,7 +126,7 @@ void CampaignRecap_SetUpScreens(CampaignRecapTask *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_020ff994(work);
+    CampaignRecap_LoadTitleCallSprites(work);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

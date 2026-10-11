@@ -8,9 +8,8 @@ void EventScript_StartText(u32 script, int arg1, int arg2);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* Starts a text script for the current player's front CO. Also called by
- * CoSwapTask_ShowLine, so the name stays; guess: CoQuote_StartText. */
-void func_020d5560(u32 script)
+/* Starts a text script for the current player's front CO. */
+void CoQuote_StartText(u32 script)
 {
     EventScript_StartText(script, GAME->players[GAME->currentPlayer].front.id, 0);
 }

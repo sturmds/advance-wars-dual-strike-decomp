@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020c67a8(void)
+int UnitIcons_GetTileCount(void)
 {
     return 136;
 }

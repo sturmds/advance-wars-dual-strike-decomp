@@ -12,7 +12,7 @@ void func_0207ceac(LinkWaitTask *task);
 void LinkMenu_UpdateParent(LinkWaitTask *task);
 void LinkMenu_UpdateChild(LinkWaitTask *task);
 void LinkMenu_HandlePressed(void);
-void func_0207c044(LinkWaitTask *task, u32 textId);
+void LinkBanner_CreateWithText(LinkWaitTask *task, u32 textId);
 void func_0207c380(void);
 void LinkMenu_RestoreRowButtons(void);
 
@@ -45,21 +45,21 @@ void LinkMenu_UpdatePlayerList(LinkWaitTask *task)
     LinkMenu_HandlePressed();
     task->waitFrames++;
     if (func_0207a120() == 1) {
-        func_0207c044(task, 0x48000000);
+        LinkBanner_CreateWithText(task, 0x48000000);
         func_0207c380();
         LinkMenu_RestoreRowButtons();
     }
     if (func_0207a0f8() == 1) {
         if (data_0215fed0->view == 0) {
-            func_0207c044(task, 0x48000000);
+            LinkBanner_CreateWithText(task, 0x48000000);
             func_0207c380();
             LinkMenu_RestoreRowButtons();
         } else {
-            func_0207c044(task, 0x48000001);
+            LinkBanner_CreateWithText(task, 0x48000001);
         }
     }
     if (func_0207a0d0() == 1) {
-        func_0207c044(task, 0x48000002);
+        LinkBanner_CreateWithText(task, 0x48000002);
         func_0207c380();
         LinkMenu_RestoreRowButtons();
     }

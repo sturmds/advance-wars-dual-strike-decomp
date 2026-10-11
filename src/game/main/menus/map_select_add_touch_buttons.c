@@ -11,8 +11,8 @@ extern const MenuButtonTemplate data_0215c940;   /* (224, 128), MapSelect_NextPa
 extern const MenuButtonTemplate data_0215c878;   /* (224, 96), previous page */
 extern const MenuButtonTemplate data_0215c918;   /* (32, 0), previous list */
 extern const MenuButtonTemplate data_0215c850;   /* (192, 0), next list */
-extern const MenuButtonTemplate data_0215c828;   /* (32, 32), func_0205ec14 */
-extern const MenuButtonTemplate data_0215c8f0;   /* (192, 32), func_0205ec08 */
+extern const MenuButtonTemplate data_0215c828;   /* (32, 32), MapSelect_PrevSubStripKey */
+extern const MenuButtonTemplate data_0215c8f0;   /* (192, 32), MapSelect_NextSubStripKey */
 
 /* Adds the touch buttons of the map select screen (ids 0xf8-0xfe), unless
  * this is link play and Link_GetOwnPlayer is set. With two maps outside the War

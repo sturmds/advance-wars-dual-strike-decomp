@@ -12,9 +12,9 @@ extern void *data_021663b4[]; /* [owner - 1]: unit sprite shape with a badge */
 extern void *data_021663c8[]; /* [owner - 1]: unit sprite shape without one */
 
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
-u8 *func_020c67b0(void);
-int func_020c67a8(void);
-u8 *func_020c67bc(void);
+u8 *UnitBadges_GetTiles(void);
+int UnitIcons_GetTileCount(void);
+u8 *UnitIcons_GetTiles(void);
 int Player_GetUnitIconTile(int player, int unitType);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
@@ -28,15 +28,15 @@ void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
  * owner. */
 #define BADGE_TILE (UNIT_TILE + 2)
 
-/* Badge tiles, numbered as if func_020c67b0's sheet followed the
- * func_020c67a8() (136) tiles of func_020c67bc's icon sheet. */
+/* Badge tiles, numbered as if UnitBadges_GetTiles's sheet followed the
+ * UnitIcons_GetTileCount() (136) tiles of UnitIcons_GetTiles's icon sheet. */
 #define BADGE_CARRYING 149
 #define BADGE_CAPTURE  153
 #define BADGE_DIVED    157
 #define BADGE_HIDDEN   161
 
 #define QUEUE_BADGE(badge, slot, owner)                                                          \
-    TransferQueue_Add(func_020c67b0() + ((badge) - func_020c67a8()) * 32,                       \
+    TransferQueue_Add(UnitBadges_GetTiles() + ((badge) - UnitIcons_GetTileCount()) * 32,                       \
                       GFX->objVram + ((owner & 1) + (BADGE_TILE + (slot) * 4)) * 32, 32)
 
 /* Draws a unit icon in the info panel with at most one badge layer per
@@ -70,7 +70,7 @@ void InfoPanel_DrawUnit(s16 x, s16 y, int type, int owner, u8 carrying, u8 captu
         }
     }
     tile = slot * 4;
-    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(owner, type) * 32, GFX->objVram + (tile + UNIT_TILE) * 32,
+    TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(owner, type) * 32, GFX->objVram + (tile + UNIT_TILE) * 32,
                       128);
     /* semi-transparent, palette 12 */
     Oam_PutSprite(x, y | 0x400, badges ? data_021663b4[owner - 1] : data_021663c8[owner - 1], tile | 0xc000);

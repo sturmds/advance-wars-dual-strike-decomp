@@ -23,8 +23,8 @@ void Gfx_RequestLayerCopy(int layer);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
 void func_0202b7e0(int a0);
-u8 *func_020c67bc(void);
-int func_020c67a8(void);
+u8 *UnitIcons_GetTiles(void);
+int UnitIcons_GetTileCount(void);
 const void *Player_GetPalette(int player);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 void Palette_LoadObjRow(int row);
@@ -174,7 +174,7 @@ void PlayerInfo_Init(Task *task)
             /* Needed to match: the screen and its BG are read before the two calls. */
             Unk_027c0280 *gfx = data_027c0280;
             int bg = gfx->layer0Bg;
-            Mem_Copy32(func_020c67bc(), gfx->bgVram + (gfx->bgCnt[bg].charBase << 14) + 0x6ca0, func_020c67a8() << 5);
+            Mem_Copy32(UnitIcons_GetTiles(), gfx->bgVram + (gfx->bgCnt[bg].charBase << 14) + 0x6ca0, UnitIcons_GetTileCount() << 5);
         }
         for (i = 0; i < 4; i++) {
             Palette_Load(Player_GetPalette(i + 1), (u16)((i + 5) * 32), 32);

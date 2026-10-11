@@ -7,7 +7,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_0201e6e8(int x, int y, int width, int height);
 void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 const void *Terrain_GetPalette(int id, int army);
-u8 *func_020c67bc(void);
+u8 *UnitIcons_GetTiles(void);
 int Player_GetUnitIconTile(int player, int unitType);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -48,10 +48,10 @@ void Ov006_LoadPropertyCountGraphics(void)
     Palette_QueueBlockCopy(17, 0, data_027c0280->objVram + 0x3600, 1);
     Palette_QueueBlockCopy(16, 0, data_027c0280->objVram + 0x3700, 1);
 
-    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(1, 2) * 32, data_027c0280->objVram + 0x3c00, 128);
-    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(2, 2) * 32, data_027c0280->objVram + 0x3c80, 128);
-    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(3, 2) * 32, data_027c0280->objVram + 0x3d00, 128);
-    TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(4, 2) * 32, data_027c0280->objVram + 0x3d80, 128);
+    TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(1, 2) * 32, data_027c0280->objVram + 0x3c00, 128);
+    TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(2, 2) * 32, data_027c0280->objVram + 0x3c80, 128);
+    TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(3, 2) * 32, data_027c0280->objVram + 0x3d00, 128);
+    TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(4, 2) * 32, data_027c0280->objVram + 0x3d80, 128);
 
     Palette_Load(gArmyPalettes[STATE->players[1].armyColour - 1], 0x360, 32);
     Palette_Load(gArmyPalettes[STATE->players[2].armyColour - 1], 0x380, 32);

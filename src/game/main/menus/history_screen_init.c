@@ -32,8 +32,8 @@ void Wallpaper_LoadSelected(void);
 void NumberFont_LoadLow(void);
 void Screen_SetLayerCharBase(int a, u32 b);
 void func_02028a30(void);
-int func_020c67a8(void);
-u8 *func_020c67bc(void);
+int UnitIcons_GetTileCount(void);
+u8 *UnitIcons_GetTiles(void);
 void TabList_AddNavButtons(void);
 void TabList_UpdateHelpText(void);
 
@@ -147,13 +147,13 @@ void HistoryScreen_Init(void)
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     /* Icon tiles go just below BG tile 996, where TabList_PutIconQuad
-     * reads them. func_020c67a8 is called twice, once for the place and
+     * reads them. UnitIcons_GetTileCount is called twice, once for the place and
      * once for the size. */
     gfx = data_027c0280;
     bg = gfx->layer0Bg;
-    icons = func_020c67bc();
-    tileCount = func_020c67a8();
-    size = func_020c67a8();
+    icons = UnitIcons_GetTiles();
+    tileCount = UnitIcons_GetTileCount();
+    size = UnitIcons_GetTileCount();
     TransferQueue_Add(icons, gfx->bgVram + (gfx->bgCnt[bg].charBase << 14) + (996 - tileCount) * 32, (u16)(size * 32));
     /* Orange Star and Black Hole. Needed to match: the second as a byte
      * offset; gArmyPalettes[4] folds into the literal. */

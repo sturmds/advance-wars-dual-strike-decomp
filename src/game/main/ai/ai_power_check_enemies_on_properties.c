@@ -7,14 +7,14 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Player_IsInGame(u8 player);
-int func_020995a4(void);
+int AiTurn_IsPhase3(void);
 BOOL Terrain_IsPropertyNotSilo(u8 terrain); /* a property other than a missile silo */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* An AI profile power hook (AiProfile.unk_00, see AiPlayer_TryUsePower).
- * For a Super CO Power (powerKind 2) it agrees only when func_020995a4
+ * For a Super CO Power (powerKind 2) it agrees only when AiTurn_IsPhase3
  * does (gAiTurnState->phase is 3). For a CO Power it agrees when enemy units stand on properties:
  * at least 5 of them, or at least a fifth of all enemy units (slots 1-50,
  * not Oozium or carried units). */
@@ -27,7 +27,7 @@ BOOL AiPowerCheck_EnemiesOnProperties(int powerKind)
     MapUnit *unit;
 
     if (powerKind == 2) {
-        if (func_020995a4() == 1) {
+        if (AiTurn_IsPhase3() == 1) {
             return TRUE;
         }
     } else {

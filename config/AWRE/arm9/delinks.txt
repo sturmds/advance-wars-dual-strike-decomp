@@ -6371,7 +6371,7 @@ src/game/main/co_rank_task_start_rank_pop_in_event.c:
     complete
     .text       start:0x02048e60 end:0x02048eb8
 
-src/game/main/func_02048eb8.c:
+src/game/main/co_rank_are_markers_running.c:
     complete
     .text       start:0x02048eb8 end:0x02048f1c
 
@@ -6391,7 +6391,7 @@ src/game/main/co_rank_screen_start_marker_task.c:
     complete
     .text       start:0x0204902c end:0x02049070
 
-src/game/main/func_02049070.c:
+src/game/main/co_rank_marker_start.c:
     complete
     .text       start:0x02049070 end:0x020490a4
 
@@ -7495,11 +7495,11 @@ src/game/main/menus/map_select_next_page.c:
     complete
     .text       start:0x0205ea58 end:0x0205ec08
 
-src/game/main/func_0205ec08.c:
+src/game/main/menus/map_select_next_sub_strip_key.c:
     complete
     .text       start:0x0205ec08 end:0x0205ec14
 
-src/game/main/func_0205ec14.c:
+src/game/main/menus/map_select_prev_sub_strip_key.c:
     complete
     .text       start:0x0205ec14 end:0x0205ec20
 
@@ -9354,7 +9354,7 @@ src/game/main/func_0207c018.c:
     complete
     .text       start:0x0207c018 end:0x0207c044
 
-src/game/main/func_0207c044.c:
+src/game/main/link/link_banner_create_with_text.c:
     complete
     .text       start:0x0207c044 end:0x0207c06c
 
@@ -9937,7 +9937,7 @@ src/game/main/link/link_skills_get_player_set.c:
     complete
     .text       start:0x020819cc end:0x020819ec
 
-src/game/main/func_020819ec.c:
+src/game/main/co_get_rank_filtered.c:
     complete
     .text       start:0x020819ec end:0x02081a08
 
@@ -11655,7 +11655,7 @@ src/game/main/ai/func_02099528.c:
     complete
     .text       start:0x02099528 end:0x020995a4
 
-src/game/main/func_020995a4.c:
+src/game/main/ai/ai_turn_is_phase3.c:
     complete
     .text       start:0x020995a4 end:0x020995c4
 
@@ -13098,7 +13098,7 @@ src/game/main/menus/text_draw_centered.c:
     complete
     .text       start:0x020bab78 end:0x020babb4
 
-src/game/main/func_020babb4.c:
+src/game/main/menus/text_get_centered_x.c:
     complete
     .text       start:0x020babb4 end:0x020babd8
 
@@ -14164,15 +14164,15 @@ src/game/main/co_stats/player_get_unit_icon_tile.c:
     complete
     .text       start:0x020c6774 end:0x020c67a8
 
-src/game/main/func_020c67a8.c:
+src/game/main/graphics/unit_icons_get_tile_count.c:
     complete
     .text       start:0x020c67a8 end:0x020c67b0
 
-src/game/main/func_020c67b0.c:
+src/game/main/graphics/unit_badges_get_tiles.c:
     complete
     .text       start:0x020c67b0 end:0x020c67bc
 
-src/game/main/func_020c67bc.c:
+src/game/main/graphics/unit_icons_get_tiles.c:
     complete
     .text       start:0x020c67bc end:0x020c67c8
 
@@ -15362,7 +15362,7 @@ src/game/main/script/power_quote_task_run.c:
     complete
     .text       start:0x020d54f8 end:0x020d5560
 
-src/game/main/script/func_020d5560.c:
+src/game/main/script/co_quote_start_text.c:
     complete
     .text       start:0x020d5560 end:0x020d55b4
 
@@ -19385,11 +19385,11 @@ src/game/main/campaign_recap_draw_title.c:
     complete
     .text       start:0x020ff7d0 end:0x020ff994
 
-src/game/main/func_020ff994.c:
+src/game/main/campaign_recap_load_title_call_sprites.c:
     complete
     .text       start:0x020ff994 end:0x020ff9fc
 
-src/game/main/func_020ff9fc.c:
+src/game/main/campaign_recap_is_end.c:
     complete
     .text       start:0x020ff9fc end:0x020ffa28
 

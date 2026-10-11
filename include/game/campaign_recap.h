@@ -9,7 +9,7 @@ struct Task;
  * (maps 0xe0-0xfb are missions 0-27 in story order). */
 typedef struct CampaignRecapEntry {
     u32 unk_00;                        /* mission number: map id - 0xe0 (func_020fed58 loads that map) */
-    u32 unk_04;                        /* 0 ends the list (func_020ff9fc) */
+    u32 unk_04;                        /* 0 ends the list (CampaignRecap_IsEnd) */
     u8 pad_08[0x14 - 0x08];
     u32 unk_14;
 } CampaignRecapEntry;

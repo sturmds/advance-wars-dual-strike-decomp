@@ -13,7 +13,7 @@ extern u8 gArmyPalettes[][32];
 int GameFlag_IsSet(int flag);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
-u8 *func_020c67bc(void);
+u8 *UnitIcons_GetTiles(void);
 int Player_GetUnitIconTile(int player, int unitType);
 
 /* Loads the CO icons of the list (data_ov006_0236a7b4, or data_ov006_0236a7d0
@@ -42,7 +42,7 @@ void Ov006_LoadCoIcons(int player)
         count = 25;
     }
     for (i = 0; i < count; i++) {
-        TransferQueue_Add(func_020c67bc() + Player_GetUnitIconTile(player, *table & 0x3f) * 32, dst, 128);
+        TransferQueue_Add(UnitIcons_GetTiles() + Player_GetUnitIconTile(player, *table & 0x3f) * 32, dst, 128);
         dst += 128;
         table++;
     }

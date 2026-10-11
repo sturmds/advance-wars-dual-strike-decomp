@@ -351,7 +351,7 @@ src/game/itcm/map3d/map_tile3d_get_texture_offset.c:
     complete
     .text       start:0x01ffc578 end:0x01ffc5b8
 
-src/game/itcm/func_01ffc5b8.c:
+src/game/itcm/map3d/map_tile3d_get_image_scale.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
 

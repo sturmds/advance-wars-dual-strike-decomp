@@ -11,7 +11,7 @@ void MapScreen_UpdateAnimations(void);
 u32 func_020ffa50(CampaignRecap *work, int index);
 u32 func_020ffa3c(CampaignRecap *work, int index);
 u32 func_020ffa28(CampaignRecap *work, int index);
-BOOL func_020ff9fc(CampaignRecap *work, int index);
+BOOL CampaignRecap_IsEnd(CampaignRecap *work, int index);
 void SpriteStrip_LoadMapName(int mapId, int arg);
 void CampaignRecap_LoadResultSprites(CampaignRecap *work);
 void func_020fed58(CampaignRecap *work, int mapOffset);
@@ -209,7 +209,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
         break;
     case 90:
         work->index++;
-        if (func_020ff9fc(work, work->index)) {
+        if (CampaignRecap_IsEnd(work, work->index)) {
             task->step = 100;
             break;
         }

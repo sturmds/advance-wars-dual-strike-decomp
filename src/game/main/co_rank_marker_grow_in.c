@@ -17,7 +17,7 @@ extern s16 gSineTable[];
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
 /* Last step of the CO rank screen's marker task (data_0215b004, started by
- * func_02049070). Over frames 0 to 4, draws sprite tile 0x174 through
+ * CoRankMarker_Start). Over frames 0 to 4, draws sprite tile 0x174 through
  * affine matrix task->matrix while the eased divisor rises from 16 to 256,
  * so the sprite grows from 1/16 to full size; on frame 0 it also starts
  * sprite animation 0x41f4 at (x + 24, y + 24). Then resumes the script.

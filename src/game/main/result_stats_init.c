@@ -31,8 +31,8 @@ const void *Terrain_GetPalette(int id, int army);
 void Palette_Load(const void *src, u16 offset, u32 size); /* copies into the current screen's palette buffer */
 void Palette_LoadObjRow(int row);
 const void *Player_GetPalette(int player);
-u8 *func_020c67bc(void);
-int func_020c67a8(void);
+u8 *UnitIcons_GetTiles(void);
+int UnitIcons_GetTileCount(void);
 void ResultStats_DrawPlayerTotals(int player);
 void ResultStats_PrintFirstPageLabel(void);
 
@@ -166,7 +166,7 @@ void ResultStats_Init(Task *task)
     SWITCH_BACK();
 
     SWITCH_TO(MAIN_MAP);
-    Mem_Copy32(func_020c67bc(), data_027c0280->objVram + 0x10c0, func_020c67a8() << 5);
+    Mem_Copy32(UnitIcons_GetTiles(), data_027c0280->objVram + 0x10c0, UnitIcons_GetTileCount() << 5);
     for (i = 0; i < task->unk_6a; i++) {
         Palette_Load(Player_GetPalette(i + 1), (i + 18) << 5, 32);
     }

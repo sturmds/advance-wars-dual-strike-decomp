@@ -6,7 +6,7 @@ void HelpBand_Start(int textId, int arg);
 void HelpText_Show(u32 textId, int arg);
 void MenuButtons_DisableTouch(void);
 int ScreenTransition_IsRunning(void);
-void func_0207c044(void *task, u32 flags);
+void LinkBanner_CreateWithText(void *task, u32 textId);
 void func_020fc178(void);
 void func_020fc234(void);
 int func_020fc89c(void);
@@ -28,7 +28,7 @@ void func_020fc2fc(void *task)
         }
         break;
     case 5:
-        func_0207c044(task, 0x48000002);
+        LinkBanner_CreateWithText(task, 0x48000002);
         func_020fc234();
         Task_ResumeScript(task);
         break;

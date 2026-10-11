@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern u32 data_02153640[][136];
 
 int Rng_Next(void);
-void func_020d5560(u32 textId);
+void CoQuote_StartText(u32 textId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define FRONT_CO(state) ((state)->players[(state)->currentPlayer].front)
@@ -19,8 +19,8 @@ void func_020d5560(u32 textId);
 void CoSwapTask_ShowLine(void)
 {
     if (FRONT_CO(STATE).id & 0x80) {
-        func_020d5560(0xf000028a);
+        CoQuote_StartText(0xf000028a);
         return;
     }
-    func_020d5560(data_02153640[FRONT_CO(STATE).id & PLAYER_CO_ID_MASK][Rng_Next() & 1]);
+    CoQuote_StartText(data_02153640[FRONT_CO(STATE).id & PLAYER_CO_ID_MASK][Rng_Next() & 1]);
 }

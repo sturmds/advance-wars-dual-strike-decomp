@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern u32 data_02153648[][136];
 
 u32 Rng_Next(void);
-void func_020d5560(u32 script);
+void CoQuote_StartText(u32 script);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -16,9 +16,9 @@ void func_020d5560(u32 script);
 int CoQuote_StartRandom(int player)
 {
     if (GAME->players[player].front.id & 0x80) {
-        func_020d5560(0xf000028a);
+        CoQuote_StartText(0xf000028a);
     } else {
-        func_020d5560(data_02153648[GAME->players[player].front.id & PLAYER_CO_ID_MASK][Rng_Next() % 6]);
+        CoQuote_StartText(data_02153648[GAME->players[player].front.id & PLAYER_CO_ID_MASK][Rng_Next() % 6]);
     }
     return 0;
 }

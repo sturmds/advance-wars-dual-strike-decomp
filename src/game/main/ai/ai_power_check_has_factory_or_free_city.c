@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020995a4(void);
+int AiTurn_IsPhase3(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -16,7 +16,7 @@ int func_020995a4(void);
 /* An AI profile power hook (AiProfile.unk_00, see AiPlayer_TryUsePower).
  * Agrees to any power while gAiTurnState->factoryDomainsOwn is nonzero.
  * Otherwise it refuses a CO Power (powerKind 1), and agrees to a Super CO
- * Power when func_020995a4 does or the current player owns a city with no
+ * Power when AiTurn_IsPhase3 does or the current player owns a city with no
  * unit on it. */
 BOOL AiPowerCheck_HasFactoryOrFreeCity(int powerKind)
 {
@@ -29,7 +29,7 @@ BOOL AiPowerCheck_HasFactoryOrFreeCity(int powerKind)
     if (powerKind == 1) {
         return FALSE;
     }
-    if (func_020995a4() == 1) {
+    if (AiTurn_IsPhase3() == 1) {
         return TRUE;
     }
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {

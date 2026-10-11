@@ -9,7 +9,7 @@ struct Unk_020995a4_0 {
 
 extern Unk_020995a4_0 *gAiTurnState;
 
-int func_020995a4(void)
+int AiTurn_IsPhase3(void)
 {
     return (gAiTurnState->unk_2 == 3) ? 1 : 0;
 }

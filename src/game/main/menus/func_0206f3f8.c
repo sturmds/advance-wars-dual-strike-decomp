@@ -8,7 +8,7 @@ extern u8 data_027c0040;
 extern u8 data_027c0060;
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-int func_020819ec(u32 co);
+int Co_GetRankFiltered(u32 co);
 u32 Co_GetExperienceFiltered(u32 co);
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
@@ -22,7 +22,7 @@ s32 HwMod32(s32 numerator, s32 denominator);
 #define SHOWN_CO ((MENU.slot + (MENU.player - 1) * 2 + (u8 *)&gMenuState)[SHOWN_CO_OFFSET])
 
 /* Rank and experience sprites of the shown CO on the player info screen:
- * the rank (func_020819ec, ExperienceToRank of the experience) as up to two
+ * the rank (Co_GetRankFiltered, ExperienceToRank of the experience) as up to two
  * digits, or one sprite at rank 100, then the experience modulo 1000 as up
  * to three digits.
  * WIP: 8 instructions differ, registers only. The original keeps player - 1
@@ -34,7 +34,7 @@ void func_0206f3f8(void)
     int tens;
     BOOL shown;
 
-    rank = func_020819ec(SHOWN_CO);
+    rank = Co_GetRankFiltered(SHOWN_CO);
     exp = Co_GetExperienceFiltered(SHOWN_CO);
     Sprite_QueueAt(0, 56, 16, &data_027c0060, 0x2000, 48);
     if (rank == 100) {

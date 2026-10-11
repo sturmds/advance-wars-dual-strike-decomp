@@ -12,7 +12,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 
 /* Loads the res_titlecall sprites: tiles at the start of OBJ VRAM and two
  * 16-colour palettes. work is unused. */
-void func_020ff994(CampaignRecap *work)
+void CampaignRecap_LoadTitleCallSprites(CampaignRecap *work)
 {
     u8 *file = File_Load(data_0216a980);
 
