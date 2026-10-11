@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020960cc(void);
+int AiSite_PickBlackBombAirportMostEnemies(void);
 int AiSite_PickBlackBombAirportNearestEnemy(void);
 
 /* Picks the airport site to build a Black Bomb at: the one with the most
@@ -10,7 +10,7 @@ int AiSite_PickBlackBombAirport(void)
 {
     int index;
 
-    index = func_020960cc();
+    index = AiSite_PickBlackBombAirportMostEnemies();
     if (index != -1) {
         return index;
     }
