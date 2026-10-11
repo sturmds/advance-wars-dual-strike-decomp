@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020bf954(void);
+BOOL UnitMenu_JoinHidden(void);
 BOOL func_020bf2d0(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -14,7 +14,7 @@ BOOL func_020bf2d0(void);
  * priority; otherwise only a Black Bomb gets the entry. */
 s8 UnitMenu_ExplodeHidden(void)
 {
-    if (!func_020bf954()) {
+    if (!UnitMenu_JoinHidden()) {
         return 1;
     }
     if (!func_020bf2d0()) {
