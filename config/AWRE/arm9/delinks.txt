@@ -13952,6 +13952,10 @@ src/game/main/func_020f3858.c:
     complete
     .text       start:0x020f3858 end:0x020f38ac
 
+src/game/main/func_020f38ac.c:
+    complete
+    .text       start:0x020f38ac end:0x020f3914
+
 src/game/main/map/two_maps_merge_other_front.c:
     complete
     .text       start:0x020f3914 end:0x020f3c48
