@@ -6499,6 +6499,10 @@ src/game/main/link/link_phase_draw.c:
     complete
     .text       start:0x02072b00 end:0x02072c10
 
+src/game/main/link/link_phase_draw_player_marker.c:
+    complete
+    .text       start:0x02072c10 end:0x02072de0
+
 src/game/main/func_02072f84.c:
     complete
     .text       start:0x02072f84 end:0x02072f90

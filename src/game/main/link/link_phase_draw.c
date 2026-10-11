@@ -8,7 +8,7 @@ void Screen_SetCurrentGfx(void *state);
 void Palette_Load(const void *src, u32 offset, u32 size);
 int MainLoop_GetFrameCount(void);
 void Sprite_QueuePicture192x160(s16 x, int y, int attr, int tile, int list);
-void func_02072c10(int player);
+void LinkPhase_DrawPlayerMarker(int player);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -29,7 +29,7 @@ void LinkPhase_Draw(void)
     Unk_02080440 *saved027c;
 
     for (panel = 0; panel < gMenuState.link.playerCount; panel++) {
-        func_02072c10(gMenuState.link.unk_020[panel]);
+        LinkPhase_DrawPlayerMarker(gMenuState.link.unk_020[panel]);
     }
     Palette_Load((u16 *)&gMenuState + ((MainLoop_GetFrameCount() >> 2) & 15), 0x234, 2);
     if (data_027c027c->unk_48[data_027c0284]->twoMaps == 1) {
