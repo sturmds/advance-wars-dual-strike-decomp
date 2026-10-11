@@ -6572,6 +6572,10 @@ src/game/main/menus/vs_setup_draw_settings.c:
     complete
     .text       start:0x02065508 end:0x02065630
 
+src/game/main/menus/vs_setup_draw_setting_row.c:
+    complete
+    .text       start:0x02065630 end:0x02065ebc
+
 src/game/main/menus/vs_setup_draw_settings_team_sprites.c:
     complete
     .text       start:0x02065ebc end:0x02065f8c
