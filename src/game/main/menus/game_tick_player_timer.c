@@ -9,7 +9,7 @@ extern EventScriptCommand data_02166948[];
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 int func_020d1bc4(void);
 int MapScript_RunList18(int flag);
-void func_020242c0(u32 *timer);
+void Counter_IncrementCapped(u32 *timer);
 void EffectScene_TickProgress(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -33,6 +33,6 @@ void Game_TickPlayerTimer(void)
     if (MapScript_RunList18(0) != 0) {
         return;
     }
-    func_020242c0(&CURRENT_PLAYER.unk_94);
+    Counter_IncrementCapped(&CURRENT_PLAYER.unk_94);
     EffectScene_TickProgress();
 }

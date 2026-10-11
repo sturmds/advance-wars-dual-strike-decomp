@@ -18,7 +18,7 @@ void Gfx_RequestLayerCopy(int layer);
 void func_020ff994(CampaignRecap *work);
 void CampaignRecap_FillEntries(CampaignRecap *work);
 void Battle_SetupWithPresetCos(CampaignRecap *work); /* needed to match: the call passes work in r0, which the callee ignores */
-Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
+Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -163,7 +163,7 @@ void CampaignRecap_SetUpScreens(CampaignRecapTask *task)
     work->index = 0;
     work->firstStep = 3;
     CampaignRecap_FillEntries(work);
-    work->songFadeTask = func_020fcbd8(42, 0);
+    work->songFadeTask = Sound_StartSongSwitch(42, 0);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

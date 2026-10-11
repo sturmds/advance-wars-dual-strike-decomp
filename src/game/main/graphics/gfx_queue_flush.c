@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/gfx_queue.h"
 
-void func_0200cd28(const void *src, u32 offset, u32 size);
+void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
 void func_0210c8e8(void);
 void func_0210c81c(void);
@@ -23,7 +23,7 @@ void GfxQueue_Flush(void)
     for (i = 0; i < data_027c051c; i++) {
         switch (data_027c0520[i].kind) {
         case 1:
-            func_0200cd28(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
+            Gfx_LoadTexImage(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
             break;
         case 2:
             if (data_027c0520[i].size == 2) {
@@ -40,7 +40,7 @@ void GfxQueue_Flush(void)
                 VRAM_LCDC_F[(u32)data_027c0520[i].dst / 2] = *(const u16 *)data_027c0520[i].src;
                 func_0210c81c();
             } else {
-                func_0200cd28(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
+                Gfx_LoadTexImage(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
             }
             break;
         case 4:

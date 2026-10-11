@@ -52,7 +52,7 @@ typedef struct Unk_ov005_0236bbb0 {
     ShopItem itemBuf[256];             /* items points here */
     ShopButton *buttons;               /* points at buttonBuf */
     ShopButton buttonBuf[6];
-    struct Task *songTask;             /* func_020fcbd8(12, 0): fades to song 12 */
+    struct Task *songTask;             /* Sound_StartSongSwitch(12, 0): fades to song 12 */
 } Unk_ov005_0236bbb0;
 
 #endif

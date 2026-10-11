@@ -6,7 +6,7 @@ void Mem_Free(void *ptr);
 int Co_GetPictureVariant(int coId);
 int Co_GetSavedPaletteVariant(int coId);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
-void func_0200cd28(const void *src, u32 offset, u32 size);
+void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void Image4bpp_UntileStrip(const u8 *src, u8 *dest, int tiles);
 
@@ -27,7 +27,7 @@ void Co_LoadTexture(int coId, u32 texOffset, u32 paletteOffset)
     Image4bpp_UntileStrip(tiles + 0x100, image + 0x100, 2);
     Image4bpp_UntileStrip(tiles + 0x140, image + 0x140, 2);
     DC_FlushRange(image, 0x180);
-    func_0200cd28(image, texOffset, 0x180);
+    Gfx_LoadTexImage(image, texOffset, 0x180);
     Gfx_LoadTexPalette(gCoGraphics[co].palettes + Co_GetSavedPaletteVariant(co) * 32, paletteOffset, 32);
     Mem_Free(image);
 }

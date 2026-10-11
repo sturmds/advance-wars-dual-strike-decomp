@@ -18,7 +18,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Gfx_RequestLayerCopy(int layer);
 TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
-Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
+Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -174,7 +174,7 @@ void Ov005_SetupDarkenedScreensWithSong(Ov005Task *task)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    work->songTask = func_020fcbd8(51, 1);
+    work->songTask = Sound_StartSongSwitch(51, 1);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

@@ -41,7 +41,7 @@ typedef struct PlayRecords {
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
     SaveHalfwords16 unk_348[3];        /* one per profile; Save_LoadProfiles fills them from the save */
     u8 pad_378[0x37c - 0x378];
-    u32 playFrames;                    /* frames counted by PlayRecords_CountFrame, capped by func_020242c0 */
+    u32 playFrames;                    /* frames counted by PlayRecords_CountFrame, capped by Counter_IncrementCapped */
     u32 unk_380;                       /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
     u32 unk_384;                       /* capped at 999999; PlayRecords_AddCoins adds to it */
     u32 unk_388;                       /* loaded from the save with a profile (Save_LoadProfile) */

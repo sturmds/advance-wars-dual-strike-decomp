@@ -17,7 +17,7 @@ void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
-Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
+Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -108,6 +108,6 @@ void Ov005_SetupMainScreenAndStartSong(Ov005Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    work->songFadeTask = func_020fcbd8(57, 0);
+    work->songFadeTask = Sound_StartSongSwitch(57, 0);
     task->step = 0;
 }

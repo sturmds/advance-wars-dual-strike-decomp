@@ -29,7 +29,7 @@ void Palette_Lighten(u8 *palette, int a, int b, int c);
 void Palette_Flush(void);
 void Ov005_LoadShopItems(Unk_ov005_0236bbb0 *work);
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work);
-struct Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
+struct Task *Sound_StartSongSwitch(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -132,6 +132,6 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     work->nextPageRequested = 0;
     work->transition = 0;
     work->redrawRows = 1;
-    work->songTask = func_020fcbd8(12, 0);
+    work->songTask = Sound_StartSongSwitch(12, 0);
     task->step = 0;
 }
