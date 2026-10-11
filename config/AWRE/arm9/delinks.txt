@@ -4181,6 +4181,10 @@ src/game/main/func_0205d56c.c:
     complete
     .text       start:0x0205d56c end:0x0205d594
 
+src/game/main/menus/map_select_confirm_map.c:
+    complete
+    .text       start:0x0205da84 end:0x0205dea0
+
 src/game/main/menus/map_select_add_map_buttons.c:
     complete
     .text       start:0x0205dea0 end:0x0205e168
