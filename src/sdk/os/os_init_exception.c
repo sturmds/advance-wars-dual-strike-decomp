@@ -6,7 +6,7 @@
 
 extern u32 data_022a9b84;
 extern u32 data_022a9b7c;
-void func_0210e684(void);
+void OSi_ExceptionHandler(void);
 u32 func_0210dbec(void);
 
 /*
@@ -25,8 +25,8 @@ void OS_InitException(void)
         data_022a9b84 = 0;
     }
     if (data_022a9b84 == 0 || (func_0210dbec() & 0x40000000) == 0) {
-        EXCEPTION_HANDLER_MAIN_RAM = (u32)func_0210e684;
-        dtcm[0xfdc / 4] = (u32)func_0210e684;
+        EXCEPTION_HANDLER_MAIN_RAM = (u32)OSi_ExceptionHandler;
+        dtcm[0xfdc / 4] = (u32)OSi_ExceptionHandler;
     }
     data_022a9b7c = 0;
 }

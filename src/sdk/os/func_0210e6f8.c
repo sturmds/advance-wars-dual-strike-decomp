@@ -4,7 +4,7 @@ extern void func_0210e70c(void);
 extern void func_0210e79c(void);
 
 /*
- * Called from the exception handler (func_0210e684). Written as assembly
+ * Called from the exception handler (OSi_ExceptionHandler). Written as assembly
  * because the original keeps the stack 4 bytes off 8-byte alignment, which
  * compiled C never does.
  */

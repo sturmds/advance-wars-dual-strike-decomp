@@ -21439,6 +21439,10 @@ src/sdk/os/os_set_protection_region1.c:
     complete
     .text       start:0x0210e67c end:0x0210e684
 
+src/sdk/os/osi_exception_handler.c:
+    complete
+    .text       start:0x0210e684 end:0x0210e6f8
+
 src/sdk/os/func_0210e6f8.c:
     complete
     .text       start:0x0210e6f8 end:0x0210e70c
