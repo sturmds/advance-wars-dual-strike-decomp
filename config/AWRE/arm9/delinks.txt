@@ -14182,6 +14182,10 @@ src/game/main/units/unit_type_get_cost_div10.c:
     complete
     .text       start:0x020dfcb0 end:0x020dfcc8
 
+src/game/main/units/unit_type_get_charge_per_hp.c:
+    complete
+    .text       start:0x020dfcc8 end:0x020dfce0
+
 src/game/main/units/unit_type_get_movement.c:
     complete
     .text       start:0x020dfce0 end:0x020dfcf8
@@ -14201,6 +14205,10 @@ src/game/main/co_stats/player_get_counter_bonus.c:
 src/game/main/co_stats/player_get_fuel_rate.c:
     complete
     .text       start:0x020dfe30 end:0x020dfe9c
+
+src/game/main/co_stats/player_get_daily_repair_hp.c:
+    complete
+    .text       start:0x020dfe9c end:0x020dfee8
 
 src/game/main/co_stats/player_get_capture_rate.c:
     complete
@@ -14250,6 +14258,9 @@ src/game/main/units/unit_get_value_per_hp.c:
 src/game/main/combat/player_get_charge_per_hp.c:
     complete
     .text       start:0x020e0350 end:0x020e0360
+
+src/game/main/units/func_020e0360.c:
+    .text       start:0x020e0360 end:0x020e03e8
 
 src/game/main/power_meter/power_panel_right_queue_stars.c:
     complete

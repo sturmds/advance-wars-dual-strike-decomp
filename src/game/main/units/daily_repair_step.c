@@ -15,7 +15,7 @@ void ServiceCostPopup_Start(s16 *pos, int player, int cost, u32 arg3, int arg4, 
 int Unit_Rearm(MapUnit *unit, BOOL payCost);
 int Unit_Refuel(MapUnit *unit, BOOL payCost);
 int Unit_Repair(MapUnit *unit, s16 steps, BOOL payCost);
-int func_020dfe9c(int player); /* shown HP a day of repairs gives the player's units (calls Player_GetRepairHp) */
+int Player_GetDailyRepairHp(int player); /* shown HP a day of repairs gives the player's units (calls Player_GetRepairHp) */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
@@ -62,7 +62,7 @@ void DailyRepair_Step(void)
         cost = 0;
         cost += Unit_Rearm(unit, FALSE);
         cost += Unit_Refuel(unit, FALSE);
-        repairCost = Unit_Repair(unit, func_020dfe9c(STATE->currentPlayer), TRUE);
+        repairCost = Unit_Repair(unit, Player_GetDailyRepairHp(STATE->currentPlayer), TRUE);
         if (cost == 0 && repairCost == 0) {
             continue;
         }
