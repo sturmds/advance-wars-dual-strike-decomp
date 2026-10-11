@@ -9822,6 +9822,13 @@ src/game/main/map/map_start_terms_script.c:
     complete
     .text       start:0x020bfe04 end:0x020bfe5c
 
+src/game/main/menus/battle_menu_music_on_hidden.c:
+    complete
+    .text       start:0x020bfe5c end:0x020bfe98
+
+src/game/main/menus/battle_menu_music_off_hidden.c:
+    .text       start:0x020bfe98 end:0x020bfed4
+
 src/game/main/func_020bfed4.c:
     complete
     .text       start:0x020bfed4 end:0x020bff48
