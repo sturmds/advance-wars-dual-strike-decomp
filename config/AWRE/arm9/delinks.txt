@@ -2019,6 +2019,10 @@ src/game/main/script/event_script_clear_state_unk7c.c:
     complete
     .text       start:0x0201cf78 end:0x0201cfc4
 
+src/game/main/script/event_script_set_state_unk7c.c:
+    complete
+    .text       start:0x0201cfc4 end:0x0201d024
+
 src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378
