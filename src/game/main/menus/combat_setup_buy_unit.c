@@ -13,11 +13,11 @@ extern u8 data_02160e58[];
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState *)&gMenuState)
 
-/* Fields of the row at byte offset rowOffset in data_02160ac0 that are
- * changed in place. Needed to match: the original adds the field offset
- * before the row offset. */
-#define ROW_SPAWN_COUNT_AT(rowOffset) ((&data_02160ac0->unk_18)[rowOffset])
-#define ROW_FUNDS_AT(rowOffset) (*(u32 *)((u8 *)&data_02160ac0->unk_14 + (rowOffset)))
+/* Fields of LINK_ROWS[row - 1] that are changed in place. Needed to match:
+ * the original adds the field offset before the row offset, so the rows
+ * are indexed from the field of the first row. */
+#define ROW_FUNDS(row) (*(u32 *)&((Unk_02160ac0_Row *)&data_02160ac0->unk_14)[(row) - 1])
+#define ROW_SPAWN_COUNT(row) (*(u8 *)&((Unk_02160ac0_Row *)&data_02160ac0->unk_18)[(row) - 1])
 
 /* Combat setup buttons: 22-25 one per unit on sale; 254 the ready button. */
 #define BUTTON_FIRST_UNIT 22
@@ -28,20 +28,15 @@ extern u8 data_02160e58[];
 
 /* Link player `player` buys the unit of shop button `button` (22-25) for
  * their Combat row, unless the row is marked ready or full: it costs 1000,
- * 3000, 5000 or 6000 of the row's funds.
- * Not matching yet (99%): rowOffset and the rows[] entry pointer swap r4
- * and r5. Without the rowOffset local the registers match, but the
- * increment after the switch then recomputes (row - 1) * 28. */
-void func_020834dc(int player, int button)
+ * 3000, 5000 or 6000 of the row's funds. */
+void CombatSetup_BuyUnit(int player, int button)
 {
     int row;
-    int rowOffset;
 
     row = MENU->combat.players[player].row;
     if (MENU->combat.rows[row - 1].unk_08 != 0) {
         return;
     }
-    rowOffset = (row - 1) * sizeof(Unk_02160ac0_Row);
     if (LINK_ROWS[row - 1].spawnCount == ROW_MAX_UNITS) {
         return;
     }
@@ -52,31 +47,31 @@ void func_020834dc(int player, int button)
             return;
         }
         LINK_ROWS[row - 1].cells[LINK_ROWS[row - 1].spawnCount].tile = 1;
-        ROW_FUNDS_AT(rowOffset) -= 1000;
+        ROW_FUNDS(row) -= 1000;
         break;
     case 1:
         if (LINK_ROWS[row - 1].funds < 3000) {
             return;
         }
         LINK_ROWS[row - 1].cells[LINK_ROWS[row - 1].spawnCount].tile = 3;
-        ROW_FUNDS_AT(rowOffset) -= 3000;
+        ROW_FUNDS(row) -= 3000;
         break;
     case 2:
         if (LINK_ROWS[row - 1].funds < 5000) {
             return;
         }
         LINK_ROWS[row - 1].cells[LINK_ROWS[row - 1].spawnCount].tile = 4;
-        ROW_FUNDS_AT(rowOffset) -= 5000;
+        ROW_FUNDS(row) -= 5000;
         break;
     case 3:
         if (LINK_ROWS[row - 1].funds < 6000) {
             return;
         }
         LINK_ROWS[row - 1].cells[LINK_ROWS[row - 1].spawnCount].tile = 5;
-        ROW_FUNDS_AT(rowOffset) -= 6000;
+        ROW_FUNDS(row) -= 6000;
         break;
     }
-    ROW_SPAWN_COUNT_AT(rowOffset)++;
+    ROW_SPAWN_COUNT(row)++;
     if (row != MENU->combat.players[data_0229fb30.unk_45a].row) {
         return;
     }
