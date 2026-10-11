@@ -36,7 +36,7 @@ typedef struct EventScriptSlot {
     const EventScriptCommand *pc;      /* next command */
     u32 hold;                          /* while nonzero the script does not advance */
     u16 wait;                          /* frames left before the next command */
-    u8 pad_0e[0x10 - 0x0e];
+    s16 counter;                       /* step count of the hold function (the screen slide) */
     s8 unk_10;                         /* set by the code that starts a script; a few scripts read it */
     u8 player;                         /* player slot the hold callback waits for */
     s16 day;                           /* day the hold callback waits for; negative: any */
