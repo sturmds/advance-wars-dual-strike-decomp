@@ -7351,6 +7351,10 @@ src/game/main/func_020772d4.c:
     complete
     .text       start:0x020772d4 end:0x020772d8
 
+src/game/main/total_rank_screen_init.c:
+    complete
+    .text       start:0x02077514 end:0x02077f20
+
 src/game/main/func_02077f20.c:
     complete
     .text       start:0x02077f20 end:0x02077f34
