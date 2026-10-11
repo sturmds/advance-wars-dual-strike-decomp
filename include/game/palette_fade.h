@@ -4,6 +4,22 @@
 #include "types.h"
 #include "game/task.h"
 
+/* PaletteFade_Start starts a task that darkens palette slots (16-color
+ * palettes, slotCount of them from firstSlot) over `duration` frames. The
+ * darkness goes from fromLevel to toLevel, 0 (unchanged) to 16 (black).
+ * `screen` picks the screen (0 or 1 in data_027c0288). With fromCurrent
+ * nonzero the slots' current colors are what fades; with zero the slots go
+ * black at once and `palettes` is what they fade to. parentOrList is
+ * Task_Create's second argument. The wrappers below fix some arguments. */
+Task *PaletteFade_Start(void *parentOrList, int fromCurrent, const void *palettes, int screen,
+                    int duration, int firstSlot, int slotCount, int fromLevel, int toLevel);
+
+/* Fades the slots' current colors from fromLevel to toLevel on screen 0. */
+Task *PaletteFade_StartLevels(void *parentOrList, int duration, int firstSlot, int slotCount, int fromLevel, int toLevel);
+
+/* Darkens slotCount palettes from firstSlot by level (0 to 16). */
+void func_020fd6d4(u8 *palettes, int firstSlot, int slotCount, int level);
+
 /* Fields of the task PaletteFade_Start creates: it darkens a run of 16-color
  * BG palettes of one screen from one level to another (0 none, 16 black). */
 typedef struct PaletteFadeTask {

@@ -36,7 +36,7 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void *func_020fd1e0(int a, void *b, int c, int d, int e);
-void *func_020fd0e8(int a, int b, int c, int d, int e, int f);
+void *PaletteFade_StartLevels(int a, int b, int c, int d, int e, int f);
 void *func_020fd164(int a, int b, int c, int d);
 void func_020fd6d4(u8 *palettes, int first, int count, int level);
 
@@ -73,12 +73,12 @@ void func_020fd6d4(u8 *palettes, int first, int count, int level);
         Screen_SetCurrentGfx(savedGfx);                                                     \
     } while (0)
 
-/* func_020fd0e8, func_020fd164 and func_020fd1e0 wrap PaletteFade_Start, which
+/* PaletteFade_StartLevels, func_020fd164 and func_020fd1e0 wrap PaletteFade_Start, which
  * makes a task that changes BG palettes over time with func_020fd6d4. */
 #define START_PALETTE_FADE_TASK()                                                           \
     do {                                                                                    \
         int id = task->duration++;                                                          \
-        Ov004_SetSlotTask(state, func_020fd0e8(5, 16, 1, 16, 4, 16), id);                   \
+        Ov004_SetSlotTask(state, PaletteFade_StartLevels(5, 16, 1, 16, 4, 16), id);                   \
     } while (0)
 
 /* Runs a timeline of cues (Ov004_CheckTimedEvent, each fires once): at frame 0
