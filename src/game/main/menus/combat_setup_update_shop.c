@@ -11,7 +11,7 @@ u8 *func_02078138(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void CombatSetup_FinishShop(void);
-void func_02083158(void);
+void CombatSetup_LeaveShop(void);
 void CombatSetup_MarkReady(u8 player);
 void func_0208372c(u8 player, int arg);
 void CombatSetup_SendCancel(void);
@@ -89,7 +89,7 @@ void CombatSetup_UpdateShop(Task *task)
         EventQueue_Drain();
     }
     if (leave == 1) {
-        func_02083158();
+        CombatSetup_LeaveShop();
         func_0207b48c();
         Task_ResumeScript(task);
         return;
