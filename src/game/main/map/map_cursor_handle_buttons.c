@@ -13,7 +13,7 @@ BOOL Map_IsCoSelectPhase(void);
 void func_020bc5c0(void);
 void func_020bc56c(void);
 void func_020d1414(void);
-void func_020f467c(void);
+void SceneMode_OnButtonX(void);
 int func_020d9864(int x, int y);
 void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit);
 MapUnit *CurrentPlayer_NextIdleUnit(void);
@@ -56,7 +56,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
         return TRUE;
     }
     if (allowX && (keys & PAD_BUTTON_X)) {
-        func_020f467c();
+        SceneMode_OnButtonX();
         return TRUE;
     }
     game = GAME;
