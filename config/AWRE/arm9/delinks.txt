@@ -5645,6 +5645,10 @@ src/game/main/ai/ai_wants_black_bomb.c:
     complete
     .text       start:0x02094adc end:0x02094b5c
 
+src/game/main/ai/ai_count_enemy_sub_reach.c:
+    complete
+    .text       start:0x020972f0 end:0x020973fc
+
 src/game/main/ai/ai_profile_wants_sea_transport.c:
     complete
     .text       start:0x02098590 end:0x020985b0
