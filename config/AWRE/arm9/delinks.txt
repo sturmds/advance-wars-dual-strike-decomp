@@ -504,6 +504,10 @@ src/game/main/func_02005a0c.c:
     complete
     .text       start:0x02005a0c end:0x02005a28
 
+src/game/main/screen/screen_wipe_ease_down_update.c:
+    complete
+    .text       start:0x02005a28 end:0x02005d70
+
 src/game/main/func_02006398.c:
     complete
     .text       start:0x02006398 end:0x020063c0
