@@ -9,7 +9,7 @@ void func_0202d6c0(int mode);
 void func_020b9890(void);
 void func_0202e868(void);
 
-extern int gNextGameMode;             /* next game mode, index into the table func_02102690 runs */
+extern int gNextGameMode;             /* next game mode, index into the table GameMode_StartNext runs */
 
 /* onConfirm of the main menu buttons. The entry's kind either
  * flips to another menu page or picks the next game mode; actions 11, 12,

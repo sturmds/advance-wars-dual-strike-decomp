@@ -4974,7 +4974,7 @@ func_021023d4 kind:function(arm,size=0x10) addr:0x021023d4
 func_021023e4 kind:function(arm,size=0x10) addr:0x021023e4
 func_021023f4 kind:function(arm,size=0x1e4) addr:0x021023f4
 VersusSave_CanContinue kind:function(arm,size=0xb8) addr:0x021025d8
-func_02102690 kind:function(arm,size=0x48) addr:0x02102690
+GameMode_StartNext kind:function(arm,size=0x48) addr:0x02102690
 func_021026d8 kind:function(arm,size=0x18) addr:0x021026d8
 func_021026f0 kind:function(arm,size=0x18) addr:0x021026f0
 func_02102708 kind:function(arm,size=0x44) addr:0x02102708
@@ -8394,8 +8394,8 @@ data_0216d6d4 kind:data(any) addr:0x0216d6d4
 data_0216d6fc kind:data(any) addr:0x0216d6fc
 data_0216d724 kind:data(any) addr:0x0216d724
 data_0216d754 kind:data(any) addr:0x0216d754
-data_0216d7ac kind:data(any) addr:0x0216d7ac
-data_0216d7b0 kind:data(any) addr:0x0216d7b0
+gGameModeStartTable kind:data(any) addr:0x0216d7ac
+gGameModeStartTableGroup kind:data(any) addr:0x0216d7b0
 data_0216d8ac kind:data(any) addr:0x0216d8ac
 data_0216d8ec kind:data(any) addr:0x0216d8ec
 data_0216d92c kind:data(any) addr:0x0216d92c
