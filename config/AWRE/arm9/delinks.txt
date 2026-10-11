@@ -13884,6 +13884,10 @@ src/game/main/number_sprite_put_label_before_number.c:
     complete
     .text       start:0x020f2b58 end:0x020f2c10
 
+src/game/main/number_sprite_put_label_after_number.c:
+    complete
+    .text       start:0x020f2c10 end:0x020f2cb4
+
 src/game/main/func_020f3110.c:
     complete
     .text       start:0x020f3110 end:0x020f3114
