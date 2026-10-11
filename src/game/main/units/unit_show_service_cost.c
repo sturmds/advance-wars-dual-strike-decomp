@@ -10,7 +10,7 @@ void ServiceCostPopup_Start(s16 *pos, int player, int amount, int arg3, int arg4
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* Gets the cost of a service to the unit from getCost (func_020ccee0 passes
+/* Gets the cost of a service to the unit from getCost (DailySupply_Step passes
  * Unit_ResupplyUnpaid or Unit_ResupplyCargo) and passes it, with the unit's tile
  * and the tile's MapTiles.unk_2338 byte, to ServiceCostPopup_Start. Returns FALSE
  * when the cost is 0. */
