@@ -18,6 +18,7 @@ typedef struct SaveSlotTable {
 extern u32 data_02297fa8[SAVE_SLOT_COUNT];
 
 #define SAVE_SLOT_MARK 0x10
+#define SAVE_SLOT_KEEP 0x08            /* set by Save_Format on the slots it keeps */
 
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
  * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
