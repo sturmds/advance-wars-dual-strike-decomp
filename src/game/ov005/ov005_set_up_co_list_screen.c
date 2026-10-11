@@ -23,7 +23,7 @@ void Wallpaper_LoadBothOnLayer3(int co);
 void ModeFont_Load(int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
-void func_02027488(int tile, int a);
+void HelpBand_Start(int tile, int a);
 void HelpText_Show(u32 textId, int tile);
 void func_02023f38(void);
 void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
@@ -170,7 +170,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_02027488(0x3f8, 1);
+    HelpBand_Start(0x3f8, 1);
     HelpText_Show(0x80000030, 0x40);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
