@@ -5730,8 +5730,8 @@ MbComm_SetState kind:function(arm,size=0x50) addr:0x0211a400
 MbComm_Respond kind:function(arm,size=0xfc) addr:0x0211a450
 MbComm_GetChildUser kind:function(arm,size=0x9c) addr:0x0211a54c
 MbComm_SetCallback kind:function(arm,size=0x2c) addr:0x0211a5e8
-func_0211a614 kind:function(arm,size=0x114) addr:0x0211a614
-func_0211a728 kind:function(arm,size=0xb0) addr:0x0211a728
+MbFile_CanLoadSegment kind:function(arm,size=0x114) addr:0x0211a614
+MbFile_CanReceiveSegment kind:function(arm,size=0xb0) addr:0x0211a728
 func_0211a7d8 kind:function(arm,size=0xd4) addr:0x0211a7d8
 MbFile_MakeBlockTable kind:function(arm,size=0xdc) addr:0x0211a8ac
 func_0211a988 kind:function(arm,size=0x1b8) addr:0x0211a988
@@ -6194,7 +6194,7 @@ data_02151534 kind:data(any) addr:0x02151534
 data_02151634 kind:data(any) addr:0x02151634
 gArchiveFallbackCommands kind:data(any) addr:0x02151908
 data_0215192c kind:data(any) addr:0x0215192c
-data_0215196c kind:data(any) addr:0x0215196c
+gMbSegmentTypes kind:data(any) addr:0x0215196c
 data_02151978 kind:data(any) addr:0x02151978
 gIsdSpaces kind:data(any) addr:0x02151990
 data_021519a4 kind:data(any) addr:0x021519a4

@@ -412,6 +412,26 @@ typedef struct DlPlayBlockSpot {
     u8 pad_0d[3];
 } DlPlayBlockSpot;
 
+/* Kinds of program segment a child downloads (gMbSegmentTypes lists them in
+ * download order). */
+#define DLPLAY_PART_MAINCPU_CODE 0
+#define DLPLAY_PART_SUBCPU_CODE 1
+#define DLPLAY_PART_CART_HEADER 2
+#define DLPLAY_PROGRAM_PART_COUNT 3
+
+extern u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT];
+
+/* Where each kind of segment may be received or loaded. */
+#define DLPLAY_MAIN_RAM_BASE 0x02000000
+#define DLPLAY_MAINCPU_CODE_AREA_END 0x022c0000
+#define DLPLAY_SUBCPU_CODE_AREA_END 0x02300000
+#define DLPLAY_HOST_DESC_SLOT 0x023fe800
+#define DLPLAY_SUBCPU_CODE_SIZE_LIMIT 0x40000   /* past DLPLAY_SUBCPU_CODE_AREA_END */
+#define DLPLAY_HEADER_COPY_START 0x027ffe00
+#define DLPLAY_HEADER_COPY_END 0x027fff60
+#define DLPLAY_FAST_RAM_START 0x037f8000               /* shared WRAM, then ARM7 WRAM */
+#define DLPLAY_FAST_RAM_END 0x0380f000
+
 #define DLPLAY_HELD_BLOCK_SLOTS 4
 #define DLPLAY_HELD_BLOCK_USABLE 2
 
