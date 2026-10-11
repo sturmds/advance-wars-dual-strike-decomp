@@ -2,7 +2,7 @@
 
 void SoundOutput_Pause(void);
 void SND_StopTimer(int arg0, int arg1, u32 channelMask, int arg3);
-int func_02110150(void);
+int SND_GetCurrentCommandTag(void);
 void func_02110220(int arg0);
 void func_021102b0(int arg0);
 
@@ -14,7 +14,7 @@ void func_02104de8(void)
 
     SoundOutput_Pause();
     SND_StopTimer(0, 0, 0, 0);
-    saved = func_02110150();
+    saved = SND_GetCurrentCommandTag();
     func_021102b0(1);
     func_02110220(saved);
 }

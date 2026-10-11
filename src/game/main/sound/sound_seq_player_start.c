@@ -3,7 +3,7 @@
 
 void SND_StartSeq(int hwChannel, const void *seqData, u32 offset, void *bank);
 void func_0210fdfc(int hwChannel, u32 trackMask, u32 channelMask);
-u32 func_02110150(void);
+u32 SND_GetCurrentCommandTag(void);
 void func_02110190(int arg);
 void SoundSeqPlayer_ResetState(SoundSeqPlayer *player);
 
@@ -22,6 +22,6 @@ void SoundSeqPlayer_Start(SoundSeqPlayer *player, const void *seqData, u32 offse
         func_0210fdfc(player->hwChannel, 0xffff, slot->trackChannelMask);
     }
     SoundSeqPlayer_ResetState(player);
-    player->startTick = func_02110150();
+    player->startTick = SND_GetCurrentCommandTag();
     player->state = SEQ_PLAYER_PLAYING;
 }

@@ -8,7 +8,7 @@ void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
 BOOL SND_IsFinishedCommandTag(u32 tick);
-u32 func_02110150(void);
+u32 SND_GetCurrentCommandTag(void);
 u32 func_02110934(void);
 
 extern Unk_ov005_0236bbac *data_ov005_0236bbac;
@@ -91,7 +91,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         Screen_SetCurrentGfx(saved0280);
     }
 
-    if (SND_IsFinishedCommandTag(func_02110150())) {
+    if (SND_IsFinishedCommandTag(SND_GetCurrentCommandTag())) {
         u32 bit;
         u32 mask;
 

@@ -2,7 +2,7 @@
 #include "game/sound_strm.h"
 
 void SND_StopTimer(u32 channelMask, int arg1, u32 alarmMask, int arg3);
-int func_02110150(void);
+int SND_GetCurrentCommandTag(void);
 void func_02110220(int arg0);
 void func_021102b0(int arg0);
 void func_021148a4(SoundSleepHook *hook);
@@ -19,7 +19,7 @@ void SoundStrm_Stop(SoundStrm *strm)
         func_021148bc(&strm->preSleep);
         func_021148a4(&strm->postSleep);
         strm->flags.running = 0;
-        saved = func_02110150();
+        saved = SND_GetCurrentCommandTag();
         func_021102b0(1);
         func_02110220(saved);
     }
