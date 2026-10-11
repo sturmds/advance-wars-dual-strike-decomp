@@ -11247,7 +11247,8 @@ src/game/main/ai/func_020a5cc8.c:
     complete
     .text       start:0x020a5cc8 end:0x020a604c
 
-src/game/main/ai/func_020a6260.c:
+src/game/main/ai/ai_is_free_capture_site_tile.c:
+    complete
     .text       start:0x020a6260 end:0x020a633c
 
 src/game/main/ai/func_020a633c.c:
