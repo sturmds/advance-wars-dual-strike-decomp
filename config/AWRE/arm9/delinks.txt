@@ -11087,6 +11087,10 @@ src/game/main/screen/screen_set_layer0_additive.c:
     complete
     .text       start:0x020f9854 end:0x020f9970
 
+src/game/main/screen/screen_set_layer0_blend_for_tileset.c:
+    complete
+    .text       start:0x020f9970 end:0x020f9ac4
+
 src/game/main/graphics/screen_set_layer_priorities.c:
     complete
     .text       start:0x020f9ca0 end:0x020f9d28
