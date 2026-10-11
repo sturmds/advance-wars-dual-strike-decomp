@@ -22381,6 +22381,10 @@ src/sdk/card/card_save_task_compare_chunks.c:
     complete
     .text       start:0x02115d44 end:0x02115e00
 
+src/sdk/card/card_save_task_write_chunks.c:
+    complete
+    .text       start:0x02115e00 end:0x02115ebc
+
 src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c
