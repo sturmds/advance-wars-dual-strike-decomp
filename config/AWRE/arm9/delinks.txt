@@ -10145,6 +10145,10 @@ src/game/main/func_020ca428.c:
     complete
     .text       start:0x020ca428 end:0x020ca450
 
+src/game/main/map/game_leave_to_mode_task.c:
+    complete
+    .text       start:0x020ca450 end:0x020ca4a0
+
 src/game/main/func_020ca540.c:
     complete
     .text       start:0x020ca540 end:0x020ca550
