@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern s16 gSidePanelRestX[2];
 
-void func_020e16e0(int x);
+void PowerPanel_DrawCurrentPlayer(int x);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -14,5 +14,5 @@ void SidePanel_SnapLeft(void)
 {
     STATE->sidePanelRight = 0;
     STATE->sidePanelX = gSidePanelRestX[0];
-    func_020e16e0(STATE->sidePanelX);
+    PowerPanel_DrawCurrentPlayer(STATE->sidePanelX);
 }

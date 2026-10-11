@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 void SidePanel_SlideLeft(void);
 void SidePanel_SlideRight(void);
-void func_020e16e0(int x);
+void PowerPanel_DrawCurrentPlayer(int x);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -30,5 +30,5 @@ void SidePanel_SlideAwayFromCursor(void)
     } else {
         SidePanel_SlideLeft();
     }
-    func_020e16e0(STATE->sidePanelX);
+    PowerPanel_DrawCurrentPlayer(STATE->sidePanelX);
 }
