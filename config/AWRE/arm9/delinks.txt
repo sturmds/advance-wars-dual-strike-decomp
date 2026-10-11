@@ -21753,6 +21753,10 @@ src/sdk/snd/snd_init.c:
     complete
     .text       start:0x0210fee8 end:0x0210ff34
 
+src/sdk/snd/snd_pop_free_command.c:
+    complete
+    .text       start:0x0210ff34 end:0x0210ff8c
+
 src/game/main/func_0211005c.c:
     complete
     .text       start:0x0211005c end:0x0211007c
