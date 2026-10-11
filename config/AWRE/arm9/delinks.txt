@@ -397,6 +397,7 @@ src/game/main/screen/screen_flash_init.c:
     .text       start:0x02004188 end:0x020041c4
 
 src/game/main/screen/screen_flash_end.c:
+    complete
     .text       start:0x020041c4 end:0x020041e4
 
 src/game/main/screen/screen_flash_start.c:
