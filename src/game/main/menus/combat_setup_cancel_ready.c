@@ -1,0 +1,50 @@
+#include "types.h"
+#include "game/menu_state.h"
+#include "game/Unk_0229fb30.h"
+#include "game/Unk_02160ac0.h"
+
+void Sound_PlaySe(u32 soundId);
+void MenuButton_Add(int x, int y, void *def, int id);
+void MenuButton_EnableTouch(int id);
+void func_02088644(int row);
+
+extern MenuState gMenuState;
+extern u8 data_02160db8[];
+extern u8 data_02160e58[];
+extern u8 data_02160bd8[];
+
+/* Needed to match: the cast keeps the field offset out of the literal pool. */
+#define MENU ((MenuState *)&gMenuState)
+
+/* Combat setup buttons: 22-25 one per unit on sale; 254 likely the ready
+ * button (func_020832a8 closes it when it sets the mark). */
+#define BUTTON_FIRST_UNIT 22
+#define BUTTON_READY 254
+
+/* Link player `player` takes back the ready mark of their Combat row
+ * (func_020832a8 sets it). For the local player the shop buttons come back,
+ * and the ready button too when the row has at least rows[].unk_07 units. */
+void CombatSetup_CancelReady(int player)
+{
+    int row;
+    int y;
+    int id;
+
+    y = 24;
+    row = MENU->combat.players[player].row;
+    Sound_PlaySe(0x10009);
+    MENU->combat.rows[row - 1].unk_08 = 0;
+    func_02088644(row);
+    if (player != data_0229fb30.unk_45a) {
+        return;
+    }
+    for (id = BUTTON_FIRST_UNIT; id < BUTTON_FIRST_UNIT + 4; id++) {
+        MenuButton_Add(8, y, data_02160db8, id);
+        y += 16;
+    }
+    MenuButton_EnableTouch(253);
+    if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].unk_07) {
+        MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
+    }
+    MenuButton_Add(0, 0, data_02160bd8, 252);
+}
