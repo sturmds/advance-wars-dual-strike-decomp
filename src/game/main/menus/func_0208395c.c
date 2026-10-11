@@ -13,7 +13,7 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int a0, int a1, int a2, int a3);
 
 typedef struct UnitCountTable {
-    u8 counts[4][4];
+    u8 counts[4 * 4];   /* 4 per kind; needed to match: indexed as one array */
 } UnitCountTable;
 
 extern MenuState gMenuState;
@@ -39,7 +39,7 @@ extern u8 data_027c0040;
  * and the CO's nation (1 or other), four unit icons, then one icon per cell
  * of the row, four to a line. Sub screen: a sprite for each row with memberCount
  * set, and five LinkMenu_DrawSetting entries.
- * Not matched (75%): the original keeps the first loop's counter and the
+ * Not matched (95%): the original keeps the first loop's counter and the
  * cell loop's icon index in registers and spills constants instead. */
 void func_0208395c(void)
 {
@@ -70,7 +70,7 @@ void func_0208395c(void)
     Co_QueueSmallPictureSpriteAtTile(0x10e0, 24, (row + 1) << 12, (row - 1) * 12 + 0x490, 0);
     Sprite_QueueDefaultTile(0x8c, 8, 0xb000, LINK_ROWS[row - 1].unk_19 * 12 + 0x4c0, 0);
     for (i = 0; i < 4; i++) {
-        for (j = 0; j < table.counts[kind][i]; j++) {
+        for (j = 0; j < table.counts[kind * 4 + i]; j++) {
             Sprite_QueueAt(0, (88 + j * 8) & 0x1ff, (92 + i * 16) & 0xff, &data_027c0028, 0xa000, 0x638);
         }
     }
