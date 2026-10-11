@@ -6894,9 +6894,17 @@ src/game/main/func_020c0144.c:
     complete
     .text       start:0x020c0144 end:0x020c014c
 
+src/game/main/func_020c014c.c:
+    complete
+    .text       start:0x020c014c end:0x020c0178
+
 src/game/main/func_020c0178.c:
     complete
     .text       start:0x020c0178 end:0x020c019c
+
+src/game/main/func_020c019c.c:
+    complete
+    .text       start:0x020c019c end:0x020c01c0
 
 src/game/main/func_020c02b0.c:
     complete
@@ -7607,6 +7615,10 @@ src/game/main/func_020d6a1c.c:
 src/game/main/func_020d6a34.c:
     complete
     .text       start:0x020d6a34 end:0x020d6a64
+
+src/game/main/func_020d6a64.c:
+    complete
+    .text       start:0x020d6a64 end:0x020d6a94
 
 src/game/main/func_020d6a94.c:
     complete
@@ -8408,6 +8420,10 @@ src/game/main/func_020e5400.c:
     complete
     .text       start:0x020e5400 end:0x020e5428
 
+src/game/main/func_020e5428.c:
+    complete
+    .text       start:0x020e5428 end:0x020e5450
+
 src/game/main/skills/experience_to_rank.c:
     complete
     .text       start:0x020e5450 end:0x020e5488
@@ -8720,6 +8736,10 @@ src/game/main/map/func_020ed744.c:
     complete
     .text       start:0x020ed744 end:0x020ed774
 
+src/game/main/func_020ed774.c:
+    complete
+    .text       start:0x020ed774 end:0x020ed7a4
+
 src/game/main/func_020edb84.c:
     complete
     .text       start:0x020edb84 end:0x020edba8
@@ -8912,6 +8932,10 @@ src/game/main/func_020f29d4.c:
     complete
     .text       start:0x020f29d4 end:0x020f29ec
 
+src/game/main/func_020f29ec.c:
+    complete
+    .text       start:0x020f29ec end:0x020f2a18
+
 src/game/main/func_020f2a18.c:
     complete
     .text       start:0x020f2a18 end:0x020f2a3c
@@ -9051,6 +9075,10 @@ src/game/main/func_020f53e8.c:
 src/game/main/map/map_view_find_scroll.c:
     complete
     .text       start:0x020f5540 end:0x020f5848
+
+src/game/main/func_020f5848.c:
+    complete
+    .text       start:0x020f5848 end:0x020f5878
 
 src/game/main/func_020f5878.c:
     complete
