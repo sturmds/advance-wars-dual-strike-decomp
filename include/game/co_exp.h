@@ -7,7 +7,7 @@
  * CoExp_TallyStep fills it: 1000 points make a level, up to level 100. */
 typedef struct CoExp {
     s8 level;                          /* below 0: no CO in this slot */
-    u8 leveledUp;                      /* set to 1 when a point gain raises the level */
+    u8 levelUpFrame;                   /* 0; 1 when a point gain raises the level, then counts frames up to 255 */
     s16 points;                        /* 0-999 toward the next level */
 } CoExp;
 

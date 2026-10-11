@@ -22,7 +22,7 @@ extern Unk_0229fb30 data_0229fb30;
 
 /* Script task step, 16 frames, passing the frame count to CoExp_DrawScreen.
  * On the first frame: on normal-mode campaign maps up to 231 it clears
- * the second CO's leveledUp flag (as CoExp_InitScreen does), then starts
+ * the second CO's levelUpFrame (as CoExp_InitScreen does), then starts
  * the level-up task. Resumes the script after the last frame. */
 void CoExp_StartStep(Task *task)
 {

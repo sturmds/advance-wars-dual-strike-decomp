@@ -22,7 +22,7 @@ void CoExp_StartLevelUpTask(void)
         if (i >= 6) {
             break;
         }
-        if (gMenuState.coExp.exp[i].leveledUp != 0) {
+        if (gMenuState.coExp.exp[i].levelUpFrame != 0) {
             mask |= 1 << i;
             count++;
         }

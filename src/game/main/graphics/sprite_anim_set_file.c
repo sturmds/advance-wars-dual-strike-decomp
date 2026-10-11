@@ -21,11 +21,11 @@ void SpriteAnim_SetFile(SpriteAnim *sprite, const void *file)
         sprite->animation = table + (table[0] >> 1);
         half = sprite->data;
         table = half + (half[1] >> 1);
-        sprite->unk_0c = table + (table[0] >> 1);
+        sprite->step = table + (table[0] >> 1);
     } else {
         words = sprite->data;
         sprite->unk_04 = words[0];
         sprite->animation = words[1];
-        sprite->unk_0c = words[1];
+        sprite->step = words[1];
     }
 }

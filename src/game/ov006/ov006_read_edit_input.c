@@ -39,7 +39,7 @@ int Ov006_ReadEditInput(void)
         }
     }
     if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {
-        if (gTouch.phase != 0 && gTouch.unk_01 == 0) {
+        if (gTouch.phase != 0 && gTouch.prevPhase == 0) {
             return OV6->touchY > 32;
         }
         return 0;

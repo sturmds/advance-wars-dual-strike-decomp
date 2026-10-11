@@ -21,16 +21,16 @@ typedef struct SpriteAnim {
     const void *data;                  /* the loaded file; 0 for a free slot */
     const void *unk_04;                /* the file's first section */
     const void *animation;             /* current animation, from the file's animation table */
-    const void *unk_0c;                /* set to the same animation as the field before */
+    const void *step;                  /* current SpriteAnimStep; starts at animation */
     const void *cells;                 /* OAM cells of the current frame (Sprite_Queue's data) */
     const void *affine;                /* affine parameter sets of the current frame */
-    u16 unk_18;
-    u16 unk_1a;                        /* 0x100 on a new sprite, restored after a reset */
-    u16 unk_1c;
+    s16 framesLeft;                    /* frames left in the current step */
+    u16 speed;                         /* 0x100: one frame per tick, 0: paused */
+    u16 speedFraction;                 /* speed-scaled frames carried to the next step, below 0x100 */
     u16 layer;                         /* sprite list for Sprite_Queue */
     u8 flags;                          /* SPRITE_ANIM_* */
     u8 affineBase;                     /* first affine slot of the sprite, shifted to bit 9 of the x word */
-    u16 unk_22;
+    u16 lastCommand;                   /* value of the last unknown command step */
     u32 tileBase;                      /* Sprite_Queue's unk08 */
     u32 unk_28;
     void *tileSource;                  /* tiles copied to VRAM while SPRITE_ANIM_TILES_PENDING is set */

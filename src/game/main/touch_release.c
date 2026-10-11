@@ -3,7 +3,7 @@
 
 /* Called each frame the screen is not touched. If a touch was in progress,
  * ends it: keeps the last position in endX and endY and the phase it ended in
- * in unk_01. Otherwise clears the active flag. */
+ * in prevPhase. Otherwise clears the active flag. */
 void Touch_Release(void)
 {
     switch (gTouch.phase) {
@@ -13,7 +13,7 @@ void Touch_Release(void)
     case TOUCH_HELD:
         gTouch.endX = gTouch.x;
         gTouch.endY = gTouch.y;
-        gTouch.unk_01 = gTouch.phase;
+        gTouch.prevPhase = gTouch.phase;
         gTouch.phase = TOUCH_RELEASED;
         gTouch.active = 1;
         return;

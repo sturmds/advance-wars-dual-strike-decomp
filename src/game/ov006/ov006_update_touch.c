@@ -8,7 +8,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* Runs first in each frame of overlay 6. While the screen is touched it sets
  * 0x8000 in OV6->touch (and, for request 1, keeps the touch position). When
- * the touch ends after such a frame, it stores gTouch.unk_01 (1 or 2) with
+ * the touch ends after such a frame, it stores gTouch.prevPhase (1 or 2) with
  * the position; otherwise it clears the field. */
 void Ov006_UpdateTouch(void)
 {
@@ -17,7 +17,7 @@ void Ov006_UpdateTouch(void)
     u8 y = gTouch.y;
 
     if (phase == TOUCH_RELEASED) {
-        u8 kind = gTouch.unk_01;
+        u8 kind = gTouch.prevPhase;
 
         if (kind == 2 && (OV6->touch & 0x8000)) {
             OV6->touch = 2;

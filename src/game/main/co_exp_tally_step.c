@@ -80,7 +80,7 @@ void CoExp_TallyStep(WinLoseTask *task)
                 EXP[i * 2 + k].level++;
                 EXP[i * 2 + k].points -= CO_EXP_PER_LEVEL;
                 if (EXP[i * 2 + k].level <= CO_EXP_MAX_LEVEL) {
-                    EXP[i * 2 + k].leveledUp = 1;
+                    EXP[i * 2 + k].levelUpFrame = 1;
                 }
             }
             if (EXP[i * 2 + k].level >= CO_EXP_MAX_LEVEL) {
@@ -142,7 +142,7 @@ void CoExp_TallyStep(WinLoseTask *task)
                 EXP[i * 2 + k].level++;
                 EXP[i * 2 + k].points -= CO_EXP_PER_LEVEL;
                 if (EXP[i * 2 + k].level <= CO_EXP_MAX_LEVEL) {
-                    EXP[i * 2 + k].leveledUp = 1;
+                    EXP[i * 2 + k].levelUpFrame = 1;
                 }
             }
             if (EXP[i * 2 + k].level >= CO_EXP_MAX_LEVEL) {

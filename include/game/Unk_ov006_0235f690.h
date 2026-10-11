@@ -38,7 +38,7 @@ typedef struct Ov006SlotButton {
 typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
     u16 unk_02;                        /* flags: 0x10 and 0x01 are tested by func_ov006_02351ac4 */
-    u16 touch;                         /* 0x8000 while touched; 1 or 2 on release (gTouch.unk_01) */
+    u16 touch;                         /* 0x8000 while touched; 1 or 2 on release (gTouch.prevPhase) */
     s16 touchX;
     s16 touchY;
     u16 request;                       /* code set by Ov006_PostRequest (1, 2 or 4) */

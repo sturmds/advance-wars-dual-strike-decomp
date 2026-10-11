@@ -31,14 +31,14 @@ void LevelGaugeTask_CountUp(LevelGaugeTask *task)
         task->gauges[0].level++;
         task->gauges[0].points -= LEVEL_GAUGE_POINTS_PER_LEVEL;
         if (task->gauges[0].level <= LEVEL_GAUGE_MAX_LEVEL) {
-            task->gauges[0].leveledUp = 1;
+            task->gauges[0].levelUpFrame = 1;
         }
     }
     if (task->twoGauges == 1 && task->gauges[1].points > LEVEL_GAUGE_POINTS_PER_LEVEL - 1) {
         task->gauges[1].level++;
         task->gauges[1].points -= LEVEL_GAUGE_POINTS_PER_LEVEL;
         if (task->gauges[1].level <= LEVEL_GAUGE_MAX_LEVEL) {
-            task->gauges[1].leveledUp = 1;
+            task->gauges[1].levelUpFrame = 1;
         }
     }
     if (task->gauges[0].level >= LEVEL_GAUGE_MAX_LEVEL) {
@@ -76,7 +76,7 @@ void LevelGaugeTask_CountUp(LevelGaugeTask *task)
         task->gauges[0].level++;
         task->gauges[0].points -= LEVEL_GAUGE_POINTS_PER_LEVEL;
         if (task->gauges[0].level <= LEVEL_GAUGE_MAX_LEVEL) {
-            task->gauges[0].leveledUp = 1;
+            task->gauges[0].levelUpFrame = 1;
         }
     }
     if (task->twoGauges == 1) {
@@ -85,7 +85,7 @@ void LevelGaugeTask_CountUp(LevelGaugeTask *task)
             task->gauges[1].level++;
             task->gauges[1].points -= LEVEL_GAUGE_POINTS_PER_LEVEL;
             if (task->gauges[1].level <= LEVEL_GAUGE_MAX_LEVEL) {
-                task->gauges[1].leveledUp = 1;
+                task->gauges[1].levelUpFrame = 1;
             }
         }
     }

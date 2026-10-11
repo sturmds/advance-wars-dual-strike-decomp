@@ -29,11 +29,11 @@ void SpriteAnim_SetAnimation(SpriteAnim *sprite, int animation)
         sprite->animation = table + (*(const u16 *)(offset + (int)table) >> 1);
         half = sprite->data;
         table = half + (half[1] >> 1);
-        sprite->unk_0c = table + (*(const u16 *)(offset + (int)table) >> 1);
+        sprite->step = table + (*(const u16 *)(offset + (int)table) >> 1);
     } else {
         words = sprite->data;
         sprite->animation = words[animation + 1];
-        sprite->unk_0c = words[animation + 1];
+        sprite->step = words[animation + 1];
     }
     SpriteAnim_Restart(sprite);
 }

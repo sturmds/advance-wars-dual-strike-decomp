@@ -155,8 +155,8 @@ void CoExp_InitScreen(void)
             EXP[i * 2 + 1].level = -1;
             EXP[i * 2 + 1].points = -1;
         }
-        EXP[i * 2].leveledUp = 0;
-        EXP[i * 2 + 1].leveledUp = 0;
+        EXP[i * 2].levelUpFrame = 0;
+        EXP[i * 2 + 1].levelUpFrame = 0;
     }
 
     if (GAME->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() && GAME->unk_1c4->mapId <= 231) {

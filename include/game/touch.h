@@ -13,9 +13,9 @@
 /* Touch screen state of the current frame, in screen pixels. */
 typedef struct TouchState {
     u8 phase;                          /* TOUCH_* */
-    u8 unk_01;                         /* 1 or 2 on release: Ov006 reads it as the kind of touch that ended */
-    u8 unk_02;                         /* counts up to unk_03 while a touch is pending */
-    u8 unk_03;                         /* limit for unk_02; 20 after Touch_Init */
+    u8 prevPhase;                      /* phase before the last change; on release, the kind of touch that ended */
+    u8 pressFrames;                    /* counts up to holdDelay while the touch is TOUCH_PRESSED */
+    u8 holdDelay;                      /* frames before TOUCH_PRESSED turns TOUCH_HELD; 20 after Touch_Init */
     u32 active;                        /* menu buttons ignore phase while this is 0 */
     u8 x;
     u8 y;

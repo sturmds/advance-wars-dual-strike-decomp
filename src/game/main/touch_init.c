@@ -14,8 +14,8 @@ void Touch_Init(void)
         func_021143c4(gTouchDriverState);
     }
     gTouch.phase = TOUCH_RELEASED;
-    gTouch.unk_01 = 0;
+    gTouch.prevPhase = 0;
     gTouch.active = 0;
-    gTouch.unk_02 = 0;
-    gTouch.unk_03 = 20;
+    gTouch.pressFrames = 0;
+    gTouch.holdDelay = 20;
 }
