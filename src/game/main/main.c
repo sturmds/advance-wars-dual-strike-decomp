@@ -14,7 +14,7 @@ void func_01ff9f9c(void);
 void func_020011e0(void);
 void func_02112bdc(int a);
 void Mem_InitHeaps(void);
-void func_0200acd8(void);
+void Screens_InitContexts(void);
 void Screens_InitDisplay(void);
 void func_0200b970(void);
 void func_0200b8d0(void);
@@ -85,7 +85,7 @@ void main(void)
     heldKeys = ((REG_KEYINPUT | HW_BUTTON_XY_BUF) ^ PAD_ALL_MASK) & PAD_ALL_MASK;
     func_02112bdc(3);
     Mem_InitHeaps();
-    func_0200acd8();
+    Screens_InitContexts();
     Screens_InitDisplay();
     func_0200b970();
     func_0200b8d0();

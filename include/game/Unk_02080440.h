@@ -200,16 +200,16 @@ typedef struct Unk_02080440_48 {
     u8 pad_17c[0x184 - 0x17c];
     Unk_02080440_184 unk_184;
     Unk_02080440_1c4 *unk_1c4;
-    u8 pad_1c8[0x43d0 - 0x1c8];
+    u8 mapTilesBuf[0x43d0 - 0x1c8];    /* mapTiles points here (Screens_InitContexts) */
     MapTiles *mapTiles;
     u8 tileHp[0x508];                  /* per tile like MapTiles; bits 0-6: hp of a tile units can attack (pipe seams) */
     MapObject objects[0x1d0];          /* the list ends at the first object with kind 0 */
     MapUnit *units;                    /* MAP_UNITS_PER_PLAYER slots per player */
     Player playerSlots[5];             /* the slots players points to, probably */
     Player *players;                   /* 5 slots: 0 neutral, then players 1-4 */
-    u8 pad_5a5c[0x5e5c - 0x5a5c];
+    u8 tileCodeTerrainBuf[0x5e5c - 0x5a5c]; /* tileCodeTerrain points here */
     u8 *tileCodeTerrain;               /* per map tile code: bits 0-4 terrain id */
-    u8 pad_5e60[0x6088 - 0x5e60];
+    Unk_02080440_6088 unk_6088Buf[92]; /* unk_6088 points here */
     Unk_02080440_6088 *unk_6088;
     Unk_02080440_608c unk_608c[92];    /* tiles with urban terrain (or terrain 16 in game mode 4), filled by func_020c4448; the list ends at tile 0xff when not full */
     Combatant combatants[2];           /* attacker, defender */
@@ -259,7 +259,10 @@ typedef struct Unk_02080440_50 {
 
 /* Pointed to by data_027c027c (DTCM). */
 typedef struct Unk_02080440 {
-    u8 pad_00[0x2c];
+    u8 pad_00[0x20];
+    void *unk_20;                      /* 0x20-0x28: Unk_027c0280.spritePool, spriteLists and spriteFree of the same object */
+    void *unk_24;
+    void *unk_28;
     struct Task *taskPool;             /* TASK_COUNT tasks */
     struct Task **taskFreeStack;       /* TASK_COUNT + 1 entries, ends with NULL */
     struct Task **taskFreeTop;         /* next free task in taskFreeStack */
@@ -270,8 +273,7 @@ typedef struct Unk_02080440 {
     Unk_02080440_48 *unk_48[2];        /* indexed by data_027c0284 */
     Unk_02080440_50 *unk_50[2];        /* indexed by data_027c0284; set by Screens_SelectConfigs */
     u8 *unk_58;                        /* 2 flags: show slot n is in use (UnitShowTask_Create's helper looks for a free one) */
-    Unk_02080440_5c *unk_5c[1];       /* length unknown, indexed by data_027c0284 like unk_48 */
-    u8 pad_60[0x64 - 0x60];
+    Unk_02080440_5c *unk_5c[2];       /* indexed by data_027c0284 like unk_48 */
     struct WeatherFx *weatherFx;       /* particles and clouds the map screen draws, see game/weather.h */
 } Unk_02080440;
 

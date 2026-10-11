@@ -57,8 +57,8 @@ data_027c027c kind:data(any) addr:0x027c027c
 data_027c0280 kind:data(any) addr:0x027c0280
 data_027c0284 kind:data(any) addr:0x027c0284
 data_027c0288 kind:data(any) addr:0x027c0288
-data_027c0290 kind:data(any) addr:0x027c0290
-data_027c03d4 kind:data(any) addr:0x027c03d4
+gMainScreenContext kind:data(any) addr:0x027c0290
+gSubScreenContext kind:data(any) addr:0x027c03d4
 data_027c0518 kind:data(any) addr:0x027c0518
 data_027c051c kind:data(any) addr:0x027c051c
 data_027c0520 kind:data(any) addr:0x027c0520
