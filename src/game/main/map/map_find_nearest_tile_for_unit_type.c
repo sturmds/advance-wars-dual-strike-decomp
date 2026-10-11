@@ -4,7 +4,7 @@
 
 /* TRUE when (x, y) is on the map, is free (with arg3 0: no unit there) and
  * unitType can move onto its terrain. */
-BOOL func_020df63c(int x, int y, int unitType, int arg3);
+BOOL Tile_IsFreeForUnitType(int x, int y, int unitType, int arg3);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -31,7 +31,7 @@ BOOL Map_FindNearestTileForUnitType(int unitType, TilePoint *pos)
 
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (func_020df63c(x, y, unitType, 0)) {
+            if (Tile_IsFreeForUnitType(x, y, unitType, 0)) {
                 dy = y - targetY < 0 ? -(y - targetY) : y - targetY;
                 dist = x - targetX;
                 if (dist < 0) {

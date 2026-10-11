@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020df63c(s16 x, s16 y, int unitType, BOOL checkUnitAt);
+BOOL Tile_IsFreeForUnitType(s16 x, s16 y, int unitType, BOOL checkUnitAt);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -28,16 +28,16 @@ s8 Unit_GetDropDirections(int x, int y, int slot)
         return dirs;
     }
     unit = &STATE->units[slot];
-    if (func_020df63c(x - 1, y, unit->type, TRUE) == TRUE) {
+    if (Tile_IsFreeForUnitType(x - 1, y, unit->type, TRUE) == TRUE) {
         dirs |= DROP_LEFT;
     }
-    if (func_020df63c(x + 1, y, unit->type, TRUE) == TRUE) {
+    if (Tile_IsFreeForUnitType(x + 1, y, unit->type, TRUE) == TRUE) {
         dirs |= DROP_RIGHT;
     }
-    if (func_020df63c(x, y - 1, unit->type, TRUE) == TRUE) {
+    if (Tile_IsFreeForUnitType(x, y - 1, unit->type, TRUE) == TRUE) {
         dirs |= DROP_UP;
     }
-    if (func_020df63c(x, y + 1, unit->type, TRUE) == TRUE) {
+    if (Tile_IsFreeForUnitType(x, y + 1, unit->type, TRUE) == TRUE) {
         dirs |= DROP_DOWN;
     }
     return dirs;
