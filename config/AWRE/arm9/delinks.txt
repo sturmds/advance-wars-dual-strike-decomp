@@ -2166,6 +2166,10 @@ src/game/main/func_02019950.c:
     complete
     .text       start:0x02019950 end:0x02019968
 
+src/game/main/script/event_choice_answer_is_not_last.c:
+    complete
+    .text       start:0x02019968 end:0x020199a4
+
 src/game/main/func_020199a4.c:
     complete
     .text       start:0x020199a4 end:0x020199c0
