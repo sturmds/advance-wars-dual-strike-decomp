@@ -4139,6 +4139,10 @@ src/game/main/func_02033088.c:
     complete
     .text       start:0x02033088 end:0x0203339c
 
+src/game/main/menus/co_exp_slide_step.c:
+    complete
+    .text       start:0x0203339c end:0x02033454
+
 src/game/main/co_exp_tally_step.c:
     complete
     .text       start:0x02033618 end:0x02033bec

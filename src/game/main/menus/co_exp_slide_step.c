@@ -1,0 +1,35 @@
+#include "types.h"
+#include "game/co_exp.h"
+#include "game/menu_state.h"
+#include "game/screen_other_map.h"
+#include "game/win_lose.h"
+
+int Math_Ease(int curve, int from, int to, int elapsed, int duration);
+void ScriptTask_ResumeWithValue(int value);
+void Task_ResumeScript(void *task);
+void func_02033c90(CoExp *exp, int a, int b, int c);
+
+extern MenuState gMenuState;
+
+#define SLIDE_FRAMES 16
+
+/* Script task step, 16 frames: scrolls layer 1 sideways by an eased 0 to
+ * 256 and moves the CO cells by the same amount, then resumes the script.
+ * On the first frame it also passes 16 to ScriptTask_ResumeWithValue. */
+void CoExp_SlideStep(WinLoseTask *task)
+{
+    int offset;
+
+    if (task->unk_4c == 0) {
+        ScriptTask_ResumeWithValue(SLIDE_FRAMES);
+    }
+    task->unk_4c++;
+    offset = Math_Ease(1, 0, -256, task->unk_4c, SLIDE_FRAMES);
+    data_027c0280->bgScrollX[data_027c0280->layer1Bg] = -offset;
+    func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), offset, 0, -1);
+    if (task->unk_4c != SLIDE_FRAMES) {
+        return;
+    }
+    task->unk_4c = 0;
+    Task_ResumeScript(task);
+}
