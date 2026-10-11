@@ -4332,6 +4332,10 @@ src/game/main/menus/campaign_map_handle_keys.c:
     complete
     .text       start:0x0204e4ec end:0x0204e544
 
+src/game/main/menus/campaign_map_cancel.c:
+    complete
+    .text       start:0x0204e544 end:0x0204e57c
+
 src/game/main/func_0204e6bc.c:
     complete
     .text       start:0x0204e6bc end:0x0204e6e8
