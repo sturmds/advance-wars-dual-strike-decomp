@@ -16369,6 +16369,10 @@ src/game/main/map/tile_hp_pack.c:
     complete
     .text       start:0x020e4f78 end:0x020e5064
 
+src/game/main/map/tile_hp_unpack.c:
+    complete
+    .text       start:0x020e5064 end:0x020e5100
+
 src/game/main/map/map_mark_crystal_obelisk_range.c:
     complete
     .text       start:0x020e5100 end:0x020e531c
