@@ -183,7 +183,7 @@ typedef struct WMStatus {
     u8 pad_f6[0x88];
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
     u8 pad_180[4];
-    u16 unk_184;
+    u16 unk_184;                       /* 0 on a parent */
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;

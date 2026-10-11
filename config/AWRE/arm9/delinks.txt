@@ -22011,6 +22011,10 @@ src/sdk/wm/wm_read_mp_data.c:
     complete
     .text       start:0x02117394 end:0x02117498
 
+src/sdk/wm/wm_get_mp_receive_buffer_size.c:
+    complete
+    .text       start:0x02117498 end:0x02117584
+
 src/game/main/func_0211ba5c.c:
     complete
     .text       start:0x0211ba5c end:0x0211ba80
