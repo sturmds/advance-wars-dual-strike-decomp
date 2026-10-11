@@ -1,0 +1,27 @@
+#include "types.h"
+#include "game/tab_list.h"
+
+extern TabListView gMenuState;
+void HelpText_Clear(void);
+void HelpText_Show(u32 textId, int tile);
+BOOL func_020714fc(void);
+
+/* Shows the help text of the selected button, or clears it when that button
+ * has none (see func_020714fc). */
+void TabList_UpdateHelpText(void)
+{
+    u8 tab;
+    u8 row;
+    int entry;
+    u8 col;
+    tab = gMenuState.tab;
+    row = gMenuState.row;
+    col = gMenuState.unk_06;
+    entry = gMenuState.pageOfTab[tab] * 9 + row;
+
+    if (!func_020714fc()) {
+        HelpText_Clear();
+        return;
+    }
+    HelpText_Show(data_0215d6c4[tab][entry].helpTextId[col], 192);
+}

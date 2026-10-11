@@ -35,7 +35,7 @@ void func_02028a30(void);
 int func_020c67a8(void);
 u8 *func_020c67bc(void);
 void func_020703b0(void);
-void func_02071494(void);
+void TabList_UpdateHelpText(void);
 
 extern TabListView gMenuState;
 extern Unk_02080440 *data_027c027c;
@@ -52,7 +52,7 @@ extern char data_0215f7f4[]; /* "/ohashi/res_history_lang" */
  * res_history, res_history_lang and res_history_medal files: resets the
  * tab list to tab 0, page 0, loads the background, icons and palettes on
  * each screen, a ModeFont title, the menu cursor, wallpaper and help
- * band, then calls func_02071494. */
+ * band, then calls TabList_UpdateHelpText. */
 void HistoryScreen_Init(void)
 {
     u8 *res;
@@ -172,5 +172,5 @@ void HistoryScreen_Init(void)
     MenuButtons_DisableTouch();
     Wallpaper_LoadSelected();
     HelpBand_Start(0x3f8, 0);
-    func_02071494();
+    TabList_UpdateHelpText();
 }

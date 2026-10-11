@@ -5,7 +5,7 @@ extern TabListView gMenuState;
 void Sound_PlaySe(int id);
 void TabList_RebuildButtons(void);
 int TabList_GetPageCount(int tab);
-void func_02071494(void);
+void TabList_UpdateHelpText(void);
 
 /* Shows the previous page of the current tab, wrapping to the last page. */
 void TabList_PrevPage(void)
@@ -19,5 +19,5 @@ void TabList_PrevPage(void)
     }
     Sound_PlaySe(0x10002);
     TabList_RebuildButtons();
-    func_02071494();
+    TabList_UpdateHelpText();
 }

@@ -19,11 +19,12 @@ typedef struct TabListView {
 typedef struct TabListEntry {
     u32 textId;
     u16 unk_04;                        /* 0x68 marks an unused entry */
-    u8 pad_06[0x14 - 0x06];
+    u8 pad_06[0x08 - 0x06];
+    u32 medalThreshold[3];             /* getValue must reach threshold [n] for medal n + 1 */
     int (*getValue)(int row, int col); /* the number drawn after the text */
     u8 pad_18[0x1c - 0x18];
     int (*unk_1c)(int row, int col);   /* may be NULL; TabList_CallUnk1c returns 0 then */
-    u8 pad_20[0x30 - 0x20];
+    u32 helpTextId[4];                 /* help text of each column: 0 the entry, 1-3 the medals */
 } TabListEntry;
 
 extern TabListEntry data_0215d6c4[][44];

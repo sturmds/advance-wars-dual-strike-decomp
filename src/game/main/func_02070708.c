@@ -7,12 +7,12 @@ typedef struct Unk_02070660_0 {
 extern Unk_02070660_0 gMenuState;
 void Sound_PlaySe(int id);
 void TabList_RebuildButtons(void);
-void func_02071494(void);
+void TabList_UpdateHelpText(void);
 
 void func_02070708(void)
 {
     Sound_PlaySe(0x10002);
     gMenuState.unk_04 = 0;
     TabList_RebuildButtons();
-    func_02071494();
+    TabList_UpdateHelpText();
 }
