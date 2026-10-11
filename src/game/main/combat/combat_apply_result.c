@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void Player_AddKill(int killerSlot, int victimSlot, int victimType); /* counts a kill for killerSlot */
 void Unit_CountDestroyed(MapUnit *unit);                                   /* counts the unit and its cargo as destroyed */
-void func_020c2e08(Combatant *combatant, Combatant *other);           /* damage taken and funds damage */
+void Combat_RecordDamage(Combatant *combatant, Combatant *other);           /* damage taken and funds damage */
 void Combatant_WriteBack(Combatant *combatant, Combatant *other);           /* writes hp and ammo back to the unit; at 0 hp calls func_020edb84 */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -48,8 +48,8 @@ void Combat_ApplyResult(void)
             }
         }
     }
-    func_020c2e08(&STATE->combatants[0], &STATE->combatants[1]);
-    func_020c2e08(&STATE->combatants[1], &STATE->combatants[0]);
+    Combat_RecordDamage(&STATE->combatants[0], &STATE->combatants[1]);
+    Combat_RecordDamage(&STATE->combatants[1], &STATE->combatants[0]);
     Combatant_WriteBack(&STATE->combatants[0], &STATE->combatants[1]);
     Combatant_WriteBack(&STATE->combatants[1], &STATE->combatants[0]);
 }
