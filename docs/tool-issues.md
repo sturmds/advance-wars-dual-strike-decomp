@@ -28,3 +28,11 @@ Tracked as `docs/issues/0007-dsd-init-abort.md`.
 - `init` warns 28 times about calls into the middle of functions, all in runtime and floating-point assembly in 0x0211e980–0x02129760. It adds labels for them; the build is unaffected.
 - `dsd fix find-exceptix` reports "__FindExceptionTable not found". Not needed for M0.
 - `dsd objdiff` names the top-level `target_dir` and `base_dir` the other way round from objdiff's convention. The per-unit `target_path` (original) and `base_path` (ours) are correct, and those are what objdiff uses.
+
+## mwldarm: link time grows with objects squared times path length
+
+- **Version:** mwldarm 2.0-72 (metroskrew 0.1.3).
+- **Seen:** 2026-10-10, the link took 12 s of a 12.6 s landing build; compile, delink and ROM build together under 1 s, and the `make check` steps under 0.1 s.
+- **Cause:** the linker compares each object's full path (the shim's `GetFullPathNameA` puts `getcwd()` in front of relative paths) with every object loaded before it. Measured with synthetic objects: 1,000 / 2,000 / 4,000 objects with one function each link in 0.5 / 2.1 / 7.6 s, while 250 objects with 32 functions each link in 0.07 s, so the cost follows the object count, not the symbol count. Adding 90 characters to the directory name raised 2,000 objects from 1.9 s to 3.3 s. A worktree path plus `build/delinks/_dsd_gap@main_` gives a common prefix of about 105 characters. The map file (`-map`) and the 3,000 `.exceptix` warnings per link cost under 0.5 s.
+- **Workaround:** `tools/link.py` makes `/tmp/awlXXXXXXXX`, symlinks each top-level directory of `build/` into it under a one-character name, and runs the linker there with short paths; it removes the directory afterwards. The ELF and every `.bin` are byte-identical. In a worktree with 5,073 objects on a loaded machine the link went from 11.1-12 s to 4.1-4.2 s; `make release` after a change from about 12.6 s to 4.7 s.
+- **Still open:** the cost keeps growing with the square of the object count as functions get their own files. Fewer, larger objects (several functions per C file) would cut it further; that is a source layout choice for sturmds.

@@ -91,9 +91,10 @@ def main() -> int:
         "  command = $dsd lcf -c $cfg > /dev/null",
         "  description = LCF",
         "",
-        # dsd writes objects.txt with quoted paths; mwldarm wants them bare.
+        # tools/link.py runs mwldarm from a short directory under /tmp: its
+        # link time grows with objects^2 x path length (docs/tool-issues.md).
         "rule link",
-        "  command = tr -d '\"' < build/objects.txt > $out.rsp && $ld $ldflags -o $out build/arm9.lcf @$out.rsp",
+        "  command = $python tools/link.py $ld $out build/arm9.lcf build/objects.txt $ldflags",
         "  description = LINK $out",
         "",
         "rule romconfig",
@@ -116,7 +117,7 @@ def main() -> int:
         "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd",
         f"  cfg = {cfg}",
         "",
-        f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld {' '.join(objs)}",
+        f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py {' '.join(objs)}",
         "",
         f"build objdiff.json: objdiff_json build/delink.stamp",
         f"  cfg = {cfg}",
