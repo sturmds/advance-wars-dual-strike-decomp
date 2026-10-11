@@ -12025,6 +12025,10 @@ src/game/main/map/rect_is_on_screen.c:
     complete
     .text       start:0x020d4470 end:0x020d44f0
 
+src/game/main/units/move_path_draw_arrow_sprites.c:
+    complete
+    .text       start:0x020d44f0 end:0x020d4628
+
 src/game/main/units/move_path_draw.c:
     complete
     .text       start:0x020d4628 end:0x020d4674
