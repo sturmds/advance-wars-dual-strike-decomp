@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sprite_anim.h"
 
-void func_02021d58(SpriteAnim *sprite, const void *file);
+void SpriteAnim_SetFile(SpriteAnim *sprite, const void *file);
 int func_02022140(SpriteAnim *sprite);
 
 /* Sets up a slot to play file on layer, then runs its first frame
@@ -9,7 +9,7 @@ int func_02022140(SpriteAnim *sprite);
 void SpriteAnim_Init(SpriteAnim *sprite, const void *file, u16 layer, u8 flags)
 {
     sprite->flags = flags;
-    func_02021d58(sprite, file);
+    SpriteAnim_SetFile(sprite, file);
     sprite->tileSource = NULL;
     sprite->tileBase = 0;
     sprite->unk_28 = 0;

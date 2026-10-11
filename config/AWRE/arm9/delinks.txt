@@ -2546,6 +2546,10 @@ src/game/main/graphics/sprite_anim_restart.c:
     complete
     .text       start:0x02021d20 end:0x02021d58
 
+src/game/main/graphics/sprite_anim_set_file.c:
+    complete
+    .text       start:0x02021d58 end:0x02021de8
+
 src/game/main/graphics/func_02022404.c:
     complete
     .text       start:0x02022404 end:0x0202244c

@@ -19,9 +19,9 @@
  * sprite file. Task scripts hold pointers to these. */
 typedef struct SpriteAnim {
     const void *data;                  /* the loaded file; 0 for a free slot */
-    const void *unk_04;
-    const void *animation;             /* animation chosen by SpriteAnim_SetAnimation */
-    const void *unk_0c;
+    const void *unk_04;                /* the file's first section */
+    const void *animation;             /* current animation, from the file's animation table */
+    const void *unk_0c;                /* set to the same animation as the field before */
     const void *cells;                 /* OAM cells of the current frame (Sprite_Queue's data) */
     const void *affine;                /* affine parameter sets of the current frame */
     u16 unk_18;
