@@ -15044,6 +15044,10 @@ src/game/main/func_020fa6f8.c:
     complete
     .text       start:0x020fa6f8 end:0x020fa748
 
+src/game/main/map/map_bg_draw_mask_row.c:
+    complete
+    .text       start:0x020fa748 end:0x020fa8b4
+
 src/game/main/screen/ease_task_update.c:
     complete
     .text       start:0x020fab98 end:0x020fabfc
