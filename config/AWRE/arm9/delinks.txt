@@ -10173,6 +10173,10 @@ src/game/main/func_020cdadc.c:
     complete
     .text       start:0x020cdadc end:0x020cdb14
 
+src/game/main/units/service_cost_popup_start.c:
+    complete
+    .text       start:0x020cdb14 end:0x020cdba4
+
 src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc

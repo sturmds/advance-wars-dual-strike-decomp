@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 
-/* Sets unk_38 (the last argument of func_020cdb14) of the script slot that
+/* Sets unk_38 (the last argument of ServiceCostPopup_Start) of the script slot that
  * is running to 1. */
 void ServiceCostPopup_SetShown(void)
 {

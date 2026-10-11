@@ -32,11 +32,27 @@ typedef struct ScriptSlot {
     void *unk_2c;                      /* text printer: TextPrinter.unk_40 */
     u16 unk_30;                        /* text printer: TextPrinter.unk_30 */
     u8 pad_32[0x38 - 0x32];
-    s16 unk_38;                        /* service cost popup (func_020cdb14, ServiceCostPopup_SetShown): set from the last argument of func_020cdb14; its meaning is a guess: whether the popup is shown */
+    s16 unk_38;                        /* service cost popup (ServiceCostPopup_Start, ServiceCostPopup_SetShown): set from the last argument of ServiceCostPopup_Start; its meaning is a guess: whether the popup is shown */
     u8 pad_3a[0x3e - 0x3a];
     u8 unk_3e;
     u8 pad_3f[0x60 - 0x3f];
 } ScriptSlot;
+
+/* The same slot as the service cost popup script data_021666e8 uses it
+ * (ServiceCostPopup_Start). */
+typedef struct ServiceCostPopupSlot {
+    u8 pad_00[0x1e];
+    s16 tileX;                         /* tile of the serviced unit */
+    s16 tileY;
+    int cost;                          /* funds the service costs */
+    int fundsAfter;                    /* the current player's funds less the cost */
+    u8 pad_2c[0x30 - 0x2c];
+    u32 unk_30;
+    u8 unk_34;
+    u8 pad_35[0x38 - 0x35];
+    int unk_38;                        /* nonzero: shown, see ScriptSlot.unk_38 */
+    u8 pad_3c[0x60 - 0x3c];
+} ServiceCostPopupSlot;
 
 /* The same slot as the map scroll script data_02169e38 uses it. Positions
  * are map view scroll values in 1/16 tiles. */
