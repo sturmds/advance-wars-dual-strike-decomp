@@ -13228,6 +13228,10 @@ src/game/main/map/map_build_row_starts.c:
     complete
     .text       start:0x020c4e2c end:0x020c4eb4
 
+src/game/main/map/tile_code_table_load.c:
+    complete
+    .text       start:0x020c4eb4 end:0x020c4f20
+
 src/game/main/func_020c4f20.c:
     complete
     .text       start:0x020c4f20 end:0x020c4f40

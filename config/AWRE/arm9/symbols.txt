@@ -3550,7 +3550,7 @@ Map_LoadCustomIntoState kind:function(arm,size=0x1b8) addr:0x020c4990
 Map_LoadIntoState kind:function(arm,size=0x2b4) addr:0x020c4b48
 Map_LoadVariant kind:function(arm,size=0x30) addr:0x020c4dfc
 Map_BuildRowStarts kind:function(arm,size=0x88) addr:0x020c4e2c
-func_020c4eb4 kind:function(arm,size=0x6c) addr:0x020c4eb4
+TileCodeTable_Load kind:function(arm,size=0x6c) addr:0x020c4eb4
 func_020c4f20 kind:function(arm,size=0x20) addr:0x020c4f20
 func_020c4f40 kind:function(arm,size=0x60) addr:0x020c4f40
 func_020c4fa0 kind:function(arm,size=0x30) addr:0x020c4fa0
@@ -7610,9 +7610,9 @@ gNextTurnTextFrench kind:data(any) addr:0x021662b8
 gNextTurnTextGerman kind:data(any) addr:0x021662c8
 gNextTurnTextSpanish kind:data(any) addr:0x021662d8
 gNextTurnTextItalian kind:data(any) addr:0x021662e8
-data_021662f8 kind:data(any) addr:0x021662f8
-data_021662fc kind:data(any) addr:0x021662fc
-data_02166300 kind:data(any) addr:0x02166300
+gTileCodeFileMap248First kind:data(any) addr:0x021662f8
+gTileCodeFileDefault kind:data(any) addr:0x021662fc
+gBmapDir kind:data(any) addr:0x02166300
 data_02166308 kind:data(any) addr:0x02166308
 data_02166310 kind:data(any) addr:0x02166310
 data_02166318 kind:data(any) addr:0x02166318

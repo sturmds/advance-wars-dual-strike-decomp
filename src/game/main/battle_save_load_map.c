@@ -12,7 +12,7 @@ void String_Copy(Unk_02080440_1c4 *map, const void *name);
 void Map_LoadData(u32 mapId);
 void Map_BuildRowStarts(void);
 void func_020c3e5c(void);
-void func_020c4eb4(void);
+void TileCodeTable_Load(void);
 void MapObject_Restore(MapObject *object, int index); /* copies object into STATE->objects[index] */
 void func_020e5064(u8 *data);
 
@@ -50,7 +50,7 @@ void BattleSave_LoadMap(BattleSaveMap *save)
     *data_027c027c->unk_5c[data_027c0284] = save->unk_e34;
     gPlayRecords.unk_12 = STATE->unk_82;
     gPlayRecords.unk_0e = STATE->musicReady;
-    func_020c4eb4();
+    TileCodeTable_Load();
     customMap = MAP_IS_CUSTOM(STATE->unk_1c4->mapId);
     if (!customMap) {
         STATE->unk_1c4->playerCount = Map_GetPlayerCount(STATE->unk_1c4->mapId);

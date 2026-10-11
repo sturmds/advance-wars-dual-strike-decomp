@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_020c4eb4(void);
+void TileCodeTable_Load(void);
 void Ov006_NewMap(void);
 void Panels_PlaceForCursor(void);
 
@@ -18,7 +18,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 void Ov006_ResetMapView(int keep)
 {
     STATE->unk_18 = 0;
-    func_020c4eb4();
+    TileCodeTable_Load();
     if (keep == 0) {
         STATE->unk_1c4->scrollX = 0;
         STATE->unk_1c4->scrollY = 0;

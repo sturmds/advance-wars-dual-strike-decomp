@@ -7,7 +7,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 void Battle_ResetTurnState(void);
-void func_020c4eb4(void);
+void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
 void func_020c4fa0(void);
 void func_020c4f40(void);
@@ -24,7 +24,7 @@ void func_020c1950(void);
 void Battle_InitMapState(void)
 {
     Battle_ResetTurnState();
-    func_020c4eb4();
+    TileCodeTable_Load();
     Map_LoadVariant(STATE->unk_1c4->mapId, 0);
     func_020c4fa0();
     func_020c4f40();

@@ -6,7 +6,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/campaign_recap.h"
 
-void func_020c4eb4(void);
+void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
 void func_020c4fa0(void);
 void func_020c65fc(s8 *grid, int value);
@@ -37,7 +37,7 @@ void func_020fed58(CampaignRecap *recap, int mission)
     mapId = MAP_CAMPAIGN_FIRST + mission;
     STATE->unk_1c4->mapId = mapId;
     STATE->unk_1c4->tileset = Ov000_gMapHeaders[STATE->unk_1c4->mapId].tileset;
-    func_020c4eb4();
+    TileCodeTable_Load();
     Map_LoadVariant(mapId, 0);
     func_020c4fa0();
     func_020c65fc(STATE->mapTiles->inSight + STATE->unk_20 * 0x508, 1);
