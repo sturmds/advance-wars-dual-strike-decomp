@@ -4,11 +4,6 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
-extern char gIsdEntryStartCheck[];
-extern char gIsdEntryEndCheck[];
-extern char gIsdEntryAtAddressCheck[];
-extern char gIsdWrapSizeCheck[];
-
 /*
  * Removes the range [address, address + size) from target's overlay table:
  * entries inside it go, an entry it starts in is split, an entry it ends in

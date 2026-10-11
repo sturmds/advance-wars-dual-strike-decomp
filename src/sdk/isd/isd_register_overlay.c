@@ -6,7 +6,7 @@
 
 extern int (*gIsdRegisterOverlayHook)(MIProcessor target, void *address, u32 fileOffset, u32 size);
 
-int func_02121424(MIProcessor target, void *address, u32 fileOffset, u32 size);
+BOOL Isd_OverlayTableAddRange(MIProcessor target, u32 address, u32 fileOffset, u32 size);
 
 /* Tells the debugger that an overlay is loaded at address, and where its file lies in the ROM. */
 int Isd_RegisterOverlay(MIProcessor target, void *address, u32 fileOffset, u32 size)
@@ -20,5 +20,5 @@ int Isd_RegisterOverlay(MIProcessor target, void *address, u32 fileOffset, u32 s
         Isd_CloseDebugRegion(&saved);
         return result;
     }
-    return func_02121424(target, address, fileOffset, size);
+    return Isd_OverlayTableAddRange(target, (u32)address, fileOffset, size);
 }

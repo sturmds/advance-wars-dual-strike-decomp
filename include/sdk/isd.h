@@ -164,8 +164,12 @@ typedef struct IsdOverlayInfo {
     IsdOverlayEntry info[];
 } IsdOverlayInfo;
 
-/* "isdoverlay.c", the file name in the overlay table's assertions. */
+/* "isdoverlay.c", the file name in the overlay table's assertions, and the assertion texts the table code shares. */
 extern char gIsdOverlayFileName[];
+extern char gIsdEntryStartCheck[];
+extern char gIsdEntryEndCheck[];
+extern char gIsdEntryAtAddressCheck[];
+extern char gIsdWrapSizeCheck[];
 
 void Isd_OverlayTableRemove(IsdOverlayInfo *table, u32 index);
 void Isd_OverlayTableInsert(IsdOverlayInfo *table, int index);
