@@ -18,7 +18,7 @@ int func_020b445c(int x, int y, s16 *dest);
 int func_020b4138(MapUnit *unit, s16 *dest);
 void AiUnit_MoveTowardTile(int x, int y);
 void func_020b3264(void);
-void func_020b3570(void);
+void AiBlackBoat_RepairDamagedUnit(void);
 void func_020b38c4(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -143,7 +143,7 @@ void AiSeaTransport_GoToFootUnit(void)
         return;
     }
     if (STATE->actingUnit->type == UNIT_BLACK_BOAT) {
-        func_020b3570();
+        AiBlackBoat_RepairDamagedUnit();
         func_020b3264();
     }
     func_020b38c4();
