@@ -4,7 +4,7 @@ int func_020b6e4c(void);
 int Ai_ScoreReachableEnemyProperties(void);
 int Ai_CountTeamArmedGroundUnitsInRange(void);
 
-/* After func_020b6e4c passes (name not known yet; func_020b5528 and others
+/* After func_020b6e4c passes (name not known yet; AiSeaTransport_FewArmedUnitsNoTarget and others
  * also call it): TRUE when the value of the enemy properties the range map
  * reaches is above the number of the team's armed ground units it reaches. */
 BOOL AiSeaTransport_PropertiesOutweighArmed(void)
