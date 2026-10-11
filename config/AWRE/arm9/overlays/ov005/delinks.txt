@@ -248,7 +248,7 @@ src/game/ov005/func_ov005_02358954.c:
     complete
     .text       start:0x02358954 end:0x02358958
 
-src/game/ov005/func_ov005_02358958.c:
+src/game/ov005/ov005_message_screen_on_button_confirm.c:
     complete
     .text       start:0x02358958 end:0x02358970
 
@@ -599,19 +599,19 @@ src/game/ov005/ov005_update_left_touched.c:
     complete
     .text       start:0x023614b4 end:0x023614e4
 
-src/game/ov005/func_ov005_023614e4.c:
+src/game/ov005/ov005_state_screen_on_next_touched.c:
     complete
     .text       start:0x023614e4 end:0x023614fc
 
-src/game/ov005/func_ov005_023614fc.c:
+src/game/ov005/ov005_state_screen_on_prev_touched.c:
     complete
     .text       start:0x023614fc end:0x02361514
 
-src/game/ov005/func_ov005_02361514.c:
+src/game/ov005/ov005_state_screen_on_b_touched.c:
     complete
     .text       start:0x02361514 end:0x0236152c
 
-src/game/ov005/func_ov005_0236152c.c:
+src/game/ov005/ov005_state_screen_on_r_touched.c:
     complete
     .text       start:0x0236152c end:0x02361544
 

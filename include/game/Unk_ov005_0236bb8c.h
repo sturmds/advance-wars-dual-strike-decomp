@@ -10,7 +10,7 @@ struct ScriptSlot;
  * into Ov005Task.work and data_ov005_0236bb8c. */
 typedef struct Unk_ov005_0236bb8c {
     u8 pad_00[0x4];
-    int confirmed;                     /* set to 1 by the button's onConfirm, func_ov005_02358958 */
+    int confirmed;                     /* set to 1 by the button's onConfirm, Ov005MessageScreen_OnButtonConfirm */
     struct ScriptSlot *textSlot;       /* from Text_PrintByIdOnLayer0 */
     struct Task *fadeTask;             /* from the func_020fcdc8 family */
     struct Task *fadeTask2;

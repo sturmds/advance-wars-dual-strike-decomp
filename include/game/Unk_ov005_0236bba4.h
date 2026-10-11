@@ -18,10 +18,10 @@ typedef struct Unk_ov005_0236bba4_State {
 /* Work block (0x39c bytes) that Ov005_AllocStateWork allocates into
  * Ov005Task.work and data_ov005_0236bba4. */
 typedef struct Unk_ov005_0236bba4 {
-    u32 unk_00;                        /* 1: the screen acts as if R were pressed */
-    u32 unk_04;                        /* 1: the screen acts as if B were pressed */
-    u32 unk_08;
-    u32 unk_0c;
+    u32 rTouched;                      /* 1: the screen acts as if R were pressed (Ov005StateScreen_OnRTouched) */
+    u32 bTouched;                      /* 1: the screen acts as if B were pressed */
+    u32 prevTouched;                   /* 1: acts as Left (previous state) */
+    u32 nextTouched;                   /* 1: acts as Right (next state) */
     u32 leftTouched;                   /* set while the Left button is pressed or held; the screen then acts as if the Left key were down */
     u32 rightTouched;                  /* same for the Right button */
     u32 state;                         /* index into stateTable */

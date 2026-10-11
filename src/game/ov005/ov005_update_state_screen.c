@@ -36,12 +36,12 @@ extern const MenuButtonTemplate data_ov005_0236a6ac;
  * casts give the signed compares and shifts the original uses. */
 
 /* Per-frame update of the state screen (Ov005_SetUpStateScreen). Left and
- * Right, or buttons that set unk_08 and unk_0c, step to the previous or next
+ * Right, or buttons that set prevTouched and nextTouched, step to the previous or next
  * enabled state, wrapping over 0..40; both screens darken over 16 frames,
- * Ov005_RunState draws the new state, and they brighten again. R (or unk_00)
+ * Ov005_RunState draws the new state, and they brighten again. R (or rTouched)
  * starts a scroll mode when the state allows it: held Left and Right move
  * BG layers 2 and 3 one pixel per frame within 0..scrollMax, and B returns.
- * B (or unk_04) on the state view fades out, hides both screens and resumes
+ * B (or bTouched) on the state view fades out, hides both screens and resumes
  * the task script. Outside scroll mode the state's number is drawn with the
  * three unk_390 sprites. */
 void Ov005_UpdateStateScreen(Ov005Task *task)
@@ -78,7 +78,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         }
         break;
     case 10:
-        if ((gKeypad->pressed & PAD_KEY_LEFT) || work->unk_08 == 1) {
+        if ((gKeypad->pressed & PAD_KEY_LEFT) || work->prevTouched == 1) {
             do {
                 if ((int)work->state > 0) {
                     work->state--;
@@ -90,7 +90,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
             task->step = 20;
             break;
         }
-        if ((gKeypad->pressed & PAD_KEY_RIGHT) || work->unk_0c == 1) {
+        if ((gKeypad->pressed & PAD_KEY_RIGHT) || work->nextTouched == 1) {
             do {
                 if ((int)work->state < LAST_STATE) {
                     work->state++;
@@ -102,12 +102,12 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
             task->step = 20;
             break;
         }
-        if (work->unk_4c == 0 && ((gKeypad->pressed & PAD_BUTTON_R) || work->unk_00 == 1)) {
+        if (work->unk_4c == 0 && ((gKeypad->pressed & PAD_BUTTON_R) || work->rTouched == 1)) {
             Sound_PlaySe(0x10006);
             task->step = 30;
             break;
         }
-        if ((gKeypad->pressed & PAD_BUTTON_B) || work->unk_04 == 1) {
+        if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched == 1) {
             MenuButtons_RemoveAll();
             Sound_PlaySe(0x10009);
             task->step = 100;
@@ -222,7 +222,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         } else if ((gKeypad->unk_00 & PAD_KEY_RIGHT) || work->rightTouched == 1) {
             work->unk_24 = 0x1000;
         }
-        if ((gKeypad->pressed & PAD_BUTTON_B) || work->unk_04 != 0) {
+        if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched != 0) {
             Sound_PlaySe(0x10009);
             task->step++;
             break;

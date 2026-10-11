@@ -26,7 +26,7 @@ void Text_StopPrinting(void);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern const MenuButtonTemplate gOv005MessageScreenButton; /* confirm: func_ov005_02358958 */
+extern const MenuButtonTemplate gOv005MessageScreenButton; /* confirm: Ov005MessageScreen_OnButtonConfirm */
 
 #define MESSAGE_BUTTON_ID 0xfd
 
