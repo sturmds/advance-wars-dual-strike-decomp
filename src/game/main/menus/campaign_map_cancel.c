@@ -2,7 +2,7 @@
 #include "game/campaign_map.h"
 #include "game/menu_button.h"
 
-CampaignMapTask *func_0204e5c0(void);
+CampaignMapTask *CampaignMap_FindTask(void);
 void Task_JumpToLabel(void *task, int label);
 int Sound_PlaySe(int id);
 
@@ -10,7 +10,7 @@ int Sound_PlaySe(int id);
  * meaning of the label is a guess from the key it follows. */
 void CampaignMap_Cancel(int unused)
 {
-    CampaignMapTask *task = func_0204e5c0();
+    CampaignMapTask *task = CampaignMap_FindTask();
 
     MenuButtons_CloseAll();
     MenuButton_Remove(252);
