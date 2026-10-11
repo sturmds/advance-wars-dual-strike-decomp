@@ -14,6 +14,7 @@ typedef struct WMCallback {
 /* The callback structs below share that header. state is a WIRELESS_NOTICE_*
  * value. */
 #define WM_STATECODE_PARENT_START 0
+#define WM_STATECODE_BEACON_SENT 2
 #define WM_STATECODE_PARENT_NOT_FOUND 4
 #define WM_STATECODE_PARENT_FOUND 5
 #define WM_STATECODE_CONNECTED 7

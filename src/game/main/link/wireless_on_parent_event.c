@@ -1,0 +1,68 @@
+#include "types.h"
+#include "game/Unk_0215fe84.h"
+#include "game/Unk_0229c910.h"
+#include "sdk/wm.h"
+
+extern u32 data_0229c880;
+
+int func_02079180(void);
+int func_020783bc(void);
+void func_0207a208(void);
+void func_0207a338(u8 aid, u8 *ssid);
+void func_0207a36c(u8 aid);
+void func_02079028(void);
+
+/* Parent callback: tracks which children are connected and passes each
+ * connect and disconnect on to the link code. */
+void Wireless_OnParentEvent(WMStartParentCallback *cb)
+{
+    u8 *ssid;
+
+    if (cb->errcode == 0) {
+        switch (cb->state) {
+        case WM_STATECODE_PARENT_START:
+            data_0215fe84->unk_06 = 0;
+            switch (data_0229c880) {
+            case 0:
+                func_02079180();
+                return;
+            case 4:
+                if (func_020783bc()) {
+                    return;
+                }
+                func_02079180();
+                return;
+            case 3:
+            case 5:
+                data_0229c880 = 3;
+                func_02079180();
+                return;
+            }
+            break;
+        case WM_STATECODE_BEACON_SENT:
+            break;
+        case WM_STATECODE_CONNECTED:
+            data_0215fe84->childAids |= 1 << cb->aid;
+            func_0207a208();
+            ssid = cb->ssid;
+            func_0207a338(cb->aid, ssid);
+            data_0229c910.unk_14 = data_0215fe84->childAids | 1;
+            func_02079028();
+            func_0207a338(cb->aid, ssid);
+            data_0215fe84->childrenChanged = 1;
+            break;
+        case WM_STATECODE_DISCONNECTED:
+            /* needed to match: ~(1 << aid) gives mvn instead of eor */
+            data_0215fe84->childAids &= ~0 ^ (1 << cb->aid);
+            func_0207a208();
+            data_0229c910.unk_14 = data_0215fe84->childAids | 1;
+            func_02079028();
+            func_0207a36c(cb->aid);
+            data_0215fe84->childrenChanged = 1;
+            break;
+        }
+    } else {
+        data_0229c880 = 4;
+        func_02079180();
+    }
+}
