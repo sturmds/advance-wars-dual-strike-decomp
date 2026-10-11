@@ -2095,13 +2095,17 @@ src/game/main/script/event_cmd_set_flag84_run_action_hook.c:
     complete
     .text       start:0x0201c304 end:0x0201c360
 
-src/game/main/script/event_cmd_start_palette_buffer_task.c:
+src/game/main/script/event_cmd_start_text_map_task.c:
     complete
     .text       start:0x0201c360 end:0x0201c3fc
 
-src/game/main/script/event_hold_release_on_palette_buffer_task_end.c:
+src/game/main/script/event_hold_release_on_text_map_task_end.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
+
+src/game/main/script/event_cmd_print_slot_text.c:
+    complete
+    .text       start:0x0201c424 end:0x0201c4d0
 
 src/game/main/func_0201c600.c:
     complete

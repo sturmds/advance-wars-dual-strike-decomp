@@ -12,13 +12,13 @@ extern u8 data_02297c2e[];
 extern u8 data_02297be0[];
 
 void func_0201d7d0(void);
-void EventHold_ReleaseOnPaletteBufferTaskEnd(EventScriptSlot *slot);
+void EventHold_ReleaseOnTextMapTaskEnd(EventScriptSlot *slot);
 
-/* Event script command: starts the task data_02158548 in task list 3 with the palette buffer
- * data_02297be0, the function that uploads it (func_0201d7d0), the current palette slot and
- * data_02290118.unk_00, then holds the script until that task ends. Ends the slot's
- * run for this frame. */
-BOOL EventCmd_StartPaletteBufferTask(s16 index)
+/* Event script command: starts the task data_02158548 in task list 3, with the text map
+ * buffer data_02297be0, its upload function (func_0201d7d0), the palette slot
+ * (data_022977a4.unk_00) and data_02290118.unk_00. The script is held until the task
+ * ends, and the slot's run ends for this frame. */
+BOOL EventCmd_StartTextMapTask(s16 index)
 {
     Task *task = Task_Create(data_02158548, TASK_LIST(3));
 
@@ -28,7 +28,7 @@ BOOL EventCmd_StartPaletteBufferTask(s16 index)
     task->unk_3c = func_0201d7d0;
     task->unk_40 = data_022977a4.unk_00 << 12;
     task->waitFrames = data_02290118.unk_00;
-    data_022977f8[index].hold = (u32)EventHold_ReleaseOnPaletteBufferTaskEnd;
+    data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextMapTaskEnd;
     data_022977f4[index].unk_00++;
     return 0;
 }

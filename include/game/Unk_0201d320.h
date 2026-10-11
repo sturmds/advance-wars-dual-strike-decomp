@@ -33,5 +33,7 @@ typedef struct Unk_0201d320 {
 typedef struct EventSlotHold { u32 hold; u8 pad_04[0x14]; } EventSlotHold;
 typedef struct EventSlotPlayer { u8 player; u8 pad_01[0x17]; } EventSlotPlayer;
 typedef struct EventSlotDay { s16 day; u8 pad_02[0x16]; } EventSlotDay;
+/* The text id of an event script slot, starting at data_02297804. */
+typedef struct EventSlotText { u32 textId; u8 pad_04[0x14]; } EventSlotText;
 
 #endif
