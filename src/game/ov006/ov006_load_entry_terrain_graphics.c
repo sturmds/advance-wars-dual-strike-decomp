@@ -4,7 +4,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void func_020dbc94(int id, int army, void *dest, int copy);
-const void *func_020ccbb8(int id);
+const void *Terrain_GetIconTiles(int id);
 const void *Terrain_GetPalette(int id, int army);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -29,7 +29,7 @@ void Ov006_LoadEntryTerrainGraphics(void)
     Unk_02080440 *saved027c;
 
     func_020dbc94(id, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);
-    TransferQueue_Add(func_020ccbb8(id), ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5380, 0x100);
+    TransferQueue_Add(Terrain_GetIconTiles(id), ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5380, 0x100);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
