@@ -19207,9 +19207,11 @@ src/game/main/func_020ffaec.c:
     .text       start:0x020ffaec end:0x020ffb04
 
 src/game/main/menus/name_entry_start_task.c:
+    complete
     .text       start:0x020ffb04 end:0x020ffb34
 
 src/game/main/menus/name_entry_destroy.c:
+    complete
     .text       start:0x020ffb34 end:0x020ffb78
 
 src/game/main/menus/name_entry_update.c:
@@ -19236,7 +19238,7 @@ src/game/main/menus/name_entry_load_button_sprites.c:
     complete
     .text       start:0x02100954 end:0x02100a58
 
-src/game/main/func_02100a58.c:
+src/game/main/name_entry_free_caret.c:
     complete
     .text       start:0x02100a58 end:0x02100a78
 

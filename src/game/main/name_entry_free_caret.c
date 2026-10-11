@@ -11,7 +11,7 @@ struct Unk_02100a58 {
 void func_0202244c(int);
 int Mem_Free(int);
 
-int func_02100a58(Unk_02100a58 *a0)
+int NameEntry_FreeCaret(Unk_02100a58 *a0)
 {
     func_0202244c(a0->unk_4e0);
     return Mem_Free(a0->unk_4dc);

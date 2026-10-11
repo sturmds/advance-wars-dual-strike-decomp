@@ -4887,15 +4887,15 @@ func_020ffa3c kind:function(arm,size=0x14) addr:0x020ffa3c
 func_020ffa50 kind:function(arm,size=0x14) addr:0x020ffa50
 CampaignRecap_FillEntries kind:function(arm,size=0x88) addr:0x020ffa64
 func_020ffaec kind:function(arm,size=0x18) addr:0x020ffaec
-func_020ffb04 kind:function(arm,size=0x30) addr:0x020ffb04
-func_020ffb34 kind:function(arm,size=0x44) addr:0x020ffb34
+NameEntry_StartTask kind:function(arm,size=0x30) addr:0x020ffb04
+NameEntry_Destroy kind:function(arm,size=0x44) addr:0x020ffb34
 NameEntry_Update kind:function(arm,size=0x5ac) addr:0x020ffb78
 NameEntry_SetUpScreen kind:function(arm,size=0x714) addr:0x02100124
 NameEntry_AllocWork kind:function(arm,size=0x44) addr:0x02100838
 NameEntry_FreeButtonSprites kind:function(arm,size=0x30) addr:0x0210087c
 NameEntry_PlaceButtonSprites kind:function(arm,size=0xa8) addr:0x021008ac
 NameEntry_LoadButtonSprites kind:function(arm,size=0x104) addr:0x02100954
-func_02100a58 kind:function(arm,size=0x20) addr:0x02100a58
+NameEntry_FreeCaret kind:function(arm,size=0x20) addr:0x02100a58
 NameEntry_PlaceCaret kind:function(arm,size=0xec) addr:0x02100a78
 NameEntry_LoadCaretSprite kind:function(arm,size=0xc4) addr:0x02100b64
 NameEntry_GetControlKey kind:function(arm,size=0x34) addr:0x02100c28
@@ -8269,7 +8269,7 @@ data_0216ab54 kind:data(any) addr:0x0216ab54
 data_0216ab84 kind:data(any) addr:0x0216ab84
 data_0216abb4 kind:data(any) addr:0x0216abb4
 data_0216abe4 kind:data(any) addr:0x0216abe4
-data_0216ac14 kind:data(any) addr:0x0216ac14
+gNameEntryScript kind:data(any) addr:0x0216ac14
 data_0216ac44 kind:data(any) addr:0x0216ac44
 data_0216ac74 kind:data(any) addr:0x0216ac74
 data_0216acc4 kind:data(any) addr:0x0216acc4
