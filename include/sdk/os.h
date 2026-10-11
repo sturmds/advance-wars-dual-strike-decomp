@@ -7,6 +7,9 @@
 #define REG_IE ((volatile u32 *)0x04000210)
 #define REG_IF ((volatile u32 *)0x04000214)
 
+/* Two words in shared main RAM: bit set = lock ID free (IDs 0x40 to 0x7f). */
+#define LOCK_ID_AVAILABLE_BITS ((volatile u32 *)0x027fffb0)
+
 typedef u32 OSIrqMask;
 typedef void (*OSIrqFunction)(void);
 
