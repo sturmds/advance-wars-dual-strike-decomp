@@ -8446,6 +8446,10 @@ src/game/main/func_0207eb2c.c:
     complete
     .text       start:0x0207eb2c end:0x0207eb48
 
+src/game/main/link/link_map_row_sync_update.c:
+    complete
+    .text       start:0x0207ebb0 end:0x0207edec
+
 src/game/main/func_0207edec.c:
     complete
     .text       start:0x0207edec end:0x0207ee08

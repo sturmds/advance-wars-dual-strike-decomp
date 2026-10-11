@@ -257,8 +257,14 @@ typedef struct SpriteStripState {
     u8 spriteCount;                    /* entries of MenuState.colours that are drawn */
 } SpriteStripState;
 
+/* Two-player link menu layout of MenuState. */
+typedef struct LinkMenuMaps {
+    DesignMapRecord maps[3];           /* MenuState.linkMaps */
+    DesignMap rows[2 * 3];             /* LINK_MAP_ROWS: 3 per link player, received from each player */
+} LinkMenuMaps;
+
 typedef struct MenuState {
-    u16 colours[16];                   /* a 16-colour palette: map select copies one entry to the
+    u16 colours[16];                  /* a 16-colour palette: map select copies one entry to the
                                         * palette every 4 frames; the link screen and the world map
                                         * load it from a file */
     union {
@@ -271,6 +277,7 @@ typedef struct MenuState {
         CoExpScreenWork coExp;
         CombatMenuState combat;
         DesignMapRecord linkMaps[3];   /* the maps of the two-player link menu, shown by its stage 2 buttons */
+        LinkMenuMaps linkMenu;
     };
 } MenuState;
 
