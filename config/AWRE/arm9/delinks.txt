@@ -21930,6 +21930,10 @@ src/sdk/svc/sha1_append_length_padding.c:
     complete
     .text       start:0x021137d8 end:0x02113924
 
+src/sdk/svc/sha1_compress_block.c:
+    complete
+    .text       start:0x02113924 end:0x02113c24
+
 src/sdk/svc/sha1_feed_bytes.c:
     complete
     .text       start:0x02113c24 end:0x02113d10

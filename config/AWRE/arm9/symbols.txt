@@ -5578,7 +5578,7 @@ Overlay_InvalidateAndZeroBss kind:function(arm,size=0x44) addr:0x021135ec
 Overlay_FileReadSize kind:function(arm,size=0x1c) addr:0x02113630
 Sha1_KeyedDigest kind:function(arm,size=0x18c) addr:0x0211364c
 Sha1_AppendLengthPadding kind:function(arm,size=0x14c) addr:0x021137d8
-func_02113924 kind:function(arm,size=0x300) addr:0x02113924
+Sha1_CompressBlock kind:function(arm,size=0x300) addr:0x02113924
 Sha1_FeedBytes kind:function(arm,size=0xec) addr:0x02113c24
 Sha1_FinishDigest kind:function(arm,size=0xbc) addr:0x02113d10
 Sha1_ResetState kind:function(arm,size=0x68) addr:0x02113dcc
@@ -8412,7 +8412,7 @@ gArchiveNameColonSlash kind:data(any) addr:0x0216d970
 data_0216d974 kind:data(any) addr:0x0216d974
 gOverlayDigestKey kind:data(any) addr:0x0216d978
 gOverlayDigestKeySize kind:data(any) addr:0x0216d97c
-data_0216d980 kind:data(any) addr:0x0216d980
+gSha1StageAdditives kind:data(any) addr:0x0216d980
 data_0216d990 kind:data(any) addr:0x0216d990
 data_0216d994 kind:data(any) addr:0x0216d994
 data_0216d998 kind:data(any) addr:0x0216d998

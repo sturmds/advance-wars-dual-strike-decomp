@@ -1,6 +1,6 @@
 #include "sdk/svc.h"
 
-void func_02113924(SVCSHA1Context *context);
+void Sha1_CompressBlock(SVCSHA1Context *context);
 
 /* Adds bytes to the hash; every full 64-byte block is processed at once. */
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length)
@@ -28,7 +28,7 @@ int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length)
             }
         }
         if (context->used == SHA1_CHUNK_BYTES) {
-            func_02113924(context);
+            Sha1_CompressBlock(context);
         }
         data++;
     }

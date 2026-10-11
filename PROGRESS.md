@@ -9,8 +9,8 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | game | 6629 / 6700 | 1493004 / 1553840 | 96.08% | 0 | 0 |
-| SDK/library | 333 / 779 | 35840 / 132154 | 27.12% | 33 | 2126 |
-| all | 6962 / 7479 | 1528844 / 1685994 | 90.68% | 33 | 2126 |
+| SDK/library | 337 / 779 | 37608 / 132154 | 28.46% | 33 | 2126 |
+| all | 6966 / 7479 | 1530612 / 1685994 | 90.78% | 33 | 2126 |
 
 ## By module
 
@@ -19,7 +19,7 @@ Rows with nothing done are left out, but count in the totals.
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5138 / 5180 | 1039776 / 1082632 | 96.04% | 0 |
-| main | SDK/library | 326 / 768 | 34928 / 130618 | 26.74% | 29 |
+| main | SDK/library | 330 / 768 | 36696 / 130618 | 28.09% | 29 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -108,6 +108,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
 | `src/game/ov005/func_ov005_02363014.c` | func_ov005_02363014 | 172 |
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
+| `src/sdk/fs/fs_load_overlay_info.c` | func_021133a0 | 276 |
 | `src/sdk/fx/matrix_invert3x3.c` | Matrix_Invert3x3 | 760 |
 | `src/sdk/fx/mtx_inverse43.c` | MTX_Inverse43 | 916 |
 | `src/sdk/gx/gx_set_bank_for_sub_bg.c` | func_0210ab74 | 172 |

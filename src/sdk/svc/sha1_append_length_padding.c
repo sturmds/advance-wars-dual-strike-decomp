@@ -1,6 +1,6 @@
 #include "sdk/svc.h"
 
-void func_02113924(SVCSHA1Context *context);
+void Sha1_CompressBlock(SVCSHA1Context *context);
 
 /* Pads the last block: a 0x80 byte, zeros, then the message length in bits
  * as a big-endian 64-bit number in the last 8 bytes. Takes two blocks when
@@ -13,7 +13,7 @@ void Sha1_AppendLengthPadding(SVCSHA1Context *context)
         while ((int)context->used < 64) {
             context->block[context->used++] = 0;
         }
-        func_02113924(context);
+        Sha1_CompressBlock(context);
         while ((int)context->used < 56) {
             context->block[context->used++] = 0;
         }
@@ -31,5 +31,5 @@ void Sha1_AppendLengthPadding(SVCSHA1Context *context)
     context->block[61] = context->bitsLow >> 16;
     context->block[62] = context->bitsLow >> 8;
     context->block[63] = context->bitsLow;
-    func_02113924(context);
+    Sha1_CompressBlock(context);
 }
