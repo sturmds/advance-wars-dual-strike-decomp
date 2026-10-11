@@ -12,7 +12,7 @@ int func_02096c60(int x, int y);
 
 /* Like AiSite_PickNearestEnemy without the group test, but a base site whose
  * group has unk_03_2 set counts GROUP_PENALTY further away. */
-int func_0209676c(int siteType)
+int AiSite_PickNearestEnemyPenalized(int siteType)
 {
     AiSite *site;
     int i;
