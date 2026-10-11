@@ -4,7 +4,7 @@
 #include "game/ov003_unit.h"
 
 int Ov003Unit_CountInCurrentRow(void);
-int func_ov003_0235bdd8(void);
+int Ov003Unit_SpawnNextWithSprite(void);
 
 /* Spawn tick. Normally tops the current row up to unk_1dc units. With
  * data_02160ac0->unk_7c set, each nonzero unk_1c0 counter runs down and a unit
@@ -23,7 +23,7 @@ void Ov003_UpdateSpawns(void)
             return;
         }
         do {
-            if (func_ov003_0235bdd8() == 0) {
+            if (Ov003Unit_SpawnNextWithSprite() == 0) {
                 return;
             }
             count++;
@@ -33,7 +33,7 @@ void Ov003_UpdateSpawns(void)
             if (data_ov003_02364928->unk_1c0[i] != 0) {
                 data_ov003_02364928->unk_1c0[i]--;
                 if (data_ov003_02364928->unk_1c0[i] == 0) {
-                    if (func_ov003_0235bdd8() == 0) {
+                    if (Ov003Unit_SpawnNextWithSprite() == 0) {
                         data_ov003_02364928->unk_1c0[i] = 1;
                     }
                 }

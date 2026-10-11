@@ -375,7 +375,8 @@ src/game/ov003/ov003_load_spawns.c:
     complete
     .text       start:0x0235bcc8 end:0x0235bdd8
 
-src/game/ov003/func_ov003_0235bdd8.c:
+src/game/ov003/ov003_unit_spawn_next_with_sprite.c:
+    complete
     .text       start:0x0235bdd8 end:0x0235be30
 
 src/game/ov003/func_ov003_0235be30.c:
@@ -386,7 +387,8 @@ src/game/ov003/ov003_unit_spawn_next.c:
     complete
     .text       start:0x0235be54 end:0x0235c194
 
-src/game/ov003/func_ov003_0235c194.c:
+src/game/ov003/ov003_unit_create_with_sprite.c:
+    complete
     .text       start:0x0235c194 end:0x0235c1ec
 
 src/game/ov003/ov003_unit_try_create.c:

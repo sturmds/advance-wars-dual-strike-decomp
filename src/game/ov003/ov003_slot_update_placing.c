@@ -6,7 +6,7 @@
 BOOL Ov003Unit_TryCreate(int slot, int column, int x, int y);
 void Sound_PlaySe(u32 soundId);
 u16 Wireless_GetChildAids(void);
-BOOL func_ov003_0235c194(int slot, int column, int x, int y);
+BOOL Ov003Unit_CreateWithSprite(int slot, int column, int x, int y);
 void Ov003_MoveCursorRight(int slot);
 void Ov003_MoveCursorLeft(int slot);
 int Ov003_MoveCursorDown(int slot);
@@ -72,7 +72,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
             OV003_SLOT_COOLDOWN(STATE, slot) = 1;
         }
     } else {
-        if (func_ov003_0235c194((u8)slot, STATE->slots[slot].cursor, STATE->rows[row - 1].unk_38,
+        if (Ov003Unit_CreateWithSprite((u8)slot, STATE->slots[slot].cursor, STATE->rows[row - 1].unk_38,
                                 STATE->rows[row - 1].unk_39) == 1) {
             if (slot == STATE->currentSlot) {
                 Sound_PlaySe(0x10006);
