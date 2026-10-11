@@ -4309,6 +4309,10 @@ src/game/main/menus/survival_select_draw_mode1_record.c:
     complete
     .text       start:0x02047b54 end:0x02047c98
 
+src/game/main/menus/survival_select_draw_mode5_record.c:
+    complete
+    .text       start:0x02047c98 end:0x02047de8
+
 src/game/main/func_02048238.c:
     complete
     .text       start:0x02048238 end:0x02048250
