@@ -7308,6 +7308,10 @@ src/game/main/func_020cce88.c:
     complete
     .text       start:0x020cce88 end:0x020cce98
 
+src/game/main/units/unit_resupply_unpaid.c:
+    complete
+    .text       start:0x020cd204 end:0x020cd23c
+
 src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc
