@@ -18295,6 +18295,10 @@ src/game/main/map/power_meter_update_flash.c:
     complete
     .text       start:0x020f6180 end:0x020f63b0
 
+src/game/main/map/screen_config_run_cycle_hook.c:
+    complete
+    .text       start:0x020f63b0 end:0x020f6488
+
 src/game/main/map/func_020f6488.c:
     complete
     .text       start:0x020f6488 end:0x020f659c

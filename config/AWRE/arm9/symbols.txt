@@ -4671,7 +4671,7 @@ RangeSpread_Destroy kind:function(arm,size=0x10) addr:0x020f5e44
 RangeSpread_Start kind:function(arm,size=0x164) addr:0x020f5e54
 Map_ReloadPalettes kind:function(arm,size=0x1c8) addr:0x020f5fb8
 PowerMeter_UpdateFlash kind:function(arm,size=0x230) addr:0x020f6180
-func_020f63b0 kind:function(arm,size=0xd8) addr:0x020f63b0
+ScreenConfig_RunCycleHook kind:function(arm,size=0xd8) addr:0x020f63b0
 func_020f6488 kind:function(arm,size=0x114) addr:0x020f6488
 MapCell_SetOwner kind:function(arm,size=0x108) addr:0x020f659c
 Tile_SetOwner kind:function(arm,size=0x84) addr:0x020f66a4
@@ -8090,7 +8090,7 @@ data_02169d7c kind:data(any) addr:0x02169d7c
 data_02169d84 kind:data(any) addr:0x02169d84
 data_02169d8c kind:data(any) addr:0x02169d8c
 data_02169d94 kind:data(any) addr:0x02169d94
-data_02169d9c kind:data(any) addr:0x02169d9c
+gCycleHookSteps kind:data(any) addr:0x02169d9c
 data_02169dac kind:data(any) addr:0x02169dac
 data_02169dbc kind:data(any) addr:0x02169dbc
 data_02169dd8 kind:data(any) addr:0x02169dd8
