@@ -13,7 +13,7 @@ extern u8 data_ov000_0234ec6c[];
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void func_01ff9a3c(u16 x, u16 y, void *data);
-void func_02003df8(int x, int y, s32 value, int attr);
+void Oam_PutNumber(int x, int y, s32 value, int attr);
 void CoPanel_Draw(int x, int y, int slot, int back, int coId, int powerState, int fromOtherMap, int tile, int paletteSlot, int paletteBank, int a6);
 
 /* Draws one player's HUD slot at (x, y): the frame, the funds (or the hidden
@@ -32,7 +32,7 @@ void PlayerHud_DrawSlot(int x, int y, int slot, int frontCo, int backCo, int fro
     if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[slot].unk_1b & 2) == 0) {
         func_01ff9a3c((x + 56) & 0x1ff, y + 14, data_ov000_0234ec6c);
     } else {
-        func_02003df8((x + 56) & 0x1ff, y + 14, STATE->players[slot].funds, (paletteBank << 12) | 22);
+        Oam_PutNumber((x + 56) & 0x1ff, y + 14, STATE->players[slot].funds, (paletteBank << 12) | 22);
     }
     if (frontCo != 0 && backCo != 0) {
         Sprite_QueueAt(5, x, y, data_ov000_0234ec08, (paletteBank << 12) | 0x4a8, 0);
