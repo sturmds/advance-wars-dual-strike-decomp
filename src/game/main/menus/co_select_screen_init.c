@@ -48,7 +48,7 @@ void CoSelectScreen_AddButtons(void);
 void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
 void CoSelectScreen_ClearCellSkills(void);
 void func_02044950(void);
-void func_02044b3c(void);
+void CoSelectScreen_LoadListTextures(void);
 int CoSelectScreen_RowTileY(int a0);
 int CoSelectScreen_ColumnTileX(u8 column);
 void CoSelectScreen_DrawColumnFrame(u8 *src, u8 a1, u8 a2, u8 column);
@@ -160,7 +160,7 @@ void CoSelectScreen_Init(void)
     Mem_Free(res);
     Mem_Free(langRes);
 
-    func_02044b3c();
+    CoSelectScreen_LoadListTextures();
     CoSelectScreen_ClearCellSkills();
     if (!Skills_AreDisabled()) {
         ForceRank_LoadSets(STATE->gameMode);

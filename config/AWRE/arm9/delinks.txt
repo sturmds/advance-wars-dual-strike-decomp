@@ -5983,6 +5983,10 @@ src/game/main/menus/co_select_screen_clear_cell_skills.c:
     complete
     .text       start:0x020448d8 end:0x02044950
 
+src/game/main/menus/co_select_screen_load_list_textures.c:
+    complete
+    .text       start:0x02044b3c end:0x02044c04
+
 src/game/main/menus/co_select_screen_row_tile_y.c:
     complete
     .text       start:0x02044c04 end:0x02044c28
