@@ -648,6 +648,10 @@ src/game/main/screen/screen_wipe_ease_up_update.c:
     complete
     .text       start:0x02005d70 end:0x0200603c
 
+src/game/main/screen/window_wipe_start_show.c:
+    complete
+    .text       start:0x020060c8 end:0x020062d0
+
 src/game/main/func_02006398.c:
     complete
     .text       start:0x02006398 end:0x020063c0
