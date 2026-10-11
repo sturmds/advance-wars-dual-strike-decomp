@@ -2694,6 +2694,10 @@ src/game/main/task/task_cmd_start_child_and_wait.c:
     complete
     .text       start:0x02023450 end:0x02023480
 
+src/game/main/task/task_cmd_start_task_under_this.c:
+    complete
+    .text       start:0x02023480 end:0x020234b0
+
 src/game/main/script/func_020234b0.c:
     complete
     .text       start:0x020234b0 end:0x020234dc
