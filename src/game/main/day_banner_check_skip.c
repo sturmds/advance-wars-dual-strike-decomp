@@ -1,0 +1,24 @@
+#include "types.h"
+#include "game/keypad.h"
+#include "game/touch.h"
+
+u32 func_0207bd80(void);
+void func_020526e0(void);
+
+/* Script step of the day banner: A, B, Start or a fresh touch starts the
+ * early-exit script (func_020526e0), unless func_0207bd80 returns 1 (meaning not known). */
+void DayBanner_CheckSkip(void)
+{
+    if (func_0207bd80() == 1) {
+        return;
+    }
+    if (!(gKeypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_START))) {
+        if (gTouch.phase != TOUCH_PRESSED) {
+            return;
+        }
+        if (gTouch.active != 1) {
+            return;
+        }
+    }
+    func_020526e0();
+}
