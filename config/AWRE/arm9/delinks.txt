@@ -15603,6 +15603,10 @@ src/game/main/number_sprite_task_slide_out.c:
     complete
     .text       start:0x020f2d78 end:0x020f2e80
 
+src/game/main/number_sprite_task_update.c:
+    complete
+    .text       start:0x020f2e80 end:0x020f3110
+
 src/game/main/func_020f3110.c:
     complete
     .text       start:0x020f3110 end:0x020f3114
