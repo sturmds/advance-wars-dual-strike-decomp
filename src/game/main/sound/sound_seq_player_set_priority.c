@@ -4,7 +4,7 @@
 extern LinkList data_022a805c;             /* all sequence players, sorted by priority */
 
 void SoundSeqPlayer_InsertActive(SoundSeqPlayer *player);
-void func_021052a0(LinkList *list, SoundSeqPlayer *player);
+void SoundPlayerSlot_AddPlayer(SoundPlayerSlot *slot, SoundSeqPlayer *player);
 
 /* Gives a sequence player a new priority and moves it to the matching place
  * in the owner's list and in the list of all players. */
@@ -19,7 +19,7 @@ void SoundSeqPlayer_SetPriority(SoundSeqPlayer *player, int priority)
     LinkList_Remove(&data_022a805c, player);
     player->priority = priority;
     if (owner != NULL) {
-        func_021052a0(&owner->players, player);
+        SoundPlayerSlot_AddPlayer(owner, player);
     }
     SoundSeqPlayer_InsertActive(player);
 }
