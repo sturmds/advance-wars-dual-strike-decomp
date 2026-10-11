@@ -14,14 +14,14 @@ void UnitShowTask_PlaceSprite(UnitShowTask *task);
  * `+ 254` is `- 2` as the original wrote it. */
 void UnitShowTask_Update(UnitShowTask *task)
 {
-    if (task->unk_35 != UNIT_SHOW_STATE_NONE) {
-        if ((u8)(task->unk_35 + 254) <= 1 && task->waitFrames == 0) {
+    if (task->state != UNIT_SHOW_STATE_NONE) {
+        if ((u8)(task->state + 254) <= 1 && task->waitFrames == 0) {
             UnitShowTask_RunScript(task);
             if (task->taskScript == NULL) {
                 return;
             }
         }
-        data_ov000_022db6b4[task->unk_35](task);
+        data_ov000_022db6b4[task->state](task);
     }
     if (UnitShowTask_CheckVisible(task)) {
         UnitShowTask_PlaceSprite(task);

@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/unit_show_task.h"
 
-void UnitShowTask_PlayEntrySound(const void *src, void *dst, u32 size);
-
-void func_ov000_022ae47c(const void *src, void *dst, u32 size)
+void func_ov000_022ae47c(UnitShowTask *task)
 {
-    UnitShowTask_PlayEntrySound(src, dst, size);
+    UnitShowTask_PlayEntrySound(task);
 }

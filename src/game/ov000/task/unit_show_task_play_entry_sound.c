@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_ov000_022db768.h"
+#include "game/unit_show_entry.h"
 #include "game/unit_show_task.h"
 
 void Sound_PlaySe(int se);
@@ -10,7 +10,7 @@ void Sound_StopSubSe(int se);
  * other stops 20). */
 void UnitShowTask_PlayEntrySound(UnitShowTask *task)
 {
-    u16 sound = data_ov000_022db768[task->entry].sound;
+    u16 sound = gUnitShowEntries[task->entry].sound;
 
     if (sound == SHOW_SOUND_NONE) {
         return;

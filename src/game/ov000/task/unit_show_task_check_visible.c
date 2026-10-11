@@ -14,7 +14,7 @@ void MapView_ScrollToPixel(int x, int y);
 
 /* TRUE when the task's unit is worth showing: on the other screen it has to
  * be inside the view, and on the current one the tile has to be in sight (or
- * the current player has Player.unk_1b bit 1 set). A task with unk_35 == 2
+ * the current player has Player.unk_1b bit 1 set). A task in the move state
  * first scrolls the view to its unit, except in link play for unk_18 == 21.
  * The goto is needed to match: it keeps both returns as separate blocks. */
 BOOL UnitShowTask_CheckVisible(UnitShowTask *task)
@@ -25,7 +25,7 @@ BOOL UnitShowTask_CheckVisible(UnitShowTask *task)
             return FALSE;
         }
     }
-    if (task->unk_35 == 2) {
+    if (task->state == UNIT_SHOW_STATE_MOVE) {
         if ((data_0229eaec == 0) | (data_0229eaec != 0 ? GAME->unk_18 != 21 : 0)) {
             MapView_ScrollToPixel(task->x, task->y);
         }

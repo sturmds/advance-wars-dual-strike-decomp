@@ -1,18 +1,11 @@
 #include "types.h"
+#include "game/unit_show_task.h"
 
-typedef struct Unk_022ad610 Unk_022ad610;
-
-struct Unk_022ad610 {
-    u8 pad_00[0x35];
-    u8 unk_35;
-};
-
-void ShowEntry_PlaySound(void);
 int func_020b98bc(int);
 
-int func_ov000_022ad610(Unk_022ad610 *a0)
+int func_ov000_022ad610(UnitShowTask *task)
 {
-    ShowEntry_PlaySound();
-    a0->unk_35 = 1;
+    ShowEntry_PlaySound(task);
+    task->state = UNIT_SHOW_STATE_IDLE;
     return func_020b98bc(1);
 }

@@ -8,7 +8,6 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern int data_0229eaec;
 
-void ShowEntry_PlaySound(UnitShowTask *task);
 void UnitShowTask_Destroy(UnitShowTask *task);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_02021f44(void *sprite, int frame);
@@ -34,11 +33,11 @@ void UnitShowTask_RunScript(UnitShowTask *task)
         switch (cmd) {
         case 9:
             task->waitFrames = task->script[task->scriptPos++];
-            task->unk_35 = 3;
+            task->state = UNIT_SHOW_STATE_DELAY;
             return;
         case 10:
             ShowEntry_PlaySound(task);
-            task->unk_35 = 5;
+            task->state = UNIT_SHOW_STATE_DONE;
             func_020d048c(task->x >> 4, task->y >> 4);
             if (STATE_IDX_FIRST->players[STATE_IDX_FIRST->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
                 if (gPlayRecords.unk_3cc < 999999) {
@@ -68,7 +67,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
             }
             func_02021f44(task->sprite, cmd);
             task->frame = cmd;
-            task->unk_35 = 2;
+            task->state = UNIT_SHOW_STATE_MOVE;
             return;
         case 5:
         case 6:

@@ -18,6 +18,10 @@ typedef struct UnitShowEntry {
     u8 pad_36[2];
 } UnitShowEntry;
 
+#define SHOW_SOUND_NONE    0
+#define SHOW_SOUND_STOP    0x4000      /* stop sub sound effect 20 */
+#define SHOW_SOUND_SPECIAL 0x8000      /* UnitShowTask_PlayStepSound picks the sound */
+
 extern UnitShowEntry gUnitShowEntries[];
 
 #endif

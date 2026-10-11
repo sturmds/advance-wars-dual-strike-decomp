@@ -60,7 +60,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     }
     task->slot = slot;
     task->unit = NULL;
-    task->unk_35 = 1;
+    task->state = UNIT_SHOW_STATE_IDLE;
     task->x = x << 4;
     task->y = y << 4;
     if (owner == 0 || owner == 2) {
@@ -71,7 +71,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     task->waitFrames = 0;
     task->unk_39 = 0;
     task->entry = type;
-    task->unk_3e = UnitShowEntry_GetStepSize(task->entry);
+    task->stepSize = UnitShowEntry_GetStepSize(task->entry);
     task->owner = owner;
     task->unk_44 = File_Load(UnitShowTask_GetPalettePath(task));
     task->unk_48 = file;

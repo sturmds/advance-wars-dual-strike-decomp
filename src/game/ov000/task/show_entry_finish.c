@@ -1,16 +1,17 @@
 #include "types.h"
-#include "game/Unk_ov000_022db768.h"
+#include "game/unit_show_entry.h"
+#include "game/unit_show_task.h"
 
 extern u8 data_ov000_022db70c[];
 
 s8 Task_DestroyByScript(const void *script);
-int UnitShowTask_PlayStepSound(Unk_ov000_022db768_Owner *owner);
 
-int ShowEntry_Finish(Unk_ov000_022db768_Owner *owner)
+void ShowEntry_Finish(UnitShowTask *task)
 {
-    if (data_ov000_022db768[owner->entry].sound != SHOW_SOUND_SPECIAL) {
+    if (gUnitShowEntries[task->entry].sound != SHOW_SOUND_SPECIAL) {
         Task_DestroyByScript(data_ov000_022db70c);
-        return UnitShowTask_PlayStepSound(owner);
+        UnitShowTask_PlayStepSound(task);
+        return;
     }
-    return UnitShowTask_PlayStepSound(owner);
+    UnitShowTask_PlayStepSound(task);
 }

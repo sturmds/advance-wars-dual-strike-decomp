@@ -24,7 +24,7 @@ void UnitShowTask_CreateAtTile(int tileX, int tileY, int unitType)
     task = (UnitShowTask *)Task_Create(data_ov000_022db6e4, TASK_LIST(5));
     task->x = tileX << 4;
     task->y = tileY << 4;
-    task->unk_35 = 2;
+    task->state = UNIT_SHOW_STATE_MOVE;
     task->entry = unitType;
     task->unit = NULL;
 }

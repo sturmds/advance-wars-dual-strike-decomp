@@ -26,15 +26,15 @@ typedef struct UnitShowTask {
     ShowSprite *sprite;                /* 2D or 3D sprite handle */
     MapUnit *unit;                     /* flags have SELECTED and LOCKED set while the task lives */
     u8 scriptPos;                      /* next byte of script */
-    u8 unk_35;
-    u8 entry;                          /* unit type, index into data_ov000_022db768 */
-    u8 owner;                          /* player slot 0-4 of the army whose colour the sprite wears */
+    u8 state;                          /* UNIT_SHOW_STATE_*, picks the handler in data_ov000_022db6b4 */
+    u8 entry;                          /* unit type, index into gUnitShowEntries */
+    u8 owner;                          /* player slot minus 1 of the army whose colour the sprite wears */
     s8 frame;                          /* sprite frame last set with func_02021f44 */
     u8 unk_39;
     s8 slot;                           /* show slot (flag in Unk_02080440.unk_58) the task holds */
     u8 pad_3b;
     u16 waitFrames;                    /* UnitShowTask_RunScript runs only while this is 0 */
-    u16 unk_3e;
+    s16 stepSize;                      /* pixels per move step, from UnitShowEntry_GetStepSize */
     s16 x;                             /* pixels: tile * 16 */
     s16 y;
     void *unk_44;                      /* second loaded file */
@@ -45,10 +45,17 @@ typedef struct UnitShowTask {
 /* path: UNIT_SHOW_PATH_LENGTH signed steps, read as bytes */
 void UnitShowTask_SetPath(UnitShowTask *task, const u8 *path);
 
-/* UnitShowTask.unk_35, the state: picks the handler in data_ov000_022db6b4. */
+/* UnitShowTask.state values */
 #define UNIT_SHOW_STATE_NONE   0       /* no handler: the task runs its script first */
+#define UNIT_SHOW_STATE_IDLE   1       /* set by UnitShowTask_Spawn */
 #define UNIT_SHOW_STATE_MOVE   2
 #define UNIT_SHOW_STATE_DELAY  3
 #define UNIT_SHOW_STATE_SCRIPT 4
+#define UNIT_SHOW_STATE_DONE   5       /* script command 10 */
+
+void ShowEntry_PlaySound(UnitShowTask *task);
+void ShowEntry_Finish(UnitShowTask *task);
+void UnitShowTask_PlayStepSound(UnitShowTask *task);
+void UnitShowTask_PlayEntrySound(UnitShowTask *task);
 
 #endif

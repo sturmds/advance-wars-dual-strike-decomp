@@ -10,6 +10,6 @@ s8 ScriptSlot_Find(const ScriptCommand *script);
 void UnitShowTask_StateScript(UnitShowTask *task)
 {
     if (ScriptSlot_Find(data_02169e38) == -1) {
-        task->unk_35 = UNIT_SHOW_STATE_MOVE;
+        task->state = UNIT_SHOW_STATE_MOVE;
     }
 }
