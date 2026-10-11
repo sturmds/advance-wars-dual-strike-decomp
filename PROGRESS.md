@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5646 / 6598 | 1286936 / 1531944 | 84.01% | 0 | 0 |
+| game | 5660 / 6598 | 1288492 / 1531944 | 84.11% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 5785 / 7479 | 1290400 / 1685994 | 76.54% | 1 | 30 |
+| all | 5799 / 7479 | 1291956 / 1685994 | 76.63% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4258 / 5180 | 855824 / 1082632 | 79.05% | 0 |
+| main | game | 4272 / 5180 | 857380 / 1082632 | 79.19% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -49,6 +49,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_0200a6c0.c` | no delinks entry | 0 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
+| `src/game/main/func_020c0764.c` | func_020c0764 | 116 |
 | `src/game/main/func_020f20b4 5.c` | no delinks entry | 0 |
 | `src/game/main/func_020f20fc 4.c` | no delinks entry | 0 |
 | `src/game/main/func_020f2134 3.c` | no delinks entry | 0 |

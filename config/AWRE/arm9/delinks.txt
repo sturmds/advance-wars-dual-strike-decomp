@@ -11655,6 +11655,10 @@ src/game/main/combat/unit_count_destroyed.c:
     complete
     .text       start:0x020c2ce0 end:0x020c2d9c
 
+src/game/main/combat/combatant_write_back.c:
+    complete
+    .text       start:0x020c2d9c end:0x020c2e08
+
 src/game/main/combat/combat_simulate_battle.c:
     complete
     .text       start:0x020c2ed4 end:0x020c31ec
