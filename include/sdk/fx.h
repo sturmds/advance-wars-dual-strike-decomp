@@ -32,6 +32,7 @@ long long Divider_WaitRawQuotient64(void);
 void VEC_MultAdd(fx32 a, const VecFx32 *v1, const VecFx32 *v2, VecFx32 *dst);
 void VEC_CrossProduct(const VecFx32 *a, const VecFx32 *b, VecFx32 *dst);
 fx32 VEC_DotProduct(const VecFx32 *a, const VecFx32 *b);
+void VEC_Normalize(const VecFx32 *src, VecFx32 *dst);
 void MTX_Identity43(MtxFx43 *mtx);
 void Matrix_Expand43Into44(MtxFx43 *src, MtxFx44 *dest);
 void Matrix_Take33From44(MtxFx44 *src, MtxFx33 *dest);

@@ -11,7 +11,7 @@ extern u8 data_ov003_02364a78[];
 extern u8 data_ov003_02364a6c[];
 extern u8 data_ov003_02365cf4[];
 void G3X_Reset(void);
-void func_0210bbd8(void *a, void *b, void *c, int d, int e);
+void G3i_LookAt_(void *a, void *b, void *c, int d, int e);
 void func_ov003_02353b34(void);
 
 /* Per-frame 3D setup of overlay 3 (Ov003_DrawFrame): pushes a matrix, resets
@@ -19,7 +19,7 @@ void func_ov003_02353b34(void);
 void Ov003_Begin3d(void)
 {
     G3X_Reset();
-    func_0210bbd8(data_ov003_02364a78, data_ov003_02364a6c, data_ov003_02365cf4, 1, 0);
+    G3i_LookAt_(data_ov003_02364a78, data_ov003_02364a6c, data_ov003_02365cf4, 1, 0);
     func_ov003_02353b34();
     GXFIFO_MTX_PUSH = 0;
     GXFIFO_MTX_MODE = GEOM_TARGET_TEXCOORD;

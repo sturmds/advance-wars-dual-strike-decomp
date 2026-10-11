@@ -20945,6 +20945,10 @@ src/sdk/gx/g3_rot_x.c:
     complete
     .text       start:0x0210bb9c end:0x0210bbd8
 
+src/sdk/gx/g3i_look_at_.c:
+    complete
+    .text       start:0x0210bbd8 end:0x0210bd70
+
 src/sdk/gx/gxs_end_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c550 end:0x0210c59c

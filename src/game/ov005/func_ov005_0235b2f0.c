@@ -10,7 +10,7 @@
 #define GXFIFO_LIGHT_VECTOR ((volatile u32 *)0x040004c8)
 #define GXFIFO_LIGHT_COLOR ((volatile u32 *)0x040004cc)
 void G3X_Reset(void);
-void func_0210bbd8(const void *a, const void *b, void *c, int d, int e);
+void G3i_LookAt_(const void *a, const void *b, void *c, int d, int e);
 extern u8 data_ov005_023695d0[];
 extern u8 data_ov005_023695c4[];
 extern u8 data_ov005_0236bb94[];
@@ -18,7 +18,7 @@ extern u8 data_ov005_0236bb94[];
 void func_ov005_0235b2f0(void)
 {
     G3X_Reset();
-    func_0210bbd8(data_ov005_023695d0, data_ov005_023695c4, data_ov005_0236bb94, 1, 0);
+    G3i_LookAt_(data_ov005_023695d0, data_ov005_023695c4, data_ov005_0236bb94, 1, 0);
     *GXFIFO_LIGHT_VECTOR = 0x1ff00000;
     *GXFIFO_LIGHT_COLOR = 0x7fff;
     *GXFIFO_DIF_AMB = 0x7fffffff;

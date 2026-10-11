@@ -17,7 +17,7 @@ extern MenuStateFrom200 data_0229ed30;
 extern MenuStateFrom400 data_0229ef30;
 
 void G3X_Reset(void);
-void func_0210bbd8(void *cam, void *up, void *target, int load, void *mtx);
+void G3i_LookAt_(void *cam, void *up, void *target, int load, void *mtx);
 void G3_RotX(int sin, int cos);
 void Battle_StepSideShake(int side);
 void Battle_DrawSideGround(int side);
@@ -38,7 +38,7 @@ void Battle_DrawScene(void)
     int side = 0;
 
     G3X_Reset();
-    func_0210bbd8(data_ov002_023604ac, data_ov002_023604b8, data_ov002_0236bbe0, 1, NULL);
+    G3i_LookAt_(data_ov002_023604ac, data_ov002_023604b8, data_ov002_0236bbe0, 1, NULL);
     func_ov002_02354124();
     *REG_VIEWPORT = 0xbfff0000;
     Battle_SetupProjection();
