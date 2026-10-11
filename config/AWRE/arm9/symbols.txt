@@ -1465,7 +1465,7 @@ WinLoseScreen_DrawPoints kind:function(arm,size=0x358) addr:0x0203f4fc
 WinLoseScreen_DrawPointsDigit kind:function(arm,size=0x194) addr:0x0203f854
 WinLoseScreen_DrawNumber kind:function(arm,size=0x1dc) addr:0x0203f9e8
 func_0203fbc4 kind:function(arm,size=0xc) addr:0x0203fbc4
-func_0203fbd0 kind:function(arm,size=0x58) addr:0x0203fbd0
+ForceRankScreen_Start kind:function(arm,size=0x58) addr:0x0203fbd0
 ForceRankScreen_SaveChosen kind:function(arm,size=0x40) addr:0x0203fc28
 ForceRankScreen_LoadChosen kind:function(arm,size=0xac) addr:0x0203fc68
 ForceRankScreen_AddButtons kind:function(arm,size=0x104) addr:0x0203fd14
@@ -7137,7 +7137,7 @@ data_0215a7f4 kind:data(any) addr:0x0215a7f4
 data_0215a81c kind:data(any) addr:0x0215a81c
 data_0215a844 kind:data(any) addr:0x0215a844
 data_0215a86c kind:data(any) addr:0x0215a86c
-data_0215a89c kind:data(any) addr:0x0215a89c
+gForceRankScreenScript kind:data(any) addr:0x0215a89c
 data_0215a8cc kind:data(any) addr:0x0215a8cc
 data_0215a8e4 kind:data(any) addr:0x0215a8e4
 data_0215a900 kind:data(any) addr:0x0215a900

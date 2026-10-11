@@ -5672,6 +5672,10 @@ src/game/main/func_0203fbc4.c:
     complete
     .text       start:0x0203fbc4 end:0x0203fbd0
 
+src/game/main/menus/force_rank_screen_start.c:
+    complete
+    .text       start:0x0203fbd0 end:0x0203fc28
+
 src/game/main/menus/force_rank_screen_save_chosen.c:
     complete
     .text       start:0x0203fc28 end:0x0203fc68
