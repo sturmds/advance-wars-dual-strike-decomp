@@ -7,9 +7,10 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Only an Oozium is limited: it may end its move on an empty tile or on a
- * unit of its own team. Every other unit type gets TRUE. */
-BOOL ActingUnit_CanEndMoveOnDest(void)
+/* Unit menu entry test (table at 0x02166030): 1 hides the entry. Shown only
+ * for an Oozium whose destination tile holds a unit of another team. The
+ * entry's action is func_020bcfe0. */
+BOOL UnitMenu_OoziumHidden(void)
 {
     u8 slot;
 
