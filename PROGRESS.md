@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5892 / 6598 | 1339536 / 1531944 | 87.44% | 0 | 0 |
+| game | 5906 / 6598 | 1341580 / 1531944 | 87.57% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6031 / 7479 | 1343000 / 1685994 | 79.66% | 1 | 30 |
+| all | 6045 / 7479 | 1345044 / 1685994 | 79.78% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4504 / 5180 | 908424 / 1082632 | 83.91% | 0 |
+| main | game | 4518 / 5180 | 910468 / 1082632 | 84.10% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -72,6 +72,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/func_020f7cac.c` | func_020f7cac | 164 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
+| `src/game/main/menus/combat_setup_add_shop_buttons.c` | func_020842e0 | 240 |
 | `src/game/main/menus/combat_setup_player_ready.c` | CombatSetup_SetPlayerReady | 148 |
 | `src/game/main/menus/combat_setup_player_unready.c` | CombatSetup_SetPlayerUnready | 116 |
 | `src/game/main/menus/combat_setup_update_co_pick.c` | CombatSetup_UpdateCoPick | 524 |

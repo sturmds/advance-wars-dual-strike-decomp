@@ -9368,6 +9368,10 @@ src/game/main/func_02088c38.c:
     complete
     .text       start:0x02088c38 end:0x02088c9c
 
+src/game/main/menus/combat_mode_co_portrait_start.c:
+    complete
+    .text       start:0x02088c9c end:0x02088d04
+
 src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
@@ -9379,6 +9383,10 @@ src/game/main/menus/combat_mode_menu_on_select.c:
 src/game/main/menus/combat_mode_co_portrait_update.c:
     complete
     .text       start:0x0208900c end:0x0208918c
+
+src/game/main/menus/combat_mode_co_portrait_init.c:
+    complete
+    .text       start:0x0208918c end:0x02089210
 
 src/game/main/func_02089210.c:
     complete
