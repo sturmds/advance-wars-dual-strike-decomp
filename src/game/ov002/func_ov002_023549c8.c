@@ -11,7 +11,6 @@ void Battle_SortHitList(BattleHitList *list);
 #define TIMES(i) ((const BattleHitTimes *)BATTLE.drainProfile[i])
 /* Key of the k-th added cell: the attacker's offsets moved onto the other profile's times. */
 #define ATTACKER_KEY(k) (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 + (TIMES(0)->unk_04 + TIMES(1)->unk_08))
-#define DEFENDER_KEY(k) (TIMES(0)->unk_0a[k] + TIMES(0)->unk_08)
 /* 0 for the attacking side, 1 for the other. */
 #define ROLE(side) ((side) == Ov002_gBattleScene->attackerSide ? 0 : 1)
 /* Added to a step list key to move it onto this list's times. */
@@ -35,7 +34,10 @@ typedef struct StepListsView {
  * entries (unk_6 set only on the last step of a cell whose fill ends at 0), then the cells
  * of unk_2a0 that empty and are not in it yet. Otherwise it takes the emptying cells of
  * unk_2a0, or one entry for cell 0 when BattleSideData.unk_48 is 1 and every cell empties;
- * each entry's key is raised to the latest matching step. Partial match. */
+ * each entry's key is raised to the latest matching step. Partial match (95.2%): the
+ * role ternary emits its two conditional moves in the other order, and some registers
+ * swap. The defender key reads its offset into a u8 local first, like
+ * func_ov002_023552d0. */
 void func_ov002_023549c8(void)
 {
     int side;
@@ -44,6 +46,7 @@ void func_ov002_023549c8(void)
     int cell;
     int sum;
     int added;
+    u8 offset;
     BattleHitFlags *flags;
 
     for (side = 0; side < 2; side++) {
@@ -91,10 +94,11 @@ void func_ov002_023549c8(void)
                     if (side == Ov002_gBattleScene->attackerSide) {
                         LIST->key[LIST->count] = ATTACKER_KEY(added);
                     } else {
-                        LIST->key[LIST->count] = DEFENDER_KEY(added);
+                        offset = TIMES(0)->unk_0a[added];
+                        LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
                     }
-                    added++;
                     LIST->flags[LIST->count].unk_3 = 7;
+                    added++;
                     LIST->count++;
                 next:;
                 }
@@ -111,7 +115,8 @@ void func_ov002_023549c8(void)
                 if (side == Ov002_gBattleScene->attackerSide) {
                     LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
                 } else {
-                    LIST->key[LIST->count] = DEFENDER_KEY(LIST->count);
+                    offset = TIMES(0)->unk_0a[LIST->count];
+                    LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
                 }
                 for (i = 0; i < STEP_LIST.count; i++) {
                     if (STEPS->flags[i].unk_7 == 0
@@ -124,8 +129,8 @@ void func_ov002_023549c8(void)
                 LIST->count++;
             }
         } else {
-            for (j = 0; j < 5; j++) {
-                cell = (BATTLE.unk_2a0[side] >> (j * 3)) & 7;
+            for (i = 0; i < 5; i++) {
+                cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
                 if (BATTLE.unk_310[side][cell].fillBefore == 0 || BATTLE.unk_310[side][cell].fillAfter != 0) {
                     continue;
@@ -135,15 +140,16 @@ void func_ov002_023549c8(void)
                 if (side == Ov002_gBattleScene->attackerSide) {
                     LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
                 } else {
-                    LIST->key[LIST->count] = DEFENDER_KEY(LIST->count);
+                    offset = TIMES(0)->unk_0a[LIST->count];
+                    LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
                 }
                 LIST->flags[LIST->count].unk_3 = 7;
-                for (i = 0; i < STEP_LIST.count; i++) {
-                    if (STEPS->flags[i].unk_7 == 0 && cell == STEPS->flags[i].cell
-                        && STEP_LIST.key[i] + SHIFT >= LIST->key[LIST->count]) {
-                        LIST->key[LIST->count] = STEP_LIST.key[i]
+                for (j = 0; j < STEP_LIST.count; j++) {
+                    if (STEPS->flags[j].unk_7 == 0 && cell == STEPS->flags[j].cell
+                        && STEP_LIST.key[j] + SHIFT >= LIST->key[LIST->count]) {
+                        LIST->key[LIST->count] = STEP_LIST.key[j]
                             + SHIFT;
-                        LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
+                        LIST->flags[LIST->count].unk_3 = STEPS->flags[j].unk_3;
                     }
                 }
                 LIST->count++;
