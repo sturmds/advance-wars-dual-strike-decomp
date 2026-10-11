@@ -16,7 +16,7 @@ void func_01ff8a2c(void *map, int x, int y, int width, int height, int tile);
 void func_0201d7d0(void);
 void func_0201c898(void);
 int func_02014c24(void);
-BOOL func_02017bf8(u32 points);         /* takes points from gPlayRecords.points if there are enough */
+BOOL PlayRecords_SpendPoints(u32 points);
 void EventSequenceTask_StartWithSongFade(Ov005Task *task);
 Task *func_020fcb08(int song);
 BOOL func_020fccbc(Task *task);
@@ -41,10 +41,10 @@ void Ov005_CollectShopItems(Unk_ov005_0236bbb0 *work);
 void Ov005_DrawShopPoints(Unk_ov005_0236bbb0 *work);
 void Ov005_DrawShopPage(Unk_ov005_0236bbb0 *work);
 int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0 *work);   /* items from the current page on */
-BOOL func_ov005_02367e50(void);                       /* 1: no item left for sale */
-u8 func_ov005_02367e8c(void);                         /* shop visits, gPlayRecords byte 0x13 */
-void func_ov005_02367e70(void);                       /* adds 1 to it, up to 255 */
-int func_ov005_02367e9c(void);                        /* nonzero while an event script started here runs */
+BOOL Ov005_IsShopSoldOut(void);
+u8 Ov005_GetShopVisits(void);
+void Ov005_AddShopVisit(void);
+int Ov005_IsShopScriptRunning(void);
 void func_ov005_02367ec0(const EventScriptCommand *script);
 void Ov005_AddShopPageButtons(Unk_ov005_0236bbb0 *work);   /* adds the page's buttons */
 void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work);   /* draws the page numbers */
@@ -106,10 +106,10 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 12: /* greeting */
-        if (func_ov005_02367e50()) {
+        if (Ov005_IsShopSoldOut()) {
             Ov005_StartEventScriptTask(data_ov005_0236b9c0, task);
             task->step++;
-        } else if (func_ov005_02367e8c() == 0) {
+        } else if (Ov005_GetShopVisits() == 0) {
             Ov005_StartEventScriptTask(data_ov005_0236ba00, task);
             task->step++;
         } else {
@@ -118,7 +118,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 13:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             func_02014c24();
             task->step++;
         }
@@ -139,7 +139,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 20: /* list input; with nothing for sale only B works */
-        if (func_ov005_02367e50()) {
+        if (Ov005_IsShopSoldOut()) {
             if ((gKeypad->pressed & PAD_BUTTON_B) || work->unk_08 == 1) {
                 Sound_PlaySe(0x10009);
                 work->unk_08 = 0;
@@ -196,9 +196,9 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 32:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             if (data_02297784 == 0) {
-                if (func_02017bf8(work->items[Ov005_GetSelectedShopItemIndex(work)].price)) {
+                if (PlayRecords_SpendPoints(work->items[Ov005_GetSelectedShopItemIndex(work)].price)) {
                     task->step = 40;
                 } else {
                     task->step = 35;
@@ -212,7 +212,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         func_ov005_02367ec0(data_ov005_0236b550);
         task->step++;
     case 34:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             task->step = 50;
         }
         break;
@@ -220,7 +220,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         func_ov005_02367ec0(data_ov005_0236b520);
         task->step++;
     case 36:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             task->step = 50;
         }
         break;
@@ -245,7 +245,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
                 Sound_PlaySe(0x10004);
             }
         }
-        if (!func_ov005_02367e9c() && work->points <= gPlayRecords.points) {
+        if (!Ov005_IsShopScriptRunning() && work->points <= gPlayRecords.points) {
             SWITCH_TO(data_027c0288.unk_00);
             func_01ff8a2c(data_02297be0, 6, 0, 26, 6, 0);
             func_0201d7d0();
@@ -268,7 +268,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 42:
-        if (!func_ov005_02367e50()) {
+        if (!Ov005_IsShopSoldOut()) {
             task->step = 50;
             break;
         }
@@ -279,7 +279,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         func_ov005_02367ec0(data_ov005_0236b4f0);
         task->step++;
     case 44:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             task->step = 93;
         }
         break;
@@ -304,11 +304,11 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         task->step++;
     case 91:
         if (work->transition == 0) {
-            if ((func_ov005_02367e8c() & 3) == 0) {
+            if ((Ov005_GetShopVisits() & 3) == 0) {
                 func_ov005_02367ec0(data_ov005_0236b880);
-            } else if ((func_ov005_02367e8c() & 3) == 1) {
+            } else if ((Ov005_GetShopVisits() & 3) == 1) {
                 func_ov005_02367ec0(data_ov005_0236b840);
-            } else if ((func_ov005_02367e8c() & 3) == 2) {
+            } else if ((Ov005_GetShopVisits() & 3) == 2) {
                 func_ov005_02367ec0(data_ov005_0236b780);
             } else {
                 func_ov005_02367ec0(data_ov005_0236b8c0);
@@ -317,7 +317,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         break;
     case 92:
-        if (!func_ov005_02367e9c()) {
+        if (!Ov005_IsShopScriptRunning()) {
             task->step++;
         }
         break;
@@ -339,7 +339,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         break;
     case 100: /* fade out and leave */
         func_0201c898();
-        func_ov005_02367e70();
+        Ov005_AddShopVisit();
         MenuButtons_RemoveSelectable();
         MenuButtons_RemoveUnselectable();
         if (work->unk_1c == 0) {

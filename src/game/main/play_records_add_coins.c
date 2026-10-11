@@ -3,7 +3,7 @@
 
 /* Adds amount to three saved counters: unk_384 (cap 999999), points and
  * unk_04 (cap 99999). points is the balance Hachi's shop spends from
- * (func_02017bf8). */
+ * (PlayRecords_SpendPoints). */
 void PlayRecords_AddCoins(u32 amount)
 {
     if (gPlayRecords.unk_384 + amount < 999999) {

@@ -1867,7 +1867,7 @@ src/game/main/graphics/co_get_saved_palette_variant.c:
     complete
     .text       start:0x02017bcc end:0x02017bf8
 
-src/game/main/func_02017bf8.c:
+src/game/main/play_records_spend_points.c:
     complete
     .text       start:0x02017bf8 end:0x02017c1c
 

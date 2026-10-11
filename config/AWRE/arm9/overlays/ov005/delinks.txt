@@ -1026,19 +1026,19 @@ src/game/ov005/func_ov005_02367e38.c:
     complete
     .text       start:0x02367e38 end:0x02367e50
 
-src/game/ov005/func_ov005_02367e50.c:
+src/game/ov005/shop/ov005_is_shop_sold_out.c:
     complete
     .text       start:0x02367e50 end:0x02367e70
 
-src/game/ov005/func_ov005_02367e70.c:
+src/game/ov005/shop/ov005_add_shop_visit.c:
     complete
     .text       start:0x02367e70 end:0x02367e8c
 
-src/game/ov005/func_ov005_02367e8c.c:
+src/game/ov005/shop/ov005_get_shop_visits.c:
     complete
     .text       start:0x02367e8c end:0x02367e9c
 
-src/game/ov005/func_ov005_02367e9c.c:
+src/game/ov005/shop/ov005_is_shop_script_running.c:
     complete
     .text       start:0x02367e9c end:0x02367eac
 

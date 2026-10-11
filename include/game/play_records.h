@@ -19,7 +19,7 @@ typedef struct SurvivalRecord {
  * (coRecords, the Force Rank table Co_GetForceRankSetIndex reads) and
  * counters of what human players did, each capped at 999999 or 999999999. */
 typedef struct PlayRecords {
-    u32 points;                        /* spent in Hachi's shop (func_02017bf8); battles add to it (PlayRecords_AddCoins) */
+    u32 points;                        /* spent in Hachi's shop (PlayRecords_SpendPoints); battles add to it (PlayRecords_AddCoins) */
     u32 unk_04;                        /* capped at 99999; PlayRecords_AddCoins adds to it with points and unk_384 */
     u8 unk_08;
     u8 unk_09;
@@ -32,7 +32,7 @@ typedef struct PlayRecords {
     u8 unk_10;
     u8 unk_11;
     u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */
-    u8 unk_13;
+    u8 shopVisits;                     /* visits to Hachi's shop, up to 255 (Ov005_AddShopVisit) */
     u8 unk_14;                         /* CO slot of the CO-select screen cursor: data_ov005_0236a48c[cursor] (Ov005 Ov005_SaveCoListEntry), searched by Ov005_FindSavedCoListEntry */
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
     u8 unk_16;                         /* aiBehaviour of slot 1 when gameMode is 1 (Players_ApplyBattleSetup) */
