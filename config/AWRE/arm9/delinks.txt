@@ -21366,6 +21366,10 @@ src/sdk/fs/fs_init.c:
     complete
     .text       start:0x02112bdc end:0x02112c18
 
+src/sdk/fs/fs_append_to_list.c:
+    complete
+    .text       start:0x02112c18 end:0x02112c60
+
 src/game/main/func_02112c8c.c:
     complete
     .text       start:0x02112c8c end:0x02112cac
