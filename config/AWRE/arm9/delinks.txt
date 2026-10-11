@@ -10141,6 +10141,10 @@ src/game/main/map/current_player_scroll_to_saved_cursor.c:
     complete
     .text       start:0x020cce98 end:0x020ccee0
 
+src/game/main/units/unit_show_service_cost.c:
+    complete
+    .text       start:0x020cd060 end:0x020cd10c
+
 src/game/main/units/unit_resupply_unpaid.c:
     complete
     .text       start:0x020cd204 end:0x020cd23c
