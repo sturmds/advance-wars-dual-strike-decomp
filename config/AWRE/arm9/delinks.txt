@@ -12900,6 +12900,10 @@ src/game/main/func_020f4658.c:
     complete
     .text       start:0x020f4658 end:0x020f467c
 
+src/game/main/screen/scene_mode_request_next.c:
+    complete
+    .text       start:0x020f46c4 end:0x020f4768
+
 src/game/main/func_020f4768.c:
     complete
     .text       start:0x020f4768 end:0x020f47e8
