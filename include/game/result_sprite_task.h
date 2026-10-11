@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* Task of the script steps near data_0215a024 that draw the four sprites
- * of func_02035974 and animate one more (tile 0x40a, data_027c0060) at
+ * of ResultPath_DrawAll and animate one more (tile 0x40a, data_027c0060) at
  * (200, 88). The first 0x2a bytes belong to the task system. */
 typedef struct ResultSpriteTask {
     u8 pad_00[0x4c];

@@ -6,17 +6,17 @@
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(ResultSpriteTask *task);
 MenuButton *func_02032a9c(void);
-void func_02035974(int step);
+void ResultPath_DrawAll(int step);
 
 extern u8 data_027c0060;
 
-/* One frame of an 8-frame shake: draws the four sprites of func_02035974,
+/* One frame of an 8-frame shake: draws the four sprites of ResultPath_DrawAll,
  * and the data_027c0060 sprite up to 2 pixels off (200, 88). On the last
  * frame adds the button of func_02032a9c and resumes the task's script. */
 void ResultSprite_Shake(ResultSpriteTask *task)
 {
     task->frame++;
-    func_02035974(195 - (5 - data_022a7a9c.unk_03) * 35);
+    ResultPath_DrawAll(195 - (5 - data_022a7a9c.unk_03) * 35);
     switch (task->frame) {
     case 1:
         Sprite_QueueAt(6, 202, 86, &data_027c0060, 0x1000, 0x40a);
