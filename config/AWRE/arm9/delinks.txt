@@ -5930,6 +5930,10 @@ src/game/main/link/wireless_step_data_sharing.c:
     complete
     .text       start:0x02078160 end:0x020781b0
 
+src/game/main/link/wireless_send_mp_data.c:
+    complete
+    .text       start:0x020781b0 end:0x02078234
+
 src/game/main/func_02078234.c:
     complete
     .text       start:0x02078234 end:0x0207824c

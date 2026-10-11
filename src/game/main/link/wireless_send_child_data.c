@@ -2,7 +2,7 @@
 #include "game/Unk_0215fe84.h"
 #include "game/Unk_0229c960.h"
 
-void func_020781b0(void *data, u32 size);
+void Wireless_SendMpData(void *data, u32 size);
 
 /* Sends a packet from a child. A packet over the child size limit counts as
  * done (dropped); false means the link is not ready for it yet. */
@@ -15,6 +15,6 @@ BOOL Wireless_SendChildData(void *data, u32 size)
         return FALSE;
     }
     data_0215fe84->unk_08 = 0;
-    func_020781b0(data, size);
+    Wireless_SendMpData(data, size);
     return TRUE;
 }
