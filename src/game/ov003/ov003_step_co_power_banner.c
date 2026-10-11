@@ -13,7 +13,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 int func_0208bed4(int mode);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 const char *Text_Get(u32 textId);
-int func_0202a3e0(const char *text, int a, int b, int c);
+int BreakText_Load(const char *text, int a, int b, int c);
 void Task_ResumeScript(Unk_ov003_0235dd38 *task);
 
 /* High byte of Ov003State.unk_1d6. */
@@ -48,7 +48,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38 *task)
         row = task->unk_52;
         /* Needed to match: indexing from &gCoTable[0].blocks[POWER_CO], as
          * DrawSelectedCoPowerText does. */
-        task->count = func_0202a3e0(
+        task->count = BreakText_Load(
             Text_Get(*(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])
                           [func_0208bed4(data_ov003_02364928->rows[row - 1].unk_3b_0) & 0x7f].name),
             0x73e, 4, 0);
