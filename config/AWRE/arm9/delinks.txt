@@ -15719,6 +15719,10 @@ src/game/main/screen/screen_clear_layers01.c:
     complete
     .text       start:0x020f4228 end:0x020f425c
 
+src/game/main/screen/screen_init_with_player_frame.c:
+    complete
+    .text       start:0x020f425c end:0x020f437c
+
 src/game/main/screen/scene_mode_advance.c:
     complete
     .text       start:0x020f437c end:0x020f43f4
