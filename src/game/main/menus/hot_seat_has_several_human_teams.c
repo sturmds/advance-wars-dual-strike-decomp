@@ -5,10 +5,10 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
-extern u8 data_0229eaf0[];                 /* per player: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
+extern u8 gSlotControllers[];                 /* per player: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-#define CONTROLLER(player) (data_0229eaf0[player])
+#define CONTROLLER(player) (gSlotControllers[player])
 
 void Players_RecordControllers(void);
 BOOL Player_IsInGame(u8 player);

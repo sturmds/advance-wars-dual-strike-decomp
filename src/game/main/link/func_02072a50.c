@@ -5,7 +5,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0202c50c(void);
+void PaletteCycle_Stop(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,12 +23,12 @@ void func_02072a50(void)
     int i;
     u8 *dst;
 
-    func_0202c50c();
+    PaletteCycle_Stop();
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_0202c50c();
+    PaletteCycle_Stop();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     for (i = 0, dst = gLinkSlotPlayers; i < gMenuState.link.playerCount; i++, dst++) {

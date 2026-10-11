@@ -57,10 +57,10 @@ void Menu_CycleAiBehaviour(int a0, int a1, u32 flags)
     PopupMenu_Refresh();
     if (GAME->gameMode != GAME_MODE_CAMPAIGN) {
         if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
-            gPlayRecords.unk_16 = behaviour;
+            gPlayRecords.warRoomAiBehaviour = behaviour;
         }
     } else {
-        gPlayRecords.unk_17 = behaviour;
+        gPlayRecords.campaignAiBehaviour = behaviour;
     }
     if (gLinkPlay != 0) {
         UnitAction_Send(27, 0, player, behaviour);

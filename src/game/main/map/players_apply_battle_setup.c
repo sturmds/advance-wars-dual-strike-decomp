@@ -57,14 +57,14 @@ void Players_ApplyBattleSetup(void)
             if (i - 1 == Map_GetLoadedPlayerCount() - 1) {
                 STATE->players[i].aiBehaviour = AI_BEHAVIOUR_GENERAL;
             } else {
-                STATE->players[i].aiBehaviour = gPlayRecords.unk_17;
+                STATE->players[i].aiBehaviour = gPlayRecords.campaignAiBehaviour;
             }
             break;
         case 1: /* War Room: slot 1 is the player */
             if (i != 1) {
                 STATE->players[i].aiBehaviour = AI_BEHAVIOUR_GENERAL;
             } else {
-                STATE->players[i].aiBehaviour = gPlayRecords.unk_16;
+                STATE->players[i].aiBehaviour = gPlayRecords.warRoomAiBehaviour;
             }
             break;
         default:

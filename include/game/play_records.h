@@ -35,8 +35,8 @@ typedef struct PlayRecords {
     u8 shopVisits;                     /* visits to Hachi's shop, up to 255 (Ov005_AddShopVisit) */
     u8 wallpaper;                      /* selected wallpaper, 0-30 (Wallpaper_LoadSelected); ov005 stores data_ov005_0236a48c[entry] (Ov005_SaveCoListEntry) */
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
-    u8 unk_16;                         /* aiBehaviour of slot 1 when gameMode is 1 (Players_ApplyBattleSetup) */
-    u8 unk_17;                         /* aiBehaviour of every slot but the last when gameMode is 0 (Players_ApplyBattleSetup) */
+    u8 warRoomAiBehaviour;             /* aiBehaviour of slot 1 in the War Room (Players_ApplyBattleSetup) */
+    u8 campaignAiBehaviour;            /* aiBehaviour of every slot but the last in the campaign (Players_ApplyBattleSetup) */
     u8 pad_18[0x38 - 0x18];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */
     SaveHalfwords16 unk_348[3];        /* one per profile; Save_LoadProfiles fills them from the save */

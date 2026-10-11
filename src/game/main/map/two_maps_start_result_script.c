@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/player.h"
 
-extern u8 data_0229eaf0[];                 /* per slot: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
+extern u8 gSlotControllers[];                 /* per slot: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
 extern u32 data_021696c0[];                /* event script per army colour, for a player in the game */
 extern u32 data_02169708[];                /* event script per army colour, for a player out of it */
 
@@ -44,7 +44,7 @@ void TwoMaps_StartResultScript(void)
 
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
     for (i = 1; i < 5; i++) {
-        if (Player_IsInGame(i) && data_0229eaf0[i] == PLAYER_CONTROLLER_HUMAN) {
+        if (Player_IsInGame(i) && gSlotControllers[i] == PLAYER_CONTROLLER_HUMAN) {
             script = data_021696c0[GAME->players[i].armyColour];
         }
     }
@@ -53,7 +53,7 @@ void TwoMaps_StartResultScript(void)
     if (script == 0) {
         SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
         for (j = 1; j < 5; j++) {
-            if (!Player_IsInGame(j) && data_0229eaf0[j] == PLAYER_CONTROLLER_HUMAN) {
+            if (!Player_IsInGame(j) && gSlotControllers[j] == PLAYER_CONTROLLER_HUMAN) {
                 script = data_02169708[GAME->players[j].armyColour];
             }
         }

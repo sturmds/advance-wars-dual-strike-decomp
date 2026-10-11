@@ -1,11 +1,11 @@
 #include "types.h"
 #include "game/vision.h"
 
-extern u8 data_0229eaf0[];
+extern u8 gSlotControllers[];
 
 int Player_GetSlotRelation(u16 player, u16 other);
 
-/* TRUE when an ally of player in the battle has data_0229eaf0 kind 1. */
+/* TRUE when an ally of player in the battle has gSlotControllers kind 1. */
 BOOL Player_HasKindOneAlly(u16 player)
 {
     int slot;
@@ -17,7 +17,7 @@ BOOL Player_HasKindOneAlly(u16 player)
             if (slot >= 5) {
                 slot -= 4;
             }
-            if (data_0229eaf0[slot] == 1) {
+            if (gSlotControllers[slot] == 1) {
                 return TRUE;
             }
         }

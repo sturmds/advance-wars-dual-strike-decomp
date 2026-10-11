@@ -1190,7 +1190,7 @@ MapPreview_DrawRecord kind:function(arm,size=0x21c) addr:0x0202bbb0
 MapPreview_CopyCounts kind:function(arm,size=0x20) addr:0x0202bdcc
 MapPreview_Draw kind:function(arm,size=0x370) addr:0x0202bdec
 MapPreview_DrawPlayerViews kind:function(arm,size=0x3b0) addr:0x0202c15c
-func_0202c50c kind:function(arm,size=0x14) addr:0x0202c50c
+PaletteCycle_Stop kind:function(arm,size=0x14) addr:0x0202c50c
 PaletteCycle_Start kind:function(arm,size=0x3c) addr:0x0202c520
 PaletteCycle_Update kind:function(arm,size=0x44) addr:0x0202c55c
 MapPreview_DrawBlockUnits kind:function(arm,size=0x1c0) addr:0x0202c5a0
@@ -8834,7 +8834,7 @@ data_0229eae0 kind:bss addr:0x0229eae0
 data_0229eae4 kind:bss addr:0x0229eae4
 gBuildMenuCount kind:bss addr:0x0229eae8
 gLinkPlay kind:bss addr:0x0229eaec
-data_0229eaf0 kind:bss addr:0x0229eaf0
+gSlotControllers kind:bss addr:0x0229eaf0
 data_0229eaf1 kind:bss addr:0x0229eaf1
 gBuildMenuEntries kind:bss addr:0x0229eaf8
 data_0229eaf9 kind:bss addr:0x0229eaf9

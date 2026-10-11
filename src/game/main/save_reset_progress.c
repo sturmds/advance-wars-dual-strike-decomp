@@ -45,8 +45,8 @@ void Save_ResetProgress(void)
     gPlayRecords.shopVisits = 0;
     gPlayRecords.wallpaper = 0;
     gPlayRecords.unk_15 = 2;
-    gPlayRecords.unk_16 = 2;
-    gPlayRecords.unk_17 = 2;
+    gPlayRecords.warRoomAiBehaviour = 2;
+    gPlayRecords.campaignAiBehaviour = 2;
     for (co = 0; co < CO_COUNT; co++) {
         Co_SetSavedPaletteVariant(co, 0);
         Co_SetSavedPictureVariant(co, 0);

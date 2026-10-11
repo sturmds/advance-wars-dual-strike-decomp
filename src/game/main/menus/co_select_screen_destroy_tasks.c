@@ -5,7 +5,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0202c50c(void);
+void PaletteCycle_Stop(void);
 void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 int Task_DestroyByScript(const void *script);
@@ -25,7 +25,7 @@ void CoSelectScreen_DestroyTasks(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_0202c50c();
+    PaletteCycle_Stop();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     Task_DestroyByScript(data_0215a980);
