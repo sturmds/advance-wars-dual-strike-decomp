@@ -6019,9 +6019,19 @@ src/game/main/skills/skills_are_disabled.c:
     complete
     .text       start:0x02045680 end:0x0204572c
 
+src/game/main/menus/co_select_screen_is_co_in_other_cell.c:
+    complete
+    .text       start:0x0204572c end:0x020457d8
+
 src/game/main/menus/co_select_screen_get_list_co.c:
     complete
     .text       start:0x020457d8 end:0x020457f0
+
+src/game/main/menus/co_select_screen_list_slot_of_co.c:
+    .text       start:0x020457f0 end:0x02045830
+
+src/game/main/menus/co_select_is_co_available.c:
+    .text       start:0x02045830 end:0x02045860
 
 src/game/main/menus/co_select_clear_available.c:
     complete
