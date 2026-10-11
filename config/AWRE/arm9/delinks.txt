@@ -21271,6 +21271,10 @@ src/game/main/func_0210e270.c:
     complete
     .text       start:0x0210e270 end:0x0210e284
 
+src/sdk/os/os_get_init_arena_hi.c:
+    complete
+    .text       start:0x0210e284 end:0x0210e36c
+
 src/game/main/func_0210e494.c:
     complete
     .text       start:0x0210e494 end:0x0210e4a8
