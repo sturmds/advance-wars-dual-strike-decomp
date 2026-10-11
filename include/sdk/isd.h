@@ -141,15 +141,23 @@ void Isd_ReportFailure(const char *file, int line, const char *expression, BOOL 
  */
 typedef struct IsdOverlayEntry {
     u32 vma;
+    u32 fileOffset; /* moves with vma when an entry is trimmed at the front */
     u32 size;
-    u32 unk_08;
     u32 unk_0C;
 } IsdOverlayEntry;
 
 typedef struct IsdOverlayHeader {
     u32 infoCount;
-    u32 unk_04[3];
+    u32 lock; /* taken with Isd_SwapWord(ISD_OVERLAY_LOCKED, &lock), freed by storing 0 */
+    u32 flags;
+    u32 unk_0C;
 } IsdOverlayHeader;
+
+#define ISD_OVERLAY_LOCKED 0x80
+/* Set in flags while the table is being changed. */
+#define ISD_OVERLAY_FLAG_UPDATING 0x2
+
+u32 Isd_SwapWord(u32 value, u32 *address);
 
 typedef struct IsdOverlayInfo {
     IsdOverlayHeader header;
@@ -168,5 +176,8 @@ void Isd_OverlayTableInsert(IsdOverlayInfo *table, int index);
  * presumably does.
  */
 extern BOOL gIsdOverlayHooksEnabled;
+
+/* One overlay table per processor (MIProcessor: 0 ARM9, 1 ARM7); NULL when there is none. */
+extern IsdOverlayInfo *gIsdOverlayTables[2];
 
 #endif

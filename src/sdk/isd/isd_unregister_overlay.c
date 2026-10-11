@@ -6,7 +6,7 @@
 
 extern int (*gIsdUnregisterOverlayHook)(MIProcessor target, void *address, u32 size);
 
-int func_021210d8(MIProcessor target, void *address, u32 size);
+BOOL Isd_OverlayTableRemoveRange(MIProcessor target, u32 address, u32 size);
 
 /* Tells the debugger that an overlay's memory range is no longer loaded. */
 int Isd_UnregisterOverlay(MIProcessor target, void *address, u32 size)
@@ -20,5 +20,5 @@ int Isd_UnregisterOverlay(MIProcessor target, void *address, u32 size)
         Isd_CloseDebugRegion(&saved);
         return result;
     }
-    return func_021210d8(target, address, size);
+    return Isd_OverlayTableRemoveRange(target, (u32)address, size);
 }

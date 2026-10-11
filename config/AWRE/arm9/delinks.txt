@@ -23150,6 +23150,10 @@ src/sdk/isd/isd_register_overlay.c:
     complete
     .text       start:0x02121060 end:0x021210d8
 
+src/sdk/isd/isd_overlay_table_remove_range.c:
+    complete
+    .text       start:0x021210d8 end:0x02121424
+
 src/sdk/isd/isd_close_debug_region.c:
     complete
     .text       start:0x02121908 end:0x02121940
