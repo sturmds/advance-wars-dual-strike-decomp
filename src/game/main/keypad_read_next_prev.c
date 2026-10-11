@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/keypad.h"
 
-u32 func_020ef208(void)
+/* 8 for right or down, 4 for left or up (with key repeat), else 0. */
+u32 Keypad_ReadNextPrev(void)
 {
     u16 keys = gKeypad->repeat;
 

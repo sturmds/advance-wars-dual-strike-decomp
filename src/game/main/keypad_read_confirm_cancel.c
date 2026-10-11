@@ -1,7 +1,8 @@
 #include "types.h"
 #include "game/keypad.h"
 
-u32 func_020ef234(void)
+/* 0x20 for a B press, 0x10 for an A press, else 0. */
+u32 Keypad_ReadConfirmCancel(void)
 {
     u16 keys = gKeypad->pressed;
 

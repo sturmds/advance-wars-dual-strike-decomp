@@ -17,7 +17,7 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_020b9d48(void);
 void MenuDepth_Pop(void);
 BOOL Tile_IsOnScreen(int x, int y);
-int func_020cdadc(MapUnit *unit);
+int Supply_ResupplyUnit(MapUnit *unit);
 void ServiceCostPopup_Start(s16 *pos, int player, int cost, u32 arg3, int arg4, int arg5);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -56,9 +56,9 @@ void Supply_RefillAdjacentStep(SupplySlot *slot)
             unit = &STATE->units[STATE->mapTiles->unk_508[TILE_INDEX(STATE->actingUnitDestX + data_021663dc[slot->side * 3 + 1],
                                                                      STATE->actingUnitDestY + data_021663dc[slot->side * 3 + 2])]];
             if (STATE->mapTiles->unk_2338[TILE_INDEX(unit->x, unit->y)] == 0 || !Tile_IsOnScreen(unit->x, unit->y)) {
-                func_020cdadc(unit);
+                Supply_ResupplyUnit(unit);
             } else {
-                cost = func_020cdadc(unit);
+                cost = Supply_ResupplyUnit(unit);
                 if (cost == 0) {
                     slot->side++;
                     continue;

@@ -11,7 +11,7 @@ extern const EventScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
 s16 ScriptSlot_Find(const EventScriptCommand *script);
-u32 func_020ef234(void);
+u32 Keypad_ReadConfirmCancel(void);
 u32 MapTouch_ReadListTileTap(int count);
 void func_020ef260(int *index, int count);
 void MapTouch_UpdateListCursor(int *index, int count);
@@ -24,7 +24,7 @@ void ScreenConfig_RunActionHook(void);
 void Map_ScrollViewToTile(int arg);
 void MapScreen_DrawInfoPanel(void);
 
-/* Bits func_020ef234 (buttons) and MapTouch_ReadListTileTap (touch) return. */
+/* Bits Keypad_ReadConfirmCancel (buttons) and MapTouch_ReadListTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL  0x20
 
@@ -55,7 +55,7 @@ void TargetListPicker_Update(Task *task)
     }
     index = (s16)task->unk_64;
     count = task->unk_66;
-    buttons = func_020ef234();
+    buttons = Keypad_ReadConfirmCancel();
     input = buttons | MapTouch_ReadListTileTap(count);
     if (input & INPUT_CANCEL) {
         GAME->cursorX = GAME->actingUnitDestX;

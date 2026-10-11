@@ -14369,11 +14369,11 @@ src/game/main/map/game_load_saves_and_start_mode_task.c:
     complete
     .text       start:0x020ca4a0 end:0x020ca540
 
-src/game/main/func_020ca540.c:
+src/game/main/units/unit_play_emerge_effect.c:
     complete
     .text       start:0x020ca540 end:0x020ca550
 
-src/game/main/func_020ca550.c:
+src/game/main/units/unit_play_hide_effect.c:
     complete
     .text       start:0x020ca550 end:0x020ca560
 
@@ -14592,7 +14592,7 @@ src/game/main/units/supply_flag_adjacent_targets.c:
     complete
     .text       start:0x020cda14 end:0x020cdadc
 
-src/game/main/func_020cdadc.c:
+src/game/main/units/supply_resupply_unit.c:
     complete
     .text       start:0x020cdadc end:0x020cdb14
 
@@ -17690,11 +17690,11 @@ src/game/main/func_020ef1e8.c:
     complete
     .text       start:0x020ef1e8 end:0x020ef208
 
-src/game/main/func_020ef208.c:
+src/game/main/keypad_read_next_prev.c:
     complete
     .text       start:0x020ef208 end:0x020ef234
 
-src/game/main/func_020ef234.c:
+src/game/main/keypad_read_confirm_cancel.c:
     complete
     .text       start:0x020ef234 end:0x020ef260
 

@@ -4,7 +4,7 @@
 extern u16 gEventChoiceAnswer;
 extern u8 data_022977d0[];
 
-/* func_0201a160 bits */
+/* EventChoice_ReadKeys bits */
 #define CHOICE_KEY_LEFT    0x04
 #define CHOICE_KEY_RIGHT   0x08
 #define CHOICE_KEY_CONFIRM 0x10        /* A */
@@ -12,7 +12,7 @@ extern u8 data_022977d0[];
 
 #define CHOICE_LAST 3                  /* also where B puts the cursor */
 
-u16 func_0201a160(void);
+u16 EventChoice_ReadKeys(void);
 u16 Touch_TestButtonRects(void *buttons, int count);
 void DialogueCursor_Animate(void);
 void EventChoice_DrawRecord(int choice, int x, int y);
@@ -37,7 +37,7 @@ void EventChoice_Update(Task *task)
     u16 touched;
     int oldCursor;
 
-    keys = func_0201a160();
+    keys = EventChoice_ReadKeys();
     touched = Touch_TestButtonRects(data_022977d0, 4);
     DialogueCursor_Animate();
     oldCursor = CURSOR(task);

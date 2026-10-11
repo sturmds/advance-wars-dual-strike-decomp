@@ -4,7 +4,9 @@
 int Unit_Rearm(MapUnit *unit, BOOL payCost);
 int Unit_Refuel(MapUnit *unit, BOOL payCost);
 
-int func_020cdadc(MapUnit *unit)
+/* The Supply command's refill: same body as Unit_ResupplyUnpaid, its own
+ * copy in the ROM. */
+int Supply_ResupplyUnit(MapUnit *unit)
 {
     int total = 0;
 

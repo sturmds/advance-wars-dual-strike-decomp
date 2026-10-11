@@ -8,8 +8,8 @@ extern int data_027c0284;
 extern s8 data_02166379[];
 extern s8 data_0216637a[];
 
-u32 func_020ef208(void);
-u32 func_020ef234(void);
+u32 Keypad_ReadNextPrev(void);
+u32 Keypad_ReadConfirmCancel(void);
 int NeighborDir_Next(int direction, int mask); /* next direction in mask */
 int NeighborDir_Prev(int direction, int mask); /* previous direction in mask */
 void MapTouch_UpdateNeighborCursor(int *direction, int mask);
@@ -19,10 +19,10 @@ void Map_ScrollViewToTile(int arg);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Bits func_020ef208 returns for the d-pad. */
+/* Bits Keypad_ReadNextPrev returns for the d-pad. */
 #define INPUT_NEXT 8
 #define INPUT_PREV 4
-/* Bits func_020ef234 returns: A and B. */
+/* Bits Keypad_ReadConfirmCancel returns: A and B. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL  0x20
 
@@ -34,7 +34,7 @@ u32 NeighborTilePicker_Update(int *direction, int mask)
 {
     int picked = *direction;
     int old = *direction;
-    u16 keys = func_020ef208();
+    u16 keys = Keypad_ReadNextPrev();
     u16 input;
 
     if (keys & INPUT_NEXT) {
@@ -51,7 +51,7 @@ u32 NeighborTilePicker_Update(int *direction, int mask)
     STATE->cursorX = STATE->actingUnitDestX + data_02166379[picked * 5];
     STATE->cursorY = STATE->actingUnitDestY + data_0216637a[picked * 5];
     Map_ScrollViewToTile(1);
-    input = func_020ef234();
+    input = Keypad_ReadConfirmCancel();
     input |= MapTouch_ReadNeighborTileTap(mask);
     if (input & INPUT_CANCEL) {
         return INPUT_CANCEL;
