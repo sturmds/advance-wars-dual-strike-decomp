@@ -5890,7 +5890,7 @@ func_021234cc kind:function(arm,size=0x3b4) addr:0x021234cc
 func_02123880 kind:function(arm,size=0x2e8) addr:0x02123880
 func_02123b68 kind:function(arm,size=0x264) addr:0x02123b68
 func_02123dcc kind:function(arm,size=0x5dc) addr:0x02123dcc
-func_021243a8 kind:function(arm,size=0x150) addr:0x021243a8
+raise kind:function(arm,size=0x150) addr:0x021243a8
 strchr kind:function(arm,size=0x3c) addr:0x021244f8
 strcmp kind:function(arm,size=0x12c) addr:0x02124534
 strncpy kind:function(arm,size=0x74) addr:0x02124660
@@ -9106,11 +9106,11 @@ gMslExitFuncs kind:bss addr:0x022ad028
 data_022ad128 kind:bss addr:0x022ad128
 data_022ad14c kind:bss addr:0x022ad14c
 gMslExitMutex kind:bss addr:0x022ad170
-data_022ad1fc kind:bss addr:0x022ad1fc
+gMslSignalMutex kind:bss addr:0x022ad1fc
 data_022ad224 kind:bss addr:0x022ad224
 data_022ad324 kind:bss addr:0x022ad324
 data_022ad424 kind:bss addr:0x022ad424
-data_022ad524 kind:bss addr:0x022ad524
+gMslSignalHandlers kind:bss addr:0x022ad524
 data_022ad540 kind:bss addr:0x022ad540
 data_022ad544 kind:bss addr:0x022ad544
 data_022ad548 kind:bss addr:0x022ad548

@@ -3,7 +3,7 @@
 
 FpTrapHandler *func_02129754(void);
 u32 func_02129540(u32 clearMask, u32 xorMask);
-void func_021243a8(int signal);
+void raise(int signal);
 
 FpValue func_02121f3c(FpValue x, FpValue y, u32 op)
 {
@@ -36,7 +36,7 @@ FpValue func_02121f3c(FpValue x, FpValue y, u32 op)
     }
 
     if (handler == NULL) {
-        func_021243a8(2);
+        raise(2);
     }
     return handler(x, y, op);
 }

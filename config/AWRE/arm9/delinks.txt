@@ -22713,6 +22713,10 @@ src/game/main/func_02122348.c:
     complete
     .text       start:0x02122348 end:0x0212235c
 
+src/sdk/msl/raise.c:
+    complete
+    .text       start:0x021243a8 end:0x021244f8
+
 src/sdk/msl/strchr.c:
     complete
     .text       start:0x021244f8 end:0x02124534
