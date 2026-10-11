@@ -24,7 +24,7 @@ void func_01ff8c84(int layer);
 void func_01ff9b48(void);
 void func_0202b764(void);
 void func_02046d68(void);
-void func_020476bc(void);
+void SurvivalModeMenu_DrawRecords(void);
 int func_0204779c(void);
 int func_020477d0(int row);
 int func_020478b0(int mode);
@@ -75,7 +75,7 @@ void SurvivalModeMenu_Init(void)
     if (func_02047960() == 1) {
         Bg_PutTileBlock(data_027c0280->layer1Map, 0, 12, res + 0xf98, 0);
     }
-    func_020476bc();
+    SurvivalModeMenu_DrawRecords();
     Data_Unpack(res, data_027c0280->objVram + 0x600);
     Palette_Load(res + 0xe58, 0x280, 32);
     for (row = 0; row < 2; row++) {

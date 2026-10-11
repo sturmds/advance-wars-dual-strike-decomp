@@ -5323,6 +5323,10 @@ src/game/main/menus/survival_select_create.c:
     complete
     .text       start:0x02047420 end:0x020476bc
 
+src/game/main/menus/survival_mode_menu_draw_records.c:
+    complete
+    .text       start:0x020476bc end:0x0204779c
+
 src/game/main/menus/mode_set_variant.c:
     complete
     .text       start:0x02047830 end:0x020478b0
