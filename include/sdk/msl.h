@@ -46,7 +46,7 @@ double frexp(double x, int *exponent);
 
 /* One parsed printf conversion, passed by value to the conversion helpers. */
 typedef struct PrintFormat {
-    u8 justification; /* 1: right */
+    u8 justification; /* 1: right, 2: pad with zeros */
     u8 signOptions;   /* 1: always print a sign, 2: a space for positive numbers */
     u8 precisionSpecified;
     u8 alternateForm; /* the '#' flag */
@@ -56,6 +56,9 @@ typedef struct PrintFormat {
     int precision;
 } PrintFormat;
 
+#define PRINT_ZERO_FILL 2
+
+#define PRINT_SIGN_MINUS_ONLY 0
 #define PRINT_SIGN_ALWAYS 1
 #define PRINT_SIGN_SPACE 2
 

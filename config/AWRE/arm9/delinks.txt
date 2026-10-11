@@ -23266,6 +23266,10 @@ src/sdk/msl/round_decimal.c:
 src/sdk/msl/double2hex.c:
     .text       start:0x021234cc end:0x02123880
 
+src/sdk/msl/longlong2str.c:
+    complete
+    .text       start:0x02123880 end:0x02123b68
+
 src/sdk/msl/raise.c:
     complete
     .text       start:0x021243a8 end:0x021244f8
