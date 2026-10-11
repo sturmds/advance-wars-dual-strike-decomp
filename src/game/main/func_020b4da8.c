@@ -7,12 +7,12 @@ extern int data_027c0284;
 
 int func_020a74f8(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-void func_020b4e8c(void);
+void AiSeaTransport_CargoReachesHq(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Fills the range map from (x, y) for the unit that the acting unit
- * carries in its second cargo slot, then runs func_020b4e8c. */
+ * carries in its second cargo slot, then runs AiSeaTransport_CargoReachesHq. */
 void func_020b4da8(int x, int y)
 {
     MapUnit *units = STATE->units;
@@ -20,5 +20,5 @@ void func_020b4da8(int x, int y)
     MapUnit *carried = &units[slot];
 
     RangeMap_FillMoves(x, y, carried->type, func_020a74f8(carried), 0);
-    func_020b4e8c();
+    AiSeaTransport_CargoReachesHq();
 }
