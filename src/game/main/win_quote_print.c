@@ -6,7 +6,7 @@
 s32 HwMod32(s32 numerator, s32 denominator);
 u32 Rng_Next(void);
 ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
-u32 func_020e1840(int coId, int partnerId, int speaker, int pick);
+u32 Co_GetPairWinQuote(int coId, int partnerId, int speaker, int pick);
 u32 Co_PickWinQuote(int coId);
 
 extern Unk_027c0280 *data_027c0280;
@@ -21,12 +21,12 @@ void WinQuote_Print(int record)
 
     if (data_022a7aba[record].unk_00 & 0x7f) {
         slot = Text_PrintByIdOnLayer0(1, 13, data_027c0280->layer0Map,
-                                      func_020e1840(data_022a7ab8[record].unk_00 & 0x7f,
+                                      Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
                                                     data_022a7aba[record].unk_00 & 0x7f, 0, pick),
                                       0, 0x41);
         slot->unk_3e = 2;
         slot = Text_PrintByIdOnLayer0(1, 18, data_027c0280->layer0Map,
-                                      func_020e1840(data_022a7ab8[record].unk_00 & 0x7f,
+                                      Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
                                                     data_022a7aba[record].unk_00 & 0x7f, 1, pick),
                                       0, 0x81);
         slot->unk_3e = 2;
