@@ -5,7 +5,8 @@
 
 /* data_022a7b80 (main bss). */
 typedef struct Unk_022a7b80 {
-    u8 pad_00[6];
+    u8 coIds[2];                       /* front and back CO of the run's player; func_020eb20c fills them from the state, Survival_LoadPlayerCos puts them back */
+    u16 powerCharge[2];                /* starting power meter of slot 1's front and back CO, with coIds; Survival_LoadPlayerCos copies it to Unk_02080440_48.unk_aa */
     u8 unk_06;
     u8 unk_07;
     s32 unk_08;                        /* Mode_PrintVariantValue shows it by unk_07: 0 seconds as h:mm, 1 and 2 a number */
