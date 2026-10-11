@@ -908,6 +908,10 @@ src/game/main/graphics/bg_affine_from_params.c:
     complete
     .text       start:0x02009580 end:0x02009670
 
+src/game/main/screen/screen_set_graphics_mode.c:
+    complete
+    .text       start:0x02009670 end:0x020096d8
+
 src/game/main/screen/screen_set_bg0_mode.c:
     complete
     .text       start:0x020096d8 end:0x0200970c
