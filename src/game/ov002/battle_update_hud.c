@@ -25,34 +25,32 @@ void Gfx_RequestLayerCopy(int a);
  * copies columns of the tile map buffer (gMenuState.battle.unk_7d0) into layer 1
  * from both edges. Then it steps the HP drain of each side that has one running,
  * redrawing the HP bar and block. When the screen counters match it draws the
- * final blocks and starts the task at data_ov002_02369664.
- * WIP: 99.3%, only the register numbers of side, side * 12 and side + gMenuState
- * differ in the first loop. */
-void func_ov002_0235d224(void)
+ * final blocks and starts the task at data_ov002_02369664. */
+void Battle_UpdateHud(void)
 {
     int side;
     int isAir;
-    int count;
+    int n; /* needed to match: the column count, then the side in the HP loop */
 
     if (data_0229fb30.unk_10 <= 40 && data_0229fb30.unk_10 >= 25) {
-        count = data_0229fb30.unk_10 - 25;
-        func_ov002_0235d4a8((u16 *)BATTLE_FIELD(unk_7d0) + (15 - count), data_027c0280->layer1Map, count, 24);
-        func_ov002_0235d4a8((u16 *)((u8 *)&gMenuState + 0x7f2), data_027c0280->layer1Map + (32 - count), count, 24);
+        n = data_0229fb30.unk_10 - 25;
+        func_ov002_0235d4a8((u16 *)BATTLE_FIELD(unk_7d0) + (15 - n), data_027c0280->layer1Map, n, 24);
+        func_ov002_0235d4a8((u16 *)(BATTLE_FIELD(unk_7d0) + 0x22) /* column 17 */, data_027c0280->layer1Map + (32 - n), n, 24);
         Gfx_RequestLayerCopy(1);
     }
-    for (side = 0; side < 2; side++) {
-        if (gMenuState.battle.unk_1000[side] != 0 && gMenuState.battle.unk_1008[side] != gMenuState.battle.hpFrames[side]) {
-            gMenuState.battle.unk_1008[side]++;
-            if (gMenuState.battle.hpStart[side] != Ov002_gBattleScene->sides[side].hpAfter) {
-                gMenuState.battle.hpShown[side] -= gMenuState.battle.hpStep[side];
-                gMenuState.battle.hpStart[side] = (u32)gMenuState.battle.hpShown[side] >> 16;
-                isAir = Battle_IsSideAir(side) ? 1 : 0;
-                Battle_PutSideHpBar(data_027c0280->layer1Map, side, isAir);
-                Battle_PutSideHpBlock(data_027c0280->layer1Map, side, isAir);
+    for (n = 0; n < 2; n++) {
+        if (gMenuState.battle.unk_1000[n] != 0 && gMenuState.battle.unk_1008[n] != gMenuState.battle.hpFrames[n]) {
+            gMenuState.battle.unk_1008[n]++;
+            if (gMenuState.battle.hpStart[n] != Ov002_gBattleScene->sides[n].hpAfter) {
+                gMenuState.battle.hpShown[n] -= gMenuState.battle.hpStep[n];
+                gMenuState.battle.hpStart[n] = (u32)gMenuState.battle.hpShown[n] >> 16;
+                isAir = Battle_IsSideAir(n) ? 1 : 0;
+                Battle_PutSideHpBar(data_027c0280->layer1Map, n, isAir);
+                Battle_PutSideHpBlock(data_027c0280->layer1Map, n, isAir);
                 Gfx_RequestLayerCopy(1);
-                if (gMenuState.battle.unk_1008[side] == gMenuState.battle.hpFrames[side]
-                    && gMenuState.battle.hpStart[side] != Ov002_gBattleScene->sides[side].hpAfter) {
-                    gMenuState.battle.unk_1008[side]--;
+                if (gMenuState.battle.unk_1008[n] == gMenuState.battle.hpFrames[n]
+                    && gMenuState.battle.hpStart[n] != Ov002_gBattleScene->sides[n].hpAfter) {
+                    gMenuState.battle.unk_1008[n]--;
                 }
             }
         }

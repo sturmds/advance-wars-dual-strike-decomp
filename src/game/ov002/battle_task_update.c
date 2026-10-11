@@ -18,7 +18,7 @@ void func_ov002_02358c40(Task *task);
 void BattleCells_RunSequence(Task *task);
 void BattleCells_PushStep2(void);
 void BattleCells_PushStep(void);
-void func_ov002_0235d224(void);
+void Battle_UpdateHud(void);
 
 /* Needed to match: the counter is read through data_0229fb30 and written through gMenuState. */
 #define MENU ((MenuState *)&gMenuState)
@@ -47,7 +47,7 @@ void Battle_TaskUpdate(Task *task)
     Battle_UpdateFx();
     BattleCellSprites_Move();
     Battle_ReleaseSideTasks();
-    func_ov002_0235d224();
+    Battle_UpdateHud();
     if ((gKeypad->pressed & PAD_BUTTON_A) || (gTouch.phase == TOUCH_PRESSED && gTouch.active == 1)) {
         if (Link_IsActive() == 0) {
             Battle_EnsureTask();

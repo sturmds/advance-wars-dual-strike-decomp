@@ -488,7 +488,8 @@ src/game/ov002/battle_cue_task_setup.c:
     complete
     .text       start:0x0235d1c4 end:0x0235d224
 
-src/game/ov002/func_ov002_0235d224.c:
+src/game/ov002/battle_update_hud.c:
+    complete
     .text       start:0x0235d224 end:0x0235d4a8
 
 src/game/ov002/func_ov002_0235d4a8.c:
