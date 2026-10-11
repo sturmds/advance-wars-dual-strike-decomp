@@ -918,6 +918,10 @@ src/game/ov006/ov006_pick_tool_at_cursor.c:
     complete
     .text       start:0x0235ea50 end:0x0235eb7c
 
+src/game/ov006/ov006_read_edit_input.c:
+    complete
+    .text       start:0x0235f088 end:0x0235f1c0
+
 src/game/ov006/ov006_remove_unit_on_impassable_tile.c:
     complete
     .text       start:0x0235f1c0 end:0x0235f288
