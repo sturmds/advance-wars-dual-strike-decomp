@@ -43,7 +43,9 @@ typedef struct PlayRecords {
     u8 pad_378[0x380 - 0x378];
     u32 unk_380;                       /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
     u32 unk_384;                       /* capped at 999999; PlayRecords_AddCoins adds to it */
-    u8 pad_388[0x3a0 - 0x388];
+    u32 unk_388;                       /* loaded from the save with a profile (Save_LoadProfile) */
+    u32 unk_38c;
+    u8 pad_390[0x3a0 - 0x390];
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */
     u32 superPowersActivated;          /* same for super powers (UnitAction_ActivateSuperPower) */
     u32 tagPowersActivated;            /* same for tag powers (UnitAction_ActivateTagPower) */

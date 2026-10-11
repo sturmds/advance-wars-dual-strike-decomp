@@ -9,7 +9,7 @@ int func_02019330(int mode, int campaignSlot);
 u8 func_020193bc(int recordId);
 int func_0201fe28(int recordId);
 void func_02017cf8(int recordId);
-void func_02103b24(int profile);
+void Save_LoadProfile(int profile);
 void func_02103c84(void);
 void func_02103744(void);
 void Screen_SetCurrentBoth(void *state);
@@ -33,7 +33,7 @@ void Campaign_ContinueProfile2(void)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     func_02103c84();
-    func_02103b24(2);
+    Save_LoadProfile(2);
     if (data_02290118.unk_04 == 0xff) {
         func_02103744();
         return;

@@ -17,10 +17,10 @@ extern SaveBytes30 data_022900bc[3];
 extern Unk_02290118 data_02290118;
 
 int Save_LoadRecord(int recordId, void *buffer); /* the definition takes only recordId; this call also passes r1 */
-void func_02103b24(int profile);
+void Save_LoadProfile(int profile);
 
 /* Loads save record 0 into data_02291774 and copies the data of its three
- * profiles to the live copies, then runs func_02103b24 for the current profile. */
+ * profiles to the live copies, then runs Save_LoadProfile for the current profile. */
 void Save_LoadProfiles(void)
 {
     SaveProgress *progress = &data_02291774;
@@ -34,5 +34,5 @@ void Save_LoadProfiles(void)
         gPlayRecords.unk_348[i] = progress->unk_3a0[i];
         data_022900bc[i] = progress->unk_1534[i];
     }
-    func_02103b24(data_02290118.unk_00);
+    Save_LoadProfile(data_02290118.unk_00);
 }
