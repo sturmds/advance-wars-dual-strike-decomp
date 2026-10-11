@@ -5205,7 +5205,7 @@ NNS_SndArcStrmStart kind:function(arm,size=0x30) addr:0x02108f7c
 func_02108fac kind:function(arm,size=0x18) addr:0x02108fac
 SoundArc_PrepareStream kind:function(arm,size=0x68) addr:0x02108fc4
 SoundStream_AllocBuffers kind:function(arm,size=0xdc) addr:0x0210902c
-func_02109108 kind:function(arm,size=0x144) addr:0x02109108
+SoundStream_Init kind:function(arm,size=0x144) addr:0x02109108
 SoundSeqArc_GetSeqInfo kind:function(arm,size=0x40) addr:0x0210924c
 func_0210928c kind:function(arm,size=0x18) addr:0x0210928c
 func_021092a4 kind:function(arm,size=0x18) addr:0x021092a4
@@ -8950,15 +8950,15 @@ data_022a89fc kind:bss addr:0x022a89fc
 data_022a8a10 kind:bss addr:0x022a8a10
 data_022a8a60 kind:bss addr:0x022a8a60
 data_022a8a64 kind:bss addr:0x022a8a64
-data_022a8aa0 kind:bss addr:0x022a8aa0
+gSoundStreamReady kind:bss addr:0x022a8aa0
 data_022a8aa4 kind:bss addr:0x022a8aa4
 data_022a8aa8 kind:bss addr:0x022a8aa8
 data_022a8aac kind:bss addr:0x022a8aac
 data_022a8ab8 kind:bss addr:0x022a8ab8
 data_022a8ac4 kind:bss addr:0x022a8ac4
 data_022a8ad8 kind:bss addr:0x022a8ad8
-data_022a8aec kind:bss addr:0x022a8aec
-data_022a8b80 kind:bss addr:0x022a8b80
+gSoundStreamThread kind:bss addr:0x022a8aec
+gSoundStreamRequests kind:bss addr:0x022a8b80
 data_022a8d00 kind:bss addr:0x022a8d00
 data_022a9300 kind:bss addr:0x022a9300
 data_022a9870 kind:bss addr:0x022a9870
