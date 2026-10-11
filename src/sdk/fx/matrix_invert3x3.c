@@ -1,6 +1,6 @@
 #include "sdk/fx.h"
 
-void MI_Copy36B(const void *src, void *dst); /* MI_Copy36B */
+void MI_Copy36B(const void *src, void *dst);
 
 /* Matrix_Invert3x3: writes the inverse of src to dst (they may be the
  * same matrix). Returns -1 and leaves dst alone when src has no inverse.
