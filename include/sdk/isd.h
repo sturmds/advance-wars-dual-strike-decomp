@@ -7,7 +7,25 @@
 typedef struct IsdSharedBlock {
     u32 unk_00[5];
     u32 flags;
+    u32 unk_18;
+    u8 *channel;
 } IsdSharedBlock;
+
+/* Ring of output bytes inside the channel (ring at channel + 0x90, bytes at channel + 0x8000). */
+typedef struct IsdRing {
+    u16 head;
+    u16 unk_02;
+    u16 tail;
+} IsdRing;
+
+#define ISD_RING_BYTES_OFFSET 0x8000
+#define ISD_RING_MASK 0x3fff
+
+/* The cartridge-bus ring is 32 KB (the channel's is 16 KB); which window of the bus it sits in depends on a flag. */
+#define ISD_CART_RING_MASK 0x7fff
+#define ISD_FLAG_CART_HIGH_BUFFER 0x2000
+#define ISD_CART_BUFFER_HIGH 0x09fd0000
+#define ISD_CART_BUFFER_LOW 0x08fd0000
 
 #define ISD_SHARED ((volatile IsdSharedBlock *)0x027fff60)
 
@@ -49,6 +67,20 @@ static inline int Isd_ReadByte(const char *address)
         return (*(u16 *)(address - 1) & 0xff00) >> 8;
     }
     return *(u16 *)address & 0xff;
+}
+
+/* Writes one byte at bytes[index] with a halfword read and write, for the same reason as Isd_ReadByte. */
+static inline void Isd_WriteByte(u8 *bytes, u32 index, int value)
+{
+    u32 offset = index & ~1;
+    u16 half = *(u16 *)(bytes + offset);
+
+    if (index & 1) {
+        half = (half & 0x00ff) | ((u16)value << 8);
+    } else {
+        half = (half & 0xff00) | (u16)value;
+    }
+    *(u16 *)(bytes + offset) = half;
 }
 
 #endif
