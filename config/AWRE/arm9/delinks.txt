@@ -8864,6 +8864,10 @@ src/game/main/link/wireless_start_connect.c:
     complete
     .text       start:0x020785c4 end:0x0207865c
 
+src/game/main/link/wireless_on_connect_event.c:
+    complete
+    .text       start:0x0207865c end:0x02078864
+
 src/game/main/link/wireless_end_scan.c:
     complete
     .text       start:0x02078864 end:0x020788c4

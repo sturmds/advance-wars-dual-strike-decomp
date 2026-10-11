@@ -17,7 +17,9 @@ typedef struct WMCallback {
 #define WM_STATECODE_BEACON_SENT 2
 #define WM_STATECODE_PARENT_NOT_FOUND 4
 #define WM_STATECODE_PARENT_FOUND 5
+#define WM_STATECODE_CONNECT_START 6
 #define WM_STATECODE_CONNECTED 7
+#define WM_STATECODE_BEACON_LOST 8
 #define WM_STATECODE_DISCONNECTED 9
 #define WM_STATECODE_MP_START 10
 #define WM_STATECODE_MPEND_IND 11
@@ -119,6 +121,16 @@ typedef struct WMStartMPCallback {
     u16 errcode;
     u16 state;
 } WMStartMPCallback;
+
+/* Start of the reply to the connect command; only these fields are read. */
+typedef struct WMStartConnectCallback {
+    u16 apiid;
+    u16 errcode;
+    u16 wlCmdID;
+    u16 wlResult;
+    u16 state;
+    u16 aid;                           /* the id the parent gave this child */
+} WMStartConnectCallback;
 
 typedef struct WMPortRecvCallback {
     u16 apiid;
