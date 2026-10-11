@@ -11587,6 +11587,10 @@ src/game/main/menus/survival_get_map_cost.c:
     complete
     .text       start:0x020ea87c end:0x020ea944
 
+src/game/main/menus/survival_is_budget_spent.c:
+    complete
+    .text       start:0x020ea944 end:0x020eaa20
+
 src/game/main/func_020eaa8c.c:
     complete
     .text       start:0x020eaa8c end:0x020eaa9c

@@ -1,0 +1,43 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_022a7b80.h"
+
+int func_020eaa20(void);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern Unk_022a7b80 data_022a7b80;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+/* True in Survival when the player has run out of what the mode limits:
+ * time left on the map (modes 0 and 3), funds on hand (1 and 4) or days
+ * (2 and 5, past the budget in data_022a7b80.unk_08). */
+BOOL Survival_IsBudgetSpent(void)
+{
+    if (STATE->gameMode != GAME_MODE_SURVIVAL) {
+        return FALSE;
+    }
+    switch (data_022a7b80.unk_07) {
+    case 0:
+    case 3:
+        if (func_020eaa20() == 0) {
+            return TRUE;
+        }
+        break;
+    case 2:
+    case 5:
+        /* needed to match: unsigned compare */
+        if (STATE->day > (u32)data_022a7b80.unk_08) {
+            return TRUE;
+        }
+        break;
+    case 1:
+    case 4:
+        if (STATE->players[1].funds == 0) {
+            return TRUE;
+        }
+        break;
+    }
+    return FALSE;
+}
