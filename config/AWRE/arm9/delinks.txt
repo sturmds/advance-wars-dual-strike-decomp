@@ -3743,6 +3743,10 @@ src/game/main/graphics/wallpaper_task_update.c:
     complete
     .text       start:0x02029d6c end:0x02029f8c
 
+src/game/main/graphics/wallpaper_task_init.c:
+    complete
+    .text       start:0x02029f8c end:0x0202a0b4
+
 src/game/main/func_0202a3c8.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0
