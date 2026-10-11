@@ -11722,6 +11722,10 @@ src/game/main/weather/weather_start_next.c:
     complete
     .text       start:0x020d2918 end:0x020d29c0
 
+src/game/main/weather/weather_pick_next.c:
+    complete
+    .text       start:0x020d29c0 end:0x020d2aa8
+
 src/game/main/weather/weather_set.c:
     complete
     .text       start:0x020d2aa8 end:0x020d2ae4

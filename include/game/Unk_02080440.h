@@ -72,7 +72,7 @@ typedef struct Unk_02080440_1c4 {
     u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
     u8 unk_3b;                         /* 1: menu weather setting 0 */
-    u8 nextWeather;                    /* WEATHER_* for the next turn: func_020ddb38 picks it through func_020d29c0 (random when unk_3b is 1); AiTurn_Restart passes it to Link_SendWeather */
+    u8 nextWeather;                    /* WEATHER_* for the next turn: func_020ddb38 picks it through Weather_PickNext (random when unk_3b is 1); AiTurn_Restart passes it to Link_SendWeather */
     u8 unk_3d;                         /* 0-3, mapped to menu weather settings 1-4 */
 } Unk_02080440_1c4;
 
