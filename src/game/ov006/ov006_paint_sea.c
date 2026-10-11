@@ -11,7 +11,7 @@ void Ov006_BreakCellBlock(int x, int y);
 void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_RefitCellsAround(int x, int y);
-void func_ov006_0235ddac(int x, int y);
+void Ov006_TurnToSea(int x, int y);
 void Ov006_RemoveUnitOnImpassableTile(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
@@ -44,7 +44,7 @@ void Ov006_PaintSea(int x, int y)
     } else {
         switch (STATE->mapTiles->tiles[TILE_INDEX(x, y)]) {
         case TERRAIN_SEA:
-            func_ov006_0235ddac(x, y);
+            Ov006_TurnToSea(x, y);
             if (STATE->mapTiles->mapCells[TILE_INDEX(x, y)] != CELL_SEA) {
                 Ov006_StoreMapCell(x, y, CELL_SEA);
                 Ov006_SetTerrain(x, y, TERRAIN_SEA);

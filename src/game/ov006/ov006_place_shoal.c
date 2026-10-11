@@ -3,7 +3,7 @@
 #include "game/terrain.h"
 
 int func_ov006_02363d80(int x, int y);
-void func_ov006_0235ddac(int x, int y);
+void Ov006_TurnToSea(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_GetShoalGraphic(int x, int y);
 void Ov006_StoreMapCell(int x, int y, int value);
@@ -26,7 +26,7 @@ int Ov006_PlaceShoal(int x, int y)
     if (func_ov006_02363d80(x, y) < 0) {
         return 0;
     }
-    func_ov006_0235ddac(x, y);
+    Ov006_TurnToSea(x, y);
     oldTile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
     Ov006_SetTerrain(x, y, TERRAIN_SHOAL);
     result = Ov006_GetShoalGraphic(x, y);
