@@ -89,6 +89,10 @@ src/game/itcm/screen/screen_h_blank_bottom_panel.c:
     complete
     .text       start:0x01ff8f6c end:0x01ff9230
 
+src/game/itcm/screen/screen_h_blank_top_panel.c:
+    complete
+    .text       start:0x01ff9230 end:0x01ff94e4
+
 src/game/itcm/func_01ff94e4.c:
     complete
     .text       start:0x01ff94e4 end:0x01ff94fc

@@ -4,8 +4,8 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-/* Main engine register values that the H-blank handler (func_01ff9230)
- * writes during the frame. */
+/* Main engine register values that the H-blank handlers
+ * (Screen_HBlankTopPanel, Screen_HBlankBottomPanel) write during the frame. */
 extern u32 data_027c0270;  /* DISPCNT BG/OBJ layer bits */
 extern u32 data_027c026c;  /* DISPCNT window bits */
 extern u32 data_027c0264;  /* BG1OFS */
