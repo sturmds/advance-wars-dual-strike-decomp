@@ -9,7 +9,7 @@ int func_02079180(void);
 BOOL func_02079368(void);
 BOOL func_0207930c(void);
 void func_02079c64(int arg);
-int func_02079bb0(void);
+int Wireless_PrepareScan(void);
 void func_02079ee0(void);
 BOOL Wireless_StartRequest(void);
 
@@ -31,7 +31,7 @@ void func_020791f8(WMCallback *cb)
             if (func_0207930c() != TRUE) {
                 return;
             }
-            if (!func_02079bb0()) {
+            if (!Wireless_PrepareScan()) {
                 func_02079ee0();
                 return;
             }

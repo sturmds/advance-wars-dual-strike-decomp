@@ -68,6 +68,14 @@ typedef struct WMStartScanCallback {
     u16 linkLevel;
 } WMStartScanCallback;
 
+/* What the scan request reads. */
+typedef struct WMScanParam {
+    WMBssDesc *scanBuf;                /* where a found parent is written */
+    u16 channel;
+    u16 maxChannelTime;                /* milliseconds spent on the channel */
+    u8 bssid[6];                       /* all 0xff scans for any parent */
+} WMScanParam;
+
 typedef struct WMStartParentCallback {
     u16 apiid;
     u16 errcode;
