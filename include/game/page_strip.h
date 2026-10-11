@@ -21,7 +21,7 @@ typedef struct PageStrip {
 
 extern PageStrip *data_0229c744;
 
-/* Task that draws a page strip each frame (PageStripTask_Draw). func_020482c8
+/* Task that draws a page strip each frame (PageStripTask_Draw). PageStripTask_Create
  * makes it and copies these fields from the task that created it. The first
  * 0x58 bytes belong to the task system (Task_Create). */
 typedef struct PageStripTask {

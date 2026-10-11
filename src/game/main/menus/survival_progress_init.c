@@ -57,7 +57,7 @@ extern char data_0215af70[]; /* "/ohashi/res_survival_lang" */
  * when that passes the mode's map count (Survival_GetMapCount). Top screen: mode
  * title, the strip, the current map's preview and name. Bottom screen: the
  * mode's value from data_022a7b80.unk_08, as in Mode_PrintVariantValue.
- * The fields set here sit where func_020482c8 copies PageStripTask fields
+ * The fields set here sit where PageStripTask_Create copies PageStripTask fields
  * from its creator (its pointer sits next to this one in data_0215af10),
  * so the task uses that struct. */
 void SurvivalProgress_Init(PageStripTask *task)
