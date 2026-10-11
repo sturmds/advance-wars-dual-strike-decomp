@@ -16182,6 +16182,10 @@ src/game/main/map/screen_config_run_frame_hook.c:
     complete
     .text       start:0x020f76dc end:0x020f7728
 
+src/game/main/map/obj_gfx_load_language_tiles.c:
+    complete
+    .text       start:0x020f7728 end:0x020f77bc
+
 src/game/main/func_020f77bc.c:
     complete
     .text       start:0x020f77bc end:0x020f783c
@@ -16323,6 +16327,14 @@ src/game/main/graphics/rgb_to_grey.c:
 src/game/main/graphics/map_gfx_load.c:
     complete
     .text       start:0x020f9118 end:0x020f9178
+
+src/game/main/map/map_gfx_load_tileset_and_weather.c:
+    complete
+    .text       start:0x020f9178 end:0x020f9254
+
+src/game/main/map/map_gfx_get_palette_file.c:
+    complete
+    .text       start:0x020f9254 end:0x020f92b8
 
 src/game/main/func_020f931c.c:
     complete

@@ -7,7 +7,7 @@ void Gfx_LoadPlayerWindowFrame(int player);
 BOOL Map_IsCoSelectPhase(void);
 void Palette_LoadPlayerArmyBgRow(int player);
 void func_020e15d8(int player, BOOL coSelectPhase);
-void func_020f7728(void);
+void ObjGfx_LoadLanguageTiles(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -31,7 +31,7 @@ void Map_ReloadPalettes(void)
     if (STATE_50->unk_58 != NULL) {
         STATE_50->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }
-    func_020f7728();
+    ObjGfx_LoadLanguageTiles();
     Gfx_LoadPlayerWindowFrame(GAME->currentPlayer);
     func_020e15d8(GAME->currentPlayer, Map_IsCoSelectPhase());
     Palette_LoadPlayerArmyBgRow(GAME->currentPlayer);

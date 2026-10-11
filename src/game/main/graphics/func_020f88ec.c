@@ -6,7 +6,7 @@ void func_020d2ed0(int a0);
 void UnitShowTask_ClearSlots(void);
 void func_01ff9ac4(void);
 void func_020d2190(void);
-void func_020f7728(void);
+void ObjGfx_LoadLanguageTiles(void);
 BOOL Map_IsCoSelectPhase(void);
 void func_020e15d8(int player, BOOL coSelectPhase);
 
@@ -27,6 +27,6 @@ void func_020f88ec(void)
     if (STATE_50->unk_58 != NULL) {
         STATE_50->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }
-    func_020f7728();
+    ObjGfx_LoadLanguageTiles();
     func_020e15d8(GAME->currentPlayer, Map_IsCoSelectPhase());
 }

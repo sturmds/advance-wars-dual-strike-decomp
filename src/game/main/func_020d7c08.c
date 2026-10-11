@@ -15,7 +15,7 @@ void MainLoop_TaskFrame(void);
 void Gfx_InitBothScreens(void);
 void func_020044a8(void);
 void Wallpaper_LoadBoth(void);
-void func_020f7728(void);
+void ObjGfx_LoadLanguageTiles(void);
 void Font_LoadDigits(int baseTile);
 void Gfx_LoadPlayerWindowFrame(int player);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -55,7 +55,7 @@ void func_020d7c08(void)
     Gfx_InitBothScreens();
     func_020044a8();
     Wallpaper_LoadBoth();
-    func_020f7728();
+    ObjGfx_LoadLanguageTiles();
     Font_LoadDigits(0);
     Gfx_LoadPlayerWindowFrame(0);
     Palette_Load(data_02139710, 32, 32);

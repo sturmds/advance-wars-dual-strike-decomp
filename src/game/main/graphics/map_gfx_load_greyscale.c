@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_022a7c5c.h"
 
-const char *func_020f9254(int variant, int style);  /* guess: path of the map palette file */
+const char *MapGfx_GetPaletteFile(int variant, int style);  /* guess: path of the map palette file */
 void func_020f8d40(int variant, int style);         /* guess: loads the map graphics */
 u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16 *File_Load(const char *path);
@@ -18,7 +18,7 @@ void WeatherFx_InitClouds(void);
 void MapGfx_LoadGreyscale(int variant, int style)
 {
     Unk_022a7c5c *gfx = data_022a7c5c;
-    const char *path = func_020f9254(variant, style);
+    const char *path = MapGfx_GetPaletteFile(variant, style);
     u16 *palette;
     int i;
 
