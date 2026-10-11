@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-void func_0210e188(void);
+void OS_Init(void);
 void func_0210e25c(int a, int b);
 void func_0210e270(int a, int b);
 void func_0210e67c(int a);
@@ -22,7 +22,7 @@ void Boot_InitHardware(void)
 {
     u16 oldIme;
 
-    func_0210e188();
+    OS_Init();
     func_0210e25c(2, 0x2400000);
     func_0210e270(2, 0x2700000);
     func_0210e67c(0x200002d);
