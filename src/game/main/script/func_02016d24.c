@@ -4,11 +4,11 @@
 
 extern Unk_02080440 *data_027c027c;
 
-void func_02017524(u32 arg);
+void ScriptSlot_StopSlot(u32 arg);
 
 BOOL func_02016d24(int slot)
 {
-    func_02017524(data_027c027c->scriptSlots[slot].pc->arg);
+    ScriptSlot_StopSlot(data_027c027c->scriptSlots[slot].pc->arg);
     data_027c027c->scriptSlots[slot].pc++;
     return TRUE;
 }

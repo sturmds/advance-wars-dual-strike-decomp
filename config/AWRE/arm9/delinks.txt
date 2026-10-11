@@ -1416,6 +1416,10 @@ src/game/main/func_02017520.c:
     complete
     .text       start:0x02017520 end:0x02017524
 
+src/game/main/script/script_slot_stop_slot.c:
+    complete
+    .text       start:0x02017524 end:0x02017580
+
 src/game/main/script/script_slot_stop_by_script.c:
     complete
     .text       start:0x02017580 end:0x020175e0
