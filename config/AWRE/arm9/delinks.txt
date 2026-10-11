@@ -5803,6 +5803,10 @@ src/game/main/func_0207eec8.c:
     complete
     .text       start:0x0207eec8 end:0x0207eed4
 
+src/game/main/link/link_draw_entry_markers.c:
+    complete
+    .text       start:0x0207ef54 end:0x0207f2e0
+
 src/game/main/func_0207f544.c:
     complete
     .text       start:0x0207f544 end:0x0207f550
