@@ -29,7 +29,7 @@ int SurvivalSelect_GetList(void);
 int SurvivalModeMenu_GetRowMode(int row);
 int SurvivalRecord_GetRankIcon(int mode);
 int SurvivalRecord_GetCo(int mode, int a1);
-int func_02047944(int mode);
+int SurvivalRecord_Exists(int mode);
 int func_02047960(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -80,7 +80,7 @@ void SurvivalModeMenu_Init(void)
     Palette_Load(res + 0xe58, 0x280, 32);
     for (row = 0; row < 2; row++) {
         mode = SurvivalModeMenu_GetRowMode(row);
-        if (func_02047944(mode) != 0) {
+        if (SurvivalRecord_Exists(mode) != 0) {
             Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 0), data_027c0280->objVram + ((row * 24) << 5), row * 2 + 16);
             if (SurvivalRecord_GetCo(mode, 1) != 0) {
                 picture = row * 2 + 1;

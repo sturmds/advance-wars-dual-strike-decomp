@@ -34,7 +34,7 @@ void SurvivalSelect_DrawModeRecord(void);
 int SurvivalSelect_GetList(void);
 int SurvivalRecord_GetRankIcon(int mode);
 int SurvivalRecord_GetCo(int mode, int a1);
-int func_02047944(int mode);
+int SurvivalRecord_Exists(int mode);
 int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
@@ -47,7 +47,7 @@ extern char data_0215ae74[]; /* "/ohashi/res_survival_lang" */
 /* Sets up both screens of the Survival map select from the res_survival
  * files. Top: page strip graphics, one palette (two when the list has 2 or
  * more pages, picked by the page count), the selected map's preview.
- * Bottom: a panel that, when func_02047944 is 1 for the mode (probably a
+ * Bottom: a panel that, when SurvivalRecord_Exists is 1 for the mode (probably a
  * saved record), shows two COs from SurvivalRecord_GetCo and an icon picked by
  * SurvivalRecord_GetRankIcon. Also copies the strip's cycling colours into
  * data_0229c744 and resets the menu cursor and buttons. */
@@ -100,7 +100,7 @@ void SurvivalSelect_Init(void)
     SurvivalSelect_DrawModeRecord();
     Data_Unpack(res, data_027c0280->objVram + 0x300);
     Palette_Load(res + 0xe58, 0x280, 32);
-    if (func_02047944(mode) == 1) {
+    if (SurvivalRecord_Exists(mode) == 1) {
         Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 0), data_027c0280->objVram, 18);
         if (SurvivalRecord_GetCo(mode, 1) != 0) {
             Co_LoadSmallPicture(SurvivalRecord_GetCo(mode, 1), data_027c0280->objVram + 0x180, 19);

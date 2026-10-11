@@ -7,7 +7,7 @@ extern Unk_027c0280 *data_027c0280;
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg);
 void Layer0_PutNumber(int x, int y, u32 value);
 void func_02026ddc(int x, int y, u32 value);
-int func_02047944(int mode);
+int SurvivalRecord_Exists(int mode);
 int func_020eaa8c(int mode);
 
 /* Survival mode variant 5: on layer 0 from column x, prints the labels, the
@@ -19,7 +19,7 @@ void SurvivalSelect_DrawMode5Record(int x, int y)
     Text_PrintImmediate(x + 11, y, data_027c0280->layer0Map, 0x79000008, 0, 0);
     Text_PrintImmediate(x + 11, y + 2, data_027c0280->layer0Map, 0x7900000e, 0, 0);
     Layer0_PutNumber(x + 23, y, func_020eaa8c(5));
-    if (func_02047944(5) == 1) {
+    if (SurvivalRecord_Exists(5) == 1) {
         func_02026ddc(x + 23, y + 2, gPlayRecords.survivalRecords[5].value);
     } else {
         Text_PrintImmediate(x + 22, y + 2, data_027c0280->layer0Map, 0xc00000af, 0, 0);

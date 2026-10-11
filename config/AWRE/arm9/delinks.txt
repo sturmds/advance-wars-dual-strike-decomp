@@ -5347,6 +5347,10 @@ src/game/main/menus/survival_record_get_co.c:
     complete
     .text       start:0x02047924 end:0x02047944
 
+src/game/main/menus/survival_record_exists.c:
+    complete
+    .text       start:0x02047944 end:0x02047960
+
 src/game/main/menus/survival_select_draw_mode4_record.c:
     complete
     .text       start:0x02047a04 end:0x02047b54

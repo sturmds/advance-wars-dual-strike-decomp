@@ -15,7 +15,7 @@ void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 void SurvivalSelect_DrawPageCount(int pages);
 int SurvivalSelect_GetList(void);
 int SurvivalRecord_GetCo(int mode, int a1);
-int func_02047944(int mode);
+int SurvivalRecord_Exists(int mode);
 int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
@@ -33,7 +33,7 @@ extern u8 data_027c01c0;
  * link piece between tabs; when the list has 2 or more pages (unk_03), the
  * entries before unk_02 use palette 9. Then two cycling palette colours and
  * one marker per player for the selected map's player count. Bottom screen:
- * a list label and, when func_02047944 reports it, two more icons. */
+ * a list label and, when SurvivalRecord_Exists reports it, two more icons. */
 void SurvivalSelect_Draw(void)
 {
     int mode = data_022a7b80.unk_07;
@@ -106,7 +106,7 @@ void SurvivalSelect_Draw(void)
     } else {
         Sprite_QueueAt(0, 64, 86, &data_027c01c0, 0x4038, 0);
     }
-    if (func_02047944(mode) == 1) {
+    if (SurvivalRecord_Exists(mode) == 1) {
         Co_QueueSmallPictureSprite(48, 136, 0x2000, 0);
         if (SurvivalRecord_GetCo(mode, 1) != 0) {
             Co_QueueSmallPictureSprite(80, 136, 0x300c, 1);
