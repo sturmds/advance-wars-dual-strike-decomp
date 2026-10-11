@@ -22343,6 +22343,7 @@ src/sdk/isd/isd_printf.c:
     .text       start:0x02120d30 end:0x02120d9c
 
 src/sdk/isd/isd_report_failure.c:
+    complete
     .text       start:0x02120d9c end:0x02120df4
 
 src/sdk/isd/isd_bus_restore.c:
