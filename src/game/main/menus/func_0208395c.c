@@ -10,7 +10,7 @@ void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk
 void func_02001f50(int x, int y, int attr, int tile, int list);
 void func_02002a64(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
-void func_020871c8(int a0, int a1, int a2, int a3);
+void LinkMenu_DrawSetting(int a0, int a1, int a2, int a3);
 
 typedef struct UnitCountTable {
     u8 counts[4][4];
@@ -38,7 +38,7 @@ extern u8 data_027c0040;
  * data_02160afc for the row's kind (buttonId - 22), a sprite picked by kind
  * and the CO's nation (1 or other), four unit icons, then one icon per cell
  * of the row, four to a line. Sub screen: a sprite for each row with unk_07
- * set, and five func_020871c8 entries.
+ * set, and five LinkMenu_DrawSetting entries.
  * Not matched (75%): the original keeps the first loop's counter and the
  * cell loop's icon index in registers and spills constants instead. */
 void func_0208395c(void)
@@ -154,7 +154,7 @@ void func_0208395c(void)
         }
     }
     for (i = 0; i < 5; i++) {
-        func_020871c8(16, 16 + i * 32, i, 0);
+        LinkMenu_DrawSetting(16, 16 + i * 32, i, 0);
     }
     Screen_SetCurrent(subSaved027c);
     Screen_SetCurrentGfx(subSaved0280);

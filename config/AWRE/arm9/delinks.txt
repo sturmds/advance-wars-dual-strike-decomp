@@ -6911,6 +6911,10 @@ src/game/main/link/link_menu_draw_help_text.c:
     complete
     .text       start:0x02087064 end:0x020871c8
 
+src/game/main/link/link_menu_draw_setting.c:
+    complete
+    .text       start:0x020871c8 end:0x020876e4
+
 src/game/main/func_020876e4.c:
     complete
     .text       start:0x020876e4 end:0x020876f0
