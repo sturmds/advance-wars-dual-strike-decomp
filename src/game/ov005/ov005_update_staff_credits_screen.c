@@ -13,7 +13,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void func_020fd560(void);
-void func_020037f4(const void *src, volatile void *dest, int unk2, int unk3, void (*callback)(void));
+void DmaTask_Start(const void *src, volatile void *dest, int unk2, int unk3, void (*callback)(void));
 void DmaTasks_Destroy(void);
 void Sound_StopStream(int fadeFrames);
 void Task_ResumeScript(Ov005Task *task);
@@ -124,7 +124,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
             data_027c0280->blendBottomBg[data_027c0280->layer2Bg] = 1;
             data_027c0280->blendBottomBg[data_027c0280->layer3Bg] = 1;
             data_027c0280->blendBottomObj = 0;
-            func_020037f4(data_ov005_0236970c, REG_DB_BLDALPHA, 0, 0, func_ov005_0235bab4);
+            DmaTask_Start(data_ov005_0236970c, REG_DB_BLDALPHA, 0, 0, func_ov005_0235bab4);
             Screen_SetCurrent(savedScreen);
             Screen_SetCurrentGfx(savedGfx);
             task->step = 20;
