@@ -5841,8 +5841,8 @@ func_02120ff0 kind:function(arm,size=0x70) addr:0x02120ff0
 func_02121060 kind:function(arm,size=0x78) addr:0x02121060
 func_021210d8 kind:function(arm,size=0x34c) addr:0x021210d8
 func_02121424 kind:function(arm,size=0x4e4) addr:0x02121424
-func_02121908 kind:function(arm,size=0x38) addr:0x02121908
-func_02121940 kind:function(arm,size=0x70) addr:0x02121940
+Isd_CloseDebugRegion kind:function(arm,size=0x38) addr:0x02121908
+Isd_OpenDebugRegion kind:function(arm,size=0x70) addr:0x02121940
 func_021219b0 kind:function(arm,size=0x7c) addr:0x021219b0
 func_02121a2c kind:function(arm,size=0x8c) addr:0x02121a2c
 Isd_DisableFiq kind:function(arm,size=0x10) addr:0x02121ab8
@@ -9093,7 +9093,7 @@ gCtrdgInitialized kind:bss addr:0x022acf1c
 gCtrdgPulledOutHook kind:bss addr:0x022acf20
 data_022acf40 kind:bss addr:0x022acf40
 data_022acf44 kind:bss addr:0x022acf44
-data_022ad000 kind:bss addr:0x022ad000
+Isd_gDebugRegion7Setting kind:bss addr:0x022ad000
 data_022ad004 kind:bss addr:0x022ad004
 data_022ad008 kind:bss addr:0x022ad008
 data_022ad00c kind:bss addr:0x022ad00c

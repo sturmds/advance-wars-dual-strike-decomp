@@ -104,4 +104,32 @@ static inline void Isd_WriteByte(u8 *bytes, u32 index, int value)
     *(u16 *)(bytes + offset) = half;
 }
 
+/* Interrupt masks and CP15 protection unit access (hand-written assembly in isd_irq.c, isd_fiq.c, isd_cp15.c). */
+BOOL Isd_DisableIrq(void);
+BOOL Isd_RestoreIrq(BOOL enable);
+BOOL Isd_DisableFiq(void);
+BOOL Isd_RestoreFiq(BOOL enable);
+u32 Isd_GetProtectionRegion7(void);
+void Isd_SetProtectionRegion7(u32 value);
+u32 Isd_GetDataPermissions(void);
+void Isd_SetDataPermissions(u32 value);
+u32 Isd_GetInstructionPermissions(void);
+void Isd_SetInstructionPermissions(u32 value);
+
+/* Access permission bits for protection region 7 in the CP15 permission registers; 3 is read and write. */
+#define ISD_REGION7_ACCESS_MASK 0xc000
+#define ISD_REGION7_ACCESS_READ_WRITE 0xc000
+
+/* What Isd_OpenDebugRegion saves and Isd_CloseDebugRegion puts back. */
+typedef struct IsdRegionState {
+    BOOL irq;
+    BOOL fiq;
+    u32 region7;
+    u32 instructionPermissions;
+    u32 dataPermissions;
+} IsdRegionState;
+
+void Isd_OpenDebugRegion(IsdRegionState *saved);
+void Isd_CloseDebugRegion(IsdRegionState *saved);
+
 #endif

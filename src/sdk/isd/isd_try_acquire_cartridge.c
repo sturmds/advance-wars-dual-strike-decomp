@@ -7,10 +7,6 @@
 
 int OS_LockCartridge(int lockId);
 u16 func_0210cf88(void *lock);
-BOOL Isd_DisableFiq(void);
-BOOL Isd_DisableIrq(void);
-void Isd_RestoreFiq(BOOL state);
-void Isd_RestoreIrq(BOOL state);
 
 /*
  * Tries to take the cartridge lock (id 0x70) and, if the bus is ours, stores in *saved

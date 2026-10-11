@@ -3,8 +3,6 @@
 #include "sdk/isd.h"
 
 void func_0210cee4(int lockID);
-void Isd_RestoreFiq(BOOL state);
-void Isd_RestoreIrq(BOOL state);
 
 /* Undoes Isd_TryAcquireCartridge: frees the cartridge lock if we took it, then restores the two saved states. */
 void Isd_ReleaseCartridge(u32 saved)
