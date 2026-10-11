@@ -6052,6 +6052,10 @@ src/game/main/day_banner_restore_screen.c:
     complete
     .text       start:0x020526f8 end:0x02052768
 
+src/game/main/day_banner_cancel.c:
+    complete
+    .text       start:0x02052768 end:0x02052798
+
 src/game/main/day_banner_close_update.c:
     complete
     .text       start:0x02052798 end:0x02052bcc
