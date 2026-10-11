@@ -2054,6 +2054,10 @@ src/game/main/menus/popup_menu_refresh.c:
     complete
     .text       start:0x0201ebd8 end:0x0201ecac
 
+src/game/main/func_0201ecac.c:
+    complete
+    .text       start:0x0201ecac end:0x0201ece4
+
 src/game/main/func_0201ece4.c:
     complete
     .text       start:0x0201ece4 end:0x0201ecf0
