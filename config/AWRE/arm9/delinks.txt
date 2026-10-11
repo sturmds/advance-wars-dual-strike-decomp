@@ -4564,6 +4564,10 @@ src/game/main/func_0205102c.c:
     complete
     .text       start:0x0205102c end:0x02051044
 
+src/game/main/screen/screens_setup_layer0_alpha_blend.c:
+    complete
+    .text       start:0x02051044 end:0x020513f4
+
 src/game/main/func_020517cc.c:
     complete
     .text       start:0x020517cc end:0x020517d8
