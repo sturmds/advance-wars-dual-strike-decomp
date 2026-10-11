@@ -6813,6 +6813,13 @@ src/game/main/menus/player_info_add_page_buttons.c:
     complete
     .text       start:0x0206d118 end:0x0206d1c8
 
+src/game/main/menus/player_info_toggle_last_page_view.c:
+    .text       start:0x0206d1c8 end:0x0206d220
+
+src/game/main/menus/player_info_next_page.c:
+    complete
+    .text       start:0x0206d220 end:0x0206d2d4
+
 src/game/main/func_0206d378.c:
     complete
     .text       start:0x0206d378 end:0x0206d384
