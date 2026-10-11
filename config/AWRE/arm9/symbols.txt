@@ -5569,7 +5569,7 @@ FS_LoadOverlay kind:function(arm,size=0x5c) addr:0x02112fa4
 func_02113000 kind:function(arm,size=0x1c) addr:0x02113000
 func_0211301c kind:function(arm,size=0x120) addr:0x0211301c
 func_0211313c kind:function(arm,size=0x120) addr:0x0211313c
-func_0211325c kind:function(arm,size=0xa4) addr:0x0211325c
+Overlay_CheckKeyedHash kind:function(arm,size=0xa4) addr:0x0211325c
 func_02113300 kind:function(arm,size=0xa0) addr:0x02113300
 func_021133a0 kind:function(arm,size=0x114) addr:0x021133a0
 func_021134b4 kind:function(arm,size=0x110) addr:0x021134b4
@@ -8410,8 +8410,8 @@ gOsIrqBitBySlot kind:data(any) addr:0x0216d95c
 data_0216d96c kind:data(any) addr:0x0216d96c
 data_0216d970 kind:data(any) addr:0x0216d970
 data_0216d974 kind:data(any) addr:0x0216d974
-data_0216d978 kind:data(any) addr:0x0216d978
-data_0216d97c kind:data(any) addr:0x0216d97c
+gOverlayDigestKey kind:data(any) addr:0x0216d978
+gOverlayDigestKeySize kind:data(any) addr:0x0216d97c
 data_0216d980 kind:data(any) addr:0x0216d980
 data_0216d990 kind:data(any) addr:0x0216d990
 data_0216d994 kind:data(any) addr:0x0216d994
