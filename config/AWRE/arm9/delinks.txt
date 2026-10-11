@@ -9189,6 +9189,10 @@ src/game/main/map/vision_add_area.c:
     complete
     .text       start:0x020c5674 end:0x020c57bc
 
+src/game/main/map/range_map_mark_adjacent_repair_targets.c:
+    complete
+    .text       start:0x020c5abc end:0x020c5be4
+
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c
