@@ -5066,6 +5066,10 @@ src/game/main/copowers/super_break_blend_update.c:
     complete
     .text       start:0x02053cc8 end:0x02053f08
 
+src/game/main/copowers/super_break_letters_pop_in_update.c:
+    complete
+    .text       start:0x02053fd0 end:0x0205425c
+
 src/game/main/copowers/super_break_set_up_screen.c:
     complete
     .text       start:0x0205443c end:0x02054ab0
