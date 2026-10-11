@@ -20733,6 +20733,10 @@ src/sdk/func_0210a814.c:
     complete
     .text       start:0x0210a814 end:0x0210a828
 
+src/sdk/gx/vram_switch_off_and_unlock.c:
+    complete
+    .text       start:0x0210a828 end:0x0210a90c
+
 src/game/main/func_0210a90c.c:
     complete
     .text       start:0x0210a90c end:0x0210a934

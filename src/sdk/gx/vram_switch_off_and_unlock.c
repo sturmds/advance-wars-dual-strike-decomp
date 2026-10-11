@@ -1,0 +1,42 @@
+#include "types.h"
+#include "sdk/gx.h"
+
+extern u16 data_022a9870;
+void func_0210edc0(u16 banks, u16 lockId);
+
+/* Clears the VRAMCNT of every bank whose bit (A = bit 0 ... I = bit 8) is set in *banks. Returns the old mask. */
+u32 Vram_SwitchOffAndUnlock(u16 *banks)
+{
+    u32 mask = *banks;
+
+    *banks = 0;
+    if (mask & 0x001) {
+        *REG_VRAMCNT_A = 0;
+    }
+    if (mask & 0x002) {
+        *REG_VRAMCNT_B = 0;
+    }
+    if (mask & 0x004) {
+        *REG_VRAMCNT_C = 0;
+    }
+    if (mask & 0x008) {
+        *REG_VRAMCNT_D = 0;
+    }
+    if (mask & 0x010) {
+        *REG_VRAMCNT_E = 0;
+    }
+    if (mask & 0x020) {
+        *REG_VRAMCNT_F = 0;
+    }
+    if (mask & 0x040) {
+        *REG_VRAMCNT_G = 0;
+    }
+    if (mask & 0x080) {
+        *REG_VRAMCNT_H = 0;
+    }
+    if (mask & 0x100) {
+        *REG_VRAMCNT_I = 0;
+    }
+    func_0210edc0(mask, data_022a9870);
+    return mask;
+}
