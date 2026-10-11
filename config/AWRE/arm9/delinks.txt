@@ -4508,6 +4508,10 @@ src/game/main/func_02049f68.c:
     complete
     .text       start:0x02049f68 end:0x0204a00c
 
+src/game/main/rank_sprite_queue_hundred_pop_in.c:
+    complete
+    .text       start:0x0204a00c end:0x0204a184
+
 src/game/main/menus/survival_draw_run_summary.c:
     complete
     .text       start:0x0204ad84 end:0x0204b3cc
