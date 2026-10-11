@@ -17,7 +17,7 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void Task_ResumeScript(Task *task);
 void Task_JumpToLabel(Task *task, int label);
 void func_020f5888(int x, int y);
-void func_020c4124(int a, int b);
+void MapCursor_DrawTwoStyles(int a, int b);
 
 /* Bits func_020ef190 (buttons) and MapTouch_ReadCursorTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
@@ -39,7 +39,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
     if (EventScript_IsRunning()) {
         return;
     }
-    func_020c4124(2, 19);
+    MapCursor_DrawTwoStyles(2, 19);
     if (!MapView_IsAtRest()) {
         return;
     }

@@ -21,7 +21,7 @@ void func_020f5888(int x, int y);
 void func_020c4024(void);
 void func_020c407c(void);
 void MapView_ScrollStep(int a);
-void func_020c4124(int a, int b);
+void MapCursor_DrawTwoStyles(int a, int b);
 
 /* Bits func_020ef1bc (buttons) and MapTouch_ReadTileTapOrBack (touch) return. */
 #define INPUT_CONFIRM 0x10
@@ -68,5 +68,5 @@ void SiloLaunch_PickTargetStep(Task *task)
     func_020c4024();
     func_020c407c();
     MapView_ScrollStep(4);
-    func_020c4124(2, 18);
+    MapCursor_DrawTwoStyles(2, 18);
 }
