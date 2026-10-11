@@ -7,7 +7,7 @@ extern DlPlayAdvertFrame data_022ace60;
 
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
 void MIi_CpuCopy16(const void *src, void *dst, u32 size);
-u16 func_0211b410(void *data, u32 size);
+u16 MbBeacon_Checksum(void *data, u32 size);
 int WM_SetGameInfo(void (*callback)(void *event), void *userGameInfo, u16 length, u32 ggid,
                   u16 tgid, u8 attribute);
 
@@ -37,7 +37,7 @@ void MbBeacon_SendPiece(u32 ggid, u16 tgid, u32 attribute)
     data_022ace60.unk_4b5 = data_022ace4c.currentGame->unk_4b5;
     data_022ace60.sequence = data_022ace4c.sequence++;
     data_022ace60.checksum = 0;
-    data_022ace60.checksum = func_0211b410(&data_022ace60.checksum, DLPLAY_ADVERT_SUMMED_BYTES);
+    data_022ace60.checksum = MbBeacon_Checksum(&data_022ace60.checksum, DLPLAY_ADVERT_SUMMED_BYTES);
 
     data_022ace4c.pieceIndex++;
     if (data_022ace4c.pieceIndex < data_022ace4c.pieceCount) {
