@@ -61,3 +61,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0031](0031-agent-results-file-not-written.md) | Agents sometimes end without writing their results file | open | loop | M1 |
 | [0032](0032-subagent-cap-counts-finished-agents.md) | The 20-subagent launch limit counts an agent that has already finished its work | open | loop | M1 |
 | [0033](0033-collect-crash-empty-result.md) | `loop_state.py collect` crashed on a RESULT line with no value | closed | loop | M1 |
+| [0034](0034-planner-overlaps-open-groups.md) | The planner puts functions of open groups into the next batch | open | loop | M1 |
+| [0035](0035-family-groups-skip-propagate.md) | Family groups do not run `propagate.py` on their twins | open | loop | M1 |
