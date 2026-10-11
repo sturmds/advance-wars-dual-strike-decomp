@@ -69,6 +69,14 @@ typedef struct MapScrollSlot {
     u8 pad_2e[0x60 - 0x2e];
 } MapScrollSlot;
 
+/* The same slot as the screen wipe callbacks (ScreenWipe_*) use it. */
+typedef struct WipeSlot {
+    u8 pad_00[0x08];
+    void (*callback)(struct WipeSlot *slot); /* cleared when the wipe ends */
+    u8 pad_0c[0x1e - 0x0c];
+    s16 frame;                         /* wipe step, 0 to WIPE_LAST_FRAME */
+} WipeSlot;
+
 /* Argument block of the arc move command (ScriptSlot_CmdMoveArc),
  * reached through ScriptCommand.arg. */
 typedef struct ArcMoveArgs {

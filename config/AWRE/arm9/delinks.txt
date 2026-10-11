@@ -10181,6 +10181,14 @@ src/game/main/func_020cab68.c:
     complete
     .text       start:0x020cab68 end:0x020cab80
 
+src/game/main/graphics/screen_wipe_phase_down_step.c:
+    complete
+    .text       start:0x020cab80 end:0x020cac10
+
+src/game/main/graphics/screen_wipe_phase_up_step.c:
+    complete
+    .text       start:0x020cac10 end:0x020cac94
+
 src/game/main/func_020cb0cc.c:
     complete
     .text       start:0x020cb0cc end:0x020cb0f4
