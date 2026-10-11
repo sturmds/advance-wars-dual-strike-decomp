@@ -5,13 +5,13 @@
 
 BOOL Unit_FindOtherMapTile(MapUnit *unit, TilePoint *pos);
 void OS_Terminate(void);
-void func_020c7e20(MapUnit *unit, int x, int y);
+void Unit_TransferToOtherMap(MapUnit *unit, int x, int y);
 void func_020c8888(void);
 void Map_RebuildUnitTiles(void);
 BOOL func_020f4638(int mode);
 
 /* Moves a unit to the other map of a dual-front battle: finds its tile
- * there (stops the game if there is none), has func_020c7e20 put the unit
+ * there (stops the game if there is none), has Unit_TransferToOtherMap put the unit
  * there, then rebuilds the unit tiles on both screens' maps. */
 void Unit_MoveToOtherMap(MapUnit *unit)
 {
@@ -24,7 +24,7 @@ void Unit_MoveToOtherMap(MapUnit *unit)
     if (!Unit_FindOtherMapTile(unit, &pos)) {
         OS_Terminate();
     }
-    func_020c7e20(unit, pos.x, pos.y);
+    Unit_TransferToOtherMap(unit, pos.x, pos.y);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
