@@ -12265,6 +12265,10 @@ src/game/main/map/map_object_hit_task_start.c:
     complete
     .text       start:0x020ece7c end:0x020ecedc
 
+src/game/main/silo/silo_missile_fall_start.c:
+    complete
+    .text       start:0x020ecedc end:0x020ecf30
+
 src/game/main/silo/silo_missile_gfx_load.c:
     complete
     .text       start:0x020ed448 end:0x020ed4b0
