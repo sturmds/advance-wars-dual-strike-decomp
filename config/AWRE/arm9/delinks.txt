@@ -21021,9 +21021,53 @@ src/sdk/os/func_0210d21c.c:
     complete
     .text       start:0x0210d21c end:0x0210d30c
 
+src/sdk/os/osi_idle_thread_proc.c:
+    complete
+    .text       start:0x0210d30c end:0x0210d320
+
+src/sdk/os/os_set_switch_thread_callback.c:
+    complete
+    .text       start:0x0210d320 end:0x0210d354
+
 src/game/main/func_0210d354.c:
     complete
     .text       start:0x0210d354 end:0x0210d35c
+
+src/sdk/os/os_set_thread_priority.c:
+    complete
+    .text       start:0x0210d35c end:0x0210d410
+
+src/sdk/os/os_reschedule_thread.c:
+    complete
+    .text       start:0x0210d410 end:0x0210d4f0
+
+src/sdk/os/thread_first_runnable.c:
+    complete
+    .text       start:0x0210d4f0 end:0x0210d51c
+
+src/sdk/os/os_wakeup_thread_direct.c:
+    complete
+    .text       start:0x0210d51c end:0x0210d550
+
+src/sdk/os/os_wakeup_thread.c:
+    complete
+    .text       start:0x0210d550 end:0x0210d5c4
+
+src/sdk/os/os_sleep_thread.c:
+    complete
+    .text       start:0x0210d5c4 end:0x0210d62c
+
+src/sdk/os/os_exit_thread.c:
+    complete
+    .text       start:0x0210d62c end:0x0210d688
+
+src/sdk/os/osi_remove_thread_from_list.c:
+    complete
+    .text       start:0x0210d910 end:0x0210d958
+
+src/sdk/os/func_0210d958.c:
+    complete
+    .text       start:0x0210d958 end:0x0210d9c0
 
 src/sdk/func_0210dc64.c:
     complete

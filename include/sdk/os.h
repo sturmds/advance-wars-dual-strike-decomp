@@ -9,11 +9,42 @@ typedef volatile u32 vu32;
 /* EXMEMCNT: external memory bus control. */
 #define REG_EXMEMCNT (*(vu16 *)0x04000204)
 
+typedef struct OSThread OSThread;
+
 /* Threads waiting on something, as a pair of thread ids. */
 typedef struct OSThreadQueue {
     u16 head;
     u16 tail;
 } OSThreadQueue;
+
+enum {
+    OS_THREAD_STATE_WAITING = 0,
+    OS_THREAD_STATE_READY = 1,
+    OS_THREAD_STATE_TERMINATED = 2
+};
+
+struct OSThread {
+    u8 context[0x64];
+    u32 state;
+    OSThread *next;
+    u32 id;
+    u32 priority;
+    u8 pad_74[0x1c];
+    OSThreadQueue joinQueue;
+};
+
+typedef void (*ThreadSwapHook)(OSThread *from, OSThread *to);
+
+/* Scheduler state. The thread list is sorted by priority, lowest value first. */
+typedef struct OSThreadInfo {
+    u16 isNeedRescheduling;
+    u16 pad_2;
+    u16 inIrq;
+    u16 pad_6;
+    OSThread *current;
+    OSThread *list;
+    ThreadSwapHook switchCallback;
+} OSThreadInfo;
 
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);

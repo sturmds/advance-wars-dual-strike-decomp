@@ -3,7 +3,7 @@
 
 FSFile *func_0211232c(FSArchive *arc);   /* picks the next command to run */
 void func_02112290(FSFile *file);        /* runs commands until one answers "later" */
-void func_0210d550(OSThreadQueue *queue);
+void OS_WakeupThread(OSThreadQueue *queue);
 
 static inline BOOL Archive_AwaitsDriver(FSArchive *arc)
 {
@@ -33,7 +33,7 @@ void Archive_OnCommandFinished(FSArchive *arc, int result)
 
         file->error = result;
         arc->flags &= ~ARCHIVE_STATE_CALLER_BLOCKED;
-        func_0210d550(&arc->queue);
+        OS_WakeupThread(&arc->queue);
         OS_RestoreInterrupts(irqState);
     }
 }

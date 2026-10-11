@@ -1,7 +1,7 @@
 #include "sdk/fs.h"
 #include "sdk/os.h"
 
-void func_0210d5c4(OSThreadQueue *queue);   /* looks like OS_SleepThread */
+void OS_SleepThread(OSThreadQueue *queue);   /* looks like OS_SleepThread */
 
 static inline BOOL Archive_CallerBlocked(FSArchive *arc)
 {
@@ -28,7 +28,7 @@ void FSi_ReadTable(ArchiveTableCursor *cursor, void *dest, u32 length)
 
         /* needed to match: the compare with FALSE keeps the loop test at the bottom */
         while (Archive_CallerBlocked(arc) != FALSE) {
-            func_0210d5c4(&arc->queue);
+            OS_SleepThread(&arc->queue);
         }
         OS_RestoreInterrupts(irqState);
         break;
