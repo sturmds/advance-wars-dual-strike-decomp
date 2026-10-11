@@ -22714,6 +22714,10 @@ src/game/main/func_02122348.c:
     complete
     .text       start:0x02122348 end:0x0212235c
 
+src/sdk/msl/mbtowc.c:
+    complete
+    .text       start:0x0212235c end:0x02122394
+
 src/sdk/msl/round_decimal.c:
     complete
     .text       start:0x0212339c end:0x021234cc
