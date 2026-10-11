@@ -3,7 +3,7 @@
 
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int irqState);
-void func_0210fdc8(u32 channelMask, int arg1, u32 alarmMask, int arg3);
+void SND_StartTimer(u32 channelMask, int arg1, u32 alarmMask, int arg3);
 void SoundStrm_Refill(SoundStrm *strm, int status);
 
 /* Wake-up hook: refills the ring until the first block is next again, then
@@ -20,5 +20,5 @@ void SoundStrm_OnWake(SoundStrm *strm)
         SoundStrm_Refill(strm, STRM_CALLBACK_REFILL);
         OS_RestoreInterrupts(irqState);
     }
-    func_0210fdc8(strm->channelMask, 0, 1 << strm->alarm, 0);
+    SND_StartTimer(strm->channelMask, 0, 1 << strm->alarm, 0);
 }
