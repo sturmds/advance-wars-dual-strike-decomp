@@ -25,6 +25,14 @@ typedef struct TouchState {
     u8 endY;
 } TouchState;
 
+/* One reading of the touch panel, as the ARM7 touch driver stores it. */
+typedef struct TouchSample {
+    u16 x;
+    u16 y;
+    u16 touch;                         /* 1 while the screen is touched */
+    u16 validity;                      /* 0 when the sample can be used */
+} TouchSample;
+
 extern TouchState gTouch;
 
 #endif
