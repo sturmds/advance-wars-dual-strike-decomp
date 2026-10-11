@@ -1,0 +1,127 @@
+#include "types.h"
+#include "game/page_strip.h"
+#include "game/Unk_022a7b80.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+
+void Bg_PutTileBlock(u16 *map, int x, int y, const u8 *block, u16 tileAdd);
+void Co_LoadSmallPicture(int co, void *dest, int palette);
+void Data_Unpack(const void *src, void *dest);
+const char *File_LocalizePath(const char *path);
+u8 *File_Load(const char *path);
+void Font_LoadDigits(int a);
+void Gfx_LoadBmap09f(void *a, int b, int c);
+void Gfx_RequestLayerCopy(int bg);
+void IconBank_LoadPalette(int a, int b);
+void Icon_LoadTo(int a, u8 *objVram, int b);
+void MapPreview_Draw(void *dst, int mapId);
+void Mem_Copy32(const void *src, void *dest, u32 size);
+void Mem_Free(void *res);
+void MenuButtons_DisableTouch(void);
+void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
+void Menu_Reset(void);
+void PaletteCycle_Start(int a);
+void Palette_Load(const void *src, int offset, u32 size);
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentBoth(void *state);
+void Screen_SetCurrentGfx(void *state);
+void func_01ff8c84(int layer);
+void func_0201e6e8(int x, int y, int width, int height);
+void func_020458c0(void);
+void func_02046594(void);
+void func_0204697c(void);
+void func_02046ca0(void);
+int func_0204779c(void);
+int func_020478b0(int mode);
+int func_02047924(int mode, int a1);
+int func_02047944(int mode);
+int func_020eaad8(int mode, int index);
+
+extern Unk_022a7b80 data_022a7b80;
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern char data_0215ae5c[]; /* "/ohashi/res_survival" */
+extern char data_0215ae74[]; /* "/ohashi/res_survival_lang" */
+
+/* Sets up both screens of the Survival map select from the res_survival
+ * files. Top: page strip graphics, one palette (two when the list has 2 or
+ * more pages, picked by the page count), the selected map's preview.
+ * Bottom: a panel that, when func_02047944 is 1 for the mode (probably a
+ * saved record), shows two COs from func_02047924 and an icon picked by
+ * func_020478b0. Also copies the strip's cycling colours into
+ * data_0229c744 and resets the menu cursor and buttons. */
+void SurvivalSelect_Init(void)
+{
+    u8 *res;
+    int mode = data_022a7b80.unk_07;
+    Unk_027c0280 *savedState = data_027c0280;
+    Unk_02080440 *saved027c = data_027c027c;
+
+    Screen_SetCurrentBoth(data_027c0288.unk_00);
+    func_01ff8c84(0);
+    func_01ff8c84(1);
+    Gfx_RequestLayerCopy(0);
+    Gfx_RequestLayerCopy(1);
+    Screen_SetCurrentBoth(data_027c0288.unk_04);
+    func_01ff8c84(0);
+    func_01ff8c84(1);
+    Gfx_RequestLayerCopy(0);
+    Gfx_RequestLayerCopy(1);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(savedState);
+
+    res = File_Load(data_0215ae5c);
+    savedState = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
+    Font_LoadDigits(0);
+    func_0204697c();
+    func_0201e6e8(12, 18, 16, 6);
+    Data_Unpack(res + 0x234, data_027c0280->objVram + 0xc00);
+    Data_Unpack(res + 0x2dc, data_027c0280->objVram + 0x1000);
+    if (data_0229c744->lists[func_0204779c()].unk_03 <= 1) {
+        Palette_Load(res + 0xe58, 0x300, 32);
+    } else {
+        Palette_Load(res + 0xe58 + ((data_0229c744->lists[func_0204779c()].unk_03 - 2) & 7) * 32, 0x300, 32);
+        Palette_Load(res + 0xe58 + ((data_0229c744->lists[func_0204779c()].unk_03 - 1) & 7) * 32, 0x320, 32);
+    }
+    Icon_LoadTo(203, data_027c0280->objVram, 112);
+    IconBank_LoadPalette(4, 26);
+    func_02046594();
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, func_020eaad8(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
+    Screen_SetCurrentGfx(savedState);
+
+    savedState = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
+    Font_LoadDigits(0);
+    Bg_PutTileBlock(data_027c0280->layer1Map, 2, 10, res + 0xf98, 0);
+    func_02046ca0();
+    Data_Unpack(res, data_027c0280->objVram + 0x300);
+    Palette_Load(res + 0xe58, 0x280, 32);
+    if (func_02047944(mode) == 1) {
+        Co_LoadSmallPicture(func_02047924(mode, 0), data_027c0280->objVram, 18);
+        if (func_02047924(mode, 1) != 0) {
+            Co_LoadSmallPicture(func_02047924(mode, 1), data_027c0280->objVram + 0x180, 19);
+        }
+        Icon_LoadTo(func_020478b0(mode) + 85, data_027c0280->objVram, 88);
+    }
+    IconBank_LoadPalette(1, 21);
+    Screen_SetCurrentGfx(savedState);
+    Mem_Copy32(res + 0xf78, data_0229c744->colours, 32);
+    Mem_Free(res);
+
+    res = File_Load(File_LocalizePath(data_0215ae74));
+    savedState = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    Data_Unpack(res, data_027c0280->objVram + 0x3840);
+    Screen_SetCurrentGfx(savedState);
+    Mem_Free(res);
+
+    PaletteCycle_Start(27);
+    Menu_Reset();
+    MenuCursor_SetRect(0, -16, 224, -16);
+    func_020458c0();
+    MenuButtons_DisableTouch();
+}
