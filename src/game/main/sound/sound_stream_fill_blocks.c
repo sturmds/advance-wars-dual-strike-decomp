@@ -111,7 +111,6 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
             }
         }
 
-        readOffset = blockPos;
         loopBack = FALSE;
         if (blockPos + samples >= blockSamples) {
             samples = blockSamples - blockPos;
@@ -124,6 +123,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
             }
         }
 
+        readOffset = blockPos;
         bytes = samples;
         switch (stream->format) {
         case SOUND_STREAM_FORMAT_PCM8:
@@ -145,7 +145,10 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
             break;
         }
 
-        filePos = block * stream->blockSize * stream->channelCount + readOffset + stream->dataOffset + stream->fileOffset;
+        /* Needed to match: the sum is built in three statements. */
+        filePos = block * stream->blockSize * stream->channelCount + readOffset;
+        filePos += stream->dataOffset;
+        filePos += stream->fileOffset;
 
         for (ch = 0; ch < request->channelCount; ch++) {
             state = &stream->adpcm[ch];
