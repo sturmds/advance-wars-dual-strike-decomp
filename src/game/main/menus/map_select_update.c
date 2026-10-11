@@ -68,7 +68,7 @@ void MapSelect_Update(Task *task)
                 MapSelect_SelectPagePosition(msg[1]);
                 break;
             case EVENT_MAP_SELECT_CONFIRM:
-                if (STATE->twoMaps == 1 && data_0229ef30.unk_4fc == 0) {
+                if (STATE->twoMaps == 1 && data_0229ef30.firstMapId == 0) {
                     break;
                 }
                 confirm = TRUE;

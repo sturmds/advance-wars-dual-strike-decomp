@@ -20,7 +20,7 @@ void MapSelect_CancelFirstMap(void)
     Unk_02080440 *savedState;
 
     Sound_PlaySe(0x10009);
-    data_0229ef30.unk_4fc = 0;
+    data_0229ef30.firstMapId = 0;
     MapSelect_BuildLists(MENU->setup.lists, 0);
     MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
     MapSelect_AddMapButtons();

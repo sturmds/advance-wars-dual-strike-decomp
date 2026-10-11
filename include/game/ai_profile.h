@@ -11,7 +11,7 @@ typedef struct AiUnitProfile {
     u8 unk_03;
     u8 unk_04;
     u8 unk_05;                         /* from AiProfileMods.units */
-    s8 unk_06[7];
+    s8 orderWeights[7];                /* weight of each aiOrder for a new unit (AiBuild_RollOrder); negative first entry: none */
 } AiUnitProfile;
 
 /* The AI player's profile for this turn, built by AiProfile_Build from an
@@ -35,7 +35,7 @@ typedef struct AiUnitProfileTemplate {
     u8 spread2;
     u8 unk_04;
     u8 unk_05;
-    s8 unk_06[7];
+    s8 orderWeights[7];
 } AiUnitProfileTemplate;
 
 /* 0x15c bytes; table at gAiProfileTemplates. */

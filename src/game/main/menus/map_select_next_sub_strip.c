@@ -4,7 +4,7 @@
 void Sound_PlaySe(int id);
 void MapSelect_StartSubSlide(int slideBack);
 
-/* Moves to the next of the four strips (TABLES.unk_108), wrapping to the
+/* Moves to the next of the four strips (TABLES.subStrip), wrapping to the
  * first, and starts the slide. The first change of a list plays a sound. */
 void MapSelect_NextSubStrip(void)
 {
@@ -12,10 +12,10 @@ void MapSelect_NextSubStrip(void)
         Sound_PlaySe(0x10002);
         MENU->setup.listChanged = 1;
     }
-    if (TABLES.unk_108 < 3) {
-        TABLES.unk_108++;
+    if (TABLES.subStrip < 3) {
+        TABLES.subStrip++;
     } else {
-        TABLES.unk_108 = 0;
+        TABLES.subStrip = 0;
     }
     MapSelect_StartSubSlide(1);
 }

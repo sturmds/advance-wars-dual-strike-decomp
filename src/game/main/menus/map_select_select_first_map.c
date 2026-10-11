@@ -9,7 +9,7 @@ void MapSelect_AddMapButtons(void);
 extern MenuStateFrom400 data_0229ef30;
 
 /* After the lists are rebuilt for the second pick of a two-map battle:
- * finds the first map (unk_4fc) in the new lists, makes its list the current
+ * finds the first map (firstMapId) in the new lists, makes its list the current
  * tab's list, turns to its page and selects it, then redraws the map names
  * and buttons. The map must be in one of the lists. */
 void MapSelect_SelectFirstMap(void)
@@ -24,7 +24,7 @@ void MapSelect_SelectFirstMap(void)
             index = 0;
             list++;
         }
-        if (MENU->setup.lists[list].mapIds[index] == data_0229ef30.unk_4fc) {
+        if (MENU->setup.lists[list].mapIds[index] == data_0229ef30.firstMapId) {
             break;
         }
         index++;

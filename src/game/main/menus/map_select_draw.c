@@ -70,7 +70,7 @@ extern u8 data_027c0108;
 /* Draws one frame of the map select menu. data_027c0288 holds a draw state
  * per screen; Screen_SetCurrentGfx switches between them. While slideFrames runs
  * (15 down to 1) the lists slide sideways, eased from 256 pixels to 0; the
- * second slide does the same for the strip at TABLES.unk_108. Then: the map
+ * second slide does the same for the strip at TABLES.subStrip. Then: the map
  * list thumbnails, a marker per player for the selected map's player count,
  * and the number grids. In gameMode 1 two palette colours cycle every 4
  * frames. */
@@ -177,21 +177,21 @@ void MapSelect_Draw(void)
         if (MENU->setup.subSlideFrames != 0) {
             if (MENU->setup.subSlideBack != 0) {
                 subSlideOffset >>= 1;
-                MapSelect_DrawSubStrip(subSlideOffset - 128, 40, TABLES.unk_108 - 2);
-                MapSelect_DrawSubStrip(subSlideOffset, 40, TABLES.unk_108 - 1);
-                MapSelect_DrawSubStrip(subSlideOffset + 128, 40, TABLES.unk_108);
-                MapSelect_DrawSubStrip(subSlideOffset + 256, 40, TABLES.unk_108 + 1);
+                MapSelect_DrawSubStrip(subSlideOffset - 128, 40, TABLES.subStrip - 2);
+                MapSelect_DrawSubStrip(subSlideOffset, 40, TABLES.subStrip - 1);
+                MapSelect_DrawSubStrip(subSlideOffset + 128, 40, TABLES.subStrip);
+                MapSelect_DrawSubStrip(subSlideOffset + 256, 40, TABLES.subStrip + 1);
             } else {
                 subSlideOffset >>= 1;
-                MapSelect_DrawSubStrip(-subSlideOffset, 40, TABLES.unk_108 - 1);
-                MapSelect_DrawSubStrip(128 - subSlideOffset, 40, TABLES.unk_108);
-                MapSelect_DrawSubStrip(256 - subSlideOffset, 40, TABLES.unk_108 + 1);
-                MapSelect_DrawSubStrip(384 - subSlideOffset, 40, TABLES.unk_108 + 2);
+                MapSelect_DrawSubStrip(-subSlideOffset, 40, TABLES.subStrip - 1);
+                MapSelect_DrawSubStrip(128 - subSlideOffset, 40, TABLES.subStrip);
+                MapSelect_DrawSubStrip(256 - subSlideOffset, 40, TABLES.subStrip + 1);
+                MapSelect_DrawSubStrip(384 - subSlideOffset, 40, TABLES.subStrip + 2);
             }
         } else {
-            MapSelect_DrawSubStrip(0, 40, TABLES.unk_108 - 1);
-            MapSelect_DrawSubStrip(128, 40, TABLES.unk_108);
-            MapSelect_DrawSubStrip(256, 40, TABLES.unk_108 + 1);
+            MapSelect_DrawSubStrip(0, 40, TABLES.subStrip - 1);
+            MapSelect_DrawSubStrip(128, 40, TABLES.subStrip);
+            MapSelect_DrawSubStrip(256, 40, TABLES.subStrip + 1);
         }
     } else if (STATE->twoMaps == 1) {
         MapSelect_DrawTwoMapsTitle(128, 8);
@@ -215,7 +215,7 @@ void MapSelect_Draw(void)
         } else if (LIST(TAB()).unk_64 == 12) {
             Sprite_QueuePicture192x160(128, 120, 0x2800, 0x600, 3);
         }
-    } else if (MENU->setup.unk_4fc != 0) {
+    } else if (MENU->setup.firstMapId != 0) {
         Sprite_QueuePicture192x160(128, 112, 0x2800, 0x600, 3);
     }
     Screen_SetCurrentGfx(savedState);

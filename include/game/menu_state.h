@@ -91,11 +91,11 @@ typedef struct BattleSetupState {
     u8 pad_4f3;
     u16 prevRecordScores[3];
     u16 prevMapId;                     /* map selected before the list changed */
-    u16 unk_4fc;
+    u16 firstMapId;                    /* first map of a two-map pick; 0: none picked yet */
     u8 listChanged;                    /* set by the first change of list, which plays a sound */
     u8 slideFrames;                    /* frames left of the slide between lists; 15 on the first */
     u8 slideBack;                      /* nonzero: the slide runs the other way */
-    u8 subSlideFrames;                 /* frames left of a second slide, of the strip at MapListTables.unk_108 */
+    u8 subSlideFrames;                 /* frames left of a second slide, of the strip at MapListTables.subStrip */
     u8 subSlideBack;                   /* nonzero: the second slide runs the other way */
     u8 prevList;                       /* index into lists of the list sliding out */
 } BattleSetupState;
@@ -308,14 +308,14 @@ typedef struct MenuStateFrom200 {
 } MenuStateFrom200;
 
 /* data_0229ef30, gMenuState + 0x400. MapSelect_GetTab reads
- * setup.unk_4fc through this symbol. */
+ * setup.firstMapId through this symbol. */
 typedef struct MenuStateFrom400 {
     u8 pad_400[0x408 - 0x400];
     u16 bgScroll[2];                   /* BattleScreenWork.bgScroll */
     u16 unk_40c[2];                    /* BattleScreenWork.unk_40c */
     u8 pad_410[0x4fa - 0x410];
     u16 prevMapId;                     /* BattleSetupState.prevMapId */
-    u16 unk_4fc;                       /* BattleSetupState.unk_4fc */
+    u16 firstMapId;                    /* BattleSetupState.firstMapId */
 } MenuStateFrom400;
 
 /* gMenuState on the result screen (ResultScreen_Init). The blocks
@@ -335,7 +335,7 @@ typedef struct MapListTables {
     u8 unk_000[4][13][4];              /* position of an entry's map on its page, by tab, entry (MapList.unk_64) and page */
     u8 unk_0d0[4][13];                 /* page of an entry, by tab and entry */
     u8 listOfTab[4];                   /* index into BattleSetupState.lists */
-    u8 unk_108;
+    u8 subStrip;                       /* War Room strip 0-3 shown under the list (MapSelect_DrawSubStrip); indexes gWarRoomRecords */
 } MapListTables;
 
 #endif

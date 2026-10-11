@@ -41,16 +41,16 @@ BOOL AiBuild_BuyAtSite(void)
     AiBuildState *build = data_021619c0;
     AiSite *site = &data_0229e5bc[build->buildSite];
 
-    switch (build->unk_03) {
+    switch (build->buildStep) {
     case 1:
-        build->unk_03++;
+        build->buildStep++;
         func_020f5878(site->x, site->y);
         break;
     case 2:
         if (ScriptSlot_Find(gMapScrollScript) != -1) {
             break;
         }
-        data_021619c0->unk_03 = 0;
+        data_021619c0->buildStep = 0;
         unit = CurrentPlayer_BuyUnit(site->x, site->y, gUnitAction.target);
         unit->aiOrder = gUnitAction.unk_07;
         unit->serviceWanted = 0;

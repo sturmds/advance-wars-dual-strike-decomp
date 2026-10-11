@@ -10,7 +10,7 @@ typedef struct AiBuildState {
     u8 recordCount;                    /* entries in data_0229e5bc, 12 bytes each; the loop bound of func_02092134 */
     u8 slotCount;                      /* entries in gAiSiteGroups; the loop bound of func_020937dc */
     u8 step;                           /* 0-9, advanced by AiTurn_RunEndActions; cleared by func_0208d964 */
-    u8 unk_03;                         /* cleared by func_0208d964 */
+    u8 buildStep;                      /* step of AiBuild_BuyAtSite: 1 scroll to the site, 2 wait and buy; cleared by func_0208d964 */
     u8 buildSite;                      /* index in data_0229e5bc of the site AiTurn_QueueBuildAtSite last chose to build at */
     u8 savingSkips;                    /* set to 2 by AiEndActions_Start; times AiTurn_PickUnitToBuild may skip the savingTarget check */
     u8 unk_06;                         /* 1-4; AiBuild_RateAttackerVsTarget changes Anti-Air and Cruiser ratings by it */

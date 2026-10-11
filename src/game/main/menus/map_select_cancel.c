@@ -13,7 +13,7 @@ extern MenuStateFrom400 data_0229ef30;
 
 void MapSelect_Cancel(void)
 {
-    if (data_0229ef30.unk_4fc != 0) {
+    if (data_0229ef30.firstMapId != 0) {
         if (Link_IsActive() == 1) {
             EventQueue_Push(8, 0);
         } else {

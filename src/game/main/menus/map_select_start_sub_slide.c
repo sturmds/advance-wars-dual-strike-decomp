@@ -5,7 +5,7 @@
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_DrawRecordMarkers(int list, int page);
 
-/* Starts the second slide of the map select (the strip at TABLES.unk_108),
+/* Starts the second slide of the map select (the strip at TABLES.subStrip),
  * 16 frames, and blocks the two arrow buttons until it ends. Reloads the
  * War Room records and redraws the page markers. */
 void MapSelect_StartSubSlide(int slideBack)

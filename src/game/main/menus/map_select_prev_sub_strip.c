@@ -11,10 +11,10 @@ void MapSelect_PrevSubStrip(void)
         Sound_PlaySe(0x10002);
         MENU->setup.listChanged = 1;
     }
-    if (TABLES.unk_108 != 0) {
-        TABLES.unk_108--;
+    if (TABLES.subStrip != 0) {
+        TABLES.subStrip--;
     } else {
-        TABLES.unk_108 = 3;
+        TABLES.subStrip = 3;
     }
     MapSelect_StartSubSlide(0);
 }

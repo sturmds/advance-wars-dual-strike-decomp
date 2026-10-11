@@ -22,7 +22,7 @@ void MapSelect_PickMap(void)
     if (SELECTED_MAP_ID() < 0x101 && !Map_IsFlagSet(SELECTED_MAP_ID())) {
         return;
     }
-    if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 && data_0229ef30.unk_4fc == 0) {
+    if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 && data_0229ef30.firstMapId == 0) {
         if (Link_IsActive() == 1) {
             EventQueue_Push(7, PAGE_POS());
         } else {

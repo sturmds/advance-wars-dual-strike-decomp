@@ -17,7 +17,7 @@ extern Unk_027c0280 *data_027c0280;
 /* Redraws only the War Room record markers next to the map names of one page
  * of map list `list`, at the places MapSelect_DrawMapNames uses: clears the
  * marker column, then draws a marker for each map with a first-place record
- * in the current record table (TABLES.unk_108). */
+ * in the current record table (TABLES.subStrip). */
 void MapSelect_DrawRecordMarkers(int list, int page)
 {
     int i;
@@ -36,9 +36,9 @@ void MapSelect_DrawRecordMarkers(int list, int page)
         if (index >= listBase->setup.lists[0].mapCount) {
             break;
         }
-        if (gWarRoomRecords[TABLES.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].days != 0) {
+        if (gWarRoomRecords[TABLES.subStrip][MAP_ID - WAR_ROOM_FIRST_MAP][0].days != 0) {
             Bg_PutTileQuad(x + 9, y,
-                          0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(TABLES.unk_108, MAP_ID)) << 2), 1);
+                          0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(TABLES.subStrip, MAP_ID)) << 2), 1);
         }
         y += 2;
         if (y == START_Y + COLS * 2) {

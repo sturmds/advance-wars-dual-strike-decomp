@@ -63,9 +63,9 @@ void MapSelect_DrawMapNames(int list, int page)
             Text_PrintWithTile(x, y, map, Map_GetName(MAP_ID), 0, palette, tile);
         }
         if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-            if (gWarRoomRecords[data_0229c768.unk_108][MAP_ID - WAR_ROOM_FIRST_MAP][0].days != 0) {
+            if (gWarRoomRecords[data_0229c768.subStrip][MAP_ID - WAR_ROOM_FIRST_MAP][0].days != 0) {
                 Bg_PutTileQuad(x + 9, y,
-                              0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(data_0229c768.unk_108, MAP_ID)) << 2), 1);
+                              0x400 - ROWS * COLS * 32 - ((4 - MapSelect_GetRecordMarker(data_0229c768.subStrip, MAP_ID)) << 2), 1);
             }
         }
         y += 2;

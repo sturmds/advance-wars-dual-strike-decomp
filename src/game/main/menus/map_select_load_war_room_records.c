@@ -9,7 +9,7 @@ void Co_QueueSmallPicture(int coId, void *dest, int paletteSlot);
 extern Unk_027c0280 *data_027c0280;
 
 /* Record of the selected map in place 0-2. */
-#define RECORD(place) (gWarRoomRecords[TABLES.unk_108][SELECTED_MAP_ID() - WAR_ROOM_FIRST_MAP][place])
+#define RECORD(place) (gWarRoomRecords[TABLES.subStrip][SELECTED_MAP_ID() - WAR_ROOM_FIRST_MAP][place])
 
 /* War Room map select: copies the three records of the selected map into
  * the menu state and loads the CO pictures of each record (front CO, then

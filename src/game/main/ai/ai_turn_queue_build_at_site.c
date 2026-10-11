@@ -14,5 +14,5 @@ void AiTurn_QueueBuildAtSite(int index)
     data_0229e5bc[index].kind = SITE_KIND_SKIPPED;
     data_021619c0->unk_07++;
     data_021619c0->buildSite = index;
-    data_021619c0->unk_03 = 1;
+    data_021619c0->buildStep = 1;
 }

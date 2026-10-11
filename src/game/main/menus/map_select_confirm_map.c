@@ -15,7 +15,7 @@ extern MenuStateFrom400 data_0229ef30;
 
 /* Takes the selected map for the battle, then removes the menu buttons
  * and starts a task (func_0205f538). In a two-map battle outside the War
- * Room, the map chosen before (unk_4fc) comes first and the selected one
+ * Room, the map chosen before (firstMapId) comes first and the selected one
  * becomes the second map. */
 void MapSelect_ConfirmMap(void)
 {
@@ -23,11 +23,11 @@ void MapSelect_ConfirmMap(void)
     func_020b9890();
     if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         State_SetMapIds(SELECTED_MAP_ID(), SECOND_MAP_ID());
-        STATE->unk_59 = TABLES.unk_108;
+        STATE->unk_59 = TABLES.subStrip;
     } else if (STATE->twoMaps == 0) {
         State_SetMapIds(SELECTED_MAP_ID(), 0);
     } else {
-        State_SetMapIds(data_0229ef30.unk_4fc, SELECTED_MAP_ID());
+        State_SetMapIds(data_0229ef30.firstMapId, SELECTED_MAP_ID());
     }
     func_0205f538();
 }

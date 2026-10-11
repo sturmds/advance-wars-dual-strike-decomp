@@ -69,7 +69,7 @@ void AiProfile_Build(AiProfile *profile, int modsId, int templateId)
         profile->units[type - 1].unk_03 = template->units[type - 1].unk_04;
         profile->units[type - 1].unk_04 = template->units[type - 1].unk_05;
         for (i = 0; i < 7; i++) {
-            profile->units[type - 1].unk_06[i] = template->units[type - 1].unk_06[i];
+            profile->units[type - 1].orderWeights[i] = template->units[type - 1].orderWeights[i];
         }
     }
 }

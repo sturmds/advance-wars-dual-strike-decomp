@@ -35,7 +35,7 @@ void MapSelect_PointAtMap(int mapId)
     } else {
         MapSelect_BuildLists(set->lists, 0);
     }
-    TABLES.unk_108 = STATE->unk_59;
+    TABLES.subStrip = STATE->unk_59;
     for (i = 0; i < set->count; i++) {
         /* Needed to match: the test inside the loop keeps it unrotated. */
         for (j = 0; ; j++) {

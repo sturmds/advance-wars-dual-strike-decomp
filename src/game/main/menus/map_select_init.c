@@ -235,7 +235,7 @@ void MapSelect_Init(void)
     MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
     data_0229ef30.prevMapId = SELECTED_MAP_ID();
     MENU->setup.prevList = LIST_OF_TAB(TAB());
-    data_0229ef30.unk_4fc = 0;
+    data_0229ef30.firstMapId = 0;
     MapSelect_LoadWarRoomRecords();
     MapSelect_LoadEnemyCoPictures();
     NumberFont_LoadLow();

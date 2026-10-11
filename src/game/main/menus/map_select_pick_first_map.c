@@ -13,7 +13,7 @@ void Gfx_RequestLayerCopy(int layer);
 extern MenuStateFrom400 data_0229ef30;
 
 /* First pick of a two-map battle (MapSelect_PickMap): the selected map
- * becomes the first map (unk_4fc). Draws its preview into OBJ VRAM, rebuilds
+ * becomes the first map (firstMapId). Draws its preview into OBJ VRAM, rebuilds
  * the lists with the first map's player count so the second map can be
  * picked from them, keeps the first map's numbers (unk_4ce) in unk_4d4, and
  * draws a window on the other screen. */
@@ -25,8 +25,8 @@ void MapSelect_PickFirstMap(void)
 
     Sound_PlaySe(0x10006);
     MapPreview_Draw(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
-    data_0229ef30.unk_4fc = SELECTED_MAP_ID();
-    MapSelect_BuildLists(MENU->setup.lists, Map_GetPlayerCount(data_0229ef30.unk_4fc));
+    data_0229ef30.firstMapId = SELECTED_MAP_ID();
+    MapSelect_BuildLists(MENU->setup.lists, Map_GetPlayerCount(data_0229ef30.firstMapId));
     MapSelect_SelectFirstMap();
     for (i = 0; i < 6; i++) {
         MENU->setup.unk_4d4[i] = MENU->setup.unk_4ce[i];
