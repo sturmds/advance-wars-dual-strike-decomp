@@ -2031,6 +2031,10 @@ src/game/main/script/event_script_wait_task_both_screens.c:
     complete
     .text       start:0x0201d064 end:0x0201d158
 
+src/game/main/script/event_script_wait_task_screen1.c:
+    complete
+    .text       start:0x0201d158 end:0x0201d1f8
+
 src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378
