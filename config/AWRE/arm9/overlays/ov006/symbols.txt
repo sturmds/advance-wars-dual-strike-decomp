@@ -211,7 +211,7 @@ Ov006_SettleSeedTiles kind:function(arm,size=0x15c) addr:0x0235c3a0
 Ov006_MarkMapBorder kind:function(arm,size=0xf0) addr:0x0235c4fc
 func_ov006_0235c5ec kind:function(arm,size=0xc) addr:0x0235c5ec
 Ov006_RandomMapCoord kind:function(arm,size=0x8c) addr:0x0235c5f8
-func_ov006_0235c684 kind:function(arm,size=0x5e8) addr:0x0235c684
+Ov006_LoadPresetMap kind:function(arm,size=0x5e8) addr:0x0235c684
 func_ov006_0235cc6c kind:function(arm,size=0x98) addr:0x0235cc6c
 Ov006_FillMapForScreen kind:function(arm,size=0x2bc) addr:0x0235cd04
 Ov006_NewMap kind:function(arm,size=0x128) addr:0x0235cfc0
@@ -547,7 +547,7 @@ Ov006_gShoalGraphicTable kind:data(any) addr:0x0236c6dc
 data_ov006_0236cadc kind:data(any) addr:0x0236cadc
 data_ov006_0236cedc kind:data(any) addr:0x0236cedc
 data_ov006_0236cfe4 kind:data(any) addr:0x0236cfe4 ambiguous
-data_ov006_0236d2dc kind:data(any) addr:0x0236d2dc
+Ov006_gPresetMapTiles kind:data(any) addr:0x0236d2dc
 Ov006_gSlotArmyColours kind:data(any) addr:0x0236d534
 Ov006_gComTowerCells kind:data(any) addr:0x0236d538
 Ov006_gAirportCells kind:data(any) addr:0x0236d540

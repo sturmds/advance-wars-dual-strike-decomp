@@ -854,6 +854,10 @@ src/game/ov006/ov006_random_map_coord.c:
     complete
     .text       start:0x0235c5f8 end:0x0235c684
 
+src/game/ov006/ov006_load_preset_map.c:
+    complete
+    .text       start:0x0235c684 end:0x0235cc6c
+
 src/game/ov006/func_ov006_0235cc6c.c:
     complete
     .text       start:0x0235cc6c end:0x0235cd04
