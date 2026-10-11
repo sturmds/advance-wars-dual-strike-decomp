@@ -8298,6 +8298,10 @@ src/game/main/tab_list_draw_entry_with_icon.c:
     complete
     .text       start:0x02071f80 end:0x02072084
 
+src/game/main/tab_list_draw_entry_time.c:
+    complete
+    .text       start:0x02072188 end:0x02072284
+
 src/game/main/tab_list_draw_entry_plain.c:
     complete
     .text       start:0x02072284 end:0x02072364
