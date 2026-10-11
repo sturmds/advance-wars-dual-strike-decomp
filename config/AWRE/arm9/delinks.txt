@@ -14107,6 +14107,10 @@ src/game/main/skills/update_player_skills.c:
     complete
     .text       start:0x020e70b8 end:0x020e759c
 
+src/game/main/skills/skills_setup_for_battle.c:
+    complete
+    .text       start:0x020e768c end:0x020e7a80
+
 src/game/main/skills/movement_cost.c:
     complete
     .text       start:0x020e7be8 end:0x020e7e6c

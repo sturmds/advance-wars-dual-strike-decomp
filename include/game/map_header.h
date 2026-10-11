@@ -73,7 +73,8 @@ typedef struct MapHeader {
     const PredeployedUnit *units;      /* pre-deployed units; NULL: none */
     const PredeployedUnit *hardUnits;  /* read with units as a two-entry array, indexed by Campaign_IsHardMode */
     u8 co[5][2];                       /* front and back CO per slot, row 0 unused; 0x1c: player picks */
-    u8 unk_5e[0x88 - 0x5e];
+    u8 unk_5e[0x60 - 0x5e];
+    const u8 *skills[5][2];            /* skill ids for computer players per slot and CO, up to 4 ended by 0; NULL: none */
     u8 army[5];                        /* army colour (palette) per slot */
     u8 team[5];                        /* team per slot */
     MapSlotFlags slotFlags[5];
