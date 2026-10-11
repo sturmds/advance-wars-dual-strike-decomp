@@ -20,8 +20,8 @@ typedef struct Unk_0229fb30 {
     s8 unk_45b;                        /* menu entry 0-4 whose help text LinkMenu_DrawHelpText shows */
     u8 pad_45c[0x630 - 0x45c];
     u8 unk_630;                        /* stage of the two-player link menu, 0-3 */
-    u8 unk_631;                        /* link player compared with func_0207a260() to tell the two sides apart */
-    u8 unk_632;                        /* button id picked by the player unk_631 names */
+    u8 unk_631;                        /* stage 1 button picked (0 or 1); the link player with that number chooses in stage 2 */
+    u8 unk_632;                        /* button picked in stage 2 by the link player numbered unk_631 */
     u8 unk_633;                        /* button id picked by the other player */
 } Unk_0229fb30;
 
