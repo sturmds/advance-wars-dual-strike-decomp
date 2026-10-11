@@ -78,6 +78,13 @@ typedef struct MapScrollSlot {
     u8 pad_2e[0x60 - 0x2e];
 } MapScrollSlot;
 
+/* The same slot as the battle resume script data_02158468 uses it
+ * (Battle_ResumeFromSave); func_02017cf8 sets recordId. */
+typedef struct BattleResumeSlot {
+    u8 pad_00[0x1e];
+    s16 recordId;                      /* battle save record to restore, 0: none */
+} BattleResumeSlot;
+
 /* The same slot as the screen wipe callbacks (ScreenWipe_*) use it. */
 typedef struct WipeSlot {
     u8 pad_00[0x08];
