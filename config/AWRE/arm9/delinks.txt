@@ -272,6 +272,10 @@ src/game/main/graphics/oam_buffer_clear_tail.c:
     complete
     .text       start:0x020032c8 end:0x0200332c
 
+src/game/main/graphics/oam_buffer_flush_head.c:
+    complete
+    .text       start:0x0200332c end:0x020033a8
+
 src/game/main/graphics/oam_buffer_flush_tail.c:
     complete
     .text       start:0x020033a8 end:0x02003430

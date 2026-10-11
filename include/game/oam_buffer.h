@@ -33,7 +33,7 @@ typedef struct OamAffineGroup {
 typedef struct OamBuffer {
     u8 entries[0x600];                 /* 128 entries of 8 bytes, then affine data */
     void *unk_600;                     /* reset to tail.src when the tail is flushed or cleared */
-    u8 pad_604[0x608 - 0x604];
+    void *unk_604;                     /* reset to head.src when the head is flushed */
     void *unk_608;                     /* cleared with it */
     u8 pad_60c[0x610 - 0x60c];
     OamRegion tail;
