@@ -5,7 +5,7 @@
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
 void DC_InvalidateRange(const void *start, u32 size);
 BOOL CARDi_Request(CARDiCommon *common, u32 command, int tries);   /* sends one command to the backup chip */
-void func_02115f78(CARDiCommon *common);
+void CardSave_FinishTaskAndNotify(CARDiCommon *common);
 
 /* Card thread task: reads backup memory at src into dst, one page buffer at a time. */
 void CardSave_TaskReadChunks(CARDiCommon *common)
@@ -29,5 +29,5 @@ void CardSave_TaskReadChunks(CARDiCommon *common)
         common->dst += chunk;
         common->len -= chunk;
     } while (common->len != 0);
-    func_02115f78(common);
+    CardSave_FinishTaskAndNotify(common);
 }

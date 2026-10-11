@@ -8,7 +8,7 @@ void OS_SleepThread(OSThreadQueue *queue);
 void func_021154ac(void);
 void func_02115858(int type);
 int CARDi_Request(CARDiCommon *common, int command, int retries);
-void func_02115f78(CARDiCommon *common);
+void CardSave_FinishTaskAndNotify(CARDiCommon *common);
 
 /* Sets the backup chip geometry from its type and asks the other CPU to identify the chip. */
 void CARD_IdentifyBackup(int type)
@@ -31,5 +31,5 @@ void CARD_IdentifyBackup(int type)
     common->callbackArg = NULL;
     data_022abb00.waiter = OSi_ThreadInfo.current;
     CARDi_Request(common, 2, 1);
-    func_02115f78(common);
+    CardSave_FinishTaskAndNotify(common);
 }
