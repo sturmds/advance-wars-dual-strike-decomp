@@ -45,8 +45,8 @@ void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
 void CoSelectScreen_AddButtons(void);
-void func_02044854(u8 column, u8 row);
-void func_020448d8(void);
+void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
+void CoSelectScreen_ClearCellSkills(void);
 void func_02044950(void);
 void func_02044b3c(void);
 int CoSelectScreen_RowTileY(int a0);
@@ -161,12 +161,12 @@ void CoSelectScreen_Init(void)
     Mem_Free(langRes);
 
     func_02044b3c();
-    func_020448d8();
+    CoSelectScreen_ClearCellSkills();
     if (!Skills_AreDisabled()) {
         ForceRank_LoadSets(STATE->gameMode);
         for (rankColumn = 1; rankColumn < data_0229c73c->columnCount + 1; rankColumn++) {
             for (rankRow = 0; rankRow < data_0229c73c->rowCount; rankRow++) {
-                func_02044854(rankColumn, rankRow);
+                CoSelectScreen_RefreshCellSkills(rankColumn, rankRow);
             }
         }
     }

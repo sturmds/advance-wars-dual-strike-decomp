@@ -9,7 +9,7 @@ BOOL Skills_AreDisabled(void);
 void Sound_PlaySe(int id);
 BOOL CoSelect_CanLeaveBackCoEmpty(void);
 BOOL CoSelectScreen_IsCoInOtherCell(u8 co);         /* another cell holds co */
-void func_02044854(u8 column, u8 row);
+void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
 void func_02044950(void);
 void CoSelectScreen_AddGridButtons(void);
 
@@ -50,7 +50,7 @@ void CoSelectScreen_ConfirmCoList(MenuButton *button)
                 CELL_CO(col, row) = data_0229c73c->coBeforeList;
                 /* each cell's picture takes 12 tiles from tile 0x2c on */
                 Co_UnpackPicture(CELL_CO(col, row), ((col - 1) * 2 + row) * 12 + 0x2c);
-                func_02044854(col, row);
+                CoSelectScreen_RefreshCellSkills(col, row);
                 func_02044950();
                 goto close;
             }

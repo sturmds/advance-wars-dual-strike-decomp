@@ -7,7 +7,13 @@
  * through data_0229c73c. The COs sit in a grid; a cursor holds the column
  * in bits 1 and up and the row (0 or 1) in bit 0. */
 typedef struct CoSelectScreen {
-    u8 coGrid[0x2c];                   /* CO id per cell at (cursorColumn - 1) * 2 + cursorRow; 0: empty */
+    union {
+        u8 coGrid[0x2c];               /* CO id per cell at (cursorColumn - 1) * 2 + cursorRow; 0: empty */
+        struct {
+            u8 pad_00[12];             /* the CO ids, then 6 bytes of per-cell flags */
+            u8 cellSkills[3][2][5];    /* [column - 1][row]: skill ids of the cell's CO, up to 4, 0 ends */
+        };
+    };
     u8 *coList;                        /* CO ids of the CO list slots, ended by 0 */
     u8 unk_30;                         /* CO list slot of the cursor cell's CO, set by CoSelectScreen_Create */
     u8 cursorColumn;                   /* counts from 1 */

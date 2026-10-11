@@ -7,7 +7,7 @@ extern const MenuButtonTemplate data_0215a9c8;
 void Co_UnpackPicture(int co, int firstTile);
 BOOL Skills_AreDisabled(void);
 void Sound_PlaySe(int id);
-void func_02044854(u8 column, u8 row);
+void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
 void CoSelectScreen_AddGridButtons(void);
 
 /* onCancel of a CO list button: puts back the CO the cursor cell had when
@@ -23,7 +23,7 @@ void CoSelectScreen_CancelCoList(MenuButton *button)
     if (CO_SELECT_CURSOR_CO != 0) {
         Co_UnpackPicture(CO_SELECT_CURSOR_CO, (((data_0229c73c->cursorColumn - 1) << 1) + data_0229c73c->cursorRow) * 12 + 0x2c);
     }
-    func_02044854(data_0229c73c->cursorColumn, data_0229c73c->cursorRow);
+    CoSelectScreen_RefreshCellSkills(data_0229c73c->cursorColumn, data_0229c73c->cursorRow);
     if (Skills_AreDisabled() == 0) {
         MenuButton_Add(0, 0, &data_0215a9c8, 0xfd);
     } else {
