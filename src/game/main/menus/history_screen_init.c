@@ -34,7 +34,7 @@ void Screen_SetLayerCharBase(int a, u32 b);
 void func_02028a30(void);
 int func_020c67a8(void);
 u8 *func_020c67bc(void);
-void func_020703b0(void);
+void TabList_AddNavButtons(void);
 void TabList_UpdateHelpText(void);
 
 extern TabListView gMenuState;
@@ -168,7 +168,7 @@ void HistoryScreen_Init(void)
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 256, -16);
     MenuButton_Select(0);
-    func_020703b0();
+    TabList_AddNavButtons();
     MenuButtons_DisableTouch();
     Wallpaper_LoadSelected();
     HelpBand_Start(0x3f8, 0);
