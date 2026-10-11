@@ -5506,6 +5506,10 @@ src/game/main/ai/ai_turn_try_build_t_copter.c:
     complete
     .text       start:0x02091538 end:0x020916a4
 
+src/game/main/ai/ai_turn_try_build_t_copter_for_foot.c:
+    complete
+    .text       start:0x020916a4 end:0x02091904
+
 src/game/main/ai/func_02091904.c:
     complete
     .text       start:0x02091904 end:0x02091944

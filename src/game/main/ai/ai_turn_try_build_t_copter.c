@@ -17,7 +17,7 @@ extern int data_027c0284;
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_020916a4(void);
+int AiTurn_TryBuildTCopterForFoot(void);
 int func_020969d0(int arg);
 int func_02096bc4(int arg);
 void func_0209316c(int index);
@@ -25,7 +25,7 @@ void func_0209316c(int index);
 /* End-actions step 8, first sub-step. Tries to start building a T-Copter:
  * needs the funds for one and, when gAiTurnState->propertyRegions is 1 and
  * the profile's unk_08[11] is nonzero, a state->unk_00 (likely the day) no
- * greater than it. func_020916a4 runs first and ends the step when it
+ * greater than it. AiTurn_TryBuildTCopterForFoot runs first and ends the step when it
  * returns 1. func_020969d0(2), then func_02096bc4(2), pick the factory
  * (-1: none). Builds when T-Copters make up less than unk_08[3] percent of
  * data_021619c0->unk_08. The name is a guess from the unit type. Returns 1
@@ -43,7 +43,7 @@ BOOL AiTurn_TryBuildTCopter(void)
     if (gAiTurnState->propertyRegions == 1 && gAiProfile->unk_08[11] != 0 && state->unk_00 > gAiProfile->unk_08[11]) {
         return 0;
     }
-    if (func_020916a4() == 1) {
+    if (AiTurn_TryBuildTCopterForFoot() == 1) {
         return 1;
     }
     index = func_020969d0(2);
