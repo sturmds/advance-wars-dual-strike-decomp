@@ -19,7 +19,7 @@ void Menu_Reset(void);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Load(const void *src, int offset, u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-void func_01ff8e58(void);
+void Gfx_CopyRequestedLayers(void);
 void func_01ff9c28(int a);
 void func_01ff9c48(int a);
 void TransferQueue_Clear(void);
@@ -88,7 +88,7 @@ void func_0207d934(void)
     Text_PrintId(0, 9, data_027c0280->layer0Map, 0x48000008, 0, 0x100);
     Gfx_RequestLayerCopy(0);
     Palette_Load(data_021388f0, 0, 32);
-    func_01ff8e58();
+    Gfx_CopyRequestedLayers();
     Mem_Copy32(data_027c0280->paletteBuffer, data_027c0280->paletteCopy, 0x400);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
@@ -97,7 +97,7 @@ void func_0207d934(void)
     Screen_SetCurrentGfx(SUB_SCREEN);
     saved027c = data_027c027c;
     Screen_SetCurrent(SUB_SCREEN);
-    func_01ff8e58();
+    Gfx_CopyRequestedLayers();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
