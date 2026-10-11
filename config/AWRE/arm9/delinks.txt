@@ -3840,6 +3840,10 @@ src/game/main/menus/co_exp_check_level_10.c:
     complete
     .text       start:0x020315d0 end:0x02031664
 
+src/game/main/menus/co_exp_check_first_level_up.c:
+    complete
+    .text       start:0x02031664 end:0x020316f8
+
 src/game/main/menus/menu_is_busy.c:
     complete
     .text       start:0x020316f8 end:0x0203175c
