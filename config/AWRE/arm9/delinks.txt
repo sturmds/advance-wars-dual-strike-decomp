@@ -10150,6 +10150,10 @@ src/game/main/menus/func_020bd5f4.c:
     complete
     .text       start:0x020bd5f4 end:0x020bd628
 
+src/game/main/menus/menu_swap_co.c:
+    complete
+    .text       start:0x020bd628 end:0x020bd740
+
 src/game/main/menus/power_menu_activate_tag.c:
     complete
     .text       start:0x020bd740 end:0x020bd7c0
