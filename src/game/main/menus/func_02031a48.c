@@ -19,7 +19,7 @@ extern s16 data_021389e8[];
 
 /* A step of the data_02159d78 script (see func_020318ac). Over frames 0
  * to 4, draws sprite tile 0x26c at the task's position through affine
- * matrix unk_52, its matrix entries going from 1x (256) to 16 as the eased
+ * matrix task->matrix, its matrix entries going from 1x (256) to 16 as the eased
  * divisor rises from 16 to 256; on frame 0 it also starts SpriteAnimTask_Start
  * with id 0xc2ec at (x + 24, y + 24). Then resumes the script.
  * data_021389e8 looks like a sine table (index 64 = cosine of 0). */
@@ -37,15 +37,15 @@ void func_02031a48(Unk_02031a14 *task)
         int sinValue = data_021389e8[0];
         int cosValue = data_021389e8[64] * 16;
 
-        Oam_SetAffineParams(task->unk_52, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+        Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     }
-    Sprite_Queue(1, (task->unk_2c & 0x1ff) | (task->unk_52 << 9), ((task->unk_30 - 16) & 0xff) | 0x100,
+    Sprite_Queue(1, (task->x & 0x1ff) | (task->matrix << 9), ((task->y - 16) & 0xff) | 0x100,
                  &data_027c0030, 0xc000, 0x26c);
     if (task->frame == 0) {
         /* needed to match: the original adds the offset to gMenuState at run time */
         SpriteAnimTask_Start((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.unk_1364,
-                      (task->unk_2c + 24) & 0x1ff, (task->unk_30 + 24) & 0xff, 0xc2ec, 0, 0);
+                      (task->x + 24) & 0x1ff, (task->y + 24) & 0xff, 0xc2ec, 0, 0);
     }
     if (task->frame != 4) {
         task->frame++;

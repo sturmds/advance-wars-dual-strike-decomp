@@ -15,7 +15,7 @@ extern s16 data_021389e8[];
 
 /* A step of the data_02159d78 script (see func_020318ac). Over frames 0
  * to 16, draws sprite tile 0x2ac at (x - 32, y - 48) through affine matrix
- * unk_52 with double size, turning one full circle while it shrinks from
+ * task->matrix with double size, turning one full circle while it shrinks from
  * 2x to 1x. Then resumes the script. data_021389e8 looks like a sine
  * table of 256 steps per circle (index 64 = cosine of 0). */
 void func_02031dc0(Unk_02031a14 *task)
@@ -36,10 +36,10 @@ void func_02031dc0(Unk_02031a14 *task)
         cosValue = data_021389e8[angle + 64] * 16;
         sinValue = data_021389e8[angle];
 
-        Oam_SetAffineParams(task->unk_52, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+        Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     }
-    Sprite_Queue(1, ((task->unk_2c - 32) & 0x1ff) | (task->unk_52 << 9), ((task->unk_30 - 48) & 0xff) | 0x300,
+    Sprite_Queue(1, ((task->x - 32) & 0x1ff) | (task->matrix << 9), ((task->y - 48) & 0xff) | 0x300,
                  &data_027c0030, 0xc000, 0x2ac);
     if (task->frame != 16) {
         task->frame++;

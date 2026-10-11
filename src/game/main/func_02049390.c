@@ -7,7 +7,7 @@ extern u8 data_027c0030;
 
 void func_02049390(Unk_02031a14 *task)
 {
-    Sprite_QueueAt(1, task->unk_2c & 0x1ff, (task->unk_30 - 16) & 0xff, &data_027c0030, 0x4000, 436);
+    Sprite_QueueAt(1, task->x & 0x1ff, (task->y - 16) & 0xff, &data_027c0030, 0x4000, 436);
     if (task->frame != 16) {
         task->frame++;
         return;

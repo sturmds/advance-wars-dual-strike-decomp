@@ -7,7 +7,7 @@
 
 BOOL Skills_AreDisabled(void);
 void ForceRank_LoadSets(int mode);
-void func_020e6d14(u8 *out, int co);
+void Co_ListDefaultSkills(u8 *out, int co);
 void Player_ListEquippedSkills(u8 *out, int player, int slot);
 void Screen_SetCurrentBoth(void *state);
 void SkillIcon_Load(int skill, void *dest);
@@ -51,7 +51,7 @@ void CoStatsScreen_DrawSkills(void)
         }
         MENU.skills[4] = 0xff;
         if (MENU.unk_0a8 == 1 && GAME->gameMode == 3) {
-            func_020e6d14(MENU_SKILLS, MENU_SHOWN_CO);
+            Co_ListDefaultSkills(MENU_SKILLS, MENU_SHOWN_CO);
         } else {
             saved027c = data_027c027c;
             saved0280 = data_027c0280;

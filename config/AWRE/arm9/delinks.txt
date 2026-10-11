@@ -6304,7 +6304,7 @@ src/game/main/func_02049ddc.c:
     complete
     .text       start:0x02049ddc end:0x02049f68
 
-src/game/main/func_02049f68.c:
+src/game/main/rank_sprite_queue_number.c:
     complete
     .text       start:0x02049f68 end:0x0204a00c
 
@@ -16254,7 +16254,7 @@ src/game/main/skills/co_set_list_equipped_skills.c:
     complete
     .text       start:0x020e6cc8 end:0x020e6d14
 
-src/game/main/func_020e6d14.c:
+src/game/main/co_list_default_skills.c:
     complete
     .text       start:0x020e6d14 end:0x020e6d24
 

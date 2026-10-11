@@ -15,7 +15,7 @@ extern s16 data_021389e8[];
 
 /* A step of the data_02159cc0 script (tasks made by func_02032264). Over
  * frames 0 to 8, draws sprite tile 0 with attribute 0x2ca at
- * (x - 32, y - 32) through affine matrix unk_52 with double size, its
+ * (x - 32, y - 32) through affine matrix task->matrix with double size, its
  * matrix entries going from 256 (1x) to 8 as the eased divisor rises from
  * 16 to 512. Then resumes the script. data_021389e8 looks like a sine
  * table (index 64 = cosine of 0). */
@@ -33,10 +33,10 @@ void func_02032298(Unk_02031a14 *task)
         int sinValue = data_021389e8[0];
         int cosValue = data_021389e8[64] * 16;
 
-        Oam_SetAffineParams(task->unk_52, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+        Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     }
-    Sprite_Queue(1, ((task->unk_2c - 32) & 0x1ff) | (task->unk_52 << 9), ((task->unk_30 - 32) & 0xff) | 0x300,
+    Sprite_Queue(1, ((task->x - 32) & 0x1ff) | (task->matrix << 9), ((task->y - 32) & 0xff) | 0x300,
                  &data_027c0030, 0x2ca, 0);
     if (task->frame != 8) {
         task->frame++;

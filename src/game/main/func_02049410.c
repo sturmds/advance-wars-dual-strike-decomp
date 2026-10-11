@@ -27,10 +27,10 @@ void func_02049410(Unk_02031a14 *task)
         cosValue = data_021389e8[angle + 64] * 16;
         sinValue = data_021389e8[angle];
 
-        Oam_SetAffineParams(task->unk_52, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+        Oam_SetAffineParams(task->matrix, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                             HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     }
-    Sprite_Queue(1, ((task->unk_2c - 32) & 0x1ff) | (task->unk_52 << 9), ((task->unk_30 - 48) & 0xff) | 0x300,
+    Sprite_Queue(1, ((task->x - 32) & 0x1ff) | (task->matrix << 9), ((task->y - 48) & 0xff) | 0x300,
                  &data_027c0030, 0x4000, 0x1b4);
     if (task->frame != 16) {
         task->frame++;

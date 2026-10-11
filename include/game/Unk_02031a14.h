@@ -7,14 +7,14 @@
  * system (Task_Create). */
 typedef struct Unk_02031a14 {
     u8 pad_00[0x2c];
-    u32 unk_2c;
-    u32 unk_30;
+    u32 x;                             /* sprite position */
+    u32 y;
     u8 pad_34[0x4c - 0x34];
     s16 frame;
     u8 pad_4e[0x52 - 0x4e];
-    u16 unk_52;
+    u16 matrix;                        /* OBJ affine matrix index */
 } Unk_02031a14;
 
-void func_02031a14(u32 unk_2c, u32 unk_30, int unk_52);
+void func_02031a14(u32 x, u32 y, int matrix);
 
 #endif
