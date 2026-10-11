@@ -60,7 +60,11 @@ typedef struct PlayRecords {
     u32 unk_3cc;                       /* capped at 999999; UnitShowTask_RunScript adds 1 for a human player */
     u8 pad_3d0[0x3d4 - 0x3d0];
     u32 tilesMoved;                    /* tiles moved by human players' units, capped at 999999 (UnitMoveSelect_TryMoveTo) */
-    u8 pad_3d8[0x3ec - 0x3d8];
+    u32 blackCannonsDestroyed;         /* map objects destroyed by human players' units, capped at 999999 (ObjectAttack_ShowHit) */
+    u32 minicannonsDestroyed;
+    u32 blackObelisksDestroyed;
+    u32 blackCrystalsDestroyed;
+    u32 pipeSeamsDestroyed;            /* also counts objects of kind 0 */
     u32 suppliesAndRepairs;            /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
     u8 pad_3f0[0x3f4 - 0x3f0];
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
