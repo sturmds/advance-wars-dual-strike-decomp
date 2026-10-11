@@ -50,7 +50,8 @@ typedef struct ServiceCostPopupSlot {
     int step;                          /* taken off cost each frame while the popup counts down */
     u32 unk_30;
     u8 unk_34;
-    u8 pad_35[0x38 - 0x35];
+    u8 unk_35;                         /* ServiceCostPopup_Begin: 0, or 16 less a cost below 16 (16 if that is negative) */
+    u8 pad_36[0x38 - 0x36];
     int unk_38;                        /* nonzero: shown, see ScriptSlot.unk_38 */
     u8 pad_3c[0x60 - 0x3c];
 } ServiceCostPopupSlot;
