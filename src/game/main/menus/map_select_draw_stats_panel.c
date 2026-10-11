@@ -2,7 +2,7 @@
 #include "game/menu_state.h"
 
 int MapSelect_GetTab(void);
-void func_02001f50(int x, int y, int attr, int tile, int a4);
+void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 void MapSelect_DrawNumber(int x, int y, int value);
 
@@ -44,11 +44,11 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
         if (mode == 0) {
             if (MENU->setup.recordDays[i] != 0) {
                 if (MENU->setup.recordCos[i * 2] != 0) {
-                    func_02001f50((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 3) << 12,
+                    Co_QueueSmallPictureSpriteAtTile((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 3) << 12,
                                   (i * 2) * 12 + 0x1ca, ((i * 2) & 1) + 1);
                 }
                 if (MENU->setup.recordCos[i * 2 + 1] != 0) {
-                    func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 4) << 12,
+                    Co_QueueSmallPictureSpriteAtTile((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 4) << 12,
                                   (i * 2 + 1) * 12 + 0x1ca, ((i * 2 + 1) & 1) + 1);
                 }
                 MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.recordDays[i]);
@@ -57,11 +57,11 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
         } else {
             if (MENU->setup.prevRecordDays[i] != 0) {
                 if (MENU->setup.prevRecordCos[i * 2] != 0) {
-                    func_02001f50((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 9) << 12,
+                    Co_QueueSmallPictureSpriteAtTile((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 9) << 12,
                                   (i * 2 + 6) * 12 + 0x1ca, ((i * 2 + 6) & 1) + 1);
                 }
                 if (MENU->setup.prevRecordCos[i * 2 + 1] != 0) {
-                    func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 10) << 12,
+                    Co_QueueSmallPictureSpriteAtTile((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 10) << 12,
                                   (i * 2 + 7) * 12 + 0x1ca, ((i * 2 + 7) & 1) + 1);
                 }
                 MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.prevRecordDays[i]);

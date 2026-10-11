@@ -10,7 +10,7 @@ extern u8 data_022a2130[];
 void Mem_Copy32(const void *src, void *dst, u32 size);
 int CombatCo_IdFromNumber(int value);
 void Co_LoadPalette(int coId, int paletteSlot);
-void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
+void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army);
 
 /* Puts the CO pictures of the rows into object VRAM of the second screen and
  * loads their palettes (slots 18 and up). Without data_02160ac0->unk_7c, the
@@ -35,7 +35,7 @@ void Ov003_UploadCoPictures(void)
     } else {
         for (i = 0; i < data_ov003_02364928->rowCount; i++) {
             if (data_ov003_02364928->rows[i].active) {
-                func_020023b0(CombatCo_IdFromNumber(data_ov003_02364928->rows[i].co), data_027c0280->objVram + (208 + i * 36) * 32, i + 18, i + 1);
+                Co_LoadArmyLargePicture(CombatCo_IdFromNumber(data_ov003_02364928->rows[i].co), data_027c0280->objVram + (208 + i * 36) * 32, i + 18, i + 1);
             }
         }
     }

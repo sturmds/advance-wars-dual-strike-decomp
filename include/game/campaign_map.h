@@ -25,7 +25,8 @@ typedef struct CampaignMapState {
     u8 flags[28];                      /* per mission; bit 0: done (CampaignMap_MarkMissionDone) */
 } CampaignMapState;
 
-/* A CO of the three the world map shows, filled by CampaignMap_FindTopCos. */
+/* A CO of the three the world map shows, filled by CampaignMap_FindTopCos;
+ * also the rows of gCampaignUnlockedCos (Campaign_UnlockTopCos). */
 typedef struct CampaignTopCo {
     u8 co;                             /* 0: empty */
     u8 rank;                           /* Co_GetRank(co) */

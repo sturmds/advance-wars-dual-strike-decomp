@@ -7,7 +7,7 @@
 
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
+void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army);
 void HelpText_Show(u32 textId, int tile);
 void func_02088528(int a0);
 
@@ -43,7 +43,7 @@ void CombatSetup_InitCoPickScreen(void)
     Gfx_RequestLayerCopy(2);
     for (i = 0; i < 4; i++) {
         if (MENU->combat.rows[i].memberCount != 0) {
-            func_020023b0(data_02160ae0[LINK_ROWS[i].unk_19], data_027c0280->objVram + (0x400 + i * 36) * 32, i + 18, i + 1);
+            Co_LoadArmyLargePicture(data_02160ae0[LINK_ROWS[i].unk_19], data_027c0280->objVram + (0x400 + i * 36) * 32, i + 18, i + 1);
         }
     }
     Screen_SetCurrent(savedState);

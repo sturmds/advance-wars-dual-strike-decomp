@@ -2,7 +2,7 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
-void func_02002244(int x, int y, int attr, int tile, int list);
+void Co_QueuePictureSpriteAtTile(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int x, int y, int entry, int affine);
 
@@ -26,7 +26,7 @@ void CombatSetup_QueueRowSprites(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     for (i = 0; i < 4; i++) {
         if (gMenuState.combat.rows[i].memberCount != 0) {
-            func_02002244((32 + i * 64) & 0x1ff, (144 - i * 16) & 0xff, (i + 2) << 12, 0x400 + i * 36, 1);
+            Co_QueuePictureSpriteAtTile((32 + i * 64) & 0x1ff, (144 - i * 16) & 0xff, (i + 2) << 12, 0x400 + i * 36, 1);
         }
     }
     Screen_SetCurrent(savedState);

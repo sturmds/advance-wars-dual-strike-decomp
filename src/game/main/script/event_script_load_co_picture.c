@@ -10,7 +10,7 @@ extern u32 gLinkPlay;
 
 void TransferQueue_AddClear16(void *dest, int size);
 void Co_LoadLargePicture(int coMood, void *dest, int paletteSlot);
-void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
+void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army);
 
 /* Picture slot in the layer 0 tile data: 0x480 bytes at this offset. */
 #define EVENT_PICTURE_OFFSET 0x3660
@@ -28,5 +28,5 @@ void EventScript_LoadCoPicture(int coMood)
         Co_LoadLargePicture(coMood, data_02297790 + 0x3660, 1);
         return;
     }
-    func_020023b0(coMood, data_02297790 + 0x3660, 1, STATE->currentPlayer);
+    Co_LoadArmyLargePicture(coMood, data_02297790 + 0x3660, 1, STATE->currentPlayer);
 }

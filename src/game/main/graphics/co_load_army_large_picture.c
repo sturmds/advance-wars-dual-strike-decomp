@@ -8,7 +8,9 @@ extern u32 gLinkPlay;
 extern char data_02151e44[];
 extern const char *const data_02152b48[][7][3];
 
-void func_020023b0(int coMood, void *dest, int paletteSlot, int army)
+/* Co_LoadLargePicture in the picture variant of army; army 0 outside link play
+ * or when coMood has bit 7 set. */
+void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army)
 {
     int variant;
 

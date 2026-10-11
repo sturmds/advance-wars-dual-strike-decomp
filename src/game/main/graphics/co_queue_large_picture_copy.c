@@ -11,7 +11,7 @@ extern u32 gLinkPlay;
 extern char data_02151e44[];                          /* "/syogun" */
 extern const char *const data_02152b48[][7][3];
 
-/* func_020023b0 with the unpack going to a heap buffer, copied to dest by a
+/* Co_LoadArmyLargePicture with the unpack going to a heap buffer, copied to dest by a
  * task (DeferredCopyTask_Start). The palette is loaded at once. */
 void Co_QueueLargePictureCopy(int coMood, void *dest, int paletteSlot, int army)
 {

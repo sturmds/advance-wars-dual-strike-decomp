@@ -7,7 +7,7 @@ extern u8 data_027c0030;
 
 void PlayerInfo_DrawCoIcons(void);
 void PlayerInfo_DrawPortraitScreenSprites(void);
-void func_02001f50(int x, int y, int attr, int tile, int list);
+void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int list);
 void PlayerInfo_QueuePageSprites(void);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
@@ -21,7 +21,7 @@ void PlayerInfo_DrawSprites(void)
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     PlayerInfo_DrawCoIcons();
-    func_02001f50(0x10d0, 24, 0, 0, 1);
+    Co_QueueSmallPictureSpriteAtTile(0x10d0, 24, 0, 0, 1);
     PlayerInfo_QueuePageSprites();
     if (gMenuState.unk_0206d67c.page == 3 && gMenuState.unk_0206d67c.unk_0a4 != 0) {
         Sprite_QueueAt(0, 64, 64, &data_027c0030, 0x4000, 0x400);

@@ -160,7 +160,7 @@ src/game/main/graphics/co_load_texture.c:
     complete
     .text       start:0x02001e78 end:0x02001f50
 
-src/game/main/graphics/func_02001f50.c:
+src/game/main/graphics/co_queue_small_picture_sprite_at_tile.c:
     complete
     .text       start:0x02001f50 end:0x02001fa8
 
@@ -188,7 +188,7 @@ src/game/main/graphics/co_load_mood_picture.c:
     complete
     .text       start:0x020021a8 end:0x02002244
 
-src/game/main/func_02002244.c:
+src/game/main/graphics/co_queue_picture_sprite_at_tile.c:
     complete
     .text       start:0x02002244 end:0x0200229c
 
@@ -200,7 +200,7 @@ src/game/main/graphics/co_queue_large_picture_copy.c:
     complete
     .text       start:0x020022fc end:0x020023b0
 
-src/game/main/func_020023b0.c:
+src/game/main/graphics/co_load_army_large_picture.c:
     complete
     .text       start:0x020023b0 end:0x0200244c
 
@@ -19717,7 +19717,7 @@ src/game/main/campaign/campaign_unlock_top_cos.c:
     complete
     .text       start:0x021037c8 end:0x02103910
 
-src/game/main/func_02103910.c:
+src/game/main/campaign/campaign_get_unlocked_cos.c:
     complete
     .text       start:0x02103910 end:0x0210391c
 

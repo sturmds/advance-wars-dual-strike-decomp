@@ -25,7 +25,7 @@ void Gfx_RequestLayerCopy(int layer);
 int Campaign_IsHardMode(void);
 int Score_ToRank(int score);
 int CampaignRecords_GetAverageScore(void);
-CampaignTopCo *func_02103910(void);
+CampaignTopCo *Campaign_GetUnlockedCos(void);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
 void Co_LoadSmallPicture(int coId, void *dest, int paletteSlot);
@@ -95,7 +95,7 @@ extern const char gTotalRankIconBlinkPath[]; /* "/ohashi/res_icon_blink" */
  * screen, and a wallpaper on both: wall3 in hard mode, else wall1 when game
  * flag 60 is set, else wall2. Showing wall1 or wall2 sets its unlock flag.
  * The rank picture follows the average campaign score (CampaignRecords_GetAverageScore). The
- * three top COs of data_022a7fb8 get their picture and score. */
+ * three top COs of gCampaignUnlockedCos get their picture and score. */
 void TotalRankScreen_Init(Task *task)
 {
     CampaignTopCo *top;
@@ -103,7 +103,7 @@ void TotalRankScreen_Init(Task *task)
     u8 *langFile;
     int i;
 
-    top = func_02103910();
+    top = Campaign_GetUnlockedCos();
     Gfx_InitBothScreens();
     SWITCH_TO(SECOND_MAP);
     Screen_SetLayerScreenSize(0, 1);

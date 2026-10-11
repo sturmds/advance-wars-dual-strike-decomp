@@ -10,7 +10,7 @@ void Palette_Load(const void *src, int offset, int size);
 void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
-void func_02001f50(int x, int y, int attr, int tile, int a4);
+void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
 void func_020485f0(u8 pages);
 
 extern MenuState gMenuState;
@@ -74,7 +74,7 @@ void PageStripTask_Draw(PageStripTask *task)
     for (i = 0; i < playerCount - 1; i++) {
         for (j = 0; j <= 1; j++) {
             int k = j + i * 2;
-            func_02001f50((24 + j * 32) & 0x1ff, (192 - i * 16) & 0xff, k << 12, k * 12, k & 1);
+            Co_QueueSmallPictureSpriteAtTile((24 + j * 32) & 0x1ff, (192 - i * 16) & 0xff, k << 12, k * 12, k & 1);
         }
     }
     Sprite_QueueAt(0, 0, (192 - playerCount * 16) & 0xff, &data_027c00b8, 0x8000, 72);

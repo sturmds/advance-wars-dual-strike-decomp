@@ -8,7 +8,7 @@
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator); /* remainder, hardware divider */
 int MainLoop_GetFrameCount(void);
-void func_02001f50(int x, int y, int attr, int tile, int a4);
+void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int a4);
 void Palette_Load(const void *src, int slideOffset, int size);
 void Screen_SetCurrentGfx(void *state);
 void Sprite_Queue(int a0, int x, int y, void *a3, int attr, int tile);
@@ -239,7 +239,7 @@ void MapSelect_Draw(void)
         for (i = 0; i < count - 1; i++) {
             for (j = 0; j <= 1; j++) {
                 int k = j + i * 2;
-                func_02001f50(((232 - j * 32) & 0x1ff) | 0x1000, (192 - i * 16) & 0xff,
+                Co_QueueSmallPictureSpriteAtTile(((232 - j * 32) & 0x1ff) | 0x1000, (192 - i * 16) & 0xff,
                               (k + 4) << 12, k * 12 + 16, (k & 1) + 1);
             }
         }

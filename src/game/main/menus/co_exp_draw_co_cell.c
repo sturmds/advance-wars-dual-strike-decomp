@@ -5,7 +5,7 @@ void DigitSprite_QueueNumberPopIn(int x, int y, int value, int matrixIndex, int 
 void DigitSprite_QueueSmallNumber(int x, int y, int value, int matrixIndex, int frame);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
-void func_02001f50(int x, int y, int attr, int tile, int list);
+void Co_QueueSmallPictureSpriteAtTile(int x, int y, int attr, int tile, int list);
 
 extern u8 data_027c0020[];
 extern u8 data_027c0060[];
@@ -25,7 +25,7 @@ void CoExp_DrawCoCell(CoExp *exp, int x, int y, int coSlot, int frame)
         return;
     }
     pictureTile = coSlot * 12;
-    func_02001f50((x + 24) & 0x1ff, (y + 32) & 0xff, (coSlot + 5) << 12, pictureTile + 548, 7);
+    Co_QueueSmallPictureSpriteAtTile((x + 24) & 0x1ff, (y + 32) & 0xff, (coSlot + 5) << 12, pictureTile + 548, 7);
     Sprite_QueueDefaultTile(x & 0x1ff, y & 0xff, 0x4000, pictureTile + 476, 6);
     labelX = (x + 48) & 0x1ff;
     Sprite_QueueAt(6, labelX, (y - 1) & 0xff, data_027c0060, 0xc000, 0x30c);

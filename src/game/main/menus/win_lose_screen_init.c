@@ -19,7 +19,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
-void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
+void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army);
 void func_01ff9b48(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
@@ -76,7 +76,7 @@ extern const char gWinLosePath[];        /* "/ohashi/res_winlose" */
  * pictures of the players in data_022a7a88: with two sides, side A on the
  * second screen and side B on the main one; with one side, its first two
  * players on the second screen and the rest on the main one. Bits 8-9 of
- * the CO id passed to func_020023b0 pick the picture variant. With two
+ * the CO id passed to Co_LoadArmyLargePicture pick the picture variant. With two
  * sides it counts the pictures and works out the points shown; with one
  * side it marks the players with a tag partner and jumps to label 1. */
 void WinLoseScreen_Init(WinLoseTask *task)
@@ -137,11 +137,11 @@ void WinLoseScreen_Init(WinLoseTask *task)
         slot = 0;
         SWITCH_TO(SECOND_MAP);
         for (i = 0; i < data_022a7a88.countA; i++) {
-            func_020023b0(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x100,
+            Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x100,
                           PORTRAIT_DEST(slot), slot + 16, data_022a7a88.sideA[i]);
             slot++;
             if (ENTRY(data_022a7a88.sideA[i]).backCo & PLAYER_CO_ID_MASK) {
-                func_020023b0(ENTRY(data_022a7a88.sideA[i]).backCo | 0x100,
+                Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).backCo | 0x100,
                               PORTRAIT_DEST(slot), slot + 16, data_022a7a88.sideA[i]);
                 slot++;
             }
@@ -151,11 +151,11 @@ void WinLoseScreen_Init(WinLoseTask *task)
         slot = 0;
         SWITCH_TO(MAIN_MAP);
         for (i = 0; i < data_022a7a88.countB; i++) {
-            func_020023b0(ENTRY(data_022a7a88.sideB[i]).frontCo | 0x200,
+            Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideB[i]).frontCo | 0x200,
                           PORTRAIT_DEST(slot), slot + 16, data_022a7a88.sideB[i]);
             slot++;
             if (ENTRY(data_022a7a88.sideB[i]).backCo & PLAYER_CO_ID_MASK) {
-                func_020023b0(ENTRY(data_022a7a88.sideB[i]).backCo | 0x200,
+                Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideB[i]).backCo | 0x200,
                               PORTRAIT_DEST(slot), slot + 16, data_022a7a88.sideB[i]);
                 slot++;
             }
@@ -165,19 +165,19 @@ void WinLoseScreen_Init(WinLoseTask *task)
         for (i = 0; i < data_022a7a88.countA; i++) {
             if (i < 2) {
                 SWITCH_TO(SECOND_MAP);
-                func_020023b0(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x200,
+                Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x200,
                               PORTRAIT_DEST(i * 2), i * 2 + 16, data_022a7a88.sideA[i]);
                 if (ENTRY(data_022a7a88.sideA[i]).backCo & PLAYER_CO_ID_MASK) {
-                    func_020023b0(ENTRY(data_022a7a88.sideA[i]).backCo | 0x200,
+                    Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).backCo | 0x200,
                                   PORTRAIT_DEST(i * 2 + 1), i * 2 + 17, data_022a7a88.sideA[i]);
                 }
                 SWITCH_BACK();
             } else {
                 SWITCH_TO(MAIN_MAP);
-                func_020023b0(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x200,
+                Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).frontCo | 0x200,
                               PORTRAIT_DEST((i - 2) * 2), (i - 2) * 2 + 16, data_022a7a88.sideA[i]);
                 if (ENTRY(data_022a7a88.sideA[i]).backCo & PLAYER_CO_ID_MASK) {
-                    func_020023b0(ENTRY(data_022a7a88.sideA[i]).backCo | 0x200,
+                    Co_LoadArmyLargePicture(ENTRY(data_022a7a88.sideA[i]).backCo | 0x200,
                                   PORTRAIT_DEST((i - 2) * 2 + 1), (i - 2) * 2 + 17, data_022a7a88.sideA[i]);
                 }
                 SWITCH_BACK();
