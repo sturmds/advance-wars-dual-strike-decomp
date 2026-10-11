@@ -16,7 +16,7 @@ int Player_GetCaptureRate(int playerIndex);
 int CaptureIncrease(int player, int slot);
 void ActingUnit_ResetCaptureIfMoved(void);
 void ActingUnit_StartAtDest(void);
-void func_020ceb60(void);
+void Game_EnterState18(void);
 void func_020ec058(int owner);
 void func_020ecb14(int x, int y, int oldProgress, int newProgress, int owner);
 void Tile_SetOwner(int x, int y);
@@ -95,5 +95,5 @@ void UnitAction_Capture(void)
         }
         Tile_SetOwner(GAME->actingUnitDestX, GAME->actingUnitDestY);
     }
-    func_020ceb60();
+    Game_EnterState18();
 }
