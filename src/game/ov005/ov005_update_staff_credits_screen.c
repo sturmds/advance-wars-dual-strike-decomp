@@ -17,7 +17,7 @@ void DmaTask_Start(const void *src, volatile void *dest, int unk2, int unk3, voi
 void DmaTasks_Destroy(void);
 void Sound_StopStream(int fadeFrames);
 void Task_ResumeScript(Ov005Task *task);
-void *func_ov005_0235b754(Unk_ov005_0235a30c *work, int page);
+void *Ov005_LoadCreditsPage(Unk_ov005_0235a30c *work, int page);
 void Ov005_CreateEntryTasks(Unk_ov005_0235a30c *work);
 void func_ov005_0235b3d4(Unk_ov005_0235a30c *work);
 void Ov005_InitCenteredEntries(Unk_ov005_0235a30c *work);
@@ -131,7 +131,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         }
         break;
     case 20:
-        if (func_ov005_0235b754(work, work->pageIndex) == NULL) {
+        if (Ov005_LoadCreditsPage(work, work->pageIndex) == NULL) {
             task->step = 90;
             break;
         }

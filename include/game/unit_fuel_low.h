@@ -18,8 +18,8 @@ static inline BOOL Unit_IsFuelAtMostHalf(MapUnit *unit)
     return low;
 }
 
-/* The original turns the result into a BOOL twice more before its callers
- * compare it with TRUE; these two wrappers keep both steps. */
+/* The original turns the result into a BOOL twice more before the
+ * comparison with TRUE; these two wrappers keep both steps. */
 static inline BOOL Unit_IsFuelLow(MapUnit *unit)
 {
     BOOL low = FALSE;

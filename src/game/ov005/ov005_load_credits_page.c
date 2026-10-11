@@ -17,7 +17,7 @@ typedef struct Ov005Menu {
 
 extern Ov005Menu *data_ov005_0236a418[];
 
-Ov005Menu *func_ov005_0235b754(Unk_ov005_0236bb90 *work, int menuIndex)
+Ov005Menu *Ov005_LoadCreditsPage(Unk_ov005_0236bb90 *work, int menuIndex)
 {
     Ov005Menu *menu = data_ov005_0236a418[menuIndex];
     int y;

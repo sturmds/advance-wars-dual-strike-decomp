@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 /* TRUE when one of the current player's units is a Stealth with at most
  * half its fuel. */
-BOOL func_ov001_02351174(void)
+BOOL Ov001_HasStealthLowOnFuel(void)
 {
     int i;
 

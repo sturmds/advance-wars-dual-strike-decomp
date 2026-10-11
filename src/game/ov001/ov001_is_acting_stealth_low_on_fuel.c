@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* TRUE when the acting unit is a Stealth with at most half its fuel. */
-BOOL func_ov001_02351268(void)
+BOOL Ov001_IsActingStealthLowOnFuel(void)
 {
     /* volatile read of the index first: the original loads it before the
      * state pointer */

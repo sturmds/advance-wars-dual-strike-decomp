@@ -31,7 +31,7 @@ typedef struct Unk_ov005_0236bb90 {
     u8 pad_000c[0x0010 - 0x000c];
     u8 buffer_0010[0x2000];            /* see Unk_ov005_0235b574 */
     u8 pad_2010[0x8014 - 0x2010];
-    u32 unk_8014;                      /* set by func_ov005_0235b754 from the table it reads */
+    u32 unk_8014;                      /* set by Ov005_LoadCreditsPage from the table it reads */
     Ov005SlideEntry entriesA[OV005_SLIDE_ENTRIES];
     Ov005SlideEntry entriesB[OV005_SLIDE_ENTRIES];
     Task *unk_8348;                    /* started by Ov005Screen_LoadPalettes */

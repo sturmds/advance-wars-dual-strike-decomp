@@ -119,11 +119,11 @@ src/game/ov001/ov001_is_full_hp_kind4_object_count_not4.c:
     complete
     .text       start:0x023510fc end:0x02351174
 
-src/game/ov001/func_ov001_02351174.c:
+src/game/ov001/ov001_has_stealth_low_on_fuel.c:
     complete
     .text       start:0x02351174 end:0x02351268
 
-src/game/ov001/func_ov001_02351268.c:
+src/game/ov001/ov001_is_acting_stealth_low_on_fuel.c:
     complete
     .text       start:0x02351268 end:0x023512ec
 
