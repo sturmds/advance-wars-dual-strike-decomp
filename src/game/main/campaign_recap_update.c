@@ -25,7 +25,7 @@ Task *func_020fcb08(int arg);
 BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 void Task_ResumeScript(CampaignRecapTask *task);
-void func_020ff7d0(CampaignRecap *work);
+void CampaignRecap_DrawTitle(CampaignRecap *work);
 void CampaignRecap_DrawPanels(CampaignRecap *work);
 
 extern Unk_02080440 *data_027c027c;
@@ -305,7 +305,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_020ff7d0(work);
+    CampaignRecap_DrawTitle(work);
     CampaignRecap_DrawPanels(work);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);

@@ -43,6 +43,13 @@ typedef struct CampaignRecap {
     CampaignRecapEntry *unk_7c;
 } CampaignRecap;
 
+/* Layout of gMenuState on the campaign recap screen: a line of title
+ * sprites drawn by CampaignRecap_DrawTitle. Who fills it is not known yet. */
+typedef struct CampaignRecapTitle {
+    s16 spriteX[32];                   /* x of each sprite */
+    u8 spriteCount;
+} CampaignRecapTitle;
+
 /* The data_0216a8b0 task, as CampaignRecap_Update sees it. The first 0x2c
  * bytes belong to the task system (Task_Create). */
 typedef struct CampaignRecapTask {
