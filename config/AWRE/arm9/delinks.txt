@@ -10367,6 +10367,10 @@ src/game/main/map/game_mode_start_record_task.c:
     complete
     .text       start:0x020d6538 end:0x020d6580
 
+src/game/main/map/battle_end_award_coins.c:
+    complete
+    .text       start:0x020d6580 end:0x020d65e8
+
 src/game/main/func_020d69c0.c:
     complete
     .text       start:0x020d69c0 end:0x020d69e4
