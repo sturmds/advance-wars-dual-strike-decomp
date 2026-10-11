@@ -10,7 +10,7 @@ s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 void func_0201a4f0(Task *task);
 void func_020d31f4(void);
 void TileMap_GetPixelPos(u16 *tile, u16 *tileMap, s16 *pixelPos);
-void func_020199e0(Rect *rect);
+void EventScript_GetTextWindowRect(Rect *rect);
 void EventChoice_DrawRecord(int index, int x, int y);
 
 /* The cursor sits in Task.waitFrames, read as a signed halfword (as in
@@ -32,7 +32,7 @@ void EventChoice_Init(Task *task)
     /* unk_34 holds a tile pointer here (EventCmd_StartTextMapTask); pos is not used */
     TileMap_GetPixelPos(*(u16 **)&task->unk_34, data_02297be0[0], pos);
     for (i = 0; i < 4; i++) {
-        func_020199e0(&data_022977d0[i]); /* the whole text window */
+        EventScript_GetTextWindowRect(&data_022977d0[i]); /* the whole text window */
     }
     data_022977d0[0].x += 64;
     data_022977d0[0].y += 8;

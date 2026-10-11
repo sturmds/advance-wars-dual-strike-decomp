@@ -1,0 +1,29 @@
+#include "types.h"
+#include "game/rect.h"
+
+extern s16 data_0229778c;
+void OS_Terminate(void);
+
+/* Fills rect with the area of the event text window for the screen mode in
+ * data_0229778c: 0 is the top window, 1 the one at y 144. Any other mode
+ * terminates. */
+void EventScript_GetTextWindowRect(Rect *rect)
+{
+    switch (data_0229778c) {
+    case 0:
+        rect->x = 0;
+        rect->y = 0;
+        rect->width = 256;
+        rect->height = 48;
+        break;
+    case 1:
+        rect->x = 0;
+        rect->y = 144;
+        rect->width = 256;
+        rect->height = 192;
+        break;
+    default:
+        OS_Terminate();
+        break;
+    }
+}

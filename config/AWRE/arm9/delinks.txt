@@ -2393,6 +2393,10 @@ src/game/main/func_020199c0.c:
     complete
     .text       start:0x020199c0 end:0x020199e0
 
+src/game/main/script/event_script_get_text_window_rect.c:
+    complete
+    .text       start:0x020199e0 end:0x02019a6c
+
 src/game/main/func_02019b94.c:
     complete
     .text       start:0x02019b94 end:0x02019bc0
