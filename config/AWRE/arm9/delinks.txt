@@ -755,6 +755,10 @@ src/game/main/screen/screen_fill_black.c:
     complete
     .text       start:0x02007568 end:0x020075c0
 
+src/game/main/screen/screen_reset_blend_all_top.c:
+    complete
+    .text       start:0x020075c0 end:0x020076c0
+
 src/game/main/screen/screens_init_effect_state.c:
     complete
     .text       start:0x020076c0 end:0x020076f8

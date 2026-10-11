@@ -5,7 +5,7 @@
 int Screen_GetNibble(void);
 void Screen_SetNibble(int value);
 int func_02007710(int screens);
-void func_020075c0(void);
+void Screen_ResetBlendAllTop(void);
 void Task_Destroy(Task *task);
 
 /* Script step: like BlendFadeToBlack_Start, but for the current screen only.
@@ -20,7 +20,7 @@ void ScreenBlendDarken_Start(Task *task)
     }
     Screen_SetNibble(1);
     func_02007710(0);
-    func_020075c0();
+    Screen_ResetBlendAllTop();
     data_027c0280->blendMode = BLEND_MODE_DARKEN;
     data_027c0280->blendEvy = 0;
     task->unk_64 = 256;

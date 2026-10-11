@@ -4,7 +4,7 @@
 #include "game/screen_effect.h"
 
 BOOL func_02003d84(Task *task);
-void func_020075c0(void);
+void Screen_ResetBlendAllTop(void);
 
 /* Task step: turns on the darken blend at level 0 on the screens
  * func_02003d84 picks and sets up BlendFadeToBlack_Update to darken them by
@@ -23,7 +23,7 @@ void BlendFadeToBlack_Start(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        func_020075c0();
+        Screen_ResetBlendAllTop();
         data_027c0280->blendMode = BLEND_MODE_DARKEN;
         data_027c0280->blendEvy = 0;
         Screen_SetCurrent(saved027c);
@@ -35,7 +35,7 @@ void BlendFadeToBlack_Start(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_020075c0();
+        Screen_ResetBlendAllTop();
         data_027c0280->blendMode = BLEND_MODE_DARKEN;
         data_027c0280->blendEvy = 0;
         Screen_SetCurrent(saved027c);

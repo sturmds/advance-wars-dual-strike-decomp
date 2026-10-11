@@ -46,6 +46,9 @@ typedef struct DispCntBits {
 /* Unk_027c0280.blendMode value: alpha blend with blendEva and blendEvb (BLDCNT mode 1). */
 #define BLEND_MODE_ALPHA 1
 
+/* Unk_027c0280.blendMode value: no colour effect (BLDCNT mode 0). */
+#define BLEND_MODE_NONE 0
+
 /* Layers inside one window (WININ/WINOUT half). */
 typedef struct WindowPlanes {
     u8 bg[4];
