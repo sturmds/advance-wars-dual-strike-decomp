@@ -13,6 +13,7 @@ D1 says the build must eventually produce ARM7 from objects (delinked bytes plus
 
 - dsd's `init` and `lcf` appear to handle ARM9 only, so this path is likely our own work.
 - ARM7 (157,268 B at 0x02380000) contains "2.39.00" and looks like the standard ARM7 component shipped to every DS game, unchanged by this game.
+- Decompiling ARM7 to C, after this issue, is tracked in 0042.
 
 ## Done when
 
