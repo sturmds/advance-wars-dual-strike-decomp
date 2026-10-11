@@ -21,8 +21,8 @@ void LinkActionQueue_Push(void *action);
 void LinkReactionQueue_Push(void *data);
 
 /* Parent side: handles the flagged packets of each child (aid 1 to 7). Stop
- * and the sharing acknowledgements are collected as bits per aid in unk_06 and
- * unk_04; once every connected child has answered, the parent acts and tells
+ * and the sharing acknowledgements are collected as bits per aid in stopAcks and
+ * sharingAcks; once every connected child has answered, the parent acts and tells
  * the children. Unit actions and reactions are queued here and relayed to all
  * children. Then, when the children changed (and every 16th frame while
  * func_02077f20 is set), sends the child aid bits: with the next child's
@@ -43,9 +43,9 @@ void Link_ParentHandlePackets(void)
             bit = 1 << aid;
             switch (packet.type) {
             case LINK_PACKET_STOP:
-                data_0215fe8c->unk_06 |= bit;
+                data_0215fe8c->stopAcks |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_06 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->stopAcks & (1 << i))) {
                         break;
                     }
                 }
@@ -56,9 +56,9 @@ void Link_ParentHandlePackets(void)
                 }
                 break;
             case LINK_PACKET_SHARING_STARTED:
-                data_0215fe8c->unk_04 |= bit;
+                data_0215fe8c->sharingAcks |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->sharingAcks & (1 << i))) {
                         break;
                     }
                 }
@@ -69,9 +69,9 @@ void Link_ParentHandlePackets(void)
                 }
                 break;
             case LINK_PACKET_SHARING_ENDED:
-                data_0215fe8c->unk_04 |= bit;
+                data_0215fe8c->sharingAcks |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->sharingAcks & (1 << i))) {
                         break;
                     }
                 }

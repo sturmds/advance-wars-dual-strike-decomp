@@ -16,7 +16,7 @@ void func_0207b564(void)
     if (Wireless_GetState() != 4) {
         return;
     }
-    data_0215fe8c->unk_04 = 0;
+    data_0215fe8c->sharingAcks = 0;
     Link_SendCommand(10);
     data_0215fe8c->linkState = 1;
 }

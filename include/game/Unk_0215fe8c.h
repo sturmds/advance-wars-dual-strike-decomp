@@ -7,8 +7,8 @@
  * map select, battle setup) through small getters. */
 typedef struct Unk_0215fe8c {
     u32 replyTimer;                    /* ticks since the peer last answered; Link_PollPeerReply sets error past 600 */
-    u16 unk_04;                        /* cleared when func_0207b4e8 and func_0207b564 send a request */
-    u16 unk_06;                        /* cleared by Link_ResetBuffers */
+    u16 sharingAcks;                   /* parent: bit per child aid that acknowledged the data sharing start or end; cleared when func_0207b4e8 and func_0207b564 send a request */
+    u16 stopAcks;                      /* parent: bit per child aid that acknowledged the stop; cleared by Link_ResetBuffers */
     u16 unk_08;                        /* Wireless_GetChildAids result, stored when func_0207bb48 stops the task */
     u8 unk_0a;                         /* copy of unk_8b of the game state, taken when link mode starts */
     u8 linkState;                      /* link state, 0 to 3: func_0207b564 sets 1, func_0207b4e8 sets 3 */

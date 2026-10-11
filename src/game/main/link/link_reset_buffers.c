@@ -30,5 +30,5 @@ void Link_ResetBuffers(void)
     }
     func_02080668();
     func_0208109c();
-    data_0215fe8c->unk_06 = 0;
+    data_0215fe8c->stopAcks = 0;
 }

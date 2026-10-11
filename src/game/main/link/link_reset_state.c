@@ -43,7 +43,7 @@ void Link_ResetState(void)
     data_0215fe8c->unk_0c = 0;
     data_0215fe8c->packetSize = 23;
     data_0215fe8c->nameSendAid = 0;
-    data_0215fe8c->unk_06 = 0;
+    data_0215fe8c->stopAcks = 0;
     data_0215fe8c->replyTimer = 0;
     Link_ResetBuffers();
 }

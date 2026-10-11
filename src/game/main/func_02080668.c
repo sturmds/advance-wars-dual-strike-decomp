@@ -3,5 +3,5 @@
 
 void func_02080668(void)
 {
-    data_0229d8e0.unk_180 = data_0229d8e0.unk_181 = 0;
+    data_0229d8e0.readIndex = data_0229d8e0.writeIndex = 0;
 }
