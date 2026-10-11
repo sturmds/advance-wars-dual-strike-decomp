@@ -6325,6 +6325,10 @@ src/game/main/menus/unit_list_draw_row.c:
     complete
     .text       start:0x02074704 end:0x02074be8
 
+src/game/main/menus/unit_list_build.c:
+    complete
+    .text       start:0x02074e2c end:0x02075384
+
 src/game/main/menus/unit_list_clear_and_count.c:
     complete
     .text       start:0x02075384 end:0x02075448
