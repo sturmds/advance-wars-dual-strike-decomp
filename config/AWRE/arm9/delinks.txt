@@ -8098,6 +8098,10 @@ src/game/main/menus/player_info_queue_page_sprites.c:
     complete
     .text       start:0x0206f660 end:0x0206f6f8
 
+src/game/main/menus/player_info_draw_co_icons.c:
+    complete
+    .text       start:0x0206f6f8 end:0x0206f7ec
+
 src/game/main/func_0206f7ec.c:
     complete
     .text       start:0x0206f7ec end:0x0206f7f0

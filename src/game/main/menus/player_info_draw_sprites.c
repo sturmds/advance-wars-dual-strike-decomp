@@ -5,7 +5,7 @@
 extern MenuState gMenuState;
 extern u8 data_027c0030;
 
-void func_0206f6f8(void);
+void PlayerInfo_DrawCoIcons(void);
 void PlayerInfo_DrawPortraitScreenSprites(void);
 void func_02001f50(int x, int y, int attr, int tile, int list);
 void PlayerInfo_QueuePageSprites(void);
@@ -20,7 +20,7 @@ void PlayerInfo_DrawSprites(void)
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_0206f6f8();
+    PlayerInfo_DrawCoIcons();
     func_02001f50(0x10d0, 24, 0, 0, 1);
     PlayerInfo_QueuePageSprites();
     if (gMenuState.unk_0206d67c.page == 3 && gMenuState.unk_0206d67c.unk_0a4 != 0) {
