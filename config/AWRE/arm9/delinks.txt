@@ -20981,6 +20981,10 @@ src/sdk/gx/gx_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c698 end:0x0210c718
 
+src/sdk/gx/gx_begin_load_bg_ext_pltt.c:
+    complete
+    .text       start:0x0210c718 end:0x0210c81c
+
 src/sdk/gx/gx_end_load_tex_pltt.c:
     complete
     .text       start:0x0210c81c end:0x0210c874

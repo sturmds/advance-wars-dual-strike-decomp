@@ -8,12 +8,15 @@
  * where it sits, Load copies at an offset inside it, End waits for DMA and
  * maps the bank back for rendering. */
 
-#define LCDC_VIEW_BANK_H 0x06898000 /* bank H as seen through LCDC while it is loaded */
+#define HW_LCDC_VRAM_E 0x06880000 /* banks E, F, G and H as seen through LCDC while they are loaded */
+#define HW_LCDC_VRAM_F 0x06890000
+#define HW_LCDC_VRAM_G 0x06894000
+#define LCDC_VIEW_BANK_H 0x06898000
 
 /* DMA channel the VramStage_Copy* functions use (starts at 3); -1 copies with the CPU. */
 extern int data_0216d958;
 
-/* State of the main BG extended palette load (set by func_0210c718, the Begin function):
+/* State of the main BG extended palette load (set by GX_BeginLoadBGExtPltt, the Begin function):
  * the bank mapped for loading, its address in the LCDC
  * range, and the offset the load subtracts from the palette offset it is given. */
 extern int data_022a98a0;
@@ -49,6 +52,7 @@ void GX_EndLoadTex(void);
 void GX_BeginLoadTex(void);
 
 /* Main engine BG extended palette. */
+void GX_BeginLoadBGExtPltt(void);
 void GX_EndLoadBGExtPltt(void);
 void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 
