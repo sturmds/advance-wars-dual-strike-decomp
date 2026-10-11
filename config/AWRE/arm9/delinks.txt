@@ -12805,6 +12805,10 @@ src/game/main/game_enter_state18.c:
     complete
     .text       start:0x020ceb60 end:0x020cebac
 
+src/game/main/players_is_one_team_left.c:
+    complete
+    .text       start:0x020cebac end:0x020cedf4
+
 src/game/main/players_find_property_goal_winner.c:
     complete
     .text       start:0x020cedf4 end:0x020cee5c
