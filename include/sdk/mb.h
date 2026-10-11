@@ -157,6 +157,13 @@ typedef struct DlPlayProgramChunkSet {
     DlPlayProgramChunk segments[DLPLAY_KEPT_CHUNK_SLOTS];
 } DlPlayProgramChunkSet;
 
+/* The task thread's work area, behind data_022acf00: an OSThread, then the
+ * queue of tasks it runs. */
+typedef struct DlPlayWorkerArea {
+    u8 pad_00[0x98];
+    u8 queue[1];                       /* size not known yet */
+} DlPlayWorkerArea;
+
 /* Download Play comm layer, parent side. */
 #define DLPLAY_OFFER_SLOTS 16
 #define DLPLAY_NOTHING_TRANSMITTED 21           /* one past the last WM error code: nothing was sent */

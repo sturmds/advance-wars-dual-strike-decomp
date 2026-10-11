@@ -22590,6 +22590,10 @@ src/game/main/func_0211daf4.c:
     complete
     .text       start:0x0211daf4 end:0x0211db08
 
+src/sdk/mb/mb_task_post.c:
+    complete
+    .text       start:0x0211db08 end:0x0211db5c
+
 src/game/main/func_0211dd04.c:
     complete
     .text       start:0x0211dd04 end:0x0211dd18
