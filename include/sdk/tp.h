@@ -62,12 +62,12 @@ enum {
     TP_STATE_AUTO_SAMPLING = 2
 };
 
-typedef void (*TPRecvCallback)(u32 command, u32 result, u16 index);
+typedef void (*TPRecvCallback)(u32 command, u8 result, u16 index);
 
 typedef struct TPiWork {
     TPRecvCallback callback;
     TPData buf;                    /* latest single sample */
-    u16 index;                     /* latest slot written in samplingBufs */
+    volatile u16 index;            /* latest slot written in samplingBufs */
     u16 frequency;
     TPData *samplingBufs;          /* ring buffer for auto sampling */
     u16 bufSize;
@@ -86,6 +86,39 @@ extern TPiWork tpState;
 
 /* Ask the ARM7 for one sample. */
 #define TOUCH_ASK_ONE_SAMPLE 0x03000000
+
+/* Fields of a word the ARM7 sends back: the request it answers, a result
+ * code, and a flag set on a reply to a request. */
+#define TOUCH_REPLY_REQUEST_BITS  0x7f00
+#define TOUCH_REPLY_REQUEST_POS 8
+#define TOUCH_REPLY_CODE_BITS   0xff
+#define TOUCH_REPLY_ANSWER_BIT    0x01000000
+
+/* Result codes in an ARM7 reply. */
+enum {
+    TOUCH_REPLY_OK = 0,
+    TOUCH_REPLY_UNKNOWN_REQUEST = 1,
+    TOUCH_REPLY_BAD_ARGUMENT = 2,
+    TOUCH_REPLY_WRONG_STATE = 3,
+    TOUCH_REPLY_BUS_TAKEN = 4
+};
+
+/* The ARM7 leaves its latest sample here, as two halfwords of one SPITpData. */
+#define TOUCH_SHARED_LATEST_LOW (*(u16 *)0x027fffaa)
+#define TOUCH_SHARED_LATEST_HIGH (*(u16 *)0x027fffac)
+
+/* A sample as the ARM7 packs it into 32 bits. */
+typedef union SPITpData {
+    struct {
+        u32 x : 12;
+        u32 y : 12;
+        u32 touch : 1;
+        u32 validity : 2;
+        u32 : 5;
+    } e;
+    u32 raw;
+    u16 halfs[2];
+} SPITpData;
 
 void TP_Init(void);
 BOOL TP_GetUserInfo(TPCalibrateParam *calibrate);

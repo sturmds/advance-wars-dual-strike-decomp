@@ -21987,6 +21987,10 @@ src/sdk/tp/tp_init.c:
     complete
     .text       start:0x02114554 end:0x021145e4
 
+src/sdk/tp/tpi_tp_callback.c:
+    complete
+    .text       start:0x021145e4 end:0x021148a4
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc
