@@ -5337,9 +5337,25 @@ src/game/main/func_0207c044.c:
     complete
     .text       start:0x0207c044 end:0x0207c06c
 
+src/game/main/link/link_banner_shrink_box.c:
+    complete
+    .text       start:0x0207c06c end:0x0207c130
+
+src/game/main/link/link_sub_screen_clear_layer0.c:
+    complete
+    .text       start:0x0207c130 end:0x0207c198
+
+src/game/main/link/link_banner_init.c:
+    complete
+    .text       start:0x0207c2c0 end:0x0207c380
+
 src/game/main/func_0207c380.c:
     complete
     .text       start:0x0207c380 end:0x0207c394
+
+src/game/main/link/link_banner_create.c:
+    complete
+    .text       start:0x0207c394 end:0x0207c414
 
 src/game/main/func_0207c414.c:
     complete
