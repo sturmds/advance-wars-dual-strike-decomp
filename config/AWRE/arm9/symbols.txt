@@ -1193,7 +1193,7 @@ MapPreview_DrawPlayerViews kind:function(arm,size=0x3b0) addr:0x0202c15c
 func_0202c50c kind:function(arm,size=0x14) addr:0x0202c50c
 PaletteCycle_Start kind:function(arm,size=0x3c) addr:0x0202c520
 PaletteCycle_Update kind:function(arm,size=0x44) addr:0x0202c55c
-func_0202c5a0 kind:function(arm,size=0x1c0) addr:0x0202c5a0
+MapPreview_DrawBlockUnits kind:function(arm,size=0x1c0) addr:0x0202c5a0
 MapPreview_DrawBlock kind:function(arm,size=0x314) addr:0x0202c760
 Map_LoadArmyColours kind:function(arm,size=0x68) addr:0x0202ca74
 Map_LoadArmyColoursFromPlayers kind:function(arm,size=0x58) addr:0x0202cadc
@@ -7063,7 +7063,7 @@ data_021598d8 kind:data(any) addr:0x021598d8
 data_021598f4 kind:data(any) addr:0x021598f4
 data_02159910 kind:data(any) addr:0x02159910
 data_02159928 kind:data(any) addr:0x02159928
-data_0215993c kind:data(any) addr:0x0215993c
+gMapPreviewBlockUnitMask kind:data(any) addr:0x0215993c
 data_02159944 kind:data(any) addr:0x02159944
 data_02159964 kind:data(any) addr:0x02159964
 data_02159980 kind:data(any) addr:0x02159980

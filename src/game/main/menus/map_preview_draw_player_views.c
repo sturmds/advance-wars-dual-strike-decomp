@@ -13,7 +13,7 @@ void func_020c3e5c(void);
 void Player_SaveArmyColours(void);
 void SavedArmyColours_Reset(void);
 void MapPreview_DrawBlock(void *dst, s16 x, s16 y, int width, int height);
-void func_0202c5a0(void *dst, u16 x, u16 y, int width, int height);
+void MapPreview_DrawBlockUnits(void *dst, u16 x, u16 y, int width, int height);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -101,7 +101,7 @@ void MapPreview_DrawPlayerViews(u8 (*dst)[32])
             y = data_0229eadc->height - VIEW_HEIGHT;
         }
         MapPreview_DrawBlock(dst + view * 64, x, y, VIEW_WIDTH, VIEW_HEIGHT);
-        func_0202c5a0(dst + (view * 64 + 32), x, y, VIEW_WIDTH, VIEW_HEIGHT);
+        MapPreview_DrawBlockUnits(dst + (view * 64 + 32), x, y, VIEW_WIDTH, VIEW_HEIGHT);
     }
     func_020c3e5c();
 }
