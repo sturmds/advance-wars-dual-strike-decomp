@@ -24,7 +24,7 @@ BOOL func_02098238(u32 cost);
 int Ai_WantsBlackBomb(int unitType);
 int func_02095fb8(void);
 int AiSite_PickPiperunnerSite(void);
-BOOL func_020949fc(int unitType);
+BOOL AiBuild_CanAffordPiperunnerInstead(int unitType);
 BOOL AiBuild_WantsPiperunnerInstead(int unitType);
 int Ai_CountUnitsOfType(int type);
 
@@ -138,7 +138,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
             return func_02095fb8();
         }
         if (data_021619c0->unk_10 != 0) {
-            if (func_020949fc(best) == 1) {
+            if (AiBuild_CanAffordPiperunnerInstead(best) == 1) {
                 gUnitAction.target = UNIT_PIPERUNNER;
                 return AiSite_PickPiperunnerSite();
             }
