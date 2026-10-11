@@ -5256,6 +5256,10 @@ src/game/main/func_02059280.c:
     complete
     .text       start:0x02059280 end:0x02059294
 
+src/game/main/copowers/tag_break_fade_to_white.c:
+    complete
+    .text       start:0x02059294 end:0x020593c8
+
 src/game/main/func_020593c8.c:
     .text       start:0x020593c8 end:0x0205990c
 
