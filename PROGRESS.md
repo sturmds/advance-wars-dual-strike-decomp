@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4102 / 6598 | 851392 / 1531944 | 55.58% | 0 | 0 |
+| game | 4105 / 6598 | 852912 / 1531944 | 55.68% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4240 / 7479 | 854812 / 1685994 | 50.70% | 1 | 30 |
+| all | 4243 / 7479 | 856332 / 1685994 | 50.79% | 1 | 30 |
 
 ## By module
 
@@ -22,8 +22,8 @@ Rows with nothing done are left out, but count in the totals.
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
-| ov001 | game | 73 / 76 | 6832 / 7472 | 91.43% | 0 |
-| ov002 | game | 149 / 164 | 51260 / 64208 | 79.83% | 0 |
+| ov001 | game | 74 / 76 | 7096 / 7472 | 94.97% | 0 |
+| ov002 | game | 151 / 164 | 52516 / 64208 | 81.79% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 257 / 266 | 94100 / 96684 | 97.33% | 0 |
@@ -60,11 +60,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
 | `src/game/ov001/func_ov001_02351174.c` | func_ov001_02351174 | 244 |
 | `src/game/ov001/func_ov001_02351268.c` | func_ov001_02351268 | 132 |
-| `src/game/ov001/func_ov001_02351538.c` | func_ov001_02351538 | 264 |
 | `src/game/ov002/battle_cell_sprite_arrived.c` | BattleCellSprite_Arrived | 312 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
-| `src/game/ov002/battle_fighter_task_setup.c` | BattleFighterTask_Setup | 544 |
-| `src/game/ov002/battle_footstep_task_start.c` | BattleFootstepTask_Start | 712 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 |

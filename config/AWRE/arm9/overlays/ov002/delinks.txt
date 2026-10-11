@@ -588,6 +588,7 @@ src/game/ov002/battle_fighter_task_spawn_step.c:
     .text       start:0x0235f064 end:0x0235f1a0
 
 src/game/ov002/battle_fighter_task_setup.c:
+    complete
     .text       start:0x0235f1a0 end:0x0235f3c0
 
 src/game/ov002/func_ov002_0235f3c0.c:

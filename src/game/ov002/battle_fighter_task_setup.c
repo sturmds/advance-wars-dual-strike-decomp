@@ -11,8 +11,9 @@ int Battle_GetMatchupNibble1(int side);
 
 /* Start of a side's fighter task: finds the fighter, the side's step list
  * and animation data, destroys the fighter's old sprite task and makes a new
- * one from the side's sprite table. Partial: 96%; the original reads
- * task->fighter twice where this reads it once. */
+ * one from the side's sprite table. Needed to match: `left` reads
+ * task->fighter through a cast, so the compiler loads it again for
+ * `fighter` instead of sharing the load. */
 void BattleFighterTask_Setup(FighterTask *task)
 {
     BattleFighter *fighter;
@@ -30,12 +31,12 @@ void BattleFighterTask_Setup(FighterTask *task)
             Task_Destroy((Task *)FIGHTER_ENTRY(task).sprites[1]);
             FIGHTER_ENTRY(task).sprites[1] = NULL;
         }
+        left = (*(BattleFighter **)&task->fighter)->side == 0 ? TRUE : FALSE;
         fighter = task->fighter;
-        left = task->fighter->side == 0 ? TRUE : FALSE;
         scale = fighter->unk_44;
-        side = fighter->side;
         unk_58 = left ? 0 : 2;
         unk_56 = left ? 0 : 2;
+        side = fighter->side;
         FIGHTER_ENTRY(task).sprites[1] = BattleSpriteTask_Create(
             (const u32 *)MENU->battle.unk_30[task->fighter->side],
             task->steps->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->unk_38,
