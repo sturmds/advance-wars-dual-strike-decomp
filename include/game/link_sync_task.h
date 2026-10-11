@@ -27,4 +27,27 @@ typedef struct LinkSyncTask {
     u16 receiveStarted;                /* set when the first chunk arrived */
 } LinkSyncTask;
 
+/* Palette and picture variants of two COs, packed in one byte. */
+typedef struct LinkCoVariantPair {
+    u8 palette0 : 3;
+    u8 picture0 : 1;
+    u8 palette1 : 3;
+    u8 picture1 : 1;
+} LinkCoVariantPair;
+
+/* Fields of the task (LinkCoVariantSyncTask_Update) that swaps the palette and picture
+ * variants of the 7 COs in data_0216069c between players. Its fields start
+ * one byte earlier than the other tasks'. */
+typedef struct LinkCoVariantSyncTask {
+    u8 pad_00[0x29];
+    LinkCoVariantPair variants[4];     /* 7 COs, two a byte; filled by func_02081e90 */
+    u8 players[4];                     /* the player in each link slot; the received chunk of player players[k] goes to army k + 1 */
+    u8 pad_31;
+    u16 sentBytes;
+    u16 receivedBytes;
+    u16 sendDone;                      /* set when sentBytes reaches 4 */
+    u16 started;                       /* set once the first chunk went out */
+    u16 receiveStarted;                /* set when the first chunk arrived */
+} LinkCoVariantSyncTask;
+
 #endif
