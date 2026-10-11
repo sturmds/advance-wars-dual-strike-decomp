@@ -14165,6 +14165,10 @@ src/game/main/copowers/power_hit_effect_start.c:
     complete
     .text       start:0x020e36fc end:0x020e3798
 
+src/game/main/copowers/power_damage_set_weather.c:
+    complete
+    .text       start:0x020e3798 end:0x020e37c0
+
 src/game/main/func_020e37c0.c:
     complete
     .text       start:0x020e37c0 end:0x020e37e4
