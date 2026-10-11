@@ -22558,6 +22558,10 @@ src/sdk/wm/wm_set_game_info.c:
     complete
     .text       start:0x021190e8 end:0x021191b0
 
+src/sdk/mb/mb_comm_report_error.c:
+    complete
+    .text       start:0x021191b0 end:0x021191d4
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc

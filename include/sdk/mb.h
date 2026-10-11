@@ -177,6 +177,7 @@ typedef struct DlPlayWorkerArea {
 #define DLPLAY_CHILD_TOLD_TO_BOOT 8
 #define DLPLAY_CHILD_ASKED_FILE 10
 #define DLPLAY_CHILD_NO_ROOM 11
+#define DLPLAY_CHILD_FAULT 13
 #define DLPLAY_CHILD_AWAITING_START 14
 
 /* Message types the parent sends. */
