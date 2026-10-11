@@ -8657,6 +8657,10 @@ src/game/main/func_02083064.c:
     complete
     .text       start:0x02083064 end:0x02083090
 
+src/game/main/menus/combat_setup_animate_palette.c:
+    complete
+    .text       start:0x02083090 end:0x02083124
+
 src/game/main/menus/combat_setup_cancel_ready.c:
     complete
     .text       start:0x02083198 end:0x020832a8
