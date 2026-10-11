@@ -7472,6 +7472,10 @@ src/game/main/func_0205f538.c:
     complete
     .text       start:0x0205f538 end:0x0205f564
 
+src/game/main/menus/palette_cycle_stop_both_screens.c:
+    complete
+    .text       start:0x0205f564 end:0x0205f5c4
+
 src/game/main/menus/map_select_draw.c:
     complete
     .text       start:0x0205f5c4 end:0x02060718
