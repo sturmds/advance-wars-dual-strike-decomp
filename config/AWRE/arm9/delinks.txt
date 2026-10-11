@@ -7308,6 +7308,10 @@ src/game/main/copowers/tag_break_hold_name.c:
     complete
     .text       start:0x02059aa0 end:0x02059b40
 
+src/game/main/copowers/tag_break_letters_pop_in.c:
+    complete
+    .text       start:0x02059b40 end:0x02059d78
+
 src/game/main/copowers/tag_break_set_up_screens.c:
     complete
     .text       start:0x02059d78 end:0x0205b0c0
