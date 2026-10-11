@@ -10086,6 +10086,10 @@ src/game/main/power_meter/power_panel_right_queue_power_icon.c:
     complete
     .text       start:0x020e1370 end:0x020e14a4
 
+src/game/main/power_meter/power_panel_left_queue_power_icon.c:
+    complete
+    .text       start:0x020e14a4 end:0x020e15d8
+
 src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948

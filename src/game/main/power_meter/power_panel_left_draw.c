@@ -21,13 +21,13 @@ void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 int Co_GetArmyPictureVariant(int coId, int army);
 void TransferQueue_Add(const void *src, void *dest, int size);
 BOOL func_020f5344(int mapState);
-void func_020e14a4(int x, int y, int player);
+void PowerPanelLeft_QueuePowerIcon(int x, int y, int player);
 void PowerPanelLeft_DrawMeter(int x, int y, int player, int coSlot);
 
 /* Draws the left power panel for one CO of a player (coSlot 0 front,
  * 1 back): the panel frame, the CO portrait copied to object tile tile in
  * palette, then the meter. While the front CO's power is on, a power icon
- * (func_020e14a4) replaces the meter; the back CO's meter is left out while
+ * (PowerPanelLeft_QueuePowerIcon) replaces the meter; the back CO's meter is left out while
  * its half of a tag power runs. Like CoPanel_Draw (ov000). */
 void PowerPanelLeft_Draw(int x, int y, int player, int coSlot, int tile, int palette)
 {
@@ -46,7 +46,7 @@ void PowerPanelLeft_Draw(int x, int y, int player, int coSlot, int tile, int pal
     }
     if (coSlot == 0) {
         if (STATE->players[player].front.powerState != POWER_NONE) {
-            func_020e14a4(x, y, player);
+            PowerPanelLeft_QueuePowerIcon(x, y, player);
             return;
         }
         PowerPanelLeft_DrawMeter(x, y, player, coSlot);
