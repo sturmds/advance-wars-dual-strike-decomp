@@ -9,4 +9,10 @@ typedef struct TilePoint {
     s16 y;
 } TilePoint;
 
+/* A map tile position stored as u16; lists of these end at x == 0xffff. */
+typedef struct TilePointU16 {
+    u16 x;
+    u16 y;
+} TilePointU16;
+
 #endif

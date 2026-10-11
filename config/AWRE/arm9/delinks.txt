@@ -7820,6 +7820,10 @@ src/game/main/map/map_object_get_draw_offset_x.c:
     complete
     .text       start:0x020da524 end:0x020da554
 
+src/game/main/ai/ai_target_list_add_units_on_tiles.c:
+    complete
+    .text       start:0x020da554 end:0x020da5e0
+
 src/game/main/ai/ai_target_list_add.c:
     complete
     .text       start:0x020da5e0 end:0x020da63c
