@@ -4094,6 +4094,10 @@ src/game/main/func_02075460.c:
     complete
     .text       start:0x02075460 end:0x02075494
 
+src/game/main/menus/menu_cancel_on_b_button.c:
+    complete
+    .text       start:0x02075494 end:0x020754d0
+
 src/game/main/func_02075df0.c:
     complete
     .text       start:0x02075df0 end:0x02075e08
