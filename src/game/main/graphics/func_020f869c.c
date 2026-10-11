@@ -5,7 +5,7 @@
 void Screen_FillWhite(void);
 void Screen_FillBlack(void);
 void Screens_SetUp2dLayers(void *a);
-void func_02009ac0(void);
+void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);
 void func_020f8994(void);
@@ -31,7 +31,7 @@ void func_020f869c(int mode)
     Screens_SetUp2dLayers(data_02166dc8);
     data_027c0280->dispCnt |= 0x40;
     data_027c0280->unk_dd = 0;
-    func_02009ac0();
+    Screen_ResetLayerScroll();
     if (data_027c027c->unk_50[data_027c0284]->callback != NULL) {
         data_027c027c->unk_50[data_027c0284]->callback();
     }

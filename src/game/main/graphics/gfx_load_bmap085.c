@@ -7,7 +7,7 @@ void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void Screen_ResetWindows(void);
 void Screen_ResetBlend(void);
-void func_02009ac0(void);
+void Screen_ResetLayerScroll(void);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
@@ -35,7 +35,7 @@ void Gfx_LoadBmap085(void)
     Screen_InitLayers(gBmap085Layers);
     Screen_ResetWindows();
     Screen_ResetBlend();
-    func_02009ac0();
+    Screen_ResetLayerScroll();
     data_027c0280->bgCnt[data_027c0280->layer0Bg].priority = 0;
     data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 1;
     data_027c0280->bgCnt[data_027c0280->layer2Bg].priority = 2;

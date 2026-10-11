@@ -15,7 +15,7 @@ void MainLoop_TaskFrame(void);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void Screen_ResetBlend(void);
-void func_02009ac0(void);
+void Screen_ResetLayerScroll(void);
 void Gfx_LoadPlayerWindowFrame(int player);
 void Data_Unpack(const void *src, void *dst);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
@@ -35,7 +35,7 @@ void Screen_InitWithPlayerFrame(void)
     Screen_SetBgMode(0);
     Screen_InitLayers(data_02169970);
     Screen_ResetBlend();
-    func_02009ac0();
+    Screen_ResetLayerScroll();
     Gfx_LoadPlayerWindowFrame(player);
     Data_Unpack(data_02134e8c, data_027c0280->unk_120);
     Data_Unpack(data_02137ca8, data_027c0280->layer3Map);

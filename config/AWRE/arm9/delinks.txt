@@ -932,6 +932,10 @@ src/game/main/screen/screen_reset_blend.c:
     complete
     .text       start:0x020099c8 end:0x02009ac0
 
+src/game/main/screen/screen_reset_layer_scroll.c:
+    complete
+    .text       start:0x02009ac0 end:0x02009b50
+
 src/game/main/screen/screen_reset_bg_registers.c:
     complete
     .text       start:0x02009b50 end:0x02009bbc
