@@ -18,7 +18,8 @@ typedef struct Unk_0215fe84 {
     int childrenChanged;               /* set to 1 when a child connects or leaves */
     int unk_20;                        /* set to 1 by func_02079180 */
     int unk_24;                        /* set to 1 when Wireless_StartConnect fails to start */
-    u8 pad_28[0x30 - 0x28];
+    int unk_28;                        /* cleared by Wireless_ResetState */
+    int unk_2c;                        /* cleared by Wireless_ResetState */
     int unk_30;                        /* returned by func_0207a170 */
     u8 parentCount;                    /* parents found by the scan, in gWirelessParents (at most 4) */
     u8 unk_35;                         /* set by func_0207a7a4 */

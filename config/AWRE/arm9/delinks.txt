@@ -9056,6 +9056,10 @@ src/game/main/func_0207a7a4.c:
     complete
     .text       start:0x0207a7a4 end:0x0207a7c8
 
+src/game/main/link/wireless_reset_state.c:
+    complete
+    .text       start:0x0207a7c8 end:0x0207a888
+
 src/game/main/link/wireless_init.c:
     complete
     .text       start:0x0207a888 end:0x0207aa04

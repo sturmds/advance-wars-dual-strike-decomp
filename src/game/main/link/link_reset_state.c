@@ -8,7 +8,7 @@ extern Unk_0215fe8c *data_0215fe8c;
 
 void Link_ResetBuffers(void);
 void func_0207a7a4(int mode, int playerCount);   /* playerCount: a guess */
-void func_0207a7c8(void);
+void Wireless_ResetState(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -17,7 +17,7 @@ void func_0207a7c8(void);
  * 8 in mode 3, 2 in modes 1 and 2, else 4. */
 void Link_ResetState(void)
 {
-    func_0207a7c8();
+    Wireless_ResetState();
     data_0215fe8c->unk_0a = GAME->unk_8b;
     switch (GAME->unk_8b) {
     case 3:
