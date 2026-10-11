@@ -1013,7 +1013,7 @@ ChoicePrompt_GetKeys kind:function(arm,size=0x38) addr:0x02024a08
 func_02024a40 kind:function(arm,size=0x2c) addr:0x02024a40
 func_02024a6c kind:function(arm,size=0x2c) addr:0x02024a6c
 func_02024a98 kind:function(arm,size=0x12c) addr:0x02024a98
-func_02024bc4 kind:function(arm,size=0x64) addr:0x02024bc4
+Rects_FindHitBit kind:function(arm,size=0x64) addr:0x02024bc4
 func_02024c28 kind:function(arm,size=0x17c) addr:0x02024c28
 func_02024da4 kind:function(arm,size=0x5c) addr:0x02024da4
 Touch_TestPressInScreen kind:function(arm,size=0xc0) addr:0x02024e00
@@ -6988,7 +6988,7 @@ gIconBankFirstIcon kind:data(any) addr:0x021589f4
 gObjShapeBySize kind:data(any) addr:0x02158a20
 gIconSize kind:data(any) addr:0x02158c84
 gIconHeights kind:data(any) addr:0x02158c85
-data_02158f28 kind:data(any) addr:0x02158f28
+gRectHitBits kind:data(any) addr:0x02158f28
 gMenuCursor kind:data(any) addr:0x02158f38
 data_02158f3c kind:data(any) addr:0x02158f3c
 gMenuCursorShake kind:data(any) addr:0x02158f44
