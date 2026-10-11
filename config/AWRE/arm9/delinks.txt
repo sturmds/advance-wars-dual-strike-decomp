@@ -3959,6 +3959,10 @@ src/game/main/result_stats_next_player.c:
     complete
     .text       start:0x0203b428 end:0x0203b4b0
 
+src/game/main/result_stats_prev_player.c:
+    complete
+    .text       start:0x0203b4b0 end:0x0203b538
+
 src/game/main/func_0203b614.c:
     complete
     .text       start:0x0203b614 end:0x0203b634
