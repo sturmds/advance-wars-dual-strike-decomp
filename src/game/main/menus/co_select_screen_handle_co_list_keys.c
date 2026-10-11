@@ -7,7 +7,7 @@ void CoSelectScreen_HandleR(void);
 void CoSelectScreen_HandleX(void);
 int CoSelectScreen_ListSlotBelow(int slot);
 int CoSelectScreen_ListSlotAbove(int slot);
-int func_02042338(int slot);
+int CoSelectScreen_ListSlotRight(int slot);
 int func_02042578(int slot);
 
 /* onKeys of the CO list buttons. The arrows move the cursor to the next
@@ -21,7 +21,7 @@ void CoSelectScreen_HandleCoListKeys(MenuButton *button)
         slot = func_02042578(slot);
     }
     if (gKeypad->repeat & PAD_KEY_RIGHT) {
-        slot = func_02042338(slot);
+        slot = CoSelectScreen_ListSlotRight(slot);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
         slot = CoSelectScreen_ListSlotAbove(slot);
