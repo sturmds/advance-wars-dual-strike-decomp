@@ -3403,7 +3403,7 @@ PowerMenu_ActivateSuper kind:function(arm,size=0x80) addr:0x020bd7c0
 PowerMenu_ActivateCo kind:function(arm,size=0x80) addr:0x020bd840
 func_020bd8c0 kind:function(arm,size=0x40) addr:0x020bd8c0
 func_020bd900 kind:function(arm,size=0x40) addr:0x020bd900
-func_020bd940 kind:function(arm,size=0x284) addr:0x020bd940
+Menu_ToggleMusic kind:function(arm,size=0x284) addr:0x020bd940
 func_020bdbc4 kind:function(arm,size=0x254) addr:0x020bdbc4
 func_020bde18 kind:function(arm,size=0x54) addr:0x020bde18
 func_020bde6c kind:function(arm,size=0x48) addr:0x020bde6c
@@ -7590,7 +7590,7 @@ data_02161baa kind:data(any) addr:0x02161baa
 gAiProfileMods kind:data(any) addr:0x02162050
 gAiProfileTemplates kind:data(any) addr:0x02162a90
 data_021658c8 kind:data(any) addr:0x021658c8
-data_021658d0 kind:data(any) addr:0x021658d0
+gMusicMenuHelpFns kind:data(any) addr:0x021658d0
 data_021658d8 kind:data(any) addr:0x021658d8
 data_021658e8 kind:data(any) addr:0x021658e8
 data_021658fc kind:data(any) addr:0x021658fc
