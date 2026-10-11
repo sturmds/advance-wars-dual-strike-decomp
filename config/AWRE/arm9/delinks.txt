@@ -12483,6 +12483,7 @@ src/game/main/ai/ai_unit_head_for_repair_tile.c:
     .text       start:0x020afb58 end:0x020aff0c
 
 src/game/main/ai/ai_unit_join_damaged_unit.c:
+    complete
     .text       start:0x020aff0c end:0x020b0138
 
 src/game/main/ai/ai_unit_try_attack_before_repair.c:
