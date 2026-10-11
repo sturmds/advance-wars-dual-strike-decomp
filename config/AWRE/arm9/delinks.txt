@@ -22349,6 +22349,7 @@ src/sdk/isd/isd_release_cartridge.c:
     .text       start:0x02120ee8 end:0x02120f18
 
 src/sdk/isd/isd_acquire_cartridge.c:
+    complete
     .text       start:0x02120f18 end:0x02120f38
 
 src/sdk/isd/isd_try_acquire_cartridge.c:
