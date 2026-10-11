@@ -83,6 +83,7 @@
 #define REG_MTX_PUSH ((volatile u32 *)0x04000444)
 #define REG_MTX_POP ((volatile u32 *)0x04000448)
 #define REG_MTX_STORE ((volatile u32 *)0x0400044c)
+#define REG_MTX_IDENTITY ((volatile u32 *)0x04000454)
 #define REG_MTX_TRANS ((volatile u32 *)0x04000470)
 #define REG_SWAP_BUFFERS ((volatile u32 *)0x04000540)
 #define REG_VIEWPORT ((volatile u32 *)0x04000580)
