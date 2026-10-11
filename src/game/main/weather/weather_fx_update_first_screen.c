@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-void func_020d1c98(void);
+void WeatherFx_Update(void);
 
-/* Runs func_020d1c98 with the first map screen (data_027c0288.unk_00) made
+/* Runs WeatherFx_Update with the first map screen (data_027c0288.unk_00) made
  * current, then restores the current screen. */
 void WeatherFx_UpdateFirstScreen(void)
 {
@@ -13,7 +13,7 @@ void WeatherFx_UpdateFirstScreen(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_020d1c98();
+    WeatherFx_Update();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

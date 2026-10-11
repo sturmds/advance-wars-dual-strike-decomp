@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-void func_020d1c98(void);
+void WeatherFx_Update(void);
 
 void func_020d1be0(void)
 {
@@ -11,7 +11,7 @@ void func_020d1be0(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_020d1c98();
+    WeatherFx_Update();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }
