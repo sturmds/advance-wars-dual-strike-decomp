@@ -18442,6 +18442,10 @@ src/game/main/map/map_view_centre_on_player1_hq.c:
     complete
     .text       start:0x020f58a8 end:0x020f5928
 
+src/game/main/map/map_scroll_step.c:
+    complete
+    .text       start:0x020f5928 end:0x020f5b00
+
 src/game/main/map/map_scroll_build_speed_table.c:
     complete
     .text       start:0x020f5b00 end:0x020f5c4c
