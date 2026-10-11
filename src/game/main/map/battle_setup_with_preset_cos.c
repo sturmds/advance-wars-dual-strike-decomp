@@ -9,7 +9,7 @@ void MapRules_SetDefaults(void);
 void Players_ApplyBattleSetup(void);
 void Panels_PlaceForCursor(void);
 void Units_ClearAll(void);
-void func_020db3c0(void);
+void MapObjects_Clear(void);
 void func_020c1b90(void);
 void func_020c1950(void);
 void func_020c8888(void);
@@ -49,7 +49,7 @@ void Battle_SetupWithPresetCos(void)
 
     Panels_PlaceForCursor();
     Units_ClearAll();
-    func_020db3c0();
+    MapObjects_Clear();
     func_020c1b90();
     func_020c1950();
     func_020c8888();

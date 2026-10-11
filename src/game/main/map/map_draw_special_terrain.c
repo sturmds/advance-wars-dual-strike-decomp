@@ -16,7 +16,7 @@ extern u16 data_ov000_022dbd52[];
 #define HEADER_U16(symbol, mapId) (*(u16 *)((u8 *)(symbol) + (mapId) * sizeof(MapHeader)))
 
 MapObject *Map_FindObjectCovering(int x, int y);
-void func_020db3fc(void);
+void MapObjects_ClearHead(void);
 void Map_AddKind5Object(int x, int y, int w, int h, int a, int b);
 void Map_AddBlackObeliskObject(int x, int y);
 void Map_AddMinicannonObject(int x, int y, int a, int b, int owner);
@@ -33,7 +33,7 @@ void Map_DrawSpecialTerrain(void)
     int x;
     int y;
 
-    func_020db3fc();
+    MapObjects_ClearHead();
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             u8 tile;
