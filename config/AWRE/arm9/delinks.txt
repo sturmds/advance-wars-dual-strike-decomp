@@ -144,6 +144,14 @@ src/game/main/func_020023b0.c:
     complete
     .text       start:0x020023b0 end:0x0200244c
 
+src/game/main/graphics/deferred_copy_task_start.c:
+    complete
+    .text       start:0x020024b4 end:0x020024e8
+
+src/game/main/graphics/deferred_copy_task_copy.c:
+    complete
+    .text       start:0x020024e8 end:0x02002510
+
 src/game/main/graphics/func_02002510.c:
     complete
     .text       start:0x02002510 end:0x02002598

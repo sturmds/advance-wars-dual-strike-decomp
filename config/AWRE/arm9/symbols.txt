@@ -74,8 +74,8 @@ Co_QueuePictureSprite kind:function(arm,size=0x60) addr:0x0200229c
 func_020022fc kind:function(arm,size=0xb4) addr:0x020022fc
 func_020023b0 kind:function(arm,size=0x9c) addr:0x020023b0
 func_0200244c kind:function(arm,size=0x68) addr:0x0200244c
-func_020024b4 kind:function(arm,size=0x34) addr:0x020024b4
-func_020024e8 kind:function(arm,size=0x28) addr:0x020024e8
+DeferredCopyTask_Start kind:function(arm,size=0x34) addr:0x020024b4
+DeferredCopyTask_Copy kind:function(arm,size=0x28) addr:0x020024e8
 func_02002510 kind:function(arm,size=0x88) addr:0x02002510
 func_02002598 kind:function(arm,size=0x88) addr:0x02002598
 func_02002620 kind:function(arm,size=0x74) addr:0x02002620
@@ -6220,7 +6220,7 @@ gNibbleShifts kind:data(any) addr:0x02151cc0
 data_02151cc4 kind:data(any) addr:0x02151cc4
 data_02151cc8 kind:data(any) addr:0x02151cc8
 data_02151ccc kind:data(any) addr:0x02151ccc
-data_02151cdc kind:data(any) addr:0x02151cdc
+gDeferredCopyTaskScript kind:data(any) addr:0x02151cdc
 data_02151cf4 kind:data(any) addr:0x02151cf4
 data_02151d10 kind:data(any) addr:0x02151d10
 data_02151d38 kind:data(any) addr:0x02151d38
