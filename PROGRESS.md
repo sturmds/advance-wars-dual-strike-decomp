@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6642 / 6700 | 1498676 / 1553840 | 96.45% | 0 | 0 |
+| ARM9 game | 6645 / 6700 | 1502872 / 1553840 | 96.72% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7076 / 7481 | 1550288 / 1685994 | 91.95% | 33 | 2126 |
+| ARM9 all | 7079 / 7481 | 1554484 / 1685994 | 92.20% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6642 / 6700 | 1498676 / 1553840 | 96.45% | 0 | 0 |
+| game | 6645 / 6700 | 1502872 / 1553840 | 96.72% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7076 / 8495 | 1550288 / 1840290 | 84.24% | 33 | 2126 |
+| all | 7079 / 8495 | 1554484 / 1840290 | 84.47% | 33 | 2126 |
 
 ## By module
 
@@ -26,13 +26,13 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5142 / 5180 | 1041852 / 1082632 | 96.23% | 0 |
+| main | game | 5144 / 5180 | 1045480 / 1082632 | 96.57% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
-| ov002 | game | 157 / 164 | 55500 / 64208 | 86.44% | 0 |
+| ov002 | game | 158 / 164 | 56068 / 64208 | 87.32% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 263 / 266 | 95740 / 96684 | 99.02% | 0 |
@@ -76,18 +76,15 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
-| `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
 | `src/game/main/screen/window_wipe_start_hide_current.c` | WindowWipe_StartHideCurrent | 192 |
 | `src/game/main/script/event_script_step_slot.c` | EventScript_StepSlot | 276 |
-| `src/game/main/sound/sound_stream_fill_blocks.c` | SoundStream_FillBlocks | 2184 |
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
-| `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 |

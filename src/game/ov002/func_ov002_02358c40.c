@@ -18,7 +18,7 @@
 #define SIDE_COLOUR(sprite, side) (((u16(*)[2])MENU->colours)[sprite][side])
 
 void BattleCell_ApplyStep(int side, int index);
-void func_ov002_02357488(int side, int unk_3);
+void Battle_StartCellSprite(int side, int unk_3);
 void Battle_StartCellSpriteOnSlot(int side, int cell, int unk_3, int unk_6, int index);
 int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int unk_3);
 int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
@@ -41,7 +41,7 @@ int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
 /* Runs the entries of each side's second hit list that are due on this frame, like
  * BattleCells_RunSequence. When the other side is artillery or a battleship (or the entry has
  * unk_7 set) it only calls BattleCell_ApplyStep. Otherwise it hands the entry to
- * Battle_StartCellSpriteOnSlot or func_ov002_02357488 when the other side has battle.unk_48, or makes a
+ * Battle_StartCellSpriteOnSlot or Battle_StartCellSprite when the other side has battle.unk_48, or makes a
  * hit sprite at the cell and sets step 4 in the cell task. */
 void func_ov002_02358c40(BattleScreenTask *screen)
 {
@@ -90,7 +90,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
                 }
             } else {
                 if (MENU->battle.unk_48[other] != 0) {
-                    func_ov002_02357488(side, flags->unk_3);
+                    Battle_StartCellSprite(side, flags->unk_3);
                 } else {
                     cellTask = (BattleCellTask *)MENU->battle.unk_310[side][0].unk_00;
                     CREATE_HIT_SPRITE(cellTask, LIST(side)->flags[LIST(side)->cursor].unk_3,

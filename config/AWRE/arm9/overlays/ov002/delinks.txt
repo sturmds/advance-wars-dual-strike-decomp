@@ -300,6 +300,7 @@ src/game/ov002/battle_clear_counter_tasks.c:
     .text       start:0x02357434 end:0x02357488
 
 src/game/ov002/battle_cell_sprite_start.c:
+    complete
     .text       start:0x02357488 end:0x023576c0
 
 src/game/ov002/battle_cell_sprite_start_slot.c:
