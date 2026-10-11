@@ -22398,6 +22398,10 @@ src/sdk/wm/wm_reset.c:
     complete
     .text       start:0x02117c04 end:0x02117c44
 
+src/sdk/wm/wm_initialize.c:
+    complete
+    .text       start:0x02117c44 end:0x02117cac
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
