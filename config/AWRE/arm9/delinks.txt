@@ -12511,6 +12511,10 @@ src/game/main/map/map_object_restore.c:
     complete
     .text       start:0x020db4ac end:0x020db4fc
 
+src/game/main/map/map_queue_tile_sprite.c:
+    complete
+    .text       start:0x020db9e0 end:0x020dba50
+
 src/game/main/ai/ai_foot_list_reachable_silos.c:
     complete
     .text       start:0x020dbe18 end:0x020dbf58
