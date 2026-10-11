@@ -2513,6 +2513,10 @@ src/game/main/script/event_cmd_print_slot_text.c:
     complete
     .text       start:0x0201c424 end:0x0201c4d0
 
+src/game/main/script/event_cmd_print_text.c:
+    complete
+    .text       start:0x0201c4d0 end:0x0201c600
+
 src/game/main/func_0201c600.c:
     complete
     .text       start:0x0201c600 end:0x0201c610
