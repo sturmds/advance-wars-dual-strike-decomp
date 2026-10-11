@@ -1,3 +1,8 @@
+/* Needed to match: with loop-invariant code motion on, mwcc hoists the u8
+ * player for PrevCo and NextCo ahead of the row base and swaps their
+ * registers. */
+#pragma opt_loop_invariants off
+
 #include "types.h"
 #include "game/event_queue.h"
 #include "game/menu_state.h"
@@ -28,9 +33,7 @@ extern MenuState gMenuState;
  * messages from each connected player who owns their row: 16 locks the row,
  * 17 unlocks it (or leaves the screen when it is not locked), 18 and 19 pick
  * the previous and next CO. Once every row in use is locked, the pick ends;
- * otherwise the local row owner's keys are handled.
- * Not matched (93.9%): the original computes the row base before the u8
- * player for PrevCo and NextCo, so the two land in swapped registers. */
+ * otherwise the local row owner's keys are handled. */
 void CombatSetup_UpdateCoPick(Task *task)
 {
     u8 *msg;
