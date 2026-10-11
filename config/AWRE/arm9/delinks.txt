@@ -2662,6 +2662,7 @@ src/game/main/func_020225c8.c:
     .text       start:0x020225c8 end:0x02022610
 
 src/game/main/graphics/sprite_file_draw3d.c:
+    complete
     .text       start:0x02022610 end:0x02022664
 
 src/game/main/graphics/sprite_anim3d_task_start_alt_flagged.c:
