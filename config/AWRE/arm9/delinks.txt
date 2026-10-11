@@ -7883,6 +7883,10 @@ src/game/main/menus/vs_setup_add_link_buttons.c:
     complete
     .text       start:0x02067df0 end:0x020681c8
 
+src/game/main/menus/vs_setup_close_link_buttons.c:
+    complete
+    .text       start:0x020681c8 end:0x020682f8
+
 src/game/main/menus/vs_setup_add_map_and_co_buttons.c:
     complete
     .text       start:0x020682f8 end:0x020685a0

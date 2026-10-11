@@ -6,7 +6,7 @@ int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetPanelTileX(int player);
 void VsSetup_StartPlayerTask(int slot, u16 x, int y);
 int func_0207bd6c(void);
-void func_020681c8(int slot);
+void VsSetup_CloseLinkButtons(int slot);
 extern MenuState gMenuState;
 
 void func_02067bec(int slot)
@@ -22,5 +22,5 @@ void func_02067bec(int slot)
     if (slot != Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
         return;
     }
-    func_020681c8(slot);
+    VsSetup_CloseLinkButtons(slot);
 }
