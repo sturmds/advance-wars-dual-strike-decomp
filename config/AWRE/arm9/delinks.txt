@@ -22316,6 +22316,7 @@ src/sdk/isd/isd_double_sign.c:
     .text       start:0x02120964 end:0x02120994
 
 src/sdk/isd/isd_divide_by_radix.c:
+    complete
     .text       start:0x02120994 end:0x02120a4c
 
 src/sdk/isd/isd_string_length.c:
