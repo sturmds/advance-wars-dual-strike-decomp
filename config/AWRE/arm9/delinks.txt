@@ -22363,6 +22363,7 @@ src/sdk/card/card_push_removal_tag_word.c:
     .text       start:0x021167ec end:0x02116850
 
 src/sdk/card/card_halt_after_removal.c:
+    complete
     .text       start:0x02116850 end:0x02116890
 
 src/sdk/card/card_on_removal_message.c:
