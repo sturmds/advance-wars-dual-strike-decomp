@@ -7,6 +7,13 @@
  * bookkeeping after its data, both cleared together; what they mean is not
  * worked out yet. */
 
+/* A packet as the senders build it. Only the first 24 bytes are queued. */
+typedef struct LinkPacket {
+    u8 header;                         /* sequence number in the low 7 bits; bit 7 set for flagged packets */
+    u8 type;
+    u8 payload[24];
+} LinkPacket;
+
 /* One queued packet: the first 24 bytes of a LinkPacket. */
 typedef struct LinkQueueSlot {
     u8 bytes[24];

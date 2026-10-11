@@ -5615,6 +5615,10 @@ src/game/main/link/link_send_packet.c:
     complete
     .text       start:0x0207b744 end:0x0207b7b4
 
+src/game/main/link/link_queue_packet.c:
+    complete
+    .text       start:0x0207b978 end:0x0207b9e8
+
 src/game/main/link/link_pop_flagged_packet.c:
     complete
     .text       start:0x0207b9e8 end:0x0207ba6c
