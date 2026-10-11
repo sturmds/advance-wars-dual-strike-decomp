@@ -6233,6 +6233,10 @@ src/game/main/menus/func_02075520.c:
     complete
     .text       start:0x02075520 end:0x02075578
 
+src/game/main/menus/status_screen_queue_sprites.c:
+    complete
+    .text       start:0x02075578 end:0x0207565c
+
 src/game/main/menus/status_screen_draw.c:
     complete
     .text       start:0x02075770 end:0x02075df0
