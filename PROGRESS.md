@@ -9,8 +9,8 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | game | 6623 / 6700 | 1492024 / 1553840 | 96.02% | 0 | 0 |
-| SDK/library | 286 / 779 | 26516 / 132154 | 20.06% | 20 | 982 |
-| all | 6909 / 7479 | 1518540 / 1685994 | 90.07% | 20 | 982 |
+| SDK/library | 289 / 779 | 27364 / 132154 | 20.71% | 21 | 1286 |
+| all | 6912 / 7479 | 1519388 / 1685994 | 90.12% | 21 | 1286 |
 
 ## By module
 
@@ -19,9 +19,9 @@ Rows with nothing done are left out, but count in the totals.
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5132 / 5180 | 1038796 / 1082632 | 95.95% | 0 |
-| main | SDK/library | 280 / 768 | 25908 / 130618 | 19.83% | 18 |
+| main | SDK/library | 282 / 768 | 26452 / 130618 | 20.25% | 19 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
-| itcm | SDK/library | 6 / 11 | 608 / 1536 | 39.58% | 2 |
+| itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 2 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
 | ov002 | game | 152 / 164 | 53176 / 64208 | 82.82% | 0 |
@@ -123,7 +123,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/mi/unpack_huffman_to_words.c` | Unpack_HuffmanToWords | 216 |
 | `src/sdk/mi/mi_uncompress_lz8.c` | MI_UncompressLZ8 | 216 |
 | `src/sdk/os/func_0210db18.c` | func_0210db18 | 212 |
+| `src/sdk/os/func_0210e36c.c` | func_0210e36c | 296 |
 | `src/sdk/os/os_init_context.c` | OS_InitContext | 100 |
+| `src/sdk/os/os_init_thread.c` | OS_InitThread | 384 |
 | `src/sdk/os/os_release_lock_id.c` | func_0210cf48 | 48 |
 | `src/sdk/os/os_set_dma_irq_handler.c` | func_0210cdf4 | 76 |
 | `src/sdk/os/timer_install_irq_slot.c` | func_0210cda8 | 76 |
