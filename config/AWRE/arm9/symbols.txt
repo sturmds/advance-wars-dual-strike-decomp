@@ -3893,7 +3893,7 @@ func_020d5db0 kind:function(arm,size=0xa8) addr:0x020d5db0
 Survival_FinishMap kind:function(arm,size=0x204) addr:0x020d5e58
 func_020d605c kind:function(arm,size=0x4c) addr:0x020d605c
 func_020d60a8 kind:function(arm,size=0x1c) addr:0x020d60a8
-func_020d60c4 kind:function(arm,size=0xc8) addr:0x020d60c4
+Campaign_FinishMap kind:function(arm,size=0xc8) addr:0x020d60c4
 func_020d618c kind:function(arm,size=0x5c) addr:0x020d618c
 func_020d61e8 kind:function(arm,size=0x38) addr:0x020d61e8
 func_020d6220 kind:function(arm,size=0xe0) addr:0x020d6220
@@ -8646,7 +8646,7 @@ data_02290a62 kind:bss addr:0x02290a62
 data_02290a63 kind:bss addr:0x02290a63
 data_02290a64 kind:bss addr:0x02290a64
 data_02290a66 kind:bss addr:0x02290a66
-data_02290a90 kind:bss addr:0x02290a90
+gCampaignBestAverage kind:bss addr:0x02290a90
 data_02290a94 kind:bss addr:0x02290a94
 gWarRoomRecords kind:bss addr:0x02290c34
 data_02291474 kind:bss addr:0x02291474
