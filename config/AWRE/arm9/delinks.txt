@@ -5990,6 +5990,10 @@ src/game/main/link/wireless_on_parent_event.c:
     complete
     .text       start:0x02078e18 end:0x02079028
 
+src/game/main/link/wireless_set_game_info.c:
+    complete
+    .text       start:0x02079028 end:0x02079098
+
 src/game/main/func_02079098.c:
     complete
     .text       start:0x02079098 end:0x0207909c

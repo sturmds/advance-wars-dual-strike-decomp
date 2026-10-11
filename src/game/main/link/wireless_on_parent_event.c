@@ -10,7 +10,7 @@ int Wireless_StartMp(void);
 void Wireless_CountChildren(void);
 void Wireless_SetPlayerName(u8 aid, u8 *ssid);
 void Wireless_ClearPlayerName(u8 aid);
-void func_02079028(void);
+void Wireless_SetGameInfo(void);
 
 /* Parent callback: tracks which children are connected and passes each
  * connect and disconnect on to the link code. */
@@ -47,7 +47,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             ssid = cb->ssid;
             Wireless_SetPlayerName(cb->aid, ssid);
             data_0229c910.unk_14 = data_0215fe84->childAids | 1;
-            func_02079028();
+            Wireless_SetGameInfo();
             Wireless_SetPlayerName(cb->aid, ssid);
             data_0215fe84->childrenChanged = 1;
             break;
@@ -56,7 +56,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             data_0215fe84->childAids &= ~0 ^ (1 << cb->aid);
             Wireless_CountChildren();
             data_0229c910.unk_14 = data_0215fe84->childAids | 1;
-            func_02079028();
+            Wireless_SetGameInfo();
             Wireless_ClearPlayerName(cb->aid);
             data_0215fe84->childrenChanged = 1;
             break;
