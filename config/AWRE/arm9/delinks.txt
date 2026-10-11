@@ -11548,7 +11548,8 @@ src/game/main/func_020c0734.c:
 src/game/main/func_020c0764.c:
     .text       start:0x020c0764 end:0x020c07d8
 
-src/game/main/func_020c07d8.c:
+src/game/main/player_has_units_left.c:
+    complete
     .text       start:0x020c07d8 end:0x020c0820
 
 src/game/main/map/map_is_tile_owned_by_team_of.c:
