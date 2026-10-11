@@ -8,6 +8,12 @@ typedef struct MtxFx43 {
     fx32 m[4][3];
 } MtxFx43;
 
+typedef struct VecFx32 {
+    fx32 x;
+    fx32 y;
+    fx32 z;
+} VecFx32;
+
 /* 4x4 and 3x3 matrices in row order. */
 typedef struct MtxFx44 {
     fx32 m[4][4];
