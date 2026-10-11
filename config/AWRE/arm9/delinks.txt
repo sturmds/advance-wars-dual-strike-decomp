@@ -9439,6 +9439,10 @@ src/game/main/func_020d8fac.c:
     complete
     .text       start:0x020d8fac end:0x020d906c
 
+src/game/main/func_020d9234.c:
+    complete
+    .text       start:0x020d9234 end:0x020d9260
+
 src/game/main/func_020d947c.c:
     complete
     .text       start:0x020d947c end:0x020d9494
