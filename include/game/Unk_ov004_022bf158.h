@@ -96,7 +96,7 @@ typedef struct Unk_ov004_022bf158 {
     u16 viewScrollY;
     u16 blocksWide;                    /* set by Ov004_InitTileMap: size of the block tile map */
     u16 blocksHigh;
-    void *tileMap;                     /* u16 entries; filled by Ov004_BlitBlock and func_ov004_022baeec */
+    void *tileMap;                     /* u16 entries; filled by Ov004_BlitBlock and Ov004_FillBlock */
     u16 mapBlock[32 * 32];             /* one unpacked 32x32 block of map entries */
     int elapsedFrames;                 /* frames since startTick, from Ov004_UpdateElapsedFrames */
     u64 startTick;                     /* clock reading taken by Ov004_StartClock */
