@@ -253,15 +253,19 @@ typedef struct DlPlayBlockSpot {
 #define DLPLAY_HELD_BLOCK_USABLE 2
 
 typedef struct DlPlayHeldBlock {
-    u32 address;
-    u8 pad_04[8];
+    u32 address;                       /* offset in the ROM */
+    u32 size;
+    void *buffer;
     int state;
 } DlPlayHeldBlock;
 
 /* Pages of a file read from the card on demand. */
 typedef struct DlPlayHeldProgram {
     u32 loadPending;                   /* cleared when a page load starts */
-    u8 pad_04[0x30 - 4];
+    u8 pad_04[0x10 - 4];
+    char archiveName[4];
+    int archiveNameLength;
+    u8 pad_18[0x30 - 0x18];
     DlPlayHeldBlock pages[DLPLAY_HELD_BLOCK_SLOTS];
 } DlPlayHeldProgram;
 

@@ -22578,6 +22578,10 @@ src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
 
+src/sdk/mb/mb_cache_load_page.c:
+    complete
+    .text       start:0x021196b4 end:0x02119750
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770
