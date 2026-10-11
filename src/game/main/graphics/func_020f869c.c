@@ -8,7 +8,7 @@ void Screens_SetUp2dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);
-void func_020f8994(void);
+void UnitIcons_LoadMapGraphics(void);
 void func_020f88b8(void);
 void func_020f88ec(void);
 void func_020f8848(void);
@@ -37,7 +37,7 @@ void func_020f869c(int mode)
     }
     Screen_ApplyAll();
     func_01ff9b48();
-    func_020f8994();
+    UnitIcons_LoadMapGraphics();
     func_020f88b8();
     func_020f88ec();
     func_020f8848();

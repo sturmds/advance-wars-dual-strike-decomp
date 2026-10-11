@@ -18652,6 +18652,10 @@ src/game/main/graphics/func_020f88ec.c:
     complete
     .text       start:0x020f88ec end:0x020f8994
 
+src/game/main/graphics/unit_icons_load_map_graphics.c:
+    complete
+    .text       start:0x020f8994 end:0x020f8b20
+
 src/game/main/func_020f8b20.c:
     complete
     .text       start:0x020f8b20 end:0x020f8b3c

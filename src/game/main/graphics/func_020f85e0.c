@@ -7,7 +7,7 @@ void Screen_FillBlack(void);
 void Screens_SetUp2dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
-void func_020f8994(void);
+void UnitIcons_LoadMapGraphics(void);
 void func_020f88ec(void);
 void MapBg_LoadGraphics(void);
 
@@ -33,7 +33,7 @@ void func_020f85e0(int mode)
         data_027c027c->unk_50[data_027c0284]->callback();
     }
     Screen_ApplyAll();
-    func_020f8994();
+    UnitIcons_LoadMapGraphics();
     func_020f88ec();
     MapBg_LoadGraphics();
     data_027c0280->masterBrightness = 0;

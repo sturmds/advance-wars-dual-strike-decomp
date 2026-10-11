@@ -9,7 +9,7 @@ void Screens_SetUp3dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);
-void func_020f8994(void);
+void UnitIcons_LoadMapGraphics(void);
 void func_020f88ec(void);
 void func_020f8848(void);
 void func_020f882c(void);
@@ -38,7 +38,7 @@ void func_020f8764(int mode)
     }
     Screen_ApplyAll();
     func_01ff9b48();
-    func_020f8994();
+    UnitIcons_LoadMapGraphics();
     func_020f88ec();
     func_020f8848();
     func_020f882c();
