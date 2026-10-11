@@ -9169,6 +9169,10 @@ src/game/main/func_020c4fa0.c:
     complete
     .text       start:0x020c4fa0 end:0x020c4fd0
 
+src/game/main/map/battle_reset_turn_state.c:
+    complete
+    .text       start:0x020c4fd0 end:0x020c5140
+
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c
