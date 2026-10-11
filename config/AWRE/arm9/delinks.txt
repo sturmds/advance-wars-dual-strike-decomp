@@ -14664,6 +14664,10 @@ src/game/main/func_020ffaec.c:
     complete
     .text       start:0x020ffaec end:0x020ffb04
 
+src/game/main/menus/name_entry_set_up_screen.c:
+    complete
+    .text       start:0x02100124 end:0x02100838
+
 src/game/main/menus/name_entry_alloc_work.c:
     complete
     .text       start:0x02100838 end:0x0210087c

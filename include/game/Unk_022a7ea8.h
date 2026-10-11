@@ -24,18 +24,20 @@ typedef struct NameEntryKey {
  * data_022a7ed0. */
 typedef struct Unk_022a7ea8 {
     int maxLength;                     /* 8 or 16: width of the text field in characters */
-    u8 pad_04[0x104 - 0x04];
+    u16 frameTiles[4][32];             /* tile map of the text field frame: left edge, middle, right edge in each row */
+
     int cursor;                        /* index into keys; NAME_ENTRY_KEY_COUNT and above: a control key */
     int lastColumn;                    /* keyboard column that up and down from the control keys return to; -1: none */
-    u8 pad_10c[0x110 - 0x10c];
+    int unk_10c;
     int textLength;                    /* characters typed so far */
-    u8 pad_114[0x118 - 0x114];
+    int unk_114;                       /* text length when the screen opened */
     u32 unk_118;
     int unk_11c;
     int unk_120;                       /* set to 1 when control key 2 is confirmed */
     int unk_124;                       /* set to 1 when control key 0 is confirmed */
     int unk_128;                       /* set to 1 when control key 1 is confirmed */
-    u8 pad_12c[0x134 - 0x12c];
+    int unk_12c;
+    int unk_130;
     NameEntryKey keys[NAME_ENTRY_KEY_COUNT];
     u8 unk_4b8[0x24];
     void *spriteFile;                  /* loaded sprite file */
@@ -53,6 +55,8 @@ typedef struct NameEntryTask {
     NameEntry *work;
     u8 pad_30[0x34 - 0x30];
     int step;
+    u8 pad_38[0x54 - 0x38];
+    int maxLength;                     /* copied to NameEntry.maxLength */
 } NameEntryTask;
 
 #endif
