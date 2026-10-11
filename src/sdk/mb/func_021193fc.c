@@ -8,7 +8,7 @@ void MbParentFile_AdvanceBlock(u8 fileId);
 BOOL func_0211a7d8(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockNo, u8 *dlFileInfo);
 u8 *func_0211e120(DlPlayHostMsgHead *header, u8 *buffer);
 BOOL MbSegment_Read(DlPlayHeldProgram *cache, u32 address, u8 *dst, u32 size);
-BOOL func_0211dcec(DlPlayWorkerJob *task);
+BOOL MbTask_IsLoading(DlPlayWorkerJob *task);
 void func_0211db5c(DlPlayWorkerJob *task, void (*callback)(DlPlayWorkerJob *task), int arg, int priority);
 void MbCache_LoadPage(DlPlayWorkerJob *task);
 int func_0211b458(u32 size, u16 bitmap, u8 *buffer);
@@ -62,7 +62,7 @@ int func_021193fc(void)
         if (!MbSegment_Read(cache, address, data, block.size)) {
             DlPlayWorkerJob *task = &data_022aced4->task;
 
-            if (!func_0211dcec(task) && cache->loadPending != 0) {
+            if (!MbTask_IsLoading(task) && cache->loadPending != 0) {
                 DlPlayHeldBlock *pages = cache->pages;
                 DlPlayHeldBlock *page = NULL;
                 int j;

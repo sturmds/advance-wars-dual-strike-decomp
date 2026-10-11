@@ -385,7 +385,10 @@ typedef struct DlPlayHeldProgram {
 } DlPlayHeldProgram;
 
 typedef struct DlPlayWorkerJob {
-    u8 pad_00[0x10];
+    u8 pad_00[4];
+    u32 loading : 1;                   /* a page load is queued or running */
+    u32 unk_04_1 : 31;
+    u8 pad_08[8];
     DlPlayHeldBlock *page;
     DlPlayHeldProgram *cache;
 } DlPlayWorkerJob;
