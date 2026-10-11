@@ -12,10 +12,7 @@ extern volatile s16 data_0216e2ac;
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
 BOOL Screen_IsTextBg(int bg);
-void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0Mode);
-void GX_DispOn(void);  /* puts back the display mode (DISPCNT bits 16-17) GX_DispOff saved */
-void GX_DispOff(void); /* saves the display mode and clears it: main engine output off */
-void func_0210a574(BOOL enable);
+void GX_VBlankIntr(BOOL enable);
 void func_0210a5a4(BOOL enable);
 void func_0210a5d4(int line);
 void func_0210b528(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
@@ -194,7 +191,7 @@ void Screen_ApplyMain(void)
         GX_DispOn();
     }
     func_0210a5a4(GFX->hBlankIrq ? TRUE : FALSE);
-    func_0210a574(GFX->vBlankIrq ? TRUE : FALSE);
+    GX_VBlankIntr(GFX->vBlankIrq ? TRUE : FALSE);
     SetVCountIrq(GFX->vCountIrq);
     func_0210a5d4(GFX->vCountMatch);
 

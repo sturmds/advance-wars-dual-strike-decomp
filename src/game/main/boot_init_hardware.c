@@ -9,7 +9,7 @@ void func_0210a420(void);
 void func_0210a5fc(void);
 void func_0210ce40(int a, void (*callback)(void));
 void func_0210cd3c(int a);
-void func_0210a574(void);
+void GX_VBlankIntr(void);
 void MainLoop_BootVBlank(void);
 
 #define REG_IME ((volatile u16 *)0x04000208)
@@ -36,5 +36,5 @@ void Boot_InitHardware(void)
     func_0210cd3c(0x40000);
     oldIme = *REG_IME;
     *REG_IME = 1;
-    func_0210a574();
+    GX_VBlankIntr();
 }
