@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c5378(int player);
+void Player_AddVision(int player);
 void func_020c5674(s16 x, s16 y, int range, int gridMask, int a, int b);
 void func_020c65fc(s8 *grid, int value);
 
@@ -42,10 +42,10 @@ void Map_RebuildVision(void)
     if (!Map_IsFoggy()) {
         return;
     }
-    func_020c5378(1);
-    func_020c5378(2);
-    func_020c5378(3);
-    func_020c5378(4);
+    Player_AddVision(1);
+    Player_AddVision(2);
+    Player_AddVision(3);
+    Player_AddVision(4);
     for (object = STATE->objects; object->kind != 0; object++) {
         endX = object->x + object->width;
         endY = object->y + object->height;
