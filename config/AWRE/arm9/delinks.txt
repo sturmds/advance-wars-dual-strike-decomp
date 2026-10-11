@@ -21556,6 +21556,10 @@ src/sdk/snd/func_0210fc5c.c:
     complete
     .text       start:0x0210fc5c end:0x0210fc88
 
+src/sdk/snd/func_0210fc88.c:
+    complete
+    .text       start:0x0210fc88 end:0x0210fcbc
+
 src/sdk/snd/snd_unlock_channel.c:
     complete
     .text       start:0x0210fcbc end:0x0210fce8
