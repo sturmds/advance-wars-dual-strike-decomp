@@ -14,7 +14,7 @@ void RangeMap_MarkAdjacentTiles(int value);
 s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL Unit_IsCurrentPlayers(int unitSlot);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
-int func_020b445c(int x, int y, s16 *dest);
+int AiSeaTransport_FindPickupTile(int x, int y, s16 *dest);
 int func_020b4138(MapUnit *unit, s16 *dest);
 void AiUnit_MoveTowardTile(int x, int y);
 void func_020b3264(void);
@@ -34,7 +34,7 @@ void func_020b38c4(void);
  * Scores each of the current player's units that wait for a transport
  * (transportWanted 2, only Infantry and Mechs for a Black Boat) and that
  * the transport can reach: a lower score is better. The score rises with the
- * transport's move cost to the pick-up tile (func_020b445c) and falls by one
+ * transport's move cost to the pick-up tile (AiSeaTransport_FindPickupTile) and falls by one
  * for each other waiting unit within 4 tiles. The best unit gets the
  * transport, which moves to the pick-up tile this turn if it can and
  * AiUnit_MoveTowardTile heads for it otherwise. With no unit to fetch, the routines
@@ -79,7 +79,7 @@ void AiSeaTransport_GoToFootUnit(void)
         if (STATE->actingUnit->type == UNIT_BLACK_BOAT && unit->type > UNIT_MECH) {
             continue;
         }
-        if (func_020b445c(unit->x, unit->y, dest) == 0) {
+        if (AiSeaTransport_FindPickupTile(unit->x, unit->y, dest) == 0) {
             continue;
         }
         score = (HwDiv32(STATE->rangeMap[dest[1]][dest[0]], gAiTurnState->unk_05) + 1) << 7;
