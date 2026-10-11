@@ -4,7 +4,7 @@
 
 extern DlPlayBufferArea *data_022aced4;
 
-int func_0211c008(void);
+int DownloadPlay_RequestWmReset(void);
 
 /* Stops Download Play on the parent. Halts the program when MB was never started. */
 void DownloadPlay_StopParent(void)
@@ -14,6 +14,6 @@ void DownloadPlay_StopParent(void)
     if (data_022aced4->parent.unk_320 == 0) {
         OS_Terminate();
     }
-    func_0211c008();
+    DownloadPlay_RequestWmReset();
     OS_RestoreInterrupts(enabled);
 }

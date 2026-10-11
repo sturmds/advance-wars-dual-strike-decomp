@@ -22530,6 +22530,10 @@ src/sdk/mb/download_play_stop_parent.c:
     complete
     .text       start:0x0211bfc8 end:0x0211c008
 
+src/sdk/mb/download_play_request_wm_reset.c:
+    complete
+    .text       start:0x0211c008 end:0x0211c090
+
 src/sdk/func_0211c090.c:
     complete
     .text       start:0x0211c090 end:0x0211c09c
