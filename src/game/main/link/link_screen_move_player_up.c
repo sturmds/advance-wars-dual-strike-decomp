@@ -6,7 +6,8 @@ extern MenuState gMenuState;
 int LinkScreen_FindPanelOfPlayer(int player);
 void LinkScreen_MovePlayerToPanel(int player, int panel);
 
-void func_020726ac(int player)
+/* Moves a player up one panel, wrapping to the bottom and skipping panels of players with the ready flag set. */
+void LinkScreen_MovePlayerUp(int player)
 {
     u8 panel;
     u8 lastPanel;

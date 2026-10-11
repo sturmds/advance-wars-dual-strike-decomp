@@ -6452,7 +6452,7 @@ src/game/main/link/link_screen_move_player_down.c:
     complete
     .text       start:0x02072638 end:0x020726ac
 
-src/game/main/link/func_020726ac.c:
+src/game/main/link/link_screen_move_player_up.c:
     .text       start:0x020726ac end:0x02072720
 
 src/game/main/link/link_screen_move_player_to_panel.c:
@@ -6502,6 +6502,10 @@ src/game/main/link/link_phase_draw.c:
 src/game/main/link/link_phase_draw_player_marker.c:
     complete
     .text       start:0x02072c10 end:0x02072de0
+
+src/game/main/link/link_phase_update.c:
+    complete
+    .text       start:0x02072de0 end:0x02072f84
 
 src/game/main/func_02072f84.c:
     complete
