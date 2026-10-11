@@ -14,7 +14,7 @@ extern int data_027c0284;
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_020985b0(int mask);
-int func_02090a38(void);
+int AiTurn_TryBuildBlackBoatNearSite(void);
 int func_020969d0(int arg);
 int func_02096bc4(int arg);
 int func_02090fa8(void);
@@ -25,7 +25,7 @@ void func_0209316c(int index);
 /* End-actions step 8, third sub-step. Tries to start building a Black Boat
  * to carry foot units, the way AiTurn_TryBuildLander does for Landers:
  * needs bit 2 of the profile byte that func_020985b0 tests and the funds
- * for one. func_02090a38 runs first and ends the step when it returns 1.
+ * for one. AiTurn_TryBuildBlackBoatNearSite runs first and ends the step when it returns 1.
  * func_020969d0(3), then func_02096bc4(3), pick the factory (-1: none).
  * With no foot unit waiting (func_02091068) nothing is built. When the
  * player has a Lander or a Black Boat, the new one needs four waiting foot
@@ -49,7 +49,7 @@ BOOL AiTurn_TryBuildBlackBoatTransport(void)
     if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_BLACK_BOAT) * 10) > state->players[state->currentPlayer].funds) {
         return 0;
     }
-    if (func_02090a38() == 1) {
+    if (AiTurn_TryBuildBlackBoatNearSite() == 1) {
         return 1;
     }
     index = func_020969d0(3);
