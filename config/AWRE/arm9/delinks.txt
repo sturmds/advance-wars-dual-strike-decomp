@@ -7556,6 +7556,10 @@ src/game/main/menus/map_select_draw_page_indicator.c:
     complete
     .text       start:0x02060bf8 end:0x02060d78
 
+src/game/main/menus/map_select_update.c:
+    complete
+    .text       start:0x02060d78 end:0x02060f84
+
 src/game/main/func_02060f84.c:
     complete
     .text       start:0x02060f84 end:0x02060fa0

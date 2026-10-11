@@ -5,8 +5,15 @@
 
 #define EVENT_QUEUE_SIZE 16
 
-/* Link message of the map select menu. */
-#define EVENT_MAP_SELECT_PAGE 3 /* arg: page to turn to */
+/* Link messages of the map select menu. */
+#define EVENT_MAP_SELECT_PREV_LIST       1
+#define EVENT_MAP_SELECT_NEXT_LIST       2
+#define EVENT_MAP_SELECT_PAGE            3 /* arg: page to turn to */
+#define EVENT_MAP_SELECT_POSITION        4 /* arg: position on the page */
+#define EVENT_MAP_SELECT_CONFIRM         5 /* arg: position on the page */
+#define EVENT_MAP_SELECT_LEAVE           6
+#define EVENT_MAP_SELECT_PICK_FIRST_MAP  7 /* arg: position on the page */
+#define EVENT_MAP_SELECT_CANCEL_FIRST_MAP 8
 
 /* Link messages of the Vs setup team screen. The team ones add the
  * player slot (0-3) to the id. */
