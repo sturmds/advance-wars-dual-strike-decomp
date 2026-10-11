@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern void *data_027c0288;
 extern int data_0229eaec;
 
-BOOL func_020c903c(MapUnit *unit, int x, int y);
+BOOL Unit_IsVisibleToActivePlayers(MapUnit *unit, int x, int y);
 void MapView_ScrollToPixel(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -32,7 +32,7 @@ BOOL UnitShowTask_CheckVisible(UnitShowTask *task)
     }
     if ((GAME->players[GAME->currentPlayer].unk_1b & 2)
         || GAME->mapTiles->unk_2338[GAME->mapTiles->rowStart[(task->y + 8) / 16] + (task->x + 8) / 16] != 0) {
-        if (func_020c903c(task->unit, (s16)((task->x + 8) / 16), (s16)((task->y + 8) / 16))) {
+        if (Unit_IsVisibleToActivePlayers(task->unit, (s16)((task->x + 8) / 16), (s16)((task->y + 8) / 16))) {
             goto shown;
         }
     }
