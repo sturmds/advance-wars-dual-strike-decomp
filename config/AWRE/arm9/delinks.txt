@@ -14173,6 +14173,10 @@ src/game/main/func_020fb868.c:
     complete
     .text       start:0x020fb868 end:0x020fb87c
 
+src/game/main/graphics/camera_pan_update_curve4_reverse.c:
+    complete
+    .text       start:0x020fb87c end:0x020fb938
+
 src/game/main/func_020fb938.c:
     complete
     .text       start:0x020fb938 end:0x020fb9b4
