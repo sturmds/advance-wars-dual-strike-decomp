@@ -5693,6 +5693,10 @@ src/game/main/units/strike_score_funds_damage.c:
     complete
     .text       start:0x02098dbc end:0x02098e7c
 
+src/game/main/ai/ai_power_check_enemies_on_properties.c:
+    complete
+    .text       start:0x02098ef0 end:0x020990c4
+
 src/game/main/func_02099520.c:
     complete
     .text       start:0x02099520 end:0x02099528
