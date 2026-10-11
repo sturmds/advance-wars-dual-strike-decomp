@@ -4481,6 +4481,10 @@ src/game/main/score_list_draw_row.c:
     complete
     .text       start:0x02038964 end:0x02039144
 
+src/game/main/result_point_draw_bar.c:
+    complete
+    .text       start:0x020394a0 end:0x02039560
+
 src/game/main/text/text_get_string_width.c:
     complete
     .text       start:0x02039df4 end:0x02039e34
