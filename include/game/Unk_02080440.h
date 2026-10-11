@@ -246,7 +246,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_38)(void);              /* run by func_020f77bc when set */
     u8 pad_3c[0x40 - 0x3c];
     void (*afterBoxDraw)(void);        /* run by MenuBox_Draw after it draws a menu box */
-    u8 pad_44[0x48 - 0x44];
+    void (*afterInfoPanelDraw)(void);  /* run by MapScreen_DrawInfoPanel after it draws the info panel */
     void (*unk_48)(void);              /* run by ScreenConfig_RunActionHook when set */
     void (*unk_4c)(void);              /* run by Script_StartWithHook when unk_48 is set */
     u8 pad_50[0x54 - 0x50];
