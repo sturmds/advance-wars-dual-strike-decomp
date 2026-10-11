@@ -9,6 +9,8 @@
 /* Main engine display registers (GBATEK). */
 #define REG_DISPCNT ((volatile u32 *)0x04000000)
 #define REG_DISPSTAT ((volatile u16 *)0x04000004)
+#define REG_VCOUNT ((volatile u16 *)0x04000006)
+#define HW_BG_VRAM 0x06000000 /* main engine BG VRAM */
 #define REG_BG0CNT ((volatile u16 *)0x04000008)
 #define REG_BG1CNT ((volatile u16 *)0x0400000a)
 #define REG_BG3CNT ((volatile u16 *)0x0400000e)
