@@ -13904,6 +13904,10 @@ src/game/main/func_020f3178.c:
     complete
     .text       start:0x020f3178 end:0x020f31a4
 
+src/game/main/number_sprite_task_start.c:
+    complete
+    .text       start:0x020f31a4 end:0x020f3280
+
 src/game/main/func_020f35cc.c:
     complete
     .text       start:0x020f35cc end:0x020f35e0
