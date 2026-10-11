@@ -22315,6 +22315,10 @@ src/sdk/ctrdg/cartridge_spin_until_slot_owned.c:
     complete
     .text       start:0x0211e2dc end:0x0211e35c
 
+src/sdk/ctrdg/cartridge_restore_rom_waits.c:
+    complete
+    .text       start:0x0211e35c end:0x0211e390
+
 src/game/main/func_0211e628.c:
     complete
     .text       start:0x0211e628 end:0x0211e648

@@ -15,6 +15,18 @@ typedef struct GbaSlotLockRecord {
     int savedIrqState;             /* OS_DisableInterrupts result, restored on unlock */
 } GbaSlotLockRecord;
 
+/* EXMEMCNT fields that set the GBA slot ROM access time. */
+#define GBA_SLOT_INITIAL_WAIT_BITS 0xc
+#define GBA_SLOT_INITIAL_WAIT_POS 2
+#define GBA_SLOT_FOLLOWUP_WAIT_BIT 0x10
+#define GBA_SLOT_FOLLOWUP_WAIT_POS 4
+
+/* GBA slot ROM access time settings, as two values saved from or loaded into EXMEMCNT. */
+typedef struct GbaSlotWaitStates {
+    u32 romFirstAccess;            /* EXMEMCNT bits 2 to 3 */
+    u32 romSecondAccess;           /* EXMEMCNT bit 4 */
+} GbaSlotWaitStates;
+
 /* Busy-waits for roughly the given number of loop passes (Thumb code in the SDK). */
 void WaitByLoop(u32 count);
 
