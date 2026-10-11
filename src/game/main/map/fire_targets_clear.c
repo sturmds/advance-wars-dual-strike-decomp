@@ -2,7 +2,7 @@
 
 extern int data_022a6dc8;
 
-void func_020dc548(void)
+void FireTargets_Clear(void)
 {
     data_022a6dc8 = 0;
 }

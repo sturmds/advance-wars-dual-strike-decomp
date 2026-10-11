@@ -15974,7 +15974,11 @@ src/game/main/func_020dc1a8.c:
     complete
     .text       start:0x020dc1a8 end:0x020dc2e8
 
-src/game/main/func_020dc4c8.c:
+src/game/main/map/fire_targets_build.c:
+    complete
+    .text       start:0x020dc2e8 end:0x020dc4c8
+
+src/game/main/map/fire_targets_add.c:
     complete
     .text       start:0x020dc4c8 end:0x020dc524
 
@@ -15986,7 +15990,7 @@ src/game/main/func_020dc538.c:
     complete
     .text       start:0x020dc538 end:0x020dc548
 
-src/game/main/func_020dc548.c:
+src/game/main/map/fire_targets_clear.c:
     complete
     .text       start:0x020dc548 end:0x020dc55c
 

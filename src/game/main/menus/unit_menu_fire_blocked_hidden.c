@@ -7,13 +7,13 @@ extern int data_027c0284;
 
 void RangeMap_Fill(int value);
 void RangeMap_FillAttackRange(int x, int y, MapUnit *unit);
-BOOL func_020dc2e8(void);
+BOOL FireTargets_Build(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Unit menu entry test for the second Fire entry (table at 0x02166070).
  * 1 hides the entry. It shows only for an indirect unit that has not moved,
- * with no other unit on its destination tile, when func_020dc2e8 finds
+ * with no other unit on its destination tile, when FireTargets_Build finds
  * nothing to fire on in its attack range. Guess: 2 shows the entry greyed out. */
 s8 UnitMenu_FireBlockedHidden(void)
 {
@@ -34,7 +34,7 @@ s8 UnitMenu_FireBlockedHidden(void)
     }
     RangeMap_Fill(-1);
     RangeMap_FillAttackRange(STATE->actingUnitDestX, STATE->actingUnitDestY, STATE->actingUnit);
-    if (func_020dc2e8()) {
+    if (FireTargets_Build()) {
         return 1;
     }
     return 2;

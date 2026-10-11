@@ -8,14 +8,14 @@ extern u8 data_022a6b34[];
 
 void RangeMap_Fill(int value);
 void RangeMap_FillAttackRange(int x, int y, MapUnit *unit);
-BOOL func_020dc2e8(void);
+BOOL FireTargets_Build(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Unit menu entry test for the first Fire entry (table at 0x02166050).
  * 0 shows the entry, 1 hides it. It shows when nothing is pending in
  * data_022a6b34, no other unit stands on the destination tile, the unit has
- * a weapon (only a direct one after moving), and func_020dc2e8 finds
+ * a weapon (only a direct one after moving), and FireTargets_Build finds
  * something to fire on in its attack range. */
 s8 UnitMenu_FireHidden(void)
 {
@@ -35,5 +35,5 @@ s8 UnitMenu_FireHidden(void)
     }
     RangeMap_Fill(-1);
     RangeMap_FillAttackRange(STATE->actingUnitDestX, STATE->actingUnitDestY, STATE->actingUnit);
-    return func_020dc2e8() == 0;
+    return FireTargets_Build() == 0;
 }
