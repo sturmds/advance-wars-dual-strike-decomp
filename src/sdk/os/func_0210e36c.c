@@ -4,8 +4,8 @@
 /*
  * Link-time constants of the SDK build. The ROM keeps testing them at run
  * time, so they must stay symbols: SYS_STACKSIZE 0, IRQ_STACKSIZE 0x400,
- * SECTION_ARENA_DTCM_START 0x027c12e0. The code matches, but this file
- * cannot link until the build defines them as absolute symbols.
+ * SECTION_ARENA_DTCM_START 0x027c12e0. tools/configure.py defines them in
+ * the linker script (ARM9_ABSOLUTE_SYMBOLS).
  */
 extern char SDK_SYS_STACKSIZE[];
 extern char SDK_IRQ_STACKSIZE[];
