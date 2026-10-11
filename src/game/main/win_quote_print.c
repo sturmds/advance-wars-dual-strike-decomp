@@ -7,13 +7,13 @@ s32 HwMod32(s32 numerator, s32 denominator);
 u32 Rng_Next(void);
 ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 u32 func_020e1840(int coId, int partnerId, int speaker, int pick);
-u32 func_020e18dc(int coId);
+u32 Co_PickWinQuote(int coId);
 
 extern Unk_027c0280 *data_027c0280;
 
 /* Prints the win quote of result record `record`. A tag pair gets two
  * lines, one per CO, both from the same random pick of two; a single CO
- * gets one of its three win quotes (func_020e18dc). */
+ * gets one of its three win quotes (Co_PickWinQuote). */
 void WinQuote_Print(int record)
 {
     int pick = HwMod32(Rng_Next(), 2);
@@ -32,7 +32,7 @@ void WinQuote_Print(int record)
         slot->unk_3e = 2;
     } else {
         slot = Text_PrintByIdOnLayer0(1, 18, data_027c0280->layer0Map,
-                                      func_020e18dc(data_022a7ab8[record].unk_00 & 0x7f), 0, 0x41);
+                                      Co_PickWinQuote(data_022a7ab8[record].unk_00 & 0x7f), 0, 0x41);
         slot->unk_3e = 2;
     }
 }
