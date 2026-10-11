@@ -8102,6 +8102,10 @@ src/game/main/menus/unit_menu_board.c:
     complete
     .text       start:0x020bd2dc end:0x020bd358
 
+src/game/main/menus/func_020bd358.c:
+    complete
+    .text       start:0x020bd358 end:0x020bd3c4
+
 src/game/main/menus/unit_menu_capture.c:
     complete
     .text       start:0x020bd3c4 end:0x020bd440
