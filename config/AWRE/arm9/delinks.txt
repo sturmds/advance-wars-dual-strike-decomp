@@ -713,6 +713,10 @@ src/game/main/func_0200c044.c:
     complete
     .text       start:0x0200c044 end:0x0200c054
 
+src/game/main/owner_info_copy_nickname.c:
+    complete
+    .text       start:0x0200c054 end:0x0200c0b0
+
 src/game/main/func_0200c0b0.c:
     complete
     .text       start:0x0200c0b0 end:0x0200c0c4
