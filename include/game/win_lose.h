@@ -12,6 +12,7 @@ typedef struct WinLoseSides {
     u8 countB;                         /* players in sideB; 0: one side only */
     u8 pad_0a[0x0c - 0x0a];
     s32 unk_0c;                        /* points, added to data_022a7a9c's entry 0 unk_10 */
+    s32 unk_10;                        /* set from data_022a7a9c.unk_10 by WinLoseSides_Fill */
 } WinLoseSides;
 
 extern WinLoseSides data_022a7a88;

@@ -9,12 +9,12 @@ int Player_GetCurrentOrFirstInGame(void);
 int BattleScore_Speed(int player);
 int BattleScore_Power(int player);
 int BattleScore_Technique(int player);
-int func_020e9bc0(int player); /* speed + power + technique */
+int BattleScore_Total(int player); /* speed + power + technique */
 int Score_ToRank_020e5428(int score);  /* rank 2-5 for a score */
 BOOL Player1Team_HasPlayerInGame(void);
 int Campaign_IsHardMode(void);
 int ProfileHeaders_UpdateBest(int profile, int value);
-void func_020ea14c(void);
+void WinLoseSides_Fill(void);
 void BattleResults_Fill(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -29,7 +29,7 @@ extern int data_027c0284;
  * unk_0d set on maps 242 and 247, and the total (unk_14): the sum plus
  * the bonus points, 0 when player 1's team is out or in Versus, doubled on
  * campaign hard mode. In the campaign, unk_18 gets the profile's earlier
- * best from ProfileHeaders_UpdateBest. Last, runs func_020ea14c and
+ * best from ProfileHeaders_UpdateBest. Last, runs WinLoseSides_Fill and
  * BattleResults_Fill. */
 void BattleScore_Compute(void)
 {
@@ -42,7 +42,7 @@ void BattleScore_Compute(void)
     data_022a7a9c.speed = BattleScore_Speed(data_022a7a9c.player);
     data_022a7a9c.power = BattleScore_Power(data_022a7a9c.player);
     data_022a7a9c.technique = BattleScore_Technique(data_022a7a9c.player);
-    data_022a7a9c.score = func_020e9bc0(data_022a7a9c.player);
+    data_022a7a9c.score = BattleScore_Total(data_022a7a9c.player);
     data_022a7a9c.rank = Score_ToRank_020e5428(data_022a7a9c.score);
     if (STATE->gameMode == GAME_MODE_SURVIVAL) {
         data_022a7a9c.speed >>= 1;
@@ -105,6 +105,6 @@ void BattleScore_Compute(void)
     data_022a7a9c.unk_18 = best;
     data_022a7a9c.unk_14 = total;
     data_022a7a9c.unk_10 = gPlayRecords.points - best;
-    func_020ea14c();
+    WinLoseSides_Fill();
     BattleResults_Fill();
 }

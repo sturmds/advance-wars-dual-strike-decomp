@@ -16980,9 +16980,21 @@ src/game/main/map/battle_score_speed.c:
     complete
     .text       start:0x020e9a98 end:0x020e9bc0
 
+src/game/main/map/battle_score_total.c:
+    complete
+    .text       start:0x020e9bc0 end:0x020e9bec
+
+src/game/main/battle_exp_bonus_scale.c:
+    complete
+    .text       start:0x020e9bec end:0x020e9c24
+
 src/game/main/battle_results_fill.c:
     complete
     .text       start:0x020e9c24 end:0x020ea14c
+
+src/game/main/map/win_lose_sides_fill.c:
+    complete
+    .text       start:0x020ea14c end:0x020ea240
 
 src/game/main/map/battle_score_compute.c:
     complete
