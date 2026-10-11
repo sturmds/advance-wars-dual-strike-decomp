@@ -2638,6 +2638,10 @@ src/game/main/func_020231d0.c:
     complete
     .text       start:0x020231d0 end:0x020231e4
 
+src/game/main/task/task_cmd_set_group.c:
+    complete
+    .text       start:0x020231e4 end:0x02023204
+
 src/game/main/func_0202326c.c:
     complete
     .text       start:0x0202326c end:0x02023298
