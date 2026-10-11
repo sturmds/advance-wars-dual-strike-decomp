@@ -5,11 +5,11 @@ int Co_GetSavedPaletteVariant(int coId);
 
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work)
 {
-    work->unk_210 = Co_GetSavedPaletteVariant(work->coId & 0x7f);
-    work->unk_20c = work->unk_210;
-    if (work->unk_20c != 8) {
-        work->unk_214 = work->unk_20c;
+    work->prevVariant = Co_GetSavedPaletteVariant(work->coId & 0x7f);
+    work->variant = work->prevVariant;
+    if (work->variant != 8) {
+        work->row0Variant = work->variant;
     } else {
-        work->unk_214 = 0;
+        work->row0Variant = 0;
     }
 }

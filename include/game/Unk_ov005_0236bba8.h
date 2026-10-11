@@ -37,8 +37,8 @@ typedef struct Ov005CoGridEntry {
 
 typedef struct Unk_ov005_0236bba8 {
     u32 unk_00;
-    u32 unk_04;                        /* set to 1 by the grid button handlers */
-    u32 unk_08;                        /* set to 1 by the palette button handler */
+    u32 gridConfirmTouched;            /* 1: acts as A on the grid (Ov005_OnCoGridButtonConfirm) */
+    u32 paletteConfirmTouched;         /* 1: acts as A on the palette buttons */
     u32 backTouched;                   /* 1: acts as B */
     u8 pad_10[0x1c - 0x10];
     u32 paletteMode;                   /* 1 while the palette buttons are shown */
@@ -47,16 +47,16 @@ typedef struct Unk_ov005_0236bba8 {
     int unk_28;                        /* palette variant of coId */
     int unk_2c;
     u32 cursor;                        /* grid cell index */
-    u32 unk_34;
+    u32 prevCursor;                    /* cursor of the last frame; a change plays the move sound */
     u32 cursorRow;                     /* row kept when the cursor moves left or right; -1: none */
     Ov005CoGridEntry grid[OV005_CO_GRID_ENTRIES]; /* copy of data_ov005_0236ac90 */
     fx32 unk_1fc;
     fx32 unk_200;
     fx32 unk_204;
     struct Ov005Task *childTask;       /* runs data_ov005_0236ab6c with the same work block */
-    int unk_20c;                       /* palette variant of the CO */
-    int unk_210;                       /* same value */
-    int unk_214;                       /* palette variant, 0 when it is 8 */
+    int variant;                       /* palette variant of the CO */
+    int prevVariant;                   /* variant of the last frame */
+    int row0Variant;                   /* last variant picked in row 0 (0-7), where Up returns to from variant 8 */
     void *spriteFile;                  /* rikiishi file 042; source of the unk_21c sprites */
     void *unk_21c[9];
     int extraX[9];                     /* palette button x + 13 (Ov005_InitCoPaletteButtons) */

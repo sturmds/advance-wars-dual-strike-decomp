@@ -162,8 +162,8 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         break;
     case 13:
         func_02004984(32);
-        work->unk_04 = 0;
-        work->unk_08 = 0;
+        work->gridConfirmTouched = 0;
+        work->paletteConfirmTouched = 0;
         work->backTouched = 0;
         task->step++;
         break;
@@ -175,7 +175,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         }
         break;
     case 20:
-        if ((gKeypad->pressed & PAD_BUTTON_A) || work->unk_04 == 1) {
+        if ((gKeypad->pressed & PAD_BUTTON_A) || work->gridConfirmTouched == 1) {
             MenuButtons_RemoveSelectable();
             MenuButtons_DisableTouch();
             Sound_PlaySe(SE_CONFIRM);
@@ -226,15 +226,15 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         }
         break;
     case 60:
-        if (work->unk_20c != CO_PICTURE_SWAP_VARIANT && work->unk_210 == CO_PICTURE_SWAP_VARIANT) {
+        if (work->variant != CO_PICTURE_SWAP_VARIANT && work->prevVariant == CO_PICTURE_SWAP_VARIANT) {
             SHOW_SUB_TEXT(0x80000036);
         }
-        if (work->unk_20c == CO_PICTURE_SWAP_VARIANT && work->unk_210 != CO_PICTURE_SWAP_VARIANT) {
+        if (work->variant == CO_PICTURE_SWAP_VARIANT && work->prevVariant != CO_PICTURE_SWAP_VARIANT) {
             SHOW_SUB_TEXT(0x80000037);
         }
-        if ((gKeypad->pressed & PAD_BUTTON_A) || work->unk_08 == 1) {
-            work->unk_08 = 0;
-            if (work->unk_20c == CO_PICTURE_SWAP_VARIANT) {
+        if ((gKeypad->pressed & PAD_BUTTON_A) || work->paletteConfirmTouched == 1) {
+            work->paletteConfirmTouched = 0;
+            if (work->variant == CO_PICTURE_SWAP_VARIANT) {
                 Co_SetPictureVariant(work->coId & 0x7f, (Co_GetPictureVariant(work->coId & 0x7f) + 1) & 1);
                 saved0280 = data_027c0280;
                 Screen_SetCurrentGfx(data_027c0288.unk_04);
@@ -251,7 +251,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
                 Screen_SetCurrent(saved027c);
                 Screen_SetCurrentGfx(saved0280);
             } else {
-                work->unk_28 = work->unk_20c;
+                work->unk_28 = work->variant;
                 Co_SetSavedPaletteVariant(work->coId, work->unk_28);
                 Ov005_CopyCoPaletteToBothScreens(work);
             }
@@ -334,12 +334,12 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         Screen_SetCurrentGfx(saved0280);
     }
 
-    if (work->cursor != work->unk_34) {
+    if (work->cursor != work->prevCursor) {
         Sound_PlaySe(SE_MOVE);
     }
-    if (work->unk_20c != work->unk_210) {
+    if (work->variant != work->prevVariant) {
         Sound_PlaySe(SE_MOVE);
     }
-    work->unk_34 = work->cursor;
-    work->unk_210 = work->unk_20c;
+    work->prevCursor = work->cursor;
+    work->prevVariant = work->variant;
 }

@@ -10,9 +10,9 @@ void Ov005_OnCoPaletteButtonConfirm(MenuButton *button)
     Unk_ov005_0236bba8 *work = data_ov005_0236bba8;
     int variant = button->id - 0xe0;
 
-    work->unk_20c = variant;
+    work->variant = variant;
     if (variant != 8) {
-        work->unk_214 = variant;
+        work->row0Variant = variant;
     }
-    work->unk_08 = 1;
+    work->paletteConfirmTouched = 1;
 }

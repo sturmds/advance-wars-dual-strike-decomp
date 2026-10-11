@@ -29,5 +29,5 @@ void Ov005_AddCoPaletteButtons(Ov005Task *task)
             Screen_SetCurrentGfx(saved0280);
         }
     }
-    MenuButton_Select(work->paletteButtons[work->unk_20c].buttonId);
+    MenuButton_Select(work->paletteButtons[work->variant].buttonId);
 }

@@ -13,5 +13,5 @@ void Ov005_OnCoGridButtonConfirm(MenuButton *button)
 
     work->cursor = entry;
     work->coId = func_ov005_02362bf0(work, entry);
-    work->unk_04 = 1;
+    work->gridConfirmTouched = 1;
 }

@@ -82,7 +82,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     }
 
     work->cursor = 0;
-    work->unk_34 = 0;
+    work->prevCursor = 0;
     work->cursorRow = 0;
     work->cursorCoId = func_ov005_02362bf0(work, work->cursor);
     work->coId = work->cursorCoId;

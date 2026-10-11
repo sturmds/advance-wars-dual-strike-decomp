@@ -9,7 +9,7 @@ extern Unk_ov005_0236bba8 *data_ov005_0236bba8;
 
 /* Moves the cursor over the CO's palette variant buttons with the d-pad.
  * Left and right wrap around the 8 variants of row 0, and the last one
- * there is kept in unk_214. Down goes to the ninth variant (row 1), up
+ * there is kept in row0Variant. Down goes to the ninth variant (row 1), up
  * comes back; both need CO rank 10. */
 void Ov005_MoveCoPaletteCursor(void)
 {
@@ -40,7 +40,7 @@ void Ov005_MoveCoPaletteCursor(void)
     if (Co_GetRank(work->coId) < 10) {
         vertical = 0;
     }
-    variant = work->unk_20c;
+    variant = work->variant;
     col = work->paletteButtons[variant].col;
     row = work->paletteButtons[variant].row;
 
@@ -58,15 +58,15 @@ void Ov005_MoveCoPaletteCursor(void)
                 variant -= 7;
             }
         }
-        work->unk_214 = variant;
+        work->row0Variant = variant;
     } else if (vertical == 1) {
         if (row == 1) {
-            variant = work->unk_214;
+            variant = work->row0Variant;
         }
     } else if (row == 0) {
         variant = 8;
     }
 
     MenuButton_Select(work->paletteButtons[variant].buttonId);
-    work->unk_20c = variant;
+    work->variant = variant;
 }
