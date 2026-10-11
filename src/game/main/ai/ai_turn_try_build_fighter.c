@@ -12,14 +12,14 @@ extern int data_027c0284;
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int Ai_HasHealthyFighter(void);
-int func_02093bfc(void);
+int Ai_EnemyHasAirUnit(void);
 void Ai_BuildFighterThreatMaps(void);
 int AiSite_PickAirport(void);
 void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 3. Tries to start building a Fighter: needs an airport among
  * the current player's factories, the profile's flag for Fighters set, the
- * funds for one and a yes from Ai_HasHealthyFighter and func_02093bfc (not decompiled;
+ * funds for one and a yes from Ai_HasHealthyFighter and Ai_EnemyHasAirUnit (not decompiled;
  * the first must not return 1, the second must be nonzero). AiSite_PickAirport
  * picks the factory (-1: none). The name is a guess from the unit type and the
  * checks. Returns 1 when it queued an action. */
@@ -39,7 +39,7 @@ BOOL AiTurn_TryBuildFighter(void)
     if (Ai_HasHealthyFighter() == 1) {
         return 0;
     }
-    if (func_02093bfc() == 0) {
+    if (Ai_EnemyHasAirUnit() == 0) {
         return 0;
     }
     Ai_BuildFighterThreatMaps();
