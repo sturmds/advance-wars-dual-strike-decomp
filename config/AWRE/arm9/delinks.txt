@@ -22680,6 +22680,10 @@ src/sdk/wm/wm_step_data_sharing.c:
     complete
     .text       start:0x021187ec end:0x02118bb0
 
+src/sdk/wm/wm_end_data_sharing.c:
+    complete
+    .text       start:0x02118bb0 end:0x02118c6c
+
 src/sdk/wm/wm_set_entry.c:
     complete
     .text       start:0x02118f34 end:0x02118f94
