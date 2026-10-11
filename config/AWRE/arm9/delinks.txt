@@ -13462,6 +13462,10 @@ src/game/main/map/player_get_slot_relation.c:
     complete
     .text       start:0x020c6598 end:0x020c65fc
 
+src/game/main/map/vision_grid_reset.c:
+    complete
+    .text       start:0x020c65fc end:0x020c6708
+
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c

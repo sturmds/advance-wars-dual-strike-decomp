@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c65fc(s8 *grid, int value);
+void VisionGrid_Reset(s8 *grid, int value);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -33,8 +33,8 @@ void Map_RebuildVision(void)
     int x;
     int y;
 
-    func_020c65fc(VISION_GRID(STATE, STATE->visionGrid0), (s16)!Map_IsFoggy());
-    func_020c65fc(VISION_GRID(STATE, STATE->visionGrid1), (s16)!Map_IsFoggy());
+    VisionGrid_Reset(VISION_GRID(STATE, STATE->visionGrid0), (s16)!Map_IsFoggy());
+    VisionGrid_Reset(VISION_GRID(STATE, STATE->visionGrid1), (s16)!Map_IsFoggy());
     if (!Map_IsFoggy()) {
         return;
     }

@@ -9,7 +9,7 @@
 void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
 void func_020c4fa0(void);
-void func_020c65fc(s8 *grid, int value);
+void VisionGrid_Reset(s8 *grid, int value);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -40,8 +40,8 @@ void func_020fed58(CampaignRecap *recap, int mission)
     TileCodeTable_Load();
     Map_LoadVariant(mapId, 0);
     func_020c4fa0();
-    func_020c65fc(STATE->mapTiles->inSight + STATE->visionGrid0 * 0x508, 1);
-    func_020c65fc(STATE->mapTiles->inSight + STATE->visionGrid1 * 0x508, 1);
+    VisionGrid_Reset(STATE->mapTiles->inSight + STATE->visionGrid0 * 0x508, 1);
+    VisionGrid_Reset(STATE->mapTiles->inSight + STATE->visionGrid1 * 0x508, 1);
     recap->unk_44 = STATE->unk_1c4->mapWidth;
     recap->unk_48 = STATE->unk_1c4->mapHeight;
     STATE->players[1].armyStyle = 1;
