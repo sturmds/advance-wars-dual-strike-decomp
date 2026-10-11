@@ -22311,6 +22311,10 @@ src/sdk/ctrdg/cartridge_release_slot_if_taken.c:
     complete
     .text       start:0x0211e2b4 end:0x0211e2dc
 
+src/sdk/ctrdg/cartridge_spin_until_slot_owned.c:
+    complete
+    .text       start:0x0211e2dc end:0x0211e35c
+
 src/game/main/func_0211e628.c:
     complete
     .text       start:0x0211e628 end:0x0211e648

@@ -6,6 +6,9 @@
 /* PXI FIFO tag of the cartridge library: the ARM9 and ARM7 exchange commands under it. */
 #define FIFO_TAG_GBA_SLOT 13
 
+/* The OSLockWord in shared main RAM that arbitrates the cartridge bus between the CPUs. */
+#define GBA_SLOT_OWNER_WORD ((void *)0x027fffe8)
+
 /* Record of one lock on the cartridge bus, filled in by Cartridge_SpinUntilSlotOwned. */
 typedef struct GbaSlotLockRecord {
     u32 heldBefore;                /* nonzero when an ARM9 lock ID already held the bus */
