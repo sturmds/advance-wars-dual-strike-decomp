@@ -15,7 +15,7 @@ void Camera_ResetToPreset1(void *p);
 void func_01ff8c84(int arg);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
-void func_020f5fb8(void);
+void Map_ReloadPalettes(void);
 void Ov006_LoadTerrainPalettes(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
@@ -47,6 +47,6 @@ void func_ov006_023544c4(void)
     func_01ff8c84(1);
     Gfx_RequestLayerCopy(1);
     func_020c4018();
-    func_020f5fb8();
+    Map_ReloadPalettes();
     Ov006_LoadTerrainPalettes();
 }
