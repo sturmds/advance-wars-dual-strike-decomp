@@ -45,7 +45,9 @@ typedef struct CampaignMapTask {
     int cursorY;
     u8 pad_44[0x4c - 0x44];
     s16 step;                          /* frame counter or phase of the running update function */
-    u8 pad_4e[0x58 - 0x4e];
+    u8 pad_4e[0x52 - 0x4e];
+    u16 side;                          /* 1: the mission lies right of the middle of the screen (CampaignMap_ShowCursor's side argument) */
+    u8 pad_54[0x58 - 0x54];
     int unk_58;
     int unk_5c;
     u8 pad_60[0x64 - 0x60];

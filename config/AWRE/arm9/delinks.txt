@@ -4756,6 +4756,10 @@ src/game/main/func_0204ec78.c:
     complete
     .text       start:0x0204ec78 end:0x0204ecc4
 
+src/game/main/menus/campaign_map_callout_shrink.c:
+    complete
+    .text       start:0x0204ede4 end:0x0204ee28
+
 src/game/main/func_0204ef30.c:
     complete
     .text       start:0x0204ef30 end:0x0204ef3c
