@@ -2,19 +2,6 @@
 #include "sdk/fx.h"
 #include "sdk/gx.h"
 
-/* Starts 1.0 / denom on the divider without setting DIVCNT again. */
-static inline void Divider_StartFixedReciprocal(fx32 denom)
-{
-    IO_DIVIDER_DIVIDEND = (long long)0x1000 << 32;
-    REG_DIV_DENOM = (u32)denom;
-}
-
-/* v32 * v64, where v64 has 32 fraction bits, rounded to fx32. */
-static inline fx32 FX_Mul32x64c(fx32 v32, long long v64)
-{
-    return (fx32)((v64 * v32 + 0x80000000LL) >> 32);
-}
-
 /* Builds an orthographic projection matrix for the box left..right,
  * bottom..top, near..far, with scaleW as the w scale. With load set, it
  * loads the matrix as the geometry engine's projection matrix; with mtx not

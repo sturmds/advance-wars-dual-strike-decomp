@@ -25,6 +25,7 @@ typedef struct MtxFx33 {
 } MtxFx33;
 
 void MTX_RotX43_(MtxFx43 *mtx, fx32 sin, fx32 cos);
+fx32 FX_Div(fx32 numer, fx32 denom);
 void FX_DivAsync(fx32 numer, fx32 denom);
 void FX_InvAsync(fx32 denom);
 fx32 FX_GetDivResult(void);
@@ -37,5 +38,32 @@ void MTX_Identity43(MtxFx43 *mtx);
 void Matrix_Expand43Into44(MtxFx43 *src, MtxFx44 *dest);
 void Matrix_Take33From44(MtxFx44 *src, MtxFx33 *dest);
 void Matrix_MoveAlongLocalAxes43(MtxFx43 *src, MtxFx43 *dest, fx32 x, fx32 y, fx32 z);
+
+/* Start a division on the divider without setting DIVCNT again: the caller
+ * already left it in 64-by-32 mode. Divider_StartFixedQuotient computes numer / denom,
+ * Divider_StartFixedReciprocal 1.0 / denom; read either with FX_GetDivResult(64). */
+static inline void Divider_StartFixedQuotient(fx32 numer, fx32 denom)
+{
+    IO_DIVIDER_DIVIDEND = (long long)numer << 32;
+    REG_DIV_DENOM = (u32)denom;
+}
+
+static inline void Divider_StartFixedReciprocal(fx32 denom)
+{
+    IO_DIVIDER_DIVIDEND = (long long)0x1000 << 32;
+    REG_DIV_DENOM = (u32)denom;
+}
+
+/* v32 * v64, where v64 has 32 fraction bits, rounded to fx32. */
+static inline fx32 FX_Mul32x64c(fx32 v32, long long v64)
+{
+    return (fx32)((v64 * v32 + 0x80000000LL) >> 32);
+}
+
+/* a * b in fx32, rounded. */
+static inline fx32 FX_Mul(fx32 a, fx32 b)
+{
+    return (fx32)(((long long)a * b + 0x800) >> 12);
+}
 
 #endif

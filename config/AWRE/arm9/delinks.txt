@@ -20953,6 +20953,10 @@ src/sdk/gx/g3i_ortho_w_.c:
     complete
     .text       start:0x0210bd70 end:0x0210c06c
 
+src/sdk/gx/g3i_perspective_w_.c:
+    complete
+    .text       start:0x0210c06c end:0x0210c25c
+
 src/sdk/gx/gxs_end_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c550 end:0x0210c59c
