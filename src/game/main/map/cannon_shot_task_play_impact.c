@@ -15,8 +15,8 @@ SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos
 void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 void ScreenShake_Start(int script, int frames, Task *parent);
-u8 *func_020d96e0(int kind);           /* shot animation file of the cannon kind */
-int func_020d92c0(u32 facing);         /* first animation for the cannon's facing */
+u8 *CannonShot_GetAnimFile(int kind);           /* shot animation file of the cannon kind */
+int CannonShot_GetFacingAnim(u32 facing);         /* first animation for the cannon's facing */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -33,12 +33,12 @@ void CannonShotTask_PlayImpact(CannonShotTask *task)
         pos.x = (task->targetX * 16 + 8) * 0x2000 / 256;
         pos.y = (task->targetY * 16 + 16) * 0x6000 / 768;
         pos.z = 8;
-        SpriteAnim3dTask_StartAlt(func_020d96e0(task->cannonKind), &pos, (u32)data_022a7c5c->unk_68, (u32)data_022a7c5c->unk_6c,
-                                  func_020d92c0(task->facing) + 2, 1);
+        SpriteAnim3dTask_StartAlt(CannonShot_GetAnimFile(task->cannonKind), &pos, (u32)data_022a7c5c->unk_68, (u32)data_022a7c5c->unk_6c,
+                                  CannonShot_GetFacingAnim(task->facing) + 2, 1);
     } else {
         x = task->targetX * 16 + 8 - STATE->unk_1c4->scrollX;
         y = task->targetY * 16 + 16 - STATE->unk_1c4->scrollY;
-        SpriteAnimTask_Start(func_020d96e0(task->cannonKind), x, y, 0x3194, func_020d92c0(task->facing) + 2, 1);
+        SpriteAnimTask_Start(CannonShot_GetAnimFile(task->cannonKind), x, y, 0x3194, CannonShot_GetFacingAnim(task->facing) + 2, 1);
     }
     Sound_PlaySe(169);
     ScreenShake_Start(1, 20, (Task *)task);

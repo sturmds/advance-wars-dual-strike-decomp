@@ -9921,11 +9921,11 @@ src/game/main/map/tile_list_task_start_child.c:
     complete
     .text       start:0x020d9260 end:0x020d9294
 
-src/game/main/func_020d9294.c:
+src/game/main/map/cannon_shot_get_muzzle_offset.c:
     complete
     .text       start:0x020d9294 end:0x020d92c0
 
-src/game/main/func_020d92c0.c:
+src/game/main/map/cannon_shot_get_facing_anim.c:
     complete
     .text       start:0x020d92c0 end:0x020d92fc
 
@@ -9937,15 +9937,19 @@ src/game/main/func_020d947c.c:
     complete
     .text       start:0x020d947c end:0x020d9494
 
-src/game/main/func_020d96e0.c:
+src/game/main/map/cannon_shot_task_play_muzzle_flash.c:
+    complete
+    .text       start:0x020d9494 end:0x020d96e0
+
+src/game/main/map/cannon_shot_get_anim_file.c:
     complete
     .text       start:0x020d96e0 end:0x020d9708
 
-src/game/main/func_020d9708.c:
+src/game/main/map/cannon_shot_get3d_graphics_file.c:
     complete
     .text       start:0x020d9708 end:0x020d9730
 
-src/game/main/func_020d9730.c:
+src/game/main/map/cannon_shot_get2d_graphics_file.c:
     complete
     .text       start:0x020d9730 end:0x020d9758
 
