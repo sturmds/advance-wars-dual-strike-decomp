@@ -22351,6 +22351,7 @@ src/sdk/card/cardi_end_task.c:
     .text       start:0x02116598 end:0x02116618
 
 src/sdk/card/card_rom_take_from_buffered_page.c:
+    complete
     .text       start:0x02116618 end:0x021166b0
 
 src/sdk/card/cardi_request.c:
