@@ -74,6 +74,12 @@ struct FSFile {
     u8 pad_38[0x44 - 0x38];
 };
 
+/* Where a table read starts. */
+typedef struct ArchiveTableCursor {
+    FSArchive *arc;
+    u32 pos;                           /* offset in the archive */
+} ArchiveTableCursor;
+
 typedef int (*ArchiveByteReader)(FSArchive *arc, void *dest, u32 src, u32 len);
 typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 len);
 
