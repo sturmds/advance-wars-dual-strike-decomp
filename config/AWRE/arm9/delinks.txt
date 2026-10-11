@@ -1476,9 +1476,17 @@ src/game/main/skills/co_is_available.c:
     complete
     .text       start:0x02017b1c end:0x02017b40
 
+src/game/main/graphics/co_set_saved_picture_variant.c:
+    complete
+    .text       start:0x02017b40 end:0x02017b70
+
 src/game/main/graphics/co_get_saved_picture_variant.c:
     complete
     .text       start:0x02017b70 end:0x02017b9c
+
+src/game/main/graphics/co_set_saved_palette_variant.c:
+    complete
+    .text       start:0x02017b9c end:0x02017bcc
 
 src/game/main/graphics/co_get_saved_palette_variant.c:
     complete

@@ -31,7 +31,7 @@ int Co_GetPictureVariant(int coId);
 void func_02002b74(int coId, int variant);
 void Co_LoadGraphics(int coId, int firstTile);
 void func_02002804(int coId, int firstTile);
-void func_02017b9c(int coId, int variant);
+void Co_SetSavedPaletteVariant(int coId, int variant);
 int Co_GetRank(u32 co);
 void func_02022404(void *sprite, int x, int y);
 void Task_Destroy(void *task);
@@ -252,7 +252,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
                 Screen_SetCurrentGfx(saved0280);
             } else {
                 work->unk_28 = work->unk_20c;
-                func_02017b9c(work->coId, work->unk_28);
+                Co_SetSavedPaletteVariant(work->coId, work->unk_28);
                 Ov005_CopyCoPaletteToBothScreens(work);
             }
             work->unk_00 = 1;
