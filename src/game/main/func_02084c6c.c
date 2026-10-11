@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_020837c4(void);
+void CombatSetup_SendBack(void);
 
 void func_02084c6c(void)
 {
-    func_020837c4();
+    CombatSetup_SendBack();
 }

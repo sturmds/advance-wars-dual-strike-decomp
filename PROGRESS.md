@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4846 / 6598 | 1065720 / 1531944 | 69.57% | 0 | 0 |
+| game | 4851 / 6598 | 1067456 / 1531944 | 69.68% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4984 / 7479 | 1069140 / 1685994 | 63.41% | 1 | 30 |
+| all | 4989 / 7479 | 1070876 / 1685994 | 63.52% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 3458 / 5180 | 634608 / 1082632 | 58.62% | 0 |
+| main | game | 3463 / 5180 | 636344 / 1082632 | 58.78% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -67,6 +67,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
 | `src/game/main/menus/func_0204f3b0.c` | func_0204f3b0 | 160 |
+| `src/game/main/menus/func_02082cf4.c` | func_02082cf4 | 556 |
+| `src/game/main/menus/func_020834dc.c` | func_020834dc | 592 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/menus/page_strip_task_draw.c` | PageStripTask_Draw | 736 |
