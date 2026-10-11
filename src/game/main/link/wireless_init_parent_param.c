@@ -6,7 +6,7 @@
 extern u8 data_0229c97a[];
 extern u8 data_0229c982[];
 
-int func_0207aab4(void);
+int Wireless_GetBeaconJitter(void);
 void func_0210f52c(void *dst, int value, int size);
 
 /* Fills in the parent settings (the 0x40-byte WMParentParam layout):
@@ -24,7 +24,7 @@ void Wireless_InitParentParam(void)
     data_0229c960.multiBootFlag = 0;
     data_0229c960.ksFlag = 0;
     data_0229c960.csFlag = 0;
-    data_0229c960.beaconPeriod = func_0207aab4() + 180;
+    data_0229c960.beaconPeriod = Wireless_GetBeaconJitter() + 180;
     func_0210f52c(data_0229c97a, 0, 4);
     func_0210f52c(data_0229c982, 0, 8);
     data_0229c960.channel = 1;
