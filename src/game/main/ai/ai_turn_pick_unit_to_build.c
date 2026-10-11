@@ -23,7 +23,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_02098238(u32 cost);
 int Ai_WantsBlackBomb(int unitType);
 int func_02095fb8(void);
-int func_02095f28(void);
+int AiSite_PickPiperunnerSite(void);
 BOOL func_020949fc(int unitType);
 BOOL func_02094a7c(int unitType);
 int Ai_CountUnitsOfType(int type);
@@ -41,7 +41,7 @@ int Ai_CountUnitsOfType(int type);
  * still missing after next income; while unk_10 is set, a build must leave
  * that much (unk_05 times it may skip the check for a type the player has
  * none of). Black Bomb and Piperunner builds go through func_02095fb8 and
- * func_02095f28. A type that fails gets weight 0 and the pick starts again.
+ * AiSite_PickPiperunnerSite. A type that fails gets weight 0 and the pick starts again.
  * Returns the factory's site index with gUnitAction.target set, or -1. */
 int AiTurn_PickUnitToBuild(int allowSaving)
 {
@@ -140,7 +140,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         if (data_021619c0->unk_10 != 0) {
             if (func_020949fc(best) == 1) {
                 gUnitAction.target = UNIT_PIPERUNNER;
-                return func_02095f28();
+                return AiSite_PickPiperunnerSite();
             }
         } else if (func_02094a7c(best) == 1) {
             pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
@@ -151,7 +151,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 }
             } else {
                 gUnitAction.target = UNIT_PIPERUNNER;
-                return func_02095f28();
+                return AiSite_PickPiperunnerSite();
             }
         }
         if (data_021619c0->unk_10 != 0 && data_021619c0->unk_05 != 0) {
