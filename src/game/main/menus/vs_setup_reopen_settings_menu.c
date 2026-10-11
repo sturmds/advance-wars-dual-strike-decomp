@@ -6,7 +6,7 @@
 void Screen_SetCurrentBoth(void *state);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
-void func_0206ad18(void);
+void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddSettingButtonsAndArrows(void);
 void VsSetup_ShowSettingHelp(void);
 
@@ -38,7 +38,7 @@ void VsSetup_ReopenSettingsMenu(void)
     Gfx_RequestLayerCopy(2);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_0206ad18();
+    VsSetup_DrawSubSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     MenuButton_Select(MENU->setup.unk_2e6 + 60);

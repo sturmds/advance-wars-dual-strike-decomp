@@ -6,7 +6,7 @@
 /* Loads the picture of a CO (id in the low 7 bits; 0 clears dest) to dest,
  * 18 tiles, and its palette in the colours of the given army. */
 void Co_LoadArmyMediumPicture(int co, void *dest, int paletteSlot, int army);
-void func_0206ad18(void);
+void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddSettingButtons(void);
 void VsSetup_ShowSettingHelp2(void);
 
@@ -40,7 +40,7 @@ void VsSetup_ShowSettingsMenu(void)
         }
     }
     Screen_SetCurrentGfx(saved);
-    func_0206ad18();
+    VsSetup_DrawSubSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     MenuButton_Select(MENU->setup.unk_2e6 + 60);

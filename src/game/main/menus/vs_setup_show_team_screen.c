@@ -11,7 +11,7 @@ void Screen_SetCurrentBoth(void *state);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_0206affc(void);
-void func_0206ad18(void);
+void VsSetup_DrawSubSlotPanels(void);
 void VsSetup_AddTeamArrowButtons(void);
 void HelpText_Show(u32 textId, int tile);
 void Task_JumpToLabel(Task *task, int label);
@@ -77,7 +77,7 @@ void VsSetup_ShowTeamScreen(Task *task)
     Screen_SetCurrentGfx(savedGfx);
 
     func_0206affc();
-    func_0206ad18();
+    VsSetup_DrawSubSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     /* Cursor ids 0-7 are the map buttons, 8-15 the CO buttons, two per slot. */
