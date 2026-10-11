@@ -9763,6 +9763,7 @@ src/game/main/menus/unit_menu_capture_hidden.c:
     .text       start:0x020bf790 end:0x020bf814
 
 src/game/main/menus/unit_menu_sami_capture_hidden.c:
+    complete
     .text       start:0x020bf814 end:0x020bf8b8
 
 src/game/main/func_020bf8b8.c:
