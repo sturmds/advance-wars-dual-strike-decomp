@@ -3397,6 +3397,10 @@ src/game/main/func_020323fc.c:
     complete
     .text       start:0x020323fc end:0x02032410
 
+src/game/main/graphics/sprite_shower_update.c:
+    complete
+    .text       start:0x0203246c end:0x02032804
+
 src/game/main/func_0203295c.c:
     complete
     .text       start:0x0203295c end:0x02032984
