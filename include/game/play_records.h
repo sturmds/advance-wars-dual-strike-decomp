@@ -76,7 +76,9 @@ typedef struct PlayRecords {
     u32 unitsUnloaded;                 /* unloads by human players, capped at 999999 (ActingUnit_UnloadCargo) */
     u32 unitsSelected;                 /* units picked to move by human players, capped at 999999 (MapCursor_SelectTile) */
     u32 coSwaps;                       /* CO swaps by human players, capped at 999999 (UnitAction_SwapCo) */
-    u8 pad_408[0x414 - 0x408];
+    u32 unk_408;                       /* capped at 999999; +1 when a player loses with defeat code 2 on a human's turn (LinkPlayer_MarkDefeated) */
+    u32 unk_40c;                       /* capped at 999999; +1 for defeat code 1 or 16 on a human's turn */
+    u32 unk_410;                       /* capped at 999999; +1 when a human player is defeated outside Survival */
     u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */
     u32 survivalRunsCleared[3];        /* runs whose last map was won, for data_022a7b80.mode 0, 2, 1 in that order; capped at 999999 (Survival_FinishMap) */
     u32 survivalMapsWon[3];            /* maps won, for Survival mode 0 or 3, 2 or 5, 1 or 4 in that order; capped at 999999 */
