@@ -69,6 +69,7 @@ void OS_Terminate(void);
 OSIrqMask OS_ResetRequestIrqMask(OSIrqMask mask);
 OSIrqMask OS_DisableIrqMask(OSIrqMask mask);
 OSIrqMask OS_EnableIrqMask(OSIrqMask mask);
+OSIrqMask OS_SetIrqMask(OSIrqMask mask);
 
 /* Turn interrupts off and return the previous state; hand it back to restore. */
 int OS_DisableInterrupts(void);
