@@ -15176,6 +15176,10 @@ src/game/main/map/map_cursor_update_from_touch_free.c:
     complete
     .text       start:0x020f0ef4 end:0x020f1154
 
+src/game/main/map/map_touch_read_buttons.c:
+    complete
+    .text       start:0x020f1154 end:0x020f125c
+
 src/game/main/func_020f125c.c:
     complete
     .text       start:0x020f125c end:0x020f1288
