@@ -23,4 +23,17 @@ typedef struct Unk_021694c0 {
     int unk_3c;
 } Unk_021694c0;
 
+/* Task of the effect scripts in the data_021694c0 scene. offsetX and offsetY
+ * are added to unk_24 and unk_28 of the data_021694c0 record to place the
+ * sprite. */
+typedef struct Unk_021694c0Task {
+    u8 pad_00[0x2c];
+    int offsetX;
+    int offsetY;
+    u8 pad_34[0x50 - 0x34];
+    void *sprite;                      /* handle from func_02022478 */
+    u8 pad_54[0x64 - 0x54];
+    s16 frame;
+} Unk_021694c0Task;
+
 #endif
