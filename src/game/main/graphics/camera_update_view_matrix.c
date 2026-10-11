@@ -6,7 +6,7 @@ void func_021096bc(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: r
 void func_021096d8(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: rotation about Z */
 void func_021096f4(MtxFx43 *a, MtxFx43 *b, MtxFx43 *dest);             /* SDK: 4x3 product */
 void MI_Copy36B(MtxFx43 *src, MtxFx33 *dest);                       /* SDK: copy 36 bytes */
-void func_02109348(MtxFx33 *src, MtxFx33 *dest);                       /* SDK: 3x3 inverse */
+void Matrix_Invert3x3(MtxFx33 *src, MtxFx33 *dest);                       /* SDK: 3x3 inverse */
 
 extern s16 data_0214d4c4[];           /* a sine and cosine pair per 16 angle units */
 
@@ -31,5 +31,5 @@ void Camera_UpdateViewMatrix(Camera *camera)
     func_021096f4(&camera->mtx43, &rotZ, &camera->mtx43);
     Matrix_MoveAlongLocalAxes43(&camera->mtx43, &camera->mtx43, -camera->x, -camera->y, -camera->z);
     MI_Copy36B(&camera->mtx43, &rot);
-    func_02109348(&rot, &camera->invRot);
+    Matrix_Invert3x3(&rot, &camera->invRot);
 }

@@ -20706,6 +20706,9 @@ src/game/main/func_02109328.c:
     complete
     .text       start:0x02109328 end:0x02109348
 
+src/sdk/fx/matrix_invert3x3.c:
+    .text       start:0x02109348 end:0x02109640
+
 src/sdk/fx/mtx_identity43.c:
     complete
     .text       start:0x02109640 end:0x02109668

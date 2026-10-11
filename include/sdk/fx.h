@@ -4,6 +4,12 @@
 #include "types.h"
 #include "hw_div.h"
 
+/* 64-bit fixed point, for products of two fx32 values before the shift. */
+typedef signed long long fx64;
+
+#define FX32_SHIFT 12
+#define FX32_HALF 0x800
+
 /* 4 rows of 3: a 3x3 rotation/scale part, then a translation row. */
 typedef struct MtxFx43 {
     fx32 m[4][3];
