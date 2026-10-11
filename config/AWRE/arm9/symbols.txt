@@ -3366,7 +3366,7 @@ func_020bc874 kind:function(arm,size=0x14) addr:0x020bc874
 func_020bc888 kind:function(arm,size=0x14) addr:0x020bc888
 func_020bc89c kind:function(arm,size=0x14) addr:0x020bc89c
 func_020bc8b0 kind:function(arm,size=0x14) addr:0x020bc8b0
-func_020bc8c4 kind:function(arm,size=0x88) addr:0x020bc8c4
+BattleMenu_DrawHelpByGameMode kind:function(arm,size=0x88) addr:0x020bc8c4
 func_020bc94c kind:function(arm,size=0x14) addr:0x020bc94c
 func_020bc960 kind:function(arm,size=0x14) addr:0x020bc960
 func_020bc974 kind:function(arm,size=0x14) addr:0x020bc974
@@ -3377,9 +3377,9 @@ BattleMenu_DrawHelpText kind:function(arm,size=0x9c) addr:0x020bc9c4
 func_020bca60 kind:function(arm,size=0x134) addr:0x020bca60
 func_020bcb94 kind:function(arm,size=0x198) addr:0x020bcb94
 func_020bcd2c kind:function(arm,size=0x124) addr:0x020bcd2c
-func_020bce50 kind:function(arm,size=0xd8) addr:0x020bce50
+UnitMenu_Send kind:function(arm,size=0xd8) addr:0x020bce50
 func_020bcf28 kind:function(arm,size=0x1c) addr:0x020bcf28
-func_020bcf44 kind:function(arm,size=0x9c) addr:0x020bcf44
+UnitMenu_Fire kind:function(arm,size=0x9c) addr:0x020bcf44
 func_020bcfe0 kind:function(arm,size=0x74) addr:0x020bcfe0
 UnitMenu_Emerge kind:function(arm,size=0x74) addr:0x020bd054
 UnitMenu_Dive kind:function(arm,size=0x74) addr:0x020bd0c8
@@ -7596,8 +7596,8 @@ gAnimationMenuHelpFns kind:data(any) addr:0x021658e8
 data_021658fc kind:data(any) addr:0x021658fc
 gNextTurnButton kind:data(any) addr:0x02165924
 data_0216594c kind:data(any) addr:0x0216594c
-data_0216597c kind:data(any) addr:0x0216597c
-data_021659cc kind:data(any) addr:0x021659cc
+gSendNoSlotScript kind:data(any) addr:0x0216597c
+gSendNoTileScript kind:data(any) addr:0x021659cc
 data_02165a1c kind:data(any) addr:0x02165a1c
 data_02165a84 kind:data(any) addr:0x02165a84
 data_02165aec kind:data(any) addr:0x02165aec
@@ -7651,7 +7651,7 @@ data_02166568 kind:data(any) addr:0x02166568
 data_02166598 kind:data(any) addr:0x02166598
 data_021665d0 kind:data(any) addr:0x021665d0
 data_02166608 kind:data(any) addr:0x02166608
-data_02166640 kind:data(any) addr:0x02166640
+gFireTargetTaskScript kind:data(any) addr:0x02166640
 data_02166678 kind:data(any) addr:0x02166678
 data_021666b0 kind:data(any) addr:0x021666b0
 data_021666e8 kind:data(any) addr:0x021666e8

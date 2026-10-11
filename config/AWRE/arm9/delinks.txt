@@ -12380,6 +12380,10 @@ src/game/main/func_020bc8b0.c:
     complete
     .text       start:0x020bc8b0 end:0x020bc8c4
 
+src/game/main/menus/battle_menu_draw_help_by_game_mode.c:
+    complete
+    .text       start:0x020bc8c4 end:0x020bc94c
+
 src/game/main/func_020bc94c.c:
     complete
     .text       start:0x020bc94c end:0x020bc960
@@ -12408,9 +12412,17 @@ src/game/main/menus/battle_menu_draw_help_text.c:
     complete
     .text       start:0x020bc9c4 end:0x020bca60
 
+src/game/main/menus/unit_menu_send.c:
+    complete
+    .text       start:0x020bce50 end:0x020bcf28
+
 src/game/main/func_020bcf28.c:
     complete
     .text       start:0x020bcf28 end:0x020bcf44
+
+src/game/main/menus/unit_menu_fire.c:
+    complete
+    .text       start:0x020bcf44 end:0x020bcfe0
 
 src/game/main/menus/func_020bcfe0.c:
     complete
