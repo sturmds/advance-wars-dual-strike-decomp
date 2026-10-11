@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 data_021663a0[];
 
-void func_02019c1c(u32 script, int arg1, int arg2);
+void EventScript_StartText(u32 script, int arg1, int arg2);
 void LinkPlayerDefeatTask_Create(u16 player, u16 code);
 void LinkPlayer_MarkDefeated(int player, int code);
 void Player_RefreshUnits(void);
@@ -18,7 +18,7 @@ void Game_EnterState18(void);
  * the name is a guess from that. */
 void LinkPlayer_Defeat(int player, int code)
 {
-    func_02019c1c(data_021663a0[STATE->players[player].armyColour - 1], 21, 0);
+    EventScript_StartText(data_021663a0[STATE->players[player].armyColour - 1], 21, 0);
     LinkPlayerDefeatTask_Create(player, code);
     LinkPlayer_MarkDefeated(player, code);
     if (player == STATE->currentPlayer) {

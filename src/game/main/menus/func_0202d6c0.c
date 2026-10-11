@@ -12,7 +12,7 @@ int func_021023c4(void);
 s8 func_021023d4(void);
 s8 func_021023e4(void);
 void Gfx_LoadPlayerWindowFrame(int player);
-void func_02019c1c(u32 script, int arg1, int arg2);
+void EventScript_StartText(u32 script, int arg1, int arg2);
 
 /* Runs when a main menu entry picks game mode gNextGameMode. For some
  * modes, if that mode's getter (all three for modes 0 and 1) returns
@@ -70,5 +70,5 @@ void func_0202d6c0(void)
     GFX_DISPCNT(data_027c0280)->win1 = 0;
     GFX_DISPCNT(data_027c0280)->objWin = 0;
     Gfx_LoadPlayerWindowFrame(0);
-    func_02019c1c(0xc00002cf, 21, 0);
+    EventScript_StartText(0xc00002cf, 21, 0);
 }

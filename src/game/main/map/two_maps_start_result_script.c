@@ -8,7 +8,7 @@ extern u32 data_02169708[];                /* event script per army colour, for 
 
 void func_020c03d8(void);
 BOOL Player_IsInGame(u8 player);
-void func_02019c1c(u32 script, int arg1, int arg2);
+void EventScript_StartText(u32 script, int arg1, int arg2);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
@@ -70,5 +70,5 @@ void TwoMaps_StartResultScript(void)
         SWITCH_BACK(lastGfx, lastGame);
     }
 
-    func_02019c1c(script, 21, 0);
+    EventScript_StartText(script, 21, 0);
 }

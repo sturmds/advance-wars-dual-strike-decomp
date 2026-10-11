@@ -2417,6 +2417,10 @@ src/game/main/script/func_02019bec.c:
     complete
     .text       start:0x02019bec end:0x02019c1c
 
+src/game/main/script/event_script_start_text.c:
+    complete
+    .text       start:0x02019c1c end:0x02019c54
+
 src/game/main/map/map_place_predeployed_units.c:
     complete
     .text       start:0x02019c54 end:0x02019f90
