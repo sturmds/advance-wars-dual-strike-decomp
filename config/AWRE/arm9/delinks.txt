@@ -5233,6 +5233,10 @@ src/game/main/gauge_queue_digit_pop_in.c:
     complete
     .text       start:0x02058510 end:0x02058698
 
+src/game/main/copowers/tag_break_scroll_frame.c:
+    complete
+    .text       start:0x02058698 end:0x02058834
+
 src/game/main/func_02058b1c.c:
     .text       start:0x02058b1c end:0x02058f04
 
