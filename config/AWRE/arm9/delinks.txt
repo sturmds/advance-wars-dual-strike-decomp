@@ -4007,6 +4007,10 @@ src/game/main/func_0203b67c.c:
     complete
     .text       start:0x0203b67c end:0x0203b690
 
+src/game/main/result_stats_update.c:
+    complete
+    .text       start:0x0203b690 end:0x0203b734
+
 src/game/main/result_stats_slide_in.c:
     complete
     .text       start:0x0203b734 end:0x0203b84c
