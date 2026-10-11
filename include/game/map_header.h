@@ -45,7 +45,7 @@ typedef struct MapHeader {
     struct MapScript *script;          /* the map's event trigger lists (MapScript_Get) */
     const void *termsScript;           /* "Terms" option script; NULL: none */
     const void *hintScript;            /* "Hint" option script; NULL: none */
-    const void *unk_0c;                /* top-screen "Terms" script */
+    const char *extraObjTileFile;      /* /bmap file name (0a5 or 0a6) loaded by Map_LoadExtraObjTiles, NULL on most maps */
     u16 variantMapIds[2];              /* variant n of this map is map variantMapIds[n - 1]; [0] also links the second map of a two-map battle */
     TextRef name;
     u16 unk_18;

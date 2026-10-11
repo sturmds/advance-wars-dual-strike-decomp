@@ -14,7 +14,7 @@ MapObject *Map_FindObjectOfKind(int kind);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
-extern const char *data_ov000_022dbd34[]; /* MapHeader.unk_0c of map 0 */
+extern const char *data_ov000_022dbd34[]; /* MapHeader.extraObjTileFile of map 0 */
 extern char data_021682f4[];              /* "0a7" */
 extern char data_021682f8[];              /* "/bmap" */
 extern char data_02168300[];              /* "0a8" */
@@ -23,13 +23,13 @@ extern char data_02168308[];              /* "0a4" */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* MapHeader.unk_0c of a map, read through the symbol at its offset. */
+/* MapHeader.extraObjTileFile of a map, read through the symbol at its offset. */
 #define HEADER_TILE_FILE(mapId) (*(const char **)((u8 *)data_ov000_022dbd34 + (mapId) * sizeof(MapHeader)))
 
 /* Loads /bmap/0a8 into object VRAM at firstTile + 48, then one more /bmap
  * file at firstTile + 120: 0a4 (with the tileset palette at 0x380) on maps
  * with a volcano, else 0a9 on maps with a Black Obelisk, else 0a7 when
- * func_020fa6f8 returns 1, else the map header's file (unk_0c: 0a5 or 0a6
+ * func_020fa6f8 returns 1, else the map header's file (extraObjTileFile: 0a5 or 0a6
  * on nine maps, NULL on the rest). The weather argument is not used. */
 void Map_LoadExtraObjTiles(int weather, int firstTile)
 {

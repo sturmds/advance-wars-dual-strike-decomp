@@ -21,7 +21,7 @@ int Task_JumpToLabel(MapObjectFireTask *task, int label);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step of the map object fire script. The AI target list starts with object
- * entries (unit slot 0, unk_02 the object kind, unk_04 and unk_06 its tile),
+ * entries (unit slot 0, value the object kind, x and y its tile),
  * then the units hit. While nextEntry is still on an object entry, starts
  * that object's shot under the task and jumps back to label 0: the eruption
  * tiles for a volcano, a cannon shot at the first unit in the list for a
@@ -44,15 +44,15 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask *task)
         return;
     }
     entry = &list[task->nextEntry];
-    switch (entry->unk_02) {
+    switch (entry->value) {
     case MAP_OBJECT_VOLCANO:
-        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
-        TileListTask_StartChild(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06,
+        object = Map_FindObjectCovering(entry->x, entry->y);
+        TileListTask_StartChild(list[task->nextEntry].x, list[task->nextEntry].y,
                                 data_02167e98[object->variant], (Task *)task);
         break;
     case MAP_OBJECT_BLACK_CANNON:
-        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
-        CannonShotTask_Start(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06, unit->x, unit->y,
+        object = Map_FindObjectCovering(entry->x, entry->y);
+        CannonShotTask_Start(list[task->nextEntry].x, list[task->nextEntry].y, unit->x, unit->y,
                       MAP_OBJECT_BLACK_CANNON, object->variant, task);
         if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller == PLAYER_CONTROLLER_HUMAN) {
             if (gPlayRecords.cannonHitsTaken < 999999) {
@@ -61,8 +61,8 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask *task)
         }
         break;
     case MAP_OBJECT_MINICANNON:
-        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
-        CannonShotTask_Start(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06, unit->x, unit->y,
+        object = Map_FindObjectCovering(entry->x, entry->y);
+        CannonShotTask_Start(list[task->nextEntry].x, list[task->nextEntry].y, unit->x, unit->y,
                       MAP_OBJECT_MINICANNON, object->variant, task);
         if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller == PLAYER_CONTROLLER_HUMAN) {
             if (gPlayRecords.cannonHitsTaken < 999999) {

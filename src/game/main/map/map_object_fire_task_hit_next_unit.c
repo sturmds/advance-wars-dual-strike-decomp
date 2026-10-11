@@ -19,7 +19,7 @@ void MapObjectFireTask_HitNextUnit(MapObjectFireTask *task)
     UnitTargetEntry *list = data_022a6dcc;
     MapUnit *unit = &STATE->units[list[task->nextEntry].unitSlot];
 
-    Unit_DamageAtTile(unit->x, unit->y, list[task->nextEntry].unk_02);
+    Unit_DamageAtTile(unit->x, unit->y, list[task->nextEntry].value);
     task->nextEntry++;
     func_020c4018();
 }

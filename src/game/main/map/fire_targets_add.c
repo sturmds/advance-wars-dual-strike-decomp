@@ -10,9 +10,9 @@ void FireTargets_Add(u16 x, u16 y, u16 unitSlot, u16 kind)
 {
     UnitTargetEntry *list = data_022a6dcc;
 
-    list[gFireTargetCount].unk_04 = x;
-    list[gFireTargetCount].unk_06 = y;
+    list[gFireTargetCount].x = x;
+    list[gFireTargetCount].y = y;
     list[gFireTargetCount].unitSlot = unitSlot;
-    list[gFireTargetCount].unk_02 = kind;
+    list[gFireTargetCount].value = kind;
     gFireTargetCount++;
 }

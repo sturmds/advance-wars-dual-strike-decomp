@@ -3,15 +3,14 @@
 
 UnitTargetEntry *func_020dc524(int index);
 
-/* Index of the target list entry on tile (tileX, tileY), or -1. unk_04 and
- * unk_06 of an entry are its tile x and y. */
+/* Index of the target list entry on tile (tileX, tileY), or -1. */
 int TargetList_FindTile(int count, int tileX, int tileY)
 {
     int i;
 
     for (i = 0; i < count; i++) {
         UnitTargetEntry *target = func_020dc524(i);
-        if (tileX == target->unk_04 && tileY == target->unk_06) {
+        if (tileX == target->x && tileY == target->y) {
             return i;
         }
     }

@@ -24,7 +24,7 @@ void func_020de9f0(int x, int y);
  * while gMapScrollScript is running. A negative data_022a6dd4 means the player backed out: the menu
  * and task go away and UnitMenu_Open runs. Otherwise data_022a6dd4 picks the
  * entry of the target list: the acting unit attacks the unit in it, or the
- * object at its tile when unk_02 is set. A human player's attack is counted
+ * object at its tile when value is set. A human player's attack is counted
  * in gPlayRecords as direct or indirect by the unit's minRange. */
 void AttackTargetSelect_Finish(Task *task)
 {
@@ -40,11 +40,11 @@ void AttackTargetSelect_Finish(Task *task)
         return;
     }
     target = func_020dc524(data_022a6dd4);
-    if (target->unk_02 == 0) {
+    if (target->value == 0) {
         func_020dea40(target->unitSlot & 0xff);
     } else {
         /* needed to match: the original reads the tile as s16 */
-        func_020de9f0(target->unk_04, target->unk_06);
+        func_020de9f0(target->x, target->y);
     }
     Task_ResumeScript(task);
     if (GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_HUMAN) {
