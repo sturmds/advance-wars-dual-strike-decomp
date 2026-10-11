@@ -11,7 +11,7 @@ void func_02009ac0(void);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_02002ffc(const char *fileName, int a, int b, int c);
+void BgExtPalette_LoadFromFile(const char *fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280 *data_027c0280;
@@ -27,7 +27,7 @@ extern char gBmapFile090[];           /* "090" */
 
 /* Sets up the current screen from /bmap files 085 to 090: layer priorities
  * 0 to 3, object tiles, the tiles and map of layer 3, two palettes, and
- * file 090 through func_02002ffc. Unknown which screen this is. */
+ * file 090 through BgExtPalette_LoadFromFile. Unknown which screen this is. */
 void Gfx_LoadBmap085(void)
 {
     func_01ff9c48(func_02000fa4);
@@ -48,6 +48,6 @@ void Gfx_LoadBmap085(void)
     Palette_LoadFromFile(gBmapFile088, 0, 0x280, 32);
     File_UnpackTo((void *)GFX_LAYER(data_027c0280, 3)->charBase, gBmapFile08e);
     File_UnpackTo(GFX_LAYER(data_027c0280, 3)->map, gBmapFile08f);
-    func_02002ffc(gBmapFile090, 0, 0x200, 3);
+    BgExtPalette_LoadFromFile(gBmapFile090, 0, 0x200, 3);
     Gfx_RequestLayerCopy(3);
 }

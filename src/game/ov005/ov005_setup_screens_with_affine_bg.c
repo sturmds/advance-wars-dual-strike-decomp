@@ -15,7 +15,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void *File_Load(const char *path);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_02002ffc(const char *fileName, int a, int b, int c);
+void BgExtPalette_LoadFromFile(const char *fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
 ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 
@@ -145,7 +145,7 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
                       + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14),
                   gRikiishiFile00d);
     File_UnpackTo(data_027c0280->layer2Map, gRikiishiFile00e);
-    func_02002ffc(gRikiishiFile00f, 0, 0x200, 2);
+    BgExtPalette_LoadFromFile(gRikiishiFile00f, 0, 0x200, 2);
     Gfx_RequestLayerCopy(2);
     File_UnpackTo(data_027c0280->objVram, gRikiishiFile010);
     Palette_LoadFromFile(gRikiishiFile012, 0, 0x200, 0x80);

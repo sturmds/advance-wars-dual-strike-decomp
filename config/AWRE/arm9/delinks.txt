@@ -232,6 +232,10 @@ src/game/main/math/hw_div32.c:
     complete
     .text       start:0x02002fa4 end:0x02002ffc
 
+src/game/main/graphics/bg_ext_palette_load_from_file.c:
+    complete
+    .text       start:0x02002ffc end:0x0200303c
+
 src/game/main/graphics/palette_load_from_file.c:
     complete
     .text       start:0x020030cc end:0x02003104
