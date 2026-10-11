@@ -13876,6 +13876,10 @@ src/game/main/number_sprite_put_number.c:
     complete
     .text       start:0x020f2a68 end:0x020f2adc
 
+src/game/main/number_sprite_put_two_digits.c:
+    complete
+    .text       start:0x020f2adc end:0x020f2b58
+
 src/game/main/func_020f3110.c:
     complete
     .text       start:0x020f3110 end:0x020f3114
