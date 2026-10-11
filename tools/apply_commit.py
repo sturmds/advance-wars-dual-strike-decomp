@@ -454,7 +454,11 @@ def main() -> int:
         old = show(f"{commit}^", path)
         new = show(commit, path)
         name = Path(path).name
-        if path.startswith("config/") and name == "delinks.txt":
+        if old is None and not (ROOT / path).exists():
+            # A file this branch does not have yet, such as a new module's
+            # config: nothing to merge it with.
+            merge_file(path, old, new, dict(renames))
+        elif path.startswith("config/") and name == "delinks.txt":
             apply_delinks(path, old, new)
         elif path.startswith("config/") and name == "symbols.txt":
             renames += apply_symbols(path, old, new)

@@ -289,6 +289,19 @@ class ConfigReplayTest(RepoCase):
                          + symbol("func_02000b00", 0x2000b00) + symbol("func_02000c00", 0x2000c00))
 
 
+    def test_new_config_directory(self):
+        """A commit that adds config files mainline does not have (ARM7's
+        config/AWRE/arm7/) crashed the replay of delinks.txt."""
+        delinks = "    .text       start:0x02380000 end:0x02380158 kind:code align:32\n\n"
+        files = {"config/AWRE/arm7/delinks.txt": delinks,
+                 "config/AWRE/arm7/symbols.txt": symbol("func_arm7_02380000", 0x2380000),
+                 "config/AWRE/arm7/relocs.txt": reloc(0x2380000, 0x2380010)}
+        r = self.repo.replay(base={}, ours={"docs/README.md": "changed\n"}, theirs=files)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        for path, text in files.items():
+            self.assertEqual(self.repo.read(path), text)
+
+
 class MovedFileTest(RepoCase):
     """Issue 0046: a replayed move left the old file when mainline had
     renamed names in it, and an edit to a file mainline had moved wrote the
