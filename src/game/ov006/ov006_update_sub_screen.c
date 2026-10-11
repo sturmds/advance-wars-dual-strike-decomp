@@ -12,7 +12,7 @@ BOOL func_020219e4(void *sprites, int frame, int a, int x, int y, int attr, int 
 void func_020cae6c(u16 x, u16 y, int value);
 void func_01ff8b18(int x, int y);
 void func_01ff8b9c(int x, int y);
-void func_020d7978(int a, int b, int c, int d);
+void DesignMap_DrawTemplatePreview(int a, int b, int c, int d);
 void Ov006_DrawPropertyCounts(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -28,7 +28,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * Draws the cursor tile x and y (OV6->unk_0e, unk_10, from 1), the units
  * left for the current army (50 minus its count) and the properties left
  * (60 minus unk_2b), moves the layer 3 y scroll by half a pixel per frame,
- * then draws the count table. Flag 4 of unk_00, once: calls func_020d7978
+ * then draws the count table. Flag 4 of unk_00, once: calls DesignMap_DrawTemplatePreview
  * and sets the sub screen layer 0 scroll to (0x1fa, 208). */
 void Ov006_UpdateSubScreen(void)
 {
@@ -77,7 +77,7 @@ void Ov006_UpdateSubScreen(void)
         Screen_SetCurrent(data_027c0288.unk_00);
         subSaved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
-        func_020d7978(0, 0, 68, 7);
+        DesignMap_DrawTemplatePreview(0, 0, 68, 7);
         func_01ff8b9c(0x1fa, 208);
         Screen_SetCurrentGfx(subSaved0280);
         Screen_SetCurrent(mainSaved027c);
