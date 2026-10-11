@@ -23003,6 +23003,10 @@ src/sdk/mb/mb_task_start.c:
     complete
     .text       start:0x0211dd34 end:0x0211ddbc
 
+src/sdk/mb/mb_task_thread.c:
+    complete
+    .text       start:0x0211ddbc end:0x0211ded4
+
 src/sdk/mb/mb_pieces_is_complete.c:
     complete
     .text       start:0x0211ded4 end:0x0211df34

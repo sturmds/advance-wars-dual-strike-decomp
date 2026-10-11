@@ -1,0 +1,62 @@
+#include "types.h"
+#include "sdk/mb.h"
+#include "sdk/os.h"
+
+int func_0210d354(OSThread *thread);
+BOOL OS_SetThreadPriority(OSThread *thread, u32 priority);
+void OS_SleepThread(OSThreadQueue *queue);
+void OS_ExitThread(void);
+
+/* The MB task thread. It sleeps at priority 0 while the list is empty, runs
+ * each task at the task's priority, then its callback, and exits after the end
+ * task. */
+void MbTask_ThreadMain(void *arg)
+{
+    DlPlayWorkerArea *work = arg;
+
+    for (;;) {
+        int enabled = OS_DisableInterrupts();
+        DlPlayWorkerJob *info;
+        u32 current;
+        u32 next;
+        int enabledAfter;                  /* needed to match: not the same variable as enabled */
+        void (*callback)(DlPlayWorkerJob *info);
+
+        while (MbTask_List(work) == NULL) {
+            OS_SetThreadPriority(&work->thread, 0);
+            OS_SleepThread(NULL);
+        }
+        info = MbTask_List(work);
+        MbTask_List(work) = MbTask_List(work)->next;
+        OS_SetThreadPriority(&work->thread, info->unk_04_1);
+        OS_RestoreInterrupts(enabled);
+
+        if (info->task != NULL) {
+            info->task(info);
+        }
+
+        enabledAfter = OS_DisableInterrupts();
+        callback = info->callback;
+        current = func_0210d354(&work->thread);
+        if (MbTask_List(work) == NULL) {
+            next = 0;
+        } else if (current < MbTask_List(work)->unk_04_1) {
+            next = MbTask_List(work)->unk_04_1;
+        } else {
+            next = current;
+        }
+        if (next != current) {
+            OS_SetThreadPriority(&work->thread, next);
+        }
+        info->next = NULL;
+        info->loading = 0;
+        if (callback != NULL) {
+            callback(info);
+        }
+        if ((u8 *)info == work->queue) {
+            break;
+        }
+        OS_RestoreInterrupts(enabledAfter);
+    }
+    OS_ExitThread();
+}
