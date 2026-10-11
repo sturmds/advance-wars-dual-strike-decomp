@@ -3282,6 +3282,7 @@ src/game/main/save_delete_record.c:
     .text       start:0x02020078 end:0x020200fc
 
 src/game/main/save_write_record.c:
+    complete
     .text       start:0x020200fc end:0x02020690
 
 src/game/main/save_init.c:

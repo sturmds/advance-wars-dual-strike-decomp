@@ -1,3 +1,7 @@
+/* Needed to match: with loop-invariant motion on, mwcc swaps the registers
+ * of the freeCount - 1 bound and the freeSlots[j] pointer in the slot sort. */
+#pragma opt_loop_invariants off
+
 #include "types.h"
 #include "game/save_data.h"
 
@@ -22,9 +26,7 @@ int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
  * 0xff). Returns 1 when no free slot is left. After any record but 0, 10
  * and 11, record 0 is written again from data_02297f2c.
  * The src argument is not read. On success the save counter goes into the
- * slot's write count, not into data_02297fa8[slot]; the code does that.
- * Not matching yet (99.89%): in the slot sort, the freeCount - 1 bound and the
- * freeSlots[j] pointer take r6 and r5; the original has them the other way. */
+ * slot's write count, not into data_02297fa8[slot]; the code does that. */
 int Save_WriteRecord(int recordId, u8 *unused, int size)
 {
     u8 freeCount;
