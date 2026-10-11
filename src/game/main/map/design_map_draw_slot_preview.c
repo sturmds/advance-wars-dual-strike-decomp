@@ -7,7 +7,7 @@ extern DesignMapRecord data_02291774;
 int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void *buffer);
 void Map_SetDataBuffer(void *buffer);
-void func_020d6e44(DesignMapRecord *record);
+void SavedArmyColours_LoadFromRecord(DesignMapRecord *record);
 void MapPreview_DrawToLayer(void *vram, u16 firstTile, int layer, int x, int y, int palette);
 
 /* Loads save record 7 + slot and draws its map preview at tile (x, y) of
@@ -23,7 +23,7 @@ int DesignMap_DrawSlotPreview(int x, int y, int firstTile, int palette, u8 slot)
     }
     Save_LoadRecord(recordId, record);
     Map_SetDataBuffer(record);
-    func_020d6e44(record);
+    SavedArmyColours_LoadFromRecord(record);
     MapPreview_DrawToLayer(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
                   firstTile, 0, x, y, palette);
     return 1;
