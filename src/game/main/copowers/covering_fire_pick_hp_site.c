@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 /* Script step of gCoveringFireScript: picks the site that costs the enemy
  * the most HP for the current player and stores it as the target. */
-void func_020e44e4(CoveringFireTask *task)
+void CoveringFire_PickHpSite(CoveringFireTask *task)
 {
     s16 site[2];
 

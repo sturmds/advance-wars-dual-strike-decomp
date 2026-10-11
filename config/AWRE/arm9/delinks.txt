@@ -14262,6 +14262,7 @@ src/game/main/copowers/covering_fire_start_blast.c:
     .text       start:0x020e44a4 end:0x020e44e4
 
 src/game/main/copowers/covering_fire_pick_hp_site.c:
+    complete
     .text       start:0x020e44e4 end:0x020e4540
 
 src/game/main/copowers/covering_fire.c:
