@@ -9,6 +9,9 @@ typedef struct TabListView {
     u8 pageOfTab[4];                   /* first page shown, per tab */
     u8 tab;
     u8 row;                            /* row of the cursor on the last page, set by TabList_RebuildButtons */
+    u8 unk_06;                         /* cleared with the others by HistoryScreen_Init */
+    u8 pad_07[0x1000 - 0x07];
+    u16 unk_1000[16];                  /* a palette copied from res_history_medal by HistoryScreen_Init */
 } TabListView;
 
 /* One entry of data_0215d6c4, 0x30 bytes: 44 entries per row, one row per
