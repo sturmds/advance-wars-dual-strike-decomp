@@ -9,7 +9,7 @@ extern Unk_027c0288 data_027c0288;
 
 int func_01ff9f0c(void);
 void func_01ff9f1c(int value);
-void func_0200caf8(void);
+void GfxQueue_Flush(void);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Task_RunList(Task *task);
@@ -49,7 +49,7 @@ void MainLoop_DefaultVBlank(void)
     Unk_02080440 *savedState;
 
     if (func_01ff9f0c()) {
-        func_0200caf8();
+        GfxQueue_Flush();
     }
     ON_BOTH_SCREENS(Task_RunList(data_027c027c->taskLists[0]));
     CallbackSlots_RunAll();

@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* A graphics copy queued for the next frame (read by func_0200caf8, called
+/* A graphics copy queued for the next frame (read by GfxQueue_Flush, called
  * from MainLoop_DefaultVBlank). Not the same queue as TransferEntry.
  * The volatile qualifiers are needed to match the code that fills entries. */
 typedef struct GfxQueueEntry {
