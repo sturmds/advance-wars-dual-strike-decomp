@@ -6851,6 +6851,10 @@ src/game/main/menus/combat_setup_client_finish.c:
     complete
     .text       start:0x02084c84 end:0x02084cac
 
+src/game/main/menus/combat_setup_client_cancel.c:
+    complete
+    .text       start:0x02084cac end:0x02084cf0
+
 src/game/main/func_0208502c.c:
     complete
     .text       start:0x0208502c end:0x02085040
