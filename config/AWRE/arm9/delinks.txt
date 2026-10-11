@@ -21426,6 +21426,10 @@ src/sdk/fs/fs_overlay.c:
     complete
     .text       start:0x021135c4 end:0x021135ec
 
+src/sdk/fs/overlay_invalidate_and_zero_bss.c:
+    complete
+    .text       start:0x021135ec end:0x02113630
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc
