@@ -6131,6 +6131,10 @@ src/game/main/copowers/super_break_hold_frame.c:
     complete
     .text       start:0x0205425c end:0x020542d8
 
+src/game/main/copowers/super_break_slide_in_frame.c:
+    complete
+    .text       start:0x020542d8 end:0x020543c8
+
 src/game/main/copowers/super_break_set_up_screen.c:
     complete
     .text       start:0x0205443c end:0x02054ab0
