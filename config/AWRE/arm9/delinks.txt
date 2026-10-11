@@ -12862,6 +12862,10 @@ src/game/main/func_020eec7c.c:
     complete
     .text       start:0x020eec7c end:0x020eec8c
 
+src/game/main/func_020eed28.c:
+    complete
+    .text       start:0x020eed28 end:0x020eed64
+
 src/game/main/map/func_020eed64.c:
     complete
     .text       start:0x020eed64 end:0x020eeda0
