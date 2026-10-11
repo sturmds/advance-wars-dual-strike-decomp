@@ -22681,6 +22681,10 @@ src/sdk/mb/func_0211b458.c:
     complete
     .text       start:0x0211b458 end:0x0211b494
 
+src/sdk/mb/mb_beacon_send_players.c:
+    complete
+    .text       start:0x0211b494 end:0x0211b740
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770

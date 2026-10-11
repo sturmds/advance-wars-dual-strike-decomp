@@ -29,7 +29,7 @@ typedef struct DlPlayGameEntry {
     u16 playerFlags;                   /* bit 0 is the parent */
     u16 unk_35c;
     u8 users[DLPLAY_CHILD_SLOTS][DLPLAY_PLAYER_BADGE_BYTES];
-    u8 pad_4a8[0x4b0 - 0x4a8];
+    u8 unk_4a8[8];                     /* sent at the end of the player beacon */
     u16 changed;                       /* set to 1 when the beacon sent the game's pieces */
     u8 noIcon;                         /* 1 when an icon file could not be read */
     u8 unk_4b3;
@@ -90,6 +90,27 @@ typedef struct DlPlayAdvertFrame {
     u8 pad_0d;
     u8 data[DLPLAY_ADVERT_CHUNK_BYTES];
 } DlPlayAdvertFrame;
+
+#define DLPLAY_ADVERT_IS_ROSTER 2           /* value of noIcon/kind in a player beacon */
+#define DLPLAY_ROSTER_PER_FRAME 4
+
+/* The same 0x70 bytes as DlPlayAdvertFrame, as sent in state DLPLAY_ADVERT_STEP_ROSTER:
+ * up to four players' user info per beacon. */
+typedef struct DlPlayRosterFrame {
+    u32 ggid;
+    u8 kind : 2;                       /* DLPLAY_ADVERT_IS_ROSTER */
+    u8 unk_4b5 : 6;
+    u8 unk_4b3;
+    u8 changeCount;
+    u8 sequence;
+    u16 checksum;
+    u8 playerCount;
+    u8 pad_0b;
+    u16 playerFlags;
+    u16 unk_35c;
+    u8 users[DLPLAY_ROSTER_PER_FRAME][DLPLAY_PLAYER_BADGE_BYTES];   /* a player number of 0 ends the list */
+    u8 unk_4a8[8];
+} DlPlayRosterFrame;
 
 /* The parent's work area, behind data_022aced8. Only the fields the beacon
  * and send code read are named. */
