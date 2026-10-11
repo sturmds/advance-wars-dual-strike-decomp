@@ -4461,6 +4461,10 @@ src/game/main/co_exp_tally_step.c:
     complete
     .text       start:0x02033618 end:0x02033bec
 
+src/game/main/menus/co_exp_draw_player_panel.c:
+    complete
+    .text       start:0x02033f24 end:0x02033fc0
+
 src/game/main/digit_sprite_queue_number_pop_in.c:
     complete
     .text       start:0x0203416c end:0x020342ac
