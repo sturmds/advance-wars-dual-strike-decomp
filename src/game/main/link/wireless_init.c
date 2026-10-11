@@ -18,7 +18,7 @@ extern WMBssDesc *gWirelessParents[4];
 
 void *Mem_Alloc(u32 size);
 void Wireless_InitParentParam(void);
-void func_021171e8(void *systemBuf, int dmaNo);   /* wireless driver init */
+void WM_Init(void *systemBuf, int dmaNo);   /* wireless driver init */
 
 /* Resets the link state, allocates the wireless buffers (system buffer, parent
  * info, scan request, beacon buffers, data sharing, MP send and receive) and
@@ -53,5 +53,5 @@ void Wireless_Init(void)
         data_0229c89c = 0x60;
     }
     data_0229c890 = Mem_Alloc(0x940);
-    func_021171e8(gWirelessSystemBuf, 2);
+    WM_Init(gWirelessSystemBuf, 2);
 }

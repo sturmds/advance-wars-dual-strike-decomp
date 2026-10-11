@@ -22139,6 +22139,10 @@ src/sdk/wm/wireless_set_up_work_area.c:
     complete
     .text       start:0x02117000 end:0x021171e8
 
+src/sdk/wm/wm_init.c:
+    complete
+    .text       start:0x021171e8 end:0x0211721c
+
 src/sdk/wm/wm_get_dispersion_scan_period.c:
     complete
     .text       start:0x0211721c end:0x021172c0
