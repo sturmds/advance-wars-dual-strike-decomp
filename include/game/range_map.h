@@ -24,7 +24,7 @@ typedef struct MoveSearchNode {
     u8 x;
     u8 y;
     u8 from;                           /* 0: end of list, 1: the start tile, else the direction taken to get here (2 up, 3 down, 4 left, 5 right) */
-    u8 turn;                           /* RangeMap_FillMovesOverTurns: turn count of the path to this tile */
+    u8 cost;                           /* move cost of the path to this tile */
 } MoveSearchNode;
 
 /* Pointed to by data_027c0758. */

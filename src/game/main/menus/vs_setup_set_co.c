@@ -17,15 +17,15 @@ extern MenuState gMenuState;
 
 /* Sets the CO of entry event - 9 of the setup screen, loads its picture and
  * redraws the skills. In a link game only the entry of this machine's own
- * player is redrawn. The first change plays a sound. */
+ * player is redrawn. Plays SE 0x10002, at most once a frame (cursorSePlayed). */
 void VsSetup_SetCo(int event, int co)
 {
     u8 index;
     int player;
 
-    if (MENU->setup.settingsChanged == 0 && MENU->setup.unk_2ea == 0) {
+    if (MENU->setup.cursorSePlayed == 0 && MENU->setup.unk_2ea == 0) {
         Sound_PlaySe(0x10002);
-        MENU->setup.settingsChanged = 1;
+        MENU->setup.cursorSePlayed = 1;
     }
     index = event - 9;
     player = index >> 1;

@@ -40,7 +40,7 @@ BOOL MoveSearch_FindTileByMechSteps(int x, int y, int unitType, int maxCost)
     data_027c075c->x = x;
     data_027c075c->y = y;
     data_027c075c->from = FROM_START;
-    data_027c075c->turn = 0;
+    data_027c075c->cost = 0;
     data_027c075c++;
     data_027c075c->from = 0;
     for (;;) {

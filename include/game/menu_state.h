@@ -74,7 +74,7 @@ typedef struct BattleSetupState {
     u8 unk_2e6;
     u8 unk_2e7;                        /* filled by Map_LoadAndCountProperties */
     u8 unk_2e8;                        /* filled by Map_LoadAndCountProperties */
-    u8 settingsChanged;            /* set by the first change of a setting on the Vs setup screen, which also plays a sound */
+    u8 cursorSePlayed;             /* set when a Vs setup change plays SE 0x10002; VsSetup_UpdateLink clears it each frame, so the sound plays once a frame */
     u8 unk_2ea;
     u8 unk_2eb;                        /* nonzero: take the settings from the players of a running game */
     u8 pad_2ec[0x4cc - 0x2ec];

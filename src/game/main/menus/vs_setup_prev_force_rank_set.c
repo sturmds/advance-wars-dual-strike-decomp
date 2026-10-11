@@ -19,9 +19,9 @@ void VsSetup_PrevForceRankSet(int unused)
     if (BattleSetup_IsCursorOnCo() == 0) {
         return;
     }
-    if (MENU->setup.settingsChanged == 0) {
+    if (MENU->setup.cursorSePlayed == 0) {
         Sound_PlaySe(0x10002);
-        MENU->setup.settingsChanged = 1;
+        MENU->setup.cursorSePlayed = 1;
     }
     if (SELECTED_SET() == 0) {
         SELECTED_SET() = 3;

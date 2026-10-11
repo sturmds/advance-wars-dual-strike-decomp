@@ -38,7 +38,7 @@ BOOL MoveSearch_TryStep(int direction)
     MapTiles *tiles;
     int cost;
 
-    if (data_027c0754->turn > data_027c0758->maxCost) {
+    if (data_027c0754->cost > data_027c0758->maxCost) {
         return FALSE;
     }
     data_027c0758->x = data_027c0754->x;
@@ -67,7 +67,7 @@ BOOL MoveSearch_TryStep(int direction)
         return FALSE;
     }
     tiles = state->mapTiles;
-    cost = data_027c0754->turn
+    cost = data_027c0754->cost
         + data_027c0758->moveCost[MAP_TILE_TERRAIN(tiles->tiles[data_027c0758->x + tiles->rowStart[data_027c0758->y]])];
     if (cost > 255) {
         cost = 255;
@@ -78,7 +78,7 @@ BOOL MoveSearch_TryStep(int direction)
     data_027c075c->x = data_027c0758->x;
     data_027c075c->y = data_027c0758->y;
     data_027c075c->from = direction;
-    data_027c075c->turn = cost;
+    data_027c075c->cost = cost;
     data_027c075c++;
     data_027c0750++;
     return FALSE;

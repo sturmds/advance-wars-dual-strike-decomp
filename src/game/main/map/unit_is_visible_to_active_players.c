@@ -4,9 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* guess: TRUE when the tile holds a unit (MapTiles.unk_508) of a player with
- * Player.visionGrids bit 1 set */
-BOOL Tile_HasActivePlayerUnit(s16 x, s16 y);
+BOOL Tile_HasActivePlayerUnit(s16 x, s16 y); /* needed to match: s16, though the definition takes int */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define MAP  (GAME->mapTiles)

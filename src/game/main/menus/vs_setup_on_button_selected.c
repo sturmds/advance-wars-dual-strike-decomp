@@ -17,14 +17,14 @@ extern MenuState gMenuState;
 #define HELP_TILE 960
 
 /* Called when the cursor moves to a player or CO button of the Vs setup
- * screen. Plays the cursor sound the first time, stores the button id in
+ * screen. Plays the cursor sound (once a frame), stores the button id in
  * setup.unk_2e4, redraws the skill window and shows the help text: one for
  * a CO button, another for the rest. */
 void VsSetup_OnButtonSelected(MenuButton *button)
 {
-    if (MENU->setup.settingsChanged == 0) {
+    if (MENU->setup.cursorSePlayed == 0) {
         Sound_PlaySe(0x10002);
-        MENU->setup.settingsChanged = 1;
+        MENU->setup.cursorSePlayed = 1;
     }
     MENU->setup.unk_2e4 = button->id;
     VsSetup_RedrawSkills();

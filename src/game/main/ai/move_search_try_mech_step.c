@@ -55,7 +55,7 @@ BOOL MoveSearch_TryMechStep(int direction)
     if (!UnitType_CanEnterTerrain(UNIT_MECH, MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(data_027c0758->x, data_027c0758->y)]))) {
         return FALSE;
     }
-    steps = data_027c0754->turn + 1;
+    steps = data_027c0754->cost + 1;
     if (steps > data_027c0758->maxCost) {
         return FALSE;
     }
@@ -65,7 +65,7 @@ BOOL MoveSearch_TryMechStep(int direction)
     data_027c075c->x = data_027c0758->x;
     data_027c075c->y = data_027c0758->y;
     data_027c075c->from = direction;
-    data_027c075c->turn = steps;
+    data_027c075c->cost = steps;
     data_027c075c++;
     data_027c0750++;
     return FALSE;

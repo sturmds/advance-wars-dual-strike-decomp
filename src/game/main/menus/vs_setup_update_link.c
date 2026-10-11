@@ -40,7 +40,7 @@ void VsSetup_UpdateLink(Task *task)
     int i;
 
     cancel = 0;
-    MENU->setup.settingsChanged = 0;
+    MENU->setup.cursorSePlayed = 0;
     allReady = 1;
     if (Link_IsActive() != 1) {
         return;

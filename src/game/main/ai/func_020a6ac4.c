@@ -75,7 +75,7 @@ void func_020a6ac4(int direction)
     }
     tiles = state->mapTiles;
     terrainCost = data_027c0758->moveCost[MAP_TILE_TERRAIN(tiles->tiles[TILE(tiles, x, y)])];
-    cost = data_027c0754->turn + terrainCost;
+    cost = data_027c0754->cost + terrainCost;
     if (cost > data_027c0758->maxCost) {
         return;
     }
@@ -96,7 +96,7 @@ void func_020a6ac4(int direction)
     data_027c075c->x = data_027c0758->x;
     data_027c075c->y = data_027c0758->y;
     data_027c075c->from = direction;
-    data_027c075c->turn = cost;
+    data_027c075c->cost = cost;
     data_027c075c++;
     data_027c0750++;
 }
