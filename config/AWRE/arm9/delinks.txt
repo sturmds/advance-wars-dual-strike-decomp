@@ -11303,6 +11303,10 @@ src/game/main/ai/ai_is_tile_needed_by_ally.c:
     complete
     .text       start:0x020a7fe0 end:0x020a870c
 
+src/game/main/ai/ai_find_nearest_enemy_hq_tile.c:
+    complete
+    .text       start:0x020a870c end:0x020a8804
+
 src/game/main/ai/ai_unit_find_stand_tile_next_to.c:
     complete
     .text       start:0x020a8804 end:0x020a89ac
