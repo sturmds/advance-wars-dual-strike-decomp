@@ -21963,6 +21963,10 @@ src/sdk/tp/tp_get_calibrated_point.c:
     complete
     .text       start:0x02113f2c end:0x0211405c
 
+src/sdk/tp/tp_calc_calibrate_param.c:
+    complete
+    .text       start:0x0211405c end:0x021142cc
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc

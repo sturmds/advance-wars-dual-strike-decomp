@@ -16,8 +16,8 @@ typedef struct TPData {
 #define TP_TOUCH_OFF 0
 #define TP_TOUCH_ON  1
 
-/* Calibration as the user sets it: the raw origin and the raw size of one
- * dot, scaled up by 4 (see TP_CalcCalibrateParam). */
+/* Calibration as the user sets it: the raw reading at screen pixel 0 times 4,
+ * and the raw units per screen pixel times 256 (see TP_CalcCalibrateParam). */
 typedef struct TPCalibrateParam {
     s16 x0;
     s16 y0;
