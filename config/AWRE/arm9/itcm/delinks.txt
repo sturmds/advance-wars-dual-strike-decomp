@@ -407,6 +407,14 @@ src/game/itcm/func_01ffd854.c:
     complete
     .text       start:0x01ffd854 end:0x01ffd878
 
+src/sdk/os/os_irq_handler.c:
+    complete
+    .text       start:0x01ffd878 end:0x01ffd8d0
+
+src/sdk/os/os_irq_handler_thread_switch.c:
+    complete
+    .text       start:0x01ffd8d0 end:0x01ffda24
+
 src/sdk/mi/reset_clear_and_jump_to_entry.c:
     complete
     .text       start:0x01ffda24 end:0x01ffdad4
