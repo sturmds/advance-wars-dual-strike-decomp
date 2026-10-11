@@ -8409,6 +8409,9 @@ src/game/main/func_02072a28.c:
     complete
     .text       start:0x02072a28 end:0x02072a50
 
+src/game/main/link/func_02072a50.c:
+    .text       start:0x02072a50 end:0x02072b00
+
 src/game/main/link/link_phase_draw.c:
     complete
     .text       start:0x02072b00 end:0x02072c10
