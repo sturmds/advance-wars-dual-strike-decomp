@@ -367,7 +367,8 @@ src/game/ov005/ov005_queue_sprite_pair.c:
     complete
     .text       start:0x0235ae34 end:0x0235aec8
 
-src/game/ov005/func_ov005_0235aec8.c:
+src/game/ov005/ov005_draw_credits_entries_3d.c:
+    complete
     .text       start:0x0235aec8 end:0x0235b148
 
 src/game/ov005/ov005_send_textured_quad.c:

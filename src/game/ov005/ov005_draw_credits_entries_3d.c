@@ -22,19 +22,21 @@ extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern s16 data_0214d4c4[];
 
-/* Entry of table A at byte offset `off` from the first. Needed to get close: the glyph loop
- * reads the entry through a byte offset kept beside i, as the original does. */
-#define ENTRY_AT(off) (((Unk_ov005_0235a30c *)((u8 *)work + (off)))->entriesA[0])
+/* Needed to match: the original walks the table with three counters (a moving pointer, a byte
+ * offset and an unused index) and rebuilds the entry pointer from the offset for the glyphs.
+ * Ov005_DrawCreditsEntryText has the same loop. */
+#pragma opt_strength_reduction off
+#pragma opt_loop_invariants off
+#pragma opt_dead_assignments off
 
-/* 97.5%: the original keeps the byte offset in the stack slot after the compiler's entry
- * pointer; ours has the two slots swapped (4 instructions). Likely the original's offset
- * came from the compiler too, from work->entriesA[i] in the glyph loop.
- *
- * Draws the first entry table on the 3D screen. An entry with id 2 is queued as a sprite pair,
+/* `work` moved forward by `off` bytes: its entriesA[0] is entry off / sizeof(entry) of the table. */
+#define WORK_AT(off) ((Unk_ov005_0235a30c *)((u8 *)work + (off)))
+
+/* Draws the first entry table on the 3D screen. An entry with id 2 is queued as a sprite pair,
  * centred by its length. Every other entry draws 32 glyph quads 8 pixels apart, each turned
  * about the Y axis by the entry's angle; positions past the text show glyph 31. Styles 2 and 3
  * take their glyphs from the second row of the font texture (t = 32). */
-void func_ov005_0235aec8(Unk_ov005_0235a30c *work)
+void Ov005_DrawCreditsEntries3D(Unk_ov005_0235a30c *work)
 {
     Unk_027c0280 *savedGfx = data_027c0280;
     Unk_02080440 *savedScreen;
@@ -50,22 +52,24 @@ void func_ov005_0235aec8(Unk_ov005_0235a30c *work)
     int angle;
     int tile;
     int quadY;
+    Unk_ov005_0235a30c *row;
     int off;
+    Unk_ov005_0235a30c *entry;
 
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     func_ov005_0235b2f0(work);
-    for (i = 0, off = 0;; off += sizeof(Unk_ov005_0235abfc), i++) {
-        if (work->entriesA[i].id == 0) {
+    for (i = 0, row = work, off = 0;; i++) {
+        if (row->entriesA[0].id == 0) {
             break;
         }
-        angle = work->entriesA[i].angle;
-        x = work->entriesA[i].x;
-        y = work->entriesA[i].y;
-        tile = work->entriesA[i].tile;
-        if (work->entriesA[i].id == 2) {
-            Ov005_QueueSpritePair(work, (s16)((256 - work->entriesA[i].length * 8) >> 1), y, tile, 0);
+        angle = row->entriesA[0].angle;
+        x = row->entriesA[0].x;
+        y = row->entriesA[0].y;
+        tile = row->entriesA[0].tile;
+        if (row->entriesA[0].id == 2) {
+            Ov005_QueueSpritePair(work, (s16)((256 - row->entriesA[0].length * 8) >> 1), y, tile, 0);
         } else {
             idx = (angle >> 4) * 2;
             quadY = y - 96;
@@ -73,21 +77,22 @@ void func_ov005_0235aec8(Unk_ov005_0235a30c *work)
             *GXFIFO_MTX_PUSH = 0;
             cos = data_0214d4c4[idx + 1];
             sin = data_0214d4c4[idx];
+            entry = WORK_AT(off);
             for (; j < 32; j++) {
                 *GXFIFO_MTX_PUSH = 0;
                 G3_RotY(sin, cos);
                 *GXFIFO_MTX_TRANS = x;
                 *GXFIFO_MTX_TRANS = quadY;
                 *GXFIFO_MTX_TRANS = 0;
-                if (j < ENTRY_AT(off).length) {
-                    glyph = Ov005_CharToGlyphIndex(ENTRY_AT(off).text[j]);
+                if (j < entry->entriesA[0].length) {
+                    glyph = Ov005_CharToGlyphIndex(entry->entriesA[0].text[j]);
                 } else {
                     glyph = 31;
                 }
                 texT = 0;
-                if (ENTRY_AT(off).style == 2) {
+                if (entry->entriesA[0].style == 2) {
                     texT = 32;
-                } else if (ENTRY_AT(off).style == 3) {
+                } else if (entry->entriesA[0].style == 3) {
                     texT = 32;
                 }
                 Ov005_SendTexturedQuad(work, 0, 0, 0, 5, 3, 8, 16, (u16)(glyph * 8), texT, 0, 0);
@@ -96,6 +101,8 @@ void func_ov005_0235aec8(Unk_ov005_0235a30c *work)
             }
             *GXFIFO_MTX_POP = 1;
         }
+        row = (Unk_ov005_0235a30c *)((u8 *)row + sizeof(Unk_ov005_0235abfc));
+        off += sizeof(Unk_ov005_0235abfc);
     }
     func_ov005_0235b2cc(work);
     Screen_SetCurrent(savedScreen);
