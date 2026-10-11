@@ -7,7 +7,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Bg_ClearRect(u16 *map, int x, int y, int width, u16 height);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
-void func_02027864(u16 *map, int x, int y, int width, u16 height, u16 palette);
+void Bg_SetRectPalette(u16 *map, int x, int y, int width, u16 height, u16 palette);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_02080440 *data_027c027c;
@@ -69,7 +69,7 @@ void MainMenu_ShowRecordHelp(int index)
         tile += 46;
     }
     Text_PrintId(x, 22, data_027c0280->layer0Map, 0x8000002d, 0, tile);
-    func_02027864(data_027c0280->layer0Map, 0, 22, 32, 2, 1);
+    Bg_SetRectPalette(data_027c0280->layer0Map, 0, 22, 32, 2, 1);
     Gfx_RequestLayerCopy(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
