@@ -11,7 +11,7 @@ extern Unk_027c0288 data_027c0288;
 extern u32 gMapGameRunning;     /* 1 once Battle_ResetTurnState has run, 0 while a battle is set up */
 
 void func_0210b97c(void);
-void func_01ffd6f4(void);
+void Map3d_BeginFrame(void);
 void EventScript_UpdateAll(void);
 void Game_RunStateFrame(void);
 void ScriptSlot_RunAll(void);
@@ -28,7 +28,7 @@ void MainLoop_MapFrame(void)
 {
     if ((void *)data_027c027c == data_027c0288.unk_00 && data_027c0280->bg0Mode == 1) {
         func_0210b97c();
-        func_01ffd6f4();
+        Map3d_BeginFrame();
     }
     EventScript_UpdateAll();
     if (gMapGameRunning != 0 && gMapGameRunning == 1) {
