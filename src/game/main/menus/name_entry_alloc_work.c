@@ -1,3 +1,7 @@
+/* The original was built without optimization: no value is reused from a
+ * register, every global is read again. */
+#pragma optimization_level 0
+
 #include "types.h"
 #include "game/Unk_022a7ea8.h"
 
@@ -9,7 +13,7 @@ void Mem_Zero32(u32 value, void *dst, u32 size);
 extern NameEntry *data_022a7ea8;
 
 /* First step of the name entry screen: allocates and clears the work block. */
-void func_02100838(NameEntryTask *task)
+void NameEntry_AllocWork(NameEntryTask *task)
 {
     task->work = Mem_Alloc(NAME_ENTRY_WORK_SIZE);
     data_022a7ea8 = task->work;

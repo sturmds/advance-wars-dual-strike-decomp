@@ -17,7 +17,7 @@ typedef struct NameEntryKey {
 } NameEntryKey;
 
 /* Work block of the name entry screen (0x4f4 bytes, allocated by
- * func_02100838); data_022a7ea8 points to it. The text being typed is
+ * NameEntry_AllocWork); data_022a7ea8 points to it. The text being typed is
  * data_022a7ed0. */
 typedef struct Unk_022a7ea8 {
     int maxLength;                     /* 8 or 16: width of the text field in characters */
