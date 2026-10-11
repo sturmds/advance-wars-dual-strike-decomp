@@ -2254,6 +2254,10 @@ src/game/main/script/event_cmd_set_player_front_co.c:
     complete
     .text       start:0x0201ba60 end:0x0201badc
 
+src/game/main/script/event_cmd_set_second_screen_map_unk37.c:
+    complete
+    .text       start:0x0201badc end:0x0201bb84
+
 src/game/main/script/event_cmd_set_map_flags.c:
     complete
     .text       start:0x0201bb84 end:0x0201bbe8
