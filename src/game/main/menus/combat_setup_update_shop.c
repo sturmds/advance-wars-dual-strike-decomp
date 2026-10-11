@@ -10,7 +10,7 @@
 u8 *func_02078138(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
-void func_02083124(void);
+void CombatSetup_FinishShop(void);
 void func_02083158(void);
 void CombatSetup_MarkReady(u8 player);
 void func_0208372c(u8 player, int arg);
@@ -32,7 +32,7 @@ extern MenuState gMenuState;
  * the row ready, 21 takes the mark back (or leaves the screen when there is
  * none), 22 buys a unit, 23 sells the last one, 24 takes the mark back, sells,
  * or leaves when the row is empty, 25 goes to func_0208372c. Once every row in
- * use (rows[].unk_07) is ready, the screen moves on (func_02083124). Otherwise
+ * use (rows[].unk_07) is ready, the screen moves on (CombatSetup_FinishShop). Otherwise
  * B from the local row owner on a ready row sends message 24. */
 void CombatSetup_UpdateShop(Task *task)
 {
@@ -101,7 +101,7 @@ void CombatSetup_UpdateShop(Task *task)
         }
     }
     if (allReady == 1) {
-        func_02083124();
+        CombatSetup_FinishShop();
         func_0207b48c();
         Task_ResumeScript(task);
         return;
