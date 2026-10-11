@@ -7,7 +7,7 @@ BOOL Screen_IsAffineBg(int layer);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
-BOOL func_021100fc(u32 tick);
+BOOL SND_IsFinishedCommandTag(u32 tick);
 u32 func_02110150(void);
 u32 func_02110934(void);
 
@@ -91,7 +91,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         Screen_SetCurrentGfx(saved0280);
     }
 
-    if (func_021100fc(func_02110150())) {
+    if (SND_IsFinishedCommandTag(func_02110150())) {
         u32 bit;
         u32 mask;
 

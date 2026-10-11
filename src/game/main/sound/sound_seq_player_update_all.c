@@ -8,7 +8,7 @@ extern s16 data_02151534[];                /* volume table */
 #define SOUND_DECIBEL_FLOOR (-723)
 
 u32 func_02110968(void);
-BOOL func_021100fc(u32 tick);
+BOOL SND_IsFinishedCommandTag(u32 tick);
 void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 void func_0210fe48(int hwChannel, int volume);
 BOOL func_0210928c(SoundFader *fader);
@@ -37,7 +37,7 @@ void SoundSeqPlayer_UpdateAll(void)
     }
     do {
         next = LinkList_GetNext(&data_022a805c, player);
-        if (!player->started && func_021100fc(player->startTick)) {
+        if (!player->started && SND_IsFinishedCommandTag(player->startTick)) {
             player->started = 1;
         }
         if (player->started && !(activeChannels & (1 << player->hwChannel))) {

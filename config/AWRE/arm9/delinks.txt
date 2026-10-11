@@ -21781,6 +21781,10 @@ src/sdk/snd/sound_free_command_count.c:
     complete
     .text       start:0x021100bc end:0x021100fc
 
+src/sdk/snd/snd_is_finished_command_tag.c:
+    complete
+    .text       start:0x021100fc end:0x02110150
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98
