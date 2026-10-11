@@ -20857,6 +20857,10 @@ src/sdk/gx/gx_set_bank_for_bg_ext_pltt.c:
     complete
     .text       start:0x0210af38 end:0x0210b04c
 
+src/sdk/gx/gx_set_bank_for_obj.c:
+    complete
+    .text       start:0x0210b04c end:0x0210b1b8
+
 src/sdk/gx/vram_power_on_banks.c:
     complete
     .text       start:0x0210b470 end:0x0210b528

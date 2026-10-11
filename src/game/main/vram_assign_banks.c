@@ -2,7 +2,7 @@
 
 void GX_SetBankForTex(int mask);
 void func_0210b1b8(int mask);
-void func_0210b04c(int mask);
+void GX_SetBankForOBJ(int mask);
 void GX_SetBankForTexPltt(int mask);
 void GX_SetBankForBGExtPltt(int mask);
 void func_0210ab74(int mask);
@@ -16,7 +16,7 @@ void Vram_AssignAllBanks(void)
 {
     GX_SetBankForTex(1);
     func_0210b1b8(2);
-    func_0210b04c(0x10);
+    GX_SetBankForOBJ(0x10);
     GX_SetBankForTexPltt(0x20);
     GX_SetBankForBGExtPltt(0x40);
     func_0210ab74(4);

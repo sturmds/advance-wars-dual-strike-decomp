@@ -3,7 +3,6 @@
 
 void func_0210b1b8(int mask);
 void func_0210ac20(int mask);
-void func_0210b04c(int mask);
 void func_0210ab74(int mask);
 void func_0210aaf8(int mask);
 
@@ -15,7 +14,7 @@ void Ov004_InitVramBanks(void) {
     GX_SetBankForTex(1);
     func_0210b1b8(6);
     func_0210ac20(8);
-    func_0210b04c(16);
+    GX_SetBankForOBJ(16);
     GX_SetBankForTexPltt(32);
     GX_SetBankForBGExtPltt(64);
     func_0210ab74(128);
