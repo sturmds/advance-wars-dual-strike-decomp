@@ -6,7 +6,7 @@ extern u8 data_022a8ac4[];             /* message queue the sound thread waits o
 extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
 
 void OS_InitMessageQueue(void *queue, void *messages, int count);
-int func_0210dd20(void *queue, void *message, int flags);
+int OS_ReceiveMessage(void *queue, void *message, int flags);
 void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
 SoundStreamRequest *SoundStreamRequest_PopPending(void);
@@ -23,7 +23,7 @@ void SoundStream_ThreadMain(void)
 
     OS_InitMessageQueue(data_022a8ac4, data_022a8aa8, 1);
     while (TRUE) {
-        func_0210dd20(data_022a8ac4, message, 1);
+        OS_ReceiveMessage(data_022a8ac4, message, 1);
         while (TRUE) {
             func_0210e034(data_022a8ad8);
             request = SoundStreamRequest_PopPending();

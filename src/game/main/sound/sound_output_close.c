@@ -8,7 +8,7 @@ void func_0210fd58(int arg0, int arg1, u32 alarmMask, int arg3);
 int func_02110150(void);
 void func_02110220(int arg0);
 void func_021102b0(int arg0);
-int func_0210dd20(void *arg0, int arg1, int arg2);
+int OS_ReceiveMessage(void *arg0, int arg1, int arg2);
 void func_02104f90(int arg0);
 void Sound_UnlockChannels(u32 channelMask);
 void SoundAlarm_Free(int alarm);
@@ -30,7 +30,7 @@ void SoundOutput_Close(void)
         int saved = func_02110150();
         func_021102b0(1);
         func_02110220(saved);
-        while (func_0210dd20(data_022a89fc, 0, 0) != 0) {
+        while (OS_ReceiveMessage(data_022a89fc, 0, 0) != 0) {
         }
     }
     if (state->unk_24 != 0) {

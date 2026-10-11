@@ -89,6 +89,26 @@ struct OSThread {
     OSThreadQueue joinQueue;
 };
 
+typedef void *OSMessage;
+
+enum {
+    OS_MESSAGE_NOBLOCK = 0,
+    OS_MESSAGE_BLOCK = 1
+};
+
+/*
+ * queueSend and queueReceive are bit masks of waiting thread ids, the same
+ * kind of word that OS_SleepThread and OS_WakeupThread take.
+ */
+typedef struct OSMessageQueue {
+    u16 queueSend;
+    u16 queueReceive;
+    OSMessage *msgArray;
+    s32 msgCount;
+    s32 firstIndex;
+    s32 usedCount;
+} OSMessageQueue;
+
 typedef void (*ThreadSwapHook)(OSThread *from, OSThread *to);
 
 /* Scheduler state. The thread list is sorted by priority, lowest value first. */
