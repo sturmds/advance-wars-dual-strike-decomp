@@ -1,7 +1,7 @@
 #include "types.h"
 
 /* Maps a kind 0-3 to 0, 1, 4 or 5; anything else gives 0. Name kept: the
- * callers (func_020d92fc and func_020d9494) are not decompiled yet. */
+ * callers (CannonShotTask_PlayImpact and func_020d9494) are not decompiled yet. */
 int func_020d92c0(u32 kind)
 {
     switch (kind) {

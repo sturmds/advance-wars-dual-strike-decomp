@@ -9929,6 +9929,10 @@ src/game/main/func_020d92c0.c:
     complete
     .text       start:0x020d92c0 end:0x020d92fc
 
+src/game/main/map/cannon_shot_task_play_impact.c:
+    complete
+    .text       start:0x020d92fc end:0x020d947c
+
 src/game/main/func_020d947c.c:
     complete
     .text       start:0x020d947c end:0x020d9494
