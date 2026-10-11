@@ -7,7 +7,7 @@ extern const MenuButtonTemplate data_0215a9c8;
 void Co_UnpackPicture(int co, int firstTile);
 BOOL Skills_AreDisabled(void);
 void Sound_PlaySe(int id);
-BOOL func_020452fc(void);
+BOOL CoSelect_CanLeaveBackCoEmpty(void);
 BOOL func_0204572c(u8 co);         /* another cell holds co */
 void func_02044854(u8 column, u8 row);
 void func_02044950(void);
@@ -20,7 +20,7 @@ void func_020427c8(void);
 #define CELL_LOCKED 1
 
 /* onConfirm of the CO list buttons. An empty cursor cell is refused unless
- * it is in the second row and func_020452fc allows it. When another cell
+ * it is in the second row and CoSelect_CanLeaveBackCoEmpty allows it. When another cell
  * holds the picked CO, that cell gets the cursor cell's old CO (refused if
  * that cell is locked). Then closes the list and goes back to the grid. */
 void CoSelectScreen_ConfirmCoList(MenuButton *button)
@@ -30,7 +30,7 @@ void CoSelectScreen_ConfirmCoList(MenuButton *button)
     int col;
     int row;
 
-    if (co == 0 && (data_0229c73c->cursorRow == 0 || func_020452fc() == 0)) {
+    if (co == 0 && (data_0229c73c->cursorRow == 0 || CoSelect_CanLeaveBackCoEmpty() == 0)) {
         Sound_PlaySe(0x10009);
         return;
     }
