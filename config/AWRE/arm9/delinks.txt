@@ -9786,6 +9786,10 @@ src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
 
+src/game/main/menus/game_state3_next_turn_screen.c:
+    complete
+    .text       start:0x020ba754 end:0x020baafc
+
 src/game/main/func_020babb4.c:
     complete
     .text       start:0x020babb4 end:0x020babd8

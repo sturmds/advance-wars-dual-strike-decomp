@@ -3303,9 +3303,9 @@ Game_State11_ClearWeather kind:function(arm,size=0x48) addr:0x020ba688
 Game_State10_RunStep kind:function(arm,size=0x40) addr:0x020ba6d0
 Game_State9_RunStep kind:function(arm,size=0x40) addr:0x020ba710
 func_020ba750 kind:function(arm,size=0x4) addr:0x020ba750
-func_020ba754 kind:function(arm,size=0x3a8) addr:0x020ba754
-func_020baafc kind:function(arm,size=0x7c) addr:0x020baafc
-func_020bab78 kind:function(arm,size=0x3c) addr:0x020bab78
+Game_State3_NextTurnScreen kind:function(arm,size=0x3a8) addr:0x020ba754
+NextTurn_DrawArmyName kind:function(arm,size=0x7c) addr:0x020baafc
+Text_DrawCentered kind:function(arm,size=0x3c) addr:0x020bab78
 func_020babb4 kind:function(arm,size=0x24) addr:0x020babb4
 func_020babd8 kind:function(arm,size=0x108) addr:0x020babd8
 func_020bace0 kind:function(arm,size=0x184) addr:0x020bace0
@@ -6097,7 +6097,7 @@ data_02139288 kind:data(any) addr:0x02139288
 data_021392a8 kind:data(any) addr:0x021392a8
 data_02139308 kind:data(any) addr:0x02139308
 data_02139348 kind:data(any) addr:0x02139348
-data_02139358 kind:data(any) addr:0x02139358
+gNextTurnBobOffsets kind:data(any) addr:0x02139358
 gSidePanelRestX kind:data(any) addr:0x0213936c
 gWeatherParticleSpeeds kind:data(any) addr:0x02139370
 data_021393d0 kind:data(any) addr:0x021393d0
@@ -7594,7 +7594,7 @@ data_021658d0 kind:data(any) addr:0x021658d0
 data_021658d8 kind:data(any) addr:0x021658d8
 data_021658e8 kind:data(any) addr:0x021658e8
 data_021658fc kind:data(any) addr:0x021658fc
-data_02165924 kind:data(any) addr:0x02165924
+gNextTurnButton kind:data(any) addr:0x02165924
 data_0216594c kind:data(any) addr:0x0216594c
 data_0216597c kind:data(any) addr:0x0216597c
 data_021659cc kind:data(any) addr:0x021659cc
@@ -7605,11 +7605,11 @@ data_02165bcc kind:data(any) addr:0x02165bcc
 data_02165d2c kind:data(any) addr:0x02165d2c
 gBattleMenuItems kind:data(any) addr:0x02165e8c
 data_0216600c kind:data(any) addr:0x0216600c
-data_021662ac kind:data(any) addr:0x021662ac
-data_021662b8 kind:data(any) addr:0x021662b8
-data_021662c8 kind:data(any) addr:0x021662c8
-data_021662d8 kind:data(any) addr:0x021662d8
-data_021662e8 kind:data(any) addr:0x021662e8
+gNextTurnTextEnglish kind:data(any) addr:0x021662ac
+gNextTurnTextFrench kind:data(any) addr:0x021662b8
+gNextTurnTextGerman kind:data(any) addr:0x021662c8
+gNextTurnTextSpanish kind:data(any) addr:0x021662d8
+gNextTurnTextItalian kind:data(any) addr:0x021662e8
 data_021662f8 kind:data(any) addr:0x021662f8
 data_021662fc kind:data(any) addr:0x021662fc
 data_02166300 kind:data(any) addr:0x02166300

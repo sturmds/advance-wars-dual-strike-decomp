@@ -27,7 +27,7 @@ void LinkAction_Update(void);
 void func_ov000_022b0500(void);
 void func_020bace0(void);
 void func_020babd8(void);
-void func_020ba754(void);
+void Game_State3_NextTurnScreen(void);
 void Game_State4_WaitSongFade(void);
 void Game_State5_StartTurnTask(void);
 void Game_State6_PlayThemeAndScripts(void);
@@ -112,7 +112,7 @@ void Game_RunStateFrame(void)
                 func_020babd8();
                 break;
             case 3:
-                func_020ba754();
+                Game_State3_NextTurnScreen();
                 break;
             case 4:
                 Game_State4_WaitSongFade();
