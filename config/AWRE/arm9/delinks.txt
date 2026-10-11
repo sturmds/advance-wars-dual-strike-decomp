@@ -2055,6 +2055,10 @@ src/game/main/script/event_cmd_wait_for_state14.c:
     complete
     .text       start:0x0201c020 end:0x0201c074
 
+src/game/main/script/event_cmd_load_current_army_palette.c:
+    complete
+    .text       start:0x0201c074 end:0x0201c108
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
