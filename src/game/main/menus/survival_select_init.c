@@ -35,7 +35,7 @@ int func_0204779c(void);
 int func_020478b0(int mode);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
-int func_020eaad8(int mode, int index);
+int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_02080440 *data_027c027c;
@@ -89,7 +89,7 @@ void SurvivalSelect_Init(void)
     Icon_LoadTo(203, data_027c0280->objVram, 112);
     IconBank_LoadPalette(4, 26);
     SurvivalSelect_LoadCoPictures();
-    MapPreview_Draw(data_027c0280->objVram + 0x8000, func_020eaad8(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
     Screen_SetCurrentGfx(savedState);
 
     savedState = data_027c0280;

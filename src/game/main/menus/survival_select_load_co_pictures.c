@@ -10,7 +10,7 @@ void Mem_Zero32(u32 value, void *dst, u32 size);
 u8 Map_GetPlayerCount(u16 mapId);
 BOOL func_02046bcc(int index);
 int func_0204779c(void);
-int func_020eaad8(int mode, int index);
+int Survival_GetMapId(int mode, int index);
 int func_020eab10(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
@@ -40,7 +40,7 @@ void SurvivalSelect_LoadCoPictures(void)
 {
     int i;
     int cursor = data_0229c744->lists[func_0204779c()].cursor;
-    int playerCount = Map_GetPlayerCount(func_020eaad8(data_022a7b80.unk_07, cursor));
+    int playerCount = Map_GetPlayerCount(Survival_GetMapId(data_022a7b80.unk_07, cursor));
     int j;
     int co;
 
@@ -66,7 +66,7 @@ void SurvivalSelect_LoadCoPictures(void)
     }
     for (i = 0; i < playerCount - 1; i++) {
         for (j = 0; j <= 1; j++) {
-            co = Ov000_gMapHeaders[func_020eaad8(data_022a7b80.unk_07, cursor)].co[i + 2][j];
+            co = Ov000_gMapHeaders[Survival_GetMapId(data_022a7b80.unk_07, cursor)].co[i + 2][j];
             if (co != 0) {
                 Co_QueueSmallPicture(co,
                                      data_027c0280->objVram + (((j + i * 2) * 12) << 5), j + i * 2 + 16);

@@ -11603,6 +11603,10 @@ src/game/main/menus/survival_get_map_count.c:
     complete
     .text       start:0x020eaa9c end:0x020eaad8
 
+src/game/main/menus/survival_get_map_id.c:
+    complete
+    .text       start:0x020eaad8 end:0x020eab10
+
 src/game/main/func_020eb2d4.c:
     complete
     .text       start:0x020eb2d4 end:0x020eb2e8

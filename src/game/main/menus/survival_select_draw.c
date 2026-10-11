@@ -16,7 +16,7 @@ void func_02046054(int pages);
 int func_0204779c(void);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
-int func_020eaad8(int mode, int index);
+int Survival_GetMapId(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
@@ -40,7 +40,7 @@ void SurvivalSelect_Draw(void)
 {
     int mode = data_022a7b80.unk_07;
     int list = func_0204779c();
-    int playerCount = Map_GetPlayerCount((u16)func_020eaad8(data_022a7b80.unk_07, data_0229c744->lists[list].cursor));
+    int playerCount = Map_GetPlayerCount((u16)Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[list].cursor));
     Unk_027c0280 *savedState = data_027c0280;
     int col;
     int x;
