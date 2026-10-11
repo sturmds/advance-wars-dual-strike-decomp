@@ -701,6 +701,10 @@ src/game/ov005/sound_room/ov005_set_up_sound_room.c:
     complete
     .text       start:0x02363b60 end:0x02364014
 
+src/game/ov005/sound_room/ov005_sound_room_alloc_work.c:
+    complete
+    .text       start:0x02364014 end:0x02364058
+
 src/game/ov005/sound_room/ov005_sound_room_cell_changed.c:
     complete
     .text       start:0x02364058 end:0x023640a4
