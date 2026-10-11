@@ -96,6 +96,7 @@
 #define VRAMCNT_ENABLE 0x80
 #define VRAMCNT_TEXPLTT(slot) (0x83 | ((slot) << 3)) /* enabled, texture palette slot */
 #define VRAMCNT_TEX(slot) (0x83 | ((slot) << 3)) /* banks A-D: enabled, texture image slot */
+#define VRAMCNT_BG(offset) (0x81 | ((offset) << 3)) /* enabled, main engine BG; what the offset field means depends on the bank (GBATEK) */
 #define VRAMCNT_OBJ(offset) (0x82 | ((offset) << 3)) /* enabled, main engine OBJ; what the offset field means depends on the bank (GBATEK) */
 #define VRAMCNT_BGEXTPLTT(slot) (0x84 | ((slot) << 3)) /* banks E-G: enabled, main BG extended palette slot */
 #define GX_VRAM_A 0x001
@@ -140,6 +141,7 @@
 #define BLDCNT_EFFECT_DARKEN 0xc0
 
 void Vram_PowerOnBanks(u32 banks);
+void GX_SetBankForBG(int bg);
 void GX_SetBankForTex(int tex);
 void GX_SetBankForBGExtPltt(int bgExtPltt);
 void GX_SetBankForOBJ(int obj);

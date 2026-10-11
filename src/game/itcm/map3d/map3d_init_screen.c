@@ -12,7 +12,7 @@ void func_0210a994(void);
 void func_0210a934(void);
 void GX_SetBankForTex(int mask);
 void GX_SetBankForOBJ(int mask);
-void func_0210b1b8(int mask);
+void GX_SetBankForBG(int mask);
 void func_0210b7d4(const void *table); /* copies 32 colours to the toon table */
 
 /* 32 white colours in ITCM, after the zero block Map3d_LoadTextures clears
@@ -43,7 +43,7 @@ void Map3d_InitScreen(void)
     func_0210a934();
     GX_SetBankForTex(1);
     GX_SetBankForOBJ(16);
-    func_0210b1b8(2);
+    GX_SetBankForBG(2);
     GX_SetBankForTexPltt(32);
     *REG_DISPCNT = (*REG_DISPCNT & ~0x1f00) | 0x1100; /* only BG0 and OBJ on */
     *REG_BG0CNT &= ~3;                                /* BG0 priority 0 */
