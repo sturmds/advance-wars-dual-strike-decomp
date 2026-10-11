@@ -1,7 +1,7 @@
 #include "sdk/fs.h"
 #include "sdk/os.h"
 
-void func_0210d5c4(u32 *queue);        /* looks like OS_SleepThread */
+void func_0210d5c4(OSThreadQueue *queue);   /* looks like OS_SleepThread */
 
 static inline BOOL Archive_CallerBlocked(FSArchive *arc)
 {

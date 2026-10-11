@@ -2,6 +2,7 @@
 #define SDK_FS_H
 
 #include "types.h"
+#include "sdk/os.h"
 
 typedef struct FSArchive FSArchive;
 typedef struct FSFile FSFile;
@@ -43,7 +44,7 @@ struct FSFile {
     u32 flags;                         /* FS_FILE_STATUS_IS_FILE once opened as a file */
     u32 command;                       /* ARCHIVE_OP_* being run */
     u32 error;                         /* ARCHIVE_STATUS_* of the last command */
-    u32 queue;                         /* threads waiting for the command to end */
+    OSThreadQueue queue;               /* threads waiting for the command to end */
     union {
         struct {                       /* an open file */
             u32 id;                    /* file id within the archive */
@@ -98,7 +99,7 @@ struct FSArchive {
     u32 name;                          /* up to four characters packed into one word */
     FSArchive *next;                   /* registered archives form a list */
     FSArchive *prev;
-    u32 queue;                         /* threads waiting for the archive */
+    OSThreadQueue queue;               /* threads waiting for the archive */
     u32 flags;
     u32 unk_14;
     FSFile *command;                   /* file whose command is running */

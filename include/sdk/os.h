@@ -3,6 +3,12 @@
 
 #include "types.h"
 
+/* Threads waiting on something, as a pair of thread ids. */
+typedef struct OSThreadQueue {
+    u16 head;
+    u16 tail;
+} OSThreadQueue;
+
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);
 

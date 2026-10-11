@@ -2,7 +2,7 @@
 #include "sdk/os.h"
 
 void FsFile_DetachFromList(FSFile *file);
-void func_0210d550(u32 *queue);
+void func_0210d550(OSThreadQueue *queue);
 
 /* Ends the command running on a file: takes it off the archive's list,
  * clears the busy bits, stores the result and wakes the threads waiting on it. */
