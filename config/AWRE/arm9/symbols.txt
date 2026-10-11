@@ -2072,7 +2072,7 @@ func_0206d67c kind:function(arm,size=0x898) addr:0x0206d67c
 Player_GetShownMoveBonus kind:function(arm,size=0x194) addr:0x0206df14
 func_0206e0a8 kind:function(arm,size=0x194) addr:0x0206e0a8
 Player_GetShownFirepower kind:function(arm,size=0x1dc) addr:0x0206e23c
-func_0206e418 kind:function(arm,size=0x3fc) addr:0x0206e418
+UnitRow_IsAvailable kind:function(arm,size=0x3fc) addr:0x0206e418
 func_0206e814 kind:function(arm,size=0x2b4) addr:0x0206e814
 func_0206eac8 kind:function(arm,size=0x3a8) addr:0x0206eac8
 func_0206ee70 kind:function(arm,size=0xe4) addr:0x0206ee70
@@ -7343,7 +7343,7 @@ data_0215d28c kind:data(any) addr:0x0215d28c
 data_0215d2a8 kind:data(any) addr:0x0215d2a8
 data_0215d2c0 kind:data(any) addr:0x0215d2c0
 data_0215d2d0 kind:data(any) addr:0x0215d2d0
-data_0215d2e8 kind:data(any) addr:0x0215d2e8
+gUnitRowTypes kind:data(any) addr:0x0215d2e8
 data_0215d308 kind:data(any) addr:0x0215d308
 data_0215d330 kind:data(any) addr:0x0215d330
 data_0215d358 kind:data(any) addr:0x0215d358

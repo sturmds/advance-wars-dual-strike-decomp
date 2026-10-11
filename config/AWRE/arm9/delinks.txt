@@ -5070,6 +5070,10 @@ src/game/main/co_stats/player_get_shown_firepower.c:
     complete
     .text       start:0x0206e23c end:0x0206e418
 
+src/game/main/co_stats/unit_row_is_available.c:
+    complete
+    .text       start:0x0206e418 end:0x0206e814
+
 src/game/main/func_0206ef54.c:
     complete
     .text       start:0x0206ef54 end:0x0206ef80

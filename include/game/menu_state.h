@@ -112,7 +112,8 @@ typedef struct CampaignMapWork {
 typedef struct Unk_0206d67c {
     u8 pad_020[0x91 - 0x20];
     u8 coShown[4][2];                  /* nonzero: this CO of the player gets a button */
-    u8 pad_099[0xa0 - 0x99];
+    u8 playerArmy[4];                  /* per player 1-4 (index player - 1); guess: army colour, ARMY_BLACK_HOLE (5) as in UnitRow_IsAvailable */
+    u8 pad_09d[0xa0 - 0x9d];
     u8 playerCount;
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
