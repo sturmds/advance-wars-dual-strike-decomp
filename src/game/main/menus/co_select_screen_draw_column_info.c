@@ -48,14 +48,14 @@ void CoSelectScreen_DrawColumnInfo(void)
     }
     if (!Skills_AreDisabled()) {
         for (i = 0; i < 4; i++) {
-            skill = CO_SELECT_SKILLS(data_0229c73c->cursorColumn, 0)[i];
+            skill = data_0229c73c->cellSkills[data_0229c73c->cursorColumn - 1][0][i];
             if (skill == 0 || skill == 0xff) {
                 break;
             }
             Sprite_QueueAt(2, (32 + i * 16) & 0x1ff, 168, data_027c0040, 0x5000, 0x458 + (skill - 32) * 4);
         }
         for (i = 0; i < 4; i++) {
-            skill = CO_SELECT_SKILLS(data_0229c73c->cursorColumn, 1)[i];
+            skill = data_0229c73c->cellSkills[data_0229c73c->cursorColumn - 1][1][i];
             if (skill == 0 || skill == 0xff) {
                 break;
             }
