@@ -8,7 +8,7 @@ extern const char *data_ov000_022f669c[];
 extern char data_02169c88[];
 extern char data_02169c44[];                /* "/bmap" */
 extern u8 data_02138c68[];
-extern const TaskScriptCmd data_02169858[];
+extern const TaskScriptCmd gNumberSpriteTaskScript[];
 
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
@@ -28,7 +28,7 @@ void NumberSpriteTask_Start(int style, int x, int y, int firstTile, int palette,
     FS_ChangeDir(data_02169c44);
     Palette_Load(data_02138c68, (u16)((palette + 16) << 5), 32);
     Screen_SetCurrentGfx(saved0280);
-    task = (NumberSpriteTask *)Task_Create(data_02169858, parent);
+    task = (NumberSpriteTask *)Task_Create(gNumberSpriteTaskScript, parent);
     task->x = x;
     task->y = y;
     task->firstTile = firstTile;

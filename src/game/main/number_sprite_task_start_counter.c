@@ -4,7 +4,7 @@
 
 BOOL TimeLimit_GetRemaining(int *value);
 BOOL Game_GetDayLimit(void);
-BOOL func_020f3178(void);
+BOOL NumberSpriteTask_IsRunning(void);
 void NumberSpriteTask_Start(int style, int x, int y, int firstTile, int palette, Task *parent);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -46,7 +46,7 @@ void NumberSpriteTask_StartCounter(int x, int y, int firstTile, int palette, Tas
         style = 2;
     }
 
-    if (func_020f3178()) {
+    if (NumberSpriteTask_IsRunning()) {
         return;
     }
 

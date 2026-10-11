@@ -11,7 +11,7 @@ void MapScreen_DrawCenterButton(void);
 void MapScreen_DrawRightButton(void);
 void MapScreen_DrawLeftButton(void);
 void func_020c4024(void);
-void func_020c407c(void);
+void MapCursor_UpdateFree(void);
 void MapView_ScrollStep(int directions);
 void Map_ScrollViewToTile(int mode);
 void ScreenConfig_RunActionHook(void);
@@ -67,11 +67,11 @@ void Game_State15_FreeCursor(void)
             MapScreen_DrawLeftButton();
         }
         func_020c4024();
-        func_020c407c();
+        MapCursor_UpdateFree();
         break;
     case TAP_MAP:
         func_020c4024();
-        func_020c407c();
+        MapCursor_UpdateFree();
         break;
     }
     MapView_ScrollStep(4);

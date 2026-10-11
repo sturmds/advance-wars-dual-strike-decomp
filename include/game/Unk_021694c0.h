@@ -12,8 +12,8 @@ typedef struct Unk_021694c0 {
     int unk_10;
     int unk_14;
     int unk_18;
-    int unk_1c;
-    int unk_20;
+    int effectMode;                    /* EffectScene_Update switches on it (EffectScene_SetMode) */
+    int effectFrames;                  /* frames in effectMode; EffectScene_SetMode clears it */
     int unk_24;
     int unk_28;
     int unk_2c;

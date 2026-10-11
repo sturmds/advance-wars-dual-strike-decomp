@@ -14,7 +14,7 @@ void Ov006_ScrollMapView(int step);
 void Sound_PlaySe(int id);
 void UnitShowTask_CreateAtTile(int x, int y, int unitType);
 void func_020c4018(void);
-void func_020c407c(void);
+void MapCursor_UpdateFree(void);
 void Ov006_LoadTerrainPalettes(void);
 void Ov006_ResetScreen1Effects(void);
 void Ov006_MoveCursor(void);
@@ -81,7 +81,7 @@ void Ov006_UpdateMapEditor(void)
     result = 0;
     OV6->pendingSe = 0;
     if (gKeypad->held & PAD_BUTTON_X) {
-        func_020c407c();
+        MapCursor_UpdateFree();
         if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
             result = 1;
         }

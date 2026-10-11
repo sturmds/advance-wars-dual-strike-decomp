@@ -14002,7 +14002,7 @@ src/game/main/func_020c4028.c:
     complete
     .text       start:0x020c4028 end:0x020c407c
 
-src/game/main/func_020c407c.c:
+src/game/main/map/map_cursor_update_free.c:
     complete
     .text       start:0x020c407c end:0x020c40d0
 
@@ -17870,7 +17870,7 @@ src/game/main/map/map_cursor_move_by_keys.c:
     complete
     .text       start:0x020ef664 end:0x020ef7f0
 
-src/game/main/map/func_020ef7f0.c:
+src/game/main/map/map_cursor_move_by_keys_free.c:
     complete
     .text       start:0x020ef7f0 end:0x020ef8d8
 
@@ -17894,11 +17894,11 @@ src/game/main/map/map_screen_draw_center_button.c:
     complete
     .text       start:0x020efb64 end:0x020efb9c
 
-src/game/main/func_020efb9c.c:
+src/game/main/map/map_touch_in_left_button.c:
     complete
     .text       start:0x020efb9c end:0x020efbc8
 
-src/game/main/func_020efbc8.c:
+src/game/main/map/map_touch_in_right_button.c:
     complete
     .text       start:0x020efbc8 end:0x020efbf4
 
@@ -18014,7 +18014,7 @@ src/game/main/time_dial_update.c:
     complete
     .text       start:0x020f1910 end:0x020f1aa0
 
-src/game/main/func_020f1aa0.c:
+src/game/main/time_dial_reset.c:
     complete
     .text       start:0x020f1aa0 end:0x020f1aac
 
@@ -18106,11 +18106,11 @@ src/game/main/func_020f2190.c:
     complete
     .text       start:0x020f2190 end:0x020f21a0
 
-src/game/main/func_020f21a0.c:
+src/game/main/effect_scene_set_mode.c:
     complete
     .text       start:0x020f21a0 end:0x020f21c0
 
-src/game/main/func_020f21c0.c:
+src/game/main/effect_scene_get_mode.c:
     complete
     .text       start:0x020f21c0 end:0x020f21d4
 
@@ -18242,7 +18242,7 @@ src/game/main/func_020f3114.c:
     complete
     .text       start:0x020f3114 end:0x020f3178
 
-src/game/main/func_020f3178.c:
+src/game/main/number_sprite_task_is_running.c:
     complete
     .text       start:0x020f3178 end:0x020f31a4
 

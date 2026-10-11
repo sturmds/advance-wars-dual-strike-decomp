@@ -8,7 +8,7 @@ BOOL SpriteFile_Queue(void *set, int index, int arg, int x, int y, int attr, int
 
 void EffectScene_QueueSprite(void)
 {
-    SpriteFile_Queue(data_0213b8f0, 0, data_021694c0->unk_20,
+    SpriteFile_Queue(data_0213b8f0, 0, data_021694c0->effectFrames,
                   (data_021694c0->unk_24 + data_021694c0->unk_2c) & 0x1ff,
                   (data_021694c0->unk_28 + data_021694c0->unk_30) & 0xff, 0x4170, 0, 0);
 }

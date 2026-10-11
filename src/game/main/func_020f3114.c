@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/task.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -9,7 +10,7 @@ void Task_DestroyByScript(const void *script);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_02169858[];
+extern const TaskScriptCmd gNumberSpriteTaskScript[];
 
 void func_020f3114(void)
 {
@@ -20,7 +21,7 @@ void func_020f3114(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    Task_DestroyByScript(data_02169858);
+    Task_DestroyByScript(gNumberSpriteTaskScript);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
 }

@@ -19,7 +19,7 @@ void Task_ResumeScript(Task *task);
 void Task_JumpToLabel(Task *task, int label);
 void func_020f5888(int x, int y);
 void func_020c4024(void);
-void func_020c407c(void);
+void MapCursor_UpdateFree(void);
 void MapView_ScrollStep(int a);
 void MapCursor_DrawTwoStyles(int a, int b);
 
@@ -66,7 +66,7 @@ void SiloLaunch_PickTargetStep(Task *task)
         }
     }
     func_020c4024();
-    func_020c407c();
+    MapCursor_UpdateFree();
     MapView_ScrollStep(4);
     MapCursor_DrawTwoStyles(2, 18);
 }

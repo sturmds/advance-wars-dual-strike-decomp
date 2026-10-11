@@ -3535,7 +3535,7 @@ Map_IsFreeDeployCity kind:function(arm,size=0x80) addr:0x020c3f98
 func_020c4018 kind:function(arm,size=0xc) addr:0x020c4018
 func_020c4024 kind:function(arm,size=0x4) addr:0x020c4024
 func_020c4028 kind:function(arm,size=0x54) addr:0x020c4028
-func_020c407c kind:function(arm,size=0x54) addr:0x020c407c
+MapCursor_UpdateFree kind:function(arm,size=0x54) addr:0x020c407c
 func_020c40d0 kind:function(arm,size=0x54) addr:0x020c40d0
 MapCursor_DrawTwoStyles kind:function(arm,size=0xa0) addr:0x020c4124
 Map_ScrollViewToTile kind:function(arm,size=0x88) addr:0x020c41c4
@@ -4503,14 +4503,14 @@ func_020ef2f0 kind:function(arm,size=0x20) addr:0x020ef2f0
 UnitMoveSelect_HandleButtons kind:function(arm,size=0x124) addr:0x020ef310
 MapCursor_HandleButtons kind:function(arm,size=0x230) addr:0x020ef434
 MapCursor_MoveByKeys kind:function(arm,size=0x18c) addr:0x020ef664
-func_020ef7f0 kind:function(arm,size=0xe8) addr:0x020ef7f0
+MapCursor_MoveByKeysFree kind:function(arm,size=0xe8) addr:0x020ef7f0
 MapCursor_StepPastViewEdge kind:function(arm,size=0x1d8) addr:0x020ef8d8
 Oam_PutSizedCells kind:function(arm,size=0x44) addr:0x020efab0
 MapScreen_DrawLeftButton kind:function(arm,size=0x38) addr:0x020efaf4
 MapScreen_DrawRightButton kind:function(arm,size=0x38) addr:0x020efb2c
 MapScreen_DrawCenterButton kind:function(arm,size=0x38) addr:0x020efb64
-func_020efb9c kind:function(arm,size=0x2c) addr:0x020efb9c
-func_020efbc8 kind:function(arm,size=0x2c) addr:0x020efbc8
+MapTouch_InLeftButton kind:function(arm,size=0x2c) addr:0x020efb9c
+MapTouch_InRightButton kind:function(arm,size=0x2c) addr:0x020efbc8
 MapTouch_InBackButton kind:function(arm,size=0x2c) addr:0x020efbf4
 MapTouch_ReadCursorTileTap kind:function(arm,size=0x2bc) addr:0x020efc20
 MapTouch_ReadTileTapOrBack kind:function(arm,size=0x180) addr:0x020efedc
@@ -4539,7 +4539,7 @@ MapCursor_MoveToTouch kind:function(arm,size=0x190) addr:0x020f138c
 Gfx_LoadBmap083 kind:function(arm,size=0x394) addr:0x020f151c
 TimeDial_QueueSprite kind:function(arm,size=0x60) addr:0x020f18b0
 TimeDial_Update kind:function(arm,size=0x190) addr:0x020f1910
-func_020f1aa0 kind:function(arm,size=0xc) addr:0x020f1aa0
+TimeDial_Reset kind:function(arm,size=0xc) addr:0x020f1aa0
 func_020f1aac kind:function(arm,size=0x18) addr:0x020f1aac
 func_020f1ac4 kind:function(arm,size=0x2c) addr:0x020f1ac4
 func_020f1af0 kind:function(arm,size=0x1c) addr:0x020f1af0
@@ -4562,8 +4562,8 @@ func_020f20fc kind:function(arm,size=0x38) addr:0x020f20fc
 func_020f2134 kind:function(arm,size=0x38) addr:0x020f2134
 func_020f216c kind:function(arm,size=0x24) addr:0x020f216c
 func_020f2190 kind:function(arm,size=0x10) addr:0x020f2190
-func_020f21a0 kind:function(arm,size=0x20) addr:0x020f21a0
-func_020f21c0 kind:function(arm,size=0x14) addr:0x020f21c0
+EffectScene_SetMode kind:function(arm,size=0x20) addr:0x020f21a0
+EffectScene_GetMode kind:function(arm,size=0x14) addr:0x020f21c0
 func_020f21d4 kind:function(arm,size=0x14) addr:0x020f21d4
 func_020f21e8 kind:function(arm,size=0x14) addr:0x020f21e8
 func_020f21fc kind:function(arm,size=0x14) addr:0x020f21fc
@@ -4596,7 +4596,7 @@ NumberSpriteTask_SlideOut kind:function(arm,size=0x108) addr:0x020f2d78
 NumberSpriteTask_Update kind:function(arm,size=0x290) addr:0x020f2e80
 func_020f3110 kind:function(arm,size=0x4) addr:0x020f3110
 func_020f3114 kind:function(arm,size=0x64) addr:0x020f3114
-func_020f3178 kind:function(arm,size=0x2c) addr:0x020f3178
+NumberSpriteTask_IsRunning kind:function(arm,size=0x2c) addr:0x020f3178
 NumberSpriteTask_Start kind:function(arm,size=0xdc) addr:0x020f31a4
 NumberSpriteTask_StartCounter kind:function(arm,size=0x12c) addr:0x020f3280
 Game_GetShownDay kind:function(arm,size=0x220) addr:0x020f33ac
@@ -8048,7 +8048,7 @@ data_021697d8 kind:data(any) addr:0x021697d8
 data_021697f8 kind:data(any) addr:0x021697f8
 data_02169818 kind:data(any) addr:0x02169818
 data_02169838 kind:data(any) addr:0x02169838
-data_02169858 kind:data(any) addr:0x02169858
+gNumberSpriteTaskScript kind:data(any) addr:0x02169858
 data_02169878 kind:data(any) addr:0x02169878
 data_021698a0 kind:data(any) addr:0x021698a0
 data_021698d0 kind:data(any) addr:0x021698d0

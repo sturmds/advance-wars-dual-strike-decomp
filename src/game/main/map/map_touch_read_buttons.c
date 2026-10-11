@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/touch.h"
 
-BOOL func_020efb9c(int x, int y);
-BOOL func_020efbc8(int x, int y);
+BOOL MapTouch_InLeftButton(int x, int y);
+BOOL MapTouch_InRightButton(int x, int y);
 BOOL MapTouch_InBackButton(int x, int y);
 
 extern s16 gEventScriptOwnsInput;
@@ -44,10 +44,10 @@ u32 MapTouch_ReadButtons(int rightButton, int leftButton)
     if (MapTouch_InBackButton(touchX, touchY)) {
         return TAP_CENTER_BUTTON;
     }
-    if (rightButton && func_020efbc8(touchX, touchY)) {
+    if (rightButton && MapTouch_InRightButton(touchX, touchY)) {
         return TAP_RIGHT_BUTTON;
     }
-    if (leftButton && func_020efb9c(touchX, touchY)) {
+    if (leftButton && MapTouch_InLeftButton(touchX, touchY)) {
         return TAP_LEFT_BUTTON;
     }
     return TAP_MAP;

@@ -9,7 +9,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 Unk_021694c0Task *Task_FindByScript(const TaskScriptCmd *script);
 void Task_ResumeScript(Unk_021694c0Task *task);
 void SpriteAnim_SetAnimation(struct ShowSprite *sprite, int frame);
-void func_020f21a0(int value);
+void EffectScene_SetMode(int value);
 
 void func_020f1d04(Unk_021694c0Task *task)
 {
@@ -23,7 +23,7 @@ void func_020f1d04(Unk_021694c0Task *task)
         }
     }
     if (task->frame > 120) {
-        func_020f21a0(0);
+        EffectScene_SetMode(0);
         Task_ResumeScript(task);
     }
 }

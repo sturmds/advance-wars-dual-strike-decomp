@@ -11,7 +11,8 @@ extern int data_027c0284;
 
 /* Runs MapCursor_StepPastViewEdge and MapCursor_MoveToTouch unless the view is still scrolling
  * (any of the four direction bits in scrollFlags; func_02080440 makes the
- * same test before AiTurn_ShowAction). Their purpose is unknown. */
+ * same test before AiTurn_ShowAction). MapCursor_UpdateFree is the same
+ * with the free-cursor key and touch handlers. */
 void func_020c40d0(void)
 {
     if ((STATE->unk_1c4->scrollFlags & 0xf) != 0) {

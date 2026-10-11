@@ -3,7 +3,7 @@
 
 extern Unk_021694c0 *data_021694c0;
 
-u32 func_020f21c0(void)
+u32 EffectScene_GetMode(void)
 {
-    return data_021694c0->unk_1c;
+    return data_021694c0->effectMode;
 }

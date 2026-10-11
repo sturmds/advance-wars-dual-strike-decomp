@@ -14,7 +14,7 @@ void Sound_PlaySe(int se);
 /* Like MapCursor_MoveByKeys without the range check: moves the map cursor
  * one tile by the d-pad keys in gKeypad->repeat, kept on the map, with
  * sound 0x10000 when it moves. */
-void func_020ef7f0(void)
+void MapCursor_MoveByKeysFree(void)
 {
     int dir = (gKeypad->repeat >> 4) & 15;
     int se = 0;

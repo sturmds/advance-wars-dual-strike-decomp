@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern u32 gLinkPlay;
 
 void func_020c4024(void);
-void func_020c407c(void);
+void MapCursor_UpdateFree(void);
 void MapView_ScrollStep(int directions);
 void Map_ScrollViewToTile(int mode);
 BOOL MapView_IsAtRest(void);
@@ -53,7 +53,7 @@ void Game_State15_PickUnitToDelete(void)
     int y;
 
     func_020c4024();
-    func_020c407c();
+    MapCursor_UpdateFree();
     MapView_ScrollStep(4);
     Map_ScrollViewToTile(5);
     if (!MapView_IsAtRest()) {

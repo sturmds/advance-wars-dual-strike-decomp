@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Task of the data_02169858 script (NumberSpriteTask_Start makes it): draws a number
+/* Task of the gNumberSpriteTaskScript script (NumberSpriteTask_Start makes it): draws a number
  * with NumberSprite_Put* on the second screen every frame. The first 0x2c
  * bytes belong to the task system. */
 typedef struct NumberSpriteTask {

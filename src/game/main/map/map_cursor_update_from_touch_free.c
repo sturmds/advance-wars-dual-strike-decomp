@@ -24,8 +24,8 @@ static inline BOOL IsTouchStarted(void)
 }
 
 /* Same code as MapCursor_UpdateFromTouch: turns the touch position into the
- * map cursor tile. A second copy in the ROM; func_020c407c calls it next to
- * func_020ef7f0, the d-pad cursor move without the range check. */
+ * map cursor tile. A second copy in the ROM; MapCursor_UpdateFree calls it next to
+ * MapCursor_MoveByKeysFree, the d-pad cursor move without the range check. */
 void MapCursor_UpdateFromTouchFree(void)
 {
     int blocked = gEventScriptOwnsInput;

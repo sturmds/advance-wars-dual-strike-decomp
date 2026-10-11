@@ -8,7 +8,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
-BOOL func_020f3178(void);
+BOOL NumberSpriteTask_IsRunning(void);
 BOOL TimeLimit_GetTotal(int *value);
 BOOL TimeLimit_GetRemaining(int *value);
 void TimeDial_QueueSprite(int index, int x, int y);
@@ -22,7 +22,7 @@ extern s16 data_0214d4c4[];           /* a sine and cosine pair per 16 angle uni
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Per-frame update of a screen with a dial for the time left: scrolls BG
- * layer 2 one pixel every 4 frames, and while func_020f3178 finds its task
+ * layer 2 one pixel every 4 frames, and while NumberSpriteTask_IsRunning finds its task
  * and both the time limit (TimeLimit_GetTotal) and the time left (TimeLimit_GetRemaining)
  * are known, turns the hand from 0 to a quarter turn as the time runs out.
  * The hand keeps its angle while the main screen's unk_1c4->unk_30 is set.
@@ -42,7 +42,7 @@ void TimeDial_Update(TimeDial *dial)
     int handY;
 
     Bg_SetScroll(2, (MainLoop_GetFrameCount() >> 2) & 0xff, 0);
-    if (func_020f3178() && TimeLimit_GetTotal(&total) && TimeLimit_GetRemaining(&left)) {
+    if (NumberSpriteTask_IsRunning() && TimeLimit_GetTotal(&total) && TimeLimit_GetRemaining(&left)) {
         angle = 0x4000 - ((u32)HwDiv32(left, 60) << 14) / (u32)HwDiv32(total, 60);
     } else {
         angle = 0;
