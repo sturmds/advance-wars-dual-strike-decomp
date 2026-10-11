@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 void Save_LoadProfiles(void);
 void Save_LoadProgress(void);
-void func_02018c10(void);
+void Save_LoadSurvivalState(void);
 void func_0210322c(void);
 void func_0210372c(void);
 
@@ -35,7 +35,7 @@ void Game_LoadSavesAndStartModeTask(int player, int coSelectPhase)
         func_0210372c();
         break;
     case GAME_MODE_SURVIVAL:
-        func_02018c10();
+        Save_LoadSurvivalState();
         Save_LoadProgress();
         func_0210372c();
         break;
