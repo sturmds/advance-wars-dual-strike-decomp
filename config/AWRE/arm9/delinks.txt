@@ -1902,6 +1902,10 @@ src/game/main/script/script_slot_cmd_wait_for_script.c:
     complete
     .text       start:0x02017020 end:0x02017094
 
+src/game/main/script/script_slot_cmd_start_script.c:
+    complete
+    .text       start:0x02017094 end:0x020170f0
+
 src/game/main/func_020170f0.c:
     complete
     .text       start:0x020170f0 end:0x0201710c
