@@ -6,14 +6,17 @@
 struct Unk_02022404;
 
 #define NAME_ENTRY_KEY_COUNT 75        /* cursor values from this on select a control key */
+#define NAME_ENTRY_CONTROL_KEY_COUNT 3 /* kept in unk_4b8, right after keys */
+#define NAME_ENTRY_KEY_BUTTON_ID 128   /* menu button id of key 0 */
 
 /* One key of the name entry screen. unk_00 is 0 for an unused slot. */
 typedef struct NameEntryKey {
     s16 unk_00;
-    u8 pad_02[0x06 - 0x02];
+    s16 buttonX;                       /* screen position of its menu button */
+    s16 buttonY;
     s16 x;
     s16 y;
-    u8 pad_0a[0x0c - 0x0a];
+    s16 buttonId;                      /* menu button id: 128 + key index */
 } NameEntryKey;
 
 /* Work block of the name entry screen (0x4f4 bytes, allocated by
