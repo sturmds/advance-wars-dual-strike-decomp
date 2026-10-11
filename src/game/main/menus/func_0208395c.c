@@ -9,7 +9,7 @@ s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
 void func_02001f50(int x, int y, int attr, int tile, int list);
 void func_02002a64(int x, int y, int attr, int tile, int list);
-void func_02085f94(int x, int y);
+void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void func_020871c8(int a0, int a1, int a2, int a3);
 
 typedef struct UnitCountTable {
@@ -147,7 +147,7 @@ void func_0208395c(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     subSaved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_02085f94(48, 48);
+    CombatSetup_DrawRowPlayerIcons(48, 48);
     for (i = 0; i < 4; i++) {
         if (MENU->combat.rows[i].unk_07 != 0) {
             func_02001f50(80, (64 + i * 32) & 0xff, (i + 4) << 12, 300 + i * 12, 4);

@@ -6365,6 +6365,10 @@ src/game/main/func_02085dc4.c:
     complete
     .text       start:0x02085dc4 end:0x02085dd8
 
+src/game/main/menus/combat_setup_draw_row_player_icons.c:
+    complete
+    .text       start:0x02085f94 end:0x02086254
+
 src/game/main/func_02086754.c:
     complete
     .text       start:0x02086754 end:0x02086760
