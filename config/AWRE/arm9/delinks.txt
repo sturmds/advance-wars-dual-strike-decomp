@@ -8266,6 +8266,10 @@ src/game/main/tab_list_count_medals.c:
     complete
     .text       start:0x020718e0 end:0x020719bc
 
+src/game/main/army_style_get_icon_tile.c:
+    complete
+    .text       start:0x020719bc end:0x020719e0
+
 src/game/main/func_020719e0.c:
     complete
     .text       start:0x020719e0 end:0x02071ad0
