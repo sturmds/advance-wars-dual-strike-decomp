@@ -3861,6 +3861,10 @@ src/game/main/result_stats_slide_in.c:
     complete
     .text       start:0x0203b734 end:0x0203b84c
 
+src/game/main/result_stats_draw_sub_screen.c:
+    complete
+    .text       start:0x0203b8f8 end:0x0203ba50
+
 src/game/main/func_0203c6d8.c:
     complete
     .text       start:0x0203c6d8 end:0x0203c6fc
