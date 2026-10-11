@@ -375,6 +375,10 @@ src/game/itcm/func_01ffd854.c:
     complete
     .text       start:0x01ffd854 end:0x01ffd878
 
+src/sdk/mi/reset_clear_and_jump_to_entry.c:
+    complete
+    .text       start:0x01ffda24 end:0x01ffdad4
+
 src/sdk/mi/mem_repeat_word_asm.c:
     complete
     .text       start:0x01ffdad4 end:0x01ffdae8
