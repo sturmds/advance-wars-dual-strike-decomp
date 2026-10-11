@@ -1,11 +1,11 @@
 #include "types.h"
 
-int func_0210eaf8(void);
+int OS_EnableInterrupts(void);
 void func_0210eb70(void);
 
 void OSi_IdleThreadProc(void)
 {
-    func_0210eaf8();
+    OS_EnableInterrupts();
     while (TRUE) {
         func_0210eb70();
     }
