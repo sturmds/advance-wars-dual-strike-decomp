@@ -12,35 +12,38 @@ extern MenuState gMenuState;
 /* Needed to match: the side's record is reached as a byte offset of the scene. */
 #define SIDE_WEAPON(side) (((u8 *)Ov002_gBattleScene + (side) * sizeof(BattleSide))[9])
 
+/* TRUE when the cell sprite's next step reaches its target on both axes. The heading on an
+ * axis comes from the other side's effect, or from the sprite when the effect gives none;
+ * an axis with no heading counts as reached. */
 BOOL BattleCellSprite_Arrived(int side, int cell)
 {
+    int direction;
     int reached = 0;
-    int axis;
     int next;
     int target;
-    int direction;
+    int axis;
     int other = (side + 1) & 1;
-    BattleSideData *sideData = MENU->battle.unk_27c[other];
 
     for (axis = 0; axis < 2; axis++) {
         switch (axis) {
         case 0:
-            next = SPRITE.pos.x + SPRITE.step.x;
-            target = SPRITE.target.x;
-            direction = sideData->effects[SIDE_WEAPON(other)]->unk_2e.x;
+            direction = MENU->battle.unk_27c[other]->effects[SIDE_WEAPON(other)]->unk_2e.x;
             if (direction == 0) {
                 direction = SPRITE.direction.x;
             }
+            next = SPRITE.pos.x + SPRITE.step.x;
+            target = SPRITE.target.x;
             break;
         case 1:
-            next = SPRITE.pos.y + SPRITE.step.y;
-            target = SPRITE.target.y;
-            direction = sideData->effects[SIDE_WEAPON(other)]->unk_2e.y;
+            direction = MENU->battle.unk_27c[other]->effects[SIDE_WEAPON(other)]->unk_2e.y;
             if (direction == 0) {
                 direction = SPRITE.direction.y;
             }
+            next = SPRITE.pos.y + SPRITE.step.y;
+            target = SPRITE.target.y;
             break;
         }
+        /* 0: no heading, 1: increasing, 2: decreasing */
         if (direction == 0) {
             direction = 0;
         } else if (direction > 0) {
