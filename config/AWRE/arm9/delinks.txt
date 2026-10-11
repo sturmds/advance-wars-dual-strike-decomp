@@ -9976,6 +9976,10 @@ src/game/main/ai/ai_turn_try_build_black_boat_near_site.c:
     complete
     .text       start:0x02090a38 end:0x02090ed4
 
+src/game/main/ai/ai_count_armed_ships.c:
+    complete
+    .text       start:0x02090ed4 end:0x02090fa8
+
 src/game/main/ai/range_map_spread_over_sea.c:
     complete
     .text       start:0x020911d4 end:0x020913b4
