@@ -6028,6 +6028,7 @@ src/game/main/menus/co_select_screen_get_list_co.c:
     .text       start:0x020457d8 end:0x020457f0
 
 src/game/main/menus/co_select_screen_list_slot_of_co.c:
+    complete
     .text       start:0x020457f0 end:0x02045830
 
 src/game/main/menus/co_select_is_co_available.c:
