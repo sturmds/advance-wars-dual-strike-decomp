@@ -1,7 +1,7 @@
 #include "types.h"
 
 int func_020d61e8(void);
-int func_02050b04(int digit);         /* pixel width of a digit: 1 is 6, 4 is 14, others 12 */
+int TitleCall_GetDigitWidth(int digit);         /* pixel width of a digit: 1 is 6, 4 is 14, others 12 */
 int HwDiv32(int num, int den);
 int HwMod32(int num, int den);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
@@ -27,9 +27,9 @@ void TitleCall_DrawNumber(int affineIndex)
     number = func_020d61e8();
     width = LABEL_WIDTH;
     if (number >= 10) {
-        width += func_02050b04(HwDiv32(number, 10)) + 1;
+        width += TitleCall_GetDigitWidth(HwDiv32(number, 10)) + 1;
     }
-    width += func_02050b04(HwMod32(number, 10));
+    width += TitleCall_GetDigitWidth(HwMod32(number, 10));
     affineBits = 0;
     y = 0;
     if (affineIndex != 0) {
@@ -42,7 +42,7 @@ void TitleCall_DrawNumber(int affineIndex)
     x += LABEL_WIDTH;
     if (number >= 10) {
         Sprite_Queue(2, (x & 0x1ff) | affineBits, y, data_027c0040, 0x400, HwDiv32(number, 10) * 4 + 24);
-        x += func_02050b04(HwDiv32(number, 10)) + 1;
+        x += TitleCall_GetDigitWidth(HwDiv32(number, 10)) + 1;
     }
     Sprite_Queue(2, (x & 0x1ff) | affineBits, y, data_027c0040, 0x400, HwMod32(number, 10) * 4 + 24);
 }
