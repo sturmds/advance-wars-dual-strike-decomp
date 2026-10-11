@@ -2873,6 +2873,10 @@ src/game/main/layer0_put_number_then_text4.c:
     complete
     .text       start:0x02026fcc end:0x02027054
 
+src/game/main/layer0_put_number_slash_padded.c:
+    complete
+    .text       start:0x02027190 end:0x0202725c
+
 src/game/main/graphics/bg_put_skill_slot.c:
     complete
     .text       start:0x020277a4 end:0x02027804
