@@ -21,7 +21,7 @@ void func_020c8888(void);
 void RangeMap_SetBuffer(void *tileMap);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void func_020f78b8(int a0);
-void func_020d4adc(void);
+void MovePath_Start(void);
 void Sound_PlaySe(int se);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -67,7 +67,7 @@ BOOL MapCursor_SelectTile(int x, int y, int allowBuild, int allowMenu)
     GAME->unk_1e = GAME->currentPlayer;
     func_020f78b8(0);
     GAME->unk_1c = 1;
-    func_020d4adc();
+    MovePath_Start();
     Sound_PlaySe(0x10007);
     if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
         if (gPlayRecords.unitsSelected < 999999) {
