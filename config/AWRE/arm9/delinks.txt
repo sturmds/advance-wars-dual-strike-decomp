@@ -22371,6 +22371,7 @@ src/sdk/card/card_on_removal_message.c:
     .text       start:0x02116890 end:0x021168fc
 
 src/sdk/card/card_register_removal_handler.c:
+    complete
     .text       start:0x021168fc end:0x02116934
 
 src/sdk/wm/wm_clear_fifo_recv_flag.c:
