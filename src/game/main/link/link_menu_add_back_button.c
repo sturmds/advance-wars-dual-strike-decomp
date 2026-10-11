@@ -5,7 +5,7 @@ extern const MenuButtonTemplate data_02160178;
 
 int func_0207a260(void);
 
-/* Button 254 (the one LinkMenu_Cancel closes) exists only on the side where func_0207a260() is not 0. */
+/* Button 254 (the one LinkMenu_Exit closes) exists only on the side where func_0207a260() is not 0. */
 void LinkMenu_AddBackButton(void)
 {
     if (func_0207a260() == 0) {
