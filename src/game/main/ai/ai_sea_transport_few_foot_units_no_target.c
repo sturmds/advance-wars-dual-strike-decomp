@@ -2,14 +2,14 @@
 
 BOOL AiUnit_HasReachableTarget(void);
 int Ai_CountEnemyGroundUnitsInRange(void);
-int func_020b71a4(void);
+int Ai_ScoreReachableUnclaimedEnemyProperties(void);
 int Ai_ScoreReachableEnemyProperties(void);
 int Ai_CountTeamFootUnitsInRange(void);
 
 /* Tile test for the foot unit and APC routine. FALSE when the acting unit has a
  * reachable target. Otherwise TRUE when the team's foot units reached number
  * less than a limit: the enemy property value reached plus 2 if
- * Ai_CountEnemyGroundUnitsInRange is nonzero, else func_020b71a4's result
+ * Ai_CountEnemyGroundUnitsInRange is nonzero, else Ai_ScoreReachableUnclaimedEnemyProperties's result
  * plus 1 (it must be nonzero). */
 BOOL AiSeaTransport_FewFootUnitsNoTarget(void)
 {
@@ -24,7 +24,7 @@ BOOL AiSeaTransport_FewFootUnitsNoTarget(void)
     if (useProperties) {
         value = Ai_ScoreReachableEnemyProperties();
     } else {
-        value = func_020b71a4();
+        value = Ai_ScoreReachableUnclaimedEnemyProperties();
     }
     if (value == 0) {
         return FALSE;

@@ -11821,6 +11821,10 @@ src/game/main/ai/ai_count_team_foot_units_in_range.c:
     complete
     .text       start:0x020b70a0 end:0x020b71a4
 
+src/game/main/ai/ai_score_reachable_unclaimed_enemy_properties.c:
+    complete
+    .text       start:0x020b71a4 end:0x020b731c
+
 src/game/main/ai/ai_score_reachable_enemy_properties.c:
     complete
     .text       start:0x020b731c end:0x020b7460
