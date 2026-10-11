@@ -11738,6 +11738,10 @@ src/game/main/weather/weather_set_days.c:
     complete
     .text       start:0x020d2b4c end:0x020d2bfc
 
+src/game/main/weather/weather_tick_days.c:
+    complete
+    .text       start:0x020d2bfc end:0x020d2cf4
+
 src/game/main/weather/weather_resolve_power_snow.c:
     complete
     .text       start:0x020d2d90 end:0x020d2d9c

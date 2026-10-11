@@ -3,7 +3,7 @@
 #include "game/weather.h"
 
 int Rng_RollTier(u32 limit1, u32 limit2, u32 limit3);
-BOOL func_020d2bfc(void);
+BOOL Weather_TickDays(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -14,7 +14,7 @@ extern int data_027c0284;
 /* Weather for the next turn. Clear weather stays clear unless the map's
  * weather setting is random (unk_3b is 1); then unk_02, unk_01 and unk_00 of
  * the weather record are percent chances of snow, rain and sand. Other
- * weather lasts until func_020d2bfc reports that every player's days ran
+ * weather lasts until Weather_TickDays reports that every player's days ran
  * out, then returns to the map's default (unk_3d). */
 int Weather_PickNext(void)
 {
@@ -40,7 +40,7 @@ int Weather_PickNext(void)
         if (weather == VIEW->unk_3d && VIEW->unk_3b == 0) {
             return weather;
         }
-        if (func_020d2bfc()) {
+        if (Weather_TickDays()) {
             weather = VIEW->unk_3d;
         }
     }
