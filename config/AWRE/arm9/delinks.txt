@@ -4099,6 +4099,10 @@ src/game/main/menus/co_exp_init_screen.c:
     complete
     .text       start:0x020347e0 end:0x02034fa0
 
+src/game/main/result_sprite_shake.c:
+    complete
+    .text       start:0x020351f0 end:0x020353d4
+
 src/game/main/func_02035708.c:
     complete
     .text       start:0x02035708 end:0x0203570c
