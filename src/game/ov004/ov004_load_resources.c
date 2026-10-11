@@ -87,14 +87,14 @@ void Ov004_LoadResources(Unk_ov004_022bf158 *state)
             if (vramUsed > VRAM_SIZE) {
                 return;
             }
-            resource->data = (void *)(state->unk_1328 + state->vramUsed);
+            resource->data = (void *)(state->vramArea + state->vramUsed);
             bufferUsed = state->bufferUsed;
         } else {
-            resource->data = (u8 *)state->unk_1320 + state->bufferUsed;
+            resource->data = (u8 *)state->buffer + state->bufferUsed;
             vramUsed = state->vramUsed;
         }
         resource->size = size;
-        resource->unk_00 = (u32)dir;
+        resource->dir = dir;
         resource->name = name;
         if (fromFile) {
             File_ReadTo(resource->data, fileName);

@@ -9,16 +9,16 @@ void Ov004_ClearSlots(Unk_ov004_022bf158 *state);
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 extern GfxLayer data_ov004_022be958[4];
 
-/* An entry starts hidden; unk_14 and unk_18 hold the end values of
+/* An entry starts hidden; width and height hold the end values of
  * Ov004_EntryAppear's eases. */
-#define INIT_ENTRY(entry, id, start08, x) \
+#define INIT_ENTRY(entry, slot, startShade, startX) \
     (entry)->active = 0;                \
-    (entry)->unk_04 = (id);             \
-    (entry)->unk_08 = (start08);        \
-    (entry)->unk_0c = (x);              \
-    (entry)->unk_10 = -64;              \
-    (entry)->unk_14 = 64;               \
-    (entry)->unk_18 = 128
+    (entry)->texSlot = (slot);          \
+    (entry)->shade = (startShade);      \
+    (entry)->x = (startX);              \
+    (entry)->y = -64;                   \
+    (entry)->width = 64;                \
+    (entry)->height = 128
 
 /* Script step: sets up the main screen's BG layers (BG0-BG2 shown, no
  * windows or blending) and places seven hidden entries in a row, 32 apart. */
@@ -73,7 +73,7 @@ void Ov004Task_SetupEntryScene(Ov004Task *task) {
     state->unk_8fc = -32;
     state->unk_900 = 0;
     Ov004_ClearSlots(state);
-    state->unk_132c = 0;
+    state->bg3InSecondHalf = 0;
     state->bgCharBase = 0;
     task->frame = 0;
     task->duration = 0;

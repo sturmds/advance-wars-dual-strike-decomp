@@ -56,7 +56,7 @@ void Ov004Task_RunBannerTimeline(Ov004Task *task)
         int id;
 
         id = task->duration++;
-        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, &state->unk_00c, 70, 0, 8), id);
+        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, state->savedPalette, 70, 0, 8), id);
     }
     if (Ov004_CheckTimedEvent(state, 2, 222)) {
         Unk_027c0280 *savedGfx;

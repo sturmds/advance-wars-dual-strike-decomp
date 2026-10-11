@@ -81,8 +81,7 @@ void Ov004Task_InitLayer1Scene(Ov004Task *task)
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0x1000);
     Gfx_RequestLayerCopy(1);
     Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer + 0x20);
-    /* unk_00c starts a 0x400-byte copy of the palette */
-    Mem_Copy32(data_027c0280->paletteBuffer, &state->unk_00c, 0x400);
+    Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
     Mem_Zero32(0, data_027c0280->paletteBuffer + 0x20, 0x20);
     Ov004_UnpackResource(data_ov004_022bdd58, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
     Ov004_UnpackResource(data_ov004_022bdd50, data_027c0280->layer3Map);

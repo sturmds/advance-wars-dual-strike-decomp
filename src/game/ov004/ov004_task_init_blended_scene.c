@@ -148,7 +148,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
 
     REG_DISPCNT &= ~0x7000000;
     FS_ChangeDir(data_ov004_022bf0dc);
-    buffer = state->unk_1320;
+    buffer = state->buffer;
     File_UnpackTo(buffer, data_ov004_022bf0e8);
     func_0210e138(buffer, 0x8000);
     func_0210cb04();

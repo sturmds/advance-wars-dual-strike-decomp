@@ -97,8 +97,7 @@ void Ov004Task_InitButtonScene(Ov004Task *task)
     Gfx_RequestLayerCopy(1);
     Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer);
     Palette_Flush();
-    /* unk_00c starts a 0x400-byte copy of the palette */
-    Mem_Copy32(data_027c0280->paletteBuffer, &state->unk_00c, 0x400);
+    Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
     Mem_Zero32(0, data_027c0280->paletteBuffer, 0x400);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);

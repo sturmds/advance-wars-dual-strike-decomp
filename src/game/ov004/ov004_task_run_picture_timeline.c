@@ -95,7 +95,7 @@ void Ov004Task_RunPictureTimeline(Ov004Task *task)
         int id;
 
         id = task->duration++;
-        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, &state->unk_00c, 30, 0, 1), id);
+        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, state->savedPalette, 30, 0, 1), id);
         id = task->duration++;
         Ov004_SetSlotTask(state, Task_Create(data_ov004_022be418, TASK_LIST(5)), id);
         id = task->duration++;

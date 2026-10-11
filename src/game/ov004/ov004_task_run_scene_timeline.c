@@ -348,8 +348,8 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
             *REG_MTX_SCALE = 0x3000;
             *REG_MTX_SCALE = 0x3000;
             *REG_MTX_SCALE = 0x1000;
-            func_ov004_022ad71c(entry->unk_0c, entry->unk_10 + state->unk_900, 300, 3, 4,
-                                entry->unk_14, entry->unk_18, (entry->unk_04 << 12) + 0x10000, 192, entry->unk_08);
+            func_ov004_022ad71c(entry->x, entry->y + state->unk_900, 300, 3, 4,
+                                entry->width, entry->height, (entry->texSlot << 12) + 0x10000, 192, entry->shade);
             *REG_MTX_POP = 1;
         }
     }

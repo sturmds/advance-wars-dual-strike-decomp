@@ -89,7 +89,7 @@ void Ov004Task_PlayTurningQuadScene2(Ov004Task *task)
         data_027c0280->masterBrightness = 0;
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
-        ADD_SLOT_TASK(PaletteFade_StartFromBlack(5, &state->unk_10c, 30, 8, 8));
+        ADD_SLOT_TASK(PaletteFade_StartFromBlack(5, &state->savedPalette[16 * 8], 30, 8, 8));
         ADD_SLOT_TASK(Task_Create(data_ov004_022be098, TASK_LIST(5)));
     }
 

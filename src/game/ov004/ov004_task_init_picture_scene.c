@@ -85,8 +85,7 @@ void Ov004Task_InitPictureScene(Ov004Task *task)
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0);
     Gfx_RequestLayerCopy(2);
     Palette_Flush();
-    /* unk_00c starts a 0x400-byte copy of the palette */
-    Mem_Copy32(data_027c0280->paletteBuffer, &state->unk_00c, 0x400);
+    Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
     Mem_Zero32(0, data_027c0280->paletteBuffer, 0x100);
     Ov004_LoadObjGraphics(state);
     Ov004_CreateSlotTasks(state);

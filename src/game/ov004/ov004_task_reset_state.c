@@ -20,8 +20,8 @@ void Ov004Task_ResetState(Ov004Task *task)
     state->unk_000 = 0;
     state->unk_004 = 0;
     state->unk_008 = 0;
-    state->unk_1320 = data_ov004_022bf14c;
-    state->unk_1328 = 0x06860000;
+    state->buffer = data_ov004_022bf14c;
+    state->vramArea = 0x06860000;
 
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

@@ -17,9 +17,9 @@ void Ov004_EntryAppear(Ov004Task *task) {
         task->step++;
     case 1:
         state->entries[task->tweenFrames].active = 1;
-        state->entries[task->tweenFrames].unk_08 = Math_Ease(0, 31, 0, task->frame, task->duration);
-        state->entries[task->tweenFrames].unk_14 = func_020fd7dc(100, 2, 64, task->frame, task->duration);
-        state->entries[task->tweenFrames].unk_18 = func_020fd7dc(100, 190, 128, task->frame, task->duration);
+        state->entries[task->tweenFrames].shade = Math_Ease(0, 31, 0, task->frame, task->duration);
+        state->entries[task->tweenFrames].width = func_020fd7dc(100, 2, 64, task->frame, task->duration);
+        state->entries[task->tweenFrames].height = func_020fd7dc(100, 190, 128, task->frame, task->duration);
         if (task->frame <= task->duration) {
             task->frame++;
         }
