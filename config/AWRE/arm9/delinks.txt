@@ -3747,6 +3747,10 @@ src/game/main/menus/func_02031a48.c:
     complete
     .text       start:0x02031a48 end:0x02031bec
 
+src/game/main/menus/func_02031bec.c:
+    complete
+    .text       start:0x02031bec end:0x02031d40
+
 src/game/main/func_02031f48.c:
     complete
     .text       start:0x02031f48 end:0x02031f54
