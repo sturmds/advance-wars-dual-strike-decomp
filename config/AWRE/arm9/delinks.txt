@@ -6923,6 +6923,10 @@ src/game/main/link/link_receive_from_parent.c:
     complete
     .text       start:0x0207abb0 end:0x0207acc0
 
+src/game/main/link/link_receive_from_child.c:
+    complete
+    .text       start:0x0207acc0 end:0x0207ae44
+
 src/game/main/link/link_poll_peer_reply.c:
     complete
     .text       start:0x0207b3a8 end:0x0207b48c
