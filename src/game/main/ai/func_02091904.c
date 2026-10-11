@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_02094bfc(void);
+void AiBuild_SumUnitHp(void);
 int AiTurn_PickUnitToBuild(int arg);
 void func_0209316c(int index);
 
@@ -11,7 +11,7 @@ BOOL func_02091904(void)
 {
     int index;
 
-    func_02094bfc();
+    AiBuild_SumUnitHp();
     index = AiTurn_PickUnitToBuild(1);
     if (index == -1) {
         return 0;
