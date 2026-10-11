@@ -22212,6 +22212,10 @@ src/sdk/__convert_from_newlines.c:
     complete
     .text       start:0x02122188 end:0x0212218c
 
+src/sdk/msl/fflush.c:
+    complete
+    .text       start:0x0212218c end:0x0212228c
+
 src/game/main/func_02122348.c:
     complete
     .text       start:0x02122348 end:0x0212235c

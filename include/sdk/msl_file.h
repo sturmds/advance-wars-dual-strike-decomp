@@ -7,6 +7,7 @@
 #define FILE_NEUTRAL 0
 #define FILE_WRITING 1
 #define FILE_READING 2
+#define FILE_REREADING 3
 
 #define FILE_KIND_CLOSED 0
 #define FILE_IO_READ_ONLY 1
