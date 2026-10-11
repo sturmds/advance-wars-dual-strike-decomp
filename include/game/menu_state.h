@@ -215,22 +215,23 @@ typedef struct CombatRowEntry {
     u8 player;                         /* the data_0229fb30.unk_45a this row belongs to */
     u8 pad_01[6];
     u8 unk_07;                         /* nonzero: the row gets a sprite on the sub screen */
-    u8 pad_08;
+    u8 unk_08;
     u8 buttonId;                       /* MenuButton id picked, 22-25; minus 22 picks the row's unit counts and sprite */
 } CombatRowEntry;
 
 /* Combat setup layout of MenuState (link play, overlay 3's rows). */
 typedef struct CombatMenuState {
-    u8 pad_020[0xc00 - 0x20];
+    u8 pad_020[0x600 - 0x20];
+    u16 unk_600[0x300];                /* a second tile map from res_cmlink, palette numbers raised by 2 */
     u16 savedMap[0x300];               /* copied to layer 1 of the main screen */
     u16 rowPalettes[4][48];            /* per row, loaded at palette buffer offset 0x2c0 */
     u16 rowObjPalettes[4][16];         /* per row, loaded at palette buffer offset 0x320 */
-    u8 pad_1400[0x1420 - 0x1400];
+    u16 unk_1400[16];                  /* a palette from res_linkcommon */
     CombatRowEntry rows[4];
     struct {
         u8 row;                        /* 1-4, index + 1 into rows */
-        u8 pad_1;
-    } players[4];
+        u8 unk_1;                      /* cleared by CombatSetup_Init */
+    } players[8];                      /* by link player, bits of Unk_0229ff30.playerMask */
 } CombatMenuState;
 
 typedef struct MenuState {

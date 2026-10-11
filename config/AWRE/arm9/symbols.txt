@@ -2661,7 +2661,7 @@ func_02087aa8 kind:function(arm,size=0xe0) addr:0x02087aa8
 func_02087b88 kind:function(arm,size=0x98) addr:0x02087b88
 func_02087c20 kind:function(arm,size=0xb4) addr:0x02087c20
 func_02087cd4 kind:function(arm,size=0xfc) addr:0x02087cd4
-func_02087dd0 kind:function(arm,size=0x634) addr:0x02087dd0
+CombatSetup_Init kind:function(arm,size=0x634) addr:0x02087dd0
 func_02088404 kind:function(arm,size=0x74) addr:0x02088404
 func_02088478 kind:function(arm,size=0x9c) addr:0x02088478
 func_02088514 kind:function(arm,size=0x14) addr:0x02088514
@@ -7528,11 +7528,11 @@ data_021611f0 kind:data(any) addr:0x021611f0
 data_021612f8 kind:data(any) addr:0x021612f8
 data_02161310 kind:data(any) addr:0x02161310
 data_02161318 kind:data(any) addr:0x02161318
-data_02161320 kind:data(any) addr:0x02161320
-data_0216133c kind:data(any) addr:0x0216133c
-data_02161354 kind:data(any) addr:0x02161354
-data_0216136c kind:data(any) addr:0x0216136c
-data_02161388 kind:data(any) addr:0x02161388
+gCombatLinkCommonLangResPath kind:data(any) addr:0x02161320
+gCombatLinkCommonResPath kind:data(any) addr:0x0216133c
+gCombatLinkResPath kind:data(any) addr:0x02161354
+gCombatLinkLangResPath kind:data(any) addr:0x0216136c
+gCombatSetupMenuResPath kind:data(any) addr:0x02161388
 data_021613a0 kind:data(any) addr:0x021613a0
 data_021613a8 kind:data(any) addr:0x021613a8
 data_021613b8 kind:data(any) addr:0x021613b8
