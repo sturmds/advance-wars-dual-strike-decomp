@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* data_022977a4 (main bss, 12 bytes), state of the event script engine.
- * func_0201ae50 passes unk_00 to Gfx_LoadBmap0a0Palette as the palette
+ * EventScript_SetPlayerPalette passes unk_00 to Gfx_LoadBmap0a0Palette as the palette
  * slot and stores its own argument in unk_01. */
 typedef struct Unk_022977a4 {
     u8 unk_00;
