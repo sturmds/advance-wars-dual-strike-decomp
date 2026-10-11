@@ -421,6 +421,29 @@ typedef struct DlPlayBlockSpot {
 
 extern u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT];
 
+/* Where a file's segments start, in the file and in blocks (20 bytes, the
+ * DlPlayOfferedFile.segmentOffsets area). */
+typedef struct DlPlaySegmentStarts {
+    u32 segmentOffsets[DLPLAY_PROGRAM_PART_COUNT];      /* where each segment starts in the file */
+    u16 segmentFirstBlocks[DLPLAY_PROGRAM_PART_COUNT];
+    u16 blockCount;
+} DlPlaySegmentStarts;
+
+typedef struct DlPlaySegmentPlacement {
+    u32 recvAddress;                   /* where the child receives it */
+    u32 loadAddress;
+    u32 size;
+    u32 flags;
+} DlPlaySegmentPlacement;
+
+/* The start of a file's download info (DlPlayOfferedFile.dlFileInfo). */
+typedef struct DlPlayProgramLayoutHead {
+    u32 arm9EntryAddress;
+    u32 arm7EntryAddress;
+    u32 pad_08;
+    DlPlaySegmentPlacement segments[DLPLAY_PROGRAM_PART_COUNT];
+} DlPlayProgramLayoutHead;
+
 /* Where each kind of segment may be received or loaded. */
 #define DLPLAY_MAIN_RAM_BASE 0x02000000
 #define DLPLAY_MAINCPU_CODE_AREA_END 0x022c0000
@@ -485,7 +508,9 @@ typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
  * aid - 1 (aid 0 is the parent). */
 typedef struct DlPlayHostLinkArea {
     u8 sendBuffer[4];                  /* length unknown */
-    u8 pad_04[0x1340 - 4];
+    u8 pad_04[0x1318 - 4];
+    u32 blockSizeMax;                  /* bytes of file data in one parent message */
+    u8 pad_131c[0x1340 - 0x131c];
     DlPlayPlayerBadge childUsers[DLPLAY_CHILD_SLOTS];
     u16 childVersions[DLPLAY_CHILD_SLOTS];
     u32 childGgids[DLPLAY_CHILD_SLOTS];

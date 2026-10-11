@@ -5,7 +5,7 @@
 extern DlPlayHostLinkArea *data_022aced4;
 
 void MbParentFile_AdvanceBlock(u8 fileId);
-BOOL func_0211a7d8(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockNo, u8 *dlFileInfo);
+BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockNo, u8 *dlFileInfo);
 u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
 BOOL MbSegment_Read(DlPlayHeldProgram *cache, u32 address, u8 *dst, u32 size);
 BOOL MbTask_IsLoading(DlPlayWorkerJob *task);
@@ -43,7 +43,7 @@ int func_021193fc(void)
     {
         DlPlayHostLinkArea *work = data_022aced4;
 
-        if (!func_0211a7d8(&block, work->files[work->currentFile].segmentOffsets,
+        if (!MbFile_GetBlockInfo(&block, work->files[work->currentFile].segmentOffsets,
                            work->files[work->currentFile].currentBlock, work->files[work->currentFile].dlFileInfo)) {
             return DLPLAY_NOTHING_TRANSMITTED;
         }
