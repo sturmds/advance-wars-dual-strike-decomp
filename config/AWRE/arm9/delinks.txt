@@ -12872,6 +12872,10 @@ src/game/main/screen/screen_overlays_create.c:
     complete
     .text       start:0x020f41a4 end:0x020f4228
 
+src/game/main/screen/screen_clear_layers01.c:
+    complete
+    .text       start:0x020f4228 end:0x020f425c
+
 src/game/main/func_020f43f4.c:
     complete
     .text       start:0x020f43f4 end:0x020f440c
