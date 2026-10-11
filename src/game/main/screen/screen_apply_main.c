@@ -12,7 +12,7 @@ extern volatile s16 data_0216e2ac;
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
 BOOL func_01ff8ef8(int bg);
-void func_0210a46c(int dispMode, int bgMode, int bg0Mode);
+void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0Mode);
 void GX_DispOn(void);  /* puts back the display mode (DISPCNT bits 16-17) GX_DispOff saved */
 void GX_DispOff(void); /* saves the display mode and clears it: main engine output off */
 void func_0210a574(BOOL enable);
@@ -180,7 +180,7 @@ void Screen_ApplyMain(void)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
 
-    func_0210a46c(GFX->dispMode, GFX_DISPCNT(GFX)->bgMode, GFX->bg0Mode);
+    GX_SetGraphicsMode(GFX->dispMode, GFX_DISPCNT(GFX)->bgMode, GFX->bg0Mode);
     SetVisiblePlane((GFX_DISPCNT(GFX)->bg0 ? 1 : 0) | (GFX_DISPCNT(GFX)->bg1 ? 2 : 0)
                     | (GFX_DISPCNT(GFX)->bg2 ? 4 : 0) | (GFX_DISPCNT(GFX)->bg3 ? 8 : 0)
                     | (GFX_DISPCNT(GFX)->obj ? 16 : 0));

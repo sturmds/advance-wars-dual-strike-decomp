@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/task.h"
 
-void func_020eec8c(int, int, int, int);
+void TileEffectTask_Create(int x, int y, int effect, Task *parent);
 
-void func_020eeddc(int a0, int a1, int a2)
+void func_020eeddc(int x, int y, Task *parent)
 {
-    func_020eec8c(a0, a1, 0, a2);
+    TileEffectTask_Create(x, y, 0, parent);
 }

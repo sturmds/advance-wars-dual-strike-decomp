@@ -12,7 +12,7 @@ extern volatile s16 data_0216e2ac;
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
 BOOL func_01ff8ef8(int bg);
-void func_0210a450(int bgMode);
+void GXS_SetGraphicsMode(int bgMode);
 void func_0210b528(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
 void func_0210b580(volatile u16 *reg, int top, int bottom, int eva, int evb);
 
@@ -159,7 +159,7 @@ void Screen_ApplySub(void)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
 
-    func_0210a450(GFX_DISPCNT(GFX)->bgMode);
+    GXS_SetGraphicsMode(GFX_DISPCNT(GFX)->bgMode);
     SetVisiblePlane((GFX_DISPCNT(GFX)->bg0 ? 1 : 0) | (GFX_DISPCNT(GFX)->bg1 ? 2 : 0)
                     | (GFX_DISPCNT(GFX)->bg2 ? 4 : 0) | (GFX_DISPCNT(GFX)->bg3 ? 8 : 0)
                     | (GFX_DISPCNT(GFX)->obj ? 16 : 0));

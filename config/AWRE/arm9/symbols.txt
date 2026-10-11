@@ -123,7 +123,7 @@ OamBuffer_FlushHead kind:function(arm,size=0x7c) addr:0x0200332c
 OamBuffer_FlushTail kind:function(arm,size=0x88) addr:0x020033a8
 OamBuffer_Split kind:function(arm,size=0xa0) addr:0x02003430
 Dma_StopChannel1 kind:function(arm,size=0x2c) addr:0x020034d0
-func_020034fc kind:function(arm,size=0x2c) addr:0x020034fc
+Dma_StopChannel0 kind:function(arm,size=0x2c) addr:0x020034fc
 func_02003528 kind:function(arm,size=0x14) addr:0x02003528
 func_0200353c kind:function(arm,size=0x14) addr:0x0200353c
 DmaTaskCmd_StartChannel1 kind:function(arm,size=0x34) addr:0x02003550
@@ -131,7 +131,7 @@ DmaTaskCmd_StartChannel0 kind:function(arm,size=0x5c) addr:0x02003584
 DmaTasks_Destroy kind:function(arm,size=0xc8) addr:0x020035e0
 DmaTasks_StartPair kind:function(arm,size=0x34) addr:0x020036a8
 func_020036dc kind:function(arm,size=0x40) addr:0x020036dc
-func_0200371c kind:function(arm,size=0xd8) addr:0x0200371c
+DmaTasks_Start kind:function(arm,size=0xd8) addr:0x0200371c
 DmaTask_Start kind:function(arm,size=0x108) addr:0x020037f4
 TransferQueue_Run kind:function(arm,size=0x164) addr:0x020038fc
 TransferQueue_Add kind:function(arm,size=0xe4) addr:0x02003a60
@@ -4471,8 +4471,8 @@ MapSpriteTask_PlayKindEffects kind:function(arm,size=0xb08) addr:0x020edba8
 TileEffectTask_Update kind:function(arm,size=0x158) addr:0x020ee6b0
 func_020ee808 kind:function(arm,size=0x64) addr:0x020ee808
 MapSpriteTask_LoadKindGraphics kind:function(arm,size=0x410) addr:0x020ee86c
-func_020eec7c kind:function(arm,size=0x10) addr:0x020eec7c
-func_020eec8c kind:function(arm,size=0x64) addr:0x020eec8c
+TileEffectTask_Destroy kind:function(arm,size=0x10) addr:0x020eec7c
+TileEffectTask_Create kind:function(arm,size=0x64) addr:0x020eec8c
 func_020eecf0 kind:function(arm,size=0x38) addr:0x020eecf0
 func_020eed28 kind:function(arm,size=0x3c) addr:0x020eed28
 func_020eed64 kind:function(arm,size=0x3c) addr:0x020eed64
@@ -5234,8 +5234,8 @@ func_0210a340 kind:function(arm,size=0x9c) addr:0x0210a340
 func_0210a3dc kind:function(arm,size=0x44) addr:0x0210a3dc
 func_0210a420 kind:function(arm,size=0x4) addr:0x0210a420
 GXx_SetMasterBrightness_ kind:function(arm,size=0x2c) addr:0x0210a424
-func_0210a450 kind:function(arm,size=0x1c) addr:0x0210a450
-func_0210a46c kind:function(arm,size=0x74) addr:0x0210a46c
+GXS_SetGraphicsMode kind:function(arm,size=0x1c) addr:0x0210a450
+GX_SetGraphicsMode kind:function(arm,size=0x74) addr:0x0210a46c
 GX_DispOn kind:function(arm,size=0x4c) addr:0x0210a4e0
 GX_DispOff kind:function(arm,size=0x48) addr:0x0210a52c
 func_0210a574 kind:function(arm,size=0x30) addr:0x0210a574
@@ -8473,7 +8473,7 @@ data_0216e044 kind:bss addr:0x0216e044
 data_0216e048 kind:bss addr:0x0216e048
 data_0216e04c kind:bss addr:0x0216e04c
 data_0216e050 kind:bss addr:0x0216e050
-data_0216e054 kind:bss addr:0x0216e054
+gDmaTaskState kind:bss addr:0x0216e054
 data_0216e05c kind:bss addr:0x0216e05c
 data_0216e060 kind:bss addr:0x0216e060
 data_0216e064 kind:bss addr:0x0216e064
@@ -8934,7 +8934,7 @@ data_022a802c kind:bss addr:0x022a802c
 data_022a8038 kind:bss addr:0x022a8038
 data_022a8044 kind:bss addr:0x022a8044
 data_022a8048 kind:bss addr:0x022a8048
-data_022a804c kind:bss addr:0x022a804c
+gLockedSoundChannels kind:bss addr:0x022a804c
 data_022a8050 kind:bss addr:0x022a8050
 data_022a805c kind:bss addr:0x022a805c
 gSoundSeqPlayers kind:bss addr:0x022a8068

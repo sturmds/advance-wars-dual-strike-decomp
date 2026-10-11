@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_020034fc(void);
+void Dma_StopChannel0(void);
 
 void func_0200353c(void)
 {
-    CallbackList_Add(func_020034fc);
+    CallbackList_Add(Dma_StopChannel0);
 }

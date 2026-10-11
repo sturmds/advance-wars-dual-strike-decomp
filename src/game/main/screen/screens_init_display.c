@@ -9,8 +9,8 @@ extern Unk_027c0288 data_027c0288;
 
 void VBlankIntrWait(void);
 void GX_DispOn(void);
-void func_0210a46c(int dispMode, int bgMode, int bg0Mode);
-int func_0210a450(int bgMode);
+void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0Mode);
+void GXS_SetGraphicsMode(int bgMode);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetBgMode(int mode);
@@ -42,9 +42,9 @@ void Screens_InitDisplay(void)
     VBlankIntrWait();
     GX_DispOn();
     *REG_DB_DISPCNT |= DISPCNT_MODE_GRAPHICS;  /* sub-engine display on, inlined */
-    func_0210a46c(1, 0, 0);
+    GX_SetGraphicsMode(1, 0, 0);
     GXx_SetMasterBrightness_(REG_MASTER_BRIGHT, -16);
-    func_0210a450(0);
+    GXS_SetGraphicsMode(0);
     GXx_SetMasterBrightness_(IO_SUB_SCREEN_FADE, -16);
 
     INIT_SCREEN_STATE(data_027c0288.unk_00);

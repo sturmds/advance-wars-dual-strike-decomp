@@ -5,7 +5,7 @@
 #include "game/task.h"
 #include "game/unit_stats.h"
 
-void func_020eec8c(int x, int y, int effect, Task *parent);
+void TileEffectTask_Create(int x, int y, int effect, Task *parent);
 void func_020c7388(int unitIndex);
 void func_020c8888(void);
 
@@ -42,7 +42,7 @@ void UnitDestroyTask_PlayEffectAndRemove(Task *task)
             break;
         }
     }
-    func_020eec8c(unit->x, unit->y, effect, task);
+    TileEffectTask_Create(unit->x, unit->y, effect, task);
     func_020c7388(unit - STATE->units);
     func_020c8888();
 }
