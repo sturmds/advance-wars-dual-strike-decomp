@@ -8487,6 +8487,10 @@ src/game/main/menus/game_state10_run_step.c:
     complete
     .text       start:0x020ba6d0 end:0x020ba710
 
+src/game/main/menus/game_state9_run_step.c:
+    complete
+    .text       start:0x020ba710 end:0x020ba750
+
 src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
