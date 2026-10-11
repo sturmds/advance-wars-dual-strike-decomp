@@ -14,7 +14,7 @@ extern int data_027c0284;
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_020985b0(int mask);
-int func_02090360(void);
+int AiTurn_TryBuildLanderNearSite(void);
 int AiSite_PickForLander(int arg);
 int AiSite_PickFirst(int arg);
 int func_02090fa8(void);
@@ -24,7 +24,7 @@ void func_0209316c(int index);
 
 /* End-actions step 8, second sub-step. Tries to start building a Lander:
  * needs bit 3 of the profile byte that func_020985b0 tests and the funds for
- * one. func_02090360 runs first and ends the step when it returns 1.
+ * one. AiTurn_TryBuildLanderNearSite runs first and ends the step when it returns 1.
  * AiSite_PickForLander(3), then AiSite_PickFirst(3), pick the factory (-1: none).
  * func_02090fa8 counts the player's vehicles (type above Mech) with
  * MapUnit.transportWanted 2, func_02091068 the foot units with it, and
@@ -49,7 +49,7 @@ BOOL AiTurn_TryBuildLander(void)
     if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_LANDER) * 10) > state->players[state->currentPlayer].funds) {
         return 0;
     }
-    if (func_02090360() == 1) {
+    if (AiTurn_TryBuildLanderNearSite() == 1) {
         return 1;
     }
     index = AiSite_PickForLander(3);

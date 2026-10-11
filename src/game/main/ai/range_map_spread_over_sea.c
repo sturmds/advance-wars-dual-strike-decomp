@@ -10,7 +10,7 @@ BOOL Lander_CanEnterTile(int tile);
 
 /* One step of a flood fill in rangeMap: every marked tile (not negative)
  * whose mark differs from `mark` and that a Lander can sail on
- * (Lander_CanEnterTile) gives `mark` to each unmarked neighbour. func_02090360
+ * (Lander_CanEnterTile) gives `mark` to each unmarked neighbour. AiTurn_TryBuildLanderNearSite
  * passes marks from 111 up. */
 void RangeMap_SpreadOverSea(u8 mark)
 {
