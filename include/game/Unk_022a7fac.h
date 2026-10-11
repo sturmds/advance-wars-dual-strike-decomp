@@ -8,7 +8,9 @@
 typedef struct Unk_022a7fac {
     u8 pad_00[4];
     s8 unk_04;
-    u8 pad_05[7];
+    s8 unk_05;
+    s8 unk_06;
+    u8 pad_07[5];
 } Unk_022a7fac;
 
 #endif
