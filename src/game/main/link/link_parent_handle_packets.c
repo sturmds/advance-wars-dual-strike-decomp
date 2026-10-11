@@ -9,7 +9,7 @@ u16 func_0207a1dc(void);             /* connected child aid bits */
 int func_0207a148(void);             /* true once after the children changed */
 int func_02077f20(void);             /* Unk_0215fe84.unk_18 */
 void func_0207ab14(void);
-void func_0207b7b4(void);
+void Link_SendNextPlayerName(void);
 void func_0207b8b8(void);
 int MainLoop_GetFrameCount(void);
 int Link_PopFlaggedPacket(u8 player, void *dest);
@@ -26,7 +26,7 @@ void LinkReactionQueue_Push(void *data);
  * the children. Unit actions and reactions are queued here and relayed to all
  * children. Then, when the children changed (and every 16th frame while
  * func_02077f20 is set), sends the child aid bits: with the next child's
- * name (func_0207b7b4) while func_02077f20 is set, else alone
+ * name (Link_SendNextPlayerName) while func_02077f20 is set, else alone
  * (func_0207b8b8). */
 void Link_ParentHandlePackets(void)
 {
@@ -111,7 +111,7 @@ void Link_ParentHandlePackets(void)
         }
     }
     if (func_02077f20() == 1) {
-        func_0207b7b4();
+        Link_SendNextPlayerName();
     } else {
         func_0207b8b8();
     }
