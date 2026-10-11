@@ -79,3 +79,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0049](0049-download-play-child.md) | The DS Download Play child program has no C and is not built | open | decomp | later |
 | [0050](0050-asset-structure.md) | Game assets have no structure beyond the extracted file tree | open | build | M2 |
 | [0051](0051-fn-add-includes-trailing-data.md) | `fn.py add` includes data after a function in its delinks.txt range | open | tools | M1 |
+| [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
