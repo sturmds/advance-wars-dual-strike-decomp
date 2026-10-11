@@ -3887,7 +3887,7 @@ func_020d5ae8 kind:function(arm,size=0x20) addr:0x020d5ae8
 func_020d5b08 kind:function(arm,size=0x4) addr:0x020d5b08
 func_020d5b0c kind:function(arm,size=0x4c) addr:0x020d5b0c
 TileSpriteTask_Start kind:function(arm,size=0xec) addr:0x020d5b58
-func_020d5c44 kind:function(arm,size=0xe8) addr:0x020d5c44
+PowerHighlight_LoadGraphics kind:function(arm,size=0xe8) addr:0x020d5c44
 Player1Team_HasPlayerInGame kind:function(arm,size=0x84) addr:0x020d5d2c
 Versus_FinishMap kind:function(arm,size=0xa8) addr:0x020d5db0
 Survival_FinishMap kind:function(arm,size=0x204) addr:0x020d5e58
@@ -7707,7 +7707,7 @@ data_02166efc kind:data(any) addr:0x02166efc
 data_02166f24 kind:data(any) addr:0x02166f24
 data_02166f5c kind:data(any) addr:0x02166f5c
 data_02166f9c kind:data(any) addr:0x02166f9c
-data_02167044 kind:data(any) addr:0x02167044
+gPowerHighlightDir kind:data(any) addr:0x02167044
 data_0216704c kind:data(any) addr:0x0216704c
 data_02167074 kind:data(any) addr:0x02167074
 data_021670a4 kind:data(any) addr:0x021670a4
