@@ -76,3 +76,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0046](0046-replay-leaves-stale-moved-files.md) | Replay leaves the old copy of a moved source file | closed | loop | M1 |
 | [0047](0047-review-stamp-without-review.md) | A tenets review stamp did not show that a review ran | closed | loop | M1 |
 | [0048](0048-lost-attempt-tokens-not-counted.md) | Token totals leave out the attempts lost in a session crash | open | loop | M1 |
+| [0049](0049-download-play-child.md) | The DS Download Play child program has no C and is not built | open | decomp | later |
+| [0050](0050-asset-structure.md) | Game assets have no structure beyond the extracted file tree | open | build | M2 |

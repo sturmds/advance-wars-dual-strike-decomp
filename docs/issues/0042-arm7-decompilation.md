@@ -21,6 +21,31 @@ Scope to decide:
 3. Tooling. Whether dsd can delink and check ARM7 the way it does ARM9, or what we would add (0013 says `init` and `lcf` appear to handle ARM9 only).
 4. Priority against the remaining ARM9 work: the partials and the ARM9 SDK/library code (742 functions).
 
+## Plan
+
+Order matters: each step needs the one before it.
+
+1. **Link ARM7 from objects (issue 0013).** Find out whether dsd can delink a module at 0x02380000 with no overlays. If it can, write `config/AWRE/arm7/` (symbols, delinks, relocations) the way `tools/dsd_init.py` did for ARM9. If it cannot, record what is missing in `docs/tool-issues.md` and write the smallest tool of our own that splits `arm7.bin` into objects. Then link it with mwldarm, put the ARM7 hash in `config/AWRE/modules.sha1`, and keep `make release` matching. Close 0013 here.
+2. **Answer scope questions 1 and 2.** Count ARM7's functions and how many are Thumb. Look for game data references and for code that differs from the SDK 2.39 ARM7 component. Fingerprint the compiler the way `docs/awre-facts.md` did for ARM9 (prologues, literal pools, `-proc arm7tdmi`), and record the result there.
+3. **Teach the tools a second CPU.** `fn.py`, `fnindex.py`, `progress.py`, `propagate.py`, `trivial.py`, `permute.py` and the loop job templates assume ARM9 modules. Add `arm7` as a module with its own compiler flags in `tools/configure.py`. Put the C in `src/arm7/`, with `sdk/` and `game/` inside it if any game code turns up.
+4. **Progress tracking** (see the requirement below), in the same change as step 3.
+5. **Decompile.** Start with ARM7 functions that have an ARM9 twin already matched (OS, PXI, and other SDK code built for both CPUs) through `propagate.py`, then the short functions through `trivial.py`, then the rest through the loop.
+6. **Update the rules.** After step 1, change the hard rule in `CLAUDE.md` and the plan in `docs/early-phase-project-plan.md` so they no longer say ARM7 is copied from the ROM.
+
+Priority: after the ARM9 game partials. Steps 1 to 4 can run beside the ARM9 SDK/library work, because they touch tools and config, not ARM9 C.
+
+## Requirement: PROGRESS.md tracks ARM7
+
+- ARM7 gets its own rows, separate from ARM9, in both the totals table and the by-module table. ARM9 means main, itcm and the overlays; ARM7 means `arm7.bin`.
+- Each CPU keeps the game and SDK/library split, if ARM7 turns out to have any game code.
+- The totals table ends with a combined row that adds ARM9 and ARM7: functions in C, bytes in C, % of bytes, and asm functions and bytes.
+- Once ARM7 is delinked (step 1), ARM7's functions count in the denominators even while none of them are in C, so the combined percentage reflects all the code there is to decompile.
+- `tools/progress.py` and `build/report.json` follow the same split.
+
+## Other code in the ROM
+
+The Download Play child in the file system has its own ARM9 and ARM7. It is tracked in issue 0049, not here.
+
 ## Done when
 
-The questions above are answered here, and a plan exists for ARM7 in C after 0013 is done. Close or split this issue then.
+Steps 1 and 2 are done and their answers are written here, and the plan above is updated with what they found. Split step 5 into its own issue then, and close this one.
