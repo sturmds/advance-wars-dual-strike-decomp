@@ -6,7 +6,7 @@
 #include "game/co_save.h"
 
 /* Best run of one Survival mode variant (data_022a7b80.unk_07, 0-5).
- * func_020eae84 writes it at the end of a run. */
+ * Survival_SaveRecord writes it at the end of a run. */
 typedef struct SurvivalRecord {
     u8 co;                             /* CO id of the run, 0 when no record is saved (func_02047944) */
     u8 tagCo;                          /* second CO id, 0 for none (func_02047924) */

@@ -13802,6 +13802,10 @@ src/game/main/menus/survival_get_grade.c:
     complete
     .text       start:0x020ead98 end:0x020eae84
 
+src/game/main/menus/survival_save_record.c:
+    complete
+    .text       start:0x020eae84 end:0x020eafac
+
 src/game/main/menus/survival_award_co_experience.c:
     complete
     .text       start:0x020eafac end:0x020eb024
