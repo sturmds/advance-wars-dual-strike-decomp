@@ -11,7 +11,7 @@ void func_01ff8bc8(int layer, int scrollX, int scrollY);
 BOOL func_020f3178(void);
 BOOL TimeLimit_GetTotal(int *value);
 BOOL TimeLimit_GetRemaining(int *value);
-void func_020f18b0(int index, int x, int y);
+void TimeDial_QueueSprite(int index, int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -61,8 +61,8 @@ void TimeDial_Update(TimeDial *dial)
     idx = ((dial->angle - 0x4000) & 0xffff) >> 4;
     handX = ((data_0214d4c4[idx * 2 + 1] << 7) >> 12) + 8;
     handY = ((data_0214d4c4[idx * 2] << 7) >> 12) + 128;
-    func_020f18b0(0, 136, 128);
-    func_020f18b0(2, 136, 128);
-    func_020f18b0(3, handX, handY);
-    func_020f18b0(1, handX, handY);
+    TimeDial_QueueSprite(0, 136, 128);
+    TimeDial_QueueSprite(2, 136, 128);
+    TimeDial_QueueSprite(3, handX, handY);
+    TimeDial_QueueSprite(1, handX, handY);
 }

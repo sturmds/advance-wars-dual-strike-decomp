@@ -4537,7 +4537,7 @@ func_020f1368 kind:function(arm,size=0x14) addr:0x020f1368
 func_020f137c kind:function(arm,size=0x10) addr:0x020f137c
 MapCursor_MoveToTouch kind:function(arm,size=0x190) addr:0x020f138c
 Gfx_LoadBmap083 kind:function(arm,size=0x394) addr:0x020f151c
-func_020f18b0 kind:function(arm,size=0x60) addr:0x020f18b0
+TimeDial_QueueSprite kind:function(arm,size=0x60) addr:0x020f18b0
 TimeDial_Update kind:function(arm,size=0x190) addr:0x020f1910
 func_020f1aa0 kind:function(arm,size=0xc) addr:0x020f1aa0
 func_020f1aac kind:function(arm,size=0x18) addr:0x020f1aac
@@ -6113,7 +6113,7 @@ data_02139d50 kind:data(any) addr:0x02139d50
 data_02139d90 kind:data(any) addr:0x02139d90
 data_02139fd0 kind:data(any) addr:0x02139fd0
 data_0213a7d0 kind:data(any) addr:0x0213a7d0
-data_0213b7dc kind:data(any) addr:0x0213b7dc
+gTimeDialSprites kind:data(any) addr:0x0213b7dc
 data_0213b8ac kind:data(any) addr:0x0213b8ac
 data_0213b8f0 kind:data(any) addr:0x0213b8f0
 data_0213bda0 kind:data(any) addr:0x0213bda0

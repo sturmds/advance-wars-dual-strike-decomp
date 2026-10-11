@@ -17536,6 +17536,10 @@ src/game/main/graphics/gfx_load_bmap083.c:
     complete
     .text       start:0x020f151c end:0x020f18b0
 
+src/game/main/time_dial_queue_sprite.c:
+    complete
+    .text       start:0x020f18b0 end:0x020f1910
+
 src/game/main/time_dial_update.c:
     complete
     .text       start:0x020f1910 end:0x020f1aa0
