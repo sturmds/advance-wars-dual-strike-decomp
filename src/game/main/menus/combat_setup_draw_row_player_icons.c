@@ -21,8 +21,9 @@ extern u8 data_027c0040;
 
 /* Combat setup sub screen (link play): queues one icon per player in each
  * team row, spread evenly across the row. The local player's icon, while
- * its unk_1 is 0, uses OBJ affine matrix 30 at double size and pulses with
- * the frame count; players with unk_1 set are drawn semi-transparent.
+ * the player is not ready (players[].unk_1 == 0), uses OBJ affine matrix 30
+ * at double size and pulses with the frame count; ready players are drawn
+ * semi-transparent.
  * The first unk_07 bytes of a row hold its players. */
 void CombatSetup_DrawRowPlayerIcons(int x, int y)
 {
