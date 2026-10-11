@@ -4,7 +4,7 @@
 
 void Wireless_OnParentEvent(WMStartParentCallback *cb);
 void Wireless_ClearPlayerName(u8 aid);
-int func_02117a1c(void (*callback)(WMStartParentCallback *cb));
+int WM_StartParent(void (*callback)(WMStartParentCallback *cb));
 
 /* Forgets all children, then starts the parent role with
  * Wireless_OnParentEvent as callback. True when the request started. */
@@ -17,5 +17,5 @@ BOOL Wireless_StartParent(void)
     for (aid = 1; aid < 8; aid++) {
         Wireless_ClearPlayerName(aid);
     }
-    return func_02117a1c(Wireless_OnParentEvent) == 2;
+    return WM_StartParent(Wireless_OnParentEvent) == 2;
 }

@@ -22047,6 +22047,10 @@ src/sdk/wm/wm_end_parent.c:
     complete
     .text       start:0x021179d4 end:0x02117a1c
 
+src/sdk/wm/wm_start_parent.c:
+    complete
+    .text       start:0x02117a1c end:0x02117a64
+
 src/game/main/func_0211ba5c.c:
     complete
     .text       start:0x0211ba5c end:0x0211ba80
