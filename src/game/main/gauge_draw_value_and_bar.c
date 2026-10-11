@@ -3,7 +3,7 @@
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_02058510(int x, int y, int digit, int frame, int matrixIndex);
+void Gauge_QueueDigitPopIn(int x, int y, int digit, int frame, int matrixIndex);
 
 extern u8 data_027c0028;
 extern u8 data_027c00d8;
@@ -38,11 +38,11 @@ void Gauge_DrawValueAndBar(int x, int y, int value, int frame)
 
     digit = HwDiv32(value, 100);
     rest = HwMod32(value, 100);
-    func_02058510(x - 1, y + 12, digit, frame, 1);
+    Gauge_QueueDigitPopIn(x - 1, y + 12, digit, frame, 1);
     digit = HwDiv32(rest, 10);
     rest = HwMod32(rest, 10);
-    func_02058510(x + 11, y + 12, digit, frame - 4, 2);
-    func_02058510(x + 23, y + 12, rest, frame - 8, 3);
+    Gauge_QueueDigitPopIn(x + 11, y + 12, digit, frame - 4, 2);
+    Gauge_QueueDigitPopIn(x + 23, y + 12, rest, frame - 8, 3);
 
     /* Needed to match: barY is computed in both arms. */
     if (value >= 5) {
