@@ -7,7 +7,7 @@
 typedef struct Unk_0215fe84 {
     u16 childAids;                     /* bit n set while child aid n is connected */
     u8 pad_02[0x06 - 0x02];
-    u8 unk_06;
+    s8 unk_06;                         /* -1 after func_020791f8, 0 on parent start */
     u8 pad_07[0x14 - 0x07];
     int unk_14;                        /* set to 1 by Wireless_OnEvent */
     int unk_18;                        /* returned by func_02077f20 */
