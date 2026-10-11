@@ -19,8 +19,8 @@ typedef struct SurvivalRecord {
  * (coRecords, the Force Rank table Co_GetForceRankSetIndex reads) and
  * counters of what human players did, each capped at 999999 or 999999999. */
 typedef struct PlayRecords {
-    u32 unk_00;
-    u32 unk_04;                        /* capped at 99999; PlayRecords_AddCoins adds to it with unk_00 and unk_384 */
+    u32 points;                        /* spent in Hachi's shop (func_02017bf8); battles add to it (PlayRecords_AddCoins) */
+    u32 unk_04;                        /* capped at 99999; PlayRecords_AddCoins adds to it with points and unk_384 */
     u8 unk_08;
     u8 unk_09;
     u8 unk_0a;

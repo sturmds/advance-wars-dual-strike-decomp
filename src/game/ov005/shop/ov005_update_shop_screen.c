@@ -16,7 +16,7 @@ void func_01ff8a2c(void *map, int x, int y, int width, int height, int tile);
 void func_0201d7d0(void);
 void func_0201c898(void);
 int func_02014c24(void);
-BOOL func_02017bf8(u32 points);         /* takes points from gPlayRecords.unk_00 if there are enough */
+BOOL func_02017bf8(u32 points);         /* takes points from gPlayRecords.points if there are enough */
 void EventSequenceTask_StartWithSongFade(Ov005Task *task);
 Task *func_020fcb08(int song);
 BOOL func_020fccbc(Task *task);
@@ -40,7 +40,7 @@ void Ov005_BuySelectedShopItem(Unk_ov005_0236bbb0 *work);
 void Ov005_CollectShopItems(Unk_ov005_0236bbb0 *work);
 void Ov005_DrawShopPoints(Unk_ov005_0236bbb0 *work);
 void Ov005_DrawShopPage(Unk_ov005_0236bbb0 *work);
-int func_ov005_02367bd0(Unk_ov005_0236bbb0 *work);   /* items from the current page on */
+int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0 *work);   /* items from the current page on */
 BOOL func_ov005_02367e50(void);                       /* 1: no item left for sale */
 u8 func_ov005_02367e8c(void);                         /* shop visits, gPlayRecords byte 0x13 */
 void func_ov005_02367e70(void);                       /* adds 1 to it, up to 255 */
@@ -128,7 +128,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Task_Create(data_ov005_0236b35c, task);
         task->step++;
     case 15:
-        if (work->unk_14 == 0) {
+        if (work->transition == 0) {
             SWITCH_TO(data_027c0288.unk_00);
             MenuButton_Add(0, 0, &data_ov005_0236b42c, 240);
             MenuButton_Add(0, 0, &data_ov005_0236b404, 241);
@@ -163,7 +163,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         } else if ((keys & (PAD_BUTTON_L | PAD_BUTTON_Y)) || (gKeypad->repeat & PAD_KEY_LEFT) || work->unk_0c == 1) {
             work->unk_0c = 0;
             if (work->page <= 0) {
-                work->page = work->pageCount;
+                work->page = work->lastPage;
             } else {
                 work->page--;
             }
@@ -173,7 +173,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
             Ov005_AddShopPageButtons(work);
         } else if ((keys & (PAD_BUTTON_R | PAD_BUTTON_X)) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_10 == 1) {
             work->unk_10 = 0;
-            if (work->page >= work->pageCount) {
+            if (work->page >= work->lastPage) {
                 work->page = 0;
             } else {
                 work->page++;
@@ -190,7 +190,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Task_Create(data_ov005_0236b374, task);
         task->step++;
     case 31:
-        if (work->unk_14 == 0) {
+        if (work->transition == 0) {
             func_ov005_02367ec0(work->items[Ov005_GetSelectedShopItemIndex(work)].confirmScript);
             task->step++;
         }
@@ -238,27 +238,27 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         /* frames: 1 once the count is done (or skipped by a key) */
         if (task->frames == 0) {
-            if (Touch_IsPressed() || Keypad_ConfirmUnk0c() || work->points <= gPlayRecords.unk_00) {
+            if (Touch_IsPressed() || Keypad_ConfirmUnk0c() || work->points <= gPlayRecords.points) {
                 task->frames = 1;
-                work->points = gPlayRecords.unk_00;
+                work->points = gPlayRecords.points;
                 Sound_StopSubSe(0);
                 Sound_PlaySe(0x10004);
             }
         }
-        if (!func_ov005_02367e9c() && work->points <= gPlayRecords.unk_00) {
+        if (!func_ov005_02367e9c() && work->points <= gPlayRecords.points) {
             SWITCH_TO(data_027c0288.unk_00);
             func_01ff8a2c(data_02297be0, 6, 0, 26, 6, 0);
             func_0201d7d0();
             SWITCH_BACK();
-            work->points = gPlayRecords.unk_00;
+            work->points = gPlayRecords.points;
             work->unk_1c = 1;
             Ov005_BuySelectedShopItem(work);
             work->itemCount--;
-            work->pageCount = HwDiv32(work->itemCount - 1, 6);
+            work->lastPage = HwDiv32(work->itemCount - 1, 6);
             if (work->itemCount != 0) {
-                if (func_ov005_02367bd0(work) == 0) {
+                if (Ov005_GetShopItemsFromPage(work) == 0) {
                     work->cursorRow = 0;
-                    work->page = work->pageCount;
+                    work->page = work->lastPage;
                 }
             }
             Ov005_CollectShopItems(work);
@@ -287,7 +287,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Task_Create(data_ov005_0236b35c, task);
         task->step++;
     case 51:
-        if (work->unk_14 == 0) {
+        if (work->transition == 0) {
             work->highlightCursorRow = 0;
             work->showCursor = 0;
             Ov005_AddShopPageButtons(work);
@@ -303,7 +303,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Task_Create(data_ov005_0236b374, task);
         task->step++;
     case 91:
-        if (work->unk_14 == 0) {
+        if (work->transition == 0) {
             if ((func_ov005_02367e8c() & 3) == 0) {
                 func_ov005_02367ec0(data_ov005_0236b880);
             } else if ((func_ov005_02367e8c() & 3) == 1) {
@@ -325,7 +325,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         Task_Create(data_ov005_0236b35c, task);
         task->step++;
     case 94:
-        if (work->unk_14 == 0) {
+        if (work->transition == 0) {
             task->step++;
             break;
         }

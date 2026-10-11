@@ -32,7 +32,7 @@ void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work)
     if (work->itemCount == 0) {
         pages = 0;
     } else {
-        pages = work->pageCount + 1; /* pageCount holds the last page index */
+        pages = work->lastPage + 1;
     }
     pagesTens = HwDiv32(pages, 10);
     pages -= pagesTens * 10;
@@ -43,7 +43,7 @@ void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    if (work->pageCount + 1 < 10) {
+    if (work->lastPage + 1 < 10) {
         Icon_Draw(ICON_DIGIT_0 + page, 184, 32, 0, 0);
         Icon_Draw(ICON_SLASH, 192, 32, 0, 0);
         Icon_Draw(ICON_DIGIT_0 + pages, 200, 32, 0, 0);

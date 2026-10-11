@@ -130,7 +130,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     work->unk_08 = 0;
     work->unk_0c = 0;
     work->unk_10 = 0;
-    work->unk_14 = 0;
+    work->transition = 0;
     work->redrawRows = 1;
     work->songTask = func_020fcbd8(12, 0);
     task->step = 0;

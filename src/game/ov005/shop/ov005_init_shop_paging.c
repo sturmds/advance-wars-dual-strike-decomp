@@ -13,6 +13,6 @@ void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work)
     work->unk_2c = 0;
     work->buttons = work->buttonBuf;
     work->page = 0;
-    work->pageCount = HwDiv32(work->itemCount - 1, 6);
+    work->lastPage = HwDiv32(work->itemCount - 1, 6);
     Mem_Copy32(data_ov005_0236b498, work->buttons, sizeof(work->buttonBuf));
 }

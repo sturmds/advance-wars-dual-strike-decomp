@@ -28,12 +28,12 @@ typedef struct ShopButton {
  * items with prices (from the 28-byte records at data_0216cb60), six rows
  * per page. */
 typedef struct Unk_ov005_0236bbb0 {
-    int points;                        /* shown at the top (Ov005_DrawShopPoints); Ov005_LoadShopItems copies the first word of gPlayRecords */
+    int points;                        /* shown at the top (Ov005_DrawShopPoints); Ov005_LoadShopItems copies gPlayRecords.points */
     int unk_04;
     u32 unk_08;
     int unk_0c;
     int unk_10;
-    int unk_14;
+    int transition;                    /* 1: func_0201cbbc level eases 6 to 0, 2: 0 to 6 (Ov005_UpdateShopTransition); 0 when done */
     int redrawRows;                    /* 1: Ov005_DrawShopPage clears the rows first */
     int unk_1c;
     u32 shopItemCount;                 /* records of data_0216cb60 that Ov005_LoadShopItems scans */
@@ -42,12 +42,12 @@ typedef struct Unk_ov005_0236bbb0 {
     int unk_2c;                        /* set to cursorRow when it changes */
     int buttonCount;                   /* buttons on the current page */
     int page;                          /* six items per page */
-    int pageCount;
+    int lastPage;                      /* (itemCount - 1) / 6 */
     u32 iconCount;                     /* entries of icons in use */
     u32 icons[50];                     /* icon ids loaded so far (Ov005_LoadShopIcon) */
     int itemCount;                     /* items in `items` */
-    int highlightCursorRow;                       /* 1: the cursor row's name and price use palette 9 */
-    int showCursor;                       /* 1: the menu cursor shows on the cursor row */
+    int highlightCursorRow;            /* 1: the cursor row's name and price use palette 9 */
+    int showCursor;                    /* 1: the menu cursor shows on the cursor row */
     ShopItem *items;                   /* the items for sale, filled by Ov005_LoadShopItems */
     ShopItem itemBuf[256];             /* items points here */
     ShopButton *buttons;               /* points at buttonBuf */

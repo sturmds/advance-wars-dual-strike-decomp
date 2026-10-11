@@ -10,7 +10,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void MenuCursor_DrawAt(int x, int y, int width, int height);
-int func_ov005_02367bd0(Unk_ov005_0236bbb0 *work); /* itemCount - page * 6 */
+int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0 *work); /* itemCount - page * 6 */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -38,7 +38,7 @@ void Ov005_DrawShopPage(Unk_ov005_0236bbb0 *work)
     int rows;
     int i;
 
-    rows = func_ov005_02367bd0(work);
+    rows = Ov005_GetShopItemsFromPage(work);
     if (rows > 6) {
         rows = 6;
     }

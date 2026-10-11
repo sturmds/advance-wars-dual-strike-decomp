@@ -20,7 +20,7 @@ void Ov005_LoadShopItems(Unk_ov005_0236bbb0 *work)
     work->items = work->itemBuf;
     dst = work->items;
     src = data_0216cb60;
-    work->points = gPlayRecords.unk_00;
+    work->points = gPlayRecords.points;
     Ov005_InitShopIconBank(work);
     for (count = 0; count < work->shopItemCount; src++) {
         int result = Ov005_CopyShopItemIfForSale(src, dst);

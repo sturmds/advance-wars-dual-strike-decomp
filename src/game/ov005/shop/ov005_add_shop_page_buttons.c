@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbb0.h"
 
-int func_ov005_02367bd0(Unk_ov005_0236bbb0 *work);
+int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0 *work);
 
 extern const MenuButtonTemplate data_ov005_0236b3dc;
 
@@ -15,7 +15,7 @@ void Ov005_AddShopPageButtons(Unk_ov005_0236bbb0 *work)
     int i;
     int count;
 
-    count = func_ov005_02367bd0(work);
+    count = Ov005_GetShopItemsFromPage(work);
     if (count > 6) {
         count = 6;
     }
