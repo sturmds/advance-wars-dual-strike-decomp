@@ -4,7 +4,7 @@
 
 void Ov006_StoreMapCell(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
 void Ov006_SetCellAndFit(int x, int y, int cell);
-void func_ov006_02366f9c(int x, int y);
+void Ov006_RefitCellToRight(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -34,7 +34,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * cell that was there. If it was part of a 3x3 or 2x2 block of the cells
  * above, rebuilds what is left: a 3x3 block that loses an edge or corner
  * cell shrinks to a 2x2 block of corner cells, and the cells that no longer
- * fit become wood. Last, func_ov006_02366f9c refits the tile right of x, y. */
+ * fit become wood. Last, Ov006_RefitCellToRight refits the tile right of x, y. */
 void Ov006_BreakCellBlock(int x, int y)
 {
     int cell;
@@ -180,5 +180,5 @@ void Ov006_BreakCellBlock(int x, int y)
         }
         break;
     }
-    func_ov006_02366f9c(x, y);
+    Ov006_RefitCellToRight(x, y);
 }
