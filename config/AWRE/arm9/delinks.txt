@@ -13868,6 +13868,10 @@ src/game/main/func_020f2a18.c:
     complete
     .text       start:0x020f2a18 end:0x020f2a3c
 
+src/game/main/number_sprite_put_glyph.c:
+    complete
+    .text       start:0x020f2a3c end:0x020f2a68
+
 src/game/main/func_020f3110.c:
     complete
     .text       start:0x020f3110 end:0x020f3114
