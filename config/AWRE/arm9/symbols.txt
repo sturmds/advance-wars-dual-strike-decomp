@@ -863,7 +863,7 @@ Text_AddSpacerCodes kind:function(arm,size=0xc0) addr:0x02020f80
 Text_PutGlyphTiles kind:function(arm,size=0x58) addr:0x02021040
 Text_WriteCachedString kind:function(arm,size=0x80) addr:0x02021098
 TextPrinter_WriteRun kind:function(arm,size=0x4c) addr:0x02021118
-func_02021164 kind:function(arm,size=0x40) addr:0x02021164
+Text_AdvanceDrawPos kind:function(arm,size=0x40) addr:0x02021164
 func_020211a4 kind:function(arm,size=0xb4) addr:0x020211a4
 FontCache_Add kind:function(arm,size=0x128) addr:0x02021258
 Font_LoadDigits kind:function(arm,size=0x40) addr:0x02021380
@@ -8704,9 +8704,9 @@ gMapPreviewWidth kind:bss addr:0x0229b05c
 gMapPreviewHeight kind:bss addr:0x0229b060
 gMapPreviewColumnSteps kind:bss addr:0x0229b064
 gMapPreviewRowSteps kind:bss addr:0x0229b06c
-data_0229b074 kind:bss addr:0x0229b074
-data_0229b078 kind:bss addr:0x0229b078
-data_0229b07c kind:bss addr:0x0229b07c
+gTextDrawWidth kind:bss addr:0x0229b074
+gTextDrawGlyphWidth kind:bss addr:0x0229b078
+gTextDrawTilePixel kind:bss addr:0x0229b07c
 data_0229b080 kind:bss addr:0x0229b080
 gTaskSystemReady kind:bss addr:0x0229b380
 data_0229b384 kind:bss addr:0x0229b384
