@@ -8,7 +8,7 @@ int Player_GetCoIconTile(int player, int type);
 int func_020c7614(int player, int unitType);
 int func_020c7580(int player, int unitType);
 BOOL func_0203bf2c(int x, int width);
-void func_0203bc5c(int x, int y, int value);
+void ResultStats_DrawCount(int x, int y, int value);
 
 extern const u8 data_0215a51c[];               /* unit types, 7 rows of 4; 0 leaves a cell empty */
 extern u8 data_027c0040;
@@ -42,9 +42,9 @@ void func_0203bae4(int offset, Task *task)
             Sprite_QueueAt(0, (offset + x) & 0x1ff, 48 + row * 16, &data_027c0040, (task->unk_66 + 1) << 12,
                            Player_GetCoIconTile(task->unk_66, type) + 134);
             if (task->unk_68 == 0) {
-                func_0203bc5c(offset + x + 16, 48 + row * 16, func_020c7614(task->unk_66, type));
+                ResultStats_DrawCount(offset + x + 16, 48 + row * 16, func_020c7614(task->unk_66, type));
             } else {
-                func_0203bc5c(offset + x + 16, 48 + row * 16, func_020c7580(task->unk_66, type));
+                ResultStats_DrawCount(offset + x + 16, 48 + row * 16, func_020c7580(task->unk_66, type));
             }
         }
     }
