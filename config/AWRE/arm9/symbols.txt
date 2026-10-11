@@ -1458,7 +1458,7 @@ func_0203e074 kind:function(arm,size=0x158) addr:0x0203e074
 func_0203e1cc kind:function(arm,size=0x2a4) addr:0x0203e1cc
 func_0203e470 kind:function(arm,size=0x15c) addr:0x0203e470
 func_0203e5cc kind:function(arm,size=0xb0) addr:0x0203e5cc
-func_0203e67c kind:function(arm,size=0xc84) addr:0x0203e67c
+WinLoseScreen_Init kind:function(arm,size=0xc84) addr:0x0203e67c
 func_0203f300 kind:function(arm,size=0x40) addr:0x0203f300
 func_0203f340 kind:function(arm,size=0x1bc) addr:0x0203f340
 func_0203f4fc kind:function(arm,size=0x358) addr:0x0203f4fc
@@ -7128,8 +7128,8 @@ data_0215a5d8 kind:data(any) addr:0x0215a5d8
 data_0215a600 kind:data(any) addr:0x0215a600
 data_0215a628 kind:data(any) addr:0x0215a628
 data_0215a690 kind:data(any) addr:0x0215a690
-data_0215a760 kind:data(any) addr:0x0215a760
-data_0215a780 kind:data(any) addr:0x0215a780
+gResultPointObjPath kind:data(any) addr:0x0215a760
+gWinLosePath kind:data(any) addr:0x0215a780
 data_0215a794 kind:data(any) addr:0x0215a794
 data_0215a7a4 kind:data(any) addr:0x0215a7a4
 data_0215a7cc kind:data(any) addr:0x0215a7cc

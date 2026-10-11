@@ -155,7 +155,9 @@ typedef struct Unk_027c0280 {
     u16 *layer1Map;
     u8 pad_104[0x109 - 0x104];
     u8 layer2Bg;
-    u8 pad_10a[0x114 - 0x10a];
+    u8 pad_10a[0x10c - 0x10a];
+    void *unk_10c;                     /* layer 2 tile data; the win/lose screen copies the main screen's to the sub screen */
+    u8 pad_110[0x114 - 0x110];
     u16 *layer2Map;
     u8 pad_118[0x11d - 0x118];
     u8 layer3Bg;
