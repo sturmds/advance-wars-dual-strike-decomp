@@ -16186,6 +16186,10 @@ src/game/main/func_020f78b8.c:
     complete
     .text       start:0x020f78b8 end:0x020f78dc
 
+src/game/main/map/map_view_draw_range_tile.c:
+    complete
+    .text       start:0x020f78dc end:0x020f79a4
+
 src/game/main/func_020f79a4.c:
     complete
     .text       start:0x020f79a4 end:0x020f79a8

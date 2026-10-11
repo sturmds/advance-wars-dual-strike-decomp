@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020f78dc(int x, int y);
+void MapView_DrawRangeTile(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -17,6 +17,6 @@ void MapView_DrawRangeColumn(int bufX, int bufY, int mapX, int mapY)
 
     count = (GAME->unk_1c4->mapHeight - mapY > 12) ? 13 : 12;
     for (i = 0; i < count; i++) {
-        func_020f78dc(mapX, (s16)(mapY + i));
+        MapView_DrawRangeTile(mapX, (s16)(mapY + i));
     }
 }
