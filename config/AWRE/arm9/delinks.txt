@@ -3828,6 +3828,10 @@ src/game/main/func_02031480.c:
     complete
     .text       start:0x02031480 end:0x02031498
 
+src/game/main/map/player_get_current_or_first.c:
+    complete
+    .text       start:0x02031498 end:0x0203153c
+
 src/game/main/menus/menu_is_busy.c:
     complete
     .text       start:0x020316f8 end:0x0203175c

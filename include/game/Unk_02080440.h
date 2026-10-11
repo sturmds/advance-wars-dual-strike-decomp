@@ -62,7 +62,7 @@ typedef struct Unk_02080440_1c4 {
     u16 unk_26;
     u16 unk_28;
     u16 scrollFlags;                   /* scroll directions in progress: 1 right, 2 left, 4 up, 8 down (MapView_ScrollStep) */
-    u8 playerCount;                    /* players on the loaded map; the loop bound in func_02031498 */
+    u8 playerCount;                    /* players on the loaded map; the loop bound in Player_GetCurrentOrFirstInGame */
     u8 pad_2d[0x30 - 0x2d];
     u32 unk_30;
     u16 mapId;                         /* index into Ov000_gMapHeaders */
