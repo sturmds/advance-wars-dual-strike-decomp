@@ -9704,6 +9704,10 @@ src/game/main/map/map_cursor_move_by_keys.c:
     complete
     .text       start:0x020ef664 end:0x020ef7f0
 
+src/game/main/map/map_cursor_step_past_view_edge.c:
+    complete
+    .text       start:0x020ef8d8 end:0x020efab0
+
 src/game/main/map/map_cursor_update_from_touch.c:
     complete
     .text       start:0x020f0c94 end:0x020f0ef4
