@@ -37,6 +37,7 @@ typedef struct FSFileID {
 #define FS_FILE_STATUS_SYNC 0x04           /* a thread waits for the command (the bit named BUSY above) */
 #define FS_FILE_STATUS_ASYNC 0x08          /* the archive runs the command in the background */
 #define FS_FILE_STATUS_IS_FILE 0x10
+#define FS_FILE_STATUS_IS_DIR 0x20
 
 /* Where FS_SeekFile counts the offset from. */
 #define FS_SEEK_SET 0
@@ -186,7 +187,10 @@ BOOL FS_SeekFile(FSFile *file, s32 offset, int origin);
 void FS_CancelFile(FSFile *file);
 BOOL FS_WaitAsync(FSFile *file);
 
-/* Looks up a path: gives a file ID or a directory position (not named yet). */
+/* Not named yet: sends a command to the file's archive. */
+BOOL func_021120d4(FSFile *file, u32 command);
+
+/* Not named yet: looks up a path and gives a file ID or a directory position. */
 BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);
 void FSi_ReleaseCommand(FSFile *file, int result);
 void FSi_AppendToList(FSFile *file, FSFile *head);
