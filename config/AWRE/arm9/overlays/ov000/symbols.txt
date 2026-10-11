@@ -1037,7 +1037,7 @@ data_ov000_022f5c9c kind:data(any) addr:0x022f5c9c
 data_ov000_022f5cac kind:data(any) addr:0x022f5cac ambiguous
 data_ov000_022f5cc8 kind:data(any) addr:0x022f5cc8
 data_ov000_022f5ce4 kind:data(any) addr:0x022f5ce4 ambiguous
-data_ov000_022f5d00 kind:data(any) addr:0x022f5d00 ambiguous
+Ov000_gFuelFreeTerrain kind:data(any) addr:0x022f5d00 ambiguous
 data_ov000_022f5d1c kind:data(any) addr:0x022f5d1c
 data_ov000_022f5d88 kind:data(any) addr:0x022f5d88 ambiguous
 Ov000_gForceRankTable kind:data(any) addr:0x022f5ecc ambiguous

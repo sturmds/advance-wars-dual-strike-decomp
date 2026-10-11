@@ -93,7 +93,7 @@ typedef struct UnitStats {
     u8 chartDamage[2][32];             /* [weapon][damage chart column]: base damage in percent; 0: cannot hit */
     u8 pad_63;
     const s8 *repairTerrain;           /* per terrain id: nonzero where this type is repaired (ground: city, HQ, base; air: airport; sea: port) */
-    u8 pad_68[0x6c - 0x68];
+    const s8 *dailyFuel;               /* per terrain id: fuel used at the start of each day (Fighter 5, Battleship 1; NULL for ground units) */
 } UnitStats;
 
 typedef char UnitStats_size_check[sizeof(UnitStats) == 0x6c ? 1 : -1];

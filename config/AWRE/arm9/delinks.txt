@@ -8600,6 +8600,10 @@ src/game/main/map/current_player_next_idle_unit.c:
     complete
     .text       start:0x020c92a0 end:0x020c9484
 
+src/game/main/units/unit_uses_daily_fuel.c:
+    complete
+    .text       start:0x020c9484 end:0x020c9588
+
 src/game/main/units/player_count_units.c:
     complete
     .text       start:0x020c9704 end:0x020c9778
