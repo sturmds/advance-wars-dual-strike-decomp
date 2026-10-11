@@ -947,6 +947,10 @@ src/game/main/touch_release.c:
     complete
     .text       start:0x0200a234 end:0x0200a2b8
 
+src/game/main/touch_update_touched.c:
+    complete
+    .text       start:0x0200a2b8 end:0x0200a3b8
+
 src/game/main/touch_poll.c:
     complete
     .text       start:0x0200a3b8 end:0x0200a418
