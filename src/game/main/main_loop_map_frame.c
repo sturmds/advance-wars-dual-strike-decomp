@@ -12,7 +12,7 @@ extern u32 data_022a6b38;     /* 1 once Battle_ResetTurnState has run, 0 while a
 
 void func_0210b97c(void);
 void func_01ffd6f4(void);
-void func_0201a8bc(void);
+void EventScript_UpdateAll(void);
 void Game_RunStateFrame(void);
 void ScriptSlot_RunAll(void);
 void Task_RunList(Task *task);
@@ -30,7 +30,7 @@ void MainLoop_MapFrame(void)
         func_0210b97c();
         func_01ffd6f4();
     }
-    func_0201a8bc();
+    EventScript_UpdateAll();
     if (data_022a6b38 != 0 && data_022a6b38 == 1) {
         Game_RunStateFrame();
     }

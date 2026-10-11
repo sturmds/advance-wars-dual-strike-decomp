@@ -6,7 +6,7 @@
 
 void Ov003_Begin3d(void);
 void Ov003_Update(void);
-void func_0201a8bc(void);
+void EventScript_UpdateAll(void);
 void ScriptSlot_RunAll(void);
 void Ov003_End3d(void);
 void Task_RunList(Task *task);
@@ -18,7 +18,7 @@ void Ov003_DrawFrame(void)
     Ov003_Begin3d();
     Ov003_Update();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_0201a8bc();
+    EventScript_UpdateAll();
     ScriptSlot_RunAll();
     Task_RunList(data_027c027c->taskLists[1]);
     Task_RunList(data_027c027c->taskLists[2]);
