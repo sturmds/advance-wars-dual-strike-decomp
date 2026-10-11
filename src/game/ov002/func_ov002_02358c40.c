@@ -10,7 +10,7 @@
 #define MENU ((MenuState *)&gMenuState)
 /* The second hit list of a side. The cast to its own type changes the code mwcc makes
  * (95% without it).
- * WIP (98.9%): the later blocks read the list through this full expression so that the compiler
+ * WIP (99.7%): the later blocks read the list through this full expression so that the compiler
  * reloads the cursor as the original does; the registers still differ. */
 #define LIST(side) ((BattleHitList *)&MENU->battle.stepLists[side])
 #define DUE_CELL_TASK(side, cursor) \
@@ -18,7 +18,7 @@
 #define SIDE_COLOUR(sprite, side) (((u16(*)[2])MENU->colours)[sprite][side])
 
 void BattleCell_ApplyStep(int side, int index);
-void Battle_StartCellSprite(int side, int unk_3);
+void Battle_StartCellSprite(int side, int cell, int param);
 void Battle_StartCellSpriteOnSlot(int side, int cell, int unk_3, int unk_6, int index);
 int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int unk_3);
 int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
@@ -90,7 +90,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
                 }
             } else {
                 if (MENU->battle.unk_48[other] != 0) {
-                    Battle_StartCellSprite(side, flags->unk_3);
+                    Battle_StartCellSprite(side, flags->unk_3, hitList->cursor);
                 } else {
                     cellTask = (BattleCellTask *)MENU->battle.unk_310[side][0].unk_00;
                     CREATE_HIT_SPRITE(cellTask, LIST(side)->flags[LIST(side)->cursor].unk_3,
