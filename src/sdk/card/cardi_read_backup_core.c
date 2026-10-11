@@ -6,7 +6,7 @@ extern OSThreadInfo OSi_ThreadInfo;
 
 void OS_SleepThread(OSThreadQueue *queue);
 void CARDi_SetTask(GameCardTaskStep task);
-void func_02115ebc(CARDiCommon *common);
+void CardSave_TaskReadChunks(CARDiCommon *common);
 
 /* Reads len bytes of backup memory at src into dst; with isAsync, returns once the task is queued. */
 BOOL CARDi_ReadBackupCore(u32 src, u32 dst, u32 len, CARDCallback callback, void *callbackArg, BOOL isAsync)
@@ -28,10 +28,10 @@ BOOL CARDi_ReadBackupCore(u32 src, u32 dst, u32 len, CARDCallback callback, void
     common->callback = callback;
     common->callbackArg = callbackArg;
     if (isAsync) {
-        CARDi_SetTask(func_02115ebc);
+        CARDi_SetTask(CardSave_TaskReadChunks);
         return TRUE;
     }
     data_022abb00.waiter = OSi_ThreadInfo.current;
-    func_02115ebc(common);
+    CardSave_TaskReadChunks(common);
     return common->cmd->result == CARD_RESULT_SUCCESS;
 }
