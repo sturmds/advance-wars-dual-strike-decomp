@@ -9,7 +9,7 @@ void func_0206d384(void);
 void func_0206d5b4(void);
 
 /* A CO button of the player info screen became the selected one: shows that
- * player and CO (the button id is the one PlayerInfo_AddCoButtons gave it) and
+ * player and CO (ids as PlayerInfo_AddCoButtons gives them) and
  * redraws the screen. */
 void PlayerInfo_OnCoSelected(MenuButton *button)
 {
