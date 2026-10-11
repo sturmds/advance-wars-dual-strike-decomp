@@ -6389,6 +6389,10 @@ src/game/main/link/link_menu_decrease_setting.c:
     complete
     .text       start:0x0208690c end:0x02086a14
 
+src/game/main/link/link_menu_increase_setting.c:
+    complete
+    .text       start:0x02086a14 end:0x02086b1c
+
 src/game/main/func_02086b1c.c:
     complete
     .text       start:0x02086b1c end:0x02086b30
