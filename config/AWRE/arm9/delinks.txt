@@ -2827,6 +2827,10 @@ src/game/main/menus/main_menu_show_record_help.c:
     complete
     .text       start:0x0202fc98 end:0x02030084
 
+src/game/main/menus/main_menu_draw_page.c:
+    complete
+    .text       start:0x0203018c end:0x02030590
+
 src/game/main/menus/main_menu_is_first_side_page.c:
     complete
     .text       start:0x0203142c end:0x02031480
