@@ -15,7 +15,7 @@ void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cac
 void func_0210cb04(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM */
 void func_0210c930(void);
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
 void GX_EndLoadTexPltt(void);
 void Ov004_SetupPerspective3d(void);
@@ -157,7 +157,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     File_ReadTo(buffer, data_ov004_022bf0ec);
     Mem_Fill32(-1, buffer + 0x200, 0x200);
     DC_FlushRange(buffer, 0x400);
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(buffer, 0, 0x400);
     GX_EndLoadTexPltt();
     Ov004_SetupPerspective3d();

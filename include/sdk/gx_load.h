@@ -20,7 +20,7 @@ extern int data_022a98a0;
 extern int data_022a989c;
 extern int data_022a9898;
 
-/* State of the texture palette load (set by func_0210c8e8, the Begin function):
+/* State of the texture palette load (set by GX_BeginLoadTexPltt, the Begin function):
  * the bank mapped for loading and its address in the LCDC range. */
 extern int data_022a98ac;
 extern int data_022a98a8;

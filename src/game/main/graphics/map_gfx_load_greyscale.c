@@ -7,7 +7,7 @@ u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16 *File_Load(const char *path);
 void Mem_Free(void *block);
 void DC_FlushRange(const void *start, u32 size);
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadTexPltt(void);
 void WeatherFx_InitClouds(void);
@@ -29,7 +29,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
         palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5, (palette[i] & 0x7c00) >> 10);
     }
     DC_FlushRange(palette, 256 * sizeof(u16));
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(palette, gfx->texPaletteOffset, 256 * sizeof(u16));
     GX_EndLoadTexPltt();
     Mem_Free(palette);
@@ -39,7 +39,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
         palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5, (palette[i] & 0x7c00) >> 10);
     }
     DC_FlushRange(palette, 96 * sizeof(u16));
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(palette, gfx->texPaletteOffset, 96 * sizeof(u16));
     GX_EndLoadTexPltt();
     Mem_Free(palette);

@@ -3,7 +3,7 @@
 
 void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void GfxQueue_Reset(void);
 
@@ -27,7 +27,7 @@ void GfxQueue_Flush(void)
             break;
         case 2:
             if (data_027c0520[i].size == 2) {
-                func_0210c8e8();
+                GX_BeginLoadTexPltt();
                 VRAM_LCDC_F[(u32)data_027c0520[i].dst / 2] = *(const u16 *)data_027c0520[i].src;
                 GX_EndLoadTexPltt();
             } else {
@@ -36,7 +36,7 @@ void GfxQueue_Flush(void)
             break;
         case 3:
             if (data_027c0520[i].size == 2) {
-                func_0210c8e8();
+                GX_BeginLoadTexPltt();
                 VRAM_LCDC_F[(u32)data_027c0520[i].dst / 2] = *(const u16 *)data_027c0520[i].src;
                 GX_EndLoadTexPltt();
             } else {

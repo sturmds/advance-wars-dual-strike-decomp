@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/main_menu.h"
 
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 
 #define VRAM_LCDC_F ((u16 *)0x06890000)
@@ -14,7 +14,7 @@ void MainMenu_CycleColourUpdate(MainMenuTask *task)
     int i;
 
     if ((task->unk_4c & 3) == 0) {
-        func_0210c8e8();
+        GX_BeginLoadTexPltt();
         for (i = 0; i < 9; i++) {
             (&VRAM_LCDC_F[i * 16])[12] = ((u16 *)WORK->unk_1c)[task->unk_52 & 15];
         }

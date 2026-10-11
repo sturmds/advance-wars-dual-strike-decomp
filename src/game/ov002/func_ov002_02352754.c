@@ -11,7 +11,7 @@ u32 File_UnpackTo(void *dest, const char *path);
 int FS_ChangeDir(const char *path);
 void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
 void func_0210c930(void);              /* guess: undoes func_0210cb04 */
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
 void DC_FlushRange(void *start, u32 size);
@@ -211,7 +211,7 @@ void func_ov002_02352754(void)
         tile += LOAD_TILES(data_ov002_023604a0);
     }
     func_0210c930();
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     menu = &gMenuState;
 
     for (palSide = 0; palSide < 2; palSide++) {

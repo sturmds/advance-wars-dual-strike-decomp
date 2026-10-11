@@ -58,7 +58,7 @@ s8 func_021023d4(void);
 s8 func_021023e4(void);
 void GX_EndLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void func_0210c930(void);
 void func_0210cb04(void);
 void DC_FlushRange(const void *start, u32 size);
@@ -107,7 +107,7 @@ void func_0202f0d8(MainMenuTask *task)
     Data_Unpack(res, (void *)0x06800000);
     func_0210c930();
     DC_FlushRange(res + 0x5c78, 32);
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(res + 0x5c78, 0x240, 32);
     GX_EndLoadTexPltt();
     Mem_Free(res);
@@ -115,7 +115,7 @@ void func_0202f0d8(MainMenuTask *task)
     res = File_Load(data_02159c08);
     DC_FlushRange(res + 0x1dc, 0x120);
     DC_FlushRange(res + 0x2fc, 0x120);
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(res + 0x1dc, 0, 0x120);
     GX_LoadTexPltt(res + 0x2fc, 0x120, 0x120);
     GX_EndLoadTexPltt();
@@ -149,7 +149,7 @@ void func_0202f0d8(MainMenuTask *task)
     res = Mem_Alloc(32);
     File_ReadAt(res, data_02159c20, 32, 32);
     DC_FlushRange(res, 32);
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     GX_LoadTexPltt(res, 0x260, 32);
     GX_EndLoadTexPltt();
     Mem_Free(res);

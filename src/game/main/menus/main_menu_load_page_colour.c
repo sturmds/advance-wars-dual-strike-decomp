@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/main_menu.h"
 
-void func_0210c8e8(void);
+void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void Palette_Load(const void *src, int offset, u32 size);
 
@@ -15,7 +15,7 @@ void MainMenu_LoadPageColour(void)
     MainMenuPage *page = *data_0229c71c;
     int i;
 
-    func_0210c8e8();
+    GX_BeginLoadTexPltt();
     for (i = 0; i < 18; i++) {
         (&VRAM_LCDC_F[i * 16])[11] = WORK->unk_08[page->palette];
     }
