@@ -2042,6 +2042,7 @@ src/game/main/script/script_slot_cmd_wait_while.c:
     .text       start:0x02016c08 end:0x02016c6c
 
 src/game/main/script/script_slot_cmd_wait_until_one.c:
+    complete
     .text       start:0x02016c6c end:0x02016cd0
 
 src/game/main/script/func_02016cd0.c:
