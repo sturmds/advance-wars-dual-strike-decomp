@@ -16,7 +16,7 @@ int Text_GetStringWidth(const u8 *str);
 int func_02039f20(const u8 *str);
 int strlen(const u8 *str);       /* string length */
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
-int func_02039da0(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
+int CaptionLetter_GetAdvance(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 int HwDiv32(int num, int den);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void func_02032b14(void);
@@ -104,9 +104,9 @@ void TitleTextTask_AnimateIn(Task *task)
                 scale = Math_Ease(0, 512, 256, FRAME(task) - start, 8);
                 Oam_SetAffineParams(i + 1, DIV_SCALE(COS0 << 4, scale), DIV_SCALE(-SIN0 << 4, scale),
                                     DIV_SCALE(SIN0 << 4, scale), DIV_SCALE(COS0 << 4, scale));
-                x += func_02039da0(Text_Get(TEXT_LOWER)[i], (x & 0x1ff) | OAM_AFFINE_INDEX(i + 1), OAM_AFFINE_DOUBLE | 72, 0x1000, 0, 6);
+                x += CaptionLetter_GetAdvance(Text_Get(TEXT_LOWER)[i], (x & 0x1ff) | OAM_AFFINE_INDEX(i + 1), OAM_AFFINE_DOUBLE | 72, 0x1000, 0, 6);
             } else {
-                x += func_02039da0(Text_Get(TEXT_LOWER)[i], x & 0x1ff, 72, 0x1000, 0, 6);
+                x += CaptionLetter_GetAdvance(Text_Get(TEXT_LOWER)[i], x & 0x1ff, 72, 0x1000, 0, 6);
             }
         }
     }

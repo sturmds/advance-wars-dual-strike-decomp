@@ -7,7 +7,7 @@
 
 /* The two lines the tasks of script data_02159da8 show, also through a
  * CaptionTask: line A at y 80 in the sprite font, line B at y 72 through
- * func_02039da0. */
+ * CaptionLetter_GetAdvance. */
 #define TWO_LINE_CAPTION_TEXT_A 0x7d00001e
 #define TWO_LINE_CAPTION_TEXT_B 0x7d00001f
 

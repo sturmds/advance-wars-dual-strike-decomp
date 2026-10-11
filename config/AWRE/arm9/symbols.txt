@@ -1391,7 +1391,7 @@ ScoreList_GetPanelSize kind:function(arm,size=0x50) addr:0x02039bf8
 ScoreList_NextPage kind:function(arm,size=0xa0) addr:0x02039c48
 ScoreList_UpdatePageMax kind:function(arm,size=0x84) addr:0x02039ce8
 ScoreList_HasMoreRows kind:function(arm,size=0x34) addr:0x02039d6c
-func_02039da0 kind:function(arm,size=0x54) addr:0x02039da0
+CaptionLetter_GetAdvance kind:function(arm,size=0x54) addr:0x02039da0
 Text_GetStringWidth kind:function(arm,size=0x40) addr:0x02039df4
 Text_GetCharWidth kind:function(arm,size=0x20) addr:0x02039e34
 SpriteFont_QueueChar kind:function(arm,size=0xcc) addr:0x02039e54
@@ -7113,7 +7113,7 @@ data_0215a3e8 kind:data(any) addr:0x0215a3e8
 data_0215a400 kind:data(any) addr:0x0215a400
 data_0215a41c kind:data(any) addr:0x0215a41c
 data_0215a434 kind:data(any) addr:0x0215a434
-data_0215a440 kind:data(any) addr:0x0215a440
+gCaptionLetters kind:data(any) addr:0x0215a440
 data_0215a44c kind:data(any) addr:0x0215a44c
 data_0215a4b4 kind:data(any) addr:0x0215a4b4
 data_0215a4cc kind:data(any) addr:0x0215a4cc

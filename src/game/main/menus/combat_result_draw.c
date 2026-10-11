@@ -7,7 +7,7 @@ int strlen(const u8 *str);
 int func_02039f20(const u8 *str);
 int Text_GetStringWidth(const u8 *str);
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
-int func_02039da0(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
+int CaptionLetter_GetAdvance(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 
 /* Per-frame update of the Combat result task (data_0216168c): queues the
@@ -40,7 +40,7 @@ void CombatResult_Draw(void)
     }
     x = 128 - (Text_GetStringWidth(Text_Get(TWO_LINE_CAPTION_TEXT_B)) >> 1);
     for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_B)); i++) {
-        x += func_02039da0(Text_Get(TWO_LINE_CAPTION_TEXT_B)[i], x & 0x1ff, 72, 0, 0, 0);
+        x += CaptionLetter_GetAdvance(Text_Get(TWO_LINE_CAPTION_TEXT_B)[i], x & 0x1ff, 72, 0, 0, 0);
     }
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
