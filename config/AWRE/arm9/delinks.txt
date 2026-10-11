@@ -8494,6 +8494,10 @@ src/game/main/units/unit_action_join.c:
     complete
     .text       start:0x020ddd30 end:0x020de090
 
+src/game/main/units/acting_unit_unload_cargo.c:
+    complete
+    .text       start:0x020de090 end:0x020de244
+
 src/game/main/units/unit_action_repair.c:
     complete
     .text       start:0x020de350 end:0x020de440

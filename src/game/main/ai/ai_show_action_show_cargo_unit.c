@@ -10,7 +10,7 @@ extern int data_0229eac4;
 extern int data_022a6dd4;
 
 void *UnitShowTask_CreateMoving(int x, int y, int owner, int unitType, void *arg);
-void func_020de090(int cargoSlot);
+void ActingUnit_UnloadCargo(int cargoSlot);
 void func_020ce2a0(int unitType);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -22,7 +22,7 @@ void func_020ce2a0(int unitType);
  * unit and keeps it in data_0229eacc. The previous value in data_0229e19e
  * picks what the task gets: 0 none, 5 the packed values of the state, else
  * the entry of data_021658c8 for that value. Only the last case also calls
- * func_020de090, counts in data_0229eac4 and calls func_020ce2a0. The
+ * ActingUnit_UnloadCargo, counts in data_0229eac4 and calls func_020ce2a0. The
  * meaning of those is not known. */
 void AiShowAction_ShowCargoUnit(int cargoSlot)
 {
@@ -51,7 +51,7 @@ void AiShowAction_ShowCargoUnit(int cargoSlot)
     data_0229eacc[cargoSlot] = UnitShowTask_CreateMoving(
         (u16)state->actingUnitDestX, (u16)state->actingUnitDestY,
         OWNER_INDEX(state), cargo->type, &data_021658c8[saved - 1]);
-    func_020de090(cargoSlot);
+    ActingUnit_UnloadCargo(cargoSlot);
     data_0229eac4++;
     func_020ce2a0(cargo->type);
 }
