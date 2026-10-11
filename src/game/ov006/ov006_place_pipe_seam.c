@@ -5,7 +5,7 @@
 int Ov006_GetTilePropertyKind(int x, int y);   /* 0: no property */
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
-void func_ov006_02366064(int x, int y, int cell);
+void Ov006_AddProperty(int x, int y, int cell);
 void func_020c4448(void);
 int Ov006_GetPipeSeamCell(int x, int y);
 
@@ -30,6 +30,6 @@ void Ov006_PlacePipeSeam(int x, int y)
     Ov006_SetTerrain(x, y, TERRAIN_PIPE_SEAM);
     cell = Ov006_GetPipeSeamCell(x, y);
     Ov006_StoreMapCell(x, y, cell);
-    func_ov006_02366064(x, y, cell);
+    Ov006_AddProperty(x, y, cell);
     func_020c4448();
 }
