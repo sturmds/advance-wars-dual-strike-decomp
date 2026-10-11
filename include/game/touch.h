@@ -20,6 +20,9 @@ typedef struct TouchState {
     u8 y;
     u8 startX;                         /* where the touch began */
     u8 startY;
+    u8 pad_0c[0x0e - 0x0c];
+    u8 endX;                           /* x and y copied here when the touch ends */
+    u8 endY;
 } TouchState;
 
 extern TouchState gTouch;
