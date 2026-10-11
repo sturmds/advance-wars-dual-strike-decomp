@@ -6,7 +6,7 @@
 extern u32 data_0229c880;
 
 int func_02079180(void);
-int func_020783bc(void);
+int Wireless_StartMp(void);
 void Wireless_CountChildren(void);
 void Wireless_SetPlayerName(u8 aid, u8 *ssid);
 void Wireless_ClearPlayerName(u8 aid);
@@ -27,7 +27,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
                 func_02079180();
                 return;
             case 4:
-                if (func_020783bc()) {
+                if (Wireless_StartMp()) {
                     return;
                 }
                 func_02079180();

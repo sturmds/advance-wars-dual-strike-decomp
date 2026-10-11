@@ -5942,6 +5942,10 @@ src/game/main/link/wireless_start_rescan.c:
     complete
     .text       start:0x0207824c end:0x020782ac
 
+src/game/main/link/wireless_start_mp.c:
+    complete
+    .text       start:0x020783bc end:0x02078488
+
 src/game/main/link/wireless_start_request.c:
     complete
     .text       start:0x02078970 end:0x020789a8

@@ -11,7 +11,7 @@ typedef struct Unk_0215fe84 {
     s8 unk_06;                         /* -1 after func_020791f8, 0 on parent start */
     u8 pad_07;
     int unk_08;                        /* Wireless_SendChildData and Wireless_SendParentData send only while it is nonzero and clear it; Wireless_SendMpData sets it to 1 when the send fails */
-    int unk_0c;                        /* last argument of the data sharing start call */
+    int unk_0c;                        /* 1 after link init; passed to the MP start and data sharing start calls */
     int dataSharingActive;             /* 1 while data sharing runs */
     int unk_14;                        /* set to 1 by Wireless_OnEvent */
     int unk_18;                        /* returned by func_02077f20 */
