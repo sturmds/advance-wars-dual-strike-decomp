@@ -10460,6 +10460,10 @@ src/game/main/map/map_touch_update_list_cursor.c:
     complete
     .text       start:0x020f0708 end:0x020f0914
 
+src/game/main/units/unit_move_select_handle_touch.c:
+    complete
+    .text       start:0x020f0914 end:0x020f0adc
+
 src/game/main/map/map_cursor_update_from_touch.c:
     complete
     .text       start:0x020f0c94 end:0x020f0ef4
