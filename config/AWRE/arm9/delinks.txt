@@ -9383,6 +9383,10 @@ src/game/main/func_020d8a24.c:
     complete
     .text       start:0x020d8a24 end:0x020d8a30
 
+src/game/main/screen/screen_set_blend_top_only.c:
+    complete
+    .text       start:0x020d8a30 end:0x020d8a6c
+
 src/game/main/func_020d8c8c.c:
     complete
     .text       start:0x020d8c8c end:0x020d8cb8
