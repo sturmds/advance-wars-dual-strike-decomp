@@ -16,4 +16,12 @@ typedef struct DmaChannel {
 /* Control value for a one-unit transfer, 16-bit, fixed source and destination, starting at once. */
 #define DMA_DUMMY_TRANSFER 0x81400001
 
+/* Source address adjust bit of a DMA control value: count down instead of up. */
+#define DMA_SRC_DECREMENT 0x00800000
+
+/* The top byte of an address picks the region. */
+#define ADDRESS_REGION_MASK 0xff000000
+#define REGION_IO 0x04000000
+#define REGION_CARTRIDGE 0x08000000
+
 #endif

@@ -21198,6 +21198,10 @@ src/game/main/func_0210ee7c.c:
     complete
     .text       start:0x0210ee7c end:0x0210ee8c
 
+src/sdk/mi/mii_check_dma0_source_address.c:
+    complete
+    .text       start:0x0210ee8c end:0x0210eefc
+
 src/game/main/func_0210f0a4.c:
     complete
     .text       start:0x0210f0a4 end:0x0210f0c8
