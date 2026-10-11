@@ -2,7 +2,7 @@
 #include "game/sound_handle.h"
 
 void func_02109328(SoundFader *fader);
-void func_021092f8(SoundFader *fader, int target, int frames);
+void SoundFader_Start(SoundFader *fader, int target, int frames);
 
 /* Sets a sequence player to its start-of-sound state: no source, full
  * volume, fader at full volume. */
@@ -15,5 +15,5 @@ void SoundSeqPlayer_ResetState(SoundSeqPlayer *player)
     player->seqVolume = 127;
     player->volume = 127;
     func_02109328(&player->volumeFader);
-    func_021092f8(&player->volumeFader, 127 << 8, 1);
+    SoundFader_Start(&player->volumeFader, 127 << 8, 1);
 }

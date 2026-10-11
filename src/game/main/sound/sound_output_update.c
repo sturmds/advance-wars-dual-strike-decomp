@@ -5,7 +5,7 @@ extern Unk_022a8a10 data_022a8a10;
 
 BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
-int func_021092bc(SoundFader *fader);
+int SoundFader_GetValue(SoundFader *fader);
 void func_0210fc88(int arg0, int volume, int arg2);
 void SoundOutput_Close(void);
 
@@ -29,7 +29,7 @@ void SoundOutput_Update(void)
         SoundOutput_Close();
         return;
     }
-    volume = func_021092bc(fader) >> 8;
+    volume = SoundFader_GetValue(fader) >> 8;
     if (volume != state->appliedVolume) {
         func_0210fc88(state->unk_20, volume, 0);
         state->appliedVolume = volume;

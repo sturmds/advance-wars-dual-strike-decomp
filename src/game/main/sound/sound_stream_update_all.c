@@ -8,7 +8,7 @@ void SoundStrm_Start(SoundStream *stream);
 void SoundStrm_SetVolume(SoundStream *stream, int volume);
 BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
-int func_021092bc(SoundFader *fader);
+int SoundFader_GetValue(SoundFader *fader);
 
 /* Per-frame step for every stream slot: closes streams that finished,
  * starts the ones whose data is ready, and keeps the playing ones at the
@@ -39,7 +39,7 @@ void SoundStream_UpdateAll(void)
         }
         func_021092a4(&stream->volumeFader);
         base = data_02151534[stream->volumeIndex];
-        fade = data_02151534[func_021092bc(&stream->volumeFader) >> 8];
+        fade = data_02151534[SoundFader_GetValue(&stream->volumeFader) >> 8];
         volume = fade + base;
         if (volume != stream->appliedVolume) {
             SoundStrm_SetVolume(stream, volume);

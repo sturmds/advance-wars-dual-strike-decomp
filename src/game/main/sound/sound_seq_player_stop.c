@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound.h"
 
-void func_021092f8(SoundFader *fader, int target, int frames);
+void SoundFader_Start(SoundFader *fader, int target, int frames);
 void SoundSeqPlayer_SetPriority(SoundSeqPlayer *player, int arg);
 void SoundSeqPlayer_StopNow(SoundSeqPlayer *player);
 
@@ -19,7 +19,7 @@ void SoundSeqPlayer_Stop(SoundSeqPlayer *player, int fadeFrames)
         SoundSeqPlayer_StopNow(player);
         return;
     }
-    func_021092f8(&player->volumeFader, 0, fadeFrames);
+    SoundFader_Start(&player->volumeFader, 0, fadeFrames);
     SoundSeqPlayer_SetPriority(player, 0);
     player->state = SEQ_PLAYER_STOPPING;
 }

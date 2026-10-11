@@ -11,7 +11,7 @@ void SoundArc_GetRange(SoundArcRange *out);
 BOOL func_021128b4(FSFile *file, SoundArcRange range);
 u32 func_021063f8(u32 fileNo);
 void func_02109328(SoundFader *fader);
-void func_021092f8(SoundFader *fader, int target, int frames);
+void SoundFader_Start(SoundFader *fader, int target, int frames);
 BOOL SoundStrm_Setup(SoundStrm *strm, int format, void *buffer, u32 length, int timer, int blockCount,
                      SoundStrmCallback callback, void *callbackArg);
 void SoundStrm_SetPan(SoundStrm *strm, int index, int pan);
@@ -70,7 +70,7 @@ BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo
     stream->appliedVolume = 0;
     stream->volumeIndex = info->unk_04;
     func_02109328(&stream->volumeFader);
-    func_021092f8(&stream->volumeFader, 127 << 8, 1);
+    SoundFader_Start(&stream->volumeFader, 127 << 8, 1);
 
     switch (stream->format) {
     case SOUND_STREAM_FORMAT_PCM8:

@@ -20685,6 +20685,14 @@ src/game/main/func_021092a4.c:
     complete
     .text       start:0x021092a4 end:0x021092bc
 
+src/game/main/sound/sound_fader_get_value.c:
+    complete
+    .text       start:0x021092bc end:0x021092f8
+
+src/game/main/sound/sound_fader_start.c:
+    complete
+    .text       start:0x021092f8 end:0x02109328
+
 src/game/main/func_02109328.c:
     complete
     .text       start:0x02109328 end:0x02109348

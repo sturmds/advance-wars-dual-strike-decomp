@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound.h"
 
-void func_021092f8(SoundFader *fader, int target, int frames);
+void SoundFader_Start(SoundFader *fader, int target, int frames);
 
 /* Fades the player's volume to targetVolume over frames frames. Does
  * nothing while the player is stopping. The fader holds volume in 8.8
@@ -16,5 +16,5 @@ void NNS_SndPlayerMoveVolume(SoundHandle *handle, int targetVolume, int frames)
     if (player->state == SEQ_PLAYER_STOPPING) {
         return;
     }
-    func_021092f8(&player->volumeFader, targetVolume << 8, frames);
+    SoundFader_Start(&player->volumeFader, targetVolume << 8, frames);
 }

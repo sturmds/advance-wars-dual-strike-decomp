@@ -13,7 +13,7 @@ void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 void func_0210fe48(int hwChannel, int volume);
 BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
-int func_021092bc(SoundFader *fader);
+int SoundFader_GetValue(SoundFader *fader);
 void SoundSeqPlayer_StopNow(SoundSeqPlayer *player);
 
 /* Per-frame step for every sequence player: frees players whose hardware
@@ -47,7 +47,7 @@ void SoundSeqPlayer_UpdateAll(void)
             playerVolume = data_02151534[player->volume];
             seqVolume = data_02151534[player->seqVolume];
             slotVolume = data_02151534[player->ownerSlot->volume];
-            fadeIndex = func_021092bc(&player->volumeFader) >> 8;
+            fadeIndex = SoundFader_GetValue(&player->volumeFader) >> 8;
             volume = data_02151534[fadeIndex] + (slotVolume + (seqVolume + playerVolume));
             if (volume < SOUND_DECIBEL_FLOOR) {
                 volume = SOUND_DECIBEL_FLOOR;
