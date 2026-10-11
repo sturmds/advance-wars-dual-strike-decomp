@@ -2,7 +2,7 @@
 #include "game/Unk_02290118.h"
 #include "game/screen_other_map.h"
 
-BOOL func_0204d6c0(int profile);
+BOOL Profile_IsInUse(int profile);
 int func_0210391c(void);
 
 static inline u16 CurrentMap_GetMapId(void)
@@ -53,14 +53,14 @@ int ProfileHeaders_UpdateBest(int profile, int value)
         data_02290118.unk_0e = 0;
     }
     for (i = 0, header = data_02290a60; i < 3; i++, header++) {
-        if (func_0204d6c0(i) && header->unk_05 && header->unk_01 == data_02290118.unk_01
+        if (Profile_IsInUse(i) && header->unk_05 && header->unk_01 == data_02290118.unk_01
             && header->unk_0c == mapId && header->hardMode == data_02290118.hardMode
             && header->unk_0e < best) {
             header->unk_0e = best;
         }
     }
     for (i = 0, entry = data_02290a60; i < 3; i++, entry++) {
-        if (func_0204d6c0(i) && entry->unk_01 == data_02290118.unk_01
+        if (Profile_IsInUse(i) && entry->unk_01 == data_02290118.unk_01
             && entry->hardMode == data_02290118.hardMode && mapId == 0xf8
             && !func_0210391c()) {
             entry->unk_08 = 1;

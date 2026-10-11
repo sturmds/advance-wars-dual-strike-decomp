@@ -5281,6 +5281,10 @@ src/game/main/campaign/campaign_map_is_final_mission.c:
     complete
     .text       start:0x0204d690 end:0x0204d6c0
 
+src/game/main/campaign/profile_is_in_use.c:
+    complete
+    .text       start:0x0204d6c0 end:0x0204d6dc
+
 src/game/main/menus/campaign_map_mark_mission_done.c:
     complete
     .text       start:0x0204d6dc end:0x0204d708
