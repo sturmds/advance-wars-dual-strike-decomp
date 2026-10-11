@@ -5821,11 +5821,11 @@ func_0211fce4 kind:function(arm,size=0x128) addr:0x0211fce4
 func_0211fe0c kind:function(arm,size=0x490) addr:0x0211fe0c
 func_0212029c kind:function(arm,size=0x2d8) addr:0x0212029c
 func_02120574 kind:function(arm,size=0x398) addr:0x02120574
-func_0212090c kind:function(arm,size=0x58) addr:0x0212090c
-func_02120964 kind:function(arm,size=0x30) addr:0x02120964
-func_02120994 kind:function(arm,size=0xb8) addr:0x02120994
+Isd_DoubleExponent kind:function(arm,size=0x58) addr:0x0212090c
+Isd_DoubleSign kind:function(arm,size=0x30) addr:0x02120964
+Isd_DivideByRadix kind:function(arm,size=0xb8) addr:0x02120994
 func_02120a4c kind:function(arm,size=0x50) addr:0x02120a4c
-func_02120a9c kind:function(arm,size=0x38) addr:0x02120a9c
+Isd_StringLength kind:function(arm,size=0x38) addr:0x02120a9c
 func_02120ad4 kind:function(arm,size=0x90) addr:0x02120ad4
 func_02120b64 kind:function(arm,size=0xb4) addr:0x02120b64
 func_02120c18 kind:function(arm,size=0x118) addr:0x02120c18
@@ -5836,7 +5836,7 @@ func_02120e78 kind:function(arm,size=0x70) addr:0x02120e78
 func_02120ee8 kind:function(arm,size=0x30) addr:0x02120ee8
 func_02120f18 kind:function(arm,size=0x20) addr:0x02120f18
 func_02120f38 kind:function(arm,size=0x9c) addr:0x02120f38
-func_02120fd4 kind:function(arm,size=0x1c) addr:0x02120fd4
+Isd_TestFlags kind:function(arm,size=0x1c) addr:0x02120fd4
 func_02120ff0 kind:function(arm,size=0x70) addr:0x02120ff0
 func_02121060 kind:function(arm,size=0x78) addr:0x02121060
 func_021210d8 kind:function(arm,size=0x34c) addr:0x021210d8
@@ -5845,10 +5845,8 @@ func_02121908 kind:function(arm,size=0x38) addr:0x02121908
 func_02121940 kind:function(arm,size=0x70) addr:0x02121940
 func_021219b0 kind:function(arm,size=0x7c) addr:0x021219b0
 func_02121a2c kind:function(arm,size=0x8c) addr:0x02121a2c
-func_02121ab8 kind:function(arm,size=0x4c) addr:0x02121ab8
-.L_02121ac8 kind:label(arm) addr:0x02121ac8 local
-func_02121b04 kind:function(arm,size=0x4c) addr:0x02121b04
-.L_02121b14 kind:label(arm) addr:0x02121b14 local
+func_02121ab8 kind:function(arm,size=0x10) addr:0x02121ab8
+func_02121b04 kind:function(arm,size=0x10) addr:0x02121b04
 func_02121b50 kind:function(arm,size=0x30) addr:0x02121b50
 func_02121b80 kind:function(arm,size=0x8) addr:0x02121b80
 func_02121b88 kind:function(arm,size=0x8) addr:0x02121b88
@@ -9119,3 +9117,5 @@ data_022ad548 kind:bss addr:0x022ad548
 _ffltu kind:function(arm,size=0x7c) addr:0x02128498
 _fflt kind:function(arm,size=0xcc) addr:0x02128514
 gOverlayExpectedHmacs kind:data(any) addr:0x0216e00c
+func_02121ac8 kind:function(arm,size=0x3c) addr:0x02121ac8
+func_02121b14 kind:function(arm,size=0x3c) addr:0x02121b14
