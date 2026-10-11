@@ -16,7 +16,7 @@ void EventScript_UpdateAll(void);
 void Game_RunStateFrame(void);
 void ScriptSlot_RunAll(void);
 void Task_RunList(Task *task);
-void func_01ffd648(void);
+void Map3d_Draw(void);
 void MapView_QueueTileSprites(void);
 
 /* The main loop step that the map game and the Design Room install. Runs
@@ -41,7 +41,7 @@ void MainLoop_MapFrame(void)
     Task_RunList(data_027c027c->taskLists[5]);
     Task_RunList(data_027c027c->taskLists[4]);
     if ((void *)data_027c027c == data_027c0288.unk_00) {
-        func_01ffd648();
+        Map3d_Draw();
     } else {
         if (data_027c027c->unk_50[data_027c0284]->unk_1c != NULL) {
             data_027c027c->unk_50[data_027c0284]->unk_1c();
