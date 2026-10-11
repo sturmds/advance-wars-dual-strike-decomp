@@ -12234,6 +12234,10 @@ src/game/main/copowers/ex_machina_bolt_start_flash.c:
     complete
     .text       start:0x020e4a68 end:0x020e4b84
 
+src/game/main/copowers/ex_machina_bolt_load_graphics.c:
+    complete
+    .text       start:0x020e4b84 end:0x020e4e14
+
 src/game/main/func_020e4e7c.c:
     complete
     .text       start:0x020e4e7c end:0x020e4e98
