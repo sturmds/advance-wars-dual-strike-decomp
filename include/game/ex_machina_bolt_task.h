@@ -14,4 +14,12 @@ typedef struct ExMachinaBoltTask {
     s16 frame;                         /* frame counter of the blend steps */
 } ExMachinaBoltTask;
 
+/* The task that runs gExMachinaScript. The first 0x66 bytes belong to the
+ * task system and to steps that are not decompiled yet. */
+typedef struct ExMachinaTask {
+    u8 pad_00[0x66];
+    s16 targetX;                       /* tile Strike_FindBestSite picked */
+    s16 targetY;
+} ExMachinaTask;
+
 #endif

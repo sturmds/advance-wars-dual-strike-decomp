@@ -16357,6 +16357,10 @@ src/game/main/func_020e4e98.c:
     complete
     .text       start:0x020e4e98 end:0x020e4eb0
 
+src/game/main/copowers/ex_machina_pick_target.c:
+    complete
+    .text       start:0x020e4eb0 end:0x020e4f38
+
 src/game/main/copowers/ex_machina.c:
     complete
     .text       start:0x020e4f38 end:0x020e4f78
