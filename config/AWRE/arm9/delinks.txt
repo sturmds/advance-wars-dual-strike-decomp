@@ -8406,6 +8406,10 @@ src/game/main/units/acting_unit_attack_tile.c:
     complete
     .text       start:0x020dd13c end:0x020dd264
 
+src/game/main/units/acting_unit_attack_object.c:
+    complete
+    .text       start:0x020dd264 end:0x020dd370
+
 src/game/main/func_020dd370.c:
     complete
     .text       start:0x020dd370 end:0x020dd3a0
