@@ -5,8 +5,9 @@
 u32 func_0207bd80(void);
 void func_020526e0(void);
 
-/* Script step of the day banner: A, B, Start or a fresh touch starts the
- * early-exit script (func_020526e0), unless func_0207bd80 returns 1 (meaning not known). */
+/* Script step of the day banner: A, B, Start or a new touch starts the
+ * early-exit script (func_020526e0). Does nothing in the link mode that
+ * func_0207bd80 reports. */
 void DayBanner_CheckSkip(void)
 {
     if (func_0207bd80() == 1) {

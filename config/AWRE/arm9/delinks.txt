@@ -6087,6 +6087,10 @@ src/game/main/day_banner_set_up_blend.c:
     complete
     .text       start:0x02053560 end:0x020536bc
 
+src/game/main/copowers/power_screen_start.c:
+    complete
+    .text       start:0x020536bc end:0x020537a8
+
 src/game/main/screen/screen_fade_in_from_white_update.c:
     complete
     .text       start:0x020539b0 end:0x02053a20

@@ -7,9 +7,9 @@ struct Unk_020d5620 {
     int unk_58;
 };
 
-void func_020536bc(void *, int);
+void PowerScreen_Start(void *, int);
 
 void func_020d5620(Unk_020d5620 *a0)
 {
-    func_020536bc(a0, a0->unk_58);
+    PowerScreen_Start(a0, a0->unk_58);
 }
