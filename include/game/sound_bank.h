@@ -2,6 +2,7 @@
 #define GAME_SOUND_BANK_H
 
 #include "types.h"
+#include "game/sound_wave_arc.h"
 
 /* Position in a sound bank while walking its notes: the instrument and the
  * note inside it. */
@@ -22,5 +23,15 @@ typedef struct SoundBankNote {
     u16 unk_08;
     u16 unk_0a;
 } SoundBankNote;
+
+/* A bank file as loaded in memory (SBNK), only the fields the code in src/
+ * reads. instruments[i] holds the instrument type in its low byte and the
+ * offset of its note data from the file start in the upper 24 bits. */
+typedef struct SoundBank {
+    u8 pad_00[0x18];
+    SoundWaveArcLink waveArcs[4];      /* 0x18 */
+    u32 instrumentCount;               /* 0x38 */
+    u32 instruments[1];                /* 0x3c */
+} SoundBank;
 
 #endif

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/snd.h"
 #include "game/sound_arc.h"
 
 /* Result codes of the load routines; 0 means success. */
@@ -17,7 +18,6 @@ void *SoundArc_GetFileAddress(int fileId);
 void *func_02107280(int fileId, void *heap, int cache);
 int SoundArc_GetWaveArc(int waveArcNo, int loadFlags, void *heap, int cache, void **loadedOut);
 BOOL SoundArc_LoadBankWaves(void *wave, void *bank, int index, u32 fileId, void *heap);
-void func_02110d7c(void *bank, int index, void *wave);
 
 /* Gets bank bankNo into memory, loading it and its wave archives into heap
  * as loadFlags asks, and links each wave archive to the bank. Stores the
@@ -64,7 +64,7 @@ int SoundArc_GetBank(int bankNo, int loadFlags, void *heap, int cache, void **lo
             }
         }
         if (bank != NULL && wave != NULL) {
-            func_02110d7c(bank, i, wave);
+            SND_AssignWaveArc(bank, i, wave);
         }
     }
     if (loadedOut != NULL) {

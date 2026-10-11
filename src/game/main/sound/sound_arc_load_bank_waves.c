@@ -1,8 +1,8 @@
 #include "types.h"
+#include "sdk/snd.h"
 #include "game/sound_bank.h"
 #include "game/sound_wave_arc.h"
 
-SoundBankIter func_02110c70(void);
 BOOL func_02110a98(void *bank, SoundBankNote *note, SoundBankIter *iter);
 BOOL SoundWaveArc_LoadWave(SoundWaveArc *wave, u32 waveNo, u32 fileId, void *heap);
 
@@ -11,7 +11,7 @@ BOOL SoundWaveArc_LoadWave(SoundWaveArc *wave, u32 waveNo, u32 fileId, void *hea
  * load. */
 BOOL SoundArc_LoadBankWaves(SoundWaveArc *wave, void *bank, int waveArcSlot, u32 fileId, void *heap)
 {
-    SoundBankIter iter = func_02110c70();
+    SoundBankIter iter = SoundBank_StartIter();
     SoundBankNote note;
 
     if (bank == NULL) {
