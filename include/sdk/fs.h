@@ -162,6 +162,10 @@ BOOL FS_UnloadOverlay(int target, u32 overlayId);
 BOOL FS_OpenFile(FSFile *file, const char *path);
 s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
 BOOL FS_CloseFile(FSFile *file);
+BOOL FS_ChangeDir(const char *path);
+
+/* Looks up a path: gives a file ID or a directory position (not named yet). */
+BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);
 void FSi_ReleaseCommand(FSFile *file, int result);
 void FSi_AppendToList(FSFile *file, FSFile *head);
 

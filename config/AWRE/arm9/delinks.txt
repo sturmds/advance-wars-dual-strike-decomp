@@ -21374,6 +21374,10 @@ src/sdk/fs/archive_fold_name_into_word.c:
     complete
     .text       start:0x021125f4 end:0x02112658
 
+src/sdk/fs/fs_change_dir.c:
+    complete
+    .text       start:0x02112658 end:0x021126ac
+
 src/sdk/FS_ReadFile.c:
     complete
     .text       start:0x02112718 end:0x02112728
