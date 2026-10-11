@@ -3815,7 +3815,7 @@ Weather_TickDays kind:function(arm,size=0xf8) addr:0x020d2bfc
 WeatherTask_PlaySound kind:function(arm,size=0x24) addr:0x020d2cf4
 WeatherTask_Apply kind:function(arm,size=0x78) addr:0x020d2d18
 Weather_ResolvePowerSnow kind:function(arm,size=0xc) addr:0x020d2d90
-func_020d2d9c kind:function(arm,size=0x54) addr:0x020d2d9c
+Tileset_GetPaletteFileName kind:function(arm,size=0x54) addr:0x020d2d9c
 func_020d2df0 kind:function(arm,size=0x4c) addr:0x020d2df0
 func_020d2e3c kind:function(arm,size=0x94) addr:0x020d2e3c
 func_020d2ed0 kind:function(arm,size=0x28) addr:0x020d2ed0
@@ -7688,8 +7688,8 @@ gWeatherRainFileName kind:data(any) addr:0x02166d7c
 gWeatherSnowFileName kind:data(any) addr:0x02166d80
 data_02166d84 kind:data(any) addr:0x02166d84
 data_02166d8c kind:data(any) addr:0x02166d8c
-data_02166d90 kind:data(any) addr:0x02166d90
-data_02166d94 kind:data(any) addr:0x02166d94
+gTilesetPaletteFileAlt kind:data(any) addr:0x02166d90
+gTilesetPaletteFileDefault kind:data(any) addr:0x02166d94
 data_02166d98 kind:data(any) addr:0x02166d98
 data_02166dc8 kind:data(any) addr:0x02166dc8
 data_02166e08 kind:data(any) addr:0x02166e08
