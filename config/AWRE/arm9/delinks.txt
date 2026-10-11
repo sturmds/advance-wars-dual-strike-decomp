@@ -9344,9 +9344,21 @@ src/game/main/link/link_menu_end_screen.c:
     complete
     .text       start:0x0207ca98 end:0x0207cb70
 
+src/game/main/link/link_menu_wait_for_child_acks.c:
+    complete
+    .text       start:0x0207cb70 end:0x0207cc38
+
 src/game/main/func_0207cc38.c:
     complete
     .text       start:0x0207cc38 end:0x0207cc5c
+
+src/game/main/link/link_menu_update_child.c:
+    complete
+    .text       start:0x0207cd78 end:0x0207ce34
+
+src/game/main/link/link_menu_update_parent.c:
+    complete
+    .text       start:0x0207ce34 end:0x0207cea0
 
 src/game/main/func_0207cea0.c:
     complete
