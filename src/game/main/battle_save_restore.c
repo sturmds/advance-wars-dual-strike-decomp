@@ -5,14 +5,14 @@
 extern u8 data_02291774[];
 
 int Save_LoadRecord(u8 recordId, void *buffer);
-void func_02018484(void);
+void BattleSave_Unpack(void);
 void func_02017de0(void);
 void DesignMap_DecodeSlot(int slot, void *map);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads battle save record recordId (0: none) into data_02291774, applies it
- * with func_02018484, then on the current screen and, in a two-map battle, on
+ * with BattleSave_Unpack, then on the current screen and, in a two-map battle, on
  * the other screen: unpacks a player-made map again from design map slot 3
  * or 4 and runs func_02017de0. */
 void BattleSave_Restore(int recordId)
@@ -26,7 +26,7 @@ void BattleSave_Restore(int recordId)
         return;
     }
     Save_LoadRecord(recordId, data_02291774);
-    func_02018484();
+    BattleSave_Unpack();
 
     /* the current screen */
     savedGfx = data_027c0280;

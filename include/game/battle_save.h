@@ -6,6 +6,7 @@
 #include "game/map_unit.h"
 #include "game/map_object.h"
 #include "game/Unk_02080440.h"
+#include "game/Unk_022977a4.h"
 
 #define BATTLE_SAVE_UNITS_PER_PLAYER 51
 #define BATTLE_SAVE_TILE_COUNT 92
@@ -33,7 +34,7 @@ typedef struct BattleSaveTile {
 } BattleSaveTile;
 
 /* The state of one map of a saved battle, 0x10b0 bytes. A two-map battle
- * keeps two of them in a row (func_02018484 reads them from data_02291774
+ * keeps two of them in a row (BattleSave_Unpack reads them from data_02291774
  * + 0xd8 and + 0x1188). */
 typedef struct BattleSaveMap {
     u16 currentPlayer;
@@ -56,5 +57,30 @@ typedef struct BattleSaveMap {
 #define STATE_UNIT_SLOTS(state) ((MapUnit *)&(state)->objects[BATTLE_SAVE_OBJECT_COUNT])
 
 typedef char BattleSaveMap_size_check[sizeof(BattleSaveMap) == 0x10b0 ? 1 : -1];
+
+/* One skill set of 4 words, as in data_022a72c8. */
+typedef struct BattleSaveSkillSet {
+    u32 words[4];
+} BattleSaveSkillSet;
+
+/* data_022a7b98, 0x40 bytes, copied whole. */
+typedef struct BattleSaveBlock40 {
+    u32 words[16];
+} BattleSaveBlock40;
+
+/* A whole battle save record as kept in data_02291774. */
+typedef struct BattleSaveRecord {
+    u8 unk_00;                         /* 0 or 1; nonzero sets the current state's unk_18 to 4 on load */
+    u8 screen;                         /* data_027c0284 */
+    u8 pad_02[2];
+    u32 rngState;                      /* gRngState */
+    u8 gameFlagsLow[4];                /* gGameFlagsLow */
+    Unk_022977a4 eventScript;          /* data_022977a4 */
+    BattleSaveSkillSet lentSkills[4][2]; /* data_022a72c8 of players 1-4 */
+    BattleSaveBlock40 unk_98;          /* data_022a7b98 */
+    BattleSaveMap maps[2];             /* current screen, then the second map of a two-map battle */
+} BattleSaveRecord;
+
+typedef char BattleSaveRecord_size_check[sizeof(BattleSaveRecord) == BATTLE_SAVE_RECORD_SIZE ? 1 : -1];
 
 #endif
