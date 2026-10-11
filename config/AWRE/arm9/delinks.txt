@@ -6273,9 +6273,21 @@ src/game/main/func_02075fa4.c:
     complete
     .text       start:0x02075fa4 end:0x02075fcc
 
+src/game/main/reaction_text_menu_store_typed.c:
+    complete
+    .text       start:0x02075fcc end:0x02076020
+
+src/game/main/reaction_text_menu_load_into_entry.c:
+    complete
+    .text       start:0x02076020 end:0x02076074
+
 src/game/main/func_02076074.c:
     complete
     .text       start:0x02076074 end:0x020760ac
+
+src/game/main/reaction_text_menu_start_event_when_done.c:
+    complete
+    .text       start:0x020760ac end:0x020760e0
 
 src/game/main/func_020760e0.c:
     complete
