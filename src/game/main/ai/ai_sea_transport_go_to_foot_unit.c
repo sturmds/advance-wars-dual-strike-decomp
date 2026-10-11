@@ -17,7 +17,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 int AiSeaTransport_FindPickupTile(int x, int y, s16 *dest);
 int func_020b4138(MapUnit *unit, s16 *dest);
 void AiUnit_MoveTowardTile(int x, int y);
-void func_020b3264(void);
+void AiBlackBoat_GoToUnitInNeed(void);
 void AiBlackBoat_RepairDamagedUnit(void);
 void func_020b38c4(void);
 
@@ -144,7 +144,7 @@ void AiSeaTransport_GoToFootUnit(void)
     }
     if (STATE->actingUnit->type == UNIT_BLACK_BOAT) {
         AiBlackBoat_RepairDamagedUnit();
-        func_020b3264();
+        AiBlackBoat_GoToUnitInNeed();
     }
     func_020b38c4();
 }
