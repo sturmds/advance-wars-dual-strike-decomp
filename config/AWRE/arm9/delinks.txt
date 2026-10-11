@@ -9841,6 +9841,10 @@ src/game/main/map/object_heal_task_play_effect.c:
     complete
     .text       start:0x020d84b8 end:0x020d8714
 
+src/game/main/map/object_heal_task_load_graphics.c:
+    complete
+    .text       start:0x020d8714 end:0x020d88a8
+
 src/game/main/func_020d8a24.c:
     complete
     .text       start:0x020d8a24 end:0x020d8a30
