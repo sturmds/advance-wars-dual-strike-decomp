@@ -10,8 +10,8 @@ extern OSThreadInfo OSi_ThreadInfo;
 
 u32 func_0210eb64(void);
 OSThread *Thread_FirstRunnable(void);
-int func_0210da54(OSThread *thread);
-void func_0210daa0(OSThread *thread);
+int OS_SaveContext(OSThread *thread);
+void OS_LoadContext(OSThread *thread);
 
 void OS_RescheduleThread(void)
 {
@@ -31,7 +31,7 @@ void OS_RescheduleThread(void)
     if (current == next || next == NULL) {
         return;
     }
-    if (func_0210da54(current) != 0) {
+    if (OS_SaveContext(current) != 0) {
         return;
     }
     if (data_022a992c != NULL) {
@@ -41,5 +41,5 @@ void OS_RescheduleThread(void)
         info->switchCallback(current, next);
     }
     OSi_ThreadInfo.current = next;
-    func_0210daa0(next);
+    OS_LoadContext(next);
 }
