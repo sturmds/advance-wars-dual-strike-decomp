@@ -7,7 +7,7 @@ extern u8 data_022a7c6c[];
 extern MtxFx44 data_022a7cac;
 extern Camera data_022a7d5c;
 
-void func_01ffd44c(void);
+void Map3d_InitScreen(void);
 void Map3d_InitLayout(void *arg);
 void Map3d_LoadTextures(void *arg);
 void Gfx3d_LoadOrthoProjection(void *mtx);
@@ -21,7 +21,7 @@ void *func_020fbb44(void);
  * and perspective projections and puts the camera at preset 0. */
 void Map3d_Init(void)
 {
-    func_01ffd44c();
+    Map3d_InitScreen();
     Map3d_InitLayout(data_022a7cec);
     Map3d_LoadTextures(data_022a7cec);
     Gfx3d_LoadOrthoProjection(data_022a7c6c);

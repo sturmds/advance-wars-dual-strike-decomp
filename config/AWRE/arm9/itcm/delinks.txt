@@ -351,6 +351,10 @@ src/game/itcm/map3d/map3d_init_layout.c:
     complete
     .text       start:0x01ffd32c end:0x01ffd44c
 
+src/game/itcm/map3d/map3d_init_screen.c:
+    complete
+    .text       start:0x01ffd44c end:0x01ffd648
+
 src/game/itcm/map3d/map3d_draw.c:
     complete
     .text       start:0x01ffd648 end:0x01ffd6f4
