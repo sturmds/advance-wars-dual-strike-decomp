@@ -16,7 +16,8 @@ typedef struct CoExp {
 
 /* Results screen layout of MenuState. */
 typedef struct CoExpScreenWork {
-    u8 pad_020[0x15a8 - 0x20];
+    u8 pad_020[0x1364 - 0x20];
+    u8 unk_1364[0x15a8 - 0x1364];      /* passed to SpriteAnimTask_Start by the CO cell tasks */
     CoExp exp[6];                      /* two per player: front and back CO */
 } CoExpScreenWork;
 
