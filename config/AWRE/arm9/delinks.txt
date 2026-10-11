@@ -10125,6 +10125,10 @@ src/game/main/script/event_script_start_for_game_mode.c:
     complete
     .text       start:0x020ca2e8 end:0x020ca32c
 
+src/game/main/map/current_player_set_unk33_and_send_action21.c:
+    complete
+    .text       start:0x020ca32c end:0x020ca398
+
 src/game/main/ai/ai_flag_current_player_enter_state18.c:
     complete
     .text       start:0x020ca398 end:0x020ca3d8
