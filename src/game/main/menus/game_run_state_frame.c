@@ -1,0 +1,183 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/event_script.h"
+#include "game/screen_other_map.h"
+
+extern int gCameraPresetIndex;
+extern u8 data_021576fa[][20];
+extern u8 data_021576fb[][20];
+extern u32 data_0229eaec;
+extern const EventScriptCommand data_02169e38[];
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+void func_020c05d8(void);
+void WeatherFx_UpdateClouds(void);
+void func_020fb660(void);
+int SceneMode_IsChanging(void);
+int Map_IsThisMapsTurn(void);
+s8 func_020b9ccc(void);
+s16 func_020b9914(void);
+s16 ScriptSlot_Find(const EventScriptCommand *script);
+void Weather_StartEffect(int weather);
+int func_0207bd6c(void);
+void MapView_ScrollStep(int step);
+void AiTurn_Update(void);
+void LinkAction_Update(void);
+void func_ov000_022b0500(void);
+void func_020bace0(void);
+void func_020babd8(void);
+void func_020ba754(void);
+void Game_State4_WaitSongFade(void);
+void Game_State5_StartTurnTask(void);
+void Game_State6_PlayThemeAndScripts(void);
+void func_020ba04c(void);
+void Game_State8_PickNextState(void);
+void Game_State9_RunStep(void);
+void Game_State10_RunStep(void);
+void Game_State11_ClearWeather(void);
+void Game_State12_BlackHoleCheck(void);
+void Game_State13_ClearWeatherStartTask(void);
+void func_020ba450(void);
+void func_020d1a84(void);
+void Game_State18_RestorePrevious(void);
+void Game_State20_CloseMap(void);
+void Game_State22_ReopenPopup(void);
+
+/* Copies the view scroll of map screen `from` to map screen `to` through the
+ * caller's scrollX and scrollY, and puts the cursor tile (unk_28, unk_2a) of
+ * `to` at the middle of its view (halfW, halfH tiles in). */
+#define COPY_VIEW_SCROLL(from, to)                                             \
+    {                                                                          \
+        Unk_027c0280 *saved0280 = data_027c0280;                               \
+        Unk_02080440 *saved027c;                                               \
+        Screen_SetCurrentGfx(from);                                            \
+        saved027c = data_027c027c;                                             \
+        Screen_SetCurrent(from);                                               \
+        scrollX = GAME->unk_1c4->scrollX;                                      \
+        scrollY = GAME->unk_1c4->scrollY;                                      \
+        Screen_SetCurrent(saved027c);                                          \
+        Screen_SetCurrentGfx(saved0280);                                       \
+    }                                                                          \
+    {                                                                          \
+        Unk_027c0280 *saved0280 = data_027c0280;                               \
+        Unk_02080440 *saved027c;                                               \
+        Screen_SetCurrentGfx(to);                                              \
+        saved027c = data_027c027c;                                             \
+        Screen_SetCurrent(to);                                                 \
+        GAME->unk_1c4->scrollX = scrollX;                                      \
+        GAME->unk_1c4->scrollY = scrollY;                                      \
+        GAME->unk_28 = halfW + (GAME->unk_1c4->scrollX >> 4);                  \
+        GAME->unk_2a = halfH + (GAME->unk_1c4->scrollY >> 4);                  \
+        Screen_SetCurrent(saved027c);                                          \
+        Screen_SetCurrentGfx(saved0280);                                       \
+    }
+
+/* One frame of the map game. When the scene is not changing, it either runs
+ * the handler of the current state (unk_18), if it is this map's turn, no
+ * menu is open (menuDepth) and func_020b9914 returns 0, or, when it is the
+ * other map's turn and unk_86 is set, makes this map's view follow the other
+ * map's scroll. */
+void Game_RunStateFrame(void)
+{
+    int halfW;
+    int halfH;
+    s16 scrollX;
+    s16 scrollY;
+
+    if (data_027c027c == data_027c0288.unk_00) {
+        func_020c05d8();
+    }
+    WeatherFx_UpdateClouds();
+    func_020fb660();
+
+    if (!SceneMode_IsChanging()) {
+        if (!Map_IsThisMapsTurn()) {
+            if (GAME->unk_86 != 0) {
+                halfW = data_021576fa[gCameraPresetIndex][0] >> 1;
+                halfH = data_021576fb[gCameraPresetIndex][0] >> 1;
+                if (data_027c027c == data_027c0288.unk_00) {
+                    COPY_VIEW_SCROLL(data_027c0288.unk_04, data_027c0288.unk_00);
+                } else {
+                    COPY_VIEW_SCROLL(data_027c0288.unk_00, data_027c0288.unk_04);
+                }
+                MapView_ScrollStep(4);
+            }
+        } else if (func_020b9ccc() == 0 && func_020b9914() == 0) {
+            switch (GAME->unk_18) {
+            case 1:
+                func_020bace0();
+                break;
+            case 2:
+                func_020babd8();
+                break;
+            case 3:
+                func_020ba754();
+                break;
+            case 4:
+                Game_State4_WaitSongFade();
+                break;
+            case 5:
+                Game_State5_StartTurnTask();
+                break;
+            case 6:
+                Game_State6_PlayThemeAndScripts();
+                break;
+            case 7:
+                func_020ba04c();
+                break;
+            case 8:
+                Game_State8_PickNextState();
+                break;
+            case 9:
+                Game_State9_RunStep();
+                break;
+            case 12:
+                Game_State12_BlackHoleCheck();
+                break;
+            case 10:
+                Game_State10_RunStep();
+                break;
+            case 11:
+                Game_State11_ClearWeather();
+                break;
+            case 13:
+                Game_State13_ClearWeatherStartTask();
+                break;
+            case 14:
+                func_020ba450();
+                break;
+            case 15:
+                func_020d1a84();
+                break;
+            case 16:
+                func_ov000_022b0500();
+                if (data_0229eaec == 0 || func_0207bd6c() == 0) {
+                    AiTurn_Update();
+                } else {
+                    LinkAction_Update();
+                }
+                break;
+            case 21:
+                func_ov000_022b0500();
+                LinkAction_Update();
+                break;
+            case 18:
+                Game_State18_RestorePrevious();
+                break;
+            case 20:
+                Game_State20_CloseMap();
+                break;
+            case 22:
+                Game_State22_ReopenPopup();
+                return;
+            }
+        }
+    }
+
+    if (GAME->unk_18 == 16 || GAME->unk_1a == 16) {
+        if (ScriptSlot_Find(data_02169e38) != -1 || func_020b9ccc() == 0) {
+            Weather_StartEffect(3);
+        }
+    }
+}
