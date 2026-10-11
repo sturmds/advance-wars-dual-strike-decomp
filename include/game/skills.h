@@ -7,6 +7,7 @@
  * CheckSkillsEquipped. Id N is bit (N - 1) & 31 of word (N - 1) >> 5.
  * 0x01-0x10 are CO skills, 0x20-0x4a are Force Ranks. Ids from
  * romhacking.net doc 890 (RadioTails); add more as code uses them. */
+#define SKILL_HIDDEN_HP             0x01 /* Sonja day-to-day: hp hidden from other teams */
 #define SKILL_DEPLOY_CITY           0x02 /* Hachi Super CO Power */
 #define SKILL_COUNTER_FIRST         0x03 /* Sonja Super: counterattack first */
 #define SKILL_DOUBLE_TERRAIN_STARS  0x05 /* Lash Super */

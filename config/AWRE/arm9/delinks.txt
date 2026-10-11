@@ -8040,6 +8040,10 @@ src/game/main/func_020cb0f4.c:
     complete
     .text       start:0x020cb0f4 end:0x020cb11c
 
+src/game/main/map/info_panel_draw.c:
+    complete
+    .text       start:0x020cb9f4 end:0x020cc910
+
 src/game/main/graphics/palette_get_block.c:
     complete
     .text       start:0x020ccb80 end:0x020ccbb8

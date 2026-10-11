@@ -3675,8 +3675,8 @@ func_020caf70 kind:function(arm,size=0x74) addr:0x020caf70
 func_020cafe4 kind:function(arm,size=0xe8) addr:0x020cafe4
 func_020cb0cc kind:function(arm,size=0x28) addr:0x020cb0cc
 func_020cb0f4 kind:function(arm,size=0x28) addr:0x020cb0f4
-func_020cb11c kind:function(arm,size=0xa0) addr:0x020cb11c
-func_020cb1bc kind:function(arm,size=0x20c) addr:0x020cb1bc
+InfoPanel_DrawNumber kind:function(arm,size=0xa0) addr:0x020cb11c
+InfoPanel_DrawUnit kind:function(arm,size=0x20c) addr:0x020cb1bc
 func_020cb3c8 kind:function(arm,size=0x50) addr:0x020cb3c8
 func_020cb418 kind:function(arm,size=0xb8) addr:0x020cb418
 func_020cb4d0 kind:function(arm,size=0x124) addr:0x020cb4d0
@@ -3684,7 +3684,7 @@ func_020cb5f4 kind:function(arm,size=0x138) addr:0x020cb5f4
 func_020cb72c kind:function(arm,size=0x44) addr:0x020cb72c
 func_020cb770 kind:function(arm,size=0xd8) addr:0x020cb770
 func_020cb848 kind:function(arm,size=0x1ac) addr:0x020cb848
-func_020cb9f4 kind:function(arm,size=0xf1c) addr:0x020cb9f4
+InfoPanel_Draw kind:function(arm,size=0xf1c) addr:0x020cb9f4
 func_020cc910 kind:function(arm,size=0x88) addr:0x020cc910
 func_020cc998 kind:function(arm,size=0x1a0) addr:0x020cc998
 func_020ccb38 kind:function(arm,size=0x48) addr:0x020ccb38
@@ -7620,9 +7620,9 @@ data_02166320 kind:data(any) addr:0x02166320
 data_02166328 kind:data(any) addr:0x02166328
 data_02166330 kind:data(any) addr:0x02166330
 data_02166338 kind:data(any) addr:0x02166338
-data_02166340 kind:data(any) addr:0x02166340
+gInfoPanelRestPos kind:data(any) addr:0x02166340
 data_02166348 kind:data(any) addr:0x02166348
-data_02166350 kind:data(any) addr:0x02166350
+gInfoPanelWindowLeft kind:data(any) addr:0x02166350
 data_0216635c kind:data(any) addr:0x0216635c
 data_0216635e kind:data(any) addr:0x0216635e
 data_02166360 kind:data(any) addr:0x02166360
