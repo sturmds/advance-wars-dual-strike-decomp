@@ -97,7 +97,7 @@ void __two_exp(Decimal *dec, long exponent)
 
         /* exponent / 2 rounded toward zero, written out: needed to match the and of the sign bit */
         __two_exp(&root, (exponent + (long)((u32)(exponent & 0x80000000) >> 31)) >> 1);
-        func_0212537c(dec, &root, &root);
+        __timesdec(dec, &root, &root);
         /* Odd exponent: one more factor of 2, or of 1/2 when negative. */
         if (exponent & 1) {
             square = *dec;
@@ -106,7 +106,7 @@ void __two_exp(Decimal *dec, long exponent)
             } else {
                 __str2dec(&root, data_0216dfe4, -1);
             }
-            func_0212537c(dec, &square, &root);
+            __timesdec(dec, &square, &root);
         }
     }
 }
