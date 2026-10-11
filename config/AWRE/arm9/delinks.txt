@@ -2854,6 +2854,10 @@ src/game/main/graphics/wallpaper_destroy_tasks.c:
     complete
     .text       start:0x02028d60 end:0x02028de0
 
+src/game/main/graphics/wallpaper_load_on_layer2.c:
+    complete
+    .text       start:0x02028de0 end:0x02028f1c
+
 src/game/main/graphics/wallpaper_load_single.c:
     complete
     .text       start:0x02029540 end:0x02029648
