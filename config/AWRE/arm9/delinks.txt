@@ -5447,6 +5447,10 @@ src/game/main/func_02069b14.c:
     complete
     .text       start:0x02069b14 end:0x02069b40
 
+src/game/main/menus/vs_setup_draw_button_sprites.c:
+    complete
+    .text       start:0x02069b40 end:0x0206a0a0
+
 src/game/main/func_0206a324.c:
     complete
     .text       start:0x0206a324 end:0x0206a340
