@@ -22043,6 +22043,10 @@ src/sdk/wm/wm_start_scan.c:
     complete
     .text       start:0x021178d0 end:0x021179d4
 
+src/sdk/wm/wm_end_parent.c:
+    complete
+    .text       start:0x021179d4 end:0x02117a1c
+
 src/game/main/func_0211ba5c.c:
     complete
     .text       start:0x0211ba5c end:0x0211ba80
