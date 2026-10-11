@@ -6,7 +6,6 @@ void Screen_SetCurrentBoth(void *state);
 void Screen_InitLayers(const GfxLayer *config);
 void Screen_SetBgMode(int bgMode);
 void Screen_SetBg0Mode(int bg0Is3d);   /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
-void func_0210ba04(void);          /* SDK 3D engine init (G3X_Init?) */
 void func_0210bd70(int top, int bottom, int left, int right, int near, int far, int scaleW, int draw, int mtx);   /* SDK orthographic projection (G3i_OrthoW_) */
 
 extern GfxLayer Ov003_gMainLayerConfig[4];
@@ -22,7 +21,7 @@ void Ov003_InitScreens(void)
     Unk_02080440 *saved027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_0210ba04();
+    G3X_Init();
     Screen_InitLayers(Ov003_gMainLayerConfig);
     *REG_DISP3DCNT &= 0xcfef;          /* anti-aliasing off, acknowledge the overflow flags */
     *REG_SWAP_BUFFERS = 1;             /* manual polygon sort, Z buffering */

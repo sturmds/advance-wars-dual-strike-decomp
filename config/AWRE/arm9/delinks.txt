@@ -20933,6 +20933,10 @@ src/sdk/gx/g3x_reset.c:
     complete
     .text       start:0x0210b97c end:0x0210ba04
 
+src/sdk/gx/g3x_init.c:
+    complete
+    .text       start:0x0210ba04 end:0x0210bb60
+
 src/sdk/gx/g3_rot_y.c:
     complete
     .text       start:0x0210bb60 end:0x0210bb9c

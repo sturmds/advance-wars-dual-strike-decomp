@@ -5,7 +5,7 @@
 extern Unk_027c0280 *data_027c0280;
 
 void Screen_SetGraphicsMode(int dispMode, int bgMode, int bg0Is3d);
-void func_0210ba04(void);          /* SDK 3D engine init (G3X_Init?) */
+void G3X_Init(void);          /* SDK 3D engine init (G3X_Init?) */
 void func_0210a948(void);
 void func_0210a980(void);
 void func_0210a994(void);
@@ -35,7 +35,7 @@ void Map3d_InitScreen(void)
     data_027c0280->bgCnt[data_027c0280->layer1Bg].priority = 0;
     data_027c0280->bgCnt[data_027c0280->layer2Bg].priority = 0;
     data_027c0280->bgCnt[data_027c0280->layer3Bg].priority = 0;
-    func_0210ba04();
+    G3X_Init();
     G3X_InitMtxStack();
     func_0210a948();
     func_0210a980();
