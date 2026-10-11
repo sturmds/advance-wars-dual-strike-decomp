@@ -4,7 +4,7 @@
 
 void FrameCallback_Remove(void (*callback)(void));
 void func_01ff9c28(void (*callback)(void));
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void func_020c0704(void);
 void func_020d1be0(void);
 void WeatherFx_UpdateFirstScreen(void);
@@ -25,6 +25,6 @@ void Map_ResetFrameCallbacks(void)
         FrameCallback_Remove(func_020d1be0);
     }
     func_01ff9c28(MainLoop_DefaultVBlank);
-    func_01ff9c48(MainLoop_TaskFrame);
+    MainLoop_SetFrameCallback(MainLoop_TaskFrame);
     func_020c0704();
 }

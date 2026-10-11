@@ -4,7 +4,7 @@
 void CallbackSlots_Clear(void);
 void PlayRecords_AddCoins(u32 amount);
 void func_01ff9c28(void (*callback)(void));
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void func_020b9864(void);
 void func_020b9890(void);
 int BattleEnd_HasCoinReward(void);
@@ -18,7 +18,7 @@ void BattleEnd_AwardCoins(void)
 {
     func_020b9890();
     func_01ff9c28(MainLoop_DefaultVBlank);
-    func_01ff9c48(MainLoop_TaskFrame);
+    MainLoop_SetFrameCallback(MainLoop_TaskFrame);
     CallbackSlots_Clear();
     if (!BattleEnd_HasCoinReward()) {
         func_020b9864();

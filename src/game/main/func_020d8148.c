@@ -8,7 +8,7 @@ void Screen_SetCurrentBoth(void *state);
 void Screen_ResetWindows(void);
 void CallbackSlots_Clear(void);
 void func_01ff9c28(void (*callback)(void));
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
 void Gfx_InitBothScreens(void);
@@ -48,7 +48,7 @@ void func_020d8148(void)
     Screen_SetCurrentGfx(saved0280);
 
     CallbackSlots_Clear();
-    func_01ff9c48(MainLoop_TaskFrame);
+    MainLoop_SetFrameCallback(MainLoop_TaskFrame);
     func_01ff9c28(MainLoop_DefaultVBlank);
     Gfx_InitBothScreens();
     func_020044a8();

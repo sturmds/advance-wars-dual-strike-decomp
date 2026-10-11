@@ -42,7 +42,7 @@ void Screen_InitSystems(void);
 void Screens_SetUp2dLayers(const void *unused);
 void NumberFont_LoadLow(void);
 void func_01ff9c28(void (*callback)(void));
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
 BOOL Boot_TryStartKeyComboScreen(u16 keys);
@@ -65,7 +65,7 @@ void func_01ff9c7c(void);
     Screens_SetUp2dLayers(data_02166dc8);               \
     NumberFont_LoadLow();                            \
     func_01ff9c28(MainLoop_DefaultVBlank);      \
-    func_01ff9c48(MainLoop_TaskFrame);               \
+    MainLoop_SetFrameCallback(MainLoop_TaskFrame);               \
     Screen_SetCurrent(savedState);              \
     Screen_SetCurrentGfx(savedGfx)
 

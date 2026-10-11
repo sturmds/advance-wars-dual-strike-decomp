@@ -21,7 +21,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Gfx_CopyRequestedLayers(void);
 void func_01ff9c28(int a);
-void func_01ff9c48(int a);
+void MainLoop_SetFrameCallback(int a);
 void TransferQueue_Clear(void);
 void CallbackSlots_Clear(void);
 void CallbackList_Clear(void);
@@ -47,7 +47,7 @@ void Gfx_InitBothScreens(void);
     OamBuffer_FlushTail();         \
     func_0201d7fc();         \
     func_01ff9c28(0);        \
-    func_01ff9c48(0)
+    MainLoop_SetFrameCallback(0)
 #define CLEAR_WINDOW_BITS()               \
     data_027c0280->dispCnt &= ~0x2000;    \
     data_027c0280->dispCnt &= ~0x4000;    \

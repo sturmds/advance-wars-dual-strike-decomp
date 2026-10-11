@@ -6,7 +6,7 @@ extern int data_027c0284;
 extern int data_0229eae4;
 
 void Screen_FillBlack(void);
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9f1c(int value);
 void func_01ff9f8c(int value);
@@ -39,7 +39,7 @@ void Screen_InitSystems(void)
 {
     data_0229eae4 = 0;
     Screen_FillBlack();
-    func_01ff9c48(NULL);
+    MainLoop_SetFrameCallback(NULL);
     func_01ff9c28(NULL);
     func_01ff9f1c(0);
     func_01ff9f8c(0);

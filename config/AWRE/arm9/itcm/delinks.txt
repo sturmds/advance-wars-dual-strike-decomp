@@ -133,6 +133,10 @@ src/game/itcm/func_01ff9c38.c:
     complete
     .text       start:0x01ff9c38 end:0x01ff9c48
 
+src/game/itcm/main_loop/set_screen_callback.c:
+    complete
+    .text       start:0x01ff9c48 end:0x01ff9c7c
+
 src/game/itcm/func_01ff9eac.c:
     complete
     .text       start:0x01ff9eac end:0x01ff9ebc

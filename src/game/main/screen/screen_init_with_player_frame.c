@@ -10,7 +10,7 @@ extern u8 data_02134e8c[];
 extern u8 data_02137ca8[];
 extern u8 data_02137c88[];
 
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_TaskFrame(void);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
@@ -31,7 +31,7 @@ void Screen_InitWithPlayerFrame(void)
 {
     u16 player = data_027c027c->unk_48[data_027c0284]->currentPlayer;
 
-    func_01ff9c48(MainLoop_TaskFrame);
+    MainLoop_SetFrameCallback(MainLoop_TaskFrame);
     Screen_SetBgMode(0);
     Screen_InitLayers(data_02169970);
     Screen_ResetBlend();

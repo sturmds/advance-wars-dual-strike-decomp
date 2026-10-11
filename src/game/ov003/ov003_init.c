@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 
 void func_01ff9c28(void (*callback)(void));
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void func_ov003_023517e0(void);
 void Ov003_InitScreens(void);
 void Ov003_InitState(void);
@@ -22,14 +22,14 @@ void Ov003_Init(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     func_01ff9c28(NULL);
-    func_01ff9c48(NULL);
+    MainLoop_SetFrameCallback(NULL);
     func_ov003_023517e0();
     Ov003_InitScreens();
     Ov003_InitState();
     func_ov003_02364854();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_01ff9c28(MainLoop_Ov003VBlank);
-    func_01ff9c48(Ov003_DrawFrame);
+    MainLoop_SetFrameCallback(Ov003_DrawFrame);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

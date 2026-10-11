@@ -29,7 +29,7 @@ void Ov006_SetUpScreens(void);
 u8 Ov006_CountPropertyTiles(void);
 void Ov006_FindHqs(void);
 void Battle_RegisterFrameCallbacks(void);
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_MapFrame(void);
 void Font_SetDigitEndTile(int tile);
 void MapCursor_SetTile(int x, int y, s16 *tile, u16 *pixel);
@@ -133,7 +133,7 @@ void DesignRoom_Init(Task *task)
         Ov006_FindHqs();
     }
     Battle_RegisterFrameCallbacks();
-    func_01ff9c48(MainLoop_MapFrame);
+    MainLoop_SetFrameCallback(MainLoop_MapFrame);
     gMapGameRunning = 0;
     Font_SetDigitEndTile(0x45);
     MapCursor_SetTile(7, 4, &STATE->cursorX, &STATE->cursorPixelX);

@@ -9,7 +9,7 @@ char *func_021246d4(char *dest, const char *src);  /* strcpy */
 void Ov006_DrawNameField(void);
 void Screens_SelectConfigs(void);
 void Battle_RegisterFrameCallbacks(void);
-void func_01ff9c48(void (*callback)(void));
+void MainLoop_SetFrameCallback(void (*callback)(void));
 void MainLoop_MapFrame(void);
 void Camera_ResetToPreset1(void *p);
 void Gfx_ClearLayerMap(int arg);
@@ -41,7 +41,7 @@ void func_ov006_023544c4(void)
         callback(1);
     }
     Battle_RegisterFrameCallbacks();
-    func_01ff9c48(MainLoop_MapFrame);
+    MainLoop_SetFrameCallback(MainLoop_MapFrame);
     gMapGameRunning = 0;
     Camera_ResetToPreset1(data_022a7d5c);
     Gfx_ClearLayerMap(1);

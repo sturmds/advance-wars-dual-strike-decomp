@@ -15,7 +15,7 @@ void CurrentPlayer_StartTurn(void);
 void func_020c8888(void);
 void ScreenConfig_Select(int a);
 void Battle_RegisterFrameCallbacks(void);
-void func_01ff9c48(const void *descriptor);
+void MainLoop_SetFrameCallback(const void *descriptor);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -58,6 +58,6 @@ void Battle_SetupWithPresetCos(void)
         HOOKS->unk_54(1);
     }
     Battle_RegisterFrameCallbacks();
-    func_01ff9c48(MainLoop_MapFrame);
+    MainLoop_SetFrameCallback(MainLoop_MapFrame);
     gMapGameRunning = 0;
 }
