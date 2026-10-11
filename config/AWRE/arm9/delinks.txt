@@ -16146,6 +16146,22 @@ src/game/main/map/map_view_draw_left_column.c:
     complete
     .text       start:0x020f6854 end:0x020f68b8
 
+src/game/main/map/map_view_draw_range_column.c:
+    complete
+    .text       start:0x020f68b8 end:0x020f6948
+
+src/game/main/map/map_view_draw_range_row.c:
+    complete
+    .text       start:0x020f6948 end:0x020f69c0
+
+src/game/main/map/map_view_draw_unit_column.c:
+    complete
+    .text       start:0x020f69c0 end:0x020f6a00
+
+src/game/main/map/map_view_draw_unit_row.c:
+    complete
+    .text       start:0x020f6a00 end:0x020f6a40
+
 src/game/main/map/map_bg_draw_tile_row.c:
     complete
     .text       start:0x020f6a40 end:0x020f6e74

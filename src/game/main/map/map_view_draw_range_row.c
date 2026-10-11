@@ -1,0 +1,22 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+void func_020f78dc(int x, int y);
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Draws the range overlay for one row of 17 tiles at mapY, starting at column
+ * mapX. */
+void MapView_DrawRangeRow(int bufX, int bufY, int mapX, int mapY)
+{
+    u16 i;
+
+    if (GAME->unk_1c4->mapHeight - mapY > 12) {
+        for (i = 0; i < 17; i++) {
+            func_020f78dc((s16)(mapX + i), mapY);
+        }
+    }
+}
