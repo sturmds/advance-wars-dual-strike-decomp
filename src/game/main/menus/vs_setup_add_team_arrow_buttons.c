@@ -6,7 +6,7 @@ int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetSlotTileX(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 
 extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215cbe8;
@@ -23,7 +23,7 @@ static inline BOOL IsFirstLinkPlayer(void)
  * arrows above (y 32, id 52 + player * 2) and below (y 96, id 53 + player
  * * 2) the slot button, which step the slot's team. In a link
  * game only the own slot gets arrows, plus, for the first link player,
- * each slot not set in the func_02073874 mask; only the first link player
+ * each slot not set in the Link_GetConnectedSlotMask mask; only the first link player
  * gets button 254. */
 void VsSetup_AddTeamArrowButtons(void)
 {
@@ -41,7 +41,7 @@ void VsSetup_AddTeamArrowButtons(void)
             return;
         }
         for (player = 0; player < gMenuState.setup.unk_2e3; player++) {
-            if ((func_02073874() & (1 << player)) == 0) {
+            if ((Link_GetConnectedSlotMask() & (1 << player)) == 0) {
                 MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
                 MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
             }

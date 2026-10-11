@@ -4,7 +4,7 @@
 
 int func_0207bd6c(void);
 int VsSetup_GetPanelTileX(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 BOOL Skills_AreDisabled(void);
 
 extern MenuButtonTemplate data_0215cb20;
@@ -26,7 +26,7 @@ static inline BOOL IsFirstLinkPlayer(void)
  * player * 2 and + 1), buttons 250-253 (250-252 only when skills are on)
  * and the four buttons above and below the COs (32 + player * 4 to + 3),
  * plus 18 + player * 4 and + 1 with twoMaps. The first link player also gets the CO buttons of each
- * slot not set in the func_02073874 mask. Other players close button 254. */
+ * slot not set in the Link_GetConnectedSlotMask mask. Other players close button 254. */
 void VsSetup_AddLinkButtons(int player)
 {
     int other;
@@ -38,7 +38,7 @@ void VsSetup_AddLinkButtons(int player)
     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 24, 80, &data_0215cb98, player * 2 + 9);
     if (IsFirstLinkPlayer() == 1) {
         for (other = 0; other < MENU->setup.unk_2e3; other++) {
-            if ((func_02073874() & (1 << other)) == 0) {
+            if ((Link_GetConnectedSlotMask() & (1 << other)) == 0) {
                 MenuButton_Add(VsSetup_GetPanelTileX(other) * 8, 80, &data_0215cb98, other * 2 + 8);
                 MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 24, 80, &data_0215cb98, other * 2 + 9);
             }
@@ -60,7 +60,7 @@ void VsSetup_AddLinkButtons(int player)
     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
     if (IsFirstLinkPlayer() == 1) {
         for (other = 0; other < MENU->setup.unk_2e3; other++) {
-            if ((func_02073874() & (1 << other)) == 0) {
+            if ((Link_GetConnectedSlotMask() & (1 << other)) == 0) {
                 MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 4, 64, &data_0215cdf0, other * 4 + 32);
                 MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 4, 128, &data_0215cb70, other * 4 + 33);
                 MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 28, 64, &data_0215cdf0, other * 4 + 34);

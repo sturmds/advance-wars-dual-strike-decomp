@@ -8444,6 +8444,10 @@ src/game/main/func_02073868.c:
     complete
     .text       start:0x02073868 end:0x02073874
 
+src/game/main/link/link_get_connected_slot_mask.c:
+    complete
+    .text       start:0x02073874 end:0x020738d0
+
 src/game/main/link/link_find_slot_of_player.c:
     complete
     .text       start:0x020738d0 end:0x02073908
@@ -8451,6 +8455,10 @@ src/game/main/link/link_find_slot_of_player.c:
 src/game/main/link/link_get_player_of_slot.c:
     complete
     .text       start:0x02073908 end:0x02073920
+
+src/game/main/link/link_assign_slots.c:
+    complete
+    .text       start:0x02073920 end:0x020739a8
 
 src/game/main/func_020739a8.c:
     complete

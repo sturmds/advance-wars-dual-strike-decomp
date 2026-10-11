@@ -6,7 +6,7 @@ int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetPanelTileX(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 BOOL Skills_AreDisabled(void);
 
 extern MenuButtonTemplate data_0215cb48;
@@ -28,7 +28,7 @@ static inline BOOL IsFirstLinkPlayer(void)
  * to + 3, and above (y 64) and below (y 128) the CO buttons at y 80, ids
  * 32 + player * 4 to + 3. Up and down arrows is a guess. In a link game only
  * the own slot gets them, plus, for the first link player, the CO arrows of
- * each slot not set in the func_02073874 mask; only the first link player
+ * each slot not set in the Link_GetConnectedSlotMask mask; only the first link player
  * gets button 254. */
 void VsSetup_AddArrowButtons(void)
 {
@@ -55,7 +55,7 @@ void VsSetup_AddArrowButtons(void)
         MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
         if (IsFirstLinkPlayer() == 1) {
             for (player = 0; player < MENU->setup.unk_2e3; player++) {
-                if ((func_02073874() & (1 << player)) == 0) {
+                if ((Link_GetConnectedSlotMask() & (1 << player)) == 0) {
                     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
                     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
                     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);

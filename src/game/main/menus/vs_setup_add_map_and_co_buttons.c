@@ -6,7 +6,7 @@ int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetPanelTileX(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 
 extern MenuButtonTemplate data_0215cb20;
 extern MenuButtonTemplate data_0215cb98;
@@ -34,7 +34,7 @@ void VsSetup_AddMapAndCoButtons(void)
         MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 24, 80, &data_0215cb98, player * 2 + 9);
         if (IsFirstLinkPlayer() == 1) {
             for (player = 0; player < MENU->setup.unk_2e3; player++) {
-                if ((func_02073874() & (1 << player)) == 0) {
+                if ((Link_GetConnectedSlotMask() & (1 << player)) == 0) {
                     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8, 80, &data_0215cb98, player * 2 + 8);
                     MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 24, 80, &data_0215cb98, player * 2 + 9);
                 }

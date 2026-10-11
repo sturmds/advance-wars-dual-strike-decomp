@@ -11,7 +11,7 @@ int func_0207bd6c(void);
 int func_0207bd80(void);
 int func_0207bd94(void);
 int Link_FindSlotOfPlayer(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 void VsSetup_PrevTeam(int msg); /* previous team for slot msg - 19 */
 void VsSetup_NextTeam(int msg); /* next team for slot msg - 23 */
 void VsSetup_SetSlotReady(int slot); /* sets slot ready */
@@ -88,7 +88,7 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
         return;
     }
     for (i = 0; i < 4; i++) {
-        if (func_02073874() & (1 << i)) {
+        if (Link_GetConnectedSlotMask() & (1 << i)) {
             if (gMenuState.setup.unk_2d0[i] == 0) {
                 allReady = 0;
                 break;

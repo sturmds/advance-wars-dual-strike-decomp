@@ -6,7 +6,7 @@ int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetSlotTileX(int player);
-u32 func_02073874(void);
+u32 Link_GetConnectedSlotMask(void);
 
 extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215cc38;
@@ -21,7 +21,7 @@ static inline BOOL IsFirstLinkPlayer(void)
 
 /* Buttons 48 and up, one per player slot of the Vs setup screen, 8 pixels
  * apart per column from VsSetup_GetSlotTileX. In a link game the own slot gets one;
- * player 0 also gets one for each slot not set in the mask func_02073874
+ * player 0 also gets one for each slot not set in the mask Link_GetConnectedSlotMask
  * returns. The name is a guess. */
 void VsSetup_AddPlayerButtons(void)
 {
@@ -35,7 +35,7 @@ void VsSetup_AddPlayerButtons(void)
             return;
         }
         for (i = 0; i < MENU->setup.unk_2e3; i++) {
-            if ((func_02073874() & (1 << i)) == 0) {
+            if ((Link_GetConnectedSlotMask() & (1 << i)) == 0) {
                 MenuButton_Add(VsSetup_GetSlotTileX(i) * 8 + 8, 64, &data_0215cc38, i + 48);
             }
         }
