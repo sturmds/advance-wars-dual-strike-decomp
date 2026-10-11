@@ -12989,6 +12989,7 @@ src/game/main/graphics/func_020f84b0.c:
     .text       start:0x020f84b0 end:0x020f8534
 
 src/game/main/graphics/func_020f8534.c:
+    complete
     .text       start:0x020f8534 end:0x020f85b0
 
 src/game/main/graphics/func_020f85b0.c:
