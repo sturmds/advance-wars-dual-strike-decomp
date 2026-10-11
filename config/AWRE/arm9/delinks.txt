@@ -12952,7 +12952,8 @@ src/game/main/func_020c0734.c:
     complete
     .text       start:0x020c0734 end:0x020c0764
 
-src/game/main/func_020c0764.c:
+src/game/main/player_has_any_unit.c:
+    complete
     .text       start:0x020c0764 end:0x020c07d8
 
 src/game/main/player_has_units_left.c:
