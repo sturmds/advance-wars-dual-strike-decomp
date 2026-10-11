@@ -11715,6 +11715,10 @@ src/game/main/func_020ebf98.c:
     complete
     .text       start:0x020ebf98 end:0x020ebfa4
 
+src/game/main/units/capture_count_up_update.c:
+    complete
+    .text       start:0x020ebfa4 end:0x020ebfec
+
 src/game/main/func_020ebfec.c:
     complete
     .text       start:0x020ebfec end:0x020ebffc
