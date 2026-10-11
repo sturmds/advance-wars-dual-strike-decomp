@@ -755,6 +755,10 @@ src/game/main/screen/screen_get_nibble.c:
     complete
     .text       start:0x02007760 end:0x020077a4
 
+src/game/main/screen/screen_set_both_nibbles.c:
+    complete
+    .text       start:0x020077a4 end:0x020077d4
+
 src/game/main/screen/screen_set_nibble.c:
     complete
     .text       start:0x020077d4 end:0x02007830

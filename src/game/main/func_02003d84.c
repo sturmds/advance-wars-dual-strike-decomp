@@ -3,7 +3,7 @@
 int func_02007748(void);
 int func_02007730(void);
 void func_02007710(int a0);
-void func_020077a4(int a0);
+void Screen_SetBothNibbles(int a0);
 void Task_Destroy(void *task);
 
 int func_02003d84(void *task)
@@ -19,6 +19,6 @@ int func_02003d84(void *task)
     } else {
         func_02007710(1);
     }
-    func_020077a4(1);
+    Screen_SetBothNibbles(1);
     return 1;
 }

@@ -4,7 +4,7 @@
 
 void Screen_SetCurrentBoth(void *state);
 void Task_ResumeScript(void *task);
-void func_020077a4(int value);
+void Screen_SetBothNibbles(int value);
 
 /* Raises the master brightness of both screens by one level every 4 frames
  * and resumes the script after 64 frames. */
@@ -21,7 +21,7 @@ void Splash_FadeUpdate(SplashTask *task)
     Screen_SetCurrentGfx(saved0280);
     task->fadeFrames++;
     if (task->fadeFrames >= 64) {
-        func_020077a4(1);
+        Screen_SetBothNibbles(1);
         Task_ResumeScript(task);
     }
 }

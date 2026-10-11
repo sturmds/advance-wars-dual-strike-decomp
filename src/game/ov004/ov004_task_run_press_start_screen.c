@@ -12,7 +12,7 @@ BOOL Keypad_ConfirmPressed(void);
 void Screens_BlackOut(void);
 BOOL func_02004828(void);
 void func_0200493c(u16 value);
-void func_020077a4(int weather);
+void Screen_SetBothNibbles(int weather);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sound_PlaySe(u32 soundId);
 void Sound_StartSong(int songId);
@@ -164,7 +164,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         break;
     case 100:
         Sound_FadeOutSongOver(1);
-        func_020077a4(0);
+        Screen_SetBothNibbles(0);
         func_0200493c(32);
         task->step++;
     case 101:
