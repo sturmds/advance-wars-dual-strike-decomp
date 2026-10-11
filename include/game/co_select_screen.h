@@ -22,6 +22,9 @@ typedef struct CoSelectScreen {
 
 extern CoSelectScreen *data_0229c73c;
 
+/* The CO in the cursor cell. Needed to match: coGrid read as rows of 2. */
+#define CO_SELECT_CURSOR_CO (((u8 (*)[2])data_0229c73c->coGrid)[data_0229c73c->cursorColumn - 1][data_0229c73c->cursorRow])
+
 /* Task that slides the big CO pictures on the bottom screen, one per grid
  * row (CoSelectScreen_SlidePictures). Fields are per row. */
 typedef struct CoSelectPictureTask {

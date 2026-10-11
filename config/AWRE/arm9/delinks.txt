@@ -5836,6 +5836,14 @@ src/game/main/menus/co_select_screen_add_co_list_buttons.c:
     complete
     .text       start:0x02041ae0 end:0x02041c74
 
+src/game/main/menus/co_select_screen_select_co_list_slot.c:
+    complete
+    .text       start:0x02041c74 end:0x02041d48
+
+src/game/main/menus/co_select_screen_cancel_co_list.c:
+    complete
+    .text       start:0x02041d48 end:0x02041e30
+
 src/game/main/menus/co_select_screen_confirm_co_list.c:
     complete
     .text       start:0x02041e30 end:0x02042008
