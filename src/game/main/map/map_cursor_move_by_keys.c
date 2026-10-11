@@ -12,25 +12,25 @@ void Sound_PlaySe(int se);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* Moves the map cursor (unk_28, unk_2a) one tile in the direction of the
+/* Moves the map cursor (cursorX, cursorY) one tile in the direction of the
  * d-pad keys in gKeypad->repeat, kept on the map, with sound 0x10000 when it
  * moves. */
 void MapCursor_MoveByKeys(void)
 {
     Unk_02080440_48 *game = GAME;
     int dir = (gKeypad->repeat >> 4) & 15;
-    int newX = game->unk_28 + data_02169454[dir][0];
+    int newX = game->cursorX + data_02169454[dir][0];
     s16 nx = newX;
     /* needed to match: this read adds the scaled index first */
     MapTiles *tiles = STATE_IDX_FIRST->mapTiles;
     int se = 0;
-    s16 ny = game->unk_2a + data_02169456[dir][0];
+    s16 ny = game->cursorY + data_02169456[dir][0];
     int newY;
     s8 range;
 
     /* Inside the reach shown for a unit, auto-repeat stops at its edge;
      * a new press steps out. */
-    if (tiles->rangeMapTiles[game->unk_28 + tiles->rowStart[game->unk_2a]] > 0) {
+    if (tiles->rangeMapTiles[game->cursorX + tiles->rowStart[game->cursorY]] > 0) {
         range = tiles->rangeMapTiles[nx + tiles->rowStart[ny]];
         if (range < 0 || range > 110) {
             if (gKeypad->repeat != gKeypad->pressed) {
@@ -39,14 +39,14 @@ void MapCursor_MoveByKeys(void)
         }
     }
     if (newX >= 0 && newX < GAME->unk_1c4->mapWidth) {
-        GAME->unk_28 = newX;
+        GAME->cursorX = newX;
         if (data_02169454[dir][0] != 0) {
             se = 0x10000;
         }
     }
-    newY = GAME->unk_2a + data_02169456[dir][0];
+    newY = GAME->cursorY + data_02169456[dir][0];
     if (newY >= 0 && newY < GAME->unk_1c4->mapHeight) {
-        GAME->unk_2a = newY;
+        GAME->cursorY = newY;
         if (data_02169456[dir][0] != 0) {
             se = 0x10000;
         }

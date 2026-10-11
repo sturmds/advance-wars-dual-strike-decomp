@@ -25,7 +25,7 @@ static inline BOOL IsTouchInPhase(int phase)
 
 /* Cursor update from touch for the four-direction tile picker in
  * NeighborTilePicker_Update. When the touched tile is one of the directions in `mask`
- * (func_020ce810), the cursor (unk_28, unk_2a) moves there and *direction
+ * (func_020ce810), the cursor (cursorX, cursorY) moves there and *direction
  * gets its index. A new touch remembers its tile in unk_30 and unk_32 and
  * starts the touch marker task; moving to another tile ends both, as in
  * MapCursor_UpdateFromTouch. */
@@ -56,8 +56,8 @@ void MapTouch_UpdateNeighborCursor(int *direction, int mask)
     }
     found = func_020ce810(tileX, tileY, mask);
     if (found >= 0) {
-        GAME->unk_28 = tileX;
-        GAME->unk_2a = tileY;
+        GAME->cursorX = tileX;
+        GAME->cursorY = tileY;
         *direction = found;
     }
     if (IsTouchInPhase(TOUCH_PRESSED)) {

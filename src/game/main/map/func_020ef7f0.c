@@ -18,18 +18,18 @@ void func_020ef7f0(void)
 {
     int dir = (gKeypad->repeat >> 4) & 15;
     int se = 0;
-    int newX = GAME->unk_28 + data_02169454[dir][0];
+    int newX = GAME->cursorX + data_02169454[dir][0];
     int newY;
 
     if (newX >= 0 && newX < GAME->unk_1c4->mapWidth) {
-        GAME->unk_28 = newX;
+        GAME->cursorX = newX;
         if (data_02169454[dir][0] != 0) {
             se = 0x10000;
         }
     }
-    newY = GAME->unk_2a + data_02169456[dir][0];
+    newY = GAME->cursorY + data_02169456[dir][0];
     if (newY >= 0 && newY < GAME->unk_1c4->mapHeight) {
-        GAME->unk_2a = newY;
+        GAME->cursorY = newY;
         if (data_02169456[dir][0] != 0) {
             se = 0x10000;
         }

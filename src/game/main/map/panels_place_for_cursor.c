@@ -7,11 +7,11 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Puts the side panel and the info panel at rest on the right of the screen
- * when unk_28 is below 8 (the tile x of the AiShowAction steps), on the left
- * otherwise. Then points the info panel at the tile (unk_28, unk_2a). */
+ * when cursorX is below 8, on the left
+ * otherwise. Then points the info panel at the tile (cursorX, cursorY). */
 void Panels_PlaceForCursor(void)
 {
-    if (STATE->unk_28 < 8) {
+    if (STATE->cursorX < 8) {
         STATE->sidePanelRight = 1;
         STATE->sidePanelX = 192;
         STATE->infoPanelX = 164;
@@ -20,6 +20,6 @@ void Panels_PlaceForCursor(void)
         STATE->sidePanelX = 0;
         STATE->infoPanelX = 3;
     }
-    STATE->infoTileX = STATE->unk_28;
-    STATE->infoTileY = STATE->unk_2a;
+    STATE->infoTileX = STATE->cursorX;
+    STATE->infoTileY = STATE->cursorY;
 }

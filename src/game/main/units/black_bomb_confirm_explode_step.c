@@ -27,7 +27,7 @@ void func_020c4124(int a, int b);
 
 /* Task step while the player confirms a Black Bomb explosion. Confirm
  * removes the bomb (BlackBomb_RemoveActingUnit), starts the explosion
- * (func_020dd940) from the bomb's tile at the cursor tile (unk_28, unk_2a)
+ * (func_020dd940) from the bomb's tile at the cursor tile (cursorX, cursorY)
  * and, when data_0229eaec is set, sends unit action 23 for it. Cancel puts
  * the cursor back on the bomb and jumps the script to label 0. Same shape
  * as SiloLaunch_PickTargetStep, but the cursor does not move here. */
@@ -47,7 +47,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
     input = buttons | func_020efc20();
     if (input & INPUT_CONFIRM) {
         BlackBomb_RemoveActingUnit(task);
-        func_020dd940(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->unk_28, GAME->unk_2a, task);
+        func_020dd940(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
         MenuButtons_CloseAll();
         if (data_0229eaec != 0) {
             UnitAction_Send(23, GAME->actingUnitIndex, 0, 0);
@@ -57,9 +57,9 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
     }
     if (input & INPUT_CANCEL) {
         MenuButtons_CloseAll();
-        GAME->unk_28 = GAME->actingUnitDestX;
-        GAME->unk_2a = GAME->actingUnitDestY;
-        func_020f5888(GAME->unk_28, GAME->unk_2a);
+        GAME->cursorX = GAME->actingUnitDestX;
+        GAME->cursorY = GAME->actingUnitDestY;
+        func_020f5888(GAME->cursorX, GAME->cursorY);
         Task_JumpToLabel(task, 0);
         Task_ResumeScript(task);
     }

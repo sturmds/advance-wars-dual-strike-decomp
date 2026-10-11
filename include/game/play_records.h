@@ -33,7 +33,7 @@ typedef struct PlayRecords {
     u8 unk_11;
     u8 unk_12;                         /* copied to MenuState.setup.unk_2e1 */
     u8 shopVisits;                     /* visits to Hachi's shop, up to 255 (Ov005_AddShopVisit) */
-    u8 unk_14;                         /* CO slot of the CO-select screen cursor: data_ov005_0236a48c[cursor] (Ov005 Ov005_SaveCoListEntry), searched by Ov005_FindSavedCoListEntry */
+    u8 wallpaper;                      /* selected wallpaper, 0-30 (Wallpaper_LoadSelected); ov005 stores data_ov005_0236a48c[entry] (Ov005_SaveCoListEntry) */
     u8 unk_15;                         /* copied to MenuState.setup.unk_2e2 */
     u8 unk_16;                         /* aiBehaviour of slot 1 when gameMode is 1 (Players_ApplyBattleSetup) */
     u8 unk_17;                         /* aiBehaviour of every slot but the last when gameMode is 0 (Players_ApplyBattleSetup) */

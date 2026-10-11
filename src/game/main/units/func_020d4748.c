@@ -32,7 +32,7 @@ extern int data_027c0284;
 #define ACTING_PLAYER(state) ((state)->players[((state)->actingUnitIndex >> 6) + 1])
 #define ABS(x) ((x) < 0 ? -(x) : (x))
 
-/* Follows the map cursor (unk_28, unk_2a) with the move path when it moves
+/* Follows the map cursor (cursorX, cursorY) with the move path when it moves
  * to another tile in the acting unit's range. A tile already on the path cuts
  * the path back to it; a reachable tile next to the path's end is appended;
  * anything else rebuilds the path by search (func_01ffa02c). unk_46 gets the
@@ -48,8 +48,8 @@ void func_020d4748(void)
     s8 lastX;
 
     state = GAME;
-    y = state->unk_2a;
-    x = state->unk_28;
+    y = state->cursorY;
+    x = state->cursorX;
     range = state->rangeMap[y][x];
     if (PATH->cursorX == x && PATH->cursorY == y) {
         return;
@@ -59,7 +59,7 @@ void func_020d4748(void)
         return;
     }
 
-    i = func_020d4fb0(GAME->unk_28, GAME->unk_2a);
+    i = func_020d4fb0(GAME->cursorX, GAME->cursorY);
     if (i != -1) {
         MovePath_Truncate((s8)(i + 1));
         GAME->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
@@ -72,8 +72,8 @@ void func_020d4748(void)
     } else {
         co = ACTING_PLAYER(state).front.id & PLAYER_CO_ID_MASK;
     }
-    x = state->unk_28;
-    y = state->unk_2a;
+    x = state->cursorX;
+    y = state->cursorY;
     i = PATH->lastTile;
     if (PATH->movesLeft[i]
         >= ((const s8 (*)[32])gCoTable[co].blocks[ACTING_PLAYER(state).front.powerState]
@@ -95,10 +95,10 @@ void func_020d4748(void)
     RangeMap_SetBuffer(GAME->mapTiles->rangeScratch);
     MovePath_FillRangeFromEnd();
     RELOAD_STATE(state);
-    if (state->rangeMap[state->unk_2a][state->unk_28] == -1) {
+    if (state->rangeMap[state->cursorY][state->cursorX] == -1) {
         MovePath_RebuildToTarget();
     } else {
-        func_01ffa02c(state->unk_28, state->unk_2a, state->unk_170);
+        func_01ffa02c(state->cursorX, state->cursorY, state->unk_170);
         MovePath_AppendSteps();
         if (!MovePath_HasNoRepeatedTile()) {
             MovePath_RebuildToTarget();

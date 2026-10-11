@@ -26,7 +26,7 @@ void Task_ResumeByScript(void *script);
 
 /* Confirm callback of a build menu row. A unit the player cannot afford
  * plays the refusal sound. Otherwise, if the player has a free unit slot,
- * buys the unit on tile (unk_28, unk_2a), sends the action to the other
+ * buys the unit on tile (cursorX, cursorY), sends the action to the other
  * console when data_0229eaec is set (likely link play), runs map script
  * list 10 with id 14 for the new unit and resumes the build menu task. */
 void BuildMenu_OnConfirm(MenuButton *button)
@@ -44,9 +44,9 @@ void BuildMenu_OnConfirm(MenuButton *button)
         func_020bba44();
         return;
     }
-    unit = CurrentPlayer_BuyUnit(GAME->unk_28, GAME->unk_2a, data_0229eaf8[id].unitType);
-    GAME->actingUnitDestX = GAME->unk_28;
-    GAME->actingUnitDestY = GAME->unk_2a;
+    unit = CurrentPlayer_BuyUnit(GAME->cursorX, GAME->cursorY, data_0229eaf8[id].unitType);
+    GAME->actingUnitDestX = GAME->cursorX;
+    GAME->actingUnitDestY = GAME->cursorY;
     if (data_0229eaec != 0) {
         UnitAction_Send(1, data_0229eaf8[id].unitType, 0, 0);
     }

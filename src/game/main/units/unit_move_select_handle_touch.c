@@ -40,10 +40,10 @@ BOOL UnitMoveSelect_HandleTouch(void)
     if (!IsTouchInPhase(TOUCH_RELEASED)) {
         return FALSE;
     }
-    if (GAME->unk_28 == GAME->unk_30 && GAME->unk_2a == GAME->unk_32) {
+    if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
         func_020f1288();
-        if (ActingUnit_CanMoveTo(GAME->unk_28, GAME->unk_2a)) {
-            UnitMoveSelect_TryMoveTo(GAME->unk_28, GAME->unk_2a);
+        if (ActingUnit_CanMoveTo(GAME->cursorX, GAME->cursorY)) {
+            UnitMoveSelect_TryMoveTo(GAME->cursorX, GAME->cursorY);
             return TRUE;
         }
         if (data_0229eaec != 0) {

@@ -7,5 +7,5 @@ BOOL Co_IsAvailable(int co)
     if (co >= CO_COUNT) {
         return FALSE;
     }
-    return gPlayRecords.coRecords[co].unk_0_31;
+    return gPlayRecords.coRecords[co].available;
 }

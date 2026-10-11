@@ -16,7 +16,7 @@ void PopupMenu_SetItemIcon(int icon)
     if (menu == NULL) {
         return;
     }
-    menu->itemIcons[menu->unk_4e] = icon;
+    menu->itemIcons[menu->iconSlot] = icon;
     if (icon == 0xff) {
         return;
     }

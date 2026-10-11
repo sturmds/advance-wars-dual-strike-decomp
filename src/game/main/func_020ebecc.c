@@ -9,15 +9,13 @@ extern int data_027c0284;
 extern EventScriptCommand data_02168fd8[];
 extern MenuButtonTemplate data_02158f7c;
 
-EventScriptSlot *EventScript_Start(const EventScriptCommand *script);
-
-/* Starts the script at data_02168fd8, points the view target (unk_28, unk_2a)
+/* Starts the script at data_02168fd8, points the view target (cursorX, cursorY)
  * at the acting unit's destination tile and adds a menu button. Purpose
  * unknown. */
 void func_020ebecc(void)
 {
     EventScript_Start(data_02168fd8);
-    data_027c027c->unk_48[data_027c0284]->unk_28 = data_027c027c->unk_48[data_027c0284]->actingUnitDestX;
-    data_027c027c->unk_48[data_027c0284]->unk_2a = data_027c027c->unk_48[data_027c0284]->actingUnitDestY;
+    data_027c027c->unk_48[data_027c0284]->cursorX = data_027c027c->unk_48[data_027c0284]->actingUnitDestX;
+    data_027c027c->unk_48[data_027c0284]->cursorY = data_027c027c->unk_48[data_027c0284]->actingUnitDestY;
     MenuButton_AddReserved(0, 0, &data_02158f7c);
 }

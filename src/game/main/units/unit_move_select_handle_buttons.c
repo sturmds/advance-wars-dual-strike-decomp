@@ -26,7 +26,7 @@ BOOL UnitMoveSelect_HandleButtons(void)
     u16 keys = gKeypad->pressed;
 
     if (keys & PAD_BUTTON_A) {
-        UnitMoveSelect_TryMoveTo(GAME->unk_28, GAME->unk_2a);
+        UnitMoveSelect_TryMoveTo(GAME->cursorX, GAME->cursorY);
         return TRUE;
     }
     if (keys & PAD_BUTTON_B) {

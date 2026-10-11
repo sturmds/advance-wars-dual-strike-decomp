@@ -13,7 +13,7 @@ typedef struct CoSaveRecord {
     u32 forceRankSetByPlayer : 8;      /* 2 bits per player 1-4: which Force Rank set the CO uses */
     u32 paletteVariant : 3;            /* 0-7, see Co_LoadPalette */
     u32 pictureVariant : 1;            /* alternate picture */
-    u32 unk_0_31 : 1;
+    u32 available : 1;                 /* Co_SetAvailable, Co_IsAvailable; name a guess */
     ForceRankSet setMode1;             /* ForceRank_GetSavedSet mode 1 */
     ForceRankSet setMode3;             /* mode 3 */
     ForceRankSet setsMode2[4];         /* mode 2 */

@@ -10,6 +10,6 @@ void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
  * bank 0 for the menu's icons. */
 void PopupMenu_InitIcons(PopupMenuTask *menu)
 {
-    menu->unk_4e = 0;
+    menu->iconSlot = 0;
     IconBank_Init(0, data_027c0280->objVram, 0x194, 16);
 }

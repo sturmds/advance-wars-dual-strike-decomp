@@ -13,7 +13,7 @@ extern u8 data_021576fb[][20];
 
 /* Works out where the map view should scroll so that tile (*x, *y) shows, and
  * stores the new top-left tile back in *x and *y. The tile is also saved as the
- * cursor tile (unk_28/unk_2c). With centre set, the view centres on the tile.
+ * cursor tile (cursorX, cursorY). With centre set, the view centres on the tile.
  * Otherwise it moves only when the tile is within 2 tiles of an edge (3 on the
  * right and bottom), and then puts the tile that far in from that edge. The
  * view is kept inside the map.
@@ -33,7 +33,7 @@ BOOL MapView_FindScroll(int *x, int *y, BOOL centre)
     screenLayout = gCameraPresetIndex;
     viewW = data_021576fa[screenLayout][0];
     viewH = data_021576fb[screenLayout][0];
-    func_020c4394((s16)*x, (s16)*y, &GAME->unk_28, &GAME->unk_2c);
+    func_020c4394((s16)*x, (s16)*y, &GAME->cursorX, &GAME->unk_2c);
     scrollX = (s16)GAME->unk_1c4->scrollX / 16;
     scrollY = (s16)GAME->unk_1c4->scrollY / 16;
     dx = 0;

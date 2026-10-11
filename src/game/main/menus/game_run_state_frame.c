@@ -45,7 +45,7 @@ void Game_State20_CloseMap(void);
 void Game_State22_ReopenPopup(void);
 
 /* Copies the view scroll of map screen `from` to map screen `to` through the
- * caller's scrollX and scrollY, and puts the cursor tile (unk_28, unk_2a) of
+ * caller's scrollX and scrollY, and puts the cursor tile (cursorX, cursorY) of
  * `to` at the middle of its view (halfW, halfH tiles in). */
 #define COPY_VIEW_SCROLL(from, to)                                             \
     {                                                                          \
@@ -67,8 +67,8 @@ void Game_State22_ReopenPopup(void);
         Screen_SetCurrent(to);                                                 \
         GAME->unk_1c4->scrollX = scrollX;                                      \
         GAME->unk_1c4->scrollY = scrollY;                                      \
-        GAME->unk_28 = halfW + (GAME->unk_1c4->scrollX >> 4);                  \
-        GAME->unk_2a = halfH + (GAME->unk_1c4->scrollY >> 4);                  \
+        GAME->cursorX = halfW + (GAME->unk_1c4->scrollX >> 4);                  \
+        GAME->cursorY = halfH + (GAME->unk_1c4->scrollY >> 4);                  \
         Screen_SetCurrent(saved027c);                                          \
         Screen_SetCurrentGfx(saved0280);                                       \
     }

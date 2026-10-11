@@ -56,8 +56,8 @@ void Ov006_UpdateMapEditor(void)
     if (OV6->unk_00 & 0x8000) {
         OV6->unk_00 &= ~0x8000;
         OV6->screenState = 0;
-        OV6->cursorX = STATE->unk_28;
-        OV6->cursorY = STATE->unk_2a;
+        OV6->cursorX = STATE->cursorX;
+        OV6->cursorY = STATE->cursorY;
         Ov006_InitSlotButtons();
         Ov006_StartSlotsSlideIn();
         OV6->unk_00 |= 0x10;
@@ -82,7 +82,7 @@ void Ov006_UpdateMapEditor(void)
     OV6->pendingSe = 0;
     if (gKeypad->unk_00 & PAD_BUTTON_X) {
         func_020c407c();
-        if (OV6->cursorX != STATE->unk_28 || OV6->cursorY != STATE->unk_2a) {
+        if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
             result = 1;
         }
     } else {
@@ -90,9 +90,9 @@ void Ov006_UpdateMapEditor(void)
         Ov006_UpdateCursorFromTouch();
     }
     Ov006_ScrollMapView(4);
-    if (OV6->cursorX != STATE->unk_28 || OV6->cursorY != STATE->unk_2a) {
-        OV6->cursorX = STATE->unk_28;
-        OV6->cursorY = STATE->unk_2a;
+    if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
+        OV6->cursorX = STATE->cursorX;
+        OV6->cursorY = STATE->cursorY;
     }
     Ov006_CheckToolAtCursor();
     if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {

@@ -43,7 +43,7 @@ void Save_ResetProgress(void)
     gPlayRecords.unk_0c = 0;
     gPlayRecords.unk_0d = 0;
     gPlayRecords.shopVisits = 0;
-    gPlayRecords.unk_14 = 0;
+    gPlayRecords.wallpaper = 0;
     gPlayRecords.unk_15 = 2;
     gPlayRecords.unk_16 = 2;
     gPlayRecords.unk_17 = 2;

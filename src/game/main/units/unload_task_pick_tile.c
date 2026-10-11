@@ -52,8 +52,8 @@ void UnloadTask_PickTile(Task *task)
         Task_Destroy(task);
         MenuDepth_Pop();
         func_020bc404();
-        STATE->unk_28 = STATE->actingUnitStartX;
-        STATE->unk_2a = STATE->actingUnitStartY;
+        STATE->cursorX = STATE->actingUnitStartX;
+        STATE->cursorY = STATE->actingUnitStartY;
         return;
     }
     if (!(input & INPUT_CONFIRM)) {

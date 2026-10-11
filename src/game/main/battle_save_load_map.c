@@ -39,7 +39,7 @@ void BattleSave_LoadMap(BattleSaveMap *save)
     } else {
         STATE->unk_18 = 4;
     }
-    *(BattleSaveTilePos *)&STATE->unk_28 = save->unk_04;
+    *(BattleSaveTilePos *)&STATE->cursorX = save->unk_04;
     STATE->day = save->day;
     STATE->currentPlayer = save->currentPlayer;
     STATE->unk_04 = STATE->currentPlayer << 5;

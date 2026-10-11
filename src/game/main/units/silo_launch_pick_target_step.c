@@ -30,7 +30,7 @@ void func_020c4124(int a, int b);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Task step while the player aims a silo (the acting unit stands on it) at
- * the cursor tile (unk_28, unk_2a). Confirm launches it there and, when
+ * the cursor tile (cursorX, cursorY). Confirm launches it there and, when
  * data_0229eaec is set, sends action 22 for it; cancel puts the cursor back
  * on the silo and jumps the script to label 0. Otherwise the cursor and
  * the map view keep moving. */
@@ -47,19 +47,19 @@ void SiloLaunch_PickTargetStep(Task *task)
         input = buttons | MapTouch_ReadTileTapOrBack();
         if (input & INPUT_CONFIRM) {
             func_020eef58(task);
-            Silo_StartLaunch(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->unk_28, GAME->unk_2a, task);
+            Silo_StartLaunch(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
             MenuButtons_CloseAll();
             if (data_0229eaec != 0) {
-                UnitAction_Send(22, GAME->actingUnitIndex, GAME->unk_28, GAME->unk_2a);
+                UnitAction_Send(22, GAME->actingUnitIndex, GAME->cursorX, GAME->cursorY);
             }
             Task_ResumeScript(task);
             return;
         }
         if (input & INPUT_CANCEL) {
             MenuButtons_CloseAll();
-            GAME->unk_28 = GAME->actingUnitDestX;
-            GAME->unk_2a = GAME->actingUnitDestY;
-            func_020f5888(GAME->unk_28, GAME->unk_2a);
+            GAME->cursorX = GAME->actingUnitDestX;
+            GAME->cursorY = GAME->actingUnitDestY;
+            func_020f5888(GAME->cursorX, GAME->cursorY);
             Task_JumpToLabel(task, 0);
             Task_ResumeScript(task);
             return;

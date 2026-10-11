@@ -22,8 +22,8 @@ void AiShowAction_Step8(void)
     if (func_0207bd80() == 0) {
         skip = gKeypad->unk_00 & PAD_BUTTON_A;
     }
-    GAME->unk_28 = gUnitAction.target;
-    GAME->unk_2a = gUnitAction.unk_07;
+    GAME->cursorX = gUnitAction.target;
+    GAME->cursorY = gUnitAction.unk_07;
     Map_ScrollViewToTile(2);
     data_0229eac8++;
     if (data_0229eac8 > 30 || skip) {

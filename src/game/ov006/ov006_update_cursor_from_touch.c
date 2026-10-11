@@ -23,7 +23,7 @@ static inline BOOL IsTouchStarted(void)
 }
 
 /* The Design Room's copy of MapCursor_UpdateFromTouch: turns the touch in
- * touchX, touchY into a map tile (unk_28, unk_2a), ignoring the top 33 pixel
+ * touchX, touchY into a map tile (cursorX, cursorY), ignoring the top 33 pixel
  * rows. On the 3D screen the tile only changes while request is 1, and a new
  * touch only remembers its tile (unk_30, unk_32) then. No calls and no sound,
  * unlike the main version. */
@@ -42,22 +42,22 @@ void Ov006_UpdateCursorFromTouch(void)
         return;
     }
     if (data_027c027c != data_027c0288.unk_00) {
-        STATE->unk_28 = (touchX + STATE->unk_1c4->scrollX) >> 4;
-        STATE->unk_2a = (touchY + STATE->unk_1c4->scrollY) >> 4;
+        STATE->cursorX = (touchX + STATE->unk_1c4->scrollX) >> 4;
+        STATE->cursorY = (touchY + STATE->unk_1c4->scrollY) >> 4;
     } else {
         func_020fbb58(touchX, touchY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
         if (data_ov006_0236d640->request == 1) {
-            STATE->unk_28 = pos[0] >> 9;
-            STATE->unk_2a = pos[1] >> 9;
+            STATE->cursorX = pos[0] >> 9;
+            STATE->cursorY = pos[1] >> 9;
         }
     }
     if (IsTouchStarted() && data_ov006_0236d640->request == 1) {
-        STATE->unk_30 = STATE->unk_28;
-        STATE->unk_32 = STATE->unk_2a;
+        STATE->unk_30 = STATE->cursorX;
+        STATE->unk_32 = STATE->cursorY;
     }
-    if (STATE->unk_30 != STATE->unk_28 || STATE->unk_32 != STATE->unk_2a) {
+    if (STATE->unk_30 != STATE->cursorX || STATE->unk_32 != STATE->cursorY) {
         STATE->unk_30 = 0xff;
         STATE->unk_32 = 0xff;
     }

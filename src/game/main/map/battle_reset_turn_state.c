@@ -20,8 +20,8 @@ BOOL Map_IsCoSelectPhase(void);
  * 0. The name is a guess from the callers (battle setup hooks). */
 void Battle_ResetTurnState(void)
 {
-    STATE->unk_28 = 0;
-    STATE->unk_2a = 0;
+    STATE->cursorX = 0;
+    STATE->cursorY = 0;
     STATE->unk_2c = 0;
     STATE->unk_2e = 0;
     Panels_PlaceForCursor();

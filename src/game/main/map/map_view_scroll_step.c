@@ -15,7 +15,7 @@ extern u8 data_021576fb[][20];
 #define VIEW_AGAIN (GAME_IDX_FIRST->unk_1c4)
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 
-/* One frame of the map view scrolling toward the cursor tile (unk_28, unk_2a).
+/* One frame of the map view scrolling toward the cursor tile (cursorX, cursorY).
  * The view's scrollFlags hold the directions in progress: 1 right, 2 left,
  * 4 up, 8 down. A direction starts when the cursor is within 2 tiles of that
  * edge of the view, and stops at a map edge or when the scroll reaches a whole
@@ -33,7 +33,7 @@ void MapView_ScrollStep(int step)
     viewH = data_021576fb[layout][0];
 
     if ((VIEW->scrollFlags & 3) == 0) {
-        dist = GAME->unk_28 - (VIEW->scrollX >> 4);
+        dist = GAME->cursorX - (VIEW->scrollX >> 4);
         if (dist < 2) {
             VIEW->scrollFlags |= 2;
         }
@@ -42,7 +42,7 @@ void MapView_ScrollStep(int step)
         }
     }
     if ((VIEW->scrollFlags & 12) == 0) {
-        dist = GAME->unk_2a - (VIEW->scrollY >> 4);
+        dist = GAME->cursorY - (VIEW->scrollY >> 4);
         if (dist < 2) {
             VIEW->scrollFlags |= 4;
         }

@@ -20,7 +20,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* MapView_ScrollStep for the Design Room. The view follows the tile in
  * viewX, viewY: while X is held that tile tracks the map cursor
- * (unk_28, unk_2a); otherwise a held direction puts the cursor back on it.
+ * (cursorX, cursorY); otherwise a held direction puts the cursor back on it.
  * The scrolling itself works as in MapView_ScrollStep. */
 void Ov006_ScrollMapView(int step)
 {
@@ -35,16 +35,16 @@ void Ov006_ScrollMapView(int step)
     viewW = data_021576fa[layout][0];
     viewH = data_021576fb[layout][0];
     if (gKeypad->unk_00 & PAD_BUTTON_X) {
-        cursorX = GAME->unk_28;
-        cursorY = GAME->unk_2a;
+        cursorX = GAME->cursorX;
+        cursorY = GAME->cursorY;
         data_ov006_0236d640->viewX = cursorX;
         data_ov006_0236d640->viewY = cursorY;
     } else {
         cursorX = data_ov006_0236d640->viewX;
         cursorY = data_ov006_0236d640->viewY;
         if (gKeypad->unk_00 & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
-            GAME->unk_28 = cursorX;
-            GAME->unk_2a = cursorY;
+            GAME->cursorX = cursorX;
+            GAME->cursorY = cursorY;
         }
     }
 

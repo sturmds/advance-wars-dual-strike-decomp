@@ -25,8 +25,8 @@ void AiShowAction_Step7(void)
         skip = gKeypad->unk_00 & PAD_BUTTON_A;
     }
     if (GAME->mapTiles->unk_2338[GAME->mapTiles->rowStart[unit->y] + unit->x] != 0) {
-        GAME->unk_28 = unit->x;
-        GAME->unk_2a = unit->y;
+        GAME->cursorX = unit->x;
+        GAME->cursorY = unit->y;
         Map_ScrollViewToTile(2);
     }
     data_0229eac8++;

@@ -41,7 +41,7 @@ extern const TaskScriptCmd data_0215939c[];
 #define LAYER_CHARS(gfx, bg) ((gfx)->bgVram + ((gfx)->bgCnt[bg].charBase << 14))
 
 /* Loads the wallpaper base onto layer 2 of both screens, then the
- * wallpaper picked in gPlayRecords.unk_14 onto layer 3 of the first screen
+ * wallpaper picked in gPlayRecords.wallpaper onto layer 3 of the first screen
  * and copies it to the second. Starts the data_0215939c task on both. */
 void Wallpaper_LoadSelected(void)
 {
@@ -52,10 +52,10 @@ void Wallpaper_LoadSelected(void)
     int i;
     u32 index;
 
-    index = gPlayRecords.unk_14;
+    index = gPlayRecords.wallpaper;
     if (index >= WALLPAPER_COUNT) {
         index = 0;
-        gPlayRecords.unk_14 = index;
+        gPlayRecords.wallpaper = index;
     }
 
     res = File_Load(data_02159668);

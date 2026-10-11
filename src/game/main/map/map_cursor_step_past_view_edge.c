@@ -39,24 +39,24 @@ void MapCursor_StepPastViewEdge(void)
         height = view->mapHeight;
     }
     if (data_02169454[dir][0] < 0) {
-        game->unk_28 = (view->scrollX >> 4) + 1;
+        game->cursorX = (view->scrollX >> 4) + 1;
     }
     if (data_02169454[dir][0] > 0) {
-        GAME->unk_28 = width - 2 + (GAME->unk_1c4->scrollX >> 4);
+        GAME->cursorX = width - 2 + (GAME->unk_1c4->scrollX >> 4);
     }
     if (data_02169456[dir][0] < 0) {
-        GAME->unk_2a = (GAME->unk_1c4->scrollY >> 4) + 1;
+        GAME->cursorY = (GAME->unk_1c4->scrollY >> 4) + 1;
     }
     if (data_02169456[dir][0] > 0) {
-        GAME->unk_2a = height - 2 + (GAME->unk_1c4->scrollY >> 4);
+        GAME->cursorY = height - 2 + (GAME->unk_1c4->scrollY >> 4);
     }
     func_020c3b1c();
-    newX = GAME->unk_28 + data_02169454[dir][0];
+    newX = GAME->cursorX + data_02169454[dir][0];
     if (newX >= 0 && newX < GAME->unk_1c4->mapWidth) {
-        GAME->unk_28 = newX;
+        GAME->cursorX = newX;
     }
-    newY = GAME->unk_2a + data_02169456[dir][0];
+    newY = GAME->cursorY + data_02169456[dir][0];
     if (newY >= 0 && newY < GAME->unk_1c4->mapHeight) {
-        GAME->unk_2a = newY;
+        GAME->cursorY = newY;
     }
 }

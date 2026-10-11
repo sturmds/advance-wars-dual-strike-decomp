@@ -25,7 +25,7 @@ void BattleSave_StoreMap(BattleSaveMap *save)
     u16 cell;
     BOOL customMap;
 
-    save->unk_04 = *(BattleSaveTilePos *)&STATE->unk_28;
+    save->unk_04 = *(BattleSaveTilePos *)&STATE->cursorX;
     save->day = STATE->day;
     save->currentPlayer = STATE->currentPlayer;
     save->unk_6c = STATE->unk_184;

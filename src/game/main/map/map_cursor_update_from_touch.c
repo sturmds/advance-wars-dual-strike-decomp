@@ -23,7 +23,7 @@ static inline BOOL IsTouchStarted(void)
     return FALSE;
 }
 
-/* Turns the touch position into a map tile (unk_28, unk_2a) each frame. On the
+/* Turns the touch position into a map tile (cursorX, cursorY) each frame. On the
  * screen whose map is drawn in 3D (data_027c0288.unk_00) func_020fbb58 projects
  * the point; on the other it is pixels plus the scroll, in 1/16 tiles. A new
  * touch remembers its tile in unk_30 and unk_32 and calls func_020f12d4; moving
@@ -35,8 +35,8 @@ void MapCursor_UpdateFromTouch(void)
     s32 pos[3];
     int touchX = gTouch.x;
     int touchY = gTouch.y;
-    int oldX = STATE->unk_28;
-    int oldY = STATE->unk_2a;
+    int oldX = STATE->cursorX;
+    int oldY = STATE->cursorY;
 
     if (blocked != 0) {
         return;
@@ -46,26 +46,26 @@ void MapCursor_UpdateFromTouch(void)
         return;
     }
     if (data_027c027c != data_027c0288.unk_00) {
-        STATE->unk_28 = (touchX + STATE->unk_1c4->scrollX) >> 4;
-        STATE->unk_2a = (touchY + STATE->unk_1c4->scrollY) >> 4;
+        STATE->cursorX = (touchX + STATE->unk_1c4->scrollX) >> 4;
+        STATE->cursorY = (touchY + STATE->unk_1c4->scrollY) >> 4;
     } else {
         func_020fbb58(touchX, touchY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
-        STATE->unk_28 = pos[0] >> 9;
-        STATE->unk_2a = pos[1] >> 9;
+        STATE->cursorX = pos[0] >> 9;
+        STATE->cursorY = pos[1] >> 9;
     }
     if (IsTouchStarted()) {
-        STATE->unk_30 = STATE->unk_28;
-        STATE->unk_32 = STATE->unk_2a;
+        STATE->unk_30 = STATE->cursorX;
+        STATE->unk_32 = STATE->cursorY;
         func_020f12d4(STATE->unk_30, STATE->unk_32);
     }
-    if (STATE->unk_30 != STATE->unk_28 || STATE->unk_32 != STATE->unk_2a) {
+    if (STATE->unk_30 != STATE->cursorX || STATE->unk_32 != STATE->cursorY) {
         func_020f129c();
         STATE->unk_30 = 0xff;
         STATE->unk_32 = 0xff;
     }
-    if (oldX != STATE->unk_28 || oldY != STATE->unk_2a) {
+    if (oldX != STATE->cursorX || oldY != STATE->cursorY) {
         Sound_PlaySe(0x10000);
     }
 }

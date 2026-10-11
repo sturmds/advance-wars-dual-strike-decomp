@@ -23,7 +23,7 @@ void Save_LoadProfile(int profile)
         return;
     }
     for (co = 1; co < CO_COUNT; co++) {
-        Co_SetAvailable(co, save->playRecords.coRecords[co].unk_0_31);
+        Co_SetAvailable(co, save->playRecords.coRecords[co].available);
     }
     gPlayRecords.unk_388 = save->playRecords.unk_388;
     gPlayRecords.unk_38c = save->playRecords.unk_38c;

@@ -42,8 +42,8 @@ void Battle_SetupWithPresetCos(void)
     STATE->players[4].front.id = CO_KANBEI;
 
     STATE->unk_18 = 0;
-    STATE->unk_28 = 0;
-    STATE->unk_2a = 0;
+    STATE->cursorX = 0;
+    STATE->cursorY = 0;
     STATE->unk_2c = 0;
     STATE->unk_2e = 0;
 

@@ -16,8 +16,8 @@ void func_020e16e0(int x);
 void SidePanel_SlideAwayFromCursor(void)
 {
     Unk_02080440_48 *state = STATE;
-    s16 screenX = state->unk_28 * 16 - state->unk_1c4->scrollX;
-    s16 screenY = state->unk_2a * 16 - state->unk_1c4->scrollY;
+    s16 screenX = state->cursorX * 16 - state->unk_1c4->scrollX;
+    s16 screenY = state->cursorY * 16 - state->unk_1c4->scrollY;
 
     if (screenY < 80) {
         if (screenX < 128) {

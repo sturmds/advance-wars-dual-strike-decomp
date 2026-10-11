@@ -12,11 +12,11 @@ void func_01ffa02c(int x, int y, u8 *out);
 void MovePath_AppendSteps(void);
 
 /* Cuts the move path back to its first tile, then finds the steps to tile
- * (unk_28, unk_2a) into unk_170 and appends them. */
+ * (cursorX, cursorY) into unk_170 and appends them. */
 void MovePath_RebuildToTarget(void)
 {
     MovePath_Truncate(1);
     MovePath_FillRangeFromEnd();
-    func_01ffa02c(GAME->unk_28, GAME->unk_2a, GAME->unk_170);
+    func_01ffa02c(GAME->cursorX, GAME->cursorY, GAME->unk_170);
     MovePath_AppendSteps();
 }

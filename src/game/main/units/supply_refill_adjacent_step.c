@@ -40,8 +40,8 @@ void Supply_RefillAdjacentStep(SupplySlot *slot)
     for (;;) {
         if (slot->side >= 4) {
             if (slot->unk_20 == 0) {
-                STATE->unk_28 = STATE->actingUnitDestX;
-                STATE->unk_2a = STATE->actingUnitDestY;
+                STATE->cursorX = STATE->actingUnitDestX;
+                STATE->cursorY = STATE->actingUnitDestY;
             }
             ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);
             ActingUnit_FinishAction();

@@ -25,7 +25,7 @@ static inline BOOL IsTouchInPhase(int phase)
 
 /* Cursor update from touch for the target list picker in func_020ce898.
  * When the touched tile is one of the `count` tiles in the list
- * (func_020f06a0), the cursor (unk_28, unk_2a) moves there and *index gets
+ * (func_020f06a0), the cursor (cursorX, cursorY) moves there and *index gets
  * its position in the list. The touch marker handling is the same as in
  * MapTouch_UpdateNeighborCursor. */
 void MapTouch_UpdateListCursor(int *index, int count)
@@ -55,8 +55,8 @@ void MapTouch_UpdateListCursor(int *index, int count)
     }
     found = func_020f06a0(count, tileX, tileY);
     if (found >= 0) {
-        GAME->unk_28 = tileX;
-        GAME->unk_2a = tileY;
+        GAME->cursorX = tileX;
+        GAME->cursorY = tileY;
         *index = found;
     }
     if (IsTouchInPhase(TOUCH_PRESSED)) {

@@ -11,6 +11,6 @@ void PopupMenu_NextIconSlot(void)
     PopupMenuTask *menu = Task_FindByScript(data_021587a8);
 
     if (menu != NULL) {
-        menu->unk_4e++;
+        menu->iconSlot++;
     }
 }

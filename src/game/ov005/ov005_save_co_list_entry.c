@@ -7,6 +7,6 @@ extern u8 data_ov005_0236a48c[33];     /* CO id of each list entry */
  * screen opens on it next time (Ov005_FindSavedCoListEntry). */
 u8 Ov005_SaveCoListEntry(int entry)
 {
-    gPlayRecords.unk_14 = data_ov005_0236a48c[entry];
+    gPlayRecords.wallpaper = data_ov005_0236a48c[entry];
     return data_ov005_0236a48c[entry];
 }

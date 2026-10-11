@@ -33,8 +33,8 @@ void UnloadTask_Step(Task *task)
     if (task->unk_6a == 0) {
         func_020c8888();
         if (func_020bf260() == 0) {
-            STATE->unk_28 = STATE->actingUnitDestX;
-            STATE->unk_2a = STATE->actingUnitDestY;
+            STATE->cursorX = STATE->actingUnitDestX;
+            STATE->cursorY = STATE->actingUnitDestY;
             STATE->unk_1c = 5;
             func_020bc404();
             return;

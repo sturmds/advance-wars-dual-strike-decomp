@@ -52,7 +52,7 @@ u32 MapTouch_ReadTileTapOrBack(void)
         break;
     case TOUCH_RELEASED:
         if (IsTouchInPhase(TOUCH_RELEASED)) {
-            if (GAME->unk_28 == GAME->unk_30 && GAME->unk_2a == GAME->unk_32) {
+            if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
                 func_020f1288();
                 return INPUT_CONFIRM;
             }

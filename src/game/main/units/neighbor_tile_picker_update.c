@@ -48,8 +48,8 @@ u32 NeighborTilePicker_Update(int *direction, int mask)
         *direction = picked;
         Sound_PlaySe(0x10000);
     }
-    STATE->unk_28 = STATE->actingUnitDestX + data_02166379[picked * 5];
-    STATE->unk_2a = STATE->actingUnitDestY + data_0216637a[picked * 5];
+    STATE->cursorX = STATE->actingUnitDestX + data_02166379[picked * 5];
+    STATE->cursorY = STATE->actingUnitDestY + data_0216637a[picked * 5];
     Map_ScrollViewToTile(1);
     input = func_020ef234();
     input |= MapTouch_ReadNeighborTileTap(mask);

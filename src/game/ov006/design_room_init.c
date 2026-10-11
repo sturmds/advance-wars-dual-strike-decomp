@@ -136,7 +136,7 @@ void DesignRoom_Init(Task *task)
     func_01ff9c48(MainLoop_MapFrame);
     data_022a6b38 = 0;
     Font_SetDigitEndTile(0x45);
-    func_020c4394(7, 4, &STATE->unk_28, &STATE->unk_2c);
+    func_020c4394(7, 4, &STATE->cursorX, &STATE->unk_2c);
     *(s8 *)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */
     OV6->toolTile = 1;
     OV6->tileArmy = 1;

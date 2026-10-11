@@ -60,8 +60,8 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
         return TRUE;
     }
     game = GAME;
-    y = game->unk_2a;
-    x = game->unk_28;
+    y = game->cursorY;
+    x = game->cursorX;
     tiles = game->mapTiles;
     SecondScreen_ShowCursorInfo(func_020d9864(x, y), &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
     if (gKeypad->pressed & PAD_BUTTON_L) {
@@ -79,13 +79,13 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
             func_020bc5c0();
             return TRUE;
         }
-        if (MapCursor_SelectTile(GAME->unk_28, GAME->unk_2a, 1, 1)) {
+        if (MapCursor_SelectTile(GAME->cursorX, GAME->cursorY, 1, 1)) {
             return TRUE;
         }
     }
     if (!(gKeypad->pressed & PAD_BUTTON_B)) {
         return FALSE;
     }
-    MapCursor_ShowRange(GAME->unk_28, GAME->unk_2a);
+    MapCursor_ShowRange(GAME->cursorX, GAME->cursorY);
     return TRUE;
 }
