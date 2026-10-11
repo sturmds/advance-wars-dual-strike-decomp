@@ -8889,6 +8889,10 @@ src/game/main/menus/combat_setup_buy_unit.c:
     complete
     .text       start:0x020834dc end:0x0208372c
 
+src/game/main/menus/combat_setup_pick_shop_button.c:
+    complete
+    .text       start:0x0208372c end:0x020837b0
+
 src/game/main/combat_setup_send_cancel.c:
     complete
     .text       start:0x020837b0 end:0x020837c4
