@@ -17,5 +17,6 @@ void Map_RebuildVision(void);
 void Player_AddVision(int player);
 void Unit_AddVision(MapUnit *unit, s8 delta);
 void Vision_AddArea(s16 x, s16 y, s16 range, int gridMask, s8 delta, int player);
+void VisionGrid_AddArea(s16 x, s16 y, s16 range, s8 *grid, s8 delta, u8 player);
 
 #endif

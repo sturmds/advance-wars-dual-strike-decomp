@@ -10,6 +10,7 @@
 #define SKILL_HIDDEN_HP             0x01 /* Sonja day-to-day: hp hidden from other teams */
 #define SKILL_DEPLOY_CITY           0x02 /* Hachi Super CO Power */
 #define SKILL_COUNTER_FIRST         0x03 /* Sonja Super: counterattack first */
+#define SKILL_PIERCING_VISION       0x04 /* Sonja powers: woods and reefs do not hide units */
 #define SKILL_DOUBLE_TERRAIN_STARS  0x05 /* Lash Super */
 #define SKILL_SNOW_FIREPOWER        0x06 /* Olaf day-to-day */
 #define SKILL_AIR_FUEL_SAVING       0x07 /* Eagle day-to-day */

@@ -9817,6 +9817,10 @@ src/game/main/map/vision_add_area.c:
     complete
     .text       start:0x020c5674 end:0x020c57bc
 
+src/game/main/map/vision_grid_add_area.c:
+    complete
+    .text       start:0x020c57bc end:0x020c5abc
+
 src/game/main/map/range_map_mark_adjacent_repair_targets.c:
     complete
     .text       start:0x020c5abc end:0x020c5be4
