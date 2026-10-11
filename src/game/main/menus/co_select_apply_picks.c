@@ -14,11 +14,11 @@
 int Campaign_IsHardMode(void);
 void MovementCost(void);
 void Player_SetCo(int column, int row, int co);
-void func_020e7a80(int gameMode, int mapId);
+void Skills_SetupForBothMaps(int gameMode, int mapId);
 
 /* Ends CO select: writes the picked COs into the player slots. In a
  * campaign map on normal mode, a CO set by the map header stays unless the
- * header says the player picks. Then sets up the map (func_020e7a80,
+ * header says the player picks. Then sets up the map (Skills_SetupForBothMaps,
  * MovementCost), and runs MovementCost for the second map too when there
  * is one. */
 void CoSelect_ApplyPicks(void)
@@ -52,7 +52,7 @@ void CoSelect_ApplyPicks(void)
     if (STATE->gameMode == 3) {
         return;
     }
-    func_020e7a80(STATE->gameMode, STATE->unk_1c4->mapId);
+    Skills_SetupForBothMaps(STATE->gameMode, STATE->unk_1c4->mapId);
     MovementCost();
 
     if (STATE->secondMapId == 0) {

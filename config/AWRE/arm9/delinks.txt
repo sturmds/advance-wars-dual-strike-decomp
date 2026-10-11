@@ -17082,6 +17082,10 @@ src/game/main/skills/skills_setup_for_battle.c:
     complete
     .text       start:0x020e768c end:0x020e7a80
 
+src/game/main/skills/skills_setup_for_both_maps.c:
+    complete
+    .text       start:0x020e7a80 end:0x020e7be8
+
 src/game/main/skills/movement_cost.c:
     complete
     .text       start:0x020e7be8 end:0x020e7e6c

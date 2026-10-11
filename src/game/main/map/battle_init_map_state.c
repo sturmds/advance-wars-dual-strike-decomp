@@ -11,7 +11,7 @@ void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
 void func_020c4fa0(void);
 void Survival_LoadFunds(void);
-void func_020e7a80(int gameMode, int mapId);
+void Skills_SetupForBothMaps(int gameMode, int mapId);
 void MovementCost(void);
 void func_020c4f20(void);
 void MapView_CentreOnPlayer1Hq(void);
@@ -28,7 +28,7 @@ void Battle_InitMapState(void)
     Map_LoadVariant(STATE->unk_1c4->mapId, 0);
     func_020c4fa0();
     Survival_LoadFunds();
-    func_020e7a80(STATE->gameMode, STATE->unk_1c4->mapId);
+    Skills_SetupForBothMaps(STATE->gameMode, STATE->unk_1c4->mapId);
     MovementCost();
     func_020c4f20();
     MapView_CentreOnPlayer1Hq();

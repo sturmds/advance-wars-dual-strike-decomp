@@ -17,7 +17,7 @@ void Players_ApplyBattleSetup(void);
 void Ov006_ResetMapView(int arg);
 void Units_ClearAll(void);
 void MapObjects_Clear(void);
-void func_020e7a80(int a0, int mapId);
+void Skills_SetupForBothMaps(int a0, int mapId);
 void MovementCost(void);
 void CurrentPlayer_SyncState(void);
 void CurrentPlayer_StartTurn(void);
@@ -113,7 +113,7 @@ void DesignRoom_Init(Task *task)
     STATE->players[2].front.id = CO_OLAF;
     STATE->players[3].front.id = CO_EAGLE;
     STATE->players[4].front.id = CO_KANBEI;
-    func_020e7a80(4, STATE->unk_1c4->mapId);
+    Skills_SetupForBothMaps(4, STATE->unk_1c4->mapId);
     MovementCost();
     CurrentPlayer_SyncState();
     CurrentPlayer_StartTurn();
