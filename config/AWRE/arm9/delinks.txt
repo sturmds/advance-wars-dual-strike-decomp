@@ -10178,6 +10178,10 @@ src/game/main/menus/menu_toggle_music.c:
     complete
     .text       start:0x020bd940 end:0x020bdbc4
 
+src/game/main/menus/menu_cycle_animation_mode.c:
+    complete
+    .text       start:0x020bdbc4 end:0x020bde18
+
 src/game/main/menus/func_020bde18.c:
     complete
     .text       start:0x020bde18 end:0x020bde6c
