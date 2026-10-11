@@ -5688,6 +5688,10 @@ src/game/main/menus/force_rank_screen_add_buttons.c:
     complete
     .text       start:0x0203fd14 end:0x0203fe18
 
+src/game/main/menus/force_rank_screen_add_slot_buttons.c:
+    complete
+    .text       start:0x0203fe18 end:0x0203fed4
+
 src/game/main/func_0203ff2c.c:
     complete
     .text       start:0x0203ff2c end:0x0203ff38
