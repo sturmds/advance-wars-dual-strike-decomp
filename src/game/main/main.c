@@ -16,7 +16,7 @@ void func_02112bdc(int a);
 void Mem_InitHeaps(void);
 void Screens_InitContexts(void);
 void Screens_InitDisplay(void);
-void func_0200b970(void);
+void Sound_InitSystem(void);
 void Sound_Init(void);
 void Sound_LoadResidentData(void);
 void func_0200170c(void);
@@ -87,7 +87,7 @@ void main(void)
     Mem_InitHeaps();
     Screens_InitContexts();
     Screens_InitDisplay();
-    func_0200b970();
+    Sound_InitSystem();
     Sound_Init();
     Sound_LoadResidentData();
     func_0200170c();
