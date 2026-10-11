@@ -8,7 +8,17 @@
  * world map reads is described. */
 typedef struct Unk_02290118 {
     u8 unk_00;                         /* picks the Force Rank profile Save_LoadProgress reads from the save buffer */
-    u8 pad_001[0x11a - 0x01];
+    u8 unk_01;
+    u8 hardMode;                       /* 1: the campaign is in hard mode (Campaign_IsHardMode) */
+    u8 pad_03;
+    u8 unk_04;
+    u8 unk_05;
+    u16 unk_06;
+    u16 unk_08;
+    u16 unk_0a;
+    u16 unk_0c;
+    u16 unk_0e;
+    u8 pad_010[0x11a - 0x10];
     u8 coScore[CO_COUNT];              /* per CO id; the world map shows the three highest */
 } Unk_02290118;
 
