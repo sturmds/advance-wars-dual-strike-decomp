@@ -31,7 +31,7 @@ extern const char data_0216a93c[];     /* "015": layer 2 palette */
 extern u32 data_0214d3e0[];            /* map bytes of a text BG by screen size */
 extern u32 data_0214d3f0[];            /* map bytes of a rotation/scaling BG by screen size */
 
-/* Task step of data_0216a8b0, between the work allocation (func_020feadc)
+/* Task step of data_0216a8b0, between the work allocation (CampaignRecapTask_Init)
  * and CampaignRecap_Update. Sub screen (data_027c0288.unk_04): BG2 and OBJ
  * on, layer priorities 0 to 3, alpha blending of BG2 over the rest, layer 2
  * tiles, map (palette 8) and palette from /rikiishi 013-015, then the

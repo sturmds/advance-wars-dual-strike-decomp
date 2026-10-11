@@ -19048,6 +19048,10 @@ src/game/main/func_020fd94c.c:
     complete
     .text       start:0x020fd94c end:0x020fd964
 
+src/game/main/campaign_recap_task_free.c:
+    complete
+    .text       start:0x020fd964 end:0x020fd984
+
 src/game/main/campaign_recap_update.c:
     complete
     .text       start:0x020fd984 end:0x020fe44c
@@ -19056,9 +19060,15 @@ src/game/main/campaign_recap_set_up_screens.c:
     complete
     .text       start:0x020fe44c end:0x020feadc
 
+src/game/main/campaign_recap_task_init.c:
+    .text       start:0x020feadc end:0x020feb4c
+
 src/game/main/campaign_recap_update_camera.c:
     complete
     .text       start:0x020feb4c end:0x020fec64
+
+src/game/main/campaign_recap_camera_task_init.c:
+    .text       start:0x020fec64 end:0x020fec98
 
 src/game/main/map/func_020fed58.c:
     .text       start:0x020fed58 end:0x020ff07c

@@ -14,7 +14,7 @@ typedef struct CampaignRecapEntry {
     u32 unk_14;
 } CampaignRecapEntry;
 
-/* Work block of the data_0216a8b0 task (0x80 bytes, func_020feadc
+/* Work block of the data_0216a8b0 task (0x80 bytes, CampaignRecapTask_Init
  * allocates it and stores it in the task and in data_022a7ea4). */
 typedef struct CampaignRecap {
     int blend[3];                      /* per panel: blend level 0-16, eased in by CampaignRecap_Update */
