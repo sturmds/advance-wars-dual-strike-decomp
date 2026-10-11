@@ -172,6 +172,7 @@ typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 
 #define ARCHIVE_STATE_PAUSED 0x8        /* commands queue up but do not start */
 #define ARCHIVE_STATE_BUSY 0x10         /* a command of the archive is running */
 #define ARCHIVE_STATE_CANCEL_ASKED 0x20       /* FS_CancelFile was called for the running command */
+#define ARCHIVE_STATE_PAUSE_ASKED 0x40      /* suspend once the running command ends */
 #define ARCHIVE_STATE_TEARING_DOWN 0x80       /* new commands are canceled */
 #define ARCHIVE_STATE_AWAITING_DRIVER 0x100          /* a command waits for Archive_OnCommandFinished */
 #define ARCHIVE_STATE_CALLER_BLOCKED 0x200        /* a caller sleeps until the command ends */

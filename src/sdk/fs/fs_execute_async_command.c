@@ -3,7 +3,7 @@
 
 void OS_WakeupThread(OSThreadQueue *queue);
 int FSi_TranslateCommand(FSFile *file, u32 command);      /* runs one command through the table */
-FSFile *func_0211232c(FSArchive *arc);             /* picks the next command to run */
+FSFile *FSi_NextCommand(FSArchive *arc);             /* picks the next command to run */
 
 void FSi_ExecuteAsyncCommand(FSFile *file)
 {
@@ -28,6 +28,6 @@ void FSi_ExecuteAsyncCommand(FSFile *file)
         if (FSi_TranslateCommand(file, file->command) == FS_RESULT_PROC_ASYNC) {
             return;
         }
-        file = func_0211232c(arc);
+        file = FSi_NextCommand(arc);
     } while (file != NULL);
 }

@@ -1,7 +1,7 @@
 #include "sdk/fs.h"
 #include "sdk/os.h"
 
-FSFile *func_0211232c(FSArchive *arc);   /* picks the next command to run */
+FSFile *FSi_NextCommand(FSArchive *arc);   /* picks the next command to run */
 void FSi_ExecuteAsyncCommand(FSFile *file);        /* runs commands until one answers "later" */
 void OS_WakeupThread(OSThreadQueue *queue);
 
@@ -23,7 +23,7 @@ void Archive_OnCommandFinished(FSArchive *arc, int result)
 
         arc->flags &= ~ARCHIVE_STATE_AWAITING_DRIVER;
         FSi_ReleaseCommand(running, result);
-        next = func_0211232c(arc);
+        next = FSi_NextCommand(arc);
         if (next != NULL) {
             FSi_ExecuteAsyncCommand(next);
         }
