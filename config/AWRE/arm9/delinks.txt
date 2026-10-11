@@ -3805,6 +3805,10 @@ src/game/main/func_02041ad4.c:
     complete
     .text       start:0x02041ad4 end:0x02041ae0
 
+src/game/main/menus/co_select_screen_add_co_list_buttons.c:
+    complete
+    .text       start:0x02041ae0 end:0x02041c74
+
 src/game/main/func_020428f4.c:
     complete
     .text       start:0x020428f4 end:0x0204291c

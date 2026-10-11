@@ -1505,7 +1505,7 @@ func_02041a94 kind:function(arm,size=0xc) addr:0x02041a94
 func_02041aa0 kind:function(arm,size=0xc) addr:0x02041aa0
 func_02041aac kind:function(arm,size=0x28) addr:0x02041aac
 func_02041ad4 kind:function(arm,size=0xc) addr:0x02041ad4
-func_02041ae0 kind:function(arm,size=0x194) addr:0x02041ae0
+CoSelectScreen_AddCoListButtons kind:function(arm,size=0x194) addr:0x02041ae0
 func_02041c74 kind:function(arm,size=0xd4) addr:0x02041c74
 func_02041d48 kind:function(arm,size=0xe8) addr:0x02041d48
 func_02041e30 kind:function(arm,size=0x1d8) addr:0x02041e30
@@ -7150,7 +7150,7 @@ data_0215a9a0 kind:data(any) addr:0x0215a9a0
 data_0215a9c8 kind:data(any) addr:0x0215a9c8
 data_0215a9f0 kind:data(any) addr:0x0215a9f0
 data_0215aa18 kind:data(any) addr:0x0215aa18
-data_0215aa40 kind:data(any) addr:0x0215aa40
+gCoListButtonTemplate kind:data(any) addr:0x0215aa40
 data_0215aa68 kind:data(any) addr:0x0215aa68
 data_0215aa90 kind:data(any) addr:0x0215aa90
 data_0215aac0 kind:data(any) addr:0x0215aac0
