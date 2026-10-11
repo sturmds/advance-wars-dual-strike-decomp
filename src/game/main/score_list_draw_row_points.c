@@ -3,7 +3,7 @@
 
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);
-void func_02039800(int x, int y, int digit, int matrixIndex, int frame, int palette);
+void ResultPoint_QueueDigitPopIn(int x, int y, int digit, int matrixIndex, int frame, int palette);
 void func_020399c0(int x, int y, int value, int palette);
 
 #define SCORES data_0229c734
@@ -30,17 +30,17 @@ void ScoreList_DrawRowPoints(int x, int y, int row, int tally)
     if (points >= 100) {
         digit = HwDiv32(points, 100);
         rest = HwMod32(SCORES->rows[row].points, 100);
-        func_02039800(x, y, digit, matrixIndex, tally, 0);
+        ResultPoint_QueueDigitPopIn(x, y, digit, matrixIndex, tally, 0);
         digit = HwDiv32(rest, 10);
         rest = HwMod32(rest, 10);
-        func_02039800(x + 12, y, digit, matrixIndex + 1, tally - 4, 0);
-        func_02039800(x + 24, y, rest, matrixIndex + 2, tally - 8, 0);
+        ResultPoint_QueueDigitPopIn(x + 12, y, digit, matrixIndex + 1, tally - 4, 0);
+        ResultPoint_QueueDigitPopIn(x + 24, y, rest, matrixIndex + 2, tally - 8, 0);
     } else if (points >= 10) {
         digit = HwDiv32(points, 10);
         rest = HwMod32(SCORES->rows[row].points, 10);
-        func_02039800(x + 12, y, digit, matrixIndex, tally, 0);
-        func_02039800(x + 24, y, rest, matrixIndex + 1, tally - 4, 0);
+        ResultPoint_QueueDigitPopIn(x + 12, y, digit, matrixIndex, tally, 0);
+        ResultPoint_QueueDigitPopIn(x + 24, y, rest, matrixIndex + 1, tally - 4, 0);
     } else {
-        func_02039800(x + 24, y, points, matrixIndex, tally, 0);
+        ResultPoint_QueueDigitPopIn(x + 24, y, points, matrixIndex, tally, 0);
     }
 }

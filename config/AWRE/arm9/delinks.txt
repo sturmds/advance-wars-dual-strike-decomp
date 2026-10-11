@@ -5396,6 +5396,10 @@ src/game/main/result_point_draw_tally_pop_in.c:
     complete
     .text       start:0x02039560 end:0x02039800
 
+src/game/main/result_point_queue_digit_pop_in.c:
+    complete
+    .text       start:0x02039800 end:0x020399c0
+
 src/game/main/score_list_count_rows_at_least.c:
     complete
     .text       start:0x02039b94 end:0x02039bf8
