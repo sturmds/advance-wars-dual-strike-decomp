@@ -81,6 +81,14 @@ src/game/itcm/func_01ff9610.c:
     complete
     .text       start:0x01ff9610 end:0x01ff9624
 
+src/game/itcm/main_loop/check_reset_combo.c:
+    complete
+    .text       start:0x01ff9624 end:0x01ff96b4
+
+src/game/itcm/main_loop/terminate.c:
+    complete
+    .text       start:0x01ff96b4 end:0x01ff9738
+
 src/game/itcm/func_01ff9ac4.c:
     complete
     .text       start:0x01ff9ac4 end:0x01ff9af0
