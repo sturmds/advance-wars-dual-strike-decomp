@@ -21233,6 +21233,9 @@ src/sdk/os/os_create_thread.c:
     complete
     .text       start:0x0210d688 end:0x0210d790
 
+src/sdk/os/os_init_thread.c:
+    .text       start:0x0210d790 end:0x0210d910
+
 src/sdk/os/osi_remove_thread_from_list.c:
     complete
     .text       start:0x0210d910 end:0x0210d958

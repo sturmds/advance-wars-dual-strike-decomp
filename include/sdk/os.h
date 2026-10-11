@@ -135,7 +135,7 @@ typedef void (*ThreadSwapHook)(OSThread *from, OSThread *to);
 /* Scheduler state. The thread list is sorted by priority, lowest value first. */
 typedef struct OSThreadInfo {
     u16 isNeedRescheduling;
-    u16 pad_2;
+    u16 maxEntry;                  /* number of entries in threads[] */
     u16 inIrq;
     u16 pad_6;
     OSThread *current;
