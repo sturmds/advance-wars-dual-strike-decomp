@@ -114,7 +114,7 @@ typedef struct Unk_02080440_48 {
     u32 unk_14;
     u16 unk_18;                        /* AiShowAction_Step0 tests 16 and 21 */
     u16 unk_1a;                        /* unk_18 before Game_EnterState18 last set it to 18 */
-    u8 pad_1c[0x1e - 0x1c];
+    u16 unk_1c;                        /* cleared when a unit move is cancelled (UnitMoveSelect_HandleButtons) */
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
     u16 unk_20;                        /* index of a 0x508-byte per-tile grid counted from MapTiles.inSight; func_020fed58 fills it */
     u16 unk_22;                        /* a second grid index, like unk_20 */
