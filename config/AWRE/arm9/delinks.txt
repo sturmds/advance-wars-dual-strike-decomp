@@ -9108,6 +9108,10 @@ src/game/main/menus/combat_setup_draw_row_player_icons.c:
     complete
     .text       start:0x02085f94 end:0x02086254
 
+src/game/main/menus/combat_setup_reset_main_screen.c:
+    complete
+    .text       start:0x02086254 end:0x02086320
+
 src/game/main/menus/combat_setup_update_link.c:
     complete
     .text       start:0x02086320 end:0x0208653c
