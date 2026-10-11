@@ -2013,6 +2013,13 @@ src/game/main/script/func_020169a4.c:
     complete
     .text       start:0x020169a4 end:0x020169f8
 
+src/game/main/script/script_slot_cmd_set_flag.c:
+    complete
+    .text       start:0x020169f8 end:0x02016a48
+
+src/game/main/script/script_slot_cmd_jump_if_flag.c:
+    .text       start:0x02016a48 end:0x02016ab8
+
 src/game/main/script/func_02016ab8.c:
     complete
     .text       start:0x02016ab8 end:0x02016b0c
