@@ -11615,6 +11615,10 @@ src/game/main/menus/survival_load_player_cos.c:
     complete
     .text       start:0x020eacc4 end:0x020ead48
 
+src/game/main/menus/survival_set_current_map.c:
+    complete
+    .text       start:0x020ead48 end:0x020ead98
+
 src/game/main/func_020eb2d4.c:
     complete
     .text       start:0x020eb2d4 end:0x020eb2e8
