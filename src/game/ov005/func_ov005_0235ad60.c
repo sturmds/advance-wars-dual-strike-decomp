@@ -1,8 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov005_0235abfc.h"
 
-/* 91.67%: one trailing "bx lr" too many. The original returns from inside
- * the loop through predicated returns. */
+/* Returns 1 if a task in the entry list (ended by id 0) has unk_30 == 1. */
 int func_ov005_0235ad60(int work, Unk_ov005_0235abfc *entry)
 {
     int found = 0;
