@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
+#include "sdk/wm.h"
 
 extern DlPlayStationArea *data_022aced8;
 
@@ -9,7 +10,7 @@ void MbParent_ReportError(u16 apiid, int errcode)
 {
     DlPlayFailedCall error;
 
-    if (errcode == 2 || errcode == 0) {
+    if (errcode == WM_ERRCODE_OPERATING || errcode == WM_ERRCODE_SUCCESS) {
         return;
     }
     error.apiid = apiid;
