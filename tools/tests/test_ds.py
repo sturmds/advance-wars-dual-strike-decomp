@@ -6,16 +6,18 @@
 1. A fixture header compiled with the pinned mwccarm: bit-field positions,
    unions, arrays, an unnamed struct member, an enum and a function pointer.
 2. The load and store parser on fixed objdump lines.
-3. Real headers: Task is 0x6c bytes with unk_64 an s16, AiSite.score is an
-   s8 at 0xb.
+3. Real headers: every `sizeof(X) == N` size check in include/ agrees with
+   the size read from the DWARF. Nothing that renames jobs change.
 4. ds.py dupes on a made-up index: same layouts, a local copy, overlapping
    union views, a symbol declared with two types.
-5. With extract/ present: AiSite_PickPiperunnerSite reads AiSite.score
-   with ldrb, and data_02153634 lies inside gCoTable. Skipped without a ROM.
+5. With extract/ present, by address: the function at main 0x02095f28 reads
+   offset 0xb (AiSite.score) with ldrb, and main 0x02153634 lies inside the
+   CO table at 0x0215360c. Skipped without a ROM.
 
 Needs the compiler from `make setup`; parts 1 and 3 are skipped without it.
 """
 
+import re
 import sys
 import tempfile
 from pathlib import Path
@@ -87,17 +89,22 @@ else:
           and rec["pos"]["offset"] == 0x20, rec["pos"])
     check("struct size", types["Rec"]["size"] == 0x24, types["Rec"]["size"])
 
-    def real(name, header):
-        h = ROOT / "include" / header
+    # Real headers: renames jobs retype and rename fields, so check only the
+    # sizes the headers assert themselves (`sizeof(X) == N`).
+    SIZE_CHECK = re.compile(r"sizeof\((\w+)\)\s*==\s*(0x[0-9a-fA-F]+|\d+)")
+    asserted, wrong = 0, []
+    for h in sorted((ROOT / "include").rglob("*.h")):
+        want = {n: int(v, 0) for n, v in SIZE_CHECK.findall(h.read_text(errors="replace"))}
+        if not want:
+            continue
         rec = dsindex.probe_header(h, "test-" + dsindex.cache_key(h))
-        return next((s for s in rec["structs"] if s["name"] == name), None), rec["error"]
+        got = {st["name"]: st["size"] for st in rec["structs"]}
+        for n, v in want.items():
+            asserted += 1
+            if got.get(n) != v:
+                wrong.append(f"{n}: header says {v:#x}, DWARF {got.get(n)}")
+    check(f"real headers: {asserted} asserted struct sizes", asserted > 0 and not wrong, wrong)
 
-    task, err = real("Task", "game/task.h")
-    check("Task layout", task and task["size"] == 0x6c and fields(task)["unk_64"]["type"] == "s16"
-          and fields(task)["unk_64"]["offset"] == 0x64, err or task and task["size"])
-    site, err = real("AiSite", "game/ai_site.h")
-    score = site and fields(site)["score"]
-    check("AiSite.score", score and score["type"] == "s8" and score["offset"] == 0xb, err or score)
 
 import ds  # noqa: E402
 
@@ -149,10 +156,13 @@ ds.index, ds.includers = real_index, real_includers
 if not (ROOT / "extract/arm9/arm9.bin").exists():
     print("original code: skipped (no extract/; run make)")
 elif have_cc:
-    f = ds.original("AiSite_PickPiperunnerSite", ROOT / "src/game/main/ai/ai_site_pick_piperunner_site.c")
+    # By address: the original bytes never change, names do.
+    f = next((g for gs in ds.fn_index().by_name.values() for g in gs
+              if g["module"] == "main" and g["addr"] == 0x02095f28), None)
     acc = [mn for _, mn, _, _ in ds.accesses(f, 0xb, 0xc)] if f else []
-    check("AiSite.score read with ldrb", "ldrb" in acc, acc)
+    check("main 0x02095f28 reads offset 0xb with ldrb", "ldrb" in acc, acc)
+    table = next(n for a, n, k in ds.symbol_table()["main"] if a == 0x0215360c)
     inside = ds.containing("main", 0x02153634)
-    check("data_02153634 inside gCoTable", any(c.startswith("gCoTable+0x28") for c in inside), inside)
+    check("main 0x02153634 inside the CO table", any(c.startswith(f"{table}+0x28 ") for c in inside), inside)
 
 sys.exit(1 if failures else 0)
