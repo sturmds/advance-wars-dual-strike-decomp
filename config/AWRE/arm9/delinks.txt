@@ -3457,6 +3457,10 @@ src/game/main/graphics/sprite_anim_load_affine_params.c:
     complete
     .text       start:0x02021ff4 end:0x02022140
 
+src/game/main/graphics/sprite_anim_advance.c:
+    complete
+    .text       start:0x02022140 end:0x02022348
+
 src/game/main/graphics/sprite_anim_queue.c:
     complete
     .text       start:0x02022348 end:0x02022404

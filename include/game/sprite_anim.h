@@ -61,6 +61,19 @@ typedef struct SpriteAnim3dTask {
     VecFx32 pos;
 } SpriteAnim3dTask;
 
+/* One step of an animation script: a list of (duration, value) halfword
+ * pairs. A pair with a duration shows cell set `value` for that many
+ * frames, scaled by speed / 0x100. A pair with duration 0 is a command. */
+typedef struct SpriteAnimStep {
+    u16 duration;
+    u16 value;
+} SpriteAnimStep;
+
+#define SPRITE_ANIM_CMD_STOP    0    /* hold the last frame */
+#define SPRITE_ANIM_CMD_FREE    1    /* free the sprite (func_0202244c) */
+#define SPRITE_ANIM_CMD_LOOP    0xff /* jump back to the first step */
+#define SPRITE_ANIM_AFFINE_CELLS 0x8000 /* cell set starts with affine parameter sets */
+
 extern SpriteAnim data_0229b080[SPRITE_ANIM_COUNT];
 
 #endif

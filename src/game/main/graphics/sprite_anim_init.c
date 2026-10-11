@@ -2,10 +2,10 @@
 #include "game/sprite_anim.h"
 
 void SpriteAnim_SetFile(SpriteAnim *sprite, const void *file);
-int func_02022140(SpriteAnim *sprite);
+int SpriteAnim_Advance(SpriteAnim *sprite);
 
 /* Sets up a slot to play file on layer, then runs its first frame
- * (func_02022140). unk_18 is cleared twice; the first store is needed to match. */
+ * (SpriteAnim_Advance). unk_18 is cleared twice; the first store is needed to match. */
 void SpriteAnim_Init(SpriteAnim *sprite, const void *file, u16 layer, u8 flags)
 {
     sprite->flags = flags;
@@ -21,5 +21,5 @@ void SpriteAnim_Init(SpriteAnim *sprite, const void *file, u16 layer, u8 flags)
     sprite->unk_1a = 0x100;
     sprite->unk_1c = 0;
     sprite->unk_22 = 0;
-    func_02022140(sprite);
+    SpriteAnim_Advance(sprite);
 }
