@@ -8,7 +8,9 @@
 2. The load and store parser on fixed objdump lines.
 3. Real headers: Task is 0x6c bytes with unk_64 an s16, AiSite.score is an
    s8 at 0xb.
-4. With extract/ present: AiSite_PickPiperunnerSite reads AiSite.score
+4. ds.py dupes on a made-up index: same layouts, a local copy, overlapping
+   union views, a symbol declared with two types.
+5. With extract/ present: AiSite_PickPiperunnerSite reads AiSite.score
    with ldrb, and data_02153634 lies inside gCoTable. Skipped without a ROM.
 
 Needs the compiler from `make setup`; parts 1 and 3 are skipped without it.
@@ -113,6 +115,36 @@ LINES = [
 for (mn, ops), want in LINES:
     got = ds.mem_access(mn, ops)
     check(f"parse {mn} {ops}", got == want, got)
+
+# dupes on a made-up index: two headers with one layout, a local copy, a
+# union whose two views overlap, and a symbol declared two ways.
+def fld(name, off, size, **kw):
+    return dict(name=name, offset=off, size=size, type="u16" if size == 2 else "u8", signed=False, **kw)
+
+
+A = {"name": "LevelA", "kind": "struct", "size": 4, "fields": [fld("lv", 0, 1), fld("up", 1, 1), fld("pts", 2, 2)]}
+B = {"name": "RankB", "kind": "struct", "size": 4, "fields": [fld("rank", 0, 1), fld("frame", 1, 1), fld("exp", 2, 2)]}
+BIG = {"name": "BigTask", "kind": "struct", "size": 0x70, "fields": [fld("pad_00", 0, 0x66), fld("x", 0x66, 2),
+                                                                   fld("y", 0x68, 2)]}
+V1 = {"name": "ViewOne", "kind": "struct", "size": 4, "fields": [fld("a", 0, 2), fld("b", 2, 2)]}
+V2 = {"name": "ViewTwo", "kind": "struct", "size": 6, "fields": [fld("a", 0, 2), fld("b", 2, 2), fld("c", 4, 2)]}
+U = {"name": "Holder", "kind": "struct", "size": 8, "fields": [
+    fld("one", 2, 4, struct="ViewOne"), fld("two", 2, 6, struct="ViewTwo")]}
+LOCAL = {"name": "Unk_local", "kind": "struct", "size": 0x6a, "fields": [fld("pad_00", 0, 0x66), fld("unk_66", 0x66, 2),
+                                                                         fld("unk_68", 0x68, 2)]}
+fake = {"headers": {"include/t.h": {"key": "", "error": "", "structs": [A, B, BIG, V1, V2, U]}},
+        "sources": {"src/t.c": {"key": "", "error": "", "structs": [LOCAL]}},
+        "externs": {"data_1": [{"type": "LevelA", "count": None, "file": "include/t.h", "line": 1},
+                               {"type": "RankB *", "count": None, "file": "src/t.c", "line": 2}]}}
+real_index, real_includers = ds.index, ds.includers
+ds.index = lambda: fake
+ds.includers = lambda header: frozenset()
+check("dupes: layouts", any("LevelA" in r and "RankB" in r for r in ds.dupe_layouts()), ds.dupe_layouts())
+check("dupes: locals", any(r.startswith("Unk_local") and "BigTask" in r for r in ds.dupe_locals()), ds.dupe_locals())
+check("dupes: unions", ds.dupe_unions() == ["Holder.one lies within Holder.two at 0x2 (include/t.h:0)"],
+      ds.dupe_unions())
+check("dupes: externs", len(ds.dupe_externs()) == 1 and ds.dupe_externs()[0].startswith("data_1:"), ds.dupe_externs())
+ds.index, ds.includers = real_index, real_includers
 
 if not (ROOT / "extract/arm9/arm9.bin").exists():
     print("original code: skipped (no extract/; run make)")

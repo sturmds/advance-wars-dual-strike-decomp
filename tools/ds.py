@@ -14,6 +14,13 @@
                                                original loads and stores at its offset (ldrh or
                                                ldrsh, ldrb or ldrsb, word), casts on it in our C,
                                                and whether the declared signedness agrees
+    ds.py dupes [--kind K] [--limit N | --all]
+                                               likely duplicates, for renames jobs (issue 0014):
+                                               names (a type defined twice), layouts (same size
+                                               and field offsets), locals (a type in a C file
+                                               that lines up with a header struct), unions
+                                               (one view inside another), externs (one symbol,
+                                               two types), defines (constants repeated in C files)
 
 Layouts come from build/dsindex.json (tools/dsindex.py), which ds.py
 refreshes when a header or C file is newer. Field uses are found by name in
@@ -22,6 +29,10 @@ structs in one file shows both. Loads and stores are read from the original
 bytes in build/fnindex.json, only for functions that already have C, and
 only at the field's offset in this struct (an access through an outer
 struct that embeds it is not counted).
+
+`dupes` lists candidates, not proof: small structs share layouts by
+chance, and a local type that fits several header structs lists the ones
+whose header the file includes first.
 
 Read-only: never runs ninja or dsd, never writes outside build/dsindex*.
 """
@@ -96,39 +107,6 @@ def type_size(typ: str) -> int | None:
 
 # ---------------------------------------------------------------- C sources
 
-COMMENT_OR_STRING = re.compile(r"/\*.*?\*/|//[^\n]*|\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|^[ \t]*#(?:[^\n]*\\\n)*[^\n]*", re.S | re.M)
-FUNC_HEAD = re.compile(r"(\w+)\s*\([^;{}]*\)\s*$", re.S)
-
-
-def blank(text: str) -> str:
-    """Comments, string literals and preprocessor lines replaced by spaces,
-    offsets kept."""
-    return COMMENT_OR_STRING.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
-
-
-def functions_in(text: str) -> list[tuple[str, int, int]]:
-    """(name, body start, body end) of each top-level function definition."""
-    clean = blank(text)
-    out, depth, last, start = [], 0, 0, 0
-    for i, c in enumerate(clean):
-        if c == "{":
-            if depth == 0:
-                m = FUNC_HEAD.search(clean, last, i)
-                head = clean[last:i]
-                name = m.group(1) if m and "=" not in head else None
-                start = i
-            depth += 1
-        elif c == "}":
-            depth -= 1
-            if depth == 0:
-                if name:
-                    out.append((name, start, i + 1))
-                last = i + 1
-        elif c == ";" and depth == 0:
-            last = i + 1
-    return out
-
-
 @cache
 def includers(header: str) -> frozenset[str]:
     """Headers (paths relative to include/) that include `header` directly
@@ -169,8 +147,8 @@ def uses(header: str, field: str) -> list[tuple[Path, str, str]]:
     for p, text in files_including(header):
         if not tok.search(text):
             continue
-        clean = blank(text)
-        for name, s, e in functions_in(text):
+        clean = dsindex.blank(text)
+        for name, s, e in dsindex.functions_in(text):
             if tok.search(clean, s, e):
                 out.append((p, name, text[s:e]))
     return out
@@ -596,6 +574,201 @@ def cmd_field(args) -> int:
     return 0
 
 
+# ---------------------------------------------------------------- dupes
+
+def def_line(path: str, name: str) -> int:
+    """Line where a type is defined in path, or 0."""
+    if not (ROOT / path).exists():
+        return 0
+    text = (ROOT / path).read_text(errors="replace")
+    m = re.search(rf"\}}\s*{re.escape(name)}\s*;|\b(?:struct|union)\s+{re.escape(name)}\s*\{{", text)
+    return text.count("\n", 0, m.start()) + 1 if m else 0
+
+
+def leaves(rec: dict, header: str | None) -> frozenset[tuple[int, int]]:
+    """(offset, size) of every named scalar or array field, padding left out."""
+    out = set()
+    for f in flatten(rec.get("fields", []), header=header):
+        if f.get("members") or (f.get("struct") and "count" not in f):
+            continue
+        if f["name"].startswith("pad_") or not f["name"]:
+            continue
+        out.add((f["offset"], f["size"]))
+    return frozenset(out)
+
+
+def where(path: str, name: str) -> str:
+    return f"{name} ({path}:{def_line(path, name)})"
+
+
+def dupe_names() -> list[str]:
+    seen: dict[str, list[str]] = {}
+    for h, rec in index()["headers"].items():
+        for s in rec["structs"]:
+            seen.setdefault(s["name"], []).append(h)
+    out = [f"{n}: defined in {', '.join(f'{h}:{def_line(h, n)}' for h in hs)}"
+           for n, hs in sorted(seen.items()) if len(set(hs)) > 1]
+    for src, rec in index()["sources"].items():
+        for s in rec["structs"]:
+            if s["name"] in seen:
+                out.append(f"{s['name']}: {src}:{def_line(src, s['name'])} redefines the one in "
+                           f"{seen[s['name']][0]}")
+    return out
+
+
+def header_structs():
+    for h, rec in index()["headers"].items():
+        for s in rec["structs"]:
+            if s["kind"] in ("struct", "union") and s["size"]:
+                yield h, s
+
+
+def dupe_layouts() -> list[str]:
+    groups: dict[tuple, list[tuple[str, dict]]] = {}
+    for h, s in header_structs():
+        lv = leaves(s, h)
+        top = s["fields"]
+        # A struct that only wraps another one has its layout by definition.
+        if len(lv) < 2 or (len(top) == 1 and top[0].get("struct")):
+            continue
+        groups.setdefault((s["size"], lv), []).append((h, s))
+    out = []
+    for (size, lv), hits in sorted(groups.items(), key=lambda kv: -len(kv[0][1])):
+        names = {s["name"] for _, s in hits}
+        if len(names) > 1:
+            out.append(f"{size:#x} bytes, {len(lv)} fields: " + ", ".join(where(h, s["name"]) for h, s in hits))
+    return out
+
+
+def dupe_locals() -> list[str]:
+    cands = [(h, s, leaves(s, h)) for h, s in header_structs()]
+    out = []
+    for src, rec in index()["sources"].items():
+        text = (ROOT / src).read_text(errors="replace") if (ROOT / src).exists() else ""
+        inc = set(dsindex.INCLUDE_LINE.findall(text))
+        for s in rec["structs"]:
+            if s["kind"] not in ("struct", "union"):
+                continue
+            lv = leaves(s, None)
+            if not lv:
+                continue
+            fits = [(h, t) for h, t, tl in cands if lv <= tl and s["size"] <= t["size"] and t["name"] != s["name"]]
+            # One field at a small offset fits half the headers: say nothing.
+            if not fits or (len(lv) == 1 and (max(lv)[0] < 0x10 or len(fits) > 3)):
+                continue
+            # Headers the file already includes first, then the closest size.
+            fits.sort(key=lambda ht: (not (includers(ht[0]) & inc), ht[1]["size"] - s["size"]))
+            shown = ", ".join(where(h, t["name"]) for h, t in fits[:3])
+            more = f" and {len(fits) - 3} more" if len(fits) > 3 else ""
+            out.append((-len(lv), len(fits), f"{where(src, s['name'])}, {len(lv)} fields: fits {shown}{more}"))
+    return [line for *_, line in sorted(out)]
+
+
+def dupe_unions() -> list[str]:
+    """Struct-typed fields at the same offset (union members, including the
+    members of an unnamed union, which the DWARF lists in the parent)."""
+    out = []
+    for h, s in header_structs():
+        by_offset: dict[int, list[tuple[str, frozenset]]] = {}
+        for f in s["fields"]:
+            inner = f.get("members")
+            if inner is None and f.get("struct") and "count" not in f:
+                hit = find_struct(f["struct"], h)
+                inner = hit[1].get("fields") if hit else None
+            if inner:
+                lv = leaves({"fields": inner}, h)
+                if len(lv) >= 2:
+                    by_offset.setdefault(f["offset"], []).append((f["name"] or "<unnamed>", lv))
+        for off, views in by_offset.items():
+            for i, (a, la) in enumerate(views):
+                for b, lb in views[i + 1:]:
+                    if la <= lb or lb <= la:
+                        small, big = (a, b) if la <= lb else (b, a)
+                        out.append(f"{s['name']}.{small} lies within {s['name']}.{big} at {off:#x} "
+                                   f"({h}:{def_line(h, s['name'])})")
+    return out
+
+
+def norm_type(t: str) -> str:
+    return re.sub(r"\s+", "", re.sub(r"\b(struct|union|const|volatile)\b", "", t))
+
+
+def dupe_externs() -> list[str]:
+    out = []
+    for name, ds in sorted(index()["externs"].items()):
+        types = {}
+        for d in ds:
+            types.setdefault(norm_type(d["type"]), d)
+        if len(types) > 1:
+            # `u8` and `void` stand for "an address" in many files; clashes
+            # between two real types come first.
+            real = sum(t not in ("u8", "void", "constu8") for t in types)
+            out.append((-real, name, f"{name}: " + "; ".join(f"{d['type']} ({d['file']}:{d['line']})"
+                                                             for d in types.values())))
+    return [line for *_, line in sorted(out)]
+
+
+DEFINE_ANY = re.compile(r"^\s*#\s*define\s+([A-Z][A-Z0-9_]+)\s+\(?\s*(0x[0-9a-fA-F]+|\d+)\s*\)?\s*(?:/[*/].*)?$", re.M)
+
+
+def dupe_defines() -> list[str]:
+    defs: dict[str, list[tuple[int, str]]] = {}
+    files = sorted((ROOT / "include").rglob("*.h")) + sorted(SRC.rglob("*.c"))
+    for p in files:
+        text = p.read_text(errors="replace")
+        for m in DEFINE_ANY.finditer(text):
+            line = text.count("\n", 0, m.start()) + 1
+            defs.setdefault(m.group(1), []).append((int(m.group(2), 0), f"{p.relative_to(ROOT)}:{line}"))
+    out = []
+    for name, ds in sorted(defs.items()):
+        local = [d for d in ds if d[1].startswith("src/")]
+        if len(ds) > 1 and local:
+            vals = {v for v, _ in ds}
+            out.append(f"{name} defined {len(ds)} times{'' if len(vals) == 1 else ' WITH DIFFERENT VALUES'}: "
+                       + ", ".join(w for _, w in ds))
+    def prefix(name: str) -> str:
+        """MENU_ITEM for MENU_ITEM_FLAG_2 and MENU_ITEM_GREYED."""
+        return "_".join(name.split("_")[:2])
+
+    header: dict[tuple[str, int], list[tuple[str, str]]] = {}
+    for name, ds in defs.items():
+        for v, w in ds:
+            if w.startswith("include/") and name.count("_") >= 2:
+                header.setdefault((prefix(name), v), []).append((name, w))
+    for name, ds in sorted(defs.items()):
+        for v, w in ds:
+            if not w.startswith("src/") or name.count("_") < 2:
+                continue
+            hits = [h for h in header.get((prefix(name), v), []) if h[0] != name]
+            if hits:
+                others = ", ".join(f"{n} ({hw})" for n, hw in hits[:3])
+                out.append(f"{name} = {v} ({w}) has the value of {others}; same constant? check by hand")
+    return out
+
+
+DUPES = {
+    "names": ("Types defined more than once under one name", dupe_names),
+    "layouts": ("Structs in include/ with the same size and field offsets", dupe_layouts),
+    "locals": ("Types in C files whose fields all line up with a struct in include/", dupe_locals),
+    "unions": ("Union members whose fields lie within another member's", dupe_unions),
+    "externs": ("Symbols declared with different types", dupe_externs),
+    "defines": ("Constants defined in C files that repeat a #define", dupe_defines),
+}
+
+
+def cmd_dupes(args) -> int:
+    kinds = [args.kind] if args.kind else list(DUPES)
+    for k in kinds:
+        title, fnc = DUPES[k]
+        rows = fnc()
+        print(f"== {k}: {title} ({len(rows)})")
+        for r in rows if args.all else rows[:args.limit]:
+            print("  " + r)
+        if not args.all and len(rows) > args.limit:
+            print(f"  ... {len(rows) - args.limit} more (--all, or --kind {k})")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -607,6 +780,11 @@ def main() -> int:
     p = sub.add_parser("field")
     p.add_argument("key", help="STRUCT.FIELD, with dots for embedded structs")
     p.set_defaults(func=cmd_field)
+    p = sub.add_parser("dupes")
+    p.add_argument("--kind", choices=list(DUPES))
+    p.add_argument("--limit", type=int, default=15, help="rows per kind (default 15)")
+    p.add_argument("--all", action="store_true")
+    p.set_defaults(func=cmd_dupes)
     args = ap.parse_args()
     return args.func(args)
 

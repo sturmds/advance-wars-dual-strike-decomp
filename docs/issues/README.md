@@ -68,7 +68,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0038](0038-check-and-diff-disagree.md) | `fn.py check` reports BattleFighterTask_Setup 0x10 short while `fn.py diff` shows nothing | open | tools | M1 |
 | [0039](0039-monitor-tasks-hold-subagent-slots.md) | Monitor tasks left running keep a finished agent's subagent slot | open | loop | M1 |
 | [0040](0040-partials-job-result-format.md) | `loop_state.py collect` misreads the RESULT blocks of partials jobs | open | loop | M1 |
-| [0041](0041-data-structure-helper.md) | No tool shows data structures the way `fn.py show` shows functions | in progress | tools | M2 |
+| [0041](0041-data-structure-helper.md) | No tool shows data structures the way `fn.py show` shows functions | closed | tools | M2 |
 | [0042](0042-arm7-decompilation.md) | ARM7 has no C at all | open | decomp | later |
 | [0043](0043-oomd-kills-session-with-20-agents.md) | systemd-oomd killed the orchestrator session with 20 agents running | worked around | loop | M1 |
 | [0044](0044-landing-queue-wait-over-an-hour.md) | Landing queue waits of over an hour with 11 agents queued | open | loop | M1 |

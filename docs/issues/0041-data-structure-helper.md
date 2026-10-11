@@ -1,6 +1,6 @@
 # 0041: No tool shows data structures the way `fn.py show` shows functions
 
-- **Status:** in progress
+- **Status:** closed
 - **Area:** tools
 - **Opened:** 2026-10-11
 - **Milestone:** M2
@@ -50,6 +50,7 @@ Answers to the open questions above:
 
 - 2026-10-11: `ds.py show` and `ds.py field` are in, listed in `docs/workflow.md`, with `tools/tests/test_ds.py` in `make test`. On the cases from the loop journal, `field` reports these as declared unsigned with every load signed: `MainMenuTask.unk_4c`, `ForceRankTask.forceRankSet`, `UnitTargetEntry.unk_04`, `WeatherTaskWork.weather`, `WinLoseTask.scoreWidth`, `PlayerInfoSpriteTask.unk_2e`. It reports `AiSite.score` as declared signed with every load unsigned. `PageStripTask.mapId` and `SpriteEntry.x` show mixed loads. `ds.py show data_02153634` reports it as `inside: gCoTable+0x28`. Left: the agent instructions (item 4) and `dupes`.
 - 2026-10-11: the decomp-function skill (step 1) and `jobs/common.md` now tell agents to use `ds.py show` and `ds.py field`. Left: `dupes`, after batch 21.
+- 2026-10-11, after batch 21: `ds.py dupes` is in. `dsindex.py` now also probes the 383 C files that define their own types, with their function bodies cut out. First run: 17 types defined twice under one name (`FrameHeap` in two headers, `PlayRecords` copied into two C files); 34 groups of header structs with one layout (`CoRankEntry`/`LevelGauge`, `AnimSpriteTask`/`TableSpriteTask`, `ProfileHeader`/`Unk_02290a60`); 141 local types that line up with a header struct (`Unk_020e4e98` with `ExMachinaTask`); 183 symbols declared with two types (`data_ov003_02364a84` four ways); 133 repeated constants (`MENU_ITEM_BLOCKED` and `MENU_ITEM_FLAG_2` against `MENU_ITEM_GREYED`). No union view lies within another. The renames job template points at it.
 
 ## Done when
 

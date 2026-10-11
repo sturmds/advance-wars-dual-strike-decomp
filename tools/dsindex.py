@@ -5,7 +5,8 @@
 
 Layouts come from the compiler, not from parsing C: for each header in
 include/, a probe file includes it and declares one pointer per type the
-header defines, and mwccarm compiles it with -g. The DWARF in the object
+header defines, and mwccarm compiles it with -g. C files that define types
+of their own are probed the same way, with their function bodies cut out. The DWARF in the object
 (read with `objdump --dwarf=info`) gives every struct's size and each
 member's offset, type, signedness and bit-field position, exactly as the
 build lays them out. One probe per header, because some headers declare the
@@ -37,7 +38,7 @@ ROOT = Path(__file__).resolve().parent.parent
 INCLUDE = ROOT / "include"
 INDEX = ROOT / "build/dsindex.json"
 PROBES = ROOT / "build/dsindex/probe"
-VERSION = 1
+VERSION = 2
 
 # Type names a header defines: `} Name;` closing a top-level typedef,
 # `struct Tag {`, and `typedef struct Tag Name;` (opaque, probed but usually
@@ -108,6 +109,41 @@ def cache_key(header: Path) -> str:
     for p in sorted(include_closure(header)):
         h.update(str(p.relative_to(ROOT)).encode() + b"\0" + p.read_bytes() + b"\0")
     return h.hexdigest()[:16]
+
+
+# ---------------------------------------------------------------- C text
+
+COMMENT_OR_STRING = re.compile(r"/\*.*?\*/|//[^\n]*|\"(?:\\.|[^\"\\])*\"|'(?:\\.|[^'\\])*'|^[ \t]*#(?:[^\n]*\\\n)*[^\n]*", re.S | re.M)
+FUNC_HEAD = re.compile(r"(\w+)\s*\([^;{}]*\)\s*$", re.S)
+
+
+def blank(text: str) -> str:
+    """Comments, string literals and preprocessor lines replaced by spaces,
+    offsets kept."""
+    return COMMENT_OR_STRING.sub(lambda m: re.sub(r"[^\n]", " ", m.group(0)), text)
+
+
+def functions_in(text: str) -> list[tuple[str, int, int]]:
+    """(name, body start, body end) of each top-level function definition."""
+    clean = blank(text)
+    out, depth, last, start = [], 0, 0, 0
+    for i, c in enumerate(clean):
+        if c == "{":
+            if depth == 0:
+                m = FUNC_HEAD.search(clean, last, i)
+                head = clean[last:i]
+                name = m.group(1) if m and "=" not in head else None
+                start = i
+            depth += 1
+        elif c == "}":
+            depth -= 1
+            if depth == 0:
+                if name:
+                    out.append((name, start, i + 1))
+                last = i + 1
+        elif c == ";" and depth == 0:
+            last = i + 1
+    return out
 
 
 # ---------------------------------------------------------------- DWARF
@@ -324,9 +360,10 @@ def dwarf_types(objdump_text: str) -> list[dict]:
 
 # ---------------------------------------------------------------- probes
 
-def compile_probe(src: Path, obj: Path) -> tuple[str, str]:
+def compile_probe(src: Path, obj: Path, extra_dirs: list[Path] = ()) -> tuple[str, str]:
     """Compile src with -g; return (objdump --dwarf=info text, error text)."""
-    cmd = [str(ROOT / configure.CC), "-c", *configure.CFLAGS.split(), "-g", "-o", str(obj), str(src)]
+    inc = [a for d in extra_dirs for a in ("-i", str(d))]
+    cmd = [str(ROOT / configure.CC), "-c", *configure.CFLAGS.split(), *inc, "-g", "-o", str(obj), str(src)]
     r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
     if r.returncode != 0 or not obj.exists():
         return "", (r.stdout + r.stderr).strip()
@@ -352,6 +389,41 @@ def probe_header(header: Path, key: str) -> dict:
     wanted = {n.split()[-1] for n in names}
     structs = [s for s in dwarf_types(text) if s["name"] in wanted]
     return {"key": key, "structs": structs, "error": ""}
+
+
+TYPE_DEF = re.compile(r"^\s*(?:typedef\s+)?(?:struct|union)\s+\w*\s*\{", re.M)
+
+
+def source_key(path: Path, text: str) -> str:
+    h = hashlib.sha1(f"{configure.CC} {configure.CFLAGS}\n".encode() + Path(__file__).read_bytes())
+    h.update(text.encode())
+    for name in sorted(set(INCLUDE_LINE.findall(text))):
+        p = resolve_include(name, path)
+        for q in sorted(include_closure(p)) if p else []:
+            h.update(str(q.relative_to(ROOT)).encode() + b"\0" + q.read_bytes() + b"\0")
+    return h.hexdigest()[:16]
+
+
+def probe_source(path: Path, key: str) -> dict:
+    """Types a C file defines for itself: the file with every function body
+    replaced by `;`, plus one pointer per type, compiled with -g."""
+    text = path.read_text(errors="replace")
+    names = type_names(text)
+    body = text
+    for _, s, e in reversed(functions_in(text)):
+        body = body[:s] + ";" + body[e:]
+    # Includes stay as written; a file's own directory is searched first.
+    lines = [body] + [f"{n} *ds_probe_{i};" for i, n in enumerate(names)]
+    PROBES.mkdir(parents=True, exist_ok=True)
+    src, obj = PROBES / f"src-{key}.c", PROBES / f"src-{key}.o"
+    src.write_text("\n".join(lines) + "\n")
+    text_out, err = compile_probe(src, obj, [path.parent])
+    obj.unlink(missing_ok=True)
+    src.unlink(missing_ok=True)
+    if err:
+        return {"key": key, "structs": [], "error": err}
+    wanted = {n.split()[-1] for n in names}
+    return {"key": key, "structs": [s for s in dwarf_types(text_out) if s["name"] in wanted], "error": ""}
 
 
 def externs() -> dict[str, list[dict]]:
@@ -385,10 +457,26 @@ def build(jobs: int = 2, old: dict | None = None) -> dict:
             result[rel] = prev
         else:
             todo.append(h)
+    old_sources = (old or {}).get("sources", {})
+    sources: dict[str, dict] = {}
+    src_todo = []
+    for p in sorted((ROOT / "src").rglob("*.c")):
+        text = p.read_text(errors="replace")
+        if not TYPE_DEF.search(blank(text)):
+            continue
+        rel, key = str(p.relative_to(ROOT)), source_key(p, text)
+        prev = old_sources.get(rel)
+        if prev and prev["key"] == key:
+            sources[rel] = prev
+        else:
+            src_todo.append((p, key))
     with ThreadPoolExecutor(max_workers=max(1, jobs)) as ex:
         for h, rec in zip(todo, ex.map(lambda h: probe_header(h, keys[h]), todo)):
             result[str(h.relative_to(ROOT))] = rec
-    return {"version": VERSION, "headers": result, "externs": externs(), "probed": len(todo)}
+        for (p, key), rec in zip(src_todo, ex.map(lambda pk: probe_source(*pk), src_todo)):
+            sources[str(p.relative_to(ROOT))] = rec
+    return {"version": VERSION, "headers": result, "sources": sources, "externs": externs(),
+            "probed": len(todo) + len(src_todo)}
 
 
 def write(path: Path = INDEX, jobs: int = 2) -> dict:
@@ -438,11 +526,17 @@ def main() -> int:
     t = time.time()
     index = write(args.out, args.jobs)
     structs = sum(len(h["structs"]) for h in index["headers"].values())
+    local = sum(len(h["structs"]) for h in index["sources"].values())
     errors = [p for p, h in index["headers"].items() if h["error"]]
-    print(f"dsindex: {len(index['headers'])} headers ({index['probed']} probed), {structs} types, "
+    serrors = [p for p, h in index["sources"].items() if h["error"]]
+    print(f"dsindex: {len(index['headers'])} headers and {len(index['sources'])} C files with their own types "
+          f"({index['probed']} probed), {structs} + {local} types, "
           f"{len(index['externs'])} externs -> {args.out.relative_to(ROOT)} ({time.time() - t:.1f} s)")
     for p in errors:
         first = index["headers"][p]["error"].splitlines()[0]
+        print(f"  {p}: probe failed: {first}")
+    for p in serrors:
+        first = index["sources"][p]["error"].splitlines()[0]
         print(f"  {p}: probe failed: {first}")
     return 0
 

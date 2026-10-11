@@ -25,9 +25,10 @@ python3 tools/ds.py show data_02153634         # a data symbol: type, references
 
 - `show STRUCT` prints each field's offset, size, type and name, bit fields as `:lsb+width`, gaps between fields, the header, the data symbols declared with the type, and how many C files use each field (`--uses` lists the functions).
 - `show data_ADDR|gName|0xADDR` prints the module, kind, size to the next symbol, declared type, the functions and tables that reference it, and its bytes decoded with the declared type (`--count N` table entries). If the symbol lies inside another symbol's declared size, it says so (`inside: gCoTable+0x28`). A symbol with a declared size lists the later symbols it covers.
+- `dupes` lists likely duplicates for renames jobs: a type defined twice under one name, header structs with the same size and field offsets, types in C files whose fields line up with a header struct, union views that lie within another, symbols declared with two types, and `#define`s repeated in C files or matching a header constant's value. They are candidates: small structs share layouts by chance. `--kind K` shows one list, `--all` every row.
 - `field STRUCT.FIELD` lists each function in `src/` that names the field. For each, it shows the original instructions at the field's offset (`ldrsh`, `ldrh`, `strh`, ...) and any `(s16 *)&` casts in our C. A closing `check:` line says when the declared signedness disagrees with every load. Fix the type in the header rather than adding a cast.
 
-Layouts come from the compiler: `tools/dsindex.py` compiles a small probe for each header with `-g` and reads the DWARF debug data, so unions, bit fields and padding are exact. It writes `build/dsindex.json` in about a second and then reprobes only the headers that changed; `make dsindex` runs it. Field uses are found by name, in the C files that include the struct's header, so two structs with a field of the same name in one file both show up. Loads are read only for functions that already have C, and only at the field's offset in that struct.
+Layouts come from the compiler: `tools/dsindex.py` compiles a small probe for each header with `-g` and reads the DWARF debug data, so unions, bit fields and padding are exact. C files that define their own types are probed the same way with their function bodies cut out. It writes `build/dsindex.json` in about three seconds and then reprobes only the files that changed; `make dsindex` runs it. Field uses are found by name, in the C files that include the struct's header, so two structs with a field of the same name in one file both show up. Loads are read only for functions that already have C, and only at the field's offset in that struct.
 
 ## 2. Give it a file
 
@@ -98,6 +99,7 @@ What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 | `make fnindex` | Build `build/fnindex.json` |
 | `python3 tools/ds.py show STRUCT\|data_ADDR` | Struct layout, or a data symbol's type, references and decoded bytes |
 | `python3 tools/ds.py field STRUCT.FIELD` | Functions that use a field, the original loads and stores, signedness check |
+| `python3 tools/ds.py dupes [--kind K]` | Likely duplicate types, extern clashes and repeated constants |
 | `make dsindex` | Build `build/dsindex.json` |
 | `python3 tools/tests/test_fncheck.py` | Check that `check` agrees with `diff` |
 | `make` | Build `build/AWRE.nds` |
