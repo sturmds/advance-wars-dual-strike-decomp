@@ -18,7 +18,7 @@ typedef struct UnitListTask {
     u8 pad_31[0x34 - 0x31];
     int unk_34;
     int unk_38;
-    u16 unk_3c;
+    u16 pickedSlot;                    /* data_0229c878 entry of the row picked with A (UnitList_PickRow) */
 } UnitListTask;
 
 #define UNIT_LIST_VISIBLE_ROWS 6       /* list rows on screen at once, one button each */

@@ -6547,6 +6547,10 @@ src/game/main/func_02073af0.c:
     complete
     .text       start:0x02073af0 end:0x02073b04
 
+src/game/main/menus/unit_list_handle_keys.c:
+    complete
+    .text       start:0x02073b04 end:0x02073ce4
+
 src/game/main/menus/func_02073ed8.c:
     complete
     .text       start:0x02073ed8 end:0x02073f28
