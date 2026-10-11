@@ -13634,6 +13634,10 @@ src/game/main/units/unit_transfer_to_other_map.c:
     complete
     .text       start:0x020c7e20 end:0x020c7fb0
 
+src/game/main/units/unit_copy_to_other_map.c:
+    complete
+    .text       start:0x020c7fb0 end:0x020c8184
+
 src/game/main/units/unit_init.c:
     complete
     .text       start:0x020c8184 end:0x020c8290

@@ -5,7 +5,7 @@
 MapUnit *Unit_FindFreeSlot(int player);
 void func_020c73a8(int player);
 void MapUnit_ResetAiState(MapUnit *unit);
-u8 func_020c7fb0(MapUnit *unit, int x, int y);
+int Unit_CopyToOtherMap(MapUnit *unit, int x, int y);
 void func_020c7398(int unitIndex);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -13,7 +13,7 @@ void func_020c7398(int unitIndex);
 /* Two-map battles: moves unit to tile (x, y) of the other map. A free slot of
  * the current player is taken on the other map (func_020c73a8 counts the
  * unit there), the unit is copied in, ready to act again, with its cargo
- * copied by func_020c7fb0, then the unit is removed from this map. */
+ * copied by Unit_CopyToOtherMap, then the unit is removed from this map. */
 void Unit_TransferToOtherMap(MapUnit *unit, int x, int y)
 {
     int player;
@@ -38,7 +38,7 @@ void Unit_TransferToOtherMap(MapUnit *unit, int x, int y)
     MapUnit_ResetAiState(copy);
     for (i = 0; i < 2; i++) {
         if (unit->cargo[i] != 0) {
-            copy->cargo[i] = func_020c7fb0(&STATE->units[unit->cargo[i]], x, y);
+            copy->cargo[i] = Unit_CopyToOtherMap(&STATE->units[unit->cargo[i]], x, y);
         }
     }
     func_020c7398(unit - STATE->units);
