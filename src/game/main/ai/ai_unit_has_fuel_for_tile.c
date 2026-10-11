@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Player_GetFuelRate(int player);
-int func_020e0360(int player, int unitType);
+int Player_GetAirFuelChange(int player, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -20,7 +20,7 @@ int func_020e0360(int player, int unitType);
         dst = (*(Unk_02080440 *volatile *)&data_027c027c)->unk_48[index_];   \
     }
 
-/* Daily fuel use added on top of func_020e0360's value, per turn spent
+/* Daily fuel use added on top of Player_GetAirFuelChange's value, per turn spent
  * travelling. */
 #define FUEL_PER_DAY_STEALTH 8
 #define FUEL_PER_DAY_AIR_SUB 5
@@ -47,18 +47,18 @@ BOOL AiUnit_HasFuelForTile(int x, int y, int movesPerTurn)
     unitType = state->actingUnit->type;
     if (unitType == UNIT_STEALTH) {
         if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
-            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_STEALTH)) {
+            < days * (Player_GetAirFuelChange(state->currentPlayer, unitType) + FUEL_PER_DAY_STEALTH)) {
             return FALSE;
         }
     } else if ((Ov000_gUnitStats[unitType].moveGroup & MOVE_GROUP_AIR) || unitType == UNIT_SUB) {
         RELOAD_STATE(state);
         if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
-            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_AIR_SUB)) {
+            < days * (Player_GetAirFuelChange(state->currentPlayer, unitType) + FUEL_PER_DAY_AIR_SUB)) {
             return FALSE;
         }
     } else {
         if (state->actingUnit->fuel - Player_GetFuelRate(state->currentPlayer) * state->rangeMap[y][x]
-            < days * (func_020e0360(state->currentPlayer, unitType) + FUEL_PER_DAY_OTHER)) {
+            < days * (Player_GetAirFuelChange(state->currentPlayer, unitType) + FUEL_PER_DAY_OTHER)) {
             return FALSE;
         }
     }

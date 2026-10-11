@@ -14259,7 +14259,8 @@ src/game/main/combat/player_get_charge_per_hp.c:
     complete
     .text       start:0x020e0350 end:0x020e0360
 
-src/game/main/units/func_020e0360.c:
+src/game/main/skills/player_get_air_fuel_change.c:
+    complete
     .text       start:0x020e0360 end:0x020e03e8
 
 src/game/main/power_meter/power_panel_right_queue_stars.c:
