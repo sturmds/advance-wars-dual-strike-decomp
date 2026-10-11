@@ -15,7 +15,7 @@ void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 void AiUnit_MarkFinishingCapture(int action);
 void func_021296a8(void *p, int n);
 void RangeMap_FillUnitMoves(MapUnit *unit);
-void func_01ffa02c(int x, int y, u8 *out);
+void RangeMap_TracePath(int x, int y, u8 *out);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
 void AiAction_DebugHook(int x, int y, int action, int target, int arg);
 int Unit_GetFuelUsed(MapUnit *unit, int n);
@@ -37,7 +37,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
         func_021296a8(data_0229ea0c, 1);
     }
     RangeMap_FillUnitMoves(unit);
-    func_01ffa02c(x, y, GAME->pathSteps);
+    RangeMap_TracePath(x, y, GAME->pathSteps);
     PackNibblePairs(GAME->pathSteps, gUnitAction.packed);
     AiAction_DebugHook(x, y, action, target, arg);
 

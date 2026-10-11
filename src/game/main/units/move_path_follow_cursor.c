@@ -13,7 +13,7 @@ int MovePath_FindTile(s8 x, s8 y);
 void MovePath_FillRangeFromEnd(void);
 void MovePath_RebuildToTarget(void);
 BOOL MovePath_HasNoRepeatedTile(void);
-void func_01ffa02c(int x, int y, u8 *steps);
+void RangeMap_TracePath(int x, int y, u8 *steps);
 
 extern MovePath *gMovePath;
 extern Unk_02080440 *data_027c027c;
@@ -35,7 +35,7 @@ extern int data_027c0284;
 /* Follows the map cursor (cursorX, cursorY) with the move path when it moves
  * to another tile in the acting unit's range. A tile already on the path cuts
  * the path back to it; a reachable tile next to the path's end is appended;
- * anything else rebuilds the path by search (func_01ffa02c). unk_46 gets the
+ * anything else rebuilds the path by search (RangeMap_TracePath). unk_46 gets the
  * move points the path uses. */
 void MovePath_FollowCursor(void)
 {
@@ -98,7 +98,7 @@ void MovePath_FollowCursor(void)
     if (state->rangeMap[state->cursorY][state->cursorX] == -1) {
         MovePath_RebuildToTarget();
     } else {
-        func_01ffa02c(state->cursorX, state->cursorY, state->pathSteps);
+        RangeMap_TracePath(state->cursorX, state->cursorY, state->pathSteps);
         MovePath_AppendSteps();
         if (!MovePath_HasNoRepeatedTile()) {
             MovePath_RebuildToTarget();

@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 void MovePath_Truncate(int count);
 void MovePath_FillRangeFromEnd(void);
-void func_01ffa02c(int x, int y, u8 *out);
+void RangeMap_TracePath(int x, int y, u8 *out);
 void MovePath_AppendSteps(void);
 
 /* Cuts the move path back to its first tile, then finds the steps to tile
@@ -17,6 +17,6 @@ void MovePath_RebuildToTarget(void)
 {
     MovePath_Truncate(1);
     MovePath_FillRangeFromEnd();
-    func_01ffa02c(GAME->cursorX, GAME->cursorY, GAME->pathSteps);
+    RangeMap_TracePath(GAME->cursorX, GAME->cursorY, GAME->pathSteps);
     MovePath_AppendSteps();
 }

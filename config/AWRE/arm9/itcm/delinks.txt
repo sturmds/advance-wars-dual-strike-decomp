@@ -237,6 +237,10 @@ src/game/itcm/map/path_reverse.c:
     complete
     .text       start:0x01ff9fd0 end:0x01ffa02c
 
+src/game/itcm/range_map/range_map_trace_path.c:
+    complete
+    .text       start:0x01ffa02c end:0x01ffa294
+
 src/game/itcm/range_map/set_adjacent_reachable.c:
     complete
     .text       start:0x01ffa294 end:0x01ffa380
