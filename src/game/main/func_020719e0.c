@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/tab_list.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 /* Two parallel tables, 44 rows of 44 entries of 0x30 bytes: a text id, and a
  * function that returns the number to show next to it. */
 
 
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
-void Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 
 extern Unk_027c0280 *data_027c0280;

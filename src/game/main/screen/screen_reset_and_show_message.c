@@ -2,6 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "sdk/gx.h"
+#include "game/text_print.h"
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -32,7 +33,6 @@ void OamBuffer_ClearTail(void);
 void OamBuffer_FlushTail(void);
 void func_0201d7fc(void);
 void Gfx_InitBothScreens(void);
-void Text_PrintId(int x, int y, void *map, u32 textId, int a, int b);
 
 #define MAIN_SCREEN (data_027c0288.unk_00)
 #define SUB_SCREEN  (data_027c0288.unk_04)

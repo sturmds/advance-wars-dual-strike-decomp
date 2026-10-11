@@ -6,6 +6,7 @@
 #include "game/map_header.h"
 #include "game/design_map.h"
 #include "game/event_queue.h"
+#include "game/text_print.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -15,7 +16,6 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void *File_Load(const char *path);
 void Mem_Free(void *file);
-void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Window_DrawOnLayer1(int x, int y, int w, int h);
 void Font_LoadDigits(int a);

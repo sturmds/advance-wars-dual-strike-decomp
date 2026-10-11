@@ -4,10 +4,10 @@
 #include "game/screen_other_map.h"
 #include "game/unlocks.h"
 #include "game/Unk_ov005_0236bba0.h"
+#include "game/text_print.h"
 
 BOOL func_02017b1c(int coId);
 u32 Ov005_GetCoListEntryName(int entry);
-int Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 
 extern u8 data_ov005_0236a48c[33];
 extern u8 data_ov005_0236a5a0[33][4];  /* per entry: x and y in pixels, then grid column and row */

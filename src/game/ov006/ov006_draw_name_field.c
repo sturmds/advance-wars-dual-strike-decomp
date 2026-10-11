@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
+#include "game/text_print.h"
 
 void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
-void Text_Print(int x, int y, u16 *map, const void *text, u16 a, u16 b);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 

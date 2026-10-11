@@ -2,13 +2,13 @@
 #include "game/Unk_02088d04.h"
 #include "game/icon.h"
 #include "game/unit_stats.h"
+#include "game/text_print.h"
 
 void Font_SetDigitEndTile(int tile);
 const void *Text_Get(u32 textId);
 int func_02014a64(const void *text);
 void func_02014e58(s16 x, s16 y, u16 *map, const void *text, u16 a, u16 b);
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
-void Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 void Bg_PutTile(int layer, int x, int y, u16 entry);
 int IncreaseFunds(int playerIndex, int terrain);
 void Gfx_RequestLayerCopy(int layer);

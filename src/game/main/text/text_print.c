@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 extern Unk_027c0280 *data_027c0280;
 extern u8 data_022900b8;
@@ -12,8 +13,8 @@ s8 ScriptSlot_Start(const void *descriptor, int arg);    /* starts a task from d
 
 /* Prints text at tile (x, y) of map, drawing the glyphs into the layer 0
  * tile data, through the printer in data_027c0280 and the task that
- * data_02158394 describes. */
-void Text_Print(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
+ * data_02158394 describes; returns that task's script slot. */
+s8 Text_Print(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
 {
     Unk_027c0280 *gfx = data_027c0280;
     void *printer = gfx->textPrinter;
@@ -21,5 +22,5 @@ void Text_Print(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32
     data_022900b8 = 0;
     TextPrinter_Init(printer, x, y, gfx->bgVram + (gfx->bgCnt[gfx->layer0Bg].charBase << 14), map, text, unk_30, unk_32);
     func_02015da8(printer);
-    ScriptSlot_Start(data_02158394, 0);
+    return ScriptSlot_Start(data_02158394, 0);
 }

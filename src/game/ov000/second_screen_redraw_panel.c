@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 void Layers_ClearLeftBlock(void);
 void Layer1_PutBlock(void);
 void Data_Unpack(const void *src, void *dest);
 void Palette_Load(const void *src, int offset, u32 size);
 void Text_StopPrinting(void);
-void Text_PrintId(int x, int y, u16 *map, u32 textId, u16 a, u16 b);
 void SecondScreen_DrawTerrainDetails(int arg0, int arg1);
 void SecondScreen_DrawTerrainMoveCosts(int arg0, int arg1);
 

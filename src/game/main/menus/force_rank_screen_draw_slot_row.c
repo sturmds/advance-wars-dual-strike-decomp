@@ -2,12 +2,12 @@
 #include "game/force_rank_screen.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 void Bg_ClearRect(u16 *map, u16 x, u16 y, int width, u16 height);
 void ForceRankScreen_PutNoSkillIcon(int x, int y);
 void ForceRankScreen_PutSkillIcon(int x, int y, int skill);
 void Gfx_RequestLayerCopy(int layer);
-void Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;

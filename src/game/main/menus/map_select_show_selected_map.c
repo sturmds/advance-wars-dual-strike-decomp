@@ -3,13 +3,13 @@
 #include "game/map_select.h"
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 void Bg_ClearRect(u16 *map, int x, int y, int w, int h);
 void Gfx_RequestLayerCopy(int bg);
 const void *Map_GetName(u32 mapId);
 u8 Map_IsFlagSet(u32 mapId);
 void Screen_SetCurrentGfx(void *state);
-void Text_Print(int x, int y, void *target, const void *text, int a, int b);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void MapPreview_CopyCounts(s8 *dst);
