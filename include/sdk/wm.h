@@ -3,6 +3,11 @@
 
 #include "types.h"
 
+/* WM flags in the system work area shared with the ARM7 (the field
+ * OSSystemWork.wm_callback_control). */
+#define WIRELESS_CALLBACK_LOCK_WORD ((u16 *)0x027fff96)
+#define WIRELESS_CALLBACK_BUSY_BIT 0x0001
+
 /* What the callbacks passed to func_02117cac and its siblings receive. The
  * layout is the common WM callback header (apiid, errcode, ...); the wireless purpose is a guess from
  * that. errcode is 0 on success. */

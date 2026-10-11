@@ -22099,6 +22099,10 @@ src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c
 
+src/sdk/wm/wm_clear_fifo_recv_flag.c:
+    complete
+    .text       start:0x02116934 end:0x02116950
+
 src/game/main/func_02116df4.c:
     complete
     .text       start:0x02116df4 end:0x02116e10
