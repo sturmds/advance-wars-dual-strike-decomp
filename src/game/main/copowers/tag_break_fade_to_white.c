@@ -5,7 +5,7 @@
 void Screen_SetCurrentBoth(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 s16 func_0202a39c(u8 slot);
-void func_0202a2c4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -20,7 +20,7 @@ void TagBreak_FadeToWhite(Task *task)
 
     FRAME(task)++;
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a2c4(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
+        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
     }
     saved0280 = data_027c0280;
     saved027c = data_027c027c;

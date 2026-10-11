@@ -4,7 +4,7 @@
 
 void Screen_SetCurrentBoth(void *state);
 s16 func_0202a39c(u8 slot);
-void func_0202a2c4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -23,7 +23,7 @@ void TagBreak_EndBlend(Task *task)
     int i;
 
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a2c4(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
+        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
     }
     if (FRAME(task) == 0) {
         saved0280 = data_027c0280;

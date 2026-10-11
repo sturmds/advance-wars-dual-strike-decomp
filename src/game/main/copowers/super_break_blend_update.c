@@ -5,7 +5,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 func_0202a39c(u8 slot);
-void func_0202a2c4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
 /* The frame counter shares its slot with Task.unk_4c. */
@@ -25,7 +25,7 @@ void SuperBreak_BlendUpdate(Task *task)
     FRAME(task)++;
     func_02002620(184, 160, 0x800, 16, 2, 0);
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a2c4(i, func_0202a39c(i) & 0x1ff, 80, 0, 1);
+        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 80, 0, 1);
     }
     data_027c0280->blendEva = Math_Ease(0, 8, 16, FRAME(task), BLEND_FRAMES);
     data_027c0280->blendEvb = Math_Ease(0, 8, 0, FRAME(task), BLEND_FRAMES);

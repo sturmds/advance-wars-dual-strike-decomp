@@ -10,7 +10,7 @@ void Sound_PlaySe(u32 soundId);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 s16 func_0202a39c(u8 slot);
-void func_0202a2c4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
 /* The frame counter shares its slot with Task.unk_4c. */
@@ -54,9 +54,9 @@ void SuperBreak_LettersPopInUpdate(Task *task)
                 Oam_SetAffineParams(i + 1, HwDiv32(cosValue, d0), HwDiv32(sinNeg, d1),
                                     HwDiv32(sinPos, d2), HwDiv32(cosValue, d3));
             }
-            func_0202a2c4(i, (func_0202a39c(i) & 0x1ff) | ((i + 1) << 9), 0x350, 0, 1);
+            BreakText_QueueLetterSized(i, (func_0202a39c(i) & 0x1ff) | ((i + 1) << 9), 0x350, 0, 1);
         } else if (FRAME(task) >= i * STAGGER_FRAMES + GROW_FRAMES) {
-            func_0202a2c4(i, func_0202a39c(i) & 0x1ff, 80, 0, 1);
+            BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 80, 0, 1);
         }
     }
     if (FRAME(task) == task->unk_58 * STAGGER_FRAMES + GROW_FRAMES) {
