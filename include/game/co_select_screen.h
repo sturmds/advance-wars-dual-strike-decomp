@@ -12,7 +12,8 @@ typedef struct CoSelectScreen {
     u8 pad_30;
     u8 cursorColumn;                   /* counts from 1 */
     u8 cursorRow;
-    u8 pad_33[0x35 - 0x33];
+    u8 coListOpen;                     /* 1 while the CO list is open */
+    u8 coBeforeList;                   /* CO of the cursor cell when the CO list opened; cancel puts it back */
     u8 columnCount;
     u8 rowCount;                       /* up and down change row only when this is 2 */
 } CoSelectScreen;

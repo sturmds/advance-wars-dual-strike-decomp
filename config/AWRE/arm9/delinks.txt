@@ -3809,6 +3809,10 @@ src/game/main/menus/co_select_screen_add_co_list_buttons.c:
     complete
     .text       start:0x02041ae0 end:0x02041c74
 
+src/game/main/menus/co_select_screen_confirm_co_list.c:
+    complete
+    .text       start:0x02041e30 end:0x02042008
+
 src/game/main/func_020428f4.c:
     complete
     .text       start:0x020428f4 end:0x0204291c
