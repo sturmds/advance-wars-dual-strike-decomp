@@ -5,7 +5,7 @@ void Sound_PlaySe(int id);
 int Link_FindSlotOfPlayer(int player);
 int func_0207bd6c(void);
 void func_0206b6c4(int player);
-void func_02067df0(int player);
+void VsSetup_AddLinkButtons(int player);
 extern MenuState gMenuState;
 #define MENU ((MenuState *)&gMenuState)
 
@@ -15,6 +15,6 @@ void func_02067b94(int player)
     MENU->setup.unk_2d0[player] = 0;
     func_0206b6c4(player);
     if (player == Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
-        func_02067df0(player);
+        VsSetup_AddLinkButtons(player);
     }
 }
