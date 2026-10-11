@@ -8544,6 +8544,10 @@ src/game/main/menus/combat_setup_init_screen.c:
     complete
     .text       start:0x020843d0 end:0x020846d4
 
+src/game/main/menus/combat_setup_draw_shop_help.c:
+    complete
+    .text       start:0x020846d4 end:0x02084804
+
 src/game/main/menus/menu_draw_four_labels.c:
     complete
     .text       start:0x02084804 end:0x02084914

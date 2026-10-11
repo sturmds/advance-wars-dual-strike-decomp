@@ -12,7 +12,7 @@ void Palette_Flush(void);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_0200208c(int coId, void *dest, int paletteSlot, int army);
 void HelpText_Show(u32 textId, int tile);
-void func_020846d4(void);
+void CombatSetup_DrawShopHelp(void);
 void CombatSetup_DrawShop(void);
 void func_02088528(int a0);
 
@@ -81,7 +81,7 @@ void CombatSetup_InitScreen(void)
     }
     CombatSetup_DrawShop();
     Menu_DrawFourLabels();
-    func_020846d4();
+    CombatSetup_DrawShopHelp();
     MenuButton_Add(0, 0, &data_02160e08, 0xfd);
     MenuButton_DisableTouch(0xfd);
     /* The local player does not own its row: func_02088528 gets the owner. */
