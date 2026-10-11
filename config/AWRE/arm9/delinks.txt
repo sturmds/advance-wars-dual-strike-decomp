@@ -19499,6 +19499,7 @@ src/game/main/menus/name_entry_move_from_control_key.c:
     .text       start:0x0210131c end:0x021014e4
 
 src/game/main/menus/name_entry_on_key_select.c:
+    complete
     .text       start:0x021014e4 end:0x02101500
 
 src/game/main/func_02101500.c:
