@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov004_022bf158.h"
 
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -59,7 +59,7 @@ extern u32 data_ov004_022bdc84[];       /* map bytes of a rotation/scaling BG by
             data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase << 14));    \
         Ov004_UnpackResource(mapName, data_027c0280->layer1Map);                                        \
         map = data_027c0280->layer1Map;                                                                 \
-        func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0);                         \
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0);                         \
         Gfx_RequestLayerCopy(1);                                                                        \
         Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer);                          \
         Palette_Flush();                                                                                \

@@ -5,7 +5,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
 void func_ov004_022bacd8(Unk_ov004_022bf158 *state, u16 *map);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -42,7 +42,7 @@ void Ov004_EaseLayer1View(Ov004Task *task) {
         data_027c0280->bgScrollX[data_027c0280->layer1Bg] = state->viewScrollX;
         data_027c0280->bgScrollY[data_027c0280->layer1Bg] = state->viewScrollY;
         map = data_027c0280->layer1Map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0x1000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0x1000);
         Gfx_RequestLayerCopy(1);
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);

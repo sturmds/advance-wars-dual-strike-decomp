@@ -14,7 +14,7 @@ int func_ov004_022ada10(void);
 void func_ov004_022bb1d8(Unk_ov004_022bf158 *state);
 void Ov004_UnpackResource(const char *name, void *dest);
 void Ov004_CopyResource(const char *name, void *dest);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -92,7 +92,7 @@ extern TaskScriptCmd data_ov004_022be4d8[];
         Ov004_UnpackResource(tileMap, GFX_LAYER(data_027c0280, i)->map);                    \
         Ov004_CopyResource(palette, palDest);                                               \
         entries = GFX_LAYER(data_027c0280, i)->map;                                         \
-        func_01ff8a00(entries, LAYER_MAP_BYTES(i), addend);                                 \
+        TileMap_AddToEntries(entries, LAYER_MAP_BYTES(i), addend);                                 \
         Gfx_RequestLayerCopy(i);                                                            \
         Palette_Flush();                                                                    \
     } while (0)

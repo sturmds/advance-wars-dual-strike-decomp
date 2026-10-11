@@ -16,7 +16,7 @@ void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffse
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Font_LoadDigits(int baseTile);
 void Mem_Zero32(u32 value, void *dest, u32 size);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -173,7 +173,7 @@ void Ov005_SetupBlendInScreensByDifficulty(Ov005Task *task)
     }
     Palette_LoadFromFile(gRikiishiFile01b_2, 0, 0xa0, 0x60);
     map = data_027c0280->layer0Map;
-    func_01ff8a00(map,
+    TileMap_AddToEntries(map,
                   func_01ff8ef8(0) ? data_ov005_02367f4c[GFX_LAYER(data_027c0280, 0)->screenSize]
                   : Screen_IsAffineBg(0) ? data_ov005_02367f5c[GFX_LAYER(data_027c0280, 0)->screenSize]
                                          : data_ov005_02367f5c[GFX_LAYER(data_027c0280, 0)->screenSize] * 2,
@@ -184,7 +184,7 @@ void Ov005_SetupBlendInScreensByDifficulty(Ov005Task *task)
                   gRikiishiFile013_2);
     File_UnpackTo(data_027c0280->layer2Map, gRikiishiFile014_2);
     map = data_027c0280->layer2Map;
-    func_01ff8a00(map,
+    TileMap_AddToEntries(map,
                   func_01ff8ef8(2) ? data_ov005_02367f4c[GFX_LAYER(data_027c0280, 2)->screenSize]
                   : Screen_IsAffineBg(2) ? data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize]
                                          : data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
@@ -204,7 +204,7 @@ void Ov005_SetupBlendInScreensByDifficulty(Ov005Task *task)
                   gRikiishiFile02a);
     File_UnpackTo(data_027c0280->layer2Map, gRikiishiFile02b);
     map = data_027c0280->layer2Map;
-    func_01ff8a00(map,
+    TileMap_AddToEntries(map,
                   func_01ff8ef8(2) ? data_ov005_02367f4c[GFX_LAYER(data_027c0280, 2)->screenSize]
                   : Screen_IsAffineBg(2) ? data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize]
                                          : data_ov005_02367f5c[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,

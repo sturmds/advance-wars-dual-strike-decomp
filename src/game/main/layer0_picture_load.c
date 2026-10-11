@@ -6,7 +6,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 
 extern char data_02168984[];
 extern char data_0216898c[];
@@ -20,7 +20,7 @@ void Layer0Picture_Load(Layer0PictureTask *task)
                   data_0216898c);
     File_UnpackTo(data_027c0280->layer0Map, task->mapFile);
     /* adds tile 0x288 and palette 1 to every entry of the map */
-    func_01ff8a00(data_027c0280->layer0Map, 0x800, 0x1288);
+    TileMap_AddToEntries(data_027c0280->layer0Map, 0x800, 0x1288);
     Palette_LoadFromFile(task->paletteFile, 0, 32, 32);
     Gfx_RequestLayerCopy(0);
 }

@@ -22,7 +22,7 @@ void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffse
 void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
 void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
@@ -46,7 +46,7 @@ void ExMachinaBolt_LoadGraphics(ExMachinaBoltTask *task)
     File_UnpackTo(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
                   data_02168b68);
     File_UnpackTo(data_027c0280->layer0Map, data_02168b6c);
-    func_01ff8a00(data_027c0280->layer0Map, 0x800, 0x1000);
+    TileMap_AddToEntries(data_027c0280->layer0Map, 0x800, 0x1000);
     row = task->tileY - (STATE->unk_1c4->scrollY >> 4);
     if (row < 12)
         Bg_FillRect(data_027c0280->layer0Map, 0, 0, 32, (12 - row) * 2, 0);

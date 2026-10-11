@@ -18,7 +18,7 @@ void Screen_ResetBlend(void);
 void Screen_ResetLayerScroll(void);
 void Gfx_LoadPlayerWindowFrame(int player);
 void Data_Unpack(const void *src, void *dst);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void func_01ff9b48(void);
@@ -39,7 +39,7 @@ void Screen_InitWithPlayerFrame(void)
     Gfx_LoadPlayerWindowFrame(player);
     Data_Unpack(data_02134e8c, data_027c0280->unk_120);
     Data_Unpack(data_02137ca8, data_027c0280->layer3Map);
-    func_01ff8a00(data_027c0280->layer3Map, 0x800, 0x1000);
+    TileMap_AddToEntries(data_027c0280->layer3Map, 0x800, 0x1000);
     Gfx_RequestLayerCopy(3);
     Palette_Load(data_02137c88, 32, 32);
     func_01ff9b48();

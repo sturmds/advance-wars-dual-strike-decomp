@@ -30,7 +30,7 @@ int Ov004_CheckTimedEvent(Unk_ov004_022bf158 *state, int event, int frame);
 void Ov004_StartClock(Unk_ov004_022bf158 *state);
 void Ov004_UnpackResource(const char *name, void *dst);
 void Ov004_CopyResource(const char *name, void *dst);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void func_01ff8c84(int layer);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
@@ -93,7 +93,7 @@ void func_ov004_022b1f98(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bddfc, GFX_LAYER(data_027c0280, 1)->map);
         Ov004_CopyResource(data_ov004_022bde10, data_027c0280->paletteBuffer + 0x100);
         map = GFX_LAYER(data_027c0280, 1)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(1), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(1), 0x8000);
         Gfx_RequestLayerCopy(1);
         Palette_Flush();
 
@@ -101,7 +101,7 @@ void func_ov004_022b1f98(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bdd94, GFX_LAYER(data_027c0280, 3)->map);
         Ov004_CopyResource(data_ov004_022bde10, data_027c0280->paletteBuffer + 0x100);
         map = GFX_LAYER(data_027c0280, 3)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(3), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(3), 0x8000);
         Gfx_RequestLayerCopy(3);
         Palette_Flush();
     }

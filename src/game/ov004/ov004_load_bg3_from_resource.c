@@ -3,7 +3,7 @@
 
 void *Ov004_GetResourceData(const char *name);
 void Data_Unpack(const void *src, void *dst);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 
@@ -28,5 +28,5 @@ void Ov004_LoadBg3FromResource(const char *name, int tilesOffset, int mapOffset,
     } else {
         mapBytes = data_ov004_022bdc84[GFX_LAYER(data_027c0280, 3)->screenSize] * 2;
     }
-    func_01ff8a00(map, mapBytes, ((u32)palette << 28) >> 16);
+    TileMap_AddToEntries(map, mapBytes, ((u32)palette << 28) >> 16);
 }

@@ -69,7 +69,7 @@ void Ov004_StartClock(Unk_ov004_022bf158 *state);
 void Ov004_UnpackResource(const char *name, void *dst);
 void Ov004_CopyResource(const char *name, void *dst);
 void Ov004_LoadBg3FromResource(const char *name, int tilesOffset, int mapOffset, int palette);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void func_01ff8c84(int layer);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
@@ -140,7 +140,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bddfc, GFX_LAYER(data_027c0280, 1)->map);
         Ov004_CopyResource(data_ov004_022bde10, data_027c0280->paletteBuffer + 0x100);
         map = GFX_LAYER(data_027c0280, 1)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(1), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(1), 0x8000);
         Gfx_RequestLayerCopy(1);
         Palette_Flush();
 
@@ -148,7 +148,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bdd94, GFX_LAYER(data_027c0280, 2)->map);
         Ov004_CopyResource(data_ov004_022bde10, data_027c0280->paletteBuffer + 0x100);
         map = GFX_LAYER(data_027c0280, 2)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(2), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(2), 0x8000);
         Gfx_RequestLayerCopy(2);
         Palette_Flush();
     }
@@ -277,7 +277,7 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bde18, BG_CHAR_DATA(data_027c0280->layer3Bg));
         Ov004_UnpackResource(data_ov004_022bde1c, GFX_LAYER(data_027c0280, 3)->map);
         map = GFX_LAYER(data_027c0280, 3)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(3), 0);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(3), 0);
         Gfx_RequestLayerCopy(3);
         Ov004_CopyResource(data_ov004_022bdda8, data_027c0280->paletteBuffer);
         Palette_Flush();
@@ -318,12 +318,12 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
         Ov004_UnpackResource(data_ov004_022bde14, BG_CHAR_DATA(data_027c0280->layer1Bg));
         Ov004_UnpackResource(data_ov004_022bdda4, GFX_LAYER(data_027c0280, 1)->map);
         map = GFX_LAYER(data_027c0280, 1)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(1), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(1), 0x8000);
         Gfx_RequestLayerCopy(1);
         Ov004_UnpackResource(data_ov004_022bde20, BG_CHAR_DATA(data_027c0280->layer2Bg));
         Ov004_UnpackResource(data_ov004_022bdd68, GFX_LAYER(data_027c0280, 2)->map);
         map = GFX_LAYER(data_027c0280, 2)->map;
-        func_01ff8a00(map, LAYER_MAP_BYTES(2), 0x8000);
+        TileMap_AddToEntries(map, LAYER_MAP_BYTES(2), 0x8000);
         Gfx_RequestLayerCopy(2);
         Ov004_CopyResource(data_ov004_022bddac, data_027c0280->paletteBuffer + 0x100);
         Palette_Flush();

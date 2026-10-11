@@ -6,7 +6,7 @@ void Screen_InitLayers(const void *config);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -48,19 +48,19 @@ void MapBg_LoadGraphics(void)
     File_UnpackTo(data_027c0280->layer3Map, data_0216a1e4);
     File_UnpackTo(data_027c0280->layer3Map + 0x800, data_0216a1e4);
     map = data_027c0280->layer3Map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(3), 0x3100);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(3), 0x3100);
     Palette_LoadFromFile(data_0216a1e8, 0, 0x60, 0x20);
 
     File_UnpackTo(data_027c0280->unk_e4 + 0x2100, data_0216a1ec);
     File_UnpackTo(data_027c0280->layer0Map, data_0216a1f0);
     map = data_027c0280->layer0Map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(0), 0x2108);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(0), 0x2108);
     Palette_LoadFromFile(data_0216a1f4, 0, 0x40, 0x20);
 
     File_UnpackTo(data_027c0280->unk_10c, data_0216a1f8);
     File_UnpackTo(data_027c0280->layer2Map, data_0216a1fc);
     map = data_027c0280->layer2Map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(2), 0x4000);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(2), 0x4000);
     Palette_LoadFromFile(data_0216a200, 0, 0x80, 0xc0);
 
     Gfx_RequestLayerCopy(3);

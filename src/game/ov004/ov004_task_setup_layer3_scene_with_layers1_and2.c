@@ -4,7 +4,7 @@
 
 void Screen_InitLayers(const GfxLayer *config);
 void Screen_SetBgMode(int bgMode);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
@@ -93,7 +93,7 @@ void Ov004Task_SetupLayer3SceneWithLayers1And2(Ov004Task *task) {
     Ov004_UnpackResource(data_ov004_022bde00, GFX_LAYER(data_027c0280, 3)->map);
     Ov004_CopyResource(data_ov004_022bdda0, data_027c0280->paletteBuffer + 0x100);
     map = GFX_LAYER(data_027c0280, 3)->map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 3), 3), 0x8000);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 3), 3), 0x8000);
     Gfx_RequestLayerCopy(3);
     Palette_Flush();
     Mem_Copy32(data_027c0280->paletteBuffer, state->savedPalette, 0x400);
@@ -107,7 +107,7 @@ void Ov004Task_SetupLayer3SceneWithLayers1And2(Ov004Task *task) {
     Ov004_UnpackResource(data_ov004_022bddc0, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer1Bg].charBase << 14));
     Ov004_UnpackResource(data_ov004_022bddbc, GFX_LAYER(data_027c0280, 1)->map);
     map = GFX_LAYER(data_027c0280, 1)->map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0);
     /* clear the second 32x32 screen block of layer 1's map */
     Bg_FillRect(GFX_LAYER(data_027c0280, 1)->map + 0x400, 0, 0, 32, 32, 0);
     Gfx_RequestLayerCopy(1);
@@ -115,7 +115,7 @@ void Ov004Task_SetupLayer3SceneWithLayers1And2(Ov004Task *task) {
     Ov004_UnpackResource(data_ov004_022bddc0, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     Ov004_UnpackResource(data_ov004_022bddbc, GFX_LAYER(data_027c0280, 2)->map);
     map = GFX_LAYER(data_027c0280, 2)->map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0);
     Bg_FillRect(GFX_LAYER(data_027c0280, 2)->map, 0, 0, 32, 32, 0);
     Gfx_RequestLayerCopy(2);
     Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer);

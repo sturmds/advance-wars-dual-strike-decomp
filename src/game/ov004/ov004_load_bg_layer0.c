@@ -4,7 +4,7 @@
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -31,7 +31,7 @@ void Ov004_LoadBgLayer0(void)
     File_UnpackTo(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14), data_ov004_022bf11c);
     File_UnpackTo(GFX_LAYER(data_027c0280, 0)->map, data_ov004_022bf120);
     map = GFX_LAYER(data_027c0280, 0)->map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 0), 0), 0);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 0), 0), 0);
     Palette_LoadFromFile(data_ov004_022bf124, 0, 0, 32);
     Gfx_RequestLayerCopy(0);
 }

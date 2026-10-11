@@ -16,7 +16,7 @@ void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
 void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
@@ -38,7 +38,7 @@ void MissileStrike_Init(MissileStrikeTask *task)
     File_UnpackTo(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14) + 0x5100,
                   data_02169188);
     File_UnpackTo(data_027c0280->layer0Map, data_0216918c);
-    func_01ff8a00(data_027c0280->layer0Map, 0x800, BG_TILE_BASE);
+    TileMap_AddToEntries(data_027c0280->layer0Map, 0x800, BG_TILE_BASE);
     Palette_LoadFromFile(data_02169190, 0, 32, 32);
     Gfx_RequestLayerCopy(0);
     Gfx_QueueUnpackedFileCopy(data_02169194, data_022a7c5c->unk_68);

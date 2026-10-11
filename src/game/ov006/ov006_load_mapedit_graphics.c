@@ -9,7 +9,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void *File_Load(const char *path);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_RequestLayerCopy(int layer);
 void Screen_SetLayer2Scroll(int x, int y);
 void DesignMap_DrawTemplatePreview(int a, int b, int c, int d);
@@ -60,7 +60,7 @@ void Ov006_LoadMapeditGraphics(void)
                   gMapeditFile006);
     File_UnpackTo(data_027c0280->layer3Map, gMapeditFile007);
     Palette_LoadFromFile(gMapeditFile008, 0, 0x40, 0x20);
-    func_01ff8a00(data_027c0280->layer3Map, 0x800, 0x2000);
+    TileMap_AddToEntries(data_027c0280->layer3Map, 0x800, 0x2000);
     Gfx_RequestLayerCopy(3);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);

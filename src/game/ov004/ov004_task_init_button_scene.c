@@ -4,7 +4,7 @@
 #include "game/Unk_ov004_022bf158.h"
 
 void Screen_InitLayers(const void *config);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -93,7 +93,7 @@ void Ov004Task_InitButtonScene(Ov004Task *task)
     Ov004_UnpackResource(data_ov004_022bdd44, BG_CHAR_DATA(data_027c0280->layer1Bg));
     Ov004_UnpackResource(data_ov004_022bdd40, data_027c0280->layer1Map);
     map = data_027c0280->layer1Map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(1), 0);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(1), 0);
     Gfx_RequestLayerCopy(1);
     Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer);
     Palette_Flush();
@@ -115,7 +115,7 @@ void Ov004Task_InitButtonScene(Ov004Task *task)
     Ov004_UnpackResource(data_ov004_022bde28, BG_CHAR_DATA(data_027c0280->layer0Bg));
     Ov004_UnpackResource(data_ov004_022bddd8, data_027c0280->layer0Map);
     map = data_027c0280->layer0Map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(0), 0);
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(0), 0);
     Gfx_RequestLayerCopy(0);
     Ov004_CopyResource(data_ov004_022bddb0, data_027c0280->paletteBuffer);
     Ov004_UnpackResource(data_ov004_022bdd4c, data_027c0280->objVram);

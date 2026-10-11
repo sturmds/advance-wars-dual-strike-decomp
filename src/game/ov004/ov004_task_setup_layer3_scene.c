@@ -4,7 +4,7 @@
 
 void Screen_InitLayers(const GfxLayer *config);
 void Screen_SetBgMode(int bgMode);
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -87,7 +87,7 @@ void Ov004Task_SetupLayer3Scene(Ov004Task *task) {
     Ov004_UnpackResource(data_ov004_022bde04, GFX_LAYER(data_027c0280, 3)->map);
     Ov004_CopyResource(data_ov004_022bdd9c, data_027c0280->paletteBuffer + 0x100);
     map = GFX_LAYER(data_027c0280, 3)->map;
-    func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 3), 3), 0x8000);   /* palette 8 */
+    TileMap_AddToEntries(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 3), 3), 0x8000);   /* palette 8 */
     Gfx_RequestLayerCopy(3);
     Palette_Flush();
     /* keep the palettes, then black out BG palette 8 that layer 3 uses */

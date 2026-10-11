@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bb90.h"
 
-void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -56,7 +56,7 @@ void func_ov005_0235a320(Unk_ov005_0236bb90 *work)
     }
 
     map = data_027c0280->layer2Map;
-    func_01ff8a00(map,
+    TileMap_AddToEntries(map,
                   func_01ff8ef8(2) ? data_ov005_02367f8c[GFX_LAYER(data_027c0280, 2)->screenSize]
                   : Screen_IsAffineBg(2) ? data_ov005_02367f9c[GFX_LAYER(data_027c0280, 2)->screenSize]
                                          : data_ov005_02367f9c[GFX_LAYER(data_027c0280, 2)->screenSize] * 2,
