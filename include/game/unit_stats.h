@@ -84,7 +84,7 @@ typedef struct UnitStats {
     u8 unk_17;                         /* 1 for Infantry to Recon, Neotank, Fighter, B-Copter, Cruiser; 0 for the rest */
     const u8 *carryTypes;              /* NULL for non-transports; [type + 1] nonzero: takes that unit type aboard */
     u8 unitClass;                      /* enum UnitClass in game/co_data.h */
-    u8 pad_1d;
+    u8 unk_1d;                         /* effect id the destroy task plays on the unit tile; 24: one per army colour (UnitDestroyTask_PlayEffectAndRemove) */
     u8 moveType;                       /* row of a CoPowerBlock.movementCost chart (32 terrain ids per row) */
     u8 moveGroup;                      /* one MOVE_GROUP_* bit */
     u8 aiClass;                        /* AI_CLASS_*; the document calls this "unit class" */

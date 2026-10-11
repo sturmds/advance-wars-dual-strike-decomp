@@ -9600,6 +9600,10 @@ src/game/main/func_020ed774.c:
     complete
     .text       start:0x020ed774 end:0x020ed7a4
 
+src/game/main/units/unit_destroy_task_play_effect_and_remove.c:
+    complete
+    .text       start:0x020eda04 end:0x020edb2c
+
 src/game/main/func_020edb84.c:
     complete
     .text       start:0x020edb84 end:0x020edba8
