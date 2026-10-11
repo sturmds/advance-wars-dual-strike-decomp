@@ -13557,6 +13557,7 @@ src/game/main/units/repair_pick_finish.c:
     .text       start:0x020c9a74 end:0x020c9b04
 
 src/game/main/units/repair_pick_update.c:
+    complete
     .text       start:0x020c9b04 end:0x020c9bbc
 
 src/game/main/func_020c9c70.c:
