@@ -10944,7 +10944,8 @@ src/game/main/units/unit_get_usable_movement.c:
     complete
     .text       start:0x0209f8d0 end:0x0209f980
 
-src/game/main/ai/func_0209f980.c:
+src/game/main/ai/ai_count_units_of_ai_class.c:
+    complete
     .text       start:0x0209f980 end:0x0209fa3c
 
 src/game/main/ai/ai_count_units_of_type.c:

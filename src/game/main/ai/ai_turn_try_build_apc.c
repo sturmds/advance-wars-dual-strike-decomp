@@ -23,7 +23,7 @@ void AiTurn_QueueBuildAtSite(int index);
  * the funds for one and, when the profile's unk_08[10] is nonzero, a
  * state->unk_00 (likely the day) no greater than it. AiSite_PickNearestFootWithProperty(1) picks
  * the factory (-1: none). Builds when APCs and T-Copters together make up
- * less than unk_08[4] percent of data_021619c0->unk_08 (func_0209f980(1)).
+ * less than unk_08[4] percent of data_021619c0->unk_08 (Ai_CountUnitsOfAiClass(1)).
  * The name is a guess from the unit type. Returns 1 when it queued an
  * action. */
 BOOL AiTurn_TryBuildApc(void)

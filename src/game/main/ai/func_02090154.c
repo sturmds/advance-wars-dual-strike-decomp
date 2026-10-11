@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ai_build_state.h"
 
-int func_0209f980(int arg);
+int Ai_CountUnitsOfAiClass(int arg);
 int AiTurn_TryBuildTCopter(void);
 int AiTurn_TryBuildLander(void);
 int AiTurn_TryBuildBlackBoatTransport(void);
@@ -12,7 +12,7 @@ int AiTurn_TryBuildApc(void);
  * one that returns 1 (needs another frame). Their purposes are not known. */
 BOOL func_02090154(void)
 {
-    data_021619c0->unk_08 = func_0209f980(1);
+    data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
     if (AiTurn_TryBuildTCopter() == 1) {
         return 1;
     }

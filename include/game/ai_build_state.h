@@ -15,7 +15,7 @@ typedef struct AiBuildState {
     u8 savingSkips;                    /* set to 2 by AiEndActions_Start; times AiTurn_PickUnitToBuild may skip the savingTarget check */
     u8 unk_06;                         /* 1-4; AiBuild_RateAttackerVsTarget changes Anti-Air and Cruiser ratings by it */
     u8 unk_07;                         /* AiTurn_RunEndActions ends the phase once it reaches 50 after step 0; steps 2 to 5 run only when nonzero */
-    u8 unk_08;                         /* set by func_02090154 from func_0209f980(1) */
+    u8 unk_08;                         /* set by func_02090154 from Ai_CountUnitsOfAiClass(1) */
     u8 pad_09[3];
     s32 unk_0c;                        /* AiEndActions_Start sums AiUnit_GetRepairValue over the units that Unit_CanRepairAt accepts, then scales it by 3/2 (at least 1000) */
     u32 savingTarget;                  /* funds still missing for a planned build; cleared by AiEndActions_Start */

@@ -19,7 +19,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiSite_PickForFootUnit(void);
 int AiSite_PickNearestToPropertyAnyGroup(int arg);
 int AiSite_PickFirst(int arg);
-int func_0209f980(int arg);
+int Ai_CountUnitsOfAiClass(int arg);
 u32 AiTurn_GetMechBuildPercent(void);
 void func_020b81bc(void);
 void AiTurn_QueueBuildAtSite(int index);
@@ -55,7 +55,7 @@ BOOL AiTurn_TryBuildFootUnit(void)
     if (record->skipFoot == 0) {
         record->skipFoot = 1;
     } else {
-        data_021619c0->unk_08 = func_0209f980(1);
+        data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
         if (data_021619c0->unk_08 >= gAiProfile->unk_08[0] + gAiProfile->unk_08[1]) {
             return 0;
         }

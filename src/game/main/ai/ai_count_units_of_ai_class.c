@@ -10,7 +10,7 @@ extern int data_027c0284;
 
 /* Counts the current player's units whose AI class (AI_CLASS_*) is aiClass.
  * Like Ai_CountUnitsOfType, it skips the first unit slot and covers 50. */
-int func_0209f980(int aiClass)
+int Ai_CountUnitsOfAiClass(int aiClass)
 {
     int count = 0;
     int i;
