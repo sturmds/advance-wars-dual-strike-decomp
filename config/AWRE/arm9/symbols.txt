@@ -4473,7 +4473,7 @@ TileEffectTask_ScrollToTile kind:function(arm,size=0x64) addr:0x020ee808
 MapSpriteTask_LoadKindGraphics kind:function(arm,size=0x410) addr:0x020ee86c
 TileEffectTask_Destroy kind:function(arm,size=0x10) addr:0x020eec7c
 TileEffectTask_Create kind:function(arm,size=0x64) addr:0x020eec8c
-func_020eecf0 kind:function(arm,size=0x38) addr:0x020eecf0
+TileEffectTask_DestroyIfOtherEffect kind:function(arm,size=0x38) addr:0x020eecf0
 func_020eed28 kind:function(arm,size=0x3c) addr:0x020eed28
 func_020eed64 kind:function(arm,size=0x3c) addr:0x020eed64
 func_020eeda0 kind:function(arm,size=0x3c) addr:0x020eeda0
@@ -7941,7 +7941,7 @@ data_02168e18 kind:data(any) addr:0x02168e18
 data_02168e48 kind:data(any) addr:0x02168e48
 data_02168e78 kind:data(any) addr:0x02168e78
 data_02168ea8 kind:data(any) addr:0x02168ea8
-data_02168ed8 kind:data(any) addr:0x02168ed8
+gTileEffectTaskScript kind:data(any) addr:0x02168ed8
 data_02168f10 kind:data(any) addr:0x02168f10
 data_02168f48 kind:data(any) addr:0x02168f48
 data_02168f90 kind:data(any) addr:0x02168f90
@@ -8889,7 +8889,7 @@ data_022a7ac4 kind:bss addr:0x022a7ac4
 data_022a7ad8 kind:bss addr:0x022a7ad8
 data_022a7add kind:bss addr:0x022a7add
 data_022a7b80 kind:bss addr:0x022a7b80
-data_022a7b94 kind:bss addr:0x022a7b94
+gTileEffectStarting kind:bss addr:0x022a7b94
 data_022a7b98 kind:bss addr:0x022a7b98
 gMapScrollSpeeds kind:bss addr:0x022a7bd8
 data_022a7c58 kind:bss addr:0x022a7c58
