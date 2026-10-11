@@ -274,6 +274,10 @@ typedef struct MenuState {
  * array is reached through a cast of gMenuState's address. */
 #define LINK_MAPS ((DesignMapRecord *)((u8 *)&gMenuState + sizeof(gMenuState.colours)))
 
+/* Summary rows of the maps in the two-player link menu: 3 per link player, behind
+ * MenuState.linkMaps (DesignMap.playerCount 0xff: no map in the slot). */
+#define LINK_MAP_ROWS ((DesignMap *)((u8 *)&gMenuState + sizeof(gMenuState.colours) + sizeof(DesignMapRecord) * 3))
+
 /* Offset of LinkScreenState.picked in MenuState. Needed to match: the compiler adds it after
  * the player index, so the flags are reached through gMenuState's own address plus the player. */
 #define LINK_PICKED_OFFSET 0x162e
