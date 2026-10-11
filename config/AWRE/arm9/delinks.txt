@@ -6693,6 +6693,10 @@ src/game/main/ai/ai_unit_has_reachable_target.c:
     complete
     .text       start:0x020b5b94 end:0x020b5bf4
 
+src/game/main/ai/func_020b5bf4.c:
+    complete
+    .text       start:0x020b5bf4 end:0x020b5c30
+
 src/game/main/ai/ai_transport_head_for_unload_tile.c:
     complete
     .text       start:0x020b5c30 end:0x020b5e54
