@@ -28,7 +28,7 @@ void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY, int side
 int func_020d9864(int x, int y);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 s32 HwDiv32(s32 numerator, s32 denominator);
-void func_020cc910(int type, int panelX, int panelY, int side);
+void InfoPanel_DrawUnitPicture(int type, int panelX, int panelY, int side);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void SpriteFile_Queue(void *data, int frame, int b, int x, int y, int tile, int c, int d);
 void func_020cb0cc(u16 x, u16 y);
@@ -106,7 +106,7 @@ void InfoPanel_Draw(void)
     }
 
     if (unitBoxes >= 1) {
-        func_020cc910(unit->type, panelX, panelY, side);
+        InfoPanel_DrawUnitPicture(unit->type, panelX, panelY, side);
         Palette_Load(gArmyPalettes[STATE->players[owner].armyColour - 1], 0x380, 32);
         unitBoxX = &data_0216635e[side][0];
         /* the u8 and u16 argument casts in this block are needed to match */

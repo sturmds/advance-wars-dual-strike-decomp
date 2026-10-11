@@ -13833,6 +13833,10 @@ src/game/main/map/info_panel_draw.c:
     complete
     .text       start:0x020cb9f4 end:0x020cc910
 
+src/game/main/map/info_panel_draw_unit_picture.c:
+    complete
+    .text       start:0x020cc910 end:0x020cc998
+
 src/game/main/map/info_panel_draw_terrain_picture.c:
     complete
     .text       start:0x020cc998 end:0x020ccb38

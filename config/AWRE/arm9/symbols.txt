@@ -3685,7 +3685,7 @@ InfoPanel_FollowCursor kind:function(arm,size=0x44) addr:0x020cb72c
 InfoPanel_CountUnitBoxes kind:function(arm,size=0xd8) addr:0x020cb770
 func_020cb848 kind:function(arm,size=0x1ac) addr:0x020cb848
 InfoPanel_Draw kind:function(arm,size=0xf1c) addr:0x020cb9f4
-func_020cc910 kind:function(arm,size=0x88) addr:0x020cc910
+InfoPanel_DrawUnitPicture kind:function(arm,size=0x88) addr:0x020cc910
 InfoPanel_DrawTerrainPicture kind:function(arm,size=0x1a0) addr:0x020cc998
 Terrain_GetPalette kind:function(arm,size=0x48) addr:0x020ccb38
 Palette_GetBlock kind:function(arm,size=0x38) addr:0x020ccb80
@@ -7617,7 +7617,7 @@ data_02166308 kind:data(any) addr:0x02166308
 data_02166310 kind:data(any) addr:0x02166310
 data_02166318 kind:data(any) addr:0x02166318
 data_02166320 kind:data(any) addr:0x02166320
-data_02166328 kind:data(any) addr:0x02166328
+gInfoPanelUnitPictureShape kind:data(any) addr:0x02166328
 data_02166330 kind:data(any) addr:0x02166330
 data_02166338 kind:data(any) addr:0x02166338
 gInfoPanelRestPos kind:data(any) addr:0x02166340
