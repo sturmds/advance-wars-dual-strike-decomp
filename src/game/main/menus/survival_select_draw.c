@@ -12,7 +12,7 @@ void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
-void func_02046054(int pages);
+void SurvivalSelect_DrawPageCount(int pages);
 int func_0204779c(void);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
@@ -80,7 +80,7 @@ void SurvivalSelect_Draw(void)
             }
         }
     }
-    func_02046054(data_0229c744->lists[list].unk_03);
+    SurvivalSelect_DrawPageCount(data_0229c744->lists[list].unk_03);
     Palette_Load(&data_0229c744->colours[(MainLoop_GetFrameCount() >> 2) & 15], 0x318, 2);
     Palette_Load(&data_0229c744->colours[(MainLoop_GetFrameCount() >> 2) & 15], 0x338, 2);
     Sprite_QueueAt(0, 104, 136, &data_027c0108, 0x8000, 96);
