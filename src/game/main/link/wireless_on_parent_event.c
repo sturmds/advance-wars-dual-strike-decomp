@@ -7,7 +7,7 @@ extern u32 data_0229c880;
 
 int func_02079180(void);
 int func_020783bc(void);
-void func_0207a208(void);
+void Wireless_CountChildren(void);
 void func_0207a338(u8 aid, u8 *ssid);
 void func_0207a36c(u8 aid);
 void func_02079028(void);
@@ -43,7 +43,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             break;
         case WM_STATECODE_CONNECTED:
             data_0215fe84->childAids |= 1 << cb->aid;
-            func_0207a208();
+            Wireless_CountChildren();
             ssid = cb->ssid;
             func_0207a338(cb->aid, ssid);
             data_0229c910.unk_14 = data_0215fe84->childAids | 1;
@@ -54,7 +54,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
         case WM_STATECODE_DISCONNECTED:
             /* needed to match: ~(1 << aid) gives mvn instead of eor */
             data_0215fe84->childAids &= ~0 ^ (1 << cb->aid);
-            func_0207a208();
+            Wireless_CountChildren();
             data_0229c910.unk_14 = data_0215fe84->childAids | 1;
             func_02079028();
             func_0207a36c(cb->aid);
