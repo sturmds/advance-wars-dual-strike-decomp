@@ -5,7 +5,7 @@
 extern u32 data_0229c880;
 
 void Wireless_OnRescan(WirelessEvent *event);
-int func_02117df0(void (*callback)(WirelessEvent *event));
+int WM_EndMP(void (*callback)(WirelessEvent *event));
 int func_02079180(void);
 
 /* Clears Unk_0215fe84.unk_30 and starts a request that reports to
@@ -14,7 +14,7 @@ int func_02079180(void);
 BOOL Wireless_StartRescan(void)
 {
     data_0215fe84->unk_30 = 0;
-    if (func_02117df0(Wireless_OnRescan) == 2) {
+    if (WM_EndMP(Wireless_OnRescan) == 2) {
         return TRUE;
     }
     data_0229c880 = 3;

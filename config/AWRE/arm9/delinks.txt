@@ -22418,6 +22418,10 @@ src/sdk/wm/wm_enable.c:
     complete
     .text       start:0x02117d84 end:0x02117df0
 
+src/sdk/wm/wm_end_mp.c:
+    complete
+    .text       start:0x02117df0 end:0x02117e7c
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
