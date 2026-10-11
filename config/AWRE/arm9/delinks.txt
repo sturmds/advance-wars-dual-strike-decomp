@@ -9855,6 +9855,10 @@ src/game/main/map/battle_setup_with_preset_cos.c:
     complete
     .text       start:0x020ff088 end:0x020ff254
 
+src/game/main/campaign_recap_draw_panels.c:
+    complete
+    .text       start:0x020ff254 end:0x020ff4a8
+
 src/game/main/func_020ffa50.c:
     complete
     .text       start:0x020ffa50 end:0x020ffa64
