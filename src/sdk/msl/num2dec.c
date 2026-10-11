@@ -6,7 +6,7 @@ void __num2dec(const DecimalFormat *format, double x, Decimal *dec)
     s16 digits = format->digits;
     int i;
 
-    func_02124c80(dec, x);
+    __num2dec_internal(dec, x);
     /* Infinity and NaN come back as a letter, not a digit. */
     if (dec->digits[0] > 9) {
         return;

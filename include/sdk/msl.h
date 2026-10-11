@@ -76,7 +76,8 @@ typedef struct Decimal {
     u8 unk_01;
     s16 exp;
     u8 length;
-    u8 digits[37];
+    u8 digits[32]; /* 38 bytes in all: the stack frames of __num2dec_internal show it */
+    u8 pad_25;
 } Decimal;
 
 /* How many digits a float conversion asks for. */
@@ -91,7 +92,13 @@ typedef struct DecimalFormat {
 /* Converts x to at most format->digits significant digits, as ASCII. */
 void __num2dec(const DecimalFormat *format, double x, Decimal *dec);
 /* Converts x to its exact digit string, digits as values 0-9. */
-void func_02124c80(Decimal *dec, double x);
+void __num2dec_internal(Decimal *dec, double x);
+/* Sets dec to 2^exponent. */
+void func_02124ed8(Decimal *dec, int exponent);
+/* Sets result to x * y. */
+void func_0212537c(Decimal *result, const Decimal *x, const Decimal *y);
+/* Sets dec to the digits of value. */
+void func_02125524(Decimal *dec, u64 value);
 
 /* Adds one to the digit string at its first count digits; a carry out of the first digit raises exp. */
 void func_02125658(Decimal *dec, int count);
