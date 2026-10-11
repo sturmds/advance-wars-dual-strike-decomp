@@ -17476,6 +17476,10 @@ src/game/main/units/unit_move_select_handle_touch.c:
     complete
     .text       start:0x020f0914 end:0x020f0adc
 
+src/game/main/map_touch_is_idle.c:
+    complete
+    .text       start:0x020f0adc end:0x020f0b10
+
 src/game/main/map/map_touch_handle_tile_tap.c:
     complete
     .text       start:0x020f0b10 end:0x020f0c94
