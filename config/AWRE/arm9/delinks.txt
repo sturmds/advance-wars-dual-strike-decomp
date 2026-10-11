@@ -88,6 +88,10 @@ src/game/main/func_020015f4.c:
     complete
     .text       start:0x020015f4 end:0x02001618
 
+src/game/main/overlay/overlay_swap_slot4_for_slots0_and_1.c:
+    complete
+    .text       start:0x02001618 end:0x02001644
+
 src/game/main/overlay/overlay_unload.c:
     complete
     .text       start:0x02001670 end:0x020016bc
