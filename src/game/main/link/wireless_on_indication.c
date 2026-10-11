@@ -6,6 +6,6 @@
 void Wireless_OnIndication(RadioNotice *ind)
 {
     if (ind->state == 16) {
-        data_0215fe84->unk_36 = 0;
+        data_0215fe84->beaconLostCount = 0;
     }
 }

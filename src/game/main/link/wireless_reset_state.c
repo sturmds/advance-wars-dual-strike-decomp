@@ -27,7 +27,7 @@ void Wireless_ResetState(void)
     data_0215fe84->scanning = 0;
     data_0215fe84->unk_30 = 0;
     data_0215fe84->channel = 1;
-    data_0215fe84->unk_36 = 0;
+    data_0215fe84->beaconLostCount = 0;
     OwnerInfo_CopyNickname(&data_0229c910);
     OwnerInfo_CopyNickname(data_0229c8f8);
     for (aid = 0; aid < 8; aid++) {

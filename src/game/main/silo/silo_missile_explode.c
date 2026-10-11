@@ -17,8 +17,8 @@ void Sound_PlaySe(u32 soundId);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Script step after the missile lands: damages the units on every tile of
- * offset list 1 around the target by unk_44, less the owner's silo damage
- * reduction (DamageFromSilos). With bit 0 of unk_60 set, Black Hole units
+ * offset list 1 around the target by damage, less the owner's silo damage
+ * reduction (DamageFromSilos). With bit 0 of effect set, Black Hole units
  * take no damage. Then plays the explosion animation and sound. */
 void SiloMissile_Explode(SiloMissileTask *task)
 {
@@ -42,12 +42,12 @@ void SiloMissile_Explode(SiloMissileTask *task)
             continue;
         }
         unit = &STATE->units[STATE->mapTiles->unk_508[pos[0] + STATE->mapTiles->rowStart[pos[1]]]];
-        damage = task->unk_44;
+        damage = task->damage;
         /* needed to match: the original adds the call to a zero */
         reduction = 0;
         reduction += DamageFromSilos(MAP_UNIT_OWNER(STATE, unit), 0);
         damage -= reduction;
-        if ((task->unk_60 & 1) && STATE->players[MAP_UNIT_OWNER(STATE, unit)].armyColour == ARMY_BLACK_HOLE) {
+        if ((task->effect & 1) && STATE->players[MAP_UNIT_OWNER(STATE, unit)].armyColour == ARMY_BLACK_HOLE) {
             continue;
         }
         Unit_DamageAtTile(pos[0], pos[1], damage);

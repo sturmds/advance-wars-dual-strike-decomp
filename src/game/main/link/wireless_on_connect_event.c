@@ -51,8 +51,8 @@ void Wireless_OnConnectEvent(WMStartConnectCallback *cb)
                 if (data_0215fe84->unk_18 != 0) {
                     return;
                 }
-                data_0215fe84->unk_36++;
-                if (data_0215fe84->unk_36 < MAX_BEACONS_LOST) {
+                data_0215fe84->beaconLostCount++;
+                if (data_0215fe84->beaconLostCount < MAX_BEACONS_LOST) {
                     return;
                 }
                 gWirelessState = 1;

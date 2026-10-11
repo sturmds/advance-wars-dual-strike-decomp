@@ -23,7 +23,7 @@ typedef struct Unk_0215fe84 {
     int unk_30;                        /* returned by func_0207a170 */
     u8 parentCount;                    /* parents found by the scan, in gWirelessParents (at most 4) */
     u8 unk_35;                         /* set by func_0207a7a4 */
-    u8 unk_36;                         /* cleared by the indication callback Wireless_OnIndication */
+    u8 beaconLostCount;                /* beacon losses in a row (Wireless_OnConnectEvent); cleared by Wireless_OnIndication */
 } Unk_0215fe84;
 
 extern Unk_0215fe84 *data_0215fe84;
