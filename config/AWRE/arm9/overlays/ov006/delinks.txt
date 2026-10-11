@@ -1003,6 +1003,10 @@ src/game/ov006/ov006_place_mountain.c:
     complete
     .text       start:0x023631a8 end:0x02363238
 
+src/game/ov006/ov006_refresh_neighbor_shoals.c:
+    complete
+    .text       start:0x02363238 end:0x02363438
+
 src/game/ov006/ov006_place_shoal.c:
     complete
     .text       start:0x02363438 end:0x0236352c
