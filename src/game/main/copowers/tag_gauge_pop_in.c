@@ -13,7 +13,7 @@ void Task_ResumeScript(TagGaugeTask *task);
 /* Step of the tag firepower gauge script, after TagGauge_CountUp: draws the
  * final value with the digit pop-in for POP_IN_FRAMES frames, then marks the
  * gauge as done and resumes the script. */
-void func_02057fb8(TagGaugeTask *task)
+void TagGauge_PopIn(TagGaugeTask *task)
 {
     task->frame++;
     Gauge_DrawValueAndBar(TAG_GAUGE_X, TAG_GAUGE_Y, task->value, task->frame);
@@ -22,5 +22,6 @@ void func_02057fb8(TagGaugeTask *task)
         task->frame = 0;
         task->popInDone = TRUE;
         Task_ResumeScript(task);
+        return; /* needed to match: moves the "mov r0, task" after the constant 1 */
     }
 }

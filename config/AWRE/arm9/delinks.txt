@@ -7258,6 +7258,7 @@ src/game/main/copowers/tag_gauge_hold.c:
     .text       start:0x02057f6c end:0x02057fb8
 
 src/game/main/copowers/tag_gauge_pop_in.c:
+    complete
     .text       start:0x02057fb8 end:0x02058034
 
 src/game/main/copowers/tag_gauge_count_up.c:
