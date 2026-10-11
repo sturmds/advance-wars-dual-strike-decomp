@@ -144,6 +144,9 @@ src/game/main/graphics/co_load_army_medium_picture.c:
     complete
     .text       start:0x02001c90 end:0x02001d40
 
+src/game/main/graphics/image4bpp_set_pixel_linear.c:
+    .text       start:0x02001d40 end:0x02001d94
+
 src/game/main/graphics/image4bpp_get_pixel.c:
     complete
     .text       start:0x02001d94 end:0x02001e04
