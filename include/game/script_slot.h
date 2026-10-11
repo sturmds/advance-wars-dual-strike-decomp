@@ -94,6 +94,16 @@ typedef struct ArcMoveArgs {
     float gravity;                     /* added to velY every frame */
 } ArcMoveArgs;
 
+/* Argument block of the accelerated move command, reached through
+ * ScriptCommand.arg. */
+typedef struct AccelMoveArgs {
+    float velX;                        /* starting speed per frame */
+    float velY;
+    float accelX;                      /* added to the speed every frame */
+    float accelY;
+    float frames;
+} AccelMoveArgs;
+
 /* The same slot as the arc move command uses it. */
 typedef struct ArcMoveSlot {
     ScriptCommand *start;
