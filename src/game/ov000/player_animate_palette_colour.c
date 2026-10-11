@@ -10,7 +10,7 @@ extern u16 data_0213fdec[16];
 
 int MainLoop_GetFrameCount(void);
 BOOL CanUseCoPower(int player, int slot);
-void func_02003104(const void *src, u16 offset, u32 size);
+void Palette_LoadWithCopy(const void *src, u16 offset, u32 size);
 
 /* Cycles colour 15 of sprite palette slot player + 10 (palette offset
  * (player + 26) * 32 + 30) through 16 colours, one step every 4 frames. The
@@ -25,8 +25,8 @@ void Player_AnimatePaletteColour(int player)
         return;
     }
     if (CanUseCoPower(player, 0)) {
-        func_02003104(&data_0213fdcc[(frame >> 2) & 15], ((player + 26) << 5) + 30, 2);
+        Palette_LoadWithCopy(&data_0213fdcc[(frame >> 2) & 15], ((player + 26) << 5) + 30, 2);
     } else {
-        func_02003104(&data_0213fdec[(frame >> 2) & 15], ((player + 26) << 5) + 30, 2);
+        Palette_LoadWithCopy(&data_0213fdec[(frame >> 2) & 15], ((player + 26) << 5) + 30, 2);
     }
 }

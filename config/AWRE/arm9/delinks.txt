@@ -244,6 +244,10 @@ src/game/main/graphics/palette_load_from_file.c:
     complete
     .text       start:0x020030cc end:0x02003104
 
+src/game/main/graphics/palette_load_with_copy.c:
+    complete
+    .text       start:0x02003104 end:0x02003154
+
 src/game/main/func_02003154.c:
     complete
     .text       start:0x02003154 end:0x02003188
