@@ -22024,6 +22024,9 @@ src/sdk/card/card_on_request_tag_message.c:
     complete
     .text       start:0x02115808 end:0x02115858
 
+src/sdk/card/cardi_set_backup_spec.c:
+    .text       start:0x02115858 end:0x02115a30
+
 src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c

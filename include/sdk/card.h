@@ -59,6 +59,7 @@ typedef struct CARDiCommandArg {
 } CARDiCommandArg;
 
 #define CARD_RESULT_SUCCESS 0
+#define CARD_RESULT_UNSUPPORTED 3
 
 /* Lock targets of CARDi_LockResource and CARDi_UnlockResource. */
 #define CARD_TARGET_ROM 1
