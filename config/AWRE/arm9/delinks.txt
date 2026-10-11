@@ -22661,6 +22661,10 @@ src/sdk/mb/download_play_offer_child_program.c:
     complete
     .text       start:0x0211abc4 end:0x0211ae8c
 
+src/sdk/mb/mb_segment_copy_secure_area.c:
+    complete
+    .text       start:0x0211ae8c end:0x0211af20
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770

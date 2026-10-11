@@ -140,6 +140,48 @@ typedef struct DlPlayFailedCall {
     u16 errcode;
 } DlPlayFailedCall;
 
+/* One block of a child program kept in memory, 16 bytes. */
+typedef struct DlPlayKeptChunk {
+    u32 romAddress;                    /* where the block starts in the ROM */
+    u32 length;
+    u8 *buffer;
+    u32 state;                         /* DLPLAY_KEPT_CHUNK_*, 0 when the slot is free */
+} DlPlayKeptChunk;
+
+#define DLPLAY_KEPT_CHUNK_USABLE 2
+#define DLPLAY_KEPT_CHUNK_PINNED 3            /* kept for the whole download */
+
+/* The blocks of one child program held in memory, 0x70 bytes. */
+typedef struct DlPlayKeptChunkSet {
+    u8 pad_00[0x10];
+    char archiveName[4];               /* archive the program is read from */
+    u32 archiveNameLength;
+    u8 pad_18[0x18];
+    DlPlayKeptChunk list[4];               /* 0x30: header, ARM9 static, ARM7 static (or ARM9 parts) */
+} DlPlayKeptChunkSet;
+
+/* Where a child program's ARM9 and ARM7 static code lie in the ROM, 16 bytes. */
+typedef struct DlPlayProgramRomOffsets {
+    u32 unk_00;
+    u32 arm9RomAddress;
+    u32 arm7RomAddress;
+    u32 unk_0c;
+} DlPlayProgramRomOffsets;
+
+/* How DownloadPlay_LoadChildProgram copies part of the running program's ARM9 code into
+ * the buffer it sends: ROM offset x comes from source + x and goes to
+ * dest + x, for x in [romOffset, romOffset + length). */
+typedef struct DlPlayLiveCodePatch {
+    u32 romOffset;
+    const u8 *source;
+    u8 *dest;
+    u32 length;
+} DlPlayLiveCodePatch;
+
+/* The cartridge's secure area, ROM offsets 0x4000 to 0x8000. */
+#define DLPLAY_PROTECTED_ROM_START 0x4000
+#define DLPLAY_PROTECTED_ROM_END 0x8000
+
 #define DLPLAY_OFFER_SLOTS_OLD 16
 
 /* One file (a child program) the parent offers, 0x5d4 bytes. */
