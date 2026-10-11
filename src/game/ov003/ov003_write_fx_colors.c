@@ -7,7 +7,7 @@ void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 
 void func_0210c8e8(void);   /* guess: maps VRAM bank F to the CPU (LCDC) */
 
-void func_0210c81c(void);   /* guess: undoes func_0210c8e8 */
+void GX_EndLoadTexPltt(void);   /* guess: undoes func_0210c8e8 */
 
 /* Writes the two colours into bank F, at palette entry 13 of four 16-colour
  * rows. Mode 11 sends the first 4 bytes of the state instead (kept as the
@@ -26,5 +26,5 @@ void Ov003_WriteFxColors(void)
         Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(2), 4, 16);
         Mem_CopyUnits(data_ov003_02364a84, BANK_F_COLOR(3), 4, 16);
     }
-    func_0210c81c();
+    GX_EndLoadTexPltt();
 }

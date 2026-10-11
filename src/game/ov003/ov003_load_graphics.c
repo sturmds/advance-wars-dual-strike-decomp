@@ -15,7 +15,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void func_0210c8e8(void);
 void func_0210c930(void);
 void func_0210cb04(void);
@@ -120,7 +120,7 @@ void Ov003_LoadGraphics(u8 *res)
     for (i = 0; i < STATE->rowCount; i++) {
         Mem_Copy32(gMenuState + (STATE->rows[i].color - 1) * 32, (u8 *)VRAM_LCDC_F + (i + 4) * 32, 0x20);
     }
-    func_0210c81c();
+    GX_EndLoadTexPltt();
 
     File_UnpackTo(data_ov003_02365d10, data_ov003_023649f4);
 

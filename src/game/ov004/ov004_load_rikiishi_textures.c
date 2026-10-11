@@ -9,7 +9,7 @@ void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to 
 void func_0210c930(void);
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 
 extern u8 *data_ov004_022bf150;
 extern char gRikiishiDir[];
@@ -64,5 +64,5 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     DC_FlushRange(buffer, 0xe0);
     func_0210c8e8();
     func_0210c874(buffer, 0, 0xe0);
-    func_0210c81c();
+    GX_EndLoadTexPltt();
 }

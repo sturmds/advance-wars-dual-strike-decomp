@@ -12,7 +12,7 @@ int FS_ChangeDir(const char *path);
 void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
 void func_0210c930(void);              /* guess: undoes func_0210cb04 */
 void func_0210c8e8(void);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
 void DC_FlushRange(void *start, u32 size);
 void func_0210c874(const void *src, u32 offset, u32 size);
@@ -237,5 +237,5 @@ void func_ov002_02352754(void)
         || BATTLE_SIDE_UNIT_TYPE(0) == UNIT_TYPE_30 || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_TYPE_30) {
         File_ReadTo((void *)0x068901c0, data_ov002_023604a8);
     }
-    func_0210c81c();
+    GX_EndLoadTexPltt();
 }

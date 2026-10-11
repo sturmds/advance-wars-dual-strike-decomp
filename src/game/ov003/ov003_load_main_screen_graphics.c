@@ -9,7 +9,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void func_0210cb04(void);
 void func_0210c930(void);
 void func_0210c8e8(void);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 
 /* VRAM banks A and F while they are mapped to the CPU. */
 #define VRAM_LCDC_A(offset) ((void *)(0x06800000 + (offset)))
@@ -45,5 +45,5 @@ void Ov003_LoadMainScreenGraphics(u8 *file, void *localizedFile)
     Mem_Copy32(file + 0x24d0, VRAM_LCDC_F(0x240), 32);
     Mem_Copy32(file + 0x22f0, VRAM_LCDC_F(0x260), 32);
     Mem_Copy32(file + 0x2684, VRAM_LCDC_F(0x280), 32);
-    func_0210c81c();
+    GX_EndLoadTexPltt();
 }

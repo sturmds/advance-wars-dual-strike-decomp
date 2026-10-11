@@ -20,11 +20,21 @@ extern int data_022a98a0;
 extern int data_022a989c;
 extern int data_022a9898;
 
+/* State of the texture palette load (set by func_0210c8e8, the Begin function):
+ * the bank mapped for loading and its address in the LCDC range. */
+extern int data_022a98ac;
+extern int data_022a98a8;
+
 /* Waits until the DMA channel is idle (best guess: MI_WaitDma). */
 void func_0210f034(int dmaNo);
 /* Starts a DMA copy (best guess: MI_DmaCopy32 with callback arguments 0, 0). */
 void func_0210f0c8(int dmaNo, const void *src, void *dst, u32 size, void *callback, void *arg);
 void MIi_CpuCopy32(const void *src, void *dst, u32 size);
+
+/* Texture palette. */
+void GX_EndLoadTexPltt(void);
+void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
+void GX_BeginLoadTexPltt(void);
 
 /* Main engine BG extended palette. */
 void GX_EndLoadBGExtPltt(void);

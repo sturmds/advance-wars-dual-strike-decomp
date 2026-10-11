@@ -4,7 +4,7 @@
 void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
 void func_0210c8e8(void);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void GfxQueue_Reset(void);
 
 /* Texture palette VRAM while bank F is mapped to the LCD controller. */
@@ -29,7 +29,7 @@ void GfxQueue_Flush(void)
             if (data_027c0520[i].size == 2) {
                 func_0210c8e8();
                 VRAM_LCDC_F[(u32)data_027c0520[i].dst / 2] = *(const u16 *)data_027c0520[i].src;
-                func_0210c81c();
+                GX_EndLoadTexPltt();
             } else {
                 Gfx_LoadTexPalette(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
             }
@@ -38,7 +38,7 @@ void GfxQueue_Flush(void)
             if (data_027c0520[i].size == 2) {
                 func_0210c8e8();
                 VRAM_LCDC_F[(u32)data_027c0520[i].dst / 2] = *(const u16 *)data_027c0520[i].src;
-                func_0210c81c();
+                GX_EndLoadTexPltt();
             } else {
                 Gfx_LoadTexImage(data_027c0520[i].src, (u32)data_027c0520[i].dst, data_027c0520[i].size);
             }

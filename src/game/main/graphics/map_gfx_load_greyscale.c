@@ -9,7 +9,7 @@ void Mem_Free(void *block);
 void DC_FlushRange(const void *start, u32 size);
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void WeatherFx_InitClouds(void);
 
 /* Loads the map graphics like MapGfx_Load, but turns the map palette
@@ -31,7 +31,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
     DC_FlushRange(palette, 256 * sizeof(u16));
     func_0210c8e8();
     func_0210c874(palette, gfx->texPaletteOffset, 256 * sizeof(u16));
-    func_0210c81c();
+    GX_EndLoadTexPltt();
     Mem_Free(palette);
 
     palette = File_Load(path);
@@ -41,7 +41,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
     DC_FlushRange(palette, 96 * sizeof(u16));
     func_0210c8e8();
     func_0210c874(palette, gfx->texPaletteOffset, 96 * sizeof(u16));
-    func_0210c81c();
+    GX_EndLoadTexPltt();
     Mem_Free(palette);
 
     WeatherFx_InitClouds();

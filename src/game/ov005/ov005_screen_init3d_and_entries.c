@@ -11,7 +11,7 @@ void Mem_Free(void *ptr);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 
 extern char data_ov005_0236988c[];
 extern char data_ov005_023698bc[];
@@ -43,7 +43,7 @@ void Ov005Screen_Init3dAndEntries(Unk_ov005_0236bb90 *work)
     DC_FlushRange(palette, 32);
     func_0210c8e8();
     func_0210c874(palette, 0, 32);
-    func_0210c81c();
+    GX_EndLoadTexPltt();
     Mem_Free(palette);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

@@ -2,7 +2,7 @@
 #include "game/main_menu.h"
 
 void func_0210c8e8(void);
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void Palette_Load(const void *src, int offset, u32 size);
 
 #define VRAM_LCDC_F ((u16 *)0x06890000)
@@ -19,6 +19,6 @@ void MainMenu_LoadPageColour(void)
     for (i = 0; i < 18; i++) {
         (&VRAM_LCDC_F[i * 16])[11] = WORK->unk_08[page->palette];
     }
-    func_0210c81c();
+    GX_EndLoadTexPltt();
     Palette_Load(&WORK->unk_08[page->palette], 0x228, 2);
 }

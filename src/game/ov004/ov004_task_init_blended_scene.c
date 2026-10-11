@@ -17,7 +17,7 @@ void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to 
 void func_0210c930(void);
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
-void func_0210c81c(void);
+void GX_EndLoadTexPltt(void);
 void Ov004_SetupPerspective3d(void);
 void Ov004_LoadBottomSpriteGraphics(Unk_ov004_022bf158 *state);
 void Ov004_InitVramBanksInOrder(void);
@@ -159,7 +159,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     DC_FlushRange(buffer, 0x400);
     func_0210c8e8();
     func_0210c874(buffer, 0, 0x400);
-    func_0210c81c();
+    GX_EndLoadTexPltt();
     Ov004_SetupPerspective3d();
     Ov004_LoadSpriteGraphicsBothScreens(state);
     Ov004_LoadBottomSpriteGraphics(state);
