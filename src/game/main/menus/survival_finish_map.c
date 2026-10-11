@@ -5,7 +5,7 @@
 
 BOOL Player1Team_HasPlayerInGame(void);
 void GameFlag_Set(int id, int value);
-int func_020eaa9c(int mode);
+int Survival_GetMapCount(int mode);
 void func_020eae84(void);
 
 extern Unk_022a7b80 data_022a7b80;
@@ -23,7 +23,7 @@ extern const TaskScriptCmd data_02167314[];
 void Survival_FinishMap(void)
 {
     BOOL won = Player1Team_HasPlayerInGame();
-    BOOL lastMap = data_022a7b80.unk_06 == func_020eaa9c(data_022a7b80.unk_07);
+    BOOL lastMap = data_022a7b80.unk_06 == Survival_GetMapCount(data_022a7b80.unk_07);
 
     if (won) {
         switch (data_022a7b80.unk_07) {

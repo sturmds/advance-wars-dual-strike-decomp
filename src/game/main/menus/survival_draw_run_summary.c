@@ -16,7 +16,7 @@ void func_0201e6e8(int layer, int x, int y, int a3);
 void func_02026ddc(int x, int y, u32 value);
 void func_02026e68(int x, int y, u32 value);
 int func_020eaa8c(int mode);
-int func_020eaa9c(int mode);
+int Survival_GetMapCount(int mode);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
@@ -24,7 +24,7 @@ extern Unk_027c0280 *data_027c0280;
 /* Draws the two summary rows (19 and 21) of layer 0 for the mode variant in
  * data_022a7b80.unk_07: 0/3 a time in seconds (h:mm), 2/5 a number, 1/4 a
  * number with a suffix. Row 19 shows the mode's value from func_020eaa8c.
- * In modes 0-2 it also shows the mode's map count (func_020eaa9c), and once
+ * In modes 0-2 it also shows the mode's map count (Survival_GetMapCount), and once
  * unk_06 reaches that count row 21 shows the mode's value minus unk_08;
  * otherwise, and always in modes 3-5, row 21 shows unk_06. Then scrolls
  * layers 0 and 1 up by 64 pixels. */
@@ -40,10 +40,10 @@ void Survival_DrawRunSummary(Task *task)
     func_0201e6e8(0, 18, 21, 6);
     switch (data_022a7b80.unk_07) {
     case 0:
-        func_02026e68(1, 19, func_020eaa9c(0));
+        func_02026e68(1, 19, Survival_GetMapCount(0));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x79000005, 0, 0);
         Layer0_PutRatio(19, 19, HwDiv32(func_020eaa8c(0), 3600), HwMod32(HwDiv32(func_020eaa8c(0), 60), 60));
-        if (data_022a7b80.unk_06 == func_020eaa9c(0)) {
+        if (data_022a7b80.unk_06 == Survival_GetMapCount(0)) {
             left = func_020eaa8c(0) - data_022a7b80.unk_08;
             Text_PrintImmediate(7, 21, data_027c0280->layer0Map, 0x79000006, 0, 0);
             Layer0_PutRatio(19, 21, HwDiv32(left, 3600), HwMod32(HwDiv32(left, 60), 60));
@@ -60,10 +60,10 @@ void Survival_DrawRunSummary(Task *task)
         func_02026ddc(19, 21, data_022a7b80.unk_06);
         break;
     case 2:
-        func_02026e68(1, 19, func_020eaa9c(2));
+        func_02026e68(1, 19, Survival_GetMapCount(2));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x79000008, 0, 0);
         Layer0_PutNumber(19, 19, func_020eaa8c(2));
-        if (data_022a7b80.unk_06 == func_020eaa9c(2)) {
+        if (data_022a7b80.unk_06 == Survival_GetMapCount(2)) {
             left = func_020eaa8c(2) - data_022a7b80.unk_08;
             Text_PrintImmediate(7, 21, data_027c0280->layer0Map, 0x79000009, 0, 0);
             Layer0_PutNumber(19, 21, left);
@@ -80,10 +80,10 @@ void Survival_DrawRunSummary(Task *task)
         func_02026ddc(19, 21, data_022a7b80.unk_06);
         break;
     case 1:
-        func_02026e68(1, 19, func_020eaa9c(1));
+        func_02026e68(1, 19, Survival_GetMapCount(1));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x7900000b, 0, 0);
         Layer0_PutNumberThenText4(19, 19, func_020eaa8c(1));
-        if (data_022a7b80.unk_06 == func_020eaa9c(1)) {
+        if (data_022a7b80.unk_06 == Survival_GetMapCount(1)) {
             left = func_020eaa8c(1) - data_022a7b80.unk_08;
             Text_PrintImmediate(7, 21, data_027c0280->layer0Map, 0x7900000c, 0, 0);
             Layer0_PutNumberThenText4(19, 21, left);
