@@ -13734,6 +13734,10 @@ src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
 
+src/game/main/map/battle_score_technique.c:
+    complete
+    .text       start:0x020e981c end:0x020e9980
+
 src/game/main/battle_results_fill.c:
     complete
     .text       start:0x020e9c24 end:0x020ea14c
