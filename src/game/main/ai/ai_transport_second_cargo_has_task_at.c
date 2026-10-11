@@ -16,7 +16,7 @@ BOOL AiSeaTransport_FewFootUnitsForProperties(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Called by func_020b62e4 when the acting transport stops at (x, y) to
+/* Called by AiTransport_UnloadAt when the acting transport stops at (x, y) to
  * unload: TRUE when its second cargo unit should get off there too. The
  * unit's own order picks the check, like AiSeaTransport_MoveLoaded picks
  * a routine (no check exists for order 7: the original calls NULL). If

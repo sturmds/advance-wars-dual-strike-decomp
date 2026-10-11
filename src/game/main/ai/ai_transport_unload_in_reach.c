@@ -8,7 +8,7 @@ extern int data_027c0284;
 void RangeMap_FillUnitMoves(MapUnit *unit);
 int AiTransport_CountUnloadTiles(int x, int y);
 int MainLoop_GetFrameCount(void);
-void func_020b62e4(int x, int y);
+void AiTransport_UnloadAt(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -80,5 +80,5 @@ void AiTransport_UnloadInReach(void)
     if (bestScore == 0) {
         return;
     }
-    func_020b62e4(bestX, bestY);
+    AiTransport_UnloadAt(bestX, bestY);
 }
