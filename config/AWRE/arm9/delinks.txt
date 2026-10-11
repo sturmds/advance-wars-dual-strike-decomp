@@ -15421,6 +15421,10 @@ src/game/main/func_020dc71c.c:
     complete
     .text       start:0x020dc71c end:0x020dc748
 
+src/game/main/combat/attack_task_start_scene.c:
+    complete
+    .text       start:0x020dc748 end:0x020dc838
+
 src/game/main/combat/acting_unit_start_attack.c:
     complete
     .text       start:0x020dc910 end:0x020dcc9c
