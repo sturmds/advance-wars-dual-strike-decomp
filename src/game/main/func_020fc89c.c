@@ -9,7 +9,7 @@ int Wireless_PickChannel(void);
 void func_0211c0d8(void);
 u32 func_0211b38c(FSFile *file);
 BOOL func_0211af20(FSFile *file, void *dest, u32 size);
-BOOL func_0211abc4(void *dest, void *src);
+BOOL DownloadPlay_OfferChildProgram(void *dest, void *src);
 
 /* Needed to match: the original builds this test as a 0/1 value first, as an
  * inline function does. */
@@ -33,7 +33,7 @@ BOOL func_020fc89c(void)
             size = func_0211b38c(&file);
             if (size != 0 && size <= 0x100000) {
                 if (func_0211af20(&file, data_0218ff58, size)) {
-                    if (func_0211abc4(data_022a7e88, data_0218ff58)) {
+                    if (DownloadPlay_OfferChildProgram(data_022a7e88, data_0218ff58)) {
                         if (IsFile(&file) != FALSE) {
                             FS_CloseFile(&file);
                         }

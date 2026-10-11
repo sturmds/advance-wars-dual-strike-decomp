@@ -140,6 +140,44 @@ typedef struct DlPlayFailedCall {
     u16 errcode;
 } DlPlayFailedCall;
 
+#define DLPLAY_OFFER_SLOTS_OLD 16
+
+/* One file (a child program) the parent offers, 0x5d4 bytes. */
+typedef struct DlPlayOfferedFileOld {
+    u8 downloadInfo[0xe4];             /* entry points, segments and auth code sent to children */
+    DlPlayGameEntry gameInfo;               /* 0xe4 */
+    u8 blockTable[0x14];               /* 0x5a4 */
+    const DlPlayGameSource *registry;    /* 0x5b8 */
+    const void *source;                /* 0x5bc: ROM header, auth code, cache list, card map */
+    u8 pad_5c0[6];
+    u16 childFlags;                    /* 0x5c6 */
+    u8 pad_5c8[2];
+    u8 active;                         /* 0x5ca */
+    u8 pad_5cb;
+    u32 *cacheList;                    /* 0x5cc */
+    u32 *cardMapping;                  /* 0x5d0 */
+} DlPlayOfferedFileOld;
+
+/* Offsets into the buffer given with a file. */
+#define DLPLAY_SOURCE_KEPT_LIST_AT 0x1e8
+#define DLPLAY_SOURCE_ROM_OFFSETS_AT 0x258
+#define DLPLAY_KEPT_LAST_STATE_WORD 0x1b    /* word in the cache list: state of its last entry */
+
+#define DLPLAY_WORKER_STACK_BYTES 0x800
+
+/* The parent's file work area, behind data_022aced4. */
+typedef struct DlPlayHostLinkAreaOld {
+    u8 pad_0000[0x1300];
+    u8 user[0x20];                     /* 0x1300: the parent's user info */
+    u8 pad_1320[0x1524 - 0x1320];
+    u8 fileCount;                      /* 0x1524 */
+    u8 pad_1525[0x1788 - 0x1525];
+    DlPlayOfferedFileOld files[DLPLAY_OFFER_SLOTS_OLD];    /* 0x1788 */
+    u8 pad_74c8[0x74e0 - 0x74c8];
+    u8 taskThreadStack[DLPLAY_WORKER_STACK_BYTES];   /* 0x74e0 */
+    u8 currentTask[0x20];              /* 0x7ce0 */
+} DlPlayHostLinkAreaOld;
+
 /* One piece of the downloaded program kept in memory, found by its address in
  * the program. state 0 is an empty slot; 2 and above can be read. */
 typedef struct DlPlayProgramChunk {

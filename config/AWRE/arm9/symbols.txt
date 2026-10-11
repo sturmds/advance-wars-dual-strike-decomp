@@ -5733,10 +5733,10 @@ MbComm_SetCallback kind:function(arm,size=0x2c) addr:0x0211a5e8
 func_0211a614 kind:function(arm,size=0x114) addr:0x0211a614
 func_0211a728 kind:function(arm,size=0xb0) addr:0x0211a728
 func_0211a7d8 kind:function(arm,size=0xd4) addr:0x0211a7d8
-func_0211a8ac kind:function(arm,size=0xdc) addr:0x0211a8ac
+MbFile_MakeBlockTable kind:function(arm,size=0xdc) addr:0x0211a8ac
 func_0211a988 kind:function(arm,size=0x1b8) addr:0x0211a988
-func_0211ab40 kind:function(arm,size=0x84) addr:0x0211ab40
-func_0211abc4 kind:function(arm,size=0x2c8) addr:0x0211abc4
+MbFile_MakeDownloadInfo kind:function(arm,size=0x84) addr:0x0211ab40
+DownloadPlay_OfferChildProgram kind:function(arm,size=0x2c8) addr:0x0211abc4
 func_0211ae8c kind:function(arm,size=0x94) addr:0x0211ae8c
 func_0211af20 kind:function(arm,size=0x46c) addr:0x0211af20
 func_0211b38c kind:function(arm,size=0x84) addr:0x0211b38c
@@ -9071,7 +9071,7 @@ data_022ac380 kind:bss addr:0x022ac380
 data_022ac390 kind:bss addr:0x022ac390
 data_022ac3c0 kind:bss addr:0x022ac3c0
 gWmGameInfoBuf kind:bss addr:0x022acdc0
-data_022ace40 kind:bss addr:0x022ace40
+gMbGameSequence kind:bss addr:0x022ace40
 data_022ace44 kind:bss addr:0x022ace44
 data_022ace48 kind:bss addr:0x022ace48
 data_022ace4c kind:bss addr:0x022ace4c
