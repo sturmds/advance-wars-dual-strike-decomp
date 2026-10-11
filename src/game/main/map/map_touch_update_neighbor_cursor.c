@@ -5,7 +5,7 @@
 
 int NeighborDir_FindAtTile(int tileX, int tileY, int mask);
 void TouchMarker_Destroy(void);
-void func_020f12d4(int tileX, int tileY);
+void TouchMarker_Create(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
@@ -63,7 +63,7 @@ void MapTouch_UpdateNeighborCursor(int *direction, int mask)
     if (IsTouchInPhase(TOUCH_PRESSED)) {
         GAME->unk_30 = tileX;
         GAME->unk_32 = tileY;
-        func_020f12d4(GAME->unk_30, GAME->unk_32);
+        TouchMarker_Create(GAME->unk_30, GAME->unk_32);
     }
     if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
         return;

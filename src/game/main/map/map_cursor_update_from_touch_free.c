@@ -4,7 +4,7 @@
 #include "game/touch.h"
 
 void TouchMarker_Destroy(void);
-void func_020f12d4(int tileX, int tileY);
+void TouchMarker_Create(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 void Sound_PlaySe(int se);
 
@@ -55,7 +55,7 @@ void MapCursor_UpdateFromTouchFree(void)
     if (IsTouchStarted()) {
         STATE->unk_30 = STATE->cursorX;
         STATE->unk_32 = STATE->cursorY;
-        func_020f12d4(STATE->unk_30, STATE->unk_32);
+        TouchMarker_Create(STATE->unk_30, STATE->unk_32);
     }
     if (STATE->unk_30 != STATE->cursorX || STATE->unk_32 != STATE->cursorY) {
         TouchMarker_Destroy();

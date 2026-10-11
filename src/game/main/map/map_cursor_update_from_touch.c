@@ -4,7 +4,7 @@
 #include "game/touch.h"
 
 void TouchMarker_Destroy(void);
-void func_020f12d4(int tileX, int tileY);
+void TouchMarker_Create(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 void Sound_PlaySe(int se);
 
@@ -26,7 +26,7 @@ static inline BOOL IsTouchStarted(void)
 /* Turns the touch position into a map tile (cursorX, cursorY) each frame. On the
  * screen whose map is drawn in 3D (data_027c0288.unk_00) Map3d_ScreenToTilePos projects
  * the point; on the other it is pixels plus the scroll, in 1/16 tiles. A new
- * touch remembers its tile in unk_30 and unk_32 and calls func_020f12d4; moving
+ * touch remembers its tile in unk_30 and unk_32 and calls TouchMarker_Create; moving
  * to another tile calls TouchMarker_Destroy and clears them. The select sound plays
  * when the tile changed. */
 void MapCursor_UpdateFromTouch(void)
@@ -58,7 +58,7 @@ void MapCursor_UpdateFromTouch(void)
     if (IsTouchStarted()) {
         STATE->unk_30 = STATE->cursorX;
         STATE->unk_32 = STATE->cursorY;
-        func_020f12d4(STATE->unk_30, STATE->unk_32);
+        TouchMarker_Create(STATE->unk_30, STATE->unk_32);
     }
     if (STATE->unk_30 != STATE->cursorX || STATE->unk_32 != STATE->cursorY) {
         TouchMarker_Destroy();
