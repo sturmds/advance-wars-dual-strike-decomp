@@ -7600,6 +7600,10 @@ src/game/main/side_panel_snap_away_from_cursor.c:
     complete
     .text       start:0x020cf8e8 end:0x020cf9a0
 
+src/game/main/side_panel_snap_right.c:
+    complete
+    .text       start:0x020cf9a0 end:0x020cfa14
+
 src/game/main/func_020cfd30.c:
     complete
     .text       start:0x020cfd30 end:0x020cfd5c
