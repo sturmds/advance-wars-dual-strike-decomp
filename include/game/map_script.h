@@ -9,7 +9,7 @@
  * situation each list belongs to is not known; the runners are named by
  * list offset. */
 typedef struct MapScript {
-    const EventTrigger *list00;        /* run by func_020ba198 when a turn starts (after the player theme) */
+    const EventTrigger *list00;        /* run by Game_State6_PlayThemeAndScripts when a turn starts (after the player theme) */
     u8 pad_04[0x10 - 0x04];
     const EventTrigger *list10;        /* run with an id and a unit by MapScript_RunList10 */
     const EventTrigger *list14;        /* run by Game_EnterState20 */
