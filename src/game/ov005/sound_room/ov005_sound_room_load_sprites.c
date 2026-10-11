@@ -7,7 +7,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void *func_02022478(void *file, int a, int b);
-void func_02021f44(void *sprite, int frame);
+void SpriteAnim_SetAnimation(void *sprite, int frame);
 
 extern const char data_ov005_0236b324[]; /* "/rikiishi" */
 extern const char data_ov005_0236b33c[]; /* "046" */
@@ -41,11 +41,11 @@ void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac *work)
         work->subObjects[2] = func_02022478(work->spriteFileA, 1, 2);
         work->subObjects[3] = func_02022478(work->spriteFileA, 0, 2);
         work->subObjects[4] = func_02022478(work->spriteFileA, 0, 2);
-        func_02021f44(work->subObjects[0], 0);
-        func_02021f44(work->subObjects[1], 0);
-        func_02021f44(work->subObjects[2], 0);
-        func_02021f44(work->subObjects[3], 2);
-        func_02021f44(work->subObjects[4], 2);
+        SpriteAnim_SetAnimation(work->subObjects[0], 0);
+        SpriteAnim_SetAnimation(work->subObjects[1], 0);
+        SpriteAnim_SetAnimation(work->subObjects[2], 0);
+        SpriteAnim_SetAnimation(work->subObjects[3], 2);
+        SpriteAnim_SetAnimation(work->subObjects[4], 2);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
@@ -65,10 +65,10 @@ void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac *work)
         work->mainObjects[1] = func_02022478(work->spriteFileA, 1, 2);
         work->mainObjects[2] = func_02022478(work->spriteFileA, 0, 2);
         work->mainObjects[3] = func_02022478(work->spriteFileA, 0, 2);
-        func_02021f44(work->mainObjects[0], 1);
-        func_02021f44(work->mainObjects[1], 1);
-        func_02021f44(work->mainObjects[2], 2);
-        func_02021f44(work->mainObjects[3], 2);
+        SpriteAnim_SetAnimation(work->mainObjects[0], 1);
+        SpriteAnim_SetAnimation(work->mainObjects[1], 1);
+        SpriteAnim_SetAnimation(work->mainObjects[2], 2);
+        SpriteAnim_SetAnimation(work->mainObjects[3], 2);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }

@@ -26,7 +26,7 @@ void *File_Load(const char *path);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void GfxQueue_AddKind2(const void *src, void *dst, u32 size);
 ShowSprite *func_02022478(void *file, int a, int b);
-void func_02021f44(ShowSprite *sprite, int frame);
+void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 int UnitShowTask_CheckVisible(UnitShowTask *task);
 void UnitShowTask_PlaceSprite(UnitShowTask *task);
 
@@ -75,7 +75,7 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     task->owner = owner;
     task->unk_44 = File_Load(UnitShowTask_GetPalettePath(task));
     task->unk_48 = file;
-    func_02021f44(task->sprite, task->frame);
+    SpriteAnim_SetAnimation(task->sprite, task->frame);
     task->sprite->unk_2c = task->unk_44;
     if ((void *)data_027c027c == data_027c0288) {
         task->sprite->unk_24 = UnitShowTask_GetObjBase(task->slot);

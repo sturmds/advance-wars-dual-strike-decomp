@@ -29,7 +29,7 @@ typedef struct UnitShowTask {
     u8 state;                          /* UNIT_SHOW_STATE_*, picks the handler in data_ov000_022db6b4 */
     u8 entry;                          /* unit type, index into gUnitShowEntries */
     u8 owner;                          /* player slot minus 1 of the army whose colour the sprite wears */
-    s8 frame;                          /* sprite frame last set with func_02021f44 */
+    s8 frame;                          /* sprite frame last set with SpriteAnim_SetAnimation */
     u8 unk_39;
     s8 slot;                           /* show slot (flag in Unk_02080440.unk_58) the task holds */
     u8 pad_3b;

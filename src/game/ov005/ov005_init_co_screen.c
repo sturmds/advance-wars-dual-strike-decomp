@@ -37,7 +37,7 @@ void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 void Icon_Load(int iconId);
 void func_ov005_02363014(Ov005Task *task);
 ShowSprite *func_02022478(void *file, int a, int b);
-void func_02021f44(ShowSprite *sprite, int frame);
+void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -188,7 +188,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
         for (sprite = 0; sprite < 9; sprite++) {
             work->unk_21c[sprite] = func_02022478(work->spriteFile, 0, 2);
             ((ShowSprite *)work->unk_21c[sprite])->unk_24 = 0;
-            func_02021f44(work->unk_21c[sprite], sprite);
+            SpriteAnim_SetAnimation(work->unk_21c[sprite], sprite);
         }
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);

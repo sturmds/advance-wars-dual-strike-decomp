@@ -14,7 +14,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Flush(void);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 u32 *func_02022478(void *file, int a, int b);
-void func_02021f44(u32 *sprite, int frame);
+void SpriteAnim_SetAnimation(u32 *sprite, int frame);
 void func_02022404(u32 *sprite, int x, int y);
 void Palette_Darken(u8 *palettes, int first, int count, int level);
 
@@ -80,10 +80,10 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
         ((ShowSprite *)work->spriteHandles[1])->unk_24 = 0;
         ((ShowSprite *)work->spriteHandles[2])->unk_24 = 0;
         ((ShowSprite *)work->spriteHandles[3])->unk_24 = 0;
-        func_02021f44(work->spriteHandles[0], 0);
-        func_02021f44(work->spriteHandles[1], 1);
-        func_02021f44(work->spriteHandles[2], 2);
-        func_02021f44(work->spriteHandles[3], 3);
+        SpriteAnim_SetAnimation(work->spriteHandles[0], 0);
+        SpriteAnim_SetAnimation(work->spriteHandles[1], 1);
+        SpriteAnim_SetAnimation(work->spriteHandles[2], 2);
+        SpriteAnim_SetAnimation(work->spriteHandles[3], 3);
         work->spritePos[0][0] = 64;
         work->spritePos[0][1] = 48;
         work->spritePos[1][0] = 192;

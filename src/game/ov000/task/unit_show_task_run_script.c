@@ -10,7 +10,7 @@ extern int data_0229eaec;
 
 void UnitShowTask_Destroy(UnitShowTask *task);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
-void func_02021f44(void *sprite, int frame);
+void SpriteAnim_SetAnimation(void *sprite, int frame);
 void func_020d048c(int x, int y);
 int func_020800a4(void);
 void func_ov000_022ad610(UnitShowTask *task);
@@ -65,7 +65,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
             if (cmd == task->frame) {
                 return;
             }
-            func_02021f44(task->sprite, cmd);
+            SpriteAnim_SetAnimation(task->sprite, cmd);
             task->frame = cmd;
             task->state = UNIT_SHOW_STATE_MOVE;
             return;
@@ -77,7 +77,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
             if (cmd == task->frame) {
                 break;
             }
-            func_02021f44(task->sprite, cmd);
+            SpriteAnim_SetAnimation(task->sprite, cmd);
             task->frame = cmd;
             break;
         }

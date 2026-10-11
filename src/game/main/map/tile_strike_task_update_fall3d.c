@@ -4,7 +4,7 @@
 void Task_ResumeScript(TileStrikeTask *task);
 void Sound_PlaySe(int songId);
 void ScreenShake_Start(int tableIndex, int steps, void *parent);
-void func_02021f44(struct Unk_02022404 *sprite, int animation);
+void SpriteAnim_SetAnimation(struct Unk_02022404 *sprite, int animation);
 int func_020225c8(struct Unk_02022404 *sprite, TileStrikePos *pos, TileStrikePos *rot);
 
 /* The sprite falls 10 units a frame from height 100. At 0 it switches to
@@ -21,7 +21,7 @@ void TileStrikeTask_UpdateFall3d(TileStrikeTask *task)
     if (task->height > 0) {
         return;
     }
-    func_02021f44(task->sprite, 1);
+    SpriteAnim_SetAnimation(task->sprite, 1);
     task->y = task->tileY * 16 + 8;
     Sound_PlaySe(159);
     ScreenShake_Start(0, 8, NULL);

@@ -4,7 +4,7 @@
 #include "game/unit_show_task.h"
 
 ShowSprite *func_02022478(void *file, int a, int b);
-void func_02021f44(ShowSprite *sprite, int frame);
+void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 s32 Rng_Range(s32 min, s32 max);
 
 extern MenuState gMenuState;
@@ -19,10 +19,10 @@ extern MenuState gMenuState;
 void CampaignMap_InitMarkerSprites(CampaignMapTask *task)
 {
     gMenuState.campaignMap.sprites[0] = func_02022478(WORK_FIELD(unk_244), 1, 2);
-    func_02021f44(gMenuState.campaignMap.sprites[0], 0);
+    SpriteAnim_SetAnimation(gMenuState.campaignMap.sprites[0], 0);
     gMenuState.campaignMap.sprites[0]->unk_24 = 0x97c;
     gMenuState.campaignMap.sprites[1] = func_02022478(WORK_FIELD(unk_244), 1, 2);
-    func_02021f44(gMenuState.campaignMap.sprites[1], 1);
+    SpriteAnim_SetAnimation(gMenuState.campaignMap.sprites[1], 1);
     gMenuState.campaignMap.sprites[1]->unk_24 = 0x97c;
     task->unk_64 = 2;
     task->unk_66 = 2;
