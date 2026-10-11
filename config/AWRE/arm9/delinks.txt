@@ -11343,6 +11343,10 @@ src/game/main/func_020fc700.c:
     complete
     .text       start:0x020fc700 end:0x020fc79c
 
+src/game/main/func_020fc79c.c:
+    complete
+    .text       start:0x020fc79c end:0x020fc7d8
+
 src/game/main/func_020fc7d8.c:
     complete
     .text       start:0x020fc7d8 end:0x020fc7f4
