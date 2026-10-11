@@ -19209,6 +19209,9 @@ src/game/main/func_020ffaec.c:
 src/game/main/menus/name_entry_start_task.c:
     .text       start:0x020ffb04 end:0x020ffb34
 
+src/game/main/menus/name_entry_destroy.c:
+    .text       start:0x020ffb34 end:0x020ffb78
+
 src/game/main/menus/name_entry_update.c:
     complete
     .text       start:0x020ffb78 end:0x02100124
