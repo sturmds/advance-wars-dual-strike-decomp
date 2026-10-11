@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void Ov006_UpdateTouch(void);
-void func_ov006_0235eb7c(void);
+void Ov006_UpdateMapEditor(void);
 void Ov006_UpdateArmyCoPanel(void);
 void func_ov006_02353f7c(void);
 void func_ov006_02351aa4(void);
@@ -25,7 +25,7 @@ void DesignRoom_Update(void)
         Ov006_StartScriptAfterDelay();
         break;
     case 1:
-        func_ov006_0235eb7c();
+        Ov006_UpdateMapEditor();
         break;
     case 2:
         Ov006_UpdateArmyCoPanel();
