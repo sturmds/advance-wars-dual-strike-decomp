@@ -6887,6 +6887,10 @@ src/game/main/func_02085068.c:
     complete
     .text       start:0x02085068 end:0x0208507c
 
+src/game/main/menus/combat_setup_handle_client_keys.c:
+    complete
+    .text       start:0x0208507c end:0x02085144
+
 src/game/main/func_0208588c.c:
     complete
     .text       start:0x0208588c end:0x02085898
