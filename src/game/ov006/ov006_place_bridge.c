@@ -14,7 +14,7 @@ void Ov006_RemoveProperty(int x, int y);
 void func_ov006_0235ddac(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
-void func_ov006_0235d7dc(int x, int y);
+void Ov006_RefitCellsAround(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
@@ -26,7 +26,7 @@ void func_ov006_0235d7dc(int x, int y);
     }                                                \
     Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);       \
     Ov006_StoreMapCell(x, y, cell);                 \
-    func_ov006_0235d7dc(x, y)
+    Ov006_RefitCellsAround(x, y)
 
 /* Puts a bridge on tile x, y where Ov006_CanPlaceBridge allows one, with the
  * piece that fits the neighbours. Sea, shoal and reef tiles: the piece runs

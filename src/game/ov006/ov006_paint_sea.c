@@ -10,7 +10,7 @@ void Ov006_RemoveProperty(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_SetTerrain(int x, int y, int terrain);
-void func_ov006_0235d7dc(int x, int y);
+void Ov006_RefitCellsAround(int x, int y);
 void func_ov006_0235ddac(int x, int y);
 void Ov006_RemoveUnitOnImpassableTile(int x, int y);
 
@@ -40,7 +40,7 @@ void Ov006_PaintSea(int x, int y)
         Ov006_BreakCellBlock(x, y);
         Ov006_StoreMapCell(x, y, CELL_SEA);
         Ov006_SetTerrain(x, y, TERRAIN_SEA);
-        func_ov006_0235d7dc(x, y);
+        Ov006_RefitCellsAround(x, y);
     } else {
         switch (STATE->mapTiles->tiles[TILE_INDEX(x, y)]) {
         case TERRAIN_SEA:

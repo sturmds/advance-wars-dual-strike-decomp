@@ -7,7 +7,7 @@ int Ov006_FitPipeCell(int x, int y, int flag);    /* guess: picks the cell code 
 void Ov006_RefitJoinedCellsInCross(int x, int y);
 void func_ov006_0236146c(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
-void func_ov006_0235d7dc(int x, int y);
+void Ov006_RefitCellsAround(int x, int y);
 void Ov006_CheckReefsAround(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 
@@ -20,7 +20,7 @@ void Ov006_PlacePipe(int x, int y)
     Ov006_RefitJoinedCellsInCross(x, y);
     func_ov006_0236146c(x, y);
     Ov006_ResetNeighborsToSea(x, y);
-    func_ov006_0235d7dc(x, y);
+    Ov006_RefitCellsAround(x, y);
     Ov006_CheckReefsAround(x, y);
     Ov006_BreakCellBlock(x, y);
 }

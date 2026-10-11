@@ -9,7 +9,7 @@ void Ov006_StoreMapCell(int x, int y, int cell);    /* guess: sets the cell code
 int func_ov006_02351238(int x, int y);               /* reads the cell code at x, y */
 void func_ov006_0236146c(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
-void func_ov006_0235d7dc(int x, int y);
+void Ov006_RefitCellsAround(int x, int y);
 void Ov006_CheckReefsAround(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 
@@ -28,7 +28,7 @@ void Ov006_PlaceRoad(int x, int y)
     Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
     func_ov006_0236146c(x, y);
     Ov006_ResetNeighborsToSea(x, y);
-    func_ov006_0235d7dc(x, y);
+    Ov006_RefitCellsAround(x, y);
     Ov006_CheckReefsAround(x, y);
     Ov006_BreakCellBlock(x, y);
 }
