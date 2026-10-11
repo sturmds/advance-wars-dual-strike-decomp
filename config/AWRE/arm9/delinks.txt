@@ -20693,6 +20693,10 @@ src/sdk/func_0210a420.c:
     complete
     .text       start:0x0210a420 end:0x0210a424
 
+src/sdk/gx/gx_master_brightness.c:
+    complete
+    .text       start:0x0210a424 end:0x0210a450
+
 src/sdk/gxs_set_graphics_mode.c:
     complete
     .text       start:0x0210a450 end:0x0210a46c
