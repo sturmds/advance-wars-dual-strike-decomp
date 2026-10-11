@@ -8012,6 +8012,10 @@ src/game/main/link/link_draw_entry_markers.c:
     complete
     .text       start:0x0207ef54 end:0x0207f2e0
 
+src/game/main/link/link_menu_task_handle_peer_messages.c:
+    complete
+    .text       start:0x0207f4a8 end:0x0207f544
+
 src/game/main/func_0207f544.c:
     complete
     .text       start:0x0207f544 end:0x0207f550
