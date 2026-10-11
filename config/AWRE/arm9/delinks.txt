@@ -5126,6 +5126,10 @@ src/game/main/func_0204184c.c:
     complete
     .text       start:0x0204184c end:0x02041864
 
+src/game/main/func_02041864.c:
+    complete
+    .text       start:0x02041864 end:0x020418a4
+
 src/game/main/script/task_resume_when_script_idle.c:
     complete
     .text       start:0x020418a4 end:0x020418cc
@@ -5493,6 +5497,10 @@ src/game/main/menus/page_strip_task_create.c:
 src/game/main/menus/page_strip_task_draw.c:
     complete
     .text       start:0x02048310 end:0x020485f0
+
+src/game/main/func_020485f0.c:
+    complete
+    .text       start:0x020485f0 end:0x020486c8
 
 src/game/main/func_0204870c.c:
     complete
