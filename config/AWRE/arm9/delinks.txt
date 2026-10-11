@@ -7147,6 +7147,10 @@ src/game/main/func_02057ef8.c:
     complete
     .text       start:0x02057ef8 end:0x02057f28
 
+src/game/main/copowers/tag_gauge_count_up.c:
+    complete
+    .text       start:0x02058034 end:0x020580b8
+
 src/game/main/copowers/tag_gauge_slide_in.c:
     complete
     .text       start:0x020580b8 end:0x0205815c
