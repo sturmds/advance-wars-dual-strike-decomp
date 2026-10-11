@@ -9,7 +9,7 @@ extern const char gTilesetPaletteFileDefault[];
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 
 /* Name of a palette file for the map's tileset (bit 7 ignored): "0af" for
- * tilesets 2 and 3, "0ae" for the others. func_020db4fc loads it. */
+ * tilesets 2 and 3, "0ae" for the others. Map_LoadExtraObjTiles loads it. */
 const char *Tileset_GetPaletteFileName(void)
 {
     int tileset = VIEW->tileset & 0x7f;
