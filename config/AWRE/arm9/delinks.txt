@@ -20197,7 +20197,7 @@ src/game/main/sound/sound_strm_refill.c:
     complete
     .text       start:0x02105a50 end:0x02105b08
 
-src/game/main/func_02105b08.c:
+src/game/main/sound/sound_strm_on_alarm.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
 
@@ -20224,6 +20224,10 @@ src/game/main/sound/sound_strm_stop_if_active.c:
 src/game/main/sound/sound_strm_start.c:
     complete
     .text       start:0x02105cb4 end:0x02105d10
+
+src/game/main/sound/sound_strm_setup.c:
+    complete
+    .text       start:0x02105d10 end:0x02105ee0
 
 src/game/main/sound/sound_strm_unlock_channels.c:
     complete
