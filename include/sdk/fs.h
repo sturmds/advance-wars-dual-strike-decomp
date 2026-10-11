@@ -205,6 +205,7 @@ struct FSArchive {
 };
 
 #define OVERLAY_STORED_PACKED 0x1     /* bit 0 of OverlayTableRow.flag */
+#define OVERLAY_NEEDS_HMAC_CHECK 0x2   /* has a digest to check under Download Play */
 
 /* One entry of the ROM's ARM9 overlay table (y9.bin), 32 bytes. */
 typedef struct OverlayTableRow {
@@ -230,6 +231,11 @@ typedef struct FSOverlayInfo {
     u32 romTop;                        /* first byte of the overlay file in the ROM */
     u32 romSize;                       /* length of the overlay file */
 } FSOverlayInfo;
+
+/* SHA-1 HMAC of one overlay, checked before a downloaded program runs it. */
+typedef struct OverlayHmacBytes {
+    u8 bytes[20];
+} OverlayHmacBytes;
 
 /* The archive for the cartridge ROM file system. */
 extern FSArchive gRomFileArchive;

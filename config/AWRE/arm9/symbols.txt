@@ -5568,7 +5568,7 @@ FS_UnloadOverlay kind:function(arm,size=0x54) addr:0x02112f50
 FS_LoadOverlay kind:function(arm,size=0x5c) addr:0x02112fa4
 func_02113000 kind:function(arm,size=0x1c) addr:0x02113000
 Overlay_RunDestructorsInRange kind:function(arm,size=0x120) addr:0x0211301c
-func_0211313c kind:function(arm,size=0x120) addr:0x0211313c
+FS_StartOverlay kind:function(arm,size=0x120) addr:0x0211313c
 Overlay_CheckKeyedHash kind:function(arm,size=0xa4) addr:0x0211325c
 FS_LoadOverlayImage kind:function(arm,size=0xa0) addr:0x02113300
 func_021133a0 kind:function(arm,size=0x114) addr:0x021133a0
@@ -8466,7 +8466,7 @@ data_0216dffc kind:data(any) addr:0x0216dffc
 data_0216e000 kind:data(any) addr:0x0216e000
 data_0216e004 kind:data(any) addr:0x0216e004
 data_0216e008 kind:data(any) addr:0x0216e008
-data_0216e00c kind:data(any) addr:0x0216e00c
+gOverlayExpectedHmacsEnd kind:data(any) addr:0x0216e00c
 gOverlayLoaded kind:bss addr:0x0216e020
 data_0216e03c kind:bss addr:0x0216e03c
 data_0216e044 kind:bss addr:0x0216e044
@@ -9118,3 +9118,4 @@ data_022ad544 kind:bss addr:0x022ad544
 data_022ad548 kind:bss addr:0x022ad548
 _ffltu kind:function(arm,size=0x7c) addr:0x02128498
 _fflt kind:function(arm,size=0xcc) addr:0x02128514
+gOverlayExpectedHmacs kind:data(any) addr:0x0216e00c
