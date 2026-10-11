@@ -14,7 +14,7 @@ void RangeMap_SetBuffer(void *tileMap);
 void RangeMap_Fill(int value);
 int MapObject_GetDrawOffsetX(int kind, int variant);
 int MapObject_GetDrawOffsetY(int kind, int variant);
-void func_01ffad44(u16 x, u16 y, u16 variant, u16 size, int value);
+void RangeMap_FillCone(u16 x, u16 y, u16 variant, u16 size, int value);
 BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int DamageFromCannons(int playerIndex, int coSlot);
@@ -22,7 +22,7 @@ void AiTargetList_Clear(void);
 void AiTargetList_Add(u16 a, u16 b, u16 unitSlot, u16 c);
 
 /* Picks the target of a cannon object (kind, variant) at (x, y): the visible
- * enemy unit in its range (marked by func_01ffad44) worth the most, hp times
+ * enemy unit in its range (marked by RangeMap_FillCone) worth the most, hp times
  * cost / 100, with ties going to the later tile. Adds it to the AI target
  * list with damage less the target owner's DamageFromCannons reduction, or
  * empties the list when no unit is in range. */
@@ -47,7 +47,7 @@ void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant)
     RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
     RangeMap_Fill(-1);
     dx = MapObject_GetDrawOffsetX(kind, variant);
-    func_01ffad44(x + dx, y + MapObject_GetDrawOffsetY(kind, variant), variant, data_02167eb4[kind], 0);
+    RangeMap_FillCone(x + dx, y + MapObject_GetDrawOffsetY(kind, variant), variant, data_02167eb4[kind], 0);
 
     for (ty = 0; ty < STATE->unk_1c4->mapHeight; ty++) {
         for (tx = 0; tx < STATE->unk_1c4->mapWidth; tx++) {
