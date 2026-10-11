@@ -390,6 +390,7 @@ int func_02116f74(int apiid, WMCallbackFunc callback);
 u32 WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
 u32 WM_GetMPSendBufferSize(void);
 u16 *DataShare_StationBlockPtr(WMDataSharingInfo *dsInfo, u16 aidBitmap, u16 *receiveBuf, u32 aid);
+u16 *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, u16 aid);
 BOOL Wireless_ParentSettingsValid(WMParentParam *param);
 
 #endif
