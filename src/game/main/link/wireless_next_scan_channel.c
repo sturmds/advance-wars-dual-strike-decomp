@@ -1,6 +1,6 @@
 #include "types.h"
 
-u16 func_02117368(void);
+u16 WM_GetAllowedChannel(void);
 
 /* Sets *channel to the next allowed channel after the current one, wrapping
  * after 16. False when no channel is allowed. */
@@ -11,7 +11,7 @@ BOOL Wireless_NextScanChannel(u16 *channel)
     int i;
     u16 current;
 
-    allowed = func_02117368();
+    allowed = WM_GetAllowedChannel();
     if (allowed == 0) {
         return FALSE;
     }

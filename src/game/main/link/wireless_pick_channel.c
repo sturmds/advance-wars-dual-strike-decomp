@@ -1,6 +1,6 @@
 #include "types.h"
 
-u16 func_02117368(void);
+u16 WM_GetAllowedChannel(void);
 int MainLoop_GetFrameCount(void);
 s32 HwMod32(s32 numerator, s32 denominator);
 
@@ -12,7 +12,7 @@ u16 Wireless_PickChannel(void)
     int i;
     int channel;
 
-    allowed = func_02117368();
+    allowed = WM_GetAllowedChannel();
     if (allowed == 0) {
         return 0;
     }
