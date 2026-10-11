@@ -7127,6 +7127,10 @@ src/game/main/copowers/tag_power_screen_fade_to_white.c:
 src/game/main/copowers/func_02055f84.c:
     .text       start:0x02055f84 end:0x02056508
 
+src/game/main/copowers/tag_power_screen_hold_name.c:
+    complete
+    .text       start:0x020566bc end:0x0205677c
+
 src/game/main/screen/tag_power_screen_set_up.c:
     complete
     .text       start:0x02056aa8 end:0x02057eec
