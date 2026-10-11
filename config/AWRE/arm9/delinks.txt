@@ -12610,6 +12610,9 @@ src/game/main/map/info_panel_slide_right.c:
     complete
     .text       start:0x020cb5f4 end:0x020cb72c
 
+src/game/main/map/func_020cb848.c:
+    .text       start:0x020cb848 end:0x020cb9f4
+
 src/game/main/map/info_panel_draw.c:
     complete
     .text       start:0x020cb9f4 end:0x020cc910
