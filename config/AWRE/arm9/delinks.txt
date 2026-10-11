@@ -2070,6 +2070,10 @@ src/game/main/script/event_script_stop_text_if_skipping.c:
     complete
     .text       start:0x0201a814 end:0x0201a848
 
+src/game/main/script/text_box_update_skip_input.c:
+    complete
+    .text       start:0x0201a848 end:0x0201a8bc
+
 src/game/main/script/event_script_start.c:
     complete
     .text       start:0x0201ab18 end:0x0201ab8c
