@@ -6229,6 +6229,10 @@ src/game/main/func_020754d0.c:
     complete
     .text       start:0x020754d0 end:0x02075520
 
+src/game/main/menus/func_02075520.c:
+    complete
+    .text       start:0x02075520 end:0x02075578
+
 src/game/main/menus/status_screen_draw.c:
     complete
     .text       start:0x02075770 end:0x02075df0
