@@ -4,7 +4,7 @@
 
 void Screen_SetCurrentBoth(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02058f04(int x, int y, int side);
+void TagBreak_DrawSidePiece(int x, int y, int side);
 s16 func_0202a144(u8 slot);
 void func_0202a0b4(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -51,7 +51,7 @@ extern u8 data_0229fb90[];             /* palette rows 3-5 as loaded, from res_t
 
 /* Script task step, close to func_020593c8. Frame 0 sets both screens to
  * alpha-blend BG0 over BG1-BG3 and OBJ. Every frame the two pieces drawn by
- * func_02058f04 slide apart (eased over SLIDE_FRAMES frames) and task->unk_58
+ * TagBreak_DrawSidePiece slide apart (eased over SLIDE_FRAMES frames) and task->unk_58
  * text sprites are redrawn at y 80. Frames 1-16 raise eva with the frame,
  * fading BG0 in. Frames 17-25 blend palette rows 3-5 (saved in
  * data_0229fb90) toward white on both screens; frame 26 makes them fully
@@ -77,8 +77,8 @@ void func_02055f84(Task *task)
     }
     FRAME(task)++;
     SLIDE(task) = Math_Ease(1, 0, 128, FRAME(task), SLIDE_FRAMES);
-    func_02058f04(72 - SLIDE(task), 224, 0);
-    func_02058f04(SLIDE(task) + 184, 224, 1);
+    TagBreak_DrawSidePiece(72 - SLIDE(task), 224, 0);
+    TagBreak_DrawSidePiece(SLIDE(task) + 184, 224, 1);
     for (i = 0; i < task->unk_58; i++) {
         func_0202a0b4(i, func_0202a144(i) & 0x1ff, 80, 0, 0);
     }

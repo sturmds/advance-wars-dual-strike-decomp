@@ -5244,6 +5244,10 @@ src/game/main/copowers/tag_break_fade_in_blend.c:
 src/game/main/func_02058b1c.c:
     .text       start:0x02058b1c end:0x02058f04
 
+src/game/main/copowers/tag_break_draw_side_piece.c:
+    complete
+    .text       start:0x02058f04 end:0x02059094
+
 src/game/main/func_02059280.c:
     complete
     .text       start:0x02059280 end:0x02059294
