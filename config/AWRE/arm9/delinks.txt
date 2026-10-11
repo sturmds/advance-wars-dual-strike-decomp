@@ -685,6 +685,10 @@ src/game/main/file/file_unpack_to.c:
     complete
     .text       start:0x0200bcf0 end:0x0200be6c
 
+src/game/main/file/file_read_to.c:
+    complete
+    .text       start:0x0200be6c end:0x0200bf24
+
 src/game/main/mem/mem_free.c:
     complete
     .text       start:0x0200bf24 end:0x0200bf40
