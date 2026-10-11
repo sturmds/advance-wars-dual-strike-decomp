@@ -9,7 +9,7 @@ void Screen_SetCurrentBoth(void *state);
 
 /* Script step: on both screens, sets up a darken blend of all four layers
  * and the sprites, starting at 0 / 16. The update that follows in the
- * script (func_020763cc) raises it to 16 / 16. */
+ * script (ScreenDarkenOut_Update) raises it to 16 / 16. */
 void ScreenDarkenOut_Start(Task *task)
 {
     Unk_027c0280 *saved0280 = data_027c0280;
