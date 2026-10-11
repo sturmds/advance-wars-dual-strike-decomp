@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-/* Script of (opcode, argument) pairs. It runs step func_020e44a4 three
+/* Script of (opcode, argument) pairs. It runs step CoveringFire_StartBlast three
  * times, each after a different step; probably one round per missile. */
 extern const TaskScriptCmd gCoveringFireScript[];
 
