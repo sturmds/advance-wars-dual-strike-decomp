@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/map_header.h"
 
-void func_020d7808(int index, Unk_02080440_1c4 *map);
+void DesignMap_LoadIntoState(int index, Unk_02080440_1c4 *map);
 void Camera_ResetToPreset0(void *a);
 
 extern Unk_02080440 *data_027c027c;
@@ -11,7 +11,7 @@ extern u8 data_022a7d5c[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Map_LoadIntoState for a custom map id: func_020d7808 loads
+/* Map_LoadIntoState for a custom map id: DesignMap_LoadIntoState loads
  * slot mapId - MAP_CUSTOM_FIRST into the state's map data, then each tile
  * code in mapCells is converted through tileCodeTerrain into tiles. */
 void Map_LoadCustomIntoState(int mapId)
@@ -19,7 +19,7 @@ void Map_LoadCustomIntoState(int mapId)
     int x;
     int y;
 
-    func_020d7808((u8)(mapId - MAP_CUSTOM_FIRST), STATE->unk_1c4);
+    DesignMap_LoadIntoState((u8)(mapId - MAP_CUSTOM_FIRST), STATE->unk_1c4);
     Camera_ResetToPreset0(data_022a7d5c);
     STATE->unk_1c4->scrollX = 0;
     STATE->unk_1c4->scrollY = 0;
