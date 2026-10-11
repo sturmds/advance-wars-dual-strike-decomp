@@ -2,7 +2,7 @@
 #include "game/ai_site.h"
 
 int func_0209658c(void);
-void func_02094d94(int site);
+void AiSite_SumNearbyUnitHp(int site);
 int AiSite_ChooseUnitToBuild(int site);
 void func_0209316c(int site);
 
@@ -11,7 +11,7 @@ void func_0209316c(int site);
 extern u8 data_0229e5bf[][sizeof(AiSite)];
 
 /* End-actions step 2. func_0209658c picks a site record (-1: none), then
- * func_02094d94 fills the range map from it. If AiSite_ChooseUnitToBuild finds nothing
+ * AiSite_SumNearbyUnitHp fills the range map from it. If AiSite_ChooseUnitToBuild finds nothing
  * for the site, its kind becomes 0xfe, else func_0209316c queues an action
  * for it. Returns 1 when it picked a site. */
 BOOL AiTurn_TrySiteAction(void)
@@ -21,7 +21,7 @@ BOOL AiTurn_TrySiteAction(void)
     if (site == -1) {
         return 0;
     }
-    func_02094d94(site);
+    AiSite_SumNearbyUnitHp(site);
     if (AiSite_ChooseUnitToBuild(site) != -1) {
         func_0209316c(site);
         return 1;

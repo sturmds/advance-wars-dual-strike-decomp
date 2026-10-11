@@ -6645,6 +6645,10 @@ src/game/main/ai/ai_build_sum_unit_hp.c:
     complete
     .text       start:0x02094bfc end:0x02094d94
 
+src/game/main/ai/ai_site_sum_nearby_unit_hp.c:
+    complete
+    .text       start:0x02094d94 end:0x02095014
+
 src/game/main/ai/ai_count_enemy_sub_reach.c:
     complete
     .text       start:0x020972f0 end:0x020973fc
