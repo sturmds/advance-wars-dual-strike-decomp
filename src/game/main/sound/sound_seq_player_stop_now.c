@@ -2,7 +2,7 @@
 #include "game/sound_handle.h"
 
 void func_0210fe48(int hwChannel, int volume);
-void func_0210fe60(int hwChannel);
+void SND_StopSeq(int hwChannel);
 void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 
 /* Stops a sequence player at once and returns it to the free list. A player
@@ -13,6 +13,6 @@ void SoundSeqPlayer_StopNow(SoundSeqPlayer *player)
     if (player->state == SEQ_PLAYER_STOPPING) {
         func_0210fe48(player->hwChannel, -723);
     }
-    func_0210fe60(player->hwChannel);
+    SND_StopSeq(player->hwChannel);
     SoundSeqPlayer_Release(player);
 }
