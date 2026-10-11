@@ -2218,6 +2218,10 @@ src/game/main/func_0201b888.c:
     complete
     .text       start:0x0201b888 end:0x0201b8a4
 
+src/game/main/script/event_cmd_add_to_view_target_tile.c:
+    complete
+    .text       start:0x0201b8a4 end:0x0201b930
+
 src/game/main/func_0201b9a4.c:
     complete
     .text       start:0x0201b9a4 end:0x0201b9c8
