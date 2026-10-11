@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 int func_020a74f8(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-void func_020b51b4(void);
+void AiSeaTransport_PropertiesOutweighArmed(void);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 void func_020b50bc(int x, int y)
@@ -16,5 +16,5 @@ void func_020b50bc(int x, int y)
     MapUnit *carried = &units[slot];
 
     RangeMap_FillMoves(x, y, carried->type, func_020a74f8(carried), 0);
-    func_020b51b4();
+    AiSeaTransport_PropertiesOutweighArmed();
 }
