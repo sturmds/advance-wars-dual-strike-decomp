@@ -2206,6 +2206,13 @@ src/game/main/script/event_cmd_wait_for_attack_tasks.c:
     complete
     .text       start:0x0201b7ac end:0x0201b7e8
 
+src/game/main/script/event_cmd_stop_helper_script.c:
+    complete
+    .text       start:0x0201b7e8 end:0x0201b824
+
+src/game/main/script/event_cmd_start_helper_script.c:
+    .text       start:0x0201b824 end:0x0201b888
+
 src/game/main/func_0201b888.c:
     complete
     .text       start:0x0201b888 end:0x0201b8a4

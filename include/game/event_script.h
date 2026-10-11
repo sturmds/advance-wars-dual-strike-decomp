@@ -40,7 +40,7 @@ typedef struct EventScriptSlot {
     s8 unk_10;                         /* set by the code that starts a script; a few scripts read it */
     u8 player;                         /* player slot the hold callback waits for */
     s16 day;                           /* day the hold callback waits for; negative: any */
-    u8 pad_14[0x18 - 0x14];
+    const EventScriptCommand *unk_14;  /* set by the event command that starts the script: the starting slot's pc */
 } EventScriptSlot;
 
 extern EventScriptSlot data_022977f0[EVENT_SCRIPT_SLOTS];
