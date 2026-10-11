@@ -21423,6 +21423,10 @@ src/sdk/os/os_init_arena.c:
     complete
     .text       start:0x0210e530 end:0x0210e648
 
+src/sdk/os/cp15_data_tcm_base.c:
+    complete
+    .text       start:0x0210e648 end:0x0210e65c
+
 src/sdk/os/func_0210e6f8.c:
     complete
     .text       start:0x0210e6f8 end:0x0210e70c
