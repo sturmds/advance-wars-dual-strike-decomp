@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_0204f450(int x, int y, int side);
+void CampaignMap_DrawNumberTag(int x, int y, int side);
 void Task_ResumeScript(CampaignMapTask *task);
 
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ void CampaignMap_SlideInNumber(CampaignMapTask *task)
         slide = Math_Ease(4, 256, 0, task->step, 16);
     }
     gfx = data_027c0280;
-    func_0204f450(slide + (task->fromX - gfx->bgScrollX[gfx->layer3Bg]), task->fromY - gfx->bgScrollY[gfx->layer3Bg], task->side);
+    CampaignMap_DrawNumberTag(slide + (task->fromX - gfx->bgScrollX[gfx->layer3Bg]), task->fromY - gfx->bgScrollY[gfx->layer3Bg], task->side);
     if (task->step != 16) {
         return;
     }
