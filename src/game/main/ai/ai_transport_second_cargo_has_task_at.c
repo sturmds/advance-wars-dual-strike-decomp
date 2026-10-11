@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020b4bd0(int x, int y);
+BOOL AiTransport_SecondCargoReachesTargetAt(int x, int y);
 BOOL func_020b4da8(int x, int y);
 BOOL AiSeaTransport_FootUnitsOutnumberArmed(int x, int y);
 BOOL func_020b50bc(int x, int y);
@@ -52,7 +52,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
         case 8:
         case 9:
         case 10:
-            check = func_020b4bd0;
+            check = AiTransport_SecondCargoReachesTargetAt;
             break;
         default:
             check = NULL;

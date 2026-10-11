@@ -11681,6 +11681,10 @@ src/game/main/ai/ai_transport_second_cargo_has_task_at.c:
     complete
     .text       start:0x020b4948 end:0x020b4bd0
 
+src/game/main/ai/ai_transport_second_cargo_reaches_target_at.c:
+    complete
+    .text       start:0x020b4bd0 end:0x020b4ca4
+
 src/game/main/ai/func_020b4ca4.c:
     complete
     .text       start:0x020b4ca4 end:0x020b4d04
