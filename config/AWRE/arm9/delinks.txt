@@ -1879,6 +1879,10 @@ src/game/main/script/event_script_clear_flag.c:
     complete
     .text       start:0x0201aecc end:0x0201af10
 
+src/game/main/script/event_script_set_flag.c:
+    complete
+    .text       start:0x0201af10 end:0x0201af54
+
 src/game/main/func_0201b130.c:
     complete
     .text       start:0x0201b130 end:0x0201b150
