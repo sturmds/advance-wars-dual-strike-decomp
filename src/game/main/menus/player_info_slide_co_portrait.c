@@ -16,16 +16,11 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int
 #define SHOWN_CO_OFFSET ((u32) & ((MenuState *)0)->unk_0206d67c.coShown)
 #define SHOWN_CO(player, slot) (((u8 *)&gMenuState + (player) * 2 + (slot))[SHOWN_CO_OFFSET])
 
-/* The task's unk_2e and unk_30 hold signed x offsets: read them as s16. */
-#define START_X(task) (*(s16 *)&(task)->unk_2e)
-#define OFFSET_X(task) (*(s16 *)&(task)->unk_30)
-
 /* Per-frame callback of the player info sprite task, drawn on the screen of data_027c0288.unk_04.
  * When the selected CO changes, the shown portrait slides 144 pixels out over
  * 8 frames (unk_34 0), waits 4 more frames, loads the new CO's graphics and
  * slides back in (unk_34 1). Picking the shown CO again while it slides out
- * turns it around. unk_2a counts the slide's frames, unk_2c the wait,
- * unk_2e is the slide's start offset and unk_30 the current one. */
+ * turns it around. unk_2a counts the slide's frames, unk_2c the wait. */
 void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
 {
     Unk_027c0280 *saved0280;
@@ -38,12 +33,12 @@ void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
         if (task->unk_2c == 0) {
             if (task->coButton == task->prevCoButton) {
                 if (task->unk_34 == 0) {
-                    task->unk_2e = OFFSET_X(task);
+                    task->slideStartX = task->slideX;
                     task->unk_2a = 0;
                     task->unk_34 = 1;
                 }
             } else if (task->unk_34 == 1) {
-                task->unk_2e = OFFSET_X(task);
+                task->slideStartX = task->slideX;
                 task->unk_2a = 0;
                 task->unk_34 = 0;
             }
@@ -51,14 +46,14 @@ void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
         task->unk_2c = 0;
     }
     if (task->unk_34 == 0) {
-        task->unk_30 = START_X(task) + Math_Ease(1, 0, 144, task->unk_2a, 8);
-        if (OFFSET_X(task) > 144) {
-            task->unk_30 = 144;
+        task->slideX = task->slideStartX + Math_Ease(1, 0, 144, task->unk_2a, 8);
+        if (task->slideX > 144) {
+            task->slideX = 144;
         }
     } else {
-        task->unk_30 = Math_Ease(4, START_X(task), 0, task->unk_2a, 8);
+        task->slideX = Math_Ease(4, task->slideStartX, 0, task->unk_2a, 8);
     }
-    func_02002620((256 - (72 - OFFSET_X(task))) & 0x1ff, 160, 0, 108, 0, FALSE);
+    func_02002620((256 - (72 - task->slideX)) & 0x1ff, 160, 0, 108, 0, FALSE);
     if (task->unk_2a == 8) {
         if (task->unk_34 == 0) {
             if (task->unk_2c < 4) {
@@ -67,7 +62,7 @@ void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
                 task->prevCoButton = task->coButton;
                 player = task->coButton >> 1;
                 Co_LoadArmyGraphicsAndPalette(SHOWN_CO(player, task->coButton & 1), 108, 0, player + 1);
-                task->unk_2e = OFFSET_X(task);
+                task->slideStartX = task->slideX;
                 task->unk_34 = 1;
                 task->unk_2a = 0;
                 task->unk_2c = 0;

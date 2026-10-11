@@ -26,7 +26,7 @@ typedef struct AiSite {
     u8 propertyMoves;                  /* AiSiteGroup_RateSurroundings: Infantry move cost to the nearest property the team does not own; 0xff: not set */
     u8 unk_09;                         /* lowest range-map value of a current player's Infantry or Mech (func_02092134) */
     u8 unk_0a;                         /* same for a unit waiting for a T-Copter that fits a Lander */
-    s8 score;                          /* set by AiSite_ScorePiperunnerNeed */
+    u8 score;                          /* set by AiSite_ScorePiperunnerNeed */
 } AiSite;
 
 typedef char AiSite_size_check[sizeof(AiSite) == 12 ? 1 : -1];

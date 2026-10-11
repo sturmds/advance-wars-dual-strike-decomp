@@ -16,7 +16,7 @@
  * data_02166d18 by Weather_Set). */
 typedef struct WeatherTaskWork {
     u8 pad_00[0x20];
-    u16 weather;                       /* WEATHER_* the task shows */
+    s16 weather;                       /* WEATHER_* the task shows */
 } WeatherTaskWork;
 
 /* One record of gWeatherInfo, per WEATHER_* value (0 to 3). */

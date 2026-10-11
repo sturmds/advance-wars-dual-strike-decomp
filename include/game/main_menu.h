@@ -45,7 +45,7 @@ typedef struct MainMenuWork {
 /* The main menu's task: Task fields, with these two read as halfwords. */
 typedef struct MainMenuTask {
     u8 pad_00[0x4c];
-    u16 unk_4c;
+    s16 unk_4c;
     u8 pad_4e[0x52 - 0x4e];
     u16 unk_52;                        /* frame count & 7 at setup */
 } MainMenuTask;

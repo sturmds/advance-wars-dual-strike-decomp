@@ -18,5 +18,5 @@ void VsSetup_ForceRankTaskStart(ForceRankTask *task)
         return;
     }
     gMenuState.setup.unk_2ea = 2;
-    ForceRankScreen_Start(task->co, data_027c027c->unk_48[data_027c0284]->gameMode, (s16)task->forceRankSet, (int)task);
+    ForceRankScreen_Start(task->co, data_027c027c->unk_48[data_027c0284]->gameMode, task->forceRankSet, (int)task);
 }

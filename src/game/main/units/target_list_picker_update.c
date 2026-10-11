@@ -81,15 +81,14 @@ void TargetListPicker_Update(Task *task)
     }
     task->unk_64 = index;
     target = func_020dc524((s16)task->unk_64);
-    /* needed to match: the original reads the tile as s16 */
-    GAME->cursorX = *(s16 *)&target->unk_04;
-    GAME->cursorY = *(s16 *)&target->unk_06;
+    GAME->cursorX = target->unk_04;
+    GAME->cursorY = target->unk_06;
     if (moved) {
         SecondScreen_ShowCursorInfo(GAME->mapTiles->tiles[TILE_INDEX(GAME->cursorX, GAME->cursorY)],
                                     &GAME->units[GAME->mapTiles->unitAt[TILE_INDEX(GAME->cursorX, GAME->cursorY)]]);
         Sound_PlaySe(0x1000b);
     }
-    func_020f5888((s16)target->unk_04, (s16)target->unk_06);
+    func_020f5888(target->unk_04, target->unk_06);
     if (ScriptSlot_Find(gMapScrollScript) != -1) {
         ScreenConfig_RunActionHook();
         return;

@@ -7,8 +7,8 @@ extern MenuState gMenuState;
 /* Sets up the sprite task of the player info screen for the shown CO. */
 void PlayerInfo_SpriteTaskInit(PlayerInfoSpriteTask *task)
 {
-    task->unk_2e = 0;
-    task->unk_30 = 0;
+    task->slideStartX = 0;
+    task->slideX = 0;
     task->coButton = (gMenuState.unk_0206d67c.player - 1) * 2 + gMenuState.unk_0206d67c.slot;
     task->prevCoButton = task->coButton;
     task->unk_2a = 8;

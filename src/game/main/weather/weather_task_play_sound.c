@@ -9,5 +9,5 @@ extern const WeatherInfo gWeatherInfo[];
  * needed to match (ldrsh). */
 void WeatherTask_PlaySound(WeatherTaskWork *work)
 {
-    Sound_PlaySe(gWeatherInfo[*(s16 *)&work->weather].sound);
+    Sound_PlaySe(gWeatherInfo[work->weather].sound);
 }

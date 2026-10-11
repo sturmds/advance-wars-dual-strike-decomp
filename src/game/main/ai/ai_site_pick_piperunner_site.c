@@ -27,9 +27,8 @@ int AiSite_PickPiperunnerSite(void)
         if (site->type != SITE_BASE) {
             continue;
         }
-        /* needed to match: the score is loaded as unsigned */
-        if (bestScore < (u8)site->score) {
-            bestScore = (u8)site->score;
+        if (bestScore < site->score) {
+            bestScore = site->score;
             best = i;
         }
     }

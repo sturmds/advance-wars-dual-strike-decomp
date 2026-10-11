@@ -3,10 +3,6 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-/* x and y hold OAM attribute bits and are read as signed halfwords. */
-#define SPRITE_X(sprite) ((s16)(sprite)->x)
-#define SPRITE_Y(sprite) ((s16)(sprite)->y)
-
 void func_01ff817c(int x, int y, const void *data, int unk08, int unk0a);
 void func_01ff8368(int x, int y, const void *data, int unk08);
 void Oam_PutCells(int attr1, int attr0, const void *cells, int attr2, int tile);
@@ -30,16 +26,16 @@ void SpriteList_Draw(int list)
             sprite = sprite->next;
             continue;
         }
-        if ((SPRITE_X(sprite) & 0x1000) && !((((u16 *)sprite->unk_0c)[0] | SPRITE_Y(sprite)) & 0x100)) {
+        if ((sprite->x & 0x1000) && !((((u16 *)sprite->unk_0c)[0] | sprite->y) & 0x100)) {
             if (sprite->unk_0a != 0) {
-                func_01ff817c(SPRITE_X(sprite), SPRITE_Y(sprite), sprite->unk_0c, sprite->unk_08, sprite->unk_0a);
+                func_01ff817c(sprite->x, sprite->y, sprite->unk_0c, sprite->unk_08, sprite->unk_0a);
             } else {
-                func_01ff8368(SPRITE_X(sprite), SPRITE_Y(sprite), sprite->unk_0c, sprite->unk_08);
+                func_01ff8368(sprite->x, sprite->y, sprite->unk_0c, sprite->unk_08);
             }
         } else if (sprite->unk_0a != 0) {
-            Oam_PutCells(SPRITE_X(sprite), SPRITE_Y(sprite), sprite->unk_0c, sprite->unk_08, sprite->unk_0a);
+            Oam_PutCells(sprite->x, sprite->y, sprite->unk_0c, sprite->unk_08, sprite->unk_0a);
         } else {
-            Oam_PutSprite(SPRITE_X(sprite), SPRITE_Y(sprite), sprite->unk_0c, sprite->unk_08);
+            Oam_PutSprite(sprite->x, sprite->y, sprite->unk_0c, sprite->unk_08);
         }
         sprite = sprite->next;
     } while (sprite != NULL);

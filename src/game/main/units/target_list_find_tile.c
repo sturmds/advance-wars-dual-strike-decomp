@@ -11,7 +11,7 @@ int TargetList_FindTile(int count, int tileX, int tileY)
 
     for (i = 0; i < count; i++) {
         UnitTargetEntry *target = func_020dc524(i);
-        if (tileX == (s16)target->unk_04 && tileY == (s16)target->unk_06) {
+        if (tileX == target->unk_04 && tileY == target->unk_06) {
             return i;
         }
     }

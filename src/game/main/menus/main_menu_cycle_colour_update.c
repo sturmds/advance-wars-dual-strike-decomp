@@ -13,7 +13,7 @@ void MainMenu_CycleColourUpdate(MainMenuTask *task)
 {
     int i;
 
-    if ((*(s16 *)&task->unk_4c & 3) == 0) {
+    if ((task->unk_4c & 3) == 0) {
         func_0210c8e8();
         for (i = 0; i < 9; i++) {
             (&VRAM_LCDC_F[i * 16])[12] = ((u16 *)WORK->unk_1c)[task->unk_52 & 15];
@@ -21,5 +21,5 @@ void MainMenu_CycleColourUpdate(MainMenuTask *task)
         func_0210c81c();
         task->unk_52++;
     }
-    (*(s16 *)&task->unk_4c)++;
+    task->unk_4c++;
 }

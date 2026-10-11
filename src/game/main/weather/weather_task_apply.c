@@ -13,7 +13,7 @@ extern int data_027c0284;
  * tileset. */
 void WeatherTask_Apply(WeatherTaskWork *work)
 {
-    GAME->unk_1c4->weather = *(s16 *)&work->weather;
+    GAME->unk_1c4->weather = work->weather;
     if (HOOKS->unk_58 != NULL) {
         HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }

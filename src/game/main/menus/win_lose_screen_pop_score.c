@@ -20,7 +20,7 @@ void WinLoseScreen_PopScore(WinLoseTask *task)
 {
     WinLoseScreen_DrawPicturesTwoSides(task);
     WinLoseScreen_DrawPointsBox(task->pointsAdded, task->pointsTotal, task->frame);
-    if (task->frame == (s16)task->scoreWidth) {
+    if (task->frame == task->scoreWidth) {
         if (GAME->gameMode == GAME_MODE_SURVIVAL) {
             task->frame = 12;
         } else {

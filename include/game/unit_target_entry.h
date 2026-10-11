@@ -7,8 +7,8 @@
 typedef struct UnitTargetEntry {
     u16 unitSlot;
     u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
+    s16 unk_04;
+    s16 unk_06;
 } UnitTargetEntry;
 
 #endif

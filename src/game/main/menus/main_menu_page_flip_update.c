@@ -18,11 +18,11 @@ extern s16 data_0214d4c4[]; /* a sine and cosine pair per 16 angle units */
  * at frame 16. */
 void MainMenu_PageFlipUpdate(MainMenuTask *task)
 {
-    u16 turn = 16 - *(s16 *)&task->unk_4c;
+    u16 turn = 16 - task->unk_4c;
     int angle;
     int idx;
 
-    (*(s16 *)&task->unk_4c)++;
+    task->unk_4c++;
     Gfx3d_InitScene();
     if (turn != 0) {
         angle = turn < 8 ? (u16)(-turn << 11) : (u16)(-(turn - 16) << 11);
@@ -37,7 +37,7 @@ void MainMenu_PageFlipUpdate(MainMenuTask *task)
         MainMenu_DrawPage();
     }
     func_02028644();
-    if (*(s16 *)&task->unk_4c != 16) {
+    if (task->unk_4c != 16) {
         return;
     }
     Gfx3d_SetOrthoCentered();

@@ -46,13 +46,13 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask *task)
     entry = &list[task->nextEntry];
     switch (entry->unk_02) {
     case MAP_OBJECT_VOLCANO:
-        object = Map_FindObjectCovering((s16)entry->unk_04, (s16)entry->unk_06);
-        TileListTask_StartChild((s16)list[task->nextEntry].unk_04, (s16)list[task->nextEntry].unk_06,
+        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
+        TileListTask_StartChild(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06,
                                 data_02167e98[object->variant], (Task *)task);
         break;
     case MAP_OBJECT_BLACK_CANNON:
-        object = Map_FindObjectCovering((s16)entry->unk_04, (s16)entry->unk_06);
-        CannonShotTask_Start((s16)list[task->nextEntry].unk_04, (s16)list[task->nextEntry].unk_06, unit->x, unit->y,
+        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
+        CannonShotTask_Start(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06, unit->x, unit->y,
                       MAP_OBJECT_BLACK_CANNON, object->variant, task);
         if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller == PLAYER_CONTROLLER_HUMAN) {
             if (gPlayRecords.cannonHitsTaken < 999999) {
@@ -61,8 +61,8 @@ void MapObjectFireTask_ShowNextShot(MapObjectFireTask *task)
         }
         break;
     case MAP_OBJECT_MINICANNON:
-        object = Map_FindObjectCovering((s16)entry->unk_04, (s16)entry->unk_06);
-        CannonShotTask_Start((s16)list[task->nextEntry].unk_04, (s16)list[task->nextEntry].unk_06, unit->x, unit->y,
+        object = Map_FindObjectCovering(entry->unk_04, entry->unk_06);
+        CannonShotTask_Start(list[task->nextEntry].unk_04, list[task->nextEntry].unk_06, unit->x, unit->y,
                       MAP_OBJECT_MINICANNON, object->variant, task);
         if (STATE->players[MAP_UNIT_OWNER(STATE, unit)].controller == PLAYER_CONTROLLER_HUMAN) {
             if (gPlayRecords.cannonHitsTaken < 999999) {

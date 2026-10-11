@@ -8,8 +8,8 @@
  * of this type whose next field points to the newest sprite. */
 typedef struct SpriteEntry {
     struct SpriteEntry *next;
-    u16 x;                             /* OAM attribute 1 bits: x and flip flags */
-    u16 y;                             /* OAM attribute 0 bits: y and above */
+    s16 x;                             /* OAM attribute 1 bits: x and flip flags */
+    s16 y;                             /* OAM attribute 0 bits: y and above */
     u16 unk_08;
     u16 unk_0a;
     const void *unk_0c;

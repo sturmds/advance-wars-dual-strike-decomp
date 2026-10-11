@@ -20,8 +20,8 @@ typedef struct PlayerInfoSpriteTask {
     u8 pad_00[0x2a];
     u16 unk_2a;                        /* 8 at start */
     u16 unk_2c;
-    u16 unk_2e;
-    u16 unk_30;
+    s16 slideStartX;                   /* x offset of the portrait when the slide started */
+    s16 slideX;                        /* current x offset of the portrait, 0-144 */
     u8 coButton;                       /* (player - 1) * 2 + slot: the id of the shown CO's button */
     u8 prevCoButton;                   /* same at start */
     u8 unk_34;                         /* 1 at start */

@@ -24,7 +24,7 @@ extern WinLoseSides data_022a7a88;
 typedef struct WinLoseTask {
     u8 pad_00[0x4c];
     s16 frame;                         /* frames into the running script step */
-    u16 scoreWidth;                    /* from WinLose_GetScoreWidth: 24 plus 4 per digit after the first */
+    s16 scoreWidth;                    /* from WinLose_GetScoreWidth: 24 plus 4 per digit after the first */
     u8 pad_50[0x58 - 0x50];
     s32 pointsAdded;                   /* points still to add to the total, from data_022a7a88.unk_0c */
     s32 pointsTotal;                   /* points, at most 99999 */

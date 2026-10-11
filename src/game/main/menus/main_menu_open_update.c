@@ -20,12 +20,12 @@ void MainMenu_OpenUpdate(MainMenuTask *task)
     int frame;
     int offsetY;
 
-    if (*(s16 *)&task->unk_4c == 0) {
+    if (task->unk_4c == 0) {
         ModeFont_ShowText(Text_Get(0x7d00000a), 78, 1, 0, 1);
     }
-    (*(s16 *)&task->unk_4c)++;
+    task->unk_4c++;
     Gfx3d_InitScene();
-    frame = *(s16 *)&task->unk_4c;
+    frame = task->unk_4c;
     if (frame < 40) {
         offsetY = Math_Ease(4, 256, 0, frame, 40);
         *GXFIFO_MTX_TRANS = 0;
@@ -34,7 +34,7 @@ void MainMenu_OpenUpdate(MainMenuTask *task)
     }
     MainMenu_DrawPicture192x144();
     func_02028644();
-    if (*(s16 *)&task->unk_4c != 56) {
+    if (task->unk_4c != 56) {
         return;
     }
     Sound_PlaySe(76);

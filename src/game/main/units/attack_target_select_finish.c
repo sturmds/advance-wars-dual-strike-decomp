@@ -44,7 +44,7 @@ void AttackTargetSelect_Finish(Task *task)
         func_020dea40(target->unitSlot & 0xff);
     } else {
         /* needed to match: the original reads the tile as s16 */
-        func_020de9f0((s16)target->unk_04, (s16)target->unk_06);
+        func_020de9f0(target->unk_04, target->unk_06);
     }
     Task_ResumeScript(task);
     if (GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_HUMAN) {
