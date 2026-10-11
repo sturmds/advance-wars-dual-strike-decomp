@@ -10226,6 +10226,10 @@ src/game/main/menus/unit_menu_send_blocked_hidden.c:
     complete
     .text       start:0x020beaa8 end:0x020bebfc
 
+src/game/main/menus/unit_menu_send_hidden.c:
+    complete
+    .text       start:0x020bebfc end:0x020bed58
+
 src/game/main/func_020beda8.c:
     complete
     .text       start:0x020beda8 end:0x020bee00
