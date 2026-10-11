@@ -238,6 +238,8 @@ typedef struct WMMpRecvBuf {
  * and all of them receive the blocks of all. */
 #define SHARE_RING_SLOTS 4
 #define SHARE_SET_PAYLOAD_BYTES 508
+#define SHARE_PHASE_FAILED 5               /* WMDataSharingInfo.state after a failed send */
+#define WIRELESS_URGENCY_RAISED 1                 /* send priority, 0 (urgent) to 3 (low) */
 
 /* One frame's blocks, one dataLength block per aid in aidBitmap. */
 typedef struct WMDataSet {
@@ -387,6 +389,9 @@ int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
 int WMi_SendCommand(int apiid, u16 argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);
+int WM_StartMPEx(WMCallbackFunc callback, u16 *recvBuf, u16 recvBufSize, u16 *sendBuf, u16 sendBufSize,
+                 u16 mpFreq, u16 defaultRetryCount, BOOL minPollBmpMode, BOOL singlePacketMode,
+                 BOOL fixFreqMode, BOOL ignoreFatalError);
 u32 WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
 u32 WM_GetMPSendBufferSize(void);
 u16 *DataShare_StationBlockPtr(WMDataSharingInfo *dsInfo, u16 aidBitmap, u16 *receiveBuf, u32 aid);
