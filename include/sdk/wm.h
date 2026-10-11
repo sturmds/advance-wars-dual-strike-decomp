@@ -223,6 +223,9 @@ typedef struct WMMpRecvData {
     u16 length;
     u16 unk_02;
     u16 aid;                           /* the sender */
+    u16 noResponse;
+    u16 timeStamp;
+    u8 cdata[2];                       /* the data, length bytes */
 } WMMpRecvData;
 
 /* Receive buffer of an MP exchange: count entries, stride bytes apart. */

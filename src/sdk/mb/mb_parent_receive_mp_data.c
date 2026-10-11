@@ -4,7 +4,7 @@
 
 extern DlPlayHostLinkArea *data_022aced4;
 
-void func_021199ec(WMMpRecvData *data, u16 aid);
+void MbParent_HandleChildMessage(WMMpRecvData *data, u16 aid);
 
 /* Handles the MP data the children sent this frame: restarts every active
  * file from its first block, then passes each child's message on. Empty
@@ -23,7 +23,7 @@ void MbParent_ReceiveMpData(const WMMpRecvBuf *recvBuf)
     for (aid = 1; aid <= DLPLAY_CHILD_SLOTS; aid++) {
         data = WM_ReadMPData(recvBuf, aid);
         if (data != NULL && data->length != 0xffff && data->length != 0) {
-            func_021199ec(data, aid);
+            MbParent_HandleChildMessage(data, aid);
         }
     }
 }

@@ -299,10 +299,11 @@ typedef struct DlPlayWorkerArea {
 #define DLPLAY_TO_CHILD_NO_ROOM 6
 
 /* Message types a child sends. */
-#define DLPLAY_FROM_CHILD_ASK_FILE 8
-#define DLPLAY_FROM_CHILD_GOT_LAYOUT 9
-#define DLPLAY_FROM_CHILD_NEXT_BLOCK 10
-#define DLPLAY_FROM_CHILD_HALT 11
+#define DLPLAY_FROM_CHILD_ASK_FILE 7
+#define DLPLAY_FROM_CHILD_GOT_LAYOUT 8
+#define DLPLAY_FROM_CHILD_NEXT_BLOCK 9
+#define DLPLAY_FROM_CHILD_HALT 10
+#define DLPLAY_FROM_CHILD_WILL_START 11
 
 /* What the application answers to a child (MbComm_Respond). */
 #define DLPLAY_ANSWER_TURN_AWAY 0
