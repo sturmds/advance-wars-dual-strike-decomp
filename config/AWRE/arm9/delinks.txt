@@ -6539,6 +6539,10 @@ src/game/main/func_020739a8.c:
     complete
     .text       start:0x020739a8 end:0x020739c0
 
+src/game/main/menus/unit_list_add_buttons.c:
+    complete
+    .text       start:0x020739c0 end:0x02073af0
+
 src/game/main/func_02073af0.c:
     complete
     .text       start:0x02073af0 end:0x02073b04
