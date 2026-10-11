@@ -1,0 +1,52 @@
+#include "types.h"
+#include "game/co_select_screen.h"
+#include "game/keypad.h"
+#include "game/menu_button.h"
+
+void CoSelectScreen_HandleR(void);
+void CoSelectScreen_HandleX(void);
+int func_0204210c(int slot);
+int func_02042220(int slot);
+int func_02042338(int slot);
+int func_02042578(int slot);
+
+/* onKeys of the CO list buttons. The arrows move the cursor to the next
+ * slot that is empty or holds an available CO; up and down also set
+ * listAnchor. A confirms, B cancels, X and R work as on the CO grid. */
+void CoSelectScreen_HandleCoListKeys(MenuButton *button)
+{
+    int slot = button->id;
+
+    if (gKeypad->repeat & PAD_KEY_LEFT) {
+        slot = func_02042578(slot);
+    }
+    if (gKeypad->repeat & PAD_KEY_RIGHT) {
+        slot = func_02042338(slot);
+    }
+    if (gKeypad->repeat & PAD_KEY_UP) {
+        slot = func_02042220(slot);
+        data_0229c73c->listAnchor = slot;
+    }
+    if (gKeypad->repeat & PAD_KEY_DOWN) {
+        slot = func_0204210c(slot);
+        data_0229c73c->listAnchor = slot;
+    }
+    if (slot != button->id) {
+        button = MenuButton_Select(slot);
+    }
+    if (gKeypad->pressed & PAD_BUTTON_A) {
+        MenuButton_Confirm(button);
+        return;
+    }
+    if (gKeypad->pressed & PAD_BUTTON_B) {
+        Menu_CancelSelected();
+        return;
+    }
+    if (gKeypad->pressed & PAD_BUTTON_X) {
+        CoSelectScreen_HandleX();
+        return;
+    }
+    if (gKeypad->pressed & PAD_BUTTON_R) {
+        CoSelectScreen_HandleR();
+    }
+}
