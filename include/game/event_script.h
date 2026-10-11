@@ -36,7 +36,10 @@ typedef struct EventScriptSlot {
     const EventScriptCommand *pc;      /* next command */
     u32 hold;                          /* while nonzero the script does not advance */
     u16 wait;                          /* frames left before the next command */
-    u8 pad_0e[0x18 - 0x0e];
+    u8 pad_0e[0x11 - 0x0e];
+    u8 player;                         /* player slot the hold callback waits for */
+    s16 day;                           /* day the hold callback waits for; negative: any */
+    u8 pad_14[0x18 - 0x14];
 } EventScriptSlot;
 
 extern EventScriptSlot data_022977f0[EVENT_SCRIPT_SLOTS];
