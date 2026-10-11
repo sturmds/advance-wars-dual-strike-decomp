@@ -25,7 +25,7 @@ int Ai_WantsBlackBomb(int unitType);
 int func_02095fb8(void);
 int AiSite_PickPiperunnerSite(void);
 BOOL func_020949fc(int unitType);
-BOOL func_02094a7c(int unitType);
+BOOL AiBuild_WantsPiperunnerInstead(int unitType);
 int Ai_CountUnitsOfType(int type);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -142,7 +142,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 gUnitAction.target = UNIT_PIPERUNNER;
                 return AiSite_PickPiperunnerSite();
             }
-        } else if (func_02094a7c(best) == 1) {
+        } else if (AiBuild_WantsPiperunnerInstead(best) == 1) {
             pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
             if (pipeCost > (u32)PLAYER.funds) {
                 if (allowSaving == 1 && func_02098238(pipeCost) == 1) {
