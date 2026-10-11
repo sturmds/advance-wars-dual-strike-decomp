@@ -20774,6 +20774,9 @@ src/sdk/gx/gx_set_bank_for_sub_bg_ext_pltt.c:
 src/sdk/gx/gx_set_bank_for_sub_obj.c:
     .text       start:0x0210aaf8 end:0x0210ab74
 
+src/sdk/gx/gx_set_bank_for_sub_bg.c:
+    .text       start:0x0210ab74 end:0x0210ac20
+
 src/game/main/func_0210ac20.c:
     complete
     .text       start:0x0210ac20 end:0x0210ac40
