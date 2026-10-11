@@ -51,6 +51,7 @@ extern IrqSlotArgAlias data_022a98c4[];
 
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
+typedef volatile u64 vu64;
 
 /* EXMEMCNT: external memory bus control. */
 #define REG_EXMEMCNT (*(vu16 *)0x04000204)
