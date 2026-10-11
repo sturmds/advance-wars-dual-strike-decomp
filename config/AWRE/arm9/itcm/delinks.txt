@@ -65,6 +65,10 @@ src/game/itcm/func_01ff94e4.c:
     complete
     .text       start:0x01ff94e4 end:0x01ff94fc
 
+src/game/itcm/main_loop/func_01ff94fc.c:
+    complete
+    .text       start:0x01ff94fc end:0x01ff9548
+
 src/game/itcm/func_01ff95fc.c:
     complete
     .text       start:0x01ff95fc end:0x01ff9610
