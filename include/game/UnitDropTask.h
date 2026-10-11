@@ -5,7 +5,7 @@
 
 /*
  * Task that runs gUnitDropScript for Sensei's powers. Its script step
- * func_020e41fc places a unit of type unitType at each chosen tile.
+ * UnitDrop_SpawnUnit places a unit of type unitType at each chosen tile.
  */
 typedef struct UnitDropTask {
     u8 pad_00[0x2c];
