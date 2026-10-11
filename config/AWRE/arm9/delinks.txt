@@ -12112,6 +12112,10 @@ src/game/main/menus/game_state4_wait_song_fade.c:
     complete
     .text       start:0x020ba400 end:0x020ba450
 
+src/game/main/menus/game_state14_pick_turn_state.c:
+    complete
+    .text       start:0x020ba450 end:0x020ba560
+
 src/game/main/menus/game_state13_slide_panel_start_task.c:
     complete
     .text       start:0x020ba560 end:0x020ba610

@@ -38,7 +38,7 @@ void Game_State10_RunStep(void);
 void Game_State11_SlidePanel(void);
 void Game_State12_BlackHoleCheck(void);
 void Game_State13_SlidePanelStartTask(void);
-void func_020ba450(void);
+void Game_State14_PickTurnState(void);
 void Game_State15_RunStep(void);
 void Game_State18_RestorePrevious(void);
 void Game_State20_CloseMap(void);
@@ -145,7 +145,7 @@ void Game_RunStateFrame(void)
                 Game_State13_SlidePanelStartTask();
                 break;
             case 14:
-                func_020ba450();
+                Game_State14_PickTurnState();
                 break;
             case 15:
                 Game_State15_RunStep();
