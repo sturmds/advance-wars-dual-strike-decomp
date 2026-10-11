@@ -6,10 +6,6 @@ void func_02064774(void);
 void LinkMenu_Start(void);
 
 /* Same as LinkMenu_StartTwoMaps for a one-map battle, with unk_8b 0. */
-void LinkMenu_Start(void);
-
-/* Copies the game flags (func_02102348), then opens the link menu for a
- * two-map battle with unk_8b 1, which picks the login screen title. */
 void LinkMenu_StartOneMap(void)
 {
     func_02102348();
