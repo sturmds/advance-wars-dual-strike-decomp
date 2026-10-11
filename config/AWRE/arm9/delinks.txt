@@ -4464,6 +4464,10 @@ src/game/main/text/break_text_queue_letter_sized.c:
     complete
     .text       start:0x0202a2c4 end:0x0202a39c
 
+src/game/main/text/break_text_get_centred_x.c:
+    complete
+    .text       start:0x0202a39c end:0x0202a3c8
+
 src/game/main/text/break_text_get_letter_x.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0

@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void Screen_SetCurrentBoth(void *state);
-s16 func_0202a39c(u8 slot);
+s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
@@ -23,7 +23,7 @@ void TagBreak_EndBlend(Task *task)
     int i;
 
     for (i = 0; i < task->unk_58; i++) {
-        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
+        BreakText_QueueLetterSized(i, BreakText_GetCentredX(i) & 0x1ff, 48, 0, 0);
     }
     if (FRAME(task) == 0) {
         saved0280 = data_027c0280;

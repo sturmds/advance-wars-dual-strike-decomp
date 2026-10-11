@@ -4,7 +4,7 @@
 
 void Sound_PlaySe(int id);
 void Screen_SetCurrentBoth(void *state);
-s16 func_0202a39c(u8 slot);
+s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 /* Needed to match (close): the weights narrow to u8 at each call, as if the
@@ -73,7 +73,7 @@ void func_020593c8(Task *task)
     }
     FRAME(task)++;
     for (i = 0; i < task->unk_58; i++) {
-        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 48, 0, 0);
+        BreakText_QueueLetterSized(i, BreakText_GetCentredX(i) & 0x1ff, 48, 0, 0);
     }
     if (FRAME(task) <= 16) {
         saved0280 = data_027c0280;

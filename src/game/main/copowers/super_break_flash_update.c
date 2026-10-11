@@ -4,7 +4,7 @@
 
 void Sound_PlaySe(u32 soundId);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
-s16 func_0202a39c(u8 slot);
+s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_BlendWithColor(u16 *palette, u16 color, u8 palWeight, u8 colorWeight);
@@ -35,7 +35,7 @@ void SuperBreak_FlashUpdate(Task *task)
     FRAME(task)++;
     func_02002620(184, 160, 0x800, 16, 2, 0);
     for (i = 0; i < task->unk_58; i++) {
-        BreakText_QueueLetterSized(i, func_0202a39c(i) & 0x1ff, 80, 0, 1);
+        BreakText_QueueLetterSized(i, BreakText_GetCentredX(i) & 0x1ff, 80, 0, 1);
     }
 
     if (FRAME(task) <= FADE_IN_FRAMES) {
