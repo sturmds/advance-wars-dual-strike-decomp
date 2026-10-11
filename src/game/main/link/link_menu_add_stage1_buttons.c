@@ -6,11 +6,11 @@
 extern const MenuButtonTemplate data_02160128;
 
 int func_0207a260(void);
-int func_0207fbc8(int index);
+int LinkMenu_PlayerHasMap(int index);
 void Mem_Zero32(u32 value, void *dest, u32 size);
 
 /* Only on the side where func_0207a260() is 0: adds the stage 1 buttons (ids 0 and 1) that
- * func_0207fbc8 allows, selects the earlier pick, and clears the map preview area (0x4000 bytes at
+ * LinkMenu_PlayerHasMap allows, selects the earlier pick, and clears the map preview area (0x4000 bytes at
  * objVram + 0x8000) of the screen data_027c0288.unk_04. */
 void LinkMenu_AddStage1Buttons(void)
 {
@@ -22,7 +22,7 @@ void LinkMenu_AddStage1Buttons(void)
         return;
     }
     for (i = 0; i < 2; i++) {
-        if (func_0207fbc8(i) != 0) {
+        if (LinkMenu_PlayerHasMap(i) != 0) {
             MenuButton_Add(40, i * 16 + 56, &data_02160128, i);
         }
     }
