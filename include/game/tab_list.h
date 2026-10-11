@@ -14,6 +14,9 @@ typedef struct TabListView {
     u16 unk_1000[16];                  /* a palette copied from res_history_medal by HistoryScreen_Init */
 } TabListView;
 
+/* TabListEntry.unk_04 value of the entry after the last one in a tab. */
+#define TAB_LIST_END_MARK 0x68
+
 /* One entry of data_0215d6c4, 0x30 bytes: 44 entries per row, one row per
  * tab of the screen that TabList_RebuildButtons lays out. */
 typedef struct TabListEntry {
