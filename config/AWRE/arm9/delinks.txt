@@ -5671,6 +5671,10 @@ src/game/main/func_0207dc60.c:
     complete
     .text       start:0x0207dc60 end:0x0207dc78
 
+src/game/main/link/link_menu_enter_stage1.c:
+    complete
+    .text       start:0x0207dc78 end:0x0207dcfc
+
 src/game/main/func_0207dcfc.c:
     complete
     .text       start:0x0207dcfc end:0x0207dd18
