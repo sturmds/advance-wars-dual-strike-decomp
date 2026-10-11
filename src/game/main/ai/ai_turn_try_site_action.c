@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ai_site.h"
 
-int func_0209658c(void);
+int AiSite_PickBestBalance(void);
 void AiSite_SumNearbyUnitHp(int site);
 int AiSite_ChooseUnitToBuild(int site);
 void func_0209316c(int site);
@@ -10,13 +10,13 @@ void func_0209316c(int site);
  * addresses it through its own symbol. */
 extern u8 data_0229e5bf[][sizeof(AiSite)];
 
-/* End-actions step 2. func_0209658c picks a site record (-1: none), then
+/* End-actions step 2. AiSite_PickBestBalance picks a site record (-1: none), then
  * AiSite_SumNearbyUnitHp fills the range map from it. If AiSite_ChooseUnitToBuild finds nothing
  * for the site, its kind becomes 0xfe, else func_0209316c queues an action
  * for it. Returns 1 when it picked a site. */
 BOOL AiTurn_TrySiteAction(void)
 {
-    int site = func_0209658c();
+    int site = AiSite_PickBestBalance();
 
     if (site == -1) {
         return 0;
