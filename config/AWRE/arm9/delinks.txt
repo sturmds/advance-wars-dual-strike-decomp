@@ -7848,6 +7848,10 @@ src/game/main/map/map_object_is_standing.c:
     complete
     .text       start:0x020da9d0 end:0x020daa44
 
+src/game/main/map/map_find_object_of_kind.c:
+    complete
+    .text       start:0x020daa44 end:0x020daaa8
+
 src/game/main/map/map_object_get_target_tile.c:
     complete
     .text       start:0x020dafc4 end:0x020db054
