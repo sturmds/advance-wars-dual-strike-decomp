@@ -10,18 +10,20 @@ void func_ov003_0236249c(void);
 #define LINK_ROW(i) (((Unk_02160ac0_Row *)data_02160ac0)[i])
 #define RECORD_MAX 999999
 
-/* Copies what overlay 3 knows about a row (1 to 5) into data_02160abc: the
- * row number, the unk_3b_0 and color of the row and of the other of rows 1 and
- * 2, and Ov003Row.unk_28. For link play (data_02160ac0->unk_7c clear) and row 1
- * it also copies the cells of every row, with units (state 2) as state 1.
- * Then it updates two play counters. Not matched: the register choice for
- * the data_02160abc and Ov003State addresses is swapped. */
+/* Byte 1 of an Ov003Slot. The last loop reads the slot row through
+ * STATE + 0x139 kept in a register, as the original does. */
 typedef struct RowView {
     u8 row : 4;
     u8 hi : 4;
     u8 pad[3];
 } RowView;
 
+/* Copies what overlay 3 knows about a row (1 to 5) into data_02160abc: the
+ * row number, the unk_3b_0 and color of the row and of the other of rows 1 and
+ * 2, and Ov003Row.unk_28. For link play (data_02160ac0->unk_7c clear) and row 1
+ * it also copies the cells of every row, with units (state 2) as state 1.
+ * Then it updates two play counters. Not matched yet (97.2%): in the last
+ * loop the original keeps the slot base in r0 and the total in r6. */
 void func_ov003_02361c7c(int row)
 {
     u8 other;
