@@ -22,6 +22,8 @@ typedef struct LinkScreenState {
     u8 armyColours[4];                 /* army colour of each player, from the map header */
     u8 unk_028[4];
     u8 playerCount;                    /* number of players on the map */
+    u8 pad_02d[0x162e - 0x2d];
+    u8 picked[2];                      /* per link player: has picked a button of the two-player link menu */
 } LinkScreenState;
 
 /* Ready flag of a player on the link screen, which is LinkScreenState.unk_028[player]. The
@@ -248,6 +250,10 @@ typedef struct MenuState {
 /* BattleScreenWork.unk_27c[side]. Needed to match: the compiler adds the 0x27c after
  * the side index, so the array is reached through gMenuState's own address. */
 #define BATTLE_SIDE_DATA_AT(side) (((BattleSideData **)&gMenuState + (side))[0x27c / 4])
+
+/* Offset of LinkScreenState.picked in MenuState. Needed to match: the compiler adds it after
+ * the player index, so the flags are reached through gMenuState's own address plus the player. */
+#define LINK_PICKED_OFFSET 0x162e
 
 /* data_0229ed30, gMenuState + 0x200. BattleSetup_LoadFromGame stores
  * setup.fundsPerProperty through this symbol: naming gMenuState there
