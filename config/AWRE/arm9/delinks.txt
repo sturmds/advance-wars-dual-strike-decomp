@@ -2078,6 +2078,10 @@ src/game/main/text/text_printer_write_run.c:
     complete
     .text       start:0x02021118 end:0x02021164
 
+src/game/main/text/font_cache_add.c:
+    complete
+    .text       start:0x02021258 end:0x02021380
+
 src/game/main/graphics/font_load_digits.c:
     complete
     .text       start:0x02021380 end:0x020213c0

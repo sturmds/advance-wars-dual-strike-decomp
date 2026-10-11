@@ -64,11 +64,19 @@ typedef struct BgAffine {
     s32 y;
 } BgAffine;
 
+/* One string drawn by FontCache_Add. */
+typedef struct FontCacheEntry {
+    u16 tile;                          /* first BG tile of the drawn string */
+    u8 halfTiles;                      /* tiles used, halved */
+    u8 colour;
+} FontCacheEntry;
+
 /* Pointed to by Unk_027c0280.fontState. Only two fields are known. */
 typedef struct FontState {
     u8 unk_00;                         /* set to 1 when digitEndTile changes */
-    u8 pad_01[0x358 - 0x01];
-    u16 digitEndTile;                  /* tile after the digit font (Font_LoadDigits) */
+    u8 pad_01[0x258 - 0x01];
+    FontCacheEntry cache[64];          /* strings drawn into BG tiles, in the order of the names from 0x00 */
+    u16 digitEndTile;                 /* tile after the digit font (Font_LoadDigits) */
 } FontState;
 
 /* Pointed to by data_027c0280 (DTCM). */
