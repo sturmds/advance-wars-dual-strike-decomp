@@ -13,7 +13,7 @@ void Mem_Free(void *ptr);
 void File_UnpackTo(void *dest, const char *fileName);
 void FS_ChangeDir(const char *dir);
 int func_021223e0(char *dest, const char *format, ...);
-void func_02082cf4(const MapData *map, const u8 *codeTerrain, u16 *dst, s16 x, s16 y, u16 width, u16 height);
+void CombatMap_DrawPreviewBlock(const MapData *map, const u8 *codeTerrain, u16 *dst, s16 x, s16 y, u16 width, u16 height);
 
 /* OBJ tile where the preview of combat map i starts; each preview takes
  * 0x100 tiles, as four 64x64-pixel quarters of 0x40 tiles. */
@@ -35,13 +35,13 @@ void CombatSetup_LoadMapPreviews(void)
     for (i = 0; i < 4; i++) {
         func_021223e0(path, data_02161318, data_02160adc[i]);
         File_UnpackTo(map, path);
-        func_02082cf4(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 0) * 32),
+        CombatMap_DrawPreviewBlock(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 0) * 32),
                       (map->width >> 1) - 16, (map->height >> 1) - 16, 16, 16);
-        func_02082cf4(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 1) * 32),
+        CombatMap_DrawPreviewBlock(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 1) * 32),
                       map->width >> 1, (map->height >> 1) - 16, 16, 16);
-        func_02082cf4(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 2) * 32),
+        CombatMap_DrawPreviewBlock(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 2) * 32),
                       (map->width >> 1) - 16, map->height >> 1, 16, 16);
-        func_02082cf4(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 3) * 32),
+        CombatMap_DrawPreviewBlock(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 3) * 32),
                       map->width >> 1, map->height >> 1, 16, 16);
     }
     Mem_Free(map);

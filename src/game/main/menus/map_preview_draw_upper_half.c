@@ -12,8 +12,8 @@ extern int gMapPreviewWidth;
 extern int gMapPreviewHeight;
 extern int gMapPreviewColumnSteps[2];
 extern int gMapPreviewRowSteps[2];
-extern u16 data_022a6bd0[];
-extern u16 data_022a6b80[];
+extern u16 gMapPreviewColumnOffsets[];
+extern u16 gMapPreviewRowOffsets[];
 extern u16 data_022a6b40[];
 extern u16 data_02166e3c[];
 extern u16 data_021587e0[];
@@ -24,8 +24,8 @@ void *func_01ff9c38(void);
 
 /* Sets up the map preview and draws its upper half into dst. The size
  * rounded up to even goes to gMapPreviewWidth and gMapPreviewHeight. The
- * column offsets (data_022a6bd0) step by 1 and 15 in turn, the row offsets
- * (data_022a6b80) by 8 and width * 8 - 8. data_0229b054 is 0 only while the main loop is
+ * column offsets (gMapPreviewColumnOffsets) step by 1 and 15 in turn, the row offsets
+ * (gMapPreviewRowOffsets) by 8 and width * 8 - 8. data_0229b054 is 0 only while the main loop is
  * MainLoop_MapFrame; MapPreview_DrawLowerHalf then draws the rest. The tile
  * drawing is the same as there. */
 void MapPreview_DrawUpperHalf(u16 *dst)
@@ -57,17 +57,17 @@ void MapPreview_DrawUpperHalf(u16 *dst)
     gMapPreviewRowSteps[0] = 8;
     gMapPreviewRowSteps[1] = width * 8 - 8;
     for (offset = 0, col = 0; col < width; col++) {
-        data_022a6bd0[col] = offset;
+        gMapPreviewColumnOffsets[col] = offset;
         offset += gMapPreviewColumnSteps[col & 1];
     }
     for (offset = 0, row = 0; row < gMapPreviewHeight; row++) {
-        data_022a6b80[row] = offset;
+        gMapPreviewRowOffsets[row] = offset;
         offset += gMapPreviewRowSteps[row & 1];
     }
     data_0229b058 = 0;
 
     /* Needed to match: the row offset is read through a local, once per tile. */
-    rowTable = data_022a6b80;
+    rowTable = gMapPreviewRowOffsets;
     rows = ((data_0229eadc->height + 1) & ~1) >> 1;
     for (row = 0; row < rows; row++) {
         for (col = 0; col < ((data_0229eadc->width + 1) & ~1); col++) {
@@ -97,7 +97,7 @@ void MapPreview_DrawUpperHalf(u16 *dst)
                 }
                 picture = data_02149080 + data_021587e0[base + colour];
             }
-            cell = dst + data_022a6bd0[col] + rowTable[row];
+            cell = dst + gMapPreviewColumnOffsets[col] + rowTable[row];
             cell[0] = picture[0];
             cell[2] = picture[2];
             cell[4] = picture[4];

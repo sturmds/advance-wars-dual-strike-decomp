@@ -90,17 +90,17 @@ void CoExp_TallyStep(WinLoseTask *task)
         }
     }
 
-    if ((task->unk_4c & 1) == 0) {
+    if ((task->frame & 1) == 0) {
         Sound_PlaySe(0x1000c);         /* a tick every other frame */
     }
     /* needed to match: the original adds the offset to gMenuState at run time */
     func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
     if (ResultPoint_GetTally() == 0) {
-        task->unk_4c = 0;
+        task->frame = 0;
         Task_ResumeScript(task);
         return;
     }
-    task->unk_4c++;
+    task->frame++;
     if (!(gKeypad->pressed & PAD_BUTTON_A)) {
         if (gTouch.phase != TOUCH_PRESSED || gTouch.active != 1) {
             return;
@@ -152,6 +152,6 @@ void CoExp_TallyStep(WinLoseTask *task)
         }
     }
     ResultPoint_SetTally(0);
-    task->unk_4c = 0;
+    task->frame = 0;
     Task_ResumeScript(task);
 }

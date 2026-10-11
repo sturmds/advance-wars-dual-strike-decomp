@@ -8,8 +8,8 @@ extern int data_027c0284;
 extern u8 gSavedArmyColours[5];
 extern int data_0229b054;
 extern int data_0229b058;
-extern u16 data_022a6bd0[];
-extern u16 data_022a6b80[];
+extern u16 gMapPreviewColumnOffsets[];
+extern u16 gMapPreviewRowOffsets[];
 extern u16 data_022a6b40[];
 extern u16 data_02166e3c[];
 extern u16 data_021587e0[];
@@ -37,7 +37,7 @@ void MapPreview_DrawLowerHalf(u16 *dst)
     int row;
 
     /* Needed to match: the row offset is read through a local, once per tile. */
-    rowTable = data_022a6b80;
+    rowTable = gMapPreviewRowOffsets;
 
     for (row = ((data_0229eadc->height + 1) & ~1) >> 1; row < ((data_0229eadc->height + 1) & ~1); row++) {
         for (col = 0; col < ((data_0229eadc->width + 1) & ~1); col++) {
@@ -67,7 +67,7 @@ void MapPreview_DrawLowerHalf(u16 *dst)
                 }
                 picture = data_02149080 + data_021587e0[base + colour];
             }
-            cell = dst + data_022a6bd0[col] + rowTable[row];
+            cell = dst + gMapPreviewColumnOffsets[col] + rowTable[row];
             cell[0] = picture[0];
             cell[2] = picture[2];
             cell[4] = picture[4];

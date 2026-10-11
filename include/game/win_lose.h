@@ -16,17 +16,17 @@ typedef struct WinLoseSides {
 
 extern WinLoseSides data_022a7a88;
 
-/* The points total (WinLoseTask.unk_5c) stops here. */
+/* The points total (WinLoseTask.pointsTotal) stops here. */
 #define WIN_LOSE_POINTS_MAX 99999
 
 /* The task that runs WinLoseScreen_Init, 0x6c bytes like Task. */
 typedef struct WinLoseTask {
     u8 pad_00[0x4c];
-    s16 unk_4c;
+    s16 frame;                         /* frames into the running script step */
     u16 scoreWidth;                    /* from WinLose_GetScoreWidth: 24 plus 4 per digit after the first */
     u8 pad_50[0x58 - 0x50];
-    s32 unk_58;                        /* points from data_022a7a88.unk_0c */
-    s32 unk_5c;                        /* points, at most 99999 */
+    s32 pointsAdded;                   /* points still to add to the total, from data_022a7a88.unk_0c */
+    s32 pointsTotal;                   /* points, at most 99999 */
     u8 pad_60[0x64 - 0x60];
     s16 portraitsA;                    /* two sides: CO pictures of side A; one side: bit per player with a tag partner */
     s16 portraitsB;                    /* CO pictures of side B */

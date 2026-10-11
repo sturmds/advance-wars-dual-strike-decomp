@@ -19,7 +19,7 @@ extern Unk_027c0288 data_027c0288;
 /* Task update of the win/lose screen, the reverse of
  * WinLoseScreen_ClosePanel: on the main screen grows the window frame on
  * layer 1 around column 15 by one column per side each frame, counting
- * task->unk_4c up to 12 in Survival (taller frame at row 14) and to 10
+ * task->frame up to 12 in Survival (taller frame at row 14) and to 10
  * otherwise, then resumes the task's script; at once in game mode 2. */
 void WinLoseScreen_OpenPanel(WinLoseTask *task)
 {
@@ -36,17 +36,17 @@ void WinLoseScreen_OpenPanel(WinLoseTask *task)
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
         if (GAME->gameMode == GAME_MODE_SURVIVAL) {
-            func_0201e6e8((s16)(14 - task->unk_4c), 14, (s16)(task->unk_4c * 2 + 2), 8);
+            func_0201e6e8((s16)(14 - task->frame), 14, (s16)(task->frame * 2 + 2), 8);
         } else {
-            func_0201e6e8((s16)(14 - task->unk_4c), 15, (s16)(task->unk_4c * 2 + 2), 6);
+            func_0201e6e8((s16)(14 - task->frame), 15, (s16)(task->frame * 2 + 2), 6);
         }
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (task->unk_4c == 12 || (task->unk_4c == 10 && GAME->gameMode != GAME_MODE_SURVIVAL)) {
-        task->unk_4c = 0;
+    if (task->frame == 12 || (task->frame == 10 && GAME->gameMode != GAME_MODE_SURVIVAL)) {
+        task->frame = 0;
         Task_ResumeScript(task);
         return;
     }
-    task->unk_4c++;
+    task->frame++;
 }

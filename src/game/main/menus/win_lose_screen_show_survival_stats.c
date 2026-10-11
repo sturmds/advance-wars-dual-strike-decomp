@@ -29,7 +29,7 @@ extern Unk_022a7b80 data_022a7b80;
  * 0 or 3 time as m:ss (player 1's timer, then the limit), 2 or 5 days
  * (the current day, then the limit), others funds (player 1's unk_04,
  * then the limit). In modes 2 and 3 it adds the button from
- * func_0203b614 and jumps to label 0; mode 3 also sets unk_4c to 12. */
+ * func_0203b614 and jumps to label 0; mode 3 also sets frame to 12. */
 void WinLoseScreen_ShowSurvivalStats(WinLoseTask *task)
 {
     u16 *map;
@@ -61,7 +61,7 @@ void WinLoseScreen_ShowSurvivalStats(WinLoseTask *task)
     mode = GAME->gameMode;
     if (mode == 2 || mode == 3) {
         if (mode == 3) {
-            task->unk_4c = 12;
+            task->frame = 12;
         }
         func_0203b614();
         Task_JumpToLabel(task, 0);

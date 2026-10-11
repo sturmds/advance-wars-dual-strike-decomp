@@ -240,7 +240,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
     Menu_Reset();
     Wallpaper_LoadBoth();
 
-    task->unk_4c = 0;
+    task->frame = 0;
     if (data_022a7a88.countB != 0) {
         task->portraitsA = 0;
         for (i = 0; i < data_022a7a88.countA; i++) {
@@ -262,15 +262,15 @@ void WinLoseScreen_Init(WinLoseTask *task)
             task->portraitsMax = task->portraitsB;
         }
         if (GAME->gameMode == 3) {     /* likely Survival */
-            task->unk_5c = data_022a7b80.unk_10;
+            task->pointsTotal = data_022a7b80.unk_10;
         } else {
-            task->unk_58 = data_022a7a88.unk_0c;
-            task->unk_5c = data_022a7a9c.unk_10;
+            task->pointsAdded = data_022a7a88.unk_0c;
+            task->pointsTotal = data_022a7a9c.unk_10;
         }
-        if (task->unk_5c > 99999) {
-            task->unk_5c = 99999;
+        if (task->pointsTotal > 99999) {
+            task->pointsTotal = 99999;
         }
-        task->scoreWidth = WinLose_GetScoreWidth(task->unk_58 + task->unk_5c);
+        task->scoreWidth = WinLose_GetScoreWidth(task->pointsAdded + task->pointsTotal);
     } else {
         task->portraitsA = 0;
         for (i = 0; i < data_022a7a88.countA; i++) {

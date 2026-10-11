@@ -48,10 +48,10 @@ void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask *task)
 
     SWITCH_TO(SECOND_MAP);
     for (i = 0; i < task->portraitsA; i++) {
-        if (task->unk_4c < i * 6) {
+        if (task->frame < i * 6) {
             Co_QueuePictureSprite((24 + i * 32) & 0x1ff, 192, PORTRAIT_ATTR(i), i);
-        } else if (task->unk_4c < i * 6 + 18) {
-            x = Math_Ease(1, 0, -240, task->unk_4c - i * 6, 18);
+        } else if (task->frame < i * 6 + 18) {
+            x = Math_Ease(1, 0, -240, task->frame - i * 6, 18);
             x += 24 + i * 32;
             if (x > -48) {
                 Co_QueuePictureSprite(x & 0x1ff, 192, PORTRAIT_ATTR(i), i);
@@ -62,10 +62,10 @@ void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask *task)
 
     SWITCH_TO(MAIN_MAP);
     for (i = 0; i < task->portraitsB; i++) {
-        if (task->unk_4c < i * 6) {
+        if (task->frame < i * 6) {
             Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
-        } else if (task->unk_4c < i * 6 + 18) {
-            x = (232 - i * 32) - Math_Ease(1, 0, -256, task->unk_4c - i * 6, 18);
+        } else if (task->frame < i * 6 + 18) {
+            x = (232 - i * 32) - Math_Ease(1, 0, -256, task->frame - i * 6, 18);
             if (x < 256) {
                 Co_QueuePictureSprite((x & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
             }
@@ -73,10 +73,10 @@ void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask *task)
     }
     SWITCH_BACK();
 
-    if (task->unk_4c != (task->portraitsMax - 1) * 6 + 18) {
-        task->unk_4c++;
+    if (task->frame != (task->portraitsMax - 1) * 6 + 18) {
+        task->frame++;
         return;
     }
-    task->unk_4c = 64;
+    task->frame = 64;
     Task_ResumeScript(task);
 }

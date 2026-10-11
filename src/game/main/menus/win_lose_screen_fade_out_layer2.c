@@ -15,14 +15,14 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-/* Blend weights for the frames left in task->unk_4c: from about 9/9 down
+/* Blend weights for the frames left in task->frame: from about 9/9 down
  * to 0/16, so layer 2 (blended over layer 3 since WinLoseScreen_Init)
  * fades out. */
 static inline void SetFadeBlend(WinLoseTask *task)
 {
-    if (task->unk_4c != 0) {
-        data_027c0280->blendEva = Math_Ease(1, 0, 9, task->unk_4c - 1, 64);
-        data_027c0280->blendEvb = Math_Ease(1, 18, 9, task->unk_4c - 1, 64);
+    if (task->frame != 0) {
+        data_027c0280->blendEva = Math_Ease(1, 0, 9, task->frame - 1, 64);
+        data_027c0280->blendEvb = Math_Ease(1, 18, 9, task->frame - 1, 64);
         if (data_027c0280->blendEvb > 16) {
             data_027c0280->blendEva = 0;
             data_027c0280->blendEvb = 16;
@@ -41,7 +41,7 @@ static inline void EndFade(void)
     data_027c0280->blendEvy = 0;
 }
 
-/* Task update of the win/lose screen: counts task->unk_4c down from 64
+/* Task update of the win/lose screen: counts task->frame down from 64
  * (set by the slide-out) and on both screens eases the alpha blend so
  * layer 2 fades out. At 0 it clears layer 2 on both screens, turns
  * blending off and resumes the task's script. */
@@ -56,8 +56,8 @@ void WinLoseScreen_FadeOutLayer2(WinLoseTask *task)
     SetFadeBlend(task);
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
-    if (task->unk_4c != 0) {
-        task->unk_4c--;
+    if (task->frame != 0) {
+        task->frame--;
         return;
     }
     savedGfx = data_027c0280;
@@ -68,6 +68,6 @@ void WinLoseScreen_FadeOutLayer2(WinLoseTask *task)
     EndFade();
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
-    task->unk_4c = 0;
+    task->frame = 0;
     Task_ResumeScript(task);
 }

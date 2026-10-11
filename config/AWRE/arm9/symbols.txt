@@ -2545,7 +2545,7 @@ func_02082a78 kind:function(arm,size=0x14) addr:0x02082a78
 func_02082a8c kind:function(arm,size=0x3c) addr:0x02082a8c
 func_02082ac8 kind:function(arm,size=0x44) addr:0x02082ac8
 CombatSetup_LoadMapPreviews kind:function(arm,size=0x1e8) addr:0x02082b0c
-func_02082cf4 kind:function(arm,size=0x22c) addr:0x02082cf4
+CombatMap_DrawPreviewBlock kind:function(arm,size=0x22c) addr:0x02082cf4
 CombatSetup_StartKeepingSettings kind:function(arm,size=0x2c) addr:0x02082f20
 CombatSetup_StartLink kind:function(arm,size=0x3c) addr:0x02082f4c
 CombatSetup_StartVariantSync kind:function(arm,size=0x6c) addr:0x02082f88
@@ -8858,8 +8858,8 @@ data_022a6b34 kind:bss addr:0x022a6b34
 data_022a6b38 kind:bss addr:0x022a6b38
 data_022a6b3c kind:bss addr:0x022a6b3c
 data_022a6b40 kind:bss addr:0x022a6b40
-data_022a6b80 kind:bss addr:0x022a6b80
-data_022a6bd0 kind:bss addr:0x022a6bd0
+gMapPreviewRowOffsets kind:bss addr:0x022a6b80
+gMapPreviewColumnOffsets kind:bss addr:0x022a6bd0
 data_022a6c30 kind:bss addr:0x022a6c30
 data_022a6c78 kind:bss addr:0x022a6c78
 gSavedArmyColours kind:bss addr:0x022a6c7c

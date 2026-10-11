@@ -20,16 +20,16 @@ void CoExp_SlideStep(WinLoseTask *task)
 {
     int offset;
 
-    if (task->unk_4c == 0) {
+    if (task->frame == 0) {
         ScriptTask_ResumeWithValue(SLIDE_FRAMES);
     }
-    task->unk_4c++;
-    offset = Math_Ease(1, 0, -256, task->unk_4c, SLIDE_FRAMES);
+    task->frame++;
+    offset = Math_Ease(1, 0, -256, task->frame, SLIDE_FRAMES);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = -offset;
     func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), offset, 0, -1);
-    if (task->unk_4c != SLIDE_FRAMES) {
+    if (task->frame != SLIDE_FRAMES) {
         return;
     }
-    task->unk_4c = 0;
+    task->frame = 0;
     Task_ResumeScript(task);
 }

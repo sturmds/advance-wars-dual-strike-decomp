@@ -7,8 +7,8 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 gArmyColours[ARMY_SLOT_COUNT];
-extern u16 data_022a6bd0[];           /* offset of each column of the block, in halfwords */
-extern u16 data_022a6b80[];           /* offset of each row of the block */
+extern u16 gMapPreviewColumnOffsets[];           /* offset of each column of the block, in halfwords */
+extern u16 gMapPreviewRowOffsets[];           /* offset of each row of the block */
 extern u16 data_022a6b40[];           /* picture of a tile outside the map */
 extern u16 data_02166e3c[];           /* per terrain id: first picture of the terrain in data_021587e0 */
 extern u16 data_021587e0[];           /* picture number to offset into data_02149080, per army colour */
@@ -29,7 +29,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
     u16 rowStart;
     /* Read through a local so the row offset is reloaded for each tile, as
      * in the original. */
-    u16 *rowTable = data_022a6b80;
+    u16 *rowTable = gMapPreviewRowOffsets;
     /* Column of the offset table, then the map column being drawn. */
     int col;
     int row;
@@ -43,7 +43,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
 
     offset = 0;
     for (col = 0; col < width; col++) {
-        data_022a6bd0[col] = offset;
+        gMapPreviewColumnOffsets[col] = offset;
         if (col & 1) {
             offset += 15;
         } else {
@@ -52,7 +52,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
     }
     offset = 0;
     for (row = 0; row < height; row++) {
-        data_022a6b80[row] = offset;
+        gMapPreviewRowOffsets[row] = offset;
         if (row & 1) {
             offset += width * 8 - 8;
         } else {
@@ -103,7 +103,7 @@ void MapPreview_DrawBlock(u16 *dst, int x, int y, int width, u16 height)
                 }
                 picture = data_02149080 + data_021587e0[base + colour];
             }
-            cell = dst + data_022a6bd0[col - x];
+            cell = dst + gMapPreviewColumnOffsets[col - x];
             rowOff = rowTable[y - startY];
             cell[rowOff] = picture[0];
             cell += rowOff;

@@ -48,16 +48,16 @@ void WinLoseScreen_SlideOutPictures(WinLoseTask *task)
     int slideFront;
     int slideBack;
 
-    task->unk_4c++;
-    if (task->unk_4c >= 18) {
+    task->frame++;
+    if (task->frame >= 18) {
         slideFront = 256;
     } else {
-        slideFront = Math_Ease(1, 0, 256, task->unk_4c, 18);
+        slideFront = Math_Ease(1, 0, 256, task->frame, 18);
     }
-    if (task->unk_4c < 6) {
+    if (task->frame < 6) {
         slideBack = 0;
     } else {
-        slideBack = Math_Ease(1, 0, 256, task->unk_4c - 6, 18);
+        slideBack = Math_Ease(1, 0, 256, task->frame - 6, 18);
     }
 
     for (i = 0; i < data_022a7a88.countA; i++) {
@@ -101,8 +101,8 @@ void WinLoseScreen_SlideOutPictures(WinLoseTask *task)
         }
     }
 
-    if (task->unk_4c == 24 || (task->portraitsA != 0 && task->unk_4c == 18)) {
-        task->unk_4c = 64;
+    if (task->frame == 24 || (task->portraitsA != 0 && task->frame == 18)) {
+        task->frame = 64;
         Task_ResumeScript(task);
     }
 }
