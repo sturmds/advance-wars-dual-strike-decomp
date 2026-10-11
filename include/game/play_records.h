@@ -4,6 +4,15 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
+
+/* Best run of one Survival mode variant (data_022a7b80.unk_07, 0-5).
+ * func_020eae84 writes it at the end of a run. */
+typedef struct SurvivalRecord {
+    u8 co;                             /* CO id of the run, 0 when no record is saved (func_02047944) */
+    u8 tagCo;                          /* second CO id, 0 for none (func_02047924) */
+    u8 pad_02[2];
+    u32 value;                         /* data_022a7b80.unk_08 at the end of the run */
+} SurvivalRecord;
 #include "game/war_room_records.h"
 
 /* gPlayRecords (main bss, 0x02290718): saved settings, per-CO records
@@ -58,6 +67,8 @@ typedef struct PlayRecords {
     u32 unk_440;                       /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */
     u8 pad_444[0x51c - 0x444];
     WarRoomRecord warRoomRecords[4][44][3]; /* the same bytes as gWarRoomRecords */
+    u8 pad_d5c[0xe3c - 0xd5c];
+    SurvivalRecord survivalRecords[6]; /* by Survival mode variant */
 } PlayRecords;
 
 extern PlayRecords gPlayRecords;

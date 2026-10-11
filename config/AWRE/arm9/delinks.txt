@@ -4301,6 +4301,10 @@ src/game/main/menus/mode_set_variant.c:
     complete
     .text       start:0x02047830 end:0x020478b0
 
+src/game/main/menus/survival_select_draw_mode4_record.c:
+    complete
+    .text       start:0x02047a04 end:0x02047b54
+
 src/game/main/func_02048238.c:
     complete
     .text       start:0x02048238 end:0x02048250
