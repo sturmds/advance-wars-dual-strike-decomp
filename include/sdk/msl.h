@@ -43,6 +43,22 @@ double fabs(double x);
 double copysign(double x, double y);
 /* Returns the fraction of x in [0.5, 1) and stores the power of two in *exponent. */
 double frexp(double x, int *exponent);
+
+/* One parsed printf conversion, passed by value to the conversion helpers. */
+typedef struct PrintFormat {
+    u8 justification; /* 1: right */
+    u8 signOptions;   /* 1: always print a sign, 2: a space for positive numbers */
+    u8 precisionSpecified;
+    u8 alternateForm; /* the '#' flag */
+    u8 argumentOptions;
+    u8 conversionChar;
+    int fieldWidth;
+    int precision;
+} PrintFormat;
+
+#define PRINT_SIGN_ALWAYS 1
+#define PRINT_SIGN_SPACE 2
+
 /* Returns x * 2^n. */
 double ldexp(double x, int n);
 
