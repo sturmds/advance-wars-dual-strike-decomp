@@ -8096,6 +8096,10 @@ src/game/main/func_02080440.c:
     complete
     .text       start:0x02080440 end:0x020804ac
 
+src/game/main/link/link_action_start_next.c:
+    complete
+    .text       start:0x020804ac end:0x02080518
+
 src/game/main/link/unit_action_is_valid.c:
     complete
     .text       start:0x02080518 end:0x0208053c
