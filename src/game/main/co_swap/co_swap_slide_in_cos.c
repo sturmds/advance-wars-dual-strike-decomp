@@ -5,7 +5,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
-s16 func_0202a144(u8 slot);
+s16 BreakText_GetScreenX(u8 slot);
 void func_0202a0b4(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
@@ -48,10 +48,10 @@ void CoSwap_SlideInCos(Task *task)
                                 HwDiv32(-data_021389e8[0] * 16, pbDivisor),
                                 HwDiv32(data_021389e8[0] * 16, 256),
                                 HwDiv32(data_021389e8[64] * 16, pdDivisor));
-            func_0202a0b4(i, (func_0202a144(i) & 0x1ff) | OBJ_MATRIX(i + 1),
+            func_0202a0b4(i, (BreakText_GetScreenX(i) & 0x1ff) | OBJ_MATRIX(i + 1),
                           CO_SWAP_TITLE_Y | OBJ_AFFINE, 0, 1);
         } else {
-            func_0202a0b4(i, func_0202a144(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
+            func_0202a0b4(i, BreakText_GetScreenX(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
         }
     }
     if (CO_SWAP_FRAME(task) == task->unk_58 * LETTER_DELAY + LETTER_FRAMES) {

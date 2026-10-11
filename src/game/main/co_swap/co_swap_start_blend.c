@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
-s16 func_0202a144(u8 slot);
+s16 BreakText_GetScreenX(u8 slot);
 void func_0202a0b4(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
 
@@ -19,7 +19,7 @@ void CoSwap_StartBlend(Task *task)
     func_02002620(CO_SWAP_FRONT_X, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
     func_02002620(CO_SWAP_BACK_X, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a0b4(i, func_0202a144(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
+        func_0202a0b4(i, BreakText_GetScreenX(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
     }
     if (CO_SWAP_FRAME(task) != 8) {
         return;
