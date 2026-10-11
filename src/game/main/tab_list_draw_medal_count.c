@@ -5,7 +5,7 @@
 void Screen_SetCurrentGfx(void *state);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Gfx_RequestLayerCopy(int layer);
-void func_020718e0(u16 *earned, u16 *total);
+void TabList_CountMedals(u16 *earned, u16 *total);
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -18,7 +18,7 @@ void TabList_DrawMedalCount(void)
     u16 total;
     Unk_027c0280 *saved;
 
-    func_020718e0(&earned, &total);
+    TabList_CountMedals(&earned, &total);
     saved = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Text_PrintId(26, 9, data_027c0280->layer0Map, 0x7a000000, 0, 0x1c0);

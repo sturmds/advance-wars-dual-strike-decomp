@@ -9,7 +9,7 @@
 
 void Task_ResumeScript(Task *task);
 int Task_JumpToLabel(Task *task, int label);
-void func_020718e0(u16 *earned, u16 *total);
+void TabList_CountMedals(u16 *earned, u16 *total);
 
 /* Script task: runs the banner commands that follow once, when every medal is
  * earned and the flag is still clear. Otherwise it jumps to label 0. */
@@ -19,7 +19,7 @@ void HistoryScript_CheckAllMedals(Task *task)
     u16 total;
 
     if (!GameFlag_IsSet(GAME_FLAG_ALL_MEDALS_SHOWN)) {
-        func_020718e0(&earned, &total);
+        TabList_CountMedals(&earned, &total);
         if (earned == total) {
             GameFlag_Set(GAME_FLAG_ALL_MEDALS_SHOWN, 1);
             FRAME(task) = 0;
