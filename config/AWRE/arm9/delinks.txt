@@ -12438,6 +12438,54 @@ src/game/main/func_02100a58.c:
     complete
     .text       start:0x02100a58 end:0x02100a78
 
+src/game/main/menus/name_entry_place_caret.c:
+    complete
+    .text       start:0x02100a78 end:0x02100b64
+
+src/game/main/menus/name_entry_load_caret_sprite.c:
+    complete
+    .text       start:0x02100b64 end:0x02100c28
+
+src/game/main/menus/name_entry_get_control_key.c:
+    complete
+    .text       start:0x02100c28 end:0x02100c5c
+
+src/game/main/menus/name_entry_find_key.c:
+    complete
+    .text       start:0x02100c5c end:0x02100cd0
+
+src/game/main/menus/name_entry_get_cursor_pos.c:
+    complete
+    .text       start:0x02100cd0 end:0x02100d28
+
+src/game/main/menus/name_entry_load_key_table.c:
+    complete
+    .text       start:0x02100e98 end:0x02100ed8
+
+src/game/main/menus/name_entry_delete_char.c:
+    complete
+    .text       start:0x02100ed8 end:0x02100f58
+
+src/game/main/menus/name_entry_append_char.c:
+    complete
+    .text       start:0x02100f58 end:0x02100fe0
+
+src/game/main/menus/name_entry_get_text_length.c:
+    complete
+    .text       start:0x02100fe0 end:0x02101018
+
+src/game/main/menus/name_entry_draw_text.c:
+    complete
+    .text       start:0x02101018 end:0x021010c8
+
+src/game/main/menus/name_entry_clear_text.c:
+    complete
+    .text       start:0x021010c8 end:0x02101124
+
+src/game/main/menus/name_entry_clear_buffer.c:
+    complete
+    .text       start:0x02101124 end:0x0210114c
+
 src/game/main/func_02101500.c:
     complete
     .text       start:0x02101500 end:0x02101524
