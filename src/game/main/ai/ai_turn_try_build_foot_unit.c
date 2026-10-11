@@ -20,7 +20,7 @@ int AiSite_PickForFootUnit(void);
 int AiSite_PickNearestToPropertyAnyGroup(int arg);
 int AiSite_PickFirst(int arg);
 int func_0209f980(int arg);
-u32 func_02091b24(void);
+u32 AiTurn_GetMechBuildPercent(void);
 void func_020b81bc(void);
 void func_0209316c(int index);
 
@@ -29,7 +29,7 @@ void func_0209316c(int index);
  * AiSite_PickNearestToPropertyAnyGroup(1) or AiSite_PickFirst(1) return
  * (-1: none). A factory whose site group already has skipFoot set is skipped
  * when unk_08 reaches the profile's unk_08[0] + unk_08[1]. The unit is a Mech
- * when a roll of 0 to 99 is under func_02091b24() and funds cover 20 times its
+ * when a roll of 0 to 99 is under AiTurn_GetMechBuildPercent() and funds cover 20 times its
  * value per HP, else an Infantry. The name and the meaning of the flags are
  * guesses. */
 BOOL AiTurn_TryBuildFootUnit(void)
@@ -61,7 +61,7 @@ BOOL AiTurn_TryBuildFootUnit(void)
         }
     }
     roll = HwMod32(Rng_Next(), 100);
-    if (roll < func_02091b24() && (u32)STATE->players[STATE->currentPlayer].funds >= (u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_MECH) * 20)) {
+    if (roll < AiTurn_GetMechBuildPercent() && (u32)STATE->players[STATE->currentPlayer].funds >= (u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_MECH) * 20)) {
         gUnitAction.target = UNIT_MECH;
     } else {
         gUnitAction.target = UNIT_INFANTRY;

@@ -10020,6 +10020,10 @@ src/game/main/ai/ai_turn_try_build_foot_unit.c:
     complete
     .text       start:0x02091944 end:0x02091b24
 
+src/game/main/ai/ai_turn_get_mech_build_percent.c:
+    complete
+    .text       start:0x02091b24 end:0x02091b74
+
 src/game/main/ai/ai_turn_try_build_cruiser.c:
     complete
     .text       start:0x02091b74 end:0x02091c54
