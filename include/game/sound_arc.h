@@ -67,6 +67,15 @@ typedef struct SoundArcSeqInfoTable {
     u32 offset[1];                     /* count entries */
 } SoundArcSeqInfoTable;
 
+/* A player group entry (table at SoundArcInfo.unk_18): how many sequence
+ * players the group runs and the heap size reserved for each. */
+typedef struct SoundArcPlayerGroupInfo {
+    u8 maxPlayers;
+    u8 pad_01;
+    u16 trackChannelMask;
+    u32 heapSize;
+} SoundArcPlayerGroupInfo;
+
 /* Start of the archive's INFO block. */
 typedef struct SoundArcInfo {
     char signature[4];

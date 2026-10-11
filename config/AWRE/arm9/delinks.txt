@@ -20092,6 +20092,10 @@ src/game/main/sound/nns_snd_arc_player_start_seq.c:
     complete
     .text       start:0x02107ab0 end:0x02107b04
 
+src/game/main/sound/sound_create_player_heaps.c:
+    complete
+    .text       start:0x02107b04 end:0x02107bac
+
 src/game/main/sound/sound_stream_fill_blocks.c:
     .text       start:0x02107c28 end:0x021084b0
 

@@ -10,7 +10,7 @@ extern const char gSoundArcPath[];
 
 SoundHeap *SoundHeap_Create(u32 mem, u32 size);
 void SoundArc_Open(SoundArc *arc, const char *path, void *heap, int symbolLoad);
-void func_02107b04(void *heap);
+void Sound_CreatePlayerHeaps(void *heap);
 void func_02109108(int a, void *heap);
 void Sound_SaveHeapState(void);
 
@@ -24,7 +24,7 @@ void Sound_Init(void)
     data_0218feb0 = data_0218ff58;
     gSoundHeap = SoundHeap_Create((u32)data_0218ff58, 0xf8000);
     SoundArc_Open(&gSoundArc, gSoundArcPath, gSoundHeap, 0);
-    func_02107b04(gSoundHeap);
+    Sound_CreatePlayerHeaps(gSoundHeap);
     func_02109108(10, gSoundHeap);
     gSoundReady = TRUE;
     Sound_SaveHeapState();
