@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/sound_heap.h"
 #include "game/sound_wave_arc.h"
+#include "sdk/snd.h"
 
-BOOL func_02110a10(SoundWaveArc *wave, u32 waveNo);
-void func_02110a58(SoundWaveArc *wave, u32 waveNo, void *data);
 u32 func_02110a90(SoundWaveArc *wave);
 void DC_StoreRange(void *start, u32 size);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
@@ -27,7 +26,7 @@ BOOL SoundWaveArc_LoadWave(SoundWaveArc *wave, u32 waveNo, u32 fileNo, SoundHeap
     u32 end;
     u32 start;
 
-    if (func_02110a10(wave, waveNo)) {
+    if (SND_GetWaveDataAddress(wave, waveNo)) {
         return TRUE;
     }
     waveCount = func_02110a90(wave);
@@ -50,6 +49,6 @@ BOOL SoundWaveArc_LoadWave(SoundWaveArc *wave, u32 waveNo, u32 fileNo, SoundHeap
         return FALSE;
     }
     DC_StoreRange(data, size);
-    func_02110a58(wave, waveNo, data);
+    SND_SetWaveDataAddress(wave, waveNo, data);
     return TRUE;
 }

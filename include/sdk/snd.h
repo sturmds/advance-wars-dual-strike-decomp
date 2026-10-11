@@ -2,6 +2,7 @@
 #define SDK_SND_H
 
 #include "types.h"
+#include "game/sound_wave_arc.h"
 
 /* One request for the ARM7 sound driver. The ARM9 fills it in and pushes it. */
 typedef struct SndCommand {
@@ -85,5 +86,9 @@ u32 SND_GetPlayerStatus(void);
 u16 SND_CalcChannelVolume(int volume);
 /* Reads the ARM7 shared work after invalidating its cache lines. */
 u32 Sound_LastDoneCommandTag(void);
+
+/* Wave archive table access (SNDWaveArc). Entries hold the wave's address once it is loaded. */
+void *SND_GetWaveDataAddress(SoundWaveArc *arc, u32 waveNo);
+void SND_SetWaveDataAddress(SoundWaveArc *arc, u32 waveNo, void *wave);
 
 #endif
