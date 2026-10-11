@@ -8083,6 +8083,7 @@ src/game/main/menus/func_020bd13c.c:
     .text       start:0x020bd13c end:0x020bd16c
 
 src/game/main/menus/func_020bd16c.c:
+    complete
     .text       start:0x020bd16c end:0x020bd1bc
 
 src/game/main/func_020bd1bc.c:
