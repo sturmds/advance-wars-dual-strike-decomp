@@ -5301,6 +5301,14 @@ src/game/main/menus/campaign_map_free_marker_sprites.c:
     complete
     .text       start:0x0204d8e0 end:0x0204d910
 
+src/game/main/menus/campaign_map_start_music.c:
+    complete
+    .text       start:0x0204d910 end:0x0204d978
+
+src/game/main/menus/campaign_map_start_music_for_mode.c:
+    complete
+    .text       start:0x0204d978 end:0x0204da0c
+
 src/game/main/menus/campaign_map_draw_co_panel.c:
     complete
     .text       start:0x0204da94 end:0x0204ddcc
