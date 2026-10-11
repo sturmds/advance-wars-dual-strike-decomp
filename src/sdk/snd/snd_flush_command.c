@@ -2,7 +2,6 @@
 #include "sdk/os.h"
 
 void DC_FlushRange(void *start, u32 length);
-int func_02110554(int block);
 int func_02110f88(int tag, u32 data, int err);
 
 /* Sends the queued commands to the ARM7. Returns 1 when sent, 0 when it would
@@ -21,7 +20,7 @@ int SND_FlushCommand(u32 flags)
             return 0;
         }
         do {
-            func_02110554(1);
+            SND_RecvCommandReply(1);
         } while (data_022a9c84 >= SOUND_BATCHES_IN_FLIGHT_MAX);
     }
     DC_FlushRange(data_022a9f40, sizeof(data_022a9f40));

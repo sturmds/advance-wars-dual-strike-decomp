@@ -40,6 +40,8 @@ void SoundAlarm_OnArm7Message(int tag, u32 data, int err);
 
 /* Allocate and queue a command (SND_AllocCommand is the allocator, guessed name SND_AllocCommand). */
 SndCommand *SND_AllocCommand(int block);
+/* Take one reply batch off the ring and return its commands to the free list; NULL if none and not blocking. */
+SndCommand *SND_RecvCommandReply(int block);
 void Sound_LinkCommandAtTail(SndCommand *command);
 void Sound_PostCommandArgs(u32 id, u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 

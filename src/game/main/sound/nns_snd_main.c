@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound.h"
 
-void *func_02110554(int block);
+void *SND_RecvCommandReply(int block);
 void SoundSeqPlayer_UpdateAll(void);
 void SoundOutput_Update(void);
 void SoundStream_UpdateAll(void);
@@ -11,7 +11,7 @@ void SND_FlushCommand(int block);
  * processor until none are left, then runs the update steps. */
 void NNS_SndMain(void)
 {
-    while (func_02110554(0) != NULL) {
+    while (SND_RecvCommandReply(0) != NULL) {
     }
     SoundSeqPlayer_UpdateAll();
     SoundOutput_Update();
