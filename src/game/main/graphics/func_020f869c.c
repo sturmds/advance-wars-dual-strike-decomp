@@ -4,7 +4,7 @@
 
 void Screen_FillWhite(void);
 void Screen_FillBlack(void);
-void func_0200a6d0(void *a);
+void Screens_SetUp2dLayers(void *a);
 void func_02009ac0(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);
@@ -28,7 +28,7 @@ void func_020f869c(int mode)
     if (mode == 0) {
         Screen_FillWhite();
     }
-    func_0200a6d0(data_02166dc8);
+    Screens_SetUp2dLayers(data_02166dc8);
     data_027c0280->dispCnt |= 0x40;
     data_027c0280->unk_dd = 0;
     func_02009ac0();

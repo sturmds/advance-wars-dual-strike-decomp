@@ -39,7 +39,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_020097a4(void);
 void Screen_ApplyAll(void);
 void Screen_InitSystems(void);
-void func_0200a6d0(void *a);
+void Screens_SetUp2dLayers(void *a);
 void func_01ff9b48(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
@@ -62,7 +62,7 @@ void func_01ff9c7c(void);
     func_020097a4();                            \
     Screen_ApplyAll();                          \
     Screen_InitSystems();                            \
-    func_0200a6d0(data_02166dc8);               \
+    Screens_SetUp2dLayers(data_02166dc8);               \
     func_01ff9b48();                            \
     func_01ff9c28(MainLoop_DefaultVBlank);      \
     func_01ff9c48(func_02000fa4);               \

@@ -5,7 +5,7 @@
 void Screen_FillBlack(void);
 void Screen_FillWhite(void);
 void func_01ffd7b8(void);
-void func_0200a740(void *a);
+void Screens_SetUp3dLayers(void *a);
 void func_02009ac0(void);
 void Screen_ApplyAll(void);
 void func_01ff9b48(void);
@@ -29,7 +29,7 @@ void func_020f8764(int mode)
         Screen_FillWhite();
     }
     func_01ffd7b8();
-    func_0200a740(data_02166dc8);
+    Screens_SetUp3dLayers(data_02166dc8);
     data_027c0280->dispCnt |= 0x40;
     data_027c0280->unk_dd = 0;
     func_02009ac0();
