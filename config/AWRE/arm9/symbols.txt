@@ -1922,7 +1922,7 @@ MapSelect_DrawNumber kind:function(arm,size=0x118) addr:0x02060ae0
 MapSelect_DrawPageIndicator kind:function(arm,size=0x180) addr:0x02060bf8
 func_02060d78 kind:function(arm,size=0x20c) addr:0x02060d78
 func_02060f84 kind:function(arm,size=0x1c) addr:0x02060f84
-func_02060fa0 kind:function(arm,size=0xd98) addr:0x02060fa0
+MapSelect_Init kind:function(arm,size=0xd98) addr:0x02060fa0
 func_02061d38 kind:function(arm,size=0x4d0) addr:0x02061d38
 MapSelect_LoadWarRoomRecords kind:function(arm,size=0x714) addr:0x02062208
 MapSelect_ShowSelectedMap kind:function(arm,size=0xdbc) addr:0x0206291c
@@ -7290,11 +7290,11 @@ data_0215c918 kind:data(any) addr:0x0215c918
 data_0215c940 kind:data(any) addr:0x0215c940
 data_0215c968 kind:data(any) addr:0x0215c968
 data_0215c9a8 kind:data(any) addr:0x0215c9a8
-data_0215ca08 kind:data(any) addr:0x0215ca08
-data_0215ca20 kind:data(any) addr:0x0215ca20
-data_0215ca3c kind:data(any) addr:0x0215ca3c
-data_0215ca54 kind:data(any) addr:0x0215ca54
-data_0215ca70 kind:data(any) addr:0x0215ca70
+gMapSelectResPath kind:data(any) addr:0x0215ca08
+gMapSelectLangResPath kind:data(any) addr:0x0215ca20
+gIconBlinkResPath kind:data(any) addr:0x0215ca3c
+gMapSelectLinkCommonLangResPath kind:data(any) addr:0x0215ca54
+gMapSelectLinkCommonResPath kind:data(any) addr:0x0215ca70
 data_0215ca88 kind:data(any) addr:0x0215ca88
 data_0215ca90 kind:data(any) addr:0x0215ca90
 data_0215ca9c kind:data(any) addr:0x0215ca9c
