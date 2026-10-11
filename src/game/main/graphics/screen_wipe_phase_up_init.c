@@ -8,7 +8,7 @@ extern u8 data_02140518[];
 #define WIPE_TILE_DATA_OFFSET 0x5100   /* tile 0x288 of the layer's character base */
 
 void Data_Unpack(const void *src, void *dest);
-void func_020cadc0(u8 column, int step, int flag);
+void ScreenWipe_SetColumn(int column, int phase, int mirror);
 
 /* Start of the wipe that ScreenWipe_PhaseUpStep steps: scrolls the first
  * layer to 0, unpacks the wipe tiles into its character base, sets every
@@ -24,7 +24,7 @@ void ScreenWipe_PhaseUpInit(WipeSlot *slot)
                     + WIPE_TILE_DATA_OFFSET);
     column = 0;
     do {
-        func_020cadc0(column, 0, 1);
+        ScreenWipe_SetColumn(column, 0, 1);
         column++;
     } while (column < 16);
     slot->frame = 0;

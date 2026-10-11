@@ -10197,6 +10197,10 @@ src/game/main/graphics/screen_wipe_phase_up_init.c:
     complete
     .text       start:0x020cad18 end:0x020cadc0
 
+src/game/main/graphics/screen_wipe_set_column.c:
+    complete
+    .text       start:0x020cadc0 end:0x020cae6c
+
 src/game/main/func_020cb0cc.c:
     complete
     .text       start:0x020cb0cc end:0x020cb0f4
