@@ -4497,6 +4497,10 @@ src/game/main/result_sprite_wait_point_slide.c:
     complete
     .text       start:0x02034fe4 end:0x02035034
 
+src/game/main/result_sprite_wait_for_a.c:
+    complete
+    .text       start:0x02035034 end:0x02035070
+
 src/game/main/result_sprite_shake.c:
     complete
     .text       start:0x020351f0 end:0x020353d4
