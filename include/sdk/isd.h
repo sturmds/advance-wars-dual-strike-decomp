@@ -20,6 +20,17 @@ typedef struct IsdBusState {
     u16 active;
 } IsdBusState;
 
+typedef struct IsdPrintTarget IsdPrintTarget;
+
+/* Where formatted text goes: the formatter calls write with pieces of the output. */
+struct IsdPrintTarget {
+    u32 unk_00;
+    u32 limit;
+    u32 total;
+    u32 stored;
+    void (*write)(IsdPrintTarget *target, const char *text, int length);
+};
+
 /* A halfword in the shared block that holds the debugger's current mode. */
 #define ISD_SHARED_MODE (*(vu16 *)0x027fff72)
 
