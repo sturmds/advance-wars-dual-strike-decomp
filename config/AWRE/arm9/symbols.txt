@@ -868,7 +868,7 @@ Text_DrawStringToTiles kind:function(arm,size=0xb4) addr:0x020211a4
 FontCache_Add kind:function(arm,size=0x128) addr:0x02021258
 Font_LoadDigits kind:function(arm,size=0x40) addr:0x02021380
 Font_SetDigitEndTile kind:function(arm,size=0x24) addr:0x020213c0
-func_020213e4 kind:function(arm,size=0x74) addr:0x020213e4
+Math_SinDegrees kind:function(arm,size=0x74) addr:0x020213e4
 func_02021458 kind:function(arm,size=0xc8) addr:0x02021458
 Sprite_QueueGroup kind:function(arm,size=0x1b8) addr:0x02021520
 Oam_GetAttrCells kind:function(arm,size=0x180) addr:0x020216d8
@@ -6081,7 +6081,7 @@ data_02134e8c kind:data(any) addr:0x02134e8c
 data_02137c88 kind:data(any) addr:0x02137c88
 data_02137ca8 kind:data(any) addr:0x02137ca8
 data_021388f0 kind:data(any) addr:0x021388f0
-data_02138930 kind:data(any) addr:0x02138930
+gSinTable kind:data(any) addr:0x02138930
 data_021389e8 kind:data(any) addr:0x021389e8
 data_02138a68 kind:data(any) addr:0x02138a68
 data_02138ae8 kind:data(any) addr:0x02138ae8

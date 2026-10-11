@@ -7,7 +7,7 @@ s32 HwMod32(s32 numer, s32 denom);
 int MainLoop_GetFrameCount(void);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_020213e4(int degrees);
+int Math_SinDegrees(int degrees);
 
 extern MenuState gMenuState;
 extern s16 data_021389e8[];
@@ -38,7 +38,7 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y)
     u16 sy;
     u8 player;
 
-    scale = (func_020213e4(HwMod32(MainLoop_GetFrameCount() << 4, 360)) >> 9) + 0x100;
+    scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() << 4, 360)) >> 9) + 0x100;
 
     {
         int d3 = DIVISOR(scale);

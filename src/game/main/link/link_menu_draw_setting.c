@@ -6,7 +6,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_020213e4(int degrees);
+int Math_SinDegrees(int degrees);
 
 extern s16 data_021389e8[];
 extern u8 data_027c0038;
@@ -28,7 +28,7 @@ void LinkMenu_DrawSetting(int x, int y, int entry, int affine)
     u16 iconY;
 
     if (affine) {
-        int scale = (func_020213e4(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
+        int scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
         int d3 = DIVISOR(scale);
         int d2 = DIVISOR(scale);
         int d1 = DIVISOR(scale);

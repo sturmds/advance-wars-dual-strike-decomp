@@ -13,7 +13,7 @@ s32 HwMod32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int attr, int tile, int list);
-int func_020213e4(int degrees);
+int Math_SinDegrees(int degrees);
 u16 func_0207a1dc(void);
 int func_0207a260(void);
 int func_0207a324(void);
@@ -53,7 +53,7 @@ void Link_DrawEntryMarkers(void)
     for (i = 0; i < func_0207a324(); i++) {
         if ((1 << i) & (func_0207a1dc() | 1)) {
             if (i == func_0207a260()) {
-                scale = (func_020213e4(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
+                scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
                 Oam_SetAffineParams(1, HwDiv32(COS_0 * 16, DIVISOR(scale)), HwDiv32(-SIN_0 * 16, DIVISOR(scale)),
                                     HwDiv32(SIN_0 * 16, DIVISOR(scale)), HwDiv32(COS_0 * 16, DIVISOR(scale)));
                 if (func_0207fbc8(i) == 1) {

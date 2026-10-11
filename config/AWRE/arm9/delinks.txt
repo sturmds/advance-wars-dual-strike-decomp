@@ -3027,6 +3027,10 @@ src/game/main/graphics/font_set_digit_end_tile.c:
     complete
     .text       start:0x020213c0 end:0x020213e4
 
+src/game/main/math/math_sin_degrees.c:
+    complete
+    .text       start:0x020213e4 end:0x02021458
+
 src/game/main/graphics/sprite_queue_group.c:
     complete
     .text       start:0x02021520 end:0x020216d8

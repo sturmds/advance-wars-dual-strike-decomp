@@ -6,7 +6,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_020213e4(int degrees);
+int Math_SinDegrees(int degrees);
 u16 func_0207a1dc(void);
 int func_0207bd6c(void);
 int LinkScreen_FindPanelOfPlayer(u8 player);
@@ -46,7 +46,7 @@ void LinkPhase_DrawPlayerMarker(int player)
                      &data_027c0040, attr, 0);
         return;
     }
-    scale = (func_020213e4(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
+    scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
     Oam_SetAffineParams(1, HwDiv32(COS_0 * 16, DIVISOR(scale)), HwDiv32(-SIN_0 * 16, DIVISOR(scale)),
                         HwDiv32(SIN_0 * 16, DIVISOR(scale)), HwDiv32(COS_0 * 16, DIVISOR(scale)));
     Sprite_Queue(0, 0x270, ((LinkScreen_GetPlayerRow(LinkScreen_FindPanelOfPlayer(player)) * 8 + 1) & 0xff) | 0x300,
