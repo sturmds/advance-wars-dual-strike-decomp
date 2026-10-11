@@ -7,9 +7,9 @@ extern int data_027c0284;
 void func_020d174c(void);
 void UnitMoveSelect_Update(void);
 void func_020d14cc(void);
-void func_020d09a8(void);
-void func_020d091c(void);
-void func_020d08ac(void);
+void Game_State15_OpenMenuAtDestination(void);
+void Game_State15_AwaitUnitCommand(void);
+void Game_State15_EndBlockedMove(void);
 void func_020d1440(void);
 void func_020d13ec(void);
 void func_020d1360(void);
@@ -32,13 +32,13 @@ void Game_State15_RunStep(void)
         func_020d14cc();
         break;
     case 3:
-        func_020d09a8();
+        Game_State15_OpenMenuAtDestination();
         break;
     case 4:
-        func_020d091c();
+        Game_State15_AwaitUnitCommand();
         break;
     case 5:
-        func_020d08ac();
+        Game_State15_EndBlockedMove();
         break;
     case 6:
         func_020d1440();

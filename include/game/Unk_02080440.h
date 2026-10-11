@@ -251,7 +251,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_30)(void);              /* run by MapCursor_SelectTile when set, after a unit is picked to move */
     u8 pad_34[0x38 - 0x34];
     void (*unk_38)(void);              /* run by func_020f77bc when set */
-    u8 pad_3c[0x40 - 0x3c];
+    void (*unk_3c)(void);              /* run by Game_State15_EnterState8 when set, before the state changes to 8 */
     void (*afterBoxDraw)(void);        /* run by MenuBox_Draw after it draws a menu box */
     void (*afterInfoPanelDraw)(void);  /* run by MapScreen_DrawInfoPanel after it draws the info panel */
     void (*unk_48)(void);              /* run by ScreenConfig_RunActionHook when set */

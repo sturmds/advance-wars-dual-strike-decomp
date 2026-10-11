@@ -12581,6 +12581,18 @@ src/game/main/units/acting_unit_can_move_to.c:
     complete
     .text       start:0x020d0700 end:0x020d08ac
 
+src/game/main/menus/game_state15_end_blocked_move.c:
+    complete
+    .text       start:0x020d08ac end:0x020d091c
+
+src/game/main/menus/game_state15_await_unit_command.c:
+    complete
+    .text       start:0x020d091c end:0x020d09a8
+
+src/game/main/menus/game_state15_open_menu_at_destination.c:
+    complete
+    .text       start:0x020d09a8 end:0x020d0a14
+
 src/game/main/units/unit_move_select_try_move_to.c:
     complete
     .text       start:0x020d0a14 end:0x020d0c4c
@@ -12592,6 +12604,10 @@ src/game/main/map/map_cursor_select_tile.c:
 src/game/main/map/map_cursor_show_range.c:
     complete
     .text       start:0x020d0f18 end:0x020d12fc
+
+src/game/main/menus/game_state15_enter_state8.c:
+    complete
+    .text       start:0x020d12fc end:0x020d1360
 
 src/game/main/func_020d1414.c:
     complete
