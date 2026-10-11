@@ -7,13 +7,13 @@ extern u32 data_0216d958;   /* DMA channel the GX library uses, or GX_DMA_NOT_US
 
 int func_0210cef0(void);   /* OS_GetLockID */
 void MI_DmaFill32(u32 dmaNo, void *dest, u32 data, u32 size);   /* MI_DmaFill32 */
-void func_0210f474(u32 data, void *dest, u32 size);   /* MIi_CpuClear32 */
+void MIi_CpuClear32(u32 data, void *dest, u32 size);   /* MIi_CpuClear32 */
 
 static inline void CpuFill32(void *dest, u32 data, u32 size)
 {
     volatile u32 fill = data;   /* needed to match: the original passes data through the stack */
 
-    func_0210f474(fill, dest, size);
+    MIi_CpuClear32(fill, dest, size);
 }
 
 /* Powers up both 2D engines and the LCDs, takes a lock id for VRAM, and

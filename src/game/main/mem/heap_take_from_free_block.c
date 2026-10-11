@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/heap.h"
 
-void func_0210f474(u32 value, void *dest, u32 size); /* fills [dest, dest + size) with value */
+void MIi_CpuClear32(u32 value, void *dest, u32 size); /* fills [dest, dest + size) with value */
 
 #define HEAP_BLOCK_USED 0x5544 /* "UD" */
 
@@ -62,7 +62,7 @@ void *Heap_TakeFromFreeBlock(ExpHeapData *data, HeapBlock *freeBlock, void *memo
     /* option bit 0: fill the new block with 0 */
     if ((u16)(((ExpHeap *)((u32)data - sizeof(HeapHead)))->head.options & 0xFF) & 1) {
         fill = 0;
-        func_0210f474(fill, front.end, usedSize);
+        MIi_CpuClear32(fill, front.end, usedSize);
     }
 
     used.start = blockStart;

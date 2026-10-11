@@ -17,7 +17,7 @@ extern u32 data_022a991c;
 void func_0210cf78(void);
 void func_0210d114(int tag, void *block, int arg);
 void func_0210d1b4(int tag, void *block, int arg);
-void func_0210f474(u32 value, void *dest, u32 size);
+void MIi_CpuClear32(u32 value, void *dest, u32 size);
 
 void func_0210d21c(void)
 {
@@ -37,7 +37,7 @@ void func_0210d21c(void)
     *(vu32 *)0x027fffb0 = -1;
     *(vu32 *)0x027fffb4 = -0x10000;
     zero = 0;
-    func_0210f474(zero, (void *)0x027fffc0, 0x28);
+    MIi_CpuClear32(zero, (void *)0x027fffc0, 0x28);
     REG_EXMEMCNT |= 0x800;
     REG_EXMEMCNT |= 0x80;
     func_0210d114(0x7e, SHARED_BLOCK, 0);
