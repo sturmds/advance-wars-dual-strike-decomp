@@ -8,9 +8,6 @@ extern Unk_027c0280 *data_027c0280;
 extern s16 data_0216e2a4;              /* screen shake y offset */
 extern s16 data_0216e2ac;              /* screen shake x offset */
 
-#define OAM_ATTR1_HFLIP 0x1000
-#define OAM_ATTR1_FLIPS 0x3000
-
 /* Puts the cells of a sprite at (x, y) into the OAM buffer, starting at tile
  * tile with attr2's priority and palette. x and y carry the attribute 1 and
  * 0 flag bits too. With the horizontal flip bit set in x, each cell is
