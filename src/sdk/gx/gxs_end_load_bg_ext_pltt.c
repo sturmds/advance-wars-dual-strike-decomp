@@ -7,7 +7,7 @@ void func_0210aa6c(int bank);
 void GXS_EndLoadBGExtPltt(void)
 {
     if (data_0216d958 != -1) {
-        func_0210f034(data_0216d958);
+        MI_WaitDma(data_0216d958);
     }
     func_0210aa6c(data_022a9894);
     data_022a9894 = 0;
