@@ -213,6 +213,15 @@ typedef struct WMStartConnectReq {
     u16 authMode;
 } WMStartConnectReq;
 
+/* Arguments of the scan command, written into WMArm9Buf.requestBuf. */
+typedef struct WMStartScanReq {
+    u16 apiid;
+    u16 channel;
+    WMBssDesc *scanBuf;
+    u16 maxChannelTime;
+    u8 bssid[6];
+} WMStartScanReq;
+
 typedef void (*WMCallbackFunc)(void *arg);
 
 /* The ARM9 side's work area. */
