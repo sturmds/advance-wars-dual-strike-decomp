@@ -3,7 +3,7 @@
 #include "game/menu_button.h"
 
 int func_0207bd6c(void);
-int func_0206b608(int player);
+int VsSetup_GetPanelTileX(int player);
 u32 func_02073874(void);
 BOOL Skills_AreDisabled(void);
 
@@ -32,15 +32,15 @@ void VsSetup_AddLinkButtons(int player)
     int other;
 
     if (STATE->twoMaps == 1) {
-        MenuButton_Add(func_0206b608(player) * 8 + 28, 24, &data_0215cb20, player * 2 + 1);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 24, &data_0215cb20, player * 2 + 1);
     }
-    MenuButton_Add(func_0206b608(player) * 8, 80, &data_0215cb98, player * 2 + 8);
-    MenuButton_Add(func_0206b608(player) * 8 + 24, 80, &data_0215cb98, player * 2 + 9);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8, 80, &data_0215cb98, player * 2 + 8);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 24, 80, &data_0215cb98, player * 2 + 9);
     if (IsFirstLinkPlayer() == 1) {
         for (other = 0; other < MENU->setup.unk_2e3; other++) {
             if ((func_02073874() & (1 << other)) == 0) {
-                MenuButton_Add(func_0206b608(other) * 8, 80, &data_0215cb98, other * 2 + 8);
-                MenuButton_Add(func_0206b608(other) * 8 + 24, 80, &data_0215cb98, other * 2 + 9);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8, 80, &data_0215cb98, other * 2 + 8);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 24, 80, &data_0215cb98, other * 2 + 9);
             }
         }
     }
@@ -51,20 +51,20 @@ void VsSetup_AddLinkButtons(int player)
         MenuButton_Add(152, 152, &data_0215cb48, 250);
     }
     if (STATE->twoMaps == 1) {
-        MenuButton_Add(func_0206b608(player) * 8 + 28, 8, &data_0215cdf0, player * 4 + 18);
-        MenuButton_Add(func_0206b608(player) * 8 + 28, 40, &data_0215cb70, player * 4 + 19);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0, player * 4 + 18);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70, player * 4 + 19);
     }
-    MenuButton_Add(func_0206b608(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
-    MenuButton_Add(func_0206b608(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
-    MenuButton_Add(func_0206b608(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);
-    MenuButton_Add(func_0206b608(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
     if (IsFirstLinkPlayer() == 1) {
         for (other = 0; other < MENU->setup.unk_2e3; other++) {
             if ((func_02073874() & (1 << other)) == 0) {
-                MenuButton_Add(func_0206b608(other) * 8 + 4, 64, &data_0215cdf0, other * 4 + 32);
-                MenuButton_Add(func_0206b608(other) * 8 + 4, 128, &data_0215cb70, other * 4 + 33);
-                MenuButton_Add(func_0206b608(other) * 8 + 28, 64, &data_0215cdf0, other * 4 + 34);
-                MenuButton_Add(func_0206b608(other) * 8 + 28, 128, &data_0215cb70, other * 4 + 35);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 4, 64, &data_0215cdf0, other * 4 + 32);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 4, 128, &data_0215cb70, other * 4 + 33);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 28, 64, &data_0215cdf0, other * 4 + 34);
+                MenuButton_Add(VsSetup_GetPanelTileX(other) * 8 + 28, 128, &data_0215cb70, other * 4 + 35);
             }
         }
     }

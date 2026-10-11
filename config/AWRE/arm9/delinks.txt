@@ -7931,9 +7931,29 @@ src/game/main/menus/vs_setup_draw_slot_panels.c:
     complete
     .text       start:0x0206b28c end:0x0206b5cc
 
+src/game/main/menus/vs_setup_get_slot_tile_x.c:
+    complete
+    .text       start:0x0206b5cc end:0x0206b608
+
+src/game/main/menus/vs_setup_get_panel_tile_x.c:
+    complete
+    .text       start:0x0206b608 end:0x0206b654
+
+src/game/main/menus/vs_setup_get_player_of_slot.c:
+    complete
+    .text       start:0x0206b654 end:0x0206b680
+
 src/game/main/menus/vs_setup_destroy_player_tasks.c:
     complete
     .text       start:0x0206b680 end:0x0206b6c4
+
+src/game/main/menus/vs_setup_resume_player_task.c:
+    complete
+    .text       start:0x0206b6c4 end:0x0206b748
+
+src/game/main/menus/vs_setup_start_player_task.c:
+    complete
+    .text       start:0x0206b748 end:0x0206b7d4
 
 src/game/main/func_0206b974.c:
     complete

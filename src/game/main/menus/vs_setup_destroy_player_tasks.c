@@ -2,7 +2,7 @@
 
 void Task_DestroyByScript(void *script);
 
-/* One task script per player slot; func_0206b6c4 resumes them by player. */
+/* One task script per player slot; VsSetup_ResumePlayerTask resumes them by player. */
 extern u32 data_0215cec8[];
 extern u32 data_0215cf00[];
 extern u32 data_0215cf38[];

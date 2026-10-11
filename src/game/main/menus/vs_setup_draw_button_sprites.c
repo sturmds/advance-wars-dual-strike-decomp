@@ -5,7 +5,7 @@
 
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
 void CoPicture_QueueSprite(int x, int y, int unk08, int unk0a, int list);
-int func_0206b608(int player);
+int VsSetup_GetPanelTileX(int player);
 int VsSetup_GetPlayerOfSlot(int slot);
 BOOL Skills_AreDisabled(void);
 int BattleSetup_IsCursorOnCo(void);
@@ -38,32 +38,32 @@ void VsSetup_DrawButtonSprites(void)
     if (STATE->twoMaps == 0) {
         for (player = 0; player < MENU->setup.unk_2e3; player++) {
             if (MENU->setup.controllers[player][0] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
+                Sprite_QueueAt(1, (VsSetup_GetPanelTileX(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, 16);
+                Sprite_QueueAt(1, (VsSetup_GetPanelTileX(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, 16);
             }
         }
     } else {
         for (player = 0; player < MENU->setup.unk_2e3; player++) {
             if (MENU->setup.controllers[player][0] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(0, (func_0206b608(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
+                Sprite_QueueAt(0, (VsSetup_GetPanelTileX(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
-                Sprite_QueueAt(0, (func_0206b608(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, 16);
+                Sprite_QueueAt(0, (VsSetup_GetPanelTileX(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, 16);
             }
             if (MENU->setup.controllers[player][1] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
+                Sprite_QueueAt(1, (VsSetup_GetPanelTileX(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, 16);
+                Sprite_QueueAt(1, (VsSetup_GetPanelTileX(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, 16);
             }
         }
     }
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
-        Sprite_QueueAt(1, (func_0206b608(player) * 8) & 0x1ff, 80, &data_027c01dc, 0x1000, 0x204);
+        Sprite_QueueAt(1, (VsSetup_GetPanelTileX(player) * 8) & 0x1ff, 80, &data_027c01dc, 0x1000, 0x204);
         if (MENU->setup.cos[player][0] != 0) {
-            CoPicture_QueueSprite((func_0206b608(player) * 8) & 0x1ff, 80, (player * 2 + 2) << 12, 552 + player * 2 * 18, 2);
+            CoPicture_QueueSprite((VsSetup_GetPanelTileX(player) * 8) & 0x1ff, 80, (player * 2 + 2) << 12, 552 + player * 2 * 18, 2);
         }
         if (MENU->setup.cos[player][1] != 0) {
-            CoPicture_QueueSprite((func_0206b608(player) * 8 + 24) & 0x1ff, 80, (player * 2 + 3) << 12, 552 + (player * 2 + 1) * 18, 2);
+            CoPicture_QueueSprite((VsSetup_GetPanelTileX(player) * 8 + 24) & 0x1ff, 80, (player * 2 + 3) << 12, 552 + (player * 2 + 1) * 18, 2);
         }
     }
     if (!Skills_AreDisabled()) {

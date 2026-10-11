@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 
 int func_0207bd6c(void);
-int func_0206b5cc(int player);
+int VsSetup_GetSlotTileX(int player);
 u32 func_02073874(void);
 
 extern MenuState gMenuState;
@@ -28,15 +28,15 @@ void VsSetup_AddLinkSlotButtons(int player)
     int other;
 
     MenuButton_Add(0, 0, &data_0215cc10, 253);
-    MenuButton_Add(func_0206b5cc(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
-    MenuButton_Add(func_0206b5cc(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
-    MenuButton_Add(func_0206b5cc(player) * 8 + 8, 64, &data_0215cc38, player + 48);
+    MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
+    MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
+    MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 8, 64, &data_0215cc38, player + 48);
     if (IsFirstLinkPlayer() == 1) {
         for (other = 0; other < gMenuState.setup.unk_2e3; other++) {
             if ((func_02073874() & (1 << other)) == 0) {
-                MenuButton_Add(func_0206b5cc(other) * 8 + 8, 64, &data_0215cc38, other + 48);
-                MenuButton_Add(func_0206b5cc(other) * 8 + 16, 32, &data_0215cc60, other * 2 + 52);
-                MenuButton_Add(func_0206b5cc(other) * 8 + 16, 96, &data_0215cbe8, other * 2 + 53);
+                MenuButton_Add(VsSetup_GetSlotTileX(other) * 8 + 8, 64, &data_0215cc38, other + 48);
+                MenuButton_Add(VsSetup_GetSlotTileX(other) * 8 + 16, 32, &data_0215cc60, other * 2 + 52);
+                MenuButton_Add(VsSetup_GetSlotTileX(other) * 8 + 16, 96, &data_0215cbe8, other * 2 + 53);
             }
         }
     }

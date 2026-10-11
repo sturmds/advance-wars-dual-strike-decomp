@@ -5,7 +5,7 @@
 int func_0207bd80(void);
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
-int func_0206b5cc(int player);
+int VsSetup_GetSlotTileX(int player);
 u32 func_02073874(void);
 
 extern MenuState gMenuState;
@@ -35,23 +35,23 @@ void VsSetup_AddTeamArrowButtons(void)
         }
         MenuButton_Add(0, 0, &data_0215cc10, 253);
         player = Link_FindSlotOfPlayer(func_0207bd6c()) - 1;
-        MenuButton_Add(func_0206b5cc(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
-        MenuButton_Add(func_0206b5cc(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
+        MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
+        MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
         if (IsFirstLinkPlayer() != 1) {
             return;
         }
         for (player = 0; player < gMenuState.setup.unk_2e3; player++) {
             if ((func_02073874() & (1 << player)) == 0) {
-                MenuButton_Add(func_0206b5cc(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
-                MenuButton_Add(func_0206b5cc(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
+                MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
+                MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
             }
         }
     } else {
         MenuButton_Add(0, 0, &data_0215ccd8, 254);
         MenuButton_Add(0, 0, &data_0215cc10, 253);
         for (player = 0; player < gMenuState.setup.unk_2e3; player++) {
-            MenuButton_Add(func_0206b5cc(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
-            MenuButton_Add(func_0206b5cc(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
+            MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
+            MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
         }
     }
 }

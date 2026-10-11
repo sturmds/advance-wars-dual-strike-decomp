@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
-int func_0206b5cc(int player);
+int VsSetup_GetSlotTileX(int player);
 
 extern MenuState gMenuState;
 extern u8 data_027c0008;
@@ -24,7 +24,7 @@ void VsSetup_DrawSettingsTeamSprites(void)
     saved = data_027c0280;
     Screen_SetCurrentGfx((&data_027c0288.unk_00)[1]);
     for (player = 0; player < MENU->setup.unk_2e3; player++) {
-        Sprite_QueueAt(1, (func_0206b5cc(player) * 8) & 0x1ff, 136, &data_027c0008, 0x1000, MENU->setup.teams[player] * 32 + 52);
+        Sprite_QueueAt(1, (VsSetup_GetSlotTileX(player) * 8) & 0x1ff, 136, &data_027c0008, 0x1000, MENU->setup.teams[player] * 32 + 52);
     }
     Screen_SetCurrentGfx(saved);
 }

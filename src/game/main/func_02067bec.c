@@ -3,8 +3,8 @@
 
 int Sound_PlaySe(int);
 int Link_FindSlotOfPlayer(int player);
-int func_0206b608(int player);
-void func_0206b748(int slot, u16 x, int y);
+int VsSetup_GetPanelTileX(int player);
+void VsSetup_StartPlayerTask(int slot, u16 x, int y);
 int func_0207bd6c(void);
 void func_020681c8(int slot);
 extern MenuState gMenuState;
@@ -18,7 +18,7 @@ void func_02067bec(int slot)
     }
     Sound_PlaySe(0x10006);
     shifted->setup.unk_2d0[0] = 1;
-    func_0206b748(slot, func_0206b608(slot) * 8 + 8, 96);
+    VsSetup_StartPlayerTask(slot, VsSetup_GetPanelTileX(slot) * 8 + 8, 96);
     if (slot != Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
         return;
     }
