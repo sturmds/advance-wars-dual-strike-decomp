@@ -10596,6 +10596,10 @@ src/game/main/graphics/player_get_palette.c:
     complete
     .text       start:0x020c672c end:0x020c6774
 
+src/game/main/co_stats/player_get_co_icon_tile.c:
+    complete
+    .text       start:0x020c6774 end:0x020c67a8
+
 src/game/main/func_020c67a8.c:
     complete
     .text       start:0x020c67a8 end:0x020c67b0
