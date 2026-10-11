@@ -7,6 +7,7 @@
 #include "game/battle_layout.h"
 #include "game/battle_fighter.h"
 #include "game/battle_hit_list.h"
+#include "game/co_exp.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -217,6 +218,7 @@ typedef struct MenuState {
         CampaignMapWork campaignMap;
         Unk_0206d67c unk_0206d67c;
         BattleScreenWork battle;
+        CoExpScreenWork coExp;
     };
 } MenuState;
 
