@@ -28,7 +28,7 @@ void Campaign_UnlockTopCos(void)
     top = data_022a7fb8;
     for (clearSlot = 0; clearSlot < 4; clearSlot++, top++) {
         top->co = 0;
-        top->unk_1 = 0;
+        top->rank = 0;
         top->score = 0;
     }
     if (func_0210391c()) {
@@ -53,7 +53,7 @@ void Campaign_UnlockTopCos(void)
     top = data_022a7fb8;
     for (unlockSlot = 0; unlockSlot < 3; unlockSlot++, top++) {
         if (top->co != 0) {
-            top->unk_1 = Co_GetRank(top->co);
+            top->rank = Co_GetRank(top->co);
             Co_SetAvailable(top->co, 1);
         }
     }

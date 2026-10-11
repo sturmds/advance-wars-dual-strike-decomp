@@ -28,7 +28,7 @@ void CampaignMap_FindTopCos(void)
     top = TOP_COS;
     for (clearSlot = 0; clearSlot < 3; clearSlot++, top++) {
         top->co = 0;
-        top->unk_1 = 0;
+        top->rank = 0;
         top->score = 0;
     }
     for (co = data_021687c4; *co != 0; co++) {
@@ -47,7 +47,7 @@ void CampaignMap_FindTopCos(void)
     top = TOP_COS;
     for (rankSlot = 0; rankSlot < 3; rankSlot++, top++) {
         if (top->co != 0) {
-            top->unk_1 = Co_GetRank(top->co);
+            top->rank = Co_GetRank(top->co);
         }
     }
 }

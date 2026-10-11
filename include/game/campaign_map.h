@@ -20,7 +20,7 @@ typedef struct Unk_0204f960 {
 
 /* World map state (gCampaignMapState). */
 typedef struct CampaignMapState {
-    u8 unk_00;
+    u8 playedMission;                  /* mission last started (CampaignMap_StartMissionScript) */
     u8 mission;                        /* index into the mission table */
     u8 flags[28];                      /* per mission; bit 0: done (CampaignMap_MarkMissionDone) */
 } CampaignMapState;
@@ -28,7 +28,7 @@ typedef struct CampaignMapState {
 /* A CO of the three the world map shows, filled by CampaignMap_FindTopCos. */
 typedef struct CampaignTopCo {
     u8 co;                             /* 0: empty */
-    u8 unk_1;                          /* Co_GetRank(co) */
+    u8 rank;                           /* Co_GetRank(co) */
     u8 score;                          /* save data byte 0x11a + co; sorted highest first */
     u8 pad_3;
 } CampaignTopCo;

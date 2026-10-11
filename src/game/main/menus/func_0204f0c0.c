@@ -14,14 +14,14 @@ extern MenuState gMenuState;
  * gMenuState at run time instead of folding it into the relocation. */
 #define WORK_FIELD(field) ((u8 *)&gMenuState + (u32)&((MenuState *)0)->campaignMap.field)
 
-/* Starts the sprite task at the current mission, 8 pixels right and up of its screen position (animation 0). Names of the sprite and the mission index (gCampaignMapState.unk_00) are guesses. */
+/* Starts the sprite task at the current mission, 8 pixels right and up of its screen position (animation 0). Names of the sprite and the mission index (gCampaignMapState.playedMission) are guesses. */
 void func_0204f0c0(void)
 {
     Unk_027c0280 *gfx;
     int bg;
     int mission;
 
-    mission = gCampaignMapState.unk_00;
+    mission = gCampaignMapState.playedMission;
     gfx = data_027c0280;
     bg = gfx->layer3Bg;
     SpriteAnimTask_Start(WORK_FIELD(unk_0e4), (gCampaignMissions[mission].x - gfx->bgScrollX[bg] + 8) & 0x1ff,

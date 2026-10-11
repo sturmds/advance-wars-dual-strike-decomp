@@ -11,8 +11,8 @@ extern int data_027c0284;
  * routine does not read. */
 void Player_AddKill(int player)
 {
-    PLAYERS[player].unk_1c++;
-    if (PLAYERS[player].unk_1c > PLAYERS[player].unk_1e) {
-        PLAYERS[player].unk_1e = PLAYERS[player].unk_1c;
+    PLAYERS[player].turnKills++;
+    if (PLAYERS[player].turnKills > PLAYERS[player].mostTurnKills) {
+        PLAYERS[player].mostTurnKills = PLAYERS[player].turnKills;
     }
 }

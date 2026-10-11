@@ -10,5 +10,5 @@ extern u8 gCampaignMissionKind[];
  * updates the best average score. */
 BOOL CampaignMap_IsFinalMission(void)
 {
-    return (gCampaignMissionKind[gCampaignMapState.unk_00 * sizeof(CampaignMission)] & 2) != 0;
+    return (gCampaignMissionKind[gCampaignMapState.playedMission * sizeof(CampaignMission)] & 2) != 0;
 }

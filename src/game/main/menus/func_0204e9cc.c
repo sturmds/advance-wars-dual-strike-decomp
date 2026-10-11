@@ -7,7 +7,7 @@ int func_0204ec34(int y);
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 
-/* Sets up a scroll from the mission just played (gCampaignMapState.unk_00)
+/* Sets up a scroll from the mission just played (gCampaignMapState.playedMission)
  * to the current one: the scroll before and after, the position of the
  * destination, and zeroed counters. */
 void func_0204e9cc(CampaignMapTask *task)
@@ -19,7 +19,7 @@ void func_0204e9cc(CampaignMapTask *task)
     s16 to;
     int fromX;
     to = gCampaignMapState.mission;
-    from = gCampaignMapState.unk_00;
+    from = gCampaignMapState.playedMission;
     fromX = gCampaignMissions[from].x;
     fromY = gCampaignMissions[from].y;
     toY = gCampaignMissions[to].y;

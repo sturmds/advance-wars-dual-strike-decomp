@@ -24,8 +24,8 @@ void Players_Reset(void)
         STATE->players[slot].unk_15 = 0;
         STATE->players[slot].unk_18 = 0;
         STATE->players[slot].defeated = 0;
-        STATE->players[slot].unk_1c = 0;
-        STATE->players[slot].unk_1e = 0;
+        STATE->players[slot].turnKills = 0;
+        STATE->players[slot].mostTurnKills = 0;
         STATE->players[slot].unk_20[0] = 0;
         STATE->players[slot].unk_20[1] = 0;
         STATE->players[slot].unk_20[2] = 0;

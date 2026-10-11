@@ -21,7 +21,7 @@ void func_0204f200(void)
     int bg;
     int mission;
 
-    mission = gCampaignMapState.unk_00;
+    mission = gCampaignMapState.playedMission;
     gfx = data_027c0280;
     bg = gfx->layer3Bg;
     SpriteAnimTask_Start(WORK_FIELD(unk_0e4), (gCampaignMissions[mission].x - gfx->bgScrollX[bg] + 20) & 0x1ff,

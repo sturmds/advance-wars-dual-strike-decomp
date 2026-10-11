@@ -10,26 +10,26 @@ extern CampaignMapState gCampaignMapState;
  * mission leads back to 10, 12 and 14. After mission 24 it is selected again. */
 void CampaignMap_PickNextMission(void)
 {
-    switch (gCampaignMapState.unk_00) {
+    switch (gCampaignMapState.playedMission) {
     case 9:
         if (GameFlag_IsSet(0x60)) {
             gCampaignMapState.mission = 25;
         } else {
-            gCampaignMapState.mission = gCampaignMapState.unk_00 + 1;
+            gCampaignMapState.mission = gCampaignMapState.playedMission + 1;
         }
         break;
     case 11:
         if (GameFlag_IsSet(0x61)) {
             gCampaignMapState.mission = 26;
         } else {
-            gCampaignMapState.mission = gCampaignMapState.unk_00 + 1;
+            gCampaignMapState.mission = gCampaignMapState.playedMission + 1;
         }
         break;
     case 13:
         if (GameFlag_IsSet(0x62)) {
             gCampaignMapState.mission = 27;
         } else {
-            gCampaignMapState.mission = gCampaignMapState.unk_00 + 1;
+            gCampaignMapState.mission = gCampaignMapState.playedMission + 1;
         }
         break;
     case 25:
@@ -45,7 +45,7 @@ void CampaignMap_PickNextMission(void)
         gCampaignMapState.mission = 24;
         break;
     default:
-        gCampaignMapState.mission = gCampaignMapState.unk_00 + 1;
+        gCampaignMapState.mission = gCampaignMapState.playedMission + 1;
         break;
     }
 }

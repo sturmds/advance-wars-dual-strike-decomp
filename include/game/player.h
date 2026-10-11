@@ -57,8 +57,8 @@ typedef struct Player {
     u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (Players_ApplyBattleSetup) */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
     u8 unk_1b;
-    u16 unk_1c;                        /* kills this turn */
-    u16 unk_1e;                        /* most kills in one turn */
+    u16 turnKills;                     /* kills this turn */
+    u16 mostTurnKills;                 /* most kills in one turn */
     u8 unk_20[5];
     u8 tagPowerHalf;                   /* TAG_POWER_FRONT or TAG_POWER_BACK while a tag power is on */
     s16 firepowerBonus;                /* set to 10 while a power is on */

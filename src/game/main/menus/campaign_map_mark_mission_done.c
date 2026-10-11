@@ -10,6 +10,6 @@ extern u8 data_0229c74a[];
  * the next mission (CampaignMap_PickNextMission writes CampaignMapState.mission). */
 void CampaignMap_MarkMissionDone(void)
 {
-    data_0229c74a[gCampaignMapState.unk_00] |= 1;
+    data_0229c74a[gCampaignMapState.playedMission] |= 1;
     CampaignMap_PickNextMission();
 }

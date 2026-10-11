@@ -48,7 +48,7 @@ void CampaignMap_DrawCoPanel(CampaignMapTask *task)
             Sprite_QueueAt(0, 56, (u8)(i * 24 + 80), data_027c00b8, 26, 0);
             /* tiles 62 + 12 * i, palette 4 + i */
             Co_QueueSmallPictureSprite(80, (u8)(i * 24 + 96), (i * 12 + 62) | ((i + 4) << 12), 1);
-            CampaignMap_QueueRankNumber(108, i * 24 + 85, TOP_CO(i).unk_1);
+            CampaignMap_QueueRankNumber(108, i * 24 + 85, TOP_CO(i).rank);
             Sprite_QueueDefault(153, (u8)(i * 24 + 81), (i * 12 + 98) | 0x1000, 0);
         }
     }

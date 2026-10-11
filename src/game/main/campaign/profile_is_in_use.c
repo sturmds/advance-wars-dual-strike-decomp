@@ -3,5 +3,5 @@
 
 BOOL Profile_IsInUse(int profile)
 {
-    return data_02290a60[profile].unk_03 != 0;
+    return data_02290a60[profile].inUse != 0;
 }

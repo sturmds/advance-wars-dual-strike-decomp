@@ -12,7 +12,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Power score (0-100) of a player at the end of a battle: Player.unk_1e
+/* Power score (0-100) of a player at the end of a battle: Player.mostTurnKills
  * (most kills in one turn, per doc 890) times 1000, divided by the units
  * the other teams built, capped at 100. 0 when player 1's team is out,
  * when the player is out or when no enemy built a unit. */
@@ -38,7 +38,7 @@ int BattleScore_Power(int player)
     if (enemyBuilt == 0) {
         return 0;
     }
-    score = HwDiv32(STATE->players[player].unk_1e * 1000, enemyBuilt);
+    score = HwDiv32(STATE->players[player].mostTurnKills * 1000, enemyBuilt);
     if (score > 100) {
         score = 100;
     }
