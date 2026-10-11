@@ -19,7 +19,7 @@ void func_020c4448(void);
 #define CELL_BROKEN_PIPE_SEAM_A 0x122
 #define CELL_BROKEN_PIPE_SEAM_B 0x123
 
-/* TileEffectTask effect of a hit on a pipe seam; func_020eccb4 plays it on
+/* TileEffectTask effect of a hit on a pipe seam; MapHitTask_ShowResult plays it on
  * every hit that leaves the seam standing too */
 #define EFFECT_PIPE_SEAM_HIT 28
 

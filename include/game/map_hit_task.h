@@ -5,7 +5,7 @@
 #include "game/map_object.h"
 
 /* Task (script data_02168d68) that shows a hit on a map object or on a pipe
- * seam tile; func_020eccb4 runs it each frame. A child of the attack's
+ * seam tile; MapHitTask_ShowResult runs it each frame. A child of the attack's
  * task. The first 0x2c bytes belong to the task system. */
 typedef struct MapHitTask {
     u8 pad_00[0x2c];

@@ -17490,6 +17490,10 @@ src/game/main/units/capture_start_display.c:
     complete
     .text       start:0x020ecb14 end:0x020eccb4
 
+src/game/main/map/map_hit_task_show_result.c:
+    complete
+    .text       start:0x020eccb4 end:0x020ecdec
+
 src/game/main/map/pipe_seam_hit_task_start.c:
     complete
     .text       start:0x020ecdec end:0x020ece7c
