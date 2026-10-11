@@ -2953,6 +2953,10 @@ src/game/main/func_02027aa8.c:
     complete
     .text       start:0x02027aa8 end:0x02027ab4
 
+src/game/main/task/sprite_create_task.c:
+    complete
+    .text       start:0x02027ab4 end:0x02027b38
+
 src/game/main/graphics/quad/gx_draw_textured_quad.c:
     complete
     .text       start:0x02027f4c end:0x020280d4

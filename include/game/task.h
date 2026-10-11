@@ -37,7 +37,8 @@ typedef struct Task {
     u16 unk_52;                        /* palette slot PaletteCycle_Start animates */
     u8 pad_54[0x58 - 0x54];
     int unk_58;                        /* number of sprites the fade task of ScreenFadeSprites_Update draws */
-    u8 pad_5c[0x64 - 0x5c];
+    u8 unk_5c;                         /* bit 2 set by Sprite_CreateTask */
+    u8 pad_5d[0x64 - 0x5d];
     u16 unk_64;
     s16 unk_66;
     s16 unk_68;

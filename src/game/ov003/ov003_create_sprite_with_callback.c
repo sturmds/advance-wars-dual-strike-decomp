@@ -7,7 +7,7 @@ typedef struct Ov003CallbackSprite {
     int userValue;
 } Ov003CallbackSprite;
 
-void *func_02027ab4(int a, const void *b, int c, s16 x, s16 y, int e, int f, int g);
+void *Sprite_CreateTask(int a, const void *b, int c, s16 x, s16 y, int e, int f, int g);
 void func_02027aa8(void *sprite, void *a, void *b);
 void func_02027aa0(void *sprite, void *a);
 void func_02027a98(void *sprite, void (*callback)(void *));
@@ -29,7 +29,7 @@ void Ov003_CreateSpriteWithCallback(int x, int y, int value)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    sprite = func_02027ab4(3, data_ov003_023655e0, 1, x, y, 28, 840, 16);
+    sprite = Sprite_CreateTask(3, data_ov003_023655e0, 1, x, y, 28, 840, 16);
     func_02027aa8(sprite, &data_ov003_02364928->unk_1d0, &data_ov003_02364928->unk_1d2);
     func_02027aa0(sprite, &data_ov003_02364928->unk_1d6);
     sprite->userValue = value;

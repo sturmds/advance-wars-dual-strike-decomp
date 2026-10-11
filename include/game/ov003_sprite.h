@@ -11,7 +11,7 @@ typedef struct Ov003SpriteSpot {
     u8 row;                            /* compared with Ov003Unit.unk_12_3 */
 } Ov003SpriteSpot;
 
-/* A sprite from func_02027ab4 whose per-sprite data in overlay 3 starts at
+/* A sprite from Sprite_CreateTask whose per-sprite data in overlay 3 starts at
  * 0x60 (Ov003_CreateRowSprite sets it, Ov003_CreateAnchoredSprite reads it). */
 typedef struct Ov003Sprite {
     u8 pad_00[0x60];

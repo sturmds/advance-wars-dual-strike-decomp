@@ -14,7 +14,7 @@ typedef struct Ov003Anchored {
 } Ov003Anchored;
 
 void Ov003_DamageUnitsNear(int a, int x, int y);
-void *func_02027ab4(int a, const void *b, int c, s16 x, s16 y, int e, int f, int g);
+void *Sprite_CreateTask(int a, const void *b, int c, s16 x, s16 y, int e, int f, int g);
 void func_02027aa8(void *sprite, void *a, void *b);
 void func_02027aa0(void *sprite, void *a);
 extern u32 data_ov003_02369c08;
@@ -38,7 +38,7 @@ void Ov003_CreateAnchoredSprite(Ov003Anchored *object)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    sprite = func_02027ab4(3, data_ov003_023654f4, 1, object->anchor.x, anchor->y, 29, 1317, 19);
+    sprite = Sprite_CreateTask(3, data_ov003_023654f4, 1, object->anchor.x, anchor->y, 29, 1317, 19);
     func_02027aa8(sprite, &data_ov003_02364928->unk_1d0, &data_ov003_02364928->unk_1d2);
     func_02027aa0(sprite, &data_ov003_02364928->unk_1d6);
     Screen_SetCurrent(savedScreen);
