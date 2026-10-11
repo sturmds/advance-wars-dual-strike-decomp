@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Task_ResumeScript(TileStrikeTask *task);
-int func_02022404(u32 *handle, int x, int y);
+int func_02022404(struct Unk_02022404 *sprite, int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
