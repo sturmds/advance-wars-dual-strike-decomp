@@ -5,7 +5,7 @@
 #include "game/name_entry.h"
 #include "game/text_print.h"
 
-void func_02020f80(const void *src, void *dst);
+void Text_AddSpacerCodes(const void *src, void *dst);
 
 extern u8 data_022a7ed0[];
 
@@ -20,7 +20,7 @@ void NameEntry_DrawText(NameEntry *entry)
     if (entry->maxLength == 8) {
         Text_Print(x, 1, NameEntry_GetTextMap(), data_022a7ed0, 0, 0x200);
     } else {
-        func_02020f80(data_022a7ed0, converted);
+        Text_AddSpacerCodes(data_022a7ed0, converted);
         Text_Print(x, 1, NameEntry_GetTextMap(), converted, 0, 0x200);
     }
 }

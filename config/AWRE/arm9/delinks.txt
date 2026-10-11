@@ -2991,6 +2991,10 @@ src/game/main/menus/map_preview_draw_upper_half.c:
 src/game/main/text/font_draw_glyph.c:
     .text       start:0x02020e0c end:0x02020f80
 
+src/game/main/text/text_add_spacer_codes.c:
+    complete
+    .text       start:0x02020f80 end:0x02021040
+
 src/game/main/text/text_printer_write_run.c:
     complete
     .text       start:0x02021118 end:0x02021164
