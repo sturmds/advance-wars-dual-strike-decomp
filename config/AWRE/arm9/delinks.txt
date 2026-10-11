@@ -13384,6 +13384,10 @@ src/game/main/task/battle_record_task_start.c:
     complete
     .text       start:0x020d8294 end:0x020d82c8
 
+src/game/main/map/event_choice_get_campaign_slot.c:
+    complete
+    .text       start:0x020d82c8 end:0x020d8310
+
 src/game/main/map/game_is_campaign.c:
     complete
     .text       start:0x020d8310 end:0x020d8344

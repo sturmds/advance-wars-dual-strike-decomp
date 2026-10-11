@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/event_script.h"
 
-int func_020d82c8(void);
+int EventChoice_GetCampaignSlot(void);
 void Save_StoreProfile(int campaignSlot, int day);
 int BattleSave_GetRecordId(int mode, int campaignSlot);
 void func_020d8028(int arg);
@@ -26,7 +26,7 @@ void EventSequence_RunRecordStep(EventScriptSlot *slot)
     case 2:
     case 3:
     case 4:
-        campaignSlot = func_020d82c8();
+        campaignSlot = EventChoice_GetCampaignSlot();
         Save_StoreProfile(campaignSlot, 0);
         BattleSave_Delete(BattleSave_GetRecordId(0, campaignSlot));
         break;
