@@ -12,7 +12,7 @@ int func_02096c60(int x, int y);
  * is passed over when unk_09 is above the best unk_0a so far, or when its unk_0a
  * ties the best and the best site had unk_0a at least its unk_09. Returns the
  * site index, or -1. */
-int func_02096838(int siteType)
+int AiSite_PickForLander(int siteType)
 {
     AiSite *site;
     int i;
@@ -41,9 +41,13 @@ int func_02096838(int siteType)
         if (bestValue == site->unk_0a && bestWasFarther == 1) {
             continue;
         }
-        bestWasFarther = site->unk_0a >= site->unk_09;
         bestValue = site->unk_0a;
         best = i;
+        if (site->unk_0a >= site->unk_09) {
+            bestWasFarther = 1;
+        } else {
+            bestWasFarther = 0;
+        }
     }
     return best;
 }
