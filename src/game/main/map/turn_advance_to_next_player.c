@@ -9,7 +9,7 @@ extern Unk_02080440_48 data_02189cd8;
 extern PlayRecords gPlayRecords;
 
 int func_020c2108(void);
-void func_02017cb8(void);
+void Turn_IncrementDay(void);
 void func_020c1b90(void);
 void func_020c18cc(void);
 void func_020c4018(void);
@@ -68,7 +68,7 @@ next:
     do {
         GAME->currentPlayer++;
         if (GAME->currentPlayer == 5) {
-            func_02017cb8();
+            Turn_IncrementDay();
             GAME->currentPlayer = 1;
             if (tally != 0 && firstState != 0 && gPlayRecords.unk_380 < 999999) {
                 gPlayRecords.unk_380++;

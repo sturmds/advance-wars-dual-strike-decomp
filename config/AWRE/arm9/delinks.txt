@@ -1508,6 +1508,10 @@ src/game/main/func_02017ca0.c:
     complete
     .text       start:0x02017ca0 end:0x02017cb8
 
+src/game/main/map/turn_increment_day.c:
+    complete
+    .text       start:0x02017cb8 end:0x02017cf4
+
 src/game/main/func_02017cf4.c:
     complete
     .text       start:0x02017cf4 end:0x02017cf8
