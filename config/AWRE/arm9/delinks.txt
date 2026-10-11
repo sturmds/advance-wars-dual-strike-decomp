@@ -2007,6 +2007,10 @@ src/game/main/script/event_cmd_set_map_flags.c:
     complete
     .text       start:0x0201bb84 end:0x0201bbe8
 
+src/game/main/script/event_cmd_set_player_controller.c:
+    complete
+    .text       start:0x0201bbe8 end:0x0201bc80
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
