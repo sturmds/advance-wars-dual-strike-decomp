@@ -4760,6 +4760,14 @@ src/game/main/menus/campaign_map_callout_shrink.c:
     complete
     .text       start:0x0204ede4 end:0x0204ee28
 
+src/game/main/menus/campaign_map_callout_hold60.c:
+    complete
+    .text       start:0x0204ee28 end:0x0204ee74
+
+src/game/main/menus/campaign_map_callout_hold120.c:
+    complete
+    .text       start:0x0204ee74 end:0x0204eec0
+
 src/game/main/func_0204ef30.c:
     complete
     .text       start:0x0204ef30 end:0x0204ef3c
