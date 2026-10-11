@@ -19,7 +19,16 @@ typedef struct WMCallback {
 #define WM_STATECODE_PARENT_FOUND 5
 #define WM_STATECODE_CONNECTED 7
 #define WM_STATECODE_DISCONNECTED 9
+#define WM_STATECODE_MP_START 10
+#define WM_STATECODE_MPEND_IND 11
+#define WM_STATECODE_MP_IND 12
 #define WM_STATECODE_PORT_RECV 21
+
+/* WMCallback.errcode values. */
+#define WM_ERRCODE_SUCCESS 0
+#define WM_ERRCODE_TIMEOUT 9
+#define WM_ERRCODE_INVALID_POLLBITMAP 13
+#define WM_ERRCODE_SEND_FAILED 15
 
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
@@ -103,6 +112,13 @@ typedef struct WMStartParentCallback {
     u16 reason;
     u8 ssid[24];
 } WMStartParentCallback;
+
+/* Start of the reply to the MP start command; only these fields are read. */
+typedef struct WMStartMPCallback {
+    u16 apiid;
+    u16 errcode;
+    u16 state;
+} WMStartMPCallback;
 
 typedef struct WMPortRecvCallback {
     u16 apiid;

@@ -8856,6 +8856,10 @@ src/game/main/link/wireless_start_mp.c:
     complete
     .text       start:0x020783bc end:0x02078488
 
+src/game/main/link/wireless_on_mp_event.c:
+    complete
+    .text       start:0x02078488 end:0x020785c4
+
 src/game/main/link/wireless_start_connect.c:
     complete
     .text       start:0x020785c4 end:0x0207865c
