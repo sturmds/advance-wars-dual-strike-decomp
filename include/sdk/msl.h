@@ -95,6 +95,8 @@ void __num2dec(const DecimalFormat *format, double x, Decimal *dec);
 void __num2dec_internal(Decimal *dec, double x);
 /* Sets dec to 2^exponent. */
 void __two_exp(Decimal *dec, long exponent);
+/* Sets dec to the ASCII digit string times 10^exponent; digits past the 32nd round it up. */
+void __str2dec(Decimal *dec, const char *digits, s16 exponent);
 /* Sets result to x * y. */
 void func_0212537c(Decimal *result, const Decimal *x, const Decimal *y);
 /* Sets dec to the digits of value. */
