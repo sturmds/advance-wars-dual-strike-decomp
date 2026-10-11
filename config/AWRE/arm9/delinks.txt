@@ -1329,6 +1329,10 @@ src/game/main/graphics/gfx_queue_flush.c:
     complete
     .text       start:0x0200caf8 end:0x0200cc38
 
+src/game/main/graphics/gfx_queue_reset.c:
+    complete
+    .text       start:0x0200cc38 end:0x0200ccac
+
 src/game/main/graphics/gfx_load_tex_palette.c:
     complete
     .text       start:0x0200ccf8 end:0x0200cd28
