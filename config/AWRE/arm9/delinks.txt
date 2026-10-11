@@ -9180,6 +9180,10 @@ src/game/main/link/link_menu_handle_keys.c:
     complete
     .text       start:0x02086b80 end:0x02086c5c
 
+src/game/main/link/link_menu_draw_settings.c:
+    complete
+    .text       start:0x02086c5c end:0x02086d2c
+
 src/game/main/sub_screen_reset_menu.c:
     complete
     .text       start:0x02086d2c end:0x02086d90
