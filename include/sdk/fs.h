@@ -36,6 +36,11 @@ typedef struct FSFileID {
 #define FS_FILE_STATUS_ASYNC 0x08          /* the archive runs the command in the background */
 #define FS_FILE_STATUS_IS_FILE 0x10
 
+/* Where FS_SeekFile counts the offset from. */
+#define FS_SEEK_SET 0
+#define FS_SEEK_CUR 1
+#define FS_SEEK_END 2
+
 /* Position inside a directory listing. */
 typedef struct FSDirPos {
     FSArchive *arc;
@@ -163,6 +168,7 @@ BOOL FS_OpenFile(FSFile *file, const char *path);
 s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
 BOOL FS_CloseFile(FSFile *file);
 BOOL FS_ChangeDir(const char *path);
+BOOL FS_SeekFile(FSFile *file, s32 offset, int origin);
 
 /* Looks up a path: gives a file ID or a directory position (not named yet). */
 BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);

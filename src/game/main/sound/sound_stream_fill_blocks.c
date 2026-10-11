@@ -5,7 +5,6 @@ extern s16 data_0214d410[];            /* ADPCM step sizes, 89 entries */
 extern s8 data_0214d400[];             /* ADPCM step index change per nibble */
 extern u8 *data_022a8aa4;              /* buffer that ADPCM data is read into */
 
-BOOL func_021126ac(FSFile *file, s32 offset, int origin);
 void func_0210f52c(void *dest, int value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void DC_FlushRange(const void *start, u32 size);
@@ -156,7 +155,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
                 if (stream->format == SOUND_STREAM_FORMAT_ADPCM) {
                     dest = data_022a8aa4;
                 }
-                func_021126ac(&stream->file, filePos + ch * blockSize, 0);
+                FS_SeekFile(&stream->file, filePos + ch * blockSize, 0);
                 bytesRead = FS_ReadFile(&stream->file, dest, readSize);
                 if (bytesRead != readSize) {
                     /* read error: end the stream */

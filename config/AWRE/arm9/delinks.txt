@@ -21378,6 +21378,10 @@ src/sdk/fs/fs_change_dir.c:
     complete
     .text       start:0x02112658 end:0x021126ac
 
+src/sdk/fs/fs_seek_file.c:
+    complete
+    .text       start:0x021126ac end:0x02112718
+
 src/sdk/FS_ReadFile.c:
     complete
     .text       start:0x02112718 end:0x02112728

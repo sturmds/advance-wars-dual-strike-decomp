@@ -4,7 +4,6 @@
 /* The heap calls onUnload with the item, its size and arg3. */
 void *SoundHeap_AllocItem(void *heap, u32 size, void (*onUnload)(void *payload, u32 size, SoundArc *arc),
                           SoundArc *arc, u32 arg4);
-BOOL func_021126ac(FSFile *file, s32 offset, int origin);
 void SoundArc_ForgetInfo(void *payload, u32 size, SoundArc *arc);
 void SoundArc_ForgetFileTable(void *payload, u32 size, SoundArc *arc);
 void SoundArc_ForgetSymbols(void *payload, u32 size, SoundArc *arc);
@@ -17,7 +16,7 @@ BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad)
 {
     s32 readSize;
 
-    if (!func_021126ac(&arc->file, 0, 0)) {
+    if (!FS_SeekFile(&arc->file, 0, 0)) {
         return FALSE;
     }
     if (FS_ReadFile(&arc->file, arc, SOUND_ARC_HEADER_SIZE) != SOUND_ARC_HEADER_SIZE) {
@@ -28,7 +27,7 @@ BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad)
         if (arc->info == NULL) {
             return FALSE;
         }
-        if (!func_021126ac(&arc->file, arc->infoOffset, 0)) {
+        if (!FS_SeekFile(&arc->file, arc->infoOffset, 0)) {
             return FALSE;
         }
         readSize = FS_ReadFile(&arc->file, arc->info, arc->infoSize);
@@ -40,7 +39,7 @@ BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad)
         if (arc->files == NULL) {
             return FALSE;
         }
-        if (!func_021126ac(&arc->file, arc->fatOffset, 0)) {
+        if (!FS_SeekFile(&arc->file, arc->fatOffset, 0)) {
             return FALSE;
         }
         readSize = FS_ReadFile(&arc->file, arc->files, arc->fatSize);
@@ -53,7 +52,7 @@ BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad)
             if (arc->unk_84 == 0) {
                 return FALSE;
             }
-            if (!func_021126ac(&arc->file, arc->symbolOffset, 0)) {
+            if (!FS_SeekFile(&arc->file, arc->symbolOffset, 0)) {
                 return FALSE;
             }
             readSize = FS_ReadFile(&arc->file, (void *)arc->unk_84, arc->symbolSize);

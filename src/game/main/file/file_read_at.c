@@ -3,8 +3,6 @@
 #include "sdk/gx.h"
 #include "sdk/os.h"
 
-BOOL func_021126ac(FSFile *file, s32 offset, int origin);   /* SDK seek; origin 0 is the start of the file */
-
 /* Needed to match: the original builds this test as a 0/1 value first, as an
  * inline function does. */
 static inline BOOL IsFile(FSFile *file)
@@ -27,7 +25,7 @@ u32 File_ReadAt(void *dest, const char *path, s32 offset, u32 size)
         if (IsFile(&file) == FALSE) {
             OS_Terminate();
         }
-        if (!func_021126ac(&file, offset, 0)) {
+        if (!FS_SeekFile(&file, offset, 0)) {
             GXx_SetMasterBrightness_(REG_MASTER_BRIGHT, 12);
             OS_Terminate();
             FS_CloseFile(&file);
