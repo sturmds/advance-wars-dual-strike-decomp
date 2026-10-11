@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-void func_020272e0(u32 textId, int tile);
+void HelpText_Show(u32 textId, int tile);
 
 extern MenuState gMenuState;
 
@@ -18,74 +18,74 @@ void VsSetup_ShowSettingHelp2(void)
 {
     switch (MENU->setup.unk_2e6) {
     case 0:
-        func_020272e0(HELP_TEXT(26), HELP_TILE);
+        HelpText_Show(HELP_TEXT(26), HELP_TILE);
         break;
     case 1:
         switch (MENU->setup.unk_2dc) {
         case 0:
-            func_020272e0(HELP_TEXT(27), HELP_TILE);
+            HelpText_Show(HELP_TEXT(27), HELP_TILE);
             break;
         case 1:
-            func_020272e0(HELP_TEXT(28), HELP_TILE);
+            HelpText_Show(HELP_TEXT(28), HELP_TILE);
             break;
         case 2:
-            func_020272e0(HELP_TEXT(30), HELP_TILE);
+            HelpText_Show(HELP_TEXT(30), HELP_TILE);
             break;
         case 3:
-            func_020272e0(HELP_TEXT(29), HELP_TILE);
+            HelpText_Show(HELP_TEXT(29), HELP_TILE);
             break;
         case 4:
-            func_020272e0(HELP_TEXT(31), HELP_TILE);
+            HelpText_Show(HELP_TEXT(31), HELP_TILE);
             break;
         }
         break;
     case 2:
-        func_020272e0(HELP_TEXT(32) + MENU->setup.unk_2dd, HELP_TILE);
+        HelpText_Show(HELP_TEXT(32) + MENU->setup.unk_2dd, HELP_TILE);
         break;
     case 3:
-        func_020272e0(HELP_TEXT(36), HELP_TILE);
+        HelpText_Show(HELP_TEXT(36), HELP_TILE);
         break;
     case 4:
-        func_020272e0(HELP_TEXT(37), HELP_TILE);
+        HelpText_Show(HELP_TEXT(37), HELP_TILE);
         break;
     case 5:
-        func_020272e0(HELP_TEXT(38), HELP_TILE);
+        HelpText_Show(HELP_TEXT(38), HELP_TILE);
         break;
     case 6:
-        func_020272e0(HELP_TEXT(39), HELP_TILE);
+        HelpText_Show(HELP_TEXT(39), HELP_TILE);
         break;
     case 7:
         switch (MENU->setup.unk_2e1) {
         case 0:
-            func_020272e0(HELP_TEXT(40), HELP_TILE);
+            HelpText_Show(HELP_TEXT(40), HELP_TILE);
             break;
         case 1:
-            func_020272e0(HELP_TEXT(41), HELP_TILE);
+            HelpText_Show(HELP_TEXT(41), HELP_TILE);
             break;
         case 2:
-            func_020272e0(HELP_TEXT(42), HELP_TILE);
+            HelpText_Show(HELP_TEXT(42), HELP_TILE);
             break;
         case 3:
-            func_020272e0(HELP_TEXT(43), HELP_TILE);
+            HelpText_Show(HELP_TEXT(43), HELP_TILE);
             break;
         case 4:
-            func_020272e0(HELP_TEXT(44), HELP_TILE);
+            HelpText_Show(HELP_TEXT(44), HELP_TILE);
             break;
         }
         break;
     case 8:
         switch (MENU->setup.unk_2e2) {
         case 0:
-            func_020272e0(HELP_TEXT(45), HELP_TILE);
+            HelpText_Show(HELP_TEXT(45), HELP_TILE);
             break;
         case 1:
-            func_020272e0(HELP_TEXT(46), HELP_TILE);
+            HelpText_Show(HELP_TEXT(46), HELP_TILE);
             break;
         case 2:
-            func_020272e0(HELP_TEXT(47), HELP_TILE);
+            HelpText_Show(HELP_TEXT(47), HELP_TILE);
             break;
         case 3:
-            func_020272e0(HELP_TEXT(48), HELP_TILE);
+            HelpText_Show(HELP_TEXT(48), HELP_TILE);
             break;
         }
         break;

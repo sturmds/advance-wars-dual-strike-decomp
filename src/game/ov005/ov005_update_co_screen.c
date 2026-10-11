@@ -25,7 +25,7 @@ void MenuButtons_DisableTouch(void);
 void MenuButtons_RemoveSelectable(void);
 void MenuButtons_RemoveUnselectable(void);
 void Sound_PlaySe(u32 soundId);
-void func_020272e0(u32 textId, int tile);
+void HelpText_Show(u32 textId, int tile);
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work);
 int Co_GetPictureVariant(int coId);
 void Co_SetPictureVariant(int coId, int variant);
@@ -99,7 +99,7 @@ extern u32 data_ov005_02367fdc[];      /* map bytes of a rotation/scaling BG by 
     Screen_SetCurrentGfx(data_027c0288.unk_04);                                                 \
     saved027c = data_027c027c;                                                                  \
     Screen_SetCurrent(data_027c0288.unk_04);                                                    \
-    func_020272e0(textId, 0x3c0);                                                               \
+    HelpText_Show(textId, 0x3c0);                                                               \
     Screen_SetCurrent(saved027c);                                                               \
     Screen_SetCurrentGfx(saved0280)
 

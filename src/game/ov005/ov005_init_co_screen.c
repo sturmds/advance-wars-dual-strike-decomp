@@ -20,7 +20,7 @@ void ModeFont_Load(int x, int y);
 const char *Text_Get(u32 textId);
 void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int unk_56, u8 unk_5c, int unk_58);
 void func_02027488(int a, int b);
-void func_020272e0(u32 textId, int tile);
+void HelpText_Show(u32 textId, int tile);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
@@ -110,7 +110,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     func_02027488(0x3f8, 1);
-    func_020272e0(0x80000035, 64);
+    HelpText_Show(0x80000035, 64);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

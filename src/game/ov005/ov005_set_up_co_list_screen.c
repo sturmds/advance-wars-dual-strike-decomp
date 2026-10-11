@@ -24,7 +24,7 @@ void ModeFont_Load(int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
 void func_02027488(int tile, int a);
-void func_020272e0(u32 textId, int tile);
+void HelpText_Show(u32 textId, int tile);
 void func_02023f38(void);
 void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 void Icon_Load(int iconId);
@@ -171,7 +171,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     func_02027488(0x3f8, 1);
-    func_020272e0(0x80000030, 0x40);
+    HelpText_Show(0x80000030, 0x40);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

@@ -2,7 +2,7 @@
 #include "game/main_menu.h"
 #include "game/menu_button.h"
 
-void func_020272e0(u32 textId, int tile);
+void HelpText_Show(u32 textId, int tile);
 void MainMenu_ShowRecordHelp(int a);
 
 /* Text group 0x8000 holds the help text of the main menu entries. */
@@ -168,5 +168,5 @@ void MainMenu_ShowHelpText(void)
     default:
         return;
     }
-    func_020272e0(textId, 0x3c0);
+    HelpText_Show(textId, 0x3c0);
 }

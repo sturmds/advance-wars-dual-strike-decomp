@@ -2881,6 +2881,10 @@ src/game/main/help_text_clear.c:
     complete
     .text       start:0x0202725c end:0x020272e0
 
+src/game/main/help_text_show.c:
+    complete
+    .text       start:0x020272e0 end:0x020273c4
+
 src/game/main/graphics/bg_put_skill_slot.c:
     complete
     .text       start:0x020277a4 end:0x02027804
