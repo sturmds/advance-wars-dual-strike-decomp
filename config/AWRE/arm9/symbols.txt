@@ -2737,7 +2737,7 @@ func_0208afe8 kind:function(arm,size=0x1bc) addr:0x0208afe8
 func_0208b1a4 kind:function(arm,size=0x38) addr:0x0208b1a4
 func_0208b1dc kind:function(arm,size=0x2c) addr:0x0208b1dc
 func_0208b208 kind:function(arm,size=0xdc) addr:0x0208b208
-func_0208b2e4 kind:function(arm,size=0x678) addr:0x0208b2e4
+CombatResult_Init kind:function(arm,size=0x678) addr:0x0208b2e4
 func_0208b95c kind:function(arm,size=0x20) addr:0x0208b95c
 func_0208b97c kind:function(arm,size=0xc) addr:0x0208b97c
 func_0208b988 kind:function(arm,size=0x18) addr:0x0208b988
@@ -7553,7 +7553,7 @@ gCombatMenuLangResPath kind:data(any) addr:0x02161670
 data_0216168c kind:data(any) addr:0x0216168c
 data_0216169c kind:data(any) addr:0x0216169c
 data_021616c4 kind:data(any) addr:0x021616c4
-data_0216172c kind:data(any) addr:0x0216172c
+gResultLionResPath kind:data(any) addr:0x0216172c
 data_02161744 kind:data(any) addr:0x02161744
 data_0216176c kind:data(any) addr:0x0216176c
 data_0216179c kind:data(any) addr:0x0216179c

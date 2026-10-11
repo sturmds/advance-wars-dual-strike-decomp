@@ -64,7 +64,7 @@ typedef struct PlayRecords {
     u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */
     u32 survivalRunsCleared[3];        /* runs whose last map was won, for data_022a7b80.unk_07 0, 2, 1 in that order; capped at 999999 (Survival_FinishMap) */
     u32 survivalMapsWon[3];            /* maps won, for unk_07 0 or 3, 2 or 5, 1 or 4 in that order; capped at 999999 */
-    u8 pad_430[0x43c - 0x430];
+    u32 combatClears[3];               /* Combat mode clears of the last stage by row 1, one counter per data_02160ac0->unk_84 (0-2), capped at 999999 (CombatResult_Init) */
     u32 unk_43c;                       /* capped at 999999; func_ov003_02361c7c adds the first 6 Ov003Row.unk_28 of the current slot's row */
     u32 unk_440;                       /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */
     u8 pad_444[0x51c - 0x444];
