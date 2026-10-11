@@ -5,7 +5,7 @@
 extern MenuState gMenuState;
 
 void Sound_PlaySe(u32 soundId);
-void func_0206d384(void);
+void PlayerInfo_LoadCoPictures(void);
 void func_0206d5b4(void);
 
 /* A CO button of the player info screen became the selected one: shows that
@@ -17,5 +17,5 @@ void PlayerInfo_OnCoSelected(MenuButton *button)
     gMenuState.unk_0206d67c.player = (button->id >> 1) + 1;
     gMenuState.unk_0206d67c.slot = button->id & 1;
     func_0206d5b4();
-    func_0206d384();
+    PlayerInfo_LoadCoPictures();
 }

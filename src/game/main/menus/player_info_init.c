@@ -28,7 +28,7 @@ int func_020c67a8(void);
 const void *Player_GetPalette(int player);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 void Palette_LoadObjRow(int row);
-void func_0206d384(void);
+void PlayerInfo_LoadCoPictures(void);
 void func_01ff9b48(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
@@ -225,7 +225,7 @@ void PlayerInfo_Init(Task *task)
     Mem_Free(file);
     Mem_Free(langFile);
 
-    func_0206d384();
+    PlayerInfo_LoadCoPictures();
     func_01ff9b48();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x6c0);
