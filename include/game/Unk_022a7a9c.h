@@ -9,7 +9,9 @@ typedef struct Unk_022a7a9c {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
-    u8 pad_03[0x08 - 0x03];
+    u8 pad_03[0x04 - 0x03];
+    u8 unk_04;                         /* func_02033088 copies it to its task's unk_64 */
+    u8 pad_05[0x08 - 0x05];
     u8 unk_08;
     u8 unk_09;
     u8 unk_0a;
@@ -25,5 +27,16 @@ typedef struct Unk_022a7a9c {
 } Unk_022a7a9c;
 
 extern Unk_022a7a9c data_022a7a9c;
+
+/* 0x28-byte records from data_022a7ab8. The low 7 bits of each of the
+ * first two halfwords hold a CO id; the second halfword has its own
+ * symbol, data_022a7aba, so it is read through that. */
+typedef struct Unk_022a7ab8 {
+    u16 unk_00;
+    u8 pad_02[0x28 - 0x02];
+} Unk_022a7ab8;
+
+extern Unk_022a7ab8 data_022a7ab8[];
+extern Unk_022a7ab8 data_022a7aba[];  /* the same records, from their halfword at +2 */
 
 #endif
