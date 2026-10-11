@@ -12,7 +12,7 @@ extern u32 gAiBuildScores[];
 extern u8 gUnitSupplyKind[];
 
 int AiSite_PickFirst(int allowSaving);
-int func_02097dd4(void);
+int AiSite_RateBaseLandmass(void);
 int UnitType_GetAttackKind(u8 unitType);
 BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
 BOOL AiBuild_HasEnoughGroundIndirects(int info);
@@ -33,7 +33,7 @@ int Ai_CountUnitsOfType(int type);
 
 /* Called by func_02091904 (end-actions step 9). Picks the unit type with the highest weight in
  * gAiBuildScores and a factory for it (AiSite_PickForBuild by gUnitSupplyKind).
- * func_02097dd4 returns flags (bit 8) and a count (bits 0-7) that rule out
+ * AiSite_RateBaseLandmass returns flags (bit 8) and a count (bits 0-7) that rule out
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
  * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
  * more is marked (kind 0xff) and the next one tried. When funds are short and
@@ -63,7 +63,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
     if (AiSite_PickFirst(4) == -1) {
         return -1;
     }
-    info = func_02097dd4();
+    info = AiSite_RateBaseLandmass();
     infoFlag = info & 0x100;
     infoCount = info & 0xff;
     for (;;) {
