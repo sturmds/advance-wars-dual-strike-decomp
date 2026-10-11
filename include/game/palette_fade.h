@@ -23,6 +23,9 @@ Task *PaletteFade_StartToBlack(void *parentOrList, int duration, int firstSlot, 
 /* Fades the slots' current colors to black on screen 1. */
 Task *PaletteFade_StartToBlackScreen1(void *parentOrList, int duration, int firstSlot, int slotCount);
 
+/* Fades the slots from black to the colors in palettes on screen 1. */
+Task *PaletteFade_StartFromBlackScreen1(void *parentOrList, const void *palettes, int duration, int firstSlot, int slotCount);
+
 /* Darkens slotCount palettes from firstSlot by level (0 to 16). */
 void func_020fd6d4(u8 *palettes, int firstSlot, int slotCount, int level);
 
