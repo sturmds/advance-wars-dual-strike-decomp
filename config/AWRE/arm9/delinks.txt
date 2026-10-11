@@ -5742,6 +5742,10 @@ src/game/main/menus/campaign_map_mark_mission_done.c:
     complete
     .text       start:0x0204d6dc end:0x0204d708
 
+src/game/main/menus/campaign_map_pick_next_mission.c:
+    complete
+    .text       start:0x0204d708 end:0x0204d894
+
 src/game/main/campaign/campaign_map_reset_state.c:
     complete
     .text       start:0x0204d894 end:0x0204d8c8
