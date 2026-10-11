@@ -316,4 +316,10 @@ typedef struct DlPlayHostLinkArea {
     DlPlayWorkerJob task;
 } DlPlayHostLinkArea;
 
+/* A file of the comm work area. A macro, not a function: to match, the
+ * address is rebuilt at each use as (work + index * file size)->files[0],
+ * not as work->files[index]. */
+#define MbComm_GetFile(work, fileIndex) \
+    (((DlPlayHostLinkArea *)((u8 *)(work) + (fileIndex) * sizeof(DlPlayOfferedFile)))->files)
+
 #endif

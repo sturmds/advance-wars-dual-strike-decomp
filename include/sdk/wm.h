@@ -234,6 +234,8 @@ typedef struct WMMpRecvBuf {
     u8 firstEntry[1];                  /* a WMMpRecvData */
 } WMMpRecvBuf;
 
+WMMpRecvData *WM_ReadMPData(const WMMpRecvBuf *recvBuf, u16 aid);
+
 /* Data sharing: every station sends a block each frame
  * and all of them receive the blocks of all. */
 #define SHARE_RING_SLOTS 4

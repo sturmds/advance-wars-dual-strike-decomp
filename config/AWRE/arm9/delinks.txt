@@ -22586,6 +22586,10 @@ src/sdk/mb/mb_parent_send_header.c:
     complete
     .text       start:0x02119900 end:0x02119944
 
+src/sdk/mb/mb_parent_receive_mp_data.c:
+    complete
+    .text       start:0x02119944 end:0x021199ec
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770
