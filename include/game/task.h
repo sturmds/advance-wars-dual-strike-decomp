@@ -26,7 +26,9 @@ typedef struct Task {
     u8 childCount;                     /* live children the task waits on; its script holds while nonzero */
     u8 pad_29;
     u16 waitFrames;                    /* func_02080db8 counts frames here */
-    u8 pad_2c[0x32 - 0x2c];
+    u8 pad_2c[0x2e - 0x2c];
+    u8 unk_2e;                         /* link slot of the player a reaction task shows (LinkReaction_Update) */
+    u8 pad_2f[0x32 - 0x2f];
     u16 unk_32;                        /* frame counter of func_02081f6c */
     u16 unk_34;                        /* frame counter of func_02081900 */
     u16 unk_36;                        /* frame counter of func_020824e4 */
