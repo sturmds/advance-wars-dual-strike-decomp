@@ -11,6 +11,7 @@ typedef struct FSFile FSFile;
 #define FS_RESULT_SUCCESS 0
 #define FS_RESULT_FAILURE 1
 #define FS_RESULT_PROC_ASYNC 6             /* the archive finishes the command later */
+#define FS_RESULT_PROC_DEFAULT 7           /* run the default command instead */
 
 /* Commands an archive runs for a file, in the order of its command table. */
 #define ARCHIVE_OP_COPY_OUT 0
@@ -136,6 +137,9 @@ struct FSFile {
         FSGetPathInfo getPath;
     } arg;
 };
+
+/* An archive's own handler for some commands, tried before the default ones. */
+typedef int (*ArchiveCommandHook)(FSFile *file, u32 command);
 
 /* The ternary under the != 0 is how the original compiles these tests. */
 static inline BOOL FS_IsBusy(const FSFile *file)

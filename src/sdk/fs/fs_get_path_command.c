@@ -2,7 +2,7 @@
 
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 int FsDir_SyncJumpToDirStart(FSFile *file, int dirId);
-int func_02111bc4(FSFile *file, u32 command);
+int FSi_TranslateCommand(FSFile *file, u32 command);
 
 extern const char gArchiveNameColonSlash[]; /* ":/" */
 
@@ -53,7 +53,7 @@ int FSi_GetPathCommand(FSFile *file)
                 }
                 walk.arg.readDir.entry = &entry;
                 walk.arg.readDir.skipName = TRUE;
-                while (func_02111bc4(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
+                while (FSi_TranslateCommand(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
                     if (!entry.isDirectory && entry.fileId.file_id == fileId) {
                         dirId = walk.dirPos.ownId;
                         break;
@@ -91,7 +91,7 @@ int FSi_GetPathCommand(FSFile *file)
                 FsDir_SyncJumpToDirStart(&walk, walk.parent);
                 walk.arg.readDir.entry = &entry;
                 walk.arg.readDir.skipName = TRUE;
-                while (func_02111bc4(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
+                while (FSi_TranslateCommand(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
                     if (entry.isDirectory && entry.dirId.ownId == id) {
                         length += entry.nameLength + 1;
                         break;
@@ -135,7 +135,7 @@ int FSi_GetPathCommand(FSFile *file)
 
         walk.arg.readDir.entry = &entry;
         walk.arg.readDir.skipName = FALSE;
-        while (func_02111bc4(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
+        while (FSi_TranslateCommand(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
             if (!entry.isDirectory && entry.fileId.file_id == fileId) {
                 break;
             }
@@ -154,7 +154,7 @@ int FSi_GetPathCommand(FSFile *file)
         walk.arg.readDir.skipName = FALSE;
         *(buffer + length - 1) = '/';
         length -= 1;
-        while (func_02111bc4(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
+        while (FSi_TranslateCommand(&walk, ARCHIVE_OP_NEXT_DIR_ENTRY) == FS_RESULT_SUCCESS) {
             if (entry.isDirectory && entry.dirId.ownId == id) {
                 u32 nameLength = entry.nameLength;
 

@@ -2,7 +2,7 @@
 
 int FsDir_SyncJumpToDirStart(FSFile *file, int dirId);
 int FSi_StrNICmp(const char *a, const char *b, int length);
-int func_02111bc4(FSFile *file, u32 command);
+int FSi_TranslateCommand(FSFile *file, u32 command);
 
 static inline BOOL Path_IsPartOfName(u32 c)
 {
@@ -24,7 +24,7 @@ int FSi_FindPathCommand(FSFile *file)
     const char *path = file->arg.findPath.path;
     BOOL findDirectory = file->arg.findPath.findDirectory;
 
-    func_02111bc4(file, ARCHIVE_OP_SET_DIR_POS);
+    FSi_TranslateCommand(file, ARCHIVE_OP_SET_DIR_POS);
     while (*path != '\0') {
         u32 c;
         int length;
@@ -61,7 +61,7 @@ int FSi_FindPathCommand(FSFile *file)
         file->arg.readDir.entry = &entry;
         file->arg.readDir.skipName = FALSE;
         for (;;) {
-            if (func_02111bc4(file, ARCHIVE_OP_NEXT_DIR_ENTRY) != FS_RESULT_SUCCESS) {
+            if (FSi_TranslateCommand(file, ARCHIVE_OP_NEXT_DIR_ENTRY) != FS_RESULT_SUCCESS) {
                 return FS_RESULT_FAILURE;
             }
             if (isDirectory == entry.isDirectory && length == entry.nameLength
@@ -72,7 +72,7 @@ int FSi_FindPathCommand(FSFile *file)
         if (isDirectory) {
             file->arg.seekDir.pos = entry.dirId;
             path += length;
-            func_02111bc4(file, ARCHIVE_OP_SET_DIR_POS);
+            FSi_TranslateCommand(file, ARCHIVE_OP_SET_DIR_POS);
         } else {
             if (findDirectory) {
                 return FS_RESULT_FAILURE;

@@ -5523,7 +5523,7 @@ FSi_ReadFileCommand kind:function(arm,size=0x38) addr:0x02111a44
 FSi_StrNICmp kind:function(arm,size=0x64) addr:0x02111a7c
 FsDir_SyncJumpToDirStart kind:function(arm,size=0x34) addr:0x02111ae0
 FSi_ReadTable kind:function(arm,size=0xb0) addr:0x02111b14
-func_02111bc4 kind:function(arm,size=0x190) addr:0x02111bc4
+FSi_TranslateCommand kind:function(arm,size=0x190) addr:0x02111bc4
 FSi_ReleaseCommand kind:function(arm,size=0x44) addr:0x02111d54
 Archive_AssignTableCache kind:function(arm,size=0x20) addr:0x02111d98
 func_02111db8 kind:function(arm,size=0x12c) addr:0x02111db8
@@ -6194,7 +6194,7 @@ gGxTexLcdcPages1 kind:data(any) addr:0x021514d6
 gGxTexLcdcPages2 kind:data(any) addr:0x021514d8
 data_02151534 kind:data(any) addr:0x02151534
 data_02151634 kind:data(any) addr:0x02151634
-data_02151908 kind:data(any) addr:0x02151908
+gArchiveFallbackCommands kind:data(any) addr:0x02151908
 data_0215192c kind:data(any) addr:0x0215192c
 data_0215196c kind:data(any) addr:0x0215196c
 data_02151978 kind:data(any) addr:0x02151978

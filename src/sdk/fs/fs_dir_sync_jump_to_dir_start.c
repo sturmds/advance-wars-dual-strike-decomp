@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-int func_02111bc4(FSFile *file, u32 command);
+int FSi_TranslateCommand(FSFile *file, u32 command);
 
 /* Marks the file busy and runs the seek-directory command at the
  * start of directory dirId. */
@@ -11,5 +11,5 @@ int FsDir_SyncJumpToDirStart(FSFile *file, int dirId)
     file->arg.seekDir.pos.pos = 0;
     file->arg.seekDir.pos.index = 0;
     file->arg.seekDir.pos.ownId = dirId;
-    return func_02111bc4(file, ARCHIVE_OP_SET_DIR_POS);
+    return FSi_TranslateCommand(file, ARCHIVE_OP_SET_DIR_POS);
 }

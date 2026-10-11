@@ -21597,6 +21597,10 @@ src/sdk/fs/fs_read_table.c:
     complete
     .text       start:0x02111b14 end:0x02111bc4
 
+src/sdk/fs/fs_translate_command.c:
+    complete
+    .text       start:0x02111bc4 end:0x02111d54
+
 src/sdk/fs/fs_release_command.c:
     complete
     .text       start:0x02111d54 end:0x02111d98

@@ -1,7 +1,7 @@
 #include "sdk/fs.h"
 
 void FSi_ReadTable(ArchiveTableCursor *cursor, void *dest, u32 length);
-int func_02111bc4(FSFile *file, u32 command);
+int FSi_TranslateCommand(FSFile *file, u32 command);
 
 /* Archive command: looks the file id up in the FAT (8 bytes per file: top
  * and bottom), then runs the open-by-range command on it. Fails when the id
@@ -23,5 +23,5 @@ int FSi_OpenFileFastCommand(FSFile *file)
     file->arg.openFileDirect.top = range[0];
     file->arg.openFileDirect.bottom = range[1];
     file->arg.openFileDirect.id = id;
-    return func_02111bc4(file, ARCHIVE_OP_OPEN_BY_EXTENT);
+    return FSi_TranslateCommand(file, ARCHIVE_OP_OPEN_BY_EXTENT);
 }
