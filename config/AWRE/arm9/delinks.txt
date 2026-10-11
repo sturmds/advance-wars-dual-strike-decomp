@@ -4344,6 +4344,10 @@ src/game/main/menus/campaign_map_find_task.c:
     complete
     .text       start:0x0204e5c0 end:0x0204e618
 
+src/game/main/menus/campaign_map_start_task_and_wait.c:
+    complete
+    .text       start:0x0204e618 end:0x0204e66c
+
 src/game/main/func_0204e6bc.c:
     complete
     .text       start:0x0204e6bc end:0x0204e6e8
