@@ -1,3 +1,7 @@
+/* Needed to match: the original reads gCampaignMapState.mission again at the
+ * end, which mwcc only does with common subexpression removal off. */
+#pragma opt_common_subs off
+
 #include "types.h"
 #include "game/campaign_map.h"
 
@@ -10,20 +14,21 @@ extern CampaignMission gCampaignMissions[];
 /* Sets up a scroll from the mission just played (gCampaignMapState.playedMission)
  * to the current one: the scroll before and after, the position of the
  * destination, and zeroed counters. */
-void func_0204e9cc(CampaignMapTask *task)
+void CampaignMap_StartMissionScroll(CampaignMapTask *task)
 {
     s16 fromY;
     int toX;
     int toY;
     u8 from;
-    s16 to;
+    int to;
     int fromX;
-    to = gCampaignMapState.mission;
+
     from = gCampaignMapState.playedMission;
     fromX = gCampaignMissions[from].x;
     fromY = gCampaignMissions[from].y;
-    toY = gCampaignMissions[to].y;
+    to = gCampaignMapState.mission;
     toX = gCampaignMissions[to].x;
+    toY = gCampaignMissions[to].y;
 
     task->unk_64 = 0;
     task->unk_68 = 0;

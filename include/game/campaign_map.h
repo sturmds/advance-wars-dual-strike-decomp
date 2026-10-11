@@ -43,7 +43,7 @@ typedef struct CampaignMapTask {
     int fromY;
     int toX;
     int toY;
-    int cursorX;                       /* position of the destination mission, set by func_0204e9cc */
+    int cursorX;                       /* position of the destination mission, set by CampaignMap_StartMissionScroll */
     int cursorY;
     u8 pad_44[0x4c - 0x44];
     s16 step;                          /* frame counter or phase of the running update function */

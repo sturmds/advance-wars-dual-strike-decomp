@@ -6795,7 +6795,8 @@ src/game/main/menus/campaign_map_ease_scroll.c:
     complete
     .text       start:0x0204e900 end:0x0204e9cc
 
-src/game/main/menus/func_0204e9cc.c:
+src/game/main/menus/campaign_map_start_mission_scroll.c:
+    complete
     .text       start:0x0204e9cc end:0x0204ea70
 
 src/game/main/menus/campaign_map_center_on_mission.c:
