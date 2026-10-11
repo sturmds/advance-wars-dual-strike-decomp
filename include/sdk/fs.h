@@ -87,6 +87,8 @@ typedef struct ArchiveTableCursor {
 typedef int (*ArchiveByteReader)(FSArchive *arc, void *dest, u32 src, u32 len);
 typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 len);
 
+#define ARCHIVE_STATE_IN_LIST 0x1       /* in the list of archives */
+#define ARCHIVE_STATE_ROUTINES_SET 0x2           /* tables and routines are set */
 #define ARCHIVE_STATE_AWAITING_DRIVER 0x100          /* a command waits for Archive_OnCommandFinished */
 #define ARCHIVE_STATE_CALLER_BLOCKED 0x200        /* a caller sleeps until the command ends */
 
@@ -98,16 +100,16 @@ struct FSArchive {
     FSArchive *prev;
     u32 queue;                         /* threads waiting for the archive */
     u32 flags;
-    u32 pad_14;
+    u32 unk_14;
     FSFile *command;                   /* file whose command is running */
     u32 base;
     u32 fat;
     u32 fatSize;
     u32 fnt;
     u32 fntSize;
-    u32 fatLoaded;
-    u32 fntLoaded;
-    u32 pad_38;
+    u32 fatOriginal;                   /* fat as given when the archive was loaded */
+    u32 fntOriginal;
+    u32 unk_38;                        /* cleared when the archive is loaded */
     ArchiveByteReader read;
     ArchiveByteWriter write;
     ArchiveByteReader readTable;       /* copy of read, used for FAT and FNT reads */
