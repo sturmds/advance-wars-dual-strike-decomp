@@ -2,7 +2,7 @@
 
 void Sound_PostCommandArgs(u32 id, u32 arg0, u32 arg1, u32 arg2, u32 arg3)
 {
-    SndCommand *command = func_021104b8(1);
+    SndCommand *command = SND_AllocCommand(1);
 
     if (command == NULL) {
         return;
