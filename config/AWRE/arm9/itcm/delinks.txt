@@ -402,3 +402,7 @@ src/sdk/mi/mii_dma_set_params.c:
 src/sdk/mi/dma_load_channel_masked_settle.c:
     complete
     .text       start:0x01ffddb4 end:0x01ffde28
+
+src/sdk/mi/dma_load_channel_masked.c:
+    complete
+    .text       start:0x01ffde28 end:0x01ffde78
