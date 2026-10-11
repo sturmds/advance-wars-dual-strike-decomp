@@ -6,8 +6,8 @@ extern int data_02167ed0[];
 void func_01ffabcc(int x, int y, int value);
 void func_01ffaca0(int x, u16 y, int value);
 void func_01ffad44(u16 x, u16 y, int variant, int size, int value);
-int func_020da4f0(int kind, int variant);
-int func_020da524(int kind, int variant);
+int MapObject_GetDrawOffsetY(int kind, int variant);
+int MapObject_GetDrawOffsetX(int kind, int variant);
 
 /* Draws a map object that is still standing; FALSE for a destroyed one or a
  * kind with no drawing here. Kinds 1, 3, 4 and 5 are handled. */
@@ -27,8 +27,8 @@ BOOL MapObject_Draw(MapObject *object, int value)
         return TRUE;
     case 3:
         variant = object->variant;
-        dx = func_020da524(kind, variant);
-        func_01ffad44(object->x + dx, object->y + func_020da4f0(kind, variant), variant, 10, value);
+        dx = MapObject_GetDrawOffsetX(kind, variant);
+        func_01ffad44(object->x + dx, object->y + MapObject_GetDrawOffsetY(kind, variant), variant, 10, value);
         return TRUE;
     case 4:
         variant = object->variant;
