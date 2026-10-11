@@ -5611,6 +5611,10 @@ src/game/main/link/link_read_unflagged_packet.c:
     complete
     .text       start:0x0207b5e0 end:0x0207b610
 
+src/game/main/link/link_send_unflagged_packet.c:
+    complete
+    .text       start:0x0207b610 end:0x0207b664
+
 src/game/main/link/link_send_flagged_packet.c:
     complete
     .text       start:0x0207b664 end:0x0207b6c0
