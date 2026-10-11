@@ -4333,7 +4333,7 @@ Player_ListEquippedSkills kind:function(arm,size=0x80) addr:0x020e6c48
 CoSet_ListEquippedSkills kind:function(arm,size=0x4c) addr:0x020e6cc8
 Co_ListDefaultSkills kind:function(arm,size=0x10) addr:0x020e6d14
 ForceRank_ClearSavedSets kind:function(arm,size=0x68) addr:0x020e6d24
-func_020e6d8c kind:function(arm,size=0xfc) addr:0x020e6d8c
+ForceRank_ResetAllSets kind:function(arm,size=0xfc) addr:0x020e6d8c
 ForceRank_SaveSets kind:function(arm,size=0xc0) addr:0x020e6e88
 ForceRank_LoadSets kind:function(arm,size=0x70) addr:0x020e6f48
 func_020e6fb8 kind:function(arm,size=0x4c) addr:0x020e6fb8
@@ -7918,7 +7918,7 @@ data_02168b70 kind:data(any) addr:0x02168b70
 data_02168b74 kind:data(any) addr:0x02168b74
 data_02168b78 kind:data(any) addr:0x02168b78
 data_02168b7c kind:data(any) addr:0x02168b7c
-data_02168b80 kind:data(any) addr:0x02168b80
+gSaveModeList kind:data(any) addr:0x02168b80
 data_02168b94 kind:data(any) addr:0x02168b94
 data_02168bc4 kind:data(any) addr:0x02168bc4
 data_02168bfc kind:data(any) addr:0x02168bfc

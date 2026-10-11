@@ -16,7 +16,7 @@ void Campaign_ResetProgress(void);
 void func_020e86b8(void);
 void BattleRecord_ClearAll(void);
 void func_02101b94(void);
-void func_020e6d8c(void);
+void ForceRank_ResetAllSets(void);
 void PlayRecords_ResetCounters(void);
 void func_0208c010(void);
 void LinkReaction_LoadTexts(void);
@@ -59,7 +59,7 @@ void Save_ResetProgress(void)
     func_020e86b8();
     BattleRecord_ClearAll();
     func_02101b94();
-    func_020e6d8c();
+    ForceRank_ResetAllSets();
     PlayRecords_ResetCounters();
     func_0208c010();
     LinkReaction_LoadTexts();
