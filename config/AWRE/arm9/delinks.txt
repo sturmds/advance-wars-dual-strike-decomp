@@ -4505,6 +4505,10 @@ src/game/main/result_sprite_slide_out.c:
     complete
     .text       start:0x02035070 end:0x02035168
 
+src/game/main/result_sprite_hold.c:
+    complete
+    .text       start:0x02035168 end:0x020351f0
+
 src/game/main/result_sprite_shake.c:
     complete
     .text       start:0x020351f0 end:0x020353d4
@@ -4513,9 +4517,21 @@ src/game/main/result_sprite_pop_in.c:
     complete
     .text       start:0x020353d4 end:0x0203552c
 
+src/game/main/result_sprite_path_in.c:
+    complete
+    .text       start:0x0203552c end:0x020355c0
+
 src/game/main/result_sprite_scroll_layer.c:
     complete
     .text       start:0x020355c0 end:0x02035644
+
+src/game/main/result_sprite_wait_point_script.c:
+    complete
+    .text       start:0x02035644 end:0x020356b0
+
+src/game/main/result_sprite_start_point_script.c:
+    complete
+    .text       start:0x020356b0 end:0x02035708
 
 src/game/main/func_02035708.c:
     complete
