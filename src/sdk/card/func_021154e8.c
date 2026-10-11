@@ -1,0 +1,41 @@
+#pragma opt_propagation off
+#include "sdk/card.h"
+
+extern CARDiCommandArg data_022ab960;
+extern u8 data_022ab9a0[0x160];
+extern u8 data_022ac0e0[];
+
+void MIi_CpuClearFast(u32 value, void *dst, u32 size);
+void Mem_CopyBytes(const void *src, void *dst, u32 size);
+void DC_FlushRange(const void *start, u32 size);
+void OS_CreateThread(OSThread *thread, void (*proc)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
+void OS_WakeupThreadDirect(OSThread *thread);
+void func_02111064(int tag, void (*callback)(int tag, u32 data, int err));
+void func_0211549c(u32 state);
+void func_021157b4(void *arg);
+void func_02115808(int tag, u32 data, int err);
+
+void func_021154e8(void)
+{
+    CARDiCommon *common = &data_022abb00;
+    vu32 zero;
+
+    common->lockOwner = OS_LOCK_ID_ERROR;
+    common->lockCount = 0;
+    zero = 0;
+    common->lockTarget = 0;
+    common->cmd = &data_022ab960;
+    MIi_CpuClearFast(zero, &data_022ab960, sizeof(CARDiCommandArg));
+    DC_FlushRange(&data_022ab960, sizeof(CARDiCommandArg));
+
+    Mem_CopyBytes(*BOOT_ORIGIN_WORD == BOOT_ORIGIN_WIRELESS ? (void *)0x023fe940 : (void *)0x027ffe00, data_022ab9a0, 0x160);
+    common->lockQueue.head = 0;
+    common->queue.head = 0;
+    common->priorityMode = 4;
+    OS_CreateThread(&common->thread, func_021157b4, NULL, data_022ac0e0, GAMECARD_WORKER_STACK_BYTES, common->priorityMode);
+    OS_WakeupThreadDirect(&common->thread);
+    func_02111064(11, func_02115808);
+    if (*BOOT_ORIGIN_WORD != BOOT_ORIGIN_WIRELESS) {
+        func_0211549c(1);
+    }
+}
