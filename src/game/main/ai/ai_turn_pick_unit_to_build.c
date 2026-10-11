@@ -20,7 +20,7 @@ int AiSite_PickForBuild(int supplyKind);
 int AiBuild_RateSiteDanger(int x, int y, int unitType);
 void AiSites_ClearRejectedMarks(void);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-BOOL func_02098238(u32 cost);
+BOOL AiBuild_ShouldSaveFunds(u32 cost);
 int Ai_WantsBlackBomb(int unitType);
 int AiSite_PickBlackBombAirport(void);
 int AiSite_PickPiperunnerSite(void);
@@ -37,7 +37,7 @@ int Ai_CountUnitsOfType(int type);
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
  * Anti-Air (at half weight). An airport or port where AiBuild_RateSiteDanger gives 90 or
  * more is marked (kind 0xff) and the next one tried. When funds are short and
- * allowSaving is 1, func_02098238 may set AiBuildState.savingTarget to the funds
+ * allowSaving is 1, AiBuild_ShouldSaveFunds may set AiBuildState.savingTarget to the funds
  * still missing after next income; while savingTarget is set, a build must leave
  * that much (savingSkips times it may skip the check for a type the player has
  * none of). Black Bomb and Piperunner builds go through AiSite_PickBlackBombAirport and
@@ -128,7 +128,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         }
         cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
         if (cost > (u32)PLAYER.funds) {
-            if (allowSaving == 1 && func_02098238(cost) == 1) {
+            if (allowSaving == 1 && AiBuild_ShouldSaveFunds(cost) == 1) {
                 data_021619c0->savingTarget = cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
             }
             goto reject;
@@ -145,7 +145,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         } else if (AiBuild_WantsPiperunnerInstead(best) == 1) {
             pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
             if (pipeCost > (u32)PLAYER.funds) {
-                if (allowSaving == 1 && func_02098238(pipeCost) == 1) {
+                if (allowSaving == 1 && AiBuild_ShouldSaveFunds(pipeCost) == 1) {
                     data_021619c0->savingTarget = pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
                     continue;
                 }
