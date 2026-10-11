@@ -3779,6 +3779,10 @@ src/game/main/func_0202df78.c:
     complete
     .text       start:0x0202df78 end:0x0202df9c
 
+src/game/main/menus/main_menu_cancel_entry.c:
+    complete
+    .text       start:0x0202df9c end:0x0202e0d4
+
 src/game/main/menus/main_menu_confirm_entry.c:
     complete
     .text       start:0x0202e0d4 end:0x0202e5f0
