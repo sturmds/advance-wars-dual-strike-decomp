@@ -1,3 +1,7 @@
+/* Needed to match: with common subexpression removal on, the flags byte
+ * lands in r1 instead of r0. */
+#pragma opt_common_subs off
+
 #include "types.h"
 #include "game/sprite_anim.h"
 
@@ -7,8 +11,7 @@ int func_020224d4(void);
 int func_020224ec(void);
 
 /* Draws the sprite's current cells as 3D quads at *pos, the 3D counterpart of
- * SpriteAnim_Queue. SPRITE_ANIM_SKIP_DRAW skips one draw. Not matched: the
- * flags byte lands in r1 instead of r0. */
+ * SpriteAnim_Queue. SPRITE_ANIM_SKIP_DRAW skips one draw. */
 void SpriteAnim_Queue3d(SpriteAnim *sprite, const VecFx32 *pos, int arg)
 {
     BOOL active;

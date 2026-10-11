@@ -3493,6 +3493,7 @@ src/game/main/func_020224ec.c:
     .text       start:0x020224ec end:0x02022504
 
 src/game/main/graphics/sprite_anim_queue3d.c:
+    complete
     .text       start:0x02022504 end:0x020225c8
 
 src/game/main/graphics/sprite_anim_draw3d.c:
