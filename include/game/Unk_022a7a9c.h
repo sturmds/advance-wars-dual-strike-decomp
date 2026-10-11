@@ -48,10 +48,10 @@ typedef struct Unk_022a7ab8 {
 } Unk_022a7ab8;
 
 /* Experience multipliers of a result row (ExpBonus_Scale). */
-#define EXP_BONUS_X1_5 0
-#define EXP_BONUS_X2   1
-#define EXP_BONUS_X2_5 2
-#define EXP_BONUS_X1   3
+#define EXP_BONUS_X1   0
+#define EXP_BONUS_X1_5 1
+#define EXP_BONUS_X2   2
+#define EXP_BONUS_X2_5 3
 
 /* data_022a7a9c seen whole: Unk_022a7a9c covers its first 0x28 bytes, and
  * the per-slot rows start at 0x1c (data_022a7ab8). */

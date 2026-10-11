@@ -27,9 +27,9 @@ extern BattleResults data_022a7a9c;
 
 /* Fills the result row of each player slot at the end of a battle: CO ids,
  * army colour, and for each CO of a human player the experience change.
- * The multiplier comes from the game mode: x1.5 by default; in the
- * campaign x2.5 for a lone CO except on maps 224-231 on normal mode; in
- * the War Room by unk_59 (0: x1, 1: x2.5, 2: x2, 3: x1.5). Each CO first
+ * The multiplier comes from the game mode: x1 by default; in the
+ * campaign x2 for a lone CO except on maps 224-231 on normal mode; in
+ * the War Room by unk_59 (0: x2.5, 1: x2, 2: x1.5, 3: x1). Each CO first
  * loses the scaled expTaken (unless it has 100000 or more), then the row
  * keeps its ranks before and after the scaled expGain. Last, counts the
  * properties and units each player has on the map. */
@@ -51,7 +51,7 @@ void BattleResults_Fill(void)
     int rankBefore;
     int gain;
 
-    bonus = EXP_BONUS_X1_5;
+    bonus = EXP_BONUS_X1;
 
     for (player = 1; player < 5; player++) {
         for (slot = 0; slot < 2; slot++) {
@@ -62,31 +62,31 @@ void BattleResults_Fill(void)
             switch (GAME->gameMode) {
             case GAME_MODE_CAMPAIGN:
                 if (!Campaign_IsHardMode() && GAME->unk_1c4->mapId >= 224 && GAME->unk_1c4->mapId <= 231) {
-                    bonus = EXP_BONUS_X1_5;
+                    bonus = EXP_BONUS_X1;
                 } else if (slot == 0 && func_02001730(player, 1) == 0) {
-                    bonus = EXP_BONUS_X2_5;
+                    bonus = EXP_BONUS_X2;
                 } else {
-                    bonus = EXP_BONUS_X1_5;
+                    bonus = EXP_BONUS_X1;
                 }
                 break;
             case GAME_MODE_WAR_ROOM:
                 switch (GAME->unk_59) {
                 case 0:
-                    bonus = EXP_BONUS_X1;
-                    break;
-                case 1:
                     bonus = EXP_BONUS_X2_5;
                     break;
-                case 2:
+                case 1:
                     bonus = EXP_BONUS_X2;
                     break;
-                case 3:
+                case 2:
                     bonus = EXP_BONUS_X1_5;
+                    break;
+                case 3:
+                    bonus = EXP_BONUS_X1;
                     break;
                 }
                 break;
             case GAME_MODE_SURVIVAL:
-                bonus = EXP_BONUS_X1_5;
+                bonus = EXP_BONUS_X1;
                 break;
             }
             ROWS[player].expBonus[slot] = bonus;
