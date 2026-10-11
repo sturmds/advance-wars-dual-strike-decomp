@@ -7,7 +7,7 @@ void SoundStrm_Refill(SoundStrm *strm, int status);
 void SoundStrm_OnAlarm(SoundStrm *strm);
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int irqState);
-void func_0210fc04(int channel, int format, u32 buffer, int loop, int loopStart, u32 loopLength,
+void SND_SetupChannelPcm(int channel, int format, u32 buffer, int loop, int loopStart, u32 loopLength,
                    int volume, int shift, int timer, int pan);
 void func_0210fd14(int alarm, u32 tick, u32 period, void (*handler)(SoundStrm *), SoundStrm *arg);
 
@@ -50,7 +50,7 @@ BOOL SoundStrm_Setup(SoundStrm *strm, int format, u32 buffer, u32 length, int ti
 
         data_022a8978[channel].buffer = buffer + strm->bufferSize * i;
         data_022a8978[channel].volume = 0;
-        func_0210fc04(channel, format, data_022a8978[channel].buffer, 1, 0, strm->bufferSize >> 2,
+        SND_SetupChannelPcm(channel, format, data_022a8978[channel].buffer, 1, 0, strm->bufferSize >> 2,
                       127, 0, timer * 32, 64);
     }
     func_0210fd14(strm->alarm, period, period, SoundStrm_OnAlarm, strm);
