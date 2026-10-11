@@ -2,11 +2,11 @@
 #include "game/task.h"
 #include "game/Unk_0229c734.h"
 
-u8 func_02039bf8(int points);
+int ScoreList_GetPanelSize(int points);
 
 /* Task step: resets the counters of the result point task and adds up the
  * points of the rows in use (a row of kind 0 ends the list). Stores the sum
- * and what func_02039bf8 makes of it in the task. */
+ * and what ScoreList_GetPanelSize makes of it in the task. */
 void ResultPoint_SumPoints(ResultPointTask *task)
 {
     int i;
@@ -22,5 +22,5 @@ void ResultPoint_SumPoints(ResultPointTask *task)
         }
         task->totalPoints += data_0229c734->rows[i].points;
     }
-    task->rank = func_02039bf8(task->totalPoints);
+    task->rank = ScoreList_GetPanelSize(task->totalPoints);
 }
