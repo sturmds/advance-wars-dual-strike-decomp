@@ -12,7 +12,8 @@ typedef struct MissileStrikeTask {
     int unk_3c;                        /* set to 8 */
     int pixelX;                        /* where the missile lands on the map, in pixels (read by MissileStrike_StartBlastAnim and MissileStrike_FallStep) */
     int pixelY;
-    u8 pad_48[0x54 - 0x48];
+    int unk_48;
+    u8 pad_4c[0x54 - 0x4c];
     int unk_54;                        /* third argument of MissileStrike_Start (2 from func_020f1f38) */
     int unk_58;                        /* fourth argument (80 from func_020f1f38) */
 } MissileStrikeTask;

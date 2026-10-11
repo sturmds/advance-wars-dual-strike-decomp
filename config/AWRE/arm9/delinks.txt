@@ -17362,6 +17362,10 @@ src/game/main/missile_strike_fall_step.c:
     complete
     .text       start:0x020eb6b0 end:0x020eb738
 
+src/game/main/missile_strike_init.c:
+    complete
+    .text       start:0x020eb738 end:0x020eb940
+
 src/game/main/missile_strike_scroll_to_target.c:
     complete
     .text       start:0x020eb940 end:0x020eb974
