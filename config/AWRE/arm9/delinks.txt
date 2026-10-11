@@ -5501,7 +5501,7 @@ src/game/main/func_020892f0.c:
     complete
     .text       start:0x020892f0 end:0x02089314
 
-src/game/main/menus/func_02089684.c:
+src/game/main/menus/combat_mode_menu_draw_sprites.c:
     complete
     .text       start:0x02089684 end:0x02089a74
 
@@ -5517,7 +5517,7 @@ src/game/main/func_02089c9c.c:
     complete
     .text       start:0x02089c9c end:0x02089dac
 
-src/game/main/menus/menu_draw_money_and_prices.c:
+src/game/main/menus/combat_mode_menu_draw_funds_and_prices.c:
     complete
     .text       start:0x02089dac end:0x0208a0c4
 

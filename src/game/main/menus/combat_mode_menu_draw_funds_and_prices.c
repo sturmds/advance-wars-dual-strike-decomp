@@ -14,7 +14,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-/* One priced entry; greyed out when 20 cells are in use or the money is
+/* One priced entry; greyed out when 20 cells are in use or the funds are
  * below the cost. */
 #define ENTRY(y, text, cost)                                                         \
     if (data_02160ac0->unk_18 != 20 && data_02160ac0->unk_14 >= (cost)) {           \
@@ -25,9 +25,10 @@ extern Unk_027c0288 data_027c0288;
     Text_PrintImmediate(3, (y), data_027c0280->layer0Map, (text), 0, grey);          \
     Number_Draw(13, (y), data_027c0280->layer0Map, (cost), 0, grey)
 
-/* Draws the money (data_02160ac0->unk_14) and four entries with their costs
- * (1000, 3000, 5000, 6000) on layer 0 of the screen in data_027c0288.unk_00. */
-void Menu_DrawMoneyAndPrices(void)
+/* Draws the Combat mode funds (data_02160ac0->unk_14) and four entries with
+ * their costs (1000, 3000, 5000, 6000) on layer 0 of the screen in
+ * data_027c0288.unk_00. */
+void CombatModeMenu_DrawFundsAndPrices(void)
 {
     int grey;
     Unk_027c0280 *saved0280 = data_027c0280;

@@ -21,7 +21,7 @@ typedef struct Unk_02160ac0 {
         u8 tile : 6;
         u8 state : 2;
     } cells[20];
-    u32 unk_14;                        /* money: the four entries of Menu_DrawMoneyAndPrices cost 1000 to 6000 */
+    u32 unk_14;                        /* Combat mode funds: the four entries of CombatModeMenu_DrawFundsAndPrices cost 1000 to 6000 */
     u8 unk_18;                         /* cells in use, at most 20 */
     u8 unk_19;
     u8 pad_1a[0x70 - 0x1a];

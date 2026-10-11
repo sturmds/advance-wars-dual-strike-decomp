@@ -27,14 +27,15 @@ extern u8 data_02161890[];
 extern u8 data_027c0028;
 extern u8 data_027c0040;
 
-/* Draws the sprites of a menu with entries 8 to 11: a sprite for the CO that
+/* Draws the sprites of the Combat mode menu (entries 8 to 11): a sprite for
+ * the CO that
  * data_02160ac0->unk_19 picks from data_021613a0, four rows of icons whose
  * counts depend on the selected entry, a picture for the entry (one set for
  * Orange Star COs, another for the rest), a column of four icons (the first
  * moved by 16 tiles for Black Hole), and one of those icons for each of the
  * unk_18 cells of data_02160ac0, four per line. Cell tiles 1 and 2 share the
  * first icon. */
-void func_02089684(void)
+void CombatModeMenu_DrawSprites(void)
 {
     void *picture;
     u16 cellX;
