@@ -6,7 +6,7 @@ extern u32 data_027c0284;
 
 int Ov006_GetPipeSeamCell(int x, int y);   /* guess: the seam cell that fits tile x, y */
 int Ov006_IsJoinedPieceConnected(int x, int y);   /* nonzero: keep the cell at x, y as it is */
-int func_ov006_02369bc4(int x, int y, int dir);   /* 0-2: how firmly the neighbour in dir links on; 2 off the map */
+int Ov006_GetPipeNeighborHold(int x, int y, int dir);   /* 0-2: how firmly the neighbour in dir links on; 2 off the map */
 int Ov006_GetPipeLink(int x, int y, int dir);   /* 0-3: what the neighbour in dir is; 0 nothing to join */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -32,12 +32,12 @@ int Ov006_GetPipeLink(int x, int y, int dir);   /* 0-3: what the neighbour in di
 #define DIR_LEFT  2
 #define DIR_RIGHT 3
 
-#define LINKS(dir) func_ov006_02369bc4(x, y, dir)
+#define LINKS(dir) Ov006_GetPipeNeighborHold(x, y, dir)
 
 /* Picks the pipe cell for tile x, y from its four neighbours. A seam is
  * kept unless replaceSeam is set. With one neighbour the pipe runs toward
  * it. With more, neighbours of kind 2 win, then the pair with the weakest
- * links (func_ov006_02369bc4 below 2), giving a straight piece or a corner. */
+ * links (Ov006_GetPipeNeighborHold below 2), giving a straight piece or a corner. */
 int Ov006_FitPipeCell(int x, int y, int replaceSeam)
 {
     u8 n[4];

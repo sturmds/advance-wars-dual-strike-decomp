@@ -1195,7 +1195,7 @@ src/game/ov006/ov006_is_joined_piece_connected.c:
     complete
     .text       start:0x023694d0 end:0x02369bc4
 
-src/game/ov006/func_ov006_02369bc4.c:
+src/game/ov006/ov006_get_pipe_neighbor_hold.c:
     complete
     .text       start:0x02369bc4 end:0x02369e04
 
