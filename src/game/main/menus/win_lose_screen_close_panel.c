@@ -6,7 +6,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(WinLoseTask *task);
 void func_01ff8c84(int layer);        /* likely clears the layer's tile map */
 void func_0201e6e8(int x, int y, int width, int height);   /* window frame on layer 1 */
-void func_0203e074(WinLoseTask *task);
+void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -20,7 +20,7 @@ extern int data_027c0284;
  * at row 14. Then resumes the task's script; at once in game mode 2. */
 void WinLoseScreen_ClosePanel(WinLoseTask *task)
 {
-    func_0203e074(task);
+    WinLoseScreen_DrawPicturesTwoSides(task);
     if (GAME->gameMode == 2) {     /* likely Versus */
         task->unk_4c = 0;
         Task_ResumeScript(task);

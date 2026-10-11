@@ -4140,6 +4140,10 @@ src/game/main/menus/win_lose_screen_open_panel.c:
     complete
     .text       start:0x0203df08 end:0x0203e074
 
+src/game/main/menus/win_lose_screen_draw_pictures_two_sides.c:
+    complete
+    .text       start:0x0203e074 end:0x0203e1cc
+
 src/game/main/menus/win_lose_screen_init.c:
     complete
     .text       start:0x0203e67c end:0x0203f300

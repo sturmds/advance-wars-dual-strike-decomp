@@ -7,7 +7,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Task_ResumeScript(WinLoseTask *task);
 void func_0201e6e8(int x, int y, int width, int height);   /* window frame on layer 1 */
-void func_0203e074(WinLoseTask *task);
+void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ extern Unk_027c0288 data_027c0288;
  * otherwise, then resumes the task's script; at once in game mode 2. */
 void WinLoseScreen_OpenPanel(WinLoseTask *task)
 {
-    func_0203e074(task);
+    WinLoseScreen_DrawPicturesTwoSides(task);
     if (GAME->gameMode == 2) {     /* likely Versus */
         Task_ResumeScript(task);
         return;

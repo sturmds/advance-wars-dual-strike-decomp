@@ -5,7 +5,7 @@
 
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(WinLoseTask *task);
-void func_0203e074(WinLoseTask *task);
+void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
 void func_0203f340(s32 added, s32 total, int popFrame);   /* likely draws the points, like PointsTally_Draw */
 
 /* Task update of the two-side win/lose screen, like PointsTally_Count:
@@ -14,7 +14,7 @@ void func_0203f340(s32 added, s32 total, int popFrame);   /* likely draws the po
  * rest at once. The script resumes when unk_58 is empty. */
 void WinLoseScreen_CountPoints(WinLoseTask *task)
 {
-    func_0203e074(task);
+    WinLoseScreen_DrawPicturesTwoSides(task);
     func_0203f340(task->unk_58, task->unk_5c, -1);
     if (task->unk_58 == 0 && task->unk_4c >= 30) {
         task->unk_4c = 0;
