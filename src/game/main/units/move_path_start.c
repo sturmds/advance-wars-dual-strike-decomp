@@ -15,7 +15,7 @@ void IconBank_LoadPalette(int bank, int paletteSlot);
 int Unit_GetMovePoints(MapUnit *unit);
 void MovePath_Truncate(int count);
 void MovePath_AddTile(s8 x, s8 y);
-void func_020d5308(int a, int b);
+void MovePath_SetCursor(int a, int b);
 void func_020d4748(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -35,6 +35,6 @@ void MovePath_Start(void)
     MovePath_Truncate(0);
     MovePath_AddTile(GAME->actingUnit->x, GAME->actingUnit->y);
     gMovePath->movesLeft[0] = gMovePath->startMoves;
-    func_020d5308(0xffff, 0xffff);
+    MovePath_SetCursor(0xffff, 0xffff);
     func_020d4748();
 }

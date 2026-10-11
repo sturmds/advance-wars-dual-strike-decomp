@@ -7,7 +7,7 @@
  * Tile 0 is where the unit stands. */
 typedef struct MovePath {
     u8 pad_00[0x1e];
-    s8 cursorX;                        /* cursor tile the path was last updated for (func_020d5308) */
+    s8 cursorX;                        /* cursor tile the path was last updated for (MovePath_SetCursor) */
     s8 cursorY;
     s8 x[12];
     s8 y[12];

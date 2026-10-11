@@ -14686,6 +14686,10 @@ src/game/main/units/move_path_append_steps.c:
     complete
     .text       start:0x020d4e70 end:0x020d4fb0
 
+src/game/main/units/move_path_find_tile.c:
+    complete
+    .text       start:0x020d4fb0 end:0x020d501c
+
 src/game/main/units/move_path_add_tile.c:
     complete
     .text       start:0x020d501c end:0x020d5170
@@ -14693,6 +14697,10 @@ src/game/main/units/move_path_add_tile.c:
 src/game/main/units/move_path_truncate.c:
     complete
     .text       start:0x020d5170 end:0x020d5308
+
+src/game/main/units/move_path_set_cursor.c:
+    complete
+    .text       start:0x020d5308 end:0x020d5324
 
 src/game/main/func_020d5324.c:
     complete

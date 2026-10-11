@@ -8,8 +8,8 @@
 void MovePath_AddTile(s8 x, s8 y);
 void MovePath_AppendSteps(void);
 void MovePath_Truncate(int count);
-void func_020d5308(u16 x, u16 y);
-int func_020d4fb0(s8 x, s8 y);
+void MovePath_SetCursor(u16 x, u16 y);
+int MovePath_FindTile(s8 x, s8 y);
 void MovePath_FillRangeFromEnd(void);
 void MovePath_RebuildToTarget(void);
 BOOL MovePath_HasNoRepeatedTile(void);
@@ -54,12 +54,12 @@ void func_020d4748(void)
     if (PATH->cursorX == x && PATH->cursorY == y) {
         return;
     }
-    func_020d5308(x, y);
+    MovePath_SetCursor(x, y);
     if (range == -1) {
         return;
     }
 
-    i = func_020d4fb0(GAME->cursorX, GAME->cursorY);
+    i = MovePath_FindTile(GAME->cursorX, GAME->cursorY);
     if (i != -1) {
         MovePath_Truncate((s8)(i + 1));
         GAME->unk_46 = PATH->startMoves - PATH->movesLeft[PATH->lastTile];
