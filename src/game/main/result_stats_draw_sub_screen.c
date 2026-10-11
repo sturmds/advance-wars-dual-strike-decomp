@@ -10,7 +10,7 @@ void Screen_SetCurrentGfx(void *state);
 void ResultStats_DrawStat(int x, int y, int stat, Task *task);
 void func_0203bdf0(int x, int y, int coSlot);
 void func_0203be58(int x, int y, int coSlot);
-void func_0203bec8(int x, int y, int index);
+void ResultStats_QueuePlayerSprite(int x, int y, int index);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -27,7 +27,7 @@ void ResultStats_DrawSubScreen(int offset, Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_0203bec8(offset + 24, 24, task->unk_66 - 1);
+    ResultStats_QueuePlayerSprite(offset + 24, 24, task->unk_66 - 1);
     func_0203be58(offset + 24, 40, (task->unk_66 - 1) * 2);
     func_0203bdf0(offset + 74, 41, (task->unk_66 - 1) * 2);
     if (data_022a7aba[task->unk_66].unk_00 & PLAYER_CO_ID_MASK) {

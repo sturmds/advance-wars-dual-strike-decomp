@@ -4046,6 +4046,10 @@ src/game/main/func_0203be58.c:
     complete
     .text       start:0x0203be58 end:0x0203bec8
 
+src/game/main/result_stats_queue_player_sprite.c:
+    complete
+    .text       start:0x0203bec8 end:0x0203bf2c
+
 src/game/main/func_0203c6d8.c:
     complete
     .text       start:0x0203c6d8 end:0x0203c6fc
