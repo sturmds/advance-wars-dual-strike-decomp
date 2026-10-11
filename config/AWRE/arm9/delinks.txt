@@ -2787,6 +2787,10 @@ src/game/main/script/event_cmd_show_picture.c:
     complete
     .text       start:0x0201c8a4 end:0x0201c8ec
 
+src/game/main/script/event_script_show_picture.c:
+    complete
+    .text       start:0x0201c8ec end:0x0201c9f4
+
 src/game/main/index_from_number.c:
     complete
     .text       start:0x0201c9f4 end:0x0201ca04

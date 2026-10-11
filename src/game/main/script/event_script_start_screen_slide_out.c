@@ -21,7 +21,7 @@ void CallbackList_Add(void *callback);
 void func_0201dc48(void);
 void EventHold_StepScreenSlideOut(EventScriptSlot *slot);
 
-/* Called by func_0201c8ec, the helper of EventCmd_ShowPicture. Loads the file data_02158734, puts its tile block (palette
+/* Called by EventScript_ShowPicture, the helper of EventCmd_ShowPicture. Loads the file data_02158734, puts its tile block (palette
  * from data_022977a4.unk_00) in the table data_022978e0 and queues the copy to VRAM, clears the
  * text map, loads the CO picture that data_022977a4.unk_02 names, and starts the slide-out
  * hold for the slot at counter 47. */
