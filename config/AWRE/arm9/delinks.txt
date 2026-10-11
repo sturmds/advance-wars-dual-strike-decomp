@@ -8455,6 +8455,10 @@ src/game/main/menus/game_state6_play_theme_and_scripts.c:
     complete
     .text       start:0x020ba198 end:0x020ba208
 
+src/game/main/menus/func_020ba208.c:
+    complete
+    .text       start:0x020ba208 end:0x020ba2b8
+
 src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
