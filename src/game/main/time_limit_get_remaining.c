@@ -30,8 +30,8 @@ BOOL TimeLimit_GetRemaining(u32 *framesLeft)
     survivalTimed = FALSE;
     if (data_027c027c->unk_48[data_027c0284]->gameMode == 3) {
         timedVariant = TRUE;
-        if (data_022a7b80.unk_07 != 0) {
-            if (data_022a7b80.unk_07 != 3) {
+        if (data_022a7b80.mode != 0) {
+            if (data_022a7b80.mode != 3) {
                 timedVariant = FALSE;
             }
         }

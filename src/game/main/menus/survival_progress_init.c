@@ -52,11 +52,11 @@ extern char data_0215af58[]; /* "/ohashi/res_survival" */
 extern char data_0215af70[]; /* "/ohashi/res_survival_lang" */
 
 /* Init of the task that shows how far a Survival run has got, with the
- * res_survival files. data_022a7b80.unk_06 is the run's current map index:
+ * res_survival files. data_022a7b80.mapIndex is the run's current map index:
  * the page strip gets one tab per map played so far, wrapping into pages
  * when that passes the mode's map count (Survival_GetMapCount). Top screen: mode
  * title, the strip, the current map's preview and name. Bottom screen: the
- * mode's value from data_022a7b80.unk_08, as in Mode_PrintVariantValue.
+ * mode's value from data_022a7b80.budgetLeft, as in Mode_PrintVariantValue.
  * The fields set here sit where PageStripTask_Create copies PageStripTask fields
  * from its creator (its pointer sits next to this one in data_0215af10),
  * so the task uses that struct. */
@@ -67,16 +67,16 @@ void SurvivalProgress_Init(PageStripTask *task)
     Unk_02080440 *saved027c;
     u16 *map;
 
-    task->cursor = data_022a7b80.unk_06;
-    task->unk_66 = data_022a7b80.unk_06 + 1;
+    task->cursor = data_022a7b80.mapIndex;
+    task->unk_66 = data_022a7b80.mapIndex + 1;
     task->count = task->unk_66;
     task->pages = 1;
-    if (task->count > Survival_GetMapCount(data_022a7b80.unk_07)) {
-        task->count = Survival_GetMapCount(data_022a7b80.unk_07);
+    if (task->count > Survival_GetMapCount(data_022a7b80.mode)) {
+        task->count = Survival_GetMapCount(data_022a7b80.mode);
         task->cursor = HwMod32(task->cursor, task->count);
         task->pages = HwDiv32(task->unk_66 - 1, task->count) + 1;
     }
-    task->mapId = Survival_GetMapId(data_022a7b80.unk_07, task->cursor);
+    task->mapId = Survival_GetMapId(data_022a7b80.mode, task->cursor);
 
     Gfx_InitBothScreens();
     saved0280 = data_027c0280;
@@ -91,7 +91,7 @@ void SurvivalProgress_Init(PageStripTask *task)
     Screen_SetCurrentGfx(saved0280);
 
     ModeFont_Load(0, 0);
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         ModeFont_ShowText(Text_Get(0x7d00000c), 0, 0, 0, 0);
@@ -144,16 +144,16 @@ void SurvivalProgress_Init(PageStripTask *task)
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
     func_0201e6e8(8, 14, 16, 4);
-    if (data_022a7b80.unk_07 == 0 || data_022a7b80.unk_07 == 3) {
+    if (data_022a7b80.mode == 0 || data_022a7b80.mode == 3) {
         Text_PrintImmediate(9, 15, data_027c0280->layer0Map, 0x79000007, 0, 0);
-        Layer0_PutRatio(22, 15, HwDiv32(data_022a7b80.unk_08, 3600),
-                        HwMod32(HwDiv32(data_022a7b80.unk_08, 60), 60));
-    } else if (data_022a7b80.unk_07 == 2 || data_022a7b80.unk_07 == 5) {
+        Layer0_PutRatio(22, 15, HwDiv32(data_022a7b80.budgetLeft, 3600),
+                        HwMod32(HwDiv32(data_022a7b80.budgetLeft, 60), 60));
+    } else if (data_022a7b80.mode == 2 || data_022a7b80.mode == 5) {
         Text_PrintImmediate(9, 15, data_027c0280->layer0Map, 0x7900000a, 0, 0);
-        Layer0_PutNumber(22, 15, data_022a7b80.unk_08);
+        Layer0_PutNumber(22, 15, data_022a7b80.budgetLeft);
     } else {
         Text_PrintImmediate(9, 15, data_027c0280->layer0Map, 0x7900000d, 0, 0);
-        Layer0_PutNumberThenText4(22, 15, data_022a7b80.unk_08);
+        Layer0_PutNumberThenText4(22, 15, data_022a7b80.budgetLeft);
     }
     Gfx_RequestLayerCopy(0);
     Screen_SetCurrentGfx(saved0280);

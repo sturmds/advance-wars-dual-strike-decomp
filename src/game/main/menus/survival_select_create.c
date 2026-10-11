@@ -35,7 +35,7 @@ void SurvivalSelect_Create(void)
     data_0229c744 = Mem_Alloc(sizeof(PageStrip));
     data_0229c744->lists[0].cursor = 0;
     data_0229c744->lists[1].cursor = 0;
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         data_0229c744->lists[0].count = Survival_GetMapCount(0);
@@ -76,7 +76,7 @@ void SurvivalSelect_Create(void)
     Screen_SetCurrentGfx(savedState);
 
     ModeFont_Load(0x400, 0);
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         ModeFont_ShowText(Text_Get(0x7d00000c), 0x400, 0, 0, 0);

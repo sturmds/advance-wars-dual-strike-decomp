@@ -15689,7 +15689,7 @@ src/game/main/menus/survival_get_time_left.c:
     complete
     .text       start:0x020eaa20 end:0x020eaa8c
 
-src/game/main/func_020eaa8c.c:
+src/game/main/menus/survival_get_mode_budget.c:
     complete
     .text       start:0x020eaa8c end:0x020eaa9c
 
@@ -15749,7 +15749,7 @@ src/game/main/menus/survival_enter_game_mode.c:
     complete
     .text       start:0x020eb2e8 end:0x020eb394
 
-src/game/main/func_020eb394.c:
+src/game/main/menus/survival_is_past_first_map.c:
     complete
     .text       start:0x020eb394 end:0x020eb3b0
 

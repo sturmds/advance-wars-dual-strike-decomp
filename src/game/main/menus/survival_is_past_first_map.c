@@ -3,7 +3,7 @@
 
 extern Unk_022a7b80 data_022a7b80;
 
-BOOL func_020eb394(void)
+BOOL Survival_IsPastFirstMap(void)
 {
-    return data_022a7b80.unk_06 != 0;
+    return data_022a7b80.mapIndex != 0;
 }

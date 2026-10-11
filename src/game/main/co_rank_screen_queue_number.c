@@ -10,7 +10,7 @@ extern u8 data_027c0038;
 extern u8 data_027c0020;
 
 /* Queues a label sprite at (x + 8, y), picked by the mode in
- * data_022a7b80.unk_07 (0-2 or 3-5), then `value` as up to four digits
+ * data_022a7b80.mode (0-2 or 3-5), then `value` as up to four digits
  * at x + 104 with leading zeros left out, then a suffix sprite at x + 136. */
 void CoRankScreen_QueueNumber(int x, int y, int value)
 {
@@ -18,7 +18,7 @@ void CoRankScreen_QueueNumber(int x, int y, int value)
     int drawn;
 
     drawn = 0;
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 1:
     case 2:

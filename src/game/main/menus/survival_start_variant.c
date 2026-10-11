@@ -7,12 +7,12 @@ void func_021028e4(void);
 void func_021029a8(void);
 void func_02102a6c(void);
 
-/* Starts a Survival run by the variant in data_022a7b80.unk_07: 0 and 3,
+/* Starts a Survival run by the variant in data_022a7b80.mode: 0 and 3,
  * 1 and 4, and 2 and 5 pair up (as in Survival_FinishMap), each pair with its
  * own setup routine. */
 void Survival_StartVariant(void)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 1:
     case 4:
         func_02102a6c();

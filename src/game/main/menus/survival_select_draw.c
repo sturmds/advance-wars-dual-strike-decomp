@@ -36,9 +36,9 @@ extern u8 data_027c01c0;
  * a list label and, when SurvivalRecord_Exists reports it, two more icons. */
 void SurvivalSelect_Draw(void)
 {
-    int mode = data_022a7b80.unk_07;
+    int mode = data_022a7b80.mode;
     int list = SurvivalSelect_GetList();
-    int playerCount = Map_GetPlayerCount((u16)Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[list].cursor));
+    int playerCount = Map_GetPlayerCount((u16)Survival_GetMapId(data_022a7b80.mode, data_0229c744->lists[list].cursor));
     Unk_027c0280 *savedState = data_027c0280;
     int col;
     int x;

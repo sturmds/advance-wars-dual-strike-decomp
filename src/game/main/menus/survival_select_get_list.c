@@ -7,7 +7,7 @@ extern Unk_022a7b80 data_022a7b80;
  * (the second of each pair). */
 int SurvivalSelect_GetList(void)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 1:
     case 2:

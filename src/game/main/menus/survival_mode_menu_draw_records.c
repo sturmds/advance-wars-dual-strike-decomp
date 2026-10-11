@@ -16,7 +16,7 @@ extern Unk_022a7b80 data_022a7b80;
  * paired mode (n + 3) at row 15. */
 void SurvivalModeMenu_DrawRecords(void)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         SurvivalSelect_DrawMode0Record(1, 7);

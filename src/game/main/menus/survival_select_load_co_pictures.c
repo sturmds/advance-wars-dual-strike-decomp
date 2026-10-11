@@ -17,8 +17,8 @@ extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
 
 /* Record COs of the map at the strip cursor, for the current mode. */
-#define RECORD(cursor) (data_02291588[Survival_GetRecordIndex(data_022a7b80.unk_07, cursor)])
-#define RECORD1(cursor) (data_0229158c[Survival_GetRecordIndex(data_022a7b80.unk_07, cursor)])
+#define RECORD(cursor) (data_02291588[Survival_GetRecordIndex(data_022a7b80.mode, cursor)])
+#define RECORD1(cursor) (data_0229158c[Survival_GetRecordIndex(data_022a7b80.mode, cursor)])
 
 /* Loads the 12-tile picture of CO coId into OBJ VRAM at byte offset
  * offset, or clears those tiles when coId is 0. */
@@ -40,12 +40,12 @@ void SurvivalSelect_LoadCoPictures(void)
 {
     int i;
     int cursor = data_0229c744->lists[SurvivalSelect_GetList()].cursor;
-    int playerCount = Map_GetPlayerCount(Survival_GetMapId(data_022a7b80.unk_07, cursor));
+    int playerCount = Map_GetPlayerCount(Survival_GetMapId(data_022a7b80.mode, cursor));
     int j;
     int co;
 
     if (SurvivalSelect_HasRecord(cursor)) {
-        switch (data_022a7b80.unk_07) {
+        switch (data_022a7b80.mode) {
         case 0:
         case 3:
             LOAD_CO(RECORD(cursor).mode0Co, 0x900, 22);
@@ -66,7 +66,7 @@ void SurvivalSelect_LoadCoPictures(void)
     }
     for (i = 0; i < playerCount - 1; i++) {
         for (j = 0; j <= 1; j++) {
-            co = Ov000_gMapHeaders[Survival_GetMapId(data_022a7b80.unk_07, cursor)].co[i + 2][j];
+            co = Ov000_gMapHeaders[Survival_GetMapId(data_022a7b80.mode, cursor)].co[i + 2][j];
             if (co != 0) {
                 Co_QueueSmallPicture(co,
                                      data_027c0280->objVram + (((j + i * 2) * 12) << 5), j + i * 2 + 16);

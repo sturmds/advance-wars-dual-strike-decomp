@@ -76,7 +76,7 @@ void CoRankScreen_Init(CoRankTask *task)
     u8 *file;
 
     task->experienceBonus = Survival_GetExperienceBonus();
-    task->experienceGain = data_022a7b80.unk_10;
+    task->experienceGain = data_022a7b80.points;
     task->experienceGain += task->experienceBonus;
     if (task->experienceGain > EXPERIENCE_MAX_GAIN) {
         task->experienceGain = EXPERIENCE_MAX_GAIN;
@@ -105,7 +105,7 @@ void CoRankScreen_Init(CoRankTask *task)
     }
 
     ModeFont_Load(234, 5);
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         ModeFont_ShowText(Text_Get(0x7d00000c), 234, 5, 7, 0);

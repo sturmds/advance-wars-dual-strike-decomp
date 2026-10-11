@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* What the map just played took from the run's budget (data_022a7b80.unk_08),
+/* What the map just played took from the run's budget (data_022a7b80.budgetLeft),
  * for the mode variant: time in frames, rounded down to whole seconds
  * (modes 0 and 3), funds spent (1 and 4) or days taken (2 and 5). Player 1
  * is the human player. */

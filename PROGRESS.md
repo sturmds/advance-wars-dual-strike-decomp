@@ -75,6 +75,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/func_020f7cac.c` | func_020f7cac | 164 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
+| `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 |
 | `src/game/main/menus/combat_setup_add_shop_buttons.c` | func_020842e0 | 240 |
 | `src/game/main/menus/combat_setup_player_ready.c` | CombatSetup_SetPlayerReady | 148 |
 | `src/game/main/menus/combat_setup_player_unready.c` | CombatSetup_SetPlayerUnready | 116 |
@@ -86,7 +87,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
-| `src/game/main/menus/func_02082cf4.c` | func_02082cf4 | 556 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/func_020d3dec.c` | func_020d3dec | 148 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |

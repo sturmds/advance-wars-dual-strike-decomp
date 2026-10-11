@@ -28,5 +28,5 @@ void Survival_EnterGameMode(void)
     STATE->gameMode = GAME_MODE_SURVIVAL;
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
-    data_022a7b80.unk_06 = 0;
+    data_022a7b80.mapIndex = 0;
 }

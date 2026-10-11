@@ -25,7 +25,7 @@ extern Unk_022a7b80 data_022a7b80;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* In game mode 3 (likely Survival) prints on layer 0 the string from
- * Map_GetCurrentName, then two rows by the mode variant in data_022a7b80.unk_07:
+ * Map_GetCurrentName, then two rows by the mode variant in data_022a7b80.mode:
  * 0 or 3 time as m:ss (player 1's timer, then the limit), 2 or 5 days
  * (the current day, then the limit), others funds (player 1's unk_04,
  * then the limit). In modes 2 and 3 it adds the button from
@@ -39,23 +39,23 @@ void WinLoseScreen_ShowSurvivalStats(WinLoseTask *task)
         Gfx_RequestLayerCopy(0);
         map = data_027c0280->layer0Map;   /* needed to match: read before the call */
         Text_PrintStringImmediate(3, 15, map, Map_GetCurrentName(), 0, 0);
-        if (data_022a7b80.unk_07 == 0 || data_022a7b80.unk_07 == 3) {
+        if (data_022a7b80.mode == 0 || data_022a7b80.mode == 3) {
             Text_PrintImmediate(14, 15, data_027c0280->layer0Map, 0x79000006, 0, 0);
             Layer0_PutRatio(26, 15, HwDiv32(GAME->players[1].unk_94, 3600),
                             HwMod32(HwDiv32(GAME->players[1].unk_94, 60), 60));
             Text_PrintImmediate(14, 17, data_027c0280->layer0Map, 0x79000007, 0, 0);
-            Layer0_PutRatio(26, 17, HwDiv32(data_022a7b80.unk_08, 3600),
-                            HwMod32(HwDiv32(data_022a7b80.unk_08, 60), 60));
-        } else if (data_022a7b80.unk_07 == 2 || data_022a7b80.unk_07 == 5) {
+            Layer0_PutRatio(26, 17, HwDiv32(data_022a7b80.budgetLeft, 3600),
+                            HwMod32(HwDiv32(data_022a7b80.budgetLeft, 60), 60));
+        } else if (data_022a7b80.mode == 2 || data_022a7b80.mode == 5) {
             Text_PrintImmediate(14, 15, data_027c0280->layer0Map, 0x79000009, 0, 0);
             Layer0_PutNumber(26, 15, GAME->day);
             Text_PrintImmediate(14, 17, data_027c0280->layer0Map, 0x7900000a, 0, 0);
-            Layer0_PutNumber(26, 17, data_022a7b80.unk_08);
+            Layer0_PutNumber(26, 17, data_022a7b80.budgetLeft);
         } else {
             Text_PrintImmediate(14, 15, data_027c0280->layer0Map, 0x7900000c, 0, 0);
             Layer0_PutNumberThenText4(26, 15, GAME->players[1].unk_04);
             Text_PrintImmediate(14, 17, data_027c0280->layer0Map, 0x7900000d, 0, 0);
-            Layer0_PutNumberThenText4(26, 17, data_022a7b80.unk_08);
+            Layer0_PutNumberThenText4(26, 17, data_022a7b80.budgetLeft);
         }
     }
     mode = GAME->gameMode;

@@ -10,11 +10,11 @@ void SurvivalSelect_DrawMode5Record(int x, int y);
 
 extern Unk_022a7b80 data_022a7b80;
 
-/* Draws the bottom screen panel for the current mode (unk_07 0 to 5) at
+/* Draws the bottom screen panel for the current mode (data_022a7b80.mode, 0 to 5) at
  * column 3, row 13. */
 void SurvivalSelect_DrawModeRecord(void)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
         SurvivalSelect_DrawMode0Record(3, 13);
         break;

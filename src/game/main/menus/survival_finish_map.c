@@ -14,7 +14,7 @@ extern const TaskScriptCmd data_02167314[];
 
 #define RECORD_MAX 999999
 
-/* Runs when a map of a run ends (mode variant in data_022a7b80.unk_07).
+/* Runs when a map of a run ends (mode variant in data_022a7b80.mode).
  * A win (player 1's team still in) counts in survivalMapsWon. A win on the
  * run's last map in modes 0-2 sets game flag 44, 45 or 46, runs
  * Survival_SaveRecord, counts in survivalRunsCleared and starts data_02167314.
@@ -23,10 +23,10 @@ extern const TaskScriptCmd data_02167314[];
 void Survival_FinishMap(void)
 {
     BOOL won = Player1Team_HasPlayerInGame();
-    BOOL lastMap = data_022a7b80.unk_06 == Survival_GetMapCount(data_022a7b80.unk_07);
+    BOOL lastMap = data_022a7b80.mapIndex == Survival_GetMapCount(data_022a7b80.mode);
 
     if (won) {
-        switch (data_022a7b80.unk_07) {
+        switch (data_022a7b80.mode) {
         case 0:
         case 3:
             if (gPlayRecords.survivalMapsWon[0] < RECORD_MAX) {
@@ -47,7 +47,7 @@ void Survival_FinishMap(void)
             break;
         }
         if (lastMap) {
-            switch (data_022a7b80.unk_07) {
+            switch (data_022a7b80.mode) {
             case 0:
                 GameFlag_Set(44, 1);
                 break;
@@ -62,7 +62,7 @@ void Survival_FinishMap(void)
                 return;
             }
             Survival_SaveRecord();
-            switch (data_022a7b80.unk_07) {
+            switch (data_022a7b80.mode) {
             case 0:
                 if (gPlayRecords.survivalRunsCleared[0] < RECORD_MAX) {
                     gPlayRecords.survivalRunsCleared[0]++;
@@ -84,7 +84,7 @@ void Survival_FinishMap(void)
             Task_Create(data_02167294, TASK_LIST(3));
         }
     } else {
-        switch (data_022a7b80.unk_07) {
+        switch (data_022a7b80.mode) {
         case 0:
         case 1:
         case 2:

@@ -7,7 +7,7 @@ extern Unk_022a7b80 data_022a7b80;
  * pair (0/3, 1/4, 2/5) that menu row 0 or row 1 stands for. */
 int SurvivalModeMenu_GetRowMode(int row)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         if (row == 0) {

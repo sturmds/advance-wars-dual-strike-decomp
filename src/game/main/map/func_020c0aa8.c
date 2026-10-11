@@ -16,7 +16,7 @@ extern Unk_022a7b80 data_022a7b80;
 /* Counts each player's properties and income from the map tiles (Base, City,
  * Airport, Port, Com Tower, HQ), and stores the HQ position in unk_2f and
  * unk_30. Afterwards human players get no income while gameMode is 3 and
- * data_022a7b80.unk_07 is 1 or 4.
+ * data_022a7b80.mode is 1 or 4.
  * Not matching yet: y is u8 to keep its narrowing out of the inner loop, which
  * costs one instruction at the y increment. */
 void func_020c0aa8(void)
@@ -73,7 +73,7 @@ void func_020c0aa8(void)
         }
     }
     Map_ApplySlotFlags();
-    if (STATE->gameMode == 3 && (data_022a7b80.unk_07 == 1 || data_022a7b80.unk_07 == 4)) {
+    if (STATE->gameMode == 3 && (data_022a7b80.mode == 1 || data_022a7b80.mode == 4)) {
         for (slot = 1; slot < ARMY_SLOT_COUNT; slot++) {
             if (STATE->players[slot].controller == PLAYER_CONTROLLER_HUMAN) {
                 STATE->players[slot].unk_08 = 0;

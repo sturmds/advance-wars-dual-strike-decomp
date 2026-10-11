@@ -262,7 +262,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
             task->portraitsMax = task->portraitsB;
         }
         if (GAME->gameMode == 3) {     /* likely Survival */
-            task->pointsTotal = data_022a7b80.unk_10;
+            task->pointsTotal = data_022a7b80.points;
         } else {
             task->pointsAdded = data_022a7a88.unk_0c;
             task->pointsTotal = data_022a7a9c.unk_10;

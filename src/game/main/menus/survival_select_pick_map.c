@@ -31,6 +31,6 @@ void SurvivalSelect_PickMap(u8 *entry)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     SurvivalSelect_DrawMapRecord();
     SurvivalSelect_LoadCoPictures();
-    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.mode, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
     Screen_SetCurrentGfx(savedState);
 }

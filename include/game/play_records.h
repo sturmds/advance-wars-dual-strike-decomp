@@ -5,13 +5,13 @@
 #include "game/co_data.h"
 #include "game/co_save.h"
 
-/* Best run of one Survival mode variant (data_022a7b80.unk_07, 0-5).
+/* Best run of one Survival mode variant (data_022a7b80.mode, 0-5).
  * Survival_SaveRecord writes it at the end of a run. */
 typedef struct SurvivalRecord {
     u8 co;                             /* CO id of the run, 0 when no record is saved (SurvivalRecord_Exists) */
     u8 tagCo;                          /* second CO id, 0 for none (SurvivalRecord_GetCo) */
     u8 pad_02[2];
-    u32 value;                         /* data_022a7b80.unk_08 at the end of the run */
+    u32 value;                         /* data_022a7b80.budgetLeft at the end of the run */
 } SurvivalRecord;
 #include "game/war_room_records.h"
 
@@ -78,8 +78,8 @@ typedef struct PlayRecords {
     u32 coSwaps;                       /* CO swaps by human players, capped at 999999 (UnitAction_SwapCo) */
     u8 pad_408[0x414 - 0x408];
     u32 unitsSentToOtherMap;           /* unit action 26 by human players, capped at 999999 (UnitAction_MoveToOtherMap) */
-    u32 survivalRunsCleared[3];        /* runs whose last map was won, for data_022a7b80.unk_07 0, 2, 1 in that order; capped at 999999 (Survival_FinishMap) */
-    u32 survivalMapsWon[3];            /* maps won, for unk_07 0 or 3, 2 or 5, 1 or 4 in that order; capped at 999999 */
+    u32 survivalRunsCleared[3];        /* runs whose last map was won, for data_022a7b80.mode 0, 2, 1 in that order; capped at 999999 (Survival_FinishMap) */
+    u32 survivalMapsWon[3];            /* maps won, for Survival mode 0 or 3, 2 or 5, 1 or 4 in that order; capped at 999999 */
     u32 combatClears[3];               /* Combat mode clears of the last stage by row 1, one counter per data_02160ac0->unk_84 (0-2), capped at 999999 (CombatResult_Init) */
     u32 unk_43c;                       /* capped at 999999; func_ov003_02361c7c adds the first 6 Ov003Row.unk_28 of the current slot's row */
     u32 unk_440;                       /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */

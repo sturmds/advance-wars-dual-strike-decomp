@@ -12,7 +12,7 @@ void Survival_ClearRecords(void)
 {
     int i;
 
-    data_022a7b80.unk_06 = 0;
+    data_022a7b80.mapIndex = 0;
     for (i = 0; i < 17; i++) {
         data_02291588[i].mode0Co = 0;
         data_02291588[i].mode2Co = 0;

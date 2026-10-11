@@ -12,13 +12,13 @@ extern Unk_022a7b80 data_022a7b80;
 
 /* True in Survival when the player has run out of what the mode limits:
  * time left on the map (modes 0 and 3), funds on hand (1 and 4) or days
- * (2 and 5, past the budget in data_022a7b80.unk_08). */
+ * (2 and 5, past the budget in data_022a7b80.budgetLeft). */
 BOOL Survival_IsBudgetSpent(void)
 {
     if (STATE->gameMode != GAME_MODE_SURVIVAL) {
         return FALSE;
     }
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         if (Survival_GetTimeLeft() == 0) {
@@ -28,7 +28,7 @@ BOOL Survival_IsBudgetSpent(void)
     case 2:
     case 5:
         /* needed to match: unsigned compare */
-        if (STATE->day > (u32)data_022a7b80.unk_08) {
+        if (STATE->day > (u32)data_022a7b80.budgetLeft) {
             return TRUE;
         }
         break;

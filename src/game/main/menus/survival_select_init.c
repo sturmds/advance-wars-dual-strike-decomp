@@ -54,7 +54,7 @@ extern char data_0215ae74[]; /* "/ohashi/res_survival_lang" */
 void SurvivalSelect_Init(void)
 {
     u8 *res;
-    int mode = data_022a7b80.unk_07;
+    int mode = data_022a7b80.mode;
     Unk_027c0280 *savedState = data_027c0280;
     Unk_02080440 *saved027c = data_027c027c;
 
@@ -89,7 +89,7 @@ void SurvivalSelect_Init(void)
     Icon_LoadTo(203, data_027c0280->objVram, 112);
     IconBank_LoadPalette(4, 26);
     SurvivalSelect_LoadCoPictures();
-    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.mode, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
     Screen_SetCurrentGfx(savedState);
 
     savedState = data_027c0280;

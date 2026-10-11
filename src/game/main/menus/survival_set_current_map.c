@@ -10,9 +10,9 @@ extern Unk_022a7b80 data_022a7b80;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Makes the map at the run's position (data_022a7b80.unk_06) the one the
+/* Makes the map at the run's position (data_022a7b80.mapIndex) the one the
  * game state loads. */
 void Survival_SetCurrentMap(void)
 {
-    STATE->unk_1c4->mapId = Survival_GetMapId(data_022a7b80.unk_07, data_022a7b80.unk_06);
+    STATE->unk_1c4->mapId = Survival_GetMapId(data_022a7b80.mode, data_022a7b80.mapIndex);
 }

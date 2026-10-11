@@ -25,7 +25,7 @@ extern Unk_027c0280 *data_027c0280;
 #define TEXT_NO_RECORD 0xc00000af
 
 /* Survival map select, layer 0: the name of the map at the strip cursor and
- * its saved record for the current mode (unk_07): best time as minutes and
+ * its saved record for the current mode (data_022a7b80.mode): best time as minutes and
  * seconds (0, 3), fewest days (2, 5) or least funds spent (1, 4). Text
  * 0xc00000af stands in for an empty list or a map with no record
  * (SurvivalSelect_HasRecord). Needed to match: map read into a local before the name
@@ -43,9 +43,9 @@ void SurvivalSelect_DrawMapRecord(void)
         Text_PrintId(19, 21, data_027c0280->layer0Map, TEXT_NO_RECORD, 0, 0x380);
     } else {
         map = data_027c0280->layer0Map;
-        Text_Print(13, 19, map, Map_GetName(Survival_GetMapId(data_022a7b80.unk_07, cursor)), 0, 0x300);
+        Text_Print(13, 19, map, Map_GetName(Survival_GetMapId(data_022a7b80.mode, cursor)), 0, 0x300);
         if (SurvivalSelect_HasRecord(list->cursor)) {
-            mode = data_022a7b80.unk_07;
+            mode = data_022a7b80.mode;
             switch (mode) {
             case 0:
             case 3:

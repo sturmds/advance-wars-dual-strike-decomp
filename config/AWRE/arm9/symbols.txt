@@ -4390,7 +4390,7 @@ PlayRecords_CountBattleRank kind:function(arm,size=0x158) addr:0x020ea724
 Survival_GetMapCost kind:function(arm,size=0xc8) addr:0x020ea87c
 Survival_IsBudgetSpent kind:function(arm,size=0xdc) addr:0x020ea944
 Survival_GetTimeLeft kind:function(arm,size=0x6c) addr:0x020eaa20
-func_020eaa8c kind:function(arm,size=0x10) addr:0x020eaa8c
+Survival_GetModeBudget kind:function(arm,size=0x10) addr:0x020eaa8c
 Survival_GetMapCount kind:function(arm,size=0x3c) addr:0x020eaa9c
 Survival_GetMapId kind:function(arm,size=0x38) addr:0x020eaad8
 Survival_GetRecordIndex kind:function(arm,size=0x140) addr:0x020eab10
@@ -4406,7 +4406,7 @@ Survival_SavePlayerCos kind:function(arm,size=0x48) addr:0x020eb20c
 Survival_StartRun kind:function(arm,size=0x80) addr:0x020eb254
 func_020eb2d4 kind:function(arm,size=0x14) addr:0x020eb2d4
 Survival_EnterGameMode kind:function(arm,size=0xac) addr:0x020eb2e8
-func_020eb394 kind:function(arm,size=0x1c) addr:0x020eb394
+Survival_IsPastFirstMap kind:function(arm,size=0x1c) addr:0x020eb394
 Survival_ClearRecords kind:function(arm,size=0x84) addr:0x020eb3b0
 func_020eb434 kind:function(arm,size=0xb4) addr:0x020eb434
 func_020eb4e8 kind:function(arm,size=0xf4) addr:0x020eb4e8
@@ -7924,7 +7924,7 @@ data_02168bc4 kind:data(any) addr:0x02168bc4
 data_02168bfc kind:data(any) addr:0x02168bfc
 data_02168c3c kind:data(any) addr:0x02168c3c
 data_02168c84 kind:data(any) addr:0x02168c84
-data_02168d04 kind:data(any) addr:0x02168d04
+gSurvivalModeBudgets kind:data(any) addr:0x02168d04
 data_02168d1c kind:data(any) addr:0x02168d1c
 data_02168d20 kind:data(any) addr:0x02168d20
 data_02168d24 kind:data(any) addr:0x02168d24

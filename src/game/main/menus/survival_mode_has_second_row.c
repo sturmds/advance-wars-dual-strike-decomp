@@ -8,7 +8,7 @@ extern Unk_022a7b80 data_022a7b80;
  * second variant: game flag 47, 48 or 49 is set. */
 BOOL SurvivalMode_HasSecondRow(void)
 {
-    switch (data_022a7b80.unk_07) {
+    switch (data_022a7b80.mode) {
     case 0:
     case 3:
         if (GameFlag_IsSet(47)) {

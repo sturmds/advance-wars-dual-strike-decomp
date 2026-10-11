@@ -12,7 +12,7 @@ extern Unk_022a7b80 data_022a7b80;
 #define EXPERIENCE_MAX_GAIN 9999
 
 /* Adds experience to the two COs of player 1's result row (front and back,
- * when set): the run's points (data_022a7b80.unk_10) plus the mode's bonus
+ * when set): the run's points (data_022a7b80.points) plus the mode's bonus
  * from Survival_GetExperienceBonus, at most 9999. Then func_020ea6e4
  * updates the stored total of CO ranks. */
 void Survival_AwardCoExperience(void)
@@ -25,7 +25,7 @@ void Survival_AwardCoExperience(void)
     for (i = 0; i < 2; i++) {
         co = (&((Unk_022a7a9c *)&data_022a7a9c)[1].frontCo)[i] & 0x7f;
         if (co != 0) {
-            gain = data_022a7b80.unk_10 + Survival_GetExperienceBonus();
+            gain = data_022a7b80.points + Survival_GetExperienceBonus();
             if (gain > EXPERIENCE_MAX_GAIN) {
                 gain = EXPERIENCE_MAX_GAIN;
             }

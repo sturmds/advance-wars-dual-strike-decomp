@@ -42,8 +42,8 @@ void BattleRecord_SaveWin(void)
 
     switch (STATE->gameMode) {
     case GAME_MODE_SURVIVAL:
-        index = Survival_GetRecordIndex(data_022a7b80.unk_07, data_022a7b80.unk_06);
-        switch (data_022a7b80.unk_07) {
+        index = Survival_GetRecordIndex(data_022a7b80.mode, data_022a7b80.mapIndex);
+        switch (data_022a7b80.mode) {
         case 0:
         case 3:
             value = HwDiv32(STATE->players[slot].unk_94, 60);
