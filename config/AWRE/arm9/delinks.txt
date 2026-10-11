@@ -12617,6 +12617,10 @@ src/game/main/map/info_panel_draw.c:
     complete
     .text       start:0x020cb9f4 end:0x020cc910
 
+src/game/main/map/info_panel_draw_terrain_picture.c:
+    complete
+    .text       start:0x020cc998 end:0x020ccb38
+
 src/game/main/graphics/terrain_get_palette.c:
     complete
     .text       start:0x020ccb38 end:0x020ccb80

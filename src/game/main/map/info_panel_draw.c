@@ -24,7 +24,7 @@ extern u8 data_027c0028;
 
 void func_020cb418(void);
 int func_020cb770(u8 x, u8 y);
-void func_020cc998(int x, int y, int panelX, int panelY, int side);
+void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY, int side);
 int func_020d9864(int x, int y);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -94,7 +94,7 @@ void InfoPanel_Draw(void)
         panelY = gInfoPanelRestPos[INFO_PANEL_RIGHT].y;
         side = INFO_PANEL_RIGHT;
     }
-    func_020cc998(tileX, tileY, panelX, panelY, side);
+    InfoPanel_DrawTerrainPicture(tileX, tileY, panelX, panelY, side);
 
     terrain = MAP_TILE_TERRAIN(func_020d9864(tileX, tileY));
     terrainBoxX = &data_0216635c[side][0];
