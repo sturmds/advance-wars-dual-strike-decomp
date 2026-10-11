@@ -8066,6 +8066,10 @@ src/game/main/func_020bcf28.c:
     complete
     .text       start:0x020bcf28 end:0x020bcf44
 
+src/game/main/menus/func_020bcfe0.c:
+    complete
+    .text       start:0x020bcfe0 end:0x020bd054
+
 src/game/main/func_020bd1bc.c:
     complete
     .text       start:0x020bd1bc end:0x020bd1dc
