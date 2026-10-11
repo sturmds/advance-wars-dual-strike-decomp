@@ -14243,6 +14243,10 @@ src/game/main/map/info_panel_draw_number.c:
     complete
     .text       start:0x020cb11c end:0x020cb1bc
 
+src/game/main/map/info_panel_draw_unit.c:
+    complete
+    .text       start:0x020cb1bc end:0x020cb3c8
+
 src/game/main/map/info_panel_draw_hidden_cargo.c:
     complete
     .text       start:0x020cb3c8 end:0x020cb418

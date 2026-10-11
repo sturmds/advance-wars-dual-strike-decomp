@@ -55,7 +55,7 @@ void InfoPanel_DrawNumber(u16 x, u16 y, s16 value);
 
 /* A unit's sprite in the panel; slot 0 for the unit box, 1 and 2 for
  * cargo. */
-void InfoPanel_DrawUnit(s16 x, s16 y, int type, int owner, int carrying, int captureProgress, int flags,
+void InfoPanel_DrawUnit(s16 x, s16 y, int type, int owner, u8 carrying, u8 captureProgress, u8 flags,
                         int slot);
 
 #endif
