@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6641 / 6700 | 1497624 / 1553840 | 96.38% | 0 | 0 |
+| ARM9 game | 6642 / 6700 | 1498676 / 1553840 | 96.45% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7075 / 7481 | 1549236 / 1685994 | 91.89% | 33 | 2126 |
+| ARM9 all | 7076 / 7481 | 1550288 / 1685994 | 91.95% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6641 / 6700 | 1497624 / 1553840 | 96.38% | 0 | 0 |
+| game | 6642 / 6700 | 1498676 / 1553840 | 96.45% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7075 / 8495 | 1549236 / 1840290 | 84.18% | 33 | 2126 |
+| all | 7076 / 8495 | 1550288 / 1840290 | 84.24% | 33 | 2126 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5141 / 5180 | 1040800 / 1082632 | 96.14% | 0 |
+| main | game | 5142 / 5180 | 1041852 / 1082632 | 96.23% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -86,7 +86,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/sound/sound_stream_fill_blocks.c` | SoundStream_FillBlocks | 2184 |
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
-| `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |

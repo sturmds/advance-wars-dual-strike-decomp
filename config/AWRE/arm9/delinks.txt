@@ -16302,6 +16302,7 @@ src/game/main/units/unit_action_board.c:
     .text       start:0x020de440 end:0x020de5a4
 
 src/game/main/units/unit_action_capture.c:
+    complete
     .text       start:0x020de5a4 end:0x020de9c0
 
 src/game/main/units/acting_unit_move_and_attack_object.c:

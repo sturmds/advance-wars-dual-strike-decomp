@@ -17,7 +17,7 @@ int CaptureIncrease(int player, int slot);
 void ActingUnit_ResetCaptureIfMoved(void);
 void ActingUnit_StartAtDest(void);
 void Game_EnterState18(void);
-void Capture_PlayCompleteSound(int owner);
+int Capture_PlayCompleteSound(int owner, int tile);
 void Capture_StartDisplay(int x, int y, int oldProgress, int newProgress, int owner);
 void Tile_SetOwner(int x, int y);
 
@@ -79,7 +79,7 @@ void UnitAction_Capture(void)
             Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->actingUnit->captureProgress, progress,
                           ACTING_UNIT_OWNER);
         } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
-            Capture_PlayCompleteSound(ACTING_UNIT_OWNER);
+            Capture_PlayCompleteSound(ACTING_UNIT_OWNER, MAP_TILE_TERRAIN(tile));
         }
     } else if (gLinkPlay != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2)
                && GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_AI) {
