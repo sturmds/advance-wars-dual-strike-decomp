@@ -33,7 +33,7 @@ typedef struct MainMenu {
     u8 unk_11;                         /* bit 0 cleared by MainMenu_ClearCursors */
 } MainMenu;
 
-/* The 60-byte block data_0229c71c points to; func_0202f0d8 allocates it. */
+/* The 60-byte block data_0229c71c points to; MainMenu_Setup allocates it. */
 typedef struct MainMenuWork {
     MainMenuPage *page;
     u8 pad_04[0x08 - 0x04];

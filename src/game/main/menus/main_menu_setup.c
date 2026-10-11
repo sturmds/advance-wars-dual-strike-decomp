@@ -75,27 +75,26 @@ extern char data_02159c34[]; /* "/ohashi/res_history_medal" */
  * whose first field is the page. */
 #define WORK ((MainMenuWork *)data_0229c71c)
 
-/* Sets up the main (mode) res: allocates its work block and page, loads
+/* Sets up the main (mode) menu: allocates its work block and page, loads
  * res_modemenu_lang, res_modemenu, the res_icon_cl palette and
  * res_history_medal into VRAM and palettes on both screens, then builds a
  * page. On the first visit (MainMenu.unk_11 bit 0 clear) it builds page 0 or
  * 6 from unk_0f_4, puts the cursor on the entry whose kind matches unk_0f_4
  * and sets the default cursor of pages 1-5 and 10 from unlock checks. On a
- * return visit it rebuilds the saved page and jumps the task to label 0.
- * WIP: matches 95%; the res_modemenu pointer gets r6 where the original
- * has r4 (and the loop and save registers shift with it). Tried without
- * effect: separate or shared variables per file, block scopes, loop shapes
- * (while, do, goto, pointer walk, explicit offset), static inline helpers
- * for the loop or the screen loads, void * for the file pointer. */
-void func_0202f0d8(MainMenuTask *task)
+ * return visit it rebuilds the saved page and jumps the task to label 0. */
+void MainMenu_Setup(MainMenuTask *task)
 {
     MainMenuEntry *entry;
-    Unk_02080440 *saved027c;
+    Unk_027c0280 *savedGfx;
+    Unk_02080440 *savedScreen;
     MainMenuPage *page;
     u8 count;
     int i;
     u8 *res;
-    Unk_027c0280 *saved0280;
+    /* Needed to match: the second screen switch saves into its own
+     * variables. */
+    Unk_027c0280 *savedGfx2;
+    Unk_02080440 *savedScreen2;
 
     Gfx3d_SetupPerspectiveAntialiased();
     *(MainMenuWork **)&data_0229c71c = Mem_Alloc(sizeof(MainMenuWork));
@@ -124,26 +123,26 @@ void func_0202f0d8(MainMenuTask *task)
     }
     Mem_Copy32(res + 0x41c, WORK->unk_1c, 32);
 
-    saved0280 = data_027c0280;
+    savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    saved027c = data_027c027c;
+    savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     Data_Unpack(res, data_027c0280->objVram + 0x140);
     Data_Unpack(res + 0x184, data_027c0280->objVram);
     Palette_Load(res + 0x43c, 0x200, 32);
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
+    Screen_SetCurrent(savedScreen);
+    Screen_SetCurrentGfx(savedGfx);
 
-    saved0280 = data_027c0280;
+    savedGfx2 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    saved027c = data_027c027c;
+    savedScreen2 = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     Data_Unpack(res + 0x184, data_027c0280->objVram);
     Palette_Load(res + 0x43c, 0x200, 32);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
+    Screen_SetCurrent(savedScreen2);
+    Screen_SetCurrentGfx(savedGfx2);
     Mem_Free(res);
 
     res = Mem_Alloc(32);
@@ -155,13 +154,13 @@ void func_0202f0d8(MainMenuTask *task)
     Mem_Free(res);
 
     res = File_Load(data_02159c34);
-    saved0280 = data_027c0280;
+    savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Data_Unpack(res, data_027c0280->objVram + 0x140);
     Data_Unpack(res + 0x314, data_027c0280->objVram + 0x1c0);
     Palette_Load(res + 0x2b4, 0x260, 32);
     Palette_Load(res + 0x454, 0x280, 32);
-    Screen_SetCurrentGfx(saved0280);
+    Screen_SetCurrentGfx(savedGfx);
     Mem_Free(res);
 
     data_021599d0->slide = 0;
