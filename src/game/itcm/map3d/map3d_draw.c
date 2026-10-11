@@ -11,7 +11,7 @@ extern volatile s16 data_0216e2ac;
 extern volatile s16 data_0216e2a4;
 extern u8 data_ov000_022dbd41[]; /* Ov000_gMapHeaders + 0x19, 0xa0 bytes per map */
 
-void func_01ffcc78(VecFx32 *shake, int arg);
+void Map3d_DrawTiles(VecFx32 *shake, int arg);
 int func_01ffd854(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -25,7 +25,7 @@ void Map3d_Draw(void)
 
         shake.x = data_0216e2ac;
         shake.y = data_0216e2a4;
-        func_01ffcc78(&shake, data_ov000_022dbd41[STATE->unk_1c4->mapId * sizeof(MapHeader)]);
+        Map3d_DrawTiles(&shake, data_ov000_022dbd41[STATE->unk_1c4->mapId * sizeof(MapHeader)]);
         func_01ffd854();
     }
 }

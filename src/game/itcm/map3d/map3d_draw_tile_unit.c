@@ -12,7 +12,7 @@ extern Unk_02080440 *data_027c027c;
 s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL UnitSlot_IsVisible(u16 slot);
 BOOL UnitType_HidesCargo(int type, int viewer, int owner);
-void Map3D_DrawUnit(VecFx32 *pos, int type, int ownerBits, int shownHp, u32 marks, int arg5, int arg6);
+void Map3D_DrawUnit(VecFx32 *pos, int type, int ownerBits, int shownHp, u32 marks, int highlight, int stateIs8);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* needed to match: the first read loads the index before the base. */
@@ -25,8 +25,8 @@ void Map3D_DrawUnit(VecFx32 *pos, int type, int ownerBits, int shownHp, u32 mark
 
 /* Draws the unit on tile (x, y) of the 3D map at pos, with its marks:
  * nothing when the tile has no unit, the tile is hidden, the unit is not
- * visible or it is LOCKED. arg3 and arg4 go on to the draw unchanged. */
-void Map3d_DrawTileUnit(VecFx32 *pos, u16 x, u16 y, int arg3, int arg4)
+ * visible or it is LOCKED. highlight and stateIs8 (see Map3d_DrawTiles) go on to the draw. */
+void Map3d_DrawTileUnit(VecFx32 *pos, u16 x, u16 y, int highlight, int stateIs8)
 {
     BOOL lowFuel;
     int index;
@@ -103,5 +103,5 @@ void Map3d_DrawTileUnit(VecFx32 *pos, u16 x, u16 y, int arg3, int arg4)
     } else {
         shownHp = HwDiv32(unit->hp - 1, 10) + 1;
     }
-    Map3D_DrawUnit(pos, unit->type, ownerBits, shownHp, marks, arg3, arg4);
+    Map3D_DrawUnit(pos, unit->type, ownerBits, shownHp, marks, highlight, stateIs8);
 }
