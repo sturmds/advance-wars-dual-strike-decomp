@@ -5,7 +5,7 @@
 
 #define GXFIFO_POLYGON_ATTR (*(volatile u32 *)0x040004a4)
 
-extern MovePath *data_02166e7c;
+extern MovePath *gMovePath;
 extern u8 data_027c0040;
 
 int MovePath_DirToNext(int i);
@@ -21,14 +21,14 @@ void MovePath_DrawArrows3d(void)
     VecFx32 pos;
     int next;
 
-    if (data_02166e7c->lastTile == 0) {
+    if (gMovePath->lastTile == 0) {
         return;
     }
     GXFIFO_POLYGON_ATTR = 0x001e4080;  /* alpha 30, front faces */
-    for (i = data_02166e7c->lastTile; i >= 0; i--) {
+    for (i = gMovePath->lastTile; i >= 0; i--) {
         /* pixels to fx32, 1.0 per 128 as in RangeSpread_Update */
-        pos.x = (data_02166e7c->x[i] << 4) * 0x2000 / 256;
-        pos.y = (data_02166e7c->y[i] << 4) * 0x6000 / 768;
+        pos.x = (gMovePath->x[i] << 4) * 0x2000 / 256;
+        pos.y = (gMovePath->y[i] << 4) * 0x6000 / 768;
         pos.z = 0;
         next = MovePath_DirToNext((u8)i);
         SpriteCells_Draw3d(&data_027c0040, &pos,

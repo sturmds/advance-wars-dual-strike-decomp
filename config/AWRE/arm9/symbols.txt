@@ -7696,7 +7696,7 @@ data_02166e08 kind:data(any) addr:0x02166e08
 gMapPreviewUnitMask kind:data(any) addr:0x02166e0c
 data_02166e14 kind:data(any) addr:0x02166e14
 data_02166e3c kind:data(any) addr:0x02166e3c
-data_02166e7c kind:data(any) addr:0x02166e7c
+gMovePath kind:data(any) addr:0x02166e7c
 gMovePathArrowCells kind:data(any) addr:0x02166e80
 data_02166eb4 kind:data(any) addr:0x02166eb4
 data_02166ebc kind:data(any) addr:0x02166ebc

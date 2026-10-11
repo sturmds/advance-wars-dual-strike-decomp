@@ -56,7 +56,7 @@ typedef struct Player {
     u8 unk_18;                         /* cleared by Players_Reset */
     u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (Players_ApplyBattleSetup) */
     u8 controller;                     /* PLAYER_CONTROLLER_* */
-    u8 unk_1b;
+    u8 visionGrids;                    /* vision grids its sight goes into, bit n for grid visionGrid<n> (game/vision.h); Players_AssignVisionGrids sets it each turn */
     u16 turnKills;                     /* kills this turn */
     u16 mostTurnKills;                 /* most kills in one turn */
     u8 unk_20[5];

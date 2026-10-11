@@ -42,16 +42,16 @@ void UnitMoveSelect_TryMoveTo(int x, int y)
     }
     MovePath_ToSteps();
     if (UnitPath_StopAtEnemy(GAME->actingUnitStartX, GAME->actingUnitStartY, GAME->actingUnit->type,
-                             (s8 *)GAME->unk_170, PATH_STEP_END) == 1) {
+                             (s8 *)GAME->pathSteps, PATH_STEP_END) == 1) {
         GAME->unk_1c = 5;
     }
-    func_020c8290(GAME->unk_170);
+    func_020c8290(GAME->pathSteps);
     if (GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_HUMAN) {
         return;
     }
-    if (gPlayRecords.tilesMoved + UnitPath_CountSteps((s8 *)GAME->unk_170) >= 999999) {
+    if (gPlayRecords.tilesMoved + UnitPath_CountSteps((s8 *)GAME->pathSteps) >= 999999) {
         gPlayRecords.tilesMoved = 999999;
     } else {
-        gPlayRecords.tilesMoved += UnitPath_CountSteps((s8 *)GAME->unk_170);
+        gPlayRecords.tilesMoved += UnitPath_CountSteps((s8 *)GAME->pathSteps);
     }
 }

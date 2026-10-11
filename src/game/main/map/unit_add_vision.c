@@ -14,7 +14,7 @@ int Player_GetUnitVision(int playerIndex, int unitType);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Adds delta to the vision grid count of each tile the unit sees, in the grids
- * its owner's Player.unk_1b bits pick. Infantry and Mech on a mountain see 3
+ * its owner's Player.visionGrids bits pick. Infantry and Mech on a mountain see 3
  * tiles further. A selected unit that is not locked adds nothing. */
 void Unit_AddVision(MapUnit *unit, s8 delta)
 {
@@ -38,5 +38,5 @@ void Unit_AddVision(MapUnit *unit, s8 delta)
     slotGroup = (unit - state->units) >> 6;
     owner = slotGroup + 1;
     Vision_AddArea(unit->x, unit->y, mountainBonus + Player_GetUnitVision(owner, unit->type),
-                  (state->players + 1)[slotGroup].unk_1b, delta, owner);
+                  (state->players + 1)[slotGroup].visionGrids, delta, owner);
 }

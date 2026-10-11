@@ -32,7 +32,7 @@ void PowerPanelRight_DrawPlayer(int x, int y, int player, BOOL coSelect)
         Sprite_QueueAt(0, x, y, data_02168690, 0x7010, 0);
     } else {
         Oam_PutSprite((x + 516) & 0x1ff, (y + 270) & 0xff, data_02168658, 0x7024);
-        if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[player].unk_1b & 2) == 0) {
+        if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[player].visionGrids & 2) == 0) {
             func_01ff9a3c((x + 56) & 0x1ff, y + 14, data_0216874c);
         } else {
             Oam_PutNumber((x + 56) & 0x1ff, y + 14, STATE->players[player].funds, 0x7026);

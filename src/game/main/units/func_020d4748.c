@@ -15,12 +15,12 @@ void MovePath_RebuildToTarget(void);
 BOOL MovePath_HasNoRepeatedTile(void);
 void func_01ffa02c(int x, int y, u8 *steps);
 
-extern MovePath *data_02166e7c;
+extern MovePath *gMovePath;
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
-#define PATH data_02166e7c
+#define PATH gMovePath
 /* Needed to match: the original loads the index before the base here. */
 #define RELOAD_STATE(dst)                                                    \
     {                                                                        \
@@ -98,7 +98,7 @@ void func_020d4748(void)
     if (state->rangeMap[state->cursorY][state->cursorX] == -1) {
         MovePath_RebuildToTarget();
     } else {
-        func_01ffa02c(state->cursorX, state->cursorY, state->unk_170);
+        func_01ffa02c(state->cursorX, state->cursorY, state->pathSteps);
         MovePath_AppendSteps();
         if (!MovePath_HasNoRepeatedTile()) {
             MovePath_RebuildToTarget();

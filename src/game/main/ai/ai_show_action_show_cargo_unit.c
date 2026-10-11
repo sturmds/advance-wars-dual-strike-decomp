@@ -34,12 +34,12 @@ void AiShowAction_ShowCargoUnit(int cargoSlot)
     if (saved == 5) {
         state = GAME;
         cargo = &state->units[state->actingUnit->cargo[cargoSlot]];
-        state->unk_170[0] = 10;
-        GAME->unk_170[1] = 4; /* needed to match: GAME is read again */
+        state->pathSteps[0] = 10;
+        GAME->pathSteps[1] = 4; /* needed to match: GAME is read again */
         state = GAME;
         data_0229eacc[cargoSlot] = UnitShowTask_CreateMoving(
             (u16)state->actingUnitDestX, (u16)state->actingUnitDestY,
-            OWNER_INDEX(state), cargo->type, state->unk_170);
+            OWNER_INDEX(state), cargo->type, state->pathSteps);
         return;
     }
     if (saved == 0) {

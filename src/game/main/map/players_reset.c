@@ -33,7 +33,7 @@ void Players_Reset(void)
         STATE->players[slot].unk_20[4] = 0;
         STATE->players[slot].armyColour = 0;
         STATE->players[slot].controller = PLAYER_CONTROLLER_NONE;
-        STATE->players[slot].unk_1b = 0;
+        STATE->players[slot].visionGrids = 0;
         STATE->players[slot].front.id = 0;
         STATE->players[slot].back.id = 0;
         STATE->players[slot].front.powerState = 0;

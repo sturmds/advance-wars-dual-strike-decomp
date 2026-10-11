@@ -54,7 +54,7 @@ BOOL MapCursor_SelectTile(int x, int y, int allowBuild, int allowMenu)
         return TRUE;
     }
     func_ov000_022af45c(GAME->actingUnit);
-    GAME->unk_170[0] = PATH_STEP_END;
+    GAME->pathSteps[0] = PATH_STEP_END;
     UnitShowTask_Create(GAME->actingUnit);
     if (data_027c027c->unk_50[data_027c0284]->unk_30 != NULL) {
         data_027c027c->unk_50[data_027c0284]->unk_30();

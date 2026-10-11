@@ -20,7 +20,7 @@ void SecondScreen_DrawPlayerRow(int a, int b, int player, int style, int propert
 /* Compares each player's unit count, property count and in-game flag with
  * Ov000_gPlayerPanelCache and, when any changed, redraws all player rows on
  * the second screen. The property count shows as -1 under fog or rain unless
- * bit 1 of unk_1b is set. */
+ * bit 1 of visionGrids is set. */
 void PlayerPanels_Refresh(void)
 {
     u8 changed;
@@ -47,7 +47,7 @@ void PlayerPanels_Refresh(void)
             properties = player->unk_15;
             if (STATE->unk_81 == 0) {
                 if (STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) {
-                    if ((player->unk_1b & 2) == 0) {
+                    if ((player->visionGrids & 2) == 0) {
                         properties = -1;
                     }
                 }

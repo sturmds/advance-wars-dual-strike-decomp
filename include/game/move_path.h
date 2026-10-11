@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Tiles of the move path the player draws for a unit (data_02166e7c).
+/* Tiles of the move path the player draws for a unit (gMovePath).
  * Tile 0 is where the unit stands. */
 typedef struct MovePath {
     u8 pad_00[0x1e];
@@ -29,7 +29,7 @@ enum {
  * tile][direction from the previous tile] (MOVE_DIR_*). */
 extern u16 gMovePathArrowCells[5][5];
 
-/* Steps of a unit path (Unk_02080440_48.unk_170, UnitPath_CountSteps). */
+/* Steps of a unit path (Unk_02080440_48.pathSteps, UnitPath_CountSteps). */
 enum {
     PATH_STEP_LEFT,
     PATH_STEP_RIGHT,

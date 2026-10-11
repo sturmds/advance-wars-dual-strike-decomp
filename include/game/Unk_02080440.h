@@ -131,8 +131,8 @@ typedef struct Unk_02080440_48 {
     u16 unk_1a;                        /* unk_18 before Game_EnterState18 last set it to 18 */
     u16 unk_1c;                        /* cleared when a unit move is cancelled (UnitMoveSelect_HandleButtons) */
     u16 unk_1e;                        /* saved and restored around Ai_BuildThreatMaps */
-    u16 unk_20;                        /* index of a 0x508-byte per-tile grid counted from MapTiles.inSight; func_020fed58 fills it */
-    u16 unk_22;                        /* a second grid index, like unk_20 */
+    u16 visionGrid0;                   /* number of the vision grid for Player.visionGrids bit 0 (game/vision.h); Players_AssignVisionGrids sets it to 0 */
+    u16 visionGrid1;                   /* vision grid for bit 1; set to 1 there */
     u8 pad_24[0x28 - 0x24];
     s16 cursorX;                       /* map cursor tile; AiShowAction steps also point it at the tile they act on */
     s16 cursorY;
@@ -202,7 +202,7 @@ typedef struct Unk_02080440_48 {
     u8 infoTileY;
     u8 pad_ce[0xd0 - 0xce];
     s8 *rangeMap[40];                  /* one s8 per tile, by row; filled for a unit by RangeMap_FillUnitMoves and RangeMap_MarkAdjacentTiles; the AI skips negative tiles */
-    u8 unk_170[12]; /* 12 values of 0-15, see PackNibblePairs */
+    u8 pathSteps[12];                  /* PATH_STEP_* of the acting unit's move (move_path.h), 12 values of 0-15; PackNibblePairs packs them for link play */
     u8 pad_17c[0x184 - 0x17c];
     Unk_02080440_184 unk_184;
     Unk_02080440_1c4 *unk_1c4;

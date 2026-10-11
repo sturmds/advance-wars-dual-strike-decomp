@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern MovePath *data_02166e7c;
+extern MovePath *gMovePath;
 extern u8 data_027c0040;
 
 int MovePath_DirToNext(int i);
@@ -26,12 +26,12 @@ void MovePath_DrawArrowSprites(void)
     int tile;
     Unk_02080440_1c4 *view;
 
-    if (data_02166e7c->lastTile == 0) {
+    if (gMovePath->lastTile == 0) {
         return;
     }
-    for (i = data_02166e7c->lastTile; i >= 0; i--) {
-        x = data_02166e7c->x[i] << 4;
-        y = data_02166e7c->y[i] << 4;
+    for (i = gMovePath->lastTile; i >= 0; i--) {
+        x = gMovePath->x[i] << 4;
+        y = gMovePath->y[i] << 4;
         if (Rect_IsOnScreen(x, y, 16, 16)) {
             tile = (u8)i;  /* needed to match: an int copy, set before view */
             view = GAME->unk_1c4;

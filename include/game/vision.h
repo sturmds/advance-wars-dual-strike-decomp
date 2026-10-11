@@ -5,10 +5,10 @@
 #include "game/map_unit.h"
 
 /* Fog of war. Each map state has two vision grids, 0x508 bytes each, counted
- * from MapTiles.inSight: grid number Unk_02080440_48.unk_20 and unk_22.
+ * from MapTiles.inSight: grid numbers Unk_02080440_48.visionGrid0 and visionGrid1.
  * A tile's byte counts the units and properties that see it. A player's
- * Player.unk_1b picks the grids its sight goes into: bit 0 the unk_20 grid,
- * bit 1 the unk_22 grid. */
+ * Player.visionGrids picks the grids its sight goes into: bit 0 the visionGrid0 grid,
+ * bit 1 the visionGrid1 grid. */
 
 /* What Player_GetSlotRelation(a, b) returns: slot b has data_0229eaf0[b] == 0 (none),
  * or is on another team than a (enemy) or the same team (ally). */

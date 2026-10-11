@@ -37,8 +37,8 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
         func_021296a8(data_0229ea0c, 1);
     }
     RangeMap_FillUnitMoves(unit);
-    func_01ffa02c(x, y, GAME->unk_170);
-    PackNibblePairs(GAME->unk_170, gUnitAction.packed);
+    func_01ffa02c(x, y, GAME->pathSteps);
+    PackNibblePairs(GAME->pathSteps, gUnitAction.packed);
     AiAction_DebugHook(x, y, action, target, arg);
 
     gUnitAction.unitIndex = GAME->actingUnitIndex;

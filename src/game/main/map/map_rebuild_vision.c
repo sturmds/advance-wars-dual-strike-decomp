@@ -33,8 +33,8 @@ void Map_RebuildVision(void)
     int x;
     int y;
 
-    func_020c65fc(VISION_GRID(STATE, STATE->unk_20), (s16)!Map_IsFoggy());
-    func_020c65fc(VISION_GRID(STATE, STATE->unk_22), (s16)!Map_IsFoggy());
+    func_020c65fc(VISION_GRID(STATE, STATE->visionGrid0), (s16)!Map_IsFoggy());
+    func_020c65fc(VISION_GRID(STATE, STATE->visionGrid1), (s16)!Map_IsFoggy());
     if (!Map_IsFoggy()) {
         return;
     }

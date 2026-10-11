@@ -5,14 +5,14 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* guess: TRUE when the tile holds a unit (MapTiles.unk_508) of a player with
- * Player.unk_1b bit 1 set */
+ * Player.visionGrids bit 1 set */
 BOOL Tile_HasActivePlayerUnit(s16 x, s16 y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define MAP  (GAME->mapTiles)
 
 /* TRUE when the unit at tile (x, y) can be shown. Same shape as
- * Unit_IsVisibleToCurrentPlayer, but tests Player.unk_1b bit 1 (doc 890: the
+ * Unit_IsVisibleToCurrentPlayer, but tests Player.visionGrids bit 1 (doc 890: the
  * active player) where that one compares teams. Only dived units (Sub,
  * Stealth) can be hidden; they stay seen when their owner or the owner of
  * their tile has the bit, or when Tile_HasActivePlayerUnit finds a unit next to them. */
@@ -28,10 +28,10 @@ BOOL Unit_IsVisibleToActivePlayers(MapUnit *unit, s16 x, s16 y)
     if (!(unit->flags & MAP_UNIT_DIVED)) {
         return TRUE;
     }
-    if (GAME->players[(slot >> 6) + 1].unk_1b & 2) {
+    if (GAME->players[(slot >> 6) + 1].visionGrids & 2) {
         return TRUE;
     }
-    if (GAME->players[MAP_TILE_OWNER(MAP->tiles[x + MAP->rowStart[y]])].unk_1b & 2) {
+    if (GAME->players[MAP_TILE_OWNER(MAP->tiles[x + MAP->rowStart[y]])].visionGrids & 2) {
         return TRUE;
     }
     if (x > 0) {

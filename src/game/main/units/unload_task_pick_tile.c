@@ -62,19 +62,19 @@ void UnloadTask_PickTile(Task *task)
     data_022a6dd4 = task->unk_66;
     cargo = &STATE->units[STATE->actingUnit->cargo[task->unk_68]];
     data_022a6b34[data_022a6b30] = task->unk_66 + 1;
-    STATE->unk_170[0] = data_0216637b[task->unk_66 * 5];
-    STATE->unk_170[1] = data_0216637c[task->unk_66 * 5];
-    if (UnitPath_StopAtEnemy(STATE->actingUnitDestX, STATE->actingUnitDestY, cargo->type, (s8 *)STATE->unk_170, -1) == 1) {
+    STATE->pathSteps[0] = data_0216637b[task->unk_66 * 5];
+    STATE->pathSteps[1] = data_0216637c[task->unk_66 * 5];
+    if (UnitPath_StopAtEnemy(STATE->actingUnitDestX, STATE->actingUnitDestY, cargo->type, (s8 *)STATE->pathSteps, -1) == 1) {
         task->unk_6a = 1;
         data_022a6b34[data_022a6b30] = 5;
     }
     UnitShowTask_CreateMoving((u16)STATE->actingUnitDestX, (u16)STATE->actingUnitDestY, OWNER_INDEX(STATE), cargo->type,
-                              STATE->unk_170);
+                              STATE->pathSteps);
     if (STATE->players[STATE->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (gPlayRecords.tilesMoved + UnitPath_CountSteps((s8 *)STATE->unk_170) >= 999999) {
+        if (gPlayRecords.tilesMoved + UnitPath_CountSteps((s8 *)STATE->pathSteps) >= 999999) {
             gPlayRecords.tilesMoved = 999999;
         } else {
-            gPlayRecords.tilesMoved += UnitPath_CountSteps((s8 *)STATE->unk_170);
+            gPlayRecords.tilesMoved += UnitPath_CountSteps((s8 *)STATE->pathSteps);
         }
     }
     Task_ResumeScript(task);

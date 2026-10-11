@@ -10,7 +10,7 @@ int Player_GetSlotRelation(u16 player, u16 other);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Gives each ally of player the vision grid bits gridMask (Player.unk_1b). */
+/* Gives each ally of player the vision grid bits gridMask (Player.visionGrids). */
 void Player_SetAlliesVisionGrids(int player, int gridMask)
 {
     /* needed to match: declaration order and the copies set the registers */
@@ -27,7 +27,7 @@ void Player_SetAlliesVisionGrids(int player, int gridMask)
             ally -= 4;
         }
         if (Player_GetSlotRelation(self, ally) == SLOT_RELATION_ALLY) {
-            STATE->players[ally].unk_1b = mask;
+            STATE->players[ally].visionGrids = mask;
         }
     }
 }

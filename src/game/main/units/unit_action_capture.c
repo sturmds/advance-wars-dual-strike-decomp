@@ -72,7 +72,7 @@ void UnitAction_Capture(void)
     }
 
     if ((GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN)
-        || (GAME->players[GAME->currentPlayer].unk_1b & 2)
+        || (GAME->players[GAME->currentPlayer].visionGrids & 2)
         || GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)] != 0) {
         if (GAME->unk_82 == 1 || GAME->unk_82 == 2 || MAP_TILE_TERRAIN(tile) == TERRAIN_HQ
             || MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {

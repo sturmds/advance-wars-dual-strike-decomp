@@ -6,7 +6,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_ov000_022f5c50[5];     /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
+extern u16 Ov000_gPlayerTileOwnerBits[5];     /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 extern s8 Ov000_gUrbanTerrain[32];     /* nonzero for urban terrain, indexed by terrain id */
 
 s16 MapCell_SetOwner(int x, int y, int tile);
@@ -38,10 +38,10 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
 
     if (task->unk_66 == 2) {
         old = TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f);
-        TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f) = data_ov000_022f5c50[task->unk_64] | TERRAIN_HQ;
+        TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f) = Ov000_gPlayerTileOwnerBits[task->unk_64] | TERRAIN_HQ;
         newOwner = MAP_TILE_OWNER(old);
         MapCell_SetOwner((s16)(HQ.hqX & 0x7f), (s16)(HQ.hqY & 0x7f),
-                         data_ov000_022f5c50[task->unk_64] & 0xff);
+                         Ov000_gPlayerTileOwnerBits[task->unk_64] & 0xff);
         func_020c4448();
     } else {
         newOwner = 0;
@@ -55,7 +55,7 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
         if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(SITE.tile)] == 0) {
             continue;
         }
-        if ((SITE.tile & 0xe0) != data_ov000_022f5c50[task->unk_64]) {
+        if ((SITE.tile & 0xe0) != Ov000_gPlayerTileOwnerBits[task->unk_64]) {
             continue;
         }
         if (newOwner != 0) {
@@ -66,11 +66,11 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
         }
         terrain = MAP_TILE_TERRAIN(SITE.tile);
         if (terrain == TERRAIN_HQ) {
-            TILE(SITE.x, SITE.y) = data_ov000_022f5c50[newOwner] | TERRAIN_CITY;
+            TILE(SITE.x, SITE.y) = Ov000_gPlayerTileOwnerBits[newOwner] | TERRAIN_CITY;
             func_020f6488(SITE.x, SITE.y, cellTile);
-            MapCell_SetOwner(SITE.x, SITE.y, data_ov000_022f5c50[newOwner] & 0xff);
+            MapCell_SetOwner(SITE.x, SITE.y, Ov000_gPlayerTileOwnerBits[newOwner] & 0xff);
         } else {
-            ownerBits = data_ov000_022f5c50[newOwner];
+            ownerBits = Ov000_gPlayerTileOwnerBits[newOwner];
             TILE(SITE.x, SITE.y) = ownerBits | terrain;
             MapCell_SetOwner(SITE.x, SITE.y, ownerBits & 0xff);
         }

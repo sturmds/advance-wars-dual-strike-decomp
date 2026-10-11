@@ -29,7 +29,7 @@ void PlayerHud_DrawSlot(int x, int y, int slot, int frontCo, int backCo, int fro
     int backTile = (slot - 1) * 16 + 80;
 
     Sprite_QueueAt(5, x + 4, y + 14, data_ov000_0234ec10, (paletteBank << 12) | 20, 0);
-    if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[slot].unk_1b & 2) == 0) {
+    if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[slot].visionGrids & 2) == 0) {
         func_01ff9a3c((x + 56) & 0x1ff, y + 14, data_ov000_0234ec6c);
     } else {
         Oam_PutNumber((x + 56) & 0x1ff, y + 14, STATE->players[slot].funds, (paletteBank << 12) | 22);

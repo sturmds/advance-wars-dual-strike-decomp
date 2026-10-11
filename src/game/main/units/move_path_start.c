@@ -8,7 +8,7 @@ extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern void *data_027c0288;
 extern u8 data_021492c0[];
-extern MovePath *data_02166e7c;
+extern MovePath *gMovePath;
 
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void IconBank_LoadPalette(int bank, int paletteSlot);
@@ -30,11 +30,11 @@ void MovePath_Start(void)
         TransferQueue_Add(data_021492c0, data_027c0280->objVram + 0x3280, 0xa00);
         IconBank_LoadPalette(1, 19);
     }
-    data_02166e7c->startMoves = Unit_GetMovePoints(GAME->actingUnit);
-    data_02166e7c->lastTile = 0;
+    gMovePath->startMoves = Unit_GetMovePoints(GAME->actingUnit);
+    gMovePath->lastTile = 0;
     MovePath_Truncate(0);
     MovePath_AddTile(GAME->actingUnit->x, GAME->actingUnit->y);
-    data_02166e7c->movesLeft[0] = data_02166e7c->startMoves;
+    gMovePath->movesLeft[0] = gMovePath->startMoves;
     func_020d5308(0xffff, 0xffff);
     func_020d4748();
 }

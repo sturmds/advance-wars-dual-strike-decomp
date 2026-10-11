@@ -37,7 +37,7 @@ void Sound_PlaySe(u32 soundId);
  * sound 157 (dive) or 158 (emerge), and a sprite from /bmap, the Sub set
  * (files 072-074) or the Stealth set (075-077). Only the Sub set has an
  * emerge animation. Skipped when the tile is off screen, or when the current
- * player lacks Player.unk_1b bit 1 and the tile has MapTiles.unk_2338 clear. */
+ * player lacks Player.visionGrids bit 1 and the tile has MapTiles.unk_2338 clear. */
 void Unit_PlayDiveEffect(int unitType, BOOL emerge)
 {
     int dx;
@@ -49,7 +49,7 @@ void Unit_PlayDiveEffect(int unitType, BOOL emerge)
     VecFx32 pos;
     int animation;
 
-    if ((STATE->players[STATE->currentPlayer].unk_1b & 2) == 0
+    if ((STATE->players[STATE->currentPlayer].visionGrids & 2) == 0
         && STATE->mapTiles->unk_2338[STATE->actingUnitDestX + STATE->mapTiles->rowStart[STATE->actingUnitDestY]] == 0) {
         return;
     }

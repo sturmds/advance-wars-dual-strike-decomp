@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/move_path.h"
 
-extern MovePath *data_02166e7c;
+extern MovePath *gMovePath;
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
@@ -16,8 +16,8 @@ void func_01ffa488(int player, int x, int y, int unitType, int movesLeft, int fl
 void MovePath_FillRangeFromEnd(void)
 {
     func_01ffa488((u16)((GAME->actingUnitIndex >> 6) + 1),
-                  data_02166e7c->x[data_02166e7c->lastTile],
-                  data_02166e7c->y[data_02166e7c->lastTile],
+                  gMovePath->x[gMovePath->lastTile],
+                  gMovePath->y[gMovePath->lastTile],
                   GAME->actingUnit->type,
-                  data_02166e7c->movesLeft[data_02166e7c->lastTile], 1);
+                  gMovePath->movesLeft[gMovePath->lastTile], 1);
 }

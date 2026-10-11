@@ -27,6 +27,6 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg)
     data_0229d8c8.target = target;
     data_0229d8c8.unk_07 = arg;
     data_0229d8c8.fuelLeft = unit->fuel;
-    PackNibblePairs(GAME->unk_170, data_0229d8d4);
+    PackNibblePairs(GAME->pathSteps, data_0229d8d4);
     Link_SendPacket(&data_0229d8c8);
 }
