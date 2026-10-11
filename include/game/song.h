@@ -35,6 +35,21 @@ typedef struct SongFadeOutWaitTask {
     u8 pad_5c[0x10];
 } SongFadeOutWaitTask;
 
+/* The task Sound_StartSongSwitchTask creates: it fades the current song out
+ * over fadeLength * 16 frames, waits for the fade to end, starts songId,
+ * then resumes its script unless holdScript is set. */
+typedef struct SongSwitchTask {
+    u8 pad_00[0x30];
+    int unk_30;                        /* cleared when the new song starts */
+    int step;                          /* SongSwitchTask_Update state */
+    u8 pad_38[0x44 - 0x38];
+    int fadeLength;
+    u8 pad_48[0x54 - 0x48];
+    int songId;
+    int holdScript;
+    u8 pad_5c[0x10];
+} SongSwitchTask;
+
 /* The task Sound_RequestSong creates (script gSongRequestScript): it waits
  * while Sound_IsSongFadingOut, then starts songId. */
 typedef struct SongRequestTask {
@@ -51,5 +66,7 @@ void Sound_FadeOutSongOver(int length);  /* over length * 16 frames; 0: 2 */
 void Sound_StopSong(void);
 void Sound_StartSong(int songId);
 void Sound_StartFadeOutTask(int holdScript, int fadeLength);
+SongSwitchTask *Sound_StartSongSwitchTask(int songId, int holdScript, int fadeLength);
+void SongSwitchTask_Update(SongSwitchTask *task);
 
 #endif

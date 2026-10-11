@@ -6,7 +6,7 @@
 
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-Task *func_020fcbe8(int a, int b, int c);
+Task *Sound_StartSongSwitchTask(int a, int b, int c);
 Task *func_020fcb08(int a);
 BOOL func_020fccbc(Task *task);
 void func_020fccb0(Task *task);
@@ -16,7 +16,7 @@ int func_ov005_02357830(void);
 void func_ov005_0235785c(void);
 extern const TaskScriptCmd data_ov005_02368ca0[];
 
-/* Like Ov005_UpdateEventScriptScreen, but starts a sound task (func_020fcbe8
+/* Like Ov005_UpdateEventScriptScreen, but starts a sound task (Sound_StartSongSwitchTask
  * with id 51) before the script and fades the song out (func_020fcb08)
  * after the closing fade, before the task script resumes. */
 void Ov005_UpdateEventScriptSongScreen(Ov005Task *task)
@@ -35,7 +35,7 @@ void Ov005_UpdateEventScriptSongScreen(Ov005Task *task)
         task->step = 2;
         return;
     case 2:
-        work->songFadeTask = func_020fcbe8(51, 0, 8);
+        work->songFadeTask = Sound_StartSongSwitchTask(51, 0, 8);
         task->frame = 0;
         task->frames = 32;
         task->step++;

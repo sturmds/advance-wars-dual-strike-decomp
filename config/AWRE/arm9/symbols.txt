@@ -4821,7 +4821,7 @@ func_020fcb08 kind:function(arm,size=0x10) addr:0x020fcb08
 Sound_StartFadeOutTask kind:function(arm,size=0x34) addr:0x020fcb18
 func_020fcb4c kind:function(arm,size=0x8c) addr:0x020fcb4c
 func_020fcbd8 kind:function(arm,size=0x10) addr:0x020fcbd8
-func_020fcbe8 kind:function(arm,size=0x34) addr:0x020fcbe8
+Sound_StartSongSwitchTask kind:function(arm,size=0x34) addr:0x020fcbe8
 func_020fcc1c kind:function(arm,size=0x94) addr:0x020fcc1c
 func_020fccb0 kind:function(arm,size=0xc) addr:0x020fccb0
 func_020fccbc kind:function(arm,size=0x8) addr:0x020fccbc
@@ -8162,7 +8162,7 @@ data_0216a668 kind:data(any) addr:0x0216a668
 data_0216a678 kind:data(any) addr:0x0216a678
 data_0216a688 kind:data(any) addr:0x0216a688
 data_0216a698 kind:data(any) addr:0x0216a698
-data_0216a6b0 kind:data(any) addr:0x0216a6b0
+gSongSwitchScript kind:data(any) addr:0x0216a6b0
 gSongFadeOutWaitScript kind:data(any) addr:0x0216a6c8
 data_0216a6e0 kind:data(any) addr:0x0216a6e0
 data_0216a708 kind:data(any) addr:0x0216a708
