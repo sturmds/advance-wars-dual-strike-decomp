@@ -5376,6 +5376,10 @@ src/game/main/score_list_draw_row.c:
     complete
     .text       start:0x02038964 end:0x02039144
 
+src/game/main/score_list_draw_row_points.c:
+    complete
+    .text       start:0x02039144 end:0x02039310
+
 src/game/main/result_point_draw_panel_tally.c:
     complete
     .text       start:0x02039310 end:0x020393dc
