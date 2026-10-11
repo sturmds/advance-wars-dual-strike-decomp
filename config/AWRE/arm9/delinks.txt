@@ -10452,6 +10452,10 @@ src/game/main/map/map_touch_update_neighbor_cursor.c:
     complete
     .text       start:0x020f0338 end:0x020f0544
 
+src/game/main/map/map_touch_read_list_tile_tap.c:
+    complete
+    .text       start:0x020f0544 end:0x020f06a0
+
 src/game/main/map/map_cursor_update_from_touch.c:
     complete
     .text       start:0x020f0c94 end:0x020f0ef4
