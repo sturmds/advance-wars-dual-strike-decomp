@@ -7612,6 +7612,10 @@ src/game/main/side_panel_slide_away_from_cursor.c:
     complete
     .text       start:0x020cfa88 end:0x020cfb48
 
+src/game/main/side_panel_slide_left.c:
+    complete
+    .text       start:0x020cfb48 end:0x020cfc40
+
 src/game/main/func_020cfd30.c:
     complete
     .text       start:0x020cfd30 end:0x020cfd5c
