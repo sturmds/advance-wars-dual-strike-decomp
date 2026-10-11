@@ -1376,6 +1376,10 @@ src/game/main/script/script_slot_find.c:
     complete
     .text       start:0x02017130 end:0x02017178
 
+src/game/main/script/script_slot_any_pending.c:
+    complete
+    .text       start:0x02017178 end:0x020171cc
+
 src/game/main/script/script_slot_run.c:
     complete
     .text       start:0x02017320 end:0x02017414
