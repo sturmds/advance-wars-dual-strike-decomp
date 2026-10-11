@@ -7,7 +7,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/sprite_anim.h"
 
-/* Task of func_020d005c and func_020d0384: a sprite with a graphic for the
+/* Task of ZoomSpriteTask_Init and ZoomSpriteTask_InitWithSound: a sprite with a graphic for the
  * game language that zooms from scale 0x200 down to 0x100 at a map
  * position. The first 0x2c bytes belong to the task system (Task_Create). */
 typedef struct ZoomSpriteTask {
