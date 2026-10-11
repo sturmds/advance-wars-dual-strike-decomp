@@ -9260,6 +9260,7 @@ src/game/main/map/design_map_load_record.c:
     .text       start:0x020d77a4 end:0x020d7808
 
 src/game/main/map/design_map_load_into_state.c:
+    complete
     .text       start:0x020d7808 end:0x020d7878
 
 src/game/main/map/design_map_decode_slot.c:
