@@ -55,4 +55,14 @@ typedef struct CampaignRecapTask {
     int frames;
 } CampaignRecapTask;
 
+/* The data_0216a898 task (CampaignRecap.unk_4c): moves the camera from
+ * (unk_50, unk_54, unk_58) to (unk_5c, unk_60, unk_64) of data_022a7ea4. */
+typedef struct CampaignRecapCameraTask {
+    u8 pad_00[0x34];
+    u32 step;
+    u8 pad_38[0x3c - 0x38];
+    int frame;
+    int frames;
+} CampaignRecapCameraTask;
+
 #endif
