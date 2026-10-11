@@ -2,8 +2,8 @@
 #include "sdk/os.h"
 #include "sdk/destructor_chain.h"
 
-/* Unknown; told which CPU ran the overlay and where its code was. */
-int func_02120ff0(MIProcessor target, void *address, u32 size);
+/* Debugger support library: removes the overlay's range from the debugger's table. */
+int Isd_UnregisterOverlay(MIProcessor target, void *address, u32 size);
 
 static inline u32 OverlayImageSize(const FSOverlayInfo *info)
 {
@@ -75,6 +75,6 @@ void Overlay_RunDestructorsInRange(FSOverlayInfo *info)
         /* Needed to match: both locals, in this order. */
         u32 size = OverlayImageSize(info);
         void *address = info->header.ram_address;
-        func_02120ff0(info->target == MI_PROCESSOR_ARM9 ? MI_PROCESSOR_ARM9 : MI_PROCESSOR_ARM7, address, size);
+        Isd_UnregisterOverlay(info->target == MI_PROCESSOR_ARM9 ? MI_PROCESSOR_ARM9 : MI_PROCESSOR_ARM7, address, size);
     }
 }

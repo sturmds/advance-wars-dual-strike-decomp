@@ -23142,6 +23142,14 @@ src/sdk/isd/isd_test_flags.c:
     complete
     .text       start:0x02120fd4 end:0x02120ff0
 
+src/sdk/isd/isd_unregister_overlay.c:
+    complete
+    .text       start:0x02120ff0 end:0x02121060
+
+src/sdk/isd/isd_register_overlay.c:
+    complete
+    .text       start:0x02121060 end:0x021210d8
+
 src/sdk/isd/isd_close_debug_region.c:
     complete
     .text       start:0x02121908 end:0x02121940

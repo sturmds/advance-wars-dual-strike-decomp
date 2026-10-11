@@ -5837,8 +5837,8 @@ Isd_ReleaseCartridge kind:function(arm,size=0x30) addr:0x02120ee8
 Isd_AcquireCartridge kind:function(arm,size=0x20) addr:0x02120f18
 Isd_TryAcquireCartridge kind:function(arm,size=0x9c) addr:0x02120f38
 Isd_TestFlags kind:function(arm,size=0x1c) addr:0x02120fd4
-func_02120ff0 kind:function(arm,size=0x70) addr:0x02120ff0
-func_02121060 kind:function(arm,size=0x78) addr:0x02121060
+Isd_UnregisterOverlay kind:function(arm,size=0x70) addr:0x02120ff0
+Isd_RegisterOverlay kind:function(arm,size=0x78) addr:0x02121060
 func_021210d8 kind:function(arm,size=0x34c) addr:0x021210d8
 func_02121424 kind:function(arm,size=0x4e4) addr:0x02121424
 Isd_CloseDebugRegion kind:function(arm,size=0x38) addr:0x02121908
@@ -9094,9 +9094,9 @@ gCtrdgPulledOutHook kind:bss addr:0x022acf20
 data_022acf40 kind:bss addr:0x022acf40
 data_022acf44 kind:bss addr:0x022acf44
 Isd_gDebugRegion7Setting kind:bss addr:0x022ad000
-data_022ad004 kind:bss addr:0x022ad004
-data_022ad008 kind:bss addr:0x022ad008
-data_022ad00c kind:bss addr:0x022ad00c
+gIsdOverlayHooksEnabled kind:bss addr:0x022ad004
+gIsdRegisterOverlayHook kind:bss addr:0x022ad008
+gIsdUnregisterOverlayHook kind:bss addr:0x022ad00c
 data_022ad010 kind:bss addr:0x022ad010
 gMslExitHook kind:bss addr:0x022ad018
 gMslShutdownHook kind:bss addr:0x022ad01c

@@ -162,4 +162,11 @@ extern char gIsdOverlayFileName[];
 void Isd_OverlayTableRemove(IsdOverlayInfo *table, u32 index);
 void Isd_OverlayTableInsert(IsdOverlayInfo *table, int index);
 
+/*
+ * Set when overlay changes go to handler functions instead of the library's own
+ * table code. Nothing in the ROM writes it or the handler pointers; the debugger
+ * presumably does.
+ */
+extern BOOL gIsdOverlayHooksEnabled;
+
 #endif

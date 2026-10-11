@@ -11,9 +11,8 @@ BOOL Overlay_CheckKeyedHash(const u8 *expected, const void *data, u32 size);
 void MI_CpuFill8(void *dest, u8 value, u32 size);
 void func_02000914(void *bottom);              /* looks like MIi_UncompressBackward */
 void DC_FlushRange(const void *start, u32 size);
-/* Unknown; told which CPU runs the overlay, where it was loaded and where
- * its file lies. */
-void func_02121060(MIProcessor target, void *address, u32 fileOffset, u32 size);
+/* Debugger support library: records the overlay's range for the debugger. */
+int Isd_RegisterOverlay(MIProcessor target, void *address, u32 fileOffset, u32 size);
 
 typedef void (*FSOverlayInitFunc)(void);
 
@@ -45,7 +44,7 @@ void FS_StartOverlay(FSOverlayInfo *info)
     DC_FlushRange(info->header.ram_address, info->header.ram_size);
     {
         u32 size = info->header.ram_size;  /* needed to match: loaded before the other arguments */
-        func_02121060(info->target == MI_PROCESSOR_ARM9 ? MI_PROCESSOR_ARM9 : MI_PROCESSOR_ARM7,
+        Isd_RegisterOverlay(info->target == MI_PROCESSOR_ARM9 ? MI_PROCESSOR_ARM9 : MI_PROCESSOR_ARM7,
                       info->header.ram_address, info->romTop, size);
     }
     {
