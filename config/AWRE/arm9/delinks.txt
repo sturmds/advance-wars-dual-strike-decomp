@@ -92,6 +92,10 @@ src/game/main/map/player_set_co.c:
     complete
     .text       start:0x02001a30 end:0x02001b94
 
+src/game/main/graphics/image4bpp_get_pixel.c:
+    complete
+    .text       start:0x02001d94 end:0x02001e04
+
 src/game/main/graphics/func_02001f50.c:
     complete
     .text       start:0x02001f50 end:0x02001fa8

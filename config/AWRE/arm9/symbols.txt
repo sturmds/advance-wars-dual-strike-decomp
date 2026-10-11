@@ -59,7 +59,7 @@ func_02001b94 kind:function(arm,size=0x38) addr:0x02001b94
 func_02001bcc kind:function(arm,size=0xc4) addr:0x02001bcc
 func_02001c90 kind:function(arm,size=0xb0) addr:0x02001c90
 func_02001d40 kind:function(arm,size=0x54) addr:0x02001d40
-func_02001d94 kind:function(arm,size=0x70) addr:0x02001d94
+Image4bpp_GetPixel kind:function(arm,size=0x70) addr:0x02001d94
 func_02001e04 kind:function(arm,size=0x74) addr:0x02001e04
 func_02001e78 kind:function(arm,size=0xd8) addr:0x02001e78
 func_02001f50 kind:function(arm,size=0x58) addr:0x02001f50
@@ -6215,8 +6215,8 @@ data_02151b40 kind:data(any) addr:0x02151b40
 data_02151b68 kind:data(any) addr:0x02151b68
 data_02151c80 kind:data(any) addr:0x02151c80
 data_02151ca0 kind:data(any) addr:0x02151ca0
-data_02151cbc kind:data(any) addr:0x02151cbc
-data_02151cc0 kind:data(any) addr:0x02151cc0
+gNibbleMasks kind:data(any) addr:0x02151cbc
+gNibbleShifts kind:data(any) addr:0x02151cc0
 data_02151cc4 kind:data(any) addr:0x02151cc4
 data_02151cc8 kind:data(any) addr:0x02151cc8
 data_02151ccc kind:data(any) addr:0x02151ccc
@@ -6224,7 +6224,7 @@ data_02151cdc kind:data(any) addr:0x02151cdc
 data_02151cf4 kind:data(any) addr:0x02151cf4
 data_02151d10 kind:data(any) addr:0x02151d10
 data_02151d38 kind:data(any) addr:0x02151d38
-data_02151d6c kind:data(any) addr:0x02151d6c
+gTile4bppPixelOffsets kind:data(any) addr:0x02151d6c
 data_02151dac kind:data(any) addr:0x02151dac
 data_02151df8 kind:data(any) addr:0x02151df8
 data_02151e44 kind:data(any) addr:0x02151e44
