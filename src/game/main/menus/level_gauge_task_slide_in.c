@@ -4,7 +4,7 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(LevelGaugeTask *task);
-void func_02049b84(LevelGauge *gauges, int x, int y, int index, int frame);
+void LevelGauge_Draw(LevelGauge *gauges, int x, int y, int index, int frame);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern Unk_027c0280 *data_027c0280;
@@ -20,9 +20,9 @@ void LevelGaugeTask_SlideIn(LevelGaugeTask *task)
     offset = Math_Ease(4, 256, 0, task->frame, 16);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = -offset;
     CoRankScreen_QueueNumber(0, 174, task->pointsLeft);
-    func_02049b84(task->gauges, offset + 40, 144, 0, -1);
+    LevelGauge_Draw(task->gauges, offset + 40, 144, 0, -1);
     if (task->twoGauges == 1) {
-        func_02049b84(task->gauges, offset + 176, 144, 1, -1);
+        LevelGauge_Draw(task->gauges, offset + 176, 144, 1, -1);
     }
     if (task->frame == 16) {
         task->frame = 0;

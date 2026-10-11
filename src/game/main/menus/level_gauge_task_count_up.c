@@ -5,7 +5,7 @@
 
 void Sound_PlaySe(int id);
 void Task_ResumeScript(LevelGaugeTask *task);
-void func_02049b84(LevelGauge *gauges, int x, int y, int index, int frame);
+void LevelGauge_Draw(LevelGauge *gauges, int x, int y, int index, int frame);
 void CoRankScreen_QueueNumber(int a, int y, int value);
 
 /* Each frame moves up to 4 points from pointsLeft into the gauges, every
@@ -55,9 +55,9 @@ void LevelGaugeTask_CountUp(LevelGaugeTask *task)
         Sound_PlaySe(0x1000c);
     }
     CoRankScreen_QueueNumber(0, 174, task->pointsLeft);
-    func_02049b84(task->gauges, 40, 144, 0, -1);
+    LevelGauge_Draw(task->gauges, 40, 144, 0, -1);
     if (task->twoGauges == 1) {
-        func_02049b84(task->gauges, 176, 144, 1, -1);
+        LevelGauge_Draw(task->gauges, 176, 144, 1, -1);
     }
     if (task->pointsLeft == 0) {
         task->frame = 0;

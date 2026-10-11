@@ -6,7 +6,7 @@
 #define LEVEL_GAUGE_POINTS_PER_LEVEL 1000
 #define LEVEL_GAUGE_MAX_LEVEL        100
 
-/* A level with points toward the next one, as func_02049b84 draws it. */
+/* A level with points toward the next one, as LevelGauge_Draw draws it. */
 typedef struct LevelGauge {
     s8 level;                          /* stops at LEVEL_GAUGE_MAX_LEVEL */
     u8 leveledUp;                      /* set to 1 when points carry into a level */

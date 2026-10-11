@@ -3,7 +3,7 @@
 
 void CoRankTask_StartStaggeredItems(CoRankTask *task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
-void func_02049b84(CoRankEntry *entries, int x, int y, int index, int frame);
+void LevelGauge_Draw(CoRankEntry *entries, int x, int y, int index, int frame);
 BOOL func_02048eb8(void);
 void CoRankTask_StartRankPopInEvent(CoRankTask *task);
 void CoRankTask_StartRank10Event(CoRankTask *task);
@@ -23,9 +23,9 @@ void CoRankTask_ShowRankUps(CoRankTask *task)
         CoRankTask_StartStaggeredItems(task);
     }
     CoRankScreen_QueueNumber(0, 174, task->experienceGain);
-    func_02049b84(task->cos, 40, 144, 0, task->frame);
+    LevelGauge_Draw(task->cos, 40, 144, 0, task->frame);
     if (task->hasBackCo == 1) {
-        func_02049b84(task->cos, 176, 144, 1, task->frame);
+        LevelGauge_Draw(task->cos, 176, 144, 1, task->frame);
     }
     if (task->frame == 16) {
         if (func_02048eb8() == TRUE) {

@@ -4,7 +4,9 @@ s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);
 void func_02049ddc(int x, int y, int digit, int matrixIndex, int frame);
 
-void func_02049c9c(int x, int y, int value, int matrixIndex, int frame)
+/* Queues a gauge's points (0-999) right-aligned in three digit columns,
+ * each digit 4 frames behind the one to its left. */
+void LevelGauge_QueuePoints(int x, int y, int value, int matrixIndex, int frame)
 {
     int hundreds;
     int tens;
