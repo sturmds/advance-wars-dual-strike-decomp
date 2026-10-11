@@ -5356,6 +5356,10 @@ src/game/main/result_point_draw_update.c:
     complete
     .text       start:0x020384c0 end:0x0203850c
 
+src/game/main/result_point_tally_update.c:
+    complete
+    .text       start:0x0203850c end:0x020387cc
+
 src/game/main/result_point_slide_in_update.c:
     complete
     .text       start:0x020387cc end:0x02038858
