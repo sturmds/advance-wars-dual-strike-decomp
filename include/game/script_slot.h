@@ -17,7 +17,7 @@ typedef struct ScriptCommand {
 typedef struct ScriptSlot {
     ScriptCommand *start;              /* NULL: slot unused */
     ScriptCommand *pc;                 /* next command */
-    void (*callback)(void);            /* set by opcode 1; while set, the script does not advance */
+    void (*callback)(struct ScriptSlot *slot);   /* set by opcode 1; while set, the script does not advance; ScriptSlot_RunPending calls it */
     void (*onStop)(struct ScriptSlot *slot);   /* called when the slot is stopped */
     u16 wait;                          /* frames left before the next command */
     u16 unk_12;                        /* set to 4 when a script starts, before its first run */
@@ -25,7 +25,7 @@ typedef struct ScriptSlot {
     u8 pad_15[0x18 - 0x15];
     u16 *textEntry;                    /* text printer: screen map entry the effect draws at */
     u8 pad_1c[2];
-    u16 unk_1e;                        /* text printer effects: mode (0 or 1); 10 for the code 14 slot */
+    s16 unk_1e;                        /* text printer effects: mode (0 or 1); 10 for the code 14 slot, which func_02015ea8 counts down */
     u16 unk_20;
     u8 pad_22[0x26 - 0x22];
     s16 unk_26;                        /* passed to func_0201751c when the script stops with bit 2 of unk_12 set */

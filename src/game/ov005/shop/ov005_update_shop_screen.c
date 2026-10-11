@@ -22,7 +22,7 @@ Task *func_020fcb08(int song);
 BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 BOOL Touch_IsPressed(void);
-BOOL Keypad_ConfirmUnk0c(void);
+BOOL Keypad_ConfirmNextPressed(void);
 u32 Rng_Next(void);
 void Sound_PlaySe(u32 soundId);
 void Sound_PlaySubSe(u32 soundId);
@@ -238,7 +238,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         /* frames: 1 once the count is done (or skipped by a key) */
         if (task->frames == 0) {
-            if (Touch_IsPressed() || Keypad_ConfirmUnk0c() || work->points <= gPlayRecords.points) {
+            if (Touch_IsPressed() || Keypad_ConfirmNextPressed() || work->points <= gPlayRecords.points) {
                 task->frames = 1;
                 work->points = gPlayRecords.points;
                 Sound_StopSubSe(0);

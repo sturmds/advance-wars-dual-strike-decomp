@@ -9,7 +9,7 @@ extern Unk_02080440 *data_027c027c;
  * the next command. */
 BOOL ScriptSlot_CmdSetCallback(int slot)
 {
-    data_027c027c->scriptSlots[slot].callback = (void (*)(void))data_027c027c->scriptSlots[slot].pc->arg;
+    data_027c027c->scriptSlots[slot].callback = (void (*)(ScriptSlot *))data_027c027c->scriptSlots[slot].pc->arg;
     data_027c027c->scriptSlots[slot].pc++;
     return FALSE;
 }

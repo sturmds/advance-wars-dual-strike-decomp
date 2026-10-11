@@ -20,7 +20,7 @@ void AiShowAction_Step8(void)
     int skip = 0;
 
     if (func_0207bd80() == 0) {
-        skip = gKeypad->unk_00 & PAD_BUTTON_A;
+        skip = gKeypad->held & PAD_BUTTON_A;
     }
     GAME->cursorX = gUnitAction.target;
     GAME->cursorY = gUnitAction.unk_07;

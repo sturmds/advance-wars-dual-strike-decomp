@@ -209,7 +209,7 @@ typedef struct Ov003Input {
     u8 active;                         /* low byte of TouchState.active */
     u8 x;
     u8 y;
-    u16 keys;                          /* Keypad.unk_00 */
+    u16 keys;                          /* Keypad.held */
 } Ov003Input;
 
 extern Ov003State *data_ov003_02364928;

@@ -10,15 +10,15 @@ void Keypad_Init(void)
     Keypad *key = data_0216e4e4;
 
     for (i = 0; i < 9; i++, key++) {
-        key->unk_06 = 0;
-        key->unk_00 = 0;
+        key->prevHeld = 0;
+        key->held = 0;
         key->pressed = 0;
         key->repeatCountdown = 0;
         key->repeat = 0;
-        key->unk_0e = 0;
-        key->unk_08 = 0;
-        key->unk_0c = 0;
-        key->unk_0a = 0;
+        key->nextPrevHeld = 0;
+        key->nextHeld = 0;
+        key->nextPressed = 0;
+        key->nextRepeat = 0;
         key->repeatDelay = 12;
         key->repeatInterval = 4;
     }

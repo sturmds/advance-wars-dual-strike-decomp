@@ -217,9 +217,9 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         work->button246Shown = 0;
         task->step++;
     case 31:
-        if ((gKeypad->unk_00 & PAD_KEY_LEFT) || work->leftTouched == 1) {
+        if ((gKeypad->held & PAD_KEY_LEFT) || work->leftTouched == 1) {
             work->scrollStepX = -0x1000;
-        } else if ((gKeypad->unk_00 & PAD_KEY_RIGHT) || work->rightTouched == 1) {
+        } else if ((gKeypad->held & PAD_KEY_RIGHT) || work->rightTouched == 1) {
             work->scrollStepX = 0x1000;
         }
         if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched != 0) {

@@ -34,7 +34,7 @@ void Ov006_NewMap(void)
     for (i = 0; i < STATE->unk_1c4->mapHeight; i++) {
         STATE->mapTiles->rowStart[i] = i * STATE->unk_1c4->mapWidth;
     }
-    if ((gKeypad->unk_00 & (PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_L | PAD_BUTTON_R)) {
+    if ((gKeypad->held & (PAD_BUTTON_L | PAD_BUTTON_R)) == (PAD_BUTTON_L | PAD_BUTTON_R)) {
         Ov006_LoadPresetMap();
     } else {
         Ov006_GenerateRandomMap();

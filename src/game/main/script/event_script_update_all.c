@@ -58,8 +58,8 @@ void EventScript_UpdateAll(void)
     }
     gKeypad->repeat = data_02297778;
     gKeypad->pressed = data_02297778;
-    gKeypad->unk_00 = data_02297778;
-    gKeypad->unk_06 = data_02297778;
+    gKeypad->held = data_02297778;
+    gKeypad->prevHeld = data_02297778;
     data_0216e048 = 0;
     data_0216e044 = 0;
 }

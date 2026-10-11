@@ -323,9 +323,9 @@ File_ReadTo kind:function(arm,size=0xb8) addr:0x0200be6c
 Mem_Free kind:function(arm,size=0x1c) addr:0x0200bf24
 Mem_Alloc kind:function(arm,size=0x24) addr:0x0200bf40
 Mem_InitHeaps kind:function(arm,size=0xbc) addr:0x0200bf64
-func_0200c020 kind:function(arm,size=0x14) addr:0x0200c020
-func_0200c034 kind:function(arm,size=0x10) addr:0x0200c034
-func_0200c044 kind:function(arm,size=0x10) addr:0x0200c044
+OwnerInfo_GetNicknameLength kind:function(arm,size=0x14) addr:0x0200c020
+OwnerInfo_GetBirthMonth kind:function(arm,size=0x10) addr:0x0200c034
+OwnerInfo_GetFavoriteColor kind:function(arm,size=0x10) addr:0x0200c044
 OwnerInfo_CopyNickname kind:function(arm,size=0x5c) addr:0x0200c054
 func_0200c0b0 kind:function(arm,size=0x14) addr:0x0200c0b0
 func_0200c0c4 kind:function(arm,size=0x28) addr:0x0200c0c4
@@ -4851,7 +4851,7 @@ func_020fd618 kind:function(arm,size=0xc) addr:0x020fd618
 func_020fd624 kind:function(arm,size=0x8) addr:0x020fd624
 Palette_Lighten kind:function(arm,size=0xa8) addr:0x020fd62c
 Palette_Darken kind:function(arm,size=0x9c) addr:0x020fd6d4
-Keypad_ConfirmUnk0c kind:function(arm,size=0x20) addr:0x020fd770
+Keypad_ConfirmNextPressed kind:function(arm,size=0x20) addr:0x020fd770
 Keypad_ConfirmPressed kind:function(arm,size=0x20) addr:0x020fd790
 Touch_IsPressed kind:function(arm,size=0x2c) addr:0x020fd7b0
 func_020fd7dc kind:function(arm,size=0x80) addr:0x020fd7dc
@@ -8614,7 +8614,7 @@ data_02270fdb kind:bss addr:0x02270fdb
 data_0227f025 kind:bss addr:0x0227f025
 data_02280214 kind:bss addr:0x02280214
 data_0228443d kind:bss addr:0x0228443d
-data_0228ff58 kind:bss addr:0x0228ff58
+gOwnerInfo kind:bss addr:0x0228ff58
 data_0228ffa8 kind:bss addr:0x0228ffa8
 gCameraPresetIndex kind:bss addr:0x022900b4
 data_022900b8 kind:bss addr:0x022900b8

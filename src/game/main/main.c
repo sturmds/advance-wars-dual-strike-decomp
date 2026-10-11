@@ -22,7 +22,7 @@ void Sound_LoadResidentData(void);
 void func_0200170c(void);
 void Overlay_Load(int slot);
 void func_0200c0b0(void);
-u8 func_0200c044(void);
+u8 OwnerInfo_GetFavoriteColor(void);
 void Link_Init(void);
 void Save_PackProgress(void);
 void Save_ResetProgress(void);
@@ -94,7 +94,7 @@ void main(void)
     Overlay_Load(0);
     Overlay_Load(1);
     func_0200c0b0();
-    data_ov000_023503a0 = func_0200c044();
+    data_ov000_023503a0 = OwnerInfo_GetFavoriteColor();
     Link_Init();
     func_02020690(Save_PackProgress, Save_ResetProgress, data_02291774);
     Touch_Init();

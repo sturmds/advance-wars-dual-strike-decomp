@@ -38,37 +38,37 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     }
     speed = Ov003_GetMoveSpeed(unit->row, unit->kind, TERRAIN_AT(unit));
 
-    if (pad->unk_00 & PAD_KEY_LEFT) {
-        if (pad->unk_00 & PAD_KEY_RIGHT) {
-            pad->unk_00 &= ~(PAD_KEY_LEFT | PAD_KEY_RIGHT);
+    if (pad->held & PAD_KEY_LEFT) {
+        if (pad->held & PAD_KEY_RIGHT) {
+            pad->held &= ~(PAD_KEY_LEFT | PAD_KEY_RIGHT);
         }
     }
-    if (pad->unk_00 & PAD_KEY_UP) {
-        if (pad->unk_00 & PAD_KEY_DOWN) {
-            pad->unk_00 &= ~(PAD_KEY_UP | PAD_KEY_DOWN);
+    if (pad->held & PAD_KEY_UP) {
+        if (pad->held & PAD_KEY_DOWN) {
+            pad->held &= ~(PAD_KEY_UP | PAD_KEY_DOWN);
         }
     }
 
     dx = 0;
     dy = 0;
-    if ((pad->unk_00 & PAD_KEY_UP) && (pad->unk_00 & PAD_KEY_LEFT)) {
+    if ((pad->held & PAD_KEY_UP) && (pad->held & PAD_KEY_LEFT)) {
         Ov003_StepToward(0, 0, -1, -1, speed, &dx, &dy);
-    } else if ((pad->unk_00 & PAD_KEY_UP) && (pad->unk_00 & PAD_KEY_RIGHT)) {
+    } else if ((pad->held & PAD_KEY_UP) && (pad->held & PAD_KEY_RIGHT)) {
         Ov003_StepToward(0, 0, 1, -1, speed, &dx, &dy);
-    } else if ((pad->unk_00 & PAD_KEY_DOWN) && (pad->unk_00 & PAD_KEY_LEFT)) {
+    } else if ((pad->held & PAD_KEY_DOWN) && (pad->held & PAD_KEY_LEFT)) {
         Ov003_StepToward(0, 0, -1, 1, speed, &dx, &dy);
-    } else if ((pad->unk_00 & PAD_KEY_DOWN) && (pad->unk_00 & PAD_KEY_RIGHT)) {
+    } else if ((pad->held & PAD_KEY_DOWN) && (pad->held & PAD_KEY_RIGHT)) {
         Ov003_StepToward(0, 0, 1, 1, speed, &dx, &dy);
-    } else if (pad->unk_00 & PAD_KEY_UP) {
+    } else if (pad->held & PAD_KEY_UP) {
         dy = -speed;
         straight = 1;
-    } else if (pad->unk_00 & PAD_KEY_DOWN) {
+    } else if (pad->held & PAD_KEY_DOWN) {
         dy = speed;
         straight = 1;
-    } else if (pad->unk_00 & PAD_KEY_LEFT) {
+    } else if (pad->held & PAD_KEY_LEFT) {
         dx = -speed;
         straight = 1;
-    } else if (pad->unk_00 & PAD_KEY_RIGHT) {
+    } else if (pad->held & PAD_KEY_RIGHT) {
         dx = speed;
         straight = 1;
     }
@@ -159,19 +159,19 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
             Ov003Unit_SpawnEffectTowardPoint(unit, input->x, input->y);
             return;
         }
-        if (pad->unk_00 & PAD_BUTTON_A) {
+        if (pad->held & PAD_BUTTON_A) {
             dx = 0;
             dy = 0;
-            if (pad->unk_00 & PAD_KEY_LEFT) {
+            if (pad->held & PAD_KEY_LEFT) {
                 dx = OV003_DIR_LEFT;
             }
-            if (pad->unk_00 & PAD_KEY_RIGHT) {
+            if (pad->held & PAD_KEY_RIGHT) {
                 dx = OV003_DIR_RIGHT;
             }
-            if (pad->unk_00 & PAD_KEY_UP) {
+            if (pad->held & PAD_KEY_UP) {
                 dy = OV003_DIR_UP;
             }
-            if (pad->unk_00 & PAD_KEY_DOWN) {
+            if (pad->held & PAD_KEY_DOWN) {
                 dy = OV003_DIR_DOWN;
             }
             if (dx != 0 && dy != 0) {
@@ -181,7 +181,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
             Ov003Unit_SpawnFacingEffect(unit);
             return;
         }
-        if (pad->unk_00 & PAD_BUTTON_Y) {
+        if (pad->held & PAD_BUTTON_Y) {
             Ov003Unit_SpawnFacingEffect(unit);
         }
     } else {
@@ -192,16 +192,16 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
         if (pad->pressed & PAD_BUTTON_A) {
             dx = 0;
             dy = 0;
-            if (pad->unk_00 & PAD_KEY_LEFT) {
+            if (pad->held & PAD_KEY_LEFT) {
                 dx = OV003_DIR_LEFT;
             }
-            if (pad->unk_00 & PAD_KEY_RIGHT) {
+            if (pad->held & PAD_KEY_RIGHT) {
                 dx = OV003_DIR_RIGHT;
             }
-            if (pad->unk_00 & PAD_KEY_UP) {
+            if (pad->held & PAD_KEY_UP) {
                 dy = OV003_DIR_UP;
             }
-            if (pad->unk_00 & PAD_KEY_DOWN) {
+            if (pad->held & PAD_KEY_DOWN) {
                 dy = OV003_DIR_DOWN;
             }
             if (dx != 0 && dy != 0) {

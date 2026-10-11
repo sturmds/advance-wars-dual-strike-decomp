@@ -19,14 +19,14 @@
 
 /* Key state of the current frame, reached through gKeypad. */
 typedef struct Keypad {
-    u16 unk_00;
-    u16 repeat;                        /* menus move the cursor on these keys; probably newly pressed plus auto-repeat */
-    u16 pressed;                       /* menus confirm and cancel on these keys; probably newly pressed only */
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0a;
-    u16 unk_0c;
-    u16 unk_0e;
+    u16 held;                          /* keys down this frame */
+    u16 repeat;                        /* newly pressed, plus held keys each time they auto-repeat; menus move the cursor on these */
+    u16 pressed;                       /* newly pressed this frame; menus confirm and cancel on these */
+    u16 prevHeld;                      /* held in the frame before */
+    u16 nextHeld;                      /* Keypad_UpdateState works in these four, then copies them to the four above */
+    u16 nextRepeat;
+    u16 nextPressed;
+    u16 nextPrevHeld;
     u16 repeatCountdown;               /* frames until the held keys repeat */
     u16 repeatDelay;                   /* frames before the first repeat */
     u16 repeatInterval;                /* frames between repeats */

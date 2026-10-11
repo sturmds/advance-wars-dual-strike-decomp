@@ -13,7 +13,7 @@ void Ov003_ReadInput(void)
     data_ov003_02365b04.active = gTouch.active;
     data_ov003_02365b04.x = gTouch.x;
     data_ov003_02365b04.y = gTouch.y;
-    data_ov003_02365b04.keys = gKeypad->unk_00;
+    data_ov003_02365b04.keys = gKeypad->held;
     if (data_02160ac0->unk_7c != 0) {
         func_0207b4b0(&data_ov003_02365b04);
     }

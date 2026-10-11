@@ -22,7 +22,7 @@ void AiShowAction_Step7(void)
     int skip = 0;
 
     if (func_0207bd80() == 0) {
-        skip = gKeypad->unk_00 & PAD_BUTTON_A;
+        skip = gKeypad->held & PAD_BUTTON_A;
     }
     if (GAME->mapTiles->unk_2338[GAME->mapTiles->rowStart[unit->y] + unit->x] != 0) {
         GAME->cursorX = unit->x;

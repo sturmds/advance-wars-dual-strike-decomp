@@ -34,7 +34,7 @@ void Ov006_ScrollMapView(int step)
     layout = gCameraPresetIndex;
     viewW = data_021576fa[layout][0];
     viewH = data_021576fb[layout][0];
-    if (gKeypad->unk_00 & PAD_BUTTON_X) {
+    if (gKeypad->held & PAD_BUTTON_X) {
         cursorX = GAME->cursorX;
         cursorY = GAME->cursorY;
         data_ov006_0236d640->viewX = cursorX;
@@ -42,7 +42,7 @@ void Ov006_ScrollMapView(int step)
     } else {
         cursorX = data_ov006_0236d640->viewX;
         cursorY = data_ov006_0236d640->viewY;
-        if (gKeypad->unk_00 & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
+        if (gKeypad->held & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
             GAME->cursorX = cursorX;
             GAME->cursorY = cursorY;
         }

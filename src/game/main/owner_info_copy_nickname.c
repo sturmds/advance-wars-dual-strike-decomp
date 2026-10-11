@@ -6,8 +6,8 @@ void OwnerInfo_CopyNickname(u16 *dest)
 {
     int i = 0;
 
-    while (i < data_0228ff58.nicknameLength) {
-        dest[i] = data_0228ff58.nickname[i];
+    while (i < gOwnerInfo.nicknameLength) {
+        dest[i] = gOwnerInfo.nickname[i];
         i++;
     }
     while (i < OWNER_NICKNAME_MAX) {

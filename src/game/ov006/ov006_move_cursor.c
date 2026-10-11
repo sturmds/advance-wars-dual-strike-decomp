@@ -68,7 +68,7 @@ void Ov006_MoveCursor(void)
         OV->viewY = pos;
         OV->cursorY = pos;
     }
-    if (gKeypad->unk_00 & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
+    if (gKeypad->held & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
         OV->viewX = OV->cursorX;
         OV->viewY = OV->cursorY;
     }

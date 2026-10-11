@@ -20,7 +20,7 @@ void ScriptSlot_RunPending(int slot)
     data_027c027c->scriptSlots[slot].unk_12 &= ~1;
     target = &data_027c027c->scriptSlots[slot];
     if (target->callback != NULL) {
-        ((void (*)(ScriptSlot *))target->callback)(target);
+        target->callback(target);
     }
     ScriptSlot_Run(slot);
 }

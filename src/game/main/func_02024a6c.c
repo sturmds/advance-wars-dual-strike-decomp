@@ -3,7 +3,7 @@
 
 u32 func_02024a6c(void)
 {
-    u16 keys = gKeypad->unk_0c;
+    u16 keys = gKeypad->nextPressed;
 
     if (keys & PAD_BUTTON_A) {
         return 0x10;

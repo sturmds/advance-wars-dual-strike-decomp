@@ -80,7 +80,7 @@ void Ov006_UpdateMapEditor(void)
 
     result = 0;
     OV6->pendingSe = 0;
-    if (gKeypad->unk_00 & PAD_BUTTON_X) {
+    if (gKeypad->held & PAD_BUTTON_X) {
         func_020c407c();
         if (OV6->cursorX != STATE->cursorX || OV6->cursorY != STATE->cursorY) {
             result = 1;

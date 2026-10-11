@@ -44,10 +44,10 @@ int Ov006_ReadEditInput(void)
         }
         return 0;
     }
-    if (gKeypad->unk_00 & PAD_BUTTON_A) {
+    if (gKeypad->held & PAD_BUTTON_A) {
         return 1;
     }
-    if (gKeypad->unk_00 & PAD_BUTTON_X) {
+    if (gKeypad->held & PAD_BUTTON_X) {
         return gTouch.phase == 0 ? 2 : 0;
     }
     return gTouch.phase != 0;

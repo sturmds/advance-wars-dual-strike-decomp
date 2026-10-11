@@ -11,7 +11,7 @@ void func_020c3b1c(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-/* For the d-pad keys held in gKeypad->unk_00: puts the cursor one tile in
+/* For the d-pad keys held in gKeypad->held: puts the cursor one tile in
  * from the edge of the visible area (16x12 tiles, or the map if smaller) on
  * each side it is pushed towards, runs func_020c3b1c, then steps it one
  * tile that way, kept on the map. The declaration order is needed to match. */
@@ -28,7 +28,7 @@ void MapCursor_StepPastViewEdge(void)
     game = GAME;
     /* needed to match: this read adds the scaled index first */
     view = STATE_IDX_FIRST->unk_1c4;
-    dir = (gKeypad->unk_00 >> 4) & 15;
+    dir = (gKeypad->held >> 4) & 15;
     width = 16;
     height = 12;
 

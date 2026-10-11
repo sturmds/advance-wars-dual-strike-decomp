@@ -16,6 +16,6 @@ typedef struct OwnerInfo {
 
 #define OWNER_NICKNAME_MAX 10
 
-extern OwnerInfo data_0228ff58;
+extern OwnerInfo gOwnerInfo;
 
 #endif

@@ -194,9 +194,9 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
         work->unk_82c = 0;
         task->step++;
     case 31:
-        if (gKeypad->unk_00 & PAD_KEY_LEFT) {
+        if (gKeypad->held & PAD_KEY_LEFT) {
             work->unk_82c = -0x1000;
-        } else if (gKeypad->unk_00 & PAD_KEY_RIGHT) {
+        } else if (gKeypad->held & PAD_KEY_RIGHT) {
             work->unk_82c = 0x1000;
         }
         if ((gKeypad->pressed & PAD_BUTTON_B) || work->unk_0c) {
