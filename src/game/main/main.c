@@ -29,7 +29,7 @@ void Save_ResetProgress(void);
 void Save_Init(void (*a)(void), void (*b)(void), void *c);
 void Touch_Init(void);
 void Menu_Reset(void);
-void func_0200ccac(void);
+void GfxQueue_Init(void);
 void Save_LoadAndUnpackProgress(void);
 void DesignMap_RefreshAllRows(void);
 void Rng_SetState(u32 state);
@@ -99,7 +99,7 @@ void main(void)
     Save_Init(Save_PackProgress, Save_ResetProgress, data_02291774);
     Touch_Init();
     Menu_Reset();
-    func_0200ccac();
+    GfxQueue_Init();
     Save_ResetProgress();
     Save_LoadAndUnpackProgress();
     DesignMap_RefreshAllRows();
