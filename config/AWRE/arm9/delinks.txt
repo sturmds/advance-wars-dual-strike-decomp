@@ -5490,6 +5490,10 @@ src/game/main/ai/ai_turn_try_build_black_boat.c:
     complete
     .text       start:0x020907b8 end:0x020908bc
 
+src/game/main/ai/ai_turn_try_build_black_boat_transport.c:
+    complete
+    .text       start:0x020908bc end:0x02090a38
+
 src/game/main/ai/func_02091904.c:
     complete
     .text       start:0x02091904 end:0x02091944
