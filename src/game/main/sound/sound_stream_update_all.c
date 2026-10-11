@@ -5,7 +5,7 @@ extern s16 data_02151534[];                /* volume table */
 
 void SoundStream_Close(SoundStream *stream);
 void func_02105cb4(SoundStream *stream);
-void func_02105c10(SoundStream *stream, int volume);
+void SoundStrm_SetVolume(SoundStream *stream, int volume);
 BOOL func_0210928c(SoundFader *fader);
 void func_021092a4(SoundFader *fader);
 int func_021092bc(SoundFader *fader);
@@ -42,7 +42,7 @@ void SoundStream_UpdateAll(void)
         fade = data_02151534[func_021092bc(&stream->volumeFader) >> 8];
         volume = fade + base;
         if (volume != stream->appliedVolume) {
-            func_02105c10(stream, volume);
+            SoundStrm_SetVolume(stream, volume);
             stream->appliedVolume = volume;
         }
         if (stream->flags.stopping && func_0210928c(&stream->volumeFader)) {
