@@ -14627,7 +14627,7 @@ src/game/main/func_020d5b0c.c:
     complete
     .text       start:0x020d5b0c end:0x020d5b58
 
-src/game/main/func_020d5b58.c:
+src/game/main/map/tile_sprite_task_start.c:
     complete
     .text       start:0x020d5b58 end:0x020d5c44
 
@@ -14962,7 +14962,7 @@ src/game/main/map/object_heal_scan_start_next.c:
     complete
     .text       start:0x020d88a8 end:0x020d8a24
 
-src/game/main/func_020d8a24.c:
+src/game/main/map/object_heal_scan_reset.c:
     complete
     .text       start:0x020d8a24 end:0x020d8a30
 
@@ -14970,7 +14970,7 @@ src/game/main/screen/screen_set_blend_top_only.c:
     complete
     .text       start:0x020d8a30 end:0x020d8a6c
 
-src/game/main/func_020d8a6c.c:
+src/game/main/map/object_heal_scan_start.c:
     complete
     .text       start:0x020d8a6c end:0x020d8aa4
 
@@ -15046,7 +15046,7 @@ src/game/main/map/cannon_shot_task_play_impact.c:
     complete
     .text       start:0x020d92fc end:0x020d947c
 
-src/game/main/func_020d947c.c:
+src/game/main/map/cannon_shot_task_view_target.c:
     complete
     .text       start:0x020d947c end:0x020d9494
 

@@ -5,7 +5,7 @@
 
 struct Unk_02022404;
 
-/* Task func_020d5b58 starts (scripts data_02166ed4 and data_02166efc) to
+/* Task TileSpriteTask_Start starts (scripts data_02166ed4 and data_02166efc) to
  * show an animated sprite on a map tile. The first 0x29 bytes belong to
  * the task system (Task_Create). */
 typedef struct TileSpriteTask {
