@@ -6,7 +6,9 @@
 /* Tiles of the move path the player draws for a unit (data_02166e7c).
  * Tile 0 is where the unit stands. */
 typedef struct MovePath {
-    u8 pad_00[0x20];
+    u8 pad_00[0x1e];
+    s8 cursorX;                        /* cursor tile the path was last updated for (func_020d5308) */
+    s8 cursorY;
     s8 x[12];
     s8 y[12];
     s8 movesLeft[12];                  /* move points left on arrival at each tile */

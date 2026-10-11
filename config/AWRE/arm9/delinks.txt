@@ -10984,6 +10984,9 @@ src/game/main/map/game_is_war_room.c:
     complete
     .text       start:0x020d4318 end:0x020d434c
 
+src/game/main/units/func_020d4748.c:
+    .text       start:0x020d4748 end:0x020d4adc
+
 src/game/main/units/move_path_to_steps.c:
     complete
     .text       start:0x020d4d40 end:0x020d4e70
