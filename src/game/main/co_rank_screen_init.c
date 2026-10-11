@@ -26,7 +26,7 @@ void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
-void Co_LoadGraphicsAndPalette(int co, int tile, int row);
+void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 int func_0204d540(void);
 void func_01ff9b48(void);
 void Menu_Reset(void);
@@ -67,17 +67,17 @@ extern const char gCoRankCtcLangPath[]; /* "/ohashi/res_result_ctc_lang" */
  * bonus, at most 9999, as Survival_AwardCoExperience adds it), sets up
  * both screens, shows the title for the mode variant (time, days or
  * funds), and loads the result graphics: the grade picture picked by
- * func_0204d540 (5 best, 2 lowest), its icons (two runs of ten, likely digits), and the
- * pictures of player 1's front CO and, in a tag battle, back CO. The
- * res_result_ctc_lang file goes into gMenuState. */
+ * func_0204d540 (5 best, 2 lowest), its icons (two runs of ten, likely
+ * digits), and the pictures of player 1's front CO and, in a tag battle,
+ * back CO. The res_result_ctc_lang file goes into gMenuState. */
 void CoRankScreen_Init(CoRankTask *task)
 {
     int i;
     u8 *file;
 
-    task->unk_34 = Survival_GetExperienceBonus();
+    task->experienceBonus = Survival_GetExperienceBonus();
     task->unk_38 = data_022a7b80.unk_10;
-    task->unk_38 += task->unk_34;
+    task->unk_38 += task->experienceBonus;
     if (task->unk_38 > EXPERIENCE_MAX_GAIN) {
         task->unk_38 = EXPERIENCE_MAX_GAIN;
     }
