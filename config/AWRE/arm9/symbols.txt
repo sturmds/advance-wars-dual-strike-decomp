@@ -262,7 +262,7 @@ Screen_PrepareHBlankRegs kind:function(arm,size=0x678) addr:0x02009bbc
 func_0200a234 kind:function(arm,size=0x84) addr:0x0200a234
 func_0200a2b8 kind:function(arm,size=0x100) addr:0x0200a2b8
 Touch_Poll kind:function(arm,size=0x60) addr:0x0200a3b8
-func_0200a418 kind:function(arm,size=0x58) addr:0x0200a418
+Touch_Init kind:function(arm,size=0x58) addr:0x0200a418
 func_0200a470 kind:function(arm,size=0x48) addr:0x0200a470
 func_0200a4b8 kind:function(arm,size=0xbc) addr:0x0200a4b8
 Keypad_Init kind:function(arm,size=0x6c) addr:0x0200a574
@@ -8490,7 +8490,7 @@ gCallbackList kind:bss addr:0x0216e2f8
 data_0216e338 kind:bss addr:0x0216e338
 gTouchSample kind:bss addr:0x0216e4b8
 gTouchRawSample kind:bss addr:0x0216e4c0
-data_0216e4c8 kind:bss addr:0x0216e4c8
+gTouchDriverState kind:bss addr:0x0216e4c8
 gTouch kind:bss addr:0x0216e4d0
 gKeypad kind:bss addr:0x0216e4e0
 data_0216e4e4 kind:bss addr:0x0216e4e4

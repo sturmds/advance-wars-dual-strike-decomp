@@ -14,7 +14,8 @@
 typedef struct TouchState {
     u8 phase;                          /* TOUCH_* */
     u8 unk_01;                         /* 1 or 2 on release: Ov006 reads it as the kind of touch that ended */
-    u8 pad_02[0x04 - 0x02];
+    u8 unk_02;                         /* counts up to unk_03 while a touch is pending */
+    u8 unk_03;                         /* limit for unk_02; 20 after Touch_Init */
     u32 active;                        /* menu buttons ignore phase while this is 0 */
     u8 x;
     u8 y;

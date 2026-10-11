@@ -27,7 +27,7 @@ void Link_Init(void);
 void Save_PackProgress(void);
 void Save_ResetProgress(void);
 void func_02020690(void (*a)(void), void (*b)(void), void *c);
-void func_0200a418(void);
+void Touch_Init(void);
 void Menu_Reset(void);
 void func_0200ccac(void);
 void func_02018f0c(void);
@@ -97,7 +97,7 @@ void main(void)
     data_ov000_023503a0 = func_0200c044();
     Link_Init();
     func_02020690(Save_PackProgress, Save_ResetProgress, data_02291774);
-    func_0200a418();
+    Touch_Init();
     Menu_Reset();
     func_0200ccac();
     Save_ResetProgress();
