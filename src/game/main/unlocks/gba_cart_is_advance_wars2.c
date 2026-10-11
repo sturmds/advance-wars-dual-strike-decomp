@@ -1,6 +1,6 @@
 #include "types.h"
 
-/* The first argument is compared with the result of func_0211e51c in
+/* The first argument is compared with the result of CTRDG_GetAgbMakerCode in
  * gba_cart_is_game.c, the second with func_0211e56c. */
 BOOL GbaCart_IsGame(u32 first, u32 second);
 

@@ -22331,6 +22331,10 @@ src/sdk/ctrdg/cartridge_gba_maker_code_or_zero.c:
     complete
     .text       start:0x0211e4f4 end:0x0211e51c
 
+src/sdk/ctrdg/ctrdg_get_agb_maker_code.c:
+    complete
+    .text       start:0x0211e51c end:0x0211e544
+
 src/game/main/func_0211e628.c:
     complete
     .text       start:0x0211e628 end:0x0211e648

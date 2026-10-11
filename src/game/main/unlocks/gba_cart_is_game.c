@@ -2,7 +2,7 @@
 
 void Cartridge_HeaderStillMatches(void);
 BOOL func_0211e5ac(void);
-u32 func_0211e51c(void);    /* game code from the GBA cartridge header, 0 if none */
+u32 CTRDG_GetAgbMakerCode(void);    /* game code from the GBA cartridge header, 0 if none */
 u16 func_0211e56c(void);    /* maker code from the GBA cartridge header, 0 if none */
 
 /* TRUE when the cartridge in the GBA slot has this game code and maker
@@ -14,7 +14,7 @@ BOOL GbaCart_IsGame(u32 gameCode, u16 makerCode)
 
     Cartridge_HeaderStillMatches();
     func_0211e5ac();
-    cartGameCode = func_0211e51c();
+    cartGameCode = CTRDG_GetAgbMakerCode();
     cartMakerCode = func_0211e56c();
     if (cartGameCode == gameCode && cartMakerCode == makerCode) {
         return TRUE;
