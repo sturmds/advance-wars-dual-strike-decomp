@@ -4304,6 +4304,10 @@ src/game/main/help_band_update.c:
     complete
     .text       start:0x02027500 end:0x020275d8
 
+src/game/main/help_band_init.c:
+    complete
+    .text       start:0x020275d8 end:0x02027748
+
 src/game/main/graphics/bg_put_tile5_quad.c:
     complete
     .text       start:0x02027748 end:0x020277a4
