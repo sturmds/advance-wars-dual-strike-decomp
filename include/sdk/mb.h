@@ -301,7 +301,7 @@ typedef struct DlPlayHostLinkArea {
     DlPlayPlayerBadge childUsers[DLPLAY_CHILD_SLOTS];
     u16 childVersions[DLPLAY_CHILD_SLOTS];
     u32 childGgids[DLPLAY_CHILD_SLOTS];
-    u8 pad_14e4[4];
+    void (*callback)(u32 aid, u32 state, void *arg);  /* application callback for comm events */
     int commState[DLPLAY_CHILD_SLOTS];
     u8 fileCount;
     u8 currentFile;
@@ -315,6 +315,8 @@ typedef struct DlPlayHostLinkArea {
     u8 pad_74c8[0x7ce0 - 0x74c8];
     DlPlayWorkerJob task;
 } DlPlayHostLinkArea;
+
+void MbComm_NotifyState(u32 aid, u32 state, void *arg);
 
 /* A file of the comm work area. A macro, not a function: to match, the
  * address is rebuilt at each use as (work + index * file size)->files[0],
