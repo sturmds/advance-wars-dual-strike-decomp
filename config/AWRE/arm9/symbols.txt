@@ -3677,7 +3677,7 @@ func_020cb0cc kind:function(arm,size=0x28) addr:0x020cb0cc
 func_020cb0f4 kind:function(arm,size=0x28) addr:0x020cb0f4
 InfoPanel_DrawNumber kind:function(arm,size=0xa0) addr:0x020cb11c
 InfoPanel_DrawUnit kind:function(arm,size=0x20c) addr:0x020cb1bc
-func_020cb3c8 kind:function(arm,size=0x50) addr:0x020cb3c8
+InfoPanel_DrawHiddenCargoMark kind:function(arm,size=0x50) addr:0x020cb3c8
 func_020cb418 kind:function(arm,size=0xb8) addr:0x020cb418
 InfoPanel_SlideLeft kind:function(arm,size=0x124) addr:0x020cb4d0
 InfoPanel_SlideRight kind:function(arm,size=0x138) addr:0x020cb5f4
@@ -6148,7 +6148,7 @@ data_02140518 kind:data(any) addr:0x02140518
 gArmyPalettes kind:data(any) addr:0x021405b8
 data_021406f8 kind:data(any) addr:0x021406f8
 data_021439f8 kind:data(any) addr:0x021439f8
-data_02143db8 kind:data(any) addr:0x02143db8
+gInfoPanelHiddenCargoMark kind:data(any) addr:0x02143db8
 data_02143f38 kind:data(any) addr:0x02143f38
 data_02143f3c kind:data(any) addr:0x02143f3c
 gMapCellGroundTiles kind:data(any) addr:0x02143f40

@@ -34,7 +34,7 @@ void SpriteFile_Queue(void *data, int frame, int b, int x, int y, int tile, int 
 void func_020cb0cc(u16 x, u16 y);
 void func_020cb0f4(u16 x, u16 y);
 BOOL UnitType_HidesCargo(int type, int player, int slot);
-void func_020cb3c8(s16 x, s16 y, int slot);
+void InfoPanel_DrawHiddenCargoMark(s16 x, s16 y, int slot);
 void *Task_FindByScript(void *script);
 void func_020cb848(int panelX, int panelY, int side);
 void Oam_PutSprite(int x, int y, void *shape, int tile);
@@ -142,10 +142,10 @@ void InfoPanel_Draw(void)
         if (UnitType_HidesCargo(unit->type, state->currentPlayer, (u16)MAP_UNIT_OWNER(state, unit))) {
             /* cargo not shown: one mark per seat */
             if (Ov000_gUnitStats[unit->type].carryTypes[0] == 1) {
-                func_020cb3c8(ITEM_X(data_02166360[side][0], cargoOnly) & 0x1ff, ITEM_Y(cargoOnly), 1);
+                InfoPanel_DrawHiddenCargoMark(ITEM_X(data_02166360[side][0], cargoOnly) & 0x1ff, ITEM_Y(cargoOnly), 1);
             } else {
-                func_020cb3c8(ITEM_X(data_02166360[side][0], cargoFirst) & 0x1ff, ITEM_Y(cargoFirst), 2);
-                func_020cb3c8(ITEM_X(data_02166360[side][0], cargoSecond) & 0x1ff, ITEM_Y(cargoSecond), 1);
+                InfoPanel_DrawHiddenCargoMark(ITEM_X(data_02166360[side][0], cargoFirst) & 0x1ff, ITEM_Y(cargoFirst), 2);
+                InfoPanel_DrawHiddenCargoMark(ITEM_X(data_02166360[side][0], cargoSecond) & 0x1ff, ITEM_Y(cargoSecond), 1);
             }
         } else if (unit->cargo[1]) {
             MapUnit *cargo = &STATE->units[unit->cargo[0]];
