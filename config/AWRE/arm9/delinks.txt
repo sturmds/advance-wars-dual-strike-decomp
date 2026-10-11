@@ -5607,6 +5607,10 @@ src/game/main/tab_list_update_help_text.c:
     complete
     .text       start:0x02071494 end:0x020714fc
 
+src/game/main/tab_list_selection_has_help.c:
+    complete
+    .text       start:0x020714fc end:0x020715c8
+
 src/game/main/func_020719e0.c:
     complete
     .text       start:0x020719e0 end:0x02071ad0

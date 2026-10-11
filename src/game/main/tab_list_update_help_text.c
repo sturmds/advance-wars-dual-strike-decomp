@@ -4,10 +4,10 @@
 extern TabListView gMenuState;
 void HelpText_Clear(void);
 void HelpText_Show(u32 textId, int tile);
-BOOL func_020714fc(void);
+BOOL TabList_SelectionHasHelp(void);
 
 /* Shows the help text of the selected button, or clears it when that button
- * has none (see func_020714fc). */
+ * has none (see TabList_SelectionHasHelp). */
 void TabList_UpdateHelpText(void)
 {
     u8 tab;
@@ -19,7 +19,7 @@ void TabList_UpdateHelpText(void)
     col = gMenuState.unk_06;
     entry = gMenuState.pageOfTab[tab] * 9 + row;
 
-    if (!func_020714fc()) {
+    if (!TabList_SelectionHasHelp()) {
         HelpText_Clear();
         return;
     }
