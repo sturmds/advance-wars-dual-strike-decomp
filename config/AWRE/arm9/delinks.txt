@@ -5684,6 +5684,10 @@ src/game/main/menus/win_lose_screen_slide_in_pictures_two_sides.c:
     complete
     .text       start:0x0203e1cc end:0x0203e470
 
+src/game/main/menus/win_lose_screen_blend_in.c:
+    complete
+    .text       start:0x0203e470 end:0x0203e5cc
+
 src/game/main/menus/win_lose_screen_fade_in_from_white.c:
     complete
     .text       start:0x0203e5cc end:0x0203e67c
