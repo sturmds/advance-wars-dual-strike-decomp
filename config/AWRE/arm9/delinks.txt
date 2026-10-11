@@ -22602,6 +22602,10 @@ src/sdk/mb/mb_comm_respond.c:
     complete
     .text       start:0x0211a450 end:0x0211a54c
 
+src/sdk/mb/mb_comm_get_child_user.c:
+    complete
+    .text       start:0x0211a54c end:0x0211a5e8
+
 src/sdk/mb/mb_beacon_end_game.c:
     complete
     .text       start:0x0211b740 end:0x0211b770

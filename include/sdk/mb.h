@@ -317,7 +317,7 @@ typedef struct DlPlayHostLinkArea {
     u16 childEntryBitmap;
     u8 pad_1538[0x1754 - 0x1538];
     u16 childRequests[DLPLAY_CHILD_SLOTS];
-    u8 pad_1772[0x1788 - 0x1772];
+    DlPlayPlayerBadge userInfoCopy;           /* filled by MbComm_GetChildUser */
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
     u8 pad_74c8[0x7ce0 - 0x74c8];
     DlPlayWorkerJob task;
@@ -325,6 +325,7 @@ typedef struct DlPlayHostLinkArea {
 
 int MbComm_IsChildAid(u32 aid);
 int MbComm_Respond(u32 aid, int response);
+DlPlayPlayerBadge *MbComm_GetChildUser(u16 aid);
 void MbComm_NotifyState(u32 aid, u32 state, void *arg);
 
 /* A file of the comm work area. A macro, not a function: to match, the
