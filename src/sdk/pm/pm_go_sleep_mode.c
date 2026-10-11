@@ -6,7 +6,7 @@ extern PowerHookEntry *data_022ab8f0; /* pre-sleep callbacks */
 extern PowerHookEntry *data_022ab8f8; /* post-sleep callbacks */
 
 void func_0210eb70(void);
-BOOL func_0211e3d8(void);
+BOOL Cartridge_HeaderStillMatches(void);
 int PM_GetBackLight(int *topBackLight, int *bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);
@@ -53,7 +53,7 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern)
         }
     }
     if (trigger & PM_TRIGGER_CARTRIDGE) {
-        if (!func_0211e3d8()) {
+        if (!Cartridge_HeaderStillMatches()) {
             trigger &= ~PM_TRIGGER_CARTRIDGE;
         }
     }
