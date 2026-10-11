@@ -25,7 +25,9 @@ typedef struct RomHeader {
     RomRegion arm9Overlays;        /* ARM9 overlay table */
     RomRegion arm7Overlays;        /* ARM7 overlay table */
     u32 cardControl;               /* ROMCTRL setting for normal card reads */
-    u8 pad_64[0xfc];
+    u8 pad_64[0x1c];
+    u32 romSize;                   /* 0x80: used size of the cartridge image */
+    u8 pad_84[0xdc];
 } RomHeader;
 
 /* Copy of the cartridge header in main RAM, 0x160 bytes. */

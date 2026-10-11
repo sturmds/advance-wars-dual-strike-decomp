@@ -61,9 +61,9 @@ BOOL DownloadPlay_OfferChildProgram(const DlPlayGameSource *registry, const void
     data_022aced4->files[fileId].gameInfo.unk_4b3 = gMbGameSequence++;
     data_022aced4->files[fileId].childFlags = 1;
     data_022aced4->files[fileId].source = buffer;
-    data_022aced4->files[fileId].cacheList = (u32 *)((u8 *)buffer + DLPLAY_SOURCE_KEPT_LIST_AT);
-    data_022aced4->files[fileId].cardMapping = (u32 *)((u8 *)buffer + DLPLAY_SOURCE_ROM_OFFSETS_AT);
-    if (data_022aced4->files[fileId].cacheList[DLPLAY_KEPT_LAST_STATE_WORD] != 0 && !func_0211dd18()) {
+    data_022aced4->files[fileId].cacheList = (DlPlayKeptChunkSet *)((u8 *)buffer + DLPLAY_SOURCE_KEPT_LIST_AT);
+    data_022aced4->files[fileId].cardMapping = (DlPlayProgramRomOffsets *)((u8 *)buffer + DLPLAY_SOURCE_ROM_OFFSETS_AT);
+    if (data_022aced4->files[fileId].cacheList->list[3].state != 0 && !func_0211dd18()) {
         func_0211dd04(data_022aced4->currentTask);
         func_0211dd34(data_022aced4->taskThreadStack, DLPLAY_WORKER_STACK_BYTES);
     }

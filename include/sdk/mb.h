@@ -182,6 +182,12 @@ typedef struct DlPlayLiveCodePatch {
 #define DLPLAY_PROTECTED_ROM_START 0x4000
 #define DLPLAY_PROTECTED_ROM_END 0x8000
 
+/* Sizes DownloadPlay_LoadChildProgram uses when it splits the buffer. */
+#define DLPLAY_SIGNATURE_BYTES 0x88
+#define DLPLAY_ASSUMED_CART_BYTES 0x1000000      /* when the header gives no ROM size */
+#define DLPLAY_MAINCPU_SPLIT_BYTES 0x4400           /* ARM9 code goes in three parts when both programs do not fit */
+#define DLPLAY_RETURN_OPCODE 0xe12fff1e            /* ARM "bx lr" */
+
 #define DLPLAY_OFFER_SLOTS_OLD 16
 
 /* One file (a child program) the parent offers, 0x5d4 bytes. */
@@ -196,14 +202,13 @@ typedef struct DlPlayOfferedFileOld {
     u8 pad_5c8[2];
     u8 active;                         /* 0x5ca */
     u8 pad_5cb;
-    u32 *cacheList;                    /* 0x5cc */
-    u32 *cardMapping;                  /* 0x5d0 */
+    DlPlayKeptChunkSet *cacheList;            /* 0x5cc */
+    DlPlayProgramRomOffsets *cardMapping;        /* 0x5d0 */
 } DlPlayOfferedFileOld;
 
 /* Offsets into the buffer given with a file. */
 #define DLPLAY_SOURCE_KEPT_LIST_AT 0x1e8
 #define DLPLAY_SOURCE_ROM_OFFSETS_AT 0x258
-#define DLPLAY_KEPT_LAST_STATE_WORD 0x1b    /* word in the cache list: state of its last entry */
 
 #define DLPLAY_WORKER_STACK_BYTES 0x800
 

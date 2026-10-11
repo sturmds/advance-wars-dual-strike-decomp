@@ -8,7 +8,7 @@ extern u8 data_022a7e88[];
 int Wireless_PickChannel(void);
 void func_0211c0d8(void);
 u32 func_0211b38c(FSFile *file);
-BOOL func_0211af20(FSFile *file, void *dest, u32 size);
+BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *dest, u32 size);
 BOOL DownloadPlay_OfferChildProgram(void *dest, void *src);
 
 /* Needed to match: the original builds this test as a 0/1 value first, as an
@@ -32,7 +32,7 @@ BOOL func_020fc89c(void)
         if (FS_OpenFile(&file, data_0216a5b8)) {
             size = func_0211b38c(&file);
             if (size != 0 && size <= 0x100000) {
-                if (func_0211af20(&file, data_0218ff58, size)) {
+                if (DownloadPlay_LoadChildProgram(&file, data_0218ff58, size)) {
                     if (DownloadPlay_OfferChildProgram(data_022a7e88, data_0218ff58)) {
                         if (IsFile(&file) != FALSE) {
                             FS_CloseFile(&file);

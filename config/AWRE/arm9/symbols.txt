@@ -5738,7 +5738,7 @@ func_0211a988 kind:function(arm,size=0x1b8) addr:0x0211a988
 MbFile_MakeDownloadInfo kind:function(arm,size=0x84) addr:0x0211ab40
 DownloadPlay_OfferChildProgram kind:function(arm,size=0x2c8) addr:0x0211abc4
 MbSegment_CopySecureArea kind:function(arm,size=0x94) addr:0x0211ae8c
-func_0211af20 kind:function(arm,size=0x46c) addr:0x0211af20
+DownloadPlay_LoadChildProgram kind:function(arm,size=0x46c) addr:0x0211af20
 func_0211b38c kind:function(arm,size=0x84) addr:0x0211b38c
 func_0211b410 kind:function(arm,size=0x48) addr:0x0211b410
 func_0211b458 kind:function(arm,size=0x3c) addr:0x0211b458
@@ -8412,8 +8412,8 @@ gOverlayDigestKey kind:data(any) addr:0x0216d978
 gOverlayDigestKeySize kind:data(any) addr:0x0216d97c
 gSha1StageAdditives kind:data(any) addr:0x0216d980
 data_0216d990 kind:data(any) addr:0x0216d990
-data_0216d994 kind:data(any) addr:0x0216d994
-data_0216d998 kind:data(any) addr:0x0216d998
+gMbArm9CopyRegions kind:data(any) addr:0x0216d994
+gMbRomArchiveName kind:data(any) addr:0x0216d998
 data_0216d99c kind:data(any) addr:0x0216d99c
 data_0216d9a0 kind:data(any) addr:0x0216d9a0
 data_0216d9b4 kind:data(any) addr:0x0216d9b4
