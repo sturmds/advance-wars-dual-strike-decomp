@@ -3723,7 +3723,11 @@ src/game/main/func_0202d248.c:
     complete
     .text       start:0x0202d248 end:0x0202d254
 
-src/game/main/func_0202d694.c:
+src/game/main/menus/map_select_is_map_pickable.c:
+    complete
+    .text       start:0x0202d564 end:0x0202d694
+
+src/game/main/map/map_needs_unlock_flag.c:
     complete
     .text       start:0x0202d694 end:0x0202d6a8
 
