@@ -15,7 +15,7 @@ void func_0210c8e8(void);
 void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
 void DC_FlushRange(void *start, u32 size);
-void func_0210c874(const void *src, u32 offset, u32 size);
+void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 
 extern char data_ov002_023600e4[];
 extern const BattleGfxFile *data_ov002_02369830;
@@ -228,8 +228,8 @@ void func_ov002_02352754(void)
         }
         DC_FlushRange(menu->battle.unk_410, sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
         isFirst = palSide == 0 ? TRUE : FALSE;
-        func_0210c874(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
-        func_0210c874(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
+        GX_LoadTexPltt(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
+        GX_LoadTexPltt(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
     }
     File_ReadTo((void *)0x06890100, data_ov002_023604a4);
     File_ReadTo((void *)0x06890100, data_ov002_023604a4);
