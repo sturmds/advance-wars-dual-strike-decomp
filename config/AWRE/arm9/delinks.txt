@@ -428,6 +428,10 @@ src/game/main/graphics/anim_get_pulse_frame.c:
     complete
     .text       start:0x020043c0 end:0x02004420
 
+src/game/main/rng/rng_roll_tier.c:
+    complete
+    .text       start:0x02004420 end:0x02004470
+
 src/game/main/rng/rng_next.c:
     complete
     .text       start:0x02004470 end:0x02004498
