@@ -9,7 +9,7 @@ int vsnprintf(char *buf, u32 size, const char *format, va_list args)
     sink.buffer = buf;
     sink.capacity = size;
     sink.length = 0;
-    written = func_02122508(__StringWrite, &sink, format, args);
+    written = __pformatter(__StringWrite, &sink, format, args);
     if (buf == NULL) {
         return written;
     }

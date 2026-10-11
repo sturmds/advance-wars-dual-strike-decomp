@@ -155,7 +155,7 @@ void __rounddec(Decimal *dec, int count);
 /* Returns the number of trailing zero bits of value, 32 for 0. */
 int __cnt_trail_zeros(u32 value);
 
-int func_02122508(FormatWriteProc write, void *sink, const char *format, va_list args);
+int __pformatter(FormatWriteProc write, void *sink, const char *format, va_list args);
 int __StringWrite(void *context, const char *src, u32 count);
 int vsnprintf(char *buf, u32 size, const char *format, va_list args);
 int snprintf(char *buf, u32 size, const char *format, ...);
