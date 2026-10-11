@@ -357,6 +357,8 @@ int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
 int WMi_SendCommand(int apiid, u16 argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);
+u32 WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
+u32 WM_GetMPSendBufferSize(void);
 BOOL Wireless_ParentSettingsValid(WMParentParam *param);
 
 #endif
