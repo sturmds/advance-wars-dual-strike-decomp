@@ -11055,6 +11055,10 @@ src/game/main/map/rect_is_on_screen.c:
     complete
     .text       start:0x020d4470 end:0x020d44f0
 
+src/game/main/units/move_path_draw.c:
+    complete
+    .text       start:0x020d4628 end:0x020d4674
+
 src/game/main/units/move_path_dir_to_next.c:
     complete
     .text       start:0x020d4674 end:0x020d46e0
