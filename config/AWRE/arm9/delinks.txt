@@ -20064,6 +20064,10 @@ src/game/main/sound/sound_arc_get_seq_arc.c:
     complete
     .text       start:0x021076b0 end:0x02107720
 
+src/game/main/sound/sound_arc_get_seq.c:
+    complete
+    .text       start:0x02107720 end:0x021077cc
+
 src/game/main/sound/nns_snd_arc_load_bank.c:
     complete
     .text       start:0x021077cc end:0x02107804
