@@ -22726,6 +22726,22 @@ src/sdk/msl/__copy_mem.c:
     complete
     .text       start:0x021223c0 end:0x021223e0
 
+src/sdk/msl/sprintf.c:
+    complete
+    .text       start:0x021223e0 end:0x02122414
+
+src/sdk/msl/snprintf.c:
+    complete
+    .text       start:0x02122414 end:0x02122444
+
+src/sdk/msl/vsnprintf.c:
+    complete
+    .text       start:0x02122444 end:0x021224b8
+
+src/sdk/msl/__string_write.c:
+    complete
+    .text       start:0x021224b8 end:0x02122508
+
 src/sdk/msl/round_decimal.c:
     complete
     .text       start:0x0212339c end:0x021234cc

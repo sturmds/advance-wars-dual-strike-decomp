@@ -12,7 +12,7 @@ void *Mem_Alloc(u32 size);
 void Mem_Free(void *ptr);
 void File_UnpackTo(void *dest, const char *fileName);
 void FS_ChangeDir(const char *dir);
-int func_021223e0(char *dest, const char *format, ...);
+int sprintf(char *dest, const char *format, ...);
 void CombatMap_DrawPreviewBlock(const MapData *map, const u8 *codeTerrain, u16 *dst, s16 x, s16 y, u16 width, u16 height);
 
 /* OBJ tile where the preview of combat map i starts; each preview takes
@@ -33,7 +33,7 @@ void CombatSetup_LoadMapPreviews(void)
     File_UnpackTo(codeTerrain, data_021612f8);
     FS_ChangeDir(data_02161310);
     for (i = 0; i < 4; i++) {
-        func_021223e0(path, data_02161318, data_02160adc[i]);
+        sprintf(path, data_02161318, data_02160adc[i]);
         File_UnpackTo(map, path);
         CombatMap_DrawPreviewBlock(map, codeTerrain, (u16 *)(data_027c0280->objVram + PREVIEW_TILE(i, 0) * 32),
                       (map->width >> 1) - 16, (map->height >> 1) - 16, 16, 16);

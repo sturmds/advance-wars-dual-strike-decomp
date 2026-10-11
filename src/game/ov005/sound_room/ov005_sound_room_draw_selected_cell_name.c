@@ -5,7 +5,7 @@
 
 const void *Text_Get(u32 textId);
 void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
-int func_02122414(char *buf, int size, const char *format, ...); /* snprintf */
+int snprintf(char *buf, int size, const char *format, ...); /* snprintf */
 
 extern const char data_ov005_0236b358[]; /* "%s" */
 
@@ -31,7 +31,7 @@ void Ov005SoundRoom_DrawSelectedCellName(Unk_ov005_0236bbac *work)
         Unk_027c0280 *saved0280;
         Unk_02080440 *saved027c;
 
-        func_02122414(text, 45, data_ov005_0236b358,
+        snprintf(text, 45, data_ov005_0236b358,
                       Text_Get(cells[work->displayedRow + work->displayedPage * OV005_CELLS_PER_PAGE].name.id));
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);

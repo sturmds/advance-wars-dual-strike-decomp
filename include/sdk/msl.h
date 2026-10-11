@@ -1,6 +1,7 @@
 #ifndef SDK_MSL_H
 #define SDK_MSL_H
 
+#include "stdarg.h"
 #include "types.h"
 
 /*
@@ -25,5 +26,20 @@ typedef FpValue (*FpTrapHandler)(FpValue x, FpValue y, u32 op);
 void *memchr(const void *buf, int ch, u32 count);
 /* Copies count bytes from the start; returns dest. */
 void *__copy_mem(void *dest, const void *src, u32 count);
+
+/* Destination of vsnprintf: the characters that fit in capacity are stored, the rest are dropped. */
+typedef struct StringSink {
+    char *buffer;
+    u32 capacity;
+    u32 length;
+} StringSink;
+
+typedef int (*FormatWriteProc)(void *sink, const char *src, u32 count);
+
+int func_02122508(FormatWriteProc write, void *sink, const char *format, va_list args);
+int __StringWrite(void *context, const char *src, u32 count);
+int vsnprintf(char *buf, u32 size, const char *format, va_list args);
+int snprintf(char *buf, u32 size, const char *format, ...);
+int sprintf(char *buf, const char *format, ...);
 
 #endif
