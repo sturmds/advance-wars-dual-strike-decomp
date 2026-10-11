@@ -19099,6 +19099,16 @@ src/game/main/func_020ff994.c:
     complete
     .text       start:0x020ff994 end:0x020ff9fc
 
+src/game/main/func_020ff9fc.c:
+    complete
+    .text       start:0x020ff9fc end:0x020ffa28
+
+src/game/main/func_020ffa28.c:
+    .text       start:0x020ffa28 end:0x020ffa3c
+
+src/game/main/func_020ffa3c.c:
+    .text       start:0x020ffa3c end:0x020ffa50
+
 src/game/main/func_020ffa50.c:
     complete
     .text       start:0x020ffa50 end:0x020ffa64
