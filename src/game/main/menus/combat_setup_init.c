@@ -165,20 +165,20 @@ void CombatSetup_Init(void)
     EventQueue_Reset();
 
     for (i = 1; i < 5; i++) {
-        MENU->combat.rows[i - 1].unk_07 = 0;
-        MENU->combat.rows[i - 1].unk_08 = 0;
+        MENU->combat.rows[i - 1].memberCount = 0;
+        MENU->combat.rows[i - 1].locked = 0;
     }
     for (i = 0; i < 8; i++) {
         MENU->combat.players[i].row = 0;
-        MENU->combat.players[i].unk_1 = 0;
+        MENU->combat.players[i].ready = 0;
     }
-    /* Deal the link players out to the four rows in turn. A row's players
-     * are stored from CombatRowEntry.player on, unk_07 counts them. */
+    /* Deal the link players out to the four rows in turn. A row keeps
+     * its players in members, memberCount of them. */
     team = 1;
     for (i = 0; i < 8; i++) {
         if (data_0229ff30.playerMask & (1 << i)) {
-            (&MENU->combat.rows[team - 1].player)[MENU->combat.rows[team - 1].unk_07] = i;
-            MENU->combat.rows[team - 1].unk_07++;
+            MENU->combat.rows[team - 1].members[MENU->combat.rows[team - 1].memberCount] = i;
+            MENU->combat.rows[team - 1].memberCount++;
             MENU->combat.players[i].row = team;
             team++;
             if (team == 5) {

@@ -31,7 +31,7 @@ void CombatSetup_ShopOnKeys(MenuButton *button)
     id = button->id;
     row = MENU->combat.players[data_0229fb30.unk_45a].row;
     next = id;
-    if (MENU->combat.rows[row - 1].unk_08 == 0) {
+    if (MENU->combat.rows[row - 1].locked == 0) {
         keys = gKeypad->repeat;
         if (keys & PAD_KEY_UP) {
             next = id - 1;

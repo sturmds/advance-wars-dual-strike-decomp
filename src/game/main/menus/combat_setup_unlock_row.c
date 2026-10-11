@@ -15,7 +15,7 @@ extern const MenuButtonTemplate data_02160d90;
 #define MENU ((MenuState *)&gMenuState)
 
 /* Link message 17: the player's row is open for changes again. Clears the
- * row's unk_08 (set by CombatSetup_LockRow), tells the row's script, and for the
+ * row's locked flag (set by CombatSetup_LockRow), tells the row's script, and for the
  * local player brings back the Ready button (id 254) and the row's two
  * buttons 20 and 21, placed in steps of 64 across and 16 up. */
 void CombatSetup_UnlockRow(int player)
@@ -23,7 +23,7 @@ void CombatSetup_UnlockRow(int player)
     int row = MENU->combat.players[player].row;
 
     Sound_PlaySe(0x10009);
-    MENU->combat.rows[row - 1].unk_08 = 0;
+    MENU->combat.rows[row - 1].locked = 0;
     RowLockMark_Remove(row);
     if (player != data_0229fb30.unk_45a) {
         return;

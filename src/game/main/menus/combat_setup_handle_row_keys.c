@@ -22,7 +22,7 @@ extern MenuState gMenuState;
  * (10); it is also sent while ready. */
 void CombatSetup_HandleRowKeys(void)
 {
-    if (MENU->combat.players[data_0229fb30.unk_45a].unk_1 == 0) {
+    if (MENU->combat.players[data_0229fb30.unk_45a].ready == 0) {
         if (gKeypad->repeat & PAD_KEY_LEFT) {
             func_02085d88();
         }

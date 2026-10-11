@@ -44,6 +44,6 @@ void CombatSetup_ClearRowScreens(void)
     Screen_SetCurrentGfx(savedGfx);
 
     for (i = 1; i < 5; i++) {
-        gMenuState.combat.rows[i - 1].unk_08 = 0;
+        gMenuState.combat.rows[i - 1].locked = 0;
     }
 }

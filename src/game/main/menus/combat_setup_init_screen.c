@@ -28,7 +28,7 @@ extern const MenuButtonTemplate data_02160e08;
 
 /* Sets up the Combat setup screen for the local player's row (link play).
  * Main screen: the saved layer 1 map, the row's palettes and the small CO
- * picture of each row with unk_07 set (palette 18 + row). Sub screen: the
+ * picture of each row with memberCount set (palette 18 + row). Sub screen: the
  * saved layer 2 map, scrolled by -16, and copies of those pictures and
  * palettes. Then it resets every row's choice to button 22, draws the texts,
  * adds button 0xfd without touch, and prints help text 0x44000013. */
@@ -51,7 +51,7 @@ void CombatSetup_InitScreen(void)
     Palette_Load(MENU->combat.rowPalettes[row - 1], 0x2c0, 0x60);
     Palette_Load(MENU->combat.rowObjPalettes[row - 1], 0x320, 32);
     for (i = 0; i < 4; i++) {
-        if (MENU->combat.rows[i].unk_07 != 0) {
+        if (MENU->combat.rows[i].memberCount != 0) {
             func_0200208c(data_02160ae0[LINK_ROWS[i].unk_19], data_027c0280->objVram + (0x490 + i * 12) * 32, i + 18, i + 1);
         }
     }

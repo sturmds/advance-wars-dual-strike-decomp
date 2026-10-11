@@ -37,7 +37,7 @@ extern u8 data_027c0040;
  * (link play). Main screen: the row's picture and CO, rows of markers from
  * data_02160afc for the row's kind (buttonId - 22), a sprite picked by kind
  * and the CO's nation (1 or other), four unit icons, then one icon per cell
- * of the row, four to a line. Sub screen: a sprite for each row with unk_07
+ * of the row, four to a line. Sub screen: a sprite for each row with memberCount
  * set, and five LinkMenu_DrawSetting entries.
  * Not matched (75%): the original keeps the first loop's counter and the
  * cell loop's icon index in registers and spills constants instead. */
@@ -149,7 +149,7 @@ void func_0208395c(void)
     Screen_SetCurrent(data_027c0288.unk_04);
     CombatSetup_DrawRowPlayerIcons(48, 48);
     for (i = 0; i < 4; i++) {
-        if (MENU->combat.rows[i].unk_07 != 0) {
+        if (MENU->combat.rows[i].memberCount != 0) {
             func_02001f50(80, (64 + i * 32) & 0xff, (i + 4) << 12, 300 + i * 12, 4);
         }
     }

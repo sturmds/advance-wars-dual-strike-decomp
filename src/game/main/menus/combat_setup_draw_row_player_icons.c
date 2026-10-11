@@ -21,10 +21,10 @@ extern u8 data_027c0040;
 
 /* Combat setup sub screen (link play): queues one icon per player in each
  * team row, spread evenly across the row. The local player's icon, while
- * the player is not ready (players[].unk_1 == 0), uses OBJ affine matrix 30
+ * the player is not ready (players[].ready == 0), uses OBJ affine matrix 30
  * at double size and pulses with the frame count; ready players are drawn
  * semi-transparent.
- * The first unk_07 bytes of a row hold its players. */
+ * The first memberCount bytes of a row hold its players. */
 void CombatSetup_DrawRowPlayerIcons(int x, int y)
 {
     int scale;
@@ -54,21 +54,21 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y)
 
     row = MENU->combat.rows;
     for (i = 0; i < 4; i++, row++) {
-        if (row->unk_07 == 0) {
+        if (row->memberCount == 0) {
             continue;
         }
-        step = HwDiv32((24 - row->unk_07 * 2) * 8, row->unk_07 + 1);
+        step = HwDiv32((24 - row->memberCount * 2) * 8, row->memberCount + 1);
         if (step & 1) {
             step++;
         }
-        if (row->unk_07 & 1) {
-            px = 88 - (row->unk_07 >> 1) * (step + 16);
+        if (row->memberCount & 1) {
+            px = 88 - (row->memberCount >> 1) * (step + 16);
         } else {
-            px = 80 - ((row->unk_07 >> 1) - 1) * (step + 16) - (step >> 1);
+            px = 80 - ((row->memberCount >> 1) - 1) * (step + 16) - (step >> 1);
         }
-        for (j = 0; j < row->unk_07; j++) {
+        for (j = 0; j < row->memberCount; j++) {
             player = (&row->player)[j];
-            if (data_0229fb30.unk_45a != player || gMenuState.combat.players[player].unk_1 != 0) {
+            if (data_0229fb30.unk_45a != player || gMenuState.combat.players[player].ready != 0) {
                 pal = 0;
                 sx = (x + px) & 0x1ff;
                 sy = (y + 9 + i * 32) & 0xff;
@@ -78,7 +78,7 @@ void CombatSetup_DrawRowPlayerIcons(int x, int y)
                 sy = (u8)(y + 1 + i * 32) | 0x300;
                 pal = 1;
             }
-            if (gMenuState.combat.players[player].unk_1 != 0) {
+            if (gMenuState.combat.players[player].ready != 0) {
                 sy |= 0x400; /* semi-transparent */
             }
             Sprite_Queue(2, sx, sy, &data_027c0040, pal << 12, player * 4 + 240);

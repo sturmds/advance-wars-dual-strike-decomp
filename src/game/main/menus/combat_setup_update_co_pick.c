@@ -56,7 +56,7 @@ void CombatSetup_UpdateCoPick(Task *task)
                     CombatSetup_LockRow(i);
                     break;
                 case 17:
-                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].unk_08 != 0) {
+                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].locked != 0) {
                         CombatSetup_UnlockRow(i);
                     } else {
                         leave = 1;
@@ -80,7 +80,7 @@ void CombatSetup_UpdateCoPick(Task *task)
         return;
     }
     for (i = 1; i < 5; i++) {
-        if (MENU->combat.rows[i - 1].unk_07 != 0 && MENU->combat.rows[i - 1].unk_08 == 0) {
+        if (MENU->combat.rows[i - 1].memberCount != 0 && MENU->combat.rows[i - 1].locked == 0) {
             allLocked = 0;
             break;
         }

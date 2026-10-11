@@ -12,7 +12,7 @@ extern MenuState gMenuState;
  * followed by 1) that has fewer than 7 members. */
 void CombatSetup_MoveToNextRow(int player)
 {
-    u8 ready = MENU->combat.players[player].unk_1;
+    u8 ready = MENU->combat.players[player].ready;
     u8 row = MENU->combat.players[player].row;
 
     if (ready != 0) {
@@ -24,6 +24,6 @@ void CombatSetup_MoveToNextRow(int player)
         } else {
             row++;
         }
-    } while (MENU->combat.rows[row - 1].unk_07 == 7);
+    } while (MENU->combat.rows[row - 1].memberCount == 7);
     func_02085c2c(player, row);
 }

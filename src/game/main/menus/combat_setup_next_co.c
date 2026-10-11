@@ -25,7 +25,7 @@ void CombatSetup_NextCo(int player)
     row = MENU->combat.players[player].row;
     index = row - 1;
 
-    if (MENU->combat.rows[index].unk_08 != 0) {
+    if (MENU->combat.rows[index].locked != 0) {
         return;
     }
     Sound_PlaySe(0x10002);

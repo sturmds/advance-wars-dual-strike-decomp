@@ -16,11 +16,11 @@ extern const MenuButtonTemplate data_02160de0;
  * they are player 0, the Unready button (252) is added. */
 void CombatSetup_SetPlayerReady(u8 player)
 {
-    if (MENU->combat.players[player].unk_1 != 0) {
+    if (MENU->combat.players[player].ready != 0) {
         return;
     }
     Sound_PlaySe(0x10006);
-    MENU->combat.players[player].unk_1 = 1;
+    MENU->combat.players[player].ready = 1;
     if (player != data_0229fb30.unk_45a) {
         return;
     }

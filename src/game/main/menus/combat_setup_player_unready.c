@@ -17,7 +17,7 @@ extern const MenuButtonTemplate data_02160d40;
 void CombatSetup_SetPlayerUnready(u8 player)
 {
     Sound_PlaySe(0x10009);
-    MENU->combat.players[player].unk_1 = 0;
+    MENU->combat.players[player].ready = 0;
     if (player != data_0229fb30.unk_45a) {
         return;
     }

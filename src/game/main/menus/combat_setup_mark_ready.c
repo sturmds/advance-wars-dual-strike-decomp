@@ -18,18 +18,18 @@ extern MenuState gMenuState;
 #define BUTTON_READY 254
 
 /* Link player `player` marks their Combat row ready, once the row has at
- * least rows[].unk_07 units. For the local player the ready button and the
+ * least rows[].memberCount units. For the local player the ready button and the
  * shop buttons go away. */
 void CombatSetup_MarkReady(int player)
 {
     int row;
 
     row = MENU->combat.players[player].row;
-    if (LINK_ROWS[row - 1].spawnCount < MENU->combat.rows[row - 1].unk_07) {
+    if (LINK_ROWS[row - 1].spawnCount < MENU->combat.rows[row - 1].memberCount) {
         return;
     }
     Sound_PlaySe(0x10006);
-    MENU->combat.rows[row - 1].unk_08 = 1;
+    MENU->combat.rows[row - 1].locked = 1;
     RowLockMark_Start(row);
     if (player != data_0229fb30.unk_45a) {
         return;

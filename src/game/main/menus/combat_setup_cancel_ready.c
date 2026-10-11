@@ -23,7 +23,7 @@ extern u8 data_02160bd8[];
 
 /* Link player `player` takes back the ready mark of their Combat row
  * (CombatSetup_MarkReady sets it). For the local player the shop buttons come back,
- * and the ready button too when the row has at least rows[].unk_07 units. */
+ * and the ready button too when the row has at least rows[].memberCount units. */
 void CombatSetup_CancelReady(int player)
 {
     int row;
@@ -33,7 +33,7 @@ void CombatSetup_CancelReady(int player)
     y = 24;
     row = MENU->combat.players[player].row;
     Sound_PlaySe(0x10009);
-    MENU->combat.rows[row - 1].unk_08 = 0;
+    MENU->combat.rows[row - 1].locked = 0;
     RowLockMark_Remove(row);
     if (player != data_0229fb30.unk_45a) {
         return;
@@ -43,7 +43,7 @@ void CombatSetup_CancelReady(int player)
         y += 16;
     }
     MenuButton_EnableTouch(253);
-    if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].unk_07) {
+    if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].memberCount) {
         MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
     }
     MenuButton_Add(0, 0, data_02160bd8, 252);

@@ -34,7 +34,7 @@ void CombatSetup_BuyUnit(int player, int button)
     int row;
 
     row = MENU->combat.players[player].row;
-    if (MENU->combat.rows[row - 1].unk_08 != 0) {
+    if (MENU->combat.rows[row - 1].locked != 0) {
         return;
     }
     if (LINK_ROWS[row - 1].spawnCount == ROW_MAX_UNITS) {
@@ -76,8 +76,8 @@ void CombatSetup_BuyUnit(int player, int button)
         return;
     }
     CombatSetup_DrawShop();
-    /* The row just reached rows[].unk_07 units: it can be marked ready now. */
-    if (player == data_0229fb30.unk_45a && LINK_ROWS[row - 1].spawnCount == MENU->combat.rows[row - 1].unk_07) {
+    /* The row just reached rows[].memberCount units: it can be marked ready now. */
+    if (player == data_0229fb30.unk_45a && LINK_ROWS[row - 1].spawnCount == MENU->combat.rows[row - 1].memberCount) {
         MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
     }
     Sound_PlaySe(0x10006);

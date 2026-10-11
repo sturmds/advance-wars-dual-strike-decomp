@@ -10,7 +10,7 @@ void Gfx_RequestLayerCopy(int layer);
 extern MenuState gMenuState;
 
 /* Removes the menu buttons, clears layer 2 of the main screen, turns its
- * blending off and clears players[].unk_1 of all eight link players. */
+ * blending off and clears players[].ready of all eight link players. */
 void CombatSetup_ResetMainScreen(void)
 {
     Unk_027c0280 *savedGfx;
@@ -34,6 +34,6 @@ void CombatSetup_ResetMainScreen(void)
     Screen_SetCurrentGfx(savedGfx);
 
     for (i = 0; i < 8; i++) {
-        gMenuState.combat.players[i].unk_1 = 0;
+        gMenuState.combat.players[i].ready = 0;
     }
 }

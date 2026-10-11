@@ -15,7 +15,7 @@ extern MenuState gMenuState;
  * already on that row. */
 void CombatSetup_PressRowButton(MenuButton *button)
 {
-    if (MENU->combat.players[data_0229fb30.unk_45a].unk_1 != 0) {
+    if (MENU->combat.players[data_0229fb30.unk_45a].ready != 0) {
         return;
     }
     if ((u8)(button->id - 15) == MENU->combat.players[data_0229fb30.unk_45a].row) {

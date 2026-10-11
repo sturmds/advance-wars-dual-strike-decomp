@@ -9,7 +9,7 @@ void LinkMenu_DrawSetting(int x, int y, int entry, int affine);
 extern MenuState gMenuState;
 
 /* Queues the sprites of the Combat setup row screen (link play). Main screen:
- * one picture per row with unk_07 set, on a diagonal from (32, 144) stepping
+ * one picture per row with memberCount set, on a diagonal from (32, 144) stepping
  * 64 right and 16 up, palette row + 2. Sub screen: the players on each row
  * and the five link menu settings. */
 void CombatSetup_QueueRowSprites(void)
@@ -25,7 +25,7 @@ void CombatSetup_QueueRowSprites(void)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     for (i = 0; i < 4; i++) {
-        if (gMenuState.combat.rows[i].unk_07 != 0) {
+        if (gMenuState.combat.rows[i].memberCount != 0) {
             func_02002244((32 + i * 64) & 0x1ff, (144 - i * 16) & 0xff, (i + 2) << 12, 0x400 + i * 36, 1);
         }
     }

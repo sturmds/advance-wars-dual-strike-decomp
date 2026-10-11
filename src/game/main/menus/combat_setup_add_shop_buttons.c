@@ -21,7 +21,7 @@ extern u8 data_02160e58[];
 
 /* Adds the buttons of the shop to the screen of the local player, when they
  * own their row: the four unit buttons, and the ready button when the row
- * has at least rows[].unk_07 units. */
+ * has at least rows[].memberCount units. */
 void func_020842e0(void)
 {
     int row;
@@ -36,7 +36,7 @@ void func_020842e0(void)
             y += 16;
         }
         MenuButton_EnableTouch(253);
-        if (MENU->combat.rows[row - 1].unk_07 <= LINK_ROWS[row - 1].spawnCount) {
+        if (MENU->combat.rows[row - 1].memberCount <= LINK_ROWS[row - 1].spawnCount) {
             MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
         }
         MenuButton_Add(0, 0, data_02160bd8, 252);

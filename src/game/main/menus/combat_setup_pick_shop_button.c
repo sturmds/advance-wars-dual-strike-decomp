@@ -18,7 +18,7 @@ void CombatSetup_PickShopButton(int player, int button)
     int row;
 
     row = MENU->combat.players[player].row;
-    if (MENU->combat.rows[row - 1].unk_08 != 0) {
+    if (MENU->combat.rows[row - 1].locked != 0) {
         return;
     }
     Sound_PlaySe(0x10002);

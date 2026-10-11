@@ -31,7 +31,7 @@ extern MenuState gMenuState;
  * 11-15 go to other handlers. Then, once every connected player is ready
  * and they fill at least two team rows, the screen ends; otherwise
  * CombatSetup_HandleRowKeys handles the local player's keys.
- * MenuState.combat.players[].unk_1 holds the ready flag. */
+ * MenuState.combat.players[].ready holds the ready flag. */
 void CombatSetup_UpdateLink(Task *task)
 {
     u8 *msg;
@@ -57,7 +57,7 @@ void CombatSetup_UpdateLink(Task *task)
                         CombatSetup_SetPlayerReady(i);
                         break;
                     case 10:
-                        if (MENU->combat.players[i].unk_1 != 0) {
+                        if (MENU->combat.players[i].ready != 0) {
                             CombatSetup_SetPlayerUnready(i);
                         } else if (i == 0) {
                             cancel = 1;
@@ -92,7 +92,7 @@ void CombatSetup_UpdateLink(Task *task)
     }
     for (i = 0; i < 8; i++) {
         if (data_0229ff30.playerMask & (1 << i)) {
-            if (MENU->combat.players[i].unk_1 == 0) {
+            if (MENU->combat.players[i].ready == 0) {
                 allReady = 0;
                 break;
             }

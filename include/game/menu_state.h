@@ -228,10 +228,10 @@ typedef struct CombatRowEntry {
             u8 player;                 /* the data_0229fb30.unk_45a this row belongs to */
             u8 pad_01[6];
         };
-        u8 members[7];                 /* link players on the row, the first one picks for it; unk_07 of them are used */
+        u8 members[7];                 /* link players on the row, the first one picks for it; memberCount of them are used */
     };
-    u8 unk_07;                         /* nonzero: the row gets a sprite on the sub screen */
-    u8 unk_08;
+    u8 memberCount;                    /* players on the row; it also needs that many units before it can be marked ready; nonzero: the row gets a sprite on the sub screen */
+    u8 locked;                         /* 1 once the row is marked ready (CombatSetup_MarkReady, CombatSetup_LockRow): no more buying or CO changes */
     u8 buttonId;                       /* MenuButton id picked, 22-25; minus 22 picks the row's unit counts and sprite */
 } CombatRowEntry;
 
@@ -246,7 +246,7 @@ typedef struct CombatMenuState {
     CombatRowEntry rows[4];
     struct {
         u8 row;                        /* 1-4, index + 1 into rows */
-        u8 unk_1;                      /* cleared by CombatSetup_Init */
+        u8 ready;                      /* 1 while the player has marked ready (CombatSetup_PlayerReady) */
     } players[8];                      /* by link player, bits of Unk_0229ff30.playerMask */
 } CombatMenuState;
 

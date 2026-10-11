@@ -27,7 +27,7 @@ void CombatSetup_SellLastUnit(int player)
     u8 row;
 
     row = MENU->combat.players[player].row;
-    if (MENU->combat.rows[row - 1].unk_08 != 0) {
+    if (MENU->combat.rows[row - 1].locked != 0) {
         return;
     }
     if (ROW_SPAWN_COUNT(row) == 0) {
@@ -52,8 +52,8 @@ void CombatSetup_SellLastUnit(int player)
         return;
     }
     CombatSetup_DrawShop();
-    /* The row now has fewer than rows[].unk_07 units: it can no longer be marked ready. */
-    if (player == data_0229fb30.unk_45a && ROW_SPAWN_COUNT(row) == MENU->combat.rows[row - 1].unk_07 - 1) {
+    /* The row now has fewer than rows[].memberCount units: it can no longer be marked ready. */
+    if (player == data_0229fb30.unk_45a && ROW_SPAWN_COUNT(row) == MENU->combat.rows[row - 1].memberCount - 1) {
         MenuButton_Close(BUTTON_READY);
     }
     Sound_PlaySe(0x10009);

@@ -32,7 +32,7 @@ extern MenuState gMenuState;
  * the row ready, 21 takes the mark back (or leaves the screen when there is
  * none), 22 buys a unit, 23 sells the last one, 24 takes the mark back, sells,
  * or leaves when the row is empty, 25 goes to CombatSetup_PickShopButton. Once every row in
- * use (rows[].unk_07) is ready, the screen moves on (CombatSetup_FinishShop). Otherwise
+ * use (rows[].memberCount) is ready, the screen moves on (CombatSetup_FinishShop). Otherwise
  * B from the local row owner on a ready row sends message 24. */
 void CombatSetup_UpdateShop(Task *task)
 {
@@ -65,7 +65,7 @@ void CombatSetup_UpdateShop(Task *task)
                     CombatSetup_MarkReady(i);
                     break;
                 case 24:
-                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].unk_08 != 0) {
+                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].locked != 0) {
                         CombatSetup_CancelReady(i);
                     } else if (LINK_ROWS[MENU->combat.players[i].row - 1].spawnCount == 0) {
                         leave = 1;
@@ -74,7 +74,7 @@ void CombatSetup_UpdateShop(Task *task)
                     }
                     break;
                 case 21:
-                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].unk_08 == 0) {
+                    if (MENU->combat.rows[MENU->combat.players[i].row - 1].locked == 0) {
                         leave = 1;
                     } else {
                         CombatSetup_CancelReady(i);
@@ -95,7 +95,7 @@ void CombatSetup_UpdateShop(Task *task)
         return;
     }
     for (i = 1; i < 5; i++) {
-        if (MENU->combat.rows[i - 1].unk_07 != 0 && MENU->combat.rows[i - 1].unk_08 == 0) {
+        if (MENU->combat.rows[i - 1].memberCount != 0 && MENU->combat.rows[i - 1].locked == 0) {
             allReady = 0;
             break;
         }
@@ -112,7 +112,7 @@ void CombatSetup_UpdateShop(Task *task)
     if (!(gKeypad->pressed & PAD_BUTTON_B)) {
         return;
     }
-    if (MENU->combat.rows[MENU->combat.players[data_0229fb30.unk_45a].row - 1].unk_08 == 0) {
+    if (MENU->combat.rows[MENU->combat.players[data_0229fb30.unk_45a].row - 1].locked == 0) {
         return;
     }
     CombatSetup_SendCancel();

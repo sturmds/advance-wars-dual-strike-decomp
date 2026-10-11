@@ -19,7 +19,7 @@ extern MenuState gMenuState;
  * the message that unlocks the row (17). */
 void CombatSetup_HandleCoPickKeys(void)
 {
-    if (MENU->combat.rows[MENU->combat.players[data_0229fb30.unk_45a].row - 1].unk_08 == 0) {
+    if (MENU->combat.rows[MENU->combat.players[data_0229fb30.unk_45a].row - 1].locked == 0) {
         if (gKeypad->repeat & PAD_KEY_UP) {
             func_02085068();
         }

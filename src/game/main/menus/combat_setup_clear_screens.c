@@ -12,7 +12,7 @@ extern MenuState gMenuState;
 
 /* Leaves the Combat setup screen (link play): removes its tasks and menu
  * buttons, clears layers 0 and 1 of the main screen and layer 2 of the sub
- * screen (with its scroll), and unlocks every row (unk_08, set by
+ * screen (with its scroll), and unlocks every row (locked, set by
  * CombatSetup_LockRow). */
 void CombatSetup_ClearScreens(void)
 {
@@ -47,6 +47,6 @@ void CombatSetup_ClearScreens(void)
     Screen_SetCurrentGfx(savedGfx);
 
     for (i = 1; i < 5; i++) {
-        gMenuState.combat.rows[i - 1].unk_08 = 0;
+        gMenuState.combat.rows[i - 1].locked = 0;
     }
 }

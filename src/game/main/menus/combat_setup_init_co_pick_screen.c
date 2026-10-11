@@ -21,7 +21,7 @@ extern const MenuButtonTemplate data_02160d90;
 
 /* Sets up the Combat setup CO pick (link play). Main screen: the second
  * saved map (unk_600) on layer 2 and the small CO picture of each row with
- * unk_07 set (palette 18 + row). Sub screen: the saved map on layer 2,
+ * memberCount set (palette 18 + row). Sub screen: the saved map on layer 2,
  * scrolled by -16. The row owner gets the row's buttons 20 and 21 (as in
  * CombatSetup_UnlockRow) without touch; any other player hands the row to
  * its owner through func_02088528. Then help text 0x44000012. */
@@ -42,7 +42,7 @@ void CombatSetup_InitCoPickScreen(void)
     Mem_Copy32(MENU->combat.unk_600, data_027c0280->layer2Map, 0x600);
     Gfx_RequestLayerCopy(2);
     for (i = 0; i < 4; i++) {
-        if (MENU->combat.rows[i].unk_07 != 0) {
+        if (MENU->combat.rows[i].memberCount != 0) {
             func_020023b0(data_02160ae0[LINK_ROWS[i].unk_19], data_027c0280->objVram + (0x400 + i * 36) * 32, i + 18, i + 1);
         }
     }

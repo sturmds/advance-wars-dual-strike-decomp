@@ -14,14 +14,14 @@ void CombatSetup_MovePlayerUp(int player)
     int index;
     int i;
     u8 previous;
-    u8 ready = MENU->combat.players[player].unk_1;
+    u8 ready = MENU->combat.players[player].ready;
     u8 row = MENU->combat.players[player].row;
 
     if (ready != 0) {
         return;
     }
     index = row - 1;
-    for (i = 0; i < MENU->combat.rows[index].unk_07; i++) {
+    for (i = 0; i < MENU->combat.rows[index].memberCount; i++) {
         if (player == MENU->combat.rows[index].members[i]) {
             break;
         }

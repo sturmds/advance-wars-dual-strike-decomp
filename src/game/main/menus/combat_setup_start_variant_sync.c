@@ -14,7 +14,7 @@ void CombatSetup_StartVariantSync(Task *task)
     int i;
 
     for (i = 0; i < 4; i++) {
-        if (gMenuState.combat.rows[i].unk_07 == 0) {
+        if (gMenuState.combat.rows[i].memberCount == 0) {
             players[i] = 0xff;
         } else {
             players[i] = gMenuState.combat.rows[i].player;

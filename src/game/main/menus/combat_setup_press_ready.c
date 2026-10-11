@@ -12,7 +12,7 @@ extern MenuState gMenuState;
 /* Sends message 9 (mark the local player ready) unless they already are. */
 void CombatSetup_PressReady(void)
 {
-    if (MENU->combat.players[data_0229fb30.unk_45a].unk_1 != 0) {
+    if (MENU->combat.players[data_0229fb30.unk_45a].ready != 0) {
         return;
     }
     func_02085d60();
