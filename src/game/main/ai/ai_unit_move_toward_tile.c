@@ -9,7 +9,7 @@ extern int data_027c0284;
 void RangeMap_SetBuffer(void *tileMap);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_FillUnitMoves(MapUnit *unit);
-BOOL func_020b3004(s16 x, s16 y);
+BOOL AiTile_IsSafeStop(s16 x, s16 y);
 int func_0209f868(s16 x0, s16 y0, s16 x1, s16 y1);
 BOOL func_0209f20c(s16 x, s16 y, int arg);
 int Unit_IsEnemyTile(int unitIndex, s16 x, s16 y);
@@ -26,7 +26,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 /* Moves the acting unit as far toward (targetX, targetY) as it can this
  * turn and waits there. MapTiles.rangeScratch gets the acting unit type's move
- * cost from the target. Of the tiles in reach (func_020b3004 accepts them)
+ * cost from the target. Of the tiles in reach (AiTile_IsSafeStop accepts them)
  * it takes the one with the lowest cost, then the lowest danger
  * (MapTiles.threatMax plus twice threatSum), then the shortest
  * func_0209f868 distance to the target. A Sub or Stealth first tries the
@@ -62,7 +62,7 @@ void AiUnit_MoveTowardTile(int targetX, int targetY)
     RangeMap_FillMoves(targetX, targetY, STATE->actingUnit->type, UNLIMITED_MOVE, 0);
     RangeMap_SetBuffer(MAP->rangeMapTiles);
     RangeMap_FillUnitMoves(STATE->actingUnit);
-    if (func_020b3004(STATE->actingUnit->x, STATE->actingUnit->y)) {
+    if (AiTile_IsSafeStop(STATE->actingUnit->x, STATE->actingUnit->y)) {
         bestCost = MAP->rangeScratch[TILE_INDEX(STATE->actingUnit->x, STATE->actingUnit->y)];
     } else {
         bestCost = NO_TILE;
@@ -76,7 +76,7 @@ void AiUnit_MoveTowardTile(int targetX, int targetY)
             if (MAP->rangeScratch[TILE_INDEX(x, y)] > bestCost) {
                 continue;
             }
-            if (!func_020b3004(x, y)) {
+            if (!AiTile_IsSafeStop(x, y)) {
                 continue;
             }
             danger = MAP->threatMax[TILE_INDEX(x, y)] + MAP->threatSum[TILE_INDEX(x, y)] * 2;
