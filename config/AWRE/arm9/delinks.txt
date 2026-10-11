@@ -10059,7 +10059,8 @@ src/game/main/ai/ai_sites_build_groups.c:
     complete
     .text       start:0x02092a6c end:0x02092ef4
 
-src/game/main/ai/func_02092ef4.c:
+src/game/main/ai/ai_unit_get_repair_value.c:
+    complete
     .text       start:0x02092ef4 end:0x02092f84
 
 src/game/main/ai/unit_get_value_per_hp_no_power.c:

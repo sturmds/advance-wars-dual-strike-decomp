@@ -20,7 +20,7 @@ int SuperPowerCost(int player, int slot);
  * CO is nearer its Super CO Power than the back CO is to its own (in meter
  * charge still missing). Player.tagPowerHalf, when set, decides instead:
  * TAG_POWER_FRONT gives TRUE, TAG_POWER_BACK FALSE. AiEndActions_Start
- * passes the result to func_02092ef4. */
+ * passes the result to AiUnit_GetRepairValue. */
 BOOL AiPlayer_FrontCoNearerToSuper(void)
 {
     Unk_02080440_48 *state;

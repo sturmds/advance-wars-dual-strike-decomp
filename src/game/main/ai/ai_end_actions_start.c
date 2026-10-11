@@ -10,12 +10,12 @@ int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 u8 func_02091fbc(void);
 u8 AiSites_BuildGroups(void);
 int AiPlayer_FrontCoNearerToSuper(void);
-int func_02092ef4(int player, BOOL flag, MapUnit *unit);
+int AiUnit_GetRepairValue(int player, BOOL flag, MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Step 0 of the end-of-turn phase: fills the AiBuildState counts, counts the
- * current player's units, and totals func_02092ef4 over those that can be
+ * current player's units, and totals AiUnit_GetRepairValue over those that can be
  * repaired where they stand (times 1.5, at least 1000). Meaning of the total
  * unknown. */
 void AiEndActions_Start(void)
@@ -34,7 +34,7 @@ void AiEndActions_Start(void)
         if (unit->type != 0) {
             data_021619c0->unk_07++;
             if (Unit_CanRepairAt(unit, unit->x, unit->y)) {
-                data_021619c0->unk_0c += func_02092ef4(STATE->currentPlayer, flag, unit);
+                data_021619c0->unk_0c += AiUnit_GetRepairValue(STATE->currentPlayer, flag, unit);
             }
         }
     }
