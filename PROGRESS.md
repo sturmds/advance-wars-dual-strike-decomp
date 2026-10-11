@@ -82,6 +82,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
+| `src/game/main/sound/sound_stream_fill_blocks.c` | func_02107c28 | 2184 |
 | `src/game/main/text/func_02020e0c.c` | func_02020e0c | 372 |
 | `src/game/main/units/func_020d4748.c` | func_020d4748 | 916 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
