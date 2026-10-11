@@ -2436,7 +2436,7 @@ func_0207e5d0 kind:function(arm,size=0x14) addr:0x0207e5d0
 func_0207e5e4 kind:function(arm,size=0x18) addr:0x0207e5e4
 func_0207e5fc kind:function(arm,size=0x30) addr:0x0207e5fc
 func_0207e62c kind:function(arm,size=0x18) addr:0x0207e62c
-func_0207e644 kind:function(arm,size=0x1b8) addr:0x0207e644
+LoadingScreen_Init kind:function(arm,size=0x1b8) addr:0x0207e644
 LinkMenu_DestroySubScreenTask kind:function(arm,size=0x60) addr:0x0207e7fc
 LinkMenu_SaveReceivedMap kind:function(arm,size=0x44) addr:0x0207e85c
 func_0207e8a0 kind:function(arm,size=0x28c) addr:0x0207e8a0
@@ -7452,8 +7452,8 @@ data_02160208 kind:data(any) addr:0x02160208
 data_02160240 kind:data(any) addr:0x02160240
 data_02160278 kind:data(any) addr:0x02160278
 data_021602d0 kind:data(any) addr:0x021602d0
-data_02160460 kind:data(any) addr:0x02160460
-data_02160478 kind:data(any) addr:0x02160478
+gLoadingRes1Path kind:data(any) addr:0x02160460
+gLoadingRes2Path kind:data(any) addr:0x02160478
 gLinkTwoPlayerLoginResPath kind:data(any) addr:0x02160490
 gLinkTwoPlayerCommonLangResPath kind:data(any) addr:0x021604a8
 gLinkTwoPlayerCommonResPath kind:data(any) addr:0x021604c4

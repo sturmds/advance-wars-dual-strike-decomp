@@ -9587,6 +9587,10 @@ src/game/main/func_0207e62c.c:
     complete
     .text       start:0x0207e62c end:0x0207e644
 
+src/game/main/link/loading_screen_init.c:
+    complete
+    .text       start:0x0207e644 end:0x0207e7fc
+
 src/game/main/link/link_menu_destroy_sub_screen_task.c:
     complete
     .text       start:0x0207e7fc end:0x0207e85c
