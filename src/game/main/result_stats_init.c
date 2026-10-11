@@ -33,7 +33,7 @@ void Palette_LoadObjRow(int row);
 const void *Player_GetPalette(int player);
 u8 *func_020c67bc(void);
 int func_020c67a8(void);
-void func_0203c85c(int player);
+void ResultStats_DrawPlayerTotals(int player);
 void ResultStats_PrintFirstPageLabel(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -171,6 +171,6 @@ void ResultStats_Init(Task *task)
         Palette_Load(Player_GetPalette(i + 1), (i + 18) << 5, 32);
     }
     SWITCH_BACK();
-    func_0203c85c(1);
+    ResultStats_DrawPlayerTotals(1);
     ResultStats_PrintFirstPageLabel();
 }

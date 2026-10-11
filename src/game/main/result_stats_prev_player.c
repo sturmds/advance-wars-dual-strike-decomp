@@ -4,7 +4,7 @@
 
 Task *Task_FindByScript(const void *script);
 void Sound_PlaySe(u32 soundId);
-void func_0203c85c(int player);
+void ResultStats_DrawPlayerTotals(int player);
 
 extern const TaskScriptCmd data_0215a690[];
 extern const MenuButtonTemplate data_0215a560;
@@ -19,7 +19,7 @@ void ResultStats_PrevPlayer(void)
         return;
     }
     task->unk_66--;
-    func_0203c85c(task->unk_66);
+    ResultStats_DrawPlayerTotals(task->unk_66);
     if (task->unk_66 == task->unk_6a - 1) {
         MenuButton_Add(0, 0, &data_0215a560, 2);
     }
