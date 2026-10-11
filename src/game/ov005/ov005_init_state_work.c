@@ -1,7 +1,7 @@
 #include "types.h"
+#include "game/unlocks.h"
 #include "game/Unk_ov005_0236bba4.h"
 
-BOOL GameFlag_IsSet(int flag);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 
 extern const Unk_ov005_0236bba4_State data_ov005_0236a74c[41];

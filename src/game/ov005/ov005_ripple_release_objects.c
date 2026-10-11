@@ -34,7 +34,7 @@ void Ov005Ripple_ReleaseObjects(Ov005Task *task)
     if (work->hasTaskA != 0) {
         Task_Destroy(work->taskA);
     }
-    if (work->unk_78 != 0) {
+    if (work->hasTaskB != 0) {
         Task_Destroy(work->taskB);
     }
     Screen_SetCurrent(saved027c);

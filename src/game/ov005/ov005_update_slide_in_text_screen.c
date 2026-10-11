@@ -32,7 +32,7 @@ extern const MenuButtonTemplate data_ov005_02368070;
 void Ov005_UpdateSlideInTextScreen(Ov005Task *task)
 {
     Unk_ov005_0236bb80 *work = task->work;
-    ScriptSlot *textSlot = work->unk_14;
+    ScriptSlot *textSlot = work->textSlot;
     Unk_027c0280 *savedGfx = data_027c0280;
     Unk_02080440 *savedScreen;
     int x1;

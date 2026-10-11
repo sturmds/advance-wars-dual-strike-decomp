@@ -14,7 +14,7 @@ typedef struct Unk_ov005_0236bb80 {
     u32 unk_08;
     fx32 blendEva;                     /* sub screen blendEva and blendEvb as fx32 (0 to 16.0) */
     fx32 blendEvb;
-    struct ScriptSlot *unk_14;         /* from Text_PrintByIdOnLayer0 */
+    struct ScriptSlot *textSlot;       /* from Text_PrintByIdOnLayer0 */
     struct Task *fadeTask;             /* from the BrightnessFade_StartOutBlackScreen0 family */
     struct Task *fadeTask2;
     struct Task *songTask;             /* song fade task */
@@ -39,8 +39,8 @@ typedef struct Unk_ov005_0236bb80 {
     struct Task *textTask;             /* text box task */
     u32 hasTaskA;                      /* nonzero while taskA exists */
     Task *taskA;
-    u32 unk_78;
-    Task *taskB;                       /* exists while unk_78 is nonzero */
+    u32 hasTaskB;                      /* nonzero while taskB exists */
+    Task *taskB;
     void *block80;                     /* freed last */
     u32 *spriteHandles[4];             /* cleared with func_0202244c */
     int spritePos[4][2];               /* x, y of each spriteHandles entry */

@@ -158,7 +158,7 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     slot = Text_PrintByIdOnLayer0(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
-    work->unk_14 = slot;
+    work->textSlot = slot;
     slot->unk_3e = 6;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

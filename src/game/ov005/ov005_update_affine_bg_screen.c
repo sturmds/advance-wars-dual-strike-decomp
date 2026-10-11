@@ -71,7 +71,7 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
         work->hasTaskA = 0;
-        work->unk_78 = 0;
+        work->hasTaskB = 0;
         work->spriteHandles[0] = SpriteAnim_Create(work->unk_b4, 0, 2);
         work->spriteHandles[1] = SpriteAnim_Create(work->unk_b4, 0, 2);
         work->spriteHandles[2] = SpriteAnim_Create(work->unk_b4, 0, 2);
@@ -154,7 +154,7 @@ void Ov005_UpdateAffineBgScreen(Ov005Task *task)
             Screen_SetCurrent(data_027c0288.unk_04);
             work->taskB = Task_Create(data_ov005_023680c0, TASK_LIST(3));
             ((Ov005Task *)work->taskB)->work = work;
-            work->unk_78 = 1;
+            work->hasTaskB = 1;
             Screen_SetCurrent(saved027c);
             Screen_SetCurrentGfx(saved0280);
             task->step++;
