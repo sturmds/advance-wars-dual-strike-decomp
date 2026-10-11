@@ -196,4 +196,10 @@ void OS_SpinWait(u32 cycles);
 /* Stores parameter for the next program and resets the console. Does not return. */
 void Reset_StopAndRequestArm7(u32 parameter);
 
+/* PXI FIFO tag of the OS: the ARM9 and ARM7 exchange reset commands under it. */
+#define FIFO_TAG_RESET 12
+
+/* Sends a command word to the ARM7, retrying until the FIFO takes it. */
+void OsTag_SendCommandWord(u32 command);
+
 #endif
