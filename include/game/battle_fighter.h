@@ -7,7 +7,7 @@
 
 /* Sound effect ids (Sound_PlaySe) of one fighter on the battle animation screen. */
 typedef struct BattleSounds {
-    u32 unk_00;                        /* Sound_PlaySubSe id of the attacker (func_ov002_0235fc68) */
+    u32 unk_00;                        /* Sound_PlaySubSe id of the attacker (Battle_StartAttackerMoveSound) */
     u32 unk_04;                        /* Battle_PlayFighterStartSe, BattleSide.usesSecondary of 0 */
     u32 unk_08;                        /* Battle_PlayFighterStartSe, otherwise */
     u32 unk_0c;                        /* Battle_PlayFighterReactSe, other fighter's state not 2 */

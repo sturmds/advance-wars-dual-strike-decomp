@@ -5,19 +5,19 @@
 extern MenuState gMenuState;
 
 void Sound_PlaySubSe(u32 soundId);
-int Battle_IsSideFootUnit(void);
+BOOL Battle_IsSideFootUnit(int side);
 void BattleFootstepTask_Start(int side);
 
-/* Starts the attacker's looping sound (sub sound effect) unless
- * Battle_IsSideFootUnit says otherwise. */
-void func_ov002_0235fc68(int side)
+/* For the attacking side: starts the footstep task if the side is a foot unit,
+ * otherwise plays the unit's looping sound (sub sound effect). */
+void Battle_StartAttackerMoveSound(int side)
 {
     u32 sound;
 
     if (side != Ov002_gBattleScene->attackerSide) {
         return;
     }
-    if (Battle_IsSideFootUnit() == 1) {
+    if (Battle_IsSideFootUnit(side) == TRUE) {
         BattleFootstepTask_Start(side);
         return;
     }

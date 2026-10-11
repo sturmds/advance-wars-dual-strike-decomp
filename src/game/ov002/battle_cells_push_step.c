@@ -2,7 +2,7 @@
 #include "game/BattleCellTask.h"
 #include "game/BattleSideData.h"
 
-void func_ov002_0235fc68(int side);
+void Battle_StartAttackerMoveSound(int side);
 BOOL Battle_IsAttackerWeaponShown(int side);
 
 #define MENU ((MenuState *)&gMenuState)
@@ -17,7 +17,7 @@ void BattleCells_PushStep(void)
     int cell;
 
     for (side = 0; side < 2; side++) {
-        func_ov002_0235fc68(side);
+        Battle_StartAttackerMoveSound(side);
         if (MENU->battle.unk_27c[side]->unk_48 == 0) {
             for (cell = 0; cell < 5; cell++) {
                 if (MENU->battle.unk_310[side][cell].fillBefore != 0) {
