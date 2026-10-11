@@ -17,7 +17,7 @@ BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_ClearLayerMap(int layer);
 void Gfx_ClearLayerBlankTile(int layer);
-void func_01ff8d94(int layer);
+void Gfx_CopyLayerMapToVram(int layer);
 
 /* BGxCNT of the BG that layer i uses. */
 #define LAYER_BG_CNT(i) (data_027c0280->bgCnt[GFX_LAYER(data_027c0280, i)->bg])
@@ -62,7 +62,7 @@ void Screen_InitLayers(const GfxLayer *config)
             }
             Gfx_ClearLayerMap(i);
             Gfx_ClearLayerBlankTile(i);
-            func_01ff8d94(i);
+            Gfx_CopyLayerMapToVram(i);
         }
     }
     if (data_027c027c == data_027c0288.unk_00) {
