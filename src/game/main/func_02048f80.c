@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/staggered_task.h"
 
-void func_0204902c(int item);
+void CoRankScreen_StartMarkerTask(int item);
 void Task_ResumeScript(StaggeredTask *task);
 
 void func_02048f80(StaggeredTask *task)
@@ -18,7 +18,7 @@ void func_02048f80(StaggeredTask *task)
             }
             item++;
         }
-        func_0204902c(item);
+        CoRankScreen_StartMarkerTask(item);
         task->pending &= bit ^ -1;  
         task->itemsLeft--;
     }

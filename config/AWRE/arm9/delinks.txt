@@ -5606,6 +5606,10 @@ src/game/main/func_02049020.c:
     complete
     .text       start:0x02049020 end:0x0204902c
 
+src/game/main/co_rank_screen_start_marker_task.c:
+    complete
+    .text       start:0x0204902c end:0x02049070
+
 src/game/main/func_02049070.c:
     complete
     .text       start:0x02049070 end:0x020490a4
