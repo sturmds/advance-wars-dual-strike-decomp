@@ -7,7 +7,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c5140(void);
+void Map_RebuildVision(void);
 BOOL func_020c8ff8(u16 unitSlot);      /* guess: the unit is not hidden from the current player */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -36,7 +36,7 @@ void Map_RebuildUnitTiles(void)
     if (HOOKS->callback != NULL) {
         HOOKS->callback();
     }
-    func_020c5140();
+    Map_RebuildVision();
 
     for (y = 0; y < GAME->unk_1c4->mapHeight; y++) {
         for (x = 0; x < GAME->unk_1c4->mapWidth; x++) {
