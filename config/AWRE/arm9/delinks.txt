@@ -6838,6 +6838,10 @@ src/game/main/screen/title_call_sub_letters_grow_in.c:
     complete
     .text       start:0x02050d54 end:0x02050f6c
 
+src/game/main/screen/title_call_init_sub_letters.c:
+    complete
+    .text       start:0x02050f6c end:0x0205102c
+
 src/game/main/func_0205102c.c:
     complete
     .text       start:0x0205102c end:0x02051044
