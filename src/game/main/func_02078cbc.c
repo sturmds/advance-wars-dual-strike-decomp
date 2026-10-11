@@ -9,7 +9,7 @@ extern u32 data_0229c880;
 extern u32 data_0229c88c;
 int func_02079180(void);
 int func_02078dc0(void);
-int func_02078970(void);
+int Wireless_StartRequest(void);
 int func_02079bb0(void);
 void func_02079ee0(void);
 
@@ -34,7 +34,7 @@ void func_02078cbc(WirelessEvent *event)
             }
             data_0215fe84->unk_14 = 1;
             data_0229c88c = 3;
-            if (func_02078970()) {
+            if (Wireless_StartRequest()) {
                 return;
             }
             data_0229c880 = 3;
