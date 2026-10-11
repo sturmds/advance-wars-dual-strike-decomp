@@ -5735,6 +5735,10 @@ src/game/main/func_020754d0.c:
     complete
     .text       start:0x020754d0 end:0x02075520
 
+src/game/main/menus/status_screen_draw.c:
+    complete
+    .text       start:0x02075770 end:0x02075df0
+
 src/game/main/func_02075df0.c:
     complete
     .text       start:0x02075df0 end:0x02075e08
