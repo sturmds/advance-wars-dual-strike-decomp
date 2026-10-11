@@ -7484,6 +7484,10 @@ src/game/main/ai/ai_site_pick_first.c:
     complete
     .text       start:0x02096bc4 end:0x02096c60
 
+src/game/main/ai/ai_tile_has_enemy_oozium.c:
+    complete
+    .text       start:0x02096ea8 end:0x02096f44
+
 src/game/main/func_02096f44.c:
     complete
     .text       start:0x02096f44 end:0x02097050
