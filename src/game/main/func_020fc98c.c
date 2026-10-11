@@ -12,7 +12,7 @@ void Sound_Shutdown(void);
 void *Mem_Alloc(u32 size);
 void WirelessHost_FillInfo(void);
 void func_0211c534(void *work, WirelessHostUser *user, u32 id, u16 tick, int dma);
-void func_0211c420(int size, int count);
+void DownloadPlay_SetSendSizeAndChildren(int size, int count);
 void func_0211a5e8(void (*callback)(void *, int));
 void func_020fc700(void *arg, int index);
 BOOL func_020fc698(void);
@@ -31,7 +31,7 @@ void DownloadPlay_Start(void)
     /* needed to match: volatile read keeps the tick load before the other arguments */
     tick = *(volatile u32 *)VBLANK_COUNT_ADDR;
     func_0211c534(data_022a7e6c, &gWirelessHostUser, WIRELESS_HOST_ID, tick, 2);
-    func_0211c420(0x100, 8);
+    DownloadPlay_SetSendSizeAndChildren(0x100, 8);
     func_0211a5e8(func_020fc700);
     func_020fc698();
 }

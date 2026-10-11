@@ -22550,6 +22550,10 @@ src/sdk/mb/mb_parent_init_wm.c:
     complete
     .text       start:0x0211c320 end:0x0211c420
 
+src/sdk/mb/download_play_set_send_size_and_children.c:
+    complete
+    .text       start:0x0211c420 end:0x0211c4c4
+
 src/sdk/mb/mb_parent_ind_callback.c:
     complete
     .text       start:0x0211cfe4 end:0x0211d05c
