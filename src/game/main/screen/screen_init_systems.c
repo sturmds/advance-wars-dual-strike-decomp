@@ -29,7 +29,7 @@ void func_020044a8(void);
 void Screen_ApplyAll(void);
 void Sound_ResetSongs(void);
 void func_02026540(void);
-void func_0203139c(void);
+void MainMenu_Init(void);
 void func_02023f38(void);
 
 /* Resets the current screen's systems: main loop callbacks and flags, part
@@ -66,6 +66,6 @@ void Screen_InitSystems(void)
     Screen_ApplyAll();
     Sound_ResetSongs();
     func_02026540();
-    func_0203139c();
+    MainMenu_Init();
     func_02023f38();
 }
