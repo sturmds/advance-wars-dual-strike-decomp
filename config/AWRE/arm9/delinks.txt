@@ -5583,6 +5583,10 @@ src/game/main/history_banner_slide_out.c:
     complete
     .text       start:0x02070cec end:0x02070d5c
 
+src/game/main/history_banner_wait_for_press.c:
+    complete
+    .text       start:0x02070d5c end:0x02070dc0
+
 src/game/main/menus/history_screen_init.c:
     complete
     .text       start:0x02070f14 end:0x02071494
