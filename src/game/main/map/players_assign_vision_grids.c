@@ -12,7 +12,7 @@ BOOL Player_IsInGame(u8 player);
 void func_020c03d8(void);
 BOOL func_020c5fd4(u16 player);
 void Player_SetAlliesVisionGrids(u16 player, int gridMask);  /* sets unk_1b of player's allies */
-BOOL func_020c6514(u16 player);                /* TRUE: an ally has data_0229eaf0 kind 1 */
+BOOL Player_HasKindOneAlly(u16 player);                /* TRUE: an ally has data_0229eaf0 kind 1 */
 int Player_GetSlotRelation(u16 player, u16 other);      /* SLOT_RELATION_* */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -23,7 +23,7 @@ int Player_GetSlotRelation(u16 player, u16 other);      /* SLOT_RELATION_* */
 /* Sets Player.unk_1b, the vision grids each player's sight goes into (see
  * game/vision.h), for the current player's turn. The current player gets the
  * bits data_02139348 holds for its data_0229eaf0 kind; when that is 1, it
- * also gets bit 1 if func_020c6514 finds an ally of kind 1. Its allies get the
+ * also gets bit 1 if Player_HasKindOneAlly finds an ally of kind 1. Its allies get the
  * same bits. When func_020c5fd4 returns TRUE, each enemy of kind 1 and that
  * enemy's allies get the other grid. If no player in the game has kind 1 or
  * bit 1, the current player's side gets bit 1 too. */
@@ -42,7 +42,7 @@ void Players_AssignVisionGrids(void)
     }
     func_020c03d8();
     gridMask = data_02139348[data_0229eaf0[STATE->currentPlayer]];
-    if (gridMask == 1 && func_020c6514(STATE->currentPlayer)) {
+    if (gridMask == 1 && Player_HasKindOneAlly(STATE->currentPlayer)) {
         gridMask |= 2;
     }
     STATE->players[STATE->currentPlayer].unk_1b = gridMask;

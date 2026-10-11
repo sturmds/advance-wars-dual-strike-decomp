@@ -10580,6 +10580,10 @@ src/game/main/map/players_assign_vision_grids.c:
     complete
     .text       start:0x020c6198 end:0x020c6514
 
+src/game/main/map/player_has_kind_one_ally.c:
+    complete
+    .text       start:0x020c6514 end:0x020c6598
+
 src/game/main/map/player_get_slot_relation.c:
     complete
     .text       start:0x020c6598 end:0x020c65fc
