@@ -1,15 +1,8 @@
 #include "types.h"
+#include "game/tag_power_scroll_task.h"
 
-typedef struct Unk_02055e40 Unk_02055e40;
-
-struct Unk_02055e40 {
-    u8 pad_00[0x58];
-    int unk_58;
-    int unk_5c;
-};
-
-void func_02055e40(Unk_02055e40 *a0)
+void func_02055e40(TagPowerScrollTask *task)
 {
-    a0->unk_58 = 0;
-    a0->unk_5c = 0;
+    task->layer1Y = 0;
+    task->layer2Y = 0;
 }

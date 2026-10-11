@@ -5170,6 +5170,10 @@ src/game/main/func_02055cac.c:
     complete
     .text       start:0x02055cac end:0x02055cc4
 
+src/game/main/copowers/tag_power_screen_scroll_background.c:
+    complete
+    .text       start:0x02055cc4 end:0x02055e40
+
 src/game/main/func_02055e40.c:
     complete
     .text       start:0x02055e40 end:0x02055e50
