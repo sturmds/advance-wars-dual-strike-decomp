@@ -98,7 +98,7 @@ struct CARDiCommon {
     u32 flag;
     u32 priorityMode;              /* thread priority, or GAMECARD_PRIO_* */
     OSThread thread;
-    OSThread *requester;           /* thread that issued the running request */
+    OSThread *waiter;              /* thread to wake when the request ends */
     OSThreadQueue queue;           /* threads waiting for CARD_STAT_BUSY to clear */
     u8 unk_D8[8];
     u8 pageBuffer[GAMECARD_BOUNCE_BUF_BYTES];
