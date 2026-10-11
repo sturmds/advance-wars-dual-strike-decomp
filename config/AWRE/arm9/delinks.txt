@@ -4164,6 +4164,10 @@ src/game/main/points_tally_count.c:
     complete
     .text       start:0x0204b850 end:0x0204b9ac
 
+src/game/main/mode_print_variant_value.c:
+    complete
+    .text       start:0x0204b9ac end:0x0204bb2c
+
 src/game/main/func_0204c11c.c:
     complete
     .text       start:0x0204c11c end:0x0204c134
