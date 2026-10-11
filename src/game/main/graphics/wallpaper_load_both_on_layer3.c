@@ -13,7 +13,7 @@ void FS_ChangeDir(const char *dir);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
 void func_0210c698(const void *src, u32 offset, u32 size);
-void func_0210c634(void);                          /* guess: ends the load */
+void GX_EndLoadBGExtPltt(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
 void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GXS_EndLoadBGExtPltt(void);
@@ -59,7 +59,7 @@ void Wallpaper_LoadBothOnLayer3(u32 index)
     DC_FlushRange(res + data_021593bc[index], 0x200);
     func_0210c718();
     func_0210c698(res + data_021593bc[index], 0x6000, 0x200);
-    func_0210c634();
+    GX_EndLoadBGExtPltt();
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
