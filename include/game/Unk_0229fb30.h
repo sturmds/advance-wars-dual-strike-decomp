@@ -15,7 +15,8 @@ typedef struct Unk_0229fb30 {
     u16 unk_0c;
     u16 unk_0e;
     u32 unk_10;                        /* frame counter of the battle screen */
-    u8 pad_14[0x45b - 0x14];
+    u8 pad_14[0x45a - 0x14];
+    u8 unk_45a;                        /* index into MenuState.combat.players */
     s8 unk_45b;                        /* menu entry 0-4 whose help text LinkMenu_DrawHelpText shows */
 } Unk_0229fb30;
 

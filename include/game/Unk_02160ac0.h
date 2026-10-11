@@ -6,13 +6,23 @@
 /* 28 bytes per row at the start of Unk_02160ac0 (4 rows): the cell bytes of
  * an Ov003Row and its spawn count at offset 0x18. */
 typedef struct Unk_02160ac0_Row {
-    struct {
-        u8 tile : 6;
-        u8 state : 2;
-    } cells[24];
+    union {
+        struct {
+            u8 tile : 6;
+            u8 state : 2;
+        } cells[24];
+        struct {
+            u8 pad_00[0x14];
+            u32 unk_14;                /* compared with 1000, 3000, 5000 and 6000 by func_02084914 */
+        };
+    };
     u8 spawnCount;
-    u8 pad_19[3];
+    u8 unk_19;                         /* index into data_02160ae0, which gives the row's CO */
+    u8 pad_1a[2];
 } Unk_02160ac0_Row;
+
+/* Row i (0-3) of data_02160ac0. */
+#define LINK_ROWS ((Unk_02160ac0_Row *)data_02160ac0)
 
 /* Pointed to by data_02160ac0 (main data). func_0208bf40 fills bytes
  * 0x00-0x13, 0x18, 0x19, 0x7d and 0x84 from data_0229e148. */

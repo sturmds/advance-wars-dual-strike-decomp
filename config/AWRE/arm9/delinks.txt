@@ -5605,6 +5605,9 @@ src/game/main/func_02083814.c:
     complete
     .text       start:0x02083814 end:0x02083828
 
+src/game/main/menus/func_0208395c.c:
+    .text       start:0x0208395c end:0x02083f00
+
 src/game/main/menus/menu_draw_four_labels.c:
     complete
     .text       start:0x02084804 end:0x02084914
