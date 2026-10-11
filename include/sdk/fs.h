@@ -22,7 +22,9 @@ typedef struct FSFileID {
     u32 file_id;
 } FSFileID;
 
-#define FS_FILE_STATUS_IS_DIR 0x4
+/* Low four bits of flags: set while a command runs on the file. */
+#define FILE_HANDLE_BUSY_BITS 0xf
+#define FS_FILE_STATUS_BUSY 0x4
 #define FS_FILE_STATUS_IS_FILE 0x10
 
 /* Position inside a directory listing. */

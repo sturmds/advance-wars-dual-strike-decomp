@@ -21013,6 +21013,14 @@ src/sdk/fs/fs_read_table.c:
     complete
     .text       start:0x02111b14 end:0x02111bc4
 
+src/sdk/fs/fs_release_command.c:
+    complete
+    .text       start:0x02111d54 end:0x02111d98
+
+src/sdk/fs/archive_assign_table_cache.c:
+    complete
+    .text       start:0x02111d98 end:0x02111db8
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
