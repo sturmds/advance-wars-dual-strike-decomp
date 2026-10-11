@@ -21208,9 +21208,17 @@ src/sdk/func_0210dc64.c:
     complete
     .text       start:0x0210dc64 end:0x0210dc6c
 
+src/sdk/os/os_jam_message.c:
+    complete
+    .text       start:0x0210dc6c end:0x0210dd20
+
 src/sdk/os/os_receive_message.c:
     complete
     .text       start:0x0210dd20 end:0x0210ddcc
+
+src/sdk/os/os_send_message.c:
+    complete
+    .text       start:0x0210ddcc end:0x0210de74
 
 src/sdk/os_init_message_queue.c:
     complete

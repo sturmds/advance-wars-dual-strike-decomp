@@ -7,7 +7,7 @@ extern u8 data_022a8ac4[];             /* message queue the sound thread waits o
 SoundStreamRequest *SoundStreamRequest_Alloc(void);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
 void MI_CpuFill8(void *dest, int value, u32 size);
-int func_0210ddcc(void *queue, void *message, int flags);
+int OS_SendMessage(void *queue, void *message, int flags);
 
 /* Stream driver callback of every SoundStream, with the stream as arg: queues
  * a refill request for the sound thread and wakes it. With two or more
@@ -44,5 +44,5 @@ void SoundStream_QueueRefill(int status, int channelCount, void *blocks[], u32 b
     request->blockSize = blockSize;
     stream->pendingRequests++;
     LinkList_Append(&data_022a8ab8, request);
-    func_0210ddcc(data_022a8ac4, NULL, 0);
+    OS_SendMessage(data_022a8ac4, NULL, 0);
 }
