@@ -2087,6 +2087,10 @@ src/game/main/script/event_script_store_halfword.c:
     complete
     .text       start:0x0201d588 end:0x0201d5bc
 
+src/game/main/script/event_script_store_byte.c:
+    complete
+    .text       start:0x0201d5bc end:0x0201d5f0
+
 src/game/main/func_0201d5f0.c:
     complete
     .text       start:0x0201d5f0 end:0x0201d5f8
