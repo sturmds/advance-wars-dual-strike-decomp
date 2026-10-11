@@ -94,6 +94,7 @@
 #define REG_VRAMCNT_I ((volatile u8 *)0x04000249)
 #define VRAMCNT_ENABLE 0x80
 #define VRAMCNT_TEXPLTT(slot) (0x83 | ((slot) << 3)) /* enabled, texture palette slot */
+#define VRAMCNT_TEX(slot) (0x83 | ((slot) << 3)) /* banks A-D: enabled, texture image slot */
 #define GX_VRAM_A 0x001
 #define GX_VRAM_B 0x002
 #define GX_VRAM_C 0x004
@@ -121,6 +122,7 @@
 #define REG_POLYGON_ATTR ((volatile u32 *)0x040004a4)
 #define REG_TEXIMAGE_PARAM ((volatile u32 *)0x040004a8)
 #define REG_PLTT_BASE ((volatile u32 *)0x040004ac)
+#define DISP3DCNT_TEXTURE 0x0001 /* texture mapping on */
 #define DISP3DCNT_UNDERFLOW_ACK 0x2000 /* write 1 to clear the line buffer underflow flag */
 #define DISP3DCNT_OVERFLOW_ACK 0x1000 /* write 1 to clear the polygon/vertex RAM overflow flag */
 
@@ -135,6 +137,7 @@
 #define BLDCNT_EFFECT_DARKEN 0xc0
 
 void Vram_PowerOnBanks(u32 banks);
+void GX_SetBankForTex(int tex);
 void GX_SetBankForTexPltt(int texPltt);
 void GXi_NopClearFifo128_(volatile u32 *fifo);
 int G3X_GetMtxStackLevelPJ(int *level);

@@ -20849,6 +20849,10 @@ src/sdk/gx/gx_set_bank_for_tex_pltt.c:
     complete
     .text       start:0x0210ac40 end:0x0210ad34
 
+src/sdk/gx/gx_set_bank_for_tex.c:
+    complete
+    .text       start:0x0210ad34 end:0x0210af38
+
 src/sdk/gx/vram_power_on_banks.c:
     complete
     .text       start:0x0210b470 end:0x0210b528

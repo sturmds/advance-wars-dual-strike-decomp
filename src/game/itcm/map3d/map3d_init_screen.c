@@ -10,7 +10,7 @@ void func_0210a948(void);
 void func_0210a980(void);
 void func_0210a994(void);
 void func_0210a934(void);
-void func_0210ad34(int mask);
+void GX_SetBankForTex(int mask);
 void func_0210b04c(int mask);
 void func_0210b1b8(int mask);
 void func_0210b7d4(const void *table); /* copies 32 colours to the toon table */
@@ -41,7 +41,7 @@ void Map3d_InitScreen(void)
     func_0210a980();
     func_0210a994();
     func_0210a934();
-    func_0210ad34(1);
+    GX_SetBankForTex(1);
     func_0210b04c(16);
     func_0210b1b8(2);
     GX_SetBankForTexPltt(32);

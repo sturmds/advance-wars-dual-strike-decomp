@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Vram_ClearAllBankControl(void);
-void func_0210ad34(int mask);
+void GX_SetBankForTex(int mask);
 void func_0210b1b8(int mask);
 void func_0210b04c(int mask);
 void GX_SetBankForTexPltt(int mask);
@@ -17,7 +17,7 @@ void func_0210a9e0(int mask);
 void Vram_InitBanks(void)
 {
     Vram_ClearAllBankControl();
-    func_0210ad34(1);
+    GX_SetBankForTex(1);
     func_0210b1b8(2);
     func_0210b04c(16);
     GX_SetBankForTexPltt(32);

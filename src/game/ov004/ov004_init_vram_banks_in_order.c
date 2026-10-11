@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Vram_ClearAllBankControl(void);
-void func_0210ad34(int mask);
+void GX_SetBankForTex(int mask);
 void func_0210b1b8(int mask);
 void func_0210ab74(int mask);
 void func_0210aaf8(int mask);
@@ -14,7 +14,7 @@ void func_0210aa6c(int mask);
  * per-bank setup calls (guess) gets one bank bit, 1 to 128 in order. */
 void Ov004_InitVramBanksInOrder(void) {
     Vram_ClearAllBankControl();
-    func_0210ad34(1);
+    GX_SetBankForTex(1);
     func_0210b1b8(2);
     func_0210ab74(4);
     func_0210aaf8(8);
