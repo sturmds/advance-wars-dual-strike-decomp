@@ -4520,6 +4520,10 @@ src/game/main/co_rank_task_init.c:
     complete
     .text       start:0x0204a310 end:0x0204a4d0
 
+src/game/main/co_rank_task_slide_down.c:
+    complete
+    .text       start:0x0204a4d0 end:0x0204a5f0
+
 src/game/main/menus/survival_draw_run_summary.c:
     complete
     .text       start:0x0204ad84 end:0x0204b3cc
