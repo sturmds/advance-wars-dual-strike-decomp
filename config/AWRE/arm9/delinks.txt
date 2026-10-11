@@ -2870,6 +2870,10 @@ src/game/main/graphics/wallpaper_load_both_on_layer3.c:
     complete
     .text       start:0x02029248 end:0x02029438
 
+src/game/main/graphics/wallpaper_load_single_on_first_screen.c:
+    complete
+    .text       start:0x02029438 end:0x02029540
+
 src/game/main/graphics/wallpaper_load_single.c:
     complete
     .text       start:0x02029540 end:0x02029648
