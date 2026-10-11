@@ -15505,6 +15505,10 @@ src/game/main/func_020dd928.c:
     complete
     .text       start:0x020dd928 end:0x020dd940
 
+src/game/main/units/black_bomb_explosion_start.c:
+    complete
+    .text       start:0x020dd940 end:0x020dd9a0
+
 src/game/main/func_020dd9a0.c:
     complete
     .text       start:0x020dd9a0 end:0x020dd9b4

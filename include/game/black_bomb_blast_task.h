@@ -28,6 +28,9 @@ typedef struct BlackBombExplosionTask {
     int tileY;
     u8 pad_34[0x4a - 0x34];
     u16 damage;                        /* 50, passed on to the blast task */
+    u8 pad_4c[0x64 - 0x4c];
+    s16 bombX;                         /* tile of the bomb (the first two arguments of BlackBombExplosion_Start) */
+    s16 bombY;
 } BlackBombExplosionTask;
 
 #endif
