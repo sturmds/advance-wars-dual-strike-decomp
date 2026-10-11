@@ -2,7 +2,7 @@
 #include "game/Unk_022a7c5c.h"
 
 const char *MapGfx_GetPaletteFile(int variant, int style);  /* guess: path of the map palette file */
-void func_020f8d40(int variant, int style);         /* guess: loads the map graphics */
+void MapGfx_LoadTextures(int variant, int style);         /* guess: loads the map graphics */
 u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16 *File_Load(const char *path);
 void Mem_Free(void *block);
@@ -22,7 +22,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
     u16 *palette;
     int i;
 
-    func_020f8d40(variant, style);
+    MapGfx_LoadTextures(variant, style);
 
     palette = File_Load(path);
     for (i = 0; i < 256; i++) {

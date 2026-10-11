@@ -6,7 +6,9 @@
 /* Object reached through data_022a7c5c (main bss); only the fields the
  * overlay 0 show tasks read are listed. */
 typedef struct Unk_022a7c5c {
-    u8 pad_00[0x0c];
+    u8 pad_00[0x04];
+    u32 mapTexOffset;                  /* texture image offset of the map tiles; army sprites at + 0xa00 (MapGfx_LoadTextures) */
+    u32 mapTex2Offset;                 /* texture image offset of a second map file (MapGfx_LoadTextures) */
     u8 *animDst;                       /* where MapAnim_QueueFramePart queues the animated map graphics */
     u8 *animFrames[4];                 /* frames of those graphics, 0x3180 bytes each */
     u32 texPaletteOffset;              /* where the map palette goes in texture palette VRAM */

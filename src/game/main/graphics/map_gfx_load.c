@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void func_020f8d40(int weather, int tileset);
+void MapGfx_LoadTextures(int weather, int tileset);
 void WeatherFx_LoadGraphics(void);
 void WeatherFx_InitClouds(void);
 void WeatherFx_InitSnow(void);
@@ -10,7 +10,7 @@ void WeatherFx_InitSand(void);
 
 void MapGfx_Load(int weather, int tilesetByte)
 {
-    func_020f8d40(weather, tilesetByte & 0x7f);
+    MapGfx_LoadTextures(weather, tilesetByte & 0x7f);
     WeatherFx_LoadGraphics();
     switch (weather) {
     case WEATHER_CLEAR:
