@@ -10,7 +10,7 @@
 #define MENU ((MenuState *)&gMenuState)
 /* The second hit list of a side. The cast to its own type changes the code mwcc makes
  * (95% without it).
- * WIP (97%): the later blocks read the list through this full expression so that the compiler
+ * WIP (98.9%): the later blocks read the list through this full expression so that the compiler
  * reloads the cursor as the original does; the registers still differ. */
 #define LIST(side) ((BattleHitList *)&MENU->battle.stepLists[side])
 #define DUE_CELL_TASK(side, cursor) \
@@ -23,16 +23,17 @@ void Battle_StartCellSpriteOnSlot(int side, int cell, int unk_3, int unk_6, int 
 int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int unk_3);
 int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
 
-/* Makes the hit sprite at the cell task's position. */
+/* Makes the hit sprite at the cell task's position. Needed to match: its locals are declared
+ * at function scope (97.4% as block locals). */
 #define CREATE_HIT_SPRITE(task, arg570, arg4e0)                                                   \
     do {                                                                                          \
-        int cellSide = (task)->side;                                                              \
-        u16 scale = (task)->scale;                                                                \
-        int field48 = BattleCellTask_GetCellOffsetY((task), (arg570));                                      \
-        int angleOffset = BattleCellTask_GetCellOffsetX((task), (arg4e0));                                  \
+        cellSide = (task)->side;                                                              \
+        scale = (task)->scale;                                                                \
+        offsetY = BattleCellTask_GetCellOffsetY((task), (arg570));                                      \
+        offsetX = BattleCellTask_GetCellOffsetX((task), (arg4e0));                                  \
         BattleSpriteTask_CreateIfSet(MENU->battle.hitSpriteTables[(task)->side], 0, (task)->posX, \
-                                     (task)->posY, (task)->posZ, field48,                         \
-                                     (task)->angle + angleOffset, -1, scale, scale,               \
+                                     (task)->posY, (task)->posZ, offsetY,                         \
+                                     (task)->angle + offsetX, -1, scale, scale,               \
                                      SIDE_COLOUR(5, cellSide), 8, 1, cellSide, (task)->hasPos2,   \
                                      (task)->pos2X, (task)->pos2Y, (task)->pos2Z, 8);             \
     } while (0)
@@ -44,12 +45,16 @@ int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
  * hit sprite at the cell and sets step 4 in the cell task. */
 void func_ov002_02358c40(BattleScreenTask *screen)
 {
-    int side;
+    u16 scale;
     int other;
-    BattleHitList *hitList;
+    int side;
+    int cellSide;
     BattleHitFlags *flags;
-    BattleCellTask *cellTask;
     int cursor;
+    int offsetY;
+    BattleHitList *hitList;
+    int offsetX;
+    BattleCellTask *cellTask;
 
     for (side = 0; side < 2; side++) {
         other = (side + 1) & 1;
