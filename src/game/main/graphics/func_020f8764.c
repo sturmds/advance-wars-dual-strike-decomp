@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_02007568(void);
+void Screen_FillBlack(void);
 void Screen_FillWhite(void);
 void func_01ffd7b8(void);
 void func_0200a740(void *a);
@@ -23,7 +23,7 @@ void func_020f8764(int mode)
 {
     data_027c0280->masterBrightness = -16;
     if (mode == 1) {
-        func_02007568();
+        Screen_FillBlack();
     }
     if (mode == 0) {
         Screen_FillWhite();

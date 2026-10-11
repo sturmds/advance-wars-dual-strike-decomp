@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern int data_0229eae4;
 
-void func_02007568(void);
+void Screen_FillBlack(void);
 void func_01ff9c48(void (*callback)(void));
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9f1c(int value);
@@ -38,7 +38,7 @@ void func_02023f38(void);
 void Screen_InitSystems(void)
 {
     data_0229eae4 = 0;
-    func_02007568();
+    Screen_FillBlack();
     func_01ff9c48(NULL);
     func_01ff9c28(NULL);
     func_01ff9f1c(0);
