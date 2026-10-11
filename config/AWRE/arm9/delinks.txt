@@ -8876,6 +8876,10 @@ src/game/main/func_02079578.c:
     complete
     .text       start:0x02079578 end:0x020795b4
 
+src/game/main/link/wireless_on_step_done.c:
+    complete
+    .text       start:0x020795b4 end:0x02079664
+
 src/game/main/func_02079664.c:
     complete
     .text       start:0x02079664 end:0x020796a0
