@@ -8148,6 +8148,10 @@ src/game/main/ai/ai_sea_transport_few_foot_units_no_target.c:
     complete
     .text       start:0x020b56ac end:0x020b5750
 
+src/game/main/ai/ai_sea_transport_score_unload_tiles.c:
+    complete
+    .text       start:0x020b5750 end:0x020b5aa8
+
 src/game/main/ai/ai_sea_transport_find_shore_tile.c:
     complete
     .text       start:0x020b5aa8 end:0x020b5b94

@@ -6,14 +6,14 @@ extern int (*data_0229e16c)(void);
 void AiSeaTransport_FewArmedUnitsNoTarget(void);
 int AiSeaTransport_ScoreArmedCount(void);
 void func_020b5268(void);
-void func_020b5750(void);
+void AiSeaTransport_ScoreUnloadTiles(void);
 void func_020b5bf4(void);
 
 void func_020b5464(void)
 {
     data_0229e164 = AiSeaTransport_FewArmedUnitsNoTarget;
     data_0229e16c = AiSeaTransport_ScoreArmedCount;
-    func_020b5750();
+    AiSeaTransport_ScoreUnloadTiles();
     if (gAiTurnState->stepFlags & AI_STEP_BIT_08) {
         func_020b5bf4();
     }
