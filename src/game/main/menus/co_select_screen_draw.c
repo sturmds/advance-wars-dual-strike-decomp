@@ -22,10 +22,10 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 int func_02028644(void);
 void func_0202b654(int a0, u16 x, u16 y, int a3);
-int func_02044c04(u8 row);
-int func_02044c28(u8 column);
-BOOL func_0204572c(u8 listCo);
-int func_020457f0(u8 listCo);
+int CoSelectScreen_RowTileY(u8 row);
+int CoSelectScreen_ColumnTileX(u8 column);
+BOOL CoSelectScreen_IsCoInOtherCell(u8 listCo);
+int CoSelectScreen_ListSlotOfCo(u8 listCo);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -70,7 +70,7 @@ void CoSelectScreen_Draw(void)
 
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    listCo = data_0229c73c->unk_2c;
+    listCo = data_0229c73c->coList;
     for (i = 0; i < LIST_ROWS * LIST_COLUMNS; i++, listCo++) {
         if (*listCo != 0xff) {
             y = SLOT_Y(i);
@@ -84,8 +84,8 @@ void CoSelectScreen_Draw(void)
 
     screen = data_0229c73c;
     if (screen->coListOpen == 1) {
-        x = func_02044c28(screen->cursorColumn);
-        MenuCursor_DrawAt((x + 1) * 8, (func_02044c04(screen->cursorRow) + 2) * 8, 48, 16);
+        x = CoSelectScreen_ColumnTileX(screen->cursorColumn);
+        MenuCursor_DrawAt((x + 1) * 8, (CoSelectScreen_RowTileY(screen->cursorRow) + 2) * 8, 48, 16);
     }
 
     emptyCount = 0;
@@ -104,12 +104,12 @@ void CoSelectScreen_Draw(void)
                 emptyCount++;
                 continue;
             }
-            co = func_020457f0(co);
-            Sprite_QueueDefault((func_02044c28(column) + 1) * 8 & 0x1ff, (func_02044c04(row) + 2) * 8 & 0xff, (CELL(column, row) * 12 + 44) | 0x1000, 2);
+            co = CoSelectScreen_ListSlotOfCo(co);
+            Sprite_QueueDefault((CoSelectScreen_ColumnTileX(column) + 1) * 8 & 0x1ff, (CoSelectScreen_RowTileY(row) + 2) * 8 & 0xff, (CELL(column, row) * 12 + 44) | 0x1000, 2);
             if (data_0229c73c->coListOpen == 1 && (MainLoop_GetFrameCount() & 32) && CURSOR_CELL == CELL(column, row)) {
                 continue;
             }
-            if (CURSOR_CELL == CELL(column, row) && func_0204572c(GRID_CO(data_0229c73c->cursorColumn, data_0229c73c->cursorRow)) == 1) {
+            if (CURSOR_CELL == CELL(column, row) && CoSelectScreen_IsCoInOtherCell(GRID_CO(data_0229c73c->cursorColumn, data_0229c73c->cursorRow)) == 1) {
                 y = SLOT_Y(co);
                 x = SLOT_X(co) + 16;
                 Sprite_QueueAt(1, x & 0x1ff, y & 0xff, data_027c0040, CELL(column, row) * 4 + 12, 0);
@@ -137,7 +137,7 @@ void CoSelectScreen_Draw(void)
     }
 
     Gfx3d_InitScene();
-    listCo = data_0229c73c->unk_2c;
+    listCo = data_0229c73c->coList;
     for (i = 0; i < LIST_ROWS * LIST_COLUMNS; i++, listCo++) {
         if (*listCo != 0xff && *listCo != 0) {
             Gx_DrawTexturedQuadFormat(SLOT_X(i), SLOT_Y(i), 0, 2, 1, 3, i * 384, i * 32, 0, 0);

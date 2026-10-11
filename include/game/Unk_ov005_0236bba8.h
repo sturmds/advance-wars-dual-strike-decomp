@@ -29,7 +29,7 @@ typedef struct Ov005CoGridEntry {
     s16 y;
     s16 column;
     s16 row;
-    s16 available;                     /* 1 when func_02045830 accepts coId */
+    s16 available;                     /* 1 when CoSelect_IsCoAvailable accepts coId */
     s16 buttonId;                      /* MenuButton id of the cell, 0x80 + index */
 } Ov005CoGridEntry;
 

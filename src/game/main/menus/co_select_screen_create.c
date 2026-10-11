@@ -12,14 +12,14 @@
 #define CELL_LOCKED 1
 #define MAP_CO_PICKED 0x1c /* MapHeader.co: the player picks */
 
-extern u8 data_0215abcc[]; /* unk_2c table on a normal-mode campaign map */
-extern u8 data_0215abe4[]; /* unk_2c table everywhere else */
+extern u8 data_0215abcc[]; /* coList table on a normal-mode campaign map */
+extern u8 data_0215abe4[]; /* coList table everywhere else */
 
 void *Mem_Alloc(u32 size);
 int Campaign_IsHardMode(void);
 u8 func_020c3d08(u32 mapId);
 BOOL CoSelect_HasTagRow(void);
-int func_020457f0(int co);
+int CoSelectScreen_ListSlotOfCo(int co);
 
 /* Allocates the CO select work area and fills the grid: one column per
  * player of the map, two rows unless tag COs are off (a campaign map with
@@ -47,9 +47,9 @@ void CoSelectScreen_Create(void)
 
     if (STATE->gameMode == GAME_MODE_CAMPAIGN) {
         if (Campaign_IsHardMode() == 1) {
-            data_0229c73c->unk_2c = data_0215abe4;
+            data_0229c73c->coList = data_0215abe4;
         } else {
-            data_0229c73c->unk_2c = data_0215abcc;
+            data_0229c73c->coList = data_0215abcc;
             if (Ov000_gMapHeaders[STATE->unk_1c4->mapId].co[1][1] == 0) {
                 data_0229c73c->rowCount = 1;
             } else {
@@ -63,7 +63,7 @@ void CoSelectScreen_Create(void)
             }
         }
     } else {
-        data_0229c73c->unk_2c = data_0215abe4;
+        data_0229c73c->coList = data_0215abe4;
         if (CoSelect_HasTagRow() == 0) {
             data_0229c73c->rowCount = 1;
         }
@@ -77,7 +77,7 @@ void CoSelectScreen_Create(void)
 
     data_0229c73c->cursorColumn = 1;
     data_0229c73c->cursorRow = 0;
-    data_0229c73c->unk_30 = func_020457f0(CELL_CO(data_0229c73c->cursorColumn, data_0229c73c->cursorRow));
+    data_0229c73c->unk_30 = CoSelectScreen_ListSlotOfCo(CELL_CO(data_0229c73c->cursorColumn, data_0229c73c->cursorRow));
     data_0229c73c->coBeforeList = data_0229c73c->unk_30;
     data_0229c73c->coListOpen = 0;
     data_0229c73c->listAnchor = data_0229c73c->unk_30;

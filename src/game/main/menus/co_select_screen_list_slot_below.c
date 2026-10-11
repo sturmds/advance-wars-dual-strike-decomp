@@ -7,8 +7,8 @@ extern int data_027c0284;
 
 int Campaign_IsHardMode(void);
 int HwMod32(int a, int b);
-int func_020457d8(u8 slot);  /* CO in a CO list slot; 0: empty */
-BOOL func_02045830(u8 co);         /* co is in the available mask */
+int CoSelectScreen_GetListCo(u8 slot);  /* CO in a CO list slot; 0: empty */
+BOOL CoSelect_IsCoAvailable(u8 co);         /* co is in the available mask */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -32,6 +32,6 @@ int CoSelectScreen_ListSlotBelow(int slot)
         } else {
             slot += LIST_COLUMNS;
         }
-    } while (func_020457d8(slot) != 0 && func_02045830(func_020457d8(slot)) == 0);
+    } while (CoSelectScreen_GetListCo(slot) != 0 && CoSelect_IsCoAvailable(CoSelectScreen_GetListCo(slot)) == 0);
     return slot;
 }

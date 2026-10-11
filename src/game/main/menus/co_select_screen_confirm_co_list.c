@@ -8,7 +8,7 @@ void Co_UnpackPicture(int co, int firstTile);
 BOOL Skills_AreDisabled(void);
 void Sound_PlaySe(int id);
 BOOL CoSelect_CanLeaveBackCoEmpty(void);
-BOOL func_0204572c(u8 co);         /* another cell holds co */
+BOOL CoSelectScreen_IsCoInOtherCell(u8 co);         /* another cell holds co */
 void func_02044854(u8 column, u8 row);
 void func_02044950(void);
 void func_020427c8(void);
@@ -34,7 +34,7 @@ void CoSelectScreen_ConfirmCoList(MenuButton *button)
         Sound_PlaySe(0x10009);
         return;
     }
-    if (func_0204572c(co) == 1) {
+    if (CoSelectScreen_IsCoInOtherCell(co) == 1) {
         for (col = 1; col < data_0229c73c->columnCount + 1; col++) {
             for (row = 0; row < data_0229c73c->rowCount; row++) {
                 if (col == data_0229c73c->cursorColumn && row == data_0229c73c->cursorRow) {

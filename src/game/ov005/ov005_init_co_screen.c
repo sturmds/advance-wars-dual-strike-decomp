@@ -9,7 +9,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-BOOL func_02045830(u8 coId);
+BOOL CoSelect_IsCoAvailable(u8 coId);
 s16 func_ov005_02362bf0(Unk_ov005_0236bba8 *work, int index);
 int Co_GetSavedPaletteVariant(int coId);
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work);
@@ -74,7 +74,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     for (i = 0; i < OV005_CO_GRID_ENTRIES; i++) {
         if (work->grid[i].coId == -1) {
             work->grid[i].available = 0;
-        } else if (func_02045830(work->grid[i].coId) == 0) {
+        } else if (CoSelect_IsCoAvailable(work->grid[i].coId) == 0) {
             work->grid[i].available = 0;
         } else {
             work->grid[i].available = 1;

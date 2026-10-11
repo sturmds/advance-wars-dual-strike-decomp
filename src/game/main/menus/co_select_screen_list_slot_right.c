@@ -8,8 +8,8 @@ extern int data_027c0284;
 int Campaign_IsHardMode(void);
 int HwDiv32(int a, int b);
 int HwMod32(int a, int b);
-int func_020457d8(u8 slot);  /* CO in a CO list slot; 0: empty */
-BOOL func_02045830(u8 co);         /* co is in the available mask */
+int CoSelectScreen_GetListCo(u8 slot);  /* CO in a CO list slot; 0: empty */
+BOOL CoSelect_IsCoAvailable(u8 co);         /* co is in the available mask */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -39,14 +39,14 @@ int CoSelectScreen_ListSlotRight(int slot)
             column++;
         }
         for (row = anchorRow; row < LIST_ROWS; row++) {
-            co = func_020457d8(column + row * LIST_COLUMNS);
-            if (co == 0 || func_02045830(co) == 1) {
+            co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
+            if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
                 return column + row * LIST_COLUMNS;
             }
         }
         for (row = anchorRow; row >= 0; row--) {
-            co = func_020457d8(column + row * LIST_COLUMNS);
-            if (co == 0 || func_02045830(co) == 1) {
+            co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
+            if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
                 return column + row * LIST_COLUMNS;
             }
         }
