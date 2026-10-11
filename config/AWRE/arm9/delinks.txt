@@ -22570,6 +22570,10 @@ src/sdk/mb/mb_max.c:
     complete
     .text       start:0x021191f0 end:0x02119200
 
+src/sdk/mb/mb_parent_file_advance_block.c:
+    complete
+    .text       start:0x02119200 end:0x02119268
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
