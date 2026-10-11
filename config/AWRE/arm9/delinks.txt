@@ -18860,6 +18860,10 @@ src/game/main/sound/sound_start_fade_out_task.c:
     complete
     .text       start:0x020fcb18 end:0x020fcb4c
 
+src/game/main/sound/song_fade_out_wait_task_update.c:
+    complete
+    .text       start:0x020fcb4c end:0x020fcbd8
+
 src/game/main/func_020fcbd8.c:
     complete
     .text       start:0x020fcbd8 end:0x020fcbe8
