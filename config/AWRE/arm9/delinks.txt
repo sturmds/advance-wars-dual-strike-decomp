@@ -11743,6 +11743,10 @@ src/game/main/units/capture_count_up_start.c:
     complete
     .text       start:0x020ec1a8 end:0x020ec1d8
 
+src/game/main/units/capture_shake_start.c:
+    complete
+    .text       start:0x020ec1d8 end:0x020ec218
+
 src/game/main/units/property_picture_load.c:
     complete
     .text       start:0x020ec2f0 end:0x020ec438
