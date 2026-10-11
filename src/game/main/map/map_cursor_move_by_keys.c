@@ -29,7 +29,7 @@ void MapCursor_MoveByKeys(void)
     s8 range;
 
     /* Inside the reach shown for a unit, auto-repeat stops at its edge;
-     * a fresh press steps out. */
+     * a new press steps out. */
     if (tiles->rangeMapTiles[game->unk_28 + tiles->rowStart[game->unk_2a]] > 0) {
         range = tiles->rangeMapTiles[nx + tiles->rowStart[ny]];
         if (range < 0 || range > 110) {
