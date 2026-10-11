@@ -312,6 +312,10 @@ src/game/main/dma_tasks_destroy.c:
     complete
     .text       start:0x020035e0 end:0x020036a8
 
+src/game/main/dma_tasks_start_pair.c:
+    complete
+    .text       start:0x020036a8 end:0x020036dc
+
 src/game/main/dma_task_start.c:
     complete
     .text       start:0x020037f4 end:0x020038fc
