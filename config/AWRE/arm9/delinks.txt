@@ -4560,6 +4560,10 @@ src/game/main/func_0202b804.c:
     complete
     .text       start:0x0202b804 end:0x0202b820
 
+src/game/main/skills/skill_icon_load.c:
+    complete
+    .text       start:0x0202b820 end:0x0202b89c
+
 src/game/main/menus/sprite_queue_picture192x160.c:
     complete
     .text       start:0x0202b89c end:0x0202bbb0

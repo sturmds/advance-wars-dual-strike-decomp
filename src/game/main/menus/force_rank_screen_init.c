@@ -39,7 +39,7 @@ void func_02028a30(void);
 void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
-void func_0202b820(int skill, void *dest);
+void SkillIcon_Load(int skill, void *dest);
 void ForceRankScreen_LoadChosen(void);
 void ForceRankScreen_AddSlotButtons(void);
 int func_0207bd80(void);
@@ -121,7 +121,7 @@ void ForceRankScreen_Init(void)
     Bg_PutSkillSlot(1, 21, data_027c0280->layer1Map, 0);
     func_0202b804(BG_CHAR_BASE(data_027c0280->layer0Bg) + 0x4000);
     func_0202b7e0(2);
-    func_0202b820(0, BG_CHAR_BASE(data_027c0280->layer0Bg) + 0x3f80);
+    SkillIcon_Load(0, BG_CHAR_BASE(data_027c0280->layer0Bg) + 0x3f80);
     func_0202b804(data_027c0280->objVram + 0x8000);
     func_0202b7e0(16);
     Co_UnpackPicture(gForceRankScreen->co, 0);

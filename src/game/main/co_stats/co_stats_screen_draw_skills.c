@@ -10,7 +10,7 @@ void ForceRank_LoadSets(int mode);
 void func_020e6d14(u8 *out, int co);
 void Player_ListEquippedSkills(u8 *out, int player, int slot);
 void Screen_SetCurrentBoth(void *state);
-void func_0202b820(int skill, void *dest);
+void SkillIcon_Load(int skill, void *dest);
 void func_01ff8c84(int layer);
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
@@ -72,7 +72,7 @@ void CoStatsScreen_DrawSkills(void)
             count++;
         }
         for (i = 0; i < count; i++) {
-            func_0202b820(MENU.skills[i],
+            SkillIcon_Load(MENU.skills[i],
                           data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14)
                               + (SKILL_ICON_TILE + i * 4) * 32);
         }
