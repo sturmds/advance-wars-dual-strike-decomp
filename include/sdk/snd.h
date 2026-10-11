@@ -10,6 +10,22 @@ typedef struct SndCommand {
     u32 args[4];
 } SndCommand;
 
+/* Status block the ARM7 sound driver writes and the ARM9 reads after invalidating its cache lines. */
+typedef struct SndPlayerInfo {
+    u16 variable[16];
+    u32 tickCounter;
+} SndPlayerInfo;
+
+typedef struct SndSharedWork {
+    u32 finishCommandTag;
+    u32 playerStatus;
+    u16 channelStatus;
+    u16 captureStatus;
+    u8 pad_0C[20];
+    SndPlayerInfo player[16];
+    u16 globalVariable[16];
+} SndSharedWork;
+
 /* Command queue state of the sound driver. The roles are read from the code. */
 extern int data_022a9c50;      /* SND_Init has run */
 extern u8 data_022a9c54[];     /* lock around the command lists */
