@@ -5551,6 +5551,10 @@ src/game/main/tab_list_prev_page.c:
     complete
     .text       start:0x02070740 end:0x0207079c
 
+src/game/main/tab_list_next_page.c:
+    complete
+    .text       start:0x0207079c end:0x02070800
+
 src/game/main/func_02070800.c:
     complete
     .text       start:0x02070800 end:0x02070824
