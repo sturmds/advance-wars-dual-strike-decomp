@@ -5382,6 +5382,10 @@ src/game/main/score_list_get_panel_size.c:
     complete
     .text       start:0x02039bf8 end:0x02039c48
 
+src/game/main/score_list_next_page.c:
+    complete
+    .text       start:0x02039c48 end:0x02039ce8
+
 src/game/main/text/text_get_string_width.c:
     complete
     .text       start:0x02039df4 end:0x02039e34
