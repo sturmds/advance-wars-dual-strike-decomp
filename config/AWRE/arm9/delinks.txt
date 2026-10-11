@@ -9391,6 +9391,10 @@ src/game/main/func_020d8a6c.c:
     complete
     .text       start:0x020d8a6c end:0x020d8aa4
 
+src/game/main/map/tile_strike_task_update_impact2d.c:
+    complete
+    .text       start:0x020d8aa4 end:0x020d8b1c
+
 src/game/main/func_020d8c8c.c:
     complete
     .text       start:0x020d8c8c end:0x020d8cb8
