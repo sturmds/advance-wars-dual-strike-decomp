@@ -5,7 +5,7 @@ void func_020c4028(void);
 void MapView_ScrollStep(int step);
 void Map_ScrollViewToTile(int mode);
 void MovePath_Draw(void);
-BOOL func_020d1b70(void);
+BOOL MapView_IsAtRest(void);
 BOOL UnitMoveSelect_HandleButtons(void);
 void UnitMoveSelect_HandleTouch(void);
 
@@ -20,7 +20,7 @@ void UnitMoveSelect_Update(void)
     MapView_ScrollStep(4);
     Map_ScrollViewToTile(1);
     MovePath_Draw();
-    if (!func_020d1b70()) {
+    if (!MapView_IsAtRest()) {
         return;
     }
     if (UnitMoveSelect_HandleButtons()) {

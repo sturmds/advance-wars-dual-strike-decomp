@@ -11654,6 +11654,10 @@ src/game/main/menus/game_state15_run_step.c:
     complete
     .text       start:0x020d1a84 end:0x020d1b70
 
+src/game/main/map/map_view_is_at_rest.c:
+    complete
+    .text       start:0x020d1b70 end:0x020d1bc4
+
 src/game/main/func_020d1bc4.c:
     complete
     .text       start:0x020d1bc4 end:0x020d1be0

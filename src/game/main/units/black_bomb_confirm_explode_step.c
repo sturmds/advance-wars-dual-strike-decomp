@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern u32 data_0229eaec;
 
 BOOL EventScript_IsRunning(void);
-BOOL func_020d1b70(void);
+BOOL MapView_IsAtRest(void);
 u32 func_020ef190(void);
 u32 func_020efc20(void);
 void BlackBomb_RemoveActingUnit(Task *task);
@@ -40,7 +40,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
         return;
     }
     func_020c4124(2, 19);
-    if (!func_020d1b70()) {
+    if (!MapView_IsAtRest()) {
         return;
     }
     buttons = func_020ef190();

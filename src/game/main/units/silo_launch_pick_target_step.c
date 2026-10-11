@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern u32 data_0229eaec;
 
 BOOL EventScript_IsRunning(void);
-BOOL func_020d1b70(void);
+BOOL MapView_IsAtRest(void);
 u32 func_020ef1bc(void);
 u32 MapTouch_ReadTileTapOrBack(void);
 /* Defined without parameters; the original passes the task in r0. */
@@ -42,7 +42,7 @@ void SiloLaunch_PickTargetStep(Task *task)
     if (EventScript_IsRunning()) {
         return;
     }
-    if (func_020d1b70()) {
+    if (MapView_IsAtRest()) {
         buttons = func_020ef1bc();
         input = buttons | MapTouch_ReadTileTapOrBack();
         if (input & INPUT_CONFIRM) {
