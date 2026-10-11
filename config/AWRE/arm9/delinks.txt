@@ -4816,6 +4816,10 @@ src/game/main/menus/campaign_map_queue_current_marker.c:
     complete
     .text       start:0x0204f860 end:0x0204f8ec
 
+src/game/main/menus/campaign_map_offset_layer1.c:
+    complete
+    .text       start:0x0204f8ec end:0x0204f94c
+
 src/game/main/func_0204f94c.c:
     complete
     .text       start:0x0204f94c end:0x0204f95c
