@@ -6738,7 +6738,7 @@ src/game/main/menus/campaign_map_update_crossing_sprites.c:
     complete
     .text       start:0x0204e05c end:0x0204e34c
 
-src/game/main/menus/campaign_map_init_marker_sprites.c:
+src/game/main/menus/campaign_map_init_crossing_sprites.c:
     complete
     .text       start:0x0204e34c end:0x0204e400
 

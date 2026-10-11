@@ -15,7 +15,7 @@ extern MenuState gMenuState;
 /* States of each sprite (unk_64 for sprite 0, unk_66 for sprite 1). */
 #define CROSS_ENTER  0                 /* place it at its edge of the screen */
 #define CROSS_MOVING 1
-#define CROSS_WAIT   2                 /* off screen; counts down unk_58 or unk_5c */
+#define CROSS_WAIT   2                 /* off screen; counts down sprite0Wait or sprite1Wait */
 
 /* Update function of the two CampaignMapWork.sprites that cross the
  * world map. This task keeps their map positions in fromX/fromY (sprite 0)
@@ -66,14 +66,14 @@ void CampaignMap_UpdateCrossingSprites(CampaignMapTask *task)
     case CROSS_MOVING:
         if (task->fromX - SCROLL_X > 272 || task->fromY - SCROLL_Y < -16) {
             task->unk_64 = CROSS_WAIT;
-            task->unk_58 = Rng_Range(30, 128);
+            task->sprite0Wait = Rng_Range(30, 128);
         }
         break;
     case CROSS_WAIT:
-        if (task->unk_58 == 0) {
+        if (task->sprite0Wait == 0) {
             task->unk_64 = CROSS_ENTER;
         }
-        task->unk_58--;
+        task->sprite0Wait--;
         break;
     }
     switch (task->unk_66) {
@@ -93,14 +93,14 @@ void CampaignMap_UpdateCrossingSprites(CampaignMapTask *task)
     case CROSS_MOVING:
         if (task->toX - SCROLL_X > 272 || task->toY - SCROLL_Y < -16) {
             task->unk_66 = CROSS_WAIT;
-            task->unk_5c = Rng_Range(30, 128);
+            task->sprite1Wait = Rng_Range(30, 128);
         }
         break;
     case CROSS_WAIT:
-        if (task->unk_5c == 0) {
+        if (task->sprite1Wait == 0) {
             task->unk_66 = CROSS_ENTER;
         }
-        task->unk_5c--;
+        task->sprite1Wait--;
         break;
     }
     task->step++;

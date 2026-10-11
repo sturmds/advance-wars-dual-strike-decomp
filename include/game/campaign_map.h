@@ -35,7 +35,7 @@ typedef struct CampaignTopCo {
 } CampaignTopCo;
 
 /* Task of the world map scripts that scroll the map and move the cursor
- * (CampaignMap_InitMarkerSprites and the functions after it). The first 0x2c bytes belong
+ * (CampaignMap_InitCrossingSprites and the functions after it). The first 0x2c bytes belong
  * to the task system (Task_Create). */
 typedef struct CampaignMapTask {
     u8 pad_00[0x2c];
@@ -50,11 +50,11 @@ typedef struct CampaignMapTask {
     u8 pad_4e[0x52 - 0x4e];
     u16 side;                          /* 1: the mission lies right of the middle of the screen (CampaignMap_ShowCursor's side argument) */
     u8 pad_54[0x58 - 0x54];
-    int unk_58;
-    int unk_5c;
+    int sprite0Wait;                   /* frames until crossing sprite 0 comes in again (CampaignMap_UpdateCrossingSprites) */
+    int sprite1Wait;
     u8 pad_60[0x64 - 0x60];
-    s16 unk_64;
-    s16 unk_66;
+    s16 unk_64;                        /* each script uses it its own way: crossing sprite 0 state, marker frame (CampaignMap_DrawMarkers), layer 1 offset */
+    s16 unk_66;                        /* crossing sprite 1 state */
     s16 unk_68;
     s16 mission;                       /* index into gCampaignMissions */
 } CampaignMapTask;
