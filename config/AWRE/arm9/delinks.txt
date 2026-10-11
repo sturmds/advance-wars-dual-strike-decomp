@@ -4241,6 +4241,10 @@ src/game/main/menus/main_menu_build_page8.c:
     complete
     .text       start:0x02030a44 end:0x02030b1c
 
+src/game/main/menus/main_menu_build_page7.c:
+    complete
+    .text       start:0x02030b1c end:0x02030c58
+
 src/game/main/menus/main_menu_build_page5.c:
     complete
     .text       start:0x02030c58 end:0x02030d3c
