@@ -7866,6 +7866,10 @@ src/game/main/map/map_is_this_maps_turn.c:
     complete
     .text       start:0x020bb520 end:0x020bb728
 
+src/game/main/units/campaign_can_player_build_unit.c:
+    complete
+    .text       start:0x020bb728 end:0x020bb9c8
+
 src/game/main/func_020bba44.c:
     complete
     .text       start:0x020bba44 end:0x020bba60
