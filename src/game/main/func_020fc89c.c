@@ -1,0 +1,51 @@
+#include "types.h"
+#include "sdk/fs.h"
+
+extern int data_022a7e68;
+extern const char data_0216a5b8[];
+extern u8 data_0218ff58[];
+extern u8 data_022a7e88[];
+int func_02079f8c(void);
+void func_0211c0d8(void);
+u32 func_0211b38c(FSFile *file);
+BOOL func_0211af20(FSFile *file, void *dest, u32 size);
+BOOL func_0211abc4(void *dest, void *src);
+
+/* Needed to match: the original builds this test as a 0/1 value first, as an
+ * inline function does. */
+static inline BOOL IsFile(FSFile *file)
+{
+    if (file->flags & FS_FILE_STATUS_IS_FILE) {
+        return TRUE;
+    }
+    return FALSE;
+}
+
+BOOL func_020fc89c(void)
+{
+    FSFile file;
+    u32 size;
+
+    if (func_02079f8c()) {
+        func_0211c0d8();
+        FS_InitFile(&file);
+        if (FS_OpenFile(&file, data_0216a5b8)) {
+            size = func_0211b38c(&file);
+            if (size != 0 && size <= 0x100000) {
+                if (func_0211af20(&file, data_0218ff58, size)) {
+                    if (func_0211abc4(data_022a7e88, data_0218ff58)) {
+                        if (IsFile(&file) != FALSE) {
+                            FS_CloseFile(&file);
+                        }
+                        data_022a7e68 = 2;
+                        return TRUE;
+                    }
+                }
+            }
+        }
+    }
+    if (IsFile(&file) != FALSE) {
+        FS_CloseFile(&file);
+    }
+    return FALSE;
+}
