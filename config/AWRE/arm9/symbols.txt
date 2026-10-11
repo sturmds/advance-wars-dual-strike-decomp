@@ -645,7 +645,7 @@ func_0201a848 kind:function(arm,size=0x74) addr:0x0201a848
 func_0201a8bc kind:function(arm,size=0x148) addr:0x0201a8bc
 func_0201aa04 kind:function(arm,size=0x114) addr:0x0201aa04
 EventScript_Start kind:function(arm,size=0x74) addr:0x0201ab18
-func_0201ab8c kind:function(arm,size=0x44) addr:0x0201ab8c
+EventScript_StartQueued kind:function(arm,size=0x44) addr:0x0201ab8c
 EventScript_StartOrQueue kind:function(arm,size=0x5c) addr:0x0201abd0
 func_0201ac2c kind:function(arm,size=0x4c) addr:0x0201ac2c
 EventScript_Stop kind:function(arm,size=0x1c) addr:0x0201ac78
@@ -8671,7 +8671,7 @@ data_02297790 kind:bss addr:0x02297790
 data_02297794 kind:bss addr:0x02297794
 data_0229779c kind:bss addr:0x0229779c
 data_022977a4 kind:bss addr:0x022977a4
-data_022977b0 kind:bss addr:0x022977b0
+gEventScriptQueue kind:bss addr:0x022977b0
 data_022977d0 kind:bss addr:0x022977d0
 data_022977f0 kind:bss addr:0x022977f0
 data_022977f4 kind:bss addr:0x022977f4

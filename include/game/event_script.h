@@ -30,6 +30,13 @@ typedef struct EventScriptSlot {
 
 extern EventScriptSlot data_022977f0[EVENT_SCRIPT_SLOTS];
 
+EventScriptSlot *EventScript_Start(const EventScriptCommand *script);
+
+#define EVENT_SCRIPT_QUEUE_SIZE 8
+
+/* Scripts queued by EventScript_StartOrQueue while another script runs. */
+extern const EventScriptCommand *gEventScriptQueue[EVENT_SCRIPT_QUEUE_SIZE];
+
 /* One 8-byte entry of a map's trigger list. A list holds blocks of
  * conditions, each block closed by one EVENT_TRIGGER_RUN_* entry, and ends
  * with EVENT_TRIGGER_END. Condition kinds come in threes: the first applies

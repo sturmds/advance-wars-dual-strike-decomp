@@ -4,7 +4,6 @@
 #include "game/Unk_02088d04.h"
 
 extern Unk_027c0280 *data_027c0280;
-extern u32 data_022977b0[8];
 extern u16 data_02297778;
 extern u16 data_0229777c;
 extern u8 *data_02297790;
@@ -26,8 +25,8 @@ void EventScript_Init(void)
     for (i = 0; i < EVENT_SCRIPT_SLOTS; i++) {
         data_022977f0[i].start = NULL;
     }
-    for (j = 0; j < 8; j++) {
-        data_022977b0[j] = 0;
+    for (j = 0; j < EVENT_SCRIPT_QUEUE_SIZE; j++) {
+        gEventScriptQueue[j] = NULL;
     }
     func_0210187c();
     data_02297778 = 0;
