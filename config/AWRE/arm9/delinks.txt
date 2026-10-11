@@ -8378,6 +8378,10 @@ src/game/main/tab_list_draw_entry_with_icon.c:
     complete
     .text       start:0x02071f80 end:0x02072084
 
+src/game/main/tab_list_draw_entry_with_orange_star_icon.c:
+    complete
+    .text       start:0x02072084 end:0x02072188
+
 src/game/main/tab_list_draw_entry_time.c:
     complete
     .text       start:0x02072188 end:0x02072284
