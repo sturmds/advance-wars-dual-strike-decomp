@@ -9,14 +9,14 @@ extern int data_027c0284;
 extern const TaskScriptCmd data_021684f8[];
 extern const TaskScriptCmd data_02168578[];
 
-void func_020e2ce0(int player);
+void Player_EndPower(int player);
 void func_020e19b4(int player);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 void UnitAction_SwapCo(void)
 {
-    func_020e2ce0(GAME->currentPlayer);
+    Player_EndPower(GAME->currentPlayer);
     switch (GAME->players[GAME->currentPlayer].tagPowerHalf) {
     case 0:
         if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {

@@ -33,7 +33,7 @@ void func_020ca9d8(void);
 void func_020ba750(void);
 void func_020c1950(void);
 void CurrentPlayer_SyncState(void);
-void func_020e2ce0(int player);
+void Player_EndPower(int player);
 BOOL func_020bae64(void);                   /* TRUE: two or more human teams share the DS */
 int Player_GetNextInGame(int player);              /* next player after `player` still in the game */
 void NextTurn_DrawArmyName(int y, int army);
@@ -97,7 +97,7 @@ void Game_State3_NextTurnScreen(void)
     Turn_AdvanceToNextPlayer();
     CurrentPlayer_SyncState();
     func_020c1950();
-    func_020e2ce0(STATE->currentPlayer);
+    Player_EndPower(STATE->currentPlayer);
     MovementCost();
     func_020c4018();
     if (data_027c027c == data_027c0288.unk_00) {
