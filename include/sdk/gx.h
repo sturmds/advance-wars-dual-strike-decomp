@@ -42,6 +42,8 @@
 #define REG_POWCNT1 ((volatile u16 *)0x04000304)
 #define REG_MTX_STORE ((volatile u32 *)0x0400044c)
 #define POWCNT1_DISPLAY_SWAP 0x8000 /* set: main engine on the top screen */
+#define POWCNT1_LCD 0x1
+#define POWCNT1_ENGINES 0x20e /* 2D engine A, 3D rendering, 3D geometry, 2D engine B */
 
 /* Sub engine (2D graphics engine B) registers. */
 #define REG_DB_DISPCNT ((volatile u32 *)0x04001000)
@@ -175,6 +177,9 @@ extern u16 gGxDispOn;
 void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0As3d);
 void GX_DispOn(void);
 void GX_DispOff(void);
+void GX_Init(void);
+void Vram_ClearAllBankControl(void);
+#define GX_DMA_NOT_USE ((u32)-1) /* GX library DMA channel setting: copy with the CPU */
 
 /* Multiplies the current matrix by a rotation about the Y axis. sinVal and cosVal are 4.12 fixed point. */
 void G3_RotY(int sinVal, int cosVal);

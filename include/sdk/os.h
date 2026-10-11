@@ -92,6 +92,8 @@ typedef struct OSThreadInfo {
     ThreadSwapHook switchCallback;
 } OSThreadInfo;
 
+#define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */
+
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);
 

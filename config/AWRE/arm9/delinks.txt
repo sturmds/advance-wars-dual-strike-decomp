@@ -20785,6 +20785,10 @@ src/game/main/func_0210a5d4.c:
     complete
     .text       start:0x0210a5d4 end:0x0210a5fc
 
+src/sdk/gx/gx_init.c:
+    complete
+    .text       start:0x0210a5fc end:0x0210a794
+
 src/sdk/gx/gx_vram_reset.c:
     complete
     .text       start:0x0210a794 end:0x0210a814

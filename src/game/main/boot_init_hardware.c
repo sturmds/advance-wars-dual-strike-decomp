@@ -6,7 +6,6 @@ void func_0210e25c(int a, int b);
 void func_0210e270(int a, int b);
 void func_0210e67c(int a);
 void func_0210a420(void);
-void func_0210a5fc(void);
 void OS_SetIrqFunction(int a, void (*callback)(void));
 void OS_EnableIrqMask(int a);
 void GX_VBlankIntr(void);
@@ -16,7 +15,7 @@ void MainLoop_BootVBlank(void);
 #define POWCNT1_ENGINES 0x20e /* 2D engine A, 3D rendering, 3D geometry, 2D engine B */
 
 /* First step of boot: sets up memory regions, switches the display and 3D
- * engines off and on around func_0210a5fc, installs MainLoop_BootVBlank as
+ * engines off and on around GX_Init, installs MainLoop_BootVBlank as
  * the handler for interrupt mask 1 (VBlank), then enables interrupts. The unused read of
  * IME is needed to match. */
 void Boot_InitHardware(void)
@@ -29,7 +28,7 @@ void Boot_InitHardware(void)
     func_0210e67c(0x200002d);
     func_0210a420();
     *REG_POWCNT1 = *REG_POWCNT1 & ~POWCNT1_ENGINES;
-    func_0210a5fc();
+    GX_Init();
     *REG_POWCNT1 = (*REG_POWCNT1 & ~POWCNT1_ENGINES) | POWCNT1_ENGINES;
     OS_SetIrqFunction(1, MainLoop_BootVBlank);
     OS_EnableIrqMask(1);
