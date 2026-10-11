@@ -31,7 +31,7 @@ void Game_State3_NextTurnScreen(void);
 void Game_State4_WaitSongFade(void);
 void Game_State5_StartTurnTask(void);
 void Game_State6_PlayThemeAndScripts(void);
-void func_020ba04c(void);
+void Game_State7_ScrollToPlayerCursor(void);
 void Game_State8_PickNextState(void);
 void Game_State9_RunStep(void);
 void Game_State10_RunStep(void);
@@ -124,7 +124,7 @@ void Game_RunStateFrame(void)
                 Game_State6_PlayThemeAndScripts();
                 break;
             case 7:
-                func_020ba04c();
+                Game_State7_ScrollToPlayerCursor();
                 break;
             case 8:
                 Game_State8_PickNextState();

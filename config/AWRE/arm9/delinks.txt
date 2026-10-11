@@ -12088,6 +12088,10 @@ src/game/main/menus/game_state8_pick_next_state.c:
     complete
     .text       start:0x020b9f94 end:0x020ba04c
 
+src/game/main/menus/game_state7_scroll_to_player_cursor.c:
+    complete
+    .text       start:0x020ba04c end:0x020ba198
+
 src/game/main/menus/game_state6_play_theme_and_scripts.c:
     complete
     .text       start:0x020ba198 end:0x020ba208
