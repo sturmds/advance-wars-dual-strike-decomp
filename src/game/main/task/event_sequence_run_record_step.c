@@ -5,12 +5,12 @@ int func_020d82c8(void);
 void Save_StoreProfile(int campaignSlot, int day);
 int func_02019330(int mode, int campaignSlot);
 void func_020d8028(int arg);
-void func_02018f48(void);
+void Save_PackAndWriteProgress(void);
 void func_02019484(u8 recordId);
 
 /* Event script handler. The record id in slot->unk_10 (set by
  * EventSequence_StartScript from func_02019330) picks the work: 0 runs
- * func_02018f48; 2 to 4 (campaign records) run Save_StoreProfile with day 0 for
+ * Save_PackAndWriteProgress; 2 to 4 (campaign records) run Save_StoreProfile with day 0 for
  * the campaign slot, then func_02019484 on that slot's record id; any other
  * id goes straight to func_02019484. What func_02019484 does with the record
  * is not clear yet (it may load rather than save). */
@@ -21,7 +21,7 @@ void EventSequence_RunRecordStep(EventScriptSlot *slot)
     func_020d8028(slot->unk_10);
     switch (slot->unk_10) {
     case 0:
-        func_02018f48();
+        Save_PackAndWriteProgress();
         break;
     case 2:
     case 3:

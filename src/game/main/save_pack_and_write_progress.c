@@ -8,7 +8,7 @@ void func_020d6fcc(void);
 
 /* Packs the live progress data into data_02291774 and writes it as save
  * record 0. */
-void func_02018f48(void)
+void Save_PackAndWriteProgress(void)
 {
     func_02019920();
     Save_WriteRecord(0, &data_02291774, Save_PackProgress((SaveProgressBlocks *)&data_02291774));
