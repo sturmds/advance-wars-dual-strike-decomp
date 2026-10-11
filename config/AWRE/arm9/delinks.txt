@@ -8852,6 +8852,10 @@ src/game/main/func_0207930c.c:
     complete
     .text       start:0x0207930c end:0x02079348
 
+src/game/main/link/wireless_on_indication.c:
+    complete
+    .text       start:0x02079348 end:0x02079368
+
 src/game/main/func_02079368.c:
     complete
     .text       start:0x02079368 end:0x020793a4

@@ -24,6 +24,13 @@ typedef struct WMCallback {
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
 
+/* What an indication callback receives (unsolicited ARM7 events). */
+typedef struct RadioNotice {
+    u16 apiid;
+    u16 errcode;
+    u16 state;                         /* WIRELESS_NOTICE_* */
+} RadioNotice;
+
 typedef struct WMGameInfo {
     u16 magicNumber;
     u8 ver;
