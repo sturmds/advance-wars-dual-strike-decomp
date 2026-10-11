@@ -5578,6 +5578,10 @@ src/game/main/func_020796a0.c:
     complete
     .text       start:0x020796a0 end:0x02079720
 
+src/game/main/link/wireless_on_port_receive.c:
+    complete
+    .text       start:0x02079720 end:0x02079820
+
 src/game/main/func_02079ee0.c:
     complete
     .text       start:0x02079ee0 end:0x02079f10
