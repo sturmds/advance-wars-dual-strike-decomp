@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "game/sound_handle.h"
+#include "game/sound_strm.h"
 
 /* Flag bits of SoundStream.flags. Signed one-bit fields: the original code
  * reads them with shift and arithmetic shift. */
@@ -16,7 +17,8 @@ typedef struct SoundStreamFlags {
 /* NitroSystem sound stream (NNSSndStrm), only the fields the game code
  * reads. */
 typedef struct SoundStream {
-    u8 pad_00[0xe4];
+    SoundStrm strm;                    /* 0x00 */
+    u8 pad_5c[0x88];
     SoundFader volumeFader;            /* 0xe4 */
     u8 pad_f4[0x18];
     SoundStreamFlags flags;            /* 0x10c */

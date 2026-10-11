@@ -12952,6 +12952,10 @@ src/game/main/sound/sound_slot_set_max_players.c:
     complete
     .text       start:0x02105964 end:0x02105984
 
+src/game/main/sound/sound_strm_on_wake.c:
+    complete
+    .text       start:0x02105984 end:0x021059fc
+
 src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
