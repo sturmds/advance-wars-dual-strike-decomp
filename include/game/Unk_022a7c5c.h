@@ -21,10 +21,12 @@ typedef struct Unk_022a7c5c {
     u8 *unk_44;                        /* destination of the colour func_020f8344 queues (+ 8) */
     u32 unk_48;                        /* tile base of the move path arrow cells, 32 bytes per cell (MovePath_DrawArrows3d) */
     u32 unk_4c;                        /* passed with unk_48 to SpriteCells_Draw3d */
-    u8 pad_50[0x5c - 0x50];
+    u32 unk_50;                        /* texture image offset, 0x3be0 (Map3d_InitLayout) */
+    u32 unk_54;                        /* texture palette offset, 0x460 */
+    u32 unk_58;                        /* texture palette offset, 0x480 */
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */
-    u8 pad_64[0x68 - 0x64];
+    u32 unk_64;                        /* texture palette offset, 0x4a0 */
     void *unk_68;                      /* destination of the graphics func_020d8fac loads */
     void *unk_6c;                      /* destination of its palette */
 } Unk_022a7c5c;
