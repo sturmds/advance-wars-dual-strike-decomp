@@ -9,7 +9,9 @@ typedef struct LinkMarkerTask {
     u8 pad_00[0x2c];
     int x;                             /* screen position of the marker */
     int y;
-    u8 pad_34[0x52 - 0x34];
+    u8 pad_34[0x4c - 0x34];
+    s16 frame;                         /* frames of the grow-in so far */
+    u8 pad_4e[0x52 - 0x4e];
     u16 unk_52;                        /* 25 + kind; meaning not worked out */
 } LinkMarkerTask;
 

@@ -8521,6 +8521,10 @@ src/game/main/link/link_menu_create_marker.c:
     complete
     .text       start:0x0207fcec end:0x0207fd5c
 
+src/game/main/link/link_marker_task_squash_out.c:
+    complete
+    .text       start:0x0207fd5c end:0x0207fee0
+
 src/game/main/func_0207fee0.c:
     complete
     .text       start:0x0207fee0 end:0x0207feec
