@@ -6,7 +6,7 @@ extern LinkList data_022a8ab8;         /* refill requests waiting for the sound 
 int func_0210eb0c(void);
 void func_0210eb20(int irqState);
 void SoundStream_UnlockChannels(SoundStream *stream);
-void func_02108d30(SoundStream *stream);
+void SoundStream_Detach(SoundStream *stream);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
 
 /* Releases the stream: gives back its channels and closes its file, takes its
@@ -32,5 +32,5 @@ void SoundStream_Release(SoundStream *stream)
         }
     }
     func_0210eb20(irqState);
-    func_02108d30(stream);
+    SoundStream_Detach(stream);
 }
