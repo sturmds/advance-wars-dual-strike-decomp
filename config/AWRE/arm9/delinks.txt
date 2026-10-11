@@ -5042,6 +5042,10 @@ src/game/main/day_banner_init.c:
     complete
     .text       start:0x02053124 end:0x0205327c
 
+src/game/main/day_banner_load_graphics.c:
+    complete
+    .text       start:0x020533c4 end:0x02053560
+
 src/game/main/screen/screen_fade_in_from_white_update.c:
     complete
     .text       start:0x020539b0 end:0x02053a20
