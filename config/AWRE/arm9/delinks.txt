@@ -13674,6 +13674,10 @@ src/game/main/map/map_overview_restore_cursor.c:
     complete
     .text       start:0x020c9e10 end:0x020c9ee0
 
+src/game/main/map/map_overview_fade_in_step.c:
+    complete
+    .text       start:0x020c9ee0 end:0x020c9f6c
+
 src/game/main/script/script_start_with_hook.c:
     complete
     .text       start:0x020ca288 end:0x020ca2e8
