@@ -596,6 +596,10 @@ src/game/main/screen/screen_enable_empty_windows.c:
     complete
     .text       start:0x020066b0 end:0x02006824
 
+src/game/main/screen/window_wipe_start_hide.c:
+    complete
+    .text       start:0x02006824 end:0x02006a20
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710
