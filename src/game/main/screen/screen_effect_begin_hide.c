@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/screen_effect.h"
 
 int func_02007748(void);
 int func_02007730(void);
@@ -6,7 +7,7 @@ void func_02007710(int a0);
 void Screen_SetBothNibbles(int a0);
 void Task_Destroy(void *task);
 
-int func_02003d84(void *task)
+BOOL ScreenEffect_BeginHide(Task *task)
 {
     if (func_02007748() == 1) {
         if (func_02007730() == 1) {

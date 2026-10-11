@@ -32,8 +32,8 @@ void ScreenWipe_EaseUpUpdate(Task *task)
         data_0216e29c = Math_Ease(4, 0, WIPE_END, data_0216e2a8, WIPE_END);
     }
 
-    if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN0
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == WIPE_CURRENT)) {
+    if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN0
+        || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -42,8 +42,8 @@ void ScreenWipe_EaseUpUpdate(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN1
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == WIPE_CURRENT)) {
+    if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN1
+        || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
@@ -55,8 +55,8 @@ void ScreenWipe_EaseUpUpdate(Task *task)
 
     if (data_0216e29c >= WIPE_END) {
         data_0216e29c = WIPE_END;
-        if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN0
-            || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == WIPE_CURRENT)) {
+        if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN0
+            || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);
             saved027c = data_027c027c;
@@ -66,8 +66,8 @@ void ScreenWipe_EaseUpUpdate(Task *task)
             Screen_SetCurrent(saved027c);
             Screen_SetCurrentGfx(saved0280);
         }
-        if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN1
-            || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == WIPE_CURRENT)) {
+        if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN1
+            || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_04);
             saved027c = data_027c027c;

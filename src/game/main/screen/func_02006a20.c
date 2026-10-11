@@ -28,6 +28,6 @@ void func_02006a20(Task *task)
     Screen_EnableEmptyWindows();
     data_0216e29c = 0;
     data_0216e2a8 = 0;
-    DmaTask_Start(data_0216e338, data_027c027c == data_027c0288.unk_00 ? REG_WIN0H : REG_DB_WIN0H, 1, 0xa240,
+    DmaTask_Start(gWipeWin0hTable, data_027c027c == data_027c0288.unk_00 ? REG_WIN0H : REG_DB_WIN0H, 1, 0xa240,
                   WindowWipe_BuildCenterOut);
 }

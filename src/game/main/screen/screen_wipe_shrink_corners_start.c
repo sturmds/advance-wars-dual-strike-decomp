@@ -3,7 +3,6 @@
 #include "game/screen_other_map.h"
 #include "game/screen_wipe.h"
 
-BOOL func_02003d10(Task *task);
 void Screen_EnableEmptyWindows(void);
 void Screen_ResetWindowRects(void);
 
@@ -15,12 +14,12 @@ void ScreenWipe_ShrinkCornersStart(Task *task)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (func_02003d10(task) == 0) {
+    if (ScreenEffect_BeginShow(task) == 0) {
         return;
     }
     task->unk_64 = 1;
-    if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN0
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == WIPE_CURRENT)) {
+    if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN0
+        || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -30,8 +29,8 @@ void ScreenWipe_ShrinkCornersStart(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == WIPE_BOTH || func_020076f8() == WIPE_SCREEN1
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == WIPE_CURRENT)) {
+    if (ScreenEffect_GetScreens() == WIPE_BOTH || ScreenEffect_GetScreens() == WIPE_SCREEN1
+        || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == WIPE_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;

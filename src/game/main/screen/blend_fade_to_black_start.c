@@ -3,22 +3,21 @@
 #include "game/screen_other_map.h"
 #include "game/screen_effect.h"
 
-BOOL func_02003d84(Task *task);
 void Screen_ResetBlendAllTop(void);
 
 /* Task step: turns on the darken blend at level 0 on the screens
- * func_02003d84 picks and sets up BlendFadeToBlack_Update to darken them by
+ * ScreenEffect_BeginHide picks and sets up BlendFadeToBlack_Update to darken them by
  * one level a frame. */
 void BlendFadeToBlack_Start(Task *task)
 {
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (func_02003d84(task) == 0) {
+    if (ScreenEffect_BeginHide(task) == 0) {
         return;
     }
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_MAIN
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_MAIN
+        || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -29,8 +28,8 @@ void BlendFadeToBlack_Start(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_SUB
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_SUB
+        || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;

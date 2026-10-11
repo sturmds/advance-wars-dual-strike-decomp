@@ -404,11 +404,11 @@ src/game/main/graphics/transfer_queue_clear.c:
     complete
     .text       start:0x02003cb0 end:0x02003d10
 
-src/game/main/func_02003d10.c:
+src/game/main/screen/screen_effect_begin_show.c:
     complete
     .text       start:0x02003d10 end:0x02003d84
 
-src/game/main/func_02003d84.c:
+src/game/main/screen/screen_effect_begin_hide.c:
     complete
     .text       start:0x02003d84 end:0x02003df8
 
@@ -420,15 +420,15 @@ src/game/main/screen/screen_shake_update.c:
     complete
     .text       start:0x02003e84 end:0x02003f44
 
-src/game/main/func_02003f44.c:
+src/game/main/screen/screen_shake_init.c:
     complete
     .text       start:0x02003f44 end:0x02003f6c
 
-src/game/main/func_02003f6c.c:
+src/game/main/screen/screen_shake_end.c:
     complete
     .text       start:0x02003f6c end:0x02003f8c
 
-src/game/main/func_02003f8c.c:
+src/game/main/screen/screen_shake_stop.c:
     complete
     .text       start:0x02003f8c end:0x02003fa0
 
@@ -436,7 +436,7 @@ src/game/main/screen/screen_shake_start.c:
     complete
     .text       start:0x02003fa0 end:0x02003ff8
 
-src/game/main/func_02003ff8.c:
+src/game/main/screen/screen_shake_clear_offsets.c:
     complete
     .text       start:0x02003ff8 end:0x02004018
 
@@ -763,7 +763,7 @@ src/game/main/screen/screens_init_effect_state.c:
     complete
     .text       start:0x020076c0 end:0x020076f8
 
-src/game/main/func_020076f8.c:
+src/game/main/screen/screen_effect_get_screens.c:
     complete
     .text       start:0x020076f8 end:0x02007710
 

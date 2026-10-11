@@ -20,8 +20,8 @@ void BlendFadeToBlack_Update(Task *task)
     if (task->unk_66 >= 16 << 8) {
         task->unk_66 = 16 << 8;
     }
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_MAIN
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_MAIN
+        || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -30,8 +30,8 @@ void BlendFadeToBlack_Update(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_SUB
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_SUB
+        || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;

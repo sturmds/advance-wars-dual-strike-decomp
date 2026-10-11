@@ -9,7 +9,7 @@ void WindowWipe_BuildEdgesIn(void)
 {
     int line;
     int width;
-    u16 *table = data_0216e338; /* needed to match: progress is read again each line */
+    u16 *table = gWipeWin0hTable; /* needed to match: progress is read again each line */
 
     data_0216e2b0.unk_02 = 0;
     data_0216e2b0.unk_03 = 192;

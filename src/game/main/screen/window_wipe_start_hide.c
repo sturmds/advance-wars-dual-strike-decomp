@@ -4,7 +4,6 @@
 #include "game/screen_other_map.h"
 #include "game/window_wipe.h"
 
-BOOL func_02003d84(Task *task);
 void func_020036dc(const void *src, volatile void *dest, volatile void *dest2, int unk34, int unk36, void (*callback)(void));
 void DmaTask_Start(const void *src, volatile void *dest, int unk34, int unk36, void (*callback)(void));
 void Screen_EnableEmptyWindows(void);
@@ -18,12 +17,12 @@ void WindowWipe_StartHide(Task *task)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (func_02003d84(task) == 0) {
+    if (ScreenEffect_BeginHide(task) == 0) {
         return;
     }
     task->unk_64 = 1;
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_MAIN
-        || (data_027c027c == data_027c0288.unk_00 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_MAIN
+        || (data_027c027c == data_027c0288.unk_00 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -32,8 +31,8 @@ void WindowWipe_StartHide(Task *task)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    if (func_020076f8() == EFFECT_SCREEN_BOTH || func_020076f8() == EFFECT_SCREEN_SUB
-        || (data_027c027c == data_027c0288.unk_04 && func_020076f8() == EFFECT_SCREEN_CURRENT)) {
+    if (ScreenEffect_GetScreens() == EFFECT_SCREEN_BOTH || ScreenEffect_GetScreens() == EFFECT_SCREEN_SUB
+        || (data_027c027c == data_027c0288.unk_04 && ScreenEffect_GetScreens() == EFFECT_SCREEN_CURRENT)) {
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
@@ -44,15 +43,15 @@ void WindowWipe_StartHide(Task *task)
     }
     data_0216e29c = 0;
     data_0216e2a8 = 0;
-    switch (func_020076f8()) {
+    switch (ScreenEffect_GetScreens()) {
     case EFFECT_SCREEN_BOTH:
-        func_020036dc(data_0216e338, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
+        func_020036dc(gWipeWin0hTable, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     case EFFECT_SCREEN_MAIN:
-        DmaTask_Start(data_0216e338, REG_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
+        DmaTask_Start(gWipeWin0hTable, REG_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     case EFFECT_SCREEN_SUB:
-        DmaTask_Start(data_0216e338, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
+        DmaTask_Start(gWipeWin0hTable, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     }
 }
