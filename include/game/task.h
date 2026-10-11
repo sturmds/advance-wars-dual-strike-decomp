@@ -41,7 +41,7 @@ typedef struct Task {
     void *unk_4c;                      /* data some scripts get from their creator; a MapUnit * for the battle tasks of ActingUnit_StartAttack */
     u8 pad_50[0x52 - 0x50];
     u16 unk_52;                        /* palette slot PaletteCycle_Start animates */
-    u8 pad_54[0x58 - 0x54];
+    int unk_54;                        /* frame count of the value ease (EaseTask_Update) */
     int unk_58;                        /* number of sprites the fade task of ScreenFadeSprites_Update draws */
     u8 unk_5c;                         /* bit 2 set by Sprite_CreateTask */
     u8 pad_5d[0x64 - 0x5d];
