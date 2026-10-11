@@ -298,6 +298,18 @@ typedef struct MenuStateFrom400 {
     u16 unk_4fc;                       /* BattleSetupState.unk_4fc */
 } MenuStateFrom400;
 
+/* gMenuState on the result screen (ResultScreen_Init). The blocks
+ * are copied from /ohashi/res_result and res_result_lang; it starts at
+ * offset 0, over MenuState.colours. */
+typedef struct ResultScreenWork {
+    u8 unk_000[0x16c];                 /* 0x16a bytes from res_result 0x59d8 */
+    u8 unk_16c[0xac];                  /* 0xaa bytes from res_result 0x5b44 */
+    u8 unk_218[0x4c];                  /* 0x4a bytes from res_result 0x5bf0 */
+    u8 unk_264[1];                     /* res_result_lang unpacked; size unknown */
+} ResultScreenWork;
+
+#define RESULT_WORK ((ResultScreenWork *)&gMenuState)
+
 /* Tables per map select tab (0-3, see MapSelect_GetTab), data_0229c768. */
 typedef struct MapListTables {
     u8 unk_000[4][13][4];              /* position of an entry's map on its page, by tab, entry (MapList.unk_64) and page */
