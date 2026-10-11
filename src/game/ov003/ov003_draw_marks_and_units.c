@@ -19,13 +19,13 @@ extern u8 data_ov003_02365494[];
 void Ov003_PutOwnedWindowPiece(int x, int y);
 int func_ov003_023622b8(void);
 u16 Wireless_GetChildAids(void);
-void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size);
+void Oam_PutClippedCells(int x, int y, int a, int b, const void *data, int c, int size);
 
 #define MAP data_ov003_02364a88
 #define STATE data_ov003_02364928
 
 #define DRAW(data, size) \
-    func_01ff85d8(x - STATE->scrollX, y - STATE->scrollY, 0, 0x800, data, 0, size)
+    Oam_PutClippedCells(x - STATE->scrollX, y - STATE->scrollY, 0, 0x800, data, 0, size)
 
 /* Draws the tile marks (Ov003_PutOwnedWindowPiece) of every 2 by 2 tile block that
  * is on screen or within 47 pixels of it, then each unit of the current slot's
