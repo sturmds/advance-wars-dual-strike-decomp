@@ -2,7 +2,6 @@
 
 int func_0211005c(void);
 int func_02110554(int block);
-int func_021102b0(int flags);
 
 /* Blocks until count commands are free. If the commands in flight would cover it, wait for the ARM7 to return them; otherwise send the queued ones first. */
 void Sound_BlockUntilCommandsFree(int count)
@@ -19,7 +18,7 @@ void Sound_BlockUntilCommandsFree(int count)
             return;
         }
     } else {
-        func_021102b0(1);
+        SND_FlushCommand(SOUND_SEND_WAIT_IF_FULL);
     }
     Sound_PingArm7Driver();
     do {

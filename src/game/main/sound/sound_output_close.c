@@ -7,7 +7,7 @@ extern u8 data_022a89fc[];
 void SND_StopTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 int SND_GetCurrentCommandTag(void);
 void SND_WaitForCommandProc(int arg0);
-void func_021102b0(int arg0);
+void SND_FlushCommand(int arg0);
 int OS_ReceiveMessage(void *arg0, int arg1, int arg2);
 void func_02104f90(int arg0);
 void Sound_UnlockChannels(u32 channelMask);
@@ -28,7 +28,7 @@ void SoundOutput_Close(void)
     SND_StopTimer(state->unk_20, state->unk_24, hasAlarm ? 1 << state->alarm : 0, 0);
     if (hasAlarm) {
         int saved = SND_GetCurrentCommandTag();
-        func_021102b0(1);
+        SND_FlushCommand(1);
         SND_WaitForCommandProc(saved);
         while (OS_ReceiveMessage(data_022a89fc, 0, 0) != 0) {
         }

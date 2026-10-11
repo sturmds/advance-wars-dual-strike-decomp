@@ -6,7 +6,7 @@ extern Unk_022a8a10 data_022a8a10;
 void SND_StopTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 int SND_GetCurrentCommandTag(void);
 void SND_WaitForCommandProc(int arg0);
-void func_021102b0(int arg0);
+void SND_FlushCommand(int arg0);
 
 /* Stops the output (the first half of SoundOutput_Close). */
 void SoundOutput_Pause(void)
@@ -19,6 +19,6 @@ void SoundOutput_Pause(void)
     }
     SND_StopTimer(state->unk_20, state->unk_24, state->alarm >= 0 ? 1 << state->alarm : 0, 0);
     saved = SND_GetCurrentCommandTag();
-    func_021102b0(1);
+    SND_FlushCommand(1);
     SND_WaitForCommandProc(saved);
 }

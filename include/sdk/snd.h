@@ -25,6 +25,9 @@ extern SndCommand *data_022a9c8c[9]; /* first command of each batch in flight */
 extern SndCommand data_022a9f40[256]; /* command pool */
 
 #define SOUND_FIFO_TAG 7 /* FIFO tag of the sound driver */
+#define SOUND_BATCHES_IN_FLIGHT_MAX 8   /* flushed batches the ARM7 may hold at once */
+#define SOUND_SEND_WAIT_IF_FULL 1   /* SND_FlushCommand: wait instead of failing */
+#define SOUND_SEND_THEN_PING 2    /* SND_FlushCommand: wake the ARM7 after sending */
 
 void SND_Init(void);
 SndCommand *SND_PopFreeCommand(void);
