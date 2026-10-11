@@ -100,6 +100,7 @@ enum {
 /* Unk_02080440_48.gameMode values the code confirms. */
 #define GAME_MODE_CAMPAIGN 0           /* Mission_HasPendingEvent runs only here */
 #define GAME_MODE_WAR_ROOM 1           /* MapSelect_LoadWarRoomRecords runs only here */
+#define GAME_MODE_VERSUS 2             /* Versus_Start loads the Force Rank sets of mode 2 for it */
 #define GAME_MODE_SURVIVAL 3           /* BattleRecord_SaveWin keeps time, funds and turn records here */
 #define GAME_MODE_DESIGN_ROOM 4        /* Design Room (overlay 6); entered by DesignRoom_Enter */
 

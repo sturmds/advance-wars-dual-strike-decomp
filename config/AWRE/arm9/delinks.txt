@@ -12862,6 +12862,10 @@ src/game/main/menus/main_menu_start_versus.c:
     complete
     .text       start:0x02103504 end:0x02103544
 
+src/game/main/menus/versus_start.c:
+    complete
+    .text       start:0x02103544 end:0x021035ec
+
 src/game/main/func_02103714.c:
     complete
     .text       start:0x02103714 end:0x0210372c
