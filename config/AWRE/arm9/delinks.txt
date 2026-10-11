@@ -8877,6 +8877,10 @@ src/game/main/menus/combat_setup_cancel_ready.c:
     complete
     .text       start:0x02083198 end:0x020832a8
 
+src/game/main/menus/combat_setup_mark_ready.c:
+    complete
+    .text       start:0x020832a8 end:0x02083350
+
 src/game/main/menus/combat_setup_sell_last_unit.c:
     complete
     .text       start:0x02083350 end:0x020834dc
