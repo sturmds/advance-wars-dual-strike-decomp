@@ -1,3 +1,6 @@
+/* Built at optimization level 2 (the pragma sweep found it); level 4 moves the
+ * gMenuState load above the panel narrowing. */
+#pragma optimization_level 2
 #include "types.h"
 #include "game/menu_state.h"
 
@@ -10,18 +13,16 @@ void LinkScreen_MovePlayerToPanel(int player, int panel);
 void LinkScreen_MovePlayerUp(int player)
 {
     u8 panel;
-    u8 lastPanel;
 
     if (LINK_READY_FLAG(gMenuState, player) != 0) {
         return;
     }
     panel = LinkScreen_FindPanelOfPlayer(player);
-    lastPanel = gMenuState.link.playerCount - 1;
     do {
         if (panel != 0) {
             panel = panel - 1;
         } else {
-            panel = lastPanel;
+            panel = gMenuState.link.playerCount - 1;
         }
     } while (LINK_READY_FLAG(gMenuState, LINK_PANEL_PLAYER(gMenuState, panel)) != 0);
     LinkScreen_MovePlayerToPanel(player, panel);

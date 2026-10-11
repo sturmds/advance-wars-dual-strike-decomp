@@ -8451,6 +8451,7 @@ src/game/main/link/link_screen_move_player_down.c:
     .text       start:0x02072638 end:0x020726ac
 
 src/game/main/link/link_screen_move_player_up.c:
+    complete
     .text       start:0x020726ac end:0x02072720
 
 src/game/main/link/link_screen_move_player_to_panel.c:
