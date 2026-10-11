@@ -4,7 +4,7 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-void func_02023f38(void);
+void IconBanks_ClearSlots(void);
 
 /* Loads the icons the second screen draws: first into the tile data, then
  * into two object banks (0 and 3). */
@@ -23,7 +23,7 @@ void SecondScreen_LoadIcons(void)
     Icon_LoadTo(49, data_027c0280->unk_e4, 654);
     Icon_LoadTo(50, data_027c0280->unk_e4, 660);
     Icon_LoadPalette(28, 12);
-    func_02023f38();
+    IconBanks_ClearSlots();
     IconBank_Init(0, data_027c0280->objVram, 240, 17);
     Icon_Load(61);
     Icon_Load(6);

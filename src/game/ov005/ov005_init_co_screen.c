@@ -32,7 +32,7 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Ov005_LoadCoGraphicsToBothScreens(Unk_ov005_0236bba8 *work);
 void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8 *work);
-void func_02023f38(void);
+void IconBanks_ClearSlots(void);
 void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 void Icon_Load(int iconId);
 void func_ov005_02363014(Ov005Task *task);
@@ -158,7 +158,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_02023f38();
+    IconBanks_ClearSlots();
     IconBank_Init(1, data_027c0280->objVram, 0x180, 20);
     Icon_Load(75);
     Icon_Load(76);

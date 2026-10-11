@@ -8,7 +8,7 @@
 
 void func_02028a30(void);
 void Wallpaper_LoadSelected(void);
-void func_02023f38(void);
+void IconBanks_ClearSlots(void);
 void func_0202b764(void);
 void TpIcon2_LoadTo(u8 *dest);
 void TpIcon3_LoadTo(u8 *dest);
@@ -85,7 +85,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     SWITCH_BACK();
 
     SWITCH_TO(data_027c0288.unk_00);
-    func_02023f38();
+    IconBanks_ClearSlots();
     SWITCH_BACK();
 
     SWITCH_TO(data_027c0288.unk_00);

@@ -3860,6 +3860,10 @@ src/game/main/icon/icon_bank_init.c:
     complete
     .text       start:0x02023ecc end:0x02023f38
 
+src/game/main/icon/icon_banks_clear_slots.c:
+    complete
+    .text       start:0x02023f38 end:0x02023f94
+
 src/game/main/func_020242c0.c:
     complete
     .text       start:0x020242c0 end:0x020242e0

@@ -30,7 +30,7 @@ void Screen_ApplyAll(void);
 void Sound_ResetSongs(void);
 void func_02026540(void);
 void MainMenu_Init(void);
-void func_02023f38(void);
+void IconBanks_ClearSlots(void);
 
 /* Resets the current screen's systems: main loop callbacks and flags, part
  * of the map state, tasks, script slots, transfer and callback queues,
@@ -67,5 +67,5 @@ void Screen_InitSystems(void)
     Sound_ResetSongs();
     func_02026540();
     MainMenu_Init();
-    func_02023f38();
+    IconBanks_ClearSlots();
 }
