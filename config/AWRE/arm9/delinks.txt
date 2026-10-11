@@ -21575,11 +21575,23 @@ src/sdk/mi/mi_swap_word.c:
     complete
     .text       start:0x0210f6f0 end:0x0210f6f8
 
+src/sdk/mi/func_0210f6f8.c:
+    complete
+    .text       start:0x0210f6f8 end:0x0210f78c
+
 src/sdk/mi/mi_uncompress_lz8.c:
     .text       start:0x0210f78c end:0x0210f864
 
 src/sdk/mi/unpack_huffman_to_words.c:
     .text       start:0x0210f864 end:0x0210f93c
+
+src/sdk/mi/func_0210f93c.c:
+    complete
+    .text       start:0x0210f93c end:0x0210f9a8
+
+src/sdk/mi/func_0210f9a8.c:
+    complete
+    .text       start:0x0210f9a8 end:0x0210fa10
 
 src/sdk/mi/mi_card_dma_copy32.c:
     complete
