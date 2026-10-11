@@ -13,7 +13,7 @@
 void func_02001a20(int column, int row, int co);   /* Player_SetCo with the CO id bits of co */
 void MovementCost(void);
 void func_020e7a80(int gameMode, int mapId);
-void func_020e7628(void);
+void Skills_LoadPlayer1EquippedOnMainScreen(void);
 void UpdatePlayerSkills(int player);
 Task *Task_FindByScript(const void *script);
 void Task_JumpToLabel(Task *task, int label);
@@ -23,7 +23,7 @@ extern const TaskScriptCmd data_0215ab00[];
 /* Script step after CO select: gives each player slot the CO picked for it
  * (unlike CoSelect_ApplyPicks, map header COs do not apply). Outside
  * Survival it then sets up the map (func_020e7a80, MovementCost), and the
- * second map too when there is one; in Survival it runs func_020e7628 and
+ * second map too when there is one; in Survival it runs Skills_LoadPlayer1EquippedOnMainScreen and
  * the skills of player 1. Then sends the task running data_0215ab00 to
  * label 2. */
 void CoSelect_ConfirmPicks(void)
@@ -52,7 +52,7 @@ void CoSelect_ConfirmPicks(void)
             Screen_SetCurrentGfx(saved0280);
         }
     } else {
-        func_020e7628();
+        Skills_LoadPlayer1EquippedOnMainScreen();
         UpdatePlayerSkills(1);
     }
     Task_JumpToLabel(Task_FindByScript(data_0215ab00), 2);

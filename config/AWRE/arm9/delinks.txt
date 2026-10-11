@@ -16836,6 +16836,14 @@ src/game/main/skills/update_player_skills.c:
     complete
     .text       start:0x020e70b8 end:0x020e759c
 
+src/game/main/skills/skills_load_player1_equipped.c:
+    complete
+    .text       start:0x020e759c end:0x020e7628
+
+src/game/main/skills/skills_load_player1_equipped_on_main_screen.c:
+    complete
+    .text       start:0x020e7628 end:0x020e768c
+
 src/game/main/skills/skills_setup_for_battle.c:
     complete
     .text       start:0x020e768c end:0x020e7a80
