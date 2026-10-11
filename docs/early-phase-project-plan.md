@@ -11,7 +11,7 @@ Background:
 
 | Rule | Source |
 |---|---|
-| Matching build only. US/AUS `AWRE` only. ARM7 copied from the ROM until a later milestone. | D1, D3 |
+| Matching build only. US/AUS `AWRE` only. ARM9 and ARM7 linked from objects (ARM7 since 2026-10-11); the file system copied from the ROM until a later milestone. | D1, D3 |
 | Linux only. No Windows executables, no wine, no wibo. Every tool locked to an exact version and hash. | D2 |
 | `make release` works as the first command after cloning, and works offline after the first `make setup`. | D2, D6 |
 | Every commit passes `make release`, enforced by a git hook in the repo. | D4 |
@@ -65,7 +65,7 @@ Result (2026-10-06): mwccarm 2.0-72 (builds 72–82 are equivalent) with `-O4,p 
 
 - `configure.py` generates `build.ninja` from dsd's `config/AWRE/arm9/**` (`delinks.txt`, `symbols.txt`, `relocs.txt`).
 - ARM9 main and every overlay are delinked into objects and linked with the original `mwldarm`, using the LCF from `dsd lcf`.
-- ARM7 and the file system are copied from the ROM as-is.
+- ARM7 and the file system are copied from the ROM as-is. (ARM7 has been linked from objects since 2026-10-11, issue 0013.)
 - The ROM is repacked, and `make check` compares per-module hashes, then the whole-ROM SHA-1. No exemption for header CRC bytes (khdays allows 4).
 
 Done when (M0 expected outcome): with a valid ROM at the gitignored path, `make release` on a new clone produces an `.nds` whose SHA-1 equals the retail `AWRE` SHA-1, and that file boots in an emulator.
@@ -106,8 +106,9 @@ Mostly sprinting on decomp and keeping the repo in working order along the way.
 - Readability passes over automated code: shared structs in `include/`, names, constants, recovered file boundaries.
 - Keep tools current: upgrades go through `tools.lock` and must keep `make release` passing.
 - Revisit the deferred items when they start to matter:
-  - ARM7 built from objects instead of copied (D1). dsd's `init` and `lcf` appear to handle ARM9 only, so this path is likely our own work.
-  - Asset extraction into editable forms, kept outside git (D5).
+  - ~~ARM7 built from objects instead of copied (D1)~~: done 2026-10-11 (issue 0013). dsd cannot delink ARM7 alone, so `tools/arm7.py` runs it on a stand-in ROM. Decompiling ARM7 to C follows the plan in issue 0042.
+  - The DS Download Play child in the file system, a second program with its own ARM9 and ARM7 (issue 0049).
+  - Asset extraction into editable forms, kept outside git (D5, issue 0050).
   - Proper CI with a self-hosted runner that holds the ROM (D4).
 
 ## Milestone 3: Automated QA through emulation
@@ -127,7 +128,7 @@ Done when: one Lua-driven scenario runs the same on the retail ROM and on our bu
 |---|---|---|
 | The compiler build is not available as a native Linux binary | Blocks M0 | Decided at 0.2 before other work. Stop and reassess if it can't be found. |
 | Some Thumb code matches from no compiler build | Part of the game remains assembly | Accept it with evidence (D6 caveat). Count it as assembly, never as C. |
-| ARM7 is harder than ARM9 because dsd focuses on ARM9 | Delays ARM7-from-objects | Out of scope until M2 |
+| ARM7 is harder than ARM9 because dsd focuses on ARM9 | Delays ARM7-from-objects | Resolved 2026-10-11: `tools/arm7.py` works around dsd (issue 0013) |
 | Automated C is unreadable (khdays' `int self` style) | Mod base is hard to use | Tenets plus review pass from M0. Readability passes in M2. |
 | Hard-coded addresses hide in data tables | Modded builds crash | Shift test starting in M2 |
 | One person, learning as we go | Slow early progress | M0 and M1 are sized for learning. Timeboxes are sturmds's call. |

@@ -19,15 +19,15 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 and the MD5 match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068), checked 2026-10-06.
 - Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
 - System packages needed: `make`, `ninja-build`, `python3` (3.11+), `libc6:i386` (the metroskrew binaries are 32-bit), `flock` from `util-linux` (part of every Ubuntu install; `make` and `fn.py` run ninja under `build/.ninja.lock`, one build per checkout at a time).
-- Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `tools/lcf_absolute.py` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 and the file system come from `extract/` unchanged.
-- `make check` runs `dsd check modules`, then `config/AWRE/modules.sha1`, then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
-- Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking`; linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
-- `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards.
+- Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `tools/lcf_absolute.py` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 goes through the same steps from `config/AWRE/arm7/`, with `tools/arm7.py` around them, because dsd 0.12.1 cannot delink ARM7 on its own (`docs/tool-issues.md`). The file system comes from `extract/` unchanged.
+- `make check` runs `dsd check modules` (ARM9), then `config/AWRE/modules.sha1` (ARM9 and `arm7.bin`), then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
+- Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking` for ARM9 and `-O4,s -proc arm7tdmi -interworking` for ARM7 (optimised for size; the level is a guess); linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
+- `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards. `config/AWRE/arm7/` was generated the same way by `tools/arm7_init.py`.
 - Status: Milestone 0 done (2026-10-06). The build matches retail with three functions in C: `PackNibblePairs` (game, ARM), `FS_GetOverlayFileID` (SDK, with a relocation), `MTX_RotX43_` (SDK Thumb assembly).
 
 ## Hard rules
 
-- Matching build only. `AWRE` only. ARM7 and the file system are copied from the ROM until a later milestone.
+- Matching build only. `AWRE` only. ARM9 and ARM7 are linked from objects. The file system, including the Download Play child `files/boot/mb_combat_sgn.srl` (issue 0049), is copied from the ROM until a later milestone (issue 0050).
 - Linux only. No Windows executables, no wine, no wibo. The metroskrew compilers are native Linux ELF binaries that keep `.exe` names, so they are allowed.
 - Every tool is pinned to an exact version and SHA-256 in `tools.lock`. Upgrades go through that file and must keep `make release` passing.
 - Everything goes through `make`.
@@ -48,6 +48,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
 | `tools/configure.py`, `tools/lcf_absolute.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, absolute symbols for the ARM9 linker script (`ARM9_ABSOLUTE_SYMBOLS`, see `docs/workflow.md`), one-time dsd config generation, header CRC fix. |
+| `tools/arm7.py`, `tools/arm7_init.py` | ARM7 build steps around dsd (a stand-in ROM with the parts moved into dsd's range), and the one-time generation of `config/AWRE/arm7/`. |
 | `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. |
 | `tools/fnindex.py`, `tools/tests/`, `fn.py check` | Function index (`build/fnindex.json`) and the fast `fn.py check`, with its test against `fn.py diff`. `fn.py pick --families` ranks same-shape families. |
 | `tools/ds.py`, `tools/dsindex.py` | Data structures (issue 0041): `ds.py show STRUCT\|data_ADDR` for a struct's layout from the compiler or a data symbol's type, references and bytes; `ds.py field Struct.field` for a field's users and how the original loads it. Index in `build/dsindex.json`. |
@@ -55,11 +56,11 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/loop.md`, `.claude/skills/decomp-function/`, `tools/apply_commit.py`, `tools/wt_setup.sh` | Automated loop: agents in worktrees, replaying their commits onto mainline. |
 | `.claude/skills/decomp-orchestrate/`, `tools/loop_state.py` | The loop without a human: ticks from a session cron job, state outside git in `work/loop/`, job templates for planning, partial retries, renames, wrap-up and triage. |
 | `tools/header_merge.py`, `tools/rebase_onto_mainline.py`, `tools/land_self.py`, `tools/review_stamp.py`, `tools/tests/test_landing.py` | Header merge by struct offset (used by `apply_commit.py`); an agent rebases its branch onto mainline and lands it with a fast-forward under a lock. `land_self.py` lands one branch at a time: it waits in a queue (`<git common dir>/land-queue.lock`) from before the replay to the fast-forward. A field rename from the merge is applied to the commit's C only when no other struct has a field of the old name; otherwise the replay stops and lists the uses. Enum constants and `#define`s merge as a union; a name with two values stops the replay. `land_self.py` exits 4 while a replay is open or another run holds the worktree's lock, and 5 when a commit that touches `src/` or `include/` has no tenets review stamp (`tools/review_stamp.py`, kept under the git directory by patch ID; the tenets-review skill writes it with a findings file, and a commit fixed by hand during a replay needs a new one). A replay that changes `land_self.py` or `review_stamp.py` restarts the run from the new copy. `make test` runs `test_landing.py` on throwaway repos and `test_propagate.py` and `test_loop_state.py` (no ROM needed). |
-| `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code. |
+| `src/`, `include/` | Our C and headers. `src/sdk/` for library code, `src/game/` for game code, `src/arm7/` for ARM7 (built with the ARM7 flags). |
 | `tools/style_check.py` | Checks prose against `docs/style/`. Used by `hooks/commit-msg`. |
 | `hooks/` | `pre-commit` (forbidden files, then `make release`, then `PROGRESS.md`), `commit-msg` (banned words). |
 | `PROGRESS.md`, `tools/progress.py` | Functions and bytes linked from C, per module, and C files not linked yet. Written by `pre-commit`; `apply_commit.py` ignores it. |
-| `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` config (delinks, symbols, relocations). |
+| `config/AWRE/` | `rom.sha1`, `modules.sha1`, and dsd's `arm9/**` and `arm7/` config (delinks, symbols, relocations). |
 | `config/AWRE/names-provenance.csv`, `tools/import_names.py` | Where each imported name came from, and the importer that fills it. `fn.py rename` keeps it current. |
 | `docs/third-party/` | Credit pages for outside sources we take facts from. |
 | `docs/awre-facts.md` | ROM layout, function counts, compiler fingerprint. |
@@ -75,6 +76,7 @@ Reference repos in `~/repos/` are read-only: `pokeplatinum` (make wrapper, tool 
 Group code by what it does. A reader should find the CO powers, the map loader or the unit code by directory, not by grepping a flat list.
 
 - `src/game/<module>/` holds code from one module (`main`, `itcm`, `ovNNN`). The module decides where the code links, so it stays the top level.
+- ARM7 code goes in `src/arm7/sdk/`, grouped by SDK library the same way. ARM7 has no game code so far; `src/arm7/game/` is for any that turns up. `configure.py` picks the ARM7 flags for every file under `src/arm7/`.
 - Inside a module, a known topic gets a directory: `src/game/main/copowers/` (CO Power routines and the unit filters, unit bonuses and calculation bonuses that `CoPowerBlock` points to), `src/game/main/skills/` (day-to-day skill and Force Rank routines).
 - When a decompiled function belongs to an existing topic, put it there. When several functions share a new topic that the code makes clear, create a directory for it and say so in the commit message.
 - A function whose purpose is unknown stays at the module level (`src/game/main/func_XXXXXXXX.c`) until it is understood; move it then.
