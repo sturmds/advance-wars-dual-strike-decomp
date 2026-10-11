@@ -4,7 +4,7 @@
 extern Unk_0215fe8c *data_0215fe8c;
 
 int func_0207a27c(void);
-void func_0207b928(int type);
+void Link_SendCommand(int type);
 
 /* Link state 0 to 1: sends command 10. Purpose of the command is not worked out. */
 void func_0207b564(void)
@@ -17,6 +17,6 @@ void func_0207b564(void)
         return;
     }
     data_0215fe8c->unk_04 = 0;
-    func_0207b928(10);
+    Link_SendCommand(10);
     data_0215fe8c->unk_0b = 1;
 }
