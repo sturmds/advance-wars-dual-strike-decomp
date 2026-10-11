@@ -5,7 +5,7 @@ extern DlPlayHostLinkArea *data_022aced4;
 
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
 int MbParent_SendHeaderOnly(u8 type, u16 bitmap);
-int func_02119750(void);
+int MbParent_SendFileInfo(void);
 int func_021193fc(void);
 
 /* Children in each comm state, one bit per aid. */
@@ -58,7 +58,7 @@ int MbParent_SendCommData(void)
     } else if (bitmaps.kicked != 0) {
         result = MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_REFUSE, bitmaps.kicked);
     } else if (bitmaps.accepted != 0) {
-        result = func_02119750();
+        result = MbParent_SendFileInfo();
     } else {
         result = func_021193fc();
     }

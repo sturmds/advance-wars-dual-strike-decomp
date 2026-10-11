@@ -326,7 +326,6 @@ typedef struct DlPlayHostMsgHead {
     u8 pad_01;
     u16 fileId;
     u16 block;
-    u8 pad_06[2];
 } DlPlayHostMsgHead;
 
 /* The header of a child message. */

@@ -5720,7 +5720,7 @@ MbParentFile_AdvanceBlock kind:function(arm,size=0x68) addr:0x02119200
 MbParent_SendCommData kind:function(arm,size=0x194) addr:0x02119268
 func_021193fc kind:function(arm,size=0x2b8) addr:0x021193fc
 MbCache_LoadPage kind:function(arm,size=0x9c) addr:0x021196b4
-func_02119750 kind:function(arm,size=0x1b0) addr:0x02119750
+MbParent_SendFileInfo kind:function(arm,size=0x1b0) addr:0x02119750
 MbParent_SendHeaderOnly kind:function(arm,size=0x44) addr:0x02119900
 MbParent_ReceiveMpData kind:function(arm,size=0xa8) addr:0x02119944
 func_021199ec kind:function(arm,size=0x4f8) addr:0x021199ec
@@ -8411,7 +8411,7 @@ data_0216d974 kind:data(any) addr:0x0216d974
 gOverlayDigestKey kind:data(any) addr:0x0216d978
 gOverlayDigestKeySize kind:data(any) addr:0x0216d97c
 gSha1StageAdditives kind:data(any) addr:0x0216d980
-data_0216d990 kind:data(any) addr:0x0216d990
+gMbLastFileInfoSent kind:data(any) addr:0x0216d990
 gMbArm9CopyRegions kind:data(any) addr:0x0216d994
 gMbRomArchiveName kind:data(any) addr:0x0216d998
 data_0216d99c kind:data(any) addr:0x0216d99c
