@@ -6381,7 +6381,7 @@ src/game/main/func_02086754.c:
     complete
     .text       start:0x02086754 end:0x02086760
 
-src/game/main/func_02086810.c:
+src/game/main/link/link_menu_select_entry.c:
     complete
     .text       start:0x02086810 end:0x0208683c
 
@@ -6416,6 +6416,10 @@ src/game/main/func_02086b6c.c:
 src/game/main/sub_screen_reset_menu.c:
     complete
     .text       start:0x02086d2c end:0x02086d90
+
+src/game/main/link/link_menu_update.c:
+    complete
+    .text       start:0x02086d90 end:0x02086eb0
 
 src/game/main/link/link_menu_draw_help_text.c:
     complete
