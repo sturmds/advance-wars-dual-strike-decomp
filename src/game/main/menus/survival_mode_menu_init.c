@@ -26,7 +26,7 @@ void func_0202b764(void);
 void func_02046d68(void);
 void SurvivalModeMenu_DrawRecords(void);
 int SurvivalSelect_GetList(void);
-int func_020477d0(int row);
+int SurvivalModeMenu_GetRowMode(int row);
 int func_020478b0(int mode);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
@@ -79,7 +79,7 @@ void SurvivalModeMenu_Init(void)
     Data_Unpack(res, data_027c0280->objVram + 0x600);
     Palette_Load(res + 0xe58, 0x280, 32);
     for (row = 0; row < 2; row++) {
-        mode = func_020477d0(row);
+        mode = SurvivalModeMenu_GetRowMode(row);
         if (func_02047944(mode) != 0) {
             Co_LoadSmallPicture(func_02047924(mode, 0), data_027c0280->objVram + ((row * 24) << 5), row * 2 + 16);
             if (func_02047924(mode, 1) != 0) {

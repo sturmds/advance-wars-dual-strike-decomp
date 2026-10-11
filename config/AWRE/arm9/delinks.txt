@@ -5331,6 +5331,10 @@ src/game/main/menus/survival_select_get_list.c:
     complete
     .text       start:0x0204779c end:0x020477d0
 
+src/game/main/menus/survival_mode_menu_get_row_mode.c:
+    complete
+    .text       start:0x020477d0 end:0x02047830
+
 src/game/main/menus/mode_set_variant.c:
     complete
     .text       start:0x02047830 end:0x020478b0

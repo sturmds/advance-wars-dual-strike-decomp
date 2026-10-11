@@ -4,7 +4,7 @@
 void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
-int func_020477d0(int row);
+int SurvivalModeMenu_GetRowMode(int row);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
 int func_02047960(void);
@@ -33,7 +33,7 @@ void SurvivalModeMenu_Draw(void)
         Sprite_QueueAt(0, 48, 102, &data_027c01c0, 0x4050, 0);
     }
     for (row = 0; row < 2; row++) {
-        mode = func_020477d0(row);
+        mode = SurvivalModeMenu_GetRowMode(row);
         if (func_02047944(mode) != 0) {
             Co_QueueSmallPictureSprite(32, (88 + row * 64) & 0xff, (row << 13) | (row * 24), (row * 2) & 1);
             if (func_02047924(mode, 1) != 0) {
