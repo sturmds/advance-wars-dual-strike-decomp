@@ -39,9 +39,11 @@ typedef struct Unk_0229c734 {
 typedef struct ResultPointTask {
     u8 pad_00[0x32];
     s16 frame;                         /* frames the current slide has run */
-    u8 pad_34[0x38 - 0x34];
+    s16 unk_34;
+    s16 totalPoints;                   /* sum of the points of the rows in use */
     s16 unk_38;
     s16 value;                         /* set by ResultPoint_RestartScript; the slide's frame count */
+    u8 rank;                           /* func_02039bf8 of totalPoints */
 } ResultPointTask;
 
 extern Unk_0229c734 *data_0229c734;
