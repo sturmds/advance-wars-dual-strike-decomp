@@ -1,0 +1,34 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/win_lose.h"
+
+void Task_ResumeScript(WinLoseTask *task);
+void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
+void func_0203b614(void);
+void func_0203f340(s32 added, s32 total, int popFrame);   /* likely draws the points, like PointsTally_Draw */
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Task update of the win/lose screen: draws the points with the pop
+ * animation, frame counting up to scoreWidth. Then sets the frame that
+ * WinLoseScreen_ClosePanel counts down from (12 in Survival, 10 otherwise),
+ * calls func_0203b614 (adds a button) and resumes the script. */
+void WinLoseScreen_PopScore(WinLoseTask *task)
+{
+    WinLoseScreen_DrawPicturesTwoSides(task);
+    func_0203f340(task->pointsAdded, task->pointsTotal, task->frame);
+    if (task->frame == (s16)task->scoreWidth) {
+        if (GAME->gameMode == GAME_MODE_SURVIVAL) {
+            task->frame = 12;
+        } else {
+            task->frame = 10;
+        }
+        func_0203b614();
+        Task_ResumeScript(task);
+    } else {
+        task->frame++;
+    }
+}

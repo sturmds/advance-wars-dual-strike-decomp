@@ -5616,6 +5616,14 @@ src/game/main/menus/win_lose_screen_close_panel.c:
     complete
     .text       start:0x0203d858 end:0x0203d970
 
+src/game/main/menus/win_lose_screen_wait_for_key.c:
+    complete
+    .text       start:0x0203d970 end:0x0203d9e0
+
+src/game/main/menus/win_lose_screen_pop_score.c:
+    complete
+    .text       start:0x0203d9e0 end:0x0203da68
+
 src/game/main/menus/win_lose_screen_count_points.c:
     complete
     .text       start:0x0203da68 end:0x0203dbc4
