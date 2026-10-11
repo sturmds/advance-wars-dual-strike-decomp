@@ -8578,6 +8578,10 @@ src/game/main/ai/ai_site_pick_black_bomb_airport.c:
     complete
     .text       start:0x02095fb8 end:0x02095fe8
 
+src/game/main/ai/ai_site_pick_black_bomb_airport_nearest_enemy.c:
+    complete
+    .text       start:0x02095fe8 end:0x020960cc
+
 src/game/main/ai/ai_build_slot_pick_safe_site.c:
     complete
     .text       start:0x0209622c end:0x02096378
