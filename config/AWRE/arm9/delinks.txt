@@ -4131,6 +4131,10 @@ src/game/main/two_line_caption_animate_corners.c:
     complete
     .text       start:0x02035ccc end:0x02035f50
 
+src/game/main/two_line_caption_sweep_bars.c:
+    complete
+    .text       start:0x02035f50 end:0x02036210
+
 src/game/main/func_020369e4.c:
     complete
     .text       start:0x020369e4 end:0x020369f0
