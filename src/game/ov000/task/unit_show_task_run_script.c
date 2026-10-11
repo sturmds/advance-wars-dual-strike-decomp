@@ -11,7 +11,7 @@ extern int data_0229eaec;
 void UnitShowTask_Destroy(UnitShowTask *task);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void SpriteAnim_SetAnimation(void *sprite, int frame);
-void func_020d048c(int x, int y);
+void ZoomSpriteTask_StartHeld(int x, int y);
 int func_020800a4(void);
 void func_ov000_022ad610(UnitShowTask *task);
 void UnitShowTask_PlaySpecialSound(UnitShowTask *task);
@@ -22,7 +22,7 @@ void UnitShowTask_PlaySpecialSound(UnitShowTask *task);
  * ends the step: -1 plays the sound and destroys the task; 0-3 set that
  * sprite frame (state 2); 4 plays the sound and changes state; 5-8 set frame
  * 0-3 and go on; 9 waits the next byte in frames (state 3); 10 plays the
- * sound, calls func_020d048c on the tile and, in link play, sends unit action
+ * sound, calls ZoomSpriteTask_StartHeld on the tile and, in link play, sends unit action
  * 2 for the unit. The case order and STATE_IDX_FIRST are needed to match. */
 void UnitShowTask_RunScript(UnitShowTask *task)
 {
@@ -38,7 +38,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
         case 10:
             ShowEntry_PlaySound(task);
             task->state = UNIT_SHOW_STATE_DONE;
-            func_020d048c(task->x >> 4, task->y >> 4);
+            ZoomSpriteTask_StartHeld(task->x >> 4, task->y >> 4);
             if (STATE_IDX_FIRST->players[STATE_IDX_FIRST->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
                 if (gPlayRecords.unk_3cc < 999999) {
                     gPlayRecords.unk_3cc++;
