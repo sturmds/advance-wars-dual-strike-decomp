@@ -7197,6 +7197,10 @@ src/game/main/link/link_reaction_clear_own_destroy_callback.c:
     complete
     .text       start:0x02080870 end:0x020808a4
 
+src/game/main/link/link_reaction_show.c:
+    complete
+    .text       start:0x020808a4 end:0x020809d0
+
 src/game/main/link/link_reaction_task_clear_own_cooldown.c:
     complete
     .text       start:0x020809d0 end:0x02080a00

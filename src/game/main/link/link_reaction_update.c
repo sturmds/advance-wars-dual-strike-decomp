@@ -10,7 +10,7 @@ int Link_FindSlotOfPlayer(int player);
 int Map_IsThisMapsTurn(void);
 void func_02080e84(void);
 int LinkReactionQueue_Pop(LinkReaction *dest);
-void func_020808a4(u8 a, u8 b);
+void LinkReaction_Show(u8 a, u8 b);
 
 /* Sends this player's reaction buttons when it is not their turn, then shows
  * the (player, button) pairs received from the other side. */
@@ -35,6 +35,6 @@ void LinkReaction_Update(void)
         return;
     }
     do {
-        func_020808a4(reaction.slot, reaction.button);
+        LinkReaction_Show(reaction.slot, reaction.button);
     } while (LinkReactionQueue_Pop(&reaction) == 1);
 }
