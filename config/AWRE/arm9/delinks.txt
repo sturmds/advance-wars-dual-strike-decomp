@@ -17538,6 +17538,10 @@ src/game/main/silo/silo_missile_gfx_load.c:
     complete
     .text       start:0x020ed448 end:0x020ed4b0
 
+src/game/main/silo/silo_missile_launch.c:
+    complete
+    .text       start:0x020ed4b0 end:0x020ed5c0
+
 src/game/main/map/pipe_seam_break.c:
     complete
     .text       start:0x020ed5c0 end:0x020ed744
