@@ -20143,6 +20143,10 @@ src/game/main/sound/sound_stream_detach.c:
     complete
     .text       start:0x02108d30 end:0x02108d6c
 
+src/game/main/sound/sound_stream_attach.c:
+    complete
+    .text       start:0x02108d6c end:0x02108e14
+
 src/game/main/sound/sound_stream_update_all.c:
     complete
     .text       start:0x02108e14 end:0x02108f2c
