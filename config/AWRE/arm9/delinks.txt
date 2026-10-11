@@ -9140,6 +9140,14 @@ src/game/main/link/link_menu_select_entry.c:
     complete
     .text       start:0x02086810 end:0x0208683c
 
+src/game/main/link/link_menu_apply_cancel.c:
+    complete
+    .text       start:0x0208683c end:0x020868a4
+
+src/game/main/link/link_menu_apply_confirm.c:
+    complete
+    .text       start:0x020868a4 end:0x0208690c
+
 src/game/main/link/link_menu_decrease_setting.c:
     complete
     .text       start:0x0208690c end:0x02086a14

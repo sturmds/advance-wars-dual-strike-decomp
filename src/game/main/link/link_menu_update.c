@@ -7,16 +7,16 @@ u8 *func_02078138(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void LinkMenu_SelectEntry(int entry);
-void func_0208683c(void);
-void func_020868a4(void);
+void LinkMenu_ApplyCancel(void);
+void LinkMenu_ApplyConfirm(void);
 void LinkMenu_DecreaseSetting(void);
 void LinkMenu_IncreaseSetting(void);
 void func_02086b80(void);
 void Task_ResumeScript(Task *task);
 
 /* Task step of the link menu. Reads four 2-byte messages (type, argument)
- * from player 0, who runs the menu: 4 confirms (func_020868a4), 5 cancels
- * (func_0208683c), 6 selects an entry, 7 and 8 raise and lower its
+ * from player 0, who runs the menu: 4 confirms (LinkMenu_ApplyConfirm), 5 cancels
+ * (LinkMenu_ApplyCancel), 6 selects an entry, 7 and 8 raise and lower its
  * setting. Without either, player 0's own console handles the keys. */
 void LinkMenu_Update(Task *task)
 {
@@ -49,14 +49,14 @@ void LinkMenu_Update(Task *task)
         EventQueue_Drain();
     }
     if (confirm == 1) {
-        func_020868a4();
+        LinkMenu_ApplyConfirm();
         EventQueue_Reset();
         func_0207b48c();
         Task_ResumeScript(task);
         return;
     }
     if (cancel == 1) {
-        func_0208683c();
+        LinkMenu_ApplyCancel();
         EventQueue_Reset();
         func_0207b48c();
         Task_ResumeScript(task);
