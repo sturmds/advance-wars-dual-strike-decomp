@@ -303,7 +303,7 @@ Ov006_SetCellAndFit kind:function(arm,size=0x3c) addr:0x02366e4c
 Ov006_PlaceWood kind:function(arm,size=0x114) addr:0x02366e88
 Ov006_RefitCellToRight kind:function(arm,size=0x70) addr:0x02366f9c
 Ov006_PlaceRoad kind:function(arm,size=0xe0) addr:0x0236700c
-func_ov006_023670ec kind:function(arm,size=0x174) addr:0x023670ec
+Ov006_GetRoadCell kind:function(arm,size=0x174) addr:0x023670ec
 Ov006_IsRoadOrVerticalBridge kind:function(arm,size=0x78) addr:0x02367260
 Ov006_IsRoadOrHorizontalBridge kind:function(arm,size=0x78) addr:0x023672d8
 Ov006_IsRoadOrBridgeTile kind:function(arm,size=0x64) addr:0x02367350
@@ -541,7 +541,7 @@ data_ov006_0236c088 kind:data(any) addr:0x0236c088
 data_ov006_0236c0c8 kind:data(any) addr:0x0236c0c8
 data_ov006_0236c0d4 kind:data(any) addr:0x0236c0d4
 data_ov006_0236c0d8 kind:data(any) addr:0x0236c0d8
-data_ov006_0236c0dc kind:data(any) addr:0x0236c0dc
+Ov006_gRoadCellByMask kind:data(any) addr:0x0236c0dc
 Ov006_gWaterCellTable kind:data(any) addr:0x0236c2dc
 Ov006_gShoalGraphicTable kind:data(any) addr:0x0236c6dc
 data_ov006_0236cadc kind:data(any) addr:0x0236cadc

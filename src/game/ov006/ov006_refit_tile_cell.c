@@ -4,7 +4,7 @@
 
 int Ov006_TileMatches(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
-int func_ov006_023670ec(int x, int y);
+int Ov006_GetRoadCell(int x, int y);
 int Ov006_GetShoalGraphic(int x, int y);
 void Ov006_TurnToSea(int x, int y);
 int Ov006_GetWaterCell(int x, int y);
@@ -31,7 +31,7 @@ void Ov006_RefitTileCell(int x, int y)
     int cell;
 
     if (Ov006_TileMatches(x, y, TERRAIN_ROAD)) {
-        Ov006_StoreMapCell(x, y, func_ov006_023670ec(x, y));
+        Ov006_StoreMapCell(x, y, Ov006_GetRoadCell(x, y));
     }
     if (Ov006_TileMatches(x, y, TERRAIN_SHOAL)) {
         cell = Ov006_GetShoalGraphic(x, y);

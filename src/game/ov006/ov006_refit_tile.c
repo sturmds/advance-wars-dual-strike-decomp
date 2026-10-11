@@ -8,7 +8,7 @@ void Ov006_StoreMapCell(int x, int y, int cell);
 void Ov006_PlaceRiver(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void func_ov006_0235da70(int x, int y, int arg);
-int func_ov006_023670ec(int x, int y);
+int Ov006_GetRoadCell(int x, int y);
 int func_ov006_02351238(int x, int y);
 void func_ov006_02363198(int x, int y);
 
@@ -57,7 +57,7 @@ void Ov006_RefitTile(int x, int y, int refitRivers)
     if (terrain == TERRAIN_PLAIN) {
         func_ov006_0235da70(x, y, 1);
     } else if (terrain == TERRAIN_ROAD) {
-        Ov006_StoreMapCell(x, y, func_ov006_023670ec(x, y));
+        Ov006_StoreMapCell(x, y, Ov006_GetRoadCell(x, y));
         Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
     } else if (terrain == TERRAIN_MOUNTAIN) {
         func_ov006_02363198(x, y);
