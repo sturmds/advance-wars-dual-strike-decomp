@@ -36,5 +36,6 @@ enum MapObjectKind {
 BOOL MapObjects_HasKind(int kind);
 void MapObject_ClearVariant(MapObject *object);
 BOOL MapObject_IsStanding(MapObject *object);
+MapObject *Map_GetObjectAt(int x, int y);
 
 #endif

@@ -2,7 +2,7 @@
 #include "game/map_object.h"
 
 /* Writes the (x, y) tile offset the Map_Add*Object functions subtract from the position they are given. 0 for other kinds. */
-void func_020db054(int kind, s16 *offset)
+void MapObject_GetKindOffset(int kind, s16 *offset)
 {
     switch (kind) {
     case MAP_OBJECT_BLACK_CANNON:

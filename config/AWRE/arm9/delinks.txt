@@ -12479,6 +12479,10 @@ src/game/main/map/map_object_get_kind_offset.c:
     complete
     .text       start:0x020db054 end:0x020db0c0
 
+src/game/main/map/map_get_hit_target_kind.c:
+    complete
+    .text       start:0x020db0c0 end:0x020db148
+
 src/game/main/map/map_get_object_at.c:
     complete
     .text       start:0x020db148 end:0x020db1d0

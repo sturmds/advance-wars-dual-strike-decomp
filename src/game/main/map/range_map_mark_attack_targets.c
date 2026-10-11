@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int abs(int x);
-int func_020db0c0(int x, int y);  /* guess: damage chart target kind of a map object or tile with hp at (x, y); 0: none */
+int Map_GetHitTargetKind(int x, int y);  /* guess: damage chart target kind of a map object or tile with hp at (x, y); 0: none */
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 void Combat_SimulateChecked(int attackerIndex, int defenderIndex, s16 *pos);
 
@@ -33,7 +33,7 @@ void RangeMap_MarkAttackTargets(int x, int y, s16 range, s8 mark)
             if (tx < 0 || tx >= STATE->unk_1c4->mapWidth) {
                 continue;
             }
-            targetKind = func_020db0c0(tx, ty);
+            targetKind = Map_GetHitTargetKind(tx, ty);
             if (targetKind != 0) {
                 Combat_CalcDamageToTarget(STATE->actingUnitIndex, targetKind, &STATE->actingUnitDestX);
                 if (STATE->combatants[0].weapon != 0) {

@@ -10,7 +10,7 @@ extern const TaskScriptCmd data_02167ff0[];
 
 void *Task_FindByScript(const TaskScriptCmd *script);
 void Task_ResumeScript(void *task);
-void func_020db054(int kind, s16 *offset);
+void MapObject_GetKindOffset(int kind, s16 *offset);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -21,7 +21,7 @@ void func_020db054(int kind, s16 *offset);
 
 /* Step of the object heal scan: waits while a heal task runs, then starts
  * one for the next standing Black Crystal or Black Obelisk. The obelisk's
- * tile is moved by the offset func_020db054 gives for its kind. Resumes
+ * tile is moved by the offset MapObject_GetKindOffset gives for its kind. Resumes
  * the script once no object is left. */
 void ObjectHealScan_StartNext(ObjectHealScanTask *task)
 {
@@ -46,7 +46,7 @@ void ObjectHealScan_StartNext(ObjectHealScanTask *task)
                 heal->healSteps = OBJECT_HEAL_STEPS;
                 return;
             case MAP_OBJECT_BLACK_OBELISK:
-                func_020db054(MAP_OBJECT_BLACK_OBELISK, offset);
+                MapObject_GetKindOffset(MAP_OBJECT_BLACK_OBELISK, offset);
                 heal = (ObjectHealTask *)Task_Create(data_02167ff0, task);
                 heal->tileX = object->x + offset[0];
                 heal->tileY = object->y + offset[1];
