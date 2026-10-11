@@ -5710,6 +5710,10 @@ src/game/main/func_0204b3cc.c:
     complete
     .text       start:0x0204b3cc end:0x0204b3f4
 
+src/game/main/co_rank_task_draw_portraits.c:
+    complete
+    .text       start:0x0204b3f4 end:0x0204b468
+
 src/game/main/func_0204b538.c:
     complete
     .text       start:0x0204b538 end:0x0204b544
