@@ -10256,6 +10256,10 @@ src/game/main/graphics/palette_fade_start_levels.c:
     complete
     .text       start:0x020fd0e8 end:0x020fd128
 
+src/game/main/graphics/palette_fade_start_to_black_screen1.c:
+    complete
+    .text       start:0x020fd128 end:0x020fd164
+
 src/game/main/palette_fade_start.c:
     complete
     .text       start:0x020fd220 end:0x020fd3ac

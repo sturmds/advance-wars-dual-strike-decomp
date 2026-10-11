@@ -20,7 +20,7 @@ void func_0200493c(u16 frames);
 void HelpBand_Stop(void);
 void Wallpaper_LoadBothOnLayer3(int co);           /* probably loads the CO's picture */
 void func_020d7d9c(Ov005Task *task);
-Task *func_020fd128(Ov005Task *parent, int frames, int a, int b);
+Task *PaletteFade_StartToBlackScreen1(Ov005Task *parent, int frames, int a, int b);
 Task *func_020fd1a0(Ov005Task *parent, const void *palettes, int frames, int a, int b);
 void func_020fd560(void);
 void func_020fd618(Task *task);
@@ -96,7 +96,7 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
         task->frame = 0;
         task->frames = 16;
         work->unk_844 = work->selectedEntry;
-        work->fadeTask = func_020fd128(task, 16, 1, 1);
+        work->fadeTask = PaletteFade_StartToBlackScreen1(task, 16, 1, 1);
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
