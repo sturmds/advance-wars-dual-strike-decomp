@@ -9,12 +9,12 @@ extern TaskScriptCmd data_021664e0[];
 
 void Task_ResumeScript(Task *task);
 Task *Task_FindByScript(void *script);
-void func_020cce04(MapUnit *unit, Task *parent);
+void LinkPlayerDefeat_StartUnitTask(MapUnit *unit, Task *parent);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Update of the task LinkPlayerDefeatTask_Create starts. For reason codes 1 and
- * 16 it ends at once. Otherwise it starts func_020cce04 on one unit slot of the
+ * 16 it ends at once. Otherwise it starts LinkPlayerDefeat_StartUnitTask on one unit slot of the
  * player per pass (unk_68 counts them), waiting while the previous unit's task
  * (data_021664e0) is still running, then resumes the script after 51 slots. */
 void LinkPlayerDefeatTask_Update(Task *task)
@@ -37,7 +37,7 @@ void LinkPlayerDefeatTask_Update(Task *task)
         MapUnit *unit = &STATE->units[Ov000_gPlayerFirstUnitSlot[(s16)task->unk_64] + slot];
 
         task->unk_68 = slot + 1;
-        func_020cce04(unit, task);
+        LinkPlayerDefeat_StartUnitTask(unit, task);
         return;
     }
     Task_ResumeScript(task);
