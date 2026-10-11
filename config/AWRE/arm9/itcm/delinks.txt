@@ -247,6 +247,10 @@ src/game/itcm/map3d/draw_scrolling_quad.c:
     complete
     .text       start:0x01ffbc44 end:0x01ffbda8
 
+src/game/itcm/map3d/draw_icon.c:
+    complete
+    .text       start:0x01ffbda8 end:0x01ffbf20
+
 src/game/itcm/map3d/map_tile3d_draw_quad_a.c:
     complete
     .text       start:0x01ffc070 end:0x01ffc168
