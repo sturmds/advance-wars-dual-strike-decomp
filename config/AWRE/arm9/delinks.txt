@@ -9181,6 +9181,10 @@ src/game/main/map/player_add_vision.c:
     complete
     .text       start:0x020c5378 end:0x020c5540
 
+src/game/main/map/unit_add_vision.c:
+    complete
+    .text       start:0x020c5540 end:0x020c5674
+
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c
