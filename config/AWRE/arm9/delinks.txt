@@ -13274,6 +13274,10 @@ src/game/main/combat/player_add_kill.c:
     complete
     .text       start:0x020c23d0 end:0x020c2458
 
+src/game/main/link/link_fill_empty_slots_with_ai.c:
+    complete
+    .text       start:0x020c2458 end:0x020c256c
+
 src/game/main/menus/co_pick_list_pick_random.c:
     complete
     .text       start:0x020c256c end:0x020c25b8
