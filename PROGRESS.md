@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4189 / 6598 | 893056 / 1531944 | 58.30% | 0 | 0 |
+| game | 4190 / 6598 | 893896 / 1531944 | 58.35% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4327 / 7479 | 896476 / 1685994 | 53.17% | 1 | 30 |
+| all | 4328 / 7479 | 897316 / 1685994 | 53.22% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2804 / 5180 | 462728 / 1082632 | 42.74% | 0 |
+| main | game | 2805 / 5180 | 463568 / 1082632 | 42.82% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -44,6 +44,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_02092350.c` | func_02092350 | 1584 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
+| `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
+| `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/graphics/func_0200c500.c` | func_0200c500 | 216 |
 | `src/game/main/graphics/window_draw_frame_middle_row.c` | Window_DrawFrameMiddleRow | 224 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
