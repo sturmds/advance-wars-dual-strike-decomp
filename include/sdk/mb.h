@@ -97,11 +97,16 @@ typedef struct DlPlayStationArea {
     u8 pad_00[0x0c];
     u16 unk_0c;
     u16 unk_0e;
-    u8 pad_10[2];
+    u16 maxChildren;                   /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_12;
     u16 unk_14;
     u16 unk_16;
-    u8 pad_18[0x508 - 0x18];
+    u8 pad_18[0x320 - 0x18];
+    u32 unk_320;                       /* 0 until the game starts Download Play */
+    u8 pad_324[0x500 - 0x324];
+    u16 sendSize;                      /* set by DownloadPlay_SetSendSizeAndChildren */
+    u16 unk_502;
+    u8 pad_504[4];
     void (*sendCallback)(void);        /* callback for the MP send */
     u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
     u8 unk_50d;
@@ -111,9 +116,20 @@ typedef struct DlPlayStationArea {
     u16 unk_524;
     u16 unk_526;
     u16 unk_528;
-    u8 pad_52a[2];
+    u16 unk_52a;
     u16 unk_52c;
+    u8 pad_52e[0x548 - 0x52e];
+    u16 unk_548;
+    u8 pad_54a[0x5e4 - 0x54a];
+    u32 unk_5e4;
 } DlPlayStationArea;
+
+/* data_022aced4 points to the MB buffer; the parent work area sits 0x1000
+ * bytes into it, which is what data_022aced8 points to. */
+typedef struct DlPlayBufferArea {
+    u8 pad_000[0x1000];
+    DlPlayStationArea parent;
+} DlPlayBufferArea;
 
 /* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
 #define DLPLAY_EVENT_RADIO_FAULT 0xff
