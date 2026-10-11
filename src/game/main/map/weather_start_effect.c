@@ -4,7 +4,7 @@
 void func_020cfa88(void);
 void func_020cfa14(void);
 void func_020cf9a0(void);
-void func_020cf8e8(void);
+void SidePanel_SnapAwayFromCursor(void);
 
 /* Calls the routine for one weather (WEATHER_*). */
 void Weather_StartEffect(int weather)
@@ -20,7 +20,7 @@ void Weather_StartEffect(int weather)
         func_020cf9a0();
         break;
     case WEATHER_SAND:
-        func_020cf8e8();
+        SidePanel_SnapAwayFromCursor();
         break;
     }
 }
