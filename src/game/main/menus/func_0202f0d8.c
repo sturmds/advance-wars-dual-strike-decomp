@@ -38,7 +38,7 @@ void MainMenu_BuildPage11(void);
 void MainMenu_ShowHelpText(void);
 void func_01ff9b48(void);
 void Gfx3d_SetOrthoCentered(void);
-void func_020288c0(void);
+void Gfx3d_SetupPerspectiveAntialiased(void);
 void func_02028978(void);
 void TpIcon2_LoadTo(u8 *dest);
 void func_0202b764(void);
@@ -97,7 +97,7 @@ void func_0202f0d8(MainMenuTask *task)
     u8 *res;
     Unk_027c0280 *saved0280;
 
-    func_020288c0();
+    Gfx3d_SetupPerspectiveAntialiased();
     *(MainMenuWork **)&data_0229c71c = Mem_Alloc(sizeof(MainMenuWork));
     WORK->page = Mem_Alloc(14); /* 2 header bytes and 6 entries; sizeof(MainMenuPage) counts 7 */
     func_02028978();
