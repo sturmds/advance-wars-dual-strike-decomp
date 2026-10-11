@@ -23,4 +23,8 @@ enum {
     PATH_STEP_END
 };
 
+/* Written by UnitPath_StopAtEnemy where a unit of another team blocks the
+ * path; the step after it is the end marker. */
+#define PATH_STEP_BLOCKED 10
+
 #endif
