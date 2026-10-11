@@ -9778,6 +9778,10 @@ src/game/main/menus/unit_menu_wait_hidden.c:
     complete
     .text       start:0x020bf9ec end:0x020bfa48
 
+src/game/main/menus/battle_menu_no_units_disabled.c:
+    complete
+    .text       start:0x020bfa48 end:0x020bfab8
+
 src/game/main/func_020bfbe0.c:
     complete
     .text       start:0x020bfbe0 end:0x020bfc44
