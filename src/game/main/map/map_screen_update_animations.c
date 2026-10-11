@@ -10,7 +10,7 @@ int MainLoop_GetFrameCount(void);
 void func_020f76dc(int frame);
 void PowerMeter_UpdateFlash(int frame);
 void func_020f63b0(int frame);
-void func_020e1714(int frame);
+void PowerPanel_AnimatePaletteColour(int frame);
 void MapAnim_QueueSecondFramePart(int frame);
 void MapAnim_QueueFramePart(int frame);
 void MapAnim_QueueFramePartMapF8(int frame);
@@ -25,7 +25,7 @@ void MapScreen_UpdateAnimations(void)
     func_020f76dc(MainLoop_GetFrameCount());
     PowerMeter_UpdateFlash(MainLoop_GetFrameCount());
     func_020f63b0(MainLoop_GetFrameCount());
-    func_020e1714(MainLoop_GetFrameCount());
+    PowerPanel_AnimatePaletteColour(MainLoop_GetFrameCount());
     MapAnim_QueueSecondFramePart(MainLoop_GetFrameCount());
     if (GAME == &data_02183b08 && GAME->unk_1c4->mapId == 0xf8) {
         MapAnim_QueueFramePartMapF8(MainLoop_GetFrameCount());
