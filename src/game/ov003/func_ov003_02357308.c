@@ -16,7 +16,7 @@ int func_ov003_02357308(void)
     if (data_ov003_02364928->slots[data_ov003_02364928->currentSlot].unk_01_4 != 1) {
         return 0;
     }
-    if (Ov003_IsPowerReady(data_ov003_02369534->unk_12_3) == 0) {
+    if (Ov003_IsPowerReady(data_ov003_02369534->row) == 0) {
         return 0;
     }
     if (data_ov003_02369534->unk_17_6 || data_ov003_02369534->unk_17_7) {

@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-/* Counts the entries in use (hp set, or unk_17_7) whose unk_12_3 equals the current row. */
+/* Counts the entries in use (hp set, or unk_17_7) whose row equals the current row. */
 int Ov003Unit_CountInCurrentRow(void)
 {
     int count;
@@ -16,7 +16,7 @@ int Ov003Unit_CountInCurrentRow(void)
 
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp != 0 || unit->unk_17_7) {
-            if (unit->unk_12_3 == state->row) {
+            if (unit->row == state->row) {
                 count++;
             }
         }

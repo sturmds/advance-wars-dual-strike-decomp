@@ -48,7 +48,7 @@ void Ov003_DefeatTeam(int team)
         if (unit->hp == 0 && !unit->unk_17_7) {
             continue;
         }
-        if (team != unit->unk_12_3) {
+        if (team != unit->row) {
             continue;
         }
         unit->hp = 0;

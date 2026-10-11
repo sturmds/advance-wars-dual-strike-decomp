@@ -22,7 +22,7 @@ void Ov003_CreateSpriteVariant2(int x, int y)
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     sprite = Sprite_CreateTask(3, data_ov003_023655e0, 2, x, y, 28, 840, 16);
-    func_02027aa8(sprite, &data_ov003_02364928->unk_1d0, &data_ov003_02364928->unk_1d2);
+    func_02027aa8(sprite, &data_ov003_02364928->scrollX, &data_ov003_02364928->scrollY);
     func_02027aa0(sprite, &data_ov003_02364928->unk_1d6);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);

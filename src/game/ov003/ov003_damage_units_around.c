@@ -17,10 +17,10 @@ void Ov003_DamageUnitsAround(int row, int x, int y)
 
     for (i = 0; i < 16; i++, unit++) {
         /* needed to match: the (u16) cast makes the load unsigned; the field is s16 */
-        if (unit->hp == 0 || unit->unk_17_6 || unit->unk_12_3 == row || (u16)unit->unk_08 != 0) {
+        if (unit->hp == 0 || unit->unk_17_6 || unit->row == row || unit->safeTimer != 0) {
             continue;
         }
-        if (func_ov003_0235d468(unit->unk_12_3) != 0) {
+        if (func_ov003_0235d468(unit->row) != 0) {
             continue;
         }
         if (Math_Distance(pixelX, pixelY, unit->x >> 3, unit->y >> 3) >= 35) {
@@ -31,6 +31,6 @@ void Ov003_DamageUnitsAround(int row, int x, int y)
         } else {
             unit->hp = 1;
         }
-        unit->unk_08 = 15;
+        unit->safeTimer = 15;
     }
 }

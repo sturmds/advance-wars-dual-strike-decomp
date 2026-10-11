@@ -25,9 +25,9 @@ u32 Ov003_RandNext(void);
 /* Points the unit in direction d (1 up, 2 down, 3 left, 4 right). */
 #define SET_DIR(unit, d)                                    \
     do {                                                    \
-        (unit)->unk_12_0 = (d);                             \
-        Ov003Unit_Move((unit), (unit)->unk_12_0, -1, 1); \
-        (unit)->unk_16++;                                   \
+        (unit)->facing = (d);                             \
+        Ov003Unit_Move((unit), (unit)->facing, -1, 1); \
+        (unit)->walkCounter++;                                   \
     } while (0)
 
 /* Turns the unit towards the centre of its tile (64 of 128) when it is more
@@ -36,7 +36,7 @@ u32 Ov003_RandNext(void);
     do {                                                                                      \
         int step;                                                                             \
         (unit)->unk_1c_0 = 0;                                                                 \
-        step = func_ov003_0235d518((unit)->unk_12_3, (unit)->tile,                            \
+        step = func_ov003_0235d518((unit)->row, (unit)->kind,                            \
             TERRAIN_AT(((unit)->y >> 7) * MAP->width + ((unit)->x >> 7)));                    \
         if (((unit)->y & ~127) + 64 < (unit)->y - step) {                                     \
             SET_DIR(unit, 1);                                                                 \
@@ -50,9 +50,9 @@ u32 Ov003_RandNext(void);
         Ov003Unit_FireIfLocked(unit);                                                            \
     } while (0)
 
-/* One frame of a computer unit. It wakes (unk_1e_0) when its wake group
- * unk_1e_1 is set in Ov003State.unk_1de, when it is hurt, or when its target
- * is closer than unk_1f tiles; waking also sets groups 0 to unk_1e_1. A unit
+/* One frame of a computer unit. It wakes (sets awake) when its wake group
+ * wakeGroup is set in Ov003State.unk_1de, when it is hurt, or when its target
+ * is closer than wakeRange tiles; waking also sets groups 0 to wakeGroup. A unit
  * that is capturing (unk_04 still counting) or has unk_17_0 set stays at the
  * centre of its tile instead, under the conditions below; the range from
  * Ov003_GetTargetRange is 0 or 8 tiles. Otherwise an awake unit heads for its
@@ -66,22 +66,22 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit)
     u32 range;
     u8 dir;
 
-    dist = Ov003Unit_FindNearest(unit, &unit->unk_1a);
+    dist = Ov003Unit_FindNearest(unit, &unit->target);
     range = Ov003_GetTargetRange();
 
-    if (!unit->unk_1e_0) {
-        if (unit->unk_1e_1 != 0 && (STATE->unk_1de & (1 << unit->unk_1e_1))) {
-            unit->unk_1e_0 = 1;
-        } else if (unit->hp != 100 || dist < ((unit->unk_1f << 7) >> 3)) {
-            unit->unk_1e_0 = 1;
-            if (unit->unk_1e_1 != 0) {
-                STATE->unk_1de |= ~(0xff << (unit->unk_1e_1 + 1));
+    if (!unit->awake) {
+        if (unit->wakeGroup != 0 && (STATE->unk_1de & (1 << unit->wakeGroup))) {
+            unit->awake = 1;
+        } else if (unit->hp != 100 || dist < ((unit->wakeRange << 7) >> 3)) {
+            unit->awake = 1;
+            if (unit->wakeGroup != 0) {
+                STATE->unk_1de |= ~(0xff << (unit->wakeGroup + 1));
             }
         }
     }
     unit->unk_1c_0 = 0;
 
-    if (unit->unk_04 != 0 && (unit->unk_04 != unit->startUnk_04 || unit->unk_11 != 0)) {
+    if (unit->unk_04 != 0 && (unit->unk_04 != unit->prevUnk_04 || unit->unk_11 != 0)) {
         if (data_02160ac0->unk_7c == 0 && (unit->unk_1d_6 || TERRAIN_AT(unit->lastTile) == 8)) {
             if (dist >= range || (!STATE->unk_1df_5 && (unit->unk_04 > 30 || TERRAIN_AT(unit->lastTile) == 8))) {
                 STEP_TO_CENTRE(unit);
@@ -93,32 +93,32 @@ void Ov003Unit_UpdateAi(Ov003Unit *unit)
         return;
     }
 
-    if (!unit->unk_1e_0) {
+    if (!unit->awake) {
         return;
     }
     dir = 0;
-    if (STATE->unk_1df_5 && dist < 128 && unit->unk_1a != -1 && (unit->unk_18 & 31) == 0) {
+    if (STATE->unk_1df_5 && dist < 128 && unit->target != -1 && (unit->aiTimer & 31) == 0) {
         dir = Ov003Unit_GetStepDirection(unit);
     }
     if (dir != 0) {
-        unit->unk_12_0 = dir;
-    } else if (unit->unk_18 == 0) {
-        unit->unk_12_0 = (u8)((Ov003_RandNext() & 3) + 1);
+        unit->facing = dir;
+    } else if (unit->aiTimer == 0) {
+        unit->facing = (u8)((Ov003_RandNext() & 3) + 1);
     }
-    Ov003Unit_Move(unit, unit->unk_12_0, -1, 1);
-    if (!unit->unk_1c_0 && (!unit->unk_1c_1 || unit->tile == 5 || !unit->unk_1d_7) &&
-        unit->x == unit->startX && unit->y == unit->unk_0c) {
-        unit->unk_12_0 = (u8)((Ov003_RandNext() & 3) + 1);
-        Ov003Unit_Move(unit, unit->unk_12_0, -1, 1);
+    Ov003Unit_Move(unit, unit->facing, -1, 1);
+    if (!unit->unk_1c_0 && (!unit->unk_1c_1 || unit->kind == 5 || !unit->unk_1d_7) &&
+        unit->x == unit->prevX && unit->y == unit->prevY) {
+        unit->facing = (u8)((Ov003_RandNext() & 3) + 1);
+        Ov003Unit_Move(unit, unit->facing, -1, 1);
     }
-    if (unit->unk_1a == -1 || dist > (((data_ov003_02364d8c[unit->tile * 20] + 1) << 7) >> 3)) {
+    if (unit->target == -1 || dist > (((data_ov003_02364d8c[unit->kind * 20] + 1) << 7) >> 3)) {
         func_ov003_0235f81c(unit);
     } else {
         func_ov003_0235f8e8(unit);
     }
-    if (unit->unk_19 != 0) {
-        unit->unk_19--;
+    if (unit->shotWait != 0) {
+        unit->shotWait--;
     }
-    unit->unk_16++;
-    unit->unk_18++;
+    unit->walkCounter++;
+    unit->aiTimer++;
 }

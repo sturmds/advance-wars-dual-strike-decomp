@@ -26,7 +26,7 @@ void Ov003_UpdateRowUnits(void)
         func_ov003_0235ca50(STATE->row);
     }
     for (i = 0; i < 16; i++, unit++) {
-        if (unit->hp != 0 && !unit->unk_17_6 && func_ov003_02362098(unit->unk_12_3) != 1) {
+        if (unit->hp != 0 && !unit->unk_17_6 && func_ov003_02362098(unit->row) != 1) {
             Ov003Unit_UpdateAi(unit);
         }
     }

@@ -7,7 +7,7 @@ void Ov003_UpdateUnitTerrain(void);
 void Ov003_SnapshotUnits(void);
 
 /* Per frame: updates the units (Ov003_UpdateUnitTerrain), snapshots them, then
- * counts down unk_15, unk_08 and unk_11 of each live unit that has unk_17_6
+ * counts down unk_15, safeTimer and unk_11 of each live unit that has unk_17_6
  * clear, stopping each at 0. */
 void Ov003_TickUnits(void)
 {
@@ -21,10 +21,8 @@ void Ov003_TickUnits(void)
             if (unit->unk_15 != 0) {
                 unit->unk_15--;
             }
-            /* needed to match: Ov003Unit.unk_08 is s16 in the header, but the
-             * original reads it unsigned */
-            if (*(u16 *)&unit->unk_08 != 0) {
-                (*(u16 *)&unit->unk_08)--;
+            if (unit->safeTimer != 0) {
+                unit->safeTimer--;
             }
             if (unit->unk_11 != 0) {
                 unit->unk_11--;

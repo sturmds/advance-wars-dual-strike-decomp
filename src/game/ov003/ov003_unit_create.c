@@ -36,41 +36,41 @@ Ov003Unit *Ov003Unit_Create(int slot, int column, int x, int y)
             return NULL;
         }
     }
-    if (Ov003_FindOpenTileNear(cell->tile, &x, &y) == 0) {
+    if (Ov003_FindOpenTileNear(cell->kind, &x, &y) == 0) {
         return NULL;
     }
     unit->x = (x << 7) + 64;
     unit->y = (y << 7) + 64;
     if (row & 1) {
-        unit->unk_12_0 = 4;
+        unit->facing = 4;
     } else {
-        unit->unk_12_0 = 3;
+        unit->facing = 3;
     }
-    unit->tile = cell->tile;
-    unit->unk_12_3 = row;
+    unit->kind = cell->kind;
+    unit->row = row;
     unit->unk_15 = 0;
     unit->hp = 100;
     unit->unk_17_6 = 0;
     unit->unk_17_7 = 0;
     unit->unk_04 = 0;
     unit->unk_11 = 0;
-    unit->unk_16 = 0;
+    unit->walkCounter = 0;
     unit->unk_17_0 = 0;
-    unit->unk_08 = 0;
-    unit->unk_19 = 0;
-    unit->unk_18 = 0;
-    unit->unk_1d_0 = 0;
-    unit->unk_1b = -1;
-    unit->unk_1a = -1;
+    unit->safeTimer = 0;
+    unit->shotWait = 0;
+    unit->aiTimer = 0;
+    unit->shotCount = 0;
+    unit->scatterTarget = -1;
+    unit->target = -1;
     unit->unk_1d_6 = 0;
     unit->unk_1d_7 = 0;
-    unit->unk_1e_0 = 1;
-    unit->unk_1f = 0;
-    unit->unk_1e_1 = 0;
-    unit->startX = unit->x;
-    unit->unk_0c = unit->x;
-    unit->startUnk_04 = unit->unk_04;
-    unit->startHp = unit->hp;
+    unit->awake = 1;
+    unit->wakeRange = 0;
+    unit->wakeGroup = 0;
+    unit->prevX = unit->x;
+    unit->prevY = unit->x;
+    unit->prevUnk_04 = unit->unk_04;
+    unit->prevHp = unit->hp;
     cell->state = 2;
     cell->unit = slot;
     return unit;

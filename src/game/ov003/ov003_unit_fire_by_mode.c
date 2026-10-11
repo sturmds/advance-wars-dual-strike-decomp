@@ -10,9 +10,9 @@ void Ov003Unit_FireAtUnitScattered(Ov003Unit *unit, int targetIndex);
 #define STATE data_ov003_02364928
 
 /* One shot of a burst. Mode 0 (Ov003State.unk_1df_2) fires straight ahead, mode 1
- * does too for tile 4 and 5, and every other case aims at the unit in unk_1a
- * with a random miss. unk_1d_0 counts the shots; at the per-tile burst length it
- * restarts and unk_19 gets the wait before the next burst. */
+ * does too for tile 4 and 5, and every other case aims at the unit in target
+ * with a random miss. shotCount counts the shots; at the per-tile burst length it
+ * restarts and shotWait gets the wait before the next burst. */
 void Ov003Unit_FireByMode(Ov003Unit *unit)
 {
     switch (STATE->unk_1df_2) {
@@ -20,24 +20,24 @@ void Ov003Unit_FireByMode(Ov003Unit *unit)
         Ov003Unit_FireForward(unit);
         break;
     case 1:
-        switch (unit->tile) {
+        switch (unit->kind) {
         case 4:
         case 5:
             Ov003Unit_FireForward(unit);
             break;
         default:
-            Ov003Unit_FireAtUnitScattered(unit, unit->unk_1a);
+            Ov003Unit_FireAtUnitScattered(unit, unit->target);
             break;
         }
         break;
     default:
-        Ov003Unit_FireAtUnitScattered(unit, unit->unk_1a);
+        Ov003Unit_FireAtUnitScattered(unit, unit->target);
         break;
     }
-    unit->unk_1d_0++;
-    if (unit->unk_1d_0 != data_ov003_02364d8d[unit->tile][0]) {
+    unit->shotCount++;
+    if (unit->shotCount != data_ov003_02364d8d[unit->kind][0]) {
         return;
     }
-    unit->unk_1d_0 = 0;
-    unit->unk_19 = data_ov003_02364d8e[unit->tile][0];
+    unit->shotCount = 0;
+    unit->shotWait = data_ov003_02364d8e[unit->kind][0];
 }

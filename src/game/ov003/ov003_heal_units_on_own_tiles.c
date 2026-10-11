@@ -30,7 +30,7 @@ void Ov003_HealUnitsOnOwnTiles(void)
             unit->unk_17_0 = 0;
             continue;
         }
-        if (((tile >> 5) & 7) != unit->unk_12_3) {
+        if (((tile >> 5) & 7) != unit->row) {
             unit->unk_17_0 = 0;
             continue;
         }

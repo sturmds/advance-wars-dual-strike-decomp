@@ -24,17 +24,12 @@ void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size
 #define MAP data_ov003_02364a88
 #define STATE data_ov003_02364928
 
-/* Map scroll in pixels. The original reads the fields as signed halfwords;
- * the header types them u16, so cast here. */
-#define SCROLL_X ((s16)STATE->unk_1d0)
-#define SCROLL_Y ((s16)STATE->unk_1d2)
-
 #define DRAW(data, size) \
-    func_01ff85d8(x - SCROLL_X, y - SCROLL_Y, 0, 0x800, data, 0, size)
+    func_01ff85d8(x - STATE->scrollX, y - STATE->scrollY, 0, 0x800, data, 0, size)
 
 /* Draws the tile marks (Ov003_PutOwnedWindowPiece) of every 2 by 2 tile block that
  * is on screen or within 47 pixels of it, then each unit of the current slot's
- * row. The unit's tile code (1-5) and unk_12_0 (1-4) pick its picture. When
+ * row. The unit's kind (1-5) and facing (1-4) pick its picture. When
  * data_02160ac0->unk_7c is set there are 8 units, and only unit 0 and those in
  * the mask from func_0207a1dc are drawn. */
 void Ov003_DrawMarksAndUnits(void)
@@ -46,11 +41,11 @@ void Ov003_DrawMarksAndUnits(void)
 
     unit = data_ov003_02369538;
     for (y = 0; y < MAP->height; y += 2) {
-        if (y * 16 < SCROLL_Y - 47 || y * 16 > SCROLL_Y + 208) {
+        if (y * 16 < STATE->scrollY - 47 || y * 16 > STATE->scrollY + 208) {
             continue;
         }
         for (x = 0; x < MAP->width; x += 2) {
-            if (x * 16 >= SCROLL_X - 47 && x * 16 <= SCROLL_X + 272) {
+            if (x * 16 >= STATE->scrollX - 47 && x * 16 <= STATE->scrollX + 272) {
                 Ov003_PutOwnedWindowPiece(x, y);
             }
         }
@@ -63,15 +58,15 @@ void Ov003_DrawMarksAndUnits(void)
         if (unit->hp == 0 && !unit->unk_17_7) {
             continue;
         }
-        if (unit->unk_12_3 != STATE->slots[STATE->currentSlot].row) {
+        if (unit->row != STATE->slots[STATE->currentSlot].row) {
             continue;
         }
         /* 128 units per tile, 16 pixels per tile */
         x = unit->x >> 3;
         y = unit->y >> 3;
-        switch (unit->tile) {
+        switch (unit->kind) {
         case 5:
-            switch (unit->unk_12_0) {
+            switch (unit->facing) {
             case 1:
                 DRAW(data_ov003_02365270, 384);
                 break;
@@ -88,7 +83,7 @@ void Ov003_DrawMarksAndUnits(void)
             break;
         case 1:
         case 4:
-            switch (unit->unk_12_0) {
+            switch (unit->facing) {
             case 1:
                 DRAW(data_ov003_0236537c, 512);
                 break;
@@ -105,7 +100,7 @@ void Ov003_DrawMarksAndUnits(void)
             break;
         case 2:
         case 3:
-            switch (unit->unk_12_0) {
+            switch (unit->facing) {
             case 1:
                 DRAW(data_ov003_023653fc, 784);
                 break;

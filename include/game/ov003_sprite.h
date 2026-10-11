@@ -8,7 +8,7 @@
 typedef struct Ov003SpriteSpot {
     s16 x;
     s16 y;
-    u8 row;                            /* compared with Ov003Unit.unk_12_3 */
+    u8 row;                            /* compared with Ov003Unit.row */
 } Ov003SpriteSpot;
 
 /* A sprite from Sprite_CreateTask whose per-sprite data in overlay 3 starts at

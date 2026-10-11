@@ -13,10 +13,10 @@ void Ov003_SnapshotUnits(void)
 
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp != 0) {
-            unit->startX = unit->x;
-            unit->unk_0c = unit->y;
-            unit->startUnk_04 = unit->unk_04;
-            unit->startHp = unit->hp;
+            unit->prevX = unit->x;
+            unit->prevY = unit->y;
+            unit->prevUnk_04 = unit->unk_04;
+            unit->prevHp = unit->hp;
         }
     }
 }

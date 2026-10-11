@@ -50,7 +50,7 @@ void Ov003_MarkRowTiles(void)
         for (x = 0; x < MAP->width; x++) {
             u8 tile = data_ov003_02365d10[MAP->cells[TILE_AT(x, y)]];
 
-            if (data_ov003_02369534->unk_12_3 != ((tile >> 5) & 7) || (tile & 31) == 21 || (tile & 31) == 26) {
+            if (data_ov003_02369534->row != ((tile >> 5) & 7) || (tile & 31) == 21 || (tile & 31) == 26) {
                 continue;
             }
             MAP->marks[TILE_AT(x, y)] |= MARK_OWNED;
@@ -72,7 +72,7 @@ void Ov003_MarkRowTiles(void)
         if (unit->hp == 0 && !unit->unk_17_7) {
             continue;
         }
-        if (unit->unk_12_3 != STATE->slots[STATE->currentSlot].row) {
+        if (unit->row != STATE->slots[STATE->currentSlot].row) {
             continue;
         }
         x = unit->x >> 7;

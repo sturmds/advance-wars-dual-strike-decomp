@@ -13,7 +13,7 @@ extern u8 data_ov003_02365d10[];
  * `dir`. A unit fills a 96 by 96 box around (x, y), 128 units per tile. It
  * stops against other live units and against tiles its kind cannot cross
  * (base speed 0 there). On a straight move (`straight` 1), bumping a unit of
- * another player sets unk_1c_0 and stores that unit's index in unk_1c_2
+ * another player sets unk_1c_0 and stores that unit's index in lockedTarget
  * (never for kind 5), and stopping at a tile sets unk_1c_1 when the tile ahead
  * of the unit's centre has terrain 3 or 16. */
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
@@ -41,7 +41,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
 
     for (;;) {
         if (distance < 0) {
-            distance = func_ov003_0235d518(unit->unk_12_3, unit->tile, TERRAIN(unit->x >> 7, unit->y >> 7));
+            distance = func_ov003_0235d518(unit->row, unit->kind, TERRAIN(unit->x >> 7, unit->y >> 7));
         }
         unit->unk_1c_0 = 0;
         unit->unk_1c_1 = 0;
@@ -154,11 +154,11 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                 break;
             }
             if (straight == 1) {
-                if (other->unk_12_3 == unit->unk_12_3 || unit->tile == 5) {
+                if (other->row == unit->row || unit->kind == 5) {
                     unit->unk_1c_0 = 0;
                 } else {
                     unit->unk_1c_0 = 1;
-                    unit->unk_1c_2 = i;
+                    unit->lockedTarget = i;
                 }
             }
         }
@@ -177,7 +177,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = bottom >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->tile, TERRAIN(cx, cy)) == 0) {
+                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -219,7 +219,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = bottom >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->tile, TERRAIN(cx, cy)) == 0) {
+                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -259,7 +259,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = edge >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->tile, TERRAIN(cx, cy)) == 0) {
+                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -299,7 +299,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = edge >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->tile, TERRAIN(cx, cy)) == 0) {
+                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }

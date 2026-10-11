@@ -19,13 +19,13 @@ int Ov003Unit_CanEnterTerrain(Ov003Unit *unit, int terrain)
     case 26:
         return 0;
     case 3:
-        if ((u8)(unit->tile + 255) <= 1) {
+        if ((u8)(unit->kind + 255) <= 1) {
             return 1;
         }
     case 16:
         return unit->unk_1c_1 != 0;
     case 2:
-        return (u8)(unit->tile + 255) <= 1;
+        return (u8)(unit->kind + 255) <= 1;
     default:
         return 1;
     }

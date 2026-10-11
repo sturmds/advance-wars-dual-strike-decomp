@@ -17,9 +17,6 @@ void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int til
 #define MAP data_ov003_02364a88
 #define STATE data_ov003_02364928
 #define TILE_AT(x, y) ((y) * MAP->width + (x))
-/* Scroll in pixels; read signed here. */
-#define SCROLL_X ((s16)STATE->unk_1d0)
-#define SCROLL_Y ((s16)STATE->unk_1d2)
 
 /* Map entry index of the top left 8x8 cell of a 16x16 tile on screen. */
 #define CELL(sx, sy) (((sx) + (sy) * 32) * 2)
@@ -62,7 +59,7 @@ void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int til
 
 /* A 16x16 sprite over map tile (x, y). */
 #define SPRITE(x, y, depth, tile, palette) \
-    Ov003_DrawTexturedQuad((x) * 16 - SCROLL_X, (y) * 16 - SCROLL_Y, depth, 1, 1, tile, palette, 0, 0)
+    Ov003_DrawTexturedQuad((x) * 16 - STATE->scrollX, (y) * 16 - STATE->scrollY, depth, 1, 1, tile, palette, 0, 0)
 
 /* Draws map tile (x, y) when it is on screen: its lower half into layers 3
  * and 2, its upper half into layer 1 one row up, and the sprites that stand
@@ -91,8 +88,8 @@ void Ov003_DrawTile(u8 x, u8 y)
         object = Ov003_FindEntryAtTile(x, y);
     }
 
-    sx = x - (SCROLL_X >> 4);
-    sy = y - (SCROLL_Y >> 4);
+    sx = x - (STATE->scrollX >> 4);
+    sy = y - (STATE->scrollY >> 4);
     if (sx <= 16 && sy <= 12) {
         /* the 17th column goes to the second 32x32 screen block */
         if (sx >= 16) {
@@ -232,8 +229,8 @@ void Ov003_DrawTile(u8 x, u8 y)
 
     /* The upper half of the tile goes to layer 1, one row up. */
     info = data_ov003_02365d10[code];
-    sx = x - (SCROLL_X >> 4);
-    sy = y - (SCROLL_Y >> 4);
+    sx = x - (STATE->scrollX >> 4);
+    sy = y - (STATE->scrollY >> 4);
     sy--;
     if (sx > 16 || sy > 12) {
         return;
@@ -359,6 +356,6 @@ void Ov003_DrawTile(u8 x, u8 y)
     }
 
     if (Ov003_IsCurrentSlotRowOpen() == 0 && STATE->unk_1df_0 && mark == 0 && terrain == TERRAIN_WOOD) {
-        Ov003_DrawTexturedQuad(x * 16 - SCROLL_X, (u8)(y - 1) * 16 - SCROLL_Y, 50, 1, 1, 4, 2, 0, 0);
+        Ov003_DrawTexturedQuad(x * 16 - STATE->scrollX, (u8)(y - 1) * 16 - STATE->scrollY, 50, 1, 1, 4, 2, 0, 0);
     }
 }

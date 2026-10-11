@@ -51,15 +51,15 @@ void Ov003_InitUnitsAndCamera(void)
     }
     unit = data_ov003_02369538;
     if (data_02160ac0->unk_7c == 0) {
-        unit->unk_12_3 = 1;
+        unit->row = 1;
     } else {
         for (i = 0; i < 8; i++, unit++) {
-            unit->unk_12_3 = STATE->slots[i].row;
+            unit->row = STATE->slots[i].row;
         }
     }
     SELECTED = &data_ov003_02369538[STATE->currentSlot];
-    STATE->scrollX = (STATE->rows[SELECTED->unk_12_3 - 1].unk_38 * 128 + 64 >> 3) - 128;
-    STATE->scrollY = (STATE->rows[SELECTED->unk_12_3 - 1].unk_39 * 128 + 64 >> 3) - 96;
+    STATE->scrollX = (STATE->rows[SELECTED->row - 1].unk_38 * 128 + 64 >> 3) - 128;
+    STATE->scrollY = (STATE->rows[SELECTED->row - 1].unk_39 * 128 + 64 >> 3) - 96;
     Ov003Rows_ClearCells();
     for (i = 1; i < STATE->rowCount + 1; i++) {
         if (i != STATE->row) {

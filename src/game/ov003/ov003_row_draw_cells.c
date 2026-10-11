@@ -45,7 +45,7 @@ void Ov003Row_DrawCells(int row)
             continue;
         }
         /* first of the four tiles for this kind of cell, then + 4 per animation frame */
-        switch (cell->tile) {
+        switch (cell->kind) {
         case 1:
         case 2:
             if (Ov003_RowKindGroup(ROW.unk_3b_0) == 5) {

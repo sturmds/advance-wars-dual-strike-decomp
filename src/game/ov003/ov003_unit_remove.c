@@ -27,7 +27,7 @@ int Ov003_IsRowDone(void);
  * Ov003_SpawnItem accepts the unit's position. */
 void Ov003Unit_Remove(Ov003Unit *unit)
 {
-    Ov003Row *row = &data_ov003_02364928->rows[unit->unk_12_3 - 1];
+    Ov003Row *row = &data_ov003_02364928->rows[unit->row - 1];
     int index;
     Unk_ov003_02369bb8 *entry;
     Ov003Cell *cell;
@@ -42,7 +42,7 @@ void Ov003Unit_Remove(Ov003Unit *unit)
             entry->target = NULL;
         }
     }
-    if (data_02160ac0->unk_7c != 0 && unit->unk_12_3 == data_ov003_02364928->row) {
+    if (data_02160ac0->unk_7c != 0 && unit->row == data_ov003_02364928->row) {
         for (j = 0; j < 8; j++) {
             if (data_ov003_02364928->unk_1c0[j] == 0) {
                 data_ov003_02364928->unk_1c0[j] = 120;
@@ -55,7 +55,7 @@ void Ov003Unit_Remove(Ov003Unit *unit)
         if (cell->state == 2 && CELL_UNIT(cell) == index) {
             cell->state = 3;
             CELL_UNIT(cell) = -1;
-            if (func_ov003_02362098(unit->unk_12_3) == 1) {
+            if (func_ov003_02362098(unit->row) == 1) {
                 Ov003_StartSlotPlacing(index);
                 return;
             }

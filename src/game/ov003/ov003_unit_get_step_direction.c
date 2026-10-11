@@ -7,14 +7,14 @@ int Ov003_IsRouteClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX
 int Ov003_IsPathClearRowFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
 
 /* Direction for the unit to move toward its target, the unit
- * data_ov003_02369538[unit->unk_1a]: 1 up, 2 down, 3 left, 4 right, 0 none. On
+ * data_ov003_02369538[unit->target]: 1 up, 2 down, 3 left, 4 right, 0 none. On
  * the same tile column or row it takes the larger pixel distance. Otherwise it
  * takes the larger tile distance's axis if a route that starts along it is
  * clear (Ov003_IsPathClearRowFirst, the row first, for left and right), else the other
  * axis. Needed to match: separate dx and dy variables for the two parts. */
 int Ov003Unit_GetStepDirection(Ov003Unit *unit)
 {
-    Ov003Unit *target = &data_ov003_02369538[unit->unk_1a];
+    Ov003Unit *target = &data_ov003_02369538[unit->target];
     s16 col = unit->x >> 7;
     s16 row = unit->y >> 7;
     s16 targetCol = target->x >> 7;

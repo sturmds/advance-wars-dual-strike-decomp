@@ -36,7 +36,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     if (unit->unk_17_7) {
         return;
     }
-    speed = func_ov003_0235d518(unit->unk_12_3, unit->tile, TERRAIN_AT(unit));
+    speed = func_ov003_0235d518(unit->row, unit->kind, TERRAIN_AT(unit));
 
     if (pad->unk_00 & PAD_KEY_LEFT) {
         if (pad->unk_00 & PAD_KEY_RIGHT) {
@@ -74,7 +74,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     }
 
     if (dx != 0 || dy != 0) {
-        unit->unk_16++;
+        unit->walkCounter++;
     }
     if (dx < 0) {
         Ov003Unit_Move(unit, OV003_DIR_LEFT, -dx, straight);
@@ -89,17 +89,17 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
         Ov003Unit_Move(unit, OV003_DIR_DOWN, dy, straight);
     }
 
-    switch (unit->unk_12_0) {
+    switch (unit->facing) {
     case OV003_DIR_LEFT:
         if (dx < 0) {
             break;
         }
         if (dy < 0) {
-            unit->unk_12_0 = OV003_DIR_UP;
+            unit->facing = OV003_DIR_UP;
         } else if (dy > 0) {
-            unit->unk_12_0 = OV003_DIR_DOWN;
+            unit->facing = OV003_DIR_DOWN;
         } else if (dx > 0) {
-            unit->unk_12_0 = OV003_DIR_RIGHT;
+            unit->facing = OV003_DIR_RIGHT;
         }
         break;
     case OV003_DIR_RIGHT:
@@ -107,11 +107,11 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
             break;
         }
         if (dy > 0) {
-            unit->unk_12_0 = OV003_DIR_DOWN;
+            unit->facing = OV003_DIR_DOWN;
         } else if (dy < 0) {
-            unit->unk_12_0 = OV003_DIR_UP;
+            unit->facing = OV003_DIR_UP;
         } else if (dx < 0) {
-            unit->unk_12_0 = OV003_DIR_LEFT;
+            unit->facing = OV003_DIR_LEFT;
         }
         break;
     case OV003_DIR_UP:
@@ -119,11 +119,11 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
             break;
         }
         if (dx < 0) {
-            unit->unk_12_0 = OV003_DIR_LEFT;
+            unit->facing = OV003_DIR_LEFT;
         } else if (dx > 0) {
-            unit->unk_12_0 = OV003_DIR_RIGHT;
+            unit->facing = OV003_DIR_RIGHT;
         } else if (dy > 0) {
-            unit->unk_12_0 = OV003_DIR_DOWN;
+            unit->facing = OV003_DIR_DOWN;
         }
         break;
     case OV003_DIR_DOWN:
@@ -131,20 +131,20 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
             break;
         }
         if (dx > 0) {
-            unit->unk_12_0 = OV003_DIR_RIGHT;
+            unit->facing = OV003_DIR_RIGHT;
         } else if (dx < 0) {
-            unit->unk_12_0 = OV003_DIR_LEFT;
+            unit->facing = OV003_DIR_LEFT;
         } else if (dy < 0) {
-            unit->unk_12_0 = OV003_DIR_UP;
+            unit->facing = OV003_DIR_UP;
         }
         break;
     }
 
-    if (Ov003_IsPowerReady(unit->unk_12_3) == 1) {
+    if (Ov003_IsPowerReady(unit->row) == 1) {
         if (pad->pressed & PAD_BUTTON_L) {
-            func_ov003_0235ca50(unit->unk_12_3);
+            func_ov003_0235ca50(unit->row);
         } else if (Ov003_InputTouchedCircle(input, 240, 176, 24) == 1) {
-            func_ov003_0235ca50(unit->unk_12_3);
+            func_ov003_0235ca50(unit->row);
             touchUsed = TRUE;
         }
     }
@@ -154,7 +154,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     }
 
     /* needed to match: + 255 rather than - 1 (kinds 1 to 3) */
-    if ((u8)(unit->tile + 255) <= 2) {
+    if ((u8)(unit->kind + 255) <= 2) {
         if (!touchUsed && (u8)(input->phase + 255) <= 1) { /* phase 1 or 2 */
             Ov003Unit_SpawnEffectTowardPoint(unit, input->x, input->y);
             return;

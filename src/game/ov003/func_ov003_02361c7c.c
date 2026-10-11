@@ -48,7 +48,7 @@ void func_ov003_02361c7c(int row)
         for (i = 1; i < STATE->rowCount + 1; i++) {
             LINK_ROW(i - 1).spawnCount = STATE->rows[i - 1].spawnCount;
             for (j = 0; j < STATE->rows[i - 1].spawnCount; j++) {
-                LINK_ROW(i - 1).cells[j].tile = STATE->rows[i - 1].cells[j].tile;
+                LINK_ROW(i - 1).cells[j].tile = STATE->rows[i - 1].cells[j].kind;
                 LINK_ROW(i - 1).cells[j].state = STATE->rows[i - 1].cells[j].state;
                 if (LINK_ROW(i - 1).cells[j].state == 2) {
                     LINK_ROW(i - 1).cells[j].state = 1;

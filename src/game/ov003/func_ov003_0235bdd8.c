@@ -12,7 +12,7 @@ int func_ov003_0235bdd8(void)
         return 0;
     }
     unit->unk_17_6 = 1;
-    unit->unk_08 = 180;
+    unit->safeTimer = 180;
     Ov003_CreateUnitSprite(unit->x >> 3, unit->y >> 3);
     return 1;
 }

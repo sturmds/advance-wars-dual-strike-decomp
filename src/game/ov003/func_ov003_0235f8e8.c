@@ -12,7 +12,7 @@ void func_ov003_0235f8e8(Ov003Unit *unit)
     if (unit->unk_15 != 0) {
         return;
     }
-    if (unit->unk_1b != -1 && STATE->unk_1df_2 >= 2) {
+    if (unit->scatterTarget != -1 && STATE->unk_1df_2 >= 2) {
         Ov003Unit_FireScatteredBurst(unit);
         return;
     }
@@ -24,7 +24,7 @@ void func_ov003_0235f8e8(Ov003Unit *unit)
         Ov003Unit_FireForwardOnce(unit);
         return;
     }
-    if (unit->unk_19 != 0) {
+    if (unit->shotWait != 0) {
         return;
     }
     Ov003Unit_FireByMode(unit);

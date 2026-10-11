@@ -55,7 +55,7 @@ void Ov003_UpdateTileClaims(void)
             continue;
         }
         row = (terrain >> 5) & 7;
-        if (row == unit->unk_12_3) {
+        if (row == unit->row) {
             unit->unk_04 = 0;
             continue;
         }
@@ -69,18 +69,18 @@ void Ov003_UpdateTileClaims(void)
             if (unit->unk_11 == 0) {
                 unit->unk_04++;
                 if (unit->unk_04 >= 30) {
-                    if (func_ov003_0235d4c0(unit->unk_12_3) == 1) {
+                    if (func_ov003_0235d4c0(unit->row) == 1) {
                         unit->unk_04++;
                     }
                 }
-                if (unit->unk_04 >= data_ov003_02364d88[unit->tile].unk_00 + 30) {
-                    if (unit->unk_12_3 != STATE->row && unit - data_ov003_02369538 == STATE->currentSlot) {
+                if (unit->unk_04 >= data_ov003_02364d88[unit->kind].unk_00 + 30) {
+                    if (unit->row != STATE->row && unit - data_ov003_02369538 == STATE->currentSlot) {
                         Sound_PlaySe(248);
                     }
-                    Ov003_CaptureProperty(tileIndex, terrain, unit->unk_12_3);
+                    Ov003_CaptureProperty(tileIndex, terrain, unit->row);
                     unit->unk_04 = 0;
-                    if (func_ov003_02362098(unit->unk_12_3) == 1 && row == 0 && (terrain & 31) == 14) {
-                        Ov003Row_AppendCell(unit->unk_12_3, unit->tile, 1);
+                    if (func_ov003_02362098(unit->row) == 1 && row == 0 && (terrain & 31) == 14) {
+                        Ov003Row_AppendCell(unit->row, unit->kind, 1);
                     }
                     Ov003_PointTaskCreate((unit->x & ~127) >> 3, (unit->y & ~127) >> 3);
                 }

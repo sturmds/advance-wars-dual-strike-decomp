@@ -12,7 +12,7 @@ void Ov003Unit_DrawMarker(Ov003Unit *unit)
 {
     int phase;
 
-    if (Ov003_IsRowPowerActive(unit->unk_12_3) == 0) {
+    if (Ov003_IsRowPowerActive(unit->row) == 0) {
         return;
     }
     phase = HwMod32(data_ov003_02364928->frameCount, 20);
@@ -27,5 +27,5 @@ void Ov003Unit_DrawMarker(Ov003Unit *unit)
     } else {
         return;
     }
-    Ov003_DrawTexturedQuad((unit->x >> 3) - OV003_SCROLL_X - 16, (unit->y >> 3) - OV003_SCROLL_Y - 22, 24, 2, 2, 0x4e5 + phase * 16, 20, 0, 0);
+    Ov003_DrawTexturedQuad((unit->x >> 3) - data_ov003_02364928->scrollX - 16, (unit->y >> 3) - data_ov003_02364928->scrollY - 22, 24, 2, 2, 0x4e5 + phase * 16, 20, 0, 0);
 }

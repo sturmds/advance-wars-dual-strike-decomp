@@ -45,7 +45,7 @@ void Ov003_StepScatterSprites(Unk_ov003_0235dd38 *task)
         count = 0;
         unit = data_ov003_02369538;
         for (i = 0; i < func_ov003_023622b8(); i++, unit++) {
-            if (unit->hp != 0 && !unit->unk_17_6 && unit->unk_12_3 != task->unk_52) {
+            if (unit->hp != 0 && !unit->unk_17_6 && unit->row != task->unk_52) {
                 candidates[count++] = unit;
             }
         }

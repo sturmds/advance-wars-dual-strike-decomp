@@ -31,7 +31,7 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int targetX, int targetY)
 
     unitIndex = unit - data_ov003_02369538;
     effect = data_ov003_02369738[unitIndex].effects;
-    count = data_ov003_02364d8d[unit->tile][0];
+    count = data_ov003_02364d8d[unit->kind][0];
     for (i = 0; i < count; i++, effect++) {
         if (effect->lifetime == 0) {
             break;
@@ -43,7 +43,7 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int targetX, int targetY)
     Ov003_GetScrollToCentreUnit(unit, &originX, &originY);
     effect->x = unit->x;
     effect->y = unit->y;
-    effect->kind = unit->tile;
+    effect->kind = unit->kind;
     effect->velX = targetX - ((unit->x >> 3) - originX);
     effect->velY = targetY - ((unit->y >> 3) - originY);
     if (effect->kind == 5) {
@@ -54,7 +54,7 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int targetX, int targetY)
             effect->velY = newY;
         }
     } else if (effect->velX == 0 && effect->velY == 0) {
-        switch (unit->unk_12_0) {
+        switch (unit->facing) {
         case 1:
             effect->velX = 0;
             effect->velY = -1;
@@ -73,11 +73,11 @@ void Ov003Unit_SpawnEffectTowardPoint(Ov003Unit *unit, int targetX, int targetY)
             break;
         }
     }
-    effect->lifetime = data_ov003_02364d8b[unit->tile][0];
-    effect->unk_0d = unit->unk_12_3;
+    effect->lifetime = data_ov003_02364d8b[unit->kind][0];
+    effect->unk_0d = unit->row;
     effect->unk_08 = 0;
     effect->owner = unitIndex;
-    unit->unk_15 = data_ov003_02364d8a[unit->tile][0];
+    unit->unk_15 = data_ov003_02364d8a[unit->kind][0];
     unit->unk_17_0 = 0;
     unit->unk_11 = 30;
     if (unitIndex != data_ov003_02364928->currentSlot) {

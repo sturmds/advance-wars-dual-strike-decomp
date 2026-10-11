@@ -7,8 +7,8 @@
  * data_ov003_02364a84. */
 void Ov003_ResetView(void)
 {
-    data_ov003_02364928->unk_1d0 = 0;
-    data_ov003_02364928->unk_1d2 = 0;
+    data_ov003_02364928->scrollX = 0;
+    data_ov003_02364928->scrollY = 0;
     data_ov003_02364a84->unk_0b_0 = 0;
     data_ov003_02364a84->unk_0b_2 = 0;
     data_ov003_02364a84->unk_0a_0 = 0;

@@ -24,7 +24,7 @@ void Ov003_CreateUnitSprite(int x, int y, Ov003Unit *unit)
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     sprite = Sprite_CreateTask(3, data_ov003_023654e0, 0, x, y, 28, 0x448, 17);
-    func_02027aa8(sprite, &data_ov003_02364928->unk_1d0, &data_ov003_02364928->unk_1d2);
+    func_02027aa8(sprite, &data_ov003_02364928->scrollX, &data_ov003_02364928->scrollY);
     func_02027aa0(sprite, &data_ov003_02364928->unk_1d6);
     sprite->unit = unit;
     func_02027a98(sprite, func_ov003_02364300);

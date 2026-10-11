@@ -44,37 +44,37 @@ Ov003Unit *Ov003Unit_SpawnNext(void)
     }
     x = spawn->x;
     y = spawn->y;
-    if (Ov003_FindOpenTileNear(cell->tile, &x, &y) == 0) {
+    if (Ov003_FindOpenTileNear(cell->kind, &x, &y) == 0) {
         return NULL;
     }
     unit->x = (x << 7) + 64;
     unit->y = (y << 7) + 64;
-    unit->unk_12_0 = spawn->unk_2_0;
-    unit->tile = cell->tile;
-    unit->unk_12_3 = STATE->row;
+    unit->facing = spawn->unk_2_0;
+    unit->kind = cell->kind;
+    unit->row = STATE->row;
     unit->unk_15 = 0;
     unit->hp = 100;
     unit->unk_17_6 = 0;
     unit->unk_17_7 = 0;
     unit->unk_04 = 0;
     unit->unk_11 = 0;
-    unit->unk_16 = 0;
+    unit->walkCounter = 0;
     unit->unk_17_0 = 0;
-    unit->unk_08 = 0;
-    unit->unk_18 = ((unit - data_ov003_02369538) & 15) << 4;
-    unit->unk_19 = data_ov003_02364d8e[unit->tile][0];
-    unit->unk_1d_0 = 0;
-    unit->unk_1b = -1;
-    unit->unk_1a = -1;
+    unit->safeTimer = 0;
+    unit->aiTimer = ((unit - data_ov003_02369538) & 15) << 4;
+    unit->shotWait = data_ov003_02364d8e[unit->kind][0];
+    unit->shotCount = 0;
+    unit->scatterTarget = -1;
+    unit->target = -1;
     unit->unk_1d_6 = spawn->unk_2_7;
     unit->unk_1d_7 = spawn->unk_2_6;
-    unit->unk_1e_0 = spawn->unk_2_3;
-    unit->unk_1f = spawn->unk_3;
-    unit->unk_1e_1 = spawn->unk_4;
-    unit->startX = unit->x;
-    unit->unk_0c = unit->x;
-    unit->startUnk_04 = unit->unk_04;
-    unit->startHp = unit->hp;
+    unit->awake = spawn->unk_2_3;
+    unit->wakeRange = spawn->unk_3;
+    unit->wakeGroup = spawn->unk_4;
+    unit->prevX = unit->x;
+    unit->prevY = unit->x;
+    unit->prevUnk_04 = unit->unk_04;
+    unit->prevHp = unit->hp;
     if (STATE->row != 5) {
         cell->state = 2;
     } else {

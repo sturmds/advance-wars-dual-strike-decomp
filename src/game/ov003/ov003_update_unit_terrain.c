@@ -17,15 +17,15 @@ void Ov003_UpdateUnitTerrain(void)
 
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp != 0) {
-            switch (unit->tile) {
+            switch (unit->kind) {
             case 1:
                 if (TERRAIN_AT(unit) == 3) {
-                    unit->tile = 2;
+                    unit->kind = 2;
                 }
                 break;
             case 2:
                 if (TERRAIN_AT(unit) != 3) {
-                    unit->tile = 1;
+                    unit->kind = 1;
                 }
                 break;
             }

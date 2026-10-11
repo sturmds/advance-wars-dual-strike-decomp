@@ -30,8 +30,8 @@ void Ov003_ScrollToSelectedUnit(void)
             STATE->scrollX = (SELECTED->x >> 3) - 128;
             STATE->scrollY = (SELECTED->y >> 3) - 96;
         } else {
-            STATE->scrollX = (STATE->rows[SELECTED->unk_12_3 - 1].unk_38 * 128 + 64 >> 3) - 128;
-            STATE->scrollY = (STATE->rows[SELECTED->unk_12_3 - 1].unk_39 * 128 + 64 >> 3) - 96;
+            STATE->scrollX = (STATE->rows[SELECTED->row - 1].unk_38 * 128 + 64 >> 3) - 128;
+            STATE->scrollY = (STATE->rows[SELECTED->row - 1].unk_39 * 128 + 64 >> 3) - 96;
         }
     }
     if (STATE->scrollX < 0) {

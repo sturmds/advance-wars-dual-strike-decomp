@@ -26,44 +26,44 @@ void Ov003_CreateSpriteVariant2(int x, int y);
  * timer of 15. The object is spent either way. */
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
 {
-    int damage = Ov003_RollValue(object->variant, object->kind, unit->unk_12_3, unit->tile);
+    int damage = Ov003_RollValue(object->variant, object->kind, unit->row, unit->kind);
 
     object->active = 0;
-    if (object->variant == unit->unk_12_3) {
+    if (object->variant == unit->row) {
         return;
     }
     if (OV003_PHASE(data_ov003_02364928)->current == 7) {
         return;
     }
     damage += (Ov003_RandNext() & 7) - 3;
-    if ((u16)unit->unk_08 == 0 && func_ov003_0235d468(unit->unk_12_3) == 0) {
+    if (unit->safeTimer == 0 && func_ov003_0235d468(unit->row) == 0) {
         if (unit->hp <= damage && data_02160abc->unk_0a == 0) {
             unit->hp = 0;
             unit->unk_17_7 = 1;
             if (object->kind < 6) {
-                Ov003Row_AddGauge(object->variant, data_ov003_02364d9a[unit->tile][0]);
-                Ov003Row_AddGauge(unit->unk_12_3, HwDiv32(data_ov003_02364d9a[unit->tile][0] * 2, 3));
-                if (UNIT_COUNTS(object->variant)[unit->tile] != 255) {
-                    if (unit->tile == 2) {
+                Ov003Row_AddGauge(object->variant, data_ov003_02364d9a[unit->kind][0]);
+                Ov003Row_AddGauge(unit->row, HwDiv32(data_ov003_02364d9a[unit->kind][0] * 2, 3));
+                if (UNIT_COUNTS(object->variant)[unit->kind] != 255) {
+                    if (unit->kind == 2) {
                         UNIT_COUNTS(object->variant)[1]++;
                     } else {
-                        UNIT_COUNTS(object->variant)[unit->tile]++;
+                        UNIT_COUNTS(object->variant)[unit->kind]++;
                     }
                 }
             }
             Ov003_CreateSpriteWithCallback(unit->x >> 3, unit->y >> 3, unit);
         } else {
             unit->hp -= damage;
-            unit->unk_08 = 15;
+            unit->safeTimer = 15;
             unit->unk_17_0 = 0;
             if (object->kind < 6) {
-                Ov003Row_AddGauge(object->variant, data_ov003_02364d99[unit->tile][0]);
-                Ov003Row_AddGauge(unit->unk_12_3, HwDiv32(data_ov003_02364d99[unit->tile][0] * 2, 3));
+                Ov003Row_AddGauge(object->variant, data_ov003_02364d99[unit->kind][0]);
+                Ov003Row_AddGauge(unit->row, HwDiv32(data_ov003_02364d99[unit->kind][0] * 2, 3));
             }
             if (object->kind != 5 && object->kind != 7) {
                 Ov003_CreateSpriteVariant2(object->x >> 3, object->y >> 3);
             }
         }
     }
-    unit->unk_1b = object->unk_0a;
+    unit->scatterTarget = object->unk_0a;
 }

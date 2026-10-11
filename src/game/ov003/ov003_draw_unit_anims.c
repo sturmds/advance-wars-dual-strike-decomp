@@ -17,7 +17,7 @@ void Ov003_DrawUnitAnims(void)
 
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp != 0 && !unit->unk_17_6 && unit->unk_04 > 30) {
-            frame = 20 - HwDiv32((unit->unk_04 - 30) * 20, data_ov003_02364d88[unit->tile].unk_00);
+            frame = 20 - HwDiv32((unit->unk_04 - 30) * 20, data_ov003_02364d88[unit->kind].unk_00);
             if (frame <= 19) {
                 Ov003_DrawFrameAt((unit->x & ~0x7f) >> 3, (unit->y & ~0x7f) >> 3, frame);
             }

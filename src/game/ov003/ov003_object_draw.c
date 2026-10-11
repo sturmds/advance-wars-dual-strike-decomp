@@ -14,11 +14,11 @@ void Ov003Object_Draw(Ov003Object *object)
     int y;
 
     x = object->x >> 3;
-    scrollX = OV003_SCROLL_X;
+    scrollX = data_ov003_02364928->scrollX;
     if (x < scrollX - 3 || x > scrollX + 260) {
         return;
     }
-    scrollY = OV003_SCROLL_Y;
+    scrollY = data_ov003_02364928->scrollY;
     y = object->y >> 3;
     if (y < scrollY - 3 || y > scrollY + 196) {
         return;

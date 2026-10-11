@@ -34,7 +34,7 @@ void Ov003_UpdatePickups(void)
         unit = data_ov003_02369538;
         for (index = 0; index < func_ov003_023622b8(); index++, unit++) {
             if (unit->hp != 0 && unit->unk_17_6 == 0
-                && unit->unk_12_3 != data_ov003_02364928->row
+                && unit->row != data_ov003_02364928->row
                 && unit->x + 48 >= left
                 && unit->y + 48 >= top
                 && unit->x - 48 <= right

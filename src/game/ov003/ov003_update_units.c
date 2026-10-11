@@ -13,7 +13,7 @@ void Ov003Unit_Draw(Ov003Unit *unit);
 /* Calls Ov003Unit_Draw for each unit that is in use, unless one of these
  * holds: unk_17_6 is set; the state is in mode 1 and the unit's row is neither
  * the current slot's row nor Ov003State.row; the unit stands on terrain 4 whose
- * mark is 0; unk_08 is set while unk_1c8 has bit 1 and Ov003_IsPhase0OrAbove6
+ * mark is 0; safeTimer is set while unk_1c8 has bit 1 and Ov003_IsPhase0OrAbove6
  * returns 1. */
 void Ov003_UpdateUnits(void)
 {
@@ -30,15 +30,15 @@ void Ov003_UpdateUnits(void)
             continue;
         }
         if (STATE->unk_1da_0 == 1
-            && unit->unk_12_3 != STATE->slots[STATE->currentSlot].row
-            && unit->unk_12_3 != STATE->row) {
+            && unit->row != STATE->slots[STATE->currentSlot].row
+            && unit->row != STATE->row) {
             continue;
         }
         tile = (unit->y >> 7) * MAP->width + (unit->x >> 7);
         if ((data_ov003_02365d10[MAP->cells[tile]] & 31) == 4 && MAP->marks[tile] == 0) {
             continue;
         }
-        if ((u16)unit->unk_08 != 0 && (STATE->frameCount & 2) && Ov003_IsPhase0OrAbove6() == 1) {
+        if (unit->safeTimer != 0 && (STATE->frameCount & 2) && Ov003_IsPhase0OrAbove6() == 1) {
             continue;
         }
         Ov003Unit_Draw(unit);

@@ -7,11 +7,11 @@ void Ov003_DrawTexturedQuad(int x, int y, int a, int b, int c, int d, int e, int
  * camera, unless (x, y) is off screen. What it draws is not known. */
 void Ov003_DrawIconAt(int x, int y)
 {
-    if (x < OV003_SCROLL_X - 22 || x > OV003_SCROLL_X + 265) {
+    if (x < data_ov003_02364928->scrollX - 22 || x > data_ov003_02364928->scrollX + 265) {
         return;
     }
-    if (y < OV003_SCROLL_Y - 11 || y > OV003_SCROLL_Y + 196) {
+    if (y < data_ov003_02364928->scrollY - 11 || y > data_ov003_02364928->scrollY + 196) {
         return;
     }
-    Ov003_DrawTexturedQuad(x - OV003_SCROLL_X - 9, y - OV003_SCROLL_Y - 4, 23, 2, 1, 0x4c8, 17, 0, 0);
+    Ov003_DrawTexturedQuad(x - data_ov003_02364928->scrollX - 9, y - data_ov003_02364928->scrollY - 4, 23, 2, 1, 0x4c8, 17, 0, 0);
 }

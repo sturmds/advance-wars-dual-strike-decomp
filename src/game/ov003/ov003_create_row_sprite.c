@@ -25,7 +25,7 @@ void Ov003_CreateRowSprite(s16 x, s16 y, u8 row)
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     sprite = Sprite_CreateTask(3, data_ov003_023654f4, 0, x, y, 14, 0x525, 19);
-    func_02027aa8(sprite, &data_ov003_02364928->unk_1d0, &data_ov003_02364928->unk_1d2);
+    func_02027aa8(sprite, &data_ov003_02364928->scrollX, &data_ov003_02364928->scrollY);
     func_02027aa0(sprite, &data_ov003_02364928->unk_1d6);
     spot = &sprite->spot;
     spot->x = x;

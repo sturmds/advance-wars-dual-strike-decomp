@@ -10,37 +10,37 @@ typedef struct Ov003Unit {
     s16 y;
     u16 unk_04;
     u16 lastTile;                      /* index of the map tile checked last (Ov003_UpdateTileClaims) */
-    s16 unk_08;
-    s16 startX;                        /* copy of x when created */
-    s16 unk_0c;                        /* copy of x too, not of y */
-    u16 startUnk_04;                   /* copy of unk_04 */
-    u8 startHp;                        /* copy of hp */
+    u16 safeTimer;                     /* frames left in which hits do no damage; the unit blinks */
+    s16 prevX;                         /* x, y, unk_04 and hp of the previous frame (Ov003_SnapshotUnits) */
+    s16 prevY;
+    u16 prevUnk_04;
+    u8 prevHp;
     u8 unk_11;
-    u8 unk_12_0 : 3;                   /* 4 for an odd Ov003Cell nibble, else 3 */
-    u8 unk_12_3 : 5;                   /* nibble & 31 */
-    u8 tile;                           /* tile code of the cell it came from */
+    u8 facing : 3;                     /* OV003_DIR_*: 4 for an odd Ov003Cell nibble, else 3 */
+    u8 row : 5;                        /* 1-based row (team) the unit belongs to */
+    u8 kind;                           /* from the tile code of the cell it came from; 1 and 2 swap on terrain 3 */
     u8 hp;                             /* 100 = full; 0 = free entry */
     u8 unk_15;
-    u8 unk_16;
+    u8 walkCounter;                    /* counts steps; >> 3 picks the walk frame */
     u8 unk_17_0 : 6;
     u8 unk_17_6 : 1;
     u8 unk_17_7 : 1;
-    u8 unk_18;
-    u8 unk_19;
-    s8 unk_1a;
-    s8 unk_1b;
+    u8 aiTimer;                        /* frames counted by Ov003Unit_UpdateAi */
+    u8 shotWait;                       /* frames until the next burst */
+    s8 target;                         /* nearest unit (Ov003Unit_FindNearest), -1 for none */
+    s8 scatterTarget;                  /* unit a scattered burst aims at */
     u8 unk_1c_0 : 1;
     u8 unk_1c_1 : 1;
-    u8 unk_1c_2 : 6;
-    u8 unk_1d_0 : 6;
+    u8 lockedTarget : 6;               /* unit bumped into by Ov003Unit_Move */
+    u8 shotCount : 6;                  /* shots fired in the current burst */
     u8 unk_1d_6 : 1;
     u8 unk_1d_7 : 1;
-    u8 unk_1e_0 : 1;
-    u8 unk_1e_1 : 7;
-    u8 unk_1f;
+    u8 awake : 1;                      /* a computer unit acts only once awake */
+    u8 wakeGroup : 7;                  /* bit in Ov003State.unk_1de that wakes it */
+    u8 wakeRange;                      /* wakes when its target is closer, in tiles */
 } Ov003Unit;
 
-/* Ov003Unit.unk_12_0 (facing) and the direction passed to Ov003Unit_Move. */
+/* Ov003Unit.facing and the direction passed to Ov003Unit_Move. */
 #define OV003_DIR_UP    1
 #define OV003_DIR_DOWN  2
 #define OV003_DIR_LEFT  3
@@ -67,7 +67,7 @@ typedef struct Ov003TileInfo {
 
 /* 2-byte cell of a 31-cell row in data_ov003_02364928 (62 bytes per row). */
 typedef struct Ov003Cell {
-    u8 tile : 6;
+    u8 kind : 6;                       /* Ov003Unit.kind of the unit created here */
     u8 state : 2;                      /* 2: an Ov003Unit sits here */
     s8 unit;                           /* index in data_ov003_02369538, -1 for none */
 } Ov003Cell;
@@ -92,7 +92,7 @@ typedef struct Ov003Row {
 
 typedef struct Ov003Slot {
     u8 unk_00;
-    u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.unk_12_0 */
+    u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.facing */
     u8 unk_01_4 : 4;                   /* func_ov003_023572b0 tests it for 2 */
     u8 pad_02[2];
 } Ov003Slot;
@@ -107,12 +107,12 @@ typedef struct Ov003Slot {
 typedef struct Ov003Spawn {
     u8 x;                              /* passed to Ov003_FindOpenTileNear */
     u8 y;
-    u8 unk_2_0 : 3;                    /* becomes Ov003Unit.unk_12_0 */
-    u8 unk_2_3 : 3;                    /* bit 0 becomes Ov003Unit.unk_1e_0 */
+    u8 unk_2_0 : 3;                    /* becomes Ov003Unit.facing */
+    u8 unk_2_3 : 3;                    /* bit 0 becomes Ov003Unit.awake */
     u8 unk_2_6 : 1;                    /* becomes Ov003Unit.unk_1d_7 */
     u8 unk_2_7 : 1;                    /* becomes Ov003Unit.unk_1d_6 */
-    u8 unk_3;                          /* becomes Ov003Unit.unk_1f */
-    u8 unk_4;                          /* becomes Ov003Unit.unk_1e_1 */
+    u8 unk_3;                          /* becomes Ov003Unit.wakeRange */
+    u8 unk_4;                          /* becomes Ov003Unit.wakeGroup */
 } Ov003Spawn;
 
 /* 6-byte record in a spawn list that ends with a record whose tag is 0.
@@ -156,14 +156,8 @@ typedef struct Ov003State {
     u8 unk_1c0[8];
     u32 frameCount;                    /* frames on which Ov003_IsPhase0OrAbove6 returns 1 */
     u32 unk_1cc;
-    union {
-        u16 unk_1d0;
-        s16 scrollX;                   /* map scroll in pixels */
-    };
-    union {
-        u16 unk_1d2;
-        s16 scrollY;
-    };
+    s16 scrollX;                       /* map scroll in pixels */
+    s16 scrollY;
     u8 activeRows;                     /* bit per row with Ov003Row.active set */
     u8 currentSlot;
     union {
@@ -234,10 +228,6 @@ typedef struct Ov003Input {
 
 extern Ov003State *data_ov003_02364928;
 extern Ov003Map *data_ov003_02364a88;
-
-/* Camera position in pixels: Ov003State.unk_1d0 and unk_1d2, read as s16. */
-#define OV003_SCROLL_X ((s16)data_ov003_02364928->unk_1d0)
-#define OV003_SCROLL_Y ((s16)data_ov003_02364928->unk_1d2)
 
 /* Frames left on a slot's cursor (halfword at 0x136 + 4 * slot, just before
  * Ov003Slot.unk_00). */

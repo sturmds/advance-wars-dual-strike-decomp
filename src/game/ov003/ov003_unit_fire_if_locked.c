@@ -7,13 +7,13 @@ void Ov003Unit_FireAtLockedTarget(Ov003Unit *unit);
 #define STATE data_ov003_02364928
 
 /* Like func_ov003_0235f81c without the shots straight ahead: fires only at the
- * unit in unk_1b (mode 2 or higher) or the one in unk_1c_2. */
+ * unit in scatterTarget (mode 2 or higher) or the one in lockedTarget. */
 void Ov003Unit_FireIfLocked(Ov003Unit *unit)
 {
     if (unit->unk_15 != 0) {
         return;
     }
-    if (unit->unk_1b != -1 && STATE->unk_1df_2 >= 2) {
+    if (unit->scatterTarget != -1 && STATE->unk_1df_2 >= 2) {
         Ov003Unit_FireScatteredBurst(unit);
         return;
     }

@@ -14,8 +14,8 @@ extern u8 data_027c0030;              /* cell list of a 64 by 64 sprite */
  * window sprite (attribute 0 mode 2) 16 pixels up and left of tile x, y on
  * screen. Needed to match: the scroll fields are read as signed. */
 #define PUT(flip, tile)                                                           \
-    Oam_PutCells((((x << 4) - (s16)STATE->unk_1d0 - 16) & 0x1ff) | (flip),        \
-                 (((y << 4) - (s16)STATE->unk_1d2 - 16) & 0xff) | 0x800,          \
+    Oam_PutCells((((x << 4) - STATE->scrollX - 16) & 0x1ff) | (flip),        \
+                 (((y << 4) - STATE->scrollY - 16) & 0xff) | 0x800,          \
                  &data_027c0030, 0, (tile))
 
 /* Shapes the OBJ window over the four tiles from x, y to x + 1, y + 1: picks
