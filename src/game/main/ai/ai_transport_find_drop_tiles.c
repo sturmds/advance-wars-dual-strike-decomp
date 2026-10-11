@@ -6,14 +6,14 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int MainLoop_GetFrameCount(void);
-int func_020b67d4(int x, int y, MapUnit *unit);
+int AiTransport_ScoreDropTile(int x, int y, MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 #define NO_TILE 9999
 
 /* Picks where the acting transport, standing at (x, y), unloads its cargo:
- * of the four tiles next to it, the one func_020b67d4 scores highest for
+ * of the four tiles next to it, the one AiTransport_ScoreDropTile scores highest for
  * each cargo unit (a coin flip on the frame count breaks ties; the second
  * unit cannot take the first one's tile). Returns how many units got a
  * tile: 0, 1 or 2. */
@@ -78,7 +78,7 @@ int AiTransport_FindDropTiles(int x, int y, s16 *firstDrop, s16 *secondDrop)
             if (dist < 1 || dist > 1) {
                 continue;
             }
-            score = func_020b67d4(tx, ty, cargo);
+            score = AiTransport_ScoreDropTile(tx, ty, cargo);
             if (score < best) {
                 continue;
             }
@@ -135,7 +135,7 @@ int AiTransport_FindDropTiles(int x, int y, s16 *firstDrop, s16 *secondDrop)
             if (tx2 == firstDrop[0] && ty2 == firstDrop[1]) {
                 continue;
             }
-            score = func_020b67d4(tx2, ty2, cargo);
+            score = AiTransport_ScoreDropTile(tx2, ty2, cargo);
             if (score < best) {
                 continue;
             }

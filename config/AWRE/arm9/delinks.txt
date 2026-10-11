@@ -11797,6 +11797,10 @@ src/game/main/ai/ai_transport_find_drop_tiles.c:
     complete
     .text       start:0x020b6454 end:0x020b67d4
 
+src/game/main/ai/ai_transport_score_drop_tile.c:
+    complete
+    .text       start:0x020b67d4 end:0x020b6984
+
 src/game/main/ai/ai_transport_count_unload_tiles.c:
     complete
     .text       start:0x020b6984 end:0x020b6c84
