@@ -19,7 +19,7 @@ void Palette_Flush(void);
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Free(void *block);
-BOOL func_02038064(void);
+BOOL CoExp_IsSpecialMission(void);
 u8 *ResultObj_Load(int firstTile, int palette);
 void ResultPoint_Init(int firstTile, int paletteSlot);
 void ResultPoint_LoadPart(int part);
@@ -175,7 +175,7 @@ void ResultScreen_Init(Task *task)
 
     file = File_Load(data_0215a3d4);
     SWITCH_TO(MAIN_MAP);
-    if (func_02038064() == TRUE) {
+    if (CoExp_IsSpecialMission() == TRUE) {
         Data_Unpack(file + 0x25d4, CHAR_BASE(data_027c0280->layer3Bg));
         Data_Unpack(file + 0x4368, data_027c0280->layer3Map);
         Palette_Load(file + 0x46c0, 0, 0x100);
@@ -200,7 +200,7 @@ void ResultScreen_Init(Task *task)
     SWITCH_BACK();
 
     SWITCH_TO(SUB_MAP);
-    if (func_02038064() == TRUE) {
+    if (CoExp_IsSpecialMission() == TRUE) {
         Mem_Copy32(MAIN_GFX->unk_120, CHAR_BASE(data_027c0280->layer3Bg), 0x4000);
         Mem_Copy32(MAIN_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
         Palette_Load(file + 0x46c0, 0, 0x100);

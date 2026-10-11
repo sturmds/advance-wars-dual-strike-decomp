@@ -6,7 +6,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void CoExp_AddCellSprite(int x, int y);
 void func_02032264(u32 x, u32 y, int matrix);
-BOOL func_02038064(void);
+BOOL CoExp_IsSpecialMission(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ void CoExp_AddCellsMainRight(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     CoExp_AddCellSprite(192, 40);
-    if (func_02038064()) {
+    if (CoExp_IsSpecialMission()) {
         func_02032264(160, 8, 28);
     }
     Screen_SetCurrent(saved027c);
@@ -34,7 +34,7 @@ void CoExp_AddCellsMainRight(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     CoExp_AddCellSprite(64, 152);
-    if (func_02038064()) {
+    if (CoExp_IsSpecialMission()) {
         func_02032264(32, 120, 29);
     }
     Screen_SetCurrent(saved027c);
