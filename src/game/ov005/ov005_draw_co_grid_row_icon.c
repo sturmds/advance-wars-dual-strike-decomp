@@ -6,7 +6,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_02002ab0(int x, int y, int attr, int list);
+void Sprite_QueueDefault(int x, int y, int attr, int list);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ void Ov005_DrawCoGridRowIcon(Unk_ov005_0236bba8 *work)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_02002ab0(40, 144, 0xa1c0, 0);
+    Sprite_QueueDefault(40, 144, 0xa1c0, 0);
     switch (work->grid[work->cursor].row) {
     case 0:
     case 1:

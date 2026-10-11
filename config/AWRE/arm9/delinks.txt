@@ -156,6 +156,10 @@ src/game/main/graphics/co_load_graphics.c:
     complete
     .text       start:0x02002984 end:0x020029e4
 
+src/game/main/graphics/sprite_queue_default.c:
+    complete
+    .text       start:0x02002ab0 end:0x02002b00
+
 src/game/main/graphics/palette_load_obj_row.c:
     complete
     .text       start:0x02002b00 end:0x02002b24
