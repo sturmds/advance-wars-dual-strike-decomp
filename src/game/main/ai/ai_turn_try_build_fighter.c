@@ -11,7 +11,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_02093b50(void);
+int Ai_HasHealthyFighter(void);
 int func_02093bfc(void);
 void Ai_BuildFighterThreatMaps(void);
 int AiSite_PickAirport(void);
@@ -19,7 +19,7 @@ void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 3. Tries to start building a Fighter: needs an airport among
  * the current player's factories, the profile's flag for Fighters set, the
- * funds for one and a yes from func_02093b50 and func_02093bfc (not decompiled;
+ * funds for one and a yes from Ai_HasHealthyFighter and func_02093bfc (not decompiled;
  * the first must not return 1, the second must be nonzero). AiSite_PickAirport
  * picks the factory (-1: none). The name is a guess from the unit type and the
  * checks. Returns 1 when it queued an action. */
@@ -36,7 +36,7 @@ BOOL AiTurn_TryBuildFighter(void)
     if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_FIGHTER) * 10) > STATE->players[STATE->currentPlayer].funds) {
         return 0;
     }
-    if (func_02093b50() == 1) {
+    if (Ai_HasHealthyFighter() == 1) {
         return 0;
     }
     if (func_02093bfc() == 0) {
