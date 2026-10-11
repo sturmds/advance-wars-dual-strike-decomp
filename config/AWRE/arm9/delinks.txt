@@ -3751,6 +3751,10 @@ src/game/main/menus/func_02031bec.c:
     complete
     .text       start:0x02031bec end:0x02031d40
 
+src/game/main/menus/func_02031dc0.c:
+    complete
+    .text       start:0x02031dc0 end:0x02031f48
+
 src/game/main/func_02031f48.c:
     complete
     .text       start:0x02031f48 end:0x02031f54
