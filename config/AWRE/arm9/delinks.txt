@@ -7072,6 +7072,10 @@ src/game/main/func_02055074.c:
     complete
     .text       start:0x02055074 end:0x020550e8
 
+src/game/main/screen/screen_fade_to_black_slow_update.c:
+    complete
+    .text       start:0x020550e8 end:0x0205515c
+
 src/game/main/copowers/co_power_screen_grow_out_name.c:
     complete
     .text       start:0x0205515c end:0x020553cc
