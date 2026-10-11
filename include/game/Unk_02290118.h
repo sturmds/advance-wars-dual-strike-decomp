@@ -4,15 +4,15 @@
 #include "types.h"
 #include "game/co_data.h"
 
-/* One campaign map record in data_02290118.mapRecords. The list ends at the
- * first entry with days 0. */
+/* One campaign map record. The 28 records start at data_02290118.unk_8c and
+ * end at the first entry with days 0. */
 typedef struct MapRecord {
     u32 mapIndex : 8;                  /* map id - 224 */
     u32 days : 12;
     u32 score : 12;
 } MapRecord;
 
-/* The same memory as data_02290118.mapRecords. */
+/* The same memory as the records at data_02290118.unk_8c. */
 extern MapRecord data_022901a4[28];
 
 /* data_02290118 (main bss): saved progress. Only the part the campaign

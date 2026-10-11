@@ -10,7 +10,7 @@ extern u16 gCampaignBestAverage[2];
 BOOL Player1Team_HasPlayerInGame(void);
 int Campaign_IsHardMode(void);
 int func_020d618c(void);
-void func_020d6220(int mapIndex, int days, int score);
+void CampaignRecords_Store(int mapIndex, int days, int score);
 int func_0204d690(void);
 void func_0210375c(void);
 void func_02102c4c(void);
@@ -26,7 +26,7 @@ void Campaign_FinishMap(void)
     int hard;
 
     if (Player1Team_HasPlayerInGame()) {
-        func_020d6220(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId - 224,
+        CampaignRecords_Store(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId - 224,
                       data_027c027c->unk_48[data_027c0284]->day, data_022a7a9c.score);
         recorded = func_0204d690();
     }
