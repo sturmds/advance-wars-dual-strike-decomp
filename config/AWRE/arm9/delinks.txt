@@ -8748,6 +8748,10 @@ src/game/main/func_020892f0.c:
     complete
     .text       start:0x020892f0 end:0x02089314
 
+src/game/main/menus/combat_mode_menu_sell_last_unit.c:
+    complete
+    .text       start:0x02089314 end:0x02089404
+
 src/game/main/menus/combat_mode_menu_buy_unit.c:
     complete
     .text       start:0x02089404 end:0x0208958c
