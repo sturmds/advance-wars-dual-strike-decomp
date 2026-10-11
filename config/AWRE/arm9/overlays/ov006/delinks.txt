@@ -1159,6 +1159,10 @@ src/game/ov006/ov006_is_road_or_bridge_tile.c:
     complete
     .text       start:0x02367350 end:0x023673b4
 
+src/game/ov006/ov006_cannot_place_pipe_seam.c:
+    complete
+    .text       start:0x023673b4 end:0x02367560
+
 src/game/ov006/ov006_place_pipe_seam.c:
     complete
     .text       start:0x02367560 end:0x023675e0
