@@ -8,9 +8,9 @@ struct Unk_020fd3ac {
     int unk_50;
 };
 
-void func_020fd3ec(void *, int, int);
+void PaletteFade_Update(void *, int, int);
 
 void func_020fd3ac(Unk_020fd3ac *a0)
 {
-    func_020fd3ec(a0, a0->unk_4c, a0->unk_50);
+    PaletteFade_Update(a0, a0->unk_4c, a0->unk_50);
 }

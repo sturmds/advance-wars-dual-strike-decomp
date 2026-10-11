@@ -9780,6 +9780,10 @@ src/game/main/func_020fd3c0.c:
     complete
     .text       start:0x020fd3c0 end:0x020fd3ec
 
+src/game/main/palette_fade_update.c:
+    complete
+    .text       start:0x020fd3ec end:0x020fd560
+
 src/game/main/func_020fd618.c:
     complete
     .text       start:0x020fd618 end:0x020fd624
