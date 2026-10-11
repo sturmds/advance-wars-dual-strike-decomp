@@ -11,7 +11,7 @@ int PM_GetBackLight(int *topBackLight, int *bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);
 void func_02114ee8(int backlight);
-int func_021150b4(u16 trigger, u16 keys);
+int Power_AskArm7ToSleep(u16 trigger, u16 keys);
 
 #define IRQ_CARD_IREQ 0x100000
 
@@ -81,7 +81,7 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern)
 
     logic = logic | keyPattern;
     command = trigger | (topBackLight << 5) | (bottomBackLight << 6);
-    while (func_021150b4(command, logic) != 0) {
+    while (Power_AskArm7ToSleep(command, logic) != 0) {
     }
 
     func_0210eb70();

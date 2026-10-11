@@ -1,6 +1,6 @@
 #include "sdk/pm.h"
 
-int func_02115040(int command, void (*callback)(u32 result, u32 *dest), u32 *dest);
+int Power_PostCommandWithReply(int command, void (*callback)(u32 result, u32 *dest), u32 *dest);
 
 /* target 0, 1, 2 select the commands 6/7, 4/5 and 8/9 (on/off); order is 1 for on, 0 for off. 0xffff: bad argument. */
 int PM_SetBackLightAsync(int target, int order, void (*callback)(u32 result, u32 *dest), u32 *dest)
@@ -32,5 +32,5 @@ int PM_SetBackLightAsync(int target, int order, void (*callback)(u32 result, u32
     if (command == 0) {
         return 0xffff;
     }
-    return func_02115040(command, callback, dest);
+    return Power_PostCommandWithReply(command, callback, dest);
 }

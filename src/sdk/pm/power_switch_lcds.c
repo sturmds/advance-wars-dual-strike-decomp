@@ -4,7 +4,7 @@
 extern u32 data_022ab8f4;
 
 void func_02114ee8(int backlight);
-void func_02114f24(int backlight, void *callback, void *result);
+void Power_SendLedStateAsync(int backlight, void *callback, void *result);
 
 BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync)
 {
@@ -17,7 +17,7 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync)
             if (sync) {
                 func_02114ee8(backlight);
             } else {
-                func_02114f24(backlight, NULL, NULL);
+                Power_SendLedStateAsync(backlight, NULL, NULL);
             }
         }
         *REG_POWCNT1 |= POWCNT1_LCD;
@@ -29,7 +29,7 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync)
             if (sync) {
                 func_02114ee8(backlight);
             } else {
-                func_02114f24(backlight, NULL, NULL);
+                Power_SendLedStateAsync(backlight, NULL, NULL);
             }
         }
         break;

@@ -22103,13 +22103,49 @@ src/sdk/pm/func_02114ee8.c:
     complete
     .text       start:0x02114ee8 end:0x02114f24
 
-src/sdk/func_02114f8c.c:
+src/sdk/pm/power_send_led_state_async.c:
+    complete
+    .text       start:0x02114f24 end:0x02114f8c
+
+src/sdk/pm/pm_read_register.c:
     complete
     .text       start:0x02114f8c end:0x02114fc8
+
+src/sdk/pm/pm_read_register_async.c:
+    complete
+    .text       start:0x02114fc8 end:0x02115040
+
+src/sdk/pm/power_post_command_with_reply.c:
+    complete
+    .text       start:0x02115040 end:0x021150b4
+
+src/sdk/pm/power_ask_arm7_to_sleep.c:
+    complete
+    .text       start:0x021150b4 end:0x0211516c
+
+src/sdk/pm/power_on_arm7_reply.c:
+    complete
+    .text       start:0x0211516c end:0x02115258
+
+src/sdk/pm/pm_init.c:
+    complete
+    .text       start:0x02115258 end:0x0211531c
+
+src/sdk/pm/power_release_and_report.c:
+    complete
+    .text       start:0x0211531c end:0x02115370
 
 src/game/main/func_02115370.c:
     complete
     .text       start:0x02115370 end:0x02115378
+
+src/sdk/pm/power_spin_until_idle.c:
+    complete
+    .text       start:0x02115378 end:0x02115390
+
+src/sdk/pm/power_try_take_command_slot.c:
+    complete
+    .text       start:0x02115390 end:0x021153e0
 
 src/sdk/func_021153e0.c:
     complete
