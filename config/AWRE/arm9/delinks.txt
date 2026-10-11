@@ -8632,7 +8632,7 @@ src/game/main/func_02075448.c:
     complete
     .text       start:0x02075448 end:0x02075460
 
-src/game/main/func_02075460.c:
+src/game/main/menus/status_screen_add_button.c:
     complete
     .text       start:0x02075460 end:0x02075494
 
@@ -8651,6 +8651,10 @@ src/game/main/menus/func_02075520.c:
 src/game/main/menus/status_screen_queue_sprites.c:
     complete
     .text       start:0x02075578 end:0x0207565c
+
+src/game/main/menus/status_screen_init.c:
+    complete
+    .text       start:0x0207565c end:0x02075770
 
 src/game/main/menus/status_screen_draw.c:
     complete
