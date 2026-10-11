@@ -11651,6 +11651,10 @@ src/game/main/func_020eb394.c:
     complete
     .text       start:0x020eb394 end:0x020eb3b0
 
+src/game/main/menus/survival_clear_records.c:
+    complete
+    .text       start:0x020eb3b0 end:0x020eb434
+
 src/game/main/func_020eb434.c:
     complete
     .text       start:0x020eb434 end:0x020eb4e8
