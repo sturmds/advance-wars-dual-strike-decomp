@@ -10,7 +10,7 @@ void Battle_ResetTurnState(void);
 void TileCodeTable_Load(void);
 void Map_LoadVariant(int mapId, int variant);
 void func_020c4fa0(void);
-void func_020c4f40(void);
+void Survival_LoadFunds(void);
 void func_020e7a80(int gameMode, int mapId);
 void MovementCost(void);
 void func_020c4f20(void);
@@ -27,7 +27,7 @@ void Battle_InitMapState(void)
     TileCodeTable_Load();
     Map_LoadVariant(STATE->unk_1c4->mapId, 0);
     func_020c4fa0();
-    func_020c4f40();
+    Survival_LoadFunds();
     func_020e7a80(STATE->gameMode, STATE->unk_1c4->mapId);
     MovementCost();
     func_020c4f20();
