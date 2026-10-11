@@ -13612,6 +13612,10 @@ src/game/main/graphics/map_load_extra_obj_tiles.c:
     complete
     .text       start:0x020db4fc end:0x020db604
 
+src/game/main/map/map_objects_queue_sprites_in_rect.c:
+    complete
+    .text       start:0x020db604 end:0x020db7a4
+
 src/game/main/map/map_queue_tile_sprite.c:
     complete
     .text       start:0x020db9e0 end:0x020dba50
