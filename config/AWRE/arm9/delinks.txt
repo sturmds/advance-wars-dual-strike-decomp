@@ -3751,6 +3751,10 @@ src/game/main/menus/main_menu_update_falling_sprites.c:
     complete
     .text       start:0x0202d8a0 end:0x0202dbc0
 
+src/game/main/menus/main_menu_init_falling_sprites.c:
+    complete
+    .text       start:0x0202dbc0 end:0x0202dd04
+
 src/game/main/func_0202dd04.c:
     complete
     .text       start:0x0202dd04 end:0x0202dd28
