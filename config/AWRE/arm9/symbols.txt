@@ -363,7 +363,7 @@ func_0200cd28 kind:function(arm,size=0x30) addr:0x0200cd28
 Gfx3d_LoadOrthoProjection kind:function(arm,size=0x70) addr:0x0200cd58
 Gfx3d_LoadPerspectiveProjection kind:function(arm,size=0x74) addr:0x0200cdc8
 func_0200ce3c kind:function(arm,size=0xc) addr:0x0200ce3c
-func_0200ce48 kind:function(arm,size=0x38) addr:0x0200ce48
+Gfx3d_SetViewport kind:function(arm,size=0x38) addr:0x0200ce48
 Mtx44_ProjectVec kind:function(arm,size=0x150) addr:0x0200ce80
 Gx_SendPlainQuad_0200cfd0 kind:function(arm,size=0xec) addr:0x0200cfd0
 Gx_SendPlainQuad_0200d0bc kind:function(arm,size=0xec) addr:0x0200d0bc
@@ -6895,7 +6895,7 @@ data_021576f6 kind:data(any) addr:0x021576f6
 data_021576f8 kind:data(any) addr:0x021576f8
 data_021576fa kind:data(any) addr:0x021576fa
 data_021576fb kind:data(any) addr:0x021576fb
-data_0215774c kind:data(any) addr:0x0215774c
+gFullScreenViewport kind:data(any) addr:0x0215774c
 data_0215775c kind:data(any) addr:0x0215775c
 data_0215776c kind:data(any) addr:0x0215776c
 data_0215777c kind:data(any) addr:0x0215777c
