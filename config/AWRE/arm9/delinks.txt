@@ -2148,6 +2148,7 @@ src/game/main/script/event_script_load_co_picture.c:
     .text       start:0x0201ca04 end:0x0201cac0
 
 src/game/main/script/event_hold_slide_picture_out.c:
+    complete
     .text       start:0x0201cb2c end:0x0201cb80
 
 src/game/main/script/event_hold_slide_picture_in.c:
