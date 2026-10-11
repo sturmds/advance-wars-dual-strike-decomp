@@ -7424,6 +7424,10 @@ src/game/main/units/units_reassign_player_slots.c:
     complete
     .text       start:0x020c6d18 end:0x020c6e20
 
+src/game/main/units/unit_can_join.c:
+    complete
+    .text       start:0x020c6e20 end:0x020c6f24
+
 src/game/main/player_refresh_units.c:
     complete
     .text       start:0x020c6f98 end:0x020c703c
