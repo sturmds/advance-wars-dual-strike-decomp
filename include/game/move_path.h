@@ -10,7 +10,7 @@ typedef struct MovePath {
     s8 x[12];
     s8 y[12];
     s8 movesLeft[12];                  /* move points left on arrival at each tile */
-    u8 pad_44[0x45 - 0x44];
+    s8 startMoves;                     /* move points at tile 0, see MovePath_Truncate; name a guess */
     s8 lastTile;                       /* index of the last tile in x and y */
 } MovePath;
 

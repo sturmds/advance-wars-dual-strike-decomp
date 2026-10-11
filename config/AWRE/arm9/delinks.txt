@@ -9490,6 +9490,10 @@ src/game/main/units/move_path_add_tile.c:
     complete
     .text       start:0x020d501c end:0x020d5170
 
+src/game/main/units/move_path_truncate.c:
+    complete
+    .text       start:0x020d5170 end:0x020d5308
+
 src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c
