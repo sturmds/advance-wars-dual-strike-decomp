@@ -133,6 +133,7 @@ typedef struct DlPlayBufferArea {
 
 /* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
 #define DLPLAY_EVENT_RADIO_FAULT 0xff
+#define DLPLAY_EVENT_PORT_DATA 9            /* data arrived on the MB port */
 
 typedef struct DlPlayFailedCall {
     u16 apiid;
