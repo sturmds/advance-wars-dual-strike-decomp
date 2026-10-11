@@ -4,7 +4,7 @@
 s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numerator, s32 denominator);
 void ResultPoint_QueueDigitPopIn(int x, int y, int digit, int matrixIndex, int frame, int palette);
-void func_020399c0(int x, int y, int value, int palette);
+void ResultPoint_QueueNumber(int x, int y, int value, int palette);
 
 #define SCORES data_0229c734
 
@@ -19,7 +19,7 @@ void ResultPoint_DrawTallyPopIn(int x, int y, int value, int frame)
     int rest;
 
     if (frame < 0) {
-        func_020399c0(x, y, value, 1);
+        ResultPoint_QueueNumber(x, y, value, 1);
         return;
     }
     matrixIndex = SCORES->unk_9d * 3;

@@ -5,7 +5,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 /* Draws the row's points, or `tally` while it is below them. */
 void ScoreList_DrawRowPoints(int x, int y, int row, int tally);
 /* Draws a number as digit sprites. */
-void func_020399c0(int x, int y, int value, int arg3);
+void ResultPoint_QueueNumber(int x, int y, int value, int arg3);
 
 extern u8 data_027c0040[];
 extern u8 data_027c0048[];
@@ -34,7 +34,7 @@ void ScoreList_DrawRow(int x, int y, int row, int tally)
     case 10:
         Sprite_QueueAt(6, (x + 36) & 0x1ff, (y + 8) & 0xff, data_027c0040, SCORES->paletteSlot << 12,
                        SCORES->partTile[3] + 24);
-        func_020399c0(x + 36, y + 8, SCORES->rows[row].count, 0);
+        ResultPoint_QueueNumber(x + 36, y + 8, SCORES->rows[row].count, 0);
         ScoreList_DrawRowPoints(x + 80, y + 8, row, tally);
         Sprite_QueueAt(6, (x + 120) & 0x1ff, (y + 8) & 0xff, data_027c0060, SCORES->paletteSlot << 12,
                        SCORES->partTile[3] + 72);
@@ -42,7 +42,7 @@ void ScoreList_DrawRow(int x, int y, int row, int tally)
     default:
         Sprite_QueueAt(6, (x + 36) & 0x1ff, y & 0xff, data_027c0040, SCORES->paletteSlot << 12,
                        SCORES->partTile[3] + 24);
-        func_020399c0(x + 36, y, SCORES->rows[row].count, 0);
+        ResultPoint_QueueNumber(x + 36, y, SCORES->rows[row].count, 0);
         ScoreList_DrawRowPoints(x + 80, y, row, tally);
         Sprite_QueueAt(6, (x + 120) & 0x1ff, y & 0xff, data_027c0060, SCORES->paletteSlot << 12,
                        SCORES->partTile[3] + 72);
