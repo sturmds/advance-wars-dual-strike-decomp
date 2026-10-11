@@ -5,7 +5,7 @@ int func_020cf17c(u16 player);
 int func_020ceffc(int player);
 int func_020cf090(u16 player);
 int func_020cf0e4(u16 player);
-void func_020cf1f8(int player, int code);
+void LinkPlayer_Defeat(int player, int code);
 
 void func_020cef2c(void)
 {
@@ -16,13 +16,13 @@ void func_020cef2c(void)
             continue;
         }
         if (!func_020cf17c(player)) {
-            func_020cf1f8(player, 8);
+            LinkPlayer_Defeat(player, 8);
         } else if (!func_020ceffc(player)) {
-            func_020cf1f8(player, 16);
+            LinkPlayer_Defeat(player, 16);
         } else if (!func_020cf090(player)) {
-            func_020cf1f8(player, 1);
+            LinkPlayer_Defeat(player, 1);
         } else if (!func_020cf0e4(player)) {
-            func_020cf1f8(player, 2);
+            LinkPlayer_Defeat(player, 2);
         }
     }
 }
