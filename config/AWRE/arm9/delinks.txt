@@ -2160,6 +2160,7 @@ src/game/main/graphics/window_draw_frame_bottom_row.c:
     .text       start:0x0201e71c end:0x0201e7e4
 
 src/game/main/graphics/window_draw_frame_middle_row.c:
+    complete
     .text       start:0x0201e7e4 end:0x0201e8c4
 
 src/game/main/graphics/window_draw_frame_top_row.c:

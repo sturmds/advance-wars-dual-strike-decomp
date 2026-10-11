@@ -13,7 +13,7 @@ void Window_DrawFrameMiddleRow(u16 *row, int x, s16 width, int rowKind, int pale
 {
     u16 i;
     int middle;
-    u32 tileBits = (u32)(palette << 28) >> 16;
+    u16 tileBits = palette << 12;
 
     if (x >= 0 && x < 32) {
         *row = tileBits | data_02158748[rowKind];
