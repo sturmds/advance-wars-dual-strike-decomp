@@ -10,7 +10,7 @@ void Screen_SetCurrentBoth(void *state);
 void Screen_SetBothNibbles(int value);
 void Screens_HideWithWindows(void);
 void Save_LoadCombatSetup(void);
-void func_02082f20(void);
+void CombatSetup_StartKeepingSettings(void);
 void func_020305e4(void);
 void func_02103714(void);
 void func_0208af34(void);
@@ -26,7 +26,7 @@ void Ov003ExitTask_Run(void)
     if (data_02160ac0->unk_7c != 0) {
         Screen_SetBothNibbles(1);
         Screens_HideWithWindows();
-        func_02082f20();
+        CombatSetup_StartKeepingSettings();
         return;
     }
     if (data_02160abc->unk_0a != 1) {
