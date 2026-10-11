@@ -27,4 +27,8 @@ typedef struct MenuItem {
  * Auto CO On and Auto CO Off among others. */
 extern MenuItem gBattleMenuItems[];
 
+/* Unit command menu (main 0x0216600c): Wait, Fire, Capture and the others
+ * of UnitMenu_Open. */
+extern MenuItem gUnitMenuItems[];
+
 #endif

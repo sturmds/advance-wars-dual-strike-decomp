@@ -17,7 +17,7 @@ u32 NeighborTilePicker_Update(int *direction, int mask);
 void Task_Destroy(Task *task);
 void Task_ResumeScript(Task *task);
 void MenuDepth_Pop(void);
-void func_020bc404(void);
+void UnitMenu_Open(void);
 int UnitPath_StopAtEnemy(int startX, int startY, int unitType, s8 *path, int end);
 int UnitPath_CountSteps(const s8 *path);
 void *UnitShowTask_CreateMoving(int x, int y, int owner, int unitType, void *arg);
@@ -51,7 +51,7 @@ void UnloadTask_PickTile(Task *task)
     if (input & INPUT_CANCEL) {
         Task_Destroy(task);
         MenuDepth_Pop();
-        func_020bc404();
+        UnitMenu_Open();
         STATE->cursorX = STATE->actingUnitStartX;
         STATE->cursorY = STATE->actingUnitStartY;
         return;

@@ -12236,6 +12236,10 @@ src/game/main/menus/build_menu_on_keys.c:
     complete
     .text       start:0x020bc2dc end:0x020bc404
 
+src/game/main/menus/unit_menu_open.c:
+    complete
+    .text       start:0x020bc404 end:0x020bc450
+
 src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
@@ -12255,6 +12259,14 @@ src/game/main/menus/func_020bc56c.c:
 src/game/main/func_020bc5c0.c:
     complete
     .text       start:0x020bc5c0 end:0x020bc614
+
+src/game/main/menus/unit_menu_get_popup_y.c:
+    complete
+    .text       start:0x020bc614 end:0x020bc66c
+
+src/game/main/menus/unit_menu_get_popup_x.c:
+    complete
+    .text       start:0x020bc66c end:0x020bc6ac
 
 src/game/main/func_020bc6ac.c:
     complete

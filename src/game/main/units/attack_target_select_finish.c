@@ -13,7 +13,7 @@ extern int data_022a6dd4;
 
 void MenuDepth_Pop(void);
 void Task_ResumeScript(Task *task);
-void func_020bc404(void);
+void UnitMenu_Open(void);
 UnitTargetEntry *func_020dc524(int index);
 void func_020dea40(int defenderSlot);
 void func_020de9f0(int x, int y);
@@ -22,7 +22,7 @@ void func_020de9f0(int x, int y);
 
 /* Task step, likely run when the attack target choice ends; does nothing
  * while gMapScrollScript is running. A negative data_022a6dd4 means the player backed out: the menu
- * and task go away and func_020bc404 runs. Otherwise data_022a6dd4 picks the
+ * and task go away and UnitMenu_Open runs. Otherwise data_022a6dd4 picks the
  * entry of the target list: the acting unit attacks the unit in it, or the
  * object at its tile when unk_02 is set. A human player's attack is counted
  * in gPlayRecords as direct or indirect by the unit's minRange. */
@@ -36,7 +36,7 @@ void AttackTargetSelect_Finish(Task *task)
     if (data_022a6dd4 < 0) {
         MenuDepth_Pop();
         Task_Destroy(task);
-        func_020bc404();
+        UnitMenu_Open();
         return;
     }
     target = func_020dc524(data_022a6dd4);

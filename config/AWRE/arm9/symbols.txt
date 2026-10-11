@@ -3330,14 +3330,14 @@ func_020bc08c kind:function(arm,size=0x58) addr:0x020bc08c
 func_020bc0e4 kind:function(arm,size=0x78) addr:0x020bc0e4
 BuildMenu_OnConfirm kind:function(arm,size=0x180) addr:0x020bc15c
 BuildMenu_OnKeys kind:function(arm,size=0x128) addr:0x020bc2dc
-func_020bc404 kind:function(arm,size=0x4c) addr:0x020bc404
+UnitMenu_Open kind:function(arm,size=0x4c) addr:0x020bc404
 BattleMenu_Open kind:function(arm,size=0x7c) addr:0x020bc450
 func_020bc4cc kind:function(arm,size=0x7c) addr:0x020bc4cc
 func_020bc548 kind:function(arm,size=0x24) addr:0x020bc548
 func_020bc56c kind:function(arm,size=0x54) addr:0x020bc56c
 func_020bc5c0 kind:function(arm,size=0x54) addr:0x020bc5c0
-func_020bc614 kind:function(arm,size=0x58) addr:0x020bc614
-func_020bc66c kind:function(arm,size=0x40) addr:0x020bc66c
+UnitMenu_GetPopupY kind:function(arm,size=0x58) addr:0x020bc614
+UnitMenu_GetPopupX kind:function(arm,size=0x40) addr:0x020bc66c
 func_020bc6ac kind:function(arm,size=0x8) addr:0x020bc6ac
 func_020bc6b4 kind:function(arm,size=0x8) addr:0x020bc6b4
 func_020bc6bc kind:function(arm,size=0x14) addr:0x020bc6bc
@@ -7604,7 +7604,7 @@ data_02165aec kind:data(any) addr:0x02165aec
 data_02165bcc kind:data(any) addr:0x02165bcc
 data_02165d2c kind:data(any) addr:0x02165d2c
 gBattleMenuItems kind:data(any) addr:0x02165e8c
-data_0216600c kind:data(any) addr:0x0216600c
+gUnitMenuItems kind:data(any) addr:0x0216600c
 gNextTurnTextEnglish kind:data(any) addr:0x021662ac
 gNextTurnTextFrench kind:data(any) addr:0x021662b8
 gNextTurnTextGerman kind:data(any) addr:0x021662c8
