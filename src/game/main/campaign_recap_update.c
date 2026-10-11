@@ -7,7 +7,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_020fb660(void);
+void MapScreen_UpdateAnimations(void);
 u32 func_020ffa50(CampaignRecap *work, int index);
 u32 func_020ffa3c(CampaignRecap *work, int index);
 u32 func_020ffa28(CampaignRecap *work, int index);
@@ -57,7 +57,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
     int x;
     int y;
 
-    func_020fb660();
+    MapScreen_UpdateAnimations();
     switch (task->step) {
     case 0:
         work->number = work->index + 1;

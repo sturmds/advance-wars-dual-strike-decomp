@@ -13,7 +13,7 @@ extern const EventScriptCommand data_02169e38[];
 
 void func_020c05d8(void);
 void WeatherFx_UpdateClouds(void);
-void func_020fb660(void);
+void MapScreen_UpdateAnimations(void);
 int SceneMode_IsChanging(void);
 int Map_IsThisMapsTurn(void);
 s8 func_020b9ccc(void);
@@ -89,7 +89,7 @@ void Game_RunStateFrame(void)
         func_020c05d8();
     }
     WeatherFx_UpdateClouds();
-    func_020fb660();
+    MapScreen_UpdateAnimations();
 
     if (!SceneMode_IsChanging()) {
         if (!Map_IsThisMapsTurn()) {
