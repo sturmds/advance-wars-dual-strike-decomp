@@ -102,8 +102,8 @@ void LinkPhase_InitScreen(void)
         }
     }
     for (i = 0; i < 4; i++) {
-        gMenuState.link.unk_020[i] = gLinkSlotPlayers[i] - 1;
-        gMenuState.link.unk_028[i] = 0;
+        gMenuState.link.panelPlayers[i] = gLinkSlotPlayers[i] - 1;
+        gMenuState.link.readyFlags[i] = 0;
     }
     Gfx_InitBothScreens();
 

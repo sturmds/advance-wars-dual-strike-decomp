@@ -14,7 +14,7 @@ s32 HwDiv32(s32 a, s32 b);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
-extern u8 *data_0229c878;              /* unit list rows: slot of each unit, counted from the player's first slot; 0 empty */
+extern u8 *gUnitListRows;              /* unit list rows: slot of each unit, counted from the player's first slot; 0 empty */
 /* Font glyphs that draw the cargo tree in front of a carried unit. */
 extern char data_02167c74[];
 extern char data_02167c78[];
@@ -42,10 +42,10 @@ void UnitList_DrawRow(int y, int index)
     const char *branch;
     int shownHp;
 
-    if (data_0229c878[index] == 0) {
+    if (gUnitListRows[index] == 0) {
         return;
     }
-    unit = &GAME->units[data_0229c878[index] + GAME->currentUnitBase];
+    unit = &GAME->units[gUnitListRows[index] + GAME->currentUnitBase];
     if (unit->flags & MAP_UNIT_CARRIED) {
         textStyle = 1;
     } else {
@@ -57,7 +57,7 @@ void UnitList_DrawRow(int y, int index)
         iconFlags = GAME->currentUnitBase;     /* as read, like BuildMenu_DrawColumn */
     }
     branchX = 0;
-    switch (func_02074be8(data_0229c878[index])) {
+    switch (func_02074be8(gUnitListRows[index])) {
     case 1:
         branch = data_02167c74;
         iconX = 1;

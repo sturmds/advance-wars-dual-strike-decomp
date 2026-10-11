@@ -9,7 +9,7 @@ int LinkScreen_FindPanelOfPlayer(int player)
     int row;
 
     for (row = 0; row < gMenuState.link.playerCount; row++) {
-        if (player == gMenuState.link.unk_020[row]) {
+        if (player == gMenuState.link.panelPlayers[row]) {
             return row;
         }
     }

@@ -10,7 +10,7 @@ s32 HwDiv32(s32 a, s32 b);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 *data_0229c878;              /* unit list rows: slot of each unit, counted from the player's first slot; 0 ends the list */
+extern u8 *gUnitListRows;              /* unit list rows: slot of each unit, counted from the player's first slot; 0 ends the list */
 extern s8 data_ov000_022b3850[];       /* indexed by unit type; here walked from 1 to give the list's type order */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -24,7 +24,7 @@ enum UnitListSort {
     UNIT_LIST_SORT_AMMO
 };
 
-/* Fills the unit list (data_0229c878) with the current player's units: by
+/* Fills the unit list (gUnitListRows) with the current player's units: by
  * type first, then stable-sorted from high to low by shown HP, fuel or ammo,
  * reversed when asked. Last, each carried unit is moved to just after its
  * transport, and a carried transport's own cargo after it.
@@ -57,28 +57,28 @@ void UnitList_Build(int sortMode, int reverse)
              slot < Ov000_gPlayerFirstUnitSlot[GAME->currentPlayer] + 51; slot++) {
             value = GAME->units[slot].type;
             if (value != UNIT_NONE && value == data_ov000_022b3850[order]) {
-                data_0229c878[count++] = slot - GAME->currentUnitBase;
+                gUnitListRows[count++] = slot - GAME->currentUnitBase;
             }
         }
     }
     n = 0;
-    data_0229c878[count] = 0;
+    gUnitListRows[count] = 0;
 
     switch (sortMode) {
     case UNIT_LIST_SORT_TYPE:
-        Mem_CopyUnits(data_0229c878, sorted, UNIT_LIST_SIZE, 8);
+        Mem_CopyUnits(gUnitListRows, sorted, UNIT_LIST_SIZE, 8);
         break;
     case UNIT_LIST_SORT_HP:
         for (level = 10; level > 0; level--) {
             for (i = 0; i < count; i++) {
-                cargoUnit = &GAME->units[GAME->currentUnitBase + data_0229c878[i]];
+                cargoUnit = &GAME->units[GAME->currentUnitBase + gUnitListRows[i]];
                 if (cargoUnit->hp != 0) {
                     value = HwDiv32(cargoUnit->hp - 1, 10) + 1;
                 } else {
                     value = 0;
                 }
                 if (level == value) {
-                    sorted[n++] = data_0229c878[i];
+                    sorted[n++] = gUnitListRows[i];
                 }
             }
         }
@@ -86,9 +86,9 @@ void UnitList_Build(int sortMode, int reverse)
     case UNIT_LIST_SORT_FUEL:
         for (step = 99; step >= 0; step--) {
             for (i = 0; i < count; i++) {
-                value = GAME->units[GAME->currentUnitBase + data_0229c878[i]].fuel;
+                value = GAME->units[GAME->currentUnitBase + gUnitListRows[i]].fuel;
                 if (value == step) {
-                    sorted[n++] = data_0229c878[i];
+                    sorted[n++] = gUnitListRows[i];
                 }
             }
         }
@@ -96,7 +96,7 @@ void UnitList_Build(int sortMode, int reverse)
     case UNIT_LIST_SORT_AMMO:
         for (level = 10; level >= -1; level--) {
             for (i = 0; i < count; i++) {
-                unit = &GAME->units[GAME->currentUnitBase + data_0229c878[i]];
+                unit = &GAME->units[GAME->currentUnitBase + gUnitListRows[i]];
                 stats = &Ov000_gUnitStats[unit->type];
                 /* a type without ammo sorts first if unk_17 is set, else last */
                 if (stats->ammo == 0) {
@@ -105,7 +105,7 @@ void UnitList_Build(int sortMode, int reverse)
                     value = unit->ammo;
                 }
                 if (value == level) {
-                    sorted[n++] = data_0229c878[i];
+                    sorted[n++] = gUnitListRows[i];
                 }
             }
         }
@@ -114,9 +114,9 @@ void UnitList_Build(int sortMode, int reverse)
 
     if (reverse) {
         for (step = 0; step < count; step++) {
-            data_0229c878[step] = sorted[count - 1 - step];
+            gUnitListRows[step] = sorted[count - 1 - step];
         }
-        Mem_CopyUnits(data_0229c878, sorted, UNIT_LIST_SIZE, 8);
+        Mem_CopyUnits(gUnitListRows, sorted, UNIT_LIST_SIZE, 8);
     }
 
     /* Rebuild the list, taking rows out of sorted as they are placed. */
@@ -129,7 +129,7 @@ void UnitList_Build(int sortMode, int reverse)
         if (unit->flags & MAP_UNIT_CARRIED) {
             continue;
         }
-        data_0229c878[n++] = sorted[i];
+        gUnitListRows[n++] = sorted[i];
         sorted[i] = 0;
         if (!(unit->flags & MAP_UNIT_CARRYING)) {
             continue;
@@ -142,7 +142,7 @@ void UnitList_Build(int sortMode, int reverse)
             for (j = 0; j < count; j++) {
                 if (value == sorted[j]) {
                     cargoUnit = &GAME->units[value + GAME->currentUnitBase];
-                    data_0229c878[n++] = sorted[j];
+                    gUnitListRows[n++] = sorted[j];
                     sorted[j] = 0;
                     if (cargoUnit->flags & MAP_UNIT_CARRYING) {
                         for (k = 0; k < 2; k++) {
@@ -152,7 +152,7 @@ void UnitList_Build(int sortMode, int reverse)
                             innerSlot = cargoUnit->cargo[k] - GAME->currentUnitBase;
                             for (m = 0; m < count; m++) {
                                 if (innerSlot == sorted[m]) {
-                                    data_0229c878[n++] = sorted[m];
+                                    gUnitListRows[n++] = sorted[m];
                                     sorted[m] = 0;
                                     break;
                                 }

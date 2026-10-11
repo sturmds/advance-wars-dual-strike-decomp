@@ -7350,7 +7350,7 @@ src/game/main/menus/unit_list_handle_keys.c:
     complete
     .text       start:0x02073b04 end:0x02073ce4
 
-src/game/main/menus/func_02073ed8.c:
+src/game/main/menus/unit_list_close.c:
     complete
     .text       start:0x02073ed8 end:0x02073f28
 
@@ -7358,7 +7358,7 @@ src/game/main/menus/unit_list_draw.c:
     complete
     .text       start:0x02074048 end:0x020742d4
 
-src/game/main/func_020742f8.c:
+src/game/main/menus/unit_list_scroll_up.c:
     complete
     .text       start:0x020742f8 end:0x02074314
 

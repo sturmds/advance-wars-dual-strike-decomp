@@ -6,7 +6,7 @@ int MainLoop_GetFrameCount(void);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Sound_PlaySe(u32 soundId);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_02074544(int scroll);
+void UnitList_DrawRows(int scroll);
 
 extern MenuState gMenuState;
 extern u8 data_027c0028;
@@ -29,7 +29,7 @@ void UnitList_Draw(UnitListTask *task)
                 task->scroll++;
             }
             task->scrollDelay = 1;
-            func_02074544(task->scroll);
+            UnitList_DrawRows(task->scroll);
             if (task->scroll & 1) {
                 Sound_PlaySe(0x10002);
             }

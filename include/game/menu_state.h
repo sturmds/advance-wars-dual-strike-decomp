@@ -27,20 +27,20 @@ typedef struct MapListSet {
 
 /* Link screen layout of MenuState (LinkPhase_InitScreen). */
 typedef struct LinkScreenState {
-    u8 unk_020[4];
+    u8 panelPlayers[4];                /* player shown in each panel */
     u8 armyColours[4];                 /* army colour of each player, from the map header */
-    u8 unk_028[4];
+    u8 readyFlags[4];                  /* per player: 1 once ready */
     u8 playerCount;                    /* number of players on the map */
     u8 pad_02d[0x162e - 0x2d];
     u8 picked[2];                      /* per link player: has picked a button of the two-player link menu */
 } LinkScreenState;
 
-/* Ready flag of a player on the link screen, which is LinkScreenState.unk_028[player]. The
+/* Ready flag of a player on the link screen, which is LinkScreenState.readyFlags[player]. The
  * game adds the player index to the base first, then the offset 0x28; the cast keeps that
  * order, which the match needs. */
 #define LINK_READY_FLAG(menuState, player) (((u8 *)&(menuState) + (player))[0x28])
 
-/* Player shown in a panel of the link screen, which is LinkScreenState.unk_020[panel]; written the same way. */
+/* Player shown in a panel of the link screen, which is LinkScreenState.panelPlayers[panel]; written the same way. */
 #define LINK_PANEL_PLAYER(menuState, panel) (((u8 *)&(menuState) + (panel))[0x20])
 
 /* Map select and battle setup layout of MenuState. Arrays of 4 from

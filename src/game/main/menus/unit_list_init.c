@@ -21,13 +21,13 @@ void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, 
 void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet);
 void Gfx_RequestLayerCopy(int layer);
 void func_0207463c(void);
-void func_02074544(int scroll);
+void UnitList_DrawRows(int scroll);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern MenuState gMenuState;
-extern u8 *data_0229c878;
+extern u8 *gUnitListRows;
 extern const char data_0215fb10[];
 extern const char data_0215fb28[];
 extern const u32 data_02167c9c[];
@@ -44,7 +44,7 @@ void UnitList_Init(UnitListTask *task)
 {
     u16 *map;
 
-    data_0229c878 = Mem_Alloc(64);
+    gUnitListRows = Mem_Alloc(64);
     task->unitCount = UnitList_ClearAndCount();
     task->sortMode = 0;
     task->reverse = 0;
@@ -74,7 +74,7 @@ void UnitList_Init(UnitListTask *task)
                               Text_Get(data_02167c9c[GAME->players[GAME->currentPlayer].armyColour]), 0, 0);
     Number_Draw(30, 1, data_027c0280->layer0Map, task->unitCount, 0, 0);
     func_0207463c();
-    func_02074544(task->scroll);
+    UnitList_DrawRows(task->scroll);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     UnitList_AddButtons();

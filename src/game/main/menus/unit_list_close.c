@@ -13,7 +13,7 @@ void Task_ResumeScript(Task *task);
 /* Closes the menu of task data_0215fad0: plays a sound, lets the
  * task's script go on, removes the menu buttons and sets the u16 that
  * unk_40 points to to 1. */
-void func_02073ed8(void)
+void UnitList_Close(void)
 {
     Task *menu = Task_FindByScript(data_0215fad0);
 

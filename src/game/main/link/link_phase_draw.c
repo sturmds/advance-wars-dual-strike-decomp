@@ -29,7 +29,7 @@ void LinkPhase_Draw(void)
     Unk_02080440 *saved027c;
 
     for (panel = 0; panel < gMenuState.link.playerCount; panel++) {
-        LinkPhase_DrawPlayerMarker(gMenuState.link.unk_020[panel]);
+        LinkPhase_DrawPlayerMarker(gMenuState.link.panelPlayers[panel]);
     }
     Palette_Load((u16 *)&gMenuState + ((MainLoop_GetFrameCount() >> 2) & 15), 0x234, 2);
     if (data_027c027c->unk_48[data_027c0284]->twoMaps == 1) {

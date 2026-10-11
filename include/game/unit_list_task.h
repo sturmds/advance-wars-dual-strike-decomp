@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* The task of the unit list menu (script data_0215fad0), from offset 0x29
- * of its Task. The list rows are in data_0229c878 (UnitList_Build). */
+ * of its Task. The list rows are in gUnitListRows (UnitList_Build). */
 typedef struct UnitListTask {
     u8 pad_00[0x29];
     u8 sortMode;                       /* UnitList_Build's sort mode, 0-3 */
@@ -18,7 +18,7 @@ typedef struct UnitListTask {
     u8 pad_31[0x34 - 0x31];
     int unk_34;
     int unk_38;
-    u16 pickedSlot;                    /* data_0229c878 entry of the row picked with A (UnitList_PickRow) */
+    u16 pickedSlot;                    /* gUnitListRows entry of the row picked with A (UnitList_PickRow) */
 } UnitListTask;
 
 #define UNIT_LIST_VISIBLE_ROWS 6       /* list rows on screen at once, one button each */
