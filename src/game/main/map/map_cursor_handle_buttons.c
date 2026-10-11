@@ -6,7 +6,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand data_02169e38[];
+extern const EventScriptCommand gMapScrollScript[];
 
 void func_020d1420(void);
 BOOL Map_IsCoSelectPhase(void);
@@ -68,7 +68,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
         unit = CurrentPlayer_NextIdleUnit();
         if (unit != NULL) {
             func_020f5888(unit->x, unit->y);
-            if (ScriptSlot_Find(data_02169e38) != -1) {
+            if (ScriptSlot_Find(gMapScrollScript) != -1) {
                 ScreenConfig_RunActionHook();
             }
             return TRUE;

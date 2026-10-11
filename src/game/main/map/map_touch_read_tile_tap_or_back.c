@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/touch.h"
 
-BOOL func_020efbf4(int x, int y);
+BOOL MapTouch_InBackButton(int x, int y);
 void func_020f1288(void);
 void func_020f129c(void);
 
@@ -25,7 +25,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Touch input while the player picks a map tile. A new touch on the box
- * func_020efbf4 tests (x 112-144, y 0-16) cancels. A release on the tile where
+ * MapTouch_InBackButton tests (x 112-144, y 0-16) cancels. A release on the tile where
  * the touch began (unk_30, unk_32, set by MapCursor_UpdateFromTouch) confirms
  * and resumes the touch marker task; TOUCH_HELD clears that tile. Returns 0
  * while data_0229777c is set. */
@@ -37,7 +37,7 @@ u32 MapTouch_ReadTileTapOrBack(void)
     if (data_0229777c != 0) {
         return 0;
     }
-    if (IsTouchInPhase(TOUCH_PRESSED) && func_020efbf4(touchX, touchY)) {
+    if (IsTouchInPhase(TOUCH_PRESSED) && MapTouch_InBackButton(touchX, touchY)) {
         return INPUT_CANCEL;
     }
     switch (gTouch.phase) {

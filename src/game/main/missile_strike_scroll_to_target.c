@@ -5,7 +5,7 @@ void func_020f5888(int x, int y);
 void ScreenConfig_RunActionHook(void);
 
 /* Script step: scrolls the map view to the strike tile (func_020f5888 ends in
- * the scroll and script-slot routine func_020f54a0), then runs the screen
+ * the scroll and script-slot routine MapScroll_Start), then runs the screen
  * action hook. */
 void MissileStrike_ScrollToTarget(MissileStrikeTask *task)
 {

@@ -6,12 +6,12 @@ int abs(int a0);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_022a7bd8[];
+extern u8 gMapScrollSpeeds[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Sets up a map scroll: records the current scroll and the distance to the
- * target, then fills data_022a7bd8 with the distance to move each frame
+ * target, then fills gMapScrollSpeeds with the distance to move each frame
  * along the longer axis: 1, 2, 3 ... up to 8, then 8 until the rest is less
  * than the next step, which goes in the last entry. */
 void MapScroll_BuildSpeedTable(MapScrollSlot *slot)
@@ -35,13 +35,13 @@ void MapScroll_BuildSpeedTable(MapScrollSlot *slot)
         if (left - speed < 0) {
             break;
         }
-        data_022a7bd8[slot->step] = speed;
+        gMapScrollSpeeds[slot->step] = speed;
         left -= speed;
         if (speed < 8) {
             speed++;
         }
         slot->step++;
     }
-    data_022a7bd8[slot->step] = left;
+    gMapScrollSpeeds[slot->step] = left;
     slot->travelled = 0;
 }

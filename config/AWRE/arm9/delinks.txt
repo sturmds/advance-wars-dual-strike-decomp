@@ -15542,7 +15542,7 @@ src/game/main/func_020efbc8.c:
     complete
     .text       start:0x020efbc8 end:0x020efbf4
 
-src/game/main/func_020efbf4.c:
+src/game/main/map/map_touch_in_back_button.c:
     complete
     .text       start:0x020efbf4 end:0x020efc20
 
@@ -16102,7 +16102,7 @@ src/game/main/map/range_spread_update.c:
     complete
     .text       start:0x020f5c70 end:0x020f5e44
 
-src/game/main/func_020f5e44.c:
+src/game/main/map/range_spread_destroy.c:
     complete
     .text       start:0x020f5e44 end:0x020f5e54
 

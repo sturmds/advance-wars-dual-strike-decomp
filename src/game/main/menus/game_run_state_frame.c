@@ -7,7 +7,7 @@ extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
 extern u32 data_0229eaec;
-extern const EventScriptCommand data_02169e38[];
+extern const EventScriptCommand gMapScrollScript[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -176,7 +176,7 @@ void Game_RunStateFrame(void)
     }
 
     if (GAME->unk_18 == 16 || GAME->unk_1a == 16) {
-        if (ScriptSlot_Find(data_02169e38) != -1 || func_020b9ccc() == 0) {
+        if (ScriptSlot_Find(gMapScrollScript) != -1 || func_020b9ccc() == 0) {
             SidePanel_Place(SIDE_PANEL_SNAP_AWAY);
         }
     }

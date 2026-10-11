@@ -63,17 +63,17 @@ typedef struct SupplySlot {
     s16 unk_20;                        /* 0: at the end, unk_28/unk_2a get the acting unit's tile and unit action 6 is sent when data_0229eaec is set */
 } SupplySlot;
 
-/* The same slot as the map scroll script data_02169e38 uses it. Positions
+/* The same slot as the map scroll script gMapScrollScript uses it. Positions
  * are map view scroll values in 1/16 tiles. */
 typedef struct MapScrollSlot {
     u8 pad_00[0x1e];
     s16 startX;                        /* scroll when the script starts */
     s16 startY;
-    s16 targetX;                       /* set by func_020f54a0 */
+    s16 targetX;                       /* set by MapScroll_Start */
     s16 targetY;
     s16 distX;                         /* targetX - startX */
     s16 distY;
-    u16 step;                          /* index into the per-frame speed table data_022a7bd8 */
+    u16 step;                          /* index into the per-frame speed table gMapScrollSpeeds */
     u16 travelled;                     /* distance moved so far along the longer axis */
     u8 pad_2e[0x60 - 0x2e];
 } MapScrollSlot;

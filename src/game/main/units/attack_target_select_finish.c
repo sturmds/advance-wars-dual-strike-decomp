@@ -8,7 +8,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern const EventScriptCommand data_02169e38[];
+extern const EventScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
 void MenuDepth_Pop(void);
@@ -21,7 +21,7 @@ void func_020de9f0(int x, int y);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Task step, likely run when the attack target choice ends; does nothing
- * while data_02169e38 is running. A negative data_022a6dd4 means the player backed out: the menu
+ * while gMapScrollScript is running. A negative data_022a6dd4 means the player backed out: the menu
  * and task go away and func_020bc404 runs. Otherwise data_022a6dd4 picks the
  * entry of the target list: the acting unit attacks the unit in it, or the
  * object at its tile when unk_02 is set. A human player's attack is counted
@@ -30,7 +30,7 @@ void AttackTargetSelect_Finish(Task *task)
 {
     UnitTargetEntry *target;
 
-    if (ScriptSlot_Find(data_02169e38) != -1) {
+    if (ScriptSlot_Find(gMapScrollScript) != -1) {
         return;
     }
     if (data_022a6dd4 < 0) {

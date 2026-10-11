@@ -2,14 +2,14 @@
 #include "game/script_slot.h"
 #include "game/unit_show_task.h"
 
-extern ScriptCommand data_02169e38[];
+extern ScriptCommand gMapScrollScript[];
 
 s8 ScriptSlot_Find(const ScriptCommand *script);
 
-/* State handler: waits until the slot script data_02169e38 has stopped, then moves. */
+/* State handler: waits until the slot script gMapScrollScript has stopped, then moves. */
 void UnitShowTask_StateScript(UnitShowTask *task)
 {
-    if (ScriptSlot_Find(data_02169e38) == -1) {
+    if (ScriptSlot_Find(gMapScrollScript) == -1) {
         task->state = UNIT_SHOW_STATE_MOVE;
     }
 }

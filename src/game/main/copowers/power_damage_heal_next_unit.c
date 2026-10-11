@@ -13,7 +13,7 @@ void Task_ResumeScript(Task *task);
 s16 ScriptSlot_Find(const ScriptCommand *script);
 void PowerHitEffect_Start(int x, int y, int player);
 
-extern ScriptCommand data_02169e38[];
+extern ScriptCommand gMapScrollScript[];
 
 /* Script step of gPowerDamageTaskDesc: the healing twin of
  * PowerDamage_HitNextEnemy. Heals the next unit of the power's own player,
@@ -29,7 +29,7 @@ void PowerDamage_HealNextUnit(PowerDamageTask *task)
         return;
     }
     task->delay++;
-    if (ScriptSlot_Find(data_02169e38) != -1)
+    if (ScriptSlot_Find(gMapScrollScript) != -1)
         return;
     if (task->delay > POWER_DAMAGE_HIT_DELAY)
         task->delay = 0;

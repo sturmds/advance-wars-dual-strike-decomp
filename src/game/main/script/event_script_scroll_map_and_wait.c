@@ -4,7 +4,7 @@
 void func_020f5878(s16 x, s16 y);
 void EventScript_ReleaseHoldAfterScroll(void);
 
-/* Starts a map scroll (guessed from func_020f54a0's callees) with the command's
+/* Starts a map scroll (guessed from MapScroll_Start's callees) with the command's
  * two halfwords, then holds the script until the scroll script ends:
  * EventScript_ReleaseHoldAfterScroll clears the hold. */
 BOOL EventScript_ScrollMapAndWait(s16 index)

@@ -3,7 +3,7 @@
 
 BOOL func_020efb9c(int x, int y);
 BOOL func_020efbc8(int x, int y);
-BOOL func_020efbf4(int x, int y);
+BOOL MapTouch_InBackButton(int x, int y);
 
 extern s16 data_0229777c;
 
@@ -41,7 +41,7 @@ u32 MapTouch_ReadButtons(int rightButton, int leftButton)
     if (!IsTouchInPhase(TOUCH_PRESSED)) {
         return TAP_MAP;
     }
-    if (func_020efbf4(touchX, touchY)) {
+    if (MapTouch_InBackButton(touchX, touchY)) {
         return TAP_CENTER_BUTTON;
     }
     if (rightButton && func_020efbc8(touchX, touchY)) {

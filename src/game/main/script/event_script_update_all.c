@@ -20,7 +20,7 @@ typedef void (*EventHoldFunc)(EventScriptSlot *slot);
 
 /* Runs the event scripts for one frame, on the main map state only. Does
  * nothing while func_0201d798 is nonzero; otherwise clears data_02297778,
- * then stops if script data_02169e38 runs (func_020f5848) or task
+ * then stops if script gMapScrollScript runs (func_020f5848) or task
  * data_021690f8 exists (func_020eedf0). Each used slot runs its hold
  * callback, then EventScript_StepSlot steps it. While data_0229777c is set
  * (EventScript_Start sets it), the key state is overwritten with
