@@ -5948,6 +5948,10 @@ src/game/main/menus/co_select_screen_begin_exit.c:
     complete
     .text       start:0x02042b94 end:0x02042bc0
 
+src/game/main/menus/co_select_confirm_picks.c:
+    complete
+    .text       start:0x02042bc0 end:0x02042d7c
+
 src/game/main/func_02042d7c.c:
     complete
     .text       start:0x02042d7c end:0x02042da4
