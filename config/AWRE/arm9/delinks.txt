@@ -10183,6 +10183,10 @@ src/game/main/sound/sound_player_heap_destroy.c:
     complete
     .text       start:0x0210509c end:0x021050f8
 
+src/game/main/sound/sound_seq_player_release.c:
+    complete
+    .text       start:0x021050f8 end:0x02105188
+
 src/game/main/sound/sound_seq_player_stop_now.c:
     complete
     .text       start:0x02105204 end:0x02105240
