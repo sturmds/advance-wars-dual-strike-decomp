@@ -14,7 +14,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 int Co_GetNation(int co);
 void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot, int army);   /* CO picture and its army palette */
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 u8 BreakText_Load(const s8 *text, u16 tile, u8 palette, u32 tagFont);
@@ -103,7 +103,7 @@ void CoPowerScreen_SetUp(Task *task)
     Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
     task->unk_58 = BreakText_Load(Text_Get(gCoTable[PLAYER->front.id & PLAYER_CO_ID_MASK].blocks[POWER_CO].name.id),
                                   0x1c0, 1, 0);
-    if (data_027c027c != data_027c0288.unk_00 && func_0207bd80() == 1) {
+    if (data_027c027c != data_027c0288.unk_00 && Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
     FRAME(task) = 0;

@@ -9,7 +9,7 @@ u8 Map_GetPlayerCount(u16 mapId);
 int Map_Exists(u16 mapId);
 u8 Map_IsFlagSet(u32 mapId);
 int Map_NeedsUnlockFlag(int mapId);
-u32 func_0207bd80(void);
+u32 Link_IsActive(void);
 int func_0207a1f0(void);
 
 /* Whether map mapId goes into the map select list: a two-map battle
@@ -26,7 +26,7 @@ BOOL MapSelect_IsMapPickable(int mapId)
             return FALSE;
         }
     }
-    if (func_0207bd80() == 0) {
+    if (Link_IsActive() == 0) {
         if (mapId >= MAP_DESIGN_FIRST && mapId < MAP_DESIGN_END && mapId >= MAP_DESIGN_FIRST + 3 /* rows another player sent */) {
             return FALSE;
         }

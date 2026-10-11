@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/link_wait_task.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 int func_0207bd94(void);
 void Link_FlagError(void);
 void Task_ResumeScript(LinkWaitTask *task);
@@ -11,7 +11,7 @@ void Task_ResumeScript(LinkWaitTask *task);
  * flags a link error after 300 frames without an answer. */
 void LinkTask_WaitForPeer(LinkWaitTask *task)
 {
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         if (func_0207bd94() == 1) {
             task->waitFrames = 0;
             Task_ResumeScript(task);

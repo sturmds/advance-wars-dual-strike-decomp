@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 u32 Link_GetConnectedSlotMask(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -15,7 +15,7 @@ void Link_SetSlotControllers(void)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (func_0207bd80() == 0) {
+    if (Link_IsActive() == 0) {
         return;
     }
     for (slot = 0; slot < 4; slot++) {

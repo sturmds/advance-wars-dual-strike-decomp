@@ -9272,11 +9272,11 @@ src/game/main/func_0207bd58.c:
     complete
     .text       start:0x0207bd58 end:0x0207bd6c
 
-src/game/main/func_0207bd6c.c:
+src/game/main/link/link_get_own_player.c:
     complete
     .text       start:0x0207bd6c end:0x0207bd80
 
-src/game/main/func_0207bd80.c:
+src/game/main/link/link_is_active.c:
     complete
     .text       start:0x0207bd80 end:0x0207bd94
 
@@ -9918,11 +9918,11 @@ src/game/main/func_0208202c.c:
     complete
     .text       start:0x0208202c end:0x02082038
 
-src/game/main/func_02082038.c:
+src/game/main/link/link_map_record_sync_start.c:
     complete
     .text       start:0x02082038 end:0x02082068
 
-src/game/main/func_02082068.c:
+src/game/main/link/link_map_record_sync_finish.c:
     complete
     .text       start:0x02082068 end:0x02082078
 

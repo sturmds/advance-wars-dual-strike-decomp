@@ -2357,8 +2357,8 @@ Link_Start kind:function(arm,size=0x50) addr:0x0207bc30
 Link_CheckAbort kind:function(arm,size=0xa8) addr:0x0207bc80
 Link_FlagError kind:function(arm,size=0x30) addr:0x0207bd28
 func_0207bd58 kind:function(arm,size=0x14) addr:0x0207bd58
-func_0207bd6c kind:function(arm,size=0x14) addr:0x0207bd6c
-func_0207bd80 kind:function(arm,size=0x14) addr:0x0207bd80
+Link_GetOwnPlayer kind:function(arm,size=0x14) addr:0x0207bd6c
+Link_IsActive kind:function(arm,size=0x14) addr:0x0207bd80
 func_0207bd94 kind:function(arm,size=0x14) addr:0x0207bd94
 func_0207bda8 kind:function(arm,size=0x14) addr:0x0207bda8
 Link_ResetState kind:function(arm,size=0x10c) addr:0x0207bdbc
@@ -2525,8 +2525,8 @@ LinkCoVariantSyncTask_Update kind:function(arm,size=0x2b0) addr:0x02081be0
 LinkCoVariantSyncTask_Init kind:function(arm,size=0xdc) addr:0x02081e90
 func_02081f6c kind:function(arm,size=0xc0) addr:0x02081f6c
 func_0208202c kind:function(arm,size=0xc) addr:0x0208202c
-func_02082038 kind:function(arm,size=0x30) addr:0x02082038
-func_02082068 kind:function(arm,size=0x10) addr:0x02082068
+LinkMapRecordSync_Start kind:function(arm,size=0x30) addr:0x02082038
+LinkMapRecordSync_Finish kind:function(arm,size=0x10) addr:0x02082068
 LinkMapRecordSync_Update kind:function(arm,size=0x24c) addr:0x02082078
 LinkMapRecordSync_Init kind:function(arm,size=0x220) addr:0x020822c4
 func_020824e4 kind:function(arm,size=0xc0) addr:0x020824e4
@@ -7471,7 +7471,7 @@ data_0216069c kind:data(any) addr:0x0216069c
 data_021606a4 kind:data(any) addr:0x021606a4
 gLinkCoVariantSyncTaskScript kind:data(any) addr:0x021606ac
 data_021606e4 kind:data(any) addr:0x021606e4
-data_021606ec kind:data(any) addr:0x021606ec
+gLinkMapRecordSyncScript kind:data(any) addr:0x021606ec
 gSpriteTaskScript kind:data(any) addr:0x0216072c
 data_0216074c kind:data(any) addr:0x0216074c
 gLargeFontCodes kind:data(any) addr:0x02160768

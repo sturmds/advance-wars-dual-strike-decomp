@@ -42,7 +42,7 @@ void func_0202b804(void *dest);
 void SkillIcon_Load(int skill, void *dest);
 void ForceRankScreen_LoadChosen(void);
 void ForceRankScreen_AddSlotButtons(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -190,7 +190,7 @@ void ForceRankScreen_Init(void)
     Screen_SetCurrentGfx(savedGfx);
     ForceRankScreen_AddSlotButtons();
     ForceRankScreen_AddButtons();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 0x7f0, 15);
     }
 }

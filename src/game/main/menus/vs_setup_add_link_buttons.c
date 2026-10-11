@@ -2,7 +2,7 @@
 #include "game/map_select.h"
 #include "game/menu_button.h"
 
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 int VsSetup_GetPanelTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
 BOOL Skills_AreDisabled(void);
@@ -18,7 +18,7 @@ extern MenuButtonTemplate data_0215ce40;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Adds the Vs setup buttons of a link game for this machine's player slot:

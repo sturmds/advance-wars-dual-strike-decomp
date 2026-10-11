@@ -2,7 +2,7 @@
 #include "game/event_queue.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void VsSetup_NextTeam(int message);
 
 /* Next team for a team screen button: a slot button (48-51) or the arrow
@@ -17,7 +17,7 @@ void VsSetup_NextTeamForButton(MenuButton *button)
     case 49:
     case 50:
     case 51:
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push((u8)(slot + EVENT_VS_TEAM_NEXT), 0);
         } else {
             VsSetup_NextTeam((u8)(slot + EVENT_VS_TEAM_NEXT));
@@ -29,7 +29,7 @@ void VsSetup_NextTeamForButton(MenuButton *button)
     case 59:
         slot = (button->id - 53) >> 1;
         MenuButton_Select(slot + 48);
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push((u8)(slot + EVENT_VS_TEAM_NEXT), 0);
         } else {
             VsSetup_NextTeam((u8)(slot + EVENT_VS_TEAM_NEXT));

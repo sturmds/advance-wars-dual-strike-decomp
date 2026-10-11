@@ -3,8 +3,8 @@
 #include "game/screen_other_map.h"
 
 void Sound_PlaySe(int id);
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 void Co_QueueArmyMediumPicture(int co, void *dest, int paletteSlot, int player);
 void VsSetup_RedrawSkills(void);
@@ -34,8 +34,8 @@ void VsSetup_SetCo(int event, int co)
         Co_QueueArmyMediumPicture(MENU->setup.cos[player][index & 1], data_027c0280->objVram + (552 + index * 18) * 32, index + 18, player + 1);
     }
     /* Needed to match: the two calls are written out in both branches. */
-    if (func_0207bd80() == 1) {
-        if (player != Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
+    if (Link_IsActive() == 1) {
+        if (player != Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) {
             return;
         }
         VsSetup_RedrawSkills();

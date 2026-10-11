@@ -5,7 +5,7 @@
 #include "game/design_map.h"
 
 /* Task that sends the design map records of a link battle's two maps to every
- * player, in chunks of 8 bytes (script data_021606ec: LinkMapRecordSync_Init sets it up,
+ * player, in chunks of 8 bytes (script gLinkMapRecordSyncScript: LinkMapRecordSync_Init sets it up,
  * LinkMapRecordSync_Update swaps the data). The block holds one DesignMapRecord per map:
  * the main map's first, then the second map's. Each map's record comes from the
  * link player who made it. The first 0x2c bytes belong to the task system. */

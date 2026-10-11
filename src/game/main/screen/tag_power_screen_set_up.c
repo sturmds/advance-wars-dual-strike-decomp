@@ -21,7 +21,7 @@ int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadObjPicture(int coId, int tile, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 void Co_LoadArmyGraphics(int coId, int tile, int army);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette);
@@ -320,7 +320,7 @@ void TagPowerScreen_SetUp(Task *task)
     Screen_SetCurrentGfx(saved0280);
     Mem_Free(file);
 
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
     task->unk_58 = BreakText_LoadChangeFont(Text_Get(0x7d00001d), 0x61a, 2);

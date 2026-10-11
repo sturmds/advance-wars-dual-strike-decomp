@@ -2,7 +2,7 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 int VsSetup_GetSlotTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
 
@@ -14,7 +14,7 @@ extern MenuButtonTemplate data_0215cc60;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Adds the buttons of a link player's slot on the Vs setup screen again

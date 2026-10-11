@@ -3,7 +3,7 @@
 #include "game/link_reaction_queue.h"
 
 BOOL EventScript_IsRunning(void);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 void LinkReaction_Send(void *data);
 void LinkReaction_StartCooldown(void);
@@ -24,7 +24,7 @@ void LinkReaction_HandleKeys(void)
     if (EventScript_IsRunning()) {
         return;
     }
-    reaction.slot = Link_FindSlotOfPlayer(func_0207bd6c());
+    reaction.slot = Link_FindSlotOfPlayer(Link_GetOwnPlayer());
     if (gKeypad->pressed & PAD_BUTTON_A) {
         reaction.button = 0;
         LinkReaction_Send(&reaction);

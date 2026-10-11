@@ -2,8 +2,8 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetSlotTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
@@ -13,7 +13,7 @@ extern MenuButtonTemplate data_0215cc38;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
@@ -28,8 +28,8 @@ void VsSetup_AddPlayerButtons(void)
     int i;
     int slot;
 
-    if (func_0207bd80() == 1) {
-        slot = Link_FindSlotOfPlayer(func_0207bd6c()) - 1;
+    if (Link_IsActive() == 1) {
+        slot = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
         MenuButton_Add(VsSetup_GetSlotTileX(slot) * 8 + 8, 64, &data_0215cc38, slot + 48);
         if (IsFirstLinkPlayer() != 1) {
             return;

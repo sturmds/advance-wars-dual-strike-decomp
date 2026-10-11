@@ -8,9 +8,9 @@ extern const MenuButtonTemplate data_0215f834;
 extern const MenuButtonTemplate data_0215f85c;
 
 int LinkScreen_GetPlayerRow(int player);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 
-/* One button per player (ids 0 up), then button 254, and button 253 when func_0207bd6c returns 0. */
+/* One button per player (ids 0 up), then button 254, and button 253 when Link_GetOwnPlayer returns 0. */
 void LinkScreen_AddButtons(void)
 {
     int i;
@@ -19,7 +19,7 @@ void LinkScreen_AddButtons(void)
         MenuButton_Add(32, LinkScreen_GetPlayerRow(i) * 8, &data_0215f884, i);
     }
     MenuButton_Add(0, 0, &data_0215f834, 254);
-    if (func_0207bd6c() != 0) {
+    if (Link_GetOwnPlayer() != 0) {
         return;
     }
     MenuButton_Add(0, 0, &data_0215f85c, 253);

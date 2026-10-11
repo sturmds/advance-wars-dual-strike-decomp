@@ -4,7 +4,7 @@
 extern u8 data_0215ca88[];
 u16 func_0207a1dc(void);
 int func_02078138(int a0);
-int func_0207bd80(void);
+int Link_IsActive(void);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
@@ -18,7 +18,7 @@ void func_0206bb68(Task *task)
     int i;
     int found;
 
-    if (!func_0207bd80()) {
+    if (!Link_IsActive()) {
         Task_ResumeScript(task);
         return;
     }

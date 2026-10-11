@@ -6,9 +6,9 @@ extern MenuState gMenuState;
 extern const MenuButtonTemplate data_0215f85c;
 
 void Sound_PlaySe(u32 soundId);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 
-/* Sets a player's ready flag once. For the player of this console (func_0207bd6c) it also
+/* Sets a player's ready flag once. For the player of this console (Link_GetOwnPlayer) it also
  * closes button 254 and, for a player other than 0, adds button 253. */
 void LinkScreen_SetReady(int player)
 {
@@ -17,7 +17,7 @@ void LinkScreen_SetReady(int player)
     }
     Sound_PlaySe(0x10006);
     LINK_READY_FLAG(gMenuState, player) = 1;
-    if (player != func_0207bd6c()) {
+    if (player != Link_GetOwnPlayer()) {
         return;
     }
     MenuButton_Close(254);

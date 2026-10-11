@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/event_queue.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 int func_02064e00(int row);
 void VsSetup_DecreaseSetting(void);
 
@@ -9,12 +9,12 @@ void VsSetup_DecreaseSetting(void);
  * row, then lowers its value. */
 void VsSetup_OnSettingDownArrow(u8 *buttonId)
 {
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         EventQueue_Push(EVENT_VS_SETTING_SELECT_ROW, (u8)((*buttonId - 70) >> 1));
     } else {
         func_02064e00((u8)((*buttonId - 70) >> 1));
     }
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         EventQueue_Push(EVENT_VS_SETTING_DECREASE, 0);
     } else {
         VsSetup_DecreaseSetting();

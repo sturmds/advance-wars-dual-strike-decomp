@@ -15,7 +15,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Fill32(u32 value, void *dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot, int army);   /* CO picture and its army palette */
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette);
@@ -108,7 +108,7 @@ void CoSwapScreen_SetUp(Task *task)
     Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
     Co_LoadArmyGraphicsAndPalette(PLAYER->back.id, 0x1c0, 1, GAME->currentPlayer);
     task->unk_58 = BreakText_LoadChangeFont(Text_Get(0x7d00001d), 0x370, 2);
-    if (data_027c027c != data_027c0288.unk_00 && func_0207bd80() == 1) {
+    if (data_027c027c != data_027c0288.unk_00 && Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
     FRAME(task) = 0;

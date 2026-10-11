@@ -5,8 +5,8 @@
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void *src, int offset, int size);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 void VsSetup_DrawSettingRow(int row, int x, int y);
 
 #define SETTING_ROWS 9
@@ -34,10 +34,10 @@ void VsSetup_DrawSettings(void)
         VsSetup_DrawSettingRow(row, gVsSetupSettingRowX[row], gVsSetupSettingRowY[row]);
     }
     Screen_SetCurrentGfx(saved);
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         return;
     }
-    if (func_0207bd6c() == 0) {
+    if (Link_GetOwnPlayer() == 0) {
         return;
     }
     if (MENU->setup.unk_2eb != 0) {

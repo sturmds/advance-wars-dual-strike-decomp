@@ -4,7 +4,7 @@
 #include "game/menu_button.h"
 
 s32 HwDiv32(s32 numerator, s32 denominator);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void MapSelect_TurnToPage(u32 page);
 
 /* Pages of the current list. */
@@ -29,7 +29,7 @@ void MapSelect_PrevPage(MenuButton *button)
     if (page == PAGE()) {
         return;
     }
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         EventQueue_Push(3, (u8)page);
     } else {
         MapSelect_TurnToPage(page);

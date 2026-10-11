@@ -7,8 +7,8 @@
 u16 func_0207a1dc(void);
 u8 *func_02078138(int player);
 void func_0207b48c(void);
-int func_0207bd6c(void);
-int func_0207bd80(void);
+int Link_GetOwnPlayer(void);
+int Link_IsActive(void);
 int func_0207bd94(void);
 int Link_FindSlotOfPlayer(int player);
 u32 Link_GetConnectedSlotMask(void);
@@ -42,7 +42,7 @@ void VsSetup_UpdateLink(Task *task)
     cancel = 0;
     MENU->setup.settingsChanged = 0;
     allReady = 1;
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         return;
     }
     if (func_0207bd94() == 1) {
@@ -115,7 +115,7 @@ void VsSetup_UpdateLink(Task *task)
         Task_ResumeScript(task);
         return;
     }
-    if (MENU->setup.unk_2d0[Link_FindSlotOfPlayer(func_0207bd6c()) - 1] == 0) {
+    if (MENU->setup.unk_2d0[Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1] == 0) {
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {

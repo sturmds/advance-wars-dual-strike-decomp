@@ -2,8 +2,8 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetSlotTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
@@ -16,7 +16,7 @@ extern MenuButtonTemplate data_0215ccd8;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Adds buttons 253 and 254 of the team screen and, per player slot, the
@@ -29,12 +29,12 @@ void VsSetup_AddTeamArrowButtons(void)
 {
     int player;
 
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         if (IsFirstLinkPlayer() == 1) {
             MenuButton_Add(0, 0, &data_0215ccd8, 254);
         }
         MenuButton_Add(0, 0, &data_0215cc10, 253);
-        player = Link_FindSlotOfPlayer(func_0207bd6c()) - 1;
+        player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
         MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 32, &data_0215cc60, player * 2 + 52);
         MenuButton_Add(VsSetup_GetSlotTileX(player) * 8 + 16, 96, &data_0215cbe8, player * 2 + 53);
         if (IsFirstLinkPlayer() != 1) {

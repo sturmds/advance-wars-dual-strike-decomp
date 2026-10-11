@@ -24,5 +24,5 @@ void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y)
     }
     task->x = x;
     task->y = y;
-    task->unk_52 = kind + 25;
+    task->affineIndex = kind + 25;
 }

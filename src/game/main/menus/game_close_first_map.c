@@ -10,7 +10,7 @@ extern u32 gLinkPlay;
 void func_020c0704(void);
 void func_020d6a04(void);
 void func_02080708(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void Link_SendStopRequest(void);
 void SpriteTask_DestroyAllFirstScreen(void);
 
@@ -23,7 +23,7 @@ void Game_CloseFirstMap(void)
     func_020d6a04();
     STATE->unk_18 = 0;
     func_02080708();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         Link_SendStopRequest();
     }
     if (gLinkPlay == 0) {

@@ -29,7 +29,7 @@ void MapPreview_Draw(void *dst, int mapId);
 void PaletteCycle_Start(int a);
 void LinkScreen_AddButtons(void);
 int LinkScreen_GetPlayerRow(int player);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int a, int b, int c, int d);
 const char *File_LocalizePath(const char *path);
 u8 Map_GetPlayerCount(u32 mapId);
@@ -197,7 +197,7 @@ void LinkPhase_InitScreen(void)
     MenuButtons_DisableTouch();
     Wallpaper_LoadBoth();
     EventQueue_Reset();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(0xe8, 8, 0x1f0, 15);
     }
 }

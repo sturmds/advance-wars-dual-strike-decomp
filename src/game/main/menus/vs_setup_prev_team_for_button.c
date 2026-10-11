@@ -2,7 +2,7 @@
 #include "game/event_queue.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void VsSetup_PrevTeam(int message);
 
 /* Like VsSetup_NextTeamForButton, for the previous team and the arrows above
@@ -16,7 +16,7 @@ void VsSetup_PrevTeamForButton(MenuButton *button)
     case 49:
     case 50:
     case 51:
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push((u8)(slot + EVENT_VS_TEAM_PREV), 0);
         } else {
             VsSetup_PrevTeam((u8)(slot + EVENT_VS_TEAM_PREV));
@@ -28,7 +28,7 @@ void VsSetup_PrevTeamForButton(MenuButton *button)
     case 58:
         slot = (button->id - 52) >> 1;
         MenuButton_Select(slot + 48);
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push((u8)(slot + EVENT_VS_TEAM_PREV), 0);
         } else {
             VsSetup_PrevTeam((u8)(slot + EVENT_VS_TEAM_PREV));

@@ -3,7 +3,7 @@
 #include "game/keypad.h"
 #include "game/menu_state.h"
 
-u32 func_0207bd80(void);
+u32 Link_IsActive(void);
 int func_02064e00(int row);
 void func_020651ec(void);
 void func_02065214(void);
@@ -32,7 +32,7 @@ void VsSetup_HandleSettingsKeys(void)
         if (row < 0) {
             row = SETTING_ROWS - 1;
         }
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTING_SELECT_ROW, (u8)row);
         } else {
             func_02064e00((u8)row);
@@ -43,34 +43,34 @@ void VsSetup_HandleSettingsKeys(void)
         if (row >= SETTING_ROWS) {
             row = 0;
         }
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTING_SELECT_ROW, (u8)row);
         } else {
             func_02064e00((u8)row);
         }
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTING_INCREASE, 0);
         } else {
             VsSetup_IncreaseSetting();
         }
     }
     if (gKeypad->repeat & PAD_KEY_DOWN) {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTING_DECREASE, 0);
         } else {
             VsSetup_DecreaseSetting();
         }
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTINGS_CONFIRM, 0);
         } else {
             func_02065214();
         }
     } else if (gKeypad->pressed & PAD_BUTTON_B) {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(EVENT_VS_SETTINGS_CANCEL, 0);
         } else {
             func_020651ec();

@@ -10,16 +10,16 @@ extern int data_0229eac8;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void Map_ScrollViewToTile(int arg);
 
-/* Holds this step for 30 frames, or until A is held when func_0207bd80
+/* Holds this step for 30 frames, or until A is held when Link_IsActive
  * returns 0, then moves to step 4. data_0229eac8 counts the frames. */
 void AiShowAction_Step8(void)
 {
     int skip = 0;
 
-    if (func_0207bd80() == 0) {
+    if (Link_IsActive() == 0) {
         skip = gKeypad->held & PAD_BUTTON_A;
     }
     GAME->cursorX = gUnitAction.target;

@@ -2,8 +2,8 @@
 #include "game/map_select.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetPanelTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
@@ -19,7 +19,7 @@ extern MenuButtonTemplate data_0215ce40;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Adds buttons 250-254 of the Vs setup screen (250-252 only when skills are
@@ -34,7 +34,7 @@ void VsSetup_AddArrowButtons(void)
 {
     int player;
 
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         if (IsFirstLinkPlayer() == 1) {
             MenuButton_Add(0, 0, &data_0215ce18, 254);
         }
@@ -44,7 +44,7 @@ void VsSetup_AddArrowButtons(void)
             MenuButton_Add(56, 152, &data_0215cda0, 251);
             MenuButton_Add(152, 152, &data_0215cb48, 250);
         }
-        player = Link_FindSlotOfPlayer(func_0207bd6c()) - 1;
+        player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
         if (STATE->twoMaps == 1) {
             MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0, player * 4 + 18);
             MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70, player * 4 + 19);

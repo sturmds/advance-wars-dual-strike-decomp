@@ -8,7 +8,7 @@
 
 extern MenuState gMenuState;
 
-BOOL func_0207bd80(void);
+BOOL Link_IsActive(void);
 void Battle_EnsureTask(void);
 void Battle_ReleaseSideTasks(void);
 void BattleCellSprites_Move(void);
@@ -49,7 +49,7 @@ void Battle_TaskUpdate(Task *task)
     Battle_ReleaseSideTasks();
     func_ov002_0235d224();
     if ((gKeypad->pressed & PAD_BUTTON_A) || (gTouch.phase == TOUCH_PRESSED && gTouch.active == 1)) {
-        if (func_0207bd80() == 0) {
+        if (Link_IsActive() == 0) {
             Battle_EnsureTask();
         }
     }

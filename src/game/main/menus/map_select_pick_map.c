@@ -3,7 +3,7 @@
 #include "game/map_select.h"
 
 u8 Map_IsFlagSet(u32 mapId);
-u32 func_0207bd80(void);
+u32 Link_IsActive(void);
 void MapSelect_PickFirstMap(void);
 void MapSelect_ConfirmMap(void);
 
@@ -15,7 +15,7 @@ extern MenuStateFrom400 data_0229ef30;
 /* Picks the selected map. Maps below id 0x101 must be unlocked
  * (Map_IsFlagSet). The first pick of a two-map battle outside the War Room
  * goes to MapSelect_PickFirstMap; otherwise MapSelect_ConfirmMap takes the map.
- * In link mode (func_0207bd80 returns 1) the pick is queued as event 7 or 5
+ * In link mode (Link_IsActive returns 1) the pick is queued as event 7 or 5
  * with the map's page position instead. */
 void MapSelect_PickMap(void)
 {
@@ -23,13 +23,13 @@ void MapSelect_PickMap(void)
         return;
     }
     if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 && data_0229ef30.unk_4fc == 0) {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(7, PAGE_POS());
         } else {
             MapSelect_PickFirstMap();
         }
     } else {
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             EventQueue_Push(5, PAGE_POS());
         } else {
             MapSelect_ConfirmMap();

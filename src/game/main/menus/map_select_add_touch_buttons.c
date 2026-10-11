@@ -2,8 +2,8 @@
 #include "game/map_select.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 
 /* Touch buttons of the map select screen, 32x32 each. */
 extern const MenuButtonTemplate data_0215c8c8;   /* (224, 160), func_0205e898 */
@@ -15,12 +15,12 @@ extern const MenuButtonTemplate data_0215c828;   /* (32, 32), func_0205ec14 */
 extern const MenuButtonTemplate data_0215c8f0;   /* (192, 32), func_0205ec08 */
 
 /* Adds the touch buttons of the map select screen (ids 0xf8-0xfe), unless
- * this is link play and func_0207bd6c is set. With two maps outside the War
+ * this is link play and Link_GetOwnPlayer is set. With two maps outside the War
  * Room the list buttons move 16 pixels down; two more buttons appear only
  * in the War Room. */
 void MapSelect_AddTouchButtons(void)
 {
-    if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
+    if (Link_IsActive() == 1 && Link_GetOwnPlayer() != 0) {
         return;
     }
     MenuButton_Add(0, 0, &data_0215c8c8, 0xfe);

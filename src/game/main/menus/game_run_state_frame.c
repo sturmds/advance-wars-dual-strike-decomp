@@ -20,7 +20,7 @@ s8 func_020b9ccc(void);
 s16 func_020b9914(void);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 void SidePanel_Place(int mode);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 void MapView_ScrollStep(int step);
 void AiTurn_Update(void);
 void LinkAction_Update(void);
@@ -152,7 +152,7 @@ void Game_RunStateFrame(void)
                 break;
             case 16:
                 func_ov000_022b0500();
-                if (gLinkPlay == 0 || func_0207bd6c() == 0) {
+                if (gLinkPlay == 0 || Link_GetOwnPlayer() == 0) {
                     AiTurn_Update();
                 } else {
                     LinkAction_Update();

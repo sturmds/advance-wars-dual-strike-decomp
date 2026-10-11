@@ -2,8 +2,8 @@
 #include "game/map_select.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int VsSetup_GetPanelTileX(int player);
 u32 Link_GetConnectedSlotMask(void);
@@ -13,7 +13,7 @@ extern MenuButtonTemplate data_0215cb98;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* Buttons of the Vs setup screen: per player, a map button row at y 24 (ids
@@ -25,8 +25,8 @@ void VsSetup_AddMapAndCoButtons(void)
 {
     int player;
 
-    if (func_0207bd80() == 1) {
-        player = Link_FindSlotOfPlayer(func_0207bd6c()) - 1;
+    if (Link_IsActive() == 1) {
+        player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
         if (STATE->twoMaps == 1) {
             MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 24, &data_0215cb20, player * 2 + 1);
         }

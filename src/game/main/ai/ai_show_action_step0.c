@@ -11,7 +11,7 @@ extern u32 gLinkPlay;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 void Rng_SetState(u32 state);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 int func_020b9664(void);
 void func_020f5888(int x, int y);
 
@@ -54,7 +54,7 @@ void AiShowAction_Step0(void)
     GAME->actingUnitDestX = gUnitAction.x;
     GAME->actingUnitDestY = gUnitAction.y;
     GAME->actingUnit->flags &= ~MAP_UNIT_LOCKED;
-    if ((GAME->unk_18 == 16 && gLinkPlay != 0 && func_0207bd6c() != 0) || GAME->unk_18 == 21) {
+    if ((GAME->unk_18 == 16 && gLinkPlay != 0 && Link_GetOwnPlayer() != 0) || GAME->unk_18 == 21) {
         GAME->unk_46 = 0;
         GAME->actingUnit->fuel = gUnitAction.fuelLeft;
         gAiTurnState->actionStep = 1;

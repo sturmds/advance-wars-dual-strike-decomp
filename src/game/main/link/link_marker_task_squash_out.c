@@ -17,7 +17,7 @@ extern u8 data_027c0060[];
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
 /* Task step of a link menu marker, 5 frames, on the screen of data_027c0288.unk_00:
- * draws the marker through affine set unk_52 at scale / 256 of its height and
+ * draws the marker through affine set affineIndex at scale / 256 of its height and
  * (512 - scale) / 256 of its width, scale easing from 256 down to 2, so the marker
  * squashes into a flat line twice as wide. Then resumes the script. */
 void LinkMarkerTask_SquashOut(LinkMarkerTask *task)
@@ -40,12 +40,12 @@ void LinkMarkerTask_SquashOut(LinkMarkerTask *task)
             int heightDiv = DIVISOR(scale);
             int widthDiv = DIVISOR(0x200 - scale);
 
-            Oam_SetAffineParams(task->unk_52, HwDiv32(gSineTable[64] * 16, widthDiv),
+            Oam_SetAffineParams(task->affineIndex, HwDiv32(gSineTable[64] * 16, widthDiv),
                                 HwDiv32(-gSineTable[0] * 16, heightDiv),
                                 HwDiv32(gSineTable[0] * 16, widthDiv2),
                                 HwDiv32(gSineTable[64] * 16, heightDiv2));
         }
-        Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->unk_52 << 9), ((task->y - 8) & 0xff) | 0x300,
+        Sprite_Queue(0, ((task->x - 16) & 0x1ff) | (task->affineIndex << 9), ((task->y - 8) & 0xff) | 0x300,
                      data_027c0060, 0, 52);
         task->frame++;
     }

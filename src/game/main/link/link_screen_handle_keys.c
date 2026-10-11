@@ -4,7 +4,7 @@
 
 extern MenuState gMenuState;
 
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 void func_020729c4(void);
 void LinkScreen_PushReady(void);
 void LinkScreen_PushMoveDown(void);
@@ -15,7 +15,7 @@ void LinkScreen_PushMoveUp(void);
  * are ignored once ready. */
 void LinkScreen_HandleKeys(void)
 {
-    if (LINK_READY_FLAG(gMenuState, func_0207bd6c()) == 0) {
+    if (LINK_READY_FLAG(gMenuState, Link_GetOwnPlayer()) == 0) {
         if (gKeypad->repeat & PAD_KEY_UP) {
             LinkScreen_PushMoveUp();
         }

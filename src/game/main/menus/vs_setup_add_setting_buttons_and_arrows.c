@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 
 #define SETTING_ROWS 9
 
@@ -22,7 +22,7 @@ void VsSetup_AddSettingButtonsAndArrows(void)
 {
     int row;
 
-    if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
+    if (Link_IsActive() == 1 && Link_GetOwnPlayer() != 0) {
         return;
     }
     MenuButton_Add(0, 0, &data_0215cd00, 254);

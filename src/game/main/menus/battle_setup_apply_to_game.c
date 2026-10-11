@@ -9,8 +9,8 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Co_SetForceRankSetIndex(int co, int player, int set);
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int player);
 int Link_GetPlayerOfSlot(int slot);
 
@@ -31,8 +31,8 @@ extern u32 gLinkPlay;
  * choice, AI stays AI, and other humans become 3 + their link player. */
 static inline void SetSlotController(int i, int map)
 {
-    if (func_0207bd80() == 1) {
-        if (i == Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
+    if (Link_IsActive() == 1) {
+        if (i == Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) {
             GAME->slotControllers[i + 1] = gMenuState.setup.controllers[i][map];
         } else if (gMenuState.setup.controllers[i][map] != PLAYER_CONTROLLER_AI) {
             GAME->slotControllers[i + 1] = Link_GetPlayerOfSlot(i + 1) + 3;

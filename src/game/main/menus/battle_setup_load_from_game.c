@@ -15,8 +15,8 @@ void Map_LoadAndCountProperties(int mapId, u8 *a, u8 *b);
 u8 Map_GetLoadedPlayerCount(void);
 u8 BuildCoPickList(void);
 u8 *GetCoPickList(void);
-int func_0207bd80(void);
-int func_0207bd6c(void);
+int Link_IsActive(void);
+int Link_GetOwnPlayer(void);
 int Link_FindSlotOfPlayer(int a);
 u8 Map_GetPlayerCount(int mapId);
 
@@ -186,10 +186,10 @@ void BattleSetup_LoadFromGame(void)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         gMenuState.setup.unk_2e4 = 8;
     } else {
-        gMenuState.setup.unk_2e4 = (Link_FindSlotOfPlayer(func_0207bd6c()) - 1) * 2 + 8;
+        gMenuState.setup.unk_2e4 = (Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) * 2 + 8;
     }
     gMenuState.setup.unk_2e6 = 0;
     gMenuState.setup.unk_2ea = 0;

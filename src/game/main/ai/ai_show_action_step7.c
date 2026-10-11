@@ -10,7 +10,7 @@ extern int data_0229eac8;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void Map_ScrollViewToTile(int arg);
 
 /* Like AiShowAction_Step8, but gUnitAction.target is a unit slot here:
@@ -21,7 +21,7 @@ void AiShowAction_Step7(void)
     MapUnit *unit = &GAME->units[gUnitAction.target];
     int skip = 0;
 
-    if (func_0207bd80() == 0) {
+    if (Link_IsActive() == 0) {
         skip = gKeypad->held & PAD_BUTTON_A;
     }
     if (GAME->mapTiles->unk_2338[GAME->mapTiles->rowStart[unit->y] + unit->x] != 0) {

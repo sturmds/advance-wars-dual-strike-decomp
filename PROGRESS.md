@@ -55,6 +55,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_0200a6c0.c` | no delinks entry | 0 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
+| `src/game/main/func_02067b94.c` | no delinks entry | 0 |
+| `src/game/main/func_02067bec.c` | no delinks entry | 0 |
 | `src/game/main/func_020d8a6c.c` | no delinks entry | 0 |
 | `src/game/main/func_020f6728.c` | no delinks entry | 0 |
 | `src/game/main/func_020f678c.c` | no delinks entry | 0 |

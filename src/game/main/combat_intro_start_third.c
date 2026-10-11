@@ -2,14 +2,14 @@
 #include "game/task.h"
 #include "game/unlocks.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 extern const TaskScriptCmd data_021618e0[];
 
 /* Plays the script of data_021618e0 as a child task once (game flag 56),
- * unless func_0207bd80 returns 1. */
+ * unless Link_IsActive returns 1. */
 void CombatIntro_StartThird(Task *parent)
 {
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         return;
     }
     if (GameFlag_IsSet(56)) {

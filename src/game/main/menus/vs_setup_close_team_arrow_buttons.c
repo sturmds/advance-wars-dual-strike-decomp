@@ -2,7 +2,7 @@
 #include "game/menu_button.h"
 #include "game/menu_state.h"
 
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 u32 Link_GetConnectedSlotMask(void);
 
 extern MenuState gMenuState;
@@ -10,7 +10,7 @@ extern MenuButtonTemplate data_0215ccd8;
 
 static inline BOOL IsFirstLinkPlayer(void)
 {
-    return func_0207bd6c() == 0;
+    return Link_GetOwnPlayer() == 0;
 }
 
 /* After a slot is ready: closes its team arrow buttons (52 + slot * 2 and

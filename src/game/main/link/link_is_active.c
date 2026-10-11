@@ -3,7 +3,7 @@
 
 extern Unk_0215fe8c *data_0215fe8c;
 
-u32 func_0207bd80(void)
+u32 Link_IsActive(void)
 {
     return data_0215fe8c->linkActive;
 }

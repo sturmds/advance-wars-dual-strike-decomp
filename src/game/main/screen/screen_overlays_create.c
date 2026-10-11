@@ -9,7 +9,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Wallpaper_LoadSingle(void);
 void SecondScreenTask_Create(int a);
 void UnitInfoPanel_ClearUnit(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
 extern Unk_027c0280 *data_027c0280;
@@ -24,7 +24,7 @@ void ScreenOverlays_Create(void)
     Wallpaper_LoadSingle();
     SecondScreenTask_Create(0);
     UnitInfoPanel_ClearUnit();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(4, 4, 0x3a0, 15);
     }
 }

@@ -6,7 +6,7 @@
 
 u8 *func_02078138(int player);
 void func_0207b48c(void);
-u32 func_0207bd80(void);
+u32 Link_IsActive(void);
 int func_0207bd94(void);
 void func_0205ec08(int unused);
 void func_0205ec14(int unused);
@@ -45,7 +45,7 @@ void MapSelect_Update(Task *task)
             func_0205ec08(0);
         }
     }
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         return;
     }
     if (func_0207bd94() == 1) {

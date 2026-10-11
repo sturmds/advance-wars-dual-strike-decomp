@@ -8,7 +8,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 int Math_SinDegrees(int degrees);
 u16 func_0207a1dc(void);
-int func_0207bd6c(void);
+int Link_GetOwnPlayer(void);
 int LinkScreen_FindPanelOfPlayer(u8 player);
 int LinkScreen_GetPlayerRow(int panel);
 
@@ -24,7 +24,7 @@ extern u8 data_027c0040;
 /* Draws a player's marker beside its panel on the link phase screen. A
  * player whose bit is clear in func_0207a1dc() (bit 0 always counts) gets
  * tile 32 instead of its own. Ready players use palette 2. The player of
- * this console (func_0207bd6c), while not ready, gets a marker that pulses
+ * this console (Link_GetOwnPlayer), while not ready, gets a marker that pulses
  * in size through affine matrix 1. */
 void LinkPhase_DrawPlayerMarker(int player)
 {
@@ -41,7 +41,7 @@ void LinkPhase_DrawPlayerMarker(int player)
                      &data_027c0040, attr | 0x2000, 0);
         return;
     }
-    if (player != func_0207bd6c()) {
+    if (player != Link_GetOwnPlayer()) {
         Sprite_Queue(0, 120, (LinkScreen_GetPlayerRow(LinkScreen_FindPanelOfPlayer(player)) * 8 + 9) & 0xff,
                      &data_027c0040, attr, 0);
         return;

@@ -12,7 +12,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 s32 HwMod32(s32 numer, s32 denom);
 void *Mem_Alloc(u32 size);
 void Task_Destroy(Task *task);
-u8 func_0207bd6c(void);
+u8 Link_GetOwnPlayer(void);
 void DesignMap_LoadFromSlot(int slot, DesignMapRecord *dest);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -79,10 +79,10 @@ void LinkMapRecordSync_Init(LinkMapRecordSyncTask *task)
         task->blockSize = sizeof(DesignMapRecord);
     }
     task->sendBuffer = Mem_Alloc(2 * sizeof(DesignMapRecord));
-    if (task->senders[0] == func_0207bd6c()) {
+    if (task->senders[0] == Link_GetOwnPlayer()) {
         DesignMap_LoadFromSlot(HwMod32(STATE->unk_1c4->mapId - MAP_CUSTOM_FIRST, 3), (DesignMapRecord *)task->sendBuffer);
     }
-    if (task->senders[1] == func_0207bd6c()) {
+    if (task->senders[1] == Link_GetOwnPlayer()) {
         DesignMap_LoadFromSlot(HwMod32(STATE->secondMapId - MAP_CUSTOM_FIRST, 3),
                                (DesignMapRecord *)(task->sendBuffer + sizeof(DesignMapRecord)));
     }

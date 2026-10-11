@@ -43,7 +43,7 @@ void TpIcon2_LoadTo(u8 *dest);
 void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
-int func_0207bd80(void);
+int Link_IsActive(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -58,7 +58,7 @@ extern char data_0215d2a8[]; /* "/commo/res_linkcommon" */
  * func_0202b804 in layer 0's tiles; res_versus gives the layer 2 tiles and palette of both screens and
  * four tile blocks kept in gMenuState. The main screen loads the icons of
  * the setup sprites and the sub screen gets a copy of them. When
- * func_0207bd80() returns 1 (a link mode) the res_linkcommon sprite tiles and palette are
+ * Link_IsActive() returns 1 (a link mode) the res_linkcommon sprite tiles and palette are
  * loaded too, and a sprite is made at the end. Then the Force Rank sets,
  * the title text (one text for one map, another for two maps), the
  * wallpaper and help band 0x7f8. */
@@ -168,7 +168,7 @@ void VsSetup_Init(void)
     IconBank_LoadPalette(5, 17);
     Screen_SetCurrentGfx(saved);
 
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         res = File_Load(File_LocalizePath(data_0215d28c));
         Data_Unpack(res, data_027c0280->objVram + 0xc000);
         Mem_Free(res);
@@ -189,7 +189,7 @@ void VsSetup_Init(void)
     }
     Wallpaper_LoadBoth();
     HelpBand_Start(0x7f8, 0);
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 696, 15);
     }
 }

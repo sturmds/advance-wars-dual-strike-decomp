@@ -25,8 +25,8 @@ void MapSelect_DrawSubStrip(int x, int y, int a2);
 void MapSelect_DrawTwoMapsTitle(int x, int y);
 void MapSelect_DrawListThumbnail(int x, int y, int list);
 void MapSelect_DrawMapNames(int list, int a1);
-int func_0207bd6c(void);
-int func_0207bd80(void);
+int Link_GetOwnPlayer(void);
+int Link_IsActive(void);
 int Map_GetPlayerCount(int mapId);
 
 extern Unk_027c0280 *data_027c0280;
@@ -257,7 +257,7 @@ void MapSelect_Draw(void)
     if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
         Palette_Load(&MENU->colours[(MainLoop_GetFrameCount() >> 2) & 15], 0x238, 2);
     }
-    if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
+    if (Link_IsActive() == 1 && Link_GetOwnPlayer() != 0) {
         Sprite_Queue(0, 172, 172, &data_027c0040, 0x3000, 0x5c4);
         Sprite_Queue(0, 188, 172, &data_027c0108, 0x3000, 0x5e8);
         Palette_Load(&MENU->setup.colours2[(MainLoop_GetFrameCount() >> 2) & 15], 0x274, 2);

@@ -27,7 +27,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void MapSelect_BuildWarRoomLists(MapList *lists);
 void MapSelect_BuildLists(MapList *lists, int a);
 void MapSelect_DrawMapNames(int list, int page);
@@ -77,7 +77,7 @@ extern const char gMapSelectLinkCommonResPath[];
 /* Sets up the map select screen: blending on both screens, the background
  * and icons from /ohashi/res_mapselect (a different background in War Room
  * mode and for two-map battles), windows and palettes on the second screen,
- * and the menu colours from /ohashi/res_icon_blink. With func_0207bd80()
+ * and the menu colours from /ohashi/res_icon_blink. With Link_IsActive()
  * == 1 it also loads /commo/res_linkcommon and makes a sprite task. Then it
  * builds the map lists, resets saved positions that are past the end of
  * their list, draws the current page's map names and the selected map,
@@ -210,7 +210,7 @@ void MapSelect_Init(void)
     Screen_SetCurrentGfx(saved0280);
 
     File_ReadAt(&gMenuState, gIconBlinkResPath, 0, 0x20);
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         file = File_Load(File_LocalizePath(gMapSelectLinkCommonLangResPath));
         Data_Unpack(file, data_027c0280->objVram + 0xb880);
         Mem_Free(file);
@@ -258,7 +258,7 @@ void MapSelect_Init(void)
     MENU->setup.slideFrames = 0;
     MENU->setup.subSlideFrames = 0;
     EventQueue_Reset();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(0xe8, 8, 0x58, 15);
     }
 }

@@ -4,8 +4,8 @@
 
 u8 *func_02078138(int player);
 void func_0207b48c(void);
-u8 func_0207bd6c(void);
-u32 func_0207bd80(void);
+u8 Link_GetOwnPlayer(void);
+u32 Link_IsActive(void);
 int func_0207bd94(void);
 int func_02064e00(int row);
 void func_020651ec(void);
@@ -21,7 +21,7 @@ static inline BOOL IsLinkHost(void)
 {
     BOOL host;
 
-    if (func_0207bd6c() == 0) {
+    if (Link_GetOwnPlayer() == 0) {
         host = TRUE;
     } else {
         host = FALSE;
@@ -43,10 +43,10 @@ void VsSetup_UpdateSettingsMenu(Task *task)
 
     confirm = 0;
     cancel = 0;
-    if (!func_0207bd80() || IsLinkHost() == TRUE) {
+    if (!Link_IsActive() || IsLinkHost() == TRUE) {
         VsSetup_HandleSettingsKeys();
     }
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         return;
     }
     if (func_0207bd94() == 1) {

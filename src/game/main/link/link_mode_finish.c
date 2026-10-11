@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void func_0207b4e8(void);
 void func_0207bfb8(void);
 void GameFlagsMid_Restore(void);
@@ -11,7 +11,7 @@ void func_02103714(void);
  * those steps. */
 void LinkMode_Finish(void)
 {
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         GameFlagsMid_Restore();
         func_0207b4e8();
         func_0207bfb8();

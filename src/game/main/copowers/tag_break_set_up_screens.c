@@ -22,7 +22,7 @@ int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadObjPicture(int coId, int tile, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 void Co_LoadArmyGraphics(int coId, int tile, int army);
-int func_0207bd80(void);
+int Link_IsActive(void);
 u32 Co_GetTagPowerNameId(int frontCo, int backCo);   /* text id of the tag power of two COs */
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
@@ -242,7 +242,7 @@ loaded:
     Screen_SetCurrentGfx(savedGfx);
     Mem_Free(res);
 
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
     task->unk_58 = BreakText_Load(Text_Get(Co_GetTagPowerNameId(PLAYER->front.id & PLAYER_CO_ID_MASK,

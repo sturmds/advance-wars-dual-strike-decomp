@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/event_queue.h"
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void VsSetup_SetCo(u8 a, u8 b);
 void VsSetup_SetController(u8 a, u8 b);
 int VsSetup_PrevCo(int index);
@@ -15,13 +15,13 @@ extern MenuState gMenuState;
 /* needed to match: the u8 casts on EventQueue_Push arguments */
 #define TOGGLE_CONTROLLER(id)                                                         \
     value = MENU->setup.controllers[(id) >> 1][(id) & 1] == 1 ? 2 : 1;                \
-    if (func_0207bd80() == 1) {                                                       \
+    if (Link_IsActive() == 1) {                                                       \
         EventQueue_Push((u8)((id) + 1), (u8)value);                                   \
     } else {                                                                          \
         VsSetup_SetController((id) + 1, value);                                               \
     }
 #define STEP_CO(id)                                                                   \
-    if (func_0207bd80() == 1) {                                                       \
+    if (Link_IsActive() == 1) {                                                       \
         EventQueue_Push((u8)((id) + 9), (u8)VsSetup_PrevCo(id));                       \
     } else {                                                                          \
         VsSetup_SetCo((id) + 9, VsSetup_PrevCo(id));                                   \

@@ -4,8 +4,8 @@
 void MenuButton_Add(int x, int y, void *def, int id);
 void *MenuButton_Select(int id);
 void MenuButtons_RemoveSelectable(void);
-int func_0207bd6c(void);
-int func_0207bd80(void);
+int Link_GetOwnPlayer(void);
+int Link_IsActive(void);
 
 extern u8 data_0215c8a0[];
 
@@ -14,7 +14,7 @@ extern u8 data_0215c8a0[];
 /* Adds one button per map of the current page, in columns of COLS buttons
  * 2 tiles apart (the next column starts 9 tiles right, except in game mode 1,
  * where there is a single column), then selects the button of the chosen
- * map. Returns at once when func_0207bd80() is 1 and func_0207bd6c() is nonzero
+ * map. Returns at once when Link_IsActive() is 1 and Link_GetOwnPlayer() is nonzero
  * (their meaning is unknown). Needed to match: the list index sits in a local. */
 void MapSelect_AddMapButtons(void)
 {
@@ -25,7 +25,7 @@ void MapSelect_AddMapButtons(void)
 
     x = STATE->gameMode == GAME_MODE_WAR_ROOM ? 17 : 1;
     y = FIRST_ROW();
-    if (func_0207bd80() == 1 && func_0207bd6c() != 0) {
+    if (Link_IsActive() == 1 && Link_GetOwnPlayer() != 0) {
         return;
     }
     MenuButtons_RemoveSelectable();

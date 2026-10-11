@@ -10,7 +10,7 @@ extern int data_0229eac8;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-int func_0207bd80(void);
+int Link_IsActive(void);
 void Map_ScrollViewToTile(int arg);
 
 /* Same wait as AiShowAction_Step8, then moves to step 5. */
@@ -18,7 +18,7 @@ void AiShowAction_Step9(void)
 {
     int skip = 0;
 
-    if (func_0207bd80() == 0) {
+    if (Link_IsActive() == 0) {
         skip = gKeypad->held & PAD_BUTTON_A;
     }
     GAME->cursorX = gUnitAction.target;

@@ -21,7 +21,7 @@ void Screen_ApplyAll(void);
 void TransferQueue_Run(void);
 void func_01ff8e58(void);
 void CallbackList_RunAndClear(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void func_0207d930(void);
 
 /* Runs `body` on both screens, then puts the current screen back. */
@@ -56,7 +56,7 @@ void MainLoop_Ov003VBlank(void)
         CallbackList_RunAndClear();
     } else {
         func_01ff9f1c(0);
-        if (func_0207bd80() == 1) {
+        if (Link_IsActive() == 1) {
             func_0207d930();
         }
     }

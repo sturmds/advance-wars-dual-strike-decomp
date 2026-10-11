@@ -14,7 +14,7 @@ extern u8 MainLoop_MapFrame[];
 s8 CallbackSlots_Add(const void *descriptor);
 void func_01ff9c48(const void *descriptor);
 void func_020c0734(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
 /* Battle start step: runs the screen config's unk_38 hook, registers the
@@ -34,7 +34,7 @@ void Battle_RegisterFrameCallbacks(void)
     if (data_027c027c != data_027c0288.unk_04) {
         return;
     }
-    if (func_0207bd80() != 1) {
+    if (Link_IsActive() != 1) {
         return;
     }
     SpriteTask_Create(4, 4, 0x3a0, 15);

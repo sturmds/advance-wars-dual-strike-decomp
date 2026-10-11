@@ -37,7 +37,7 @@ void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void MenuButtons_DisableTouch(void);
 void Wallpaper_LoadBoth(void);
 void func_0206d5b4(void);
-int func_0207bd80(void);
+int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
 extern Unk_02080440 *data_027c027c;
@@ -234,7 +234,7 @@ void PlayerInfo_Init(Task *task)
     MenuButtons_DisableTouch();
     Wallpaper_LoadBoth();
     func_0206d5b4();
-    if (func_0207bd80() == 1) {
+    if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 540, 15);
     }
 }
