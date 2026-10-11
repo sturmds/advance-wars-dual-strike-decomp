@@ -11,7 +11,7 @@ extern Unk_027c0280 *data_027c0280;
 /* Clears the 2 by 2 characters of map tile (x, y) on layer 1 (the unit layer).
  * Not matched yet (97.6%): the first store addresses [rowOff*2, p] in the original
  * and [p, rowOff*2] here. */
-void func_020f7cac(int x, int y)
+void MapView_ClearUnitTile(int x, int y)
 {
     int col = x - GAME->unk_1c4->unk_26;
     int row = y - GAME->unk_1c4->unk_28;

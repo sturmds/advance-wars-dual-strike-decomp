@@ -26,7 +26,7 @@ void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
 void func_0210bb60(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -117,14 +117,14 @@ extern TaskScriptCmd data_ov004_022be7b8[];
         Ov004_UnpackResource(data_ov004_022bddbc, GFX_LAYER(data_027c0280, 1)->map);            \
         map = GFX_LAYER(data_027c0280, 1)->map;                                                 \
         func_01ff8a00(map, LAYER_MAP_BYTES(1), 0x1000);                                         \
-        func_01ff8a2c(GFX_LAYER(data_027c0280, 1)->map + 0x400, 0, 0, 32, 32, 0);               \
+        Bg_FillRect(GFX_LAYER(data_027c0280, 1)->map + 0x400, 0, 0, 32, 32, 0);               \
         Gfx_RequestLayerCopy(1);                                                                \
         Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer + 0x20);           \
         Ov004_UnpackResource(data_ov004_022bddc0, BG_CHAR_DATA(data_027c0280->layer2Bg));       \
         Ov004_UnpackResource(data_ov004_022bddbc, GFX_LAYER(data_027c0280, 2)->map);            \
         map = GFX_LAYER(data_027c0280, 2)->map;                                                 \
         func_01ff8a00(map, LAYER_MAP_BYTES(2), 0x2000);                                         \
-        func_01ff8a2c(GFX_LAYER(data_027c0280, 2)->map, 0, 0, 32, 32, 0);                       \
+        Bg_FillRect(GFX_LAYER(data_027c0280, 2)->map, 0, 0, 32, 32, 0);                       \
         Gfx_RequestLayerCopy(2);                                                                \
         Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer + 0x40);           \
         Palette_Flush();                                                                        \

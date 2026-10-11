@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u16 data_0229d8c4;
-extern u32 data_022a6b38;
+extern u32 gMapGameRunning;
 
 void Panels_PlaceForCursor(void);
 void func_020b9c3c(void);
@@ -30,7 +30,7 @@ void Battle_ResetTurnState(void)
     func_020b9c3c();
     func_020b98bc();
     data_0229d8c4 = 0;
-    data_022a6b38 = 1;
+    gMapGameRunning = 1;
     STATE->unk_18 = 4;
     STATE->unk_1c = 0;
     STATE->currentPlayer = 0;

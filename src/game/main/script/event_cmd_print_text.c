@@ -8,7 +8,7 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
-extern u8 data_022900b8;
+extern u8 gEventSkipState;
 extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 
@@ -24,8 +24,8 @@ void EventHold_ReleaseOnTextDone(struct EventScriptSlot *slot);
  * tile map at tile (7, 15), or (1, 15) in game mode 0 when
  * data_022977a4.unk_01 is 5, with the current palette slot. The printer
  * runs func_0201c600 when done, and the script is held by EventHold_ReleaseOnTextDone.
- * A text with control code 20 (func_02015dbc) sets data_022900b8 to 2;
- * while data_022900b8 is 1 nothing is printed and the command returns 1,
+ * A text with control code 20 (func_02015dbc) sets gEventSkipState to 2;
+ * while gEventSkipState is 1 nothing is printed and the command returns 1,
  * so the script goes on this frame. */
 s16 EventCmd_PrintText(int index)
 {
@@ -36,9 +36,9 @@ s16 EventCmd_PrintText(int index)
     int x;                             /* needed to match: an int narrowed at the call */
 
     if (!func_02015dbc(Text_Get(script->unk_00->unk_0c))) {
-        data_022900b8 = 2;
+        gEventSkipState = 2;
     }
-    if (data_022900b8 != 1) {
+    if (gEventSkipState != 1) {
         map = data_027c0280->layer0Map;
         if (data_027c027c->unk_48[data_027c0284]->gameMode == 0 && data_022977a4.unk_01 == 5) {
             x = 1;

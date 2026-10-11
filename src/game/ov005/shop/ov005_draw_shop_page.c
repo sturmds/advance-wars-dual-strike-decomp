@@ -7,7 +7,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void MenuCursor_DrawAt(int x, int y, int width, int height);
 int Ov005_GetShopItemsFromPage(Unk_ov005_0236bbb0 *work); /* itemCount - page * 6 */
@@ -45,7 +45,7 @@ void Ov005_DrawShopPage(Unk_ov005_0236bbb0 *work)
     if (work->redrawRows) {
         for (i = 0; i < 6; i++) {
             SWITCH_TO(data_027c0288.unk_00);
-            func_01ff8a2c(data_027c0280->layer0Map, 4, 5 + i * 2, 22, 2, 0);
+            Bg_FillRect(data_027c0280->layer0Map, 4, 5 + i * 2, 22, 2, 0);
             SWITCH_BACK();
         }
         for (i = 0; i < rows; i++) {

@@ -6,7 +6,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 data_022900b8;
+extern u8 gEventSkipState;
 extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 extern u8 *data_02297790;
@@ -33,9 +33,9 @@ s16 EventCmd_PrintWindowText(int index)
     int x;                             /* needed to match: an int narrowed at the call */
 
     if (!func_02015dbc(Text_Get(script->unk_00->unk_0c))) {
-        data_022900b8 = 2;
+        gEventSkipState = 2;
     }
-    if (data_022900b8 != 1) {
+    if (gEventSkipState != 1) {
         if (data_027c027c->unk_48[data_027c0284]->gameMode == 0 && data_022977a4.unk_01 == 5) {
             x = 1;
         } else {

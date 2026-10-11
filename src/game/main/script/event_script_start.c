@@ -7,7 +7,7 @@ s16 EventScript_FindSlot(const EventScriptCommand *script);
 
 /* Starts script in a free slot and returns the slot, or NULL when all
  * EVENT_SCRIPT_SLOTS are in use. func_02014c50 and func_0201ce98 run first
- * (they set data_022900b8 and data_0229777c; meaning unknown). */
+ * (they set gEventSkipState and data_0229777c; meaning unknown). */
 EventScriptSlot *EventScript_Start(const EventScriptCommand *script)
 {
     s16 slot;

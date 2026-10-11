@@ -39,7 +39,7 @@ void Ov006_LoadArmyTerrainGraphics(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern u8 data_022a7d5c[];
-extern u32 data_022a6b38;
+extern u32 gMapGameRunning;
 extern const TaskScriptCmd data_ov006_0236a218[];
 extern const TaskScriptCmd data_ov006_0236a1e0[];
 
@@ -134,7 +134,7 @@ void DesignRoom_Init(Task *task)
     }
     Battle_RegisterFrameCallbacks();
     func_01ff9c48(MainLoop_MapFrame);
-    data_022a6b38 = 0;
+    gMapGameRunning = 0;
     Font_SetDigitEndTile(0x45);
     MapCursor_SetTile(7, 4, &STATE->cursorX, &STATE->cursorPixelX);
     *(s8 *)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */

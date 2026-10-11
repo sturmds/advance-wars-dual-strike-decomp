@@ -9,7 +9,7 @@ extern u8 data_021576fb[][20];
 int MainLoop_GetFrameCount(void);
 int SceneMode_IsCurrent(int a0);
 int Map_IsThisMapsTurn(void);
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define VIEW (GAME->unk_1c4)
@@ -62,7 +62,7 @@ void MapView_ApplyBgScrollPanLayer0(void)
         }
     }
 
-    func_01ff8bc8(0, panX + (VIEW->scrollX - VIEW->unk_26 * 16), panY + (VIEW->scrollY - VIEW->unk_28 * 16));
-    func_01ff8bc8(1, VIEW->scrollX - VIEW->unk_26 * 16, VIEW->scrollY - VIEW->unk_28 * 16);
-    func_01ff8bc8(3, VIEW->scrollX - VIEW->unk_26 * 16, VIEW->scrollY - VIEW->unk_28 * 16);
+    Bg_SetScroll(0, panX + (VIEW->scrollX - VIEW->unk_26 * 16), panY + (VIEW->scrollY - VIEW->unk_28 * 16));
+    Bg_SetScroll(1, VIEW->scrollX - VIEW->unk_26 * 16, VIEW->scrollY - VIEW->unk_28 * 16);
+    Bg_SetScroll(3, VIEW->scrollX - VIEW->unk_26 * 16, VIEW->scrollY - VIEW->unk_28 * 16);
 }

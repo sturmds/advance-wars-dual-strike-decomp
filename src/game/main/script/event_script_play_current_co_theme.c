@@ -3,18 +3,18 @@
 #include "game/Unk_02080440.h"
 #include "game/song.h"
 
-extern u8 data_022900b8;
+extern u8 gEventSkipState;
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 int Player_GetCoThemeSong(int player);
 
 /* Script command: requests the theme of the current player's CO. When
- * data_022900b8 is 1 it only advances. The (u8) cast is needed to match. */
+ * gEventSkipState is 1 it only advances. The (u8) cast is needed to match. */
 s16 EventScript_PlayCurrentCoTheme(s16 index)
 {
     int done;
 
-    if (data_022900b8 == 1) {
+    if (gEventSkipState == 1) {
         done = TRUE;
     } else {
         Sound_RequestSong(Player_GetCoThemeSong((u8)data_027c027c->unk_48[data_027c0284]->currentPlayer));

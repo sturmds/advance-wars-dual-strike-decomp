@@ -12,7 +12,7 @@ void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 BOOL Screens_IsTransitionRunning(void);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
-void func_01ff8a2c(void *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(void *map, int x, int y, int width, int height, int tile);
 void func_0201d7d0(void);
 void func_0201c898(void);
 int func_02014c24(void);
@@ -247,7 +247,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         if (!Ov005_IsShopScriptRunning() && work->points <= gPlayRecords.points) {
             SWITCH_TO(data_027c0288.unk_00);
-            func_01ff8a2c(data_02297be0, 6, 0, 26, 6, 0);
+            Bg_FillRect(data_02297be0, 6, 0, 26, 6, 0);
             func_0201d7d0();
             SWITCH_BACK();
             work->points = gPlayRecords.points;

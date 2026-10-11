@@ -3,7 +3,7 @@
 
 void MenuBox_Draw(int a, int b, int c, int d);
 void ScriptSlot_StopByScript(const void *descriptor);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void Text_PrintById(int x, int y, u16 *target, u32 text, int a, int b);
 
@@ -16,7 +16,7 @@ void BattleMenu_DrawHelpText(u32 textId)
 {
     MenuBox_Draw(19, 18, 14, 6);
     ScriptSlot_StopByScript(data_021583b4);
-    func_01ff8a2c(data_027c0280->layer0Map, 19, 18, 13, 6, 0);
+    Bg_FillRect(data_027c0280->layer0Map, 19, 18, 13, 6, 0);
     Gfx_RequestLayerCopy(0);
     Text_PrintById(20, 19, data_027c0280->layer0Map, textId, 0, 212);
 }

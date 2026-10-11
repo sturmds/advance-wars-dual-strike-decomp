@@ -19,7 +19,7 @@ void Map_ReloadPalettes(void);
 void Ov006_LoadTerrainPalettes(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
-extern u32 data_022a6b38;
+extern u32 gMapGameRunning;
 extern u8 data_022a7d5c[];
 
 void func_ov006_023544c4(void)
@@ -42,7 +42,7 @@ void func_ov006_023544c4(void)
     }
     Battle_RegisterFrameCallbacks();
     func_01ff9c48(MainLoop_MapFrame);
-    data_022a6b38 = 0;
+    gMapGameRunning = 0;
     Camera_ResetToPreset1(data_022a7d5c);
     func_01ff8c84(1);
     Gfx_RequestLayerCopy(1);

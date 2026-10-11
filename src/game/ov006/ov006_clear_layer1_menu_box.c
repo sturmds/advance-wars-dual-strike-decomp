@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_0201e954(void);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 
@@ -12,7 +12,7 @@ extern Unk_027c0280 *data_027c0280;
 void Ov006_ClearLayer1MenuBox(void)
 {
     func_0201e954();
-    func_01ff8a2c(data_027c0280->layer1Map, 2, 2, 12, 10, 0);
+    Bg_FillRect(data_027c0280->layer1Map, 2, 2, 12, 10, 0);
     Gfx_RequestLayerCopy(1);
     func_020c4018();
 }

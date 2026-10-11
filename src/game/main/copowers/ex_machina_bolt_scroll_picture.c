@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -15,6 +15,6 @@ void func_01ff8bc8(int layer, int scrollX, int scrollY);
  * tile. */
 void ExMachinaBolt_ScrollPicture(ExMachinaBoltTask *task)
 {
-    func_01ff8bc8(0, 40 - (task->tileX * 16 - STATE->unk_1c4->scrollX),
+    Bg_SetScroll(0, 40 - (task->tileX * 16 - STATE->unk_1c4->scrollX),
                   208 - (task->tileY * 16 - STATE->unk_1c4->scrollY));
 }

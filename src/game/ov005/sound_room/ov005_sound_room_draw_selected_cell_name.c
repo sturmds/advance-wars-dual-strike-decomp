@@ -4,7 +4,7 @@
 #include "game/text_print.h"
 
 const void *Text_Get(u32 textId);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 int func_02122414(char *buf, int size, const char *format, ...); /* snprintf */
 
 extern const char data_ov005_0236b358[]; /* "%s" */
@@ -24,7 +24,7 @@ void Ov005SoundRoom_DrawSelectedCellName(Unk_ov005_0236bbac *work)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_01ff8a2c(data_027c0280->layer0Map, 5, 21, 22, 2, 0);
+        Bg_FillRect(data_027c0280->layer0Map, 5, 21, 22, 2, 0);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     } else {
@@ -37,7 +37,7 @@ void Ov005SoundRoom_DrawSelectedCellName(Unk_ov005_0236bbac *work)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_01ff8a2c(data_027c0280->layer0Map, 5, 21, 22, 2, 0);
+        Bg_FillRect(data_027c0280->layer0Map, 5, 21, 22, 2, 0);
         Text_Print(5, 21, data_027c0280->layer0Map, text, 0, 0x200);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);

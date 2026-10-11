@@ -3,7 +3,7 @@
 #include "game/text_print.h"
 
 extern Unk_027c0280 *data_027c0280;
-extern u8 data_022900b8;
+extern u8 gEventSkipState;
 extern u8 data_02158394[];
 
 /* sets up printer to print text at tile (x, y) into map, with tile data at tiles */
@@ -19,7 +19,7 @@ s8 Text_Print(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
     Unk_027c0280 *gfx = data_027c0280;
     void *printer = gfx->textPrinter;
 
-    data_022900b8 = 0;
+    gEventSkipState = 0;
     TextPrinter_Init(printer, x, y, gfx->bgVram + (gfx->bgCnt[gfx->layer0Bg].charBase << 14), map, text, unk_30, unk_32);
     func_02015da8(printer);
     return ScriptSlot_Start(data_02158394, 0);

@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_022a72e8[4][2][4];
+extern u32 gBattleSkillSets[4][2][4];
 extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 void Skills_Copy(const u32 *src, u32 *dst);
@@ -23,7 +23,7 @@ void Skills_LoadPlayer1Equipped(int frontSet, int backSet)
         int co = (&data_027c027c->unk_48[data_027c0284]->players[1].front)[i].id & PLAYER_CO_ID_MASK;
 
         if (co != 0) {
-            Skills_Copy(gCoEquippedSkills[co][0], data_022a72e8[0][sets[i]]);
+            Skills_Copy(gCoEquippedSkills[co][0], gBattleSkillSets[0][sets[i]]);
         }
     }
 }

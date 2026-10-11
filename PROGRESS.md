@@ -61,10 +61,10 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 |
-| `src/game/main/map/func_020f79a8.c` | func_020f79a8 | 772 |
-| `src/game/main/map/func_020f7cac.c` | func_020f7cac | 164 |
 | `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
+| `src/game/main/map/map_view_clear_unit_tile.c` | MapView_ClearUnitTile | 164 |
+| `src/game/main/map/map_view_draw_unit_tile.c` | MapView_DrawUnitTile | 772 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/co_select_screen_refresh_cell_skills.c` | CoSelectScreen_RefreshCellSkills | 132 |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 |

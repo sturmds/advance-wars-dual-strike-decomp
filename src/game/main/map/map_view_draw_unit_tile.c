@@ -8,7 +8,7 @@
 extern int data_027c0284;
 extern Unk_02080440 *data_027c027c;
 
-void func_020f7cac(u16 x, u16 y);
+void MapView_ClearUnitTile(u16 x, u16 y);
 BOOL UnitSlot_IsVisible(int slot);
 u16 *Bg_GetMapEntry(int layer, int x, int y);
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -19,7 +19,7 @@ void UnitIcon_DrawEntries(u16 *entry, int type, int look, u8 carrying, u8 captur
  * tile when there is none to show. look is 0x100 for a unit that has
  * waited (grey), else the slot's owner bits. Not matched yet: the original
  * keeps units and unit in one register (r7). */
-void func_020f79a8(int x, int y)
+void MapView_DrawUnitTile(int x, int y)
 {
     int idx;
     MapUnit *unit;
@@ -39,7 +39,7 @@ void func_020f79a8(int x, int y)
     BOOL lowAmmo;
 
     if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 || y >= STATE->unk_1c4->mapHeight) {
-        func_020f7cac(x, y);
+        MapView_ClearUnitTile(x, y);
         return;
     }
     tiles = STATE_IDX_FIRST->mapTiles;
@@ -47,7 +47,7 @@ void func_020f79a8(int x, int y)
     slot = tiles->unk_508[idx];
     if (slot == 0 || tiles->unk_2338[idx] == 0 || !UnitSlot_IsVisible(slot)
         || ((units = STATE->units)[slot].flags & MAP_UNIT_LOCKED)) {
-        func_020f7cac(x, y);
+        MapView_ClearUnitTile(x, y);
         return;
     }
     if (units[slot].flags & MAP_UNIT_WAITED) {

@@ -7,7 +7,7 @@ int MainLoop_GetFrameCount(void);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 BOOL func_020f3178(void);
 BOOL TimeLimit_GetTotal(int *value);
 BOOL TimeLimit_GetRemaining(int *value);
@@ -41,7 +41,7 @@ void TimeDial_Update(TimeDial *dial)
     int handX;
     int handY;
 
-    func_01ff8bc8(2, (MainLoop_GetFrameCount() >> 2) & 0xff, 0);
+    Bg_SetScroll(2, (MainLoop_GetFrameCount() >> 2) & 0xff, 0);
     if (func_020f3178() && TimeLimit_GetTotal(&total) && TimeLimit_GetRemaining(&left)) {
         angle = 0x4000 - ((u32)HwDiv32(left, 60) << 14) / (u32)HwDiv32(total, 60);
     } else {

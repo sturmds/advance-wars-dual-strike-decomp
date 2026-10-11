@@ -4696,8 +4696,8 @@ func_020f788c kind:function(arm,size=0x2c) addr:0x020f788c
 func_020f78b8 kind:function(arm,size=0x24) addr:0x020f78b8
 MapView_DrawRangeTile kind:function(arm,size=0xc8) addr:0x020f78dc
 func_020f79a4 kind:function(arm,size=0x4) addr:0x020f79a4
-func_020f79a8 kind:function(arm,size=0x304) addr:0x020f79a8
-func_020f7cac kind:function(arm,size=0xa4) addr:0x020f7cac
+MapView_DrawUnitTile kind:function(arm,size=0x304) addr:0x020f79a8
+MapView_ClearUnitTile kind:function(arm,size=0xa4) addr:0x020f7cac
 UnitIcon_Draw kind:function(arm,size=0x50) addr:0x020f7d50
 UnitIcon_DrawEntries kind:function(arm,size=0x2b8) addr:0x020f7da0
 ScreenConfig_Select kind:function(arm,size=0x34) addr:0x020f8058
@@ -8617,7 +8617,7 @@ data_0228443d kind:bss addr:0x0228443d
 gOwnerInfo kind:bss addr:0x0228ff58
 data_0228ffa8 kind:bss addr:0x0228ffa8
 gCameraPresetIndex kind:bss addr:0x022900b4
-data_022900b8 kind:bss addr:0x022900b8
+gEventSkipState kind:bss addr:0x022900b8
 data_022900bc kind:bss addr:0x022900bc
 data_02290118 kind:bss addr:0x02290118
 data_02290128 kind:bss addr:0x02290128
@@ -8855,7 +8855,7 @@ data_022a1b10 kind:bss addr:0x022a1b10
 data_022a2130 kind:bss addr:0x022a2130
 data_022a6b30 kind:bss addr:0x022a6b30
 data_022a6b34 kind:bss addr:0x022a6b34
-data_022a6b38 kind:bss addr:0x022a6b38
+gMapGameRunning kind:bss addr:0x022a6b38
 data_022a6b3c kind:bss addr:0x022a6b3c
 data_022a6b40 kind:bss addr:0x022a6b40
 gMapPreviewRowOffsets kind:bss addr:0x022a6b80
@@ -8878,7 +8878,7 @@ gCoPickList kind:bss addr:0x022a7298
 data_022a72b8 kind:bss addr:0x022a72b8
 data_022a72c8 kind:bss addr:0x022a72c8
 data_022a72d8 kind:bss addr:0x022a72d8
-data_022a72e8 kind:bss addr:0x022a72e8
+gBattleSkillSets kind:bss addr:0x022a72e8
 gCoEquippedSkills kind:bss addr:0x022a7368
 data_022a7a68 kind:bss addr:0x022a7a68
 data_022a7a88 kind:bss addr:0x022a7a88

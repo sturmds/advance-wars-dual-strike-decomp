@@ -4,7 +4,7 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 void PopupMenu_InitIcons(PopupMenuTask *menu);
 void Layer0_ClearMap(void);
 void PopupMenu_SetItemIcon(int icon);
@@ -22,7 +22,7 @@ void PopupMenu_DrawItems(PopupMenuTask *menu)
     s16 i;
     s16 grey;
 
-    func_01ff8bc8(0, 0, 0);
+    Bg_SetScroll(0, 0, 0);
     PopupMenu_InitIcons(menu);
     Layer0_ClearMap();
     for (i = 0; i < menu->count; i++) {

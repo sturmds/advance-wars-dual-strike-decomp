@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Text_PrintImmediate(int x, int y, u16 *map, u32 textId, u16 unk_30, int arg);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -11,7 +11,7 @@ extern Unk_027c0280 *data_027c0280;
  * Rows 15 and 21 hold short texts 6 columns apart, from column 4. */
 void Ov006_DrawTextPage1(void)
 {
-    func_01ff8a2c(data_027c0280->layer0Map, 0, 0, 32, 24, 0);
+    Bg_FillRect(data_027c0280->layer0Map, 0, 0, 32, 24, 0);
     Text_PrintImmediate(1, 1, data_027c0280->layer0Map, 0x7e000006, 0, 0);
     Text_PrintImmediate(9, 1, data_027c0280->layer0Map, 0x7e000007, 0, 0);
     Text_PrintImmediate(9, 3, data_027c0280->layer0Map, 0x7e000008, 0, 0);

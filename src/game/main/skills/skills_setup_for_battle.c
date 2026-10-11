@@ -13,9 +13,9 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern u32 gLinkPlay;
 extern u32 data_022a72b8[4];
-extern u32 data_022a72e8[4][2][4];
-/* Battle skill sets, indexed by player (1-4): data_022a72e8 starts at player 1. */
-#define PLAYER_SKILLS (data_022a72e8 - 1)
+extern u32 gBattleSkillSets[4][2][4];
+/* Battle skill sets, indexed by player (1-4): gBattleSkillSets starts at player 1. */
+#define PLAYER_SKILLS (gBattleSkillSets - 1)
 extern u32 gCoEquippedSkills[CO_COUNT][4][4];
 
 void Skills_Copy(const u32 *src, u32 *dst);

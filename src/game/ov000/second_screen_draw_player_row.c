@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 u16 *Bg_GetMapEntry(int layer, int x, int y);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
@@ -29,8 +29,8 @@ void SecondScreen_DrawPlayerRow(int x, int y, int player, int armyStyle, int arm
     Screen_SetCurrent(data_027c0288.unk_00);
     savedSubGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_01ff8a2c(data_027c0280->layer0Map, x, y, 8, 6, 0);
-    func_01ff8a2c(data_027c0280->layer1Map, x, y, 8, 6, 0);
+    Bg_FillRect(data_027c0280->layer0Map, x, y, 8, 6, 0);
+    Bg_FillRect(data_027c0280->layer1Map, x, y, 8, 6, 0);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Screen_SetCurrentGfx(savedSubGfx);

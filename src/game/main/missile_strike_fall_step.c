@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Task_ResumeScript(MissileStrikeTask *task);
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 
@@ -23,5 +23,5 @@ void MissileStrike_FallStep(MissileStrikeTask *task)
         task->unk_54 = 0;
         Task_ResumeScript(task);
     }
-    func_01ff8bc8(0, 40 - x, 192 - y + task->unk_54);
+    Bg_SetScroll(0, 40 - x, 192 - y + task->unk_54);
 }

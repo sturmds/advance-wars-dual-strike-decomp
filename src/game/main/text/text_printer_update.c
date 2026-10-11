@@ -7,7 +7,7 @@
 #define KEY_SKIP    0x400              /* Start */
 
 extern Unk_02080440 *data_027c027c;
-extern u8 data_022900b8;
+extern u8 gEventSkipState;
 extern ScriptCommand data_02158364[];
 extern ScriptCommand data_021584f8[];
 extern ScriptCommand data_02158520[];
@@ -30,7 +30,7 @@ void Sound_PlaySe(u32 soundId);
 #define ADVANCE(n) (*(const u8 **)&printer->text += (n))
 
 /* Per-frame update of a text printer slot. Waits while one of the three
- * text effect scripts runs. Start skips the event (data_022900b8 = 1) and
+ * text effect scripts runs. Start skips the event (gEventSkipState = 1) and
  * stops the printer, if func_02014b28 allows it. A or a touch makes a slow
  * printer show the rest at once (func_02015da8). Otherwise unk_3d counts
  * frames up to unk_3e, and each time it wraps one character is drawn; while
@@ -51,8 +51,8 @@ void TextPrinter_Update(TextPrinter *printer)
     if (ScriptSlot_Find(data_02158520) != -1) {
         return;
     }
-    if (printer->unk_3e >= 1 && func_02014b28() && (keys & KEY_SKIP) && data_022900b8 == 0) {
-        data_022900b8 = 1;
+    if (printer->unk_3e >= 1 && func_02014b28() && (keys & KEY_SKIP) && gEventSkipState == 0) {
+        gEventSkipState = 1;
         func_0201d730(func_02015ec8(printer));
         ((void (*)(void))printer->unk_40)();
         ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);

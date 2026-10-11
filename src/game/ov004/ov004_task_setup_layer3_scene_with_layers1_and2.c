@@ -5,7 +5,7 @@
 void Screen_InitLayers(const GfxLayer *config);
 void Screen_SetBgMode(int bgMode);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -109,14 +109,14 @@ void Ov004Task_SetupLayer3SceneWithLayers1And2(Ov004Task *task) {
     map = GFX_LAYER(data_027c0280, 1)->map;
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 1), 1), 0);
     /* clear the second 32x32 screen block of layer 1's map */
-    func_01ff8a2c(GFX_LAYER(data_027c0280, 1)->map + 0x400, 0, 0, 32, 32, 0);
+    Bg_FillRect(GFX_LAYER(data_027c0280, 1)->map + 0x400, 0, 0, 32, 32, 0);
     Gfx_RequestLayerCopy(1);
 
     Ov004_UnpackResource(data_ov004_022bddc0, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     Ov004_UnpackResource(data_ov004_022bddbc, GFX_LAYER(data_027c0280, 2)->map);
     map = GFX_LAYER(data_027c0280, 2)->map;
     func_01ff8a00(map, LAYER_MAP_BYTES(GFX_LAYER(data_027c0280, 2), 2), 0);
-    func_01ff8a2c(GFX_LAYER(data_027c0280, 2)->map, 0, 0, 32, 32, 0);
+    Bg_FillRect(GFX_LAYER(data_027c0280, 2)->map, 0, 0, 32, 32, 0);
     Gfx_RequestLayerCopy(2);
     Ov004_CopyResource(data_ov004_022bddb8, data_027c0280->paletteBuffer);
     Palette_Flush();

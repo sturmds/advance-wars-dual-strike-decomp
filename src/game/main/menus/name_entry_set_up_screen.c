@@ -16,7 +16,7 @@ void Font_LoadDigits(int a);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
+void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 int NameEntry_GetTextLength(NameEntry *entry);
@@ -44,7 +44,7 @@ static inline void SetBgPriority(int bg, int priority)
 
 static inline void FillMapRect(u16 *map, int x, int y, int width, int height, int tile)
 {
-    func_01ff8a2c(map, x, y, width, height, tile);
+    Bg_FillRect(map, x, y, width, height, tile);
 }
 
 static inline void SetBgScrollX(int bg, int x)

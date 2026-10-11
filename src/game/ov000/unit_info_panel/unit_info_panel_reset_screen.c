@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/unit_info_panel.h"
 
-void func_01ff8bc8(int layer, int scrollX, int scrollY);
+void Bg_SetScroll(int layer, int scrollX, int scrollY);
 void func_0201e6e8(int x, int y, int width, int height);
 void Screen_ResetWindows(void);
 
@@ -11,8 +11,8 @@ void UnitInfoPanel_InitScreen(void)
 {
     data_ov000_0234ec8c->tileX = 8;
     data_ov000_0234ec8c->tileY = 7;
-    func_01ff8bc8(0, 0, 0);
-    func_01ff8bc8(1, 0, 0);
+    Bg_SetScroll(0, 0, 0);
+    Bg_SetScroll(1, 0, 0);
     func_0201e6e8(8, 7, 16, 10);
     Screen_ResetWindows();
 }
