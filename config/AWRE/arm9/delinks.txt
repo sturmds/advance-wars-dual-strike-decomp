@@ -8612,6 +8612,10 @@ src/game/main/menus/combat_setup_queue_row_sprites.c:
     complete
     .text       start:0x02085144 end:0x02085288
 
+src/game/main/menus/combat_setup_clear_row_screens.c:
+    complete
+    .text       start:0x02085288 end:0x0208539c
+
 src/game/main/menus/combat_setup_add_leader_buttons.c:
     complete
     .text       start:0x020855a8 end:0x02085640
