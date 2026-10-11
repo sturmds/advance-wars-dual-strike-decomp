@@ -2,7 +2,7 @@
 #include "game/map_select.h"
 
 void Sound_PlaySe(int id);
-void func_0205f12c(int slideBack);
+void MapSelect_StartListSlide(int slideBack);
 
 extern MenuStateFrom400 data_0229ef30;
 
@@ -20,5 +20,5 @@ void MapSelect_PrevList(void)
     } else {
         LIST_OF_TAB(TAB()) = MENU->setup.mapListCount - 1;
     }
-    func_0205f12c(0);
+    MapSelect_StartListSlide(0);
 }

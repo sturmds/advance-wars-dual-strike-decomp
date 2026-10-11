@@ -2,12 +2,12 @@
 #include "game/map_select.h"
 
 void Sound_PlaySe(int id);
-void func_0205f12c(int slideBack);
+void MapSelect_StartListSlide(int slideBack);
 
 extern MenuStateFrom400 data_0229ef30;
 
 /* Switches the current tab to the next map list, wrapping to the first, and
- * starts the slide between them (func_0205f12c). The first switch plays a
+ * starts the slide between them (MapSelect_StartListSlide). The first switch plays a
  * sound. Remembers the map selected before. */
 void MapSelect_NextList(void)
 {
@@ -22,5 +22,5 @@ void MapSelect_NextList(void)
     } else {
         LIST_OF_TAB(TAB()) = 0;
     }
-    func_0205f12c(1);
+    MapSelect_StartListSlide(1);
 }
