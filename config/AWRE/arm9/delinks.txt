@@ -13005,6 +13005,7 @@ src/game/main/graphics/func_020f869c.c:
     .text       start:0x020f869c end:0x020f8764
 
 src/game/main/graphics/func_020f8764.c:
+    complete
     .text       start:0x020f8764 end:0x020f882c
 
 src/game/main/func_020f882c.c:
