@@ -3911,6 +3911,9 @@ src/game/main/func_0202ef24.c:
     complete
     .text       start:0x0202ef24 end:0x0202ef40
 
+src/game/main/menus/func_0202f0d8.c:
+    .text       start:0x0202f0d8 end:0x0202f94c
+
 src/game/main/func_0202f94c.c:
     complete
     .text       start:0x0202f94c end:0x0202f9a4

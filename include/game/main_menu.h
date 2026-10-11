@@ -33,6 +33,23 @@ typedef struct MainMenu {
     u8 unk_11;                         /* bit 0 cleared by MainMenu_ClearCursors */
 } MainMenu;
 
+/* The 60-byte block data_0229c71c points to; MainMenu_Setup allocates it. */
+typedef struct MainMenuWork {
+    MainMenuPage *page;
+    u8 pad_04[0x08 - 0x04];
+    u16 unk_08[9];                     /* colour 4 of each of the 9 palettes in res_modemenu */
+    u8 pad_1a[0x1c - 0x1a];
+    u8 unk_1c[32];                     /* a 16-colour palette from res_modemenu */
+} MainMenuWork;
+
+/* The main menu's task: Task fields, with these two read as halfwords. */
+typedef struct MainMenuTask {
+    u8 pad_00[0x4c];
+    u16 unk_4c;
+    u8 pad_4e[0x52 - 0x4e];
+    u16 unk_52;                        /* set to a random 0-7 from the frame count */
+} MainMenuTask;
+
 extern MainMenuPage **data_0229c71c;
 extern MainMenu *data_021599d0;
 
