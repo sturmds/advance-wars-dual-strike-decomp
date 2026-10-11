@@ -3,7 +3,7 @@
 extern u16 *data_0215fe84;
 void Wireless_CountChildren(int, void *);
 
-void func_0207a1c0(int a0)
+void Wireless_SetChildAids(int a0)
 {
     u16 *t0 = data_0215fe84;
     *t0 = a0;

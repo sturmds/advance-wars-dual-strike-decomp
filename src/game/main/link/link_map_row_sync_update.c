@@ -7,7 +7,7 @@
 extern MenuState gMenuState;
 extern DesignMap data_022a6c84[];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 u8 *func_02078138(u16 slot);
 int func_0207bd94(void);
 void func_0207b48c(void);
@@ -39,7 +39,7 @@ void LinkMapRowSync_Update(LinkTextSyncTask *task)
         }
     } else if (task->receiveStarted != 0) { /* needed to match: tests the flag again */
         for (slot = 0; slot < 2; slot++) {
-            if ((func_0207a1dc() | 1) & (1 << slot)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
                 /* needed to match: the cast keeps the offset out of the relocation */
                 dest = (u8 *)&((MenuState *)&gMenuState)->linkMenu.rows[slot * 3] + task->receivedBytes;
                 src = func_02078138((u16)slot);

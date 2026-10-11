@@ -24,7 +24,7 @@ void CombatSetup_LoadMapPreviews(void);
 void func_01ff9b48(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_0207a260(void);
 void SpriteTask_Create(int a, int b, int c, int d);
 void Menu_Reset(void);
@@ -159,7 +159,7 @@ void CombatSetup_Init(void)
     func_01ff9b48();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x2580);
-    data_0229ff30.playerMask = func_0207a1dc() | 1;
+    data_0229ff30.playerMask = Wireless_GetChildAids() | 1;
     data_0229fb30.unk_45a = func_0207a260();
     data_0229fb30.unk_45b = 0;
     EventQueue_Reset();

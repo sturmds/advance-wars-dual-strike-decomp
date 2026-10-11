@@ -6,7 +6,7 @@
 extern Ov003Unit data_ov003_02369538[16];
 extern Ov003Unit *data_ov003_02369534;
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void Ov003Rows_ClearCells(void);
 void Ov003Row_AppendCell(u8 row, int tile, int kind);
 void Ov003_StartSlotPlacing(int player);
@@ -57,7 +57,7 @@ void Ov003_InitUnitsAndCamera(void)
         }
     }
     for (i = 0; i < 8; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             Ov003_StartSlotPlacing(i);
         }
     }

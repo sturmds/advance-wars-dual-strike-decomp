@@ -18,7 +18,7 @@ extern u8 data_ov003_02365494[];
 
 void Ov003_PutOwnedWindowPiece(int x, int y);
 int func_ov003_023622b8(void);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size);
 
 #define MAP data_ov003_02364a88
@@ -31,7 +31,7 @@ void func_01ff85d8(int x, int y, int a, int b, const void *data, int c, int size
  * is on screen or within 47 pixels of it, then each unit of the current slot's
  * row. The unit's kind (1-5) and facing (1-4) pick its picture. When
  * data_02160ac0->unk_7c is set there are 8 units, and only unit 0 and those in
- * the mask from func_0207a1dc are drawn. */
+ * the mask from Wireless_GetChildAids are drawn. */
 void Ov003_DrawMarksAndUnits(void)
 {
     Ov003Unit *unit;
@@ -52,7 +52,7 @@ void Ov003_DrawMarksAndUnits(void)
     }
 
     for (i = 0; i < func_ov003_023622b8(); i++, unit++) {
-        if (data_02160ac0->unk_7c != 0 && !((func_0207a1dc() | 1) & (1 << i))) {
+        if (data_02160ac0->unk_7c != 0 && !((Wireless_GetChildAids() | 1) & (1 << i))) {
             continue;
         }
         if (unit->hp == 0 && !unit->unk_17_7) {

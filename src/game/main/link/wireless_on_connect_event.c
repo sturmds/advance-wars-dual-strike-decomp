@@ -3,7 +3,7 @@
 #include "sdk/wm.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 extern u8 data_0229c8f8[];
 
 int func_02079180(void);
@@ -17,9 +17,9 @@ BOOL Wireless_StartMp(void);
 /* Child side: callback of the connect request in Wireless_StartConnect. In
  * link states 0, 3 and 4 it only calls func_02079180. In state 5: once
  * connected it keeps its aid, stores the ssid it connected with
- * (data_0229c8f8) as that aid's name and starts MP (unless data_0229c88c
- * is 5); after MAX_BEACONS_LOST lost beacons it sets data_0229c88c to 1;
- * on a disconnect it goes to state 3 and sets data_0229c88c to 2. Any other state code goes back to state 0. Errors go
+ * (data_0229c8f8) as that aid's name and starts MP (unless gWirelessState
+ * is 5); after MAX_BEACONS_LOST lost beacons it sets gWirelessState to 1;
+ * on a disconnect it goes to state 3 and sets gWirelessState to 2. Any other state code goes back to state 0. Errors go
  * to state 3 and set unk_24. */
 void Wireless_OnConnectEvent(WMStartConnectCallback *cb)
 {
@@ -37,7 +37,7 @@ void Wireless_OnConnectEvent(WMStartConnectCallback *cb)
             case WM_STATECODE_CONNECTED:
                 data_0215fe84->unk_06 = cb->aid;
                 Wireless_SetPlayerName(cb->aid, data_0229c8f8);
-                if (data_0229c88c == 5) {
+                if (gWirelessState == 5) {
                     return;
                 }
                 if (Wireless_StartMp()) {
@@ -55,18 +55,18 @@ void Wireless_OnConnectEvent(WMStartConnectCallback *cb)
                 if (data_0215fe84->unk_36 < MAX_BEACONS_LOST) {
                     return;
                 }
-                data_0229c88c = 1;
+                gWirelessState = 1;
                 func_02079180();
                 return;
             case WM_STATECODE_DISCONNECTED:
                 data_0229c880 = 3;
-                if (data_0229c88c == 5) {
+                if (gWirelessState == 5) {
                     data_0215fe84->unk_28 = 1;
                 }
-                if (data_0229c88c == 2) {
+                if (gWirelessState == 2) {
                     return;
                 }
-                data_0229c88c = 2;
+                gWirelessState = 2;
                 func_02079180();
                 return;
             default:

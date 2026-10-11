@@ -14,7 +14,7 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int attr, int tile, int list);
 int Math_SinDegrees(int degrees);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_0207a260(void);
 int func_0207a324(void);
 BOOL LinkMenu_PlayerHasMap(int index);
@@ -34,7 +34,7 @@ extern u8 data_027c0108;
 #define COS_0 gSineTable[64]
 
 /* Script command of a link screen, run each frame. Draws one sprite per
- * entry below func_0207a324() whose bit is set in func_0207a1dc() (entry 0
+ * entry below func_0207a324() whose bit is set in Wireless_GetChildAids() (entry 0
  * always), two tiles apart from row 7. The entry func_0207a260() names
  * pulses in size. Entries that fail LinkMenu_PlayerHasMap use palette 2. Then cycles
  * one colour (palette buffer offset 0x234) through the 16 colours at the
@@ -51,7 +51,7 @@ void Link_DrawEntryMarkers(void)
 
     found = FALSE;
     for (i = 0; i < func_0207a324(); i++) {
-        if ((1 << i) & (func_0207a1dc() | 1)) {
+        if ((1 << i) & (Wireless_GetChildAids() | 1)) {
             if (i == func_0207a260()) {
                 scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
                 Oam_SetAffineParams(1, HwDiv32(COS_0 * 16, DIVISOR(scale)), HwDiv32(-SIN_0 * 16, DIVISOR(scale)),

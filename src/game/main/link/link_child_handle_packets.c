@@ -4,9 +4,9 @@
 
 extern Unk_0215fe8c *data_0215fe8c;
 
-int func_0207a27c(void);             /* wireless state: 4 parent, 5 child */
+int Wireless_GetState(void);             /* wireless state: 4 parent, 5 child */
 int func_0207a260(void);             /* this player's aid, it seems */
-void func_0207a1c0(int childAids);
+void Wireless_SetChildAids(int childAids);
 int Link_PopFlaggedPacket(int player, void *dest);
 void Link_SendCommand(int type);
 void Link_Stop(void);
@@ -23,7 +23,7 @@ void Link_ChildHandlePackets(void)
 {
     LinkPacket packet;
 
-    if (func_0207a27c() != 5) {
+    if (Wireless_GetState() != 5) {
         return;
     }
     if (Link_PopFlaggedPacket(0, &packet) != 1) {
@@ -44,7 +44,7 @@ void Link_ChildHandlePackets(void)
             /* a name packet also carries the child aid bits */
             Wireless_SetPlayerName(packet.type - LINK_PACKET_PLAYER_NAME + 1, &packet.payload[2]);
         case LINK_PACKET_CHILD_AIDS:
-            func_0207a1c0((u16)(packet.payload[0] | (packet.payload[1] << 8)));
+            Wireless_SetChildAids((u16)(packet.payload[0] | (packet.payload[1] << 8)));
             break;
         case LINK_PACKET_SHARING_START:
             Wireless_StartDataSharing();

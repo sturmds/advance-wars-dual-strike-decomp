@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 void func_02079180(void);
 void func_02079664(void);
@@ -11,9 +11,9 @@ void func_02079664(void);
  * error (states 4 and 5) it restarts through func_02079180. Link_Start calls it. */
 void Wireless_RequestChildRole(void)
 {
-    switch (data_0229c88c) {
+    switch (gWirelessState) {
     case 0:
-        data_0229c88c = 2;
+        gWirelessState = 2;
         data_0229c880 = 3;
         func_02079664();
         break;

@@ -6,8 +6,8 @@ extern Unk_0215fe8c *data_0215fe8c;
 extern const TaskScriptCmd data_0215feb8[];
 
 int Task_DestroyByScript(const void *script);
-u16 func_0207a1dc(void);
-int func_0207a27c(void);
+u16 Wireless_GetChildAids(void);
+int Wireless_GetState(void);
 void func_02077f34(int a);
 void func_02077f48(int a);
 
@@ -20,9 +20,9 @@ void func_0207bb48(int start)
     } else {
         data_0215fe8c->unk_0c = 1;
         Task_DestroyByScript(data_0215feb8);
-        data_0215fe8c->unk_08 = func_0207a1dc();
+        data_0215fe8c->unk_08 = Wireless_GetChildAids();
     }
-    if (func_0207a27c() == 4) {
+    if (Wireless_GetState() == 4) {
         func_02077f48(start);
     } else {
         func_02077f34(start);

@@ -4,7 +4,7 @@
 
 extern u8 gGameFlagsMid[];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 u8 *func_02078138(u16 slot);
 int func_0207bd94(void);
 void func_0207b48c(void);
@@ -36,7 +36,7 @@ void LinkMapFlagsSync_Update(LinkDataSyncTask *task)
         }
     } else if (task->receiveStarted != 0) { /* needed to match: tests the flag again */
         for (slot = 0; slot < 4; slot++) {
-            if ((func_0207a1dc() | 1) & (1 << slot)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
                 src = func_02078138((u16)slot);
                 for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK; i++) {
                     if (i >= task->sentBytes) {

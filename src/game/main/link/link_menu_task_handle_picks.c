@@ -6,7 +6,7 @@
 extern MenuState gMenuState;
 
 u8 *func_02078138(u16 player);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void func_0207dcfc(void);
@@ -36,7 +36,7 @@ void LinkMenuTask_HandlePicks(Task *task)
     back = 0;
     if (func_0207bd94() == 1) {
         for (player = 0; player < 4; player++) {
-            if ((func_0207a1dc() | 1) & (1 << player)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << player)) {
                 msg = func_02078138((u16)player);
                 for (i = 0; i < 4; i++, msg += 2) {
                     switch (msg[0]) {
@@ -67,7 +67,7 @@ void LinkMenuTask_HandlePicks(Task *task)
         return;
     }
     for (i = 0; i < 2; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             if (!((u8 *)&gMenuState + i)[LINK_PICKED_OFFSET]) {
                 allPicked = 0;
                 break;

@@ -15,7 +15,7 @@ s32 HwMod32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 int Math_SinDegrees(int degrees);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_0207a1f0(void);
 int func_0207a260(void);
 int func_0207a324(void);
@@ -39,7 +39,7 @@ extern u8 data_027c0040;
 /* Draws the second view of the link player list (LinkMenuState.view 1;
  * switches to it from the list first). Top row: entry 0 and
  * "func_0207a1f0() + 1 / func_0207a324()". Then each entry whose bit is set
- * in func_0207a1dc() (entry 0 always) gets a row, two tiles apart, starting
+ * in Wireless_GetChildAids() (entry 0 always) gets a row, two tiles apart, starting
  * higher on screen when func_0207a324() is larger. Each entry below
  * func_0207a324() gets a sprite; the entry func_0207a260() names pulses in
  * size. Also cycles one colour (palette buffer offset 0x234) through the
@@ -78,14 +78,14 @@ void LinkMenu_DrawSecondView(void)
     map = data_027c0280->layer0Map;
     Number_Draw(30, 1, map, func_0207a324(), 0, 0);
     for (i = 0; i < 8; i++) {
-        if ((1 << i) & (func_0207a1dc() | 1)) {
+        if ((1 << i) & (Wireless_GetChildAids() | 1)) {
             LargeFont_DrawName(Wireless_GetPlayerName(i), 7, row + i * 2, 0x200 + i * 40);
         }
     }
     Gfx_RequestLayerCopy(0);
 
     for (i = 0; i < func_0207a324(); i++) {
-        if ((1 << i) & (func_0207a1dc() | 1)) {
+        if ((1 << i) & (Wireless_GetChildAids() | 1)) {
             if (i == func_0207a260()) {
                 scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() * 16, 360)) >> 9) + 0x100;
                 Oam_SetAffineParams(1, HwDiv32(COS_0 * 16, DIVISOR(scale)), HwDiv32(-SIN_0 * 16, DIVISOR(scale)),

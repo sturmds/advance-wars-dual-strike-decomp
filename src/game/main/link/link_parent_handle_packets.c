@@ -4,13 +4,13 @@
 
 extern Unk_0215fe8c *data_0215fe8c;
 
-int func_0207a27c(void);             /* wireless state: 4 parent, 5 child */
-u16 func_0207a1dc(void);             /* connected child aid bits */
-int func_0207a148(void);             /* true once after the children changed */
+int Wireless_GetState(void);             /* wireless state: 4 parent, 5 child */
+u16 Wireless_GetChildAids(void);             /* connected child aid bits */
+int Wireless_TakeChildrenChanged(void);             /* true once after the children changed */
 int func_02077f20(void);             /* Unk_0215fe84.unk_18 */
 void func_0207ab14(void);
 void Link_SendNextPlayerName(void);
-void func_0207b8b8(void);
+void Link_SendChildAids(void);
 int MainLoop_GetFrameCount(void);
 int Link_PopFlaggedPacket(u8 player, void *dest);
 void Link_SendCommand(int type);
@@ -27,7 +27,7 @@ void LinkReactionQueue_Push(void *data);
  * children. Then, when the children changed (and every 16th frame while
  * func_02077f20 is set), sends the child aid bits: with the next child's
  * name (Link_SendNextPlayerName) while func_02077f20 is set, else alone
- * (func_0207b8b8). */
+ * (Link_SendChildAids). */
 void Link_ParentHandlePackets(void)
 {
     LinkPacket packet;
@@ -35,7 +35,7 @@ void Link_ParentHandlePackets(void)
     int bit;
     int i;
 
-    if (func_0207a27c() != 4) {
+    if (Wireless_GetState() != 4) {
         return;
     }
     for (aid = 1; aid <= 7; aid++) {
@@ -45,7 +45,7 @@ void Link_ParentHandlePackets(void)
             case LINK_PACKET_STOP:
                 data_0215fe8c->unk_06 |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((func_0207a1dc() & (1 << i)) && !(data_0215fe8c->unk_06 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_06 & (1 << i))) {
                         break;
                     }
                 }
@@ -58,7 +58,7 @@ void Link_ParentHandlePackets(void)
             case LINK_PACKET_SHARING_STARTED:
                 data_0215fe8c->unk_04 |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((func_0207a1dc() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
                         break;
                     }
                 }
@@ -71,7 +71,7 @@ void Link_ParentHandlePackets(void)
             case LINK_PACKET_SHARING_ENDED:
                 data_0215fe8c->unk_04 |= bit;
                 for (i = 1; i <= 7; i++) {
-                    if ((func_0207a1dc() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
+                    if ((Wireless_GetChildAids() & (1 << i)) && !(data_0215fe8c->unk_04 & (1 << i))) {
                         break;
                     }
                 }
@@ -99,10 +99,10 @@ void Link_ParentHandlePackets(void)
             }
         }
     }
-    if (func_0207a1dc() == 0) {
+    if (Wireless_GetChildAids() == 0) {
         return;
     }
-    if (func_0207a148() != 1) {
+    if (Wireless_TakeChildrenChanged() != 1) {
         if (func_02077f20() != 1) {
             return;
         }
@@ -113,6 +113,6 @@ void Link_ParentHandlePackets(void)
     if (func_02077f20() == 1) {
         Link_SendNextPlayerName();
     } else {
-        func_0207b8b8();
+        Link_SendChildAids();
     }
 }

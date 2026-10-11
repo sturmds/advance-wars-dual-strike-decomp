@@ -11,7 +11,7 @@ void Gfx_RequestLayerCopy(int layer);
 void func_01ff8c84(int layer);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_0207a1f0(void);
 int func_0207a324(void);
 void *Wireless_GetPlayerName(u8 index);
@@ -44,7 +44,7 @@ void func_0207f550(void)
     map = data_027c0280->layer0Map;
     Number_Draw(30, 1, map, func_0207a324(), 0, 0);
     for (i = 0; i < 2; i++) {
-        if ((1 << i) & (func_0207a1dc() | 1)) {
+        if ((1 << i) & (Wireless_GetChildAids() | 1)) {
             LargeFont_DrawName(Wireless_GetPlayerName(i), 7, 7 + i * 2, 0x200 + i * 40);
         }
     }

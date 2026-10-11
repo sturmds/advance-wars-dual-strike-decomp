@@ -3,7 +3,7 @@
 #include "game/Unk_0215fe84.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 int func_02079180(void);
 int Wireless_StartParent(void);
 int Wireless_StartScan(void);
@@ -30,7 +30,7 @@ void func_02078cbc(WirelessEvent *event)
                 return;
             }
             data_0215fe84->scanning = 1;
-            data_0229c88c = 3;
+            gWirelessState = 3;
             if (Wireless_StartScan()) {
                 return;
             }

@@ -13,7 +13,7 @@ typedef struct SlotNibbles {
 
 #define SLOT_NIBBLES(state) ((SlotNibbles *)((u8 *)(state) + 0x139))
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 
 /* Does nothing while data_02160abc->unk_0a is set. Without the link flag, sets
  * the state (high nibble) of the current slot to 3. With it, sets state 3 on
@@ -33,7 +33,7 @@ void Ov003_SetSlotsScrolling(void)
         return;
     }
     for (i = 0; i < 8; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             state = data_ov003_02364928;
             slot = &SLOT_NIBBLES(state)[i];
             if ((slot->low == 0 ? 1 : 0) == SLOT_NIBBLES(state)[state->currentSlot].low) {

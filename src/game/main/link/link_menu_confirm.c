@@ -7,9 +7,9 @@
 #define SE_CANCEL 0x10009
 
 void Sound_PlaySe(u32 soundId);
-int func_0207a27c(void);
+int Wireless_GetState(void);
 int func_0207a170(void);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 BOOL Wireless_SelectParent(u32 index);
 void func_0207bb48(int start);
 void func_0207bbf8(void);
@@ -36,7 +36,7 @@ void LinkMenu_Confirm(void)
     if (data_0215fed0->locked == 1) {
         return;
     }
-    switch (func_0207a27c()) {
+    switch (Wireless_GetState()) {
     /* needed to match: the empty cases make the jump table */
     case 0:
     case 1:
@@ -64,11 +64,11 @@ void LinkMenu_Confirm(void)
         if (func_0207a170() == 0) {
             return;
         }
-        if (func_0207a1dc() != 0) {
+        if (Wireless_GetChildAids() != 0) {
             func_0207bb48(0);
             func_0210f52c(ack, 0, 23);
             ack[0] = LINK_UNFLAGGED_ACK;
-            ack[1] = func_0207a1dc();
+            ack[1] = Wireless_GetChildAids();
             Link_SendUnflaggedPacket(ack);
             MenuButtons_CloseAll();
             Task_ResumeScript(func_0207ca34());

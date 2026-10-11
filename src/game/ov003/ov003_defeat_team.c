@@ -6,7 +6,7 @@
 extern Ov003Unit data_ov003_02369538[16];
 extern Ov003Marker data_ov003_02369bb8[4];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void Ov003_CreateSprite(int x, int y);
 void Ov003Row_StopPower(int team);
 void Ov003_ReplaceRowSpecialTiles(int team);
@@ -20,7 +20,7 @@ void func_ov003_02362c44(void);
  * its row of cells and counts the teams left. With two or more left, the
  * team's slots only scroll the map and Ov003_ReplaceRowSpecialTiles(team) runs; with
  * one left, func_ov003_02361c7c gets the winner. When phase is 7, it only
- * clears state of the slots in the func_0207a1dc mask. */
+ * clears state of the slots in the Wireless_GetChildAids mask. */
 void Ov003_DefeatTeam(int team)
 {
     Ov003Unit *unit;
@@ -34,7 +34,7 @@ void Ov003_DefeatTeam(int team)
     unit = data_ov003_02369538;
     if (STATE->phase == 7) {
         for (i = 0; i < 8; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 STATE->slots[i].state = 0;
             }
         }
@@ -87,7 +87,7 @@ void Ov003_DefeatTeam(int team)
         STATE->slots[STATE->currentSlot].state = 0;
     } else {
         for (i = 0; i < 8; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 if (alive >= 2) {
                     if (team == STATE->slots[i].row) {
                         STATE->slots[i].state = OV003_SLOT_SCROLLING;

@@ -3,7 +3,7 @@
 #include "sdk/wm.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 int func_02079180(void);
 BOOL func_02079368(void);
@@ -39,7 +39,7 @@ void func_02079460(WMCallback *cb)
                 return;
             }
             data_0215fe84->scanning = 1;
-            data_0229c88c = 3;
+            gWirelessState = 3;
             if (Wireless_StartScan()) {
                 return;
             }
@@ -48,6 +48,6 @@ void func_02079460(WMCallback *cb)
             break;
         }
     } else {
-        data_0229c88c = 1;
+        gWirelessState = 1;
     }
 }

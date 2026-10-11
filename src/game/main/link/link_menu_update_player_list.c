@@ -2,7 +2,7 @@
 #include "game/link_wait_task.h"
 #include "game/link_menu_state.h"
 
-int func_0207a27c(void);
+int Wireless_GetState(void);
 int func_0207a120(void);
 int func_0207a0f8(void);
 int func_0207a0d0(void);
@@ -25,7 +25,7 @@ void LinkMenu_RestoreRowButtons(void);
 void LinkMenu_UpdatePlayerList(LinkWaitTask *task)
 {
     data_0215fed0->locked = 0;
-    switch (func_0207a27c()) {
+    switch (Wireless_GetState()) {
     case 0:
         func_0207cec4(task);
         break;

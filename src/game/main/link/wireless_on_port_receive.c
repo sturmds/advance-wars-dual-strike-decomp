@@ -1,13 +1,13 @@
 #include "types.h"
 #include "sdk/wm.h"
 
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 void Link_ReceiveFromChild(u16 aid, void *data, u16 length);
 void Link_ReceiveFromParent(void *data, u16 length);
 
 /* Port receive callback. Data and disconnects go to Link_ReceiveFromChild with the
- * sender's aid when data_0229c88c is 4 (looks like the parent side), or to
+ * sender's aid when gWirelessState is 4 (looks like the parent side), or to
  * Link_ReceiveFromParent when it is 5 (child side). A disconnect passes no data. */
 void Wireless_OnPortReceive(WMPortRecvCallback *cb)
 {
@@ -18,7 +18,7 @@ void Wireless_OnPortReceive(WMPortRecvCallback *cb)
     case WM_STATECODE_CONNECTED:
         return;
     case WM_STATECODE_PORT_RECV:
-        switch (data_0229c88c) {
+        switch (gWirelessState) {
         case 4:
             Link_ReceiveFromChild(cb->aid, cb->data, cb->length);
             return;
@@ -28,7 +28,7 @@ void Wireless_OnPortReceive(WMPortRecvCallback *cb)
         }
         return;
     case WM_STATECODE_DISCONNECTED:
-        switch (data_0229c88c) {
+        switch (gWirelessState) {
         case 4:
             Link_ReceiveFromChild(cb->aid, NULL, 0);
             return;

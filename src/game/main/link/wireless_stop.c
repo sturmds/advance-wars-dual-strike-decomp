@@ -2,16 +2,16 @@
 #include "game/Unk_0215fe84.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 void func_02079180(void);
 
-/* Called when link play stops. While scanning (data_0229c88c 2 or 3) it only
+/* Called when link play stops. While scanning (gWirelessState 2 or 3) it only
  * stops the scan from restarting; in states 4 and 5 it also runs
  * func_02079180 and forgets the children. */
 void Wireless_Stop(void)
 {
-    switch (data_0229c88c) {
+    switch (gWirelessState) {
     case 2:
     case 3:
         data_0229c880 = 0;

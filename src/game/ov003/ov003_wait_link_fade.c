@@ -2,7 +2,7 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_frame_task.h"
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_02078138(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
@@ -31,7 +31,7 @@ void Ov003_WaitLinkFade(Ov003FrameTask *task)
     }
     found = 0;
     for (i = 0; i < 8; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             if (func_02124534(func_02078138((u16)i), data_ov003_02364b44)) {
                 found = 1;
                 break;

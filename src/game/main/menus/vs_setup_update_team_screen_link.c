@@ -4,7 +4,7 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 u8 *func_02078138(int player);
 void func_0207b48c(void);
 int Link_GetOwnPlayer(void);
@@ -45,7 +45,7 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
     }
     if (func_0207bd94() == 1) {
         for (i = 0; i < 4; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 msg = func_02078138((u16)i);
                 for (j = 0; j < 4; j++, msg += 2) {
                     switch (msg[0]) {

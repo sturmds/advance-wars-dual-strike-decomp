@@ -5,7 +5,7 @@
 
 extern void *data_0229c884;
 extern WMBssDesc *data_0229c888;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 extern void *data_0229c890;
 extern void *gWirelessSystemBuf;
 extern s32 data_0229c89c;
@@ -28,7 +28,7 @@ void Wireless_Init(void)
 {
     int i;
 
-    data_0229c88c = 0;
+    gWirelessState = 0;
     data_0215fe84->unk_08 = 0;
     data_0215fe84->unk_0c = 1;
     data_0215fe84->dataSharingActive = 0;

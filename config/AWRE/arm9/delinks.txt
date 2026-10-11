@@ -9040,7 +9040,7 @@ src/game/main/func_0207a120.c:
     complete
     .text       start:0x0207a120 end:0x0207a148
 
-src/game/main/func_0207a148.c:
+src/game/main/link/wireless_take_children_changed.c:
     complete
     .text       start:0x0207a148 end:0x0207a170
 
@@ -9056,11 +9056,11 @@ src/game/main/func_0207a1ac.c:
     complete
     .text       start:0x0207a1ac end:0x0207a1c0
 
-src/game/main/func_0207a1c0.c:
+src/game/main/link/wireless_set_child_aids.c:
     complete
     .text       start:0x0207a1c0 end:0x0207a1dc
 
-src/game/main/func_0207a1dc.c:
+src/game/main/link/wireless_get_child_aids.c:
     complete
     .text       start:0x0207a1dc end:0x0207a1f0
 
@@ -9076,7 +9076,7 @@ src/game/main/func_0207a260.c:
     complete
     .text       start:0x0207a260 end:0x0207a27c
 
-src/game/main/func_0207a27c.c:
+src/game/main/link/wireless_get_state.c:
     complete
     .text       start:0x0207a27c end:0x0207a28c
 
@@ -9244,7 +9244,7 @@ src/game/main/link/link_send_next_player_name.c:
     complete
     .text       start:0x0207b7b4 end:0x0207b8b8
 
-src/game/main/link/func_0207b8b8.c:
+src/game/main/link/link_send_child_aids.c:
     complete
     .text       start:0x0207b8b8 end:0x0207b928
 

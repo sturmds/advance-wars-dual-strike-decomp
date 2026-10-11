@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/link_map_record_sync_task.h"
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 u8 *func_02078138(u16 slot);
 int func_0207bd94(void);
 void func_0207b48c(void);
@@ -30,7 +30,7 @@ void LinkMapRecordSync_Update(LinkMapRecordSyncTask *task)
         }
     } else if (task->receiveStarted != 0) { /* needed to match: tests the flag again */
         for (slot = 0; slot < 4; slot++) {
-            if ((func_0207a1dc() | 1) & (1 << slot)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
                 dest = task->receiveBuffer + task->receivedBytes;
                 src = func_02078138((u16)slot);
                 for (i = task->receivedBytes; i < task->receivedBytes + 8; i++, dest++) {

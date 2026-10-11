@@ -3,7 +3,7 @@
 
 int func_0207bd94(void);
 u8 *func_02078138(int player);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int Link_FindSlotOfPlayer(int player);
 void func_0207b48c(void);
 void func_0207b4b0(u8 *chunk);
@@ -32,7 +32,7 @@ void LinkExperienceSyncTask_Update(LinkSyncTask *task)
         }
     } else if (task->receiveStarted != 0) {
         for (i = 0; i < 4; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 src = func_02078138((u16)i);
                 dst = data_0229deec[Link_FindSlotOfPlayer(i) - 1];
 

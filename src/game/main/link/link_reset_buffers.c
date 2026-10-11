@@ -6,7 +6,7 @@ extern Unk_0215fe8c *data_0215fe8c;
 extern Unk_0229ca88 data_0229ca88;
 extern Unk_0229cdfc data_0229cdfc[7];
 extern Unk_0229cb4c data_0229cb4c[7];
-extern u8 data_0229ca40[7];
+extern u8 gLinkLastSequence[7];
 extern u8 data_0229ca48[8];
 
 void func_02080668(void);
@@ -23,7 +23,7 @@ void Link_ResetBuffers(void)
         data_0229cdfc[i].readIndex = data_0229cdfc[i].writeIndex;
         data_0229cb4c[i].writeIndex = 0;
         data_0229cb4c[i].readIndex = data_0229cb4c[i].writeIndex;
-        data_0229ca40[i] = 0x80;
+        gLinkLastSequence[i] = 0x80;
     }
     for (i = 0; i < 8; i++) {
         data_0229ca48[i] = 0;

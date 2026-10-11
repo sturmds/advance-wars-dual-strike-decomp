@@ -3,7 +3,7 @@
 
 int func_0207bd94(void);
 u8 *func_02078138(int player);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void Co_SetArmyPictureVariant(int army, int coId, int variant);
 void Co_SetArmyPaletteVariant(int army, int coId, int variant);
 void func_0207b48c(void);
@@ -31,7 +31,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask *task)
         }
     } else if (task->receiveStarted != 0) {
         for (player = 0; player < 8; player++) {
-            if ((func_0207a1dc() | 1) & (1 << player)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << player)) {
                 for (i = 0; i < 4; i++) {
                     if (player == task->players[i]) {
                         break;

@@ -3,7 +3,7 @@
 
 extern u8 data_0229deec[4][112];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int Link_FindSlotOfPlayer(int player);
 void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 void Mem_Free(void *ptr);
@@ -15,7 +15,7 @@ void LinkExperienceSyncTask_Finish(LinkSyncTask *task)
     int i;
 
     for (i = 0; i < 4; i++) {
-        if (!((1 << i) & (func_0207a1dc() | 1))) {
+        if (!((1 << i) & (Wireless_GetChildAids() | 1))) {
             Mem_CopyUnits(data_0229deec[Link_FindSlotOfPlayer(0) - 1],
                           data_0229deec[Link_FindSlotOfPlayer(i) - 1], 112, 8);
         }

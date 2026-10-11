@@ -3,7 +3,7 @@
 
 extern Unk_0229ca88 data_0229ca88;
 
-int func_0207a27c(void);
+int Wireless_GetState(void);
 BOOL Wireless_SendParentData(void *data, u32 size);
 BOOL Wireless_SendChildData(void *data, u32 size);
 
@@ -18,7 +18,7 @@ void Link_SendQueuedPacket(void)
         return;
     }
     slot = &data_0229ca88.slots[readIndex];
-    switch (func_0207a27c()) {
+    switch (Wireless_GetState()) {
     case 4:
         if (Wireless_SendParentData(slot, 24) == 0) {
             return;

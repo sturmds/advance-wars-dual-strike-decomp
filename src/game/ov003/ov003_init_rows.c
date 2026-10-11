@@ -6,7 +6,7 @@
 extern Ov003Preset data_ov003_02364e50[];
 
 int func_0207a260(void);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 
 #define STATE data_ov003_02364928
 #define SETUP data_02160ac0
@@ -19,7 +19,7 @@ u16 func_0207a1dc(void);
 /* Sets up the rows and the 8 slots at the start of overlay 3. The preset
  * (entry data_02160ac0->unk_7d of data_ov003_02364e50) gives the row count and each row's colour and
  * co. In link play (unk_7c set) the slot rows come from
- * data_02160ac0->unk_70, the rows of the connected slots (func_0207a1dc, plus
+ * data_02160ac0->unk_70, the rows of the connected slots (Wireless_GetChildAids, plus
  * slot 0) are active instead, and row 5 is always active. Active rows among
  * the first four get unk_3b_4 = 0, 2, 4, 6 in order, shifted so the group
  * sits in the middle. Settings at 0xff in data_02160ac0 fall back to the
@@ -75,7 +75,7 @@ void Ov003_InitRows(void)
             STATE->rows[i].active = 0;
         }
         for (i = 0; i < 8; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 STATE->slots[i].state = 2;
                 STATE->rows[STATE->slots[i].row - 1].active = 1;
                 STATE->activeRows |= 1 << (STATE->slots[i].row - 1);

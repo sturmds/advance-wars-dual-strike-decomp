@@ -3,7 +3,7 @@
 
 int func_0207bd94(void);
 u8 *func_02078138(int player);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int Link_GetPlayerOfSlot(int slot);
 s32 HwDiv32(s32 numer, s32 denom);
 void func_0207b48c(void);
@@ -33,7 +33,7 @@ void LinkSkillSyncTask_Update(LinkSyncTask *task)
         }
     } else if (task->receiveStarted != 0) {
         for (i = 0; i < 4; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 src = func_02078138((u16)i);
                 dst = data_0229de6c;
                 for (j = task->receivedBytes; j < task->receivedBytes + 8; j++) {
@@ -41,7 +41,7 @@ void LinkSkillSyncTask_Update(LinkSyncTask *task)
                         break;
                     }
                     owner = Link_GetPlayerOfSlot(HwDiv32(j, 32) + 1);
-                    if ((func_0207a1dc() | 1) & (1 << owner)) {
+                    if ((Wireless_GetChildAids() | 1) & (1 << owner)) {
                         if (i != owner) {
                             continue;
                         }

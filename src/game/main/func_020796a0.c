@@ -2,7 +2,7 @@
 #include "game/wireless_event.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 BOOL func_02079424(void);
 BOOL func_02079578(void);
 
@@ -20,6 +20,6 @@ void func_020796a0(WirelessEvent *event)
             break;
         }
     } else {
-        data_0229c88c = 1;
+        gWirelessState = 1;
     }
 }

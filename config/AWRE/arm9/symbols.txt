@@ -2292,16 +2292,16 @@ Wireless_SendParentData kind:function(arm,size=0x68) addr:0x0207a068
 func_0207a0d0 kind:function(arm,size=0x28) addr:0x0207a0d0
 func_0207a0f8 kind:function(arm,size=0x28) addr:0x0207a0f8
 func_0207a120 kind:function(arm,size=0x28) addr:0x0207a120
-func_0207a148 kind:function(arm,size=0x28) addr:0x0207a148
+Wireless_TakeChildrenChanged kind:function(arm,size=0x28) addr:0x0207a148
 func_0207a170 kind:function(arm,size=0x14) addr:0x0207a170
 func_0207a184 kind:function(arm,size=0x28) addr:0x0207a184
 func_0207a1ac kind:function(arm,size=0x14) addr:0x0207a1ac
-func_0207a1c0 kind:function(arm,size=0x1c) addr:0x0207a1c0
-func_0207a1dc kind:function(arm,size=0x14) addr:0x0207a1dc
+Wireless_SetChildAids kind:function(arm,size=0x1c) addr:0x0207a1c0
+Wireless_GetChildAids kind:function(arm,size=0x14) addr:0x0207a1dc
 func_0207a1f0 kind:function(arm,size=0x18) addr:0x0207a1f0
 Wireless_CountChildren kind:function(arm,size=0x58) addr:0x0207a208
 func_0207a260 kind:function(arm,size=0x1c) addr:0x0207a260
-func_0207a27c kind:function(arm,size=0x10) addr:0x0207a27c
+Wireless_GetState kind:function(arm,size=0x10) addr:0x0207a27c
 Wireless_Stop kind:function(arm,size=0x98) addr:0x0207a28c
 func_0207a324 kind:function(arm,size=0x14) addr:0x0207a324
 Wireless_SetPlayerName kind:function(arm,size=0x34) addr:0x0207a338
@@ -2343,7 +2343,7 @@ Link_SendFlaggedPacket kind:function(arm,size=0x5c) addr:0x0207b664
 LinkReaction_Send kind:function(arm,size=0x84) addr:0x0207b6c0
 Link_SendPacket kind:function(arm,size=0x70) addr:0x0207b744
 Link_SendNextPlayerName kind:function(arm,size=0x104) addr:0x0207b7b4
-func_0207b8b8 kind:function(arm,size=0x70) addr:0x0207b8b8
+Link_SendChildAids kind:function(arm,size=0x70) addr:0x0207b8b8
 Link_SendCommand kind:function(arm,size=0x50) addr:0x0207b928
 Link_QueuePacket kind:function(arm,size=0x70) addr:0x0207b978
 Link_PopFlaggedPacket kind:function(arm,size=0x84) addr:0x0207b9e8
@@ -8739,7 +8739,7 @@ gWirelessTgidCounter kind:bss addr:0x0229c87c
 data_0229c880 kind:bss addr:0x0229c880
 data_0229c884 kind:bss addr:0x0229c884
 data_0229c888 kind:bss addr:0x0229c888
-data_0229c88c kind:bss addr:0x0229c88c
+gWirelessState kind:bss addr:0x0229c88c
 data_0229c890 kind:bss addr:0x0229c890
 gWirelessParentLinkLevels kind:bss addr:0x0229c894
 gWirelessSystemBuf kind:bss addr:0x0229c898
@@ -8761,7 +8761,7 @@ data_0229c960 kind:bss addr:0x0229c960
 data_0229c97a kind:bss addr:0x0229c97a
 data_0229c982 kind:bss addr:0x0229c982
 gLinkPlayerNames kind:bss addr:0x0229c9a0
-data_0229ca40 kind:bss addr:0x0229ca40
+gLinkLastSequence kind:bss addr:0x0229ca40
 data_0229ca48 kind:bss addr:0x0229ca48
 data_0229ca50 kind:bss addr:0x0229ca50
 data_0229ca51 kind:bss addr:0x0229ca51

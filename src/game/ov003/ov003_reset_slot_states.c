@@ -2,7 +2,7 @@
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void func_ov003_0236322c(void);
 
 /* When phase is 1 and every slot in play (the current slot, or each linked
@@ -23,7 +23,7 @@ void Ov003_ResetSlotStates(void)
         }
     } else {
         for (i = 0; i < 8; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 if (data_ov003_02364928->slots[i].state != 4) {
                     active = 1;
                 }
@@ -34,7 +34,7 @@ void Ov003_ResetSlotStates(void)
         return;
     }
     for (i = 0; i < 8; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             data_ov003_02364928->slots[i].state = 1;
         }
     }

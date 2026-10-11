@@ -2,7 +2,7 @@
 #include "game/Unk_0215fe84.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 extern void *data_0229c8ac;
 
 void func_02118bb0(void *sharing);
@@ -13,7 +13,7 @@ void Wireless_EndDataSharing(void)
     if (data_0215fe84->dataSharingActive == 0) {
         return;
     }
-    if (data_0229c88c != data_0229c880) {
+    if (gWirelessState != data_0229c880) {
         return;
     }
     switch (data_0229c880) {

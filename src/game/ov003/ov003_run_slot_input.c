@@ -14,7 +14,7 @@ extern Ov003Unit *data_ov003_02369534;
 extern Ov003Unit data_ov003_02369538[];
 extern u8 data_ov003_02365b04[];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 LinkInput *func_02078138(int player);
 void Keypad_UpdateState(Keypad *keypad, int keys);
 void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *keypad, void *a2);
@@ -25,7 +25,7 @@ void Ov003_ScrollWithDpad(void);
 
 /* Runs the input routine that the slot's state picks. Alone, that is the
  * current slot with the local keypad; linked, each of the 8 slots whose bit
- * is set in func_0207a1dc() | 1 gets the keys received for its player. */
+ * is set in Wireless_GetChildAids() | 1 gets the keys received for its player. */
 void Ov003_RunSlotInput(void)
 {
     int i;
@@ -47,7 +47,7 @@ void Ov003_RunSlotInput(void)
         }
     } else {
         for (i = 0; i < 8; i++) {
-            if ((func_0207a1dc() | 1) & (1 << i)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << i)) {
                 input = func_02078138((u16)i);
                 Keypad_UpdateState(&data_0216e4e4[i], input->keys);
                 switch (STATE->slots[i].state) {

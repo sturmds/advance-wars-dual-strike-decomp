@@ -5,7 +5,7 @@
 
 BOOL Ov003Unit_TryCreate(int slot, int column, int x, int y);
 void Sound_PlaySe(u32 soundId);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 BOOL func_ov003_0235c194(int slot, int column, int x, int y);
 void Ov003_MoveCursorRight(int slot);
 void Ov003_MoveCursorLeft(int slot);
@@ -60,7 +60,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
                 return;
             }
             for (i = 0; i < 8; i++) {
-                if (((func_0207a1dc() | 1) & (1 << i)) && i != slot
+                if (((Wireless_GetChildAids() | 1) & (1 << i)) && i != slot
                     && STATE->slots[i].state == OV003_SLOT_PLACING
                     && STATE->slots[i].row == STATE->slots[slot].row
                     && STATE->slots[i].cursor == STATE->slots[slot].cursor) {
@@ -80,7 +80,7 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
             STATE->slots[slot].state = OV003_SLOT_STATE_1;
             if (data_02160ac0->unk_7c != 0) {
                 for (i = 0; i < 8; i++) {
-                    if (((func_0207a1dc() | 1) & (1 << i)) && i != slot
+                    if (((Wireless_GetChildAids() | 1) & (1 << i)) && i != slot
                         && STATE->slots[i].state == OV003_SLOT_PLACING
                         && STATE->slots[i].row == STATE->slots[slot].row
                         && STATE->slots[i].cursor == STATE->slots[slot].cursor) {

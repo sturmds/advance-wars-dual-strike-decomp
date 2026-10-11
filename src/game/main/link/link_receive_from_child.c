@@ -3,7 +3,7 @@
 #include "game/link_buffers.h"
 
 extern Unk_0215fe8c *data_0215fe8c;
-extern u8 data_0229ca40[7];
+extern u8 gLinkLastSequence[7];
 
 /* The per-peer queues as Link_PopFlaggedPacket and Link_PopUnflaggedPacket
  * declare them: each index byte is a symbol of its own (cbac and cf7c read,
@@ -27,10 +27,10 @@ void Link_ReceiveFromChild(u16 aid, LinkPacket *packet, u16 length)
         return;
     }
     aid = aid - 1;
-    if (data_0229ca40[aid] != 0x80 && data_0229ca40[aid] == (packet->header & 0x7f)) {
+    if (gLinkLastSequence[aid] != 0x80 && gLinkLastSequence[aid] == (packet->header & 0x7f)) {
         return;
     }
-    data_0229ca40[aid] = packet->header & 0x7f;
+    gLinkLastSequence[aid] = packet->header & 0x7f;
     if (packet->header & 0x80) {
         next = data_0229cbad[aid][0] + 1;
         if (next == 4) {

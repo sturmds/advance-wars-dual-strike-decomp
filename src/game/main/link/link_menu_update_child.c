@@ -8,7 +8,7 @@ extern const TaskScriptCmd data_0215fed4[];
 void LinkMenu_DrawSecondView(void);
 u8 *Link_ReadUnflaggedPacket(int player);
 void Link_SendUnflaggedPacket(void *data);
-void func_0207a1c0(int childAids);
+void Wireless_SetChildAids(int childAids);
 void func_0207bb48(int start);
 void func_020b9890(void);
 void MenuButtons_CloseAll(void);
@@ -28,7 +28,7 @@ void LinkMenu_UpdateChild(Task *task)
     while ((packet = Link_ReadUnflaggedPacket(0)) != NULL) {
         if (packet[0] == LINK_UNFLAGGED_ACK) {
             gotAck = 1;
-            func_0207a1c0(packet[1]);
+            Wireless_SetChildAids(packet[1]);
             func_0207bb48(0);
         }
     }

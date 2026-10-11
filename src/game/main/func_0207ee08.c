@@ -2,7 +2,7 @@
 #include "game/task.h"
 
 extern u8 data_02160110[];
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_02078138(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
@@ -22,7 +22,7 @@ void func_0207ee08(Task *task)
     }
     found = 0;
     for (i = 0; i < 2; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             if (func_02124534(func_02078138((u16)i), data_02160110)) {
                 found = 1;
                 break;

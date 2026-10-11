@@ -3,7 +3,7 @@
 
 extern u8 data_0215c810[];
 
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 int func_02078138(int a0);
 int Link_IsActive(void);
 int func_0207bd94(void);
@@ -30,7 +30,7 @@ void LinkTask_WaitForPeerData(Task *task)
     }
     found = 0;
     for (i = 0; i < 4; i++) {
-        if ((func_0207a1dc() | 1) & (1 << i)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << i)) {
             if (func_02124534(func_02078138((u16)i), data_0215c810)) {
                 found = 1;
                 break;

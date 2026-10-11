@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 void func_0207a750(void);
 void func_02079180(void);
@@ -13,9 +13,9 @@ void func_02079664(void);
 void Wireless_RequestParentRole(void)
 {
     func_0207a750();
-    switch (data_0229c88c) {
+    switch (gWirelessState) {
     case 0:
-        data_0229c88c = 2;
+        gWirelessState = 2;
         data_0229c880 = 4;
         func_02079664();
         break;

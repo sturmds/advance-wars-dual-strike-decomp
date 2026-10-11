@@ -2,7 +2,7 @@
 #include "game/link_menu_state.h"
 
 void Sound_PlaySe(u32 soundId);
-int func_0207a27c(void);
+int Wireless_GetState(void);
 void Link_Stop(void);
 void func_0207bbd0(void);
 
@@ -15,7 +15,7 @@ void LinkMenu_Cancel(void)
     if (data_0215fed0->locked == 1) {
         return;
     }
-    switch (func_0207a27c()) {
+    switch (Wireless_GetState()) {
     case 3:
         Link_Stop();
         Sound_PlaySe(SE_CANCEL);

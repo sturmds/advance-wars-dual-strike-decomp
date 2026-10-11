@@ -2,7 +2,7 @@
 #include "game/Unk_0215fe84.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 int func_02117c04(void (*callback)(void));
 void func_020791f8(void);
@@ -16,7 +16,7 @@ int func_02079180(void)
         data_0229c880 = 0;
     }
     if (func_02117c04(func_020791f8) != 2) {
-        data_0229c88c = 1;
+        gWirelessState = 1;
         return 0;
     }
     return 1;

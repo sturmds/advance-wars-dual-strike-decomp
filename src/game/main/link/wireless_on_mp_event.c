@@ -3,14 +3,14 @@
 #include "sdk/wm.h"
 
 extern u32 data_0229c880;
-extern u32 data_0229c88c;
+extern u32 gWirelessState;
 
 int func_02079180(void);
 void Wireless_ClearParents(void);
 
 /* Callback of the MP start in Wireless_StartMp. Each success sets
  * Unk_0215fe84.unk_30. When MP starts in link state 4 or 5, sets unk_08 and
- * data_0229c88c to that state and runs Wireless_ClearParents; in state 0 or 3 runs
+ * gWirelessState to that state and runs Wireless_ClearParents; in state 0 or 3 runs
  * func_02079180. Timeouts, bad poll bitmaps and failed sends are ignored;
  * other errors go back to state 3, set unk_24 and call func_02079180. */
 void Wireless_OnMpEvent(WMStartMPCallback *cb)
@@ -26,12 +26,12 @@ void Wireless_OnMpEvent(WMStartMPCallback *cb)
                 return;
             case 4:
                 data_0215fe84->unk_08 = 1;
-                data_0229c88c = 4;
+                gWirelessState = 4;
                 Wireless_ClearParents();
                 return;
             case 5:
                 data_0215fe84->unk_08 = 1;
-                data_0229c88c = 5;
+                gWirelessState = 5;
                 Wireless_ClearParents();
                 return;
             }

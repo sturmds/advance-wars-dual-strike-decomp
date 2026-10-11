@@ -6,7 +6,7 @@
 u8 *func_02078138(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
-u16 func_0207a1dc(void);
+u16 Wireless_GetChildAids(void);
 void func_020724f0(void);
 void LinkScreen_HandleKeys(void);
 void LinkScreen_Cancel(void);
@@ -39,7 +39,7 @@ void LinkPhase_Update(Task *task)
     cancel = 0;
     if (func_0207bd94() == 1) {
         for (player = 0; player < 4; player++) {
-            if ((func_0207a1dc() | 1) & (1 << player)) {
+            if ((Wireless_GetChildAids() | 1) & (1 << player)) {
                 msg = func_02078138((u16)player);
                 for (i = 0; i < 4; i++, msg += 2) {
                     switch (msg[0]) {
@@ -75,7 +75,7 @@ void LinkPhase_Update(Task *task)
         return;
     }
     for (player = 0; player < 4; player++) {
-        if ((func_0207a1dc() | 1) & (1 << player)) {
+        if ((Wireless_GetChildAids() | 1) & (1 << player)) {
             if (LINK_READY_FLAG(gMenuState, player) == 0) {
                 allReady = 0;
                 break;
