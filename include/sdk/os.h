@@ -202,4 +202,7 @@ void Reset_StopAndRequestArm7(u32 parameter);
 /* Sends a command word to the ARM7, retrying until the FIFO takes it. */
 void OsTag_SendCommandWord(u32 command);
 
+/* PXI receive callback: sets the reset flag when the ARM7 answers the reset command, else halts. */
+void Reset_OnOsTagMessage(u32 tag, u32 data, int err);
+
 #endif

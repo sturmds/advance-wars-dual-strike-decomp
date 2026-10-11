@@ -1,6 +1,6 @@
 #include "sdk/os.h"
 
-/* Set to 1 by func_0210ec74 when a message with tag 0x10 arrives. */
+/* Set to 1 by Reset_OnOsTagMessage when a message with tag 0x10 arrives. */
 extern volatile u16 data_022a9c34;
 
 void Reset_ReloadProgramsFromCard(void);
