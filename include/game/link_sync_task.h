@@ -40,7 +40,7 @@ typedef struct LinkCoVariantPair {
  * one byte earlier than the other tasks'. */
 typedef struct LinkCoVariantSyncTask {
     u8 pad_00[0x29];
-    LinkCoVariantPair variants[4];     /* 7 COs, two a byte; filled by func_02081e90 */
+    LinkCoVariantPair variants[4];     /* 7 COs, two a byte; filled by LinkCoVariantSyncTask_Init */
     u8 players[4];                     /* the player in each link slot; the received chunk of player players[k] goes to army k + 1 */
     u8 pad_31;
     u16 sentBytes;
