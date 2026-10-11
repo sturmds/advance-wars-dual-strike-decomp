@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern void Exception_FillContextRecord(void);
-extern void func_0210e79c(void);
+extern void Exception_RunUserHook(void);
 
 /*
  * Called from the exception handler (OSi_ExceptionHandler). Written as assembly
@@ -12,7 +12,7 @@ asm void func_0210e6f8(void)
 {
     stmdb sp!, {lr}
     bl Exception_FillContextRecord
-    bl func_0210e79c
+    bl Exception_RunUserHook
     ldmia sp!, {lr}
     bx lr
 }
