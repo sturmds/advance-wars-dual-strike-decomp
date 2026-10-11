@@ -14145,6 +14145,10 @@ src/game/main/func_020e3554.c:
     complete
     .text       start:0x020e3554 end:0x020e356c
 
+src/game/main/bg_layer0_nudge_scroll.c:
+    complete
+    .text       start:0x020e356c end:0x020e35b0
+
 src/game/main/func_020e36d8.c:
     complete
     .text       start:0x020e36d8 end:0x020e36fc
