@@ -736,6 +736,10 @@ src/game/main/graphics/gfx_load_tex_palette.c:
     complete
     .text       start:0x0200ccf8 end:0x0200cd28
 
+src/game/main/func_0200cd28.c:
+    complete
+    .text       start:0x0200cd28 end:0x0200cd58
+
 src/game/main/func_0200ce3c.c:
     complete
     .text       start:0x0200ce3c end:0x0200ce48
@@ -1599,6 +1603,10 @@ src/game/main/func_0201c898.c:
 src/game/main/func_0201ce1c.c:
     complete
     .text       start:0x0201ce1c end:0x0201ce50
+
+src/game/main/func_0201ce50.c:
+    complete
+    .text       start:0x0201ce50 end:0x0201ce84
 
 src/game/main/func_0201ce84.c:
     complete
@@ -4982,6 +4990,10 @@ src/game/main/func_02089c9c.c:
     complete
     .text       start:0x02089c9c end:0x02089dac
 
+src/game/main/func_0208a128.c:
+    complete
+    .text       start:0x0208a128 end:0x0208a160
+
 src/game/main/func_0208a594.c:
     complete
     .text       start:0x0208a594 end:0x0208a598
@@ -7320,6 +7332,10 @@ src/game/main/units/unit_resupply_unpaid.c:
     complete
     .text       start:0x020cd204 end:0x020cd23c
 
+src/game/main/func_020cdadc.c:
+    complete
+    .text       start:0x020cdadc end:0x020cdb14
+
 src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc
@@ -8911,6 +8927,10 @@ src/game/main/func_020f368c.c:
 src/game/main/func_020f379c.c:
     complete
     .text       start:0x020f379c end:0x020f37d0
+
+src/game/main/func_020f37d0.c:
+    complete
+    .text       start:0x020f37d0 end:0x020f3804
 
 src/game/main/func_020f3ec8.c:
     complete
