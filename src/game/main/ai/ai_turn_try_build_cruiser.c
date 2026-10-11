@@ -11,12 +11,12 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_02095c1c(void);
+int AiSite_PickPortForCruiser(void);
 void func_0209316c(int index);
 
 /* End-actions step 5. Tries to start building a Cruiser: needs a port among
  * the current player's factories, the profile's flag for Cruisers set and the
- * funds for one. func_02095c1c picks the factory (-1: none). The name is a
+ * funds for one. AiSite_PickPortForCruiser picks the factory (-1: none). The name is a
  * guess from the unit type and the checks. Returns 1 when it queued an action. */
 BOOL AiTurn_TryBuildCruiser(void)
 {
@@ -31,7 +31,7 @@ BOOL AiTurn_TryBuildCruiser(void)
     if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_CRUISER) * 10) > STATE->players[STATE->currentPlayer].funds) {
         return 0;
     }
-    index = func_02095c1c();
+    index = AiSite_PickPortForCruiser();
     if (index == -1) {
         return 0;
     }
