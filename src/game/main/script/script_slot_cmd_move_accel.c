@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 void func_02017514(int slot, s16 *x, s16 *y);
-BOOL func_0201662c(int slot);
+void ScriptSlot_StepMove(int slot);
 
 /* Script command: moves the slot with a starting speed and a constant
  * acceleration, both read from the command's argument block, for the
@@ -28,6 +28,6 @@ BOOL ScriptSlot_CmdMoveAccel(int slot)
         MOVE_SLOT(slot).framesLeft = args->frames;
         MOVE_SLOT(slot).started++;
     }
-    func_0201662c(slot);
+    ScriptSlot_StepMove(slot);
     return FALSE;
 }

@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 void func_02017514(int slot, s16 *x, s16 *y);
-BOOL func_0201662c(int slot);
+void ScriptSlot_StepMove(int slot);
 
 /* Script command: moves the slot horizontally at a constant speed. The
  * command's word argument is the speed per frame (an integer), its
@@ -26,6 +26,6 @@ BOOL ScriptSlot_CmdMoveX(int slot)
         MOVE_SLOT(slot).framesLeft = MOVE_SLOT(slot).pc->arg16;
         MOVE_SLOT(slot).started++;
     }
-    func_0201662c(slot);
+    ScriptSlot_StepMove(slot);
     return FALSE;
 }
