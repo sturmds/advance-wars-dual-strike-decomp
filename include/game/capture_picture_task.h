@@ -17,7 +17,7 @@ typedef struct CapturePictureTask {
     struct Unk_02022404 *unk_38;       /* drawn through affine matrix 3, squashed as points go up */
     s16 x;                             /* screen position of the picture */
     s16 y;
-    u8 pad_40[0x42 - 0x40];
+    s16 unk_40;                        /* func_020ec218: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives unk_34 */
     s16 unk_42;                        /* added to y for the sprites in unk_34 and unk_38 */
     u8 owner;                          /* player capturing the property */
     u8 oldOwner;                       /* its owner before the capture */
@@ -38,5 +38,14 @@ typedef struct CaptureDoneTask {
     u8 pad_40[0x4c - 0x40];
     s16 frame;                         /* counts up to 10 */
 } CaptureDoneTask;
+
+/* Work area of the tasks that count the capture points up or down (scripts
+ * data_02168da8 and a sibling): each frame they step count and copy it to
+ * the picture task's points. */
+typedef struct CaptureCountTask {
+    u8 pad_00[0x4c];
+    s16 count;                         /* current step */
+    s16 limit;                         /* newPoints, set by func_020ec1a8 */
+} CaptureCountTask;
 
 #endif
