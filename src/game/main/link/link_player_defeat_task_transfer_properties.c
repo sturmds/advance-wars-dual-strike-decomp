@@ -16,7 +16,7 @@ void func_020c4448(void);
 void func_020c0aa8(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-#define HQ (STATE->players[(s16)task->unk_64])
+#define HQ (STATE->players[task->unk_64])
 #define SITE (STATE->unk_608c[i])
 #define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
@@ -38,10 +38,10 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
 
     if (task->unk_66 == 2) {
         old = TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f);
-        TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f) = data_ov000_022f5c50[(s16)task->unk_64] | TERRAIN_HQ;
+        TILE(HQ.hqX & 0x7f, HQ.hqY & 0x7f) = data_ov000_022f5c50[task->unk_64] | TERRAIN_HQ;
         newOwner = MAP_TILE_OWNER(old);
         MapCell_SetOwner((s16)(HQ.hqX & 0x7f), (s16)(HQ.hqY & 0x7f),
-                         data_ov000_022f5c50[(s16)task->unk_64] & 0xff);
+                         data_ov000_022f5c50[task->unk_64] & 0xff);
         func_020c4448();
     } else {
         newOwner = 0;
@@ -55,7 +55,7 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
         if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(SITE.tile)] == 0) {
             continue;
         }
-        if ((SITE.tile & 0xe0) != data_ov000_022f5c50[(s16)task->unk_64]) {
+        if ((SITE.tile & 0xe0) != data_ov000_022f5c50[task->unk_64]) {
             continue;
         }
         if (newOwner != 0) {

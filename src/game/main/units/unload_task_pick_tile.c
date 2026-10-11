@@ -43,7 +43,7 @@ void UnloadTask_PickTile(Task *task)
     int direction;
     u32 input;
     MapUnit *cargo;
-    int mask = (s16)task->unk_64; /* needed to match: read as signed, before direction */
+    int mask = task->unk_64; /* needed to match: read before direction */
 
     direction = task->unk_66;
     input = NeighborTilePicker_Update(&direction, mask);

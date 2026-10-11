@@ -77,7 +77,7 @@ void PlayerInfo_Init(Task *task)
     u8 *langFile;
 
     /* Needed to match: the original reads unk_64 signed (ldrsh). */
-    MENU.player = *(s16 *)&task->unk_64;
+    MENU.player = task->unk_64;
     MENU.slot = task->unk_66;
     MENU.page = 0;
     MENU.unk_0a4 = 0;

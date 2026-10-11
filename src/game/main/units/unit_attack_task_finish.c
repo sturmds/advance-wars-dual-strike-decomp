@@ -25,7 +25,7 @@ void UnitAttackTask_Finish(Task *task)
     ActingUnit_SaveStartPos();
     ActingUnit_FinishAction();
     ActingUnitStart_Restore();
-    if ((s16)task->unk_64 == 0) {
+    if (task->unk_64 == 0) {
         return;
     }
     target = func_020dc524(data_022a6dd4);

@@ -26,16 +26,16 @@ void DailyFuel_BurnStep(Task *task)
         return;
     }
     /* needed to match: unk_64 is read as signed */
-    while (*(s16 *)&task->unk_64 < UNIT_SLOTS_SCANNED) {
-        MapUnit *unit = &GAME->units[*(s16 *)&task->unk_64 + GAME->currentUnitBase];
+    while (task->unk_64 < UNIT_SLOTS_SCANNED) {
+        MapUnit *unit = &GAME->units[task->unk_64 + GAME->currentUnitBase];
 
         if (unit->type != 0 && Unit_BurnDailyFuel(unit)) {
             func_020edb84(unit);
             return;
         }
-        (*(s16 *)&task->unk_64)++;
+        (task->unk_64)++;
     }
-    if (*(s16 *)&task->unk_64 < UNIT_SLOTS_SCANNED) {
+    if (task->unk_64 < UNIT_SLOTS_SCANNED) {
         return;
     }
     Task_ResumeScript(task);

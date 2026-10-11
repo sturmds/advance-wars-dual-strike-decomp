@@ -7,10 +7,8 @@ void Task_ResumeScript(Task *task);
  * frame and resumes the script when it reaches 0. */
 void TaskWait_Update(Task *task)
 {
-    s16 *frames = (s16 *)&task->unk_24; /* needed to match: signed halfword access */
-
-    (*frames)--;
-    if (*frames == 0) {
+    task->unk_24--;
+    if (task->unk_24 == 0) {
         Task_ResumeScript(task);
     }
 }

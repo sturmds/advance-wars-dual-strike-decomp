@@ -22,11 +22,11 @@ void ScreenWipe_EaseUpUpdate(Task *task)
     Unk_02080440 *saved027c;
 
     /* The original reads the speed signed (ldrsh). */
-    data_0216e2a8 += (s16)task->unk_64;
+    data_0216e2a8 += task->unk_64;
     if (data_0216e2a8 >= WIPE_END) {
         data_0216e2a8 = WIPE_END;
     }
-    if ((s16)task->unk_64 <= 8) {
+    if (task->unk_64 <= 8) {
         data_0216e29c = Math_Ease(0, 0, WIPE_END, data_0216e2a8, WIPE_END);
     } else {
         data_0216e29c = Math_Ease(4, 0, WIPE_END, data_0216e2a8, WIPE_END);

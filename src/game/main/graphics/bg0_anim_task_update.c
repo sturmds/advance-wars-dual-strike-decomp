@@ -22,8 +22,7 @@ void Bg0AnimTask_Update(Task *task)
         TransferQueue_Add(data_021398d0 + (task->unk_66 << 7), data_027c0280->unk_e4 + 0x3ae0, 0x80);
         task->unk_66++;
     }
-    /* needed to match: the original reads unk_64 as signed (ldrsh) */
-    if ((s16)task->unk_64 == 0) {
+    if (task->unk_64 == 0) {
         func_02003154(&data_02139d50[(MainLoop_GetFrameCount() >> 2) % 15] + 1, 2, 30);
     } else {
         func_02003154(&data_02139d10[(MainLoop_GetFrameCount() >> 2) % 15] + 1, 2, 30);

@@ -18,5 +18,5 @@ void Game_LeaveToModeTask(Task *task)
     if (Map_IsCoSelectPhase()) {
         func_020e888c();
     }
-    Game_LoadSavesAndStartModeTask(data_027c027c->unk_48[data_027c0284]->currentPlayer, (s16)task->unk_64);
+    Game_LoadSavesAndStartModeTask(data_027c027c->unk_48[data_027c0284]->currentPlayer, task->unk_64);
 }

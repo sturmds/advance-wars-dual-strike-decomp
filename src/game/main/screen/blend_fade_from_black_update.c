@@ -17,7 +17,7 @@ void BlendFadeFromBlack_Update(Task *task)
         Task_Destroy(task);
         return;
     }
-    task->unk_66 -= (s16)task->unk_64; /* read signed here; Task.unk_64 is u16 */
+    task->unk_66 -= task->unk_64;
     if (task->unk_66 <= 0) {
         task->unk_66 = 0;
     }

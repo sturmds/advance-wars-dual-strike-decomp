@@ -9,9 +9,9 @@ void MapPreview_DrawUnits(void *dst);
  * frames 0, 1 and 22 of every 64. */
 void MapPreviewTask_Update(Task *task)
 {
-    int frame = *(s16 *)&task->unk_64;
+    int frame = task->unk_64;
 
-    *(s16 *)&task->unk_64 = frame + 1;
+    task->unk_64 = frame + 1;
     switch (frame & 63) {
     case 0:
         func_02020854(task->unk_4c);

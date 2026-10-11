@@ -10,8 +10,8 @@ void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(Task *task);
 
-/* The frame counter is signed in the original; Task.unk_64 is unsigned. */
-#define FRAME(task) (*(s16 *)&(task)->unk_64)
+/* Frame counter, kept in Task.unk_64. */
+#define FRAME(task) ((task)->unk_64)
 
 /* Task update: alpha-blends the screen for FADE_FRAMES frames, the first
  * target's weight easing from 16 down to 0 against a second weight of 16.

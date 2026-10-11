@@ -20,7 +20,7 @@ typedef struct Task {
     struct Task *firstChild;
     struct Task *prev;                 /* previous task in the same list */
     struct Task *next;                 /* next task in the same list */
-    u16 unk_24;
+    s16 unk_24;                        /* frames left for TaskCmd_WaitFrames; its low byte is TaskCmd_StartEventScript's argument */
     u8 group;                          /* guess: Task_DestroyGroup destroys all tasks of one group */
     u8 flags;                          /* bit 1: child task, bit 3: being created */
     u8 childCount;                     /* live children the task waits on; its script holds while nonzero */
@@ -45,7 +45,7 @@ typedef struct Task {
     int unk_58;                        /* number of sprites the fade task of ScreenFadeSprites_Update draws */
     u8 unk_5c;                         /* bit 2 set by Sprite_CreateTask */
     u8 pad_5d[0x64 - 0x5d];
-    u16 unk_64;
+    s16 unk_64;
     s16 unk_66;
     s16 unk_68;
     s16 unk_6a;                        /* number of players on the battle stats screen (see ResultStats_NextPlayer) */

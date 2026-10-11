@@ -9,9 +9,9 @@ void PaletteAnimTask_LoadFrame(Task *task);
  * frame wraps to 0. The counter is read as signed to match. */
 void PaletteAnimTask_Step(Task *task)
 {
-    task->unk_64 = (s16)task->unk_64 + 1;
+    task->unk_64 = task->unk_64 + 1;
     PaletteAnimTask_LoadFrame(task);
-    if (((s16)task->unk_64 >> 2) & 0xf) {
+    if ((task->unk_64 >> 2) & 0xf) {
         return;
     }
     Task_ResumeScript(task);

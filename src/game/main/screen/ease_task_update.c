@@ -10,7 +10,7 @@ void func_020fbb34(int value);
  * script after the last frame. */
 void EaseTask_Update(Task *task)
 {
-    func_020fbb34(Math_Ease(0, *(s16 *)&task->unk_64, task->unk_66, task->unk_44, task->unk_54));
+    func_020fbb34(Math_Ease(0, task->unk_64, task->unk_66, task->unk_44, task->unk_54));
     task->unk_44++;
     if (task->unk_44 > task->unk_54) {
         Task_ResumeScript(task);

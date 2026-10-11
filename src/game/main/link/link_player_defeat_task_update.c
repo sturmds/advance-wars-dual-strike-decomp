@@ -34,7 +34,7 @@ void LinkPlayerDefeatTask_Update(Task *task)
     }
     /* needed to match: a loop that always returns */
     while ((slot = task->unk_68) < 51) {
-        MapUnit *unit = &STATE->units[Ov000_gPlayerFirstUnitSlot[(s16)task->unk_64] + slot];
+        MapUnit *unit = &STATE->units[Ov000_gPlayerFirstUnitSlot[task->unk_64] + slot];
 
         task->unk_68 = slot + 1;
         LinkPlayerDefeat_StartUnitTask(unit, task);

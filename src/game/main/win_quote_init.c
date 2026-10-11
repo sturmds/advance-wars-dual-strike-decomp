@@ -19,8 +19,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-/* Task.unk_64 is a u16 in task.h, but this task reads it as signed. */
-#define RECORD_INDEX(task) (*(s16 *)&(task)->unk_64)
+#define RECORD_INDEX(task) ((task)->unk_64)
 
 /* Task step: copies data_022a7a9c.unk_04 into task->unk_64 (and that minus 1
  * into unk_66), gives both screens layer priorities 0 to 3 and no blending,

@@ -27,7 +27,7 @@ void HelpBand_Update(Task *task)
     for (i = 0; i < 16; i++) {
         Oam_PutCells((i * 16) & 0x1ff, 0x8b0, data_027c0060, 0, task->unk_52);
     }
-    if ((s16)task->unk_64 != 0) {
+    if (task->unk_64 != 0) {
         data_027c0280->bgScrollX[data_027c0280->layer0Bg]++;
     }
     Screen_SetCurrent(saved027c);

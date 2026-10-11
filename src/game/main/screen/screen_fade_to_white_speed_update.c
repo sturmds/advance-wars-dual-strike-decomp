@@ -10,7 +10,7 @@ void Task_ResumeScript(Task *task);
  * At the end it resumes the task's script. */
 void ScreenFadeToWhiteSpeed_Update(Task *task)
 {
-    task->unk_54 += (s16)task->unk_64;
+    task->unk_54 += task->unk_64;
     if (task->unk_54 >= task->unk_66) {
         task->unk_54 = task->unk_66;
         Task_ResumeScript(task);

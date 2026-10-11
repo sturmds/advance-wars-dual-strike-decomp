@@ -9,6 +9,6 @@ void Palette_LoadWithCopy(const void *src, int offset, u32 size);
  * data_0214a528 into palette byte offset 8. The counter is read as signed to match. */
 void PaletteAnimTask_LoadFrame(Task *task)
 {
-    task->unk_64 = (s16)task->unk_64 + 1;
-    Palette_LoadWithCopy(&data_0214a528[((s16)task->unk_64 >> 2) & 0xf], 8, 2);
+    task->unk_64 = task->unk_64 + 1;
+    Palette_LoadWithCopy(&data_0214a528[(task->unk_64 >> 2) & 0xf], 8, 2);
 }

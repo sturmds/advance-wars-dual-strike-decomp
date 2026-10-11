@@ -8,7 +8,7 @@ void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(Task *task);
-#define FRAME(task) (*(s16 *)&(task)->unk_64)
+#define FRAME(task) ((task)->unk_64)
 
 void func_020eb434(Task *task)
 {
