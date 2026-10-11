@@ -36,7 +36,7 @@ extern int data_022a98b8;
 /* Waits until the DMA channel is idle (best guess: MI_WaitDma). */
 void MI_WaitDma(int dmaNo);
 /* Starts a DMA copy (best guess: MI_DmaCopy32 with callback arguments 0, 0). */
-void func_0210f0c8(int dmaNo, const void *src, void *dst, u32 size, void *callback, void *arg);
+void MI_DmaCopy32Async(int dmaNo, const void *src, void *dst, u32 size, void *callback, void *arg);
 void MIi_CpuCopy32(const void *src, void *dst, u32 size);
 
 /* Texture palette. */
