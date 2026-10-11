@@ -22319,6 +22319,7 @@ src/sdk/isd/isd_divide_by_radix.c:
     .text       start:0x02120994 end:0x02120a4c
 
 src/sdk/isd/isd_string_length.c:
+    complete
     .text       start:0x02120a9c end:0x02120ad4
 
 src/sdk/isd/func_02120f18.c:
