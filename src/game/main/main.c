@@ -13,7 +13,7 @@ extern u8 data_02166dc8[];
 void func_01ff9f9c(void);
 void func_020011e0(void);
 void func_02112bdc(int a);
-void func_0200bf64(void);
+void Mem_InitHeaps(void);
 void func_0200acd8(void);
 void Screens_InitDisplay(void);
 void func_0200b970(void);
@@ -84,7 +84,7 @@ void main(void)
     /* KEYINPUT plus the X/Y bits, inverted: keys are active low */
     heldKeys = ((REG_KEYINPUT | HW_BUTTON_XY_BUF) ^ PAD_ALL_MASK) & PAD_ALL_MASK;
     func_02112bdc(3);
-    func_0200bf64();
+    Mem_InitHeaps();
     func_0200acd8();
     Screens_InitDisplay();
     func_0200b970();

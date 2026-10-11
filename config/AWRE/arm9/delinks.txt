@@ -697,6 +697,10 @@ src/game/main/mem/mem_alloc.c:
     complete
     .text       start:0x0200bf40 end:0x0200bf64
 
+src/game/main/mem/mem_init_heaps.c:
+    complete
+    .text       start:0x0200bf64 end:0x0200c020
+
 src/game/main/func_0200c020.c:
     complete
     .text       start:0x0200c020 end:0x0200c034
