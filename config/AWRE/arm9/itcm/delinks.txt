@@ -284,6 +284,10 @@ src/game/itcm/range_map/fill_cone.c:
     complete
     .text       start:0x01ffad44 end:0x01ffb078
 
+src/game/itcm/range_map/fill_diamond_u16.c:
+    complete
+    .text       start:0x01ffb078 end:0x01ffb200
+
 src/game/itcm/range_map/set_buffer.c:
     complete
     .text       start:0x01ffb200 end:0x01ffb2c0
