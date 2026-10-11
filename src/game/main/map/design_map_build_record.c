@@ -53,8 +53,7 @@ void DesignMap_BuildRecord(const char *name, DesignMapRecord *record, int countH
             } else {
                 record->units[tile] = 0;
             }
-            record->tileCodes[tile] = GAME->mapTiles->mapCells[TILE_INDEX(x, y)];
-            tile++;
+            record->tileCodes[tile++] = GAME->mapTiles->mapCells[TILE_INDEX(x, y)];
             state = GAME;
             terrainTile = state->mapTiles->tiles[x + state->mapTiles->rowStart[y]];
             if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(terrainTile)] != 0) {
