@@ -8756,6 +8756,10 @@ src/game/main/menus/combat_mode_menu_buy_unit.c:
     complete
     .text       start:0x02089404 end:0x0208958c
 
+src/game/main/menus/combat_mode_menu_shop_on_keys.c:
+    complete
+    .text       start:0x0208958c end:0x02089684
+
 src/game/main/menus/combat_mode_menu_draw_sprites.c:
     complete
     .text       start:0x02089684 end:0x02089a74
