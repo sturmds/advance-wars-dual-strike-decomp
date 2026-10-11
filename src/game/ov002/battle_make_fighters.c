@@ -18,13 +18,14 @@ typedef struct BattleEntryAt310 {
 int BattleCellTask_Create(int side, int slot, int entry);
 int BattleCellTask_CreateFighter(int side);
 
+/* The effect parameters of a side's start sprite. Needed to match: read in place at each
+ * use, so the compiler does not share side * 4 with the battle.unk_68 read. */
+#define START_EFFECT(side) (gMenuState.battle.unk_27c[side]->effects[8])
+
 /* Makes the fighter objects of both sides: one per entry with unk_14 set (or one for the
  * side when its animation data has unk_48 set), then the side's start sprite from the
- * table in battle.unk_68 when it is set. Partial (91.9%): the original reads unk_68 as
- * base + side * 4 + 0x68 without sharing that sum with the unk_27c read; reading it as a
- * plain field shares it (90.0%), reading it through `colours` as below stops the sharing
- * but adds the 0x68 before the shift. */
-void func_ov002_023571d0(void)
+ * table in battle.unk_68 when it is set. */
+void Battle_MakeFighters(void)
 {
     int side;
     int slot;
@@ -46,13 +47,11 @@ void func_ov002_023571d0(void)
         } else {
             ((BattleEntryAt310 *)row)->entry.unk_00 = BattleCellTask_CreateFighter(side);
         }
-        table = ((const u32 **)gMenuState.colours)[side + 0x68 / 4]; /* battle.unk_68[side] */
+        table = gMenuState.battle.unk_68[side];
         if (table != NULL) {
-            BattleSideData *data = gMenuState.battle.unk_27c[side];
-            BattleEffectParams *start = data->effects[8];
-
-            BattleSpriteTask_CreateDefaultWrapper(table, 0, start->offset.x, start->offset.y, (s16)start->delay, 0, 0, 0,
-                                                   gMenuState.battle.unk_20[side], side == 0 ? 0 : 2, 0, side);
+            BattleSpriteTask_CreateDefaultWrapper(table, 0, START_EFFECT(side)->offset.x, START_EFFECT(side)->offset.y,
+                                                   (s16)START_EFFECT(side)->delay, 0, 0, 0, gMenuState.battle.unk_20[side],
+                                                   side == 0 ? 0 : 2, 0, side);
         }
     }
 }

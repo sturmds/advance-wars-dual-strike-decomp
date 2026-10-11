@@ -289,6 +289,7 @@ src/game/ov002/func_ov002_023571b8.c:
     .text       start:0x023571b8 end:0x023571d0
 
 src/game/ov002/battle_make_fighters.c:
+    complete
     .text       start:0x023571d0 end:0x02357334
 
 src/game/ov002/battle_release_side_tasks.c:

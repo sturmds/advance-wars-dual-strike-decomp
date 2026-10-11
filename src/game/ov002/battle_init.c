@@ -9,7 +9,7 @@ void Battle_PickSideVariants(void);
 void Battle_SelectUnitRecords(int unitType1, int unitType2);
 void Battle_LoadScreen(void);
 void Battle_InitHpDisplay(void);
-void func_ov002_023571d0(void);
+void Battle_MakeFighters(void);
 void func_ov002_023571b8(void);
 void func_ov002_0235323c(void);
 
@@ -27,7 +27,7 @@ int Battle_Init(int unused)
     Battle_SelectUnitRecords(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
     Battle_LoadScreen();
     Battle_InitHpDisplay();
-    func_ov002_023571d0();
+    Battle_MakeFighters();
     func_ov002_023571b8();
     func_ov002_0235323c();
 }
