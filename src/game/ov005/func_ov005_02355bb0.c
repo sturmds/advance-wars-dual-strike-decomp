@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022977a4.h"
-#include "game/Unk_ov005_0236bbac.h"
+#include "game/ov005_task.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -31,7 +31,7 @@ extern u32 data_ov005_02367f5c[];      /* map bytes of a rotation/scaling BG by 
  * BG0, BG2 and OBJ on, layer priorities 0 to 3, no blending or windows,
  * layer 2 scrolled 8 pixels down, then the tiles, map (palette 6) and
  * palette of layer 2 from files. */
-void func_ov005_02355bb0(Unk_ov005_0236bbac *state)
+void func_ov005_02355bb0(Ov005Task *task)
 {
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
@@ -104,5 +104,5 @@ void func_ov005_02355bb0(Unk_ov005_0236bbac *state)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    state->unk_34 = 0;
+    task->step = 0;
 }

@@ -53,7 +53,7 @@ typedef struct Unk_ov005_0236bbac {
     int bTouched;
     int xTouched;
     int lTouched;
-    u32 unk_34;
+    u32 rTouched;
     int coId;                          /* CO whose picture is shown; -1: none */
     int unk_3c;
     fx32 pictureX;

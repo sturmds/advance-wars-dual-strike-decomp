@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_022977a4.h"
-#include "game/Unk_ov005_0236bbac.h"
+#include "game/ov005_task.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -26,7 +26,7 @@ extern char data_ov005_02369454[];
 extern u32 data_ov005_02367f4c[];
 extern u32 data_ov005_02367f5c[];
 
-void func_ov005_0235560c(Unk_ov005_0236bbac *state)
+void func_ov005_0235560c(Ov005Task *task)
 {
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
@@ -99,5 +99,5 @@ void func_ov005_0235560c(Unk_ov005_0236bbac *state)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    state->unk_34 = 0;
+    task->step = 0;
 }

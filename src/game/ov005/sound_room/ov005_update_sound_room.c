@@ -33,7 +33,7 @@ void Ov005SoundRoom_DrawCellNames(Unk_ov005_0236bbac *work);
  * A plays the selected song unless it is already playing, X stops it
  * (func_ov005_023640b8 clears the playing song), L/left and R/right turn the
  * page with wraparound, B leaves. Each input also has a touch button that
- * sets the matching *Touched flag; unk_34 is R's. On B it waits for
+ * sets the matching *Touched flag. On B it waits for
  * func_ov005_023640a4 to clear, fades out, frees the screen's tasks and
  * resumes the task script. Every frame ends by redrawing the list. */
 void Ov005_UpdateSoundRoom(Ov005Task *task)
@@ -106,8 +106,8 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             Ov005_SoundRoom_AddCellButtons(work);
             Ov005SoundRoom_SetSlideDirection(work);
             Ov005SoundRoom_PickCellCo(work);
-        } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->unk_34 == 1) {
-            work->unk_34 = 0;
+        } else if ((gKeypad->pressed & PAD_BUTTON_R) || (gKeypad->repeat & PAD_KEY_RIGHT) || work->rTouched == 1) {
+            work->rTouched = 0;
             if (work->page >= work->lastPage) {
                 work->page = 0;
             } else {
