@@ -777,6 +777,10 @@ src/game/main/graphics/camera_reset_to_origin.c:
     complete
     .text       start:0x0200c460 end:0x0200c498
 
+src/game/main/graphics/camera_tile_to_world.c:
+    complete
+    .text       start:0x0200c498 end:0x0200c500
+
 src/game/main/func_0200c5d8.c:
     complete
     .text       start:0x0200c5d8 end:0x0200c5dc
