@@ -10423,6 +10423,10 @@ src/game/main/link/link_mode_finish.c:
     complete
     .text       start:0x020d6b84 end:0x020d6bc0
 
+src/game/main/link/link_set_slot_controllers.c:
+    complete
+    .text       start:0x020d6bc0 end:0x020d6cb0
+
 src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
