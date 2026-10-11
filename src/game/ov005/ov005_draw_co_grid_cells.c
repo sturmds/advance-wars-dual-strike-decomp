@@ -9,7 +9,7 @@ void Screen_SetCurrentGfx(void *state);
 void Gfx3d_InitScene(void);
 int func_02028644(void);
 void Gx_DrawTexturedQuadFormat(int x, int y, int a2, int a3, int a4, int a5, int a6, int a7, int a8, int a9);
-void func_0202b654(int a0, u16 x, u16 y, int a3);
+void Sprite_QueueCoSlotFrame(int a0, u16 x, u16 y, int a3);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -40,7 +40,7 @@ void Ov005_DrawCoGridCells(Ov005Task *task)
         if (cell->coId != -1) {
             Gx_DrawTexturedQuadFormat(cell->x, cell->y, 0, 2, 1, 3, drawn * 384, drawn * 32, 0, 0);
             Gx_DrawTexturedQuadFormat(cell->x + 32, cell->y, 0, 1, 1, 3, (drawn * 12 + 8) * 32, drawn * 32, 0, 0);
-            func_0202b654(0, cell->x & 0x1ff, cell->y & 0xff, 0);
+            Sprite_QueueCoSlotFrame(0, cell->x & 0x1ff, cell->y & 0xff, 0);
             drawn++;
         }
     }

@@ -21,7 +21,7 @@ void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 int func_02028644(void);
-void func_0202b654(int a0, u16 x, u16 y, int a3);
+void Sprite_QueueCoSlotFrame(int a0, u16 x, u16 y, int a3);
 int CoSelectScreen_RowTileY(u8 row);
 int CoSelectScreen_ColumnTileX(u8 column);
 BOOL CoSelectScreen_IsCoInOtherCell(u8 listCo);
@@ -75,7 +75,7 @@ void CoSelectScreen_Draw(void)
         if (*listCo != 0xff) {
             y = SLOT_Y(i);
             x = SLOT_X(i);
-            func_0202b654(2, x & 0x1ff, y & 0xff, 0);
+            Sprite_QueueCoSlotFrame(2, x & 0x1ff, y & 0xff, 0);
         }
     }
     y = SLOT_Y(data_0229c73c->unk_37);

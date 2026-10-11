@@ -1178,7 +1178,7 @@ ModeFontTask_Draw kind:function(arm,size=0x150) addr:0x0202afa8
 ModeFontTask_GrowInFramed kind:function(arm,size=0x2d0) addr:0x0202b0f8
 ModeFontTask_SlideIn kind:function(arm,size=0x1c8) addr:0x0202b3c8
 ModeFontTask_InitLetterStarts kind:function(arm,size=0xc4) addr:0x0202b590
-func_0202b654 kind:function(arm,size=0x38) addr:0x0202b654
+Sprite_QueueCoSlotFrame kind:function(arm,size=0x38) addr:0x0202b654
 TpIcon3_LoadTo kind:function(arm,size=0x6c) addr:0x0202b68c
 TpIcon2_LoadTo kind:function(arm,size=0x6c) addr:0x0202b6f8
 func_0202b764 kind:function(arm,size=0x7c) addr:0x0202b764
@@ -7058,7 +7058,7 @@ data_02159814 kind:data(any) addr:0x02159814
 data_02159830 kind:data(any) addr:0x02159830
 data_02159870 kind:data(any) addr:0x02159870
 data_021598b0 kind:data(any) addr:0x021598b0
-data_021598c8 kind:data(any) addr:0x021598c8
+gCoSlotFrameCells kind:data(any) addr:0x021598c8
 data_021598d8 kind:data(any) addr:0x021598d8
 data_021598f4 kind:data(any) addr:0x021598f4
 data_02159910 kind:data(any) addr:0x02159910
