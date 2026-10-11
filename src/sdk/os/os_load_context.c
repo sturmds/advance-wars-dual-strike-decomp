@@ -1,6 +1,6 @@
 #include "sdk/os.h"
 
-extern void func_02113e34(void *coprocessorContext);   /* restores the coprocessor registers */
+extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 
 /*
  * OS_LoadContext: restores the coprocessor state, then switches to
@@ -11,7 +11,7 @@ asm void OS_LoadContext(OSContext *context)
 {
     stmfd sp!, {r0, lr}
     add r0, r0, #0x48
-    ldr r1, =func_02113e34
+    ldr r1, =CPi_RestoreContext
     blx r1
     ldmfd sp!, {r0, lr}
     mrs r1, CPSR

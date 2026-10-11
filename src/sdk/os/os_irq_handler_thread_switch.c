@@ -3,7 +3,7 @@
 extern u16 data_027c1278;               /* bit mask of thread ids to wake after the interrupt */
 extern OSThreadInfo OSi_ThreadInfo;
 extern void func_02113ea0(void *coprocessorContext);   /* saves the coprocessor registers */
-extern void func_02113e34(void *coprocessorContext);   /* restores the coprocessor registers */
+extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 
 /*
  * OS_IrqHandler_ThreadSwitch: the return path of OS_IrqHandler. Marks the
@@ -90,7 +90,7 @@ no_callback:
     stmfd sp!, {r1}
     add r0, r1, #0
     add r0, r0, #0x48
-    ldr r1, =func_02113e34
+    ldr r1, =CPi_RestoreContext
     blx r1
     ldmfd sp!, {r1}
     ldr sp, [r1, #0x44]
