@@ -5982,6 +5982,10 @@ src/game/main/func_02078cbc.c:
     complete
     .text       start:0x02078cbc end:0x02078dc0
 
+src/game/main/link/wireless_start_parent.c:
+    complete
+    .text       start:0x02078dc0 end:0x02078e18
+
 src/game/main/link/wireless_on_parent_event.c:
     complete
     .text       start:0x02078e18 end:0x02079028

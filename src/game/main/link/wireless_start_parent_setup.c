@@ -8,7 +8,7 @@ int func_021179d4(void (*callback)(WirelessEvent *event));
 int func_02079180(void);
 
 /* Parent side: starts a request that reports to func_02078cbc, which goes on
- * to func_02078dc0. When it does not start, goes back to state 3 and
+ * to Wireless_StartParent. When it does not start, goes back to state 3 and
  * calls func_02079180. The name is a guess. */
 BOOL Wireless_StartParentSetup(void)
 {
