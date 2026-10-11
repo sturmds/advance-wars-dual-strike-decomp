@@ -4,7 +4,7 @@
 
 u8 Map_IsFlagSet(u32 mapId);
 u32 func_0207bd80(void);
-void func_0205d594(void);
+void MapSelect_PickFirstMap(void);
 void MapSelect_ConfirmMap(void);
 
 extern MenuStateFrom400 data_0229ef30;
@@ -14,7 +14,7 @@ extern MenuStateFrom400 data_0229ef30;
 
 /* Picks the selected map. Maps below id 0x101 must be unlocked
  * (Map_IsFlagSet). The first pick of a two-map battle outside the War Room
- * goes to func_0205d594; otherwise MapSelect_ConfirmMap takes the map.
+ * goes to MapSelect_PickFirstMap; otherwise MapSelect_ConfirmMap takes the map.
  * In link mode (func_0207bd80 returns 1) the pick is queued as event 7 or 5
  * with the map's page position instead. */
 void MapSelect_PickMap(void)
@@ -26,7 +26,7 @@ void MapSelect_PickMap(void)
         if (func_0207bd80() == 1) {
             EventQueue_Push(7, PAGE_POS());
         } else {
-            func_0205d594();
+            MapSelect_PickFirstMap();
         }
     } else {
         if (func_0207bd80() == 1) {
