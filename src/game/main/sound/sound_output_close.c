@@ -4,7 +4,7 @@
 extern Unk_022a8a10 data_022a8a10;
 extern u8 data_022a89fc[];
 
-void func_0210fd58(int arg0, int arg1, u32 alarmMask, int arg3);
+void SND_StopTimer(int arg0, int arg1, u32 alarmMask, int arg3);
 int func_02110150(void);
 void func_02110220(int arg0);
 void func_021102b0(int arg0);
@@ -25,7 +25,7 @@ void SoundOutput_Close(void)
         return;
     }
     hasAlarm = state->alarm >= 0;
-    func_0210fd58(state->unk_20, state->unk_24, hasAlarm ? 1 << state->alarm : 0, 0);
+    SND_StopTimer(state->unk_20, state->unk_24, hasAlarm ? 1 << state->alarm : 0, 0);
     if (hasAlarm) {
         int saved = func_02110150();
         func_021102b0(1);

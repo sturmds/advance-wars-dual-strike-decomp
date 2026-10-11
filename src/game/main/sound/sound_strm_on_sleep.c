@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound_strm.h"
 
-void func_0210fd58(u32 channelMask, int arg1, u32 alarmMask, int arg3);
+void SND_StopTimer(u32 channelMask, int arg1, u32 alarmMask, int arg3);
 int func_02110150(void);
 void func_02110220(int arg0);
 void func_021102b0(int arg0);
@@ -14,7 +14,7 @@ void SoundStrm_OnSleep(SoundStrm *strm)
     if (!strm->flags.running) {
         return;
     }
-    func_0210fd58(strm->channelMask, 0, 1 << strm->alarm, 0);
+    SND_StopTimer(strm->channelMask, 0, 1 << strm->alarm, 0);
     saved = func_02110150();
     func_021102b0(1);
     func_02110220(saved);
