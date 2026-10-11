@@ -3,10 +3,13 @@
 
 #include "types.h"
 
-/* The camera object that Camera_Set fills (data_022a7d5c). Only the position
- * is known. */
+/* The camera object that Camera_Set fills (data_022a7d5c). Only the rotation
+ * and position are known. */
 typedef struct Camera {
-    u8 pad_00[0x08];
+    u16 rotX;
+    u16 rotY;
+    u16 rotZ;
+    u8 pad_06[0x02];
     s32 x;
     s32 y;
     s32 z;
