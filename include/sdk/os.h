@@ -247,7 +247,17 @@ typedef struct FirmwareUserSettings {
     u8 pad_1b;
     u16 comment[26];
     u8 commentLength;
-    u8 pad_51[0x13];
+    u8 pad_51[0x7];
+    /* Touch panel calibration from the system settings: the raw reading at
+     * two screen points (see TP_GetUserInfo). */
+    u16 tpRawX1;
+    u16 tpRawY1;
+    u8 tpDotX1;
+    u8 tpDotY1;
+    u16 tpRawX2;
+    u16 tpRawY2;
+    u8 tpDotX2;
+    u8 tpDotY2;
     u16 favoriteColor : 3;
     u16 : 13;
 } FirmwareUserSettings;
