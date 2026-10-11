@@ -7757,6 +7757,10 @@ src/game/main/func_02087808.c:
     complete
     .text       start:0x02087808 end:0x02087828
 
+src/game/main/func_02087828.c:
+    complete
+    .text       start:0x02087828 end:0x020878c0
+
 src/game/main/func_02087a44.c:
     complete
     .text       start:0x02087a44 end:0x02087aa8
