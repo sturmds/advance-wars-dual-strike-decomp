@@ -29,7 +29,7 @@ typedef struct MoveSearchNode {
 
 /* Pointed to by data_027c0758. */
 typedef struct MoveSearch {
-    u8 moveCost[0x20];                 /* per terrain id, filled by func_01ffb2c0 for the unit type */
+    u8 moveCost[0x20];                 /* per terrain id, filled by MoveSearch_LoadMoveCosts for the unit type */
     s16 maxCost;                       /* cost limit of the search */
     s16 moveRange;                     /* movement of the unit per turn */
     u8 x;                              /* tile being expanded */

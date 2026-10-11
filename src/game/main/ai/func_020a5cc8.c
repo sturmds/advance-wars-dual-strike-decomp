@@ -10,7 +10,7 @@ extern MoveSearchNode *data_027c0754;
 extern MoveSearch *data_027c0758;
 extern MoveSearchNode *data_027c075c;
 int Player_GetUnitMoveRange(int player, int unitType);
-void func_01ffb2c0(int unitType);
+void MoveSearch_LoadMoveCosts(int unitType);
 BOOL MoveSearch_TryStepInCost(int direction);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define FROM_START 1
@@ -30,7 +30,7 @@ BOOL func_020a5cc8(int x, int y, int unitType, int maxCost)
     data_027c0758->maxCost = maxCost;
     data_027c0758->moveRange = Player_GetUnitMoveRange(STATE->currentPlayer, unitType);
     data_027c0758->unitType = unitType;
-    func_01ffb2c0(unitType);
+    MoveSearch_LoadMoveCosts(unitType);
     data_027c075c->x = x;
     data_027c075c->y = y;
     data_027c075c->from = FROM_START;

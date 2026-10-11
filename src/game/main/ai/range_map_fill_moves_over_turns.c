@@ -11,7 +11,7 @@ extern MoveSearch *data_027c0758;
 extern MoveSearchNode *data_027c075c;
 
 int Player_GetUnitMoveRange(int player, int unitType);
-void func_01ffb2c0(int unitType);
+void MoveSearch_LoadMoveCosts(int unitType);
 void func_020a6ac4(int direction); /* queues the tile next to the current one in that direction */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -40,7 +40,7 @@ void RangeMap_FillMovesOverTurns(int x, int y, int unitType, int maxCost)
     data_027c0754 = data_027c0758->lists[1];
     data_027c0758->maxCost = maxCost;
     data_027c0758->moveRange = Player_GetUnitMoveRange(STATE->currentPlayer, unitType);
-    func_01ffb2c0(unitType);
+    MoveSearch_LoadMoveCosts(unitType);
     data_027c075c->x = x;
     data_027c075c->y = y;
     data_027c075c->from = FROM_START;
