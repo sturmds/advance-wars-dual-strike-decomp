@@ -15173,6 +15173,14 @@ src/game/main/map/map_object_turn_task_target_next.c:
     complete
     .text       start:0x020d9978 end:0x020d9b30
 
+src/game/main/map/map_object_turn_task_init.c:
+    complete
+    .text       start:0x020d9b30 end:0x020d9b64
+
+src/game/main/map/map_object_fire_task_hit_next_unit.c:
+    complete
+    .text       start:0x020d9b64 end:0x020d9be0
+
 src/game/main/map/map_object_fire_task_show_next_shot.c:
     complete
     .text       start:0x020d9be0 end:0x020d9e70
