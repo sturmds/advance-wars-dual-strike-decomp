@@ -39,7 +39,7 @@ void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 void func_01ff9b48(void);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_0202a7ec(const void *text, int tile, int paletteSlot, u8 unk_5c, int unk_58);
-void func_02048c84(PageStripTask *task);
+void SurvivalProgress_LoadEnemyCoPictures(PageStripTask *task);
 int Survival_GetMapCount(int mode);
 int Survival_GetMapId(int mode, int index);
 
@@ -122,7 +122,7 @@ void SurvivalProgress_Init(PageStripTask *task)
     Icon_LoadTo(203, data_027c0280->objVram, 72);
     IconBank_LoadPalette(4, 24);
     MapPreview_Draw(data_027c0280->objVram + 0x8000, (s16)task->mapId); /* needed to match: read signed here only */
-    func_02048c84(task);
+    SurvivalProgress_LoadEnemyCoPictures(task);
     map = data_027c0280->layer0Map;
     Text_PrintStringImmediate(12, 21, map, Map_GetName(task->mapId), 0, 0);
     Window_Draw(11, 20, 10, 4, data_027c0280->layer1Map, 0);

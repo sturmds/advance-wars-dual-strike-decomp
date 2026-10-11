@@ -6342,6 +6342,10 @@ src/game/main/menus/survival_progress_init.c:
     complete
     .text       start:0x02048718 end:0x02048c84
 
+src/game/main/menus/survival_progress_load_enemy_co_pictures.c:
+    complete
+    .text       start:0x02048c84 end:0x02048d98
+
 src/game/main/func_02048d98.c:
     complete
     .text       start:0x02048d98 end:0x02048db0
