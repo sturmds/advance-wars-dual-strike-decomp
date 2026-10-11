@@ -8704,6 +8704,10 @@ src/game/main/func_020ecb04.c:
     complete
     .text       start:0x020ecb04 end:0x020ecb14
 
+src/game/main/map/func_020ed744.c:
+    complete
+    .text       start:0x020ed744 end:0x020ed774
+
 src/game/main/func_020edb84.c:
     complete
     .text       start:0x020edb84 end:0x020edba8
