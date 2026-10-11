@@ -21009,6 +21009,10 @@ src/sdk/fs/fs_dir_sync_jump_to_dir_start.c:
     complete
     .text       start:0x02111ae0 end:0x02111b14
 
+src/sdk/fs/fs_read_table.c:
+    complete
+    .text       start:0x02111b14 end:0x02111bc4
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0

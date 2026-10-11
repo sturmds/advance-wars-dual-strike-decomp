@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-void func_02111b14(ArchiveTableCursor *cursor, void *dest, u32 length);
+void FSi_ReadTable(ArchiveTableCursor *cursor, void *dest, u32 length);
 int func_02111bc4(FSFile *file, u32 command);
 
 /* Archive command: looks the file id up in the FAT (8 bytes per file: top
@@ -19,7 +19,7 @@ int FSi_OpenFileFastCommand(FSFile *file)
     }
     cursor.arc = arc;
     cursor.pos = arc->fat + entry;
-    func_02111b14(&cursor, range, 8);
+    FSi_ReadTable(&cursor, range, 8);
     file->arg.openFileDirect.top = range[0];
     file->arg.openFileDirect.bottom = range[1];
     file->arg.openFileDirect.id = id;

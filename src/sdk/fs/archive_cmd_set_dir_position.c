@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-void func_02111b14(ArchiveTableCursor *cursor, void *dest, u32 length);
+void FSi_ReadTable(ArchiveTableCursor *cursor, void *dest, u32 length);
 
 /* One directory entry of the FNT, 8 bytes. */
 typedef struct FSDirEntry {
@@ -21,7 +21,7 @@ int Archive_CmdSetDirPosition(FSFile *file)
 
     cursor.arc = arc;
     cursor.pos = arc->fnt + target->ownId * 8;
-    func_02111b14(&cursor, &entry, 8);
+    FSi_ReadTable(&cursor, &entry, 8);
     file->dirPos = *target;
     if (target->index == 0 && target->pos == 0) {
         file->dirPos.index = entry.firstFileId;
