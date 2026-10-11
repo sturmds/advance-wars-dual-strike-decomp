@@ -278,14 +278,14 @@ typedef struct WMArm9Buf {
     void *portCallbackArg[16];
 } WMArm9Buf;
 
-/* WM internals shared by the command functions. func_02116cf0 returns 0 when
+/* WM internals shared by the command functions. WMi_CheckStateEx returns 0 when
  * the current state is one of the count states listed after it, else an error
  * code. func_02116df4 returns 3 (illegal state) before the WM is initialised.
  * func_02116f74 stores the callback to run when command apiid completes.
  * func_02116e20 sends a command: its id, the count of extra arguments, then
  * those arguments. It returns WM_ERRCODE_OPERATING once the command is
  * queued, else an error code. */
-int func_02116cf0(int count, ...);
+int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
 WMArm9Buf *func_02116e10(void);
 int func_02116e20(int apiid, int argCount, ...);

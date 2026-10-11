@@ -10,7 +10,7 @@ int WM_Disconnect(WMCallbackFunc callback, u16 aid)
     WMArm9Buf *buf = func_02116e10();
     int result;
 
-    result = func_02116cf0(5, WM_STATE_PARENT, WM_STATE_MP_PARENT, WM_STATE_CHILD,
+    result = WMi_CheckStateEx(5, WM_STATE_PARENT, WM_STATE_MP_PARENT, WM_STATE_CHILD,
                            WM_STATE_MP_CHILD, WM_STATE_DCF_CHILD);
     if (result != 0) {
         return result;

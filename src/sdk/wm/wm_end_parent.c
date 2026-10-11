@@ -4,7 +4,7 @@
 /* Stops acting as a parent. */
 int WM_EndParent(WMCallbackFunc callback)
 {
-    int result = func_02116cf0(1, WM_STATE_PARENT);
+    int result = WMi_CheckStateEx(1, WM_STATE_PARENT);
 
     if (result != 0) {
         return result;

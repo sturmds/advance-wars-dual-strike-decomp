@@ -11,7 +11,7 @@ int Wireless_RequestJoinParent(WMCallbackFunc callback, WMBssDesc *bssDesc, cons
                     u16 authMode)
 {
     WMStartConnectReq *req;
-    int result = func_02116cf0(1, WM_STATE_IDLE);
+    int result = WMi_CheckStateEx(1, WM_STATE_IDLE);
 
     if (result != 0) {
         return result;

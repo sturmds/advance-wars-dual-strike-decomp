@@ -4,7 +4,7 @@
 /* Starts acting as a parent: sends beacons and accepts children. */
 int WM_StartParent(WMCallbackFunc callback)
 {
-    int result = func_02116cf0(1, WM_STATE_IDLE);
+    int result = WMi_CheckStateEx(1, WM_STATE_IDLE);
 
     if (result != 0) {
         return result;

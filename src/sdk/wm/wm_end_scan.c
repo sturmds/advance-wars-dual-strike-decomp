@@ -4,7 +4,7 @@
 /* Stops the scan started by WM_StartScan. */
 int WM_EndScan(WMCallbackFunc callback)
 {
-    int result = func_02116cf0(1, WM_STATE_SCAN);
+    int result = WMi_CheckStateEx(1, WM_STATE_SCAN);
 
     if (result != 0) {
         return result;

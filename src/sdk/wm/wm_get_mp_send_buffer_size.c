@@ -9,7 +9,7 @@ u32 WM_GetMPSendBufferSize(void)
 {
     WMArm9Buf *buf = func_02116e10();
 
-    if (func_02116cf0(2, WM_STATE_PARENT, WM_STATE_CHILD) != 0) {
+    if (WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_CHILD) != 0) {
         return 0;
     }
     DC_InvalidateRange(&buf->status->unk_0c, 4);

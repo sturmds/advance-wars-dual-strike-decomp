@@ -6,7 +6,7 @@
 int WM_StartScan(WMCallbackFunc callback, const WMScanParam *param)
 {
     WMStartScanReq *req;
-    int result = func_02116cf0(3, WM_STATE_IDLE, WM_STATE_CLASS1, WM_STATE_SCAN);
+    int result = WMi_CheckStateEx(3, WM_STATE_IDLE, WM_STATE_CLASS1, WM_STATE_SCAN);
 
     if (result != 0) {
         return result;
