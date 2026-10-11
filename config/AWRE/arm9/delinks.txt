@@ -5122,6 +5122,10 @@ src/game/main/copowers/super_break_set_up_screen.c:
     complete
     .text       start:0x0205443c end:0x02054ab0
 
+src/game/main/copowers/super_break_bounce_banner.c:
+    complete
+    .text       start:0x02054b24 end:0x02054d34
+
 src/game/main/func_02055074.c:
     complete
     .text       start:0x02055074 end:0x020550e8
