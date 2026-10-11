@@ -18,8 +18,16 @@ typedef struct IsdRing {
     u16 tail;
 } IsdRing;
 
+#define ISD_RING_OFFSET 0x90
 #define ISD_RING_BYTES_OFFSET 0x8000
 #define ISD_RING_MASK 0x3fff
+
+/* Flag bits in the shared block: debugger output is on, and which ring carries it. */
+#define ISD_FLAG_CART_RING 0x1
+#define ISD_FLAG_CHANNEL_RING 0x4
+#define ISD_FLAG_OUTPUT 0x20000
+
+typedef void (*IsdByteWriter)(IsdRing *ring, int byte);
 
 /* The cartridge-bus ring is 32 KB (the channel's is 16 KB); which window of the bus it sits in depends on a flag. */
 #define ISD_CART_RING_MASK 0x7fff
@@ -55,6 +63,15 @@ struct IsdPrintTarget {
 /* Debugger buffer on the cartridge bus: a control halfword and a register that is read and discarded. */
 #define ISD_BUFFER_CONTROL (*(vu16 *)0x09fe2ffe)
 #define ISD_BUFFER_STATUS (*(vu16 *)0x09fe20f0)
+
+void Isd_CartRingWriteByte(IsdRing *ring, int byte);
+void Isd_BusSave(IsdBusState *saved);
+void Isd_BusRestore(IsdBusState *saved);
+
+/* Taking the cartridge bus for the debugger: *saved gets what Isd_ReleaseCartridge needs to undo it. */
+BOOL Isd_TryAcquireCartridge(u32 *saved);
+void Isd_AcquireCartridge(u32 *saved);
+void Isd_ReleaseCartridge(u32 saved);
 
 /*
  * Reads one byte with a halfword load. The library does this for every byte
