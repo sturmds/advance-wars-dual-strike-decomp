@@ -48,6 +48,7 @@ Triage (`tools/triage_partials.py`, 2026-10-11, 77 functions):
 4. **Inline helpers.** The original may have used `static inline` functions or macros we do not know about; inlining changes the order mwcc numbers its virtual registers. A pass that wraps a block in an inline helper (and one that removes one) is worth trying on the order class.
 5. **Cookbook for agents.** The tips above, plus the relevant ones in `partials-tried.md`, as a section in `docs/workflow.md` or the decomp-function skill, so agents try the rewrites that worked before ad hoc ones.
 6. **Stop rule and parking.** Decide when a function is parked (for example: permuter ran N hours, agents tried twice) so the loop stops spending tokens on it, and record it so it can be reopened when the tool improves.
+7. **Machine Learning to technique to try and map assembly code => Code.** I am not an ML expert, but it feels possible that we can train a model on the assembly code to produce C. However, this may be time intensive and low-value, especially if we have to train a larger number of ASM and C code that we don't have.
 
 ## Context and pointers
 
