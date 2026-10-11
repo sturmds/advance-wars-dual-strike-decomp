@@ -3235,6 +3235,10 @@ src/game/main/screen/screen_reset_and_show_message.c:
     complete
     .text       start:0x0201efd8 end:0x0201f304
 
+src/game/main/save_erase_all.c:
+    complete
+    .text       start:0x0201f304 end:0x0201f414
+
 src/game/main/save_scan_slots.c:
     complete
     .text       start:0x0201f414 end:0x0201f750
