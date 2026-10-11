@@ -24,6 +24,11 @@ typedef struct LinkScreenState {
     u8 playerCount;                    /* number of players on the map */
 } LinkScreenState;
 
+/* Ready flag of a player on the link screen, which is LinkScreenState.unk_028[player]. The
+ * game adds the player index to the base first, then the offset 0x28; the cast keeps that
+ * order, which the match needs. */
+#define LINK_READY_FLAG(menuState, player) (((u8 *)&(menuState) + (player))[0x28])
+
 /* Map select and battle setup layout of MenuState. Arrays of 4 from
  * 0x2b0 are indexed by player (players 1-4 at 0-3); [2] is front and back
  * CO, or main and second map for controllers. */
