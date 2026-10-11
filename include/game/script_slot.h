@@ -36,6 +36,21 @@ typedef struct ScriptSlot {
     u8 pad_3f[0x60 - 0x3f];
 } ScriptSlot;
 
+/* The same slot as the map scroll script data_02169e38 uses it. Positions
+ * are map view scroll values in 1/16 tiles. */
+typedef struct MapScrollSlot {
+    u8 pad_00[0x1e];
+    s16 startX;                        /* scroll when the script starts */
+    s16 startY;
+    s16 targetX;                       /* set by func_020f54a0 */
+    s16 targetY;
+    s16 distX;                         /* targetX - startX */
+    s16 distY;
+    u16 step;                          /* index into the per-frame speed table data_022a7bd8 */
+    u16 travelled;                     /* distance moved so far along the longer axis */
+    u8 pad_2e[0x60 - 0x2e];
+} MapScrollSlot;
+
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
 typedef BOOL (*ScriptCommandFunc)(int slot);
 
