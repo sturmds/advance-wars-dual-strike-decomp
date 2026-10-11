@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 void Weather_LoadTileGraphics(int weather, int variant, int size);
-void func_020dba50(int weather, int variant, int size);
+void MapGfx_LoadTilesetPalettes(int weather, int variant, int size);
 void WeatherFx_InitClouds(void);
 void WeatherFx_InitSnow(void);
 void WeatherFx_InitRain(void);
@@ -13,7 +13,7 @@ void Weather_LoadGraphics(int weather, int tilesetByte)
     int tileset = tilesetByte & 0x7f;
 
     Weather_LoadTileGraphics(weather, tileset, 0x94);
-    func_020dba50(weather, tileset, 8);
+    MapGfx_LoadTilesetPalettes(weather, tileset, 8);
     switch (weather) {
     case WEATHER_CLEAR:
         WeatherFx_InitClouds();

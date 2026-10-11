@@ -8,7 +8,9 @@
 typedef struct MapTilesetFiles {
     const char *palette;               /* the map texture palette; MapGfx_LoadGreyscale loads it */
     const char *tiles;                 /* unpacked into layer 3's tile data by MapGfx_LoadTilesetAndWeather */
-    u8 unk_08[0x1c - 0x08];
+    const u8 *bgPalettes;              /* three BG palette rows; MapGfx_LoadTilesetPalettes loads them */
+    const char *objPaletteFile;        /* one OBJ palette row; MapGfx_LoadTilesetObjPalette loads it outside the Design Room */
+    u8 unk_10[0x1c - 0x10];
 } MapTilesetFiles;
 
 extern MapTilesetFiles data_02167e30[];

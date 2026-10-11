@@ -15938,6 +15938,10 @@ src/game/main/map/map_queue_tile_sprite.c:
     complete
     .text       start:0x020db9e0 end:0x020dba50
 
+src/game/main/graphics/map_gfx_load_tileset_palettes.c:
+    complete
+    .text       start:0x020dba50 end:0x020dbb6c
+
 src/game/main/graphics/palette_queue_block_copy.c:
     complete
     .text       start:0x020dbc94 end:0x020dbd08
