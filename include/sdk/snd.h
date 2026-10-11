@@ -29,6 +29,8 @@ extern SndCommand data_022a9f40[256]; /* command pool */
 void SND_Init(void);
 SndCommand *SND_PopFreeCommand(void);
 void Sound_PingArm7Driver(void);
+int Sound_PendingCommandCount(void);
+int Sound_FreeCommandCount(void);
 void Sound_WaitForArm7Listener(void);
 void SoundAlarm_OnArm7Message(int tag, u32 data, int err);
 
