@@ -1815,6 +1815,10 @@ src/game/main/script/script_slot_start_in_slot_no_flags.c:
     complete
     .text       start:0x020177a4 end:0x02017818
 
+src/game/main/script/script_slot_init.c:
+    complete
+    .text       start:0x02017818 end:0x02017950
+
 src/game/main/script/script_slot_clear_all.c:
     complete
     .text       start:0x02017950 end:0x020179a4

@@ -131,6 +131,17 @@ typedef struct ArcMoveSlot {
  * slot address again, as the original does. */
 #define MOVE_SLOT(slot) ((*(ArcMoveSlot **)&data_027c027c->scriptSlots)[slot])
 
+/* The slot's script data area as ScriptSlot_Init clears it: four halfwords
+ * set to 0 and four words set to -1. Each script uses the area in its own
+ * way (see the views above). */
+typedef struct ScriptSlotVars {
+    u8 pad_00[0x1e];
+    s16 shorts[4];
+    u8 pad_26[2];
+    int words[4];
+    u8 pad_38[0x60 - 0x38];
+} ScriptSlotVars;
+
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
 typedef BOOL (*ScriptCommandFunc)(int slot);
 
