@@ -4,7 +4,7 @@
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 
-int func_020206f0(int slot, int arg1, SaveBuffer *buffer, int size);
+int Save_ReadFromBackup(int slot, int arg1, SaveBuffer *buffer, int size);
 int Save_CheckBuffer(void);
 
 /* Reads save slot slot into the save buffer and checks it. Sets the slot's
@@ -12,7 +12,7 @@ int Save_CheckBuffer(void);
  * 2 and returns 0. */
 int Save_ReadSlot(int slot)
 {
-    func_020206f0(slot, 0, &data_02298050, 0x3000);
+    Save_ReadFromBackup(slot, 0, &data_02298050, 0x3000);
     if (Save_CheckBuffer()) {
         data_02297f3c.flags[slot] |= 4;
         return 4;
