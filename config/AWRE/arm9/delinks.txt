@@ -6530,6 +6530,10 @@ src/game/main/func_020bc548.c:
     complete
     .text       start:0x020bc548 end:0x020bc56c
 
+src/game/main/menus/func_020bc56c.c:
+    complete
+    .text       start:0x020bc56c end:0x020bc5c0
+
 src/game/main/func_020bc6ac.c:
     complete
     .text       start:0x020bc6ac end:0x020bc6b4
