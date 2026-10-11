@@ -7,12 +7,15 @@
  * ARM7 sends 32-bit messages through it and registers a receive callback per
  * 5-bit tag. */
 
+#define REG_PXI_SYNC      ((volatile u16 *)0x04000180)
 #define IO_FIFO_CTRL  ((volatile u16 *)0x04000184)
 #define IO_FIFO_OUTBOX ((volatile u32 *)0x04000188)
 #define IO_FIFO_INBOX ((volatile u32 *)0x04100000)
 
 #define FIFO_CTRL_OUTBOX_FULL  0x0002
 #define FIFO_CTRL_INBOX_EMPTY 0x0100
+#define FIFO_CTRL_FLUSH_OUTBOX 0x0008
+#define FIFO_CTRL_INBOX_IRQ   0x0400
 #define FIFO_CTRL_FAULT_ACK      0x4000
 #define FIFO_CTRL_ON     0x8000
 
@@ -45,5 +48,10 @@ typedef struct FifoPeerRegistry {
 int PXI_SendWordByFifo(u32 tag, u32 data, int err);
 BOOL PXI_IsCallbackReady(u32 tag, u32 proc);
 void PXI_SetFifoRecvCallback(u32 tag, PXIFifoCallback callback);
+void PXI_InitFifo(void);
+void Fifo_DispatchReceived(void);
+
+/* Receive callback per tag, filled by PXI_SetFifoRecvCallback. */
+extern PXIFifoCallback gPxiRecvCallbacks[FIFO_TAG_LIMIT];
 
 #endif

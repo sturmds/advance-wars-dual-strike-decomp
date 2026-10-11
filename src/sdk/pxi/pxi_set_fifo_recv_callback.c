@@ -2,8 +2,6 @@
 #include "sdk/os.h"
 #include "sdk/pxi.h"
 
-extern PXIFifoCallback gPxiRecvCallbacks[FIFO_TAG_LIMIT];
-
 /* Registers callback for messages with tag (NULL removes it) and publishes
  * that to the other CPU. */
 void PXI_SetFifoRecvCallback(u32 tag, PXIFifoCallback callback)

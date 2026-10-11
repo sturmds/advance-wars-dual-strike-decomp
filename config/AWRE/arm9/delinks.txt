@@ -21888,6 +21888,10 @@ src/sdk/func_02110e58.c:
     complete
     .text       start:0x02110e58 end:0x02110e64
 
+src/sdk/pxi/fifo_dispatch_received.c:
+    complete
+    .text       start:0x02110e64 end:0x02110f88
+
 src/sdk/pxi/pxi_send_word_by_fifo.c:
     complete
     .text       start:0x02110f88 end:0x0211103c
@@ -21899,6 +21903,10 @@ src/sdk/pxi/pxi_is_callback_ready.c:
 src/sdk/pxi/pxi_set_fifo_recv_callback.c:
     complete
     .text       start:0x02111064 end:0x021110d0
+
+src/sdk/pxi/pxi_init_fifo.c:
+    complete
+    .text       start:0x021110d0 end:0x021111dc
 
 src/sdk/func_021111dc.c:
     complete
