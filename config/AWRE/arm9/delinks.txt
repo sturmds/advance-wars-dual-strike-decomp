@@ -220,6 +220,10 @@ src/game/main/math/hw_mod_u32.c:
     complete
     .text       start:0x02002eac end:0x02002efc
 
+src/game/main/math/hw_div_u32.c:
+    complete
+    .text       start:0x02002efc end:0x02002f4c
+
 src/game/main/math/hw_mod32.c:
     complete
     .text       start:0x02002f4c end:0x02002fa4
