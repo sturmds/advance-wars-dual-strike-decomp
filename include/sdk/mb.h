@@ -91,4 +91,36 @@ typedef struct DlPlayAdvertFrame {
     u8 data[DLPLAY_ADVERT_CHUNK_BYTES];
 } DlPlayAdvertFrame;
 
+/* The parent's work area, behind data_022aced8. Only the fields the beacon
+ * and send code read are named. */
+typedef struct DlPlayStationArea {
+    u8 pad_00[0x0c];
+    u16 unk_0c;
+    u16 unk_0e;
+    u8 pad_10[2];
+    u16 unk_12;
+    u16 unk_14;
+    u16 unk_16;
+    u8 pad_18[0x508 - 0x18];
+    void (*sendCallback)(void);        /* callback for the MP send */
+    u8 sendQueued;                     /* set to 1 once MbParent_Send queued the data */
+    u8 unk_50d;
+    u8 pad_50e[0x51c - 0x50e];
+    void (*errorCallback)(u32 type, void *arg);
+    u8 pad_520[4];
+    u16 unk_524;
+    u16 unk_526;
+    u16 unk_528;
+    u8 pad_52a[2];
+    u16 unk_52c;
+} DlPlayStationArea;
+
+/* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
+#define DLPLAY_EVENT_RADIO_FAULT 0xff
+
+typedef struct DlPlayFailedCall {
+    u16 apiid;
+    u16 errcode;
+} DlPlayFailedCall;
+
 #endif
