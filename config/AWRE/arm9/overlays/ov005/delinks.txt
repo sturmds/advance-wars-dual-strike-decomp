@@ -140,6 +140,10 @@ src/game/ov005/ov005_update_blend_event_script_screen.c:
     complete
     .text       start:0x023545c4 end:0x02354874
 
+src/game/ov005/ov005_setup_blend_in_screens_with_song.c:
+    complete
+    .text       start:0x02354874 end:0x023551f8
+
 src/game/ov005/func_ov005_023551f8.c:
     complete
     .text       start:0x023551f8 end:0x02355224
