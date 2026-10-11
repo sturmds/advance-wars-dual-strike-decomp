@@ -21037,6 +21037,10 @@ src/sdk/fs/archive_on_command_finished.c:
     complete
     .text       start:0x02112044 end:0x021120d4
 
+src/sdk/fs/fs_run_command_sync.c:
+    complete
+    .text       start:0x02112248 end:0x02112290
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
