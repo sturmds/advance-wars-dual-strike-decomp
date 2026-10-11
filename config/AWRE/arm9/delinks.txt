@@ -9660,6 +9660,10 @@ src/game/main/func_020eef58.c:
     complete
     .text       start:0x020eef58 end:0x020eef7c
 
+src/game/main/units/silo_launch_pick_target_step.c:
+    complete
+    .text       start:0x020eef7c end:0x020ef110
+
 src/game/main/func_020ef110.c:
     complete
     .text       start:0x020ef110 end:0x020ef17c
