@@ -3741,6 +3741,10 @@ src/game/main/func_020369f0.c:
     complete
     .text       start:0x020369f0 end:0x020369f4
 
+src/game/main/screen/screens_zoom_fade_update.c:
+    complete
+    .text       start:0x020369f4 end:0x0203705c
+
 src/game/main/screen/screens_set_bg3_zoom.c:
     complete
     .text       start:0x02037f74 end:0x02038064
