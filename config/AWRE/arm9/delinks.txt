@@ -5697,6 +5697,10 @@ src/game/main/ai/ai_power_check_enemies_on_properties.c:
     complete
     .text       start:0x02098ef0 end:0x020990c4
 
+src/game/main/ai/ai_power_check_has_factory_or_free_city.c:
+    complete
+    .text       start:0x0209937c end:0x020994b8
+
 src/game/main/func_02099520.c:
     complete
     .text       start:0x02099520 end:0x02099528
