@@ -2,7 +2,7 @@
 #include "sdk/gx.h"
 
 extern u16 data_022a9878[13];
-void func_0210b470(u32 banks);
+void Vram_PowerOnBanks(u32 banks);
 
 void func_0210aaf8(int bank)
 {
@@ -23,5 +23,5 @@ void func_0210aaf8(int bank)
             break;
         }
     }
-    func_0210b470(data_022a9878[0]);
+    Vram_PowerOnBanks(data_022a9878[0]);
 }
