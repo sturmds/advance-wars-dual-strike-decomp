@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 
 void func_0202244c(void *sprite);
 void Mem_Free(void *block);

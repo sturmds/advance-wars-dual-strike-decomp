@@ -2,17 +2,17 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 
-extern u8 data_022a7ed0[];
+extern u8 gNameEntryText[];
 
-/* Length of the text in data_022a7ed0. entry is not used. */
+/* Length of the text in gNameEntryText. entry is not used. */
 int NameEntry_GetTextLength(NameEntry *entry)
 {
     int length = 0;
 
     for (;;) {
-        if (data_022a7ed0[length] == 0) {
+        if (gNameEntryText[length] == 0) {
             break;
         }
         length++;

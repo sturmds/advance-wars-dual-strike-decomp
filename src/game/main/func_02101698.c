@@ -7,9 +7,9 @@ struct Unk_02101698_0 {
     int unk_118;
 };
 
-extern Unk_02101698_0 *data_022a7ea8;
+extern Unk_02101698_0 *gNameEntry;
 
 int func_02101698(void)
 {
-    return data_022a7ea8->unk_118;
+    return gNameEntry->unk_118;
 }

@@ -2,7 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 #include "game/Unk_02022404.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"

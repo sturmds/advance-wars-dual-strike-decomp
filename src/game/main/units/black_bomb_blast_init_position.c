@@ -13,5 +13,5 @@ void BlackBombBlast_InitPosition(BlackBombBlastTask *task)
 {
     task->pixelX = task->tileX * 16 + 8;
     task->pixelY = task->tileY * 16 + 8;
-    task->unk_66 = STATE->unk_1c4->scrollY;
+    task->scrollY = STATE->unk_1c4->scrollY;
 }

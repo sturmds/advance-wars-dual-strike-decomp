@@ -2,7 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 void Mem_Copy32(const void *src, void *dst, u32 size);
 
 extern NameEntryKey data_0216afb4[NAME_ENTRY_KEY_COUNT];

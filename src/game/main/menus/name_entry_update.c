@@ -2,7 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/keypad.h"
@@ -41,7 +41,7 @@ extern u8 data_0216abb4[];
 extern u8 data_0216abe4[];
 extern u8 data_0216ac44[];
 extern u8 gNameEntryStartText[];
-extern u8 data_022a7ed0[];
+extern u8 gNameEntryText[];
 
 /* Per-frame update of the name entry task. Steps 0-1 start a 32-frame task
  * (func_02004984; probably a fade) and wait for it; for the 8-character
@@ -200,7 +200,7 @@ void NameEntry_Update(NameEntryTask *task)
         break;
     case 103:
         if (func_020b983c() == 0) {
-            Mem_Copy32(gNameEntryStartText, data_022a7ed0, 34);
+            Mem_Copy32(gNameEntryStartText, gNameEntryText, 34);
         }
         Task_ResumeScript(task);
         return;

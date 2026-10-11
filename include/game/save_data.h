@@ -37,7 +37,7 @@ typedef struct SaveBuffer {
     u8 checksum;                       /* byte sum of the 0x3000 bytes with these two set to 0xff and 0 */
     u8 checksumInv;                    /* ~checksum */
     u32 counter;                       /* save counter of this slot */
-    u8 unk_0c;                         /* bits 4-7 set: record is skipped by Save_LoadRecord */
+    u8 part;                           /* which part of a record this slot holds (Save_WriteRecord); bits 4-7 set: record is skipped by Save_LoadRecord */
     u8 recordId;
     u16 destOffset;                    /* where the record data goes in the load destination */
     u32 slotWrites[SAVE_SLOT_COUNT];   /* SAVE_SLOT_WRITES of every slot when this one was written */

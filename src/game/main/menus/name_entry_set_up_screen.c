@@ -2,7 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -32,7 +32,7 @@ extern Unk_027c0288 data_027c0288;
 extern u8 data_0216ac74[];
 extern char data_0216b338[];
 extern char data_0216b344[];
-extern u8 data_022a7ed0[];
+extern u8 gNameEntryText[];
 extern u8 gNameEntryStartText[];
 
 /* Needed to match: an inline call evaluates its arguments (the layer
@@ -219,14 +219,14 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
 
         for (j = 0; j < 34; j++) {
             if (!ended) {
-                if (data_022a7ed0[j] == 0) {
+                if (gNameEntryText[j] == 0) {
                     ended = TRUE;
                 }
             } else {
-                data_022a7ed0[j] = 0;
+                gNameEntryText[j] = 0;
             }
         }
     }
-    Mem_Copy32(data_022a7ed0, gNameEntryStartText, 34);
+    Mem_Copy32(gNameEntryText, gNameEntryStartText, 34);
     task->step = 0;
 }

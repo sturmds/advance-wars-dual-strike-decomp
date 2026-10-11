@@ -4,7 +4,7 @@
 extern void (*data_02297f24)(void);
 extern u8 *data_02297f28;
 extern int (*data_02297f2c)(u8 *dest);
-extern int data_02297f34;
+extern int gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
 extern u8 data_0229a050[];
 
@@ -25,7 +25,7 @@ void Save_Format(void)
     int i;
     int try;
 
-    data_02297f34 = 0;
+    gNextSaveCounter = 0;
     data_02297f24();
     size = data_02297f2c(data_02297f28);
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {

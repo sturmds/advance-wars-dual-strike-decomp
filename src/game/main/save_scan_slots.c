@@ -2,7 +2,7 @@
 #include "game/save_data.h"
 
 extern u8 *data_02297f28;
-extern int data_02297f34;
+extern int gNextSaveCounter;
 extern int data_02297f38;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
@@ -38,7 +38,7 @@ void Save_ScanSlots(int noFormat)
     for (j = 0; j < SAVE_SLOT_COUNT; j++) {
         SAVE_SLOT_WRITES(j) = 0;
     }
-    data_02297f34 = 0;
+    gNextSaveCounter = 0;
     anyBad = 0; /* needed to match: set here, not before the loop above */
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
         bad[i] = 0;
@@ -49,17 +49,17 @@ void Save_ScanSlots(int noFormat)
             data_02297fa8[i] = data_02298050.counter;
             data_02297f3c.newId[i] = data_02298050.recordId;
             data_02297f3c.id[i] = data_02297f3c.newId[i];
-            data_02297f3c.part[i] = data_02298050.unk_0c;
+            data_02297f3c.part[i] = data_02298050.part;
             if (newest == -1 ||
                 (newest > -1 && /* needed to match: always true here */
                  (data_02297fa8[newest] < data_02298050.counter ||
                   (data_02298050.counter == data_02297fa8[newest] &&
-                   data_02297f3c.part[newest] > data_02298050.unk_0c)))) {
+                   data_02297f3c.part[newest] > data_02298050.part)))) {
                 newest = i;
                 for (j = 0; j < SAVE_SLOT_COUNT; j++) {
                     SAVE_SLOT_WRITES(j) = data_02298050.slotWrites[j];
                 }
-                data_02297f34 = data_02298050.counter + 1;
+                gNextSaveCounter = data_02298050.counter + 1;
             }
         } else {
             anyBad = 1;

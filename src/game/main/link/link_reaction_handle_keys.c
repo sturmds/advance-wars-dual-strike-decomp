@@ -8,7 +8,7 @@ int Link_FindSlotOfPlayer(int player);
 void LinkReaction_Send(void *data);
 void LinkReaction_StartCooldown(void);
 
-extern u16 data_0229da64;
+extern u16 gLinkReactionCooldown;
 
 /* Sends a reaction when the local player presses A, B, X, Y, L or R
  * (buttons 0 to 5), unless the wait after the last one is still running
@@ -17,8 +17,8 @@ void LinkReaction_HandleKeys(void)
 {
     LinkReaction reaction;
 
-    if (data_0229da64 != 0) {
-        data_0229da64--;
+    if (gLinkReactionCooldown != 0) {
+        gLinkReactionCooldown--;
         return;
     }
     if (EventScript_IsRunning()) {

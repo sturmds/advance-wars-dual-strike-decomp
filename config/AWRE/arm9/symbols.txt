@@ -8690,7 +8690,7 @@ data_02297f24 kind:bss addr:0x02297f24
 data_02297f28 kind:bss addr:0x02297f28
 data_02297f2c kind:bss addr:0x02297f2c
 data_02297f30 kind:bss addr:0x02297f30
-data_02297f34 kind:bss addr:0x02297f34
+gNextSaveCounter kind:bss addr:0x02297f34
 data_02297f38 kind:bss addr:0x02297f38
 data_02297f3c kind:bss addr:0x02297f3c
 data_02297f66 kind:bss addr:0x02297f66
@@ -8782,7 +8782,7 @@ data_0229d8c4 kind:bss addr:0x0229d8c4
 data_0229d8c8 kind:bss addr:0x0229d8c8
 data_0229d8d4 kind:bss addr:0x0229d8d4
 data_0229d8e0 kind:bss addr:0x0229d8e0
-data_0229da64 kind:bss addr:0x0229da64
+gLinkReactionCooldown kind:bss addr:0x0229da64
 data_0229da68 kind:bss addr:0x0229da68
 data_0229da8c kind:bss addr:0x0229da8c
 data_0229daad kind:bss addr:0x0229daad
@@ -8909,9 +8909,9 @@ data_022a7e70 kind:bss addr:0x022a7e70
 data_022a7e72 kind:bss addr:0x022a7e72
 data_022a7e88 kind:bss addr:0x022a7e88
 data_022a7ea4 kind:bss addr:0x022a7ea4
-data_022a7ea8 kind:bss addr:0x022a7ea8
+gNameEntry kind:bss addr:0x022a7ea8
 gNameEntryStartText kind:bss addr:0x022a7eac
-data_022a7ed0 kind:bss addr:0x022a7ed0
+gNameEntryText kind:bss addr:0x022a7ed0
 gGameFlagsLow kind:bss addr:0x022a7ef4
 data_022a7ef8 kind:bss addr:0x022a7ef8
 gGameFlagsMid kind:bss addr:0x022a7f50

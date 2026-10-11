@@ -9,11 +9,11 @@ struct Unk_02101500_0 {
     int unk_11c;
 };
 
-extern Unk_02101500_0 *data_022a7ea8;
+extern Unk_02101500_0 *gNameEntry;
 
 void func_02101500(u8 *a0)
 {
-    Unk_02101500_0 *t0 = data_022a7ea8;
+    Unk_02101500_0 *t0 = gNameEntry;
     t0->unk_11c = 1;
     t0->unk_104 = *a0 - 128;
 }

@@ -1,5 +1,5 @@
-#ifndef GAME_UNK_022A7EA8_H
-#define GAME_UNK_022A7EA8_H
+#ifndef GAME_NAME_ENTRY_WORK_H
+#define GAME_NAME_ENTRY_WORK_H
 
 #include "types.h"
 
@@ -20,9 +20,9 @@ typedef struct NameEntryKey {
 } NameEntryKey;
 
 /* Work block of the name entry screen (0x4f4 bytes, allocated by
- * NameEntry_AllocWork); data_022a7ea8 points to it. The text being typed is
- * data_022a7ed0. */
-typedef struct Unk_022a7ea8 {
+ * NameEntry_AllocWork); gNameEntry points to it. The text being typed is
+ * gNameEntryText. */
+typedef struct NameEntry {
     int maxLength;                     /* 8 or 16: width of the text field in characters */
     u16 frameTiles[4][32];             /* tile map of the text field frame: left edge, middle, right edge in each row */
 
@@ -44,9 +44,7 @@ typedef struct Unk_022a7ea8 {
     struct Unk_02022404 *caret;        /* text caret sprite */
     void *buttonSpriteFile;          /* loaded sprite file the buttonSprites come from */
     struct Unk_02022404 *buttonSprites[3];
-} Unk_022a7ea8;
-
-typedef Unk_022a7ea8 NameEntry;
+} NameEntry;
 
 /* Task of the name entry screen. The first 0x2c bytes belong to the task
  * system (Task_Create). */

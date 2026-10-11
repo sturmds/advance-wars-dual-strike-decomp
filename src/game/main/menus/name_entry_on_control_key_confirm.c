@@ -2,16 +2,16 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 #include "game/menu_button.h"
 
-extern NameEntry *data_022a7ea8;
+extern NameEntry *gNameEntry;
 
 /* onConfirm of the control key buttons: moves the cursor to the key and
  * raises that key's flag. */
 void NameEntry_OnControlKeyConfirm(MenuButton *button)
 {
-    NameEntry *entry = data_022a7ea8;
+    NameEntry *entry = gNameEntry;
 
     entry->cursor = button->id - NAME_ENTRY_KEY_BUTTON_ID;
     switch (entry->cursor) {

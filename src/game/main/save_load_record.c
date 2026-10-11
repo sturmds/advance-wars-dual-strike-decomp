@@ -45,7 +45,7 @@ int Save_LoadRecord(int recordId)
             for (n = 0; n < data_02298050.dataLength; n++) {
                 (data_02297f28 + data_02298050.destOffset)[n] = data_02298050.data[n];
             }
-            if ((data_02298050.unk_0c & 0xf0) == 0 && recordId == 0) {
+            if ((data_02298050.part & 0xf0) == 0 && recordId == 0) {
                 for (n = 0; n < SAVE_SLOT_COUNT; n++) {
                     data_02297f3c.newId[n] = data_02298050.slotIds[n];
                 }

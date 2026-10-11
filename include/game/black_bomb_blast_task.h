@@ -17,7 +17,7 @@ typedef struct BlackBombBlastTask {
     int pixelX;                        /* centre of tileX in map pixels */
     int pixelY;
     u8 pad_5c[0x66 - 0x5c];
-    s16 unk_66;                        /* BlackBombBlast_InitPosition copies Unk_02080440_1c4.scrollY here */
+    s16 scrollY;                       /* BlackBombBlast_InitPosition copies Unk_02080440_1c4.scrollY here */
 } BlackBombBlastTask;
 
 /* Work area of the explosion task func_020dd940 starts (script

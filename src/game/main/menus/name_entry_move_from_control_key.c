@@ -2,13 +2,13 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
 int NameEntry_FindKey(NameEntry *entry, s16 x, s16 y);
 
-extern NameEntry *data_022a7ea8;
+extern NameEntry *gNameEntry;
 
 #define KEYBOARD_TOP_ROW    0
 #define KEYBOARD_BOTTOM_ROW 4
@@ -18,7 +18,7 @@ extern NameEntry *data_022a7ea8;
  * control key; left and right move along the three control keys and wrap. */
 void NameEntry_MoveFromControlKey(MenuButton *button)
 {
-    NameEntry *entry = data_022a7ea8;
+    NameEntry *entry = gNameEntry;
     int cursor = entry->cursor;
     s16 column = 0;
     s16 slot;

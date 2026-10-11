@@ -3,12 +3,12 @@
 
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
-extern u16 data_0229da64;
+extern u16 gLinkReactionCooldown;
 
-/* data_0229da64 is the 200 frame wait that LinkReaction_StartCooldown sets after a send. */
+/* gLinkReactionCooldown is the 200 frame wait that LinkReaction_StartCooldown sets after a send. */
 void LinkReactionTask_ClearOwnCooldown(LinkReactionTask *task)
 {
     if (task->slot == Link_FindSlotOfPlayer(func_0207bd6c())) {
-        data_0229da64 = 0;
+        gLinkReactionCooldown = 0;
     }
 }

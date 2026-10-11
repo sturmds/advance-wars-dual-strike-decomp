@@ -2,7 +2,7 @@
 #pragma optimization_level 0
 
 #include "types.h"
-#include "game/Unk_022a7ea8.h"
+#include "game/name_entry_work.h"
 
 /* Index of the key at position (x, y), or -1 when no used key is there. */
 int NameEntry_FindKey(NameEntry *entry, s16 x, s16 y)

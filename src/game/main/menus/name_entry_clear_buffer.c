@@ -7,9 +7,9 @@
 
 void Mem_Zero32(u32 value, void *dst, u32 size);
 
-extern u8 data_022a7ed0[];
+extern u8 gNameEntryText[];
 
 void NameEntry_ClearBuffer(void)
 {
-    Mem_Zero32(0, data_022a7ed0, NAME_ENTRY_TEXT_SIZE);
+    Mem_Zero32(0, gNameEntryText, NAME_ENTRY_TEXT_SIZE);
 }

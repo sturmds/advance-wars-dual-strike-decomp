@@ -4,7 +4,7 @@
 extern u8 *data_02297f28;
 extern int (*data_02297f2c)(u8 *dest);
 extern int data_02297f30;
-extern u32 data_02297f34;
+extern u32 gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 extern u8 data_0229a050[];
@@ -132,8 +132,8 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                 data_02298050.checksumInv = 0xff;
                 data_02298050.checksum = 0;
                 data_02298050.recordId = recordId;
-                data_02298050.counter = data_02297f34;
-                data_02298050.unk_0c = partHigh + data_02297f30 - 1;
+                data_02298050.counter = gNextSaveCounter;
+                data_02298050.part = partHigh + data_02297f30 - 1;
                 data_02298050.destOffset = partOffset[part];
                 for (i = 0; i < SAVE_SLOT_COUNT; i++) {
                     data_02298050.slotWrites[i] = SAVE_SLOT_WRITES(i);
@@ -148,7 +148,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
                         data_02297f3c.id[i] = data_02297f3c.newId[i];
                     }
-                    if (data_02297f34 == 0) {
+                    if (gNextSaveCounter == 0) {
                         for (i = 0; i < SAVE_SLOT_COUNT; i++) {
                             if (written[i] == 0 && i != slot) {
                                 data_02298050.slotIds[i] = 0xff;
@@ -175,7 +175,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                     entry->flags[0] |= SAVE_SLOT_KEEP;
                     part--;
                     entry->flags[0] &= ~SAVE_SLOT_READ_FAILED;
-                    entry->part[0] = data_02298050.unk_0c;
+                    entry->part[0] = data_02298050.part;
                     entry->unk_54[0] = data_0229a050[0xfff];
                     written[slot] = 1;
                     SAVE_SLOT_WRITES(slot) = data_02298050.counter;
@@ -188,8 +188,8 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
             } while (part >= 0);
         }
 
-        if (data_02297f34 < 0xffffffff) {
-            data_02297f34++;
+        if (gNextSaveCounter < 0xffffffff) {
+            gNextSaveCounter++;
         }
         if (recordId == 0 || recordId == 10 || recordId == 11) {
             break;
