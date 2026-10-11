@@ -2118,6 +2118,10 @@ src/game/main/battle_save_save.c:
     complete
     .text       start:0x0201912c end:0x02019330
 
+src/game/main/battle_save_get_record_id.c:
+    complete
+    .text       start:0x02019330 end:0x0201939c
+
 src/game/main/func_0201939c.c:
     complete
     .text       start:0x0201939c end:0x020193bc

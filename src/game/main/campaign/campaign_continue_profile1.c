@@ -5,7 +5,7 @@
 
 extern const TaskScriptCmd data_021670a4[];
 
-int func_02019330(int mode, int campaignSlot);
+int BattleSave_GetRecordId(int mode, int campaignSlot);
 u8 func_020193bc(int recordId);
 int func_0201fe28(int recordId);
 void func_02017cf8(int recordId);
@@ -22,7 +22,7 @@ void ForceRank_LoadSets(int mode);
  * Force Rank sets are loaded and the data_021670a4 task starts. */
 void Campaign_ContinueProfile1(void)
 {
-    int recordId = func_02019330(0, 1);
+    int recordId = BattleSave_GetRecordId(0, 1);
     Unk_027c0280 *saved0280 = data_027c0280;
     Unk_02080440 *saved027c = data_027c027c;
 

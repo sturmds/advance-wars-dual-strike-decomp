@@ -2,7 +2,7 @@
 #include "game/Unk_02290118.h"
 
 void CampaignMap_ResetState(void);
-int func_02019330(int a, int b);
+int BattleSave_GetRecordId(int a, int b);
 void func_020d8294(int a, void (*callback)(void));
 void func_021037ac(void);
 
@@ -11,5 +11,5 @@ void func_021037ac(void);
 void Campaign_Continue(void)
 {
     CampaignMap_ResetState();
-    func_020d8294(func_02019330(0, data_02290118.unk_00), func_021037ac);
+    func_020d8294(BattleSave_GetRecordId(0, data_02290118.unk_00), func_021037ac);
 }
