@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-void func_02023234(Task *task);
+void TaskWait_Update(Task *task);
 
 /* Script command: waits for as many frames as the command's arg says,
  * then goes on with the next command. An arg of 0 does not wait. */
@@ -11,7 +11,7 @@ BOOL TaskCmd_WaitFrames(Task *task)
 
     if (frames != 0) {
         task->unk_24 = frames;
-        task->update = func_02023234;
+        task->update = TaskWait_Update;
     }
     task->pc++;
     return FALSE;
