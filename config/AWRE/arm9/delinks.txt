@@ -1236,6 +1236,10 @@ src/game/main/text/text_get_width_in_tiles.c:
     complete
     .text       start:0x02014a3c end:0x02014a64
 
+src/game/main/text/text_get_print_width.c:
+    complete
+    .text       start:0x02014a64 end:0x02014ab0
+
 src/game/main/func_02014c24.c:
     complete
     .text       start:0x02014c24 end:0x02014c38
