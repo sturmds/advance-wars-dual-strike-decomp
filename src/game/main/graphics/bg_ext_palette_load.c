@@ -8,7 +8,7 @@ void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
 void func_0210c59c(const void *src, u32 offset, u32 size);
-void func_0210c550(void);
+void GXS_EndLoadBGExtPltt(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0288 data_027c0288;
@@ -26,6 +26,6 @@ void BgExtPalette_Load(const void *src, u32 offset, u32 size, u32 slot)
         DC_FlushRange(src, size);
         func_0210c610();
         func_0210c59c(src, offset + (slot << 13), size);
-        func_0210c550();
+        GXS_EndLoadBGExtPltt();
     }
 }
