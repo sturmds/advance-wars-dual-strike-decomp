@@ -18366,6 +18366,10 @@ src/game/main/screen/screen_hide_all_layers.c:
     complete
     .text       start:0x020f4c54 end:0x020f4cb0
 
+src/game/main/screen/splash_white_out_screens.c:
+    complete
+    .text       start:0x020f4cb0 end:0x020f4ed0
+
 src/game/main/screen/splash_fade_update.c:
     complete
     .text       start:0x020f4ed0 end:0x020f4f78
