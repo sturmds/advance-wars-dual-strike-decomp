@@ -4,7 +4,7 @@
 void SND_StartSeq(int hwChannel, const void *seqData, u32 offset, void *bank);
 void func_0210fdfc(int hwChannel, u32 trackMask, u32 channelMask);
 u32 SND_GetCurrentCommandTag(void);
-void func_02110190(int arg);
+void Sound_BlockUntilCommandsFree(int arg);
 void SoundSeqPlayer_ResetState(SoundSeqPlayer *player);
 
 /* Starts the sequence data on the player's hardware channel, restricts its
@@ -15,7 +15,7 @@ void SoundSeqPlayer_Start(SoundSeqPlayer *player, const void *seqData, u32 offse
     SoundPlayerSlot *slot = player->ownerSlot;
 
     if (slot->trackChannelMask != 0) {
-        func_02110190(2);
+        Sound_BlockUntilCommandsFree(2);
     }
     SND_StartSeq(player->hwChannel, seqData, offset, bank);
     if (slot->trackChannelMask != 0) {
