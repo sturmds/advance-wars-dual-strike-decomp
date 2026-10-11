@@ -1,6 +1,10 @@
     .text       start:0x01ff8000 end:0x01ffde78 kind:code align:32
     .bss        start:0x01ffde80 end:0x01ffde80 kind:bss align:32
 
+src/game/itcm/oam/oam_get_shape_cells.c:
+    complete
+    .text       start:0x01ff8000 end:0x01ff817c
+
 src/game/itcm/oam/oam_put_obj_list.c:
     complete
     .text       start:0x01ff8524 end:0x01ff85d8
