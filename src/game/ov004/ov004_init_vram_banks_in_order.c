@@ -6,7 +6,7 @@ void func_0210b1b8(int mask);
 void func_0210ab74(int mask);
 void func_0210aaf8(int mask);
 void func_0210b04c(int mask);
-void func_0210ac40(int mask);
+void GX_SetBankForTexPltt(int mask);
 void func_0210af38(int mask);
 void func_0210aa6c(int mask);
 
@@ -19,7 +19,7 @@ void Ov004_InitVramBanksInOrder(void) {
     func_0210ab74(4);
     func_0210aaf8(8);
     func_0210b04c(16);
-    func_0210ac40(32);
+    GX_SetBankForTexPltt(32);
     func_0210af38(64);
     func_0210aa6c(128);
 }

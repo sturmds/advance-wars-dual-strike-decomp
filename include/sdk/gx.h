@@ -91,6 +91,7 @@
 #define REG_VRAMCNT_H ((volatile u8 *)0x04000248)
 #define REG_VRAMCNT_I ((volatile u8 *)0x04000249)
 #define VRAMCNT_ENABLE 0x80
+#define VRAMCNT_TEXPLTT(slot) (0x83 | ((slot) << 3)) /* enabled, texture palette slot */
 #define GX_VRAM_A 0x001
 #define GX_VRAM_B 0x002
 #define GX_VRAM_C 0x004
@@ -102,6 +103,7 @@
 #define GX_VRAM_I 0x100
 
 void Vram_PowerOnBanks(u32 banks);
+void GX_SetBankForTexPltt(int texPltt);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */
