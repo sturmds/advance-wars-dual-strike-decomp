@@ -4430,6 +4430,7 @@ src/game/main/script_task_resume_with_value.c:
     .text       start:0x020381b8 end:0x020381f0
 
 src/game/main/result_point_restart_script.c:
+    complete
     .text       start:0x020381f0 end:0x0203822c
 
 src/game/main/func_0203822c.c:
