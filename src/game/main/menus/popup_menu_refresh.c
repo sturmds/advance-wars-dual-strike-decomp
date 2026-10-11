@@ -6,7 +6,7 @@ extern u8 data_021587a8[];
 PopupMenuTask *Task_FindByScript(void *script);
 const void *Text_Get(u32 textId);
 int Text_GetWidthInTiles(const void *text);
-void func_0201ee48(PopupMenuTask *menu);
+void PopupMenu_DrawItems(PopupMenuTask *menu);
 void MenuBox_Draw(int x, int y, int width, int height);
 
 /* Lists the items of the open pop-up menu again, as PopupMenu_Create does,
@@ -43,6 +43,6 @@ void PopupMenu_Refresh(void)
     }
     menu->itemTotal = i;
     menu->count = listedCount;
-    func_0201ee48(menu);
+    PopupMenu_DrawItems(menu);
     MenuBox_Draw(menu->x, menu->y, maxWidth + 2, heightPixels >> 3);
 }

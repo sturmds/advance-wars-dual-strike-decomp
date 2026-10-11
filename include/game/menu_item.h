@@ -20,6 +20,7 @@ typedef struct MenuItem {
 } MenuItem;
 
 #define MENU_ITEM_HIDDEN 1
+#define MENU_ITEM_GREYED 2 /* guess: printed in the other text colour, and confirming plays another sound */
 #define MENU_ITEM_END    0xff
 
 /* Battle map menu (main 0x02165e8c): Strike, Assault, General, Defense,

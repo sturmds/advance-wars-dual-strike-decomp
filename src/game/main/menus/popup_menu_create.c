@@ -7,7 +7,7 @@ extern const TaskScriptCmd data_021587a8[];
 void func_01ff9b48(void);
 const void *Text_Get(u32 textId);
 int Text_GetWidthInTiles(const void *text);
-void func_0201ee48(PopupMenuTask *menu);
+void PopupMenu_DrawItems(PopupMenuTask *menu);
 void PopupMenu_DestroyStyle1(Task *task);
 void PopupMenu_DestroyStyle0(Task *task);
 void MenuBox_Draw(int x, int y, int width, int height);
@@ -88,7 +88,7 @@ PopupMenuTask *PopupMenu_Create(const MenuItem *items, int x, int y, int style, 
     }
     menu->x = x;
     menu->y = y;
-    func_0201ee48(menu);
+    PopupMenu_DrawItems(menu);
     MenuBox_Draw(menu->x, menu->y, boxWidth, height);
     return menu;
 }
