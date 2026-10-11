@@ -30,7 +30,7 @@ int SurvivalModeMenu_GetRowMode(int row);
 int SurvivalRecord_GetRankIcon(int mode);
 int SurvivalRecord_GetCo(int mode, int a1);
 int SurvivalRecord_Exists(int mode);
-int func_02047960(void);
+int SurvivalMode_HasSecondRow(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -38,7 +38,7 @@ extern Unk_027c0288 data_027c0288;
 extern char data_0215ae5c[]; /* "/ohashi/res_survival" */
 
 /* Clears both screens, then sets up the top screen of the Survival mode menu
- * from res_survival: a panel per row (the second only when func_02047960
+ * from res_survival: a panel per row (the second only when SurvivalMode_HasSecondRow
  * allows it) and, for each row whose mode has a saved record, the record's
  * two COs (palettes 16 + row * 2 and 17 + row * 2) and an icon. Then resets
  * the menu cursor and buttons and selects the row SurvivalSelect_GetList returns.
@@ -72,7 +72,7 @@ void SurvivalModeMenu_Init(void)
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
     Bg_PutTileBlock(data_027c0280->layer1Map, 0, 4, res + 0xf98, 0);
-    if (func_02047960() == 1) {
+    if (SurvivalMode_HasSecondRow() == 1) {
         Bg_PutTileBlock(data_027c0280->layer1Map, 0, 12, res + 0xf98, 0);
     }
     SurvivalModeMenu_DrawRecords();

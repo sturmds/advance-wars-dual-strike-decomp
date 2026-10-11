@@ -5,7 +5,7 @@ extern Unk_022a7b80 data_022a7b80;
 
 /* unk_07 holds 0-5. Values n and n + 3 form a pair (0/3, 1/4, 2/5) that
  * differ in the second option, which the menu offers once a game flag is
- * set (func_02047960). Keeps the pair and picks one of its two values. */
+ * set (SurvivalMode_HasSecondRow). Keeps the pair and picks one of its two values. */
 void Mode_SetVariant(int second)
 {
     switch (data_022a7b80.unk_07) {

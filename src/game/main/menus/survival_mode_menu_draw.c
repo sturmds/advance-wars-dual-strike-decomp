@@ -7,7 +7,7 @@ void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 int SurvivalModeMenu_GetRowMode(int row);
 int SurvivalRecord_GetCo(int mode, int a1);
 int SurvivalRecord_Exists(int mode);
-int func_02047960(void);
+int SurvivalMode_HasSecondRow(void);
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -15,7 +15,7 @@ extern u8 data_027c0040;
 extern u8 data_027c01c0;
 
 /* Draws one frame of the Survival mode menu on the top screen: a label per
- * row (the second row only when func_02047960 allows it) and, for each row
+ * row (the second row only when SurvivalMode_HasSecondRow allows it) and, for each row
  * whose mode has a saved record (SurvivalRecord_Exists), the record's COs (pictures
  * row * 2 and row * 2 + 1, with palette and tiles to match) and an icon.
  * Needed to match: the first picture's attributes written from row, the
@@ -29,7 +29,7 @@ void SurvivalModeMenu_Draw(void)
 
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     Sprite_QueueAt(0, 48, 38, &data_027c01c0, 0x4030, 0);
-    if (func_02047960() == 1) {
+    if (SurvivalMode_HasSecondRow() == 1) {
         Sprite_QueueAt(0, 48, 102, &data_027c01c0, 0x4050, 0);
     }
     for (row = 0; row < 2; row++) {
