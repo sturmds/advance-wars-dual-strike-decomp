@@ -1019,6 +1019,10 @@ src/game/ov006/func_ov006_02363cb8.c:
     complete
     .text       start:0x02363cb8 end:0x02363d80
 
+src/game/ov006/ov006_count_matching_neighbors.c:
+    complete
+    .text       start:0x02363d80 end:0x02363eb0
+
 src/game/ov006/ov006_is_bare_shoal.c:
     complete
     .text       start:0x02363eb0 end:0x02363f04

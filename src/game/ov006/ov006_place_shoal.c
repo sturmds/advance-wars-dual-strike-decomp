@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-int func_ov006_02363d80(int x, int y);
+int Ov006_CountMatchingNeighbors(int x, int y);
 void Ov006_TurnToSea(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_GetShoalGraphic(int x, int y);
@@ -15,7 +15,7 @@ extern u32 data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Tries to put shoal at (x, y). 0: refused (func_ov006_02363d80 or
+/* Tries to put shoal at (x, y). 0: refused (Ov006_CountMatchingNeighbors or
  * Ov006_GetShoalGraphic is negative, and the old tile is put back in the second
  * case); 1: placed. */
 int Ov006_PlaceShoal(int x, int y)
@@ -23,7 +23,7 @@ int Ov006_PlaceShoal(int x, int y)
     u8 oldTile;
     int result;
 
-    if (func_ov006_02363d80(x, y) < 0) {
+    if (Ov006_CountMatchingNeighbors(x, y) < 0) {
         return 0;
     }
     Ov006_TurnToSea(x, y);
