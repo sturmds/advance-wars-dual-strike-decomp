@@ -2592,6 +2592,10 @@ src/game/main/func_020225c8.c:
 src/game/main/graphics/func_02022610.c:
     .text       start:0x02022610 end:0x02022664
 
+src/game/main/graphics/sprite_anim3d_task_start_alt_flagged.c:
+    complete
+    .text       start:0x02022664 end:0x0202269c
+
 src/game/main/func_020226d4.c:
     complete
     .text       start:0x020226d4 end:0x020226e4
