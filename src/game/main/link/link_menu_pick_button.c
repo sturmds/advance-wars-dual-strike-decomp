@@ -8,7 +8,7 @@ extern MenuState gMenuState;
 void Sound_PlaySe(u32 soundId);
 int func_0207a260(void);
 void func_0207fcec(u8 kind, u16 x, u16 y);
-void func_0207df2c(void);
+void LinkMenu_AddBackButton(void);
 
 /* A player picks a stage 2 button: puts that player's marker next to it and remembers the pick.
  * On the local player's side it goes on to stage 3. */
@@ -32,5 +32,5 @@ void LinkMenu_PickButton(int player, int button)
     }
     MenuButtons_RemoveSelectable();
     data_0229fb30.unk_630 = 3;
-    func_0207df2c();
+    LinkMenu_AddBackButton();
 }
