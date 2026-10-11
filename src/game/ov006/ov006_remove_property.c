@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 int Ov006_GetPropertyKind(int tile);   /* 2: HQ, 1: other property, 0: no property */
-void func_ov006_02365d34(int hqTile);   /* sets that army's hqX and hqY back to -1 */
+void Ov006_ClearHqPosition(int hqTile);   /* sets that army's hqX and hqY back to -1 */
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
@@ -27,7 +27,7 @@ void Ov006_RemoveProperty(int x, int y)
     int i;
 
     if (Ov006_GetPropertyKind(tile) == PROPERTY_HQ) {
-        func_ov006_02365d34(tile);
+        Ov006_ClearHqPosition(tile);
     }
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
