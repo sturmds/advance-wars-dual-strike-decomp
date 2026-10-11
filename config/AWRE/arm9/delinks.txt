@@ -5530,6 +5530,10 @@ src/game/main/func_02065214.c:
     complete
     .text       start:0x02065214 end:0x0206523c
 
+src/game/main/menus/vs_setup_add_setting_buttons_and_arrows.c:
+    complete
+    .text       start:0x0206523c end:0x0206533c
+
 src/game/main/func_02065464.c:
     complete
     .text       start:0x02065464 end:0x020654a0
