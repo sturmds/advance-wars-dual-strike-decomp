@@ -21793,6 +21793,10 @@ src/sdk/snd/sound_block_until_commands_free.c:
     complete
     .text       start:0x02110190 end:0x02110220
 
+src/sdk/snd/snd_wait_for_command_proc.c:
+    complete
+    .text       start:0x02110220 end:0x021102b0
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98

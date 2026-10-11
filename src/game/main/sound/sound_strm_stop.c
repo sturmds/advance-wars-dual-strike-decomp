@@ -3,7 +3,7 @@
 
 void SND_StopTimer(u32 channelMask, int arg1, u32 alarmMask, int arg3);
 int SND_GetCurrentCommandTag(void);
-void func_02110220(int arg0);
+void SND_WaitForCommandProc(int arg0);
 void func_021102b0(int arg0);
 void func_021148a4(SoundSleepHook *hook);
 void func_021148bc(SoundSleepHook *hook);
@@ -21,7 +21,7 @@ void SoundStrm_Stop(SoundStrm *strm)
         strm->flags.running = 0;
         saved = SND_GetCurrentCommandTag();
         func_021102b0(1);
-        func_02110220(saved);
+        SND_WaitForCommandProc(saved);
     }
     SoundStrm_Release(strm);
 }
