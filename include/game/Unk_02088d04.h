@@ -161,7 +161,9 @@ typedef struct Unk_027c0280 {
     u16 *layer2Map;
     u8 pad_118[0x11d - 0x118];
     u8 layer3Bg;
-    u8 pad_11e[0x128 - 0x11e];
+    u8 pad_11e[0x120 - 0x11e];
+    u8 *unk_120;                       /* layer 3 tile data, like unk_e4 for layer 0 */
+    u8 pad_124[0x128 - 0x124];
     u16 *layer3Map;
     u8 pad_12c[0x130 - 0x12c];
     u8 *bgVram;                        /* BG character base 0 */
