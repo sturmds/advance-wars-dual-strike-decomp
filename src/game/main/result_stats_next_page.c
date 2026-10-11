@@ -4,7 +4,7 @@
 
 Task *Task_FindByScript(const void *script);
 void Sound_PlaySe(u32 soundId);
-void func_0203c6fc(void);
+void ResultStats_PrintSecondPageLabel(void);
 
 extern const TaskScriptCmd data_0215a690[];
 extern const MenuButtonTemplate data_0215a5d8;
@@ -19,7 +19,7 @@ void ResultStats_NextPage(void)
         return;
     }
     task->unk_68++;
-    func_0203c6fc();
+    ResultStats_PrintSecondPageLabel();
     MenuButton_Add(0, 0, &data_0215a5d8, 3);
     MenuButton_Close(4);
     Sound_PlaySe(0x10002);
