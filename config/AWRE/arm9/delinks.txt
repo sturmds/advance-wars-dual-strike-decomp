@@ -5605,6 +5605,10 @@ src/game/main/func_020517d8.c:
     complete
     .text       start:0x020517d8 end:0x020517f0
 
+src/game/main/title_call_set_up_screens.c:
+    complete
+    .text       start:0x020519a8 end:0x020523e0
+
 src/game/main/func_020523e0.c:
     complete
     .text       start:0x020523e0 end:0x020524d0
