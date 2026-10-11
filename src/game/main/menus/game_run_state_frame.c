@@ -16,7 +16,7 @@ void WeatherFx_UpdateClouds(void);
 void MapScreen_UpdateAnimations(void);
 int SceneMode_IsChanging(void);
 int Map_IsThisMapsTurn(void);
-s8 func_020b9ccc(void);
+s8 MenuDepth_Get(void);
 s16 func_020b9914(void);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 void SidePanel_Place(int mode);
@@ -103,7 +103,7 @@ void Game_RunStateFrame(void)
                 }
                 MapView_ScrollStep(4);
             }
-        } else if (func_020b9ccc() == 0 && func_020b9914() == 0) {
+        } else if (MenuDepth_Get() == 0 && func_020b9914() == 0) {
             switch (GAME->unk_18) {
             case 1:
                 Game_State1_CheckDayLimit();
@@ -176,7 +176,7 @@ void Game_RunStateFrame(void)
     }
 
     if (GAME->unk_18 == 16 || GAME->unk_1a == 16) {
-        if (ScriptSlot_Find(gMapScrollScript) != -1 || func_020b9ccc() == 0) {
+        if (ScriptSlot_Find(gMapScrollScript) != -1 || MenuDepth_Get() == 0) {
             SidePanel_Place(SIDE_PANEL_SNAP_AWAY);
         }
     }

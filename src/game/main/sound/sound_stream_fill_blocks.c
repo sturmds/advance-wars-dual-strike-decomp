@@ -47,7 +47,7 @@ void SoundStream_SetupNext(SoundStream *stream);
 /* Refill the blocks of one stream request from the stream file: read PCM8 or
  * PCM16 data straight into the blocks, or decode ADPCM into them, then call
  * the stream's callback. */
-void func_02107c28(SoundStreamRequest *request)
+void SoundStream_FillBlocks(SoundStreamRequest *request)
 {
     SoundStream *stream = request->stream;
     BOOL loopBack;

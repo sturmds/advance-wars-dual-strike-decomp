@@ -16,7 +16,7 @@ void Task_Destroy(Task *task);
  * Does nothing but end the task if the screen is hidden already. Otherwise it
  * marks the screen hidden and starts the H-blank DMA that feeds WIN0H from
  * WindowWipe_BuildCenterOut's table. */
-void func_02006a20(Task *task)
+void WindowWipe_StartHideCurrent(Task *task)
 {
     if (Screen_GetNibble() == 1) {
         Task_Destroy(task);

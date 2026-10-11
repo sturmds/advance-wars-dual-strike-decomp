@@ -808,7 +808,7 @@ src/game/main/screen/window_wipe_start_hide.c:
     complete
     .text       start:0x02006824 end:0x02006a20
 
-src/game/main/screen/func_02006a20.c:
+src/game/main/screen/window_wipe_start_hide_current.c:
     .text       start:0x02006a20 end:0x02006ae0
 
 src/game/main/screen/window_wipe_build_center_out.c:
@@ -12978,7 +12978,7 @@ src/game/main/menus/menu_depth_push.c:
     complete
     .text       start:0x020b9c9c end:0x020b9ccc
 
-src/game/main/func_020b9ccc.c:
+src/game/main/menus/menu_depth_get.c:
     complete
     .text       start:0x020b9ccc end:0x020b9cf4
 

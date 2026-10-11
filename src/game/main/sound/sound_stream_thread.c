@@ -10,7 +10,7 @@ int func_0210dd20(void *queue, void *message, int flags);
 void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
 SoundStreamRequest *SoundStreamRequest_PopPending(void);
-void func_02107c28(SoundStreamRequest *request);
+void SoundStream_FillBlocks(SoundStreamRequest *request);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
 
 /* Entry of the sound stream thread. Sleeps on a message queue; each message
@@ -31,7 +31,7 @@ void SoundStream_ThreadMain(void)
                 func_0210dfc4(data_022a8ad8);
                 break;
             }
-            func_02107c28(request);
+            SoundStream_FillBlocks(request);
             SoundStreamRequest_Free(request);
             func_0210dfc4(data_022a8ad8);
         }

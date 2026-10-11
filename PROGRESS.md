@@ -77,13 +77,13 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
-| `src/game/main/screen/func_02006a20.c` | func_02006a20 | 192 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 |
+| `src/game/main/screen/window_wipe_start_hide_current.c` | WindowWipe_StartHideCurrent | 192 |
 | `src/game/main/script/event_script_step_slot.c` | EventScript_StepSlot | 276 |
 | `src/game/main/script/func_0201a4f0.c` | func_0201a4f0 | 196 |
-| `src/game/main/sound/sound_stream_fill_blocks.c` | func_02107c28 | 2184 |
+| `src/game/main/sound/sound_stream_fill_blocks.c` | SoundStream_FillBlocks | 2184 |
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
