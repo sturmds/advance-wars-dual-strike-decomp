@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/keypad.h"
 
-void func_020c7104(void);
+void Units_ClearAll(void);
 void func_020c4448(void);
 void Ov006_LoadPresetMap(void);
 void Ov006_GenerateRandomMap(void);
@@ -26,7 +26,7 @@ void Ov006_NewMap(void)
 {
     int i;
 
-    func_020c7104();
+    Units_ClearAll();
     data_ov006_0236d640->unk_2c[0] = 0;
     STATE->unk_1c4->mapWidth = 30;
     STATE->unk_1c4->mapHeight = 20;

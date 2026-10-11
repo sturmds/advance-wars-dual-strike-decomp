@@ -8,7 +8,7 @@ void Players_Reset(void);
 void MapRules_SetDefaults(void);
 void Players_ApplyBattleSetup(void);
 void Panels_PlaceForCursor(void);
-void func_020c7104(void);
+void Units_ClearAll(void);
 void func_020db3c0(void);
 void func_020c1b90(void);
 void func_020c1950(void);
@@ -48,7 +48,7 @@ void Battle_SetupWithPresetCos(void)
     STATE->unk_2e = 0;
 
     Panels_PlaceForCursor();
-    func_020c7104();
+    Units_ClearAll();
     func_020db3c0();
     func_020c1b90();
     func_020c1950();

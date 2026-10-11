@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/terrain.h"
 
-void func_020c7104(void);
+void Units_ClearAll(void);
 void func_020c4448(void);
 void Ov006_NewMap(void);
 void Ov006_SetTerrain(int x, int y, int terrain);
@@ -32,7 +32,7 @@ void Ov006_FillMapForScreen(int screenId)
         Ov006_NewMap();
         return;
     }
-    func_020c7104();
+    Units_ClearAll();
     data_ov006_0236d640->unk_2c[0] = 0;
     for (i = 0; i < STATE->unk_1c4->mapHeight; i++) {
         STATE->mapTiles->rowStart[i] = i * STATE->unk_1c4->mapWidth;

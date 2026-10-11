@@ -15,7 +15,7 @@ void Players_Reset(void);
 void MapRules_SetDefaults(void);
 void Players_ApplyBattleSetup(void);
 void Ov006_ResetMapView(int arg);
-void func_020c7104(void);
+void Units_ClearAll(void);
 void func_020db3c0(void);
 void func_020e7a80(int a0, int mapId);
 void MovementCost(void);
@@ -86,7 +86,7 @@ void DesignRoom_Init(Task *task)
     STATE->day = 1;
     STATE->unk_1c4->unk_37 = 0;
     Ov006_ResetMapView(keep);
-    func_020c7104();
+    Units_ClearAll();
     func_020db3c0();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
@@ -103,7 +103,7 @@ void DesignRoom_Init(Task *task)
     STATE->day = 1;
     STATE->unk_1c4->unk_37 = 0;
     Ov006_ResetMapView(keep);
-    func_020c7104();
+    Units_ClearAll();
     func_020db3c0();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

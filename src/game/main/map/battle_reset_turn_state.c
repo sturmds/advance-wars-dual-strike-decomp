@@ -9,7 +9,7 @@ extern u32 data_022a6b38;
 void Panels_PlaceForCursor(void);
 void func_020b9c3c(void);
 void func_020b98bc(void);
-void func_020c7104(void);
+void Units_ClearAll(void);
 void func_020db3c0(void);
 BOOL Map_IsCoSelectPhase(void);
 
@@ -35,7 +35,7 @@ void Battle_ResetTurnState(void)
     STATE->unk_1c = 0;
     STATE->currentPlayer = 0;
     STATE->day = 1;
-    func_020c7104();
+    Units_ClearAll();
     func_020db3c0();
     if (Map_IsCoSelectPhase()) {
         STATE->day = 0;
