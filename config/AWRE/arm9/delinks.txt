@@ -14094,6 +14094,10 @@ src/game/main/func_020def84.c:
     complete
     .text       start:0x020def84 end:0x020def94
 
+src/game/main/units/transport_can_unload_cargo.c:
+    complete
+    .text       start:0x020def94 end:0x020df068
+
 src/game/main/map/tile_has_unit_to_supply.c:
     complete
     .text       start:0x020df068 end:0x020df18c
