@@ -10,7 +10,7 @@ extern AiBuildSlot data_0229e44c[];
 
 void func_020937dc(void);
 int AiSite_PickMostEnemies(int arg, int slotIndex);
-int func_020966bc(int arg, int slotIndex);
+int AiSite_PickNearestEnemy(int arg, int slotIndex);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -19,7 +19,7 @@ int func_020966bc(int arg, int slotIndex);
 #define SAFE_THREAT_LIMIT 50
 
 /* Takes the first slot with unk_03_1 set that is not used up, and asks
- * AiSite_PickMostEnemies and then func_020966bc for a site for it. Returns the site
+ * AiSite_PickMostEnemies and then AiSite_PickNearestEnemy for a site for it. Returns the site
  * when both enemy threat values of its tile are below SAFE_THREAT_LIMIT;
  * otherwise marks the slot used up and searches again. The slot pointer is
  * not reset between searches, so a new search starts at the slot just marked
@@ -46,7 +46,7 @@ int AiBuildSlot_PickSafeSite(void)
         }
         site = AiSite_PickMostEnemies(1, found);
         if (site != -1) {
-            site = func_020966bc(1, found);
+            site = AiSite_PickNearestEnemy(1, found);
         }
         if (site != -1) {
             tile = TILE(data_0229e5bc[site].x, data_0229e5bc[site].y);

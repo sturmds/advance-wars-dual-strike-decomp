@@ -7445,6 +7445,10 @@ src/game/main/ai/ai_site_pick_most_enemies.c:
     complete
     .text       start:0x02096610 end:0x020966bc
 
+src/game/main/ai/ai_site_pick_nearest_enemy.c:
+    complete
+    .text       start:0x020966bc end:0x0209676c
+
 src/game/main/func_02096f44.c:
     complete
     .text       start:0x02096f44 end:0x02097050
