@@ -5,14 +5,14 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
-void func_02070e30(int x, int y);
+void HistoryBanner_Draw(int x, int y);
 
 /* Script task: slides the banner in from the right, x 320 to 128 over 16
  * frames, then resumes the script. */
 void HistoryBanner_SlideIn(Task *task)
 {
     FRAME(task)++;
-    func_02070e30(Math_Ease(4, 192, 0, FRAME(task), 16) + 128, 96);
+    HistoryBanner_Draw(Math_Ease(4, 192, 0, FRAME(task), 16) + 128, 96);
     if (FRAME(task) != 16) {
         return;
     }

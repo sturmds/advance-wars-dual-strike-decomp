@@ -5591,6 +5591,10 @@ src/game/main/history_banner_slide_in.c:
     complete
     .text       start:0x02070dc0 end:0x02070e30
 
+src/game/main/history_banner_draw.c:
+    complete
+    .text       start:0x02070e30 end:0x02070e9c
+
 src/game/main/menus/history_screen_init.c:
     complete
     .text       start:0x02070f14 end:0x02071494
