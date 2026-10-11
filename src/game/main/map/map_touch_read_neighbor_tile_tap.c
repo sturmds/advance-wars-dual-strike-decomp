@@ -5,7 +5,7 @@
 
 int func_020ce810(int tileX, int tileY, int mask);
 void func_020f1288(void);
-void func_020fbb58(int x, int y, s32 *out);
+void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -47,7 +47,7 @@ u32 MapTouch_ReadNeighborTileTap(int mask)
         tileX = (endX + GAME->unk_1c4->scrollX) >> 4;
         tileY = (endY + GAME->unk_1c4->scrollY) >> 4;
     } else {
-        func_020fbb58(endX, endY, pos);
+        Map3d_ScreenToTilePos(endX, endY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
         tileX = pos[0] >> 9;

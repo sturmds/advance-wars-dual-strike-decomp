@@ -15136,6 +15136,10 @@ src/game/main/func_020fbb44.c:
     complete
     .text       start:0x020fbb44 end:0x020fbb58
 
+src/game/main/map/map3d_screen_to_tile_pos.c:
+    complete
+    .text       start:0x020fbb58 end:0x020fbd24
+
 src/game/main/screen/screen_add_corner_index.c:
     complete
     .text       start:0x020fbd24 end:0x020fbd4c

@@ -5,7 +5,7 @@
 
 void func_020f129c(void);
 void func_020f12d4(int tileX, int tileY);
-void func_020fbb58(int x, int y, s32 *out);
+void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 void Sound_PlaySe(int se);
 
 extern Unk_02080440 *data_027c027c;
@@ -24,7 +24,7 @@ static inline BOOL IsTouchStarted(void)
 }
 
 /* Turns the touch position into a map tile (cursorX, cursorY) each frame. On the
- * screen whose map is drawn in 3D (data_027c0288.unk_00) func_020fbb58 projects
+ * screen whose map is drawn in 3D (data_027c0288.unk_00) Map3d_ScreenToTilePos projects
  * the point; on the other it is pixels plus the scroll, in 1/16 tiles. A new
  * touch remembers its tile in unk_30 and unk_32 and calls func_020f12d4; moving
  * to another tile calls func_020f129c and clears them. The select sound plays
@@ -49,7 +49,7 @@ void MapCursor_UpdateFromTouch(void)
         STATE->cursorX = (touchX + STATE->unk_1c4->scrollX) >> 4;
         STATE->cursorY = (touchY + STATE->unk_1c4->scrollY) >> 4;
     } else {
-        func_020fbb58(touchX, touchY, pos);
+        Map3d_ScreenToTilePos(touchX, touchY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
         STATE->cursorX = pos[0] >> 9;

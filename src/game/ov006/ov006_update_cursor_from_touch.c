@@ -4,7 +4,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/touch.h"
 
-void func_020fbb58(int x, int y, s32 *out);
+void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -45,7 +45,7 @@ void Ov006_UpdateCursorFromTouch(void)
         STATE->cursorX = (touchX + STATE->unk_1c4->scrollX) >> 4;
         STATE->cursorY = (touchY + STATE->unk_1c4->scrollY) >> 4;
     } else {
-        func_020fbb58(touchX, touchY, pos);
+        Map3d_ScreenToTilePos(touchX, touchY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
         if (data_ov006_0236d640->request == 1) {

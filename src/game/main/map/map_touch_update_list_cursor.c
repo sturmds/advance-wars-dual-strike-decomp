@@ -6,7 +6,7 @@
 int func_020f06a0(int count, int tileX, int tileY);
 void func_020f129c(void);
 void func_020f12d4(int tileX, int tileY);
-void func_020fbb58(int x, int y, s32 *out);
+void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -47,7 +47,7 @@ void MapTouch_UpdateListCursor(int *index, int count)
         tileX = (touchX + GAME->unk_1c4->scrollX) >> 4;
         tileY = (touchY + GAME->unk_1c4->scrollY) >> 4;
     } else {
-        func_020fbb58(touchX, touchY, pos);
+        Map3d_ScreenToTilePos(touchX, touchY, pos);
         pos[1] = -pos[1];
         pos[2] = 8;
         tileX = pos[0] >> 9;
