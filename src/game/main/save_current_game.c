@@ -9,7 +9,7 @@ int func_020d82c8(void);
 void func_02103ed8(int campaignSlot, int day);
 int func_02019330(int mode, int campaignSlot);
 void func_020d8028(int arg);
-void func_0201912c(int recordId, int flag);
+void BattleSave_Save(int recordId, int flag);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -26,10 +26,10 @@ void Save_SaveCurrentGame(void)
         func_02103ed8(campaignSlot, STATE->day);
         recordId = func_02019330(0, campaignSlot);
         func_020d8028(recordId);
-        func_0201912c(recordId, 0);
+        BattleSave_Save(recordId, 0);
     } else {
         recordId = func_02019330(STATE->gameMode, 0);
         func_020d8028(recordId);
-        func_0201912c(recordId, 0);
+        BattleSave_Save(recordId, 0);
     }
 }

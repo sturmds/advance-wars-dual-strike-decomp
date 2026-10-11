@@ -1831,6 +1831,10 @@ src/game/main/battle_save_restore.c:
     complete
     .text       start:0x02018f80 end:0x0201912c
 
+src/game/main/battle_save_save.c:
+    complete
+    .text       start:0x0201912c end:0x02019330
+
 src/game/main/func_0201939c.c:
     complete
     .text       start:0x0201939c end:0x020193bc

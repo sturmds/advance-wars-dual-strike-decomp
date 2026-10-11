@@ -11,6 +11,7 @@
 #define BATTLE_SAVE_TILE_COUNT 92
 #define BATTLE_SAVE_OBJECT_COUNT 16
 #define BATTLE_SAVE_TILES_END 0xffff     /* BattleSaveTile.cell after the last changed tile */
+#define BATTLE_SAVE_RECORD_SIZE 0x2238   /* bytes of data_02291774 written as one battle save record */
 
 /* Unk_02080440_48 from gameMode (0x58) up to sidePanelRight (0xbc), copied
  * as one block. */
