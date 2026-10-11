@@ -17,6 +17,8 @@ void func_0211a5e8(void (*callback)(void *, int));
 void func_020fc700(void *arg, int index);
 BOOL func_020fc698(void);
 
+/* Stops the sound, then sets up the wireless host with a 0xc000-byte work
+ * area and state 3. */
 void func_020fc98c(void)
 {
     u32 tick;
