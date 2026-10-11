@@ -16537,6 +16537,10 @@ src/game/main/co_list_default_skills.c:
     complete
     .text       start:0x020e6d14 end:0x020e6d24
 
+src/game/main/skills/force_rank_clear_saved_sets.c:
+    complete
+    .text       start:0x020e6d24 end:0x020e6d8c
+
 src/game/main/skills/save_force_rank_sets.c:
     complete
     .text       start:0x020e6e88 end:0x020e6f48

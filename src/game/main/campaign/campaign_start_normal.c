@@ -7,7 +7,7 @@ extern const TaskScriptCmd data_021670d4[];
 
 int Campaign_FindFreeProfile(void);
 void Campaign_ResetProgress(void);
-void func_020e6d24(void);
+void ForceRank_ClearSavedSets(void);
 void PlayRecords_TakeSnapshot(void);
 void Screen_SetCurrentBoth(void *state);
 void ForceRank_LoadSets(int mode);
@@ -38,7 +38,7 @@ void Campaign_StartNormal(void)
     data_02290118.unk_0a = 0;
     data_02290118.unk_0c = 0;
     data_02290118.unk_0e = 0;
-    func_020e6d24();
+    ForceRank_ClearSavedSets();
     ForceRank_LoadSets(0);
     PlayRecords_TakeSnapshot();
     Task_Create(data_021670d4, TASK_LIST(3));
