@@ -1,0 +1,37 @@
+#include "types.h"
+#include "game/co_data.h"
+#include "game/menu_state.h"
+#include "game/screen_other_map.h"
+#include "game/text_print.h"
+
+extern MenuState gMenuState;
+
+/* CoRecord.profiles[0] and [1] of every CO, one CoRecord apart. The original
+ * names them as their own symbols, so they are declared here that way. */
+typedef struct CoProfileText {
+    TextRef text;
+    u8 pad_04[sizeof(CoRecord) - sizeof(TextRef)];
+} CoProfileText;
+
+extern CoProfileText data_02153610[];
+extern CoProfileText data_02153614[];
+
+void func_01ff8c84(int layer);
+void Gfx_RequestLayerCopy(int layer);
+
+#define MENU (gMenuState.unk_0206d67c)
+
+/* Needed to match: the original adds the offset of coShown to gMenuState's
+ * address at run time instead of folding it into the literal. */
+#define SHOWN_CO_OFFSET ((u32) & ((MenuState *)0)->unk_0206d67c.coShown)
+#define SHOWN_CO (((u8 *)&gMenuState + (MENU.player - 1) * 2 + MENU.slot)[SHOWN_CO_OFFSET])
+
+/* First page of the player info screen: the shown CO's about text and its
+ * day-to-day text on layer 0. coShown holds the CO id, with bit 7 as a flag. */
+void PlayerInfo_DrawCoProfile(void)
+{
+    func_01ff8c84(0);
+    Text_PrintId(1, 5, data_027c0280->layer0Map, data_02153610[SHOWN_CO & 0x7f].text.id, 0, 192);
+    Text_PrintId(1, 16, data_027c0280->layer0Map, data_02153614[SHOWN_CO & 0x7f].text.id, 0, 448);
+    Gfx_RequestLayerCopy(0);
+}

@@ -3,7 +3,7 @@
 
 extern MenuState gMenuState;
 
-void PlayerInfo_DrawCoName(void);
+void PlayerInfo_DrawCoProfile(void);
 void CoStatsScreen_DrawSkills(void);
 void func_0206e814(void);
 void func_0206d67c(void);
@@ -13,7 +13,7 @@ void PlayerInfo_DrawPage(void)
 {
     switch (gMenuState.unk_0206d67c.page) {
     case 0:
-        PlayerInfo_DrawCoName();
+        PlayerInfo_DrawCoProfile();
         break;
     case 1:
         CoStatsScreen_DrawSkills();

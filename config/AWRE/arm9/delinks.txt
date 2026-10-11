@@ -6860,6 +6860,10 @@ src/game/main/co_stats/co_stats_screen_draw_skills.c:
     complete
     .text       start:0x0206eac8 end:0x0206ee70
 
+src/game/main/menus/player_info_draw_co_profile.c:
+    complete
+    .text       start:0x0206ee70 end:0x0206ef54
+
 src/game/main/func_0206ef54.c:
     complete
     .text       start:0x0206ef54 end:0x0206ef80
