@@ -21328,11 +21328,11 @@ src/sdk/os/os_set_arena_lo.c:
     complete
     .text       start:0x0210e25c end:0x0210e270
 
-src/game/main/func_0210e270.c:
+src/sdk/os/os_set_arena_hi.c:
     complete
     .text       start:0x0210e270 end:0x0210e284
 
-src/sdk/os/os_get_init_arena_hi.c:
+src/sdk/os/os_get_init_arena_lo.c:
     complete
     .text       start:0x0210e284 end:0x0210e36c
 

@@ -40,7 +40,7 @@ void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, void *st
     *(u32 *)thread->stackTop = STACK_GUARD_HIGH_MAGIC;
     thread->joinQueue.head = 0;
 
-    context = (OSContext *)thread->context;
+    context = &thread->context;
     OS_InitContext(context, (u32)func, (u32)stack - 4);
     context->r[0] = (u32)arg;
     context->lr = (u32)OS_ExitThread;

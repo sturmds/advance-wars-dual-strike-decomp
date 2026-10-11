@@ -7,7 +7,7 @@ struct Unk_0210e270_0 {
     int unk_27ffdc4;
 };
 
-void func_0210e270(int a0, int a1)
+void OS_SetArenaHi(int a0, int a1)
 {
     ((Unk_0210e270_0 *)(a0 << 2))->unk_27ffdc4 = a1;
 }

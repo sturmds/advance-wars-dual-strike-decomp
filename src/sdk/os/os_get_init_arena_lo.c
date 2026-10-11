@@ -4,8 +4,8 @@
 extern u32 data_022a9b78;
 u32 func_0210dbec(void);
 
-/* Initial top address of each arena; 0 for an id with no arena. */
-u32 OS_GetInitArenaHi(int id)
+/* Initial low end of each arena; 0 for an id with no arena. */
+u32 OS_GetInitArenaLo(int id)
 {
     switch (id) {
     case 0:

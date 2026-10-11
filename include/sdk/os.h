@@ -67,6 +67,7 @@ typedef struct OSContext {
     u32 lr;
     u32 pcPlus4;
     u32 spSvc;
+    u8 cpContext[0x1c];            /* 0x48: divider and square root unit state */
 } OSContext;
 
 /* Threads waiting on something, as a pair of thread ids. */
@@ -88,7 +89,7 @@ typedef struct OSMutexQueue {
 } OSMutexQueue;
 
 struct OSThread {
-    u8 context[0x64];
+    OSContext context;
     u32 state;
     OSThread *next;
     u32 id;
