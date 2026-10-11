@@ -1,5 +1,5 @@
-/* Needed to match: the library was built at level 2; level 4 keeps a running product in the correction loop. */
-#pragma optimization_level 2
+/* Needed to match: the library was built optimizing for size, which keeps the correction loop's product recomputed. */
+#pragma optimize_for_size on
 #include "types.h"
 
 /* Returns value / radix for radix 2, 8, 10 and 16, and 0 for any other. */
