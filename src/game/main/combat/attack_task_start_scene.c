@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_02168318[];
 
-BOOL func_020dc838(MapUnit *unitA, MapUnit *unitB);
+BOOL BattleScene_IsUnitOnRight(MapUnit *unitA, MapUnit *unitB);
 void BattleScene_FillFromCombat(MapUnit *unitA, MapUnit *unitB, Combatant *combatantA, Combatant *combatantB);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -23,7 +23,7 @@ void AttackTask_StartScene(Task *task)
     if (data_027c027c != data_027c0288.unk_00) {
         return;
     }
-    if (!func_020dc838(STATE->actingUnit, defender)) {
+    if (!BattleScene_IsUnitOnRight(STATE->actingUnit, defender)) {
         BattleScene_FillFromCombat(STATE->actingUnit, defender, &STATE->combatants[0], &STATE->combatants[1]);
     } else {
         BattleScene_FillFromCombat(defender, STATE->actingUnit, &STATE->combatants[1], &STATE->combatants[0]);

@@ -15425,6 +15425,10 @@ src/game/main/combat/attack_task_start_scene.c:
     complete
     .text       start:0x020dc748 end:0x020dc838
 
+src/game/main/combat/battle_scene_is_unit_on_right.c:
+    complete
+    .text       start:0x020dc838 end:0x020dc910
+
 src/game/main/combat/acting_unit_start_attack.c:
     complete
     .text       start:0x020dc910 end:0x020dcc9c
