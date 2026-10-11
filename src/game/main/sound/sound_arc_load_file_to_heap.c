@@ -3,7 +3,7 @@
 #include "game/sound_heap.h"
 
 u32 func_021063d0(u32 fileNo);
-void func_0210e11c(void *start, u32 size);
+void DC_StoreRange(void *start, u32 size);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 void *SoundHeap_AllocItem(SoundHeap *heap, u32 size, void (*onUnload)(void *payload, u32 arg1, u32 arg2, u32 arg3), u32 arg3, u32 arg4);
 
@@ -29,6 +29,6 @@ void *SoundArc_LoadFileToHeap(u32 fileNo, void (*onUnload)(void *payload, u32 ar
     if (size != SoundArc_ReadFile(fileNo, data, size, 0)) {
         return NULL;
     }
-    func_0210e11c(data, size);
+    DC_StoreRange(data, size);
     return data;
 }

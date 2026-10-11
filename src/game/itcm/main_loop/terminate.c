@@ -2,8 +2,8 @@
 #include "sdk/gx.h"
 
 void OS_Terminate(void);
-void func_0210e0d4(void);
-void func_0210e154(void);
+void DC_FlushAll(void);
+void DC_WaitWriteBufferEmpty(void);
 void Reset_StopAndRequestArm7(u32 arg);
 
 #define REG_EXMEMCNT ((volatile u16 *)0x04000204)
@@ -20,8 +20,8 @@ void MainLoop_Shutdown(void)
     GXx_SetMasterBrightness_(REG_MASTER_BRIGHT, MASTER_BRIGHT_WHITE);
     GXx_SetMasterBrightness_(IO_SUB_SCREEN_FADE, MASTER_BRIGHT_WHITE);
     *REG_EXMEMCNT &= ~EXMEMCNT_BIT15;
-    func_0210e0d4();
-    func_0210e154();
+    DC_FlushAll();
+    DC_WaitWriteBufferEmpty();
     Reset_StopAndRequestArm7(SHARED_MEM_WORD + 1);
     OS_Terminate();
 }

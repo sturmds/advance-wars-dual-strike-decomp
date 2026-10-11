@@ -8,9 +8,9 @@
 
 /* Reads size bytes from the cartridge at romOffset into dest. */
 void OSi_ReadCardRom32(u32 romOffset, void *dest, u32 size);
-void func_0210e0d4(void);
-void func_0210e154(void);
-void func_0210e160(void);
+void DC_FlushAll(void);
+void DC_WaitWriteBufferEmpty(void);
+void IC_InvalidateAll(void);
 
 /* Loads the ARM9 and ARM7 binaries from the cartridge into RAM. */
 void Reset_ReloadProgramsFromCard(void)
@@ -33,9 +33,9 @@ void Reset_ReloadProgramsFromCard(void)
     arm7Offset = ROM_HEADER_BUF->arm7RomOffset;
     arm7Dest = ROM_HEADER_BUF->arm7RamAddress;
     arm7Size = ROM_HEADER_BUF->arm7Size;
-    func_0210e0d4();
-    func_0210e160();
-    func_0210e154();
+    DC_FlushAll();
+    IC_InvalidateAll();
+    DC_WaitWriteBufferEmpty();
     arm7Offset += base;
     arm9Offset += base;
     if (arm9Offset < SECURE_AREA_END) {

@@ -5,7 +5,7 @@
 BOOL func_02110a10(SoundWaveArc *wave, u32 waveNo);
 void func_02110a58(SoundWaveArc *wave, u32 waveNo, void *data);
 u32 func_02110a90(SoundWaveArc *wave);
-void func_0210e11c(void *start, u32 size);
+void DC_StoreRange(void *start, u32 size);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 void *SoundHeap_AllocItem(SoundHeap *heap, u32 size, void (*onUnload)(void *payload, u32 arg1, u32 arg2, u32 arg3), u32 arg3, u32 arg4);
 void SoundWaveArc_UnloadWave(void *data, u32 size, SoundWaveArc *wave, u32 waveNo);
@@ -49,7 +49,7 @@ BOOL SoundWaveArc_LoadWave(SoundWaveArc *wave, u32 waveNo, u32 fileNo, SoundHeap
     if (size != SoundArc_ReadFile(fileNo, data, size, start)) {
         return FALSE;
     }
-    func_0210e11c(data, size);
+    DC_StoreRange(data, size);
     func_02110a58(wave, waveNo, data);
     return TRUE;
 }

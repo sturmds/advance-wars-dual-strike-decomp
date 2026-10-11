@@ -21331,6 +21331,34 @@ src/game/main/func_0210e0c0.c:
     complete
     .text       start:0x0210e0c0 end:0x0210e0d4
 
+src/sdk/os/dc_flush_all.c:
+    complete
+    .text       start:0x0210e0d4 end:0x0210e100
+
+src/sdk/os/dc_invalidate_range.c:
+    complete
+    .text       start:0x0210e100 end:0x0210e11c
+
+src/sdk/os/dc_store_range.c:
+    complete
+    .text       start:0x0210e11c end:0x0210e138
+
+src/sdk/os/dc_flush_range.c:
+    complete
+    .text       start:0x0210e138 end:0x0210e154
+
+src/sdk/os/dc_wait_write_buffer_empty.c:
+    complete
+    .text       start:0x0210e154 end:0x0210e160
+
+src/sdk/os/ic_invalidate_all.c:
+    complete
+    .text       start:0x0210e160 end:0x0210e16c
+
+src/sdk/os/ic_invalidate_range.c:
+    complete
+    .text       start:0x0210e16c end:0x0210e188
+
 src/sdk/os/os_init.c:
     complete
     .text       start:0x0210e188 end:0x0210e1d4
