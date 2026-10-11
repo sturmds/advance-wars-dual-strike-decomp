@@ -7898,6 +7898,10 @@ src/game/main/menus/build_menu_on_confirm.c:
     complete
     .text       start:0x020bc15c end:0x020bc2dc
 
+src/game/main/menus/build_menu_on_keys.c:
+    complete
+    .text       start:0x020bc2dc end:0x020bc404
+
 src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
