@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 5921 / 6598 | 1343772 / 1531944 | 87.72% | 0 | 0 |
+| game | 5927 / 6598 | 1346748 / 1531944 | 87.91% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6060 / 7479 | 1347236 / 1685994 | 79.91% | 1 | 30 |
+| all | 6066 / 7479 | 1350212 / 1685994 | 80.08% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 4533 / 5180 | 912660 / 1082632 | 84.30% | 0 |
+| main | game | 4539 / 5180 | 915636 / 1082632 | 84.57% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -63,6 +63,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/graphics/image4bpp_set_pixel_linear.c` | Image4bpp_SetPixelLinear | 84 |
 | `src/game/main/graphics/palette_get_army_block.c` | func_020dbde8 | 48 |
 | `src/game/main/graphics/sprite_anim_queue3d.c` | SpriteAnim_Queue3d | 196 |
+| `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |

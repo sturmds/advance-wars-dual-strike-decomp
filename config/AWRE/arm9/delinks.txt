@@ -8789,6 +8789,10 @@ src/game/main/link/link_map_record_sync_update.c:
     complete
     .text       start:0x02082078 end:0x020822c4
 
+src/game/main/link/link_map_record_sync_init.c:
+    complete
+    .text       start:0x020822c4 end:0x020824e4
+
 src/game/main/func_020824e4.c:
     complete
     .text       start:0x020824e4 end:0x020825a4
