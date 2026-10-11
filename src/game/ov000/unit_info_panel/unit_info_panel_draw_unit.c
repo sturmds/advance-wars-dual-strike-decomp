@@ -7,7 +7,7 @@
 
 void Screen_SetCurrentGfx(void *state);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
-void func_020caf70(u16 x, int y, u32 value);
+void Oam_PutSmallNumberFromTile0(u16 x, int y, u32 value);
 void UnitInfoPanel_DrawIconList(void);
 
 extern Unk_027c0280 *data_027c0280;
@@ -41,9 +41,9 @@ void UnitInfoPanel_DrawUnit(void)
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     shift = unit->fuel < 10 ? -4 : 0;
-    func_020caf70(shift + data_ov000_0234ec8c->originX + 104, 72, unit->fuel);
+    Oam_PutSmallNumberFromTile0(shift + data_ov000_0234ec8c->originX + 104, 72, unit->fuel);
     shift = Ov000_gUnitStats[unit->type].fuel < 10 ? -4 : 0;
-    func_020caf70(shift + data_ov000_0234ec8c->originX + 116, 80, Ov000_gUnitStats[unit->type].fuel);
+    Oam_PutSmallNumberFromTile0(shift + data_ov000_0234ec8c->originX + 116, 80, Ov000_gUnitStats[unit->type].fuel);
     Oam_PutSprite(data_ov000_0234ec8c->originX + 107, 76, &data_ov000_0234eef0, 0xf36a);
     UnitInfoPanel_DrawIconList();
     Screen_SetCurrentGfx(savedGfx);
