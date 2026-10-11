@@ -7166,6 +7166,10 @@ src/game/main/func_0206ef54.c:
     complete
     .text       start:0x0206ef54 end:0x0206ef80
 
+src/game/main/menus/player_info_slide_co_portrait.c:
+    complete
+    .text       start:0x0206ef80 end:0x0206f16c
+
 src/game/main/menus/player_info_sprite_task_init.c:
     complete
     .text       start:0x0206f16c end:0x0206f1c4
