@@ -9,7 +9,7 @@ void func_0210de74(void *queue, void *messages, int count);
 int func_0210dd20(void *queue, void *message, int flags);
 void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
-SoundStreamRequest *func_02108814(void);
+SoundStreamRequest *SoundStreamRequest_PopPending(void);
 void func_02107c28(SoundStreamRequest *request);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
 
@@ -26,7 +26,7 @@ void SoundStream_ThreadMain(void)
         func_0210dd20(data_022a8ac4, message, 1);
         while (TRUE) {
             func_0210e034(data_022a8ad8);
-            request = func_02108814();
+            request = SoundStreamRequest_PopPending();
             if (request == NULL) {
                 func_0210dfc4(data_022a8ad8);
                 break;
