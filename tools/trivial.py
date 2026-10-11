@@ -2,7 +2,7 @@
 """Generate C for unmatched very short functions.
 
     trivial.py [--dry-run] [--pattern P] [--limit N] [--batch N] [--name NAME]
-               [--keep DIR] [-v]
+               [--keep DIR] [--arm7] [-v]
 
 Takes every function in the index that no C file covers (ARM, at most
 MAX_INSNS instructions before the literal pool): empty functions, returned
@@ -13,7 +13,9 @@ type, inlined or temporary values, boolean form of `cond ? 1 : 0`, early
 return). The first variant that passes the fast check (tools/fnindex.py) is
 kept. Unless --dry-run, the winner is written to
 src/game/<module>/func_XXXXXXXX.c, added with `fn.py add` and marked with
-`fn.py finish`.
+`fn.py finish`. ARM7 functions are left out unless --arm7 is given; then
+only ARM7 functions are tried, with the ARM7 flags, and written to
+src/arm7/sdk/func_arm7_XXXXXXXX.c.
 
 --pattern picks one family: empty, const, getter, tailcall, wrapper, store,
 modify, addr, compare, other. --limit and --batch stop after N matches
@@ -845,12 +847,12 @@ def variants(L):
                         yield {"ret": rt, "temps": t, "bool": b, "cmpt": c, "ifret": i}
 
 
-def candidates(idx):
+def candidates(idx, arm7=False):
     twins = {e["mhash"] for l in idx.by_name.values() for e in l if e["status"] == "complete"}
     rows = []
     for l in idx.by_name.values():
         for e in l:
-            if e["status"] != "none" or e["mode"] != "arm":
+            if e["status"] != "none" or e["mode"] != "arm" or (e["module"] == "arm7") != arm7:
                 continue
             m = e["mnemonics"].split()
             if len(m) > MAX_INSNS or any(x.startswith(ASM_ONLY) for x in m) or e["mhash"] in twins:
@@ -861,8 +863,8 @@ def candidates(idx):
 
 
 def disassemble_all(rows):
-    bins = fnindex.module_bins()
-    return {(e["module"], e["addr"]): fnindex.disassemble(bins[e["module"]][0], bins[e["module"]][1],
+    parts = fnindex.module_parts()
+    return {(e["module"], e["addr"]): fnindex.disassemble(*fnindex.part_of(parts[e["module"]], e["addr"]),
                                                           e["addr"], e["addr"] + e["pool"], False)
             for e in rows}
 
@@ -899,7 +901,7 @@ def fit(entry, dis, idx, tmp, pattern=None):
 
 
 def write_function(e, text):
-    path = f"src/game/{e['module']}/{e['name']}.c"
+    path = f"src/arm7/sdk/{e['name']}.c" if e["module"] == "arm7" else f"src/game/{e['module']}/{e['name']}.c"
     full = ROOT / path
     full.parent.mkdir(parents=True, exist_ok=True)
     full.write_text(text)
@@ -923,13 +925,14 @@ def main() -> int:
     ap.add_argument("--batch", type=int, default=0)
     ap.add_argument("--name")
     ap.add_argument("--keep")
+    ap.add_argument("--arm7", action="store_true", help="ARM7 functions only")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args()
     DEBUG = bool(args.name)
 
     idx = fnindex.load()
     ISFUNC.update(n for n, l in idx.by_name.items() if any(e["size"] for e in l))
-    rows = candidates(idx)
+    rows = candidates(idx, args.arm7)
     if args.name:
         rows = [e for e in rows if e["name"] == args.name]
     dis = disassemble_all(rows)

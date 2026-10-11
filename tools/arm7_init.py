@@ -23,7 +23,9 @@ Then it fixes what dsd's search gets wrong on ARM7:
 3. A call target with no function, and a pointer into a gap in .text that
    starts with an unconditional ARM instruction, get a function up to the
    next symbol; .text grows to cover them. dsd stops searching at the first
-   data it meets in a part, so it misses code after it.
+   data it meets in a part, so it misses code after it. Their calls to
+   other functions get relocations here, and their literal pools go to
+   step 4.
 4. A word that was moved above but got no relocation gets one when it points
    at a function start (with the Thumb bit for a Thumb function) or at a
    place outside every function inside a section; the target gets a data
@@ -258,6 +260,28 @@ class Analysis:
                 if f"start:0x{s_end:08x}" in t:
                     self.sections[k] = t.replace(f"start:0x{s_end:08x}", f"start:0x{boundary:08x}")
 
+    def relocate_added(self) -> set[int]:
+        """dsd never parsed the functions added above, so they have no
+        relocations of their own. Add a call relocation for each ARM BL and
+        B whose target is a function start, and return the words of their
+        literal pools as more pointer candidates for step 4."""
+        pool_words = set()
+        for addr in sorted(self.new):
+            mode, size = self.funcs[addr]
+            if mode != "arm":
+                continue
+            for pc in range(addr, addr + size, 4):
+                word = self.image.read(pc, 4)
+                if (word >> 25) & 7 == 5 and word >> 28 != 0xf:
+                    target = arm7.branch_target(word, pc, "arm_call")
+                    if target in self.funcs and self.funcs[target][0] == "arm" and target != addr:
+                        kind = "arm_call" if word & (1 << 24) else "arm_branch"
+                        self.relocs[pc] = f"from:0x{pc:08x} kind:{kind} to:0x{target:08x} module:arm7"
+                elif word & 0x0f7f0000 == 0x051f0000:  # ldr rN, [pc, #imm]
+                    off = word & 0xfff
+                    pool_words.add(pc + 8 + (off if word & (1 << 23) else -off))
+        return pool_words
+
     # 4
     def add_pointer_relocs(self, guessed: set[int]) -> None:
         for frm in sorted(guessed - set(self.relocs)):
@@ -323,7 +347,7 @@ def main() -> int:
     a.tables_to_data()
     a.split_thumb_runs()
     a.add_missed_functions(guessed)
-    a.add_pointer_relocs(guessed)
+    a.add_pointer_relocs(guessed | a.relocate_added())
 
     key = arm7.first_addr
     if CONFIG.exists():

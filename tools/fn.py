@@ -17,7 +17,9 @@
                                                moves src/.../OLD.c to NEW.c as well, and updates
                                                config/AWRE/names-provenance.csv
 
-Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt. `diff`
+Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt, and
+config/AWRE/arm7/ for the `arm7` module (one module for ARM7's three parts;
+names func_arm7_XXXXXXXX). `pick` leaves ARM7 out unless given --arm7. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
 symbol at the same address, or an absolute symbol from configure.py's
@@ -40,6 +42,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config/AWRE/arm9"
+CONFIG7 = ROOT / "config/AWRE/arm7"
 INTERESTING = ROOT / "config/AWRE/interesting.txt"
 PROVENANCE = ROOT / "config/AWRE/names-provenance.csv"
 OBJDIFF = ROOT / ".cache/tools/objdiff-cli/objdiff-cli"
@@ -91,6 +94,7 @@ class Module:
     addends: dict[int, int] = field(default_factory=dict)  # from -> relocs.txt `add:`
     text: tuple[int, int] = (0, 0)
     files: list[tuple[str, int, int, bool]] = field(default_factory=list)  # path, start, end, complete
+    texts: list[tuple[int, int]] = field(default_factory=list)  # every .text section (ARM7 has three)
 
 
 def module_dirs():
@@ -101,7 +105,7 @@ def module_dirs():
         yield d.name, d
 
 
-def parse_delinks(path: Path):
+def parse_delinks(path: Path, texts: list | None = None):
     text, files = (0, 0), []
     cur = None
     for line in path.read_text().splitlines():
@@ -112,6 +116,8 @@ def parse_delinks(path: Path):
         m = TEXT.match(line)
         if m and cur is None:
             text = (int(m.group(1), 16), int(m.group(2), 16))
+            if texts is not None:
+                texts.append(text)
         elif m:
             cur[1], cur[2] = int(m.group(1), 16), int(m.group(2), 16)
         elif cur is not None and line.strip() == "complete":
@@ -121,32 +127,44 @@ def parse_delinks(path: Path):
 
 @cache
 def modules() -> dict[str, Module]:
-    out = {}
-    for name, d in module_dirs():
-        mod = Module(name, d)
-        for line in (d / "symbols.txt").read_text().splitlines():
-            m = FUNC.match(line)
-            if m:
-                mod.funcs.append(Func(name, m.group(1), m.group(2), int(m.group(4), 16), int(m.group(3), 16)))
-            m = ANY_SYM.match(line)
-            if m:
-                mod.syms.setdefault(int(m.group(3), 16), m.group(1))
-        for line in (d / "relocs.txt").read_text().splitlines():
-            m = RELOC.match(line)
-            if m:
-                mod.relocs.append((int(m.group(1), 16), m.group(2), int(m.group(3), 16), m.group(5)))
-                if m.group(4):
-                    mod.addends[int(m.group(1), 16)] = int(m.group(4), 16)
-        mod.text, mod.files = parse_delinks(d / "delinks.txt")
-        mod.funcs.sort(key=lambda f: f.addr)
-        mod.relocs.sort()
-        out[name] = mod
+    """The ARM9 modules. Other tools (loop_state.py, progress.py) count on
+    this staying ARM9 only; all_modules() adds ARM7."""
+    return {name: load_module(name, d) for name, d in module_dirs()}
+
+
+@cache
+def all_modules() -> dict[str, Module]:
+    """ARM9 modules, then `arm7` once config/AWRE/arm7/ exists."""
+    out = dict(modules())
+    if (CONFIG7 / "symbols.txt").exists():
+        out["arm7"] = load_module("arm7", CONFIG7)
     return out
+
+
+def load_module(name: str, d: Path) -> Module:
+    mod = Module(name, d)
+    for line in (d / "symbols.txt").read_text().splitlines():
+        m = FUNC.match(line)
+        if m:
+            mod.funcs.append(Func(name, m.group(1), m.group(2), int(m.group(4), 16), int(m.group(3), 16)))
+        m = ANY_SYM.match(line)
+        if m:
+            mod.syms.setdefault(int(m.group(3), 16), m.group(1))
+    for line in (d / "relocs.txt").read_text().splitlines():
+        m = RELOC.match(line)
+        if m:
+            mod.relocs.append((int(m.group(1), 16), m.group(2), int(m.group(3), 16), m.group(5)))
+            if m.group(4):
+                mod.addends[int(m.group(1), 16)] = int(m.group(4), 16)
+    mod.text, mod.files = parse_delinks(d / "delinks.txt", mod.texts)
+    mod.funcs.sort(key=lambda f: f.addr)
+    mod.relocs.sort()
+    return mod
 
 
 def target_module(dest: str) -> list[str]:
     """relocs.txt `module:` value -> module names it may refer to."""
-    if dest in ("main", "itcm", "dtcm"):
+    if dest in ("main", "itcm", "dtcm", "arm7"):
         return [dest]
     m = re.match(r"overlays?\(([\d,\s]+)\)", dest)
     return [f"ov{int(x):03d}" for x in m.group(1).split(",")] if m else []
@@ -154,7 +172,7 @@ def target_module(dest: str) -> list[str]:
 
 def name_at(dest: str, addr: int) -> str:
     for mod in target_module(dest):
-        n = modules()[mod].syms.get(addr)
+        n = all_modules()[mod].syms.get(addr)
         if n:
             return n
     return f"0x{addr:08x}"
@@ -162,10 +180,10 @@ def name_at(dest: str, addr: int) -> str:
 
 def find(key: str) -> Func:
     want = int(key, 16) if re.fullmatch(r"(0x)?[0-9a-fA-F]{8}", key) else None
-    hits = [f for mod in modules().values() for f in mod.funcs
+    hits = [f for mod in all_modules().values() for f in mod.funcs
             if f.name == key or (want is not None and f.addr == want)]
     if not hits:
-        sys.exit(f"error: no function {key} in config/AWRE/arm9/**/symbols.txt")
+        sys.exit(f"error: no function {key} in config/AWRE/arm9/**/symbols.txt or config/AWRE/arm7/")
     if len(hits) > 1:
         # Overlays share addresses; a bare address can match several.
         names = ", ".join(f"{f.name} ({f.module})" for f in hits)
@@ -174,14 +192,14 @@ def find(key: str) -> Func:
 
 
 def file_of(f: Func):
-    for path, start, end, complete in modules()[f.module].files:
+    for path, start, end, complete in all_modules()[f.module].files:
         if start <= f.addr < end:
             return path, start, end, complete
     return None
 
 
 def relocs_in(f: Func):
-    rel = modules()[f.module].relocs
+    rel = all_modules()[f.module].relocs
     i = bisect.bisect_left(rel, (f.addr,))
     j = bisect.bisect_left(rel, (f.end,))
     return rel[i:j]
@@ -197,7 +215,7 @@ def loads_from(f: Func):
 
 def callers_of(f: Func):
     out = []
-    for mod in modules().values():
+    for mod in all_modules().values():
         for frm, k, to, dest in mod.relocs:
             if to == f.addr and k in CALL_KINDS and f.module in target_module(dest):
                 caller = next((g for g in mod.funcs if g.addr <= frm < g.end), None)
@@ -208,7 +226,7 @@ def callers_of(f: Func):
 def describe(dest: str, addr: int) -> str:
     """Module and kind of the symbol at addr, e.g. `dtcm bss`."""
     for mod in target_module(dest):
-        for line in (modules()[mod].dir / "symbols.txt").read_text().splitlines():
+        for line in (all_modules()[mod].dir / "symbols.txt").read_text().splitlines():
             m = ANY_SYM.match(line)
             if m and int(m.group(3), 16) == addr:
                 return f"{mod} {m.group(2)}"
@@ -218,7 +236,7 @@ def describe(dest: str, addr: int) -> str:
 def users_of(dest: str, addr: int, skip: Func, limit: int = 6) -> list[str]:
     """Other functions that load the address of the symbol at addr."""
     out = []
-    for mod in modules().values():
+    for mod in all_modules().values():
         for frm, k, to, d in mod.relocs:
             if to == addr and k == "load" and set(target_module(d)) & set(target_module(dest)):
                 g = next((g for g in mod.funcs if g.addr <= frm < g.end), None)
@@ -229,7 +247,7 @@ def users_of(dest: str, addr: int, skip: Func, limit: int = 6) -> list[str]:
 
 @cache
 def sym_addrs(module: str) -> list[int]:
-    return sorted(modules()[module].syms)
+    return sorted(all_modules()[module].syms)
 
 
 def refs_to(f: Func, limit: int = 8) -> list[str]:
@@ -237,7 +255,7 @@ def refs_to(f: Func, limit: int = 8) -> list[str]:
     it (a callback), or data such as a table of function pointers, named as
     the symbol at or below the place plus the offset."""
     out = set()
-    for mod in modules().values():
+    for mod in all_modules().values():
         for frm, k, to, dest in mod.relocs:
             if to != f.addr or k in CALL_KINDS or f.module not in target_module(dest):
                 continue
@@ -257,7 +275,7 @@ def refs_to(f: Func, limit: int = 8) -> list[str]:
 
 def matched_names() -> set[str]:
     out = set()
-    for mod in modules().values():
+    for mod in all_modules().values():
         for path, start, end, complete in mod.files:
             if complete:
                 out.update(f.name for f in mod.funcs if start <= f.addr < end)
@@ -283,8 +301,12 @@ def interesting() -> list[str]:
 
 
 def next_start(f: Func) -> int:
-    mod = modules()[f.module]
+    mod = all_modules()[f.module]
     later = [g.addr for g in mod.funcs if g.addr > f.addr]
+    if f.module == "arm7":
+        # The end of the .text section that holds f: ARM7 has one per part.
+        end = next(e for s, e in mod.texts if s <= f.addr < e)
+        return min([a for a in later if a < end] + [end])
     return min(later + [mod.text[1]])
 
 
@@ -313,7 +335,9 @@ def cmd_pick_families(args) -> int:
     groups: dict[str, list] = {}
     for e in entries:
         game = is_game_at(e["module"], e["addr"])
-        if e["status"] == "none" and (args.all or game):
+        if (e["module"] == "arm7") != args.arm7:
+            continue
+        if e["status"] == "none" and (args.all or args.arm7 or game):
             groups.setdefault(e["mhash"], []).append(e)
     fams = []
     skipped = 0
@@ -342,11 +366,13 @@ def cmd_pick(args) -> int:
     done = matched_names()
     wanted = interesting()
     rows = []
-    for mod in modules().values():
+    for mod in all_modules().values():
+        if (mod.name == "arm7") != args.arm7:
+            continue
         for f in mod.funcs:
             if f.mode != "arm" or not args.min_size <= f.size <= args.max_size or file_of(f):
                 continue
-            if not args.all and not is_game(f):
+            if not args.all and not args.arm7 and not is_game(f):
                 continue
             calls = calls_from(f)
             callee_names = {name_at(d, t) for _, t, d in calls}
@@ -358,7 +384,8 @@ def cmd_pick(args) -> int:
     print(f"{'name':<22} {'module':<6} {'addr':<10} {'size':>6} calls data")
     for _, f, ncalls, nloads, star in rows[:args.n]:
         print(f"{f.name:<22} {f.module:<6} 0x{f.addr:08x} {f.size:>#6x} {ncalls:>5} {nloads:>4}{'  *' if star else ''}")
-    print(f"\n{len(rows)} candidates ({'all code' if args.all else 'game code'}, ARM, "
+    what = "ARM7" if args.arm7 else "all ARM9 code" if args.all else "game code"
+    print(f"\n{len(rows)} candidates ({what}, ARM, "
           f"size {args.min_size:#x}-{args.max_size:#x}). "
           "* = listed in config/AWRE/interesting.txt")
     return 0
@@ -391,16 +418,26 @@ def cmd_show(args) -> int:
         print(f"  {name:<24} {describe(dest, addr)}  used by: {', '.join(users_of(dest, addr, f)) or 'only this'}")
     print("callers: " + (", ".join(callers_of(f)) or "none found"))
     print("refs:    " + ("; ".join(refs_to(f)) or "none"))
+    delinks = ROOT / ("build/arm7/delinks" if f.module == "arm7" else "build/delinks")
     if fi:
-        obj = ROOT / "build/delinks" / Path(fi[0]).with_suffix(".o")
+        obj = delinks / Path(fi[0]).with_suffix(".o")
     else:
-        gaps = sorted((ROOT / "build/delinks").glob(f"_dsd_gap@{f.module}_*.o"))
+        # dsd names ARM7's gap objects after the stand-in ROM's autoloads.
+        prefix = f"autoload_{arm7_index(f.addr)}" if f.module == "arm7" else f.module
+        gaps = sorted(delinks.glob(f"_dsd_gap@{prefix}_*.o"))
         obj = next((g for g in gaps if re.search(rf" [Tt] {re.escape(f.name)}$", subprocess.run(
             ["arm-none-eabi-nm", "--defined-only", str(g)], capture_output=True, text=True).stdout, re.M)), None)
     if obj is None or not obj.exists():
         sys.exit("error: no delinked object yet. Run `make` first.")
     print("\n".join(objdump(obj, f.name, f.mode)))
     return 0
+
+
+def arm7_index(addr: int) -> int:
+    """dsd's autoload index for the ARM7 part that holds addr (tools/arm7.py)."""
+    import arm7
+    regs = arm7.regions(arm7.ARM7_BIN.read_bytes())
+    return arm7.region_of(regs, addr).index
 
 
 def cmd_add(args) -> int:
@@ -410,8 +447,8 @@ def cmd_add(args) -> int:
         sys.exit("error: path must look like src/dir/name.c")
     if file_of(f):
         sys.exit(f"error: {f.name} is already in {file_of(f)[0]}")
-    mod = modules()[f.module]
-    if any(p == path for m in modules().values() for p, *_ in m.files):
+    mod = all_modules()[f.module]
+    if any(p == path for m in all_modules().values() for p, *_ in m.files):
         sys.exit(f"error: {path} already exists in a delinks.txt; pick another name")
     start, end = f.addr, next_start(f)
     for p, s, e, _ in mod.files:
@@ -440,7 +477,7 @@ def cmd_finish(args) -> int:
     if fi[3]:
         print(f"{fi[0]} is already marked")
         return 0
-    delinks = modules()[f.module].dir / "delinks.txt"
+    delinks = all_modules()[f.module].dir / "delinks.txt"
     text = delinks.read_text().replace(f"\n{fi[0]}:\n", f"\n{fi[0]}:\n    complete\n", 1)
     delinks.write_text(text)
     print(f"marked {fi[0]} complete")
@@ -458,11 +495,11 @@ def cmd_rename(args) -> int:
     if not re.fullmatch(r"[A-Za-z_]\w*", new):
         sys.exit(f"error: {new} is not a C identifier")
     word = re.compile(rf"(?<!\w){re.escape(old)}(?!\w)")
-    for mod in modules().values():
+    for mod in all_modules().values():
         if new in mod.syms.values():
             sys.exit(f"error: {new} already exists in {mod.name}")
     hits = 0
-    for mod in modules().values():
+    for mod in all_modules().values():
         p = mod.dir / "symbols.txt"
         text = p.read_text()
         new_text = re.sub(rf"^{re.escape(old)} ", f"{new} ", text, flags=re.M)
@@ -473,7 +510,7 @@ def cmd_rename(args) -> int:
         sys.exit(f"error: no symbol {old}")
     if hits > 1:
         print(f"warning: {old} was defined in {hits} modules; renamed in all", file=sys.stderr)
-    for mod in modules().values():
+    for mod in all_modules().values():
         for path, *_ in mod.files:
             if Path(path).stem == old and (ROOT / path).exists():
                 new_path = str(Path(path).with_name(snake_case(new) + ".c"))
@@ -506,14 +543,17 @@ def cmd_diff(args) -> int:
         sys.exit(f"error: {path} does not exist yet.")
     subprocess.run([sys.executable, ROOT / "tools/configure.py"], check=True)
     unit = str(Path(path).with_suffix(""))
-    ours = ROOT / "build" / Path(path).with_suffix(".o")
-    r = subprocess.run(ninja(str(ours.relative_to(ROOT)), "objdiff.json", "build/delink.stamp"),
+    import configure
+    ours = ROOT / configure.obj_of(path)
+    project = "build/arm7" if f.module == "arm7" else "."
+    stamp = "build/arm7/delink.stamp" if f.module == "arm7" else "build/delink.stamp"
+    r = subprocess.run(ninja(str(ours.relative_to(ROOT)), f"{project}/objdiff.json".removeprefix("./"), stamp),
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode:
         sys.stdout.write(r.stdout + r.stderr)
         return 1
 
-    r = subprocess.run([OBJDIFF, "diff", "-p", ".", "-u", unit, "-o", "-", "--format", "json", f.name],
+    r = subprocess.run([OBJDIFF, "diff", "-p", project, "-u", unit, "-o", "-", "--format", "json", f.name],
                        cwd=ROOT, capture_output=True, text=True)
     if r.returncode:
         sys.stdout.write(r.stdout + r.stderr)
@@ -581,7 +621,7 @@ def cmd_check(args) -> int:
 def symbol_addresses() -> dict[str, int | None]:
     """Name -> address over all modules; None when a name has two addresses."""
     out = {}
-    for mod in modules().values():
+    for mod in all_modules().values():
         for line in (mod.dir / "symbols.txt").read_text().splitlines():
             m = ANY_SYM.match(line)
             if m:
@@ -650,6 +690,7 @@ def main() -> int:
     p.add_argument("--min-size", type=lambda s: int(s, 0), default=0x10)
     p.add_argument("--all", action="store_true", help="include SDK and library code")
     p.add_argument("--families", action="store_true", help="rank families of same-shape functions")
+    p.add_argument("--arm7", action="store_true", help="ARM7 functions only (all of it is SDK/library code)")
     p.add_argument("--min-members", type=int, default=2, help="with --families")
     p.set_defaults(fn=cmd_pick)
     p = sub.add_parser("show")

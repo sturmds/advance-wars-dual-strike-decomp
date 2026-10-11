@@ -4,7 +4,7 @@
     python3 tools/triage_partials.py --out FILE.md [--jobs 3] [--no-sweep] [NAME ...]
 
 For each function in a source file that is not marked `complete`
-(PROGRESS.md, "Started, not linked"), or only the NAMEs given:
+(PROGRESS.md, "Started, not linked", ARM7 included), or only the NAMEs given:
 
   class      from `fn.py diff`: register-only (same instructions, other
              register numbers), order (the same instructions in another
@@ -97,7 +97,7 @@ def classify(rows) -> dict:
 def pragma_files():
     """{module: [(start, end, path, [pragma lines])]} for files with a pragma."""
     out = {}
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():
         for path, start, end, complete in mod.files:
             p = ROOT / path
             if not path.startswith("src/") or not p.exists() or not start:
@@ -134,7 +134,7 @@ def main() -> int:
         for n in names:
             if not a.names or n in a.names:
                 funcs.append((path, n))
-    by_name = {f.name: f for mod in fn.modules().values() for f in mod.funcs}
+    by_name = {f.name: f for mod in fn.all_modules().values() for f in mod.funcs}
     table = pragma_files()
     rows = {}
     for path, n in funcs:

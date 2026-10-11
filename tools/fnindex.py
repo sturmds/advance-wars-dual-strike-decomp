@@ -3,7 +3,8 @@
 
     fnindex.py [--out build/fnindex.json]     build the index (a few seconds)
 
-The index lists every function in config/AWRE/arm9/**/symbols.txt with its
+The index lists every function in config/AWRE/arm9/**/symbols.txt and
+config/AWRE/arm7/symbols.txt (module `arm7`) with its
 module, mode, address, size, original bytes (from extract/), relocations
 (from relocs.txt), a masked hash, the mnemonics before the literal pool, and
 whether a C file covers it (`status`: complete, started or none).
@@ -20,7 +21,8 @@ temporary object and compares one function against the index: bytes outside
 relocations, relocation offsets and kinds, and relocation targets as
 addresses. A relocation to `Table+0x1c` equals one to the symbol dsd placed
 at that address (issue 0017). `fn.py check` is the command-line front end.
-It never runs ninja or dsd and never writes to config/.
+It never runs ninja or dsd and never writes to config/. An `arm7` function
+is compiled with the ARM7 flags (configure.CFLAGS7).
 
 Based on khdays-decomp (CC0): the index follows tools/index_funcs.py, the
 check follows tools/match.py and tools/verify_idx.py. Ideas only, no code
@@ -46,7 +48,7 @@ import fn  # noqa: E402
 ROOT = fn.ROOT
 INDEX = ROOT / "build/fnindex.json"
 EXTRACT = ROOT / "extract"
-VERSION = 2
+VERSION = 3
 
 # Relocation kinds, grouped by what part of the word they change.
 ARM_CALLS = {"arm_call", "arm_call_thumb", "arm_branch"}
@@ -85,6 +87,25 @@ def module_bins() -> dict[str, tuple[bytes, int]]:
                 out[f"ov{cur['id']:03d}"] = (data, int(cur["base_address"]))
                 cur = None
     return out
+
+
+def module_parts() -> dict[str, list[tuple[bytes, int]]]:
+    """Module name -> [(bytes, base address)]: one part per ARM9 module, and
+    ARM7's three parts (static, WRAM and main RAM autoloads)."""
+    out = {name: [part] for name, part in module_bins().items()}
+    arm7_bin = EXTRACT / "arm7/arm7.bin"
+    if arm7_bin.exists() and "arm7" in fn.all_modules():
+        import arm7
+        data = arm7_bin.read_bytes()
+        out["arm7"] = [(data[r.offset:r.offset + r.size], r.base) for r in arm7.regions(data)]
+    return out
+
+
+def part_of(parts: list[tuple[bytes, int]], addr: int) -> tuple[bytes, int]:
+    for data, base in parts:
+        if base <= addr < base + len(data):
+            return data, base
+    raise KeyError(f"0x{addr:08x} is in no part of its module")
 
 
 def masked(raw: bytes, relocs) -> bytes:
@@ -144,17 +165,19 @@ def pool_start(f: fn.Func, dis: dict) -> int:
 def build() -> dict:
     # Imported here: it costs 30 ms, and `fn.py check` never builds.
     from concurrent.futures import ThreadPoolExecutor
-    mods = fn.modules()
-    bins = module_bins()
+    mods = fn.all_modules()
+    bins = module_parts()
 
     def mod_dis(name):
         mod = mods[name]
-        data, base = bins[name]
-        arm = [f for f in mod.funcs if f.mode == "arm"]
-        d = disassemble(data, base, min(f.addr for f in arm), max(f.end for f in arm), False) if arm else {}
+        d = {}
+        for data, base in bins[name]:
+            arm = [f for f in mod.funcs if f.mode == "arm" and base <= f.addr < base + len(data)]
+            if arm:
+                d.update(disassemble(data, base, min(f.addr for f in arm), max(f.end for f in arm), False))
         for f in mod.funcs:
             if f.mode == "thumb":
-                d.update(disassemble(data, base, f.addr, f.end, True))
+                d.update(disassemble(*part_of(bins[name], f.addr), f.addr, f.end, True))
         return d
 
     names = [n for n in mods if n in bins and mods[n].funcs]
@@ -164,10 +187,10 @@ def build() -> dict:
     funcs = []
     for name in names:
         mod = mods[name]
-        data, base = bins[name]
         complete = [(s, e, p) for p, s, e, c in mod.files if c]
         started = [(s, e, p) for p, s, e, c in mod.files if not c]
         for f in mod.funcs:
+            data, base = part_of(bins[name], f.addr)
             raw = data[f.addr - base:f.end - base]
             relocs = []
             for frm, kind, to, dest in fn.relocs_in(f):
@@ -202,7 +225,7 @@ def build() -> dict:
 def inputs() -> list[Path]:
     """Files the index is built from. delinks.txt is left out on purpose:
     it changes on every `fn.py add`, and only `status` depends on it."""
-    out = [p for p in fn.CONFIG.rglob("*.txt") if p.name in ("symbols.txt", "relocs.txt")]
+    out = [p for d in (fn.CONFIG, fn.CONFIG7) for p in d.rglob("*.txt") if p.name in ("symbols.txt", "relocs.txt")]
     return out + [EXTRACT / "arm9/arm9.bin", EXTRACT / "arm9_overlays/overlays.yaml"]
 
 
@@ -316,9 +339,11 @@ class Result:
                 f"({self.bytes_differ} bytes){'; ' + self.message if self.message else ''}")
 
 
-def compile_c(src: Path, obj: Path) -> subprocess.CompletedProcess:
-    """The `cc` rule from tools/configure.py, with the object in a temp dir."""
-    cmd = [str(ROOT / configure.CC), "-c", *configure.CFLAGS.split(), "-gccdep", "-MD",
+def compile_c(src: Path, obj: Path, module: str | None = None) -> subprocess.CompletedProcess:
+    """The `cc` rule from tools/configure.py (`cc7` for an ARM7 function or a
+    file under src/arm7/), with the object in a temp dir."""
+    cc, cflags = configure.compiler_for(src, module)
+    cmd = [str(ROOT / cc), "-c", *cflags.split(), "-gccdep", "-MD",
            "-o", str(obj), str(src)]
     return subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
 
@@ -402,18 +427,22 @@ def compare(index: Index, obj_data: bytes, name: str, module: str | None = None)
     return Result(name, ok, units, len(bad_units), bad_bytes, "; ".join(notes), renamed)
 
 
-def compile_object(src: Path, tmpdir: Path | None = None) -> tuple[bytes | None, str]:
+def compile_object(src: Path, tmpdir: Path | None = None, module: str | None = None) -> tuple[bytes | None, str]:
     """Compile src; return the object's bytes (None on an error) and the
     compiler's output."""
     with tempfile.TemporaryDirectory(dir=tmpdir) as d:
         obj = Path(d) / "check.o"
-        r = compile_c(Path(src).resolve(), obj)
+        r = compile_c(Path(src).resolve(), obj, module)
         return (None if r.returncode else obj.read_bytes()), r.stdout + r.stderr
 
 
 def check(index: Index, src: Path, name: str, module: str | None = None, tmpdir: Path | None = None) -> Result:
     """Compile src and compare function `name` with the original."""
-    obj, output = compile_object(src, tmpdir)
+    try:
+        target_module = index.func(name, module)["module"]
+    except KeyError:
+        target_module = module
+    obj, output = compile_object(src, tmpdir, target_module)
     if obj is None:
         return Result(name, False, 0, 0, 0, "compile error", 0, output)
     return compare(index, obj, name, module)

@@ -3889,3 +3889,11 @@ from:0x038077a8 kind:load to:0x037fb61c module:arm7
 from:0x038077ac kind:load to:0x037fb61c module:arm7
 from:0x038077b0 kind:load to:0x037fb61c module:arm7
 from:0x038077b4 kind:load to:0x037fbb34 module:arm7
+from:0x0380764c kind:arm_call to:0x037fc624 module:arm7
+from:0x03807660 kind:arm_call to:0x037fdc04 module:arm7
+from:0x038076a8 kind:arm_call to:0x037fc624 module:arm7
+from:0x038076bc kind:arm_call to:0x037fdc04 module:arm7
+from:0x038076d0 kind:arm_call to:0x037fc5b4 module:arm7
+from:0x03807708 kind:arm_call to:0x037fdc04 module:arm7
+from:0x03807718 kind:arm_call to:0x037fe1cc module:arm7
+from:0x03807728 kind:arm_call to:0x037fc5b4 module:arm7

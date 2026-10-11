@@ -77,10 +77,25 @@ def delinks_sources(config: Path = CONFIG) -> list[str]:
     return sources
 
 
+def is_arm7_source(src) -> bool:
+    p = Path(src)
+    if p.is_absolute() and p.is_relative_to(ROOT):
+        p = p.relative_to(ROOT)
+    return p.parts[:2] == ("src", "arm7")
+
+
+def compiler_for(src, module: str | None = None) -> tuple[str, str]:
+    """(compiler, flags) for a source file: ARM7's for a file under src/arm7/
+    or for code checked against an `arm7` function, ARM9's otherwise."""
+    if module == "arm7" or (module is None and is_arm7_source(src)):
+        return CC7, CFLAGS7
+    return CC, CFLAGS
+
+
 def obj_of(src: str) -> str:
     """Where a source file's object goes. ARM7 objects sit under build/arm7/,
     the build directory of ARM7's dsd config, where dsd lcf looks for them."""
-    if Path(src).parts[:2] == ("src", "arm7"):
+    if is_arm7_source(src):
         return "build/arm7/" + str(Path(src).with_suffix(".o"))
     return "build/" + str(Path(src).with_suffix(".o"))
 

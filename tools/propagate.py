@@ -25,14 +25,17 @@ tried first. Twins keep their address names.
 
 Every variant goes through the fast check (fnindex.check). A candidate that
 passes is written to src/game/<module>/<name>.c (SDK code in main goes to
-src/sdk/<name>.c), added with `fn.py add`, compared with `fn.py diff`, and
+src/sdk/<name>.c, ARM7 code to src/arm7/sdk/<name>.c), added with `fn.py add`, compared with `fn.py diff`, and
 marked with `fn.py finish` at 100%. Failures are removed again. Matches
 found during a run serve as templates for the rest of the run.
 
 --dry-run         check only; write nothing under src/ or config/
 --identical-only  skip near twins
 --limit N         stop after N matched candidates
---module M        only candidates in module M (main, itcm, ov000, ...)
+--module M        only candidates in module M (main, itcm, ov000, ...). ARM7
+                  candidates come only with --module arm7; templates come
+                  from every module, and an ARM7 candidate is compiled with
+                  the ARM7 flags.
 --only NAMES      only these candidates (comma list, or @file with one per line)
 --report FILE     JSON results (default build/propagate.json)
 
@@ -218,7 +221,7 @@ def elf_relocs(obj: bytes, name: str) -> dict[int, tuple[str, int, str, int]] | 
 
 def symbol_at(dest: str, addr: int) -> str | None:
     for mod in fn.target_module(dest):
-        n = fn.modules()[mod].syms.get(addr)
+        n = fn.all_modules()[mod].syms.get(addr)
         if n:
             return n
     return None
@@ -495,6 +498,8 @@ def variants(tpl: Template, cand: dict, headers: Headers, near: bool):
 
 def src_path(f: dict) -> str:
     func = fn.Func(f["module"], f["name"], f["mode"], f["addr"], f["size"])
+    if f["module"] == "arm7":
+        return f"src/arm7/sdk/{f['name']}.c"
     if f["module"] == "main" and not fn.is_game(func):
         return f"src/sdk/{f['name']}.c"
     return f"src/game/{f['module']}/{f['name']}.c"
@@ -508,7 +513,7 @@ def data_after(f: dict) -> bool:
     there (func_02000afc is followed by BuildInfo, which dsd needs)."""
     func = fn.Func(f["module"], f["name"], f["mode"], f["addr"], f["size"])
     stop = fn.next_start(func)
-    return any(func.end <= a < stop for a in fn.modules()[f["module"]].syms)
+    return any(func.end <= a < stop for a in fn.all_modules()[f["module"]].syms)
 
 
 def fn_cli(*args) -> subprocess.CompletedProcess:
@@ -517,7 +522,9 @@ def fn_cli(*args) -> subprocess.CompletedProcess:
 
 
 def remove_entry(path: str) -> None:
-    for d in fn.CONFIG.rglob("delinks.txt"):
+    for d in [*fn.CONFIG.rglob("delinks.txt"), fn.CONFIG7 / "delinks.txt"]:
+        if not d.exists():
+            continue
         text = d.read_text()
         head, _, rest = text.partition("\n\n")
         blocks = rest.strip("\n").split("\n\n")
@@ -565,7 +572,7 @@ def main() -> int:
             add_template(f, ROOT / f["file"])
 
     todo = [f for f in funcs if f["status"] == "none"
-            and (args.module is None or f["module"] == args.module)
+            and (f["module"] == args.module if args.module else f["module"] != "arm7")
             and (only is None or f["name"] in only)
             and not data_after(f)]
     todo.sort(key=lambda f: (f["module"], f["addr"]))
@@ -654,12 +661,14 @@ def main() -> int:
             p.parent.mkdir(parents=True, exist_ok=True)
             p.write_text(m["text"])
             fn.modules.cache_clear()
+            fn.all_modules.cache_clear()
             try:
                 fn.cmd_add(argparse.Namespace(name=m["name"], path=m["path"]))
             except SystemExit as e:
                 m["status"] = f"add failed: {e}"
                 p.unlink()
         fn.modules.cache_clear()
+        fn.all_modules.cache_clear()
         for m in matched:
             if m["status"] != "match":
                 continue

@@ -5,7 +5,8 @@
                                          [--seed N] [--jobs N] [--thumb] [--apply]
 
 FILE.c is a started C file (it has a delinks.txt entry and `make` has run, so
-build/delinks/<FILE>.o holds the original bytes). The tool compiles variants
+build/delinks/<FILE>.o holds the original bytes; build/arm7/delinks/<FILE>.o
+for a file under src/arm7/, which compiles with the ARM7 flags). The tool compiles variants
 with the build's compiler command and scores each by the number of
 instructions that differ from the original, ignoring relocation words:
 
@@ -48,6 +49,16 @@ CC = ROOT / ".cache/tools/metroskrew/bin/mwccarm-2.0-72.exe"
 BASE_FLAGS = ["-proc", "arm946e", "-interworking", "-nostdinc", "-i", "include", "-msgstyle", "gcc"]
 BUILD_OPT = "-O4,p"
 DIAG_OPTS = ["-O4,s", "-O3,p", "-O3,s", "-O2,p", "-O4", "-O1,p"]
+DELINKS = ROOT / "build/delinks"
+
+
+def use_arm7_flags() -> None:
+    """Switch to ARM7's flags and objects (tools/configure.py, CFLAGS7)."""
+    global BASE_FLAGS, BUILD_OPT, DIAG_OPTS, DELINKS
+    BASE_FLAGS = ["-proc", "arm7tdmi", "-interworking", "-nostdinc", "-i", "include", "-msgstyle", "gcc"]
+    BUILD_OPT = "-O4,s"
+    DIAG_OPTS = ["-O4,p", "-O3,s", "-O2,s", "-O1,s"]
+    DELINKS = ROOT / "build/arm7/delinks"
 TYPES = ["int", "u32", "s32", "u16", "s16", "u8", "s8"]
 KEYWORDS = {"return", "goto", "else", "case", "default", "break", "continue", "if", "for", "while",
             "do", "switch", "sizeof", "typedef"}
@@ -470,7 +481,7 @@ class Scorer:
     def __init__(self, path: Path, name: str, thumb: bool, jobs: int):
         self.path, self.name = path, name
         self.unit = 2 if thumb else 4
-        ref = ROOT / "build/delinks" / path.resolve().relative_to(ROOT).with_suffix(".o")
+        ref = DELINKS / path.resolve().relative_to(ROOT).with_suffix(".o")
         if not ref.exists():
             sys.exit(f"{ref} not found: add a delinks.txt entry and run make first")
         self.orig = function_words(Elf(ref.read_bytes()), name, self.unit)
@@ -509,7 +520,8 @@ class Scorer:
         self.count += 1
         return sc
 
-    def many(self, texts, opt=BUILD_OPT):
+    def many(self, texts, opt=None):
+        opt = opt or BUILD_OPT
         unique = list(dict.fromkeys(texts))
         got = dict(zip(unique, self.pool.map(lambda t: self._one(t, opt), unique)))
         return [got[t] for t in texts]
@@ -708,6 +720,8 @@ def main():
     a = ap.parse_args()
 
     path = Path(a.file).resolve()
+    if path.relative_to(ROOT).parts[:2] == ("src", "arm7"):
+        use_arm7_flags()
     axes = [x for x in a.axes.split(",") if x]
     rng = random.Random(a.seed)
     t0 = time.time()

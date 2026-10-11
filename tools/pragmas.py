@@ -26,7 +26,8 @@ sides (an inserted instruction costs one), as in permute.py. A match is
 checked with fnindex.compare, the same test as `fn.py check`. The table
 prints the best settings; --json writes every result; --apply writes the
 best matching variant over FILE.c. Confirm with `fn.py diff` and
-`make release`. Needs `build/fnindex.json` (ROM) unless --ref is given.
+`make release`. An ARM7 function, or a file under src/arm7/, compiles with
+the ARM7 flags (configure.CFLAGS7). Needs `build/fnindex.json` (ROM) unless --ref is given.
 """
 import argparse
 import difflib
@@ -119,6 +120,7 @@ class IndexTarget:
         self.index = index or fnindex.load()
         self.name, self.module = name, module
         want = self.index.func(name, module)
+        self.func_module = want["module"]
         self.unit = 2 if want["mode"] == "thumb" else 4
         relocs = {off: fnindex.reloc_class(kind) for off, kind, *_ in want["relocs"]}
         self.tokens = tokens(bytes.fromhex(want["raw"]), relocs, self.unit)
@@ -149,6 +151,9 @@ class Sweep:
     def __init__(self, path: Path, name: str, target, jobs: int):
         self.path, self.name, self.target = path, name, target
         self.text = path.read_text()
+        # ARM7 code builds with other flags (configure.CFLAGS7).
+        cc, cflags = configure.compiler_for(path, getattr(target, "func_module", None))
+        self.cc, self.cflags = ROOT / cc, cflags
         (ROOT / "build").mkdir(exist_ok=True)
         self.tmp = Path(tempfile.mkdtemp(prefix="pragmas-", dir=ROOT / "build"))
         self.pool = ThreadPoolExecutor(max_workers=jobs)
@@ -164,7 +169,7 @@ class Sweep:
         src = self.tmp / f"v{next(self.serial)}.c"
         obj = src.with_suffix(".o")
         src.write_text(variant(self.text, self.name, setting, place))
-        cmd = [str(CC), "-c", *configure.CFLAGS.split(), "-i", str(self.path.parent), "-o", str(obj), str(src)]
+        cmd = [str(self.cc), "-c", *self.cflags.split(), "-i", str(self.path.parent), "-o", str(obj), str(src)]
         r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True)
         res = {"setting": [list(p) for p in setting], "place": place, "differ": None, "units": None,
                "ok": False, "hash": None}
