@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/dma_task.h"
 
-void func_0210efb0(int channel);   /* SDK: stops a DMA channel */
+void MI_StopDma(int channel);   /* SDK: stops a DMA channel */
 void func_0210f3cc(int channel, const void *src, volatile void *dest, int mode);   /* SDK: starts a DMA transfer */
 
 
@@ -11,7 +11,7 @@ void func_0210f3cc(int channel, const void *src, volatile void *dest, int mode);
  * is skipped when channel 1 is in use with the same one. */
 void DmaTaskCmd_StartChannel0(Task *task)
 {
-    func_0210efb0(0);
+    MI_StopDma(0);
     func_0210f3cc(0, DMA_TASK_ARGS(task)->src, DMA_TASK_ARGS(task)->dest, 2);
     if (gDmaTaskState.channelScreen[1] != 0 && DMA_TASK_ARGS(task)->callback == gDmaTaskState.channel1Callback) {
         return;

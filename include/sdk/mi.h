@@ -16,9 +16,13 @@ typedef struct DmaChannel {
 /* Control value for a one-unit transfer, 16-bit, fixed source and destination, starting at once. */
 #define DMA_DUMMY_TRANSFER 0x81400001
 
+/* Upper half of a channel's control register: enable, start timing and repeat. */
+#define IO_DMA_CTRL_UPPER(dmaNo) (((volatile u16 *)REG_DMA)[(dmaNo) * 6 + 5])
+
 /* DMA control bits: enable, and the start timing field. */
 #define DMA_ENABLE 0x80000000
 #define DMA_START_MASK 0x38000000
+#define DMA_REPEAT 0x02000000
 #define DMA_START_VBLANK 0x08000000
 #define DMA_START_HBLANK 0x10000000
 #define DMA_START_DISPLAY 0x18000000
