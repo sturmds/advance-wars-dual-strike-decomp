@@ -9988,6 +9988,10 @@ src/game/main/ai/ai_count_foot_wanting_transport.c:
     complete
     .text       start:0x02091068 end:0x02091128
 
+src/game/main/ai/ai_count_empty_transports.c:
+    complete
+    .text       start:0x02091128 end:0x020911d4
+
 src/game/main/ai/range_map_spread_over_sea.c:
     complete
     .text       start:0x020911d4 end:0x020913b4
