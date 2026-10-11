@@ -56,9 +56,9 @@ typedef struct Unk_ov006_0235f690 {
     u16 oldCell;                       /* cell code of the tile an edit is about to overwrite (Ov006_BreakCellBlock) */
     s8 unitArmy;                       /* army (1-4) that unit mode places units for */
     s8 tileArmy;                       /* owner of property tiles that terrain mode places */
-    s8 unk_26;
-    s8 unk_27;
-    s8 unk_28;
+    s8 prevTerrainPage;                /* terrainPage before the last page change */
+    s8 terrainPage;                    /* entry list page in terrain mode: army 0-4 whose properties it shows (Ov006_SetEntryPage) */
+    s8 unitPage;                       /* entry list page in unit mode: army 1-4 whose CO icons and units it shows */
     s8 unitMode;                       /* 1: the editor places units; 0: it paints terrain */
     s8 unk_2a;
     s8 propertyCount;                  /* property tiles on the map (Ov006_CountPropertyTiles); at most 60 */

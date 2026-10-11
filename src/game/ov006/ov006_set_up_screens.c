@@ -7,10 +7,10 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
-void func_01ff8b9c(int x, int y);
-void func_01ff8b70(int x, int y);
-void func_01ff8b44(int x, int y);
-void func_01ff8b18(int x, int y);
+void Screen_SetLayer0Scroll(int x, int y);
+void Screen_SetLayer1Scroll(int x, int y);
+void Screen_SetLayer2Scroll(int x, int y);
+void Screen_SetLayer3Scroll(int x, int y);
 void Ov006_LoadMapeditGraphics(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -29,10 +29,10 @@ extern u8 data_021575c8[];             /* main screen layer config */
     data_027c0280->blendEvy = 0;                                       \
     data_027c0280->dispCnt |= 0x40;                                    \
     data_027c0280->unk_dd = 0;                                         \
-    func_01ff8b9c(0, 0);                                               \
-    func_01ff8b70(0, 0);                                               \
-    func_01ff8b44(0, 0);                                               \
-    func_01ff8b18(0, 0)
+    Screen_SetLayer0Scroll(0, 0);                                               \
+    Screen_SetLayer1Scroll(0, 0);                                               \
+    Screen_SetLayer2Scroll(0, 0);                                               \
+    Screen_SetLayer3Scroll(0, 0)
 
 /* Design Room screen setup, called once from DesignRoom_Init. Main screen:
  * mode 0, BG0-BG2 and OBJ on, BG3 and the windows off. Both screens: layer

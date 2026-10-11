@@ -11,9 +11,9 @@ void *File_Load(const char *path);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8b44(int a, int b);
+void Screen_SetLayer2Scroll(int x, int y);
 void DesignMap_DrawTemplatePreview(int a, int b, int c, int d);
-void func_01ff8b9c(int a, int b);
+void Screen_SetLayer0Scroll(int x, int y);
 void Ov006_ResetScreen1Effects(void);
 void Ov006_LoadPropertyCountGraphics(void);
 
@@ -32,9 +32,9 @@ extern char gMapeditFile005[];
 /* Sets up the second screen (data_027c0288.unk_04) of the Design Room: all
  * four layers on, layer 3 from /mapedit files 006 to 008, an OBJ palette
  * from 001 and sprite tiles from 009 and 004. Files 00a and 005 stay loaded
- * in the overlay state. Then runs DesignMap_DrawTemplatePreview and func_01ff8b9c for that
- * screen (the nested switch keeps data_027c027c on the first screen) and
- * Ov006_ResetScreen1Effects. */
+ * in the overlay state. Then runs DesignMap_DrawTemplatePreview and
+ * Screen_SetLayer0Scroll for that screen (the nested switch keeps
+ * data_027c027c on the first screen) and Ov006_ResetScreen1Effects. */
 void Ov006_LoadMapeditGraphics(void)
 {
     Unk_027c0280 *saved0280 = data_027c0280;
@@ -65,7 +65,7 @@ void Ov006_LoadMapeditGraphics(void)
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Gfx_RequestLayerCopy(2);
-    func_01ff8b44(0, 0);
+    Screen_SetLayer2Scroll(0, 0);
     Palette_LoadFromFile(gMapeditFile001, 0, 0x3e0, 0x20);
     File_UnpackTo(data_027c0280->objVram + 0x58e0, gMapeditFile009);
     data_ov006_0236d640->unk_68 = File_Load(gMapeditFile00a);
@@ -83,7 +83,7 @@ void Ov006_LoadMapeditGraphics(void)
         savedGfx = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         DesignMap_DrawTemplatePreview(0, 0, 0x44, 7);
-        func_01ff8b9c(0x1fa, 0xd0);
+        Screen_SetLayer0Scroll(0x1fa, 0xd0);
         Screen_SetCurrentGfx(savedGfx);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);

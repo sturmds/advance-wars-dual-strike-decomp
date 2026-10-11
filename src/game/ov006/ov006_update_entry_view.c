@@ -16,8 +16,8 @@ extern s8 data_ov006_0236a7d0[];
 /* Updates the view of entry `index`, depending on STATE->unitMode. With 1: toolUnit
  * from a table picked by game flag 0x2b, redrawn by Ov006_LoadCoPreview when it
  * or unitArmy changed. With 0: toolTile from data_ov006_0236a7a0, redrawn by
- * Ov006_LoadEntryTerrainGraphics when it changed; for ids 6, 8, 10, 11, 14 and 22 unk_27
- * goes in bits 5 and up. Both set bit 3 of the flags. */
+ * Ov006_LoadEntryTerrainGraphics when it changed; for ids 6, 8, 10, 11, 14
+ * and 22 terrainPage goes in bits 5 and up. Both set bit 3 of the flags. */
 void Ov006_UpdateEntryView(int index)
 {
     int a;
@@ -30,10 +30,10 @@ void Ov006_UpdateEntryView(int index)
             a = data_ov006_0236a7b4[index];
         }
         if (STATE->toolUnit != a
-            || STATE->unitArmy != STATE->unk_28) {
+            || STATE->unitArmy != STATE->unitPage) {
             STATE->toolUnit = a;
             STATE->unk_1e = index;
-            STATE->unitArmy = STATE->unk_28;
+            STATE->unitArmy = STATE->unitPage;
             Ov006_LoadCoPreview();
         }
         func_ov006_02357734();
@@ -42,7 +42,7 @@ void Ov006_UpdateEntryView(int index)
     if (STATE->unitMode != 0) {
         return;
     }
-    shift = STATE->unk_27;
+    shift = STATE->terrainPage;
     a = data_ov006_0236a7a0[index];
     if (shift == 0 && a == 8) {
         return;
@@ -60,7 +60,7 @@ void Ov006_UpdateEntryView(int index)
     if (STATE->toolTile != a) {
         STATE->toolTile = a;
         STATE->unk_20 = index;
-        STATE->tileArmy = STATE->unk_27;
+        STATE->tileArmy = STATE->terrainPage;
         Ov006_LoadEntryTerrainGraphics();
     }
     func_ov006_02357734();

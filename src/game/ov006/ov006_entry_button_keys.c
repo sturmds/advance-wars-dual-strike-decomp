@@ -5,7 +5,7 @@
 #include "game/unlocks.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_ov006_02355a10(int next);
+void Ov006_SetEntryPage(int next);
 void func_ov006_023576f4(int arg);
 void func_ov006_02357734(void);
 void func_ov006_02358fec(void);
@@ -37,10 +37,10 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* Key handler of the entry grid buttons (ids 0x40 and up) in the Design
  * Room. B goes back from request 2 or 6, A shows the entry, R and L call
- * func_ov006_023576f4, Y and X step the page (unk_28, 1-4, in view 1; unk_27,
- * 0-4, in view 0) and wrap. The d-pad moves the cursor by a per-button step
- * from a table picked by the view (and by game flag 0x2b in view 1), with
- * screen 0 made current while it selects the new button. */
+ * func_ov006_023576f4, Y and X step the page (unitPage, 1-4, in unit mode;
+ * terrainPage, 0-4, in terrain mode) and wrap. The d-pad moves the cursor by
+ * a per-button step from a table picked by the mode (and by game flag 0x2b in
+ * unit mode), with screen 0 made current while it selects the new button. */
 void Ov006_EntryButtonKeys(MenuButton *button)
 {
     int next;
@@ -74,32 +74,32 @@ void Ov006_EntryButtonKeys(MenuButton *button)
     if (gKeypad->pressed & (PAD_BUTTON_X | PAD_BUTTON_Y)) {
         if (gKeypad->pressed & PAD_BUTTON_Y) {
             if (STATE->unitMode == 1) {
-                next = STATE->unk_28 - 1;
+                next = STATE->unitPage - 1;
                 if (next < 1) {
                     next += 4;
                 }
             }
             if (STATE->unitMode == 0) {
-                next = STATE->unk_27 - 1;
+                next = STATE->terrainPage - 1;
                 if (next < 0) {
                     next += 5;
                 }
             }
         } else if (gKeypad->pressed & PAD_BUTTON_X) {
             if (STATE->unitMode == 1) {
-                next = STATE->unk_28 + 1;
+                next = STATE->unitPage + 1;
                 if (next >= 5) {
                     next = 1;
                 }
             }
             if (STATE->unitMode == 0) {
-                next = STATE->unk_27 + 1;
+                next = STATE->terrainPage + 1;
                 if (next >= 5) {
                     next = 0;
                 }
             }
         }
-        func_ov006_02355a10(next);
+        Ov006_SetEntryPage(next);
         return;
     }
 

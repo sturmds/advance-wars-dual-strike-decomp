@@ -462,11 +462,11 @@ src/game/ov006/ov006_add_tool_buttons.c:
 src/game/ov006/func_ov006_023557b8.c:
     .text       start:0x023557b8 end:0x02355a10
 
-src/game/ov006/func_ov006_02355a10.c:
+src/game/ov006/ov006_set_entry_page.c:
     complete
     .text       start:0x02355a10 end:0x02355ac4
 
-src/game/ov006/func_ov006_02355ac4.c:
+src/game/ov006/ov006_on_tool_button.c:
     complete
     .text       start:0x02355ac4 end:0x02355b44
 

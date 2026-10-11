@@ -137,7 +137,7 @@ void Ov006_UpdateArmyCoPanel(void)
 
     switch (OV6->screenState) {
     case 0:
-        Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
+        Palette_Load(Terrain_GetPalette(20, OV6->terrainPage), 0x300, 32);
         func_ov006_02352708(OV6->unitMode);
         OV6->screenState = 1;
         break;
@@ -226,7 +226,7 @@ void Ov006_UpdateArmyCoPanel(void)
             func_ov006_02355b44();
             func_ov006_02355610();
             OV6->unk_02 &= ~0x10;
-            Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
+            Palette_Load(Terrain_GetPalette(20, OV6->terrainPage), 0x300, 32);
             func_ov006_02352708(OV6->unitMode);
             OV6->unk_02 &= ~8;
             OV6->screenState = 72;
@@ -356,10 +356,10 @@ void Ov006_UpdateArmyCoPanel(void)
         } else if (scale == 0) {
             SET_MATRIX0(scale, 256);
             if (OV6->unitMode == 1) {
-                Ov006_LoadCoIcons(OV6->unk_28);
+                Ov006_LoadCoIcons(OV6->unitPage);
             }
             if (OV6->unitMode == 0) {
-                Ov006_LoadArmyTiles(OV6->unk_27);
+                Ov006_LoadArmyTiles(OV6->terrainPage);
             }
             OV6->screenState = 32;
         }

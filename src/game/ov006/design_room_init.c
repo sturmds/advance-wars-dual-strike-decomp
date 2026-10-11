@@ -141,8 +141,8 @@ void DesignRoom_Init(Task *task)
     OV6->toolTile = 1;
     OV6->tileArmy = 1;
     OV6->unitArmy = 1;
-    OV6->unk_27 = OV6->tileArmy;
-    OV6->unk_28 = OV6->unitArmy;
+    OV6->terrainPage = OV6->tileArmy;
+    OV6->unitPage = OV6->unitArmy;
     Ov006_PostRequest(0);
     OV6->unk_5c = Task_Create(data_ov006_0236a218, TASK_LIST(3));
     Sound_StartSong(0x34);

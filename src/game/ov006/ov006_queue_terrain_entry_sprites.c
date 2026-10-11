@@ -22,7 +22,7 @@ extern void *data_ov006_0236a8c0[ENTRY_COUNT];
 /* Queues the sprites of the 18 terrain entries in data_ov006_0236a7a0:
  * per entry one sprite at its position from data_ov006_0236a7ec and one
  * below it (palette 15). Property terrain uses palette 8, the rest 9 to
- * 14. The HQ is left out while the army (unk_27) is 0, and when unk_26 is
+ * 14. The HQ is left out while the army (terrainPage) is 0, and when prevTerrainPage is
  * 0 and func_ov006_023576c4 returns TRUE. Flag 8 of unk_02 makes both
  * sprites of every entry affine; flag 4 the first sprite of properties. */
 void Ov006_QueueTerrainEntrySprites(void)
@@ -50,10 +50,10 @@ void Ov006_QueueTerrainEntrySprites(void)
         }
         switch (*terrain) {
         case TERRAIN_HQ:
-            if (OV6->unk_26 == 0 && func_ov006_023576c4()) {
+            if (OV6->prevTerrainPage == 0 && func_ov006_023576c4()) {
                 hide = TRUE;
             }
-            if (OV6->unk_27 == 0) {
+            if (OV6->terrainPage == 0) {
                 hide = TRUE;
             }
             /* fall through */
