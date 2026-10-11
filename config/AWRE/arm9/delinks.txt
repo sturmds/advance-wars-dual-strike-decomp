@@ -10168,6 +10168,7 @@ src/game/main/menus/combat_setup_update_shop.c:
     .text       start:0x02084024 end:0x020842e0
 
 src/game/main/menus/combat_setup_add_shop_buttons.c:
+    complete
     .text       start:0x020842e0 end:0x020843d0
 
 src/game/main/menus/combat_setup_init_screen.c:
