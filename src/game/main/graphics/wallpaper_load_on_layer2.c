@@ -12,7 +12,7 @@ void func_0210c718(void);                          /* guess: begins a background
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
-void func_0210c59c(const void *src, u32 offset, u32 size);
+void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GXS_EndLoadBGExtPltt(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -47,7 +47,7 @@ void Wallpaper_LoadOnLayer2(u32 index)
         func_0210c634();
     } else {
         func_0210c610();
-        func_0210c59c(res + data_021593bc[index], 0x4000, 0x200);
+        GXS_LoadBGExtPltt(res + data_021593bc[index], 0x4000, 0x200);
         GXS_EndLoadBGExtPltt();
     }
     Gfx_RequestLayerCopy(2);

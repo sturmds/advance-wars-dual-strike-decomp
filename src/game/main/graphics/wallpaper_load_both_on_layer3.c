@@ -15,7 +15,7 @@ void func_0210c718(void);                          /* guess: begins a background
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
-void func_0210c59c(const void *src, u32 offset, u32 size);
+void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GXS_EndLoadBGExtPltt(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -73,7 +73,7 @@ void Wallpaper_LoadBothOnLayer3(u32 index)
                LAYER_CHARS(data_027c0280, data_027c0280->layer3Bg), 0x10000);
     Mem_Copy32(FIRST_GFX->layer3Map, data_027c0280->layer3Map, 0x1000);
     func_0210c610();
-    func_0210c59c(res + data_021593bc[index], 0x6000, 0x200);
+    GXS_LoadBGExtPltt(res + data_021593bc[index], 0x6000, 0x200);
     GXS_EndLoadBGExtPltt();
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrent(saved027c);

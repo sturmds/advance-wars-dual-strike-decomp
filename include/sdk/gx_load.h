@@ -8,6 +8,8 @@
  * where it sits, Load copies at an offset inside it, End waits for DMA and
  * maps the bank back for rendering. */
 
+#define LCDC_VIEW_BANK_H 0x06898000 /* bank H as seen through LCDC while it is loaded */
+
 /* DMA channel the VramStage_Copy* functions use (starts at 3); -1 copies with the CPU. */
 extern int data_0216d958;
 

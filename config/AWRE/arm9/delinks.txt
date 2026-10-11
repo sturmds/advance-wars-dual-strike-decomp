@@ -20925,6 +20925,10 @@ src/sdk/gx/gxs_end_load_bg_ext_pltt.c:
     complete
     .text       start:0x0210c550 end:0x0210c59c
 
+src/sdk/gx/gxs_load_bg_ext_pltt.c:
+    complete
+    .text       start:0x0210c59c end:0x0210c610
+
 src/game/main/func_0210c610.c:
     complete
     .text       start:0x0210c610 end:0x0210c634
