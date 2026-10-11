@@ -15,7 +15,7 @@ const void *Map_GetName(u16 mapId);
 int Survival_GetMapId(int mode, int index);
 s8 Text_Print(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, u16 unk_32);
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
-BOOL func_02046bcc(int index);
+BOOL SurvivalSelect_HasRecord(int index);
 int func_0204779c(void);
 int Survival_GetRecordIndex(int mode, int index);
 
@@ -28,7 +28,7 @@ extern Unk_027c0280 *data_027c0280;
  * its saved record for the current mode (unk_07): best time as minutes and
  * seconds (0, 3), fewest days (2, 5) or least funds spent (1, 4). Text
  * 0xc00000af stands in for an empty list or a map with no record
- * (func_02046bcc). Needed to match: map read into a local before the name
+ * (SurvivalSelect_HasRecord). Needed to match: map read into a local before the name
  * lookup. */
 void SurvivalSelect_DrawMapRecord(void)
 {
@@ -44,7 +44,7 @@ void SurvivalSelect_DrawMapRecord(void)
     } else {
         map = data_027c0280->layer0Map;
         Text_Print(13, 19, map, Map_GetName(Survival_GetMapId(data_022a7b80.unk_07, cursor)), 0, 0x300);
-        if (func_02046bcc(list->cursor)) {
+        if (SurvivalSelect_HasRecord(list->cursor)) {
             mode = data_022a7b80.unk_07;
             switch (mode) {
             case 0:

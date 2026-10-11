@@ -8,7 +8,7 @@
 void Co_QueueSmallPicture(int coId, void *dest, int paletteSlot);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 u8 Map_GetPlayerCount(u16 mapId);
-BOOL func_02046bcc(int index);
+BOOL SurvivalSelect_HasRecord(int index);
 int func_0204779c(void);
 int Survival_GetMapId(int mode, int index);
 int Survival_GetRecordIndex(int mode, int index);
@@ -31,7 +31,7 @@ extern Unk_027c0280 *data_027c0280;
     }
 
 /* Survival map select: loads the CO pictures for the map at the strip
- * cursor. When func_02046bcc reports a record for the current mode, its
+ * cursor. When SurvivalSelect_HasRecord reports a record for the current mode, its
  * two COs go to palettes 22 and 23; otherwise those tiles are cleared.
  * Then the map's own COs for slots 2 up to the player count (the
  * opponents), two per slot, go to tiles 0, 12, 24, ... with palettes from
@@ -44,7 +44,7 @@ void SurvivalSelect_LoadCoPictures(void)
     int j;
     int co;
 
-    if (func_02046bcc(cursor)) {
+    if (SurvivalSelect_HasRecord(cursor)) {
         switch (data_022a7b80.unk_07) {
         case 0:
         case 3:
