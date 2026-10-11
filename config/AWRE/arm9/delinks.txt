@@ -18657,6 +18657,7 @@ src/game/main/map/map_view_draw_unit_tile.c:
     .text       start:0x020f79a8 end:0x020f7cac
 
 src/game/main/map/map_view_clear_unit_tile.c:
+    complete
     .text       start:0x020f7cac end:0x020f7d50
 
 src/game/main/map/unit_icon_draw.c:
