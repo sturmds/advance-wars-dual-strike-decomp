@@ -236,6 +236,10 @@ src/game/ov005/ov005_update_message_screen.c:
     complete
     .text       start:0x0235789c end:0x02357e0c
 
+src/game/ov005/ov005_set_up_message_screen.c:
+    complete
+    .text       start:0x02357e0c end:0x02358928
+
 src/game/ov005/func_ov005_02358928.c:
     complete
     .text       start:0x02358928 end:0x02358954
