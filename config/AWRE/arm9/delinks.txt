@@ -12146,6 +12146,10 @@ src/game/main/copowers/power_damage_hit_next_enemy.c:
     complete
     .text       start:0x020e39d8 end:0x020e3c14
 
+src/game/main/copowers/power_damage_heal_next_unit.c:
+    complete
+    .text       start:0x020e3c14 end:0x020e3dfc
+
 src/game/main/func_020e3dfc.c:
     complete
     .text       start:0x020e3dfc end:0x020e3e14
