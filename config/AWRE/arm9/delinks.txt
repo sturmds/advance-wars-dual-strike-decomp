@@ -2440,6 +2440,10 @@ src/game/main/script/event_choice_update.c:
     complete
     .text       start:0x02019ff8 end:0x0201a160
 
+src/game/main/script/event_choice_read_keys.c:
+    complete
+    .text       start:0x0201a160 end:0x0201a1b8
+
 src/game/main/script/event_choice_draw_record.c:
     complete
     .text       start:0x0201a1b8 end:0x0201a3bc
