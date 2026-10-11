@@ -22,7 +22,7 @@ typedef struct SoundSleepHook {
 
 /* Signed one-bit fields, read with shift and arithmetic shift. */
 typedef struct SoundStrmFlags {
-    s32 active : 1;                    /* bit 0: in the stream list, owns a timer and channels */
+    s32 active : 1;                    /* bit 0: in the stream list, owns an alarm and channels */
     s32 running : 1;                   /* bit 1: channels started, sleep hooks registered */
 } SoundStrmFlags;
 
@@ -53,7 +53,7 @@ typedef struct SoundStrm {
     void *callbackArg;                 /* 0x34 */
     int blockIndex;                    /* 0x38: next block to fill */
     int volume;                        /* 0x3c */
-    int timer;                         /* 0x40: hardware timer number */
+    int alarm;                         /* 0x40: sound alarm number that triggers refills */
     u32 channelMask;                   /* 0x44: bit per hardware channel in use, 0 for none */
     int channelCount;                  /* 0x48 */
     u8 channels[SOUND_STRM_CHANNEL_COUNT];   /* 0x4c: hardware channel numbers */

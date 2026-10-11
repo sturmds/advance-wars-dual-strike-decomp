@@ -12968,6 +12968,10 @@ src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
 
+src/game/main/sound/sound_strm_release.c:
+    complete
+    .text       start:0x02105b18 end:0x02105b4c
+
 src/game/main/sound/sound_output_restart.c:
     complete
     .text       start:0x02105ff8 end:0x02106098
