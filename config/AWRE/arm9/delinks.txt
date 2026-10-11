@@ -14344,6 +14344,14 @@ src/game/main/menus/game_state15_enter_state8.c:
     complete
     .text       start:0x020d12fc end:0x020d1360
 
+src/game/main/menus/game_state15_wait_scroll_then_return_to_cursor.c:
+    complete
+    .text       start:0x020d1360 end:0x020d13ec
+
+src/game/main/menus/game_state15_scroll_view.c:
+    complete
+    .text       start:0x020d13ec end:0x020d1414
+
 src/game/main/func_020d1414.c:
     complete
     .text       start:0x020d1414 end:0x020d1420
@@ -14351,6 +14359,10 @@ src/game/main/func_020d1414.c:
 src/game/main/func_020d1420.c:
     complete
     .text       start:0x020d1420 end:0x020d1440
+
+src/game/main/menus/game_state15_scroll_to_tile_then_return_to_cursor.c:
+    complete
+    .text       start:0x020d1440 end:0x020d14cc
 
 src/game/main/menus/game_state15_return_to_cursor.c:
     complete

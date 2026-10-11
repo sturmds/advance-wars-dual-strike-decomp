@@ -10,9 +10,9 @@ void func_020d14cc(void);
 void Game_State15_OpenMenuAtDestination(void);
 void Game_State15_AwaitUnitCommand(void);
 void Game_State15_EndBlockedMove(void);
-void func_020d1440(void);
-void func_020d13ec(void);
-void func_020d1360(void);
+void Game_State15_ScrollToTileThenReturnToCursor(void);
+void Game_State15_ScrollView(void);
+void Game_State15_WaitScrollThenReturnToCursor(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -41,13 +41,13 @@ void Game_State15_RunStep(void)
         Game_State15_EndBlockedMove();
         break;
     case 6:
-        func_020d1440();
+        Game_State15_ScrollToTileThenReturnToCursor();
         break;
     case 7:
-        func_020d13ec();
+        Game_State15_ScrollView();
         break;
     case 8:
-        func_020d1360();
+        Game_State15_WaitScrollThenReturnToCursor();
         break;
     }
 }

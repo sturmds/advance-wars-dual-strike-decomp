@@ -1,0 +1,39 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+void func_020c4024(void);
+void func_020c4028(void);
+void MapView_ScrollStep(int step);
+void Map_ScrollViewToTile(int arg);
+BOOL func_020ef2f0(void);
+BOOL func_020f0adc(void);
+void func_020f1288(void);
+void UnitShowTask_DestroyRunning(void);
+void func_020c8888(void);
+void func_020f77bc(void);
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Game_State15_RunStep sub-state 6: scrolls the view to the cursor tile, and
+ * when both waits are done refreshes the unit tiles and returns to the free cursor. */
+void Game_State15_ScrollToTileThenReturnToCursor(void)
+{
+    func_020c4024();
+    func_020c4028();
+    MapView_ScrollStep(4);
+    Map_ScrollViewToTile(1);
+    if (!func_020ef2f0()) {
+        return;
+    }
+    if (!func_020f0adc()) {
+        return;
+    }
+    func_020f1288();
+    UnitShowTask_DestroyRunning();
+    func_020c8888();
+    func_020f77bc();
+    GAME->unk_1c = 0;
+}
