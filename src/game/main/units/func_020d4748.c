@@ -12,7 +12,7 @@ void func_020d5308(u16 x, u16 y);
 int func_020d4fb0(s8 x, s8 y);
 void func_020d4cc0(void);
 void func_020d4c6c(void);
-BOOL func_020d4bd0(void);
+BOOL MovePath_HasNoRepeatedTile(void);
 void func_01ffa02c(int x, int y, u8 *steps);
 
 extern MovePath *data_02166e7c;
@@ -100,7 +100,7 @@ void func_020d4748(void)
     } else {
         func_01ffa02c(state->unk_28, state->unk_2a, state->unk_170);
         MovePath_AppendSteps();
-        if (!func_020d4bd0()) {
+        if (!MovePath_HasNoRepeatedTile()) {
             func_020d4c6c();
         }
     }
