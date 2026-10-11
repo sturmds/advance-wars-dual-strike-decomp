@@ -39,7 +39,9 @@ typedef struct Unk_ov005_0236bba8 {
     u32 unk_00;
     u32 unk_04;                        /* set to 1 by the grid button handlers */
     u32 unk_08;                        /* set to 1 by the palette button handler */
-    u8 pad_0c[0x20 - 0x0c];
+    u32 backTouched;                   /* 1: acts as B */
+    u8 pad_10[0x1c - 0x10];
+    u32 paletteMode;                   /* 1 while the palette buttons are shown */
     u32 coId;                          /* low 7 bits: CO shown */
     u32 cursorCoId;                    /* coId of the grid cell at cursor */
     int unk_28;                        /* palette variant of coId */
