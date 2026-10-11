@@ -7,7 +7,7 @@
 #include "game/Unk_ov005_0236bbb0.h"
 
 void func_02028a30(void);
-void func_02029978(void);
+void Wallpaper_LoadSelected(void);
 void func_02023f38(void);
 void func_0202b764(void);
 void func_0202b6f8(u8 *dest);
@@ -61,7 +61,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     Unk_02080440 *saved027c;
 
     func_02028a30();
-    func_02029978();
+    Wallpaper_LoadSelected();
 
     SWITCH_TO(data_027c0288.unk_04);
     ModeFont_Load(0, 0);

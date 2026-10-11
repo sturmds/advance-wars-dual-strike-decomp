@@ -2648,6 +2648,10 @@ src/game/main/graphics/wallpaper_load_both.c:
     complete
     .text       start:0x02029648 end:0x0202981c
 
+src/game/main/graphics/wallpaper_load_selected.c:
+    complete
+    .text       start:0x02029978 end:0x02029d6c
+
 src/game/main/func_0202a3c8.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0

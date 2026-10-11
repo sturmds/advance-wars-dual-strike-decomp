@@ -14,7 +14,7 @@ s16 func_ov005_02362bf0(Unk_ov005_0236bba8 *work, int index);
 int Co_GetSavedPaletteVariant(int coId);
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work);
 void func_02028978(void);
-void func_02029978(void);
+void Wallpaper_LoadSelected(void);
 void func_0202b764(void);
 void ModeFont_Load(int x, int y);
 const char *Text_Get(u32 textId);
@@ -93,7 +93,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     work->unk_204 = 0xa0000;
     Ov005_ReadCoPaletteVariant(work);
     func_02028978();
-    func_02029978();
+    Wallpaper_LoadSelected();
     func_0202b764();
 
     saved0280 = data_027c0280;

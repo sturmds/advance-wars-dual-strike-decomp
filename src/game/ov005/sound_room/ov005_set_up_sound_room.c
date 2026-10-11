@@ -14,7 +14,7 @@ void ModeFont_Load(int a, int b);
 void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int unk_56, u8 unk_5c, int unk_58);
 const char *Text_Get(u32 textId);
 void func_02028a30(void);
-void func_02029978(void);
+void Wallpaper_LoadSelected(void);
 void Ov005SoundRoom_StartTask(void);
 void func_ov005_02364428(Unk_ov005_0236bbac *work);
 void func_ov005_02364718(Unk_ov005_0236bbac *work);
@@ -79,7 +79,7 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    func_02029978();
+    Wallpaper_LoadSelected();
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
