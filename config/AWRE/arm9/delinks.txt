@@ -5632,6 +5632,10 @@ src/game/main/result_stats_wait_for_close.c:
     complete
     .text       start:0x0203ce48 end:0x0203ce84
 
+src/game/main/result_stats_blend_in_step.c:
+    complete
+    .text       start:0x0203ce84 end:0x0203cfe8
+
 src/game/main/result_stats_fade_in_step.c:
     complete
     .text       start:0x0203cfe8 end:0x0203d09c
