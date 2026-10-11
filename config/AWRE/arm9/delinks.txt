@@ -13081,6 +13081,10 @@ src/game/main/menus/player1_team_has_player_in_game.c:
     complete
     .text       start:0x020d5d2c end:0x020d5db0
 
+src/game/main/map/versus_finish_map.c:
+    complete
+    .text       start:0x020d5db0 end:0x020d5e58
+
 src/game/main/menus/survival_finish_map.c:
     complete
     .text       start:0x020d5e58 end:0x020d605c

@@ -7,7 +7,7 @@ extern int data_027c0284;
 void func_021019a4(u32 mapId, int value);
 void Campaign_FinishMap(void);
 void func_020d605c(void);
-void func_020d5db0(void);
+void Versus_FinishMap(void);
 void Survival_FinishMap(void);
 
 /* Runs when a map ends. Flags the map in a per-map bit list (func_021019a4,
@@ -23,7 +23,7 @@ void GameMode_FinishMap(void)
         func_020d605c();
         break;
     case GAME_MODE_VERSUS:
-        func_020d5db0();
+        Versus_FinishMap();
         break;
     case GAME_MODE_SURVIVAL:
         Survival_FinishMap();
