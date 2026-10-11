@@ -670,6 +670,10 @@ src/game/ov005/ov005_load_co_graphics_to_both_screens.c:
     complete
     .text       start:0x02362b00 end:0x02362bbc
 
+src/game/ov005/ov005_find_co_grid_cell.c:
+    complete
+    .text       start:0x02362bbc end:0x02362bf0
+
 src/game/ov005/func_ov005_02362bf0.c:
     complete
     .text       start:0x02362bf0 end:0x02362bfc
