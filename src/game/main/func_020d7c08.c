@@ -35,7 +35,7 @@ extern const TaskScriptCmd data_02167520[];
     data_027c0280->blendEvb = 0;                          \
     data_027c0280->blendEvy = 16
 
-/* Started by func_02001268 when the boot keys select it. Darkens both
+/* Started by Boot_TryStartKeyComboScreen when the boot keys select it. Darkens both
  * screens, resets the frame callbacks, loads the wallpapers, the digit font,
  * the window frame and palette row 1, then starts task script
  * data_02167520 on list 3. */

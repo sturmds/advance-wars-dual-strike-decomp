@@ -45,7 +45,7 @@ void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
-BOOL func_02001268(u16 keys);
+BOOL Boot_TryStartKeyComboScreen(u16 keys);
 void func_02001250(void);
 void func_01ff9c7c(void);
 
@@ -70,7 +70,7 @@ void func_01ff9c7c(void);
     Screen_SetCurrentGfx(savedGfx)
 
 /* Game entry point, called from Entry. Sets up the hardware and both
- * screens, starts the first task unless func_02001268 took the keys held at
+ * screens, starts the first task unless Boot_TryStartKeyComboScreen took the keys held at
  * boot (L + Select + Right without Start or R), then runs the main loop
  * forever. */
 void main(void)
@@ -110,7 +110,7 @@ void main(void)
     INIT_SCREEN(data_027c0288.unk_04);
 
     *REG_POWCNT1 &= ~POWCNT1_DISPLAY_SWAP;
-    if (!func_02001268(heldKeys)) {
+    if (!Boot_TryStartKeyComboScreen(heldKeys)) {
         func_02001250();
     }
     while (1) {

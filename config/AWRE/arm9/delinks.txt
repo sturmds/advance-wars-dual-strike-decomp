@@ -44,6 +44,10 @@ src/game/main/func_02001250.c:
     complete
     .text       start:0x02001250 end:0x02001268
 
+src/game/main/boot_try_start_key_combo_screen.c:
+    complete
+    .text       start:0x02001268 end:0x020012b0
+
 src/game/main/screen/screens_init_display.c:
     complete
     .text       start:0x020012b0 end:0x020013f4
