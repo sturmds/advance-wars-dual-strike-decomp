@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
-void func_0210e530(void);
+void OS_InitArena(void);
 void func_02110e58(void);
 void func_0210d21c(void);
 void func_0210ced0(void);
@@ -17,7 +17,7 @@ void OS_InitVAlarm(void);
 /* Runs the OS library initialisers in order. */
 void OS_Init(void)
 {
-    func_0210e530();
+    OS_InitArena();
     func_02110e58();
     func_0210d21c();
     func_0210e4bc();
