@@ -89,6 +89,9 @@ OSIrqMask OS_DisableIrqMask(OSIrqMask mask);
 OSIrqMask OS_EnableIrqMask(OSIrqMask mask);
 OSIrqMask OS_SetIrqMask(OSIrqMask mask);
 
+/* Sets the handler for every interrupt bit set in mask. */
+void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function);
+
 /* Turn interrupts off and return the previous state; hand it back to restore. */
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int state);

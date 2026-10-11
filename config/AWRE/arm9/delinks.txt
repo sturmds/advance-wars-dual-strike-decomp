@@ -20983,6 +20983,10 @@ src/sdk/os/timer_install_irq_slot.c:
 src/sdk/os/os_set_dma_irq_handler.c:
     .text       start:0x0210cdf4 end:0x0210ce40
 
+src/sdk/os/os_set_irq_function.c:
+    complete
+    .text       start:0x0210ce40 end:0x0210ced0
+
 src/game/main/func_0210ced0.c:
     complete
     .text       start:0x0210ced0 end:0x0210cee4
