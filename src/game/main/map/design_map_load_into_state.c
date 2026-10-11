@@ -4,7 +4,7 @@
 
 extern DesignMapRecord data_02291774;
 extern DesignMapRecord data_02291e98;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void DesignMap_DecodeSlot(int slot, void *map);
 void func_020d727c(DesignMapRecord *record);
@@ -15,7 +15,7 @@ void func_020d727c(DesignMapRecord *record);
 void DesignMap_LoadIntoState(int slot, void *map)
 {
     DesignMap_DecodeSlot(slot, map);
-    if (data_0229eaec != 0 && data_027c027c == data_027c0288.unk_04) {
+    if (gLinkPlay != 0 && data_027c027c == data_027c0288.unk_04) {
         func_020d727c(&data_02291e98);
     } else {
         func_020d727c(&data_02291774);

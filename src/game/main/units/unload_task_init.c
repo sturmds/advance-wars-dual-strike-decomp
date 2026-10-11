@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_0229eaec;
+extern int gLinkPlay;
 
 void RangeMap_ClearAdjacent(int x, int y, int dirs);
 s8 Unit_GetDropDirections(int x, int y, int slot);
@@ -31,7 +31,7 @@ void UnloadTask_Init(Task *task)
     task->unk_64 = dirs;
     task->unk_66 = 3;
     task->unk_6a = 0;
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         func_020802e8();
     }
     task->unk_66 = NeighborDir_Next(task->unk_66, dirs);

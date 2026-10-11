@@ -7,19 +7,19 @@ void Mem_Zero32(u32 ignored, void *dst, u32 size);
 void DeferredCopyTask_Start(void *src, void *dest, u32 size);
 int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern char data_02151e44[];
 extern const char *const data_02152b80[][21];
 
 /* Loads the 18-tile (0x240 bytes) picture of a CO in an army's colours. The
  * file is unpacked to a heap buffer that a task copies to dest
  * (DeferredCopyTask_Start); the palette is loaded at once. CO 0 clears dest.
- * Bit 7 of coId, or data_0229eaec being 0, means army 0. */
+ * Bit 7 of coId, or gLinkPlay being 0, means army 0. */
 void Co_QueueArmyMediumPicture(int coId, void *dest, int paletteSlot, int army)
 {
     void *buffer;
 
-    if (data_0229eaec == 0 || (coId & 0x80)) {
+    if (gLinkPlay == 0 || (coId & 0x80)) {
         army = 0;
     }
     if ((coId & 0x7f) == 0) {

@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern u32 gRngState;
 extern UnitAction data_0229d8c8;
 extern u8 data_0229ea0c[];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_021296a8(void *p, int n);
@@ -18,7 +18,7 @@ void func_021296a8(void *p, int n);
 /* Records an AI action that no unit takes in gUnitAction so the turn
  * can show it. Actions 15-18 are CO powers (the AI passes 16 after
  * CanUseCoPower and 17 after CanUseSuperPower); those are also copied
- * to data_0229d8c8 through UnitAction_Send when data_0229eaec is set. */
+ * to data_0229d8c8 through UnitAction_Send when gLinkPlay is set. */
 void AiPlayer_PerformAction(int action)
 {
     gUnitAction.action = action;
@@ -29,7 +29,7 @@ void AiPlayer_PerformAction(int action)
     case 16:
     case 17:
     case 18:
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             data_0229d8c8.rngState = gRngState;
             UnitAction_Send(action, 0, STATE->currentPlayer, 0);
         }

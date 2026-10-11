@@ -5,13 +5,13 @@ BOOL GameFlag_IsSet(int id);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 /* TRUE when skills do not apply: game flag 0x27 not set yet, or game mode 1
- * with unk_59 of 0 or 2. Always FALSE while data_0229eaec is nonzero. */
+ * with unk_59 of 0 or 2. Always FALSE while gLinkPlay is nonzero. */
 BOOL Skills_AreDisabled(void)
 {
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         return FALSE;
     }
     if (!GameFlag_IsSet(0x27)) {

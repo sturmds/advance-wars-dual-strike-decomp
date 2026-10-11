@@ -42,7 +42,7 @@ typedef struct MapUnit {
     u16 aiTargetX : 6;                 /* MAP_UNIT_NO_TARGET when unused */
     u16 aiTargetY : 6;
     u16 serviceWanted : 2;             /* set by the AI: 1 the unit wants supplies (AiUnit_GoToSupply), 2 repairs (AiUnit_HeadForRepairTile) */
-    u16 transportWanted : 2;           /* set by the AI on a foot unit: 1 it waits for an APC, 2 for a T-Copter; the Lander and Black Boat builders also count units with 2, vehicles included, as waiting for sea transport */
+    u16 transportWanted : 2;           /* set by the AI on a foot unit: 1 it waits for an APC, 2 for a T-Copter; the Lander and Black Boat builders count foot units (Ai_CountFootWantingTransport) and vehicles (Ai_CountVehiclesWantingTransport) with 2 as waiting for sea transport */
     u8 aiOrder : 4;                    /* 8, 9 and 10 use aiTargetX and aiTargetY */
     u8 unk_0c_4 : 1;
     u8 unk_0c_5 : 1;

@@ -6,7 +6,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 int Co_GetArmyPictureVariant(int coId, int army);
 
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern Unk_027c0280 *data_027c0280;
 extern char data_02151e44[];                                   /* "/syogun" */
 /* gCoGraphics + 4, one row per CO: read as CoPictureFiles, its name is
@@ -14,10 +14,10 @@ extern char data_02151e44[];                                   /* "/syogun" */
 extern const CoGraphics data_02152b3c[];
 
 /* Unpacks a CO picture from /syogun into sprite tile memory, starting at tile
- * `tile` (32 bytes each). Bit 7 of coId, or data_0229eaec being 0, means army 0. */
+ * `tile` (32 bytes each). Bit 7 of coId, or gLinkPlay being 0, means army 0. */
 void Co_LoadObjPicture(int coId, int tile, int army)
 {
-    if (data_0229eaec == 0 || (coId & 0x80)) {
+    if (gLinkPlay == 0 || (coId & 0x80)) {
         army = 0;
     }
     FS_ChangeDir(data_02151e44);

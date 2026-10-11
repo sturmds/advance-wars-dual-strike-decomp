@@ -7,7 +7,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern TaskScriptCmd data_0216594c[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -27,7 +27,7 @@ void Task_ResumeByScript(void *script);
 /* Confirm callback of a build menu row. A unit the player cannot afford
  * plays the refusal sound. Otherwise, if the player has a free unit slot,
  * buys the unit on tile (cursorX, cursorY), sends the action to the other
- * console when data_0229eaec is set (likely link play), runs map script
+ * console when gLinkPlay is set (likely link play), runs map script
  * list 10 with id 14 for the new unit and resumes the build menu task. */
 void BuildMenu_OnConfirm(MenuButton *button)
 {
@@ -47,7 +47,7 @@ void BuildMenu_OnConfirm(MenuButton *button)
     unit = CurrentPlayer_BuyUnit(GAME->cursorX, GAME->cursorY, gBuildMenuEntries[id].unitType);
     GAME->actingUnitDestX = GAME->cursorX;
     GAME->actingUnitDestY = GAME->cursorY;
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         UnitAction_Send(1, gBuildMenuEntries[id].unitType, 0, 0);
     }
     MapScript_RunList10(14, unit);

@@ -9,14 +9,14 @@ void func_02102304(void);
 void func_020e8c28(void);
 void func_0210372c(void);
 
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 /* End of a Versus map. Offline, starts the BattleRecordTask_Start task for this mode's
  * record, with a callback that restarts one-map or two-map Versus. With
- * data_0229eaec set, runs the three calls below instead. */
+ * gLinkPlay set, runs the three calls below instead. */
 void Versus_FinishMap(void)
 {
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         if (data_027c027c->unk_48[data_027c0284]->twoMaps == 0) {
             BattleRecordTask_Start(BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode, 0), Versus_StartVsCpuOneMap);
         } else {

@@ -60,7 +60,7 @@ typedef struct ServiceCostPopupSlot {
 typedef struct SupplySlot {
     u8 pad_00[0x1e];
     s16 side;                          /* next side of the acting unit to supply, 0-3 */
-    s16 unk_20;                        /* 0: at the end, unk_28/unk_2a get the acting unit's tile and unit action 6 is sent when data_0229eaec is set */
+    s16 unk_20;                        /* 0: at the end, unk_28/unk_2a get the acting unit's tile and unit action 6 is sent when gLinkPlay is set */
 } SupplySlot;
 
 /* The same slot as the map scroll script gMapScrollScript uses it. Positions

@@ -6,7 +6,7 @@
 extern int gCameraPresetIndex;
 extern u8 data_021576fa[][20];
 extern u8 data_021576fb[][20];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern const EventScriptCommand gMapScrollScript[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -152,7 +152,7 @@ void Game_RunStateFrame(void)
                 break;
             case 16:
                 func_ov000_022b0500();
-                if (data_0229eaec == 0 || func_0207bd6c() == 0) {
+                if (gLinkPlay == 0 || func_0207bd6c() == 0) {
                     AiTurn_Update();
                 } else {
                     LinkAction_Update();

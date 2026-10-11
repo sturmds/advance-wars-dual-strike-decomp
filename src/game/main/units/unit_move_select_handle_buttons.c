@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 BOOL UnitMoveSelect_TryMoveTo(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
@@ -19,7 +19,7 @@ void Sound_PlaySe(int se);
 
 /* Buttons while the player picks where the acting unit moves. A: tries the
  * cursor tile (UnitMoveSelect_TryMoveTo counts the path). B: cancels, puts the cursor
- * back on the unit and, when data_0229eaec is set, sends unit action 19.
+ * back on the unit and, when gLinkPlay is set, sends unit action 19.
  * Returns TRUE when either button was handled. */
 BOOL UnitMoveSelect_HandleButtons(void)
 {
@@ -30,7 +30,7 @@ BOOL UnitMoveSelect_HandleButtons(void)
         return TRUE;
     }
     if (keys & PAD_BUTTON_B) {
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             UnitAction_Send(19, GAME->actingUnitIndex, 0, 0);
         }
         func_020f5888(GAME->actingUnit->x, GAME->actingUnit->y);

@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/affine_params.h"
 #include "game/ov005_task.h"
-#include "game/script_slot.h"
+#include "game/text_printer.h"
 #include "game/Unk_ov005_0236bb80.h"
 
 void Screen_SetCurrent(void *state);
@@ -17,7 +17,7 @@ void *File_Load(const char *path);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void BgExtPalette_LoadFromFile(const char *fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -37,14 +37,14 @@ extern char gRikiishiFile011[];
  * rotation/scaling matrix reset to identity. Both: layer priorities 0 to 3,
  * no windows or blending, no scroll. Then loads the sub screen's layer 2
  * and object graphics from /rikiishi, keeps file 011 in the work block, and
- * starts a text slot on the main screen's layer 0. */
+ * starts a text printer on the main screen's layer 0. */
 void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
 {
     Unk_ov005_0236bb80 *work;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
     AffineParams params;
-    ScriptSlot *slot;
+    TextPrinter *printer;
 
     work = task->work;
     saved0280 = data_027c0280;
@@ -157,9 +157,9 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = Text_PrintByIdOnLayer0(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
-    work->textSlot = slot;
-    slot->unk_3e = 6;
+    printer = Text_PrintByIdOnLayer0(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
+    work->textPrinter = printer;
+    printer->unk_3e = 6;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

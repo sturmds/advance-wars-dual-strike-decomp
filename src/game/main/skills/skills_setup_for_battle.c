@@ -11,7 +11,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern u32 data_022a72b8[4];
 extern u32 data_022a72e8[4][2][4];
 /* Battle skill sets, indexed by player (1-4): data_022a72e8 starts at player 1. */
@@ -57,7 +57,7 @@ void Skills_SetupForBattle(int mode, int mapId, int frontSet, int backSet)
     if (STATE->gameMode == GAME_MODE_DESIGN_ROOM) {
         return;
     }
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         for (linkPlayer = 1; linkPlayer < 5; linkPlayer++) {
             if (STATE->players[linkPlayer].controller != PLAYER_CONTROLLER_NONE) {
                 for (linkI = 0; linkI < 2; linkI++) {

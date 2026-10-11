@@ -9,7 +9,7 @@ extern u32 data_027c0284;
 
 extern u32 gRngState;
 extern u8 data_0229ea0c[];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 void AiUnit_MarkFinishingCapture(int action);
@@ -53,7 +53,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     fuelUsed = Unit_GetFuelUsed(GAME->actingUnit, GAME->unk_46);
     gUnitAction.fuelLeft = GAME->actingUnit->fuel - fuelUsed;
     gUnitAction.pending = TRUE;
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         func_0208fda8();
     }
     func_021296a8(data_0229ea0c, 1);

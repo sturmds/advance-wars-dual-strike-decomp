@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 BOOL EventScript_IsRunning(void);
 BOOL MapView_IsAtRest(void);
@@ -31,7 +31,7 @@ void func_020c4124(int a, int b);
 
 /* Task step while the player aims a silo (the acting unit stands on it) at
  * the cursor tile (cursorX, cursorY). Confirm launches it there and, when
- * data_0229eaec is set, sends action 22 for it; cancel puts the cursor back
+ * gLinkPlay is set, sends action 22 for it; cancel puts the cursor back
  * on the silo and jumps the script to label 0. Otherwise the cursor and
  * the map view keep moving. */
 void SiloLaunch_PickTargetStep(Task *task)
@@ -49,7 +49,7 @@ void SiloLaunch_PickTargetStep(Task *task)
             func_020eef58(task);
             Silo_StartLaunch(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
             MenuButtons_CloseAll();
-            if (data_0229eaec != 0) {
+            if (gLinkPlay != 0) {
                 UnitAction_Send(22, GAME->actingUnitIndex, GAME->cursorX, GAME->cursorY);
             }
             Task_ResumeScript(task);

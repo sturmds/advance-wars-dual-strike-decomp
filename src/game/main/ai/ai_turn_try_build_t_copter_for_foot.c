@@ -16,7 +16,7 @@ BOOL Map_IsCapturableByActingUnit(s16 x, s16 y);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 int GetUnitMaxRange(int player, int unitType);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-void func_0209378c(void);
+void AiSites_ClearAllMarks(void);
 void AiTurn_QueueBuildAtSite(int index);
 int AiSite_PickNearestFoot(int arg);
 int AiSites_HasType(int arg);
@@ -28,7 +28,7 @@ int AiSites_HasType(int arg);
  * Map_IsCapturableByActingUnit accepts, when an enemy vehicle in reach has
  * a weapon, or when the player's foot units in reach number fewer than
  * three per empty T-Copter in reach, the new one included. The first site
- * that passes gets a T-Copter. func_0209378c then resets the skipped kinds.
+ * that passes gets a T-Copter. AiSites_ClearAllMarks then resets the skipped kinds.
  * Returns 1 when it queued an action. */
 BOOL AiTurn_TryBuildTCopterForFoot(void)
 {
@@ -47,7 +47,7 @@ BOOL AiTurn_TryBuildTCopterForFoot(void)
     for (;;) {
         index = AiSite_PickNearestFoot(2);
         if (index == -1) {
-            func_0209378c();
+            AiSites_ClearAllMarks();
             return 0;
         }
         site = &data_0229e5bc[index];
@@ -86,7 +86,7 @@ BOOL AiTurn_TryBuildTCopterForFoot(void)
         }
         gUnitAction.target = UNIT_T_COPTER;
         AiTurn_QueueBuildAtSite(index);
-        func_0209378c();
+        AiSites_ClearAllMarks();
         return 1;
     skip:
         site->kind = 0xfe;

@@ -18,7 +18,7 @@ typedef struct AiSite {
     u8 x;
     u8 y;
     u8 type;                           /* SITE_BASE, SITE_AIRPORT or SITE_PORT: the factory kind */
-    u8 kind;                           /* SITE_KIND_SKIPPED: the record is skipped; 0xfe: no action found (AiTurn_TrySiteAction); 254 and up reset to 127 by func_0209378c */
+    u8 kind;                           /* SITE_KIND_SKIPPED: the record is skipped; 0xfe: no action found (AiTurn_TrySiteAction); 0xff: rejected while AiTurn_PickUnitToBuild tries a unit type; AiSites_ClearRejectedMarks resets 0xff to 127, AiSites_ClearAllMarks both */
     s8 group;                          /* AiSiteGroup_RateSurroundings works on the records of one group; -1 marks a group's first record (AiSites_BuildGroups) */
     s8 unitBalance;                    /* AiSiteGroup_RateSurroundings: +1 per enemy foot unit near the site (+2 for others), -1 per own-team unit */
     u8 enemyCount;                     /* AiSiteGroup_RateSurroundings: enemy units near the site */

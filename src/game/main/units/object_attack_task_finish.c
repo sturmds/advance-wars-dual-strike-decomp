@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void ActingUnit_SaveStartPos(void);
 void ActingUnit_FinishAction(void);
@@ -14,7 +14,7 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* End of the attack task of ActingUnit_AttackTile: ends the acting unit's action, then, when the task's flag is set and
- * data_0229eaec is set, sends unit action 5 with the attacked tile. */
+ * gLinkPlay is set, sends unit action 5 with the attacked tile. */
 void ObjectAttackTask_Finish(ObjectAttackTask *task)
 {
     ActingUnit_SaveStartPos();
@@ -23,7 +23,7 @@ void ObjectAttackTask_Finish(ObjectAttackTask *task)
     if ((s16)task->flag == 0) {
         return;
     }
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         return;
     }
     UnitAction_Send(5, STATE->actingUnitIndex, task->tileX, task->tileY);

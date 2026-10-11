@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_0229eaec;
+extern int gLinkPlay;
 
 void func_020f5888(int x, int y);
 void func_020b98e8(void);
@@ -13,7 +13,7 @@ void func_020b98e8(void);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Copies a path into the task, sets the script state and scrolls the camera
- * to the unit's tile unless unk_18 is 21 with data_0229eaec set. The odd
+ * to the unit's tile unless unk_18 is 21 with gLinkPlay set. The odd
  * shape of the scroll test (a flag set to 0, then 1, ORed with a second test)
  * is needed to match. */
 void UnitShowTask_SetPath(UnitShowTask *task, const u8 *path)
@@ -28,10 +28,10 @@ void UnitShowTask_SetPath(UnitShowTask *task, const u8 *path)
     scroll = 0;
     task->scriptPos = scroll;
     task->state = UNIT_SHOW_STATE_SCRIPT;
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         scroll = 1;
     }
-    if (scroll | (data_0229eaec != 0 ? GAME->unk_18 != 21 : 0)) {
+    if (scroll | (gLinkPlay != 0 ? GAME->unk_18 != 21 : 0)) {
         func_020f5888((s16)(task->x / 16), (s16)(task->y / 16));
     }
     func_020b98e8();

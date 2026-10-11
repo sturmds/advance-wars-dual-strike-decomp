@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 gRngState;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern UnitAction data_0229d8c8;
 
 int Weather_PickNext(void); /* weather for the next turn */
@@ -17,7 +17,7 @@ void func_020ddb38(void)
 {
     GAME->unk_1c4->nextWeather = Weather_PickNext();
     data_0229d8c8.rngState = gRngState;
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         GAME->players[GAME->currentPlayer].unk_31 = GAME->cursorX;
         GAME->players[GAME->currentPlayer].unk_32 = GAME->cursorY;
     }

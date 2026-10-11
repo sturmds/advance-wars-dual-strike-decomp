@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern int data_0229eaec;
+extern int gLinkPlay;
 
 void func_020e8c28(void)
 {
-    data_0229eaec = 0;
+    gLinkPlay = 0;
 }

@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern void *data_027c0288;
-extern int data_0229eaec;
+extern int gLinkPlay;
 
 BOOL Unit_IsVisibleToActivePlayers(MapUnit *unit, int x, int y);
 void MapView_ScrollToPixel(int x, int y);
@@ -26,7 +26,7 @@ BOOL UnitShowTask_CheckVisible(UnitShowTask *task)
         }
     }
     if (task->state == UNIT_SHOW_STATE_MOVE) {
-        if ((data_0229eaec == 0) | (data_0229eaec != 0 ? GAME->unk_18 != 21 : 0)) {
+        if ((gLinkPlay == 0) | (gLinkPlay != 0 ? GAME->unk_18 != 21 : 0)) {
             MapView_ScrollToPixel(task->x, task->y);
         }
     }

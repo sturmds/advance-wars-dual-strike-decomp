@@ -17,7 +17,7 @@ void RangeMap_SpreadOverSea(u8 value);
 int Map_IsCapturableByActingUnit(s16 x, s16 y);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 void AiTurn_QueueBuildAtSite(int index);
-void func_0209378c(void);
+void AiSites_ClearAllMarks(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -54,7 +54,7 @@ BOOL AiTurn_TryBuildBlackBoatNearSite(void)
     for (;;) {
         index = AiSite_PickNearestFoot(3);
         if (index == -1) {
-            func_0209378c();
+            AiSites_ClearAllMarks();
             return 0;
         }
         site = &data_0229e5bc[index];
@@ -136,7 +136,7 @@ BOOL AiTurn_TryBuildBlackBoatNearSite(void)
         if (footWaiting != 0 && transports == 0) {
             gUnitAction.target = UNIT_BLACK_BOAT;
             AiTurn_QueueBuildAtSite(index);
-            func_0209378c();
+            AiSites_ClearAllMarks();
             return 1;
         }
     reject:

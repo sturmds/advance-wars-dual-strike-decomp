@@ -12,7 +12,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern const EventScriptCommand gMapScrollScript[];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void func_020f5878(int x, int y);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
@@ -77,7 +77,7 @@ BOOL AiBuild_BuyAtSite(void)
     done:
         STATE->actingUnitDestX = site->x;
         STATE->actingUnitDestY = site->y;
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             UnitAction_Send(ACTION_BUILD_AT_SITE, gUnitAction.target, gUnitAction.unk_07, 0);
         }
         func_020b81c0(unit);

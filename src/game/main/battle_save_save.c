@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 
 extern u8 data_02291774[];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void func_02019920(void);
 u8 func_020193bc(int recordId);
@@ -33,7 +33,7 @@ void BattleSave_Save(int recordId, int flag)
     if (recordId == 0) {
         return;
     }
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         return;
     }
     func_02019920();

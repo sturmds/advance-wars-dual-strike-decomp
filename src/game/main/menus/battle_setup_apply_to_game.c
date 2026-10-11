@@ -20,7 +20,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -97,7 +97,7 @@ void BattleSetup_ApplyToGame(void)
     GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
     GAME->unk_81 = gMenuState.setup.unk_2df;
     GAME->unk_8c = gMenuState.setup.unk_2e2;
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         gPlayRecords.unk_15 = gMenuState.setup.unk_2e2;
     }
 

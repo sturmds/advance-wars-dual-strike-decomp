@@ -13,7 +13,7 @@ void PackNibblePairs(const u8 *nibbles, u8 *out);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Copies the current action into data_0229d8c8 and hands it to Link_SendPacket, which sends a packet
- * with a counter (probably link play). Used when data_0229eaec is set. */
+ * with a counter (probably link play). Used when gLinkPlay is set. */
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg)
 {
     MapUnit *unit = &GAME->units[unitIndex];

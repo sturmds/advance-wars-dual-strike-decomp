@@ -4,7 +4,7 @@
 
 extern DesignMapRecord data_02291774;
 extern DesignMapRecord data_02291e98;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 int Save_LoadRecord(u8 recordId, void *buffer);
 void func_020d70ec(void *map, DesignMapRecord *record);
@@ -14,10 +14,10 @@ void func_020d70ec(void *map, DesignMapRecord *record);
  * the second screen unpacks data_02291e98 instead. */
 void DesignMap_DecodeSlot(int slot, void *map)
 {
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         Save_LoadRecord(slot + 7, &data_02291774);
     }
-    if (data_0229eaec != 0 && data_027c027c == data_027c0288.unk_04) {
+    if (gLinkPlay != 0 && data_027c027c == data_027c0288.unk_04) {
         func_020d70ec(map, &data_02291e98);
     } else {
         func_020d70ec(map, &data_02291774);

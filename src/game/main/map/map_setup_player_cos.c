@@ -10,7 +10,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u8 data_02167d30[5][2];
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 u8 (*GetCoPicksForMode(int mode))[2];
 void SetupCoSelection(void);
@@ -67,7 +67,7 @@ void Map_SetupPlayerCos(void)
                 }
                 break;
             default:
-                if (data_0229eaec != 0) {
+                if (gLinkPlay != 0) {
                     STATE->playerCos[player][slot] = data_02167d30[player][slot] & 0x7f;
                     break;
                 }

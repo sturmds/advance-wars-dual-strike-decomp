@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 BOOL EventScript_IsRunning(void);
 BOOL MapView_IsAtRest(void);
@@ -28,7 +28,7 @@ void func_020c4124(int a, int b);
 /* Task step while the player confirms a Black Bomb explosion. Confirm
  * removes the bomb (BlackBomb_RemoveActingUnit), starts the explosion
  * (func_020dd940) from the bomb's tile at the cursor tile (cursorX, cursorY)
- * and, when data_0229eaec is set, sends unit action 23 for it. Cancel puts
+ * and, when gLinkPlay is set, sends unit action 23 for it. Cancel puts
  * the cursor back on the bomb and jumps the script to label 0. Same shape
  * as SiloLaunch_PickTargetStep, but the cursor does not move here. */
 void BlackBomb_ConfirmExplodeStep(Task *task)
@@ -49,7 +49,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
         BlackBomb_RemoveActingUnit(task);
         func_020dd940(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);
         MenuButtons_CloseAll();
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             UnitAction_Send(23, GAME->actingUnitIndex, 0, 0);
         }
         Task_ResumeScript(task);

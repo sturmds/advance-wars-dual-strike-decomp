@@ -7,7 +7,7 @@ int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 void DeferredCopyTask_Start(void *src, void *dest, u32 size);
 
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern char data_02151e44[];                          /* "/syogun" */
 extern const char *const data_02152b48[][7][3];
 
@@ -18,7 +18,7 @@ void Co_QueueLargePictureCopy(int coMood, void *dest, int paletteSlot, int army)
     u8 *buffer;
     int variant;
 
-    if (data_0229eaec == 0 || (coMood & 0x80)) {
+    if (gLinkPlay == 0 || (coMood & 0x80)) {
         army = 0;
     }
     FS_ChangeDir(data_02151e44);

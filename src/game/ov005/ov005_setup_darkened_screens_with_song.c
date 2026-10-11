@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
-#include "game/script_slot.h"
+#include "game/text_printer.h"
 #include "game/task.h"
 #include "game/Unk_ov005_0236bb80.h"
 
@@ -17,7 +17,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
@@ -34,7 +34,7 @@ extern char gRikiishiFile003[];
 extern char gRikiishiFile004[];
 
 /* Screen setup step of an overlay 5 screen. Main screen: BG0 and OBJ on,
- * the digit font, and a text slot on layer 0. Sub screen: BG1, BG2 and OBJ
+ * the digit font, and a text printer on layer 0. Sub screen: BG1, BG2 and OBJ
  * on, both layers and the palette from /rikiishi files 000 to 004, BG2
  * scrolled down 256 pixels. Starts song 51. Both screens end fully darkened
  * (darken mode, evy 16), so a later step can fade them in. */
@@ -43,7 +43,7 @@ void Ov005_SetupDarkenedScreensWithSong(Ov005Task *task)
     Unk_ov005_0236bb80 *work;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
-    ScriptSlot *slot;
+    TextPrinter *printer;
 
     work = task->work;
     saved0280 = data_027c0280;
@@ -136,9 +136,9 @@ void Ov005_SetupDarkenedScreensWithSong(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = Text_PrintByIdOnLayer0(6, 6, data_027c0280->layer0Map, 0x21000000, 0, 0x41);
-    work->textSlot = slot;
-    slot->unk_3e = 6;
+    printer = Text_PrintByIdOnLayer0(6, 6, data_027c0280->layer0Map, 0x21000000, 0, 0x41);
+    work->textPrinter = printer;
+    printer->unk_3e = 6;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

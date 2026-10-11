@@ -5,7 +5,7 @@
 
 /* A unit action about to be shown, in gUnitAction. Filled by
  * AiUnit_PerformAction; func_0208fda8 copies it to data_0229d8c8 when
- * data_0229eaec is set. */
+ * gLinkPlay is set. */
 typedef struct UnitAction {
     u8 action;
     u8 unitIndex;                      /* index into Unk_02080440_48.units */

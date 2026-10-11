@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u16 data_0229d8c4;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -54,7 +54,7 @@ void AiShowAction_Step0(void)
     GAME->actingUnitDestX = gUnitAction.x;
     GAME->actingUnitDestY = gUnitAction.y;
     GAME->actingUnit->flags &= ~MAP_UNIT_LOCKED;
-    if ((GAME->unk_18 == 16 && data_0229eaec != 0 && func_0207bd6c() != 0) || GAME->unk_18 == 21) {
+    if ((GAME->unk_18 == 16 && gLinkPlay != 0 && func_0207bd6c() != 0) || GAME->unk_18 == 21) {
         GAME->unk_46 = 0;
         GAME->actingUnit->fuel = gUnitAction.fuelLeft;
         gAiTurnState->actionStep = 1;

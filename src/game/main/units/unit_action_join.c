@@ -7,7 +7,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
@@ -54,7 +54,7 @@ void UnitAction_Join(void)
         GAME->actingUnit->ammo = sum;
     }
 
-    if (data_0229eaec == 0 && GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) {
+    if (gLinkPlay == 0 && GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) {
         Unit_SubtractMoveFuel(GAME->actingUnit, GAME->unk_46);
         GAME->unk_46 = 0;
     }

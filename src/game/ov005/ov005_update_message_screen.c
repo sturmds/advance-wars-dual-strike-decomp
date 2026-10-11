@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/keypad.h"
 #include "game/menu_button.h"
-#include "game/script_slot.h"
+#include "game/text_printer.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
@@ -19,7 +19,7 @@ void Task_ResumeScript(Ov005Task *task);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 
@@ -41,7 +41,7 @@ void Ov005_UpdateMessageScreen(Ov005Task *task)
     Unk_ov005_0236bb8c *work = task->work;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
-    ScriptSlot *slot;
+    TextPrinter *printer;
     int eva;
 
     switch (task->step) {
@@ -98,9 +98,9 @@ void Ov005_UpdateMessageScreen(Ov005Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        slot = Text_PrintByIdOnLayer0(2, 4, data_027c0280->layer0Map, 0x21000003, 0, 0x41);
-        work->textSlot = slot;
-        slot->unk_3e = 6;
+        printer = Text_PrintByIdOnLayer0(2, 4, data_027c0280->layer0Map, 0x21000003, 0, 0x41);
+        work->textPrinter = printer;
+        printer->unk_3e = 6;
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
         task->step++;

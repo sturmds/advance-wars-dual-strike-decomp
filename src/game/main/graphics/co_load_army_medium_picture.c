@@ -5,7 +5,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void Mem_Zero32(u32 ignored, void *dst, u32 size);
 int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern char data_02151e44[];
 extern const char *const data_02152b80[][21];
 
@@ -13,7 +13,7 @@ extern const char *const data_02152b80[][21];
  * unpacked straight to dest. CO 0 clears dest. */
 void Co_LoadArmyMediumPicture(int coId, void *dest, int paletteSlot, int army)
 {
-    if (data_0229eaec == 0 || (coId & 0x80)) {
+    if (gLinkPlay == 0 || (coId & 0x80)) {
         army = 0;
     }
     if ((coId & 0x7f) == 0) {

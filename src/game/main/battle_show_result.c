@@ -8,7 +8,7 @@ int func_020d69e4(int winner, int parentTask);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -91,7 +91,7 @@ void Battle_ShowResult(int parentTask)
             }
         }
 
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             if (human != 0) {
                 if (humanLeft != 0) {
                     func_020d69e4(humanLeft, parentTask);

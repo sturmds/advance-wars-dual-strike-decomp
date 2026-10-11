@@ -10360,7 +10360,7 @@ src/game/main/ai/ai_sites_clear_rejected_marks.c:
     complete
     .text       start:0x0209373c end:0x0209378c
 
-src/game/main/ai/func_0209378c.c:
+src/game/main/ai/ai_sites_clear_all_marks.c:
     complete
     .text       start:0x0209378c end:0x020937dc
 

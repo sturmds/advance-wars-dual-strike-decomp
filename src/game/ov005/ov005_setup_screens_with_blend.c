@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
-#include "game/script_slot.h"
+#include "game/text_printer.h"
 #include "game/Unk_ov005_0236bb80.h"
 
 void Screen_SetCurrent(void *state);
@@ -16,7 +16,7 @@ void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+TextPrinter *Text_PrintByIdOnLayer0(int x, int y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -36,7 +36,7 @@ extern u32 data_ov005_02367f0c[];      /* map bytes of a text BG by screen size 
 extern u32 data_ov005_02367f1c[];      /* map bytes of a rotation/scaling BG by screen size */
 
 /* Screen setup step of an overlay 5 screen (task script data_ov005_02368230).
- * Main screen: BG0 and OBJ on, no blending, a text slot on layer 0. Sub
+ * Main screen: BG0 and OBJ on, no blending, a text printer on layer 0. Sub
  * screen: BG0-BG2 and OBJ on, BG0 scrolled 8 pixels and alpha-blended over
  * BG1 and BG2; the three layers come from /rikiishi files 005 to 00c. The
  * blend starts at eva 0, evb 16 (BG0 not visible) and is kept in the work
@@ -46,7 +46,7 @@ void Ov005_SetupScreensWithBlend(Ov005Task *task)
     Unk_ov005_0236bb80 *work;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
-    ScriptSlot *slot;
+    TextPrinter *printer;
 
     work = task->work;
     saved0280 = data_027c0280;
@@ -184,9 +184,9 @@ void Ov005_SetupScreensWithBlend(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = Text_PrintByIdOnLayer0(6, 5, data_027c0280->layer0Map, 0x21000001, 0, 0x41);
-    work->textSlot = slot;
-    slot->unk_3e = 6;
+    printer = Text_PrintByIdOnLayer0(6, 5, data_027c0280->layer0Map, 0x21000001, 0, 0x41);
+    work->textPrinter = printer;
+    printer->unk_3e = 6;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern const ScriptCommand data_021666e8[];
 extern u32 data_022a6dd4;
 extern s16 data_021663dc[]; /* 3 per side of the unit: bit for data_022a6dd4, tile x offset, tile y offset */
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 s8 ScriptSlot_Find(const ScriptCommand *script);
 void ScriptSlot_Stop(int slot);
@@ -45,7 +45,7 @@ void Supply_RefillAdjacentStep(SupplySlot *slot)
             }
             ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);
             ActingUnit_FinishAction();
-            if (slot->unk_20 == 0 && data_0229eaec != 0) {
+            if (slot->unk_20 == 0 && gLinkPlay != 0) {
                 UnitAction_Send(6, STATE->actingUnitIndex, 0, 0);
             }
             func_020b9d48();

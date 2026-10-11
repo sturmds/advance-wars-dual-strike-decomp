@@ -3,7 +3,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -15,7 +15,7 @@ void func_0207ab58(void);
 void SpriteTask_DestroyAllFirstScreen(void);
 
 /* Ends the first map's game: sets up the map screen again, drops the sprite
- * tasks of the first screen when data_0229eaec is set, and returns to
+ * tasks of the first screen when gLinkPlay is set, and returns to
  * state 0. */
 void Game_CloseFirstMap(void)
 {
@@ -26,7 +26,7 @@ void Game_CloseFirstMap(void)
     if (func_0207bd80() == 1) {
         func_0207ab58();
     }
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         return;
     }
     SpriteTask_DestroyAllFirstScreen();

@@ -3,7 +3,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 void func_020b9d48(void);
 void func_0201e954(void);
@@ -16,7 +16,7 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Unit command menu: Capture. Sends unit action 3
- * when data_0229eaec is set. */
+ * when gLinkPlay is set. */
 void UnitMenu_Capture(void)
 {
     func_020b9d48();
@@ -25,7 +25,7 @@ void UnitMenu_Capture(void)
     UnitAction_Capture();
     ActingUnit_FinishAction();
     ActingUnitStart_Restore();
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         UnitAction_Send(3, GAME->actingUnitIndex, 0, 0);
     }
 }

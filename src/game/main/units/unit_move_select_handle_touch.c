@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern s16 data_0229777c;
 
 BOOL ActingUnit_CanMoveTo(int x, int y);
@@ -46,7 +46,7 @@ BOOL UnitMoveSelect_HandleTouch(void)
             UnitMoveSelect_TryMoveTo(GAME->cursorX, GAME->cursorY);
             return TRUE;
         }
-        if (data_0229eaec != 0) {
+        if (gLinkPlay != 0) {
             UnitAction_Send(19, GAME->actingUnitIndex, 0, 0);
         }
         func_020f5888(GAME->actingUnit->x, GAME->actingUnit->y);

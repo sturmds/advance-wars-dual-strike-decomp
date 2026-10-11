@@ -2865,7 +2865,7 @@ Ai_CountFootUnitsByUnk0c4 kind:function(arm,size=0xc4) addr:0x02093370
 AiBuild_BuyAtSite kind:function(arm,size=0x2ec) addr:0x02093434
 func_02093720 kind:function(arm,size=0x1c) addr:0x02093720
 AiSites_ClearRejectedMarks kind:function(arm,size=0x50) addr:0x0209373c
-func_0209378c kind:function(arm,size=0x50) addr:0x0209378c
+AiSites_ClearAllMarks kind:function(arm,size=0x50) addr:0x0209378c
 func_020937dc kind:function(arm,size=0x48) addr:0x020937dc
 AiTurn_RunEndActions kind:function(arm,size=0x32c) addr:0x02093824
 Ai_HasHealthyFighter kind:function(arm,size=0xac) addr:0x02093b50
@@ -8833,7 +8833,7 @@ data_0229eadc kind:bss addr:0x0229eadc
 data_0229eae0 kind:bss addr:0x0229eae0
 data_0229eae4 kind:bss addr:0x0229eae4
 gBuildMenuCount kind:bss addr:0x0229eae8
-data_0229eaec kind:bss addr:0x0229eaec
+gLinkPlay kind:bss addr:0x0229eaec
 data_0229eaf0 kind:bss addr:0x0229eaf0
 data_0229eaf1 kind:bss addr:0x0229eaf1
 gBuildMenuEntries kind:bss addr:0x0229eaf8

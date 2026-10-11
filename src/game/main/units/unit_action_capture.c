@@ -8,7 +8,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern const TaskScriptCmd data_02168d88[];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -81,7 +81,7 @@ void UnitAction_Capture(void)
         } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
             Capture_PlayCompleteSound(ACTING_UNIT_OWNER);
         }
-    } else if (data_0229eaec != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2)
+    } else if (gLinkPlay != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2)
                && GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_AI) {
         /* the tile is out of sight: no capture scene, but link play still needs the task */
         Task_Create(data_02168d88, TASK_LIST(3));

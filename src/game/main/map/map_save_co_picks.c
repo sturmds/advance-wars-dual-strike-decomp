@@ -7,7 +7,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 
 u8 (*GetCoPicksForMode(int mode))[2];
 
@@ -20,7 +20,7 @@ void Map_SaveCoPicks(void)
     int slot;
 
     cos = GetCoPicksForMode(STATE->gameMode);
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         return;
     }
     for (player = 1; player < 5; player++) {

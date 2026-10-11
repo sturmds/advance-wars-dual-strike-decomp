@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern int data_022a6dd4;
 
 void ActingUnit_SaveStartPos(void);
@@ -17,7 +17,7 @@ UnitTargetEntry *func_020dc524(int index);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* End of the unit attack's battle task (started by ActingUnit_StartAttack): ends the acting unit's action, then, when
- * the task's flag is set and data_0229eaec is set, sends unit action 4 with the unit slot of the chosen target. */
+ * the task's flag is set and gLinkPlay is set, sends unit action 4 with the unit slot of the chosen target. */
 void UnitAttackTask_Finish(Task *task)
 {
     UnitTargetEntry *target;
@@ -29,7 +29,7 @@ void UnitAttackTask_Finish(Task *task)
         return;
     }
     target = func_020dc524(data_022a6dd4);
-    if (data_0229eaec == 0) {
+    if (gLinkPlay == 0) {
         return;
     }
     UnitAction_Send(4, STATE->actingUnitIndex, target->unitSlot, 0);

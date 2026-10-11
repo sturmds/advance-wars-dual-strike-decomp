@@ -26,7 +26,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
 extern MenuStateFrom200 data_0229ed30;
-extern u32 data_0229eaec;
+extern u32 gLinkPlay;
 extern DesignMap data_022a6c84[];
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler
@@ -75,12 +75,12 @@ void BattleSetup_LoadFromGame(void)
     state->setup.unk_2de = GAME->unk_80;
     data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
     state->setup.unk_2df = GAME->unk_81;
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         state->setup.unk_2e1 = 1;
     } else {
         state->setup.unk_2e1 = gPlayRecords.unk_12;
     }
-    if (data_0229eaec != 0) {
+    if (gLinkPlay != 0) {
         gMenuState.setup.unk_2e2 = 2;
     } else {
         gMenuState.setup.unk_2e2 = gPlayRecords.unk_15;

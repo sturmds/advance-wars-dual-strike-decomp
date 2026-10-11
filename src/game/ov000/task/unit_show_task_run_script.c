@@ -6,7 +6,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_0229eaec;
+extern int gLinkPlay;
 
 void UnitShowTask_Destroy(UnitShowTask *task);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
@@ -44,7 +44,7 @@ void UnitShowTask_RunScript(UnitShowTask *task)
                     gPlayRecords.unk_3cc++;
                 }
             }
-            if (data_0229eaec != 0 ? GAME->unk_18 != 21 : 0) {
+            if (gLinkPlay != 0 ? GAME->unk_18 != 21 : 0) {
                 if (func_020800a4() == 0) {
                     UnitAction_Send(2, (u8)(task->unit - GAME->units), 0, 0);
                 }
