@@ -10231,6 +10231,10 @@ src/game/main/sound/sound_seq_player_update_all.c:
     complete
     .text       start:0x02105544 end:0x021056a0
 
+src/game/main/sound/sound_seq_player_init_all.c:
+    complete
+    .text       start:0x021056a0 end:0x02105758
+
 src/game/main/sound/nns_snd_player_move_volume.c:
     complete
     .text       start:0x021057cc end:0x02105814
