@@ -4,10 +4,9 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-/* Guess: tile byte (terrain and owner) is a city DeployCity accepts, or terrain 8 owned by state->unk_04. */
-BOOL func_020f4a94(u8 tile);
+BOOL Map_IsDeployTile(u8 tile);
 
-/* TRUE when no unit stands on tile (x, y) and func_020f4a94 accepts its terrain
+/* TRUE when no unit stands on tile (x, y) and Map_IsDeployTile accepts its terrain
  * and owner. The tile byte is read before the unit test to match. */
 BOOL Map_IsVacantDeployTile(int x, int y)
 {
@@ -19,5 +18,5 @@ BOOL Map_IsVacantDeployTile(int x, int y)
     if (unit != 0) {
         return FALSE;
     }
-    return func_020f4a94(tile) != 0;
+    return Map_IsDeployTile(tile) != 0;
 }
