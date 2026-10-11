@@ -20961,6 +20961,10 @@ src/sdk/func_0210ccbc.c:
     complete
     .text       start:0x0210ccbc end:0x0210ccc0
 
+src/sdk/os/os_reset_request_irq_mask.c:
+    complete
+    .text       start:0x0210ccc0 end:0x0210ccf4
+
 src/game/main/func_0210ced0.c:
     complete
     .text       start:0x0210ced0 end:0x0210cee4

@@ -65,7 +65,8 @@ typedef struct OSThreadInfo {
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);
 
-/* Each of these returns the previous value of IE. */
+/* Each of these returns the previous value of the register it changes. */
+OSIrqMask OS_ResetRequestIrqMask(OSIrqMask mask);
 OSIrqMask OS_DisableIrqMask(OSIrqMask mask);
 
 /* Turn interrupts off and return the previous state; hand it back to restore. */
