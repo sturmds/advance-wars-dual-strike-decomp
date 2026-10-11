@@ -14706,6 +14706,26 @@ src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c
 
+src/game/main/script/co_quote_start_random.c:
+    complete
+    .text       start:0x020d534c end:0x020d5414
+
+src/game/main/script/co_quote_start_map_line.c:
+    complete
+    .text       start:0x020d5414 end:0x020d54f8
+
+src/game/main/script/power_quote_task_run.c:
+    complete
+    .text       start:0x020d54f8 end:0x020d5560
+
+src/game/main/script/func_020d5560.c:
+    complete
+    .text       start:0x020d5560 end:0x020d55b4
+
+src/game/main/script/power_activate_task_load_window_gfx.c:
+    complete
+    .text       start:0x020d55b4 end:0x020d55f4
+
 src/game/main/func_020d55f4.c:
     complete
     .text       start:0x020d55f4 end:0x020d5608
