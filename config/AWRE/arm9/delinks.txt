@@ -4934,6 +4934,7 @@ src/game/main/tab_list_is_value_zero.c:
     .text       start:0x02072364 end:0x020723a4
 
 src/game/main/tab_list_call_unk1c.c:
+    complete
     .text       start:0x020723a4 end:0x020723ec
 
 src/game/main/func_020724f0.c:
