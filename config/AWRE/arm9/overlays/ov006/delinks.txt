@@ -163,6 +163,10 @@ src/game/ov006/ov006_set_up_screens.c:
     complete
     .text       start:0x023527ac end:0x02352ab8
 
+src/game/ov006/ov006_draw_property_counts.c:
+    complete
+    .text       start:0x02352ab8 end:0x02352f2c
+
 src/game/ov006/ov006_load_army_terrain_graphics.c:
     complete
     .text       start:0x02353304 end:0x023533f0
