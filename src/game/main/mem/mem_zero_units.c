@@ -1,7 +1,7 @@
 #include "types.h"
 
 void func_0210f52c(void *dst, u32 value, u32 size);   /* SDK byte fill */
-void func_0210f440(u16 value, void *dst, u32 size);   /* SDK 16-bit fill */
+void MIi_CpuClear16(u16 value, void *dst, u32 size);   /* SDK 16-bit fill */
 void func_0210f474(u32 value, void *dst, u32 size);   /* SDK 32-bit fill */
 
 /* Zeroes size bytes in units of unitBits (8, 16 or 32) bits. The first
@@ -19,7 +19,7 @@ void Mem_ZeroUnits(u32 ignored, void *dst, u32 size, u32 unitBits)
         break;
     case 16:
         zero16 = 0;
-        func_0210f440(zero16, dst, size);
+        MIi_CpuClear16(zero16, dst, size);
         break;
     case 32:
         zero32 = 0;
