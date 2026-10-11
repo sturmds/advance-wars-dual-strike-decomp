@@ -1244,6 +1244,10 @@ src/game/main/text/text_printer_advance_pixels.c:
     complete
     .text       start:0x02014ab0 end:0x02014b28
 
+src/game/main/text/func_02014b28.c:
+    complete
+    .text       start:0x02014b28 end:0x02014c24
+
 src/game/main/func_02014c24.c:
     complete
     .text       start:0x02014c24 end:0x02014c38
