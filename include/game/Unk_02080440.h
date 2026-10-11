@@ -125,7 +125,8 @@ typedef struct Unk_02080440_48 {
     u16 unk_2e;
     s16 unk_30;                        /* tile x where the current touch began (MapCursor_UpdateFromTouch); 0xff: none */
     s16 unk_32;                        /* tile y of the same */
-    u8 pad_34[0x38 - 0x34];
+    s16 cycleUnitIndex;                /* index (within the current player's slots) of the unit L last jumped to; see CurrentPlayer_NextIdleUnit */
+    u8 pad_36[0x38 - 0x36];
     MapUnit *actingUnit;               /* &units[actingUnitIndex] */
     u8 actingUnitIndex;                /* slot in units of the unit the AI is moving */
     u8 pad_3d;

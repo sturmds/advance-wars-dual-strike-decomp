@@ -16,7 +16,7 @@ void func_020d1414(void);
 void func_020f467c(void);
 int func_020d9864(int x, int y);
 void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit);
-MapUnit *func_020c92a0(void);
+MapUnit *CurrentPlayer_NextIdleUnit(void);
 void func_020f5888(int x, int y);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 void ScreenConfig_RunActionHook(void);
@@ -28,7 +28,7 @@ void func_020d0f18(int x, int y);
 /* Buttons on the map while nothing is selected. Start, Select, R (when
  * allowR) and X (when allowX) each start their own handler. Otherwise it
  * shows the cursor tile on the second screen, then L moves the cursor to
- * the unit func_020c92a0 picks, A selects at the cursor (func_020d0c4c)
+ * the unit CurrentPlayer_NextIdleUnit picks, A selects at the cursor (func_020d0c4c)
  * and B runs func_020d0f18 there. Returns TRUE when a button was handled. */
 BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
 {
@@ -65,7 +65,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
     tiles = game->mapTiles;
     SecondScreen_ShowCursorInfo(func_020d9864(x, y), &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
     if (gKeypad->pressed & PAD_BUTTON_L) {
-        unit = func_020c92a0();
+        unit = CurrentPlayer_NextIdleUnit();
         if (unit != NULL) {
             func_020f5888(unit->x, unit->y);
             if (ScriptSlot_Find(data_02169e38) != -1) {
