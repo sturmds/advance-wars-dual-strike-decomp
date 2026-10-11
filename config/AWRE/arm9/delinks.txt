@@ -4844,6 +4844,10 @@ src/game/main/func_0202eccc.c:
     complete
     .text       start:0x0202eccc end:0x0202ece0
 
+src/game/main/menus/main_menu_draw_frame.c:
+    complete
+    .text       start:0x0202ece0 end:0x0202ef24
+
 src/game/main/func_0202ef24.c:
     complete
     .text       start:0x0202ef24 end:0x0202ef40
