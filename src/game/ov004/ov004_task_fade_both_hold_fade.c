@@ -43,7 +43,7 @@ void Ov004Task_FadeBothHoldFade(Ov004Task *task) {
         }
         task->step = 20;
     case 20:
-        state->unk_810 = func_020fcd78(task, 50);
+        state->unk_810 = BrightnessFade_StartOutBlackScreen0(task, 50);
         state->unk_814 = func_020fcd50(task, 50);
         task->step++;
     case 21:

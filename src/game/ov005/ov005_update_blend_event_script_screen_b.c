@@ -91,7 +91,7 @@ void Ov005_UpdateBlendEventScriptScreenB(Ov005Task *task)
         }
         return;
     case 100:
-        work->fadeTask = func_020fcd78(task, 64);
+        work->fadeTask = BrightnessFade_StartOutBlackScreen0(task, 64);
         task->step++;
         return;
     case 101:

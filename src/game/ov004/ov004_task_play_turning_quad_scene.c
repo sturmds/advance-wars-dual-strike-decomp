@@ -197,7 +197,7 @@ void Ov004Task_PlayTurningQuadScene(Ov004Task *task)
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
         ADD_SLOT_TASK(Task_Create(data_ov004_022be658, TASK_LIST(5)));
-        ADD_SLOT_TASK(func_020fcd78(task, 20));
+        ADD_SLOT_TASK(BrightnessFade_StartOutBlackScreen0(task, 20));
     }
 
     if (Ov004_CheckTimedEvent(state, 26, 219)) {

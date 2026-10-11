@@ -10224,6 +10224,10 @@ src/game/main/func_020fcd50.c:
     complete
     .text       start:0x020fcd50 end:0x020fcd78
 
+src/game/main/graphics/brightness_fade_start_out_black_screen0.c:
+    complete
+    .text       start:0x020fcd78 end:0x020fcda0
+
 src/game/main/func_020fcda0.c:
     complete
     .text       start:0x020fcda0 end:0x020fcdc8

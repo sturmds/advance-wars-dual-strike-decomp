@@ -213,7 +213,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
             task->step = 100;
             break;
         }
-        func_020fcd78(task, 24);
+        BrightnessFade_StartOutBlackScreen0(task, 24);
         task->frame = 0;
         task->frames = 24;
         task->step++;
@@ -246,7 +246,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
         }
         break;
     case 100:
-        work->fadeTask = func_020fcd78(task, 64);
+        work->fadeTask = BrightnessFade_StartOutBlackScreen0(task, 64);
         work->fadeTask2 = func_020fcd50(task, 64);
         task->step++;
         break;

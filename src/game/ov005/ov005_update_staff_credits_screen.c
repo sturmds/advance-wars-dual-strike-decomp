@@ -209,7 +209,7 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
         task->step = 100;
         break;
     case 100:
-        work->fadeTask = func_020fcd78(task, 64);
+        work->fadeTask = BrightnessFade_StartOutBlackScreen0(task, 64);
         work->fadeTask2 = func_020fcd50(task, 64);
         task->step++;
         break;

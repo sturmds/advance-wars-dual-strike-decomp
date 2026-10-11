@@ -193,7 +193,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         break;
     case 1000:
         Sound_FadeOutSongOver(1);
-        state->unk_810 = func_020fcd78(task, 64);
+        state->unk_810 = BrightnessFade_StartOutBlackScreen0(task, 64);
         state->unk_814 = func_020fcd50(task, 64);
         task->step++;
     case 1001:

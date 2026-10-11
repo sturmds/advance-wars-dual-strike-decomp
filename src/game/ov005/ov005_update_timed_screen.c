@@ -56,7 +56,7 @@ void Ov005_UpdateTimedScreen(Ov005Task *task)
         }
         return;
     case 100:
-        work->fadeTask = func_020fcd78(task, 64);
+        work->fadeTask = BrightnessFade_StartOutBlackScreen0(task, 64);
         work->fadeTask2 = func_020fcd50(task, 64);
         task->step++;
         return;

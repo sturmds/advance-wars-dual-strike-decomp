@@ -12,7 +12,7 @@ typedef struct Unk_ov005_0236bb84 {
     u32 unk_04;
     int unk_08;
     u8 pad_0c[0x10 - 0x0c];
-    struct Task *fadeTask;             /* from the func_020fcd78 family */
+    struct Task *fadeTask;             /* from the BrightnessFade_StartOutBlackScreen0 family */
     struct Task *fadeTask2;
     struct Task *songFadeTask;         /* func_020fcb08 */
     u32 unk_1c;
