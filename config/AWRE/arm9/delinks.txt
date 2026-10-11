@@ -14118,6 +14118,10 @@ src/game/main/units/unit_can_attack_direct.c:
     complete
     .text       start:0x020df3a4 end:0x020df454
 
+src/game/main/units/tile_get_repair_target_directions.c:
+    complete
+    .text       start:0x020df454 end:0x020df510
+
 src/game/main/units/unit_get_drop_directions.c:
     complete
     .text       start:0x020df510 end:0x020df63c
