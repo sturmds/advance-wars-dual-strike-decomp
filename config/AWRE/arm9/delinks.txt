@@ -5203,6 +5203,10 @@ src/game/main/func_020459cc.c:
     complete
     .text       start:0x020459cc end:0x020459f0
 
+src/game/main/menus/survival_select_pick_map.c:
+    complete
+    .text       start:0x020459f0 end:0x02045a9c
+
 src/game/main/func_02045a9c.c:
     complete
     .text       start:0x02045a9c end:0x02045ac0

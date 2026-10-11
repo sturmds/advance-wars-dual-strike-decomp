@@ -1,0 +1,36 @@
+#include "types.h"
+#include "game/page_strip.h"
+#include "game/Unk_022a7b80.h"
+#include "game/Unk_02088d04.h"
+
+void MapPreview_Draw(void *dst, int mapId);
+void PageStrip_AddButtons(void);
+void Screen_SetCurrentGfx(void *state);
+void Sound_PlaySe(u32 soundId);
+void SurvivalSelect_DrawMapRecord(void);
+void SurvivalSelect_LoadCoPictures(void);
+int Survival_GetMapId(int mode, int index);
+int func_0204779c(void);
+
+extern Unk_022a7b80 data_022a7b80;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+
+/* Button handler of the Survival map select: moves the current list's
+ * cursor to the entry the button stands for (*entry), then redraws the
+ * buttons, the record, the CO pictures and the map preview. */
+void SurvivalSelect_PickMap(u8 *entry)
+{
+    int list = func_0204779c();
+    Unk_027c0280 *savedState;
+
+    Sound_PlaySe(0x10002);
+    data_0229c744->lists[list].cursor = *entry;
+    PageStrip_AddButtons();
+    savedState = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    SurvivalSelect_DrawMapRecord();
+    SurvivalSelect_LoadCoPictures();
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
+    Screen_SetCurrentGfx(savedState);
+}
