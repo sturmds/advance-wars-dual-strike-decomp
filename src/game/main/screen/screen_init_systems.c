@@ -1,0 +1,71 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern int data_0229eae4;
+
+void func_02007568(void);
+void func_01ff9c48(void (*callback)(void));
+void func_01ff9c28(void (*callback)(void));
+void func_01ff9f1c(int value);
+void func_01ff9f8c(int value);
+void func_01ff9f54(int value);
+void func_02020860(void);
+void func_020bb02c(void);
+void func_020e8b18(void);
+void func_020032a8(void);
+void func_02017520(void);
+void TransferQueue_Clear(void);
+void CallbackSlots_Clear(void);
+void CallbackList_Clear(void);
+void EventScript_Init(void);
+void ScriptSlot_ClearAll(void);
+void Task_InitSystem(void);
+void UnitShowTask_ClearSlots(void);
+void func_020076c0(void);
+void Keypad_Init(void);
+void func_020044a8(void);
+void Screen_ApplyAll(void);
+void Sound_ResetSongs(void);
+void func_02026540(void);
+void func_0203139c(void);
+void func_02023f38(void);
+
+/* Resets the current screen's systems: main loop callbacks and flags, part
+ * of the map state, tasks, script slots, transfer and callback queues,
+ * keypad, screen registers and songs. main calls it once per screen. */
+void Screen_InitSystems(void)
+{
+    data_0229eae4 = 0;
+    func_02007568();
+    func_01ff9c48(NULL);
+    func_01ff9c28(NULL);
+    func_01ff9f1c(0);
+    func_01ff9f8c(0);
+    func_01ff9f54(0);
+    data_027c027c->unk_48[data_027c0284]->unk_48 = 0;
+    data_027c027c->unk_48[data_027c0284]->unk_4c = 0;
+    data_027c027c->unk_48[data_027c0284]->unk_50 = 0;
+    data_027c027c->unk_48[data_027c0284]->unk_54 = 0;
+    func_02020860();
+    func_020bb02c();
+    func_020e8b18();
+    func_020032a8();
+    func_02017520();
+    TransferQueue_Clear();
+    CallbackSlots_Clear();
+    CallbackList_Clear();
+    EventScript_Init();
+    ScriptSlot_ClearAll();
+    Task_InitSystem();
+    UnitShowTask_ClearSlots();
+    func_020076c0();
+    Keypad_Init();
+    func_020044a8();
+    Screen_ApplyAll();
+    Sound_ResetSongs();
+    func_02026540();
+    func_0203139c();
+    func_02023f38();
+}

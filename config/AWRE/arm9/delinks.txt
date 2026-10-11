@@ -24,6 +24,10 @@ src/game/main/screen/screens_init_display.c:
     complete
     .text       start:0x020012b0 end:0x020013f4
 
+src/game/main/screen/screen_init_systems.c:
+    complete
+    .text       start:0x020013f4 end:0x020014f8
+
 src/game/main/func_020014f8.c:
     complete
     .text       start:0x020014f8 end:0x0200151c

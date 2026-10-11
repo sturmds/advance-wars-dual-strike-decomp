@@ -133,7 +133,12 @@ typedef struct Unk_02080440_48 {
     s16 actingUnitDestX;               /* where the acting unit's move ends; ActingUnit_CommitMove puts it there */
     s16 actingUnitDestY;
     u8 unk_46;                         /* passed to Unit_GetFuelUsed with actingUnit to get fuel used */
-    u8 pad_47[0x58 - 0x47];
+    u8 pad_47;
+    u32 unk_48;                        /* cleared with unk_4c, unk_50 and unk_54 by Screen_InitSystems */
+    u32 unk_4c;
+    u32 unk_50;
+    u16 unk_54;
+    u8 pad_56[0x58 - 0x56];
     u8 gameMode;                       /* GAME_MODE_*; 2 is likely Versus (4 Force Rank sets per CO, CO_NONE pickable), 3 likely Survival (Player_AddFunds) */
     u8 unk_59;
     u8 pad_5a;
