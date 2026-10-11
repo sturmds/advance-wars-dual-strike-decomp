@@ -2079,6 +2079,10 @@ src/game/main/script/event_cmd_load_army_palette.c:
     complete
     .text       start:0x0201c108 end:0x0201c1c4
 
+src/game/main/script/event_cmd_load_current_army_bg_row.c:
+    complete
+    .text       start:0x0201c1c4 end:0x0201c22c
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
