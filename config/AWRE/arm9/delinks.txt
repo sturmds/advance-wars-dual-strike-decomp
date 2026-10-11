@@ -14115,6 +14115,7 @@ src/game/main/units/unit_can_attack_indirect.c:
     .text       start:0x020df318 end:0x020df3a4
 
 src/game/main/units/unit_can_attack_direct.c:
+    complete
     .text       start:0x020df3a4 end:0x020df454
 
 src/game/main/units/unit_get_drop_directions.c:
