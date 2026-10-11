@@ -18,7 +18,7 @@ extern u8 data_027c0028;
  * columns of 10 cells of 2x2 tiles from tile column ROW.unk_3b_4 * 4 + 1.
  * An empty cell clears its tiles. A cell holding a unit (state 2) also gets
  * a digit sprite with the unit's hp in tens, rounded up, while that is 1 to
- * 9; at 0 it draws like state 3. With unk_1da_0 at 1, 3 or 4 the cells of
+ * 9; at 0 it draws like state 3. With phase at 1, 3 or 4 the cells of
  * rows other than the current slot's draw as state 1. */
 void Ov003Row_DrawCells(int row)
 {
@@ -75,7 +75,7 @@ void Ov003Row_DrawCells(int row)
             tile += 24;
             break;
         case 2:
-            if ((STATE->unk_1da_0 == 1 || STATE->unk_1da_0 == 3 || STATE->unk_1da_0 == 4)
+            if ((STATE->phase == 1 || STATE->phase == 3 || STATE->phase == 4)
                 && row != STATE->slots[STATE->currentSlot].row) {
                 goto plain;
             }

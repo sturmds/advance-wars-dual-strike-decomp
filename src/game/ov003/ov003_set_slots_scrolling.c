@@ -4,7 +4,7 @@
 #include "game/ov003_unit.h"
 
 /* Needed to match: the slot byte at 0x139 of Ov003State (Ov003Slot.row and
- * unk_01_4), read as a nibble pair at a 0x139 base. */
+ * state), read as a nibble pair at a 0x139 base. */
 typedef struct SlotNibbles {
     u8 low : 4;
     u8 high : 4;
@@ -19,7 +19,7 @@ u16 func_0207a1dc(void);
  * the state (high nibble) of the current slot to 3. With it, sets state 3 on
  * each linked slot whose row is 0 when the current slot's row is 1, or whose
  * row is not 0 when the current row is 0. */
-void Ov003_SetSlotsToState3(void)
+void Ov003_SetSlotsScrolling(void)
 {
     int i;
     Ov003State *state;

@@ -91,13 +91,13 @@ typedef struct Ov003Row {
 } Ov003Row;
 
 typedef struct Ov003Slot {
-    u8 unk_00;
+    u8 cursor;                         /* cell of its row under the placing cursor */
     u8 row : 4;                        /* 1 + row of cells; bit 0 picks Ov003Unit.facing */
-    u8 unk_01_4 : 4;                   /* func_ov003_023572b0 tests it for 2 */
+    u8 state : 4;                      /* OV003_SLOT_*: what Ov003_RunSlotInput runs for it */
     u8 pad_02[2];
 } Ov003Slot;
 
-/* Ov003Slot.unk_01_4, as Ov003_RunSlotInput dispatches it. */
+/* Ov003Slot.state, as Ov003_RunSlotInput dispatches it. */
 #define OV003_SLOT_STATE_1  1          /* Ov003Unit_HandleInput runs the slot */
 #define OV003_SLOT_PLACING  2          /* Ov003Slot_UpdatePlacing: cursor moves, a button places a unit */
 #define OV003_SLOT_SCROLLING 3         /* Ov003_ScrollWithDpad */
@@ -170,10 +170,10 @@ typedef struct Ov003State {
     u8 rowCount;                       /* rows in use */
     u8 unk_1d9;
     union {
-        u8 unk_1da;
+        u8 phases;
         struct {
-            u8 unk_1da_0 : 4;          /* 1: the row of the current slot (or Ov003State.row) is picked */
-            u8 unk_1da_4 : 4;
+            u8 phase : 4;              /* phase this frame runs in (Ov003_Update); 1: the row of the current slot (or Ov003State.row) is picked */
+            u8 nextPhase : 4;          /* phase asked for; Ov003_AdvancePhase copies it into phase */
         };
     };
     u8 row : 7;                        /* 1 to 5: the row spawns go to */
@@ -197,13 +197,6 @@ typedef struct Ov003SlotCooldown {
 } Ov003SlotCooldown;
 
 #define OV003_SLOT_COOLDOWN(state, slot) (((Ov003SlotCooldown *)(state)->pad_136)[slot].cooldown)
-
-/* View of Ov003State.unk_1da as two nibbles: Ov003_IsPhase0OrAbove6 switches on
- * the low one (0 to 6); Ov003_AdvanceMode copies the high one into it. */
-typedef struct Ov003NibblePair {
-    u8 low : 4;
-    u8 high : 4;
-} Ov003NibblePair;
 
 /* Map of overlay 3, through data_ov003_02364a88. */
 #define OV003_MAP_TILE_MAX 0x508
@@ -232,15 +225,6 @@ extern Ov003Map *data_ov003_02364a88;
 /* Frames left on a slot's cursor (halfword at 0x136 + 4 * slot, just before
  * Ov003Slot.unk_00). */
 #define OV003_SLOT_TIMER(slot) (((u16 *)((u8 *)data_ov003_02364928 + 0x136))[(slot) * 2])
-
-/* Cast view of Ov003State.unk_1da: the phase this frame runs in and the
- * one asked for. */
-typedef struct Ov003Phase {
-    u8 current : 4;
-    u8 next : 4;
-} Ov003Phase;
-
-#define OV003_PHASE(state) ((Ov003Phase *)&(state)->unk_1da)
 
 /* Byte 0x1d7 of Ov003State: the high byte of unk_1d6 (a halfword that is also
  * passed to func_02027aa0). */

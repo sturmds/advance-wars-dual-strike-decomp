@@ -51,13 +51,13 @@ void Ov003_InitRows(void)
         }
     }
     for (i = 0; i < 8; i++) {
-        STATE->slots[i].unk_00 = 0;
+        STATE->slots[i].cursor = 0;
         if (SETUP->unk_7c) {
             STATE->slots[i].row = SETUP->unk_70[i];
         } else {
             STATE->slots[i].row = 1;
         }
-        STATE->slots[i].unk_01_4 = 0;
+        STATE->slots[i].state = 0;
     }
 
     STATE->rowCount = STATE->preset->rowCount;
@@ -70,7 +70,7 @@ void Ov003_InitRows(void)
     }
 
     if (SETUP->unk_7c == 0) {
-        STATE->slots[STATE->currentSlot].unk_01_4 = 2;
+        STATE->slots[STATE->currentSlot].state = 2;
     } else {
         STATE->activeRows = 0;
         for (i = 0; i < 5; i++) {
@@ -78,7 +78,7 @@ void Ov003_InitRows(void)
         }
         for (i = 0; i < 8; i++) {
             if ((func_0207a1dc() | 1) & (1 << i)) {
-                STATE->slots[i].unk_01_4 = 2;
+                STATE->slots[i].state = 2;
                 STATE->rows[STATE->slots[i].row - 1].active = 1;
                 STATE->activeRows |= 1 << (STATE->slots[i].row - 1);
             }
@@ -144,8 +144,8 @@ void Ov003_InitRows(void)
     STATE->nextSpawn = 0;
     STATE->unk_1d9 = 0;
     STATE->unk_1db_7 = 0;
-    STATE->unk_1da = (STATE->unk_1da & ~0x0f) | 3;
-    STATE->unk_1da = (STATE->unk_1da & ~0xf0) | 0x30;
+    STATE->phases = (STATE->phases & ~0x0f) | 3;
+    STATE->phases = (STATE->phases & ~0xf0) | 0x30;
     STATE->frameCount = 0;
     STATE->unk_1cc = 0;
     for (i = 0; i < 8; i++) {

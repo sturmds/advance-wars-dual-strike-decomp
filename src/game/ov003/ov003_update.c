@@ -7,7 +7,6 @@
 #include "game/Unk_02160abc.h"
 
 /* func_ov003_02362334 asks for phase 7 (probably quit). */
-#define PHASE(state) OV003_PHASE(state)
 
 #define PHASE_PLAY  0
 #define PHASE_PAUSE 2
@@ -20,7 +19,7 @@
 #define PAUSE_BUTTON_HEIGHT 32
 
 void Ov003_ReadInput(void);
-void Ov003_AdvanceMode(void);
+void Ov003_AdvancePhase(void);
 void func_ov003_02350e88(void);
 void Ov003_DrawHudSprites(void);
 void Ov003_PlayPendingSound(void);
@@ -49,7 +48,7 @@ void Ov003_Update(void)
     int current;
 
     Ov003_ReadInput();
-    Ov003_AdvanceMode();
+    Ov003_AdvancePhase();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_ov003_02350e88();
     Screen_SetCurrentBoth(data_027c0288.unk_04);
@@ -70,12 +69,12 @@ void Ov003_Update(void)
     }
 
     state = data_ov003_02364928;
-    current = PHASE(state)->current;
-    if (current == PHASE(state)->next && current == PHASE_PLAY) {
+    current = state->phase;
+    if (current == state->nextPhase && current == PHASE_PLAY) {
         if (!(gKeypad->pressed & PAD_BUTTON_START)) {
             return;
         }
-        PHASE(state)->next = PHASE_PAUSE;
+        state->nextPhase = PHASE_PAUSE;
         /* darken everything but sprites */
         data_027c0280->blendMode = 3;
         data_027c0280->blendEva = 0;
@@ -100,7 +99,7 @@ void Ov003_Update(void)
 
     if (Ov003_InputTouchedRect(&data_ov003_02365b04, PAUSE_BUTTON_X, PAUSE_RESUME_Y,
                                PAUSE_BUTTON_WIDTH, PAUSE_BUTTON_HEIGHT) == 1) {
-        PHASE(data_ov003_02364928)->next = PHASE_PLAY;
+        data_ov003_02364928->nextPhase = PHASE_PLAY;
         data_027c0280->blendMode = 0;
         data_027c0280->blendEva = 16;
         data_027c0280->blendEvb = 0;
@@ -116,7 +115,7 @@ void Ov003_Update(void)
         }
         if (gKeypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_START)) {
             if (data_ov003_02364928->pauseCursor == 0) {
-                PHASE(data_ov003_02364928)->next = PHASE_PLAY;
+                data_ov003_02364928->nextPhase = PHASE_PLAY;
                 data_027c0280->blendMode = 0;
                 data_027c0280->blendEva = 16;
                 data_027c0280->blendEvb = 0;

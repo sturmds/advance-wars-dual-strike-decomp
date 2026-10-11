@@ -16,14 +16,14 @@ void Ov003_DrawSlotMarkers(void)
 
     if (data_02160ac0->unk_7c != 0) {
         for (i = 0; i < 8; i++) {
-            if (((func_0207a1dc() | 1) & (1 << i)) && STATE->slots[i].unk_01_4 == 2
+            if (((func_0207a1dc() | 1) & (1 << i)) && STATE->slots[i].state == 2
                 && STATE->slots[i].row == STATE->slots[STATE->currentSlot].row
                 && i != STATE->currentSlot) {
                 Ov003_DrawSlotMarker(i);
             }
         }
     }
-    if (STATE->slots[STATE->currentSlot].unk_01_4 == 2) {
+    if (STATE->slots[STATE->currentSlot].state == 2) {
         Ov003_DrawSlotMarker(STATE->currentSlot);
     }
 }

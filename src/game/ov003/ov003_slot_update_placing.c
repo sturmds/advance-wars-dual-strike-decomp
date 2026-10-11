@@ -17,10 +17,10 @@ int Ov003_InputTouchedCircle(Ov003Input *input, int x, int y, int radius);
 
 /* Runs a slot in state OV003_SLOT_PLACING. The d-pad moves its cursor; the
  * touch button at the lower right of the screen, A or Y places a unit at the
- * cursor. With unk_1da_0 at 1 the slot then goes to OV003_SLOT_PLACED, otherwise
+ * cursor. With phase at 1 the slot then goes to OV003_SLOT_PLACED, otherwise
  * to OV003_SLOT_STATE_1. In a link game (data_02160ac0->unk_7c set), other
  * slots still placing with their cursor on the same cell move down a cell;
- * when unk_1da_0 is not 1, one that cannot move goes to OV003_SLOT_SCROLLING. */
+ * when phase is not 1, one that cannot move goes to OV003_SLOT_SCROLLING. */
 void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
 {
     int row = STATE->slots[slot].row;
@@ -49,43 +49,43 @@ void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, Ov003Input *input)
         return;
     }
     /* needed to match: the slot goes to the create calls as a u8 */
-    if (STATE->unk_1da_0 == 1) {
-        if (Ov003Unit_TryCreate((u8)slot, STATE->slots[slot].unk_00, STATE->rows[row - 1].unk_38,
+    if (STATE->phase == 1) {
+        if (Ov003Unit_TryCreate((u8)slot, STATE->slots[slot].cursor, STATE->rows[row - 1].unk_38,
                                 STATE->rows[row - 1].unk_39) == 1) {
             if (slot == STATE->currentSlot) {
                 Sound_PlaySe(0x10006);
             }
             if (data_02160ac0->unk_7c == 0) {
-                STATE->slots[slot].unk_01_4 = OV003_SLOT_PLACED;
+                STATE->slots[slot].state = OV003_SLOT_PLACED;
                 return;
             }
             for (i = 0; i < 8; i++) {
                 if (((func_0207a1dc() | 1) & (1 << i)) && i != slot
-                    && STATE->slots[i].unk_01_4 == OV003_SLOT_PLACING
+                    && STATE->slots[i].state == OV003_SLOT_PLACING
                     && STATE->slots[i].row == STATE->slots[slot].row
-                    && STATE->slots[i].unk_00 == STATE->slots[slot].unk_00) {
+                    && STATE->slots[i].cursor == STATE->slots[slot].cursor) {
                     Ov003_MoveCursorDown(i);
                 }
             }
-            STATE->slots[slot].unk_01_4 = OV003_SLOT_PLACED;
+            STATE->slots[slot].state = OV003_SLOT_PLACED;
         } else {
             OV003_SLOT_COOLDOWN(STATE, slot) = 1;
         }
     } else {
-        if (func_ov003_0235c194((u8)slot, STATE->slots[slot].unk_00, STATE->rows[row - 1].unk_38,
+        if (func_ov003_0235c194((u8)slot, STATE->slots[slot].cursor, STATE->rows[row - 1].unk_38,
                                 STATE->rows[row - 1].unk_39) == 1) {
             if (slot == STATE->currentSlot) {
                 Sound_PlaySe(0x10006);
             }
-            STATE->slots[slot].unk_01_4 = OV003_SLOT_STATE_1;
+            STATE->slots[slot].state = OV003_SLOT_STATE_1;
             if (data_02160ac0->unk_7c != 0) {
                 for (i = 0; i < 8; i++) {
                     if (((func_0207a1dc() | 1) & (1 << i)) && i != slot
-                        && STATE->slots[i].unk_01_4 == OV003_SLOT_PLACING
+                        && STATE->slots[i].state == OV003_SLOT_PLACING
                         && STATE->slots[i].row == STATE->slots[slot].row
-                        && STATE->slots[i].unk_00 == STATE->slots[slot].unk_00) {
+                        && STATE->slots[i].cursor == STATE->slots[slot].cursor) {
                         if (Ov003_MoveCursorDown(i) == 0) {
-                            STATE->slots[i].unk_01_4 = OV003_SLOT_SCROLLING;
+                            STATE->slots[i].state = OV003_SLOT_SCROLLING;
                         }
                     }
                 }

@@ -13,7 +13,7 @@ int func_ov003_02357308(void)
     if (Ov003_IsPhase0Or1() == 0) {
         return 0;
     }
-    if (data_ov003_02364928->slots[data_ov003_02364928->currentSlot].unk_01_4 != 1) {
+    if (data_ov003_02364928->slots[data_ov003_02364928->currentSlot].state != 1) {
         return 0;
     }
     if (Ov003_IsPowerReady(data_ov003_02369534->row) == 0) {

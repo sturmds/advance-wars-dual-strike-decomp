@@ -19,7 +19,7 @@ src/game/ov003/ov003_update_link_start.c:
     complete
     .text       start:0x02350cf8 end:0x02350de0
 
-src/game/ov003/ov003_advance_mode.c:
+src/game/ov003/ov003_advance_phase.c:
     complete
     .text       start:0x02350de0 end:0x02350e88
 
@@ -812,7 +812,7 @@ src/game/ov003/func_ov003_02362c44.c:
     complete
     .text       start:0x02362c44 end:0x02362cac
 
-src/game/ov003/ov003_set_slots_to_state3.c:
+src/game/ov003/ov003_set_slots_scrolling.c:
     complete
     .text       start:0x02362cac end:0x02362db0
 

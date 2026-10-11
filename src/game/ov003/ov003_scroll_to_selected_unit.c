@@ -25,7 +25,7 @@ void Ov003_ScrollToSelectedUnit(void)
     u8 layer1;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    if (STATE->slots[STATE->currentSlot].unk_01_4 != 3) {
+    if (STATE->slots[STATE->currentSlot].state != 3) {
         if (SELECTED->hp != 0 || SELECTED->unk_17_7) {
             STATE->scrollX = (SELECTED->x >> 3) - 128;
             STATE->scrollY = (SELECTED->y >> 3) - 96;

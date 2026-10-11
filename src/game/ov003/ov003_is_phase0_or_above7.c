@@ -9,7 +9,7 @@ int Ov003_IsPhase0OrAbove7(void)
     if (OV003_UNK_1D7(state) != 0) {
         return 0;
     }
-    switch (OV003_PHASE(state)->current) {
+    switch (state->phase) {
     case 1:
     case 2:
     case 3:

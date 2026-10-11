@@ -29,7 +29,7 @@ void Ov003_UpdateUnits(void)
         if (unit->unk_17_6) {
             continue;
         }
-        if (STATE->unk_1da_0 == 1
+        if (STATE->phase == 1
             && unit->row != STATE->slots[STATE->currentSlot].row
             && unit->row != STATE->row) {
             continue;

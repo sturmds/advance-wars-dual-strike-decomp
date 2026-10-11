@@ -23,7 +23,7 @@ void Ov003_ScrollWithDpad(void);
 
 #define STATE data_ov003_02364928
 
-/* Runs the input routine that the slot's unk_01_4 picks. Alone, that is the
+/* Runs the input routine that the slot's state picks. Alone, that is the
  * current slot with the local keypad; linked, each of the 8 slots whose bit
  * is set in func_0207a1dc() | 1 gets the keys received for its player. */
 void Ov003_RunSlotInput(void)
@@ -32,7 +32,7 @@ void Ov003_RunSlotInput(void)
     LinkInput *input;
 
     if (data_02160ac0->unk_7c == 0) {
-        switch (STATE->slots[STATE->currentSlot].unk_01_4) {
+        switch (STATE->slots[STATE->currentSlot].state) {
         case 0:
             break;
         case 1:
@@ -50,7 +50,7 @@ void Ov003_RunSlotInput(void)
             if ((func_0207a1dc() | 1) & (1 << i)) {
                 input = func_02078138((u16)i);
                 func_0200a4b8(&data_0216e4e4[i], input->keys);
-                switch (STATE->slots[i].unk_01_4) {
+                switch (STATE->slots[i].state) {
                 case 0:
                     break;
                 case 1:

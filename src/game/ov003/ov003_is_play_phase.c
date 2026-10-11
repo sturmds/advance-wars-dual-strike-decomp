@@ -10,7 +10,7 @@ int Ov003_IsPlayPhase(void)
         return 0;
     }
     /* needed to match: a switch, not an if */
-    switch (OV003_PHASE(state)->current) {
+    switch (state->phase) {
     case 0:
         return 1;
     default:

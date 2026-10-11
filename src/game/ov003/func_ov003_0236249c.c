@@ -19,7 +19,7 @@ void func_ov003_0236249c(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    data_ov003_02364928->unk_1da = (data_ov003_02364928->unk_1da & ~0xf0) | 0x70;
+    data_ov003_02364928->phases = (data_ov003_02364928->phases & ~0xf0) | 0x70;
     Task_Create(data_ov003_02364c34, TASK_LIST(4));
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(savedGfx);

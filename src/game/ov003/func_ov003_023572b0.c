@@ -8,5 +8,5 @@ int func_ov003_023572b0(void)
     if (Ov003_IsPhase0Or1() == 0) {
         return 0;
     }
-    return data_ov003_02364928->slots[data_ov003_02364928->currentSlot].unk_01_4 == 2;
+    return data_ov003_02364928->slots[data_ov003_02364928->currentSlot].state == 2;
 }

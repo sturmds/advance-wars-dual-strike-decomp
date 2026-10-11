@@ -16,5 +16,5 @@ void Ov003_ResetSpriteMatrix(void)
 
     Oam_SetAffineParams(0, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, 256),
                   HwDiv32(sinValue * 16, 256), HwDiv32(cosValue, 256));
-    ((Ov003NibblePair *)&data_ov003_02364928->unk_1da)->high = 0;
+    data_ov003_02364928->nextPhase = 0;
 }

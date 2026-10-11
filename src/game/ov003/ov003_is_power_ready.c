@@ -12,7 +12,7 @@ int Ov003_IsRowPowerActive(int row);
  * qualifies. */
 int Ov003_IsPowerReady(int row)
 {
-    if (data_ov003_02364928->unk_1da_0 != data_ov003_02364928->unk_1da_4) {
+    if (data_ov003_02364928->phase != data_ov003_02364928->nextPhase) {
         return 0;
     }
     if (!data_ov003_02364928->unk_1df_6) {

@@ -14,24 +14,24 @@ int Ov003_MoveCursorDown(int slot)
     Ov003Cell *cell;
 
     rowIndex = data_ov003_02364928->slots[slot].row - 1;
-    cursor = data_ov003_02364928->slots[slot].unk_00;
+    cursor = data_ov003_02364928->slots[slot].cursor;
     cell = &data_ov003_02364928->rows[rowIndex].cells[cursor];
     for (i = cursor + 1, cell++; i < data_ov003_02364928->rows[rowIndex].spawnCount; i++, cell++) {
         if (cell->state == 1) {
             if (slot == data_ov003_02364928->currentSlot) {
                 Sound_PlaySe(0x10002);
             }
-            data_ov003_02364928->slots[slot].unk_00 = i;
+            data_ov003_02364928->slots[slot].cursor = i;
             return 1;
         }
     }
     cell = data_ov003_02364928->rows[rowIndex].cells;
-    for (i = 0; i < data_ov003_02364928->slots[slot].unk_00; i++, cell++) {
+    for (i = 0; i < data_ov003_02364928->slots[slot].cursor; i++, cell++) {
         if (cell->state == 1) {
             if (slot == data_ov003_02364928->currentSlot) {
                 Sound_PlaySe(0x10002);
             }
-            data_ov003_02364928->slots[slot].unk_00 = i;
+            data_ov003_02364928->slots[slot].cursor = i;
             return 1;
         }
     }

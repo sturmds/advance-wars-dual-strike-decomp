@@ -9,12 +9,12 @@ void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 #define STATE data_ov003_02364928
 
 /* Queues one sprite for a slot: the column comes from the high nibble of its
- * row's byte 0x3b, the line from Ov003Slot.unk_00 (10 and up counts from 0 again,
+ * row's byte 0x3b, the line from Ov003Slot.cursor (10 and up counts from 0 again,
  * 3 columns over). With data_02160ac0->unk_7c set the attribute word gets 16 more
  * per slot. What it shows is not known. */
 void Ov003_DrawSlotMarker(int slot)
 {
-    int y = STATE->slots[slot].unk_00;
+    int y = STATE->slots[slot].cursor;
     int column = STATE->rows[STATE->slots[slot].row - 1].unk_3b_4;
     int x = column * 4;
 

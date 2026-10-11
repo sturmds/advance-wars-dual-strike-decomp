@@ -17,7 +17,7 @@ int Ov003_MoveCursorRight(int slot)
     Ov003Cell *cell;
 
     rowNumber = data_ov003_02364928->slots[slot].row;
-    cursor = data_ov003_02364928->slots[slot].unk_00;
+    cursor = data_ov003_02364928->slots[slot].cursor;
     if (cursor >= 10) {
         return Ov003_MoveCursorLeft(slot);
     }
@@ -28,7 +28,7 @@ int Ov003_MoveCursorRight(int slot)
             if (slot == data_ov003_02364928->currentSlot) {
                 Sound_PlaySe(0x10002);
             }
-            data_ov003_02364928->slots[slot].unk_00 = i;
+            data_ov003_02364928->slots[slot].cursor = i;
             return 1;
         }
     }
@@ -38,7 +38,7 @@ int Ov003_MoveCursorRight(int slot)
             if (slot == data_ov003_02364928->currentSlot) {
                 Sound_PlaySe(0x10002);
             }
-            data_ov003_02364928->slots[slot].unk_00 = i;
+            data_ov003_02364928->slots[slot].cursor = i;
             return 1;
         }
     }

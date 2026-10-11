@@ -11,7 +11,7 @@ extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern const TaskScriptCmd data_ov003_02364b74[];
 
-/* Sets the next mode (high nibble of Ov003State.unk_1da) to 6 and starts the
+/* Sets Ov003State.nextPhase to 6 and starts the
  * task of data_ov003_02364b74 on the first screen. */
 void func_ov003_0236322c(void)
 {
@@ -21,7 +21,7 @@ void func_ov003_0236322c(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    data_ov003_02364928->unk_1da = (data_ov003_02364928->unk_1da & ~0xf0) | 0x60;
+    data_ov003_02364928->phases = (data_ov003_02364928->phases & ~0xf0) | 0x60;
     Task_Create(data_ov003_02364b74, TASK_LIST(4));
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(savedGfx);

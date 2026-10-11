@@ -32,7 +32,7 @@ void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
     if (object->variant == unit->row) {
         return;
     }
-    if (OV003_PHASE(data_ov003_02364928)->current == 7) {
+    if (data_ov003_02364928->phase == 7) {
         return;
     }
     damage += (Ov003_RandNext() & 7) - 3;

@@ -19,8 +19,8 @@ void func_ov003_02362c44(void);
  * ran out. Removes all its units (with a sprite where each one stood), frees
  * its row of cells and counts the teams left. With two or more left, the
  * team's slots only scroll the map and Ov003_ReplaceRowSpecialTiles(team) runs; with
- * one left, func_ov003_02361c7c gets the winner. When unk_1da_0 is 7, it only
- * clears unk_01_4 of the slots in the func_0207a1dc mask. */
+ * one left, func_ov003_02361c7c gets the winner. When phase is 7, it only
+ * clears state of the slots in the func_0207a1dc mask. */
 void Ov003_DefeatTeam(int team)
 {
     Ov003Unit *unit;
@@ -32,10 +32,10 @@ void Ov003_DefeatTeam(int team)
     int j;
 
     unit = data_ov003_02369538;
-    if (STATE->unk_1da_0 == 7) {
+    if (STATE->phase == 7) {
         for (i = 0; i < 8; i++) {
             if ((func_0207a1dc() | 1) & (1 << i)) {
-                STATE->slots[i].unk_01_4 = 0;
+                STATE->slots[i].state = 0;
             }
         }
         return;
@@ -84,16 +84,16 @@ void Ov003_DefeatTeam(int team)
     }
 
     if (data_02160ac0->unk_7c == 0) {
-        STATE->slots[STATE->currentSlot].unk_01_4 = 0;
+        STATE->slots[STATE->currentSlot].state = 0;
     } else {
         for (i = 0; i < 8; i++) {
             if ((func_0207a1dc() | 1) & (1 << i)) {
                 if (alive >= 2) {
                     if (team == STATE->slots[i].row) {
-                        STATE->slots[i].unk_01_4 = OV003_SLOT_SCROLLING;
+                        STATE->slots[i].state = OV003_SLOT_SCROLLING;
                     }
                 } else {
-                    STATE->slots[i].unk_01_4 = 0;
+                    STATE->slots[i].state = 0;
                 }
             }
         }

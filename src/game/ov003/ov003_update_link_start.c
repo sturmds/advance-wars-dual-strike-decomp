@@ -21,7 +21,7 @@ void Ov003_UpdateLinkStart(void)
     int i;
     int found;
 
-    if (((Ov003NibblePair *)&data_ov003_02364928->unk_1da)->low != 3) {
+    if (data_ov003_02364928->phase != 3) {
         return;
     }
     found = 0;

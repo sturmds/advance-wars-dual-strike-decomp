@@ -12,7 +12,7 @@ void func_ov003_0235cb08(Unk_ov003_0235dd38 *obj)
     data_027c0280->blendEva = 16;
     data_027c0280->blendEvb = 0;
     data_027c0280->blendEvy = 0;
-    /* clears the high nibble of unk_1da */
-    data_ov003_02364928->unk_1da &= ~0xf0;
+    /* clears nextPhase */
+    data_ov003_02364928->phases &= ~0xf0;
     Ov003_StartRowPower(obj->unk_52);
 }

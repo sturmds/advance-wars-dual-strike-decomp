@@ -22,7 +22,7 @@ void Ov003_UpdateRowUnits(void)
     if (STATE->unk_1db_7) {
         return;
     }
-    if (Ov003_IsPowerReady(STATE->row) == 1 && STATE->slots[0].unk_01_4 == 1 && data_ov003_02369538[0].hp != 0) {
+    if (Ov003_IsPowerReady(STATE->row) == 1 && STATE->slots[0].state == 1 && data_ov003_02369538[0].hp != 0) {
         func_ov003_0235ca50(STATE->row);
     }
     for (i = 0; i < 16; i++, unit++) {
