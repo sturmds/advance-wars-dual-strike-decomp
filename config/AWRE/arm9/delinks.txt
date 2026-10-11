@@ -2027,6 +2027,10 @@ src/game/main/script/event_script_call_unk4658.c:
     complete
     .text       start:0x0201d024 end:0x0201d064
 
+src/game/main/script/event_script_wait_task_both_screens.c:
+    complete
+    .text       start:0x0201d064 end:0x0201d158
+
 src/game/main/func_0201d320.c:
     complete
     .text       start:0x0201d320 end:0x0201d378
