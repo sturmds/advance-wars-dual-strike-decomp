@@ -4687,7 +4687,7 @@ MapBg_DrawTileRow kind:function(arm,size=0x434) addr:0x020f6a40
 MapBg_DrawTileColumn kind:function(arm,size=0x3f4) addr:0x020f6e74
 MapView_ScrollStep kind:function(arm,size=0x314) addr:0x020f7268
 Vram_InitBanks kind:function(arm,size=0x60) addr:0x020f757c
-func_020f75dc kind:function(arm,size=0x100) addr:0x020f75dc
+Sprite_DrawPulsingCorners kind:function(arm,size=0x100) addr:0x020f75dc
 ScreenConfig_RunFrameHook kind:function(arm,size=0x4c) addr:0x020f76dc
 ObjGfx_LoadLanguageTiles kind:function(arm,size=0x94) addr:0x020f7728
 func_020f77bc kind:function(arm,size=0x80) addr:0x020f77bc
@@ -8087,7 +8087,7 @@ data_02169d64 kind:data(any) addr:0x02169d64
 data_02169d70 kind:data(any) addr:0x02169d70
 data_02169d78 kind:data(any) addr:0x02169d78
 data_02169d7c kind:data(any) addr:0x02169d7c
-data_02169d84 kind:data(any) addr:0x02169d84
+gCornerSpriteShape kind:data(any) addr:0x02169d84
 data_02169d8c kind:data(any) addr:0x02169d8c
 data_02169d94 kind:data(any) addr:0x02169d94
 gCycleHookSteps kind:data(any) addr:0x02169d9c

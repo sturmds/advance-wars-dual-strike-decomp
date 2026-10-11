@@ -18542,6 +18542,10 @@ src/game/main/map/vram_init_banks.c:
     complete
     .text       start:0x020f757c end:0x020f75dc
 
+src/game/main/graphics/sprite_draw_pulsing_corners.c:
+    complete
+    .text       start:0x020f75dc end:0x020f76dc
+
 src/game/main/map/screen_config_run_frame_hook.c:
     complete
     .text       start:0x020f76dc end:0x020f7728
