@@ -238,7 +238,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_10)(void);
     void (*unk_14)(void);
     void (*callback)(void);            /* run by func_020f53e8 when set; name is a guess */
-    u8 pad_1c[0x20 - 0x1c];
+    void (*unk_1c)(void);              /* run by MainLoop_MapFrame each frame on the second screen, when set */
     void (*unk_20)(int player, int frame); /* run by PowerMeter_UpdateFlash for each player in the game: the power meter flash frame, 0-15 */
     u8 pad_24[0x2c - 0x24];
     void (*unk_2c)(void);              /* run by MapCursor_ShowRange when set, after it shows a range */

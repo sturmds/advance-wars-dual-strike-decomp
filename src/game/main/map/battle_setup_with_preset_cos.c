@@ -19,7 +19,7 @@ void func_01ff9c48(const void *descriptor);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u8 func_020d308c[];
+extern u8 MainLoop_MapFrame[];
 extern u32 data_022a6b38;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -58,6 +58,6 @@ void Battle_SetupWithPresetCos(void)
         HOOKS->unk_54(1);
     }
     Battle_RegisterFrameCallbacks();
-    func_01ff9c48(func_020d308c);
+    func_01ff9c48(MainLoop_MapFrame);
     data_022a6b38 = 0;
 }

@@ -18,7 +18,7 @@ extern u16 data_022a6b40[];
 extern u16 data_02166e3c[];
 extern u16 data_021587e0[];
 extern u16 data_02149080[];
-extern u8 func_020d308c[];
+extern u8 MainLoop_MapFrame[];
 
 void *func_01ff9c38(void);
 
@@ -26,7 +26,7 @@ void *func_01ff9c38(void);
  * rounded up to even goes to gMapPreviewWidth and gMapPreviewHeight. The
  * column offsets (data_022a6bd0) step by 1 and 15 in turn, the row offsets
  * (data_022a6b80) by 8 and width * 8 - 8. data_0229b054 is 0 only while the main loop is
- * func_020d308c; MapPreview_DrawLowerHalf then draws the rest. The tile
+ * MainLoop_MapFrame; MapPreview_DrawLowerHalf then draws the rest. The tile
  * drawing is the same as there. */
 void MapPreview_DrawUpperHalf(u16 *dst)
 {
@@ -44,7 +44,7 @@ void MapPreview_DrawUpperHalf(u16 *dst)
     int offset;
     int width;
 
-    if (func_01ff9c38() == func_020d308c) {
+    if (func_01ff9c38() == MainLoop_MapFrame) {
         data_0229b054 = 0;
     } else {
         data_0229b054 = 1;

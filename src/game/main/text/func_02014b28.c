@@ -12,12 +12,12 @@ extern EventScriptCommand data_02166a88[];
 extern EventScriptCommand data_02166b08[];
 extern EventScriptCommand data_02167880[];
 extern ScriptCommand data_ov000_0234f2dc[];
-extern u8 func_020d308c[];
+extern u8 MainLoop_MapFrame[];
 
 /* Checked by the text printer update before it acts on a touch press (button
  * bit 0x400). TRUE while the data_02158354 task runs; FALSE while the
  * data_02158344 task, any of the event scripts or the data_ov000_0234f2dc slot
- * script runs; otherwise whether the main loop is func_020d308c. Purpose
+ * script runs; otherwise whether the main loop is MainLoop_MapFrame. Purpose
  * guessed. */
 BOOL func_02014b28(void)
 {
@@ -39,5 +39,5 @@ BOOL func_02014b28(void)
     if (ScriptSlot_Find(data_ov000_0234f2dc) != -1) {
         return FALSE;
     }
-    return func_01ff9bb4((int)func_020d308c) != 0;
+    return func_01ff9bb4((int)MainLoop_MapFrame) != 0;
 }
