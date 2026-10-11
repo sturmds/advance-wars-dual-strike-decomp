@@ -4973,6 +4973,10 @@ src/game/main/link/link_screen_set_ready.c:
     complete
     .text       start:0x020725a8 end:0x02072638
 
+src/game/main/link/link_screen_find_panel_of_player.c:
+    complete
+    .text       start:0x02072790 end:0x020727d0
+
 src/game/main/link/link_screen_add_buttons.c:
     complete
     .text       start:0x020727d0 end:0x0207287c
