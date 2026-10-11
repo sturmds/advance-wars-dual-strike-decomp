@@ -42,7 +42,7 @@ void BattleCellTask_MakeMatchupSprites(BattleCellTask *task)
         task->posY, task->posZ, 0, task->angle, 0, scale, scale, SIDE_COLOUR(0, side), field56,
         0, side, task->hasPos2, task->pos2X, task->pos2Y, task->pos2Z, field58);
 
-    if (MENU->battle.unk_30[task->side] != NULL) {
+    if (MENU->battle.spriteTables2[task->side] != NULL) {
         if (CELL_TASK_ENTRY(task).sprites[1] != NULL) {
             Task_Destroy((Task *)CELL_TASK_ENTRY(task).sprites[1]);
             CELL_TASK_ENTRY(task).sprites[1] = NULL;
@@ -53,12 +53,12 @@ void BattleCellTask_MakeMatchupSprites(BattleCellTask *task)
         field58 = left ? 0 : 2;
         field56 = left ? 0 : 2;
         CELL_TASK_ENTRY(task).sprites[1] = BattleSpriteTask_Create(
-            MENU->battle.unk_30[task->side], Battle_GetMatchupNibble1(side), task->posX,
+            MENU->battle.spriteTables2[task->side], Battle_GetMatchupNibble1(side), task->posX,
             task->posY, task->posZ, 0, task->angle, 0, scale, scale, SIDE_COLOUR(1, side),
             field56, 0, side, task->hasPos2, task->pos2X, task->pos2Y, task->pos2Z, field58);
     }
 
-    if (MENU->battle.unk_38[task->side] != NULL) {
+    if (MENU->battle.spriteTables3[task->side] != NULL) {
         if (CELL_TASK_ENTRY(task).sprites[2] != NULL) {
             Task_Destroy((Task *)CELL_TASK_ENTRY(task).sprites[2]);
             CELL_TASK_ENTRY(task).sprites[2] = NULL;
@@ -69,7 +69,7 @@ void BattleCellTask_MakeMatchupSprites(BattleCellTask *task)
         field58 = left ? 0 : 2;
         field56 = left ? 0 : 2;
         CELL_TASK_ENTRY(task).sprites[2] = BattleSpriteTask_Create(
-            MENU->battle.unk_38[task->side], Battle_GetSideMatchupValue(side), task->posX,
+            MENU->battle.spriteTables3[task->side], Battle_GetSideMatchupValue(side), task->posX,
             task->posY, task->posZ, 0, task->angle, 0, scale, scale, SIDE_COLOUR(2, side),
             field56, 0, side, task->hasPos2, task->pos2X, task->pos2Y, task->pos2Z, field58);
     }

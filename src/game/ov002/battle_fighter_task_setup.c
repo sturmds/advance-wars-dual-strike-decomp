@@ -26,7 +26,7 @@ void BattleFighterTask_Setup(FighterTask *task)
     task->fighter = (BattleCellTask *)MENU->battle.unk_310[task->side][0].unk_00;
     task->steps = &MENU->battle.hitLists[task->side];
     task->anim = (BattleAnimData *)MENU->battle.unk_27c[task->side]->cellPositions;
-    if (MENU->battle.unk_30[task->side] != 0) {
+    if (MENU->battle.spriteTables2[task->side] != 0) {
         if (FIGHTER_ENTRY(task).sprites[1] != NULL) {
             Task_Destroy((Task *)FIGHTER_ENTRY(task).sprites[1]);
             FIGHTER_ENTRY(task).sprites[1] = NULL;
@@ -38,7 +38,7 @@ void BattleFighterTask_Setup(FighterTask *task)
         unk_56 = left ? 0 : 2;
         side = fighter->side;
         FIGHTER_ENTRY(task).sprites[1] = BattleSpriteTask_Create(
-            (const u32 *)MENU->battle.unk_30[task->fighter->side],
+            (const u32 *)MENU->battle.spriteTables2[task->fighter->side],
             task->steps->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->posX,
             fighter->posY, fighter->posZ, 0, fighter->angle, 0, scale, scale,
             (&MENU->colours[2])[side], unk_56, 0, side, fighter->hasPos2, fighter->pos2X,

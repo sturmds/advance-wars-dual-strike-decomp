@@ -18,8 +18,7 @@ void Battle_SortHitList(BattleHitList *list);
 #define SHIFT (TIMES((ROLE(side) + 1) & 1)->unk_08 - TIMES((ROLE(side) + 1) & 1)->unk_06)
 
 /* Needed to match: the flags of the step list and the new list are reached with the field
- * offset added at run time, the step list's count and keys with it folded into the load.
- * BattleScreenWork.stepLists has the layout of a BattleHitList here. */
+ * offset added at run time, the step list's count and keys with it folded into the load. */
 #define BATTLE_FIELD(field) ((u8 *)&gMenuState + (u32)&((MenuState *)0)->battle.field)
 #define STEPS ((BattleHitList *)BATTLE_FIELD(stepLists) + side)
 #define LIST ((BattleHitList *)BATTLE_FIELD(unk_2ec) + side)
@@ -54,18 +53,18 @@ void func_ov002_023549c8(void)
         if ((&BATTLE.unk_27c[(side + 1) & 1]->effects[4])[Ov002_gBattleScene->sides[(side + 1) & 1].usesSecondary] != NULL) {
             for (i = 0; i < STEP_LIST.count; i++) {
                 if (STEPS->flags[i].unk_7 == 0) {
-                    LIST->flags[LIST->count].unk_0 = STEPS->flags[i].unk_0;
+                    LIST->flags[LIST->count].cell = STEPS->flags[i].cell;
                     LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
                     LIST->flags[LIST->count].unk_6 = 1;
                     LIST->key[LIST->count] = STEP_LIST.key[i]
                         + SHIFT;
                     flags = &LIST->flags[LIST->count];
-                    cell = flags->unk_0;
+                    cell = flags->cell;
                     if (BATTLE.unk_310[side][cell].fillAfter != 0 || BATTLE.unk_27c[side]->unk_48 == 1) {
                         flags->unk_6 = 0;
                     } else {
                         for (j = i + 1; j < STEP_LIST.count; j++) {
-                            if (cell == STEPS->flags[j].unk_0) {
+                            if (cell == STEPS->flags[j].cell) {
                                 flags->unk_6 = 0;
                                 break;
                             }
@@ -83,11 +82,11 @@ void func_ov002_023549c8(void)
                         continue;
                     }
                     for (j = 0; j < LIST->count; j++) {
-                        if (cell == LIST->flags[j].unk_0 && LIST->flags[j].unk_6 == 1) {
+                        if (cell == LIST->flags[j].cell && LIST->flags[j].unk_6 == 1) {
                             goto next;
                         }
                     }
-                    LIST->flags[LIST->count].unk_0 = cell;
+                    LIST->flags[LIST->count].cell = cell;
                     LIST->flags[LIST->count].unk_6 = 1;
                     if (side == Ov002_gBattleScene->attackerSide) {
                         LIST->key[LIST->count] = ATTACKER_KEY(added);
@@ -106,7 +105,7 @@ void func_ov002_023549c8(void)
                 sum += BATTLE.unk_310[side][cell].fillAfter;
             }
             if (sum == 0) {
-                LIST->flags[LIST->count].unk_0 = 0;
+                LIST->flags[LIST->count].cell = 0;
                 LIST->flags[LIST->count].unk_6 = 1;
                 LIST->flags[LIST->count].unk_3 = 7;
                 if (side == Ov002_gBattleScene->attackerSide) {
@@ -131,7 +130,7 @@ void func_ov002_023549c8(void)
                 if (BATTLE.unk_310[side][cell].fillBefore == 0 || BATTLE.unk_310[side][cell].fillAfter != 0) {
                     continue;
                 }
-                LIST->flags[LIST->count].unk_0 = cell;
+                LIST->flags[LIST->count].cell = cell;
                 LIST->flags[LIST->count].unk_6 = 1;
                 if (side == Ov002_gBattleScene->attackerSide) {
                     LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
@@ -140,7 +139,7 @@ void func_ov002_023549c8(void)
                 }
                 LIST->flags[LIST->count].unk_3 = 7;
                 for (i = 0; i < STEP_LIST.count; i++) {
-                    if (STEPS->flags[i].unk_7 == 0 && cell == STEPS->flags[i].unk_0
+                    if (STEPS->flags[i].unk_7 == 0 && cell == STEPS->flags[i].cell
                         && STEP_LIST.key[i] + SHIFT >= LIST->key[LIST->count]) {
                         LIST->key[LIST->count] = STEP_LIST.key[i]
                             + SHIFT;

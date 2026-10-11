@@ -18,7 +18,7 @@ extern s16 data_0214d4c4[];
  * loads the base again after the call, as the original does. */
 #define SIDE_STATE(side) ((MenuState *)((u8 *)&gMenuState + (side) * 8))
 #define SIDE_SWAY(side) (((MenuState *)((BattleSway *)&gMenuState + (side)))->battle.sway[0])
-#define SIDE_SCROLL(side) (((MenuState *)((u8 *)&gMenuState + (side) * 2))->battle.unk_408[0])
+#define SIDE_SCROLL(side) (((MenuState *)((u8 *)&gMenuState + (side) * 2))->battle.bgScroll[0])
 
 void func_0210bb9c(int sin, int cos);
 BOOL Battle_IsSideDrawnInAir(int side);
@@ -30,7 +30,7 @@ void Gx_SendQuadXZ(int x, int y, int z, int width, int depth, int u0, int v0, in
 /* Draws the ground of one battle side: an upright back panel, the floor, and for a Piperunner
  * (or type 30) its rail. The panel moves back by half the side's sway and turns back by the
  * sway angle. A sea floor scrolls with the frame count. When Battle_IsSideDrawnInAir says the side has
- * no ground, it draws nothing and only advances the side's BG scroll (unk_408, which
+ * no ground, it draws nothing and only advances the side's BG scroll (bgScroll, which
  * Battle_DrawScene adds to the BG2 and BG3 scroll); a sea side advances it every second frame.
  * The two sides use their own textures and palettes. */
 void Battle_DrawSideGround(int side)

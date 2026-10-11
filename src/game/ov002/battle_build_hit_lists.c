@@ -29,13 +29,13 @@ void Battle_BuildHitLists(void)
 
                 if (side == Ov002_gBattleScene->attackerSide
                     && gMenuState.battle.unk_310[side][entry].fillBefore != 0) {
-                    list->flags[list->count].unk_0 = entry;
+                    list->flags[list->count].cell = entry;
                     list->key[list->count] = TIMES->unk_04 + TIMES->unk_0a[list->count];
                     list->count++;
                 }
                 if (side != Ov002_gBattleScene->attackerSide
                     && gMenuState.battle.unk_310[side][entry].fillAfter != 0) {
-                    list->flags[list->count].unk_0 = entry;
+                    list->flags[list->count].cell = entry;
                     list->key[list->count] = TIMES->unk_04 + TIMES->unk_0f[list->count];
                     list->count++;
                 }

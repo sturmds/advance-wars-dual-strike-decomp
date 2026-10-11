@@ -132,15 +132,6 @@ typedef struct BattleSway {
 
 struct BattleSideData;
 
-/* The cells of one side's HP bar to update, one per step. */
-typedef struct BattleStepList {
-    struct {
-        u8 cell : 3;                   /* index into the side's BattleEntry list */
-        u8 unk_3 : 5;
-    } steps[17];
-    u8 count;                          /* steps in use */
-} BattleStepList;
-
 /* A sprite on one cell of a side's HP bar, 5 per side. */
 struct BattleSpriteTask;
 
@@ -161,8 +152,8 @@ typedef struct BattleScreenWork {
     u16 unk_24;                        /* palette entry of the extra sprite of BattleCellTask_RemakeSpritesWithEffect */
     u16 pipeTexture;                   /* texture drawn under a Piperunner, in 32-byte units of texture VRAM */
     const u32 *spriteTables[2];        /* table argument of BattleSpriteTask_Create for the HP cells, per side */
-    const u32 *unk_30[2];              /* per side, like spriteTables */
-    const u32 *unk_38[2];              /* per side, like spriteTables */
+    const u32 *spriteTables2[2];       /* per side: the HP cells' second sprite, from BattleSideData.unk_08 */
+    const u32 *spriteTables3[2];       /* per side: the third sprite, from BattleSideData.unk_10 */
     void *unk_40[2];                   /* per side; nonzero once the side's animation is up, a guess */
     u32 unk_48[2];                     /* tables BattleSpriteTask_Create makes the sprites of a side from */
     const u32 *hitSpriteTables[2];     /* per side: sprite made on a hit of the second hit list, a guess */
@@ -184,11 +175,11 @@ typedef struct BattleScreenWork {
     u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
     u16 unk_2a0[2];                    /* per side, like unk_29c */
     BattleHitList hitLists[2];         /* per side, built by Battle_BuildHitLists */
-    BattleStepList stepLists[2];
+    BattleHitList stepLists[2];        /* per side, built by func_ov002_023552d0 from the other side's hitLists */
     BattleHitList unk_2ec[2];          /* per side, built by func_ov002_023549c8 from stepLists */
     BattleEntry unk_310[2][5];
     const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
-    u16 unk_408[2];                    /* cleared by Battle_Init */
+    u16 bgScroll[2];                   /* added to the BG2/BG3 x scroll by Battle_DrawScene; cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init; Battle_UpdateSway sets them to sway[0].x >> 4 */
     u16 unk_410[32];                   /* unk_450 brightened halfway to white */
     u16 unk_450[32];                   /* a side's palette, loaded by File_ReadTo */
@@ -240,7 +231,7 @@ typedef struct MenuStateFrom200 {
  * setup.unk_4fc through this symbol. */
 typedef struct MenuStateFrom400 {
     u8 pad_400[0x408 - 0x400];
-    u16 unk_408[2];                    /* BattleScreenWork.unk_408 */
+    u16 bgScroll[2];                   /* BattleScreenWork.bgScroll */
     u16 unk_40c[2];                    /* BattleScreenWork.unk_40c */
     u8 pad_410[0x4fa - 0x410];
     u16 prevMapId;                     /* BattleSetupState.prevMapId */

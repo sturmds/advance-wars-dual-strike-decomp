@@ -29,7 +29,7 @@ void func_ov002_0235882c(BattleScreenTask *screen)
             if (MENU->battle.unk_27c[side]->unk_48 == 0) {
                 if (!DUE.unk_6) {
                     if (MENU->battle.unk_58[side] != NULL) {
-                        task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.unk_0].unk_00;
+                        task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.cell].unk_00;
                         scale = task->scale * 384 >> 8;
                         MENU->battle.unk_22c[side][DUE.unk_3] = (BattleCounterTask *)BattleSpriteTask_Create(
                             MENU->battle.unk_58[task->side], 0, task->posX, task->posY, task->posZ,
@@ -39,7 +39,7 @@ void func_ov002_0235882c(BattleScreenTask *screen)
                             task->pos2X, task->pos2Y, task->pos2Z, 8);
                     }
                 } else {
-                    task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.unk_0].unk_00;
+                    task = (BattleCellTask *)MENU->battle.unk_310[side][DUE.cell].unk_00;
                     task->steps[task->stepIndex] = 5;
                     task->stepIndex++;
                     if (task->stepIndex == 8) {

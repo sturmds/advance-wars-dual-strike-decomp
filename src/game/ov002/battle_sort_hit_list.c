@@ -19,9 +19,9 @@ void Battle_SortHitList(BattleHitList *list)
 
                 list->key[i] = list->key[i + 1];
                 list->key[i + 1] = key;
-                flag0 = list->flags[i].unk_0;
-                list->flags[i].unk_0 = list->flags[i + 1].unk_0;
-                list->flags[i + 1].unk_0 = flag0;
+                flag0 = list->flags[i].cell;
+                list->flags[i].cell = list->flags[i + 1].cell;
+                list->flags[i + 1].cell = flag0;
                 flag3 = list->flags[i].unk_3;
                 list->flags[i].unk_3 = list->flags[i + 1].unk_3;
                 list->flags[i + 1].unk_3 = flag3;

@@ -5,7 +5,7 @@
 
 /* One byte of flags per entry of a BattleHitList. */
 typedef struct BattleHitFlags {
-    u8 unk_0 : 3;
+    u8 cell : 3;                       /* index into the side's BattleEntry list */
     u8 unk_3 : 3;
     u8 unk_6 : 1;
     u8 unk_7 : 1;

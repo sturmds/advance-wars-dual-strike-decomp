@@ -104,13 +104,13 @@ void func_ov002_02352754(void)
         if (byStyle != NULL) {
             path = byStyle->files[SCENE->sides[side].armyStyle - 1];
             if (IS_EMPTY(path)) {
-                BATTLE.unk_30[side] = NULL;
+                BATTLE.spriteTables2[side] = NULL;
             } else {
                 tile += LOAD_TILES(path);
-                BATTLE.unk_30[side] = BATTLE.unk_27c[side]->unk_08[weapon]->gfx.tables[SCENE->sides[side].armyStyle - 1];
+                BATTLE.spriteTables2[side] = BATTLE.unk_27c[side]->unk_08[weapon]->gfx.tables[SCENE->sides[side].armyStyle - 1];
             }
         } else {
-            BATTLE.unk_30[side] = NULL;
+            BATTLE.spriteTables2[side] = NULL;
         }
 
         TILE_START(2) = tile;
@@ -118,13 +118,13 @@ void func_ov002_02352754(void)
         if (byStyle != NULL) {
             path = byStyle->files[SCENE->sides[side].armyStyle - 1];
             if (IS_EMPTY(path)) {
-                BATTLE.unk_38[side] = NULL;
+                BATTLE.spriteTables3[side] = NULL;
             } else {
                 tile += LOAD_TILES(path);
-                BATTLE.unk_38[side] = BATTLE.unk_27c[side]->unk_10->gfx.tables[SCENE->sides[side].armyStyle - 1];
+                BATTLE.spriteTables3[side] = BATTLE.unk_27c[side]->unk_10->gfx.tables[SCENE->sides[side].armyStyle - 1];
             }
         } else {
-            BATTLE.unk_38[side] = NULL;
+            BATTLE.spriteTables3[side] = NULL;
         }
 
         TILE_START(3) = tile;

@@ -11,7 +11,7 @@ void Battle_SortHitList(BattleHitList *list);
 
 #define TIMES(i) ((const BattleHitTimes *)gMenuState.battle.drainProfile[i])
 
-/* Builds the step list of each side (stepLists, laid out like a BattleHitList) from the
+/* Builds the step list of each side (stepLists) from the
  * other side's hit list: first one step per hit, taking entries from unk_2a0 in turn (those
  * with fillBefore set, or all when unk_48 is 1), then one step for each entry whose fill
  * changes and is not in the list yet. Keys come from the drain profiles; the list is then
@@ -45,7 +45,7 @@ void func_ov002_023552d0(void)
             entry = (gMenuState.battle.unk_2a0[side] >> (slot * 3)) & 7;
             if (gMenuState.battle.unk_310[side][entry].fillBefore != 0
                 || gMenuState.battle.unk_27c[side]->unk_48 == 1) {
-                list->flags[list->count].unk_0 = entry;
+                list->flags[list->count].cell = entry;
                 list->flags[list->count].unk_3 = (gMenuState.battle.unk_29c[other] >> (list->count * 3)) & 7;
                 list->flags[list->count].unk_6 = 1;
                 list->flags[list->count].unk_7 = 0;
@@ -68,13 +68,13 @@ void func_ov002_023552d0(void)
         }
 
         for (i = 0; i < list->count; i++) {
-            stepEntry = list->flags[i].unk_0;
+            stepEntry = list->flags[i].cell;
             if (gMenuState.battle.unk_310[side][stepEntry].fillAfter != 0
                 || gMenuState.battle.unk_27c[side]->unk_48 == 1) {
                 list->flags[i].unk_6 = 0;
             } else {
                 for (j = i + 1; j < list->count; j++) {
-                    if (stepEntry == list->flags[j].unk_0) {
+                    if (stepEntry == list->flags[j].cell) {
                         list->flags[i].unk_6 = 0;
                         break;
                     }
@@ -89,11 +89,11 @@ void func_ov002_023552d0(void)
                 continue;
             }
             for (j = 0; j < list->count; j++) {
-                if (entry == list->flags[j].unk_0) {
+                if (entry == list->flags[j].cell) {
                     goto next;
                 }
             }
-            list->flags[list->count].unk_0 = entry;
+            list->flags[list->count].cell = entry;
             list->flags[list->count].unk_7 = 1;
             if (gMenuState.battle.unk_310[side][entry].fillAfter == 0) {
                 list->flags[list->count].unk_6 = 1;

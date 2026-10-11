@@ -23,7 +23,7 @@ void BattleCellSpriteTask_Init(BattleCellSpriteTask *task)
     task->cell = (BattleCellTask *)MENU->battle.unk_310[task->side][0].unk_00;
     task->hitList = &MENU->battle.hitLists[task->side];
     task->cellPositions = MENU->battle.unk_27c[task->side]->cellPositions;
-    if (MENU->battle.unk_30[task->side] != NULL) {
+    if (MENU->battle.spriteTables2[task->side] != NULL) {
         if (CELL_TASK_ENTRY(CELL).sprites[1] != NULL) {
             Task_Destroy((Task *)CELL_TASK_ENTRY(CELL).sprites[1]);
             CELL_TASK_ENTRY(CELL).sprites[1] = NULL;
@@ -31,7 +31,7 @@ void BattleCellSpriteTask_Init(BattleCellSpriteTask *task)
         left = (CELL->side == 0);
         /* (&colours[2])[side]: needed to match; colours[2 + side] adds at run time */
         CELL_TASK_ENTRY(CELL).sprites[1] = BattleSpriteTask_Create(
-            MENU->battle.unk_30[CELL->side], Battle_GetMatchupNibble1(task->side),
+            MENU->battle.spriteTables2[CELL->side], Battle_GetMatchupNibble1(task->side),
             CELL->posX, CELL->posY, CELL->posZ, 0, CELL->angle, 0, CELL->scale, CELL->scale,
             (&MENU->colours[2])[CELL->side], left ? 0 : 2, 0, CELL->side, CELL->hasPos2,
             CELL->pos2X, CELL->pos2Y, CELL->pos2Z, left ? 0 : 2);

@@ -27,14 +27,14 @@ typedef struct EntryAt {
  * (found by permute.py) put fillAfter and isLast in the right registers. */
 void func_ov002_02354814(int side, int step)
 {
-    BattleStepList *list;
+    BattleHitList *list;
     s8 cell;
     EntryAt *entry;
     u8 isLast;
     u8 fillAfter;
 
-    list = (BattleStepList *)((u8 *)&gMenuState + 0x2c8) + side;
-    cell = list->steps[step].cell;
+    list = (BattleHitList *)((u8 *)&gMenuState + 0x2c8) + side;
+    cell = list->flags[step].cell;
 
     func_ov002_0235d514(side);
     entry = (EntryAt *)((u8 *)&gMenuState + cell * 24 + side * 120);
@@ -44,7 +44,7 @@ void func_ov002_02354814(int side, int step)
     }
     isLast = TRUE;
     for (step++; step < list->count; step++) {
-        if (cell == list->steps[step].cell) {
+        if (cell == list->flags[step].cell) {
             isLast = FALSE;
             break;
         }

@@ -10,7 +10,7 @@ void func_ov002_0235643c(void *table, int index, int x, int y, int a4, int a5, i
 void func_ov002_02357e5c(int side, int step);
 
 /* Like BattleFighterTask_SpawnStep, but when the side's step list has run out
- * it clears the fighter's current byte of unk_30, moves on to the next one
+ * it clears the fighter's steps[stepIndex], moves on to the next one
  * (the ring of 8 wraps) and resumes the script. The same happens once the
  * sprite task has unk_5c set. */
 void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)

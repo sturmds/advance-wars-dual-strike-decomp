@@ -7,7 +7,7 @@
 #include "game/unit_stats.h"
 
 #define MENU ((MenuState *)&gMenuState)
-#define DUE_CELL (hitList->flags[hitList->cursor].unk_0)
+#define DUE_CELL (hitList->flags[hitList->cursor].cell)
 
 void Battle_StartFighterTask(BattleCellTask *cellTask);
 void func_ov002_02357e5c(int side, int cell);

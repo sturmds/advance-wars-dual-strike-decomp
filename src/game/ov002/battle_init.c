@@ -19,7 +19,7 @@ int Battle_Init(int unused)
     int i;
 
     for (i = 0; i < 2; i++) {
-        gMenuState.battle.unk_408[i] = 0;
+        gMenuState.battle.bgScroll[i] = 0;
         gMenuState.battle.unk_40c[i] = 0;
     }
     Sound_LoadBattleUnitData(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));

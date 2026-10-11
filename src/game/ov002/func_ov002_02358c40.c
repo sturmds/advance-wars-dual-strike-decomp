@@ -8,12 +8,13 @@
 #include "game/unit_stats.h"
 
 #define MENU ((MenuState *)&gMenuState)
-/* The second hit list of a side. BattleScreenWork.stepLists has the same layout as a BattleHitList.
+/* The second hit list of a side. The cast to its own type changes the code mwcc makes
+ * (95% without it).
  * WIP (97%): the later blocks read the list through this full expression so that the compiler
  * reloads the cursor as the original does; the registers still differ. */
 #define LIST(side) ((BattleHitList *)&MENU->battle.stepLists[side])
 #define DUE_CELL_TASK(side, cursor) \
-    ((BattleCellTask *)MENU->battle.unk_310[side][LIST(side)->flags[cursor].unk_0].unk_00)
+    ((BattleCellTask *)MENU->battle.unk_310[side][LIST(side)->flags[cursor].cell].unk_00)
 #define SIDE_COLOUR(sprite, side) (((u16(*)[2])MENU->colours)[sprite][side])
 
 void func_ov002_02354814(int side, int index);
@@ -61,7 +62,7 @@ void func_ov002_02358c40(BattleScreenTask *screen)
                 func_ov002_02354814(side, hitList->cursor);
             } else if (MENU->battle.unk_27c[side]->unk_48 == 0) {
                 if (MENU->battle.unk_48[other] != 0) {
-                    Battle_StartCellSpriteOnSlot(side, hitList->flags[hitList->cursor].unk_0,
+                    Battle_StartCellSpriteOnSlot(side, hitList->flags[hitList->cursor].cell,
                                         hitList->flags[hitList->cursor].unk_3,
                                         hitList->flags[hitList->cursor].unk_6, hitList->cursor);
                 } else {

@@ -106,6 +106,6 @@ void Battle_DrawScene(void)
 
     *REG_MTX_POP = 1;
     *REG_MTX_POP = 1;
-    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = data_0229ef30.unk_40c[0] + data_0229ef30.unk_408[0];
-    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = -(data_0229ef30.unk_40c[1] + data_0229ef30.unk_408[1]);
+    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = data_0229ef30.unk_40c[0] + data_0229ef30.bgScroll[0];
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = -(data_0229ef30.unk_40c[1] + data_0229ef30.bgScroll[1]);
 }
