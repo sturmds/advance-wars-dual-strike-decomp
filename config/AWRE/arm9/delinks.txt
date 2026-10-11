@@ -12868,6 +12868,10 @@ src/game/main/screen/screen_overlays_destroy.c:
     complete
     .text       start:0x020f4178 end:0x020f41a4
 
+src/game/main/screen/screen_overlays_create.c:
+    complete
+    .text       start:0x020f41a4 end:0x020f4228
+
 src/game/main/func_020f43f4.c:
     complete
     .text       start:0x020f43f4 end:0x020f440c
