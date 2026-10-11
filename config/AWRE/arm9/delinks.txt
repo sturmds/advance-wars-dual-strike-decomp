@@ -20733,6 +20733,10 @@ src/sdk/fx/mtx_copy44_to_33.c:
     complete
     .text       start:0x02109d60 end:0x02109d88
 
+src/sdk/fx/mtx_concat44.c:
+    complete
+    .text       start:0x02109d88 end:0x0210a0ac
+
 src/sdk/fx/fx_div_async.c:
     complete
     .text       start:0x0210a0ac end:0x0210a0e4
