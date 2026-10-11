@@ -7,8 +7,14 @@
 typedef struct Unk_0229c960 {
     u8 pad_00[0x08];
     u32 ggid;                          /* compared with a scanned parent's game group id */
-    u8 pad_0c[0x10 - 0x0c];
+    u16 tgid;                          /* temporary group id, changes for every parent start */
+    u8 pad_0e[0x10 - 0x0e];
     u16 unk_10;
+    u8 pad_12[0x32 - 0x12];
+    u16 channel;
+    u16 parentMaxSize;                 /* largest packet a parent sends */
+    u16 childMaxSize;                  /* largest packet a child sends */
+    u8 pad_38[0x40 - 0x38];
 } Unk_0229c960;
 
 extern Unk_0229c960 data_0229c960;

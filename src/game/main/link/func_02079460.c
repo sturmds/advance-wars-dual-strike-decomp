@@ -8,7 +8,7 @@ extern u32 data_0229c88c;
 int func_02079180(void);
 BOOL func_02079368(void);
 BOOL func_0207930c(void);
-void func_02079c64(int arg);
+void Wireless_StartChannelSurvey(int arg);
 int Wireless_PrepareScan(void);
 void func_02079ee0(void);
 BOOL Wireless_StartRequest(void);
@@ -27,7 +27,7 @@ void func_02079460(WMCallback *cb)
             if (!func_0207930c()) {
                 return;
             }
-            func_02079c64(1);
+            Wireless_StartChannelSurvey(1);
             break;
         case 3:
         case 5:
