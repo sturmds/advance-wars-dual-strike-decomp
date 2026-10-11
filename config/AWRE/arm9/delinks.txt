@@ -21290,6 +21290,10 @@ src/sdk/mi/mi_copy36b.c:
     complete
     .text       start:0x0210f4ec end:0x0210f508
 
+src/sdk/mi/mi_copy48b.c:
+    complete
+    .text       start:0x0210f508 end:0x0210f52c
+
 src/game/main/func_0210fa9c.c:
     complete
     .text       start:0x0210fa9c end:0x0210fac0
