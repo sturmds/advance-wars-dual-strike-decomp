@@ -66,6 +66,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/combat_setup_player_ready.c` | CombatSetup_SetPlayerReady | 148 |
 | `src/game/main/menus/combat_setup_player_unready.c` | CombatSetup_SetPlayerUnready | 116 |
+| `src/game/main/menus/func_0202f0d8.c` | func_0202f0d8 | 2164 |
 | `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 |
 | `src/game/main/menus/func_0204e9cc.c` | func_0204e9cc | 164 |
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 |
