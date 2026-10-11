@@ -90,6 +90,7 @@ typedef struct OSThreadInfo {
     OSThread *current;
     OSThread *list;
     ThreadSwapHook switchCallback;
+    OSThread *threads[16];
 } OSThreadInfo;
 
 #define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */

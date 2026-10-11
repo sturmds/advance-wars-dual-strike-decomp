@@ -1,0 +1,17 @@
+#include "types.h"
+#include "sdk/os.h"
+
+extern OSThreadInfo data_022a9930;
+
+/* Returns the first thread id with no thread, or -1 when all 16 are taken. */
+int OSi_GetUnusedThreadId(void)
+{
+    int id;
+
+    for (id = 0; id < 16; id++) {
+        if (data_022a9930.threads[id] == NULL) {
+            return id;
+        }
+    }
+    return -1;
+}
