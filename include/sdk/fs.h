@@ -150,6 +150,7 @@ extern FSArchive gRomFileArchive;
 FSFileID FS_GetOverlayFileID(const FSOverlayInfo *info);
 void FS_Init(u32 dmaNo);
 void FS_InitFile(FSFile *file);
+BOOL FS_LoadOverlayImage(const FSOverlayInfo *info);
 BOOL FS_LoadOverlay(int target, u32 overlayId);
 BOOL FS_UnloadOverlay(int target, u32 overlayId);
 BOOL FS_OpenFile(FSFile *file, const char *path);

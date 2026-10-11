@@ -21418,6 +21418,10 @@ src/sdk/fs/fs_check_overlay_digest.c:
     complete
     .text       start:0x0211325c end:0x02113300
 
+src/sdk/fs/fs_load_overlay_image.c:
+    complete
+    .text       start:0x02113300 end:0x021133a0
+
 src/sdk/fs/fs_overlay.c:
     complete
     .text       start:0x021135c4 end:0x021135ec
