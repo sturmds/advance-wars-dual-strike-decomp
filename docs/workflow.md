@@ -59,6 +59,8 @@ python3 tools/fn.py diff PackNibblePairs
 
 This compiles the file, rebuilds the original's delinked object, and runs `objdiff-cli`. Lines marked `|` differ; relocations are compared by symbol name. The exit code is 0 only at 100%.
 
+Some library code tests link-time constants (`SDK_SYS_STACKSIZE`, `SDK_IRQ_STACKSIZE`, `SDK_SECTION_ARENA_DTCM_START`). The ROM holds their values in literal pools, and the C must declare them as `extern char NAME[];` and use them as numbers, or mwcc folds them. `ARM9_ABSOLUTE_SYMBOLS` in `tools/configure.py` gives each one its value, and `tools/lcf_absolute.py` writes them into `build/arm9.lcf`. Add a constant there when a function needs one. `diff` marks such a word `=` and counts it as matching when the original word holds the symbol's value; `check` does the same.
+
 ### Fast check
 
 ```sh

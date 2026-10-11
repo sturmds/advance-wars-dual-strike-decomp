@@ -6,6 +6,7 @@ Pipeline:
   config/AWRE/arm9 + extract --dsd delink--> build/delinks/**.o (original bytes)
   src/**.c marked `complete` in a delinks.txt --mwccarm--> build/src/**.o
                              --dsd lcf-----> build/arm9.lcf, build/objects.txt
+                             --lcf_absolute.py--> ARM9_ABSOLUTE_SYMBOLS added to build/arm9.lcf
   compiled objects, plus delinked ones for everything else --mwldarm--> build/arm9.elf, build/build/*.bin (one per module)
   ELF --dsd rom config--> build/build/rom_config.yaml (ARM7 and files from extract/)
   --dsd rom build--> build/AWRE.raw.nds --fix_header.py--> build/AWRE.nds
@@ -28,6 +29,18 @@ CC = f"{SKREW_BIN}/mwccarm-2.0-72.exe"
 LD = f"{SKREW_BIN}/mwldarm-2.0-72.exe"
 CFLAGS = "-O4,p -proc arm946e -interworking -nostdinc -i include -msgstyle gcc"
 LDFLAGS = "-proc arm946e -interworking -map closure,unused -msgstyle gcc -nodead -nostdlib -m Entry"
+
+# Symbols with a fixed value, written into build/arm9.lcf after dsd lcf
+# (tools/lcf_absolute.py). The original link script defines these link-time
+# constants; the ROM's literal pools hold their values. The SDK code tests
+# them at run time, so our C must reference them as symbols (OS_InitThread,
+# func_0210e36c). `fn.py diff` and `fn.py check` count a relocation to one of
+# these as matching a plain word of the same value.
+ARM9_ABSOLUTE_SYMBOLS = {
+    "SDK_SYS_STACKSIZE": 0x00000000,
+    "SDK_IRQ_STACKSIZE": 0x00000400,
+    "SDK_SECTION_ARENA_DTCM_START": 0x027C12E0,
+}
 
 
 def config_inputs() -> list[str]:
@@ -88,7 +101,7 @@ def main() -> int:
         "  description = DELINK",
         "",
         "rule lcf",
-        "  command = $dsd lcf -c $cfg > /dev/null",
+        "  command = $dsd lcf -c $cfg > /dev/null && $python tools/lcf_absolute.py $lcf $absolute",
         "  description = LCF",
         "",
         # tools/link.py runs mwldarm from a short directory under /tmp: its
@@ -114,8 +127,10 @@ def main() -> int:
         f"build build/delink.stamp: delink {' '.join(config_inputs())} | extract/config.yaml $dsd",
         f"  cfg = {cfg}",
         "",
-        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd",
+        "build build/arm9.lcf build/objects.txt: lcf build/delink.stamp | $dsd tools/lcf_absolute.py",
         f"  cfg = {cfg}",
+        "  lcf = build/arm9.lcf",
+        "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM9_ABSOLUTE_SYMBOLS.items()),
         "",
         f"build build/arm9.elf: link build/arm9.lcf build/objects.txt | $ld tools/link.py {' '.join(objs)}",
         "",

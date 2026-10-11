@@ -17,6 +17,7 @@ Ideas and parts of the code of these tools, rewritten for our dsd and objdiff pi
 - `auto_trivial.py`: patterns for functions of one to four instructions. Used in `tools/trivial.py`.
 - `declperm.py`, `park_permute.py`, `allopt.py`, `allcc.py`: sweeps over declaration order and compiler flags. Used in `tools/permute.py`.
 - `pick_family.py`: ranking of family heads and its filters. Used in `tools/fn.py pick --families`.
+- `configure.py` (`ABSOLUTE_SYMBOLS`, `add_absolute_symbols`): linker-absolute symbols added to the generated linker script. Used in `tools/lcf_absolute.py`.
 - The family index and the check that uses it (`fnindex.py`, `tools/fn.py check`) follow the same twin-family idea.
 
 ## What we do not take

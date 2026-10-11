@@ -19,7 +19,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - The ROM is checked against `config/AWRE/rom.sha1` before anything else. That SHA-1 and the MD5 match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068), checked 2026-10-06.
 - Tools: `tools.lock` pins dsd, objdiff-cli and metroskrew (Linux). `tools/setup.py` downloads each once into `.cache/` and checks SHA-256 on every run.
 - System packages needed: `make`, `ninja-build`, `python3` (3.11+), `libc6:i386` (the metroskrew binaries are 32-bit), `flock` from `util-linux` (part of every Ubuntu install; `make` and `fn.py` run ninja under `build/.ninja.lock`, one build per checkout at a time).
-- Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 and the file system come from `extract/` unchanged.
+- Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `tools/lcf_absolute.py` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 and the file system come from `extract/` unchanged.
 - `make check` runs `dsd check modules`, then `config/AWRE/modules.sha1`, then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
 - Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking`; linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
 - `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards.
@@ -47,7 +47,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/early-phase-project-plan.md` | Milestones and open questions. |
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
-| `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
+| `tools/configure.py`, `tools/lcf_absolute.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, absolute symbols for the ARM9 linker script (`ARM9_ABSOLUTE_SYMBOLS`, see `docs/workflow.md`), one-time dsd config generation, header CRC fix. |
 | `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. |
 | `tools/fnindex.py`, `tools/tests/`, `fn.py check` | Function index (`build/fnindex.json`) and the fast `fn.py check`, with its test against `fn.py diff`. `fn.py pick --families` ranks same-shape families. |
 | `tools/ds.py`, `tools/dsindex.py` | Data structures (issue 0041): `ds.py show STRUCT\|data_ADDR` for a struct's layout from the compiler or a data symbol's type, references and bytes; `ds.py field Struct.field` for a field's users and how the original loads it. Index in `build/dsindex.json`. |

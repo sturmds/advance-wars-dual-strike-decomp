@@ -20,7 +20,9 @@
 Everything reads config/AWRE/arm9/**/{symbols,relocs,delinks}.txt. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
-symbol at the same address, and count as matching), and exits 0 only at 100%.
+symbol at the same address, or an absolute symbol from configure.py's
+ARM9_ABSOLUTE_SYMBOLS with the original word's value, and count as
+matching), and exits 0 only at 100%.
 
 `pick --families` is based on khdays-decomp tools/pick_family.py
 (CC0 1.0, commit ba2de370; see docs/third-party/khdays-decomp.md).
@@ -540,9 +542,10 @@ def cmd_diff(args) -> int:
 
     left, right = rows(orig), rows(ours_sym)
     # objdiff compares relocations by symbol name. Rows where both sides
-    # point at the same address under different names (issue 0017) match.
+    # point at the same address under different names (issue 0017) match,
+    # and so do words relocated to an absolute symbol of the original value.
     same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours_sym.get("instructions", [])))
-            if a.get("diff_kind") and same_target(data, a, b)}
+            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b))}
     width = max((len(t) for t, _ in left), default=10) + 2
     print(f"{'original':<{width}}   ours")
     differ = 0
@@ -555,7 +558,8 @@ def cmd_diff(args) -> int:
     if same and not differ:
         percent = 100.0
     if same:
-        print(f"\n= : {len(same)} relocation(s) name different symbols at the same address; counted as matching.")
+        print(f"\n= : {len(same)} relocation(s) name another symbol at the same address,"
+              " or an absolute symbol of the same value; counted as matching.")
     print(f"\n{f.name}: {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
 
@@ -611,6 +615,30 @@ def same_target(data, left, right) -> bool:
     if [p for p in left_ins["parts"] if "arg" not in p] != [p for p in right_ins["parts"] if "arg" not in p]:
         return False
     return targets[0] == targets[1]
+
+
+def absolute_word(data, left, right) -> bool:
+    """True when the original row is a plain `.word N` and ours is a word
+    relocated to a symbol from ARM9_ABSOLUTE_SYMBOLS (tools/configure.py)
+    whose value plus addend is N. dsd leaves no relocation there, because
+    the original object has none to give."""
+    from configure import ARM9_ABSOLUTE_SYMBOLS
+    if left.get("diff_kind") != "DIFF_ARG_MISMATCH" or right.get("diff_kind") != "DIFF_ARG_MISMATCH":
+        return False
+    lins, rins = left["instruction"], right["instruction"]
+    largs = [p["arg"] for p in lins.get("parts", []) if "arg" in p]
+    rel = rins.get("relocation")
+    if lins.get("relocation") or not rel or rel.get("type_name") != "R_ARM_ABS32":
+        return False
+    if len(largs) != 1 or "unsigned" not in largs[0]:
+        return False
+    if [p for p in lins["parts"] if "arg" not in p] != [p for p in rins["parts"] if "arg" not in p]:
+        return False
+    name = data["right"]["symbols"][rel["target_symbol"]]["name"]
+    if name not in ARM9_ABSOLUTE_SYMBOLS:
+        return False
+    value = (ARM9_ABSOLUTE_SYMBOLS[name] + int(rel.get("addend", 0))) & 0xFFFFFFFF
+    return int(largs[0]["unsigned"]) == value
 
 
 def main() -> int:

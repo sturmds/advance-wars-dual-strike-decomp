@@ -76,8 +76,9 @@ release: setup
 	@echo "release: OK"
 
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
-# handling, of ds.py and of pragmas.py; no ROM or build needed (test_ds.py and
-# test_pragmas.py use the compiler from make setup; test_ds.py checks more
+# handling, of ds.py, of pragmas.py and of absolute symbols; no ROM or build
+# needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
+# from make setup; test_ds.py checks more
 # when extract/ exists).
 test:
 	@$(PYTHON) tools/tests/test_landing.py
@@ -86,6 +87,7 @@ test:
 	@$(PYTHON) tools/tests/test_fnshow.py
 	@$(PYTHON) tools/tests/test_ds.py
 	@$(PYTHON) tools/tests/test_pragmas.py
+	@$(PYTHON) tools/tests/test_absolute.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps
