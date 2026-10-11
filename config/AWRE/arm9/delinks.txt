@@ -15064,6 +15064,10 @@ src/game/main/screen/ease_task_start.c:
     complete
     .text       start:0x020fac20 end:0x020fac6c
 
+src/game/main/graphics/map_anim_queue_frame_part_map_f8.c:
+    complete
+    .text       start:0x020fac6c end:0x020faf28
+
 src/game/main/graphics/map_anim_queue_frame_part.c:
     complete
     .text       start:0x020faf28 end:0x020fb30c
