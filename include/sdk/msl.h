@@ -44,6 +44,24 @@ double copysign(double x, double y);
 /* Returns the fraction of x in [0.5, 1) and stores the power of two in *exponent. */
 double frexp(double x, int *exponent);
 
+/* Digit string of a float conversion with its decimal exponent. */
+typedef struct Decimal {
+    u8 sign;
+    u8 unk_01;
+    s16 exp;
+    u8 length;
+    u8 digits[37];
+} Decimal;
+
+/* Adds one to the digit string at its first count digits; a carry out of the first digit raises exp. */
+void func_02125658(Decimal *dec, int count);
+/* Returns 1 to round the digits at count up, -1 to round down; an exact half goes to the even digit. */
+int __must_round(Decimal *dec, int count);
+/* Rounds the digit string to count digits. */
+void __rounddec(Decimal *dec, int count);
+/* Returns the number of trailing zero bits of value, 32 for 0. */
+int __cnt_trail_zeros(u32 value);
+
 int func_02122508(FormatWriteProc write, void *sink, const char *format, va_list args);
 int __StringWrite(void *context, const char *src, u32 count);
 int vsnprintf(char *buf, u32 size, const char *format, va_list args);

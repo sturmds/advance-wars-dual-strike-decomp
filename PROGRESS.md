@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 451 / 781 | 54768 / 132154 | 41.44% | 69 | 3394 |
-| ARM9 all | 7105 / 7481 | 1561388 / 1685994 | 92.61% | 69 | 3394 |
+| ARM9 SDK/library | 465 / 781 | 55828 / 132154 | 42.24% | 69 | 3394 |
+| ARM9 all | 7119 / 7481 | 1562448 / 1685994 | 92.67% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 451 / 1795 | 54768 / 286450 | 19.12% | 69 | 3394 |
-| all | 7105 / 8495 | 1561388 / 1840290 | 84.84% | 69 | 3394 |
+| SDK/library | 465 / 1795 | 55828 / 286450 | 19.49% | 69 | 3394 |
+| all | 7119 / 8495 | 1562448 / 1840290 | 84.90% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 444 / 770 | 53856 / 130618 | 41.23% | 65 |
+| main | SDK/library | 458 / 770 | 54916 / 130618 | 42.04% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -111,6 +111,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 |
 | `src/sdk/msl/func_02121ef4.c` | func_02121ef4 | 72 |
 | `src/sdk/msl/func_02121f3c.c` | func_02121f3c | 256 |
+| `src/sdk/msl/func_02125658.c` | func_02125658 | 76 |
 | `src/sdk/os/func_0210db18.c` | func_0210db18 | 212 |
 | `src/sdk/os/os_init_context.c` | OS_InitContext | 100 |
 | `src/sdk/os/os_release_lock_id.c` | OS_ReleaseLockID | 48 |

@@ -22782,9 +22782,24 @@ src/sdk/msl/frexp.c:
     complete
     .text       start:0x02124814 end:0x021248d4
 
+src/sdk/msl/__rounddec.c:
+    complete
+    .text       start:0x021255f4 end:0x02125658
+
+src/sdk/msl/func_02125658.c:
+    .text       start:0x02125658 end:0x021256a4
+
 src/sdk/func_021256a4.c:
     complete
     .text       start:0x021256a4 end:0x021256a8
+
+src/sdk/msl/__must_round.c:
+    complete
+    .text       start:0x021256a8 end:0x02125718
+
+src/sdk/msl/__cnt_trail_zeros.c:
+    complete
+    .text       start:0x02125718 end:0x02125794
 
 src/sdk/func_021295b4.c:
     complete
