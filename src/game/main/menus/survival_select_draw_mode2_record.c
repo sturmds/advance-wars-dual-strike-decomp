@@ -6,7 +6,7 @@ extern Unk_027c0280 *data_027c0280;
 
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg);
 void Layer0_PutNumber(int x, int y, u32 value);
-void func_02026e68(int x, int y, u32 value);
+void Survival_DrawMapCount(int x, int y, u32 value);
 int SurvivalRecord_Exists(int mode);
 int Survival_GetModeBudget(int mode);
 int Survival_GetMapCount(int mode);
@@ -17,7 +17,7 @@ int Survival_GetMapCount(int mode);
  * 0xc00000af when no record is saved. */
 void SurvivalSelect_DrawMode2Record(int x, int y)
 {
-    func_02026e68(x, y, Survival_GetMapCount(2));
+    Survival_DrawMapCount(x, y, Survival_GetMapCount(2));
     Text_PrintImmediate(x + 11, y, data_027c0280->layer0Map, 0x79000008, 0, 0);
     Text_PrintImmediate(x + 11, y + 2, data_027c0280->layer0Map, 0x79000009, 0, 0);
     Layer0_PutNumber(x + 23, y, Survival_GetModeBudget(2));

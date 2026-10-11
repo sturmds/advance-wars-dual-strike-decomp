@@ -4216,6 +4216,10 @@ src/game/main/func_02026ddc.c:
     complete
     .text       start:0x02026ddc end:0x02026e68
 
+src/game/main/menus/survival_draw_map_count.c:
+    complete
+    .text       start:0x02026e68 end:0x02026ef8
+
 src/game/main/layer0_put_number_then_text3.c:
     complete
     .text       start:0x02026ef8 end:0x02026f84

@@ -14,7 +14,7 @@ void Font_LoadDigits(int baseTile);
 void func_01ff8c84(int layer);
 void func_0201e6e8(int layer, int x, int y, int a3);
 void func_02026ddc(int x, int y, u32 value);
-void func_02026e68(int x, int y, u32 value);
+void Survival_DrawMapCount(int x, int y, u32 value);
 int Survival_GetModeBudget(int mode);
 int Survival_GetMapCount(int mode);
 
@@ -40,7 +40,7 @@ void Survival_DrawRunSummary(Task *task)
     func_0201e6e8(0, 18, 21, 6);
     switch (data_022a7b80.mode) {
     case 0:
-        func_02026e68(1, 19, Survival_GetMapCount(0));
+        Survival_DrawMapCount(1, 19, Survival_GetMapCount(0));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x79000005, 0, 0);
         Layer0_PutRatio(19, 19, HwDiv32(Survival_GetModeBudget(0), 3600), HwMod32(HwDiv32(Survival_GetModeBudget(0), 60), 60));
         if (data_022a7b80.mapIndex == Survival_GetMapCount(0)) {
@@ -60,7 +60,7 @@ void Survival_DrawRunSummary(Task *task)
         func_02026ddc(19, 21, data_022a7b80.mapIndex);
         break;
     case 2:
-        func_02026e68(1, 19, Survival_GetMapCount(2));
+        Survival_DrawMapCount(1, 19, Survival_GetMapCount(2));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x79000008, 0, 0);
         Layer0_PutNumber(19, 19, Survival_GetModeBudget(2));
         if (data_022a7b80.mapIndex == Survival_GetMapCount(2)) {
@@ -80,7 +80,7 @@ void Survival_DrawRunSummary(Task *task)
         func_02026ddc(19, 21, data_022a7b80.mapIndex);
         break;
     case 1:
-        func_02026e68(1, 19, Survival_GetMapCount(1));
+        Survival_DrawMapCount(1, 19, Survival_GetMapCount(1));
         Text_PrintImmediate(7, 19, data_027c0280->layer0Map, 0x7900000b, 0, 0);
         Layer0_PutNumberThenText4(19, 19, Survival_GetModeBudget(1));
         if (data_022a7b80.mapIndex == Survival_GetMapCount(1)) {
