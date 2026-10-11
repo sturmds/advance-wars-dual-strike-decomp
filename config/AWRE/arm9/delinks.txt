@@ -4378,6 +4378,9 @@ src/game/main/menus/func_0204e808.c:
 src/game/main/menus/func_0204e900.c:
     .text       start:0x0204e900 end:0x0204e9cc
 
+src/game/main/menus/func_0204e9cc.c:
+    .text       start:0x0204e9cc end:0x0204ea70
+
 src/game/main/func_0204ebfc.c:
     complete
     .text       start:0x0204ebfc end:0x0204ec0c
