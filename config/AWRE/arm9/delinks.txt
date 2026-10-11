@@ -21974,6 +21974,10 @@ src/sdk/pm/power_hook_add_last.c:
     complete
     .text       start:0x02114980 end:0x021149c8
 
+src/sdk/pm/power_hook_add_first.c:
+    complete
+    .text       start:0x021149c8 end:0x021149dc
+
 src/game/main/func_02114e04.c:
     complete
     .text       start:0x02114e04 end:0x02114e1c
