@@ -45,7 +45,7 @@ typedef struct CaptureDoneTask {
 typedef struct CaptureCountTask {
     u8 pad_00[0x4c];
     s16 count;                         /* current step */
-    s16 limit;                         /* newPoints, set by func_020ec1a8 */
+    s16 limit;                         /* newPoints, set by CaptureCountUp_Start */
 } CaptureCountTask;
 
 #endif

@@ -11739,6 +11739,10 @@ src/game/main/units/capture_task_show_completion.c:
     complete
     .text       start:0x020ec120 end:0x020ec1a8
 
+src/game/main/units/capture_count_up_start.c:
+    complete
+    .text       start:0x020ec1a8 end:0x020ec1d8
+
 src/game/main/units/property_picture_load.c:
     complete
     .text       start:0x020ec2f0 end:0x020ec438
