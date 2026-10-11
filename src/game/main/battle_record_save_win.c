@@ -46,7 +46,7 @@ void BattleRecord_SaveWin(void)
         switch (data_022a7b80.mode) {
         case 0:
         case 3:
-            value = HwDiv32(STATE->players[slot].unk_94, 60);
+            value = HwDiv32(STATE->players[slot].playTimeFrames, 60);
             if (data_02291588[index].mode0Co != 0 && data_02291650[index] <= value) {
                 return;
             }

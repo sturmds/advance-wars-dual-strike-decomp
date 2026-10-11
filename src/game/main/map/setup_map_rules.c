@@ -47,8 +47,8 @@ void SetupMapRules(void)
         if (Ov000_gMapHeaders[MAP_ID].fog != 0) {
             STATE->unk_1c4->fog = 1;
         }
-        STATE->unk_7c = 0;
-        STATE->unk_80 = Ov000_gMapHeaders[MAP_ID].unk_30[Campaign_IsHardMode()];
+        STATE->timeLimitFrames = 0;
+        STATE->dayLimit = Ov000_gMapHeaders[MAP_ID].unk_30[Campaign_IsHardMode()];
         STATE->propertyGoal = Ov000_gMapHeaders[MAP_ID].unk_34[Campaign_IsHardMode()];
         STATE->partnerBoostHuman = 1;
         STATE->partnerBoostAi = 1;

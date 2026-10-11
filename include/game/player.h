@@ -80,7 +80,7 @@ typedef struct Player {
     PlayerCo front;
     PlayerCo back;
     u32 skills[2][4];                  /* front CO, back CO; ids in game/skills.h */
-    u32 unk_94;                        /* Time Survival timer, frames */
+    u32 playTimeFrames;                /* frames spent on this player's turns (Game_TickPlayerTimer); Time Survival's timer */
 } Player;
 
 typedef char Player_size_check[sizeof(Player) == 0x98 ? 1 : -1];

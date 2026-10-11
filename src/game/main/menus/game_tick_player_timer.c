@@ -15,7 +15,7 @@ void EffectScene_TickProgress(void);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
 
-/* Per-frame tick of the current player's timer (Player.unk_94, frames; Time
+/* Per-frame tick of the current player's timer (Player.playTimeFrames, frames; Time
  * Survival reads it). Skipped while the hook script runs, func_020d1bc4 is
  * nonzero, unk_5b is set or map script list 18 takes the frame. Then
  * EffectScene_TickProgress runs. */
@@ -33,6 +33,6 @@ void Game_TickPlayerTimer(void)
     if (MapScript_RunList18(0) != 0) {
         return;
     }
-    Counter_IncrementCapped(&CURRENT_PLAYER.unk_94);
+    Counter_IncrementCapped(&CURRENT_PLAYER.playTimeFrames);
     EffectScene_TickProgress();
 }

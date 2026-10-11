@@ -41,8 +41,8 @@ void WinLoseScreen_ShowSurvivalStats(WinLoseTask *task)
         Text_PrintStringImmediate(3, 15, map, Map_GetCurrentName(), 0, 0);
         if (data_022a7b80.mode == 0 || data_022a7b80.mode == 3) {
             Text_PrintImmediate(14, 15, data_027c0280->layer0Map, 0x79000006, 0, 0);
-            Layer0_PutRatio(26, 15, HwDiv32(GAME->players[1].unk_94, 3600),
-                            HwMod32(HwDiv32(GAME->players[1].unk_94, 60), 60));
+            Layer0_PutRatio(26, 15, HwDiv32(GAME->players[1].playTimeFrames, 3600),
+                            HwMod32(HwDiv32(GAME->players[1].playTimeFrames, 60), 60));
             Text_PrintImmediate(14, 17, data_027c0280->layer0Map, 0x79000007, 0, 0);
             Layer0_PutRatio(26, 17, HwDiv32(data_022a7b80.budgetLeft, 3600),
                             HwMod32(HwDiv32(data_022a7b80.budgetLeft, 60), 60));

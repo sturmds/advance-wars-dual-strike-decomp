@@ -35,7 +35,7 @@ int Game_GetDayLimit(void)
         return data_022a7b80.budgetLeft;
     }
     SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-    limit = GAME->unk_80;
+    limit = GAME->dayLimit;
     SWITCH_BACK(savedGfx, savedGame);
     return limit;
 }

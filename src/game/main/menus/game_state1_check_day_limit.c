@@ -23,7 +23,7 @@ void Game_State1_CheckDayLimit(void)
     if (data_027c027c == data_027c0288.unk_00) {
         func_ov000_022b04ec();
     }
-    if (STATE->unk_80 == 0 || !Turn_NextPlayerWrapsAround() || STATE->unk_80 != STATE->day) {
+    if (STATE->dayLimit == 0 || !Turn_NextPlayerWrapsAround() || STATE->dayLimit != STATE->day) {
         STATE->unk_18 = 2;
         Game_EnterState18();
         return;

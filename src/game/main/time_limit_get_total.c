@@ -5,7 +5,7 @@
 extern Unk_022a7b80 data_022a7b80;
 
 /* Same test as TimeLimit_GetRemaining, for the whole limit: stores the map
- * limit (unk_7c) in total and returns TRUE when there is one. For the timed
+ * limit (timeLimitFrames) in total and returns TRUE when there is one. For the timed
  * Survival variants it stores the flag value 1, not a frame count. */
 BOOL TimeLimit_GetTotal(u32 *total)
 {
@@ -32,7 +32,7 @@ BOOL TimeLimit_GetTotal(u32 *total)
             survivalTimed = TRUE;
         }
     }
-    mapLimit = data_027c027c->unk_48[data_027c0284]->unk_7c;
+    mapLimit = data_027c027c->unk_48[data_027c0284]->timeLimitFrames;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     if (survivalTimed) {

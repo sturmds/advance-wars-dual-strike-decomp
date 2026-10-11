@@ -54,8 +54,8 @@ void MapRules_SetDefaults(void)
     STATE->unk_aa[6] = 0;
     STATE->unk_aa[7] = 0;
     MapRules_SetDefaultTeams();
-    STATE->unk_7c = 0;
-    STATE->unk_80 = 0;
+    STATE->timeLimitFrames = 0;
+    STATE->dayLimit = 0;
     STATE->propertyGoal = 0;
     STATE->fundsPerProperty = 1000;
     STATE->unk_74 = 0;

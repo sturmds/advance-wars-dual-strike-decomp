@@ -92,7 +92,7 @@ void BattleSetup_ApplyToGame(void)
     GAME->unk_82 = gMenuState.setup.unk_2e1;
     GAME->unk_1c4->fog = gMenuState.setup.fog;
     GAME->unk_1c4->tileset = gMenuState.setup.unk_2dd;
-    GAME->unk_80 = gMenuState.setup.unk_2de;
+    GAME->dayLimit = gMenuState.setup.unk_2de;
     GAME->fundsPerProperty = data_0229ed30.fundsPerProperty;
     GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
     GAME->propertyGoal = gMenuState.setup.unk_2df;
@@ -108,7 +108,7 @@ void BattleSetup_ApplyToGame(void)
         Screen_SetCurrent(SECOND_MAP);
         GAME->unk_1c4->fog = gMenuState.setup.fog;
         GAME->unk_1c4->tileset = gMenuState.setup.unk_2dd;
-        GAME->unk_80 = gMenuState.setup.unk_2de;
+        GAME->dayLimit = gMenuState.setup.unk_2de;
         GAME->fundsPerProperty = data_0229ed30.fundsPerProperty;
         GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
         Screen_SetCurrent(saved027c);

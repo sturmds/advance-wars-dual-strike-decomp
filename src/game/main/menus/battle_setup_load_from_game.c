@@ -72,7 +72,7 @@ void BattleSetup_LoadFromGame(void)
     state = &gMenuState;
     state->setup.unk_2dd = GAME->unk_1c4->tileset & PLAYER_CO_ID_MASK;
     state->setup.coEffectsOn = GAME->coEffectsOn;
-    state->setup.unk_2de = GAME->unk_80;
+    state->setup.unk_2de = GAME->dayLimit;
     data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
     state->setup.unk_2df = GAME->propertyGoal;
     if (gLinkPlay != 0) {

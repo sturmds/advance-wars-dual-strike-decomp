@@ -8,7 +8,7 @@ u32 TimeLimit_GetFramesLeft(void);
 extern Unk_022a7b80 data_022a7b80;
 
 /* Looks at the first screen's game for a time limit: the Survival variants 0
- * and 3 (budget in Survival_GetTimeLeft) or a map limit (unk_7c). Stores the
+ * and 3 (budget in Survival_GetTimeLeft) or a map limit (timeLimitFrames). Stores the
  * frames left in framesLeft (a map limit overrides the Survival one) and returns TRUE when there
  * is a limit, otherwise stores 0 and returns FALSE. The nested tests and the
  * repeated state reads are needed to match. */
@@ -39,7 +39,7 @@ BOOL TimeLimit_GetRemaining(u32 *framesLeft)
             survivalTimed = TRUE;
         }
     }
-    mapLimit = data_027c027c->unk_48[data_027c0284]->unk_7c;
+    mapLimit = data_027c027c->unk_48[data_027c0284]->timeLimitFrames;
     if (survivalTimed) {
         *framesLeft = Survival_GetTimeLeft();
         found = TRUE;

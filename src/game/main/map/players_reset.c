@@ -54,7 +54,7 @@ void Players_Reset(void)
             STATE->players[slot].unitsBuilt[unitType] = 0;
             STATE->players[slot].unitsLost[unitType] = 0;
         }
-        STATE->players[slot].unk_94 = 0;
+        STATE->players[slot].playTimeFrames = 0;
     }
     func_020c0704();
 }

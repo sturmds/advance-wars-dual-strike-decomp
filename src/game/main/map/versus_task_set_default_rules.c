@@ -29,6 +29,6 @@ void VersusTask_SetDefaultRules(void)
         Screen_SetCurrentGfx(saved0280);
     }
     STATE->fundsPerProperty = 1000;
-    STATE->unk_80 = 0;
+    STATE->dayLimit = 0;
     STATE->propertyGoal = 0;
 }

@@ -2849,11 +2849,11 @@ src/game/main/script/event_cmd_create_unit.c:
     complete
     .text       start:0x0201cf28 end:0x0201cf78
 
-src/game/main/script/event_script_clear_state_unk7c.c:
+src/game/main/script/event_script_clear_time_limit.c:
     complete
     .text       start:0x0201cf78 end:0x0201cfc4
 
-src/game/main/script/event_script_set_state_unk7c.c:
+src/game/main/script/event_script_set_time_limit.c:
     complete
     .text       start:0x0201cfc4 end:0x0201d024
 

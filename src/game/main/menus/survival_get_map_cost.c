@@ -19,7 +19,7 @@ int Survival_GetMapCost(int mode)
     switch (mode) {
     case 0:
     case 3:
-        value = HwDiv32(STATE->players[1].unk_94, 60) * 60;
+        value = HwDiv32(STATE->players[1].playTimeFrames, 60) * 60;
         break;
     case 1:
     case 4:
