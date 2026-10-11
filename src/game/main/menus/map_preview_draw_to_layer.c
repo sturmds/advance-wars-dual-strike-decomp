@@ -7,7 +7,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void func_02020848(void *dst);
 void func_02020854(void *dst);
-u16 *func_01ff8a98(int layer, int x, int y);
+u16 *Bg_GetMapEntryPtr(int layer, int x, int y);
 void MapPreview_FillTileMap(u16 *screen, int firstTile);
 
 /* Draws the map preview into the character data at charBase (tile firstTile
@@ -21,6 +21,6 @@ void MapPreview_DrawToLayer(u8 *charBase, int firstTile, int layer, int x, int y
     tiles = charBase + firstTile * 32;
     func_02020854(tiles);
     func_02020848(tiles);
-    MapPreview_FillTileMap(func_01ff8a98(layer, x, y), firstTile | (palette << 12));
+    MapPreview_FillTileMap(Bg_GetMapEntryPtr(layer, x, y), firstTile | (palette << 12));
     Gfx_RequestLayerCopy(layer);
 }
