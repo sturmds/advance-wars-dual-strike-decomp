@@ -732,6 +732,10 @@ src/game/main/graphics/camera_reset_to_preset0.c:
 src/game/main/func_0200c898.c:
     .text       start:0x0200c898 end:0x0200c918
 
+src/game/main/graphics/gfx_load_tex_palette.c:
+    complete
+    .text       start:0x0200ccf8 end:0x0200cd28
+
 src/game/main/func_0200ce3c.c:
     complete
     .text       start:0x0200ce3c end:0x0200ce48

@@ -8,7 +8,7 @@ void Mem_Fill32(u32 value, void *dst, u32 size);
 void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_02028808(void);
 void func_02001e78(int coId, int tileOffset, int paletteOffset);
-void func_0200ccf8(void *palette, int start, int offset);
+void Gfx_LoadTexPalette(void *palette, int start, int offset);
 
 void func_ov005_02363014(Ov005Task *task)
 {
@@ -36,7 +36,7 @@ void func_ov005_02363014(Ov005Task *task)
         }
         func_02001e78(entry->coId, tileOffset, paletteOffset);
         if (entry->available == 0) {
-            func_0200ccf8(blank, paletteOffset, paletteOffset);
+            Gfx_LoadTexPalette(blank, paletteOffset, paletteOffset);
         }
         paletteOffset += 32;
         tileOffset += 0x180;
