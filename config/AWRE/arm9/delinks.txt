@@ -1460,6 +1460,10 @@ src/game/main/skills/co_experience.c:
     complete
     .text       start:0x02017a28 end:0x02017a54
 
+src/game/main/skills/co_set_force_rank_set_index.c:
+    complete
+    .text       start:0x02017a54 end:0x02017abc
+
 src/game/main/skills/co_get_force_rank_set_index.c:
     complete
     .text       start:0x02017abc end:0x02017aec

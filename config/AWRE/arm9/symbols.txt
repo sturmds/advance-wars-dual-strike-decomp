@@ -577,7 +577,7 @@ ScriptSlot_ClearAll kind:function(arm,size=0x54) addr:0x02017950
 Co_GetRank kind:function(arm,size=0x1c) addr:0x020179a4
 Co_SetExperience kind:function(arm,size=0x68) addr:0x020179c0
 Co_GetExperience kind:function(arm,size=0x2c) addr:0x02017a28
-func_02017a54 kind:function(arm,size=0x68) addr:0x02017a54
+Co_SetForceRankSetIndex kind:function(arm,size=0x68) addr:0x02017a54
 Co_GetForceRankSetIndex kind:function(arm,size=0x30) addr:0x02017abc
 func_02017aec kind:function(arm,size=0x30) addr:0x02017aec
 func_02017b1c kind:function(arm,size=0x24) addr:0x02017b1c
@@ -6949,7 +6949,7 @@ data_0215837c kind:data(any) addr:0x0215837c
 data_02158394 kind:data(any) addr:0x02158394
 data_021583b4 kind:data(any) addr:0x021583b4
 gScriptCommands kind:data(any) addr:0x021583d4
-data_02158460 kind:data(any) addr:0x02158460
+gForceRankSetKeepMask kind:data(any) addr:0x02158460
 data_02158468 kind:data(any) addr:0x02158468
 data_021584c8 kind:data(any) addr:0x021584c8
 data_021584ca kind:data(any) addr:0x021584ca
