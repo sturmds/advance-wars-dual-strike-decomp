@@ -12866,6 +12866,14 @@ src/game/main/menus/versus_start.c:
     complete
     .text       start:0x02103544 end:0x021035ec
 
+src/game/main/menus/versus_start_vs_cpu_two_maps.c:
+    complete
+    .text       start:0x021035ec end:0x02103624
+
+src/game/main/menus/versus_start_vs_cpu_one_map.c:
+    complete
+    .text       start:0x02103624 end:0x0210365c
+
 src/game/main/func_02103714.c:
     complete
     .text       start:0x02103714 end:0x0210372c
