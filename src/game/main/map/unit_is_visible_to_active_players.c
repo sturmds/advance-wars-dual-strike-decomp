@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 /* guess: TRUE when the tile holds a unit (MapTiles.unk_508) of a player with
  * Player.unk_1b bit 1 set */
-BOOL func_020c9228(s16 x, s16 y);
+BOOL Tile_HasActivePlayerUnit(s16 x, s16 y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define MAP  (GAME->mapTiles)
@@ -15,7 +15,7 @@ BOOL func_020c9228(s16 x, s16 y);
  * Unit_IsVisibleToCurrentPlayer, but tests Player.unk_1b bit 1 (doc 890: the
  * active player) where that one compares teams. Only dived units (Sub,
  * Stealth) can be hidden; they stay seen when their owner or the owner of
- * their tile has the bit, or when func_020c9228 finds a unit next to them. */
+ * their tile has the bit, or when Tile_HasActivePlayerUnit finds a unit next to them. */
 BOOL Unit_IsVisibleToActivePlayers(MapUnit *unit, s16 x, s16 y)
 {
     u16 slot = unit - GAME->units;
@@ -35,16 +35,16 @@ BOOL Unit_IsVisibleToActivePlayers(MapUnit *unit, s16 x, s16 y)
         return TRUE;
     }
     if (x > 0) {
-        count += func_020c9228(x - 1, y);
+        count += Tile_HasActivePlayerUnit(x - 1, y);
     }
     if (y > 0) {
-        count += func_020c9228(x, y - 1);
+        count += Tile_HasActivePlayerUnit(x, y - 1);
     }
     if (x < GAME->unk_1c4->mapWidth - 1) {
-        count += func_020c9228(x + 1, y);
+        count += Tile_HasActivePlayerUnit(x + 1, y);
     }
     if (y < GAME->unk_1c4->mapHeight - 1) {
-        count += func_020c9228(x, y + 1);
+        count += Tile_HasActivePlayerUnit(x, y + 1);
     }
     return count != 0;
 }
