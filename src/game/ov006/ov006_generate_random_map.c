@@ -12,7 +12,7 @@ void Ov006_SetMapCell(int x, int y, int cell);
 void func_ov006_02359c20(void);
 void Ov006_ScatterMountains(void);
 void func_ov006_02359a38(TilePoint *hq1, TilePoint *hq2);
-void func_ov006_02359744(TilePoint *hq1, TilePoint *hq2, TilePoint *city1, TilePoint *city2, TilePoint *middle);
+void Ov006_AddCities(TilePoint *hq1, TilePoint *hq2, TilePoint *city1, TilePoint *city2, TilePoint *middle);
 void Ov006_AddRoads(TilePoint *hq1, TilePoint *hq2, TilePoint *city1, TilePoint *city2, TilePoint *middle);
 void Ov006_ScatterWoods(void);
 void Ov006_AddShoals(void);
@@ -43,7 +43,7 @@ void Ov006_GenerateRandomMap(void)
     func_ov006_02359c20();
     Ov006_ScatterMountains();
     func_ov006_02359a38(&hq1, &hq2);
-    func_ov006_02359744(&hq1, &hq2, &city1, &city2, &middle);
+    Ov006_AddCities(&hq1, &hq2, &city1, &city2, &middle);
     Ov006_AddRoads(&hq1, &hq2, &city1, &city2, &middle);
     Ov006_ScatterWoods();
     Ov006_AddShoals();
