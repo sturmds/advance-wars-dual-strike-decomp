@@ -82,7 +82,7 @@ MapTile3d_DrawQuadA kind:function(arm,size=0xf8) addr:0x01ffc070
 MapTile3d_DrawQuadB kind:function(arm,size=0xf8) addr:0x01ffc168
 func_01ffc260 kind:function(arm,size=0x10c) addr:0x01ffc260
 func_01ffc36c kind:function(arm,size=0x15c) addr:0x01ffc36c
-func_01ffc4c8 kind:function(arm,size=0x2c) addr:0x01ffc4c8
+Unit3d_GetTextureOffset kind:function(arm,size=0x2c) addr:0x01ffc4c8
 func_01ffc4f4 kind:function(arm,size=0x74) addr:0x01ffc4f4
 func_01ffc568 kind:function(arm,size=0x10) addr:0x01ffc568
 func_01ffc578 kind:function(arm,size=0x40) addr:0x01ffc578
@@ -112,3 +112,4 @@ func_01ffdd7c kind:function(arm,size=0x38) addr:0x01ffdd7c
 func_01ffddb4 kind:function(arm,size=0x74) addr:0x01ffddb4
 func_01ffde28 kind:function(arm,size=0x50) addr:0x01ffde28
 data_01ff8f64 kind:data(any) addr:0x01ff8f64
+gUnit3dTextureBlocks kind:data(any) addr:0x01ffb9bc

@@ -525,3 +525,4 @@ from:0x01ffddcc kind:arm_call to:0x0210eb0c module:main
 from:0x01ffde10 kind:arm_call to:0x0210eb20 module:main
 from:0x01ffde40 kind:arm_call to:0x0210eb0c module:main
 from:0x01ffde64 kind:arm_call to:0x0210eb20 module:main
+from:0x01ffc4f0 kind:load to:0x01ffb9bc module:itcm

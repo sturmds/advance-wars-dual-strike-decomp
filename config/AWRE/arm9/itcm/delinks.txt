@@ -187,6 +187,10 @@ src/game/itcm/map3d/map_tile3d_draw_quad_b.c:
     complete
     .text       start:0x01ffc168 end:0x01ffc260
 
+src/game/itcm/map3d/unit3d_get_texture_offset.c:
+    complete
+    .text       start:0x01ffc4c8 end:0x01ffc4f4
+
 src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
