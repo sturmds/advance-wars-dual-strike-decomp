@@ -85,7 +85,7 @@ typedef void (*CARDCallback)(void *arg);
 struct CARDiCommon {
     CARDiCommandArg *cmd;
     u32 unk_04;
-    int lockOwner;                 /* OS lock id of the owner, OS_LOCK_ID_ERROR when free */
+    volatile int lockOwner;        /* OS lock id of the owner, OS_LOCK_ID_ERROR when free; volatile is needed to match */
     int lockCount;
     OSThreadQueue lockQueue;
     u32 lockTarget;

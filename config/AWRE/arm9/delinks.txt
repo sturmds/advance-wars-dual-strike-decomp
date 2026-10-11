@@ -22010,6 +22010,7 @@ src/sdk/card/cardi_unlock_resource.c:
     .text       start:0x021155e4 end:0x02115688
 
 src/sdk/card/cardi_lock_resource.c:
+    complete
     .text       start:0x02115688 end:0x02115724
 
 src/sdk/card/cardi_set_task.c:
