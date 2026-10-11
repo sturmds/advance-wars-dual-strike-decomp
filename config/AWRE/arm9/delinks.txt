@@ -6820,6 +6820,10 @@ src/game/main/menus/player_info_next_page.c:
     complete
     .text       start:0x0206d220 end:0x0206d2d4
 
+src/game/main/menus/player_info_prev_page.c:
+    complete
+    .text       start:0x0206d2d4 end:0x0206d378
+
 src/game/main/func_0206d378.c:
     complete
     .text       start:0x0206d378 end:0x0206d384
