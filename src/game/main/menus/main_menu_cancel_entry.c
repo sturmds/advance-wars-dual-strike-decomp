@@ -7,7 +7,7 @@ void MainMenu_StartPageFlip(int page, int slide);
 void func_020b9864(void);
 void func_0202e868(void);
 
-extern int data_022a7fa8;             /* next game mode, index into the table func_02102690 runs */
+extern int gNextGameMode;             /* next game mode, index into the table func_02102690 runs */
 
 /* Back out of the main menu (likely onCancel of its buttons, beside
  * MainMenu_ConfirmEntry): remembers the cursor, then slides back to the
@@ -50,7 +50,7 @@ void MainMenu_CancelEntry(MenuButton *button)
     default:
         return;
     }
-    data_022a7fa8 = 32;
+    gNextGameMode = 32;
     MenuButtons_RemoveSelectable();
     MenuButtons_CloseAll();
     func_020b9864();

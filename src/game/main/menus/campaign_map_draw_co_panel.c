@@ -13,7 +13,7 @@ int MainLoop_GetFrameCount(void);
 void Palette_Load(const void *src, u32 offset, u32 size);
 int func_0210391c(void);
 int Campaign_IsHardMode(void);
-int func_020e5400(int score);         /* 2 below 200, 3 below 250, 4 below 280, else 5 */
+int Score_ToRank(int score);         /* 2 below 200, 3 below 250, 4 below 280, else 5 */
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -67,7 +67,7 @@ void CampaignMap_DrawCoPanel(CampaignMapTask *task)
         Sprite_QueueAt(0, 216, 56, data_027c0040, 0x2000, 174);
     }
     if (MISSION_RECORD.unk_0a != 0) {
-        Sprite_QueueAt(0, 232, 168, data_027c0040, ((5 - func_020e5400(MISSION_RECORD.unk_14)) * 4 + 158) | 0x3000, 0);
+        Sprite_QueueAt(0, 232, 168, data_027c0040, ((5 - Score_ToRank(MISSION_RECORD.unk_14)) * 4 + 158) | 0x3000, 0);
     }
     Screen_SetCurrentGfx(savedGfx);
 }

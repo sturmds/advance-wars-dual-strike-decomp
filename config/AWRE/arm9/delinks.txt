@@ -2618,7 +2618,7 @@ src/game/main/menus/popup_menu_push_state.c:
     complete
     .text       start:0x0201e210 end:0x0201e290
 
-src/game/main/func_0201e290.c:
+src/game/main/menus/popup_menu_reset_stack.c:
     complete
     .text       start:0x0201e290 end:0x0201e2a8
 
@@ -13462,11 +13462,11 @@ src/game/main/map/map_init_tile_hp.c:
     complete
     .text       start:0x020e531c end:0x020e5400
 
-src/game/main/func_020e5400.c:
+src/game/main/score_to_rank.c:
     complete
     .text       start:0x020e5400 end:0x020e5428
 
-src/game/main/func_020e5428.c:
+src/game/main/score_to_rank_020e5428.c:
     complete
     .text       start:0x020e5428 end:0x020e5450
 

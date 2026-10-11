@@ -246,37 +246,37 @@ void func_0202f0d8(MainMenuTask *task)
             }
             switch (data_021599d0->unk_0f_4) {
             case 0:
-                if (entry->unk_00 == 0) goto found;
+                if (entry->kind == 0) goto found;
                 break;
             case 1:
-                if (entry->unk_00 == 2) goto found;
+                if (entry->kind == 2) goto found;
                 break;
             case 2:
-                if (entry->unk_00 == 3) goto found;
+                if (entry->kind == 3) goto found;
                 break;
             case 3:
-                if (entry->unk_00 == 1) goto found;
+                if (entry->kind == 1) goto found;
                 break;
             case 10:
-                if (entry->unk_00 == 4) goto found;
+                if (entry->kind == 4) goto found;
                 break;
             case 4:
-                if (entry->unk_00 == 9) goto found;
+                if (entry->kind == 9) goto found;
                 break;
             case 5:
-                if (entry->unk_00 == 8) goto found;
+                if (entry->kind == 8) goto found;
                 break;
             case 6:
-                if (entry->unk_00 == 5) goto found;
+                if (entry->kind == 5) goto found;
                 break;
             case 7:
-                if (entry->unk_00 == 7) goto found;
+                if (entry->kind == 7) goto found;
                 break;
             case 8:
-                if (entry->unk_00 == 10) goto found;
+                if (entry->kind == 10) goto found;
                 break;
             case 9:
-                if (entry->unk_00 == 6) goto found;
+                if (entry->kind == 6) goto found;
                 break;
             }
         }

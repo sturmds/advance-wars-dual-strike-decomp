@@ -8,14 +8,14 @@ void MainMenu_BuildPage11(void)
     MainMenuEntry *entries = page->entries;
 
     data_021599d0->page = 11;
-    page->unk_00 = 1;
-    page->unk_01 = 1;
+    page->title = 1;
+    page->palette = 1;
     page->entryCount = 2;
 
-    entries[0].unk_00 = 25;
-    entries[0].unk_01 = 1;
+    entries[0].kind = 25;
+    entries[0].palette = 1;
     entries[0].hidden = FALSE;
-    entries[1].unk_00 = 26;
-    entries[1].unk_01 = 1;
+    entries[1].kind = 26;
+    entries[1].palette = 1;
     entries[1].hidden = FALSE;
 }

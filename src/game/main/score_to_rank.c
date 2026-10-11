@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020e5428(int value)
+int Score_ToRank(int value)
 {
     if (value < 200) {
         return 2;

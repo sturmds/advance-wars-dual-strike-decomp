@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/popup_menu.h"
 
-void *func_0201e290(void);
+void *PopupMenu_ResetStack(void);
 void Sound_PlaySe(u32 soundId);
 PopupMenuTask *PopupMenu_Open(const MenuItem *items, int x, int y, int style, u16 selected, int center);
 
@@ -9,7 +9,7 @@ PopupMenuTask *PopupMenu_Open(const MenuItem *items, int x, int y, int style, u1
  * opening sound. */
 void PopupMenu_OpenWithSound(const MenuItem *items, int x, int y, int style, int center)
 {
-    func_0201e290();
+    PopupMenu_ResetStack();
     Sound_PlaySe(0x1000a);
     PopupMenu_Open(items, x, y, style, 0, center);
 }

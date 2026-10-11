@@ -8,15 +8,15 @@
 
 /* One entry of a main menu page. */
 typedef struct MainMenuEntry {
-    u8 unk_00;
-    u8 unk_01 : 7;
+    u8 kind;                           /* picks the label graphic, help text and confirm action */
+    u8 palette : 7;
     u8 hidden : 1;                     /* the cursor skips it */
 } MainMenuEntry;
 
 /* Layout of the current main menu page, through data_0229c71c. */
 typedef struct MainMenuPage {
-    u8 unk_00;
-    u8 unk_01 : 5;
+    u8 title;                          /* title graphic */
+    u8 palette : 5;
     u8 entryCount : 3;
     MainMenuEntry entries[7];          /* count a guess: entryCount holds up to 7 */
 } MainMenuPage;

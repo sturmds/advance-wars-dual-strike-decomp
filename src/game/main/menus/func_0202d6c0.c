@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 
 extern Unk_027c0280 *data_027c0280;
-extern int data_022a7fa8;             /* next game mode, set by MainMenu_ConfirmEntry */
+extern int gNextGameMode;             /* next game mode, set by MainMenu_ConfirmEntry */
 
 int func_02102378(void);
 s8 func_02102394(void);
@@ -14,13 +14,13 @@ s8 func_021023e4(void);
 void Gfx_LoadPlayerWindowFrame(int player);
 void func_02019c1c(u32 script, int arg1, int arg2);
 
-/* Runs when a main menu entry picks game mode data_022a7fa8. For some
+/* Runs when a main menu entry picks game mode gNextGameMode. For some
  * modes, if that mode's getter (all three for modes 0 and 1) returns
  * nonzero, shows BG0-3 and sprites, turns the windows off and starts event
  * script 0xc00002cf. What the getters track is not known yet. */
 void func_0202d6c0(void)
 {
-    switch (data_022a7fa8) {
+    switch (gNextGameMode) {
     case 0:
     case 1:
         if (!func_021023e4()) {

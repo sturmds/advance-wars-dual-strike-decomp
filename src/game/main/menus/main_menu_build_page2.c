@@ -11,15 +11,15 @@ void MainMenu_BuildPage2(void)
     MainMenuEntry *entries = page->entries;
 
     data_021599d0->page = 2;
-    page->unk_00 = 2;
-    page->unk_01 = 2;
+    page->title = 2;
+    page->palette = 2;
     page->entryCount = 2;
 
-    entries[0].unk_00 = 11;
-    entries[0].unk_01 = 2;
+    entries[0].kind = 11;
+    entries[0].palette = 2;
     entries[0].hidden = FALSE;
-    entries[1].unk_00 = 12;
-    entries[1].unk_01 = 2;
+    entries[1].kind = 12;
+    entries[1].palette = 2;
     if (func_021023a4()) {
         entries[1].hidden = FALSE;
     } else {

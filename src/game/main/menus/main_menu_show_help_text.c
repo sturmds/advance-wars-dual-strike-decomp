@@ -9,14 +9,14 @@ void MainMenu_ShowRecordHelp(int a);
 #define HELP_TEXT(index) (0x80000000 + (index))
 
 /* Shows the help text of the selected main menu entry on the second screen,
- * picked by the entry's kind (MainMenuEntry.unk_00) and, for some kinds, by
+ * picked by the entry's kind and, for some kinds, by
  * the page. Kinds 31-33 draw something else with MainMenu_ShowRecordHelp. Page 0 has
  * no text for kinds 11 and 12: textId is then unset, as in the original. */
 void MainMenu_ShowHelpText(void)
 {
     u32 textId;
 
-    switch ((*data_0229c71c)->entries[Menu_GetSelectedId()].unk_00) {
+    switch ((*data_0229c71c)->entries[Menu_GetSelectedId()].kind) {
     case 0:
         textId = HELP_TEXT(0);
         break;

@@ -10,7 +10,7 @@ int BattleScore_Speed(int player);
 int BattleScore_Power(int player);
 int BattleScore_Technique(int player);
 int func_020e9bc0(int player); /* speed + power + technique */
-int func_020e5428(int score);  /* rank 2-5 for a score */
+int Score_ToRank_020e5428(int score);  /* rank 2-5 for a score */
 BOOL Player1Team_HasPlayerInGame(void);
 int Campaign_IsHardMode(void);
 int ProfileHeaders_UpdateBest(int profile, int value);
@@ -43,7 +43,7 @@ void BattleScore_Compute(void)
     data_022a7a9c.unk_01 = BattleScore_Power(data_022a7a9c.unk_04);
     data_022a7a9c.unk_02 = BattleScore_Technique(data_022a7a9c.unk_04);
     data_022a7a9c.score = func_020e9bc0(data_022a7a9c.unk_04);
-    data_022a7a9c.unk_03 = func_020e5428(data_022a7a9c.score);
+    data_022a7a9c.unk_03 = Score_ToRank_020e5428(data_022a7a9c.score);
     if (STATE->gameMode == GAME_MODE_SURVIVAL) {
         data_022a7a9c.unk_00 >>= 1;
         data_022a7a9c.unk_01 >>= 1;

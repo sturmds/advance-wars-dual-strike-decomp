@@ -799,7 +799,7 @@ PopupMenu_SetItemIcon kind:function(arm,size=0x50) addr:0x0201e11c
 PopupMenu_InitIcons kind:function(arm,size=0x30) addr:0x0201e16c
 PopupMenu_PopState kind:function(arm,size=0x74) addr:0x0201e19c
 PopupMenu_PushState kind:function(arm,size=0x80) addr:0x0201e210
-func_0201e290 kind:function(arm,size=0x18) addr:0x0201e290
+PopupMenu_ResetStack kind:function(arm,size=0x18) addr:0x0201e290
 Gfx_LoadPlayerWindowFrame kind:function(arm,size=0x2c) addr:0x0201e2a8
 Gfx_LoadBmap0a0Palette kind:function(arm,size=0x38) addr:0x0201e2d4
 Gfx_LoadBmap09f kind:function(arm,size=0x2c) addr:0x0201e30c
@@ -4293,8 +4293,8 @@ func_020e4f78 kind:function(arm,size=0xec) addr:0x020e4f78
 func_020e5064 kind:function(arm,size=0x9c) addr:0x020e5064
 Map_MarkCrystalObeliskRange kind:function(arm,size=0x21c) addr:0x020e5100
 Map_InitTileHp kind:function(arm,size=0xe4) addr:0x020e531c
-func_020e5400 kind:function(arm,size=0x28) addr:0x020e5400
-func_020e5428 kind:function(arm,size=0x28) addr:0x020e5428
+Score_ToRank kind:function(arm,size=0x28) addr:0x020e5400
+Score_ToRank_020e5428 kind:function(arm,size=0x28) addr:0x020e5428
 ExperienceToRank kind:function(arm,size=0x38) addr:0x020e5450
 Player_GetTagStars kind:function(arm,size=0x80) addr:0x020e5488
 Player_GetTagFirepower kind:function(arm,size=0x70) addr:0x020e5508
@@ -7744,7 +7744,7 @@ data_02167c70 kind:data(any) addr:0x02167c70
 data_02167c74 kind:data(any) addr:0x02167c74
 data_02167c78 kind:data(any) addr:0x02167c78
 data_02167c7c kind:data(any) addr:0x02167c7c
-data_02167c80 kind:data(any) addr:0x02167c80
+gRatioSeparator kind:data(any) addr:0x02167c80
 data_02167c84 kind:data(any) addr:0x02167c84
 data_02167c88 kind:data(any) addr:0x02167c88
 data_02167c8c kind:data(any) addr:0x02167c8c
@@ -8920,7 +8920,7 @@ gMapFlags kind:bss addr:0x022a7f5a
 gUnlockFlags kind:bss addr:0x022a7f7c
 gCoColorFlags kind:bss addr:0x022a7f80
 data_022a7f84 kind:bss addr:0x022a7f84
-data_022a7fa8 kind:bss addr:0x022a7fa8
+gNextGameMode kind:bss addr:0x022a7fa8
 data_022a7fac kind:bss addr:0x022a7fac
 data_022a7fb8 kind:bss addr:0x022a7fb8
 data_022a7fc8 kind:bss addr:0x022a7fc8

@@ -14,15 +14,15 @@ void MainMenu_BuildPage1(void)
     MainMenuEntry *entries = page->entries;
 
     data_021599d0->page = 1;
-    page->unk_00 = 1;
-    page->unk_01 = 1;
+    page->title = 1;
+    page->palette = 1;
     page->entryCount = 2;
 
-    entries[0].unk_00 = 11;
-    entries[0].unk_01 = 1;
+    entries[0].kind = 11;
+    entries[0].palette = 1;
     entries[0].hidden = FALSE;
-    entries[1].unk_00 = 12;
-    entries[1].unk_01 = 1;
+    entries[1].kind = 12;
+    entries[1].palette = 1;
     if (func_021023e4() || func_021023d4() || func_021023c4()) {
         entries[1].hidden = FALSE;
     } else {

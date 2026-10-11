@@ -6,7 +6,7 @@ extern u8 data_027c0060;
 extern u8 data_027c01ac;
 
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_020e5428(int score);
+int Score_ToRank_020e5428(int score);
 void func_020ff624(CampaignRecap *work, int value, int x, int y, int semiTransparent, int palette);
 
 /* OBJ attribute 0 bit 10: semi-transparent (alpha blended). */
@@ -38,7 +38,7 @@ void CampaignRecap_DrawPanels(CampaignRecap *work)
     func_020ff624(work, work->unk_30, 100, slide2 + 136, fading2, 8);
     Sprite_Queue(2, 144, y, &data_027c0060, 0x8000, 0x30c);
     /* Rank badge for the score: ranks 2-5 each have their own tiles. */
-    switch (func_020e5428(work->unk_30)) {
+    switch (Score_ToRank_020e5428(work->unk_30)) {
     case 5:
         Sprite_Queue(2, 176, ((slide2 + 112) & 0xff) | OBJ_SEMI_TRANSPARENT(fading2), &data_027c0030, 0x2000, 0x180);
         break;
