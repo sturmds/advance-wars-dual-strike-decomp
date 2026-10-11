@@ -9355,6 +9355,10 @@ src/game/main/save_current_game.c:
     complete
     .text       start:0x020d7f04 end:0x020d7fac
 
+src/game/main/task/event_sequence_run_record_step.c:
+    complete
+    .text       start:0x020d7fac end:0x020d8028
+
 src/game/main/func_020d8028.c:
     complete
     .text       start:0x020d8028 end:0x020d802c
