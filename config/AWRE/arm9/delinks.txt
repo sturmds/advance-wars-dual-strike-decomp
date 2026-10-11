@@ -1909,6 +1909,10 @@ src/game/main/text/func_020154c4.c:
     complete
     .text       start:0x020154c4 end:0x02015508
 
+src/game/main/text/text_printer_update.c:
+    complete
+    .text       start:0x02015508 end:0x020157bc
+
 src/game/main/text/text_printer_write_tall_entries.c:
     complete
     .text       start:0x020157bc end:0x020157e4
