@@ -19505,6 +19505,10 @@ src/game/main/func_02101500.c:
     complete
     .text       start:0x02101500 end:0x02101524
 
+src/game/main/menus/name_entry_move_from_key.c:
+    complete
+    .text       start:0x02101524 end:0x02101698
+
 src/game/main/func_02101698.c:
     complete
     .text       start:0x02101698 end:0x021016ac
