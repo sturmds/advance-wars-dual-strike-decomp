@@ -11143,6 +11143,10 @@ src/game/main/ai/move_search_find_tile_by_mech_steps.c:
     complete
     .text       start:0x020a5164 end:0x020a54e4
 
+src/game/main/ai/move_search_try_mech_step.c:
+    complete
+    .text       start:0x020a54e4 end:0x020a5724
+
 src/game/main/ai/move_search_find_tile.c:
     complete
     .text       start:0x020a5724 end:0x020a5aa8
