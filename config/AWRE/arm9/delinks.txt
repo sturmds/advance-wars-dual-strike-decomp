@@ -22114,6 +22114,10 @@ src/sdk/mb/mb_game_load_icon_file.c:
     complete
     .text       start:0x0211bba4 end:0x0211bc58
 
+src/sdk/mb/mb_game_init.c:
+    complete
+    .text       start:0x0211bc58 end:0x0211bd64
+
 src/game/main/func_0211bdbc.c:
     complete
     .text       start:0x0211bdbc end:0x0211bddc
