@@ -15205,6 +15205,10 @@ src/game/main/link/link_set_slot_controllers.c:
     complete
     .text       start:0x020d6bc0 end:0x020d6cb0
 
+src/game/main/map/versus_task_set_default_rules.c:
+    complete
+    .text       start:0x020d6cb0 end:0x020d6dc4
+
 src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
