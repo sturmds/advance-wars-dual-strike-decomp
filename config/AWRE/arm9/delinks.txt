@@ -4034,6 +4034,10 @@ src/game/main/menus/vs_setup_handle_keys.c:
     complete
     .text       start:0x02068624 end:0x02068790
 
+src/game/main/menus/vs_setup_add_arrow_buttons.c:
+    complete
+    .text       start:0x020687f0 end:0x02068d54
+
 src/game/main/menus/vs_setup_next_force_rank_set.c:
     complete
     .text       start:0x02068d54 end:0x02068de0
