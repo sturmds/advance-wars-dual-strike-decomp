@@ -11051,6 +11051,14 @@ src/game/main/map/game_is_war_room.c:
     complete
     .text       start:0x020d4318 end:0x020d434c
 
+src/game/main/units/move_path_dir_to_next.c:
+    complete
+    .text       start:0x020d4674 end:0x020d46e0
+
+src/game/main/units/move_path_dir_to_prev.c:
+    complete
+    .text       start:0x020d46e0 end:0x020d4748
+
 src/game/main/units/func_020d4748.c:
     .text       start:0x020d4748 end:0x020d4adc
 

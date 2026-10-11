@@ -16,6 +16,15 @@ typedef struct MovePath {
     s8 lastTile;                       /* index of the last tile in x and y */
 } MovePath;
 
+/* Directions between move path tiles (MovePath_DirToNext, MovePath_DirToPrev). */
+enum {
+    MOVE_DIR_NONE,
+    MOVE_DIR_RIGHT,
+    MOVE_DIR_DOWN,
+    MOVE_DIR_LEFT,
+    MOVE_DIR_UP
+};
+
 /* Steps of a unit path (Unk_02080440_48.unk_170, UnitPath_CountSteps). */
 enum {
     PATH_STEP_LEFT,
