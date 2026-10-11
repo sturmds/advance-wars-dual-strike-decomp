@@ -2,7 +2,7 @@
 
 extern u16 data_027c1278;               /* bit mask of thread ids to wake after the interrupt */
 extern OSThreadInfo OSi_ThreadInfo;
-extern void func_02113ea0(void *coprocessorContext);   /* saves the coprocessor registers */
+extern void CP_SaveContext(void *coprocessorContext);   /* saves the coprocessor registers */
 extern void CPi_RestoreContext(void *coprocessorContext);   /* restores the coprocessor registers */
 
 /*
@@ -76,7 +76,7 @@ no_callback:
     stmfd sp!, {r0, r1}
     add r0, r0, #0
     add r0, r0, #0x48
-    ldr r1, =func_02113ea0
+    ldr r1, =CP_SaveContext
     blx r1
     ldmfd sp!, {r0, r1}
     ldmib sp!, {r2, r3}

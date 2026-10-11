@@ -1,6 +1,6 @@
 #include "sdk/os.h"
 
-extern void func_02113ea0(void *coprocessorContext);   /* saves the coprocessor registers */
+extern void CP_SaveContext(void *coprocessorContext);   /* saves the coprocessor registers */
 
 /*
  * OS_SaveContext: saves CPSR, r0 to r12, sp and lr into context,
@@ -11,7 +11,7 @@ asm int OS_SaveContext(OSContext *context)
 {
     stmfd sp!, {r0, lr}
     add r0, r0, #0x48
-    ldr r1, =func_02113ea0
+    ldr r1, =CP_SaveContext
     blx r1
     ldmfd sp!, {r0, lr}
     add r1, r0, #0
