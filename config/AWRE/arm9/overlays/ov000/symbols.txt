@@ -1043,12 +1043,12 @@ data_ov000_022f5d88 kind:data(any) addr:0x022f5d88 ambiguous
 Ov000_gForceRankTable kind:data(any) addr:0x022f5ecc ambiguous
 data_ov000_022f5ed0 kind:data(any) addr:0x022f5ed0 ambiguous
 data_ov000_022f5ed4 kind:data(any) addr:0x022f5ed4 ambiguous
-data_ov000_022f64cc kind:data(any) addr:0x022f64cc ambiguous
-data_ov000_022f64e4 kind:data(any) addr:0x022f64e4 ambiguous
-data_ov000_022f64fc kind:data(any) addr:0x022f64fc ambiguous
-data_ov000_022f6514 kind:data(any) addr:0x022f6514 ambiguous
-data_ov000_022f652c kind:data(any) addr:0x022f652c ambiguous
-data_ov000_022f6544 kind:data(any) addr:0x022f6544 ambiguous
+gSurvivalMapsMode5 kind:data(any) addr:0x022f64cc ambiguous
+gSurvivalMapsMode3 kind:data(any) addr:0x022f64e4 ambiguous
+gSurvivalMapsMode0 kind:data(any) addr:0x022f64fc ambiguous
+gSurvivalMapsMode2 kind:data(any) addr:0x022f6514 ambiguous
+gSurvivalMapsMode1 kind:data(any) addr:0x022f652c ambiguous
+gSurvivalMapsMode4 kind:data(any) addr:0x022f6544 ambiguous
 data_ov000_022f655c kind:data(any) addr:0x022f655c
 data_ov000_022f6560 kind:data(any) addr:0x022f6560
 data_ov000_022f6564 kind:data(any) addr:0x022f6564
