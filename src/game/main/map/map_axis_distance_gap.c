@@ -1,7 +1,7 @@
 #include "types.h"
 
 /* How unequal the two axis distances are: | |x0 - x1| - |y0 - y1| |. */
-int func_0209f868(int x0, int y0, int x1, int y1)
+int Map_AxisDistanceGap(int x0, int y0, int x1, int y1)
 {
     int dx = x0 - x1;
     int dy;

@@ -10932,7 +10932,8 @@ src/game/main/ai/unit_capture_points.c:
     complete
     .text       start:0x0209f7ac end:0x0209f868
 
-src/game/main/map/func_0209f868.c:
+src/game/main/map/map_axis_distance_gap.c:
+    complete
     .text       start:0x0209f868 end:0x0209f890
 
 src/game/main/map/map_get_distance.c:

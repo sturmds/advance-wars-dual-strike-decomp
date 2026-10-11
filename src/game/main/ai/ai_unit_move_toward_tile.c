@@ -10,7 +10,7 @@ void RangeMap_SetBuffer(void *tileMap);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 BOOL AiTile_IsSafeStop(s16 x, s16 y);
-int func_0209f868(s16 x0, s16 y0, s16 x1, s16 y1);
+int Map_AxisDistanceGap(s16 x0, s16 y0, s16 x1, s16 y1);
 BOOL Ai_HasVisibleEnemyWithin(s16 x, s16 y, int radius);
 int Unit_IsEnemyTile(int unitIndex, s16 x, s16 y);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
@@ -29,7 +29,7 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
  * cost from the target. Of the tiles in reach (AiTile_IsSafeStop accepts them)
  * it takes the one with the lowest cost, then the lowest danger
  * (MapTiles.threatMax plus twice threatSum), then the shortest
- * func_0209f868 distance to the target. A Sub or Stealth first tries the
+ * Map_AxisDistanceGap distance to the target. A Sub or Stealth first tries the
  * same pick among tiles that are not enemy-owned and have no visible
  * enemy next to them; if one is found the unit goes there. */
 void AiUnit_MoveTowardTile(int targetX, int targetY)
@@ -80,7 +80,7 @@ void AiUnit_MoveTowardTile(int targetX, int targetY)
                 continue;
             }
             danger = MAP->threatMax[TILE_INDEX(x, y)] + MAP->threatSum[TILE_INDEX(x, y)] * 2;
-            dist = func_0209f868(targetX, targetY, x, y);
+            dist = Map_AxisDistanceGap(targetX, targetY, x, y);
             if (STATE->actingUnit->type == UNIT_SUB || STATE->actingUnit->type == UNIT_STEALTH) {
                 if (Unit_IsEnemyTile(STATE->actingUnitIndex, x, y) != 1 && Ai_HasVisibleEnemyWithin(x, y, 1) != 1) {
                     cost = MAP->rangeScratch[TILE_INDEX(x, y)];
