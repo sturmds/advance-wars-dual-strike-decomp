@@ -23,7 +23,7 @@ void CurrentPlayer_SyncState(void);
 void CurrentPlayer_StartTurn(void);
 void func_020c8888(void);
 void Screens_SelectConfigs(void);
-void func_01ff9a90(void);
+void Gfx_CopyBgBufferOnScreen1(void);
 void Camera_ResetToPreset1(void *p);
 void Ov006_SetUpScreens(void);
 u8 Ov006_CountPropertyTiles(void);
@@ -124,7 +124,7 @@ void DesignRoom_Init(Task *task)
     if (callback != NULL) {
         callback(1);
     }
-    func_01ff9a90();
+    Gfx_CopyBgBufferOnScreen1();
     Camera_ResetToPreset1(data_022a7d5c);
     Ov006_SetUpScreens();
     if (keep == 0) {
