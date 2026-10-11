@@ -186,6 +186,7 @@ BOOL FS_ChangeDir(const char *path);
 BOOL FS_SeekFile(FSFile *file, s32 offset, int origin);
 void FS_CancelFile(FSFile *file);
 BOOL FS_WaitAsync(FSFile *file);
+BOOL FS_OpenFileDirect(FSFile *file, FSArchive *arc, u32 top, u32 bottom, u32 index);
 
 /* Not named yet: sends a command to the file's archive. */
 BOOL func_021120d4(FSFile *file, u32 command);
