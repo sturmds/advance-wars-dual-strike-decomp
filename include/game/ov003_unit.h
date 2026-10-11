@@ -76,7 +76,7 @@ typedef struct Ov003Row {
     u8 unk_38;
     u8 unk_39;
     u8 spawnCount;
-    u8 co : 4;                         /* CO choice (func_0208bed4 gives the CO id); picks the power tables; 8-10 are resolved by Ov003_InitRows */
+    u8 co : 4;                         /* CO choice (CombatCo_IdFromNumber gives the CO id); picks the power tables; 8-10 are resolved by Ov003_InitRows */
     u8 unk_3b_4 : 4;                   /* even number per active row, then shifted to centre them */
     u8 color : 7;                      /* 1-based: picks this row's palette colours and tiles */
     u8 active : 1;

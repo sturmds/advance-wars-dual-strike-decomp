@@ -16,7 +16,7 @@ void Data_Unpack(const void *src, void *dest);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Free(void *block);
-int func_0208bed4(int value);          /* row CO to CO id */
+int CombatCo_IdFromNumber(int value);          /* row CO to CO id */
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02039f80(int firstTile, int palette);
 void Menu_Reset(void);
@@ -121,7 +121,7 @@ void CombatResult_Init(Task *task)
     Mem_Free(file);
 
     SWITCH_TO(MAIN_MAP);
-    Co_LoadGraphicsAndPalette(func_0208bed4(data_02160abc->unk_0b), 0, 0);
+    Co_LoadGraphicsAndPalette(CombatCo_IdFromNumber(data_02160abc->unk_0b), 0, 0);
     SWITCH_BACK();
 
     SWITCH_TO(SECOND_MAP);
@@ -129,7 +129,7 @@ void CombatResult_Init(Task *task)
     SWITCH_BACK();
 
     Menu_Reset();
-    Wallpaper_LoadBothOnLayer3((u8)func_0208bed4(data_02160abc->unk_0b));
+    Wallpaper_LoadBothOnLayer3((u8)CombatCo_IdFromNumber(data_02160abc->unk_0b));
     FADE_FRAME(task) = 0;
 
     if (data_02160ac0->unk_7c == 0) {

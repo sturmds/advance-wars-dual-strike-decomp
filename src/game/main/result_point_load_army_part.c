@@ -11,7 +11,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 u8 *File_Load(const char *path);
 void Mem_Free(void *block);
 int Co_GetNation(int co);
-int func_0208bed4(int value);
+int CombatCo_IdFromNumber(int value);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -47,6 +47,6 @@ void ResultPoint_LoadArmyPart(void)
     Screen_SetCurrentGfx(savedGfx);
     data_0229c734->nextTile += 20;
     Mem_Free(file);
-    data_0229c734->nations[0] = Co_GetNation(func_0208bed4(data_02160abc->unk_0b));
-    data_0229c734->nations[1] = Co_GetNation(func_0208bed4(data_02160abc->unk_0c));
+    data_0229c734->nations[0] = Co_GetNation(CombatCo_IdFromNumber(data_02160abc->unk_0b));
+    data_0229c734->nations[1] = Co_GetNation(CombatCo_IdFromNumber(data_02160abc->unk_0c));
 }

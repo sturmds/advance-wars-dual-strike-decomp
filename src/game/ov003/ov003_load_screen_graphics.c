@@ -20,7 +20,7 @@ const char *File_LocalizePath(const char *path);
 void Mem_Free(void *file);
 void *Mem_Alloc(u32 size);
 void Wallpaper_LoadSingle(void);
-int func_0208bed4(int value);
+int CombatCo_IdFromNumber(int value);
 void Co_LoadArmyGraphicsToBuffer(int a, void *dst, int b);
 void Ov003_LoadMapPanelGraphics(void);
 void Ov003_LoadGraphics(void *file);
@@ -75,7 +75,7 @@ void Ov003_LoadScreenGraphics(void)
             } else {
                 dst = data_ov003_02365b10 + (i - 2) * 0x3600;
             }
-            Co_LoadArmyGraphicsToBuffer(func_0208bed4(row->co), dst, i + 1);
+            Co_LoadArmyGraphicsToBuffer(CombatCo_IdFromNumber(row->co), dst, i + 1);
         }
     }
     Ov003_UploadCoPictures();

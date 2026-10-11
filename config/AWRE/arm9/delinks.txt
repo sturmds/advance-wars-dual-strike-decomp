@@ -8972,6 +8972,14 @@ src/game/main/func_0208be18.c:
     complete
     .text       start:0x0208be18 end:0x0208be2c
 
+src/game/main/menus/combat_co_number_from_id.c:
+    complete
+    .text       start:0x0208be2c end:0x0208bed4
+
+src/game/main/menus/combat_co_id_from_number.c:
+    complete
+    .text       start:0x0208bed4 end:0x0208bf40
+
 src/game/main/func_0208bf40.c:
     complete
     .text       start:0x0208bf40 end:0x0208bfb0

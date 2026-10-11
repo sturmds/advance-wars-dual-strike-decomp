@@ -10,7 +10,7 @@ extern u8 (*data_ov003_02365b10)[0x3600];
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-int func_0208bed4(int mode);
+int CombatCo_IdFromNumber(int mode);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
 const char *Text_Get(u32 textId);
 int BreakText_Load(const char *text, int a, int b, int c);
@@ -42,7 +42,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38 *task)
         break;
     case 2:
         row = task->unk_52;
-        Co_LoadArmyPalette(func_0208bed4(data_ov003_02364928->rows[row - 1].co), 19, row);
+        Co_LoadArmyPalette(CombatCo_IdFromNumber(data_ov003_02364928->rows[row - 1].co), 19, row);
         break;
     case 3:
         row = task->unk_52;
@@ -50,7 +50,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38 *task)
          * DrawSelectedCoPowerText does. */
         task->count = BreakText_Load(
             Text_Get(*(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])
-                          [func_0208bed4(data_ov003_02364928->rows[row - 1].co) & 0x7f].name),
+                          [CombatCo_IdFromNumber(data_ov003_02364928->rows[row - 1].co) & 0x7f].name),
             0x73e, 4, 0);
         break;
     }
