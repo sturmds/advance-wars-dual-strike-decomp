@@ -5178,6 +5178,10 @@ src/game/main/func_02055e40.c:
     complete
     .text       start:0x02055e40 end:0x02055e50
 
+src/game/main/copowers/tag_power_screen_fade_to_white.c:
+    complete
+    .text       start:0x02055e50 end:0x02055f84
+
 src/game/main/copowers/func_02055f84.c:
     .text       start:0x02055f84 end:0x02056508
 
