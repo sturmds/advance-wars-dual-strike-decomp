@@ -290,6 +290,7 @@ typedef struct WMArm9Buf {
  * queued, else an error code. */
 int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
+int WM_Finish(void);                    /* only while READY; clears the WM work area pointer */
 int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
 int WMi_SendCommand(int apiid, u16 argCount, ...);

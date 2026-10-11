@@ -7,7 +7,6 @@ void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void MIi_CpuCopy16(const void *src, void *dest, int size);
 void MIi_CpuClear16(u16 data, void *dest, int size);
 void WmClearFifoRecvFlag(void);
-int func_02116f8c(void);
 
 extern u16 data_022ac328;
 extern WMArm9Buf *data_022ac32c;
@@ -76,7 +75,7 @@ void WmReceiveFifo(int tag, u32 data, BOOL err)
 
         if (cb->apiid == WM_APIID_END && cb->errcode == WM_ERRCODE_SUCCESS) {
             callback = data_022ac32c->callbackTable[cb->apiid];
-            func_02116f8c();
+            WM_Finish();
             if (callback != NULL) {
                 callback(cb);
             }
