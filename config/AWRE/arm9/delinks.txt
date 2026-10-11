@@ -10280,13 +10280,17 @@ src/game/main/ai/ai_turn_queue_build_at_site.c:
     complete
     .text       start:0x0209316c end:0x020931e4
 
-src/game/main/ai/ai_build_roll_choice.c:
+src/game/main/ai/ai_build_roll_order.c:
     complete
     .text       start:0x020931e4 end:0x02093370
 
 src/game/main/ai/ai_count_foot_units_by_unk0c4.c:
     complete
     .text       start:0x02093370 end:0x02093434
+
+src/game/main/ai/ai_build_buy_at_site.c:
+    complete
+    .text       start:0x02093434 end:0x02093720
 
 src/game/main/func_02093720.c:
     complete

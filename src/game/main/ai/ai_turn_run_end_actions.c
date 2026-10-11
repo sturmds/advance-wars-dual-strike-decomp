@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-BOOL func_02093434(void);
+BOOL AiBuild_BuyAtSite(void);
 void AiEndActions_Start(void);
 void AiEndActions_BuildThreatMaps(void);
 BOOL func_02091eb0(void);
@@ -34,7 +34,7 @@ void func_020b81b8(void);
  * yet, so what each does is unknown. */
 void AiTurn_RunEndActions(void)
 {
-    if (func_02093434() == 1) {
+    if (AiBuild_BuyAtSite() == 1) {
         return;
     }
     for (;;) {
