@@ -112,6 +112,11 @@ typedef struct ArcMoveSlot {
     int framesLeft;
 } ArcMoveSlot;
 
+/* Slot `slot` seen as an ArcMoveSlot, for the move commands. Needed to
+ * match: reading scriptSlots through this cast makes each access load the
+ * slot address again, as the original does. */
+#define MOVE_SLOT(slot) ((*(ArcMoveSlot **)&data_027c027c->scriptSlots)[slot])
+
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
 typedef BOOL (*ScriptCommandFunc)(int slot);
 
