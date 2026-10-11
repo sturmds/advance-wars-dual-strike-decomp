@@ -4449,6 +4449,10 @@ src/game/main/func_02032b28.c:
     complete
     .text       start:0x02032b28 end:0x02032b40
 
+src/game/main/win_quote_wait_keys.c:
+    complete
+    .text       start:0x02032b40 end:0x02032c60
+
 src/game/main/func_02033088.c:
     complete
     .text       start:0x02033088 end:0x0203339c
