@@ -13,7 +13,7 @@ void Gx_SendPlainQuad_020133c4(void);
 #define GEOM_TARGET_TEXCOORD         3
 
 /* Draws one 16x32 16-colour map tile with the matrix data_022a7da0; pos is
- * not read. func_01ffc5c8 draws a 16x16 ground tile first, then this one.
+ * not read. Map3D_DrawMapTile draws a 16x16 ground tile first, then this one.
  * tile is a byte offset from data_022a7c5c->unk_00, palette a 32-byte block
  * from texPaletteOffset. shaded sends vertex colours with polygon mode 2. */
 void Map3D_DrawTallTile(VecFx32 *pos, int tile, int palette, int shaded)
