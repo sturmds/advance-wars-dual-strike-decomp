@@ -10576,6 +10576,10 @@ src/game/main/map/players_assign_vision_grids.c:
     complete
     .text       start:0x020c6198 end:0x020c6514
 
+src/game/main/map/player_get_slot_relation.c:
+    complete
+    .text       start:0x020c6598 end:0x020c65fc
+
 src/game/main/combat/damage_chart_get_column.c:
     complete
     .text       start:0x020c6708 end:0x020c672c

@@ -10,7 +10,7 @@
  * Player.unk_1b picks the grids its sight goes into: bit 0 the unk_20 grid,
  * bit 1 the unk_22 grid. */
 
-/* What func_020c6598(a, b) returns: slot b has data_0229eaf0[b] == 0 (none),
+/* What Player_GetSlotRelation(a, b) returns: slot b has data_0229eaf0[b] == 0 (none),
  * or is on another team than a (enemy) or the same team (ally). */
 #define SLOT_RELATION_NONE  0
 #define SLOT_RELATION_ENEMY 1
