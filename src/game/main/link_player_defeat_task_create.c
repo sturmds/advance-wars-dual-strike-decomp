@@ -3,7 +3,7 @@
 
 extern TaskScriptCmd data_02166608[];
 
-/* Starts the task that removes a defeated player's units (func_020cf434 runs
+/* Starts the task that removes a defeated player's units (LinkPlayerDefeatTask_Update runs
  * it). unk_64: player slot, unk_66: reason code. */
 void LinkPlayerDefeatTask_Create(u16 player, u16 code)
 {
