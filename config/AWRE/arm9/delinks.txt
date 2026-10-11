@@ -7465,6 +7465,10 @@ src/game/main/ai/ai_site_pick_most_enemies_any_group.c:
     complete
     .text       start:0x02096b20 end:0x02096bc4
 
+src/game/main/ai/ai_site_pick_first.c:
+    complete
+    .text       start:0x02096bc4 end:0x02096c60
+
 src/game/main/func_02096f44.c:
     complete
     .text       start:0x02096f44 end:0x02097050

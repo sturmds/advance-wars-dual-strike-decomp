@@ -11,7 +11,7 @@ extern int data_027c0284;
 extern u32 data_0229e278[];
 extern u8 gUnitSupplyKind[];
 
-int func_02096bc4(int allowSaving);
+int AiSite_PickFirst(int allowSaving);
 int func_02097dd4(void);
 int UnitType_GetAttackKind(u8 unitType);
 BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
@@ -60,7 +60,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
     int infoCount;
     u16 cost;
 
-    if (func_02096bc4(4) == -1) {
+    if (AiSite_PickFirst(4) == -1) {
         return -1;
     }
     info = func_02097dd4();

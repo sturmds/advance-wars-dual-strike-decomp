@@ -16,7 +16,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_020985b0(int mask);
 int AiTurn_TryBuildBlackBoatNearSite(void);
 int AiSite_PickNearestFoot(int arg);
-int func_02096bc4(int arg);
+int AiSite_PickFirst(int arg);
 int func_02090fa8(void);
 int func_02091068(void);
 int func_02091128(int type);
@@ -26,7 +26,7 @@ void func_0209316c(int index);
  * to carry foot units, the way AiTurn_TryBuildLander does for Landers:
  * needs bit 2 of the profile byte that func_020985b0 tests and the funds
  * for one. AiTurn_TryBuildBlackBoatNearSite runs first and ends the step when it returns 1.
- * AiSite_PickNearestFoot(3), then func_02096bc4(3), pick the factory (-1: none).
+ * AiSite_PickNearestFoot(3), then AiSite_PickFirst(3), pick the factory (-1: none).
  * With no foot unit waiting (func_02091068) nothing is built. When the
  * player has a Lander or a Black Boat, the new one needs four waiting foot
  * units per empty Black Boat, itself included, and four more per empty
@@ -54,7 +54,7 @@ BOOL AiTurn_TryBuildBlackBoatTransport(void)
     }
     index = AiSite_PickNearestFoot(3);
     if (index == -1) {
-        index = func_02096bc4(3);
+        index = AiSite_PickFirst(3);
         if (index == -1) {
             return 0;
         }
