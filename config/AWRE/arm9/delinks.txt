@@ -9984,6 +9984,10 @@ src/game/main/ai/ai_count_vehicles_wanting_transport.c:
     complete
     .text       start:0x02090fa8 end:0x02091068
 
+src/game/main/ai/ai_count_foot_wanting_transport.c:
+    complete
+    .text       start:0x02091068 end:0x02091128
+
 src/game/main/ai/range_map_spread_over_sea.c:
     complete
     .text       start:0x020911d4 end:0x020913b4
