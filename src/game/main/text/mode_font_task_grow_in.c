@@ -42,7 +42,7 @@ void ModeFontTask_GrowIn(ModeFontTask *task)
                         DIV_SCALE(-SIN0 << 4, Math_Ease(0, 64, 256, task->frame, GROW_FRAMES)),
                         HwDiv32(SIN0 << 4, 256),
                         DIV_SCALE(COS0 << 4, Math_Ease(0, 64, 256, task->frame, GROW_FRAMES)));
-    /* unused here; func_0202b0f8 slides its end sprites by this */
+    /* unused here; ModeFontTask_GrowInFramed slides its end sprites by this */
     Math_Ease(4, 128, 0, task->frame, GROW_FRAMES);
     for (i = 0; i < task->length; i++) {
         if (task->glyphs[i] == MODE_FONT_SPACE) {
