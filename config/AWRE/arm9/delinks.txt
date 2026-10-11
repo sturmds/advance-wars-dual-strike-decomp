@@ -5607,6 +5607,10 @@ src/game/main/link/func_0207b564.c:
     complete
     .text       start:0x0207b564 end:0x0207b5e0
 
+src/game/main/link/link_read_unflagged_packet.c:
+    complete
+    .text       start:0x0207b5e0 end:0x0207b610
+
 src/game/main/link/link_send_packet.c:
     complete
     .text       start:0x0207b744 end:0x0207b7b4
