@@ -7441,6 +7441,30 @@ src/game/main/func_0208a128.c:
     complete
     .text       start:0x0208a128 end:0x0208a160
 
+src/game/main/menus/combat_mode_menu_on_keys.c:
+    complete
+    .text       start:0x0208a1ac end:0x0208a288
+
+src/game/main/menus/combat_mode_menu_slot_below.c:
+    complete
+    .text       start:0x0208a288 end:0x0208a2e4
+
+src/game/main/menus/combat_mode_menu_slot_above.c:
+    complete
+    .text       start:0x0208a2e4 end:0x0208a340
+
+src/game/main/menus/combat_mode_menu_slot_right.c:
+    complete
+    .text       start:0x0208a340 end:0x0208a414
+
+src/game/main/menus/combat_mode_menu_slot_left.c:
+    complete
+    .text       start:0x0208a414 end:0x0208a4e8
+
+src/game/main/menus/combat_mode_menu_queue_slot_sprites.c:
+    complete
+    .text       start:0x0208a4e8 end:0x0208a594
+
 src/game/main/func_0208a594.c:
     complete
     .text       start:0x0208a594 end:0x0208a598
@@ -7448,6 +7472,18 @@ src/game/main/func_0208a594.c:
 src/game/main/func_0208a598.c:
     complete
     .text       start:0x0208a598 end:0x0208a5a4
+
+src/game/main/menus/combat_mode_menu_show_main_layers.c:
+    complete
+    .text       start:0x0208a5a4 end:0x0208a670
+
+src/game/main/menus/combat_mode_menu_add_buttons.c:
+    complete
+    .text       start:0x0208a670 end:0x0208a6fc
+
+src/game/main/menus/combat_mode_menu_close.c:
+    complete
+    .text       start:0x0208a6fc end:0x0208a760
 
 src/game/main/menus/combat_mode_menu_init.c:
     complete
@@ -7464,6 +7500,10 @@ src/game/main/func_0208aca0.c:
 src/game/main/func_0208acb0.c:
     complete
     .text       start:0x0208acb0 end:0x0208acd0
+
+src/game/main/menus/combat_setup_add_action_buttons.c:
+    complete
+    .text       start:0x0208acd0 end:0x0208ad2c
 
 src/game/main/func_0208ad2c.c:
     complete
@@ -7489,9 +7529,29 @@ src/game/main/func_0208ada0.c:
     complete
     .text       start:0x0208ada0 end:0x0208adac
 
+src/game/main/menus/combat_setup_reset_defaults.c:
+    complete
+    .text       start:0x0208adac end:0x0208ae68
+
+src/game/main/menus/combat_mode_menu_is_slot_available.c:
+    complete
+    .text       start:0x0208ae68 end:0x0208af34
+
 src/game/main/func_0208af34.c:
     complete
     .text       start:0x0208af34 end:0x0208af4c
+
+src/game/main/menus/func_0208af4c.c:
+    complete
+    .text       start:0x0208af4c end:0x0208af80
+
+src/game/main/func_0208af80.c:
+    complete
+    .text       start:0x0208af80 end:0x0208afbc
+
+src/game/main/menus/combat_result_close.c:
+    complete
+    .text       start:0x0208afbc end:0x0208afe8
 
 src/game/main/func_0208b1dc.c:
     complete

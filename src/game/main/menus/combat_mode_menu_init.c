@@ -20,7 +20,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void Icon_LoadPalette(int iconId, int paletteSlot);
 void Co_LoadSmallPicture(int coId, void *dest, int paletteSlot);
-BOOL func_0208ae68(u8 slot);           /* slots 0-2 always TRUE, 3-6 by game flag */
+BOOL CombatModeMenu_IsSlotAvailable(u8 slot);           /* slots 0-2 always TRUE, 3-6 by game flag */
 void ModeFont_Load(int a, int b);
 const char *Text_Get(u32 textId);
 void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int unk_56, u8 unk_5c, int unk_58);
@@ -58,7 +58,7 @@ extern const char gCombatMenuLangResPath[];     /* "/combat_st/res_cmmenu_la..."
 /* Sets up the Combat mode menu: blending on the second screen, the
  * backgrounds, icons and palettes from /combat_st/res_cmmenu, small pictures
  * of the seven COs in data_021613a0 (a black palette for each slot where
- * func_0208ae68 returns FALSE), the menu cursor on the button of
+ * CombatModeMenu_IsSlotAvailable returns FALSE), the menu cursor on the button of
  * data_02160ac0->unk_19, and the mode title. data_0229e144 gets a one-byte
  * copy of unk_19. */
 void CombatModeMenu_Init(void)
@@ -116,7 +116,7 @@ void CombatModeMenu_Init(void)
         Co_LoadSmallPicture(data_021613a0[i], data_027c0280->objVram + ((i * 12) << 5), i + 16);
     }
     for (i = 0; i < 7; i++) {
-        if (!func_0208ae68(i)) {
+        if (!CombatModeMenu_IsSlotAvailable(i)) {
             Mem_Fill32(0, data_027c0280->paletteBuffer + (i + 16) * 32, 32);
         }
     }

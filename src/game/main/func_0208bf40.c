@@ -3,7 +3,7 @@
 
 extern u8 data_0229e148[];
 
-void func_0208adac(void);
+void CombatSetup_ResetDefaults(void);
 void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 
 /* Copies the 24 bytes at data_0229e148 into the block data_02160ac0 points to:
@@ -11,7 +11,7 @@ void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
  * func_0208bfb0 reads them back. What the block holds is not known. */
 void func_0208bf40(void)
 {
-    func_0208adac();
+    CombatSetup_ResetDefaults();
     Mem_CopyUnits(data_0229e148, data_02160ac0, 20, 8);
     data_02160ac0->unk_18 = data_0229e148[20];
     data_02160ac0->unk_19 = data_0229e148[21];
