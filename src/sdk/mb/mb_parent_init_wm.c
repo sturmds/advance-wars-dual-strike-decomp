@@ -9,7 +9,7 @@ extern u16 data_022aced0;
 
 void func_0211bfb8(int);
 int WM_Initialize(void *workArea, void (*callback)(void), u16 dmaNo);
-void func_0211d8a8(void);
+void MbParent_SetIndAndLifeTime(void);
 
 /* Clears the parent's progress, then brings WM up (WM_Initialize, WM_Initialize)
  * unless the game started Download Play earlier, and installs the indication
@@ -36,6 +36,6 @@ int MbParent_InitWm(void)
     }
     WM_SetIndCallback(data_022aced8->sendCallback);
     data_022aced8->unk_50d = 1;
-    func_0211d8a8();
+    MbParent_SetIndAndLifeTime();
     return 0;
 }
