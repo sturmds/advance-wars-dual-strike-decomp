@@ -35,7 +35,7 @@ void func_020c1950(void);
 void CurrentPlayer_SyncState(void);
 void func_020e2ce0(int player);
 BOOL func_020bae64(void);                   /* TRUE: two or more human teams share the DS */
-int func_020c2338(int player);              /* next player after `player` still in the game */
+int Player_GetNextInGame(int player);              /* next player after `player` still in the game */
 void NextTurn_DrawArmyName(int y, int army);
 void Text_DrawCentered(int y, const char *text);
 
@@ -69,7 +69,7 @@ void Game_State3_NextTurnScreen(void)
         {
             Unk_027c0280 *saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);
-            NextTurn_DrawArmyName(86, STATE->players[func_020c2338(STATE->currentPlayer)].armyColour);
+            NextTurn_DrawArmyName(86, STATE->players[Player_GetNextInGame(STATE->currentPlayer)].armyColour);
             switch (data_ov000_023503a0) {
             case 0:
                 Text_DrawCentered(NEXT_TURN_TEXT_Y(64), gNextTurnTextEnglish);
