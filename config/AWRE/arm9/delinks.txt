@@ -10185,6 +10185,10 @@ src/game/main/link/link_player_defeat_task_update.c:
     complete
     .text       start:0x020cf434 end:0x020cf500
 
+src/game/main/link/link_player_defeat_task_transfer_properties.c:
+    complete
+    .text       start:0x020cf500 end:0x020cf840
+
 src/game/main/game_enter_state20.c:
     complete
     .text       start:0x020cf840 end:0x020cf884
