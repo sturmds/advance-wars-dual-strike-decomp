@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-void func_020773a0(int arg);
+void TotalRankScreen_QueueTopCoSprites(int arg);
 void SubScreen_QueueTwoSprites(int arg);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
@@ -13,7 +13,7 @@ void TapPrompt_Draw(void)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    func_020773a0(0);
+    TotalRankScreen_QueueTopCoSprites(0);
     SubScreen_QueueTwoSprites(0);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

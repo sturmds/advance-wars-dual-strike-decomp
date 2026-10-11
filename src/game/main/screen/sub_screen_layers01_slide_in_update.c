@@ -5,7 +5,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
 void SubScreen_QueueTwoSprites(int x);
-void func_020773a0(int x);
+void TotalRankScreen_QueueTopCoSprites(int x);
 void CampaignRecords_GetAverageScore(void);
 void Score_ToRank(void);
 void ResultRank_PlaySe(void);
@@ -15,7 +15,7 @@ void ResultRank_PlaySe(void);
 
 /* Task update: over 32 frames, eases the sub screen's layers 0 and 1 in from
  * 192 pixels to the right (BG x scroll 192 to 0), and passes the offset to
- * func_020773a0 (negated) and SubScreen_QueueTwoSprites. On the last frame it runs three
+ * TotalRankScreen_QueueTopCoSprites (negated) and SubScreen_QueueTwoSprites. On the last frame it runs three
  * helpers and resumes the task's script. */
 void SubScreenLayers01_SlideInUpdate(Task *task)
 {
@@ -37,7 +37,7 @@ void SubScreenLayers01_SlideInUpdate(Task *task)
     data_027c0280->bgScrollX[layer0] = data_027c0280->bgScrollX[layer1];
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_020773a0(-offset);
+    TotalRankScreen_QueueTopCoSprites(-offset);
     SubScreen_QueueTwoSprites(offset);
 
     if (FRAME(task) != 32) {
