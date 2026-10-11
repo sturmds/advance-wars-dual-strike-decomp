@@ -22717,6 +22717,10 @@ src/sdk/msl/strncpy.c:
     complete
     .text       start:0x02124660 end:0x021246d4
 
+src/sdk/msl/strcpy.c:
+    complete
+    .text       start:0x021246d4 end:0x021247ac
+
 src/sdk/func_021256a4.c:
     complete
     .text       start:0x021256a4 end:0x021256a8

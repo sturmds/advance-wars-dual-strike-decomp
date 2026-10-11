@@ -4,7 +4,7 @@
 extern Unk_027c0280 *data_027c0280;
 
 int func_02124534(const char *a, const char *b);
-char *func_021246d4(char *dst, const char *src);
+char *strcpy(char *dst, const char *src);
 u32 strlen(const char *str);
 int Text_DrawStringToTiles(const char *str, u8 *tiles, int colour);
 
@@ -35,7 +35,7 @@ int FontCache_Add(const char *str, int colour)
         pos = pos + strlen(names + pos) + 1;
         index++;
     }
-    func_021246d4(names + pos, str);
+    strcpy(names + pos, str);
     tiles = Text_DrawStringToTiles(str,
                           data_027c0280->bgVram + data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase * 0x4000
                               + font->digitEndTile * 32,
