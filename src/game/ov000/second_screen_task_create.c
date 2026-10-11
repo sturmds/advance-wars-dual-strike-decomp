@@ -17,7 +17,7 @@ void Screen_SetCurrentGfx(void *state);
 void *Task_Create(const void *script, int list);
 u8 Player_GetArmyStyle(int playerIndex);
 BOOL func_ov000_022b0138(int unitType);
-void func_0201e2a8(int a0);
+void Gfx_LoadPlayerWindowFrame(int a0);
 void SecondScreen_LoadIcons(void);
 void func_01ff9b48(void);
 void func_01ff9ac4(void);
@@ -41,7 +41,7 @@ void SecondScreenTask_Create(int ownerAndUnitType)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_0201e2a8(0);
+    Gfx_LoadPlayerWindowFrame(0);
     SecondScreen_LoadIcons();
     func_01ff9b48();
     func_01ff9ac4();

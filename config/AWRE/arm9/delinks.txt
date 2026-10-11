@@ -1967,6 +1967,10 @@ src/game/main/func_0201e290.c:
     complete
     .text       start:0x0201e290 end:0x0201e2a8
 
+src/game/main/graphics/gfx_load_player_window_frame.c:
+    complete
+    .text       start:0x0201e2a8 end:0x0201e2d4
+
 src/game/main/graphics/gfx_load_bmap0a0_palette.c:
     complete
     .text       start:0x0201e2d4 end:0x0201e30c
@@ -1986,6 +1990,10 @@ src/game/main/graphics/gfx_load_player_bmap0a0_palette.c:
 src/game/main/graphics/palette_load_player_army_bg_row.c:
     complete
     .text       start:0x0201e3b8 end:0x0201e41c
+
+src/game/main/menus/popup_menu_clear_box.c:
+    complete
+    .text       start:0x0201e41c end:0x0201e478
 
 src/game/main/graphics/window_draw_frame.c:
     complete
