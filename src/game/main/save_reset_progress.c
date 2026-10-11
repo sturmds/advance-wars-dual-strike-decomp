@@ -14,7 +14,7 @@ void Co_SetAvailable(int co, int value);
 void func_0210408c(void);
 void Campaign_ResetProgress(void);
 void func_020e86b8(void);
-void func_020248fc(void);
+void BattleRecord_ClearAll(void);
 void func_02101b94(void);
 void func_020e6d8c(void);
 void PlayRecords_ResetCounters(void);
@@ -57,7 +57,7 @@ void Save_ResetProgress(void)
     data_02290a18.unk_78 = 0;
     data_02290a18.unk_7a = 0;
     func_020e86b8();
-    func_020248fc();
+    BattleRecord_ClearAll();
     func_02101b94();
     func_020e6d8c();
     PlayRecords_ResetCounters();

@@ -3928,6 +3928,10 @@ src/game/main/battle_record_save_win.c:
     complete
     .text       start:0x020242e0 end:0x020248fc
 
+src/game/main/battle_record_clear_all.c:
+    complete
+    .text       start:0x020248fc end:0x02024a08
+
 src/game/main/script/choice_prompt_get_keys.c:
     complete
     .text       start:0x02024a08 end:0x02024a40
