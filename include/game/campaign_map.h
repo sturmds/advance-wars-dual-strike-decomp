@@ -37,7 +37,7 @@ typedef struct CampaignTopCo {
  * to the task system (Task_Create). */
 typedef struct CampaignMapTask {
     u8 pad_00[0x2c];
-    int fromX;                         /* scroll at the start of func_0204e900's move */
+    int fromX;                         /* scroll at the start of CampaignMap_EaseScroll's move */
     int fromY;
     int toX;
     int toY;
