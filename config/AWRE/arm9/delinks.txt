@@ -6235,6 +6235,10 @@ src/game/main/func_0205067c.c:
     complete
     .text       start:0x0205067c end:0x02050694
 
+src/game/main/screen/title_call_number_slide_in.c:
+    complete
+    .text       start:0x020506d0 end:0x020509b8
+
 src/game/main/func_02050c9c.c:
     complete
     .text       start:0x02050c9c end:0x02050ca8
