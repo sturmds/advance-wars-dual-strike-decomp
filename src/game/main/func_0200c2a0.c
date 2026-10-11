@@ -4,7 +4,7 @@ u32 OS_GetLockID(void);
 void OS_ReleaseLockID(u16 lockId);
 void func_021153f0(u16 a);
 void func_021153e0(u16 a);
-void func_02115a30(int a);
+void CARD_IdentifyBackup(int a);
 int func_02115c74(int a0, void *a1, int a2, int a3, int a4, int a5);
 
 int func_0200c2a0(void)
@@ -13,7 +13,7 @@ int func_0200c2a0(void)
     int result;
     u32 buffer;
 
-    func_02115a30(0x1202);
+    CARD_IdentifyBackup(0x1202);
     func_021153f0(lockId);
     result = func_02115c74(0, &buffer, 4, 0, 0, 0);
     func_021153e0(lockId);
