@@ -48,7 +48,7 @@ typedef struct BattleSaveMap {
     u8 pad_e3d;
     BattleSaveTile tiles[BATTLE_SAVE_TILE_COUNT]; /* ends at cell BATTLE_SAVE_TILES_END when not full */
     MapObject objects[BATTLE_SAVE_OBJECT_COUNT];
-    u8 unk_102e[0x10b0 - 0x102e];      /* filled by func_020e4f78, read back by func_020e5064 */
+    u8 unk_102e[0x10b0 - 0x102e];      /* filled by TileHp_Pack, read back by TileHp_Unpack */
 } BattleSaveMap;
 
 /* The unit slots of a game state, 64 per player. They start at 0x495c,

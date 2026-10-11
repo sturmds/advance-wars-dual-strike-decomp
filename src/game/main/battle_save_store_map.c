@@ -6,7 +6,7 @@
 
 void Map_LoadData(u32 mapId);
 void func_020c3e5c(void);
-void func_020e4f78(u8 *data);           /* fills the data that BattleSave_LoadMap passes to func_020e5064 */
+void TileHp_Pack(u8 *data);           /* fills the data that BattleSave_LoadMap passes to TileHp_Unpack */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -62,5 +62,5 @@ void BattleSave_StoreMap(BattleSaveMap *save)
     for (i = 0; i < BATTLE_SAVE_OBJECT_COUNT; i++) {
         save->objects[i] = STATE->objects[i];
     }
-    func_020e4f78(save->unk_102e);
+    TileHp_Pack(save->unk_102e);
 }

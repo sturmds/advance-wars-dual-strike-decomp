@@ -14,7 +14,7 @@ void Map_BuildRowStarts(void);
 void func_020c3e5c(void);
 void TileCodeTable_Load(void);
 void MapObject_Restore(MapObject *object, int index); /* copies object into STATE->objects[index] */
-void func_020e5064(u8 *data);
+void TileHp_Unpack(u8 *data);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -86,5 +86,5 @@ void BattleSave_LoadMap(BattleSaveMap *save)
     for (i = 0; i < BATTLE_SAVE_OBJECT_COUNT; i++) {
         MapObject_Restore(&save->objects[i], i);
     }
-    func_020e5064(save->unk_102e);
+    TileHp_Unpack(save->unk_102e);
 }
