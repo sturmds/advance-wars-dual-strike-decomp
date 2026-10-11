@@ -8,7 +8,7 @@ int func_02096c60(int x, int y);
 #define SITE_TYPE_ANY     4
 
 /* AiSite_PickMostEnemies without the group test. */
-int func_02096b20(int siteType)
+int AiSite_PickMostEnemiesAnyGroup(int siteType)
 {
     AiSite *site;
     int i;
