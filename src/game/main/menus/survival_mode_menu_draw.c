@@ -1,0 +1,47 @@
+#include "types.h"
+#include "game/Unk_02088d04.h"
+
+void Screen_SetCurrentGfx(void *state);
+void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
+void func_02001fa8(int x, int y, int attr, int a3);
+int func_020477d0(int row);
+int func_02047924(int mode, int a1);
+int func_02047944(int mode);
+int func_02047960(void);
+
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern u8 data_027c0040;
+extern u8 data_027c01c0;
+
+/* Draws one frame of the Survival mode menu on the top screen: a label per
+ * row (the second row only when func_02047960 allows it) and, for each row
+ * whose mode has a saved record (func_02047944), the record's COs (pictures
+ * row * 2 and row * 2 + 1, with palette and tiles to match) and an icon.
+ * Needed to match: the first picture's attributes written from row, the
+ * second's from a local. */
+void SurvivalModeMenu_Draw(void)
+{
+    Unk_027c0280 *savedState = data_027c0280;
+    int row;
+    int mode;
+    int picture;
+
+    Screen_SetCurrentGfx(data_027c0288.unk_00);
+    Sprite_QueueAt(0, 48, 38, &data_027c01c0, 0x4030, 0);
+    if (func_02047960() == 1) {
+        Sprite_QueueAt(0, 48, 102, &data_027c01c0, 0x4050, 0);
+    }
+    for (row = 0; row < 2; row++) {
+        mode = func_020477d0(row);
+        if (func_02047944(mode) != 0) {
+            func_02001fa8(32, (88 + row * 64) & 0xff, (row << 13) | (row * 24), (row * 2) & 1);
+            if (func_02047924(mode, 1) != 0) {
+                picture = row * 2 + 1;
+                func_02001fa8(64, (88 + row * 64) & 0xff, (picture * 12) | (picture << 12), picture & 1);
+            }
+            Sprite_QueueAt(0, 200, (72 + row * 64) & 0xff, &data_027c0040, (112 + row * 4) | 0x5000, 0);
+        }
+    }
+    Screen_SetCurrentGfx(savedState);
+}

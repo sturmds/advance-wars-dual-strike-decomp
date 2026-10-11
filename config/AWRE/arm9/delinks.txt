@@ -4639,6 +4639,10 @@ src/game/main/func_02046fc8.c:
     complete
     .text       start:0x02046fc8 end:0x02046fe0
 
+src/game/main/menus/survival_mode_menu_draw.c:
+    complete
+    .text       start:0x02046fe0 end:0x02047164
+
 src/game/main/func_02047164.c:
     complete
     .text       start:0x02047164 end:0x02047168
