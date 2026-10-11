@@ -9064,6 +9064,10 @@ src/game/main/link/wireless_init.c:
     complete
     .text       start:0x0207a888 end:0x0207aa04
 
+src/game/main/link/wireless_init_parent_param.c:
+    complete
+    .text       start:0x0207aa04 end:0x0207aab4
+
 src/game/main/func_0207ab14.c:
     complete
     .text       start:0x0207ab14 end:0x0207ab2c
