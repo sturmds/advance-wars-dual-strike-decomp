@@ -5,7 +5,7 @@
 #include "game/Unk_02088d04.h"
 
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 const char *File_LocalizePath(const char *path);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
@@ -46,7 +46,7 @@ void SuperBreak_LoadBanner(Task *task)
     int i;
 
     Screen_SetLayerScreenSize(0, 2);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     res = File_Load(data_0215c268);
     langRes = File_Load(File_LocalizePath(data_0215c280));
     Data_Unpack(langRes, LAYER_TILES(data_027c0280->layer0Bg));

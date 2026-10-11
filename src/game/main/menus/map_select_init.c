@@ -9,7 +9,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetLayerCharBase(int a, u32 b);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void *File_Load(const char *path);
 const char *File_LocalizePath(const char *path);
 void File_ReadAt(void *dest, const char *path, u32 offset, u32 size);
@@ -94,7 +94,7 @@ void MapSelect_Init(void)
 
     SWITCH_TO(MAIN_MAP);
     Screen_SetLayerScreenSize(0, 1);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     data_027c0280->dispCnt |= 0x40;
     data_027c0280->unk_dd = 1;
     data_027c0280->blendMode = BLEND_MODE_ALPHA;
@@ -117,8 +117,8 @@ void MapSelect_Init(void)
     Screen_SetLayerCharBase(2, 0x6200000);
     Screen_SetLayerScreenSize(0, 2);
     Screen_SetLayerScreenSize(1, 1);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     data_027c0280->blendMode = BLEND_MODE_ALPHA;
     data_027c0280->blendEva = 10;
     data_027c0280->blendEvb = 6;

@@ -16,7 +16,7 @@ typedef struct CoProfileText {
 extern CoProfileText data_02153610[];
 extern CoProfileText data_02153614[];
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 #define MENU (gMenuState.unk_0206d67c)
@@ -30,7 +30,7 @@ void Gfx_RequestLayerCopy(int layer);
  * day-to-day text on layer 0. coShown holds the CO id, with bit 7 as a flag. */
 void PlayerInfo_DrawCoProfile(void)
 {
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Text_PrintId(1, 5, data_027c0280->layer0Map, data_02153610[SHOWN_CO & 0x7f].text.id, 0, 192);
     Text_PrintId(1, 16, data_027c0280->layer0Map, data_02153614[SHOWN_CO & 0x7f].text.id, 0, 448);
     Gfx_RequestLayerCopy(0);

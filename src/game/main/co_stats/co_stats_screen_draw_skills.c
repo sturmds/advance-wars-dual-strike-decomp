@@ -11,7 +11,7 @@ void Co_ListDefaultSkills(u8 *out, int co);
 void Player_ListEquippedSkills(u8 *out, int player, int slot);
 void Screen_SetCurrentBoth(void *state);
 void SkillIcon_Load(int skill, void *dest);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -77,7 +77,7 @@ void CoStatsScreen_DrawSkills(void)
                               + (SKILL_ICON_TILE + i * 4) * 32);
         }
     }
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Bg_PutTileQuad(10, 5, 0x2c8, 2);
     Text_PrintId(12, 5, data_027c0280->layer0Map, 0x80000038, 0, 128);
     for (i = 0; i < count; i++) {

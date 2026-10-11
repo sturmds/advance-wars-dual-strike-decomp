@@ -3,7 +3,7 @@
 
 extern u8 data_02169dac[];
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020f79a4(void);
 void Task_DestroyByScript(void *script);
@@ -13,7 +13,7 @@ void Task_DestroyByScript(void *script);
 void func_020f77bc(void)
 {
     if (data_027c027c != data_027c0288.unk_00) {
-        func_01ff8c84(0);
+        Gfx_ClearLayerMap(0);
         Gfx_RequestLayerCopy(0);
         func_020f79a4();
         if (data_027c027c->unk_50[data_027c0284]->unk_38 != NULL) {

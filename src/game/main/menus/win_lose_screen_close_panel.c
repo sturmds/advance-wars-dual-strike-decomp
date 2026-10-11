@@ -4,7 +4,7 @@
 
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(WinLoseTask *task);
-void func_01ff8c84(int layer);        /* likely clears the layer's tile map */
+void Gfx_ClearLayerMap(int layer);        /* likely clears the layer's tile map */
 void func_0201e6e8(int x, int y, int width, int height);   /* window frame on layer 1 */
 void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task);
 
@@ -26,7 +26,7 @@ void WinLoseScreen_ClosePanel(WinLoseTask *task)
         Task_ResumeScript(task);
         return;
     }
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     if (task->frame >= 0) {
         if (GAME->gameMode == GAME_MODE_SURVIVAL) {
             func_0201e6e8((s16)(14 - task->frame), 14, (s16)(task->frame * 2 + 2), 8);

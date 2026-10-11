@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 /* Task script step before the day banner opens: windows off, and layer 0
@@ -30,6 +30,6 @@ void DayBanner_SetUpBlend(void)
     data_027c0280->blendBottomObj = 1;
     data_027c0280->blendBottomBackdrop = 1;
     Screen_SetLayerScreenSize(0, 1);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
 }

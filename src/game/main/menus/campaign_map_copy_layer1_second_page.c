@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Mem_Copy32(const void *src, void *dest, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -12,7 +12,7 @@ extern Unk_027c0280 *data_027c0280;
  * (guess: the world map is the screen that uses it). */
 void CampaignMap_CopyLayer1SecondPage(void)
 {
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Mem_Copy32((u8 *)data_027c0280->layer1Map + 0x800, data_027c0280->layer1Map, 0x800);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);

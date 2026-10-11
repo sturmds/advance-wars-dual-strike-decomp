@@ -3,7 +3,7 @@
 
 void PopupMenu_PushState(void);
 void func_0201e954(void);
-void func_01ff8c84(int arg);
+void Gfx_ClearLayerMap(int arg);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Font_SetDigitEndTile(int tile);
@@ -16,7 +16,7 @@ void func_ov006_02354108(void)
 {
     PopupMenu_PushState();
     func_0201e954();
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(1);
     func_020c4018();
     Font_SetDigitEndTile(220);

@@ -9,7 +9,7 @@ void *File_Load(const char *path);
 void ScriptSlot_ClearCallback(int slot);
 void func_0201e6e8(int x, int y, int width, int height);
 void Font_SetDigitEndTile(int tile);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Ov006_QueueMenuSprites(void);
@@ -86,8 +86,8 @@ void Ov006_UpdateTextPages(void)
         }
         func_ov006_02355444();
         Ov006_RemoveScreen0Button241();
-        func_01ff8c84(0);
-        func_01ff8c84(1);
+        Gfx_ClearLayerMap(0);
+        Gfx_ClearLayerMap(1);
         Gfx_RequestLayerCopy(0);
         Gfx_RequestLayerCopy(1);
         func_020c4018();

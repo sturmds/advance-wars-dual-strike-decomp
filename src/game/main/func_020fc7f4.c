@@ -1,7 +1,7 @@
 #include "types.h"
 
 extern int data_022a7e68;
-void func_01ff8c84(int arg);
+void Gfx_ClearLayerMap(int arg);
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int saved);
 void *func_0211a54c(u16 index);
@@ -18,7 +18,7 @@ void func_020fc7f4(void)
     if (data_022a7e68 != 2) {
         return;
     }
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     saved = OS_DisableInterrupts();
     n = 0;
     for (i = 1; i < 8; i++) {

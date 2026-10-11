@@ -18,7 +18,7 @@ extern char data_02167c88[];
 
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 int func_0207a324(void);
@@ -44,7 +44,7 @@ void Link_DrawPlayerRows(void)
         LinkMenu_AddRowButtons();
         data_0215fed0->view = 0;
     }
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     for (i = 0; i < Wireless_GetParentCount(); i++) {
         info = Wireless_GetParent(i);
         if (info != 0) {

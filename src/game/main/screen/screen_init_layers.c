@@ -15,7 +15,7 @@ void Screen_ResetBgRegisters(void);                /* resets the screen's graphi
 void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and applies the graphics mode */
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_ClearLayerBlankTile(int layer);
 void func_01ff8d94(int layer);
 
@@ -60,7 +60,7 @@ void Screen_InitLayers(const GfxLayer *config)
             } else if (Screen_IsAffineBg(i) == 1) {
                 LAYER_BG_CNT(i).colorMode = 1;
             }
-            func_01ff8c84(i);
+            Gfx_ClearLayerMap(i);
             Gfx_ClearLayerBlankTile(i);
             func_01ff8d94(i);
         }

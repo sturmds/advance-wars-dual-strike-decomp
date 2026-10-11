@@ -70,7 +70,7 @@ void Ov004_UnpackResource(const char *name, void *dst);
 void Ov004_CopyResource(const char *name, void *dst);
 void Ov004_LoadBg3FromResource(const char *name, int tilesOffset, int mapOffset, int palette);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -132,8 +132,8 @@ void Ov004Task_RunSceneTimeline(Ov004Task *task)
         id = task->duration++;
         Ov004_SetSlotTask(state, Task_Create(data_ov004_022be3f8, TASK_LIST(0)), id);
         gTaskSystemReady = 1;
-        func_01ff8c84(1);
-        func_01ff8c84(2);
+        Gfx_ClearLayerMap(1);
+        Gfx_ClearLayerMap(2);
 
         /* BG1 and BG2 use BG palette 8: map entries get 0x8000, colours go to paletteBuffer + 0x100 */
         Ov004_UnpackResource(data_ov004_022bdddc, BG_CHAR_DATA(data_027c0280->layer1Bg));

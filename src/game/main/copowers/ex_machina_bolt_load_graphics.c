@@ -20,7 +20,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
@@ -41,7 +41,7 @@ void ExMachinaBolt_LoadGraphics(ExMachinaBoltTask *task)
 
     FS_ChangeDir(data_02168b60);
     Screen_SetLayerScreenSize(0, 1);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
     File_UnpackTo(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
                   data_02168b68);

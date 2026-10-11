@@ -8,7 +8,7 @@ extern u8 data_ov003_02369be8[];
 void Data_Unpack(const void *src, void *dst);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Bg_PutTileBlock(u16 *map, int x, int y, const void *block, int tileAdd);
 void Bg_ClearRect(u16 *map, int x, int y, int width, int height);
 void Gfx_RequestLayerCopy(int layer);
@@ -32,10 +32,10 @@ void Ov003_LoadSubScreenGraphics(u8 *file, u8 *localizedFile)
     Mem_Copy32(file + 0x95c, data_ov003_02369be8, 32);
     Data_Unpack(file, data_027c0280->objVram + 0x1780);
     Palette_Load(file + 0x89c, 544, 32);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
-    func_01ff8c84(2);
-    func_01ff8c84(3);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
+    Gfx_ClearLayerMap(2);
+    Gfx_ClearLayerMap(3);
     for (i = 0; i < 4; i++) {
         row = &data_ov003_02364928->rows[i];
         if (row->active) {

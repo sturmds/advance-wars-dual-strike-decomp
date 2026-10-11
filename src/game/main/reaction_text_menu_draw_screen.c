@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/reaction_text_menu_task.h"
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_LoadBmap09f(void *dst, int unused, int paletteSlot);
 void Font_LoadDigits(int baseTile);
 u8 *File_Load(const char *path);
@@ -27,9 +27,9 @@ void ReactionTextMenu_DrawScreen(void)
     u8 *file;
     int i;
 
-    func_01ff8c84(0);
-    func_01ff8c84(1);
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
+    Gfx_ClearLayerMap(2);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
     file = File_Load(data_0215fcd4);

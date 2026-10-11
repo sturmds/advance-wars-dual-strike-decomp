@@ -9,7 +9,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Gfx_LoadBmap09f(void *dst, int unused, int paletteSlot);
 void Font_LoadDigits(int baseTile);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 void func_0201e6e8(int x, int y, int width, int height);
 void Co_UnpackPicture(int coId, int firstTile);
@@ -60,7 +60,7 @@ void WinQuote_Init(Task *task)
     Screen_SetCurrentGfx(savedGfx);
 
     Font_LoadDigits(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     /* needed to match: the original has the record index in r3 (the army
      * argument) at both calls */
     Co_LoadArmyGraphicsAndPalette(data_022a7ab8[RECORD_INDEX(task)].unk_00, 0x224, 5, RECORD_INDEX(task));

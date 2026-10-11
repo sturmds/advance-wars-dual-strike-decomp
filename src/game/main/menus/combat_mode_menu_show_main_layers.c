@@ -5,7 +5,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void HelpText_Show(u32 textId, int tile);
 
@@ -31,7 +31,7 @@ void CombatModeMenu_ShowMainLayers(void)
     data_027c0280->dispCnt |= 0x400;
     data_027c0280->dispCnt |= 0x800;
     data_027c0280->dispCnt |= 0x1000;
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

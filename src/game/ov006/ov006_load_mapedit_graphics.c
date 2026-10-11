@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void FS_ChangeDir(const char *dir);
@@ -43,10 +43,10 @@ void Ov006_LoadMapeditGraphics(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
-    func_01ff8c84(2);
-    func_01ff8c84(3);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
+    Gfx_ClearLayerMap(2);
+    Gfx_ClearLayerMap(3);
     Screen_SetBgMode(0);
     Screen_InitLayers(data_ov006_0236aad8);
     data_027c0280->dispCnt |= 0x100;

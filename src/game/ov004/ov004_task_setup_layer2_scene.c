@@ -4,7 +4,7 @@
 
 void Screen_InitLayers(const GfxLayer *config);
 void Screen_SetBgMode(int bgMode);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
@@ -71,7 +71,7 @@ void Ov004Task_SetupLayer2Scene(Ov004Task *task) {
     data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
     data_027c0280->bgScrollY[data_027c0280->layer3Bg] = 0;
     data_027c0280->bgScrollX[data_027c0280->layer3Bg] = 0;
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(2);
 
     Ov004_UnpackResource(data_ov004_022bdd88, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
     Ov004_UnpackResource(data_ov004_022bddf8, GFX_LAYER(data_027c0280, 2)->map);

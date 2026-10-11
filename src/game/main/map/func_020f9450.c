@@ -8,7 +8,7 @@ extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
 extern u8 data_021398d0[];
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void MapView_DrawRangeTile(int x, int y);
 void Gfx_RequestLayerCopy(int layer);
 s16 TransferQueue_Add(const void *src, void *dst, u32 size);
@@ -29,7 +29,7 @@ void func_020f9450(Task *task)
     top = map->scrollY >> 4;
 
     rows = (map->mapHeight - top > 12) ? 13 : 12;
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     for (row = 0; row < rows; row++) {
         y = (s16)(top + row);
         for (col = 0; col < 16; col++) {

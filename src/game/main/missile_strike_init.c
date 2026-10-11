@@ -12,7 +12,7 @@ extern char data_02169194[];    /* "08c" */
 extern char data_02169198[];    /* "08d" */
 
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
@@ -32,7 +32,7 @@ void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 void MissileStrike_Init(MissileStrikeTask *task)
 {
     Screen_SetLayerScreenSize(0, 2);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
     FS_ChangeDir(data_02169180);
     File_UnpackTo(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14) + 0x5100,

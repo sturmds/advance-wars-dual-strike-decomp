@@ -10,7 +10,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Wallpaper_LoadSingleOnFirstScreen(void);
 void Font_LoadDigits(int a);
 void FS_ChangeDir(const char *dir);
@@ -81,9 +81,9 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
         if (work->maxLength == 8) {
             Screen_InitLayers(data_0216ac74);
         } else {
-            func_01ff8c84(0);
-            func_01ff8c84(1);
-            func_01ff8c84(2);
+            Gfx_ClearLayerMap(0);
+            Gfx_ClearLayerMap(1);
+            Gfx_ClearLayerMap(2);
         }
         GFX_DISPCNT(data_027c0280)->bg0 = 1;
         GFX_DISPCNT(data_027c0280)->bg1 = 1;

@@ -16,7 +16,7 @@ u32 Battle_PickHappyQuote(int side);
 u32 Battle_PickAngryQuote(int side);
 s32 _s32_div_f(s32 num, s32 den);
 void Mem_Zero32(u32 value, void *dst, u32 size);
-void func_01ff8c84(int a);
+void Gfx_ClearLayerMap(int a);
 void Gfx_RequestLayerCopy(int a);
 void Data_Unpack(const void *src, void *dst);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -71,7 +71,7 @@ void Battle_ShowQuote(void)
 
     data_0229fb30.unk_02 = 1;
     Mem_Zero32(0, BATTLE_FIELD(unk_7d0), sizeof(gMenuState.battle.unk_7d0));
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     res = File_Load(Ov002_gBattleResPath);
     lang = File_Load(File_LocalizePath(Ov002_gBattleLangResPath));
     Battle_PickFrame();

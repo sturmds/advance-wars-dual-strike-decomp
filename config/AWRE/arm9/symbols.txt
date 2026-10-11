@@ -6075,8 +6075,8 @@ data_02134c48 kind:data(any) addr:0x02134c48
 data_02134cf4 kind:data(any) addr:0x02134cf4
 gObjRowPalette kind:data(any) addr:0x02134d48
 data_02134d68 kind:data(any) addr:0x02134d68
-data_02134e6c kind:data(any) addr:0x02134e6c
-data_02134e7c kind:data(any) addr:0x02134e7c
+gBgTextMapBytes kind:data(any) addr:0x02134e6c
+gBgAffineMapBytes kind:data(any) addr:0x02134e7c
 data_02134e8c kind:data(any) addr:0x02134e8c
 data_02137c88 kind:data(any) addr:0x02137c88
 data_02137ca8 kind:data(any) addr:0x02137ca8

@@ -2,7 +2,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void func_0201e954(void);
-void func_01ff8c84(int arg);
+void Gfx_ClearLayerMap(int arg);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Ov006_PostRequest(int request);
@@ -15,7 +15,7 @@ extern u8 data_ov006_0236b0bc[];
 void func_ov006_02354090(void)
 {
     func_0201e954();
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(1);
     func_020c4018();
     Ov006_PostRequest(7);

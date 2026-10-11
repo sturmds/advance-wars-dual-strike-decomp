@@ -41,6 +41,10 @@ src/game/itcm/screen/gfx_clear_layer_blank_tile.c:
     complete
     .text       start:0x01ff8c1c end:0x01ff8c84
 
+src/game/itcm/screen/gfx_clear_layer_map.c:
+    complete
+    .text       start:0x01ff8c84 end:0x01ff8d60
+
 src/game/itcm/gfx_request_layer_copy.c:
     complete
     .text       start:0x01ff8d60 end:0x01ff8d94

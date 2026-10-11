@@ -5,7 +5,7 @@
 extern TabListView gMenuState;
 extern Unk_027c0280 *data_027c0280;
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Bg_PutSkillSlot(u16 x, u16 y, u16 *map, int palette);
 void Bg_PutTile5Quad(u16 x, u16 y, u16 *map, int palette);
 int TabList_CallUnk1c(int row, int col);
@@ -27,7 +27,7 @@ void TabList_DrawPage(void)
 
     tab = gMenuState.tab;
     first = gMenuState.pageOfTab[tab] * 9;
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     for (row = 0, y = 5; row < 9; row++, y += 2) {
         entry = first + row;
         item = &data_0215d6c4[tab][entry];

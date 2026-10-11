@@ -9,7 +9,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Task_ResumeScript(WinLoseTask *task);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8c84(int layer);        /* likely clears the layer's tile map */
+void Gfx_ClearLayerMap(int layer);        /* likely clears the layer's tile map */
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -33,7 +33,7 @@ static inline void SetFadeBlend(WinLoseTask *task)
 /* Clears layer 2 and turns blending off. */
 static inline void EndFade(void)
 {
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(2);
     Gfx_RequestLayerCopy(2);
     data_027c0280->blendMode = 0;
     data_027c0280->blendEva = 16;

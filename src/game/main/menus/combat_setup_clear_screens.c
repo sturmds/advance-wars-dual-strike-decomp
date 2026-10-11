@@ -5,7 +5,7 @@
 void RowLockMark_DestroyAll(void);
 void func_02088514(void);
 void MenuButtons_RemoveAll(void);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 extern MenuState gMenuState;
@@ -28,9 +28,9 @@ void CombatSetup_ClearScreens(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(1);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
@@ -39,7 +39,7 @@ void CombatSetup_ClearScreens(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(2);
     Gfx_RequestLayerCopy(2);
     data_027c0280->bgScrollX[data_027c0280->layer2Bg] = 0;
     data_027c0280->bgScrollY[data_027c0280->layer2Bg] = 0;

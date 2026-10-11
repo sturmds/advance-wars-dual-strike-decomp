@@ -11,7 +11,7 @@ void Layer0_PutNumber(int x, int y, u32 value);
 void Layer0_PutNumberThenText4(int x, int y, u32 value);
 void Gfx_RequestLayerCopy(int layer);
 void Font_LoadDigits(int baseTile);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void func_0201e6e8(int layer, int x, int y, int a3);
 void func_02026ddc(int x, int y, u32 value);
 void Survival_DrawMapCount(int x, int y, u32 value);
@@ -34,8 +34,8 @@ void Survival_DrawRunSummary(Task *task)
     u8 layer1;
     u8 layer0;
 
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     Font_LoadDigits(0);
     func_0201e6e8(0, 18, 21, 6);
     switch (data_022a7b80.mode) {

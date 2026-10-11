@@ -4,7 +4,7 @@
 
 void Task_ResumeByScript(const void *script);
 void Sound_PlaySe(u32 soundId);
-void func_01ff8c84(int value);
+void Gfx_ClearLayerMap(int value);
 void Gfx_RequestLayerCopy(int layer);
 
 extern const TaskScriptCmd data_0215a690[];
@@ -14,7 +14,7 @@ extern const TaskScriptCmd data_0215a690[];
 void ResultStats_ClosePage(void)
 {
     Sound_PlaySe(0x10006);
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
     MenuButton_Close(0);
     Task_ResumeByScript(data_0215a690);

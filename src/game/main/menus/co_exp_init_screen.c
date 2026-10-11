@@ -10,7 +10,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
 int Campaign_IsHardMode(void);
@@ -61,7 +61,7 @@ void CoExp_InitScreen(void)
     Screen_SetCurrentGfx(MAIN_MAP);
     saved027c = data_027c027c;
     Screen_SetCurrent(MAIN_MAP);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Font_LoadDigits(0);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0xff00;

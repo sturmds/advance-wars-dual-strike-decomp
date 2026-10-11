@@ -8,7 +8,7 @@ int Player_GetShownRangeBonus(int player, int slot, int unitType);
 int Player_GetShownMoveBonus(int player, int slot, int unitType);
 int Player_GetShownFirepower(int player, int slot, int unitType);
 int GetUnitCombatClass(int unitType);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
 void Bg_PutThreeTiles(int x, int y, int firstTile, int palette);
 void Bg_PutOneTile(int x, int y, int tile, int palette);
@@ -41,7 +41,7 @@ void PlayerInfo_DrawUnitStats(void)
     int bonus;
     int firepower;
 
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     for (row = 0; row < 6; row++) {
         for (col = 0; col < 5; col++) {
             if (!UnitRow_IsAvailable(row * 5 + col)) {

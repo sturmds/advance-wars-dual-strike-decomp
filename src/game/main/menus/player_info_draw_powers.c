@@ -19,7 +19,7 @@ extern CoRecordText data_0215372c[]; /* CoRecord.blocks[POWER_CO].name */
 extern CoRecordText data_021537ac[]; /* CoRecord.blocks[POWER_SUPER].name */
 
 void Bg_PutTileQuad(int x, int y, int firstTile, int palette);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
 #define MENU (gMenuState.unk_0206d67c)
@@ -38,7 +38,7 @@ void Gfx_RequestLayerCopy(int layer);
  * Bolt has no CO Power, so his Super takes the upper place. */
 void PlayerInfo_DrawPowers(void)
 {
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     if ((SHOWN_CO & 0x7f) != CO_VON_BOLT) {
         Bg_PutTileQuad(10, 5, TILE_CO_POWER_ICON, 2);
         Text_PrintId(12, 5, data_027c0280->layer0Map, data_0215372c[SHOWN_CO & 0x7f].text.id, 0, 128);

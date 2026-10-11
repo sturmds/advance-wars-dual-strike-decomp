@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/link_banner_task.h"
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Bg_ClearRect(u16 *map, int x, int y, int width, u16 height);
 const void *Text_Get(u32 textId);
@@ -20,7 +20,7 @@ void LinkBanner_Init(LinkBannerTask *task)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     Bg_ClearRect(data_027c0280->layer0Map, 0, 0, 32, 22);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Screen_SetCurrent(saved027c);

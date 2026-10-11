@@ -2,7 +2,7 @@
 #include "game/script_slot.h"
 
 void func_020c4018(void);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020d4124(void);
 
@@ -12,7 +12,7 @@ void func_020d4124(void);
 void MapOverview_Close(ScriptSlot *slot)
 {
     func_020c4018();
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     Gfx_RequestLayerCopy(0);
     func_020d4124();
     slot->unk_1e = 6;

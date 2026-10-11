@@ -19,7 +19,7 @@ MapUnit *CurrentPlayer_BuyUnit(int x, int y, int unitType);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 int MapScript_RunList10(int id, MapUnit *unit);
 void func_020bbe54(void);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020f79a4(void);
 void Task_ResumeByScript(void *script);
@@ -52,7 +52,7 @@ void BuildMenu_OnConfirm(MenuButton *button)
     }
     MapScript_RunList10(14, unit);
     func_020bbe54();
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(1);
     if (data_027c027c->unk_50[data_027c0284]->second != NULL) {
         data_027c027c->unk_50[data_027c0284]->second();

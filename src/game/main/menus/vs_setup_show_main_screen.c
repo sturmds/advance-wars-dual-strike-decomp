@@ -7,7 +7,7 @@
  * 18 tiles, and its palette in the colours of the given army. */
 void Co_LoadArmyMediumPicture(int co, void *dest, int paletteSlot, int army);
 void Screen_SetCurrentBoth(void *state);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void VsSetup_DrawSlotPanels(void);
 void VsSetup_AddArrowButtons(void);
@@ -27,7 +27,7 @@ extern MenuState gMenuState;
 #define CO_PICTURE_PALETTE(n) (18 + (n))
 
 /* Script step that shows the main page of the Vs setup screen (map and CO
- * buttons of each slot) again: runs func_01ff8c84 and Gfx_RequestLayerCopy
+ * buttons of each slot) again: runs Gfx_ClearLayerMap and Gfx_RequestLayerCopy
  * on layers 0-2 of both screens, loads the front and back CO pictures of
  * each player slot, draws the slot panels, selects the button under the
  * setup cursor, adds the arrow buttons, redraws the skills and shows the
@@ -40,16 +40,16 @@ void VsSetup_ShowMainScreen(void)
     Unk_02080440 *savedScreen = data_027c027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
+    Gfx_ClearLayerMap(2);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Gfx_RequestLayerCopy(2);
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
-    func_01ff8c84(2);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
+    Gfx_ClearLayerMap(2);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Gfx_RequestLayerCopy(2);

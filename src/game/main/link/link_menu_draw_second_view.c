@@ -5,7 +5,7 @@
 
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -70,7 +70,7 @@ void LinkMenu_DrawSecondView(void)
         LinkMenu_ResetBackButton();
         data_0215fed0->view = 1;
     }
-    func_01ff8c84(0);
+    Gfx_ClearLayerMap(0);
     LargeFont_DrawName(Wireless_GetPlayerName(0), 1, 1, 0x200);
     map = data_027c0280->layer0Map;
     Number_Draw(28, 1, map, func_0207a1f0() + 1, 0, 0);

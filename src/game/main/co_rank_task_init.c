@@ -8,7 +8,7 @@ s32 HwMod32(s32 numerator, s32 denominator);
 int Co_GetRank(u32 co);
 u32 Co_GetExperience(u32 co);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_0201e6e8(int x, int y, int width, int height);
 
@@ -28,8 +28,8 @@ void CoRankTask_Init(CoRankTask *task)
     u8 layer1;
     u8 layer0;
 
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     layer1 = data_027c0280->layer1Bg;

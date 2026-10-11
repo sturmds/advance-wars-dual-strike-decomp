@@ -3,7 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 u8 Map_GetLoadedPlayerCount(void);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
@@ -31,8 +31,8 @@ void StatusScreen_Init(void)
 {
     int i;
 
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     for (i = 0; i < Map_GetLoadedPlayerCount(); i++) {
         if (GAME->players[i + 1].defeated == 0) {
             Icon_LoadTo(GAME->players[i + 1].armyColour + ICON_ARMY_EMBLEM, data_027c0280->objVram, 404 + i * 8);

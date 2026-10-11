@@ -5,7 +5,7 @@
 #define FADE_FRAMES 80
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(Task *task);
 #define FRAME(task) ((task)->unk_64)
@@ -19,7 +19,7 @@ void func_020eb434(Task *task)
     FRAME(task)++;
     if (FRAME(task) > FADE_FRAMES) {
         Screen_SetLayerScreenSize(0, 0);
-        func_01ff8c84(0);
+        Gfx_ClearLayerMap(0);
         Gfx_RequestLayerCopy(0);
         Task_ResumeScript(task);
     }

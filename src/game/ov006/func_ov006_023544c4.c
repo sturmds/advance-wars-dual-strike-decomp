@@ -12,7 +12,7 @@ void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_MapFrame(void);
 void Camera_ResetToPreset1(void *p);
-void func_01ff8c84(int arg);
+void Gfx_ClearLayerMap(int arg);
 void Gfx_RequestLayerCopy(int layer);
 void func_020c4018(void);
 void Map_ReloadPalettes(void);
@@ -44,7 +44,7 @@ void func_ov006_023544c4(void)
     func_01ff9c48(MainLoop_MapFrame);
     gMapGameRunning = 0;
     Camera_ResetToPreset1(data_022a7d5c);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(1);
     func_020c4018();
     Map_ReloadPalettes();

@@ -5,7 +5,7 @@
 void Gfx_RequestLayerCopy(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 BOOL func_01ff8ef8(int layer);
 BOOL func_021100fc(u32 tick);
 u32 func_02110150(void);
@@ -44,7 +44,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_01ff8c84(1);
+        Gfx_ClearLayerMap(1);
         Gfx_RequestLayerCopy(1);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
@@ -64,7 +64,7 @@ void Ov005SoundRoom_DrawBarMeter(void)
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
         map = data_027c0280->layer1Map + 20 * 32;
-        func_01ff8c84(1);
+        Gfx_ClearLayerMap(1);
         for (i = 0; i < 16; i++) {
             height = work->shownBarHeights[i];
             row = 0;

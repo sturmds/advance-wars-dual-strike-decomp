@@ -25,7 +25,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentBoth(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_01ff8c84(int layer);
+void Gfx_ClearLayerMap(int layer);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_020458c0(void);
 void SurvivalSelect_LoadCoPictures(void);
@@ -59,13 +59,13 @@ void SurvivalSelect_Init(void)
     Unk_02080440 *saved027c = data_027c027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    func_01ff8c84(0);
-    func_01ff8c84(1);
+    Gfx_ClearLayerMap(0);
+    Gfx_ClearLayerMap(1);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);
     Screen_SetCurrent(saved027c);
