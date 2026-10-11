@@ -14,6 +14,10 @@ typedef struct GfxQueueEntry {
     u8 pad_0d[3];
 } GfxQueueEntry;
 
+#define GFX_QUEUE_LENGTH 32
+/* Kinds 3 and 4 own a heap copy in src; it is freed after the copy. */
+#define GFX_QUEUE_OWNS_SRC(kind) ((kind) == 3 || (kind) == 4)
+
 extern volatile u32 data_027c0518;     /* bytes queued */
 extern volatile int data_027c051c;     /* entries queued */
 extern GfxQueueEntry data_027c0520[];
