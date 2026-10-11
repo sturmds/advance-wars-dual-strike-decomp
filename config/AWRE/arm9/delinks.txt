@@ -5708,6 +5708,10 @@ src/game/main/func_0203ff44.c:
     complete
     .text       start:0x0203ff44 end:0x0203ff50
 
+src/game/main/menus/force_rank_screen_on_skill_selected.c:
+    complete
+    .text       start:0x0203ff50 end:0x0204004c
+
 src/game/main/menus/force_rank_screen_toggle_skill.c:
     complete
     .text       start:0x02040110 end:0x0204030c
