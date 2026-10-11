@@ -5899,7 +5899,7 @@ strlen kind:function(arm,size=0x1c) addr:0x021247ac
 copysign kind:function(arm,size=0x28) addr:0x021247c8
 fabs kind:function(arm,size=0x24) addr:0x021247f0
 frexp kind:function(arm,size=0xc0) addr:0x02124814
-func_021248d4 kind:function(arm,size=0x2e4) addr:0x021248d4
+ldexp kind:function(arm,size=0x2e4) addr:0x021248d4
 func_02124bb8 kind:function(arm,size=0xc8) addr:0x02124bb8
 func_02124c80 kind:function(arm,size=0x258) addr:0x02124c80
 func_02124ed8 kind:function(arm,size=0x3e0) addr:0x02124ed8
@@ -5920,7 +5920,7 @@ func_02126064 kind:function(arm,size=0x2dc) addr:0x02126064
 func_0212676c kind:function(arm,size=0x568) addr:0x0212676c
 _fadd kind:function(arm,size=0x460) addr:0x02126cd4
 func_02127134 kind:function(arm,size=0x9e4) addr:0x02127134
-.L_0212769c kind:label(arm) addr:0x0212769c
+_deq kind:label(arm) addr:0x0212769c
 .L_02127788 kind:label(arm) addr:0x02127788
 _fdiv kind:function(arm,size=0x380) addr:0x02127cac
 _ffix kind:function(arm,size=0x9c) addr:0x0212839c

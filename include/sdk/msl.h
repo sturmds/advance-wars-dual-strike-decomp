@@ -43,6 +43,32 @@ double fabs(double x);
 double copysign(double x, double y);
 /* Returns the fraction of x in [0.5, 1) and stores the power of two in *exponent. */
 double frexp(double x, int *exponent);
+/* Returns x * 2^n. */
+double ldexp(double x, int n);
+
+/* Classes returned by __fpclassifyd. */
+#define FP_NAN 1
+#define FP_INFINITE 2
+#define FP_ZERO 3
+#define FP_NORMAL 4
+#define FP_SUBNORMAL 5
+
+static inline int __fpclassifyd(double x)
+{
+    switch (((int *)&x)[1] & 0x7FF00000) {
+    case 0x7FF00000:
+        if ((((int *)&x)[1] & 0x000FFFFF) || ((int *)&x)[0]) {
+            return FP_NAN;
+        }
+        return FP_INFINITE;
+    case 0:
+        if ((((int *)&x)[1] & 0x000FFFFF) || ((int *)&x)[0]) {
+            return FP_SUBNORMAL;
+        }
+        return FP_ZERO;
+    }
+    return FP_NORMAL;
+}
 
 /* Digit string of a float conversion with its decimal exponent. */
 typedef struct Decimal {
