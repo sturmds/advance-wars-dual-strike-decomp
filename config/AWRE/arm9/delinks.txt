@@ -17464,6 +17464,10 @@ src/game/main/map/map_touch_read_list_tile_tap.c:
     complete
     .text       start:0x020f0544 end:0x020f06a0
 
+src/game/main/units/target_list_find_tile.c:
+    complete
+    .text       start:0x020f06a0 end:0x020f0708
+
 src/game/main/map/map_touch_update_list_cursor.c:
     complete
     .text       start:0x020f0708 end:0x020f0914

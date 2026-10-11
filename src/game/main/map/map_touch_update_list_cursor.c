@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/touch.h"
 
-int func_020f06a0(int count, int tileX, int tileY);
+int TargetList_FindTile(int count, int tileX, int tileY);
 void func_020f129c(void);
 void func_020f12d4(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
@@ -25,7 +25,7 @@ static inline BOOL IsTouchInPhase(int phase)
 
 /* Cursor update from touch for the target list picker in TargetListPicker_Update.
  * When the touched tile is one of the `count` tiles in the list
- * (func_020f06a0), the cursor (cursorX, cursorY) moves there and *index gets
+ * (TargetList_FindTile), the cursor (cursorX, cursorY) moves there and *index gets
  * its position in the list. The touch marker handling is the same as in
  * MapTouch_UpdateNeighborCursor. */
 void MapTouch_UpdateListCursor(int *index, int count)
@@ -53,7 +53,7 @@ void MapTouch_UpdateListCursor(int *index, int count)
         tileX = pos[0] >> 9;
         tileY = pos[1] >> 9;
     }
-    found = func_020f06a0(count, tileX, tileY);
+    found = TargetList_FindTile(count, tileX, tileY);
     if (found >= 0) {
         GAME->cursorX = tileX;
         GAME->cursorY = tileY;

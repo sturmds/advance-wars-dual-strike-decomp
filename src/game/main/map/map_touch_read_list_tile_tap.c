@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/touch.h"
 
-int func_020f06a0(int count, int tileX, int tileY);
+int TargetList_FindTile(int count, int tileX, int tileY);
 void func_020f1288(void);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
@@ -28,7 +28,7 @@ static inline BOOL IsTouchInPhase(int phase)
 
 /* Touch input while the player picks one tile from a list of `count` target
  * tiles (TargetListPicker_Update). A release on the tile where the touch began resumes
- * the touch marker task, then confirms when func_020f06a0 finds that tile in
+ * the touch marker task, then confirms when TargetList_FindTile finds that tile in
  * the list and cancels otherwise. */
 u32 MapTouch_ReadListTileTap(int count)
 {
@@ -56,7 +56,7 @@ u32 MapTouch_ReadListTileTap(int count)
     }
     if (tileX == GAME->unk_30 && tileY == GAME->unk_32) {
         func_020f1288();
-        if (func_020f06a0(count, tileX, tileY) >= 0) {
+        if (TargetList_FindTile(count, tileX, tileY) >= 0) {
             return INPUT_CONFIRM;
         }
         return INPUT_CANCEL;
