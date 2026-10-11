@@ -9255,6 +9255,10 @@ src/game/main/map/design_map_save_record.c:
     complete
     .text       start:0x020d7754 end:0x020d77a4
 
+src/game/main/map/design_map_load_record.c:
+    complete
+    .text       start:0x020d77a4 end:0x020d7808
+
 src/game/main/func_020d796c.c:
     complete
     .text       start:0x020d796c end:0x020d7978
