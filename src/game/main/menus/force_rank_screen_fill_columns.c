@@ -4,7 +4,7 @@
 #include "game/unlocks.h"
 
 /* Fills the columns of the skills screen from the ov000 Force Rank table.
- * Columns 1-9 list the skills of every rank up to unk_7a. Column 10 lists
+ * Columns 1-9 list the skills of every rank up to rank. Column 10 lists
  * the special skills: Eagle Eye, Gear Head and Conqueror once the campaign
  * is beaten (flag 0x21), Mistwalker and Soul of Hachi once the hard campaign
  * is beaten (flag 0x22). Column 11 holds only skill 0, no skill. */
@@ -45,7 +45,7 @@ void ForceRankScreen_FillColumns(void)
             }
             gForceRankScreen->columns[column].skills[gForceRankScreen->columns[column].count] = i;
             gForceRankScreen->columns[column].count++;
-        } else if (column <= gForceRankScreen->unk_7a) {
+        } else if (column <= gForceRankScreen->rank) {
             gForceRankScreen->columns[column].skills[gForceRankScreen->columns[column].count] = i;
             gForceRankScreen->columns[column].count++;
         }

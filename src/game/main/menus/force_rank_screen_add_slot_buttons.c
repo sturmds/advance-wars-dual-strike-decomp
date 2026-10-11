@@ -11,18 +11,18 @@ extern const MenuButtonTemplate gForceRankSlotButtonTemplate;
 #define SLOT_BUTTON_ID(slot) (0xf0 + (slot))
 
 /* Adds the buttons for the chosen-skill slots: one per slot that the Force
- * Rank opens (unk_7a is the rank; at x 160, 16 pixels apart), plus buttons
+ * Rank opens (rank is the rank; at x 160, 16 pixels apart), plus buttons
  * 0xfc and 0xfd from rank 2 on, and button 0xfe. Touch input is turned off. */
 void ForceRankScreen_AddSlotButtons(void)
 {
     int i;
 
-    if (gForceRankScreen->unk_7a >= 2) {
+    if (gForceRankScreen->rank >= 2) {
         MenuButton_Add(0, 0, &data_0215a81c, 0xfd);
         MenuButton_Add(0, 0, &data_0215a7cc, 0xfc);
     }
     for (i = 0; i < 4; i++) {
-        if (gForceRankScreen->unk_7a <= i) {
+        if (gForceRankScreen->rank <= i) {
             break;
         }
         MenuButton_Add(160 + i * 16, 8, &gForceRankSlotButtonTemplate, SLOT_BUTTON_ID(i));

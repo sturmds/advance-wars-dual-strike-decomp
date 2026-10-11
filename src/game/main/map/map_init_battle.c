@@ -11,8 +11,8 @@ void func_02080734(void);
 void Map_StartBattleTask(void);
 void Map_SaveCoPicks(void);
 BOOL Map_IsCoSelectPhase(void);
-int func_020f35cc(void);
-void func_020f35e0(int a);
+int Scene_GetKind(void);
+void Scene_SetKind(int a);
 void func_020f368c(void);
 void func_020f3ee4(void);
 void func_020f4098(void);
@@ -78,7 +78,7 @@ void Map_InitBattle(void)
     GAME->unk_1c4->unk_30 = 0;
     SWITCH_BACK();
 
-    func_020f35e0(0);
+    Scene_SetKind(0);
 
     game = GAME;
     switch (game->gameMode) {
@@ -94,7 +94,7 @@ void Map_InitBattle(void)
             otherUnk30 = GAME->unk_1c4->unk_30;
             SWITCH_BACK();
             if (otherUnk30 == 0) {
-                func_020f35e0(4);
+                Scene_SetKind(4);
             }
         }
         break;
@@ -104,13 +104,13 @@ void Map_InitBattle(void)
             otherUnk30 = GAME->unk_1c4->unk_30;
             SWITCH_BACK();
             if (otherUnk30 == 0) {
-                func_020f35e0(4);
+                Scene_SetKind(4);
             }
         }
         break;
     }
 
-    if (func_020f35cc() == 3) {
+    if (Scene_GetKind() == 3) {
         GAME->unk_86 = 1;
     }
     func_020f3ee4();

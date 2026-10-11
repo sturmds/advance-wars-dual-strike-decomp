@@ -27,15 +27,15 @@ static inline void RedrawSelectedSlot(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    ForceRankScreen_DrawSlotRow(1, 15 + gForceRankScreen->unk_7b * 2, 256 + gForceRankScreen->unk_7b * 64,
-                                gForceRankScreen->chosenSkills[gForceRankScreen->unk_7b]);
+    ForceRankScreen_DrawSlotRow(1, 15 + gForceRankScreen->selectedSlot * 2, 256 + gForceRankScreen->selectedSlot * 64,
+                                gForceRankScreen->chosenSkills[gForceRankScreen->selectedSlot]);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
 }
 
 /* Callback of the skill buttons (probably onConfirm). A skill already in a slot is taken out of
  * it, and that slot becomes the selected one. Otherwise the skill goes into
- * the selected slot (unk_7b), which then moves to the next slot, up to the
+ * the selected slot (selectedSlot), which then moves to the next slot, up to the
  * last open one; picking "no skill" moves it back one slot instead. */
 void ForceRankScreen_ToggleSkill(MenuButton *button)
 {
@@ -44,24 +44,24 @@ void ForceRankScreen_ToggleSkill(MenuButton *button)
     slot = ForceRankScreen_FindChosenSlot(
         gForceRankScreen->columns[CURSOR_COLUMN(button->id)].skills[CURSOR_ROW(button->id)]);
     if (slot != -1) {
-        gForceRankScreen->unk_7b = slot;
-        gForceRankScreen->chosenSkills[gForceRankScreen->unk_7b] = 0;
+        gForceRankScreen->selectedSlot = slot;
+        gForceRankScreen->chosenSkills[gForceRankScreen->selectedSlot] = 0;
         RedrawSelectedSlot();
         Sound_PlaySe(0x10009);
         return;
     }
-    gForceRankScreen->chosenSkills[gForceRankScreen->unk_7b] =
+    gForceRankScreen->chosenSkills[gForceRankScreen->selectedSlot] =
         gForceRankScreen->columns[CURSOR_COLUMN(button->id)].skills[CURSOR_ROW(button->id)];
     RedrawSelectedSlot();
     if (gForceRankScreen->columns[CURSOR_COLUMN(button->id)].skills[CURSOR_ROW(button->id)] == 0) {
         Sound_PlaySe(0x10009);
-        if (gForceRankScreen->unk_7b != 0) {
-            gForceRankScreen->unk_7b--;
+        if (gForceRankScreen->selectedSlot != 0) {
+            gForceRankScreen->selectedSlot--;
         }
     } else {
         Sound_PlaySe(0x52);
-        if (gForceRankScreen->unk_7b < 3 && gForceRankScreen->unk_7b < gForceRankScreen->unk_7a - 1) {
-            gForceRankScreen->unk_7b++;
+        if (gForceRankScreen->selectedSlot < 3 && gForceRankScreen->selectedSlot < gForceRankScreen->rank - 1) {
+            gForceRankScreen->selectedSlot++;
         }
     }
 }

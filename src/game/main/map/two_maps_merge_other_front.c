@@ -15,7 +15,7 @@ void Player_AddPowerCharge(int player, int slot, int amount);
 int Players_AnyHumanInGame(void);
 void CurrentPlayer_SyncState(void);
 void MovementCost(void);
-BOOL func_020f4638(int arg);
+BOOL SceneMode_IsCurrent(int arg);
 void func_020c4018(void);
 void CurrentPlayer_LoadPalettes(void);
 
@@ -86,7 +86,7 @@ void TwoMaps_MergeOtherFront(void)
     }
     CurrentPlayer_SyncState();
     MovementCost();
-    if (func_020f4638(4)) {
+    if (SceneMode_IsCurrent(4)) {
         func_020c4018();
         CurrentPlayer_LoadPalettes();
     }

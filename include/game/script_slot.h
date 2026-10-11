@@ -48,11 +48,11 @@ typedef struct ServiceCostPopupSlot {
     int cost;                          /* funds the service costs */
     int fundsAfter;                    /* the current player's funds less the cost */
     int step;                          /* taken off cost each frame while the popup counts down */
-    u32 unk_30;
-    u8 unk_34;
+    u32 chargeFunds;                   /* 1: funds go down with the cost as it counts down */
+    u8 zoomVariant;                    /* ZoomSpriteTask_Start variant */
     u8 unk_35;                         /* ServiceCostPopup_Begin: 0, or 16 less a cost below 16 (16 if that is negative) */
     u8 pad_36[0x38 - 0x36];
-    int unk_38;                        /* nonzero: shown, see ScriptSlot.unk_38 */
+    int visible;                       /* nonzero: the tile is visible, so the zoom sprite and popup task run; see ScriptSlot.unk_38 */
     u8 pad_3c[0x60 - 0x3c];
 } ServiceCostPopupSlot;
 

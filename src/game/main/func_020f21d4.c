@@ -1,7 +1,7 @@
 #include "types.h"
-#include "game/Unk_0215fe84.h"
+#include "game/Unk_021694c0.h"
 
-extern Unk_0215fe84 *data_021694c0;
+extern Unk_021694c0 *data_021694c0;
 
 int func_020f21d4(void)
 {

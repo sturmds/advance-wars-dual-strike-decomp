@@ -16,9 +16,9 @@ void func_020f4990(int request)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    data_021694c0->unk_04 = 1;
-    data_021694c0->unk_08 = 1;
-    data_021694c0->unk_0c = request;
+    data_021694c0->previousMode = 1;
+    data_021694c0->mode = 1;
+    data_021694c0->requestedMode = request;
     Task_Create(data_02169a10, TASK_LIST(3));
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

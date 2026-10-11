@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void func_020cab50(void);
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define RUN_ON_SCREEN(screen) \
     do { \
@@ -29,7 +29,7 @@ void func_020ca9d8(void)
         return;
     }
     if (data_027c027c == data_027c0288.unk_00) {
-        if (func_020f4638(4) == 0) {
+        if (SceneMode_IsCurrent(4) == 0) {
             return;
         }
         RUN_ON_SCREEN(data_027c0288.unk_04);

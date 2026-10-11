@@ -9,7 +9,7 @@ int Unit_Rearm(MapUnit *unit, BOOL payCost);
 int Unit_Refuel(MapUnit *unit, BOOL payCost);
 int Unit_Repair(MapUnit *unit, s16 steps, BOOL payCost);
 BOOL Tile_IsOnScreen(int x, int y); /* TRUE when tile (x, y) is in the visible part of the map */
-void ServiceCostPopup_Start(s16 *pos, int player, int amount, int arg3, int arg4, int arg5); /* starts a script at tile pos; likely shows amount */
+void ServiceCostPopup_Start(s16 *pos, int player, int amount, u32 chargeFunds, int zoomVariant, int visible);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])

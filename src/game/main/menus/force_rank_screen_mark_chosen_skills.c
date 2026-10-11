@@ -15,7 +15,7 @@ void ForceRankScreen_MarkChosenSkills(void)
     int column;
     int skill;
 
-    slotCount = gForceRankScreen->unk_7a;
+    slotCount = gForceRankScreen->rank;
     if (slotCount > 4) {
         slotCount = 4;
     }

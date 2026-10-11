@@ -18250,11 +18250,11 @@ src/game/main/game_get_shown_day.c:
     complete
     .text       start:0x020f33ac end:0x020f35cc
 
-src/game/main/func_020f35cc.c:
+src/game/main/screen/scene_get_kind.c:
     complete
     .text       start:0x020f35cc end:0x020f35e0
 
-src/game/main/func_020f35e0.c:
+src/game/main/screen/scene_set_kind.c:
     complete
     .text       start:0x020f35e0 end:0x020f35f4
 
@@ -18362,11 +18362,11 @@ src/game/main/func_020f4628.c:
     complete
     .text       start:0x020f4628 end:0x020f4638
 
-src/game/main/func_020f4638.c:
+src/game/main/screen/scene_mode_is_current.c:
     complete
     .text       start:0x020f4638 end:0x020f4658
 
-src/game/main/func_020f4658.c:
+src/game/main/screen/scene_mode_request.c:
     complete
     .text       start:0x020f4658 end:0x020f467c
 

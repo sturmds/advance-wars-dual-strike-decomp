@@ -20,7 +20,7 @@ void ForceRankScreen_ClearChosen(void)
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedState;
 
-    gForceRankScreen->unk_7b = 0;
+    gForceRankScreen->selectedSlot = 0;
     for (i = 0; i < 4; i++) {
         gForceRankScreen->chosenSkills[i] = 0;
         savedGfx = data_027c0280;

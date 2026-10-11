@@ -36,12 +36,12 @@ void ForceRankScreen_Draw(void)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     Sprite_QueueDefault(32, 9, 0x1000, 1);
-    ForceRankScreen_DrawRank(0x51, 8, gForceRankScreen->unk_7a);
+    ForceRankScreen_DrawRank(0x51, 8, gForceRankScreen->rank);
     ForceRankScreen_DrawColumnHeads();
     ForceRankScreen_MarkChosenSkills();
-    Sprite_QueueAt(2, (gForceRankScreen->unk_7b * 16 + 160) & 0x1ff, 8, data_027c0040, 0x205a, 0);
+    Sprite_QueueAt(2, (gForceRankScreen->selectedSlot * 16 + 160) & 0x1ff, 8, data_027c0040, 0x205a, 0);
     Palette_Load(&gForceRankScreen->cycleColors[((MainLoop_GetFrameCount() >> 2) & 15) * 2], 600, 2);
-    slotCount = gForceRankScreen->unk_7a;
+    slotCount = gForceRankScreen->rank;
     if (slotCount > 4) {
         slotCount = 4;
     }

@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void ServiceCostPopup_Start(s16 *pos, int player, int amount, int arg3, int arg4, int arg5); /* starts a script at tile pos; likely shows amount */
+void ServiceCostPopup_Start(s16 *pos, int player, int amount, u32 chargeFunds, int zoomVariant, int visible);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])

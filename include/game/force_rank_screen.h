@@ -33,8 +33,8 @@ typedef struct ForceRankScreen {
     u8 pad_58[0x59 - 0x58];
     u8 cycleColors[0x20];              /* 16 colors, unaligned; the slot cursor shows one every 4 frames */
     u8 co;                             /* CO whose skills are being edited */
-    u8 unk_7a;                         /* columns up to this one are listed; L and R cycle unk_7b through 0 to min(4, unk_7a) - 1 */
-    u8 unk_7b;
+    u8 rank;                           /* the CO's rank: columns up to it are listed, and it opens min(4, rank) skill slots */
+    u8 selectedSlot;                   /* skill slot the cursor is on; L and R cycle it */
     u8 cursorRow;                      /* row and column of the selected skill button */
     u8 row;                            /* row the cursor keeps when it changes column */
     u8 cursorColumn;

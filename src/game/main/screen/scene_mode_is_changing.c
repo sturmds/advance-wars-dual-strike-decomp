@@ -19,7 +19,7 @@ BOOL SceneMode_IsChanging(void)
     if (!func_020f4a18()) {
         return FALSE;
     }
-    if (data_021694c0->unk_0c != data_021694c0->unk_08) {
+    if (data_021694c0->requestedMode != data_021694c0->mode) {
         return TRUE;
     }
     saved0280 = data_027c0280;

@@ -4,22 +4,22 @@
 void Sound_PlaySe(int id);
 
 /* L button: selects the previous skill slot, wrapping around. At most 4 slots
- * exist (unk_7a counts them); the button does nothing when unk_7a is below 2. */
+ * exist, min(4, rank); the button does nothing when rank is below 2. */
 void ForceRankScreen_PrevSlot(void)
 {
     int slotCount;
 
-    if (gForceRankScreen->unk_7a < 2) {
+    if (gForceRankScreen->rank < 2) {
         return;
     }
     Sound_PlaySe(0x10002);
-    slotCount = gForceRankScreen->unk_7a;
+    slotCount = gForceRankScreen->rank;
     if (slotCount > 4) {
         slotCount = 4;
     }
-    if (gForceRankScreen->unk_7b != 0) {
-        gForceRankScreen->unk_7b--;
+    if (gForceRankScreen->selectedSlot != 0) {
+        gForceRankScreen->selectedSlot--;
     } else {
-        gForceRankScreen->unk_7b = slotCount - 1;
+        gForceRankScreen->selectedSlot = slotCount - 1;
     }
 }

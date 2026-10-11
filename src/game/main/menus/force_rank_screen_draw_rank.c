@@ -10,7 +10,7 @@ extern u8 data_027c0060[];
 
 /* Queues the rank label at (x, y) and the rank after it as one or two
  * digits from x + 32. Rank 100 gets one sprite of its own instead of
- * digits. ForceRankScreen_Draw passes ForceRankScreen.unk_7a. */
+ * digits. ForceRankScreen_Draw passes ForceRankScreen.rank. */
 void ForceRankScreen_DrawRank(int x, int y, u8 rank)
 {
     int tens;

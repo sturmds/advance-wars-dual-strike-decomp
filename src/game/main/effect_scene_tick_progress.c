@@ -3,7 +3,7 @@
 
 extern Unk_021694c0 *data_021694c0;
 
-int func_020f35cc(void);
+int Scene_GetKind(void);
 int func_020f225c(void);
 BOOL TimeLimit_GetRemaining(int *value);
 
@@ -13,7 +13,7 @@ void EffectScene_TickProgress(void)
 {
     int remaining;
 
-    if (func_020f35cc() != 2) {
+    if (Scene_GetKind() != 2) {
         return;
     }
     if (func_020f225c() == 0) {

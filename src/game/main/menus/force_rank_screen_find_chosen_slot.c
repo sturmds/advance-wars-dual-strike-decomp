@@ -11,7 +11,7 @@ int ForceRankScreen_FindChosenSlot(int skill)
     if (skill == 0) {
         return -1;
     }
-    slotCount = gForceRankScreen->unk_7a;
+    slotCount = gForceRankScreen->rank;
     if (slotCount > 4) {
         slotCount = 4;
     }

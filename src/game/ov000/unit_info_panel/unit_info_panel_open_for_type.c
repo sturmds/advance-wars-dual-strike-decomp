@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern ScriptCommand data_ov000_0234f30c[];
 extern MapUnit data_ov000_02350510;
 
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 s8 ScriptSlot_Find(const ScriptCommand *script);
 u8 Player_GetArmyStyle(int playerIndex);
 void Unit_Init(MapUnit *unit, int type);
@@ -19,12 +19,12 @@ void UnitInfoPanel_SetUnitType(int owner, int unitType);
 /* Opens the unit info panel for a fresh unit of the given type (built in
  * data_ov000_02350510), or switches an open panel to it. owner gives the
  * palette (Player.armyColour) and sprite set (army style). Does nothing
- * unless func_020f4638(5) is true. */
+ * unless SceneMode_IsCurrent(5) is true. */
 void UnitInfoPanel_OpenForType(int owner, int unitType)
 {
     BOOL running;
 
-    if (func_020f4638(5) == 0) {
+    if (SceneMode_IsCurrent(5) == 0) {
         return;
     }
     running = ScriptSlot_Find(data_ov000_0234f30c) != -1;

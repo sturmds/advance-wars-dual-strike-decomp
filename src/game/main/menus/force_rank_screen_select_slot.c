@@ -10,12 +10,12 @@ void ForceRankScreen_SelectSlot(MenuButton *button)
 {
     int slot = button->id - 0xf0;
 
-    if (slot == gForceRankScreen->unk_7b) {
+    if (slot == gForceRankScreen->selectedSlot) {
         return;
     }
-    if (slot > gForceRankScreen->unk_7a) {
+    if (slot > gForceRankScreen->rank) {
         return;
     }
     Sound_PlaySe(0x10002);
-    gForceRankScreen->unk_7b = slot;
+    gForceRankScreen->selectedSlot = slot;
 }

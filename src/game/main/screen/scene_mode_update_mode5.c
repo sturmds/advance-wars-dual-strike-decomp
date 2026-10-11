@@ -9,7 +9,7 @@ extern Unk_02080440_48 data_02189cd8;
 
 BOOL Map_IsThisMapsTurn(void);
 BOOL Screens_IsTransitionRunning(void);
-int func_020f4658(int mode);
+int SceneMode_Request(int mode);
 void Task_ResumeScript(Task *task);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -38,7 +38,7 @@ void SceneMode_UpdateMode5(Task *task)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (data_021694c0->unk_08 == 5) {
+    if (data_021694c0->mode == 5) {
         SWITCH_TO(data_027c0288.unk_00);
         if (!Map_IsThisMapsTurn()) {
             requestMode4 = TRUE;
@@ -68,10 +68,10 @@ void SceneMode_UpdateMode5(Task *task)
         Screen_SetCurrentGfx(outer0280);
 
         if (requestMode4 == TRUE && !Screens_IsTransitionRunning()) {
-            func_020f4658(4);
+            SceneMode_Request(4);
         }
     }
-    if (data_021694c0->unk_08 != data_021694c0->unk_0c) {
+    if (data_021694c0->mode != data_021694c0->requestedMode) {
         Task_ResumeScript(task);
     }
 }

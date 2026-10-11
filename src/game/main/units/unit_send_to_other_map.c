@@ -8,7 +8,7 @@ void OS_Terminate(void);
 void Unit_TransferToOtherMap(MapUnit *unit, int x, int y);
 void func_020c8888(void);
 void Map_RebuildUnitTiles(void);
-BOOL func_020f4638(int mode);
+BOOL SceneMode_IsCurrent(int mode);
 
 /* Moves a unit to the other map of a dual-front battle: finds its tile
  * there (stops the game if there is none), has Unit_TransferToOtherMap put the unit
@@ -38,7 +38,7 @@ void Unit_MoveToOtherMap(MapUnit *unit)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    if (func_020f4638(4)) {
+    if (SceneMode_IsCurrent(4)) {
         func_020c8888();
     } else {
         Map_RebuildUnitTiles();

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_020f35e0(int value);
+void Scene_SetKind(int value);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 
@@ -15,7 +15,7 @@ extern s32 data_02169ba8[][5];
 
 /* Looks up the map id of the first screen's game state in a table of 20-byte
  * entries (map id, value, ...; ends at map id -1) and passes the value, or 0,
- * to func_020f35e0. Only in game mode 0. */
+ * to Scene_SetKind. Only in game mode 0. */
 void func_020f4098(void)
 {
     int value;
@@ -43,5 +43,5 @@ void func_020f4098(void)
             }
         }
     }
-    func_020f35e0(value);
+    Scene_SetKind(value);
 }

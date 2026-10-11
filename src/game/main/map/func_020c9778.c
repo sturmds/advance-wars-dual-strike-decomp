@@ -7,14 +7,14 @@ void Screens_SelectConfigs(void);
 void func_020c4018(void);
 void CurrentPlayer_LoadPalettes(void);
 void func_020c0734(void);
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 
 #define GAME  (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
 
 /* Makes screen 0 current, picks the screen configs, then on screen 0's map
  * state runs the unk_58 hook with the map's weather and tileset,
- * func_020c4018, CurrentPlayer_LoadPalettes and func_020c0734. When func_020f4638(4) is
+ * func_020c4018, CurrentPlayer_LoadPalettes and func_020c0734. When SceneMode_IsCurrent(4) is
  * true it does the same on screen 1, without func_020c0734. No direct
  * callers. */
 void func_020c9778(void)
@@ -38,7 +38,7 @@ void func_020c9778(void)
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    if (func_020f4638(4) == 0) {
+    if (SceneMode_IsCurrent(4) == 0) {
         return;
     }
     saved0280 = data_027c0280;

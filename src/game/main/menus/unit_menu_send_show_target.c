@@ -3,7 +3,7 @@
 #include "game/tile_point.h"
 
 BOOL func_020f5848(void);
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 void func_020f5888(int x, int y);
 BOOL Unit_FindOtherMapTile(MapUnit *unit, TilePoint *pos);
 void MapCursor_DrawAt(int x, int y, int style);
@@ -13,7 +13,7 @@ void MapCursor_DrawAt(int x, int y, int style);
 /* Per-frame callback of both Send entries of the unit menu (tables at
  * 0x021661d0 and 0x021661f0). Unless flags bit 1 is set or the other screen
  * is still scrolling, finds the tile on the other map where the acting unit
- * would arrive and, when func_020f4638(4) holds, scrolls the other screen to it
+ * would arrive and, when SceneMode_IsCurrent(4) holds, scrolls the other screen to it
  * and draws the map cursor there. */
 void UnitMenu_SendShowTarget(int a0, int a1, u32 flags)
 {
@@ -38,7 +38,7 @@ void UnitMenu_SendShowTarget(int a0, int a1, u32 flags)
     tile.x = STATE->actingUnitDestX;
     tile.y = STATE->actingUnitDestY;
     Unit_FindOtherMapTile(STATE->actingUnit, &tile);
-    if (!func_020f4638(4)) {
+    if (!SceneMode_IsCurrent(4)) {
         return;
     }
     savedGfx = data_027c0280;

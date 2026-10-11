@@ -13,7 +13,7 @@ ServiceCostPopupSlot *ScriptSlot_Start(const ScriptCommand *script, int arg);
 /* Starts the service cost popup script (data_021666e8) at tile pos[0], pos[1]
  * with the cost of the service and the current player's funds after paying it.
  * The player argument is not used. */
-void ServiceCostPopup_Start(s16 *pos, int player, int cost, u32 arg3, int arg4, int arg5)
+void ServiceCostPopup_Start(s16 *pos, int player, int cost, u32 chargeFunds, int zoomVariant, int visible)
 {
     ServiceCostPopupSlot *slot = ScriptSlot_Start(data_021666e8, 0);
 
@@ -21,7 +21,7 @@ void ServiceCostPopup_Start(s16 *pos, int player, int cost, u32 arg3, int arg4, 
     slot->fundsAfter = STATE->players[STATE->currentPlayer].funds - cost;
     slot->tileX = pos[0];
     slot->tileY = pos[1];
-    slot->unk_30 = arg3;
-    slot->unk_34 = arg4;
-    slot->unk_38 = arg5;
+    slot->chargeFunds = chargeFunds;
+    slot->zoomVariant = zoomVariant;
+    slot->visible = visible;
 }

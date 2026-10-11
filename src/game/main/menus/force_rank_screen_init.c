@@ -53,7 +53,7 @@ extern char data_0215a8e4[]; /* "/ohashi/res_skilledit_lang" */
 #define BG_CHAR_BASE(bg) (data_027c0280->bgVram + (data_027c0280->bgCnt[bg].charBase << 14))
 
 /* Sets up both screens of the Force Rank screen for gForceRankScreen->co
- * from the res_skilledit files. unk_7a gets the CO's rank; with rank 0 the
+ * from the res_skilledit files. rank gets Co_GetRank of the CO; with rank 0 the
  * cursor starts on the "no skill" column. Top screen: one empty slot per
  * rank (at most 4), the CO picture, and the icons. Bottom screen: four
  * slot frames, the CO, and a row per chosen skill. Then the title text
@@ -72,10 +72,10 @@ void ForceRankScreen_Init(void)
     int slots;
     int i;
 
-    gForceRankScreen->unk_7a = Co_GetRank(gForceRankScreen->co);
-    gForceRankScreen->unk_7b = 0;
+    gForceRankScreen->rank = Co_GetRank(gForceRankScreen->co);
+    gForceRankScreen->selectedSlot = 0;
     gForceRankScreen->cursorColumn = 1;
-    if (gForceRankScreen->unk_7a == 0) {
+    if (gForceRankScreen->rank == 0) {
         gForceRankScreen->cursorColumn = FORCE_RANK_COLUMN_NONE;
     }
     gForceRankScreen->cursorRow = 0;
@@ -110,7 +110,7 @@ void ForceRankScreen_Init(void)
         data_027c0280->layer1Map[i] += 0x1180;
     }
     Window_DrawOnLayer1(3, 0, 26, 4);
-    slots = gForceRankScreen->unk_7a;
+    slots = gForceRankScreen->rank;
     if (slots > 4) {
         slots = 4;
     }
@@ -158,7 +158,7 @@ void ForceRankScreen_Init(void)
     Co_LoadGraphicsAndPalette(gForceRankScreen->co, 0, 1);
     func_0202b804(BG_CHAR_BASE(data_027c0280->layer0Bg) + 0x4000);
     func_0202b7e0(2);
-    slots = gForceRankScreen->unk_7a;
+    slots = gForceRankScreen->rank;
     if (slots > 4) {
         slots = 4;
     }

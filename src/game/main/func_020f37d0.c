@@ -11,5 +11,5 @@ extern Unk_02169b20 data_02169b24[];
 
 void func_020f37d0(void)
 {
-    Task_Create(data_02169b24[data_021694c0->unk_08].script, TASK_LIST(3));
+    Task_Create(data_02169b24[data_021694c0->mode].script, TASK_LIST(3));
 }

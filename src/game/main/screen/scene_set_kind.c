@@ -3,7 +3,7 @@
 
 extern Unk_021694c0 *data_021694c0;
 
-int func_020f35cc(void)
+void Scene_SetKind(int value)
 {
-    return data_021694c0->unk_00;
+    data_021694c0->sceneKind = value;
 }

@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 BOOL func_020d194c(void);
 u32 MapTouch_ReadButtons(int rightButton, int leftButton);
 void MapScreen_DrawCenterButton(void);
@@ -39,7 +39,7 @@ void SidePanel_Place(int mode);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Game_State15_RunStep sub-state 0: the free map cursor. The right touch
- * button (unit info, func_020d1414) is offered only when func_020f4638(5)
+ * button (unit info, func_020d1414) is offered only when SceneMode_IsCurrent(5)
  * holds and a unit stands under the cursor; the left one (SceneMode_OnButtonX)
  * when func_020d194c says so. Draws the buttons while the screen is not
  * touched, scrolls the view, then, once the view is at rest and no map
@@ -51,7 +51,7 @@ void Game_State15_FreeCursor(void)
     BOOL leftButton;
     BOOL handled;
 
-    if (func_020f4638(5)) {
+    if (SceneMode_IsCurrent(5)) {
         if (GAME->mapTiles->unitAt[GAME->mapTiles->rowStart[GAME->cursorY] + GAME->cursorX] != 0) {
             rightButton = TRUE;
         }

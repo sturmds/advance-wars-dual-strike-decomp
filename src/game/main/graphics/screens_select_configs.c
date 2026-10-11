@@ -4,7 +4,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-int func_020f35cc(void);
+int Scene_GetKind(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -27,7 +27,7 @@ extern Unk_02080440_50 data_02169f48[];
 #define OTHER_SCREEN (&data_027c0288.unk_00)[1 - data_027c0284]
 
 /* Which record the current game state gets: 2 on the main screen; 3 or 4
- * by func_020f35cc; in a two-map battle 1 when the other state's unk_30 is
+ * by Scene_GetKind; in a two-map battle 1 when the other state's unk_30 is
  * 0; else 0. */
 static inline int GetRecordKind(void)
 {
@@ -38,7 +38,7 @@ static inline int GetRecordKind(void)
     if (data_027c027c == data_027c0288.unk_00) {
         return (data_027c027c == data_027c0288.unk_00) ? 2 : 1;
     }
-    switch (func_020f35cc()) {
+    switch (Scene_GetKind()) {
     case 2:
         return 3;
     case 3:

@@ -13,7 +13,7 @@ void Turn_IncrementDay(void);
 void CurrentPlayer_SyncState(void);
 void CurrentPlayer_LoadPalettes(void);
 void func_020c4018(void);
-BOOL func_020f4638(int arg);
+BOOL SceneMode_IsCurrent(int arg);
 BOOL Player_IsInGame(int player);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -94,7 +94,7 @@ next:
         SWITCH_TO(OTHER_MAP);
         GAME->currentPlayer = tally;
         CurrentPlayer_SyncState();
-        if (data_027c027c != data_027c0288.unk_04 || func_020f4638(4)) {
+        if (data_027c027c != data_027c0288.unk_04 || SceneMode_IsCurrent(4)) {
             CurrentPlayer_LoadPalettes();
             func_020c4018();
         }
@@ -104,7 +104,7 @@ next:
         SWITCH_TO(OWN_MAP);
         GAME->currentPlayer = firstState;
         CurrentPlayer_SyncState();
-        if (data_027c027c != data_027c0288.unk_04 || func_020f4638(4)) {
+        if (data_027c027c != data_027c0288.unk_04 || SceneMode_IsCurrent(4)) {
             CurrentPlayer_LoadPalettes();
             func_020c4018();
         }

@@ -8,17 +8,17 @@ void ForceRankScreen_NextSlot(void)
 {
     int slotCount;
 
-    if (gForceRankScreen->unk_7a < 2) {
+    if (gForceRankScreen->rank < 2) {
         return;
     }
     Sound_PlaySe(0x10002);
-    slotCount = gForceRankScreen->unk_7a;
+    slotCount = gForceRankScreen->rank;
     if (slotCount > 4) {
         slotCount = 4;
     }
-    if (gForceRankScreen->unk_7b < slotCount - 1) {
-        gForceRankScreen->unk_7b++;
+    if (gForceRankScreen->selectedSlot < slotCount - 1) {
+        gForceRankScreen->selectedSlot++;
     } else {
-        gForceRankScreen->unk_7b = 0;
+        gForceRankScreen->selectedSlot = 0;
     }
 }

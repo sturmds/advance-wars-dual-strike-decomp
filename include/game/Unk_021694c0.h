@@ -5,13 +5,13 @@
 
 /* Pointed to by data_021694c0; used by many functions near 0x020f1b0c-0x020f3604. */
 typedef struct Unk_021694c0 {
-    int unk_00;
-    int unk_04;
-    int unk_08;
-    int unk_0c;
+    int sceneKind;                     /* picks the mode transition list (data_021695a4) */
+    int previousMode;
+    int mode;                          /* current mode */
+    int requestedMode;                 /* set by SceneMode_Request; SceneMode_Advance makes it current */
     int unk_10;
     int unk_14;
-    u8 pad_18[4];
+    int unk_18;
     int unk_1c;
     int unk_20;
     int unk_24;

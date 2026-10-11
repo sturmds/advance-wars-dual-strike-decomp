@@ -3,7 +3,7 @@
 
 extern Unk_021694c0 *data_021694c0;
 
-void func_020f35e0(int value)
+int Scene_GetKind(void)
 {
-    data_021694c0->unk_00 = value;
+    return data_021694c0->sceneKind;
 }

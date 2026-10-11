@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void func_020cab68(void);
-int func_020f4638(int a0);
+int SceneMode_IsCurrent(int a0);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -23,7 +23,7 @@ int func_020f4638(int a0);
 
 /* Starts the script func_020cab68 runs on the current screen. In a two-map
  * battle whose other map's unk_30 is 0 it also runs it on the other screen:
- * on screen 1 when this is screen 0 and func_020f4638(4) is true, on
+ * on screen 1 when this is screen 0 and SceneMode_IsCurrent(4) is true, on
  * screen 0 when this is screen 1. */
 void Script_StartOnBothScreens(void)
 {
@@ -38,7 +38,7 @@ void Script_StartOnBothScreens(void)
         return;
     }
     if (data_027c027c == data_027c0288.unk_00) {
-        if (func_020f4638(4) == 0) {
+        if (SceneMode_IsCurrent(4) == 0) {
             return;
         }
         RUN_ON_SCREEN(data_027c0288.unk_04);

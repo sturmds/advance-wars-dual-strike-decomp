@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 
 BOOL func_020f4a18(void);
-void func_020f4658(int a);
+void SceneMode_Request(int a);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 
@@ -21,12 +21,12 @@ void func_020f47e8(void)
     if (func_020f4a18() == 0) {
         return;
     }
-    data_021694c0->unk_10 = data_021694c0->unk_08;
+    data_021694c0->unk_10 = data_021694c0->mode;
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_020f4658(9);
+    SceneMode_Request(9);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
 }
