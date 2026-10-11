@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 
 extern Ov003Unit data_ov003_02369538[16];
-extern Unk_ov003_02369bb8 data_ov003_02369bb8[4];
+extern Ov003Marker data_ov003_02369bb8[4];
 
 int func_ov003_02362098(int row);
 void Ov003_StartSlotPlacing(int unitIndex);
@@ -29,7 +29,7 @@ void Ov003Unit_Remove(Ov003Unit *unit)
 {
     Ov003Row *row = &data_ov003_02364928->rows[unit->row - 1];
     int index;
-    Unk_ov003_02369bb8 *entry;
+    Ov003Marker *entry;
     Ov003Cell *cell;
     int i;
     int j;

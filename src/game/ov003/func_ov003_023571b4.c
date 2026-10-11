@@ -5,7 +5,7 @@ int Ov003_IsPlayPhase(void);
 int Ov003_IsPhase0OrAbove6(void);
 void Ov003_RunSlotInput(void);
 void Ov003_UpdateRowUnits(void);
-void Ov003_StepEntries(void);
+void Ov003_StepMarkers(void);
 void Ov003_TickUnits(void);
 void Ov003_UpdatePickups(void);
 void Ov003_UpdateObjects(void);
@@ -21,7 +21,7 @@ void func_ov003_023571b4(void)
     }
     if (Ov003_IsPlayPhase() == 1) {
         Ov003_UpdateRowUnits();
-        Ov003_StepEntries();
+        Ov003_StepMarkers();
     }
     if (Ov003_IsPhase0OrAbove6() != 1) {
         return;

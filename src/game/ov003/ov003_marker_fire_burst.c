@@ -1,21 +1,21 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 
 extern Ov003TileInfo data_ov003_02364d88[];
 
-Ov003Unit *Ov003Marker_FindNearestUnit(Unk_ov003_02369bb8 *marker);
-void Ov003Object_SpawnEffect(Unk_ov003_02369bb8 *marker, int velX, int velY);
+Ov003Unit *Ov003Marker_FindNearestUnit(Ov003Marker *marker);
+void Ov003Marker_SpawnEffect(Ov003Marker *marker, int velX, int velY);
 int Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 
-/* Fires one effect per frame in a burst of Ov003TileInfo.unk_05 frames
- * (unk_09_1 counts them). The first frame picks the nearest unit as the
+/* Fires one effect per frame in a burst of Ov003TileInfo.burstLength frames
+ * (burstCount counts them). The first frame picks the nearest unit as the
  * target and aims at it; later frames aim at the same unit, the vector cut to
- * Ov003TileInfo.unk_04 tiles. The burst ends, and unk_0b starts its wait of
- * unk_06 frames, when the count is reached or the target is gone. Needed to
+ * Ov003TileInfo.reach tiles. The burst ends, and cooldown starts its wait of
+ * burstWait frames, when the count is reached or the target is gone. Needed to
  * match: the declaration order. */
-void Ov003Marker_FireBurst(Unk_ov003_02369bb8 *marker)
+void Ov003Marker_FireBurst(Ov003Marker *marker)
 {
     int shotX;
     Ov003Unit *target;
@@ -24,13 +24,13 @@ void Ov003Marker_FireBurst(Unk_ov003_02369bb8 *marker)
     int reach;
     int dy;
 
-    if (marker->unk_09_1 != 0) {
+    if (marker->burstCount != 0) {
         if (marker->target == NULL) {
-            marker->unk_09_1 = 0;
-            marker->unk_0b = data_ov003_02364d88[marker->unk_08_0].unk_06;
+            marker->burstCount = 0;
+            marker->cooldown = data_ov003_02364d88[marker->kind].burstWait;
             return;
         }
-        reach = (data_ov003_02364d88[marker->unk_08_0].unk_04 << 7) >> 3;
+        reach = (data_ov003_02364d88[marker->kind].reach << 7) >> 3;
         dx = (marker->target->x >> 3) - (((marker->x << 7) + 64) >> 3);
         dy = (marker->target->y >> 3) - (((marker->y << 7) + 64) >> 3);
         if (reach < Math_Distance(dx, dy, 0, 0)) {
@@ -47,11 +47,11 @@ void Ov003Marker_FireBurst(Unk_ov003_02369bb8 *marker)
         dy = (target->y >> 3) - (((marker->y << 7) + 64) >> 3);
         marker->target = target;
     }
-    Ov003Object_SpawnEffect(marker, dx, dy);
-    marker->unk_09_1++;
-    if (marker->unk_09_1 != data_ov003_02364d88[marker->unk_08_0].unk_05) {
+    Ov003Marker_SpawnEffect(marker, dx, dy);
+    marker->burstCount++;
+    if (marker->burstCount != data_ov003_02364d88[marker->kind].burstLength) {
         return;
     }
-    marker->unk_09_1 = 0;
-    marker->unk_0b = data_ov003_02364d88[marker->unk_08_0].unk_06;
+    marker->burstCount = 0;
+    marker->cooldown = data_ov003_02364d88[marker->kind].burstWait;
 }

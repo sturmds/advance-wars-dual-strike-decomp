@@ -1,10 +1,10 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 #include "game/Unk_02160ac0.h"
 
 extern Ov003Unit data_ov003_02369538[16];
-extern Unk_ov003_02369bb8 data_ov003_02369bb8[4];
+extern Ov003Marker data_ov003_02369bb8[4];
 
 u16 func_0207a1dc(void);
 void Ov003_CreateSprite(int x, int y);
@@ -24,7 +24,7 @@ void func_ov003_02362c44(void);
 void Ov003_DefeatTeam(int team)
 {
     Ov003Unit *unit;
-    Unk_ov003_02369bb8 *entry;
+    Ov003Marker *entry;
     int alive;
     int winner;
     int count;

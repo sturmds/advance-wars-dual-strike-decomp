@@ -59,9 +59,9 @@ typedef char Ov003Unit_size_check[sizeof(Ov003Unit) == 0x20 ? 1 : -1];
 typedef struct Ov003TileInfo {
     u16 unk_00;                        /* divisor for Ov003Unit.unk_04 in Ov003_DrawUnitAnims */
     u8 pad_02[2];
-    u8 unk_04;                         /* Unk_ov003_02369bb8 only sees units within this + 2 tiles */
-    u8 unk_05;                         /* Unk_ov003_02369bb8: frames in its cycle (unk_09_1 counts them) */
-    u8 unk_06;                         /* Unk_ov003_02369bb8: frames to wait (unk_0b) */
+    u8 reach;                          /* in tiles; an Ov003Marker sees units within reach + 2 */
+    u8 burstLength;                    /* shots per burst (Ov003Unit.shotCount, Ov003Marker.burstCount) */
+    u8 burstWait;                      /* frames between bursts (Ov003Unit.shotWait, Ov003Marker.cooldown) */
     u8 pad_07[0x14 - 0x07];
 } Ov003TileInfo;
 

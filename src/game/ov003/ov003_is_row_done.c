@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 
-extern Unk_ov003_02369bb8 data_ov003_02369bb8[4];
+extern Ov003Marker data_ov003_02369bb8[4];
 
 int Ov003Unit_CountInCurrentRow(void);
 
@@ -10,7 +10,7 @@ int Ov003Unit_CountInCurrentRow(void);
  * Ov003Unit_CountInCurrentRow returns 0 and no data_ov003_02369bb8 entry is busy. */
 int Ov003_IsRowDone(void)
 {
-    Unk_ov003_02369bb8 *entry;
+    Ov003Marker *entry;
     int i;
 
     if (data_ov003_02364928->row == 5) {

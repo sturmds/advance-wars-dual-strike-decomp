@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 
 extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 owner, bits 0-4 terrain */
@@ -9,21 +9,21 @@ extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 owner, bits 0-
 u32 Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit);
 void Ov003Object_HitTile(Ov003Object *object, int tileX, int tileY);
-Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
-void func_ov003_0235e9b8(void);
+Ov003Marker *Ov003_FindMarkerAtTile(int x, int y);
+void Ov003_ClearMarkerHits(void);
 void Ov003_CreateSpriteVariant0(int x, int y);
 
 /* Runs when an object of kind 5 or 7 ends its trip. Every live unit except
  * the one named by object->unk_0a, within 35 units (pixels / 8) of the object,
  * goes to Ov003Object_HitUnit. Then every tile within three of the object's
  * tile and 35 units from it goes to Ov003Object_HitTile (terrain 9, 21 and 26
- * once per Unk_ov003_02369bb8 entry, and not when object->variant equals
+ * once per Ov003Marker entry, and not when object->variant equals
  * the current spawn row). */
 void Ov003Object_Impact(Ov003Object *object)
 {
     int tileY;
     Ov003Unit *unit;
-    Unk_ov003_02369bb8 *entry;
+    Ov003Marker *entry;
     int col;
     int i;
     int row;
@@ -38,7 +38,7 @@ void Ov003Object_Impact(Ov003Object *object)
     }
     tileX = object->x >> 7;
     tileY = object->y >> 7;
-    func_ov003_0235e9b8();
+    Ov003_ClearMarkerHits();
     for (row = tileY - 3; row <= tileY + 3; row++) {
         if (row < 0 || row >= data_ov003_02364a88->height) {
             continue;
@@ -57,10 +57,10 @@ void Ov003Object_Impact(Ov003Object *object)
                 if (object->variant == data_ov003_02364928->row) {
                     break;
                 }
-                entry = Ov003_FindEntryAtTile(col, row);
-                if (!entry->unk_09_0) {
+                entry = Ov003_FindMarkerAtTile(col, row);
+                if (!entry->hitDone) {
                     Ov003Object_HitTile(object, entry->x, entry->y);
-                    entry->unk_09_0 = 1;
+                    entry->hitDone = 1;
                 }
                 break;
             default:

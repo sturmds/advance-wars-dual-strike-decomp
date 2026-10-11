@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov003_02364a84.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 #include "game/terrain.h"
 
 extern Unk_027c0280 *data_027c0280;
@@ -10,7 +10,7 @@ extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 owner, bits 0-
 extern u16 data_ov003_02366110[512][4]; /* layer 1 map entries per 16x16 tile */
 extern u16 data_ov003_02367110[512][4]; /* layer 2 and 3 map entries per 16x16 tile */
 
-Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
+Ov003Marker *Ov003_FindMarkerAtTile(int x, int y);
 int Ov003_IsCurrentSlotRowOpen(void);
 void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int tile, int palette, int arg7, int arg8);
 
@@ -67,7 +67,7 @@ void Ov003_DrawTexturedQuad(int x, int y, int depth, int arg3, int arg4, int til
  * terrain.h yet. For a Minicannon the owner bits pick one of four sprites. */
 void Ov003_DrawTile(u8 x, u8 y)
 {
-    Unk_ov003_02369bb8 *object;
+    Ov003Marker *object;
     u16 code;
     u8 mark;
     int info;
@@ -85,7 +85,7 @@ void Ov003_DrawTile(u8 x, u8 y)
     info = data_ov003_02365d10[code];
     terrain = info & 31;
     if (terrain == 9 || terrain == TERRAIN_MINICANNON || terrain == TERRAIN_BLACK_CANNON) {
-        object = Ov003_FindEntryAtTile(x, y);
+        object = Ov003_FindMarkerAtTile(x, y);
     }
 
     sx = x - (STATE->scrollX >> 4);

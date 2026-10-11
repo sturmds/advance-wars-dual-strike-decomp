@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_unit.h"
-#include "game/Unk_ov003_02369bb8.h"
+#include "game/ov003_marker.h"
 
-extern Unk_ov003_02369bb8 data_ov003_02369bb8[4];
+extern Ov003Marker data_ov003_02369bb8[4];
 extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 row, bits 0-4 terrain */
 extern char data_ov003_0236492c[];
 
@@ -27,17 +27,17 @@ void Ov003_LoadMap(void)
 {
     int y;
     int row;
-    Unk_ov003_02369bb8 *marker;
+    Ov003Marker *marker;
     int x;
-    Unk_ov003_02369bb8 *cleared;
+    Ov003Marker *cleared;
     int i;
 
     cleared = data_ov003_02369bb8;
     for (i = 0; i < 4; i++, cleared++) {
         cleared->busy = 0;
         cleared->unk_0a = 0;
-        cleared->unk_09_1 = 0;
-        cleared->unk_0b = 0;
+        cleared->burstCount = 0;
+        cleared->cooldown = 0;
     }
     FS_ChangeDir(data_ov003_0236492c);
     File_UnpackTo(MAP, STATE->preset);
@@ -55,9 +55,9 @@ void Ov003_LoadMap(void)
                 marker->x = x;
                 marker->y = y;
                 if (TERRAIN_AT(x, y) == 21) {
-                    marker->unk_08_0 = 6;
+                    marker->kind = 6;
                 } else {
-                    marker->unk_08_0 = 7;
+                    marker->kind = 7;
                 }
                 marker->unk_08_4 = ROW_AT(x, y);
                 marker->busy = 1;

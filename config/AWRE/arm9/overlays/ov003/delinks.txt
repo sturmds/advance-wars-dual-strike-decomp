@@ -291,7 +291,7 @@ src/game/ov003/ov003_snapshot_units.c:
     complete
     .text       start:0x02359b70 end:0x02359bbc
 
-src/game/ov003/ov003_object_spawn_effect.c:
+src/game/ov003/ov003_marker_spawn_effect.c:
     complete
     .text       start:0x02359bbc end:0x02359d24
 
@@ -541,11 +541,11 @@ src/game/ov003/ov003_clear_items.c:
     complete
     .text       start:0x0235e22c end:0x0235e258
 
-src/game/ov003/ov003_step_entries.c:
+src/game/ov003/ov003_step_markers.c:
     complete
     .text       start:0x0235e258 end:0x0235e2c4
 
-src/game/ov003/ov003_step_entry.c:
+src/game/ov003/ov003_marker_step.c:
     complete
     .text       start:0x0235e2c4 end:0x0235e358
 
@@ -561,15 +561,15 @@ src/game/ov003/ov003_marker_find_nearest_unit.c:
     complete
     .text       start:0x0235e71c end:0x0235e87c
 
-src/game/ov003/ov003_is_entry_near.c:
+src/game/ov003/ov003_is_near_marker.c:
     complete
     .text       start:0x0235e87c end:0x0235e8fc
 
-src/game/ov003/ov003_find_entry_at_tile.c:
+src/game/ov003/ov003_find_marker_at_tile.c:
     complete
     .text       start:0x0235e8fc end:0x0235e9b8
 
-src/game/ov003/func_ov003_0235e9b8.c:
+src/game/ov003/ov003_clear_marker_hits.c:
     complete
     .text       start:0x0235e9b8 end:0x0235e9f0
 

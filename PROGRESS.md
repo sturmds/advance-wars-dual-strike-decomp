@@ -90,10 +90,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov002/func_ov002_0235d4a8.c` | func_ov002_0235d4a8 | 108 |
 | `src/game/ov003/func_ov003_0235bdd8.c` | func_ov003_0235bdd8 | 88 |
 | `src/game/ov003/func_ov003_0235c194.c` | func_ov003_0235c194 | 88 |
-| `src/game/ov003/func_ov003_0235fdd8.c` | no delinks entry | 0 |
 | `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 |
-| `src/game/ov003/func_ov003_02364514.c` | no delinks entry | 0 |
-| `src/game/ov003/ov003_find_free_tile_near.c` | no delinks entry | 0 |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 |
 | `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
