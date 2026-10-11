@@ -29,6 +29,9 @@ typedef struct LinkScreenState {
  * order, which the match needs. */
 #define LINK_READY_FLAG(menuState, player) (((u8 *)&(menuState) + (player))[0x28])
 
+/* Player shown in a panel of the link screen, which is LinkScreenState.unk_020[panel]; written the same way. */
+#define LINK_PANEL_PLAYER(menuState, panel) (((u8 *)&(menuState) + (panel))[0x20])
+
 /* Map select and battle setup layout of MenuState. Arrays of 4 from
  * 0x2b0 are indexed by player (players 1-4 at 0-3); [2] is front and back
  * CO, or main and second map for controllers. */
