@@ -5579,6 +5579,10 @@ src/game/main/func_02070cd0.c:
     complete
     .text       start:0x02070cd0 end:0x02070cec
 
+src/game/main/history_banner_slide_out.c:
+    complete
+    .text       start:0x02070cec end:0x02070d5c
+
 src/game/main/menus/history_screen_init.c:
     complete
     .text       start:0x02070f14 end:0x02071494
