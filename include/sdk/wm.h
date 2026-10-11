@@ -202,6 +202,17 @@ typedef struct WMStatus {
     u16 unk_190;
 } WMStatus;
 
+/* Arguments of the connect command, written into WMArm9Buf.requestBuf. */
+typedef struct WMStartConnectReq {
+    u16 apiid;
+    u8 pad_02[2];
+    WMBssDesc *pInfo;                  /* the parent to join */
+    u8 ssid[24];
+    u32 powerSave;
+    u16 reserved;
+    u16 authMode;
+} WMStartConnectReq;
+
 typedef void (*WMCallbackFunc)(void *arg);
 
 /* The ARM9 side's work area. */
