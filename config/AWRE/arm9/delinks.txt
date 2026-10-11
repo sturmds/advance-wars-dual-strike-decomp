@@ -10467,6 +10467,10 @@ src/game/main/ai/ai_power_check_has_factory_or_free_city.c:
     complete
     .text       start:0x0209937c end:0x020994b8
 
+src/game/main/ai/func_020994b8.c:
+    complete
+    .text       start:0x020994b8 end:0x02099520
+
 src/game/main/func_02099520.c:
     complete
     .text       start:0x02099520 end:0x02099528
