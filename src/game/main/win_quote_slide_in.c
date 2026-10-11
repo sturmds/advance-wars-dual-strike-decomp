@@ -5,7 +5,7 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
-void func_02032f4c(int record);
+void WinQuote_Print(int record);
 
 extern Unk_027c0280 *data_027c0280;
 
@@ -42,7 +42,7 @@ void WinQuote_SlideIn(Task *task)
 
     if (WIN_QUOTE_FRAME(task) == SLIDE_FRAMES) {
         WIN_QUOTE_FRAME(task) = 0;
-        func_02032f4c(WIN_QUOTE_RECORD(task));
+        WinQuote_Print(WIN_QUOTE_RECORD(task));
         Task_ResumeScript(task);
     }
 }
