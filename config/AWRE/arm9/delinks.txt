@@ -21532,6 +21532,10 @@ src/sdk/snd/snd_setup_channel_pcm.c:
     complete
     .text       start:0x0210fc04 end:0x0210fc5c
 
+src/sdk/snd/snd_lock_channel.c:
+    complete
+    .text       start:0x0210fce8 end:0x0210fd14
+
 src/sdk/snd/snd_stop_timer.c:
     complete
     .text       start:0x0210fd58 end:0x0210fdc8
