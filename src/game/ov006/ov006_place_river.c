@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 int Ov006_GetNeighborTile(int x, int y);
 void Ov006_RefreshNeighborTiles(int x, int y);
-int func_ov006_02360e10(int x, int y);
+int Ov006_GetRiverPiece(int x, int y);
 int func_ov006_02360f90(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
@@ -23,7 +23,7 @@ void Ov006_RefitCellsAround(int x, int y);
 void Ov006_BreakCellBlock(int x, int y);
 
 /* Puts a river on tile x, y. The cell code comes from the 3x3 block around
- * it (Ov006_GetNeighborTile), or from func_ov006_02360e10 or
+ * it (Ov006_GetNeighborTile), or from Ov006_GetRiverPiece or
  * func_ov006_02360f90 when that gives 0. After the neighbours are fixed up,
  * the tiles above and below get their own updates. Returns 0 when no river
  * fits there, 1 when one was placed. */
@@ -37,7 +37,7 @@ int Ov006_PlaceRiver(int x, int y)
         return 0;
     }
     if (blockCell != 0) {
-        cell = func_ov006_02360e10(x, y);
+        cell = Ov006_GetRiverPiece(x, y);
         if (cell == 0) {
             Ov006_SetTerrain(x, y, TERRAIN_RIVER);
             Ov006_StoreMapCell(x, y, blockCell);
@@ -64,7 +64,7 @@ int Ov006_PlaceRiver(int x, int y)
     } else if (Ov006_GetNeighborTile(x, y) >= 0) {
         cell = func_ov006_02360f90(x, y);
         if (cell != 0) {
-            blockCell = func_ov006_02360e10(x, y);
+            blockCell = Ov006_GetRiverPiece(x, y);
             if (blockCell != 0) {
                 cell = blockCell;
             }

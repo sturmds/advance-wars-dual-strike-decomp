@@ -990,6 +990,10 @@ src/game/ov006/ov006_count_neighbors_on_side.c:
     complete
     .text       start:0x02360a78 end:0x02360e10
 
+src/game/ov006/ov006_get_river_piece.c:
+    complete
+    .text       start:0x02360e10 end:0x02360f90
+
 src/game/ov006/ov006_get_neighbor_tile.c:
     complete
     .text       start:0x023612bc end:0x0236146c

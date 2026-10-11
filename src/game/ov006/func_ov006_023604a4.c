@@ -2,7 +2,7 @@
 
 int Ov006_GetNeighborTile(int x, int y);
 int func_ov006_02360f90(int x, int y);
-int func_ov006_02360e10(int x, int y);
+int Ov006_GetRiverPiece(int x, int y);
 
 /* Yes/no version of func_ov006_023624b4 for the tile at (x, y): 1 when it ends
  * up with a positive value, 0 for a negative Ov006_GetNeighborTile. The repeated
@@ -17,7 +17,7 @@ int func_ov006_023604a4(int x, int y)
         return 0;
     }
     if (first != 0) {
-        other = func_ov006_02360e10(x, y);
+        other = Ov006_GetRiverPiece(x, y);
         if (other == 0) {
             return 1;
         }
@@ -40,7 +40,7 @@ int func_ov006_023604a4(int x, int y)
     } else if (Ov006_GetNeighborTile(x, y) >= 0) {
         first = func_ov006_02360f90(x, y);
         if (first != 0) {
-            other = func_ov006_02360e10(x, y);
+            other = Ov006_GetRiverPiece(x, y);
             if (other != 0) {
                 first = other;
             }

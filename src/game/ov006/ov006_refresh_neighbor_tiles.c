@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int Ov006_IsPlainRiver(int x, int y);           /* guess: tile x, y needs its variant picked again */
-int func_ov006_02360e10(int x, int y);           /* variant for tile x, y from its 3x3 block, -1 if none */
+int Ov006_GetRiverPiece(int x, int y);           /* variant for tile x, y from its 3x3 block, -1 if none */
 void func_ov006_0235da1c(int x, int y, int arg);
 void Ov006_StoreMapCell(int x, int y, int tile); /* guess: stores tile at x, y; ignores tile < 0 */
 void Ov006_AddRiverMouths(int x, int y);
@@ -19,7 +19,7 @@ void Ov006_RefreshNeighborTiles(int x, int y)
     int tile;
 
     if (y > 0 && Ov006_IsPlainRiver(x, y - 1) != 0) {
-        tile = func_ov006_02360e10(x, y - 1);
+        tile = Ov006_GetRiverPiece(x, y - 1);
         if (tile < 0) {
             func_ov006_0235da1c(x, y - 1, 1);
         } else if (tile > 0) {
@@ -28,7 +28,7 @@ void Ov006_RefreshNeighborTiles(int x, int y)
         }
     }
     if (y < data_027c027c->unk_48[data_027c0284]->unk_1c4->mapHeight - 1 && Ov006_IsPlainRiver(x, y + 1) != 0) {
-        tile = func_ov006_02360e10(x, y + 1);
+        tile = Ov006_GetRiverPiece(x, y + 1);
         if (tile < 0) {
             func_ov006_0235da1c(x, y + 1, 1);
         } else if (tile > 0) {
@@ -37,7 +37,7 @@ void Ov006_RefreshNeighborTiles(int x, int y)
         }
     }
     if (x > 0 && Ov006_IsPlainRiver(x - 1, y) != 0) {
-        tile = func_ov006_02360e10(x - 1, y);
+        tile = Ov006_GetRiverPiece(x - 1, y);
         if (tile < 0) {
             func_ov006_0235da1c(x - 1, y, 1);
         } else if (tile > 0) {
@@ -46,7 +46,7 @@ void Ov006_RefreshNeighborTiles(int x, int y)
         }
     }
     if (x < data_027c027c->unk_48[data_027c0284]->unk_1c4->mapWidth - 1 && Ov006_IsPlainRiver(x + 1, y) != 0) {
-        tile = func_ov006_02360e10(x + 1, y);
+        tile = Ov006_GetRiverPiece(x + 1, y);
         if (tile < 0) {
             func_ov006_0235da1c(x + 1, y, 1);
         } else if (tile > 0) {

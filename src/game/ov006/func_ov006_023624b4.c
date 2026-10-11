@@ -2,12 +2,12 @@
 
 int Ov006_GetNeighborTile(int x, int y);
 int func_ov006_02360f90(int x, int y);
-int func_ov006_02360e10(int x, int y);
+int Ov006_GetRiverPiece(int x, int y);
 
 /* Combines three lookups for the tile at (x, y). When Ov006_GetNeighborTile
  * returns 0, the result is func_ov006_02360f90's value, replaced by
- * func_ov006_02360e10's when both are nonzero. Otherwise the result is
- * Ov006_GetNeighborTile's value, replaced by func_ov006_02360e10's when that is
+ * Ov006_GetRiverPiece's when both are nonzero. Otherwise the result is
+ * Ov006_GetNeighborTile's value, replaced by Ov006_GetRiverPiece's when that is
  * nonzero and bits 9-15 of the first value are 0, 0x2000 or 0x4000. The
  * repeated group tests are needed to match. */
 int func_ov006_023624b4(int x, int y)
@@ -19,13 +19,13 @@ int func_ov006_023624b4(int x, int y)
     if (result == 0) {
         result = func_ov006_02360f90(x, y);
         if (result != 0) {
-            other = func_ov006_02360e10(x, y);
+            other = Ov006_GetRiverPiece(x, y);
             if (other != 0) {
                 result = other;
             }
         }
     } else {
-        other = func_ov006_02360e10(x, y);
+        other = Ov006_GetRiverPiece(x, y);
         if (other != 0) {
             group = result & 0xfe00;
             if (group == 0x4000) {
