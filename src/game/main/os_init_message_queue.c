@@ -11,7 +11,7 @@ struct Unk_0210de74 {
     int unk_10;
 };
 
-void func_0210de74(Unk_0210de74 *a0, int a1, int a2)
+void OS_InitMessageQueue(Unk_0210de74 *a0, int a1, int a2)
 {
     a0->unk_0 = 0;
     a0->unk_2 = 0;

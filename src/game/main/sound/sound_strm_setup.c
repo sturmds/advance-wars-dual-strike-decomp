@@ -5,8 +5,8 @@ void SoundStrm_StopIfActive(SoundStrm *strm);
 int SoundAlarm_Alloc(void);
 void SoundStrm_Refill(SoundStrm *strm, int status);
 void SoundStrm_OnAlarm(SoundStrm *strm);
-int func_0210eb0c(void);
-void func_0210eb20(int irqState);
+int OS_DisableInterrupts(void);
+void OS_RestoreInterrupts(int irqState);
 void func_0210fc04(int channel, int format, u32 buffer, int loop, int loopStart, u32 loopLength,
                    int volume, int shift, int timer, int pan);
 void func_0210fd14(int alarm, u32 tick, u32 period, void (*handler)(SoundStrm *), SoundStrm *arg);
@@ -64,10 +64,10 @@ BOOL SoundStrm_Setup(SoundStrm *strm, int format, u32 buffer, u32 length, int ti
     strm->volume = 0;
     strm->flags.active = 1;
 
-    irqState = func_0210eb0c();
+    irqState = OS_DisableInterrupts();
     strm->blockCount = 1;
     SoundStrm_Refill(strm, STRM_CALLBACK_FIRST_FILL);
     strm->blockCount = blockCount;
-    func_0210eb20(irqState);
+    OS_RestoreInterrupts(irqState);
     return TRUE;
 }

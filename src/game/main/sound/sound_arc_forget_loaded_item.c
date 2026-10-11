@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-int func_0210eb0c(void);
-void func_0210eb20(int irqState);
+int OS_DisableInterrupts(void);
+void OS_RestoreInterrupts(int irqState);
 SoundArc *func_021066ec(SoundArc *arc);
 void *func_02106304(int itemNo);
 void func_021062e8(int itemNo, void *loaded);
@@ -18,11 +18,11 @@ void SoundArc_ForgetLoadedItem(void *loaded, SoundArc *arc, int itemNo)
     if (arc == NULL) {
         return;
     }
-    irqState = func_0210eb0c();
+    irqState = OS_DisableInterrupts();
     previous = func_021066ec(arc);
     if (loaded == func_02106304(itemNo)) {
         func_021062e8(itemNo, NULL);
     }
     func_021066ec(previous);
-    func_0210eb20(irqState);
+    OS_RestoreInterrupts(irqState);
 }

@@ -3,8 +3,8 @@
 
 extern LinkList data_022a8ab8;         /* refill requests waiting for the sound thread */
 
-int func_0210eb0c(void);
-void func_0210eb20(int irqState);
+int OS_DisableInterrupts(void);
+void OS_RestoreInterrupts(int irqState);
 void SoundStream_UnlockChannels(SoundStream *stream);
 void SoundStream_Detach(SoundStream *stream);
 void SoundStreamRequest_Free(SoundStreamRequest *request);
@@ -23,7 +23,7 @@ void SoundStream_Release(SoundStream *stream)
     }
     SoundStream_UnlockChannels(stream);
     FS_CloseFile(&stream->file);
-    irqState = func_0210eb0c();
+    irqState = OS_DisableInterrupts();
     for (request = LinkList_GetNext(&data_022a8ab8, NULL); request != NULL; request = next) {
         next = LinkList_GetNext(&data_022a8ab8, request);
         if (request->stream == stream) {
@@ -31,6 +31,6 @@ void SoundStream_Release(SoundStream *stream)
             SoundStreamRequest_Free(request);
         }
     }
-    func_0210eb20(irqState);
+    OS_RestoreInterrupts(irqState);
     SoundStream_Detach(stream);
 }

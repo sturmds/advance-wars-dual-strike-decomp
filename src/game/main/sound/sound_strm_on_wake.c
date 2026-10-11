@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/sound_strm.h"
 
-int func_0210eb0c(void);
-void func_0210eb20(int irqState);
+int OS_DisableInterrupts(void);
+void OS_RestoreInterrupts(int irqState);
 void func_0210fdc8(u32 channelMask, int arg1, u32 alarmMask, int arg3);
 void SoundStrm_Refill(SoundStrm *strm, int status);
 
@@ -16,9 +16,9 @@ void SoundStrm_OnWake(SoundStrm *strm)
         return;
     }
     while (strm->blockIndex != 0) {
-        irqState = func_0210eb0c();
+        irqState = OS_DisableInterrupts();
         SoundStrm_Refill(strm, STRM_CALLBACK_REFILL);
-        func_0210eb20(irqState);
+        OS_RestoreInterrupts(irqState);
     }
     func_0210fdc8(strm->channelMask, 0, 1 << strm->alarm, 0);
 }

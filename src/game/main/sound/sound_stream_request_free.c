@@ -3,15 +3,15 @@
 
 extern LinkList data_022a8aac;         /* unused refill requests */
 
-int func_0210eb0c(void);
-void func_0210eb20(int irqState);
+int OS_DisableInterrupts(void);
+void OS_RestoreInterrupts(int irqState);
 
 /* Gives a refill request back to the unused list. Interrupts are off while
  * the list changes. */
 void SoundStreamRequest_Free(SoundStreamRequest *request)
 {
-    int irqState = func_0210eb0c();
+    int irqState = OS_DisableInterrupts();
 
     LinkList_Append(&data_022a8aac, request);
-    func_0210eb20(irqState);
+    OS_RestoreInterrupts(irqState);
 }

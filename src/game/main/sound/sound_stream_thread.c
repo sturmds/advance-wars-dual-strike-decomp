@@ -5,7 +5,7 @@ extern u8 data_022a8aa8[];             /* message buffer of the queue, one messa
 extern u8 data_022a8ac4[];             /* message queue the sound thread waits on */
 extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
 
-void func_0210de74(void *queue, void *messages, int count);
+void OS_InitMessageQueue(void *queue, void *messages, int count);
 int func_0210dd20(void *queue, void *message, int flags);
 void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
@@ -21,7 +21,7 @@ void SoundStream_ThreadMain(void)
     SoundStreamRequest *request;
     u32 message[2];
 
-    func_0210de74(data_022a8ac4, data_022a8aa8, 1);
+    OS_InitMessageQueue(data_022a8ac4, data_022a8aa8, 1);
     while (TRUE) {
         func_0210dd20(data_022a8ac4, message, 1);
         while (TRUE) {
