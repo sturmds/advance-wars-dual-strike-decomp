@@ -4035,6 +4035,10 @@ src/game/main/func_02034654.c:
     complete
     .text       start:0x02034654 end:0x020347e0
 
+src/game/main/menus/co_exp_init_screen.c:
+    complete
+    .text       start:0x020347e0 end:0x02034fa0
+
 src/game/main/func_02035708.c:
     complete
     .text       start:0x02035708 end:0x0203570c
