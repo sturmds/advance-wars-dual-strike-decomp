@@ -2733,6 +2733,10 @@ src/game/main/func_0201d8f0.c:
     complete
     .text       start:0x0201d8f0 end:0x0201d908
 
+src/game/main/script/event_hold_step_screen_slide_out.c:
+    complete
+    .text       start:0x0201da48 end:0x0201dac4
+
 src/game/main/script/event_script_clear_text_map.c:
     complete
     .text       start:0x0201dba4 end:0x0201dbdc
