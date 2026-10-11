@@ -3031,6 +3031,10 @@ src/game/main/math/math_sin_degrees.c:
     complete
     .text       start:0x020213e4 end:0x02021458
 
+src/game/main/graphics/sprites_draw_list.c:
+    complete
+    .text       start:0x02021458 end:0x02021520
+
 src/game/main/graphics/sprite_queue_group.c:
     complete
     .text       start:0x02021520 end:0x020216d8
