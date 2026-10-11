@@ -7,6 +7,7 @@
 
 /* Link messages of the Vs setup team screen. The team ones add the
  * player slot (0-3) to the id. */
+#define EVENT_VS_SETUP_CANCEL 18 /* cancel on the Vs setup player and CO buttons, a guess */
 #define EVENT_VS_TEAM_PREV  19 /* up key: previous team */
 #define EVENT_VS_TEAM_NEXT  23 /* down key: next team */
 #define EVENT_VS_TEAM_READY 27
