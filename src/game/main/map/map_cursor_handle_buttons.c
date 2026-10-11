@@ -21,7 +21,7 @@ void func_020f5888(int x, int y);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 void ScreenConfig_RunActionHook(void);
 BOOL MapCursor_SelectTile(int x, int y, int a, int b);
-void func_020d0f18(int x, int y);
+void MapCursor_ShowRange(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -29,7 +29,7 @@ void func_020d0f18(int x, int y);
  * allowR) and X (when allowX) each start their own handler. Otherwise it
  * shows the cursor tile on the second screen, then L moves the cursor to
  * the unit CurrentPlayer_NextIdleUnit picks, A selects at the cursor (MapCursor_SelectTile)
- * and B runs func_020d0f18 there. Returns TRUE when a button was handled. */
+ * and B runs MapCursor_ShowRange there. Returns TRUE when a button was handled. */
 BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
 {
     u16 keys = gKeypad->pressed;
@@ -86,6 +86,6 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
     if (!(gKeypad->pressed & PAD_BUTTON_B)) {
         return FALSE;
     }
-    func_020d0f18(GAME->unk_28, GAME->unk_2a);
+    MapCursor_ShowRange(GAME->unk_28, GAME->unk_2a);
     return TRUE;
 }
