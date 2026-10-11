@@ -20,7 +20,7 @@ void MapObjects_Clear(void);
 void func_020e7a80(int a0, int mapId);
 void MovementCost(void);
 void CurrentPlayer_SyncState(void);
-void func_020c1950(void);
+void CurrentPlayer_StartTurn(void);
 void func_020c8888(void);
 void Screens_SelectConfigs(void);
 void func_01ff9a90(void);
@@ -116,7 +116,7 @@ void DesignRoom_Init(Task *task)
     func_020e7a80(4, STATE->unk_1c4->mapId);
     MovementCost();
     CurrentPlayer_SyncState();
-    func_020c1950();
+    CurrentPlayer_StartTurn();
     func_020c8888();
     data_022977a4.unk_04 = 0x13a;
     Screens_SelectConfigs();

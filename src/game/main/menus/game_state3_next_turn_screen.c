@@ -31,7 +31,7 @@ void func_020c4018(void);
 void func_ov000_022b04ec(void);
 void func_020ca9d8(void);
 void func_020ba750(void);
-void func_020c1950(void);
+void CurrentPlayer_StartTurn(void);
 void CurrentPlayer_SyncState(void);
 void Player_EndPower(int player);
 BOOL HotSeat_HasSeveralHumanTeams(void);                   /* TRUE: two or more human teams share the DS */
@@ -96,7 +96,7 @@ void Game_State3_NextTurnScreen(void)
     }
     Turn_AdvanceToNextPlayer();
     CurrentPlayer_SyncState();
-    func_020c1950();
+    CurrentPlayer_StartTurn();
     Player_EndPower(STATE->currentPlayer);
     MovementCost();
     func_020c4018();

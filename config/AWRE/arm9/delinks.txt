@@ -13238,6 +13238,10 @@ src/game/main/map/current_player_load_palettes.c:
     complete
     .text       start:0x020c18cc end:0x020c1950
 
+src/game/main/map/current_player_start_turn.c:
+    complete
+    .text       start:0x020c1950 end:0x020c1b90
+
 src/game/main/map/current_player_sync_state.c:
     complete
     .text       start:0x020c1b90 end:0x020c1c14

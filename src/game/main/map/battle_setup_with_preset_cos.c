@@ -11,7 +11,7 @@ void Panels_PlaceForCursor(void);
 void Units_ClearAll(void);
 void MapObjects_Clear(void);
 void CurrentPlayer_SyncState(void);
-void func_020c1950(void);
+void CurrentPlayer_StartTurn(void);
 void func_020c8888(void);
 void ScreenConfig_Select(int a);
 void Battle_RegisterFrameCallbacks(void);
@@ -51,7 +51,7 @@ void Battle_SetupWithPresetCos(void)
     Units_ClearAll();
     MapObjects_Clear();
     CurrentPlayer_SyncState();
-    func_020c1950();
+    CurrentPlayer_StartTurn();
     func_020c8888();
     ScreenConfig_Select(5);
     if (HOOKS->unk_54 != NULL) {

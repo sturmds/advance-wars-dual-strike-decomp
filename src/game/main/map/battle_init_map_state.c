@@ -16,7 +16,7 @@ void MovementCost(void);
 void func_020c4f20(void);
 void func_020f58a8(void);
 void CurrentPlayer_SyncState(void);
-void func_020c1950(void);
+void CurrentPlayer_StartTurn(void);
 
 /* Battle start: resets the turn state, loads the map in the state (the map's
  * own variant 0) and sets up everything that depends on it: movement costs
@@ -33,5 +33,5 @@ void Battle_InitMapState(void)
     func_020c4f20();
     func_020f58a8();
     CurrentPlayer_SyncState();
-    func_020c1950();
+    CurrentPlayer_StartTurn();
 }
