@@ -10,6 +10,7 @@
 
 /* Map cell codes (MapTiles.mapCells). */
 #define MAP_CELL_SEA 42
+#define MAP_CELL_WOOD 135
 #define MAP_CELL_REEF 360
 
 /* The two bridge pieces. */
