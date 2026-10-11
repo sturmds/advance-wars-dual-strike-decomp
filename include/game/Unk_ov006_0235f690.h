@@ -74,7 +74,7 @@ typedef struct Unk_ov006_0235f690 {
     struct Task *unk_64;               /* task of script data_ov006_0236acc4 (func_ov006_02354444) */
     u8 pad_68[0x70 - 0x68];
     void *unk_70;                      /* sprite set drawn by Ov006_UpdateSubScreen */
-    u8 pad_74[0x78 - 0x74];
+    void *unk_74;                      /* file /mapedit/00c, loaded when request 6 opens */
     union {
         Ov006SlotButton slotButtons[8];
         struct {
