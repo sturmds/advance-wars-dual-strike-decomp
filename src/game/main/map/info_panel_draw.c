@@ -30,7 +30,7 @@ int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void func_020cc910(int type, int panelX, int panelY, int side);
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_020219e4(void *data, int frame, int b, int x, int y, int tile, int c, int d);
+void SpriteFile_Queue(void *data, int frame, int b, int x, int y, int tile, int c, int d);
 void func_020cb0cc(u16 x, u16 y);
 void func_020cb0f4(u16 x, u16 y);
 BOOL func_020c08cc(int type, int player, int slot);
@@ -38,7 +38,6 @@ void func_020cb3c8(s16 x, s16 y, int slot);
 void *Task_FindByScript(void *script);
 void func_020cb848(int panelX, int panelY, int side);
 void Oam_PutSprite(int x, int y, void *shape, int tile);
-MapObject *Map_GetObjectAt(int x, int y);
 int MainLoop_GetFrameCount(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -48,13 +47,12 @@ int MainLoop_GetFrameCount(void);
 #define ITEM_X(boxX, item) (data_021663f4.item.x + (panelX + (boxX)))
 #define ITEM_Y(item)       (panelY + data_021663f4.item.y)
 
-/* func_020219e4 frames for the icons. */
+/* SpriteFile_Queue frames for the icons. */
 #define ICON_NONE    0
 #define ICON_CAPTURE 1
 #define ICON_TILE_HP 2
 #define ICON_AMMO    3
 #define ICON_NO_AMMO 4
-
 
 /* Draws the info panel for the tile at infoTileX, infoTileY: the terrain
  * box, the unit box and cargo box when a unit stands there, the window that
@@ -115,10 +113,10 @@ void InfoPanel_Draw(void)
         InfoPanel_DrawUnit(ITEM_X(*unitBoxX, unitIcon) & 0x1ff, ITEM_Y(unitIcon), unit->type, owner,
                            (u8)(unit->cargo[0] | unit->cargo[1]), (u8)unit->captureProgress, unit->flags, 0);
         if (Ov000_gUnitStats[unit->type].ammo) {
-            func_020219e4(data_ov000_022cb630, ICON_AMMO, 1, ITEM_X(*unitBoxX, weaponIcon) & 0x1ff,
+            SpriteFile_Queue(data_ov000_022cb630, ICON_AMMO, 1, ITEM_X(*unitBoxX, weaponIcon) & 0x1ff,
                           (u8)ITEM_Y(weaponIcon) | 0x400, 0x131d, 0, 0);
         } else {
-            func_020219e4(data_ov000_022cb630, ICON_NO_AMMO, 1, ITEM_X(*unitBoxX, weaponIcon) & 0x1ff,
+            SpriteFile_Queue(data_ov000_022cb630, ICON_NO_AMMO, 1, ITEM_X(*unitBoxX, weaponIcon) & 0x1ff,
                           (u8)ITEM_Y(weaponIcon) | 0x400, 0x131d, 0, 0);
         }
 
@@ -243,21 +241,21 @@ void InfoPanel_Draw(void)
         tileHp = state->tileHp[state->mapTiles->rowStart[tileY] + tileX] & 0x7f;
     }
     if (tileHp) {
-        func_020219e4(data_ov000_022cb630, ICON_TILE_HP, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
+        SpriteFile_Queue(data_ov000_022cb630, ICON_TILE_HP, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
                       (u8)ITEM_Y(terrainIcon) | 0x400, 0x131d, 0, 0);
         if (MainLoop_GetFrameCount() % 30 < 10) {
             return;
         }
         InfoPanel_DrawNumber(ITEM_X(*terrainBoxX, terrainCount), ITEM_Y(terrainCount), tileHp);
     } else if (captureLeft) {
-        func_020219e4(data_ov000_022cb630, ICON_CAPTURE, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
+        SpriteFile_Queue(data_ov000_022cb630, ICON_CAPTURE, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
                       (u8)ITEM_Y(terrainIcon) | 0x400, 0x131d, 0, 0);
         if (captureLeft > 0 && captureLeft < MAP_UNIT_CAPTURE_POINTS && MainLoop_GetFrameCount() % 30 < 10) {
             return;
         }
         InfoPanel_DrawNumber(ITEM_X(*terrainBoxX, terrainCount), ITEM_Y(terrainCount), captureLeft);
     } else {
-        func_020219e4(data_ov000_022cb630, ICON_NONE, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
+        SpriteFile_Queue(data_ov000_022cb630, ICON_NONE, 1, ITEM_X(*terrainBoxX, terrainIcon) & 0x1ff,
                       (u8)ITEM_Y(terrainIcon) | 0x400, 0x131d, 0, 0);
     }
 }

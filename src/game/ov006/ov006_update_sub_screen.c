@@ -8,7 +8,7 @@ void Screen_SetCurrentGfx(void *state);
 void Ov006_QueueScreen1Sprites(void);
 int Ov006_IsMapPlayable(void);
 fx32 FX_Div(fx32 numer, fx32 denom);
-BOOL func_020219e4(void *sprites, int frame, int a, int x, int y, int attr, int b, int c);
+BOOL SpriteFile_Queue(void *sprites, int frame, int a, int x, int y, int attr, int b, int c);
 void Oam_PutSmallNumber(u16 x, u16 y, int value);
 void Screen_SetLayer3Scroll(int x, int y);
 void Screen_SetLayer0Scroll(int x, int y);
@@ -49,17 +49,17 @@ void Ov006_UpdateSubScreen(void)
         if (OV6->unk_58 > 0x12000) {
             OV6->unk_58 = 0x12000;
         }
-        func_020219e4(OV6->unk_70, 0, 0, (OV6->unk_58 >> 12) & 0x1ff, 4, 0xf2b0, 0, 0);
+        SpriteFile_Queue(OV6->unk_70, 0, 0, (OV6->unk_58 >> 12) & 0x1ff, 4, 0xf2b0, 0, 0);
     } else {
         OV6->unk_58 = -0x28000;
     }
-    func_020219e4(OV6->unk_70, 2, 0, 10, 145, 0xf2b0, 0, 0);
+    SpriteFile_Queue(OV6->unk_70, 2, 0, 10, 145, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(18, 153, OV6->cursorX + 1);
-    func_020219e4(OV6->unk_70, 1, 0, 10, 167, 0xf2b0, 0, 0);
+    SpriteFile_Queue(OV6->unk_70, 1, 0, 10, 167, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(18, 175, OV6->cursorY + 1);
-    func_020219e4(OV6->unk_70, 3, 0, 26, 138, 0xf2b0, 0, 0);
+    SpriteFile_Queue(OV6->unk_70, 3, 0, 26, 138, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(58, 137, 50 - (s8)OV6->unk_2c[OV6->unitArmy - 1]);
-    func_020219e4(OV6->unk_70, 3, 0, 70, 138, 0xf2b0, 0, 0);
+    SpriteFile_Queue(OV6->unk_70, 3, 0, 70, 138, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(102, 137, 60 - OV6->propertyCount);
     Screen_SetLayer3Scroll(0, (OV6->unk_54 >> 12) & 0xff);
     /* the original adds a double: _dflt, _dadd, _dfix */

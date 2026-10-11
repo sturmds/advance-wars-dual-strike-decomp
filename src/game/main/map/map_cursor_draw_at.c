@@ -10,7 +10,7 @@ BOOL Screen0_AllowsMode(int mode);
 int MapCursor_GetAnimation(int *x, int *y, int style);
 void Sprite3d_DrawAnimation(const VecFx32 *pos, int animation);
 int MainLoop_GetFrameCount(void);
-BOOL func_020219e4(void *set, int index, int arg, int x, int y, int attr, int tile, int list);
+BOOL SpriteFile_Queue(void *set, int index, int arg, int x, int y, int attr, int tile, int list);
 
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
 
@@ -38,5 +38,5 @@ void MapCursor_DrawAt(int x, int y, int style)
     if (x < 0 || y < 0 || x > 256 || y > 192) {
         return;
     }
-    func_020219e4(data_ov000_022c9750, animation, MainLoop_GetFrameCount(), x & 0x1ff, y & 0xff, 0x12be, 0, 1);
+    SpriteFile_Queue(data_ov000_022c9750, animation, MainLoop_GetFrameCount(), x & 0x1ff, y & 0xff, 0x12be, 0, 1);
 }

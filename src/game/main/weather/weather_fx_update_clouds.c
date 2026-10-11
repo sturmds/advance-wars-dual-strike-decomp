@@ -7,7 +7,7 @@ extern int data_027c0284;
 extern u8 gWeatherCloudAnim[];
 
 BOOL func_020fa6f8(void);
-void func_020219e4(void *data, int frame, int b, int x, int y, int tile, int c, int d);
+void SpriteFile_Queue(void *data, int frame, int b, int x, int y, int tile, int c, int d);
 
 #define FX   (data_027c027c->weatherFx)
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
@@ -48,7 +48,7 @@ void WeatherFx_UpdateClouds(void)
         x = ((FX->clouds[i].x >> 8) & maskX) - VIEW->scrollX;
         y = ((FX->clouds[i].y >> 8) & maskY) - VIEW->scrollY;
         if (x >= 0 && x <= 255 && y >= 0 && y <= 255) {
-            func_020219e4(gWeatherCloudAnim, 0, FX->clouds[i].frame, x & 0x1ff, y & 0xff, 0x1800, 0, 1);
+            SpriteFile_Queue(gWeatherCloudAnim, 0, FX->clouds[i].frame, x & 0x1ff, y & 0xff, 0x1800, 0, 1);
         }
     }
 }
