@@ -254,6 +254,8 @@ typedef struct Unk_02080440 {
     Unk_02080440_50 *unk_50[2];        /* indexed by data_027c0284; set by Screens_SelectConfigs */
     u8 *unk_58;                        /* 2 flags: show slot n is in use (UnitShowTask_Create's helper looks for a free one) */
     Unk_02080440_5c *unk_5c[1];       /* length unknown, indexed by data_027c0284 like unk_48 */
+    u8 pad_60[0x64 - 0x60];
+    struct WeatherFx *weatherFx;       /* particles and clouds the map screen draws, see game/weather.h */
 } Unk_02080440;
 
 #endif

@@ -17,4 +17,36 @@ typedef struct WeatherTaskWork {
     u16 weather;                       /* WEATHER_* the task shows */
 } WeatherTaskWork;
 
+/* One rain drop, snow flake or grain of sand. Positions and speeds are in
+ * 1/256 pixels on the whole map; the drawing wraps them to the screen. */
+typedef struct WeatherParticle {
+    u16 x;
+    u16 y;
+    u16 vx;
+    u16 vy;
+    u16 frame;                         /* sprite frame for rain and snow */
+    u8 pad_0a[0x0c - 0x0a];
+} WeatherParticle;
+
+#define WEATHER_PARTICLE_COUNT 32
+
+/* A cloud shadow drawn over the map in clear weather. Position and speed
+ * in 1/256 pixels. */
+typedef struct WeatherCloud {
+    u32 x;
+    u32 y;
+    u32 vx;
+    u32 vy;
+    u16 frame;                         /* counts up each update */
+    u8 pad_12[0x14 - 0x12];
+} WeatherCloud;
+
+#define WEATHER_CLOUD_COUNT 4
+
+/* Pointed to by Unk_02080440.weatherFx. */
+typedef struct WeatherFx {
+    WeatherParticle particles[WEATHER_PARTICLE_COUNT];
+    WeatherCloud clouds[WEATHER_CLOUD_COUNT];
+} WeatherFx;
+
 #endif
