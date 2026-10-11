@@ -10016,6 +10016,10 @@ src/game/main/func_020f6854.c:
     complete
     .text       start:0x020f6854 end:0x020f68b8
 
+src/game/main/map/map_bg_draw_tile_row.c:
+    complete
+    .text       start:0x020f6a40 end:0x020f6e74
+
 src/game/main/map/map_view_scroll_step.c:
     complete
     .text       start:0x020f7268 end:0x020f757c

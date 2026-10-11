@@ -4683,7 +4683,7 @@ func_020f68b8 kind:function(arm,size=0x90) addr:0x020f68b8
 func_020f6948 kind:function(arm,size=0x78) addr:0x020f6948
 func_020f69c0 kind:function(arm,size=0x40) addr:0x020f69c0
 func_020f6a00 kind:function(arm,size=0x40) addr:0x020f6a00
-func_020f6a40 kind:function(arm,size=0x434) addr:0x020f6a40
+MapBg_DrawTileRow kind:function(arm,size=0x434) addr:0x020f6a40
 func_020f6e74 kind:function(arm,size=0x3f4) addr:0x020f6e74
 MapView_ScrollStep kind:function(arm,size=0x314) addr:0x020f7268
 func_020f757c kind:function(arm,size=0x60) addr:0x020f757c
@@ -6151,8 +6151,8 @@ data_021439f8 kind:data(any) addr:0x021439f8
 data_02143db8 kind:data(any) addr:0x02143db8
 data_02143f38 kind:data(any) addr:0x02143f38
 data_02143f3c kind:data(any) addr:0x02143f3c
-data_02143f40 kind:data(any) addr:0x02143f40
-data_02145f40 kind:data(any) addr:0x02145f40
+gMapCellGroundTiles kind:data(any) addr:0x02143f40
+gMapCellOverhangTiles kind:data(any) addr:0x02145f40
 data_02147f40 kind:data(any) addr:0x02147f40
 data_02147fa0 kind:data(any) addr:0x02147fa0
 data_02148000 kind:data(any) addr:0x02148000
@@ -8097,7 +8097,7 @@ data_02169dd8 kind:data(any) addr:0x02169dd8
 data_02169df8 kind:data(any) addr:0x02169df8
 data_02169e18 kind:data(any) addr:0x02169e18
 data_02169e38 kind:data(any) addr:0x02169e38
-data_02169e58 kind:data(any) addr:0x02169e58
+gMountainCellVariants kind:data(any) addr:0x02169e58
 data_02169e78 kind:data(any) addr:0x02169e78
 data_02169eb8 kind:data(any) addr:0x02169eb8
 data_02169ef8 kind:data(any) addr:0x02169ef8
