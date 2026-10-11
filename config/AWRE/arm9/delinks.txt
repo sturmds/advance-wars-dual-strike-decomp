@@ -15405,6 +15405,10 @@ src/game/main/func_020dc698.c:
     complete
     .text       start:0x020dc698 end:0x020dc6b4
 
+src/game/main/combat/attack_task_set_up_screen.c:
+    complete
+    .text       start:0x020dc6b4 end:0x020dc704
+
 src/game/main/func_020dc704.c:
     complete
     .text       start:0x020dc704 end:0x020dc710
