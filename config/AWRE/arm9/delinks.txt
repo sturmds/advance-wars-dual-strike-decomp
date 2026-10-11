@@ -3876,6 +3876,10 @@ src/game/main/func_0203c6d8.c:
     complete
     .text       start:0x0203c6d8 end:0x0203c6fc
 
+src/game/main/menus/win_lose_screen_slide_out_pictures.c:
+    complete
+    .text       start:0x0203ca28 end:0x0203ce48
+
 src/game/main/menus/win_lose_screen_init.c:
     complete
     .text       start:0x0203e67c end:0x0203f300
