@@ -9316,6 +9316,7 @@ src/game/main/task/event_sequence_task_start_with_song_fade.c:
     .text       start:0x020d7d64 end:0x020d7d9c
 
 src/game/main/task/event_sequence_task_start.c:
+    complete
     .text       start:0x020d7d9c end:0x020d7dd0
 
 src/game/main/func_020d7e98.c:
