@@ -39,7 +39,7 @@ typedef struct SoundStream {
     SoundStrm strm;                    /* 0x00 */
     FSFile file;                       /* 0x5c */
     u32 fileOffset;                    /* 0xa0: start of the stream file in the archive */
-    u8 pad_a4[0x18];                   /* 0xa4: stream file header, read with the HEAD block */
+    u8 head[0x18];                     /* 0xa4: start of the stream file header; SOUND_STREAM_HEAD_SIZE bytes from here, up to 0xe4 */
     u8 format;                         /* 0xbc: SOUND_STREAM_FORMAT_* */
     u8 loop;                           /* 0xbd */
     u8 channelCount;                   /* 0xbe: channels in the file */
@@ -70,7 +70,8 @@ typedef struct SoundStream {
     SoundStrmCallback callback;        /* 0x130: called after each refill */
     void *callbackArg;                 /* 0x134 */
     void *nextStreamCallback;          /* 0x138: asked for the stream to play once the data ends */
-    u8 pad_13c[8];
+    void *nextStreamArg;               /* 0x13c: passed to nextStreamCallback */
+    int strmNo;                        /* 0x140: stream number in the sound archive */
     u32 slotNo;                        /* 0x144: index in data_022a9300 */
     void **handle;                     /* 0x148: the caller's stream handle, which points back here */
     u32 unk_14c;
@@ -78,6 +79,24 @@ typedef struct SoundStream {
     int appliedVolume;                 /* 0x154: last volume sent to the hardware */
     u32 samplePos;                     /* 0x158: next sample to read */
 } SoundStream;
+
+/* What SoundStream.nextStreamCallback is told about the stream playing. */
+typedef struct SoundNextStreamParam {
+    u32 slotNo;
+    int strmNo;
+} SoundNextStreamParam;
+
+/* What SoundStream.nextStreamCallback fills in: the stream to play next and
+ * where to start in it, in milliseconds. */
+typedef struct SoundNextStreamInfo {
+    int strmNo;
+    u32 offsetMs;
+} SoundNextStreamInfo;
+
+/* Returns FALSE when there is no next stream. status is 0 in the one call the
+ * code makes. */
+typedef BOOL (*SoundNextStreamCallback)(int status, const SoundNextStreamParam *param,
+                                        SoundNextStreamInfo *info, void *arg);
 
 /* A refill of a stream's blocks, queued by the stream driver's callback and
  * handled by the sound thread. */
@@ -91,6 +110,9 @@ typedef struct SoundStreamRequest {
 } SoundStreamRequest;
 
 #define SOUND_STREAM_COUNT 4
+
+/* Bytes of the stream file header copied to SoundStream.head. */
+#define SOUND_STREAM_HEAD_SIZE 0x40
 
 extern SoundStream data_022a9300[SOUND_STREAM_COUNT];
 

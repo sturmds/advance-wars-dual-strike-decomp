@@ -9,7 +9,7 @@ BOOL func_021126ac(FSFile *file, s32 offset, int origin);
 void func_0210f52c(void *dest, int value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void DC_FlushRange(const void *start, u32 size);
-void func_021084b0(SoundStream *stream);
+void SoundStream_SetupNext(SoundStream *stream);
 
 /* IMA ADPCM: decode one 4-bit code with a channel's state and store the
  * 16-bit sample in dst. A macro with its own locals, not an inline function:
@@ -205,7 +205,7 @@ void func_02107c28(SoundStreamRequest *request)
             offset += bytes;
             remaining -= bytes;
             if (stream->flags.dataEnded && stream->nextStreamCallback != NULL) {
-                func_021084b0(stream);
+                SoundStream_SetupNext(stream);
             }
         }
     }

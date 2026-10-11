@@ -20492,6 +20492,10 @@ src/game/main/sound/sound_stream_thread.c:
 src/game/main/sound/sound_stream_fill_blocks.c:
     .text       start:0x02107c28 end:0x021084b0
 
+src/game/main/sound/sound_stream_setup_next.c:
+    complete
+    .text       start:0x021084b0 end:0x021085fc
+
 src/game/main/sound/sound_stream_release_buffer.c:
     complete
     .text       start:0x02108728 end:0x02108790
