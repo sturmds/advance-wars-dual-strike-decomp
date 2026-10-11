@@ -10,7 +10,7 @@ void Ov003_ApplyPickup(Ov003Unit *unit, Ov003Pickup *pickup);
 /* Each frame: the first live unit within 48 of a pickup (not one of the row
  * being spawned into, not one with unk_17_6 set) takes it with
  * Ov003_ApplyPickup; a pickup nobody takes counts its time down. Then each
- * row's unk_36 counts down. Needed to match: the declaration order. */
+ * row's slowTimer counts down. Needed to match: the declaration order. */
 void Ov003_UpdatePickups(void)
 {
     Ov003Pickup *pickup;
@@ -49,8 +49,8 @@ void Ov003_UpdatePickups(void)
     next:;
     }
     for (i = 1; i <= 5; i++) {
-        if (data_ov003_02364928->rows[i - 1].unk_36 != 0) {
-            data_ov003_02364928->rows[i - 1].unk_36--;
+        if (data_ov003_02364928->rows[i - 1].slowTimer != 0) {
+            data_ov003_02364928->rows[i - 1].slowTimer--;
         }
     }
 }

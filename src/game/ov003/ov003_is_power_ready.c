@@ -7,7 +7,7 @@ extern u16 data_ov003_02364cdc[][2];
 int Ov003_IsRowPowerActive(int row);
 
 /* Returns 1 when the row's power can start: both phase nibbles agree, unk_1df_6
- * is set, no power is running, and the charge (unk_32) has reached the limit
+ * is set, no power is running, and the charge has reached the limit
  * for the row's kind. When data_02160ac0->unk_7c is set, Ov003State.row never
  * qualifies. */
 int Ov003_IsPowerReady(int row)
@@ -24,5 +24,5 @@ int Ov003_IsPowerReady(int row)
     if (Ov003_IsRowPowerActive(row) == 1) {
         return 0;
     }
-    return data_ov003_02364928->rows[row - 1].unk_32 >= data_ov003_02364cdc[data_ov003_02364928->rows[row - 1].unk_3b_0][0];
+    return data_ov003_02364928->rows[row - 1].charge >= data_ov003_02364cdc[data_ov003_02364928->rows[row - 1].co][0];
 }

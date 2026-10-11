@@ -77,13 +77,13 @@ typedef struct Ov003Cell {
 typedef struct Ov003Row {
     Ov003Cell cells[20];
     u8 unk_28[10];
-    u16 unk_32;
-    u16 unk_34;
-    u16 unk_36;
+    u16 charge;                        /* filled by Ov003Row_AddCharge, up to a limit per CO */
+    u16 powerTimer;                    /* not 0 while the CO power runs */
+    u16 slowTimer;                     /* halves the row's unit speed while not 0 (pickup kind 5) */
     u8 unk_38;
     u8 unk_39;
     u8 spawnCount;
-    u8 unk_3b_0 : 4;                   /* 1-3; 8-10 are resolved by Ov003_InitRows */
+    u8 co : 4;                         /* CO choice (func_0208bed4 gives the CO id); picks the power tables; 8-10 are resolved by Ov003_InitRows */
     u8 unk_3b_4 : 4;                   /* even number per active row, then shifted to centre them */
     u8 color : 7;                      /* 1-based: picks this row's palette colours and tiles */
     u8 active : 1;
@@ -135,7 +135,7 @@ typedef struct Ov003Preset {
     u8 pad_00[4];
     u32 unk_04;                        /* passed to Ov003_LoadSpawns */
     u8 colors[4];                      /* Ov003Row.color per row */
-    u8 unk_0c[4];                      /* Ov003Row.unk_3b_0 per row */
+    u8 unk_0c[4];                      /* Ov003Row.co per row */
     u8 rowCount : 3;
     u8 unk_10_3 : 1;                   /* default for Ov003State.unk_1df_0 */
     u8 unk_10_4 : 4;                   /* default for Ov003State.unk_1df_2 */

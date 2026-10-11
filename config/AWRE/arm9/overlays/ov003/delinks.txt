@@ -461,7 +461,7 @@ src/game/ov003/func_ov003_0235d4c0.c:
     complete
     .text       start:0x0235d4c0 end:0x0235d518
 
-src/game/ov003/func_ov003_0235d518.c:
+src/game/ov003/ov003_get_move_speed.c:
     complete
     .text       start:0x0235d518 end:0x0235d5d4
 
@@ -469,15 +469,15 @@ src/game/ov003/ov003_roll_value.c:
     complete
     .text       start:0x0235d5d4 end:0x0235d6e8
 
-src/game/ov003/ov003_row_add_gauge.c:
+src/game/ov003/ov003_row_add_charge.c:
     complete
     .text       start:0x0235d6e8 end:0x0235d7a4
 
-src/game/ov003/ov003_rows_tick_countdowns.c:
+src/game/ov003/ov003_rows_tick_powers.c:
     complete
     .text       start:0x0235d7a4 end:0x0235d81c
 
-src/game/ov003/ov003_row_stop_countdown.c:
+src/game/ov003/ov003_row_stop_power.c:
     complete
     .text       start:0x0235d81c end:0x0235d850
 
@@ -693,7 +693,7 @@ src/game/ov003/ov003_update_rows_and_palette.c:
     complete
     .text       start:0x02360cc4 end:0x02360d54
 
-src/game/ov003/ov003_row_draw_gauge.c:
+src/game/ov003/ov003_row_draw_charge.c:
     complete
     .text       start:0x02360d54 end:0x02360fdc
 

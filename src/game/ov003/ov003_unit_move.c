@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_unit.h"
 
-int func_ov003_0235d518(int player, int kind, int terrain);
+int Ov003_GetMoveSpeed(int player, int kind, int terrain);
 
 extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02365d10[];
@@ -41,7 +41,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
 
     for (;;) {
         if (distance < 0) {
-            distance = func_ov003_0235d518(unit->row, unit->kind, TERRAIN(unit->x >> 7, unit->y >> 7));
+            distance = Ov003_GetMoveSpeed(unit->row, unit->kind, TERRAIN(unit->x >> 7, unit->y >> 7));
         }
         unit->unk_1c_0 = 0;
         unit->unk_1c_1 = 0;
@@ -177,7 +177,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = bottom >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
+                if (Ov003_GetMoveSpeed(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -219,7 +219,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = bottom >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
+                if (Ov003_GetMoveSpeed(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -259,7 +259,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = edge >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
+                if (Ov003_GetMoveSpeed(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }
@@ -299,7 +299,7 @@ void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight)
                     cy = edge >> 7;
                     break;
                 }
-                if (func_ov003_0235d518(0, unit->kind, TERRAIN(cx, cy)) == 0) {
+                if (Ov003_GetMoveSpeed(0, unit->kind, TERRAIN(cx, cy)) == 0) {
                     blocked |= 1 << j;
                 }
             }

@@ -75,7 +75,7 @@ void Ov003_LoadScreenGraphics(void)
             } else {
                 dst = data_ov003_02365b10 + (i - 2) * 0x3600;
             }
-            func_02002864(func_0208bed4(row->unk_3b_0), dst, i + 1);
+            func_02002864(func_0208bed4(row->co), dst, i + 1);
         }
     }
     Ov003_UploadCoPictures();

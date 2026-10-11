@@ -19,7 +19,7 @@ typedef struct RowView {
 } RowView;
 
 /* Copies what overlay 3 knows about a row (1 to 5) into data_02160abc: the
- * row number, the unk_3b_0 and color of the row and of the other of rows 1 and
+ * row number, the co and color of the row and of the other of rows 1 and
  * 2, and Ov003Row.unk_28. For link play (data_02160ac0->unk_7c clear) and row 1
  * it also copies the cells of every row, with units (state 2) as state 1.
  * Then it updates two play counters. Not matched yet (97.2%): in the last
@@ -37,9 +37,9 @@ void func_ov003_02361c7c(int row)
         other = 2;
     }
     data_02160abc->unk_0a = row;
-    data_02160abc->unk_0b = STATE->rows[row - 1].unk_3b_0;
+    data_02160abc->unk_0b = STATE->rows[row - 1].co;
     data_02160abc->unk_0d = STATE->rows[row - 1].color;
-    data_02160abc->unk_0c = STATE->rows[other - 1].unk_3b_0;
+    data_02160abc->unk_0c = STATE->rows[other - 1].co;
     data_02160abc->unk_0e = STATE->rows[other - 1].color;
     for (i = 0; i < 10; i++) {
         data_02160abc->unk_00[i] = STATE->rows[row - 1].unk_28[i];

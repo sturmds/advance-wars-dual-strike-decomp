@@ -2,7 +2,7 @@
 #include "game/keypad.h"
 #include "game/ov003_unit.h"
 
-int func_ov003_0235d518(int player, int kind, int terrain);
+int Ov003_GetMoveSpeed(int player, int kind, int terrain);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int distance, int straight);
 int Ov003_IsPowerReady(int player);
@@ -36,7 +36,7 @@ void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *pad, Ov003Input *input)
     if (unit->unk_17_7) {
         return;
     }
-    speed = func_ov003_0235d518(unit->row, unit->kind, TERRAIN_AT(unit));
+    speed = Ov003_GetMoveSpeed(unit->row, unit->kind, TERRAIN_AT(unit));
 
     if (pad->unk_00 & PAD_KEY_LEFT) {
         if (pad->unk_00 & PAD_KEY_RIGHT) {

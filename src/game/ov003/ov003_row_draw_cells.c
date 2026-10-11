@@ -48,7 +48,7 @@ void Ov003Row_DrawCells(int row)
         switch (cell->kind) {
         case 1:
         case 2:
-            if (Ov003_RowKindGroup(ROW.unk_3b_0) == 5) {
+            if (Ov003_RowKindGroup(ROW.co) == 5) {
                 tile = 0x270;
             } else {
                 tile = 0x200;

@@ -8,7 +8,7 @@ extern Ov003Marker data_ov003_02369bb8[4];
 
 u16 func_0207a1dc(void);
 void Ov003_CreateSprite(int x, int y);
-void Ov003Row_StopCountdown(int team);
+void Ov003Row_StopPower(int team);
 void Ov003_ReplaceRowSpecialTiles(int team);
 void func_ov003_02361c7c(int winner);
 void func_ov003_02362c44(void);
@@ -42,7 +42,7 @@ void Ov003_DefeatTeam(int team)
     }
 
     STATE->rows[team - 1].active = 0;
-    Ov003Row_StopCountdown(team);
+    Ov003Row_StopPower(team);
 
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp == 0 && !unit->unk_17_7) {

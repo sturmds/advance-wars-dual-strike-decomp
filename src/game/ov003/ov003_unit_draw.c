@@ -33,7 +33,7 @@ void Ov003Unit_Draw(Ov003Unit *unit)
     switch (unit->kind) {
     case 1:
     case 2:
-        if (Ov003_RowKindGroup(STATE->rows[unit->row - 1].unk_3b_0) == 5) {
+        if (Ov003_RowKindGroup(STATE->rows[unit->row - 1].co) == 5) {
             base = 684;
         } else {
             base = 108;

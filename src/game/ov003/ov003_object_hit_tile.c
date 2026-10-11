@@ -11,7 +11,7 @@ extern u8 data_ov003_02364d99[];
 extern u8 data_ov003_02364d9a[];
 
 int Ov003_RollValue(int row, int kind, int arg2, int targetType);
-void Ov003Row_AddGauge(int row, int arg1);
+void Ov003Row_AddCharge(int row, int arg1);
 int Ov003_SpawnItem(int x, int y);
 Ov003Marker *Ov003_FindMarkerAtTile(int x, int y);
 void Ov003_DefeatTeam(int team);
@@ -130,7 +130,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             return;
         }
         if (object->kind < 6) {
-            Ov003Row_AddGauge(object->variant, data_ov003_02364d9a[targetType * 20]);
+            Ov003Row_AddCharge(object->variant, data_ov003_02364d9a[targetType * 20]);
             /* targets broken by the shooter's row, per type */
             STATE->rows[object->variant - 1].unk_28[targetType]++;
         }
@@ -158,7 +158,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         }
         MAP->unk_f1a[TILE_AT(x, y)] -= damage;
         if (object->kind < 6) {
-            Ov003Row_AddGauge(object->variant, data_ov003_02364d99[targetType * 20]);
+            Ov003Row_AddCharge(object->variant, data_ov003_02364d99[targetType * 20]);
         }
         if (object->kind == 5 || object->kind == 7) {
             return;

@@ -42,7 +42,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38 *task)
         break;
     case 2:
         row = task->unk_52;
-        Co_LoadArmyPalette(func_0208bed4(data_ov003_02364928->rows[row - 1].unk_3b_0), 19, row);
+        Co_LoadArmyPalette(func_0208bed4(data_ov003_02364928->rows[row - 1].co), 19, row);
         break;
     case 3:
         row = task->unk_52;
@@ -50,7 +50,7 @@ void Ov003_StepCoPowerBanner(Unk_ov003_0235dd38 *task)
          * DrawSelectedCoPowerText does. */
         task->count = BreakText_Load(
             Text_Get(*(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])
-                          [func_0208bed4(data_ov003_02364928->rows[row - 1].unk_3b_0) & 0x7f].name),
+                          [func_0208bed4(data_ov003_02364928->rows[row - 1].co) & 0x7f].name),
             0x73e, 4, 0);
         break;
     }

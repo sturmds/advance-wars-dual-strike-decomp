@@ -13,14 +13,14 @@ u16 func_0207a1dc(void);
 /* Byte 0x19 of the i-th 28-byte record at the start of data_02160ac0. */
 #define SETUP_UNK_19(i) ((&SETUP->unk_19)[(i) * 28])
 
-/* Ov003Row.unk_3b_0 values the preset uses for "decide at start". */
+/* Ov003Row.co values the preset uses for "decide at start". */
 #define ROW_UNK_3B_FROM_SETUP 8        /* take SETUP_UNK_19 of the row */
 #define ROW_UNK_3B_FROM_ROW0_A 9       /* derived from row 0's value */
 #define ROW_UNK_3B_FROM_ROW0_B 10
 
 /* Sets up the rows and the 8 slots at the start of overlay 3. The preset
  * (entry data_02160ac0->unk_7d of data_ov003_02364e50) gives the row count and each row's colour and
- * unk_3b_0. In link play (unk_7c set) the slot rows come from
+ * co. In link play (unk_7c set) the slot rows come from
  * data_02160ac0->unk_70, the rows of the connected slots (func_0207a1dc, plus
  * slot 0) are active instead, and row 5 is always active. Active rows among
  * the first four get unk_3b_4 = 0, 2, 4, 6 in order, shifted so the group
@@ -38,9 +38,9 @@ void Ov003_InitRows(void)
     STATE->activeRows = 0;
     data_02160abc->unk_0a = 0;
     for (i = 0; i < 5; i++) {
-        STATE->rows[i].unk_32 = 0;
-        STATE->rows[i].unk_34 = 0;
-        STATE->rows[i].unk_3b_0 = 0;
+        STATE->rows[i].charge = 0;
+        STATE->rows[i].powerTimer = 0;
+        STATE->rows[i].co = 0;
         STATE->rows[i].color = i + 1;
         STATE->rows[i].active = 0;
         STATE->rows[i].unk_3b_4 = 0;
@@ -63,7 +63,7 @@ void Ov003_InitRows(void)
     STATE->rowCount = STATE->preset->rowCount;
     STATE->row = (u8)(int)STATE->preset->rowCount;  /* needed to match: the cast adds `and 0xff` */
     for (i = 0; i < STATE->rowCount; i++) {
-        STATE->rows[i].unk_3b_0 = STATE->preset->unk_0c[i];
+        STATE->rows[i].co = STATE->preset->unk_0c[i];
         STATE->rows[i].color = STATE->preset->colors[i];
         STATE->rows[i].active = 1;
         STATE->activeRows |= 1 << i;
@@ -153,47 +153,47 @@ void Ov003_InitRows(void)
     }
 
     for (i = 0; i < STATE->rowCount; i++) {
-        switch (STATE->rows[i].unk_3b_0) {
+        switch (STATE->rows[i].co) {
         case ROW_UNK_3B_FROM_SETUP:
-            STATE->rows[i].unk_3b_0 = SETUP_UNK_19(i);
+            STATE->rows[i].co = SETUP_UNK_19(i);
             break;
         case ROW_UNK_3B_FROM_ROW0_A:
-            switch (STATE->rows[0].unk_3b_0) {
+            switch (STATE->rows[0].co) {
             case 1:
             case 6:
-                STATE->rows[i].unk_3b_0 = 3;
+                STATE->rows[i].co = 3;
                 break;
             case 2:
             case 5:
             case 7:
-                STATE->rows[i].unk_3b_0 = 1;
+                STATE->rows[i].co = 1;
                 break;
             case 3:
             case 4:
-                STATE->rows[i].unk_3b_0 = 2;
+                STATE->rows[i].co = 2;
                 break;
             default:
-                STATE->rows[i].unk_3b_0 = 1;
+                STATE->rows[i].co = 1;
                 break;
             }
             break;
         case ROW_UNK_3B_FROM_ROW0_B:
-            switch (STATE->rows[0].unk_3b_0) {
+            switch (STATE->rows[0].co) {
             case 1:
             case 5:
-                STATE->rows[i].unk_3b_0 = 2;
+                STATE->rows[i].co = 2;
                 break;
             case 2:
             case 4:
             case 7:
-                STATE->rows[i].unk_3b_0 = 3;
+                STATE->rows[i].co = 3;
                 break;
             case 3:
             case 6:
-                STATE->rows[i].unk_3b_0 = 1;
+                STATE->rows[i].co = 1;
                 break;
             default:
-                STATE->rows[i].unk_3b_0 = 2;
+                STATE->rows[i].co = 2;
                 break;
             }
             break;

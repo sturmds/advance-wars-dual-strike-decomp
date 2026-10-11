@@ -21,7 +21,7 @@ int Ov003_RollValue(int attackerRow, int kind, int defenderRow, int index)
     value = data_ov003_02364d8f[kind][index];
     value += (Ov003_RandNext() & 7) - 3;
     if (Ov003_IsRowPowerActive(attackerRow) == 1) {
-        switch (data_ov003_02364928->rows[attackerRow - 1].unk_3b_0) {
+        switch (data_ov003_02364928->rows[attackerRow - 1].co) {
         case 2:
             value = (value * 3) >> 1;
             break;
@@ -33,7 +33,7 @@ int Ov003_RollValue(int attackerRow, int kind, int defenderRow, int index)
     if (defenderRow == 0) {
         return value;
     }
-    if (Ov003_IsRowPowerActive(defenderRow) == 1 && data_ov003_02364928->rows[defenderRow - 1].unk_3b_0 == 5) {
+    if (Ov003_IsRowPowerActive(defenderRow) == 1 && data_ov003_02364928->rows[defenderRow - 1].co == 5) {
         value = HwDiv32(value * 2, 3);
     }
     return value;

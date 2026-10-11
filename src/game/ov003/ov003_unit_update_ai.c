@@ -9,7 +9,7 @@ extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 row, bits 0-4 
 extern u8 data_ov003_02364d8c[];
 
 void Ov003Unit_Move(Ov003Unit *unit, int dir, int arg2, int arg3);
-int func_ov003_0235d518(int player, int kind, int terrain);
+int Ov003_GetMoveSpeed(int player, int kind, int terrain);
 int Ov003Unit_GetStepDirection(Ov003Unit *unit);
 void func_ov003_0235f81c(Ov003Unit *unit);
 void func_ov003_0235f8e8(Ov003Unit *unit);
@@ -31,12 +31,12 @@ u32 Ov003_RandNext(void);
     } while (0)
 
 /* Turns the unit towards the centre of its tile (64 of 128) when it is more
- * than one step (func_ov003_0235d518) away, then runs Ov003Unit_FireIfLocked. */
+ * than one step (Ov003_GetMoveSpeed) away, then runs Ov003Unit_FireIfLocked. */
 #define STEP_TO_CENTRE(unit)                                                                  \
     do {                                                                                      \
         int step;                                                                             \
         (unit)->unk_1c_0 = 0;                                                                 \
-        step = func_ov003_0235d518((unit)->row, (unit)->kind,                            \
+        step = Ov003_GetMoveSpeed((unit)->row, (unit)->kind,                            \
             TERRAIN_AT(((unit)->y >> 7) * MAP->width + ((unit)->x >> 7)));                    \
         if (((unit)->y & ~127) + 64 < (unit)->y - step) {                                     \
             SET_DIR(unit, 1);                                                                 \

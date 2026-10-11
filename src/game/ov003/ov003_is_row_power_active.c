@@ -1,8 +1,8 @@
 #include "types.h"
-#include "game/ov003_row_status.h"
+#include "game/ov003_unit.h"
 
 /* row is 1 to 5. */
 int Ov003_IsRowPowerActive(int row)
 {
-    return OV003_ROW_STATUS(row).powerTimer != 0;
+    return data_ov003_02364928->rows[row - 1].powerTimer != 0;
 }
