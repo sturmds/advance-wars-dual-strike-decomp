@@ -2,7 +2,7 @@
 
 void *File_Load(const char *path);
 void Mem_Free(void *res);
-void func_0200303c(const void *src, u32 offset, u32 size, u32 slot);
+void BgExtPalette_Load(const void *src, u32 offset, u32 size, u32 slot);
 
 /* Loads a file and copies size bytes of it to the background extended
  * palette of the current screen: slot (8 KB each) plus offset. */
@@ -10,6 +10,6 @@ void BgExtPalette_LoadFromFile(const char *fileName, u32 offset, u32 size, u32 s
 {
     void *res = File_Load(fileName);
 
-    func_0200303c(res, offset, size, slot);
+    BgExtPalette_Load(res, offset, size, slot);
     Mem_Free(res);
 }

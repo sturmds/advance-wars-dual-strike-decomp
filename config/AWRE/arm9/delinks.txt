@@ -236,6 +236,10 @@ src/game/main/graphics/bg_ext_palette_load_from_file.c:
     complete
     .text       start:0x02002ffc end:0x0200303c
 
+src/game/main/graphics/bg_ext_palette_load.c:
+    complete
+    .text       start:0x0200303c end:0x020030cc
+
 src/game/main/graphics/palette_load_from_file.c:
     complete
     .text       start:0x020030cc end:0x02003104
