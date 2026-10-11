@@ -19,7 +19,7 @@ extern u8 data_027c0060;
  * over POP_IN_FRAMES frames the mark shrinks from twice its size to its
  * normal size, drawn as a double-size affine sprite. After that it is drawn
  * as a plain sprite until RowLockMark_SquashOut's step (the script holds
- * here until func_02088644 resumes it). */
+ * here until RowLockMark_Remove resumes it). */
 void RowLockMark_PopIn(RowLockMarkTask *task)
 {
     Unk_027c0280 *savedGfx = data_027c0280;

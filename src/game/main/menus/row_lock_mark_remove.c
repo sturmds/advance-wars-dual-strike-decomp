@@ -7,7 +7,7 @@ extern u32 data_02160f30[];
 extern u32 data_02160f60[];
 
 /* Resumes the task that runs the script of team row 1 to 4. */
-void func_02088644(int row)
+void RowLockMark_Remove(int row)
 {
     switch (row) {
     case 1:

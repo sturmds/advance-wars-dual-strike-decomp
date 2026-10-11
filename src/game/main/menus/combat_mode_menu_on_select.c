@@ -14,11 +14,11 @@ void Co_UnpackPicture(int coId, int firstTile);
 void DrawSelectedCoPowerText(void);
 
 extern u8 *data_0229e144;
-extern u8 data_021613a0[];
+extern u8 gCombatModeCos[];
 extern const TaskScriptCmd data_021613d8[]; /* script of the CO portrait task */
 
 /* Runs when a Combat mode menu slot gets selected. Stores the slot in
- * data_02160ac0->unk_19, and also as the remembered row (data_0229e144)
+ * data_02160ac0->co, and also as the remembered row (data_0229e144)
  * unless the move was left or right only. Then tells the CO portrait task:
  * a portrait in view slides out (it comes back with the new CO), one that
  * was sliding out for this same CO slides back in. Redraws the CO Power
@@ -30,9 +30,9 @@ void CombatModeMenu_OnSelect(MenuButton *button)
     Unk_02080440 *savedState;
 
     Sound_PlaySe(SE_CURSOR_MOVE);
-    data_02160ac0->unk_19 = Menu_GetSelectedId();
+    data_02160ac0->co = Menu_GetSelectedId();
     if (!(gKeypad->repeat & (PAD_KEY_RIGHT | PAD_KEY_LEFT)) || (gKeypad->repeat & (PAD_KEY_UP | PAD_KEY_DOWN))) {
-        *data_0229e144 = data_02160ac0->unk_19;
+        *data_0229e144 = data_02160ac0->co;
     }
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
@@ -44,7 +44,7 @@ void CombatModeMenu_OnSelect(MenuButton *button)
         return;
     }
     portrait->selectedSlot = Menu_GetSelectedId();
-    Co_UnpackPicture(data_021613a0[portrait->selectedSlot], 0x1b0);
+    Co_UnpackPicture(gCombatModeCos[portrait->selectedSlot], 0x1b0);
     if (portrait->waitFrames == 0) {
         if (portrait->selectedSlot == portrait->shownSlot) {
             if (portrait->slidingIn == 0) {

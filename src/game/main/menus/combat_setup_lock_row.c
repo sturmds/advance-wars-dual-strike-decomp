@@ -4,7 +4,7 @@
 #include "game/Unk_0229fb30.h"
 
 void Sound_PlaySe(u32 soundId);
-void func_020886cc(int row);
+void RowLockMark_Start(int row);
 
 extern MenuState gMenuState;
 
@@ -23,7 +23,7 @@ void CombatSetup_LockRow(int player)
     }
     Sound_PlaySe(0x10006);
     MENU->combat.rows[row - 1].unk_08 = 1;
-    func_020886cc(row);
+    RowLockMark_Start(row);
     if (player != data_0229fb30.unk_45a) {
         return;
     }

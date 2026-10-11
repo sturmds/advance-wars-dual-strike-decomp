@@ -7,7 +7,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 
-extern u8 data_021613a0[];
+extern u8 gCombatModeCos[];
 extern u8 data_027c0040;
 
 #define HIDDEN_WAIT_FRAMES 4
@@ -39,7 +39,7 @@ void CombatModeCoPortrait_Update(CoPortraitTask *task)
             return;
         }
         task->shownSlot = task->selectedSlot;
-        Co_LoadGraphicsAndPalette(data_021613a0[task->shownSlot], 0, 0);
+        Co_LoadGraphicsAndPalette(gCombatModeCos[task->shownSlot], 0, 0);
         task->slideFrom = task->offset;
         task->slidingIn = 1;
         task->frame = 0;

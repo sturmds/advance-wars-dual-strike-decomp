@@ -34,13 +34,13 @@ void CombatModeMenu_ShopOnKeys(MenuButton *button)
     if (gKeypad->pressed & PAD_BUTTON_A) {
         MenuButton_Confirm(button);
     } else if (gKeypad->pressed & PAD_BUTTON_B) {
-        if (data_02160ac0->unk_18 == 0) {
+        if (data_02160ac0->cellCount == 0) {
             func_02089260();
         } else {
             Menu_CancelSelected();
         }
     } else if (gKeypad->pressed & PAD_BUTTON_START) {
-        if (data_02160ac0->unk_18 != 0) {
+        if (data_02160ac0->cellCount != 0) {
             CombatModeMenu_FinishShop();
         }
     }

@@ -13,8 +13,8 @@ void func_0208bf40(void)
 {
     CombatSetup_ResetDefaults();
     Mem_CopyUnits(data_0229e148, data_02160ac0, 20, 8);
-    data_02160ac0->unk_18 = data_0229e148[20];
-    data_02160ac0->unk_19 = data_0229e148[21];
+    data_02160ac0->cellCount = data_0229e148[20];
+    data_02160ac0->co = data_0229e148[21];
     data_02160ac0->unk_7d = data_0229e148[22];
     data_02160ac0->unk_84 = data_0229e148[23];
 }

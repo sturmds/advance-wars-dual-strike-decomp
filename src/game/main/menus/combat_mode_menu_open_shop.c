@@ -11,7 +11,7 @@ void func_02089c9c(void);
 void Menu_DrawSelectedHelpText(void);
 void MenuButton_DisableTouch(int id);
 
-extern u8 data_021613a0[];
+extern u8 gCombatModeCos[];
 extern const MenuButtonTemplate data_02161470;
 
 /* First step of the Combat mode shop script (data_02161570), the
@@ -36,7 +36,7 @@ void CombatModeMenu_OpenShop(void)
     data_027c0280->dispCnt |= 0x800;
     data_027c0280->dispCnt |= 0x1000;
     Font_LoadDigits(0);
-    Co_UnpackPicture(data_021613a0[data_02160ac0->unk_19], 0x54);
+    Co_UnpackPicture(gCombatModeCos[data_02160ac0->co], 0x54);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
     MenuButton_Select(8);

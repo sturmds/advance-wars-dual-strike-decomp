@@ -9,7 +9,7 @@ void Screen1_DestroyTextTasks(void);
 int CombatCo_NumberFromId(int coId);
 void Mem_Free(void *ptr);
 
-extern u8 data_021613a0[];             /* CO ids of the seven slots */
+extern u8 gCombatModeCos[];             /* CO ids of the seven slots */
 extern u8 *data_0229e144;
 
 /* Tears down the Combat mode menu. The selected slot becomes whatever
@@ -21,6 +21,6 @@ void CombatModeMenu_Close(void)
     func_02088c38();
     Wallpaper_DestroyTasks();
     Screen1_DestroyTextTasks();
-    data_02160ac0->unk_19 = CombatCo_NumberFromId(data_021613a0[data_02160ac0->unk_19]);
+    data_02160ac0->co = CombatCo_NumberFromId(gCombatModeCos[data_02160ac0->co]);
     Mem_Free(data_0229e144);
 }

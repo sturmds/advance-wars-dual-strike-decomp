@@ -7,7 +7,7 @@ extern const TaskScriptCmd data_02160f30[];
 extern const TaskScriptCmd data_02160f60[];
 
 /* Starts the script task of team row 1 to 4. */
-void func_020886cc(int row)
+void RowLockMark_Start(int row)
 {
     switch (row) {
     case 1:

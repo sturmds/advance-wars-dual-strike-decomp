@@ -2668,8 +2668,8 @@ func_02088514 kind:function(arm,size=0x14) addr:0x02088514
 func_02088528 kind:function(arm,size=0x24) addr:0x02088528
 func_0208854c kind:function(arm,size=0xb4) addr:0x0208854c
 func_02088600 kind:function(arm,size=0x44) addr:0x02088600
-func_02088644 kind:function(arm,size=0x88) addr:0x02088644
-func_020886cc kind:function(arm,size=0x98) addr:0x020886cc
+RowLockMark_Remove kind:function(arm,size=0x88) addr:0x02088644
+RowLockMark_Start kind:function(arm,size=0x98) addr:0x020886cc
 RowLockMark_SquashOut kind:function(arm,size=0x188) addr:0x02088764
 func_020888ec kind:function(arm,size=0xc) addr:0x020888ec
 RowLockMark_PopIn kind:function(arm,size=0x1b4) addr:0x020888f8
@@ -2682,11 +2682,11 @@ func_02088c14 kind:function(arm,size=0xc) addr:0x02088c14
 func_02088c20 kind:function(arm,size=0xc) addr:0x02088c20
 func_02088c2c kind:function(arm,size=0xc) addr:0x02088c2c
 func_02088c38 kind:function(arm,size=0x64) addr:0x02088c38
-func_02088c9c kind:function(arm,size=0x68) addr:0x02088c9c
+CombatModeCoPortrait_Start kind:function(arm,size=0x68) addr:0x02088c9c
 DrawSelectedCoPowerText kind:function(arm,size=0x1ac) addr:0x02088d04
 CombatModeMenu_OnSelect kind:function(arm,size=0x15c) addr:0x02088eb0
 CombatModeCoPortrait_Update kind:function(arm,size=0x180) addr:0x0208900c
-func_0208918c kind:function(arm,size=0x84) addr:0x0208918c
+CombatModeCoPortrait_Init kind:function(arm,size=0x84) addr:0x0208918c
 func_02089210 kind:function(arm,size=0x1c) addr:0x02089210
 func_0208922c kind:function(arm,size=0x18) addr:0x0208922c
 func_02089244 kind:function(arm,size=0x1c) addr:0x02089244
@@ -7533,8 +7533,8 @@ gCombatLinkCommonResPath kind:data(any) addr:0x0216133c
 gCombatLinkResPath kind:data(any) addr:0x02161354
 gCombatLinkLangResPath kind:data(any) addr:0x0216136c
 gCombatSetupMenuResPath kind:data(any) addr:0x02161388
-data_021613a0 kind:data(any) addr:0x021613a0
-data_021613a8 kind:data(any) addr:0x021613a8
+gCombatModeCos kind:data(any) addr:0x021613a0
+gCombatModeIconCounts kind:data(any) addr:0x021613a8
 data_021613b8 kind:data(any) addr:0x021613b8
 data_021613c8 kind:data(any) addr:0x021613c8
 data_021613d8 kind:data(any) addr:0x021613d8

@@ -14,7 +14,7 @@ void Bg_ClearRect(void *target, int x, int y, int w, int h);
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern u8 data_021613a0[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
+extern u8 gCombatModeCos[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern u8 data_021613d8[];
 
 /* Draws the CO Power name and a second text line for the CO selected in
@@ -30,7 +30,7 @@ void DrawSelectedCoPowerText(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     list = Task_FindByScript(data_021613d8);
-    switch (data_021613a0[list->unk_32]) {
+    switch (gCombatModeCos[list->unk_32]) {
     case CO_ANDY:
         text = 0x44000003;
         break;
@@ -58,7 +58,7 @@ void DrawSelectedCoPowerText(void)
      * the 0x120 offset in the literal pool instead of the load. TextRefs
      * are passed as one u32. */
     Text_PrintImmediate(19, 13, data_027c0280->layer0Map,
-                  *(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])[data_021613a0[list->unk_32] & 0x7f].name,
+                  *(u32 *)&((CoRecord *)&gCoTable[0].blocks[POWER_CO])[gCombatModeCos[list->unk_32] & 0x7f].name,
                   0, 0);
     Text_PrintById(17, 15, data_027c0280->layer0Map, text, 0, 0x340);
     Gfx_RequestLayerCopy(0);

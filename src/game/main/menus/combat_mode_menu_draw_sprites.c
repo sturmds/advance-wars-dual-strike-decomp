@@ -14,8 +14,8 @@ typedef struct IconCounts {
     u8 n[4 * 4];
 } IconCounts;
 
-extern u8 data_021613a0[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
-extern IconCounts data_021613a8;
+extern u8 gCombatModeCos[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
+extern IconCounts gCombatModeIconCounts;
 extern u8 data_021617ec[];
 extern u8 data_021617f4[];
 extern u8 data_021617fc[];
@@ -29,7 +29,7 @@ extern u8 data_027c0040;
 
 /* Draws the sprites of the Combat mode menu (entries 8 to 11): a sprite for
  * the CO that
- * data_02160ac0->unk_19 picks from data_021613a0, four rows of icons whose
+ * data_02160ac0->co picks from gCombatModeCos, four rows of icons whose
  * counts depend on the selected entry, a picture for the entry (one set for
  * Orange Star COs, another for the rest), a column of four icons (the first
  * moved by 16 tiles for Black Hole), and one of those icons for each of the
@@ -47,11 +47,11 @@ void CombatModeMenu_DrawSprites(void)
     int row;
     int y;
     u16 cellY;
-    counts = data_021613a8;
+    counts = gCombatModeIconCounts;
 
     selected = Menu_GetSelectedId() - 8;
-    nation = Co_GetNation(data_021613a0[data_02160ac0->unk_19]);
-    Co_QueueSmallPictureSprite(0x10e0, 24, data_02160ac0->unk_19 * 12 | data_02160ac0->unk_19 << 12, 0);
+    nation = Co_GetNation(gCombatModeCos[data_02160ac0->co]);
+    Co_QueueSmallPictureSprite(0x10e0, 24, data_02160ac0->co * 12 | data_02160ac0->co << 12, 0);
     Sprite_QueueDefault(140, 8, 0x7054, 0);
     y = 92;
     for (row = 0; row < 4; row++) {
@@ -103,7 +103,7 @@ void CombatModeMenu_DrawSprites(void)
     }
     cellX = 127;
     cellY = 24;
-    for (i = 0; i < data_02160ac0->unk_18; i++) {
+    for (i = 0; i < data_02160ac0->cellCount; i++) {
         /* Needed to match: row doubles as the icon index. Tile 0 or a tile
          * above 5 keeps the previous index (4, past the end, on the first
          * cell). */

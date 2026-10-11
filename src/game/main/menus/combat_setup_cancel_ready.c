@@ -6,7 +6,7 @@
 void Sound_PlaySe(u32 soundId);
 void MenuButton_Add(int x, int y, void *def, int id);
 void MenuButton_EnableTouch(int id);
-void func_02088644(int row);
+void RowLockMark_Remove(int row);
 
 extern MenuState gMenuState;
 extern u8 data_02160db8[];
@@ -34,7 +34,7 @@ void CombatSetup_CancelReady(int player)
     row = MENU->combat.players[player].row;
     Sound_PlaySe(0x10009);
     MENU->combat.rows[row - 1].unk_08 = 0;
-    func_02088644(row);
+    RowLockMark_Remove(row);
     if (player != data_0229fb30.unk_45a) {
         return;
     }

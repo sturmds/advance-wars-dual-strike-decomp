@@ -31,9 +31,9 @@ typedef struct Unk_02160ac0 {
         u8 tile : 6;
         u8 state : 2;
     } cells[20];
-    u32 unk_14;                        /* Combat mode funds: the four entries of CombatModeMenu_DrawFundsAndPrices cost 1000 to 6000 */
-    u8 unk_18;                         /* cells in use, at most 20 */
-    u8 unk_19;
+    u32 funds;                         /* Combat mode funds: the four entries of CombatModeMenu_DrawFundsAndPrices cost 1000 to 6000 */
+    u8 cellCount;                      /* cells in use, at most 20 */
+    u8 co;                             /* CO slot (gCombatModeCos) in the menu; CombatModeMenu_Close turns it into a CombatCo number */
     u8 pad_1a[0x70 - 0x1a];
     u8 unk_70[8];                      /* Ov003Slot.row per slot (overlay 3, link play) */
     u32 unk_78;                        /* link menu entry 1: 10000-95000 in steps of 5000 */

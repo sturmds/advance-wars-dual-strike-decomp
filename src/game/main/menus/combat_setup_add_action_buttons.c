@@ -10,7 +10,7 @@ extern MenuButtonTemplate data_02161448;
  * setup screen. */
 void CombatSetup_AddActionButtons(void)
 {
-    if (data_02160ac0->unk_18 != 0) {
+    if (data_02160ac0->cellCount != 0) {
         MenuButton_Add(0, 0, &data_02161420, 14);
     }
     MenuButton_Add(0, 0, &data_02161448, 15);

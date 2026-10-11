@@ -28,14 +28,14 @@ void Menu_Reset(void);
 void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void MenuButton_Select(int button);
 void Wallpaper_LoadBoth(void);
-void func_02088c9c(void);
+void CombatModeCoPortrait_Start(void);
 void HelpBand_Start(int tile, int a);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 *data_0229e144;
-extern u8 data_021613a0[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
+extern u8 gCombatModeCos[];             /* CO ids: Andy, Max, Sami, Flak, Lash, Adder, Hawke */
 extern const char gCombatMenuResPath[];     /* "/combat_st/res_cmmenu" */
 extern const char gCombatMenuLangResPath[];     /* "/combat_st/res_cmmenu_la..." (localized) */
 
@@ -57,10 +57,10 @@ extern const char gCombatMenuLangResPath[];     /* "/combat_st/res_cmmenu_la..."
 
 /* Sets up the Combat mode menu: blending on the second screen, the
  * backgrounds, icons and palettes from /combat_st/res_cmmenu, small pictures
- * of the seven COs in data_021613a0 (a black palette for each slot where
+ * of the seven COs in gCombatModeCos (a black palette for each slot where
  * CombatModeMenu_IsSlotAvailable returns FALSE), the menu cursor on the button of
- * data_02160ac0->unk_19, and the mode title. data_0229e144 gets a one-byte
- * copy of unk_19. */
+ * data_02160ac0->co, and the mode title. data_0229e144 gets a one-byte
+ * copy of co. */
 void CombatModeMenu_Init(void)
 {
     int i;
@@ -94,7 +94,7 @@ void CombatModeMenu_Init(void)
     SWITCH_BACK();
 
     data_0229e144 = Mem_Alloc(1);
-    *data_0229e144 = data_02160ac0->unk_19;
+    *data_0229e144 = data_02160ac0->co;
     file = File_Load(gCombatMenuResPath);
     langFile = File_Load(File_LocalizePath(gCombatMenuLangResPath));
 
@@ -113,7 +113,7 @@ void CombatModeMenu_Init(void)
     Icon_LoadPalette(61, 24);
     for (i = 0; i < 7; i++) {
         /* 12 tiles of 32 bytes per picture */
-        Co_LoadSmallPicture(data_021613a0[i], data_027c0280->objVram + ((i * 12) << 5), i + 16);
+        Co_LoadSmallPicture(gCombatModeCos[i], data_027c0280->objVram + ((i * 12) << 5), i + 16);
     }
     for (i = 0; i < 7; i++) {
         if (!CombatModeMenu_IsSlotAvailable(i)) {
@@ -140,10 +140,10 @@ void CombatModeMenu_Init(void)
     Mem_Free(langFile);
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
-    MenuButton_Select(data_02160ac0->unk_19);
+    MenuButton_Select(data_02160ac0->co);
     Wallpaper_LoadBoth();
     ModeFont_Load(0x1c0, 3);
     ModeFont_ShowTextOnScreen(Text_Get(TEXT_COMBAT_MENU_TITLE), 0x1c0, 3, 0x800, 4, 0);
-    func_02088c9c();
+    CombatModeCoPortrait_Start();
     HelpBand_Start(0x3f8, 0);
 }

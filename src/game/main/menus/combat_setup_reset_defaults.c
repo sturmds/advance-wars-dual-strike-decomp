@@ -25,6 +25,6 @@ void CombatSetup_ResetDefaults(void)
     data_02160ac0->unk_81 = 0xff;
     data_02160ac0->unk_82 = 0xff;
     data_02160ac0->unk_80 = 1;
-    data_02160ac0->unk_14 = 20000;
-    data_02160ac0->unk_19 = 0;
+    data_02160ac0->funds = 20000;
+    data_02160ac0->co = 0;
 }

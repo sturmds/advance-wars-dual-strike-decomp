@@ -16,8 +16,8 @@ extern u8 data_02160e58[];
 /* Fields of LINK_ROWS[row - 1] that are changed in place. Needed to match:
  * the original adds the field offset before the row offset, so the rows
  * are indexed from the field of the first row. */
-#define ROW_FUNDS(row) (*(u32 *)&((Unk_02160ac0_Row *)&data_02160ac0->unk_14)[(row) - 1])
-#define ROW_SPAWN_COUNT(row) (*(u8 *)&((Unk_02160ac0_Row *)&data_02160ac0->unk_18)[(row) - 1])
+#define ROW_FUNDS(row) (*(u32 *)&((Unk_02160ac0_Row *)&data_02160ac0->funds)[(row) - 1])
+#define ROW_SPAWN_COUNT(row) (*(u8 *)&((Unk_02160ac0_Row *)&data_02160ac0->cellCount)[(row) - 1])
 
 /* Combat setup buttons: 22-25 one per unit on sale; 254 the ready button. */
 #define BUTTON_FIRST_UNIT 22

@@ -8941,11 +8941,11 @@ src/game/main/func_02088600.c:
     complete
     .text       start:0x02088600 end:0x02088644
 
-src/game/main/func_02088644.c:
+src/game/main/menus/row_lock_mark_remove.c:
     complete
     .text       start:0x02088644 end:0x020886cc
 
-src/game/main/func_020886cc.c:
+src/game/main/menus/row_lock_mark_start.c:
     complete
     .text       start:0x020886cc end:0x02088764
 

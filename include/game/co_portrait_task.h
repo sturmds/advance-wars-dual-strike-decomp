@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Fields of the task of script data_021613d8 (started by func_02088c9c):
+/* Fields of the task of script data_021613d8 (started by CombatModeCoPortrait_Start):
  * the CO portrait beside the Combat mode menu. When another slot is
  * selected, the portrait slides out, the new CO's graphics load, and it
  * slides back in. The first 0x2a bytes belong to the task system
@@ -15,7 +15,7 @@ typedef struct CoPortraitTask {
     u16 waitFrames;                    /* frames spent hidden before the new CO loads */
     s16 slideFrom;                     /* offset when the current slide started */
     s16 offset;                        /* 0: in place, CO_PORTRAIT_HIDDEN: out of view */
-    u8 selectedSlot;                   /* menu slot selected; index into data_021613a0 */
+    u8 selectedSlot;                   /* menu slot selected; index into gCombatModeCos */
     u8 shownSlot;                      /* slot whose CO graphics are loaded */
     u8 slidingIn;                      /* 1: sliding in or in place, 0: sliding out or hidden */
 } CoPortraitTask;

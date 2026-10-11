@@ -4,7 +4,7 @@
 #include "game/Unk_0229fb30.h"
 
 void Sound_PlaySe(u32 soundId);
-void func_02088644(int row);
+void RowLockMark_Remove(int row);
 
 extern MenuState gMenuState;
 extern const MenuButtonTemplate data_02160c28;
@@ -24,7 +24,7 @@ void CombatSetup_UnlockRow(int player)
 
     Sound_PlaySe(0x10009);
     MENU->combat.rows[row - 1].unk_08 = 0;
-    func_02088644(row);
+    RowLockMark_Remove(row);
     if (player != data_0229fb30.unk_45a) {
         return;
     }

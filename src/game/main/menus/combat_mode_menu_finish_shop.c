@@ -14,7 +14,7 @@ extern u8 data_02161570[];
  * cell is in use. */
 void CombatModeMenu_FinishShop(void)
 {
-    if (data_02160ac0->unk_18 == 0) {
+    if (data_02160ac0->cellCount == 0) {
         return;
     }
     Sound_PlaySe(0x10006);

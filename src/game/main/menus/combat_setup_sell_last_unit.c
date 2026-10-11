@@ -14,8 +14,8 @@ extern MenuState gMenuState;
 
 /* Fields of LINK_ROWS[row - 1] that are changed in place. Needed to match:
  * the original adds the field offset before the row's byte offset. */
-#define ROW_SPAWN_COUNT(row) ((&data_02160ac0->unk_18)[((row) - 1) * 28])
-#define ROW_FUNDS(row) (*(u32 *)((u8 *)&data_02160ac0->unk_14 + ((row) - 1) * 28))
+#define ROW_SPAWN_COUNT(row) ((&data_02160ac0->cellCount)[((row) - 1) * 28])
+#define ROW_FUNDS(row) (*(u32 *)((u8 *)&data_02160ac0->funds + ((row) - 1) * 28))
 
 /* Ready button of the Combat setup screen (see CombatSetup_CancelReady). */
 #define BUTTON_READY 254

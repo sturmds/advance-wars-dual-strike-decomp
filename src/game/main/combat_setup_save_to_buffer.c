@@ -10,8 +10,8 @@ void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 void CombatSetup_SaveToBuffer(void)
 {
     Mem_CopyUnits(data_02160ac0, data_0229e148, 20, 8);
-    data_0229e148[20] = data_02160ac0->unk_18;
-    data_0229e148[21] = data_02160ac0->unk_19;
+    data_0229e148[20] = data_02160ac0->cellCount;
+    data_0229e148[21] = data_02160ac0->co;
     data_0229e148[22] = data_02160ac0->unk_7d;
     data_0229e148[23] = data_02160ac0->unk_84;
 }
