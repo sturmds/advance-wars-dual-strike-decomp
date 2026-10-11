@@ -6,8 +6,8 @@
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0288 data_027c0288;
-extern u16 data_02297778;
-extern s16 data_0229777c;
+extern u16 gEventScriptKeys;
+extern s16 gEventScriptOwnsInput;
 extern u16 data_0216e044;
 extern u16 data_0216e048;
 
@@ -19,12 +19,12 @@ void EventScript_StepSlot(s16 index);
 typedef void (*EventHoldFunc)(EventScriptSlot *slot);
 
 /* Runs the event scripts for one frame, on the main map state only. Does
- * nothing while func_0201d798 is nonzero; otherwise clears data_02297778,
+ * nothing while func_0201d798 is nonzero; otherwise clears gEventScriptKeys,
  * then stops if script gMapScrollScript runs (func_020f5848) or task
  * data_021690f8 exists (func_020eedf0). Each used slot runs its hold
- * callback, then EventScript_StepSlot steps it. While data_0229777c is set
+ * callback, then EventScript_StepSlot steps it. While gEventScriptOwnsInput is set
  * (EventScript_Start sets it), the key state is overwritten with
- * data_02297778, which scripts may have set this frame, and
+ * gEventScriptKeys, which scripts may have set this frame, and
  * data_0216e044 and data_0216e048 are cleared. */
 void EventScript_UpdateAll(void)
 {
@@ -37,7 +37,7 @@ void EventScript_UpdateAll(void)
     if (func_0201d798()) {
         return;
     }
-    data_02297778 = 0;
+    gEventScriptKeys = 0;
     if (func_020f5848()) {
         return;
     }
@@ -53,13 +53,13 @@ void EventScript_UpdateAll(void)
             EventScript_StepSlot(i);
         }
     }
-    if (data_0229777c == 0) {
+    if (gEventScriptOwnsInput == 0) {
         return;
     }
-    gKeypad->repeat = data_02297778;
-    gKeypad->pressed = data_02297778;
-    gKeypad->held = data_02297778;
-    gKeypad->prevHeld = data_02297778;
+    gKeypad->repeat = gEventScriptKeys;
+    gKeypad->pressed = gEventScriptKeys;
+    gKeypad->held = gEventScriptKeys;
+    gKeypad->prevHeld = gEventScriptKeys;
     data_0216e048 = 0;
     data_0216e044 = 0;
 }

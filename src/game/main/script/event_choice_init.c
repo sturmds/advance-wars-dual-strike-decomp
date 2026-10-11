@@ -4,7 +4,7 @@
 #include "game/task.h"
 
 extern u16 data_02297be0[][32];       /* tile map of the event text window */
-extern Rect data_022977d0[4];          /* touch buttons of the four choices */
+extern Rect gEventChoiceButtons[4];          /* touch buttons of the four choices */
 
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 void EventChoice_DrawCursor(Task *task);
@@ -32,23 +32,23 @@ void EventChoice_Init(Task *task)
     /* unk_34 holds a tile pointer here (EventCmd_StartTextMapTask); pos is not used */
     TileMap_GetPixelPos(*(u16 **)&task->unk_34, data_02297be0[0], pos);
     for (i = 0; i < 4; i++) {
-        EventScript_GetTextWindowRect(&data_022977d0[i]); /* the whole text window */
+        EventScript_GetTextWindowRect(&gEventChoiceButtons[i]); /* the whole text window */
     }
-    data_022977d0[0].x += 64;
-    data_022977d0[0].y += 8;
-    data_022977d0[0].width = 32;
-    data_022977d0[0].height = 16;
-    data_022977d0[1].x += 104;
-    data_022977d0[1].y += 8;
-    data_022977d0[1].width = 32;
-    data_022977d0[1].height = 16;
-    data_022977d0[2].x += 144;
-    data_022977d0[2].y += 8;
-    data_022977d0[2].width = 32;
-    data_022977d0[2].height = 16;
-    data_022977d0[3].x += 192;
-    data_022977d0[3].y += 8;
-    data_022977d0[3].width = 56;
-    data_022977d0[3].height = 16;
+    gEventChoiceButtons[0].x += 64;
+    gEventChoiceButtons[0].y += 8;
+    gEventChoiceButtons[0].width = 32;
+    gEventChoiceButtons[0].height = 16;
+    gEventChoiceButtons[1].x += 104;
+    gEventChoiceButtons[1].y += 8;
+    gEventChoiceButtons[1].width = 32;
+    gEventChoiceButtons[1].height = 16;
+    gEventChoiceButtons[2].x += 144;
+    gEventChoiceButtons[2].y += 8;
+    gEventChoiceButtons[2].width = 32;
+    gEventChoiceButtons[2].height = 16;
+    gEventChoiceButtons[3].x += 192;
+    gEventChoiceButtons[3].y += 8;
+    gEventChoiceButtons[3].width = 56;
+    gEventChoiceButtons[3].height = 16;
     EventChoice_DrawRecord(CURSOR(task), 7, 3);
 }

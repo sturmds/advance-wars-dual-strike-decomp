@@ -11,7 +11,7 @@ void Sound_PlaySe(int se);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* The screen is being touched and the touch began this frame. */
@@ -31,7 +31,7 @@ static inline BOOL IsTouchStarted(void)
  * when the tile changed. */
 void MapCursor_UpdateFromTouch(void)
 {
-    int blocked = data_0229777c;
+    int blocked = gEventScriptOwnsInput;
     s32 pos[3];
     int touchX = gTouch.x;
     int touchY = gTouch.y;

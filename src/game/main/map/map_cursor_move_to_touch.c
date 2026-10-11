@@ -9,7 +9,7 @@ void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -32,7 +32,7 @@ void MapCursor_MoveToTouch(void)
     int touchY = gTouch.y;
     s32 pos[3];
 
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return;
     }
     if (gTouch.phase == TOUCH_RELEASED) {

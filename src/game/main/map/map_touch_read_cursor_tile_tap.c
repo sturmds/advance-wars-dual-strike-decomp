@@ -12,7 +12,7 @@ void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -33,7 +33,7 @@ static inline BOOL IsTouchInPhase(int phase)
  * remembers it in unk_30 and unk_32 and calls TouchMarker_Create; one anywhere else
  * clears them. A release while they still hold the cursor tile confirms;
  * TOUCH_HELD clears them. The tile is worked out as in
- * MapCursor_UpdateFromTouch. Returns 0 while data_0229777c is set. */
+ * MapCursor_UpdateFromTouch. Returns 0 while gEventScriptOwnsInput is set. */
 u32 MapTouch_ReadCursorTileTap(void)
 {
     int touchX = gTouch.x;
@@ -42,7 +42,7 @@ u32 MapTouch_ReadCursorTileTap(void)
     int tileX;
     int tileY;
 
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return 0;
     }
     if (IsTouchInPhase(TOUCH_PRESSED) && MapTouch_InBackButton(touchX, touchY)) {

@@ -4,7 +4,7 @@
 
 extern Unk_0201d320 data_022977f4[];
 
-void func_0201ce98(void);
+void EventScript_TakeInput(void);
 
 /* Event script command: waits until one of the keys in the record's mask is
  * down (gKeypad->nextPressed). Then it calls the record's function, moves to the
@@ -20,7 +20,7 @@ BOOL EventCmd_WaitForKeys(s16 index)
     } else {
         return 0;
     }
-    func_0201ce98();
+    EventScript_TakeInput();
     script->unk_00++;
     return 0;
 }

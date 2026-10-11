@@ -733,8 +733,8 @@ EventCmd_ChangePicture kind:function(arm,size=0xc4) addr:0x0201ccfc
 EventCmd_StopOtherScripts kind:function(arm,size=0x5c) addr:0x0201cdc0
 func_0201ce1c kind:function(arm,size=0x34) addr:0x0201ce1c
 func_0201ce50 kind:function(arm,size=0x34) addr:0x0201ce50
-func_0201ce84 kind:function(arm,size=0x14) addr:0x0201ce84
-func_0201ce98 kind:function(arm,size=0x14) addr:0x0201ce98
+EventScript_ReleaseInput kind:function(arm,size=0x14) addr:0x0201ce84
+EventScript_TakeInput kind:function(arm,size=0x14) addr:0x0201ce98
 EventCmd_WaitWithKeys kind:function(arm,size=0x7c) addr:0x0201ceac
 EventCmd_CreateUnit kind:function(arm,size=0x50) addr:0x0201cf28
 EventScript_ClearTimeLimit kind:function(arm,size=0x4c) addr:0x0201cf78
@@ -8661,8 +8661,8 @@ data_02291672 kind:bss addr:0x02291672
 data_02291774 kind:bss addr:0x02291774
 data_02291e98 kind:bss addr:0x02291e98
 data_02297774 kind:bss addr:0x02297774
-data_02297778 kind:bss addr:0x02297778
-data_0229777c kind:bss addr:0x0229777c
+gEventScriptKeys kind:bss addr:0x02297778
+gEventScriptOwnsInput kind:bss addr:0x0229777c
 data_02297780 kind:bss addr:0x02297780
 gEventChoiceAnswer kind:bss addr:0x02297784
 data_02297788 kind:bss addr:0x02297788
@@ -8672,7 +8672,7 @@ data_02297794 kind:bss addr:0x02297794
 data_0229779c kind:bss addr:0x0229779c
 data_022977a4 kind:bss addr:0x022977a4
 gEventScriptQueue kind:bss addr:0x022977b0
-data_022977d0 kind:bss addr:0x022977d0
+gEventChoiceButtons kind:bss addr:0x022977d0
 data_022977f0 kind:bss addr:0x022977f0
 data_022977f4 kind:bss addr:0x022977f4
 data_022977f8 kind:bss addr:0x022977f8

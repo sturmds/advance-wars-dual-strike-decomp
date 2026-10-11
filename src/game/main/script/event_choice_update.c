@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/rect.h"
 #include "game/task.h"
 
 extern u16 gEventChoiceAnswer;
-extern u8 data_022977d0[];
+extern Rect gEventChoiceButtons[4];
 
 /* EventChoice_ReadKeys bits */
 #define CHOICE_KEY_LEFT    0x04
@@ -13,7 +14,7 @@ extern u8 data_022977d0[];
 #define CHOICE_LAST 3                  /* also where B puts the cursor */
 
 u16 EventChoice_ReadKeys(void);
-u16 Touch_TestButtonRects(void *buttons, int count);
+u16 Touch_TestButtonRects(const Rect *rects, int count);
 void DialogueCursor_Animate(void);
 void EventChoice_DrawRecord(int choice, int x, int y);
 void EventChoice_DrawCursor(Task *task);
@@ -38,7 +39,7 @@ void EventChoice_Update(Task *task)
     int oldCursor;
 
     keys = EventChoice_ReadKeys();
-    touched = Touch_TestButtonRects(data_022977d0, 4);
+    touched = Touch_TestButtonRects(gEventChoiceButtons, 4);
     DialogueCursor_Animate();
     oldCursor = CURSOR(task);
     if (keys & CHOICE_KEY_CANCEL) {

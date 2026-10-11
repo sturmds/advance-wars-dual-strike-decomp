@@ -5,7 +5,7 @@ BOOL func_020efb9c(int x, int y);
 BOOL func_020efbc8(int x, int y);
 BOOL MapTouch_InBackButton(int x, int y);
 
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 /* What MapTouch_ReadButtons returns. */
 #define TAP_NONE          0
@@ -26,13 +26,13 @@ static inline BOOL IsTouchInPhase(int phase)
  * edge, or the map. The right and left buttons count only while
  * `rightButton` and `leftButton` are set. A touch that did not begin this
  * frame counts as on the map. Returns TAP_NONE with no touch or while
- * data_0229777c is set. */
+ * gEventScriptOwnsInput is set. */
 u32 MapTouch_ReadButtons(int rightButton, int leftButton)
 {
     int touchX = gTouch.x;
     int touchY = gTouch.y;
 
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return TAP_NONE;
     }
     if (gTouch.phase == TOUCH_RELEASED) {

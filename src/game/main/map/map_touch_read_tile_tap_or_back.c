@@ -8,7 +8,7 @@ void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -28,13 +28,13 @@ static inline BOOL IsTouchInPhase(int phase)
  * MapTouch_InBackButton tests (x 112-144, y 0-16) cancels. A release on the tile where
  * the touch began (unk_30, unk_32, set by MapCursor_UpdateFromTouch) confirms
  * and resumes the touch marker task; TOUCH_HELD clears that tile. Returns 0
- * while data_0229777c is set. */
+ * while gEventScriptOwnsInput is set. */
 u32 MapTouch_ReadTileTapOrBack(void)
 {
     int touchX = gTouch.x;
     int touchY = gTouch.y;
 
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return 0;
     }
     if (IsTouchInPhase(TOUCH_PRESSED) && MapTouch_InBackButton(touchX, touchY)) {

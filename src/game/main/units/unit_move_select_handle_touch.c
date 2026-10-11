@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 BOOL ActingUnit_CanMoveTo(int x, int y);
 BOOL UnitMoveSelect_TryMoveTo(int x, int y);
@@ -34,7 +34,7 @@ static inline BOOL IsTouchInPhase(int phase)
  * cancelled as B does. Returns TRUE when the touch was handled. */
 BOOL UnitMoveSelect_HandleTouch(void)
 {
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return FALSE;
     }
     if (!IsTouchInPhase(TOUCH_RELEASED)) {

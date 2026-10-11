@@ -10,7 +10,7 @@ void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -38,7 +38,7 @@ u32 MapTouch_ReadListTileTap(int count)
     int tileX;
     int tileY;
 
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return 0;
     }
     if (data_027c027c != data_027c0288.unk_00) {

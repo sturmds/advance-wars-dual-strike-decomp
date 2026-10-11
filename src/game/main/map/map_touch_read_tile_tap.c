@@ -7,7 +7,7 @@ void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -26,7 +26,7 @@ static inline BOOL IsTouchInPhase(int phase)
  * where the touch began confirms, TOUCH_HELD clears that tile. */
 u32 MapTouch_ReadTileTap(void)
 {
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return 0;
     }
     switch (gTouch.phase) {

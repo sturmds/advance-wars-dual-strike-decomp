@@ -2835,11 +2835,11 @@ src/game/main/func_0201ce50.c:
     complete
     .text       start:0x0201ce50 end:0x0201ce84
 
-src/game/main/func_0201ce84.c:
+src/game/main/script/event_script_release_input.c:
     complete
     .text       start:0x0201ce84 end:0x0201ce98
 
-src/game/main/func_0201ce98.c:
+src/game/main/script/event_script_take_input.c:
     complete
     .text       start:0x0201ce98 end:0x0201ceac
 

@@ -10,7 +10,7 @@ void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern s16 data_0229777c;
+extern s16 gEventScriptOwnsInput;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -28,7 +28,7 @@ static inline BOOL IsTouchInPhase(int phase)
  * its CO select phase. Returns TRUE when either happened. */
 BOOL MapTouch_HandleTileTap(void)
 {
-    if (data_0229777c != 0) {
+    if (gEventScriptOwnsInput != 0) {
         return FALSE;
     }
     switch (gTouch.phase) {

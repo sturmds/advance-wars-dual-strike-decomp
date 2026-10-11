@@ -2,11 +2,11 @@
 #include "game/Unk_0201d320.h"
 
 extern Unk_0201d320 data_022977f4[];
-void func_0201ce84(void);
+void EventScript_ReleaseInput(void);
 
 BOOL func_0201ce50(s16 index)
 {
-    func_0201ce84();
+    EventScript_ReleaseInput();
     data_022977f4[index].unk_00++;
     return TRUE;
 }
