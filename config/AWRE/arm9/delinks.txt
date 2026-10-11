@@ -14377,6 +14377,10 @@ src/game/main/campaign/campaign_continue_profile1.c:
     complete
     .text       start:0x02102e10 end:0x02102f28
 
+src/game/main/campaign/campaign_continue_profile0.c:
+    complete
+    .text       start:0x02102f28 end:0x02103040
+
 src/game/main/campaign/campaign_start_hard.c:
     complete
     .text       start:0x02103040 end:0x02103138
