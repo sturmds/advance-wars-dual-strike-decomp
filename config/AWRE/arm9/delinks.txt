@@ -6376,6 +6376,10 @@ src/game/main/func_02080684.c:
     complete
     .text       start:0x02080684 end:0x020806b4
 
+src/game/main/weather/weather_fx_load_graphics.c:
+    complete
+    .text       start:0x020806b4 end:0x02080708
+
 src/game/main/func_02080708.c:
     complete
     .text       start:0x02080708 end:0x02080734
