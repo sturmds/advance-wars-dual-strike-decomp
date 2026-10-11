@@ -10696,6 +10696,10 @@ src/game/main/map/player_inc_unit_count.c:
     complete
     .text       start:0x020c74dc end:0x020c7528
 
+src/game/main/map/player_count_units_lost.c:
+    complete
+    .text       start:0x020c7528 end:0x020c7580
+
 src/game/main/ai/ai_unit_can_use_other_map_from.c:
     complete
     .text       start:0x020c7650 end:0x020c76c4
