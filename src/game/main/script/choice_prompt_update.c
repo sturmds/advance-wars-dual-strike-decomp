@@ -5,14 +5,14 @@
 extern Unk_02080440 *data_027c027c;
 extern u16 gEventChoiceAnswer;
 
-/* Choice bits from ChoicePrompt_GetKeys (keys) and func_02024c28 (touch), as in
+/* Choice bits from ChoicePrompt_GetKeys (keys) and ChoicePrompt_PollTouch (touch), as in
  * EventChoice_Update. */
 #define CHOICE_KEY_LEFT    0x04
 #define CHOICE_KEY_RIGHT   0x08
 #define CHOICE_KEY_CONFIRM 0x10
 
 int ChoicePrompt_GetKeys(void);
-u16 func_02024c28(void);
+u16 ChoicePrompt_PollTouch(void);
 void func_020d31f4(void);
 void func_0201d730(void *text);
 void ScriptSlot_ClearCallback(int slot);
@@ -26,7 +26,7 @@ void Sound_PlaySe(int se);
 void ChoicePrompt_Update(Unk_0201a774 *prompt)
 {
     u16 held = ChoicePrompt_GetKeys();
-    u32 keys = func_02024c28() | held;
+    u32 keys = ChoicePrompt_PollTouch() | held;
 
     func_020d31f4();
     if (prompt->cursor != 0) {

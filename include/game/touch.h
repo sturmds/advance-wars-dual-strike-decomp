@@ -37,4 +37,17 @@ typedef struct TouchSample {
 
 extern TouchState gTouch;
 
+/* TRUE when touch input is active and phase (a copy of gTouch.phase) is wanted. */
+static inline BOOL Touch_InPhase(int phase, int wanted)
+{
+    BOOL in;
+
+    if (gTouch.active && phase == wanted) {
+        in = TRUE;
+    } else {
+        in = FALSE;
+    }
+    return in;
+}
+
 #endif

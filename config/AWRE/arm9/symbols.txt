@@ -1014,7 +1014,7 @@ func_02024a40 kind:function(arm,size=0x2c) addr:0x02024a40
 func_02024a6c kind:function(arm,size=0x2c) addr:0x02024a6c
 Touch_TestButtonRects kind:function(arm,size=0x12c) addr:0x02024a98
 Rects_FindHitBit kind:function(arm,size=0x64) addr:0x02024bc4
-func_02024c28 kind:function(arm,size=0x17c) addr:0x02024c28
+ChoicePrompt_PollTouch kind:function(arm,size=0x17c) addr:0x02024c28
 ChoicePrompt_FindTouchedOption kind:function(arm,size=0x5c) addr:0x02024da4
 Touch_TestPressInScreen kind:function(arm,size=0xc0) addr:0x02024e00
 func_02024ec0 kind:function(arm,size=0xc0) addr:0x02024ec0
@@ -8709,7 +8709,7 @@ gTextDrawGlyphWidth kind:bss addr:0x0229b078
 gTextDrawTilePixel kind:bss addr:0x0229b07c
 data_0229b080 kind:bss addr:0x0229b080
 gTaskSystemReady kind:bss addr:0x0229b380
-data_0229b384 kind:bss addr:0x0229b384
+gChoicePromptTouchedOption kind:bss addr:0x0229b384
 gTouchPressedButton kind:bss addr:0x0229b388
 data_0229b38c kind:bss addr:0x0229b38c
 gMenuButtons kind:bss addr:0x0229b3b0

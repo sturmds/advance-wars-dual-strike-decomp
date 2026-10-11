@@ -3952,6 +3952,10 @@ src/game/main/menus/rects_find_hit_bit.c:
     complete
     .text       start:0x02024bc4 end:0x02024c28
 
+src/game/main/script/choice_prompt_poll_touch.c:
+    complete
+    .text       start:0x02024c28 end:0x02024da4
+
 src/game/main/script/choice_prompt_find_touched_option.c:
     complete
     .text       start:0x02024da4 end:0x02024e00

@@ -9,18 +9,6 @@ extern u32 gTouchPressedButton;
 
 #define TOUCH_RECT_RELEASED_ON_PRESS 0x10
 
-static inline BOOL Touch_InPhase(int phase, int wanted)
-{
-    BOOL in;
-
-    if (gTouch.active && phase == wanted) {
-        in = TRUE;
-    } else {
-        in = FALSE;
-    }
-    return in;
-}
-
 /* Tests the touch against count rects. Returns the button bit of the rect
  * under the touch, or TOUCH_RECT_RELEASED_ON_PRESS when
  * the touch ends on the rect where it started. */
