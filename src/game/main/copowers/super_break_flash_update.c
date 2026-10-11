@@ -20,7 +20,7 @@ extern u8 gMenuState[];                /* SuperBreak_SetUpScreen saved BG palett
 #define WHITE          0x7fff
 #define PALETTE_SIZE   32
 
-/* Step of the Super CO Power cut-in script, after func_02053cc8. Draws the
+/* Step of the Super CO Power cut-in script, after SuperBreak_BlendUpdate. Draws the
  * power name letters, raises layer 0's blend EVA to 16 over 16 frames, then
  * fades BG palettes 1-3 (from their saved copy) to white over 9 frames,
  * faster towards the end. Leaves them white and resumes the script. */
