@@ -34,7 +34,7 @@ const void *Player_GetPalette(int player);
 u8 *func_020c67bc(void);
 int func_020c67a8(void);
 void func_0203c85c(int player);
-void func_0203c7ac(void);
+void ResultStats_PrintFirstPageLabel(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -172,5 +172,5 @@ void ResultStats_Init(Task *task)
     }
     SWITCH_BACK();
     func_0203c85c(1);
-    func_0203c7ac();
+    ResultStats_PrintFirstPageLabel();
 }

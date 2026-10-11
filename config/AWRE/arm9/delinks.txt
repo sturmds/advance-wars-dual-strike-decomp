@@ -5586,6 +5586,10 @@ src/game/main/result_stats_print_second_page_label.c:
     complete
     .text       start:0x0203c6fc end:0x0203c7ac
 
+src/game/main/result_stats_print_first_page_label.c:
+    complete
+    .text       start:0x0203c7ac end:0x0203c85c
+
 src/game/main/menus/win_lose_screen_slide_out_pictures.c:
     complete
     .text       start:0x0203ca28 end:0x0203ce48
