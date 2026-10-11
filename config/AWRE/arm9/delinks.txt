@@ -5714,6 +5714,10 @@ src/game/main/menus/vs_setup_draw_slot_sprites.c:
     complete
     .text       start:0x020672e0 end:0x0206768c
 
+src/game/main/menus/vs_setup_update_team_screen_link.c:
+    complete
+    .text       start:0x0206768c end:0x020678e0
+
 src/game/main/func_020678e0.c:
     complete
     .text       start:0x020678e0 end:0x020678fc

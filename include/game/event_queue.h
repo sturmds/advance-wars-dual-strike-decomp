@@ -5,6 +5,13 @@
 
 #define EVENT_QUEUE_SIZE 16
 
+/* Link messages of the Vs setup team screen. The team ones add the
+ * player slot (0-3) to the id. */
+#define EVENT_VS_TEAM_PREV  19 /* up key: previous team */
+#define EVENT_VS_TEAM_NEXT  23 /* down key: next team */
+#define EVENT_VS_TEAM_READY 27
+#define EVENT_VS_TEAM_BACK  28 /* leave the ready state, or the screen */
+
 /* Link messages of the Vs setup settings menu, sent by the host. */
 #define EVENT_VS_SETTING_SELECT_ROW 29 /* arg: setting row */
 #define EVENT_VS_SETTING_INCREASE   30
