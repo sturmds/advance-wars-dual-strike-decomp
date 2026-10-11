@@ -21025,6 +21025,10 @@ src/sdk/fs/fs_load_archive.c:
     complete
     .text       start:0x02111ee4 end:0x02111f5c
 
+src/sdk/fs/fs_register_archive.c:
+    complete
+    .text       start:0x02111f5c end:0x0211201c
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
