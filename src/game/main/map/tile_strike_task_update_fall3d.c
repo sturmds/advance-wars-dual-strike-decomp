@@ -4,8 +4,8 @@
 void Task_ResumeScript(TileStrikeTask *task);
 void Sound_PlaySe(int songId);
 void ScreenShake_Start(int tableIndex, int steps, void *parent);
-void SpriteAnim_SetAnimation(struct Unk_02022404 *sprite, int animation);
-int SpriteAnim_Draw3d(struct Unk_02022404 *sprite, TileStrikePos *pos, TileStrikePos *rot);
+void SpriteAnim_SetAnimation(struct SpriteAnim *sprite, int animation);
+int SpriteAnim_Draw3d(struct SpriteAnim *sprite, TileStrikePos *pos, TileStrikePos *rot);
 
 /* The sprite falls 10 units a frame from height 100. At 0 it switches to
  * the impact animation, with a sound and a screen shake. */

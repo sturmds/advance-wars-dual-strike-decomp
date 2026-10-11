@@ -4,10 +4,10 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/tile_sprite_task.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 
 void Task_ResumeScript(void *task);
-int SpriteAnim_Draw3d(struct Unk_02022404 *sprite, VecFx32 *pos, VecFx32 *rot);
+int SpriteAnim_Draw3d(struct SpriteAnim *sprite, VecFx32 *pos, VecFx32 *rot);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;

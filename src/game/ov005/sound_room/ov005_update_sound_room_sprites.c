@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/screen_other_map.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/Unk_ov005_0236bbac.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
@@ -95,11 +95,11 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         Oam_SetAffineParams(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
-    work->subObjects[0]->unk_24 = 0xc7a0;
-    work->subObjects[1]->unk_24 = 0xb380;
-    work->subObjects[2]->unk_24 = 0xb380;
-    work->subObjects[3]->unk_24 = 0xb380;
-    work->subObjects[4]->unk_24 = 0xb380;
+    work->subObjects[0]->tileBase = 0xc7a0;
+    work->subObjects[1]->tileBase = 0xb380;
+    work->subObjects[2]->tileBase = 0xb380;
+    work->subObjects[3]->tileBase = 0xb380;
+    work->subObjects[4]->tileBase = 0xb380;
     SpriteAnim_Draw(work->subObjects[0], 128, 176);
     SpriteAnim_Draw(work->subObjects[1], 16, 176);
     SpriteAnim_Draw(work->subObjects[2], 240, 176);
@@ -130,10 +130,10 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         Oam_SetAffineParams(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
-    work->mainObjects[0]->unk_24 = 0xb380;
-    work->mainObjects[1]->unk_24 = 0xb380;
-    work->mainObjects[2]->unk_24 = 0xb380;
-    work->mainObjects[3]->unk_24 = 0xb380;
+    work->mainObjects[0]->tileBase = 0xb380;
+    work->mainObjects[1]->tileBase = 0xb380;
+    work->mainObjects[2]->tileBase = 0xb380;
+    work->mainObjects[3]->tileBase = 0xb380;
     SpriteAnim_Draw(work->mainObjects[0], 16, 16);
     SpriteAnim_Draw(work->mainObjects[1], 240, 16);
     SpriteAnim_Draw(work->mainObjects[2], 512, 768);

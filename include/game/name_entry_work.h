@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-struct Unk_02022404;
+struct SpriteAnim;
 
 #define NAME_ENTRY_KEY_COUNT 75        /* cursor values from this on select a control key */
 #define NAME_ENTRY_CONTROL_KEY_COUNT 3 /* kept in unk_4b8, right after keys */
@@ -41,9 +41,9 @@ typedef struct NameEntry {
     NameEntryKey keys[NAME_ENTRY_KEY_COUNT];
     u8 unk_4b8[0x24];
     void *spriteFile;                  /* loaded sprite file */
-    struct Unk_02022404 *caret;        /* text caret sprite */
+    struct SpriteAnim *caret;        /* text caret sprite */
     void *buttonSpriteFile;          /* loaded sprite file the buttonSprites come from */
-    struct Unk_02022404 *buttonSprites[3];
+    struct SpriteAnim *buttonSprites[3];
 } NameEntry;
 
 /* Task of the name entry screen. The first 0x2c bytes belong to the task

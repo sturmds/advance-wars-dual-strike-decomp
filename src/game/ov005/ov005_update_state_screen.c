@@ -3,7 +3,7 @@
 #include "game/menu_button.h"
 #include "game/screen_other_map.h"
 #include "game/unit_show_task.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bba4.h"
 

@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
 
 extern Unk_027c0280 *data_027c0280;
@@ -19,8 +19,8 @@ void CaptureArmyGfx_Load(int owner, int gfxTile, int palette);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
-Unk_02022404 *SpriteAnim_Create(void *data, int a, int b);
-void SpriteAnim_SetAnimation(Unk_02022404 *sprite, int animation);
+SpriteAnim *SpriteAnim_Create(void *data, int a, int b);
+void SpriteAnim_SetAnimation(SpriteAnim *sprite, int animation);
 s32 HwDiv32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
@@ -52,13 +52,13 @@ void CapturePicture_Init(CapturePictureTask *task)
 
     task->armySprite = SpriteAnim_Create(data_0214a568, 0, 2);
     SpriteAnim_SetAnimation(task->armySprite, 0);
-    task->armySprite->unk_24 = SPRITE_ATTR2(4, 532);
+    task->armySprite->tileBase = SPRITE_ATTR2(4, 532);
     task->propertySprite = SpriteAnim_Create(data_0214a618, 0, 2);
     SpriteAnim_SetAnimation(task->propertySprite, 0);
-    task->propertySprite->unk_24 = SPRITE_ATTR2(5, 500);
+    task->propertySprite->tileBase = SPRITE_ATTR2(5, 500);
     task->textSprite = SpriteAnim_Create(data_0214a670, 0, 2);
     SpriteAnim_SetAnimation(task->textSprite, 0);
-    task->textSprite->unk_24 = SPRITE_ATTR2(3, 404);
+    task->textSprite->tileBase = SPRITE_ATTR2(3, 404);
 
     cosValue = gSineTable[64] * 16;
     sinValue = gSineTable[0];

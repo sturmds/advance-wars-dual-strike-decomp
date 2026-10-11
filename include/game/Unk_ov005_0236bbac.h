@@ -70,9 +70,9 @@ typedef struct Unk_ov005_0236bbac {
     int musicPlaying;
     struct Task *musicTask;            /* runs Ov005_UpdateMusic */
     void *spriteFileA;                 /* sprite file the sprites below are made from */
-    struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
+    struct SpriteAnim *mainObjects[4]; /* placed on the main screen each frame */
     void *spriteFileB;
-    struct Unk_02022404 *subObjects[5]; /* placed on the sub screen each frame */
+    struct SpriteAnim *subObjects[5]; /* placed on the sub screen each frame */
     s16 objScale1;                     /* OBJ affine matrix 1 scale, 0x100 = 1x; -1: none */
     s16 objScale2;                     /* OBJ affine matrix 2 scale */
     s16 objScaleBoth;                  /* used for both when 1 and 2 are -1; -1: 0x100 */

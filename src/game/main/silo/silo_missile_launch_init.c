@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/Unk_02080440.h"
 #include "game/silo_missile_task.h"
 
@@ -7,9 +7,8 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern const u8 data_0213dd38[];
 
-Unk_02022404 *SpriteAnim_Create(const void *file, int a, int b);
+SpriteAnim *SpriteAnim_Create(const void *file, int a, int b);
 void SpriteAnim_SetAnimation(void *sprite, int animation);
-struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -25,6 +24,6 @@ void SiloMissileLaunch_Init(SiloMissileTask *task)
                          task->y - STATE->unk_1c4->scrollY, task->spriteAttr, 0, 1);
     task->sprite = SpriteAnim_Create(data_0213dd38, 1, 2);
     SpriteAnim_SetAnimation(task->sprite, 1);
-    task->sprite->unk_24 = task->spriteAttr;
+    task->sprite->tileBase = task->spriteAttr;
     Sound_PlaySe(173);
 }

@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-struct Unk_02022404;
+struct SpriteAnim;
 
 /* Task TileSpriteTask_Start starts (scripts data_02166ed4 and data_02166efc) to
  * show an animated sprite on a map tile. The first 0x29 bytes belong to
@@ -17,7 +17,7 @@ typedef struct TileSpriteTask {
     u16 timer;                         /* frames since the animation started */
     u16 unk_30;
     u8 pad_32[0x34 - 0x32];
-    struct Unk_02022404 *sprite;       /* made by TileSpriteTask_CreateSprite */
+    struct SpriteAnim *sprite;       /* made by TileSpriteTask_CreateSprite */
 } TileSpriteTask;
 
 #endif

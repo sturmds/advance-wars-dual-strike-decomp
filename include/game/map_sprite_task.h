@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "game/task.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 
 /* A task that draws one sprite object on the map (TileEffectTask_Update,
  * SiloMissileFall_Update place it against the map view scroll). Up to 0x50 it has
@@ -13,7 +13,7 @@ typedef struct MapSpriteTask {
     u8 pad_00[0x14];
     Task *parent;                      /* Task.parent */
     u8 pad_18[0x50 - 0x18];
-    Unk_02022404 *sprite;
+    SpriteAnim *sprite;
     int kind;                          /* picks the sound and the two effect tasks in MapSpriteTask_PlayKindEffects */
 } MapSpriteTask;
 

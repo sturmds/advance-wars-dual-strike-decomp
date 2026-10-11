@@ -54,7 +54,7 @@ extern u8 data_0213d9c0[];
 
 void Sound_PlaySe(u32 soundId);
 void *SpriteAnim_Find(const void *file);
-Unk_02022404 *SpriteAnim_Create(void *file, int layer, int flags);
+SpriteAnim *SpriteAnim_Create(void *file, int layer, int flags);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
@@ -206,13 +206,13 @@ void MapSpriteTask_LoadKindGraphics(MapSpriteTask *task)
             task->sprite = SpriteAnim_Create(anim, 1, 22);
         }
         FS_ChangeDir(data_02169180);
-        task->sprite->unk_24 = (u32)data_022a7c5c->unk_68;
+        task->sprite->tileBase = (u32)data_022a7c5c->unk_68;
         task->sprite->unk_28 = (u32)data_022a7c5c->unk_6c;
         Gfx_QueueUnpackedFileCopy(file3d, data_022a7c5c->unk_68);
         Gfx_QueueFileCopy(palette, data_022a7c5c->unk_6c, 32);
     } else {
         task->sprite = SpriteAnim_Create(anim, 1, 2);
-        task->sprite->unk_24 = (5 << 12) | 404; /* sprite attribute 2: palette 5, tile 404 */
+        task->sprite->tileBase = (5 << 12) | 404; /* sprite attribute 2: palette 5, tile 404 */
         FS_ChangeDir(data_02169180);
         File_UnpackTo(data_027c0280->objVram + 404 * 32, file2d);
         Palette_LoadFromFile(palette, 0, (5 + 16) << 5, 32);
@@ -221,8 +221,8 @@ void MapSpriteTask_LoadKindGraphics(MapSpriteTask *task)
     switch (task->kind) {
     case 25:
     case 26:
-        task->sprite->unk_18 = 0;
-        task->sprite->unk_1a = HwDiv32(0x7800, 100);
+        task->sprite->framesLeft = 0;
+        task->sprite->speed = HwDiv32(0x7800, 100);
         break;
     }
 }

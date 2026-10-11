@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "game/name_entry_work.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/text_print.h"
@@ -39,7 +39,7 @@ void NameEntry_PlaceCaret(NameEntry *entry)
     if (entry->maxLength == 16) {
         x -= 32;
     }
-    entry->caret->unk_24 = 0xb380;
+    entry->caret->tileBase = 0xb380;
     SpriteAnim_Draw(entry->caret, x + 96, 24);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

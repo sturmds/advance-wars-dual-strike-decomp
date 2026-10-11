@@ -1,5 +1,5 @@
 #include "types.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/capture_picture_task.h"
 
 extern s16 gSineTable[];

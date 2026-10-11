@@ -3,7 +3,7 @@
 
 extern u8 data_02148eec[];
 
-struct Unk_02022404 *BmapSpriteAnim_Create(void *file, int a);
+struct SpriteAnim *BmapSpriteAnim_Create(void *file, int a);
 
 /* Makes the sprite at the tile, 100 units up. */
 void TileStrikeTask_Init3d(TileStrikeTask *task)

@@ -14,7 +14,7 @@ typedef struct MissileStrikeTask {
     int pixelY;
     int unk_48;
     u8 pad_4c[0x54 - 0x4c];
-    int unk_54;                        /* third argument of MissileStrike_Start (2 from func_020f1f38) */
+    int fallHeight;                    /* pixels left to fall: MissileStrike_Start stores its third argument, MissileStrike_Init sets pixelY */
     int unk_58;                        /* fourth argument (80 from func_020f1f38) */
 } MissileStrikeTask;
 

@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-u16 func_02021b20(Unk_02022404 *sprite);
+u16 func_02021b20(SpriteAnim *sprite);
 void Sound_PlaySe(u32 soundId);
 /* Both start a child task of parent with the given arguments. */
 void ScreenShake_Start(int scriptIndex, int arg, Task *parent);

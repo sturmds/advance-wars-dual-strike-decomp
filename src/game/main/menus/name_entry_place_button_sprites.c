@@ -5,7 +5,7 @@
 
 #include "types.h"
 #include "game/name_entry_work.h"
-#include "game/Unk_02022404.h"
+#include "game/sprite_anim.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
@@ -24,9 +24,9 @@ void NameEntry_PlaceButtonSprites(NameEntry *entry)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    entry->buttonSprites[0]->unk_24 = 0xc200;
-    entry->buttonSprites[1]->unk_24 = 0xc200;
-    entry->buttonSprites[2]->unk_24 = 0xc200;
+    entry->buttonSprites[0]->tileBase = 0xc200;
+    entry->buttonSprites[1]->tileBase = 0xc200;
+    entry->buttonSprites[2]->tileBase = 0xc200;
     SpriteAnim_Draw(entry->buttonSprites[0], 42, 128);
     SpriteAnim_Draw(entry->buttonSprites[1], 122, 128);
     SpriteAnim_Draw(entry->buttonSprites[2], 210, 128);

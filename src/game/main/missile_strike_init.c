@@ -47,7 +47,7 @@ void MissileStrike_Init(MissileStrikeTask *task)
     task->pixelX = task->tileX * 16 + 8;
     task->pixelY = task->tileY * 16 + 16;
     task->unk_48 = 0;
-    task->unk_54 = task->pixelY;
+    task->fallHeight = task->pixelY;
 
     data_027c0280->blendTopBg[data_027c0280->layer0Bg] = 1;
     data_027c0280->blendTopBg[data_027c0280->layer1Bg] = 0;

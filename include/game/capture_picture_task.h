@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-struct Unk_02022404;
+struct SpriteAnim;
 
 /* Work area of the task that draws a property while it is captured
  * (script data_02168df0: CapturePicture_Init sets it up, CapturePicture_Draw draws
@@ -11,10 +11,10 @@ struct Unk_02022404;
  * data_021690f8, CaptureTask_ShowCompletion) uses the same fields up to tile. */
 typedef struct CapturePictureTask {
     u8 pad_00[0x2c];
-    struct Unk_02022404 *textSprite;   /* the capture text (tile 404), affine matrix 1 */
+    struct SpriteAnim *textSprite;   /* the capture text (tile 404), affine matrix 1 */
     u8 pad_30[0x34 - 0x30];
-    struct Unk_02022404 *armySprite;   /* the capturing army (CaptureArmyGfx_Load, tile 532), affine matrix 2 */
-    struct Unk_02022404 *propertySprite; /* the property (PropertyPicture_Load, tile 500), affine matrix 3, squashed as points go up */
+    struct SpriteAnim *armySprite;   /* the capturing army (CaptureArmyGfx_Load, tile 532), affine matrix 2 */
+    struct SpriteAnim *propertySprite; /* the property (PropertyPicture_Load, tile 500), affine matrix 3, squashed as points go up */
     s16 x;                             /* screen position of the picture */
     s16 y;
     s16 unk_40;                        /* CapturePicture_InitOffset: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives armySprite */
@@ -31,7 +31,7 @@ typedef struct CapturePictureTask {
  * (script data_02168ea8); CaptureDone_Draw draws it. */
 typedef struct CaptureDoneTask {
     u8 pad_00[0x30];
-    struct Unk_02022404 *sprite;
+    struct SpriteAnim *sprite;
     u8 pad_34[0x3c - 0x34];
     s16 x;                             /* copied from CapturePictureTask.x */
     s16 y;
