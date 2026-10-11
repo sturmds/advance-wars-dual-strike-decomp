@@ -4147,6 +4147,10 @@ src/game/main/menus/co_exp_wait_for_confirm.c:
     complete
     .text       start:0x02033454 end:0x020334b4
 
+src/game/main/menus/co_exp_level_events_step.c:
+    complete
+    .text       start:0x020334b4 end:0x02033540
+
 src/game/main/co_exp_tally_step.c:
     complete
     .text       start:0x02033618 end:0x02033bec
