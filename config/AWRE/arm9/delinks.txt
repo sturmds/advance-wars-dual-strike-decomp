@@ -2094,6 +2094,10 @@ src/game/main/graphics/sprite_queue_group.c:
     complete
     .text       start:0x02021520 end:0x020216d8
 
+src/game/main/graphics/oam_get_attr_cells.c:
+    complete
+    .text       start:0x020216d8 end:0x02021858
+
 src/game/main/graphics/sprite_queue.c:
     complete
     .text       start:0x02021858 end:0x020218e4

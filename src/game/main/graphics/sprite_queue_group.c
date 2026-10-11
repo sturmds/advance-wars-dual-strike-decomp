@@ -3,7 +3,7 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-const void *func_020216d8(const u16 *attr);
+const void *Oam_GetAttrCells(const u16 *attr);
 
 #define OBJ_X_FLIP 0x1000
 
@@ -42,7 +42,7 @@ void Sprite_QueueGroup(int list, int x, int y, u16 xBits, u16 yBits, const u16 *
         data_027c0280->spriteFree->x = ((group[1] | xBits) & 0xfe00) | ((x + (dx + xBits)) & 0x1ff);
         data_027c0280->spriteFree->y = ((group[0] | yBits) & 0xff00) | ((y + (dy + yBits)) & 0xff);
         data_027c0280->spriteFree->unk_08 = tileAdd + group[2];
-        data_027c0280->spriteFree->unk_0c = func_020216d8(group);
+        data_027c0280->spriteFree->unk_0c = Oam_GetAttrCells(group);
         data_027c0280->spriteFree->unk_0a = attr;
         data_027c0280->spriteLists[list].next = data_027c0280->spriteFree;
         data_027c0280->spriteFree++;
