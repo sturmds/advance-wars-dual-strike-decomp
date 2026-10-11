@@ -99,6 +99,17 @@ Run the sweep on a partial before trying C variants by hand or with permute.py.
 3. `make release`. It fails if any module or the whole ROM differs from retail.
 4. Commit. The hooks run `make release` again, rewrite `PROGRESS.md` and stage it, and check the message.
 
+## ARM7
+
+ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7`, in `config/AWRE/arm7/`. It has three parts with their own `.text`: the crt0 at 0x02380000, an autoload into main RAM at 0x027c0000 and one into ARM7 WRAM at 0x037f8000. Names are `func_arm7_XXXXXXXX` and `data_arm7_XXXXXXXX`. All of it is SDK/library code (`docs/awre-facts.md`, "ARM7").
+
+- C goes under `src/arm7/sdk/` (`src/arm7/game/` only if game code ever shows up). Files there compile with the ARM7 flags, mwccarm 2.0-72 `-O4,s -proc arm7tdmi -interworking`: built for size, unlike ARM9's `-O4,p`.
+- `fn.py show/add/check/diff/finish/rename` work as above. `diff` uses `build/arm7/objdiff.json` and the objects in `build/arm7/`; `add` ends a file at the end of the function's own part.
+- `fn.py pick --arm7` and `pick --families --arm7` list ARM7 functions; without `--arm7` they leave ARM7 out.
+- `propagate.py --module arm7` copies matched C, ARM9's included, to ARM7 twins and checks them with the ARM7 flags; `trivial.py --arm7` does the short functions. Without those flags both leave ARM7 alone. `permute.py` and `pragmas.py` pick the ARM7 flags for a file under `src/arm7/`.
+- The 25 Thumb functions are BIOS call stubs (`svc N; bx lr`); write them as `asm void` under `#pragma thumb on`, as for ARM9's.
+- dsd cannot delink ARM7 on its own: `tools/arm7.py` runs it on a stand-in ROM with the parts moved (`docs/tool-issues.md`). That is invisible in the loop, but `config/AWRE/arm7/` uses real addresses while `build/arm7/config/` holds the moved copy; edit only the first.
+
 ## Reference
 
 | Command | What it does |
@@ -109,6 +120,7 @@ Run the sweep on a partial before trying C variants by hand or with permute.py.
 | `python3 tools/pragmas.py FILE.c NAME` | Score one function under each optimisation pragma |
 | `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
+| `python3 tools/fn.py pick --arm7` | Candidates in ARM7 (also with `--families`) |
 | `make fnindex` | Build `build/fnindex.json` |
 | `python3 tools/ds.py show STRUCT\|data_ADDR` | Struct layout, or a data symbol's type, references and decoded bytes |
 | `python3 tools/ds.py field STRUCT.FIELD` | Functions that use a field, the original loads and stores, signedness check |
@@ -117,6 +129,6 @@ Run the sweep on a partial before trying C variants by hand or with permute.py.
 | `python3 tools/tests/test_fncheck.py` | Check that `check` agrees with `diff` |
 | `make` | Build `build/AWRE.nds` |
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
-| `make progress` | Matched functions and bytes: game vs SDK, C vs assembly |
+| `make progress` | Matched functions and bytes per CPU: game vs SDK, C vs assembly |
 | `python3 tools/progress.py --write PROGRESS.md` | Same counts per module, plus C files not linked yet; the pre-commit hook runs it |
 | `ninja objdiff.json` | objdiff project file, for the objdiff GUI if you install it |

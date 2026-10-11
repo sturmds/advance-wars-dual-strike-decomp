@@ -217,7 +217,10 @@ ANY_SYM = re.compile(r"^(\S+) kind:(\w+)(\S*) addr:(0x[0-9a-f]+)")
 def symbol_table() -> dict[str, list[tuple[int, str, str]]]:
     """module -> sorted (addr, name, kind)."""
     out = {}
-    for name, d in fn.module_dirs():
+    dirs = list(fn.module_dirs())
+    if (fn.CONFIG7 / "symbols.txt").exists():
+        dirs.append(("arm7", fn.CONFIG7))
+    for name, d in dirs:
         rows = []
         for line in (d / "symbols.txt").read_text().splitlines():
             m = ANY_SYM.match(line)
@@ -229,7 +232,7 @@ def symbol_table() -> dict[str, list[tuple[int, str, str]]]:
 
 def find_symbol(key: str) -> list[tuple[str, int, str, str]]:
     want = None
-    m = re.fullmatch(r"(?:data_|0x)?(?:ov\d{3}_)?([0-9a-fA-F]{8})", key)
+    m = re.fullmatch(r"(?:data_|0x)?(?:ov\d{3}_|arm7_)?([0-9a-fA-F]{8})", key)
     if m:
         want = int(m.group(1), 16)
     out = []
@@ -315,7 +318,7 @@ def references(mod: str, addr: int, size: int | None) -> tuple[list[str], list[s
     relocations that reach inside it (Sym+N)."""
     loaders, tables, inside = set(), set(), set()
     end = addr + (size or 1)
-    for m in fn.modules().values():
+    for m in fn.all_modules().values():
         for frm, kind, to, dest in m.relocs:
             if not (addr <= to < end) or mod not in fn.target_module(dest):
                 continue
@@ -478,10 +481,13 @@ def show_symbol(key: str, count: int) -> int:
             print("inside refs: " + ", ".join(inside[:10]) + (" ..." if len(inside) > 10 else ""))
         if kind == "bss" or size is None:
             continue
-        bins = bins or fnindex.module_bins()
+        bins = bins or fnindex.module_parts()
         if mod not in bins:
             continue
-        data, base = bins[mod]
+        try:
+            data, base = fnindex.part_of(bins[mod], addr)
+        except KeyError:
+            continue
         blob = data[addr - base:addr - base + size]
         typ = decl[0]["type"] if decl else ""
         hit = find_struct(typ) if typ and not typ.endswith("*") else None

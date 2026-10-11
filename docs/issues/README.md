@@ -81,3 +81,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0051](0051-fn-add-includes-trailing-data.md) | `fn.py add` includes data after a function in its delinks.txt range | open | tools | M1 |
 | [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
+| [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |

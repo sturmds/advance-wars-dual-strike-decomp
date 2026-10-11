@@ -25,11 +25,11 @@ Scope to decide:
 
 Order matters: each step needs the one before it.
 
-1. **Link ARM7 from objects (issue 0013).** Find out whether dsd can delink a module at 0x02380000 with no overlays. If it can, write `config/AWRE/arm7/` (symbols, delinks, relocations) the way `tools/dsd_init.py` did for ARM9. If it cannot, record what is missing in `docs/tool-issues.md` and write the smallest tool of our own that splits `arm7.bin` into objects. Then link it with mwldarm, put the ARM7 hash in `config/AWRE/modules.sha1`, and keep `make release` matching. Close 0013 here.
+1. **Link ARM7 from objects (issue 0013, done).** Find out whether dsd can delink a module at 0x02380000 with no overlays. If it can, write `config/AWRE/arm7/` (symbols, delinks, relocations) the way `tools/dsd_init.py` did for ARM9. If it cannot, record what is missing in `docs/tool-issues.md` and write the smallest tool of our own that splits `arm7.bin` into objects. Then link it with mwldarm, put the ARM7 hash in `config/AWRE/modules.sha1`, and keep `make release` matching. Close 0013 here.
 2. **Answer scope questions 1 and 2.** Count ARM7's functions and how many are Thumb. Look for game data references and for code that differs from the SDK 2.39 ARM7 component. Fingerprint the compiler the way `docs/awre-facts.md` did for ARM9 (prologues, literal pools, `-proc arm7tdmi`), and record the result there.
-3. **Teach the tools a second CPU.** `fn.py`, `fnindex.py`, `progress.py`, `propagate.py`, `trivial.py`, `permute.py` and the loop job templates assume ARM9 modules. Add `arm7` as a module with its own compiler flags in `tools/configure.py`. Put the C in `src/arm7/`, with `sdk/` and `game/` inside it if any game code turns up.
-4. **Progress tracking** (see the requirement below), in the same change as step 3.
-5. **Decompile.** Start with ARM7 functions that have an ARM9 twin already matched (OS, PXI, and other SDK code built for both CPUs) through `propagate.py`, then the short functions through `trivial.py`, then the rest through the loop.
+3. **Teach the tools a second CPU (done).** `fn.py`, `fnindex.py`, `progress.py`, `propagate.py`, `trivial.py`, `permute.py` and the loop job templates assume ARM9 modules. Add `arm7` as a module with its own compiler flags in `tools/configure.py`. Put the C in `src/arm7/`, with `sdk/` and `game/` inside it if any game code turns up.
+4. **Progress tracking** (see the requirement below), in the same change as step 3 (done).
+5. **Decompile.** Start with ARM7 functions that have an ARM9 twin already matched (OS, PXI, and other SDK code built for both CPUs) through `propagate.py --module arm7`, then the short functions through `trivial.py --arm7`, then the rest through the loop (`fn.py pick --arm7`).
 6. **Update the rules.** After step 1, change the hard rule in `CLAUDE.md` and the plan in `docs/early-phase-project-plan.md` so they no longer say ARM7 is copied from the ROM.
 
 Priority: after the ARM9 game partials. Steps 1 to 4 can run beside the ARM9 SDK/library work, because they touch tools and config, not ARM9 C.
@@ -39,6 +39,11 @@ Priority: after the ARM9 game partials. Steps 1 to 4 can run beside the ARM9 SDK
 - **Step 1 (2026-10-11).** Done; issue 0013 is closed. dsd cannot delink ARM7 itself, so `tools/arm7.py` runs it on a stand-in ROM and links at the real addresses (`docs/tool-issues.md`). `config/AWRE/arm7/` holds one module, `arm7`, with its three parts (crt0 at 0x02380000, main RAM at 0x027c0000, WRAM at 0x037f8000) and names `func_arm7_XXXXXXXX` / `data_arm7_XXXXXXXX`.
 - **Step 2, question 2 (2026-10-11).** 1,014 functions: 989 ARM, 25 Thumb (all BIOS call stubs). Compiler mwccarm 2.0 with `-O4,s -proc arm7tdmi -interworking`: the ARM9 compiler, optimised for size. Details in `docs/awre-facts.md`, "ARM7".
 - **Step 2, question 1.** No game code found: no pointer into ARM9 memory and only system library strings. ARM7 counts as library code. Not yet compared with the ARM7 of another game built on library version 2.x.
+
+- **Steps 3 and 4 (2026-10-11).** Done. `fn.py`, `fnindex.py`, `ds.py`, `propagate.py`, `trivial.py`, `permute.py`, `pragmas.py` and `triage_partials.py` handle the `arm7` module; how to use them is in `docs/workflow.md`, "ARM7". ARM7 stays out of `fn.py pick`, `propagate.py` and `trivial.py` unless asked for (`--arm7`, `--module arm7`), so the ARM9 loop runs as before. `PROGRESS.md` has ARM9 and ARM7 rows; its `game`, `SDK/library` and `all` rows add both CPUs.
+- **Proof that the loop can use it.** In a scratch tree, `func_arm7_038076e8` (0x54 bytes; it looks like a PXI send that retries until the FIFO takes the word, then unlocks a mutex) went through `fn.py add`, `fn.py check` (match), `fn.py diff` (100%) and `fn.py finish`; `make release` passed with it linked from C, and `progress.py` counted it (ARM7 1 / 1014). It was not committed. That run found that the functions `arm7_init.py` adds after dsd had no call relocations; the init script now adds them.
+- **Step 5, first numbers.** Dry runs on mainline after these changes: `propagate.py --module arm7` finds 52 ARM7 functions that compile to the original from the C of matched functions (47 identical twins, 5 near twins, from ARM9 templates), and `trivial.py --arm7` 114 short ones. That is about 166 of 1,014 functions with no model tokens.
+- Open: 25 pointer-like ARM7 words without relocations, mostly section ends (issue 0054). Step 6 (the hard rule and pipeline lines in `CLAUDE.md`, and `docs/early-phase-project-plan.md`) is sturmds's to change.
 
 ## Requirement: PROGRESS.md tracks ARM7
 
