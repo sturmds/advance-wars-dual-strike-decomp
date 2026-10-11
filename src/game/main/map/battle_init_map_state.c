@@ -14,7 +14,7 @@ void Survival_LoadFunds(void);
 void func_020e7a80(int gameMode, int mapId);
 void MovementCost(void);
 void func_020c4f20(void);
-void func_020f58a8(void);
+void MapView_CentreOnPlayer1Hq(void);
 void CurrentPlayer_SyncState(void);
 void CurrentPlayer_StartTurn(void);
 
@@ -31,7 +31,7 @@ void Battle_InitMapState(void)
     func_020e7a80(STATE->gameMode, STATE->unk_1c4->mapId);
     MovementCost();
     func_020c4f20();
-    func_020f58a8();
+    MapView_CentreOnPlayer1Hq();
     CurrentPlayer_SyncState();
     CurrentPlayer_StartTurn();
 }
