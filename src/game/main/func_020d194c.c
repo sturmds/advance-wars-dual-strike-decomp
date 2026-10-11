@@ -8,7 +8,7 @@ int func_020f35cc(void);
 
 /* TRUE in a two-map battle when the other map's unk_1c4->unk_30 is 0 (the
  * same test as func_020f368c), otherwise when func_020f35cc returns 1 or 2.
- * Purpose unknown; func_020d174c passes the result to MapTouch_ReadButtons. */
+ * Purpose unknown; Game_State15_FreeCursor passes the result to MapTouch_ReadButtons. */
 BOOL func_020d194c(void)
 {
     int value;

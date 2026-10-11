@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020d174c(void);
+void Game_State15_FreeCursor(void);
 void UnitMoveSelect_Update(void);
 void Game_State15_PickUnitToDelete(void);
 void Game_State15_OpenMenuAtDestination(void);
@@ -23,7 +23,7 @@ void Game_State15_RunStep(void)
 {
     switch (GAME->unk_1c) {
     case 0:
-        func_020d174c();
+        Game_State15_FreeCursor();
         break;
     case 1:
         UnitMoveSelect_Update();

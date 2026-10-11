@@ -14678,6 +14678,10 @@ src/game/main/units/unit_move_select_update.c:
     complete
     .text       start:0x020d16f0 end:0x020d174c
 
+src/game/main/menus/game_state15_free_cursor.c:
+    complete
+    .text       start:0x020d174c end:0x020d194c
+
 src/game/main/func_020d194c.c:
     complete
     .text       start:0x020d194c end:0x020d1a38
@@ -17484,15 +17488,15 @@ src/game/main/oam_put_sized_cells.c:
     complete
     .text       start:0x020efab0 end:0x020efaf4
 
-src/game/main/func_020efaf4.c:
+src/game/main/map/map_screen_draw_left_button.c:
     complete
     .text       start:0x020efaf4 end:0x020efb2c
 
-src/game/main/func_020efb2c.c:
+src/game/main/map/map_screen_draw_right_button.c:
     complete
     .text       start:0x020efb2c end:0x020efb64
 
-src/game/main/func_020efb64.c:
+src/game/main/map/map_screen_draw_center_button.c:
     complete
     .text       start:0x020efb64 end:0x020efb9c
 
