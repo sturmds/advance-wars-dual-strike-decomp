@@ -4,7 +4,7 @@
 /* Copies a 33 x 25 tile window of the tile map, starting at the scroll
  * position, into BG screen blocks at dest. Rows wrap at 32; columns past
  * 32 go into the next screen block (+0x400 entries). Not matched yet
- * (93.5%): row and rowOffset swap registers, and so do the inner loop temps.
+ * (94.1%): row and rowOffset swap registers, and so do srcRow and destRow.
  * The declaration order and u32 tileX come from permute.py. */
 void func_ov004_022bacd8(Unk_ov004_022bf158 *state, u16 *dest) {
     int viewY;
@@ -32,13 +32,13 @@ void func_ov004_022bacd8(Unk_ov004_022bf158 *state, u16 *dest) {
         int srcRow = (srcRowStart + rowOffset) * 2;
 
         for (col = 0; col < 33; col++) {
-            int x = tileX + col;
             int screenBlock = 0;
+            int x = tileX + col;
 
             if (x & 32) {
                 screenBlock += 0x400;
             }
-            dest[(x & 31) + screenBlock + destRow] = ((u16 *)(srcRow + (u8 *)state->tileMap))[col];
+            dest[screenBlock + (x & 31) + destRow] = ((u16 *)(srcRow + (u8 *)state->tileMap))[col];
         }
         rowOffset += stride;
     }

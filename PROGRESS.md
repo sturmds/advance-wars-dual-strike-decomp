@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6645 / 6700 | 1502872 / 1553840 | 96.72% | 0 | 0 |
+| ARM9 game | 6649 / 6700 | 1503980 / 1553840 | 96.79% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7079 / 7481 | 1554484 / 1685994 | 92.20% | 33 | 2126 |
+| ARM9 all | 7083 / 7481 | 1555592 / 1685994 | 92.27% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6645 / 6700 | 1502872 / 1553840 | 96.72% | 0 | 0 |
+| game | 6649 / 6700 | 1503980 / 1553840 | 96.79% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7079 / 8495 | 1554484 / 1840290 | 84.47% | 33 | 2126 |
+| all | 7083 / 8495 | 1555592 / 1840290 | 84.53% | 33 | 2126 |
 
 ## By module
 
@@ -32,10 +32,10 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
-| ov002 | game | 158 / 164 | 56068 / 64208 | 87.32% | 0 |
-| ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
+| ov002 | game | 159 / 164 | 56424 / 64208 | 87.88% | 0 |
+| ov003 | game | 234 / 235 | 81996 / 82696 | 99.15% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
-| ov005 | game | 263 / 266 | 95740 / 96684 | 99.02% | 0 |
+| ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
 | arm7 | SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 |
 
@@ -86,19 +86,15 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
-| `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 |
 | `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 |
 | `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 |
-| `src/game/ov003/func_ov003_0235bdd8.c` | func_ov003_0235bdd8 | 88 |
-| `src/game/ov003/func_ov003_0235c194.c` | func_ov003_0235c194 | 88 |
 | `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 |
 | `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
 | `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 |
-| `src/game/ov005/func_ov005_0235a320.c` | func_ov005_0235a320 | 576 |
 | `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 |
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
