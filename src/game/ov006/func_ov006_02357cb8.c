@@ -3,7 +3,7 @@
 
 int Ov006_PackArmySlots(int a, int b);
 int Ov006_IsMapPlayable(void);
-void func_020d76f0(int id, u8 *buf, int arg);
+void DesignMap_SaveToSlot(int id, u8 *buf, int arg);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
@@ -14,7 +14,7 @@ void func_ov006_02357cb8(void)
 
     saved = Ov006_PackArmySlots(0, 0);
     state = data_ov006_0236d640;
-    func_020d76f0(state->unk_38, state->unk_d8, Ov006_IsMapPlayable());
+    DesignMap_SaveToSlot(state->unk_38, state->unk_d8, Ov006_IsMapPlayable());
     Ov006_PackArmySlots(1, saved);
     if (data_ov006_0236d640->unk_00 & 0x100) {
         data_ov006_0236d640->unk_00 &= ~0x100;

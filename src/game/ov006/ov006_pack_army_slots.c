@@ -71,7 +71,7 @@ static inline void SetTileOwner(int x, int y, int tile, const u8 *owner)
  * (8 player 1 ... 1 player 4). Owned tiles and property cells follow their
  * army, and each army keeps its colour. Restore 1 with the returned mask
  * puts the armies back and resets each army colour to its slot number.
- * The callers pack, pass the map to func_020d76f0 (likely the save), then
+ * The callers pack, pass the map to DesignMap_SaveToSlot (likely the save), then
  * restore. */
 int Ov006_PackArmySlots(int restore, int hqMask)
 {
