@@ -3805,7 +3805,7 @@ WeatherFx_InitSand kind:function(arm,size=0x118) addr:0x020d2260
 WeatherFx_InitRain kind:function(arm,size=0x124) addr:0x020d2378
 WeatherFx_InitSnow kind:function(arm,size=0x118) addr:0x020d249c
 WeatherFx_UpdateClouds kind:function(arm,size=0x1e0) addr:0x020d25b4
-func_020d2794 kind:function(arm,size=0x184) addr:0x020d2794
+WeatherFx_InitClouds kind:function(arm,size=0x184) addr:0x020d2794
 Weather_StartNext kind:function(arm,size=0xa8) addr:0x020d2918
 Weather_PickNext kind:function(arm,size=0xe8) addr:0x020d29c0
 Weather_Set kind:function(arm,size=0x3c) addr:0x020d2aa8
@@ -6100,7 +6100,7 @@ data_02139348 kind:data(any) addr:0x02139348
 gNextTurnBobOffsets kind:data(any) addr:0x02139358
 gSidePanelRestX kind:data(any) addr:0x0213936c
 gWeatherParticleSpeeds kind:data(any) addr:0x02139370
-data_021393d0 kind:data(any) addr:0x021393d0
+gWeatherCloudSpeeds kind:data(any) addr:0x021393d0
 gTextMapBytes kind:data(any) addr:0x02139430
 gAffineMapBytes kind:data(any) addr:0x02139440
 data_02139450 kind:data(any) addr:0x02139450
@@ -7686,8 +7686,8 @@ data_02166d18 kind:data(any) addr:0x02166d18
 gWeatherSandFileName kind:data(any) addr:0x02166d78
 gWeatherRainFileName kind:data(any) addr:0x02166d7c
 gWeatherSnowFileName kind:data(any) addr:0x02166d80
-data_02166d84 kind:data(any) addr:0x02166d84
-data_02166d8c kind:data(any) addr:0x02166d8c
+gWeatherCloudDirName kind:data(any) addr:0x02166d84
+gWeatherCloudFileName kind:data(any) addr:0x02166d8c
 gTilesetPaletteFileAlt kind:data(any) addr:0x02166d90
 gTilesetPaletteFileDefault kind:data(any) addr:0x02166d94
 data_02166d98 kind:data(any) addr:0x02166d98

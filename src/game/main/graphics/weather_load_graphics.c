@@ -3,7 +3,7 @@
 
 void Weather_LoadTileGraphics(int weather, int variant, int size);
 void func_020dba50(int weather, int variant, int size);
-void func_020d2794(void);
+void WeatherFx_InitClouds(void);
 void WeatherFx_InitSnow(void);
 void WeatherFx_InitRain(void);
 void WeatherFx_InitSand(void);
@@ -16,7 +16,7 @@ void Weather_LoadGraphics(int weather, int tilesetByte)
     func_020dba50(weather, tileset, 8);
     switch (weather) {
     case WEATHER_CLEAR:
-        func_020d2794();
+        WeatherFx_InitClouds();
         break;
     case WEATHER_SNOW:
         WeatherFx_InitSnow();

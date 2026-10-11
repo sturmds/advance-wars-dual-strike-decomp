@@ -3,7 +3,7 @@
 
 void func_020f8d40(int weather, int tileset);
 void WeatherFx_LoadGraphics(void);
-void func_020d2794(void);
+void WeatherFx_InitClouds(void);
 void WeatherFx_InitSnow(void);
 void WeatherFx_InitRain(void);
 void WeatherFx_InitSand(void);
@@ -14,7 +14,7 @@ void MapGfx_Load(int weather, int tilesetByte)
     WeatherFx_LoadGraphics();
     switch (weather) {
     case WEATHER_CLEAR:
-        func_020d2794();
+        WeatherFx_InitClouds();
         break;
     case WEATHER_SNOW:
         WeatherFx_InitSnow();

@@ -10,7 +10,7 @@ void func_0210e138(const void *start, u32 size);
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);
 void func_0210c81c(void);
-void func_020d2794(void);
+void WeatherFx_InitClouds(void);
 
 /* Loads the map graphics like MapGfx_Load, but turns the map palette
  * grey before it goes to texture palette VRAM. The palette file is loaded
@@ -44,5 +44,5 @@ void MapGfx_LoadGreyscale(int variant, int style)
     func_0210c81c();
     Mem_Free(palette);
 
-    func_020d2794();
+    WeatherFx_InitClouds();
 }
