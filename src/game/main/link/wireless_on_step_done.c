@@ -5,7 +5,7 @@ extern u32 data_0229c880;
 extern u32 data_0229c88c;
 
 void Wireless_RequestChildRole(void);
-void func_0207a660(void);
+void Wireless_RequestParentRole(void);
 
 /* Callback of the request in func_02079578. On success clears data_0229c88c
  * and, for modes 3 to 5, runs the follow-up call for the mode; on an error
@@ -19,7 +19,7 @@ void Wireless_OnStepDone(WirelessEvent *event)
             return;
         case 4:
             data_0229c88c = 0;
-            func_0207a660();
+            Wireless_RequestParentRole();
             return;
         case 3:
         case 5:
