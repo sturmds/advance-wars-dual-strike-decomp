@@ -12215,6 +12215,10 @@ src/game/main/menus/hot_seat_has_several_human_teams.c:
     complete
     .text       start:0x020bae64 end:0x020baf9c
 
+src/game/main/map/battle_init_map_state.c:
+    complete
+    .text       start:0x020baf9c end:0x020bb02c
+
 src/game/main/func_020bb02c.c:
     complete
     .text       start:0x020bb02c end:0x020bb05c
