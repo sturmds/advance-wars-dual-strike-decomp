@@ -8,7 +8,7 @@ void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet)
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 void UnitIcon_Draw(u16 *map, u16 x, u16 y, u8 unitType, u16 a, u8 b, u8 c);   /* unit icon */
-int func_02074be8(int slot);           /* which cargo tree piece goes before the unit: 0 none, 1-6 */
+int UnitList_GetCargoBranch(int slot);           /* which cargo tree piece goes before the unit: 0 none, 1-6 */
 s32 HwDiv32(s32 a, s32 b);
 
 extern Unk_02080440 *data_027c027c;
@@ -57,7 +57,7 @@ void UnitList_DrawRow(int y, int index)
         iconFlags = GAME->currentUnitBase;     /* as read, like BuildMenu_DrawColumn */
     }
     branchX = 0;
-    switch (func_02074be8(gUnitListRows[index])) {
+    switch (UnitList_GetCargoBranch(gUnitListRows[index])) {
     case 1:
         branch = data_02167c74;
         iconX = 1;
