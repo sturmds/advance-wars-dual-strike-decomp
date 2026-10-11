@@ -1,3 +1,7 @@
+/* Needed to match: with dead-assignment removal on, mwcc keeps the list
+ * cursor in a register where the original reloads it. */
+#pragma opt_dead_assignments off
+
 #include "types.h"
 #include "game/BattleCellTask.h"
 #include "game/BattleScreenTask.h"
@@ -14,8 +18,9 @@ int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int index);
 
 /* Runs the entries of each side's unk_2ec list that are due on this frame. An entry with unk_6
  * clear makes a sprite at its cell (cell 0 when the side runs a fighter task) and keeps it in
- * unk_22c; one with unk_6 set gives the cell step 5. Partial (93%): the original reloads the
- * list cursor inside the body where mwcc keeps it in a register. */
+ * unk_22c; one with unk_6 set gives the cell step 5. Partial (97.4%): the
+ * task->hasPos2 bit and the scale product are scheduled in a different order
+ * around the BattleCellTask_GetCellOffsetY calls. */
 void func_ov002_0235882c(BattleScreenTask *screen)
 {
     int side;
