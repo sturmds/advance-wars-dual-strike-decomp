@@ -11,11 +11,11 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_02095d14(void);
+int AiSite_PickPortAgainstSubs(void);
 void func_0209316c(int index);
 
 /* End-actions step 4. Same checks and action as AiTurn_TryBuildCruiser (step 5)
- * with a different factory pick, func_02095d14. How the two picks differ is not
+ * with a different factory pick, AiSite_PickPortAgainstSubs. How the two picks differ is not
  * known, so the name stays. Returns 1 when it queued an action. */
 BOOL func_02091c54(void)
 {
@@ -30,7 +30,7 @@ BOOL func_02091c54(void)
     if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_CRUISER) * 10) > STATE->players[STATE->currentPlayer].funds) {
         return 0;
     }
-    index = func_02095d14();
+    index = AiSite_PickPortAgainstSubs();
     if (index == -1) {
         return 0;
     }
