@@ -1,0 +1,171 @@
+#include "types.h"
+#include "game/ai_build_state.h"
+#include "game/ai_site.h"
+#include "game/unit_action.h"
+#include "game/unit_stats.h"
+#include "game/Unk_02080440.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+extern u32 data_0229e278[];
+extern u8 gUnitSupplyKind[];
+
+int func_02096bc4(int allowSaving);
+int func_02097dd4(void);
+int UnitType_GetAttackKind(u8 unitType);
+BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
+BOOL AiBuild_HasEnoughGroundIndirects(int info);
+int func_020961ac(int supplyKind);
+int func_0209770c(int x, int y, int unitType);
+void func_0209373c(void);
+int Unit_GetValuePerHp(int playerIndex, int unitType);
+BOOL func_02098238(u32 cost);
+int Ai_WantsBlackBomb(int unitType);
+int func_02095fb8(void);
+int func_02095f28(void);
+BOOL func_020949fc(int unitType);
+BOOL func_02094a7c(int unitType);
+int Ai_CountUnitsOfType(int type);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define PLAYER (STATE->players[STATE->currentPlayer])
+
+/* Called by func_02091904 (end-actions step 9). Picks the unit type with the highest weight in
+ * data_0229e278 and a factory for it (func_020961ac by gUnitSupplyKind).
+ * func_02097dd4 returns flags (bit 8) and a count (bits 0-7) that rule out
+ * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
+ * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
+ * more is marked (kind 0xff) and the next one tried. When funds are short and
+ * allowSaving is 1, func_02098238 may set AiBuildState.unk_10 to the funds
+ * still missing after next income; while unk_10 is set, a build must leave
+ * that much (unk_05 times it may skip the check for a type the player has
+ * none of). Black Bomb and Piperunner builds go through func_02095fb8 and
+ * func_02095f28. A type that fails gets weight 0 and the pick starts again.
+ * Returns the factory's site index with gUnitAction.target set, or -1. */
+int AiTurn_PickUnitToBuild(int allowSaving)
+{
+    /* needed to match: this declaration order and the hoisted countLess1 */
+    int index;
+    u8 *supplyKind;
+    int best;
+    int infoFlag;
+    u32 bestScore;
+    int pipeCost;
+    int info;
+    int type;
+    UnitStats *stats;
+    int countLess1;
+    AiSite *site;
+    int infoCount;
+    u16 cost;
+
+    if (func_02096bc4(4) == -1) {
+        return -1;
+    }
+    info = func_02097dd4();
+    infoFlag = info & 0x100;
+    infoCount = info & 0xff;
+    for (;;) {
+        best = 0;
+        bestScore = 0;
+        countLess1 = infoCount - 1;
+        for (type = 1, stats = &Ov000_gUnitStats[1]; type < UNIT_TYPE_COUNT; stats++, type++) {
+            if (bestScore >= data_0229e278[type]) {
+                continue;
+            }
+            if (infoFlag != 0) {
+                if (type <= UNIT_MECH && countLess1 >= 5) {
+                    continue;
+                }
+            } else if (infoCount != 0 && (stats->moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))) {
+                if (UnitType_GetAttackKind(type) != ATTACK_KIND_DIRECT || type == UNIT_INFANTRY || type == UNIT_MECH || type == UNIT_ANTI_AIR) {
+                    if (type == UNIT_ARTILLERY) {
+                        continue;
+                    }
+                    if (type <= UNIT_MECH && countLess1 >= 5) {
+                        continue;
+                    }
+                    if (bestScore <= data_0229e278[type] >> 1) {
+                        bestScore = data_0229e278[type] >> 1;
+                        best = type;
+                    }
+                }
+                continue;
+            }
+            if (type == UNIT_ARTILLERY) {
+                if (AiBuild_HasEnoughIndirectsForArtillery(info) == 1) {
+                    continue;
+                }
+            } else if (UnitType_GetAttackKind(type) == ATTACK_KIND_INDIRECT
+                       && (stats->moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))
+                       && AiBuild_HasEnoughGroundIndirects(info) == 1) {
+                continue;
+            }
+            best = type;
+            bestScore = data_0229e278[type];
+        }
+        if (best == 0) {
+            return -1;
+        }
+        supplyKind = &gUnitSupplyKind[best];
+        for (;;) {
+            index = func_020961ac(*supplyKind);
+            if (index == -1) {
+                goto reject;
+            }
+            /* needed to match: airport or port written as + 254 */
+            if ((u8)(*supplyKind + 254) > 1) {
+                break;
+            }
+            site = &data_0229e5bc[index];
+            if (func_0209770c(site->x, site->y, best) >= 90) {
+                site->kind = 0xff;
+                continue;
+            }
+            func_0209373c();
+            break;
+        }
+        cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
+        if (cost > (u32)PLAYER.funds) {
+            if (allowSaving == 1 && func_02098238(cost) == 1) {
+                data_021619c0->unk_10 = cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+            }
+            goto reject;
+        }
+        if (Ai_WantsBlackBomb(best) == 1) {
+            gUnitAction.target = UNIT_BLACK_BOMB;
+            return func_02095fb8();
+        }
+        if (data_021619c0->unk_10 != 0) {
+            if (func_020949fc(best) == 1) {
+                gUnitAction.target = UNIT_PIPERUNNER;
+                return func_02095f28();
+            }
+        } else if (func_02094a7c(best) == 1) {
+            pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
+            if (pipeCost > (u32)PLAYER.funds) {
+                if (allowSaving == 1 && func_02098238(pipeCost) == 1) {
+                    data_021619c0->unk_10 = pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+                    continue;
+                }
+            } else {
+                gUnitAction.target = UNIT_PIPERUNNER;
+                return func_02095f28();
+            }
+        }
+        if (data_021619c0->unk_10 != 0 && data_021619c0->unk_05 != 0) {
+            data_021619c0->unk_05--;
+            if (Ai_CountUnitsOfType(best) != 0 && cost > PLAYER.funds - data_021619c0->unk_10) {
+                goto reject;
+            }
+        } else if (cost > PLAYER.funds - data_021619c0->unk_10) {
+            goto reject;
+        }
+        gUnitAction.target = best;
+        return index;
+    reject:
+        data_0229e278[best] = 0;
+        func_0209373c();
+    }
+}

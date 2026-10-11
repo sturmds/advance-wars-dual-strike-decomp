@@ -5704,6 +5704,10 @@ src/game/main/ai/ai_turn_run_end_actions.c:
     complete
     .text       start:0x02093824 end:0x02093b50
 
+src/game/main/ai/ai_turn_pick_unit_to_build.c:
+    complete
+    .text       start:0x020940f4 end:0x0209462c
+
 src/game/main/ai/ai_site_score_piperunner_need.c:
     complete
     .text       start:0x0209462c end:0x020949fc
