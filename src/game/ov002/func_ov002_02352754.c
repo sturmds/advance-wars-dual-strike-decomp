@@ -58,8 +58,8 @@ extern char data_ov002_023604a8[];
  * from tile 0x300 on, and keeps the first tile and the sprite table of each in MenuState.
  * Most files come in one version per army style. Then loads each side's palette by army,
  * with a copy brightened halfway to white, and copies both to palette memory.
- * Partial match: the palette pointer of the brightening loop comes from the literal pool,
- * and the artillery test recomputes the side's record address. */
+ * Partial match (99.9%): in the palette loop, menu and the side * 12 offset swap registers.
+ * The palette loop has its own counter (palSide) because that fixes the other registers. */
 void func_ov002_02352754(void)
 {
     u8 weapon;
@@ -69,8 +69,9 @@ void func_ov002_02352754(void)
     int i;
     BOOL isFirst;
     u8 otherWeapon;
-    MenuState *menu;                   /* needed to match: the palette offsets are added at run time */
     const u16 *palette;
+    MenuState *menu;                   /* needed to match: the palette offsets are added at run time */
+    int palSide;
 
     tile = 0x300;
     FS_ChangeDir(data_ov002_023600e4);
@@ -183,7 +184,7 @@ void func_ov002_02352754(void)
 
         BATTLE.unk_20[side] = tile;
         /* BATTLE_SIDE_UNIT_TYPE(side), written from the side's record to match. */
-        if (((u8 *)&SCENE->sides[side])[-1] == UNIT_ARTILLERY && side != SCENE->attackerSide) {
+        if ((&SCENE->sides[side].hpBefore)[-1] == UNIT_ARTILLERY && side != SCENE->attackerSide) {
             BATTLE.unk_68[side] = NULL;
         } else {
             byStyle = BY_STYLE(BATTLE.unk_27c[side]->effects[8]);
@@ -212,11 +213,12 @@ void func_ov002_02352754(void)
     func_0210c930();
     func_0210c8e8();
     menu = &gMenuState;
-    palette = menu->battle.unk_450;
 
-    for (side = 0; side < 2; side++) {
-        File_ReadTo(menu->battle.unk_450, menu->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
+    for (palSide = 0; palSide < 2; palSide++) {
+        File_ReadTo(menu->battle.unk_450, menu->battle.unk_27c[palSide]->paletteFiles[SCENE->sides[palSide].army - 1]);
         /* Each colour halfway to white. */
+        /* needed to match: the offset as a number keeps the add at run time */
+        palette = (const u16 *)((u8 *)menu + (u32)&((MenuState *)0)->battle.unk_450);
         for (i = 0; i < 32; i++) {
             int colour = palette[i];
 
@@ -225,7 +227,7 @@ void func_ov002_02352754(void)
                 | (((colour & 31) + 31) >> 1);
         }
         DC_FlushRange(menu->battle.unk_410, sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
-        isFirst = side == 0 ? TRUE : FALSE;
+        isFirst = palSide == 0 ? TRUE : FALSE;
         func_0210c874(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
         func_0210c874(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
     }
