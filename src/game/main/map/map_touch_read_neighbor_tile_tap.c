@@ -27,7 +27,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Touch input while the player picks one of the four tiles around a center
- * tile (func_020ce58c). The tile under the point where the touch ended is
+ * tile (NeighborTilePicker_Update). The tile under the point where the touch ended is
  * worked out as in MapCursor_UpdateFromTouch. A release on the tile where the
  * touch began resumes the touch marker task, then confirms when
  * func_020ce810 finds that tile among the directions in `mask` and cancels

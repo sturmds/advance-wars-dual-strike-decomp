@@ -24,7 +24,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Cursor update from touch for the four-direction tile picker in
- * func_020ce58c. When the touched tile is one of the directions in `mask`
+ * NeighborTilePicker_Update. When the touched tile is one of the directions in `mask`
  * (func_020ce810), the cursor (unk_28, unk_2a) moves there and *direction
  * gets its index. A new touch remembers its tile in unk_30 and unk_32 and
  * starts the touch marker task; moving to another tile ends both, as in

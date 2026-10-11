@@ -10736,6 +10736,10 @@ src/game/main/units/unload_task_pick_tile.c:
     complete
     .text       start:0x020ce2d4 end:0x020ce58c
 
+src/game/main/units/neighbor_tile_picker_update.c:
+    complete
+    .text       start:0x020ce58c end:0x020ce6cc
+
 src/game/main/game_enter_state18.c:
     complete
     .text       start:0x020ceb60 end:0x020cebac

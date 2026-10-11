@@ -13,7 +13,7 @@ extern u8 data_022a6b34[];
 extern s8 data_0216637b[]; /* 5 bytes per direction: first path step to the tile in that direction */
 extern s8 data_0216637c[]; /* the path end marker after it */
 
-u32 func_020ce58c(int *direction, int mask);
+u32 NeighborTilePicker_Update(int *direction, int mask);
 void Task_Destroy(Task *task);
 void Task_ResumeScript(Task *task);
 void MenuDepth_Pop(void);
@@ -23,7 +23,7 @@ int UnitPath_CountSteps(const s8 *path);
 void *UnitShowTask_CreateMoving(int x, int y, int owner, int unitType, void *arg);
 void func_020ce2a0(int unitType);
 
-/* Bits func_020ce58c returns: A and B. */
+/* Bits NeighborTilePicker_Update returns: A and B. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL  0x20
 
@@ -46,7 +46,7 @@ void UnloadTask_PickTile(Task *task)
     int mask = (s16)task->unk_64; /* needed to match: read as signed, before direction */
 
     direction = task->unk_66;
-    input = func_020ce58c(&direction, mask);
+    input = NeighborTilePicker_Update(&direction, mask);
     task->unk_66 = direction;
     if (input & INPUT_CANCEL) {
         Task_Destroy(task);
