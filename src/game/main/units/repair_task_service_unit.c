@@ -8,7 +8,7 @@ extern int data_027c0284;
 int Unit_Rearm(MapUnit *unit, BOOL payCost);
 int Unit_Refuel(MapUnit *unit, BOOL payCost);
 int Unit_Repair(MapUnit *unit, s16 steps, BOOL payCost);
-BOOL func_020cd9a8(int x, int y); /* TRUE when tile (x, y) is in the visible part of the map */
+BOOL Tile_IsOnScreen(int x, int y); /* TRUE when tile (x, y) is in the visible part of the map */
 void func_020cdb14(s16 *pos, int player, int amount, int arg3, int arg4, int arg5); /* starts a script at tile pos; likely shows amount */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -30,7 +30,7 @@ void RepairTask_ServiceUnit(RepairTask *task)
     if (STATE->mapTiles->unk_2338[TILE_INDEX(task->tileX, task->tileY)] == 0) {
         return;
     }
-    if (!func_020cd9a8(task->tileX, task->tileY)) {
+    if (!Tile_IsOnScreen(task->tileX, task->tileY)) {
         return;
     }
     pos[0] = task->tileX;
