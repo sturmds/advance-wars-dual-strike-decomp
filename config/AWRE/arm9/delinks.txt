@@ -7440,6 +7440,10 @@ src/game/main/menus/map_select_pick_first_map.c:
     complete
     .text       start:0x0205d594 end:0x0205d87c
 
+src/game/main/menus/map_select_select_first_map.c:
+    complete
+    .text       start:0x0205d87c end:0x0205da84
+
 src/game/main/menus/map_select_confirm_map.c:
     complete
     .text       start:0x0205da84 end:0x0205dea0
