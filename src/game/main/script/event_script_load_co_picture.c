@@ -8,7 +8,7 @@ extern u32 data_0229eaec;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void func_02003b44(void *dest, int size);
+void TransferQueue_AddClear16(void *dest, int size);
 void Co_LoadLargePicture(int coMood, void *dest, int paletteSlot);
 void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
 
@@ -21,7 +21,7 @@ void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
 void EventScript_LoadCoPicture(int coMood)
 {
     if (coMood == 0) {
-        func_02003b44(data_02297790 + 0x3660, EVENT_PICTURE_SIZE);
+        TransferQueue_AddClear16(data_02297790 + 0x3660, EVENT_PICTURE_SIZE);
         return;
     }
     if (data_0229eaec == 0) {
