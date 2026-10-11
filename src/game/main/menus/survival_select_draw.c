@@ -11,7 +11,7 @@ void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int a0, int x, int y, void *a3, int attr, int tile);
 void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
-void func_02001fa8(int x, int y, int attr, int a3);
+void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 void func_02046054(int pages);
 int func_0204779c(void);
 int func_02047924(int mode, int a1);
@@ -107,9 +107,9 @@ void SurvivalSelect_Draw(void)
         Sprite_QueueAt(0, 64, 86, &data_027c01c0, 0x4038, 0);
     }
     if (func_02047944(mode) == 1) {
-        func_02001fa8(48, 136, 0x2000, 0);
+        Co_QueueSmallPictureSprite(48, 136, 0x2000, 0);
         if (func_02047924(mode, 1) != 0) {
-            func_02001fa8(80, 136, 0x300c, 1);
+            Co_QueueSmallPictureSprite(80, 136, 0x300c, 1);
         }
         Sprite_QueueAt(0, 216, 120, &data_027c0040, 0x5058, 0);
     }

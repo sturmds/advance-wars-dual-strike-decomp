@@ -108,6 +108,10 @@ src/game/main/graphics/func_02001f50.c:
     complete
     .text       start:0x02001f50 end:0x02001fa8
 
+src/game/main/graphics/co_queue_small_picture_sprite.c:
+    complete
+    .text       start:0x02001fa8 end:0x02002008
+
 src/game/main/graphics/co_queue_army_small_picture.c:
     complete
     .text       start:0x02002008 end:0x0200208c
@@ -131,6 +135,10 @@ src/game/main/graphics/co_load_mood_picture.c:
 src/game/main/func_02002244.c:
     complete
     .text       start:0x02002244 end:0x0200229c
+
+src/game/main/graphics/co_queue_picture_sprite.c:
+    complete
+    .text       start:0x0200229c end:0x020022fc
 
 src/game/main/func_020023b0.c:
     complete

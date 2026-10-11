@@ -7,7 +7,7 @@ int Co_GetNation(int co);
 s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, const void *data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
-void func_02001fa8(int x, int y, int attr, int list);
+void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
 
 /* Four counts per menu entry (8 to 11), one per row of icons. */
 typedef struct IconCounts {
@@ -51,7 +51,7 @@ void CombatModeMenu_DrawSprites(void)
 
     selected = Menu_GetSelectedId() - 8;
     nation = Co_GetNation(data_021613a0[data_02160ac0->unk_19]);
-    func_02001fa8(0x10e0, 24, data_02160ac0->unk_19 * 12 | data_02160ac0->unk_19 << 12, 0);
+    Co_QueueSmallPictureSprite(0x10e0, 24, data_02160ac0->unk_19 * 12 | data_02160ac0->unk_19 << 12, 0);
     Sprite_QueueDefault(140, 8, 0x7054, 0);
     y = 92;
     for (row = 0; row < 4; row++) {

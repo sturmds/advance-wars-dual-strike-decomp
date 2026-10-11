@@ -5,7 +5,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0200229c(int x, int y, int attr, int list);
+void Co_QueuePictureSprite(int x, int y, int attr, int list);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -43,13 +43,13 @@ void WinLoseScreen_DrawPicturesTwoSides(WinLoseTask *task)
 
     SWITCH_TO(SECOND_MAP);
     for (i = 0; i < task->portraitsA; i++) {
-        func_0200229c((24 + i * 32) & 0x1ff, 192, PORTRAIT_ATTR(i), i);
+        Co_QueuePictureSprite((24 + i * 32) & 0x1ff, 192, PORTRAIT_ATTR(i), i);
     }
     SWITCH_BACK();
 
     SWITCH_TO(MAIN_MAP);
     for (i = 0; i < task->portraitsB; i++) {
-        func_0200229c(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
+        Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
     }
     SWITCH_BACK();
 }
