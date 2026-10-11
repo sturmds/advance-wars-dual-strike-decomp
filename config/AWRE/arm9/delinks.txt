@@ -13056,6 +13056,10 @@ src/game/main/func_020f8cb0.c:
     complete
     .text       start:0x020f8cb0 end:0x020f8cb8
 
+src/game/main/graphics/weather_load_graphics.c:
+    complete
+    .text       start:0x020f8cb8 end:0x020f8d40
+
 src/game/main/graphics/map_gfx_load_greyscale.c:
     complete
     .text       start:0x020f8f68 end:0x020f90a8

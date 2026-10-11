@@ -1,0 +1,31 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+
+void func_020dbd08(int weather, int variant, int size);
+void func_020dba50(int weather, int variant, int size);
+void func_020d2794(void);
+void WeatherFx_InitSnow(void);
+void WeatherFx_InitRain(void);
+void WeatherFx_InitSand(void);
+
+void Weather_LoadGraphics(int weather, int tilesetByte)
+{
+    int tileset = tilesetByte & 0x7f;
+
+    func_020dbd08(weather, tileset, 0x94);
+    func_020dba50(weather, tileset, 8);
+    switch (weather) {
+    case WEATHER_CLEAR:
+        func_020d2794();
+        break;
+    case WEATHER_SNOW:
+        WeatherFx_InitSnow();
+        break;
+    case WEATHER_RAIN:
+        WeatherFx_InitRain();
+        break;
+    case WEATHER_SAND:
+        WeatherFx_InitSand();
+        break;
+    }
+}
