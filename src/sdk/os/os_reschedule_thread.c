@@ -8,7 +8,7 @@ extern OSThread **data_022a9924;
 extern ThreadSwapHook data_022a992c;
 extern OSThreadInfo OSi_ThreadInfo;
 
-u32 func_0210eb64(void);
+u32 OS_GetProcMode(void);
 OSThread *Thread_FirstRunnable(void);
 int OS_SaveContext(OSThread *thread);
 void OS_LoadContext(OSThread *thread);
@@ -22,7 +22,7 @@ void OS_RescheduleThread(void)
     if (data_022a9920 != 0) {
         return;
     }
-    if (info->inIrq != 0 || func_0210eb64() == PROC_MODE_IRQ) {
+    if (info->inIrq != 0 || OS_GetProcMode() == PROC_MODE_IRQ) {
         info->isNeedRescheduling = TRUE;
         return;
     }

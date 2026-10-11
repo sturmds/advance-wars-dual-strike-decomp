@@ -21499,6 +21499,10 @@ src/sdk/os/os_restore_interrupts_irq_and_fiq.c:
     complete
     .text       start:0x0210eb4c end:0x0210eb64
 
+src/sdk/os/os_get_proc_mode.c:
+    complete
+    .text       start:0x0210eb64 end:0x0210eb70
+
 src/sdk/os/os_spin_wait.c:
     complete
     .text       start:0x0210eb7c end:0x0210eb88
