@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/campaign_map.h"
 
-void func_0204ef3c(int x, int y, int side, int step);
+void CampaignMap_DrawCallout(int x, int y, int side, int step);
 void Task_ResumeScript(CampaignMapTask *task);
 void Sound_PlaySe(u32 soundId);
 
@@ -9,7 +9,7 @@ void Sound_PlaySe(u32 soundId);
  * plays sound 70 (side 0) or 71, resets step and resumes the script. */
 void CampaignMap_CalloutGrow(CampaignMapTask *task)
 {
-    func_0204ef3c(task->fromX, task->fromY, task->side, task->step);
+    CampaignMap_DrawCallout(task->fromX, task->fromY, task->side, task->step);
     if (task->step == 16) {
         if (task->side == 0) {
             Sound_PlaySe(70);
