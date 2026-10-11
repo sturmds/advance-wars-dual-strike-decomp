@@ -1,5 +1,5 @@
 Oam_GetShapeCells kind:function(arm,size=0x17c) addr:0x01ff8000
-func_01ff817c kind:function(arm,size=0x1ec) addr:0x01ff817c
+Oam_PutFlippedCells kind:function(arm,size=0x1ec) addr:0x01ff817c
 func_01ff8368 kind:function(arm,size=0x1bc) addr:0x01ff8368
 Oam_PutObjList kind:function(arm,size=0xb4) addr:0x01ff8524
 func_01ff85d8 kind:function(arm,size=0x170) addr:0x01ff85d8
