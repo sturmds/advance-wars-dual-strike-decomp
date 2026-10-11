@@ -8,7 +8,7 @@
  * original's way, so this library object likely came from another compiler.
  */
 
-char *func_02123b68(long value, char *buffer, PrintFormat format);
+char *long2str(long value, char *buffer, PrintFormat format);
 
 extern char data_0216df30[]; /* "0x0p0" */
 extern char data_0216df00[]; /* "-INF" */
@@ -105,7 +105,7 @@ char *double2hex(double value, char *bufferEnd, PrintFormat format)
 
     high = (bytes[0] << 25) | (bytes[1] << 17);
     exponent = ((high >> 21) & 0x7FF) - 1023;
-    p = func_02123b68(exponent, bufferEnd, expFormat);
+    p = long2str(exponent, bufferEnd, expFormat);
     if (format.conversionChar == 'a') {
         *--p = 'p';
     } else {

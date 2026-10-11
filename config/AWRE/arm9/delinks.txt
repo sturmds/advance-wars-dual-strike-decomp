@@ -23270,6 +23270,10 @@ src/sdk/msl/longlong2str.c:
     complete
     .text       start:0x02123880 end:0x02123b68
 
+src/sdk/msl/long2str.c:
+    complete
+    .text       start:0x02123b68 end:0x02123dcc
+
 src/sdk/msl/raise.c:
     complete
     .text       start:0x021243a8 end:0x021244f8
