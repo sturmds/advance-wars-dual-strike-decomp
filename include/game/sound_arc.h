@@ -112,10 +112,20 @@ typedef struct SoundArcFileTable {
     SoundArcFileEntry entries[1];      /* count entries */
 } SoundArcFileTable;
 
+/* Bytes of the archive file header, copied to the start of SoundArc. */
+#define SOUND_ARC_HEADER_SIZE 0x30
+
 /* NitroSystem NNSSndArc: an opened sound archive. */
 typedef struct SoundArc {
-    u8 pad_00[0x30];
-    int opened;                        /* 0x30: set once the archive file is open */
+    u8 pad_00[0x10];                   /* 0x00-0x2f: copy of the archive file's header */
+    u32 symbolOffset;                  /* 0x10: symbol block, from the start of the file; read when symbolSize is not 0 */
+    u32 symbolSize;
+    u32 infoOffset;                    /* 0x18: INFO block, read into info */
+    u32 infoSize;
+    u32 fatOffset;                     /* 0x20: file table, read into files */
+    u32 fatSize;
+    u8 pad_28[0x30 - 0x28];
+    int opened;                       /* 0x30: set once the archive file is open */
     FSFile file;                      /* 0x34: the archive file */
     SoundArcRange range;               /* 0x78: handed to the ROM direct file open call */
     SoundArcFileTable *files;          /* 0x80 */

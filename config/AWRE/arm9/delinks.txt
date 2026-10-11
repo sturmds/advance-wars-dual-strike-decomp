@@ -20261,15 +20261,15 @@ src/game/main/func_021062a4.c:
     complete
     .text       start:0x021062a4 end:0x021062c4
 
-src/game/main/func_021062c4.c:
+src/game/main/sound/sound_arc_forget_symbols.c:
     complete
     .text       start:0x021062c4 end:0x021062d0
 
-src/game/main/func_021062d0.c:
+src/game/main/sound/sound_arc_forget_file_table.c:
     complete
     .text       start:0x021062d0 end:0x021062dc
 
-src/game/main/func_021062dc.c:
+src/game/main/sound/sound_arc_forget_info.c:
     complete
     .text       start:0x021062dc end:0x021062e8
 
@@ -20332,6 +20332,10 @@ src/game/main/func_021066dc.c:
 src/game/main/func_021066ec.c:
     complete
     .text       start:0x021066ec end:0x02106704
+
+src/game/main/sound/sound_arc_read_tables.c:
+    complete
+    .text       start:0x02106704 end:0x02106920
 
 src/game/main/sound/sound_arc_open.c:
     complete

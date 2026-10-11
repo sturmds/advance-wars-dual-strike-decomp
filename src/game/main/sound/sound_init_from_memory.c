@@ -8,12 +8,12 @@ extern u8 data_0218ff58[];
 extern SoundArc gSoundArc;
 
 SoundHeap *SoundHeap_Create(u32 mem, u32 size);
-BOOL func_02106704(SoundArc *arc, void *heap, int symbolLoad);
+BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad);
 void Sound_CreatePlayerHeaps(void *heap);
 void func_0210902c(void *heap);
 void Sound_SaveHeapState(void);
 
-/* Like Sound_Init, but gSoundArc is filled by func_02106704 without
+/* Like Sound_Init, but gSoundArc is filled by SoundArc_ReadTables without
  * opening the archive file (name guessed from that difference). */
 void Sound_InitFromMemory(void)
 {
@@ -22,7 +22,7 @@ void Sound_InitFromMemory(void)
     }
     data_0218feb0 = data_0218ff58;
     gSoundHeap = SoundHeap_Create((u32)data_0218ff58, 0xf8000);
-    func_02106704(&gSoundArc, gSoundHeap, 0);
+    SoundArc_ReadTables(&gSoundArc, gSoundHeap, 0);
     Sound_CreatePlayerHeaps(gSoundHeap);
     func_0210902c(gSoundHeap);
     gSoundReady = TRUE;
