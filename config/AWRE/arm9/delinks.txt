@@ -4063,6 +4063,10 @@ src/game/main/menus/co_exp_add_cells_main_right.c:
     complete
     .text       start:0x0203212c end:0x0203220c
 
+src/game/main/menus/co_exp_add_cell_sprite.c:
+    complete
+    .text       start:0x0203220c end:0x02032264
+
 src/game/main/func_02032264.c:
     complete
     .text       start:0x02032264 end:0x02032298
@@ -4079,6 +4083,9 @@ src/game/main/func_020323fc.c:
     complete
     .text       start:0x020323fc end:0x02032410
 
+src/game/main/menus/func_02032410.c:
+    .text       start:0x02032410 end:0x0203246c
+
 src/game/main/graphics/sprite_shower_update.c:
     complete
     .text       start:0x0203246c end:0x02032804
@@ -4086,6 +4093,9 @@ src/game/main/graphics/sprite_shower_update.c:
 src/game/main/func_0203295c.c:
     complete
     .text       start:0x0203295c end:0x02032984
+
+src/game/main/menus/func_02032984.c:
+    .text       start:0x02032984 end:0x020329c0
 
 src/game/main/func_020329c0.c:
     complete
