@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int Ov006_GetNeighborMask(int x, int y);
 int func_ov006_02360308(int x, int y);
-int func_ov006_023600e8(int x, int y);
+int Ov006_GetAdjacentBridgeCell(int x, int y);
 int Ov006_IsPlainRiver(int x, int y);
 void Ov006_RemoveProperty(int x, int y);
 void Ov006_TurnToSea(int x, int y);
@@ -33,7 +33,7 @@ void Ov006_RefitCellsAround(int x, int y);
  * between the neighbours Ov006_GetNeighborMask reports, and with only one of
  * them, along the neighbours func_ov006_02360308 reports; a shoal goes
  * through Ov006_TurnToSea first. Other shapes take the cell
- * func_ov006_023600e8 picks. River tiles: the piece runs across the river's
+ * Ov006_GetAdjacentBridgeCell picks. River tiles: the piece runs across the river's
  * flow. */
 void Ov006_PlaceBridge(int x, int y)
 {
@@ -80,7 +80,7 @@ void Ov006_PlaceBridge(int x, int y)
                 Ov006_RemoveProperty(x, y);
                 Ov006_TurnToSea(x, y);
             }
-            cell = func_ov006_023600e8(x, y);
+            cell = Ov006_GetAdjacentBridgeCell(x, y);
             if (cell > 0) {
                 Ov006_RemoveProperty(x, y);
                 Ov006_SetTerrain(x, y, TERRAIN_BRIDGE);

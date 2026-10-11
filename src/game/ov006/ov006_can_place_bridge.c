@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int Ov006_GetNeighborMask(int x, int y);
 int func_ov006_02360308(int x, int y);
-int func_ov006_023600e8(int x, int y);
+int Ov006_GetAdjacentBridgeCell(int x, int y);
 int Ov006_IsPlainRiver(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -58,7 +58,7 @@ int Ov006_CanPlaceBridge(int x, int y)
             return TRUE;
         case 0:
         default:
-            if (func_ov006_023600e8(x, y) > 0) {
+            if (Ov006_GetAdjacentBridgeCell(x, y) > 0) {
                 return TRUE;
             }
         case DESIGN_NB_RIGHT | DESIGN_NB_DOWN:
