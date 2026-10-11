@@ -13472,6 +13472,10 @@ src/game/main/map/map_objects_init_state.c:
     complete
     .text       start:0x020d9eb4 end:0x020d9f44
 
+src/game/main/map/map_objects_tick_countdowns.c:
+    complete
+    .text       start:0x020d9f44 end:0x020da068
+
 src/game/main/map/map_object_draw.c:
     complete
     .text       start:0x020da068 end:0x020da1dc
