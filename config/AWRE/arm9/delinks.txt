@@ -12940,6 +12940,10 @@ src/game/main/sound/nns_snd_player_stop_seq.c:
     complete
     .text       start:0x0210589c end:0x021058ac
 
+src/game/main/sound/sound_player_heap_create.c:
+    complete
+    .text       start:0x021058ac end:0x0210594c
+
 src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
