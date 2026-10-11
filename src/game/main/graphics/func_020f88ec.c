@@ -8,7 +8,7 @@ void func_01ff9ac4(void);
 void func_020d2190(void);
 void ObjGfx_LoadLanguageTiles(void);
 BOOL Map_IsCoSelectPhase(void);
-void func_020e15d8(int player, BOOL coSelectPhase);
+void PowerPanel_LoadGfx(int player, BOOL coSelectPhase);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -28,5 +28,5 @@ void func_020f88ec(void)
         STATE_50->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }
     ObjGfx_LoadLanguageTiles();
-    func_020e15d8(GAME->currentPlayer, Map_IsCoSelectPhase());
+    PowerPanel_LoadGfx(GAME->currentPlayer, Map_IsCoSelectPhase());
 }

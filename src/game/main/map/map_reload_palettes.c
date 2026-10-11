@@ -6,7 +6,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void Gfx_LoadPlayerWindowFrame(int player);
 BOOL Map_IsCoSelectPhase(void);
 void Palette_LoadPlayerArmyBgRow(int player);
-void func_020e15d8(int player, BOOL coSelectPhase);
+void PowerPanel_LoadGfx(int player, BOOL coSelectPhase);
 void ObjGfx_LoadLanguageTiles(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -33,6 +33,6 @@ void Map_ReloadPalettes(void)
     }
     ObjGfx_LoadLanguageTiles();
     Gfx_LoadPlayerWindowFrame(GAME->currentPlayer);
-    func_020e15d8(GAME->currentPlayer, Map_IsCoSelectPhase());
+    PowerPanel_LoadGfx(GAME->currentPlayer, Map_IsCoSelectPhase());
     Palette_LoadPlayerArmyBgRow(GAME->currentPlayer);
 }

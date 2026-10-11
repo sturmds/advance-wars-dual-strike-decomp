@@ -16438,6 +16438,10 @@ src/game/main/power_meter/power_panel_left_queue_power_icon.c:
     complete
     .text       start:0x020e14a4 end:0x020e15d8
 
+src/game/main/power_meter/power_panel_load_gfx.c:
+    complete
+    .text       start:0x020e15d8 end:0x020e16e0
+
 src/game/main/power_meter/power_panel_draw_current_player.c:
     complete
     .text       start:0x020e16e0 end:0x020e1714
