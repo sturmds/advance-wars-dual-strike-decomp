@@ -6847,11 +6847,11 @@ src/game/main/func_02084c78.c:
     complete
     .text       start:0x02084c78 end:0x02084c84
 
-src/game/main/menus/combat_setup_client_finish.c:
+src/game/main/menus/combat_setup_finish_co_pick.c:
     complete
     .text       start:0x02084c84 end:0x02084cac
 
-src/game/main/menus/combat_setup_client_cancel.c:
+src/game/main/menus/combat_setup_cancel_co_pick.c:
     complete
     .text       start:0x02084cac end:0x02084cf0
 
@@ -6887,11 +6887,11 @@ src/game/main/func_02085068.c:
     complete
     .text       start:0x02085068 end:0x0208507c
 
-src/game/main/menus/combat_setup_handle_client_keys.c:
+src/game/main/menus/combat_setup_handle_co_pick_keys.c:
     complete
     .text       start:0x0208507c end:0x02085144
 
-src/game/main/menus/combat_setup_add_row_leader_buttons.c:
+src/game/main/menus/combat_setup_add_leader_buttons.c:
     complete
     .text       start:0x020855a8 end:0x02085640
 
@@ -6969,7 +6969,7 @@ src/game/main/func_02085dc4.c:
     complete
     .text       start:0x02085dc4 end:0x02085dd8
 
-src/game/main/menus/combat_setup_handle_host_keys.c:
+src/game/main/menus/combat_setup_handle_row_keys.c:
     complete
     .text       start:0x02085dd8 end:0x02085ebc
 

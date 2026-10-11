@@ -13,11 +13,11 @@ extern MenuState gMenuState;
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState *)&gMenuState)
 
-/* Keys of the link client on the Combat setup screen. While the local
- * player's row is not confirmed, up and down send the previous and next
- * CO messages (18 and 19) and A sends the confirm message (16). B sends
- * the message that reopens the row (17). */
-void CombatSetup_HandleClientKeys(void)
+/* Keys of the CO pick phase of the Combat setup screen (link play). While the local
+ * player's row is not locked, up and down send the previous and next
+ * CO messages (18 and 19) and A sends the lock message (16). B sends
+ * the message that unlocks the row (17). */
+void CombatSetup_HandleCoPickKeys(void)
 {
     if (MENU->combat.rows[MENU->combat.players[data_0229fb30.unk_45a].row - 1].unk_08 == 0) {
         if (gKeypad->repeat & PAD_KEY_UP) {
