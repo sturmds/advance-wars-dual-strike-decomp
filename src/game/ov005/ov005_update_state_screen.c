@@ -8,7 +8,7 @@
 #include "game/Unk_ov005_0236bba4.h"
 
 void func_020048f4(u16 frames);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_02004284(int a0, Ov005Task *task);
 void func_0202a7c0(void);
 void Sound_PlaySe(u32 soundId);
@@ -73,7 +73,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         func_020048f4(32);
         task->step++;
     case 1:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step = 10;
         }
         break;

@@ -14,7 +14,7 @@ void Screen_SetCurrentBoth(void *state);
 void Screen1_DestroyTextTasks(void);
 void MenuButtons_RemoveUnselectable(void);
 void Task_ResumeScript(Ov005Task *task);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void HelpBand_Stop(void);
@@ -66,7 +66,7 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
         MenuButtons_DisableTouch();
         task->step++;
     case 1:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step++;
         }
         break;
@@ -232,7 +232,7 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
         MenuButtons_DisableTouch();
         task->step++;
     case 101:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step++;
         }
         break;

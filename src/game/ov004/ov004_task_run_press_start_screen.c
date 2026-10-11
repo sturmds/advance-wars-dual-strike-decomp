@@ -10,7 +10,7 @@ void func_020fd618(Task *task);
 BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmPressed(void);
 void Screens_BlackOut(void);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_0200493c(u16 value);
 void Screen_SetBothNibbles(int weather);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
@@ -168,7 +168,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         func_0200493c(32);
         task->step++;
     case 101:
-        if (func_02004828()) {
+        if (Screens_IsTransitionRunning()) {
             break;
         }
         Screens_BlackOut();

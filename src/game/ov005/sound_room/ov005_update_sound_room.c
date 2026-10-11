@@ -9,7 +9,7 @@ void Sound_PlaySe(u32 soundId);
 void MenuButtons_RemoveUnselectable(void);
 void Wallpaper_DestroyTasks(void);
 void Task_ResumeScript(Ov005Task *task);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void Screen1_DestroyTextTasks(void);
@@ -48,7 +48,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         task->step++;
         break;
     case 1:
-        if (func_02004828()) {
+        if (Screens_IsTransitionRunning()) {
             break;
         }
         saved0280 = data_027c0280;
@@ -142,7 +142,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         task->step++;
         break;
     case 103:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step++;
         }
         break;

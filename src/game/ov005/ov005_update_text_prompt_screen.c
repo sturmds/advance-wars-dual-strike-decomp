@@ -5,7 +5,7 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb80.h"
 
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_02004d3c(int a);
 void func_02004d64(int a);
 Task *func_020fcb08(int a);
@@ -34,7 +34,7 @@ void Ov005_UpdateTextPromptScreen(Ov005Task *task)
         task->step++;
     }
     case 1:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step = 10;
         }
         return;
@@ -62,7 +62,7 @@ void Ov005_UpdateTextPromptScreen(Ov005Task *task)
         task->step++;
         return;
     case 101:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step++;
         }
         return;

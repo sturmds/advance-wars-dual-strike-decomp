@@ -10,7 +10,7 @@
 
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void func_01ff8a2c(void *map, int x, int y, int width, int height, int tile);
 void func_0201d7d0(void);
@@ -100,7 +100,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         func_020048f4(32);
         task->step++;
     case 1:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             work->redrawRows = 0;
             task->step = 12;
         }
@@ -348,7 +348,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         func_0200493c(32);
         task->step++;
     case 101:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step++;
         }
         break;

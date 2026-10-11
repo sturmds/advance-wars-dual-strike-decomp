@@ -10,7 +10,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-BOOL func_02004828(void);
+BOOL Screens_IsTransitionRunning(void);
 void func_02004d3c(int a);
 void func_02004d64(int a);
 BOOL Text_IsPrinting(void);
@@ -53,7 +53,7 @@ void Ov005_UpdateScrollingTextPromptScreen(Ov005Task *task)
         func_02004d3c(64);
         task->step++;
     case 1:
-        if (!func_02004828()) {
+        if (!Screens_IsTransitionRunning()) {
             task->step = 10;
         }
         return;
@@ -81,7 +81,7 @@ void Ov005_UpdateScrollingTextPromptScreen(Ov005Task *task)
         task->step++;
         return;
     case 101:
-        if (func_02004828()) {
+        if (Screens_IsTransitionRunning()) {
             return;
         }
         MenuButton_Remove(253);
