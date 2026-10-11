@@ -10,7 +10,7 @@
 #define GXFIFO_LIGHT_VECTOR ((volatile u32 *)0x040004c8)
 #define GXFIFO_LIGHT_COLOR ((volatile u32 *)0x040004cc)
 
-void func_0210b97c(void);
+void G3X_Reset(void);
 void func_0210bbd8(const void *a, const void *b, void *c, int d, int e);
 
 extern u8 data_ov004_022bdcec[];
@@ -21,7 +21,7 @@ extern u8 data_ov004_022bf140[];
  * material colours, an identity matrix, and the polygon attributes. */
 void Ov004_Init3d(void)
 {
-    func_0210b97c();
+    G3X_Reset();
     func_0210bbd8(data_ov004_022bdcec, data_ov004_022bdce0, data_ov004_022bf140, 1, 0);
     *GXFIFO_LIGHT_VECTOR = 0x1ff00000;
     *GXFIFO_LIGHT_COLOR = 0x7fff;

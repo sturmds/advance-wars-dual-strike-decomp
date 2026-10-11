@@ -13,7 +13,7 @@ extern u8 data_02159168[];
 extern u8 data_0215915c[];
 extern u8 data_0229c678[];
 
-void func_0210b97c(void);
+void G3X_Reset(void);
 void func_0210bbd8(void *a, void *b, void *c, int d, int e);
 void Gfx3d_SetDefaultLight(void);
 
@@ -21,7 +21,7 @@ void Gfx3d_SetDefaultLight(void);
  * matrix and the default polygon attributes. */
 void Gfx3d_InitScene(void)
 {
-    func_0210b97c();
+    G3X_Reset();
     func_0210bbd8(data_02159168, data_0215915c, data_0229c678, 1, 0);
     Gfx3d_SetDefaultLight();
     GXFIFO_MTX_PUSH = 0;

@@ -113,6 +113,11 @@
 #define REG_CLEAR_COLOR ((volatile u32 *)0x04000350)
 #define REG_CLEAR_DEPTH ((volatile u16 *)0x04000354)
 #define CLEAR_COLOR_FOG 0x8000
+#define REG_POLYGON_ATTR ((volatile u32 *)0x040004a4)
+#define REG_TEXIMAGE_PARAM ((volatile u32 *)0x040004a8)
+#define REG_PLTT_BASE ((volatile u32 *)0x040004ac)
+#define DISP3DCNT_UNDERFLOW_ACK 0x2000 /* write 1 to clear the line buffer underflow flag */
+#define DISP3DCNT_OVERFLOW_ACK 0x1000 /* write 1 to clear the polygon/vertex RAM overflow flag */
 
 /* MTX_MODE values. */
 #define GX_MTXMODE_PROJECTION 0
@@ -132,6 +137,7 @@ int G3X_GetMtxStackLevelPV(int *level);
 void G3X_ResetMtxStack(void);
 void G3X_InitMtxStack(void);
 void G3X_ClearFifo(void);
+void G3X_Reset(void);
 void G3X_SetClearColor(int color, int alpha, int depth, int polygonId, BOOL fog);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
