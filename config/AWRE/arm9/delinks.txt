@@ -10371,6 +10371,10 @@ src/game/main/map/battle_end_award_coins.c:
     complete
     .text       start:0x020d6580 end:0x020d65e8
 
+src/game/main/map/battle_end_update_records.c:
+    complete
+    .text       start:0x020d65e8 end:0x020d6620
+
 src/game/main/func_020d69c0.c:
     complete
     .text       start:0x020d69c0 end:0x020d69e4
