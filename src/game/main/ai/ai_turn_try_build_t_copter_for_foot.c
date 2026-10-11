@@ -19,9 +19,9 @@ void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void func_0209378c(void);
 void func_0209316c(int index);
 int AiSite_PickNearestFoot(int arg);
-int func_02095bc0(int arg);
+int AiSites_HasType(int arg);
 
-/* Run first by AiTurn_TryBuildTCopter. Unless func_02095bc0(3) returns 1,
+/* Run first by AiTurn_TryBuildTCopter. Unless AiSites_HasType(3) returns 1,
  * takes each site that AiSite_PickNearestFoot(2) returns in turn (-1: none left) and
  * fills the range map with Mech moves from it over the whole map. A site
  * is skipped (kind 0xfe) when a unit in reach stands on a tile that
@@ -41,7 +41,7 @@ BOOL AiTurn_TryBuildTCopterForFoot(void)
     AiSite *site;
     int y;
 
-    if (func_02095bc0(3) == 1) {
+    if (AiSites_HasType(3) == 1) {
         return 0;
     }
     for (;;) {

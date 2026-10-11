@@ -2,7 +2,7 @@
 #include "game/unit_stats.h"
 
 BOOL func_020985b0(int mask);
-BOOL func_02095bc0(int siteType);
+BOOL AiSites_HasType(int siteType);
 int AiSite_PickBlackBombAirport(void);
 int Ai_CountUnitsOfType(int type);
 
@@ -22,7 +22,7 @@ BOOL AiBuild_WantsBlackBombInstead(int unitType)
         if (AiSite_PickBlackBombAirport() == -1) {
             return FALSE;
         }
-    } else if (!func_02095bc0(SITE_TYPE_BLACK_BOMB)) {
+    } else if (!AiSites_HasType(SITE_TYPE_BLACK_BOMB)) {
         return FALSE;
     }
     if (Ai_CountUnitsOfType(UNIT_BLACK_BOMB) != 0) {
