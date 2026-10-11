@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4282 / 6598 | 919540 / 1531944 | 60.02% | 0 | 0 |
+| game | 4284 / 6598 | 921168 / 1531944 | 60.13% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4420 / 7479 | 922960 / 1685994 | 54.74% | 1 | 30 |
+| all | 4422 / 7479 | 924588 / 1685994 | 54.84% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 2894 / 5180 | 488428 / 1082632 | 45.11% | 0 |
+| main | game | 2896 / 5180 | 490056 / 1082632 | 45.27% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -55,6 +55,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
+| `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
 | `src/game/main/menus/survival_select_draw.c` | SurvivalSelect_Draw | 1240 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |

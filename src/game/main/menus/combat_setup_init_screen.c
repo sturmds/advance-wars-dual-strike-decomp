@@ -13,7 +13,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void func_0200208c(int coId, void *dest, int paletteSlot, int army);
 void HelpText_Show(u32 textId, int tile);
 void func_020846d4(void);
-void func_02084914(void);
+void CombatSetup_DrawShop(void);
 void func_02088528(int a0);
 
 extern MenuState gMenuState;
@@ -79,7 +79,7 @@ void CombatSetup_InitScreen(void)
     for (i = 1; i < 5; i++) {
         MENU->combat.rows[i - 1].buttonId = 22;
     }
-    func_02084914();
+    CombatSetup_DrawShop();
     Menu_DrawFourLabels();
     func_020846d4();
     MenuButton_Add(0, 0, &data_02160e08, 0xfd);
