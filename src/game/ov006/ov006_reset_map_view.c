@@ -3,7 +3,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 void func_020c4eb4(void);
-void func_ov006_0235cfc0(void);
+void Ov006_NewMap(void);
 void func_020cafe4(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -14,7 +14,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 #define OV6   data_ov006_0236d640
 
 /* Resets the map view for the Design Room. With keep 0 it also puts the
- * scroll back to the top left and calls func_ov006_0235cfc0. */
+ * scroll back to the top left and calls Ov006_NewMap. */
 void Ov006_ResetMapView(int keep)
 {
     STATE->unk_18 = 0;
@@ -26,7 +26,7 @@ void Ov006_ResetMapView(int keep)
         STATE->unk_1c4->unk_24 = 0;
         STATE->unk_1c4->unk_26 = 0;
         STATE->unk_1c4->unk_28 = 0;
-        func_ov006_0235cfc0();
+        Ov006_NewMap();
     }
     STATE->unk_28 = 0;
     STATE->unk_2a = 0;

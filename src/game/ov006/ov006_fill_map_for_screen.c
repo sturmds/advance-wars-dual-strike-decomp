@@ -5,7 +5,7 @@
 
 void func_020c7104(void);
 void func_020c4448(void);
-void func_ov006_0235cfc0(void);
+void Ov006_NewMap(void);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void func_ov006_02363198(int x, int y);
 void Ov006_FindHqs(void);
@@ -17,7 +17,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Sets up the map for ov006 screen screenId (negative: func_ov006_0235cfc0
+/* Sets up the map for ov006 screen screenId (negative: Ov006_NewMap
  * does it). Builds the row start table, then sets every tile: terrain 1
  * (plain), 4 (wood) or 7 (sea) for screens 1, 4 and 7, and for screen 3 mountain
  * with an extra call per tile. The tile store as (tiles + x)[row] is needed to
@@ -29,7 +29,7 @@ void Ov006_FillMapForScreen(int screenId)
     int x;
 
     if (screenId < 0) {
-        func_ov006_0235cfc0();
+        Ov006_NewMap();
         return;
     }
     func_020c7104();
