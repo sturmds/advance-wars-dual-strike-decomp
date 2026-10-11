@@ -5812,6 +5812,10 @@ src/game/main/menus/co_select_screen_handle_x.c:
     complete
     .text       start:0x02041944 end:0x020419c8
 
+src/game/main/menus/co_select_screen_add_buttons.c:
+    complete
+    .text       start:0x020419c8 end:0x02041a94
+
 src/game/main/func_02041a94.c:
     complete
     .text       start:0x02041a94 end:0x02041aa0

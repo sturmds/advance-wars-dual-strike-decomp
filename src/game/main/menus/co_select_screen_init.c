@@ -44,7 +44,7 @@ void func_02028978(void);
 void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
-void func_020419c8(void);
+void CoSelectScreen_AddButtons(void);
 void func_02044854(u8 column, u8 row);
 void func_020448d8(void);
 void func_02044950(void);
@@ -186,6 +186,6 @@ void CoSelectScreen_Init(void)
     PaletteCycle_Start(20);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_020419c8();
+    CoSelectScreen_AddButtons();
     MenuButtons_DisableTouch();
 }
