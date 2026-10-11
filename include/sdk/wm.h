@@ -143,4 +143,53 @@ typedef struct WMPortRecvCallback {
     u16 aid;                           /* the sender */
 } WMPortRecvCallback;
 
+/* What WMStatus.state holds. */
+#define WM_STATE_IDLE 2
+#define WM_STATE_CLASS1 3
+#define WM_STATE_SCAN 5
+#define WM_STATE_PARENT 7
+#define WM_STATE_CHILD 8
+#define WM_STATE_MP_PARENT 9
+#define WM_STATE_MP_CHILD 10
+#define WM_STATE_DCF_CHILD 11
+
+/* The ARM7 keeps these up to date; the ARM9 invalidates its cache lines
+ * before each read. Only the fields read so far are named. */
+typedef struct WMStatus {
+    u16 state;                         /* WIRELESS_PHASE_* */
+    u8 pad_02[0x0a];
+    u32 unk_0c;
+    u8 pad_10[0xa8];
+    u16 linkLevel;
+    u8 pad_ba[0x3a];
+    u16 unk_f4;
+    u8 pad_f6[0x88];
+    u16 childBitmap;                   /* bit n set: the child with aid n is connected */
+    u8 pad_180[4];
+    u16 unk_184;
+    u8 pad_186[8];
+    u16 unk_18e;
+    u16 unk_190;
+} WMStatus;
+
+/* The ARM9 side's work area. */
+typedef struct WMArm9Buf {
+    u8 pad_00[4];
+    WMStatus *status;
+    u8 pad_08[4];
+    void *requestBuf;                  /* where a command's arguments are written */
+    u8 pad_10[0xac];
+    void *indCallback;
+    void *portCallback[16];
+    void *portCallbackArg[16];
+} WMArm9Buf;
+
+/* WM internals shared by the command functions. func_02116cf0 returns 0 when
+ * the current state is one of the count states listed after it, else an error
+ * code. func_02116df4 returns 3 (illegal state) before the WM is initialised.
+ * func_02116e20 sends the command with its argument count, 0 on failure. */
+int func_02116cf0(int count, ...);
+int func_02116df4(void);
+WMArm9Buf *func_02116e10(void);
+
 #endif

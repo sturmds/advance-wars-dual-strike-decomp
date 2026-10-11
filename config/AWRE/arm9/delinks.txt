@@ -21999,6 +21999,10 @@ src/sdk/wm/wm_get_dispersion_scan_period.c:
     complete
     .text       start:0x0211721c end:0x021172c0
 
+src/sdk/wm/wm_get_link_level.c:
+    complete
+    .text       start:0x021172c0 end:0x02117368
+
 src/game/main/func_0211ba5c.c:
     complete
     .text       start:0x0211ba5c end:0x0211ba80
