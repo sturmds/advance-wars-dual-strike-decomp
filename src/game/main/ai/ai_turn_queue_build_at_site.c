@@ -3,14 +3,14 @@
 #include "game/ai_site.h"
 #include "game/unit_action.h"
 
-u8 func_020931e4(u8 unitType, int arg);
+u8 AiBuild_RollChoice(u8 unitType, int arg);
 
 /* Common tail of the AiTurn_TryBuild* functions once gUnitAction.target holds
- * the unit type. Passes the type to func_020931e4 (guess: it picks a value the
+ * the unit type. Passes the type to AiBuild_RollChoice (guess: it picks a value the
  * action carries in unk_07), marks the site as used and remembers its index. */
 void AiTurn_QueueBuildAtSite(int index)
 {
-    gUnitAction.unk_07 = func_020931e4(gUnitAction.target, 0);
+    gUnitAction.unk_07 = AiBuild_RollChoice(gUnitAction.target, 0);
     data_0229e5bc[index].kind = SITE_KIND_SKIPPED;
     data_021619c0->unk_07++;
     data_021619c0->buildSite = index;
