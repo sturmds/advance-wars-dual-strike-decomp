@@ -13,7 +13,7 @@ extern MenuButtonTemplate data_02158f54;
 void ScreenConfig_RunActionHook(void);
 void Font_LoadDigits(int baseTile);
 void func_020c4018(void);
-void func_020bbbb0(int x, int y, int first);
+void BuildMenu_DrawColumnWithButtons(int x, int y, int first);
 void Sound_PlaySe(int id);
 void UnitInfoPanel_OpenForTypeOnSecondScreen(int owner, int unitType);
 void SidePanel_Place(int mode);
@@ -37,10 +37,10 @@ void BuildMenu_Setup(Task *task)
     BUILD_MENU_VARS(task)->lastEntry = gBuildMenuCount - 1;
     MenuButton_Select(0);
     if (BUILD_MENU_VARS(task)->lastEntry <= BUILD_MENU_ROWS) {
-        func_020bbbb0(7, 6, 0);
+        BuildMenu_DrawColumnWithButtons(7, 6, 0);
     } else {
-        func_020bbbb0(0, 6, 0);
-        func_020bbbb0(16, 6, BUILD_MENU_ROWS);
+        BuildMenu_DrawColumnWithButtons(0, 6, 0);
+        BuildMenu_DrawColumnWithButtons(16, 6, BUILD_MENU_ROWS);
     }
     MenuButton_AddReserved(0, 0, &data_02158f54);
     Sound_PlaySe(0x1000a);

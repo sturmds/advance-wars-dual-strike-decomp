@@ -3321,7 +3321,7 @@ func_020bba44 kind:function(arm,size=0x1c) addr:0x020bba44
 func_020bba60 kind:function(arm,size=0x24) addr:0x020bba60
 BuildMenu_SnapSidePanelLeft kind:function(arm,size=0x24) addr:0x020bba84
 BuildMenu_Setup kind:function(arm,size=0x108) addr:0x020bbaa8
-func_020bbbb0 kind:function(arm,size=0x98) addr:0x020bbbb0
+BuildMenu_DrawColumnWithButtons kind:function(arm,size=0x98) addr:0x020bbbb0
 BuildMenu_DrawColumn kind:function(arm,size=0x20c) addr:0x020bbc48
 func_020bbe54 kind:function(arm,size=0x24) addr:0x020bbe54
 BuildMenu_FillList kind:function(arm,size=0x138) addr:0x020bbe78
@@ -7593,7 +7593,7 @@ data_021658c8 kind:data(any) addr:0x021658c8
 gMusicMenuHelpFns kind:data(any) addr:0x021658d0
 data_021658d8 kind:data(any) addr:0x021658d8
 gAnimationMenuHelpFns kind:data(any) addr:0x021658e8
-data_021658fc kind:data(any) addr:0x021658fc
+gBuildMenuRowButton kind:data(any) addr:0x021658fc
 gNextTurnButton kind:data(any) addr:0x02165924
 data_0216594c kind:data(any) addr:0x0216594c
 gSendNoSlotScript kind:data(any) addr:0x0216597c

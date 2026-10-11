@@ -12259,6 +12259,10 @@ src/game/main/menus/build_menu_setup.c:
     complete
     .text       start:0x020bbaa8 end:0x020bbbb0
 
+src/game/main/menus/build_menu_draw_box_and_buttons.c:
+    complete
+    .text       start:0x020bbbb0 end:0x020bbc48
+
 src/game/main/menus/build_menu_draw_column.c:
     complete
     .text       start:0x020bbc48 end:0x020bbe54
