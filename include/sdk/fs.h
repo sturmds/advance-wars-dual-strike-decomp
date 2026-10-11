@@ -219,6 +219,11 @@ typedef struct OverlayTableRow {
     u32 flag : 8;
 } OverlayTableRow;
 
+typedef enum MIProcessor {
+    MI_PROCESSOR_ARM9,
+    MI_PROCESSOR_ARM7
+} MIProcessor;
+
 typedef struct FSOverlayInfo {
     OverlayTableRow header;
     u32 target;                        /* processor the overlay is for */

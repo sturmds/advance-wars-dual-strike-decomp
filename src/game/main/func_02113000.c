@@ -1,9 +1,9 @@
 #include "types.h"
 
-void func_0211301c(void);
+void Overlay_RunDestructorsInRange(void);
 
 int func_02113000(void)
 {
-    func_0211301c();
+    Overlay_RunDestructorsInRange();
     return 1;
 }
