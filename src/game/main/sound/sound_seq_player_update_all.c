@@ -7,7 +7,7 @@ extern s16 data_02151534[];                /* volume table */
 /* Lowest volume value the hardware channels take. */
 #define SOUND_DECIBEL_FLOOR (-723)
 
-u32 func_02110968(void);
+u32 SND_GetPlayerStatus(void);
 BOOL SND_IsFinishedCommandTag(u32 tick);
 void SoundSeqPlayer_Release(SoundSeqPlayer *player);
 void func_0210fe48(int hwChannel, int volume);
@@ -22,7 +22,7 @@ void SoundSeqPlayer_StopNow(SoundSeqPlayer *player);
  * closing fade has ended. */
 void SoundSeqPlayer_UpdateAll(void)
 {
-    u32 activeChannels = func_02110968();
+    u32 activeChannels = SND_GetPlayerStatus();
     SoundSeqPlayer *player = LinkList_GetNext(&data_022a805c, NULL);
     SoundSeqPlayer *next;
     int zero = 0;                          /* needed to match: the original reads the 0 from a stack slot */
