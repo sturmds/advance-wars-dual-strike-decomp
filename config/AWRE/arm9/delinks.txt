@@ -21986,6 +21986,10 @@ src/game/main/func_02115420.c:
     complete
     .text       start:0x02115420 end:0x02115440
 
+src/sdk/card/card_wait_backup_async.c:
+    complete
+    .text       start:0x02115440 end:0x0211549c
+
 src/sdk/func_0211549c.c:
     complete
     .text       start:0x0211549c end:0x021154ac
