@@ -132,4 +132,34 @@ typedef struct IsdRegionState {
 void Isd_OpenDebugRegion(IsdRegionState *saved);
 void Isd_CloseDebugRegion(IsdRegionState *saved);
 
+void Isd_ReportFailure(const char *file, int line, const char *expression, BOOL isFatal);
+
+/*
+ * The table of loaded overlays the library keeps for the debugger (isdoverlay.c).
+ * The field names come from the library's own assertion strings (m_VMA, m_SIZE,
+ * m_header.m_nInfoCount).
+ */
+typedef struct IsdOverlayEntry {
+    u32 vma;
+    u32 size;
+    u32 unk_08;
+    u32 unk_0C;
+} IsdOverlayEntry;
+
+typedef struct IsdOverlayHeader {
+    u32 infoCount;
+    u32 unk_04[3];
+} IsdOverlayHeader;
+
+typedef struct IsdOverlayInfo {
+    IsdOverlayHeader header;
+    IsdOverlayEntry info[];
+} IsdOverlayInfo;
+
+/* "isdoverlay.c", the file name in the overlay table's assertions. */
+extern char gIsdOverlayFileName[];
+
+void Isd_OverlayTableRemove(IsdOverlayInfo *table, u32 index);
+void Isd_OverlayTableInsert(IsdOverlayInfo *table, int index);
+
 #endif

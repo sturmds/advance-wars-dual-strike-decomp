@@ -23150,6 +23150,14 @@ src/sdk/isd/isd_open_debug_region.c:
     complete
     .text       start:0x02121940 end:0x021219b0
 
+src/sdk/isd/isd_overlay_table_remove.c:
+    complete
+    .text       start:0x021219b0 end:0x02121a2c
+
+src/sdk/isd/isd_overlay_table_insert.c:
+    complete
+    .text       start:0x02121a2c end:0x02121ab8
+
 src/sdk/isd/isd_fiq.c:
     complete
     .text       start:0x02121ab8 end:0x02121b04
