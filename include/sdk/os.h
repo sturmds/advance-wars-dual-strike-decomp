@@ -93,10 +93,12 @@ struct OSThread {
     OSThread *next;
     u32 id;
     u32 priority;
-    u8 pad_74[4];
+    void *profiler;
     OSMutex *mutex;                /* the mutex this thread is waiting for */
     OSMutexQueue mutexQueue;
-    u8 pad_84[0xc];
+    u32 stackTop;                  /* lowest address of the stack */
+    u32 stackBottom;               /* one past its highest address */
+    u32 stackWarningOffset;
     OSThreadQueue joinQueue;
 };
 

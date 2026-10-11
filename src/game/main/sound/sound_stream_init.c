@@ -20,7 +20,7 @@ extern u8 data_022a8d00[SOUND_STREAM_READ_BUFFER_SIZE + SOUND_STREAM_THREAD_STAC
 
 BOOL SoundStream_AllocBuffers(void *heap);
 void func_0210e0c0(void *mutex);
-void func_0210d688(void *thread, void (*entry)(void), void *arg, void *stackTop, u32 stackSize,
+void OS_CreateThread(void *thread, void (*entry)(void), void *arg, void *stackTop, u32 stackSize,
                    u32 priority);
 void OS_WakeupThreadDirect(void *thread);
 void SoundStrm_Init(SoundStrm *strm);
@@ -58,7 +58,7 @@ void SoundStream_Init(u32 threadPriority, void *heap)
     }
     SoundStream_AllocBuffers(heap);
     func_0210e0c0(data_022a8ad8);
-    func_0210d688(gSoundStreamThread, SoundStream_ThreadMain, NULL,
+    OS_CreateThread(gSoundStreamThread, SoundStream_ThreadMain, NULL,
                   data_022a8d00 + SOUND_STREAM_READ_BUFFER_SIZE + SOUND_STREAM_THREAD_STACK_SIZE,
                   SOUND_STREAM_THREAD_STACK_SIZE, threadPriority);
     OS_WakeupThreadDirect(gSoundStreamThread);
