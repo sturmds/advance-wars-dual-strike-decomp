@@ -8,7 +8,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CoPairBestDamageVsDived(int attackerType, int targetType, int arg);
 int Ai_CoPairBestDamage(int attackerType, int targetType, int arg);
 int func_0209e814(int attackerType, int targetType, int arg);
-int func_02095a7c(int score, int unitType, int arg);
+int AiBuild_ScaleByReach(int score, int unitType, int arg);
 
 #define MOVE_GROUP_GROUND (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)
 
@@ -19,7 +19,7 @@ int func_02095a7c(int score, int unitType, int arg);
  * ships, for Subs against Battleships and against aircraft (twice for
  * Fighters). Anti-Air and Cruisers against aircraft also depend on
  * AiBuildState.unk_06 and on whether the player has one already. The
- * result goes through func_02095a7c and the profile's percentage for the
+ * result goes through AiBuild_ScaleByReach and the profile's percentage for the
  * attacker type. */
 int AiBuild_RateAttackerVsTarget(int attacker, int target)
 {
@@ -76,7 +76,7 @@ int AiBuild_RateAttackerVsTarget(int attacker, int target)
             score <<= 1;
         }
     }
-    score = func_02095a7c(score, attacker, 2);
+    score = AiBuild_ScaleByReach(score, attacker, 2);
     score *= gAiProfile->units[attacker - 1].unk_00;
     return HwDiv32(score, 100);
 }

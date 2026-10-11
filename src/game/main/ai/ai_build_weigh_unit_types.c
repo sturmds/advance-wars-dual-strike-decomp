@@ -16,7 +16,7 @@ int AiBuild_PickAntiAir(void);
 int AiBuild_GetTargetGroup(u8 type);
 BOOL AiProfile_AllowsBuild(u8 type);
 int AiBuild_RateAttackerVsTarget(u8 type, int targetType);
-int func_02095a7c(int damage, int type, int arg);
+int AiBuild_ScaleByReach(int damage, int type, int arg);
 int Ai_BestDamageVsDived(int unitType, int targetType, int powerState);
 int func_0209e814(int attacker, int target, int arg);
 int Ai_CountUnitsOfType(int type);
@@ -86,7 +86,7 @@ void AiBuild_WeighUnitTypes(void)
             } else {
                 damage = func_0209e814(attacker, gAiTargetGroupType[group], 0) * data_0229ea84[attacker];
             }
-            damage = func_02095a7c(damage, attacker, 0);
+            damage = AiBuild_ScaleByReach(damage, attacker, 0);
             if (Ov000_gUnitStats[gAiTargetGroupType[group]].moveGroup & MOVE_GROUP_AIR) {
                 /* Of Anti-Air and Cruiser, the one AiBuild_PickAntiAir did not pick counts half. */
                 if (attacker == UNIT_ANTI_AIR) {

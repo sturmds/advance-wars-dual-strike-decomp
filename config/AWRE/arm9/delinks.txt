@@ -8550,6 +8550,10 @@ src/game/main/ai/ai_build_rate_attacker_vs_target.c:
     complete
     .text       start:0x02095888 end:0x02095a7c
 
+src/game/main/ai/ai_build_scale_by_reach.c:
+    complete
+    .text       start:0x02095a7c end:0x02095af8
+
 src/game/main/ai/ai_site_pick_airport.c:
     complete
     .text       start:0x02095e0c end:0x02095f28
