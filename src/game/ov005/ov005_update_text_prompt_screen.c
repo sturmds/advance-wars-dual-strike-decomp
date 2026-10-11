@@ -9,7 +9,7 @@ BOOL func_02004828(void);
 void func_02004d3c(int a);
 void func_02004d64(int a);
 Task *func_020fcb08(int a);
-BOOL func_020fccbc(Task *task);
+BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
@@ -70,7 +70,7 @@ void Ov005_UpdateTextPromptScreen(Ov005Task *task)
         work->songTask = func_020fcb08(1);
         task->step++;
     case 103:
-        if (func_020fccbc(work->songTask)) {
+        if (BrightnessFade_IsActive(work->songTask)) {
             return;
         }
         func_020fccb0(work->songTask);

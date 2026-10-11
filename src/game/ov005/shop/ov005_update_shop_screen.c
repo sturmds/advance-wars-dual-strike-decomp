@@ -19,7 +19,7 @@ int func_02014c24(void);
 BOOL PlayRecords_SpendPoints(u32 points);
 void EventSequenceTask_StartWithSongFade(Ov005Task *task);
 Task *func_020fcb08(int song);
-BOOL func_020fccbc(Task *task);
+BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmUnk0c(void);
@@ -380,7 +380,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         task->step++;
         break;
     case 104:
-        if (!func_020fccbc(work->songTask)) {
+        if (!BrightnessFade_IsActive(work->songTask)) {
             func_020fccb0(work->songTask);
             Task_ResumeScript(task);
             return;

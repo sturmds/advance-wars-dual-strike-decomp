@@ -3,7 +3,7 @@
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_02351dd4.h"
 
-BOOL func_020fccbc(Task *task);
+BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 void Task_ResumeScript(Ov005Task *task);
 
@@ -12,7 +12,7 @@ void Ov005Screen_WaitTaskThenResume(Ov005Task *task)
 {
     Unk_ov005_02351dd4 *work = task->work;
 
-    if (func_020fccbc(work->waitTask)) {
+    if (BrightnessFade_IsActive(work->waitTask)) {
         return;
     }
     func_020fccb0(work->waitTask);

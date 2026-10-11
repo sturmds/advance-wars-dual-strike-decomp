@@ -1,15 +1,15 @@
 #include "types.h"
 
-void MapBg_DrawTileColumn(void);
-void func_020f69c0(int a0, int a1, int a2, int a3);
+void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY);
+void func_020f69c0(int col, int row, int tileX, int tileY);
 BOOL func_020f788c(void);
-void func_020f68b8(int a0, int a1, int a2, int a3);
+void func_020f68b8(int col, int row, int tileX, int tileY);
 
-void MapView_DrawLeftColumn(int a0, int a1, int a2, int a3)
+void MapView_DrawLeftColumn(int col, int row, int tileX, int tileY)
 {
-    MapBg_DrawTileColumn();
-    func_020f69c0(a0, a1, a2, a3);
+    MapBg_DrawTileColumn(col, row, tileX, tileY);
+    func_020f69c0(col, row, tileX, tileY);
     if (func_020f788c()) {
-        func_020f68b8(a0, a1, a2, a3);
+        func_020f68b8(col, row, tileX, tileY);
     }
 }

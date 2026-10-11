@@ -3899,7 +3899,7 @@ src/game/main/text/break_text_load_change_font.c:
     complete
     .text       start:0x0202a16c end:0x0202a2c4
 
-src/game/main/func_0202a3c8.c:
+src/game/main/text/break_text_get_letter_x.c:
     complete
     .text       start:0x0202a3c8 end:0x0202a3e0
 
@@ -15380,7 +15380,7 @@ src/game/main/func_020fccb0.c:
     complete
     .text       start:0x020fccb0 end:0x020fccbc
 
-src/game/main/func_020fccbc.c:
+src/game/main/brightness_fade_is_active.c:
     complete
     .text       start:0x020fccbc end:0x020fccc4
 
@@ -15460,7 +15460,7 @@ src/game/main/func_020fd3ac.c:
     complete
     .text       start:0x020fd3ac end:0x020fd3c0
 
-src/game/main/func_020fd3c0.c:
+src/game/main/palette_fade_free_colors.c:
     complete
     .text       start:0x020fd3c0 end:0x020fd3ec
 

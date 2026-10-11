@@ -3,7 +3,7 @@
 
 extern SaveSlotTable data_02297f3c;
 
-int Save_FindNewestRecord(void);
+u16 Save_FindNewestRecord(int recordId);
 
 /* Returns 1 when recordId cannot be used: it is 0xff, Save_FindNewestRecord returns
  * 0xffff, a slot without the mark holds it, or a marked slot holds another
@@ -15,7 +15,7 @@ int func_0201fe28(int recordId)
     if (recordId == 0xff) {
         return 1;
     }
-    if (Save_FindNewestRecord() == 0xffff) {
+    if (Save_FindNewestRecord(recordId) == 0xffff) {
         return 1;
     }
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {

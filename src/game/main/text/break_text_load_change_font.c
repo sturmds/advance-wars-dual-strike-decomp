@@ -15,7 +15,7 @@ extern char data_021597c8[];           /* "/ohashi/res_changefont" */
 #define CHANGE_FONT_GLYPHS      27     /* A-Z, then '*' */
 #define CHANGE_FONT_GLYPH_BYTES 0x100  /* 8 OBJ tiles: 16x32 pixels */
 
-/* Like BreakText_Load, with the font res_changefont: sets up *data_02159680
+/* Like BreakText_Load, with the font res_changefont: sets up *gBreakText
  * for text, which may hold only 'A'-'Z' and '*', each 16 pixels wide. Loads
  * the glyphs into OBJ VRAM from tile on and the font palette into OBJ
  * palette number palette. Returns the number of letters. */
@@ -31,7 +31,7 @@ u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette)
     count = 0;
     x = count;
     while (text[count] != 0) {
-        data_02159680->letterX[count] = x;
+        gBreakText->letterX[count] = x;
         x += 16;
         /* needed to match: an if/else becomes conditional stores */
         switch (text[count]) {
@@ -44,18 +44,18 @@ u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette)
         }
         count++;
     }
-    data_02159680->width = x;
-    data_02159680->tile = tile;
-    data_02159680->palette = palette;
+    gBreakText->width = x;
+    gBreakText->tile = tile;
+    gBreakText->palette = palette;
     font = Mem_Alloc(CHANGE_FONT_GLYPHS * CHANGE_FONT_GLYPH_BYTES);
     res = File_Load(data_021597c8);
     Data_Unpack(res, font);
     for (i = 0; i < count; i++) {
         Mem_Copy32(font + glyphs[i] * CHANGE_FONT_GLYPH_BYTES,
-                   data_027c0280->objVram + (data_02159680->tile + i * 8) * 32,
+                   data_027c0280->objVram + (gBreakText->tile + i * 8) * 32,
                    CHANGE_FONT_GLYPH_BYTES);
     }
-    Palette_Load(res + 0x428, (u16)((data_02159680->palette + 16) << 5), 32);
+    Palette_Load(res + 0x428, (u16)((gBreakText->palette + 16) << 5), 32);
     Mem_Free(res);
     Mem_Free(font);
     return count;

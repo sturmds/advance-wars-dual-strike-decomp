@@ -1161,7 +1161,7 @@ func_0202a144 kind:function(arm,size=0x28) addr:0x0202a144
 BreakText_LoadChangeFont kind:function(arm,size=0x158) addr:0x0202a16c
 func_0202a2c4 kind:function(arm,size=0xd8) addr:0x0202a2c4
 func_0202a39c kind:function(arm,size=0x2c) addr:0x0202a39c
-func_0202a3c8 kind:function(arm,size=0x18) addr:0x0202a3c8
+BreakText_GetLetterX kind:function(arm,size=0x18) addr:0x0202a3c8
 BreakText_Load kind:function(arm,size=0x384) addr:0x0202a3e0
 Screen1_DestroyTextTasks kind:function(arm,size=0x5c) addr:0x0202a764
 func_0202a7c0 kind:function(arm,size=0x2c) addr:0x0202a7c0
@@ -4824,7 +4824,7 @@ func_020fcbd8 kind:function(arm,size=0x10) addr:0x020fcbd8
 Sound_StartSongSwitchTask kind:function(arm,size=0x34) addr:0x020fcbe8
 SongSwitchTask_Update kind:function(arm,size=0x94) addr:0x020fcc1c
 func_020fccb0 kind:function(arm,size=0xc) addr:0x020fccb0
-func_020fccbc kind:function(arm,size=0x8) addr:0x020fccbc
+BrightnessFade_IsActive kind:function(arm,size=0x8) addr:0x020fccbc
 func_020fccc4 kind:function(arm,size=0x14) addr:0x020fccc4
 func_020fccd8 kind:function(arm,size=0x28) addr:0x020fccd8
 BrightnessFade_StartInWhiteScreen1 kind:function(arm,size=0x28) addr:0x020fcd00
@@ -4844,7 +4844,7 @@ PaletteFade_StartFromBlackScreen1 kind:function(arm,size=0x40) addr:0x020fd1a0
 PaletteFade_StartFromBlack kind:function(arm,size=0x40) addr:0x020fd1e0
 PaletteFade_Start kind:function(arm,size=0x18c) addr:0x020fd220
 func_020fd3ac kind:function(arm,size=0x14) addr:0x020fd3ac
-func_020fd3c0 kind:function(arm,size=0x2c) addr:0x020fd3c0
+PaletteFade_FreeColors kind:function(arm,size=0x2c) addr:0x020fd3c0
 PaletteFade_Update kind:function(arm,size=0x174) addr:0x020fd3ec
 Screens_BlackOut kind:function(arm,size=0xb8) addr:0x020fd560
 func_020fd618 kind:function(arm,size=0xc) addr:0x020fd618
@@ -7047,7 +7047,7 @@ data_021595cc kind:data(any) addr:0x021595cc
 data_02159648 kind:data(any) addr:0x02159648
 data_02159650 kind:data(any) addr:0x02159650
 data_02159668 kind:data(any) addr:0x02159668
-data_02159680 kind:data(any) addr:0x02159680
+gBreakText kind:data(any) addr:0x02159680
 data_02159684 kind:data(any) addr:0x02159684
 data_021596c8 kind:data(any) addr:0x021596c8
 data_02159748 kind:data(any) addr:0x02159748

@@ -22,7 +22,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Screens_BlackOut(void);
 void func_020ff07c(CampaignRecap *work);
 Task *func_020fcb08(int arg);
-BOOL func_020fccbc(Task *task);
+BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 void Task_ResumeScript(CampaignRecapTask *task);
 void func_020ff7d0(CampaignRecap *work);
@@ -295,7 +295,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
         work->songFadeTask = func_020fcb08(1);
         task->step++;
     case 103:
-        if (!func_020fccbc(work->songFadeTask)) {
+        if (!BrightnessFade_IsActive(work->songFadeTask)) {
             func_020fccb0(work->songFadeTask);
             Task_ResumeScript(task);
         }

@@ -8,7 +8,7 @@
  * (Ov005Task.work). Only the child task pointer is known. */
 typedef struct Unk_ov005_02351dd4 {
     u8 pad_00[0x20];
-    Task *waitTask;                    /* done when func_020fccbc returns 0 */
+    Task *waitTask;                    /* done when BrightnessFade_IsActive returns 0 */
 } Unk_ov005_02351dd4;
 
 #endif

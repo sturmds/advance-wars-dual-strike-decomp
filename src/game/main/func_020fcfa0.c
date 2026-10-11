@@ -1,8 +1,9 @@
 #include "types.h"
+#include "game/brightness_fade.h"
 
-void BrightnessFade_Update(const void *src, void *dst, u32 size);
+void BrightnessFade_Update(BrightnessFadeTask *fade);
 
-void func_020fcfa0(const void *src, void *dst, u32 size)
+void func_020fcfa0(BrightnessFadeTask *fade)
 {
-    BrightnessFade_Update(src, dst, size);
+    BrightnessFade_Update(fade);
 }

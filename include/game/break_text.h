@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* A line of large letters drawn as sprites, such as the CO power name in
- * the power banner. data_02159680 points to one in bss. */
+ * the power banner. gBreakText points to one in bss. */
 typedef struct BreakText {
     s16 letterX[32];                   /* x of each letter, centred in its cell */
     u16 tile;                          /* first OBJ tile of the letters */
@@ -13,6 +13,6 @@ typedef struct BreakText {
     u32 tagFont;                       /* 1: tag power font, 32-pixel cells; else 16-pixel cells */
 } BreakText;
 
-extern BreakText *data_02159680;
+extern BreakText *gBreakText;
 
 #endif

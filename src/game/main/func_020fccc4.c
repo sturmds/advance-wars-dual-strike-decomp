@@ -1,15 +1,9 @@
 #include "types.h"
+#include "game/brightness_fade.h"
 
-typedef struct Unk_020fccc4 Unk_020fccc4;
-
-struct Unk_020fccc4 {
-    u8 pad_00[0x30];
-    int unk_30;
-    int unk_34;
-};
-
-void func_020fccc4(Unk_020fccc4 *a0)
+/* Marks the fade as running from its first step. */
+void func_020fccc4(BrightnessFadeTask *fade)
 {
-    a0->unk_34 = 0;
-    a0->unk_30 = 1;
+    fade->step = 0;
+    fade->active = 1;
 }

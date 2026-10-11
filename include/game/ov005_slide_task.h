@@ -9,7 +9,7 @@
 typedef struct Ov005SlideTask {
     u8 pad_00[0x2c];
     Unk_ov005_0236bb90 *work;
-    int busy;                          /* 1 while sliding; func_020fccbc reads it */
+    int busy;                          /* 1 while sliding; BrightnessFade_IsActive reads it */
     u32 step;
     u8 pad_38[0x3c - 0x38];
     int frame;

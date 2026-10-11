@@ -13,7 +13,7 @@ BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void Screens_BlackOut(void);
 Task *func_020fcb08(int arg);
-BOOL func_020fccbc(Task *task);
+BOOL BrightnessFade_IsActive(Task *task);
 void func_020fccb0(Task *task);
 void Task_ResumeScript(Ov005Task *task);
 void Screen_SetCurrent(void *state);
@@ -169,7 +169,7 @@ void Ov005_UpdateMessageScreen(Ov005Task *task)
         work->songTask = func_020fcb08(1);
         task->step++;
     case 103:
-        if (func_020fccbc(work->songTask)) {
+        if (BrightnessFade_IsActive(work->songTask)) {
             return;
         }
         func_020fccb0(work->songTask);
