@@ -11,6 +11,22 @@ typedef struct IsdSharedBlock {
 
 #define ISD_SHARED ((volatile IsdSharedBlock *)0x027fff60)
 
+BOOL Isd_TestFlags(u32 mask);
+
+/* The cartridge bus setting saved before the library uses the debugger's buffers, and put back afterwards. */
+typedef struct IsdBusState {
+    u16 exmemcnt;
+    u16 sharedWord;
+    u16 active;
+} IsdBusState;
+
+/* A halfword in the shared block that holds the debugger's current mode. */
+#define ISD_SHARED_MODE (*(vu16 *)0x027fff72)
+
+/* Debugger buffer on the cartridge bus: a control halfword and a register that is read and discarded. */
+#define ISD_BUFFER_CONTROL (*(vu16 *)0x09fe2ffe)
+#define ISD_BUFFER_STATUS (*(vu16 *)0x09fe20f0)
+
 /*
  * Reads one byte with a halfword load. The library does this for every byte
  * it reads, because some of the memory it uses (the debugger's buffers on the

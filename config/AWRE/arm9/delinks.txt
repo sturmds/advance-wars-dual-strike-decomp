@@ -22323,6 +22323,14 @@ src/sdk/isd/isd_string_length.c:
     complete
     .text       start:0x02120a9c end:0x02120ad4
 
+src/sdk/isd/isd_bus_restore.c:
+    complete
+    .text       start:0x02120df4 end:0x02120e78
+
+src/sdk/isd/isd_bus_save.c:
+    complete
+    .text       start:0x02120e78 end:0x02120ee8
+
 src/sdk/isd/func_02120f18.c:
     .text       start:0x02120f18 end:0x02120f38
 
