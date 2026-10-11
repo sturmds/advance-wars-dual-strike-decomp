@@ -5,8 +5,8 @@ void *Mem_Alloc(u32 size);
 void Mem_Free(void *p);
 s32 HwDiv32(s32 numerator, s32 denominator);
 s32 HwMod32(s32 numerator, s32 denominator);
-void func_0202d254(MapList *lists);
-void func_0202d3ac(MapList *lists, int a);
+void MapSelect_BuildWarRoomLists(MapList *lists);
+void MapSelect_BuildLists(MapList *lists, int a);
 
 /* Points the map select menu of the current mode (War Room, or Versus
  * with one or two maps) at mapId: the list that holds it, its page and
@@ -31,9 +31,9 @@ void MapSelect_PointAtMap(int mapId)
     }
     set = Mem_Alloc(sizeof(MapListSet));
     if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-        func_0202d254(set->lists);
+        MapSelect_BuildWarRoomLists(set->lists);
     } else {
-        func_0202d3ac(set->lists, 0);
+        MapSelect_BuildLists(set->lists, 0);
     }
     TABLES.unk_108 = STATE->unk_59;
     for (i = 0; i < set->count; i++) {

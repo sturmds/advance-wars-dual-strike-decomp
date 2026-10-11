@@ -4639,6 +4639,26 @@ src/game/main/func_0202d248.c:
     complete
     .text       start:0x0202d248 end:0x0202d254
 
+src/game/main/menus/map_select_build_war_room_lists.c:
+    complete
+    .text       start:0x0202d254 end:0x0202d2b4
+
+src/game/main/menus/map_select_fill_war_room_list.c:
+    complete
+    .text       start:0x0202d2b4 end:0x0202d3ac
+
+src/game/main/menus/map_select_build_lists.c:
+    complete
+    .text       start:0x0202d3ac end:0x0202d414
+
+src/game/main/menus/map_select_fill_list.c:
+    complete
+    .text       start:0x0202d414 end:0x0202d4ec
+
+src/game/main/menus/map_select_list_kind_to_map_case.c:
+    complete
+    .text       start:0x0202d4ec end:0x0202d564
+
 src/game/main/menus/map_select_is_map_pickable.c:
     complete
     .text       start:0x0202d564 end:0x0202d694

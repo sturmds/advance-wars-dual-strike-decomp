@@ -28,8 +28,8 @@ void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 int func_0207bd80(void);
-void func_0202d254(MapList *lists);
-void func_0202d3ac(MapList *lists, int a);
+void MapSelect_BuildWarRoomLists(MapList *lists);
+void MapSelect_BuildLists(MapList *lists, int a);
 void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_LoadEnemyCoPictures(void);
@@ -220,9 +220,9 @@ void MapSelect_Init(void)
         Mem_Free(file);
     }
     if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-        func_0202d254(MENU->setup.lists);
+        MapSelect_BuildWarRoomLists(MENU->setup.lists);
     } else {
-        func_0202d3ac(MENU->setup.lists, 0);
+        MapSelect_BuildLists(MENU->setup.lists, 0);
     }
     if (LIST_OF_TAB(TAB()) >= MENU->setup.mapListCount) {
         LIST_OF_TAB(TAB()) = 0;

@@ -5,7 +5,7 @@
 void Sound_PlaySe(int id);
 void MapPreview_Draw(void *dst, int mapId);
 int Map_GetPlayerCount(int mapId);
-void func_0202d3ac(MapList *lists, int playerCount); /* guess: rebuilds the map lists, 0: all maps */
+void MapSelect_BuildLists(MapList *lists, int playerCount); /* guess: rebuilds the map lists, 0: all maps */
 void func_0205d87c(void);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
 void Gfx_RequestLayerCopy(int layer);
@@ -26,7 +26,7 @@ void MapSelect_PickFirstMap(void)
     Sound_PlaySe(0x10006);
     MapPreview_Draw(data_027c0280->objVram + 0xc000, SELECTED_MAP_ID());
     data_0229ef30.unk_4fc = SELECTED_MAP_ID();
-    func_0202d3ac(MENU->setup.lists, Map_GetPlayerCount(data_0229ef30.unk_4fc));
+    MapSelect_BuildLists(MENU->setup.lists, Map_GetPlayerCount(data_0229ef30.unk_4fc));
     func_0205d87c();
     for (i = 0; i < 6; i++) {
         MENU->setup.unk_4d4[i] = MENU->setup.unk_4ce[i];

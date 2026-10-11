@@ -17,8 +17,8 @@ typedef struct MapList {
     u8 mapCount;                       /* maps in the list; MapSelect pages = (mapCount - 1) / (rows * columns) + 1 */
 } MapList;
 
-/* All map lists of a game mode, as func_0202d254 (War Room) and
- * func_0202d3ac fill them. Same layout as MenuState from 0x6a to
+/* All map lists of a game mode, as MapSelect_BuildWarRoomLists (War Room) and
+ * MapSelect_BuildLists fill them. Same layout as MenuState from 0x6a to
  * BattleSetupState.mapListCount. */
 typedef struct MapListSet {
     MapList lists[11];

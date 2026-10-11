@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void Sound_PlaySe(int id);
-void func_0202d3ac(MapList *lists, int playerCount); /* guess: rebuilds the map lists, 0: all maps */
+void MapSelect_BuildLists(MapList *lists, int playerCount); /* guess: rebuilds the map lists, 0: all maps */
 void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_AddMapButtons(void);
 void Bg_ClearRect(u16 *map, int x, int y, int w, int h);
@@ -21,7 +21,7 @@ void MapSelect_CancelFirstMap(void)
 
     Sound_PlaySe(0x10009);
     data_0229ef30.unk_4fc = 0;
-    func_0202d3ac(MENU->setup.lists, 0);
+    MapSelect_BuildLists(MENU->setup.lists, 0);
     MapSelect_DrawMapNames(LIST_OF_TAB(TAB()), PAGE());
     MapSelect_AddMapButtons();
     savedGfx = data_027c0280;
