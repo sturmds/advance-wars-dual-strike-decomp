@@ -49,8 +49,8 @@ BOOL EventTriggers_Run(const EventTrigger *trigger, MapUnit *unit, int id, BOOL 
         case EVENT_TRIGGER_DAY + 2:
             FAIL_IF_WRONG_STATE(EVENT_TRIGGER_DAY)
             matched = FALSE;
-            if ((trigger->day == EVENT_TRIGGER_NO_DAY || (trigger->day == 0 && !GAME->unk_00) ||
-                 trigger->day == GAME->unk_00) &&
+            if ((trigger->day == EVENT_TRIGGER_NO_DAY || (trigger->day == 0 && !GAME->day) ||
+                 trigger->day == GAME->day) &&
                 (trigger->param == 0 || trigger->param == GAME->currentPlayer)) {
                 matched = TRUE;
             }

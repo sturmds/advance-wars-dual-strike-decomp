@@ -4,7 +4,7 @@
 #include "game/player.h"
 
 int IncreaseFunds(int playerIndex, int terrain);
-int func_ov000_022b2c64(void);               /* GameFlag_IsSet(59) */
+BOOL func_ov000_022b2c64(void);              /* GameFlag_IsSet(59) */
 void Font_LoadDigits(int a);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Gfx_RequestLayerCopy(int layer);

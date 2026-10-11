@@ -21,5 +21,5 @@ MapScript *MapScript_Get(void)
     if (GAME->gameMode == 4) {
         return NULL;
     }
-    return (MapScript *)MapHeader_Get(GAME->unk_1c4->mapId)->unk_00;
+    return MapHeader_Get(GAME->unk_1c4->mapId)->script;
 }

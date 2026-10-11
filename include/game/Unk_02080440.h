@@ -16,13 +16,13 @@ typedef struct MapTiles {
     u8 tiles[0x508];                   /* bits 0-4 terrain id, bits 5-7 owner */
     s8 unk_1928[0x508];                /* per tile: index into Unk_02080440_48.unk_6088 */
     s8 inSight[0x508];                 /* per tile; nonzero: the current player can see it (Map_IsTileVisible) */
-    s8 unk_2338[0x508];                /* per tile; no code seen uses it yet */
+    s8 unk_2338[0x508];                /* per tile; nonzero: fog or rain does not hide it, so actions there are shown (unit capture, the AI show steps, UnitShowTask_CheckVisible); how it differs from inSight is unknown */
     s8 rangeMapTiles[0x508];           /* per tile; the buffer Unk_02080440_48.rangeMap points into by default (RangeMap_SetBuffer) */
     s8 rangeScratch[0x508];            /* per tile; a range map the AI fills for another unit (a transport's move cost, another unit's reach); AiUnit_MoveToSafestTile skips negative tiles when gAiTurnState->stepFlags has AI_STEP_UNIT_AT_TARGET */
     u8 threatMax[0x508];               /* per tile: highest threat of one enemy unit that can move next to it (Ai_AddEnemyThreat) */
     u8 threatSum[0x508];               /* per tile: threat of enemy units in range, added up and capped at 255 */
     s8 rangeScratch2[0x508];           /* per tile; a third range map (AiEmptyTransport_GoToFootUnit fills it with the acting unit's moves); AiTransport_UnloadForCapture reads bits 0x80 and 0x40 as Infantry and Mech drop flags */
-    u16 rowStart[1];                   /* length unknown; index into tiles of each row's first tile */
+    u16 rowStart[1];                   /* one per map row (Map_BuildRowStarts), indexed past [1]; the real length is unknown. Index into tiles of each row's first tile */
 } MapTiles;
 
 #define MAP_TILE_TERRAIN(t) ((t) & 0x1f)
@@ -102,7 +102,7 @@ enum {
 #define GAME_MODE_WAR_ROOM 1           /* MapSelect_LoadWarRoomRecords runs only here */
 
 typedef struct Unk_02080440_48 {
-    u16 unk_00;                        /* compared with 1 by AiTurn_RunEndActions (likely the day) */
+    u16 day;                           /* current day; map event triggers compare it (EventTriggers_Run) */
     u16 currentPlayer;                 /* index into players; CO power code works on this player (likely whose turn it is) */
     u16 unk_04;                        /* compared with a map tile's owner bits (tile & 0xe0), unshifted */
     u16 currentUnitBase;               /* (currentPlayer - 1) * MAP_UNITS_PER_PLAYER: first slot in units */

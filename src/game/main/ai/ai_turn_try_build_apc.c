@@ -36,7 +36,7 @@ BOOL AiTurn_TryBuildApc(void)
     if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_APC) * 10) > state->players[state->currentPlayer].funds) {
         return 0;
     }
-    if (gAiProfile->unk_08[10] != 0 && state->unk_00 > gAiProfile->unk_08[10]) {
+    if (gAiProfile->unk_08[10] != 0 && state->day > gAiProfile->unk_08[10]) {
         return 0;
     }
     index = func_02096914(1);

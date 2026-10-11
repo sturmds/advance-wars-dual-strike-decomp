@@ -83,7 +83,7 @@ void DesignRoom_Init(Task *task)
     MapRules_SetDefaults();
     Players_ApplyBattleSetup();
     STATE->currentPlayer = 1;
-    STATE->unk_00 = 1;
+    STATE->day = 1;
     STATE->unk_1c4->unk_37 = 0;
     Ov006_ResetMapView(keep);
     func_020c7104();
@@ -100,7 +100,7 @@ void DesignRoom_Init(Task *task)
     MapRules_SetDefaults();
     Players_ApplyBattleSetup();
     STATE->currentPlayer = 1;
-    STATE->unk_00 = 1;
+    STATE->day = 1;
     STATE->unk_1c4->unk_37 = 0;
     Ov006_ResetMapView(keep);
     func_020c7104();

@@ -2,7 +2,7 @@
 
 BOOL GameFlag_IsSet(int id);
 
-void func_ov000_022b2c64(void)
+BOOL func_ov000_022b2c64(void)
 {
-    GameFlag_IsSet(59);
+    return GameFlag_IsSet(59);
 }

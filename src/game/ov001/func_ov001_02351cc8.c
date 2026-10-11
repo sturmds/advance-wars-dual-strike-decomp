@@ -12,8 +12,8 @@ extern int data_027c0284;
  * AiTurn_RunEndActions compares with 1 and is likely the day. */
 BOOL func_ov001_02351cc8(void)
 {
-    if (STATE->unk_00 == 0) {
+    if (STATE->day == 0) {
         return FALSE;
     }
-    return HwMod32(STATE->unk_00, 6) == 0;
+    return HwMod32(STATE->day, 6) == 0;
 }

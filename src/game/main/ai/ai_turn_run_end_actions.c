@@ -57,7 +57,7 @@ void AiTurn_RunEndActions(void)
             func_02093720();
             break;
         case 2:
-            if (STATE->unk_00 == 1 && data_021619c0->unk_07 == 0) {
+            if (STATE->day == 1 && data_021619c0->unk_07 == 0) {
                 data_021619c0->step++;
                 break;
             }
@@ -68,7 +68,7 @@ void AiTurn_RunEndActions(void)
             func_02093720();
             break;
         case 3:
-            if (STATE->unk_00 == 1 || data_021619c0->unk_07 == 0) {
+            if (STATE->day == 1 || data_021619c0->unk_07 == 0) {
                 data_021619c0->step++;
                 break;
             }
@@ -79,7 +79,7 @@ void AiTurn_RunEndActions(void)
             func_02093720();
             break;
         case 4:
-            if (STATE->unk_00 == 1 || data_021619c0->unk_07 == 0) {
+            if (STATE->day == 1 || data_021619c0->unk_07 == 0) {
                 data_021619c0->step++;
                 break;
             }
@@ -90,7 +90,7 @@ void AiTurn_RunEndActions(void)
             func_02093720();
             break;
         case 5:
-            if (STATE->unk_00 == 1 || data_021619c0->unk_07 == 0) {
+            if (STATE->day == 1 || data_021619c0->unk_07 == 0) {
                 data_021619c0->step++;
                 break;
             }

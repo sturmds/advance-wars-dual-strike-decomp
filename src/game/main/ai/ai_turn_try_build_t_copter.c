@@ -40,7 +40,7 @@ BOOL AiTurn_TryBuildTCopter(void)
     if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_T_COPTER) * 10) > state->players[state->currentPlayer].funds) {
         return 0;
     }
-    if (gAiTurnState->propertyRegions == 1 && gAiProfile->unk_08[11] != 0 && state->unk_00 > gAiProfile->unk_08[11]) {
+    if (gAiTurnState->propertyRegions == 1 && gAiProfile->unk_08[11] != 0 && state->day > gAiProfile->unk_08[11]) {
         return 0;
     }
     if (AiTurn_TryBuildTCopterForFoot() == 1) {
