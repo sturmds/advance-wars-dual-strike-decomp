@@ -13254,6 +13254,10 @@ src/game/main/map/turn_advance_to_next_player.c:
     complete
     .text       start:0x020c1c40 end:0x020c2108
 
+src/game/main/map/players_any_human_in_game.c:
+    complete
+    .text       start:0x020c2108 end:0x020c22b0
+
 src/game/main/map/turn_next_player_wraps_around.c:
     complete
     .text       start:0x020c22b0 end:0x020c2338

@@ -12,7 +12,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL Player_IsInGame(int player);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
 void Player_AddPowerCharge(int player, int slot, int amount);
-int func_020c2108(void);
+int Players_AnyHumanInGame(void);
 void CurrentPlayer_SyncState(void);
 void MovementCost(void);
 BOOL func_020f4638(int arg);
@@ -81,7 +81,7 @@ void TwoMaps_MergeOtherFront(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(OWN_MAP);
     GAME->currentPlayer = 1;
-    if (func_020c2108() && gPlayRecords.unk_380 < 999999) {
+    if (Players_AnyHumanInGame() && gPlayRecords.unk_380 < 999999) {
         gPlayRecords.unk_380++;
     }
     CurrentPlayer_SyncState();

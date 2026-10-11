@@ -8,7 +8,7 @@ extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 extern PlayRecords gPlayRecords;
 
-int func_020c2108(void);
+int Players_AnyHumanInGame(void);
 void Turn_IncrementDay(void);
 void CurrentPlayer_SyncState(void);
 void CurrentPlayer_LoadPalettes(void);
@@ -36,7 +36,7 @@ BOOL Player_IsInGame(int player);
  * over, the other state's currentPlayer is then set to this player and its
  * per-turn setup runs.
  *
- * tally: result of func_020c2108, meaning unknown (reused below for the
+ * tally: Players_AnyHumanInGame, TRUE while a human still plays (reused below for the
  * player of this map's state).
  * firstState: 1 when the state is data_02183b08, or data_02189cd8 once the
  * other map is over (reused below for the other state's player). */
@@ -48,7 +48,7 @@ void Turn_AdvanceToNextPlayer(void)
     Unk_02080440 *saved027c;
     u32 otherUnk30;
 
-    tally = func_020c2108();
+    tally = Players_AnyHumanInGame();
     firstState = 0;
     if (GAME->secondMapId != 0) {
         SWITCH_TO(OTHER_MAP);
