@@ -1368,6 +1368,10 @@ src/game/main/func_020170f0.c:
     complete
     .text       start:0x020170f0 end:0x0201710c
 
+src/game/main/script/script_slot_clear_callback.c:
+    complete
+    .text       start:0x0201710c end:0x02017130
+
 src/game/main/script/script_slot_find.c:
     complete
     .text       start:0x02017130 end:0x02017178

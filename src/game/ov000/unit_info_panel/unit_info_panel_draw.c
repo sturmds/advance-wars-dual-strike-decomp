@@ -5,7 +5,7 @@
 
 extern Unk_02080440 *data_027c027c;
 
-void func_0201710c(int slot);
+void ScriptSlot_ClearCallback(int slot);
 void UnitInfoPanel_DrawUnit(void);
 void UnitInfoPanel_DrawAmmoAndRange(void);
 
@@ -16,7 +16,7 @@ void UnitInfoPanel_Draw(void)
     MapUnit *unit = data_ov000_0234ec8c->unit;
 
     if (unit == NULL || unit->type == UNIT_NONE) {
-        func_0201710c((u8)*data_027c027c->scriptSlotCurrent);
+        ScriptSlot_ClearCallback((u8)*data_027c027c->scriptSlotCurrent);
         return;
     }
     UnitInfoPanel_DrawUnit();

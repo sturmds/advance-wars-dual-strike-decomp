@@ -6,7 +6,7 @@
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void *File_Load(const char *path);
-void func_0201710c(int slot);
+void ScriptSlot_ClearCallback(int slot);
 void func_0201e6e8(int x, int y, int width, int height);
 void Font_SetDigitEndTile(int tile);
 void func_01ff8c84(int layer);
@@ -91,7 +91,7 @@ void Ov006_UpdateTextPages(void)
         Gfx_RequestLayerCopy(0);
         Gfx_RequestLayerCopy(1);
         func_020c4018();
-        func_0201710c(*data_027c027c->scriptSlotCurrent & 0xff);
+        ScriptSlot_ClearCallback(*data_027c027c->scriptSlotCurrent & 0xff);
         break;
     }
 }
