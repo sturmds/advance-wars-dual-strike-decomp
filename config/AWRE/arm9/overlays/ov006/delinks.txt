@@ -998,6 +998,10 @@ src/game/ov006/ov006_get_land_mask_piece.c:
     complete
     .text       start:0x02360f90 end:0x02361114
 
+src/game/ov006/ov006_get_land_piece_if_not_sea.c:
+    complete
+    .text       start:0x02361114 end:0x023612bc
+
 src/game/ov006/ov006_get_neighbor_tile.c:
     complete
     .text       start:0x023612bc end:0x0236146c

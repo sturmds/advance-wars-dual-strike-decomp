@@ -8,14 +8,14 @@ extern int data_027c0284;
 int Ov006_IsPlainRiver(int x, int y);             /* guess: tile x, y is a river tile */
 int func_ov006_023624b4(int x, int y);             /* river variant for tile x, y */
 int Ov006_IsSpecialCell(int x, int y);             /* tile x, y holds 0xfc, 0xfd, 0x11c or 0x11d */
-int func_ov006_02361114(int x, int y);
+int Ov006_GetLandPieceIfNotSea(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain); /* stores the terrain id of tile x, y */
 void Ov006_StoreMapCell(int x, int y, int tile);    /* guess: stores the tile graphic of x, y */
 
 /* After a map edit at tile x, y, fixes its four neighbours (above, below,
  * left, right): a river tile gets its river variant picked again; one of
  * the four special tiles of Ov006_IsSpecialCell (likely river mouths) that
- * func_ov006_02361114 rejects turns back into sea, tile 42. */
+ * Ov006_GetLandPieceIfNotSea rejects turns back into sea, tile 42. */
 void Ov006_RefreshNeighborRivers(int x, int y)
 {
     int tile;
@@ -27,7 +27,7 @@ void Ov006_RefreshNeighborRivers(int x, int y)
                 Ov006_SetTerrain(x, y - 1, TERRAIN_RIVER);
                 Ov006_StoreMapCell(x, y - 1, tile);
             }
-        } else if (Ov006_IsSpecialCell(x, y - 1) != 0 && func_ov006_02361114(x, y - 1) == 0) {
+        } else if (Ov006_IsSpecialCell(x, y - 1) != 0 && Ov006_GetLandPieceIfNotSea(x, y - 1) == 0) {
             Ov006_SetTerrain(x, y - 1, TERRAIN_SEA);
             Ov006_StoreMapCell(x, y - 1, 42);
         }
@@ -39,7 +39,7 @@ void Ov006_RefreshNeighborRivers(int x, int y)
                 Ov006_SetTerrain(x, y + 1, TERRAIN_RIVER);
                 Ov006_StoreMapCell(x, y + 1, tile);
             }
-        } else if (Ov006_IsSpecialCell(x, y + 1) != 0 && func_ov006_02361114(x, y + 1) == 0) {
+        } else if (Ov006_IsSpecialCell(x, y + 1) != 0 && Ov006_GetLandPieceIfNotSea(x, y + 1) == 0) {
             Ov006_SetTerrain(x, y + 1, TERRAIN_SEA);
             Ov006_StoreMapCell(x, y + 1, 42);
         }
@@ -51,7 +51,7 @@ void Ov006_RefreshNeighborRivers(int x, int y)
                 Ov006_SetTerrain(x - 1, y, TERRAIN_RIVER);
                 Ov006_StoreMapCell(x - 1, y, tile);
             }
-        } else if (Ov006_IsSpecialCell(x - 1, y) != 0 && func_ov006_02361114(x - 1, y) == 0) {
+        } else if (Ov006_IsSpecialCell(x - 1, y) != 0 && Ov006_GetLandPieceIfNotSea(x - 1, y) == 0) {
             Ov006_SetTerrain(x - 1, y, TERRAIN_SEA);
             Ov006_StoreMapCell(x - 1, y, 42);
         }
@@ -63,7 +63,7 @@ void Ov006_RefreshNeighborRivers(int x, int y)
                 Ov006_SetTerrain(x + 1, y, TERRAIN_RIVER);
                 Ov006_StoreMapCell(x + 1, y, tile);
             }
-        } else if (Ov006_IsSpecialCell(x + 1, y) != 0 && func_ov006_02361114(x + 1, y) == 0) {
+        } else if (Ov006_IsSpecialCell(x + 1, y) != 0 && Ov006_GetLandPieceIfNotSea(x + 1, y) == 0) {
             Ov006_SetTerrain(x + 1, y, TERRAIN_SEA);
             Ov006_StoreMapCell(x + 1, y, 42);
         }
