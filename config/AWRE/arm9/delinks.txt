@@ -22794,6 +22794,10 @@ src/sdk/ctrdg/ctrdg_init.c:
     complete
     .text       start:0x0211e8a0 end:0x0211e93c
 
+src/sdk/math/math_count_population.c:
+    complete
+    .text       start:0x0211e93c end:0x0211e980
+
 src/sdk/isd/isd_double_exponent.c:
     complete
     .text       start:0x0212090c end:0x02120964
