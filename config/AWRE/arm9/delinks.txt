@@ -4771,6 +4771,14 @@ src/game/main/func_0202ef24.c:
     complete
     .text       start:0x0202ef24 end:0x0202ef40
 
+src/game/main/menus/main_menu_page_flip_update.c:
+    complete
+    .text       start:0x0202ef40 end:0x0202f014
+
+src/game/main/menus/main_menu_open_update.c:
+    complete
+    .text       start:0x0202f014 end:0x0202f0d8
+
 src/game/main/menus/func_0202f0d8.c:
     .text       start:0x0202f0d8 end:0x0202f94c
 
