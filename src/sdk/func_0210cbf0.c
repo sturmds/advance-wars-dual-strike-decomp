@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/song.h"
 
-void func_0210cc20(int length);
+void IrqSlot_CallAndClear(int length);
 
 void func_0210cbf0(void)
 {
-    func_0210cc20(2);
+    IrqSlot_CallAndClear(2);
 }

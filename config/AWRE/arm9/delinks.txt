@@ -20953,6 +20953,10 @@ src/sdk/func_0210cc10.c:
     complete
     .text       start:0x0210cc10 end:0x0210cc20
 
+src/sdk/os/irq_slot_call_and_clear.c:
+    complete
+    .text       start:0x0210cc20 end:0x0210ccbc
+
 src/sdk/func_0210ccbc.c:
     complete
     .text       start:0x0210ccbc end:0x0210ccc0

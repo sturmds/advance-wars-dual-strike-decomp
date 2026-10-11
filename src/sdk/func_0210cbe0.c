@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_0210cc20(int);
+void IrqSlot_CallAndClear(int);
 
 void func_0210cbe0(void)
 {
-    func_0210cc20(3);
+    IrqSlot_CallAndClear(3);
 }

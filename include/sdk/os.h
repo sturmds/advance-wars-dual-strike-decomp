@@ -3,6 +3,22 @@
 
 #include "types.h"
 
+#define REG_IME ((volatile u16 *)0x04000208)
+#define REG_IE ((volatile u32 *)0x04000210)
+#define REG_IF ((volatile u32 *)0x04000214)
+
+typedef u32 OSIrqMask;
+typedef void (*OSIrqFunction)(void);
+
+/* One entry of the handler table that runs timer and DMA interrupts. */
+typedef struct IrqSlotEntry {
+    void (*handler)(void *);       /* cleared after it runs once */
+    BOOL keepEnabled;              /* when 0, the interrupt is disabled after it fires */
+    void *arg;
+} IrqSlotEntry;
+
+extern IrqSlotEntry gOsIrqSlots[];
+
 typedef volatile u16 vu16;
 typedef volatile u32 vu32;
 
@@ -48,6 +64,9 @@ typedef struct OSThreadInfo {
 
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);
+
+/* Each of these returns the previous value of IE. */
+OSIrqMask OS_DisableIrqMask(OSIrqMask mask);
 
 /* Turn interrupts off and return the previous state; hand it back to restore. */
 int OS_DisableInterrupts(void);
