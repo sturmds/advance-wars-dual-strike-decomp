@@ -72,5 +72,8 @@ SndCommand *SND_AllocCommand(int block);
 SndCommand *SND_RecvCommandReply(int block);
 void Sound_LinkCommandAtTail(SndCommand *command);
 void Sound_PostCommandArgs(u32 id, u32 arg0, u32 arg1, u32 arg2, u32 arg3);
+void SoundAlarm_RunIfTagMatches(int alarmId);
+/* Sets the slot's handler and argument, bumps its tag and returns the new tag. */
+u32 SoundAlarm_AssignHandler(u32 alarmNo, SndAlarmHandler handler, u32 arg);
 
 #endif

@@ -21820,6 +21820,10 @@ src/sdk/snd/sound_alarm_run_if_tag_matches.c:
     complete
     .text       start:0x021107a0 end:0x02110800
 
+src/sdk/snd/sound_alarm_assign_handler.c:
+    complete
+    .text       start:0x02110800 end:0x02110830
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98
