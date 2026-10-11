@@ -8,6 +8,7 @@
 #include "game/battle_fighter.h"
 #include "game/battle_hit_list.h"
 #include "game/co_exp.h"
+#include "game/design_map.h"
 
 /* One list of map ids in the map select menu. */
 typedef struct MapList {
@@ -244,12 +245,17 @@ typedef struct MenuState {
         BattleScreenWork battle;
         CoExpScreenWork coExp;
         CombatMenuState combat;
+        DesignMapRecord linkMaps[3];   /* the maps of the two-player link menu, shown by its stage 2 buttons */
     };
 } MenuState;
 
 /* BattleScreenWork.unk_27c[side]. Needed to match: the compiler adds the 0x27c after
  * the side index, so the array is reached through gMenuState's own address. */
 #define BATTLE_SIDE_DATA_AT(side) (((BattleSideData **)&gMenuState + (side))[0x27c / 4])
+
+/* MenuState.linkMaps. Needed to match: the compiler adds the 0x20 at run time when the
+ * array is reached through a cast of gMenuState's address. */
+#define LINK_MAPS ((DesignMapRecord *)((u8 *)&gMenuState + sizeof(gMenuState.colours)))
 
 /* Offset of LinkScreenState.picked in MenuState. Needed to match: the compiler adds it after
  * the player index, so the flags are reached through gMenuState's own address plus the player. */
