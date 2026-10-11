@@ -4673,7 +4673,7 @@ Map_ReloadPalettes kind:function(arm,size=0x1c8) addr:0x020f5fb8
 PowerMeter_UpdateFlash kind:function(arm,size=0x230) addr:0x020f6180
 func_020f63b0 kind:function(arm,size=0xd8) addr:0x020f63b0
 func_020f6488 kind:function(arm,size=0x114) addr:0x020f6488
-func_020f659c kind:function(arm,size=0x108) addr:0x020f659c
+MapCell_SetOwner kind:function(arm,size=0x108) addr:0x020f659c
 Tile_SetOwner kind:function(arm,size=0x84) addr:0x020f66a4
 MapView_DrawBottomRow kind:function(arm,size=0x64) addr:0x020f6728
 MapView_DrawTopRow kind:function(arm,size=0x64) addr:0x020f678c
@@ -7780,7 +7780,7 @@ data_02167d3c kind:data(any) addr:0x02167d3c
 data_02167d48 kind:data(any) addr:0x02167d48
 data_02167d58 kind:data(any) addr:0x02167d58
 gDefaultCoList kind:data(any) addr:0x02167d70
-data_02167d8c kind:data(any) addr:0x02167d8c
+gOwnerCellCodes kind:data(any) addr:0x02167d8c
 data_02167dd4 kind:data(any) addr:0x02167dd4
 data_02167de4 kind:data(any) addr:0x02167de4
 data_02167e24 kind:data(any) addr:0x02167e24
