@@ -8836,6 +8836,10 @@ src/game/main/func_0207909c.c:
     complete
     .text       start:0x0207909c end:0x020790d4
 
+src/game/main/link/wireless_on_parent_param_set.c:
+    complete
+    .text       start:0x020790d4 end:0x02079180
+
 src/game/main/func_02079180.c:
     complete
     .text       start:0x02079180 end:0x020791f8
