@@ -4,7 +4,7 @@
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 void Player_SpendFunds(int playerIndex, int amount);
-MapUnit *func_020c7d58(s16 x, s16 y, s16 unitType); /* Unit_Create, then marks the unit waited */
+MapUnit *Unit_SpawnWaited(s16 x, s16 y, s16 unitType); /* Unit_Create, then marks the unit waited */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -26,7 +26,7 @@ MapUnit *CurrentPlayer_BuyUnit(int x, int y, int unitType)
     if ((u32)STATE->players[STATE->currentPlayer].funds < cost) {
         return NULL;
     }
-    unit = func_020c7d58(x, y, unitType);
+    unit = Unit_SpawnWaited(x, y, unitType);
     if (unit == NULL) {
         return NULL;
     }

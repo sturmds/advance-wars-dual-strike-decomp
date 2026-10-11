@@ -13453,6 +13453,7 @@ src/game/main/units/unit_spawn.c:
     .text       start:0x020c7d30 end:0x020c7d58
 
 src/game/main/units/unit_spawn_waited.c:
+    complete
     .text       start:0x020c7d58 end:0x020c7d8c
 
 src/game/main/units/unit_create.c:
