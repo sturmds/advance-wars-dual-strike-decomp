@@ -8400,6 +8400,10 @@ src/game/main/map/map_init_tile_hp.c:
     complete
     .text       start:0x020e531c end:0x020e5400
 
+src/game/main/func_020e5400.c:
+    complete
+    .text       start:0x020e5400 end:0x020e5428
+
 src/game/main/skills/experience_to_rank.c:
     complete
     .text       start:0x020e5450 end:0x020e5488
