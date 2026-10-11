@@ -10137,6 +10137,10 @@ src/game/main/func_020cce88.c:
     complete
     .text       start:0x020cce88 end:0x020cce98
 
+src/game/main/map/current_player_scroll_to_saved_cursor.c:
+    complete
+    .text       start:0x020cce98 end:0x020ccee0
+
 src/game/main/units/unit_resupply_unpaid.c:
     complete
     .text       start:0x020cd204 end:0x020cd23c
