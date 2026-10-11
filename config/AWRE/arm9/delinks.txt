@@ -7877,6 +7877,10 @@ src/game/main/draw_selected_co_power_text.c:
     complete
     .text       start:0x02088d04 end:0x02088eb0
 
+src/game/main/menus/combat_mode_menu_on_select.c:
+    complete
+    .text       start:0x02088eb0 end:0x0208900c
+
 src/game/main/func_02089210.c:
     complete
     .text       start:0x02089210 end:0x0208922c
