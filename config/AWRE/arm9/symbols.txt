@@ -3804,7 +3804,7 @@ Weather_ResetCooldowns kind:function(arm,size=0xcc) addr:0x020d2194
 WeatherFx_InitSand kind:function(arm,size=0x118) addr:0x020d2260
 WeatherFx_InitRain kind:function(arm,size=0x124) addr:0x020d2378
 WeatherFx_InitSnow kind:function(arm,size=0x118) addr:0x020d249c
-func_020d25b4 kind:function(arm,size=0x1e0) addr:0x020d25b4
+WeatherFx_UpdateClouds kind:function(arm,size=0x1e0) addr:0x020d25b4
 func_020d2794 kind:function(arm,size=0x184) addr:0x020d2794
 func_020d2918 kind:function(arm,size=0xa8) addr:0x020d2918
 func_020d29c0 kind:function(arm,size=0xe8) addr:0x020d29c0
@@ -6131,7 +6131,7 @@ data_0213d9c0 kind:data(any) addr:0x0213d9c0
 data_0213dd38 kind:data(any) addr:0x0213dd38
 data_0213e078 kind:data(any) addr:0x0213e078
 data_0213e2a0 kind:data(any) addr:0x0213e2a0
-data_0213f0e4 kind:data(any) addr:0x0213f0e4
+gWeatherCloudAnim kind:data(any) addr:0x0213f0e4
 data_0213f12c kind:data(any) addr:0x0213f12c
 data_0213fd2c kind:data(any) addr:0x0213fd2c
 data_0213fdcc kind:data(any) addr:0x0213fdcc
