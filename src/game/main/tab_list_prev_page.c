@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/tab_list.h"
+#include "game/menu_button.h"
 
 extern TabListView gMenuState;
 void Sound_PlaySe(int id);
@@ -8,7 +9,7 @@ int TabList_GetPageCount(int tab);
 void TabList_UpdateHelpText(void);
 
 /* Shows the previous page of the current tab, wrapping to the last page. */
-void TabList_PrevPage(void)
+void TabList_PrevPage(MenuButton *button)
 {
     int pageCount = TabList_GetPageCount(gMenuState.tab);
 

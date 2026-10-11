@@ -9,8 +9,8 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Queues a sprite on list 4 at map tile (x, y), placed against the current map scroll. x and y are reused
- * for the screen position (needed to match). */
-void Map_QueueTileSprite(int x, int y, void *data, int palette)
+ * for the screen position (needed to match). Callers pass 0 as unused. */
+void Map_QueueTileSprite(int x, int y, void *data, int palette, int unused)
 {
     x = x * 16 - STATE->unk_1c4->scrollX;
     y = y * 16 - STATE->unk_1c4->scrollY;

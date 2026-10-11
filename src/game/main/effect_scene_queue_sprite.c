@@ -6,7 +6,8 @@ extern u8 data_0213b8f0[];
 
 BOOL SpriteFile_Queue(void *set, int index, int arg, int x, int y, int attr, int tile, int list);
 
-void EffectScene_QueueSprite(void)
+/* task is unused; EffectScene_Update passes it. */
+void EffectScene_QueueSprite(Unk_021694c0Task *task)
 {
     SpriteFile_Queue(data_0213b8f0, 0, data_021694c0->effectFrames,
                   (data_021694c0->unk_24 + data_021694c0->unk_2c) & 0x1ff,
