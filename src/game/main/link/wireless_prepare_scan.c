@@ -5,14 +5,14 @@
 extern WMBssDesc *data_0229c8a8;
 extern WMScanParam *data_0229c8b4;
 
-BOOL func_02079f10(u16 *channel);
+BOOL Wireless_NextScanChannel(u16 *channel);
 u16 func_0211721c(void);
 
 /* Moves to the next scan channel and fills the scan request for it. False
  * when no channel is allowed. */
 BOOL Wireless_PrepareScan(void)
 {
-    if (!func_02079f10(&data_0215fe84->channel)) {
+    if (!Wireless_NextScanChannel(&data_0215fe84->channel)) {
         return FALSE;
     }
     data_0229c8b4->scanBuf = data_0229c8a8;
