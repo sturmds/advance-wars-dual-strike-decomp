@@ -9,7 +9,7 @@ extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 extern u8 data_0229a050[];
 
-void func_02020794(u16 slot, SaveBuffer *buffer, int size);
+void Save_WriteToBackup(u16 slot, SaveBuffer *buffer, int size);
 int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
 
 /* Writes record recordId (size bytes from data_02297f28) to the save. The
@@ -169,7 +169,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                 }
                 data_02298050.checksumInv = ~sum;
                 data_02298050.checksum = sum;
-                func_02020794(slot, &data_02298050, 0x3000);
+                Save_WriteToBackup(slot, &data_02298050, 0x3000);
                 if (Save_VerifyBackup(slot, &data_02298050, 0x3000)) {
                     tries = 0;
                     entry->flags[0] |= SAVE_SLOT_KEEP;
