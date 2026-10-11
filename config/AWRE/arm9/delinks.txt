@@ -11805,6 +11805,10 @@ src/game/main/ai/ai_transport_count_unload_tiles.c:
     complete
     .text       start:0x020b6984 end:0x020b6c84
 
+src/game/main/ai/ai_team_foot_or_enemy_vehicle_in_range.c:
+    complete
+    .text       start:0x020b6d14 end:0x020b6e4c
+
 src/game/main/ai/ai_count_team_armed_ground_units_in_range.c:
     complete
     .text       start:0x020b6f6c end:0x020b70a0

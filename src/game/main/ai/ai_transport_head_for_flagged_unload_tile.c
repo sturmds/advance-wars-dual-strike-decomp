@@ -17,7 +17,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 #define UNLIMITED_MOVE 110
 #define NO_TILE 0x7fff
 
-/* Bit 7 of a AiSeaTransport_ScoreFootUnitsVsProperties score: set when func_020b6d14 returns 0. */
+/* Bit 7 of a AiSeaTransport_ScoreFootUnitsVsProperties score: set when Ai_TeamFootOrEnemyVehicleInRange returns 0. */
 #define SCORE_FLAG 0x80
 
 /* Like AiTransport_HeadForUnloadTile, run before it by func_020b5bf4 when
