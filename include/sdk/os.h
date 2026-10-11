@@ -56,6 +56,7 @@ typedef volatile u32 vu32;
 #define REG_EXMEMCNT (*(vu16 *)0x04000204)
 
 typedef struct OSThread OSThread;
+typedef struct OSMutex OSMutex;
 
 /* Saved CPU registers of a thread. */
 typedef struct OSContext {
@@ -79,14 +80,30 @@ enum {
     OS_THREAD_STATE_TERMINATED = 2
 };
 
+/* Mutexes a thread holds, oldest first. */
+typedef struct OSMutexQueue {
+    OSMutex *head;
+    OSMutex *tail;
+} OSMutexQueue;
+
 struct OSThread {
     u8 context[0x64];
     u32 state;
     OSThread *next;
     u32 id;
     u32 priority;
-    u8 pad_74[0x1c];
+    u8 pad_74[8];
+    OSMutexQueue mutexQueue;
+    u8 pad_84[0xc];
     OSThreadQueue joinQueue;
+};
+
+struct OSMutex {
+    OSThreadQueue queue;
+    OSThread *thread;
+    s32 count;
+    OSMutex *prev;
+    OSMutex *next;
 };
 
 typedef void *OSMessage;

@@ -7,7 +7,7 @@ extern OSThread *data_022a9944[];
 void OS_RescheduleThread(void);
 void OS_WakeupThread(OSThreadQueue *queue);
 void OSi_RemoveThreadFromList(OSThread *thread);
-void func_0210df74(OSThread *thread);
+void Mutex_ReleaseAllHeld(OSThread *thread);
 
 void OS_ExitThread(void)
 {
@@ -15,7 +15,7 @@ void OS_ExitThread(void)
 
     OS_DisableInterrupts();
     current = *data_022a9924;
-    func_0210df74(current);
+    Mutex_ReleaseAllHeld(current);
     OSi_RemoveThreadFromList(current);
     data_022a9944[current->id] = NULL;
     current->state = OS_THREAD_STATE_TERMINATED;

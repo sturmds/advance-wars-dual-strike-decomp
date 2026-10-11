@@ -21224,6 +21224,26 @@ src/sdk/os_init_message_queue.c:
     complete
     .text       start:0x0210de74 end:0x0210de94
 
+src/sdk/os/mutex_pop_oldest_held.c:
+    complete
+    .text       start:0x0210de94 end:0x0210debc
+
+src/sdk/os/mutex_unlink_from_owner.c:
+    complete
+    .text       start:0x0210debc end:0x0210dee0
+
+src/sdk/os/mutex_append_to_owner.c:
+    complete
+    .text       start:0x0210dee0 end:0x0210df08
+
+src/sdk/os/os_try_lock_mutex.c:
+    complete
+    .text       start:0x0210df08 end:0x0210df74
+
+src/sdk/os/mutex_release_all_held.c:
+    complete
+    .text       start:0x0210df74 end:0x0210dfc4
+
 src/game/main/func_0210e0c0.c:
     complete
     .text       start:0x0210e0c0 end:0x0210e0d4
