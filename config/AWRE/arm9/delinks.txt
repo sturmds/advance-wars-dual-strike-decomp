@@ -4739,13 +4739,25 @@ src/game/main/func_0202e868.c:
     complete
     .text       start:0x0202e868 end:0x0202e880
 
+src/game/main/menus/main_menu_on_destroy.c:
+    complete
+    .text       start:0x0202e880 end:0x0202e8d0
+
 src/game/main/func_0202e8d0.c:
     complete
     .text       start:0x0202e8d0 end:0x0202e8e8
 
+src/game/main/menus/main_menu_load_page_colour.c:
+    complete
+    .text       start:0x0202e8e8 end:0x0202e970
+
 src/game/main/func_0202e970.c:
     complete
     .text       start:0x0202e970 end:0x0202e988
+
+src/game/main/menus/main_menu_cycle_colour_update.c:
+    complete
+    .text       start:0x0202e988 end:0x0202ea08
 
 src/game/main/func_0202ea08.c:
     complete
