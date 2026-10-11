@@ -22,6 +22,7 @@ typedef struct Unk_0204f960 {
 typedef struct CampaignMapState {
     u8 unk_00;
     u8 mission;                        /* index into the mission table */
+    u8 flags[28];                      /* per mission; bit 0: done (CampaignMap_MarkMissionDone) */
 } CampaignMapState;
 
 /* A CO of the three the world map shows, filled by CampaignMap_FindTopCos. */
