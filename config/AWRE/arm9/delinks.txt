@@ -8536,6 +8536,10 @@ src/game/main/menus/unit_list_draw.c:
     complete
     .text       start:0x02074048 end:0x020742d4
 
+src/game/main/menus/unit_list_scroll_down.c:
+    complete
+    .text       start:0x020742d4 end:0x020742f8
+
 src/game/main/menus/unit_list_scroll_up.c:
     complete
     .text       start:0x020742f8 end:0x02074314
