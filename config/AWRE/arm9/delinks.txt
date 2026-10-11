@@ -7228,6 +7228,10 @@ src/game/main/screen/screens_fade_both_to_white_update.c:
     complete
     .text       start:0x0205b194 end:0x0205b270
 
+src/game/main/copowers/tag_break_fade_out_blend.c:
+    complete
+    .text       start:0x0205b270 end:0x0205b2e4
+
 src/game/main/spark_burst_update.c:
     complete
     .text       start:0x0205b6d0 end:0x0205bf78
