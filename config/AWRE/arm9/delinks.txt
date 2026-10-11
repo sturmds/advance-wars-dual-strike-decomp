@@ -4961,6 +4961,10 @@ src/game/main/func_020724f0.c:
     complete
     .text       start:0x020724f0 end:0x02072510
 
+src/game/main/link/link_screen_cancel.c:
+    complete
+    .text       start:0x02072510 end:0x0207253c
+
 src/game/main/link/link_screen_add_buttons.c:
     complete
     .text       start:0x020727d0 end:0x0207287c
