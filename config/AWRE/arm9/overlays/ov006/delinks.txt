@@ -655,6 +655,10 @@ src/game/ov006/ov006_scatter_reefs.c:
     complete
     .text       start:0x02359344 end:0x023593c8
 
+src/game/ov006/ov006_add_shoals.c:
+    complete
+    .text       start:0x023593c8 end:0x02359584
+
 src/game/ov006/ov006_scatter_woods.c:
     complete
     .text       start:0x02359584 end:0x02359608
