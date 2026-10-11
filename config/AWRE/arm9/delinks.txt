@@ -3807,6 +3807,10 @@ src/game/main/menus/main_menu_draw_page.c:
     complete
     .text       start:0x0203018c end:0x02030590
 
+src/game/main/func_020308c8.c:
+    complete
+    .text       start:0x020308c8 end:0x020309a0
+
 src/game/main/menus/main_menu_build_page11.c:
     complete
     .text       start:0x020309a0 end:0x02030a44
@@ -3994,6 +3998,14 @@ src/game/main/digit_sprite_queue_pop_in.c:
 src/game/main/graphics/digit_sprite_queue_small_number.c:
     complete
     .text       start:0x02034438 end:0x020344dc
+
+src/game/main/func_020344dc.c:
+    complete
+    .text       start:0x020344dc end:0x02034654
+
+src/game/main/func_02034654.c:
+    complete
+    .text       start:0x02034654 end:0x020347e0
 
 src/game/main/func_02035708.c:
     complete
@@ -4624,6 +4636,14 @@ src/game/main/func_02049020.c:
 src/game/main/func_02049070.c:
     complete
     .text       start:0x02049070 end:0x020490a4
+
+src/game/main/func_0204923c.c:
+    complete
+    .text       start:0x0204923c end:0x02049390
+
+src/game/main/func_02049410.c:
+    complete
+    .text       start:0x02049410 end:0x02049598
 
 src/game/main/func_02049598.c:
     complete
@@ -6904,6 +6924,10 @@ src/game/main/func_02083020.c:
 src/game/main/func_0208303c.c:
     complete
     .text       start:0x0208303c end:0x02083064
+
+src/game/main/func_02083064.c:
+    complete
+    .text       start:0x02083064 end:0x02083090
 
 src/game/main/menus/combat_setup_cancel_ready.c:
     complete
@@ -14906,6 +14930,10 @@ src/game/main/func_02115420.c:
 src/sdk/func_0211549c.c:
     complete
     .text       start:0x0211549c end:0x021154ac
+
+src/sdk/func_021154ac.c:
+    complete
+    .text       start:0x021154ac end:0x021154d8
 
 src/sdk/func_021154d8.c:
     complete
