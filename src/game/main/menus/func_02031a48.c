@@ -8,7 +8,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Unk_02031a14 *task);
-void *SpriteAnimTask_Start(void *file, int x, int y, int id, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 
 extern MenuState gMenuState;
 extern u8 data_027c0030;

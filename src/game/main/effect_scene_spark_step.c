@@ -7,7 +7,7 @@ extern u8 data_0213b8f0[];
 int MainLoop_GetFrameCount(void);
 u32 Rng_Next(void);
 int func_020f2280(void);
-void *SpriteAnimTask_Start(void *file, int x, int y, int id, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void func_02022404(struct ShowSprite *sprite, int x, int y);
 
 /* Per-frame step of the effect scene task: while func_020f2280 holds, adds a

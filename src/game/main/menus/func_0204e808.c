@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 
-void SpriteAnimTask_Start(void *work, int x, int y, int id, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 BOOL func_02021b34(void);
 int Sound_PlaySe(int id);
 void Task_ResumeByScript(const void *script);

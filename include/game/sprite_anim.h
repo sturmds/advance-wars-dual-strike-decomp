@@ -54,6 +54,9 @@ typedef struct SpriteAnimTask {
     int y;
 } SpriteAnimTask;
 
+/* Starts a SpriteAnimTask that draws animation of file at (x, y). */
+SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+
 /* Same for a sprite drawn in 3D space. */
 typedef struct SpriteAnim3dTask {
     u8 pad_00[0x50];

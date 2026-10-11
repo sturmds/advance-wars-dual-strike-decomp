@@ -14,7 +14,6 @@ extern u8 data_0213e078[];             /* Black Crystal heal animation */
 extern u8 data_0213e2a0[];             /* Black Obelisk heal animation */
 
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

@@ -8,8 +8,8 @@ SpriteAnim *SpriteAnim_Create(const void *file, u16 layer, int flags);
 void SpriteAnim_SetAnimation(SpriteAnim *sprite, int animation);
 
 /* Loads a sprite from a halfword-offset file, selects animation, and starts
- * a task (data_02158838) that draws it at (x, y) each frame. */
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer)
+ * a task (data_02158838) that draws it at (x, y) each frame. Returns the task. */
+SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer)
 {
     SpriteAnim *sprite;
     SpriteAnimTask *task;
@@ -21,4 +21,5 @@ void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int anim
     task->sprite = sprite;
     task->x = x;
     task->y = y;
+    return task;
 }

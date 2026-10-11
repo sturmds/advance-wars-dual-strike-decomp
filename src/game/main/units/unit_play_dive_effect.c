@@ -28,7 +28,6 @@ void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
 void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
 void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

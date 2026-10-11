@@ -12,7 +12,6 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 
 SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 void ScreenShake_Start(int script, int frames, Task *parent);
 u8 *CannonShot_GetAnimFile(int kind);           /* shot animation file of the cannon kind */

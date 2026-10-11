@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_02088d04.h"
 
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];

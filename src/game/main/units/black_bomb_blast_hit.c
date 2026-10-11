@@ -12,7 +12,7 @@ extern u8 data_0213d11c[];
 
 void Units_DamageAroundTile(int x, int y, int damage, int range);
 void SpriteAnim3dTask_StartAlt(void *anim, VecFx32 *pos, void *gfx, void *palette, int a, int b);
-void SpriteAnimTask_Start(void *anim, int x, int y, int sprite, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

@@ -9,7 +9,7 @@ extern const u8 data_0213dd38[];
 
 Unk_02022404 *SpriteAnim_Create(const void *file, int a, int b);
 void SpriteAnim_SetAnimation(void *sprite, int animation);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])

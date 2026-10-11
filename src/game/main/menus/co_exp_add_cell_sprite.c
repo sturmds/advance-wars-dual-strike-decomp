@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-void *SpriteAnimTask_Start(void *file, int x, int y, int id, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 
 extern MenuState gMenuState;
 

@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 void Task_ResumeScript(Task *task);
 
 extern Unk_027c0280 *data_027c0280;

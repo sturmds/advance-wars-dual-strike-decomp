@@ -11,7 +11,7 @@ extern Unk_027c0288 data_027c0288;
 extern u8 data_02134d68[];
 
 void SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, void *tileBase, void *palette, int animation, int layer);
-void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 

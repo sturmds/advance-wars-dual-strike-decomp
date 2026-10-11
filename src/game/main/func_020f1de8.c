@@ -11,7 +11,7 @@ void ScreenShake_Start(int script, int frames, Task *parent);
 void Task_ResumeScript(Unk_021694c0Task *task);
 void func_02022404(struct ShowSprite *sprite, int x, int y);
 void func_0202244c(struct ShowSprite *sprite);
-void *SpriteAnimTask_Start(void *file, int x, int y, int id, int a, int b);
+struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
 
 /* Moves the sprite up 8 pixels a frame. At the scene position it is released,
  * and a sprite, a shake and a flash mark the impact. */
