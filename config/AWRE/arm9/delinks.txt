@@ -12775,6 +12775,10 @@ src/game/main/menus/unit_menu_send_show_target.c:
     complete
     .text       start:0x020bca60 end:0x020bcb94
 
+src/game/main/menus/menu_cycle_ai_behaviour.c:
+    complete
+    .text       start:0x020bcb94 end:0x020bcd2c
+
 src/game/main/menus/unit_menu_send.c:
     complete
     .text       start:0x020bce50 end:0x020bcf28
