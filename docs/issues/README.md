@@ -65,3 +65,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0035](0035-family-groups-skip-propagate.md) | Family groups do not run `propagate.py` on their twins | open | loop | M1 |
 | [0036](0036-agents-share-session-scratchpad.md) | Agents wrote scratch files into the shared session scratchpad | open | loop | M1 |
 | [0037](0037-duplicate-structs-across-groups.md) | Groups that work on the same object define separate structs for it | open | decomp | M2 |
+| [0038](0038-check-and-diff-disagree.md) | `fn.py check` reports BattleFighterTask_Setup 0x10 short while `fn.py diff` shows nothing | open | tools | M1 |
+| [0039](0039-monitor-tasks-hold-subagent-slots.md) | Monitor tasks left running keep a finished agent's subagent slot | open | loop | M1 |
