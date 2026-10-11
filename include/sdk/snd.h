@@ -26,6 +26,18 @@ typedef struct SndSharedWork {
     u16 globalVariable[16];
 } SndSharedWork;
 
+/* One software alarm slot: the handler runs when the ARM7 reports the alarm, if tag still matches. */
+typedef void (*SndAlarmHandler)(u32 arg);
+
+typedef struct SndAlarm {
+    SndAlarmHandler handler;
+    u32 arg;
+    u8 tag;
+    u8 pad_09[3];
+} SndAlarm;
+
+#define SND_ALARM_COUNT 8
+
 /* Command queue state of the sound driver. The roles are read from the code. */
 extern int data_022a9c50;      /* SND_Init has run */
 extern u8 data_022a9c54[];     /* lock around the command lists */
