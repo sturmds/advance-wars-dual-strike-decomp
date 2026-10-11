@@ -13,7 +13,7 @@ BOOL Player_IsInGame(int player);
 int Unit_GetChargeForHpLost(int player, int hpLost, int unitType);
 void Player_AddPowerCharge(int player, int slot, int amount);
 int func_020c2108(void);
-void func_020c1b90(void);
+void CurrentPlayer_SyncState(void);
 void MovementCost(void);
 BOOL func_020f4638(int arg);
 void func_020c4018(void);
@@ -84,7 +84,7 @@ void TwoMaps_MergeOtherFront(void)
     if (func_020c2108() && gPlayRecords.unk_380 < 999999) {
         gPlayRecords.unk_380++;
     }
-    func_020c1b90();
+    CurrentPlayer_SyncState();
     MovementCost();
     if (func_020f4638(4)) {
         func_020c4018();

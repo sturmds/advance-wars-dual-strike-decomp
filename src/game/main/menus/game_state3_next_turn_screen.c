@@ -32,7 +32,7 @@ void func_ov000_022b04ec(void);
 void func_020ca9d8(void);
 void func_020ba750(void);
 void func_020c1950(void);
-void func_020c1b90(void);
+void CurrentPlayer_SyncState(void);
 void func_020e2ce0(int player);
 BOOL func_020bae64(void);                   /* TRUE: two or more human teams share the DS */
 int func_020c2338(int player);              /* next player after `player` still in the game */
@@ -95,7 +95,7 @@ void Game_State3_NextTurnScreen(void)
         MenuButtons_CloseAll();
     }
     Turn_AdvanceToNextPlayer();
-    func_020c1b90();
+    CurrentPlayer_SyncState();
     func_020c1950();
     func_020e2ce0(STATE->currentPlayer);
     MovementCost();

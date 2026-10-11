@@ -19,7 +19,7 @@ void Units_ClearAll(void);
 void MapObjects_Clear(void);
 void func_020e7a80(int a0, int mapId);
 void MovementCost(void);
-void func_020c1b90(void);
+void CurrentPlayer_SyncState(void);
 void func_020c1950(void);
 void func_020c8888(void);
 void Screens_SelectConfigs(void);
@@ -115,7 +115,7 @@ void DesignRoom_Init(Task *task)
     STATE->players[4].front.id = CO_KANBEI;
     func_020e7a80(4, STATE->unk_1c4->mapId);
     MovementCost();
-    func_020c1b90();
+    CurrentPlayer_SyncState();
     func_020c1950();
     func_020c8888();
     data_022977a4.unk_04 = 0x13a;

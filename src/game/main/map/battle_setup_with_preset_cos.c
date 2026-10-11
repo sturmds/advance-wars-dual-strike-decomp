@@ -10,7 +10,7 @@ void Players_ApplyBattleSetup(void);
 void Panels_PlaceForCursor(void);
 void Units_ClearAll(void);
 void MapObjects_Clear(void);
-void func_020c1b90(void);
+void CurrentPlayer_SyncState(void);
 void func_020c1950(void);
 void func_020c8888(void);
 void func_020f8058(int a);
@@ -50,7 +50,7 @@ void Battle_SetupWithPresetCos(void)
     Panels_PlaceForCursor();
     Units_ClearAll();
     MapObjects_Clear();
-    func_020c1b90();
+    CurrentPlayer_SyncState();
     func_020c1950();
     func_020c8888();
     func_020f8058(5);

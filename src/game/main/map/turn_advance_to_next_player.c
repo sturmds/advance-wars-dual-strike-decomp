@@ -10,7 +10,7 @@ extern PlayRecords gPlayRecords;
 
 int func_020c2108(void);
 void Turn_IncrementDay(void);
-void func_020c1b90(void);
+void CurrentPlayer_SyncState(void);
 void CurrentPlayer_LoadPalettes(void);
 void func_020c4018(void);
 BOOL func_020f4638(int arg);
@@ -93,7 +93,7 @@ next:
     if (GAME == &data_02183b08) {
         SWITCH_TO(OTHER_MAP);
         GAME->currentPlayer = tally;
-        func_020c1b90();
+        CurrentPlayer_SyncState();
         if (data_027c027c != data_027c0288.unk_04 || func_020f4638(4)) {
             CurrentPlayer_LoadPalettes();
             func_020c4018();
@@ -103,7 +103,7 @@ next:
     if (GAME == &data_02189cd8) {
         SWITCH_TO(OWN_MAP);
         GAME->currentPlayer = firstState;
-        func_020c1b90();
+        CurrentPlayer_SyncState();
         if (data_027c027c != data_027c0288.unk_04 || func_020f4638(4)) {
             CurrentPlayer_LoadPalettes();
             func_020c4018();
