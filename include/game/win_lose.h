@@ -16,6 +16,9 @@ typedef struct WinLoseSides {
 
 extern WinLoseSides data_022a7a88;
 
+/* The points total (WinLoseTask.unk_5c) stops here. */
+#define WIN_LOSE_POINTS_MAX 99999
+
 /* The task that runs WinLoseScreen_Init, 0x6c bytes like Task. */
 typedef struct WinLoseTask {
     u8 pad_00[0x4c];
