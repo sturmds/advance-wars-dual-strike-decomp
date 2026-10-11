@@ -1,0 +1,95 @@
+#include "types.h"
+#include "game/task.h"
+
+extern u16 data_02297784;
+extern u8 data_022977d0[];
+
+/* func_0201a160 bits */
+#define CHOICE_KEY_LEFT    0x04
+#define CHOICE_KEY_RIGHT   0x08
+#define CHOICE_KEY_CONFIRM 0x10        /* A */
+#define CHOICE_KEY_CANCEL  0x20        /* B */
+
+#define CHOICE_LAST 3                  /* also where B puts the cursor */
+
+u16 func_0201a160(void);
+u16 func_02024a98(void *buttons, int count);
+void func_020d31f4(void);
+void func_0201a1b8(int choice, int x, int y);
+void func_0201a4f0(Task *task);
+void func_0201d730(void *text);
+void Task_ResumeScript(Task *task);
+void Sound_PlaySe(int se);
+
+/* The cursor sits in Task.waitFrames. Needed to match: it is read as a
+ * signed halfword. */
+#define CURSOR(task) (*(s16 *)&(task)->waitFrames)
+
+/* Update of an event script prompt with four choices side by side. Left and
+ * right move the cursor, B jumps to the last choice, touch buttons 0-3 pick
+ * one. A cursor move redraws the choice text at tile (7, 3). A or touch
+ * button 4 confirms: data_02297784 gets 2, 3, 4 for choices 0-2 and 1 for the
+ * last one, then the task passes unk_38 + 0x4e to func_0201d730, calls
+ * unk_3c and resumes its script. */
+void EventChoice_Update(Task *task)
+{
+    u16 keys;
+    u16 touched;
+    int oldCursor;
+
+    keys = func_0201a160();
+    touched = func_02024a98(data_022977d0, 4);
+    func_020d31f4();
+    oldCursor = CURSOR(task);
+    if (keys & CHOICE_KEY_CANCEL) {
+        CURSOR(task) = CHOICE_LAST;
+    }
+    if (keys & CHOICE_KEY_LEFT) {
+        if (CURSOR(task) > 0) {
+            CURSOR(task)--;
+        }
+    }
+    if (keys & CHOICE_KEY_RIGHT) {
+        if (CURSOR(task) < CHOICE_LAST) {
+            CURSOR(task)++;
+        }
+    }
+    if (touched & 1) {
+        CURSOR(task) = 0;
+    }
+    if (touched & 2) {
+        CURSOR(task) = 1;
+    }
+    if (touched & 4) {
+        CURSOR(task) = 2;
+    }
+    if (touched & 8) {
+        CURSOR(task) = 3;
+    }
+    if (oldCursor != CURSOR(task)) {
+        func_0201a1b8(CURSOR(task), 7, 3);
+        func_0201a4f0(task);
+        Sound_PlaySe(0x10002);
+    }
+    if ((keys & CHOICE_KEY_CONFIRM) || (touched & 0x10)) {
+        switch (CURSOR(task)) {
+        case 0:
+            data_02297784 = 2;
+            break;
+        case 1:
+            data_02297784 = 3;
+            break;
+        case 2:
+            data_02297784 = 4;
+            break;
+        case CHOICE_LAST:
+        default:
+            data_02297784 = 1;
+            break;
+        }
+        func_0201d730((u8 *)task->unk_38 + 0x4e);
+        task->unk_3c();
+        Task_ResumeScript(task);
+        Sound_PlaySe(0x1000a);
+    }
+}
