@@ -11004,6 +11004,7 @@ src/game/main/sound/func_02107378.c:
     .text       start:0x02107378 end:0x021073f4
 
 src/game/main/sound/sound_arc_load_file_to_heap.c:
+    complete
     .text       start:0x021073f4 end:0x021074a8
 
 src/game/main/sound/sound_arc_get_wave_arc.c:
