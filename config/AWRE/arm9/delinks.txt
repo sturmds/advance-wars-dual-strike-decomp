@@ -10262,6 +10262,10 @@ src/game/main/menus/combat_setup_prev_row.c:
     complete
     .text       start:0x02085bc8 end:0x02085c2c
 
+src/game/main/menus/combat_setup_move_player_to_row.c:
+    complete
+    .text       start:0x02085c2c end:0x02085d4c
+
 src/game/main/func_02085d4c.c:
     complete
     .text       start:0x02085d4c end:0x02085d60

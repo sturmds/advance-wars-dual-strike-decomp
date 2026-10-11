@@ -16,7 +16,7 @@ void CombatSetup_MovePlayerDown(u8 player);
 void CombatSetup_MovePlayerUp(u8 player);
 void CombatSetup_MoveToNextRow(u8 player);
 void CombatSetup_MoveToPrevRow(u8 player);
-void func_02085c2c(u8 player, u8 arg);
+void CombatSetup_MovePlayerToRow(u8 player, u8 arg);
 void CombatSetup_HandleRowKeys(void);
 void Task_ResumeScript(Task *task);
 
@@ -64,7 +64,7 @@ void CombatSetup_UpdateLink(Task *task)
                         }
                         break;
                     case 11:
-                        func_02085c2c(i, msg[1]);
+                        CombatSetup_MovePlayerToRow(i, msg[1]);
                         break;
                     case 12:
                         CombatSetup_MoveToPrevRow(i);

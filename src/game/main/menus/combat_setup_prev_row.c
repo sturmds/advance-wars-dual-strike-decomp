@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-void func_02085c2c(int player, u8 row);
+void CombatSetup_MovePlayerToRow(int player, u8 row);
 
 extern MenuState gMenuState;
 
@@ -25,5 +25,5 @@ void CombatSetup_MoveToPrevRow(int player)
             row--;
         }
     } while (MENU->combat.rows[row - 1].memberCount == 7);
-    func_02085c2c(player, row);
+    CombatSetup_MovePlayerToRow(player, row);
 }
