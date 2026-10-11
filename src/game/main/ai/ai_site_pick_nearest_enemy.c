@@ -2,7 +2,7 @@
 #include "game/ai_build_state.h"
 #include "game/ai_site.h"
 
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 
 /* Like AiSite_PickNearestToProperty, but picks the site whose nearest
  * enemy unit is closest (enemyDistance). Returns the site index, or -1. */
@@ -20,7 +20,7 @@ int AiSite_PickNearestEnemy(int siteType, int group)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (siteType != SITE_TYPE_ANY && site->type != siteType) {

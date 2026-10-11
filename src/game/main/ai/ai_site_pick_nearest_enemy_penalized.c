@@ -3,7 +3,7 @@
 #include "game/ai_site.h"
 #include "game/ai_site_group.h"
 
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 
 #define GROUP_PENALTY     255
 
@@ -24,7 +24,7 @@ int AiSite_PickNearestEnemyPenalized(int siteType)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (siteType != SITE_TYPE_ANY && site->type != siteType) {

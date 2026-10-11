@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void func_02096f44(void);
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 int func_0209770c(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -18,7 +18,7 @@ int func_0209770c(int x, int y, int unitType);
 #define BUILD_RATING_MAX  40
 
 /* Picks the port site (type 3) to build a Cruiser at: not skipped, not
- * rejected by func_02096c60, and rated below BUILD_RATING_MAX for a Cruiser
+ * rejected by AiSite_NearUnguardedOozium, and rated below BUILD_RATING_MAX for a Cruiser
  * by func_0209770c. Of those, the one with the lowest value in
  * MapTiles.rangeScratch (filled by func_02096f44), at most SCRATCH_FAR; a
  * later site wins a tie. Returns the site index, or -1. */
@@ -38,7 +38,7 @@ int AiSite_PickPortForCruiser(void)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (site->type != SITE_PORT) {

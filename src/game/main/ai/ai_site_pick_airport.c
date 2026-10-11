@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -14,7 +14,7 @@ int func_02096c60(int x, int y);
 #define SAFE_THREAT_LIMIT 40
 
 /* Picks the airport site to build a Fighter at: not skipped, not one where
- * func_02096c60 returns 1, and with both enemy threat values of its tile below
+ * AiSite_NearUnguardedOozium returns 1, and with both enemy threat values of its tile below
  * SAFE_THREAT_LIMIT. Prefers the most enemies near the site, then the nearest enemy.
  * Returns the site index, or -1. */
 int AiSite_PickAirport(void)
@@ -36,7 +36,7 @@ int AiSite_PickAirport(void)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (site->type != SITE_AIRPORT) {

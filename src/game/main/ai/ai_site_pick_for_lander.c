@@ -2,7 +2,7 @@
 #include "game/ai_build_state.h"
 #include "game/ai_site.h"
 
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 
 /* Picks a site of a given type for a Lander. unk_09 is the range-map value of
  * the nearest foot unit, unk_0a that of a unit waiting for a T-Copter. A site
@@ -26,7 +26,7 @@ int AiSite_PickForLander(int siteType)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (siteType != SITE_TYPE_ANY && site->type != siteType) {

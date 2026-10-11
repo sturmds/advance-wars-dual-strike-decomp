@@ -10475,6 +10475,10 @@ src/game/main/ai/ai_site_pick_first.c:
     complete
     .text       start:0x02096bc4 end:0x02096c60
 
+src/game/main/ai/ai_site_near_unguarded_oozium.c:
+    complete
+    .text       start:0x02096c60 end:0x02096d98
+
 src/game/main/ai/ai_tile_has_adjacent_own_team_unit.c:
     complete
     .text       start:0x02096d98 end:0x02096e28

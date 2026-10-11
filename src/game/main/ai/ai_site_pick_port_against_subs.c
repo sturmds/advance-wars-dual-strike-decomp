@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Ai_CountEnemySubReach(void);
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 int func_0209770c(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -36,7 +36,7 @@ int AiSite_PickPortAgainstSubs(void)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (site->type != SITE_PORT) {

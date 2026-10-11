@@ -2,10 +2,10 @@
 #include "game/ai_build_state.h"
 #include "game/ai_site.h"
 
-int func_02096c60(int x, int y);
+int AiSite_NearUnguardedOozium(int x, int y);
 
 /* Among the sites of type 1 that are not skipped and not rejected by
- * func_02096c60, picks the one with the highest score (AiSite_ScorePiperunnerNeed).
+ * AiSite_NearUnguardedOozium, picks the one with the highest score (AiSite_ScorePiperunnerNeed).
  * Returns the site index, or -1 when no score is above 0. */
 int AiSite_PickPiperunnerSite(void)
 {
@@ -21,7 +21,7 @@ int AiSite_PickPiperunnerSite(void)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (func_02096c60(site->x, site->y) == 1) {
+        if (AiSite_NearUnguardedOozium(site->x, site->y) == 1) {
             continue;
         }
         if (site->type != SITE_BASE) {
