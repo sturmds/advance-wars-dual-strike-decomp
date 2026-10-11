@@ -9692,6 +9692,10 @@ src/game/main/power_meter/power_panel_left_draw_meter.c:
     complete
     .text       start:0x020e0d08 end:0x020e0e2c
 
+src/game/main/power_meter/power_panel_left_draw.c:
+    complete
+    .text       start:0x020e0e2c end:0x020e1108
+
 src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948
