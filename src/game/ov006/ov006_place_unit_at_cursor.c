@@ -9,7 +9,7 @@ void func_020c4018(void);
 int Ov006_RemoveUnitAt(int withEffect, int x, int y);
 int Ov006_GetUnitCodeAt(int x, int y);
 int Player_CountUnits(int player);
-MapUnit *func_020c7d30(s16 x, s16 y, s16 type);
+MapUnit *Unit_Spawn(s16 x, s16 y, s16 type);
 void func_ov006_0235f690(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -61,7 +61,7 @@ int Ov006_PlaceUnitAtCursor(void)
                     Ov006_RemoveUnitAt(0, x, y);
                 }
                 if (Player_CountUnits(OV6->unitArmy) < ARMY_UNIT_LIMIT) {
-                    if (func_020c7d30(x, y, OV6->toolUnit & 63)) {
+                    if (Unit_Spawn(x, y, OV6->toolUnit & 63)) {
                         result = 1;
                     }
                 }

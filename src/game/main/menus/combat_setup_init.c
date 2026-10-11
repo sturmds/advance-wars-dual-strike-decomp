@@ -23,7 +23,7 @@ void Co_UnpackPicture(int coId, int firstTile);
 void CombatSetup_LoadMapPreviews(void);
 void func_01ff9b48(void);
 void func_0202b764(void);
-void func_0202b6f8(u8 *dest);
+void TpIcon2_LoadTo(u8 *dest);
 u16 func_0207a1dc(void);
 int func_0207a260(void);
 void SpriteTask_Create(int a, int b, int c, int d);
@@ -158,7 +158,7 @@ void CombatSetup_Init(void)
 
     func_01ff9b48();
     func_0202b764();
-    func_0202b6f8(data_027c0280->objVram + 0x2580);
+    TpIcon2_LoadTo(data_027c0280->objVram + 0x2580);
     data_0229ff30.playerMask = func_0207a1dc() | 1;
     data_0229fb30.unk_45a = func_0207a260();
     data_0229fb30.unk_45b = 0;

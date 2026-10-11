@@ -22,7 +22,7 @@ void Gfx_RequestLayerCopy(int layer);
 void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
 void func_01ff9b48(void);
 void func_0202b764(void);
-void func_0202b6f8(u8 *dest);
+void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
 void Wallpaper_LoadBoth(void);
 void Task_JumpToLabel(Task *task, int label);
@@ -236,7 +236,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
 
     func_01ff9b48();
     func_0202b764();
-    func_0202b6f8(data_027c0280->objVram + 0xf800);
+    TpIcon2_LoadTo(data_027c0280->objVram + 0xf800);
     Menu_Reset();
     Wallpaper_LoadBoth();
 

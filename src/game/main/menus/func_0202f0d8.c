@@ -40,7 +40,7 @@ void func_01ff9b48(void);
 void func_020287ac(void);
 void func_020288c0(void);
 void func_02028978(void);
-void func_0202b6f8(u8 *dest);
+void TpIcon2_LoadTo(u8 *dest);
 void func_0202b764(void);
 void func_0202d888(void);
 void func_0202e8d0(void);
@@ -168,7 +168,7 @@ void func_0202f0d8(MainMenuTask *task)
     data_021599d0->unk_10_3 = 0;
     func_01ff9b48();
     func_0202b764();
-    func_0202b6f8(data_027c0280->objVram + 0x940);
+    TpIcon2_LoadTo(data_027c0280->objVram + 0x940);
     Menu_Reset();
     Wallpaper_LoadSelected();
     ModeFont_Load(78, 1);

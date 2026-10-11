@@ -39,7 +39,7 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void Wallpaper_LoadBoth(void);
 void func_01ff9b48(void);
-void func_0202b6f8(u8 *dest);
+void TpIcon2_LoadTo(u8 *dest);
 void func_0202b764(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
@@ -180,7 +180,7 @@ void VsSetup_Init(void)
     ForceRank_LoadSets(STATE->gameMode);
     func_01ff9b48();
     func_0202b764();
-    func_0202b6f8(data_027c0280->objVram + 0x8000);
+    TpIcon2_LoadTo(data_027c0280->objVram + 0x8000);
     ModeFont_Load(0x2c8, 10);
     if (STATE->twoMaps == 0) {
         ModeFont_ShowTextOnScreen(Text_Get(0x7d000017), 0x2c8, 10, 0x800, 0, 0);

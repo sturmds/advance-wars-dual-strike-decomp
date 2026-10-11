@@ -10,7 +10,7 @@ void func_02028a30(void);
 void Wallpaper_LoadSelected(void);
 void func_02023f38(void);
 void func_0202b764(void);
-void func_0202b6f8(u8 *dest);
+void TpIcon2_LoadTo(u8 *dest);
 void TpIcon3_LoadTo(u8 *dest);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -116,7 +116,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
 
     SWITCH_TO(data_027c0288.unk_00);
     func_0202b764();
-    func_0202b6f8(data_027c0280->objVram + 0x4000);
+    TpIcon2_LoadTo(data_027c0280->objVram + 0x4000);
     TpIcon3_LoadTo(data_027c0280->objVram + 0x4800);
     SWITCH_BACK();
 

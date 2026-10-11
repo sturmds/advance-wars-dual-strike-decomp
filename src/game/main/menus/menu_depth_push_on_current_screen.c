@@ -3,7 +3,9 @@
 
 void MenuDepth_Push(void);
 
-void func_020b9bcc(void)
+/* Runs MenuDepth_Push with the current screen's state loaded, then restores
+ * the state that was current before. */
+void MenuDepth_PushOnCurrentScreen(void)
 {
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedState;

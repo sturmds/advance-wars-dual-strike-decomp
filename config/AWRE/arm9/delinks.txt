@@ -3728,7 +3728,7 @@ src/game/main/tp_icon3_load_to.c:
     complete
     .text       start:0x0202b68c end:0x0202b6f8
 
-src/game/main/func_0202b6f8.c:
+src/game/main/tp_icon2_load_to.c:
     complete
     .text       start:0x0202b6f8 end:0x0202b764
 
@@ -9973,11 +9973,11 @@ src/game/main/func_020b99d4.c:
     complete
     .text       start:0x020b99d4 end:0x020b9a6c
 
-src/game/main/menus/menu_depth_pop_other_screen.c:
+src/game/main/menus/menu_depth_pop_on_other_screen.c:
     complete
     .text       start:0x020b9a6c end:0x020b9ae4
 
-src/game/main/func_020b9ae4.c:
+src/game/main/menus/menu_depth_push_on_other_screen.c:
     complete
     .text       start:0x020b9ae4 end:0x020b9b5c
 
@@ -9985,7 +9985,7 @@ src/game/main/menus/menu_depth_pop_on_current_screen.c:
     complete
     .text       start:0x020b9b5c end:0x020b9bcc
 
-src/game/main/func_020b9bcc.c:
+src/game/main/menus/menu_depth_push_on_current_screen.c:
     complete
     .text       start:0x020b9bcc end:0x020b9c3c
 
