@@ -14,13 +14,21 @@ typedef struct ScoreRow {
 
 /* Pointed to by data_0229c734 (main bss). */
 typedef struct Unk_0229c734 {
-    ScoreRow rows[24];
-    u8 pad_90[0x9a - 0x90];
+    ScoreRow rows[22];
+    u16 partTile[5];                   /* first OBJ tile of each graphics part, 0xffff until loaded */
+    u8 pad_8e[0x90 - 0x8e];
+    u8 *gfxFile;                       /* /ohashi/res_result_point_obj */
+    u16 nextTile;                      /* next free OBJ tile */
+    u16 paletteSlot;                   /* first OBJ palette used */
+    u16 unk_98;
     s16 unk_9a;                        /* set by func_0203813c, read by func_02038150 */
-    u8 pad_9c[0x9d - 0x9c];
+    u8 unk_9c;
     u8 unk_9d;                         /* set by func_0203b194 */
-    u8 pad_9e[0xa0 - 0x9e];
+    u8 unk_9e;
+    u8 unk_9f;
     u8 rowCount;
+    u8 nations[2];                     /* Co_GetNation of the two COs in data_02160abc */
+    u8 pad_a3[0xa4 - 0xa3];
     int unk_a4;                        /* set to 1 by ScriptTask_ResumeWithValue, read by func_02038164 */
 } Unk_0229c734;
 
