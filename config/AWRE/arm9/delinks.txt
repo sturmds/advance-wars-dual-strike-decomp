@@ -1336,6 +1336,10 @@ src/game/main/text/func_020154c4.c:
     complete
     .text       start:0x020154c4 end:0x02015508
 
+src/game/main/text/text_printer_write_tall_entries.c:
+    complete
+    .text       start:0x020157bc end:0x020157e4
+
 src/game/main/text/text_printer_read_control_code.c:
     complete
     .text       start:0x020157e4 end:0x02015da8
