@@ -5582,6 +5582,10 @@ src/game/main/co_rank_task_start_max_rank_event.c:
     complete
     .text       start:0x02048db0 end:0x02048e08
 
+src/game/main/co_rank_task_start_rank10_event.c:
+    complete
+    .text       start:0x02048e08 end:0x02048e60
+
 src/game/main/func_02048eb8.c:
     complete
     .text       start:0x02048eb8 end:0x02048f1c
