@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 
-int func_02007760(void);
+int Screen_GetNibble(void);
 void Screen_SetNibble(int value);
 int func_02007710(int screens);
 void func_020075c0(void);
@@ -14,7 +14,7 @@ void Task_Destroy(Task *task);
  * Otherwise there is nothing to fade in and the task ends. */
 void ScreenBlendLighten_Start(Task *task)
 {
-    if (func_02007760() == 0) {
+    if (Screen_GetNibble() == 0) {
         Task_Destroy(task);
         return;
     }

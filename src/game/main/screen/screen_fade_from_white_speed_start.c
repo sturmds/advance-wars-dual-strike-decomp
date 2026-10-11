@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-int func_02007760(void);
+int Screen_GetNibble(void);
 void Screen_SetNibble(int value);
 int func_02007710(int screens);
 void Task_Destroy(Task *task);
@@ -11,7 +11,7 @@ void Task_Destroy(Task *task);
  * Otherwise there is nothing to fade in and the task ends. */
 void ScreenFadeFromWhiteSpeed_Start(Task *task)
 {
-    if (func_02007760() == 0) {
+    if (Screen_GetNibble() == 0) {
         Task_Destroy(task);
         return;
     }

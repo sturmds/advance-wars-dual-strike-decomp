@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 #include "game/window_wipe.h"
 
-int func_02007760(void);
+int Screen_GetNibble(void);
 void Screen_SetNibble(int value);
 int func_02007710(int screens);
 void Screen_EnableEmptyWindows(void);
@@ -18,7 +18,7 @@ void Task_Destroy(Task *task);
  * WindowWipe_BuildCenterOut's table. */
 void func_02006a20(Task *task)
 {
-    if (func_02007760() == 1) {
+    if (Screen_GetNibble() == 1) {
         Task_Destroy(task);
         return;
     }
