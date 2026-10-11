@@ -1,0 +1,50 @@
+#include "types.h"
+#include "game/Unk_0215fe8c.h"
+#include "game/link_buffers.h"
+
+extern Unk_0215fe8c *data_0215fe8c;
+extern Unk_0229cdfc data_0229cdfc[7];
+extern Unk_0229cb4c data_0229cb4c[7];
+extern u8 data_0229ca40[7];
+
+void Mem_CopyBytes(const void *src, void *dest, u32 size);
+
+/* Child side: queues a packet from the parent in peer 0's queues, flagged
+ * packets (header bit 7) in data_0229cb4c, the rest in data_0229cdfc.
+ * data_0229ca40[0] keeps the last sequence number (0x80 before the first);
+ * a repeat of it is dropped. A full queue sets the error flag. */
+void Link_ReceiveFromParent(LinkPacket *packet, u16 length)
+{
+    u8 next;
+
+    if (packet == NULL) {
+        return;
+    }
+    if (data_0229ca40[0] != 0x80 && data_0229ca40[0] == (packet->header & 0x7f)) {
+        return;
+    }
+    data_0229ca40[0] = packet->header & 0x7f;
+    if (packet->header & 0x80) {
+        next = data_0229cb4c[0].unk_61 + 1;
+        if (next == 4) {
+            next = 0;
+        }
+        if (next == data_0229cb4c[0].unk_60) {
+            data_0215fe8c->unk_18 = 1;
+            return;
+        }
+        Mem_CopyBytes(packet, &data_0229cb4c[0].slots[data_0229cb4c[0].unk_61], sizeof(LinkPacket));
+        data_0229cb4c[0].unk_61 = next;
+    } else {
+        next = data_0229cdfc[0].unk_181 + 1;
+        if (next == 16) {
+            next = 0;
+        }
+        if (next == data_0229cdfc[0].unk_180) {
+            data_0215fe8c->unk_18 = 1;
+            return;
+        }
+        Mem_CopyBytes(packet, &data_0229cdfc[0].slots[data_0229cdfc[0].unk_181], sizeof(LinkPacket));
+        data_0229cdfc[0].unk_181 = next;
+    }
+}
