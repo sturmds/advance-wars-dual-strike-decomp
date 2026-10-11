@@ -9,8 +9,8 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | game | 6629 / 6700 | 1493004 / 1553840 | 96.08% | 0 | 0 |
-| SDK/library | 370 / 779 | 42332 / 132154 | 32.03% | 33 | 2126 |
-| all | 6999 / 7479 | 1535336 / 1685994 | 91.06% | 33 | 2126 |
+| SDK/library | 382 / 779 | 43308 / 132154 | 32.77% | 33 | 2126 |
+| all | 7011 / 7479 | 1536312 / 1685994 | 91.12% | 33 | 2126 |
 
 ## By module
 
@@ -19,7 +19,7 @@ Rows with nothing done are left out, but count in the totals.
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5138 / 5180 | 1039776 / 1082632 | 96.04% | 0 |
-| main | SDK/library | 363 / 768 | 41420 / 130618 | 31.71% | 29 |
+| main | SDK/library | 375 / 768 | 42396 / 130618 | 32.46% | 29 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -131,3 +131,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/os/os_release_lock_id.c` | OS_ReleaseLockID | 48 |
 | `src/sdk/os/os_set_dma_irq_handler.c` | func_0210cdf4 | 76 |
 | `src/sdk/os/timer_install_irq_slot.c` | func_0210cda8 | 76 |
+| `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 |
