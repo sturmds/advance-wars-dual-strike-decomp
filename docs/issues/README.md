@@ -75,3 +75,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0045](0045-collect-misreads-results.md) | `loop_state.py collect` misreads short and prose results files | open | loop | M1 |
 | [0046](0046-replay-leaves-stale-moved-files.md) | Replay leaves the old copy of a moved source file | closed | loop | M1 |
 | [0047](0047-review-stamp-without-review.md) | A tenets review stamp did not show that a review ran | closed | loop | M1 |
+| [0048](0048-lost-attempt-tokens-not-counted.md) | Token totals leave out the attempts lost in a session crash | open | loop | M1 |
