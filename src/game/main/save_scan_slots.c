@@ -14,7 +14,7 @@ void Save_Format(void);
 int Save_LoadRecord(int recordId, void *buffer);
 void Save_WriteRecord(int recordId, u8 *src, int size);
 
-/* Reads every save slot at startup (called once by func_02020690). Each slot
+/* Reads every save slot at startup (called once by Save_Init). Each slot
  * that reads back fine gives its record id, part byte and save counter; the
  * slot with the highest counter also gives the write counts of all slots and
  * the next save counter. With no readable slot, the save is formatted unless

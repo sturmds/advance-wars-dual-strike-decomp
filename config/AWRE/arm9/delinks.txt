@@ -3000,6 +3000,10 @@ src/game/main/save_delete_record.c:
 src/game/main/save_write_record.c:
     .text       start:0x020200fc end:0x02020690
 
+src/game/main/save_init.c:
+    complete
+    .text       start:0x02020690 end:0x020206d4
+
 src/game/main/save_read_backup.c:
     complete
     .text       start:0x020206f0 end:0x02020754

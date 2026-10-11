@@ -26,7 +26,7 @@ u8 OwnerInfo_GetFavoriteColor(void);
 void Link_Init(void);
 void Save_PackProgress(void);
 void Save_ResetProgress(void);
-void func_02020690(void (*a)(void), void (*b)(void), void *c);
+void Save_Init(void (*a)(void), void (*b)(void), void *c);
 void Touch_Init(void);
 void Menu_Reset(void);
 void func_0200ccac(void);
@@ -96,7 +96,7 @@ void main(void)
     func_0200c0b0();
     data_ov000_023503a0 = OwnerInfo_GetFavoriteColor();
     Link_Init();
-    func_02020690(Save_PackProgress, Save_ResetProgress, data_02291774);
+    Save_Init(Save_PackProgress, Save_ResetProgress, data_02291774);
     Touch_Init();
     Menu_Reset();
     func_0200ccac();
