@@ -6,7 +6,7 @@ extern int data_027c0284;
 extern u32 data_021663a0[];
 
 void func_02019c1c(u32 script, int arg1, int arg2);
-void func_020cf400(u16 player, u16 code);
+void LinkPlayerDefeatTask_Create(u16 player, u16 code);
 void func_020cf2c8(int player, int code);
 void Player_RefreshUnits(void);
 void Game_EnterState18(void);
@@ -19,7 +19,7 @@ void Game_EnterState18(void);
 void LinkPlayer_Defeat(int player, int code)
 {
     func_02019c1c(data_021663a0[STATE->players[player].armyColour - 1], 21, 0);
-    func_020cf400(player, code);
+    LinkPlayerDefeatTask_Create(player, code);
     func_020cf2c8(player, code);
     if (player == STATE->currentPlayer) {
         STATE->unk_18 = 1;

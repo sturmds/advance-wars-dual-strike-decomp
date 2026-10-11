@@ -7580,6 +7580,10 @@ src/game/main/link_player_defeat.c:
     complete
     .text       start:0x020cf1f8 end:0x020cf2c8
 
+src/game/main/link_player_defeat_task_create.c:
+    complete
+    .text       start:0x020cf400 end:0x020cf434
+
 src/game/main/map/weather_start_effect.c:
     complete
     .text       start:0x020cf884 end:0x020cf8e8

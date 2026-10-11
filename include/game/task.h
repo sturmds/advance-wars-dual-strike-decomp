@@ -39,7 +39,9 @@ typedef struct Task {
     int unk_58;                        /* number of sprites the fade task of ScreenFadeSprites_Update draws */
     u8 pad_5c[0x64 - 0x5c];
     u16 unk_64;
-    u8 pad_66[0x6c - 0x66];
+    u16 unk_66;
+    u16 unk_68;
+    u8 pad_6a[0x6c - 0x6a];
 } Task;
 
 /* Task.flags bits */

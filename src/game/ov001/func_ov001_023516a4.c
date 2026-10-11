@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_020cf400(int, int);
+void LinkPlayerDefeatTask_Create(int, int);
 
 void func_ov001_023516a4(void)
 {
-    func_020cf400(3, 2);
+    LinkPlayerDefeatTask_Create(3, 2);
 }
