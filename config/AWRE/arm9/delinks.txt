@@ -17506,6 +17506,10 @@ src/game/main/silo/silo_missile_fall_start.c:
     complete
     .text       start:0x020ecedc end:0x020ecf30
 
+src/game/main/silo/silo_missile_explode.c:
+    complete
+    .text       start:0x020ecf30 end:0x020ed114
+
 src/game/main/silo/silo_missile_fall_update.c:
     complete
     .text       start:0x020ed114 end:0x020ed1bc

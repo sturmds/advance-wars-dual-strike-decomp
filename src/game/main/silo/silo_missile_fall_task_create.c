@@ -6,7 +6,7 @@ extern const TaskScriptCmd data_02168e78[];
 
 /* Starts the falling missile task (script data_02168e78) for tile (x, y)
  * under `parent`. The sprite uses tile `tile` and palette `palette`. unk44
- * and unk60 are kept for func_020ecf30. */
+ * and unk60 are kept for SiloMissile_Explode. */
 void SiloMissileFall_CreateTask(int x, int y, int tile, int palette, int unk44, int unk60, Task *parent)
 {
     SiloMissileTask *task = (SiloMissileTask *)Task_CreateChild(data_02168e78, parent);

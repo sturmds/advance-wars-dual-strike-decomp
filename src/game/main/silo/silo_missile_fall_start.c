@@ -6,7 +6,7 @@ void SiloMissileFall_CreateTask(int x, int y, int tile, int palette, int unk44, 
 
 /* Loads the missile graphics and starts the task of a missile falling onto
  * tile (x, y) under `parent`. unk44 and unk60 go to fields of the new task
- * that func_020ecf30 reads. */
+ * that SiloMissile_Explode reads. */
 void SiloMissileFall_Start(int x, int y, int unk44, int unk60, Task *parent)
 {
     SiloMissile_LoadGfx(404, 5);
