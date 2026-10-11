@@ -8476,6 +8476,10 @@ src/game/main/menus/unit_list_handle_keys.c:
     complete
     .text       start:0x02073b04 end:0x02073ce4
 
+src/game/main/menus/unit_list_on_sort_button.c:
+    complete
+    .text       start:0x02073ce4 end:0x02073d88
+
 src/game/main/menus/unit_list_close.c:
     complete
     .text       start:0x02073ed8 end:0x02073f28
