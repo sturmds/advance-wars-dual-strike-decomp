@@ -4,7 +4,7 @@
 void OS_Terminate(void);
 void func_0210e0d4(void);
 void func_0210e154(void);
-void func_0210eb9c(u32 arg);
+void Reset_StopAndRequestArm7(u32 arg);
 
 #define REG_EXMEMCNT ((volatile u16 *)0x04000204)
 #define EXMEMCNT_BIT15 0x8000       /* guess: main memory interface priority */
@@ -22,6 +22,6 @@ void MainLoop_Shutdown(void)
     *REG_EXMEMCNT &= ~EXMEMCNT_BIT15;
     func_0210e0d4();
     func_0210e154();
-    func_0210eb9c(SHARED_MEM_WORD + 1);
+    Reset_StopAndRequestArm7(SHARED_MEM_WORD + 1);
     OS_Terminate();
 }

@@ -180,4 +180,20 @@ int OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL d
 /* Busy-waits about cycles CPU cycles. */
 void OS_SpinWait(u32 cycles);
 
+/* Boot type word in shared main RAM; 2 means the program came over multiboot. */
+#define BOOT_ORIGIN_WORD ((volatile u16 *)0x027ffc40)
+#define BOOT_ORIGIN_WIRELESS 2
+
+/* Word handed to the program that starts after a reset. */
+#define RESET_ARGUMENT_WORD ((volatile u32 *)0x027ffc20)
+
+/* The ARM7 is told to reset with this command over the PXI FIFO. */
+#define OS_PXI_COMMAND_RESET 0x10
+
+/* IE and IF bit: the receive FIFO is not empty. */
+#define IRQ_FIFO_RECV 0x40000
+
+/* Stores parameter for the next program and resets the console. Does not return. */
+void Reset_StopAndRequestArm7(u32 parameter);
+
 #endif
