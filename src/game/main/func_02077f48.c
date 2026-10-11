@@ -3,7 +3,7 @@
 
 extern u32 gWirelessState;
 /* Probably an SDK call: the second argument is passed on to the callback. */
-void func_02118f34(void (*callback)(void), int mode);
+void WM_SetEntry(void (*callback)(void), int mode);
 void Wireless_OnSetMode0(void);
 void Wireless_OnSetMode1(void);
 
@@ -16,8 +16,8 @@ void func_02077f48(int mode)
         return;
     }
     if (mode == 1) {
-        func_02118f34(Wireless_OnSetMode1, mode);
+        WM_SetEntry(Wireless_OnSetMode1, mode);
         return;
     }
-    func_02118f34(Wireless_OnSetMode0, mode);
+    WM_SetEntry(Wireless_OnSetMode0, mode);
 }

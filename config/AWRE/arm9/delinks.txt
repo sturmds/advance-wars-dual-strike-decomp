@@ -22422,6 +22422,10 @@ src/sdk/wm/wm_end_mp.c:
     complete
     .text       start:0x02117df0 end:0x02117e7c
 
+src/sdk/wm/wm_set_entry.c:
+    complete
+    .text       start:0x02118f34 end:0x02118f94
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
