@@ -22382,6 +22382,10 @@ src/sdk/wm/wm_start_parent.c:
     complete
     .text       start:0x02117a1c end:0x02117a64
 
+src/sdk/wm/wireless_parent_settings_valid.c:
+    complete
+    .text       start:0x02117a64 end:0x02117ab4
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc

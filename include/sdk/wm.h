@@ -272,6 +272,26 @@ typedef struct WMStartScanReq {
     u8 bssid[6];
 } WMStartScanReq;
 
+/* What WM_SetParentParameter reads (0x40 bytes). */
+typedef struct WMParentParam {
+    u16 *userGameInfo;
+    u16 userGameInfoLength;            /* at most 112 */
+    u8 pad_06[2];
+    u32 ggid;
+    u16 tgid;
+    u16 entryFlag;
+    u16 maxEntry;
+    u16 multiBootFlag;
+    u16 KS_Flag;                       /* nonzero: key sharing, which costs payload bytes */
+    u16 CS_Flag;
+    u16 beaconPeriod;                  /* 10 to 1000 */
+    u8 pad_1a[0x18];
+    u16 channel;                       /* 1 to 14 */
+    u16 parentMaxSize;
+    u16 childMaxSize;
+    u8 pad_38[8];
+} WMParentParam;
+
 typedef void (*WMCallbackFunc)(void *arg);
 
 /* The ARM9 side's work area. */
