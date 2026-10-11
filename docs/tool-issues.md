@@ -41,3 +41,16 @@ Tracked as `docs/issues/0007-dsd-init-abort.md`.
 
 - **Seen:** 2026-10-11, in `func_0201c8ec` (`EventScript_ShowPicture`). dsd did not find the load at `0x0201c9f0` that points into ITCM at `0x01ff8f64`, so the build had no relocation for it.
 - **Workaround:** batch 21 group `m01` added `from:0x0201c9f0 kind:load to:0x01ff8f64 module:itcm` to `relocs.txt` and `data_01ff8f64` to the ITCM `symbols.txt` by hand (landed in `7d9ec6c78`). Look for the same miss in other functions that read ITCM data.
+
+## dsd: no ARM7 programs, and no branches above 0x03000000
+
+Tracked as `docs/issues/0013-arm7-from-objects.md` (closed by the workaround).
+
+- **Version:** dsd 0.12.1 (`tools.lock`), and the source at `c408063`.
+- **What is missing:** `init`, `delink`, `lcf` and `objdiff` read only the ARM9 side of a ROM: a `config.yaml` has a main module, autoloads and ARM9 overlays, nothing for ARM7. Pointing them at ARM7 as if it were ARM9 fails in two ways:
+  - ARM9 analysis expects ARM9's crt0: a 0x800-byte secure area, a static-initializer runner whose first literal points at `.ctor`, and build info ending in the `0xdec00621` "nitrocode" words. ARM7's crt0 has none of these (`expected nitrocode ... at the end of build info`, then a panic in `lib/src/analysis/ctor.rs`).
+  - The function parser treats any branch to an address outside 0x01ff8000-0x03000000 as illegal (`lib/src/analysis/functions.rs`, "branch outside of program"). ARM7 WRAM is at 0x037f8000. `init` stops at the first such branch, and `delink` fails on any function in `symbols.txt` that has one: `function func_037f802c could not be analyzed: IllegalIns { ..., reason: "branch outside of program" }`. Code in main RAM calls WRAM 784 times, so nearly every ARM7 function is affected.
+  - An autoload at 0x027c0000 is taken for DTCM, and DTCM gets no function search.
+- **Workaround:** `tools/arm7.py` gives dsd a stand-in ROM: a made-up ARM9 main module that passes the ARM9 checks, empty ITCM and DTCM, and the three ARM7 parts as unknown autoloads, with WRAM moved to 0x02a00000 and main RAM to 0x02c00000. At each relocation in `config/AWRE/arm7/relocs.txt` it rewrites the original word for the moved addresses, and writes a dsd config with the same addresses moved. `dsd delink` and `dsd lcf` run on that. The link script gets the real addresses back, so mwldarm places every object where it belongs and resolves every relocation to its real target; `build/build/arm7.bin` equals the retail ARM7 byte for byte. `tools/arm7_init.py` generated the config the same way, once.
+- **What dsd's analysis still got wrong on ARM7,** fixed by `arm7_init.py`: it stopped searching at the first data in WRAM and missed the functions after it, split the Thumb BIOS call stubs at multiples of 4, and took a table of function pointers at 0x027d6570 for a Thumb function.
+- **Upstream fix:** ARM7 modules in the config, and the branch range taken from the module list instead of a constant.

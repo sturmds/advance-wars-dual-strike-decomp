@@ -7,7 +7,7 @@ What we know about the US/AUS ROM, from plan step 0.2 (2026-10-06). Everything h
 - `ADVANCEWARSE`, game code `AWRE`, maker `01`, revision 0, 33,554,432 bytes.
 - SHA-1 `5a8d22d41caa2c0ff41fb4a2b885a6be607e22d9`, MD5 `6119b65d4f854953a5b85bc692166476`. Both match TASVideos' "Good" entry for "Advance Wars - Dual Strike (USA, Australia).nds" (https://tasvideos.org/Games/2894/Versions/View/3068).
 - Library version 2.0: build info `sdk_version` = `0x02007532`. The ROM has no library, Metrowerks or MSL banner strings and no build dates.
-- ARM7 (157,268 B at 0x02380000) contains "2.39.00". Not analysed yet; probably the stock SDK ARM7 component.
+- ARM7 (157,268 B at 0x02380000) contains "2.39.00". See "ARM7" below.
 
 ## Modules
 
@@ -42,6 +42,23 @@ What we know about the US/AUS ROM, from plan step 0.2 (2026-10-06). Everything h
 - The EU notes say "build 56", which is not in metroskrew. Nothing here needs it. To show 56 is required, you would need a compiled function that builds 72–82 cannot reproduce.
 - The game code contains no Thumb. The four non-BIOS Thumb functions (matrix helpers at 0x0210969c, 0x021096bc, 0x021096d8 and an RL decompressor at 0x0210f9a8) are hand-written library assembly. They match as `asm void` under `#pragma thumb on` in a `.c` file.
 - The linker is `mwldarm` 2.0-72. The zero-C link reproduces every module with it.
+
+## ARM7
+
+Found 2026-10-11 (issues 0013 and 0042). ARM7 is the second CPU: sound, touch screen, wireless, real-time clock and power.
+
+| Part | Address | Size | `.bss` | ARM functions | Thumb functions | Code bytes |
+|---|---|---|---|---|---|---|
+| static (crt0) | 0x02380000 | 368 | 0 | 3 | 0 | 344 |
+| main RAM autoload | 0x027c0000 | 93,252 | 6,328 | 533 | 0 | 91,504 |
+| WRAM autoload | 0x037f8000 | 63,624 | 14,180 | 453 | 25 | 62,448 |
+
+- `arm7.bin` is the static part, then the two autoloads, then a 24-byte autoload table (address, size, `.bss` size per autoload). The crt0 literal pool at 0x02380158 holds the module parameters. Entry and load address 0x02380000, no ARM7 overlays.
+- 1,014 functions, 989 ARM and 25 Thumb, about 154 KB of code (dsd's analysis plus the fixes in `tools/arm7_init.py`). The 25 Thumb functions are the BIOS call stubs at 0x03803b74-0x03803bf0 (`svc N; bx lr`).
+- WRAM holds `.text` to 0x0380713c, then read-only tables, then six more functions to 0x0380773c, then `.data`. The config keeps the tables inside `.text`.
+- In the original each autoload's `.bss` starts right after its data (the crt0 clears from there), not 32-byte aligned as in dsd's sections. Sizes and the bytes of `arm7.bin` are the same either way; a few pointers into the first 0x1c bytes of `.bss` have no relocation (`arm7_init.py` lists them).
+- **Game code: none found.** No word in ARM7 points into ARM9 memory (the 7 words in 0x02000000-0x0237ffff are constants such as `0x020000ff`), and the only strings are system library ones (`Failed sound alarm OS_SendMessage`, the version `2.39.00`). ARM7 counts as system library code. Comparing it with the ARM7 of another game built on library version 2.x would show whether that holds; the Download Play child's ARM7 is a different build (issue 0049).
+- **Compiler: mwccarm 2.0 (builds 72-87 give the same code), `-O4,s -proc arm7tdmi -interworking`.** The same compiler as ARM9, optimised for size. Evidence (2026-10-11, C written from the disassembly, not committed): `func_arm7_027c0000` (a loop over 32 entries), `func_arm7_037f8000` and `func_arm7_038076e8` match only with 2.0 and size optimisation (`,s`): `-O4,p`, `-O3,p`, 3.0-114 to 3.0-139 and 4.0-1051 all differ. `-O1` to `-O3` with `,s` give the same code as `-O4,s` for these three, so the level is a guess until a function shows a difference (`-O0` differs). `func_arm7_027c0070` matches with every version. Dropping `-interworking` or using `-proc arm946e` breaks the matches. Functions show the 2.0 shape: `stmfd sp!, {lr}; sub sp, sp, #4` and `ldmfd sp!, {lr}; bx lr`.
 
 ## dsd problems and workarounds
 

@@ -45,7 +45,8 @@ check-rom:
 	fi
 	@sha1sum --quiet --strict -c $(ROM_SHA1) || { echo "error: $(ROM) is not the US/AUS AWRE retail ROM" >&2; exit 1; }
 
-# Per-module checks first, so a mismatch names the module.
+# Per-module checks first, so a mismatch names the module. dsd checks the ARM9
+# modules; modules.sha1 also covers build/build/arm7.bin.
 check-modules:
 	@$(DSD) check modules -c $(DSD_CONFIG) 2>&1 | grep -v ': OK$$' | grep -v '^\[INFO \] Loading' || true
 	@sha1sum --quiet --strict -c $(MODULES_SHA1)
@@ -76,7 +77,8 @@ release: setup
 	@echo "release: OK"
 
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
-# handling, of ds.py, of pragmas.py and of absolute symbols; no ROM or build
+# handling, of ds.py, of pragmas.py, of absolute symbols and of ARM7's address
+# moves (tools/arm7.py); no ROM or build
 # needed (test_ds.py, test_pragmas.py and test_absolute.py use the compiler
 # from make setup; test_ds.py checks more
 # when extract/ exists).
@@ -88,6 +90,7 @@ test:
 	@$(PYTHON) tools/tests/test_ds.py
 	@$(PYTHON) tools/tests/test_pragmas.py
 	@$(PYTHON) tools/tests/test_absolute.py
+	@$(PYTHON) tools/tests/test_arm7.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

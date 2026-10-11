@@ -40,7 +40,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0010](0010-build-log-noise.md) | dsd prints `[INFO]` lines on every build | open | build | M1 |
 | [0011](0011-hook-builds-working-tree.md) | `pre-commit` builds the working tree, not the staged changes | open | build | later |
 | [0012](0012-hard-coded-addresses.md) | Hard-coded addresses would break a shifted build | open | decomp | M3 |
-| [0013](0013-arm7-from-objects.md) | ARM7 is copied from the ROM, not built from objects | open | build | M2 |
+| [0013](0013-arm7-from-objects.md) | ARM7 is copied from the ROM, not built from objects | closed | build | M2 |
 | [0014](0014-unk-struct-consolidation.md) | `Unk_*` structs need merging and real names | open | decomp | M2 |
 | [0015](0015-agent-usage-budget.md) | No usage budget per batch | open | loop | M1 |
 | [0016](0016-field-renames-not-replayed.md) | `apply_commit.py` does not replay struct field renames | open | loop | M1 |

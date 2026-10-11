@@ -34,6 +34,12 @@ Order matters: each step needs the one before it.
 
 Priority: after the ARM9 game partials. Steps 1 to 4 can run beside the ARM9 SDK/library work, because they touch tools and config, not ARM9 C.
 
+## Results
+
+- **Step 1 (2026-10-11).** Done; issue 0013 is closed. dsd cannot delink ARM7 itself, so `tools/arm7.py` runs it on a stand-in ROM and links at the real addresses (`docs/tool-issues.md`). `config/AWRE/arm7/` holds one module, `arm7`, with its three parts (crt0 at 0x02380000, main RAM at 0x027c0000, WRAM at 0x037f8000) and names `func_arm7_XXXXXXXX` / `data_arm7_XXXXXXXX`.
+- **Step 2, question 2 (2026-10-11).** 1,014 functions: 989 ARM, 25 Thumb (all BIOS call stubs). Compiler mwccarm 2.0 with `-O4,s -proc arm7tdmi -interworking`: the ARM9 compiler, optimised for size. Details in `docs/awre-facts.md`, "ARM7".
+- **Step 2, question 1.** No game code found: no pointer into ARM9 memory and only system library strings. ARM7 counts as library code. Not yet compared with the ARM7 of another game built on library version 2.x.
+
 ## Requirement: PROGRESS.md tracks ARM7
 
 - ARM7 gets its own rows, separate from ARM9, in both the totals table and the by-module table. ARM9 means main, itcm and the overlays; ARM7 means `arm7.bin`.
