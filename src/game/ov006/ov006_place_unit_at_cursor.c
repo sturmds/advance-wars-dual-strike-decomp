@@ -1,0 +1,78 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/co_data.h"
+#include "game/map_unit.h"
+#include "game/unit_stats.h"
+#include "game/Unk_ov006_0235f690.h"
+
+void func_020c4018(void);
+int Ov006_RemoveUnitAt(int withEffect, int x, int y);
+int Ov006_GetUnitCodeAt(int x, int y);
+int Player_CountUnits(int player);
+MapUnit *func_020c7d30(s16 x, s16 y, s16 type);
+void func_ov006_0235f690(void);
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern Unk_ov006_0235f690 *data_ov006_0236d640;
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define OV6   data_ov006_0236d640
+#define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
+#define ARMY_UNIT_LIMIT 50 /* units one army may have on a Design Room map */
+#define CHART ((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
+
+/* Unit mode edit on the cursor tile for army unk_24. With flag 0x40 set
+ * (delete) it removes the unit there and returns 2. Otherwise it puts unit
+ * type unk_1a there, replacing a different unit, and returns 1. It returns
+ * -1 when the unit cannot move onto the tile, or when the army already has
+ * 50 units and the tile holds another army's unit; 0 when nothing changed
+ * (same unit already there, or still 50 units after the swap). */
+int Ov006_PlaceUnitAtCursor(void)
+{
+    int code;
+    int x;
+    int y;
+    int old;
+    int result = 0;
+
+    STATE->currentPlayer = OV6->unk_24;
+    STATE->currentUnitBase = (STATE->currentPlayer - 1) << 6;
+    code = (OV6->unk_1a & 63) | STATE->currentUnitBase;
+    x = OV6->unk_0e;
+    y = OV6->unk_10;
+    if (OV6->unk_00 & 0x40) {
+        if (Ov006_RemoveUnitAt(1, x, y)) {
+            func_020c4018();
+            result = 2;
+        }
+    } else {
+        old = Ov006_GetUnitCodeAt(x, y);
+        if (code != old) {
+            if (old != UNIT_TYPE_COUNT) {
+                if (Player_CountUnits(OV6->unk_24) >= ARMY_UNIT_LIMIT && (old >> 6) + 1 != OV6->unk_24) {
+                    return -1;
+                }
+            } else {
+                old = -1;
+            }
+            if (CHART[Ov000_gUnitStats[OV6->unk_1a & 63].moveType][MAP_TILE_TERRAIN(TILE(x, y))] != -1) {
+                if (old > 0) {
+                    Ov006_RemoveUnitAt(0, x, y);
+                }
+                if (Player_CountUnits(OV6->unk_24) < ARMY_UNIT_LIMIT) {
+                    if (func_020c7d30(x, y, OV6->unk_1a & 63)) {
+                        result = 1;
+                    }
+                }
+            } else {
+                result = -1;
+            }
+        }
+    }
+    if (result > 0) {
+        func_ov006_0235f690();
+        OV6->unk_3c = 5;
+    }
+    return result;
+}
