@@ -15,7 +15,7 @@ typedef struct Camera {
     s32 y;
     s32 z;
     MtxFx43 mtx43;                     /* 0x14 */
-    u8 pad_44[0x68 - 0x44];
+    MtxFx33 invRot;                    /* 0x44: inverse of mtx43's 3x3 part */
     MtxFx44 mtx44;                     /* 0x68 */
     MtxFx33 mtx33;                     /* 0xa8 */
     u8 pad_cc[0xe8 - 0xcc];

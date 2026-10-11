@@ -1294,6 +1294,10 @@ src/game/main/graphics/camera_build_matrices.c:
     complete
     .text       start:0x0200c684 end:0x0200c6d4
 
+src/game/main/graphics/camera_update_view_matrix.c:
+    complete
+    .text       start:0x0200c6d4 end:0x0200c7ec
+
 src/game/main/graphics/camera_set.c:
     complete
     .text       start:0x0200c7ec end:0x0200c898
