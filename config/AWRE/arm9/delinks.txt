@@ -2534,6 +2534,10 @@ src/game/main/graphics/sprite_anim_task_start.c:
     complete
     .text       start:0x02021c24 end:0x02021c84
 
+src/game/main/graphics/sprite_anim_find.c:
+    complete
+    .text       start:0x02021c84 end:0x02021cc0
+
 src/game/main/graphics/func_02022404.c:
     complete
     .text       start:0x02022404 end:0x0202244c

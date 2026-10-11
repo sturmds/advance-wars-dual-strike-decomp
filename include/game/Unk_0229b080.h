@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* One of 16 0x30-byte slots in data_0229b080. A slot is free when its first
- * word is 0; func_02021c84 finds a slot by that word. */
+ * word is 0; SpriteAnim_Find finds a slot by that word. */
 typedef struct Unk_0229b080 {
     u32 id;
     u8 pad_04[0x30 - 0x04];
