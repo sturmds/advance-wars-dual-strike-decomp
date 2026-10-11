@@ -10955,6 +10955,16 @@ src/game/main/sound/sound_heap_create.c:
     complete
     .text       start:0x02106ce0 end:0x02106d7c
 
+src/game/main/sound/sound_arc_load_bank_waves.c:
+    complete
+    .text       start:0x02106d7c end:0x02106e4c
+
+src/game/main/sound/sound_wave_arc_load_wave.c:
+    .text       start:0x02106e4c end:0x02106f40
+
+src/game/main/sound/sound_wave_arc_unload_wave.c:
+    .text       start:0x02106f40 end:0x02106f94
+
 src/game/main/func_02106f94.c:
     complete
     .text       start:0x02106f94 end:0x02106fb8

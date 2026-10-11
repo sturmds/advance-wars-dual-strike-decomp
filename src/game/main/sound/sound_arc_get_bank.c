@@ -16,7 +16,7 @@ const SoundArcWaveArcInfo *NNS_SndArcGetWaveArcInfo(int waveArcNo);
 void *func_02106304(int fileId);
 void *func_02107280(int fileId, void *heap, int cache);
 int func_021074a8(int waveArcNo, int loadFlags, void *heap, int cache, void **loadedOut);
-BOOL func_02106d7c(void *wave, void *bank, int index, u32 fileId, void *heap);
+BOOL SoundArc_LoadBankWaves(void *wave, void *bank, int index, u32 fileId, void *heap);
 void func_02110d7c(void *bank, int index, void *wave);
 
 /* Gets bank bankNo into memory, loading it and its wave archives into heap
@@ -59,7 +59,7 @@ int SoundArc_GetBank(int bankNo, int loadFlags, void *heap, int cache, void **lo
             return result;
         }
         if ((waveInfo->b.flags & 1) && loadWaveData) {
-            if (!func_02106d7c(wave, bank, i, waveInfo->id.fileId, heap)) {
+            if (!SoundArc_LoadBankWaves(wave, bank, i, waveInfo->id.fileId, heap)) {
                 return SOUND_FETCH_ERR_SAMPLES_READ;
             }
         }
