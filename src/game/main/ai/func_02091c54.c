@@ -12,7 +12,7 @@ extern int data_027c0284;
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiSite_PickPortAgainstSubs(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 4. Same checks and action as AiTurn_TryBuildCruiser (step 5)
  * with a different factory pick, AiSite_PickPortAgainstSubs. How the two picks differ is not
@@ -35,6 +35,6 @@ BOOL func_02091c54(void)
         return 0;
     }
     gUnitAction.target = UNIT_CRUISER;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

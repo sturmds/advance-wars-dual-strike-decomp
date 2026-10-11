@@ -15,7 +15,7 @@ int Player_GetUnitMoveRange(int player, int unitType);
 void RangeMap_SpreadOverSea(u8 value);
 int Map_IsCapturableByActingUnit(s16 x, s16 y);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 void func_0209378c(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -132,7 +132,7 @@ BOOL AiTurn_TryBuildLanderNearSite(void)
             }
             if ((emptyLanders + 1) * 4 <= otherWaiting + footWaiting) {
                 gUnitAction.target = UNIT_LANDER;
-                func_0209316c(index);
+                AiTurn_QueueBuildAtSite(index);
                 func_0209378c();
                 return 1;
             }

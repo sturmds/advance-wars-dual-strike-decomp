@@ -2,10 +2,10 @@
 
 void AiBuild_SumUnitHp(void);
 int AiTurn_PickUnitToBuild(int arg);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 9. AiTurn_PickUnitToBuild returns -1 when it finds nothing, else an
- * index that func_0209316c takes (the other steps pass it the same way). What
+ * index that AiTurn_QueueBuildAtSite takes (the other steps pass it the same way). What
  * either does is not known yet. */
 BOOL func_02091904(void)
 {
@@ -16,6 +16,6 @@ BOOL func_02091904(void)
     if (index == -1) {
         return 0;
     }
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

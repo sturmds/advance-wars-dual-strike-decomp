@@ -20,7 +20,7 @@ int AiSite_PickFirst(int arg);
 int Ai_CountVehiclesWantingTransport(void);
 int Ai_CountFootWantingTransport(void);
 int Ai_CountEmptyTransports(int type);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 8, second sub-step. Tries to start building a Lander:
  * needs bit 3 of the profile byte that AiProfile_HasBuildFlag tests and the funds for
@@ -76,6 +76,6 @@ BOOL AiTurn_TryBuildLander(void)
         }
     }
     gUnitAction.target = UNIT_LANDER;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

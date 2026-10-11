@@ -17,7 +17,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiSite_PickNearestFootWithProperty(int arg);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 8, last sub-step. Tries to start building an APC: needs
  * the funds for one and, when the profile's unk_08[10] is nonzero, a
@@ -53,6 +53,6 @@ BOOL AiTurn_TryBuildApc(void)
     } else {
         return 0;
     }
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

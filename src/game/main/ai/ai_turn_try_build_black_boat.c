@@ -16,7 +16,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL AiProfile_HasBuildFlag(int mask);
 int AiSite_PickForBuild(int arg);
 int Ai_CountArmedShips(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 8, fourth sub-step. Tries to start building a Black
  * Boat: needs bit 2 of the profile byte that AiProfile_HasBuildFlag tests and the
@@ -47,6 +47,6 @@ BOOL AiTurn_TryBuildBlackBoat(void)
         return 0;
     }
     gUnitAction.target = UNIT_BLACK_BOAT;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

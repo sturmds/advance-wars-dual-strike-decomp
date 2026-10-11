@@ -14,7 +14,7 @@ extern s8 data_0229e5c0[][12];
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiBuildSlot_PickSafeSite(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 1. Like AiTurn_TryBuildFighter, for unit type 14
  * (UNIT_ANTI_AIR), but gated on the sea bit of domainsOwn, which does not fit
@@ -42,6 +42,6 @@ BOOL func_02091eb0(void)
     record = &gAiSiteGroups[data_0229e5c0[index][0]];
     record->needAntiAir = 0;
     gUnitAction.target = UNIT_ANTI_AIR;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

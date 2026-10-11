@@ -20,7 +20,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiTurn_TryBuildTCopterForFoot(void);
 int AiSite_PickNearestFoot(int arg);
 int AiSite_PickFirst(int arg);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 8, first sub-step. Tries to start building a T-Copter:
  * needs the funds for one and, when gAiTurnState->propertyRegions is 1 and
@@ -62,6 +62,6 @@ BOOL AiTurn_TryBuildTCopter(void)
     } else {
         return 0;
     }
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

@@ -15,7 +15,7 @@ int func_02093b50(void);
 int func_02093bfc(void);
 void Ai_BuildFighterThreatMaps(void);
 int AiSite_PickAirport(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 3. Tries to start building a Fighter: needs an airport among
  * the current player's factories, the profile's flag for Fighters set, the
@@ -48,6 +48,6 @@ BOOL AiTurn_TryBuildFighter(void)
         return 0;
     }
     gUnitAction.target = UNIT_FIGHTER;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

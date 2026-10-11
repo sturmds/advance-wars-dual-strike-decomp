@@ -12,7 +12,7 @@ extern int data_027c0284;
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiSite_PickPortForCruiser(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 5. Tries to start building a Cruiser: needs a port among
  * the current player's factories, the profile's flag for Cruisers set and the
@@ -36,6 +36,6 @@ BOOL AiTurn_TryBuildCruiser(void)
         return 0;
     }
     gUnitAction.target = UNIT_CRUISER;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

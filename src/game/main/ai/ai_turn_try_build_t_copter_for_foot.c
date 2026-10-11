@@ -17,7 +17,7 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 int GetUnitMaxRange(int player, int unitType);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void func_0209378c(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 int AiSite_PickNearestFoot(int arg);
 int AiSites_HasType(int arg);
 
@@ -85,7 +85,7 @@ BOOL AiTurn_TryBuildTCopterForFoot(void)
             goto skip;
         }
         gUnitAction.target = UNIT_T_COPTER;
-        func_0209316c(index);
+        AiTurn_QueueBuildAtSite(index);
         func_0209378c();
         return 1;
     skip:

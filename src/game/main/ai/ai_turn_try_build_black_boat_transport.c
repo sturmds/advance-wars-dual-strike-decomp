@@ -20,7 +20,7 @@ int AiSite_PickFirst(int arg);
 int Ai_CountVehiclesWantingTransport(void);
 int Ai_CountFootWantingTransport(void);
 int Ai_CountEmptyTransports(int type);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 8, third sub-step. Tries to start building a Black Boat
  * to carry foot units, the way AiTurn_TryBuildLander does for Landers:
@@ -77,6 +77,6 @@ BOOL AiTurn_TryBuildBlackBoatTransport(void)
         }
     }
     gUnitAction.target = UNIT_BLACK_BOAT;
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }

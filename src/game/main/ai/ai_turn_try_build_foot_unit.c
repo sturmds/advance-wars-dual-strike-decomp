@@ -22,7 +22,7 @@ int AiSite_PickFirst(int arg);
 int func_0209f980(int arg);
 u32 AiTurn_GetMechBuildPercent(void);
 void func_020b81bc(void);
-void func_0209316c(int index);
+void AiTurn_QueueBuildAtSite(int index);
 
 /* End-actions step 6. Tries to start building a foot unit if funds cover an
  * Infantry. Takes the first factory that AiSite_PickForFootUnit,
@@ -67,6 +67,6 @@ BOOL AiTurn_TryBuildFootUnit(void)
         gUnitAction.target = UNIT_INFANTRY;
     }
     func_020b81bc();
-    func_0209316c(index);
+    AiTurn_QueueBuildAtSite(index);
     return 1;
 }
