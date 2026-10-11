@@ -6041,6 +6041,10 @@ src/game/main/combat/unit_best_damage_to_target_kind.c:
     complete
     .text       start:0x0209e424 end:0x0209e4b0
 
+src/game/main/ai/ai_co_pair_best_damage_vs_dived.c:
+    complete
+    .text       start:0x0209e4b0 end:0x0209e60c
+
 src/game/main/ai/ai_best_damage_vs_dived.c:
     complete
     .text       start:0x0209e768 end:0x0209e814
