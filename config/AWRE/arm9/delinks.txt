@@ -10407,6 +10407,10 @@ src/game/main/func_020d6a94.c:
     complete
     .text       start:0x020d6a94 end:0x020d6aac
 
+src/game/main/link/link_mode_advance_state.c:
+    complete
+    .text       start:0x020d6aac end:0x020d6ad8
+
 src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
