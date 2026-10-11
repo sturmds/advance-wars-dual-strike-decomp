@@ -7512,6 +7512,10 @@ src/game/main/menus/map_select_pos_down.c:
     complete
     .text       start:0x0205ee38 end:0x0205ef34
 
+src/game/main/menus/map_select_pos_up.c:
+    complete
+    .text       start:0x0205ef34 end:0x0205f03c
+
 src/game/main/menus/map_select_enable_sub_slide_buttons.c:
     complete
     .text       start:0x0205f03c end:0x0205f060

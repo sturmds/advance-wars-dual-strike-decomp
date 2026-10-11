@@ -9,7 +9,7 @@
 int MapSelect_PosLeft(int pos);
 int MapSelect_PosRight(int pos);
 int MapSelect_PosDown(int pos);
-int func_0205ef34(int pos);
+int MapSelect_PosUp(int pos);
 void func_0205ec5c(int unused);
 void func_0205ec20(int unused);
 void MapSelect_NextPage(MenuButton *button);
@@ -32,7 +32,7 @@ void MapSelect_HandleKeys(MenuButton *button)
         pos = MapSelect_PosRight(pos);
     }
     if ((gKeypad->repeat & PAD_KEY_LEFT) && STATE->gameMode != GAME_MODE_WAR_ROOM) {
-        pos = func_0205ef34(pos);
+        pos = MapSelect_PosUp(pos);
     }
     if ((gKeypad->repeat & PAD_KEY_RIGHT) && STATE->gameMode != GAME_MODE_WAR_ROOM) {
         pos = MapSelect_PosDown(pos);
