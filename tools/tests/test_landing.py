@@ -58,9 +58,13 @@ class Repo:
     def read(self, rel: str) -> str:
         return (self.path / rel).read_text()
 
-    def commit(self, files: dict[str, str], msg: str) -> str:
+    def commit(self, files: dict[str, str | None], msg: str) -> str:
+        """Write files and commit them; a file whose text is None is deleted."""
         for rel, text in files.items():
-            self.write(rel, text)
+            if text is None:
+                (self.path / rel).unlink()
+            else:
+                self.write(rel, text)
         self.git("add", "-A")
         self.git("commit", "-q", "-m", msg)
         return self.git("rev-parse", "HEAD")
@@ -283,6 +287,54 @@ class ConfigReplayTest(RepoCase):
         self.assertEqual(self.repo.read(SYMBOLS),
                          symbol("Entry", 0x2000800) + symbol("Unit_Move", 0x2000a00)
                          + symbol("func_02000b00", 0x2000b00) + symbol("func_02000c00", 0x2000c00))
+
+
+class MovedFileTest(RepoCase):
+    """Issue 0046: a replayed move left the old file when mainline had
+    renamed names in it, and an edit to a file mainline had moved wrote the
+    old path again."""
+
+    OLD, NEW = "src/func_02000900.c", "src/map/map_draw.c"
+    BODY = "void Map_Hook(void);\nvoid {name}(void) {{ {hook}(); x = {n}; }}\n"
+
+    def body(self, name="func_02000900", hook="func_02000a00", n=1):
+        return self.BODY.format(name=name, hook=hook, n=n)
+
+    def test_move_after_mainline_rename(self):
+        r = self.repo.replay(
+            base={self.OLD: self.body()},
+            ours={self.OLD: self.body(hook="Map_Hook")},
+            theirs={self.OLD: None, self.NEW: self.body(name="Map_Draw")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertFalse((self.repo.path / self.OLD).exists())
+        self.assertTrue((self.repo.path / self.NEW).exists())
+
+    def test_move_after_mainline_edit(self):
+        r = self.repo.replay(
+            base={self.OLD: self.body()},
+            ours={self.OLD: self.body(n=2)},
+            theirs={self.OLD: None, self.NEW: self.body(name="Map_Draw")})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("the commit deletes it", r.stderr)
+        self.assertTrue((self.repo.path / self.OLD).exists())
+
+    def test_rename_in_file_mainline_moved(self):
+        r = self.repo.replay(
+            base={SYMBOLS: symbol("func_02000900", 0x2000900), self.OLD: self.body()},
+            ours={self.OLD: None, self.NEW: self.body()},
+            theirs={SYMBOLS: symbol("Map_Draw", 0x2000900), self.OLD: self.body(name="Map_Draw")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertFalse((self.repo.path / self.OLD).exists())
+        self.assertEqual(self.repo.read(self.NEW), self.body(name="Map_Draw"))
+
+    def test_edit_in_file_mainline_moved(self):
+        r = self.repo.replay(
+            base={self.OLD: self.body()},
+            ours={self.OLD: None, self.NEW: self.body(hook="Map_Hook")},
+            theirs={self.OLD: self.body(n=3)})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn(f"perhaps to {self.NEW}", r.stderr)
+        self.assertFalse((self.repo.path / self.OLD).exists())
 
 
 class ChainedRenameTest(RepoCase):

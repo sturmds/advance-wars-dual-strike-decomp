@@ -27,6 +27,11 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
   not applied but reported, since `->name` does not say which struct it
   reads. Any other conflict stops the replay after the rest of the commit
   is applied.
+- Deleted files (also the old path of a move): deleted when this branch's
+  copy equals the parent's apart from renamed names, otherwise a conflict.
+  An edit to a file this branch no longer has (mainline moved it) is
+  skipped when it only applies the commit's symbol renames, otherwise a
+  conflict; it never writes the old path again.
 - Source files: the commit's symbol renames are applied to both older
   versions before the merge, and to the sources the commit did not touch.
   All renames apply in one pass, so a commit that renames A to B and gives
@@ -171,16 +176,37 @@ def merge_file(path: str, base: str | None, theirs: str | None, renames: dict[st
     renames: the commit's symbol renames, applied to both older versions
     first so that a renamed call does not conflict with a nearby edit."""
     target = ROOT / path
+    code = path.startswith(("src/", "include/"))
     if theirs is None:
-        if target.exists() and base is not None and target.read_text() == base:
+        if not target.exists() or base is None:
+            return
+        ours = target.read_text()
+        if code:
+            base, ours = header_merge.rename_words(base, renames), header_merge.rename_words(ours, renames)
+        if ours == base or (code and names_only_differ(base, ours)):
+            # Also when this branch renamed names in it since (another
+            # landed commit's renames): otherwise a moved file stays twice.
             target.unlink()
+        else:
+            CONFLICTS.append(f"{path} (the commit deletes it, but this branch changed it since;"
+                             " carry the change to where the commit moved it, then delete it)")
         return
     if not target.exists():
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(theirs)
+        if base is None:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(theirs)
+        elif code and header_merge.rename_words(base, renames) == theirs:
+            # This branch deleted or moved the file; rename_in_sources gives
+            # the file at its new path the same renames.
+            print(f"skipped {path}: this branch no longer has it, and the commit only renamed symbols in it")
+        else:
+            moved = find_copies(path, base) if code else []
+            CONFLICTS.append(f"{path} (the commit edits it, but this branch deleted or moved it"
+                             + (f", perhaps to {', '.join(moved[:3])}" if moved else "")
+                             + "; apply the commit's change there by hand)")
         return
     ours = target.read_text()
-    if renames and path.startswith(("src/", "include/")):
+    if renames and code:
         base = header_merge.rename_words(base, renames) if base else base
         ours = header_merge.rename_words(ours, renames)
         target.write_text(ours)
@@ -199,6 +225,29 @@ def merge_file(path: str, base: str | None, theirs: str | None, renames: dict[st
         if path.startswith("include/") and merge_header(path, ours, theirs, base or ""):
             return
         CONFLICTS.append(path)
+
+
+TOKEN = re.compile(r"\w+|[^\w\s]")
+NAME = re.compile(r"[A-Za-z_]\w*")
+
+
+def names_only_differ(a: str, b: str) -> bool:
+    """True when a and b have the same tokens apart from identifiers and
+    whitespace: what symbol, field and type renames change."""
+    ta, tb = TOKEN.findall(a), TOKEN.findall(b)
+    return len(ta) == len(tb) and all(x == y or (NAME.fullmatch(x) and NAME.fullmatch(y)) for x, y in zip(ta, tb))
+
+
+def find_copies(path: str, text: str) -> list[str]:
+    """Files of the same kind under src/ and include/ that equal text apart
+    from renamed names: where this branch moved a file the commit edits."""
+    suffix = Path(path).suffix
+    found = []
+    for top in ("src", "include"):
+        for p in sorted((ROOT / top).rglob("*" + suffix)):
+            if names_only_differ(text, p.read_text()):
+                found.append(p.relative_to(ROOT).as_posix())
+    return found
 
 
 CONFLICTS: list[str] = []

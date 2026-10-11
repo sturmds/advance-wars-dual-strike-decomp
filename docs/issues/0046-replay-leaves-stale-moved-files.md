@@ -1,6 +1,6 @@
 # 0046: replay leaves the old copy of a moved source file
 
-- **Status:** open
+- **Status:** closed
 - **Area:** loop
 - **Opened:** 2026-10-11
 - **Milestone:** M1
@@ -28,3 +28,12 @@ Removed the ten files. Check the "no delinks entry" rows of `PROGRESS.md` after 
 - In `merge_file`, when the commit deletes a file and ours differs from base, apply the symbol renames to base first and compare, or delete anyway when the difference is only renames.
 - When the target is missing and the commit's version is a modification (base is not None), report a conflict instead of recreating the file.
 - Have `land_self.py` fail when a `src/` file has no `delinks.txt` entry and another source file defines the same function.
+
+## Fixed (2026-10-11)
+
+`merge_file` in `tools/apply_commit.py`:
+
+- When the commit deletes a file, it applies the commit's renames to both sides and deletes the file when this branch's copy equals the parent's apart from identifiers (`names_only_differ`), so renames landed since no longer keep the old copy. Any other change is a conflict that says so, not a silent skip.
+- When the commit edits a file this branch no longer has, it skips the edit if it only applies the commit's symbol renames (`rename_in_sources` gives the moved file the same renames). Otherwise it reports a conflict naming the likely new path. It never writes the old path again.
+
+Cases in `tools/tests/test_landing.py` (`MovedFileTest`). The third idea (a `land_self.py` check for duplicate definitions) was not needed for these two causes.
