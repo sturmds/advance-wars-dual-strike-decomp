@@ -19,6 +19,8 @@ BOOL func_020a604c(int direction);
 #define DIR_LEFT   4
 #define DIR_RIGHT  5
 
+/* MoveSearch_FindTile with func_020a604c as the step: same breadth-first
+ * search, a different step test. */
 BOOL func_020a5cc8(int x, int y, int unitType, int maxCost)
 {
     data_027c0750 = 0;
@@ -36,7 +38,7 @@ BOOL func_020a5cc8(int x, int y, int unitType, int maxCost)
     data_027c075c++;
     data_027c075c->from = 0;
     for (;;) {
-         
+        /* swap the lists: expand what was found, collect into the other */
         if (data_027c074c == 0) {
             data_027c074c = 1;
             data_027c075c = data_027c0758->lists[1];
