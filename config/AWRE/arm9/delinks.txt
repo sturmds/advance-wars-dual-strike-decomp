@@ -17996,6 +17996,10 @@ src/game/main/func_020f53e8.c:
     complete
     .text       start:0x020f53e8 end:0x020f54a0
 
+src/game/main/map/map_scroll_start.c:
+    complete
+    .text       start:0x020f54a0 end:0x020f5540
+
 src/game/main/map/map_view_find_scroll.c:
     complete
     .text       start:0x020f5540 end:0x020f5848
