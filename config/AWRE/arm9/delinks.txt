@@ -380,6 +380,10 @@ src/game/main/func_02003ff8.c:
     complete
     .text       start:0x02003ff8 end:0x02004018
 
+src/game/main/screen/screen_flash_update_fade_out.c:
+    complete
+    .text       start:0x02004018 end:0x020040a4
+
 src/game/main/func_02004230.c:
     complete
     .text       start:0x02004230 end:0x02004284
