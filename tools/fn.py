@@ -47,6 +47,10 @@ OBJDUMP = "arm-none-eabi-objdump"
 # System library and C library code. Overlays and ITCM are handled per module.
 MAIN_GAME_END = 0x02109000
 MAIN_GAME_START = 0x02000b24  # below: secure area and BIOS stubs
+# ITCM holds game code (OAM building, BG scroll, main loop, range maps, camera)
+# below this address and SDK code above it.
+ITCM_GAME_START = 0x01ff8000
+ITCM_GAME_END = 0x01ffd878
 
 FUNC = re.compile(r"^(\S+) kind:function\((arm|thumb),size=(0x[0-9a-f]+)\S*\) addr:(0x[0-9a-f]+)")
 ANY_SYM = re.compile(r"^(\S+) kind:(\S+) addr:(0x[0-9a-f]+)")
@@ -259,9 +263,15 @@ def matched_names() -> set[str]:
 
 
 def is_game(f: Func) -> bool:
-    if f.module == "main":
-        return MAIN_GAME_START <= f.addr < MAIN_GAME_END
-    return f.module.startswith("ov")
+    return is_game_at(f.module, f.addr)
+
+
+def is_game_at(module: str, addr: int) -> bool:
+    if module == "main":
+        return MAIN_GAME_START <= addr < MAIN_GAME_END
+    if module == "itcm":
+        return ITCM_GAME_START <= addr < ITCM_GAME_END
+    return module.startswith("ov")
 
 
 def interesting() -> list[str]:
@@ -300,7 +310,7 @@ def cmd_pick_families(args) -> int:
     started = {e["mhash"] for e in entries if e["status"] == "started"}
     groups: dict[str, list] = {}
     for e in entries:
-        game = e["module"].startswith("ov") or (e["module"] == "main" and MAIN_GAME_START <= e["addr"] < MAIN_GAME_END)
+        game = is_game_at(e["module"], e["addr"])
         if e["status"] == "none" and (args.all or game):
             groups.setdefault(e["mhash"], []).append(e)
     fams = []
