@@ -9746,6 +9746,10 @@ src/game/main/func_020bf260.c:
     complete
     .text       start:0x020bf260 end:0x020bf2d0
 
+src/game/main/units/acting_unit_can_end_move_on_dest.c:
+    complete
+    .text       start:0x020bf588 end:0x020bf674
+
 src/game/main/ai/func_020bf6f4.c:
     complete
     .text       start:0x020bf6f4 end:0x020bf790
