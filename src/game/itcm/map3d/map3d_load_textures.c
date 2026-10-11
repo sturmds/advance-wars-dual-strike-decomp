@@ -15,7 +15,7 @@ extern char data_0216a484[]; /* "02b" */
 extern char data_0216a488[]; /* "02c" */
 
 void GX_BeginLoadTex(void);                                   /* begins a texture image load */
-void func_0210c9a0(const void *src, u32 offset, u32 size); /* copies to texture image VRAM */
+void GX_LoadTex(const void *src, u32 offset, u32 size); /* copies to texture image VRAM */
 void GX_EndLoadTex(void);                                   /* ends the load */
 void FS_ChangeDir(const char *dir);
 void Gfx_LoadTexImageFile(const char *fileName, u32 offset);
@@ -39,11 +39,11 @@ void Map3d_LoadTextures(Unk_022a7c5c *gfx)
     data_022a7c5c = gfx;
     GX_BeginLoadTex();
     for (offset = 0; offset < 0x4000; offset += 32) {
-        func_0210c9a0(ITCM_ZERO_BLOCK, (u32)gfx->unk_68 + offset, 32);
+        GX_LoadTex(ITCM_ZERO_BLOCK, (u32)gfx->unk_68 + offset, 32);
     }
     for (offset = 0; offset < 0x800; offset += 32) {
-        func_0210c9a0(ITCM_ZERO_BLOCK, gfx->unk_5c + offset, 32);
-        func_0210c9a0(ITCM_ZERO_BLOCK, gfx->unk_60 + offset, 32);
+        GX_LoadTex(ITCM_ZERO_BLOCK, gfx->unk_5c + offset, 32);
+        GX_LoadTex(ITCM_ZERO_BLOCK, gfx->unk_60 + offset, 32);
     }
     GX_EndLoadTex();
     FS_ChangeDir(data_0216a45c);

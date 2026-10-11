@@ -29,8 +29,11 @@ extern int data_022a98ac;
 extern int data_022a98a8;
 
 /* State of the texture image load (set by GX_BeginLoadTex, the Begin function):
- * the banks mapped for loading, and three LCDC addresses taken from the bank
- * mask. What each address stands for is not worked out yet. */
+ * the banks mapped for loading, and three values taken from the bank mask.
+ * GX_LoadTex shows what they are: data_022a98a4 is the LCDC address of the
+ * first block of banks, data_022a98b4 the LCDC address of a second block
+ * (0 when the banks are contiguous), data_022a98b8 the size of the first
+ * block in bytes. */
 extern int data_022a98b0;
 extern int data_022a98a4;
 extern int data_022a98b4;
@@ -49,6 +52,7 @@ void GX_BeginLoadTexPltt(void);
 
 /* Texture image. */
 void GX_EndLoadTex(void);
+void GX_LoadTex(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTex(void);
 
 /* Main engine BG extended palette. */
