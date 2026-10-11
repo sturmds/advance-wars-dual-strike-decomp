@@ -285,6 +285,39 @@ class ConfigReplayTest(RepoCase):
                          + symbol("func_02000b00", 0x2000b00) + symbol("func_02000c00", 0x2000c00))
 
 
+class ChainedRenameTest(RepoCase):
+    """Issue 0030: a commit renamed A Count -> CountAny and gave Count to C
+    (func_02000a00); the replay renamed in sequence and C's callers ended
+    up calling CountAny."""
+
+    def check(self, symbols_in_order):
+        a, c = (0x2000900, "Count", "CountAny"), (0x2000a00, "func_02000a00", "Count")
+        rows = sorted([a, c], key=lambda s: s[0], reverse=not symbols_in_order)
+        caller = "int Count(void);\nint {c}(void);\nint f(void) {{ return {a}() + {c}(); }}\n"
+        r = self.repo.replay(
+            base={SYMBOLS: "".join(symbol(old, at) for at, old, _ in rows),
+                  "src/a.c": "int Count(void) { return 1; }\n",
+                  "src/caller.c": caller.format(a="Count", c="func_02000a00"),
+                  "src/other.c": caller.format(a="Count", c="func_02000a00")},
+            ours={"src/main.c": "int main(void) { return 1; }\n"},
+            theirs={SYMBOLS: "".join(symbol(new, at) for at, _, new in rows),
+                    "src/a.c": "int CountAny(void) { return 1; }\n",
+                    "src/c.c": "int Count(void) { return 2; }\n",
+                    "src/caller.c": caller.format(a="CountAny", c="Count").replace("int Count(void);\n", "int CountAny(void);\n", 1)})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.repo.read(SYMBOLS), "".join(symbol(new, at) for at, _, new in rows))
+        self.assertIn("int Count(void) { return 2; }", self.repo.read("src/c.c"))
+        want = "return CountAny() + Count();"
+        self.assertIn(want, self.repo.read("src/caller.c"))   # the commit's file, as committed
+        self.assertIn(want, self.repo.read("src/other.c"))    # mainline's file, renamed here
+
+    def test_symbols_by_address(self):
+        self.check(symbols_in_order=True)
+
+    def test_symbols_out_of_order(self):
+        self.check(symbols_in_order=False)
+
+
 class LandSelfBusyTest(RepoCase):
     """Issue 0025: a land_self.py run left in the background by a tool
     timeout overlapped a second run in the same worktree."""

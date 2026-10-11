@@ -695,9 +695,12 @@ def find_aliases(ours: list[Entry], theirs: list[Entry]) -> dict[str, str]:
 
 
 def rename_words(text: str, names: dict[str, str]) -> str:
-    for old, new in names.items():
-        text = re.sub(rf"\b{re.escape(old)}\b", new, text)
-    return text
+    """Rename every word that is a key of names, all in one pass: with
+    {A: B, C: A} an A becomes B and a C becomes A, never B."""
+    if not names:
+        return text
+    words = re.compile(r"\b(?:" + "|".join(re.escape(k) for k in sorted(names, key=len, reverse=True)) + r")\b")
+    return words.sub(lambda m: names[m.group(0)], text)
 
 
 def merge(ours: str, theirs: str, base: str, types: Types, theirs_types: Types | None = None) -> tuple[str, Report]:

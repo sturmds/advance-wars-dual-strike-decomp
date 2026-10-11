@@ -28,7 +28,9 @@ delinks.txt or symbols.txt, so this replays config changes by meaning:
   reads. Any other conflict stops the replay after the rest of the commit
   is applied.
 - Source files: the commit's symbol renames are applied to both older
-  versions before the merge. Afterwards, local prototypes of functions an
+  versions before the merge, and to the sources the commit did not touch.
+  All renames apply in one pass, so a commit that renames A to B and gives
+  A's old name to C does not turn C into B. Afterwards, local prototypes of functions an
   included header declares are dropped from the commit's .c files, and
   conflict blocks whose two sides have become equal are resolved.
 
@@ -103,15 +105,23 @@ def symbol_names(text: str) -> dict[tuple[str, str], str]:
 
 def apply_symbols(path: str, old: str, new: str) -> list[tuple[str, str]]:
     before, after = symbol_names(old), symbol_names(new)
-    renames = [(before[k], after[k]) for k in before if k in after and before[k] != after[k]]
+    renamed_keys = [k for k in before if k in after and before[k] != after[k]]
+    renames = [(before[k], after[k]) for k in renamed_keys]
     lines = (ROOT / path).read_text().splitlines()
-    for old_name, new_name in renames:
+    # Find every line first, by name and address, then rename: a commit can
+    # give one symbol's old name to another (A -> B, then C -> A).
+    at = []
+    for k in renamed_keys:
+        old_name, new_name = before[k], after[k]
         for i, line in enumerate(lines):
-            if line.startswith(old_name + " "):
-                lines[i] = new_name + line[len(old_name):]
+            m = SYM.match(line)
+            if m and m.group(1) == old_name and m.group(3) == k[0]:
+                at.append((i, old_name, new_name))
                 break
         else:
-            sys.exit(f"error: {path} has no symbol {old_name} to rename to {new_name}")
+            sys.exit(f"error: {path} has no symbol {old_name} at {k[0]} to rename to {new_name}")
+    for i, old_name, new_name in at:
+        lines[i] = new_name + lines[i][len(old_name):]
     (ROOT / path).write_text("\n".join(lines) + "\n")
     renamed = {n for n, _ in renames} | {n for _, n in renames}
     replay_lines(path, old, new, lambda ln: ln.split(" ", 1)[0], skip=renamed)
@@ -314,14 +324,20 @@ def drop_header_prototypes(paths: list[str]) -> None:
             print(f"dropped prototypes in {path} that its headers declare")
 
 
-def rename_in_sources(renames) -> None:
+def rename_in_sources(renames, skip) -> None:
+    """Apply the commit's renames to the sources it did not change, all in
+    one pass so that A -> B and C -> A do not chain into C -> B. The files
+    in skip came from the commit (merge_file renamed this branch's side
+    before merging), so they have the new names already."""
+    names = dict(renames)
     files = list((ROOT / "src").rglob("*.[ch]")) + list((ROOT / "include").rglob("*.h"))
-    for old, new in renames:
-        word = re.compile(rf"(?<!\w){re.escape(old)}(?!\w)")
-        for p in files:
-            text = p.read_text()
-            if word.search(text):
-                p.write_text(word.sub(new, text))
+    for p in files:
+        if p.relative_to(ROOT).as_posix() in skip:
+            continue
+        text = p.read_text()
+        new = header_merge.rename_words(text, names)
+        if new != text:
+            p.write_text(new)
 
 
 ADDR_NAME = re.compile(r"\b(?:func|data)_(?:(ov\d{3})_)?([0-9a-f]{8})\b")
@@ -397,10 +413,10 @@ def main() -> int:
             apply_relocs(path, old, new)
         else:
             merge_file(path, old, new, dict(renames))
-    rename_in_sources(renames)
+    paths = [ln.split("\t", 1)[1] for ln in changes]
+    rename_in_sources(renames, set(paths))
     for old, new in renames:
         print(f"renamed {old} -> {new}")
-    paths = [ln.split("\t", 1)[1] for ln in changes]
     apply_header_renames(paths)
     fix_stale_names(paths)
     drop_header_prototypes(paths)
