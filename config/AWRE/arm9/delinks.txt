@@ -2521,6 +2521,10 @@ src/game/main/func_0201c600.c:
     complete
     .text       start:0x0201c600 end:0x0201c610
 
+src/game/main/script/event_cmd_print_window_text.c:
+    complete
+    .text       start:0x0201c610 end:0x0201c748
+
 src/game/main/func_0201c748.c:
     complete
     .text       start:0x0201c748 end:0x0201c768
