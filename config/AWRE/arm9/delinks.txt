@@ -6714,6 +6714,9 @@ src/game/main/menus/combat_setup_sell_last_unit.c:
     complete
     .text       start:0x02083350 end:0x020834dc
 
+src/game/main/menus/func_020834dc.c:
+    .text       start:0x020834dc end:0x0208372c
+
 src/game/main/func_020837b0.c:
     complete
     .text       start:0x020837b0 end:0x020837c4
