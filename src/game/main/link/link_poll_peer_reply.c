@@ -4,7 +4,7 @@
 extern Unk_0215fe8c *data_0215fe8c;
 extern u8 data_0229ca48[8];
 
-int func_02078160(void *key, u16 *out);
+int Wireless_StepDataSharing(void *key, u16 *out);
 u16 func_0207a1dc(void);
 
 /* Runs each tick in link mode. While the link state is 2, the peer has to answer with the
@@ -17,7 +17,7 @@ void Link_PollPeerReply(void)
         return;
     }
     if (data_0215fe8c->unk_0b == 2) {
-        if (func_02078160(data_0229ca48, &reply) && reply == (func_0207a1dc() | 1)) {
+        if (Wireless_StepDataSharing(data_0229ca48, &reply) && reply == (func_0207a1dc() | 1)) {
             data_0215fe8c->unk_14 = 1;
             data_0215fe8c->unk_00 = 0;
             return;
