@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6630 / 6700 | 1493168 / 1553840 | 96.10% | 0 | 0 |
+| game | 6631 / 6700 | 1493480 / 1553840 | 96.12% | 0 | 0 |
 | SDK/library | 422 / 781 | 48880 / 132154 | 36.99% | 33 | 2126 |
-| all | 7052 / 7481 | 1542048 / 1685994 | 91.46% | 33 | 2126 |
+| all | 7053 / 7481 | 1542360 / 1685994 | 91.48% | 33 | 2126 |
 
 ## By module
 
@@ -24,7 +24,7 @@ Rows with nothing done are left out, but count in the totals.
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
-| ov002 | game | 152 / 164 | 53176 / 64208 | 82.82% | 0 |
+| ov002 | game | 153 / 164 | 53488 / 64208 | 83.30% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 260 / 266 | 94692 / 96684 | 97.94% | 0 |
@@ -81,7 +81,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
-| `src/game/ov002/battle_cell_sprite_arrived.c` | BattleCellSprite_Arrived | 312 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 |
 | `src/game/ov002/battle_make_fighters.c` | func_ov002_023571d0 | 356 |
