@@ -10411,6 +10411,10 @@ src/game/main/link/link_mode_advance_state.c:
     complete
     .text       start:0x020d6aac end:0x020d6ad8
 
+src/game/main/link/link_task_wait_for_peer.c:
+    complete
+    .text       start:0x020d6ad8 end:0x020d6b48
+
 src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
