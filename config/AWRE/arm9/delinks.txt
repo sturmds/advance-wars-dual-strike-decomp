@@ -10129,6 +10129,10 @@ src/game/main/ai/ai_flag_current_player_enter_state18.c:
     complete
     .text       start:0x020ca398 end:0x020ca3d8
 
+src/game/main/map/player_set_unk33.c:
+    complete
+    .text       start:0x020ca3d8 end:0x020ca414
+
 src/game/main/func_020ca414.c:
     complete
     .text       start:0x020ca414 end:0x020ca428

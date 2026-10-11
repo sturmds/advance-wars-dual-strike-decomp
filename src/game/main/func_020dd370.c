@@ -12,11 +12,11 @@ struct Unk_02057ef8_1 {
 };
 extern Unk_02057ef8_0 *data_027c027c;
 extern int data_027c0284;
-void func_020ca3d8(int, void *);
+void Player_SetUnk33(int, void *);
 
 void func_020dd370(void)
 {
     Unk_02057ef8_0 *t0 = data_027c027c;
     int t1 = data_027c0284;
-    func_020ca3d8(t0->unk_48[t1]->unk_2, t0);
+    Player_SetUnk33(t0->unk_48[t1]->unk_2, t0);
 }
