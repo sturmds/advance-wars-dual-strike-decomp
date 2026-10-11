@@ -2861,6 +2861,10 @@ src/game/main/graphics/bg_put_tile_quad.c:
     complete
     .text       start:0x02026d54 end:0x02026ddc
 
+src/game/main/layer0_put_number_then_text3.c:
+    complete
+    .text       start:0x02026ef8 end:0x02026f84
+
 src/game/main/graphics/bg_put_skill_slot.c:
     complete
     .text       start:0x020277a4 end:0x02027804
