@@ -1,6 +1,6 @@
 #include "sdk/svc.h"
 
-void func_021137d8(SVCSHA1Context *context);
+void Sha1_AppendLengthPadding(SVCSHA1Context *context);
 
 /* Pads and finishes the hash the first time, then writes the 20 digest
  * bytes, most significant byte of each state word first. */
@@ -15,7 +15,7 @@ int Sha1_FinishDigest(SVCSHA1Context *context, u8 *digest)
         return context->error;
     }
     if (context->finished == 0) {
-        func_021137d8(context);
+        Sha1_AppendLengthPadding(context);
         for (i = 0; i < SHA1_CHUNK_BYTES; i++) {
             context->block[i] = 0;
         }
