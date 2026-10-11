@@ -10153,6 +10153,10 @@ src/game/main/units/unit_resupply_unpaid.c:
     complete
     .text       start:0x020cd204 end:0x020cd23c
 
+src/game/main/units/tile_has_own_unit_of_listed_type.c:
+    complete
+    .text       start:0x020cd380 end:0x020cd420
+
 src/game/main/func_020cdadc.c:
     complete
     .text       start:0x020cdadc end:0x020cdb14
