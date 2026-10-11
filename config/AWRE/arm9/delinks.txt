@@ -19316,6 +19316,10 @@ src/game/main/func_021026f0.c:
     complete
     .text       start:0x021026f0 end:0x02102708
 
+src/game/main/link/link_menu_start_mode3.c:
+    complete
+    .text       start:0x02102b30 end:0x02102b74
+
 src/game/main/func_02102b74.c:
     complete
     .text       start:0x02102b74 end:0x02102b8c
