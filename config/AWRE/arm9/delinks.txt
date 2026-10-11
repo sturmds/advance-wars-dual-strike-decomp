@@ -2027,6 +2027,10 @@ src/game/main/script/event_cmd_set_hold.c:
     complete
     .text       start:0x0201bd70 end:0x0201bda8
 
+src/game/main/script/event_cmd_hold_until_power.c:
+    complete
+    .text       start:0x0201bda8 end:0x0201be14
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
