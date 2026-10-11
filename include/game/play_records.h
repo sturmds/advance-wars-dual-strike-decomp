@@ -82,7 +82,8 @@ typedef struct PlayRecords {
     u32 combatClears[3];               /* Combat mode clears of the last stage by row 1, one counter per data_02160ac0->unk_84 (0-2), capped at 999999 (CombatResult_Init) */
     u32 unk_43c;                       /* capped at 999999; func_ov003_02361c7c adds the first 6 Ov003Row.unk_28 of the current slot's row */
     u32 unk_440;                       /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */
-    u8 pad_444[0x51c - 0x444];
+    u32 unitsBought[27];               /* per unit type, capped at 999999 (CurrentPlayer_BuyUnit); tab list column, see TabList_GetUnitBought */
+    u32 unitsDestroyed[27];            /* per unit type, capped at 999999: enemy units that human players destroyed */
     WarRoomRecord warRoomRecords[4][44][3]; /* the same bytes as gWarRoomRecords */
     u8 pad_d5c[0xe3c - 0xd5c];
     SurvivalRecord survivalRecords[6]; /* by Survival mode variant */
