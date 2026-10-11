@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/ov003_object.h"
 
-int func_020279c4(int x1, int y1, int x2, int y2);
+int Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 void Ov003Object_Impact(Ov003Object *object);
 
@@ -14,7 +14,7 @@ void Ov003Object_Travel(Ov003Object *object)
     int deltaY;
     int step;
     int travelled;
-    int distance = func_020279c4(object->offsetX * 8, object->offsetY * 8, 0, 0);
+    int distance = Math_Distance(object->offsetX * 8, object->offsetY * 8, 0, 0);
 
     step = object->active;
     travelled = object->travelled;

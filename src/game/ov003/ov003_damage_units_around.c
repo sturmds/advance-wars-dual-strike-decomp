@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-u32 func_020279c4(int x1, int y1, int x2, int y2);
+u32 Math_Distance(int x1, int y1, int x2, int y2);
 int func_ov003_0235d468(int row);
 
 /* Like Ov003_DamageUnitsNear, but x and y are in unit coordinates (8 per pixel)
@@ -23,7 +23,7 @@ void Ov003_DamageUnitsAround(int row, int x, int y)
         if (func_ov003_0235d468(unit->unk_12_3) != 0) {
             continue;
         }
-        if (func_020279c4(pixelX, pixelY, unit->x >> 3, unit->y >> 3) >= 35) {
+        if (Math_Distance(pixelX, pixelY, unit->x >> 3, unit->y >> 3) >= 35) {
             continue;
         }
         if (unit->hp > 30) {

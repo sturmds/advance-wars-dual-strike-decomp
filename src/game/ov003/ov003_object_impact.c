@@ -6,7 +6,7 @@
 extern Ov003Unit data_ov003_02369538[16];
 extern u8 data_ov003_02365d10[];       /* per tile code: bits 5-7 owner, bits 0-4 terrain */
 
-u32 func_020279c4(int x1, int y1, int x2, int y2);
+u32 Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit);
 void Ov003Object_HitTile(Ov003Object *object, int tileX, int tileY);
 Unk_ov003_02369bb8 *Ov003_FindEntryAtTile(int x, int y);
@@ -32,7 +32,7 @@ void Ov003Object_Impact(Ov003Object *object)
     unit = data_ov003_02369538;
     for (i = 0; i < 16; i++, unit++) {
         if (unit->hp != 0 && !unit->unk_17_6 && i != object->unk_0a
-            && func_020279c4(object->x >> 3, object->y >> 3, unit->x >> 3, unit->y >> 3) < 35) {
+            && Math_Distance(object->x >> 3, object->y >> 3, unit->x >> 3, unit->y >> 3) < 35) {
             Ov003Object_HitUnit(object, unit);
         }
     }
@@ -47,7 +47,7 @@ void Ov003Object_Impact(Ov003Object *object)
             if (col < 0 || col >= data_ov003_02364a88->width) {
                 continue;
             }
-            if (func_020279c4(object->x >> 3, object->y >> 3, ((col << 7) + 64) >> 3, ((row << 7) + 64) >> 3) >= 35) {
+            if (Math_Distance(object->x >> 3, object->y >> 3, ((col << 7) + 64) >> 3, ((row << 7) + 64) >> 3) >= 35) {
                 continue;
             }
             switch (data_ov003_02365d10[data_ov003_02364a88->cells[row * data_ov003_02364a88->width + col]] & 31) {

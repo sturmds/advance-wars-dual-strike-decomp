@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-u32 func_020279c4(int x1, int y1, int x2, int y2);
+u32 Math_Distance(int x1, int y1, int x2, int y2);
 int func_ov003_023622b8(void);
 
 /* Returns the distance (in 8-pixel steps) to the nearest entry in the
@@ -18,7 +18,7 @@ u32 Ov003Unit_FindNearest(Ov003Unit *unit, s8 *nearestIndex)
     *nearestIndex = -1;
     for (i = 0; i < func_ov003_023622b8(); i++, other++) {
         if (other->hp != 0 && !other->unk_17_6) {
-            u32 distance = func_020279c4(unit->x >> 3, unit->y >> 3, other->x >> 3, other->y >> 3);
+            u32 distance = Math_Distance(unit->x >> 3, unit->y >> 3, other->x >> 3, other->y >> 3);
 
             if (distance <= best) {
                 best = distance;

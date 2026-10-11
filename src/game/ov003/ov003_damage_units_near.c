@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-u32 func_020279c4(int x1, int y1, int x2, int y2);
+u32 Math_Distance(int x1, int y1, int x2, int y2);
 int func_ov003_0235d468(int row);
 
 /* Hits the units of other rows within 24 pixels of (x, y): 30 hp off (down to 1),
@@ -22,7 +22,7 @@ void Ov003_DamageUnitsNear(int row, int x, int y)
         if (func_ov003_0235d468(unit->unk_12_3) != 0) {
             continue;
         }
-        if (func_020279c4(x, y, unit->x >> 3, unit->y >> 3) >= 24) {
+        if (Math_Distance(x, y, unit->x >> 3, unit->y >> 3) >= 24) {
             continue;
         }
         if (unit->hp > 30) {

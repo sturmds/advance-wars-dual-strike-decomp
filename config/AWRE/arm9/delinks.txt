@@ -2921,6 +2921,13 @@ src/game/main/math/math_ease_in_out.c:
     complete
     .text       start:0x0202795c end:0x020279c4
 
+src/game/main/math/math_distance.c:
+    .text       start:0x020279c4 end:0x020279e0
+
+src/game/main/math/hw_sqrt32.c:
+    complete
+    .text       start:0x020279e0 end:0x02027a18
+
 src/game/main/rng/rng_range.c:
     complete
     .text       start:0x02027a18 end:0x02027a48

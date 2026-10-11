@@ -6,7 +6,7 @@ extern Ov003Unit data_ov003_02369538[16];
 extern Ov003TileInfo data_ov003_02364d88[];
 
 int func_ov003_023622b8(void);
-int func_020279c4(int x1, int y1, int x2, int y2);
+int Math_Distance(int x1, int y1, int x2, int y2);
 
 /* Returns the live unit nearest to the marker's tile centre, or NULL if none
  * is within the marker's reach (Ov003TileInfo.unk_04 + 2 tiles). For
@@ -50,7 +50,7 @@ Ov003Unit *Ov003Marker_FindNearestUnit(Unk_ov003_02369bb8 *marker)
             }
             break;
         }
-        distance = func_020279c4(unit->x >> 3, unit->y >> 3, ((marker->x << 7) + 64) >> 3, ((marker->y << 7) + 64) >> 3);
+        distance = Math_Distance(unit->x >> 3, unit->y >> 3, ((marker->x << 7) + 64) >> 3, ((marker->y << 7) + 64) >> 3);
         if (distance <= nearestDistance) {
             nearest = unit;
             nearestDistance = distance;

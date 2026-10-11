@@ -6,7 +6,7 @@ extern Ov003TileInfo data_ov003_02364d88[];
 
 Ov003Unit *Ov003Marker_FindNearestUnit(Unk_ov003_02369bb8 *marker);
 void Ov003Object_SpawnEffect(Unk_ov003_02369bb8 *marker, int velX, int velY);
-int func_020279c4(int x1, int y1, int x2, int y2);
+int Math_Distance(int x1, int y1, int x2, int y2);
 void Ov003_StepToward(int x1, int y1, int x2, int y2, int length, int *outX, int *outY);
 
 /* Fires one effect per frame in a burst of Ov003TileInfo.unk_05 frames
@@ -33,7 +33,7 @@ void Ov003Marker_FireBurst(Unk_ov003_02369bb8 *marker)
         reach = (data_ov003_02364d88[marker->unk_08_0].unk_04 << 7) >> 3;
         dx = (marker->target->x >> 3) - (((marker->x << 7) + 64) >> 3);
         dy = (marker->target->y >> 3) - (((marker->y << 7) + 64) >> 3);
-        if (reach < func_020279c4(dx, dy, 0, 0)) {
+        if (reach < Math_Distance(dx, dy, 0, 0)) {
             Ov003_StepToward(0, 0, dx, dy, reach, &shotX, &shotY);
             dx = shotX;
             dy = shotY;
