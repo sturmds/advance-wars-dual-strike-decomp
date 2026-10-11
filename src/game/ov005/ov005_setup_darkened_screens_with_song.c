@@ -17,7 +17,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *func_020150f8(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
 
 extern Unk_02080440 *data_027c027c;
@@ -136,7 +136,7 @@ void Ov005_SetupDarkenedScreensWithSong(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = func_020150f8(6, 6, data_027c0280->layer0Map, 0x21000000, 0, 0x41);
+    slot = Text_PrintByIdOnLayer0(6, 6, data_027c0280->layer0Map, 0x21000000, 0, 0x41);
     work->unk_14 = slot;
     slot->unk_3e = 6;
     Screen_SetCurrent(saved027c);

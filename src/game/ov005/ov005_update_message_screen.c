@@ -19,7 +19,7 @@ void Task_ResumeScript(Ov005Task *task);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-ScriptSlot *func_020150f8(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 
@@ -98,7 +98,7 @@ void Ov005_UpdateMessageScreen(Ov005Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        slot = func_020150f8(2, 4, data_027c0280->layer0Map, 0x21000003, 0, 0x41);
+        slot = Text_PrintByIdOnLayer0(2, 4, data_027c0280->layer0Map, 0x21000003, 0, 0x41);
         work->textSlot = slot;
         slot->unk_3e = 6;
         Screen_SetCurrent(saved027c);

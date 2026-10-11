@@ -14,7 +14,7 @@ typedef struct Unk_ov005_0236bb80 {
     u32 unk_08;
     fx32 blendEva;                     /* sub screen blendEva and blendEvb as fx32 (0 to 16.0) */
     fx32 blendEvb;
-    struct ScriptSlot *unk_14;         /* from func_020150f8 */
+    struct ScriptSlot *unk_14;         /* from Text_PrintByIdOnLayer0 */
     struct Task *fadeTask;             /* from the func_020fcd78 family */
     struct Task *fadeTask2;
     struct Task *songTask;             /* song fade task */

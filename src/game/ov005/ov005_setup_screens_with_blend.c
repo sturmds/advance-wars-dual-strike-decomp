@@ -16,7 +16,7 @@ void func_01ff8a00(u16 *entries, u16 byteCount, int addend);
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *func_020150f8(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -184,7 +184,7 @@ void Ov005_SetupScreensWithBlend(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = func_020150f8(6, 5, data_027c0280->layer0Map, 0x21000001, 0, 0x41);
+    slot = Text_PrintByIdOnLayer0(6, 5, data_027c0280->layer0Map, 0x21000001, 0, 0x41);
     work->unk_14 = slot;
     slot->unk_3e = 6;
     Screen_SetCurrent(saved027c);

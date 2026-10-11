@@ -17,7 +17,7 @@ void *File_Load(const char *path);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void func_02002ffc(const char *fileName, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
-ScriptSlot *func_020150f8(int a, int b, u16 *map, u32 d, u16 e, u16 f);
+ScriptSlot *Text_PrintByIdOnLayer0(int a, int b, u16 *map, u32 d, u16 e, u16 f);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -157,7 +157,7 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    slot = func_020150f8(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
+    slot = Text_PrintByIdOnLayer0(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
     work->unk_14 = slot;
     slot->unk_3e = 6;
     Screen_SetCurrent(saved027c);

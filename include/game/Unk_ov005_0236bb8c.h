@@ -11,7 +11,7 @@ struct ScriptSlot;
 typedef struct Unk_ov005_0236bb8c {
     u8 pad_00[0x4];
     int confirmed;                     /* set to 1 by the button's onConfirm, func_ov005_02358958 */
-    struct ScriptSlot *textSlot;       /* from func_020150f8 */
+    struct ScriptSlot *textSlot;       /* from Text_PrintByIdOnLayer0 */
     struct Task *fadeTask;             /* from the func_020fcdc8 family */
     struct Task *fadeTask2;
     struct Task *songTask;             /* song change or fade-out task (func_020fcb08) */
