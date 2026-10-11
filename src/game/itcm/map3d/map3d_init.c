@@ -9,7 +9,7 @@ extern Camera data_022a7d5c;
 
 void func_01ffd44c(void);
 void func_01ffd32c(void *arg);
-void func_01ffd1b8(void *arg);
+void Map3d_LoadTextures(void *arg);
 void Gfx3d_LoadOrthoProjection(void *mtx);
 void Gfx3d_LoadPerspectiveProjection(void *mtx);
 void Camera_ResetToPreset0(Camera *camera);
@@ -23,7 +23,7 @@ void Map3d_Init(void)
 {
     func_01ffd44c();
     func_01ffd32c(data_022a7cec);
-    func_01ffd1b8(data_022a7cec);
+    Map3d_LoadTextures(data_022a7cec);
     Gfx3d_LoadOrthoProjection(data_022a7c6c);
     Gfx3d_LoadPerspectiveProjection(&data_022a7cac);
     Camera_ResetToPreset0(&data_022a7d5c);
