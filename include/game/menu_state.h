@@ -17,6 +17,14 @@ typedef struct MapList {
     u8 mapCount;                       /* maps in the list; MapSelect pages = (mapCount - 1) / (rows * columns) + 1 */
 } MapList;
 
+/* All map lists of a game mode, as func_0202d254 (War Room) and
+ * func_0202d3ac fill them. Same layout as MenuState from 0x6a to
+ * BattleSetupState.mapListCount. */
+typedef struct MapListSet {
+    MapList lists[11];
+    u8 count;
+} MapListSet;
+
 /* Link screen layout of MenuState (LinkPhase_InitScreen). */
 typedef struct LinkScreenState {
     u8 unk_020[4];
