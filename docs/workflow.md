@@ -9,7 +9,7 @@ make                              # builds once, so build/delinks/ exists
 python3 tools/fn.py show 0x020803fc
 ```
 
-`show` prints the module, ARM or Thumb, the size, the source file that covers the function (if any), and the original disassembly with relocations.
+`show` prints the module, ARM or Thumb, the size, the source file that covers the function (if any), its callers and other references (`refs:`: pointer tables such as `data_021585c0+0x14c`, and functions that load its address as a callback), and the original disassembly with relocations.
 
 Good first picks: leaf functions (no `bl`), and callers of functions that already match.
 
@@ -75,7 +75,7 @@ What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 
 | Command | What it does |
 |---|---|
-| `python3 tools/fn.py show NAME\|ADDR` | Location and original disassembly |
+| `python3 tools/fn.py show NAME\|ADDR` | Location, callers, table references and original disassembly |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |

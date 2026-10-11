@@ -76,6 +76,7 @@ test:
 	@$(PYTHON) tools/tests/test_landing.py
 	@$(PYTHON) tools/tests/test_propagate.py
 	@$(PYTHON) tools/tests/test_loop_state.py
+	@$(PYTHON) tools/tests/test_fnshow.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

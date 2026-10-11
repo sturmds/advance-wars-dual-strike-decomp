@@ -6,7 +6,8 @@
     fn.py pick --families [-n N] [--min-members M]
                                                unmatched functions grouped by masked hash, largest
                                                families first (heads for propagate.py)
-    fn.py show NAME|ADDR                       location, callers, callees, data, disassembly
+    fn.py show NAME|ADDR                       location, callers, callees, data, other references
+                                               (pointer tables, callbacks), disassembly
     fn.py add NAME src/PATH.c                  add a delinks.txt entry covering the function
     fn.py diff NAME                            compile its file and compare with the original
     fn.py check FILE.c NAME                    fast yes/no: compile FILE.c alone and compare NAME
@@ -217,6 +218,34 @@ def users_of(dest: str, addr: int, skip: Func, limit: int = 6) -> list[str]:
     return out[:limit] + (["..."] if len(out) > limit else [])
 
 
+@cache
+def sym_addrs(module: str) -> list[int]:
+    return sorted(modules()[module].syms)
+
+
+def refs_to(f: Func, limit: int = 8) -> list[str]:
+    """Places that hold f's address other than calls: a function that loads
+    it (a callback), or data such as a table of function pointers, named as
+    the symbol at or below the place plus the offset."""
+    out = set()
+    for mod in modules().values():
+        for frm, k, to, dest in mod.relocs:
+            if to != f.addr or k in CALL_KINDS or f.module not in target_module(dest):
+                continue
+            g = next((g for g in mod.funcs if g.addr <= frm < g.end), None)
+            if g:
+                out.add(f"address taken in {g.name}")
+                continue
+            addrs = sym_addrs(mod.name)
+            i = bisect.bisect_right(addrs, frm) - 1
+            if i < 0:
+                out.add(f"0x{frm:08x} ({mod.name})")
+            else:
+                out.add(f"{mod.syms[addrs[i]]}+{frm - addrs[i]:#x} ({mod.name})")
+    refs = sorted(out)
+    return refs[:limit] + (["..."] if len(refs) > limit else [])
+
+
 def matched_names() -> set[str]:
     out = set()
     for mod in modules().values():
@@ -346,6 +375,7 @@ def cmd_show(args) -> int:
     for name, addr, dest in loads:
         print(f"  {name:<24} {describe(dest, addr)}  used by: {', '.join(users_of(dest, addr, f)) or 'only this'}")
     print("callers: " + (", ".join(callers_of(f)) or "none found"))
+    print("refs:    " + ("; ".join(refs_to(f)) or "none"))
     if fi:
         obj = ROOT / "build/delinks" / Path(fi[0]).with_suffix(".o")
     else:

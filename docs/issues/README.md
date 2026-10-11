@@ -30,7 +30,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 |---|---|---|---|---|
 | [0001](0001-exceptix-linker-warnings.md) | mwldarm warns about `.exceptix` for every C function | open | build | M1 |
 | [0002](0002-shared-table-headers.md) | Agents create separate struct headers for the same table | in progress | loop | M1 |
-| [0003](0003-pointer-table-callers.md) | `fn.py show` finds no callers for functions reached through pointer tables | open | tools | M1 |
+| [0003](0003-pointer-table-callers.md) | `fn.py show` finds no callers for functions reached through pointer tables | closed | tools | M1 |
 | [0004](0004-identical-functions.md) | Identical functions each cost a full agent run | open | loop | M1 |
 | [0005](0005-names-to-confirm.md) | Names the agents guessed, to confirm or change | open | decomp | M1 |
 | [0006](0006-emulator-boot-check.md) | The built ROM has not been run in an emulator | blocked | emulation | M3 |
