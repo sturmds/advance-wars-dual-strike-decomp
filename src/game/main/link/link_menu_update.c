@@ -11,7 +11,7 @@ void LinkMenu_ApplyCancel(void);
 void LinkMenu_ApplyConfirm(void);
 void LinkMenu_DecreaseSetting(void);
 void LinkMenu_IncreaseSetting(void);
-void func_02086b80(void);
+void LinkMenu_HandleKeys(void);
 void Task_ResumeScript(Task *task);
 
 /* Task step of the link menu. Reads four 2-byte messages (type, argument)
@@ -63,6 +63,6 @@ void LinkMenu_Update(Task *task)
         return;
     }
     if (data_0229fb30.unk_45a == 0) {
-        func_02086b80();
+        LinkMenu_HandleKeys();
     }
 }
