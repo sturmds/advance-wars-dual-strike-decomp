@@ -18,11 +18,11 @@ int GetUnitMaxRange(int player, int unitType);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void func_0209378c(void);
 void func_0209316c(int index);
-int func_020969d0(int arg);
+int AiSite_PickNearestFoot(int arg);
 int func_02095bc0(int arg);
 
 /* Run first by AiTurn_TryBuildTCopter. Unless func_02095bc0(3) returns 1,
- * takes each site that func_020969d0(2) returns in turn (-1: none left) and
+ * takes each site that AiSite_PickNearestFoot(2) returns in turn (-1: none left) and
  * fills the range map with Mech moves from it over the whole map. A site
  * is skipped (kind 0xfe) when a unit in reach stands on a tile that
  * Map_IsCapturableByActingUnit accepts, when an enemy vehicle in reach has
@@ -45,7 +45,7 @@ BOOL AiTurn_TryBuildTCopterForFoot(void)
         return 0;
     }
     for (;;) {
-        index = func_020969d0(2);
+        index = AiSite_PickNearestFoot(2);
         if (index == -1) {
             func_0209378c();
             return 0;

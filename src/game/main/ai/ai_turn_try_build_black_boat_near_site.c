@@ -10,7 +10,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int Ai_CountUnitsOfType(int type);
-int func_020969d0(int kind);
+int AiSite_PickNearestFoot(int kind);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 int Player_GetUnitMoveRange(int player, int unitType);
 void RangeMap_SpreadOverSea(u8 value);
@@ -24,7 +24,7 @@ void func_0209378c(void);
 
 #define FAR_AWAY 110
 
-/* Tries each site func_020969d0(3) offers until one gets a Black Boat or none
+/* Tries each site AiSite_PickNearestFoot(3) offers until one gets a Black Boat or none
  * are left. The range map is filled with a Mech's moves (FAR_AWAY) from the
  * site, then widened by RangeMap_SpreadOverSea for each move point a Lander has. A site
  * is marked (kind 0xfe) and skipped when an enemy ground unit other than a foot unit can
@@ -52,7 +52,7 @@ BOOL AiTurn_TryBuildBlackBoatNearSite(void)
 
     transports = Ai_CountUnitsOfType(UNIT_LANDER) + Ai_CountUnitsOfType(UNIT_BLACK_BOAT);
     for (;;) {
-        index = func_020969d0(3);
+        index = AiSite_PickNearestFoot(3);
         if (index == -1) {
             func_0209378c();
             return 0;

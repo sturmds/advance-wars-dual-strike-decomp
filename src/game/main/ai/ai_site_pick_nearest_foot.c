@@ -10,7 +10,7 @@ int func_02096c60(int x, int y);
 /* Picks the site of a given type (SITE_TYPE_ANY: every type) with the lowest
  * unk_09, the range-map value of the nearest Infantry or Mech. Returns the
  * site index, or -1. */
-int func_020969d0(int siteType)
+int AiSite_PickNearestFoot(int siteType)
 {
     AiSite *site;
     int i;

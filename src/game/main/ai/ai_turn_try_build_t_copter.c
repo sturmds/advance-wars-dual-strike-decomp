@@ -18,7 +18,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 int AiTurn_TryBuildTCopterForFoot(void);
-int func_020969d0(int arg);
+int AiSite_PickNearestFoot(int arg);
 int func_02096bc4(int arg);
 void func_0209316c(int index);
 
@@ -26,7 +26,7 @@ void func_0209316c(int index);
  * needs the funds for one and, when gAiTurnState->propertyRegions is 1 and
  * the profile's unk_08[11] is nonzero, a state->unk_00 (likely the day) no
  * greater than it. AiTurn_TryBuildTCopterForFoot runs first and ends the step when it
- * returns 1. func_020969d0(2), then func_02096bc4(2), pick the factory
+ * returns 1. AiSite_PickNearestFoot(2), then func_02096bc4(2), pick the factory
  * (-1: none). Builds when T-Copters make up less than unk_08[3] percent of
  * data_021619c0->unk_08. The name is a guess from the unit type. Returns 1
  * when it queued an action. */
@@ -46,7 +46,7 @@ BOOL AiTurn_TryBuildTCopter(void)
     if (AiTurn_TryBuildTCopterForFoot() == 1) {
         return 1;
     }
-    index = func_020969d0(2);
+    index = AiSite_PickNearestFoot(2);
     if (index == -1) {
         index = func_02096bc4(2);
         if (index == -1) {

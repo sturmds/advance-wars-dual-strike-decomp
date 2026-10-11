@@ -7453,6 +7453,10 @@ src/game/main/ai/ai_site_pick_nearest_enemy.c:
     complete
     .text       start:0x020966bc end:0x0209676c
 
+src/game/main/ai/ai_site_pick_nearest_foot.c:
+    complete
+    .text       start:0x020969d0 end:0x02096a78
+
 src/game/main/ai/ai_site_pick_nearest_to_property_any_group.c:
     complete
     .text       start:0x02096a78 end:0x02096b20
