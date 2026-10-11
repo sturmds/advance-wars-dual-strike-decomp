@@ -7,7 +7,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void ScriptTask_ResumeWithValue(int value);
 void Task_ResumeScript(void *task);
-void func_02033c90(CoExp *exp, int a, int b, int c);
+void CoExp_DrawScreen(CoExp *exp, int a, int b, int c);
 
 extern MenuState gMenuState;
 
@@ -26,7 +26,7 @@ void CoExp_SlideStep(WinLoseTask *task)
     task->frame++;
     offset = Math_Ease(1, 0, -256, task->frame, SLIDE_FRAMES);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = -offset;
-    func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), offset, 0, -1);
+    CoExp_DrawScreen((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), offset, 0, -1);
     if (task->frame != SLIDE_FRAMES) {
         return;
     }

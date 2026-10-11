@@ -5136,6 +5136,10 @@ src/game/main/menus/co_exp_slide_in_step.c:
     complete
     .text       start:0x02033bec end:0x02033c90
 
+src/game/main/menus/co_exp_draw_screen.c:
+    complete
+    .text       start:0x02033c90 end:0x02033f24
+
 src/game/main/menus/co_exp_draw_player_panel.c:
     complete
     .text       start:0x02033f24 end:0x02033fc0

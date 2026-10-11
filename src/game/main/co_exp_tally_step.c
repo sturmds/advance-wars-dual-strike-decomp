@@ -10,7 +10,7 @@
 int Campaign_IsHardMode(void);
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(void *task);
-void func_02033c90(CoExp *exp, int a, int b, int c);
+void CoExp_DrawScreen(CoExp *exp, int a, int b, int c);
 int CoExp_IsSingleColumn(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -94,7 +94,7 @@ void CoExp_TallyStep(WinLoseTask *task)
         Sound_PlaySe(0x1000c);         /* a tick every other frame */
     }
     /* needed to match: the original adds the offset to gMenuState at run time */
-    func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
+    CoExp_DrawScreen((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
     if (ResultPoint_GetTally() == 0) {
         task->frame = 0;
         Task_ResumeScript(task);

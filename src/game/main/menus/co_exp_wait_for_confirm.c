@@ -5,7 +5,7 @@
 #include "game/menu_state.h"
 
 void ResultScreen_Confirm(MenuButton *button);
-void func_02033c90(CoExp *exp, int a, int b, int c);
+void CoExp_DrawScreen(CoExp *exp, int a, int b, int c);
 
 extern MenuState gMenuState;
 
@@ -13,7 +13,7 @@ extern MenuState gMenuState;
  * ResultScreen_Confirm. */
 void CoExp_WaitForConfirm(void)
 {
-    func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
+    CoExp_DrawScreen((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
     if (gKeypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_START)) {
         ResultScreen_Confirm(NULL);
     }

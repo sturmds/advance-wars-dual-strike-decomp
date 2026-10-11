@@ -10,7 +10,7 @@ void CoExp_CheckLevel10(void);
 void CoExp_CheckMaxLevel(void);
 void Task_ResumeScript(Task *task);
 void func_02032a9c(void);
-void func_02033c90(CoExp *exp, int a, int b, int c);
+void CoExp_DrawScreen(CoExp *exp, int a, int b, int c);
 
 extern MenuState gMenuState;
 
@@ -20,7 +20,7 @@ extern MenuState gMenuState;
  * script resumes. */
 void CoExp_LevelEventsStep(Task *task)
 {
-    func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
+    CoExp_DrawScreen((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
     if (Menu_IsBusy() == TRUE) {
         return;
     }
