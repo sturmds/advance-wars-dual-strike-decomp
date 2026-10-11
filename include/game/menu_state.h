@@ -178,7 +178,7 @@ typedef struct BattleScreenWork {
     BattleCounterTask *unk_22c[2][5];  /* per side */
     BattleCounterTask *unk_254[2][5];  /* per side */
     struct BattleSideData *unk_27c[2];
-    BattleSway sway[2];                /* eased to 0 by func_ov002_02353254 */
+    BattleSway sway[2];                /* eased to 0 by Battle_UpdateSway */
     u16 unk_294[2];                    /* per side, like unk_29c */
     u16 unk_298[2];                    /* per side, like unk_29c */
     u16 unk_29c[2];                    /* per side: five 3-bit entry numbers, the first in the low bits */
@@ -189,7 +189,7 @@ typedef struct BattleScreenWork {
     BattleEntry unk_310[2][5];
     const void *drainProfile[2];       /* gBattleDrainProfile*, set by Battle_PickHpDrainProfiles */
     u16 unk_408[2];                    /* cleared by Battle_Init */
-    u16 unk_40c[2];                    /* cleared by Battle_Init; func_ov002_02353254 sets them to sway[0].x >> 4 */
+    u16 unk_40c[2];                    /* cleared by Battle_Init; Battle_UpdateSway sets them to sway[0].x >> 4 */
     u16 unk_410[32];                   /* unk_450 brightened halfway to white */
     u16 unk_450[32];                   /* a side's palette, loaded by File_ReadTo */
     u8 unk_490[0x80];                  /* copied from res_battle 0x828 */

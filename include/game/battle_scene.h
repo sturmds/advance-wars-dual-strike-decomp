@@ -28,7 +28,7 @@ typedef struct BattleScene {
     BattleSide sides[2];
 } BattleScene;
 
-/* The fields of a battle animation task that func_ov002_02353254 and
+/* The fields of a battle animation task that Battle_UpdateSway and
  * Battle_InitSway use (Task.unk_4c and unk_64 mean other things for other
  * scripts). */
 typedef struct BattleAnimTask {
