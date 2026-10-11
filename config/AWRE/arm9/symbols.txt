@@ -2716,7 +2716,7 @@ func_0208a598 kind:function(arm,size=0xc) addr:0x0208a598
 func_0208a5a4 kind:function(arm,size=0xcc) addr:0x0208a5a4
 func_0208a670 kind:function(arm,size=0x8c) addr:0x0208a670
 func_0208a6fc kind:function(arm,size=0x64) addr:0x0208a6fc
-func_0208a760 kind:function(arm,size=0x51c) addr:0x0208a760
+CombatModeMenu_Init kind:function(arm,size=0x51c) addr:0x0208a760
 func_0208ac7c kind:function(arm,size=0x24) addr:0x0208ac7c
 func_0208aca0 kind:function(arm,size=0x10) addr:0x0208aca0
 func_0208acb0 kind:function(arm,size=0x20) addr:0x0208acb0
@@ -7548,8 +7548,8 @@ data_021614e8 kind:data(any) addr:0x021614e8
 data_02161510 kind:data(any) addr:0x02161510
 data_02161570 kind:data(any) addr:0x02161570
 data_021615d0 kind:data(any) addr:0x021615d0
-data_02161658 kind:data(any) addr:0x02161658
-data_02161670 kind:data(any) addr:0x02161670
+gCombatMenuResPath kind:data(any) addr:0x02161658
+gCombatMenuLangResPath kind:data(any) addr:0x02161670
 data_0216168c kind:data(any) addr:0x0216168c
 data_0216169c kind:data(any) addr:0x0216169c
 data_021616c4 kind:data(any) addr:0x021616c4

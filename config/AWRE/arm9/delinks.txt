@@ -5533,6 +5533,10 @@ src/game/main/func_0208a598.c:
     complete
     .text       start:0x0208a598 end:0x0208a5a4
 
+src/game/main/menus/combat_mode_menu_init.c:
+    complete
+    .text       start:0x0208a760 end:0x0208ac7c
+
 src/game/main/func_0208ac7c.c:
     complete
     .text       start:0x0208ac7c end:0x0208aca0
