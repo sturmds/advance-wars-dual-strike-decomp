@@ -22,15 +22,19 @@ typedef struct EntryAt {
 
 /* Runs one step of a side's HP drain: the cell named by the step shows its
  * final fill if no later step names the same cell, and otherwise at least 1
- * when the final fill is 0. Partial: 95%, the store address is built twice
- * in the original (cell * 24 shared, side * 120 not). */
+ * when the final fill is 0. Partial: 95.7%, the store address is built twice
+ * in the original (cell * 24 shared, side * 120 not). The s8 and u8 locals
+ * (found by permute.py) put fillAfter and isLast in the right registers. */
 void func_ov002_02354814(int side, int step)
 {
-    BattleStepList *list = (BattleStepList *)((u8 *)&gMenuState + 0x2c8) + side;
-    int cell = list->steps[step].cell;
+    BattleStepList *list;
+    s8 cell;
     EntryAt *entry;
-    int fillAfter;
-    int isLast;
+    u8 isLast;
+    u8 fillAfter;
+
+    list = (BattleStepList *)((u8 *)&gMenuState + 0x2c8) + side;
+    cell = list->steps[step].cell;
 
     func_ov002_0235d514(side);
     entry = (EntryAt *)((u8 *)&gMenuState + cell * 24 + side * 120);
