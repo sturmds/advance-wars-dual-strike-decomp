@@ -6,7 +6,7 @@
 
 void Font_SetDigitEndTile(int tile);
 const void *Text_Get(u32 textId);
-void func_02014e58(s16 x, s16 y, u16 *map, const void *text, u16 a, u16 b);
+void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const void *text, u16 a, u16 b);
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 void Bg_PutTile(int layer, int x, int y, u16 entry);
 int IncreaseFunds(int playerIndex, int terrain);
@@ -39,7 +39,7 @@ void SecondScreen_DrawTerrainDetails(int x, int terrain)
 
     Font_SetDigitEndTile(98);
     text = Text_Get(data_ov000_022f4cc4[terrain][0]);
-    func_02014e58((x + 84 - Text_GetPrintWidth(text) / 2) / 8, 1, data_027c0280->layer0Map, text, 0, 0);
+    Text_PrintStringImmediate((x + 84 - Text_GetPrintWidth(text) / 2) / 8, 1, data_027c0280->layer0Map, text, 0, 0);
     Font_SetDigitEndTile(142);
     Text_PrintImmediate((x + 56) / 8, 3, data_027c0280->layer0Map, 0xc00000a6, 0, 0);
     if (data_ov000_02350548 == 0) {

@@ -5,7 +5,7 @@ void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 u16 *Bg_GetMapEntry(int layer, int x, int y);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
-void func_02014e58(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
+void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 
 extern char data_02167c70[];                  /* "?" */
 
@@ -71,7 +71,7 @@ void SecondScreen_DrawPlayerRow(int x, int y, int player, int armyStyle, int arm
     if (propertyCount >= 0) {
         Number_Draw(x + 4, y + 3, data_027c0280->layer0Map, propertyCount, 0, 0);
     } else {
-        func_02014e58(x + 4, y + 3, data_027c0280->layer0Map, data_02167c70, 0, 0);
+        Text_PrintStringImmediate(x + 4, y + 3, data_027c0280->layer0Map, data_02167c70, 0, 0);
     }
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);

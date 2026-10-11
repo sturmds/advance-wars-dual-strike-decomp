@@ -1276,6 +1276,10 @@ src/game/main/text/text_print_immediate.c:
     complete
     .text       start:0x02014d88 end:0x02014e58
 
+src/game/main/text/text_print_string_immediate.c:
+    complete
+    .text       start:0x02014e58 end:0x02014f20
+
 src/game/main/text/text_stop_printing.c:
     complete
     .text       start:0x02014f20 end:0x02014f58
