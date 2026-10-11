@@ -20991,6 +20991,10 @@ src/game/main/func_0210ced0.c:
     complete
     .text       start:0x0210ced0 end:0x0210cee4
 
+src/sdk/os/func_0210cee4.c:
+    complete
+    .text       start:0x0210cee4 end:0x0210cef0
+
 src/game/main/func_0210cf78.c:
     complete
     .text       start:0x0210cf78 end:0x0210cf88
