@@ -52,16 +52,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
 | `src/game/main/copowers/tag_gauge_pop_in.c` | func_02057fb8 | 124 |
 | `src/game/main/event_queue/event_queue_drain.c` | EventQueue_Drain | 192 |
-| `src/game/main/func_0200a6c0.c` | no delinks entry | 0 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
-| `src/game/main/func_02067b94.c` | no delinks entry | 0 |
-| `src/game/main/func_02067bec.c` | no delinks entry | 0 |
-| `src/game/main/func_020d8a6c.c` | no delinks entry | 0 |
-| `src/game/main/func_020f6728.c` | no delinks entry | 0 |
-| `src/game/main/func_020f678c.c` | no delinks entry | 0 |
-| `src/game/main/func_020f67f0.c` | no delinks entry | 0 |
-| `src/game/main/func_020f6854.c` | no delinks entry | 0 |
 | `src/game/main/graphics/func_0200c500.c` | func_0200c500 | 216 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
 | `src/game/main/graphics/sprite_anim_queue3d.c` | SpriteAnim_Queue3d | 196 |
@@ -103,7 +95,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/text/font_draw_glyph.c` | Font_DrawGlyph | 372 |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 |
 | `src/game/main/units/unit_action_capture.c` | UnitAction_Capture | 1052 |
-| `src/game/ov000/player_hud_draw_slot.c` | no delinks entry | 0 |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 |
 | `src/game/ov002/battle_cell_sprite_arrived.c` | BattleCellSprite_Arrived | 312 |
 | `src/game/ov002/battle_cell_sprite_start.c` | func_ov002_02357488 | 568 |
@@ -131,4 +122,3 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
 | `src/game/ov005/func_ov005_02363014.c` | func_ov005_02363014 | 172 |
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
-| `src/game/ov006/func_ov006_0235e04c.c` | no delinks entry | 0 |

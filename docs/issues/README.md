@@ -73,3 +73,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0043](0043-oomd-kills-session-with-20-agents.md) | systemd-oomd killed the orchestrator session with 20 agents running | worked around | loop | M1 |
 | [0044](0044-landing-queue-wait-over-an-hour.md) | Landing queue waits of over an hour with 11 agents queued | open | loop | M1 |
 | [0045](0045-collect-misreads-results.md) | `loop_state.py collect` misreads short and prose results files | open | loop | M1 |
+| [0046](0046-replay-leaves-stale-moved-files.md) | Replay leaves the old copy of a moved source file | open | loop | M1 |
