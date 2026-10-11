@@ -17194,6 +17194,10 @@ src/game/main/map/map_is_co_select_phase.c:
     complete
     .text       start:0x020e8ae4 end:0x020e8b18
 
+src/game/main/map/game_reset_settings.c:
+    complete
+    .text       start:0x020e8b18 end:0x020e8c28
+
 src/game/main/func_020e8c28.c:
     complete
     .text       start:0x020e8c28 end:0x020e8c3c

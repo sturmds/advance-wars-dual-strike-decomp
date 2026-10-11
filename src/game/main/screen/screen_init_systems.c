@@ -13,7 +13,7 @@ void func_01ff9f8c(int value);
 void func_01ff9f54(int value);
 void func_02020860(void);
 void func_020bb02c(void);
-void func_020e8b18(void);
+void Game_ResetSettings(void);
 void func_020032a8(void);
 void func_02017520(void);
 void TransferQueue_Clear(void);
@@ -50,7 +50,7 @@ void Screen_InitSystems(void)
     data_027c027c->unk_48[data_027c0284]->unk_54 = 0;
     func_02020860();
     func_020bb02c();
-    func_020e8b18();
+    Game_ResetSettings();
     func_020032a8();
     func_02017520();
     TransferQueue_Clear();
