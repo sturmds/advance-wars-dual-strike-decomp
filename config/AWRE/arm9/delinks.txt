@@ -11663,6 +11663,10 @@ src/game/main/func_020eb4e8.c:
     complete
     .text       start:0x020eb4e8 end:0x020eb5dc
 
+src/game/main/missile_strike_scroll_to_target.c:
+    complete
+    .text       start:0x020eb940 end:0x020eb974
+
 src/game/main/units/black_bomb_blast_hit.c:
     complete
     .text       start:0x020eba28 end:0x020ebb48
