@@ -16,7 +16,7 @@ void func_0200c5d8(Camera *camera);
 void Camera_UpdateViewMatrix(Camera *camera);
 void Camera_BuildMatrices(Camera *camera, MtxFx44 *mtx);
 void func_0210b5b8(MtxFx44 *mtx);
-void func_02109668(MtxFx43 *src, MtxFx44 *dest);
+void Matrix_Expand43Into44(MtxFx43 *src, MtxFx44 *dest);
 
 #define GEOM_TARGET_PROJ 0
 #define GEOM_TARGET_POS_AND_DIR 2
@@ -39,7 +39,7 @@ void Map3d_BeginFrame(void)
     *REG_MTX_MODE = GEOM_TARGET_PROJ;
     *REG_MTX_IDENTITY = 0;
     func_0210b5b8(&data_022a7cac);
-    func_02109668(&data_022a7d5c.mtx43, &view);
+    Matrix_Expand43Into44(&data_022a7d5c.mtx43, &view);
     func_0210b5b8(&view);
     *REG_MTX_MODE = GEOM_TARGET_POS_AND_DIR;
     *REG_MTX_IDENTITY = 0;

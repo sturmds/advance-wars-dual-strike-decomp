@@ -2,9 +2,7 @@
 #include "sdk/fx.h"
 #include "game/camera_pan.h"
 
-void func_02109668(MtxFx43 *src, MtxFx44 *dest);                      /* SDK: 4x3 to 4x4 */
 void func_02109d88(MtxFx44 *a, MtxFx44 *b, MtxFx44 *dest);            /* SDK: 4x4 product */
-void func_02109d60(MtxFx44 *src, MtxFx33 *dest);                      /* SDK: upper left 3x3 of a 4x4 */
 void func_02109348(MtxFx33 *src, MtxFx33 *dest);                      /* SDK: 3x3 inverse */
 
 /* Multiplies the camera's 4x3 matrix by mtx into mtx44, and stores the inverse
@@ -14,8 +12,8 @@ void Camera_BuildMatrices(Camera *camera, MtxFx44 *mtx)
     MtxFx44 expanded;
     MtxFx33 upper;
 
-    func_02109668(&camera->mtx43, &expanded);
+    Matrix_Expand43Into44(&camera->mtx43, &expanded);
     func_02109d88(&expanded, mtx, &camera->mtx44);
-    func_02109d60(&camera->mtx44, &upper);
+    Matrix_Take33From44(&camera->mtx44, &upper);
     func_02109348(&upper, &camera->mtx33);
 }

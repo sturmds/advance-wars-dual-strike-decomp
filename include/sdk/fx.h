@@ -24,5 +24,9 @@ typedef struct MtxFx33 {
 } MtxFx33;
 
 void MTX_RotX43_(MtxFx43 *mtx, fx32 sin, fx32 cos);
+void MTX_Identity43(MtxFx43 *mtx);
+void Matrix_Expand43Into44(MtxFx43 *src, MtxFx44 *dest);
+void Matrix_Take33From44(MtxFx44 *src, MtxFx33 *dest);
+void Matrix_MoveAlongLocalAxes43(MtxFx43 *src, MtxFx43 *dest, fx32 x, fx32 y, fx32 z);
 
 #endif
