@@ -8484,7 +8484,8 @@ src/game/main/menus/unit_list_update_down_button.c:
     complete
     .text       start:0x02073d88 end:0x02073e30
 
-src/game/main/menus/func_02073e30.c:
+src/game/main/menus/unit_list_update_up_button.c:
+    complete
     .text       start:0x02073e30 end:0x02073ed8
 
 src/game/main/menus/unit_list_close.c:
