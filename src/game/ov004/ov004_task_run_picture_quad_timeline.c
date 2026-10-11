@@ -22,7 +22,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Task_ResumeScript(void *task);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
-Task *func_020fd164(int a, int b, int c, int d);
+Task *PaletteFade_StartToBlack(int a, int b, int c, int d);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 extern u32 data_ov004_022bdc94[];       /* map bytes of a text BG by screen size */
@@ -115,7 +115,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
         ADD_SLOT_TASK(Task_Create(data_ov004_022be478, TASK_LIST(5)));
     }
     if (Ov004_CheckTimedEvent(state, 1, 82)) {
-        ADD_SLOT_TASK(func_020fd164(5, 24, 1, 1));
+        ADD_SLOT_TASK(PaletteFade_StartToBlack(5, 24, 1, 1));
     }
     if (Ov004_CheckTimedEvent(state, 2, 106)) {
         {

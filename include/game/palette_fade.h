@@ -17,6 +17,9 @@ Task *PaletteFade_Start(void *parentOrList, int fromCurrent, const void *palette
 /* Fades the slots' current colors from fromLevel to toLevel on screen 0. */
 Task *PaletteFade_StartLevels(void *parentOrList, int duration, int firstSlot, int slotCount, int fromLevel, int toLevel);
 
+/* Fades the slots' current colors to black on screen 0. */
+Task *PaletteFade_StartToBlack(void *parentOrList, int duration, int firstSlot, int slotCount);
+
 /* Fades the slots' current colors to black on screen 1. */
 Task *PaletteFade_StartToBlackScreen1(void *parentOrList, int duration, int firstSlot, int slotCount);
 

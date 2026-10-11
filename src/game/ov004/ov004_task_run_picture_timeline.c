@@ -37,7 +37,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void *func_020fd1e0(int a, void *b, int c, int d, int e);
 void *PaletteFade_StartLevels(int a, int b, int c, int d, int e, int f);
-void *func_020fd164(int a, int b, int c, int d);
+void *PaletteFade_StartToBlack(int a, int b, int c, int d);
 void func_020fd6d4(u8 *palettes, int first, int count, int level);
 
 /* Byte size of layer i's tile map. */
@@ -73,7 +73,7 @@ void func_020fd6d4(u8 *palettes, int first, int count, int level);
         Screen_SetCurrentGfx(savedGfx);                                                     \
     } while (0)
 
-/* PaletteFade_StartLevels, func_020fd164 and func_020fd1e0 wrap PaletteFade_Start, which
+/* PaletteFade_StartLevels, PaletteFade_StartToBlack and func_020fd1e0 wrap PaletteFade_Start, which
  * makes a task that changes BG palettes over time with func_020fd6d4. */
 #define START_PALETTE_FADE_TASK()                                                           \
     do {                                                                                    \
@@ -127,7 +127,7 @@ void Ov004Task_RunPictureTimeline(Ov004Task *task)
     }
     if (Ov004_CheckTimedEvent(state, 9, 190)) {
         int id = task->duration++;
-        Ov004_SetSlotTask(state, func_020fd164(5, 28, 0, 1), id);
+        Ov004_SetSlotTask(state, PaletteFade_StartToBlack(5, 28, 0, 1), id);
     }
     if (Ov004_CheckTimedEvent(state, 10, 223)) {
         Ov004_StartClock(state);
