@@ -10975,6 +10975,10 @@ src/game/main/map/map_reload_palettes.c:
     complete
     .text       start:0x020f5fb8 end:0x020f6180
 
+src/game/main/map/power_meter_update_flash.c:
+    complete
+    .text       start:0x020f6180 end:0x020f63b0
+
 src/game/main/map/map_view_draw_bottom_row.c:
     complete
     .text       start:0x020f6728 end:0x020f678c
