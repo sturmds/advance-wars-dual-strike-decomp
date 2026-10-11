@@ -11,7 +11,7 @@ extern u8 gAiTransportsSentToUnit[64];
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 BOOL Unit_IsCurrentPlayers(s16 unitSlot);
-BOOL func_0209f3ec(s16 x, s16 y, int arg);
+BOOL Ai_HasEnemyWithin(s16 x, s16 y, int radius);
 s16 AiActingUnit_GetSearchMovement(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -19,9 +19,9 @@ s16 AiActingUnit_GetSearchMovement(void);
 
 /* For a land transport: picks an own Infantry or Mech it can reach this turn
  * that no other transport has claimed (gAiTransportsSentToUnit), preferring
- * the one it already chose and tiles where func_0209f3ec holds. Claims the
- * foot unit, stores its slot in the transport's aiTargetX and writes the tile
- * to move to. If the foot unit has a target of its own, the tile is the one
+ * the one it already chose and foot units with an enemy within 5 tiles
+ * (Ai_HasEnemyWithin). Claims the foot unit, stores its slot in the
+ * transport's aiTargetX and writes the tile to move to. If the foot unit has a target of its own, the tile is the one
  * the transport reaches that is closest to that target. */
 BOOL AiTransport_PickFootUnit(s16 *tile)
 {
@@ -63,7 +63,7 @@ BOOL AiTransport_PickFootUnit(s16 *tile)
             if ((slot & 63) != STATE->actingUnit->aiTargetX || !unit->unk_0c_6) {
                 cost += 256;
             }
-            if (!func_0209f3ec(x, y, 5)) {
+            if (!Ai_HasEnemyWithin(x, y, 5)) {
                 cost += 512;
             }
             if (bestCost >= cost) {
