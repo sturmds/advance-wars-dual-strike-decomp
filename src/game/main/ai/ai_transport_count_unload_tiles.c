@@ -6,17 +6,17 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020b6c84(int x, int y, int unitType);
+int AiTile_IsFreeForUnitType(int x, int y, int unitType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Sets count to the number of the four tiles next to (x, y) that a unit of
  * unitType could get off onto. */
 #define COUNT_OPEN_NEIGHBOURS(count, x, y, unitType)  \
-    count = func_020b6c84((x) - 1, (y), (unitType));  \
-    count += func_020b6c84((x) + 1, (y), (unitType)); \
-    count += func_020b6c84((x), (y) - 1, (unitType)); \
-    count += func_020b6c84((x), (y) + 1, (unitType))
+    count = AiTile_IsFreeForUnitType((x) - 1, (y), (unitType));  \
+    count += AiTile_IsFreeForUnitType((x) + 1, (y), (unitType)); \
+    count += AiTile_IsFreeForUnitType((x), (y) - 1, (unitType)); \
+    count += AiTile_IsFreeForUnitType((x), (y) + 1, (unitType))
 
 /* Whether the acting transport could unload its cargo at (x, y), as a count
  * of open tiles next to it; 0 means no. With one unit aboard, counts the

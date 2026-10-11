@@ -12719,6 +12719,7 @@ src/game/main/ai/ai_transport_count_unload_tiles.c:
     .text       start:0x020b6984 end:0x020b6c84
 
 src/game/main/ai/ai_tile_is_free_for_unit_type.c:
+    complete
     .text       start:0x020b6c84 end:0x020b6d14
 
 src/game/main/ai/ai_team_foot_or_enemy_vehicle_in_range.c:
