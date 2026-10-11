@@ -22718,6 +22718,14 @@ src/sdk/msl/mbtowc.c:
     complete
     .text       start:0x0212235c end:0x02122394
 
+src/sdk/msl/memchr.c:
+    complete
+    .text       start:0x02122394 end:0x021223c0
+
+src/sdk/msl/__copy_mem.c:
+    complete
+    .text       start:0x021223c0 end:0x021223e0
+
 src/sdk/msl/round_decimal.c:
     complete
     .text       start:0x0212339c end:0x021234cc

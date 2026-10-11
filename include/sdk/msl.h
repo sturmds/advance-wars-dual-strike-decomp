@@ -21,4 +21,9 @@ typedef union FpValue {
 
 typedef FpValue (*FpTrapHandler)(FpValue x, FpValue y, u32 op);
 
+/* Returns a pointer to the first byte equal to ch in the first count bytes of buf, or NULL. */
+void *memchr(const void *buf, int ch, u32 count);
+/* Copies count bytes from the start; returns dest. */
+void *__copy_mem(void *dest, const void *src, u32 count);
+
 #endif
