@@ -1,0 +1,119 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+#include "sdk/gx.h"
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0288 data_027c0288;
+extern u8 data_ov000_023503a0;
+extern u8 data_02291774[];
+extern u8 data_02166dc8[];
+
+void func_01ff9f9c(void);
+void func_020011e0(void);
+void func_02112bdc(int a);
+void func_0200bf64(void);
+void func_0200acd8(void);
+void func_020012b0(void);
+void func_0200b970(void);
+void func_0200b8d0(void);
+void Sound_LoadResidentData(void);
+void func_0200170c(void);
+void Overlay_Load(int slot);
+void func_0200c0b0(void);
+u8 func_0200c044(void);
+void func_0207bf88(void);
+void func_0201968c(void);
+void func_0201980c(void);
+void func_02020690(void (*a)(void), void (*b)(void), void *c);
+void func_0200a418(void);
+void Menu_Reset(void);
+void func_0200ccac(void);
+void func_02018f0c(void);
+void func_020d6fcc(void);
+void Rng_SetState(u32 state);
+void VBlankIntrWait(void);
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentGfx(void *state);
+void func_020097a4(void);
+void Screen_ApplyAll(void);
+void func_020013f4(void);
+void func_0200a6d0(void *a);
+void func_01ff9b48(void);
+void func_01ff9c28(void (*callback)(void));
+void func_01ff9c48(void (*callback)(void));
+void func_02000d24(void);
+void func_02000fa4(void);
+BOOL func_02001268(u16 keys);
+void func_02001250(void);
+void func_01ff9c7c(void);
+
+#define REG_KEYINPUT     (*(volatile u16 *)0x04000130)
+#define HW_BUTTON_XY_BUF (*(volatile u16 *)0x027fffa8)  /* X, Y and debug bits, written by the ARM7 */
+#define PAD_ALL_MASK     0x2fff
+
+/* Sets up one screen: its per-screen state, then the frame callbacks. */
+#define INIT_SCREEN(screen)                     \
+    savedGfx = data_027c0280;                   \
+    Screen_SetCurrentGfx(screen);               \
+    savedState = data_027c027c;                 \
+    Screen_SetCurrent(screen);                  \
+    func_020097a4();                            \
+    Screen_ApplyAll();                          \
+    func_020013f4();                            \
+    func_0200a6d0(data_02166dc8);               \
+    func_01ff9b48();                            \
+    func_01ff9c28(func_02000d24);               \
+    func_01ff9c48(func_02000fa4);               \
+    Screen_SetCurrent(savedState);              \
+    Screen_SetCurrentGfx(savedGfx)
+
+/* Game entry point, called from Entry. Sets up the hardware and both
+ * screens, starts the first task unless func_02001268 took the keys held at
+ * boot (L + Select + Right without Start or R), then runs the main loop
+ * forever. */
+void main(void)
+{
+    Unk_027c0280 *savedGfx;
+    Unk_02080440 *savedState;
+    volatile u16 heldKeys;  /* volatile to match: the original keeps it on the stack */
+
+    func_01ff9f9c();
+    func_020011e0();
+    /* KEYINPUT plus the X/Y bits, inverted: keys are active low */
+    heldKeys = ((REG_KEYINPUT | HW_BUTTON_XY_BUF) ^ PAD_ALL_MASK) & PAD_ALL_MASK;
+    func_02112bdc(3);
+    func_0200bf64();
+    func_0200acd8();
+    func_020012b0();
+    func_0200b970();
+    func_0200b8d0();
+    Sound_LoadResidentData();
+    func_0200170c();
+    Overlay_Load(0);
+    Overlay_Load(1);
+    func_0200c0b0();
+    data_ov000_023503a0 = func_0200c044();
+    func_0207bf88();
+    func_02020690(func_0201968c, func_0201980c, data_02291774);
+    func_0200a418();
+    Menu_Reset();
+    func_0200ccac();
+    func_0201980c();
+    func_02018f0c();
+    func_020d6fcc();
+    Rng_SetState(0x0a6b99cd);
+    VBlankIntrWait();
+
+    INIT_SCREEN(data_027c0288.unk_00);
+    INIT_SCREEN(data_027c0288.unk_04);
+
+    *REG_POWCNT1 &= ~POWCNT1_DISPLAY_SWAP;
+    if (!func_02001268(heldKeys)) {
+        func_02001250();
+    }
+    while (1) {
+        func_01ff9c7c();
+    }
+}
