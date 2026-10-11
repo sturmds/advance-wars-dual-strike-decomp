@@ -13,7 +13,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Free(void *block);
-void func_020525a8(int mapId, int arg);
+void SpriteStrip_LoadMapName(int mapId, int arg);
 void func_020523e0(int scale, int angle);
 void Screen_SetBothNibbles(int value);
 
@@ -90,7 +90,7 @@ extern const char data_0215bf20[];      /* "/ohashi/res_titlecall" */
  * map starts. Both screens start darkened to black. res_titlecall_wall1 goes
  * to sub screen layers 1 and 2, res_titlecall_wall2 to the same main screen
  * layers, and res_titlecall to main screen layer 0, layer 3 (copied to the
- * sub screen) and the sprites. Then it draws the map name (func_020525a8)
+ * sub screen) and the sprites. Then it draws the map name (SpriteStrip_LoadMapName)
  * and sets the starting BG3 zoom. */
 void TitleCall_SetUpScreens(Task *task)
 {
@@ -172,7 +172,7 @@ void TitleCall_SetUpScreens(Task *task)
     Screen_SetCurrentGfx(saved0280);
     Mem_Free(file);
 
-    func_020525a8(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId, 0x90);
+    SpriteStrip_LoadMapName(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId, 0x90);
     func_020523e0(0x100, 0x80);
     Screen_SetBothNibbles(0);
     FRAME(task) = 0;

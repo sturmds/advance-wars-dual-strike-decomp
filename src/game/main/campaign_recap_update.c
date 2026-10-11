@@ -12,7 +12,7 @@ u32 func_020ffa50(CampaignRecap *work, int index);
 u32 func_020ffa3c(CampaignRecap *work, int index);
 u32 func_020ffa28(CampaignRecap *work, int index);
 BOOL func_020ff9fc(CampaignRecap *work, int index);
-void func_020525a8(int mapId, int arg);
+void SpriteStrip_LoadMapName(int mapId, int arg);
 void CampaignRecap_LoadResultSprites(CampaignRecap *work);
 void func_020fed58(CampaignRecap *work, int mapOffset);
 s32 HwMod32(s32 numerator, s32 denominator);
@@ -68,7 +68,7 @@ void CampaignRecap_Update(CampaignRecapTask *task)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         savedScreen = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_020525a8(work->mapOffset + 0xe0, 64);
+        SpriteStrip_LoadMapName(work->mapOffset + 0xe0, 64);
         CampaignRecap_LoadResultSprites(work);
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
