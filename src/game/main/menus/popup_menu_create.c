@@ -8,8 +8,8 @@ void func_01ff9b48(void);
 const void *Text_Get(u32 textId);
 int Text_GetWidthInTiles(const void *text);
 void func_0201ee48(PopupMenuTask *menu);
-void func_0201ecf8(Task *task);
-void func_0201ed5c(Task *task);
+void PopupMenu_DestroyStyle1(Task *task);
+void PopupMenu_DestroyStyle0(Task *task);
 void MenuBox_Draw(int x, int y, int width, int height);
 
 /* Creates a pop-up menu task from the item table items and draws its box.
@@ -40,10 +40,10 @@ PopupMenuTask *PopupMenu_Create(const MenuItem *items, int x, int y, int style, 
     menu->style = style;
     switch (style) {
     case 0:
-        task->onDestroy = func_0201ed5c;
+        task->onDestroy = PopupMenu_DestroyStyle0;
         break;
     case 1:
-        task->onDestroy = func_0201ecf8;
+        task->onDestroy = PopupMenu_DestroyStyle1;
         break;
     }
     menu->items = items;
