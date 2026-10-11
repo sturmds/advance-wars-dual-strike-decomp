@@ -9870,6 +9870,13 @@ src/game/main/func_020c019c.c:
     complete
     .text       start:0x020c019c end:0x020c01c0
 
+src/game/main/menus/func_020c01c0.c:
+    .text       start:0x020c01c0 end:0x020c0274
+
+src/game/main/menus/battle_menu_not_versus_hidden.c:
+    complete
+    .text       start:0x020c0274 end:0x020c02b0
+
 src/game/main/func_020c02b0.c:
     complete
     .text       start:0x020c02b0 end:0x020c02f0
