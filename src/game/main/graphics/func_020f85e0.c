@@ -9,7 +9,7 @@ void func_02009ac0(void);
 void Screen_ApplyAll(void);
 void func_020f8994(void);
 void func_020f88ec(void);
-void func_020fa8b4(void);
+void MapBg_LoadGraphics(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -35,6 +35,6 @@ void func_020f85e0(int mode)
     Screen_ApplyAll();
     func_020f8994();
     func_020f88ec();
-    func_020fa8b4();
+    MapBg_LoadGraphics();
     data_027c0280->masterBrightness = 0;
 }
