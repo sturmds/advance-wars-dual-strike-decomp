@@ -4,7 +4,7 @@
 #include "game/play_records.h"
 
 /* Same arguments as the menu handler; the help text functions it points to
- * (func_020bc6f8, func_020bc6e4, func_020bc6d0, func_020bc6bc) take none. */
+ * (BattleMenu_DrawAiStrikeHelp, BattleMenu_DrawAiAssaultHelp, BattleMenu_DrawAiGeneralHelp, BattleMenu_DrawAiDefenseHelp) take none. */
 typedef void (*MenuHelpFn)(int a0, int a1, u32 flags);
 
 /* Copied to the stack as a whole: one help text function per behaviour. */

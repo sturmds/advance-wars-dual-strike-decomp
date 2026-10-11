@@ -13222,19 +13222,19 @@ src/game/main/func_020bc6b4.c:
     complete
     .text       start:0x020bc6b4 end:0x020bc6bc
 
-src/game/main/func_020bc6bc.c:
+src/game/main/menus/battle_menu_draw_ai_defense_help.c:
     complete
     .text       start:0x020bc6bc end:0x020bc6d0
 
-src/game/main/func_020bc6d0.c:
+src/game/main/menus/battle_menu_draw_ai_general_help.c:
     complete
     .text       start:0x020bc6d0 end:0x020bc6e4
 
-src/game/main/func_020bc6e4.c:
+src/game/main/menus/battle_menu_draw_ai_assault_help.c:
     complete
     .text       start:0x020bc6e4 end:0x020bc6f8
 
-src/game/main/func_020bc6f8.c:
+src/game/main/menus/battle_menu_draw_ai_strike_help.c:
     complete
     .text       start:0x020bc6f8 end:0x020bc70c
 
@@ -13246,11 +13246,11 @@ src/game/main/menus/battle_menu_draw_auto_co_on_help.c:
     complete
     .text       start:0x020bc720 end:0x020bc734
 
-src/game/main/func_020bc734.c:
+src/game/main/menus/battle_menu_draw_music_off_help.c:
     complete
     .text       start:0x020bc734 end:0x020bc748
 
-src/game/main/func_020bc748.c:
+src/game/main/menus/battle_menu_draw_music_on_help.c:
     complete
     .text       start:0x020bc748 end:0x020bc75c
 

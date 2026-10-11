@@ -4,7 +4,7 @@
 #include "game/play_records.h"
 
 /* Same arguments as the menu handler; the help text functions it points to
- * (func_020bc734, func_020bc748) take none. */
+ * (BattleMenu_DrawMusicOffHelp, BattleMenu_DrawMusicOnHelp) take none. */
 typedef void (*MenuHelpFn)(int a0, int a1, u32 flags);
 
 /* Copied to the stack as a whole: one help text function per music state. */
