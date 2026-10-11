@@ -205,7 +205,7 @@ typedef struct CombatRowEntry {
     u8 pad_01[6];
     u8 unk_07;                         /* nonzero: the row gets a sprite on the sub screen */
     u8 pad_08;
-    u8 unk_09;                         /* 22-25: minus 22, picks the row's unit counts and sprite */
+    u8 buttonId;                       /* MenuButton id picked, 22-25; minus 22 picks the row's unit counts and sprite */
 } CombatRowEntry;
 
 /* Combat setup layout of MenuState (link play, overlay 3's rows). */

@@ -13,7 +13,7 @@ typedef struct Unk_02160ac0_Row {
         } cells[24];
         struct {
             u8 pad_00[0x14];
-            u32 unk_14;                /* compared with 1000, 3000, 5000 and 6000 by func_02084914 */
+            u32 funds;                 /* a guess: CombatSetup_DrawShop compares it with the unit prices */
         };
     };
     u8 spawnCount;

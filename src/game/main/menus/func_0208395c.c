@@ -35,7 +35,7 @@ extern u8 data_027c0040;
 
 /* Queues the sprites of the Combat setup screen for the local player's row
  * (link play). Main screen: the row's picture and CO, rows of markers from
- * data_02160afc for the row's kind (unk_09 - 22), a sprite picked by kind
+ * data_02160afc for the row's kind (buttonId - 22), a sprite picked by kind
  * and the CO's nation (1 or other), four unit icons, then one icon per cell
  * of the row, four to a line. Sub screen: a sprite for each row with unk_07
  * set, and five func_020871c8 entries.
@@ -61,7 +61,7 @@ void func_0208395c(void)
     table = data_02160afc;
 
     row = MENU->combat.players[data_0229fb30.unk_45a].row;
-    kind = MENU->combat.rows[row - 1].unk_09 - 22;
+    kind = MENU->combat.rows[row - 1].buttonId - 22;
     nation = Co_GetNation(data_02160ae0[LINK_ROWS[row - 1].unk_19]);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
