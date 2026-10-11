@@ -13742,6 +13742,10 @@ src/game/main/map/battle_score_power.c:
     complete
     .text       start:0x020e9980 end:0x020e9a98
 
+src/game/main/map/battle_score_speed.c:
+    complete
+    .text       start:0x020e9a98 end:0x020e9bc0
+
 src/game/main/battle_results_fill.c:
     complete
     .text       start:0x020e9c24 end:0x020ea14c
