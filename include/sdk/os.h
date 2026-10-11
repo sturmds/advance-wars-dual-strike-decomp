@@ -57,6 +57,16 @@ typedef volatile u32 vu32;
 
 typedef struct OSThread OSThread;
 
+/* Saved CPU registers of a thread. */
+typedef struct OSContext {
+    u32 cpsr;
+    u32 r[13];
+    u32 sp;
+    u32 lr;
+    u32 pcPlus4;
+    u32 spSvc;
+} OSContext;
+
 /* Threads waiting on something, as a pair of thread ids. */
 typedef struct OSThreadQueue {
     u16 head;
@@ -92,6 +102,8 @@ typedef struct OSThreadInfo {
     ThreadSwapHook switchCallback;
     OSThread *threads[16];
 } OSThreadInfo;
+
+void OS_InitContext(OSContext *context, u32 pc, u32 sp);
 
 #define OS_LOCK_ID_ERROR (-3) /* OS_GetLockID found no free id */
 
