@@ -14750,6 +14750,10 @@ src/game/main/map/tile_sprite_task_draw_object.c:
     complete
     .text       start:0x020d56f4 end:0x020d5824
 
+src/game/main/map/tile_sprite_task_create_sprite.c:
+    complete
+    .text       start:0x020d5824 end:0x020d58bc
+
 src/game/main/map/tile_sprite_task_animate.c:
     complete
     .text       start:0x020d58bc end:0x020d5ae8

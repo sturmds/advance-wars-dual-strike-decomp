@@ -17,7 +17,7 @@ typedef struct TileSpriteTask {
     u16 timer;                         /* frames since the animation started */
     u16 unk_30;
     u8 pad_32[0x34 - 0x32];
-    struct Unk_02022404 *sprite;       /* made by func_020d5824 */
+    struct Unk_02022404 *sprite;       /* made by TileSpriteTask_CreateSprite */
 } TileSpriteTask;
 
 #endif
