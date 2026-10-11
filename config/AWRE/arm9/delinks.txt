@@ -5698,6 +5698,10 @@ src/game/main/func_02066d70.c:
     complete
     .text       start:0x02066d70 end:0x02066d80
 
+src/game/main/menus/vs_setup_add_team_arrow_buttons.c:
+    complete
+    .text       start:0x02066d80 end:0x02066fc0
+
 src/game/main/func_0206714c.c:
     complete
     .text       start:0x0206714c end:0x02067188
