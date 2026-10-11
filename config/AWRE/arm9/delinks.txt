@@ -3711,6 +3711,10 @@ src/game/main/menus/main_menu_build_page6.c:
     complete
     .text       start:0x0203112c end:0x02031294
 
+src/game/main/menus/main_menu_build_page0.c:
+    complete
+    .text       start:0x02031294 end:0x0203139c
+
 src/game/main/menus/main_menu_is_first_side_page.c:
     complete
     .text       start:0x0203142c end:0x02031480
