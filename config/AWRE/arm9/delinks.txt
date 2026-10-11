@@ -11631,6 +11631,10 @@ src/game/main/menus/survival_get_experience_bonus.c:
     complete
     .text       start:0x020eb024 end:0x020eb0ec
 
+src/game/main/menus/survival_save_player_cos.c:
+    complete
+    .text       start:0x020eb20c end:0x020eb254
+
 src/game/main/func_020eb2d4.c:
     complete
     .text       start:0x020eb2d4 end:0x020eb2e8
