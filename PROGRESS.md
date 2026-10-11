@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4468 / 6598 | 960716 / 1531944 | 62.71% | 0 | 0 |
+| game | 4483 / 6598 | 962396 / 1531944 | 62.82% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4606 / 7479 | 964136 / 1685994 | 57.19% | 1 | 30 |
+| all | 4621 / 7479 | 965816 / 1685994 | 57.28% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 3080 / 5180 | 529604 / 1082632 | 48.92% | 0 |
+| main | game | 3095 / 5180 | 531284 / 1082632 | 49.07% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
