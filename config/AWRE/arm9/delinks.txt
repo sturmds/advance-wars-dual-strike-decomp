@@ -14469,6 +14469,10 @@ src/game/main/func_021037ac.c:
     complete
     .text       start:0x021037ac end:0x021037c8
 
+src/game/main/campaign/campaign_unlock_top_cos.c:
+    complete
+    .text       start:0x021037c8 end:0x02103910
+
 src/game/main/func_02103910.c:
     complete
     .text       start:0x02103910 end:0x0210391c
