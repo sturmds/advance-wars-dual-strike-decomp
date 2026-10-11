@@ -227,7 +227,9 @@ def cmd_collect(a, s):
         if not blocks:
             print(f"{n}: results file has no RESULT block")
             continue
-        kinds = [b["RESULT"].split()[0].lower() for b in blocks]
+        kinds = [(b["RESULT"].split() or ["empty"])[0].lower() for b in blocks]
+        if "empty" in kinds:
+            print(f"{n}: {kinds.count('empty')} RESULT block(s) with no value, counted as failed")
         good = sum(k in ("matched", "done") for k in kinds)
         landed = sorted({h for b in blocks for h in b.get("LANDED", "").split() if re.fullmatch(r"[0-9a-f]{7,40}", h)})
         g["status"] = "done" if good == len(kinds) else "partial" if good else "failed"
