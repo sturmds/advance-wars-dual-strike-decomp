@@ -10101,6 +10101,10 @@ src/game/main/map/map_screen_draw_info_panel.c:
     complete
     .text       start:0x020ccc14 end:0x020ccc90
 
+src/game/main/units/unit_burn_fuel_step.c:
+    complete
+    .text       start:0x020ccc90 end:0x020ccd70
+
 src/game/main/func_020ccd70.c:
     complete
     .text       start:0x020ccd70 end:0x020ccd7c
