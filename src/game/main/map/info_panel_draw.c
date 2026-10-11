@@ -25,7 +25,7 @@ extern u8 data_027c0028;
 void InfoPanel_StepAwayFromCursor(void);
 int InfoPanel_CountUnitBoxes(u8 x, u8 y);
 void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY, int side);
-int func_020d9864(int x, int y);
+int Map_GetDisplayTile(int x, int y);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void InfoPanel_DrawUnitPicture(int type, int panelX, int panelY, int side);
@@ -96,7 +96,7 @@ void InfoPanel_Draw(void)
     }
     InfoPanel_DrawTerrainPicture(tileX, tileY, panelX, panelY, side);
 
-    terrain = MAP_TILE_TERRAIN(func_020d9864(tileX, tileY));
+    terrain = MAP_TILE_TERRAIN(Map_GetDisplayTile(tileX, tileY));
     terrainBoxX = &data_0216635c[side][0];
     InfoPanel_DrawNumber(ITEM_X(*terrainBoxX, defenseStars), ITEM_Y(defenseStars),
                          HwDiv32(DoubleTerrainStars(STATE->currentPlayer, 0, terrain), 10));

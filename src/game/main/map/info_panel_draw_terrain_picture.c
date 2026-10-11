@@ -12,7 +12,7 @@ extern s16 data_0216635c[INFO_PANEL_SIDES][3]; /* terrain box x */
 extern u8 data_02166348[];                     /* sprite shape of the terrain icon */
 extern u8 data_02166330[];                     /* sprite shape of the terrain picture */
 
-int func_020d9864(int x, int y);
+int Map_GetDisplayTile(int x, int y);
 u8 Map_GetTileColour(int tile);
 u8 Map_GetTileArmy(int tile);
 u8 *Terrain_GetIconTiles(int terrain);
@@ -35,7 +35,7 @@ void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
  * for the tile; an HQ always is. */
 void InfoPanel_DrawTerrainPicture(int tileX, int tileY, int panelX, int panelY, int side)
 {
-    int tile = func_020d9864(tileX, tileY);
+    int tile = Map_GetDisplayTile(tileX, tileY);
     int terrain = MAP_TILE_TERRAIN(tile);
     int colour = Map_GetTileColour(tile);
     int owner;

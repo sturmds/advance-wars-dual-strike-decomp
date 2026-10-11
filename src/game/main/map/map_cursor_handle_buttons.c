@@ -14,7 +14,7 @@ void func_020bc5c0(void);
 void func_020bc56c(void);
 void func_020d1414(void);
 void SceneMode_OnButtonX(void);
-int func_020d9864(int x, int y);
+int Map_GetDisplayTile(int x, int y);
 void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit);
 MapUnit *CurrentPlayer_NextIdleUnit(void);
 void func_020f5888(int x, int y);
@@ -63,7 +63,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
     y = game->cursorY;
     x = game->cursorX;
     tiles = game->mapTiles;
-    SecondScreen_ShowCursorInfo(func_020d9864(x, y), &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
+    SecondScreen_ShowCursorInfo(Map_GetDisplayTile(x, y), &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
     if (gKeypad->pressed & PAD_BUTTON_L) {
         unit = CurrentPlayer_NextIdleUnit();
         if (unit != NULL) {
