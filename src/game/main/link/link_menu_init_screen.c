@@ -25,7 +25,7 @@ void Gfx_RequestLayerCopy(int layer);
 void func_01ff9b48(void);
 int func_0207a324(void);
 void Link_DrawPlayerRows(void);
-void func_0207d2dc(void);
+void LinkMenu_DrawSecondView(void);
 void ModeFont_Load(int a, int b);
 void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
 const void *Text_Get(u32 textId);
@@ -50,7 +50,7 @@ extern const char gLinkMenuCommonResPath[];
  * two layer 2 maps (the player list into gMenuState, and a second view picked
  * by func_0207a324, 2, 4 or 8, into data_0229f330), both moved to palette 1.
  * LinkMenuState.redraw picks the view: 0 shows the player list
- * (Link_DrawPlayerRows), 1 the second view (func_0207d2dc). GAME->unk_8b
+ * (Link_DrawPlayerRows), 1 the second view (LinkMenu_DrawSecondView). GAME->unk_8b
  * picks the title text. */
 
 void LinkMenu_InitScreen(Task *task)
@@ -127,7 +127,7 @@ void LinkMenu_InitScreen(Task *task)
     if (data_0215fed0->redraw == 0) {
         Link_DrawPlayerRows();
     } else {
-        func_0207d2dc();
+        LinkMenu_DrawSecondView();
     }
     ModeFont_Load(0, 0);
     switch (GAME->unk_8b) {
