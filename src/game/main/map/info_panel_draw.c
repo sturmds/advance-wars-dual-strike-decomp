@@ -23,7 +23,7 @@ extern u8 data_027c0038;
 extern u8 data_027c0028;
 
 void InfoPanel_StepAwayFromCursor(void);
-int func_020cb770(u8 x, u8 y);
+int InfoPanel_CountUnitBoxes(u8 x, u8 y);
 void InfoPanel_DrawTerrainPicture(int x, int y, int panelX, int panelY, int side);
 int func_020d9864(int x, int y);
 int DoubleTerrainStars(int playerIndex, int unitType, int terrain);
@@ -82,7 +82,7 @@ void InfoPanel_Draw(void)
     state = STATE;
     tileX = state->infoTileX;
     tileY = state->infoTileY;
-    unitBoxes = func_020cb770(tileX, tileY);
+    unitBoxes = InfoPanel_CountUnitBoxes(tileX, tileY);
     state = STATE;
     unit = &state->units[state->mapTiles->unitAt[state->mapTiles->rowStart[tileY] + tileX]];
     owner = MAP_UNIT_OWNER(state, unit);

@@ -7,7 +7,7 @@ extern u16 data_02166308[3];                   /* panel width by unit boxes show
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-int func_020cb770(u8 x, u8 y);                 /* unit boxes the panel shows for a tile */
+int InfoPanel_CountUnitBoxes(u8 x, u8 y);                 /* unit boxes the panel shows for a tile */
 void InfoPanel_FollowCursor(void);
 
 /* One step of the info panel moving to the right side (x 164). From the left
@@ -16,7 +16,7 @@ void InfoPanel_FollowCursor(void);
  * the tile under the cursor. */
 void InfoPanel_SlideRight(void)
 {
-    s16 hiddenX = -data_02166308[func_020cb770(STATE->infoTileX, STATE->infoTileY)] - 8;
+    s16 hiddenX = -data_02166308[InfoPanel_CountUnitBoxes(STATE->infoTileX, STATE->infoTileY)] - 8;
 
     if (STATE->infoPanelX <= 3) {
         STATE->unk_c4 = 1;
