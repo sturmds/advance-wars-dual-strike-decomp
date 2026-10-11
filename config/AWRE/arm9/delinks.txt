@@ -9478,6 +9478,10 @@ src/game/main/map/game_is_war_room.c:
     complete
     .text       start:0x020d4318 end:0x020d434c
 
+src/game/main/units/move_path_to_steps.c:
+    complete
+    .text       start:0x020d4d40 end:0x020d4e70
+
 src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c
