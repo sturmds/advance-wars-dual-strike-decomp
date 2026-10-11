@@ -14,7 +14,7 @@ typedef struct TileStrikeTask {
     int tileX;
     int tileY;
     u8 pad_34[0x50 - 0x34];
-    struct Unk_02022404 *sprite;              /* handle from SpriteAnim_Create or func_020eb974 */
+    struct Unk_02022404 *sprite;              /* handle from SpriteAnim_Create or BmapSpriteAnim_Create */
     int x;                             /* pixels on the map */
     int y;                             /* 2D: sprite y, moves down; 3D: tile y */
     int height;                        /* 3D only: counts down from 100 to 0 */
