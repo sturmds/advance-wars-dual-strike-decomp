@@ -11,7 +11,7 @@ void func_020c0704(void);
 void func_020d6a04(void);
 void func_02080708(void);
 int func_0207bd80(void);
-void func_0207ab58(void);
+void Link_SendStopRequest(void);
 void SpriteTask_DestroyAllFirstScreen(void);
 
 /* Ends the first map's game: sets up the map screen again, drops the sprite
@@ -24,7 +24,7 @@ void Game_CloseFirstMap(void)
     STATE->unk_18 = 0;
     func_02080708();
     if (func_0207bd80() == 1) {
-        func_0207ab58();
+        Link_SendStopRequest();
     }
     if (gLinkPlay == 0) {
         return;

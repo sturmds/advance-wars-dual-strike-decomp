@@ -9080,6 +9080,10 @@ src/game/main/func_0207ab2c.c:
     complete
     .text       start:0x0207ab2c end:0x0207ab58
 
+src/game/main/link/link_send_stop_request.c:
+    complete
+    .text       start:0x0207ab58 end:0x0207abb0
+
 src/game/main/link/link_receive_from_parent.c:
     complete
     .text       start:0x0207abb0 end:0x0207acc0
@@ -9087,6 +9091,18 @@ src/game/main/link/link_receive_from_parent.c:
 src/game/main/link/link_receive_from_child.c:
     complete
     .text       start:0x0207acc0 end:0x0207ae44
+
+src/game/main/link/link_flush_send_queue.c:
+    complete
+    .text       start:0x0207ae44 end:0x0207ae7c
+
+src/game/main/link/link_handle_packets.c:
+    complete
+    .text       start:0x0207ae7c end:0x0207aeb8
+
+src/game/main/link/link_send_queued_packet.c:
+    complete
+    .text       start:0x0207aeb8 end:0x0207af54
 
 src/game/main/link/link_child_handle_packets.c:
     complete
