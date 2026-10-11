@@ -189,6 +189,10 @@ src/game/itcm/func_01ff9f8c.c:
     complete
     .text       start:0x01ff9f8c end:0x01ff9f9c
 
+src/game/itcm/main_loop/init.c:
+    complete
+    .text       start:0x01ff9f9c end:0x01ff9fd0
+
 src/game/itcm/range_map/fill_attack_range.c:
     complete
     .text       start:0x01ffa380 end:0x01ffa44c
