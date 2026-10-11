@@ -8492,6 +8492,10 @@ src/game/main/menus/unit_list_close.c:
     complete
     .text       start:0x02073ed8 end:0x02073f28
 
+src/game/main/menus/unit_list_pick_row.c:
+    complete
+    .text       start:0x02073f28 end:0x02073f8c
+
 src/game/main/menus/unit_list_draw.c:
     complete
     .text       start:0x02074048 end:0x020742d4
