@@ -47,7 +47,7 @@ void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
 BOOL Boot_TryStartKeyComboScreen(u16 keys);
 void func_02001250(void);
-void func_01ff9c7c(void);
+void MainLoop_RunFrame(void);
 
 #define REG_KEYINPUT     (*(volatile u16 *)0x04000130)
 #define HW_BUTTON_XY_BUF (*(volatile u16 *)0x027fffa8)  /* X, Y and debug bits, written by the ARM7 */
@@ -114,6 +114,6 @@ void main(void)
         func_02001250();
     }
     while (1) {
-        func_01ff9c7c();
+        MainLoop_RunFrame();
     }
 }

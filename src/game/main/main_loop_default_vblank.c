@@ -41,7 +41,7 @@ void func_0207d930(void);
 /* Default for the gMainLoop callback that func_01ff9c28 sets (main and
  * Map_ResetFrameCallbacks install it; probably run at VBlank). Runs task
  * list 0 on both screens every time. When the main loop step has finished a
- * frame (func_01ff9f0c, set at the end of func_01ff9c7c), it clears that flag
+ * frame (func_01ff9f0c, set at the end of MainLoop_RunFrame), it clears that flag
  * and sends the frame to the hardware: OAM, screen registers, palettes. */
 void MainLoop_DefaultVBlank(void)
 {
