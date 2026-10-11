@@ -163,6 +163,7 @@ typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 
 
 #define ARCHIVE_STATE_IN_LIST 0x1       /* in the list of archives */
 #define ARCHIVE_STATE_ROUTINES_SET 0x2           /* tables and routines are set */
+#define ARCHIVE_STATE_TABLES_CACHED 0x4     /* FAT and FNT copied into memory */
 #define ARCHIVE_STATE_CANCEL_ASKED 0x20       /* FS_CancelFile was called for the running command */
 #define ARCHIVE_STATE_AWAITING_DRIVER 0x100          /* a command waits for Archive_OnCommandFinished */
 #define ARCHIVE_STATE_CALLER_BLOCKED 0x200        /* a caller sleeps until the command ends */
