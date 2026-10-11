@@ -528,6 +528,10 @@ src/game/main/callback_list_clear.c:
     complete
     .text       start:0x02004628 end:0x0200465c
 
+src/game/main/screen/screen_transition_is_running.c:
+    complete
+    .text       start:0x0200465c end:0x02004828
+
 src/game/main/func_020048f4.c:
     complete
     .text       start:0x020048f4 end:0x0200493c

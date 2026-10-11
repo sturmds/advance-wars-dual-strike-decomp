@@ -5,7 +5,7 @@ void Task_ResumeScript(void *task);
 void HelpBand_Start(int textId, int arg);
 void HelpText_Show(u32 textId, int arg);
 void MenuButtons_DisableTouch(void);
-int func_0200465c(void);
+int ScreenTransition_IsRunning(void);
 void func_0207c044(void *task, u32 flags);
 void func_020fc178(void);
 void func_020fc234(void);
@@ -23,7 +23,7 @@ void func_020fc2fc(void *task)
         HelpBand_Start(0x7f8, 1);
         HelpText_Show(0x48000007, 0x3c0);
         func_020fc178();
-        if (func_0200465c() == 1) {
+        if (ScreenTransition_IsRunning() == 1) {
             MenuButtons_DisableTouch();
         }
         break;

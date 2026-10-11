@@ -18,7 +18,7 @@ void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void func_02004984(u16 frames);
 void func_020049cc(u16 frames);
-int func_0200465c(void);
+int ScreenTransition_IsRunning(void);
 void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void MenuButtons_EnableTouch(void);
 void MenuButtons_DisableTouch(void);
@@ -125,7 +125,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 1:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             task->step++;
         }
         break;
@@ -140,7 +140,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 11:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             task->step++;
         }
         break;
@@ -168,7 +168,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 14:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             MenuButtons_EnableTouch();
             Ov005_AddCoGridButtons(task);
             task->step = 20;
@@ -192,7 +192,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 51:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             task->step++;
         }
         break;
@@ -219,7 +219,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 54:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             MenuButtons_EnableTouch();
             Ov005_AddCoPaletteButtons(task);
             task->step = 60;
@@ -270,7 +270,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         task->step++;
         break;
     case 101:
-        if (func_0200465c() != 1) {
+        if (ScreenTransition_IsRunning() != 1) {
             task->step++;
         }
         break;
