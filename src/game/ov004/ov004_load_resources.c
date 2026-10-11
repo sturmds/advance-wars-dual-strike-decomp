@@ -6,7 +6,7 @@ void FS_ChangeDir(const char *dir);
 u32 Ov004_GetFileSize(const char *path);
 void File_ReadTo(void *dest, const char *fileName);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-int func_02124534(const char *a, const char *b);   /* strcmp */
+int strcmp(const char *a, const char *b);   /* strcmp */
 void Co_LoadGraphicsToBuffer(int coId, void *dest);         /* guess: unpacks the CO's picture to dest */
 void Co_LoadPalette(int coId, int paletteSlot);
 
@@ -55,7 +55,7 @@ void Ov004_LoadResources(Unk_ov004_022bf158 *state)
         fileName = data_ov004_022becf8[i].name;
         name = fileName;
         fromFile = TRUE;
-        if (func_02124534(dir, data_ov004_022bde38) == 0) {
+        if (strcmp(dir, data_ov004_022bde38) == 0) {
             code = (u32)name & OV004_RESOURCE_KIND_MASK;
             coId = (u32)name & 0xfff;
             fromFile = FALSE;

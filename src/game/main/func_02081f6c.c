@@ -9,7 +9,7 @@ int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
 void Link_FlagError(void);
-int func_02124534(int a0, void *a1);
+int strcmp(int a0, void *a1);
 void Task_ResumeScript(Task *task);
 
 void func_02081f6c(Task *task)
@@ -23,7 +23,7 @@ void func_02081f6c(Task *task)
     found = 0;
     for (i = 0; i < 8; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (func_02124534(func_02078138((u16)i), data_021606a4)) {
+            if (strcmp(func_02078138((u16)i), data_021606a4)) {
                 found = 1;
                 break;
             }

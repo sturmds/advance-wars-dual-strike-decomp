@@ -7,7 +7,7 @@ int func_02078138(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
-int func_02124534(int a0, void *a1);
+int strcmp(int a0, void *a1);
 void func_ov003_02363dbc(void);
 extern u8 Ov003_StartMessage[];
 
@@ -31,7 +31,7 @@ void Ov003_UpdateLinkStart(void)
         }
         for (i = 0; i < 8; i++) {
             if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-                if (func_02124534(func_02078138((u16)i), Ov003_StartMessage)) {
+                if (strcmp(func_02078138((u16)i), Ov003_StartMessage)) {
                     found = 1;
                     break;
                 }

@@ -10,7 +10,7 @@ int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
 void Link_FlagError(void);
-int func_02124534(int a0, void *a1);
+int strcmp(int a0, void *a1);
 void Task_ResumeScript(Task *task);
 
 /* Task step: while a link player in playerMask still has the data_02160ae8 message pending,
@@ -26,7 +26,7 @@ void func_02088b3c(CombatSetupTask *task)
     found = 0;
     for (i = 0; i < 8; i++) {
         if (data_0229ff30.playerMask & (1 << i)) {
-            if (func_02124534(func_02078138((u16)i), data_02160ae8)) {
+            if (strcmp(func_02078138((u16)i), data_02160ae8)) {
                 found = 1;
                 break;
             }

@@ -3,7 +3,7 @@
 
 extern Unk_027c0280 *data_027c0280;
 
-int func_02124534(const char *a, const char *b);
+int strcmp(const char *a, const char *b);
 char *strcpy(char *dst, const char *src);
 u32 strlen(const char *str);
 int Text_DrawStringToTiles(const char *str, u8 *tiles, int colour);
@@ -29,7 +29,7 @@ int FontCache_Add(const char *str, int colour)
     pos = 0;
     index = 0;
     while (names[pos] != 1) {
-        if (colour == font->cache[index].colour && func_02124534(names + pos, str) == 0) {
+        if (colour == font->cache[index].colour && strcmp(names + pos, str) == 0) {
             return index;
         }
         pos = pos + strlen(names + pos) + 1;

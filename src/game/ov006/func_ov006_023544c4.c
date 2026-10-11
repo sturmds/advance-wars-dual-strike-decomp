@@ -4,7 +4,7 @@
 
 int func_020b983c(void);
 u8 *func_021016e4(void);
-int func_02124534(const char *a, const char *b);
+int strcmp(const char *a, const char *b);
 char *strcpy(char *dest, const char *src);
 void Ov006_DrawNameField(void);
 void Screens_SelectConfigs(void);
@@ -29,7 +29,7 @@ void func_ov006_023544c4(void)
     if (func_020b983c() == 1) {
         char *name = (char *)func_021016e4();
 
-        if (func_02124534(name, (char *)data_ov006_0236d640->unk_d8)) {
+        if (strcmp(name, (char *)data_ov006_0236d640->unk_d8)) {
             strcpy((char *)data_ov006_0236d640->unk_d8, name);
             data_ov006_0236d640->unk_00 |= 0x1000;
         }
