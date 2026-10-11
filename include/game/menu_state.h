@@ -126,7 +126,7 @@ typedef struct Unk_0206d67c {
     u8 playerCount;
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
-    u8 page;                           /* 0-3; Down (func_0206d220) turns to the next */
+    u8 page;                           /* 0-3; Down (PlayerInfo_NextPage) turns to the next */
     u8 unk_0a4;                        /* cleared by PlayerInfo_Init */
     u8 pad_0a5[0xa8 - 0xa5];
     u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses Player_GetSlotFirepower for every slot */
