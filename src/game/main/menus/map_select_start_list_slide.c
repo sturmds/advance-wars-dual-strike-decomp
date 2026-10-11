@@ -7,7 +7,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_Flush(void);
 void Screen_SetCurrentGfx(void *state);
-void func_02061d38(void);
+void MapSelect_LoadEnemyCoPictures(void);
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -48,7 +48,7 @@ void MapSelect_StartListSlide(int slideBack)
     MenuButton_DisableTouch(253);
     MenuButton_DisableTouch(251);
     MenuButton_DisableTouch(250);
-    func_02061d38();
+    MapSelect_LoadEnemyCoPictures();
 
     Mem_Copy32(BG_CHARS(Gfx_LayerBg(0)) + THUMB_TILE * 32,
                BG_CHARS(Gfx_LayerBg(0)) + (PAGE_MAPS * 16 + THUMB_TILE) * 32,

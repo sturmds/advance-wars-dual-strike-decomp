@@ -32,7 +32,7 @@ void func_0202d254(MapList *lists);
 void func_0202d3ac(MapList *lists, int a);
 void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_LoadWarRoomRecords(void);
-void func_02061d38(void);
+void MapSelect_LoadEnemyCoPictures(void);
 void func_01ff9b48(void);
 void func_0202b764(void);
 void TpIcon3_LoadTo(u8 *dest);
@@ -237,7 +237,7 @@ void MapSelect_Init(void)
     MENU->setup.prevList = LIST_OF_TAB(TAB());
     data_0229ef30.unk_4fc = 0;
     MapSelect_LoadWarRoomRecords();
-    func_02061d38();
+    MapSelect_LoadEnemyCoPictures();
     func_01ff9b48();
     func_0202b764();
     TpIcon3_LoadTo(data_027c0280->objVram + 0x4b40);
