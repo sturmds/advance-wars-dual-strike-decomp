@@ -35,8 +35,32 @@ extern Unk_022a7a9c data_022a7a9c;
  * symbol, data_022a7aba, so it is read through that. */
 typedef struct Unk_022a7ab8 {
     u16 unk_00;
-    u8 pad_02[0x28 - 0x02];
+    u16 unk_02;                        /* back CO; read through data_022a7aba */
+    u16 rankBefore[2];                 /* per CO slot: rank before this battle's experience */
+    u16 rankAfter[2];                  /* rank after it */
+    u16 expBonus[2];                   /* EXP_BONUS_* */
+    s32 expInRank[2];                  /* experience past the last full rank (0-999) */
+    s32 expGain[2];
+    u8 propertyCounts[5];              /* cities, bases, airports, ports, Com Towers owned at the end */
+    u8 unitCount;                      /* units on the map at the end, carried units included */
+    u8 armyColour;                     /* Player.armyColour */
+    u8 pad_27;
 } Unk_022a7ab8;
+
+/* Experience multipliers of a result row (ExpBonus_Scale). */
+#define EXP_BONUS_X1_5 0
+#define EXP_BONUS_X2   1
+#define EXP_BONUS_X2_5 2
+#define EXP_BONUS_X1   3
+
+/* data_022a7a9c seen whole: Unk_022a7a9c covers its first 0x28 bytes, and
+ * the per-slot rows start at 0x1c (data_022a7ab8). */
+typedef struct BattleResults {
+    u8 pad_00[0x14];
+    s32 expGain;                       /* experience each human player's COs gain, before ExpBonus_Scale */
+    s32 expTaken;                      /* experience taken from them first, before ExpBonus_Scale */
+    Unk_022a7ab8 rows[5];              /* by player slot */
+} BattleResults;
 
 extern Unk_022a7ab8 data_022a7ab8[];
 extern Unk_022a7ab8 data_022a7aba[];  /* the same records, from their halfword at +2 */

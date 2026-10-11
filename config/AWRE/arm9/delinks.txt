@@ -12176,6 +12176,10 @@ src/game/main/map/setup_map_rules.c:
     complete
     .text       start:0x020e9274 end:0x020e981c
 
+src/game/main/battle_results_fill.c:
+    complete
+    .text       start:0x020e9c24 end:0x020ea14c
+
 src/game/main/menus/survival_get_map_cost.c:
     complete
     .text       start:0x020ea87c end:0x020ea944
