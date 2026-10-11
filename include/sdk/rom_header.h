@@ -3,7 +3,13 @@
 
 #include "types.h"
 
-/* The cartridge header fields the restart code reads. */
+/* Where a table lies in the cartridge ROM. */
+typedef struct RomRegion {
+    u32 offset;
+    u32 length;
+} RomRegion;
+
+/* The cartridge header fields the restart code and the FS library read. */
 typedef struct RomHeader {
     u8 pad_00[0x20];
     u32 arm9RomOffset;
@@ -14,7 +20,10 @@ typedef struct RomHeader {
     u32 pad_34;
     u32 arm7RamAddress;
     u32 arm7Size;
-    u8 pad_40[0x20];
+    RomRegion fnt;                 /* file name table */
+    RomRegion fat;                 /* file allocation table */
+    RomRegion arm9Overlays;        /* ARM9 overlay table */
+    RomRegion arm7Overlays;        /* ARM7 overlay table */
     u32 cardControl;               /* ROMCTRL setting for normal card reads */
     u8 pad_64[0xfc];
 } RomHeader;

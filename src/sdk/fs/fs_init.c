@@ -2,7 +2,7 @@
 
 extern BOOL gFSInitialized;
 
-void func_02112cac(u32 dmaNo);
+void FSi_InitRom(u32 dmaNo);
 
 /* Sets up the file system once; later calls do nothing. dmaNo is the DMA
  * channel the ROM archive reads with. */
@@ -12,5 +12,5 @@ void FS_Init(u32 dmaNo)
         return;
     }
     gFSInitialized = TRUE;
-    func_02112cac(dmaNo);
+    FSi_InitRom(dmaNo);
 }
