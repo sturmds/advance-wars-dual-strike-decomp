@@ -11,8 +11,12 @@ void Battle_SortHitList(BattleHitList *list);
 #define TIMES(i) ((const BattleHitTimes *)BATTLE.drainProfile[i])
 /* Key of the k-th added cell: the attacker's offsets moved onto the other profile's times. */
 #define ATTACKER_KEY(k) (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 + (TIMES(0)->unk_04 + TIMES(1)->unk_08))
-/* 0 for the attacking side, 1 for the other. */
-#define ROLE(side) ((side) == Ov002_gBattleScene->attackerSide ? 0 : 1)
+/* Needed to match: an int-sized enum. A plain 0/1 ternary emits its conditional moves in
+ * the other order, and a byte-sized enum adds a mask. */
+#pragma enumsalwaysint on
+enum { ROLE_ATTACKER, ROLE_DEFENDER };
+#pragma enumsalwaysint reset
+#define ROLE(side) ((side) == Ov002_gBattleScene->attackerSide ? ROLE_ATTACKER : ROLE_DEFENDER)
 /* Added to a step list key to move it onto this list's times. */
 #define SHIFT (TIMES((ROLE(side) + 1) & 1)->unk_08 - TIMES((ROLE(side) + 1) & 1)->unk_06)
 
@@ -34,18 +38,19 @@ typedef struct StepListsView {
  * entries (unk_6 set only on the last step of a cell whose fill ends at 0), then the cells
  * of unk_2a0 that empty and are not in it yet. Otherwise it takes the emptying cells of
  * unk_2a0, or one entry for cell 0 when BattleSideData.unk_48 is 1 and every cell empties;
- * each entry's key is raised to the latest matching step. Partial match (95.2%): the
- * role ternary emits its two conditional moves in the other order, and some registers
- * swap. The defender key reads its offset into a u8 local first, like
- * func_ov002_023552d0. */
+ * each entry's key is raised to the latest matching step. Partial match (99.4%): the
+ * attacker key adds its four terms in another order (as in func_ov002_023552d0), and
+ * cell swaps registers with the search counter in the unk_2a0 loop of the first branch.
+ * The defender key reads its offset into a u8 local first, like func_ov002_023552d0;
+ * sum also counts the search loop, as the original's registers show. */
 void func_ov002_023549c8(void)
 {
     int side;
     int i;
     int j;
     int cell;
-    int sum;
     int added;
+    int sum;
     u8 offset;
     BattleHitFlags *flags;
 
@@ -84,8 +89,8 @@ void func_ov002_023549c8(void)
                     if (BATTLE.unk_310[side][cell].fillBefore == 0 || BATTLE.unk_310[side][cell].fillAfter != 0) {
                         continue;
                     }
-                    for (j = 0; j < LIST->count; j++) {
-                        if (cell == LIST->flags[j].cell && LIST->flags[j].unk_6 == 1) {
+                    for (sum = 0; sum < LIST->count; sum++) {
+                        if (cell == LIST->flags[sum].cell && LIST->flags[sum].unk_6 == 1) {
                             goto next;
                         }
                     }
