@@ -8049,6 +8049,10 @@ src/game/main/menus/combat_result_close.c:
     complete
     .text       start:0x0208afbc end:0x0208afe8
 
+src/game/main/menus/combat_result_draw.c:
+    complete
+    .text       start:0x0208afe8 end:0x0208b1a4
+
 src/game/main/func_0208b1dc.c:
     complete
     .text       start:0x0208b1dc end:0x0208b208
