@@ -44,7 +44,7 @@ typedef struct Task {
     u16 unk_64;
     s16 unk_66;
     s16 unk_68;
-    u8 pad_6a[0x6c - 0x6a];
+    s16 unk_6a;                        /* number of players on the battle stats screen (see ResultStats_NextPlayer) */
 } Task;
 
 /* Task.flags bits */
