@@ -9324,6 +9324,10 @@ src/game/main/link/link_sub_screen_clear_layer0.c:
     complete
     .text       start:0x0207c130 end:0x0207c198
 
+src/game/main/link/link_banner_grow_box.c:
+    complete
+    .text       start:0x0207c198 end:0x0207c2c0
+
 src/game/main/link/link_banner_init.c:
     complete
     .text       start:0x0207c2c0 end:0x0207c380
