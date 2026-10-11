@@ -8,7 +8,7 @@ extern int data_027c0284;
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* 1 when a unit stands on the tile and belongs to the current player's team. */
-int func_02096e28(int x, int y)
+int AiTile_HasOwnTeamUnit(int x, int y)
 {
     int slot = STATE->mapTiles->unitAt[TILE(x, y)];
 
