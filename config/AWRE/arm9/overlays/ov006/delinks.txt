@@ -1031,6 +1031,10 @@ src/game/ov006/ov006_refit_cell_to_right.c:
     complete
     .text       start:0x02366f9c end:0x0236700c
 
+src/game/ov006/ov006_place_road.c:
+    complete
+    .text       start:0x0236700c end:0x023670ec
+
 src/game/ov006/ov006_is_road_or_vertical_bridge.c:
     complete
     .text       start:0x02367260 end:0x023672d8
