@@ -10399,6 +10399,10 @@ src/game/main/ai/ai_profile_wants_sea_transport.c:
     complete
     .text       start:0x02098590 end:0x020985b0
 
+src/game/main/ai/ai_profile_has_build_flag.c:
+    complete
+    .text       start:0x020985b0 end:0x020985d0
+
 src/game/main/copowers/strike_find_best_site.c:
     complete
     .text       start:0x020985d0 end:0x02098888
