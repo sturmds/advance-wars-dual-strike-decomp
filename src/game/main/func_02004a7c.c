@@ -3,7 +3,7 @@
 
 extern const TaskScriptCmd data_02157224[];
 
-void func_02004bac(Task *task);
+void ScreenEffect_SetBrightenMode(Task *task);
 
 void func_02004a7c(u16 arg)
 {
@@ -11,6 +11,6 @@ void func_02004a7c(u16 arg)
 
     if (task != NULL) {
         task->unk_64 = arg;
-        func_02004bac(task);
+        ScreenEffect_SetBrightenMode(task);
     }
 }

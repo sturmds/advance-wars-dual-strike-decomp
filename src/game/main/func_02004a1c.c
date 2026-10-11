@@ -6,7 +6,7 @@ typedef struct Unk_02004a1c_0 {
     u16 unk_64;
 } Unk_02004a1c_0;
 
-void func_02004bac(void);
+void ScreenEffect_SetBrightenMode(void);
 extern const TaskScriptCmd data_02157224[];
 
 void func_02004a1c(int value, Task *parent)
@@ -15,6 +15,6 @@ void func_02004a1c(int value, Task *parent)
 
     if (task != NULL) {
         task->unk_64 = value;
-        func_02004bac();
+        ScreenEffect_SetBrightenMode();
     }
 }
