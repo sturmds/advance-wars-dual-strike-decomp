@@ -20,7 +20,7 @@ MapUnit *CurrentPlayer_NextIdleUnit(void);
 void func_020f5888(int x, int y);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 void ScreenConfig_RunActionHook(void);
-BOOL func_020d0c4c(int x, int y, int a, int b);
+BOOL MapCursor_SelectTile(int x, int y, int a, int b);
 void func_020d0f18(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -28,7 +28,7 @@ void func_020d0f18(int x, int y);
 /* Buttons on the map while nothing is selected. Start, Select, R (when
  * allowR) and X (when allowX) each start their own handler. Otherwise it
  * shows the cursor tile on the second screen, then L moves the cursor to
- * the unit CurrentPlayer_NextIdleUnit picks, A selects at the cursor (func_020d0c4c)
+ * the unit CurrentPlayer_NextIdleUnit picks, A selects at the cursor (MapCursor_SelectTile)
  * and B runs func_020d0f18 there. Returns TRUE when a button was handled. */
 BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
 {
@@ -79,7 +79,7 @@ BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
             func_020bc5c0();
             return TRUE;
         }
-        if (func_020d0c4c(GAME->unk_28, GAME->unk_2a, 1, 1)) {
+        if (MapCursor_SelectTile(GAME->unk_28, GAME->unk_2a, 1, 1)) {
             return TRUE;
         }
     }
