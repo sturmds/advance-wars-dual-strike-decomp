@@ -22367,6 +22367,7 @@ src/sdk/card/card_halt_after_removal.c:
     .text       start:0x02116850 end:0x02116890
 
 src/sdk/card/card_on_removal_message.c:
+    complete
     .text       start:0x02116890 end:0x021168fc
 
 src/sdk/card/card_register_removal_handler.c:
