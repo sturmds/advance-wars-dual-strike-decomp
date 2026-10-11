@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 #include "game/window_wipe.h"
 
-void func_020036dc(const void *src, volatile void *dest, volatile void *dest2, int unk34, int unk36, void (*callback)(void));
+void DmaTasks_StartSameSource(const void *src, volatile void *dest, volatile void *dest2, int unk34, int unk36, void (*callback)(void));
 void DmaTask_Start(const void *src, volatile void *dest, int unk34, int unk36, void (*callback)(void));
 void Screen_EnableEmptyWindows(void);
 void WindowWipe_BuildCenterOut(void);
@@ -45,7 +45,7 @@ void WindowWipe_StartHide(Task *task)
     data_0216e2a8 = 0;
     switch (ScreenEffect_GetScreens()) {
     case EFFECT_SCREEN_BOTH:
-        func_020036dc(gWipeWin0hTable, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
+        DmaTasks_StartSameSource(gWipeWin0hTable, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     case EFFECT_SCREEN_MAIN:
         DmaTask_Start(gWipeWin0hTable, REG_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
