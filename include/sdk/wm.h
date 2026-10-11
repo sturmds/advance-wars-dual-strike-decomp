@@ -254,9 +254,15 @@ typedef struct WMStatus {
     u32 unk_0c;
     u8 pad_10[0x36];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
-    u8 pad_48[0x70];
+    u8 pad_48[8];
+    const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
+    u8 pad_54[0x32];
+    u16 unk_86;
+    u8 pad_88[0x30];
     u16 linkLevel;
-    u8 pad_ba[0x3a];
+    u8 pad_ba[8];
+    u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
+    u8 pad_c4[0x30];
     u16 unk_f4;
     u8 pad_f6[0x88];
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
