@@ -17,6 +17,12 @@ typedef struct WeatherTaskWork {
     u16 weather;                       /* WEATHER_* the task shows */
 } WeatherTaskWork;
 
+/* One record of gWeatherInfo, per WEATHER_* value (0 to 3). */
+typedef struct WeatherInfo {
+    u32 sound;                         /* Sound_PlaySe id played when the weather starts */
+    const char *files[4];              /* pointers to short name strings such as "006"; no reader found yet */
+} WeatherInfo;
+
 /* One rain drop, snow flake or grain of sand. Positions and speeds are in
  * 1/256 pixels on the whole map; the drawing wraps them to the screen. */
 typedef struct WeatherParticle {
