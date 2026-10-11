@@ -317,7 +317,7 @@ func_ov006_02368114 kind:function(arm,size=0x9c) addr:0x02368114
 Ov006_FitPipeCell kind:function(arm,size=0x1320) addr:0x023681b0
 Ov006_IsJoinedPieceConnected kind:function(arm,size=0x6f4) addr:0x023694d0
 func_ov006_02369bc4 kind:function(arm,size=0x240) addr:0x02369bc4
-func_ov006_02369e04 kind:function(arm,size=0x3cc) addr:0x02369e04
+Ov006_GetPipeLink kind:function(arm,size=0x3cc) addr:0x02369e04
 func_ov006_0236a1d0 kind:function(arm,size=0x4) addr:0x0236a1d0
 data_ov006_0236a1e0 kind:data(any) addr:0x0236a1e0
 data_ov006_0236a1f0 kind:data(any) addr:0x0236a1f0
@@ -563,12 +563,12 @@ data_ov006_0236d5a8 kind:data(any) addr:0x0236d5a8
 data_ov006_0236d5b8 kind:data(any) addr:0x0236d5b8
 data_ov006_0236d5c8 kind:data(any) addr:0x0236d5c8
 data_ov006_0236d5d8 kind:data(any) addr:0x0236d5d8
-data_ov006_0236d5e8 kind:data(any) addr:0x0236d5e8
+Ov006_gDirStepX kind:data(any) addr:0x0236d5e8
 Ov006_gNeighborDy kind:data(any) addr:0x0236d5f0
 data_ov006_0236d5f8 kind:data(any) addr:0x0236d5f8
 Ov006_gNeighborDx kind:data(any) addr:0x0236d600
 data_ov006_0236d608 kind:data(any) addr:0x0236d608
-data_ov006_0236d610 kind:data(any) addr:0x0236d610
+Ov006_gDirStepY kind:data(any) addr:0x0236d610
 data_ov006_0236d618 kind:data(any) addr:0x0236d618
 data_ov006_0236d624 kind:data(any) addr:0x0236d624
 data_ov006_0236d640 kind:bss addr:0x0236d640

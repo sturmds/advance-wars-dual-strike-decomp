@@ -33,14 +33,14 @@
 #define MAP_CELL_PIPE_SEAM_H 0x162
 #define MAP_CELL_PIPE_SEAM_V 0x163
 
-/* Neighbour directions; data_ov006_0236d5e8 and data_ov006_0236d610 hold
+/* Neighbour directions; Ov006_gDirStepX and Ov006_gDirStepY hold
  * their x and y steps. */
 #define DESIGN_DIR_LEFT  0
 #define DESIGN_DIR_RIGHT 1
 #define DESIGN_DIR_UP    2
 #define DESIGN_DIR_DOWN  3
 
-/* What func_ov006_02369e04 finds on the neighbour tile in one direction. */
+/* What Ov006_GetPipeLink finds on the neighbour tile in one direction. */
 #define PIPE_LINK_NONE   0             /* off the map, or not a pipe */
 #define PIPE_LINK_CLOSED 1             /* a pipe piece closed on this side */
 #define PIPE_LINK_OPEN   2             /* a pipe piece open toward this tile */

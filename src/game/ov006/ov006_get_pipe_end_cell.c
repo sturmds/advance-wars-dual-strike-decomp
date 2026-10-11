@@ -8,13 +8,13 @@ void Ov006_RemoveProperty(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_FitPipeCell(int x, int y, int arg);
 void Ov006_StoreMapCell(int x, int y, int cell);
-int func_ov006_02369e04(int x, int y, int dir);
+int Ov006_GetPipeLink(int x, int y, int dir);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-#define LINK(dir) func_ov006_02369e04(x, y, DESIGN_DIR_##dir)
+#define LINK(dir) Ov006_GetPipeLink(x, y, DESIGN_DIR_##dir)
 #define CELL_AT(x, y) (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
 
 /* For the pipe at x, y: if it is open toward exactly one neighbour, returns

@@ -7,7 +7,7 @@ extern u32 data_027c0284;
 int func_ov006_02368114(int x, int y);   /* guess: the seam cell that fits tile x, y */
 int Ov006_IsJoinedPieceConnected(int x, int y);   /* nonzero: keep the cell at x, y as it is */
 int func_ov006_02369bc4(int x, int y, int dir);   /* 0-2: how firmly the neighbour in dir links on; 2 off the map */
-int func_ov006_02369e04(int x, int y, int dir);   /* 0-3: what the neighbour in dir is; 0 nothing to join */
+int Ov006_GetPipeLink(int x, int y, int dir);   /* 0-3: what the neighbour in dir is; 0 nothing to join */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) (STATE->mapTiles->mapCells[(x) + STATE->mapTiles->rowStart[y]])
@@ -26,7 +26,7 @@ int func_ov006_02369e04(int x, int y, int dir);   /* 0-3: what the neighbour in 
 #define PIPE_CELL_122        0x122   /* fallbacks no neighbour count can reach */
 #define PIPE_CELL_123        0x123
 
-/* Neighbour directions, from the step tables of func_ov006_02369e04. */
+/* Neighbour directions, from the step tables of Ov006_GetPipeLink. */
 #define DIR_UP    0
 #define DIR_DOWN  1
 #define DIR_LEFT  2
@@ -52,7 +52,7 @@ int Ov006_FitPipeCell(int x, int y, int replaceSeam)
         return CELL_AT(x, y);
     }
     for (i = 0; i <= 3; i++) {
-        n[i] = func_ov006_02369e04(x, y, i);
+        n[i] = Ov006_GetPipeLink(x, y, i);
         if (n[i] != 0) {
             count++;
         }

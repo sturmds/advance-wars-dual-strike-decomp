@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-int func_ov006_02369e04(int x, int y, int dir);      /* guess: how tile x, y joins its neighbour in direction dir (0: not at all) */
+int Ov006_GetPipeLink(int x, int y, int dir);      /* guess: how tile x, y joins its neighbour in direction dir (0: not at all) */
 int Ov006_FitPipeCell(int x, int y, int flag);     /* guess: picks the cell code for tile x, y */
 int Ov006_GetPipeEndCell(int x, int y);               /* guess: picks the cell code for tile x, y */
 void Ov006_StoreMapCell(int x, int y, int cell);    /* guess: sets the cell code of tile x, y */
@@ -22,7 +22,7 @@ extern s16 Ov006_gNeighborDy[4];
  * subtracts through a u16 constant (cell + 0x10000 - first). */
 #define CELL_IS_PAIR(cell, first) ((u16)((cell) + (u16)-(first)) <= 1)
 
-/* The cell codes func_ov006_02369e04 joins: 0x102-0x103, 0x120-0x123,
+/* The cell codes Ov006_GetPipeLink joins: 0x102-0x103, 0x120-0x123,
  * 0x140-0x143 and 0x160-0x163 (rows 8 to 11 of the 32-wide cell set). */
 #define IS_JOINED_CELL(cell)                                                     \
     ((cell) == 0x142 || (cell) == 0x143 || (cell) == 0x140 || (cell) == 0x141    \
@@ -45,8 +45,8 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
             continue;
         }
-        if (func_ov006_02369e04(x, y, i) != 0
-            && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
+        if (Ov006_GetPipeLink(x, y, i) != 0
+            && (Ov006_GetPipeLink(x, y, i) == 2 || Ov006_GetPipeLink(x, y, i) == 3)) {
             Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
             Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
@@ -61,8 +61,8 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
             continue;
         }
-        if (func_ov006_02369e04(x, y, i) != 0
-            && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
+        if (Ov006_GetPipeLink(x, y, i) != 0
+            && (Ov006_GetPipeLink(x, y, i) == 2 || Ov006_GetPipeLink(x, y, i) == 3)) {
             Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
             Ov006_StoreMapCell(NX, NY, Ov006_FitPipeCell(NX, NY, 0));
@@ -77,8 +77,8 @@ void Ov006_RefitJoinedCellsAround(int x, int y)
         if (NX < 0 || NX >= MAP->mapWidth || NY < 0 || NY >= MAP->mapHeight) {
             continue;
         }
-        if (func_ov006_02369e04(x, y, i) != 0
-            && (func_ov006_02369e04(x, y, i) == 2 || func_ov006_02369e04(x, y, i) == 3)) {
+        if (Ov006_GetPipeLink(x, y, i) != 0
+            && (Ov006_GetPipeLink(x, y, i) == 2 || Ov006_GetPipeLink(x, y, i) == 3)) {
             Ov006_StoreMapCell(NX, NY, Ov006_GetPipeEndCell(NX, NY));
         } else if (CELL_IS_PAIR(CELL_AT(NX, NY), 0x162)) {
             Ov006_StoreMapCell(NX, NY, Ov006_GetPipeEndCell(NX, NY));
