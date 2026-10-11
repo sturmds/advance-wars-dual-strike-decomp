@@ -5928,6 +5928,10 @@ src/game/main/func_0207a324.c:
     complete
     .text       start:0x0207a324 end:0x0207a338
 
+src/game/main/link/wireless_set_player_name.c:
+    complete
+    .text       start:0x0207a338 end:0x0207a36c
+
 src/game/main/func_0207a3a4.c:
     complete
     .text       start:0x0207a3a4 end:0x0207a3b8
