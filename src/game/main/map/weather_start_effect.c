@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void func_020cfa88(void);
+void SidePanel_SlideAwayFromCursor(void);
 void SidePanel_SnapLeft(void);
 void SidePanel_SnapRight(void);
 void SidePanel_SnapAwayFromCursor(void);
@@ -11,7 +11,7 @@ void Weather_StartEffect(int weather)
 {
     switch (weather) {
     case WEATHER_CLEAR:
-        func_020cfa88();
+        SidePanel_SlideAwayFromCursor();
         break;
     case WEATHER_SNOW:
         SidePanel_SnapLeft();
