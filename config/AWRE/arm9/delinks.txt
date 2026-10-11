@@ -9887,6 +9887,10 @@ src/game/main/func_02106f94.c:
     complete
     .text       start:0x02106f94 end:0x02106fb8
 
+src/game/main/sound/sound_arc_unload_item.c:
+    complete
+    .text       start:0x02106fb8 end:0x02106ff4
+
 src/game/main/sound/sound_arc_forget_loaded_item.c:
     complete
     .text       start:0x02107064 end:0x021070d0
