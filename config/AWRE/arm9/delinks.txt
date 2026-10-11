@@ -2062,6 +2062,10 @@ src/game/main/script/choice_prompt_draw_cursor.c:
     complete
     .text       start:0x0201a774 end:0x0201a7e0
 
+src/game/main/script/tile_map_get_pixel_pos.c:
+    complete
+    .text       start:0x0201a7e0 end:0x0201a814
+
 src/game/main/script/event_script_start.c:
     complete
     .text       start:0x0201ab18 end:0x0201ab8c
