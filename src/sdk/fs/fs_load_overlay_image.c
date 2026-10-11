@@ -1,6 +1,6 @@
 #include "sdk/fs.h"
 
-BOOL func_021128b4(FSFile *file, FSFileID id);
+BOOL FS_OpenFileFast(FSFile *file, FSFileID id);
 u32 Overlay_FileReadSize(const FSOverlayInfo *info);
 void Overlay_InvalidateAndZeroBss(const FSOverlayInfo *info);
 
@@ -13,7 +13,7 @@ BOOL FS_LoadOverlayImage(const FSOverlayInfo *info)
 
     FS_InitFile(&file);
     id = FS_GetOverlayFileID(info);
-    if (!func_021128b4(&file, id)) {
+    if (!FS_OpenFileFast(&file, id)) {
         return FALSE;
     }
     size = Overlay_FileReadSize(info);

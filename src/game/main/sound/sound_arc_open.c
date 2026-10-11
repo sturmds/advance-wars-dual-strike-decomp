@@ -4,7 +4,7 @@
 extern SoundArc *data_022a8a60;             /* current sound archive */
 
 BOOL func_02112988(SoundArcRange *range, const char *path);
-BOOL func_021128b4(FSFile *file, SoundArcRange range);
+BOOL FS_OpenFileFast(FSFile *file, SoundArcRange range);
 BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad);
 
 /* Opens the sound archive file at path, reads its tables (into heap when
@@ -19,7 +19,7 @@ void SoundArc_Open(SoundArc *arc, const char *path, void *heap, int symbolLoad)
         return;
     }
     FS_InitFile(&arc->file);
-    if (!func_021128b4(&arc->file, arc->range)) {
+    if (!FS_OpenFileFast(&arc->file, arc->range)) {
         return;
     }
     arc->opened = 1;

@@ -8,7 +8,7 @@ BOOL SoundStream_LockChannels(SoundStream *stream, int count, const u8 *channels
 void SoundStream_UnlockChannels(SoundStream *stream);
 s32 SoundArc_ReadFile(u32 fileNo, void *dest, u32 size, u32 offset);
 void SoundArc_GetRange(SoundArcRange *out);
-BOOL func_021128b4(FSFile *file, SoundArcRange range);
+BOOL FS_OpenFileFast(FSFile *file, SoundArcRange range);
 u32 func_021063f8(u32 fileNo);
 void func_02109328(SoundFader *fader);
 void SoundFader_Start(SoundFader *fader, int target, int frames);
@@ -43,7 +43,7 @@ BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int slotNo
         return FALSE;
     }
     SoundArc_GetRange(&range);
-    if (!func_021128b4(&stream->file, range)) {
+    if (!FS_OpenFileFast(&stream->file, range)) {
         SoundStream_Detach(stream);
         return FALSE;
     }
