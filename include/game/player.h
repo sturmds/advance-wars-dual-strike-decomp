@@ -37,7 +37,7 @@ typedef struct PlayerCo {
 #define AI_BEHAVIOUR_GENERAL 2
 #define AI_BEHAVIOUR_DEFENSE 3
 
-/* Index into Player.unk_20: Oozium destroyed, up to 99 (Combat_ApplyResult). */
+/* Index into Player.destroyedCounts: Oozium destroyed, up to 99 (Combat_ApplyResult). */
 #define PLAYER_DESTROYED_OOZIUM 3
 
 /* One player slot, 0x98 bytes, in the array at Unk_02080440_48.players:
@@ -51,7 +51,7 @@ typedef struct Player {
     u32 damageTaken;                   /* damage taken, in funds (Unit_AddDamageTaken) */
     u8 unk_10[4];                      /* bases, cities, airports, ports owned */
     u8 comTowers;                      /* Com Towers owned */
-    u8 unk_15;                         /* total properties */
+    u8 propertyCount;                  /* properties owned (func_020c4448 counts them) */
     u16 defeated;                      /* nonzero once the player is out (Player_IsInGame) */
     u8 unk_18;                         /* cleared by Players_Reset */
     u8 armyColour;                     /* palette: 1 Orange Star ... 5 Black Hole; set from MapHeader.army at battle start (Players_ApplyBattleSetup) */
@@ -59,7 +59,7 @@ typedef struct Player {
     u8 visionGrids;                    /* vision grids its sight goes into, bit n for grid visionGrid<n> (game/vision.h); Players_AssignVisionGrids sets it each turn */
     u16 turnKills;                     /* kills this turn */
     u16 mostTurnKills;                 /* most kills in one turn */
-    u8 unk_20[5];
+    u8 destroyedCounts[5];             /* things this player destroyed, by kind, up to 99 each; index 3: Oozium (PLAYER_DESTROYED_OOZIUM) */
     u8 tagPowerHalf;                   /* TAG_POWER_FRONT or TAG_POWER_BACK while a tag power is on */
     s16 firepowerBonus;                /* set to 10 while a power is on */
     s16 defenseBonus;                  /* set to 10 while a power is on */
@@ -70,8 +70,8 @@ typedef struct Player {
     u8 aiBehaviour;                    /* AI_BEHAVIOUR_* */
     u8 hqX;                            /* HQ tile x in bits 0-6; bit 7: no HQ. ORed with MapHeader.slotFlags[slot].unk_0 at map start */
     u8 hqY;                            /* HQ tile y in bits 0-6. ORed with MapHeader.slotFlags[slot].unk_1 */
-    u8 unk_31;                         /* set from Unk_02080440_48.unk_28 at turn start (func_020ddb38); likely a saved cursor x */
-    u8 unk_32;                         /* from unk_2a; likely cursor y */
+    u8 savedCursorX;                   /* map cursor tile saved by func_020ddb38 outside link play; CurrentPlayer_StartTurn puts the cursor back there */
+    u8 savedCursorY;
     u8 unk_33;                         /* cleared by Players_Reset */
     u8 unk_34;
     u8 unitCount;                      /* units on the map: +1 per unit built, up to 255 (Player_IncUnitCount), -1 per unit lost (Player_DecUnitCount) */

@@ -95,7 +95,7 @@ void BattleSetup_ApplyToGame(void)
     GAME->unk_80 = gMenuState.setup.unk_2de;
     GAME->fundsPerProperty = data_0229ed30.fundsPerProperty;
     GAME->coEffectsOn = gMenuState.setup.coEffectsOn;
-    GAME->unk_81 = gMenuState.setup.unk_2df;
+    GAME->propertyGoal = gMenuState.setup.unk_2df;
     GAME->unk_8c = gMenuState.setup.unk_2e2;
     if (gLinkPlay == 0) {
         gPlayRecords.unk_15 = gMenuState.setup.unk_2e2;

@@ -179,7 +179,7 @@ typedef struct Unk_02080440_48 {
     s32 fundsPerProperty;              /* income from each city, base, airport, port and HQ */
     u32 unk_7c;
     u8 unk_80;                         /* from MapHeader.unk_30 */
-    u8 unk_81;                         /* from MapHeader.unk_34 */
+    u8 propertyGoal;                   /* properties that win the battle, 0: none (from MapHeader.unk_34; Players_FindPropertyGoalWinner) */
     u8 unk_82;
     u8 musicReady;                     /* 0: song requests are kept pending, see Sound_PlaySong; name a guess */
     u8 unk_84;

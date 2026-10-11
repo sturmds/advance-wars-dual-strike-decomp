@@ -74,7 +74,7 @@ void BattleSetup_LoadFromGame(void)
     state->setup.coEffectsOn = GAME->coEffectsOn;
     state->setup.unk_2de = GAME->unk_80;
     data_0229ed30.fundsPerProperty = GAME->fundsPerProperty;
-    state->setup.unk_2df = GAME->unk_81;
+    state->setup.unk_2df = GAME->propertyGoal;
     if (gLinkPlay != 0) {
         state->setup.unk_2e1 = 1;
     } else {

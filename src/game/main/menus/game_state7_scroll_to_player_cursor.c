@@ -36,8 +36,8 @@ void Game_State7_ScrollToPlayerCursor(void)
     Font_LoadDigits(0);
     if (gLinkPlay == 0
         || STATE->players[STATE->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        func_020f5888(STATE->players[STATE->currentPlayer].unk_31,
-                      STATE->players[STATE->currentPlayer].unk_32);
+        func_020f5888(STATE->players[STATE->currentPlayer].savedCursorX,
+                      STATE->players[STATE->currentPlayer].savedCursorY);
     }
     if (ScriptSlot_Find(gMapScrollScript) != -1) {
         return;

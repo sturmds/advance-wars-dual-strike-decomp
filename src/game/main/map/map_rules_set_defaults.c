@@ -56,7 +56,7 @@ void MapRules_SetDefaults(void)
     MapRules_SetDefaultTeams();
     STATE->unk_7c = 0;
     STATE->unk_80 = 0;
-    STATE->unk_81 = 0;
+    STATE->propertyGoal = 0;
     STATE->fundsPerProperty = 1000;
     STATE->unk_74 = 0;
     STATE->unk_64 = 0;

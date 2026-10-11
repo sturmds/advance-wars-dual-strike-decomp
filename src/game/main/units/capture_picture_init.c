@@ -40,9 +40,9 @@ void CapturePicture_Init(CapturePictureTask *task)
     int d1;
     int d0;
 
-    task->unk_34 = NULL;
-    task->unk_38 = NULL;
-    task->picture = NULL;
+    task->armySprite = NULL;
+    task->propertySprite = NULL;
+    task->textSprite = NULL;
     PropertyPicture_Load(task->tile, 500, 5);
     CaptureArmyGfx_Load(task->owner, 532, 4);
     FS_ChangeDir(data_021691b0);
@@ -50,15 +50,15 @@ void CapturePicture_Init(CapturePictureTask *task)
     FS_ChangeDir(data_02169180);
     Palette_LoadFromFile(data_021691bc, 0, (3 + 16) << 5, 32);
 
-    task->unk_34 = SpriteAnim_Create(data_0214a568, 0, 2);
-    SpriteAnim_SetAnimation(task->unk_34, 0);
-    task->unk_34->unk_24 = SPRITE_ATTR2(4, 532);
-    task->unk_38 = SpriteAnim_Create(data_0214a618, 0, 2);
-    SpriteAnim_SetAnimation(task->unk_38, 0);
-    task->unk_38->unk_24 = SPRITE_ATTR2(5, 500);
-    task->picture = SpriteAnim_Create(data_0214a670, 0, 2);
-    SpriteAnim_SetAnimation(task->picture, 0);
-    task->picture->unk_24 = SPRITE_ATTR2(3, 404);
+    task->armySprite = SpriteAnim_Create(data_0214a568, 0, 2);
+    SpriteAnim_SetAnimation(task->armySprite, 0);
+    task->armySprite->unk_24 = SPRITE_ATTR2(4, 532);
+    task->propertySprite = SpriteAnim_Create(data_0214a618, 0, 2);
+    SpriteAnim_SetAnimation(task->propertySprite, 0);
+    task->propertySprite->unk_24 = SPRITE_ATTR2(5, 500);
+    task->textSprite = SpriteAnim_Create(data_0214a670, 0, 2);
+    SpriteAnim_SetAnimation(task->textSprite, 0);
+    task->textSprite->unk_24 = SPRITE_ATTR2(3, 404);
 
     cosValue = gSineTable[64] * 16;
     sinValue = gSineTable[0];

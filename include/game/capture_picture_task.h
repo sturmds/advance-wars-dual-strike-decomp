@@ -11,14 +11,14 @@ struct Unk_02022404;
  * data_021690f8, CaptureTask_ShowCompletion) uses the same fields up to tile. */
 typedef struct CapturePictureTask {
     u8 pad_00[0x2c];
-    struct Unk_02022404 *picture;      /* the property (PropertyPicture_Load), affine matrix 1 */
+    struct Unk_02022404 *textSprite;   /* the capture text (tile 404), affine matrix 1 */
     u8 pad_30[0x34 - 0x30];
-    struct Unk_02022404 *unk_34;       /* drawn through affine matrix 2 */
-    struct Unk_02022404 *unk_38;       /* drawn through affine matrix 3, squashed as points go up */
+    struct Unk_02022404 *armySprite;   /* the capturing army (CaptureArmyGfx_Load, tile 532), affine matrix 2 */
+    struct Unk_02022404 *propertySprite; /* the property (PropertyPicture_Load, tile 500), affine matrix 3, squashed as points go up */
     s16 x;                             /* screen position of the picture */
     s16 y;
-    s16 unk_40;                        /* CapturePicture_InitOffset: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives unk_34 */
-    s16 unk_42;                        /* added to y for the sprites in unk_34 and unk_38 */
+    s16 unk_40;                        /* CapturePicture_InitOffset: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives armySprite */
+    s16 unk_42;                        /* added to y for armySprite and propertySprite */
     u8 owner;                          /* player capturing the property */
     u8 oldOwner;                       /* its owner before the capture */
     u16 points;                        /* capture points shown, 0-20; CapturePicture_Init starts it at oldPoints */

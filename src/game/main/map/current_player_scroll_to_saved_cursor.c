@@ -12,6 +12,6 @@ void func_020f5888(int x, int y);
  * unk_31 and unk_32 (likely the cursor position). */
 void CurrentPlayer_ShowSavedCursor(void)
 {
-    func_020f5888(STATE->players[STATE->currentPlayer].unk_31,
-                  STATE->players[STATE->currentPlayer].unk_32);
+    func_020f5888(STATE->players[STATE->currentPlayer].savedCursorX,
+                  STATE->players[STATE->currentPlayer].savedCursorY);
 }

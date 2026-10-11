@@ -18,8 +18,8 @@ void func_020ddb38(void)
     GAME->unk_1c4->nextWeather = Weather_PickNext();
     data_0229d8c8.rngState = gRngState;
     if (gLinkPlay == 0) {
-        GAME->players[GAME->currentPlayer].unk_31 = GAME->cursorX;
-        GAME->players[GAME->currentPlayer].unk_32 = GAME->cursorY;
+        GAME->players[GAME->currentPlayer].savedCursorX = GAME->cursorX;
+        GAME->players[GAME->currentPlayer].savedCursorY = GAME->cursorY;
     }
     GAME->unk_18 = 1;
     Player_RefreshUnits();

@@ -28,10 +28,10 @@ void Combat_ApplyResult(void)
             Unit_CountDestroyed(STATE->combatants[0].unit);
         }
         if (STATE->combatants[0].unit->type == UNIT_OOZIUM) {
-            if (STATE->players[COMBATANT_OWNER(1)].unk_20[PLAYER_DESTROYED_OOZIUM] + 1 >= 99) {
-                STATE->players[COMBATANT_OWNER(1)].unk_20[PLAYER_DESTROYED_OOZIUM] = 99;
+            if (STATE->players[COMBATANT_OWNER(1)].destroyedCounts[PLAYER_DESTROYED_OOZIUM] + 1 >= 99) {
+                STATE->players[COMBATANT_OWNER(1)].destroyedCounts[PLAYER_DESTROYED_OOZIUM] = 99;
             } else {
-                STATE->players[COMBATANT_OWNER(1)].unk_20[PLAYER_DESTROYED_OOZIUM]++;
+                STATE->players[COMBATANT_OWNER(1)].destroyedCounts[PLAYER_DESTROYED_OOZIUM]++;
             }
         }
     }
@@ -41,10 +41,10 @@ void Combat_ApplyResult(void)
             Unit_CountDestroyed(STATE->combatants[1].unit);
         }
         if (STATE->combatants[1].unit->type == UNIT_OOZIUM) {
-            if (STATE->players[COMBATANT_OWNER(0)].unk_20[PLAYER_DESTROYED_OOZIUM] + 1 >= 99) {
-                STATE->players[COMBATANT_OWNER(0)].unk_20[PLAYER_DESTROYED_OOZIUM] = 99;
+            if (STATE->players[COMBATANT_OWNER(0)].destroyedCounts[PLAYER_DESTROYED_OOZIUM] + 1 >= 99) {
+                STATE->players[COMBATANT_OWNER(0)].destroyedCounts[PLAYER_DESTROYED_OOZIUM] = 99;
             } else {
-                STATE->players[COMBATANT_OWNER(0)].unk_20[PLAYER_DESTROYED_OOZIUM]++;
+                STATE->players[COMBATANT_OWNER(0)].destroyedCounts[PLAYER_DESTROYED_OOZIUM]++;
             }
         }
     }

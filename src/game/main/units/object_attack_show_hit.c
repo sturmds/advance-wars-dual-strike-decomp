@@ -14,14 +14,14 @@ extern int data_027c0284;
  * here (the header's STATE_IDX_FIRST loads the base first). */
 #define STATE_INDEX_LOADED_FIRST (*(Unk_02080440_48 **)((u8 *)(data_027c0284 * sizeof(Unk_02080440_48 *)) \
                                      + (u32)data_027c027c + (u32)&((Unk_02080440 *)0)->unk_48))
-#define DESTROYED_COUNT(player, index) (STATE_INDEX_LOADED_FIRST->players[player].unk_20[index])
+#define DESTROYED_COUNT(player, index) (STATE_INDEX_LOADED_FIRST->players[player].destroyedCounts[index])
 
 #define TILE_HP_MASK 0x7f
 
 void MapObjectHitTask_Start(MapObject *object, Task *parent);
 void PipeSeamHitTask_Start(int x, int y, Task *parent);
 
-/* Adds 1 (up to 99) to the attacker's count in Player.unk_20[index]. */
+/* Adds 1 (up to 99) to the attacker's count in Player.destroyedCounts[index]. */
 #define COUNT_PLAYER(player, index)                                            \
     {                                                                          \
         int n = DESTROYED_COUNT(player, index) + 1;                            \
@@ -41,7 +41,7 @@ void PipeSeamHitTask_Start(int x, int y, Task *parent);
     }
 
 /* Starts the hit display for the object or pipe seam the attack task hit.
- * When that destroyed it, counts it for the attacker's player (Player.unk_20:
+ * When that destroyed it, counts it for the attacker's player (Player.destroyedCounts:
  * 0 Black Cannons, 1 Minicannons, 2 pipe seams, 4 Black Crystals; Black
  * Obelisks get no count) and, for a human player, in gPlayRecords. */
 void ObjectAttack_ShowHit(ObjectAttackTask *task)

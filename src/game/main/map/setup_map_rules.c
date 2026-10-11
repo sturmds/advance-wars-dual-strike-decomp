@@ -49,7 +49,7 @@ void SetupMapRules(void)
         }
         STATE->unk_7c = 0;
         STATE->unk_80 = Ov000_gMapHeaders[MAP_ID].unk_30[Campaign_IsHardMode()];
-        STATE->unk_81 = Ov000_gMapHeaders[MAP_ID].unk_34[Campaign_IsHardMode()];
+        STATE->propertyGoal = Ov000_gMapHeaders[MAP_ID].unk_34[Campaign_IsHardMode()];
         STATE->partnerBoostHuman = 1;
         STATE->partnerBoostAi = 1;
         Screen_SetCurrent(saved027c);

@@ -8,7 +8,7 @@ CapturePictureTask *Task_FindByScript(const TaskScriptCmd *script);
 void Task_ResumeScript(void *task);
 
 /* Frame step: shakes the capture picture for 8 frames by moving the sprites
- * in unk_34 and unk_38 one pixel on odd frames (unk_42), then puts them back
+ * in armySprite and propertySprite one pixel on odd frames (unk_42), then puts them back
  * and resumes its own script. */
 void CaptureShake_Update(CaptureCountTask *task)
 {

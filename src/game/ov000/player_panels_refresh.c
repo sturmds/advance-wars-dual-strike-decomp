@@ -44,8 +44,8 @@ void PlayerPanels_Refresh(void)
         player = &STATE->players[i];
         cache = &Ov000_gPlayerPanelCache[i];
         if (player->controller != PLAYER_CONTROLLER_NONE) {
-            properties = player->unk_15;
-            if (STATE->unk_81 == 0) {
+            properties = player->propertyCount;
+            if (STATE->propertyGoal == 0) {
                 if (STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) {
                     if ((player->visionGrids & 2) == 0) {
                         properties = -1;

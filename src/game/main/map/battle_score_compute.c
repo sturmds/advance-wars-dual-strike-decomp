@@ -25,7 +25,7 @@ extern int data_027c0284;
 /* End-of-battle score into data_022a7a9c: speed (unk_00), power (unk_01)
  * and technique (unk_02) of the current player (unk_04), their sum (score)
  * and its rank; Survival halves all but the rank. Then the
- * Player.unk_20 counts of the human players summed into unk_08-unk_0c,
+ * Player.destroyedCounts counts of the human players summed into unk_08-unk_0c,
  * unk_0d set on maps 242 and 247, and the total (unk_14): the sum plus
  * the bonus points, 0 when player 1's team is out or in Versus, doubled on
  * campaign hard mode. In the campaign, unk_18 gets the profile's earlier
@@ -59,11 +59,11 @@ void BattleScore_Compute(void)
     data_022a7a9c.unk_0d = 0;
     for (i = 1; i < 5; i++) {
         if (STATE->players[i].controller == PLAYER_CONTROLLER_HUMAN) {
-            data_022a7a9c.unk_08 += STATE->players[i].unk_20[0];
-            data_022a7a9c.unk_09 += STATE->players[i].unk_20[1];
-            data_022a7a9c.unk_0a += STATE->players[i].unk_20[4];
-            data_022a7a9c.unk_0b += STATE->players[i].unk_20[2];
-            data_022a7a9c.unk_0c += STATE->players[i].unk_20[PLAYER_DESTROYED_OOZIUM];
+            data_022a7a9c.unk_08 += STATE->players[i].destroyedCounts[0];
+            data_022a7a9c.unk_09 += STATE->players[i].destroyedCounts[1];
+            data_022a7a9c.unk_0a += STATE->players[i].destroyedCounts[4];
+            data_022a7a9c.unk_0b += STATE->players[i].destroyedCounts[2];
+            data_022a7a9c.unk_0c += STATE->players[i].destroyedCounts[PLAYER_DESTROYED_OOZIUM];
             if (STATE->unk_1c4->mapId == 242 || STATE->unk_1c4->mapId == 247) {
                 data_022a7a9c.unk_0d = 1;
             } else {

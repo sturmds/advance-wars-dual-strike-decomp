@@ -21,7 +21,7 @@ typedef struct GameSettings {
 
 /* Copies the game settings (game mode and the fields after it) from the first
  * screen's game state to the second screen's. In game modes 1 and 2 the second
- * screen keeps its own slot controllers, and unk_81 is cleared. */
+ * screen keeps its own slot controllers, and propertyGoal is cleared. */
 void func_020f3ee4(void)
 {
     Unk_027c0280 *savedGfx;
@@ -51,7 +51,7 @@ void func_020f3ee4(void)
         for (j = 1; j < 5; j++) {
             GAME->slotControllers[j] = controllers[j];
         }
-        GAME->unk_81 = 0;
+        GAME->propertyGoal = 0;
     }
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);

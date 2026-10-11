@@ -22,7 +22,7 @@ extern char data_02167c8c[];              /* shown for a defeated player */
 /* Status screen table on layer 0: map name and day on row 4, column headers
  * on row 8, then one row per player from row 10: units built, units lost,
  * properties, income and funds. In fog or rain, other teams' properties and
- * income show as "?" unless unk_81 is set, and their funds always do. Row 18
+ * income show as "?" unless propertyGoal is set, and their funds always do. Row 18
  * shows the neutral properties. */
 void StatusScreen_Draw(void)
 {
@@ -69,12 +69,12 @@ void StatusScreen_Draw(void)
         } else if ((game->unk_1c4->fog == 0 && game->unk_1c4->weather != WEATHER_RAIN)
                    /* needed to match: the volatile read makes the compiler load players again */
                    || player->team == (*(Player *volatile *)&game->players)[game->currentPlayer].team) {
-            Number_Draw(16, y, data_027c0280->layer0Map, player->unk_15, 0, 0);
+            Number_Draw(16, y, data_027c0280->layer0Map, player->propertyCount, 0, 0);
             Number_Draw(23, y, data_027c0280->layer0Map, GAME->players[i + 1].unk_08, 0, 0);
             Number_Draw(30, y, data_027c0280->layer0Map, GAME->players[i + 1].funds, 0, 0);
         } else {
-            if (game->unk_81) {
-                Number_Draw(16, y, data_027c0280->layer0Map, player->unk_15, 0, 0);
+            if (game->propertyGoal) {
+                Number_Draw(16, y, data_027c0280->layer0Map, player->propertyCount, 0, 0);
                 Number_Draw(23, y, data_027c0280->layer0Map, GAME->players[i + 1].unk_08, 0, 0);
             } else {
                 Text_PrintStringImmediate(16, y, data_027c0280->layer0Map, data_02167c70, 0, 0);
@@ -85,8 +85,8 @@ void StatusScreen_Draw(void)
     }
 
     game = GAME;
-    if ((game->unk_1c4->fog == 0 && game->unk_1c4->weather != WEATHER_RAIN) || game->unk_81) {
-        Number_Draw(16, 18, data_027c0280->layer0Map, game->players[0].unk_15, 0, 0);
+    if ((game->unk_1c4->fog == 0 && game->unk_1c4->weather != WEATHER_RAIN) || game->propertyGoal) {
+        Number_Draw(16, 18, data_027c0280->layer0Map, game->players[0].propertyCount, 0, 0);
     } else {
         Text_PrintStringImmediate(16, 18, data_027c0280->layer0Map, data_02167c70, 0, 0);
     }

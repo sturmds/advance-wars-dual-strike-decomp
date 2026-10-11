@@ -30,5 +30,5 @@ void VersusTask_SetDefaultRules(void)
     }
     STATE->fundsPerProperty = 1000;
     STATE->unk_80 = 0;
-    STATE->unk_81 = 0;
+    STATE->propertyGoal = 0;
 }

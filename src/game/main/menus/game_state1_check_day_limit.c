@@ -13,7 +13,7 @@ void Game_EnterState20(void);
 
 /* Handler for game state 1. When the map has a day limit (unk_80) and the
  * round ends on that day, every player in the game with fewer properties
- * (Player.unk_15) than the most any player has is marked defeated (code 32)
+ * (Player.propertyCount) than the most any player has is marked defeated (code 32)
  * and the game ends (state 20). Otherwise sets state 2 and enters state 18. */
 void Game_State1_CheckDayLimit(void)
 {
@@ -30,12 +30,12 @@ void Game_State1_CheckDayLimit(void)
     }
     most = 0;
     for (player = 1; player < 5; player++) {
-        if (Player_IsInGame(player) && most < STATE->players[player].unk_15) {
-            most = STATE->players[player].unk_15;
+        if (Player_IsInGame(player) && most < STATE->players[player].propertyCount) {
+            most = STATE->players[player].propertyCount;
         }
     }
     for (player = 1; player < 5; player++) {
-        if (Player_IsInGame(player) && most > STATE->players[player].unk_15) {
+        if (Player_IsInGame(player) && most > STATE->players[player].propertyCount) {
             LinkPlayer_MarkDefeated(player, 32);
         }
     }
