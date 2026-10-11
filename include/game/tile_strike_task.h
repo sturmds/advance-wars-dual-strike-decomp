@@ -6,7 +6,7 @@ struct Unk_02022404;
 
 /* Task that drops a sprite onto a map tile and shakes the screen when it
  * lands (scripts data_02167ef0 and data_02167f20, started by
- * func_020d8e9c). The first 0x2c bytes belong to the task system. The
+ * TileStrike_Start). The first 0x2c bytes belong to the task system. The
  * sub screen draws it as a 2D sprite and the main screen in 3D; the same
  * fields serve both. */
 typedef struct TileStrikeTask {

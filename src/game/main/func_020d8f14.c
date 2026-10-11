@@ -8,9 +8,9 @@ struct Unk_020d8f14 {
     int unk_30;
 };
 
-void func_020d8e9c(int, int, int);
+void TileStrike_Start(int, int, int);
 
 void func_020d8f14(Unk_020d8f14 *a0)
 {
-    func_020d8e9c(a0->unk_2c, a0->unk_30, 3);
+    TileStrike_Start(a0->unk_2c, a0->unk_30, 3);
 }
