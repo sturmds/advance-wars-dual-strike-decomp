@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6564 / 6700 | 1471244 / 1553840 | 94.68% | 0 | 0 |
+| game | 6578 / 6700 | 1473104 / 1553840 | 94.80% | 0 | 0 |
 | SDK/library | 112 / 779 | 2392 / 132154 | 1.81% | 1 | 30 |
-| all | 6676 / 7479 | 1473636 / 1685994 | 87.40% | 1 | 30 |
+| all | 6690 / 7479 | 1475496 / 1685994 | 87.51% | 1 | 30 |
 
 ## By module
 
@@ -20,7 +20,7 @@ Rows with nothing done are left out, but count in the totals.
 |---|---|---:|---:|---:|---:|
 | main | game | 5131 / 5180 | 1036632 / 1082632 | 95.75% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
-| itcm | game | 42 / 102 | 2656 / 21896 | 12.13% | 0 |
+| itcm | game | 56 / 102 | 4516 / 21896 | 20.62% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
 | ov002 | game | 152 / 164 | 53176 / 64208 | 82.82% | 0 |
@@ -37,6 +37,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 
 | File | Functions | Bytes |
 |---|---|---:|
+| `src/game/itcm/range_map/load_move_costs.c` | MoveSearch_LoadMoveCosts | 224 |
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
