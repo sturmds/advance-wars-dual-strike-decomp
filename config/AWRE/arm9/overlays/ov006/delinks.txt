@@ -1015,6 +1015,10 @@ src/game/ov006/ov006_set_cell_and_fit.c:
     complete
     .text       start:0x02366e4c end:0x02366e88
 
+src/game/ov006/ov006_is_road_or_bridge_tile.c:
+    complete
+    .text       start:0x02367350 end:0x023673b4
+
 src/game/ov006/ov006_get_pipe_end_cell.c:
     complete
     .text       start:0x0236766c end:0x023679e0
