@@ -2945,6 +2945,10 @@ src/game/main/func_0201ee24.c:
     complete
     .text       start:0x0201ee24 end:0x0201ee48
 
+src/game/main/menus/layer0_clear_map.c:
+    complete
+    .text       start:0x0201ef54 end:0x0201ef84
+
 src/game/main/menus/popup_menu_call_item_handler.c:
     complete
     .text       start:0x0201ef84 end:0x0201efd8

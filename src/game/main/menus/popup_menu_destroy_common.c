@@ -8,7 +8,7 @@ extern s16 data_0229ead8[2];
 
 void func_020c436c(s16 *tile, s16 *pixels);
 void func_0201dc64(Task *task);
-void func_0201ef54(void);
+void Layer0_ClearMap(void);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 
 /* Common part of both pop-up menu onDestroy functions: sets data_0229ead8 to the tile pair
@@ -19,6 +19,6 @@ void PopupMenu_DestroyCommon(Task *task)
 {
     func_020c436c(data_0229eae0, data_0229ead8);
     func_0201dc64(task);
-    func_0201ef54();
+    Layer0_ClearMap();
     TransferQueue_Add(data_027c0280->layer0Map, data_027c0280->unk_e8, 0x800);
 }
