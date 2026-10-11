@@ -5722,6 +5722,10 @@ src/game/main/func_020678e0.c:
     complete
     .text       start:0x020678e0 end:0x020678fc
 
+src/game/main/menus/vs_setup_show_team_screen.c:
+    complete
+    .text       start:0x020678fc end:0x02067b0c
+
 src/game/main/func_02067b0c.c:
     complete
     .text       start:0x02067b0c end:0x02067b34
