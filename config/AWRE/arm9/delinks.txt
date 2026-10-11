@@ -14153,6 +14153,10 @@ src/game/main/layer0_picture_load.c:
     complete
     .text       start:0x020e35b0 end:0x020e3650
 
+src/game/main/copowers/power_hit_effect_task_play.c:
+    complete
+    .text       start:0x020e3650 end:0x020e36d8
+
 src/game/main/func_020e36d8.c:
     complete
     .text       start:0x020e36d8 end:0x020e36fc
