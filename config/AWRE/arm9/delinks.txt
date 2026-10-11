@@ -1667,6 +1667,10 @@ src/game/main/script/script_slot_cmd_move_y.c:
     complete
     .text       start:0x020162dc end:0x020163f8
 
+src/game/main/script/script_slot_cmd_move_x.c:
+    complete
+    .text       start:0x020163f8 end:0x02016510
+
 src/game/main/script/func_020168a8.c:
     complete
     .text       start:0x020168a8 end:0x020168fc
