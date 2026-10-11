@@ -8,7 +8,7 @@ void func_0210ced0(void);
 void func_0210fa9c(void);
 void OS_InitThread(void);
 void CTRDG_Init(void);
-void func_02115fe8(void);
+void CARD_Init(void);
 void PM_Init(void);
 void func_0210e4bc(void);
 void OS_InitException(void);
@@ -29,6 +29,6 @@ void OS_Init(void)
     OS_InitThread();
     OS_InitReset();
     CTRDG_Init();
-    func_02115fe8();
+    CARD_Init();
     PM_Init();
 }

@@ -22393,6 +22393,10 @@ src/sdk/card/card_save_finish_task_and_notify.c:
     complete
     .text       start:0x02115f78 end:0x02115fe8
 
+src/sdk/card/card_init.c:
+    complete
+    .text       start:0x02115fe8 end:0x02116070
+
 src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c

@@ -17,7 +17,7 @@ void FS_InitArchive(FSArchive *arc);
 BOOL FS_RegisterArchiveName(FSArchive *arc, const char *name, int nameLength);
 
 s32 OS_GetLockID(void);
-void func_02115fe8(void);              /* looks like CARD_Init */
+void CARD_Init(void);              /* looks like CARD_Init */
 /* Sets the archive's command routine and the commands it handles
  * (FS_SetArchiveProc in the SDK; the current name is older). */
 void Archive_AssignTableCache(FSArchive *arc, ArchiveCommandHook proc, u32 commands);
@@ -42,7 +42,7 @@ void FSi_InitRom(u32 dmaNo)
     data_022ab844.length = 0;
     data_022ab84c.offset = 0;
     data_022ab84c.length = 0;
-    func_02115fe8();
+    CARD_Init();
     FS_InitArchive(&gRomFileArchive);
     FS_RegisterArchiveName(&gRomFileArchive, data_0216d974, 3);
 

@@ -67,6 +67,7 @@ typedef struct CARDiCommandArg {
 #define CARD_TARGET_BACKUP 2
 
 /* CARDiCommon.flag bits. */
+#define CARD_STAT_INIT 0x01            /* CARD_Init has run */
 #define GAMECARD_FLAG_PEER_GREETED 0x02        /* the other CPU has been sent its first request */
 #define CARD_STAT_BUSY 0x04            /* a request is running */
 #define CARD_STAT_TASK 0x08            /* the card thread has a task to run */
