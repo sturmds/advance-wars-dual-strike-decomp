@@ -3872,6 +3872,10 @@ src/game/main/play_records_reset_counters.c:
     complete
     .text       start:0x02023fcc end:0x02024020
 
+src/game/main/team_get_seconds_used.c:
+    complete
+    .text       start:0x02024020 end:0x020240a4
+
 src/game/main/func_020242c0.c:
     complete
     .text       start:0x020242c0 end:0x020242e0
