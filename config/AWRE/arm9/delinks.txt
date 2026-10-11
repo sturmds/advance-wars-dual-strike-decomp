@@ -4774,6 +4774,10 @@ src/game/main/menus/main_menu_draw_page.c:
     complete
     .text       start:0x0203018c end:0x02030590
 
+src/game/main/menus/main_menu_draw_rank_icon.c:
+    complete
+    .text       start:0x02030590 end:0x020305e4
+
 src/game/main/menus/main_menu_build_page10.c:
     complete
     .text       start:0x0203067c end:0x02030830
