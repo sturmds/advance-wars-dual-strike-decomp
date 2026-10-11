@@ -8,7 +8,7 @@ extern int data_027c0284;
 extern u32 data_0229eaec;
 extern s16 data_0229777c;
 
-BOOL func_020d0700(int x, int y);
+BOOL ActingUnit_CanMoveTo(int x, int y);
 BOOL func_020d0a14(int x, int y);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 void func_020f1288(void);
@@ -29,7 +29,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Touch version of UnitMoveSelect_HandleButtons. A release on the tile where
- * the touch began resumes the touch marker task. If func_020d0700 accepts
+ * the touch began resumes the touch marker task. If ActingUnit_CanMoveTo accepts
  * that tile, the unit tries to move there (as A does); otherwise the move is
  * cancelled as B does. Returns TRUE when the touch was handled. */
 BOOL UnitMoveSelect_HandleTouch(void)
@@ -42,7 +42,7 @@ BOOL UnitMoveSelect_HandleTouch(void)
     }
     if (GAME->unk_28 == GAME->unk_30 && GAME->unk_2a == GAME->unk_32) {
         func_020f1288();
-        if (func_020d0700(GAME->unk_28, GAME->unk_2a)) {
+        if (ActingUnit_CanMoveTo(GAME->unk_28, GAME->unk_2a)) {
             func_020d0a14(GAME->unk_28, GAME->unk_2a);
             return TRUE;
         }
