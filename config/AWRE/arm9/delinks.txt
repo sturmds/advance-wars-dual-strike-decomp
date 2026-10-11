@@ -5711,7 +5711,8 @@ src/game/main/link/link_menu_init_stage1_buttons.c:
     complete
     .text       start:0x0207e218 end:0x0207e2a8
 
-src/game/main/link/func_0207e2a8.c:
+src/game/main/link/link_menu_handle_back.c:
+    complete
     .text       start:0x0207e2a8 end:0x0207e300
 
 src/game/main/func_0207e484.c:
