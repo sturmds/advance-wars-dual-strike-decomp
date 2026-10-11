@@ -6625,6 +6625,10 @@ src/game/main/ai/ai_turn_run_end_actions.c:
 src/game/main/ai/func_02093ce8.c:
     .text       start:0x02093ce8 end:0x02093ef4
 
+src/game/main/ai/ai_site_choose_unit_to_build.c:
+    complete
+    .text       start:0x02093ef4 end:0x020940f4
+
 src/game/main/ai/ai_turn_pick_unit_to_build.c:
     complete
     .text       start:0x020940f4 end:0x0209462c
