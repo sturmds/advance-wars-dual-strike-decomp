@@ -21955,6 +21955,10 @@ src/sdk/cp/cp_save_context.c:
     complete
     .text       start:0x02113ea0 end:0x02113f14
 
+src/sdk/tp/tp_wait_busy.c:
+    complete
+    .text       start:0x02113f14 end:0x02113f2c
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc

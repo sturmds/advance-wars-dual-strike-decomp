@@ -5584,7 +5584,7 @@ Sha1_FinishDigest kind:function(arm,size=0xbc) addr:0x02113d10
 Sha1_ResetState kind:function(arm,size=0x68) addr:0x02113dcc
 CPi_RestoreContext kind:function(arm,size=0x6c) addr:0x02113e34
 CP_SaveContext kind:function(arm,size=0x74) addr:0x02113ea0
-func_02113f14 kind:function(arm,size=0x18) addr:0x02113f14
+TP_WaitBusy kind:function(arm,size=0x18) addr:0x02113f14
 func_02113f2c kind:function(arm,size=0x130) addr:0x02113f2c
 func_0211405c kind:function(arm,size=0x270) addr:0x0211405c
 func_021142cc kind:function(arm,size=0x58) addr:0x021142cc
@@ -9042,7 +9042,7 @@ data_022ab84c kind:bss addr:0x022ab84c
 gRomFileArchive kind:bss addr:0x022ab854
 data_022ab8a4 kind:bss addr:0x022ab8a4
 data_022ab8a8 kind:bss addr:0x022ab8a8
-data_022ab8ac kind:bss addr:0x022ab8ac
+tpState kind:bss addr:0x022ab8ac
 data_022ab8c4 kind:bss addr:0x022ab8c4
 data_022ab8e4 kind:bss addr:0x022ab8e4
 data_022ab8e8 kind:bss addr:0x022ab8e8
