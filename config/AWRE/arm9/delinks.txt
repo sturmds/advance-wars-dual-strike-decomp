@@ -21491,6 +21491,10 @@ src/sdk/os/os_restore_interrupts.c:
     complete
     .text       start:0x0210eb20 end:0x0210eb38
 
+src/sdk/os/os_disable_interrupts_irq_and_fiq.c:
+    complete
+    .text       start:0x0210eb38 end:0x0210eb4c
+
 src/sdk/os/os_spin_wait.c:
     complete
     .text       start:0x0210eb7c end:0x0210eb88
