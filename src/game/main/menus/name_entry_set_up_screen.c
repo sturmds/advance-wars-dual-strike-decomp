@@ -20,7 +20,7 @@ void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 int NameEntry_GetTextLength(NameEntry *entry);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void NameEntry_LoadKeyTable(NameEntry *entry);
 void NameEntry_LoadCaretSprite(NameEntry *entry);
 void NameEntry_DrawKeyLabels(NameEntry *entry);
@@ -201,7 +201,7 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         savedScreen = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        func_0202b764();
+        TpIcon_Load();
         Screen_SetCurrent(savedScreen);
         Screen_SetCurrentGfx(savedGfx);
     }

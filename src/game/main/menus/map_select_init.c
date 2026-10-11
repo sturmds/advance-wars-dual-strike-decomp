@@ -34,7 +34,7 @@ void MapSelect_DrawMapNames(int list, int page);
 void MapSelect_LoadWarRoomRecords(void);
 void MapSelect_LoadEnemyCoPictures(void);
 void func_01ff9b48(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon3_LoadTo(u8 *dest);
 void MapSelect_ShowSelectedMap(void);
 void PaletteCycle_Start(int a);
@@ -239,7 +239,7 @@ void MapSelect_Init(void)
     MapSelect_LoadWarRoomRecords();
     MapSelect_LoadEnemyCoPictures();
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     TpIcon3_LoadTo(data_027c0280->objVram + 0x4b40);
     MapSelect_ShowSelectedMap();
     PaletteCycle_Start(18);

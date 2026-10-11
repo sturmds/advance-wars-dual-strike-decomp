@@ -36,7 +36,7 @@ void func_01ff9b48(void);
 void func_0201e6e8(int x, int y, int width, int height);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028a30(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
 void func_0202b820(int skill, void *dest);
@@ -172,7 +172,7 @@ void ForceRankScreen_Init(void)
     Mem_Free(res);
     Mem_Free(lang);
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     ModeFont_Load(0x1b0, 2);
     ModeFont_ShowTextOnScreen(Text_Get(0x7d00000b), 0x1b0, 2, 0x800, 2, 0);
     Menu_Reset();

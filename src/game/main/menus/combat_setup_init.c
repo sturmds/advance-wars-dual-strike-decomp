@@ -22,7 +22,7 @@ void Font_LoadDigits(int baseTile);
 void Co_UnpackPicture(int coId, int firstTile);
 void CombatSetup_LoadMapPreviews(void);
 void func_01ff9b48(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 u16 func_0207a1dc(void);
 int func_0207a260(void);
@@ -157,7 +157,7 @@ void CombatSetup_Init(void)
     Mem_Free(file);
 
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x2580);
     data_0229ff30.playerMask = func_0207a1dc() | 1;
     data_0229fb30.unk_45a = func_0207a260();

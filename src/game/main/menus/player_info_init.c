@@ -30,7 +30,7 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int
 void Palette_LoadObjRow(int row);
 void func_0206d384(void);
 void func_01ff9b48(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
 void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
@@ -227,7 +227,7 @@ void PlayerInfo_Init(Task *task)
 
     func_0206d384();
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x6c0);
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 256, -16);

@@ -22,7 +22,7 @@ void Screen_SetCurrentBoth(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_01ff8c84(int layer);
 void func_01ff9b48(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void func_02046d68(void);
 void SurvivalModeMenu_DrawRecords(void);
 int SurvivalSelect_GetList(void);
@@ -94,7 +94,7 @@ void SurvivalModeMenu_Init(void)
     Mem_Free(res);
 
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 224, -16);
     MenuButton_Select(SurvivalSelect_GetList());

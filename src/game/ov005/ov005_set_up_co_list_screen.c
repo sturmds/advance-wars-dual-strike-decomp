@@ -12,7 +12,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void Gfx_RequestLayerCopy(int layer);
 void Font_LoadDigits(int baseTile);
 void Gfx_LoadBmap09f(void *dst, int unused, int paletteSlot);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 /* Defined with no parameters; this call passes the task in r0 anyway. */
 void Ov005_AddStateScreenButtons(Ov005Task *task);
@@ -141,7 +141,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     Screen_SetCurrentGfx(saved0280);
 
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x2000);
     Ov005_AddStateScreenButtons(task);
     work->unk_04 = 0;

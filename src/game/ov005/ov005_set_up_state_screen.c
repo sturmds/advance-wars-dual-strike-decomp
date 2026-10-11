@@ -11,7 +11,7 @@ void Screen_SetCurrentGfx(void *state);
 void func_02028a30(void);
 void Ov005_InitStateWork(Unk_ov005_0236bba4 *work);
 void Ov005_RunState(Unk_ov005_0236bba4 *work);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 void TpIcon3_LoadTo(u8 *dest);
 void ModeFont_LoadHere(int tile, int paletteSlot);
@@ -133,7 +133,7 @@ void Ov005_SetUpStateScreen(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x5400);
     TpIcon3_LoadTo(data_027c0280->objVram + 0x4800);
     Screen_SetCurrent(saved027c);

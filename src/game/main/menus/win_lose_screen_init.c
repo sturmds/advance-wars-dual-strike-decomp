@@ -21,7 +21,7 @@ void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
 void func_020023b0(int coMood, void *dest, int paletteSlot, int army);
 void func_01ff9b48(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
 void Wallpaper_LoadBoth(void);
@@ -235,7 +235,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
     Mem_Free(file);
 
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0xf800);
     Menu_Reset();
     Wallpaper_LoadBoth();

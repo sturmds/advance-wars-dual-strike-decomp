@@ -15,7 +15,7 @@ int Co_GetSavedPaletteVariant(int coId);
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work);
 void func_02028978(void);
 void Wallpaper_LoadSelected(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void ModeFont_Load(int x, int y);
 const char *Text_Get(u32 textId);
 void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int unk_56, u8 unk_5c, int unk_58);
@@ -94,7 +94,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     Ov005_ReadCoPaletteVariant(work);
     func_02028978();
     Wallpaper_LoadSelected();
-    func_0202b764();
+    TpIcon_Load();
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

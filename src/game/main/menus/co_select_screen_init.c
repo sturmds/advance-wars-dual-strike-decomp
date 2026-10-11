@@ -41,7 +41,7 @@ void func_01ff9b48(void);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028808(void);
 void func_02028978(void);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
 void func_020419c8(void);
@@ -171,7 +171,7 @@ void CoSelectScreen_Init(void)
         }
     }
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     ModeFont_Load(0x5d8, 6);
     ModeFont_ShowTextOnScreen(Text_Get(0x7d000004), 0x5d8, 6, 0x800, 7, 0);
     Menu_Reset();

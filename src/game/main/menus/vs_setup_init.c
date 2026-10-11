@@ -40,7 +40,7 @@ const void *Text_Get(u32 textId);
 void Wallpaper_LoadBoth(void);
 void func_01ff9b48(void);
 void TpIcon2_LoadTo(u8 *dest);
-void func_0202b764(void);
+void TpIcon_Load(void);
 void func_0202b7e0(int a0);
 void func_0202b804(void *dest);
 int func_0207bd80(void);
@@ -179,7 +179,7 @@ void VsSetup_Init(void)
     }
     ForceRank_LoadSets(STATE->gameMode);
     func_01ff9b48();
-    func_0202b764();
+    TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x8000);
     ModeFont_Load(0x2c8, 10);
     if (STATE->twoMaps == 0) {
