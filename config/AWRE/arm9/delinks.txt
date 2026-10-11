@@ -2965,6 +2965,10 @@ src/game/main/save_find_newest_record.c:
     complete
     .text       start:0x0201f750 end:0x0201f9fc
 
+src/game/main/save_check_buffer.c:
+    complete
+    .text       start:0x0201f9fc end:0x0201fadc
+
 src/game/main/save_read_slot.c:
     complete
     .text       start:0x0201fadc end:0x0201fb3c
