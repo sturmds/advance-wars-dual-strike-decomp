@@ -13201,6 +13201,10 @@ src/game/main/graphics/player_save_army_colours.c:
     complete
     .text       start:0x020d6e6c end:0x020d6ec4
 
+src/game/main/map/saved_army_colours_reset.c:
+    complete
+    .text       start:0x020d6ec4 end:0x020d6ee4
+
 src/game/main/map/func_020d73d4.c:
     .text       start:0x020d73d4 end:0x020d76f0
 
