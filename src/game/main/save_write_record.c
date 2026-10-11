@@ -5,8 +5,8 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern u8 *data_02297f28;
-extern int (*data_02297f2c)(u8 *dest);
+extern u8 *gSaveBuffer;
+extern int (*gSavePackFunc)(u8 *dest);
 extern int data_02297f30;
 extern u32 gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
@@ -16,7 +16,7 @@ extern u8 data_0229a050[];
 void Save_WriteToBackup(u16 slot, SaveBuffer *buffer, int size);
 int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
 
-/* Writes record recordId (size bytes from data_02297f28) to the save. The
+/* Writes record recordId (size bytes from gSaveBuffer) to the save. The
  * record is split into parts of up to 0x2f99 bytes; the first part of
  * record 0 leaves room for the slot id table. Each part goes to the free
  * slot (id 0xff) that was written least often, after its write count goes
@@ -24,7 +24,7 @@ int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
  * SAVE_SLOT_WRITE_FAILED and the next free slot is tried. Slots that held
  * the old copy of the record, and those of record 0, are freed (newId
  * 0xff). Returns 1 when no free slot is left. After any record but 0, 10
- * and 11, record 0 is written again from data_02297f2c.
+ * and 11, record 0 is written again from gSavePackFunc.
  * The src argument is not read. On success the save counter goes into the
  * slot's write count, not into data_02297fa8[slot]; the code does that. */
 int Save_WriteRecord(int recordId, u8 *unused, int size)
@@ -144,7 +144,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                 size = partLength[part];
                 data_02298050.dataLength = size;
                 for (i = 0; i < size; i++) {
-                    data_02298050.data[i] = (data_02297f28 + partOffset[part])[i];
+                    data_02298050.data[i] = (gSaveBuffer + partOffset[part])[i];
                 }
                 if (part == 0 && recordId == 0) {
                     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
@@ -197,7 +197,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
             break;
         }
         recordId = 0;
-        size = data_02297f2c(data_02297f28);
+        size = gSavePackFunc(gSaveBuffer);
     }
     return 0;
 }

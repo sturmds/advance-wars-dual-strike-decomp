@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/play_records.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02290118.h"
 #include "game/save_progress.h"
@@ -13,13 +14,11 @@ typedef struct SkillSet {
 } SkillSet;
 
 int Save_LoadRecord(int recordId, void *buffer); /* the definition takes only recordId; this call also passes r1 */
-void func_02017ca0(int value);
-void func_02017c88(int value);
 void Co_SetExperience(int co, u32 experience);
 u8 *ForceRank_GetSavedSet(int mode, int co, int set);
 
 /* Loads save record 0 into data_02291774 and copies it into the live progress
- * data: two limits (func_02017ca0, func_02017c88), every CO's experience and
+ * data: two limits (PlayRecords_CapPoints, func_02017c88), every CO's experience and
  * its Force Rank sets. The sets copied depend on the game mode (0 to 3). Mode 2
  * asks ForceRank_GetSavedSet for mode 1 four times, as the original code does,
  * so its four sets all land in the mode 1 list. */
@@ -34,7 +33,7 @@ void Save_LoadProgress(void)
     if (Save_LoadRecord(0, progress)) {
         return;
     }
-    func_02017ca0(progress->unk_58);
+    PlayRecords_CapPoints(progress->unk_58);
     func_02017c88(progress->unk_5c);
     for (co = 0; co < CO_COUNT; co++) {
         Co_SetExperience(co, progress->coRecords[co].experience);

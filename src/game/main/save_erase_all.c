@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern u8 data_0229b050;
+extern u8 gHasBackupMemory;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 extern u8 data_0229a050[];
@@ -12,14 +12,14 @@ int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
 
 /* Frees every save slot (id 0xff, flags, part and counters 0) and writes a buffer of 0xff
  * bytes over each one, with up to four write and read-back tries per slot. Returns 1 when
- * there is no backup memory (data_0229b050 not 1) or a slot never verifies, else 0.
+ * there is no backup memory (gHasBackupMemory not 1) or a slot never verifies, else 0.
  * No direct callers found. */
 int Save_EraseAll(void)
 {
     int try;
     int i;
 
-    if (data_0229b050 == 1) {
+    if (gHasBackupMemory == 1) {
         for (i = 0; i < SAVE_SLOT_COUNT; i++) {
             data_02297f3c.newId[i] = 0xff;
             data_02297f3c.id[i] = data_02297f3c.newId[i];

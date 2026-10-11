@@ -13,7 +13,7 @@
  * progress data. */
 typedef struct SaveProgress {
     u8 pad_00[0x58];
-    u32 unk_58;                        /* Save_LoadProgress passes it to func_02017ca0 */
+    u32 unk_58;                        /* Save_LoadProgress passes it to PlayRecords_CapPoints */
     u32 unk_5c;                        /* passed to func_02017c88 */
     u8 pad_60[0x90 - 0x60];
     CoSaveRecord coRecords[CO_COUNT];  /* by CO id */

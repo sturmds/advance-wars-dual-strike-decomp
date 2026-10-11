@@ -1,17 +1,10 @@
 #include "types.h"
+#include "game/play_records.h"
 
-typedef struct PlayRecords PlayRecords;
-
-struct PlayRecords {
-    u8 pad_00[0x4];
-    int unk_4;
-};
-
-extern PlayRecords gPlayRecords;
-
-void func_02017c88(int a0)
+/* Lowers gPlayRecords.unk_04 to limit when it is higher. */
+void func_02017c88(u32 limit)
 {
-    if ((u32)gPlayRecords.unk_4 >= (u32)a0) {
-        gPlayRecords.unk_4 = a0;
+    if (gPlayRecords.unk_04 >= limit) {
+        gPlayRecords.unk_04 = limit;
     }
 }

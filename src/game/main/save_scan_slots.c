@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern u8 *data_02297f28;
+extern u8 *gSaveBuffer;
 extern int gNextSaveCounter;
 extern int data_02297f38;
 extern SaveSlotTable data_02297f3c;
@@ -118,5 +118,5 @@ void Save_ScanSlots(int noFormat)
             data_02297f3c.id[i] = data_02297f3c.newId[i];
         }
     }
-    Save_WriteRecord(0, data_02297f28, data_02297f38);
+    Save_WriteRecord(0, gSaveBuffer, data_02297f38);
 }

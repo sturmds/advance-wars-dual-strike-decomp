@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern u8 *data_02297f28;
-extern int (*data_02297f2c)(u8 *dest);
+extern u8 *gSaveBuffer;
+extern int (*gSavePackFunc)(u8 *dest);
 extern SaveSlotTable data_02297f3c;
 
 int Save_WriteRecord(int recordId, u8 *unused, int size);
@@ -15,14 +15,14 @@ int Save_DeleteRecord(int recordId)
     int i;
 
     if (recordId != 0) {
-        size = data_02297f2c(data_02297f28);
+        size = gSavePackFunc(gSaveBuffer);
         for (i = 0; i < SAVE_SLOT_COUNT; i++) {
             if (data_02297f3c.id[i] == recordId) {
                 data_02297f3c.newId[i] = 0xff;
                 data_02297f3c.id[i] = data_02297f3c.newId[i];
             }
         }
-        return Save_WriteRecord(0, data_02297f28, size);
+        return Save_WriteRecord(0, gSaveBuffer, size);
     }
     return 1;
 }

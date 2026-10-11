@@ -95,4 +95,7 @@ typedef struct PlayRecords {
 
 extern PlayRecords gPlayRecords;
 
+void PlayRecords_CapPoints(u32 limit);
+void func_02017c88(u32 limit);       /* caps unk_04 the same way */
+
 #endif

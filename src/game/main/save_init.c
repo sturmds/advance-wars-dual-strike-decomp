@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern void (*data_02297f24)(void);
-extern u8 *data_02297f28;
-extern int (*data_02297f2c)(u8 *dest);
+extern void (*gSaveResetFunc)(void);
+extern u8 *gSaveBuffer;
+extern int (*gSavePackFunc)(u8 *dest);
 
 void Save_DetectBackupMemory(void);
 void Save_ScanSlots(int noFormat);
@@ -12,9 +12,9 @@ void Save_ScanSlots(int noFormat);
  * the buffer, then detects the backup memory and reads all slots. */
 void Save_Init(int (*pack)(u8 *dest), void (*reset)(void), u8 *buffer)
 {
-    data_02297f2c = pack;
-    data_02297f24 = reset;
-    data_02297f28 = buffer;
+    gSavePackFunc = pack;
+    gSaveResetFunc = reset;
+    gSaveBuffer = buffer;
     Save_DetectBackupMemory();
     Save_ScanSlots(0);
 }

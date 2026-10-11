@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/save_data.h"
 
-extern void (*data_02297f24)(void);
-extern u8 *data_02297f28;
-extern int (*data_02297f2c)(u8 *dest);
+extern void (*gSaveResetFunc)(void);
+extern u8 *gSaveBuffer;
+extern int (*gSavePackFunc)(u8 *dest);
 extern int gNextSaveCounter;
 extern SaveSlotTable data_02297f3c;
 extern u8 data_0229a050[];
@@ -14,7 +14,7 @@ void Save_WriteRecord(int recordId, u8 *src, int size);
 u16 Save_NoBackupMemory(u16 slot);
 
 /* Resets the save to its base record 0, the copy with save counter 0
- * (written from data_02297f28 when it is missing). The other copies of
+ * (written from gSaveBuffer when it is missing). The other copies of
  * record 0 are erased, older ones first, and every other slot is freed (id
  * 0xff). Erasing a slot: up to four tries of Save_NoBackupMemory (which
  * only reads a flag) and then a read, until the read fails; the slot is then
@@ -26,13 +26,13 @@ void Save_Format(void)
     int try;
 
     gNextSaveCounter = 0;
-    data_02297f24();
-    size = data_02297f2c(data_02297f28);
+    gSaveResetFunc();
+    size = gSavePackFunc(gSaveBuffer);
     for (i = 0; i < SAVE_SLOT_COUNT; i++) {
         data_02297f3c.flags[i] &= ~SAVE_SLOT_KEEP;
     }
     if (Save_FindNewestRecord(0xff) == 0xffff) {
-        Save_WriteRecord(0, data_02297f28, size);
+        Save_WriteRecord(0, gSaveBuffer, size);
     } else {
         for (i = 0; i < SAVE_SLOT_COUNT; i++) {
             if (data_02297f3c.flags[i] & SAVE_SLOT_MARK) {

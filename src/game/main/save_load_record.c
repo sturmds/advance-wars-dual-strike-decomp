@@ -5,14 +5,14 @@ int Save_ReadSlot(u16 slot);
 int func_0201fe28(int recordId);
 
 extern int data_02297f38;
-extern u8 *data_02297f28;
+extern u8 *gSaveBuffer;
 extern SaveSlotTable data_02297f3c;
 extern SaveBuffer data_02298050;
 
 /* Loads the save record recordId (a guess: func_0201fe28 and Save_ReadSlot
  * look like a record check and a read from the save buffer). For each slot
  * that holds the record, the data in the save buffer is copied to
- * data_02297f28 + destOffset and its length is added to data_02297f38.
+ * gSaveBuffer + destOffset and its length is added to data_02297f38.
  * Record 0 also replaces the slot ids with the ones the buffer holds.
  * Returns 1 on failure.
  *
@@ -43,7 +43,7 @@ int Save_LoadRecord(int recordId)
             }
             data_02297f38 += data_02298050.dataLength;
             for (n = 0; n < data_02298050.dataLength; n++) {
-                (data_02297f28 + data_02298050.destOffset)[n] = data_02298050.data[n];
+                (gSaveBuffer + data_02298050.destOffset)[n] = data_02298050.data[n];
             }
             if ((data_02298050.part & 0xf0) == 0 && recordId == 0) {
                 for (n = 0; n < SAVE_SLOT_COUNT; n++) {

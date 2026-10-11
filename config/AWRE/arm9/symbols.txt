@@ -588,7 +588,7 @@ Co_GetSavedPaletteVariant kind:function(arm,size=0x2c) addr:0x02017bcc
 PlayRecords_SpendPoints kind:function(arm,size=0x24) addr:0x02017bf8
 PlayRecords_AddCoins kind:function(arm,size=0x6c) addr:0x02017c1c
 func_02017c88 kind:function(arm,size=0x18) addr:0x02017c88
-func_02017ca0 kind:function(arm,size=0x18) addr:0x02017ca0
+PlayRecords_CapPoints kind:function(arm,size=0x18) addr:0x02017ca0
 Turn_IncrementDay kind:function(arm,size=0x3c) addr:0x02017cb8
 func_02017cf4 kind:function(arm,size=0x4) addr:0x02017cf4
 func_02017cf8 kind:function(arm,size=0x24) addr:0x02017cf8
@@ -8467,7 +8467,7 @@ data_0216e000 kind:data(any) addr:0x0216e000
 data_0216e004 kind:data(any) addr:0x0216e004
 data_0216e008 kind:data(any) addr:0x0216e008
 data_0216e00c kind:data(any) addr:0x0216e00c
-data_0216e020 kind:bss addr:0x0216e020
+gOverlayLoaded kind:bss addr:0x0216e020
 data_0216e03c kind:bss addr:0x0216e03c
 data_0216e044 kind:bss addr:0x0216e044
 data_0216e048 kind:bss addr:0x0216e048
@@ -8686,9 +8686,9 @@ data_02297be0 kind:bss addr:0x02297be0
 data_02297c2e kind:bss addr:0x02297c2e
 data_02297ee0 kind:bss addr:0x02297ee0
 data_02297ee4 kind:bss addr:0x02297ee4
-data_02297f24 kind:bss addr:0x02297f24
-data_02297f28 kind:bss addr:0x02297f28
-data_02297f2c kind:bss addr:0x02297f2c
+gSaveResetFunc kind:bss addr:0x02297f24
+gSaveBuffer kind:bss addr:0x02297f28
+gSavePackFunc kind:bss addr:0x02297f2c
 data_02297f30 kind:bss addr:0x02297f30
 gNextSaveCounter kind:bss addr:0x02297f34
 data_02297f38 kind:bss addr:0x02297f38
@@ -8697,7 +8697,7 @@ data_02297f66 kind:bss addr:0x02297f66
 data_02297fa8 kind:bss addr:0x02297fa8
 data_02298050 kind:bss addr:0x02298050
 data_0229a050 kind:bss addr:0x0229a050
-data_0229b050 kind:bss addr:0x0229b050
+gHasBackupMemory kind:bss addr:0x0229b050
 data_0229b054 kind:bss addr:0x0229b054
 data_0229b058 kind:bss addr:0x0229b058
 gMapPreviewWidth kind:bss addr:0x0229b05c

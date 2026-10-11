@@ -6,8 +6,6 @@
 extern u8 data_02291672[];
 extern u8 data_02290256[];
 
-void func_02017ca0(int limit);
-void func_02017c88(int limit);
 void Co_SetSavedPaletteVariant(int co, int variant);
 void Co_SetSavedPictureVariant(int co, int variant);
 void Co_SetAvailable(int co, int value);
@@ -30,7 +28,7 @@ void Save_ResetProgress(void)
 {
     int co;
 
-    func_02017ca0(0);
+    PlayRecords_CapPoints(0);
     func_02017c88(0);
     gPlayRecords.unk_11 = 0;
     gPlayRecords.unk_10 = 0;
