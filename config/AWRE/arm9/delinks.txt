@@ -3711,6 +3711,10 @@ src/game/main/link/link_map_flags_sync_update.c:
     complete
     .text       start:0x0202ce38 end:0x0202d058
 
+src/game/main/link/link_design_map_sync_init.c:
+    complete
+    .text       start:0x0202d058 end:0x0202d188
+
 src/game/main/link/link_task_wait_for_peer_reply.c:
     complete
     .text       start:0x0202d188 end:0x0202d248

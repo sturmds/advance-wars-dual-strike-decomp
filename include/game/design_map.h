@@ -10,7 +10,8 @@ typedef struct DesignMap {
     char name[0x11];                   /* from offset 2 */
     u8 playerCount;                    /* 0xff: row unused */
     u8 armyColours[5];                 /* per slot, like MapHeader +0x88 */
-    u8 pad_19[0x1b - 0x19];
+    u8 unk_19;
+    u8 unk_1a;
 } DesignMap;
 
 typedef char DesignMap_size_check[sizeof(DesignMap) == 0x1b ? 1 : -1];

@@ -10,7 +10,7 @@
  * The first 0x2c bytes belong to the task system (Task_Create). */
 typedef struct LinkDataSyncTask {
     u8 pad_00[0x2c];
-    u8 *sendBuffer;                    /* the design map rows to send */
+    u8 *sendBuffer;                    /* the design map rows to send (LinkDesignMapSync_Init) */
     u16 sentBytes;                     /* how much of the block has been sent */
     u16 receivedBytes;                 /* how much of each player's block has been filled */
     u16 sendDone;                      /* set when sentBytes reaches the block size */
