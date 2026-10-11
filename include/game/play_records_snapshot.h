@@ -3,13 +3,13 @@
 
 #include "types.h"
 
-/* data_022a7fc8 (main bss): copy of the first two words of gPlayRecords,
- * taken by func_02103c84. */
+/* gPlayRecordsSnapshot (main bss): copy of the first two words of gPlayRecords,
+ * taken by PlayRecords_TakeSnapshot. */
 typedef struct PlayRecordsSnapshot {
-    int unk_00;
-    int unk_04;
+    u32 points;                        /* PlayRecords.points */
+    u32 unk_04;                        /* PlayRecords.unk_04 */
 } PlayRecordsSnapshot;
 
-extern PlayRecordsSnapshot data_022a7fc8;
+extern PlayRecordsSnapshot gPlayRecordsSnapshot;
 
 #endif

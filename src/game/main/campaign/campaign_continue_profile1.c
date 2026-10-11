@@ -10,7 +10,7 @@ u8 func_020193bc(int recordId);
 int func_0201fe28(int recordId);
 void func_02017cf8(int recordId);
 void Save_LoadProfile(int profile);
-void func_02103c84(void);
+void PlayRecords_TakeSnapshot(void);
 void func_02103744(void);
 void Screen_SetCurrentBoth(void *state);
 void ForceRank_LoadSets(int mode);
@@ -32,7 +32,7 @@ void Campaign_ContinueProfile1(void)
     data_027c027c->unk_48[data_027c0284]->gameMode = GAME_MODE_CAMPAIGN;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    func_02103c84();
+    PlayRecords_TakeSnapshot();
     Save_LoadProfile(1);
     if (data_02290118.unk_04 == 0xff) {
         func_02103744();

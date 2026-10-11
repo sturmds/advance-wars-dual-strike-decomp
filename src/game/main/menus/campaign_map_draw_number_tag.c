@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020d61e8(void);
+int CampaignRecords_GetNextNumber(void);
 int HwDiv32(int num, int den);
 int HwMod32(int num, int den);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
@@ -9,7 +9,7 @@ extern u8 data_027c0038[];
 extern u8 data_027c0128[];
 
 /* Draws a tag with the two-digit number of the next campaign record
- * (func_020d61e8) for point (x, y): a frame sprite and two digit sprites,
+ * (CampaignRecords_GetNextNumber) for point (x, y): a frame sprite and two digit sprites,
  * to the right of the point for side 0 and to the left otherwise. Draws
  * nothing when the frame would start off screen. */
 void CampaignMap_DrawNumberTag(int x, int y, int side)
@@ -19,7 +19,7 @@ void CampaignMap_DrawNumberTag(int x, int y, int side)
     int ones;
     int left;
 
-    number = func_020d61e8();
+    number = CampaignRecords_GetNextNumber();
     tens = HwDiv32(number, 10);
     ones = HwMod32(number, 10);
     if (side == 0) {

@@ -3,7 +3,7 @@
 
 /* Needed to match: the original reads the id through data_02290118 and adds
  * the offset of the records (unk_8c) at run time, but writes through
- * data_022901a4. */
+ * gCampaignMapRecords. */
 #define SAVED_RECORD(i) (*(MapRecord *)((u8 *)&data_02290118 + (i) * sizeof(MapRecord) + 0x8c))
 
 /* Stores days and score for a map: overwrites the record of the same map
@@ -14,7 +14,7 @@ void CampaignRecords_Store(int mapIndex, int days, int score)
     u8 i;
     BOOL found = FALSE;
 
-    for (i = 0; i < 28 && data_022901a4[i].days != 0; i++) {
+    for (i = 0; i < 28 && gCampaignMapRecords[i].days != 0; i++) {
         if (mapIndex == SAVED_RECORD(i).mapIndex) {
             found = TRUE;
             break;
@@ -23,13 +23,13 @@ void CampaignRecords_Store(int mapIndex, int days, int score)
     if (i >= 28) {
         return;
     }
-    data_022901a4[i].mapIndex = mapIndex;
-    data_022901a4[i].days = days;
-    data_022901a4[i].score = score;
+    gCampaignMapRecords[i].mapIndex = mapIndex;
+    gCampaignMapRecords[i].days = days;
+    gCampaignMapRecords[i].score = score;
     if (i >= 27) {
         return;
     }
     if (!found) {
-        data_022901a4[i + 1].days = 0;
+        gCampaignMapRecords[i + 1].days = 0;
     }
 }

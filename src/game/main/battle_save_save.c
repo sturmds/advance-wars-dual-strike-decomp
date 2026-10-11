@@ -12,7 +12,7 @@ void BattleSave_SetRecordFlag(int recordId, int value);
 void DesignMap_SaveToSlot(int slot, void *map, int unk); /* the definition takes two arguments; this call also passes 1 in r2 */
 void BattleSave_Pack(u8 flag);
 void Save_WriteRecord(u8 recordId, void *buffer, int size);
-void *func_02103c84(void);
+void *PlayRecords_TakeSnapshot(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -21,7 +21,7 @@ void *func_02103c84(void);
  * player-made map on either screen to design map slot 3 (current screen) or
  * 4 (the second map of a two-map battle), packs the battle into
  * data_02291774 with BattleSave_Pack and writes it. In game mode 0 it also
- * calls func_02103c84, which copies two words of gPlayRecords. */
+ * calls PlayRecords_TakeSnapshot, which copies two words of gPlayRecords. */
 void BattleSave_Save(int recordId, int flag)
 {
     Unk_027c0280 *savedGfx;
@@ -67,6 +67,6 @@ void BattleSave_Save(int recordId, int flag)
     BattleSave_Pack(flag);
     Save_WriteRecord(recordId, data_02291774, BATTLE_SAVE_RECORD_SIZE);
     if (STATE->gameMode == 0) {
-        func_02103c84();
+        PlayRecords_TakeSnapshot();
     }
 }

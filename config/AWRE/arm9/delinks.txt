@@ -14830,11 +14830,11 @@ src/game/main/map/campaign_finish_map.c:
     complete
     .text       start:0x020d60c4 end:0x020d618c
 
-src/game/main/map/campaign_records_average_score.c:
+src/game/main/map/campaign_records_get_average_score.c:
     complete
     .text       start:0x020d618c end:0x020d61e8
 
-src/game/main/map/campaign_records_next_number.c:
+src/game/main/map/campaign_records_get_next_number.c:
     complete
     .text       start:0x020d61e8 end:0x020d6220
 
@@ -18922,7 +18922,7 @@ src/game/main/play_records_cap_at_snapshot.c:
     complete
     .text       start:0x02103c54 end:0x02103c84
 
-src/game/main/func_02103c84.c:
+src/game/main/play_records_take_snapshot.c:
     complete
     .text       start:0x02103c84 end:0x02103ca8
 

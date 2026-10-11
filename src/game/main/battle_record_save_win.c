@@ -14,7 +14,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 /* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord data_02291474[][2];
+extern WarRoomRecord gCampaignBestRecords[][2];
 
 #define CAMPAIGN_FIRST_MAP 224
 
@@ -23,7 +23,7 @@ extern WarRoomRecord data_02291474[][2];
 #define FRONT_CO(slot) (data_022a7ab8[slot].unk_00 & 0x7f)
 #define BACK_CO(slot) (data_022a7aba[slot].unk_00 & 0x7f)
 #define WAR_ROOM_RECORD(map, place) (gWarRoomRecords[STATE->unk_59][map][place])
-#define CAMPAIGN_RECORD(map) (data_02291474[(map) - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
+#define CAMPAIGN_RECORD(map) (gCampaignBestRecords[(map) - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
 
 /* Saves the result of a won battle when it beats the stored record.
  * Survival keeps one record per map and mode: lowest time in seconds,

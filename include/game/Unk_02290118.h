@@ -13,7 +13,7 @@ typedef struct MapRecord {
 } MapRecord;
 
 /* The same memory as the records at data_02290118.unk_8c. */
-extern MapRecord data_022901a4[28];
+extern MapRecord gCampaignMapRecords[28];
 
 /* data_02290118 (main bss): saved progress. Only the part the campaign
  * world map reads is described. */

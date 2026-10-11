@@ -3894,8 +3894,8 @@ Survival_FinishMap kind:function(arm,size=0x204) addr:0x020d5e58
 WarRoom_FinishMap kind:function(arm,size=0x4c) addr:0x020d605c
 func_020d60a8 kind:function(arm,size=0x1c) addr:0x020d60a8
 Campaign_FinishMap kind:function(arm,size=0xc8) addr:0x020d60c4
-func_020d618c kind:function(arm,size=0x5c) addr:0x020d618c
-func_020d61e8 kind:function(arm,size=0x38) addr:0x020d61e8
+CampaignRecords_GetAverageScore kind:function(arm,size=0x5c) addr:0x020d618c
+CampaignRecords_GetNextNumber kind:function(arm,size=0x38) addr:0x020d61e8
 CampaignRecords_Store kind:function(arm,size=0xe0) addr:0x020d6220
 GameMode_FinishMap kind:function(arm,size=0xb0) addr:0x020d6300
 func_020d63b0 kind:function(arm,size=0x120) addr:0x020d63b0
@@ -5027,7 +5027,7 @@ Campaign_IsHardMode kind:function(arm,size=0x3c) addr:0x021039e4
 Save_LoadProfiles kind:function(arm,size=0x104) addr:0x02103a20
 Save_LoadProfile kind:function(arm,size=0x130) addr:0x02103b24
 PlayRecords_CapAtSnapshot kind:function(arm,size=0x30) addr:0x02103c54
-func_02103c84 kind:function(arm,size=0x24) addr:0x02103c84
+PlayRecords_TakeSnapshot kind:function(arm,size=0x24) addr:0x02103c84
 Campaign_ResetProgress kind:function(arm,size=0x70) addr:0x02103ca8
 ProfileHeaders_UpdateBest kind:function(arm,size=0x1c0) addr:0x02103d18
 Save_StoreProfile kind:function(arm,size=0x1b4) addr:0x02103ed8
@@ -8622,7 +8622,7 @@ data_022900bc kind:bss addr:0x022900bc
 data_02290118 kind:bss addr:0x02290118
 data_02290128 kind:bss addr:0x02290128
 gCoPicksMode0 kind:bss addr:0x02290198
-data_022901a4 kind:bss addr:0x022901a4
+gCampaignMapRecords kind:bss addr:0x022901a4
 gGameFlagsHigh kind:bss addr:0x0229024e
 data_02290256 kind:bss addr:0x02290256
 data_02290298 kind:bss addr:0x02290298
@@ -8649,7 +8649,7 @@ data_02290a66 kind:bss addr:0x02290a66
 gCampaignBestAverage kind:bss addr:0x02290a90
 data_02290a94 kind:bss addr:0x02290a94
 gWarRoomRecords kind:bss addr:0x02290c34
-data_02291474 kind:bss addr:0x02291474
+gCampaignBestRecords kind:bss addr:0x02291474
 data_02291554 kind:bss addr:0x02291554
 data_02291555 kind:bss addr:0x02291555
 data_02291558 kind:bss addr:0x02291558
@@ -8923,7 +8923,7 @@ data_022a7f84 kind:bss addr:0x022a7f84
 gNextGameMode kind:bss addr:0x022a7fa8
 data_022a7fac kind:bss addr:0x022a7fac
 data_022a7fb8 kind:bss addr:0x022a7fb8
-data_022a7fc8 kind:bss addr:0x022a7fc8
+gPlayRecordsSnapshot kind:bss addr:0x022a7fc8
 gLocalizedPath kind:bss addr:0x022a7fd0
 gHeapRootListReady kind:bss addr:0x022a8010
 gHeapRootList kind:bss addr:0x022a8014

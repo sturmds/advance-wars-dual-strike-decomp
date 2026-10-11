@@ -6,7 +6,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
 void func_020772d8(int x);
 void func_020773a0(int x);
-void func_020d618c(void);
+void CampaignRecords_GetAverageScore(void);
 void Score_ToRank(void);
 void ResultRank_PlaySe(void);
 
@@ -43,7 +43,7 @@ void SubScreenLayers01_SlideInUpdate(Task *task)
     if (FRAME(task) != 32) {
         return;
     }
-    func_020d618c();
+    CampaignRecords_GetAverageScore();
     Score_ToRank();
     ResultRank_PlaySe();
     FRAME(task) = 0;

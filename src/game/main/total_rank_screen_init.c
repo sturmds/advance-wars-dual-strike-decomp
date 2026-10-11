@@ -24,7 +24,7 @@ void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
 int Campaign_IsHardMode(void);
 int Score_ToRank(int score);
-int func_020d618c(void);
+int CampaignRecords_GetAverageScore(void);
 CampaignTopCo *func_02103910(void);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
@@ -94,7 +94,7 @@ extern const char gTotalRankIconBlinkPath[]; /* "/ohashi/res_icon_blink" */
  * rank frame and title (res_totalrank, res_totalrank_lang) onto the second
  * screen, and a wallpaper on both: wall3 in hard mode, else wall1 when game
  * flag 60 is set, else wall2. Showing wall1 or wall2 sets its unlock flag.
- * The rank picture follows the average campaign score (func_020d618c). The
+ * The rank picture follows the average campaign score (CampaignRecords_GetAverageScore). The
  * three top COs of data_022a7fb8 get their picture and score. */
 void TotalRankScreen_Init(Task *task)
 {
@@ -189,7 +189,7 @@ void TotalRankScreen_Init(Task *task)
 
     file = File_Load(gTotalRankObjPath);
     SWITCH_TO(SECOND_MAP);
-    switch (Score_ToRank(func_020d618c())) {
+    switch (Score_ToRank(CampaignRecords_GetAverageScore())) {
     case RANK_S:
         Data_Unpack(file, data_027c0280->objVram + 0xf00);
         Palette_Load(file + 0x152c, 0x2c0, 32);

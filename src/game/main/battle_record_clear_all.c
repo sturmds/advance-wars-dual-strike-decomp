@@ -4,7 +4,7 @@
 void Survival_ClearRecords(void);
 
 /* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord data_02291474[][2];
+extern WarRoomRecord gCampaignBestRecords[][2];
 
 #define WAR_ROOM_TABLE_COUNT 4
 #define WAR_ROOM_MAP_COUNT 44
@@ -33,7 +33,7 @@ void BattleRecord_ClearAll(void)
     }
     for (map = 0; map < CAMPAIGN_MAP_COUNT; map++) {
         for (place = 0; place < 2; place++) {
-            record = &data_02291474[map][place];
+            record = &gCampaignBestRecords[map][place];
             record->frontCo = 0;
             record->backCo = 0;
             record->days = 0;

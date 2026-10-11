@@ -21,7 +21,7 @@ extern MenuState gMenuState;
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
 /* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
-extern WarRoomRecord data_02291474[][2];
+extern WarRoomRecord gCampaignBestRecords[][2];
 extern u8 data_027c0040[];
 extern u8 data_027c0060[];
 extern u8 data_027c00b8[];
@@ -29,7 +29,7 @@ extern u8 data_027c00b8[];
 #define CAMPAIGN_FIRST_MAP 224
 #define X_FLIP 0x1000                  /* sprite x bit: flip the sprite horizontally */
 #define TOP_CO(i) (gMenuState.campaignMap.topCos[i])
-#define MISSION_RECORD (data_02291474[gCampaignMissions[gCampaignMapState.mission].mapId - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
+#define MISSION_RECORD (gCampaignBestRecords[gCampaignMissions[gCampaignMapState.mission].mapId - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
 
 /* Update function of the world map panel: a row for each of the three top
  * COs (frame, small picture, rank number), the enemy CO pictures, the

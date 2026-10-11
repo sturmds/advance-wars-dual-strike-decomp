@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_020d61e8(void);
+int CampaignRecords_GetNextNumber(void);
 int TitleCall_GetDigitWidth(int digit);         /* pixel width of a digit: 1 is 6, 4 is 14, others 12 */
 int HwDiv32(int num, int den);
 int HwMod32(int num, int den);
@@ -12,7 +12,7 @@ extern u8 data_027c0148[];
 /* Width in pixels of the label sprite before the digits. */
 #define LABEL_WIDTH 106
 
-/* Queues the campaign record number (func_020d61e8) of the title call,
+/* Queues the campaign record number (CampaignRecords_GetNextNumber) of the title call,
  * centred at y 76 on sprite list 2: a label sprite, then one or two digit
  * sprites with a pixel of space between them. With affineIndex 1-31 the
  * sprites use that OBJ affine matrix. */
@@ -24,7 +24,7 @@ void TitleCall_DrawNumber(int affineIndex)
     int x;
     int width;
 
-    number = func_020d61e8();
+    number = CampaignRecords_GetNextNumber();
     width = LABEL_WIDTH;
     if (number >= 10) {
         width += TitleCall_GetDigitWidth(HwDiv32(number, 10)) + 1;

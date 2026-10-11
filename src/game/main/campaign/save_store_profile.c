@@ -9,7 +9,7 @@ extern CampaignMapState gCampaignMapState;
 extern SaveProfileBlock data_02290298[3];
 extern SaveBytes30 data_022900bc[3];
 
-int func_020d61e8(void);
+int CampaignRecords_GetNextNumber(void);
 
 /* Counterpart of Save_LoadProfile: updates the header of the live campaign
  * progress (profile, next record number unless the campaign is done (0xff),
@@ -41,7 +41,7 @@ void Save_StoreProfile(int profile, int day)
     }
     data_02290118.unk_00 = profile;
     if (data_02290118.unk_04 != 0xff) {
-        data_02290118.unk_04 = func_020d61e8();
+        data_02290118.unk_04 = CampaignRecords_GetNextNumber();
     }
     data_02290118.unk_06 = day;
     count = data_02290118.unk_03;

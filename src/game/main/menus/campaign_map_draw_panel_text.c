@@ -10,7 +10,7 @@ void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg
 void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet);
 void Number_DrawPadded(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet, int digits);
 const void *Map_GetName(u16 mapId);
-int func_020d61e8(void);
+int CampaignRecords_GetNextNumber(void);
 void Gfx_RequestLayerCopy(int layer);
 
 extern Unk_027c0280 *data_027c0280;
@@ -24,7 +24,7 @@ extern CampaignMission gCampaignMissions[];
 
 /* Prints the text of the world map panel on the screen of
  * data_027c0288.unk_04: the title, the score of each of the three top COs,
- * the number of the next campaign record (func_020d61e8) and the name of
+ * the number of the next campaign record (CampaignRecords_GetNextNumber) and the name of
  * the selected mission's map. */
 void CampaignMap_DrawPanelText(void)
 {
@@ -43,7 +43,7 @@ void CampaignMap_DrawPanelText(void)
     }
     /* needed to match: the map pointer is read before each call */
     map = data_027c0280->layer0Map;
-    Number_DrawPadded(2, 21, map, func_020d61e8(), 0, 0, 2);
+    Number_DrawPadded(2, 21, map, CampaignRecords_GetNextNumber(), 0, 0, 2);
     map = data_027c0280->layer0Map;
     Text_Print(4, 21, map, Map_GetName(gCampaignMissions[gCampaignMapState.mission].mapId), 0, 0x200);
     Gfx_RequestLayerCopy(0);
