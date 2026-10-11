@@ -8,7 +8,7 @@ void func_0210e67c(int a);
 void func_0210a420(void);
 void func_0210a5fc(void);
 void func_0210ce40(int a, void (*callback)(void));
-void func_0210cd3c(int a);
+void OS_EnableIrqMask(int a);
 void GX_VBlankIntr(void);
 void MainLoop_BootVBlank(void);
 
@@ -32,8 +32,8 @@ void Boot_InitHardware(void)
     func_0210a5fc();
     *REG_POWCNT1 = (*REG_POWCNT1 & ~POWCNT1_ENGINES) | POWCNT1_ENGINES;
     func_0210ce40(1, MainLoop_BootVBlank);
-    func_0210cd3c(1);
-    func_0210cd3c(0x40000);
+    OS_EnableIrqMask(1);
+    OS_EnableIrqMask(0x40000);
     oldIme = *REG_IME;
     *REG_IME = 1;
     GX_VBlankIntr();
