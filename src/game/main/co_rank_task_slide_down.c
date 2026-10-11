@@ -5,14 +5,14 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(CoRankTask *task);
-void func_0204ab50(int x, int y, int value);
+void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern Unk_027c0280 *data_027c0280;
 extern u8 data_027c0030;
 extern u8 data_027c0060;
 
 /* One frame of a 16-frame slide: layers 0 and 1 and the sprites on them
- * move down by an eased 0 to 64 pixels. The number from func_0204ab50
+ * move down by an eased 0 to 64 pixels. The number from CoRankScreen_QueueNumber
  * moves with them but stops at y 174. Resumes the task's script on the
  * last frame. */
 void CoRankTask_SlideDown(CoRankTask *task)
@@ -28,9 +28,9 @@ void CoRankTask_SlideDown(CoRankTask *task)
     data_027c0280->bgScrollY[layer1] = -offset;
     data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
     if (offset + 136 < 174) {
-        func_0204ab50(0, offset + 136, task->unk_38);
+        CoRankScreen_QueueNumber(0, offset + 136, task->unk_38);
     } else {
-        func_0204ab50(0, 174, task->unk_38);
+        CoRankScreen_QueueNumber(0, 174, task->unk_38);
     }
     Sprite_QueueAt(7, 164, (offset + 128) & 0xff, &data_027c0030, 0x5000, 0xfc);
     Sprite_QueueAt(6, 212, (offset + 152) & 0xff, &data_027c0060, 0x1000, 0x13c);

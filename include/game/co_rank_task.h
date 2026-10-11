@@ -17,7 +17,7 @@ typedef struct CoRankTask {
     u8 pad_00[0x2a];
     CoRankEntry cos[2];                /* front CO, back CO */
     u8 pad_32[0x38 - 0x32];
-    s32 unk_38;                        /* number drawn by func_0204ab50 */
+    s32 unk_38;                        /* number drawn by CoRankScreen_QueueNumber */
     u8 pad_3c[0x44 - 0x3c];
     s16 frame;                         /* frame of the running animation step */
     u8 pad_46[0x4c - 0x46];

@@ -3,7 +3,7 @@
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(CoRankTask *task);
-void func_0204ab50(int x, int y, int value);
+void CoRankScreen_QueueNumber(int x, int y, int value);
 
 extern u8 data_027c0030;
 extern u8 data_027c0060;
@@ -14,7 +14,7 @@ extern u8 data_027c0060;
 void CoRankTask_ShakeSprite(CoRankTask *task)
 {
     task->frame++;
-    func_0204ab50(0, 136, task->unk_38);
+    CoRankScreen_QueueNumber(0, 136, task->unk_38);
     Sprite_QueueAt(7, 164, 128, &data_027c0030, 0x5000, 0xfc);
     switch (task->frame) {
     case 1:
