@@ -1896,6 +1896,10 @@ src/game/main/func_020224ec.c:
     complete
     .text       start:0x020224ec end:0x02022504
 
+src/game/main/func_020225c8.c:
+    complete
+    .text       start:0x020225c8 end:0x02022610
+
 src/game/main/func_020226d4.c:
     complete
     .text       start:0x020226d4 end:0x020226e4
@@ -4118,6 +4122,10 @@ src/game/main/menus/menu_cancel_on_b_button.c:
     complete
     .text       start:0x02075494 end:0x020754d0
 
+src/game/main/func_020754d0.c:
+    complete
+    .text       start:0x020754d0 end:0x02075520
+
 src/game/main/func_02075df0.c:
     complete
     .text       start:0x02075df0 end:0x02075e08
@@ -4689,6 +4697,10 @@ src/game/main/func_02082a78.c:
 src/game/main/func_02082a8c.c:
     complete
     .text       start:0x02082a8c end:0x02082ac8
+
+src/game/main/func_02082ac8.c:
+    complete
+    .text       start:0x02082ac8 end:0x02082b0c
 
 src/game/main/func_02083020.c:
     complete
@@ -6546,6 +6558,10 @@ src/game/main/menus/func_020bc56c.c:
     complete
     .text       start:0x020bc56c end:0x020bc5c0
 
+src/game/main/func_020bc5c0.c:
+    complete
+    .text       start:0x020bc5c0 end:0x020bc614
+
 src/game/main/func_020bc6ac.c:
     complete
     .text       start:0x020bc6ac end:0x020bc6b4
@@ -6721,6 +6737,10 @@ src/game/main/func_020bd900.c:
 src/game/main/menus/func_020bde18.c:
     complete
     .text       start:0x020bde18 end:0x020bde6c
+
+src/game/main/func_020bdeb4.c:
+    complete
+    .text       start:0x020bdeb4 end:0x020bdf08
 
 src/game/main/func_020bdf08.c:
     complete
