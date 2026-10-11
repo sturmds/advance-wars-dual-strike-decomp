@@ -2582,13 +2582,23 @@ src/game/main/func_020224ec.c:
     complete
     .text       start:0x020224ec end:0x02022504
 
+src/game/main/graphics/func_02022504.c:
+    .text       start:0x02022504 end:0x020225c8
+
 src/game/main/func_020225c8.c:
     complete
     .text       start:0x020225c8 end:0x02022610
 
+src/game/main/graphics/func_02022610.c:
+    .text       start:0x02022610 end:0x02022664
+
 src/game/main/func_020226d4.c:
     complete
     .text       start:0x020226d4 end:0x020226e4
+
+src/game/main/graphics/sprite_anim3d_task_start.c:
+    complete
+    .text       start:0x02022774 end:0x020227e8
 
 src/game/main/script/task_run_script.c:
     complete
