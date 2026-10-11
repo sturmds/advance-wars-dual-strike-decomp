@@ -12993,6 +12993,7 @@ src/game/main/graphics/func_020f8534.c:
     .text       start:0x020f8534 end:0x020f85b0
 
 src/game/main/graphics/func_020f85b0.c:
+    complete
     .text       start:0x020f85b0 end:0x020f85e0
 
 src/game/main/func_020f882c.c:
