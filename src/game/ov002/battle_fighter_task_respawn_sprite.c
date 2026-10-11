@@ -18,9 +18,9 @@ void BattleFighterTask_RespawnSprite(BattleFighterTask *task)
     int unk_56;
     BOOL left;
     int unk_58;
-    BattleFighter *fighter;
+    BattleCellTask *fighter;
 
-    task->fighter = (BattleFighter *)BATTLE_ENTRY(task->side, 0).unk_00;
+    task->fighter = (BattleCellTask *)BATTLE_ENTRY(task->side, 0).unk_00;
     task->hitList = (BattleHitList *)(MENU_BYTES + BATTLE_OFFSET(hitLists)) + task->side;
     task->cells = BATTLE_SIDE_DATA(task->side)->cellPositions;
     if (*(u32 *)(MENU_BYTES + task->side * 4 + BATTLE_OFFSET(unk_30)) != 0) {
@@ -30,16 +30,16 @@ void BattleFighterTask_RespawnSprite(BattleFighterTask *task)
         }
         left = (task->fighter->side == 0);
         /* Needed to match: the original loads task->fighter again here. */
-        fighter = *(BattleFighter *volatile *)&task->fighter;
-        scale = fighter->unk_44;
+        fighter = *(BattleCellTask *volatile *)&task->fighter;
+        scale = fighter->scale;
         unk_58 = left ? 0 : 2;
         unk_56 = left ? 0 : 2;
         side = fighter->side;
         BATTLE_FIGHTER_ENTRY(fighter).sprites[1] = BattleSpriteTask_Create(
             *(const u32 **)(MENU_BYTES + task->fighter->side * 4 + BATTLE_OFFSET(unk_30)),
-            Battle_GetMatchupNibble1(task->side), fighter->unk_38, fighter->unk_3a, fighter->unk_3c, 0,
-            fighter->unk_46, 0, scale, scale, *(u16 *)(MENU_BYTES + side * 2 + 4), unk_56, 0, side,
-            fighter->unk_58_0, fighter->unk_3e, fighter->unk_40, fighter->unk_42, unk_58);
+            Battle_GetMatchupNibble1(task->side), fighter->posX, fighter->posY, fighter->posZ, 0,
+            fighter->angle, 0, scale, scale, *(u16 *)(MENU_BYTES + side * 2 + 4), unk_56, 0, side,
+            fighter->hasPos2, fighter->pos2X, fighter->pos2Y, fighter->pos2Z, unk_58);
         task->sprite = BATTLE_FIGHTER_ENTRY(task->fighter).sprites[1];
     }
     task->counter = 0;

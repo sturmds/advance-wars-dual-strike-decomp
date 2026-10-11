@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
+#include "game/battle_fighter_sprites.h"
 
 extern MenuState gMenuState;
 
@@ -16,13 +17,13 @@ void Battle_PlayFighterStartSe(int side)
 
     Battle_FadeAttackerSubSe(side);
     if (Ov002_gBattleScene->sides[side].usesSecondary == 0) {
-        sound = BATTLE_FIGHTER(side)->sounds->unk_04;
+        sound = BATTLE_SIDE_DATA(side)->sounds->unk_04;
         if (sound == BATTLE_SOUND_NONE) {
             return;
         }
         Sound_PlaySe(sound);
     } else {
-        sound = BATTLE_FIGHTER(side)->sounds->unk_08;
+        sound = BATTLE_SIDE_DATA(side)->sounds->unk_08;
         if (sound == BATTLE_SOUND_NONE) {
             return;
         }

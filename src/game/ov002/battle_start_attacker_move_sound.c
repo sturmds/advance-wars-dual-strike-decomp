@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
+#include "game/battle_fighter_sprites.h"
 
 extern MenuState gMenuState;
 
@@ -21,7 +22,7 @@ void Battle_StartAttackerMoveSound(int side)
         BattleFootstepTask_Start(side);
         return;
     }
-    sound = BATTLE_FIGHTER(side)->sounds->unk_00;
+    sound = BATTLE_SIDE_DATA(side)->sounds->unk_00;
     if (sound != BATTLE_SOUND_NONE) {
         Sound_PlaySubSe(sound);
     }

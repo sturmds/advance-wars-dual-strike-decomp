@@ -7,7 +7,7 @@ void Task_Destroy(Task *task);
 int Battle_GetMatchupNibble1(int side);
 
 #define FIGHTER_ENTRY(task) \
-    (MENU->battle.unk_310[(task)->fighter->side][(task)->fighter->unk_59_5])
+    (MENU->battle.unk_310[(task)->fighter->side][(task)->fighter->cell])
 
 /* Start of a side's fighter task: finds the fighter, the side's step list
  * and animation data, destroys the fighter's old sprite task and makes a new
@@ -16,14 +16,14 @@ int Battle_GetMatchupNibble1(int side);
  * `fighter` instead of sharing the load. */
 void BattleFighterTask_Setup(FighterTask *task)
 {
-    BattleFighter *fighter;
+    BattleCellTask *fighter;
     BOOL left;
     int unk_58;
     int unk_56;
     int side;
     int scale;
 
-    task->fighter = (BattleFighter *)MENU->battle.unk_310[task->side][0].unk_00;
+    task->fighter = (BattleCellTask *)MENU->battle.unk_310[task->side][0].unk_00;
     task->steps = &MENU->battle.hitLists[task->side];
     task->anim = (BattleAnimData *)MENU->battle.unk_27c[task->side]->cellPositions;
     if (MENU->battle.unk_30[task->side] != 0) {
@@ -31,18 +31,18 @@ void BattleFighterTask_Setup(FighterTask *task)
             Task_Destroy((Task *)FIGHTER_ENTRY(task).sprites[1]);
             FIGHTER_ENTRY(task).sprites[1] = NULL;
         }
-        left = (*(BattleFighter **)&task->fighter)->side == 0 ? TRUE : FALSE;
+        left = (*(BattleCellTask **)&task->fighter)->side == 0 ? TRUE : FALSE;
         fighter = task->fighter;
-        scale = fighter->unk_44;
+        scale = fighter->scale;
         unk_58 = left ? 0 : 2;
         unk_56 = left ? 0 : 2;
         side = fighter->side;
         FIGHTER_ENTRY(task).sprites[1] = BattleSpriteTask_Create(
             (const u32 *)MENU->battle.unk_30[task->fighter->side],
-            task->steps->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->unk_38,
-            fighter->unk_3a, fighter->unk_3c, 0, fighter->unk_46, 0, scale, scale,
-            (&MENU->colours[2])[side], unk_56, 0, side, fighter->unk_58_0, fighter->unk_3e,
-            fighter->unk_40, fighter->unk_42, unk_58);
+            task->steps->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->posX,
+            fighter->posY, fighter->posZ, 0, fighter->angle, 0, scale, scale,
+            (&MENU->colours[2])[side], unk_56, 0, side, fighter->hasPos2, fighter->pos2X,
+            fighter->pos2Y, fighter->pos2Z, unk_58);
         task->sprite = FIGHTER_ENTRY(task).sprites[1];
     }
     task->step = 0;

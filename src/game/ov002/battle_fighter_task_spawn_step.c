@@ -31,8 +31,8 @@ void BattleFighterTask_SpawnStep(FighterTask *task)
                 scale = task->scale;
                 anim = task->anim;
                 func_ov002_0235643c(MENU->battle.unk_40[task->side], Battle_GetMatchupValue(side),
-                                    task->fighter->unk_38, task->fighter->unk_3a,
-                                    task->fighter->unk_3c,
+                                    task->fighter->posX, task->fighter->posY,
+                                    task->fighter->posZ,
                                     scale * anim->offsets[step].x >> 8,
                                     scale * anim->offsets[step].y >> 8, -1, scale, scale,
                                     (&MENU->colours[6])[side], 8, 0, side);

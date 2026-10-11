@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/menu_state.h"
+#include "game/battle_fighter_sprites.h"
 
 extern MenuState gMenuState;
 
@@ -11,7 +12,7 @@ void Battle_PlayDefaultFighterSe(int side);
  * the original has it. */
 void Battle_PlayFighterSe(int side)
 {
-    u32 sound = BATTLE_FIGHTER(side)->sounds->unk_14;
+    u32 sound = BATTLE_SIDE_DATA(side)->sounds->unk_14;
 
     if (sound != BATTLE_SOUND_NONE) {
         if (sound == BATTLE_SOUND_NONE) {

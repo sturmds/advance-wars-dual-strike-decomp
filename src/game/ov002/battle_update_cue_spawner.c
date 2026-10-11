@@ -10,7 +10,6 @@ typedef struct CueSize {
 
 #define CUE_SPAWN 5
 
-extern u8 gMenuState[];
 int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(const u32 *table, int a1, int a2, int a3, int a4, int a5, int a6, int a7,
                          int a8, int a9, int a10, int a11, int a12, int a13);
@@ -28,7 +27,7 @@ void Battle_UpdateCueSpawner(BattleFighterTask *task)
     int side;
     int scale;
     CueSize *size;
-    BattleFighter *fighter;
+    BattleCellTask *fighter;
 
     if (task->sprite->unk_5b == CUE_SPAWN) {
         task->sprite->unk_5b = 0;
@@ -37,8 +36,8 @@ void Battle_UpdateCueSpawner(BattleFighterTask *task)
             fighter = task->fighter;
             scale = task->scale;
             size = (CueSize *)task->cells;
-            func_ov002_0235643c(SPRITE_TABLE(task->side), Battle_GetMatchupValue(side), fighter->unk_38,
-                                fighter->unk_3a, fighter->unk_3c, size->width * scale >> 8,
+            func_ov002_0235643c(SPRITE_TABLE(task->side), Battle_GetMatchupValue(side), fighter->posX,
+                                fighter->posY, fighter->posZ, size->width * scale >> 8,
                                 size->height * scale >> 8, -1, scale, scale,
                                 *(u16 *)((u32)&gMenuState + side * 2 + 12), 8, 0, side);
         }

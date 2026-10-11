@@ -1,6 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 #include "game/battle_fighter.h"
+#include "game/BattleCellTask.h"
 
 typedef struct FighterTask {
     u8 pad_00[0x40];
@@ -9,10 +10,10 @@ typedef struct FighterTask {
 } FighterTask;
 extern const TaskScriptCmd data_ov002_02369724[];
 
-void func_ov002_0235f3c0(BattleFighter *fighter)
+void func_ov002_0235f3c0(BattleCellTask *fighter)
 {
     FighterTask *task = (FighterTask *)Task_Create(data_ov002_02369724, TASK_LIST(2));
 
     task->unk_42 = fighter->side;
-    task->unk_40 = fighter->unk_44;
+    task->unk_40 = fighter->scale;
 }

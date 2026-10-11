@@ -24,10 +24,10 @@ void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)
         task->sprite->unk_5b = 0;
         step = task->step;
         if (task->steps->count == step) {
-            task->fighter->unk_30[task->fighter->unk_5a_4] = 0;
-            task->fighter->unk_5a_4++;
-            if (task->fighter->unk_5a_4 == 8) {
-                task->fighter->unk_5a_4 = 0;
+            task->fighter->steps[task->fighter->stepIndex] = 0;
+            task->fighter->stepIndex++;
+            if (task->fighter->stepIndex == 8) {
+                task->fighter->stepIndex = 0;
             }
             Task_ResumeScript((Task *)task);
             return;
@@ -37,8 +37,8 @@ void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)
             scale = task->scale;
             anim = task->anim;
             func_ov002_0235643c(MENU->battle.unk_40[task->side], Battle_GetMatchupValue(side),
-                                task->fighter->unk_38, task->fighter->unk_3a,
-                                task->fighter->unk_3c, scale * anim->offsets[step].x >> 8,
+                                task->fighter->posX, task->fighter->posY,
+                                task->fighter->posZ, scale * anim->offsets[step].x >> 8,
                                 scale * anim->offsets[step].y >> 8, -1, scale, scale,
                                 (&MENU->colours[6])[side], 8, 0, side);
         }
@@ -48,10 +48,10 @@ void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)
         task->step++;
     }
     if (task->sprite->unk_5c != 0) {
-        task->fighter->unk_30[task->fighter->unk_5a_4] = 0;
-        task->fighter->unk_5a_4++;
-        if (task->fighter->unk_5a_4 == 8) {
-            task->fighter->unk_5a_4 = 0;
+        task->fighter->steps[task->fighter->stepIndex] = 0;
+        task->fighter->stepIndex++;
+        if (task->fighter->stepIndex == 8) {
+            task->fighter->stepIndex = 0;
         }
         Task_ResumeScript((Task *)task);
     }

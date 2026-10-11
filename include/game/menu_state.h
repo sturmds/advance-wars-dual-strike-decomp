@@ -221,13 +221,6 @@ typedef struct MenuState {
     };
 } MenuState;
 
-/* Needed to match: the original adds the side's index to the address of
- * gMenuState first, and the offset of unk_27c last. BattleFighter is
- * the same object as BattleSideData; this view has the fields the sound code reads. */
-#define BATTLE_FIGHTER(side) \
-    (*(BattleFighter **)((u8 *)&gMenuState + (side) * sizeof(BattleFighter *) \
-                         + (u32) & ((MenuState *)0)->battle.unk_27c))
-
 /* The animation data of a side of the ov002 battle screen. Needed to match: the compiler
  * adds the 0x27c of BattleScreenWork.anim after the side index, so the array is
  * reached through gMenuState's own address. */

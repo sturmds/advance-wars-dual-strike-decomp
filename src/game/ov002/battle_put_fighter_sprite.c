@@ -16,6 +16,8 @@ void func_ov002_0235643c(void *a, int b, int c, int d, int e, int f, int g, int 
     ((BattleActor *)((BattleEntry *)((u8 *)&gMenuState + (side) * sizeof(BattleEntry[5]) \
                                      + MENU_OFFSET(unk_310)))->unk_00)
 #define SIDE_UNK_040(side) (*(void **)((u8 *)&gMenuState + (side) * 4 + MENU_OFFSET(unk_40)))
+#define SIDE_DATA(side) (*(BattleSideData **)((u8 *)&gMenuState + (side) * sizeof(BattleSideData *) \
+                                              + MENU_OFFSET(unk_27c)))
 #define SIDE_COLOUR(side) (*(u16 *)((u8 *)&gMenuState + (side) * 2 + 12))
 
 /* Hands func_ov002_0235643c the position of the first actor of a side and the
@@ -28,7 +30,7 @@ void Battle_PutFighterSprite(int slot, int pose)
     u16 scale = source->scale;
     int side = source->side;
     BattleActor *actor = SIDE_ACTOR(side);
-    const BattleFighterShapes *shapes = BATTLE_FIGHTER(side)->shapes;
+    const BattleFighterShapes *shapes = (const BattleFighterShapes *)SIDE_DATA(side)->cellPositions;
     int tile = Battle_GetMatchupValue(side);
 
     func_ov002_0235643c(SIDE_UNK_040(side), tile, actor->unk_38, actor->unk_3a, actor->unk_3c,

@@ -7,12 +7,13 @@
 #include "game/menu_state.h"
 #include "game/battle_hit_list.h"
 #include "game/BattleSideData.h"
+#include "game/BattleCellTask.h"
 
-/* A task of the ov002 battle animation that follows one BattleFighter.
+/* A task of the ov002 battle animation that follows one BattleCellTask.
  * The first 0x2c bytes belong to the task system. */
 typedef struct BattleFighterTask {
     u8 pad_00[0x2c];
-    BattleFighter *fighter;
+    BattleCellTask *fighter;
     BattleHitList *hitList;            /* BattleScreenWork.hitLists of the side */
     BattleSpriteTask *sprite;          /* the sprite task the script waits on */
     const BattleCellPos *cells;        /* BattleSideData.cellPositions of the side */

@@ -75,7 +75,8 @@ typedef struct BattleSideData {
     const BattleGfxFile *unk_1c[2];    /* by BattleSide.usesSecondary */
     BattleEffectParams *effects[9];    /* indexed by byte 9 of the side's 12-byte record in the scene; length a guess */
     u8 unk_48;                         /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
-    u8 unk_49[1];                      /* length unknown; indexed by byte 9 of the side's 12-byte record in the scene */
+    u8 unk_49[3];                      /* indexed by byte 9 of the side's 12-byte record in the scene, or by BattleSide.usesSecondary */
+    const BattleSounds *sounds;
 } BattleSideData;
 
 #endif

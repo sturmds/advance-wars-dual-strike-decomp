@@ -21,6 +21,6 @@ extern MenuState gMenuState;
 
 /* The BattleEntry of a fighter's side and cell, whose sprite tasks the motion
  * steps move. */
-#define BATTLE_FIGHTER_ENTRY(fighter) BATTLE_ENTRY((fighter)->side, (fighter)->unk_59_5)
+#define BATTLE_FIGHTER_ENTRY(fighter) BATTLE_ENTRY((fighter)->side, (fighter)->cell)
 
 #endif

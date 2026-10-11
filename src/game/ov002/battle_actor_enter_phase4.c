@@ -2,6 +2,7 @@
 #include "game/battle_actor.h"
 #include "game/battle_scene.h"
 #include "game/menu_state.h"
+#include "game/battle_fighter_sprites.h"
 
 extern MenuState gMenuState;
 
@@ -14,7 +15,7 @@ void BattleActor_EnterPhase4(BattleActor *actor)
 
     actor->unk_59_2 = 1;
     other = (actor->side + 1) & 1;
-    if (BATTLE_FIGHTER(other)->unk_49[Ov002_gBattleScene->sides[other].usesSecondary] == 2) {
+    if (BATTLE_SIDE_DATA(other)->unk_49[Ov002_gBattleScene->sides[other].usesSecondary] == 2) {
         actor->unk_54 = 12;
     } else {
         actor->unk_54 = 1;
