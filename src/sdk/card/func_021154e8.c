@@ -10,7 +10,7 @@ void Mem_CopyBytes(const void *src, void *dst, u32 size);
 void DC_FlushRange(const void *start, u32 size);
 void OS_CreateThread(OSThread *thread, void (*proc)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
 void OS_WakeupThreadDirect(OSThread *thread);
-void func_02111064(int tag, void (*callback)(int tag, u32 data, int err));
+void PXI_SetFifoRecvCallback(int tag, void (*callback)(int tag, u32 data, int err));
 void func_0211549c(u32 state);
 void CARDi_TaskThread(void *arg);
 void Card_OnRequestTagMessage(int tag, u32 data, int err);
@@ -34,7 +34,7 @@ void func_021154e8(void)
     common->priorityMode = 4;
     OS_CreateThread(&common->thread, CARDi_TaskThread, NULL, data_022ac0e0, GAMECARD_WORKER_STACK_BYTES, common->priorityMode);
     OS_WakeupThreadDirect(&common->thread);
-    func_02111064(11, Card_OnRequestTagMessage);
+    PXI_SetFifoRecvCallback(11, Card_OnRequestTagMessage);
     if (*BOOT_ORIGIN_WORD != BOOT_ORIGIN_WIRELESS) {
         func_0211549c(1);
     }

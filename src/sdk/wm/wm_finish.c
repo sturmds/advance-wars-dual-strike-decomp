@@ -1,7 +1,7 @@
 #include "sdk/wm.h"
 
 void WmClearFifoRecvFlag(void);
-void func_02111064(int tag, void *callback);
+void PXI_SetFifoRecvCallback(int tag, void *callback);
 
 extern u16 data_022ac328;
 extern WMArm9Buf *data_022ac32c;
@@ -21,7 +21,7 @@ int WM_Finish(void)
     }
 
     WmClearFifoRecvFlag();
-    func_02111064(PXI_FIFO_TAG_WM, NULL);
+    PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WM, NULL);
     data_022ac32c = NULL;
     data_022ac328 = FALSE;
     return WM_ERRCODE_SUCCESS;

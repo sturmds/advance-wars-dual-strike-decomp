@@ -30,6 +30,20 @@ typedef struct PXIFifoMessage {
 
 typedef void (*PXIFifoCallback)(u32 tag, u32 data, int err);
 
+/* Shared main memory at 0x027ffc00: bit n of word p says that CPU p has a
+ * receive callback registered for tag n. */
+typedef struct FifoPeerRegistry {
+    u8 pad_000[0x388];
+    u32 callbackFlags[2];              /* 0x388 */
+} FifoPeerRegistry;
+
+#define FIFO_PEER_REGISTRY ((volatile FifoPeerRegistry *)0x027ffc00)
+
+#define PXI_PROC_ARM9 0
+#define PXI_PROC_ARM7 1
+
 int PXI_SendWordByFifo(u32 tag, u32 data, int err);
+BOOL PXI_IsCallbackReady(u32 tag, u32 proc);
+void PXI_SetFifoRecvCallback(u32 tag, PXIFifoCallback callback);
 
 #endif

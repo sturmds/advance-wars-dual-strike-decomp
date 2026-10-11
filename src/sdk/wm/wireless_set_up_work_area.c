@@ -10,8 +10,8 @@ void WmClearFifoRecvFlag(void);
 void WmReceiveFifo(int tag, u32 data, BOOL err);
 int WM_SetPortCallback(int port, WMCallbackFunc callback, void *arg);
 void func_02110e58(void);
-BOOL func_0211103c(int tag, int proc);
-void func_02111064(int tag, void *callback);
+BOOL PXI_IsCallbackReady(int tag, int proc);
+void PXI_SetFifoRecvCallback(int tag, void *callback);
 
 extern u16 data_022ac328;
 extern WMArm9Buf *data_022ac32c;
@@ -46,7 +46,7 @@ int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size)
     }
 
     func_02110e58();
-    if (!func_0211103c(PXI_FIFO_TAG_WM, PXI_PROC_ARM7)) {
+    if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WM, PXI_PROC_ARM7)) {
         data_022ac328 = FALSE;
         return WM_ERRCODE_WM_DISABLE;
     }
@@ -77,6 +77,6 @@ int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size)
         OS_SendMessage(&data_022ac330, buf, OS_MESSAGE_BLOCK);
     }
 
-    func_02111064(PXI_FIFO_TAG_WM, WmReceiveFifo);
+    PXI_SetFifoRecvCallback(PXI_FIFO_TAG_WM, WmReceiveFifo);
     return WM_ERRCODE_SUCCESS;
 }

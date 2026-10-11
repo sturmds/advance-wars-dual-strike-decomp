@@ -10,7 +10,7 @@ void DC_FlushRange(const void *start, u32 size);
 void DC_WaitWriteBufferEmpty(void);
 void OS_SleepThread(OSThreadQueue *queue);
 int PXI_SendWordByFifo(int tag, u32 word, int err);
-int func_0211103c(int tag, int arg);
+int PXI_IsCallbackReady(int tag, int arg);
 
 /*
  * Sends one request to the other CPU and sleeps until it answers. A request of
@@ -24,10 +24,10 @@ BOOL CARDi_Request(CARDiCommon *common, u32 request, int retries)
 
     if (!(FLAG(common) & GAMECARD_FLAG_PEER_GREETED)) {
         FLAG(common) |= GAMECARD_FLAG_PEER_GREETED;
-        if (!func_0211103c(FIFO_TAG_CARD_SERVICE, 1)) {
+        if (!PXI_IsCallbackReady(FIFO_TAG_CARD_SERVICE, 1)) {
             do {
                 OS_SpinWait(100);
-            } while (!func_0211103c(FIFO_TAG_CARD_SERVICE, 1));
+            } while (!PXI_IsCallbackReady(FIFO_TAG_CARD_SERVICE, 1));
         }
         CARDi_Request(common, GAMECARD_REQ_HANDSHAKE, 1);
     }
