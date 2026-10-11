@@ -587,6 +587,10 @@ src/game/main/callback_slots_clear.c:
     complete
     .text       start:0x02004580 end:0x020045a8
 
+src/game/main/callback_list_run_and_clear.c:
+    complete
+    .text       start:0x020045a8 end:0x020045f4
+
 src/game/main/callback_list_add.c:
     complete
     .text       start:0x020045f4 end:0x02004628

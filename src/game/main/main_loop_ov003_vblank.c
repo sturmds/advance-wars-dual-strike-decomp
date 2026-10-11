@@ -20,7 +20,7 @@ void OamBuffer_FlushTail(void);
 void Screen_ApplyAll(void);
 void TransferQueue_Run(void);
 void func_01ff8e58(void);
-void func_020045a8(void);
+void CallbackList_RunAndClear(void);
 int func_0207bd80(void);
 void func_0207d930(void);
 
@@ -53,7 +53,7 @@ void MainLoop_Ov003VBlank(void)
         Screen_ApplyAll();
         TransferQueue_Run();
         ON_BOTH_SCREENS(func_01ff8e58());
-        func_020045a8();
+        CallbackList_RunAndClear();
     } else {
         func_01ff9f1c(0);
         if (func_0207bd80() == 1) {
