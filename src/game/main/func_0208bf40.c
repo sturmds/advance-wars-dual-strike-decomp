@@ -8,7 +8,7 @@ void Mem_CopyUnits(const void *src, void *dst, u32 size, u32 unitBits);
 
 /* Copies the 24 bytes at data_0229e148 into the block data_02160ac0 points to:
  * bytes 0-19 as a block, bytes 20-23 to offsets 0x18, 0x19, 0x7d and 0x84.
- * func_0208bfb0 reads them back. What the block holds is not known. */
+ * CombatSetup_SaveToBuffer reads them back. What the block holds is not known. */
 void func_0208bf40(void)
 {
     CombatSetup_ResetDefaults();

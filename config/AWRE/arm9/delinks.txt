@@ -8984,9 +8984,29 @@ src/game/main/func_0208bf40.c:
     complete
     .text       start:0x0208bf40 end:0x0208bfb0
 
+src/game/main/combat_setup_save_to_buffer.c:
+    complete
+    .text       start:0x0208bfb0 end:0x0208c010
+
 src/game/main/func_0208c010.c:
     complete
     .text       start:0x0208c010 end:0x0208c024
+
+src/game/main/combat_intro_reset_seen_flags.c:
+    complete
+    .text       start:0x0208c024 end:0x0208c068
+
+src/game/main/combat_intro_start_third.c:
+    complete
+    .text       start:0x0208c068 end:0x0208c0b8
+
+src/game/main/combat_intro_start_second.c:
+    complete
+    .text       start:0x0208c0b8 end:0x0208c0f8
+
+src/game/main/combat_intro_start_first.c:
+    complete
+    .text       start:0x0208c0f8 end:0x0208c138
 
 src/game/main/func_0208c138.c:
     complete
@@ -8995,6 +9015,10 @@ src/game/main/func_0208c138.c:
 src/game/main/func_0208c158.c:
     complete
     .text       start:0x0208c158 end:0x0208c180
+
+src/game/main/combat_intro_start_event_script.c:
+    complete
+    .text       start:0x0208c180 end:0x0208c1cc
 
 src/game/main/func_0208c1cc.c:
     complete

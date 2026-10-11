@@ -1,0 +1,20 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/unlocks.h"
+
+int func_0207bd80(void);
+extern const TaskScriptCmd data_021618e0[];
+
+/* Plays the script of data_021618e0 as a child task once (game flag 56),
+ * unless func_0207bd80 returns 1. */
+void CombatIntro_StartThird(Task *parent)
+{
+    if (func_0207bd80() == 1) {
+        return;
+    }
+    if (GameFlag_IsSet(56)) {
+        return;
+    }
+    GameFlag_Set(56, 1);
+    Task_CreateChild(data_021618e0, parent);
+}
