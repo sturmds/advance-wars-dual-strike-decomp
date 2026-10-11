@@ -11,7 +11,7 @@ extern const EventScriptCommand gMapScrollScript[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-void func_020c05d8(void);
+void Game_TickPlayerTimer(void);
 void WeatherFx_UpdateClouds(void);
 void MapScreen_UpdateAnimations(void);
 int SceneMode_IsChanging(void);
@@ -86,7 +86,7 @@ void Game_RunStateFrame(void)
     s16 scrollY;
 
     if (data_027c027c == data_027c0288.unk_00) {
-        func_020c05d8();
+        Game_TickPlayerTimer();
     }
     WeatherFx_UpdateClouds();
     MapScreen_UpdateAnimations();

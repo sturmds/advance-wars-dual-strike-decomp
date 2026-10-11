@@ -13,7 +13,7 @@ typedef struct MapScript {
     u8 pad_04[0x10 - 0x04];
     const EventTrigger *list10;        /* run with an id and a unit by MapScript_RunList10 */
     const EventTrigger *list14;        /* run by Game_EnterState20 */
-    const EventTrigger *list18;        /* run by func_020c05d8 with a flag */
+    const EventTrigger *list18;        /* run by Game_TickPlayerTimer with a flag */
 } MapScript;
 
 #endif

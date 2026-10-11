@@ -1,0 +1,38 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/event_script.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern EventScriptCommand data_02166948[];
+
+s16 ScriptSlot_Find(const EventScriptCommand *script);
+int func_020d1bc4(void);
+int MapScript_RunList18(int flag);
+void func_020242c0(u32 *timer);
+void func_020f232c(void);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define CURRENT_PLAYER (STATE->players[STATE->currentPlayer])
+
+/* Per-frame tick of the current player's timer (Player.unk_94, frames; Time
+ * Survival reads it). Skipped while the hook script runs, func_020d1bc4 is
+ * nonzero, unk_5b is set or map script list 18 takes the frame. Then
+ * func_020f232c runs. */
+void Game_TickPlayerTimer(void)
+{
+    if (ScriptSlot_Find(data_02166948) != -1) {
+        return;
+    }
+    if (func_020d1bc4() != 0) {
+        return;
+    }
+    if (STATE->unk_5b != 0) {
+        return;
+    }
+    if (MapScript_RunList18(0) != 0) {
+        return;
+    }
+    func_020242c0(&CURRENT_PLAYER.unk_94);
+    func_020f232c();
+}
