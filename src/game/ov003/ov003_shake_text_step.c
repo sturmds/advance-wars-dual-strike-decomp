@@ -11,7 +11,7 @@ const void *Text_Get(u32 textId);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Task_ResumeScript(void *task);
 int func_021247ac(const char *str);
-int func_ov003_02363d5c(const u8 *str);
+int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetterAlt(int ch, u16 x, u16 y);
 
 /* Task step: while Ov003State.unk_1d7 is 0, counts frames up to 60. On frame 1
@@ -71,7 +71,7 @@ void Ov003_ShakeTextStep(Unk_ov003_0235dd38 *obj)
                 break;
             }
         }
-        x += (128 - (func_ov003_02363d5c(Text_Get(0x7d000023)) >> 1));
+        x += (128 - (Ov003_GetTextWidth(Text_Get(0x7d000023)) >> 1));
         for (i = 0; i < func_021247ac(Text_Get(0x7d000023)); i++) {
             x += Ov003_DrawLetterAlt(((const u8 *)Text_Get(0x7d000023))[i], x & 0x1ff, (y + 80) & 0xff);
         }

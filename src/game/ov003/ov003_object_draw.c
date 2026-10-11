@@ -24,8 +24,8 @@ void Ov003Object_Draw(Ov003Object *object)
         return;
     }
     if (object->kind == 5 || object->kind == 7) {
-        Ov003_DrawTexturedQuad(x - scrollX - 4, y - scrollY - 4, 25, 0, 0, 0x347, object->variant + 10, 0, 0);
+        Ov003_DrawTexturedQuad(x - scrollX - 4, y - scrollY - 4, 25, 0, 0, 0x347, object->row + 10, 0, 0);
     } else {
-        Ov003_DrawTexturedQuad(x - scrollX - 4, y - scrollY - 4, 25, 0, 0, 0x346, object->variant + 10, 0, 0);
+        Ov003_DrawTexturedQuad(x - scrollX - 4, y - scrollY - 4, 25, 0, 0, 0x346, object->row + 10, 0, 0);
     }
 }

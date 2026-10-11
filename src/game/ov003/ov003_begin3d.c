@@ -14,7 +14,9 @@ void func_0210b97c(void);
 void func_0210bbd8(void *a, void *b, void *c, int d, int e);
 void func_ov003_02353b34(void);
 
-void func_ov003_02353a98(void)
+/* Per-frame 3D setup of overlay 3 (Ov003_DrawFrame): pushes a matrix, resets
+ * the texture matrix, sets the default texture and polygon attributes. */
+void Ov003_Begin3d(void)
 {
     func_0210b97c();
     func_0210bbd8(data_ov003_02364a78, data_ov003_02364a6c, data_ov003_02365cf4, 1, 0);

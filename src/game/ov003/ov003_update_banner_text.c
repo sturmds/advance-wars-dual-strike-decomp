@@ -11,7 +11,7 @@ void Task_ResumeScript(void *task);
 int func_021247ac(const u8 *str);  /* string length */
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);  /* sets OBJ affine matrix index */
 int Ov003_DrawLetterAlt(int ch, u16 attr1, u16 attr0);  /* queues one letter, returns its width */
-int func_ov003_02363d5c(const u8 *str);  /* text width in pixels */
+int Ov003_GetTextWidth(const u8 *str);  /* text width in pixels */
 
 /* Sine table: [0] sin 0, [64] cos 0. Needed to match: const, so the
  * loads move out of the loops. */
@@ -73,7 +73,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
         Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram + 0xb1c0, 0x2000);
     }
 
-    x = 128 - (func_ov003_02363d5c(Text_Get(TEXT_BANNER_TOP)) >> 1);
+    x = 128 - (Ov003_GetTextWidth(Text_Get(TEXT_BANNER_TOP)) >> 1);
     for (top = 0; top < func_021247ac(Text_Get(TEXT_BANNER_TOP)); top++) {
         if (FRAME < top * LETTER_DELAY) {
             continue;
@@ -86,7 +86,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
     }
 
     /* the bottom line's letters come after the top line's */
-    x = 128 - (func_ov003_02363d5c(Text_Get(TEXT_BANNER_BOTTOM)) >> 1);
+    x = 128 - (Ov003_GetTextWidth(Text_Get(TEXT_BANNER_BOTTOM)) >> 1);
     for (bottom = 0; bottom < func_021247ac(Text_Get(TEXT_BANNER_BOTTOM)); bottom++) {
         if (FRAME < (top + bottom) * LETTER_DELAY) {
             continue;

@@ -13,7 +13,7 @@ int Ov003_IsNearMarker(Ov003Marker *entry, int x, int y);
  * terrain of the tile there: terrain 15 and 16 always, terrain 3 unless the
  * object is kind 2, and terrain 9, 21 and 26 when Ov003_IsNearMarker accepts
  * the Ov003Marker entry on the tile (skipped for the entry named by
- * object->unk_0a when bit 7 is set). */
+ * object->owner when bit 7 is set). */
 int Ov003Object_HitsTerrainAt(int x, int y, Ov003Object *object)
 {
     s16 tileX = x >> 4;
@@ -36,8 +36,8 @@ int Ov003Object_HitsTerrainAt(int x, int y, Ov003Object *object)
     case 9:
     case 21:
     case 26:
-        if (object->unk_0a & 0x80) {
-            Ov003Marker *entry = &data_ov003_02369bb8[object->unk_0a & ~0x80];
+        if (object->owner & 0x80) {
+            Ov003Marker *entry = &data_ov003_02369bb8[object->owner & ~0x80];
 
             if (entry->x == tileX && entry->y == tileY) {
                 return 0;

@@ -70,7 +70,7 @@ void Ov003Unit_SpawnEffectToward(Ov003Unit *unit, int dirX, int dirY)
         effect->velY = newY;
     }
     effect->lifetime = data_ov003_02364d8b[unit->kind][0];
-    effect->unk_0d = unit->row;
+    effect->row = unit->row;
     effect->unk_08 = 0;
     effect->owner = unitIndex;
     unit->unk_15 = data_ov003_02364d8a[unit->kind][0];

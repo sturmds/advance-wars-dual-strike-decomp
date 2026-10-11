@@ -3,7 +3,7 @@
 
 extern Ov003Unit data_ov003_02369538[16];
 
-int Ov003_IsRouteClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
+int Ov003_IsPathClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
 int Ov003_IsPathClearRowFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY);
 
 /* Direction for the unit to move toward its target, the unit
@@ -50,11 +50,11 @@ int Ov003Unit_GetStepDirection(Ov003Unit *unit)
         if (Ov003_IsPathClearRowFirst(unit, col, row, targetCol, targetRow) == 1) {
             return col > targetCol ? 3 : 4;
         }
-        if (Ov003_IsRouteClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
+        if (Ov003_IsPathClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
             return row > targetRow ? 1 : 2;
         }
     } else {
-        if (Ov003_IsRouteClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
+        if (Ov003_IsPathClearColumnFirst(unit, col, row, targetCol, targetRow) == 1) {
             return row > targetRow ? 1 : 2;
         }
         if (Ov003_IsPathClearRowFirst(unit, col, row, targetCol, targetRow) == 1) {

@@ -14,10 +14,10 @@ void Ov003_ClearMarkerHits(void);
 void Ov003_CreateSpriteVariant0(int x, int y);
 
 /* Runs when an object of kind 5 or 7 ends its trip. Every live unit except
- * the one named by object->unk_0a, within 35 units (pixels / 8) of the object,
+ * the one named by object->owner, within 35 units (pixels / 8) of the object,
  * goes to Ov003Object_HitUnit. Then every tile within three of the object's
  * tile and 35 units from it goes to Ov003Object_HitTile (terrain 9, 21 and 26
- * once per Ov003Marker entry, and not when object->variant equals
+ * once per Ov003Marker entry, and not when object->row equals
  * the current spawn row). */
 void Ov003Object_Impact(Ov003Object *object)
 {
@@ -31,7 +31,7 @@ void Ov003Object_Impact(Ov003Object *object)
 
     unit = data_ov003_02369538;
     for (i = 0; i < 16; i++, unit++) {
-        if (unit->hp != 0 && !unit->unk_17_6 && i != object->unk_0a
+        if (unit->hp != 0 && !unit->unk_17_6 && i != object->owner
             && Math_Distance(object->x >> 3, object->y >> 3, unit->x >> 3, unit->y >> 3) < 35) {
             Ov003Object_HitUnit(object, unit);
         }
@@ -54,7 +54,7 @@ void Ov003Object_Impact(Ov003Object *object)
             case 9:
             case 21:
             case 26:
-                if (object->variant == data_ov003_02364928->row) {
+                if (object->row == data_ov003_02364928->row) {
                     break;
                 }
                 entry = Ov003_FindMarkerAtTile(col, row);

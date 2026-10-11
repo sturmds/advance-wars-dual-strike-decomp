@@ -50,7 +50,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         targetType = 8;
         break;
     case TERRAIN_MINICANNON:
-        if (object->variant == STATE->row) {
+        if (object->row == STATE->row) {
             if (object->kind == 5 || object->kind == 7) {
                 return;
             }
@@ -65,7 +65,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         x = structure->x;
         y = structure->y;
     case TERRAIN_BLACK_CANNON:
-        if (object->variant == STATE->row) {
+        if (object->row == STATE->row) {
             if (object->kind == 5 || object->kind == 7) {
                 return;
             }
@@ -85,7 +85,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         return;
     }
 
-    damage = Ov003_RollValue(object->variant, object->kind, 0, targetType);
+    damage = Ov003_RollValue(object->row, object->kind, 0, targetType);
     damage += (Ov003_RandNext() & 7) - 3;
     if (MAP->unk_f1a[TILE_AT(x, y)] <= damage) {
         MAP->unk_f1a[TILE_AT(x, y)] = 0;
@@ -130,9 +130,9 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             return;
         }
         if (object->kind < 6) {
-            Ov003Row_AddCharge(object->variant, data_ov003_02364d9a[targetType * 20]);
+            Ov003Row_AddCharge(object->row, data_ov003_02364d9a[targetType * 20]);
             /* targets broken by the shooter's row, per type */
-            STATE->rows[object->variant - 1].unk_28[targetType]++;
+            STATE->rows[object->row - 1].unk_28[targetType]++;
         }
         if (targetType == 7) {
             py = (y << 7) + 64;
@@ -143,7 +143,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
             px = (x << 7) + 64;
             func_ov003_02364524(px >> 3, py >> 3);
         }
-        if (targetType == 8 && object->variant != STATE->row) {
+        if (targetType == 8 && object->row != STATE->row) {
             STATE->unk_1d9++;
             if (STATE->unk_1d9 >= 4 && Ov003_SpawnItem(px, py) == 1) {
                 STATE->unk_1d9 = 0;
@@ -158,7 +158,7 @@ void Ov003Object_HitTile(Ov003Object *object, int x, int y)
         }
         MAP->unk_f1a[TILE_AT(x, y)] -= damage;
         if (object->kind < 6) {
-            Ov003Row_AddCharge(object->variant, data_ov003_02364d99[targetType * 20]);
+            Ov003Row_AddCharge(object->row, data_ov003_02364d99[targetType * 20]);
         }
         if (object->kind == 5 || object->kind == 7) {
             return;

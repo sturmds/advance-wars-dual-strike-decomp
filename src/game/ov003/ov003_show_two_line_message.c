@@ -10,7 +10,7 @@
 
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);                      /* strlen */
-int func_ov003_02363d5c(const u8 *str);                /* width of a string in pixels (suggested name: Ov003_GetTextWidth) */
+int Ov003_GetTextWidth(const u8 *str);                /* width of a string in pixels (suggested name: Ov003_GetTextWidth) */
 int Ov003_DrawLetterAlt(u8 ch, u16 x, u16 y);          /* draws one character, returns its width (suggested name: Ov003_DrawChar) */
 void Task_ResumeScript(Ov003MessageTask *task);
 
@@ -28,11 +28,11 @@ void Ov003_ShowTwoLineMessage(Ov003MessageTask *task)
     if (STATE_BYTE_1D7 == 0) {
         task->frames++;
     }
-    topX = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TOP_TEXT)) >> 1);
+    topX = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TOP_TEXT)) >> 1);
     for (topChar = 0; topChar < func_021247ac(Text_Get(MESSAGE_TOP_TEXT)); topChar++) {
         topX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_TOP_TEXT)[topChar], topX & 0x1ff, 64);
     }
-    bottomX = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_BOTTOM_TEXT)) >> 1);
+    bottomX = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_BOTTOM_TEXT)) >> 1);
     for (bottomChar = 0; bottomChar < func_021247ac(Text_Get(MESSAGE_BOTTOM_TEXT)); bottomChar++) {
         bottomX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_BOTTOM_TEXT)[bottomChar], bottomX & 0x1ff, 96);
     }

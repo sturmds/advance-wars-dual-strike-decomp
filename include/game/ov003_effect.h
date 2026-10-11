@@ -17,7 +17,7 @@ typedef struct Ov003Effect {
     u8 owner;                          /* unit index, or marker index | 0x80 */
     u8 kind;
     u8 lifetime;
-    u8 unk_0d;
+    u8 row;                            /* row (team) that fired it (Ov003Object.row) */
 } Ov003Effect;
 
 typedef struct Ov003EffectGroup {

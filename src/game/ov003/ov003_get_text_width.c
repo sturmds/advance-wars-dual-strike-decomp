@@ -2,7 +2,8 @@
 
 int Ov003_GetGlyphWidth(int ch);
 
-int func_ov003_02363d5c(const u8 *str)
+/* Width in pixels of a string in the overlay's letter font. */
+int Ov003_GetTextWidth(const u8 *str)
 {
     int width = 0;
 

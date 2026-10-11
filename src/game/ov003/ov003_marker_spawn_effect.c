@@ -34,7 +34,7 @@ void Ov003Marker_SpawnEffect(Ov003Marker *marker, int velX, int velY)
     effect->velX = velX;
     effect->velY = velY;
     effect->lifetime = data_ov003_02364d8b[marker->kind][0];
-    effect->unk_0d = data_ov003_02364928->row;
+    effect->row = data_ov003_02364928->row;
     effect->unk_08 = 0;
     effect->owner = (marker - data_ov003_02369bb8) | 0x80;
     marker->unk_0a = data_ov003_02364d8a[marker->kind][0];

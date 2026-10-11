@@ -9,7 +9,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
-int func_ov003_02363d5c(const u8 *str);
+int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Task_ResumeScript(Ov003MessageTask *task);
 
@@ -37,7 +37,7 @@ void Ov003_ShowBouncingMessage(Ov003MessageTask *task)
     if (task->frames == 1) {
         Mem_Copy32(data_ov003_02365b0c, data_027c0280->objVram, 0x2000);
     }
-    x = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TEXT)) >> 1);
+    x = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TEXT)) >> 1);
     if (task->frames <= SLIDE_FRAMES) {
         offset = Math_Ease(1, -112, 0, task->frames, SLIDE_FRAMES);
     } else {

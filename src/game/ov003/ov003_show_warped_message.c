@@ -8,7 +8,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
-int func_ov003_02363d5c(const u8 *str);
+int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask *task);
@@ -54,7 +54,7 @@ void Ov003_ShowWarpedMessage(Ov003MessageTask *task)
     sinValue = data_021389e8[0];
     Oam_SetAffineParams(MESSAGE_MATRIX, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
-    x = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TEXT)) >> 1);
+    x = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TEXT)) >> 1);
     for (i = 0; i < func_021247ac(Text_Get(MESSAGE_TEXT)); i++) {
         x += Ov003_DrawLetter(Text_Get(MESSAGE_TEXT)[i], (x & 0x1ff) | (MESSAGE_MATRIX << 9), 848);
     }

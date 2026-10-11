@@ -119,11 +119,11 @@ src/game/ov003/func_ov003_0235394c.c:
     complete
     .text       start:0x0235394c end:0x02353a84
 
-src/game/ov003/func_ov003_02353a84.c:
+src/game/ov003/ov003_end3d.c:
     complete
     .text       start:0x02353a84 end:0x02353a98
 
-src/game/ov003/func_ov003_02353a98.c:
+src/game/ov003/ov003_begin3d.c:
     complete
     .text       start:0x02353a98 end:0x02353b34
 
@@ -585,7 +585,7 @@ src/game/ov003/ov003_unit_get_step_direction.c:
     complete
     .text       start:0x0235f1a0 end:0x0235f350
 
-src/game/ov003/ov003_is_route_clear_column_first.c:
+src/game/ov003/ov003_is_path_clear_column_first.c:
     complete
     .text       start:0x0235f350 end:0x0235f54c
 
@@ -860,7 +860,7 @@ src/game/ov003/ov003_draw_letter_alt.c:
     complete
     .text       start:0x02363c88 end:0x02363d5c
 
-src/game/ov003/func_ov003_02363d5c.c:
+src/game/ov003/ov003_get_text_width.c:
     complete
     .text       start:0x02363d5c end:0x02363d9c
 

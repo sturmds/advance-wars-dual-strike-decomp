@@ -26,10 +26,10 @@ void Ov003_CreateSpriteVariant2(int x, int y);
  * timer of 15. The object is spent either way. */
 void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
 {
-    int damage = Ov003_RollValue(object->variant, object->kind, unit->row, unit->kind);
+    int damage = Ov003_RollValue(object->row, object->kind, unit->row, unit->kind);
 
     object->active = 0;
-    if (object->variant == unit->row) {
+    if (object->row == unit->row) {
         return;
     }
     if (data_ov003_02364928->phase == 7) {
@@ -41,13 +41,13 @@ void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
             unit->hp = 0;
             unit->unk_17_7 = 1;
             if (object->kind < 6) {
-                Ov003Row_AddCharge(object->variant, data_ov003_02364d9a[unit->kind][0]);
+                Ov003Row_AddCharge(object->row, data_ov003_02364d9a[unit->kind][0]);
                 Ov003Row_AddCharge(unit->row, HwDiv32(data_ov003_02364d9a[unit->kind][0] * 2, 3));
-                if (UNIT_COUNTS(object->variant)[unit->kind] != 255) {
+                if (UNIT_COUNTS(object->row)[unit->kind] != 255) {
                     if (unit->kind == 2) {
-                        UNIT_COUNTS(object->variant)[1]++;
+                        UNIT_COUNTS(object->row)[1]++;
                     } else {
-                        UNIT_COUNTS(object->variant)[unit->kind]++;
+                        UNIT_COUNTS(object->row)[unit->kind]++;
                     }
                 }
             }
@@ -57,7 +57,7 @@ void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
             unit->safeTimer = 15;
             unit->unk_17_0 = 0;
             if (object->kind < 6) {
-                Ov003Row_AddCharge(object->variant, data_ov003_02364d99[unit->kind][0]);
+                Ov003Row_AddCharge(object->row, data_ov003_02364d99[unit->kind][0]);
                 Ov003Row_AddCharge(unit->row, HwDiv32(data_ov003_02364d99[unit->kind][0] * 2, 3));
             }
             if (object->kind != 5 && object->kind != 7) {
@@ -65,5 +65,5 @@ void Ov003Object_HitUnit(Ov003Object *object, Ov003Unit *unit)
             }
         }
     }
-    unit->scatterTarget = object->unk_0a;
+    unit->scatterTarget = object->owner;
 }

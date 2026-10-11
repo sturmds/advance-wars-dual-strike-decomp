@@ -13,7 +13,7 @@ int Ov003Unit_CanEnterTerrain(Ov003Unit *unit, u8 terrain);
  * Ov003Unit_CanEnterTerrain refuses the terrain of a tile on it. The two ends and the
  * corner (fromX, toY) are not checked. The sibling Ov003_IsPathClearRowFirst
  * walks the row first. */
-int Ov003_IsRouteClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY)
+int Ov003_IsPathClearColumnFirst(Ov003Unit *unit, s16 fromX, s16 fromY, s16 toX, s16 toY)
 {
     s16 i;
 

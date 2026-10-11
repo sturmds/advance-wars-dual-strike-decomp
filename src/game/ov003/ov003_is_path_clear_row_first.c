@@ -12,7 +12,7 @@ int Ov003Unit_CanEnterTerrain(Ov003Unit *unit, u8 terrain);
 /* Checks the tiles of an L-shaped path from tile (x0, y0) to (x1, y1): along
  * row y0 up to column x1, then along column x1. Neither end nor the corner
  * (x1, y0) is checked. Returns 0 as soon as Ov003Unit_CanEnterTerrain rejects the
- * terrain of a tile for the unit, else 1. Ov003_IsRouteClearColumnFirst is the same with
+ * terrain of a tile for the unit, else 1. Ov003_IsPathClearColumnFirst is the same with
  * the column first (suggested name: Ov003_IsPathClearColumnFirst). */
 int Ov003_IsPathClearRowFirst(Ov003Unit *unit, int x0, int y0, int x1, int y1)
 {
