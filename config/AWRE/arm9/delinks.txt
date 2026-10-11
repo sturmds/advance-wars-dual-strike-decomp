@@ -6373,6 +6373,10 @@ src/game/main/menus/combat_setup_update_link.c:
     complete
     .text       start:0x02086320 end:0x0208653c
 
+src/game/main/menus/link_menu_restore_main_screen.c:
+    complete
+    .text       start:0x020865d4 end:0x02086754
+
 src/game/main/func_02086754.c:
     complete
     .text       start:0x02086754 end:0x02086760
