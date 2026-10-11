@@ -22406,6 +22406,10 @@ src/sdk/wm/wm_power_off.c:
     complete
     .text       start:0x02117cac end:0x02117cf4
 
+src/sdk/wm/wm_power_on.c:
+    complete
+    .text       start:0x02117cf4 end:0x02117d3c
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
