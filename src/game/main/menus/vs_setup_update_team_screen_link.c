@@ -12,9 +12,9 @@ int func_0207bd80(void);
 int func_0207bd94(void);
 int Link_FindSlotOfPlayer(int player);
 u32 func_02073874(void);
-void func_020667bc(int msg); /* previous team for slot msg - 19 */
-void func_02066760(int msg); /* next team for slot msg - 23 */
-void func_020666cc(int slot); /* sets slot ready */
+void VsSetup_PrevTeam(int msg); /* previous team for slot msg - 19 */
+void VsSetup_NextTeam(int msg); /* next team for slot msg - 23 */
+void VsSetup_SetSlotReady(int slot); /* sets slot ready */
 void func_02066674(int slot); /* clears slot ready */
 void *func_02066624(void);
 void *func_0206664c(void);
@@ -53,16 +53,16 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
                     case EVENT_VS_TEAM_PREV + 1:
                     case EVENT_VS_TEAM_PREV + 2:
                     case EVENT_VS_TEAM_PREV + 3:
-                        func_020667bc(msg[0]);
+                        VsSetup_PrevTeam(msg[0]);
                         break;
                     case EVENT_VS_TEAM_NEXT + 0:
                     case EVENT_VS_TEAM_NEXT + 1:
                     case EVENT_VS_TEAM_NEXT + 2:
                     case EVENT_VS_TEAM_NEXT + 3:
-                        func_02066760(msg[0]);
+                        VsSetup_NextTeam(msg[0]);
                         break;
                     case EVENT_VS_TEAM_READY:
-                        func_020666cc((u8)(Link_FindSlotOfPlayer(i) - 1));
+                        VsSetup_SetSlotReady((u8)(Link_FindSlotOfPlayer(i) - 1));
                         break;
                     case EVENT_VS_TEAM_BACK:
                         if (gMenuState.setup.unk_2d0[Link_FindSlotOfPlayer(i) - 1] == 0) {

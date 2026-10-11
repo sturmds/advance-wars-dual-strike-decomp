@@ -5845,6 +5845,18 @@ src/game/main/menus/func_02066674.c:
     complete
     .text       start:0x02066674 end:0x020666cc
 
+src/game/main/menus/vs_setup_set_slot_ready.c:
+    complete
+    .text       start:0x020666cc end:0x02066760
+
+src/game/main/menus/vs_setup_next_team.c:
+    complete
+    .text       start:0x02066760 end:0x020667bc
+
+src/game/main/menus/vs_setup_prev_team.c:
+    complete
+    .text       start:0x020667bc end:0x02066818
+
 src/game/main/has_two_or_more_teams.c:
     complete
     .text       start:0x02066818 end:0x020668a8
