@@ -10020,6 +10020,10 @@ src/game/main/map/map_bg_draw_tile_row.c:
     complete
     .text       start:0x020f6a40 end:0x020f6e74
 
+src/game/main/map/map_bg_draw_tile_column.c:
+    complete
+    .text       start:0x020f6e74 end:0x020f7268
+
 src/game/main/map/map_view_scroll_step.c:
     complete
     .text       start:0x020f7268 end:0x020f757c

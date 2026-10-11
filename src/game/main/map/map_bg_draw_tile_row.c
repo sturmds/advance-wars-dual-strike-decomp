@@ -1,20 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/map_bg.h"
 #include "game/terrain.h"
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern int data_027c0284;
-extern u16 gMapCellGroundTiles[];     /* 4 BG tile entries (2x2) per map cell */
-extern u16 gMapCellOverhangTiles[];   /* same, for the part drawn into the row above */
-extern u16 gMountainCellVariants[16];
-extern u16 data_02169e78[32];         /* per terrain id; 0: keep the map's cell */
-extern u16 data_02169eb8[32];         /* tile map offset of each metatile column: two 32x32 screen blocks */
-
-/* BG tile map entries: bits 0-9 character, 10-11 flips, 12-15 palette. */
-#define BG_TILE_CHAR_AND_FLIP 0xfff
-#define BG_TILE_PALETTE(n) ((n) << 12)
 
 /* Picks a mountain look from the tile position (x is tileX + i). */
 #define MOUNTAIN_CELL(y) gMountainCellVariants[((y) * 2 + (((y) >> 3) + ((tileX + i) >> 2) + tileX + i)) & 15]
