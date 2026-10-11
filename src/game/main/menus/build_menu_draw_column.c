@@ -17,7 +17,7 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 void func_020f7d50(u16 *map, u16 x, u16 y, int unitType, int a, int b, int c);
 void Gfx_RequestLayerCopy(int layer);
 
-/* Draws up to BUILD_MENU_ROWS build menu entries from data_0229eaf8[first]
+/* Draws up to BUILD_MENU_ROWS build menu entries from gBuildMenuEntries[first]
  * on layer 0, two tile rows apart below (x, y): unit icon, name and cost.
  * Entries the player cannot afford are drawn dimmed. */
 void BuildMenu_DrawColumn(int x, int y, int first)
@@ -32,17 +32,17 @@ void BuildMenu_DrawColumn(int x, int y, int first)
     int cost;
 
     for (row = 0; row < BUILD_MENU_ROWS; row++) {
-        if (data_0229eaf8[first + row].unitType == 0) {
+        if (gBuildMenuEntries[first + row].unitType == 0) {
             break;
         }
-        if (data_0229eaf8[first + row].state == BUILD_ENTRY_AFFORDABLE) {
+        if (gBuildMenuEntries[first + row].state == BUILD_ENTRY_AFFORDABLE) {
             dimmed = 0;
             iconArg = GAME->currentUnitBase; /* as read; why the icon takes this is unclear */
         } else {
             dimmed = 1;
             iconArg = 0x100;
         }
-        name = Text_Get(Ov000_gUnitStats[data_0229eaf8[first + row].unitType].text[0].id);
+        name = Text_Get(Ov000_gUnitStats[gBuildMenuEntries[first + row].unitType].text[0].id);
         buf[0] = 25;                   /* control byte before the name; meaning unknown */
         i = 0;
         while (name[i] != 0) {
@@ -52,9 +52,9 @@ void BuildMenu_DrawColumn(int x, int y, int first)
         buf[i + 1] = 0;
         rowY = y + 1 + row * 2;
         Text_PrintStringImmediate(x + 3, rowY, data_027c0280->layer0Map, (const char *)buf, 0, dimmed);
-        cost = Unit_GetValuePerHp(GAME->currentPlayer, data_0229eaf8[first + row].unitType) * 10;
+        cost = Unit_GetValuePerHp(GAME->currentPlayer, gBuildMenuEntries[first + row].unitType) * 10;
         Number_Draw(x + 14, rowY, data_027c0280->layer0Map, cost, 0, dimmed);
-        func_020f7d50(data_027c0280->layer0Map, x + 1, rowY, data_0229eaf8[first + row].unitType, iconArg, 0, 0);
+        func_020f7d50(data_027c0280->layer0Map, x + 1, rowY, gBuildMenuEntries[first + row].unitType, iconArg, 0, 0);
     }
     Gfx_RequestLayerCopy(0);
 }

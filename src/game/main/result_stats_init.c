@@ -12,7 +12,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 u8 Map_GetLoadedPlayerCount(void);
-const char *func_020c3e34(void); /* GAME->unk_1c4 read as a string: likely the map name */
+const char *Map_GetCurrentName(void);
 void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
@@ -83,7 +83,7 @@ void ResultStats_Init(Task *task)
     task->unk_66 = 1;
     task->unk_68 = 0;
     task->unk_6a = Map_GetLoadedPlayerCount();
-    mapName = func_020c3e34();
+    mapName = Map_GetCurrentName();
     day = GAME->day;
     SWITCH_BACK();
 

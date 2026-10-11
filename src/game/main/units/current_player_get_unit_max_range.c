@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-int func_0209e334(int unitType, int powerState)
+int CurrentPlayer_GetUnitMaxRange(int unitType, int powerState)
 {
     int bonus = GetCoRangeBonus(GAME->currentPlayer, 0, powerState, unitType);
     BOOL hasBackCo = GAME->players[GAME->currentPlayer].back.id ? TRUE : FALSE;

@@ -8,7 +8,7 @@ extern u8 data_022a6b34[];
 extern Unk_02080440_48 data_02189cd8;
 
 s8 UnitMenu_JoinHidden(void);
-s8 func_020bf2d0(void);
+s8 UnitMenu_BoardHidden(void);
 BOOL Map_CanSendToOtherMapFrom(MapUnit *unit, int x, int y);
 BOOL Unit_LacksOtherMapSlots(MapUnit *unit);
 BOOL Unit_FindOtherMapTile(MapUnit *unit, TilePoint *pos);
@@ -35,7 +35,7 @@ s8 UnitMenu_SendBlockedHidden(void)
     if (!UnitMenu_JoinHidden()) {
         return 1;
     }
-    if (!func_020bf2d0()) {
+    if (!UnitMenu_BoardHidden()) {
         return 1;
     }
     if (!Map_CanSendToOtherMapFrom(STATE->actingUnit, x, y)) {

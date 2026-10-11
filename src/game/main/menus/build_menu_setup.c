@@ -34,7 +34,7 @@ void BuildMenu_Setup(Task *task)
     data_027c0280->bgScrollY[bg] = data_027c0280->bgScrollX[bg];
     task->waitFrames = 0;
     BUILD_MENU_VARS(task)->unk_2c = 0;
-    BUILD_MENU_VARS(task)->lastEntry = data_0229eae8 - 1;
+    BUILD_MENU_VARS(task)->lastEntry = gBuildMenuCount - 1;
     MenuButton_Select(0);
     if (BUILD_MENU_VARS(task)->lastEntry <= BUILD_MENU_ROWS) {
         func_020bbbb0(7, 6, 0);
@@ -44,6 +44,6 @@ void BuildMenu_Setup(Task *task)
     }
     MenuButton_AddReserved(0, 0, &data_02158f54);
     Sound_PlaySe(0x1000a);
-    UnitInfoPanel_OpenForTypeOnSecondScreen(data_027c027c->unk_48[data_027c0284]->currentPlayer, data_0229eaf8[0].unitType);
+    UnitInfoPanel_OpenForTypeOnSecondScreen(data_027c027c->unk_48[data_027c0284]->currentPlayer, gBuildMenuEntries[0].unitType);
     SidePanel_Place(SIDE_PANEL_SNAP_LEFT);
 }

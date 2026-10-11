@@ -34,7 +34,7 @@ void func_020ba750(void);
 void func_020c1950(void);
 void CurrentPlayer_SyncState(void);
 void Player_EndPower(int player);
-BOOL func_020bae64(void);                   /* TRUE: two or more human teams share the DS */
+BOOL HotSeat_HasSeveralHumanTeams(void);                   /* TRUE: two or more human teams share the DS */
 int Player_GetNextInGame(int player);              /* next player after `player` still in the game */
 void NextTurn_DrawArmyName(int y, int army);
 void Text_DrawCentered(int y, const char *text);
@@ -48,12 +48,12 @@ static inline BOOL Touch_IsPressed(void)
 }
 
 /* Handler for game state 3: ends the turn and goes to state 4. When human
- * players of different teams share the DS (func_020bae64), it first shows
+ * players of different teams share the DS (HotSeat_HasSeveralHumanTeams), it first shows
  * the next army's name and a bobbing "NEXT TURN" on the top screen, and ends
  * the turn only once A is pressed or the touch screen is pressed. */
 void Game_State3_NextTurnScreen(void)
 {
-    if (func_020bae64()) {
+    if (HotSeat_HasSeveralHumanTeams()) {
         {
             Unk_027c0280 *saved0280 = data_027c0280;
             Unk_02080440 *saved027c;
@@ -103,7 +103,7 @@ void Game_State3_NextTurnScreen(void)
     if (data_027c027c == data_027c0288.unk_00) {
         func_ov000_022b04ec();
     }
-    if (func_020bae64()) {
+    if (HotSeat_HasSeveralHumanTeams()) {
         func_020ca9d8();
     }
     func_020ba750();

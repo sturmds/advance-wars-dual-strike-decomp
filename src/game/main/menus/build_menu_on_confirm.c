@@ -35,7 +35,7 @@ void BuildMenu_OnConfirm(MenuButton *button)
     MapUnit *unit;
 
     id = button->id;
-    if (data_0229eaf8[id].state == BUILD_ENTRY_TOO_EXPENSIVE) {
+    if (gBuildMenuEntries[id].state == BUILD_ENTRY_TOO_EXPENSIVE) {
         Sound_PlaySe(0x10008);
         return;
     }
@@ -44,11 +44,11 @@ void BuildMenu_OnConfirm(MenuButton *button)
         func_020bba44();
         return;
     }
-    unit = CurrentPlayer_BuyUnit(GAME->cursorX, GAME->cursorY, data_0229eaf8[id].unitType);
+    unit = CurrentPlayer_BuyUnit(GAME->cursorX, GAME->cursorY, gBuildMenuEntries[id].unitType);
     GAME->actingUnitDestX = GAME->cursorX;
     GAME->actingUnitDestY = GAME->cursorY;
     if (data_0229eaec != 0) {
-        UnitAction_Send(1, data_0229eaf8[id].unitType, 0, 0);
+        UnitAction_Send(1, gBuildMenuEntries[id].unitType, 0, 0);
     }
     MapScript_RunList10(14, unit);
     func_020bbe54();

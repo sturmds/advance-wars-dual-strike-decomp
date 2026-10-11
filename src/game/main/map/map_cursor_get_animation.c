@@ -1,13 +1,13 @@
 #include "types.h"
 
-BOOL func_020c3f98(int tileX, int tileY);
+BOOL Map_IsFreeDeployCity(int tileX, int tileY);
 int Screen_AddCornerIndex(int x, int y, int base);
 
 /* Returns the animation for map cursor style `style` at map pixel position
  * (*xp, *yp) and moves the position to where the sprite is drawn: most
  * styles to the tile centre (+8, +8). Styles 0, 1, 5 and 6 pick one of four
  * animations by screen corner (Screen_AddCornerIndex); style 0 uses the
- * second set over an empty tile that func_020c3f98 accepts (a city a unit
+ * second set over an empty tile that Map_IsFreeDeployCity accepts (a city a unit
  * can be deployed from). Other styles not listed are their own animation. */
 int MapCursor_GetAnimation(int *xp, int *yp, int style)
 {
@@ -18,7 +18,7 @@ int MapCursor_GetAnimation(int *xp, int *yp, int style)
     case 0:
         x += 8;
         y += 8;
-        style = Screen_AddCornerIndex(x, y, func_020c3f98((s16)(x >> 4), (s16)(y >> 4)) ? 4 : 0);
+        style = Screen_AddCornerIndex(x, y, Map_IsFreeDeployCity((s16)(x >> 4), (s16)(y >> 4)) ? 4 : 0);
         break;
     case 1:
         x += 8;

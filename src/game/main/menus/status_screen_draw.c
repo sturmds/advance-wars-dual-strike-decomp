@@ -7,7 +7,7 @@ u8 Map_GetLoadedPlayerCount(void);
 void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet);
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
-const char *func_020c3e34(void);          /* GAME->unk_1c4 read as a string: likely the map name */
+const char *Map_GetCurrentName(void);
 int Player_CountUnitsBuilt(int player);            /* sum of Player.unitsBuilt */
 int Player_CountUnitsLost(int player);            /* sum of Player.unitsLost */
 
@@ -33,7 +33,7 @@ void StatusScreen_Draw(void)
     u16 *map;
 
     map = data_027c0280->layer0Map;
-    Text_PrintStringImmediate(3, 4, map, func_020c3e34(), 0, 0);
+    Text_PrintStringImmediate(3, 4, map, Map_GetCurrentName(), 0, 0);
     Number_Draw(30, 4, data_027c0280->layer0Map, GAME->day, 0, 0);
     if (GAME->day >= 100) {
         Text_PrintImmediate(25, 4, data_027c0280->layer0Map, 0xc00000ad, 0, 0);

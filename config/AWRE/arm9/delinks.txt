@@ -10157,7 +10157,7 @@ src/game/main/units/current_player_get_unit_move_range.c:
     complete
     .text       start:0x0209e280 end:0x0209e334
 
-src/game/main/func_0209e334.c:
+src/game/main/units/current_player_get_unit_max_range.c:
     complete
     .text       start:0x0209e334 end:0x0209e3e8
 
@@ -12056,7 +12056,7 @@ src/game/main/map/map_get_loaded_player_count.c:
     complete
     .text       start:0x020c3e08 end:0x020c3e34
 
-src/game/main/func_020c3e34.c:
+src/game/main/map/map_get_current_name.c:
     complete
     .text       start:0x020c3e34 end:0x020c3e5c
 
@@ -12072,7 +12072,7 @@ src/game/main/map/map_is_vacant_deploy_tile.c:
     complete
     .text       start:0x020c3f18 end:0x020c3f98
 
-src/game/main/func_020c3f98.c:
+src/game/main/map/map_is_free_deploy_city.c:
     complete
     .text       start:0x020c3f98 end:0x020c4018
 

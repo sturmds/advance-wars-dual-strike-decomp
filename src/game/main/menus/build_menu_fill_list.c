@@ -10,11 +10,11 @@ extern s8 data_ov000_022b3834[];
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-BOOL func_020bb9e0(int player, int unitType);
+BOOL BuildMenu_CanBuildUnit(int player, int unitType);
 
-/* Fills data_0229eaf8 with the unit types of the build order list
+/* Fills gBuildMenuEntries with the unit types of the build order list
  * (data_ov000_022b3834, ends at -1) that are in one of the MOVE_GROUP_* bits
- * of moveGroups and that the current player may build (func_020bb9e0), and
+ * of moveGroups and that the current player may build (BuildMenu_CanBuildUnit), and
  * marks those the player cannot afford. */
 void BuildMenu_FillList(int moveGroups)
 {
@@ -26,18 +26,18 @@ void BuildMenu_FillList(int moveGroups)
     count = 0;
     for (i = 0; data_ov000_022b3834[i] != -1; i++) {
         type = data_ov000_022b3834[i];
-        if ((moveGroups & Ov000_gUnitStats[type].moveGroup) && func_020bb9e0(GAME->currentPlayer, type)) {
+        if ((moveGroups & Ov000_gUnitStats[type].moveGroup) && BuildMenu_CanBuildUnit(GAME->currentPlayer, type)) {
             state = GAME;
             /* needed to match: the original compares unsigned */
             if ((u32)state->players[state->currentPlayer].funds < Unit_GetValuePerHp(state->currentPlayer, type) * 10) {
-                data_0229eaf8[count].state = BUILD_ENTRY_TOO_EXPENSIVE;
+                gBuildMenuEntries[count].state = BUILD_ENTRY_TOO_EXPENSIVE;
             } else {
-                data_0229eaf8[count].state = BUILD_ENTRY_AFFORDABLE;
+                gBuildMenuEntries[count].state = BUILD_ENTRY_AFFORDABLE;
             }
-            data_0229eaf8[count].unitType = type;
+            gBuildMenuEntries[count].unitType = type;
             count++;
         }
     }
-    data_0229eae8 = count;
-    data_0229eaf8[count].unitType = 0;
+    gBuildMenuCount = count;
+    gBuildMenuEntries[count].unitType = 0;
 }

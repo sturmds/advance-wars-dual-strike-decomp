@@ -17,8 +17,8 @@ void BuildMenu_OnKeys(MenuButton *button)
         if (id == 0 || id == BUILD_MENU_ROWS) {
             if (keys == gKeypad->pressed) {
                 id += BUILD_MENU_ROWS - 1;
-                if (id >= data_0229eae8 - 1) {
-                    id = data_0229eae8 - 1;
+                if (id >= gBuildMenuCount - 1) {
+                    id = gBuildMenuCount - 1;
                 }
             }
         } else {
@@ -26,7 +26,7 @@ void BuildMenu_OnKeys(MenuButton *button)
         }
     }
     if (keys & PAD_KEY_DOWN) {
-        if (id == BUILD_MENU_ROWS - 1 || id == BUILD_MENU_ROWS * 2 - 1 || id == data_0229eae8 - 1) {
+        if (id == BUILD_MENU_ROWS - 1 || id == BUILD_MENU_ROWS * 2 - 1 || id == gBuildMenuCount - 1) {
             if (keys == gKeypad->pressed) {
                 id -= BUILD_MENU_ROWS - 1;
                 if (id < 0) {
@@ -37,7 +37,7 @@ void BuildMenu_OnKeys(MenuButton *button)
             id++;
         }
     }
-    if (data_0229eae8 > BUILD_MENU_ROWS) {
+    if (gBuildMenuCount > BUILD_MENU_ROWS) {
         if (keys & PAD_KEY_LEFT) {
             if (id >= BUILD_MENU_ROWS) {
                 id -= BUILD_MENU_ROWS;
@@ -48,8 +48,8 @@ void BuildMenu_OnKeys(MenuButton *button)
                 id += BUILD_MENU_ROWS;
             }
         }
-        if (id >= data_0229eae8 - 1) {
-            id = data_0229eae8 - 1;
+        if (id >= gBuildMenuCount - 1) {
+            id = gBuildMenuCount - 1;
         }
     }
     MenuButton_Select(id);

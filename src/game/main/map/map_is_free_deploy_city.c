@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 BOOL DeployCity(u8 tile);
 
-BOOL func_020c3f98(int x, int y)
+BOOL Map_IsFreeDeployCity(int x, int y)
 {
     MapTiles *mapTiles = data_027c027c->unk_48[data_027c0284]->mapTiles;
     int index = x + mapTiles->rowStart[y];
