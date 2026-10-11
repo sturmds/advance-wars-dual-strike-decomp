@@ -38,7 +38,7 @@ const void *Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
 void Window_DrawOnLayer1(int x, int y, int width, int height);
 void func_01ff9b48(void);
-void func_02002a38(int co, int tile, int row);
+void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028808(void);
 void func_02028978(void);
 void func_0202b764(void);
@@ -140,7 +140,7 @@ void CoSelectScreen_Init(void)
             /* 0x1b0 tiles of 32 bytes per row; needed to match: indexed by tile */
             Mem_Zero32(0, (u8 (*)[32])data_027c0280->objVram + row * 0x1b0, 0x3600);
         } else {
-            func_02002a38(GRID_CO(data_0229c73c->cursorColumn, row), row * 0x1b0, row);
+            Co_LoadGraphicsAndPalette(GRID_CO(data_0229c73c->cursorColumn, row), row * 0x1b0, row);
         }
     }
     for (column = 1; column < data_0229c73c->columnCount + 1; column++) {

@@ -10,7 +10,7 @@ void Screen_SetCurrentBoth(void *state);
 void Gfx_LoadBmap09f(void *dst, int unused, int paletteSlot);
 void Font_LoadDigits(int baseTile);
 void func_01ff8c84(int layer);
-void func_020029e4(int coId, int firstTile, int paletteSlot, int army);
+void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 void func_0201e6e8(int x, int y, int width, int height);
 void Co_UnpackPicture(int coId, int firstTile);
 void Palette_LoadObjRow(int row);
@@ -64,10 +64,10 @@ void func_02033088(Task *task)
     func_01ff8c84(1);
     /* needed to match: the original has the record index in r3 (the army
      * argument) at both calls */
-    func_020029e4(data_022a7ab8[RECORD_INDEX(task)].unk_00, 0x224, 5, RECORD_INDEX(task));
+    Co_LoadArmyGraphicsAndPalette(data_022a7ab8[RECORD_INDEX(task)].unk_00, 0x224, 5, RECORD_INDEX(task));
     func_0201e6e8(0, 17, 32, 4);
     if (data_022a7aba[RECORD_INDEX(task)].unk_00 & 0x7f) {
-        func_020029e4(data_022a7aba[RECORD_INDEX(task)].unk_00, 0x3d4, 6, RECORD_INDEX(task));
+        Co_LoadArmyGraphicsAndPalette(data_022a7aba[RECORD_INDEX(task)].unk_00, 0x3d4, 6, RECORD_INDEX(task));
         func_0201e6e8(0, 12, 32, 4);
     }
     Co_UnpackPicture(data_022a7ab8[RECORD_INDEX(task)].unk_00 & 0x7f, 0x1dc);

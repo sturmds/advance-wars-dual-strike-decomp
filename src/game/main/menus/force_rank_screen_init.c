@@ -34,7 +34,7 @@ void Wallpaper_LoadSelected(void);
 void Window_DrawOnLayer1(int x, int y, int width, int height);
 void func_01ff9b48(void);
 void func_0201e6e8(int x, int y, int width, int height);
-void func_02002a38(int co, int tile, int row);
+void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028a30(void);
 void func_0202b764(void);
 void func_0202b7e0(int a0);
@@ -155,7 +155,7 @@ void ForceRankScreen_Init(void)
     for (i = 0; i < 4; i++) {
         Bg_PutSkillSlot(1, 15 + i * 2, data_027c0280->layer1Map, 0);
     }
-    func_02002a38(gForceRankScreen->co, 0, 1);
+    Co_LoadGraphicsAndPalette(gForceRankScreen->co, 0, 1);
     func_0202b804(BG_CHAR_BASE(data_027c0280->layer0Bg) + 0x4000);
     func_0202b7e0(2);
     slots = gForceRankScreen->unk_7a;

@@ -17,7 +17,7 @@ void Palette_Load(const void *src, int offset, u32 size);
 void Gfx_RequestLayerCopy(int layer);
 int Co_GetNation(int co);
 void Wallpaper_LoadOnLayer3(u32 index);
-void func_020029e4(int coId, int firstTile, int paletteSlot, int army);
+void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
@@ -133,7 +133,7 @@ void SuperBreak_SetUpScreen(Task *task)
     Mem_Free(res);
 
     Wallpaper_LoadOnLayer3((u8)(PLAYER->front.id & PLAYER_CO_ID_MASK));
-    func_020029e4(PLAYER->front.id, 16, 0, GAME->currentPlayer);
+    Co_LoadArmyGraphicsAndPalette(PLAYER->front.id, 16, 0, GAME->currentPlayer);
     /* needed to match: indexing from &gCoTable[0].blocks[POWER_SUPER] keeps
      * the 0x1a0 offset in the relocation (data_021537ac) */
     task->unk_58 = BreakText_Load(

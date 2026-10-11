@@ -204,6 +204,18 @@ src/game/main/graphics/co_load_graphics.c:
     complete
     .text       start:0x02002984 end:0x020029e4
 
+src/game/main/graphics/co_load_army_graphics_and_palette.c:
+    complete
+    .text       start:0x020029e4 end:0x02002a38
+
+src/game/main/graphics/co_load_graphics_and_palette.c:
+    complete
+    .text       start:0x02002a38 end:0x02002a64
+
+src/game/main/graphics/sprite_queue_default_tile.c:
+    complete
+    .text       start:0x02002a64 end:0x02002ab0
+
 src/game/main/graphics/sprite_queue_default.c:
     complete
     .text       start:0x02002ab0 end:0x02002b00

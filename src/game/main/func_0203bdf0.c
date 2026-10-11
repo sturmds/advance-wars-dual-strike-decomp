@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_02002a64(int x, int y, int attr, int tile, int list);
+void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 BOOL func_0203bf2c(int x, int width);
 
 /* Queues the sprite of CO slot `slot` (two per player) at (x, y) from
@@ -11,5 +11,5 @@ void func_0203bdf0(int x, int y, int slot)
     if (!func_0203bf2c(x, 48)) {
         return;
     }
-    func_02002a64(x & 0x1ff, y & 0xff, 0xa000, 270 + slot * 12, 0);
+    Sprite_QueueDefaultTile(x & 0x1ff, y & 0xff, 0xa000, 270 + slot * 12, 0);
 }

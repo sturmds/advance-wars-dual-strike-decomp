@@ -8,7 +8,7 @@ int Co_GetNation(int co);
 s32 HwMod32(s32 numerator, s32 denominator);
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
 void func_02001f50(int x, int y, int attr, int tile, int list);
-void func_02002a64(int x, int y, int attr, int tile, int list);
+void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 void CombatSetup_DrawRowPlayerIcons(int x, int y);
 void LinkMenu_DrawSetting(int a0, int a1, int a2, int a3);
 
@@ -68,7 +68,7 @@ void func_0208395c(void)
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     func_02001f50(0x10e0, 24, (row + 1) << 12, (row - 1) * 12 + 0x490, 0);
-    func_02002a64(0x8c, 8, 0xb000, LINK_ROWS[row - 1].unk_19 * 12 + 0x4c0, 0);
+    Sprite_QueueDefaultTile(0x8c, 8, 0xb000, LINK_ROWS[row - 1].unk_19 * 12 + 0x4c0, 0);
     for (i = 0; i < 4; i++) {
         for (j = 0; j < table.counts[kind][i]; j++) {
             Sprite_QueueAt(0, (88 + j * 8) & 0x1ff, (92 + i * 16) & 0xff, &data_027c0028, 0xa000, 0x638);
