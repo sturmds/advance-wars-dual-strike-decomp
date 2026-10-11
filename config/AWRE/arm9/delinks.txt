@@ -7999,6 +7999,10 @@ src/game/main/func_0206a324.c:
     complete
     .text       start:0x0206a324 end:0x0206a340
 
+src/game/main/menus/vs_setup_show_main_screen.c:
+    complete
+    .text       start:0x0206a340 end:0x0206a52c
+
 src/game/main/menus/vs_setup_init.c:
     complete
     .text       start:0x0206a52c end:0x0206ace8
