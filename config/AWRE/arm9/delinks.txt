@@ -12216,6 +12216,10 @@ src/game/main/func_020c06a4.c:
     complete
     .text       start:0x020c06a4 end:0x020c06d4
 
+src/game/main/func_020c06d4.c:
+    complete
+    .text       start:0x020c06d4 end:0x020c0704
+
 src/game/main/func_020c0704.c:
     complete
     .text       start:0x020c0704 end:0x020c0734
