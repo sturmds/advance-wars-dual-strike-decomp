@@ -6,7 +6,7 @@
 void CoSelectScreen_HandleR(void);
 void CoSelectScreen_HandleX(void);
 int CoSelectScreen_ListSlotBelow(int slot);
-int func_02042220(int slot);
+int CoSelectScreen_ListSlotAbove(int slot);
 int func_02042338(int slot);
 int func_02042578(int slot);
 
@@ -24,7 +24,7 @@ void CoSelectScreen_HandleCoListKeys(MenuButton *button)
         slot = func_02042338(slot);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
-        slot = func_02042220(slot);
+        slot = CoSelectScreen_ListSlotAbove(slot);
         data_0229c73c->listAnchor = slot;
     }
     if (gKeypad->repeat & PAD_KEY_DOWN) {
