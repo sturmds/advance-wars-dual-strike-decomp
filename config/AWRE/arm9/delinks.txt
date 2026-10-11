@@ -4122,6 +4122,10 @@ src/game/main/func_020441e8.c:
     complete
     .text       start:0x020441e8 end:0x020441ec
 
+src/game/main/menus/co_select_screen_init.c:
+    complete
+    .text       start:0x02044228 end:0x02044854
+
 src/game/main/func_02044c04.c:
     complete
     .text       start:0x02044c04 end:0x02044c28
