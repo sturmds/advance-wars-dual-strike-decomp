@@ -12,7 +12,7 @@ extern u8 data_ov000_0234ec10[];
 extern u8 data_ov000_0234ec6c[];
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_01ff9a3c(u16 x, u16 y, void *data);
+void Oam_PutTextString(u16 x, u16 y, void *data);
 void Oam_PutNumber(int x, int y, s32 value, int attr);
 void CoPanel_Draw(int x, int y, int slot, int back, int coId, int powerState, int fromOtherMap, int tile, int paletteSlot, int paletteBank, int a6);
 
@@ -30,7 +30,7 @@ void PlayerHud_DrawSlot(int x, int y, int slot, int frontCo, int backCo, int fro
 
     Sprite_QueueAt(5, x + 4, y + 14, data_ov000_0234ec10, (paletteBank << 12) | 20, 0);
     if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[slot].visionGrids & 2) == 0) {
-        func_01ff9a3c((x + 56) & 0x1ff, y + 14, data_ov000_0234ec6c);
+        Oam_PutTextString((x + 56) & 0x1ff, y + 14, data_ov000_0234ec6c);
     } else {
         Oam_PutNumber((x + 56) & 0x1ff, y + 14, STATE->players[slot].funds, (paletteBank << 12) | 22);
     }

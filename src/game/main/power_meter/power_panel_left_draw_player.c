@@ -14,7 +14,7 @@ extern u8 data_0216874c[];
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
 void Oam_PutNumber(int x, int y, s32 value, int attr);
-void func_01ff9a3c(u16 x, u16 y, void *data);
+void Oam_PutTextString(u16 x, u16 y, void *data);
 void PowerPanelLeft_Draw(int x, int y, int player, int coSlot, int tile, int palette);
 BOOL Player_UpdatePowerReady(int player);
 BOOL CanUseSuperPower(int player, int slot);
@@ -32,7 +32,7 @@ void PowerPanelLeft_DrawPlayer(int x, int y, int player, BOOL coSelect)
     } else {
         Oam_PutSprite((x + 512) & 0x1ff, (y + 270) & 0xff, data_02168658, 0x7024);
         if ((STATE->unk_1c4->fog != 0 || STATE->unk_1c4->weather == WEATHER_RAIN) && (STATE->players[player].visionGrids & 2) == 0) {
-            func_01ff9a3c((x + 52) & 0x1ff, y + 14, data_0216874c);
+            Oam_PutTextString((x + 52) & 0x1ff, y + 14, data_0216874c);
         } else {
             Oam_PutNumber((x + 52) & 0x1ff, y + 14, STATE->players[player].funds, 0x7026);
         }
