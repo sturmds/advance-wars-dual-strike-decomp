@@ -8740,6 +8740,10 @@ src/game/main/func_02089260.c:
     complete
     .text       start:0x02089260 end:0x02089298
 
+src/game/main/menus/combat_mode_menu_finish_shop.c:
+    complete
+    .text       start:0x02089298 end:0x020892f0
+
 src/game/main/func_020892f0.c:
     complete
     .text       start:0x020892f0 end:0x02089314
