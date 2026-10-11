@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-void func_020dbc94(int id, int army, void *dest, int copy);
+void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 
 extern Unk_027c0280 *data_027c0280;
 extern s8 data_ov006_0236a7a0[];
@@ -14,7 +14,7 @@ void Ov006_LoadTerrainTiles(int army)
     int tile = 0x25e;
 
     for (i = 0; i < 18; i++) {
-        func_020dbc94(data_ov006_0236a7a0[i], army, data_027c0280->objVram + tile * 32, 1);
+        Palette_QueueBlockCopy(data_ov006_0236a7a0[i], army, data_027c0280->objVram + tile * 32, 1);
         tile += 8;
     }
 }

@@ -4,7 +4,7 @@
 #include "game/Unk_ov006_0235f690.h"
 #include "game/terrain.h"
 
-void func_020dbc94(int id, int army, void *dest, int copy);
+void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 const void *Terrain_GetIconTiles(int id);
 const void *Terrain_GetPalette(int id, int army);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
@@ -75,7 +75,7 @@ void Ov006_SetEntryTile(int tile)
     data_ov006_0236d640->toolTile = tile;
     terrain = MAP_TILE_TERRAIN(tile);
 
-    func_020dbc94(terrain, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);
+    Palette_QueueBlockCopy(terrain, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);
     TransferQueue_Add(Terrain_GetIconTiles(terrain), ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5380, 0x100);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

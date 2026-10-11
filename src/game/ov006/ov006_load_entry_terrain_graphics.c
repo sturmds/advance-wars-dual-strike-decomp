@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_020dbc94(int id, int army, void *dest, int copy);
+void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 const void *Terrain_GetIconTiles(int id);
 const void *Terrain_GetPalette(int id, int army);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
@@ -28,7 +28,7 @@ void Ov006_LoadEntryTerrainGraphics(void)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    func_020dbc94(id, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);
+    Palette_QueueBlockCopy(id, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);
     TransferQueue_Add(Terrain_GetIconTiles(id), ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5380, 0x100);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

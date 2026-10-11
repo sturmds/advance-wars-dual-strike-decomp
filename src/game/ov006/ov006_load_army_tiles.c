@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
 
-void func_020dbc94(int id, int army, void *dest, int copy);
+void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 const void *Terrain_GetPalette(int id, int army);
 void Palette_Load(const void *src, u32 offset, u32 size);
 
@@ -29,7 +29,7 @@ void Ov006_LoadArmyTiles(int army)
         count = 5;
     }
     for (i = 0; i < count; i++) {
-        func_020dbc94(*ids, army, data_027c0280->objVram + tile * 32, 1);
+        Palette_QueueBlockCopy(*ids, army, data_027c0280->objVram + tile * 32, 1);
         tile += 8;
         ids++;
     }

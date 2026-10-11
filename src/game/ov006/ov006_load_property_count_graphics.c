@@ -5,7 +5,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_0201e6e8(int x, int y, int width, int height);
-void func_020dbc94(int id, int army, void *dest, int copy);
+void Palette_QueueBlockCopy(int id, int army, void *dest, int copy);
 const void *Terrain_GetPalette(int id, int army);
 u8 *func_020c67bc(void);
 int Player_GetCoIconTile(int player, int index);
@@ -22,7 +22,7 @@ extern u8 gArmyPalettes[][32];
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Loads the sub screen sprites of the count table that
- * Ov006_DrawPropertyCounts draws: eight terrain sprites (func_020dbc94) at
+ * Ov006_DrawPropertyCounts draws: eight terrain sprites (Palette_QueueBlockCopy) at
  * 0x3000-0x3700 in OBJ VRAM, the CO icons of players 1-4 at 0x3c00, the
  * players' army colours as OBJ palettes 11-14, and the property palettes
  * of armies 0-4 (id 20) as OBJ palettes 4-8, which the table rows use. Also
@@ -39,14 +39,14 @@ void Ov006_LoadPropertyCountGraphics(void)
     Screen_SetCurrent(data_027c0288.unk_04);
     func_0201e6e8(16, 3, 16, 20);
 
-    func_020dbc94(6, 0, data_027c0280->objVram + 0x3000, 1);
-    func_020dbc94(14, 1, data_027c0280->objVram + 0x3100, 1);
-    func_020dbc94(10, 0, data_027c0280->objVram + 0x3200, 1);
-    func_020dbc94(11, 0, data_027c0280->objVram + 0x3300, 1);
-    func_020dbc94(22, 0, data_027c0280->objVram + 0x3400, 1);
-    func_020dbc94(14, 0, data_027c0280->objVram + 0x3500, 1);
-    func_020dbc94(17, 0, data_027c0280->objVram + 0x3600, 1);
-    func_020dbc94(16, 0, data_027c0280->objVram + 0x3700, 1);
+    Palette_QueueBlockCopy(6, 0, data_027c0280->objVram + 0x3000, 1);
+    Palette_QueueBlockCopy(14, 1, data_027c0280->objVram + 0x3100, 1);
+    Palette_QueueBlockCopy(10, 0, data_027c0280->objVram + 0x3200, 1);
+    Palette_QueueBlockCopy(11, 0, data_027c0280->objVram + 0x3300, 1);
+    Palette_QueueBlockCopy(22, 0, data_027c0280->objVram + 0x3400, 1);
+    Palette_QueueBlockCopy(14, 0, data_027c0280->objVram + 0x3500, 1);
+    Palette_QueueBlockCopy(17, 0, data_027c0280->objVram + 0x3600, 1);
+    Palette_QueueBlockCopy(16, 0, data_027c0280->objVram + 0x3700, 1);
 
     TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(1, 2) * 32, data_027c0280->objVram + 0x3c00, 128);
     TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(2, 2) * 32, data_027c0280->objVram + 0x3c80, 128);
