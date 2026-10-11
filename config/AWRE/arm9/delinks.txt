@@ -4103,6 +4103,10 @@ src/game/main/func_020329c0.c:
     complete
     .text       start:0x020329c0 end:0x020329d8
 
+src/game/main/menus/both_screens_fade_to_white_update.c:
+    complete
+    .text       start:0x020329d8 end:0x02032a70
+
 src/game/main/func_02032a70.c:
     complete
     .text       start:0x02032a70 end:0x02032a7c
