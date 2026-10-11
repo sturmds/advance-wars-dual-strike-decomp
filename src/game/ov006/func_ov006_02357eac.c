@@ -18,6 +18,6 @@ void func_ov006_02357eac(int id)
     Ov006_ClearWindowsAndBlend();
     func_020c4018();
     Font_SetDigitEndTile(220);
-    data_ov006_0236d640->unk_38 = id;
+    data_ov006_0236d640->chosenSlot = id;
     ScriptSlot_Start(data_ov006_0236b978, 0);
 }

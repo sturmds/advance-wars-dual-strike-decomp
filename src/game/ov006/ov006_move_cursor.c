@@ -15,10 +15,9 @@ extern s16 data_02169456[][2];   /* the same table from its y steps */
 #define MAP_LAST_X 29   /* Design Room maps are 30x20 tiles */
 #define MAP_LAST_Y 19
 
-/* Moves the editor's cursor tile (unk_0e, unk_10) one step in the direction
+/* Moves the editor's cursor tile (cursorX, cursorY) one step in the direction
  * of the d-pad keys in gKeypad->repeat, kept on the map. Does nothing while
- * the map view is scrolling. The (s16) casts on unk_16 and unk_18 are needed
- * to match: the original treats them as signed. */
+ * the map view is scrolling. */
 void Ov006_MoveCursor(void)
 {
     int dir;
@@ -31,46 +30,46 @@ void Ov006_MoveCursor(void)
     }
     dir = (gKeypad->repeat >> 4) & 15;
     step = data_02169454[dir][0];
-    cur = OV->unk_0e;
+    cur = OV->cursorX;
     pos = cur + step;
     if (step > 0) {
         if (pos > MAP_LAST_X) {
             pos = MAP_LAST_X;
         }
-        OV->unk_16 = (s16)pos;
-        OV->unk_0e = pos;
+        OV->viewX = pos;
+        OV->cursorX = pos;
     } else if (step < 0) {
         /* overwritten below; kept because the original has it */
-        if ((s16)OV->unk_16 != cur) {
-            OV->unk_16 = cur;
+        if (OV->viewX != cur) {
+            OV->viewX = cur;
         }
         if (pos < 0) {
             pos = 0;
         }
-        OV->unk_16 = (s16)pos;
-        OV->unk_0e = pos;
+        OV->viewX = pos;
+        OV->cursorX = pos;
     }
-    cur = OV->unk_10;
+    cur = OV->cursorY;
     step = data_02169456[dir][0];
     pos = cur + step;
     if (step > 0) {
         if (pos > MAP_LAST_Y) {
             pos = MAP_LAST_Y;
         }
-        OV->unk_18 = (s16)pos;
-        OV->unk_10 = pos;
+        OV->viewY = pos;
+        OV->cursorY = pos;
     } else if (step < 0) {
-        if ((s16)OV->unk_18 != cur) {
-            OV->unk_18 = cur;
+        if (OV->viewY != cur) {
+            OV->viewY = cur;
         }
         if (pos < 0) {
             pos = 0;
         }
-        OV->unk_18 = (s16)pos;
-        OV->unk_10 = pos;
+        OV->viewY = pos;
+        OV->cursorY = pos;
     }
     if (gKeypad->unk_00 & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) {
-        OV->unk_16 = OV->unk_0e;
-        OV->unk_18 = OV->unk_10;
+        OV->viewX = OV->cursorX;
+        OV->viewY = OV->cursorY;
     }
 }

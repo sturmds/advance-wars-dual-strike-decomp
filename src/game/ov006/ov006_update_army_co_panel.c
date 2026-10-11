@@ -82,7 +82,7 @@ extern const char data_ov006_0236b8b4[];   /* "001" */
     }
 
 /* Per-frame update of the panel shown while request 2 is active (the caller
- * runs it for that request). OV6->unk_0c is its state:
+ * runs it for that request). OV6->screenState is its state:
  *   bit 0x8000 of unk_00: reset; darken layers 1-3 and sprites outside
  *     window 0, load graphics from "/mapedit" ("002" into OBJ VRAM, palette
  *     "001").
@@ -104,7 +104,7 @@ void Ov006_UpdateArmyCoPanel(void)
 
     if (OV6->unk_00 & 0x8000) {
         OV6->unk_00 &= ~0x8000;
-        OV6->unk_0c = 0;
+        OV6->screenState = 0;
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -135,20 +135,20 @@ void Ov006_UpdateArmyCoPanel(void)
         Screen_SetCurrentGfx(saved0280);
     }
 
-    switch (OV6->unk_0c) {
+    switch (OV6->screenState) {
     case 0:
         Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
         func_ov006_02352708(OV6->unk_29);
-        OV6->unk_0c = 1;
+        OV6->screenState = 1;
         break;
     case 1:
         func_ov006_023526c8(OV6->unk_29);
-        OV6->unk_0c = 2;
+        OV6->screenState = 2;
         break;
     case 2:
         START_WINDOW_RECT();
         Sound_PlaySe(0x1000a);
-        OV6->unk_0c = 3;
+        OV6->screenState = 3;
     case 3:
         done = 0;
         OV6->winLeft += (-10 - OV6->winLeft) / 2;
@@ -179,7 +179,7 @@ void Ov006_UpdateArmyCoPanel(void)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
         if (done >= 4) {
-            OV6->unk_0c = 4;
+            OV6->screenState = 4;
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);
             saved027c = data_027c027c;
@@ -193,7 +193,7 @@ void Ov006_UpdateArmyCoPanel(void)
         }
         break;
     case 4:
-        OV6->unk_0c = 51;
+        OV6->screenState = 51;
         Ov006_AddEntryButtons();
         func_ov006_02355bd4();
         Ov006_AddToolButtons();
@@ -212,12 +212,12 @@ void Ov006_UpdateArmyCoPanel(void)
         break;
     }
 
-    switch (OV6->unk_0c) {
+    switch (OV6->screenState) {
     case 70:
         SET_MATRIX0(256, 256);
         OV6->unk_02 |= 8;
         OV6->unk_3b = 0;
-        OV6->unk_0c = 71;
+        OV6->screenState = 71;
     case 71:
         scale = Ov006_gPanelScaleSteps[OV6->unk_3b];
         SET_MATRIX0(scale, scale);
@@ -229,12 +229,12 @@ void Ov006_UpdateArmyCoPanel(void)
             Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
             func_ov006_02352708(OV6->unk_29);
             OV6->unk_02 &= ~8;
-            OV6->unk_0c = 72;
+            OV6->screenState = 72;
         }
         break;
     case 72:
         func_ov006_023526c8(OV6->unk_29);
-        OV6->unk_0c = 73;
+        OV6->screenState = 73;
         OV6->unk_3b = 4;
         break;
     case 73:
@@ -254,7 +254,7 @@ void Ov006_UpdateArmyCoPanel(void)
         OV6->unk_02 |= 8;
         OV6->unk_02 |= 0x10;
         OV6->unk_3b = 8;
-        OV6->unk_0c = 74;
+        OV6->screenState = 74;
         break;
     case 74:
         scale = Ov006_gPanelScaleSteps[OV6->unk_3b];
@@ -263,12 +263,12 @@ void Ov006_UpdateArmyCoPanel(void)
         if (Ov006_gPanelScaleSteps[OV6->unk_3b] < 0) {
             Sound_PlaySe(0x1000a);
             OV6->unk_02 &= ~8;
-            OV6->unk_0c = 51;
+            OV6->screenState = 51;
         }
         break;
     }
 
-    switch (OV6->unk_0c) {
+    switch (OV6->screenState) {
     case 60:
         func_ov006_02355b44();
         func_ov006_02355610();
@@ -278,7 +278,7 @@ void Ov006_UpdateArmyCoPanel(void)
         func_01ff8a2c(GFX->layer1Map, 0, 20, 28, 4, 0);
         Gfx_RequestLayerCopy(0);
         Gfx_RequestLayerCopy(1);
-        OV6->unk_0c = 61;
+        OV6->screenState = 61;
         Sound_PlaySe(0x10009);
     case 61:
         done = 0;
@@ -342,11 +342,11 @@ void Ov006_UpdateArmyCoPanel(void)
         break;
     }
 
-    switch (OV6->unk_0c) {
+    switch (OV6->screenState) {
     case 30:
         OV6->unk_02 |= 4;
         OV6->unk_3a = 0;
-        OV6->unk_0c = 31;
+        OV6->screenState = 31;
         SET_MATRIX0(256, 256);
         break;
     case 31:
@@ -361,7 +361,7 @@ void Ov006_UpdateArmyCoPanel(void)
             if (OV6->unk_29 == 0) {
                 Ov006_LoadArmyTiles(OV6->unk_27);
             }
-            OV6->unk_0c = 32;
+            OV6->screenState = 32;
         }
         break;
     case 32:
@@ -371,7 +371,7 @@ void Ov006_UpdateArmyCoPanel(void)
         }
         if (scale == -1) {
             OV6->unk_02 &= ~4;
-            OV6->unk_0c = 51;
+            OV6->screenState = 51;
         }
         break;
     }

@@ -10,10 +10,6 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_AT(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
-/* unk_2b holds the number of property tiles (Ov006_CountPropertyTiles counts
- * them); read as signed because the code loads it with ldrsb. */
-#define PROPERTY_COUNT (*(s8 *)&data_ov006_0236d640->unk_2b)
-
 #define PROPERTY_HQ 2
 
 /* Removes the property on tile x, y from the main screen's property list
@@ -40,9 +36,9 @@ void Ov006_RemoveProperty(int x, int y)
         if (STATE->unk_608c[i].tile != 0 && x == STATE->unk_608c[i].x && y == STATE->unk_608c[i].y) {
             STATE->unk_6088[i].unk_00 = 0;
             STATE->unk_608c[i].tile = 0;
-            PROPERTY_COUNT--;
-            if (PROPERTY_COUNT < 0) {
-                PROPERTY_COUNT = 0;
+            data_ov006_0236d640->propertyCount--;
+            if (data_ov006_0236d640->propertyCount < 0) {
+                data_ov006_0236d640->propertyCount = 0;
             }
         }
     }

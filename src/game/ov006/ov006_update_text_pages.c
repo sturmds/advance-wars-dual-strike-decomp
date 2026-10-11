@@ -39,7 +39,7 @@ void Ov006_UpdateTextPages(void)
 
     if (data_ov006_0236d640->unk_00 & 0x8000) {
         data_ov006_0236d640->unk_00 &= ~0x8000;
-        data_ov006_0236d640->unk_0c = 0;
+        data_ov006_0236d640->screenState = 0;
         func_0201e6e8(0, 0, 32, 24);
         Font_SetDigitEndTile(69);
         func_ov006_02355514();
@@ -55,14 +55,14 @@ void Ov006_UpdateTextPages(void)
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
-    switch (data_ov006_0236d640->unk_0c) {
+    switch (data_ov006_0236d640->screenState) {
     case 0:
         Ov006_DrawTextPage1();
-        data_ov006_0236d640->unk_0c = 1;
+        data_ov006_0236d640->screenState = 1;
     case 1:
         Ov006_QueueMenuSprites();
         if (gKeypad->pressed & PAD_BUTTON_B) {
-            data_ov006_0236d640->unk_0c = 30;
+            data_ov006_0236d640->screenState = 30;
         }
         if (gKeypad->pressed & PAD_BUTTON_A) {
             func_ov006_02359030();
@@ -70,11 +70,11 @@ void Ov006_UpdateTextPages(void)
         break;
     case 10:
         Ov006_DrawTextPage2();
-        data_ov006_0236d640->unk_0c = 11;
+        data_ov006_0236d640->screenState = 11;
     case 11:
         Ov006_QueuePage2Icons();
         if (gKeypad->pressed & PAD_BUTTON_B) {
-            data_ov006_0236d640->unk_0c = 30;
+            data_ov006_0236d640->screenState = 30;
         }
         if (gKeypad->pressed & PAD_BUTTON_A) {
             func_ov006_02359030();

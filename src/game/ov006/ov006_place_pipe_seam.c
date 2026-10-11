@@ -11,10 +11,6 @@ int Ov006_GetPipeSeamCell(int x, int y);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
-/* unk_2b holds the number of property tiles; read as signed because the code
- * loads it with ldrsb (see ov006_remove_property.c). */
-#define PROPERTY_COUNT (*(s8 *)&data_ov006_0236d640->unk_2b)
-
 #define PROPERTY_LIMIT 60
 
 /* Puts a pipe seam on tile x, y with the cell Ov006_GetPipeSeamCell picks.
@@ -24,7 +20,7 @@ void Ov006_PlacePipeSeam(int x, int y)
 {
     int cell;
 
-    if (PROPERTY_COUNT >= PROPERTY_LIMIT && Ov006_GetTilePropertyKind(x, y) == 0) {
+    if (data_ov006_0236d640->propertyCount >= PROPERTY_LIMIT && Ov006_GetTilePropertyKind(x, y) == 0) {
         return;
     }
     Ov006_SetTerrain(x, y, TERRAIN_PIPE_SEAM);

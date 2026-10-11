@@ -10,7 +10,7 @@ void func_ov006_02355a10(int choice)
 {
     Unk_ov006_0235f690 *state = data_ov006_0236d640;
 
-    if (state->unk_0c != 51) {
+    if (state->screenState != 51) {
         return;
     }
     if (state->unk_29 == 1) {

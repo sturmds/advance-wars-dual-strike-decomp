@@ -25,7 +25,6 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_AT(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
-#define PROPERTY_COUNT ((s8)data_ov006_0236d640->unk_2b)
 
 #define PROPERTY_NONE 0
 #define PROPERTY_HQ 2
@@ -42,7 +41,7 @@ int Ov006_PlaceProperty(int x, int y, int tile)
     int hqY;
     u16 cell;
 
-    if (MAP_TILE_TERRAIN(tile) != TERRAIN_HQ && PROPERTY_COUNT >= MAX_PROPERTIES) {
+    if (MAP_TILE_TERRAIN(tile) != TERRAIN_HQ && data_ov006_0236d640->propertyCount >= MAX_PROPERTIES) {
         if (Ov006_GetTilePropertyKind(x, y) == PROPERTY_NONE) {
             return -1;
         }
@@ -51,7 +50,7 @@ int Ov006_PlaceProperty(int x, int y, int tile)
         if (tile == TILE_AT(x, y)) {
             return 0;
         }
-    } else if (Ov006_GetTilePropertyKind(x, y) == PROPERTY_NONE && PROPERTY_COUNT >= MAX_PROPERTIES) {
+    } else if (Ov006_GetTilePropertyKind(x, y) == PROPERTY_NONE && data_ov006_0236d640->propertyCount >= MAX_PROPERTIES) {
         return -1;
     }
     if (Ov006_GetHqPosition(tile, &hqX, &hqY)) {

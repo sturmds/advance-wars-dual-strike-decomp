@@ -11,9 +11,9 @@ int func_ov006_02358fec(void)
     if (state->request != 6) {
         return 0;
     }
-    if (state->unk_0c != 1 && state->unk_0c != 11) {
+    if (state->screenState != 1 && state->screenState != 11) {
         return 0;
     }
-    state->unk_0c = 30;
+    state->screenState = 30;
     return 1;
 }

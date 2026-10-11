@@ -14,15 +14,15 @@ int func_ov006_02359030(void)
     if (state->request != 6) {
         return 0;
     }
-    if (state->unk_0c == 1) {
-        state->unk_0c = 10;
+    if (state->screenState == 1) {
+        state->screenState = 10;
         Sound_PlaySe(0x10002);
         return 1;
     }
-    if (state->unk_0c != 11) {
+    if (state->screenState != 11) {
         return 0;
     }
-    state->unk_0c = 0;
+    state->screenState = 0;
     Sound_PlaySe(0x10002);
     return 1;
 }

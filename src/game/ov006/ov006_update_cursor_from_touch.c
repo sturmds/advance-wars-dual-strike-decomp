@@ -26,8 +26,7 @@ static inline BOOL IsTouchStarted(void)
  * touchX, touchY into a map tile (unk_28, unk_2a), ignoring the top 33 pixel
  * rows. On the 3D screen the tile only changes while request is 1, and a new
  * touch only remembers its tile (unk_30, unk_32) then. No calls and no sound,
- * unlike the main version. The (s16) casts on touchX and touchY are needed
- * to match: the original reads them signed. */
+ * unlike the main version. */
 void Ov006_UpdateCursorFromTouch(void)
 {
     s32 pos[3];
@@ -37,8 +36,8 @@ void Ov006_UpdateCursorFromTouch(void)
     if (!(data_ov006_0236d640->touch & 0x8000)) {
         return;
     }
-    touchY = (s16)data_ov006_0236d640->touchY;
-    touchX = (s16)data_ov006_0236d640->touchX;
+    touchY = data_ov006_0236d640->touchY;
+    touchX = data_ov006_0236d640->touchX;
     if (touchY <= 32) {
         return;
     }

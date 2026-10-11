@@ -10,5 +10,5 @@ int func_ov006_02357694(void)
     if (state->request != 2) {
         return 0;
     }
-    return state->unk_0c == 51;
+    return state->screenState == 51;
 }

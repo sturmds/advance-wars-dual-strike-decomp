@@ -15,7 +15,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern int data_0229eae4;
 
 /* Dispatches on the request posted by
- * Ov006_PostRequest (likely a per-frame task callback; nothing calls it directly), then copies unk_0e and unk_10 to unk_12 and unk_14, clears
+ * Ov006_PostRequest (likely a per-frame task callback; nothing calls it directly), then copies cursorX and cursorY to prevCursorX and prevCursorY, clears
  * flag 2, and when flag 0x4000 is set resumes the script task unk_5c. */
 void DesignRoom_Update(void)
 {
@@ -40,8 +40,8 @@ void DesignRoom_Update(void)
         break;
     }
     func_ov006_02351aa4();
-    data_ov006_0236d640->unk_12 = data_ov006_0236d640->unk_0e;
-    data_ov006_0236d640->unk_14 = data_ov006_0236d640->unk_10;
+    data_ov006_0236d640->prevCursorX = data_ov006_0236d640->cursorX;
+    data_ov006_0236d640->prevCursorY = data_ov006_0236d640->cursorY;
     data_ov006_0236d640->unk_00 &= ~2;
     if (data_ov006_0236d640->unk_00 & 0x4000) {
         Task_ResumeScript(data_ov006_0236d640->unk_5c);

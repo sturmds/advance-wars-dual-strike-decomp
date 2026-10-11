@@ -14,12 +14,12 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 void func_ov006_02357ef4(void)
 {
-    func_020d7904(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb);
+    func_020d7904(data_ov006_0236d640->chosenSlot, &data_ov006_0236d640->unk_eb);
     Ov006_PackArmySlots(1, Ov006_FindArmyLayout());
     func_021246d4((char *)data_ov006_0236d640->unk_d8, (char *)&data_ov006_0236d640->unk_eb);
     func_020c4448();
     Ov006_FindHqs();
-    data_ov006_0236d640->unk_2b = Ov006_CountPropertyTiles();
+    data_ov006_0236d640->propertyCount = Ov006_CountPropertyTiles();
     data_ov006_0236d640->unk_00 &= ~0x1000;
     Ov006_DrawNameField();
     data_ov006_0236d640->unk_00 |= 4;

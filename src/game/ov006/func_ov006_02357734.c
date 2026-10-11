@@ -10,7 +10,7 @@ void func_ov006_02357734(void)
     if (state->request != 2) {
         return;
     }
-    if (state->unk_0c == 0x33) {
-        state->unk_0c = 0x3c;
+    if (state->screenState == 0x33) {
+        state->screenState = 0x3c;
     }
 }

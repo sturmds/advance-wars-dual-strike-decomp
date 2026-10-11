@@ -32,7 +32,7 @@ void Ov006_ResetMapView(int keep)
     STATE->unk_2a = 0;
     STATE->unk_2c = 0;
     STATE->unk_2e = 0;
-    OV6->unk_16 = 0;
-    OV6->unk_18 = 0;
+    OV6->viewX = 0;
+    OV6->viewY = 0;
     Panels_PlaceForCursor();
 }

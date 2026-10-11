@@ -129,7 +129,7 @@ void DesignRoom_Init(Task *task)
     Ov006_SetUpScreens();
     if (keep == 0) {
         OV6->unk_00 |= 0x1000;
-        OV6->unk_2b = Ov006_CountPropertyTiles();
+        OV6->propertyCount = Ov006_CountPropertyTiles();
         Ov006_FindHqs();
     }
     Battle_RegisterFrameCallbacks();
@@ -137,7 +137,7 @@ void DesignRoom_Init(Task *task)
     data_022a6b38 = 0;
     Font_SetDigitEndTile(0x45);
     func_020c4394(7, 4, &STATE->unk_28, &STATE->unk_2c);
-    *(s8 *)&OV6->unk_38 = -1; /* needed to match: stored as a signed -1 */
+    *(s8 *)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */
     OV6->unk_1c = 1;
     OV6->unk_25 = 1;
     OV6->unk_24 = 1;

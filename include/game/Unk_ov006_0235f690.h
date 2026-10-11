@@ -39,16 +39,16 @@ typedef struct Unk_ov006_0235f690 {
     u16 unk_00;                        /* flags; Ov006_OpenScreen sets 0x1000 */
     u16 unk_02;                        /* flags: 0x10 and 0x01 are tested by func_ov006_02351ac4 */
     u16 touch;                         /* 0x8000 while touched; 1 or 2 on release (gTouch.unk_01) */
-    u16 touchX;
-    u16 touchY;
+    s16 touchX;
+    s16 touchY;
     u16 request;                       /* code set by Ov006_PostRequest (1, 2 or 4) */
-    u16 unk_0c;
-    s16 unk_0e;                        /* tile x that Ov006_DeleteMarkedUnit removes a unit from */
-    s16 unk_10;                        /* tile y of the same */
-    s16 unk_12;
-    s16 unk_14;
-    u16 unk_16;
-    u16 unk_18;
+    u16 screenState;                   /* step of the current request's screen (Ov006_UpdateArmyCoPanel, Ov006_UpdateTextPages, ...) */
+    s16 cursorX;                       /* editor cursor tile, the tile the tools act on */
+    s16 cursorY;
+    s16 prevCursorX;                   /* cursorX, cursorY of the last frame (DesignRoom_Update) */
+    s16 prevCursorY;
+    s16 viewX;                         /* tile the map view follows (Ov006_ScrollMapView) */
+    s16 viewY;
     u16 unk_1a;
     u16 unk_1c;
     u16 unk_1e;                        /* entry index that unk_1a was set for */
@@ -61,15 +61,15 @@ typedef struct Unk_ov006_0235f690 {
     s8 unk_28;
     s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
     s8 unk_2a;
-    u8 unk_2b;                         /* result of Ov006_CountPropertyTiles, stored by Ov006_FillMapForScreen */
+    s8 propertyCount;                  /* property tiles on the map (Ov006_CountPropertyTiles); at most 60 */
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
     s8 hqX[4];                         /* per army 1-4: HQ tile, -1 when none (Ov006_FindHqs) */
     s8 hqY[4];
-    u8 unk_38;                         /* the id Ov006_StartIdScript was called with */
+    u8 chosenSlot;                     /* design map slot that Ov006_StartIdScript was called with; 0xff (-1) when none */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
     s8 unk_3a;                         /* step in Ov006_gPanelScaleSteps of the OBJ matrix 0 squash (states 30-32 of Ov006_UpdateArmyCoPanel) */
     s8 unk_3b;                         /* frame countdown, set to 30 on a request; at 0 a script starts (Ov006_StartScriptAfterDelay) */
-    u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
+    s8 recountDelay;                   /* frames until Ov006_UpdateMapEditor recounts; 5 after a unit is removed */
     u8 pad_3d[0x40 - 0x3d];
     s32 pendingSe;                     /* sound effect for Ov006_UpdateMapEditor to play at the end of its frame; 0: none */
     s16 winLeft;                       /* window 0 rectangle that Ov006_UpdateArmyCoPanel animates, in pixels */

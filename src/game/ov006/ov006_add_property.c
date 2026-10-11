@@ -17,7 +17,7 @@ void Ov006_AddProperty(int x, int y, int tile)
     Unk_02080440 *saved027c;
     MapTiles *tiles;
 
-    count = (s8)data_ov006_0236d640->unk_2b;   /* needed to match: the original reads it signed */
+    count = data_ov006_0236d640->propertyCount;
     if (count >= 92) {
         return;
     }
@@ -40,5 +40,5 @@ void Ov006_AddProperty(int x, int y, int tile)
 
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
-    data_ov006_0236d640->unk_2b = count + 1;
+    data_ov006_0236d640->propertyCount = count + 1;
 }

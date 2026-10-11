@@ -14,16 +14,16 @@ void func_ov006_02353f7c(void)
 {
     if (data_ov006_0236d640->unk_00 & 0x8000) {
         data_ov006_0236d640->unk_00 &= ~0x8000;
-        data_ov006_0236d640->unk_0c = 0;
+        data_ov006_0236d640->screenState = 0;
         func_ov006_0235402c();
         func_01ff8c84(1);
         Gfx_RequestLayerCopy(1);
         func_020c4018();
         PopupMenu_OpenWithSound(data_ov006_0236b15c, 2, 2, 0, 0);
     }
-    switch (data_ov006_0236d640->unk_0c) {
+    switch (data_ov006_0236d640->screenState) {
     case 0:
-        data_ov006_0236d640->unk_0c = 10;
+        data_ov006_0236d640->screenState = 10;
         break;
     case 10:
         break;

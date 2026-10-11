@@ -25,9 +25,9 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 /* Per-frame sub screen update of the Design Room (no direct callers).
  * While Ov006_IsMapPlayable, a sprite slides in from the left, easing
  * toward x = 18 and stopping at 18; otherwise it waits off screen at -40.
- * Draws the cursor tile x and y (OV6->unk_0e, unk_10, from 1), the units
+ * Draws the cursor tile x and y (cursorX, cursorY, from 1), the units
  * left for the current army (50 minus its count) and the properties left
- * (60 minus unk_2b), moves the layer 3 y scroll by half a pixel per frame,
+ * (60 minus propertyCount), moves the layer 3 y scroll by half a pixel per frame,
  * then draws the count table. Flag 4 of unk_00, once: calls DesignMap_DrawTemplatePreview
  * and sets the sub screen layer 0 scroll to (0x1fa, 208). */
 void Ov006_UpdateSubScreen(void)
@@ -54,13 +54,13 @@ void Ov006_UpdateSubScreen(void)
         OV6->unk_58 = -0x28000;
     }
     func_020219e4(OV6->unk_70, 2, 0, 10, 145, 0xf2b0, 0, 0);
-    Oam_PutSmallNumber(18, 153, OV6->unk_0e + 1);
+    Oam_PutSmallNumber(18, 153, OV6->cursorX + 1);
     func_020219e4(OV6->unk_70, 1, 0, 10, 167, 0xf2b0, 0, 0);
-    Oam_PutSmallNumber(18, 175, OV6->unk_10 + 1);
+    Oam_PutSmallNumber(18, 175, OV6->cursorY + 1);
     func_020219e4(OV6->unk_70, 3, 0, 26, 138, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(58, 137, 50 - (s8)OV6->unk_2c[OV6->unk_24 - 1]);
     func_020219e4(OV6->unk_70, 3, 0, 70, 138, 0xf2b0, 0, 0);
-    Oam_PutSmallNumber(102, 137, 60 - (s8)OV6->unk_2b);
+    Oam_PutSmallNumber(102, 137, 60 - OV6->propertyCount);
     func_01ff8b18(0, (OV6->unk_54 >> 12) & 0xff);
     /* the original adds a double: _dflt, _dadd, _dfix */
     OV6->unk_54 += 2048.0;

@@ -31,7 +31,7 @@ int Ov006_RemoveUnitAt(int withEffect, int x, int y)
             unit->type = 0;
         }
         func_ov006_0235f690();
-        data_ov006_0236d640->unk_3c = 5;
+        data_ov006_0236d640->recountDelay = 5;
         removed = TRUE;
     }
     return removed;

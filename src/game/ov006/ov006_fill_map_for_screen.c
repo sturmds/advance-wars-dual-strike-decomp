@@ -61,5 +61,5 @@ void Ov006_FillMapForScreen(int screenId)
     }
     func_020c4448();
     Ov006_FindHqs();
-    data_ov006_0236d640->unk_2b = Ov006_CountPropertyTiles();
+    data_ov006_0236d640->propertyCount = Ov006_CountPropertyTiles();
 }

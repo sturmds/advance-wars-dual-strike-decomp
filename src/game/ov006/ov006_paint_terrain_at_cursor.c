@@ -38,7 +38,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
     }
 
 /* Paints the chosen brush (unk_1c: a tile byte, terrain and owner) on the
- * tile at unk_0e, unk_10, after saving the cell it replaces in oldCell.
+ * tile at cursorX, cursorY, after saving the cell it replaces in oldCell.
  * Each terrain goes through its own placing routine, then units that can no
  * longer stand there are removed. The sound effect to play is left in
  * pendingSe. */
@@ -49,8 +49,8 @@ void Ov006_PaintTerrainAtCursor(void)
     int result;
     int brush;
 
-    y = data_ov006_0236d640->unk_10;
-    x = data_ov006_0236d640->unk_0e;
+    y = data_ov006_0236d640->cursorY;
+    x = data_ov006_0236d640->cursorX;
     data_ov006_0236d640->oldCell = STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x];
     data_ov006_0236d640->unk_00 |= 0x1000;
     brush = data_ov006_0236d640->unk_1c;

@@ -32,8 +32,6 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define STATE_50 (data_027c027c->unk_50[data_027c0284])
 #define OV6 data_ov006_0236d640
-/* needed to match: unk_3c is read signed here. */
-#define RECOUNT_DELAY (*(s8 *)&OV6->unk_3c)
 
 static inline BOOL Touch_Is(int phase)
 {
@@ -44,7 +42,7 @@ static inline BOOL Touch_Is(int phase)
 }
 
 /* One frame of the Design Room map editor. Flag 0x8000 of unk_00 sets the
- * editor up and puts the edit tile (unk_0e, unk_10) on the map cursor. Each
+ * editor up and puts the edit tile (cursorX, cursorY) on the map cursor. Each
  * frame moves the cursor and the view, then acts on Ov006_ReadEditInput:
  * 1 paints terrain (unk_29 == 0) or places a unit, 2 deletes the unit on
  * the edit tile. Touch or B calls Ov006_PickToolAtCursor, R and L choose
@@ -57,9 +55,9 @@ void Ov006_UpdateMapEditor(void)
 
     if (OV6->unk_00 & 0x8000) {
         OV6->unk_00 &= ~0x8000;
-        OV6->unk_0c = 0;
-        OV6->unk_0e = STATE->unk_28;
-        OV6->unk_10 = STATE->unk_2a;
+        OV6->screenState = 0;
+        OV6->cursorX = STATE->unk_28;
+        OV6->cursorY = STATE->unk_2a;
         Ov006_InitSlotButtons();
         Ov006_StartSlotsSlideIn();
         OV6->unk_00 |= 0x10;
@@ -68,14 +66,14 @@ void Ov006_UpdateMapEditor(void)
         func_ov006_0235f690();
         Ov006_ResetScreen1Effects();
     }
-    if (OV6->unk_0c == 0) {
-        OV6->unk_0c = 1;
+    if (OV6->screenState == 0) {
+        OV6->screenState = 1;
         return;
     }
-    if (RECOUNT_DELAY > 0) {
-        RECOUNT_DELAY--;
-        if (RECOUNT_DELAY <= 0) {
-            RECOUNT_DELAY = 0;
+    if (OV6->recountDelay > 0) {
+        OV6->recountDelay--;
+        if (OV6->recountDelay <= 0) {
+            OV6->recountDelay = 0;
             func_ov006_0235f690();
         }
     }
@@ -84,7 +82,7 @@ void Ov006_UpdateMapEditor(void)
     OV6->pendingSe = 0;
     if (gKeypad->unk_00 & PAD_BUTTON_X) {
         func_020c407c();
-        if (OV6->unk_0e != STATE->unk_28 || OV6->unk_10 != STATE->unk_2a) {
+        if (OV6->cursorX != STATE->unk_28 || OV6->cursorY != STATE->unk_2a) {
             result = 1;
         }
     } else {
@@ -92,12 +90,12 @@ void Ov006_UpdateMapEditor(void)
         Ov006_UpdateCursorFromTouch();
     }
     Ov006_ScrollMapView(4);
-    if (OV6->unk_0e != STATE->unk_28 || OV6->unk_10 != STATE->unk_2a) {
-        OV6->unk_0e = STATE->unk_28;
-        OV6->unk_10 = STATE->unk_2a;
+    if (OV6->cursorX != STATE->unk_28 || OV6->cursorY != STATE->unk_2a) {
+        OV6->cursorX = STATE->unk_28;
+        OV6->cursorY = STATE->unk_2a;
     }
     Ov006_CheckToolAtCursor();
-    if (OV6->unk_0e == OV6->unk_12 && OV6->unk_10 == OV6->unk_14) {
+    if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {
         se = 0;
     } else if (result == 0) {
         se = 0x10000;   /* the cursor moved; the original leaves se unset when X moved it */
@@ -119,14 +117,14 @@ void Ov006_UpdateMapEditor(void)
                 result = Ov006_PlaceUnitAtCursor();
             } else {
                 result = -1;
-                if (Touch_Is(TOUCH_PRESSED) == TRUE && (s16)OV6->touchY > 32) {
+                if (Touch_Is(TOUCH_PRESSED) == TRUE && OV6->touchY > 32) {
                     result = Ov006_PlaceUnitAtCursor();
                 }
             }
             if (result == 1) {
                 se = 0;
                 OV6->pendingSe = 0;
-                UnitShowTask_CreateAtTile(OV6->unk_0e, OV6->unk_10, OV6->unk_1a & 0x3f);
+                UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->unk_1a & 0x3f);
             }
             if (result > 0) {
                 OV6->unk_00 |= 0x1000;
@@ -141,7 +139,7 @@ void Ov006_UpdateMapEditor(void)
         if (result == 1) {
             se = 0;
             OV6->pendingSe = 0;
-            UnitShowTask_CreateAtTile(OV6->unk_0e, OV6->unk_10, OV6->unk_1a & 0x3f);
+            UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->unk_1a & 0x3f);
         }
         if (result > 0) {
             OV6->unk_00 |= 0x1000;
@@ -150,7 +148,7 @@ void Ov006_UpdateMapEditor(void)
     }
 
     if (Touch_Is(TOUCH_PRESSED) == TRUE) {
-        if ((s16)OV6->touchY > 32 && (OV6->unk_00 & 0x20)) {
+        if (OV6->touchY > 32 && (OV6->unk_00 & 0x20)) {
             func_ov006_0235f690();
             Ov006_PickToolAtCursor(OV6->unk_29);
         }

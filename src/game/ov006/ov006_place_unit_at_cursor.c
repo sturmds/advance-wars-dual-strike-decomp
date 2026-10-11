@@ -39,8 +39,8 @@ int Ov006_PlaceUnitAtCursor(void)
     STATE->currentPlayer = OV6->unk_24;
     STATE->currentUnitBase = (STATE->currentPlayer - 1) << 6;
     code = (OV6->unk_1a & 63) | STATE->currentUnitBase;
-    x = OV6->unk_0e;
-    y = OV6->unk_10;
+    x = OV6->cursorX;
+    y = OV6->cursorY;
     if (OV6->unk_00 & 0x40) {
         if (Ov006_RemoveUnitAt(1, x, y)) {
             func_020c4018();
@@ -72,7 +72,7 @@ int Ov006_PlaceUnitAtCursor(void)
     }
     if (result > 0) {
         func_ov006_0235f690();
-        OV6->unk_3c = 5;
+        OV6->recountDelay = 5;
     }
     return result;
 }

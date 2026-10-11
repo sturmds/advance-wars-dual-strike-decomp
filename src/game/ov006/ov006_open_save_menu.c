@@ -17,8 +17,8 @@ extern const MenuItem data_ov006_0236ba60[];
  * Ov006_OpenLoadMenu, only takes a filled slot). */
 void Ov006_OpenSaveMenu(void)
 {
-    /* unk_38 holds the last chosen slot, or -1 when none was chosen. */
-    s8 slot = data_ov006_0236d640->unk_38;
+    /* chosenSlot is 0xff (-1 here) when none was chosen. */
+    s8 slot = data_ov006_0236d640->chosenSlot;
 
     PopupMenu_Create(data_ov006_0236ba60, 2, 5, 0, slot < 0 ? 0 : slot, 0);
     if (DesignMap_CopyName(0, &data_ov006_0236d640->unk_eb) != 1) {

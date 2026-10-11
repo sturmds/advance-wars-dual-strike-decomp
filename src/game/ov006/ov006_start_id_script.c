@@ -21,8 +21,8 @@ void Ov006_StartIdScript(int id)
     Ov006_ClearLayer0Box();
     Ov006_ClearWindowsAndBlend();
     data_ov006_0236d640->unk_00 &= ~0x100;
-    data_ov006_0236d640->unk_38 = id;
-    if (DesignMap_CopyName(data_ov006_0236d640->unk_38, &data_ov006_0236d640->unk_eb) == 0) {
+    data_ov006_0236d640->chosenSlot = id;
+    if (DesignMap_CopyName(data_ov006_0236d640->chosenSlot, &data_ov006_0236d640->unk_eb) == 0) {
         if (Ov006_HasNonSpace(data_ov006_0236d640->unk_d8) == 0) {
             Ov006_LoadIdText(id);
             data_ov006_0236d640->unk_00 |= 0x100;

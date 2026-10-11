@@ -31,7 +31,7 @@ void Ov006_PickToolAtCursor(int mode)
 
     switch (mode) {
     case 0:
-        tile = TILE(OV6->unk_0e, OV6->unk_10);
+        tile = TILE(OV6->cursorX, OV6->cursorY);
         if (OV6->unk_1c == tile) {
             return;
         }
@@ -41,10 +41,10 @@ void Ov006_PickToolAtCursor(int mode)
         break;
     case 1:
         code = ((OV6->unk_24 - 1) << 6) | (OV6->unk_1a & 63);
-        if (code == Ov006_GetUnitCodeAt(OV6->unk_0e, OV6->unk_10)) {
+        if (code == Ov006_GetUnitCodeAt(OV6->cursorX, OV6->cursorY)) {
             return;
         }
-        code = Ov006_GetUnitCodeAt(OV6->unk_0e, OV6->unk_10);
+        code = Ov006_GetUnitCodeAt(OV6->cursorX, OV6->cursorY);
         if ((code & 63) >= UNIT_TYPE_COUNT) {
             return;
         }

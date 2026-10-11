@@ -22,8 +22,8 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 #define TILE(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 #define CHART ((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 
-/* Checks whether the chosen tool can be used on the cursor tile (unk_0e,
- * unk_10) and stores the answer in unk_2a: 1 allowed, 6 not allowed, 5 when
+/* Checks whether the chosen tool can be used on the cursor tile (cursorX,
+ * cursorY) and stores the answer in unk_2a: 1 allowed, 6 not allowed, 5 when
  * flag 0x40 is set in unit mode. In terrain mode (unk_29 == 0) unk_1c holds
  * the terrain to paint, and shoal, river, reef, bridge, road over a river
  * and pipe seam each have their own test; any other terrain is refused only
@@ -40,29 +40,29 @@ int Ov006_CheckToolAtCursor(void)
 
         result = 1;
         if (tool == TERRAIN_SHOAL) {
-            if (Ov006_CountMatchingNeighbors(ov6->unk_0e, ov6->unk_10) < 0
-                || Ov006_GetShoalGraphic(OV6->unk_0e, OV6->unk_10) < 0) {
+            if (Ov006_CountMatchingNeighbors(ov6->cursorX, ov6->cursorY) < 0
+                || Ov006_GetShoalGraphic(OV6->cursorX, OV6->cursorY) < 0) {
                 result = 6;
             }
         } else if (tool == TERRAIN_RIVER) {
-            if (func_ov006_023604a4(ov6->unk_0e, ov6->unk_10) == 0) {
+            if (func_ov006_023604a4(ov6->cursorX, ov6->cursorY) == 0) {
                 result = 6;
             }
         } else if (tool == TERRAIN_REEF) {
-            if (Ov006_IsBareReefOrSea(ov6->unk_0e, ov6->unk_10) == 0) {
+            if (Ov006_IsBareReefOrSea(ov6->cursorX, ov6->cursorY) == 0) {
                 result = 6;
             }
         } else if (tool == TERRAIN_BRIDGE) {
-            if (Ov006_CanPlaceBridge(ov6->unk_0e, ov6->unk_10) == 0) {
+            if (Ov006_CanPlaceBridge(ov6->cursorX, ov6->cursorY) == 0) {
                 result = 6;
             }
         } else if (tool == TERRAIN_ROAD) {
-            if (TILE(ov6->unk_0e, ov6->unk_10) == TERRAIN_RIVER
-                && Ov006_CanPlaceBridge(ov6->unk_0e, ov6->unk_10) == 0) {
+            if (TILE(ov6->cursorX, ov6->cursorY) == TERRAIN_RIVER
+                && Ov006_CanPlaceBridge(ov6->cursorX, ov6->cursorY) == 0) {
                 result = 6;
             }
         } else if (tool == TERRAIN_PIPE_SEAM) {
-            if (Ov006_CannotPlacePipeSeam(ov6->unk_0e, ov6->unk_10) != 0) {
+            if (Ov006_CannotPlacePipeSeam(ov6->cursorX, ov6->cursorY) != 0) {
                 result = 6;
             }
         } else if (ov6->unk_00 & 0x2000) {
@@ -71,7 +71,7 @@ int Ov006_CheckToolAtCursor(void)
     } else if (ov6->unk_00 & 0x40) {
         result = 5;
     } else if (CHART[Ov000_gUnitStats[ov6->unk_1a & 63].moveType]
-                    [MAP_TILE_TERRAIN(TILE(ov6->unk_0e, ov6->unk_10))] != -1) {
+                    [MAP_TILE_TERRAIN(TILE(ov6->cursorX, ov6->cursorY))] != -1) {
         result = 1;
     } else {
         result = 6;
