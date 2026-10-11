@@ -8,7 +8,7 @@ void Map3d_Init(void);
 void Screens_SetUp3dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void UnitIcons_LoadMapGraphics(void);
 void func_020f88ec(void);
 void func_020f8848(void);
@@ -37,7 +37,7 @@ void func_020f8764(int mode)
         data_027c027c->unk_50[data_027c0284]->callback();
     }
     Screen_ApplyAll();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     UnitIcons_LoadMapGraphics();
     func_020f88ec();
     func_020f8848();

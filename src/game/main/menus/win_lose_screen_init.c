@@ -20,7 +20,7 @@ void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
 void Gfx_RequestLayerCopy(int layer);
 void Co_LoadArmyLargePicture(int coMood, void *dest, int paletteSlot, int army);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
@@ -234,7 +234,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
     SWITCH_BACK();
     Mem_Free(file);
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0xf800);
     Menu_Reset();

@@ -27,7 +27,7 @@ BOOL ScoreList_AddRow(int kind);
 void func_0203b194(int value);
 void ScoreList_FitFirstPage(void);
 void Screens_SetBg3Zoom(int scale, int angle);
-void func_01ff9af0(void);
+void NumberFont_LoadHigh(void);
 int Player_GetCurrentOrFirstInGame(void);
 void Wallpaper_LoadBothOnLayer2(u32 index);
 void Wallpaper_LoadOnLayer2(u32 index);
@@ -279,7 +279,7 @@ void ResultScreen_Init(Task *task)
     func_0203b194(rowsAdded);
     ScoreList_FitFirstPage();
     Screens_SetBg3Zoom(0x100, 0x80);
-    func_01ff9af0();
+    NumberFont_LoadHigh();
 
     /* no tag partner: the front CO's wallpaper on both screens; else the
      * front CO on the main screen and the partner on the sub screen */

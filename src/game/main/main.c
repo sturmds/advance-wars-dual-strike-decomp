@@ -40,7 +40,7 @@ void func_020097a4(void);
 void Screen_ApplyAll(void);
 void Screen_InitSystems(void);
 void Screens_SetUp2dLayers(const void *unused);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
@@ -63,7 +63,7 @@ void func_01ff9c7c(void);
     Screen_ApplyAll();                          \
     Screen_InitSystems();                            \
     Screens_SetUp2dLayers(data_02166dc8);               \
-    func_01ff9b48();                            \
+    NumberFont_LoadLow();                            \
     func_01ff9c28(MainLoop_DefaultVBlank);      \
     func_01ff9c48(MainLoop_TaskFrame);               \
     Screen_SetCurrent(savedState);              \

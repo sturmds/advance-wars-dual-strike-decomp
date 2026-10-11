@@ -19,7 +19,7 @@ u8 Player_GetArmyStyle(int playerIndex);
 BOOL func_ov000_022b0138(int unitType);
 void Gfx_LoadPlayerWindowFrame(int a0);
 void SecondScreen_LoadIcons(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void func_01ff9ac4(void);
 
 /* Starts the second-screen unit display. The argument packs the owning
@@ -43,7 +43,7 @@ void SecondScreenTask_Create(int ownerAndUnitType)
     Screen_SetCurrent(data_027c0288.unk_04);
     Gfx_LoadPlayerWindowFrame(0);
     SecondScreen_LoadIcons();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     func_01ff9ac4();
     Task_Create(data_ov000_023500f8, 3);
     Screen_SetCurrent(savedScreen);

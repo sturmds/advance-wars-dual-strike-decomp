@@ -21,7 +21,7 @@ void Data_Unpack(const void *src, void *dst);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Load(const void *src, u32 offset, u32 size);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 
 /* Sets up the current screen: BG mode 0, the layers from data_02169970, the
  * window frame of the current player, layer 3 tiles and map (map entries get
@@ -42,7 +42,7 @@ void Screen_InitWithPlayerFrame(void)
     TileMap_AddToEntries(data_027c0280->layer3Map, 0x800, 0x1000);
     Gfx_RequestLayerCopy(3);
     Palette_Load(data_02137c88, 32, 32);
-    func_01ff9b48();
+    NumberFont_LoadLow();
     GFX_DISPCNT(data_027c0280)->bg0 = 1;
     GFX_DISPCNT(data_027c0280)->bg1 = 1;
     GFX_DISPCNT(data_027c0280)->bg2 = 1;

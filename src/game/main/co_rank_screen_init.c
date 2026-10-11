@@ -28,7 +28,7 @@ void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
 void Co_LoadGraphicsAndPalette(int coId, int tile, int paletteSlot);
 int Survival_GetRunGrade(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void Menu_Reset(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -207,6 +207,6 @@ void CoRankScreen_Init(CoRankTask *task)
             Co_LoadGraphicsAndPalette(STATE->players[1].back.id & PLAYER_CO_ID_MASK, 0x5b0, 7);
         }
     GFX_BACK();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     Menu_Reset();
 }

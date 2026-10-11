@@ -38,7 +38,7 @@ void Screen_SetCurrentGfx(void *state);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void Wallpaper_LoadBoth(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void TpIcon2_LoadTo(u8 *dest);
 void TpIcon_Load(void);
 void func_0202b7e0(int a0);
@@ -178,7 +178,7 @@ void VsSetup_Init(void)
         Mem_Free(res);
     }
     ForceRank_LoadSets(STATE->gameMode);
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x8000);
     ModeFont_Load(0x2c8, 10);

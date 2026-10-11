@@ -24,7 +24,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void Mem_Free(void *file);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void ModeFont_Load(int a, int b);
 void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
 const void *Text_Get(u32 textId);
@@ -106,7 +106,7 @@ void LinkMenu_InitTwoPlayerScreen(Task *task)
     Palette_BlendWithColor(data_027c0280->paletteBuffer + 0x240, 0, 8, 8);
     Mem_Copy32(file + 0x20, &gMenuState, 0x20);
     Mem_Free(file);
-    func_01ff9b48();
+    NumberFont_LoadLow();
 
     ModeFont_Load(0, 0);
     ModeFont_ShowText(Text_Get(0x7d000000), 0, 0, 0, 0);

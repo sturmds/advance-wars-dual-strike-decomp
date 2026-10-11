@@ -36,7 +36,7 @@ void MainMenu_BuildPage8(void);
 void MainMenu_BuildPage9(void);
 void MainMenu_BuildPage11(void);
 void MainMenu_ShowHelpText(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void Gfx3d_SetOrthoCentered(void);
 void Gfx3d_SetupPerspectiveAntialiased(void);
 void func_02028978(void);
@@ -166,7 +166,7 @@ void func_0202f0d8(MainMenuTask *task)
 
     data_021599d0->slide = 0;
     data_021599d0->unk_10_3 = 0;
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x940);
     Menu_Reset();

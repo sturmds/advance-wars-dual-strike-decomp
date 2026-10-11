@@ -6,7 +6,7 @@
 #include "game/Unk_02088d04.h"
 
 void Gfx_RequestLayerCopy(int bg);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void Co_LoadSmallPicture(int co, void *dest, int palette);
 void Palette_LoadObjRow(int a);
 void Co_UnpackPicture(int co, int a);
@@ -264,6 +264,6 @@ void CampaignMap_Init(Unk_0204f960 *task)
         ModeFont_ShowText(Text_Get(0x7d000015), 178, 9, 0, 0);
     }
     Wallpaper_LoadSingle();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     Menu_Reset();
 }

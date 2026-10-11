@@ -29,7 +29,7 @@ const void *Text_Get(u32 textId);
 void TpIcon3_LoadTo(u8 *dest);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Wallpaper_LoadSelected(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void Screen_SetLayerCharBase(int a, u32 b);
 void func_02028a30(void);
 int func_020c67a8(void);
@@ -161,7 +161,7 @@ void HistoryScreen_Init(void)
     Palette_Load((u8 *)gArmyPalettes + 0x80, 0x80, 32);
     Screen_SetCurrentGfx(saved0280);
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon3_LoadTo(data_027c0280->objVram + 0x12c0);
     ModeFont_Load(0x234, 0);
     ModeFont_ShowText(Text_Get(0x7d000009), 0x234, 0, 0, 0);

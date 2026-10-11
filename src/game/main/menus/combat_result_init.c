@@ -10,7 +10,7 @@ void func_02028a30(void);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 u8 *File_Load(const char *path);
 void Data_Unpack(const void *src, void *dest);
 void Palette_Load(const void *src, u32 offset, u32 size);
@@ -105,7 +105,7 @@ void CombatResult_Init(Task *task)
     SET_ALL_WHITE();
     SWITCH_BACK();
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     file = File_Load(gResultLionResPath);
     SWITCH_TO(SECOND_MAP);
     Data_Unpack(file, data_027c0280->bgVram

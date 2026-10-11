@@ -37,7 +37,7 @@ BOOL Skills_AreDisabled(void);
 const void *Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
 void Window_DrawOnLayer1(int x, int y, int width, int height);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028808(void);
 void func_02028978(void);
@@ -170,7 +170,7 @@ void CoSelectScreen_Init(void)
             }
         }
     }
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     ModeFont_Load(0x5d8, 6);
     ModeFont_ShowTextOnScreen(Text_Get(0x7d000004), 0x5d8, 6, 0x800, 7, 0);

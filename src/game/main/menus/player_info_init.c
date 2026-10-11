@@ -29,7 +29,7 @@ const void *Player_GetPalette(int player);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 void Palette_LoadObjRow(int row);
 void PlayerInfo_LoadCoPictures(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
@@ -226,7 +226,7 @@ void PlayerInfo_Init(Task *task)
     Mem_Free(langFile);
 
     PlayerInfo_LoadCoPictures();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x6c0);
     Menu_Reset();

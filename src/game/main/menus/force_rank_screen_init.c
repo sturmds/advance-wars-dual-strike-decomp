@@ -32,7 +32,7 @@ void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
 void Wallpaper_LoadSelected(void);
 void Window_DrawOnLayer1(int x, int y, int width, int height);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void func_0201e6e8(int x, int y, int width, int height);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 void func_02028a30(void);
@@ -171,7 +171,7 @@ void ForceRankScreen_Init(void)
     Mem_Copy32(res + 0x158, gForceRankScreen->cycleColors, 32);
     Mem_Free(res);
     Mem_Free(lang);
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     ModeFont_Load(0x1b0, 2);
     ModeFont_ShowTextOnScreen(Text_Get(0x7d00000b), 0x1b0, 2, 0x800, 2, 0);

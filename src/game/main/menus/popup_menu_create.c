@@ -4,7 +4,7 @@
 
 extern const TaskScriptCmd data_021587a8[];
 
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 const void *Text_Get(u32 textId);
 int Text_GetWidthInTiles(const void *text);
 void PopupMenu_DrawItems(PopupMenuTask *menu);
@@ -34,7 +34,7 @@ PopupMenuTask *PopupMenu_Create(const MenuItem *items, int x, int y, int style, 
     maxWidth = 0;
     heightPixels = 16;
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     task = Task_Create(data_021587a8, TASK_LIST(3));
     menu = (PopupMenuTask *)task;
     menu->style = style;

@@ -12,7 +12,7 @@ extern TaskScriptCmd data_0216594c[];
 
 void BuildMenu_FillList(int moveGroups);
 void MenuDepth_Push(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 
 /* Opens the unit build menu for the production tile (x, y): lists the unit
  * types of the tile's move groups (city, HQ and base: ground; airport: air;
@@ -37,5 +37,5 @@ void BuildMenu_Open(int x, int y)
     BuildMenu_FillList(moveGroups);
     Task_Create(data_0216594c, TASK_LIST(3));
     MenuDepth_Push();
-    func_01ff9b48();
+    NumberFont_LoadLow();
 }

@@ -22,7 +22,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Free(void *file);
 void Gfx_RequestLayerCopy(int layer);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 int func_0207a324(void);
 void Link_DrawPlayerRows(void);
 void LinkMenu_DrawSecondView(void);
@@ -122,7 +122,7 @@ void LinkMenu_InitScreen(Task *task)
     Palette_Load(file, 0x220, 0x20);
     Mem_Copy32(file + 0x20, &data_0229fb30, 0x20);
     Mem_Free(file);
-    func_01ff9b48();
+    NumberFont_LoadLow();
 
     if (data_0215fed0->view == 0) {
         Link_DrawPlayerRows();

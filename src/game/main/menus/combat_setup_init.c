@@ -21,7 +21,7 @@ void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int baseTile);
 void Co_UnpackPicture(int coId, int firstTile);
 void CombatSetup_LoadMapPreviews(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void TpIcon_Load(void);
 void TpIcon2_LoadTo(u8 *dest);
 u16 Wireless_GetChildAids(void);
@@ -156,7 +156,7 @@ void CombatSetup_Init(void)
     Data_Unpack(file + 0xdc, MENU->combat.savedMap);
     Mem_Free(file);
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     TpIcon_Load();
     TpIcon2_LoadTo(data_027c0280->objVram + 0x2580);
     data_0229ff30.playerMask = Wireless_GetChildAids() | 1;

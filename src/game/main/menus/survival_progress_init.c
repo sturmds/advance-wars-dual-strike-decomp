@@ -36,7 +36,7 @@ void Text_PrintImmediate(int x, int y, u16 *map, u32 textId, u16 unk_30, int arg
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, int arg);
 void Wallpaper_LoadBoth(void);
 void Window_Draw(int x, int y, int width, int height, u16 *map, int palette);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_0202a7ec(const void *text, int tile, int paletteSlot, u8 unk_5c, int unk_58);
 void SurvivalProgress_LoadEnemyCoPictures(PageStripTask *task);
@@ -158,7 +158,7 @@ void SurvivalProgress_Init(PageStripTask *task)
     Gfx_RequestLayerCopy(0);
     Screen_SetCurrentGfx(saved0280);
 
-    func_01ff9b48();
+    NumberFont_LoadLow();
     PaletteCycle_Start(25);
     Menu_Reset();
 }

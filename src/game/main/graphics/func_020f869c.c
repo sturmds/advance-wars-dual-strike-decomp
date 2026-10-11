@@ -7,7 +7,7 @@ void Screen_FillBlack(void);
 void Screens_SetUp2dLayers(const void *unused);
 void Screen_ResetLayerScroll(void);
 void Screen_ApplyAll(void);
-void func_01ff9b48(void);
+void NumberFont_LoadLow(void);
 void UnitIcons_LoadMapGraphics(void);
 void func_020f88b8(void);
 void func_020f88ec(void);
@@ -36,7 +36,7 @@ void func_020f869c(int mode)
         data_027c027c->unk_50[data_027c0284]->callback();
     }
     Screen_ApplyAll();
-    func_01ff9b48();
+    NumberFont_LoadLow();
     UnitIcons_LoadMapGraphics();
     func_020f88b8();
     func_020f88ec();
