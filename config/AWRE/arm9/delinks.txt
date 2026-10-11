@@ -9515,9 +9515,21 @@ src/game/main/func_0207e62c.c:
     complete
     .text       start:0x0207e62c end:0x0207e644
 
+src/game/main/link/link_menu_destroy_sub_screen_task.c:
+    complete
+    .text       start:0x0207e7fc end:0x0207e85c
+
+src/game/main/link/link_menu_save_received_map.c:
+    complete
+    .text       start:0x0207e85c end:0x0207e8a0
+
 src/game/main/func_0207eb2c.c:
     complete
     .text       start:0x0207eb2c end:0x0207eb48
+
+src/game/main/link/link_menu_require_map.c:
+    complete
+    .text       start:0x0207eb48 end:0x0207ebb0
 
 src/game/main/link/link_map_row_sync_update.c:
     complete
