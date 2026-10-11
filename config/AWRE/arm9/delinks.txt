@@ -2911,6 +2911,10 @@ src/game/main/func_02038164.c:
     complete
     .text       start:0x02038164 end:0x02038178
 
+src/game/main/script_task_resume_with_value.c:
+    complete
+    .text       start:0x020381b8 end:0x020381f0
+
 src/game/main/func_02038264.c:
     complete
     .text       start:0x02038264 end:0x0203827c
