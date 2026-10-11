@@ -11638,6 +11638,10 @@ src/game/main/menus/game_state15_return_to_cursor.c:
     complete
     .text       start:0x020d16a4 end:0x020d16f0
 
+src/game/main/units/unit_move_select_update.c:
+    complete
+    .text       start:0x020d16f0 end:0x020d174c
+
 src/game/main/screen_config_run_action_hook.c:
     complete
     .text       start:0x020d1a38 end:0x020d1a84
