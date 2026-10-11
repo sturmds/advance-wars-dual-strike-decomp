@@ -4,7 +4,7 @@
 
 extern DlPlayStationArea *data_022aced8;
 
-void func_0211c794(void);
+void MbChild_WmCallback(void);
 int MbParent_SetMpData(void (*callback)(void), void *data, u16 size, u16 unused, u16 bitmap);
 
 /* Sends data to the children in bitmap with Wireless_QueueMpFrameData. Returns 0 when the
@@ -28,7 +28,7 @@ int MbParent_SendMpData(void *data, int size, int bitmap)
         }
         return result == WM_ERRCODE_OPERATING ? 0 : result;
     case 2:
-        result = MbParent_SetMpData(func_0211c794, data, size16, 0, bitmap16);
+        result = MbParent_SetMpData(MbChild_WmCallback, data, size16, 0, bitmap16);
         if (result == WM_ERRCODE_OPERATING) {
             data_022aced8->sendQueued = 1;
         }

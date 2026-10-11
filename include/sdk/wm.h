@@ -20,6 +20,7 @@ typedef struct WMCallback {
  * value. */
 #define WM_STATECODE_PARENT_START 0
 #define WM_STATECODE_BEACON_SENT 2
+#define WM_STATECODE_SCAN_START 3
 #define WM_STATECODE_PARENT_NOT_FOUND 4
 #define WM_STATECODE_PARENT_FOUND 5
 #define WM_STATECODE_CONNECT_START 6
@@ -29,6 +30,7 @@ typedef struct WMCallback {
 #define WM_STATECODE_MP_START 10
 #define WM_STATECODE_MPEND_IND 11
 #define WM_STATECODE_MP_IND 12
+#define WM_STATECODE_MPACK_IND 13
 #define WIRELESS_NOTICE_HEARD_BEACON 16
 #define WIRELESS_NOTICE_STATION_DROPPED 17
 #define WIRELESS_NOTICE_STATION_BACK 18
@@ -81,6 +83,7 @@ typedef struct WMCallback {
 #define WM_APIID_START_MP 14
 #define WM_APIID_SET_MP_DATA 15
 #define WM_APIID_END_MP 16
+#define WM_APIID_START_KS 21                /* best guess from the neighbouring request ids */
 #define WM_APIID_SET_GAMEINFO 24
 #define WM_APIID_SET_BEACON_IND 25
 #define WM_APIID_SET_LIFETIME 29
@@ -154,6 +157,10 @@ typedef struct WMStartScanCallback {
     u8 macAddress[6];
     u16 channel;
     u16 linkLevel;
+    u16 ssidLength;
+    u8 ssid[32];
+    u16 gameInfoLength;
+    WMGameInfo gameInfo;
 } WMStartScanCallback;
 
 /* What the scan request reads. */

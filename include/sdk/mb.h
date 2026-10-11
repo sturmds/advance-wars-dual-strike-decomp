@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/wm.h"
 
 /* Download Play (MB) parent side: the games the parent offers, and the
  * beacon that advertises them. */
@@ -113,6 +114,15 @@ typedef struct DlPlayRosterFrame {
     u8 unk_4a8[8];
 } DlPlayRosterFrame;
 
+#define DLPLAY_SCAN_HIT_SLOTS 16
+
+/* A parent the child side found by scanning: its beacon and the scan result. */
+typedef struct DlPlayScannedHost {
+    WMBssDesc bssDesc;
+    WMStartScanCallback scan;
+    u8 pad_178[8];
+} DlPlayScannedHost;
+
 /* The parent's work area, behind data_022aced8. Only the fields the beacon
  * and send code read are named. */
 typedef struct DlPlayStationArea {
@@ -133,7 +143,8 @@ typedef struct DlPlayStationArea {
     u16 mpSendBuffer[2];               /* 0x40: given to WM_StartMPEx, length unknown */
     u8 pad_44[0x320 - 0x44];
     u32 unk_320;                       /* 0 until the game starts Download Play */
-    u8 pad_324[0x500 - 0x324];
+    u8 pad_324[0x440 - 0x324];
+    WMBssDesc scanBuffer;              /* where WM writes a parent found by the scan */
     u16 sendSize;                      /* set by DownloadPlay_SetSendSizeAndChildren */
     u16 unk_502;
     u16 *mpRecvBuffer;                 /* given to WM_StartMPEx */
@@ -144,7 +155,7 @@ typedef struct DlPlayStationArea {
     u16 mpSendSize;                    /* sizes given to WM_StartMPEx */
     u16 mpRecvSize;
     void (*errorCallback)(u32 type, void *arg);
-    u8 pad_520[4];
+    WMBssDesc *connectBssDesc;         /* the parent the child connects to */
     u16 unk_524;
     u16 unk_526;
     u16 unk_528;
@@ -154,9 +165,14 @@ typedef struct DlPlayStationArea {
     u16 userName[4];                   /* DownloadPlay_SetUpWork copies the user's nickname here */
     u16 unk_538[8];                    /* DownloadPlay_SetUpWork copies L"multiboot" here, up to 16 characters */
     u16 unk_548;
-    u8 pad_54a[0x5e4 - 0x54a];
-    u32 unk_5e4;
-    u8 pad_5e8[0x1e00 - 0x5e8];
+    u8 pad_54a[0x5e0 - 0x54a];
+    u16 foundCount;                    /* entries used in found */
+    u16 aid;                           /* the id the parent gave this child */
+    u32 unk_5e4;                       /* nonzero: scan again after each scan result */
+    u32 scanAllChannels;               /* move to the next channel after each scan result */
+    u32 lastFoundIndex;                /* entry of found the last scan result went to */
+    u8 pad_5f0[0x600 - 0x5f0];
+    DlPlayScannedHost found[DLPLAY_SCAN_HIT_SLOTS];
 } DlPlayStationArea;
 
 /* data_022aced4 points to the MB buffer; the parent work area sits 0x1000
@@ -192,6 +208,19 @@ typedef struct DlPlayBufferArea {
 /* What errorCallback receives for type DLPLAY_EVENT_RADIO_FAULT. */
 #define DLPLAY_EVENT_RADIO_FAULT 0xff
 #define DLPLAY_EVENT_PORT_DATA 9            /* data arrived on the MB port */
+
+/* More callback types, as the child side's WM callback sends them. The
+ * names are a best guess from the order the child-side callback sends them. */
+#define DLPLAY_EVENT_SCAN_HIT 4
+#define DLPLAY_EVENT_SCAN_MISS 5
+#define DLPLAY_EVENT_JOINED_HOST 6
+#define DLPLAY_EVENT_CHILD_FRAME_OUT 8
+#define DLPLAY_EVENT_LOST_HOST 10
+#define DLPLAY_EVENT_JOIN_REFUSED 11
+#define DLPLAY_EVENT_CHILD_FRAME_FAILED 18
+#define DLPLAY_EVENT_CHILD_FRAME_LATE 41
+
+#define DLPLAY_WIRELESS_PORT 1                          /* WM port of the MB data */
 
 typedef struct DlPlayFailedCall {
     u16 apiid;
