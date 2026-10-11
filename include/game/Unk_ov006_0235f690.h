@@ -67,11 +67,14 @@ typedef struct Unk_ov006_0235f690 {
     s16 winBottom;
     s32 chosenButton;                  /* id of the slot button that was chosen, or -1 */
     s32 unk_50;                        /* last button id of a run starting at 64, removed by func_ov006_02355b44 */
-    u8 pad_54[0x5c - 0x54];
+    s32 unk_54;                        /* sub screen layer 3 scroll y, 12 fraction bits */
+    s32 unk_58;                        /* sprite x, 12 fraction bits; eases to 0x12000 */
     struct Task *unk_5c;               /* task of script data_ov006_0236a218 */
     struct Task *unk_60;               /* task of script data_ov006_0236a1e0 */
     struct Task *unk_64;               /* task of script data_ov006_0236acc4 (func_ov006_02354444) */
-    u8 pad_68[0x78 - 0x68];
+    u8 pad_68[0x70 - 0x68];
+    void *unk_70;                      /* sprite set drawn by Ov006_UpdateSubScreen */
+    u8 pad_74[0x78 - 0x74];
     union {
         Ov006SlotButton slotButtons[8];
         struct {
