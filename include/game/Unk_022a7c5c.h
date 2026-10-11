@@ -12,7 +12,10 @@ typedef struct Unk_022a7c5c {
     u32 texPaletteOffset;              /* where the map palette goes in texture palette VRAM */
     u8 *anim2Frames[3];                /* frames of a second animation, 0x4400 bytes each (MapAnim_QueueSecondFramePart) */
     u8 *anim2Dst;                      /* where MapAnim_QueueSecondFramePart queues them */
-    u8 pad_34[0x5c - 0x34];
+    u8 pad_34[0x38 - 0x34];
+    u32 unk_38;                        /* passed to func_020146f0 by RangeSpread_Update */
+    u32 unk_3c;
+    u8 pad_40[0x5c - 0x40];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */
 } Unk_022a7c5c;

@@ -10959,6 +10959,10 @@ src/game/main/func_020f5c58.c:
     complete
     .text       start:0x020f5c58 end:0x020f5c70
 
+src/game/main/map/range_spread_update.c:
+    complete
+    .text       start:0x020f5c70 end:0x020f5e44
+
 src/game/main/func_020f5e44.c:
     complete
     .text       start:0x020f5e44 end:0x020f5e54
