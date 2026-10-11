@@ -4,7 +4,6 @@
 extern FSArchive *data_022ab828;       /* first registered archive */
 extern FSDirPos data_022ab82c;         /* current directory */
 
-FSArchive *func_0211252c(const char *name, int nameLength);   /* looks like FS_FindArchive */
 u32 func_021125f4(const char *name, int nameLength);          /* packs the name into one word */
 
 /* Adds the archive to the list of registered archives under a name of up to
@@ -15,7 +14,7 @@ BOOL FS_RegisterArchiveName(FSArchive *arc, const char *name, int nameLength)
     BOOL registered = FALSE;
     int irqState = OS_DisableInterrupts();
 
-    if (func_0211252c(name, nameLength) == NULL) {
+    if (FS_FindArchive(name, nameLength) == NULL) {
         if (data_022ab828 == NULL) {
             data_022ab828 = arc;
             data_022ab82c.arc = arc;

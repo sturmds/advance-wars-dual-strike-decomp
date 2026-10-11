@@ -21354,6 +21354,10 @@ src/sdk/fs/fs_execute_async_command.c:
     complete
     .text       start:0x02112290 end:0x0211232c
 
+src/sdk/fs/fs_find_archive.c:
+    complete
+    .text       start:0x0211252c end:0x0211257c
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
