@@ -573,6 +573,10 @@ src/game/ov005/ov005_state_show_layer2_picture.c:
     complete
     .text       start:0x0235f9f4 end:0x02360604
 
+src/game/ov005/ov005_state_show_layer2_picture_a.c:
+    complete
+    .text       start:0x02360604 end:0x02360fec
+
 src/game/ov005/ov005_state_show_layer2_both_screens.c:
     complete
     .text       start:0x02360fec end:0x02361344
