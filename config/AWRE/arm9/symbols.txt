@@ -2403,7 +2403,7 @@ func_0207cec4 kind:function(arm,size=0x24) addr:0x0207cec4
 func_0207cee8 kind:function(arm,size=0xc) addr:0x0207cee8
 func_0207cef4 kind:function(arm,size=0x10) addr:0x0207cef4
 func_0207cf04 kind:function(arm,size=0xc) addr:0x0207cf04
-func_0207cf10 kind:function(arm,size=0x3cc) addr:0x0207cf10
+LinkMenu_InitScreen kind:function(arm,size=0x3cc) addr:0x0207cf10
 func_0207d2dc kind:function(arm,size=0x368) addr:0x0207d2dc
 Link_DrawPlayerRows kind:function(arm,size=0x1b0) addr:0x0207d644
 EventQueue_Drain kind:function(arm,size=0xc0) addr:0x0207d7f4
@@ -7437,9 +7437,9 @@ data_0215ff74 kind:data(any) addr:0x0215ff74
 data_0215ff9c kind:data(any) addr:0x0215ff9c
 data_0215ffdc kind:data(any) addr:0x0215ffdc
 data_02160044 kind:data(any) addr:0x02160044
-data_021600c4 kind:data(any) addr:0x021600c4
-data_021600dc kind:data(any) addr:0x021600dc
-data_021600f8 kind:data(any) addr:0x021600f8
+gLinkLoginResPath kind:data(any) addr:0x021600c4
+gLinkMenuCommonLangResPath kind:data(any) addr:0x021600dc
+gLinkMenuCommonResPath kind:data(any) addr:0x021600f8
 data_02160100 kind:data(any) addr:0x02160100
 data_02160110 kind:data(any) addr:0x02160110
 data_02160118 kind:data(any) addr:0x02160118

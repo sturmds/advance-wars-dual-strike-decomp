@@ -167,7 +167,7 @@ typedef struct Unk_02080440_48 {
     u8 pad_87[0x88 - 0x87];
     u16 secondMapId;                   /* second map of a two-map battle, from MapHeader.variantMapIds[0]; 0: none */
     u8 twoMaps;                        /* 1: a two-map battle (see secondMapId) */
-    u8 pad_8b[0x8c - 0x8b];
+    u8 unk_8b;                         /* 0-4: picks the title text of the link login screens */
     u8 unk_8c;
     u8 army[5];                        /* army colour per slot, copied from the map header */
     u8 slotControllers[5];             /* per slot: PLAYER_CONTROLLER_*, set from the game mode and map */
