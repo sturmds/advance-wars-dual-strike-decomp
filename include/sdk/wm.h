@@ -35,6 +35,7 @@ typedef struct WMCallback {
 #define WM_ERRCODE_SUCCESS 0
 #define WM_ERRCODE_OPERATING 2             /* the command was sent and its callback will follow */
 #define WM_ERRCODE_ILLEGAL_STATE 3
+#define WM_ERRCODE_WM_DISABLE 4            /* the ARM7 side of WM is not running */
 #define WM_ERRCODE_INVALID_PARAM 6
 #define WM_ERRCODE_NO_CHILD 7
 #define WM_ERRCODE_FIFO_ERROR 8
@@ -64,10 +65,17 @@ typedef struct WMCallback {
 #define WM_APIID_PORT_SEND 0x81
 #define WM_APIID_PORT_RECV 0x82
 
+#define PXI_PROC_ARM7 1
 #define PXI_FIFO_TAG_WM 10                 /* PXI FIFO tag of messages between the WM halves */
 #define WM_NUM_OF_PORT 16
 #define WM_FIFO_BUF_SIZE 0x100             /* one command or reply in shared memory */
+/* The work area given to WM_Init holds, in order: WMArm9Buf, the ARM7 side's
+ * work area, the WMStatus block, the request buffer and the reply buffer. */
+#define WM_ARM9WM_BUF_SIZE 0xa00
+#define WM_ARM7WM_BUF_SIZE 0x300
 #define WM_STATUS_BUF_SIZE 0x800
+#define WM_SYSTEM_BUF_SIZE (WM_ARM9WM_BUF_SIZE + WM_ARM7WM_BUF_SIZE + WM_STATUS_BUF_SIZE + 2 * WM_FIFO_BUF_SIZE)
+#define WIRELESS_CMD_BUFFERS 10               /* command buffers the ARM9 can have in flight */
 #define WM_API_REQUEST_ACCEPTED 0x8000     /* set in a buffer's apiid once it may be reused */
 
 /* What an indication callback receives (unsolicited ARM7 events). */
@@ -268,7 +276,7 @@ typedef void (*WMCallbackFunc)(void *arg);
 
 /* The ARM9 side's work area. */
 typedef struct WMArm9Buf {
-    u8 pad_00[4];
+    void *arm7Buf;                     /* the ARM7 side's work area */
     WMStatus *status;
     u8 pad_08[4];
     void *requestBuf;                  /* where a command's arguments are written */
@@ -279,6 +287,8 @@ typedef struct WMArm9Buf {
     WMCallbackFunc indCallback;
     WMCallbackFunc portCallback[16];
     void *portCallbackArg[16];
+    u8 pad_140[0x1c];
+    u32 unk_15c;                       /* Wireless_SetUpWorkArea sets 0 */
 } WMArm9Buf;
 
 /* WM internals shared by the command functions. WMi_CheckStateEx returns 0 when
@@ -290,6 +300,7 @@ typedef struct WMArm9Buf {
  * queued, else an error code. */
 int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
+int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size);
 int WM_Finish(void);                    /* only while READY; clears the WM work area pointer */
 int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
