@@ -8716,6 +8716,10 @@ src/game/main/func_020760e4.c:
     complete
     .text       start:0x020760e4 end:0x020760f4
 
+src/game/main/reaction_text_menu_draw_screen.c:
+    complete
+    .text       start:0x020760f4 end:0x02076328
+
 src/game/main/reaction_text_menu_set_up_screens.c:
     complete
     .text       start:0x02076328 end:0x0207639c
