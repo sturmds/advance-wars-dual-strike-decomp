@@ -16333,6 +16333,10 @@ src/game/main/copowers/ex_machina_bolt_play_anim.c:
     complete
     .text       start:0x020e48c0 end:0x020e49cc
 
+src/game/main/copowers/ex_machina_bolt_fade_in.c:
+    complete
+    .text       start:0x020e49cc end:0x020e4a68
+
 src/game/main/copowers/ex_machina_bolt_start_flash.c:
     complete
     .text       start:0x020e4a68 end:0x020e4b84
