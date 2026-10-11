@@ -4035,6 +4035,10 @@ src/game/main/menus/func_02031bec.c:
     complete
     .text       start:0x02031bec end:0x02031d40
 
+src/game/main/menus/co_exp_task_hold_sprite.c:
+    complete
+    .text       start:0x02031d40 end:0x02031dc0
+
 src/game/main/menus/func_02031dc0.c:
     complete
     .text       start:0x02031dc0 end:0x02031f48
