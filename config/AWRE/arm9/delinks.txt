@@ -19358,6 +19358,10 @@ src/game/main/campaign_recap_load_result_sprites.c:
     complete
     .text       start:0x020ff4a8 end:0x020ff624
 
+src/game/main/campaign_recap_draw_number.c:
+    complete
+    .text       start:0x020ff624 end:0x020ff7d0
+
 src/game/main/func_020ff994.c:
     complete
     .text       start:0x020ff994 end:0x020ff9fc
