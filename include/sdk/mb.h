@@ -73,5 +73,22 @@ typedef struct DlPlayAdvertProgress {
 } DlPlayAdvertProgress;
 
 #define DLPLAY_ADVERT_CHUNK_BYTES 98
+#define DLPLAY_ADVERT_SUMMED_BYTES 0x68       /* from the checksum field to the end of DlPlayAdvertFrame */
+
+/* The user game info the parent broadcasts, 0x70 bytes at data_022ace60. */
+typedef struct DlPlayAdvertFrame {
+    u32 ggid;
+    u8 noIcon : 2;
+    u8 unk_4b5 : 6;
+    u8 unk_4b3;
+    u8 changeCount;
+    u8 sequence;                       /* up by one at each beacon */
+    u16 checksum;                      /* over the bytes from here to the end */
+    u8 pieceIndex;
+    u8 pieceCount;
+    u8 size;                           /* bytes used in data */
+    u8 pad_0d;
+    u8 data[DLPLAY_ADVERT_CHUNK_BYTES];
+} DlPlayAdvertFrame;
 
 #endif
