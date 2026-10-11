@@ -6919,6 +6919,16 @@ src/game/main/func_020858d8.c:
     complete
     .text       start:0x020858d8 end:0x02085900
 
+src/game/main/menus/combat_setup_player_unready.c:
+    .text       start:0x02085900 end:0x02085974
+
+src/game/main/menus/combat_setup_player_ready.c:
+    .text       start:0x02085974 end:0x02085a08
+
+src/game/main/menus/combat_setup_move_player_down.c:
+    complete
+    .text       start:0x02085a08 end:0x02085ab0
+
 src/game/main/func_02085d4c.c:
     complete
     .text       start:0x02085d4c end:0x02085d60

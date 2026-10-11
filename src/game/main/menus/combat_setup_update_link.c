@@ -12,7 +12,7 @@ void func_020858bc(void);
 void func_020858d8(void);
 void func_02085900(u8 player);
 void func_02085974(u8 player);
-void func_02085a08(u8 player);
+void CombatSetup_MovePlayerDown(u8 player);
 void func_02085ab0(u8 player);
 void func_02085b64(u8 player);
 void func_02085bc8(u8 player);
@@ -76,7 +76,7 @@ void CombatSetup_UpdateLink(Task *task)
                         func_02085ab0(i);
                         break;
                     case 15:
-                        func_02085a08(i);
+                        CombatSetup_MovePlayerDown(i);
                         break;
                     }
                 }
