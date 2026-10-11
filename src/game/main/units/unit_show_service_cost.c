@@ -11,7 +11,7 @@ void func_020cdb14(s16 *pos, int player, int amount, int arg3, int arg4, int arg
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* Gets the cost of a service to the unit from getCost (func_020ccee0 passes
- * Unit_ResupplyUnpaid or func_020cd10c) and passes it, with the unit's tile
+ * Unit_ResupplyUnpaid or Unit_ResupplyCargo) and passes it, with the unit's tile
  * and the tile's MapTiles.unk_2338 byte, to func_020cdb14. Returns FALSE
  * when the cost is 0. */
 BOOL Unit_ShowServiceCost(MapUnit *unit, int (*getCost)(MapUnit *unit))
