@@ -1,6 +1,7 @@
 #include "types.h"
 
-int func_02028498(int sizeCode)
+/* A second copy of TexSize_ToPixels. */
+int TexSize_ToPixels_02028498(int sizeCode)
 {
     switch (sizeCode) {
     case 0: return 8;

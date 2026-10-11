@@ -2794,15 +2794,19 @@ src/game/main/graphics/quad/gx_send_textured_rect.c:
     complete
     .text       start:0x0202815c end:0x02028294
 
+src/game/main/graphics/quad/gx_draw_textured_quad_format.c:
+    complete
+    .text       start:0x02028294 end:0x02028424
+
 src/game/main/graphics/tex_size_to_pixels.c:
     complete
     .text       start:0x02028424 end:0x02028498
 
-src/game/main/func_02028498.c:
+src/game/main/graphics/tex_size_to_pixels_02028498.c:
     complete
     .text       start:0x02028498 end:0x0202850c
 
-src/game/main/func_0202850c.c:
+src/game/main/graphics/quad/gx_send_textured_rect_0202850c.c:
     complete
     .text       start:0x0202850c end:0x02028644
 

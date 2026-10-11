@@ -7,7 +7,8 @@
 #define TEXCOORD(s, t) ((u16)(s) | ((u16)(t) << 16))
 #define VTX_XY(x, y) ((u16)(x) | ((u16)(y) << 16))
 
-void func_0202850c(int x, int y, int z, int w, int h, int s0, int t0, int s1, int t1)
+/* A second copy of Gx_SendTexturedRect. */
+void Gx_SendTexturedRect_0202850c(int x, int y, int z, int w, int h, int s0, int t0, int s1, int t1)
 {
     s16 x0 = x;
     s16 y0 = y;
