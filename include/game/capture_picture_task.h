@@ -17,7 +17,7 @@ typedef struct CapturePictureTask {
     struct Unk_02022404 *unk_38;       /* drawn through affine matrix 3, squashed as points go up */
     s16 x;                             /* screen position of the picture */
     s16 y;
-    s16 unk_40;                        /* func_020ec218: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives unk_34 */
+    s16 unk_40;                        /* CapturePicture_InitOffset: -(20 - oldPoints) * 2, the y offset CapturePicture_Draw gives unk_34 */
     s16 unk_42;                        /* added to y for the sprites in unk_34 and unk_38 */
     u8 owner;                          /* player capturing the property */
     u8 oldOwner;                       /* its owner before the capture */
