@@ -9880,6 +9880,10 @@ src/game/main/func_020f37d0.c:
     complete
     .text       start:0x020f37d0 end:0x020f3804
 
+src/game/main/map/two_maps_merge_other_front.c:
+    complete
+    .text       start:0x020f3914 end:0x020f3c48
+
 src/game/main/func_020f3ec8.c:
     complete
     .text       start:0x020f3ec8 end:0x020f3ecc
