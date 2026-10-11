@@ -5638,6 +5638,10 @@ src/game/main/caption_sweep_bars.c:
     complete
     .text       start:0x0204c3fc end:0x0204c614
 
+src/game/main/caption_slide_up.c:
+    complete
+    .text       start:0x0204c614 end:0x0204c850
+
 src/game/main/func_0204cb34.c:
     complete
     .text       start:0x0204cb34 end:0x0204cb40
