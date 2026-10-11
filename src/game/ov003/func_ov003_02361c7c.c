@@ -16,18 +16,25 @@ void func_ov003_0236249c(void);
  * it also copies the cells of every row, with units (state 2) as state 1.
  * Then it updates two play counters. Not matched: the register choice for
  * the data_02160abc and Ov003State addresses is swapped. */
+typedef struct RowView {
+    u8 row : 4;
+    u8 hi : 4;
+    u8 pad[3];
+} RowView;
+
 void func_ov003_02361c7c(int row)
 {
     u8 other;
     int i;
     int j;
+    RowView *slots;
 
-    data_02160abc->unk_0a = row;
     if (row != 1) {
         other = 1;
     } else {
         other = 2;
     }
+    data_02160abc->unk_0a = row;
     data_02160abc->unk_0b = STATE->rows[row - 1].unk_3b_0;
     data_02160abc->unk_0d = STATE->rows[row - 1].color;
     data_02160abc->unk_0c = STATE->rows[other - 1].unk_3b_0;
@@ -52,9 +59,10 @@ void func_ov003_02361c7c(int row)
             gPlayRecords.unk_440++;
         }
     }
+    slots = (RowView *)((u8 *)STATE + 0x139);
     for (i = 0; i < 6; i++) {
         u32 total;
-        int slotRow = STATE->slots[STATE->currentSlot].row;
+        int slotRow = slots[STATE->currentSlot].row;
 
         total = gPlayRecords.unk_43c + STATE->rows[slotRow - 1].unk_28[i];
         if (total < RECORD_MAX) {
