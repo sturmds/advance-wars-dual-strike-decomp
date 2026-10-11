@@ -3795,6 +3795,10 @@ src/game/main/text/mode_font_load_here.c:
     complete
     .text       start:0x0202ac14 end:0x0202acbc
 
+src/game/main/text/mode_font_task_grow_in.c:
+    complete
+    .text       start:0x0202ad84 end:0x0202afa8
+
 src/game/main/tp_icon3_load_to.c:
     complete
     .text       start:0x0202b68c end:0x0202b6f8
