@@ -22,7 +22,7 @@ extern s8 data_0229e5c0[][12];
 int Rng_Next(void);
 s32 HwMod32(s32 numer, s32 denom);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_02096378(void);
+int AiSite_PickForFootUnit(void);
 int AiSite_PickNearestToPropertyAnyGroup(int arg);
 int AiSite_PickFirst(int arg);
 int func_0209f980(int arg);
@@ -31,7 +31,7 @@ void func_020b81bc(void);
 void func_0209316c(int index);
 
 /* End-actions step 6. Tries to start building a foot unit if funds cover an
- * Infantry. Takes the first factory that func_02096378, AiSite_PickNearestToPropertyAnyGroup(1) or
+ * Infantry. Takes the first factory that AiSite_PickForFootUnit, AiSite_PickNearestToPropertyAnyGroup(1) or
  * AiSite_PickFirst(1) return (-1: none). A factory that already has bit 0 of
  * byte 3 in its data_0229e44c record set is skipped when unk_08 reaches the
  * profile's unk_08[0] + unk_08[1]. The unit is a Mech when a roll of 0 to 99
@@ -46,7 +46,7 @@ BOOL AiTurn_TryBuildFootUnit(void)
     if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_INFANTRY) * 10) > STATE->players[STATE->currentPlayer].funds) {
         return 0;
     }
-    index = func_02096378();
+    index = AiSite_PickForFootUnit();
     if (index == -1) {
         index = AiSite_PickNearestToPropertyAnyGroup(1);
     }
