@@ -5482,6 +5482,10 @@ src/game/main/ai/func_02090154.c:
     complete
     .text       start:0x02090154 end:0x020901f0
 
+src/game/main/ai/ai_turn_try_build_lander.c:
+    complete
+    .text       start:0x020901f0 end:0x02090360
+
 src/game/main/ai/func_02091904.c:
     complete
     .text       start:0x02091904 end:0x02091944

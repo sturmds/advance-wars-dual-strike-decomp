@@ -3,7 +3,7 @@
 
 int func_0209f980(int arg);
 int func_02091538(void);
-int func_020901f0(void);
+int AiTurn_TryBuildLander(void);
 int func_020908bc(void);
 int func_020907b8(void);
 int func_020913e8(void);
@@ -16,7 +16,7 @@ BOOL func_02090154(void)
     if (func_02091538() == 1) {
         return 1;
     }
-    if (func_020901f0() == 1) {
+    if (AiTurn_TryBuildLander() == 1) {
         return 1;
     }
     if (func_020908bc() == 1) {
