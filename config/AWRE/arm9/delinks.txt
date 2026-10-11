@@ -13428,6 +13428,10 @@ src/game/main/ai/ai_unit_can_use_other_map_from.c:
     complete
     .text       start:0x020c7650 end:0x020c76c4
 
+src/game/main/units/unit_send_to_other_map.c:
+    complete
+    .text       start:0x020c76c4 end:0x020c77ac
+
 src/game/main/map/map_find_nearest_tile_for_unit_type.c:
     complete
     .text       start:0x020c77ac end:0x020c78c4

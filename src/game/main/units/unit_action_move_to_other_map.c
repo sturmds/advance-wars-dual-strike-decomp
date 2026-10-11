@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_020c76c4(MapUnit *unit); /* puts the unit on the other map */
+void Unit_MoveToOtherMap(MapUnit *unit); /* puts the unit on the other map */
 
 void UnitAction_MoveToOtherMap(void)
 {
@@ -15,5 +15,5 @@ void UnitAction_MoveToOtherMap(void)
             gPlayRecords.unitsSentToOtherMap++;
         }
     }
-    func_020c76c4(data_027c027c->unk_48[data_027c0284]->actingUnit);
+    Unit_MoveToOtherMap(data_027c027c->unk_48[data_027c0284]->actingUnit);
 }
