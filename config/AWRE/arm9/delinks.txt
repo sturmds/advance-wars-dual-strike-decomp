@@ -10648,6 +10648,10 @@ src/game/main/player_refresh_units.c:
     complete
     .text       start:0x020c6f98 end:0x020c703c
 
+src/game/main/units/units_wait_paralysed.c:
+    complete
+    .text       start:0x020c703c end:0x020c7104
+
 src/game/main/units/current_player_buy_unit.c:
     complete
     .text       start:0x020c716c end:0x020c72c0
