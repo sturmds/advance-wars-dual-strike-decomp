@@ -1,0 +1,23 @@
+#ifndef GAME_BLACK_BOMB_BLAST_TASK_H
+#define GAME_BLACK_BOMB_BLAST_TASK_H
+
+#include "types.h"
+
+/* Work area of the Black Bomb blast task (script data_02168f10), a child of
+ * the explosion task func_020dd940 starts. */
+typedef struct BlackBombBlastTask {
+    u8 pad_00[0x2c];
+    int tileX;                         /* centre of the blast */
+    int tileY;
+    u8 pad_34[0x44 - 0x34];
+    s16 damage;                        /* hp taken off each unit in range */
+    u8 pad_46[0x4a - 0x46];
+    u16 sprite;                        /* bits 0-11 graphics tile, bits 12-15 palette */
+    u8 pad_4c[0x54 - 0x4c];
+    int pixelX;                        /* centre of tileX in map pixels */
+    int pixelY;
+    u8 pad_5c[0x66 - 0x5c];
+    s16 unk_66;                        /* func_020ebb48 copies Unk_02080440_1c4.scrollY here */
+} BlackBombBlastTask;
+
+#endif
