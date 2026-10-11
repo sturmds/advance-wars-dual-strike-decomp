@@ -1,0 +1,16 @@
+#ifndef GAME_PLAYER_INFO_TASK_H
+#define GAME_PLAYER_INFO_TASK_H
+
+#include "types.h"
+
+/* Task of the player info screen script (data_0215d430), started by
+ * PlayerInfo_StartTaskFor and PlayerInfo_StartTaskForCurrentPlayer. The
+ * first 0x64 bytes belong to the task system. */
+typedef struct PlayerInfoTask {
+    u8 pad_00[0x64];
+    u16 player;                        /* player whose info the screen opens on */
+    u16 unk_66;                        /* 1 when the player was read from the other screen's state */
+    u16 unk_68;                        /* 1 when the caller passed player and unk_66, 0 when they come from the game state */
+} PlayerInfoTask;
+
+#endif

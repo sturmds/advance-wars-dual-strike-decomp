@@ -6777,6 +6777,10 @@ src/game/main/menus/battle_setup_load_from_game.c:
     complete
     .text       start:0x0206c6f4 end:0x0206cd64
 
+src/game/main/menus/player_info_start_task_for.c:
+    complete
+    .text       start:0x0206cd64 end:0x0206cda4
+
 src/game/main/menus/player_info_add_co_buttons.c:
     complete
     .text       start:0x0206ce94 end:0x0206cf50
