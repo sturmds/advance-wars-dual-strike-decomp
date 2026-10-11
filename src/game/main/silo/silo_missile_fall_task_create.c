@@ -1,0 +1,19 @@
+#include "types.h"
+#include "game/silo_missile_task.h"
+#include "game/task.h"
+
+extern const TaskScriptCmd data_02168e78[];
+
+/* Starts the falling missile task (script data_02168e78) for tile (x, y)
+ * under `parent`. The sprite uses tile `tile` and palette `palette`. unk44
+ * and unk60 are kept for func_020ecf30. */
+void SiloMissileFall_CreateTask(int x, int y, int tile, int palette, int unk44, int unk60, Task *parent)
+{
+    SiloMissileTask *task = (SiloMissileTask *)Task_CreateChild(data_02168e78, parent);
+
+    task->x = x;
+    task->y = y;
+    task->spriteAttr = tile | palette << 12;
+    task->unk_44 = unk44;
+    task->unk_60 = unk60;
+}
