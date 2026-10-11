@@ -12194,6 +12194,10 @@ src/game/main/copowers/winter_fury.c:
     complete
     .text       start:0x020e4184 end:0x020e41fc
 
+src/game/main/copowers/unit_drop_find_next_city.c:
+    complete
+    .text       start:0x020e42d0 end:0x020e4410
+
 src/game/main/copowers/airborne_assault.c:
     complete
     .text       start:0x020e444c end:0x020e4478
