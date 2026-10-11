@@ -64,7 +64,7 @@ void LinkExperienceSyncTask_Update(LinkSyncTask *task)
         task->started = 1;
     } else if (task->sendDone == 0) {
         u8 *out = chunk; /* needed to match: chunk[i] keeps the data pointer in the wrong register */
-        u8 *text = task->experience;
+        u8 *text = (u8 *)task->experience;
 
         for (i = 0; i < 8; i++) {
             *out = text[task->sentBytes];
