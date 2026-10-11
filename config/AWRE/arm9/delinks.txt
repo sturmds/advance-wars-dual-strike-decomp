@@ -10094,6 +10094,7 @@ src/game/main/graphics/terrain_get_icon_tiles.c:
     .text       start:0x020ccbb8 end:0x020ccbe4
 
 src/game/main/graphics/co_get_preview_tiles.c:
+    complete
     .text       start:0x020ccbe4 end:0x020ccc14
 
 src/game/main/func_020ccd70.c:

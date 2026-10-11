@@ -11,14 +11,14 @@ void Palette_Load(const void *src, u32 offset, u32 size);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 u8 *func_020c67bc(void);
 int Player_GetCoIconTile(int player, int index);
-u8 *func_020ccbe4(int co);
+u8 *Co_GetPreviewTiles(int co);
 
 #define STATE data_ov006_0236d640
 
 /* Loads the CO id in STATE->unk_1a (low 6 bits) for display on the second
  * screen: its 4-tile icon at 0x5480 in OBJ VRAM (tile index from
  * Player_GetCoIconTile, row picked by the player's army style, the sprite set), its
- * 8-tile picture (func_020ccbe4) at 0x5500, and the player's army colour (the
+ * 8-tile picture (Co_GetPreviewTiles) at 0x5500, and the player's army colour (the
  * palette) in sprite palette slot 2. STATE->unk_24 is the player; 0 means
  * player 1. Names are guesses: unk_1a is a CO id by its use here. */
 void Ov006_LoadCoPreview(void)
@@ -38,7 +38,7 @@ void Ov006_LoadCoPreview(void)
     icons = func_020c67bc();
     TransferQueue_Add(icons + Player_GetCoIconTile(player, co) * 32,
                   (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5480, 128);
-    TransferQueue_Add(func_020ccbe4(co), (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5500, 256);
+    TransferQueue_Add(Co_GetPreviewTiles(co), (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5500, 256);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
