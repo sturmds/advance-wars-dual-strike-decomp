@@ -56,5 +56,10 @@ extern FILE gMslFiles[FILE_COUNT];
 
 int fflush(FILE *file);
 int __flush_all(void);
+/* Writes the pending buffer through writeProc; returns the proc's error code, 0 on success. */
+int __flush_buffer(FILE *file, u32 *bytesFlushed);
+/* Points the buffer at its start, aligned to the file position. */
+void __prep_buffer(FILE *file);
+void __convert_from_newlines(u8 *buffer, u32 *length);
 
 #endif

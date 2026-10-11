@@ -22200,7 +22200,15 @@ src/sdk/abs.c:
     complete
     .text       start:0x021220ac end:0x021220b8
 
-src/sdk/func_02122188.c:
+src/sdk/msl/flush_buffer.c:
+    complete
+    .text       start:0x021220b8 end:0x02122154
+
+src/sdk/msl/prep_buffer.c:
+    complete
+    .text       start:0x02122154 end:0x02122188
+
+src/sdk/__convert_from_newlines.c:
     complete
     .text       start:0x02122188 end:0x0212218c
 
