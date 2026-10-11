@@ -29,6 +29,9 @@ Task *PaletteFade_StartFromBlackScreen1(void *parentOrList, const void *palettes
 /* Fades the slots from black to the colors in palettes on screen 0. */
 Task *PaletteFade_StartFromBlack(void *parentOrList, const void *palettes, int duration, int firstSlot, int slotCount);
 
+/* Lightens slotCount palettes from firstSlot toward white by level (0 to 16). */
+void Palette_Lighten(void *palettes, int firstSlot, int slotCount, int level);
+
 /* Darkens slotCount palettes from firstSlot by level (0 to 16). */
 void Palette_Darken(u8 *palettes, int firstSlot, int slotCount, int level);
 

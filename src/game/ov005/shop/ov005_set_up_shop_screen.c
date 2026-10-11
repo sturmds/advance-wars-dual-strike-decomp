@@ -25,7 +25,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void Gfx_RequestLayerCopy(int layer);
 void Font_LoadDigits(int baseTile);
 void Mem_Copy32(const void *src, void *dst, u32 size);
-void func_020fd62c(u8 *palette, int a, int b, int c);
+void Palette_Lighten(u8 *palette, int a, int b, int c);
 void Palette_Flush(void);
 void Ov005_LoadShopItems(Unk_ov005_0236bbb0 *work);
 void Ov005_InitShopPaging(Unk_ov005_0236bbb0 *work);
@@ -80,7 +80,7 @@ void Ov005_SetUpShopScreen(Ov005Task *task)
     Gfx_RequestLayerCopy(1);
     Font_LoadDigits(0);
     Mem_Copy32(data_027c0280->paletteBuffer, data_027c0280->paletteBuffer + 0x120, 32);
-    func_020fd62c(data_027c0280->paletteBuffer, 9, 1, 12);
+    Palette_Lighten(data_027c0280->paletteBuffer, 9, 1, 12);
     Palette_Flush();
     SWITCH_BACK();
 
