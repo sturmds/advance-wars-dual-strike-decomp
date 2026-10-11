@@ -11075,6 +11075,10 @@ src/game/main/screen/screen_set_layer1_translucent.c:
     complete
     .text       start:0x020f9580 end:0x020f969c
 
+src/game/main/screen/screen_set_layer0_translucent.c:
+    complete
+    .text       start:0x020f969c end:0x020f9838
+
 src/game/main/func_020f9838.c:
     complete
     .text       start:0x020f9838 end:0x020f9854
