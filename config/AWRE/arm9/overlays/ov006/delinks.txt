@@ -478,6 +478,10 @@ src/game/ov006/func_ov006_02355bd4.c:
     complete
     .text       start:0x02355bd4 end:0x02355c58
 
+src/game/ov006/ov006_add_entry_buttons.c:
+    complete
+    .text       start:0x02355c58 end:0x02355d84
+
 src/game/ov006/func_ov006_02355d84.c:
     complete
     .text       start:0x02355d84 end:0x02355d98
