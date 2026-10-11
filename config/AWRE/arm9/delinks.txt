@@ -9319,6 +9319,13 @@ src/game/main/task/event_sequence_task_start.c:
     complete
     .text       start:0x020d7d9c end:0x020d7dd0
 
+src/game/main/task/event_sequence_start_script.c:
+    complete
+    .text       start:0x020d7dd0 end:0x020d7e24
+
+src/game/main/task/palette_anim_task_step.c:
+    .text       start:0x020d7e24 end:0x020d7e60
+
 src/game/main/func_020d7e98.c:
     complete
     .text       start:0x020d7e98 end:0x020d7ea4
