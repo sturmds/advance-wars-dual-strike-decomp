@@ -17,26 +17,24 @@ void UnitIcon_DrawEntries(u16 *entry, int type, int look, u8 carrying, u8 captur
 
 /* Draws the unit shown on map tile (x, y) into BG layer 1, or clears the
  * tile when there is none to show. look is 0x100 for a unit that has
- * waited (grey), else the slot's owner bits. Not matched yet: the original
- * keeps units and unit in one register (r7). */
+ * waited (grey), else the slot's owner bits. */
 void MapView_DrawUnitTile(int x, int y)
 {
-    int idx;
-    MapUnit *unit;
-    BOOL hpHidden;
     u8 slot;
-    int bgY;
     BOOL flag;
-    BOOL paralysed;
-    int bgX;
-    MapUnit *units;
+    MapUnit *unit;
     u16 half;
     MapTiles *tiles;
     BOOL lowFuel;
-    u16 *entry;
     int shownHp;
-    int look;
     BOOL lowAmmo;
+    u16 *entry;
+    int idx;
+    BOOL paralysed;
+    int bgX;
+    int look;
+    int bgY;
+    BOOL hpHidden;
 
     if (x < 0 || x >= STATE->unk_1c4->mapWidth || y < 0 || y >= STATE->unk_1c4->mapHeight) {
         MapView_ClearUnitTile(x, y);
@@ -46,11 +44,11 @@ void MapView_DrawUnitTile(int x, int y)
     idx = x + tiles->rowStart[y];
     slot = tiles->unk_508[idx];
     if (slot == 0 || tiles->unk_2338[idx] == 0 || !UnitSlot_IsVisible(slot)
-        || ((units = STATE->units)[slot].flags & MAP_UNIT_LOCKED)) {
+        || (STATE->units[slot].flags & MAP_UNIT_LOCKED)) {
         MapView_ClearUnitTile(x, y);
         return;
     }
-    if (units[slot].flags & MAP_UNIT_WAITED) {
+    if (STATE->units[slot].flags & MAP_UNIT_WAITED) {
         look = 0x100;
     } else {
         look = (u16)(slot & 0xc0);
@@ -61,17 +59,17 @@ void MapView_DrawUnitTile(int x, int y)
     bgY = (s16)(((y - STATE->unk_1c4->unk_28) & 15) * 2);
     lowAmmo = lowFuel;
     paralysed = lowFuel;
-    unit = &units[slot];
+    unit = &STATE->units[slot];
 
     flag = FALSE;
-    if (Ov000_gUnitStats[units[slot].type].fuel != 0 && unit->fuel <= Ov000_gUnitStats[units[slot].type].fuel >> 1) {
+    if (Ov000_gUnitStats[unit->type].fuel != 0 && unit->fuel <= Ov000_gUnitStats[unit->type].fuel >> 1) {
         flag = TRUE;
     }
     if (flag) {
         lowFuel = TRUE;
     }
     flag = FALSE;
-    if (Ov000_gUnitStats[units[slot].type].ammo != 0 && unit->ammo <= Ov000_gUnitStats[units[slot].type].ammo >> 1) {
+    if (Ov000_gUnitStats[unit->type].ammo != 0 && unit->ammo <= Ov000_gUnitStats[unit->type].ammo >> 1) {
         flag = TRUE;
     }
     if (flag) {

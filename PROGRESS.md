@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6640 / 6700 | 1496852 / 1553840 | 96.33% | 0 | 0 |
+| ARM9 game | 6641 / 6700 | 1497624 / 1553840 | 96.38% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7074 / 7481 | 1548464 / 1685994 | 91.84% | 33 | 2126 |
+| ARM9 all | 7075 / 7481 | 1549236 / 1685994 | 91.89% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6640 / 6700 | 1496852 / 1553840 | 96.33% | 0 | 0 |
+| game | 6641 / 6700 | 1497624 / 1553840 | 96.38% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7074 / 8495 | 1548464 / 1840290 | 84.14% | 33 | 2126 |
+| all | 7075 / 8495 | 1549236 / 1840290 | 84.18% | 33 | 2126 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5140 / 5180 | 1040028 / 1082632 | 96.06% | 0 |
+| main | game | 5141 / 5180 | 1040800 / 1082632 | 96.14% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -68,7 +68,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 |
 | `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
-| `src/game/main/map/map_view_draw_unit_tile.c` | MapView_DrawUnitTile | 772 |
 | `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 |
 | `src/game/main/menus/co_select_screen_refresh_cell_skills.c` | CoSelectScreen_RefreshCellSkills | 132 |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 |
