@@ -4538,6 +4538,10 @@ src/game/main/task/task_create_child_sharing_data.c:
     complete
     .text       start:0x020495c4 end:0x020495f4
 
+src/game/main/menus/level_gauge_task_count_up.c:
+    complete
+    .text       start:0x02049780 end:0x02049aac
+
 src/game/main/func_02049c9c.c:
     complete
     .text       start:0x02049c9c end:0x02049ddc
