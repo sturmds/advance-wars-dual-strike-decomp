@@ -3,9 +3,8 @@
 BOOL FS_OpenFileFast(FSFile *file, FSFileID id);
 
 /* Reads entry id of the target CPU's overlay table from the archive into
- * info, then looks up where the overlay's file lies. The caller passes the
- * two tables as RomRegion values; taking them as four words here is needed
- * to match (the struct form copies them differently). */
+ * info, then looks up where the overlay's file lies. The two tables come as
+ * four words, offset and length of each. */
 BOOL FSi_LoadOverlayInfoCore(FSOverlayInfo *info, MIProcessor target, u32 id, FSArchive *arc,
                    u32 arm9Offset, u32 arm9Length, u32 arm7Offset, u32 arm7Length)
 {

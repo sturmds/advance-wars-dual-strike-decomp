@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 450 / 781 | 54492 / 132154 | 41.23% | 69 | 3394 |
-| ARM9 all | 7104 / 7481 | 1561112 / 1685994 | 92.59% | 69 | 3394 |
+| ARM9 SDK/library | 451 / 781 | 54768 / 132154 | 41.44% | 69 | 3394 |
+| ARM9 all | 7105 / 7481 | 1561388 / 1685994 | 92.61% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 450 / 1795 | 54492 / 286450 | 19.02% | 69 | 3394 |
-| all | 7104 / 8495 | 1561112 / 1840290 | 84.83% | 69 | 3394 |
+| SDK/library | 451 / 1795 | 54768 / 286450 | 19.12% | 69 | 3394 |
+| all | 7105 / 8495 | 1561388 / 1840290 | 84.84% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 443 / 770 | 53580 / 130618 | 41.02% | 65 |
+| main | SDK/library | 444 / 770 | 53856 / 130618 | 41.23% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -95,7 +95,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 |
-| `src/sdk/fs/fs_load_overlay_info.c` | func_021133a0 | 276 |
 | `src/sdk/fx/matrix_invert3x3.c` | Matrix_Invert3x3 | 760 |
 | `src/sdk/fx/mtx_inverse43.c` | MTX_Inverse43 | 916 |
 | `src/sdk/gx/gx_set_bank_for_sub_bg.c` | func_0210ab74 | 172 |

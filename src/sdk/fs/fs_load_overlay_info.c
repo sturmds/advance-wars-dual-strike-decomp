@@ -7,9 +7,9 @@ extern RomRegion data_022ab84c;
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
 BOOL FS_OpenFileFast(FSFile *file, FSFileID id);
 BOOL FSi_LoadOverlayInfoCore(FSOverlayInfo *info, MIProcessor target, u32 id, FSArchive *arc,
-                   RomRegion arm9Overlays, RomRegion arm7Overlays);
+                   u32 arm9Offset, u32 arm9Length, u32 arm7Offset, u32 arm7Length);
 
-BOOL func_021133a0(FSOverlayInfo *info, MIProcessor target, u32 id)
+BOOL FS_LoadOverlayInfo(FSOverlayInfo *info, MIProcessor target, u32 id)
 {
     RomRegion *table = target == MI_PROCESSOR_ARM9 ? &data_022ab844 : &data_022ab84c;
 
@@ -32,6 +32,10 @@ BOOL func_021133a0(FSOverlayInfo *info, MIProcessor target, u32 id)
         }
         return TRUE;
     }
-    return FSi_LoadOverlayInfoCore(info, target, id, &gRomFileArchive, ROM_HEADER_BUF->arm9Overlays,
-                         ROM_HEADER_BUF->arm7Overlays);
+    {
+        RomRegion *arm9 = &ROM_HEADER_BUF->arm9Overlays;
+        RomRegion *arm7 = &ROM_HEADER_BUF->arm7Overlays;
+        return FSi_LoadOverlayInfoCore(info, target, id, &gRomFileArchive, arm9->offset, arm9->length,
+                             arm7->offset, arm7->length);
+    }
 }
