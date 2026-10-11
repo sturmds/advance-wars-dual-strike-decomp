@@ -14161,6 +14161,10 @@ src/game/main/map/map_screen_update_animations.c:
     complete
     .text       start:0x020fb660 end:0x020fb6f8
 
+src/game/main/graphics/camera_pan_update_curve5.c:
+    complete
+    .text       start:0x020fb6f8 end:0x020fb7b4
+
 src/game/main/graphics/camera_pan_init_from_scroll_tile.c:
     complete
     .text       start:0x020fb7b4 end:0x020fb830
