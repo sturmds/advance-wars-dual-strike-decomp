@@ -14169,6 +14169,10 @@ src/game/main/graphics/camera_pan_init_from_scroll_tile.c:
     complete
     .text       start:0x020fb7b4 end:0x020fb830
 
+src/game/main/graphics/camera_pan_start_curve5.c:
+    complete
+    .text       start:0x020fb830 end:0x020fb868
+
 src/game/main/func_020fb868.c:
     complete
     .text       start:0x020fb868 end:0x020fb87c
