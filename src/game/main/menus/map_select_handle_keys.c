@@ -13,7 +13,7 @@ int func_0205ef34(int pos);
 void func_0205ec5c(int unused);
 void func_0205ec20(int unused);
 void func_0205ea58(MenuButton *button);
-void func_0205e8a4(MenuButton *button);
+void MapSelect_PrevPage(MenuButton *button);
 
 /* onKeys of the map buttons on the map select screen. The d-pad moves the
  * cursor through the page (left and right do nothing in the War Room). L
@@ -55,7 +55,7 @@ void MapSelect_HandleKeys(MenuButton *button)
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_Y) {
-        func_0205e8a4(NULL);
+        MapSelect_PrevPage(NULL);
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
