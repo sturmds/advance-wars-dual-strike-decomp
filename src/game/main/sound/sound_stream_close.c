@@ -3,7 +3,7 @@
 
 extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
 
-void func_0210e034(void *mutex);
+void OS_LockMutex(void *mutex);
 void OS_UnlockMutex(void *mutex);
 void SoundStrm_StopIfActive(SoundStrm *strm);
 void SoundStream_Release(SoundStream *stream);
@@ -12,7 +12,7 @@ void SoundStream_Release(SoundStream *stream);
  * releases it, all under the mutex. */
 void SoundStream_Close(SoundStream *stream)
 {
-    func_0210e034(data_022a8ad8);
+    OS_LockMutex(data_022a8ad8);
     if (stream->flags.playing) {
         SoundStrm_StopIfActive(&stream->strm);
     }
