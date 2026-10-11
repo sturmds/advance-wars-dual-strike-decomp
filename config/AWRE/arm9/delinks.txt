@@ -15153,6 +15153,10 @@ src/game/main/map/cannon_shot_get2d_graphics_file.c:
     complete
     .text       start:0x020d9730 end:0x020d9758
 
+src/game/main/map/cannon_shot_task_start.c:
+    complete
+    .text       start:0x020d9758 end:0x020d97dc
+
 src/game/main/combat/target_kind_get_chart_column.c:
     complete
     .text       start:0x020d97dc end:0x020d9864
