@@ -5,9 +5,7 @@
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 
-#define ENTRY_COUNT 67
-#define ROWS_PER_PAGE 8
-#define PAGE_COUNT ((ENTRY_COUNT + ROWS_PER_PAGE - 1) / ROWS_PER_PAGE)
+#define PAGE_COUNT ((OV005_CO_CELL_COUNT + OV005_CELLS_PER_PAGE - 1) / OV005_CELLS_PER_PAGE)
 
 #define ICON_DIGIT_0 150
 #define ICON_SLASH   162
@@ -15,7 +13,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 /* Draws "page/pages" with digit icons at y 48 on the data_027c0288.unk_00
  * screen: one digit each while there are fewer than 10 pages, otherwise
  * two-digit fields with the leading zero left out. */
-void Ov005_DrawPageNumber(Unk_ov005_0236bbac *work)
+void Ov005SoundRoom_DrawPageNumber(Unk_ov005_0236bbac *work)
 {
     int page;
     int pageTens;

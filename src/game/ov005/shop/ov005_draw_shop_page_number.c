@@ -10,7 +10,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 
 /* Draws "page/pages" with digit icons at y 32 on the data_027c0288.unk_00
  * screen, or "0/0" when the list is empty. */
-void Ov005_DrawItemPageNumber(Unk_ov005_0236bbb0 *work)
+void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work)
 {
     int page;
     int pageTens;
@@ -32,7 +32,7 @@ void Ov005_DrawItemPageNumber(Unk_ov005_0236bbb0 *work)
     if (work->itemCount == 0) {
         pages = 0;
     } else {
-        pages = work->pageCount + 1;
+        pages = work->pageCount + 1; /* pageCount holds the last page index */
     }
     pagesTens = HwDiv32(pages, 10);
     pages -= pagesTens * 10;

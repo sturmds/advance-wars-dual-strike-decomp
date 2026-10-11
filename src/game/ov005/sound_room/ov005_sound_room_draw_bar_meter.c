@@ -28,7 +28,7 @@ extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
  * screen. Then sets both OBJ scales from a 16-bit mask that func_02110934
  * returns: 0x100 plus 16 per set bit. With no music it clears the layer and
  * sets both scales to -1. */
-void Ov005_DrawBarMeter(void)
+void Ov005SoundRoom_DrawBarMeter(void)
 {
     Unk_ov005_0236bbac *work = data_ov005_0236bbac;
     /* needed to match: i also counts the set bits, and row also holds the

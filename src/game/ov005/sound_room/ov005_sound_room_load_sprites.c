@@ -20,7 +20,7 @@ extern const char data_ov005_0236b354[]; /* "048": OBJ tiles */
 
 /* Loads two sprite files, then on each screen the OBJ tiles and palettes
  * from /rikiishi, and makes the screen's sprites with their first frames. */
-void Ov005_LoadSprites(Unk_ov005_0236bbac *work)
+void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac *work)
 {
     work->spriteFileA = File_Load(data_ov005_0236b33c);
     work->spriteFileB = File_Load(data_ov005_0236b340);

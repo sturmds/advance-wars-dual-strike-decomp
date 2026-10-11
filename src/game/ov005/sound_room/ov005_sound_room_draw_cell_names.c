@@ -12,7 +12,7 @@ extern const char data_ov005_0236b358[]; /* "%s" */
 /* Clears the eight two-tile text rows from (5, 7) on layer 0 of the
  * data_027c0288.unk_00 screen and prints the names of the current page's
  * cells into them. */
-void Ov005_DrawEntryPage(Unk_ov005_0236bbac *work)
+void Ov005SoundRoom_DrawCellNames(Unk_ov005_0236bbac *work)
 {
     char text[45];
     int first;

@@ -9,7 +9,7 @@ extern const MenuButtonTemplate data_ov005_0236b3dc;
 
 /* Adds one menu button (ids 0x80 up) on the main screen for each item on
  * the current page, then selects work->cursorRow, clamped to the page. */
-void Ov005_AddPageButtons(Unk_ov005_0236bbb0 *work)
+void Ov005_AddShopPageButtons(Unk_ov005_0236bbb0 *work)
 {
     ShopButton *slot;
     int i;

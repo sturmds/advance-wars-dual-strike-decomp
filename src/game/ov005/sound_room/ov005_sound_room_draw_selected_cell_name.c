@@ -12,7 +12,7 @@ extern const char data_ov005_0236b358[]; /* "%s" */
 /* Clears the 22x2 tile text line at (5, 21) on layer 0 of the
  * data_027c0288.unk_04 screen and prints the name of the selected cell there,
  * if a row is selected. */
-void Ov005_DrawSelectedEntryName(Unk_ov005_0236bbac *work)
+void Ov005SoundRoom_DrawSelectedCellName(Unk_ov005_0236bbac *work)
 {
     char text[45];
     Ov005CoCell *cells = work->cells;

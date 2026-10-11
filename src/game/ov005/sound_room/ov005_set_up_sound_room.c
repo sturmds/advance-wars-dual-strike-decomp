@@ -22,7 +22,7 @@ void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_LoadIcons(Unk_ov005_0236bbac *work);
 void func_ov005_02365010(Unk_ov005_0236bbac *work);
 void func_ov005_02365100(Unk_ov005_0236bbac *work);
-void Ov005_LoadSprites(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_LoadSprites(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_PickCellCo(Unk_ov005_0236bbac *work);
 void func_ov005_02365e90(Unk_ov005_0236bbac *work);
 
@@ -116,7 +116,7 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     work->objScale1 = -1;
     work->objScale2 = -1;
     work->objScaleBoth = -1;
-    Ov005_LoadSprites(work);
+    Ov005SoundRoom_LoadSprites(work);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

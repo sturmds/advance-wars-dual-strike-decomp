@@ -761,7 +761,7 @@ src/game/ov005/func_ov005_02364a2c.c:
     complete
     .text       start:0x02364a2c end:0x02364a50
 
-src/game/ov005/ov005_draw_bar_meter.c:
+src/game/ov005/sound_room/ov005_sound_room_draw_bar_meter.c:
     complete
     .text       start:0x02364a50 end:0x02364cd0
 
@@ -769,7 +769,7 @@ src/game/ov005/sound_room/ov005_sound_room_load_layer1_tiles.c:
     complete
     .text       start:0x02364cd0 end:0x02364d90
 
-src/game/ov005/ov005_draw_page_number.c:
+src/game/ov005/sound_room/ov005_sound_room_draw_page_number.c:
     complete
     .text       start:0x02364d90 end:0x02364f3c
 
@@ -788,7 +788,7 @@ src/game/ov005/sound_room/ov005_update_sound_room_sprites.c:
     complete
     .text       start:0x02365124 end:0x023656d8
 
-src/game/ov005/ov005_load_sprites.c:
+src/game/ov005/sound_room/ov005_sound_room_load_sprites.c:
     complete
     .text       start:0x023656d8 end:0x0236597c
 
@@ -828,11 +828,11 @@ src/game/ov005/sound_room/ov005_sound_room_pick_cell_co.c:
     complete
     .text       start:0x02365b04 end:0x02365b90
 
-src/game/ov005/ov005_draw_selected_entry_name.c:
+src/game/ov005/sound_room/ov005_sound_room_draw_selected_cell_name.c:
     complete
     .text       start:0x02365b90 end:0x02365cec
 
-src/game/ov005/ov005_draw_entry_page.c:
+src/game/ov005/sound_room/ov005_sound_room_draw_cell_names.c:
     complete
     .text       start:0x02365cec end:0x02365e90
 
@@ -872,7 +872,7 @@ src/game/ov005/shop/ov005_remove_shop_buttons.c:
     complete
     .text       start:0x0236705c end:0x023670f0
 
-src/game/ov005/ov005_add_page_buttons.c:
+src/game/ov005/shop/ov005_add_shop_page_buttons.c:
     complete
     .text       start:0x023670f0 end:0x023671f4
 
@@ -880,7 +880,7 @@ src/game/ov005/shop/ov005_init_shop_paging.c:
     complete
     .text       start:0x023671f4 end:0x02367258
 
-src/game/ov005/ov005_draw_item_page_number.c:
+src/game/ov005/shop/ov005_draw_shop_page_number.c:
     complete
     .text       start:0x02367258 end:0x02367420
 
