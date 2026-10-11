@@ -1882,6 +1882,10 @@ src/game/main/func_02016eb8.c:
     complete
     .text       start:0x02016eb8 end:0x02016ec0
 
+src/game/main/script/script_slot_cmd_jump.c:
+    complete
+    .text       start:0x02016ec0 end:0x02016f24
+
 src/game/main/func_020170f0.c:
     complete
     .text       start:0x020170f0 end:0x0201710c
