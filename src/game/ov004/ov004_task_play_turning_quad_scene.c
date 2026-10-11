@@ -22,7 +22,7 @@ void Ov004_UnpackResource(const char *name, void *dest);
 void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *name);
 void Ov004_FillBlock(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
-Task *func_020fd1e0(int a, void *b, int c, int d, int e);
+Task *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
 void func_0210bb60(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Palette_Flush(void);
@@ -92,7 +92,7 @@ void Ov004Task_PlayTurningQuadScene(Ov004Task *task)
         data_027c0280->masterBrightness = 0;
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
-        ADD_SLOT_TASK(func_020fd1e0(5, &state->unk_10c, 30, 8, 8));
+        ADD_SLOT_TASK(PaletteFade_StartFromBlack(5, &state->unk_10c, 30, 8, 8));
         ADD_SLOT_TASK(Task_Create(data_ov004_022be0f8, TASK_LIST(5)));
     }
 

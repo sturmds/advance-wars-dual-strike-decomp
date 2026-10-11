@@ -17,7 +17,7 @@ void Ov004_SetSlotTask(Unk_ov004_022bf158 *state, void *task, int id);
 void Ov004_UpdateElapsedFrames(Unk_ov004_022bf158 *state);
 int Ov004_CheckTimedEvent(Unk_ov004_022bf158 *state, int cue, int time);
 void Ov004_StartClock(Unk_ov004_022bf158 *state);
-void *func_020fd1e0(int a, void *b, int c, int d, int e);
+void *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
 
 /* Runs a timeline of cues (frames 0, 30 and 222 by Ov004_CheckTimedEvent, each fires once):
  * 0 sets up the layers and starts two tasks, 30 starts another, 222 blacks the screen
@@ -56,7 +56,7 @@ void Ov004Task_RunBannerTimeline(Ov004Task *task)
         int id;
 
         id = task->duration++;
-        Ov004_SetSlotTask(state, func_020fd1e0(5, &state->unk_00c, 70, 0, 8), id);
+        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, &state->unk_00c, 70, 0, 8), id);
     }
     if (Ov004_CheckTimedEvent(state, 2, 222)) {
         Unk_027c0280 *savedGfx;

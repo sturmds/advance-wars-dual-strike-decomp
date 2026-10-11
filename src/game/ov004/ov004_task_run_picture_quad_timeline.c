@@ -21,7 +21,7 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void Task_ResumeScript(void *task);
-Task *func_020fd1e0(int a, void *b, int c, int d, int e);
+Task *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
 Task *PaletteFade_StartToBlack(int a, int b, int c, int d);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
@@ -111,7 +111,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
     Ov004_UpdateElapsedFrames(state);
 
     if (Ov004_CheckTimedEvent(state, 0, 0)) {
-        ADD_SLOT_TASK(func_020fd1e0(5, &state->unk_02c, 30, 1, 1));
+        ADD_SLOT_TASK(PaletteFade_StartFromBlack(5, &state->unk_02c, 30, 1, 1));
         ADD_SLOT_TASK(Task_Create(data_ov004_022be478, TASK_LIST(5)));
     }
     if (Ov004_CheckTimedEvent(state, 1, 82)) {

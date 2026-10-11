@@ -59,9 +59,9 @@ typedef struct Unk_ov004_022bf158 {
     u32 unk_008;
     u32 unk_00c;                       /* passed by address to a task helper by Ov004Task_RunBannerTimeline */
     u8 pad_010[0x02c - 0x010];
-    u32 unk_02c;                       /* passed by address to func_020fd1e0 by Ov004Task_RunPictureQuadTimeline */
+    u32 unk_02c;                       /* passed by address to PaletteFade_StartFromBlack by Ov004Task_RunPictureQuadTimeline */
     u8 pad_030[0x10c - 0x030];
-    u32 unk_10c;                       /* address passed to func_020fd1e0 */
+    u32 unk_10c;                       /* address passed to PaletteFade_StartFromBlack */
     u8 pad_110[0x810 - 0x110];
     struct Task *unk_810;              /* destroyed by Ov004_SkipOnInput */
     struct Task *unk_814;              /* destroyed by Ov004_SkipOnInput */

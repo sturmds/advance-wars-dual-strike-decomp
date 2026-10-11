@@ -35,7 +35,7 @@ BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
-void *func_020fd1e0(int a, void *b, int c, int d, int e);
+void *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
 void *PaletteFade_StartLevels(int a, int b, int c, int d, int e, int f);
 void *PaletteFade_StartToBlack(int a, int b, int c, int d);
 void func_020fd6d4(u8 *palettes, int first, int count, int level);
@@ -73,7 +73,7 @@ void func_020fd6d4(u8 *palettes, int first, int count, int level);
         Screen_SetCurrentGfx(savedGfx);                                                     \
     } while (0)
 
-/* PaletteFade_StartLevels, PaletteFade_StartToBlack and func_020fd1e0 wrap PaletteFade_Start, which
+/* PaletteFade_StartLevels, PaletteFade_StartToBlack and PaletteFade_StartFromBlack wrap PaletteFade_Start, which
  * makes a task that changes BG palettes over time with func_020fd6d4. */
 #define START_PALETTE_FADE_TASK()                                                           \
     do {                                                                                    \
@@ -95,7 +95,7 @@ void Ov004Task_RunPictureTimeline(Ov004Task *task)
         int id;
 
         id = task->duration++;
-        Ov004_SetSlotTask(state, func_020fd1e0(5, &state->unk_00c, 30, 0, 1), id);
+        Ov004_SetSlotTask(state, PaletteFade_StartFromBlack(5, &state->unk_00c, 30, 0, 1), id);
         id = task->duration++;
         Ov004_SetSlotTask(state, Task_Create(data_ov004_022be418, TASK_LIST(5)), id);
         id = task->duration++;
