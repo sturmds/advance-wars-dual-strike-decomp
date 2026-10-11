@@ -6,7 +6,7 @@ extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 extern EventSlotPlayer data_02297801[];
 
-void func_0201be14(EventScriptSlot *slot);
+void EventHold_ReleaseOnPower(EventScriptSlot *slot);
 
 /* Event script command: holds the script (hold = the check function, which
  * clears it when the condition is met) for the player slot in the record.
@@ -15,8 +15,8 @@ void func_0201be14(EventScriptSlot *slot);
 BOOL EventCmd_HoldUntilPower(s16 index)
 {
     data_02297801[index].player = data_022977f4[index].unk_00->unk_08;
-    data_022977f8[index].hold = (u32)func_0201be14;
-    func_0201be14(&data_022977f0[index]);
+    data_022977f8[index].hold = (u32)EventHold_ReleaseOnPower;
+    EventHold_ReleaseOnPower(&data_022977f0[index]);
     data_022977f4[index].unk_00++;
     return 0;
 }
