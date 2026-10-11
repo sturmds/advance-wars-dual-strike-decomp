@@ -1,0 +1,16 @@
+#include "types.h"
+#include "game/menu_button.h"
+
+extern const MenuButtonTemplate data_0215ff4c;
+
+int func_0207a260(void);
+
+/* Removes the selectable buttons, then adds button 253 when func_0207a260 returns 0. */
+void LinkMenu_ResetBackButton(void)
+{
+    MenuButtons_RemoveSelectable();
+    if (func_0207a260() != 0) {
+        return;
+    }
+    MenuButton_Add(0, 0, &data_0215ff4c, 253);
+}

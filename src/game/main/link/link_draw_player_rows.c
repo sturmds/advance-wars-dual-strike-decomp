@@ -24,7 +24,7 @@ void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, 
 int func_0207a324(void);
 u8 func_0207a3a4(void);
 LinkPlayerInfo *func_0207a3b8(u8 index);
-void func_0207c434(void);
+void LinkMenu_AddRowButtons(void);
 void func_020827b0(LinkPlayerData *data, int a, u16 b, int c);
 
 /* Link play: redraws the player list. Each player with a record gets a name
@@ -41,7 +41,7 @@ void Link_DrawPlayerRows(void)
     if (data_0215fed0->redraw == 1) {
         Mem_Copy32(gMenuState, data_027c0280->layer2Map, 0x600);
         Gfx_RequestLayerCopy(2);
-        func_0207c434();
+        LinkMenu_AddRowButtons();
         data_0215fed0->redraw = 0;
     }
     func_01ff8c84(0);

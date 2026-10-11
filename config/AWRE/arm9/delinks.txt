@@ -5361,6 +5361,26 @@ src/game/main/func_0207c414.c:
     complete
     .text       start:0x0207c414 end:0x0207c434
 
+src/game/main/link/link_menu_add_row_buttons.c:
+    complete
+    .text       start:0x0207c434 end:0x0207c4d4
+
+src/game/main/link/link_menu_reset_back_button.c:
+    complete
+    .text       start:0x0207c4d4 end:0x0207c518
+
+src/game/main/link/link_menu_add_back_buttons.c:
+    complete
+    .text       start:0x0207c518 end:0x0207c570
+
+src/game/main/link/link_menu_restore_row_buttons.c:
+    complete
+    .text       start:0x0207c570 end:0x0207c634
+
+src/game/main/link/link_menu_add_all_buttons.c:
+    complete
+    .text       start:0x0207c634 end:0x0207c6d8
+
 src/game/main/func_0207c6d8.c:
     complete
     .text       start:0x0207c6d8 end:0x0207c6e4
@@ -5372,6 +5392,22 @@ src/game/main/func_0207c6e4.c:
 src/game/main/func_0207c6f0.c:
     complete
     .text       start:0x0207c6f0 end:0x0207c6fc
+
+src/game/main/link/link_menu_on_button_select.c:
+    complete
+    .text       start:0x0207c6fc end:0x0207c72c
+
+src/game/main/link/link_menu_on_keys.c:
+    complete
+    .text       start:0x0207c72c end:0x0207c794
+
+src/game/main/link/link_menu_handle_pressed.c:
+    complete
+    .text       start:0x0207c794 end:0x0207c7e4
+
+src/game/main/link/link_menu_cancel.c:
+    complete
+    .text       start:0x0207c7e4 end:0x0207c8b8
 
 src/game/main/func_0207cc38.c:
     complete
