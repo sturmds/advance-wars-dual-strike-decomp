@@ -22943,6 +22943,10 @@ src/sdk/mb/mb_pieces_is_complete.c:
     complete
     .text       start:0x0211ded4 end:0x0211df34
 
+src/sdk/mb/mb_pieces_add.c:
+    complete
+    .text       start:0x0211df34 end:0x0211dfe4
+
 src/game/main/func_0211e1f4.c:
     complete
     .text       start:0x0211e1f4 end:0x0211e214
