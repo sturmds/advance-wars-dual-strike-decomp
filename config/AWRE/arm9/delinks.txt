@@ -10995,6 +10995,10 @@ src/game/main/map/map_set_data_buffer.c:
 src/game/main/menus/func_020d3dec.c:
     .text       start:0x020d3dec end:0x020d3e80
 
+src/game/main/menus/map_preview_cycle_border_colour.c:
+    complete
+    .text       start:0x020d3ff4 end:0x020d4044
+
 src/game/main/func_020d4124.c:
     complete
     .text       start:0x020d4124 end:0x020d4148
