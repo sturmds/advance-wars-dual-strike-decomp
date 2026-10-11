@@ -4785,6 +4785,10 @@ src/game/main/menus/func_0204f160.c:
 src/game/main/menus/func_0204f200.c:
     .text       start:0x0204f200 end:0x0204f2a0
 
+src/game/main/menus/campaign_map_draw_number_at_mission.c:
+    complete
+    .text       start:0x0204f2a0 end:0x0204f2e8
+
 src/game/main/func_0204f7c4.c:
     complete
     .text       start:0x0204f7c4 end:0x0204f7d0
