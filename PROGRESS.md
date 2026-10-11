@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6513 / 6598 | 1465476 / 1531944 | 95.66% | 0 | 0 |
+| game | 6520 / 6598 | 1468176 / 1531944 | 95.84% | 0 | 0 |
 | SDK/library | 139 / 881 | 3464 / 154050 | 2.25% | 1 | 30 |
-| all | 6652 / 7479 | 1468940 / 1685994 | 87.13% | 1 | 30 |
+| all | 6659 / 7479 | 1471640 / 1685994 | 87.29% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5122 / 5180 | 1033520 / 1082632 | 95.46% | 0 |
+| main | game | 5129 / 5180 | 1036220 / 1082632 | 95.71% | 0 |
 | main | SDK/library | 112 / 768 | 2392 / 130618 | 1.83% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -42,7 +42,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |
 | `src/game/main/ai/ai_sites_collect.c` | AiSites_Collect | 376 |
-| `src/game/main/ai/ai_tile_is_free_for_unit_type.c` | func_020b6c84 | 144 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | AiUnit_JoinDamagedUnit | 556 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
@@ -54,9 +53,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/event_queue/event_queue_drain.c` | EventQueue_Drain | 192 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
-| `src/game/main/graphics/func_0200c500.c` | func_0200c500 | 216 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
-| `src/game/main/graphics/sprite_anim_queue3d.c` | SpriteAnim_Queue3d | 196 |
 | `src/game/main/link/func_02072a50.c` | func_02072a50 | 176 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |
@@ -72,10 +69,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/co_select_screen_refresh_cell_skills.c` | CoSelectScreen_RefreshCellSkills | 132 |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 |
 | `src/game/main/menus/combat_setup_add_shop_buttons.c` | func_020842e0 | 240 |
-| `src/game/main/menus/combat_setup_update_co_pick.c` | CombatSetup_UpdateCoPick | 524 |
 | `src/game/main/menus/func_0202f0d8.c` | func_0202f0d8 | 2164 |
 | `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 |
-| `src/game/main/menus/func_0204e9cc.c` | func_0204e9cc | 164 |
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
@@ -83,8 +78,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
-| `src/game/main/menus/name_entry_on_key_select.c` | func_021014e4 | 28 |
-| `src/game/main/save_write_record.c` | Save_WriteRecord | 1428 |
 | `src/game/main/screen/func_02006a20.c` | func_02006a20 | 192 |
 | `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 |
 | `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 |
