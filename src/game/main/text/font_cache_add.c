@@ -6,7 +6,7 @@ extern Unk_027c0280 *data_027c0280;
 int func_02124534(const char *a, const char *b);
 char *func_021246d4(char *dst, const char *src);
 u32 func_021247ac(const char *str);
-int func_020211a4(const char *str, u8 *tiles, int colour);
+int Text_DrawStringToTiles(const char *str, u8 *tiles, int colour);
 
 /* Returns the cache entry of str drawn in colour, drawing it first if the
  * cache does not have it. The cache keeps the strings from the start of
@@ -36,7 +36,7 @@ int FontCache_Add(const char *str, int colour)
         index++;
     }
     func_021246d4(names + pos, str);
-    tiles = func_020211a4(str,
+    tiles = Text_DrawStringToTiles(str,
                           data_027c0280->bgVram + data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase * 0x4000
                               + font->digitEndTile * 32,
                           colour);

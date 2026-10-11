@@ -3011,6 +3011,10 @@ src/game/main/text/text_advance_draw_pos.c:
     complete
     .text       start:0x02021164 end:0x020211a4
 
+src/game/main/text/text_draw_string_to_tiles.c:
+    complete
+    .text       start:0x020211a4 end:0x02021258
+
 src/game/main/text/font_cache_add.c:
     complete
     .text       start:0x02021258 end:0x02021380
