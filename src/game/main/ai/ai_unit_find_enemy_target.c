@@ -17,7 +17,7 @@ BOOL Unit_IsVisibleToCurrentPlayer(u16 slot);
 int Ai_BestDamageVsDived(int attacker, int target, int arg);
 /* Best damage percent of the attacker type against the target type. */
 int func_0209e814(int attacker, int target, int arg);
-int func_0209e8bc(int player, int x, int y);
+int Player_CanSeeUnitAt(int player, int x, int y);
 /* Checks the tile found and may move it; FALSE means the tile is not usable. */
 BOOL AiUnit_FindFiringTile(s16 *tile);
 void AiActingUnit_MarkAttackRange(int movement);
@@ -56,7 +56,7 @@ BOOL AiUnit_FindEnemyTarget(s16 *tile)
             if (unit->type == UNIT_NONE || (unit->flags & MAP_UNIT_CARRIED) || STATE->rangeMap[unit->y][unit->x] < 0) {
                 continue;
             }
-            if (UnitType_GetAttackKind(STATE->actingUnit->type) != 0 && !func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+            if (UnitType_GetAttackKind(STATE->actingUnit->type) != 0 && !Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
                 continue;
             }
             /* Subs and Stealths are hidden unless the player can see them; a Cruiser always finds a Sub. */

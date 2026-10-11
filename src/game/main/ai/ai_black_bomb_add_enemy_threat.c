@@ -18,7 +18,7 @@ void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
 BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int GetUnitBaseMaxRange(int player, int unitType);
@@ -34,7 +34,7 @@ int GetUnitBaseMaxRange(int player, int unitType);
  * attackers, on the tiles they can reach or stand next to) and threatSum
  * (indirect attackers, on the tiles in range), with the same threat value.
  * Differences: it runs when Ai_UnitUsesThreatMaps passes for a Black Bomb, skips the
- * counter-first test and the per-tile func_0209e8bc and in-sight checks, and
+ * counter-first test and the per-tile Player_CanSeeUnitAt and in-sight checks, and
  * marks every tile a non-air enemy threatens with 1 in
  * MapTiles.rangeScratch. skipEnemyCheck nonzero skips Ai_EnemyWithinReach. */
 void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
@@ -93,7 +93,7 @@ void AiBlackBomb_AddEnemyThreat(u8 player, int skipEnemyCheck)
                 continue;
             }
         }
-        if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+        if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
             continue;
         }
         threat = unit->hp;

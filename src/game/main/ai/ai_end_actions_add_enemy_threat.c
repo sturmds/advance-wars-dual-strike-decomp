@@ -18,7 +18,7 @@ int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL Ai_UnitUsesThreatMaps(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int GetUnitBaseMaxRange(int player, int unitType);
@@ -34,7 +34,7 @@ int GetUnitBaseMaxRange(int player, int unitType);
  * threatMax / threatSum updates as AiBlackBomb_AddEnemyThreat, including the
  * rangeScratch mark for non-air direct attackers. Direct attackers an Anti-Air
  * deals 50 base damage or more to are skipped, and 45 or more when the current
- * player strikes first (CounterFirst). No per-tile func_0209e8bc or in-sight
+ * player strikes first (CounterFirst). No per-tile Player_CanSeeUnitAt or in-sight
  * checks. */
 void AiEndActions_AddEnemyThreat(u8 player)
 {
@@ -76,7 +76,7 @@ void AiEndActions_AddEnemyThreat(u8 player)
                 continue;
             }
         }
-        if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+        if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
             continue;
         }
         if (UnitType_GetAttackKind(unit->type) == ATTACK_KIND_DIRECT) {

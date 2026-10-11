@@ -21,7 +21,7 @@ void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);         /* best base damage, scaled for Fighters vs Fighters and Anti-Air vs Fighters */
 BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
 BOOL Ai_BestDamageVsDived(int enemyType, int actingType, int arg2);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);           /* fog, weather and terrain check of a tile */
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);           /* fog, weather and terrain check of a tile */
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);        /* Black Hole unit on a tile with tileHp bit 7 */
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int GetUnitBaseMaxRange(int player, int unitType);             /* max range with no power on */
@@ -97,7 +97,7 @@ void Ai_AddEnemyThreat(u8 player)
                 continue;
             }
         }
-        if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+        if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
             continue;
         }
         /* needed to match: threat holds the hp until the division */
@@ -132,8 +132,8 @@ void Ai_AddEnemyThreat(u8 player)
                     if (STATE->rangeMap[y][x] < 0) {
                         continue;
                     }
-                    /* tiles that fail func_0209e8bc count only against air units */
-                    if (func_0209e8bc(STATE->unk_1e, x, y)
+                    /* tiles that fail Player_CanSeeUnitAt count only against air units */
+                    if (Player_CanSeeUnitAt(STATE->unk_1e, x, y)
                         || (Ov000_gUnitStats[ACTING->type].moveGroup & MOVE_GROUP_AIR)) {
                         if (threat > STATE->mapTiles->threatMax[TILE_INDEX(x, y)]) {
                             STATE->mapTiles->threatMax[TILE_INDEX(x, y)] = threat;
@@ -175,7 +175,7 @@ void Ai_AddEnemyThreat(u8 player)
                     if (dist < Ov000_gUnitStats[unit->type].minRange || dist > MAX_RANGE(unit)) {
                         continue;
                     }
-                    if (func_0209e8bc(STATE->unk_1e, targetX, targetY)
+                    if (Player_CanSeeUnitAt(STATE->unk_1e, targetX, targetY)
                         || (Ov000_gUnitStats[ACTING->type].moveGroup & MOVE_GROUP_AIR)) {
                         /* needed to match: the sum is kept in damage */
                         damage = STATE->mapTiles->threatSum[TILE_INDEX(targetX, targetY)] + threat;

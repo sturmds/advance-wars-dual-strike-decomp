@@ -15,7 +15,7 @@ void RangeMap_Fill(int value);
 int MapObject_GetDrawOffsetX(int kind, int variant);
 int MapObject_GetDrawOffsetY(int kind, int variant);
 void func_01ffad44(u16 x, u16 y, u16 variant, u16 size, int value);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int DamageFromCannons(int playerIndex, int coSlot);
 void func_020da63c(void);
@@ -61,7 +61,7 @@ void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant)
             if (STATE->players[STATE->currentPlayer].team == STATE->players[(slot >> 6) + 1].team) {
                 continue;
             }
-            if (!func_0209e8bc(STATE->currentPlayer, tx, ty)) {
+            if (!Player_CanSeeUnitAt(STATE->currentPlayer, tx, ty)) {
                 continue;
             }
             unit = &STATE->units[UNIT_SLOT_AT(tx, ty)];

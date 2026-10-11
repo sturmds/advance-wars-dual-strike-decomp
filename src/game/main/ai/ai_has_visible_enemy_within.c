@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_0209e8bc(u16 player, s16 x, s16 y); /* fog, weather and terrain check of a tile */
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y); /* fog, weather and terrain check of a tile */
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -17,7 +17,7 @@ BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 
 /* TRUE when a unit of another team stands within radius tiles of (x, y),
  * counted as |dx| + |dy|, and the current player can see it: its tile
- * passes func_0209e8bc and Unit_IsVisibleToCurrentPlayer accepts it. */
+ * passes Player_CanSeeUnitAt and Unit_IsVisibleToCurrentPlayer accepts it. */
 BOOL Ai_HasVisibleEnemyWithin(int x, int y, int radius)
 {
     int maxX;
@@ -68,7 +68,7 @@ BOOL Ai_HasVisibleEnemyWithin(int x, int y, int radius)
             if (STATE->players[STATE->currentPlayer].team == STATE->players[SLOT_OWNER(slot)].team) {
                 continue;
             }
-            if (!func_0209e8bc(STATE->currentPlayer, tileX, tileY)) {
+            if (!Player_CanSeeUnitAt(STATE->currentPlayer, tileX, tileY)) {
                 continue;
             }
             if (Unit_IsVisibleToCurrentPlayer(MAP->unitAt[TILE_INDEX(tileX, tileY)])) {

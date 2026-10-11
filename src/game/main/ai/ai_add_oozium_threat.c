@@ -6,13 +6,13 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);        /* fog, weather and terrain check of a tile */
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);        /* fog, weather and terrain check of a tile */
 BOOL func_0209f004(int unitType, u8 terrain);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* For an Oozium the current player can see (func_0209e8bc), sets threatSum to
+/* For an Oozium the current player can see (Player_CanSeeUnitAt), sets threatSum to
  * 255 on each of the four tiles next to it that func_0209f004 accepts for an
  * Oozium. */
 void Ai_AddOoziumThreat(MapUnit *unit)
@@ -27,7 +27,7 @@ void Ai_AddOoziumThreat(MapUnit *unit)
     if (unit->type != UNIT_OOZIUM) {
         return;
     }
-    if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+    if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
         return;
     }
     /* Needed to match: minX and the first row clamp in different forms, and

@@ -18,7 +18,7 @@ int Unit_CanRepairAt(MapUnit *unit, int x, int y);
 BOOL Ai_UnitUsesThreatMaps(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int GetUnitBaseMaxRange(int player, int unitType);
@@ -75,7 +75,7 @@ void Ai_AddEnemyThreatToFighter(u8 player)
                 continue;
             }
         }
-        if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+        if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
             continue;
         }
         /* enemies a Fighter hits hard are not a threat to it */

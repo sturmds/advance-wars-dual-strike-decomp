@@ -13,7 +13,7 @@ BOOL Ai_UnitUsesThreatMaps(int unitType);
 void Ai_AddOoziumThreat(MapUnit *unit);
 int Ai_RatedBaseDamage(int unitType, int targetType);
 BOOL Ai_EnemyWithinReach(MapUnit *acting, MapUnit *enemy, int arg2);
-BOOL func_0209e8bc(u16 player, s16 x, s16 y);
+BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsBlackHoleOnFlaggedTile(MapUnit *unit, int x, int y);
 int Player_GetRepairHp(int playerIndex, int slot, int powerState);
 int GetUnitBaseMaxRange(int player, int unitType);
@@ -67,7 +67,7 @@ void Ai_AddIndirectEnemyThreat(u8 player)
         if (!Ai_EnemyWithinReach(ACTING, unit, 1)) {
             continue;
         }
-        if (!func_0209e8bc(STATE->currentPlayer, unit->x, unit->y)) {
+        if (!Player_CanSeeUnitAt(STATE->currentPlayer, unit->x, unit->y)) {
             continue;
         }
         threat = unit->hp;
@@ -115,8 +115,8 @@ void Ai_AddIndirectEnemyThreat(u8 player)
                 if (dist < Ov000_gUnitStats[unit->type].minRange || dist > MAX_RANGE(unit)) {
                     continue;
                 }
-                /* tiles that fail func_0209e8bc count only against air units */
-                if (func_0209e8bc(STATE->unk_1e, targetX, targetY)
+                /* tiles that fail Player_CanSeeUnitAt count only against air units */
+                if (Player_CanSeeUnitAt(STATE->unk_1e, targetX, targetY)
                     || (Ov000_gUnitStats[ACTING->type].moveGroup & MOVE_GROUP_AIR)) {
                     damage = STATE->mapTiles->threatSum[TILE_INDEX(targetX, targetY)] + threat;
                     if (damage > 255) {
