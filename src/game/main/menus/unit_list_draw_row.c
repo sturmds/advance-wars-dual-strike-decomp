@@ -7,7 +7,7 @@
 void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet);
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
-void func_020f7d50(u16 *map, u16 x, u16 y, u8 unitType, u16 a, u8 b, u8 c);   /* unit icon */
+void UnitIcon_Draw(u16 *map, u16 x, u16 y, u8 unitType, u16 a, u8 b, u8 c);   /* unit icon */
 int func_02074be8(int slot);           /* which cargo tree piece goes before the unit: 0 none, 1-6 */
 s32 HwDiv32(s32 a, s32 b);
 
@@ -93,7 +93,7 @@ void UnitList_DrawRow(int y, int index)
     if (branch != NULL) {
         Text_PrintStringImmediate(branchX + 5, y + 8, data_027c0280->layer0Map, branch, 0, textStyle);
     }
-    func_020f7d50(data_027c0280->layer0Map, iconX + 5, y + 8, unit->type, iconFlags, unit->cargo[0], unit->captureProgress);
+    UnitIcon_Draw(data_027c0280->layer0Map, iconX + 5, y + 8, unit->type, iconFlags, unit->cargo[0], unit->captureProgress);
     Text_PrintImmediate(9, y + 8, data_027c0280->layer0Map, Ov000_gUnitStats[unit->type].text[0].id, 0, textStyle);
     if (unit->hp == 0) {
         shownHp = 0;

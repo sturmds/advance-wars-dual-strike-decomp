@@ -13,7 +13,7 @@ void MapObjects_Clear(void);
 void CurrentPlayer_SyncState(void);
 void func_020c1950(void);
 void func_020c8888(void);
-void func_020f8058(int a);
+void ScreenConfig_Select(int a);
 void Battle_RegisterFrameCallbacks(void);
 void func_01ff9c48(const void *descriptor);
 
@@ -53,7 +53,7 @@ void Battle_SetupWithPresetCos(void)
     CurrentPlayer_SyncState();
     func_020c1950();
     func_020c8888();
-    func_020f8058(5);
+    ScreenConfig_Select(5);
     if (HOOKS->unk_54 != NULL) {
         HOOKS->unk_54(1);
     }
