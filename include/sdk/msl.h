@@ -36,6 +36,14 @@ typedef struct StringSink {
 
 typedef int (*FormatWriteProc)(void *sink, const char *src, u32 count);
 
+u32 strlen(const char *str);
+
+/* Doubles pass in a register pair; the sign is bit 31 of the high word. */
+double fabs(double x);
+double copysign(double x, double y);
+/* Returns the fraction of x in [0.5, 1) and stores the power of two in *exponent. */
+double frexp(double x, int *exponent);
+
 int func_02122508(FormatWriteProc write, void *sink, const char *format, va_list args);
 int __StringWrite(void *context, const char *src, u32 count);
 int vsnprintf(char *buf, u32 size, const char *format, va_list args);

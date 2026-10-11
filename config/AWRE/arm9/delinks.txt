@@ -22766,6 +22766,22 @@ src/sdk/msl/strcpy.c:
     complete
     .text       start:0x021246d4 end:0x021247ac
 
+src/sdk/msl/strlen.c:
+    complete
+    .text       start:0x021247ac end:0x021247c8
+
+src/sdk/msl/copysign.c:
+    complete
+    .text       start:0x021247c8 end:0x021247f0
+
+src/sdk/msl/fabs.c:
+    complete
+    .text       start:0x021247f0 end:0x02124814
+
+src/sdk/msl/frexp.c:
+    complete
+    .text       start:0x02124814 end:0x021248d4
+
 src/sdk/func_021256a4.c:
     complete
     .text       start:0x021256a4 end:0x021256a8
