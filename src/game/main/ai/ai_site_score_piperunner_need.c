@@ -17,10 +17,9 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 #define TERRAIN_PIPE       15          /* guess: TERRAIN_PIPE_SEAM is 16 */
-#define SITE_SKIPPED       0xfd
 #define PIPE_MOVE_LIMIT    110         /* RangeMap_FillMoves movement; tiles up to it are reachable */
 
-/* End-actions step: rates each active AiSite next to a pipe tile for
+/* End-actions step: rates each base AiSite next to a pipe tile for
  * Piperunners. It fills the Piperunner move and attack range from the site,
  * then counts the units on it: the current player's Piperunners within move
  * range, and armed enemy units (4 for a Piperunner, 1 for any other).
@@ -49,7 +48,7 @@ void AiSite_ScorePiperunnerNeed(void)
 
     site = data_0229e5bc;
     for (i = 0; i < data_021619c0->recordCount; i++, site++) {
-        if (site->kind == SITE_SKIPPED || site->active != 1) {
+        if (site->kind == SITE_KIND_SKIPPED || site->type != SITE_BASE) {
             continue;
         }
         found = 0;

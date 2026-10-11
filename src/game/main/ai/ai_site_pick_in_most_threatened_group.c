@@ -16,7 +16,7 @@ int AiSite_PickMostEnemies(int siteType, int group);
  * last group. Returns -1 when no group is left. */
 int AiSite_PickInMostThreatenedGroup(int siteType)
 {
-    AiSiteGroup *group = data_0229e44c;
+    AiSiteGroup *group = gAiSiteGroups;
     int bestThreat = 0;
     int i;
     int found;

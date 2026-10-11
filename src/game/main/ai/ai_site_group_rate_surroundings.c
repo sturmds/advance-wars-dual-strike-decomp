@@ -133,7 +133,7 @@ void AiSiteGroup_RateSurroundings(int group)
                     site->unitBalance--;
                     continue;
                 }
-                if (site->active == 3 || unit->type <= UNIT_MECH) {
+                if (site->type == SITE_PORT || unit->type <= UNIT_MECH) {
                     site->unitBalance += 1;
                 } else {
                     site->unitBalance += 2;

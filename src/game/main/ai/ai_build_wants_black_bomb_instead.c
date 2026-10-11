@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_site.h"
 #include "game/unit_stats.h"
 
 BOOL AiProfile_HasBuildFlag(int mask);
@@ -7,8 +8,6 @@ int AiSite_PickBlackBombAirport(void);
 int Ai_CountUnitsOfType(int type);
 
 #define AI_PROFILE_BLACK_BOMBS 2
-#define SITE_TYPE_BLACK_BOMB   2
-
 /* True when the AI profile allows Black Bombs (bit 2 of the byte AiProfile_HasBuildFlag
  * tests), the player has no Black Bomb, and a target is ready: with a
  * unitType, AiSite_PickBlackBombAirport finds a site and the player has a
@@ -22,7 +21,7 @@ BOOL AiBuild_WantsBlackBombInstead(int unitType)
         if (AiSite_PickBlackBombAirport() == -1) {
             return FALSE;
         }
-    } else if (!AiSites_HasType(SITE_TYPE_BLACK_BOMB)) {
+    } else if (!AiSites_HasType(SITE_AIRPORT)) {
         return FALSE;
     }
     if (Ai_CountUnitsOfType(UNIT_BLACK_BOMB) != 0) {

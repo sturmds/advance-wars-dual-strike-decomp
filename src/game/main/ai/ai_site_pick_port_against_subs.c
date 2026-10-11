@@ -14,8 +14,6 @@ int func_0209770c(int x, int y, int unitType);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_PORT         3
 #define BUILD_RATING_MAX  60
 
 /* Like AiSite_PickPortForCruiser, but after Ai_CountEnemySubReach: picks the
@@ -41,7 +39,7 @@ int AiSite_PickPortAgainstSubs(void)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (site->active != SITE_PORT) {
+        if (site->type != SITE_PORT) {
             continue;
         }
         value = STATE->mapTiles->rangeScratch[TILE(site->x, site->y)];

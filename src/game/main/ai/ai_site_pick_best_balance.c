@@ -4,8 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-
 /* Picks the site with the highest unitBalance (enemy units near it minus own
  * team's), skipping skipped sites and those func_02096c60 rejects. The balance
  * must beat 0. Returns the site index, or -1. */

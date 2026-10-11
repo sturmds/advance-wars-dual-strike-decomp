@@ -6,8 +6,8 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_0229ea4c[UNIT_TYPE_COUNT]; /* per unit type: hp of enemy units */
-extern u16 data_0229ea84[UNIT_TYPE_COUNT]; /* per unit type: hp of the current player's team */
+extern u16 gAiEnemyHpByType[UNIT_TYPE_COUNT]; /* per unit type: hp of enemy units */
+extern u16 gAiOwnHpByType[UNIT_TYPE_COUNT]; /* per unit type: hp of the current player's team */
 
 /* The y byte of each AiSite record (data_0229e5bc + 1); the original
  * addresses it through its own symbol. */
@@ -42,7 +42,7 @@ void AiSite_SumNearbyUnitHp(int siteIndex)
     u8 siteY;
 
     for (type = 0; type < UNIT_TYPE_COUNT; type++) {
-        data_0229ea84[type] = data_0229ea4c[type] = 0;
+        gAiOwnHpByType[type] = gAiEnemyHpByType[type] = 0;
     }
     RangeMap_FillMoves(data_0229e5bc[siteIndex].x, data_0229e5bd[siteIndex][0], UNIT_TANK, SITE_RADIUS, 0);
 
@@ -91,9 +91,9 @@ void AiSite_SumNearbyUnitHp(int siteIndex)
                 continue;
             }
             if (STATE->players[STATE->currentPlayer].team == STATE->players[(slot >> 6) + 1].team) {
-                data_0229ea84[type] += unit->hp;
+                gAiOwnHpByType[type] += unit->hp;
             } else {
-                data_0229ea4c[type] += unit->hp;
+                gAiEnemyHpByType[type] += unit->hp;
             }
         }
     }

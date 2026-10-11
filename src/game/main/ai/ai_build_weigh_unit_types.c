@@ -7,9 +7,9 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-extern u32 data_0229e278[];          /* build weight per unit type; AiTurn_PickUnitToBuild takes the highest */
-extern u16 data_0229ea4c[];          /* per unit type: total hp of the enemy teams' units (AiBuild_SumUnitHp) */
-extern u16 data_0229ea84[];          /* per unit type: total hp of the current team's units (AiBuild_SumUnitHp) */
+extern u32 gAiBuildScores[];          /* build weight per unit type; AiTurn_PickUnitToBuild takes the highest */
+extern u16 gAiEnemyHpByType[];          /* per unit type: total hp of the enemy teams' units (AiBuild_SumUnitHp) */
+extern u16 gAiOwnHpByType[];          /* per unit type: total hp of the current team's units (AiBuild_SumUnitHp) */
 extern u8 gAiTargetGroupType[];           /* per target group: the unit type that stands for it */
 
 int AiBuild_PickAntiAir(void);
@@ -31,7 +31,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 #define TARGET_GROUP_TRANSPORT 7
 #define TARGET_GROUP_NONE      10
 
-/* Fills data_0229e278 with a build weight for each unit type. It sums the
+/* Fills gAiBuildScores with a build weight for each unit type. It sums the
  * enemy hp per target group, takes off what the current team's units would
  * deal to each group, then weighs every type the AI may build by
  * AiBuild_RateAttackerVsTarget against the groups left. Each unit of that type the player
@@ -56,7 +56,7 @@ void AiBuild_WeighUnitTypes(void)
 
     data_021619c0->unk_06 = AiBuild_PickAntiAir();
     for (hp = 0; hp < UNIT_TYPE_COUNT; hp++) {
-        data_0229e278[hp] = 0;
+        gAiBuildScores[hp] = 0;
     }
     for (type = 0; type < TARGET_GROUP_COUNT; type++) {
         groupHp[type] = 0;
@@ -64,7 +64,7 @@ void AiBuild_WeighUnitTypes(void)
     for (type = 1; type < UNIT_TYPE_COUNT; type++) {
         group = AiBuild_GetTargetGroup(type);
         if (group != TARGET_GROUP_NONE) {
-            groupHp[group] += data_0229ea4c[type];
+            groupHp[group] += gAiEnemyHpByType[type];
         }
     }
     /* Transports count double on a map with ships but no aircraft. */
@@ -82,9 +82,9 @@ void AiBuild_WeighUnitTypes(void)
                 continue;
             }
             if (gAiTargetGroupType[group] == UNIT_SUB) {
-                damage = Ai_BestDamageVsDived(attacker, gAiTargetGroupType[group], 0) * data_0229ea84[attacker];
+                damage = Ai_BestDamageVsDived(attacker, gAiTargetGroupType[group], 0) * gAiOwnHpByType[attacker];
             } else {
-                damage = func_0209e814(attacker, gAiTargetGroupType[group], 0) * data_0229ea84[attacker];
+                damage = func_0209e814(attacker, gAiTargetGroupType[group], 0) * gAiOwnHpByType[attacker];
             }
             damage = AiBuild_ScaleByReach(damage, attacker, 0);
             if (Ov000_gUnitStats[gAiTargetGroupType[group]].moveGroup & MOVE_GROUP_AIR) {
@@ -121,11 +121,11 @@ someLeft:
             hp = groupHp[i];
             if (hp > 0) {
                 damage = AiBuild_RateAttackerVsTarget(candidate, gAiTargetGroupType[i]);
-                data_0229e278[candidate] += damage * hp;
+                gAiBuildScores[candidate] += damage * hp;
             }
         }
         for (count = 0; count < Ai_CountUnitsOfType(candidate); count++) {
-            data_0229e278[candidate] -= data_0229e278[candidate] >> 3;
+            gAiBuildScores[candidate] -= gAiBuildScores[candidate] >> 3;
         }
     }
     return;
@@ -150,11 +150,11 @@ noneLeft:
                 hp = groupHp[i];
                 if (hp != 0) {
                     damage = AiBuild_RateAttackerVsTarget(option, gAiTargetGroupType[i]);
-                    data_0229e278[option] += damage * (hp - (least - 1));
+                    gAiBuildScores[option] += damage * (hp - (least - 1));
                 }
             }
             for (count = 0; count < Ai_CountUnitsOfType(option); count++) {
-                data_0229e278[option] -= data_0229e278[option] >> 2;
+                gAiBuildScores[option] -= gAiBuildScores[option] >> 2;
             }
         }
         return;
@@ -169,9 +169,9 @@ noneLeft:
         if (func_0209e814(hitter, UNIT_INFANTRY, 0) == 0) {
             continue;
         }
-        data_0229e278[hitter] = Unit_GetValuePerHp(STATE->currentPlayer, hitter);
+        gAiBuildScores[hitter] = Unit_GetValuePerHp(STATE->currentPlayer, hitter);
         for (count = 0; count < Ai_CountUnitsOfType(hitter); count++) {
-            data_0229e278[hitter] -= data_0229e278[hitter] >> 2;
+            gAiBuildScores[hitter] -= gAiBuildScores[hitter] >> 2;
         }
     }
 }

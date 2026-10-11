@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* Returns the index of the first site of a given type (SITE_TYPE_ANY: every
  * type) that is not skipped and that func_02096c60 does not reject, or -1. */
 int AiSite_PickFirst(int siteType)
@@ -21,7 +18,7 @@ int AiSite_PickFirst(int siteType)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         return i;

@@ -39,9 +39,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 |---|---|---:|
 | `src/game/itcm/range_map/mark_adjacent_tiles.c` | RangeMap_MarkAdjacentTiles | 400 |
 | `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 |
+| `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | AiUnit_JoinDamagedUnit | 556 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
-| `src/game/main/ai/func_02092350.c` | func_02092350 | 1584 |
 | `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
 | `src/game/main/ai/func_0209770c.c` | func_0209770c | 1736 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |

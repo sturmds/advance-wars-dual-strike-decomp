@@ -8,7 +8,7 @@
  * Only the fields seen so far are listed. */
 typedef struct AiBuildState {
     u8 recordCount;                    /* entries in data_0229e5bc, 12 bytes each; the loop bound of func_02092134 */
-    u8 slotCount;                      /* entries in data_0229e44c, 4 bytes each; the loop bound of func_020937dc */
+    u8 slotCount;                      /* entries in gAiSiteGroups; the loop bound of func_020937dc */
     u8 step;                           /* 0-9, advanced by AiTurn_RunEndActions; cleared by func_0208d964 */
     u8 unk_03;                         /* cleared by func_0208d964 */
     u8 pad_04;
@@ -31,16 +31,5 @@ typedef struct AiBuildState {
 #define AI_ANTI_AIR_CRUISER_MORE 4
 
 extern AiBuildState *data_021619c0;
-
-/* One 4-byte entry of data_0229e44c (count in AiBuildState.slotCount). Some
- * files still declare it as Unk_0229e44c, so the array itself is declared by
- * each user. */
-typedef struct AiBuildSlot {
-    u8 unk_00;
-    u8 unk_01;                         /* 0xff: the slot is used up (AiBuildSlot_PickSafeSite) */
-    u8 unk_02;
-    u8 unk_03_0 : 1;
-    u8 unk_03_1 : 1;                   /* AiBuildSlot_PickSafeSite only takes slots with this bit set */
-} AiBuildSlot;
 
 #endif

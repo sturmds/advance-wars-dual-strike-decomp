@@ -5,9 +5,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-#define SITE_TYPE_BASE    1
 #define GROUP_PENALTY     255
 
 /* Like AiSite_PickNearestEnemy without the group test, but a base site whose
@@ -30,11 +27,11 @@ int AiSite_PickNearestEnemyPenalized(int siteType)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         distance = site->enemyDistance;
-        if (site->active == SITE_TYPE_BASE && data_0229e44c[site->group].unk_03_2) {
+        if (site->type == SITE_BASE && gAiSiteGroups[site->group].unk_03_2) {
             distance += GROUP_PENALTY;
         }
         if (bestDistance > distance) {

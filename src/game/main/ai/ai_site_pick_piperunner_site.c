@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_PIPE    1
-
 /* Among the sites of type 1 that are not skipped and not rejected by
  * func_02096c60, picks the one with the highest score (AiSite_ScorePiperunnerNeed).
  * Returns the site index, or -1 when no score is above 0. */
@@ -27,7 +24,7 @@ int AiSite_PickPiperunnerSite(void)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (site->active != SITE_TYPE_PIPE) {
+        if (site->type != SITE_BASE) {
             continue;
         }
         /* needed to match: the score is loaded as unsigned */

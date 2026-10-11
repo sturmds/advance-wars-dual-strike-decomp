@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* Like AiSite_PickNearestToProperty, but picks the site whose nearest
  * enemy unit is closest (enemyDistance). Returns the site index, or -1. */
 int AiSite_PickNearestEnemy(int siteType, int group)
@@ -26,7 +23,7 @@ int AiSite_PickNearestEnemy(int siteType, int group)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         if (site->group != group) {

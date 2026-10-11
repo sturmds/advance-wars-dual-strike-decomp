@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_site.h"
 #include "game/ai_build_state.h"
 #include "game/ai_site_group.h"
 
@@ -6,8 +7,6 @@ void func_020937dc(void);
 int AiSite_PickNearestToProperty(int siteType, int group);
 
 #define GROUP_USED_UP  0xff
-#define SITE_TYPE_FOOT 1
-
 /* Takes the first group in the list that is not used up and has skipFoot
  * clear, and asks AiSite_PickNearestToProperty for a site in it. Returns that
  * site when there is one; otherwise marks a group used up and searches again.
@@ -16,7 +15,7 @@ int AiSite_PickNearestToProperty(int siteType, int group);
  * Returns -1 when no group is left. */
 int AiSite_PickForFootUnit(void)
 {
-    AiSiteGroup *group = data_0229e44c;
+    AiSiteGroup *group = gAiSiteGroups;
     int i;
     int found;
     int site;
@@ -33,7 +32,7 @@ int AiSite_PickForFootUnit(void)
         if (found == -1) {
             return -1;
         }
-        site = AiSite_PickNearestToProperty(SITE_TYPE_FOOT, found);
+        site = AiSite_PickNearestToProperty(SITE_BASE, found);
         if (site != -1) {
             return site;
         }

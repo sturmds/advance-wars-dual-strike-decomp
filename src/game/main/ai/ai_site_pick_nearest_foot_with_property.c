@@ -5,9 +5,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* AiSite_PickNearestFoot, limited to sites whose group has a property in
  * reach that the current team does not own (AiSiteGroup.propertyCount). */
 int AiSite_PickNearestFootWithProperty(int siteType)
@@ -24,13 +21,13 @@ int AiSite_PickNearestFootWithProperty(int siteType)
         if (site->kind >= SITE_KIND_SKIPPED) {
             continue;
         }
-        if (data_0229e44c[site->group].propertyCount == 0) {
+        if (gAiSiteGroups[site->group].propertyCount == 0) {
             continue;
         }
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         if (bestValue > site->unk_09) {

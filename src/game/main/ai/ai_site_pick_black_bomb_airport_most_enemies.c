@@ -9,8 +9,6 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_AIRPORT      2
 #define THREAT_LIMIT      50
 
 /* Among the airport sites whose tile has enemy threatMax plus threatSum of
@@ -35,7 +33,7 @@ int AiSite_PickBlackBombAirportMostEnemies(void)
         if (STATE->mapTiles->threatMax[tile] + STATE->mapTiles->threatSum[tile] > THREAT_LIMIT) {
             continue;
         }
-        if (site->active != SITE_AIRPORT) {
+        if (site->type != SITE_AIRPORT) {
             continue;
         }
         if (bestEnemies < site->enemyCount) {

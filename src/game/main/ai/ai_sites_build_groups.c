@@ -47,7 +47,7 @@ int AiSites_BuildGroups(void)
 
     count = 0;
     site = data_0229e5bc;
-    group = data_0229e44c;
+    group = gAiSiteGroups;
     for (i = 0; i < data_021619c0->recordCount; i++, site++) {
         if (site->group != -1) {
             continue;

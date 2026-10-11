@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* Picks the site of a given type (SITE_TYPE_ANY: every type) with the lowest
  * unk_09, the range-map value of the nearest Infantry or Mech. Returns the
  * site index, or -1. */
@@ -27,7 +24,7 @@ int AiSite_PickNearestFoot(int siteType)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         if (bestValue > site->unk_09) {

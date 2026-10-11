@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* Picks a site of a given type for a Lander. unk_09 is the range-map value of
  * the nearest foot unit, unk_0a that of a unit waiting for a T-Copter. A site
  * is passed over when unk_09 is above the best unk_0a so far, or when its unk_0a
@@ -32,7 +29,7 @@ int AiSite_PickForLander(int siteType)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         if (bestValue < site->unk_09) {

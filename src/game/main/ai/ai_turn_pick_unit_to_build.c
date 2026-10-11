@@ -8,7 +8,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-extern u32 data_0229e278[];
+extern u32 gAiBuildScores[];
 extern u8 gUnitSupplyKind[];
 
 int AiSite_PickFirst(int allowSaving);
@@ -32,7 +32,7 @@ int Ai_CountUnitsOfType(int type);
 #define PLAYER (STATE->players[STATE->currentPlayer])
 
 /* Called by func_02091904 (end-actions step 9). Picks the unit type with the highest weight in
- * data_0229e278 and a factory for it (AiSite_PickForBuild by gUnitSupplyKind).
+ * gAiBuildScores and a factory for it (AiSite_PickForBuild by gUnitSupplyKind).
  * func_02097dd4 returns flags (bit 8) and a count (bits 0-7) that rule out
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
  * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
@@ -71,7 +71,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         bestScore = 0;
         countLess1 = infoCount - 1;
         for (type = 1, stats = &Ov000_gUnitStats[1]; type < UNIT_TYPE_COUNT; stats++, type++) {
-            if (bestScore >= data_0229e278[type]) {
+            if (bestScore >= gAiBuildScores[type]) {
                 continue;
             }
             if (infoFlag != 0) {
@@ -86,8 +86,8 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                     if (type <= UNIT_MECH && countLess1 >= 5) {
                         continue;
                     }
-                    if (bestScore <= data_0229e278[type] >> 1) {
-                        bestScore = data_0229e278[type] >> 1;
+                    if (bestScore <= gAiBuildScores[type] >> 1) {
+                        bestScore = gAiBuildScores[type] >> 1;
                         best = type;
                     }
                 }
@@ -103,7 +103,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
                 continue;
             }
             best = type;
-            bestScore = data_0229e278[type];
+            bestScore = gAiBuildScores[type];
         }
         if (best == 0) {
             return -1;
@@ -165,7 +165,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         gUnitAction.target = best;
         return index;
     reject:
-        data_0229e278[best] = 0;
+        gAiBuildScores[best] = 0;
         func_0209373c();
     }
 }

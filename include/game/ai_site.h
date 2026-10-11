@@ -3,13 +3,22 @@
 
 #include "types.h"
 
+/* AiSite.type, and the siteType argument of the AiSite_Pick* functions. */
+#define SITE_BASE     1
+#define SITE_AIRPORT  2
+#define SITE_PORT     3
+#define SITE_TYPE_ANY 4                /* argument only: any type */
+
+/* AiSite.kind: the record is skipped. */
+#define SITE_KIND_SKIPPED 0xfd
+
 /* One 12-byte record of the AI's site list, data_0229e5bc (count in AiBuildState.recordCount). Only the
  * fields seen so far are listed. */
 typedef struct AiSite {
     u8 x;
     u8 y;
-    u8 active;                         /* 1: the record is in use */
-    u8 kind;                           /* 0xfd: the record is skipped; 0xfe: no action found (AiTurn_TrySiteAction); 254 and up reset to 127 by func_0209378c */
+    u8 type;                           /* SITE_BASE, SITE_AIRPORT or SITE_PORT: the factory kind */
+    u8 kind;                           /* SITE_KIND_SKIPPED: the record is skipped; 0xfe: no action found (AiTurn_TrySiteAction); 254 and up reset to 127 by func_0209378c */
     s8 group;                          /* AiSiteGroup_RateSurroundings works on the records of one group; -1 marks a group's first record (AiSites_BuildGroups) */
     s8 unitBalance;                    /* AiSiteGroup_RateSurroundings: +1 per enemy foot unit near the site (+2 for others), -1 per own-team unit */
     u8 enemyCount;                     /* AiSiteGroup_RateSurroundings: enemy units near the site */

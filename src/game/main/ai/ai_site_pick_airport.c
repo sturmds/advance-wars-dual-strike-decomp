@@ -11,8 +11,6 @@ int func_02096c60(int x, int y);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_AIRPORT      2
 #define SAFE_THREAT_LIMIT 40
 
 /* Picks the airport site to build a Fighter at: not skipped, not one where
@@ -41,7 +39,7 @@ int AiSite_PickAirport(void)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (site->active != SITE_AIRPORT) {
+        if (site->type != SITE_AIRPORT) {
             continue;
         }
         tile = TILE(site->x, site->y);

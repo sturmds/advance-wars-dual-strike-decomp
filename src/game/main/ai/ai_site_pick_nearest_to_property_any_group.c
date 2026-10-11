@@ -4,9 +4,6 @@
 
 int func_02096c60(int x, int y);
 
-#define SITE_KIND_SKIPPED 0xfd
-#define SITE_TYPE_ANY     4
-
 /* AiSite_PickNearestToProperty without the group test. */
 int AiSite_PickNearestToPropertyAnyGroup(int siteType)
 {
@@ -25,7 +22,7 @@ int AiSite_PickNearestToPropertyAnyGroup(int siteType)
         if (func_02096c60(site->x, site->y) == 1) {
             continue;
         }
-        if (siteType != SITE_TYPE_ANY && site->active != siteType) {
+        if (siteType != SITE_TYPE_ANY && site->type != siteType) {
             continue;
         }
         if (bestMoves > site->propertyMoves) {
