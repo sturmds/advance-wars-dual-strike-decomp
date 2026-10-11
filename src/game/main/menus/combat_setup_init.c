@@ -20,7 +20,7 @@ void Palette_LoadObjRow(int row);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int baseTile);
 void Co_UnpackPicture(int coId, int firstTile);
-void func_02082b0c(void);
+void CombatSetup_LoadMapPreviews(void);
 void func_01ff9b48(void);
 void func_0202b764(void);
 void func_0202b6f8(u8 *dest);
@@ -125,7 +125,7 @@ void CombatSetup_Init(void)
     Palette_Load(file, 0x220, 32);
     Mem_Copy32(((Unk_027c0280 *)MAIN_MAP)->unk_10c, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14), 0x840);
     Palette_Load(file + 0x7f0, 0x40, 0x80);
-    func_02082b0c();
+    CombatSetup_LoadMapPreviews();
     SWITCH_BACK();
 
     /* The sub screen's layer 2 map, kept at the start of MenuState
