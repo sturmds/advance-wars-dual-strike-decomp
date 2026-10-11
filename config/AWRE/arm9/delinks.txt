@@ -9116,6 +9116,10 @@ src/game/main/menus/combat_setup_update_link.c:
     complete
     .text       start:0x02086320 end:0x0208653c
 
+src/game/main/menus/combat_setup_add_row_buttons.c:
+    complete
+    .text       start:0x0208653c end:0x020865d4
+
 src/game/main/link/link_menu_restore_main_screen.c:
     complete
     .text       start:0x020865d4 end:0x02086754
