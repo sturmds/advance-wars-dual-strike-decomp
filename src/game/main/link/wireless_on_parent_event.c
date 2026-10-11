@@ -9,7 +9,7 @@ int func_02079180(void);
 int func_020783bc(void);
 void Wireless_CountChildren(void);
 void Wireless_SetPlayerName(u8 aid, u8 *ssid);
-void func_0207a36c(u8 aid);
+void Wireless_ClearPlayerName(u8 aid);
 void func_02079028(void);
 
 /* Parent callback: tracks which children are connected and passes each
@@ -57,7 +57,7 @@ void Wireless_OnParentEvent(WMStartParentCallback *cb)
             Wireless_CountChildren();
             data_0229c910.unk_14 = data_0215fe84->childAids | 1;
             func_02079028();
-            func_0207a36c(cb->aid);
+            Wireless_ClearPlayerName(cb->aid);
             data_0215fe84->childrenChanged = 1;
             break;
         }
