@@ -16,6 +16,10 @@ void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
 /* Task.unk_64 is a u16 in task.h, but this task reads it as signed. */
 #define WIN_QUOTE_RECORD(task) (*(s16 *)&(task)->unk_64)
 
+/* Task.unk_4c is a pointer in task.h; WinQuote_SlideIn keeps its frame
+ * count in the low halfword. */
+#define WIN_QUOTE_FRAME(task) (*(s16 *)&(task)->unk_4c)
+
 /* Draws the CO sprites that func_02033088 loaded: the front CO, plus the
  * back CO when the record has a tag partner. */
 static inline void WinQuote_DrawCos(Task *task)

@@ -4457,6 +4457,10 @@ src/game/main/win_quote_wait_text.c:
     complete
     .text       start:0x02032c60 end:0x02032d7c
 
+src/game/main/win_quote_slide_in.c:
+    complete
+    .text       start:0x02032d7c end:0x02032f4c
+
 src/game/main/func_02033088.c:
     complete
     .text       start:0x02033088 end:0x0203339c
