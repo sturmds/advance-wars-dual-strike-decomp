@@ -25,7 +25,7 @@ void func_ov006_02352708(int arg);
 void func_ov006_02355444(void);
 void func_ov006_02355514(void);
 void func_ov006_02355610(void);
-void func_ov006_0235566c(void);
+void Ov006_AddToolButtons(void);
 void func_ov006_02355b44(void);
 void func_ov006_02355bd4(void);
 void func_ov006_02355c58(void);
@@ -196,7 +196,7 @@ void Ov006_UpdateArmyCoPanel(void)
         OV6->unk_0c = 51;
         func_ov006_02355c58();
         func_ov006_02355bd4();
-        func_ov006_0235566c();
+        Ov006_AddToolButtons();
         OV6->unk_02 |= 0x10;
         if (OV6->unk_29 == 1) {
             OV6->unk_02 &= ~1;
@@ -244,7 +244,7 @@ void Ov006_UpdateArmyCoPanel(void)
         }
         func_ov006_02355c58();
         func_ov006_02355bd4();
-        func_ov006_0235566c();
+        Ov006_AddToolButtons();
         if (OV6->unk_29 == 1) {
             OV6->unk_02 &= ~1;
         } else if (OV6->unk_29 == 0) {

@@ -111,7 +111,7 @@ func_ov006_02355514 kind:function(arm,size=0x70) addr:0x02355514
 func_ov006_02355584 kind:function(arm,size=0x38) addr:0x02355584
 func_ov006_023555bc kind:function(arm,size=0x54) addr:0x023555bc
 func_ov006_02355610 kind:function(arm,size=0x5c) addr:0x02355610
-func_ov006_0235566c kind:function(arm,size=0x14c) addr:0x0235566c
+Ov006_AddToolButtons kind:function(arm,size=0x14c) addr:0x0235566c
 func_ov006_023557b8 kind:function(arm,size=0x258) addr:0x023557b8
 func_ov006_02355a10 kind:function(arm,size=0xb4) addr:0x02355a10
 func_ov006_02355ac4 kind:function(arm,size=0x80) addr:0x02355ac4
@@ -511,7 +511,7 @@ data_ov006_0236b800 kind:data(any) addr:0x0236b800
 data_ov006_0236b81c kind:data(any) addr:0x0236b81c
 data_ov006_0236b838 kind:data(any) addr:0x0236b838
 data_ov006_0236b854 kind:data(any) addr:0x0236b854
-data_ov006_0236b87c kind:data(any) addr:0x0236b87c
+gOv006ToolButtonTemplate kind:data(any) addr:0x0236b87c
 data_ov006_0236b8a4 kind:data(any) addr:0x0236b8a4
 data_ov006_0236b8b0 kind:data(any) addr:0x0236b8b0
 data_ov006_0236b8b4 kind:data(any) addr:0x0236b8b4
