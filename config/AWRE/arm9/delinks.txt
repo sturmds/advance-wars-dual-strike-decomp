@@ -14315,6 +14315,10 @@ src/game/main/power_meter/power_panel_animate_palette_colour.c:
     complete
     .text       start:0x020e1714 end:0x020e17f0
 
+src/game/main/co_stats/co_get_tag_record.c:
+    complete
+    .text       start:0x020e17f0 end:0x020e1840
+
 src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948
