@@ -4,13 +4,28 @@
 #include "types.h"
 #include "game/task.h"
 
-/* func_020fcdf0 starts a task that fades one screen's brightness over
+/* Fields of the fade task BrightnessFade_Start creates. */
+typedef struct BrightnessFadeTask {
+    u8 pad_00[0x30];
+    int unk_30;                        /* set to 1 at start */
+    int unk_34;
+    u8 pad_38[0x3c - 0x38];
+    int frame;                         /* starts at 0 */
+    int frames;                        /* length of the fade */
+    u8 pad_44[0x48 - 0x44];
+    int screen;                        /* 0 or 1, index into data_027c0288 */
+    u8 pad_4c[0x54 - 0x4c];
+    int startLevel;                    /* master brightness, -16 to 16 */
+    int endLevel;
+} BrightnessFadeTask;
+
+/* BrightnessFade_Start starts a task that fades one screen's brightness over
  * `frames` frames and returns it. `out` nonzero fades from 0 to the target
  * level, zero from the target level back to 0. `screen` picks the screen
  * (0 or 1 in data_027c0288). `white` nonzero makes the level +16 (white, a guess), zero -16.
  * The wrappers below fix the three flags; parentOrList is Task_Create's
  * second argument (a parent task, or TASK_LIST(n)). */
-Task *func_020fcdf0(void *parentOrList, int out, int screen, int white, int frames);
+Task *BrightnessFade_Start(void *parentOrList, int out, int screen, int white, int frames);
 
 Task *func_020fccd8(void *parentOrList, int frames); /* out, screen 0, white */
 Task *func_020fcd00(void *parentOrList, int frames); /* in, screen 1, white */

@@ -9752,6 +9752,10 @@ src/game/main/func_020fcdc8.c:
     complete
     .text       start:0x020fcdc8 end:0x020fcdf0
 
+src/game/main/brightness_fade_start.c:
+    complete
+    .text       start:0x020fcdf0 end:0x020fcf94
+
 src/game/main/func_020fcf94.c:
     complete
     .text       start:0x020fcf94 end:0x020fcfa0

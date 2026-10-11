@@ -24,7 +24,7 @@ typedef struct CampaignRecap {
     u32 unk_20;
     u8 pad_24[0x30 - 0x24];
     u32 unk_30;
-    struct Task *fadeTask;             /* from the func_020fcdf0 family */
+    struct Task *fadeTask;             /* from the BrightnessFade_Start family */
     struct Task *fadeTask2;
     struct Task *songFadeTask;         /* func_020fcb08 */
     int firstStep;                     /* step CampaignRecap_Update goes to after loading an entry; 3: wait 32 frames first */

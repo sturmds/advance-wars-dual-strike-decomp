@@ -3,5 +3,5 @@
 
 Task *func_020fcd28(void *parentOrList, int frames)
 {
-    return func_020fcdf0(parentOrList, 0, 0, 1, frames);
+    return BrightnessFade_Start(parentOrList, 0, 0, 1, frames);
 }
