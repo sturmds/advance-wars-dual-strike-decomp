@@ -7,13 +7,13 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);        /* fog, weather and terrain check of a tile */
-BOOL func_0209f004(int unitType, u8 terrain);
+BOOL UnitType_CanEnterTerrain(int unitType, u8 terrain);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
 /* For an Oozium the current player can see (Player_CanSeeUnitAt), sets threatSum to
- * 255 on each of the four tiles next to it that func_0209f004 accepts for an
+ * 255 on each of the four tiles next to it that UnitType_CanEnterTerrain accepts for an
  * Oozium. */
 void Ai_AddOoziumThreat(MapUnit *unit)
 {
@@ -64,7 +64,7 @@ void Ai_AddOoziumThreat(MapUnit *unit)
                 distance += y - unit->y;
             }
             if (distance >= 1 && distance <= 1) {
-                if (func_0209f004(UNIT_OOZIUM, MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)]))) {
+                if (UnitType_CanEnterTerrain(UNIT_OOZIUM, MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)]))) {
                     STATE->mapTiles->threatSum[TILE_INDEX(x, y)] = 255;
                 }
             }

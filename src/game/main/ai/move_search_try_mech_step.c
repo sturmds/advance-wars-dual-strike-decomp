@@ -11,7 +11,7 @@ extern MoveSearch *data_027c0758;
 extern MoveSearchNode *data_027c075c;
 extern int (*data_0229e174)(int x, int y, int unitType);
 
-BOOL func_0209f004(int unitType, u8 terrain);
+BOOL UnitType_CanEnterTerrain(int unitType, u8 terrain);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -52,7 +52,7 @@ BOOL MoveSearch_TryMechStep(int direction)
     if (data_027c0758->x >= STATE->unk_1c4->mapWidth || data_027c0758->y >= STATE->unk_1c4->mapHeight) {
         return FALSE;
     }
-    if (!func_0209f004(UNIT_MECH, MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(data_027c0758->x, data_027c0758->y)]))) {
+    if (!UnitType_CanEnterTerrain(UNIT_MECH, MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(data_027c0758->x, data_027c0758->y)]))) {
         return FALSE;
     }
     steps = data_027c0754->turn + 1;
