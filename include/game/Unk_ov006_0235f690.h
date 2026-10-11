@@ -70,7 +70,8 @@ typedef struct Unk_ov006_0235f690 {
     s8 unk_3a;                         /* step in Ov006_gPanelScaleSteps of the OBJ matrix 0 squash (states 30-32 of Ov006_UpdateArmyCoPanel) */
     s8 unk_3b;                         /* frame countdown, set to 30 on a request; at 0 a script starts (Ov006_StartScriptAfterDelay) */
     u8 unk_3c;                         /* set to 5 after a unit is removed from the map */
-    u8 pad_3d[0x44 - 0x3d];
+    u8 pad_3d[0x40 - 0x3d];
+    s32 pendingSe;                     /* sound effect for func_ov006_0235eb7c to play at the end of its frame; 0: none */
     s16 winLeft;                       /* window 0 rectangle that Ov006_UpdateArmyCoPanel animates, in pixels */
     s16 winTop;
     s16 winRight;

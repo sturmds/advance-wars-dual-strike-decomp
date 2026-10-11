@@ -6,7 +6,7 @@
 void Ov006_SetMapCell(int x, int y, int cell);
 int Ov006_PlaceShoal(int x, int y);
 void Ov006_TurnToSea(int x, int y);   /* refits a sea tile */
-void Ov006_PlaceReef(int x, int y);   /* places reef */
+int Ov006_PlaceReef(int x, int y);    /* places reef; 0: refused */
 void Ov006_PlaceWood(int x, int y);   /* places wood */
 void Ov006_PlaceRoad(int x, int y);   /* places road */
 void Ov006_PlacePipe(int x, int y);   /* places pipe */
