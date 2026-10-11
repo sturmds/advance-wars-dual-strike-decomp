@@ -5517,6 +5517,10 @@ src/game/main/func_02089c9c.c:
     complete
     .text       start:0x02089c9c end:0x02089dac
 
+src/game/main/menus/menu_draw_money_and_prices.c:
+    complete
+    .text       start:0x02089dac end:0x0208a0c4
+
 src/game/main/func_0208a128.c:
     complete
     .text       start:0x0208a128 end:0x0208a160

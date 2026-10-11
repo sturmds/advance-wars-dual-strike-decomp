@@ -20,8 +20,9 @@ typedef struct Unk_02160ac0 {
     struct {
         u8 tile : 6;
         u8 state : 2;
-    } cells[0x18];
-    u8 unk_18;
+    } cells[20];
+    u32 unk_14;                        /* money: the four entries of Menu_DrawMoneyAndPrices cost 1000 to 6000 */
+    u8 unk_18;                         /* cells in use, at most 20 */
     u8 unk_19;
     u8 pad_1a[0x70 - 0x1a];
     u8 unk_70[8];                      /* Ov003Slot.row per slot (overlay 3, link play) */
