@@ -12148,6 +12148,10 @@ src/game/main/func_020babb4.c:
     complete
     .text       start:0x020babb4 end:0x020babd8
 
+src/game/main/menus/game_state2_load_next_army_icon.c:
+    complete
+    .text       start:0x020babd8 end:0x020bace0
+
 src/game/main/func_020bb02c.c:
     complete
     .text       start:0x020bb02c end:0x020bb05c

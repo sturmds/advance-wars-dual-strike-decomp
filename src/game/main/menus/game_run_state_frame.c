@@ -26,7 +26,7 @@ void AiTurn_Update(void);
 void LinkAction_Update(void);
 void func_ov000_022b0500(void);
 void func_020bace0(void);
-void func_020babd8(void);
+void Game_State2_LoadNextArmyIcon(void);
 void Game_State3_NextTurnScreen(void);
 void Game_State4_WaitSongFade(void);
 void Game_State5_StartTurnTask(void);
@@ -109,7 +109,7 @@ void Game_RunStateFrame(void)
                 func_020bace0();
                 break;
             case 2:
-                func_020babd8();
+                Game_State2_LoadNextArmyIcon();
                 break;
             case 3:
                 Game_State3_NextTurnScreen();
