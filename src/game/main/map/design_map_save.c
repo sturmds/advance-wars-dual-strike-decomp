@@ -7,7 +7,7 @@ extern u32 data_0229eae4;
 u8 Map_GetLoadedPlayerCount(void);
 void func_020d73d4(void *map, DesignMapRecord *record);
 void Save_WriteRecord(int recordId, DesignMapRecord *record, int size);
-void func_020d6fcc(void);
+void DesignMap_RefreshAllRows(void);
 
 /* Converts map into the 0x724-byte save record format in data_02291774 and
  * writes it as save record 7 + slot. Outside link play, the record's player
@@ -21,5 +21,5 @@ void DesignMap_SaveToSlot(int slot, void *map)
         record->playerCount = Map_GetLoadedPlayerCount();
     }
     Save_WriteRecord((u8)(slot + 7), &data_02291774, 0x724);
-    func_020d6fcc();
+    DesignMap_RefreshAllRows();
 }

@@ -31,7 +31,7 @@ void Touch_Init(void);
 void Menu_Reset(void);
 void func_0200ccac(void);
 void Save_LoadAndUnpackProgress(void);
-void func_020d6fcc(void);
+void DesignMap_RefreshAllRows(void);
 void Rng_SetState(u32 state);
 void VBlankIntrWait(void);
 void Screen_SetCurrent(void *state);
@@ -102,7 +102,7 @@ void main(void)
     func_0200ccac();
     Save_ResetProgress();
     Save_LoadAndUnpackProgress();
-    func_020d6fcc();
+    DesignMap_RefreshAllRows();
     Rng_SetState(0x0a6b99cd);
     VBlankIntrWait();
 

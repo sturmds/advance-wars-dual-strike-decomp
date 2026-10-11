@@ -13209,6 +13209,10 @@ src/game/main/map/design_map_refresh_row.c:
     complete
     .text       start:0x020d6ee4 end:0x020d6fcc
 
+src/game/main/map/design_map_refresh_all_rows.c:
+    complete
+    .text       start:0x020d6fcc end:0x020d6ff4
+
 src/game/main/map/func_020d73d4.c:
     .text       start:0x020d73d4 end:0x020d76f0
 
