@@ -5386,6 +5386,14 @@ src/game/main/score_list_next_page.c:
     complete
     .text       start:0x02039c48 end:0x02039ce8
 
+src/game/main/score_list_update_page_max.c:
+    complete
+    .text       start:0x02039ce8 end:0x02039d6c
+
+src/game/main/score_list_has_more_rows.c:
+    complete
+    .text       start:0x02039d6c end:0x02039da0
+
 src/game/main/text/text_get_string_width.c:
     complete
     .text       start:0x02039df4 end:0x02039e34
