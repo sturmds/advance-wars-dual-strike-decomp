@@ -6,7 +6,7 @@
 void Sprite_QueueAt(int list, int x, u8 y, void *data, int attr, int tile);
 int Player_GetCoIconTile(int player, int type);
 int func_020c7614(int player, int unitType);
-int func_020c7580(int player, int unitType);
+int Player_GetUnitsLost(int player, int unitType);
 BOOL func_0203bf2c(int x, int width);
 void ResultStats_DrawCount(int x, int y, int value);
 
@@ -15,7 +15,7 @@ extern u8 data_027c0040;
 
 /* Draws the unit grid of a stats page for player task->unk_66, moved right
  * by `offset` pixels: each unit's icon and a count. task->unk_68 picks the
- * count (0: func_020c7614, 1: func_020c7580); units with a count of 0 are
+ * count (0: func_020c7614, 1: Player_GetUnitsLost); units with a count of 0 are
  * left out. */
 void ResultStats_DrawUnitGrid(int offset, Task *task)
 {
@@ -33,7 +33,7 @@ void ResultStats_DrawUnitGrid(int offset, Task *task)
             if (task->unk_68 == 0 && func_020c7614(task->unk_66, type) == 0) {
                 continue;
             }
-            if (task->unk_68 == 1 && func_020c7580(task->unk_66, type) == 0) {
+            if (task->unk_68 == 1 && Player_GetUnitsLost(task->unk_66, type) == 0) {
                 continue;
             }
             x = col * 54 + 25 + offset;
@@ -45,7 +45,7 @@ void ResultStats_DrawUnitGrid(int offset, Task *task)
             if (task->unk_68 == 0) {
                 ResultStats_DrawCount(x + 16, 48 + row * 16, func_020c7614(task->unk_66, type));
             } else {
-                ResultStats_DrawCount(x + 16, 48 + row * 16, func_020c7580(task->unk_66, type));
+                ResultStats_DrawCount(x + 16, 48 + row * 16, Player_GetUnitsLost(task->unk_66, type));
             }
         }
     }
