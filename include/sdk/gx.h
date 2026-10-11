@@ -109,6 +109,7 @@
 
 void Vram_PowerOnBanks(u32 banks);
 void GX_SetBankForTexPltt(int texPltt);
+void GXi_NopClearFifo128_(void *fifo);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */

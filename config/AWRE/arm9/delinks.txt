@@ -20869,6 +20869,10 @@ src/game/main/func_0210b5d4.c:
     complete
     .text       start:0x0210b5d4 end:0x0210b5f0
 
+src/sdk/gx/gxi_nop_clear_fifo128.c:
+    complete
+    .text       start:0x0210b5f0 end:0x0210b684
+
 src/game/main/func_0210b684.c:
     complete
     .text       start:0x0210b684 end:0x0210b694
