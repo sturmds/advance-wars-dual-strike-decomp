@@ -3,7 +3,7 @@
 
 void func_02020848(void *dst);
 void func_02020854(void *dst);
-void func_020d3c44(void *dst);
+void MapPreview_DrawUnits(void *dst);
 
 /* Update of the map preview task: redraws the preview in steps, one step on
  * frames 0, 1 and 22 of every 64. */
@@ -20,7 +20,7 @@ void MapPreviewTask_Update(Task *task)
         func_02020848(task->unk_4c);
         break;
     case 22:
-        func_020d3c44(task->unk_4c);
+        MapPreview_DrawUnits(task->unk_4c);
         break;
     }
 }

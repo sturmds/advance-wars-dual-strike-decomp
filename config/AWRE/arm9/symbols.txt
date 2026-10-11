@@ -3835,7 +3835,7 @@ Map_LoadHeaderSetup kind:function(arm,size=0x128) addr:0x020d3ad0
 func_020d3bf8 kind:function(arm,size=0x24) addr:0x020d3bf8
 Map_StartBattleTask kind:function(arm,size=0x18) addr:0x020d3c1c
 Map_SetDataBuffer kind:function(arm,size=0x10) addr:0x020d3c34
-func_020d3c44 kind:function(arm,size=0x1a8) addr:0x020d3c44
+MapPreview_DrawUnits kind:function(arm,size=0x1a8) addr:0x020d3c44
 func_020d3dec kind:function(arm,size=0x94) addr:0x020d3dec
 func_020d3e80 kind:function(arm,size=0x174) addr:0x020d3e80
 MapPreview_CycleBorderColour kind:function(arm,size=0x50) addr:0x020d3ff4
@@ -7693,7 +7693,7 @@ gTilesetPaletteFileDefault kind:data(any) addr:0x02166d94
 data_02166d98 kind:data(any) addr:0x02166d98
 data_02166dc8 kind:data(any) addr:0x02166dc8
 data_02166e08 kind:data(any) addr:0x02166e08
-data_02166e0c kind:data(any) addr:0x02166e0c
+gMapPreviewUnitMask kind:data(any) addr:0x02166e0c
 data_02166e14 kind:data(any) addr:0x02166e14
 data_02166e3c kind:data(any) addr:0x02166e3c
 data_02166e7c kind:data(any) addr:0x02166e7c
