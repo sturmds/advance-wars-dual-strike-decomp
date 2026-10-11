@@ -16,7 +16,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex progress setup release check check-rom check-modules check-out hooks extract test clean
+.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -62,6 +62,11 @@ check: check-rom check-modules check-out
 fnindex: all
 	@$(PYTHON) tools/fnindex.py
 
+# build/dsindex.json, struct layouts for tools/ds.py from probe compiles of
+# each header. ds.py also refreshes it when a header or C file is newer.
+dsindex:
+	@$(PYTHON) tools/dsindex.py
+
 progress: all
 	@$(PYTHON) tools/progress.py
 
@@ -70,13 +75,15 @@ release: setup
 	@$(MAKE) --no-print-directory check
 	@echo "release: OK"
 
-# Tests of the landing tools on throwaway repos and of propagate.py's C text
-# handling; no ROM or build needed.
+# Tests of the landing tools on throwaway repos, of propagate.py's C text
+# handling and of ds.py; no ROM or build needed (test_ds.py uses the compiler
+# from make setup and checks more when extract/ exists).
 test:
 	@$(PYTHON) tools/tests/test_landing.py
 	@$(PYTHON) tools/tests/test_propagate.py
 	@$(PYTHON) tools/tests/test_loop_state.py
 	@$(PYTHON) tools/tests/test_fnshow.py
+	@$(PYTHON) tools/tests/test_ds.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps
