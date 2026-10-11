@@ -16,7 +16,7 @@ BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void func_020ff994(CampaignRecap *work);
-void func_020ffa64(CampaignRecap *work);
+void CampaignRecap_FillEntries(CampaignRecap *work);
 void Battle_SetupWithPresetCos(CampaignRecap *work); /* needed to match: the call passes work in r0, which the callee ignores */
 Task *func_020fcbd8(int song, int arg); /* task: fade out the song, then start `song` */
 
@@ -162,7 +162,7 @@ void CampaignRecap_SetUpScreens(CampaignRecapTask *task)
     work->unk_30 = 0;
     work->index = 0;
     work->firstStep = 3;
-    func_020ffa64(work);
+    CampaignRecap_FillEntries(work);
     work->songFadeTask = func_020fcbd8(42, 0);
 
     saved0280 = data_027c0280;
