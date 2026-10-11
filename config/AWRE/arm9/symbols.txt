@@ -814,9 +814,9 @@ Window_Draw kind:function(arm,size=0x28) addr:0x0201e664
 func_0201e68c kind:function(arm,size=0x28) addr:0x0201e68c
 Window_DrawOnLayer1 kind:function(arm,size=0x34) addr:0x0201e6b4
 func_0201e6e8 kind:function(arm,size=0x34) addr:0x0201e6e8
-func_0201e71c kind:function(arm,size=0xc8) addr:0x0201e71c
-func_0201e7e4 kind:function(arm,size=0xe0) addr:0x0201e7e4
-func_0201e8c4 kind:function(arm,size=0x90) addr:0x0201e8c4
+Window_DrawFrameBottomRow kind:function(arm,size=0xc8) addr:0x0201e71c
+Window_DrawFrameMiddleRow kind:function(arm,size=0xe0) addr:0x0201e7e4
+Window_DrawFrameTopRow kind:function(arm,size=0x90) addr:0x0201e8c4
 func_0201e954 kind:function(arm,size=0x2c) addr:0x0201e954
 func_0201e980 kind:function(arm,size=0x58) addr:0x0201e980
 PopupMenu_Create kind:function(arm,size=0x1b4) addr:0x0201e9d8
@@ -6962,7 +6962,7 @@ data_021585c0 kind:data(any) addr:0x021585c0
 data_02158734 kind:data(any) addr:0x02158734
 data_02158748 kind:data(any) addr:0x02158748
 data_0215874c kind:data(any) addr:0x0215874c
-data_02158750 kind:data(any) addr:0x02158750
+gWindowFrameBottomTiles kind:data(any) addr:0x02158750
 data_02158754 kind:data(any) addr:0x02158754
 data_02158758 kind:data(any) addr:0x02158758
 data_0215875c kind:data(any) addr:0x0215875c

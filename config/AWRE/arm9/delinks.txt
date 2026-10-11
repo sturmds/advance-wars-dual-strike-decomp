@@ -2023,6 +2023,17 @@ src/game/main/func_0201e6e8.c:
     complete
     .text       start:0x0201e6e8 end:0x0201e71c
 
+src/game/main/graphics/window_draw_frame_bottom_row.c:
+    complete
+    .text       start:0x0201e71c end:0x0201e7e4
+
+src/game/main/graphics/window_draw_frame_middle_row.c:
+    .text       start:0x0201e7e4 end:0x0201e8c4
+
+src/game/main/graphics/window_draw_frame_top_row.c:
+    complete
+    .text       start:0x0201e8c4 end:0x0201e954
+
 src/game/main/func_0201e954.c:
     complete
     .text       start:0x0201e954 end:0x0201e980
