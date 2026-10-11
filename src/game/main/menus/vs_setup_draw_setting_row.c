@@ -31,12 +31,12 @@ extern u8 data_027c0060;
 
 /* Draws one row of the Vs setup settings at (x, y): the row's two sprites
  * (tiles row * 16 + 300, which pulses in size on the selected row
- * setup.unk_2e6, and row * 8 + 180), then the current value. Funds show as four digits with the
+ * setup.settingRow, and row * 8 + 180), then the current value. Funds show as four digits with the
  * thousands digit hidden when 0; setup.unk_2de and unk_2df show as two
  * digits, or "Off" when 0. */
 void VsSetup_DrawSettingRow(int row, int x, int y)
 {
-    if (row == MENU->setup.unk_2e6) {
+    if (row == MENU->setup.settingRow) {
         int scale = (Math_SinDegrees(HwMod32(MainLoop_GetFrameCount() << 4, 360)) >> 9) + 256;
         int d3 = ZOOM_DIVISOR(scale);
         int d2 = ZOOM_DIVISOR(scale);

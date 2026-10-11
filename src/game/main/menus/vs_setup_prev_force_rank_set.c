@@ -9,8 +9,8 @@ extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
 #define MENU ((MenuState *)&gMenuState)
-#define SELECTED_SLOT() ((MENU->setup.unk_2e4 - 8) >> 1)
-#define SELECTED_CO()   ((MENU->setup.unk_2e4 - 8) & 1)
+#define SELECTED_SLOT() ((MENU->setup.cursorButton - 8) >> 1)
+#define SELECTED_CO()   ((MENU->setup.cursorButton - 8) & 1)
 #define SELECTED_SET()  MENU->setup.forceRankSets[SELECTED_SLOT()][SELECTED_CO()]
 
 /* Moves the selected CO to its previous Force Rank set, 0-3 with wrap. */

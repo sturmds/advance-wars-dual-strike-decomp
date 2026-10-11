@@ -7683,7 +7683,7 @@ src/game/main/menus/vs_setup_show_setting_help2.c:
     complete
     .text       start:0x02064b1c end:0x02064e00
 
-src/game/main/func_02064e00.c:
+src/game/main/menus/vs_setup_select_setting_row.c:
     complete
     .text       start:0x02064e00 end:0x02064e2c
 
@@ -7695,11 +7695,11 @@ src/game/main/menus/vs_setup_increase_setting.c:
     complete
     .text       start:0x02065008 end:0x020651ec
 
-src/game/main/func_020651ec.c:
+src/game/main/menus/vs_setup_cancel_settings_menu.c:
     complete
     .text       start:0x020651ec end:0x02065214
 
-src/game/main/func_02065214.c:
+src/game/main/menus/vs_setup_close_settings_menu.c:
     complete
     .text       start:0x02065214 end:0x0206523c
 
@@ -7763,7 +7763,7 @@ src/game/main/menus/vs_setup_show_setting_help.c:
     complete
     .text       start:0x02066344 end:0x02066624
 
-src/game/main/func_02066624.c:
+src/game/main/menus/vs_setup_confirm_teams.c:
     complete
     .text       start:0x02066624 end:0x0206664c
 
@@ -7771,7 +7771,7 @@ src/game/main/func_0206664c.c:
     complete
     .text       start:0x0206664c end:0x02066674
 
-src/game/main/menus/func_02066674.c:
+src/game/main/menus/vs_setup_clear_slot_ready.c:
     complete
     .text       start:0x02066674 end:0x020666cc
 
@@ -7827,7 +7827,7 @@ src/game/main/menus/vs_setup_prev_team_for_button.c:
     complete
     .text       start:0x02067088 end:0x0206714c
 
-src/game/main/func_0206714c.c:
+src/game/main/menus/vs_setup_request_confirm_teams.c:
     complete
     .text       start:0x0206714c end:0x02067188
 

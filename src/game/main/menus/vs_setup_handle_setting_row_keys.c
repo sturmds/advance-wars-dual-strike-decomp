@@ -10,12 +10,12 @@ extern MenuState gMenuState;
 #define SETTING_ROWS 9
 
 /* Keys of the Vs setup help view: left and right pick the setting row
- * (setup.unk_2e6, wrapping) and show its help text; B closes it. */
+ * (setup.settingRow, wrapping) and show its help text; B closes it. */
 void VsSetup_HandleSettingRowKeys(void)
 {
     s8 row;
 
-    row = gMenuState.setup.unk_2e6;
+    row = gMenuState.setup.settingRow;
     if (gKeypad->repeat & PAD_KEY_LEFT) {
         row--;
         if (row < 0) {

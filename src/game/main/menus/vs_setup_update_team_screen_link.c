@@ -15,8 +15,8 @@ u32 Link_GetConnectedSlotMask(void);
 void VsSetup_PrevTeam(int msg); /* previous team for slot msg - 19 */
 void VsSetup_NextTeam(int msg); /* next team for slot msg - 23 */
 void VsSetup_SetSlotReady(int slot); /* sets slot ready */
-void func_02066674(int slot); /* clears slot ready */
-void *func_02066624(void);
+void VsSetup_ClearSlotReady(int slot); /* clears slot ready */
+void *VsSetup_ConfirmTeams(void);
 void *func_0206664c(void);
 void Task_ResumeScript(Task *task);
 
@@ -26,7 +26,7 @@ extern MenuState gMenuState;
 #define MENU ((MenuState *)&gMenuState)
 
 /* Link task step of the Vs setup team screen. Applies the team messages
- * of every connected machine (setup.unk_2d0 holds each slot's ready
+ * of every connected machine (setup.ready holds each slot's ready
  * flag). Back from a slot that is not ready leaves the screen; once every
  * linked slot is ready the screen goes on. Both clear the ready flags and
  * resume the task's script. A ready player can press B to send back. */
@@ -65,10 +65,10 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
                         VsSetup_SetSlotReady((u8)(Link_FindSlotOfPlayer(i) - 1));
                         break;
                     case EVENT_VS_TEAM_BACK:
-                        if (gMenuState.setup.unk_2d0[Link_FindSlotOfPlayer(i) - 1] == 0) {
+                        if (gMenuState.setup.ready[Link_FindSlotOfPlayer(i) - 1] == 0) {
                             cancel = 1;
                         } else {
-                            func_02066674((u8)(Link_FindSlotOfPlayer(i) - 1));
+                            VsSetup_ClearSlotReady((u8)(Link_FindSlotOfPlayer(i) - 1));
                         }
                         break;
                     }
@@ -82,30 +82,30 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
         func_0207b48c();
         EventQueue_Reset();
         for (i = 0; i < 4; i++) {
-            gMenuState.setup.unk_2d0[i] = 0;
+            gMenuState.setup.ready[i] = 0;
         }
         Task_ResumeScript(task);
         return;
     }
     for (i = 0; i < 4; i++) {
         if (Link_GetConnectedSlotMask() & (1 << i)) {
-            if (gMenuState.setup.unk_2d0[i] == 0) {
+            if (gMenuState.setup.ready[i] == 0) {
                 allReady = 0;
                 break;
             }
         }
     }
     if (allReady == 1) {
-        func_02066624();
+        VsSetup_ConfirmTeams();
         func_0207b48c();
         EventQueue_Reset();
         for (i = 0; i < 4; i++) {
-            gMenuState.setup.unk_2d0[i] = 0;
+            gMenuState.setup.ready[i] = 0;
         }
         Task_ResumeScript(task);
         return;
     }
-    if (MENU->setup.unk_2d0[Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1] == 0) {
+    if (MENU->setup.ready[Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1] == 0) {
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {

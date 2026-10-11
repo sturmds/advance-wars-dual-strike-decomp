@@ -7,9 +7,9 @@ void func_0207b48c(void);
 u8 Link_GetOwnPlayer(void);
 u32 Link_IsActive(void);
 int func_0207bd94(void);
-int func_02064e00(int row);
-void func_020651ec(void);
-void func_02065214(void);
+int VsSetup_SelectSettingRow(int row);
+void VsSetup_CancelSettingsMenu(void);
+void VsSetup_CloseSettingsMenu(void);
 void VsSetup_IncreaseSetting(void);
 void VsSetup_DecreaseSetting(void);
 void VsSetup_HandleSettingsKeys(void);
@@ -54,7 +54,7 @@ void VsSetup_UpdateSettingsMenu(Task *task)
         for (i = 0; i < 4; i++, msg += 2) {
             switch (msg[0]) {
             case EVENT_VS_SETTING_SELECT_ROW:
-                func_02064e00(msg[1]);
+                VsSetup_SelectSettingRow(msg[1]);
                 break;
             case EVENT_VS_SETTING_INCREASE:
                 VsSetup_IncreaseSetting();
@@ -73,14 +73,14 @@ void VsSetup_UpdateSettingsMenu(Task *task)
         EventQueue_Drain();
     }
     if (confirm == TRUE) {
-        func_02065214();
+        VsSetup_CloseSettingsMenu();
         EventQueue_Reset();
         func_0207b48c();
         Task_ResumeScript(task);
         return;
     }
     if (cancel == TRUE) {
-        func_020651ec();
+        VsSetup_CancelSettingsMenu();
         EventQueue_Reset();
         func_0207b48c();
         Task_ResumeScript(task);

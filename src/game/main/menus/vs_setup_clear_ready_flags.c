@@ -4,13 +4,13 @@
 
 extern MenuState gMenuState;
 
-/* Clears the ready flags of the four slots (setup.unk_2d0) and the event queue. */
+/* Clears the ready flags of the four slots (setup.ready) and the event queue. */
 void VsSetup_ClearReadyFlags(void)
 {
     int slot;
 
     for (slot = 0; slot < 4; slot++) {
-        gMenuState.setup.unk_2d0[slot] = 0;
+        gMenuState.setup.ready[slot] = 0;
     }
     EventQueue_Reset();
 }

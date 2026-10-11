@@ -41,7 +41,7 @@ void VsSetup_ReopenSettingsMenu(void)
     VsSetup_DrawSubSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
-    MenuButton_Select(MENU->setup.unk_2e6 + 60);
+    MenuButton_Select(MENU->setup.settingRow + 60);
     VsSetup_AddSettingButtonsAndArrows();
     MenuButtons_DisableTouch();
     VsSetup_ShowSettingHelp();

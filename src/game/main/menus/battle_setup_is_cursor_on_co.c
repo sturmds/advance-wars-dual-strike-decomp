@@ -3,11 +3,11 @@
 
 extern MenuState gMenuState;
 
-/* 1 when the cursor (setup.unk_2e4) is on a CO, ids 8-15. A switch, not a
+/* 1 when the cursor (setup.cursorButton) is on a CO, ids 8-15. A switch, not a
  * range test, to match. */
 int BattleSetup_IsCursorOnCo(void)
 {
-    switch (gMenuState.setup.unk_2e4) {
+    switch (gMenuState.setup.cursorButton) {
     case 8:
     case 9:
     case 10:

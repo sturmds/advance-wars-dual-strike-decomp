@@ -15,7 +15,7 @@ extern MenuState gMenuState;
 void VsSetup_ClearPlayerReady(int player)
 {
     Sound_PlaySe(0x10009);
-    MENU->setup.unk_2d0[player] = 0;
+    MENU->setup.ready[player] = 0;
     VsSetup_ResumePlayerTask(player);
     if (player == Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) {
         VsSetup_AddLinkButtons(player);

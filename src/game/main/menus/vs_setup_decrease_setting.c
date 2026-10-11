@@ -12,12 +12,12 @@ extern MenuStateFrom200 data_0229ed30;
 
 #define SE_MOVE 0x10002
 
-/* Steps the setting in the selected row (setup.unk_2e6) of the Vs setup
+/* Steps the setting in the selected row (setup.settingRow) of the Vs setup
  * screen one value back, wrapping around, then shows the row's help and
  * plays a sound. VsSetup_IncreaseSetting steps the other way. */
 void VsSetup_DecreaseSetting(void)
 {
-    switch (MENU->setup.unk_2e6) {
+    switch (MENU->setup.settingRow) {
     case 0:
         MENU->setup.fog++;
         MENU->setup.fog &= 1;

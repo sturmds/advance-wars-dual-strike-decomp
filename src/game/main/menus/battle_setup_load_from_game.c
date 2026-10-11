@@ -187,10 +187,10 @@ void BattleSetup_LoadFromGame(void)
     Screen_SetCurrentGfx(saved0280);
 
     if (Link_IsActive() != 1) {
-        gMenuState.setup.unk_2e4 = 8;
+        gMenuState.setup.cursorButton = 8;
     } else {
-        gMenuState.setup.unk_2e4 = (Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) * 2 + 8;
+        gMenuState.setup.cursorButton = (Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) * 2 + 8;
     }
-    gMenuState.setup.unk_2e6 = 0;
+    gMenuState.setup.settingRow = 0;
     gMenuState.setup.unk_2ea = 0;
 }

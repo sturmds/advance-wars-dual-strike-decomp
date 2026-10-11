@@ -81,12 +81,12 @@ void VsSetup_ShowTeamScreen(Task *task)
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
     /* Cursor ids 0-7 are the map buttons, 8-15 the CO buttons, two per slot. */
-    if (MENU->setup.unk_2e4 < 8) {
-        MENU->setup.unk_2e5 = MENU->setup.unk_2e4 >> 1;
+    if (MENU->setup.cursorButton < 8) {
+        MENU->setup.selectedSlot = MENU->setup.cursorButton >> 1;
     } else {
-        MENU->setup.unk_2e5 = (MENU->setup.unk_2e4 - 8) >> 1;
+        MENU->setup.selectedSlot = (MENU->setup.cursorButton - 8) >> 1;
     }
-    MenuButton_Select(MENU->setup.unk_2e5 + 48);
+    MenuButton_Select(MENU->setup.selectedSlot + 48);
     VsSetup_AddTeamArrowButtons();
     MenuButtons_DisableTouch();
     HelpText_Show(0x7f000017, 960);

@@ -16,7 +16,7 @@ extern MenuState gMenuState;
  * The name is a guess. */
 void VsSetup_ShowSettingHelp2(void)
 {
-    switch (MENU->setup.unk_2e6) {
+    switch (MENU->setup.settingRow) {
     case 0:
         HelpText_Show(HELP_TEXT(26), HELP_TILE);
         break;

@@ -1,19 +1,13 @@
 #include "types.h"
-
-typedef struct Unk_gMenuState Unk_gMenuState;
-
-struct Unk_gMenuState {
-    u8 pad_00[0x2e6];
-    u8 unk_2e6;
-};
+#include "game/menu_state.h"
 
 void Sound_PlaySe(int);
-extern Unk_gMenuState gMenuState;
+extern MenuState gMenuState;
 int VsSetup_ShowSettingHelp2(void *);
 
-int func_02064af0(int a0)
+int func_02064af0(int row)
 {
     Sound_PlaySe(0x10002);
-    gMenuState.unk_2e6 = a0;
+    gMenuState.setup.settingRow = row;
     return VsSetup_ShowSettingHelp2(&gMenuState);
 }

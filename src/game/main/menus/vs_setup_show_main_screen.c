@@ -73,7 +73,7 @@ void VsSetup_ShowMainScreen(void)
     VsSetup_DrawSlotPanels();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 0x100, -16);
-    MenuButton_Select(MENU->setup.unk_2e4);
+    MenuButton_Select(MENU->setup.cursorButton);
     VsSetup_AddArrowButtons();
     MenuButtons_DisableTouch();
     VsSetup_RedrawSkills();

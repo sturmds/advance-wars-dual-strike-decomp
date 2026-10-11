@@ -11,12 +11,12 @@ extern MenuState gMenuState;
 #define HELP_TEXT(n) (0x7f000000 + (n))
 #define HELP_TILE 960
 
-/* Shows the help text (group 0x7f00) for the setting row in setup.unk_2e6. For
+/* Shows the help text (group 0x7f00) for the setting row in setup.settingRow. For
  * weather (unk_2dc), the tileset (unk_2dd), unk_2e1 and unk_2e2 the text
  * depends on the value. The name is a guess. */
 void VsSetup_ShowSettingHelp(void)
 {
-    switch (MENU->setup.unk_2e6) {
+    switch (MENU->setup.settingRow) {
     case 0:
         HelpText_Show(HELP_TEXT(0), HELP_TILE);
         break;

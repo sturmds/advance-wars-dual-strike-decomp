@@ -56,7 +56,7 @@ typedef struct BattleSetupState {
     u8 forceRankSets[4][2];            /* 0-3, from Co_GetForceRankSetIndex */
     u8 teams[4];                       /* team of each player slot, 0-3 */
     u8 armyColours[4];
-    u8 unk_2d0[4];                     /* by player slot; 0 set by func_02066674 */
+    u8 ready[4];                       /* by player slot: 1 once the slot is ready on the team screen */
     u8 *coList;                        /* COs to pick from, filled by BuildCoPickList */
     u16 fundsPerProperty;
     u8 coListCount;
@@ -69,9 +69,9 @@ typedef struct BattleSetupState {
     u8 unk_2e1;
     u8 unk_2e2;
     u8 unk_2e3;                        /* number of player slots */
-    u8 unk_2e4;
-    u8 unk_2e5;
-    u8 unk_2e6;
+    u8 cursorButton;                   /* id of the selected setup button; 8-15 are the COs */
+    u8 selectedSlot;                   /* player slot picked on the team screen */
+    u8 settingRow;                     /* selected row of the settings menu, 0-8 */
     u8 unk_2e7;                        /* filled by Map_LoadAndCountProperties */
     u8 unk_2e8;                        /* filled by Map_LoadAndCountProperties */
     u8 cursorSePlayed;             /* set when a Vs setup change plays SE 0x10002; VsSetup_UpdateLink clears it each frame, so the sound plays once a frame */

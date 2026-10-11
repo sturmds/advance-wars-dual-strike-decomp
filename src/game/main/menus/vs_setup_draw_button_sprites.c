@@ -68,7 +68,7 @@ void VsSetup_DrawButtonSprites(void)
     }
     if (!Skills_AreDisabled()) {
         if (BattleSetup_IsCursorOnCo() == 1) {
-            cursor = gMenuState.setup.unk_2e4 - 8;
+            cursor = gMenuState.setup.cursorButton - 8;
             shifted = (MenuState *)((u8 *)((u16 *)&gMenuState + (cursor >> 1)) + (cursor & 1));
             for (player = 0; player < 4; player++) {
                 if (player == shifted->setup.forceRankSets[0][0]) {

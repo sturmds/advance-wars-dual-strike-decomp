@@ -18,7 +18,7 @@ static inline BOOL IsFirstLinkPlayer(void)
 }
 
 /* Adds the buttons of a link player's slot on the Vs setup screen again
- * (func_02066674 calls it when the player leaves the ready state): button
+ * (VsSetup_ClearSlotReady calls it when the player leaves the ready state): button
  * 253, the slot button 48 + player at y 64 and the buttons above (y 32) and
  * below (y 96) it, ids 52 + player * 2 and + 1. The first link player also
  * gets them for each slot not set in the Link_GetConnectedSlotMask mask; the others

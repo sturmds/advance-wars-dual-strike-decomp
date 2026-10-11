@@ -75,7 +75,7 @@ void VsSetup_UpdateLink(Task *task)
                         VsSetup_SetPlayerReady((u8)(Link_FindSlotOfPlayer(i) - 1));
                         break;
                     case EVENT_VS_SETUP_CANCEL:
-                        if (gMenuState.setup.unk_2d0[Link_FindSlotOfPlayer(i) - 1] == 0) {
+                        if (gMenuState.setup.ready[Link_FindSlotOfPlayer(i) - 1] == 0) {
                             cancel = 1;
                         } else {
                             VsSetup_ClearPlayerReady((u8)(Link_FindSlotOfPlayer(i) - 1));
@@ -92,14 +92,14 @@ void VsSetup_UpdateLink(Task *task)
         func_0207b48c();
         EventQueue_Reset();
         for (i = 0; i < 4; i++) {
-            gMenuState.setup.unk_2d0[i] = 0;
+            gMenuState.setup.ready[i] = 0;
         }
         Task_ResumeScript(task);
         return;
     }
     for (i = 0; i < 4; i++) {
         if (Link_GetConnectedSlotMask() & (1 << i)) {
-            if (gMenuState.setup.unk_2d0[i] == 0) {
+            if (gMenuState.setup.ready[i] == 0) {
                 allReady = 0;
                 break;
             }
@@ -110,12 +110,12 @@ void VsSetup_UpdateLink(Task *task)
         func_0207b48c();
         EventQueue_Reset();
         for (i = 0; i < 4; i++) {
-            gMenuState.setup.unk_2d0[i] = 0;
+            gMenuState.setup.ready[i] = 0;
         }
         Task_ResumeScript(task);
         return;
     }
-    if (MENU->setup.unk_2d0[Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1] == 0) {
+    if (MENU->setup.ready[Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1] == 0) {
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {

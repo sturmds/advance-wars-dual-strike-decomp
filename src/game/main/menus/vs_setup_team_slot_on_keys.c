@@ -4,7 +4,7 @@
 
 void VsSetup_NextTeamForButton(MenuButton *button);
 void VsSetup_PrevTeamForButton(MenuButton *button);
-void func_0206714c(int unused);
+void VsSetup_RequestConfirmTeams(int unused);
 
 #define FIRST_SLOT_BUTTON 48
 #define LAST_SLOT_BUTTON  51
@@ -13,7 +13,7 @@ void func_0206714c(int unused);
  * Left and right move to the previous or next slot button that exists,
  * wrapping. Up and down change the slot's team (VsSetup_PrevTeamForButton and
  * VsSetup_NextTeamForButton step setup.unk_2c8[slot]). B cancels; A goes on through
- * func_0206714c. */
+ * VsSetup_RequestConfirmTeams. */
 void VsSetup_TeamSlotOnKeys(MenuButton *button)
 {
     int id = button->id;
@@ -48,6 +48,6 @@ void VsSetup_TeamSlotOnKeys(MenuButton *button)
     if (gKeypad->pressed & PAD_BUTTON_B) {
         Menu_CancelSelected();
     } else if (gKeypad->pressed & PAD_BUTTON_A) {
-        func_0206714c(0);
+        VsSetup_RequestConfirmTeams(0);
     }
 }

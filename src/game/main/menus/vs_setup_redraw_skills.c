@@ -25,7 +25,7 @@ void VsSetup_RedrawSkills(void)
     saved = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     if (BattleSetup_IsCursorOnCo() == 1) {
-        cursor = MENU->setup.unk_2e4 - 8;
+        cursor = MENU->setup.cursorButton - 8;
         BattleSetup_DrawSkills(10, 19, MENU->setup.forceRankSets[cursor >> 1][cursor & 1]);
     } else {
         BattleSetup_DrawSkills(10, 19, 0);
