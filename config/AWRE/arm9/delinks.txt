@@ -751,6 +751,10 @@ src/game/main/screen/window_wipe_start_show.c:
     complete
     .text       start:0x020060c8 end:0x020062d0
 
+src/game/main/screen/window_wipe_start_show_current.c:
+    complete
+    .text       start:0x020062d0 end:0x02006398
+
 src/game/main/func_02006398.c:
     complete
     .text       start:0x02006398 end:0x020063c0
