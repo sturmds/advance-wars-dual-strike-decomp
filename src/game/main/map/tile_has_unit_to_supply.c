@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-/* Per unit type: nonzero for types that can be supplied (guess; read only here and in func_020cd23c). */
+/* Per unit type: nonzero for types that can be supplied (guess; read only here and in Unit_HasAdjacentSupplier). */
 extern u8 data_ov000_022f5cac[];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
