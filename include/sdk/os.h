@@ -11,6 +11,15 @@
 #define LOCK_ID_AVAILABLE_BITS ((volatile u32 *)0x027fffb0)
 
 typedef u32 OSIrqMask;
+typedef u32 OSIntrMode;
+
+/* A word that the ARM9 and ARM7 take turns locking with a swap. */
+typedef struct OSLockWord {
+    volatile u32 lockFlag;         /* 0 when free */
+    u16 ownerID;
+    u16 extension;
+} OSLockWord;
+
 typedef void (*OSIrqFunction)(void);
 
 /* One entry of the handler table that runs timer and DMA interrupts. */
@@ -98,5 +107,20 @@ void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function);
 /* Turn interrupts off and return the previous state; hand it back to restore. */
 int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int state);
+OSIntrMode OS_DisableInterrupts_IrqAndFiq(void);
+OSIntrMode OS_RestoreInterrupts_IrqAndFiq(OSIntrMode state);
+
+/* Stores setData in *destp and returns what was there (swp). */
+u32 MI_SwapWord(u32 setData, volatile u32 *destp);
+
+/*
+ * Take and give back a lock word. ctrl, when given, runs while the lock
+ * changes hands (for the cartridge it flips the bus owner). Lock returns the
+ * old lock flag (0 means it was free and is now ours); unlock returns
+ * LOCK_NOT_OWNER if lockID is not the owner, else 0.
+ */
+u32 OSi_DoLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+int OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+#define LOCK_NOT_OWNER (-2)
 
 #endif
