@@ -1,0 +1,35 @@
+#include "types.h"
+#include "game/wireless_host.h"
+
+extern int data_022a7e68;
+extern void *data_022a7e6c;
+extern WirelessHostUser gWirelessHostUser;
+
+#define VBLANK_COUNT_ADDR 0x027ffc3c
+
+void Sound_StopSong(void);
+void Sound_Shutdown(void);
+void *Mem_Alloc(u32 size);
+void WirelessHost_FillInfo(void);
+void func_0211c534(void *work, WirelessHostUser *user, u32 id, u16 tick, int dma);
+void func_0211c420(int size, int count);
+void func_0211a5e8(void (*callback)(void *, int));
+void func_020fc700(void *arg, int index);
+BOOL func_020fc698(void);
+
+void func_020fc98c(void)
+{
+    u32 tick;
+
+    Sound_StopSong();
+    Sound_Shutdown();
+    data_022a7e6c = Mem_Alloc(0xc000);
+    data_022a7e68 = 3;
+    WirelessHost_FillInfo();
+    /* needed to match: volatile read keeps the tick load before the other arguments */
+    tick = *(volatile u32 *)VBLANK_COUNT_ADDR;
+    func_0211c534(data_022a7e6c, &gWirelessHostUser, WIRELESS_HOST_ID, tick, 2);
+    func_0211c420(0x100, 8);
+    func_0211a5e8(func_020fc700);
+    func_020fc698();
+}

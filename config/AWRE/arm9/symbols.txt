@@ -4814,7 +4814,7 @@ func_020fc7d8 kind:function(arm,size=0x1c) addr:0x020fc7d8
 func_020fc7f4 kind:function(arm,size=0xa8) addr:0x020fc7f4
 func_020fc89c kind:function(arm,size=0xf0) addr:0x020fc89c
 func_020fc98c kind:function(arm,size=0x98) addr:0x020fc98c
-func_020fca24 kind:function(arm,size=0xb4) addr:0x020fca24
+WirelessHost_FillInfo kind:function(arm,size=0xb4) addr:0x020fca24
 func_020fcad8 kind:function(arm,size=0x1c) addr:0x020fcad8
 func_020fcaf4 kind:function(arm,size=0x14) addr:0x020fcaf4
 func_020fcb08 kind:function(arm,size=0x10) addr:0x020fcb08
@@ -8905,7 +8905,7 @@ data_022a7da0 kind:bss addr:0x022a7da0
 data_022a7dc4 kind:bss addr:0x022a7dc4
 data_022a7e68 kind:bss addr:0x022a7e68
 data_022a7e6c kind:bss addr:0x022a7e6c
-data_022a7e70 kind:bss addr:0x022a7e70
+gWirelessHostUser kind:bss addr:0x022a7e70
 data_022a7e72 kind:bss addr:0x022a7e72
 data_022a7e88 kind:bss addr:0x022a7e88
 data_022a7ea4 kind:bss addr:0x022a7ea4

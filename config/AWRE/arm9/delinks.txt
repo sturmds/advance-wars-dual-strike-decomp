@@ -18836,6 +18836,13 @@ src/game/main/func_020fc89c.c:
     complete
     .text       start:0x020fc89c end:0x020fc98c
 
+src/game/main/func_020fc98c.c:
+    .text       start:0x020fc98c end:0x020fca24
+
+src/game/main/wireless_host_fill_info.c:
+    complete
+    .text       start:0x020fca24 end:0x020fcad8
+
 src/game/main/func_020fcad8.c:
     complete
     .text       start:0x020fcad8 end:0x020fcaf4
