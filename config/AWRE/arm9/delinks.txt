@@ -4119,6 +4119,10 @@ src/game/main/func_0203579c.c:
     complete
     .text       start:0x0203579c end:0x020357b4
 
+src/game/main/result_screen_close_to_white.c:
+    complete
+    .text       start:0x020357b4 end:0x02035930
+
 src/game/main/func_020369e4.c:
     complete
     .text       start:0x020369e4 end:0x020369f0
