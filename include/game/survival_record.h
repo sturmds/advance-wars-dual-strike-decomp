@@ -27,7 +27,18 @@ typedef struct SurvivalRecordCos1 {
     u32 unk_0c;
 } SurvivalRecordCos1;
 
+/* The same 12-byte entries from their first word, data_02291584. */
+typedef struct SurvivalRecordFunds {
+    u32 fundsSpent : 24;               /* best Funds Survival result (modes 1 and 4): funds spent */
+    u32 : 8;
+    u32 unk_04;
+    u32 unk_08;
+} SurvivalRecordFunds;
+
+extern SurvivalRecordFunds data_02291584[];
 extern SurvivalRecordCos data_02291588[];
+/* Best Time Survival result (modes 0 and 3) per entry, in seconds. */
+extern u16 data_02291650[];
 extern SurvivalRecordCos1 data_0229158c[];
 
 #endif

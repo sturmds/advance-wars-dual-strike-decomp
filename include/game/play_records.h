@@ -4,6 +4,7 @@
 #include "types.h"
 #include "game/co_data.h"
 #include "game/co_save.h"
+#include "game/war_room_records.h"
 
 /* gPlayRecords (main bss, 0x02290718): saved settings, per-CO records
  * (coRecords, the Force Rank table Co_GetForceRankSetIndex reads) and
@@ -53,6 +54,8 @@ typedef struct PlayRecords {
     u8 pad_418[0x43c - 0x418];
     u32 unk_43c;                       /* capped at 999999; func_ov003_02361c7c adds the first 6 Ov003Row.unk_28 of the current slot's row */
     u32 unk_440;                       /* capped at 999999; func_ov003_02361c7c adds 1 when its row is not the current slot's */
+    u8 pad_444[0x51c - 0x444];
+    WarRoomRecord warRoomRecords[4][44][3]; /* the same bytes as gWarRoomRecords */
 } PlayRecords;
 
 extern PlayRecords gPlayRecords;

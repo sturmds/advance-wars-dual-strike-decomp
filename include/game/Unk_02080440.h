@@ -100,6 +100,7 @@ enum {
 /* Unk_02080440_48.gameMode values the code confirms. */
 #define GAME_MODE_CAMPAIGN 0           /* Mission_HasPendingEvent runs only here */
 #define GAME_MODE_WAR_ROOM 1           /* MapSelect_LoadWarRoomRecords runs only here */
+#define GAME_MODE_SURVIVAL 3           /* BattleRecord_SaveWin keeps time, funds and turn records here */
 
 typedef struct Unk_02080440_48 {
     u16 day;                           /* current day; map event triggers compare it (EventTriggers_Run) */

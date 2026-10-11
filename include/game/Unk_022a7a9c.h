@@ -11,7 +11,8 @@ typedef struct Unk_022a7a9c {
     u8 unk_02;
     u8 pad_03[0x04 - 0x03];
     u8 unk_04;                         /* func_02033088 copies it to its task's unk_64 */
-    u8 pad_05[0x08 - 0x05];
+    u8 pad_05;
+    u16 score;                         /* saved by BattleRecord_SaveWin as a Campaign or War Room record */
     u8 unk_08;
     u8 unk_09;
     u8 unk_0a;
