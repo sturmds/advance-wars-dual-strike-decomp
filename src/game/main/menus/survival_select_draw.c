@@ -28,7 +28,7 @@ extern u8 data_027c00b8;
 extern u8 data_027c0108;
 extern u8 data_027c01c0;
 
-/* Draws one frame of a map list screen. Top screen: one tab per entry of
+/* Draws one frame of the Survival map select. Top screen: one tab per entry of
  * the current list (the selected one 32 pixels wide, the others 16) with a
  * link piece between tabs; when the list has 2 or more pages (unk_03), the
  * entries before unk_02 use palette 9. Then two cycling palette colours and
@@ -36,7 +36,7 @@ extern u8 data_027c01c0;
  * a list label and, when func_02047944 reports it, two more icons.
  * Not matched yet: the original loads the constant 8 before 9 ahead of the
  * first loop; this C loads 9 first. */
-void func_02045b7c(void)
+void SurvivalSelect_Draw(void)
 {
     int mode = data_022a7b80.unk_07;
     int list = func_0204779c();
