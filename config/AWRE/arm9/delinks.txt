@@ -5567,6 +5567,10 @@ src/game/main/tab_list_draw_page_number.c:
     complete
     .text       start:0x02070b2c end:0x02070bd4
 
+src/game/main/tab_list_draw_medal_count.c:
+    complete
+    .text       start:0x02070bd4 end:0x02070ccc
+
 src/game/main/func_02070ccc.c:
     complete
     .text       start:0x02070ccc end:0x02070cd0
