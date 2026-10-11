@@ -14055,6 +14055,7 @@ src/game/main/map/map_refresh_site_list.c:
     .text       start:0x020c43b0 end:0x020c4448
 
 src/game/main/map/func_020c4448.c:
+    complete
     .text       start:0x020c4448 end:0x020c47d0
 
 src/game/main/map/map_load_and_count_properties.c:

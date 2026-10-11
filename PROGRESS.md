@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6649 / 6700 | 1503980 / 1553840 | 96.79% | 0 | 0 |
+| ARM9 game | 6650 / 6700 | 1504884 / 1553840 | 96.85% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7083 / 7481 | 1555592 / 1685994 | 92.27% | 33 | 2126 |
+| ARM9 all | 7084 / 7481 | 1556496 / 1685994 | 92.32% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6649 / 6700 | 1503980 / 1553840 | 96.79% | 0 | 0 |
+| game | 6650 / 6700 | 1504884 / 1553840 | 96.85% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7083 / 8495 | 1555592 / 1840290 | 84.53% | 33 | 2126 |
+| all | 7084 / 8495 | 1556496 / 1840290 | 84.58% | 33 | 2126 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5144 / 5180 | 1045480 / 1082632 | 96.57% | 0 |
+| main | game | 5145 / 5180 | 1046384 / 1082632 | 96.65% | 0 |
 | main | SDK/library | 427 / 770 | 50700 / 130618 | 38.82% | 29 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -64,7 +64,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
 | `src/game/main/map/design_map_build_record.c` | DesignMap_BuildRecord | 796 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
-| `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 |
 | `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 |
 | `src/game/main/map/func_020fed58.c` | func_020fed58 | 804 |
