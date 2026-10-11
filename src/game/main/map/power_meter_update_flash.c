@@ -4,7 +4,7 @@
 
 BOOL Player_IsPowerActive(int player);
 BOOL CanUseCoPower(int player, int slot);
-BOOL func_020e2ac8(int player);
+BOOL CanUseTagPower(int player);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -17,7 +17,7 @@ extern int data_027c0284;
 
 /* Runs each frame: passes every player in the game a power meter frame
  * through the state's unk_20 hook. The cycle has 16 steps of 4 frames.
- * With a power on, the meter gets the step itself; when func_020e2ac8 holds
+ * With a power on, the meter gets the step itself; when CanUseTagPower holds
  * (tag power ready, a guess) it lights on steps 15 and 1; with a CO Power
  * ready on step 15 only; otherwise it is off. */
 void PowerMeter_UpdateFlash(int frameCount)
@@ -35,7 +35,7 @@ void PowerMeter_UpdateFlash(int frameCount)
             if (STATE_50->unk_20 != NULL) {
                 STATE_50->unk_20(player, frame);
             }
-        } else if (func_020e2ac8(player)) {
+        } else if (CanUseTagPower(player)) {
             /* needed to match: case 15 first */
             switch (frame) {
             case 15:

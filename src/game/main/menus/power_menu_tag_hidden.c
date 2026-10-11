@@ -4,7 +4,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020e2ac8(int player);
+BOOL CanUseTagPower(int player);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -16,5 +16,5 @@ s8 PowerMenu_TagHidden(void)
     if (STATE->unk_5c == 0) {
         return 1;
     }
-    return func_020e2ac8(STATE->currentPlayer) == 0;
+    return CanUseTagPower(STATE->currentPlayer) == 0;
 }
