@@ -15,7 +15,7 @@ extern u8 data_022977d0[];
 u16 func_0201a160(void);
 u16 func_02024a98(void *buttons, int count);
 void func_020d31f4(void);
-void func_0201a1b8(int choice, int x, int y);
+void EventChoice_DrawRecord(int choice, int x, int y);
 void func_0201a4f0(Task *task);
 void func_0201d730(void *text);
 void Task_ResumeScript(Task *task);
@@ -67,7 +67,7 @@ void EventChoice_Update(Task *task)
         CURSOR(task) = 3;
     }
     if (oldCursor != CURSOR(task)) {
-        func_0201a1b8(CURSOR(task), 7, 3);
+        EventChoice_DrawRecord(CURSOR(task), 7, 3);
         func_0201a4f0(task);
         Sound_PlaySe(0x10002);
     }
