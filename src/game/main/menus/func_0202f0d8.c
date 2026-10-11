@@ -45,7 +45,7 @@ void func_0202b764(void);
 void func_0202d888(void);
 void func_0202e8d0(void);
 void func_0202e970(void);
-void func_0203067c(void);
+void MainMenu_BuildPage10(void);
 void func_02030830(void);
 void func_020308c8(void);
 void func_02030b1c(void);
@@ -207,7 +207,7 @@ void func_0202f0d8(MainMenuTask *task)
             MainMenu_BuildPage8();
             break;
         case 10:
-            func_0203067c();
+            MainMenu_BuildPage10();
             break;
         case 11:
             MainMenu_BuildPage11();
