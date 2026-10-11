@@ -15031,6 +15031,7 @@ src/game/main/graphics/weather_load_tile_graphics.c:
     .text       start:0x020dbd08 end:0x020dbde8
 
 src/game/main/graphics/palette_get_army_block.c:
+    complete
     .text       start:0x020dbde8 end:0x020dbe18
 
 src/game/main/ai/ai_foot_list_reachable_silos.c:
