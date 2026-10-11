@@ -5591,7 +5591,7 @@ TP_WaitRawResult kind:function(arm,size=0x58) addr:0x021142cc
 TP_RequestSamplingAsync kind:function(arm,size=0xa0) addr:0x02114324
 TP_SetCalibrateParam kind:function(arm,size=0x104) addr:0x021143c4
 TP_GetUserInfo kind:function(arm,size=0x8c) addr:0x021144c8
-func_02114554 kind:function(arm,size=0x90) addr:0x02114554
+TP_Init kind:function(arm,size=0x90) addr:0x02114554
 func_021145e4 kind:function(arm,size=0x2c0) addr:0x021145e4
 func_021148a4 kind:function(arm,size=0x18) addr:0x021148a4
 func_021148bc kind:function(arm,size=0x18) addr:0x021148bc
@@ -9041,7 +9041,7 @@ data_022ab844 kind:bss addr:0x022ab844
 data_022ab84c kind:bss addr:0x022ab84c
 gRomFileArchive kind:bss addr:0x022ab854
 data_022ab8a4 kind:bss addr:0x022ab8a4
-data_022ab8a8 kind:bss addr:0x022ab8a8
+tpInitialized kind:bss addr:0x022ab8a8
 tpState kind:bss addr:0x022ab8ac
 data_022ab8c4 kind:bss addr:0x022ab8c4
 data_022ab8e4 kind:bss addr:0x022ab8e4
