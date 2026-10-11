@@ -8,7 +8,7 @@ void PointsTally_DrawNumber(int x, int y, int value, int palette, int popFrame);
 
 /* Draws the two rows of the points box at (x, y): a label, a number of up
  * to four digits and a suffix each. Only the total in the second row pops in
- * (see func_0204bf84); popFrame -1 draws it at rest. */
+ * (see PointsTally_DrawDigit); popFrame -1 draws it at rest. */
 void PointsTally_Draw(int x, int y, int added, int total, int popFrame)
 {
     Sprite_QueueAt(6, x & 0x1ff, y & 0xff, data_027c0108, 0x3000, 0xb0);
