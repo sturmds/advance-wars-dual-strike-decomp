@@ -11746,6 +11746,10 @@ src/game/main/weather/weather_task_play_sound.c:
     complete
     .text       start:0x020d2cf4 end:0x020d2d18
 
+src/game/main/weather/weather_task_apply.c:
+    complete
+    .text       start:0x020d2d18 end:0x020d2d90
+
 src/game/main/weather/weather_resolve_power_snow.c:
     complete
     .text       start:0x020d2d90 end:0x020d2d9c
