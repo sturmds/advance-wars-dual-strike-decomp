@@ -16,13 +16,14 @@ const u8 *Text_Get(u32 textId);
 BOOL func_02015dbc(const u8 *text);
 TextPrinter *TextPrinter_StartById(s16 x, s16 y, u8 *tiles, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 void func_0201d7d0(void);
-void func_0201c748(void);
+struct EventScriptSlot;
+void EventHold_ReleaseOnTextDone(struct EventScriptSlot *slot);
 
 /* Event script command: prints the command's text id (unk_0c) into the
  * event text window buffer data_02297be0 at tile (7, 1), or (1, 1) in game
  * mode 0 when data_022977a4.unk_01 is 5, with the current palette slot.
  * The printer runs func_0201d7d0 (uploads the buffer) when done, and the
- * script is held by func_0201c748. Skipping works as in
+ * script is held by EventHold_ReleaseOnTextDone. Skipping works as in
  * EventCmd_PrintText. */
 s16 EventCmd_PrintWindowText(int index)
 {
@@ -44,7 +45,7 @@ s16 EventCmd_PrintWindowText(int index)
                                         data_022977a4.unk_00 << 12, data_022977a4.unk_04);
         printer->unk_40 = (void *)func_0201d7d0;
         printer->unk_3c = 1;
-        data_022977f8[index].hold = (u32)func_0201c748;
+        data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextDone;
         done = 0;
     } else {
         done = 1;

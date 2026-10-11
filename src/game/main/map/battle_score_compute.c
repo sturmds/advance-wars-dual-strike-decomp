@@ -38,16 +38,16 @@ void BattleScore_Compute(void)
     int oozium;
     int best;
 
-    data_022a7a9c.unk_04 = Player_GetCurrentOrFirstInGame();
-    data_022a7a9c.unk_00 = BattleScore_Speed(data_022a7a9c.unk_04);
-    data_022a7a9c.unk_01 = BattleScore_Power(data_022a7a9c.unk_04);
-    data_022a7a9c.unk_02 = BattleScore_Technique(data_022a7a9c.unk_04);
-    data_022a7a9c.score = func_020e9bc0(data_022a7a9c.unk_04);
+    data_022a7a9c.player = Player_GetCurrentOrFirstInGame();
+    data_022a7a9c.speed = BattleScore_Speed(data_022a7a9c.player);
+    data_022a7a9c.power = BattleScore_Power(data_022a7a9c.player);
+    data_022a7a9c.technique = BattleScore_Technique(data_022a7a9c.player);
+    data_022a7a9c.score = func_020e9bc0(data_022a7a9c.player);
     data_022a7a9c.rank = Score_ToRank_020e5428(data_022a7a9c.score);
     if (STATE->gameMode == GAME_MODE_SURVIVAL) {
-        data_022a7a9c.unk_00 >>= 1;
-        data_022a7a9c.unk_01 >>= 1;
-        data_022a7a9c.unk_02 >>= 1;
+        data_022a7a9c.speed >>= 1;
+        data_022a7a9c.power >>= 1;
+        data_022a7a9c.technique >>= 1;
         data_022a7a9c.score >>= 1;
     }
 

@@ -17,12 +17,13 @@ BOOL func_02015dbc(const u8 *text);
 /* defined as void, but it passes on the printer TextPrinter_StartById returns */
 TextPrinter *Text_PrintByIdOnLayer0(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 void func_0201c600(void);
-void func_0201c748(void);
+struct EventScriptSlot;
+void EventHold_ReleaseOnTextDone(struct EventScriptSlot *slot);
 
 /* Event script command: prints the command's text id (unk_0c) on the layer 0
  * tile map at tile (7, 15), or (1, 15) in game mode 0 when
  * data_022977a4.unk_01 is 5, with the current palette slot. The printer
- * runs func_0201c600 when done, and the script is held by func_0201c748.
+ * runs func_0201c600 when done, and the script is held by EventHold_ReleaseOnTextDone.
  * A text with control code 20 (func_02015dbc) sets data_022900b8 to 2;
  * while data_022900b8 is 1 nothing is printed and the command returns 1,
  * so the script goes on this frame. */
@@ -48,7 +49,7 @@ s16 EventCmd_PrintText(int index)
                                          data_022977a4.unk_00 << 12, data_022977a4.unk_04);
         printer->unk_40 = (void *)func_0201c600;
         printer->unk_3c = 1;
-        data_022977f8[index].hold = (u32)func_0201c748;
+        data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextDone;
         done = 0;
     } else {
         done = 1;

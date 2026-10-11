@@ -7,7 +7,7 @@
  * one per Survival map). Each mode pair (data_022a7b80.mode 0/3,
  * 1/4, 2/5) keeps the two COs of its record here, 5 bits each; 0: none. */
 typedef struct SurvivalRecordCos {
-    u32 unk_00_0 : 10;
+    u32 days : 10;                     /* best Days Survival result (modes 2 and 5) */
     u32 mode0Co : 5;                   /* modes 0 and 3 */
     u32 mode0TagCo : 5;
     u32 mode2Co : 5;                   /* modes 2 and 5 */

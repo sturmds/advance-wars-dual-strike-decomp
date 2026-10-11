@@ -4,13 +4,13 @@
 #include "types.h"
 
 /* data_022a7a9c (main bss). ScoreList_AddRow reads these bytes as points
- * (0x00-0x02) or as counts it multiplies into points (0x08-0x0d). */
+ * (speed, power, technique) or as counts it multiplies into points (0x08-0x0d). */
 typedef struct Unk_022a7a9c {
-    u8 unk_00;
-    u8 unk_01;
-    u8 unk_02;
+    u8 speed;                          /* BattleScore_Speed of player */
+    u8 power;                          /* BattleScore_Power */
+    u8 technique;                      /* BattleScore_Technique */
     u8 rank;                           /* Score_ToRank_020e5428 of score; ResultPath_DrawAll starts its sprites at path step 20 + 35 * rank */
-    u8 unk_04;                         /* WinQuote_Init copies it to its task's unk_64 */
+    u8 player;                         /* slot scored: Player_GetCurrentOrFirstInGame at the end of the battle; WinQuote_Init copies it to its task's unk_64 */
     u8 pad_05;
     u16 score;                         /* saved by BattleRecord_SaveWin as a Campaign or War Room record */
     u8 unk_08;

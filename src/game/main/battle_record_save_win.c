@@ -33,7 +33,7 @@ extern WarRoomRecord gCampaignBestRecords[][2];
  * score. Each record also keeps the two COs of the winning slot. */
 void BattleRecord_SaveWin(void)
 {
-    int slot = data_022a7a9c.unk_04;
+    int slot = data_022a7a9c.player;
     int mapId = STATE->unk_1c4->mapId;
     int place;
     int j;
@@ -67,10 +67,10 @@ void BattleRecord_SaveWin(void)
         case 2:
         case 5:
             value = STATE->day;
-            if (data_02291588[index].mode2Co != 0 && data_02291588[index].unk_00_0 <= value) {
+            if (data_02291588[index].mode2Co != 0 && data_02291588[index].days <= value) {
                 return;
             }
-            data_02291588[index].unk_00_0 = value;
+            data_02291588[index].days = value;
             data_02291588[index].mode2Co = FRONT_CO(slot);
             data_02291588[index].mode2TagCo = BACK_CO(slot);
             break;

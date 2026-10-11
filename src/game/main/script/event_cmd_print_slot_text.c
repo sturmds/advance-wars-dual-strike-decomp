@@ -12,12 +12,12 @@ extern u16 data_02297be0[];
 
 TextPrinter *TextPrinter_StartById(int x, int y, u8 *tiles, u16 *map, u32 textId, u16 unk_30, u16 unk_38);
 void func_0201d7d0(void);
-void func_0201c748(EventScriptSlot *slot);
+void EventHold_ReleaseOnTextDone(EventScriptSlot *slot);
 
 /* Event script command: prints the slot's text id at tile (7, 1) of the text map buffer
  * data_02297be0 with the current palette slot. When the printer ends it runs
  * func_0201d7d0 to upload the buffer. The script is held until printing is done
- * (func_0201c748), and the slot's run ends for this frame. */
+ * (EventHold_ReleaseOnTextDone), and the slot's run ends for this frame. */
 BOOL EventCmd_PrintSlotText(s16 index)
 {
     TextPrinter *printer = TextPrinter_StartById(7, 1, data_02297790, data_02297be0, data_02297804[index].textId,
@@ -25,7 +25,7 @@ BOOL EventCmd_PrintSlotText(s16 index)
 
     printer->unk_40 = (void *)func_0201d7d0;
     printer->unk_3c = 1;
-    data_022977f8[index].hold = (u32)func_0201c748;
+    data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextDone;
     data_022977f4[index].unk_00++;
     return 0;
 }

@@ -54,7 +54,7 @@ void SurvivalSelect_DrawMapRecord(void)
                 break;
             case 2:
             case 5:
-                Layer0_PutNumberThenText3(20, 21, data_02291588[Survival_GetRecordIndex(mode, cursor)].unk_00_0);
+                Layer0_PutNumberThenText3(20, 21, data_02291588[Survival_GetRecordIndex(mode, cursor)].days);
                 break;
             default:
                 Layer0_PutNumberThenText4(20, 21, data_02291584[Survival_GetRecordIndex(mode, cursor)].fundsSpent);

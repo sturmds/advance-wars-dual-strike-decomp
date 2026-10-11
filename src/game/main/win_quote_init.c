@@ -21,7 +21,7 @@ extern Unk_027c0288 data_027c0288;
 
 #define RECORD_INDEX(task) ((task)->unk_64)
 
-/* Task step: copies data_022a7a9c.unk_04 into task->unk_64 (and that minus 1
+/* Task step: copies data_022a7a9c.player into task->unk_64 (and that minus 1
  * into unk_66), gives both screens layer priorities 0 to 3 and no blending,
  * then loads the digit font and the picture and palette of the CO in record
  * unk_64 of data_022a7ab8, plus a second CO when the record has one.
@@ -32,7 +32,7 @@ void WinQuote_Init(Task *task)
     Unk_027c0280 *savedGfx;
     Unk_02080440 *saved;
 
-    task->unk_64 = data_022a7a9c.unk_04;
+    task->unk_64 = data_022a7a9c.player;
     task->unk_66 = RECORD_INDEX(task) - 1;
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
 

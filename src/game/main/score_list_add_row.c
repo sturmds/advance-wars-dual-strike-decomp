@@ -23,21 +23,21 @@ BOOL ScoreList_AddRow(int kind)
     case 1:
         ROW.kind = kind;
         ROW.count = 0;
-        ROW.points = data_022a7a9c.unk_00;
+        ROW.points = data_022a7a9c.speed;
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
     case 2:
         ROW.kind = kind;
         ROW.count = 0;
-        ROW.points = data_022a7a9c.unk_01;
+        ROW.points = data_022a7a9c.power;
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
     case 3:
         ROW.kind = kind;
         ROW.count = 0;
-        ROW.points = data_022a7a9c.unk_02;
+        ROW.points = data_022a7a9c.technique;
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
