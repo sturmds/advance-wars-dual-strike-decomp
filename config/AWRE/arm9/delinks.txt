@@ -2865,6 +2865,10 @@ src/game/main/layer0_put_number_then_text3.c:
     complete
     .text       start:0x02026ef8 end:0x02026f84
 
+src/game/main/layer0_put_number.c:
+    complete
+    .text       start:0x02026f84 end:0x02026fcc
+
 src/game/main/graphics/bg_put_skill_slot.c:
     complete
     .text       start:0x020277a4 end:0x02027804
