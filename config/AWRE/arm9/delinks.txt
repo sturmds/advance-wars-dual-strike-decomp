@@ -21270,6 +21270,10 @@ src/sdk/mi/mi_cpu_clear16.c:
     complete
     .text       start:0x0210f440 end:0x0210f458
 
+src/sdk/mi/mi_cpu_copy16.c:
+    complete
+    .text       start:0x0210f458 end:0x0210f474
+
 src/game/main/func_0210fa9c.c:
     complete
     .text       start:0x0210fa9c end:0x0210fac0
