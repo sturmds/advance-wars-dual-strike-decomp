@@ -2937,6 +2937,10 @@ src/game/main/menus/popup_menu_destroy_common.c:
     complete
     .text       start:0x0201eda8 end:0x0201edf4
 
+src/game/main/menus/popup_menu_draw.c:
+    complete
+    .text       start:0x0201edf4 end:0x0201ee24
+
 src/game/main/func_0201ee24.c:
     complete
     .text       start:0x0201ee24 end:0x0201ee48
