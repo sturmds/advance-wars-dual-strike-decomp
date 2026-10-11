@@ -4084,6 +4084,7 @@ src/game/main/func_020323fc.c:
     .text       start:0x020323fc end:0x02032410
 
 src/game/main/menus/func_02032410.c:
+    complete
     .text       start:0x02032410 end:0x0203246c
 
 src/game/main/graphics/sprite_shower_update.c:
