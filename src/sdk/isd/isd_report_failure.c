@@ -6,14 +6,14 @@
 extern char gIsdAssertionFormat[];
 extern char gIsdWarningFormat[];
 
-void func_02121bc8(void);
+void Isd_Breakpoint(void);
 
 /* Prints the assertion or warning line for a failed check; a fatal one then traps. */
 void Isd_ReportFailure(const char *file, int line, const char *expression, BOOL isFatal)
 {
     if (isFatal) {
         Isd_Printf(gIsdAssertionFormat, file, line, expression);
-        func_02121bc8();
+        Isd_Breakpoint();
     } else {
         Isd_Printf(gIsdWarningFormat, file, line, expression);
     }

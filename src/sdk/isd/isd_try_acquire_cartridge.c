@@ -7,10 +7,10 @@
 
 int OS_LockCartridge(int lockId);
 u16 func_0210cf88(void *lock);
-BOOL func_02121ab8(void);
-BOOL func_02121b04(void);
-void func_02121ac8(BOOL state);
-void func_02121b14(BOOL state);
+BOOL Isd_DisableFiq(void);
+BOOL Isd_DisableIrq(void);
+void Isd_RestoreFiq(BOOL state);
+void Isd_RestoreIrq(BOOL state);
 
 /*
  * Tries to take the cartridge lock (id 0x70) and, if the bus is ours, stores in *saved
@@ -19,8 +19,8 @@ void func_02121b14(BOOL state);
  */
 BOOL Isd_TryAcquireCartridge(u32 *saved)
 {
-    BOOL savedB = func_02121b04();
-    BOOL savedA = func_02121ab8();
+    BOOL savedB = Isd_DisableIrq();
+    BOOL savedA = Isd_DisableFiq();
     BOOL locked = FALSE;
     BOOL lockedByUs = FALSE;
 
@@ -44,8 +44,8 @@ BOOL Isd_TryAcquireCartridge(u32 *saved)
         }
         *saved = result;
     } else {
-        func_02121ac8(savedA);
-        func_02121b14(savedB);
+        Isd_RestoreFiq(savedA);
+        Isd_RestoreIrq(savedB);
         *saved = 0;
     }
     return locked;

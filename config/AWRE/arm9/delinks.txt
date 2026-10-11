@@ -22528,6 +22528,30 @@ src/sdk/isd/isd_test_flags.c:
     complete
     .text       start:0x02120fd4 end:0x02120ff0
 
+src/sdk/isd/isd_fiq.c:
+    complete
+    .text       start:0x02121ab8 end:0x02121b04
+
+src/sdk/isd/isd_irq.c:
+    complete
+    .text       start:0x02121b04 end:0x02121b50
+
+src/sdk/isd/isd_protection_unit.c:
+    complete
+    .text       start:0x02121b50 end:0x02121b80
+
+src/sdk/isd/isd_cp15.c:
+    complete
+    .text       start:0x02121b80 end:0x02121bc0
+
+src/sdk/isd/isd_swap.c:
+    complete
+    .text       start:0x02121bc0 end:0x02121bc8
+
+src/sdk/isd/isd_breakpoint.c:
+    complete
+    .text       start:0x02121bc8 end:0x02121bd0
+
 src/sdk/msl/msl_exit.c:
     complete
     .text       start:0x02121bd0 end:0x02121d04

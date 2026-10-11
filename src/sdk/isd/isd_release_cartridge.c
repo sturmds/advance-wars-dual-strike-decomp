@@ -3,8 +3,8 @@
 #include "sdk/isd.h"
 
 void func_0210cee4(int lockID);
-void func_02121ac8(BOOL state);
-void func_02121b14(BOOL state);
+void Isd_RestoreFiq(BOOL state);
+void Isd_RestoreIrq(BOOL state);
 
 /* Undoes Isd_TryAcquireCartridge: frees the cartridge lock if we took it, then restores the two saved states. */
 void Isd_ReleaseCartridge(u32 saved)
@@ -12,6 +12,6 @@ void Isd_ReleaseCartridge(u32 saved)
     if (saved & 0x20) {
         func_0210cee4(0x70);
     }
-    func_02121ac8(saved & 2);
-    func_02121b14(saved & 1);
+    Isd_RestoreFiq(saved & 2);
+    Isd_RestoreIrq(saved & 1);
 }
