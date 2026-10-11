@@ -5,7 +5,7 @@ extern int data_022a7e68;
 extern const char data_0216a5b8[];
 extern u8 data_0218ff58[];
 extern u8 data_022a7e88[];
-int func_02079f8c(void);
+int Wireless_PickChannel(void);
 void func_0211c0d8(void);
 u32 func_0211b38c(FSFile *file);
 BOOL func_0211af20(FSFile *file, void *dest, u32 size);
@@ -26,7 +26,7 @@ BOOL func_020fc89c(void)
     FSFile file;
     u32 size;
 
-    if (func_02079f8c()) {
+    if (Wireless_PickChannel()) {
         func_0211c0d8();
         FS_InitFile(&file);
         if (FS_OpenFile(&file, data_0216a5b8)) {
