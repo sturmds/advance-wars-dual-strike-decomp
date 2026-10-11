@@ -13343,6 +13343,10 @@ src/game/main/map/map_scroll_view_to_tile.c:
     complete
     .text       start:0x020c41c4 end:0x020c424c
 
+src/game/main/map/map_cursor_slide_toward.c:
+    complete
+    .text       start:0x020c424c end:0x020c436c
+
 src/game/main/func_020c436c.c:
     complete
     .text       start:0x020c436c end:0x020c4388

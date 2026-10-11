@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-void func_020c424c(s16 x, s16 y, s16 mode, s16 *outX, s16 *outY);
+void MapCursor_SlideToward(s16 x, s16 y, s16 mode, s16 *outX, s16 *outY);
 void MapCursor_DrawAt(s16 x, s16 y, int mode);
 
 extern Unk_02080440 *data_027c027c;
@@ -25,7 +25,7 @@ void MapCursor_DrawTwoStyles(int mode, int secondMode)
     } else {
         tile = &STATE->cursorX;
     }
-    func_020c424c(tile[0] << 4, tile[1] << 4, mode, &outX, &outY);
+    MapCursor_SlideToward(tile[0] << 4, tile[1] << 4, mode, &outX, &outY);
     MapCursor_DrawAt(outX, outY, mode);
     MapCursor_DrawAt(outX, outY, secondMode);
 }
