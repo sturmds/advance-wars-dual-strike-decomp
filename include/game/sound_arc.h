@@ -105,11 +105,12 @@ typedef struct SoundArcFileTable {
 
 /* NitroSystem NNSSndArc: an opened sound archive. */
 typedef struct SoundArc {
-    u8 pad_00[0x34];
-    FSFile file;                       /* 0x34: the archive file */
+    u8 pad_00[0x30];
+    int opened;                        /* 0x30: set once the archive file is open */
+    FSFile file;                      /* 0x34: the archive file */
     SoundArcRange range;               /* 0x78: handed to the ROM direct file open call */
     SoundArcFileTable *files;          /* 0x80 */
-    u8 pad_84[4];
+    u32 unk_84;
     SoundArcInfo *info;
 } SoundArc;
 

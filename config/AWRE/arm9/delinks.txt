@@ -10907,6 +10907,10 @@ src/game/main/func_021066ec.c:
     complete
     .text       start:0x021066ec end:0x02106704
 
+src/game/main/sound/sound_arc_open.c:
+    complete
+    .text       start:0x02106920 end:0x021069a8
+
 src/game/main/func_021069a8.c:
     complete
     .text       start:0x021069a8 end:0x021069cc
