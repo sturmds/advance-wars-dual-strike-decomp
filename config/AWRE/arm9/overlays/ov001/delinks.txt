@@ -138,6 +138,7 @@ src/game/ov001/map_has_oozium_on_marked_tile.c:
     .text       start:0x02351444 end:0x02351538
 
 src/game/ov001/func_ov001_02351538.c:
+    complete
     .text       start:0x02351538 end:0x02351640
 
 src/game/ov001/func_ov001_02351640.c:

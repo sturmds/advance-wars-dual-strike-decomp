@@ -12,11 +12,10 @@ void func_020f5878(int x, int y);
 void func_ov001_02351538(void)
 {
     int x;
-    int y = 0;
-    Unk_02080440_1c4 *info = GAME->unk_1c4;
+    int y;
 
-    for (; y < info->mapHeight; y++) {
-        for (x = 0; x < info->mapWidth; x++) {
+    for (y = 0; y < GAME->unk_1c4->mapHeight; y++) {
+        for (x = 0; x < GAME->unk_1c4->mapWidth; x++) {
             if (GAME->mapTiles->unk_2338[GAME->mapTiles->rowStart[y] + x] != 0) {
                 MapUnit *unit = &GAME->units[GAME->mapTiles->unitAt[x + GAME->mapTiles->rowStart[y]]];
 
