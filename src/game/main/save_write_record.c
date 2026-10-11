@@ -10,7 +10,7 @@ extern SaveBuffer data_02298050;
 extern u8 data_0229a050[];
 
 void func_02020794(u16 slot, SaveBuffer *buffer, int size);
-int func_02020754(u16 slot, SaveBuffer *buffer, int size);
+int Save_VerifyBackup(u16 slot, SaveBuffer *buffer, int size);
 
 /* Writes record recordId (size bytes from data_02297f28) to the save. The
  * record is split into parts of up to 0x2f99 bytes; the first part of
@@ -170,7 +170,7 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                 data_02298050.checksumInv = ~sum;
                 data_02298050.checksum = sum;
                 func_02020794(slot, &data_02298050, 0x3000);
-                if (func_02020754(slot, &data_02298050, 0x3000)) {
+                if (Save_VerifyBackup(slot, &data_02298050, 0x3000)) {
                     tries = 0;
                     entry->flags[0] |= SAVE_SLOT_KEEP;
                     part--;
