@@ -6,7 +6,7 @@ void Sound_PlaySe(u32 soundId);
 void HelpText_Show(u32 textId, int tile);
 int func_0207a260(void);
 void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y);
-void func_0207e02c(void);
+void LinkMenu_AddStage2Buttons(void);
 
 /* A stage 1 button (0 or 1) is picked: puts marker kind 0 next to it, stores it in
  * data_0229fb30.unk_631 and builds the stage 2 buttons. The help text differs for the link
@@ -20,7 +20,7 @@ void LinkMenu_PickStage1Button(int button)
     if (func_0207a260() == 0) {
         MenuButtons_RemoveSelectable();
     }
-    func_0207e02c();
+    LinkMenu_AddStage2Buttons();
     if (data_0229fb30.unk_631 == func_0207a260()) {
         HelpText_Show(0x48000005, 960);
     } else {

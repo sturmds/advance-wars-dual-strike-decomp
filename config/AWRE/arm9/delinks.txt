@@ -9523,6 +9523,10 @@ src/game/main/link/link_menu_restore_stage2_buttons.c:
     complete
     .text       start:0x0207df6c end:0x0207e02c
 
+src/game/main/link/link_menu_add_stage2_buttons.c:
+    complete
+    .text       start:0x0207e02c end:0x0207e138
+
 src/game/main/link/link_menu_add_stage1_buttons.c:
     complete
     .text       start:0x0207e138 end:0x0207e218
