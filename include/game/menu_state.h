@@ -214,8 +214,13 @@ typedef struct BattleScreenWork {
 
 /* One team row of the Combat setup screens (link play), 10 bytes. */
 typedef struct CombatRowEntry {
-    u8 player;                         /* the data_0229fb30.unk_45a this row belongs to */
-    u8 pad_01[6];
+    union {
+        struct {
+            u8 player;                 /* the data_0229fb30.unk_45a this row belongs to */
+            u8 pad_01[6];
+        };
+        u8 members[7];                 /* link players on the row, the first one picks for it; unk_07 of them are used */
+    };
     u8 unk_07;                         /* nonzero: the row gets a sprite on the sub screen */
     u8 unk_08;
     u8 buttonId;                       /* MenuButton id picked, 22-25; minus 22 picks the row's unit counts and sprite */
