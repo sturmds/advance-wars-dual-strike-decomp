@@ -22,7 +22,7 @@ void func_0209373c(void);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_02098238(u32 cost);
 int Ai_WantsBlackBomb(int unitType);
-int func_02095fb8(void);
+int AiSite_PickBlackBombAirport(void);
 int AiSite_PickPiperunnerSite(void);
 BOOL AiBuild_CanAffordPiperunnerInstead(int unitType);
 BOOL AiBuild_WantsPiperunnerInstead(int unitType);
@@ -40,7 +40,7 @@ int Ai_CountUnitsOfType(int type);
  * allowSaving is 1, func_02098238 may set AiBuildState.unk_10 to the funds
  * still missing after next income; while unk_10 is set, a build must leave
  * that much (unk_05 times it may skip the check for a type the player has
- * none of). Black Bomb and Piperunner builds go through func_02095fb8 and
+ * none of). Black Bomb and Piperunner builds go through AiSite_PickBlackBombAirport and
  * AiSite_PickPiperunnerSite. A type that fails gets weight 0 and the pick starts again.
  * Returns the factory's site index with gUnitAction.target set, or -1. */
 int AiTurn_PickUnitToBuild(int allowSaving)
@@ -135,7 +135,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         }
         if (Ai_WantsBlackBomb(best) == 1) {
             gUnitAction.target = UNIT_BLACK_BOMB;
-            return func_02095fb8();
+            return AiSite_PickBlackBombAirport();
         }
         if (data_021619c0->unk_10 != 0) {
             if (AiBuild_CanAffordPiperunnerInstead(best) == 1) {

@@ -3,7 +3,7 @@
 
 BOOL func_020985b0(int mask);
 BOOL func_02095bc0(int siteType);
-int func_02095fb8(void);
+int AiSite_PickBlackBombAirport(void);
 int Ai_CountUnitsOfType(int type);
 
 #define AI_PROFILE_BLACK_BOMBS 2
@@ -11,15 +11,15 @@ int Ai_CountUnitsOfType(int type);
 
 /* True when the AI profile allows Black Bombs (bit 2 of the byte func_020985b0
  * tests), the player has no Black Bomb, and a target is ready: with a
- * unitType, func_02095fb8 finds a build site and the player has a unit of that
- * type; with 0, a site of type 2 exists. */
+ * unitType, AiSite_PickBlackBombAirport finds a site and the player has a
+ * unit of that type; with 0, a site of type 2 exists. */
 BOOL AiBuild_WantsBlackBombInstead(int unitType)
 {
     if (!func_020985b0(AI_PROFILE_BLACK_BOMBS)) {
         return FALSE;
     }
     if (unitType != 0) {
-        if (func_02095fb8() == -1) {
+        if (AiSite_PickBlackBombAirport() == -1) {
             return FALSE;
         }
     } else if (!func_02095bc0(SITE_TYPE_BLACK_BOMB)) {
