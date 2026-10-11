@@ -18,7 +18,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void GX_EndLoadTexPltt(void);
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTex(void);
-void func_0210cb04(void);
+void GX_BeginLoadTex(void);
 
 #define STATE data_ov003_02364928
 #define GFX data_027c0280
@@ -106,7 +106,7 @@ void Ov003_LoadGraphics(u8 *res)
     Data_Unpack(res + 0x2438, GFX->objVram + 0x4000);
     Data_Unpack(res + 0x28b4, GFX->objVram + 0x6200);
 
-    func_0210cb04();
+    GX_BeginLoadTex();
     Data_Unpack(res + 0x1524, (void *)VRAM_LCDC_A);
     Mem_Copy32((void *)(VRAM_LCDC_A + 0x100), gMenuState, 0x280);
     for (i = 0; i < STATE->rowCount; i++) {

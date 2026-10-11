@@ -14,7 +14,7 @@ extern char data_0216a480[]; /* "02a" */
 extern char data_0216a484[]; /* "02b" */
 extern char data_0216a488[]; /* "02c" */
 
-void func_0210cb04(void);                                   /* begins a texture image load */
+void GX_BeginLoadTex(void);                                   /* begins a texture image load */
 void func_0210c9a0(const void *src, u32 offset, u32 size); /* copies to texture image VRAM */
 void GX_EndLoadTex(void);                                   /* ends the load */
 void FS_ChangeDir(const char *dir);
@@ -37,7 +37,7 @@ void Map3d_LoadTextures(Unk_022a7c5c *gfx)
     int offset;
 
     data_022a7c5c = gfx;
-    func_0210cb04();
+    GX_BeginLoadTex();
     for (offset = 0; offset < 0x4000; offset += 32) {
         func_0210c9a0(ITCM_ZERO_BLOCK, (u32)gfx->unk_68 + offset, 32);
     }

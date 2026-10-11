@@ -60,7 +60,7 @@ void GX_EndLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTex(void);
-void func_0210cb04(void);
+void GX_BeginLoadTex(void);
 void DC_FlushRange(const void *start, u32 size);
 
 extern Unk_02080440 *data_027c027c;
@@ -103,7 +103,7 @@ void func_0202f0d8(MainMenuTask *task)
     func_02028978();
 
     res = File_Load(File_LocalizePath(data_02159bec));
-    func_0210cb04();
+    GX_BeginLoadTex();
     Data_Unpack(res, (void *)0x06800000);
     GX_EndLoadTex();
     DC_FlushRange(res + 0x5c78, 32);

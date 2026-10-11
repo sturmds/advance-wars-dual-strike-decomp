@@ -25,7 +25,7 @@ extern int data_022a9898;
 extern int data_022a98ac;
 extern int data_022a98a8;
 
-/* State of the texture image load (set by func_0210cb04, the Begin function):
+/* State of the texture image load (set by GX_BeginLoadTex, the Begin function):
  * the banks mapped for loading, and three LCDC addresses taken from the bank
  * mask. What each address stands for is not worked out yet. */
 extern int data_022a98b0;
@@ -43,6 +43,10 @@ void MIi_CpuCopy32(const void *src, void *dst, u32 size);
 void GX_EndLoadTexPltt(void);
 void GX_LoadTexPltt(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTexPltt(void);
+
+/* Texture image. */
+void GX_EndLoadTex(void);
+void GX_BeginLoadTex(void);
 
 /* Main engine BG extended palette. */
 void GX_EndLoadBGExtPltt(void);

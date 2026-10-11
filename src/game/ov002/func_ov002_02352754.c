@@ -9,8 +9,8 @@ extern MenuState gMenuState;
 
 u32 File_UnpackTo(void *dest, const char *path);
 int FS_ChangeDir(const char *path);
-void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
-void GX_EndLoadTex(void);              /* guess: undoes func_0210cb04 */
+void GX_BeginLoadTex(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
+void GX_EndLoadTex(void);              /* guess: undoes GX_BeginLoadTex */
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
 void File_ReadTo(void *dest, const char *path);
@@ -75,7 +75,7 @@ void func_ov002_02352754(void)
 
     tile = 0x300;
     FS_ChangeDir(data_ov002_023600e4);
-    func_0210cb04();
+    GX_BeginLoadTex();
     for (side = 0; side < 2; side++) {
         const BattleGfxByStyle *byStyle;
         const BattleGfxFile *file;

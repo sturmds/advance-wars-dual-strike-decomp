@@ -12,7 +12,7 @@ void File_UnpackTo(void *dest, const char *fileName);
 void File_ReadTo(void *dest, const char *fileName);
 void Mem_Fill32(u32 value, void *dst, u32 size);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
-void func_0210cb04(void);
+void GX_BeginLoadTex(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM */
 void GX_EndLoadTex(void);
 void GX_BeginLoadTexPltt(void);
@@ -151,7 +151,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     buffer = state->buffer;
     File_UnpackTo(buffer, data_ov004_022bf0e8);
     DC_FlushRange(buffer, 0x8000);
-    func_0210cb04();
+    GX_BeginLoadTex();
     func_0210c9a0(buffer, 0, 0x8000);
     GX_EndLoadTex();
     File_ReadTo(buffer, data_ov004_022bf0ec);
