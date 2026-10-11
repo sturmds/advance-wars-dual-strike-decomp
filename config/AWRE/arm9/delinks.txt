@@ -4007,6 +4007,10 @@ src/game/main/menus/menu_is_busy.c:
     complete
     .text       start:0x020316f8 end:0x0203175c
 
+src/game/main/menus/co_exp_start_level_up_task.c:
+    complete
+    .text       start:0x0203175c end:0x020317f4
+
 src/game/main/func_020317f4.c:
     complete
     .text       start:0x020317f4 end:0x02031894

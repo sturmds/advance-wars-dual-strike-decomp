@@ -21,4 +21,12 @@ typedef struct CoExpScreenWork {
     CoExp exp[6];                      /* two per player: front and back CO */
 } CoExpScreenWork;
 
+/* Task started by CoExp_StartLevelUpTask, 0x6c bytes like Task. */
+typedef struct CoExpLevelUpTask {
+    u8 pad_00[0x4e];
+    s16 count;                         /* COs that gained a level */
+    u8 pad_50[0x52 - 0x50];
+    u16 mask;                          /* bit per CO slot of those COs */
+} CoExpLevelUpTask;
+
 #endif
