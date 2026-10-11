@@ -2120,6 +2120,7 @@ src/game/main/script/event_cmd_start_screen_slide_in.c:
     .text       start:0x0201c768 end:0x0201c7f0
 
 src/game/main/script/event_hold_step_screen_slide_in.c:
+    complete
     .text       start:0x0201c7f0 end:0x0201c87c
 
 src/game/main/func_0201c87c.c:
