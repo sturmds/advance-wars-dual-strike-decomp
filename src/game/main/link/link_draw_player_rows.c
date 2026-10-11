@@ -23,7 +23,7 @@ void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 int func_0207a324(void);
 u8 func_0207a3a4(void);
-LinkPlayerInfo *func_0207a3b8(u8 index);
+LinkPlayerInfo *Wireless_GetParent(u8 index);
 void LinkMenu_AddRowButtons(void);
 void func_020827b0(LinkPlayerData *data, int a, u16 b, int c);
 
@@ -46,7 +46,7 @@ void Link_DrawPlayerRows(void)
     }
     func_01ff8c84(0);
     for (i = 0; i < func_0207a3a4(); i++) {
-        info = func_0207a3b8(i);
+        info = Wireless_GetParent(i);
         if (info != 0) {
             data = &info->data;
             func_020827b0(data, 1, 1 + i * 5, 512 + i * 40);

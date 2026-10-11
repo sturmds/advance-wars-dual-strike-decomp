@@ -5944,6 +5944,10 @@ src/game/main/func_0207a3a4.c:
     complete
     .text       start:0x0207a3a4 end:0x0207a3b8
 
+src/game/main/link/wireless_get_parent.c:
+    complete
+    .text       start:0x0207a3b8 end:0x0207a3e0
+
 src/game/main/func_0207a3e0.c:
     complete
     .text       start:0x0207a3e0 end:0x0207a474
