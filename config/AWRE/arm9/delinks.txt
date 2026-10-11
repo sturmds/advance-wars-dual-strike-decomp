@@ -22755,6 +22755,10 @@ src/sdk/mb/mb_file_can_load_segment.c:
     complete
     .text       start:0x0211a614 end:0x0211a728
 
+src/sdk/mb/mb_file_can_receive_segment.c:
+    complete
+    .text       start:0x0211a728 end:0x0211a7d8
+
 src/sdk/mb/download_play_offer_child_program.c:
     complete
     .text       start:0x0211abc4 end:0x0211ae8c
