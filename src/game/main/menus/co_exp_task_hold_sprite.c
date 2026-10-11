@@ -1,16 +1,16 @@
 #include "types.h"
-#include "game/co_exp_task.h"
+#include "game/Unk_02031a14.h"
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void Task_ResumeScript(CoExpTask *task);
+void Task_ResumeScript(Unk_02031a14 *task);
 
 extern u8 data_027c0030;
 
 /* One frame of a 16-frame wait: draws a sprite 16 pixels above the
  * task's position and resumes the task's script on the last frame. */
-void CoExpTask_HoldSprite(CoExpTask *task)
+void CoExpTask_HoldSprite(Unk_02031a14 *task)
 {
-    Sprite_QueueAt(1, task->x & 0x1ff, (task->y - 16) & 0xff, &data_027c0030, 0xc000, 684);
+    Sprite_QueueAt(1, task->unk_2c & 0x1ff, (task->unk_30 - 16) & 0xff, &data_027c0030, 0xc000, 684);
     if (task->frame != 16) {
         task->frame++;
         return;
