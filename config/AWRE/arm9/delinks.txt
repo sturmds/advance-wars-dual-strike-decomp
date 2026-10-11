@@ -15185,6 +15185,10 @@ src/game/main/map/map_object_fire_task_show_next_shot.c:
     complete
     .text       start:0x020d9be0 end:0x020d9e70
 
+src/game/main/map/map_object_fire_task_finish_when_done.c:
+    complete
+    .text       start:0x020d9e70 end:0x020d9ea8
+
 src/game/main/func_020d9ea8.c:
     complete
     .text       start:0x020d9ea8 end:0x020d9eb4
