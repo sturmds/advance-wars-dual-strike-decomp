@@ -42,13 +42,14 @@ Answers to the open questions above:
 1. Offsets come from the compiler. With `-g`, mwccarm 2.0-72 writes DWARF 2, which `arm-none-eabi-objdump --dwarf=info` reads: struct sizes, member offsets, bit fields, array bounds, enums, and the signedness of base types. `tools/dsindex.py` compiles one probe per header (`#include` plus one pointer per type the header defines; DWARF only lists types in use). One translation unit with every header does not compile: `data_02290a60` and `data_ov003_02364a84` are declared with different types in different headers. Probes take about a second for all 285 headers and are cached by a hash of the header, its includes, the compiler command and `dsindex.py`. Typedefs of base types are lost (`u16` shows as `unsigned short`, printed back as `u16`); `const` is not recorded. mwccarm makes an enum one byte when its values fit.
 2. Field uses, first version: functions in `src/` that name `->field` or `.field`, limited to C files that include the struct's header. For each, the original bytes from `build/fnindex.json` are disassembled and the loads and stores at the field's offset are listed. Casts such as `*(s16 *)&...field` are listed too. Not covered: functions without C, and accesses through an outer struct that embeds this one, whose offsets add the embedded struct's own offset.
 3. `build/dsindex.json`, written by `tools/dsindex.py` (`make dsindex`) and refreshed by `ds.py` when a header or C file is newer. Not part of `make` or `make release`. The C search runs at query time.
-4. Agents: one line in the decomp-function skill and `jobs/common.md`, added when the orchestrator says the loop can take it (not yet).
+4. Agents: one line in the decomp-function skill and `jobs/common.md`.
 
 `dupes` comes after batch 21. Input already known: the two clashing `extern` declarations above; `CoRankEntry`/`LevelGauge`; `MENU_ITEM_GREYED`, `MENU_ITEM_FLAG_2` and `MENU_ITEM_BLOCKED`; `func_020e4e98.c`'s copy of `ExMachinaTask` fields; `Unk_02022404`/`SpriteAnim`.
 
 ## Progress
 
 - 2026-10-11: `ds.py show` and `ds.py field` are in, listed in `docs/workflow.md`, with `tools/tests/test_ds.py` in `make test`. On the cases from the loop journal, `field` reports these as declared unsigned with every load signed: `MainMenuTask.unk_4c`, `ForceRankTask.forceRankSet`, `UnitTargetEntry.unk_04`, `WeatherTaskWork.weather`, `WinLoseTask.scoreWidth`, `PlayerInfoSpriteTask.unk_2e`. It reports `AiSite.score` as declared signed with every load unsigned. `PageStripTask.mapId` and `SpriteEntry.x` show mixed loads. `ds.py show data_02153634` reports it as `inside: gCoTable+0x28`. Left: the agent instructions (item 4) and `dupes`.
+- 2026-10-11: the decomp-function skill (step 1) and `jobs/common.md` now tell agents to use `ds.py show` and `ds.py field`. Left: `dupes`, after batch 21.
 
 ## Done when
 
