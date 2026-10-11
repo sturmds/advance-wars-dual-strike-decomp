@@ -4,7 +4,7 @@
 void Game_ResetSettings(void);
 u32 Link_IsActive(void);
 void Map_SetupPlayerCos(void);
-void func_02064774(void);
+void MapSelect_ResetTables(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -15,7 +15,7 @@ extern int gLinkPlay;
  * Game_ResetSettings puts the game settings back to their boot defaults (gameMode
  * 2 again) and clears the link flag gLinkPlay; musicReady survives the
  * reset. In link play (Link_IsActive returns 1) the flag is set again and
- * func_02064774 clears the link buffers in data_0229c768. */
+ * MapSelect_ResetTables clears the map select tables. */
 void VersusTask_ResetGame(void)
 {
     u8 musicReady = data_027c027c->unk_48[data_027c0284]->musicReady;
@@ -27,6 +27,6 @@ void VersusTask_ResetGame(void)
     data_027c027c->unk_48[data_027c0284]->musicReady = musicReady;
     Map_SetupPlayerCos();
     if (Link_IsActive() == 1) {
-        func_02064774();
+        MapSelect_ResetTables();
     }
 }

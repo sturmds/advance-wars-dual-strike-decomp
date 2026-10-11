@@ -7635,7 +7635,8 @@ src/game/main/menus/map_select_point_at_map.c:
     complete
     .text       start:0x02064570 end:0x02064774
 
-src/game/main/menus/func_02064774.c:
+src/game/main/menus/map_select_reset_tables.c:
+    complete
     .text       start:0x02064774 end:0x020647f8
 
 src/game/main/func_020647f8.c:

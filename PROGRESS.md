@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6623 / 6700 | 1492024 / 1553840 | 96.02% | 0 | 0 |
+| game | 6625 / 6700 | 1492280 / 1553840 | 96.04% | 0 | 0 |
 | SDK/library | 289 / 779 | 27364 / 132154 | 20.71% | 21 | 1286 |
-| all | 6912 / 7479 | 1519388 / 1685994 | 90.12% | 21 | 1286 |
+| all | 6914 / 7479 | 1519644 / 1685994 | 90.13% | 21 | 1286 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5132 / 5180 | 1038796 / 1082632 | 95.95% | 0 |
+| main | game | 5134 / 5180 | 1039052 / 1082632 | 95.97% | 0 |
 | main | SDK/library | 282 / 768 | 26452 / 130618 | 20.25% | 19 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 2 |
@@ -50,7 +50,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/ai/func_020a6ac4.c` | func_020a6ac4 | 620 |
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
-| `src/game/main/copowers/tag_gauge_pop_in.c` | func_02057fb8 | 124 |
 | `src/game/main/event_queue/event_queue_drain.c` | EventQueue_Drain | 192 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
@@ -74,7 +73,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 |
-| `src/game/main/menus/func_02064774.c` | func_02064774 | 132 |
 | `src/game/main/menus/func_0206f3f8.c` | func_0206f3f8 | 616 |
 | `src/game/main/menus/func_0208395c.c` | func_0208395c | 1444 |
 | `src/game/main/menus/map_preview_draw_block.c` | MapPreview_DrawBlock | 788 |
