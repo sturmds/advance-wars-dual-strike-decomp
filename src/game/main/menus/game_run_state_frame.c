@@ -39,7 +39,7 @@ void Game_State11_ClearWeather(void);
 void Game_State12_BlackHoleCheck(void);
 void Game_State13_ClearWeatherStartTask(void);
 void func_020ba450(void);
-void func_020d1a84(void);
+void Game_State15_RunStep(void);
 void Game_State18_RestorePrevious(void);
 void Game_State20_CloseMap(void);
 void Game_State22_ReopenPopup(void);
@@ -148,7 +148,7 @@ void Game_RunStateFrame(void)
                 func_020ba450();
                 break;
             case 15:
-                func_020d1a84();
+                Game_State15_RunStep();
                 break;
             case 16:
                 func_ov000_022b0500();

@@ -11650,6 +11650,10 @@ src/game/main/screen_config_run_action_hook.c:
     complete
     .text       start:0x020d1a38 end:0x020d1a84
 
+src/game/main/menus/game_state15_run_step.c:
+    complete
+    .text       start:0x020d1a84 end:0x020d1b70
+
 src/game/main/func_020d1bc4.c:
     complete
     .text       start:0x020d1bc4 end:0x020d1be0
