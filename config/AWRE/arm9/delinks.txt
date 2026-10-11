@@ -2053,9 +2053,19 @@ src/game/main/script/func_02016d24.c:
     complete
     .text       start:0x02016d24 end:0x02016d78
 
+src/game/main/script/script_slot_cmd_stop_slot.c:
+    complete
+    .text       start:0x02016d78 end:0x02016dcc
+
+src/game/main/script/script_slot_cmd_wait_for_event_scripts.c:
+    .text       start:0x02016dcc end:0x02016e1c
+
 src/game/main/script/func_02016e1c.c:
     complete
     .text       start:0x02016e1c end:0x02016e70
+
+src/game/main/script/script_slot_cmd_set_on_stop.c:
+    .text       start:0x02016e70 end:0x02016eb8
 
 src/game/main/func_02016eb8.c:
     complete

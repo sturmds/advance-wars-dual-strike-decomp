@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 
 /* Script command: calls the function the argument points to with the slot.
- * While it returns nonzero the slot stays on this command and ends its run
+ * While it returns nonzero the slot remains on this command and ends its run
  * for the frame; when it returns 0, moves on to the next command. */
 BOOL ScriptSlot_CmdWaitWhile(int slot)
 {
