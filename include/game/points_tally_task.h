@@ -15,7 +15,7 @@ typedef struct PointsTallyTask {
     u8 pad_3c[0x44 - 0x3c];
     s16 frame;
     u8 pad_46[0x48 - 0x46];
-    u8 frames;                         /* func_0204b7e4 resumes the script when frame reaches it */
+    u8 frames;                         /* PointsTally_PopIn resumes the script when frame reaches it */
 } PointsTallyTask;
 
 #endif
