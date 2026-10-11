@@ -122,7 +122,7 @@ typedef struct Unk_0206d67c {
     u8 skills[5];                      /* skill ids the shown CO has equipped, ended by 0 or 0xff (CoStatsScreen_DrawSkills) */
     u8 coShown[4][2];                  /* nonzero: this CO of the player gets a button */
     u8 playerArmy[4];                  /* per player 1-4 (index player - 1); guess: army colour, ARMY_BLACK_HOLE (5) as in UnitRow_IsAvailable */
-    u8 pad_09d[0xa0 - 0x9d];
+    u8 unk_09d[3];                     /* per row 0-2: number of icons PlayerInfo_DrawPortraitScreenSprites queues on the row; 0 ends the rows */
     u8 playerCount;
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */

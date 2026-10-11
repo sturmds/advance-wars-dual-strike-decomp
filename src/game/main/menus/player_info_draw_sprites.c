@@ -6,14 +6,14 @@ extern MenuState gMenuState;
 extern u8 data_027c0030;
 
 void func_0206f6f8(void);
-void func_0206f2b0(void);
+void PlayerInfo_DrawPortraitScreenSprites(void);
 void func_02001f50(int x, int y, int attr, int tile, int list);
 void PlayerInfo_QueuePageSprites(void);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
 /* Queues the sprites of the player info screen: on the screen of
  * data_027c0288.unk_00 the page sprites, plus two more on the last page
- * while its view is 1; then func_0206f2b0 on the screen of unk_04. */
+ * while its view is 1; then PlayerInfo_DrawPortraitScreenSprites on the screen of unk_04. */
 void PlayerInfo_DrawSprites(void)
 {
     Unk_027c0280 *saved0280;
@@ -30,6 +30,6 @@ void PlayerInfo_DrawSprites(void)
     Screen_SetCurrentGfx(saved0280);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_0206f2b0();
+    PlayerInfo_DrawPortraitScreenSprites();
     Screen_SetCurrentGfx(saved0280);
 }
