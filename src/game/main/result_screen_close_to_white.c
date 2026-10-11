@@ -4,7 +4,7 @@
 
 void Screen_SetCurrentBoth(void *state);
 void func_020323fc(void);
-void func_02038178(void);
+void ResultPoint_Close(void);
 
 /* Brighten blend at full strength on every BG layer and the sprites. */
 #define WHITE_OUT()                                           \
@@ -19,7 +19,7 @@ void func_02038178(void);
     data_027c0280->blendTopObj = 1
 
 /* Destroys the data_02159ca8 task and the menu buttons, runs
- * func_02038178, and turns both screens white. */
+ * ResultPoint_Close, and turns both screens white. */
 void ResultScreen_CloseToWhite(void)
 {
     Unk_027c0280 *savedGfx;
@@ -27,7 +27,7 @@ void ResultScreen_CloseToWhite(void)
 
     func_020323fc();
     MenuButtons_RemoveAll();
-    func_02038178();
+    ResultPoint_Close();
 
     savedGfx = data_027c0280;
     savedState = data_027c027c;
