@@ -21,7 +21,7 @@ s32 FSi_ReadFileCore(FSFile *file, void *dest, s32 length, BOOL async)
     if (!async) {
         file->flags |= FS_FILE_STATUS_SYNC;
     }
-    func_021120d4(file, ARCHIVE_OP_COPY_OUT);
+    FSi_SendCommand(file, ARCHIVE_OP_COPY_OUT);
     if (!async) {
         if (FS_WaitAsync(file)) {
             length = file->pos - startPos;

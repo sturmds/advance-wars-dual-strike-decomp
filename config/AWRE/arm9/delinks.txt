@@ -21629,6 +21629,10 @@ src/sdk/fs/archive_on_command_finished.c:
     complete
     .text       start:0x02112044 end:0x021120d4
 
+src/sdk/fs/fs_send_command.c:
+    complete
+    .text       start:0x021120d4 end:0x02112248
+
 src/sdk/fs/fs_run_command_sync.c:
     complete
     .text       start:0x02112248 end:0x02112290

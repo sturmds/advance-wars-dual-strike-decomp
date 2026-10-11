@@ -2,7 +2,7 @@
 
 BOOL FS_CloseFile(FSFile *file)
 {
-    if (!func_021120d4(file, ARCHIVE_OP_RELEASE_HANDLE)) {
+    if (!FSi_SendCommand(file, ARCHIVE_OP_RELEASE_HANDLE)) {
         return FALSE;
     }
     file->arc = NULL;

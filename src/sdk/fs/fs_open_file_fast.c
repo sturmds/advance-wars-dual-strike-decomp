@@ -7,7 +7,7 @@ BOOL FS_OpenFileFast(FSFile *file, FSFileID fileId)
     }
     file->arc = fileId.arc;
     *(FSFileID *)&file->arg.openFileFast = fileId;   /* the archive and file ID, as the command's argument */
-    if (!func_021120d4(file, ARCHIVE_OP_OPEN_BY_ID)) {
+    if (!FSi_SendCommand(file, ARCHIVE_OP_OPEN_BY_ID)) {
         return FALSE;
     }
     file->flags |= FS_FILE_STATUS_IS_FILE;

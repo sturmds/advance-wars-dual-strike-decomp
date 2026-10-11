@@ -10,6 +10,8 @@ typedef struct FSFile FSFile;
 /* Results of an archive command. */
 #define FS_RESULT_SUCCESS 0
 #define FS_RESULT_FAILURE 1
+#define FS_RESULT_BUSY 2                   /* the command has not finished */
+#define FS_RESULT_CANCELED 3
 #define FS_RESULT_PROC_ASYNC 6             /* the archive finishes the command later */
 #define FS_RESULT_PROC_DEFAULT 7           /* run the default command instead */
 
@@ -30,6 +32,9 @@ typedef struct FSFile FSFile;
 #define ARCHIVE_OP_RELEASE_HANDLE 8
 #define FS_COMMAND_ACTIVATE 9
 #define FS_COMMAND_IDLE 10
+
+/* Commands that always run synchronously: seek directory to close file. */
+#define ARCHIVE_OP_BLOCKING_SET 0x1fc
 
 typedef struct FSFileID {
     FSArchive *arc;
@@ -164,7 +169,10 @@ typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 
 #define ARCHIVE_STATE_IN_LIST 0x1       /* in the list of archives */
 #define ARCHIVE_STATE_ROUTINES_SET 0x2           /* tables and routines are set */
 #define ARCHIVE_STATE_TABLES_CACHED 0x4     /* FAT and FNT copied into memory */
+#define ARCHIVE_STATE_PAUSED 0x8        /* commands queue up but do not start */
+#define ARCHIVE_STATE_BUSY 0x10         /* a command of the archive is running */
 #define ARCHIVE_STATE_CANCEL_ASKED 0x20       /* FS_CancelFile was called for the running command */
+#define ARCHIVE_STATE_TEARING_DOWN 0x80       /* new commands are canceled */
 #define ARCHIVE_STATE_AWAITING_DRIVER 0x100          /* a command waits for Archive_OnCommandFinished */
 #define ARCHIVE_STATE_CALLER_BLOCKED 0x200        /* a caller sleeps until the command ends */
 
@@ -236,7 +244,7 @@ BOOL FS_WaitAsync(FSFile *file);
 BOOL FS_OpenFileDirect(FSFile *file, FSArchive *arc, u32 top, u32 bottom, u32 index);
 
 /* Not named yet: sends a command to the file's archive. */
-BOOL func_021120d4(FSFile *file, u32 command);
+BOOL FSi_SendCommand(FSFile *file, u32 command);
 
 /* Not named yet: looks up a path and gives a file ID or a directory position. */
 BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);

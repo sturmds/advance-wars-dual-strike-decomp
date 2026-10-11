@@ -6,7 +6,7 @@ BOOL FS_OpenFileDirect(FSFile *file, FSArchive *arc, u32 top, u32 bottom, u32 in
     file->arg.openFileDirect.id = index;
     file->arg.openFileDirect.top = top;
     file->arg.openFileDirect.bottom = bottom;
-    if (!func_021120d4(file, ARCHIVE_OP_OPEN_BY_EXTENT)) {
+    if (!FSi_SendCommand(file, ARCHIVE_OP_OPEN_BY_EXTENT)) {
         return FALSE;
     }
     file->flags |= FS_FILE_STATUS_IS_FILE;
