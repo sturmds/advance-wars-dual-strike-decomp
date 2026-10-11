@@ -5,12 +5,12 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
-extern u8 data_0229eaf0[];                 /* per player: PLAYER_CONTROLLER_*, filled by func_020c03d8 */
+extern u8 data_0229eaf0[];                 /* per player: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CONTROLLER(player) (data_0229eaf0[player])
 
-void func_020c03d8(void);
+void Players_RecordControllers(void);
 BOOL Player_IsInGame(u8 player);
 
 /* TRUE when human players of two different teams share the DS: not in link
@@ -22,7 +22,7 @@ BOOL HotSeat_HasSeveralHumanTeams(void)
     u8 firstTeam;
     int humans;
 
-    func_020c03d8();
+    Players_RecordControllers();
     if (gLinkPlay != 0
         || (STATE->unk_1c4->fog == 0 && STATE->unk_1c4->weather != WEATHER_RAIN)
         || STATE->gameMode != GAME_MODE_VERSUS) {

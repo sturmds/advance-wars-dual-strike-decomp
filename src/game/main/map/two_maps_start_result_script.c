@@ -2,11 +2,11 @@
 #include "game/screen_other_map.h"
 #include "game/player.h"
 
-extern u8 data_0229eaf0[];                 /* per slot: PLAYER_CONTROLLER_*, filled by func_020c03d8 */
+extern u8 data_0229eaf0[];                 /* per slot: PLAYER_CONTROLLER_*, filled by Players_RecordControllers */
 extern u32 data_021696c0[];                /* event script per army colour, for a player in the game */
 extern u32 data_02169708[];                /* event script per army colour, for a player out of it */
 
-void func_020c03d8(void);
+void Players_RecordControllers(void);
 BOOL Player_IsInGame(u8 player);
 void EventScript_StartText(u32 script, int arg1, int arg2);
 
@@ -39,7 +39,7 @@ void TwoMaps_StartResultScript(void)
     int j;
     int k;
 
-    func_020c03d8();
+    Players_RecordControllers();
     script = 0;
 
     SWITCH_TO(OTHER_MAP, savedGfx, savedGame);

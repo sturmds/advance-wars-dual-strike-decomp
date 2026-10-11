@@ -9,7 +9,7 @@ extern u8 data_0229eaf0[];
 extern u16 data_02139348[];
 
 BOOL Player_IsInGame(u8 player);
-void func_020c03d8(void);
+void Players_RecordControllers(void);
 BOOL Player_FacesOneHumanTeam(u16 player);
 void Player_SetAlliesVisionGrids(u16 player, int gridMask);  /* sets visionGrids of player's allies */
 BOOL Player_HasKindOneAlly(u16 player);                /* TRUE: an ally has data_0229eaf0 kind 1 */
@@ -40,7 +40,7 @@ void Players_AssignVisionGrids(void)
     for (i = 1; i < 5; i++) {
         STATE->players[i].visionGrids = 0;
     }
-    func_020c03d8();
+    Players_RecordControllers();
     gridMask = data_02139348[data_0229eaf0[STATE->currentPlayer]];
     if (gridMask == 1 && Player_HasKindOneAlly(STATE->currentPlayer)) {
         gridMask |= 2;
