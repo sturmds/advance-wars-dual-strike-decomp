@@ -1,0 +1,49 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_0215fe8c.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+extern Unk_0215fe8c *data_0215fe8c;
+
+void Link_ResetBuffers(void);
+void func_0207a7a4(int mode, int playerCount);   /* playerCount: a guess */
+void func_0207a7c8(void);
+
+#define GAME (data_027c027c->unk_48[data_027c0284])
+
+/* Resets the wireless and link state when link mode starts. The player
+ * limit given to the wireless code depends on the link mode in unk_8b:
+ * 8 in mode 3, 2 in modes 1 and 2, else 4. */
+void Link_ResetState(void)
+{
+    func_0207a7c8();
+    data_0215fe8c->unk_0a = GAME->unk_8b;
+    switch (GAME->unk_8b) {
+    case 3:
+        func_0207a7a4(GAME->unk_8b, 8);
+        break;
+    case 2:
+        func_0207a7a4(GAME->unk_8b, 2);
+        break;
+    case 0:
+    case 4:   /* needed to match: makes the jump table cover 0 to 4 */
+    default:
+        func_0207a7a4(GAME->unk_8b, 4);
+        break;
+    case 1:
+        func_0207a7a4(GAME->unk_8b, 2);
+        break;
+    }
+    data_0215fe8c->unk_0b = 0;
+    data_0215fe8c->unk_14 = 0;
+    data_0215fe8c->unk_18 = 0;
+    data_0215fe8c->unk_1c = 0;
+    data_0215fe8c->unk_0e = 0;
+    data_0215fe8c->unk_0c = 0;
+    data_0215fe8c->unk_0f = 23;
+    data_0215fe8c->nameSendAid = 0;
+    data_0215fe8c->unk_06 = 0;
+    data_0215fe8c->unk_00 = 0;
+    Link_ResetBuffers();
+}

@@ -10,7 +10,7 @@ typedef struct Unk_0215fe8c {
     u16 unk_04;                        /* cleared when func_0207b4e8 and func_0207b564 send a request */
     u16 unk_06;                        /* cleared by Link_ResetBuffers */
     u16 unk_08;                        /* func_0207a1dc result, stored when func_0207bb48 stops the task */
-    u8 pad_0a;
+    u8 unk_0a;                         /* copy of unk_8b of the game state, taken when link mode starts */
     u8 unk_0b;                         /* link state, 0 to 3: func_0207b564 sets 1, func_0207b4e8 sets 3 */
     u8 unk_0c;                         /* func_0207bb48: 0 while the data_0215feb8 task runs, else 1 */
     u8 unk_0d;                         /* a player number, 0-3 (func_0207bd6c) */

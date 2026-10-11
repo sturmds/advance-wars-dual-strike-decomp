@@ -7055,6 +7055,10 @@ src/game/main/func_0207bda8.c:
     complete
     .text       start:0x0207bda8 end:0x0207bdbc
 
+src/game/main/link/link_reset_state.c:
+    complete
+    .text       start:0x0207bdbc end:0x0207bec8
+
 src/game/main/link/link_reset_buffers.c:
     complete
     .text       start:0x0207bec8 end:0x0207bf88
