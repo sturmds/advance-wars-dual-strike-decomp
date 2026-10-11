@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 
-void func_0200abf0(int layer, int screenSize);
+void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 
@@ -29,7 +29,7 @@ void DayBanner_SetUpBlend(void)
     data_027c0280->blendBottomBg[data_027c0280->layer3Bg] = 1;
     data_027c0280->blendBottomObj = 1;
     data_027c0280->blendBottomBackdrop = 1;
-    func_0200abf0(0, 1);
+    Screen_SetLayerScreenSize(0, 1);
     func_01ff8c84(0);
     Gfx_RequestLayerCopy(0);
 }

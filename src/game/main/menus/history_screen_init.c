@@ -30,7 +30,7 @@ void TpIcon3_LoadTo(u8 *dest);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Wallpaper_LoadSelected(void);
 void func_01ff9b48(void);
-void func_0200ab64(int a, u32 b);
+void Screen_SetLayerCharBase(int a, u32 b);
 void func_02028a30(void);
 int func_020c67a8(void);
 u8 *func_020c67bc(void);
@@ -87,7 +87,7 @@ void HistoryScreen_Init(void)
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_0200ab64(1, 0x06204000);
+    Screen_SetLayerCharBase(1, 0x06204000);
     Screen_SetCurrentGfx(saved0280);
 
     res = File_Load(data_0215f7c4);

@@ -4,7 +4,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_0200abf0(int layer, int screenSize);
+void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 const char *File_LocalizePath(const char *path);
 u8 *File_Load(const char *path);
@@ -45,7 +45,7 @@ void SuperBreak_LoadBanner(Task *task)
     u8 *langRes;
     int i;
 
-    func_0200abf0(0, 2);
+    Screen_SetLayerScreenSize(0, 2);
     func_01ff8c84(0);
     res = File_Load(data_0215c268);
     langRes = File_Load(File_LocalizePath(data_0215c280));

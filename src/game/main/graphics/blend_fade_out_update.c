@@ -5,7 +5,7 @@
 #define FADE_FRAMES 80
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_0200abf0(int layer, int screenSize);
+void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Task_ResumeScript(Task *task);
@@ -25,7 +25,7 @@ void BlendFadeOut_Update(Task *task)
     data_027c0280->blendEvy = 0;
     FRAME(task)++;
     if (FRAME(task) > FADE_FRAMES) {
-        func_0200abf0(0, 0);
+        Screen_SetLayerScreenSize(0, 0);
         func_01ff8c84(0);
         Gfx_RequestLayerCopy(0);
         Task_ResumeScript(task);

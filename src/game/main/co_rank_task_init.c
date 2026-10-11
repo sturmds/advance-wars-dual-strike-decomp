@@ -9,7 +9,7 @@ int Co_GetRank(u32 co);
 u32 Co_GetExperience(u32 co);
 void Gfx_RequestLayerCopy(int layer);
 void func_01ff8c84(int layer);
-void func_0200abf0(int layer, int screenSize);
+void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_0201e6e8(int x, int y, int width, int height);
 
 extern Unk_02080440 *data_027c027c;
@@ -36,7 +36,7 @@ void CoRankTask_Init(CoRankTask *task)
     layer0 = data_027c0280->layer0Bg;
     data_027c0280->bgScrollY[layer1] = 0;
     data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
-    func_0200abf0(1, 1);
+    Screen_SetLayerScreenSize(1, 1);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 0x100;
     func_0201e6e8(4, 17, 8, 5);
     if (task->hasBackCo == 1) {

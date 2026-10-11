@@ -13,7 +13,7 @@ void Screen_SetCurrentGfx(void *state);
 void Screen_SetCurrentBoth(void *state);
 u8 Map_GetLoadedPlayerCount(void);
 const char *func_020c3e34(void); /* GAME->unk_1c4 read as a string: likely the map name */
-void func_0200abf0(int layer, int screenSize);
+void Screen_SetLayerScreenSize(int layer, int screenSize);
 void func_01ff8c84(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Gfx_LoadBmap09f(void *target, int a, int b);
@@ -94,8 +94,8 @@ void ResultStats_Init(Task *task)
 
         for (screen = 0; screen < 2; screen++) {
             Screen_SetCurrentBoth(((void **)&data_027c0288)[screen]);
-            func_0200abf0(0, 1);
-            func_0200abf0(1, 1);
+            Screen_SetLayerScreenSize(0, 1);
+            Screen_SetLayerScreenSize(1, 1);
             data_027c0280->bgScrollY[data_027c0280->layer0Bg] = 0;
             data_027c0280->bgScrollY[data_027c0280->layer1Bg] = 0;
             data_027c0280->bgScrollX[data_027c0280->layer0Bg] = 0xff00;
