@@ -8167,6 +8167,10 @@ src/game/main/co_stats/unit_row_is_available.c:
     complete
     .text       start:0x0206e418 end:0x0206e814
 
+src/game/main/menus/player_info_draw_powers.c:
+    complete
+    .text       start:0x0206e814 end:0x0206eac8
+
 src/game/main/co_stats/co_stats_screen_draw_skills.c:
     complete
     .text       start:0x0206eac8 end:0x0206ee70
