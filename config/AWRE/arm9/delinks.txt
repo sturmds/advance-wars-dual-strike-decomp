@@ -8545,6 +8545,10 @@ src/game/main/map/map_is_capturable_by_acting_unit.c:
     complete
     .text       start:0x020dedb0 end:0x020dee24
 
+src/game/main/units/tile_has_transport_to_board.c:
+    complete
+    .text       start:0x020dee24 end:0x020def74
+
 src/game/main/func_020def74.c:
     complete
     .text       start:0x020def74 end:0x020def84
