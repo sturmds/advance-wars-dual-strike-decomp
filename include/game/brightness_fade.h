@@ -7,8 +7,8 @@
 /* Fields of the fade task BrightnessFade_Start creates. */
 typedef struct BrightnessFadeTask {
     u8 pad_00[0x30];
-    int unk_30;                        /* set to 1 at start */
-    int unk_34;
+    int active;                        /* 1 while the fade runs, 0 once done */
+    int step;                          /* 0 fading, 1 one more frame, 2 done */
     u8 pad_38[0x3c - 0x38];
     int frame;                         /* starts at 0 */
     int frames;                        /* length of the fade */

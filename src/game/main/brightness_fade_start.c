@@ -27,8 +27,8 @@ Task *BrightnessFade_Start(void *parentOrList, int out, int screen, int white, i
             fade = (BrightnessFadeTask *)Task_Create(data_0216a688, parentOrList);
         }
     }
-    fade->unk_30 = 1;
-    fade->unk_34 = 0;
+    fade->active = 1;
+    fade->step = 0;
     fade->frame = 0;
     fade->frames = frames;
     if (white == 0) {

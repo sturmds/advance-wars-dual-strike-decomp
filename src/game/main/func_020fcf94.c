@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_020fcfac(const void *src, void *dst, u32 size);
+void BrightnessFade_Update(const void *src, void *dst, u32 size);
 
 void func_020fcf94(const void *src, void *dst, u32 size)
 {
-    func_020fcfac(src, dst, size);
+    BrightnessFade_Update(src, dst, size);
 }

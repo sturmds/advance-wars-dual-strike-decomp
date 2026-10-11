@@ -9764,6 +9764,10 @@ src/game/main/func_020fcfa0.c:
     complete
     .text       start:0x020fcfa0 end:0x020fcfac
 
+src/game/main/brightness_fade_update.c:
+    complete
+    .text       start:0x020fcfac end:0x020fd0e8
+
 src/game/main/func_020fd3ac.c:
     complete
     .text       start:0x020fd3ac end:0x020fd3c0
