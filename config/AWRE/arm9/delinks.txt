@@ -1338,6 +1338,7 @@ src/game/main/graphics/gfx3d_load_ortho_projection.c:
     .text       start:0x0200cd58 end:0x0200cdc8
 
 src/game/main/graphics/gfx3d_load_perspective_projection.c:
+    complete
     .text       start:0x0200cdc8 end:0x0200ce3c
 
 src/game/main/func_0200ce3c.c:
