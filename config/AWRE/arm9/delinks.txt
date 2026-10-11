@@ -1332,6 +1332,10 @@ src/game/main/text/text_printer_copy_from_shared.c:
     complete
     .text       start:0x02015420 end:0x020154c4
 
+src/game/main/text/func_020154c4.c:
+    complete
+    .text       start:0x020154c4 end:0x02015508
+
 src/game/main/text/text_printer_read_control_code.c:
     complete
     .text       start:0x020157e4 end:0x02015da8
