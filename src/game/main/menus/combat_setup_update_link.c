@@ -17,7 +17,7 @@ void CombatSetup_MovePlayerUp(u8 player);
 void CombatSetup_MoveToNextRow(u8 player);
 void CombatSetup_MoveToPrevRow(u8 player);
 void func_02085c2c(u8 player, u8 arg);
-void func_02085dd8(void);
+void CombatSetup_HandleRowKeys(void);
 void Task_ResumeScript(Task *task);
 
 extern MenuState gMenuState;
@@ -30,7 +30,7 @@ extern MenuState gMenuState;
  * ready, 10 not ready (from player 0 while not ready: leave the screen),
  * 11-15 go to other handlers. Then, once every connected player is ready
  * and they fill at least two team rows, the screen ends; otherwise
- * func_02085dd8 handles the local player's keys.
+ * CombatSetup_HandleRowKeys handles the local player's keys.
  * MenuState.combat.players[].unk_1 holds the ready flag. */
 void CombatSetup_UpdateLink(Task *task)
 {
@@ -112,5 +112,5 @@ void CombatSetup_UpdateLink(Task *task)
             return;
         }
     }
-    func_02085dd8();
+    CombatSetup_HandleRowKeys();
 }
