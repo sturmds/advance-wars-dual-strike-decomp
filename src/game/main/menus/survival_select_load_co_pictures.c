@@ -11,14 +11,14 @@ u8 Map_GetPlayerCount(u16 mapId);
 BOOL func_02046bcc(int index);
 int func_0204779c(void);
 int Survival_GetMapId(int mode, int index);
-int func_020eab10(int mode, int index);
+int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
 
 /* Record COs of the map at the strip cursor, for the current mode. */
-#define RECORD(cursor) (data_02291588[func_020eab10(data_022a7b80.unk_07, cursor)])
-#define RECORD1(cursor) (data_0229158c[func_020eab10(data_022a7b80.unk_07, cursor)])
+#define RECORD(cursor) (data_02291588[Survival_GetRecordIndex(data_022a7b80.unk_07, cursor)])
+#define RECORD1(cursor) (data_0229158c[Survival_GetRecordIndex(data_022a7b80.unk_07, cursor)])
 
 /* Loads the 12-tile picture of CO coId into OBJ VRAM at byte offset
  * offset, or clears those tiles when coId is 0. */

@@ -13782,6 +13782,10 @@ src/game/main/menus/survival_get_map_id.c:
     complete
     .text       start:0x020eaad8 end:0x020eab10
 
+src/game/main/menus/survival_get_record_index.c:
+    complete
+    .text       start:0x020eab10 end:0x020eac50
+
 src/game/main/menus/survival_get_map_list.c:
     complete
     .text       start:0x020eac50 end:0x020eacc4

@@ -8,7 +8,7 @@
 
 int Campaign_IsHardMode(void);
 s32 HwDiv32(s32 num, s32 den);
-int func_020eab10(int mode, int index);
+int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -42,7 +42,7 @@ void BattleRecord_SaveWin(void)
 
     switch (STATE->gameMode) {
     case GAME_MODE_SURVIVAL:
-        index = func_020eab10(data_022a7b80.unk_07, data_022a7b80.unk_06);
+        index = Survival_GetRecordIndex(data_022a7b80.unk_07, data_022a7b80.unk_06);
         switch (data_022a7b80.unk_07) {
         case 0:
         case 3:

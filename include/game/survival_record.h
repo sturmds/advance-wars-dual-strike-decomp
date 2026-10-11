@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* 12-byte entries from data_02291588, indexed by func_020eab10 (probably
+/* 12-byte entries from data_02291588, indexed by Survival_GetRecordIndex (probably
  * one per Survival map). Each mode pair (data_022a7b80.unk_07 0/3,
  * 1/4, 2/5) keeps the two COs of its record here, 5 bits each; 0: none. */
 typedef struct SurvivalRecordCos {

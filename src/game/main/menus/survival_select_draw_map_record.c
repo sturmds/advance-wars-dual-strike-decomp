@@ -17,7 +17,7 @@ s8 Text_Print(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, u16 unk_32);
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 BOOL func_02046bcc(int index);
 int func_0204779c(void);
-int func_020eab10(int mode, int index);
+int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
@@ -49,15 +49,15 @@ void SurvivalSelect_DrawMapRecord(void)
             switch (mode) {
             case 0:
             case 3:
-                Layer0_PutRatio(20, 21, HwDiv32(data_02291650[func_020eab10(mode, cursor)], 60),
-                                HwMod32(data_02291650[func_020eab10(mode, cursor)], 60));
+                Layer0_PutRatio(20, 21, HwDiv32(data_02291650[Survival_GetRecordIndex(mode, cursor)], 60),
+                                HwMod32(data_02291650[Survival_GetRecordIndex(mode, cursor)], 60));
                 break;
             case 2:
             case 5:
-                Layer0_PutNumberThenText3(20, 21, data_02291588[func_020eab10(mode, cursor)].unk_00_0);
+                Layer0_PutNumberThenText3(20, 21, data_02291588[Survival_GetRecordIndex(mode, cursor)].unk_00_0);
                 break;
             default:
-                Layer0_PutNumberThenText4(20, 21, data_02291584[func_020eab10(mode, cursor)].fundsSpent);
+                Layer0_PutNumberThenText4(20, 21, data_02291584[Survival_GetRecordIndex(mode, cursor)].fundsSpent);
                 break;
             }
         } else {
