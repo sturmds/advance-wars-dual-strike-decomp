@@ -2,7 +2,7 @@
 
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_0200be6c(void *dest, const char *fileName);
+void File_ReadTo(void *dest, const char *fileName);
 void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210cb04(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM, between begin and end calls */
@@ -58,9 +58,9 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     func_0210c9a0(buffer, 0x10000, 0x8000);
     func_0210c930();
 
-    func_0200be6c(buffer, gRikiishiFile0a5);
-    func_0200be6c(buffer + 0xa0, gRikiishiFile0a8);
-    func_0200be6c(buffer + 0xc0, gRikiishiFile0b1);
+    File_ReadTo(buffer, gRikiishiFile0a5);
+    File_ReadTo(buffer + 0xa0, gRikiishiFile0a8);
+    File_ReadTo(buffer + 0xc0, gRikiishiFile0b1);
     func_0210e138(buffer, 0xe0);
     func_0210c8e8();
     func_0210c874(buffer, 0, 0xe0);

@@ -20,4 +20,8 @@ typedef struct MapObject {
     u8 unk_07;
 } MapObject;
 
+/* TRUE when the current screen's map has a live object of this kind. */
+BOOL MapObjects_HasKind(int kind);
+void MapObject_ClearVariant(MapObject *object);
+
 #endif

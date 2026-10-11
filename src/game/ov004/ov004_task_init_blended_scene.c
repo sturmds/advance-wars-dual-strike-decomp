@@ -9,7 +9,7 @@ void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_0200be6c(void *dest, const char *fileName);
+void File_ReadTo(void *dest, const char *fileName);
 void Mem_Fill32(u32 value, void *dst, u32 size);
 void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210cb04(void);
@@ -154,7 +154,7 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     func_0210cb04();
     func_0210c9a0(buffer, 0, 0x8000);
     func_0210c930();
-    func_0200be6c(buffer, data_ov004_022bf0ec);
+    File_ReadTo(buffer, data_ov004_022bf0ec);
     Mem_Fill32(-1, buffer + 0x200, 0x200);
     func_0210e138(buffer, 0x400);
     func_0210c8e8();

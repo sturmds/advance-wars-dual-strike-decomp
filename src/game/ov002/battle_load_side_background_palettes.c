@@ -2,7 +2,7 @@
 #include "game/battle_scene.h"
 #include "game/terrain.h"
 
-void func_0200be6c(void *dest, const char *path); /* guess: reads a whole file into dest */
+void File_ReadTo(void *dest, const char *path);
 u8 Player_GetArmyStyle(int playerIndex);
 BOOL Battle_IsSideSea(int side);                  /* TRUE: the side's unit is a naval unit */
 void func_0210c8e8(void);                         /* guess: maps VRAM bank F to the CPU (LCDC) */
@@ -291,8 +291,8 @@ void Battle_LoadSideBackgroundPalettes(void)
             }
         }
         isFirst = i == 0 ? TRUE : FALSE;
-        func_0200be6c((void *)(VRAM_LCDC_F + (isFirst ? 10 : 11) * 32), firstFile);
-        func_0200be6c((void *)(VRAM_LCDC_F + (isFirst ? 12 : 13) * 32), secondFile);
+        File_ReadTo((void *)(VRAM_LCDC_F + (isFirst ? 10 : 11) * 32), firstFile);
+        File_ReadTo((void *)(VRAM_LCDC_F + (isFirst ? 12 : 13) * 32), secondFile);
     }
     func_0210c81c();
 }

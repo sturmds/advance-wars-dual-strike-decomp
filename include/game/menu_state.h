@@ -191,7 +191,7 @@ typedef struct BattleScreenWork {
     u16 unk_408[2];                    /* cleared by Battle_Init */
     u16 unk_40c[2];                    /* cleared by Battle_Init; func_ov002_02353254 sets them to sway[0].x >> 4 */
     u16 unk_410[32];                   /* unk_450 brightened halfway to white */
-    u16 unk_450[32];                   /* a side's palette, loaded by func_0200be6c */
+    u16 unk_450[32];                   /* a side's palette, loaded by File_ReadTo */
     u8 unk_490[0x80];                  /* copied from res_battle 0x828 */
     u8 unk_510[0x240];                 /* copied from res_battle 0x88c */
     u8 unk_750[0x80];                  /* copied from res_battle 0xb54 */

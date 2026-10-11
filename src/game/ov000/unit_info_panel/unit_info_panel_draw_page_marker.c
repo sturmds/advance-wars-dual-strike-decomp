@@ -2,6 +2,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/unit_info_panel.h"
 #include "game/unit_stats.h"
+#include "game/text_print.h"
 
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
@@ -10,7 +11,6 @@ extern Unk_027c0288 data_027c0288;
 extern u8 data_ov000_0234f9e8[][4];
 
 const void *Text_Get(u32 textId);
-int func_02014a64(const void *text);
 void Screen_SetCurrentGfx(void *state);
 void func_020f75dc(int a, int b, int c, int d, int e, int f);
 
@@ -28,10 +28,10 @@ void UnitInfoPanel_DrawPageMarker(void)
 
     switch (page) {
     case 4:
-        value = func_02014a64(Text_Get(Ov000_gUnitStats[data_ov000_0234ec8c->unit->type].text[1].id));
+        value = Text_GetPrintWidth(Text_Get(Ov000_gUnitStats[data_ov000_0234ec8c->unit->type].text[1].id));
         break;
     case 11:
-        value = func_02014a64(Text_Get(Ov000_gUnitStats[data_ov000_0234ec8c->unit->type].text[2].id));
+        value = Text_GetPrintWidth(Text_Get(Ov000_gUnitStats[data_ov000_0234ec8c->unit->type].text[2].id));
         break;
     }
     savedGfx = data_027c0280;

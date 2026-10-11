@@ -6,7 +6,7 @@
 extern Unk_027c0280 *data_027c0280;
 
 u32 File_UnpackTo(void *dest, const char *path);
-void func_0200be6c(void *dest, const char *path); /* guess: reads a whole file into dest */
+void File_ReadTo(void *dest, const char *path);
 int Battle_IsSideDrawnInAir(int side);           /* 1: the side is drawn in the sky */
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
@@ -57,7 +57,7 @@ extern char data_ov002_02360168[];
 #define LOAD_LAYER(tileFile, mapFile, paletteFile) \
     File_UnpackTo(tiles, tileFile); \
     File_UnpackTo(map, mapFile); \
-    func_0200be6c(SIDE_PALETTE(side), paletteFile)
+    File_ReadTo(SIDE_PALETTE(side), paletteFile)
 
 /* Tilesets 2 and 3 share their tiles and map, as do tileset 1 and the
  * others; each tileset has its own palette. */
@@ -100,9 +100,9 @@ void Battle_LoadSideTerrainLayers(void)
             File_UnpackTo(tiles, data_ov002_023600ec);
             File_UnpackTo(map, data_ov002_023600f0);
             if (Ov002_gBattleScene->tileset == 1) {
-                func_0200be6c(SIDE_PALETTE(side), data_ov002_023600f4);
+                File_ReadTo(SIDE_PALETTE(side), data_ov002_023600f4);
             } else {
-                func_0200be6c(SIDE_PALETTE(side), data_ov002_023600f8);
+                File_ReadTo(SIDE_PALETTE(side), data_ov002_023600f8);
             }
             continue;
         }
@@ -131,9 +131,9 @@ void Battle_LoadSideTerrainLayers(void)
             File_UnpackTo(tiles, data_ov002_0236015c);
             File_UnpackTo(map, data_ov002_02360160);
             if (Ov002_gBattleScene->tileset == 1) {
-                func_0200be6c(SIDE_PALETTE(side), data_ov002_02360164);
+                File_ReadTo(SIDE_PALETTE(side), data_ov002_02360164);
             } else {
-                func_0200be6c(SIDE_PALETTE(side), data_ov002_02360168);
+                File_ReadTo(SIDE_PALETTE(side), data_ov002_02360168);
             }
             break;
         }

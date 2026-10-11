@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/screen_other_map.h"
+#include "game/map_object.h"
 
-/* Clears MapObject.variant (the shared function does it with a mask on the bitfield word; name still func_020da938). */
-void func_020da938(MapObject *object);
+/* Clears MapObject.variant (the shared function does it with a mask on the bitfield word; name still MapObject_ClearVariant). */
 
 /* Clears the variant of every kind-2 object on this screen's map state. */
 void MapObjects_ClearKind2Variants(void)
@@ -18,7 +18,7 @@ void MapObjects_ClearKind2Variants(void)
     object = data_027c027c->unk_48[data_027c0284]->objects;
     while (object->kind != 0) {
         if (object->kind == 2) {
-            func_020da938(object);
+            MapObject_ClearVariant(object);
         }
         object++;
     }

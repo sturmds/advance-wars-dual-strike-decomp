@@ -7624,7 +7624,7 @@ src/game/main/map/map_draw_special_terrain.c:
     complete
     .text       start:0x020da650 end:0x020da938
 
-src/game/main/func_020da938.c:
+src/game/main/map/map_object_clear_variant.c:
     complete
     .text       start:0x020da938 end:0x020da948
 

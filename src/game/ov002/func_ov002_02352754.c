@@ -13,7 +13,7 @@ void func_0210cb04(void);              /* guess: maps VRAM bank A to the CPU (LC
 void func_0210c930(void);              /* guess: undoes func_0210cb04 */
 void func_0210c8e8(void);
 void func_0210c81c(void);
-void func_0200be6c(void *dest, const char *path);
+void File_ReadTo(void *dest, const char *path);
 void func_0210e138(void *start, u32 size);
 void func_0210c874(const void *src, u32 offset, u32 size);
 
@@ -215,7 +215,7 @@ void func_ov002_02352754(void)
     palette = menu->battle.unk_450;
 
     for (side = 0; side < 2; side++) {
-        func_0200be6c(menu->battle.unk_450, menu->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
+        File_ReadTo(menu->battle.unk_450, menu->battle.unk_27c[side]->paletteFiles[SCENE->sides[side].army - 1]);
         /* Each colour halfway to white. */
         for (i = 0; i < 32; i++) {
             int colour = palette[i];
@@ -229,11 +229,11 @@ void func_ov002_02352754(void)
         func_0210c874(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
         func_0210c874(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);
     }
-    func_0200be6c((void *)0x06890100, data_ov002_023604a4);
-    func_0200be6c((void *)0x06890100, data_ov002_023604a4);
+    File_ReadTo((void *)0x06890100, data_ov002_023604a4);
+    File_ReadTo((void *)0x06890100, data_ov002_023604a4);
     if (BATTLE_SIDE_UNIT_TYPE(0) == UNIT_PIPERUNNER || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_PIPERUNNER
         || BATTLE_SIDE_UNIT_TYPE(0) == UNIT_TYPE_30 || BATTLE_SIDE_UNIT_TYPE(1) == UNIT_TYPE_30) {
-        func_0200be6c((void *)0x068901c0, data_ov002_023604a8);
+        File_ReadTo((void *)0x068901c0, data_ov002_023604a8);
     }
     func_0210c81c();
 }

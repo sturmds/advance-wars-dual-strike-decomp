@@ -4,7 +4,7 @@
 
 void FS_ChangeDir(const char *dir);
 u32 Ov004_GetFileSize(const char *path);
-void func_0200be6c(void *dest, const char *fileName);
+void File_ReadTo(void *dest, const char *fileName);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 int func_02124534(const char *a, const char *b);   /* strcmp */
 void func_020028b4(int coId, void *dest);         /* guess: unpacks the CO's picture to dest */
@@ -97,7 +97,7 @@ void Ov004_LoadResources(Unk_ov004_022bf158 *state)
         resource->unk_00 = (u32)dir;
         resource->name = name;
         if (fromFile) {
-            func_0200be6c(resource->data, fileName);
+            File_ReadTo(resource->data, fileName);
         } else {
             Mem_Copy32(src, resource->data, resource->size);
         }

@@ -14,7 +14,7 @@ extern Unk_02080440_48 data_02183b08;
 extern Unk_02080440_48 data_02189cd8;
 
 int Campaign_IsHardMode(void);
-void func_0201abd0(const EventScriptCommand *script);
+void EventScript_StartOrQueue(const EventScriptCommand *script);
 const EventTrigger *EventTriggers_SkipBlock(const EventTrigger *trigger);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -67,7 +67,7 @@ BOOL EventTriggers_Run(const EventTrigger *trigger, MapUnit *unit, int id, BOOL 
                 break;
             }
             if (trigger->u.script) {
-                func_0201abd0(trigger->u.script);
+                EventScript_StartOrQueue(trigger->u.script);
                 fired = TRUE;
             }
             if (trigger->param != EVENT_TRIGGER_NO_FLAG) {

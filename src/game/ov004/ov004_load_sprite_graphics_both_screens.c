@@ -4,7 +4,7 @@
 
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_0200be6c(void *dest, const char *fileName);
+void File_ReadTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 
 extern char data_ov004_022bf0dc[];      /* directory */
@@ -23,7 +23,7 @@ void Ov004_LoadSpriteGraphicsBothScreens(Unk_ov004_022bf158 *state)
     FS_ChangeDir(data_ov004_022bf0dc);
     buffer = (u8 *)state->unk_1320 + 0x8000;
     File_UnpackTo(buffer, data_ov004_022bf0f8);
-    func_0200be6c(buffer, data_ov004_022bf0f8);
+    File_ReadTo(buffer, data_ov004_022bf0f8);
 
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

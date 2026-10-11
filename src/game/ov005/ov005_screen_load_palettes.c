@@ -4,7 +4,7 @@
 
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
-void func_0200be6c(void *dest, const char *fileName);
+void File_ReadTo(void *dest, const char *fileName);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void Palette_Flush(void);
 
@@ -37,7 +37,7 @@ void Ov005Screen_LoadPalettes(Unk_ov005_0236bb90 *work)
                       + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14),
                   data_ov005_023698c0);
     File_UnpackTo(work->palettes, data_ov005_023698c4);
-    func_0200be6c(work->unk_8360, data_ov005_023698c8);
+    File_ReadTo(work->unk_8360, data_ov005_023698c8);
     Mem_Zero32(0, data_027c0280->paletteBuffer, 0x80);
     Palette_Flush();
     Screen_SetCurrent(saved027c);
