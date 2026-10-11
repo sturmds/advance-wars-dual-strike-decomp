@@ -10999,6 +10999,10 @@ src/game/main/menus/map_preview_cycle_border_colour.c:
     complete
     .text       start:0x020d3ff4 end:0x020d4044
 
+src/game/main/menus/map_preview_draw_to_layer.c:
+    complete
+    .text       start:0x020d4044 end:0x020d40c8
+
 src/game/main/func_020d4124.c:
     complete
     .text       start:0x020d4124 end:0x020d4148

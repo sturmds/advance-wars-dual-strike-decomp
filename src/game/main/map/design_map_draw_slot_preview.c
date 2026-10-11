@@ -8,7 +8,7 @@ int func_0201fe28(u8 recordId);
 int Save_LoadRecord(u8 recordId, void *buffer);
 void Map_SetDataBuffer(void *buffer);
 void func_020d6e44(DesignMapRecord *record);
-void func_020d4044(void *vram, u16 firstTile, int layer, int x, int y, int palette);
+void MapPreview_DrawToLayer(void *vram, u16 firstTile, int layer, int x, int y, int palette);
 
 /* Loads save record 7 + slot and draws its map preview at tile (x, y) of
  * layer 0, like DesignMap_DrawTemplatePreview. Returns 0 when the record is
@@ -24,7 +24,7 @@ int DesignMap_DrawSlotPreview(int x, int y, int firstTile, int palette, u8 slot)
     Save_LoadRecord(recordId, record);
     Map_SetDataBuffer(record);
     func_020d6e44(record);
-    func_020d4044(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
+    MapPreview_DrawToLayer(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
                   firstTile, 0, x, y, palette);
     return 1;
 }
