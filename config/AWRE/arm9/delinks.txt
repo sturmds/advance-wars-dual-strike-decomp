@@ -10212,6 +10212,10 @@ src/game/main/func_020fccd8.c:
     complete
     .text       start:0x020fccd8 end:0x020fcd00
 
+src/game/main/graphics/brightness_fade_start_in_white_screen1.c:
+    complete
+    .text       start:0x020fcd00 end:0x020fcd28
+
 src/game/main/func_020fcd28.c:
     complete
     .text       start:0x020fcd28 end:0x020fcd50

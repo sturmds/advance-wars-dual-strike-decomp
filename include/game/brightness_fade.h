@@ -28,7 +28,7 @@ typedef struct BrightnessFadeTask {
 Task *BrightnessFade_Start(void *parentOrList, int out, int screen, int white, int frames);
 
 Task *func_020fccd8(void *parentOrList, int frames); /* out, screen 0, white */
-Task *func_020fcd00(void *parentOrList, int frames); /* in, screen 1, white */
+Task *BrightnessFade_StartInWhiteScreen1(void *parentOrList, int frames); /* in, screen 1, white */
 Task *func_020fcd28(void *parentOrList, int frames); /* in, screen 0, white */
 Task *func_020fcd50(void *parentOrList, int frames); /* out, screen 1, black */
 Task *func_020fcd78(void *parentOrList, int frames); /* out, screen 0, black */

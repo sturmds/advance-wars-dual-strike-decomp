@@ -38,7 +38,7 @@ extern TaskScriptCmd data_ov004_022beff4[];
     } while (0)
 
 /* Script step for a screen that waits for a press. It runs two 64-frame
- * screen fades (func_020fcd28, func_020fcd00), then brings in
+ * screen fades (func_020fcd28, BrightnessFade_StartInWhiteScreen1), then brings in
  * two 256 by 128 textured quads on the 3D screen: unk_8f8 and
  * unk_8fc are their alphas (0-31), unk_900 and unk_904 their depths and
  * unk_908 and unk_90c their palettes (in 0x200-byte steps). The first quad
@@ -64,7 +64,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         state->unk_908 = 0;
         state->unk_90c = 0;
         state->unk_810 = func_020fcd28(task, 64);
-        state->unk_814 = func_020fcd00(task, 64);
+        state->unk_814 = BrightnessFade_StartInWhiteScreen1(task, 64);
         task->step++;
     case 1:
         if (func_020fd624(state->unk_810)) {
@@ -134,7 +134,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
         state->unk_1bfc = func_020fcd28(TASK_LIST(4), 24);
-        state->unk_1c00 = func_020fcd00(TASK_LIST(4), 24);
+        state->unk_1c00 = BrightnessFade_StartInWhiteScreen1(TASK_LIST(4), 24);
         state->unk_1c0c = 1;
         if (state->unk_008 == 0) {
             state->unk_1bf8 = Task_Create(data_ov004_022beff4, TASK_LIST(4));
