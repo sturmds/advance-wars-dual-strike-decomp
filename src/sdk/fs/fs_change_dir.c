@@ -8,7 +8,7 @@ BOOL FS_ChangeDir(const char *path)
     FSFile file;
 
     FS_InitFile(&file);
-    if (!func_02112a54(&file, path, NULL, &dir)) {
+    if (!FSi_FindPath(&file, path, NULL, &dir)) {
         return FALSE;
     }
     data_022ab82c = dir;

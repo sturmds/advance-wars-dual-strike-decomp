@@ -21709,6 +21709,10 @@ src/sdk/fs/fs_read_file_core.c:
     complete
     .text       start:0x021129cc end:0x02112a54
 
+src/sdk/fs/fs_find_path.c:
+    complete
+    .text       start:0x02112a54 end:0x02112bb4
+
 src/sdk/fs/fs_init_file.c:
     complete
     .text       start:0x02112bb4 end:0x02112bdc

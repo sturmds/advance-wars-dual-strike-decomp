@@ -166,6 +166,8 @@ typedef struct ArchiveTableCursor {
 typedef int (*ArchiveByteReader)(FSArchive *arc, void *dest, u32 src, u32 len);
 typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 len);
 
+#define ARCHIVE_NAME_MAX_CHARS 3
+
 #define ARCHIVE_STATE_IN_LIST 0x1       /* in the list of archives */
 #define ARCHIVE_STATE_ROUTINES_SET 0x2           /* tables and routines are set */
 #define ARCHIVE_STATE_TABLES_CACHED 0x4     /* FAT and FNT copied into memory */
@@ -248,7 +250,7 @@ BOOL FS_OpenFileDirect(FSFile *file, FSArchive *arc, u32 top, u32 bottom, u32 in
 BOOL FSi_SendCommand(FSFile *file, u32 command);
 
 /* Not named yet: looks up a path and gives a file ID or a directory position. */
-BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);
+BOOL FSi_FindPath(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);
 void FSi_ReleaseCommand(FSFile *file, int result);
 void FSi_AppendToList(FSFile *file, FSFile *head);
 
