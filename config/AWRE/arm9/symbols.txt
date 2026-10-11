@@ -1468,7 +1468,7 @@ func_0203fbc4 kind:function(arm,size=0xc) addr:0x0203fbc4
 func_0203fbd0 kind:function(arm,size=0x58) addr:0x0203fbd0
 ForceRankScreen_SaveChosen kind:function(arm,size=0x40) addr:0x0203fc28
 func_0203fc68 kind:function(arm,size=0xac) addr:0x0203fc68
-func_0203fd14 kind:function(arm,size=0x104) addr:0x0203fd14
+ForceRankScreen_AddButtons kind:function(arm,size=0x104) addr:0x0203fd14
 func_0203fe18 kind:function(arm,size=0xbc) addr:0x0203fe18
 func_0203fed4 kind:function(arm,size=0x58) addr:0x0203fed4
 func_0203ff2c kind:function(arm,size=0xc) addr:0x0203ff2c
@@ -7131,7 +7131,7 @@ data_0215a690 kind:data(any) addr:0x0215a690
 gResultPointObjPath kind:data(any) addr:0x0215a760
 gWinLosePath kind:data(any) addr:0x0215a780
 data_0215a794 kind:data(any) addr:0x0215a794
-data_0215a7a4 kind:data(any) addr:0x0215a7a4
+gForceRankSkillButtonTemplate kind:data(any) addr:0x0215a7a4
 data_0215a7cc kind:data(any) addr:0x0215a7cc
 data_0215a7f4 kind:data(any) addr:0x0215a7f4
 data_0215a81c kind:data(any) addr:0x0215a81c
