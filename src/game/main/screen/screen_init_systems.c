@@ -23,7 +23,7 @@ void EventScript_Init(void);
 void ScriptSlot_ClearAll(void);
 void Task_InitSystem(void);
 void UnitShowTask_ClearSlots(void);
-void func_020076c0(void);
+void Screens_InitEffectState(void);
 void Keypad_Init(void);
 void func_020044a8(void);
 void Screen_ApplyAll(void);
@@ -60,7 +60,7 @@ void Screen_InitSystems(void)
     ScriptSlot_ClearAll();
     Task_InitSystem();
     UnitShowTask_ClearSlots();
-    func_020076c0();
+    Screens_InitEffectState();
     Keypad_Init();
     func_020044a8();
     Screen_ApplyAll();
