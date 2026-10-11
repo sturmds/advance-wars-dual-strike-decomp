@@ -4038,6 +4038,10 @@ src/game/main/result_stats_draw_count.c:
     complete
     .text       start:0x0203bc5c end:0x0203bdf0
 
+src/game/main/func_0203bdf0.c:
+    complete
+    .text       start:0x0203bdf0 end:0x0203be58
+
 src/game/main/func_0203c6d8.c:
     complete
     .text       start:0x0203c6d8 end:0x0203c6fc
