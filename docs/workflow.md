@@ -92,6 +92,109 @@ Some original files were built with other optimisation settings: the name entry 
 
 Run the sweep on a partial before trying C variants by hand or with permute.py.
 
+## Near misses: the cookbook
+
+A *partial* is a function whose C compiles but does not match yet: a `WIP` commit, listed under "Started, not linked" in `PROGRESS.md`. This section lists the source rewrites that matched partials before, grouped by what the diff shows, and when the loop stops retrying one. The numbers behind it are in `docs/issues/0052-partials-strategy.md` ("Measured").
+
+Terms: *registers swap* means the same instructions with two register numbers exchanged; a *spill slot* is the stack offset where mwcc keeps a value it has no register for; *CSE* (common subexpression elimination) is mwcc computing a value once and reusing it; *hoisting* is moving a load or computation out of a loop or above other code.
+
+### Order of work
+
+1. Rule out a bug. 7 of the 74 retry matches were not about C shape at all:
+   - a callee prototype missing an argument (a temp in r1 where ours uses r0 means r0 is still a live argument of the next call; AiTurn_TrySiteAction, Battle_StartAttackerMoveSound);
+   - one trailing `bx lr` too many: dsd split the function's 4-byte tail off as its own symbol. Look for a size 0x4 function right after yours in `symbols.txt` and merge it back (UnitPath_CountSteps);
+   - a pointer walk whose registers swap with the `i * sizeof` induction: the array may start one entry before its symbol (PlayerPanels_Init);
+   - a wrong argument value or slot (Player_GetCoDefense, func_ov002_023571d0);
+   - a header that lacks something the siblings use, such as `volatile` fields (GfxQueue_AddKind4).
+2. If a sibling of the same shape matched (a twin, an Up/Down or Ready/Unready pair), copy its shape first (func_02001f50, GfxQueue_AddKind4, LinkScreen_MovePlayerUp).
+3. Run `pragmas.py`. A pragma was part of 13 partial matches, and matched 5 of them with no change to the C.
+4. Find the symptom below and try its rewrites, before inventing new ones.
+5. Run `permute.py` for declaration order once the instructions agree. It finished many matches, but on a register-only diff it never found one alone.
+
+### Rewrites by symptom
+
+Each line: the rewrite, then the functions it matched.
+
+**The original reloads a value at each use; ours keeps it in a register**
+
+- Read the field or global where it is used (in the loop condition, in each compare) instead of caching it in a local; mwcc hoists what it can and the rest stays as in the original (EventQueue_Drain, func_ov001_02351538, BattleCellSprite_Arrived, AiSite_ScorePiperunnerNeed).
+- Assign from the field, not from the local copy: `boatType = transport->type;` (AiFoot_BoardTransportForSite, AiUnit_BoardSeaTransport).
+- Read the game state through the whole `data_027c027c->unk_48[data_027c0284]` chain at each use; this also fixes literal-pool order. If mwcc still shares it, a volatile read, index first, forces the reload; mark it as match-only (`RELOAD_STATE` in AiUnit_HasFuelForTile, Ov001_IsActingStealthLowOnFuel).
+- `#pragma opt_common_subs off` (SpriteAnim_Queue3d, EventChoice_DrawCursor).
+- A store makes mwcc drop its cached copy: move the statement that needs the reload after that store (AiSeaTransport_MoveLoaded).
+
+**The original computes a value once; ours computes it again**
+
+- Read it once into a local, and use the local only where the original keeps it in a register (BattleCells_RunImpactList: `side` only for the side argument; Save_WriteRecord: the part count read once and stored back).
+- Under `opt_common_subs off`, keep in a local the index the original holds in a register (CombatSetup_AddShopButtons).
+
+**Part of an address is shared differently** (the original shares one product and rebuilds the rest, or the reverse)
+
+- Stop the sharing:
+  - read through two different bases, `scene + offset` and `scene->sides + offset` (BattleFootstepTask_Start);
+  - read once through a cast, `*(T **)&p->field`, before the plain read (BattleFighterTask_Setup);
+  - make one of the two address sums unsigned (`sizeof`); mwcc does not share across signedness (BattleCell_ApplyStep);
+  - index through a byte offset, `(T *)((u8 *)base + i * sizeof(T))`, to keep a multiply per iteration instead of a moving pointer (Player_HasAnyUnit, func_02099ba0).
+- Share the step: `(&a[i])[1]` instead of `a[i + 1]` (Ov005_LoadCreditsPage); `(&tiles[y][x])[32]` instead of `tiles[y][x + 32]` (EventChoice_DrawCursor); the row array seen from a field of the first row, `((Row *)&base->field)[i]` (CombatSetup_BuyUnit).
+- No precomputed pointer: write the whole sum in the access, `*(map + block + colOff + rowOff) = 0;`, `*(dst + row * 32 + col)` (MapView_ClearUnitTile, Battle_CopyTilemapRect, Ov004_FillBlock).
+- Other index forms that matched:
+  - a 2D view, `((u8 (*)[2])grid)[c][r]` (CoSelect_ApplyPicks);
+  - a pointer to the byte for a read-modify-write, `u8 *p = &a[off]; *p = (*p & m) | v;` (Image4bpp_SetPixelLinear);
+  - one flat array, `counts[kind * 4 + i]` (func_0208395c, gain only);
+  - `(y + y) + x` when the `add` operands are swapped (MapPreview_FillTileMap);
+  - the state as base + index * sizeof + offsetof of `unk_48` when `data_027c027c` and `data_027c0284` swap registers (BattleSetup_LoadFromGame);
+  - the global's address cast and a run-time offset added, when the original does not fold the offset into the relocation (`WORK_FIELD`, `SETUP_FIELD`).
+
+**A load moves above a store that the original keeps it after**
+
+- The load may go through an alias symbol of the stored object (`data_0229ed30` is `gMenuState + 0x200`, `data_0229fb30` is `gMenuState + 0x1000`). Read through the same symbol as the store, or as a cast from it, `(T *)((u8 *)&gMenuState + 0x1000)`; `fn.py` counts the relocation as matching (Battle_UpdateSway, CombatSetup_SetPlayerReady, CombatSetup_SetPlayerUnready, PlayerInfo_ToggleLastPageView).
+
+**Register-only: two values swap registers**
+
+- Pragmas first: `opt_loop_invariants off`, `opt_dead_assignments off` or `opt_propagation off` matched four with no C change (CombatSetup_UpdateCoPick, Save_WriteRecord, AiTile_IsFreeForUnitType, NameEntry_OnKeySelect). A dead store kept by hand to hold a register often means `opt_dead_assignments off` (Ov005_LoadCoGridTextures).
+- One variable for several jobs, as the original has: the slot or origin variable as the loop counter, an earlier search's variable in a later search, one counter for two loops (VsSetup_AddMapAndCoButtons, MapPreview_Draw, AiTransport_PickFootUnit, Ov005Slide_StartAll, Battle_UpdateHud, MenuCursor_Update, DayBanner_RefreshLayer).
+- The opposite: its own counter per loop, its own locals for a second save/restore block, then declaration order (TileMap_Fill, MainMenu_Setup).
+- Move block-scoped locals to function scope, each subset in turn (Ov005_SoundRoom_AddCellButtons; MapPreview_DrawBlock gained).
+- A stepped variable (`x += 54`) that swaps with a sum built from it: compute it from the loop counter where it is used (ResultStats_DrawUnitGrid).
+- A narrowed local whose mask lands in the wrong register: update the parameter in place (`y += 8;`) and cast `(u8)y` at each use (ResultPoint_DrawPanel). A shift temporary in a parameter's register: store it in a `u16` local (Window_DrawFrameMiddleRow).
+- A constant the original keeps in a callee-saved register: start a variable at the constant and update it in place, `list = 5; ... list -= d;` (DigitSprite_QueuePopIn).
+
+**Spill slots differ** (same code, other stack offsets)
+
+- Write each bound clamp as a ternary, an `if`, or assign-then-clamp, and try the combinations (Ai_ClearThreatInAntiAirCover, AiUnit_FindFiringTile). In the bounding-box loops: minX as assign-then-clamp, the first row as an if/else written into the loop variable (Ai_AddOoziumThreat, AiUnit_TeammateOutdamages). Distances as `dist = 0; if (x - tx > 0) dist += x - tx; else dist += tx - x;` (AiBlackBomb_ScoreExplosionAt). Then `permute.py`.
+
+**Order: the same instructions in another order**
+
+- Two hoisted constants loaded in the wrong order: a redundant `else pal = 6;` in the test that sets the higher one (PageStripTask_Draw, SurvivalSelect_Draw).
+- Two slots set to one value with their index registers swapped: one chained assignment, `a[j] = a[i] = v;` (CampaignMap_CenterOnMission, CampaignMap_EaseScroll).
+- Argument setup or a stack load before a constant store: an explicit `return;` at the end of the final `if` (TagGauge_PopIn); `if (p != NULL) { ...; return TRUE; } return FALSE;` instead of an early return (SpriteFile_Draw3d).
+- A statement that runs once per outer iteration in the original sits in the inner loop in ours, or the reverse: check where it belongs (MapSelect_ResetTables, func_0204f3b0).
+- A call result used in an expression: call it inside a local's initialiser (Palette_GetArmyBlock) or inline in each compare (AiUnit_HasFuelForTile). `(x = x << 9) >> 4` keeps a shift in place (Camera_SetFromMapScroll).
+- A value the original copies to a scratch register instead of reusing a callee-saved one: compute the later use after the copy (SoundStream_FillBlocks, gain only).
+
+**Conditional moves and BOOLs**
+
+- `cmp; moveq #0; movne #1` comes from `cond ? ENUM_A : ENUM_B`; an int 0/1 ternary folds into `!=` and puts `movne` first (Player_AddPowerCharge). `if (c) return FALSE; return TRUE;` where a ternary gave `movne` first (Player_HasAnyUnit).
+- A BOOL normalised twice (`cmp #0` with `movne/moveq`, then `cmp #1`): nest two inline helpers of different forms, an if-set flag around a ternary (Ov001_IsActingStealthLowOnFuel).
+
+**Missing or extra instructions**
+
+- A packed hardware word (TEXIMAGE_PARAM): build it in a `static inline` helper; its argument order sets the register order (Ov005_SendTexturedQuad, Battle_DrawTexturedQuad).
+- An add through a signed halfword: type the field `s16` (MapView_ScrollStep).
+- `add rN, rM, #0` comes from `x = 0; x += call();` (`terrain_firepower.c`).
+- See also the bug checks in step 1.
+
+**Rarely helped:** `permute.py` or full declaration-order searches on a register-only diff without a rewrite first; `register`; `volatile` other than for a forced reload; a cast on one use; moving a whole block or body into an inline helper.
+
+### When to stop: parking
+
+A *retry* is one model job's work on a function after the group that first wrote it (a `partials<N>` job or a batch 22 style partials group). Passes that spend no model tokens (`pragmas.py`, `triage_partials.py`, `permute.py`, a future permuter) do not count.
+
+- **Park a function after two retries that did not match it**, whether they gained or not. In past data, first retries matched 47% of the time, second retries 16%, third 10%, fourth none; this rule would have lost 2 of 74 matches and saved 13% of retry tokens.
+- **Record it** in `work/partials-parked.md`: one row with the function, module and address, file, best match, triage class, the retry jobs, the date, and what would reopen it. `partials-tried.md` keeps the notes of each attempt. The parked list in `steer.md` (sturmds's) also stays parked.
+- **Reopen** a parked function for one more retry (park it again if that fails) when: a pass with no model tokens brings it to 100% or within two differing instructions; a twin or a function of the same shape matches; a callee prototype, a struct field type or a symbol it uses changes on mainline; or a new cookbook line fits its diff. Half of the past matches at a second or later retry had one of these.
+- **Order**: retry functions with fewer retries first, not the ones closest to 100% first. Near misses above 99.5% matched least often (20% per retry) and cost the most tokens per match.
+
 ## 5. Mark it complete and review
 
 1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
