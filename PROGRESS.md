@@ -9,8 +9,8 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | game | 6629 / 6700 | 1493004 / 1553840 | 96.08% | 0 | 0 |
-| SDK/library | 352 / 779 | 39668 / 132154 | 30.02% | 33 | 2126 |
-| all | 6981 / 7479 | 1532672 / 1685994 | 90.91% | 33 | 2126 |
+| SDK/library | 360 / 779 | 40824 / 132154 | 30.89% | 33 | 2126 |
+| all | 6989 / 7479 | 1533828 / 1685994 | 90.97% | 33 | 2126 |
 
 ## By module
 
@@ -19,7 +19,7 @@ Rows with nothing done are left out, but count in the totals.
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5138 / 5180 | 1039776 / 1082632 | 96.04% | 0 |
-| main | SDK/library | 345 / 768 | 38756 / 130618 | 29.67% | 29 |
+| main | SDK/library | 353 / 768 | 39912 / 130618 | 30.56% | 29 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -117,6 +117,13 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/gx/gx_set_bank_for_sub_obj_ext_pltt.c` | func_0210a9e0 | 140 |
 | `src/sdk/mi/unpack_huffman_to_words.c` | Unpack_HuffmanToWords | 216 |
 | `src/sdk/mi/mi_uncompress_lz8.c` | MI_UncompressLZ8 | 216 |
+| `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 |
+| `src/sdk/msl/func_02121db0.c` | func_02121db0 | 92 |
+| `src/sdk/msl/func_02121e0c.c` | func_02121e0c | 76 |
+| `src/sdk/msl/func_02121e58.c` | func_02121e58 | 80 |
+| `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 |
+| `src/sdk/msl/func_02121ef4.c` | func_02121ef4 | 72 |
+| `src/sdk/msl/func_02121f3c.c` | func_02121f3c | 256 |
 | `src/sdk/os/func_0210db18.c` | func_0210db18 | 212 |
 | `src/sdk/os/os_init_context.c` | OS_InitContext | 100 |
 | `src/sdk/os/os_release_lock_id.c` | OS_ReleaseLockID | 48 |
