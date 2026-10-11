@@ -5,9 +5,10 @@
 #include "game/task.h"
 #include "game/Unk_022a7a9c.h"
 
-/* The win quote screen (task script data_0215a0b8): func_02033088 loads the
- * COs of result record task->unk_64, WinQuote_SlideIn slides them in and
- * prints the quote, WinQuote_WaitText and WinQuote_WaitKeys wait. */
+/* The win quote screen, a task script with its steps at 0x0215a0bc-0x0215a0dc:
+ * func_02033088 loads the COs of result record task->unk_64,
+ * WinQuote_SlideIn slides them in and prints the quote, WinQuote_WaitText
+ * and WinQuote_WaitKeys wait. */
 
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);

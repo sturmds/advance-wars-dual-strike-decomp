@@ -4425,7 +4425,7 @@ src/game/main/func_02032a70.c:
     complete
     .text       start:0x02032a70 end:0x02032a7c
 
-src/game/main/func_02032a7c.c:
+src/game/main/win_quote_add_close_button.c:
     complete
     .text       start:0x02032a7c end:0x02032a9c
 
@@ -4433,7 +4433,7 @@ src/game/main/func_02032a9c.c:
     complete
     .text       start:0x02032a9c end:0x02032abc
 
-src/game/main/func_02032abc.c:
+src/game/main/win_quote_close.c:
     complete
     .text       start:0x02032abc end:0x02032ae4
 
@@ -4452,6 +4452,10 @@ src/game/main/func_02032b28.c:
 src/game/main/win_quote_wait_keys.c:
     complete
     .text       start:0x02032b40 end:0x02032c60
+
+src/game/main/win_quote_wait_text.c:
+    complete
+    .text       start:0x02032c60 end:0x02032d7c
 
 src/game/main/func_02033088.c:
     complete
