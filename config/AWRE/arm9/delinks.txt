@@ -17504,6 +17504,10 @@ src/game/main/func_020f1288.c:
     complete
     .text       start:0x020f1288 end:0x020f129c
 
+src/game/main/touch_marker_destroy.c:
+    complete
+    .text       start:0x020f129c end:0x020f12d4
+
 src/game/main/func_020f135c.c:
     complete
     .text       start:0x020f135c end:0x020f1368

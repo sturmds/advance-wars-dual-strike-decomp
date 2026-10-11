@@ -4,7 +4,7 @@
 
 BOOL MapTouch_InBackButton(int x, int y);
 void func_020f1288(void);
-void func_020f129c(void);
+void TouchMarker_Destroy(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -45,7 +45,7 @@ u32 MapTouch_ReadTileTapOrBack(void)
         break;
     case TOUCH_HELD:
         if (IsTouchInPhase(TOUCH_HELD)) {
-            func_020f129c();
+            TouchMarker_Destroy();
             GAME->unk_30 = 0xff;
             GAME->unk_32 = 0xff;
         }

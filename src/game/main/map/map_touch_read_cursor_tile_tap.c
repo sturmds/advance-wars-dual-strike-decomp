@@ -5,7 +5,7 @@
 
 BOOL MapTouch_InBackButton(int x, int y);
 void func_020f1288(void);
-void func_020f129c(void);
+void TouchMarker_Destroy(void);
 void func_020f12d4(int tileX, int tileY);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
@@ -73,7 +73,7 @@ u32 MapTouch_ReadCursorTileTap(void)
         break;
     case TOUCH_HELD:
         if (IsTouchInPhase(TOUCH_HELD)) {
-            func_020f129c();
+            TouchMarker_Destroy();
             GAME->unk_30 = 0xff;
             GAME->unk_32 = 0xff;
         }
