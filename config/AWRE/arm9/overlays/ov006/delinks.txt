@@ -675,6 +675,10 @@ src/game/ov006/ov006_draw_text_page1.c:
     complete
     .text       start:0x02358b20 end:0x02358dd0
 
+src/game/ov006/ov006_queue_page2_icons.c:
+    complete
+    .text       start:0x02358dd0 end:0x02358ef0
+
 src/game/ov006/ov006_queue_menu_sprites.c:
     complete
     .text       start:0x02358ef0 end:0x02358fec

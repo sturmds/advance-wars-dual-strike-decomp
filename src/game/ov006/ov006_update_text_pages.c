@@ -21,7 +21,7 @@ void func_ov006_02355444(void);
 int func_ov006_02359030(void);
 void Ov006_DrawTextPage2(void);
 void Ov006_DrawTextPage1(void);
-void func_ov006_02358dd0(void);
+void Ov006_QueuePage2Icons(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern const char data_ov006_0236c0c8[];
@@ -72,7 +72,7 @@ void Ov006_UpdateTextPages(void)
         Ov006_DrawTextPage2();
         data_ov006_0236d640->unk_0c = 11;
     case 11:
-        func_ov006_02358dd0();
+        Ov006_QueuePage2Icons();
         if (gKeypad->pressed & PAD_BUTTON_B) {
             data_ov006_0236d640->unk_0c = 30;
         }
