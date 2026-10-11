@@ -3,7 +3,7 @@
 #include "game/terrain.h"
 #include "game/Unk_ov006_0235f690.h"
 
-void func_ov006_02365db4(int hqTile, int x, int y);   /* stores x, y as that army's HQ position */
+void Ov006_SetHqPosition(int hqTile, int x, int y);   /* stores x, y as that army's HQ position */
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
@@ -41,7 +41,7 @@ int Ov006_FindHqs(void)
         case MAP_TILE_MAKE(TERRAIN_HQ, 2):
         case MAP_TILE_MAKE(TERRAIN_HQ, 3):
         case MAP_TILE_MAKE(TERRAIN_HQ, 4):
-            func_ov006_02365db4(tile, STATE->unk_608c[i].x, STATE->unk_608c[i].y);
+            Ov006_SetHqPosition(tile, STATE->unk_608c[i].x, STATE->unk_608c[i].y);
             count++;
             break;
         }
