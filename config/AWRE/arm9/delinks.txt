@@ -10564,6 +10564,10 @@ src/game/main/map/range_map_clear_adjacent.c:
     complete
     .text       start:0x020c5be4 end:0x020c5cd8
 
+src/game/main/map/range_map_mark_unit_attack_range.c:
+    complete
+    .text       start:0x020c5cd8 end:0x020c5dac
+
 src/game/main/map/range_map_mark_attack_targets.c:
     complete
     .text       start:0x020c5dac end:0x020c5fd4
