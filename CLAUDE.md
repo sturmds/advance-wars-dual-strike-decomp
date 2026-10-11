@@ -50,6 +50,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `tools/configure.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, one-time dsd config generation, header CRC fix. |
 | `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. |
 | `tools/fnindex.py`, `tools/tests/`, `fn.py check` | Function index (`build/fnindex.json`) and the fast `fn.py check`, with its test against `fn.py diff`. `fn.py pick --families` ranks same-shape families. |
+| `tools/ds.py`, `tools/dsindex.py` | Data structures (issue 0041): `ds.py show STRUCT\|data_ADDR` for a struct's layout from the compiler or a data symbol's type, references and bytes; `ds.py field Struct.field` for a field's users and how the original loads it. Index in `build/dsindex.json`. |
 | `tools/propagate.py`, `tools/trivial.py`, `tools/permute.py` | Match twins of matched functions, very short functions, and near-misses by variant search, with no model tokens. See `docs/workflow.md`. |
 | `docs/loop.md`, `.claude/skills/decomp-function/`, `tools/apply_commit.py`, `tools/wt_setup.sh` | Automated loop: agents in worktrees, replaying their commits onto mainline. |
 | `.claude/skills/decomp-orchestrate/`, `tools/loop_state.py` | The loop without a human: ticks from a session cron job, state outside git in `work/loop/`, job templates for planning, partial retries, renames, wrap-up and triage. |
