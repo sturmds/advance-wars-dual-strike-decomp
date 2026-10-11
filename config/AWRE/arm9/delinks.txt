@@ -5253,6 +5253,10 @@ src/game/main/co_rank_screen_init.c:
     complete
     .text       start:0x0204cd64 end:0x0204d540
 
+src/game/main/menus/survival_get_run_grade.c:
+    complete
+    .text       start:0x0204d540 end:0x0204d598
+
 src/game/main/func_0204d5e0.c:
     complete
     .text       start:0x0204d5e0 end:0x0204d60c
