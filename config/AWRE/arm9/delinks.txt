@@ -21438,6 +21438,10 @@ src/sdk/svc/sha1_feed_bytes.c:
     complete
     .text       start:0x02113c24 end:0x02113d10
 
+src/sdk/svc/sha1_finish_digest.c:
+    complete
+    .text       start:0x02113d10 end:0x02113dcc
+
 src/sdk/svc/sha1_reset_state.c:
     complete
     .text       start:0x02113dcc end:0x02113e34
