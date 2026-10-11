@@ -1043,6 +1043,10 @@ src/game/ov006/ov006_place_pipe_seam.c:
     complete
     .text       start:0x02367560 end:0x023675e0
 
+src/game/ov006/ov006_place_pipe.c:
+    complete
+    .text       start:0x023675e0 end:0x0236766c
+
 src/game/ov006/ov006_get_pipe_end_cell.c:
     complete
     .text       start:0x0236766c end:0x023679e0
