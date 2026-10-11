@@ -6,7 +6,7 @@
 /* Returns 1, 2 or 3 from data_02160ac0->unk_84 (0, 1, 2). */
 int ScoreList_GetMultiplier(void);
 /* Counts the cells with state 1 and this tile in data_02160ac0, at most 9. */
-u8 func_0203ad90(int tile);
+u8 CombatCells_CountTile(int tile);
 
 #define ROW (data_0229c734->rows[data_0229c734->rowCount])
 
@@ -196,7 +196,7 @@ BOOL ScoreList_AddRow(int kind)
         data_0229c734->rowCount++;
         return TRUE;
     case 13:
-        count = func_0203ad90(1);
+        count = CombatCells_CountTile(1);
         ROW.kind = kind;
         ROW.count = count;
         ROW.points = count * 25 * ScoreList_GetMultiplier();
@@ -207,7 +207,7 @@ BOOL ScoreList_AddRow(int kind)
         data_0229c734->rowCount++;
         return TRUE;
     case 14:
-        count = func_0203ad90(3);
+        count = CombatCells_CountTile(3);
         ROW.kind = kind;
         ROW.count = count;
         ROW.points = count * 50 * ScoreList_GetMultiplier();
@@ -218,7 +218,7 @@ BOOL ScoreList_AddRow(int kind)
         data_0229c734->rowCount++;
         return TRUE;
     case 15:
-        count = func_0203ad90(4);
+        count = CombatCells_CountTile(4);
         ROW.kind = kind;
         ROW.count = count;
         ROW.points = count * 75 * ScoreList_GetMultiplier();
@@ -229,7 +229,7 @@ BOOL ScoreList_AddRow(int kind)
         data_0229c734->rowCount++;
         return TRUE;
     case 16:
-        count = func_0203ad90(5);
+        count = CombatCells_CountTile(5);
         ROW.kind = kind;
         ROW.count = count;
         ROW.points = count * 100 * ScoreList_GetMultiplier();

@@ -5434,6 +5434,10 @@ src/game/main/score_list_get_multiplier.c:
     complete
     .text       start:0x0203ad50 end:0x0203ad90
 
+src/game/main/combat_cells_count_tile.c:
+    complete
+    .text       start:0x0203ad90 end:0x0203ae00
+
 src/game/main/result_point_load_part.c:
     complete
     .text       start:0x0203ae8c end:0x0203b008
