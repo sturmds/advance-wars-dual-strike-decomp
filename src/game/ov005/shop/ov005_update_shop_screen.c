@@ -17,7 +17,7 @@ void func_0201d7d0(void);
 void func_0201c898(void);
 int func_02014c24(void);
 BOOL func_02017bf8(u32 points);         /* takes points from gPlayRecords.unk_00 if there are enough */
-void func_020d7d64(Ov005Task *task);
+void EventSequenceTask_StartWithSongFade(Ov005Task *task);
 Task *func_020fcb08(int song);
 BOOL func_020fccbc(Task *task);
 void func_020fccb0(Task *task);
@@ -373,7 +373,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         break;
     case 103:
         if (work->unk_1c != 0) {
-            func_020d7d64(task);
+            EventSequenceTask_StartWithSongFade(task);
             Task_ResumeScript(task);
             return;
         }

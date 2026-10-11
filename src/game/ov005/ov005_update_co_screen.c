@@ -40,7 +40,7 @@ void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 void HelpBand_Stop(void);
 void Screens_BlackOut(void);
-void func_020d7d9c(Ov005Task *task);
+void EventSequenceTask_Start(Ov005Task *task);
 void Ov005_DrawCoGridCells(Ov005Task *task);
 void Ov005_CopyCoPaletteToBothScreens(Unk_ov005_0236bba8 *work);
 void Ov005_AddCoPaletteButtons(Ov005Task *task);
@@ -107,7 +107,7 @@ extern u32 data_ov005_02367fdc[];      /* map bytes of a rotation/scaling BG by 
  * Ov005_InitCoScreen). Steps 0-20: fade in and pick a CO on the grid.
  * A goes to the palette buttons (50-60), where A applies the variant under
  * the cursor and B goes back to the grid (10-14). B on the grid fades out,
- * tears the screen down (100-102), and step 103 starts func_020d7d9c if a
+ * tears the screen down (100-102), and step 103 starts EventSequenceTask_Start if a
  * variant was applied, then resumes the task script. Every frame it draws
  * the grid cells or the palette sprites and plays the move sound when the
  * cursor or the variant changed. */
@@ -307,7 +307,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         break;
     case 103:
         if (work->unk_00) {
-            func_020d7d9c(task);
+            EventSequenceTask_Start(task);
         }
         Task_ResumeScript(task);
         return;

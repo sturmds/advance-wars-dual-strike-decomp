@@ -19,7 +19,7 @@ void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void HelpBand_Stop(void);
 void Wallpaper_LoadBothOnLayer3(int co);           /* probably loads the CO's picture */
-void func_020d7d9c(Ov005Task *task);
+void EventSequenceTask_Start(Ov005Task *task);
 Task *PaletteFade_StartToBlackScreen1(Ov005Task *parent, int frames, int a, int b);
 Task *PaletteFade_StartFromBlackScreen1(Ov005Task *parent, const void *palettes, int frames, int a, int b);
 void Screens_BlackOut(void);
@@ -270,7 +270,7 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
     case 103:
         if (work->unk_844 != work->unk_848) {
             Ov005_SaveCoListEntry(work->unk_844);
-            func_020d7d9c(task);
+            EventSequenceTask_Start(task);
         }
         Task_ResumeScript(task);
         return;
