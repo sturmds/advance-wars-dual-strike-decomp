@@ -1,7 +1,7 @@
 #include "types.h"
 
 BOOL AiUnit_HasReachableTarget(void);
-int func_020b6e4c(void);
+int Ai_CountEnemyGroundUnitsInRange(void);
 int Ai_CountTeamArmedGroundUnitsInRange(void);
 
 /* Tile test for the order 0 and 1 routine: like AiSeaTransport_FewArmedUnitsInRange,
@@ -13,7 +13,7 @@ BOOL AiSeaTransport_FewArmedUnitsNoTarget(void)
     if (AiUnit_HasReachableTarget() == TRUE) {
         return FALSE;
     }
-    limit = func_020b6e4c();
+    limit = Ai_CountEnemyGroundUnitsInRange();
     if (limit == 0) {
         return FALSE;
     }

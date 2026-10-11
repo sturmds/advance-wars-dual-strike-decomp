@@ -7,13 +7,13 @@ extern int data_027c0284;
 
 int AiUnit_GetUnloadMovement(MapUnit *unit);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-int func_020b6e4c(void);
+int Ai_CountEnemyGroundUnitsInRange(void);
 int Ai_CountTeamArmedGroundUnitsInRange(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Fills the range map from (x, y) for the unit in cargo slot 1. TRUE when
- * func_020b6e4c (name not known yet) is nonzero and the armed ground units
+ * Ai_CountEnemyGroundUnitsInRange is nonzero and the armed ground units
  * reached number less than its result plus 5. */
 BOOL AiSeaTransport_FewArmedUnitsInRange(int x, int y)
 {
@@ -23,7 +23,7 @@ BOOL AiSeaTransport_FewArmedUnitsInRange(int x, int y)
     int limit;
 
     RangeMap_FillMoves(x, y, carried->type, AiUnit_GetUnloadMovement(carried), 0);
-    limit = func_020b6e4c();
+    limit = Ai_CountEnemyGroundUnitsInRange();
     if (limit == 0) {
         return FALSE;
     }
