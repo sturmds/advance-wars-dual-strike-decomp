@@ -115,7 +115,7 @@ void Ov005State_ShowLayer2Picture(Unk_ov005_0236bba4 *work, int picture)
         Screen_SetCurrentGfx(saved0280);
         break;
     }
-    work->unk_20 = -0x1c000;
+    work->scrollY = -0x1c000;
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);

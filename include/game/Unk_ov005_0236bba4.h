@@ -25,20 +25,20 @@ typedef struct Unk_ov005_0236bba4 {
     u32 leftTouched;                   /* set while the Left button is pressed or held; the screen then acts as if the Left key were down */
     u32 rightTouched;                  /* same for the Right button */
     u32 state;                         /* index into stateTable */
-    u32 unk_1c;
-    u32 unk_20;
-    u32 unk_24;
+    s32 scrollX;                       /* fx32 scroll of main layers 2 and 3, set in scroll mode */
+    s32 scrollY;                       /* fx32; the picture states set it (Ov005State_ShowLayer2Picture) */
+    s32 scrollStepX;                   /* added to scrollX each frame of scroll mode, then cleared */
     u32 unk_28;
     u32 button245Shown;
     u32 button246Shown;
-    u32 unk_34;
-    u32 unk_38;                        /* GameFlag 61 */
-    u32 unk_3c;                        /* GameFlag 62 */
-    u32 unk_40;                        /* GameFlag 34 */
+    u32 scrollMode;                    /* 1 while R scroll mode runs (steps 30-32 of Ov005_UpdateStateScreen) */
+    u32 wall1Unlocked;                 /* GameFlag 61: Total Rank wall 1 shows (Ov005State_ShowTotalRankWall) */
+    u32 wall2Unlocked;                 /* GameFlag 62: wall 2 */
+    u32 wall3Unlocked;                 /* GameFlag 34: wall 3 */
     u32 unk_44;                        /* GameFlag 64 */
     u32 unk_48;                        /* GameFlag 65 */
-    u32 unk_4c;
-    u32 unk_50;
+    u32 wallLocked;                    /* 1: the state shows a placeholder for a locked wall; R scroll mode is off */
+    u32 prevWallLocked;                /* wallLocked of the previous state (Ov005_RunState) */
     Unk_ov005_0236bba4_State states[41]; /* copy of data_ov005_0236a74c */
     Unk_ov005_0236bba4_State *stateTable; /* points at states */
     void *spriteFile;                  /* /rikiishi/050; SpriteAnim_Create makes the unk_390 sprites from it */

@@ -32,7 +32,7 @@ extern const MenuButtonTemplate data_ov005_0236a6ac;
 
 #define LAST_STATE 40
 
-/* work->state, unk_1c and unk_20 are u32 in the shared header; the (int)
+/* work->state is u32 in the shared header; the (int)
  * casts give the signed compares and shifts the original uses. */
 
 /* Per-frame update of the state screen (Ov005_SetUpStateScreen). Left and
@@ -102,7 +102,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
             task->step = 20;
             break;
         }
-        if (work->unk_4c == 0 && ((gKeypad->pressed & PAD_BUTTON_R) || work->rTouched == 1)) {
+        if (work->wallLocked == 0 && ((gKeypad->pressed & PAD_BUTTON_R) || work->rTouched == 1)) {
             Sound_PlaySe(0x10006);
             task->step = 30;
             break;
@@ -147,18 +147,18 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         }
         break;
     case 22:
-        work->unk_1c = 0;
-        work->unk_20 = 0;
-        work->unk_24 = 0;
+        work->scrollX = 0;
+        work->scrollY = 0;
+        work->scrollStepX = 0;
         work->unk_28 = 0;
         Ov005_RunState(work);
         task->step++;
         break;
     case 23:
-        if (work->unk_4c == 1 && work->unk_50 == 0) {
+        if (work->wallLocked == 1 && work->prevWallLocked == 0) {
             MenuButton_Remove(241);
         }
-        if (work->unk_4c == 0 && work->unk_50 == 1) {
+        if (work->wallLocked == 0 && work->prevWallLocked == 1) {
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);
             saved027c = data_027c027c;
@@ -206,37 +206,37 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         break;
     case 30:
         func_ov005_0235ec40(work);
-        work->unk_24 = 0;
+        work->scrollStepX = 0;
         work->unk_28 = 0;
         MenuButton_Remove(243);
         MenuButton_Remove(244);
         MenuButton_Remove(241);
-        work->unk_34 = 1;
+        work->scrollMode = 1;
         func_0202a7c0();
         work->button245Shown = 0;
         work->button246Shown = 0;
         task->step++;
     case 31:
         if ((gKeypad->unk_00 & PAD_KEY_LEFT) || work->leftTouched == 1) {
-            work->unk_24 = -0x1000;
+            work->scrollStepX = -0x1000;
         } else if ((gKeypad->unk_00 & PAD_KEY_RIGHT) || work->rightTouched == 1) {
-            work->unk_24 = 0x1000;
+            work->scrollStepX = 0x1000;
         }
         if ((gKeypad->pressed & PAD_BUTTON_B) || work->bTouched != 0) {
             Sound_PlaySe(0x10009);
             task->step++;
             break;
         }
-        work->unk_1c += work->unk_24;
-        work->unk_24 = 0;
+        work->scrollX += work->scrollStepX;
+        work->scrollStepX = 0;
         state = &work->stateTable[work->state];
-        if ((int)work->unk_1c < 0) {
-            work->unk_1c = 0;
+        if (work->scrollX < 0) {
+            work->scrollX = 0;
         }
-        if ((int)work->unk_1c > state->scrollMax) {
-            work->unk_1c = state->scrollMax;
+        if (work->scrollX > state->scrollMax) {
+            work->scrollX = state->scrollMax;
         }
-        Ov005_UpdateStateScreenButtons(work, (int)work->unk_1c >> 12);
+        Ov005_UpdateStateScreenButtons(work, work->scrollX >> 12);
         break;
     case 32:
         func_ov005_0235ec40(work);
@@ -250,7 +250,7 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
         MenuButton_Add(0, 0, &data_ov005_0236a6ac, 241);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
-        work->unk_34 = 0;
+        work->scrollMode = 0;
         saved0280 = data_027c0280;
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
@@ -306,24 +306,24 @@ void Ov005_UpdateStateScreen(Ov005Task *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = (int)work->unk_20 >> 12;
-    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = (int)work->unk_1c >> 12;
-    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = (int)work->unk_20 >> 12;
-    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = (int)work->unk_1c >> 12;
+    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = work->scrollY >> 12;
+    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = work->scrollX >> 12;
+    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = work->scrollY >> 12;
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = work->scrollX >> 12;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = (int)work->unk_20 >> 12;
-    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = (int)work->unk_1c >> 12;
-    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = (int)work->unk_20 >> 12;
-    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = (int)work->unk_1c >> 12;
+    data_027c0280->bgScrollY[data_027c0280->layer2Bg] = work->scrollY >> 12;
+    data_027c0280->bgScrollX[data_027c0280->layer2Bg] = work->scrollX >> 12;
+    data_027c0280->bgScrollY[data_027c0280->layer3Bg] = work->scrollY >> 12;
+    data_027c0280->bgScrollX[data_027c0280->layer3Bg] = work->scrollX >> 12;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 
-    if (work->unk_34 != 0) {
+    if (work->scrollMode != 0) {
         return;
     }
     digitSaved0280 = data_027c0280;

@@ -36,9 +36,9 @@ extern u32 data_ov005_02367fbc[];      /* map bytes of a rotation/scaling BG by 
 
 /* States 38-40 of the state table (data_ov005_0236a74c), arg 0-2 picks
  * /ohashi/res_totalrank_wall1-3. When the wall's game flag is set
- * (work->unk_38, unk_3c, unk_40: flags 61, 62, 34), unpacks its layer 2
+ * (work->wall1Unlocked..wall3Unlocked: flags 61, 62, 34), unpacks its layer 2
  * tiles, map (palette 6) and palette from the packed file on both screens.
- * Otherwise sets work->unk_4c, loads the /rikiishi placeholder (tiles 052,
+ * Otherwise sets work->wallLocked, loads the /rikiishi placeholder (tiles 052,
  * map 053, or 054 for the third wall, palette 051) on the sub screen and
  * clears palettes 6-15 of the palette buffer that was current on entry.
  * Then shows only BG2 and OBJ on the main screen and only BG2 on the sub
@@ -66,8 +66,8 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
 
     switch (wall) {
     case 0:
-        if (work->unk_38 == 0) {
-            work->unk_4c = 1;
+        if (work->wall1Unlocked == 0) {
+            work->wallLocked = 1;
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_04);
             saved027c = data_027c027c;
@@ -131,8 +131,8 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
         }
         break;
     case 1:
-        if (work->unk_3c == 0) {
-            work->unk_4c = 1;
+        if (work->wall2Unlocked == 0) {
+            work->wallLocked = 1;
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_04);
             saved027c = data_027c027c;
@@ -196,8 +196,8 @@ void Ov005State_ShowTotalRankWall(Unk_ov005_0236bba4 *work, int wall)
         }
         break;
     case 2:
-        if (work->unk_40 == 0) {
-            work->unk_4c = 1;
+        if (work->wall3Unlocked == 0) {
+            work->wallLocked = 1;
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_04);
             saved027c = data_027c027c;

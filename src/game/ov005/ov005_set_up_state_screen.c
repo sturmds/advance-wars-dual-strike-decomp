@@ -175,10 +175,10 @@ void Ov005_SetUpStateScreen(Ov005Task *task)
     Screen_SetCurrentGfx(loadSaved0280);
 
     func_ov005_0235ec40(work);
-    work->unk_1c = 0;
-    work->unk_20 = 0;
-    work->unk_24 = 0;
+    work->scrollX = 0;
+    work->scrollY = 0;
+    work->scrollStepX = 0;
     work->unk_28 = 0;
-    work->unk_34 = 0;
+    work->scrollMode = 0;
     task->step = 0;
 }
