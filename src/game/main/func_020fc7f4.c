@@ -5,7 +5,7 @@ void func_01ff8c84(int arg);
 int func_0210eb0c(void);
 void func_0210eb20(int saved);
 void *func_0211a54c(u16 index);
-void func_020827b0(void *dest, int a, u16 b, int c);
+void LargeFont_DrawName(void *dest, int a, u16 b, int c);
 void Gfx_RequestLayerCopy(int layer);
 
 void func_020fc7f4(void)
@@ -24,7 +24,7 @@ void func_020fc7f4(void)
     for (i = 1; i < 8; i++) {
         entry = func_0211a54c(i);
         if (entry != NULL) {
-            func_020827b0((u8 *)entry + 2, 6, 5 + n * 2, 0x200 + n * 0x28);
+            LargeFont_DrawName((u8 *)entry + 2, 6, 5 + n * 2, 0x200 + n * 0x28);
             n++;
         }
     }

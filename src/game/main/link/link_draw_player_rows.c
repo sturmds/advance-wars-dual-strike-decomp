@@ -25,7 +25,7 @@ int func_0207a324(void);
 u8 func_0207a3a4(void);
 LinkPlayerInfo *Wireless_GetParent(u8 index);
 void LinkMenu_AddRowButtons(void);
-void func_020827b0(LinkPlayerData *data, int a, u16 b, int c);
+void LargeFont_DrawName(LinkPlayerData *data, int a, u16 b, int c);
 
 /* Link play: redraws the player list. Each player with a record gets a name
  * and a "done/total" count of set bits in its record, one row every 5 tiles. */
@@ -49,7 +49,7 @@ void Link_DrawPlayerRows(void)
         info = Wireless_GetParent(i);
         if (info != 0) {
             data = &info->data;
-            func_020827b0(data, 1, 1 + i * 5, 512 + i * 40);
+            LargeFont_DrawName(data, 1, 1 + i * 5, 512 + i * 40);
             count = 0;
             for (bit = 0; bit < func_0207a324(); bit++) {
                 if (data->unk_14 & (1 << bit)) {

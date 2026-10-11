@@ -6663,6 +6663,10 @@ src/game/main/graphics/sprite_task_create.c:
     complete
     .text       start:0x02082614 end:0x02082718
 
+src/game/main/link/large_font_draw_name.c:
+    complete
+    .text       start:0x020827b0 end:0x020828c0
+
 src/game/main/func_020828c0.c:
     complete
     .text       start:0x020828c0 end:0x020828d0
