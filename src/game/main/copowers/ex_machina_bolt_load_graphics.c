@@ -29,7 +29,7 @@ void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Script step of data_02168ad0: loads the bolt picture from /syogun into
+/* Script step of gExMachinaBoltScript: loads the bolt picture from /syogun into
  * layer 0 (tiles, map, palette) and the animation that ExMachinaBolt_PlayAnim
  * plays (3D on the screen that shows the 3D engine, sprite tiles on the
  * other), then sets layer 0 up to blend in. When the target tile is in the

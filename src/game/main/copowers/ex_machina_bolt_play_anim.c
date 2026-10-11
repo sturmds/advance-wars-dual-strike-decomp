@@ -15,7 +15,7 @@ void SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int anim
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Script step of data_02168ad0: starts the animation data_02134d68 at the
+/* Script step of gExMachinaBoltScript: starts the animation data_02134d68 at the
  * centre of the bolt's tile, in 3D on the screen that shows the 3D engine
  * and as a sprite on the other. What the animation shows is a guess. */
 void ExMachinaBolt_PlayAnim(ExMachinaBoltTask *task)

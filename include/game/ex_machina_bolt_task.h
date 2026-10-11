@@ -4,8 +4,8 @@
 #include "types.h"
 
 /* Child task of gExMachinaScript (Von Bolt's Super CO Power) that runs the
- * script data_02168ad0 on the tile Strike_FindBestSite picked; created by
- * func_020e46cc. The first 0x2c bytes belong to the task system. */
+ * script gExMachinaBoltScript on the tile Strike_FindBestSite picked; created by
+ * ExMachinaBolt_Start. The first 0x2c bytes belong to the task system. */
 typedef struct ExMachinaBoltTask {
     u8 pad_00[0x2c];
     int tileX;

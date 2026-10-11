@@ -8,9 +8,9 @@ struct Unk_020e4e98 {
     s16 unk_68;
 };
 
-void func_020e46cc(int, int, void *);
+void ExMachinaBolt_Start(int, int, void *);
 
 void func_020e4e98(Unk_020e4e98 *a0)
 {
-    func_020e46cc(a0->unk_66, a0->unk_68, a0);
+    ExMachinaBolt_Start(a0->unk_66, a0->unk_68, a0);
 }

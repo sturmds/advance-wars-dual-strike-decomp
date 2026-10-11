@@ -4276,7 +4276,7 @@ CoveringFire_PickFundsSite kind:function(arm,size=0x5c) addr:0x020e4540
 CoveringFire_PickInfantrySite kind:function(arm,size=0x78) addr:0x020e459c
 CoveringFire kind:function(arm,size=0x18) addr:0x020e4614
 func_020e462c kind:function(arm,size=0xa0) addr:0x020e462c
-func_020e46cc kind:function(arm,size=0x34) addr:0x020e46cc
+ExMachinaBolt_Start kind:function(arm,size=0x34) addr:0x020e46cc
 func_020e4700 kind:function(arm,size=0x18) addr:0x020e4700
 BlendFadeOut_Update kind:function(arm,size=0xb4) addr:0x020e4718
 Screen_StartLayer0Blend kind:function(arm,size=0xf4) addr:0x020e47cc
@@ -7910,7 +7910,7 @@ data_021689a4 kind:data(any) addr:0x021689a4
 gUnitDropScript kind:data(any) addr:0x021689a8
 gCoveringFireScript kind:data(any) addr:0x02168a18
 gExMachinaScript kind:data(any) addr:0x02168a88
-data_02168ad0 kind:data(any) addr:0x02168ad0
+gExMachinaBoltScript kind:data(any) addr:0x02168ad0
 data_02168b60 kind:data(any) addr:0x02168b60
 data_02168b68 kind:data(any) addr:0x02168b68
 data_02168b6c kind:data(any) addr:0x02168b6c
