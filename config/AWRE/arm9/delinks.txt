@@ -4832,6 +4832,10 @@ src/game/main/func_0202ea08.c:
     complete
     .text       start:0x0202ea08 end:0x0202ea18
 
+src/game/main/menus/medal_count_task_update.c:
+    complete
+    .text       start:0x0202ea18 end:0x0202eb68
+
 src/game/main/func_0202eccc.c:
     complete
     .text       start:0x0202eccc end:0x0202ece0
