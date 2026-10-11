@@ -13,7 +13,7 @@ extern u8 data_022a6b30;
 extern PlayRecords gPlayRecords;
 
 BOOL Map_IsFreeDeployCity(int x, int y);
-void func_020bbfb0(int x, int y);
+void BuildMenu_Open(int x, int y);
 void func_020bc56c(void);
 int func_ov000_022af45c(MapUnit *unit);
 void UnitShowTask_Create(MapUnit *unit);
@@ -27,7 +27,7 @@ void Sound_PlaySe(int se);
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Acts on the tile (x, y) the player picked on the map. On an empty
- * production tile (Map_IsFreeDeployCity) it calls func_020bbfb0 when allowBuild is
+ * production tile (Map_IsFreeDeployCity) it calls BuildMenu_Open when allowBuild is
  * set. On a unit that has not waited it starts that unit's move: shows the
  * unit, fills its move range and counts it in gPlayRecords for a human
  * player. Otherwise it opens func_020bc56c when allowMenu is set. Returns
@@ -42,7 +42,7 @@ BOOL MapCursor_SelectTile(int x, int y, int allowBuild, int allowMenu)
     GAME->actingUnit = &GAME->units[GAME->actingUnitIndex];
     if (Map_IsFreeDeployCity(x, y)) {
         if (allowBuild) {
-            func_020bbfb0(x, y);
+            BuildMenu_Open(x, y);
         }
         return TRUE;
     }

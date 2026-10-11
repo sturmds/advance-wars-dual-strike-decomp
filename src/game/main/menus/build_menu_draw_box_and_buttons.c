@@ -9,7 +9,7 @@ void BuildMenu_DrawColumn(int x, int y, int first);
 
 /* Draws one column of the build menu: a 16 by 16 tile box at tile (x, y), the
  * rows of gBuildMenuEntries from `first` in it, and a touch button over each
- * row. The button id is the entry index. */
+ * row, with the entry index as its id. */
 void BuildMenu_DrawColumnWithButtons(int x, int y, int first)
 {
     int row;
