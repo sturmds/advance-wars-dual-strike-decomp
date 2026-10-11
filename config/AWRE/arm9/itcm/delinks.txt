@@ -121,6 +121,10 @@ src/game/itcm/func_01ff9bb4.c:
     complete
     .text       start:0x01ff9bb4 end:0x01ff9bd0
 
+src/game/itcm/main_loop/finish_vblank.c:
+    complete
+    .text       start:0x01ff9bd0 end:0x01ff9c28
+
 src/game/itcm/func_01ff9c28.c:
     complete
     .text       start:0x01ff9c28 end:0x01ff9c38
