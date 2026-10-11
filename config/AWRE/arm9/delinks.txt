@@ -7297,6 +7297,10 @@ src/game/main/tab_list_selection_has_help.c:
     complete
     .text       start:0x020714fc end:0x020715c8
 
+src/game/main/tab_list_draw_page.c:
+    complete
+    .text       start:0x020715c8 end:0x020717a0
+
 src/game/main/tab_list_draw_medals.c:
     complete
     .text       start:0x020717a0 end:0x0207186c

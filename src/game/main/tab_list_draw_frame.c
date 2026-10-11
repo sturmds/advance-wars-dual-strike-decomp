@@ -10,7 +10,7 @@ extern u8 data_027c0184;
 
 void TabList_CountMedals(u16 *earnedOut, u16 *totalOut);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_020715c8(void);
+void TabList_DrawPage(void);
 void TabList_DrawPageNumber(void);
 void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Gfx_RequestLayerCopy(int layer);
@@ -23,7 +23,7 @@ void Palette_Load(const void *src, u16 offset, u32 size);
 
 /* Per-frame drawing of the tab list screen. On the screen of data_027c0288.unk_00:
  * the four tab sprites, the current one in another palette, then
- * func_020715c8 and the page number. On the other screen: earned and total
+ * TabList_DrawPage and the page number. On the other screen: earned and total
  * medals, one sprite for the medal rank and one per rank step, and colour
  * 30 of palettes 19-23 black except the rank's own, which cycles through
  * unk_1000 every 4 frames. */
@@ -59,7 +59,7 @@ void TabList_DrawFrame(void)
             Sprite_QueueAt(0, (i * 64) & 0x1ff, 0, &data_027c0008, (i * 32) | 0x1000, 0);
         }
     }
-    func_020715c8();
+    TabList_DrawPage();
     TabList_DrawPageNumber();
     Screen_SetCurrentGfx(saved);
 
