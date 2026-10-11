@@ -3880,6 +3880,10 @@ src/game/main/menus/win_lose_screen_slide_out_pictures.c:
     complete
     .text       start:0x0203ca28 end:0x0203ce48
 
+src/game/main/menus/win_lose_screen_show_survival_stats.c:
+    complete
+    .text       start:0x0203dbc4 end:0x0203df08
+
 src/game/main/menus/win_lose_screen_init.c:
     complete
     .text       start:0x0203e67c end:0x0203f300
