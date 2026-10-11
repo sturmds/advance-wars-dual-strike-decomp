@@ -6,7 +6,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
 void Screen_SetCurrentBoth(void *state);
-void ScreenWipe_SetCornerWindows(int width, int height);
+void ScreenWipe_SetTopRightBottomLeftWindows(int width, int height);
 
 #define WIPE_END 352
 
@@ -40,7 +40,7 @@ void ScreenWipe_ShrinkCornersUpdate(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        ScreenWipe_SetCornerWindows(width, height);
+        ScreenWipe_SetTopRightBottomLeftWindows(width, height);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
@@ -50,7 +50,7 @@ void ScreenWipe_ShrinkCornersUpdate(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        ScreenWipe_SetCornerWindows(width, height);
+        ScreenWipe_SetTopRightBottomLeftWindows(width, height);
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }

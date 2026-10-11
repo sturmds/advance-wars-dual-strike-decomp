@@ -14,7 +14,7 @@
 
 int func_020076f8(void);
 
-extern u16 data_0216e29c;
+extern s16 data_0216e29c;
 extern s16 data_0216e2a8;                  /* wipe progress, from 0 up to the wipe's end */
 
 #endif

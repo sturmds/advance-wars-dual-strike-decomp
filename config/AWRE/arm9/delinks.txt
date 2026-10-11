@@ -496,6 +496,10 @@ src/game/main/screen/screen_wipe_shrink_corners_update.c:
     complete
     .text       start:0x02004e24 end:0x020051c8
 
+src/game/main/screen/screen_wipe_grow_corners_update.c:
+    complete
+    .text       start:0x020051c8 end:0x020054f0
+
 src/game/main/func_02005a0c.c:
     complete
     .text       start:0x02005a0c end:0x02005a28
