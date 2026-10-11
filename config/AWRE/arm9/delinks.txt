@@ -5954,6 +5954,10 @@ src/game/main/link/wireless_end_scan.c:
     complete
     .text       start:0x02078864 end:0x020788c4
 
+src/game/main/link/wireless_on_end_scan.c:
+    complete
+    .text       start:0x020788c4 end:0x02078970
+
 src/game/main/link/wireless_start_request.c:
     complete
     .text       start:0x02078970 end:0x020789a8
