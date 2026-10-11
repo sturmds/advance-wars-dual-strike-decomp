@@ -3,7 +3,7 @@
 #include "game/Unk_02160ac0.h"
 
 void HelpBand_Stop(void);
-void func_02088c38(void);
+void CombatModeCoPortrait_Destroy(void);
 void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
 int CombatCo_NumberFromId(int coId);
@@ -18,7 +18,7 @@ void CombatModeMenu_Close(void)
 {
     HelpBand_Stop();
     MenuButtons_RemoveAll();
-    func_02088c38();
+    CombatModeCoPortrait_Destroy();
     Wallpaper_DestroyTasks();
     Screen1_DestroyTextTasks();
     data_02160ac0->co = CombatCo_NumberFromId(gCombatModeCos[data_02160ac0->co]);

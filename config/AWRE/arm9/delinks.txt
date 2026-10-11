@@ -10539,7 +10539,7 @@ src/game/main/func_0208854c.c:
     complete
     .text       start:0x0208854c end:0x02088600
 
-src/game/main/func_02088600.c:
+src/game/main/menus/row_lock_mark_destroy_all.c:
     complete
     .text       start:0x02088600 end:0x02088644
 
@@ -10555,7 +10555,7 @@ src/game/main/menus/row_lock_mark_squash_out.c:
     complete
     .text       start:0x02088764 end:0x020888ec
 
-src/game/main/func_020888ec.c:
+src/game/main/menus/row_lock_mark_reset_frame.c:
     complete
     .text       start:0x020888ec end:0x020888f8
 
@@ -10563,19 +10563,19 @@ src/game/main/menus/row_lock_mark_pop_in.c:
     complete
     .text       start:0x020888f8 end:0x02088aac
 
-src/game/main/func_02088aac.c:
+src/game/main/menus/row_lock_mark_init_row4.c:
     complete
     .text       start:0x02088aac end:0x02088ad0
 
-src/game/main/func_02088ad0.c:
+src/game/main/menus/row_lock_mark_init_row3.c:
     complete
     .text       start:0x02088ad0 end:0x02088af4
 
-src/game/main/func_02088af4.c:
+src/game/main/menus/row_lock_mark_init_row2.c:
     complete
     .text       start:0x02088af4 end:0x02088b18
 
-src/game/main/func_02088b18.c:
+src/game/main/menus/row_lock_mark_init_row1.c:
     complete
     .text       start:0x02088b18 end:0x02088b3c
 
@@ -10595,7 +10595,7 @@ src/game/main/func_02088c2c.c:
     complete
     .text       start:0x02088c2c end:0x02088c38
 
-src/game/main/func_02088c38.c:
+src/game/main/menus/combat_mode_co_portrait_destroy.c:
     complete
     .text       start:0x02088c38 end:0x02088c9c
 
@@ -15932,7 +15932,7 @@ src/game/main/ai/ai_target_list_add.c:
     complete
     .text       start:0x020da5e0 end:0x020da63c
 
-src/game/main/func_020da63c.c:
+src/game/main/ai/ai_target_list_clear.c:
     complete
     .text       start:0x020da63c end:0x020da650
 

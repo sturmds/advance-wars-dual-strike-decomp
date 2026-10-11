@@ -2,7 +2,7 @@
 #include "game/menu_state.h"
 #include "game/screen_other_map.h"
 
-void func_02088600(void);
+void RowLockMark_DestroyAll(void);
 void func_02088514(void);
 void MenuButtons_RemoveAll(void);
 void func_01ff8c84(int layer);
@@ -20,7 +20,7 @@ void CombatSetup_ClearScreens(void)
     Unk_02080440 *savedState;
     int i;
 
-    func_02088600();
+    RowLockMark_DestroyAll();
     func_02088514();
     MenuButtons_RemoveAll();
 

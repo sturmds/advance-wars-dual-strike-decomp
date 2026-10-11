@@ -18,7 +18,7 @@ void func_01ffad44(u16 x, u16 y, u16 variant, u16 size, int value);
 BOOL Player_CanSeeUnitAt(u16 player, s16 x, s16 y);
 BOOL Unit_IsVisibleToCurrentPlayer(u16 unitSlot);
 int DamageFromCannons(int playerIndex, int coSlot);
-void func_020da63c(void);
+void AiTargetList_Clear(void);
 void AiTargetList_Add(u16 a, u16 b, u16 unitSlot, u16 c);
 
 /* Picks the target of a cannon object (kind, variant) at (x, y): the visible
@@ -82,7 +82,7 @@ void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant)
     }
 
     if (bestSlot == 0) {
-        func_020da63c();
+        AiTargetList_Clear();
         return;
     }
     reduction = 0;

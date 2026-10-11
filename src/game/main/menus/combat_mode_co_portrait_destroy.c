@@ -11,7 +11,7 @@ extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_021613d8[];
 
-void func_02088c38(void)
+void CombatModeCoPortrait_Destroy(void)
 {
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedScreen;

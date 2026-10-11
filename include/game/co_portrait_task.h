@@ -7,8 +7,7 @@
  * the CO portrait beside the Combat mode menu. When another slot is
  * selected, the portrait slides out, the new CO's graphics load, and it
  * slides back in. The first 0x2a bytes belong to the task system
- * (Task_Create). DrawSelectedCoPowerText reads the same task as
- * Unk_02023724. */
+ * (Task_Create). */
 typedef struct CoPortraitTask {
     u8 pad_00[0x2a];
     u16 frame;                         /* 0 to CO_PORTRAIT_SLIDE_FRAMES */

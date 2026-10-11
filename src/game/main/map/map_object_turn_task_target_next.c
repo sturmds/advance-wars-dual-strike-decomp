@@ -9,7 +9,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern TilePointU16 *data_02167e98[4];
 
-void func_020da63c(void);
+void AiTargetList_Clear(void);
 void AiTargetList_Add(u16 x, u16 y, u16 unitSlot, u16 kind);
 void AiTargetList_AddUnitsOnTiles(TilePointU16 *points, int damage);
 void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant);
@@ -30,7 +30,7 @@ void MapObjectTurnTask_TargetNext(MapObjectTurnTask *task)
     MapObject *object;
     u16 kind;
 
-    func_020da63c();
+    AiTargetList_Clear();
     while ((kind = task->nextObject->kind) != 0) {
         object = task->nextObject;
         switch (kind) {
