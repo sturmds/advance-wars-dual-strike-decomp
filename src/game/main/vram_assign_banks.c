@@ -1,0 +1,26 @@
+#include "types.h"
+
+void func_0210ad34(int mask);
+void func_0210b1b8(int mask);
+void func_0210b04c(int mask);
+void func_0210ac40(int mask);
+void func_0210af38(int mask);
+void func_0210ab74(int mask);
+void func_0210aaf8(int mask);
+void func_0210aa6c(int mask);
+void func_0210a9e0(int mask);
+
+/* Calls the nine per-bank setup functions (guess), each with one VRAM bank
+ * bit: A=1, B=2, C=4, D=8, E=0x10, F=0x20, G=0x40, H=0x80, I=0x100. */
+void Vram_AssignAllBanks(void)
+{
+    func_0210ad34(1);
+    func_0210b1b8(2);
+    func_0210b04c(0x10);
+    func_0210ac40(0x20);
+    func_0210af38(0x40);
+    func_0210ab74(4);
+    func_0210aaf8(8);
+    func_0210aa6c(0x80);
+    func_0210a9e0(0x100);
+}

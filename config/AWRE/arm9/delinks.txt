@@ -24,6 +24,10 @@ src/game/main/main_loop_tasks_frame.c:
     complete
     .text       start:0x02000fa4 end:0x02001028
 
+src/game/main/vram_assign_banks.c:
+    complete
+    .text       start:0x02001028 end:0x02001084
+
 src/game/main/func_02001250.c:
     complete
     .text       start:0x02001250 end:0x02001268
