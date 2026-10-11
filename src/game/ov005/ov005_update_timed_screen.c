@@ -4,11 +4,8 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_0236bb90.h"
+#include "game/brightness_fade.h"
 
-Task *func_020fcdc8(Ov005Task *parent, int frames);
-Task *func_020fcda0(Ov005Task *parent, int frames);
-Task *func_020fcd78(Ov005Task *parent, int frames);
-Task *func_020fcd50(Ov005Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void func_020fd560(void);

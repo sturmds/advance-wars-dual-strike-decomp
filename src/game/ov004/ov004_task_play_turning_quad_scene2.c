@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/brightness_fade.h"
 
 #define GXFIFO_MTX_PUSH ((volatile u32 *)0x04000444)
 #define GXFIFO_MTX_POP ((volatile u32 *)0x04000448)
@@ -22,9 +23,6 @@ void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *na
 void func_ov004_022baeec(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
-/* Declared void in src/game/main/func_020fccd8.c, but this caller uses the
- * task its tail call returns. */
-Task *func_020fccd8(int list, int frames);
 void func_0210bb60(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Palette_Flush(void);
@@ -235,7 +233,7 @@ void Ov004Task_PlayTurningQuadScene2(Ov004Task *task)
         Screen_SetCurrent(savedState);
         Screen_SetCurrentGfx(savedGfx);
         ADD_SLOT_TASK(Task_Create(data_ov004_022be5d8, TASK_LIST(5)));
-        ADD_SLOT_TASK(func_020fccd8(5, 27));
+        ADD_SLOT_TASK(func_020fccd8(TASK_LIST(5), 27));
     }
 
     if (Ov004_CheckTimedEvent(state, 8, 222)) {

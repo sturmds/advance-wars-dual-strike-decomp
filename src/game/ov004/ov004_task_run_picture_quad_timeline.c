@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/brightness_fade.h"
 
 void Ov004_UpdateElapsedFrames(Unk_ov004_022bf158 *state);
 int Ov004_CheckTimedEvent(Unk_ov004_022bf158 *state, int event, int frame);
@@ -22,8 +23,6 @@ void Palette_Flush(void);
 void Task_ResumeScript(void *task);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
 Task *func_020fd164(int a, int b, int c, int d);
-Task *func_020fcd28(int level, int arg);
-Task *func_020fccd8(int level, int arg);
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 extern u32 data_ov004_022bdc94[];       /* map bytes of a text BG by screen size */
@@ -124,7 +123,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
             data_027c0280->masterBrightness = 16;
             RESTORE_SCREEN();
         }
-        ADD_SLOT_TASK(func_020fcd28(5, 13));
+        ADD_SLOT_TASK(func_020fcd28(TASK_LIST(5), 13));
         {
             USE_3D_SCREEN();
             SHOW_LAYERS(0, 0, 0, 1, 0);
@@ -204,7 +203,7 @@ void Ov004Task_RunPictureQuadTimeline(Ov004Task *task)
         ADD_SLOT_TASK(Task_Create(data_ov004_022be4d8, TASK_LIST(5)));
     }
     if (Ov004_CheckTimedEvent(state, 14, 200)) {
-        ADD_SLOT_TASK(func_020fccd8(5, 23));
+        ADD_SLOT_TASK(func_020fccd8(TASK_LIST(5), 23));
     }
     if (Ov004_CheckTimedEvent(state, 15, 223)) {
         Ov004_StartClock(state);

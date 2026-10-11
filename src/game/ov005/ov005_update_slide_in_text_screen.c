@@ -6,12 +6,9 @@
 #include "game/screen_other_map.h"
 #include "game/script_slot.h"
 #include "game/Unk_ov005_0236bb80.h"
+#include "game/brightness_fade.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-Task *func_020fcdc8(Ov005Task *parent, int frames);
-Task *func_020fcda0(Ov005Task *parent, int frames);
-Task *func_020fcd78(Ov005Task *parent, int frames);
-Task *func_020fcd50(Ov005Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void func_020fd560(void);

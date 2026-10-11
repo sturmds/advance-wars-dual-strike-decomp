@@ -4,13 +4,12 @@
 #include "game/Unk_02088d04.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_023559dc.h"
+#include "game/brightness_fade.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sound_StartFadeOutTask(int holdScript, int fadeLength);
-Task *func_020fcdc8(Ov005Task *parent, int frames);
-Task *func_020fcd78(Ov005Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void *EventScript_Start(const void *script);

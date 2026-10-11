@@ -2,9 +2,8 @@
 #include "game/task.h"
 #include "game/ov005_task.h"
 #include "game/Unk_ov005_023559dc.h"
+#include "game/brightness_fade.h"
 
-Task *func_020fcdc8(Ov005Task *parent, int frames);
-Task *func_020fcd78(Ov005Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 Task *func_020fcbe8(int a, int b, int c);

@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/brightness_fade.h"
 
 #define GXFIFO_MTX_PUSH ((volatile u32 *)0x04000444)
 #define GXFIFO_MTX_POP ((volatile u32 *)0x04000448)
@@ -22,7 +23,6 @@ void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *na
 void func_ov004_022baeec(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
 Task *func_020fd1e0(int a, void *b, int c, int d, int e);
-Task *func_020fcd78(void *parent, int frames);
 void func_0210bb60(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Palette_Flush(void);

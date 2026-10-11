@@ -3,6 +3,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 #include "game/campaign_recap.h"
+#include "game/brightness_fade.h"
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -15,10 +16,6 @@ void func_020525a8(int mapId, int arg);
 void func_020ff4a8(CampaignRecap *work);
 void func_020fed58(CampaignRecap *work, int mapOffset);
 s32 HwMod32(s32 numerator, s32 denominator);
-Task *func_020fcdc8(CampaignRecapTask *parent, int frames);
-Task *func_020fcda0(CampaignRecapTask *parent, int frames);
-Task *func_020fcd78(CampaignRecapTask *parent, int frames);
-Task *func_020fcd50(CampaignRecapTask *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);

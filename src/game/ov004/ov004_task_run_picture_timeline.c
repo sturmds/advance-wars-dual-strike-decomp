@@ -2,6 +2,7 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/brightness_fade.h"
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 extern u32 data_ov004_022bdc94[];       /* map bytes of a text BG by screen size */
@@ -35,7 +36,6 @@ BOOL Screen_IsAffineBg(int layer);
 void Gfx_RequestLayerCopy(int layer);
 void Palette_Flush(void);
 void *func_020fd1e0(int a, void *b, int c, int d, int e);
-void *func_020fcda0(int level, int frames);
 void *func_020fd0e8(int a, int b, int c, int d, int e, int f);
 void *func_020fd164(int a, int b, int c, int d);
 void func_020fd6d4(u8 *palettes, int first, int count, int level);
@@ -99,7 +99,7 @@ void Ov004Task_RunPictureTimeline(Ov004Task *task)
         id = task->duration++;
         Ov004_SetSlotTask(state, Task_Create(data_ov004_022be418, TASK_LIST(5)), id);
         id = task->duration++;
-        Ov004_SetSlotTask(state, func_020fcda0(5, 32), id);
+        Ov004_SetSlotTask(state, func_020fcda0(TASK_LIST(5), 32), id);
     }
     if (Ov004_CheckTimedEvent(state, 1, 108)) {
         LOAD_LAYER2_PICTURE(data_ov004_022bdd84, data_ov004_022bddf0, data_ov004_022bdd98);

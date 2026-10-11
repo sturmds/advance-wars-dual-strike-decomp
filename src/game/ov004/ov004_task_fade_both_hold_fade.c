@@ -2,13 +2,10 @@
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
 #include "game/screen_other_map.h"
+#include "game/brightness_fade.h"
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 
-Task *func_020fcdc8(Ov004Task *parent, int frames);
-Task *func_020fcda0(Ov004Task *parent, int frames);
-Task *func_020fcd78(Ov004Task *parent, int frames);
-Task *func_020fcd50(Ov004Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void Mem_Zero32(u32 value, void *dst, u32 size);

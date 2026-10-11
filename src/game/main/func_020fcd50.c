@@ -1,8 +1,7 @@
 #include "types.h"
+#include "game/brightness_fade.h"
 
-void func_020fcdf0(int level, int arg1, int arg2, int arg3, int arg4);
-
-void func_020fcd50(int level, int arg4)
+Task *func_020fcd50(void *parentOrList, int frames)
 {
-    func_020fcdf0(level, 1, 1, 0, arg4);
+    return func_020fcdf0(parentOrList, 1, 1, 0, frames);
 }

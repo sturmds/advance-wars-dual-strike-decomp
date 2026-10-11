@@ -3,11 +3,8 @@
 #include "game/screen_other_map.h"
 #include "game/task.h"
 #include "game/Unk_ov004_022bf158.h"
+#include "game/brightness_fade.h"
 
-Task *func_020fcd28(void *parentOrList, int frames);
-Task *func_020fcd00(void *parentOrList, int frames);
-Task *func_020fcd78(Ov004Task *parent, int frames);
-Task *func_020fcd50(Ov004Task *parent, int frames);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 BOOL func_020fd7b0(void);
