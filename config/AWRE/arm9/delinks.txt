@@ -1268,6 +1268,10 @@ src/game/main/text/number_draw_padded.c:
     complete
     .text       start:0x02014c78 end:0x02014d14
 
+src/game/main/text/number_draw.c:
+    complete
+    .text       start:0x02014d14 end:0x02014d88
+
 src/game/main/text/text_print_immediate.c:
     complete
     .text       start:0x02014d88 end:0x02014e58
