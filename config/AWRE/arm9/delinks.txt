@@ -6657,6 +6657,10 @@ src/game/main/ai/ai_site_pick_airport.c:
     complete
     .text       start:0x02095e0c end:0x02095f28
 
+src/game/main/ai/ai_build_slot_pick_safe_site.c:
+    complete
+    .text       start:0x0209622c end:0x02096378
+
 src/game/main/ai/ai_count_enemy_sub_reach.c:
     complete
     .text       start:0x020972f0 end:0x020973fc

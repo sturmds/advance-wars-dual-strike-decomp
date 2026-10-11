@@ -13,13 +13,13 @@ extern s8 data_0229e5c0[][12];
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_0209622c(void);
+int AiBuildSlot_PickSafeSite(void);
 void func_0209316c(int index);
 
 /* End-actions step 1. Like AiTurn_TryBuildFighter, for unit type 14
  * (UNIT_ANTI_AIR), but gated on the sea bit of domainsOwn, which does not fit
  * that type, and it also clears bit 1 of byte 3 in the record that
- * func_0209622c's pick refers to. Both are unexplained, so the name stays.
+ * AiBuildSlot_PickSafeSite's pick refers to. Both are unexplained, so the name stays.
  * Returns 1 when it queued an action. */
 BOOL func_02091eb0(void)
 {
@@ -35,7 +35,7 @@ BOOL func_02091eb0(void)
     if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_ANTI_AIR) * 10) > STATE->players[STATE->currentPlayer].funds) {
         return 0;
     }
-    index = func_0209622c();
+    index = AiBuildSlot_PickSafeSite();
     if (index == -1) {
         return 0;
     }

@@ -23,4 +23,15 @@ typedef struct AiBuildState {
 
 extern AiBuildState *data_021619c0;
 
+/* One 4-byte entry of data_0229e44c (count in AiBuildState.slotCount). Some
+ * files still declare it as Unk_0229e44c, so the array itself is declared by
+ * each user. */
+typedef struct AiBuildSlot {
+    u8 unk_00;
+    u8 unk_01;                         /* 0xff: the slot is used up (AiBuildSlot_PickSafeSite) */
+    u8 unk_02;
+    u8 unk_03_0 : 1;
+    u8 unk_03_1 : 1;                   /* AiBuildSlot_PickSafeSite only takes slots with this bit set */
+} AiBuildSlot;
+
 #endif

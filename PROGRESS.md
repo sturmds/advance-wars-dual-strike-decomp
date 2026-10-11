@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 4403 / 6598 | 948680 / 1531944 | 61.93% | 0 | 0 |
+| game | 4409 / 6598 | 951356 / 1531944 | 62.10% | 0 | 0 |
 | SDK/library | 138 / 881 | 3420 / 154050 | 2.22% | 1 | 30 |
-| all | 4541 / 7479 | 952100 / 1685994 | 56.47% | 1 | 30 |
+| all | 4547 / 7479 | 954776 / 1685994 | 56.63% | 1 | 30 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 3015 / 5180 | 517568 / 1082632 | 47.81% | 0 |
+| main | game | 3021 / 5180 | 520244 / 1082632 | 48.05% | 0 |
 | main | SDK/library | 111 / 768 | 2348 / 130618 | 1.80% | 1 |
 | itcm | SDK/library | 27 / 113 | 1072 / 23432 | 4.57% | 0 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -42,6 +42,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_unit_join_damaged_unit.c` | AiUnit_JoinDamagedUnit | 556 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/ai/func_02092350.c` | func_02092350 | 1584 |
+| `src/game/main/ai/func_02093ce8.c` | func_02093ce8 | 524 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/func_0200c898.c` | func_0200c898 | 128 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
