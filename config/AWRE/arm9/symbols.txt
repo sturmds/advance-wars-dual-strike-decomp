@@ -1863,7 +1863,7 @@ TagBreak_SetUpScreens kind:function(arm,size=0x1348) addr:0x02059d78
 ScreensFadeBothInFromWhite_Update kind:function(arm,size=0xd4) addr:0x0205b0c0
 ScreensFadeBothToWhite_Update kind:function(arm,size=0xdc) addr:0x0205b194
 TagBreak_FadeOutBlend kind:function(arm,size=0x74) addr:0x0205b270
-func_0205b2e4 kind:function(arm,size=0xa4) addr:0x0205b2e4
+TagBreak_StartSparks kind:function(arm,size=0xa4) addr:0x0205b2e4
 func_0205b388 kind:function(arm,size=0x74) addr:0x0205b388
 func_0205b3fc kind:function(arm,size=0xa4) addr:0x0205b3fc
 func_0205b4a0 kind:function(arm,size=0x1f8) addr:0x0205b4a0
@@ -8844,7 +8844,7 @@ data_0229ed30 kind:bss addr:0x0229ed30
 data_0229ef30 kind:bss addr:0x0229ef30
 data_0229f330 kind:bss addr:0x0229f330
 data_0229fb30 kind:bss addr:0x0229fb30
-data_0229fb50 kind:bss addr:0x0229fb50
+gTagBreakSparkPalette kind:bss addr:0x0229fb50
 data_0229fb70 kind:bss addr:0x0229fb70
 gTagChangePalette kind:bss addr:0x0229fb90
 data_0229ff30 kind:bss addr:0x0229ff30
