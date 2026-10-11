@@ -7,7 +7,7 @@ int CoSelectScreen_GetListCo(u8 slot);
 void Co_UnpackPicture(int co, int firstTile);
 void Sound_PlaySe(int id);
 void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
-void func_02044950(void);
+void CoSelectScreen_DrawSkillSlots(void);
 
 /* onSelect of a CO list button: puts the slot's CO into the cursor cell,
  * loads its picture (12 tiles per cell from tile 0x2c) and redraws. Keeps
@@ -24,5 +24,5 @@ void CoSelectScreen_SelectCoListSlot(MenuButton *button)
     if (!(gKeypad->repeat & (PAD_KEY_LEFT | PAD_KEY_RIGHT)) || (gKeypad->repeat & (PAD_KEY_UP | PAD_KEY_DOWN))) {
         data_0229c73c->listAnchor = data_0229c73c->unk_30;
     }
-    func_02044950();
+    CoSelectScreen_DrawSkillSlots();
 }

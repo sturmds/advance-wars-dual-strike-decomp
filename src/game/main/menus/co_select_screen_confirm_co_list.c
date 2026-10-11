@@ -10,7 +10,7 @@ void Sound_PlaySe(int id);
 BOOL CoSelect_CanLeaveBackCoEmpty(void);
 BOOL CoSelectScreen_IsCoInOtherCell(u8 co);         /* another cell holds co */
 void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
-void func_02044950(void);
+void CoSelectScreen_DrawSkillSlots(void);
 void CoSelectScreen_AddGridButtons(void);
 
 /* The CO of a grid cell, and its flags 6 bytes on. Needed to match: coGrid
@@ -51,7 +51,7 @@ void CoSelectScreen_ConfirmCoList(MenuButton *button)
                 /* each cell's picture takes 12 tiles from tile 0x2c on */
                 Co_UnpackPicture(CELL_CO(col, row), ((col - 1) * 2 + row) * 12 + 0x2c);
                 CoSelectScreen_RefreshCellSkills(col, row);
-                func_02044950();
+                CoSelectScreen_DrawSkillSlots();
                 goto close;
             }
         }

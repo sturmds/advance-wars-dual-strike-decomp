@@ -47,7 +47,7 @@ void func_0202b804(void *dest);
 void CoSelectScreen_AddButtons(void);
 void CoSelectScreen_RefreshCellSkills(u8 column, u8 row);
 void CoSelectScreen_ClearCellSkills(void);
-void func_02044950(void);
+void CoSelectScreen_DrawSkillSlots(void);
 void CoSelectScreen_LoadListTextures(void);
 int CoSelectScreen_RowTileY(int a0);
 int CoSelectScreen_ColumnTileX(u8 column);
@@ -134,7 +134,7 @@ void CoSelectScreen_Init(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
     Window_DrawOnLayer1(3, 18, 26, 6);
-    func_02044950();
+    CoSelectScreen_DrawSkillSlots();
     for (row = 0; row < data_0229c73c->rowCount; row++) {
         if (GRID_CO(data_0229c73c->cursorColumn, row) == 0) {
             /* 0x1b0 tiles of 32 bytes per row; needed to match: indexed by tile */
