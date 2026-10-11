@@ -9,7 +9,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 const u8 *Text_Get(u32 textId);
 void Task_ResumeScript(void *task);
 int func_021247ac(const u8 *str);  /* string length */
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);  /* sets OBJ affine matrix index */
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);  /* sets OBJ affine matrix index */
 int Ov003_DrawLetterAlt(int ch, u16 attr1, u16 attr0);  /* queues one letter, returns its width */
 int func_ov003_02363d5c(const u8 *str);  /* text width in pixels */
 
@@ -44,7 +44,7 @@ extern void *data_ov003_02365b0c;
             int d2 = DIVISOR(scaleX);                                                   \
             int d1 = DIVISOR(scaleY);                                                   \
             int d0 = DIVISOR(scaleX);                                                   \
-            func_02003250((n), HwDiv32(data_021389e8[64] * 16, d0),                     \
+            Oam_SetAffineParams((n), HwDiv32(data_021389e8[64] * 16, d0),                     \
                           HwDiv32(-data_021389e8[0] * 16, d1),                          \
                           HwDiv32(data_021389e8[0] * 16, d2),                           \
                           HwDiv32(data_021389e8[64] * 16, d3));                         \

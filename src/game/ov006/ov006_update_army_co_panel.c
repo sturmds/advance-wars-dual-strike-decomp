@@ -4,7 +4,7 @@
 #include "game/Unk_ov006_0235f690.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
@@ -60,7 +60,7 @@ extern const char data_ov006_0236b8b4[];   /* "001" */
         cosValue = data_021389e8[64] * 16;                                             \
         sinValue = data_021389e8[0];                                                   \
                                                                                        \
-        func_02003250(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),           \
+        Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),           \
                       HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));              \
     }
 

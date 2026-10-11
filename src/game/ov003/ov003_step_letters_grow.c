@@ -8,7 +8,7 @@ extern const s16 data_021389e8[];
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void func_0202a2c4(u8 letter, u16 x, int y, int arg3, int list);
 s16 func_0202a3c8(u8 letter);
 void Task_ResumeScript(Unk_ov003_0235dd38 *task);
@@ -51,7 +51,7 @@ void Ov003_StepLettersGrow(Unk_ov003_0235dd38 *task)
                 int cosValue = data_021389e8[64] * 16;
                 int sinPos = data_021389e8[0] * 16;
                 int sinNeg = -data_021389e8[0] * 16;
-                func_02003250(i + 1, HwDiv32(cosValue, d0), HwDiv32(sinNeg, d1),
+                Oam_SetAffineParams(i + 1, HwDiv32(cosValue, d0), HwDiv32(sinNeg, d1),
                               HwDiv32(sinPos, d2), HwDiv32(cosValue, d3));
             }
             func_0202a2c4(i, (func_0202a3c8(i) & 0x1ff) | ((i + 1) << 9), 0x350, 0, 2);

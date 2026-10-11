@@ -4,7 +4,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 extern u8 data_027c0028;
 extern s16 data_021389e8[];
@@ -38,7 +38,7 @@ void DigitSprite_QueuePopIn(int x, int y, int digit, int matrixIndex, int frame)
         int cosValue = data_021389e8[64] * 16;
         int sinValue = data_021389e8[0];
 
-        func_02003250(matrixIndex, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+        Oam_SetAffineParams(matrixIndex, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                       HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     }
     list -= (scale - 0x100) >> 6;

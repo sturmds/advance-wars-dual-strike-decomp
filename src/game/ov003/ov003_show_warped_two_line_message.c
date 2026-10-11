@@ -10,7 +10,7 @@ const u8 *Text_Get(u32 textId);
 int func_021247ac(const u8 *str);
 int func_ov003_02363d5c(const u8 *str);
 int Ov003_DrawLetterAlt(u8 ch, u16 x, u16 y);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Ov003MessageTask *task);
 
 extern s16 data_021389e8[];
@@ -53,7 +53,7 @@ void Ov003_ShowWarpedTwoLineMessage(Ov003MessageTask *task)
     d0 = DIVISOR(scaleX);
     cosValue = data_021389e8[64] * 16;
     sinValue = data_021389e8[0];
-    func_02003250(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
+    Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     topX = 128 - (func_ov003_02363d5c(Text_Get(MESSAGE_TOP_TEXT)) >> 1);
     for (topChar = 0; topChar < func_021247ac(Text_Get(MESSAGE_TOP_TEXT)); topChar++) {

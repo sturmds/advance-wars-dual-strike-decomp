@@ -15,6 +15,20 @@ typedef struct OamRegion {
     u32 unk_0c;
 } OamRegion;
 
+/* Rotation and scaling matrix of an OBJ. The hardware keeps each of the four
+ * values in the unused attribute 3 of one entry, so a group spans four
+ * entries (32 bytes): group n is entries 4n to 4n+3. */
+typedef struct OamAffineGroup {
+    u16 pad_00[3];
+    s16 pa;
+    u16 pad_08[3];
+    s16 pb;
+    u16 pad_10[3];
+    s16 pc;
+    u16 pad_18[3];
+    s16 pd;
+} OamAffineGroup;
+
 /* Pointed to by Unk_027c0280.oamBuffer. Starts with the sprite entries. */
 typedef struct OamBuffer {
     u8 entries[0x600];                 /* 128 entries of 8 bytes, then affine data */

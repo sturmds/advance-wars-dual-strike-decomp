@@ -260,6 +260,10 @@ src/game/main/graphics/palette_flush.c:
     complete
     .text       start:0x020031bc end:0x02003250
 
+src/game/main/graphics/oam_set_affine_params.c:
+    complete
+    .text       start:0x02003250 end:0x020032a8
+
 src/game/main/func_020032a8.c:
     complete
     .text       start:0x020032a8 end:0x020032c8

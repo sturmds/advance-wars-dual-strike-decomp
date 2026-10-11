@@ -5,7 +5,7 @@
 
 s32 HwDiv32(s32 numer, s32 denom);
 int MainLoop_GetFrameCount(void);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 extern s16 data_021389e8[];
 
@@ -83,7 +83,7 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         sinValue = data_021389e8[0];
         negSin = -sinValue * 16;
         sinValue = sinValue * 16;
-        func_02003250(1, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
+        Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
     {
@@ -92,7 +92,7 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         int d1 = DIVISOR(scale2);
         int d0 = DIVISOR(scale2);
 
-        func_02003250(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
+        Oam_SetAffineParams(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
     work->subObjects[0]->unk_24 = 0xc7a0;
@@ -118,7 +118,7 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         int d1 = DIVISOR(scale1);
         int d0 = DIVISOR(scale1);
 
-        func_02003250(1, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
+        Oam_SetAffineParams(1, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
     {
@@ -127,7 +127,7 @@ void Ov005_UpdateSoundRoomSprites(Unk_ov005_0236bbac *work)
         int d1 = DIVISOR(scale2);
         int d0 = DIVISOR(scale2);
 
-        func_02003250(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
+        Oam_SetAffineParams(2, HwDiv32(cosValue, d0), HwDiv32(negSin, d1), HwDiv32(sinValue, d2),
                       HwDiv32(cosValue, d3));
     }
     work->mainObjects[0]->unk_24 = 0xb380;

@@ -2,7 +2,7 @@
 #include "game/ov003_unit.h"
 
 s32 HwDiv32(s32 numer, s32 denom);
-void func_02003250(int index, s16 pa, s16 pb, s16 pc, s16 pd);
+void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 
 extern s16 data_021389e8[];
 
@@ -14,7 +14,7 @@ void Ov003_ResetSpriteMatrix(void)
     int cosValue = data_021389e8[64] * 16;
     int sinValue = data_021389e8[0];
 
-    func_02003250(0, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, 256),
+    Oam_SetAffineParams(0, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, 256),
                   HwDiv32(sinValue * 16, 256), HwDiv32(cosValue, 256));
     ((Ov003NibblePair *)&data_ov003_02364928->unk_1da)->high = 0;
 }
