@@ -5748,6 +5748,10 @@ src/game/main/menus/force_rank_screen_mark_chosen_skills.c:
     complete
     .text       start:0x02040930 end:0x02040a38
 
+src/game/main/menus/force_rank_screen_draw_column_heads.c:
+    complete
+    .text       start:0x02040a38 end:0x02040b04
+
 src/game/main/menus/force_rank_screen_draw_rank.c:
     complete
     .text       start:0x02040b04 end:0x02040c34
