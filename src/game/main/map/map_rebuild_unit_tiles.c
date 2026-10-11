@@ -8,7 +8,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Map_RebuildVision(void);
-BOOL func_020c8ff8(u16 unitSlot);      /* guess: the unit is not hidden from the current player */
+BOOL UnitSlot_IsVisible(u16 unitSlot);      /* guess: the unit is not hidden from the current player */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
@@ -63,7 +63,7 @@ void Map_RebuildUnitTiles(void)
     for (i = 1; i < 256; i++) {
         if (GAME->units[i].type != UNIT_NONE && !(GAME->units[i].flags & MAP_UNIT_SELECTED)
             && GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_AI) {
-            if (!func_020c8ff8(i) || GAME->mapTiles->inSight[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] == 0) {
+            if (!UnitSlot_IsVisible(i) || GAME->mapTiles->inSight[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] == 0) {
                 GAME->mapTiles->unitAt[TILE_INDEX(GAME->units[i].x, GAME->units[i].y)] = 0;
             }
         }

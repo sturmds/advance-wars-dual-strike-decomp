@@ -9,7 +9,7 @@ extern int data_027c0284;
 extern Unk_02080440 *data_027c027c;
 
 void func_020f7cac(u16 x, u16 y);
-BOOL func_020c8ff8(int slot);
+BOOL UnitSlot_IsVisible(int slot);
 u16 *Bg_GetMapEntry(int layer, int x, int y);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void func_020f7da0(u16 *entry, int type, int look, u8 carrying, u8 capture, u16 shownHp, u16 dived, u8 hpHidden,
@@ -45,7 +45,7 @@ void func_020f79a8(int x, int y)
     tiles = STATE_IDX_FIRST->mapTiles;
     idx = x + tiles->rowStart[y];
     slot = tiles->unk_508[idx];
-    if (slot == 0 || tiles->unk_2338[idx] == 0 || !func_020c8ff8(slot)
+    if (slot == 0 || tiles->unk_2338[idx] == 0 || !UnitSlot_IsVisible(slot)
         || ((units = STATE->units)[slot].flags & MAP_UNIT_LOCKED)) {
         func_020f7cac(x, y);
         return;

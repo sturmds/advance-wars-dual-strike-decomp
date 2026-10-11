@@ -13512,6 +13512,10 @@ src/game/main/map/map_is_team_unit_at.c:
     complete
     .text       start:0x020c8f14 end:0x020c8ff8
 
+src/game/main/map/unit_slot_is_visible.c:
+    complete
+    .text       start:0x020c8ff8 end:0x020c903c
+
 src/game/main/map/unit_is_visible_to_active_players.c:
     complete
     .text       start:0x020c903c end:0x020c9228
