@@ -4,7 +4,6 @@
 
 void Screen_SetBgMode(int bgMode);
 void Screen_InitLayers(const GfxLayer *config);
-void func_0210b7a4(int color, int alpha, int depth, int polygonId, BOOL fog);   /* SDK G3X_SetClearColor */
 
 extern Unk_027c0280 *data_027c0280;
 extern GfxLayer Ov002_gBattleLayerConfig[4];
@@ -17,7 +16,7 @@ void Battle_InitScreenWindows(void)
     Screen_SetBgMode(0);
     Screen_InitLayers(Ov002_gBattleLayerConfig);
     *REG_DISP3DCNT = (*REG_DISP3DCNT & ~0x3000) | 0x10;   /* acknowledge the overflow flags, anti-aliasing on */
-    func_0210b7a4(0x2bea, 0, 0x7fff, 63, FALSE);
+    G3X_SetClearColor(0x2bea, 0, 0x7fff, 63, FALSE);
     *REG_DISPCNT &= ~0x07000000;       /* BG character base offset 0 */
     *REG_DISPCNT &= ~0x38000000;       /* BG screen base offset 0 */
     data_027c0280->dispCnt |= 0x100;   /* BG0-BG3 and OBJ on */

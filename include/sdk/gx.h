@@ -110,6 +110,9 @@
 #define GXSTAT_MTX_STACK_ERROR_ACK 0x8000 /* written 1 to clear the error */
 #define GXSTAT_GEOMETRY_BUSY 0x08000000
 #define REG_GXFIFO ((volatile u32 *)0x04000400)
+#define REG_CLEAR_COLOR ((volatile u32 *)0x04000350)
+#define REG_CLEAR_DEPTH ((volatile u16 *)0x04000354)
+#define CLEAR_COLOR_FOG 0x8000
 
 /* MTX_MODE values. */
 #define GX_MTXMODE_PROJECTION 0
@@ -129,6 +132,7 @@ int G3X_GetMtxStackLevelPV(int *level);
 void G3X_ResetMtxStack(void);
 void G3X_InitMtxStack(void);
 void G3X_ClearFifo(void);
+void G3X_SetClearColor(int color, int alpha, int depth, int polygonId, BOOL fog);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
 
 /* 3D engine registers. */
