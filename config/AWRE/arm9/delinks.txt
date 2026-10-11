@@ -6311,6 +6311,10 @@ src/game/main/ai/ai_sea_transport_go_to_foot_unit.c:
     complete
     .text       start:0x020b3c84 end:0x020b4138
 
+src/game/main/ai/ai_sea_transport_pick_boarding_tile.c:
+    complete
+    .text       start:0x020b4138 end:0x020b445c
+
 src/game/main/ai/ai_sea_transport_find_pickup_tile.c:
     complete
     .text       start:0x020b445c end:0x020b46c4

@@ -15,7 +15,7 @@ s32 HwDiv32(s32 numerator, s32 denominator);
 BOOL Unit_IsCurrentPlayers(int unitSlot);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 int AiSeaTransport_FindPickupTile(int x, int y, s16 *dest);
-int func_020b4138(MapUnit *unit, s16 *dest);
+int AiSeaTransport_PickBoardingTile(MapUnit *unit, s16 *dest);
 void AiUnit_MoveTowardTile(int x, int y);
 void AiBlackBoat_GoToUnitInNeed(void);
 void AiBlackBoat_RepairDamagedUnit(void);
@@ -133,7 +133,7 @@ void AiSeaTransport_GoToFootUnit(void)
             bestY = unit->y;
         }
     }
-    if (bestX != -1 && func_020b4138(&STATE->units[MAP->unitAt[TILE_INDEX(bestX, bestY)]], dest) == 1) {
+    if (bestX != -1 && AiSeaTransport_PickBoardingTile(&STATE->units[MAP->unitAt[TILE_INDEX(bestX, bestY)]], dest) == 1) {
         gAiTransportsSentToUnit[MAP->unitAt[TILE_INDEX(bestX, bestY)] & 63]++;
         if (MAP->unitAt[TILE_INDEX(dest[0], dest[1])] == 0 && STATE->rangeMap[dest[1]][dest[0]] <= gAiTurnState->unk_05) {
             AiUnit_PerformAction(dest[0], dest[1], AI_ACTION_WAIT, 0, 0);
