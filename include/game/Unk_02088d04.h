@@ -148,7 +148,7 @@ typedef struct Unk_027c0280 {
     u8 layer0Bg;
     u8 pad_e2[0xe4 - 0xe2];
     u8 *unk_e4;                        /* tile data that the digit font loads into */
-    u8 pad_e8[0xec - 0xe8];
+    void *unk_e8;                      /* where TransferQueue_Add copies layer0Map to (VRAM) */
     u16 *layer0Map;
     u8 pad_f0[0xf5 - 0xf0];
     u8 layer1Bg;

@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void func_0201eda8(Task *task);
+void PopupMenu_DestroyCommon(Task *task);
 void PopupMenu_ClearBox(int unused0, int unused1, int unused2, int unused3);
 void func_020f79a4(void);
 void MenuDepth_Pop(void);
@@ -14,7 +14,7 @@ void MenuDepth_Pop(void);
  * second hook and closes one menu level. */
 void PopupMenu_DestroyStyle1(Task *task)
 {
-    func_0201eda8(task);
+    PopupMenu_DestroyCommon(task);
     PopupMenu_ClearBox(0, 1, 6, 12);
     if (data_027c027c->unk_50[data_027c0284]->second != NULL) {
         data_027c027c->unk_50[data_027c0284]->second();
