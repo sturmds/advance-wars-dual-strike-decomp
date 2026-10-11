@@ -5,10 +5,10 @@
 extern Unk_02080440 *data_027c027c;
 
 BOOL ScriptSlot_AnyPending(void);
-void func_020171cc(void);
+void ScriptSlot_RunPendingByPriority(void);
 
-/* Flags every used slot, then calls func_020171cc until no flagged slot is left.
- * func_020171cc runs the flagged slots through ScriptSlot_RunPending. */
+/* Flags every used slot, then runs the flagged ones in priority order
+ * (ScriptSlot_RunPendingByPriority) until no flagged slot is left. */
 void ScriptSlot_RunAll(void)
 {
     u8 i;
@@ -19,6 +19,6 @@ void ScriptSlot_RunAll(void)
         }
     }
     do {
-        func_020171cc();
+        ScriptSlot_RunPendingByPriority();
     } while (ScriptSlot_AnyPending());
 }

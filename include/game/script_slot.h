@@ -21,7 +21,8 @@ typedef struct ScriptSlot {
     void (*onStop)(struct ScriptSlot *slot);   /* called when the slot is stopped */
     u16 wait;                          /* frames left before the next command */
     u16 unk_12;                        /* set to 4 when a script starts, before its first run */
-    u8 pad_14[0x18 - 0x14];
+    u8 priority;                       /* low 7 bits: slots with lower values run first */
+    u8 pad_15[0x18 - 0x15];
     u16 *textEntry;                    /* text printer: screen map entry the effect draws at */
     u8 pad_1c[2];
     u16 unk_1e;                        /* text printer effects: mode (0 or 1); 10 for the code 14 slot */
