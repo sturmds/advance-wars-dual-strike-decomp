@@ -520,7 +520,7 @@ TextPrinter_GetCursorEntry kind:function(arm,size=0x18) addr:0x02015ee0
 func_02015ef8 kind:function(arm,size=0x4) addr:0x02015ef8
 func_02015efc kind:function(arm,size=0x54) addr:0x02015efc
 func_02015f50 kind:function(arm,size=0x54) addr:0x02015f50
-func_02015fa4 kind:function(arm,size=0x338) addr:0x02015fa4
+ScriptSlot_CmdMoveArc kind:function(arm,size=0x338) addr:0x02015fa4
 func_020162dc kind:function(arm,size=0x11c) addr:0x020162dc
 func_020163f8 kind:function(arm,size=0x118) addr:0x020163f8
 func_02016510 kind:function(arm,size=0x11c) addr:0x02016510
@@ -5924,11 +5924,11 @@ _fadd kind:function(arm,size=0x460) addr:0x02126cd4
 func_02127134 kind:function(arm,size=0x9e4) addr:0x02127134
 .L_0212769c kind:label(arm) addr:0x0212769c
 .L_02127788 kind:label(arm) addr:0x02127788
-func_02127cac kind:function(arm,size=0x380) addr:0x02127cac
+_fdiv kind:function(arm,size=0x380) addr:0x02127cac
 _ffix kind:function(arm,size=0x9c) addr:0x0212839c
 func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
-func_021285e0 kind:function(arm,size=0x1ec) addr:0x021285e0
-func_02128acc kind:function(arm,size=0x448) addr:0x02128acc
+_fmul kind:function(arm,size=0x1ec) addr:0x021285e0
+_fsub kind:function(arm,size=0x448) addr:0x02128acc
 func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
 .L_02128f20 kind:label(arm) addr:0x02128f20
 func_02128f6c kind:function(arm,size=0x1b0) addr:0x02128f6c

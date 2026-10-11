@@ -51,6 +51,33 @@ typedef struct MapScrollSlot {
     u8 pad_2e[0x60 - 0x2e];
 } MapScrollSlot;
 
+/* Argument block of the arc move command (ScriptSlot_CmdMoveArc),
+ * reached through ScriptCommand.arg. */
+typedef struct ArcMoveArgs {
+    float dx;                          /* target, relative to the start position */
+    float dy;
+    float velX;                        /* constant horizontal speed per frame */
+    float gravity;                     /* added to velY every frame */
+} ArcMoveArgs;
+
+/* The same slot as the arc move command uses it. */
+typedef struct ArcMoveSlot {
+    ScriptCommand *start;
+    ScriptCommand *pc;
+    u8 pad_08[0x38 - 0x08];
+    s16 started;                       /* 0: read the start position on the next run */
+    u8 pad_3a[2];
+    float x;
+    float y;
+    float targetX;
+    float targetY;
+    float velX;
+    float velY;
+    float accelX;
+    float accelY;
+    int framesLeft;
+} ArcMoveSlot;
+
 /* Runs one command of the slot; nonzero: run the next one this frame too. */
 typedef BOOL (*ScriptCommandFunc)(int slot);
 
