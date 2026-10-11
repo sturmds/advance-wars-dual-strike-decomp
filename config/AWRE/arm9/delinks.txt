@@ -8888,6 +8888,10 @@ src/game/main/weather/weather_fx_init_rain.c:
     complete
     .text       start:0x020d2378 end:0x020d249c
 
+src/game/main/weather/weather_fx_init_snow.c:
+    complete
+    .text       start:0x020d249c end:0x020d25b4
+
 src/game/main/weather/weather_set.c:
     complete
     .text       start:0x020d2aa8 end:0x020d2ae4

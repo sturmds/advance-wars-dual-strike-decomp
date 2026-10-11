@@ -3803,7 +3803,7 @@ func_020d2190 kind:function(arm,size=0x4) addr:0x020d2190
 Weather_ResetCooldowns kind:function(arm,size=0xcc) addr:0x020d2194
 WeatherFx_InitSand kind:function(arm,size=0x118) addr:0x020d2260
 WeatherFx_InitRain kind:function(arm,size=0x124) addr:0x020d2378
-func_020d249c kind:function(arm,size=0x118) addr:0x020d249c
+WeatherFx_InitSnow kind:function(arm,size=0x118) addr:0x020d249c
 func_020d25b4 kind:function(arm,size=0x1e0) addr:0x020d25b4
 func_020d2794 kind:function(arm,size=0x184) addr:0x020d2794
 func_020d2918 kind:function(arm,size=0xa8) addr:0x020d2918
@@ -7685,7 +7685,7 @@ gWeatherSnowSprites kind:data(any) addr:0x02166d00
 data_02166d18 kind:data(any) addr:0x02166d18
 gWeatherSandFileName kind:data(any) addr:0x02166d78
 gWeatherRainFileName kind:data(any) addr:0x02166d7c
-data_02166d80 kind:data(any) addr:0x02166d80
+gWeatherSnowFileName kind:data(any) addr:0x02166d80
 data_02166d84 kind:data(any) addr:0x02166d84
 data_02166d8c kind:data(any) addr:0x02166d8c
 data_02166d90 kind:data(any) addr:0x02166d90
