@@ -12992,6 +12992,10 @@ src/game/main/sound/sound_strm_start.c:
     complete
     .text       start:0x02105cb4 end:0x02105d10
 
+src/game/main/sound/sound_strm_unlock_channels.c:
+    complete
+    .text       start:0x02105ee0 end:0x02105f10
+
 src/game/main/sound/sound_output_restart.c:
     complete
     .text       start:0x02105ff8 end:0x02106098
