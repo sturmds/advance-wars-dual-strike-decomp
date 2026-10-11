@@ -600,6 +600,10 @@ src/game/main/screen/window_wipe_start_hide.c:
     complete
     .text       start:0x02006824 end:0x02006a20
 
+src/game/main/screen/window_wipe_build_center_out.c:
+    complete
+    .text       start:0x02006ae0 end:0x02006c1c
+
 src/game/main/func_020076f8.c:
     complete
     .text       start:0x020076f8 end:0x02007710

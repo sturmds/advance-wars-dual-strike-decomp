@@ -8,11 +8,11 @@ BOOL func_02003d84(Task *task);
 void func_020036dc(const void *src, volatile void *dest, volatile void *dest2, int unk34, int unk36, void (*callback)(void));
 void DmaTask_Start(const void *src, volatile void *dest, int unk34, int unk36, void (*callback)(void));
 void Screen_EnableEmptyWindows(void);
-void func_02006ae0(void);
+void WindowWipe_BuildCenterOut(void);
 
 /* Task step: starts a wipe that hides the chosen screens behind window 0.
- * Window 0 shows no layers; func_02006ae0 widens it line by line from the
- * middle rows outwards while an H-blank DMA task feeds WIN0H. */
+ * Window 0 shows no layers; WindowWipe_BuildCenterOut widens it line by
+ * line from the middle rows outwards while an H-blank DMA task feeds WIN0H. */
 void WindowWipe_StartHide(Task *task)
 {
     Unk_027c0280 *saved0280;
@@ -46,13 +46,13 @@ void WindowWipe_StartHide(Task *task)
     data_0216e2a8 = 0;
     switch (func_020076f8()) {
     case WIPE_SCREEN_BOTH:
-        func_020036dc(data_0216e338, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, func_02006ae0);
+        func_020036dc(data_0216e338, REG_WIN0H, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     case WIPE_SCREEN_MAIN:
-        DmaTask_Start(data_0216e338, REG_WIN0H, 1, 0xa240, func_02006ae0);
+        DmaTask_Start(data_0216e338, REG_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     case WIPE_SCREEN_SUB:
-        DmaTask_Start(data_0216e338, REG_DB_WIN0H, 1, 0xa240, func_02006ae0);
+        DmaTask_Start(data_0216e338, REG_DB_WIN0H, 1, 0xa240, WindowWipe_BuildCenterOut);
         break;
     }
 }
