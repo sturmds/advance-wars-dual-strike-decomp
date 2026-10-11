@@ -6,7 +6,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
-void func_020cae6c(u16 x, u16 y, int value);
+void Oam_PutSmallNumber(u16 x, u16 y, int value);
 int Ov006_CountPropertyTilesMatching(int tile);
 
 typedef struct RowShapes {
@@ -82,7 +82,7 @@ void Ov006_DrawPropertyCounts(void)
                 if (row > 0) {
                     count = Ov006_CountPropertyTilesMatching(tiles.tile[i]);
                     if (count != 0) {
-                        func_020cae6c((x + 9) & 0x1ff, (y + 25) & 0xff, count);
+                        Oam_PutSmallNumber((x + 9) & 0x1ff, (y + 25) & 0xff, count);
                     }
                     Oam_PutSprite(x & 0x1ff, (y & 0xff) | DIMMED(count), rowShapes.shape[row], palette << 12);
                 }
@@ -90,7 +90,7 @@ void Ov006_DrawPropertyCounts(void)
                 tile = tiles.tile[i];
                 count = Ov006_CountPropertyTilesMatching(tile);
                 if (count != 0) {
-                    func_020cae6c((x + 9) & 0x1ff, (y + 25) & 0xff, count);
+                    Oam_PutSmallNumber((x + 9) & 0x1ff, (y + 25) & 0xff, count);
                 }
                 /* needed to match: an if, not a ternary */
                 tileOffset = 0;
@@ -109,33 +109,33 @@ void Ov006_DrawPropertyCounts(void)
 
     count = Ov006_CountPropertyTilesMatching(17);
     if (count != 0) {
-        func_020cae6c(144, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(144, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(136, ((y - 2) & 0xff) | DIMMED(count), data_ov006_0236a9f0, 0x9000);
     count = Ov006_CountPropertyTilesMatching(16);
     if (count != 0) {
-        func_020cae6c(164, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(164, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(156, ((y - 2) & 0xff) | DIMMED(count), data_ov006_0236aa30, 0xa000);
 
     count = (s8)OV6->unk_2c[0];
     if (count != 0) {
-        func_020cae6c(182, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(182, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(174, ((y + 10) & 0xff) | DIMMED(count), data_ov006_0236aa00, 0xb000);
     count = (s8)OV6->unk_2c[1];
     if (count != 0) {
-        func_020cae6c(202, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(202, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(194, ((y + 10) & 0xff) | DIMMED(count), data_ov006_0236aa28, 0xc000);
     count = (s8)OV6->unk_2c[2];
     if (count != 0) {
-        func_020cae6c(222, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(222, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(214, ((y + 10) & 0xff) | DIMMED(count), data_ov006_0236aa18, 0xd000);
     count = (s8)OV6->unk_2c[3];
     if (count != 0) {
-        func_020cae6c(242, (y + 22) & 0xff, count);
+        Oam_PutSmallNumber(242, (y + 22) & 0xff, count);
     }
     Oam_PutSprite(234, ((y + 10) & 0xff) | DIMMED(count), data_ov006_0236a9e8, 0xe000);
 

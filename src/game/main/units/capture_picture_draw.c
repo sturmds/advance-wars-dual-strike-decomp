@@ -6,7 +6,7 @@ extern s16 data_021389e8[];
 
 s32 HwDiv32(s32 numer, s32 denom);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void func_020cae6c(u16 x, u16 y, int value);
+void Oam_PutSmallNumber(u16 x, u16 y, int value);
 
 /* Frame step of the capture picture task: places the three sprites at
  * (x, y) and squashes affine matrix 3 vertically to (20 - points) / 20, so
@@ -39,5 +39,5 @@ void CapturePicture_Draw(CapturePictureTask *task)
     sinValue = data_021389e8[0];
     Oam_SetAffineParams(3, HwDiv32(cosValue, 256), HwDiv32(-sinValue * 16, d0),
                         HwDiv32(sinValue * 16, 256), HwDiv32(cosValue, d1));
-    func_020cae6c(x, y - 12, 20 - task->points);
+    Oam_PutSmallNumber(x, y - 12, 20 - task->points);
 }

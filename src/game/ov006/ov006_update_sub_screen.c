@@ -9,7 +9,7 @@ void Ov006_QueueScreen1Sprites(void);
 int Ov006_IsMapPlayable(void);
 int func_0210a184(int a, int b);
 BOOL func_020219e4(void *sprites, int frame, int a, int x, int y, int attr, int b, int c);
-void func_020cae6c(u16 x, u16 y, int value);
+void Oam_PutSmallNumber(u16 x, u16 y, int value);
 void func_01ff8b18(int x, int y);
 void func_01ff8b9c(int x, int y);
 void DesignMap_DrawTemplatePreview(int a, int b, int c, int d);
@@ -54,13 +54,13 @@ void Ov006_UpdateSubScreen(void)
         OV6->unk_58 = -0x28000;
     }
     func_020219e4(OV6->unk_70, 2, 0, 10, 145, 0xf2b0, 0, 0);
-    func_020cae6c(18, 153, OV6->unk_0e + 1);
+    Oam_PutSmallNumber(18, 153, OV6->unk_0e + 1);
     func_020219e4(OV6->unk_70, 1, 0, 10, 167, 0xf2b0, 0, 0);
-    func_020cae6c(18, 175, OV6->unk_10 + 1);
+    Oam_PutSmallNumber(18, 175, OV6->unk_10 + 1);
     func_020219e4(OV6->unk_70, 3, 0, 26, 138, 0xf2b0, 0, 0);
-    func_020cae6c(58, 137, 50 - (s8)OV6->unk_2c[OV6->unk_24 - 1]);
+    Oam_PutSmallNumber(58, 137, 50 - (s8)OV6->unk_2c[OV6->unk_24 - 1]);
     func_020219e4(OV6->unk_70, 3, 0, 70, 138, 0xf2b0, 0, 0);
-    func_020cae6c(102, 137, 60 - (s8)OV6->unk_2b);
+    Oam_PutSmallNumber(102, 137, 60 - (s8)OV6->unk_2b);
     func_01ff8b18(0, (OV6->unk_54 >> 12) & 0xff);
     /* the original adds a double: _dflt, _dadd, _dfix */
     OV6->unk_54 += 2048.0;
