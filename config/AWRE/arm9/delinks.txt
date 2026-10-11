@@ -11695,6 +11695,10 @@ src/game/main/units/black_bomb_explosion_start_blast.c:
     complete
     .text       start:0x020ebcc0 end:0x020ebcf8
 
+src/game/main/units/black_bomb_remove_acting_unit.c:
+    complete
+    .text       start:0x020ebcf8 end:0x020ebd4c
+
 src/game/main/units/black_bomb_confirm_explode_step.c:
     complete
     .text       start:0x020ebd4c end:0x020ebecc
