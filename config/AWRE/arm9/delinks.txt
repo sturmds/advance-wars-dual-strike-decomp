@@ -2221,6 +2221,10 @@ src/game/main/script/battle_resume_from_save.c:
     complete
     .text       start:0x02017d28 end:0x02017de0
 
+src/game/main/map/map_refresh_after_restore.c:
+    complete
+    .text       start:0x02017de0 end:0x02017f08
+
 src/game/main/battle_save_load_map.c:
     complete
     .text       start:0x02017f08 end:0x02018484
