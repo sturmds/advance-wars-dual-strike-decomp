@@ -13,7 +13,7 @@ extern u8 data_022977d0[];
 #define CHOICE_LAST 3                  /* also where B puts the cursor */
 
 u16 func_0201a160(void);
-u16 func_02024a98(void *buttons, int count);
+u16 Touch_TestButtonRects(void *buttons, int count);
 void func_020d31f4(void);
 void EventChoice_DrawRecord(int choice, int x, int y);
 void func_0201a4f0(Task *task);
@@ -38,7 +38,7 @@ void EventChoice_Update(Task *task)
     int oldCursor;
 
     keys = func_0201a160();
-    touched = func_02024a98(data_022977d0, 4);
+    touched = Touch_TestButtonRects(data_022977d0, 4);
     func_020d31f4();
     oldCursor = CURSOR(task);
     if (keys & CHOICE_KEY_CANCEL) {

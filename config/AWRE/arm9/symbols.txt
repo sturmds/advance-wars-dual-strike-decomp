@@ -1012,7 +1012,7 @@ BattleRecord_ClearAll kind:function(arm,size=0x10c) addr:0x020248fc
 ChoicePrompt_GetKeys kind:function(arm,size=0x38) addr:0x02024a08
 func_02024a40 kind:function(arm,size=0x2c) addr:0x02024a40
 func_02024a6c kind:function(arm,size=0x2c) addr:0x02024a6c
-func_02024a98 kind:function(arm,size=0x12c) addr:0x02024a98
+Touch_TestButtonRects kind:function(arm,size=0x12c) addr:0x02024a98
 Rects_FindHitBit kind:function(arm,size=0x64) addr:0x02024bc4
 func_02024c28 kind:function(arm,size=0x17c) addr:0x02024c28
 ChoicePrompt_FindTouchedOption kind:function(arm,size=0x5c) addr:0x02024da4
@@ -8710,7 +8710,7 @@ gTextDrawTilePixel kind:bss addr:0x0229b07c
 data_0229b080 kind:bss addr:0x0229b080
 gTaskSystemReady kind:bss addr:0x0229b380
 data_0229b384 kind:bss addr:0x0229b384
-data_0229b388 kind:bss addr:0x0229b388
+gTouchPressedButton kind:bss addr:0x0229b388
 data_0229b38c kind:bss addr:0x0229b38c
 gMenuButtons kind:bss addr:0x0229b3b0
 gMenuButtonReserved kind:bss addr:0x0229c634
