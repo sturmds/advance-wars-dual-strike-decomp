@@ -2144,6 +2144,7 @@ src/game/main/index_from_number.c:
     .text       start:0x0201c9f4 end:0x0201ca04
 
 src/game/main/script/event_script_load_co_picture.c:
+    complete
     .text       start:0x0201ca04 end:0x0201cac0
 
 src/game/main/func_0201ce1c.c:
