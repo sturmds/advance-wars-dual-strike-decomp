@@ -5138,6 +5138,10 @@ src/game/main/func_02055074.c:
     complete
     .text       start:0x02055074 end:0x020550e8
 
+src/game/main/copowers/co_power_screen_grow_out_name.c:
+    complete
+    .text       start:0x0205515c end:0x020553cc
+
 src/game/main/screen/screen_fade_in_from_black_update.c:
     complete
     .text       start:0x02055714 end:0x02055788
