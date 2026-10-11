@@ -16,6 +16,6 @@ void PlayerInfo_ToggleLastPageView(MenuButton *button)
         return;
     }
     Sound_PlaySe(0x10006);
-    MENU->unk_0206d67c.unk_0a4++;
-    MENU->unk_0206d67c.unk_0a4 &= 1;
+    MENU->unk_0206d67c.lastPageView++;
+    MENU->unk_0206d67c.lastPageView &= 1;
 }

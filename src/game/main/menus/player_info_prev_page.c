@@ -6,7 +6,7 @@ extern MenuState gMenuState;
 extern MenuButtonTemplate data_0215d358;
 
 void Sound_PlaySe(u32 soundId);
-void func_0206d5b4(void);
+void PlayerInfo_StartRedrawTask(void);
 
 /* Turns the player info screen to the previous page. The previous page button
  * (253) goes away on page 0; leaving the last page brings back the next page
@@ -28,5 +28,5 @@ void PlayerInfo_PrevPage(MenuButton *button)
     if (gMenuState.unk_0206d67c.page == 2) {
         MenuButton_Close(251);
     }
-    func_0206d5b4();
+    PlayerInfo_StartRedrawTask();
 }

@@ -18,9 +18,9 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int
 
 /* Per-frame callback of the player info sprite task, drawn on the screen of data_027c0288.unk_04.
  * When the selected CO changes, the shown portrait slides 144 pixels out over
- * 8 frames (unk_34 0), waits 4 more frames, loads the new CO's graphics and
- * slides back in (unk_34 1). Picking the shown CO again while it slides out
- * turns it around. unk_2a counts the slide's frames, unk_2c the wait. */
+ * 8 frames (slidingIn 0), waits 4 more frames, loads the new CO's graphics and
+ * slides back in (slidingIn 1). Picking the shown CO again while it slides out
+ * turns it around. slideFrame counts the slide's frames, waitFrames the wait. */
 void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
 {
     Unk_027c0280 *saved0280;
@@ -30,46 +30,46 @@ void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (task->coButton != (MENU.player - 1) * 2 + MENU.slot) {
         task->coButton = (MENU.player - 1) * 2 + MENU.slot;
-        if (task->unk_2c == 0) {
+        if (task->waitFrames == 0) {
             if (task->coButton == task->prevCoButton) {
-                if (task->unk_34 == 0) {
+                if (task->slidingIn == 0) {
                     task->slideStartX = task->slideX;
-                    task->unk_2a = 0;
-                    task->unk_34 = 1;
+                    task->slideFrame = 0;
+                    task->slidingIn = 1;
                 }
-            } else if (task->unk_34 == 1) {
+            } else if (task->slidingIn == 1) {
                 task->slideStartX = task->slideX;
-                task->unk_2a = 0;
-                task->unk_34 = 0;
+                task->slideFrame = 0;
+                task->slidingIn = 0;
             }
         }
-        task->unk_2c = 0;
+        task->waitFrames = 0;
     }
-    if (task->unk_34 == 0) {
-        task->slideX = task->slideStartX + Math_Ease(1, 0, 144, task->unk_2a, 8);
+    if (task->slidingIn == 0) {
+        task->slideX = task->slideStartX + Math_Ease(1, 0, 144, task->slideFrame, 8);
         if (task->slideX > 144) {
             task->slideX = 144;
         }
     } else {
-        task->slideX = Math_Ease(4, task->slideStartX, 0, task->unk_2a, 8);
+        task->slideX = Math_Ease(4, task->slideStartX, 0, task->slideFrame, 8);
     }
     func_02002620((256 - (72 - task->slideX)) & 0x1ff, 160, 0, 108, 0, FALSE);
-    if (task->unk_2a == 8) {
-        if (task->unk_34 == 0) {
-            if (task->unk_2c < 4) {
-                task->unk_2c++;
+    if (task->slideFrame == 8) {
+        if (task->slidingIn == 0) {
+            if (task->waitFrames < 4) {
+                task->waitFrames++;
             } else {
                 task->prevCoButton = task->coButton;
                 player = task->coButton >> 1;
                 Co_LoadArmyGraphicsAndPalette(SHOWN_CO(player, task->coButton & 1), 108, 0, player + 1);
                 task->slideStartX = task->slideX;
-                task->unk_34 = 1;
-                task->unk_2a = 0;
-                task->unk_2c = 0;
+                task->slidingIn = 1;
+                task->slideFrame = 0;
+                task->waitFrames = 0;
             }
         }
     } else {
-        task->unk_2a++;
+        task->slideFrame++;
     }
     Screen_SetCurrentGfx(saved0280);
 }

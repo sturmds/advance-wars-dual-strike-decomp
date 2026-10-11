@@ -7,7 +7,7 @@ extern MenuButtonTemplate data_0215d330;
 extern MenuButtonTemplate data_0215d380;
 
 void Sound_PlaySe(u32 soundId);
-void func_0206d5b4(void);
+void PlayerInfo_StartRedrawTask(void);
 
 /* Turns the player info screen to the next page (0 to 3). The previous page
  * button (253) appears on page 1; the next page button (252) is replaced by
@@ -29,5 +29,5 @@ void PlayerInfo_NextPage(MenuButton *button)
     if (gMenuState.unk_0206d67c.page == 3) {
         MenuButton_Add(0, 0, &data_0215d380, 251);
     }
-    func_0206d5b4();
+    PlayerInfo_StartRedrawTask();
 }

@@ -2065,7 +2065,7 @@ PlayerInfo_NextPage kind:function(arm,size=0xb4) addr:0x0206d220
 PlayerInfo_PrevPage kind:function(arm,size=0xa4) addr:0x0206d2d4
 func_0206d378 kind:function(arm,size=0xc) addr:0x0206d378
 PlayerInfo_LoadCoPictures kind:function(arm,size=0x230) addr:0x0206d384
-func_0206d5b4 kind:function(arm,size=0x18) addr:0x0206d5b4
+PlayerInfo_StartRedrawTask kind:function(arm,size=0x18) addr:0x0206d5b4
 PlayerInfo_DrawPage kind:function(arm,size=0x70) addr:0x0206d5cc
 PlayerInfo_ClearTextLayer kind:function(arm,size=0x40) addr:0x0206d63c
 PlayerInfo_DrawUnitStats kind:function(arm,size=0x898) addr:0x0206d67c
@@ -7349,7 +7349,7 @@ data_0215d330 kind:data(any) addr:0x0215d330
 data_0215d358 kind:data(any) addr:0x0215d358
 data_0215d380 kind:data(any) addr:0x0215d380
 data_0215d3a8 kind:data(any) addr:0x0215d3a8
-data_0215d3d0 kind:data(any) addr:0x0215d3d0
+gPlayerInfoRedrawScript kind:data(any) addr:0x0215d3d0
 data_0215d400 kind:data(any) addr:0x0215d400
 data_0215d430 kind:data(any) addr:0x0215d430
 gPlayerInfoPath kind:data(any) addr:0x0215d478

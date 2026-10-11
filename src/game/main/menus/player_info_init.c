@@ -36,7 +36,7 @@ void Menu_Reset(void);
 void MenuCursor_SetRect(s16 left, s16 top, s16 right, s16 bottom);
 void MenuButtons_DisableTouch(void);
 void Wallpaper_LoadBoth(void);
-void func_0206d5b4(void);
+void PlayerInfo_StartRedrawTask(void);
 int Link_IsActive(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 
@@ -80,7 +80,7 @@ void PlayerInfo_Init(Task *task)
     MENU.player = task->unk_64;
     MENU.slot = task->unk_66;
     MENU.page = 0;
-    MENU.unk_0a4 = 0;
+    MENU.lastPageView = 0;
     if (task->unk_68 != 0) {
         MENU.unk_0a8 = 1;
     } else {
@@ -233,7 +233,7 @@ void PlayerInfo_Init(Task *task)
     MenuCursor_SetRect(0, -16, 256, -16);
     MenuButtons_DisableTouch();
     Wallpaper_LoadBoth();
-    func_0206d5b4();
+    PlayerInfo_StartRedrawTask();
     if (Link_IsActive() == 1) {
         SpriteTask_Create(232, 8, 540, 15);
     }

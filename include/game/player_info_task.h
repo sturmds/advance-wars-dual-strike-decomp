@@ -18,13 +18,13 @@ typedef struct PlayerInfoTask {
  * The first 0x2a bytes belong to the task system. */
 typedef struct PlayerInfoSpriteTask {
     u8 pad_00[0x2a];
-    u16 unk_2a;                        /* 8 at start */
-    u16 unk_2c;
+    u16 slideFrame;                    /* frames of the current slide, 0-8; 8 at start */
+    u16 waitFrames;                    /* frames waited off screen before the new CO slides in */
     s16 slideStartX;                   /* x offset of the portrait when the slide started */
     s16 slideX;                        /* current x offset of the portrait, 0-144 */
     u8 coButton;                       /* (player - 1) * 2 + slot: the id of the shown CO's button */
     u8 prevCoButton;                   /* same at start */
-    u8 unk_34;                         /* 1 at start */
+    u8 slidingIn;                      /* 1 at start; 0 while the old CO slides out */
 } PlayerInfoSpriteTask;
 
 #endif

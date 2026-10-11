@@ -115,9 +115,9 @@ typedef struct CampaignMapWork {
  * its own way. Field names with an offset give it from the start of
  * MenuState. The symbols data_0229eb70, data_0229ed30 and data_0229ef30
  * point inside it, at 0x40, 0x200 and 0x400. */
-/* Layout of MenuState read by PlayerInfo_DrawUnitStats, which draws a unit's
- * firepower (through Player_GetShownFirepower). */
-typedef struct Unk_0206d67c {
+/* Layout of MenuState for the player info (CO stats) screen, filled by
+ * PlayerInfo_Init. */
+typedef struct PlayerInfoScreen {
     u8 pad_020[0x8c - 0x20];
     u8 skills[5];                      /* skill ids the shown CO has equipped, ended by 0 or 0xff (CoStatsScreen_DrawSkills) */
     u8 coShown[4][2];                  /* nonzero: this CO of the player gets a button */
@@ -127,10 +127,10 @@ typedef struct Unk_0206d67c {
     u8 player;                         /* passed to Player_GetShownFirepower */
     u8 slot;                           /* passed to Player_GetShownFirepower; 0: front CO */
     u8 page;                           /* 0-3; Down (PlayerInfo_NextPage) turns to the next */
-    u8 unk_0a4;                        /* cleared by PlayerInfo_Init */
+    u8 lastPageView;                   /* 0 or 1, R toggles it (PlayerInfo_ToggleLastPageView); 1 adds two sprites on page 3 */
     u8 pad_0a5[0xa8 - 0xa5];
     u32 unk_0a8;                       /* 1 with gameMode 3: Player_GetShownFirepower uses Player_GetSlotFirepower for every slot */
-} Unk_0206d67c;
+} PlayerInfoScreen;
 
 /* Battle animation layout of MenuState (ov002, Battle_ShowQuote). */
 struct BattleSpriteTask;
@@ -271,7 +271,7 @@ typedef struct MenuState {
         LinkScreenState link;
         BattleSetupState setup;
         CampaignMapWork campaignMap;
-        Unk_0206d67c unk_0206d67c;
+        PlayerInfoScreen unk_0206d67c;
         SpriteStripState spriteStrip;
         BattleScreenWork battle;
         CoExpScreenWork coExp;

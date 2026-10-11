@@ -8140,7 +8140,7 @@ src/game/main/menus/player_info_load_co_pictures.c:
     complete
     .text       start:0x0206d384 end:0x0206d5b4
 
-src/game/main/func_0206d5b4.c:
+src/game/main/menus/player_info_start_redraw_task.c:
     complete
     .text       start:0x0206d5b4 end:0x0206d5cc
 

@@ -23,7 +23,7 @@ void PlayerInfo_DrawSprites(void)
     PlayerInfo_DrawCoIcons();
     Co_QueueSmallPictureSpriteAtTile(0x10d0, 24, 0, 0, 1);
     PlayerInfo_QueuePageSprites();
-    if (gMenuState.unk_0206d67c.page == 3 && gMenuState.unk_0206d67c.unk_0a4 != 0) {
+    if (gMenuState.unk_0206d67c.page == 3 && gMenuState.unk_0206d67c.lastPageView != 0) {
         Sprite_QueueAt(0, 64, 64, &data_027c0030, 0x4000, 0x400);
         Sprite_QueueAt(0, 128, 64, &data_027c0030, 0x4000, 0x440);
     }
