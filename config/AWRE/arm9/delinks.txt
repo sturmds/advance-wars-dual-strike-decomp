@@ -7464,6 +7464,10 @@ src/game/main/menus/map_select_pick_map.c:
     complete
     .text       start:0x0205e224 end:0x0205e5ac
 
+src/game/main/menus/map_select_handle_keys.c:
+    complete
+    .text       start:0x0205e5ac end:0x0205e72c
+
 src/game/main/func_0205e898.c:
     complete
     .text       start:0x0205e898 end:0x0205e8a4
