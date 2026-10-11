@@ -2186,6 +2186,10 @@ src/game/main/func_0201b5dc.c:
     complete
     .text       start:0x0201b5dc end:0x0201b694
 
+src/game/main/script/event_cmd_jump_if_flag_clear.c:
+    complete
+    .text       start:0x0201b694 end:0x0201b6f4
+
 src/game/main/func_0201b788.c:
     complete
     .text       start:0x0201b788 end:0x0201b7ac
