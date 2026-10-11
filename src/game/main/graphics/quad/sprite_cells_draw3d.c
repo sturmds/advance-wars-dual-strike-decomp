@@ -65,8 +65,8 @@ void SpriteCells_Draw3d(const u16 *cells, const VecFx32 *pos, u32 texBase, u32 p
         *REG_MTX_PUSH = 0;
         attr0 = cells[0];
         attr1 = cells[1];
-        width = data_027c01f8[attr0 >> 14][attr1 >> 14].width;
-        height = data_027c01f8[attr0 >> 14][attr1 >> 14].height;
+        width = gObjSizes[attr0 >> 14][attr1 >> 14].width;
+        height = gObjSizes[attr0 >> 14][attr1 >> 14].height;
         y = attr0 & 0xff;
         attr2 = cells[2];
         tile = attr2 & 0x3ff;

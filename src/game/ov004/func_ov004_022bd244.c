@@ -7,9 +7,9 @@ struct Unk_022bd244 {
     int unk_64;
 };
 
-void func_0202244c(int);
+void SpriteAnim_Free(int);
 
 void func_ov004_022bd244(Unk_022bd244 *a0)
 {
-    func_0202244c(a0->unk_64);
+    SpriteAnim_Free(a0->unk_64);
 }

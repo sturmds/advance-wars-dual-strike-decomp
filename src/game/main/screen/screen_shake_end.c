@@ -1,9 +1,9 @@
 #include "types.h"
 
-extern u16 data_0216e2a4;
-extern u16 data_0216e2ac;
+extern u16 gScreenShakeY;
+extern u16 gScreenShakeX;
 
 void ScreenShake_End(void) {
-    data_0216e2ac = 0;
-    data_0216e2a4 = 0;
+    gScreenShakeX = 0;
+    gScreenShakeY = 0;
 }

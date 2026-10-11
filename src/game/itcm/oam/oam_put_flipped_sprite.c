@@ -5,8 +5,8 @@
 #include "game/obj_size.h"
 
 extern Unk_027c0280 *data_027c0280;
-extern s16 data_0216e2a4;              /* screen shake y offset */
-extern s16 data_0216e2ac;              /* screen shake x offset */
+extern s16 gScreenShakeY;
+extern s16 gScreenShakeX;
 
 /* Oam_PutFlippedCells without the separate tile argument: attr2 holds the
  * first tile, priority and palette, added to each cell's attribute 2. With
@@ -30,7 +30,7 @@ void Oam_PutFlippedSprite(int x, int y, const OamCell *cell, int attr2)
     }
     do {
         if (x & OAM_ATTR1_HFLIP) {
-            s16 negWidth = -data_027c01f8[cell->attr0 >> 14][cell->attr1 >> 14].width;
+            s16 negWidth = -gObjSizes[cell->attr0 >> 14][cell->attr1 >> 14].width;
             s16 cellX = cell->attr1 & 0x1ff;
 
             if (cell->attr1 & 0x100) {    /* sign-extend the 9-bit x */
@@ -40,8 +40,8 @@ void Oam_PutFlippedSprite(int x, int y, const OamCell *cell, int attr2)
             attr1 = ((cell->attr1 | x) & 0xfe00) | ((negWidth + (x + cellX)) & 0x1ff);
             attr0 = ((cell->attr0 | y) & 0xff00) | ((y + cell->attr0) & 0xff);
         } else {
-            attr0 = ((cell->attr0 | y) & 0xff00) | ((data_0216e2a4 + (cell->attr0 + y)) & 0xff);
-            attr1 = ((cell->attr1 | x) & 0xfe00) | ((data_0216e2ac + (cell->attr1 + x)) & 0x1ff);
+            attr0 = ((cell->attr0 | y) & 0xff00) | ((gScreenShakeY + (cell->attr0 + y)) & 0xff);
+            attr1 = ((cell->attr1 | x) & 0xfe00) | ((gScreenShakeX + (cell->attr1 + x)) & 0x1ff);
         }
         dst[0] = attr0;
         /* needed to match: the u16 cast */

@@ -6,8 +6,8 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 data_0216e2a4;
-extern volatile s16 data_0216e2ac;
+extern volatile s16 gScreenShakeY;
+extern volatile s16 gScreenShakeX;
 
 void Screen_SetCurrent(Unk_02080440 *state);
 void Screen_SetCurrentGfx(Unk_027c0280 *state);
@@ -137,7 +137,7 @@ static inline void SetWndPlaneHigh(volatile u16 *reg, int planes, BOOL effect)
 #define VGFX ((volatile Unk_027c0280 *)data_027c0280)
 
 #define SET_BG_OFFSET(reg, i) \
-    SetBgOffset(reg, VGFX->bgScrollX[i] - data_0216e2ac, VGFX->bgScrollY[i] - data_0216e2a4)
+    SetBgOffset(reg, VGFX->bgScrollX[i] - gScreenShakeX, VGFX->bgScrollY[i] - gScreenShakeY)
 
 #define SET_BG_CONTROL_TEXT(reg, i) \
     SetBgControlText(reg, GFX->bgCnt[i].screenSize, GFX->bgCnt[i].colorMode, GFX->bgCnt[i].screenBase, \

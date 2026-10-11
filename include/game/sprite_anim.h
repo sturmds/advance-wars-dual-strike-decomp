@@ -73,7 +73,7 @@ typedef struct SpriteAnimStep {
 } SpriteAnimStep;
 
 #define SPRITE_ANIM_CMD_STOP    0    /* hold the last frame */
-#define SPRITE_ANIM_CMD_FREE    1    /* free the sprite (func_0202244c) */
+#define SPRITE_ANIM_CMD_FREE    1    /* free the sprite (SpriteAnim_Free) */
 #define SPRITE_ANIM_CMD_LOOP    0xff /* jump back to the first step */
 #define SPRITE_ANIM_AFFINE_CELLS 0x8000 /* cell set starts with affine parameter sets */
 

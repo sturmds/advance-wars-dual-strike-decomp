@@ -9,7 +9,7 @@ extern int data_027c0284;
 void ScreenShake_Start(int script, int frames, Task *parent);
 Task *ScreenFlash_Start(int fadeInFrames, int holdFrames, int fadeOutFrames, Task *parent);
 void Task_ResumeScript(void *task);
-void func_0202244c(void *handle);
+void SpriteAnim_Free(void *handle);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -26,6 +26,6 @@ void SiloMissileFall_Update(SiloMissileTask *task)
     }
     ScreenShake_Start(2, 60, NULL);
     ScreenFlash_Start(4, 0, 2, NULL);
-    func_0202244c(task->sprite);
+    SpriteAnim_Free(task->sprite);
     Task_ResumeScript(task);
 }

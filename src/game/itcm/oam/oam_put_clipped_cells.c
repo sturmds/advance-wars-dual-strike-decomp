@@ -4,8 +4,8 @@
 #include "game/oam_cells.h"
 
 extern Unk_027c0280 *data_027c0280;
-extern s16 data_0216e2a4;              /* screen shake y offset */
-extern s16 data_0216e2ac;              /* screen shake x offset */
+extern s16 gScreenShakeY;
+extern s16 gScreenShakeX;
 
 /* Puts the cells of a sprite at (x, y) into the OAM buffer like
  * Oam_PutCells, but takes the attribute 0 and 1 flag bits apart from the
@@ -33,8 +33,8 @@ void Oam_PutClippedCells(int x, int y, int attr1Flags, int attr0Flags, const Oam
                 cellX |= 0xff00;
             }
             if (cellX + x > -64 && cellX + x < 256) {
-                dst[0] = ((cell->attr0 | attr0Flags) & 0xff00) | ((data_0216e2a4 + (cell->attr0 + y)) & 0xff);
-                dst[1] = ((cell->attr1 | attr1Flags) & 0xfe00) | ((data_0216e2ac + (cell->attr1 + x)) & 0x1ff);
+                dst[0] = ((cell->attr0 | attr0Flags) & 0xff00) | ((gScreenShakeY + (cell->attr0 + y)) & 0xff);
+                dst[1] = ((cell->attr1 | attr1Flags) & 0xfe00) | ((gScreenShakeX + (cell->attr1 + x)) & 0x1ff);
                 dst[2] = ((cell->attr2 & 0xfc00) + (attr2 & 0xfc00)) | (0x3ff & ((tile + ((cell->attr2 & 0x3ff) + (attr2 & 0x3ff))) >> data_027c0280->unk_dd));
                 dst += 4;
                 data_027c0280->oamBuffer->unk_600 = (u8 *)data_027c0280->oamBuffer->unk_600 + 8;

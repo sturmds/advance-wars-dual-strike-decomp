@@ -356,7 +356,7 @@ GfxQueue_AddKind2 kind:function(arm,size=0x80) addr:0x0200c998
 GfxQueue_AddKind1 kind:function(arm,size=0x80) addr:0x0200ca18
 GfxQueue_FreeOwnedCopies kind:function(arm,size=0x60) addr:0x0200ca98
 GfxQueue_Flush kind:function(arm,size=0x140) addr:0x0200caf8
-GfxQueue_Reset kind:function(arm,size=0x74) addr:0x0200cc38
+GfxQueue_ClearAfterFlush kind:function(arm,size=0x74) addr:0x0200cc38
 GfxQueue_Init kind:function(arm,size=0x4c) addr:0x0200ccac
 Gfx_LoadTexPalette kind:function(arm,size=0x30) addr:0x0200ccf8
 Gfx_LoadTexImage kind:function(arm,size=0x30) addr:0x0200cd28
@@ -893,7 +893,7 @@ SpriteAnim_LoadAffineParams kind:function(arm,size=0x14c) addr:0x02021ff4
 SpriteAnim_Advance kind:function(arm,size=0x208) addr:0x02022140
 SpriteAnim_Queue kind:function(arm,size=0xbc) addr:0x02022348
 SpriteAnim_Draw kind:function(arm,size=0x48) addr:0x02022404
-func_0202244c kind:function(arm,size=0x2c) addr:0x0202244c
+SpriteAnim_Free kind:function(arm,size=0x2c) addr:0x0202244c
 SpriteAnim_Create kind:function(arm,size=0x38) addr:0x02022478
 SpriteAnim_FreeAll kind:function(arm,size=0x24) addr:0x020224b0
 func_020224d4 kind:function(arm,size=0x18) addr:0x020224d4
@@ -7744,7 +7744,7 @@ data_02167c70 kind:data(any) addr:0x02167c70
 data_02167c74 kind:data(any) addr:0x02167c74
 data_02167c78 kind:data(any) addr:0x02167c78
 data_02167c7c kind:data(any) addr:0x02167c7c
-gRatioSeparator kind:data(any) addr:0x02167c80
+gColonText kind:data(any) addr:0x02167c80
 data_02167c84 kind:data(any) addr:0x02167c84
 data_02167c88 kind:data(any) addr:0x02167c88
 data_02167c8c kind:data(any) addr:0x02167c8c
@@ -8479,10 +8479,10 @@ data_0216e060 kind:bss addr:0x0216e060
 data_0216e064 kind:bss addr:0x0216e064
 data_0216e066 kind:bss addr:0x0216e066
 data_0216e29c kind:bss addr:0x0216e29c
-data_0216e2a0 kind:bss addr:0x0216e2a0
-data_0216e2a4 kind:bss addr:0x0216e2a4
+gCallbackCount kind:bss addr:0x0216e2a0
+gScreenShakeY kind:bss addr:0x0216e2a4
 data_0216e2a8 kind:bss addr:0x0216e2a8
-data_0216e2ac kind:bss addr:0x0216e2ac
+gScreenShakeX kind:bss addr:0x0216e2ac
 data_0216e2b0 kind:bss addr:0x0216e2b0
 gRngState kind:bss addr:0x0216e2b4
 gCallbackSlots kind:bss addr:0x0216e2b8

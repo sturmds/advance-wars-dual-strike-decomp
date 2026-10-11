@@ -3,7 +3,7 @@
 
 /* Called once the queue is copied to VRAM: resets the counters and empties
  * every entry except kind 3 and 4, which wait for GfxQueue_FreeOwnedCopies. */
-void GfxQueue_Reset(void)
+void GfxQueue_ClearAfterFlush(void)
 {
     int i;
 

@@ -12,7 +12,7 @@ void Task_ResumeScript(TileStrikeTask *task);
 void Sound_PlaySe(int songId);
 void ScreenShake_Start(int tableIndex, int steps, void *parent);
 void SpriteAnim_SetAnimation(Unk_02022404 *sprite, int animation);
-void func_0202244c(Unk_02022404 *sprite);
+void SpriteAnim_Free(Unk_02022404 *sprite);
 Unk_02022404 *SpriteAnim_Create(void *file, int a, int b);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -26,7 +26,7 @@ void TileStrikeTask_UpdateFall2d(TileStrikeTask *task)
     if (task->tileY * 16 + 16 >= task->y) {
         return;
     }
-    func_0202244c(task->sprite);
+    SpriteAnim_Free(task->sprite);
     task->y = task->tileY * 16 + 8;
     task->sprite = SpriteAnim_Create(data_02148eec, 1, 2);
     task->sprite->unk_24 = 0x5194;

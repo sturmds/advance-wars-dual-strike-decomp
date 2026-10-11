@@ -8,10 +8,10 @@ struct Unk_020d0148 {
 };
 
 void MenuDepth_Pop(void);
-int func_0202244c(int);
+int SpriteAnim_Free(int);
 
 int func_020d0148(Unk_020d0148 *a0)
 {
     MenuDepth_Pop();
-    return func_0202244c(a0->unk_50);
+    return SpriteAnim_Free(a0->unk_50);
 }

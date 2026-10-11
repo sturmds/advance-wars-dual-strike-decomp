@@ -42,7 +42,7 @@ typedef struct Unk_ov005_0236bb80 {
     u32 hasTaskB;                      /* nonzero while taskB exists */
     Task *taskB;
     void *block80;                     /* freed last */
-    u32 *spriteHandles[4];             /* cleared with func_0202244c */
+    u32 *spriteHandles[4];             /* cleared with SpriteAnim_Free */
     int spritePos[4][2];               /* x, y of each spriteHandles entry */
     void *unk_b4;                      /* file loaded by Ov005_SetupScreensWithAffineBg */
     u8 pad_b8[0xc4 - 0xb8];

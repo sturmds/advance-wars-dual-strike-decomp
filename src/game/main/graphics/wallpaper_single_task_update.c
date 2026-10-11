@@ -7,8 +7,8 @@
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 data_0216e2a4;              /* screen shake y offset */
-extern volatile s16 data_0216e2ac;              /* screen shake x offset */
+extern volatile s16 gScreenShakeY;
+extern volatile s16 gScreenShakeX;
 
 /* Needed to match: the scroll fields are read through a volatile view so
  * their loads stay in source order. */
@@ -36,12 +36,12 @@ void WallpaperSingleTask_Update(WallpaperSingleTask *task)
         }
     }
     if (data_027c027c == data_027c0288.unk_00) {
-        y = VGFX->bgScrollY[3] - data_0216e2a4;
-        x = VGFX->bgScrollX[3] - data_0216e2ac;
+        y = VGFX->bgScrollY[3] - gScreenShakeY;
+        x = VGFX->bgScrollX[3] - gScreenShakeX;
         SetBgOffset(IO_BG3_SCROLL, x, y);
     } else {
-        y = VGFX->bgScrollY[3] - data_0216e2a4;
-        x = VGFX->bgScrollX[3] - data_0216e2ac;
+        y = VGFX->bgScrollY[3] - gScreenShakeY;
+        x = VGFX->bgScrollX[3] - gScreenShakeX;
         SetBgOffset(REG_DB_BG3OFS, x, y);
     }
     task->frame++;

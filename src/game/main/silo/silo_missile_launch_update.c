@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void Task_ResumeScript(void *task);
-void func_0202244c(void *handle);
+void SpriteAnim_Free(void *handle);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -21,6 +21,6 @@ void SiloMissileLaunch_Update(SiloMissileTask *task)
     if (task->y - STATE->unk_1c4->scrollY >= 0) {
         return;
     }
-    func_0202244c(task->sprite);
+    SpriteAnim_Free(task->sprite);
     Task_ResumeScript(task);
 }

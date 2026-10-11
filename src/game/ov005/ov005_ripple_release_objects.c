@@ -6,7 +6,7 @@
 
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
-void func_0202244c(u32 *handle);
+void SpriteAnim_Free(u32 *handle);
 void Task_Destroy(Task *task);
 void Mem_Free(void *block);
 
@@ -22,10 +22,10 @@ void Ov005Ripple_ReleaseObjects(Ov005Task *task)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    func_0202244c(work->spriteHandles[0]);
-    func_0202244c(work->spriteHandles[1]);
-    func_0202244c(work->spriteHandles[2]);
-    func_0202244c(work->spriteHandles[3]);
+    SpriteAnim_Free(work->spriteHandles[0]);
+    SpriteAnim_Free(work->spriteHandles[1]);
+    SpriteAnim_Free(work->spriteHandles[2]);
+    SpriteAnim_Free(work->spriteHandles[3]);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

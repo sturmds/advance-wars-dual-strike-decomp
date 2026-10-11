@@ -1336,7 +1336,7 @@ src/game/main/graphics/gfx_queue_flush.c:
     complete
     .text       start:0x0200caf8 end:0x0200cc38
 
-src/game/main/graphics/gfx_queue_reset.c:
+src/game/main/graphics/gfx_queue_clear_after_flush.c:
     complete
     .text       start:0x0200cc38 end:0x0200ccac
 
@@ -3478,7 +3478,7 @@ src/game/main/graphics/sprite_anim_draw.c:
     complete
     .text       start:0x02022404 end:0x0202244c
 
-src/game/main/func_0202244c.c:
+src/game/main/graphics/sprite_anim_free.c:
     complete
     .text       start:0x0202244c end:0x02022478
 

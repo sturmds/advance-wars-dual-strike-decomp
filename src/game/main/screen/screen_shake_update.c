@@ -1,8 +1,8 @@
 #include "types.h"
 #include "game/Unk_02003f44.h"
 
-extern u16 data_0216e2a4;
-extern u16 data_0216e2ac;
+extern u16 gScreenShakeY;
+extern u16 gScreenShakeX;
 
 void Task_ResumeScript(Unk_02003f44 *task);
 
@@ -21,8 +21,8 @@ void ScreenShake_Update(Unk_02003f44 *task)
             return;
         }
     }
-    data_0216e2ac = pairs[task->unk_54][0];
-    data_0216e2a4 = pairs[task->unk_54][1];
+    gScreenShakeX = pairs[task->unk_54][0];
+    gScreenShakeY = pairs[task->unk_54][1];
     task->unk_54++;
     task->unk_58++;
     if (task->unk_58 != task->unk_44) {

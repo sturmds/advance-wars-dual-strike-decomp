@@ -8,11 +8,11 @@ struct Unk_02100a58 {
     int unk_4e0;
 };
 
-void func_0202244c(int);
+void SpriteAnim_Free(int);
 int Mem_Free(int);
 
 int NameEntry_FreeCaret(Unk_02100a58 *a0)
 {
-    func_0202244c(a0->unk_4e0);
+    SpriteAnim_Free(a0->unk_4e0);
     return Mem_Free(a0->unk_4dc);
 }

@@ -3,7 +3,7 @@
 /* Clears the first word of a handle, the flag that SpriteAnim_Advance and
  * SpriteAnim_Draw test before they use it. A null handle is ignored.
  * The compiler needs the flag test as a separate step to match. */
-void func_0202244c(u32 *handle)
+void SpriteAnim_Free(u32 *handle)
 {
     BOOL active;
 

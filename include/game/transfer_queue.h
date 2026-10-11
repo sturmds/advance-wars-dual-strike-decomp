@@ -11,7 +11,7 @@ typedef struct TransferEntry {
     const void *src;
     void *dst;
     volatile u16 size;                 /* bytes */
-    volatile u8 kind;                  /* 0 = copy, 4 = other (see TransferQueue_AddClear16) */
+    volatile u8 kind;                  /* TRANSFER_* below */
     u8 pad_0b;
 } TransferEntry;
 

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sprite_anim.h"
 
-void func_0202244c(SpriteAnim *sprite);
+void SpriteAnim_Free(SpriteAnim *sprite);
 
 /* Advances a sprite by one frame. When the current step runs out it moves
  * to the next one, runs commands, and points cells (and affine) at the new
@@ -47,7 +47,7 @@ int SpriteAnim_Advance(SpriteAnim *sprite)
         case SPRITE_ANIM_CMD_STOP:
             return 0;
         case SPRITE_ANIM_CMD_FREE:
-            func_0202244c(sprite);
+            SpriteAnim_Free(sprite);
             return 0;
         default:
             sprite->unk_22 = value;

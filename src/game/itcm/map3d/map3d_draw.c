@@ -7,8 +7,8 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
-extern volatile s16 data_0216e2ac;
-extern volatile s16 data_0216e2a4;
+extern volatile s16 gScreenShakeX;
+extern volatile s16 gScreenShakeY;
 extern u8 data_ov000_022dbd41[]; /* Ov000_gMapHeaders + 0x19, 0xa0 bytes per map */
 
 void Map3d_DrawTiles(VecFx32 *shake, int arg);
@@ -23,8 +23,8 @@ void Map3d_Draw(void)
     if ((void *)data_027c027c == data_027c0288.unk_00) {
         VecFx32 shake = {0, 0, 0};
 
-        shake.x = data_0216e2ac;
-        shake.y = data_0216e2a4;
+        shake.x = gScreenShakeX;
+        shake.y = gScreenShakeY;
         Map3d_DrawTiles(&shake, data_ov000_022dbd41[STATE->unk_1c4->mapId * sizeof(MapHeader)]);
         func_01ffd854();
     }

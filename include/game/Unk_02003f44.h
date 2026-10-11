@@ -5,7 +5,7 @@
 
 /*
  * Steps through a list of s16 pairs (unk_4c, ended by 0x7fff) and copies
- * each pair to data_0216e2ac / data_0216e2a4; see ScreenShake_Update.
+ * each pair to gScreenShakeX / gScreenShakeY; see ScreenShake_Update.
  */
 typedef struct Unk_02003f44 {
     u8 pad_00[0x44];

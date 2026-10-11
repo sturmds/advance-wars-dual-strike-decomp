@@ -6,7 +6,7 @@ int SpriteAnim_Advance(SpriteAnim *sprite);
 
 /* Queues a sprite at (x, y), then runs SpriteAnim_Advance on it and returns
  * its result. Returns 0 for a null or free sprite. The flag test is a
- * separate step, as in func_0202244c. */
+ * separate step, as in SpriteAnim_Free. */
 int SpriteAnim_Draw(SpriteAnim *sprite, int x, int y)
 {
     BOOL active;

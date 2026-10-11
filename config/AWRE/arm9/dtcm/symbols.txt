@@ -34,7 +34,7 @@ data_027c0198 kind:data(any) addr:0x027c0198
 data_027c01ac kind:data(any) addr:0x027c01ac
 data_027c01c0 kind:data(any) addr:0x027c01c0
 data_027c01dc kind:data(any) addr:0x027c01dc
-data_027c01f8 kind:data(any) addr:0x027c01f8
+gObjSizes kind:data(any) addr:0x027c01f8
 data_027c0238 kind:data(any) addr:0x027c0238
 data_027c023c kind:data(any) addr:0x027c023c
 data_027c0240 kind:data(any) addr:0x027c0240

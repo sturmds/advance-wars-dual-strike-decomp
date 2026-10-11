@@ -5,7 +5,7 @@ void Gfx_LoadTexImage(const void *src, u32 offset, u32 size);
 void Gfx_LoadTexPalette(const void *src, u32 offset, u32 size);
 void GX_BeginLoadTexPltt(void);
 void GX_EndLoadTexPltt(void);
-void GfxQueue_Reset(void);
+void GfxQueue_ClearAfterFlush(void);
 
 /* Texture palette VRAM while bank F is mapped to the LCD controller. */
 #define VRAM_LCDC_F ((volatile u16 *)0x06890000)
@@ -48,5 +48,5 @@ void GfxQueue_Flush(void)
             break;
         }
     }
-    GfxQueue_Reset();
+    GfxQueue_ClearAfterFlush();
 }
