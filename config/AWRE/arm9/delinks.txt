@@ -8528,6 +8528,10 @@ src/game/main/menus/unit_list_scroll_to_picked_unit.c:
     complete
     .text       start:0x02073f8c end:0x02073ff8
 
+src/game/main/menus/unit_list_destroy.c:
+    complete
+    .text       start:0x02073ff8 end:0x02074048
+
 src/game/main/menus/unit_list_draw.c:
     complete
     .text       start:0x02074048 end:0x020742d4
