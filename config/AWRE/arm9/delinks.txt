@@ -10308,6 +10308,10 @@ src/game/main/graphics/palette_darken.c:
     complete
     .text       start:0x020fd6d4 end:0x020fd770
 
+src/game/main/keypad_confirm_unk0c.c:
+    complete
+    .text       start:0x020fd770 end:0x020fd790
+
 src/game/main/keypad_confirm_pressed.c:
     complete
     .text       start:0x020fd790 end:0x020fd7b0
