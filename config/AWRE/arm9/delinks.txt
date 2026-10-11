@@ -7480,6 +7480,10 @@ src/game/main/units/unit_find_other_map_tile.c:
     complete
     .text       start:0x020c78c4 end:0x020c7a3c
 
+src/game/main/units/unit_lacks_other_map_slots.c:
+    complete
+    .text       start:0x020c7a3c end:0x020c7bc0
+
 src/game/main/units/unit_create.c:
     complete
     .text       start:0x020c7d8c end:0x020c7e20
