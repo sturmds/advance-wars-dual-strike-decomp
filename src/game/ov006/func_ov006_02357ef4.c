@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov006_0235f690.h"
 
-int func_020d7904(int id, u8 *buf);
+int DesignMap_LoadSlotForEdit(int id, u8 *buf);
 char *func_021246d4(char *dest, const char *src);
 void func_020c4448(void);
 void Ov006_FindHqs(void);
@@ -14,7 +14,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 void func_ov006_02357ef4(void)
 {
-    func_020d7904(data_ov006_0236d640->chosenSlot, &data_ov006_0236d640->unk_eb);
+    DesignMap_LoadSlotForEdit(data_ov006_0236d640->chosenSlot, &data_ov006_0236d640->unk_eb);
     Ov006_PackArmySlots(1, Ov006_FindArmyLayout());
     func_021246d4((char *)data_ov006_0236d640->unk_d8, (char *)&data_ov006_0236d640->unk_eb);
     func_020c4448();

@@ -13244,6 +13244,10 @@ src/game/main/map/design_map_decode_slot.c:
     complete
     .text       start:0x020d7878 end:0x020d7904
 
+src/game/main/map/design_map_load_slot_for_edit.c:
+    complete
+    .text       start:0x020d7904 end:0x020d796c
+
 src/game/main/func_020d796c.c:
     complete
     .text       start:0x020d796c end:0x020d7978
