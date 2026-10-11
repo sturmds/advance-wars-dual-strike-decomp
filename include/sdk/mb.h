@@ -123,4 +123,151 @@ typedef struct DlPlayFailedCall {
     u16 errcode;
 } DlPlayFailedCall;
 
+/* Download Play comm layer, parent side. */
+#define DLPLAY_OFFER_SLOTS 16
+#define DLPLAY_NOTHING_TRANSMITTED 21           /* one past the last WM error code: nothing was sent */
+
+/* commState values, one per child. */
+#define DLPLAY_CHILD_JOINED 2
+#define DLPLAY_CHILD_REFUSED 4
+#define DLPLAY_CHILD_ADMITTED 5
+#define DLPLAY_CHILD_RECEIVING 6
+#define DLPLAY_CHILD_HAS_PROGRAM 7
+#define DLPLAY_CHILD_TOLD_TO_BOOT 8
+#define DLPLAY_CHILD_ASKED_FILE 10
+#define DLPLAY_CHILD_NO_ROOM 11
+#define DLPLAY_CHILD_AWAITING_START 14
+
+/* Message types the parent sends. */
+#define DLPLAY_TO_CHILD_EMPTY 0
+#define DLPLAY_TO_CHILD_UPLOAD_BEGINS 1
+#define DLPLAY_TO_CHILD_REFUSE 2
+#define DLPLAY_TO_CHILD_LAYOUT 3
+#define DLPLAY_TO_CHILD_BLOCK 4
+#define DLPLAY_TO_CHILD_START_PROGRAM 5
+#define DLPLAY_TO_CHILD_NO_ROOM 6
+
+/* Message types a child sends. */
+#define DLPLAY_FROM_CHILD_ASK_FILE 8
+#define DLPLAY_FROM_CHILD_GOT_LAYOUT 9
+#define DLPLAY_FROM_CHILD_NEXT_BLOCK 10
+#define DLPLAY_FROM_CHILD_HALT 11
+
+/* childRequest values: what the application asked for a child. */
+#define DLPLAY_APP_WANTS_NOTHING 0
+#define DLPLAY_APP_WANTS_UPLOAD 2
+#define DLPLAY_APP_WANTS_ADMIT 3
+#define DLPLAY_APP_WANTS_REFUSE 4
+#define DLPLAY_APP_WANTS_START 5
+
+#define DLPLAY_LAYOUT_SENT_BYTES 0xe4      /* bytes of a file's download info sent to children */
+#define DLPLAY_HOST_MSG_HEAD_BYTES 6
+
+/* The header of every parent message. */
+typedef struct DlPlayHostMsgHead {
+    u8 type;
+    u8 pad_01;
+    u16 fileId;
+    u16 block;
+    u8 pad_06[2];
+} DlPlayHostMsgHead;
+
+/* The header of a child message. */
+typedef struct DlPlayChildMsgHead {
+    u8 type;
+    u8 pad_01;
+    u16 request;                       /* block request for DLPLAY_FROM_CHILD_NEXT_BLOCK */
+    u8 pad_04[0x14 - 4];
+} DlPlayChildMsgHead;
+
+typedef struct DlPlayPlayerBadge {
+    u8 favoriteColor : 4;
+    u8 playerNo : 4;
+    u8 nameLength;
+    u16 name[10];
+} DlPlayPlayerBadge;
+
+/* What a child sends with DLPLAY_FROM_CHILD_ASK_FILE. */
+#define DLPLAY_FILE_ASK_BYTES 29
+
+typedef struct DlPlayChildFileAsk {
+    u32 ggid;
+    DlPlayPlayerBadge user;
+    u16 version;
+    u8 fileId;
+    u8 pad_1d[3];
+} DlPlayChildFileAsk;
+
+/* Where one block of a file is. */
+typedef struct DlPlayBlockSpot {
+    u32 unk_00;
+    u32 size;
+    u32 offset;                        /* offset in the file */
+    u8 segment;
+    u8 pad_0d[3];
+} DlPlayBlockSpot;
+
+#define DLPLAY_HELD_BLOCK_SLOTS 4
+#define DLPLAY_HELD_BLOCK_USABLE 2
+
+typedef struct DlPlayHeldBlock {
+    u32 address;
+    u8 pad_04[8];
+    int state;
+} DlPlayHeldBlock;
+
+/* Pages of a file read from the card on demand. */
+typedef struct DlPlayHeldProgram {
+    u32 loadPending;                   /* cleared when a page load starts */
+    u8 pad_04[0x30 - 4];
+    DlPlayHeldBlock pages[DLPLAY_HELD_BLOCK_SLOTS];
+} DlPlayHeldProgram;
+
+typedef struct DlPlayWorkerJob {
+    u8 pad_00[0x10];
+    DlPlayHeldBlock *page;
+    DlPlayHeldProgram *cache;
+} DlPlayWorkerJob;
+
+/* One file the parent offers. */
+typedef struct DlPlayOfferedFile {
+    u8 dlFileInfo[DLPLAY_LAYOUT_SENT_BYTES];
+    u8 pad_0e4[0x5a4 - 0xe4];
+    u32 segmentOffsets[5];             /* block table: where each segment starts in the file */
+    DlPlayGameSource *registry;
+    u8 pad_5bc[4];
+    u16 currentBlock;
+    u16 nextBlock;
+    u16 pollBitmap;                    /* children receiving this file */
+    u16 childBitmap;                   /* children that picked this file */
+    u16 changedBitmap;
+    u8 active;
+    u8 pad_5cb;
+    DlPlayHeldProgram *cache;
+    u32 *segmentAddresses;
+} DlPlayOfferedFile;
+
+/* The comm work area behind data_022aced4. Child arrays are indexed by
+ * aid - 1 (aid 0 is the parent). */
+typedef struct DlPlayHostLinkArea {
+    u8 sendBuffer[4];                  /* length unknown */
+    u8 pad_04[0x1340 - 4];
+    DlPlayPlayerBadge childUsers[DLPLAY_CHILD_SLOTS];
+    u16 childVersions[DLPLAY_CHILD_SLOTS];
+    u32 childGgids[DLPLAY_CHILD_SLOTS];
+    u8 pad_14e4[4];
+    int commState[DLPLAY_CHILD_SLOTS];
+    u8 fileCount;
+    u8 currentFile;
+    u8 childFiles[DLPLAY_CHILD_SLOTS];     /* file each child picked */
+    u8 childCount;
+    u16 childEntryBitmap;
+    u8 pad_1538[0x1754 - 0x1538];
+    u16 childRequests[DLPLAY_CHILD_SLOTS];
+    u8 pad_1772[0x1788 - 0x1772];
+    DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
+    u8 pad_74c8[0x7ce0 - 0x74c8];
+    DlPlayWorkerJob task;
+} DlPlayHostLinkArea;
+
 #endif
