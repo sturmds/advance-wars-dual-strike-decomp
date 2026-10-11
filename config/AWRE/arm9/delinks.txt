@@ -17512,7 +17512,8 @@ src/game/main/touch_marker_create.c:
     complete
     .text       start:0x020f12d4 end:0x020f1320
 
-src/game/main/func_020f1320.c:
+src/game/main/touch_marker_wait_step.c:
+    complete
     .text       start:0x020f1320 end:0x020f135c
 
 src/game/main/func_020f135c.c:

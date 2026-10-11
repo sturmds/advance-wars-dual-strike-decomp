@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Task that TouchMarker_Create starts on the tile a new touch lands on. The
+/* Task that TouchMarker_Create starts on the tile where a touch begins. The
  * first 0x2c bytes belong to the task system (Task_Create). */
 typedef struct TouchMarkerTask {
     u8 pad_00[0x2c];
