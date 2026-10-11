@@ -11251,7 +11251,8 @@ src/game/main/ai/ai_is_free_capture_site_tile.c:
     complete
     .text       start:0x020a6260 end:0x020a633c
 
-src/game/main/ai/func_020a633c.c:
+src/game/main/ai/ai_can_damage_enemy_at_tile.c:
+    complete
     .text       start:0x020a633c end:0x020a63d0
 
 src/game/main/ai/func_020a63d0.c:
