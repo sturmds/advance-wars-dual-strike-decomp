@@ -44,7 +44,7 @@ void func_01ff9b48(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 BOOL func_02001268(u16 keys);
 void func_02001250(void);
 void func_01ff9c7c(void);
@@ -65,7 +65,7 @@ void func_01ff9c7c(void);
     Screens_SetUp2dLayers(data_02166dc8);               \
     func_01ff9b48();                            \
     func_01ff9c28(MainLoop_DefaultVBlank);      \
-    func_01ff9c48(func_02000fa4);               \
+    func_01ff9c48(MainLoop_TaskFrame);               \
     Screen_SetCurrent(savedState);              \
     Screen_SetCurrentGfx(savedGfx)
 

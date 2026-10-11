@@ -11,7 +11,7 @@ void CallbackSlots_Clear(void);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 void Gfx_InitBothScreens(void);
 void func_020044a8(void);
 void Wallpaper_LoadBoth(void);
@@ -50,7 +50,7 @@ void func_020d7c08(void)
     Screen_SetCurrentGfx(saved0280);
 
     CallbackSlots_Clear();
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     func_01ff9c28(MainLoop_DefaultVBlank);
     Gfx_InitBothScreens();
     func_020044a8();

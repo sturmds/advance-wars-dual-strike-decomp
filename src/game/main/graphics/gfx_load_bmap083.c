@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_01ff9c48(const void *descriptor);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void Screen_ResetWindows(void);
@@ -45,7 +45,7 @@ void Gfx_LoadBmap083(void)
 {
     u16 *map;
 
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     Screen_SetBgMode(0);
     Screen_InitLayers(gBmap083Layers);
     Screen_ResetWindows();

@@ -9,7 +9,7 @@ void func_020b9864(void);
 void func_020b9890(void);
 int BattleEnd_HasCoinReward(void);
 void MainLoop_DefaultVBlank(void);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 
 /* Puts the main loop's callbacks back and clears the callback slots. When
  * BattleEnd_HasCoinReward allows it, adds the difference of data_022a7a9c.unk_14 and
@@ -18,7 +18,7 @@ void BattleEnd_AwardCoins(void)
 {
     func_020b9890();
     func_01ff9c28(MainLoop_DefaultVBlank);
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     CallbackSlots_Clear();
     if (!BattleEnd_HasCoinReward()) {
         func_020b9864();

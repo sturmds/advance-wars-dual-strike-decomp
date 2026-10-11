@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_01ff9c48(const void *descriptor);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 void Screen_SetBgMode(int mode);
 void Screen_InitLayers(const void *config);
 void Screen_ResetWindows(void);
@@ -30,7 +30,7 @@ extern char gBmapFile090[];           /* "090" */
  * file 090 through BgExtPalette_LoadFromFile. Unknown which screen this is. */
 void Gfx_LoadBmap085(void)
 {
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     Screen_SetBgMode(0);
     Screen_InitLayers(gBmap085Layers);
     Screen_ResetWindows();

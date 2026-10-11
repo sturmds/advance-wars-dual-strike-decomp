@@ -14,7 +14,7 @@ void Screen_SetCurrentBoth(void *state);
 void func_01ff9c28(void (*callback)(void));
 void func_01ff9c48(void (*callback)(void));
 void MainLoop_DefaultVBlank(void);
-void func_02000fa4(void);
+void MainLoop_TaskFrame(void);
 
 /* Puts the default frame callbacks back on both screens and starts the task that picks the
  * screen to go to after the Combat mode battle (Ov003_Exit). */
@@ -24,9 +24,9 @@ void Ov003_StartExitTask(void)
     Unk_02080440 *savedState = data_027c027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    func_01ff9c48(func_02000fa4);
+    func_01ff9c48(MainLoop_TaskFrame);
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
     func_01ff9c28(MainLoop_DefaultVBlank);
