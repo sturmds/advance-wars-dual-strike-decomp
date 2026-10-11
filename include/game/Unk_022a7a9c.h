@@ -21,8 +21,8 @@ typedef struct Unk_022a7a9c {
     u8 unk_0d;
     u8 pad_0e[0x10 - 0x0e];
     s32 unk_10;                        /* entry 0: points the win/lose screen shows */
-    s32 unk_14;                        /* BattleEnd_AwardCoins adds unk_14 - unk_18 to the coin total */
-    s32 unk_18;
+    s32 totalPoints;                   /* score plus bonus points (BattleScore_Compute); BattleEnd_AwardCoins adds totalPoints - previousBest to the coins */
+    s32 previousBest;                  /* campaign: the profile's earlier best on this map, from ProfileHeaders_UpdateBest */
     u16 frontCo;                       /* CO id in bits 0-6 (WinLoseScreen_Init) */
     u16 backCo;                        /* CO id in bits 0-6; 0: no tag partner */
     u8 pad_20[0x28 - 0x20];            /* WinLoseScreen_Init indexes 0x28-byte entries by player slot */

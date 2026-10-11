@@ -12,8 +12,8 @@ void MainLoop_DefaultVBlank(void);
 void MainLoop_TaskFrame(void);
 
 /* Puts the main loop's callbacks back and clears the callback slots. When
- * BattleEnd_HasCoinReward allows it, adds the difference of data_022a7a9c.unk_14 and
- * unk_18 to the coin total; otherwise runs func_020b9864. */
+ * BattleEnd_HasCoinReward allows it, adds totalPoints - previousBest of
+ * data_022a7a9c to the coin total; otherwise runs func_020b9864. */
 void BattleEnd_AwardCoins(void)
 {
     func_020b9890();
@@ -23,6 +23,6 @@ void BattleEnd_AwardCoins(void)
     if (!BattleEnd_HasCoinReward()) {
         func_020b9864();
     } else {
-        PlayRecords_AddCoins(data_022a7a9c.unk_14 - data_022a7a9c.unk_18);
+        PlayRecords_AddCoins(data_022a7a9c.totalPoints - data_022a7a9c.previousBest);
     }
 }

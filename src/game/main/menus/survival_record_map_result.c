@@ -34,8 +34,8 @@ void Survival_RecordMapResult(void)
     if (Player1Team_HasPlayerInGame()) {
         data_022a7b80.mapIndex++;
         /* the original compares unsigned */
-        if ((u32)(data_022a7b80.points + data_022a7a9c.unk_14) < POINTS_MAX) {
-            data_022a7b80.points = data_022a7b80.points + data_022a7a9c.unk_14;
+        if ((u32)(data_022a7b80.points + data_022a7a9c.totalPoints) < POINTS_MAX) {
+            data_022a7b80.points = data_022a7b80.points + data_022a7a9c.totalPoints;
         } else {
             data_022a7b80.points = POINTS_MAX;
         }

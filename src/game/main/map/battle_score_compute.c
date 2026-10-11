@@ -22,13 +22,13 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* End-of-battle score into data_022a7a9c: speed (unk_00), power (unk_01)
- * and technique (unk_02) of the current player (unk_04), their sum (score)
+/* End-of-battle score into data_022a7a9c: speed, power and technique of
+ * the current player (player), their sum (score)
  * and its rank; Survival halves all but the rank. Then the
  * Player.destroyedCounts counts of the human players summed into unk_08-unk_0c,
- * unk_0d set on maps 242 and 247, and the total (unk_14): the sum plus
+ * unk_0d set on maps 242 and 247, and totalPoints: the sum plus
  * the bonus points, 0 when player 1's team is out or in Versus, doubled on
- * campaign hard mode. In the campaign, unk_18 gets the profile's earlier
+ * campaign hard mode. In the campaign, previousBest gets the profile's earlier
  * best from ProfileHeaders_UpdateBest. Last, runs WinLoseSides_Fill and
  * BattleResults_Fill. */
 void BattleScore_Compute(void)
@@ -102,8 +102,8 @@ void BattleScore_Compute(void)
     } else {
         best = ProfileHeaders_UpdateBest(data_02290118.unk_00, total);
     }
-    data_022a7a9c.unk_18 = best;
-    data_022a7a9c.unk_14 = total;
+    data_022a7a9c.previousBest = best;
+    data_022a7a9c.totalPoints = total;
     data_022a7a9c.unk_10 = gPlayRecords.points - best;
     WinLoseSides_Fill();
     BattleResults_Fill();

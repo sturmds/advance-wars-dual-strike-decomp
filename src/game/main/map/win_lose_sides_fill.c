@@ -39,6 +39,6 @@ void WinLoseSides_Fill(void)
             }
         }
     }
-    data_022a7a88.unk_0c = data_022a7a9c.unk_14;
+    data_022a7a88.unk_0c = data_022a7a9c.totalPoints;
     data_022a7a88.unk_10 = data_022a7a9c.unk_10;
 }
