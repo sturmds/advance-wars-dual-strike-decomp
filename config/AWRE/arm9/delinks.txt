@@ -12960,6 +12960,10 @@ src/game/main/func_020f4f78.c:
     complete
     .text       start:0x020f4f78 end:0x020f4f84
 
+src/game/main/screen/splash_destroy_tasks.c:
+    complete
+    .text       start:0x020f4f84 end:0x020f4fc8
+
 src/game/main/func_020f5064.c:
     complete
     .text       start:0x020f5064 end:0x020f5070
