@@ -10,7 +10,7 @@ extern SoundArc gSoundArc;
 SoundHeap *SoundHeap_Create(u32 mem, u32 size);
 BOOL SoundArc_ReadTables(SoundArc *arc, void *heap, int symbolLoad);
 void Sound_CreatePlayerHeaps(void *heap);
-void func_0210902c(void *heap);
+void SoundStream_AllocBuffers(void *heap);
 void Sound_SaveHeapState(void);
 
 /* Like Sound_Init, but gSoundArc is filled by SoundArc_ReadTables without
@@ -24,7 +24,7 @@ void Sound_InitFromMemory(void)
     gSoundHeap = SoundHeap_Create((u32)data_0218ff58, 0xf8000);
     SoundArc_ReadTables(&gSoundArc, gSoundHeap, 0);
     Sound_CreatePlayerHeaps(gSoundHeap);
-    func_0210902c(gSoundHeap);
+    SoundStream_AllocBuffers(gSoundHeap);
     gSoundReady = TRUE;
     Sound_SaveHeapState();
 }
