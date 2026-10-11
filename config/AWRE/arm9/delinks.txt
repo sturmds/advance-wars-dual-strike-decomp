@@ -6582,6 +6582,10 @@ src/game/main/func_0206bc44.c:
     complete
     .text       start:0x0206bc44 end:0x0206bc50
 
+src/game/main/menus/battle_setup_apply_to_game.c:
+    complete
+    .text       start:0x0206bc50 end:0x0206c6f4
+
 src/game/main/menus/battle_setup_load_from_game.c:
     complete
     .text       start:0x0206c6f4 end:0x0206cd64
