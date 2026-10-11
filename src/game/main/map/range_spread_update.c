@@ -8,7 +8,7 @@
 
 void Task_Destroy(Task *task);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void func_020146f0(void *data, VecFx32 *pos, u32 a2, u32 a3, int a4, int a5);
+void SpriteCells_Draw3d(void *data, VecFx32 *pos, u32 a2, u32 a3, int a4, int a5);
 int func_020224ec(void);
 void func_020f78b8(int a0);
 
@@ -54,7 +54,7 @@ void RangeSpread_Update(Task *task)
             pos.x = dots[i].x * 0x2000L / 256;
             pos.y = dots[i].y * 0x6000L / 768;
             pos.z = 8;
-            func_020146f0(data_02169d94, &pos, data_022a7c5c->unk_38, data_022a7c5c->unk_3c, 0, 0);
+            SpriteCells_Draw3d(data_02169d94, &pos, data_022a7c5c->unk_38, data_022a7c5c->unk_3c, 0, 0);
         } else {
             Sprite_QueueAt(0, dots[i].x - GAME->unk_1c4->scrollX, dots[i].y - GAME->unk_1c4->scrollY, data_02169d8c, 0, 0);
         }

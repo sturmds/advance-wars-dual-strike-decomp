@@ -53,7 +53,7 @@ void Gx_SendPlainQuad_0200fb24(void);
 #define QUAD_FLIP_V 0x2000
 
 /* Gx_SendObjSizedQuad with another set of quads; here 64x32 and 64x64
- * get different ones. func_020146f0 calls this one when its flag is set. */
+ * get different ones. SpriteCells_Draw3d calls this one when its flag is set. */
 void func_0201403c(int width, int height, int flip)
 {
     switch (flip) {

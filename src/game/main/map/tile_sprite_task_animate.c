@@ -8,7 +8,7 @@
 void Task_ResumeScript(void *task);
 BOOL Sprite_IsOnScreen(int x, int y, int size);
 void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
-void func_020146f0(void *data, VecFx32 *pos, void *chars, void *palette, int a4, int a5);
+void SpriteCells_Draw3d(void *data, VecFx32 *pos, void *chars, void *palette, int a4, int a5);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -45,7 +45,7 @@ void TileSpriteTask_Animate(TileSpriteTask *task)
         pos.x = ((task->x * 16 + 8) << 13) / 256;
         pos.y = (task->y * 16 + 8) * 0x6000 / 0x300;
         pos.z = 8;
-        func_020146f0(data_02166eb4, &pos, (u8 *)data_022a7c5c->unk_68 + ((task->tile & 0x3ff) - 0x194) * 32,
+        SpriteCells_Draw3d(data_02166eb4, &pos, (u8 *)data_022a7c5c->unk_68 + ((task->tile & 0x3ff) - 0x194) * 32,
                       data_022a7c5c->unk_6c, 0, 1);
     } else if (Sprite_IsOnScreen(task->x * 16 - GAME->unk_1c4->scrollX, task->y * 16 - GAME->unk_1c4->scrollY, 64)) {
         Oam_PutSprite((task->x * 16 - GAME->unk_1c4->scrollX + 8) & 0x1ff,

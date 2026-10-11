@@ -13,12 +13,12 @@ typedef struct Unk_022a7c5c {
     u8 *anim2Frames[3];                /* frames of a second animation, 0x4400 bytes each (MapAnim_QueueSecondFramePart) */
     u8 *anim2Dst;                      /* where MapAnim_QueueSecondFramePart queues them */
     u8 *unk_34;                        /* base that func_020f8534 and func_020f83d8 add palette offsets to */
-    u32 unk_38;                        /* passed to func_020146f0 by RangeSpread_Update */
+    u32 unk_38;                        /* passed to SpriteCells_Draw3d by RangeSpread_Update */
     u32 unk_3c;
     u32 unk_40;                        /* tile base for the sprites Sprite3d_DrawAnimation draws */
     u8 *unk_44;                        /* destination of the colour func_020f8344 queues (+ 8) */
     u32 unk_48;                        /* tile base of the move path arrow cells, 32 bytes per cell (MovePath_DrawArrows3d) */
-    u32 unk_4c;                        /* passed with unk_48 to func_020146f0 */
+    u32 unk_4c;                        /* passed with unk_48 to SpriteCells_Draw3d */
     u8 pad_50[0x5c - 0x50];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */

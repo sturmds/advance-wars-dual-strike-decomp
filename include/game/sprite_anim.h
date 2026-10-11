@@ -10,7 +10,7 @@
 #define SPRITE_ANIM_TILES_PENDING 0x01 /* tiles still to be copied to VRAM */
 #define SPRITE_ANIM_HALFWORD_FILE 0x02 /* file stores halfword offsets, not word pointers */
 #define SPRITE_ANIM_TILE_DIRECT   0x04 /* tiles copied right away, not through the transfer queue */
-#define SPRITE_ANIM_DRAW_FLAG     0x08 /* passed on as the last argument of func_020146f0 */
+#define SPRITE_ANIM_DRAW_FLAG     0x08 /* passed on as the last argument of SpriteCells_Draw3d */
 #define SPRITE_ANIM_ALT_REGISTER  0x10 /* draw with func_020224ec instead of func_020224d4 */
 #define SPRITE_ANIM_SKIP_DRAW     0x20 /* skip the next draw, then clears itself */
 

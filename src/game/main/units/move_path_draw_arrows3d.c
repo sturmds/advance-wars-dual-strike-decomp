@@ -10,7 +10,7 @@ extern u8 data_027c0040;
 
 int MovePath_DirToNext(int i);
 int MovePath_DirToPrev(int i);
-void func_020146f0(const void *cells, const VecFx32 *pos, u32 tileBase, u32 unk28, int arg, int drawFlag);
+void SpriteCells_Draw3d(const void *cells, const VecFx32 *pos, u32 tileBase, u32 unk28, int arg, int drawFlag);
 
 /* Draws the move path arrow on every tile, last tile first, as 3D quads
  * (the screen MovePath_Draw sends here draws its map in 3D). Nothing is
@@ -31,7 +31,7 @@ void MovePath_DrawArrows3d(void)
         pos.y = (data_02166e7c->y[i] << 4) * 0x6000 / 768;
         pos.z = 0;
         next = MovePath_DirToNext((u8)i);
-        func_020146f0(&data_027c0040, &pos,
+        SpriteCells_Draw3d(&data_027c0040, &pos,
                       data_022a7c5c->unk_48 + gMovePathArrowCells[next][MovePath_DirToPrev((u8)i)] * 32,
                       data_022a7c5c->unk_4c, 0, 0);
     }
