@@ -1868,7 +1868,7 @@ func_0205b388 kind:function(arm,size=0x74) addr:0x0205b388
 func_0205b3fc kind:function(arm,size=0xa4) addr:0x0205b3fc
 func_0205b4a0 kind:function(arm,size=0x1f8) addr:0x0205b4a0
 func_0205b698 kind:function(arm,size=0x38) addr:0x0205b698
-func_0205b6d0 kind:function(arm,size=0x8a8) addr:0x0205b6d0
+SparkBurst_Update kind:function(arm,size=0x8a8) addr:0x0205b6d0
 func_0205bf78 kind:function(arm,size=0x40) addr:0x0205bf78
 func_0205bfb8 kind:function(arm,size=0x5c) addr:0x0205bfb8
 func_0205c014 kind:function(arm,size=0x18) addr:0x0205c014
@@ -7262,7 +7262,7 @@ data_0215c2bc kind:data(any) addr:0x0215c2bc
 data_0215c2d4 kind:data(any) addr:0x0215c2d4
 data_0215c2fc kind:data(any) addr:0x0215c2fc
 data_0215c32c kind:data(any) addr:0x0215c32c
-data_0215c35c kind:data(any) addr:0x0215c35c
+gSparkBurstOffsets kind:data(any) addr:0x0215c35c
 data_0215c3a4 kind:data(any) addr:0x0215c3a4
 data_0215c3f4 kind:data(any) addr:0x0215c3f4
 data_0215c444 kind:data(any) addr:0x0215c444
