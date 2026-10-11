@@ -37,4 +37,23 @@ typedef struct Unk_02290118 {
 
 extern Unk_02290118 data_02290118;
 
+/* The saved copy of the first 16 bytes of Unk_02290118 for one profile.
+ * data_02290a60 holds three, in the same memory as gPlayRecords.unk_348;
+ * Save_LoadProfile copies one over the start of data_02290118. */
+typedef struct ProfileHeader {
+    u8 unk_00;
+    u8 unk_01;
+    u8 hardMode;
+    u8 unk_03;                         /* nonzero: the profile is in use (func_0204d6c0) */
+    u8 unk_04;
+    u8 unk_05;
+    u16 unk_06;
+    u16 unk_08;
+    u16 unk_0a;
+    u16 unk_0c;
+    u16 unk_0e;
+} ProfileHeader;
+
+extern ProfileHeader data_02290a60[3];
+
 #endif

@@ -14517,6 +14517,10 @@ src/game/main/campaign/campaign_reset_progress.c:
     complete
     .text       start:0x02103ca8 end:0x02103d18
 
+src/game/main/campaign/profile_headers_update_best.c:
+    complete
+    .text       start:0x02103d18 end:0x02103ed8
+
 src/game/main/func_0210408c.c:
     complete
     .text       start:0x0210408c end:0x021040dc
