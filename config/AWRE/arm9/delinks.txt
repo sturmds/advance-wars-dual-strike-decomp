@@ -401,6 +401,7 @@ src/game/main/screen/screen_flash_end.c:
     .text       start:0x020041c4 end:0x020041e4
 
 src/game/main/screen/screen_flash_start.c:
+    complete
     .text       start:0x020041e4 end:0x02004230
 
 src/game/main/func_02004230.c:
