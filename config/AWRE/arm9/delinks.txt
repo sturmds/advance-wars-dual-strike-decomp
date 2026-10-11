@@ -22562,6 +22562,10 @@ src/sdk/mb/mb_comm_report_error.c:
     complete
     .text       start:0x021191b0 end:0x021191d4
 
+src/sdk/mb/mb_comm_is_child_aid.c:
+    complete
+    .text       start:0x021191d4 end:0x021191f0
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc
