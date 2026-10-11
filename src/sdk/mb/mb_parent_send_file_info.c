@@ -6,7 +6,7 @@ extern u8 gMbLastFileInfoSent;
 
 void MI_CpuFill8(void *dst, u8 value, u32 size);
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
-u8 *func_0211e120(DlPlayHostMsgHead *header, u8 *buffer);
+u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
 int func_0211b458(u32 size, u16 bitmap, u8 *buffer);
 
 /* Sends the download info of one file to the accepted children that picked
@@ -54,7 +54,7 @@ int MbParent_SendFileInfo(void)
 
     header.type = DLPLAY_TO_CHILD_LAYOUT;
     header.fileId = fileId;
-    data = func_0211e120(&header, data_022aced4->sendBuffer);
+    data = MbComm_WriteParentMessage(&header, data_022aced4->sendBuffer);
     if (data != NULL) {
         Mem_CopyBytes(data_022aced4->files[fileId].dlFileInfo, data, DLPLAY_LAYOUT_SENT_BYTES);
     }

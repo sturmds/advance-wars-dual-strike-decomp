@@ -22951,6 +22951,10 @@ src/sdk/mb/mb_comm_read_child_message.c:
     complete
     .text       start:0x0211dfe4 end:0x0211e120
 
+src/sdk/mb/mb_comm_write_parent_message.c:
+    complete
+    .text       start:0x0211e120 end:0x0211e1a8
+
 src/game/main/func_0211e1f4.c:
     complete
     .text       start:0x0211e1f4 end:0x0211e214

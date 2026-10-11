@@ -6,7 +6,7 @@ extern DlPlayHostLinkArea *data_022aced4;
 
 void MbParentFile_AdvanceBlock(u8 fileId);
 BOOL func_0211a7d8(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockNo, u8 *dlFileInfo);
-u8 *func_0211e120(DlPlayHostMsgHead *header, u8 *buffer);
+u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
 BOOL MbSegment_Read(DlPlayHeldProgram *cache, u32 address, u8 *dst, u32 size);
 BOOL MbTask_IsLoading(DlPlayWorkerJob *task);
 void func_0211db5c(DlPlayWorkerJob *task, void (*callback)(DlPlayWorkerJob *task), int arg, int priority);
@@ -52,7 +52,7 @@ int func_021193fc(void)
     header.type = DLPLAY_TO_CHILD_BLOCK;
     header.fileId = data_022aced4->currentFile;
     header.block = data_022aced4->files[data_022aced4->currentFile].currentBlock;
-    data = func_0211e120(&header, data_022aced4->sendBuffer);
+    data = MbComm_WriteParentMessage(&header, data_022aced4->sendBuffer);
     {
         DlPlayHostLinkArea *work = data_022aced4;
         u32 address = block.offset - work->files[work->currentFile].segmentOffsets[block.segment]
