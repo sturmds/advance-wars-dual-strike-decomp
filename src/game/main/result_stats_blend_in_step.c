@@ -6,20 +6,21 @@ void Screen_SetCurrentBoth(void *state);
 void Task_ResumeScript(void *task);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void *func_0203b614(void);            /* adds the menu button data_0215a538 */
-void func_0203d09c(void);
+void WinLoseScreen_DrawPicturesOneSide(WinLoseTask *task);
 
 #define BLEND_FRAMES 64
 
-/* Script task step of the stats screen, 64 frames: runs func_0203d09c each
- * frame and eases the alpha blend of both screens, first target from 2 to 9
- * and second target from 16 to 9 (frame 1 only sets the first to 1). Then
- * adds a menu button and resumes the script. */
+/* Script task step of the stats screen, 64 frames: draws the CO pictures
+ * (WinLoseScreen_DrawPicturesOneSide) each frame and eases the alpha blend
+ * of both screens, first target from 2 to 9 and second target from 16 to 9
+ * (frame 1 only sets the first to 1). Then adds a menu button and resumes
+ * the script. */
 void ResultStats_BlendInStep(WinLoseTask *task)
 {
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedState;
 
-    func_0203d09c();
+    WinLoseScreen_DrawPicturesOneSide(task);
     task->frame++;
     savedGfx = data_027c0280;
     savedState = data_027c027c;
