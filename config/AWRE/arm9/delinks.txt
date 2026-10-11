@@ -8602,6 +8602,10 @@ src/game/main/graphics/ov003_start_exit_task.c:
     complete
     .text       start:0x02082938 end:0x020829c0
 
+src/game/main/graphics/ov003_exit_task_run.c:
+    complete
+    .text       start:0x020829c0 end:0x02082a5c
+
 src/game/main/func_02082a5c.c:
     complete
     .text       start:0x02082a5c end:0x02082a78
