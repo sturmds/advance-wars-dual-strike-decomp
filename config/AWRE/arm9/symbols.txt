@@ -5712,7 +5712,7 @@ WM_SetEntry kind:function(arm,size=0x60) addr:0x02118f34
 WM_MeasureChannel kind:function(arm,size=0x78) addr:0x02118f94
 WM_SetLifeTime kind:function(arm,size=0x6c) addr:0x0211900c
 WM_SetBeaconIndication kind:function(arm,size=0x70) addr:0x02119078
-func_021190e8 kind:function(arm,size=0xc8) addr:0x021190e8
+WM_SetGameInfo kind:function(arm,size=0xc8) addr:0x021190e8
 func_021191b0 kind:function(arm,size=0x24) addr:0x021191b0
 func_021191d4 kind:function(arm,size=0x1c) addr:0x021191d4
 func_021191f0 kind:function(arm,size=0x10) addr:0x021191f0
@@ -9070,7 +9070,7 @@ gWmConnectPortArg kind:bss addr:0x022ac36c
 data_022ac380 kind:bss addr:0x022ac380
 data_022ac390 kind:bss addr:0x022ac390
 data_022ac3c0 kind:bss addr:0x022ac3c0
-data_022acdc0 kind:bss addr:0x022acdc0
+gWmGameInfoBuf kind:bss addr:0x022acdc0
 data_022ace40 kind:bss addr:0x022ace40
 data_022ace44 kind:bss addr:0x022ace44
 data_022ace48 kind:bss addr:0x022ace48

@@ -8,7 +8,7 @@ extern DlPlayAdvertFrame data_022ace60;
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
 void MIi_CpuCopy16(const void *src, void *dst, u32 size);
 u16 func_0211b410(void *data, u32 size);
-int func_021190e8(void (*callback)(void *event), void *userGameInfo, u16 length, u32 ggid,
+int WM_SetGameInfo(void (*callback)(void *event), void *userGameInfo, u16 length, u32 ggid,
                   u16 tgid, u8 attribute);
 
 /* Sends the next piece of the current game as one beacon (WM_SetGameInfo),
@@ -45,5 +45,5 @@ void MbBeacon_SendPiece(u32 ggid, u16 tgid, u32 attribute)
     } else {
         data_022ace4c.state = DLPLAY_ADVERT_STEP_DONE;
     }
-    func_021190e8(0, &data_022ace60, sizeof(DlPlayAdvertFrame), ggid, tgid, attribute | WM_ATTR_FLAG_MB);
+    WM_SetGameInfo(0, &data_022ace60, sizeof(DlPlayAdvertFrame), ggid, tgid, attribute | WM_ATTR_FLAG_MB);
 }
