@@ -1,0 +1,86 @@
+#include "types.h"
+#include "game/link_text_sync_task.h"
+
+int func_0207bd94(void);
+u8 *func_02078138(int player);
+u16 func_0207a1dc(void);
+int Link_FindSlotOfPlayer(int player);
+void func_0207b48c(void);
+void func_0207b4b0(u8 *chunk);
+void Task_ResumeScript(void *task);
+
+extern u8 data_0229da8c[];
+extern u8 data_0229db54[4][6][33];
+
+/* Swaps the reaction texts with the other players, 8 bytes a frame: sends
+ * the next chunk of data_0229da8c and copies the chunk each player sent into
+ * that player's row of data_0229db54. The first chunk sent is a 1 marker. */
+void func_02080b34(LinkTextSyncTask *task)
+{
+    int j;
+    u8 chunk[8];
+    int i;
+    u8 *dst;
+    u8 *src;
+
+    if (!func_0207bd94()) {
+        return;
+    }
+    if (task->receiveStarted == 0) {
+        if (*func_02078138(0) != 0) {
+            task->receiveStarted = 1;
+        }
+    } else if (task->receiveStarted != 0) {
+        for (i = 0; i < 4; i++) {
+            if ((func_0207a1dc() | 1) & (1 << i)) {
+                src = func_02078138((u16)i);
+                dst = (u8 *)data_0229db54[Link_FindSlotOfPlayer(i) - 1];
+
+                for (j = task->receivedBytes; j < task->receivedBytes + 8; j++) {
+                    if (j >= task->sentBytes) {
+                        break;
+                    }
+                    dst[j] = src[j - task->receivedBytes];
+                }
+            }
+        }
+        task->receivedBytes += 8;
+    }
+    if (task->sendDone != 0 && task->receivedBytes >= task->sentBytes) {
+        task->sentBytes = 0;
+        task->receivedBytes = 0;
+        task->sendDone = 0;
+        task->started = 0;
+        task->receiveStarted = 0;
+        func_0207b48c();
+        Task_ResumeScript(task);
+        return;
+    }
+    if (task->started == 0) {
+        chunk[0] = 1;
+        for (i = 1; i < 8; i++) {
+            chunk[i] = 0;
+        }
+        task->started = 1;
+    } else if (task->sendDone == 0) {
+        u8 *text = data_0229da8c;
+
+        for (i = 0; i < 8; i++) {
+            chunk[i] = text[task->sentBytes];
+            task->sentBytes++;
+            if (task->sentBytes == 198) {
+                task->sendDone = 1;
+                i++;
+                break;
+            }
+        }
+        for (; i < 8; i++) {
+            chunk[i] = 0;
+        }
+    } else {
+        for (i = 0; i < 8; i++) {
+            chunk[i] = 0;
+        }
+    }
+    func_0207b4b0(chunk);
+}
