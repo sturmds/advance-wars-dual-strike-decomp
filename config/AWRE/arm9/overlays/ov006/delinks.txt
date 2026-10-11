@@ -1019,6 +1019,13 @@ src/game/ov006/ov006_refit_cell_to_right.c:
     complete
     .text       start:0x02366f9c end:0x0236700c
 
+src/game/ov006/ov006_is_road_or_vertical_bridge.c:
+    complete
+    .text       start:0x02367260 end:0x023672d8
+
+src/game/ov006/ov006_is_road_or_horizontal_bridge.c:
+    .text       start:0x023672d8 end:0x02367350
+
 src/game/ov006/ov006_is_road_or_bridge_tile.c:
     complete
     .text       start:0x02367350 end:0x023673b4
