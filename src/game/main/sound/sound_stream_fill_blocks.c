@@ -89,7 +89,6 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
         }
 
         block = stream->samplePos / stream->blockSamples;
-        blockPos = stream->samplePos - block * stream->blockSamples;
         if (block < stream->blockCount - 1) {
             blockSize = stream->blockSize;
             blockSamples = stream->blockSamples;
@@ -97,6 +96,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
             blockSize = stream->lastBlockSize;
             blockSamples = stream->lastBlockSamples;
         }
+        blockPos = stream->samplePos - block * stream->blockSamples;
 
         samples = remaining;
         if (stream->format != SOUND_STREAM_FORMAT_PCM8) {
@@ -111,6 +111,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
             }
         }
 
+        readOffset = blockPos;
         loopBack = FALSE;
         if (blockPos + samples >= blockSamples) {
             samples = blockSamples - blockPos;
@@ -124,7 +125,6 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
         }
 
         bytes = samples;
-        readOffset = blockPos;
         switch (stream->format) {
         case SOUND_STREAM_FORMAT_PCM8:
             readSize = samples;
