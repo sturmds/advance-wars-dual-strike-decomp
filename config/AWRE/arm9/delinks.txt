@@ -6072,6 +6072,9 @@ src/game/main/day_banner_init.c:
     complete
     .text       start:0x02053124 end:0x0205327c
 
+src/game/main/func_0205327c.c:
+    .text       start:0x0205327c end:0x02053350
+
 src/game/main/day_banner_load_graphics.c:
     complete
     .text       start:0x020533c4 end:0x02053560
