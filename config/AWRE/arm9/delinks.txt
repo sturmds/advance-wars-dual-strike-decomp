@@ -11554,6 +11554,13 @@ src/game/main/ai/ai_black_boat_repair_damaged_unit.c:
     complete
     .text       start:0x020b3570 end:0x020b377c
 
+src/game/main/ai/ai_black_boat_is_better_repair_target.c:
+    complete
+    .text       start:0x020b377c end:0x020b382c
+
+src/game/main/ai/func_020b382c.c:
+    .text       start:0x020b382c end:0x020b38c4
+
 src/game/main/ai/ai_sea_transport_wait_near_port.c:
     complete
     .text       start:0x020b38c4 end:0x020b3c84
