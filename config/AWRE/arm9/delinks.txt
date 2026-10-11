@@ -2927,6 +2927,10 @@ src/game/main/func_0201d614.c:
     complete
     .text       start:0x0201d614 end:0x0201d638
 
+src/game/main/script/event_cmd_set_map_id.c:
+    complete
+    .text       start:0x0201d638 end:0x0201d6a0
+
 src/game/main/script/event_script_run_command.c:
     complete
     .text       start:0x0201d6a0 end:0x0201d6f8
