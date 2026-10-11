@@ -1,7 +1,7 @@
 #include "types.h"
 
 BOOL func_020a5cc8(int x, int y, int unitType, int maxCost);
-int func_020a63d0(int x, int y, int arg2);
+int Tile_HasEnemyUnit(int x, int y, int arg2);
 
 /* Callback the path search calls for each tile. */
 extern int (*data_0229e174)(int x, int y, int arg2);
@@ -10,7 +10,7 @@ extern int (*data_0229e174)(int x, int y, int arg2);
  * func_020a5cc8 for unitType and maxCost reaches one. */
 BOOL Ai_HasEnemyWithinMoves(int x, int y, int unitType, int maxCost)
 {
-    data_0229e174 = func_020a63d0;
+    data_0229e174 = Tile_HasEnemyUnit;
     if (data_0229e174(x, y, unitType) == 1) {
         return TRUE;
     }

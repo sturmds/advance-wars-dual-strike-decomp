@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_020a63d0(int x, int y, int arg2);
+int Tile_HasEnemyUnit(int x, int y, int arg2);
 int UnitType_BestBaseDamage(int unitType, int targetType);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -14,7 +14,7 @@ int UnitType_BestBaseDamage(int unitType, int targetType);
  * unitType can damage it (chart damage above 1). */
 int Ai_CanDamageEnemyAtTile(int x, int y, int unitType)
 {
-    if (!func_020a63d0(x, y, 0)) {
+    if (!Tile_HasEnemyUnit(x, y, 0)) {
         return FALSE;
     }
     return UnitType_BestBaseDamage(unitType, STATE->units[STATE->mapTiles->unitAt[x + STATE->mapTiles->rowStart[y]]].type) > 1;
