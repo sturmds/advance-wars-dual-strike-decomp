@@ -106,7 +106,7 @@ def alive(pid: int) -> bool:
 
 def done_addrs() -> set[tuple[str, int]]:
     out = set()
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():  # ARM9 modules and arm7
         spans = [(s, e) for _, s, e, complete in mod.files if complete]
         for f in mod.funcs:
             if any(s <= f.addr < e for s, e in spans):
