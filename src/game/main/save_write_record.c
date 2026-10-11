@@ -22,7 +22,9 @@ int func_02020754(u16 slot, SaveBuffer *buffer, int size);
  * 0xff). Returns 1 when no free slot is left. After any record but 0, 10
  * and 11, record 0 is written again from data_02297f2c.
  * The src argument is not read. On success the save counter goes into the
- * slot's write count, not into data_02297fa8[slot]; the code does that. */
+ * slot's write count, not into data_02297fa8[slot]; the code does that.
+ * Not matching yet (99.89%): in the slot sort, the freeCount - 1 bound and the
+ * freeSlots[j] pointer take r6 and r5; the original has them the other way. */
 int Save_WriteRecord(int recordId, u8 *unused, int size)
 {
     u8 freeCount;
@@ -38,7 +40,6 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
     u8 *dst;
     SaveSlotTable *entry;
     int offset;
-    int length;
     int partHigh;
     int j;
     int part;
@@ -77,8 +78,14 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
             if (chunk > size) {
                 chunk = size;
             }
-            partLength[data_02297f30] = chunk;
-            partOffset[data_02297f30++] = offset;
+            {
+                /* Needed to match: the count is read once, then stored back. */
+                int partCount = data_02297f30;
+
+                partLength[partCount] = chunk;
+                partOffset[partCount] = offset;
+                data_02297f30 = partCount + 1;
+            }
             size -= chunk;
             offset += chunk;
         }
@@ -131,9 +138,10 @@ int Save_WriteRecord(int recordId, u8 *unused, int size)
                 for (i = 0; i < SAVE_SLOT_COUNT; i++) {
                     data_02298050.slotWrites[i] = SAVE_SLOT_WRITES(i);
                 }
-                length = partLength[part];
-                data_02298050.dataLength = length;
-                for (i = 0; i < length; i++) {
+                /* size is 0 here; the original reuses it for the part length. */
+                size = partLength[part];
+                data_02298050.dataLength = size;
+                for (i = 0; i < size; i++) {
                     data_02298050.data[i] = (data_02297f28 + partOffset[part])[i];
                 }
                 if (part == 0 && recordId == 0) {
