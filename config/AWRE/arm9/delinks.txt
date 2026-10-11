@@ -6677,6 +6677,10 @@ src/game/main/func_020b5604.c:
     complete
     .text       start:0x020b5604 end:0x020b5668
 
+src/game/main/ai/ai_sea_transport_score_foot_units_vs_properties.c:
+    complete
+    .text       start:0x020b5668 end:0x020b56ac
+
 src/game/main/ai/ai_unit_has_reachable_target.c:
     complete
     .text       start:0x020b5b94 end:0x020b5bf4
