@@ -9774,6 +9774,10 @@ src/game/main/menus/unit_menu_join_hidden.c:
     complete
     .text       start:0x020bf954 end:0x020bf9ec
 
+src/game/main/menus/unit_menu_wait_hidden.c:
+    complete
+    .text       start:0x020bf9ec end:0x020bfa48
+
 src/game/main/func_020bfbe0.c:
     complete
     .text       start:0x020bfbe0 end:0x020bfc44
