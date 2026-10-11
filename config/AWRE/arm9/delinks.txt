@@ -13828,6 +13828,10 @@ src/game/main/graphics/gfx_load_bmap085.c:
     complete
     .text       start:0x020f23a0 end:0x020f2528
 
+src/game/main/effect_scene_queue_sprite.c:
+    complete
+    .text       start:0x020f2528 end:0x020f259c
+
 src/game/main/func_020f28a8.c:
     complete
     .text       start:0x020f28a8 end:0x020f28d4
