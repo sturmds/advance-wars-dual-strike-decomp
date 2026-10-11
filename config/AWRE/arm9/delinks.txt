@@ -9787,6 +9787,7 @@ src/game/main/menus/battle_menu_swap_co_tag_front_hidden.c:
     .text       start:0x020bfab8 end:0x020bfb18
 
 src/game/main/menus/battle_menu_swap_co_hidden.c:
+    complete
     .text       start:0x020bfb18 end:0x020bfb78
 
 src/game/main/func_020bfbe0.c:
