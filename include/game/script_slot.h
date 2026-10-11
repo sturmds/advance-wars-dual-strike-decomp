@@ -54,6 +54,14 @@ typedef struct ServiceCostPopupSlot {
     u8 pad_3c[0x60 - 0x3c];
 } ServiceCostPopupSlot;
 
+/* The same slot as the supply command uses it (Supply_FlagAdjacentTargets,
+ * Supply_RefillAdjacentStep). */
+typedef struct SupplySlot {
+    u8 pad_00[0x1e];
+    s16 side;                          /* next side of the acting unit to supply, 0-3 */
+    s16 unk_20;                        /* 0: at the end, unk_28/unk_2a get the acting unit's tile and unit action 6 is sent when data_0229eaec is set */
+} SupplySlot;
+
 /* The same slot as the map scroll script data_02169e38 uses it. Positions
  * are map view scroll values in 1/16 tiles. */
 typedef struct MapScrollSlot {

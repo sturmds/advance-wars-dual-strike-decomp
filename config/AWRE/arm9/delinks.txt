@@ -10680,6 +10680,10 @@ src/game/main/script/service_cost_popup_set_shown.c:
     complete
     .text       start:0x020cd6c8 end:0x020cd6f4
 
+src/game/main/units/supply_refill_adjacent_step.c:
+    complete
+    .text       start:0x020cd6f4 end:0x020cd9a8
+
 src/game/main/map/tile_is_on_screen.c:
     complete
     .text       start:0x020cd9a8 end:0x020cda14
