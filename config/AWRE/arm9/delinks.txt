@@ -22570,6 +22570,10 @@ src/sdk/mb/mb_parent_set_callbacks.c:
     complete
     .text       start:0x0211d8a8 end:0x0211d8fc
 
+src/sdk/mb/mb_parent_can_send.c:
+    complete
+    .text       start:0x0211d8fc end:0x0211d964
+
 src/game/main/func_0211daf4.c:
     complete
     .text       start:0x0211daf4 end:0x0211db08
