@@ -9,7 +9,7 @@ BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockN
 u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
 BOOL MbSegment_Read(DlPlayHeldProgram *cache, u32 address, u8 *dst, u32 size);
 BOOL MbTask_IsLoading(DlPlayWorkerJob *task);
-void func_0211db5c(DlPlayWorkerJob *task, void (*callback)(DlPlayWorkerJob *task), int arg, int priority);
+void MbTask_Set(DlPlayWorkerJob *task, void (*callback)(DlPlayWorkerJob *task), int arg, int priority);
 void MbCache_LoadPage(DlPlayWorkerJob *task);
 int func_0211b458(u32 size, u16 bitmap, u8 *buffer);
 
@@ -81,7 +81,7 @@ int func_021193fc(void)
                 page->address = address & ~31;
                 task->page = page;
                 task->cache = cache;
-                func_0211db5c(task, MbCache_LoadPage, 0, 4);
+                MbTask_Set(task, MbCache_LoadPage, 0, 4);
             }
             return DLPLAY_NOTHING_TRANSMITTED;
         }

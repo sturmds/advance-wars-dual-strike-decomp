@@ -2,6 +2,7 @@
 #define SDK_MB_H
 
 #include "types.h"
+#include "sdk/os.h"
 
 /* Download Play (MB) parent side: the games the parent offers, and the
  * beacon that advertises them. */
@@ -293,11 +294,15 @@ typedef struct DlPlayProgramChunkSet {
 #define DLPLAY_WORKER_STACK_AT 0xb8
 
 typedef struct DlPlayWorkerArea {
-    u8 pad_00[0x94];
+    OSThread thread;
     u32 unk_94;                        /* cleared when the thread starts */
     u8 queue[0x20];
     u8 stack[1];                       /* the thread's stack runs to the end of the work area */
 } DlPlayWorkerArea;
+
+/* unk_94 holds the tasks waiting to run, sorted by priority. Read it as
+ * volatile to match: each use reads it again. */
+#define MbTask_List(work) (*(struct DlPlayWorkerJob *volatile *)&(work)->unk_94)
 
 /* Download Play comm layer, parent side. */
 #define DLPLAY_OFFER_SLOTS 16
@@ -493,11 +498,18 @@ typedef struct DlPlayHeldProgram {
     DlPlayHeldBlock pages[DLPLAY_HELD_BLOCK_SLOTS];
 } DlPlayHeldProgram;
 
+#define DLPLAY_JOB_PRIO_BOTTOM 31          /* thread priorities 0 (highest) to 31 */
+#define DLPLAY_JOB_PRIO_HIGHER 32           /* one above the task thread's priority */
+#define DLPLAY_JOB_PRIO_LOWER 33           /* one below it */
+#define DLPLAY_JOB_PRIO_SAME 34          /* the same */
+
+/* A task for the task thread: task runs on the thread, then callback. */
 typedef struct DlPlayWorkerJob {
-    u8 pad_00[4];
+    struct DlPlayWorkerJob *next;
     u32 loading : 1;                   /* a page load is queued or running */
     u32 unk_04_1 : 31;
-    u8 pad_08[8];
+    void (*task)(struct DlPlayWorkerJob *info);
+    void (*callback)(struct DlPlayWorkerJob *info);
     DlPlayHeldBlock *page;
     DlPlayHeldProgram *cache;
 } DlPlayWorkerJob;
