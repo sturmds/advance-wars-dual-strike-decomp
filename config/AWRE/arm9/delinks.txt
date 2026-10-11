@@ -10872,6 +10872,10 @@ src/game/main/map/terrain_is_hq_base_airport_port_or_tower.c:
     complete
     .text       start:0x0209ee54 end:0x0209eea0
 
+src/game/main/map/tile_has_teammate_unit.c:
+    complete
+    .text       start:0x0209eea0 end:0x0209ef20
+
 src/game/main/units/unit_slot_owns_tile.c:
     complete
     .text       start:0x0209ef20 end:0x0209ef7c
