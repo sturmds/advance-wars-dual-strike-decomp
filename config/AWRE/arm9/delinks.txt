@@ -703,6 +703,14 @@ src/game/main/screen/screen_wipe_grow_corners_update.c:
     complete
     .text       start:0x020051c8 end:0x020054f0
 
+src/game/main/screen/screen_wipe_set_top_right_bottom_left_windows.c:
+    complete
+    .text       start:0x020054f0 end:0x02005554
+
+src/game/main/screen/screen_wipe_set_top_left_bottom_right_windows.c:
+    complete
+    .text       start:0x02005554 end:0x020055c0
+
 src/game/main/screen/screen_wipe_shrink_corners_start.c:
     complete
     .text       start:0x020055c0 end:0x02005718
