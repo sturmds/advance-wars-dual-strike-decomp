@@ -1388,6 +1388,10 @@ src/game/main/script/script_slot_run_pending.c:
     complete
     .text       start:0x02017414 end:0x02017494
 
+src/game/main/script/script_slot_run_all.c:
+    complete
+    .text       start:0x02017494 end:0x020174fc
+
 src/game/main/func_020174fc.c:
     complete
     .text       start:0x020174fc end:0x02017500

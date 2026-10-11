@@ -7,7 +7,7 @@
 void func_ov003_02353a98(void);
 void Ov003_Update(void);
 void func_0201a8bc(void);
-void func_02017494(void);
+void ScriptSlot_RunAll(void);
 void func_ov003_02353a84(void);
 void Task_RunList(Task *task);
 
@@ -19,7 +19,7 @@ void Ov003_DrawFrame(void)
     Ov003_Update();
     Screen_SetCurrentBoth(data_027c0288.unk_00);
     func_0201a8bc();
-    func_02017494();
+    ScriptSlot_RunAll();
     Task_RunList(data_027c027c->taskLists[1]);
     Task_RunList(data_027c027c->taskLists[2]);
     Task_RunList(data_027c027c->taskLists[3]);

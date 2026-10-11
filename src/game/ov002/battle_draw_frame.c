@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-void func_02017494(void);
+void ScriptSlot_RunAll(void);
 void func_ov002_02350590(void);
 
 /* Per-frame callback of the battle screen (registered by Battle_StartScreen):
@@ -9,7 +9,7 @@ void func_ov002_02350590(void);
  * called without arguments, so its declared parameters are probably wrong. */
 void Battle_DrawFrame(void)
 {
-    func_02017494();
+    ScriptSlot_RunAll();
     func_ov002_02350590();
     *REG_SWAP_BUFFERS = 3;
 }
