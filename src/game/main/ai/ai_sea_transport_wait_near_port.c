@@ -11,7 +11,7 @@ extern int data_027c0284;
 int GetUnitMovement(int player, int unitType);
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
 void RangeMap_SetBuffer(void *tileMap);
-BOOL func_0209f0c4(int x, int y, int radius);
+BOOL Ai_HasOwnBaseWithin(int x, int y, int radius);
 void AiUnit_MoveTowardTile(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -23,7 +23,7 @@ void AiUnit_MoveTowardTile(int x, int y);
 
 /* Run last by AiSeaTransport_GoToFootUnit for an empty sea transport with
  * no foot unit to fetch. It picks the current player's port it can reach
- * for the lowest move cost; a port that fails func_0209f0c4 (radius 5)
+ * for the lowest move cost; a port that fails Ai_HasOwnBaseWithin (radius 5)
  * costs 256 more. Around that port (MapTiles.rangeScratch: a Tank's moves
  * from it) it then picks a free tile it can reach: a port when its
  * fuel is more than 20 below full, or a shoal, which costs its own
@@ -58,7 +58,7 @@ void AiSeaTransport_WaitNearPort(void)
             if (STATE->unk_04 != (MAP->tiles[TILE_INDEX(portX, portY)] & 0xe0)) {
                 continue;
             }
-            if (func_0209f0c4(portX, portY, 5) == 0) {
+            if (Ai_HasOwnBaseWithin(portX, portY, 5) == 0) {
                 cost += 256;
             }
             if (bestCost >= cost) {
