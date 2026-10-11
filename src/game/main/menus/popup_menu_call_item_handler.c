@@ -7,7 +7,7 @@ void PopupMenu_CallItemHandler(PopupMenuTask *menu)
     u8 selected = menu->selected;
     u8 index = menu->itemIndex[selected];
     const MenuItem *item = &menu->items[index];
-    void (*handler)(s8, s8, s8) = item->unk_0c;
+    MenuItemHandler handler = item->onSelect;
 
     if (handler == NULL) {
         return;

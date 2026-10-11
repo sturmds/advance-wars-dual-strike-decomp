@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/menu_item.h"
 #include "game/event_script.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -16,10 +17,6 @@ BOOL Unit_LacksOtherMapSlots(MapUnit *unit);
 int MapScript_RunList10(int id, void *unit);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 
-/* Guess: getFlags result 2 means the entry is shown greyed out (see
- * UnitMenu_SendBlockedHidden). */
-#define MENU_ITEM_BLOCKED 2
-
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Handler of the unit menu's Send entries (send the acting unit to the other
@@ -28,7 +25,7 @@ void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
  * unit action 26 when gLinkPlay is set, and runs map script list 10, id 46. */
 void UnitMenu_Send(s8 index, s8 selected, s8 flags)
 {
-    if (flags & MENU_ITEM_BLOCKED) {
+    if (flags & MENU_ITEM_GREYED) {
         if (Unit_LacksOtherMapSlots(STATE->actingUnit) == 1) {
             EventScript_Start(gSendNoSlotScript);
         } else {

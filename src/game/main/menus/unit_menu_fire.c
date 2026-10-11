@@ -1,5 +1,6 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/menu_item.h"
 #include "game/task.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -11,17 +12,13 @@ void RangeMap_MarkUnitAttackRange(int x, int y, MapUnit *unit);
 void func_0201e954(void);
 void MenuDepth_Push(void);
 
-/* Guess: getFlags result 2 means the entry is shown greyed out (see
- * UnitMenu_FireBlockedHidden). */
-#define MENU_ITEM_BLOCKED 2
-
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Handler of the unit menu's Fire entries: marks the acting unit's attack range
  * and starts the target picker. Does nothing for the greyed-out entry. */
 void UnitMenu_Fire(s8 index, s8 selected, s8 flags)
 {
-    if (flags & MENU_ITEM_BLOCKED) {
+    if (flags & MENU_ITEM_GREYED) {
         return;
     }
     RangeMap_Fill(-1);
