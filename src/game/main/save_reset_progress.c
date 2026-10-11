@@ -13,7 +13,7 @@ void Co_SetSavedPictureVariant(int co, int variant);
 void Co_SetAvailable(int co, int value);
 void func_0210408c(void);
 void Campaign_ResetProgress(void);
-void func_020e86b8(void);
+void CoPicks_ResetToDefaults(void);
 void BattleRecord_ClearAll(void);
 void func_02101b94(void);
 void ForceRank_ResetAllSets(void);
@@ -56,7 +56,7 @@ void Save_ResetProgress(void)
     Campaign_ResetProgress();
     data_02290a18.unk_78 = 0;
     data_02290a18.unk_7a = 0;
-    func_020e86b8();
+    CoPicks_ResetToDefaults();
     BattleRecord_ClearAll();
     func_02101b94();
     ForceRank_ResetAllSets();

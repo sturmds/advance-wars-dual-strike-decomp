@@ -4356,7 +4356,7 @@ PickFreeCo kind:function(arm,size=0x188) addr:0x020e7ff4
 SetPlayer1TagPartner kind:function(arm,size=0x12c) addr:0x020e817c
 Map_SetupPlayerCos kind:function(arm,size=0x328) addr:0x020e82a8
 Map_SaveCoPicks kind:function(arm,size=0xe8) addr:0x020e85d0
-func_020e86b8 kind:function(arm,size=0xbc) addr:0x020e86b8
+CoPicks_ResetToDefaults kind:function(arm,size=0xbc) addr:0x020e86b8
 BuildUnlockedCoList kind:function(arm,size=0x68) addr:0x020e8774
 LoadMapCoList kind:function(arm,size=0x6c) addr:0x020e87dc
 func_020e8848 kind:function(arm,size=0x18) addr:0x020e8848
@@ -7774,7 +7774,7 @@ data_02167d04 kind:data(any) addr:0x02167d04
 data_02167d08 kind:data(any) addr:0x02167d08
 data_02167d10 kind:data(any) addr:0x02167d10
 data_02167d18 kind:data(any) addr:0x02167d18
-data_02167d24 kind:data(any) addr:0x02167d24
+gCoPicksDefault kind:data(any) addr:0x02167d24
 data_02167d30 kind:data(any) addr:0x02167d30
 data_02167d3c kind:data(any) addr:0x02167d3c
 data_02167d48 kind:data(any) addr:0x02167d48

@@ -16852,6 +16852,10 @@ src/game/main/skills/movement_cost.c:
     complete
     .text       start:0x020e7be8 end:0x020e7e6c
 
+src/game/main/skills/force_rank_clear_set.c:
+    complete
+    .text       start:0x020e7e6c end:0x020e7e90
+
 src/game/main/skills/skills_clear.c:
     complete
     .text       start:0x020e7e90 end:0x020e7eb4
@@ -16892,6 +16896,10 @@ src/game/main/map/map_save_co_picks.c:
     complete
     .text       start:0x020e85d0 end:0x020e86b8
 
+src/game/main/map/co_picks_reset_to_defaults.c:
+    complete
+    .text       start:0x020e86b8 end:0x020e8774
+
 src/game/main/map/build_unlocked_co_list.c:
     complete
     .text       start:0x020e8774 end:0x020e87dc
@@ -16919,6 +16927,10 @@ src/game/main/func_020e888c.c:
 src/game/main/func_020e889c.c:
     complete
     .text       start:0x020e889c end:0x020e88ac
+
+src/game/main/func_020e88ac.c:
+    complete
+    .text       start:0x020e88ac end:0x020e88f8
 
 src/game/main/map/func_020e88f8.c:
     complete
