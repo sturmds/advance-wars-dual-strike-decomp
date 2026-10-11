@@ -28,14 +28,16 @@ typedef struct Ov005CoGridEntry {
     s16 column;
     s16 row;
     s16 available;                     /* 1 when func_02045830 accepts coId */
-    s16 pad_0e;
+    s16 pad_0e;                        /* MenuButton id of the cell, 0x80 + index */
 } Ov005CoGridEntry;
 
 #define OV005_CO_GRID_ENTRIES 28
 
 typedef struct Unk_ov005_0236bba8 {
     u32 unk_00;
-    u8 pad_04[0x20 - 0x04];
+    u32 unk_04;                        /* set to 1 by the grid button handlers */
+    u32 unk_08;                        /* set to 1 by the palette button handler */
+    u8 pad_0c[0x20 - 0x0c];
     u32 coId;                          /* low 7 bits: CO shown */
     u32 cursorCoId;                    /* coId of the grid cell at cursor */
     int unk_28;                        /* palette variant of coId */
@@ -53,7 +55,8 @@ typedef struct Unk_ov005_0236bba8 {
     int unk_214;                       /* palette variant, 0 when it is 8 */
     void *spriteFile;                  /* rikiishi file 042; source of the unk_21c sprites */
     void *unk_21c[9];
-    u8 pad_240[0x288 - 0x240];
+    int extraX[9];                     /* palette button x + 13 (Ov005_InitCoPaletteButtons) */
+    int extraY[9];                     /* palette button y + 12 */
     u8 unk_288[0x6c];                  /* copy of data_ov005_0236ac24 */
 } Unk_ov005_0236bba8;
 

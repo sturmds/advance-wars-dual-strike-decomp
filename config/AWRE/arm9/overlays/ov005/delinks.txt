@@ -661,6 +661,10 @@ src/game/ov005/func_ov005_023630c0.c:
     complete
     .text       start:0x023630c0 end:0x023630e4
 
+src/game/ov005/ov005_on_co_palette_button_confirm.c:
+    complete
+    .text       start:0x023630e4 end:0x02363110
+
 src/game/ov005/ov005_move_co_palette_cursor.c:
     complete
     .text       start:0x02363110 end:0x02363210
