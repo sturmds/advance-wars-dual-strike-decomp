@@ -16,17 +16,17 @@ extern u8 data_02161baa[];             /* data_02161b8c + 30: the template ids o
 #define SET_SIZE 29
 #define MAP_AI_SET data_ov000_022dbd69[GAME->unk_1c4->mapId * sizeof(MapHeader)]
 
-void func_0208c948(AiProfile *profile, int modsId, int templateId);
+void AiProfile_RerollThreatLimits(AiProfile *profile, int modsId, int templateId);
 
 /* Like AiProfile_BuildForPlayer, but always picks the template of the player's
- * front CO, and calls func_0208c948, which rolls the unit values of the
+ * front CO, and calls AiProfile_RerollThreatLimits, which rolls the unit values of the
  * template again (it takes a mods id it does not use). The AI calls it before
  * it uses a CO power. */
 void AiProfile_RerandomiseForPlayer(int player)
 {
     if (MAP_AI_SET != 0) {
-        func_0208c948(gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE], (data_02161b8d + MAP_AI_SET * SET_SIZE)[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
+        AiProfile_RerollThreatLimits(gAiProfile, data_02161b8c[MAP_AI_SET * SET_SIZE], (data_02161b8d + MAP_AI_SET * SET_SIZE)[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
         return;
     }
-    func_0208c948(gAiProfile, data_02161b8c[SET_SIZE], data_02161baa[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
+    AiProfile_RerollThreatLimits(gAiProfile, data_02161b8c[SET_SIZE], data_02161baa[GAME->players[player].front.id & PLAYER_CO_ID_MASK]);
 }

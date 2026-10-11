@@ -9732,6 +9732,10 @@ src/game/main/ai/ai_profile_rerandomise_for_player.c:
     complete
     .text       start:0x0208c860 end:0x0208c948
 
+src/game/main/ai/ai_profile_reroll_threat_limits.c:
+    complete
+    .text       start:0x0208c948 end:0x0208c9f8
+
 src/game/main/ai/ai_profile_build_for_player.c:
     complete
     .text       start:0x0208c9f8 end:0x0208cba8
