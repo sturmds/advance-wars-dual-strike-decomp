@@ -14,7 +14,7 @@ s8 ScriptSlot_Start(const void *descriptor, int arg);    /* starts a task from d
 /* Prints text at tile (x, y) of map, drawing the glyphs into the layer 0
  * tile data, through the printer in data_027c0280 and the task that
  * data_02158394 describes; returns that task's script slot. */
-s8 Text_Print(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
+s8 Text_Print(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, u16 unk_32)
 {
     Unk_027c0280 *gfx = data_027c0280;
     void *printer = gfx->textPrinter;

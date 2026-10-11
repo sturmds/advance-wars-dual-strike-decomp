@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/screen_other_map.h"
 #include "game/Unk_ov005_0236bbac.h"
+#include "game/text_print.h"
 
 const void *Text_Get(u32 textId);
-void Text_Print(int x, int y, u16 *map, const void *text, u16 unk_30, u16 unk_32);
 void func_01ff8a2c(u16 *map, int x, int y, int width, int height, int tile);
 int func_02122414(char *buf, int size, const char *format, ...); /* snprintf */
 

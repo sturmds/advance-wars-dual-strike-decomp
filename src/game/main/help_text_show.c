@@ -1,12 +1,12 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
+#include "game/text_print.h"
 
 void Gfx_RequestLayerCopy(int a);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void Bg_ClearRect(void *target, int x, int y, int w, int h);
-s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 void Bg_SetRectPalette(u16 *map, int x, int y, int w, int h, int palette);
 
 extern Unk_02080440 *data_027c027c;
