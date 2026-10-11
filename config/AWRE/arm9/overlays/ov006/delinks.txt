@@ -663,6 +663,10 @@ src/game/ov006/ov006_scatter_woods.c:
     complete
     .text       start:0x02359584 end:0x02359608
 
+src/game/ov006/ov006_add_roads.c:
+    complete
+    .text       start:0x02359608 end:0x02359744
+
 src/game/ov006/ov006_scatter_mountains.c:
     complete
     .text       start:0x02359b7c end:0x02359c20
