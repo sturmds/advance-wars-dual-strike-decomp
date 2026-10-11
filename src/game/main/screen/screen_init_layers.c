@@ -16,7 +16,7 @@ void Screen_SetBg0Mode(int bg0Is3d);         /* sets Unk_027c0280.bg0Mode and ap
 BOOL func_01ff8ef8(int layer);
 BOOL Screen_IsAffineBg(int layer);
 void func_01ff8c84(int layer);
-void func_01ff8c1c(int layer);
+void Gfx_ClearLayerBlankTile(int layer);
 void func_01ff8d94(int layer);
 
 /* BGxCNT of the BG that layer i uses. */
@@ -61,7 +61,7 @@ void Screen_InitLayers(const GfxLayer *config)
                 LAYER_BG_CNT(i).colorMode = 1;
             }
             func_01ff8c84(i);
-            func_01ff8c1c(i);
+            Gfx_ClearLayerBlankTile(i);
             func_01ff8d94(i);
         }
     }
