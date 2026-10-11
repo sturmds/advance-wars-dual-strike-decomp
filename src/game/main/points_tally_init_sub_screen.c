@@ -5,8 +5,8 @@ void func_0201e6e8(int x, int y, int width, int height);
 void Mode_PrintVariantValue(void *task);
 
 /* Script step: on the second screen, sets the Y scroll of layers 0 and 1
- * to -192 (the next step slides them in from there), clears a 20 by 8
- * tile box on layer 1 and prints the mode variant value. */
+ * to -192 (the next step slides them in from there), draws a 20 by 8
+ * tile frame on layer 1 and prints the mode variant value. */
 void PointsTally_InitSubScreen(void *task)
 {
     Unk_027c0280 *savedGfx = data_027c0280;
