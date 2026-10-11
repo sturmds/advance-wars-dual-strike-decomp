@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -19,7 +20,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 
-#define AI_ACTION_WAIT 2
 #define UNLIMITED_MOVE 110
 #define NO_TILE 0x7fff
 #define WORST_DANGER 768

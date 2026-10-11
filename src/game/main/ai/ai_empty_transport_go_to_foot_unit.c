@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -26,9 +27,6 @@ void AiUnit_MoveTowardTile(int x, int y);
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 #define FIRST_UNIT (Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1)
-
-/* AiUnit_PerformAction: move to (x, y) and wait */
-#define AI_ACTION_WAIT 2
 
 /* Movement given to range fills that should cover the whole map. */
 #define UNLIMITED_MOVE 110

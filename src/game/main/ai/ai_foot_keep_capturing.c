@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -11,8 +12,6 @@ void Ai_ClearActingUnitTarget(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-#define AI_ACTION_CAPTURE 3
 
 /* Last step of AiFoot_ContinueCapture: an Infantry or Mech that has started
  * capturing keeps capturing where it stands. */

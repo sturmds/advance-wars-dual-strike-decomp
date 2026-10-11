@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -16,8 +17,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
-
-#define AI_ACTION_BOARD 7
 
 /* Called by AiFoot_HeadForCaptureSite when no capture site is in range.
  * The acting foot unit boards an own transport with room that it can

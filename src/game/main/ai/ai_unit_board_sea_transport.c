@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -13,8 +14,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-#define AI_ACTION_LOAD 7 /* name is a guess */
 
 /* Boards the acting unit on an own Black Boat or Lander it can reach that has
  * a free second cargo slot and can carry its type. A Black Boat beats a
@@ -83,5 +82,5 @@ void AiUnit_BoardSeaTransport(void)
     unit->aiTargetX = bestX;
     unit->aiTargetY = bestY;
     Ai_ClearActingUnitTarget();
-    AiUnit_PerformAction(bestX, bestY, AI_ACTION_LOAD, 0, 0);
+    AiUnit_PerformAction(bestX, bestY, AI_ACTION_BOARD, 0, 0);
 }

@@ -23,10 +23,6 @@ int Unit_CapturePoints(MapUnit *unit); /* capture points the unit adds per turn 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* AiUnit_PerformAction actions */
-#define AI_ACTION_ATTACK_UNIT 4  /* arg3: target unit slot */
-#define AI_ACTION_LAUNCH_SILO 22 /* arg3, arg4: target x, y */
-
 #define ATTACK_KIND_INDIRECT 1
 
 /* Infantry and mechs. Among the tiles in reach, notes the free missile silo

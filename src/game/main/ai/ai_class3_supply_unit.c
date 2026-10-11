@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -13,8 +14,6 @@ BOOL Tile_HasUnitToSupply(s16 x, s16 y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-#define AI_ACTION_SUPPLY 6 /* name is a guess */
 
 /* MapUnit.serviceWanted value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it supplies the unit. */

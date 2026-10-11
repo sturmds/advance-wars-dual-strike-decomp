@@ -11,6 +11,21 @@
 #define AI_STATE_SHOW_ACTION 3  /* a queued unit acted; name is a guess */
 #define AI_STATE_END_ACTIONS 4  /* unit actions done */
 
+/* Actions passed to AiUnit_PerformAction(x, y, action, arg3, arg4). */
+#define AI_ACTION_WAIT         2
+#define AI_ACTION_CAPTURE      3
+#define AI_ACTION_ATTACK_UNIT  4   /* arg3: target unit slot */
+#define AI_ACTION_ATTACK_TILE  5   /* arg3, arg4: x, y */
+#define AI_ACTION_SUPPLY       6   /* name is a guess */
+#define AI_ACTION_BOARD        7   /* move onto a transport (Lander, Black Boat, Cruiser, Carrier) */
+#define AI_ACTION_UNLOAD       8   /* arg3, arg4: direction of each cargo unit, 1 up, 2 right, 3 down, 4 left */
+#define AI_ACTION_JOIN         10
+#define AI_ACTION_HIDE         11
+#define AI_ACTION_APPEAR       12
+#define AI_ACTION_LAUNCH_SILO  22  /* arg3, arg4: target x, y */
+#define AI_ACTION_REPAIR       24  /* arg3: direction of the repaired unit; name is a guess */
+#define AI_ACTION_OOZIUM_EAT   25  /* move onto the enemy unit at (x, y) */
+
 /* Queue entry that is not a unit index: the step runs once. */
 #define AI_QUEUE_RUN_ONCE 0x40
 

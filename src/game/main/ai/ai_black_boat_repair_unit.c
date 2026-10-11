@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -14,8 +15,6 @@ int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction from
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-#define AI_ACTION_REPAIR 24 /* arg3: direction to the repaired unit; name is a guess */
 
 /* MapUnit.serviceWanted value that AiUnit_SeekSupply and func_020af5f8 act on;
  * this routine clears it once it repairs the unit. */

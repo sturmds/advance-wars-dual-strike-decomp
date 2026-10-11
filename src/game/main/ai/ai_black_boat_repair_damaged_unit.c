@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -17,7 +18,6 @@ BOOL AiBlackBoat_IsBetterRepairTarget(MapUnit *best, MapUnit *unit);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define AI_ACTION_REPAIR 24 /* arg3: direction to the repaired unit; name is a guess */
 #define NO_TILE 9999
 #define FULL_SHOWN_HP_MIN 91 /* hp 91-100 shows as 10 */
 

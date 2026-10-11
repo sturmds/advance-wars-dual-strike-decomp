@@ -17,7 +17,6 @@ void RangeMap_FillUnitMoves(MapUnit *unit);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
-#define AI_ACTION_ATTACK_UNIT 4
 
 /* Run by AiUnit_HandleUnitAtTarget for indirect units. The acting unit
  * attacks from where it stands: the best-scored visible enemy unit in its

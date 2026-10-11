@@ -28,7 +28,6 @@ void AiSeaTransport_WaitNearPort(void);
 
 #define UNLIMITED_MOVE 110
 #define NO_TILE 0x7fff
-#define AI_ACTION_WAIT 2
 
 /* Run by AiSeaTransport_Move for an empty sea transport (the acting unit).
  * Scores each of the current player's units that wait for a transport

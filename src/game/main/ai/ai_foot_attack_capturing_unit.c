@@ -19,8 +19,6 @@ BOOL Map_IsTileOwnedByTeamOf(int player, int x, int y); /* tile (x, y) belongs t
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define AI_ACTION_ATTACK_UNIT 4 /* AiUnit_PerformAction: arg3 is the target's unit slot */
-
 /* Infantry and mechs only: attacks the first visible enemy infantry or mech
  * whose capture of an HQ, base or airport (neutral or held by our team) would
  * finish next turn. */

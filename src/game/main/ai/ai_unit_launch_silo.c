@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/strike_target.h"
 #include "game/terrain.h"
@@ -11,8 +12,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-#define AI_ACTION_LAUNCH_SILO 22 /* arg3, arg4: target x, y */
 
 /* Picks the free silo the acting unit reaches with the highest rangeMap
  * value, and launches it at the site Strike_FindBestSite finds. Does

@@ -27,9 +27,6 @@ void AiUnit_MoveTowardTile(int x, int y);
 #define UNLIMITED_MOVE 110
 #define NO_TILE 0x7fff
 
-#define AI_ACTION_WAIT 2
-#define AI_ACTION_LOAD 7 /* name is a guess */
-
 #define CARRY_TABLE(unitType) (Ov000_gUnitStats[unitType].carryTypes)
 
 /* Run when the acting unit's serviceWanted is 1, the value that AiClass3_SupplyUnit
@@ -73,13 +70,13 @@ void AiUnit_GoToSupply(void)
                 case UNIT_CRUISER:
                     if (STATE->rangeMap[y][x] <= gAiTurnState->unk_05
                         && (CARRY_TABLE(unit->type) + STATE->actingUnit->type)[1] != 0 && unit->cargo[1] == 0) {
-                        AiUnit_PerformAction(x, y, AI_ACTION_LOAD, 0, 0);
+                        AiUnit_PerformAction(x, y, AI_ACTION_BOARD, 0, 0);
                     }
                     break;
                 case UNIT_CARRIER:
                     if (STATE->rangeMap[y][x] <= gAiTurnState->unk_05
                         && (CARRY_TABLE(unit->type) + STATE->actingUnit->type)[1] != 0 && unit->cargo[1] == 0) {
-                        AiUnit_PerformAction(x, y, AI_ACTION_LOAD, 0, 0);
+                        AiUnit_PerformAction(x, y, AI_ACTION_BOARD, 0, 0);
                     }
                     break;
                 }

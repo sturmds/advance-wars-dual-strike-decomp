@@ -17,10 +17,6 @@ void Ai_ClearActingUnitTarget(void);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* AiUnit_PerformAction actions; names are guesses from this function */
-#define AI_ACTION_CAPTURE     3
-#define AI_ACTION_LAUNCH_SILO 22 /* arg3, arg4: target x, y */
-
 /* Infantry and mechs: picks a free property tile in reach to capture, scored by
  * its rangeMap value plus a bonus per terrain, or a missile silo to launch. A unit
  * that would need 5 or more turns to capture only looks at silos. Ties go to

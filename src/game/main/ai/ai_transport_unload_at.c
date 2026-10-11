@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -12,9 +13,6 @@ int Tile_GetDirection(int fromX, int fromY, int toX, int toY); /* direction: 0 s
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-
-/* AiUnit_PerformAction action; arg3 is the direction of the drop tile. */
-#define AI_ACTION_UNLOAD 8
 
 /* MapUnit.aiOrder values copied between cargo units: 0-6. Orders 8-10 use
  * the unit's aiTarget; 7 has no routine in AiTransport_SecondCargoHasTaskAt. */

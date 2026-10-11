@@ -15,7 +15,6 @@ int GetUnitMaxRange(int player, int unitType);
 void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
 int Unit_IsTileOwnedByTeam(int unitIndex, int tile);   /* 1: tile owned by the unit's team */
 BOOL Map_IsOwnedNonRepairTile(int x, int y);             /* TRUE: tile owned by unk_04 and not a repair tile */
-MapObject *Map_GetObjectAt(int x, int y);       /* object at (x, y) with hp left, or NULL */
 int Unit_BestDamageToTargetKind(MapUnit *unit, int target); /* chart damage against a target kind, best weapon */
 BOOL Map_IsTileVisible(s16 x, s16 y);
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
@@ -27,10 +26,6 @@ void AiUnit_PerformAction(int x, int y, int action, u8 arg3, u8 arg4); /* queues
 #define MAP (STATE->mapTiles)
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 #define UNIT_TILE(unit) (MAP->tiles[TILE_INDEX((unit)->x, (unit)->y)])
-
-/* AiUnit_PerformAction actions */
-#define AI_ACTION_ATTACK_UNIT 4 /* arg3: unit slot */
-#define AI_ACTION_ATTACK_TILE 5 /* arg3, arg4: x, y */
 
 /* Damage chart target kind of tiles with hp (tileHp); likely pipe seams. */
 #define TARGET_KIND_TILE 6

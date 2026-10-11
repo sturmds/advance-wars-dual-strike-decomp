@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
@@ -18,8 +19,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define TILE_INDEX(x, y) ((x) + MAP->rowStart[y])
 /* the site entry for the tile the acting unit is heading to */
 #define TARGET_SITE (STATE->unk_6088[MAP->unk_1928[TILE_INDEX(STATE->actingUnit->aiTargetX, STATE->actingUnit->aiTargetY)]])
-
-#define AI_ACTION_BOARD 7
 
 /* Called by AiFoot_HeadForCaptureSite when the capture site is more than 2
  * tiles away (siteDistance). Like AiFoot_BoardTransport, but the unit also

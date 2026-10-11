@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 #include "game/unit_stats.h"
 
@@ -11,9 +12,6 @@ void AiUnit_LaunchSilo(void);
 void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-
-/* AiUnit_PerformAction action; likely Join, from how AiFoot_JoinCapturingUnit uses it */
-#define AI_ACTION_JOIN 10
 
 /* A unit at 50 hp or less that carries nothing joins a unit of its own type
  * it can reach: not carried or carrying, at most 90 hp, hp sum at most 100,

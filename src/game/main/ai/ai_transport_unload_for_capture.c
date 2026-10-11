@@ -20,9 +20,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* AiUnit_PerformAction action; arg3 is the direction of the drop tile. */
-#define AI_ACTION_UNLOAD 8
-
 /* MapTiles.rangeScratch2 bits read here, for each foot unit type; set by
  * AiTurn_BuildCaptureMap. */
 #define TILE_FLAG_INFANTRY 0x80

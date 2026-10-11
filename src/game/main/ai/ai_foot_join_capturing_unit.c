@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 
 extern Unk_02080440 *data_027c027c;
@@ -12,9 +13,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
-
-/* AiUnit_PerformAction action; likely Join, from how it is used here */
-#define AI_ACTION_JOIN 10
 
 /* Joins the acting unit with one of our own units of the same type that is
  * capturing and not at full hp, on any tile the acting unit can reach. HP here

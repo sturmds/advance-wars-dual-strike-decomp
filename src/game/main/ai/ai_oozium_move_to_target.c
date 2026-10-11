@@ -12,10 +12,6 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-/* AiUnit_PerformAction actions; names are guesses from this function */
-#define AI_ACTION_WAIT       2
-#define AI_ACTION_OOZIUM_EAT 25 /* move onto the enemy unit at (x, y) */
-
 /* Movement for RangeMap_FillMoves high enough to reach the whole map. */
 #define RANGE_WHOLE_MAP 110
 

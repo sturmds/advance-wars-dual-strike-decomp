@@ -18,8 +18,6 @@ int AiAttack_Score(int arg, s16 *pos);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
 
-#define AI_ACTION_ATTACK_UNIT 4
-
 /* First step of AiUnit_HeadForRepairTile. A direct-attack unit looks for an
  * enemy unit it can hit from a tile in reach, scored by AiAttack_Score with
  * AI_ATTACK_HEAVY_HIT. As in AiFoot_PickAttackTarget, when
