@@ -16,7 +16,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean
+.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean shift emu-smoke
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -75,6 +75,17 @@ release: setup
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
 	@echo "release: OK"
+
+# A ROM with 0x20 bytes inserted in main, in build/shift/ (issue 0012).
+# Checks that every symbol after the pad moved; not part of release.
+shift: all
+	@flock build/.ninja.lock $(PYTHON) tools/shift_build.py
+
+# Starts retail, our build and the shifted build in DeSmuME without a window
+# and compares exit status, log and the save file the game writes. A smoke
+# test only (issue 0006).
+emu-smoke: shift
+	@$(PYTHON) tools/emu_smoke.py $(ROM) $(OUT) build/shift/AWRE.nds
 
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
 # handling, of ds.py, of pragmas.py, of absolute symbols and of ARM7's address

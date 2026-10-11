@@ -212,6 +212,14 @@ ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7
 - `propagate.py --module arm7` copies matched C, ARM9's included, to ARM7 twins and checks them with the ARM7 flags; `trivial.py --arm7` does the short functions. Without those flags both leave ARM7 alone. `permute.py` and `pragmas.py` pick the ARM7 flags for a file under `src/arm7/`.
 - The 25 Thumb functions are BIOS call stubs (`svc N; bx lr`); write them as `asm void` under `#pragma thumb on`, as for ARM9's.
 - dsd cannot delink ARM7 on its own: `tools/arm7.py` runs it on a stand-in ROM with the parts moved (`docs/tool-issues.md`). That is invisible in the loop, but `config/AWRE/arm7/` uses real addresses while `build/arm7/config/` holds the moved copy; edit only the first.
+## Shifted build and pointer checks
+
+A mod that changes code size moves every later address. The linker fixes an address only when it is a relocation (an entry in `relocs.txt` or a symbol in our C), never a plain number, so a pointer dsd missed keeps its old value and points at the wrong place. These tools look for that (issues 0012, 0019, 0023). None of them changes what `make release` checks.
+
+- `make shift` (`tools/shift_build.py [--pad N] [--at ADDR]`) links a copy of the build with N zero bytes (default 0x20, a multiple of 32) inserted in main's .text before the first object at or after ADDR (default 0x02004000), and builds `build/shift/AWRE.nds`. It checks that every main symbol after the pad and every overlay symbol moved by N and that the rest stayed. `dsd rom build` itself rewrites the .bss bounds in main's module parameters (a table crt0 reads at 0x02000b00) and the overlay table. The secure-area CRC stays the retail value and is wrong for the shifted ROM (issue 0056).
+- `make emu-smoke` (`tools/emu_smoke.py ROM...`) starts retail, `build/AWRE.nds` and the shifted ROM in DeSmuME for 20 seconds each, with no window and no sound, and compares the exit status, the log and the save file the game formats on first boot. It catches a ROM that dies early, not much more: a ROM with 16 KiB of main's code overwritten passed it. See issue 0006.
+- `python3 tools/scan_pointers.py [--list high|medium|low|all] [--module M] [--tsv FILE]` lists 4-byte words in .data, .rodata and literal pools whose value falls in a module's address range and that have no relocation, ranked by confidence (the docstring has the rules). Needs `make fnindex`. Add a relocation by hand only after reading the code that uses the word: most low-confidence hits are byte tables such as `04 00 01 02`.
+- `python3 tools/resolve_overlay_relocs.py [--write]` narrows relocations that dsd marked `module:overlays(...)` because several overlays share the target address. Run it after anything that regenerates `relocs.txt`, then `make release`.
 
 ## Reference
 
@@ -234,4 +242,8 @@ ARM7 (the second CPU: sound, touch screen, wireless, power) is one module, `arm7
 | `make check` | dsd module check, per-module SHA-1, whole-ROM SHA-1 |
 | `make progress` | Matched functions and bytes per CPU: game vs SDK, C vs assembly |
 | `python3 tools/progress.py --write PROGRESS.md` | Same counts per module, plus C files not linked yet; the pre-commit hook runs it |
+| `make shift` | Build `build/shift/AWRE.nds` with padding in main and check that symbols moved |
+| `make emu-smoke` | Start retail, our ROM and the shifted ROM in DeSmuME and compare what can be seen without pixels |
+| `python3 tools/scan_pointers.py` | Words that look like pointers but have no relocation |
+| `python3 tools/resolve_overlay_relocs.py` | Narrow `overlays(...)` relocations to one overlay where the rules allow |
 | `ninja objdiff.json` | objdiff project file, for the objdiff GUI if you install it |

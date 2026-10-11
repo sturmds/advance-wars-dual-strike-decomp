@@ -33,7 +33,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0003](0003-pointer-table-callers.md) | `fn.py show` finds no callers for functions reached through pointer tables | closed | tools | M1 |
 | [0004](0004-identical-functions.md) | Identical functions each cost a full agent run | open | loop | M1 |
 | [0005](0005-names-to-confirm.md) | Names the agents guessed, to confirm or change | open | decomp | M1 |
-| [0006](0006-emulator-boot-check.md) | The built ROM has not been run in an emulator | blocked | emulation | M3 |
+| [0006](0006-emulator-boot-check.md) | The built ROM has not been run in an emulator | open | emulation | M3 |
 | [0007](0007-dsd-init-abort.md) | `dsd init` aborts on AWRE | worked around | tools | later |
 | [0008](0008-fn-add-blank-lines.md) | `fn.py add` leaves an extra blank line in `delinks.txt` | open | tools | M1 |
 | [0009](0009-file-modified-after-diff.md) | An agent saw its C file change on disk after `fn.py diff` | open | tools | M1 |
@@ -83,3 +83,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
 | [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |
 | [0055](0055-overlay-relocations-left.md) | 15 relocations still name several overlays | open | tools | M3 |
+| [0056](0056-shifted-secure-area-crc.md) | A ROM with changed main code has a wrong secure-area CRC | open | build | M3 |

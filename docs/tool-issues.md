@@ -23,6 +23,11 @@ Tracked as `docs/issues/0007-dsd-init-abort.md`.
 - **Workaround:** `tools/fix_header.py` checks that our secure area (0x4000–0x7FFF) equals the original's, copies the original secure-area CRC, and recomputes the header CRC. No BIOS dump needed.
 - **Not a bug:** the CRC covers the encrypted secure area, and the encryption key comes from the BIOS.
 
+## dsd: relocations to overlays that share an address
+
+- **Behaviour:** when a pointer targets an address that several overlays cover, `dsd init` writes `module:overlays(A,B,...)` and adds a symbol marked `ambiguous` in each candidate. `dsd delink` then names the first candidate's symbol in the object. The matching build links the same bytes either way; a shifted build would link to the first candidate even when another one is meant.
+- **What we do:** `tools/resolve_overlay_relocs.py` narrows them by rule (issue 0019); 15 are left (issue 0055).
+
 ## dsd: smaller warnings
 
 - `init` warns 28 times about calls into the middle of functions, all in runtime and floating-point assembly in 0x0211e980–0x02129760. It adds labels for them; the build is unaffected.
