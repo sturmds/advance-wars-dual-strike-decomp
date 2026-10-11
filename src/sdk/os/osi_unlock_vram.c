@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
-int func_0210edb8(u32 value);   /* count leading zeros */
+int MATH_CountLeadingZeros(u32 value);   /* count leading zeros */
 
 void OSi_UnlockVram(u16 banks, u16 lockID)
 {
@@ -12,7 +12,7 @@ void OSi_UnlockVram(u16 banks, u16 lockID)
 
     /* Visits the held banks from the highest bit down. */
     while (TRUE) {
-        int bank = 31 - func_0210edb8(held);
+        int bank = 31 - MATH_CountLeadingZeros(held);
         u32 keep;
 
         if (bank < 0) {

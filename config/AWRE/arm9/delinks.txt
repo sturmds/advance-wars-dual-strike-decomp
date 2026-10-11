@@ -21475,6 +21475,10 @@ src/game/main/func_0210ed9c.c:
     complete
     .text       start:0x0210ed9c end:0x0210edb8
 
+src/sdk/os/math_count_leading_zeros.c:
+    complete
+    .text       start:0x0210edb8 end:0x0210edc0
+
 src/sdk/os/osi_unlock_vram.c:
     complete
     .text       start:0x0210edc0 end:0x0210ee48
@@ -21566,6 +21570,10 @@ src/sdk/mi/mi_cpu_fill8.c:
 src/sdk/mi/mem_copy_bytes.c:
     complete
     .text       start:0x0210f5c0 end:0x0210f6f0
+
+src/sdk/mi/mi_swap_word.c:
+    complete
+    .text       start:0x0210f6f0 end:0x0210f6f8
 
 src/sdk/mi/mi_uncompress_lz8.c:
     .text       start:0x0210f78c end:0x0210f864
