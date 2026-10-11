@@ -15,6 +15,9 @@ typedef struct BattleGfxByStyle {
 typedef struct BattleGfxFile {
     char file[4];
     const void *table;
+    u8 unk_08_0 : 4;                   /* Battle_GetMatchupValue for matchup 0 */
+    u8 unk_08_4 : 4;                   /* matchup 1 */
+    u8 unk_09;                         /* matchup 2 */
 } BattleGfxFile;
 
 #endif

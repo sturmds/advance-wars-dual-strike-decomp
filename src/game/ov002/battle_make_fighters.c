@@ -29,7 +29,7 @@ void func_ov002_023571d0(void)
     BattleRow *row = (BattleRow *)&gMenuState;
 
     for (side = 0; side < 2; side++, row++) {
-        if (BATTLE_SIDE_ANIM(side)->unk_48 == 0) {
+        if (BATTLE_SIDE_DATA_AT(side)->unk_48 == 0) {
             BattleEntryAt310 *at = (BattleEntryAt310 *)row;
 
             for (slot = 0; slot < 5; slot++) {
@@ -44,10 +44,10 @@ void func_ov002_023571d0(void)
             ((BattleEntryAt310 *)row)->entry.unk_00 = BattleCellTask_CreateFighter(side);
         }
         if (((int *)&gMenuState + side)[0x68 / 4] != 0) {
-            BattleSideAnim *anim = BATTLE_SIDE_ANIM(side);
-            BattleAnimStart *start = anim->unk_44;
+            BattleSideData *data = BATTLE_SIDE_DATA_AT(side);
+            BattleEffectParams *start = data->effects[8];
 
-            BattleSpriteTask_CreateDefaultWrapper(0, 0, start->unk_18, start->unk_1a, start->unk_1c, 0, 0, 0,
+            BattleSpriteTask_CreateDefaultWrapper(0, 0, start->offset.x, start->offset.y, (s16)start->delay, 0, 0, 0,
                                                    gMenuState.battle.unk_20[side], side == 0 ? 0 : 2, 0, side);
         }
     }

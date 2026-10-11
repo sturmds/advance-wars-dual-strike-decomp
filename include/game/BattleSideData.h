@@ -5,18 +5,6 @@
 #include "game/battle_gfx.h"
 #include "game/battle_fighter.h"
 
-/* Reached through BattleSideData.unk_10. mwcc packs bit fields from the low end. */
-typedef struct BattleSideData_10 {
-    BattleGfxByStyle gfx;
-    u8 unk_28_lo : 4;
-    u8 unk_28_hi : 4;
-    u8 unk_29_lo : 4;
-    u8 sameAltitude : 4;               /* value for Battle_GetAirGroundMatchup 0 */
-    u8 groundVsAir : 4;                /* matchup 1 */
-    u8 airVsGround : 4;                /* matchup 2 */
-    u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
-} BattleSideData_10;
-
 /* Reached through BattleSideData.unk_18: a table of points, one per cell of the
  * side's HP bar in each of its two sets (index 0-5 and 6-). */
 typedef struct BattleSideData_18 {
@@ -54,14 +42,16 @@ typedef struct BattleCellPos {
     s16 z;
 } BattleCellPos;
 
-/* Reached through BattleSideData.weapons. */
+/* Reached through BattleSideData.weapons, unk_08 and unk_10. mwcc packs bit fields
+ * from the low end. The three matchup values are picked by Battle_GetAirGroundMatchup. */
 typedef struct BattleSideWeapon {
     BattleGfxByStyle gfx;              /* the HP cell sprites (BattleScreenWork.spriteTables) */
     u8 spriteIndex : 4;                /* index argument of BattleSpriteTask_Create for the HP cells */
     u8 unk_28_hi : 4;
     u8 unk_29_lo : 4;
-    u8 unk_29_hi : 4;
-    u8 pad_2a;
+    u8 sameAltitude : 4;               /* matchup 0 */
+    u8 groundVsAir : 4;                /* matchup 1 */
+    u8 airVsGround : 4;                /* matchup 2 */
     u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideWeapon;
 
@@ -69,7 +59,7 @@ typedef struct BattleSideWeapon {
 typedef struct BattleSideData {
     const BattleSideWeapon *weapons[2]; /* by BattleSide.usesSecondary */
     const BattleSideWeapon *unk_08[2]; /* by BattleSide.usesSecondary */
-    BattleSideData_10 *unk_10;
+    const BattleSideWeapon *unk_10;
     const char *const *paletteFiles;   /* by BattleSide.army - 1 */
     const BattleCellPos *cellPositions; /* by cell */
     const BattleGfxFile *unk_1c[2];    /* by BattleSide.usesSecondary */

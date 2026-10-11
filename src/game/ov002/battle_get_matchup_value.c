@@ -7,11 +7,11 @@ extern MenuState gMenuState;
 int Battle_GetAirGroundMatchup(int side);
 
 /* Needed to match: every case reads the entry again. */
-#define ENTRY(side) (BATTLE_SIDE_ANIM(side)->unk_1c[Ov002_gBattleScene->sides[side].usesSecondary])
+#define ENTRY(side) (BATTLE_SIDE_DATA_AT(side)->unk_1c[Ov002_gBattleScene->sides[side].usesSecondary])
 
 /* Like Battle_GetMatchupNibble0, for the third list of entries; 0 when the side has
  * nothing in gMenuState.battle.unk_40. Needed to match: that slot is read through
- * gMenuState's own address, as BATTLE_SIDE_ANIM does. */
+ * gMenuState's own address, as BATTLE_SIDE_DATA_AT does. */
 int Battle_GetMatchupValue(int side)
 {
     if (((void **)&gMenuState + side)[0x40 / 4] == NULL) {
