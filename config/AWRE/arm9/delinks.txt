@@ -7894,6 +7894,10 @@ src/game/main/menus/build_menu_fill_list.c:
     complete
     .text       start:0x020bbe78 end:0x020bbfb0
 
+src/game/main/menus/build_menu_on_confirm.c:
+    complete
+    .text       start:0x020bc15c end:0x020bc2dc
+
 src/game/main/menus/battle_menu_open.c:
     complete
     .text       start:0x020bc450 end:0x020bc4cc
