@@ -813,6 +813,7 @@ src/game/main/screen/window_wipe_start_hide.c:
     .text       start:0x02006824 end:0x02006a20
 
 src/game/main/screen/window_wipe_start_hide_current.c:
+    complete
     .text       start:0x02006a20 end:0x02006ae0
 
 src/game/main/screen/window_wipe_build_center_out.c:
