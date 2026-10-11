@@ -12562,6 +12562,14 @@ src/game/main/func_020dc55c.c:
     complete
     .text       start:0x020dc55c end:0x020dc58c
 
+src/game/main/units/object_attack_task_finish.c:
+    complete
+    .text       start:0x020dc58c end:0x020dc60c
+
+src/game/main/units/unit_attack_task_finish.c:
+    complete
+    .text       start:0x020dc60c end:0x020dc698
+
 src/game/main/func_020dc698.c:
     complete
     .text       start:0x020dc698 end:0x020dc6b4
