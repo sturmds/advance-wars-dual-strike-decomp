@@ -19,12 +19,16 @@ typedef struct DmaChannel {
 /* Upper half of a channel's control register: enable, start timing and repeat. */
 #define IO_DMA_CTRL_UPPER(dmaNo) (((volatile u16 *)REG_DMA)[(dmaNo) * 6 + 5])
 
+/* Fill data registers, one word per channel; a fixed-source DMA reads them. */
+#define IO_DMA_FILL_VALUE(dmaNo) (((volatile u32 *)0x040000e0)[dmaNo])
+
 /* DMA control bits: enable, and the start timing field. */
 #define DMA_ENABLE 0x80000000
 #define DMA_START_MASK 0x38000000
 #define DMA_REPEAT 0x02000000
 #define DMA_32BIT 0x04000000
 #define DMA_IRQ 0x40000000
+#define DMA_SRC_FIXED 0x01000000
 #define DMA_START_VBLANK 0x08000000
 #define DMA_START_HBLANK 0x10000000
 #define DMA_START_DISPLAY 0x18000000
