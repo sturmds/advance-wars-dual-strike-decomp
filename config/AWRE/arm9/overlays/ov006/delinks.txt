@@ -1024,6 +1024,7 @@ src/game/ov006/ov006_is_road_or_vertical_bridge.c:
     .text       start:0x02367260 end:0x023672d8
 
 src/game/ov006/ov006_is_road_or_horizontal_bridge.c:
+    complete
     .text       start:0x023672d8 end:0x02367350
 
 src/game/ov006/ov006_is_road_or_bridge_tile.c:

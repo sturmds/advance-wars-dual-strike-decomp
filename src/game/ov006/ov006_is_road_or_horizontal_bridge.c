@@ -10,7 +10,7 @@ extern u32 data_027c0284;
 
 /* 1 if the tile at (x, y) is road, or a bridge whose cell is the horizontal
  * bridge piece; else 0. */
-int func_ov006_023672d8(int x, int y)
+int Ov006_IsRoadOrHorizontalBridge(int x, int y)
 {
     int index = x + STATE->mapTiles->rowStart[y];
     u8 tile = STATE->mapTiles->tiles[index];
