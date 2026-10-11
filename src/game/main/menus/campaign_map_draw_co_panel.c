@@ -8,7 +8,7 @@ void Screen_SetCurrentGfx(void *state);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Sprite_QueueDefault(int x, int y, int attr, int list);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int list);
-void func_0204df54(int x, int y, int value);
+void CampaignMap_QueueRankNumber(int x, int y, int value);
 int MainLoop_GetFrameCount(void);
 void Palette_Load(const void *src, u32 offset, u32 size);
 int func_0210391c(void);
@@ -48,7 +48,7 @@ void CampaignMap_DrawCoPanel(CampaignMapTask *task)
             Sprite_QueueAt(0, 56, (u8)(i * 24 + 80), data_027c00b8, 26, 0);
             /* tiles 62 + 12 * i, palette 4 + i */
             Co_QueueSmallPictureSprite(80, (u8)(i * 24 + 96), (i * 12 + 62) | ((i + 4) << 12), 1);
-            func_0204df54(108, i * 24 + 85, TOP_CO(i).unk_1);
+            CampaignMap_QueueRankNumber(108, i * 24 + 85, TOP_CO(i).unk_1);
             Sprite_QueueDefault(153, (u8)(i * 24 + 81), (i * 12 + 98) | 0x1000, 0);
         }
     }
