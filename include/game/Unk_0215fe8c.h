@@ -15,7 +15,8 @@ typedef struct Unk_0215fe8c {
     u8 unk_0c;                         /* func_0207bb48: 0 while the data_0215feb8 task runs, else 1 */
     u8 unk_0d;                         /* a player number, 0-3 (func_0207bd6c) */
     u8 unk_0e;                         /* packet counter, incremented by Link_SendPacket */
-    u8 pad_0f[0x14 - 0x0f];
+    u8 unk_0f;                         /* byte count func_0207b610 copies into its packets */
+    u8 pad_10[0x14 - 0x10];
     u32 unk_14;                        /* 1 when the last peer check answered, else 0 (Link_PollPeerReply) */
     u32 unk_18;                        /* set to 1 by Link_FlagError, e.g. when the event queue is full */
     u32 unk_1c;                        /* 1 in some link mode (func_0207bd80) */
