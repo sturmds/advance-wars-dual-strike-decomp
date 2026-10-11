@@ -1084,7 +1084,7 @@ Sound_ResetSongs kind:function(arm,size=0x44) addr:0x02026874
 Bg_PutTile kind:function(arm,size=0x18) addr:0x020268b8
 Bg_GetMapEntry kind:function(arm,size=0x88) addr:0x020268d0
 func_02026958 kind:function(arm,size=0x24) addr:0x02026958
-func_0202697c kind:function(arm,size=0x38) addr:0x0202697c
+Palette_FillSlotWhite kind:function(arm,size=0x38) addr:0x0202697c
 Bg_PutTileBlock kind:function(arm,size=0xac) addr:0x020269b4
 Math_Ease kind:function(arm,size=0x168) addr:0x02026a60
 Palette_BlendWithColor kind:function(arm,size=0xb4) addr:0x02026bc8
@@ -6997,7 +6997,7 @@ data_02158f7c kind:data(any) addr:0x02158f7c
 gSongRequestScript kind:data(any) addr:0x02158fa4
 gSongFadeOutScript kind:data(any) addr:0x02158fcc
 gUnitSoundItems kind:data(any) addr:0x02158ff4
-data_021590cc kind:data(any) addr:0x021590cc
+gWhitePalette kind:data(any) addr:0x021590cc
 data_021590ec kind:data(any) addr:0x021590ec
 data_02159114 kind:data(any) addr:0x02159114
 data_02159134 kind:data(any) addr:0x02159134
