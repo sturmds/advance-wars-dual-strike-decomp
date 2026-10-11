@@ -16,7 +16,7 @@ extern u8 data_ov003_02365b04[];
 
 u16 func_0207a1dc(void);
 LinkInput *func_02078138(int player);
-void func_0200a4b8(Keypad *keypad, int keys);
+void Keypad_UpdateState(Keypad *keypad, int keys);
 void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *keypad, void *a2);
 void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, void *a2);
 void Ov003_ScrollWithDpad(void);
@@ -49,7 +49,7 @@ void Ov003_RunSlotInput(void)
         for (i = 0; i < 8; i++) {
             if ((func_0207a1dc() | 1) & (1 << i)) {
                 input = func_02078138((u16)i);
-                func_0200a4b8(&data_0216e4e4[i], input->keys);
+                Keypad_UpdateState(&data_0216e4e4[i], input->keys);
                 switch (STATE->slots[i].state) {
                 case 0:
                     break;
