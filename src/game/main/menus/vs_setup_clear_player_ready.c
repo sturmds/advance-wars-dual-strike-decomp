@@ -9,7 +9,10 @@ void VsSetup_AddLinkButtons(int player);
 extern MenuState gMenuState;
 #define MENU ((MenuState *)&gMenuState)
 
-void func_02067b94(int player)
+/* Takes back the ready state of a player slot on the Vs setup screen, with
+ * a sound, and resumes its panel task. For this machine's own slot it adds
+ * the slot's buttons again. */
+void VsSetup_ClearPlayerReady(int player)
 {
     Sound_PlaySe(0x10009);
     MENU->setup.unk_2d0[player] = 0;

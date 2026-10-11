@@ -9,7 +9,10 @@ int func_0207bd6c(void);
 void VsSetup_CloseLinkButtons(int slot);
 extern MenuState gMenuState;
 
-void func_02067bec(int slot)
+/* Marks player slot `slot` ready on the Vs setup screen once, with a sound,
+ * and starts its panel task. For this machine's own slot it also closes the
+ * slot's buttons. */
+void VsSetup_SetPlayerReady(int slot)
 {
     MenuState *shifted = (MenuState *)((u8 *)&gMenuState + slot);
 
