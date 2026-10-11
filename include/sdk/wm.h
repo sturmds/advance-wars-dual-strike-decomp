@@ -234,6 +234,36 @@ typedef struct WMMpRecvBuf {
     u8 firstEntry[1];                  /* a WMMpRecvData */
 } WMMpRecvBuf;
 
+/* Data sharing: every station sends a block each frame
+ * and all of them receive the blocks of all. */
+#define SHARE_RING_SLOTS 4
+#define SHARE_SET_PAYLOAD_BYTES 508
+
+/* One frame's blocks, one dataLength block per aid in aidBitmap. */
+typedef struct WMDataSet {
+    u16 aidBitmap;                     /* stations whose block is in data */
+    u16 receivedBitmap;                /* stations whose block arrived */
+    u16 data[SHARE_SET_PAYLOAD_BYTES / 2];
+} WMDataSet;
+
+/* State of one data sharing session. */
+typedef struct WMDataSharingInfo {
+    WMDataSet ds[SHARE_RING_SLOTS];   /* ring of sets */
+    u16 seqNum[SHARE_RING_SLOTS];     /* 0xffff: the set was not sent */
+    u16 writeIndex;
+    u16 sendIndex;
+    u16 readIndex;
+    u16 aidBitmap;                     /* stations taking part */
+    u16 dataLength;                    /* bytes each station sends */
+    u16 stationNumber;
+    u16 dataSetLength;
+    u16 port;
+    u16 doubleMode;                    /* 1: sets are written two ahead */
+    u16 currentSeqNum;
+    u16 state;
+    u16 reserved[1];
+} WMDataSharingInfo;
+
 /* What WMStatus.state holds. */
 #define WM_STATE_READY 0                   /* initialised, not enabled yet */
 #define WM_STATE_STOP 1                    /* enabled, wireless hardware off */
@@ -359,6 +389,7 @@ int WMi_SendCommand(int apiid, u16 argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);
 u32 WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
 u32 WM_GetMPSendBufferSize(void);
+u16 *DataShare_StationBlockPtr(WMDataSharingInfo *dsInfo, u16 aidBitmap, u16 *receiveBuf, u32 aid);
 BOOL Wireless_ParentSettingsValid(WMParentParam *param);
 
 #endif
