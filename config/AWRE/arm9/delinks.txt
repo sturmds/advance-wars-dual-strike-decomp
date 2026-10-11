@@ -12771,6 +12771,10 @@ src/game/main/menus/battle_menu_draw_help_text.c:
     complete
     .text       start:0x020bc9c4 end:0x020bca60
 
+src/game/main/menus/unit_menu_send_show_target.c:
+    complete
+    .text       start:0x020bca60 end:0x020bcb94
+
 src/game/main/menus/unit_menu_send.c:
     complete
     .text       start:0x020bce50 end:0x020bcf28
