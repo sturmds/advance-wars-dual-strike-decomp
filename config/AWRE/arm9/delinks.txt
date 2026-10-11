@@ -2714,6 +2714,10 @@ src/game/main/task/task_cmd_call_with_arg.c:
     complete
     .text       start:0x02023538 end:0x02023568
 
+src/game/main/task/task_cmd_call_with_task.c:
+    complete
+    .text       start:0x02023568 end:0x02023590
+
 src/game/main/task/task_skip_command.c:
     complete
     .text       start:0x020235bc end:0x020235d0
