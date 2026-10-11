@@ -3,7 +3,7 @@
 
 extern Unk_0201d320 data_022977f4[];
 
-BOOL func_0201bce0(s16 index); /* jump command */
+BOOL EventCmd_Jump(s16 index);
 
 /* Event script command: calls the test function stored in the record. When
  * it returns 0 the script goes on with the next record, otherwise it jumps
@@ -16,5 +16,5 @@ BOOL EventCmd_JumpIfTrue(s16 index)
         script->unk_00++;
         return 1;
     }
-    return func_0201bce0(index);
+    return EventCmd_Jump(index);
 }

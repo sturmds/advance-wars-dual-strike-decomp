@@ -6,9 +6,9 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 int Player_GetCoId(int player, int slot);
-BOOL func_0201bce0(s16 index);
+BOOL EventCmd_Jump(s16 index);
 
-/* Script command: jumps (func_0201bce0) when the player in arg has the two COs
+/* Script command: jumps (EventCmd_Jump) when the player in arg has the two COs
  * in unk_08 and unk_0a, in either order; otherwise goes on to the next
  * command. Player 5 means the current player. */
 BOOL EventScript_JumpIfCos(s16 index)
@@ -21,10 +21,10 @@ BOOL EventScript_JumpIfCos(s16 index)
         player = data_027c027c->unk_48[data_027c0284]->currentPlayer;
     }
     if (firstCo == Player_GetCoId(player, 0) && secondCo == Player_GetCoId(player, 1)) {
-        return func_0201bce0(index);
+        return EventCmd_Jump(index);
     }
     if (secondCo == Player_GetCoId(player, 0) && firstCo == Player_GetCoId(player, 1)) {
-        return func_0201bce0(index);
+        return EventCmd_Jump(index);
     }
     data_022977f0[index].pc++;
     return TRUE;
