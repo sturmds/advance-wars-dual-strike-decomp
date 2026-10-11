@@ -5896,6 +5896,14 @@ src/game/main/menus/co_select_screen_list_slot_left.c:
     complete
     .text       start:0x02042578 end:0x020427c8
 
+src/game/main/menus/co_select_screen_add_grid_buttons.c:
+    complete
+    .text       start:0x020427c8 end:0x020428a8
+
+src/game/main/menus/co_select_screen_on_grid_button_select.c:
+    complete
+    .text       start:0x020428a8 end:0x020428f4
+
 src/game/main/func_020428f4.c:
     complete
     .text       start:0x020428f4 end:0x0204291c

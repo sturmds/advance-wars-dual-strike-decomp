@@ -1514,8 +1514,8 @@ CoSelectScreen_ListSlotBelow kind:function(arm,size=0x114) addr:0x0204210c
 CoSelectScreen_ListSlotAbove kind:function(arm,size=0x118) addr:0x02042220
 CoSelectScreen_ListSlotRight kind:function(arm,size=0x240) addr:0x02042338
 CoSelectScreen_ListSlotLeft kind:function(arm,size=0x250) addr:0x02042578
-func_020427c8 kind:function(arm,size=0xe0) addr:0x020427c8
-func_020428a8 kind:function(arm,size=0x4c) addr:0x020428a8
+CoSelectScreen_AddGridButtons kind:function(arm,size=0xe0) addr:0x020427c8
+CoSelectScreen_OnGridButtonSelect kind:function(arm,size=0x4c) addr:0x020428a8
 func_020428f4 kind:function(arm,size=0x28) addr:0x020428f4
 CoSelectScreen_OpenCoList kind:function(arm,size=0xd4) addr:0x0204291c
 CoSelectScreen_HandleKeys kind:function(arm,size=0x14c) addr:0x020429f0
@@ -7149,7 +7149,7 @@ data_0215a980 kind:data(any) addr:0x0215a980
 data_0215a9a0 kind:data(any) addr:0x0215a9a0
 data_0215a9c8 kind:data(any) addr:0x0215a9c8
 data_0215a9f0 kind:data(any) addr:0x0215a9f0
-data_0215aa18 kind:data(any) addr:0x0215aa18
+gCoGridButtonTemplate kind:data(any) addr:0x0215aa18
 gCoListButtonTemplate kind:data(any) addr:0x0215aa40
 data_0215aa68 kind:data(any) addr:0x0215aa68
 data_0215aa90 kind:data(any) addr:0x0215aa90
