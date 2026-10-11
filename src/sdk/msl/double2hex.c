@@ -8,8 +8,6 @@
  * original's way, so this library object likely came from another compiler.
  */
 
-char *long2str(long value, char *buffer, PrintFormat format);
-
 extern char data_0216df30[]; /* "0x0p0" */
 extern char data_0216df00[]; /* "-INF" */
 extern char data_0216df08[]; /* "-inf" */
@@ -35,7 +33,7 @@ char *double2hex(double value, char *bufferEnd, PrintFormat format)
     PrintFormat expFormat;
     Decimal dec;
 
-    if (format.precision > 509) {
+    if (format.precision > PRINT_CONVERSION_MAX) {
         return NULL;
     }
 
@@ -86,11 +84,11 @@ char *double2hex(double value, char *bufferEnd, PrintFormat format)
         return p;
     }
 
-    expFormat.justification = 1;
+    expFormat.justification = PRINT_JUSTIFY_RIGHT;
     expFormat.signOptions = PRINT_SIGN_ALWAYS;
     expFormat.precisionSpecified = 0;
     expFormat.alternateForm = 0;
-    expFormat.argumentOptions = 0;
+    expFormat.argumentOptions = PRINT_ARG_NORMAL;
     expFormat.fieldWidth = 0;
     expFormat.precision = 1;
     expFormat.conversionChar = 'd';

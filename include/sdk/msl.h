@@ -46,21 +46,46 @@ double frexp(double x, int *exponent);
 
 /* One parsed printf conversion, passed by value to the conversion helpers. */
 typedef struct PrintFormat {
-    u8 justification; /* 1: right, 2: pad with zeros */
-    u8 signOptions;   /* 1: always print a sign, 2: a space for positive numbers */
+    u8 justification;   /* PRINT_JUSTIFY_* or PRINT_ZERO_FILL */
+    u8 signOptions;     /* PRINT_SIGN_* */
     u8 precisionSpecified;
-    u8 alternateForm; /* the '#' flag */
-    u8 argumentOptions;
+    u8 alternateForm;   /* the '#' flag */
+    u8 argumentOptions; /* PRINT_ARG_*: the length modifier */
     u8 conversionChar;
     int fieldWidth;
     int precision;
 } PrintFormat;
 
+#define PRINT_JUSTIFY_LEFT 0
+#define PRINT_JUSTIFY_RIGHT 1
 #define PRINT_ZERO_FILL 2
 
 #define PRINT_SIGN_MINUS_ONLY 0
 #define PRINT_SIGN_ALWAYS 1
-#define PRINT_SIGN_SPACE 2
+#define PRINT_SIGN_SPACE 2 /* a space before positive numbers */
+
+#define PRINT_ARG_NORMAL 0
+#define PRINT_ARG_CHAR 1        /* hh */
+#define PRINT_ARG_SHORT 2       /* h */
+#define PRINT_ARG_LONG 3        /* l */
+#define PRINT_ARG_INTMAX 4      /* j */
+#define PRINT_ARG_SIZE 5        /* z */
+#define PRINT_ARG_PTRDIFF 6     /* t */
+#define PRINT_ARG_LONG_LONG 7   /* ll */
+#define PRINT_ARG_LONG_DOUBLE 8 /* L */
+#define PRINT_ARG_WCHAR 9       /* %lc and %ls */
+
+/* conversionChar of a specifier that cannot be printed. */
+#define PRINT_BAD_CONVERSION 0xFF
+/* Widths, precisions and digit strings stop at this many characters. */
+#define PRINT_CONVERSION_MAX 509
+
+/* Parses the specifier at format (on its '%') into *out and returns the character after it. */
+const char *parse_format(const char *format, va_list *args, PrintFormat *out);
+/* These build the text backwards from bufferEnd and return its first character, or NULL when it is too long. */
+char *long2str(long value, char *bufferEnd, PrintFormat format);
+char *longlong2str(long long value, char *bufferEnd, PrintFormat format);
+char *double2hex(double value, char *bufferEnd, PrintFormat format);
 
 /* Returns x * 2^n. */
 double ldexp(double x, int n);

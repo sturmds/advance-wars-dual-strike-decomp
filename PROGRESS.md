@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 599 / 781 | 82552 / 132154 | 62.47% | 69 | 3394 |
-| ARM9 all | 7253 / 7481 | 1589172 / 1685994 | 94.26% | 69 | 3394 |
+| ARM9 SDK/library | 602 / 781 | 85408 / 132154 | 64.63% | 69 | 3394 |
+| ARM9 all | 7256 / 7481 | 1592028 / 1685994 | 94.43% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 599 / 1795 | 82552 / 286450 | 28.82% | 69 | 3394 |
-| all | 7253 / 8495 | 1589172 / 1840290 | 86.35% | 69 | 3394 |
+| SDK/library | 602 / 1795 | 85408 / 286450 | 29.82% | 69 | 3394 |
+| all | 7256 / 8495 | 1592028 / 1840290 | 86.51% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 592 / 770 | 81640 / 130618 | 62.50% | 65 |
+| main | SDK/library | 595 / 770 | 84496 / 130618 | 64.69% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -107,6 +107,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/mb/func_021193fc.c` | func_021193fc | 696 |
 | `src/sdk/mi/unpack_huffman_to_words.c` | Unpack_HuffmanToWords | 216 |
 | `src/sdk/mi/mi_uncompress_lz8.c` | MI_UncompressLZ8 | 216 |
+| `src/sdk/msl/double2hex.c` | double2hex | 948 |
 | `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 |
 | `src/sdk/msl/func_02121db0.c` | func_02121db0 | 92 |
 | `src/sdk/msl/func_02121e0c.c` | func_02121e0c | 76 |

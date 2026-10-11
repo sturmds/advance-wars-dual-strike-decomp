@@ -77,7 +77,7 @@ char *longlong2str(long long value, char *bufferEnd, PrintFormat format)
         }
     }
 
-    if (bufferEnd - p + format.precision > 509) {
+    if (bufferEnd - p + format.precision > PRINT_CONVERSION_MAX) {
         return NULL;
     }
 
