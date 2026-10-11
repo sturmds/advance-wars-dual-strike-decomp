@@ -12850,6 +12850,10 @@ src/game/main/func_021033e4.c:
     complete
     .text       start:0x021033e4 end:0x021033fc
 
+src/game/main/menus/versus_start_vs_cpu.c:
+    complete
+    .text       start:0x021033fc end:0x021034bc
+
 src/game/main/func_02103714.c:
     complete
     .text       start:0x02103714 end:0x0210372c
