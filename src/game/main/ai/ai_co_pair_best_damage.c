@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 /* Chart damage with the player's firepower: (player, slot, powerState, unitType, targetType, weapon, targetDived). */
-int func_020e5e84(int player, int slot, int powerState, int unitType, int targetType, int weapon, BOOL targetDived);
+int Co_GetSlotChartDamage(int player, int slot, int powerState, int unitType, int targetType, int weapon, BOOL targetDived);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -15,13 +15,13 @@ int func_020e5e84(int player, int slot, int powerState, int unitType, int target
  * is the average of the front and back CO's. */
 int Ai_CoPairBestDamage(int unitType, int targetType, int powerState)
 {
-    int primary = func_020e5e84(STATE->currentPlayer, 0, powerState, unitType, targetType, 0, FALSE);
-    int secondary = func_020e5e84(STATE->currentPlayer, 0, powerState, unitType, targetType, 1, FALSE);
+    int primary = Co_GetSlotChartDamage(STATE->currentPlayer, 0, powerState, unitType, targetType, 0, FALSE);
+    int secondary = Co_GetSlotChartDamage(STATE->currentPlayer, 0, powerState, unitType, targetType, 1, FALSE);
     BOOL hasBackCo = STATE->players[STATE->currentPlayer].back.id ? TRUE : FALSE;
 
     if (hasBackCo == TRUE) {
-        primary += func_020e5e84(STATE->currentPlayer, 1, powerState, unitType, targetType, 0, FALSE);
-        secondary += func_020e5e84(STATE->currentPlayer, 1, powerState, unitType, targetType, 1, FALSE);
+        primary += Co_GetSlotChartDamage(STATE->currentPlayer, 1, powerState, unitType, targetType, 0, FALSE);
+        secondary += Co_GetSlotChartDamage(STATE->currentPlayer, 1, powerState, unitType, targetType, 1, FALSE);
         primary >>= 1;
         secondary >>= 1;
     }
