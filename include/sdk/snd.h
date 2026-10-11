@@ -24,8 +24,11 @@ extern u32 data_022a9c88;      /* tag of the newest flushed batch */
 extern SndCommand *data_022a9c8c[9]; /* first command of each batch in flight */
 extern SndCommand data_022a9f40[256]; /* command pool */
 
+#define SOUND_FIFO_TAG 7 /* FIFO tag of the sound driver */
+
 void SND_Init(void);
 SndCommand *SND_PopFreeCommand(void);
+void Sound_PingArm7Driver(void);
 
 /* Allocate and queue a command (guessed names; see func_021104b8 and func_02110470). */
 SndCommand *func_021104b8(int block);
