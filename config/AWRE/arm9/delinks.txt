@@ -4123,6 +4123,10 @@ src/game/main/result_screen_close_to_white.c:
     complete
     .text       start:0x020357b4 end:0x02035930
 
+src/game/main/two_line_caption_draw.c:
+    complete
+    .text       start:0x02035b48 end:0x02035ccc
+
 src/game/main/func_020369e4.c:
     complete
     .text       start:0x020369e4 end:0x020369f0
