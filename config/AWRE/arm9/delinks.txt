@@ -21982,6 +21982,10 @@ src/sdk/pm/power_lcds_powered.c:
     complete
     .text       start:0x021149dc end:0x021149f8
 
+src/sdk/pm/power_switch_lcds.c:
+    complete
+    .text       start:0x021149f8 end:0x02114ae8
+
 src/game/main/func_02114e04.c:
     complete
     .text       start:0x02114e04 end:0x02114e1c

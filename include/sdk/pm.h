@@ -11,4 +11,7 @@ struct PowerHookEntry {
     PowerHookEntry *next;
 };
 
+/* Frame counter in shared main RAM, raised by the VBlank interrupt. */
+#define SHARED_FRAME_COUNTER ((volatile u32 *)0x027ffc3c)
+
 #endif
