@@ -5991,6 +5991,10 @@ src/game/main/menus/co_select_screen_row_tile_y.c:
     complete
     .text       start:0x02044c04 end:0x02044c28
 
+src/game/main/menus/co_select_screen_column_tile_x.c:
+    complete
+    .text       start:0x02044c28 end:0x02044c94
+
 src/game/main/menus/co_select_apply_picks.c:
     complete
     .text       start:0x02044c94 end:0x02044fcc
