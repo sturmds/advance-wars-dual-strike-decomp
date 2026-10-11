@@ -12606,6 +12606,10 @@ src/game/main/map/info_panel_slide_left.c:
     complete
     .text       start:0x020cb4d0 end:0x020cb5f4
 
+src/game/main/map/info_panel_slide_right.c:
+    complete
+    .text       start:0x020cb5f4 end:0x020cb72c
+
 src/game/main/map/info_panel_draw.c:
     complete
     .text       start:0x020cb9f4 end:0x020cc910
