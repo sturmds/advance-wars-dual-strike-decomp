@@ -16,14 +16,14 @@ void Oam_PutSprite(int x, int y, void *shape, int tileAndPalette);
 void Oam_PutNumber(int x, int y, s32 value, int attr);
 void func_01ff9a3c(u16 x, u16 y, void *data);
 void PowerPanelLeft_Draw(int x, int y, int player, int coSlot, int tile, int palette);
-BOOL func_020e27a0(int player);
+BOOL Player_UpdatePowerReady(int player);
 BOOL CanUseSuperPower(int player, int slot);
 void Sound_PlaySe(int se);
 
 /* Left-half twin of PowerPanelRight_DrawPlayer: the frame only during CO
  * select, otherwise funds (or the hidden-funds mark under fog or rain) and
  * the power panels of the front and back CO. Then plays sound 185 if the
- * Super CO Power can be used, else 184, when func_020e27a0 says so. */
+ * Super CO Power can be used, else 184, when Player_UpdatePowerReady says so. */
 void PowerPanelLeft_DrawPlayer(int x, int y, int player, BOOL coSelect)
 {
     data_022a7290 = player;
@@ -41,7 +41,7 @@ void PowerPanelLeft_DrawPlayer(int x, int y, int player, BOOL coSelect)
             PowerPanelLeft_Draw(x, y + 20, player, 1, 96, 13);
         }
     }
-    if (!func_020e27a0(player)) {
+    if (!Player_UpdatePowerReady(player)) {
         return;
     }
     if (CanUseSuperPower(player, 0)) {

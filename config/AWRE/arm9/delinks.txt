@@ -16602,6 +16602,10 @@ src/game/main/copowers/count_power_use.c:
     complete
     .text       start:0x020e2748 end:0x020e27a0
 
+src/game/main/power_meter/player_update_power_ready.c:
+    complete
+    .text       start:0x020e27a0 end:0x020e28e4
+
 src/game/main/copowers/can_use_co_power_strict.c:
     complete
     .text       start:0x020e28e4 end:0x020e298c
