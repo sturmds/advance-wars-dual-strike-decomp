@@ -19069,6 +19069,7 @@ src/game/main/campaign_recap_update_camera.c:
     .text       start:0x020feb4c end:0x020fec64
 
 src/game/main/campaign_recap_camera_task_init.c:
+    complete
     .text       start:0x020fec64 end:0x020fec98
 
 src/game/main/map/func_020fed58.c:
