@@ -207,6 +207,10 @@ src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
 
+src/game/itcm/map3d/unit3d_draw.c:
+    complete
+    .text       start:0x01ffc844 end:0x01ffc890
+
 src/game/itcm/func_01ffd854.c:
     complete
     .text       start:0x01ffd854 end:0x01ffd878
