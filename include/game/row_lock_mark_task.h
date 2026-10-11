@@ -3,8 +3,8 @@
 
 #include "types.h"
 
-/* Fields of the tasks of scripts data_02160ed0, data_02160f00,
- * data_02160f30 and data_02160f60: one per combat setup row (1 to 4).
+/* Fields of the tasks of scripts gRowLockMarkRow1Script, gRowLockMarkRow2Script,
+ * gRowLockMarkRow3Script and gRowLockMarkRow4Script: one per combat setup row (1 to 4).
  * RowLockMark_Start starts them when a row is locked and RowLockMark_Remove resumes
  * them when it is unlocked. Each draws one sprite on the screen of
  * data_027c0288.unk_04. The first 0x2c bytes belong to the task system

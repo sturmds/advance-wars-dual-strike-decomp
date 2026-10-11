@@ -16,7 +16,7 @@ extern s16 gSineTable[];            /* index 64 = cosine of 0 */
 /* Divisor for one matrix entry: the scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) ? (scale) : 2)
 
-/* Step of the player slot task scripts (data_0215cec8 and the next three),
+/* Step of the player slot task scripts (gVsSetupSlot0TaskScript and the next three),
  * run after the task is resumed. Over frames 0 to 4 it draws sprite tile
  * 0x634 through affine matrix task->id while the scale eases from 256 to 2:
  * the sprite doubles in width and flattens to a line. Nothing is drawn while

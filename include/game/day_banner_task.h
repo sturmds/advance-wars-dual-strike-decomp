@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Task of the day banner script (data_0215bf54): three word sprites and the
+/* Task of the day banner script (gDayBannerScript): three word sprites and the
  * day number, one sprite per digit. DayBanner_Init fills it from the current
  * day. The first 0x2c bytes belong to the task system. */
 typedef struct DayBannerTask {

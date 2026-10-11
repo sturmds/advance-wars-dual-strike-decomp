@@ -1,15 +1,16 @@
 #include "types.h"
+#include "game/task.h"
 
-void Task_DestroyByScript(void *script);
-extern u32 data_02160ed0[];
-extern u32 data_02160f00[];
-extern u32 data_02160f30[];
-extern u32 data_02160f60[];
+void Task_DestroyByScript(const TaskScriptCmd *script);
+extern const TaskScriptCmd gRowLockMarkRow1Script[];
+extern const TaskScriptCmd gRowLockMarkRow2Script[];
+extern const TaskScriptCmd gRowLockMarkRow3Script[];
+extern const TaskScriptCmd gRowLockMarkRow4Script[];
 
 void RowLockMark_DestroyAll(void)
 {
-    Task_DestroyByScript(data_02160ed0);
-    Task_DestroyByScript(data_02160f00);
-    Task_DestroyByScript(data_02160f30);
-    Task_DestroyByScript(data_02160f60);
+    Task_DestroyByScript(gRowLockMarkRow1Script);
+    Task_DestroyByScript(gRowLockMarkRow2Script);
+    Task_DestroyByScript(gRowLockMarkRow3Script);
+    Task_DestroyByScript(gRowLockMarkRow4Script);
 }

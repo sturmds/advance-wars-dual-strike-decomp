@@ -15726,7 +15726,7 @@ src/game/main/func_020d8148.c:
     complete
     .text       start:0x020d8148 end:0x020d8268
 
-src/game/main/func_020d8268.c:
+src/game/main/task/battle_record_task_is_running.c:
     complete
     .text       start:0x020d8268 end:0x020d8294
 

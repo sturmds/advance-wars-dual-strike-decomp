@@ -33,7 +33,7 @@ extern const u8 data_02139710[];
     data_027c0280->blendEvb = 0;                          \
     data_027c0280->blendEvy = 16
 
-/* A step of the task scripts data_021675e0 and data_021676a0. Same as
+/* A step of the task scripts gBattleRecordTaskScript and data_021676a0. Same as
  * func_020d7c08 without the task it starts: darkens both screens, resets
  * the frame callbacks, loads the wallpapers, the digit font, the window
  * frame and BG palette 1. */
