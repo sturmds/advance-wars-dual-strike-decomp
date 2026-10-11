@@ -3,7 +3,7 @@
 
 void Mem_Free(void *block);
 void Wallpaper_DestroyTasks(void);
-void func_02082938(void);
+void Ov003_StartExitTask(void);
 void func_ov003_02357178(void);
 void func_ov003_0235ca24(void);
 void Ov003_DestroyTasks(void);
@@ -24,5 +24,5 @@ void Ov003_Exit(void)
     Wallpaper_DestroyTasks();
     Mem_Free(data_ov003_02365b10);
     Mem_Free(data_ov003_02365b0c);
-    func_02082938();
+    Ov003_StartExitTask();
 }

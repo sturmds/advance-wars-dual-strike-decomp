@@ -2538,8 +2538,8 @@ LargeFont_DrawName kind:function(arm,size=0x110) addr:0x020827b0
 func_020828c0 kind:function(arm,size=0x10) addr:0x020828c0
 func_020828d0 kind:function(arm,size=0x28) addr:0x020828d0
 LargeFont_FindGlyph kind:function(arm,size=0x40) addr:0x020828f8
-func_02082938 kind:function(arm,size=0x88) addr:0x02082938
-func_020829c0 kind:function(arm,size=0x9c) addr:0x020829c0
+Ov003_StartExitTask kind:function(arm,size=0x88) addr:0x02082938
+Ov003ExitTask_Run kind:function(arm,size=0x9c) addr:0x020829c0
 func_02082a5c kind:function(arm,size=0x1c) addr:0x02082a5c
 func_02082a78 kind:function(arm,size=0x14) addr:0x02082a78
 func_02082a8c kind:function(arm,size=0x3c) addr:0x02082a8c
@@ -7479,7 +7479,7 @@ data_02160a14 kind:data(any) addr:0x02160a14
 data_02160aa0 kind:data(any) addr:0x02160aa0
 data_02160abc kind:data(any) addr:0x02160abc
 data_02160ac0 kind:data(any) addr:0x02160ac0
-data_02160ac4 kind:data(any) addr:0x02160ac4
+gOv003ExitTaskScript kind:data(any) addr:0x02160ac4
 data_02160adc kind:data(any) addr:0x02160adc
 data_02160ae0 kind:data(any) addr:0x02160ae0
 data_02160ae8 kind:data(any) addr:0x02160ae8
