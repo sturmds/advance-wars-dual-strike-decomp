@@ -22578,6 +22578,10 @@ src/sdk/mb/download_play_advance_to_allowed_channel.c:
     complete
     .text       start:0x0211d964 end:0x0211d9e0
 
+src/sdk/mb/mb_segment_read.c:
+    complete
+    .text       start:0x0211d9e0 end:0x0211da80
+
 src/game/main/func_0211daf4.c:
     complete
     .text       start:0x0211daf4 end:0x0211db08

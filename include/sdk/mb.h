@@ -140,6 +140,23 @@ typedef struct DlPlayFailedCall {
     u16 errcode;
 } DlPlayFailedCall;
 
+/* One piece of the downloaded program kept in memory, found by its address in
+ * the program. state 0 is an empty slot; 2 and above can be read. */
+typedef struct DlPlayProgramChunk {
+    u32 address;
+    u32 size;
+    u8 *data;
+    u32 state;
+} DlPlayProgramChunk;
+
+#define DLPLAY_KEPT_CHUNK_SLOTS 4
+
+typedef struct DlPlayProgramChunkSet {
+    u32 unk_00;                        /* set to 1 after a read */
+    u8 pad_04[0x30 - 0x04];
+    DlPlayProgramChunk segments[DLPLAY_KEPT_CHUNK_SLOTS];
+} DlPlayProgramChunkSet;
+
 /* Download Play comm layer, parent side. */
 #define DLPLAY_OFFER_SLOTS 16
 #define DLPLAY_NOTHING_TRANSMITTED 21           /* one past the last WM error code: nothing was sent */
