@@ -244,11 +244,15 @@ typedef struct FirmwareUserSettings {
 void OS_GetOwnerInfo(OSOwnerInfo *info);
 
 /* Nine VRAM banks (A to I) can each be locked by a lock ID. */
+#define VRAM_LOCKABLE_BANKS 9
 #define VRAM_ALL_BANK_BITS 0x1ff
 extern u32 gOsVramLockedBanks;   /* bit set = bank locked */
-extern u16 gOsVramLockIds[9];
+extern u16 gOsVramLockIds[VRAM_LOCKABLE_BANKS];
 
 /* Releases the banks in the mask that lockID holds. */
 void OSi_UnlockVram(u16 banks, u16 lockID);
+
+/* Forgets every VRAM bank lock. */
+void OSi_InitVramExclusive(void);
 
 #endif

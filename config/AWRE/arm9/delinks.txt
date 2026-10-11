@@ -21352,6 +21352,10 @@ src/sdk/os/osi_unlock_vram.c:
     complete
     .text       start:0x0210edc0 end:0x0210ee48
 
+src/sdk/os/osi_init_vram_exclusive.c:
+    complete
+    .text       start:0x0210ee48 end:0x0210ee7c
+
 src/game/main/func_0210ee7c.c:
     complete
     .text       start:0x0210ee7c end:0x0210ee8c

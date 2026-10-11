@@ -6,7 +6,7 @@ void func_02110e58(void);
 void func_0210d21c(void);
 void func_0210ced0(void);
 void func_0210fa9c(void);
-void func_0210ee48(void);
+void OSi_InitVramExclusive(void);
 void func_0210d790(void);
 void OS_InitReset(void);
 void func_0211e8a0(void);
@@ -27,7 +27,7 @@ void OS_Init(void)
     OS_InitException();
     func_0210fa9c();
     OS_InitVAlarm();
-    func_0210ee48();
+    OSi_InitVramExclusive();
     func_0210d790();
     OS_InitReset();
     func_0211e8a0();
