@@ -739,6 +739,14 @@ src/game/main/screen/screen_wipe_ease_up_update.c:
     complete
     .text       start:0x02005d70 end:0x0200603c
 
+src/game/main/screen/screen_wipe_ease_down_set_window1_rows.c:
+    complete
+    .text       start:0x0200603c end:0x02006098
+
+src/game/main/screen/screen_wipe_ease_up_set_window1_rows.c:
+    complete
+    .text       start:0x02006098 end:0x020060c8
+
 src/game/main/screen/window_wipe_start_show.c:
     complete
     .text       start:0x020060c8 end:0x020062d0

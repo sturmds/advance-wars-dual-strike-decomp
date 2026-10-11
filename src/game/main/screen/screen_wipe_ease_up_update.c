@@ -7,13 +7,13 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
 void Screen_EnableEmptyWindows(void);
 void Screen_ResetWindowRects(void);
-void func_02006098(void);
+void ScreenWipe_EaseUpSetWindow1Rows(void);
 
 #define WIPE_END 352
 
 /* Task update: adds the task's speed (unk_64) to the wipe progress and eases
  * data_0216e29c from 0 up to 352 (curve 0 for speeds up to 8, else curve 4).
- * Each frame func_02006098 updates window 1's rows on the wipe's screens. At
+ * Each frame ScreenWipe_EaseUpSetWindow1Rows updates window 1's rows on the wipe's screens. At
  * 352 it empties the window insides, resets the window rectangles and
  * resumes the task's script. */
 void ScreenWipe_EaseUpUpdate(Task *task)
@@ -38,7 +38,7 @@ void ScreenWipe_EaseUpUpdate(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_00);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_00);
-        func_02006098();
+        ScreenWipe_EaseUpSetWindow1Rows();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
@@ -48,7 +48,7 @@ void ScreenWipe_EaseUpUpdate(Task *task)
         Screen_SetCurrentGfx(data_027c0288.unk_04);
         saved027c = data_027c027c;
         Screen_SetCurrent(data_027c0288.unk_04);
-        func_02006098();
+        ScreenWipe_EaseUpSetWindow1Rows();
         Screen_SetCurrent(saved027c);
         Screen_SetCurrentGfx(saved0280);
     }
