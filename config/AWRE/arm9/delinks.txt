@@ -22377,6 +22377,10 @@ src/sdk/card/cardi_read_backup_core.c:
     complete
     .text       start:0x02115c74 end:0x02115d44
 
+src/sdk/card/card_save_task_compare_chunks.c:
+    complete
+    .text       start:0x02115d44 end:0x02115e00
+
 src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c
