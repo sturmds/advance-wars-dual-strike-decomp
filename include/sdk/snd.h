@@ -99,5 +99,6 @@ void SND_DestroyWaveArc(SoundWaveArc *arc);
 
 /* Note walking of a bank. */
 SoundBankIter SoundBank_StartIter(void);
+BOOL SoundBank_NextNote(SoundBank *bank, SoundBankNote *note, SoundBankIter *iter);
 
 #endif

@@ -21864,7 +21864,8 @@ src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98
 
-src/sdk/snd/func_02110a98.c:
+src/sdk/snd/sound_bank_next_note.c:
+    complete
     .text       start:0x02110a98 end:0x02110c70
 
 src/sdk/snd/sound_bank_start_iter.c:
