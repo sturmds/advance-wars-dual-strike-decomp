@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Ov006_StoreMapCell(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
-int func_ov006_02351238(int x, int y);              /* reads the cell code at x, y */
+int Ov006_GetCellMatchedToLeft(int x, int y);
 
 /* Writes cell at tile x, y, then writes the cell code now stored there back
  * through the same setter (likely so the setter's side effects run on the
@@ -9,5 +9,5 @@ int func_ov006_02351238(int x, int y);              /* reads the cell code at x,
 void Ov006_SetCellAndFit(int x, int y, int cell)
 {
     Ov006_StoreMapCell(x, y, cell);
-    Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
+    Ov006_StoreMapCell(x, y, Ov006_GetCellMatchedToLeft(x, y));
 }

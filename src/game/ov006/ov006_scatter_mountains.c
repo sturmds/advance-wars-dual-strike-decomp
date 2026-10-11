@@ -1,4 +1,5 @@
 #include "types.h"
+#include "game/design_map_gen.h"
 
 s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int *x, int *y, int cell);
@@ -7,10 +8,8 @@ void Ov006_GrowCells(int a, int b);
 void Ov006_SettleSeedTiles(void);
 void Ov006_MarkMapBorder(void);
 
-extern u8 data_ov006_0236d744[][30];
-
 /* Turns 8 to 12 random plain tiles (cell 1) into mountain (cell 32) and marks each
- * with 2 in data_ov006_0236d744, a grid of 30-byte rows. */
+ * with 2 in Ov006_gGenMarks, a grid of 30-byte rows. */
 void Ov006_ScatterMountains(void)
 {
     int x;
@@ -25,7 +24,7 @@ void Ov006_ScatterMountains(void)
             break;
         }
         Ov006_SetMapCell(x, y, 32);
-        data_ov006_0236d744[y][x] = 2;
+        Ov006_gGenMarks[y][x] = 2;
     }
     Ov006_SettleSeedTiles();
     Ov006_GrowCells(32, 1);

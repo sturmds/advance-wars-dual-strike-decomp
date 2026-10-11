@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 void Ov006_StoreMapCell(int x, int y, int cell);   /* guess: sets the cell code of tile x, y */
-int func_ov006_02351238(int x, int y);              /* reads the cell code at x, y */
+int Ov006_GetCellMatchedToLeft(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -17,5 +17,5 @@ void Ov006_RefitCellToRight(int x, int y)
     if (x >= STATE->unk_1c4->mapWidth - 1) {
         return;
     }
-    Ov006_StoreMapCell(x + 1, y, func_ov006_02351238(x + 1, y));
+    Ov006_StoreMapCell(x + 1, y, Ov006_GetCellMatchedToLeft(x + 1, y));
 }

@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/design_map_gen.h"
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
-extern s8 data_ov006_0236d744[][30];
 
 int Ov006_CountCellNeighbors(int x, int y, int cell);
 BOOL Ov006_RollCellChance(int count, int cell);
@@ -12,7 +12,7 @@ BOOL Ov006_SettleSeedTiles(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* data_ov006_0236d744 marks (see Ov006_SettleSeedTiles). */
+/* Ov006_gGenMarks marks (see Ov006_SettleSeedTiles). */
 #define MARK_CLEAR 0
 #define MARK_DONE  1
 #define MARK_SEED  2
@@ -29,13 +29,13 @@ void Ov006_GrowCells(int cell, int fromCell)
     do {
         for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
             for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-                if (data_ov006_0236d744[y][x] == MARK_CLEAR
+                if (Ov006_gGenMarks[y][x] == MARK_CLEAR
                     && fromCell == STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x]) {
                     if (Ov006_RollCellChance(Ov006_CountCellNeighbors(x, y, cell), cell) == TRUE) {
                         Ov006_SetMapCell(x, y, cell);
-                        data_ov006_0236d744[y][x] = MARK_SEED;
+                        Ov006_gGenMarks[y][x] = MARK_SEED;
                     } else {
-                        data_ov006_0236d744[y][x] = MARK_DONE;
+                        Ov006_gGenMarks[y][x] = MARK_DONE;
                     }
                 }
             }

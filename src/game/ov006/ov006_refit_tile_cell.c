@@ -8,7 +8,7 @@ int Ov006_GetRoadCell(int x, int y);
 int Ov006_GetShoalGraphic(int x, int y);
 void Ov006_TurnToSea(int x, int y);
 int Ov006_GetWaterCell(int x, int y);
-int func_ov006_02351238(int x, int y);
+int Ov006_GetCellMatchedToLeft(int x, int y);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -25,7 +25,7 @@ extern u32 data_027c0284;
 /* Picks the cell of tile x, y again from its terrain and its neighbours:
  * road, shoal (removed by Ov006_TurnToSea when no shoal cell fits),
  * plain above a former mountain, and sea, then the final pass of
- * func_ov006_02351238 for every terrain. */
+ * Ov006_GetCellMatchedToLeft for every terrain. */
 void Ov006_RefitTileCell(int x, int y)
 {
     int cell;
@@ -51,5 +51,5 @@ void Ov006_RefitTileCell(int x, int y)
     if (Ov006_TileMatches(x, y, TERRAIN_SEA)) {
         Ov006_StoreMapCell(x, y, Ov006_GetWaterCell(x, y));
     }
-    Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
+    Ov006_StoreMapCell(x, y, Ov006_GetCellMatchedToLeft(x, y));
 }

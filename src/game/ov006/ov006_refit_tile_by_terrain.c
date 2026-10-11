@@ -4,7 +4,7 @@
 
 int Ov006_TileMatches(int x, int y, int terrain);   /* 1 when tile x, y is on the map and has this terrain byte */
 void Ov006_StoreMapCell(int x, int y, int cell);
-int func_ov006_02351238(int x, int y);               /* cell code that fits tile x, y */
+int Ov006_GetCellMatchedToLeft(int x, int y);
 int Ov006_GetRoadCell(int x, int y);
 void func_ov006_02363198(int x, int y);
 s16 Ov006_GetShoalGraphic(int x, int y);
@@ -30,14 +30,14 @@ void Ov006_RefitTileByTerrain(int x, int y)
                 Ov006_StoreMapCell(x, y, 1);
             }
         }
-        Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
+        Ov006_StoreMapCell(x, y, Ov006_GetCellMatchedToLeft(x, y));
     }
     if (Ov006_TileMatches(x, y, TERRAIN_MOUNTAIN)) {
         func_ov006_02363198(x, y);
     }
     if (Ov006_TileMatches(x, y, TERRAIN_ROAD)) {
         Ov006_StoreMapCell(x, y, Ov006_GetRoadCell(x, y));
-        Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
+        Ov006_StoreMapCell(x, y, Ov006_GetCellMatchedToLeft(x, y));
     }
     if (Ov006_TileMatches(x, y, TERRAIN_SHOAL)) {
         cell = Ov006_GetShoalGraphic(x, y);

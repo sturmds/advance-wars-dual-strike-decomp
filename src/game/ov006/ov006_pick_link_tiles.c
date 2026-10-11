@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
 
-int func_ov006_0235c5ec(int value);   /* absolute value */
+int Ov006_Abs(int value);
 int Ov006_RandomMapCoord(int min, int max, int isY);   /* random min..max inside the map width (or height when isY) */
 int Map_GetDistance(int x1, int y1, s16 x2, s16 y2);
 s32 Rng_Range(s32 min, s32 max);
@@ -25,8 +25,8 @@ void Ov006_PickLinkTiles(int x1, int y1, int x2, int y2, int range, TilePoint *o
 {
     int dx = x1 - x2;
 
-    if (func_ov006_0235c5ec(dx) >= range || func_ov006_0235c5ec(y1 - y2) >= range) {
-        if (func_ov006_0235c5ec(dx) < range) {
+    if (Ov006_Abs(dx) >= range || Ov006_Abs(y1 - y2) >= range) {
+        if (Ov006_Abs(dx) < range) {
             *vertical = 1;
             do {
                 out1->x = Ov006_RandomMapCoord(x1 - range, x1 + range, 0);
@@ -46,7 +46,7 @@ void Ov006_PickLinkTiles(int x1, int y1, int x2, int y2, int range, TilePoint *o
             } while (CELL_AT(out2) == CELL_SEA || Map_GetDistance(out2->x, out2->y, x2, y2) > range);
             return;
         }
-        if (func_ov006_0235c5ec(y1 - y2) < range) {
+        if (Ov006_Abs(y1 - y2) < range) {
             *vertical = 0;
             do {
                 out1->y = Ov006_RandomMapCoord(y1 - range, y1 + range, 1);

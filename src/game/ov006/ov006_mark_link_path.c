@@ -1,11 +1,10 @@
 #include "types.h"
+#include "game/design_map_gen.h"
 
 s32 Rng_Range(s32 min, s32 max);
 
-extern u8 data_ov006_0236d744[][30];
-
 /* Scratch grid of the map generator, [y][x], 30 columns. */
-#define GRID data_ov006_0236d744
+#define GRID Ov006_gGenMarks
 
 /* Marks a three-segment path from (x1, y1) to (x2, y2) with 2 in the
  * scratch grid (Ov006_PlaceRoadsAtMarks later turns those cells into cell code

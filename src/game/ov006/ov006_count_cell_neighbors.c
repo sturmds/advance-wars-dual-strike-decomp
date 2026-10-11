@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
+#include "game/design_map_gen.h"
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
-extern s8 data_ov006_0236d744[][30];   /* per tile, 30 a row: random map marks, see Ov006_SettleSeedTiles */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define CELL_AT(x, y) (STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + (x)])
@@ -14,7 +14,7 @@ int Ov006_CountCellNeighbors(int x, int y, int cell)
 {
     int count;
 
-    if (data_ov006_0236d744[y][x] != 0) {
+    if (Ov006_gGenMarks[y][x] != 0) {
         return 0;
     }
     count = 0;

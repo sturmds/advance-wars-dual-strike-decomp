@@ -13,7 +13,7 @@ func_ov006_02350ee8 kind:function(arm,size=0x28) addr:0x02350ee8
 func_ov006_02350f10 kind:function(arm,size=0x10) addr:0x02350f10
 Ov006_PostRequest kind:function(arm,size=0x24) addr:0x02350f20
 Ov006_MatchCellToLeftTile kind:function(arm,size=0x2f4) addr:0x02350f44
-func_ov006_02351238 kind:function(arm,size=0x50) addr:0x02351238
+Ov006_GetCellMatchedToLeft kind:function(arm,size=0x50) addr:0x02351238
 Ov006_IsLandTile kind:function(arm,size=0x7c) addr:0x02351288
 Ov006_IsNotSeaTile kind:function(arm,size=0x7c) addr:0x02351304
 Ov006_IsLandNeighbor kind:function(arm,size=0xd8) addr:0x02351380
@@ -209,7 +209,7 @@ Ov006_RollCellChance kind:function(arm,size=0x13c) addr:0x0235c0e8
 Ov006_CountCellNeighbors kind:function(arm,size=0x17c) addr:0x0235c224
 Ov006_SettleSeedTiles kind:function(arm,size=0x15c) addr:0x0235c3a0
 Ov006_MarkMapBorder kind:function(arm,size=0xf0) addr:0x0235c4fc
-func_ov006_0235c5ec kind:function(arm,size=0xc) addr:0x0235c5ec
+Ov006_Abs kind:function(arm,size=0xc) addr:0x0235c5ec
 Ov006_RandomMapCoord kind:function(arm,size=0x8c) addr:0x0235c5f8
 Ov006_LoadPresetMap kind:function(arm,size=0x5e8) addr:0x0235c684
 func_ov006_0235cc6c kind:function(arm,size=0x98) addr:0x0235cc6c
@@ -279,7 +279,7 @@ Ov006_RefitAround kind:function(arm,size=0x184) addr:0x023641a4
 Ov006_PaintSea kind:function(arm,size=0x1c4) addr:0x02364328
 Ov006_PlaceReef kind:function(arm,size=0x358) addr:0x023644ec
 Ov006_CheckReefsAround kind:function(arm,size=0x164) addr:0x02364844
-Ov006_ReefToSeaIfRejected kind:function(arm,size=0x60) addr:0x023649a8
+Ov006_ReefToSeaIfNotOpenWater kind:function(arm,size=0x60) addr:0x023649a8
 Ov006_IsSurroundedByWater kind:function(arm,size=0x30c) addr:0x02364a08
 Ov006_IsBareSea kind:function(arm,size=0x64) addr:0x02364d14
 Ov006_IsBareReefOrSea kind:function(arm,size=0x64) addr:0x02364d78
@@ -573,4 +573,4 @@ Ov006_gCrossDy kind:data(any) addr:0x0236d618
 Ov006_gCrossDx kind:data(any) addr:0x0236d624
 data_ov006_0236d640 kind:bss addr:0x0236d640
 data_ov006_0236d644 kind:bss addr:0x0236d644
-data_ov006_0236d744 kind:bss addr:0x0236d744
+Ov006_gGenMarks kind:bss addr:0x0236d744

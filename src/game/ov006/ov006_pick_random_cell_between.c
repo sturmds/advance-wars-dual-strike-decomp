@@ -7,7 +7,7 @@ extern u32 data_027c0284;
 
 int Map_GetDistance(s16 x1, s16 y1, s16 x2, s16 y2);
 s32 Rng_Range(s32 min, s32 max);
-int func_ov006_0235c5ec(int value);   /* absolute value */
+int Ov006_Abs(int value);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -25,7 +25,7 @@ BOOL Ov006_PickRandomCellBetween(int *outX, int *outY, int cell, TilePoint *a, T
         *outX = Rng_Range(minX, STATE->unk_1c4->mapWidth - 1);
         *outY = Rng_Range(minY, STATE->unk_1c4->mapHeight - 1);
         if (cell == STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[*outY] + *outX]
-            && func_ov006_0235c5ec(Map_GetDistance(a->x, a->y, *outX, *outY)
+            && Ov006_Abs(Map_GetDistance(a->x, a->y, *outX, *outY)
                                    - Map_GetDistance(b->x, b->y, *outX, *outY)) <= range) {
             break;
         }

@@ -6,7 +6,7 @@ void Ov006_PlaceBridgeByPattern(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 int Ov006_GetRoadCell(int x, int y);               /* guess: picks the cell code for a road at x, y */
 void Ov006_StoreMapCell(int x, int y, int cell);    /* guess: sets the cell code of tile x, y */
-int func_ov006_02351238(int x, int y);               /* reads the cell code at x, y */
+int Ov006_GetCellMatchedToLeft(int x, int y);
 void Ov006_RefreshNeighborTiles(int x, int y);
 void Ov006_ResetNeighborsToSea(int x, int y);
 void Ov006_RefitCellsAround(int x, int y);
@@ -25,7 +25,7 @@ void Ov006_PlaceRoad(int x, int y)
     }
     Ov006_SetTerrain(x, y, TERRAIN_ROAD);
     Ov006_StoreMapCell(x, y, Ov006_GetRoadCell(x, y));
-    Ov006_StoreMapCell(x, y, func_ov006_02351238(x, y));
+    Ov006_StoreMapCell(x, y, Ov006_GetCellMatchedToLeft(x, y));
     Ov006_RefreshNeighborTiles(x, y);
     Ov006_ResetNeighborsToSea(x, y);
     Ov006_RefitCellsAround(x, y);

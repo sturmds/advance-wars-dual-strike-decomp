@@ -63,7 +63,7 @@ src/game/ov006/ov006_match_cell_to_left_tile.c:
     complete
     .text       start:0x02350f44 end:0x02351238
 
-src/game/ov006/func_ov006_02351238.c:
+src/game/ov006/ov006_get_cell_matched_to_left.c:
     complete
     .text       start:0x02351238 end:0x02351288
 
@@ -846,7 +846,7 @@ src/game/ov006/ov006_mark_map_border.c:
     complete
     .text       start:0x0235c4fc end:0x0235c5ec
 
-src/game/ov006/func_ov006_0235c5ec.c:
+src/game/ov006/ov006_abs.c:
     complete
     .text       start:0x0235c5ec end:0x0235c5f8
 
@@ -1126,7 +1126,7 @@ src/game/ov006/ov006_check_reefs_around.c:
     complete
     .text       start:0x02364844 end:0x023649a8
 
-src/game/ov006/ov006_reef_to_sea_if_rejected.c:
+src/game/ov006/ov006_reef_to_sea_if_not_open_water.c:
     complete
     .text       start:0x023649a8 end:0x02364a08
 

@@ -3,7 +3,7 @@
 
 void Ov006_MarkMapBorder(void);
 void Ov006_PickLinkTiles(int x1, int y1, int x2, int y2, int range, TilePoint *out1, TilePoint *out2, int *vertical);
-void Ov006_MarkLinkPath(int x1, int y1, int x2, int y2, int vertical);   /* marks a road path with 2 in data_ov006_0236d744 */
+void Ov006_MarkLinkPath(int x1, int y1, int x2, int y2, int vertical);   /* marks a road path with 2 in Ov006_gGenMarks */
 void Ov006_PlaceRoadsAtMarks(void);
 
 /* x of a TilePoint that was never set (Ov006_GenerateRandomMap's city tiles). */
