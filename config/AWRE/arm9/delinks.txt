@@ -22390,6 +22390,10 @@ src/sdk/wm/wm_set_parent_parameter.c:
     complete
     .text       start:0x02117ab4 end:0x02117bbc
 
+src/sdk/wm/wm_end.c:
+    complete
+    .text       start:0x02117bbc end:0x02117c04
+
 src/sdk/mb/mb_parent_send_comm_data.c:
     complete
     .text       start:0x02119268 end:0x021193fc

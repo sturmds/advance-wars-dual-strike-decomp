@@ -51,6 +51,12 @@ typedef struct WMCallback {
 #define WM_APIID_SET_MP_DATA 15
 
 /* Command ids that the WM commands send to the ARM7, one per request kind. */
+#define WM_APIID_INITIALIZE 0
+#define WM_APIID_RESET 1
+#define WM_APIID_ENABLE 3
+#define WM_APIID_DISABLE 4
+#define WM_APIID_POWER_ON 5
+#define WM_APIID_POWER_OFF 6
 #define WM_APIID_SET_P_PARAM 7
 #define WM_APIID_START_PARENT 8
 #define WM_APIID_END_PARENT 9
@@ -61,6 +67,12 @@ typedef struct WMCallback {
 #define WM_APIID_END 2
 #define WM_APIID_START_MP 14
 #define WM_APIID_SET_MP_DATA 15
+#define WM_APIID_END_MP 16
+#define WM_APIID_SET_GAMEINFO 24
+#define WM_APIID_SET_BEACON_IND 25
+#define WM_APIID_SET_LIFETIME 29
+#define WM_APIID_MEASURE_CHANNEL 30
+#define WM_APIID_SET_ENTRY 33
 #define WM_NUM_OF_CALLBACK 41              /* ids below this have a slot in callbackTable */
 #define WM_APIID_INDICATION 0x80
 #define WM_APIID_PORT_SEND 0x81
