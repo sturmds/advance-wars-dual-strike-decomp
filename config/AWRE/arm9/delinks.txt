@@ -21386,6 +21386,10 @@ src/sdk/FS_ReadFile.c:
     complete
     .text       start:0x02112718 end:0x02112728
 
+src/sdk/fs/fs_cancel_file.c:
+    complete
+    .text       start:0x02112728 end:0x02112774
+
 src/sdk/fs/fs_init_file.c:
     complete
     .text       start:0x02112bb4 end:0x02112bdc

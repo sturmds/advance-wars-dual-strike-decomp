@@ -32,6 +32,8 @@ typedef struct FSFileID {
 /* Low four bits of flags: set while a command runs on the file. */
 #define FILE_HANDLE_BUSY_BITS 0xf
 #define FS_FILE_STATUS_BUSY 0x4
+#define FILE_HANDLE_QUEUED 0x01        /* a command is queued or running (tested by FS_IsBusy) */
+#define FS_FILE_STATUS_CANCEL 0x02
 #define FS_FILE_STATUS_SYNC 0x04           /* a thread waits for the command (the bit named BUSY above) */
 #define FS_FILE_STATUS_ASYNC 0x08          /* the archive runs the command in the background */
 #define FS_FILE_STATUS_IS_FILE 0x10
@@ -92,6 +94,17 @@ struct FSFile {
     u8 pad_38[0x44 - 0x38];
 };
 
+/* The ternary under the != 0 is how the original compiles these tests. */
+static inline BOOL FS_IsBusy(const FSFile *file)
+{
+    return ((file->flags & FILE_HANDLE_QUEUED) ? TRUE : FALSE) != 0;
+}
+
+static inline BOOL FileHandle_HasWaiter(const FSFile *file)
+{
+    return ((file->flags & FS_FILE_STATUS_SYNC) ? TRUE : FALSE) != 0;
+}
+
 /* Where a table read starts. */
 typedef struct ArchiveTableCursor {
     FSArchive *arc;
@@ -103,6 +116,7 @@ typedef int (*ArchiveByteWriter)(FSArchive *arc, const void *src, u32 dest, u32 
 
 #define ARCHIVE_STATE_IN_LIST 0x1       /* in the list of archives */
 #define ARCHIVE_STATE_ROUTINES_SET 0x2           /* tables and routines are set */
+#define ARCHIVE_STATE_CANCEL_ASKED 0x20       /* FS_CancelFile was called for the running command */
 #define ARCHIVE_STATE_AWAITING_DRIVER 0x100          /* a command waits for Archive_OnCommandFinished */
 #define ARCHIVE_STATE_CALLER_BLOCKED 0x200        /* a caller sleeps until the command ends */
 
@@ -169,6 +183,7 @@ s32 FS_ReadFile(FSFile *file, void *dest, s32 size);
 BOOL FS_CloseFile(FSFile *file);
 BOOL FS_ChangeDir(const char *path);
 BOOL FS_SeekFile(FSFile *file, s32 offset, int origin);
+void FS_CancelFile(FSFile *file);
 
 /* Looks up a path: gives a file ID or a directory position (not named yet). */
 BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);

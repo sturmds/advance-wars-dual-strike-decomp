@@ -5,12 +5,6 @@ void OS_WakeupThread(OSThreadQueue *queue);
 int func_02111bc4(FSFile *file, u32 command);      /* runs one command through the table */
 FSFile *func_0211232c(FSArchive *arc);             /* picks the next command to run */
 
-/* The ternary under the != 0 is how the original compiles this test. */
-static inline BOOL FileHandle_HasWaiter(const FSFile *file)
-{
-    return ((file->flags & FS_FILE_STATUS_SYNC) ? TRUE : FALSE) != 0;
-}
-
 void FSi_ExecuteAsyncCommand(FSFile *file)
 {
     FSArchive *arc = file->arc;

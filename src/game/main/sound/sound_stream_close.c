@@ -6,7 +6,6 @@ extern u8 data_022a8ad8[];             /* mutex around the stream slots and requ
 void func_0210e034(void *mutex);
 void func_0210dfc4(void *mutex);
 void SoundStrm_StopIfActive(SoundStrm *strm);
-void func_02112728(FSFile *file);
 void SoundStream_Release(SoundStream *stream);
 
 /* Closes a stream: stops its playback, cancels a file read in progress and
@@ -18,7 +17,7 @@ void SoundStream_Close(SoundStream *stream)
         SoundStrm_StopIfActive(&stream->strm);
     }
     if (stream->flags.fileOpen) {
-        func_02112728(&stream->file);
+        FS_CancelFile(&stream->file);
     }
     SoundStream_Release(stream);
     func_0210dfc4(data_022a8ad8);
