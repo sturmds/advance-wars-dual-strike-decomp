@@ -6,7 +6,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 BreakText_GetScreenX(u8 slot);
-void func_0202a0b4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 /* Needed to match: the weights narrow to u8 at the call, as if the original
  * prototype took u8. */
@@ -32,7 +32,7 @@ void CoSwap_SlideOutCos(Task *task)
     func_02002620((CO_SWAP_FRONT_X - CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
     func_02002620((CO_SWAP_BACK_X + CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a0b4(i, BreakText_GetScreenX(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
+        BreakText_QueueLetter(i, BreakText_GetScreenX(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
     }
     if (CO_SWAP_FRAME(task) <= 16) {
         data_027c0280->blendEva = CO_SWAP_FRAME(task);

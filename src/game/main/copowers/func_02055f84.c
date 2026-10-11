@@ -6,7 +6,7 @@ void Screen_SetCurrentBoth(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void TagBreak_DrawSidePiece(int x, int y, int side);
 s16 BreakText_GetScreenX(u8 slot);
-void func_0202a0b4(u8 slot, u16 x, int y, int attr, int arg);
+void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Palette_BlendWithColor(u16 *palette, u16 color, u8 palWeight, u8 colorWeight);
 void Palette_Flush(void);
@@ -80,7 +80,7 @@ void func_02055f84(Task *task)
     TagBreak_DrawSidePiece(72 - SLIDE(task), 224, 0);
     TagBreak_DrawSidePiece(SLIDE(task) + 184, 224, 1);
     for (i = 0; i < task->unk_58; i++) {
-        func_0202a0b4(i, BreakText_GetScreenX(i) & 0x1ff, 80, 0, 0);
+        BreakText_QueueLetter(i, BreakText_GetScreenX(i) & 0x1ff, 80, 0, 0);
     }
     if (FRAME(task) <= 16) {
         saved0280 = data_027c0280;
