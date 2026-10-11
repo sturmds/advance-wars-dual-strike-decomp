@@ -12017,6 +12017,10 @@ src/game/main/map/game_is_war_room.c:
     complete
     .text       start:0x020d4318 end:0x020d434c
 
+src/game/main/units/move_path_draw_arrows3d.c:
+    complete
+    .text       start:0x020d434c end:0x020d4470
+
 src/game/main/map/rect_is_on_screen.c:
     complete
     .text       start:0x020d4470 end:0x020d44f0

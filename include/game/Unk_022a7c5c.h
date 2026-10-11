@@ -17,7 +17,9 @@ typedef struct Unk_022a7c5c {
     u32 unk_3c;
     u32 unk_40;                        /* tile base for the sprites Sprite3d_DrawAnimation draws */
     u8 *unk_44;                        /* destination of the colour func_020f8344 queues (+ 8) */
-    u8 pad_48[0x5c - 0x48];
+    u32 unk_48;                        /* tile base of the move path arrow cells, 32 bytes per cell (MovePath_DrawArrows3d) */
+    u32 unk_4c;                        /* passed with unk_48 to func_020146f0 */
+    u8 pad_50[0x5c - 0x50];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */
     u8 pad_64[0x68 - 0x64];

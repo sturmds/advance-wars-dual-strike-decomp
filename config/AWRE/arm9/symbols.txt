@@ -3852,7 +3852,7 @@ func_020d4288 kind:function(arm,size=0x28) addr:0x020d4288
 func_020d42b0 kind:function(arm,size=0x34) addr:0x020d42b0
 func_020d42e4 kind:function(arm,size=0x34) addr:0x020d42e4
 Game_IsWarRoom kind:function(arm,size=0x34) addr:0x020d4318
-func_020d434c kind:function(arm,size=0x124) addr:0x020d434c
+MovePath_DrawArrows3d kind:function(arm,size=0x124) addr:0x020d434c
 Rect_IsOnScreen kind:function(arm,size=0x80) addr:0x020d4470
 func_020d44f0 kind:function(arm,size=0x138) addr:0x020d44f0
 MovePath_Draw kind:function(arm,size=0x4c) addr:0x020d4628
@@ -7697,7 +7697,7 @@ gMapPreviewUnitMask kind:data(any) addr:0x02166e0c
 data_02166e14 kind:data(any) addr:0x02166e14
 data_02166e3c kind:data(any) addr:0x02166e3c
 data_02166e7c kind:data(any) addr:0x02166e7c
-data_02166e80 kind:data(any) addr:0x02166e80
+gMovePathArrowCells kind:data(any) addr:0x02166e80
 data_02166eb4 kind:data(any) addr:0x02166eb4
 data_02166ebc kind:data(any) addr:0x02166ebc
 data_02166ec4 kind:data(any) addr:0x02166ec4

@@ -25,6 +25,10 @@ enum {
     MOVE_DIR_UP
 };
 
+/* Arrow cell drawn on a move path tile, indexed [direction to the next
+ * tile][direction from the previous tile] (MOVE_DIR_*). */
+extern u16 gMovePathArrowCells[5][5];
+
 /* Steps of a unit path (Unk_02080440_48.unk_170, UnitPath_CountSteps). */
 enum {
     PATH_STEP_LEFT,
