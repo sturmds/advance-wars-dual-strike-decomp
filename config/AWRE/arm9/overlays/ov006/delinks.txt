@@ -1011,6 +1011,10 @@ src/game/ov006/ov006_set_hq_position.c:
     complete
     .text       start:0x02365db4 end:0x02365e30
 
+src/game/ov006/ov006_get_hq_position.c:
+    complete
+    .text       start:0x02365e30 end:0x02365eec
+
 src/game/ov006/ov006_remove_property.c:
     complete
     .text       start:0x02365eec end:0x02366064

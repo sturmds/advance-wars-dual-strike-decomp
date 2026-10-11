@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-BOOL func_ov006_02365e30(int hqTile, int *x, int *y);   /* the army's HQ position, if it has one */
+BOOL Ov006_GetHqPosition(int hqTile, int *x, int *y);   /* the army's HQ position, if it has one */
 int Ov006_CountPropertyTilesMatching(int tile);
 
 /* Number of bases, airports and ports that army owns, or -1 when the army
@@ -14,7 +14,7 @@ int Ov006_CountArmyFactories(int hqTile)
     int y;
     int count;
 
-    if (!func_ov006_02365e30(hqTile, &x, &y)) {
+    if (!Ov006_GetHqPosition(hqTile, &x, &y)) {
         return -1;
     }
     count = 0;
