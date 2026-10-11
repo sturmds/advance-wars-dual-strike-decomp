@@ -21975,6 +21975,10 @@ src/sdk/tp/tp_request_sampling_async.c:
     complete
     .text       start:0x02114324 end:0x021143c4
 
+src/sdk/tp/tp_set_calibrate_param.c:
+    complete
+    .text       start:0x021143c4 end:0x021144c8
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc
