@@ -749,6 +749,10 @@ src/game/main/func_0200c230.c:
     complete
     .text       start:0x0200c230 end:0x0200c2a0
 
+src/game/main/func_0200c2a0.c:
+    complete
+    .text       start:0x0200c2a0 end:0x0200c310
+
 src/game/main/unlocks/gba_cart_is_advance_wars2.c:
     complete
     .text       start:0x0200c310 end:0x0200c32c
