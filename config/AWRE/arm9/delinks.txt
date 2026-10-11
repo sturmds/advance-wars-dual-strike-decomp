@@ -10165,6 +10165,10 @@ src/game/main/map/tile_is_on_screen.c:
     complete
     .text       start:0x020cd9a8 end:0x020cda14
 
+src/game/main/units/supply_flag_adjacent_targets.c:
+    complete
+    .text       start:0x020cda14 end:0x020cdadc
+
 src/game/main/func_020cdadc.c:
     complete
     .text       start:0x020cdadc end:0x020cdb14
