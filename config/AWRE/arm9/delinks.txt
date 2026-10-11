@@ -12948,6 +12948,10 @@ src/game/main/sound/sound_slot_set_track_channel_mask.c:
     complete
     .text       start:0x0210594c end:0x02105964
 
+src/game/main/sound/sound_slot_set_max_players.c:
+    complete
+    .text       start:0x02105964 end:0x02105984
+
 src/game/main/func_02105b08.c:
     complete
     .text       start:0x02105b08 end:0x02105b18
