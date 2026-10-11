@@ -12360,6 +12360,10 @@ src/game/main/units/capture_picture_draw.c:
     complete
     .text       start:0x020ec438 end:0x020ec5cc
 
+src/game/main/units/capture_picture_init.c:
+    complete
+    .text       start:0x020ec5cc end:0x020ec8ec
+
 src/game/main/units/capture_picture_free_sprites.c:
     complete
     .text       start:0x020ec8ec end:0x020ec914
