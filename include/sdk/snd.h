@@ -77,5 +77,6 @@ void SoundAlarm_RunIfTagMatches(int alarmId);
 u32 SoundAlarm_AssignHandler(u32 alarmNo, SndAlarmHandler handler, u32 arg);
 /* Makes alarm ids already in flight for this slot stale. */
 void SoundAlarm_BumpTag(int alarmNo);
+void SoundAlarm_ClearAll(void);
 
 #endif
