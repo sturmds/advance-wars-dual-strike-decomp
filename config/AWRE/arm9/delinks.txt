@@ -9399,6 +9399,10 @@ src/game/main/map/tile_strike_task_update_fall2d.c:
     complete
     .text       start:0x020d8b1c end:0x020d8c14
 
+src/game/main/map/tile_strike_task_init2d.c:
+    complete
+    .text       start:0x020d8c14 end:0x020d8c8c
+
 src/game/main/func_020d8c8c.c:
     complete
     .text       start:0x020d8c8c end:0x020d8cb8
