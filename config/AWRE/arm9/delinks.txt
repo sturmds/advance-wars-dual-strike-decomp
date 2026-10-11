@@ -18839,6 +18839,10 @@ src/game/main/map/map_view_draw_scrolled_edges.c:
     complete
     .text       start:0x020f9d28 end:0x020fa0b4
 
+src/game/main/map/map_view_apply_bg_scroll_pan_layer0.c:
+    complete
+    .text       start:0x020fa0b4 end:0x020fa330
+
 src/game/main/map/map_view_apply_bg_scroll.c:
     complete
     .text       start:0x020fa330 end:0x020fa448
