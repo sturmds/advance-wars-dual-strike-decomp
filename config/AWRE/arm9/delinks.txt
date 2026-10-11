@@ -2058,6 +2058,10 @@ src/game/main/script/event_choice_draw_record.c:
     complete
     .text       start:0x0201a1b8 end:0x0201a3bc
 
+src/game/main/script/choice_prompt_draw_cursor.c:
+    complete
+    .text       start:0x0201a774 end:0x0201a7e0
+
 src/game/main/script/event_script_start.c:
     complete
     .text       start:0x0201ab18 end:0x0201ab8c
