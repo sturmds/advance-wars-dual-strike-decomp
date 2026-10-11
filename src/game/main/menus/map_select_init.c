@@ -19,7 +19,7 @@ void Mem_Zero32(u32 value, void *dst, u32 size);
 void Data_Unpack(const void *src, void *dst);
 void Palette_Load(const void *src, u32 offset, u32 size);
 u8 *Palette_GetBlock(int index, int player);
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 void Palette_BlendWithColor(void *dst, int a, int b, int c);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
@@ -204,8 +204,8 @@ void MapSelect_Init(void)
     Mem_Copy32(Palette_GetBlock(6, 0), data_027c0280->objVram + 0x1280, 0x100);
     Mem_Copy32(Palette_GetBlock(22, 0), data_027c0280->objVram + 0x1380, 0x100);
     Mem_Copy32(Palette_GetBlock(17, 0), data_027c0280->objVram + 0x1480, 0x100);
-    Palette_Load(func_020ccb38(6, 0), 0x340, 0x20);
-    Palette_Load(func_020ccb38(6, 0), 0x360, 0x20);
+    Palette_Load(Terrain_GetPalette(6, 0), 0x340, 0x20);
+    Palette_Load(Terrain_GetPalette(6, 0), 0x360, 0x20);
     Palette_BlendWithColor(data_027c0280->paletteBuffer + 0x360, 0, 8, 0);
     Screen_SetCurrentGfx(saved0280);
 

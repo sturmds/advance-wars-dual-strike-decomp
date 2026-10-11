@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 
 void func_020dbc94(int id, int army, void *dest, int copy);
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 void Palette_Load(const void *src, u32 offset, u32 size);
 
 extern Unk_027c0280 *data_027c0280;
@@ -33,5 +33,5 @@ void Ov006_LoadArmyTiles(int army)
         tile += 8;
         ids++;
     }
-    Palette_Load(func_020ccb38(6, army), 0x300, 32);
+    Palette_Load(Terrain_GetPalette(6, army), 0x300, 32);
 }

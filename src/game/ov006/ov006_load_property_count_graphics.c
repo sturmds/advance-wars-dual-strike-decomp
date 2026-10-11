@@ -6,7 +6,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_0201e6e8(int x, int y, int width, int height);
 void func_020dbc94(int id, int army, void *dest, int copy);
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 u8 *func_020c67bc(void);
 int Player_GetCoIconTile(int player, int index);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
@@ -58,13 +58,13 @@ void Ov006_LoadPropertyCountGraphics(void)
     Palette_Load(gArmyPalettes[STATE->players[3].armyColour - 1], 0x3a0, 32);
     Palette_Load(gArmyPalettes[STATE->players[4].armyColour - 1], 0x3c0, 32);
 
-    Palette_Load(func_020ccb38(20, 0), 0x280, 32);
-    Palette_Load(func_020ccb38(20, 1), 0x2a0, 32);
-    Palette_Load(func_020ccb38(20, 2), 0x2c0, 32);
-    Palette_Load(func_020ccb38(20, 3), 0x2e0, 32);
-    Palette_Load(func_020ccb38(20, 4), 0x300, 32);
-    Palette_Load(func_020ccb38(17, 0), 0x320, 32);
-    Palette_Load(func_020ccb38(15, 0), 0x340, 32);
+    Palette_Load(Terrain_GetPalette(20, 0), 0x280, 32);
+    Palette_Load(Terrain_GetPalette(20, 1), 0x2a0, 32);
+    Palette_Load(Terrain_GetPalette(20, 2), 0x2c0, 32);
+    Palette_Load(Terrain_GetPalette(20, 3), 0x2e0, 32);
+    Palette_Load(Terrain_GetPalette(20, 4), 0x300, 32);
+    Palette_Load(Terrain_GetPalette(17, 0), 0x320, 32);
+    Palette_Load(Terrain_GetPalette(15, 0), 0x340, 32);
 
     MenuBox_Draw(3, 2, 10, 4);
     Screen_SetCurrent(saved027c);

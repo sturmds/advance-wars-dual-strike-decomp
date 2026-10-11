@@ -6,7 +6,7 @@
 
 void func_020dbc94(int id, int army, void *dest, int copy);
 const void *func_020ccbb8(int id);
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 void TransferQueue_Add(const void *src, void *dst, u32 size);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Screen_SetCurrent(void *state);
@@ -81,7 +81,7 @@ void Ov006_SetEntryTile(int tile)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    Palette_Load(func_020ccb38(terrain, army), 0x260, 32);
+    Palette_Load(Terrain_GetPalette(terrain, army), 0x260, 32);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

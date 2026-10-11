@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/terrain.h"
 
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -23,13 +23,13 @@ void Ov006_LoadTerrainPalettes(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    Palette_Load(func_020ccb38(TERRAIN_PLAIN, 0), 0x320, 32);
-    Palette_Load(func_020ccb38(TERRAIN_MOUNTAIN, 0), 0x340, 32);
-    Palette_Load(func_020ccb38(TERRAIN_SEA, 0), 0x360, 32);
-    Palette_Load(func_020ccb38(TERRAIN_ROAD, 0), 0x380, 32);
-    Palette_Load(func_020ccb38(TERRAIN_PIPE, 0), 0x3a0, 32);
-    Palette_Load(func_020ccb38(TERRAIN_SILO, 0), 0x3c0, 32);
-    Palette_Load(func_020ccb38(TERRAIN_LAB, 1), 0x300, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_PLAIN, 0), 0x320, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_MOUNTAIN, 0), 0x340, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_SEA, 0), 0x360, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_ROAD, 0), 0x380, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_PIPE, 0), 0x3a0, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_SILO, 0), 0x3c0, 32);
+    Palette_Load(Terrain_GetPalette(TERRAIN_LAB, 1), 0x300, 32);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

@@ -9,7 +9,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void Palette_Load(const void *src, u32 offset, u32 size);
-const void *func_020ccb38(int id, int army);
+const void *Terrain_GetPalette(int id, int army);
 void Sound_PlaySe(u32 soundId);
 void Text_PrintImmediate(int x, int y, void *target, u32 text, int a, int b);
 void Gfx_RequestLayerCopy(int layer);
@@ -137,7 +137,7 @@ void Ov006_UpdateArmyCoPanel(void)
 
     switch (OV6->unk_0c) {
     case 0:
-        Palette_Load(func_020ccb38(20, OV6->unk_27), 0x300, 32);
+        Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
         func_ov006_02352708(OV6->unk_29);
         OV6->unk_0c = 1;
         break;
@@ -226,7 +226,7 @@ void Ov006_UpdateArmyCoPanel(void)
             func_ov006_02355b44();
             func_ov006_02355610();
             OV6->unk_02 &= ~0x10;
-            Palette_Load(func_020ccb38(20, OV6->unk_27), 0x300, 32);
+            Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
             func_ov006_02352708(OV6->unk_29);
             OV6->unk_02 &= ~8;
             OV6->unk_0c = 72;
