@@ -9,7 +9,7 @@ void func_020c40d0(void);
 void MapView_ScrollStep(int step);
 BOOL MapView_IsAtRest(void);
 u32 func_020ef1e8(void);
-BOOL func_020f0190(void);
+BOOL MapTouch_ReadNotHeld(void);
 void Screen_ResetBlend(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -27,7 +27,7 @@ void Game_State15_WaitScrollThenReturnToCursor(void)
     if (!func_020ef1e8()) {
         return;
     }
-    if (!func_020f0190()) {
+    if (!MapTouch_ReadNotHeld()) {
         return;
     }
     Screen_ResetBlend();
