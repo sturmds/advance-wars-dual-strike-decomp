@@ -11,12 +11,12 @@ BOOL Player1Team_HasPlayerInGame(void);
 int Campaign_IsHardMode(void);
 int func_020d618c(void);
 void CampaignRecords_Store(int mapIndex, int days, int score);
-int func_0204d690(void);
+int CampaignMap_IsFinalMission(void);
 void func_0210375c(void);
 void func_02102c4c(void);
 
 /* Runs when a campaign map ends. A win stores the day count and score as the
- * map's record (maps from id 224 on). When func_0204d690 then returns
+ * map's record (maps from id 224 on). When CampaignMap_IsFinalMission then returns
  * nonzero, the best average score of the current difficulty is raised if the
  * records now average higher, and a task starts; otherwise
  * func_02102c4c runs. */
@@ -28,7 +28,7 @@ void Campaign_FinishMap(void)
     if (Player1Team_HasPlayerInGame()) {
         CampaignRecords_Store(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId - 224,
                       data_027c027c->unk_48[data_027c0284]->day, data_022a7a9c.score);
-        recorded = func_0204d690();
+        recorded = CampaignMap_IsFinalMission();
     }
     if (recorded) {
         hard = Campaign_IsHardMode();

@@ -1698,7 +1698,7 @@ func_0204d5e0 kind:function(arm,size=0x2c) addr:0x0204d5e0
 CampaignMap_StartAfterBattle kind:function(arm,size=0x2c) addr:0x0204d60c
 CampaignMap_StartMode1 kind:function(arm,size=0x2c) addr:0x0204d638
 CampaignMap_StartMode0 kind:function(arm,size=0x2c) addr:0x0204d664
-func_0204d690 kind:function(arm,size=0x30) addr:0x0204d690
+CampaignMap_IsFinalMission kind:function(arm,size=0x30) addr:0x0204d690
 func_0204d6c0 kind:function(arm,size=0x1c) addr:0x0204d6c0
 CampaignMap_MarkMissionDone kind:function(arm,size=0x2c) addr:0x0204d6dc
 func_0204d708 kind:function(arm,size=0x18c) addr:0x0204d708
@@ -7226,7 +7226,7 @@ data_0215b9bc kind:data(any) addr:0x0215b9bc
 data_0215b9d4 kind:data(any) addr:0x0215b9d4
 data_0215b9ec kind:data(any) addr:0x0215b9ec
 gCampaignMissions kind:data(any) addr:0x0215ba04
-data_0215ba06 kind:data(any) addr:0x0215ba06
+gCampaignMissionKind kind:data(any) addr:0x0215ba06
 data_0215ba08 kind:data(any) addr:0x0215ba08
 data_0215ba0a kind:data(any) addr:0x0215ba0a
 data_0215ba0c kind:data(any) addr:0x0215ba0c
