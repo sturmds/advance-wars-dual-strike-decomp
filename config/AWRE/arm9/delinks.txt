@@ -9518,6 +9518,10 @@ src/game/main/copowers/power_reset_scroll_and_refresh.c:
     complete
     .text       start:0x020d5684 end:0x020d56f4
 
+src/game/main/map/tile_sprite_task_draw_object.c:
+    complete
+    .text       start:0x020d56f4 end:0x020d5824
+
 src/game/main/func_020d5ae8.c:
     complete
     .text       start:0x020d5ae8 end:0x020d5b08
