@@ -76,14 +76,16 @@ release: setup
 	@echo "release: OK"
 
 # Tests of the landing tools on throwaway repos, of propagate.py's C text
-# handling and of ds.py; no ROM or build needed (test_ds.py uses the compiler
-# from make setup and checks more when extract/ exists).
+# handling, of ds.py and of pragmas.py; no ROM or build needed (test_ds.py and
+# test_pragmas.py use the compiler from make setup; test_ds.py checks more
+# when extract/ exists).
 test:
 	@$(PYTHON) tools/tests/test_landing.py
 	@$(PYTHON) tools/tests/test_propagate.py
 	@$(PYTHON) tools/tests/test_loop_state.py
 	@$(PYTHON) tools/tests/test_fnshow.py
 	@$(PYTHON) tools/tests/test_ds.py
+	@$(PYTHON) tools/tests/test_pragmas.py
 
 clean:
 	rm -rf build build.ninja .ninja_log .ninja_deps

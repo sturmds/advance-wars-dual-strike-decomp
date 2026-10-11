@@ -81,6 +81,15 @@ All three work from `build/fnindex.json`, check every candidate with the fast ch
 
 What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 
+### Pragmas
+
+Some original files were built with other optimisation settings: the name entry screen only matches with `#pragma optimization_level 0`, and `NameEntry_MoveFromKey` only with `#pragma opt_common_subs off`. permute.py changes the C, never these settings.
+
+- `python3 tools/pragmas.py FILE.c NAME [--jobs N] [--apply]`: compiles the C as it is under each pragma that changes code generation and prints the best scores. It tries `optimization_level` 0-3, `optimize_for_size` and each `opt_*` switch and `peephole` both on and off, alone, then in pairs and triples of the ones that changed the function. Each goes at the top of the file and around the function alone (`#pragma push` ... `#pragma pop`). A few hundred compiles, one to a few minutes. `--apply` writes the matching variant; move the pragma below the file comment, say why it is there, and confirm with `fn.py diff`. `--accepted` checks that mwccarm 2.0-72 still accepts every pragma in the list (`scheduling`, `register_coloring` and `opt_cse` do not exist in this version; an unknown pragma is only a warning). `make test` runs `tools/tests/test_pragmas.py` (no ROM).
+- `python3 tools/triage_partials.py --out FILE.md [--jobs 3] [NAME ...]`: for every started, unlinked function, sorts the `fn.py diff` result into register-only, order, missing/extra and structural, runs the pragma sweep, and names the nearest file in the same module that uses a pragma. A pragma'd neighbour hints that the original object was built with that setting; a sweep that gets closer but not to 100% can mean the C was shaped for the wrong flags.
+
+Run the sweep on a partial before trying C variants by hand or with permute.py.
+
 ## 5. Mark it complete and review
 
 1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
@@ -95,6 +104,8 @@ What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 | `python3 tools/fn.py show NAME\|ADDR` | Location, callers, table references and original disassembly |
 | `python3 tools/fn.py diff NAME` | Compile, diff, exit 0 on a full match |
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
+| `python3 tools/pragmas.py FILE.c NAME` | Score one function under each optimisation pragma |
+| `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
 | `make fnindex` | Build `build/fnindex.json` |
 | `python3 tools/ds.py show STRUCT\|data_ADDR` | Struct layout, or a data symbol's type, references and decoded bytes |

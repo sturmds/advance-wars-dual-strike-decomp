@@ -325,7 +325,7 @@ class Lifter:
                 raise Bail("pool load form")
             word, reloc = self.pool_words[off + 8 + int(mm.group(1) or 0)]
             if reloc:
-                if word != reloc[2]:
+                if word != reloc[2] or "+" in reloc[4] or "-" in reloc[4]:
                     raise Bail("reloc with addend")
                 self.put(rd, self.symnode(reloc[4], reloc[2], reloc[4] in ISFUNC))
             else:

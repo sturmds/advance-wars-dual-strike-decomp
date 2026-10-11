@@ -8,7 +8,8 @@ module, mode, address, size, original bytes (from extract/), relocations
 (from relocs.txt), a masked hash, the mnemonics before the literal pool, and
 whether a C file covers it (`status`: complete, started or none).
 `mnemonics` is one space-separated string; `raw` is hex; relocations are
-[offset in the function, kind, target address, target module, name].
+[offset in the function, kind, target address, target module, name]; the
+address and name include relocs.txt's `add:` (`Ov000_gUnitStats+0x1e`).
 
 The masked hash covers the bytes with every relocated word zeroed, the size,
 and the list of relocation offsets and kinds. Two functions with the same
@@ -45,7 +46,7 @@ import fn  # noqa: E402
 ROOT = fn.ROOT
 INDEX = ROOT / "build/fnindex.json"
 EXTRACT = ROOT / "extract"
-VERSION = 1
+VERSION = 2
 
 # Relocation kinds, grouped by what part of the word they change.
 ARM_CALLS = {"arm_call", "arm_call_thumb", "arm_branch"}
@@ -168,8 +169,11 @@ def build() -> dict:
         started = [(s, e, p) for p, s, e, c in mod.files if not c]
         for f in mod.funcs:
             raw = data[f.addr - base:f.end - base]
-            relocs = [(frm - f.addr, kind, to, dest, fn.name_at(dest, to))
-                      for frm, kind, to, dest in fn.relocs_in(f)]
+            relocs = []
+            for frm, kind, to, dest in fn.relocs_in(f):
+                add = mod.addends.get(frm, 0)
+                label = fn.name_at(dest, to) + (f"{add:+#x}" if add else "")
+                relocs.append((frm - f.addr, kind, to + add, dest, label))
             pool = pool_start(f, dis[name])
             step = 2 if f.mode == "thumb" else 4
             # One string, not a list: the index loads three times faster.

@@ -50,7 +50,7 @@ MAIN_GAME_START = 0x02000b24  # below: secure area and BIOS stubs
 
 FUNC = re.compile(r"^(\S+) kind:function\((arm|thumb),size=(0x[0-9a-f]+)\S*\) addr:(0x[0-9a-f]+)")
 ANY_SYM = re.compile(r"^(\S+) kind:(\S+) addr:(0x[0-9a-f]+)")
-RELOC = re.compile(r"^from:(0x[0-9a-f]+) kind:(\S+) to:(0x[0-9a-f]+)(?: add:\S+)? module:(\S+)")
+RELOC = re.compile(r"^from:(0x[0-9a-f]+) kind:(\S+) to:(0x[0-9a-f]+)(?: add:(-?0x[0-9a-f]+))? module:(\S+)")
 TEXT = re.compile(r"\s+\.text\s+start:(0x[0-9a-f]+) end:(0x[0-9a-f]+)")
 CALL_KINDS = {"arm_call", "thumb_call", "arm_call_thumb", "thumb_call_arm", "arm_branch"}
 
@@ -82,6 +82,7 @@ class Module:
     funcs: list[Func] = field(default_factory=list)
     syms: dict[int, str] = field(default_factory=dict)  # addr -> name, any kind
     relocs: list[tuple[int, str, int, str]] = field(default_factory=list)
+    addends: dict[int, int] = field(default_factory=dict)  # from -> relocs.txt `add:`
     text: tuple[int, int] = (0, 0)
     files: list[tuple[str, int, int, bool]] = field(default_factory=list)  # path, start, end, complete
 
@@ -127,7 +128,9 @@ def modules() -> dict[str, Module]:
         for line in (d / "relocs.txt").read_text().splitlines():
             m = RELOC.match(line)
             if m:
-                mod.relocs.append((int(m.group(1), 16), m.group(2), int(m.group(3), 16), m.group(4)))
+                mod.relocs.append((int(m.group(1), 16), m.group(2), int(m.group(3), 16), m.group(5)))
+                if m.group(4):
+                    mod.addends[int(m.group(1), 16)] = int(m.group(4), 16)
         mod.text, mod.files = parse_delinks(d / "delinks.txt")
         mod.funcs.sort(key=lambda f: f.addr)
         mod.relocs.sort()
