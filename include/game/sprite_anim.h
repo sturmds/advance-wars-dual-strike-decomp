@@ -36,6 +36,15 @@ typedef struct SpriteAnim {
     void *tileSource;                  /* tiles copied to VRAM while SPRITE_ANIM_TILES_PENDING is set */
 } SpriteAnim;
 
+/* One entry of a frame's affine data (SpriteAnim.affine: a u16 count in bits 0-14, then
+ * the entries). The matrix rotates by angle (low byte, 256 steps) and divides by the scales;
+ * 0x100 = 1x (sine table in 4.12, OAM parameters in 8.8). */
+typedef struct SpriteAffineEntry {
+    u16 angle;
+    u16 scaleX;
+    u16 scaleY;
+} SpriteAffineEntry;
+
 /* Task that draws a SpriteAnim at a screen position every frame. The first
  * 0x50 bytes belong to the task system (Task_Create). */
 typedef struct SpriteAnimTask {

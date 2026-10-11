@@ -3,7 +3,7 @@
 
 void Sprite_Queue(int list, int x, int y, const void *data, int unk08, int unk0a);
 void SpriteAnim_UploadTiles(SpriteAnim *sprite);
-void func_02021ff4(SpriteAnim *sprite);
+void SpriteAnim_LoadAffineParams(SpriteAnim *sprite);
 
 /* Queues the sprite's current cells at (x, y) on its layer. With affine
  * data the affine slot goes into the x word from bit 9 up. Uploads the
@@ -22,7 +22,7 @@ void SpriteAnim_Queue(SpriteAnim *sprite, int x, int y)
         return;
     }
     if (sprite->affine != NULL) {
-        func_02021ff4(sprite);
+        SpriteAnim_LoadAffineParams(sprite);
         affineBits = sprite->affineBase << 9;
     }
     Sprite_Queue(sprite->layer, x | affineBits, y, sprite->cells, sprite->tileBase, 0);
