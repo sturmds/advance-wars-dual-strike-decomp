@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int SuperPowerCost(int player, int slot);
-int func_02099dac(int coId);   /* a rank per CO id, used to break ties */
+int AiCo_TagRank(int coId);   /* a rank per CO id, used to break ties */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -24,7 +24,7 @@ int func_02099dac(int coId);   /* a rank per CO id, used to break ties */
  * AI action 15. Needs CO effects on, no power on and a back CO. Compares how
  * far each CO's meter is from its Super CO Power cost: TRUE when the front CO
  * is closer. When both are equally far, or both meters are empty,
- * func_02099dac ranks the two COs instead. */
+ * AiCo_TagRank ranks the two COs instead. */
 BOOL func_02099ba0(void)
 {
     int checkedPlayer;              /* the current player, read during the checks */
@@ -57,8 +57,8 @@ BOOL func_02099ba0(void)
             == SuperPowerCost(checkedPlayer, 1)
                    - ((Player *)((u8 *)state->players + player * sizeof(Player)))->back.charge
         || (frontCharge == 0 && players[player].back.charge == 0)) {
-        if (func_02099dac(STATE->players[STATE->currentPlayer].front.id & PLAYER_CO_ID_MASK)
-            < func_02099dac(players[player].back.id & PLAYER_CO_ID_MASK)) {
+        if (AiCo_TagRank(STATE->players[STATE->currentPlayer].front.id & PLAYER_CO_ID_MASK)
+            < AiCo_TagRank(players[player].back.id & PLAYER_CO_ID_MASK)) {
             return TRUE;
         }
     } else {
