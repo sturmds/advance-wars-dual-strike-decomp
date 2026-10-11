@@ -3753,7 +3753,7 @@ Game_EnterState20 kind:function(arm,size=0x44) addr:0x020cf840
 Weather_StartEffect kind:function(arm,size=0x64) addr:0x020cf884
 SidePanel_SnapAwayFromCursor kind:function(arm,size=0xb8) addr:0x020cf8e8
 SidePanel_SnapRight kind:function(arm,size=0x74) addr:0x020cf9a0
-func_020cfa14 kind:function(arm,size=0x74) addr:0x020cfa14
+SidePanel_SnapLeft kind:function(arm,size=0x74) addr:0x020cfa14
 func_020cfa88 kind:function(arm,size=0xc0) addr:0x020cfa88
 func_020cfb48 kind:function(arm,size=0xf8) addr:0x020cfb48
 func_020cfc40 kind:function(arm,size=0xf0) addr:0x020cfc40
@@ -6098,7 +6098,7 @@ data_021392a8 kind:data(any) addr:0x021392a8
 data_02139308 kind:data(any) addr:0x02139308
 data_02139348 kind:data(any) addr:0x02139348
 data_02139358 kind:data(any) addr:0x02139358
-data_0213936c kind:data(any) addr:0x0213936c
+gSidePanelRestX kind:data(any) addr:0x0213936c
 data_02139370 kind:data(any) addr:0x02139370
 data_021393d0 kind:data(any) addr:0x021393d0
 gTextMapBytes kind:data(any) addr:0x02139430

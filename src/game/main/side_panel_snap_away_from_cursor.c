@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 void SidePanel_SnapRight(void);
-void func_020cfa14(void);
+void SidePanel_SnapLeft(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -21,10 +21,10 @@ void SidePanel_SnapAwayFromCursor(void)
         if (screenX < 128) {
             SidePanel_SnapRight();
         } else {
-            func_020cfa14();
+            SidePanel_SnapLeft();
         }
     } else if (state->sidePanelRight == 0) {
-        func_020cfa14();
+        SidePanel_SnapLeft();
     } else {
         SidePanel_SnapRight();
     }

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 
 void func_020cfa88(void);
-void func_020cfa14(void);
+void SidePanel_SnapLeft(void);
 void SidePanel_SnapRight(void);
 void SidePanel_SnapAwayFromCursor(void);
 
@@ -14,7 +14,7 @@ void Weather_StartEffect(int weather)
         func_020cfa88();
         break;
     case WEATHER_SNOW:
-        func_020cfa14();
+        SidePanel_SnapLeft();
         break;
     case WEATHER_RAIN:
         SidePanel_SnapRight();
