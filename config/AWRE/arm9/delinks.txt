@@ -6927,6 +6927,10 @@ src/game/main/link/link_receive_from_child.c:
     complete
     .text       start:0x0207acc0 end:0x0207ae44
 
+src/game/main/link/link_child_handle_packets.c:
+    complete
+    .text       start:0x0207af54 end:0x0207b0d0
+
 src/game/main/link/link_poll_peer_reply.c:
     complete
     .text       start:0x0207b3a8 end:0x0207b48c

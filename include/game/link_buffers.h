@@ -14,6 +14,17 @@ typedef struct LinkPacket {
     u8 payload[22];
 } LinkPacket;
 
+/* LinkPacket.type values seen in the packet handlers. */
+#define LINK_PACKET_STOP 1
+#define LINK_PACKET_CHILD_AIDS 2         /* payload: connected child aid bits, low byte first */
+#define LINK_PACKET_PLAYER_NAME 3        /* 3 to 9: name of the player with aid 1 to 7 */
+#define LINK_PACKET_SHARING_START 10
+#define LINK_PACKET_SHARING_STARTED 11
+#define LINK_PACKET_SHARING_END 12
+#define LINK_PACKET_SHARING_ENDED 13
+#define LINK_PACKET_ACTION 14            /* 14 to 17: unit action from the player with aid 0 to 3 */
+#define LINK_PACKET_REACTION 18
+
 /* One queued packet: a LinkPacket. */
 typedef struct LinkQueueSlot {
     u8 bytes[24];
