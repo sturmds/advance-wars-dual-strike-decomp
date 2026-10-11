@@ -73,7 +73,7 @@ void func_020fd6d4(u8 *palettes, int first, int count, int level);
         Screen_SetCurrentGfx(savedGfx);                                                     \
     } while (0)
 
-/* func_020fd0e8, func_020fd164 and func_020fd1e0 wrap func_020fd220, which
+/* func_020fd0e8, func_020fd164 and func_020fd1e0 wrap PaletteFade_Start, which
  * makes a task that changes BG palettes over time with func_020fd6d4. */
 #define START_PALETTE_FADE_TASK()                                                           \
     do {                                                                                    \
