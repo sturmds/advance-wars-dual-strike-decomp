@@ -21,7 +21,7 @@ int Co_GetNation(int co);
 int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadObjPicture(int coId, int tile, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
-void func_02002904(int coId, int tile, int army);
+void Co_LoadArmyGraphics(int coId, int tile, int army);
 int func_0207bd80(void);
 u32 func_020e18b4(int frontCo, int backCo);   /* text id of the tag power of two COs */
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
@@ -189,10 +189,10 @@ loaded:
 
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_02002904(PLAYER->front.id, 0x10, GAME->currentPlayer);
+    Co_LoadArmyGraphics(PLAYER->front.id, 0x10, GAME->currentPlayer);
     Co_LoadObjPicture(PLAYER->front.id, 0x1c0, GAME->currentPlayer);
     Co_LoadArmyPalette(PLAYER->front.id, 16, GAME->currentPlayer);
-    func_02002904(PLAYER->back.id, 0x2e0, GAME->currentPlayer);
+    Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, GAME->currentPlayer);
     Co_LoadObjPicture(PLAYER->back.id, 0x490, GAME->currentPlayer);
     Co_LoadArmyPalette(PLAYER->back.id, 17, GAME->currentPlayer);
     Screen_SetCurrentGfx(savedGfx);

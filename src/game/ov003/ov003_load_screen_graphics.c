@@ -21,7 +21,7 @@ void Mem_Free(void *file);
 void *Mem_Alloc(u32 size);
 void Wallpaper_LoadSingle(void);
 int func_0208bed4(int value);
-void func_02002864(int a, void *dst, int b);
+void Co_LoadArmyGraphicsToBuffer(int a, void *dst, int b);
 void Ov003_LoadMapPanelGraphics(void);
 void Ov003_LoadGraphics(void *file);
 void Ov003_LoadMainScreenGraphics(void *file, void *localized);
@@ -30,7 +30,7 @@ void Ov003_LoadSubScreenGraphics(void *file, void *localized);
 void Ov003_UploadCoPictures(void);
 
 /* Loads the files for the screens on both screens, then a 0x3600-byte picture
- * (func_02002864, a CO graphics loader) for each active row. Pictures 0 and 1
+ * (Co_LoadArmyGraphicsToBuffer, a CO graphics loader) for each active row. Pictures 0 and 1
  * go to gMenuState; the rest go to a buffer allocated here. */
 void Ov003_LoadScreenGraphics(void)
 {
@@ -75,7 +75,7 @@ void Ov003_LoadScreenGraphics(void)
             } else {
                 dst = data_ov003_02365b10 + (i - 2) * 0x3600;
             }
-            func_02002864(func_0208bed4(row->co), dst, i + 1);
+            Co_LoadArmyGraphicsToBuffer(func_0208bed4(row->co), dst, i + 1);
         }
     }
     Ov003_UploadCoPictures();

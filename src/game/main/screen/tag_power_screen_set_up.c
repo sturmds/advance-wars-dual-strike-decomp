@@ -20,7 +20,7 @@ int Co_GetNation(int co);
 int Co_GetArmyPictureVariant(int coId, int army);
 void Co_LoadObjPicture(int coId, int tile, int army);
 void Co_LoadArmyPalette(int coId, int paletteSlot, int army);
-void func_02002904(int coId, int tile, int army);
+void Co_LoadArmyGraphics(int coId, int tile, int army);
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
@@ -264,10 +264,10 @@ void TagPowerScreen_SetUp(Task *task)
     /* CO pictures in the colours of the current player's slot. */
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
-    func_02002904(PLAYER->front.id, 16, STATE->currentPlayer);
+    Co_LoadArmyGraphics(PLAYER->front.id, 16, STATE->currentPlayer);
     Co_LoadObjPicture(PLAYER->front.id, 0x1c0, STATE->currentPlayer);
     Co_LoadArmyPalette(PLAYER->front.id, 16, STATE->currentPlayer);
-    func_02002904(PLAYER->back.id, 0x2e0, STATE->currentPlayer);
+    Co_LoadArmyGraphics(PLAYER->back.id, 0x2e0, STATE->currentPlayer);
     Co_LoadObjPicture(PLAYER->back.id, 0x490, STATE->currentPlayer);
     Co_LoadArmyPalette(PLAYER->back.id, 17, STATE->currentPlayer);
     Screen_SetCurrentGfx(saved0280);

@@ -7,7 +7,7 @@ u32 Ov004_GetFileSize(const char *path);
 void File_ReadTo(void *dest, const char *fileName);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 int func_02124534(const char *a, const char *b);   /* strcmp */
-void func_020028b4(int coId, void *dest);         /* guess: unpacks the CO's picture to dest */
+void Co_LoadGraphicsToBuffer(int coId, void *dest);         /* guess: unpacks the CO's picture to dest */
 void Co_LoadPalette(int coId, int paletteSlot);
 
 extern Ov004ResourceFile data_ov004_022becf8[];
@@ -63,7 +63,7 @@ void Ov004_LoadResources(Unk_ov004_022bf158 *state)
             dir = NULL;
             if (code == OV004_RESOURCE_CO_PICTURE) {
                 src = data_ov004_022bf150;
-                func_020028b4(coId, src);
+                Co_LoadGraphicsToBuffer(coId, src);
                 size = 0x4000;     /* one CO picture */
             } else if (code == OV004_RESOURCE_CO_PALETTE) {
                 savedGfx = data_027c0280;
