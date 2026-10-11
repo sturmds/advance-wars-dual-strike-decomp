@@ -15,7 +15,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry);
 int func_02015ec8(TextPrinter *printer);
 void func_02015da8(TextPrinter *printer);
 void func_0201d730(void);
-void func_0201e11c(int arg);
+void PopupMenu_SetItemIcon(int arg);
 void func_020d31f4(void);
 void func_020f7da0(u16 *dest, int unitType, int base, int cargo, int a4, int hp, int a6, int a7, int a8, int a9, int a10);
 
@@ -28,7 +28,7 @@ void func_020f7da0(u16 *dest, int unitType, int base, int cargo, int a4, int hp,
  * are skipped first. Returns 0 when the text ends, 1 when the byte is a
  * character the caller draws, 2 or 3 when a code was handled (2: the
  * caller goes on with the next cell after the code's effect). The codes
- * seen: 9 plays a sound (func_0201e11c), 10 draws the HP and icon of a
+ * seen: 9 plays a sound (PopupMenu_SetItemIcon), 10 draws the HP and icon of a
  * unit carried by the acting unit, 11 sets unk_3e, 12 and 15 return to the
  * line start (15 also marks the next cell), 13 is a line break, 14 starts
  * the effect in data_02158364 while unk_3e is set, 20 to 23 start the effect
@@ -162,10 +162,10 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         }
     case 9:
         if (text[1] >= 128 && text[1] <= 153) {
-            func_0201e11c(text[1] - 128);
+            PopupMenu_SetItemIcon(text[1] - 128);
         }
         if (TEXT[1] >= 154 && TEXT[1] <= 179) {
-            func_0201e11c(TEXT[1] - 128);
+            PopupMenu_SetItemIcon(TEXT[1] - 128);
         }
         printer->cursorX += 2;
         ADVANCE(2);

@@ -12,7 +12,7 @@ typedef struct PopupMenuTask {
     s8 flags[10];                      /* getFlags result of each listed item */
     u8 itemIndex[10];                  /* index in items of each listed item */
     u8 itemIcons[10];                  /* per item: index into data_0215875c, or 0xff for none */
-    u8 unk_4e;                         /* func_0201e11c stores a new icon at itemIcons[unk_4e] */
+    u8 unk_4e;                         /* PopupMenu_SetItemIcon stores a new icon at itemIcons[unk_4e] */
     u8 itemTotal;                      /* items in the table, listed or not */
     s8 count;                          /* listed items, those without MENU_ITEM_HIDDEN */
     u8 selected;                       /* cursor position */
