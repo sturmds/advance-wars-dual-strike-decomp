@@ -3943,6 +3943,10 @@ src/game/main/func_0203b300.c:
     complete
     .text       start:0x0203b300 end:0x0203b318
 
+src/game/main/result_stats_start_exit.c:
+    complete
+    .text       start:0x0203b318 end:0x0203b350
+
 src/game/main/func_0203b614.c:
     complete
     .text       start:0x0203b614 end:0x0203b634
