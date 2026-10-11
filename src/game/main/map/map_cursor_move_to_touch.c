@@ -3,7 +3,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/touch.h"
 
-void func_020c3b1c(void);
+void MapCursor_ClampToMap(void);
 void Map3d_ScreenToTilePos(int x, int y, s32 *out);
 
 extern Unk_02080440 *data_027c027c;
@@ -22,7 +22,7 @@ static inline BOOL IsTouchInPhase(int phase)
 }
 
 /* Puts the map cursor on the touched tile, worked out as in
- * MapCursor_UpdateFromTouch, then runs func_020c3b1c. A touch that began
+ * MapCursor_UpdateFromTouch, then runs MapCursor_ClampToMap. A touch that began
  * this frame also remembers the tile in unk_30 and unk_32. Unlike
  * MapCursor_UpdateFromTouch it plays no sound and leaves the touch marker
  * alone. */
@@ -48,7 +48,7 @@ void MapCursor_MoveToTouch(void)
         STATE->cursorX = pos[0] >> 9;
         STATE->cursorY = pos[1] >> 9;
     }
-    func_020c3b1c();
+    MapCursor_ClampToMap();
     if (!IsTouchInPhase(TOUCH_PRESSED)) {
         return;
     }

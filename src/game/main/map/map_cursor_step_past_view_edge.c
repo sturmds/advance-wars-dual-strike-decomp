@@ -7,13 +7,13 @@ extern int data_027c0284;
 extern s16 data_02169454[16][2];   /* per d-pad bit pattern (right, left, up, down): x step, y step */
 extern s16 data_02169456[16][2];   /* the same table from its y steps */
 
-void func_020c3b1c(void);
+void MapCursor_ClampToMap(void);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* For the d-pad keys held in gKeypad->held: puts the cursor one tile in
  * from the edge of the visible area (16x12 tiles, or the map if smaller) on
- * each side it is pushed towards, runs func_020c3b1c, then steps it one
+ * each side it is pushed towards, runs MapCursor_ClampToMap, then steps it one
  * tile that way, kept on the map. The declaration order is needed to match. */
 void MapCursor_StepPastViewEdge(void)
 {
@@ -50,7 +50,7 @@ void MapCursor_StepPastViewEdge(void)
     if (data_02169456[dir][0] > 0) {
         GAME->cursorY = height - 2 + (GAME->unk_1c4->scrollY >> 4);
     }
-    func_020c3b1c();
+    MapCursor_ClampToMap();
     newX = GAME->cursorX + data_02169454[dir][0];
     if (newX >= 0 && newX < GAME->unk_1c4->mapWidth) {
         GAME->cursorX = newX;
