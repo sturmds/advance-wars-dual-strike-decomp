@@ -32,8 +32,8 @@ typedef void (*SoundStrmCallback)(int status, int channelCount, void *blocks[], 
 /* Where the hardware channels of a stream read from. One per hardware
  * channel, array at data_022a8978. */
 typedef struct SoundStrmChannel {
-    void *buffer;
-    int volume;                        /* added to the stream volume for this channel */
+    u32 buffer;                        /* address of the ring */
+    int volume;                       /* added to the stream volume for this channel */
 } SoundStrmChannel;
 
 #define SOUND_STRM_CHANNEL_COUNT 16
@@ -48,10 +48,10 @@ typedef struct SoundStrm {
     int format;                        /* 0x20: STRM_FORMAT_* */
     SoundStrmFlags flags;              /* 0x24 */
     u32 bufferSize;                    /* 0x28: bytes in the ring, per channel */
-    u32 blockCount;                    /* 0x2c: blocks in the ring */
+    int blockCount;                    /* 0x2c: blocks in the ring */
     SoundStrmCallback callback;        /* 0x30 */
     void *callbackArg;                 /* 0x34 */
-    u32 blockIndex;                    /* 0x38: next block to fill */
+    int blockIndex;                    /* 0x38: next block to fill */
     int volume;                        /* 0x3c */
     int timer;                         /* 0x40: hardware timer number */
     u32 channelMask;                   /* 0x44: bit per hardware channel in use, 0 for none */
