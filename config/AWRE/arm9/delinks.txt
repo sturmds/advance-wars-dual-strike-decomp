@@ -372,6 +372,10 @@ src/game/main/func_02003f8c.c:
     complete
     .text       start:0x02003f8c end:0x02003fa0
 
+src/game/main/screen/screen_shake_start.c:
+    complete
+    .text       start:0x02003fa0 end:0x02003ff8
+
 src/game/main/func_02003ff8.c:
     complete
     .text       start:0x02003ff8 end:0x02004018

@@ -8,14 +8,14 @@ extern int data_027c0284;
 u16 func_02021b20(Unk_02022404 *sprite);
 void Sound_PlaySe(u32 soundId);
 /* Both start a child task of parent with the given arguments. */
-void func_02003fa0(int scriptIndex, int arg, Task *parent);
+void ScreenShake_Start(int scriptIndex, int arg, Task *parent);
 void func_020041e4(int a, int b, int c, Task *parent);
 
 /* The usual case body: the sound, then both effect tasks with their small
  * arguments; in game mode 4 only the first one. Ends the function. */
 #define PLAY_SMALL_EFFECTS(sound)                                       \
     Sound_PlaySe(sound);                                                \
-    func_02003fa0(1, 20, task->parent);                                 \
+    ScreenShake_Start(1, 20, task->parent);                                 \
     if (data_027c027c->unk_48[data_027c0284]->gameMode == 4) {          \
         return;                                                         \
     }                                                                   \
@@ -39,22 +39,22 @@ void MapSpriteTask_PlayKindEffects(MapSpriteTask *task)
         return;
     case 29:
         Sound_PlaySe(0xb2);
-        func_02003fa0(1, 20, task->parent);
+        ScreenShake_Start(1, 20, task->parent);
         func_020041e4(4, 0, 2, task->parent);
         return;
     case 26:
         Sound_PlaySe(0x92);
-        func_02003fa0(2, 90, task->parent);
+        ScreenShake_Start(2, 90, task->parent);
         func_020041e4(90, 15, 30, task->parent);
         return;
     case 25:
         Sound_PlaySe(0x93);
-        func_02003fa0(2, 90, task->parent);
+        ScreenShake_Start(2, 90, task->parent);
         func_020041e4(90, 15, 30, task->parent);
         return;
     case 28:
         Sound_PlaySe(0xae);
-        func_02003fa0(1, 20, task->parent);
+        ScreenShake_Start(1, 20, task->parent);
         func_020041e4(4, 0, 2, task->parent);
         return;
     case 0:
