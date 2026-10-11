@@ -2,6 +2,7 @@
 #define GAME_SOUND_ARC_H
 
 #include "types.h"
+#include "sdk/fs.h"
 
 /* NitroSystem sound archive (SDAT) structures, only the fields the code
  * in src/ reads. Offsets inside the info block are relative to the start
@@ -80,9 +81,35 @@ typedef struct SoundArcInfo {
     u32 unk_24;
 } SoundArcInfo;
 
+/* Two words of an archive, a start and an end by their use. */
+typedef struct SoundArcRange {
+    u32 unk_00;
+    u32 unk_04;
+} SoundArcRange;
+
+/* One file of the archive's file table: where it sits in the archive file and
+ * where it is loaded, if it is. */
+typedef struct SoundArcFileEntry {
+    u32 offset;                        /* from the start of the archive file */
+    u32 size;
+    void *loaded;                      /* memory copy, NULL when not loaded */
+    u32 unk_0c;
+} SoundArcFileEntry;
+
+typedef struct SoundArcFileTable {
+    u32 unk_00;
+    u32 unk_04;
+    u32 count;
+    SoundArcFileEntry entries[1];      /* count entries */
+} SoundArcFileTable;
+
 /* NitroSystem NNSSndArc: an opened sound archive. */
 typedef struct SoundArc {
-    u8 pad_00[0x88];
+    u8 pad_00[0x34];
+    FSFile file;                       /* 0x34: the archive file */
+    SoundArcRange range;               /* 0x78: handed to the ROM direct file open call */
+    SoundArcFileTable *files;          /* 0x80 */
+    u8 pad_84[4];
     SoundArcInfo *info;
 } SoundArc;
 
