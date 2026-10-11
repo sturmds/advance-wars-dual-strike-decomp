@@ -17,17 +17,22 @@ typedef struct SaveSlotTable {
 /* data_02297fa8: one save counter per slot. Save_FindNewestRecord takes the highest. */
 extern u32 data_02297fa8[SAVE_SLOT_COUNT];
 
+/* The words after the counters in data_02297fa8: how many times each slot
+ * was written. Writes go to the free slot with the lowest count. */
+#define SAVE_SLOT_WRITES(slot) ((&data_02297fa8[slot])[SAVE_SLOT_COUNT])
+
 #define SAVE_SLOT_MARK 0x10
 #define SAVE_SLOT_KEEP 0x08            /* set by Save_Format on the slots it keeps */
 
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
  * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
 typedef struct SaveBuffer {
-    u8 pad_00[0x0c];
+    u8 pad_00[0x08];
+    u32 counter;                       /* save counter of this slot */
     u8 unk_0c;                         /* bits 4-7 set: record is skipped by Save_LoadRecord */
-    u8 pad_0d;
+    u8 recordId;
     u16 destOffset;                    /* where the record data goes in the load destination */
-    u8 pad_10[0x64 - 0x10];
+    u32 slotWrites[SAVE_SLOT_COUNT];   /* SAVE_SLOT_WRITES of every slot when this one was written */
     u16 dataLength;                    /* bytes of record data at data */
     u8 data[0x2fea - 0x66];
     u8 slotIds[SAVE_SLOT_COUNT];
