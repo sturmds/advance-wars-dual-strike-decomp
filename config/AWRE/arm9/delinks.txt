@@ -4466,6 +4466,7 @@ src/game/main/result_point_draw_all.c:
     .text       start:0x020384c0 end:0x0203850c
 
 src/game/main/result_point_slide_in_update.c:
+    complete
     .text       start:0x020387cc end:0x02038858
 
 src/game/main/result_point_start_list.c:
