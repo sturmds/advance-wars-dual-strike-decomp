@@ -2831,6 +2831,10 @@ src/game/main/func_0201ce98.c:
     complete
     .text       start:0x0201ce98 end:0x0201ceac
 
+src/game/main/script/event_cmd_wait_with_keys.c:
+    complete
+    .text       start:0x0201ceac end:0x0201cf28
+
 src/game/main/script/event_script_clear_state_unk7c.c:
     complete
     .text       start:0x0201cf78 end:0x0201cfc4
