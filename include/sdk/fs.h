@@ -153,6 +153,7 @@ extern FSArchive gRomFileArchive;
 
 FSFileID FS_GetOverlayFileID(const FSOverlayInfo *info);
 FSArchive *FS_FindArchive(const char *name, int length);
+u32 Archive_FoldNameIntoWord(const char *name, int length);
 void FS_Init(u32 dmaNo);
 void FS_InitFile(FSFile *file);
 BOOL FS_LoadOverlayImage(const FSOverlayInfo *info);

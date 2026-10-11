@@ -4,8 +4,6 @@
 extern FSArchive *data_022ab828;       /* first registered archive */
 extern FSDirPos data_022ab82c;         /* current directory */
 
-u32 func_021125f4(const char *name, int nameLength);          /* packs the name into one word */
-
 /* Adds the archive to the list of registered archives under a name of up to
  * four characters. The first archive also becomes the current directory.
  * Returns FALSE when an archive already has that name. */
@@ -30,7 +28,7 @@ BOOL FS_RegisterArchiveName(FSArchive *arc, const char *name, int nameLength)
             last->next = arc;
             arc->prev = last;
         }
-        arc->name = func_021125f4(name, nameLength);
+        arc->name = Archive_FoldNameIntoWord(name, nameLength);
         arc->flags |= ARCHIVE_STATE_IN_LIST;
         registered = TRUE;
     }
