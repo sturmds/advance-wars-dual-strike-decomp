@@ -2,6 +2,7 @@
 #define GAME_CAMERA_PAN_H
 
 #include "types.h"
+#include "sdk/fx.h"
 
 /* The camera object that Camera_Set fills (data_022a7d5c). Only the rotation
  * and position are known. */
@@ -13,6 +14,10 @@ typedef struct Camera {
     s32 x;
     s32 y;
     s32 z;
+    MtxFx43 mtx43;                     /* 0x14 */
+    u8 pad_44[0x68 - 0x44];
+    MtxFx44 mtx44;                     /* 0x68 */
+    MtxFx33 mtx33;                     /* 0xa8 */
 } Camera;
 
 /* Fields at the end of a Task that eases the camera between two world

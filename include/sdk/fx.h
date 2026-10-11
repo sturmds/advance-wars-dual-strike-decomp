@@ -8,6 +8,15 @@ typedef struct MtxFx43 {
     fx32 m[4][3];
 } MtxFx43;
 
+/* 4x4 and 3x3 matrices in row order. */
+typedef struct MtxFx44 {
+    fx32 m[4][4];
+} MtxFx44;
+
+typedef struct MtxFx33 {
+    fx32 m[3][3];
+} MtxFx33;
+
 void MTX_RotX43_(MtxFx43 *mtx, fx32 sin, fx32 cos);
 
 #endif
