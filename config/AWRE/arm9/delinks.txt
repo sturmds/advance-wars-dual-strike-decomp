@@ -11643,6 +11643,10 @@ src/game/main/func_020eb2d4.c:
     complete
     .text       start:0x020eb2d4 end:0x020eb2e8
 
+src/game/main/menus/survival_enter_game_mode.c:
+    complete
+    .text       start:0x020eb2e8 end:0x020eb394
+
 src/game/main/func_020eb394.c:
     complete
     .text       start:0x020eb394 end:0x020eb3b0
