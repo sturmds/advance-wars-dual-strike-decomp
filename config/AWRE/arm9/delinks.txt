@@ -8616,6 +8616,10 @@ src/game/main/map/func_020c9778.c:
     complete
     .text       start:0x020c9778 end:0x020c98b4
 
+src/game/main/map/func_020c98b4.c:
+    complete
+    .text       start:0x020c98b4 end:0x020c9a14
+
 src/game/main/map/map_add_tile_offset.c:
     complete
     .text       start:0x020c9a14 end:0x020c9a74

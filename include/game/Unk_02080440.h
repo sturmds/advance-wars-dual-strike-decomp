@@ -235,7 +235,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_4c)(void);              /* run by Script_StartWithHook when unk_48 is set */
     u8 pad_50[0x54 - 0x50];
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
-    void (*unk_58)(int weather, int tileset); /* run by func_020c9778 on each screen when set */
+    void (*unk_58)(int weather, int tileset); /* run by func_020c9778 and func_020c98b4 on each screen when set */
     BOOL (*unk_5c)(void);              /* func_020fa6f8 calls it; picks between two asset or chart variants */
     u8 pad_60[100 - 0x60];
 } Unk_02080440_50;
