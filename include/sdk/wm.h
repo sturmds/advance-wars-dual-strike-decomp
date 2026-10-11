@@ -40,6 +40,9 @@ typedef struct WMCallback {
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
 
+/* WMCallback.apiid value of the calls made here. */
+#define WM_APIID_SET_MP_DATA 15
+
 /* Command ids that the WM commands send to the ARM7, one per request kind. */
 #define WM_APIID_START_PARENT 8
 #define WM_APIID_END_PARENT 9

@@ -22142,6 +22142,10 @@ src/sdk/mb/mb_parent_send.c:
     complete
     .text       start:0x0211be64 end:0x0211bf68
 
+src/sdk/mb/mb_parent_set_mp_data.c:
+    complete
+    .text       start:0x0211bf68 end:0x0211bfb8
+
 src/game/main/func_0211bfb8.c:
     complete
     .text       start:0x0211bfb8 end:0x0211bfc8
