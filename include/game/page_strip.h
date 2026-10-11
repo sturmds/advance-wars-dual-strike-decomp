@@ -21,4 +21,17 @@ typedef struct PageStrip {
 
 extern PageStrip *data_0229c744;
 
+/* Task that draws a page strip each frame (PageStripTask_Draw). func_020482c8
+ * makes it and copies these fields from the task that created it. The first
+ * 0x58 bytes belong to the task system (Task_Create). */
+typedef struct PageStripTask {
+    u8 pad_00[0x58];
+    int count;                         /* entries in the strip */
+    int pages;
+    u8 pad_60[0x64 - 0x60];
+    s16 cursor;                        /* selected entry */
+    s16 unk_66;                        /* with 2 or more pages, entries before unk_66 mod count use the second palette */
+    u16 mapId;                         /* map whose player count is shown */
+} PageStripTask;
+
 #endif
