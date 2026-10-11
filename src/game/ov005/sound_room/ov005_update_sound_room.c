@@ -14,8 +14,8 @@ void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void Screen1_DestroyTextTasks(void);
 BOOL Ov005SoundRoom_CellChanged(void);
-int func_ov005_023640a4(void);
-void func_ov005_023640b8(void);
+int Ov005SoundRoom_IsMusicChanging(void);
+void Ov005SoundRoom_ClearMusicRequest(void);
 void Ov005SoundRoom_SaveCell(void);
 void Ov005SoundRoom_SetSlideDirection(Unk_ov005_0236bbac *work);
 void func_ov005_02364418(Unk_ov005_0236bbac *work);
@@ -31,10 +31,10 @@ void Ov005SoundRoom_DrawCellNames(Unk_ov005_0236bbac *work);
 /* Per-frame update of the Sound Room. Fades in, opens window 0 on the sub
  * screen (x 40-216, y 168-184; BG0 hidden outside it), then handles input:
  * A plays the selected song unless it is already playing, X stops it
- * (func_ov005_023640b8 clears the playing song), L/left and R/right turn the
+ * (Ov005SoundRoom_ClearMusicRequest clears the playing song), L/left and R/right turn the
  * page with wraparound, B leaves. Each input also has a touch button that
  * sets the matching *Touched flag. On B it waits for
- * func_ov005_023640a4 to clear, fades out, frees the screen's tasks and
+ * Ov005SoundRoom_IsMusicChanging to clear, fades out, frees the screen's tasks and
  * resumes the task script. Every frame ends by redrawing the list. */
 void Ov005_UpdateSoundRoom(Ov005Task *task)
 {
@@ -78,7 +78,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         break;
     case 10:
         if ((gKeypad->pressed & PAD_BUTTON_A) || work->aTouched == 1) {
-            if (Ov005SoundRoom_CellChanged() && !func_ov005_023640a4()) {
+            if (Ov005SoundRoom_CellChanged() && !Ov005SoundRoom_IsMusicChanging()) {
                 Sound_PlaySe(0x10006);
                 Ov005SoundRoom_SaveCell();
             }
@@ -88,11 +88,11 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
             MenuButtons_RemoveSelectable();
             MenuButtons_DisableTouch();
             work->bTouched = 0;
-            func_ov005_023640b8();
+            Ov005SoundRoom_ClearMusicRequest();
             task->step = 100;
         } else if ((gKeypad->pressed & PAD_BUTTON_X) || work->xTouched == 1) {
             work->xTouched = 0;
-            func_ov005_023640b8();
+            Ov005SoundRoom_ClearMusicRequest();
         } else if ((gKeypad->pressed & PAD_BUTTON_L) || (gKeypad->repeat & PAD_KEY_LEFT) || work->lTouched == 1) {
             work->lTouched = 0;
             if (work->page <= 0) {
@@ -122,7 +122,7 @@ void Ov005_UpdateSoundRoom(Ov005Task *task)
         }
         break;
     case 100:
-        if (!func_ov005_023640a4()) {
+        if (!Ov005SoundRoom_IsMusicChanging()) {
             task->step++;
         }
         break;

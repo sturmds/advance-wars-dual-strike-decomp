@@ -15,9 +15,9 @@ void ModeFont_ShowTextOnScreen(const char *text, int tile, int paletteSlot, int 
 const char *Text_Get(u32 textId);
 void func_02028a30(void);
 void Wallpaper_LoadSelected(void);
-void Ov005SoundRoom_StartTask(void);
+void Ov005SoundRoom_StartMusicTask(void);
 void func_ov005_02364428(Unk_ov005_0236bbac *work);
-void func_ov005_02364718(Unk_ov005_0236bbac *work);
+void Ov005SoundRoom_StartPictureTask(Unk_ov005_0236bbac *work);
 void func_ov005_02364a2c(Unk_ov005_0236bbac *work);
 void Ov005SoundRoom_LoadIcons(Unk_ov005_0236bbac *work);
 void Ov005_SoundRoom_AddCellButtons(Unk_ov005_0236bbac *work);
@@ -138,19 +138,19 @@ void Ov005_SetUpSoundRoom(Ov005Task *task)
     work->selection = 0;
     work->shownSelection = 0;
     work->pageStartSelection = 0;
-    work->unk_14 = 0;
-    work->unk_18 = 0;
-    work->unk_1c = 0;
+    work->cursorWrap = 0;
+    work->displayedRow = 0;
+    work->displayedPage = 0;
     func_ov005_02365e90(work);
     work->coId = -1;
-    work->unk_3c = -1;
-    func_ov005_02364718(work);
+    work->loadedCoId = -1;
+    Ov005SoundRoom_StartPictureTask(work);
     Ov005SoundRoom_PickCellCo(work);
     func_ov005_02365100(work);
     Ov005_SoundRoom_AddCellButtons(work);
     Ov005SoundRoom_LoadIcons(work);
     func_ov005_02364428(work);
     func_ov005_02364a2c(work);
-    Ov005SoundRoom_StartTask();
+    Ov005SoundRoom_StartMusicTask();
     task->step = 0;
 }

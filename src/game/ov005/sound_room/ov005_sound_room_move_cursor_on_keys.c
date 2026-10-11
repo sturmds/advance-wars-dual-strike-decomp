@@ -14,17 +14,17 @@ void Ov005SoundRoom_MoveCursorOnKeys(void)
     if (gKeypad->repeat & PAD_KEY_UP) {
         if (cursor <= 0) {
             cursor = state->buttonCount - 1;
-            state->unk_14 = 1;
+            state->cursorWrap = 1;
         } else {
-            state->unk_14 = 0;
+            state->cursorWrap = 0;
             cursor--;
         }
     } else if (gKeypad->repeat & PAD_KEY_DOWN) {
         if (cursor >= state->buttonCount - 1) {
-            state->unk_14 = 2;
+            state->cursorWrap = 2;
             cursor = 0;
         } else {
-            state->unk_14 = 0;
+            state->cursorWrap = 0;
             cursor++;
         }
     }

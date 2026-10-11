@@ -45,9 +45,9 @@ typedef struct Unk_ov005_0236bbac {
     int selection;                     /* selected entry of the page */
     int shownSelection;                /* selection of the last frame; -1 forces a redraw */
     int pageStartSelection;            /* selection after a page change */
-    int unk_14;
-    int unk_18;
-    int unk_1c;
+    int cursorWrap;                    /* 1: the cursor wrapped to the last cell, 2: to the first, 0: no wrap */
+    int displayedRow;                  /* cell whose name shows; Ov005_UpdatePageTurn copies selection here mid-slide; -1: none */
+    int displayedPage;                 /* page of displayedRow */
     int buttonCount;                   /* buttons on the current page, at most 8 */
     int aTouched;                      /* set by touch buttons, cleared when handled */
     int bTouched;
@@ -55,10 +55,10 @@ typedef struct Unk_ov005_0236bbac {
     int lTouched;
     u32 rTouched;
     int coId;                          /* CO whose picture is shown; -1: none */
-    int unk_3c;
+    int loadedCoId;                    /* CO whose picture is loaded; -1: none */
     fx32 pictureX;
     fx32 pictureY;
-    struct Task *unk_48;               /* task of data_ov005_0236aedc */
+    struct Task *pictureTask;          /* runs data_ov005_0236aedc */
     u8 pad_4c[0x50 - 0x4c];
     void *unk_50;                      /* passed to Task_Destroy (task system) */
     u8 pad_54[0x58 - 0x54];
@@ -68,7 +68,7 @@ typedef struct Unk_ov005_0236bbac {
     int playingMusicKind;
     int musicChanging;                 /* 1 during the fade out */
     int musicPlaying;
-    struct Task *unk_70;
+    struct Task *musicTask;            /* runs Ov005_UpdateMusic */
     void *spriteFileA;                 /* sprite file the sprites below are made from */
     struct Unk_02022404 *mainObjects[4]; /* placed on the main screen each frame */
     void *spriteFileB;

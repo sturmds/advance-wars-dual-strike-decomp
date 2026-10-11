@@ -4,13 +4,13 @@
 
 void func_0202244c(void *handle);
 void Mem_Free(void *block);
-void func_ov005_02364108(void);
+void Ov005SoundRoom_DestroyMusicTask(void);
 
 void Ov005SoundRoom_FreeWork(Ov005Task *task)
 {
     Unk_ov005_0236bbac *work = task->work;
 
-    func_ov005_02364108();
+    Ov005SoundRoom_DestroyMusicTask();
     func_0202244c(work->mainObjects[0]);
     func_0202244c(work->mainObjects[1]);
     func_0202244c(work->mainObjects[2]);

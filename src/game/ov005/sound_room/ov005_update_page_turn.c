@@ -15,7 +15,7 @@ extern Unk_ov005_0236bbac *data_ov005_0236bbac;
 
 /* Page turn on layer 0 of the second screen. Steps 1-2 ease the layer's
  * x scroll to -224 when task->entryIndex is set, to 224 otherwise;
- * step 3 copies selection and page into unk_18 and unk_1c, steps 4-5
+ * step 3 copies selection and page into displayedRow and displayedPage, steps 4-5
  * scroll back to 0 from the other side. On frames with bit 1 set,
  * objScaleBoth eases between 256 and 320 too. */
 void Ov005_UpdatePageTurn(Ov005Task *task)
@@ -56,8 +56,8 @@ void Ov005_UpdatePageTurn(Ov005Task *task)
         }
         break;
     case 3:
-        state->unk_18 = state->selection;
-        state->unk_1c = state->page;
+        state->displayedRow = state->selection;
+        state->displayedPage = state->page;
         task->step++;
         break;
     case 4:

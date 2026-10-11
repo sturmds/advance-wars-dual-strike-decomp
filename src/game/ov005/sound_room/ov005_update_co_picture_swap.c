@@ -23,7 +23,7 @@ void Ov005_UpdateCoPictureSwap(Ov005Task *task)
         task->frames = 8;
         task->step++;
     case 1:
-        if (state->coId != state->unk_3c) {
+        if (state->coId != state->loadedCoId) {
             task->frame++;
         } else {
             task->frame--;
@@ -39,7 +39,7 @@ void Ov005_UpdateCoPictureSwap(Ov005Task *task)
         break;
     case 2:
         Ov005_LoadCoPicture(state);
-        state->unk_3c = state->coId;
+        state->loadedCoId = state->coId;
         task->frame = 0;
         task->frames = 4;
         task->step++;
@@ -56,7 +56,7 @@ void Ov005_UpdateCoPictureSwap(Ov005Task *task)
         task->step = 1;
         break;
     case 10:
-        if (state->coId != state->unk_3c) {
+        if (state->coId != state->loadedCoId) {
             task->step = 2;
         }
         break;
