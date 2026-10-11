@@ -6,7 +6,7 @@ extern u32 data_0229eae4;
 
 u8 Map_GetLoadedPlayerCount(void);
 void func_020d73d4(void *map, DesignMapRecord *record);
-void func_020200fc(int recordId, DesignMapRecord *record, int size);
+void Save_WriteRecord(int recordId, DesignMapRecord *record, int size);
 void func_020d6fcc(void);
 
 /* Converts map into the 0x724-byte save record format in data_02291774 and
@@ -20,6 +20,6 @@ void DesignMap_SaveToSlot(int slot, void *map)
     if (data_0229eae4 == 0) {
         record->playerCount = Map_GetLoadedPlayerCount();
     }
-    func_020200fc((u8)(slot + 7), &data_02291774, 0x724);
+    Save_WriteRecord((u8)(slot + 7), &data_02291774, 0x724);
     func_020d6fcc();
 }

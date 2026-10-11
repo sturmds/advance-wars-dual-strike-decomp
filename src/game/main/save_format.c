@@ -10,7 +10,7 @@ extern u8 data_0229a050[];
 
 u16 Save_FindNewestRecord(int recordId);
 int Save_ReadSlot(u16 slot);
-void func_020200fc(int recordId, u8 *src, int size);
+void Save_WriteRecord(int recordId, u8 *src, int size);
 u16 func_02020818(u16 slot);
 
 /* Resets the save to its base record 0, the copy with save counter 0
@@ -33,7 +33,7 @@ void Save_Format(void)
         data_02297f3c.flags[i] &= ~SAVE_SLOT_KEEP;
     }
     if (Save_FindNewestRecord(0xff) == 0xffff) {
-        func_020200fc(0, data_02297f28, size);
+        Save_WriteRecord(0, data_02297f28, size);
     } else {
         for (i = 0; i < SAVE_SLOT_COUNT; i++) {
             if (data_02297f3c.flags[i] & SAVE_SLOT_MARK) {

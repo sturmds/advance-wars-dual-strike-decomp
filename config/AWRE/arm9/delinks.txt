@@ -2531,6 +2531,9 @@ src/game/main/save_load_record.c:
     complete
     .text       start:0x0201febc end:0x02020078
 
+src/game/main/save_write_record.c:
+    .text       start:0x020200fc end:0x02020690
+
 src/game/main/func_0202083c.c:
     complete
     .text       start:0x0202083c end:0x02020848

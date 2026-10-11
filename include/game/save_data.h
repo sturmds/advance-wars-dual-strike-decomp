@@ -21,13 +21,21 @@ extern u32 data_02297fa8[SAVE_SLOT_COUNT];
  * was written. Writes go to the free slot with the lowest count. */
 #define SAVE_SLOT_WRITES(slot) ((&data_02297fa8[slot])[SAVE_SLOT_COUNT])
 
+#define SAVE_MAGIC 0x6a777364        /* "dswj" */
+
 #define SAVE_SLOT_MARK 0x10
 #define SAVE_SLOT_KEEP 0x08            /* set by Save_Format on the slots it keeps */
+#define SAVE_SLOT_READ_FAILED 0x04     /* set by Save_ReadSlot when the check fails */
+#define SAVE_SLOT_WRITE_FAILED 0x02    /* two writes in a row failed to verify */
 
 /* data_02298050: the 0x3000-byte save buffer. Only the fields that
  * Save_LoadRecord reads are known. The last 0x16 bytes hold the slot ids. */
 typedef struct SaveBuffer {
-    u8 pad_00[0x08];
+    u32 magic;                         /* SAVE_MAGIC */
+    u8 unk_04;                         /* 0x55 or 0xaa, the opposite of the buffer's last byte */
+    u8 unk_05;                         /* 29 on every write */
+    u8 checksum;                       /* byte sum of the 0x3000 bytes with these two set to 0xff and 0 */
+    u8 checksumInv;                    /* ~checksum */
     u32 counter;                       /* save counter of this slot */
     u8 unk_0c;                         /* bits 4-7 set: record is skipped by Save_LoadRecord */
     u8 recordId;

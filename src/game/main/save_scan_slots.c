@@ -12,7 +12,7 @@ int Save_ReadSlot(u16 slot);
 u16 Save_FindNewestRecord(int recordId);
 void Save_Format(void);
 int Save_LoadRecord(int recordId, void *buffer);
-void func_020200fc(int recordId, u8 *src, int size);
+void Save_WriteRecord(int recordId, u8 *src, int size);
 
 /* Reads every save slot at startup (called once by func_02020690). Each slot
  * that reads back fine gives its record id, part byte and save counter; the
@@ -22,7 +22,7 @@ void func_020200fc(int recordId, u8 *src, int size);
  * The newest copy of record 0 then supplies the slot id table. If a slot
  * failed to read but that table still lists it as in use, record 0 is
  * loaded, the failed slots are freed (id 0xff) and record 0 is written
- * again (func_020200fc). */
+ * again (Save_WriteRecord). */
 void Save_ScanSlots(int noFormat)
 {
     int bad[SAVE_SLOT_COUNT];
@@ -118,5 +118,5 @@ void Save_ScanSlots(int noFormat)
             data_02297f3c.id[i] = data_02297f3c.newId[i];
         }
     }
-    func_020200fc(0, data_02297f28, data_02297f38);
+    Save_WriteRecord(0, data_02297f28, data_02297f38);
 }
