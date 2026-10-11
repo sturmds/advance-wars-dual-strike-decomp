@@ -14,7 +14,7 @@ void Battle_PutSideHpBar(u16 *tilemap, u8 side, u8 isAir);
 void Battle_PutSideHpBlock(u16 *tilemap, u8 side, u8 isAir);
 void func_ov002_0235e608(u16 *tilemap, u8 side, u8 isAir);
 void func_ov002_0235cd64(int a0);
-void func_ov002_0235d4a8(const u16 *src, u16 *dst, int width, int height);
+void Battle_CopyTilemapRect(const u16 *src, u16 *dst, int width, int height);
 void Gfx_RequestLayerCopy(int a);
 
 /* Needed to match: the original adds the field offset to the address of
@@ -34,8 +34,8 @@ void Battle_UpdateHud(void)
 
     if (data_0229fb30.unk_10 <= 40 && data_0229fb30.unk_10 >= 25) {
         n = data_0229fb30.unk_10 - 25;
-        func_ov002_0235d4a8((u16 *)BATTLE_FIELD(unk_7d0) + (15 - n), data_027c0280->layer1Map, n, 24);
-        func_ov002_0235d4a8((u16 *)(BATTLE_FIELD(unk_7d0) + 0x22) /* column 17 */, data_027c0280->layer1Map + (32 - n), n, 24);
+        Battle_CopyTilemapRect((u16 *)BATTLE_FIELD(unk_7d0) + (15 - n), data_027c0280->layer1Map, n, 24);
+        Battle_CopyTilemapRect((u16 *)(BATTLE_FIELD(unk_7d0) + 0x22) /* column 17 */, data_027c0280->layer1Map + (32 - n), n, 24);
         Gfx_RequestLayerCopy(1);
     }
     for (n = 0; n < 2; n++) {

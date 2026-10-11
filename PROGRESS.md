@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6632 / 6700 | 1493696 / 1553840 | 96.13% | 0 | 0 |
+| game | 6635 / 6700 | 1495492 / 1553840 | 96.24% | 0 | 0 |
 | SDK/library | 433 / 781 | 51552 / 132154 | 39.01% | 33 | 2126 |
-| all | 7065 / 7481 | 1545248 / 1685994 | 91.65% | 33 | 2126 |
+| all | 7068 / 7481 | 1547044 / 1685994 | 91.76% | 33 | 2126 |
 
 ## By module
 
@@ -24,7 +24,7 @@ Rows with nothing done are left out, but count in the totals.
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
 | ov001 | game | 76 / 76 | 7472 / 7472 | 100.00% | 0 |
-| ov002 | game | 154 / 164 | 53704 / 64208 | 83.64% | 0 |
+| ov002 | game | 157 / 164 | 55500 / 64208 | 86.44% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 260 / 266 | 94692 / 96684 | 97.94% | 0 |
@@ -87,10 +87,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 |
 | `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 |
-| `src/game/ov002/func_ov002_0235882c.c` | func_ov002_0235882c | 1044 |
 | `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 |
-| `src/game/ov002/func_ov002_0235d224.c` | func_ov002_0235d224 | 644 |
-| `src/game/ov002/func_ov002_0235d4a8.c` | func_ov002_0235d4a8 | 108 |
 | `src/game/ov003/func_ov003_0235bdd8.c` | func_ov003_0235bdd8 | 88 |
 | `src/game/ov003/func_ov003_0235c194.c` | func_ov003_0235c194 | 88 |
 | `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 |
