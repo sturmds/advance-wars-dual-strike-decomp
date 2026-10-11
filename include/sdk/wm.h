@@ -64,6 +64,7 @@ typedef struct WMCallback {
 #define WM_APIID_END_SCAN 11
 #define WM_APIID_START_CONNECT 12
 #define WM_APIID_DISCONNECT 13
+#define WM_APIID_RESET 1
 #define WM_APIID_END 2
 #define WM_APIID_START_MP 14
 #define WM_APIID_SET_MP_DATA 15

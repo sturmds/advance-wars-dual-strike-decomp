@@ -4,7 +4,7 @@
 
 extern DlPlayStationArea *data_022aced8;
 
-int func_0211c09c(void);
+int MbParent_ResetWm(void);
 void func_0211c090(void);
 int func_0211dd18(void);
 void func_0211db08(void (*callback)(void));
@@ -24,7 +24,7 @@ int DownloadPlay_RequestWmReset(void)
             func_0211db08(func_0211c090);
             result = 0;
         } else {
-            result = func_0211c09c();
+            result = MbParent_ResetWm();
         }
     }
     OS_RestoreInterrupts(enabled);
