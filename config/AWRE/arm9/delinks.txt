@@ -8720,6 +8720,10 @@ src/game/main/func_020772d4.c:
     complete
     .text       start:0x020772d4 end:0x020772d8
 
+src/game/main/screen/sub_screen_queue_two_sprites.c:
+    complete
+    .text       start:0x020772d8 end:0x020773a0
+
 src/game/main/total_rank_screen_init.c:
     complete
     .text       start:0x02077514 end:0x02077f20

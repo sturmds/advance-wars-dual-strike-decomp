@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 
 void func_020773a0(int arg);
-void func_020772d8(int arg);
+void SubScreen_QueueTwoSprites(int arg);
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
 extern u8 data_027c0060;
@@ -14,7 +14,7 @@ void TapPrompt_Draw(void)
     Unk_02080440 *saved027c;
 
     func_020773a0(0);
-    func_020772d8(0);
+    SubScreen_QueueTwoSprites(0);
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     saved027c = data_027c027c;

@@ -4,7 +4,7 @@
 
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 void Task_ResumeScript(Task *task);
-void func_020772d8(int x);
+void SubScreen_QueueTwoSprites(int x);
 void func_020773a0(int x);
 
 extern u8 data_027c0060;
@@ -15,7 +15,7 @@ extern u8 data_027c0060;
 /* Task update: for 8 frames, draws the sprite that
  * SubScreenSprite_ZoomInUpdate zooms in, at a different spot each frame
  * within 2 pixels of (222, 144) on the sub screen, so it shakes; then
- * resumes the task's script. func_020773a0 and func_020772d8 draw the rest
+ * resumes the task's script. func_020773a0 and SubScreen_QueueTwoSprites draw the rest
  * of the scene. */
 void SubScreenSprite_ShakeUpdate(Task *task)
 {
@@ -24,7 +24,7 @@ void SubScreenSprite_ShakeUpdate(Task *task)
 
     FRAME(task)++;
     func_020773a0(0);
-    func_020772d8(0);
+    SubScreen_QueueTwoSprites(0);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);

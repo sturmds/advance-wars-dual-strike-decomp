@@ -7,7 +7,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void Task_ResumeScript(Task *task);
-void func_020772d8(int x);
+void SubScreen_QueueTwoSprites(int x);
 void func_020773a0(int x);
 
 extern u8 data_027c0060;
@@ -21,7 +21,7 @@ extern s16 gSineTable[];
 
 /* Task update: over 4 frames, draws one sprite on the sub screen through
  * affine matrix 1, scaled from 2x down to 1x, then resumes the task's
- * script. func_020773a0 and func_020772d8 draw the rest of the scene.
+ * script. func_020773a0 and SubScreen_QueueTwoSprites draw the rest of the scene.
  * gSineTable has 256 steps per turn (index 64 = cosine of 0). */
 void SubScreenSprite_ZoomInUpdate(Task *task)
 {
@@ -31,7 +31,7 @@ void SubScreenSprite_ZoomInUpdate(Task *task)
 
     FRAME(task)++;
     func_020773a0(0);
-    func_020772d8(0);
+    SubScreen_QueueTwoSprites(0);
 
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
