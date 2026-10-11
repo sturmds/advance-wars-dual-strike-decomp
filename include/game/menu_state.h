@@ -250,6 +250,13 @@ typedef struct CombatMenuState {
     } players[8];                      /* by link player, bits of Unk_0229ff30.playerMask */
 } CombatMenuState;
 
+/* Layout of MenuState read by SpriteStrip_Queue: the 16 shared halfwords at the start
+ * (MenuState.colours) are the x positions of the sprites. */
+typedef struct SpriteStripState {
+    u8 pad_020[0x20];
+    u8 spriteCount;                    /* entries of MenuState.colours that are drawn */
+} SpriteStripState;
+
 typedef struct MenuState {
     u16 colours[16];                   /* a 16-colour palette: map select copies one entry to the
                                         * palette every 4 frames; the link screen and the world map
@@ -259,6 +266,7 @@ typedef struct MenuState {
         BattleSetupState setup;
         CampaignMapWork campaignMap;
         Unk_0206d67c unk_0206d67c;
+        SpriteStripState spriteStrip;
         BattleScreenWork battle;
         CoExpScreenWork coExp;
         CombatMenuState combat;

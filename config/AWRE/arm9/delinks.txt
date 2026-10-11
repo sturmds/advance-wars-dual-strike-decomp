@@ -6036,6 +6036,10 @@ src/game/main/func_020523e0.c:
     complete
     .text       start:0x020523e0 end:0x020524d0
 
+src/game/main/screen/sprite_strip_queue.c:
+    complete
+    .text       start:0x020524d0 end:0x020525a8
+
 src/game/main/func_020526c8.c:
     complete
     .text       start:0x020526c8 end:0x020526e0
