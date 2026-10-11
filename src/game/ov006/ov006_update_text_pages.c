@@ -20,7 +20,7 @@ void func_ov006_02355514(void);
 void func_ov006_02355444(void);
 int func_ov006_02359030(void);
 void Ov006_DrawTextPage2(void);
-void func_ov006_02358b20(void);
+void Ov006_DrawTextPage1(void);
 void func_ov006_02358dd0(void);
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
@@ -57,7 +57,7 @@ void Ov006_UpdateTextPages(void)
     }
     switch (data_ov006_0236d640->unk_0c) {
     case 0:
-        func_ov006_02358b20();
+        Ov006_DrawTextPage1();
         data_ov006_0236d640->unk_0c = 1;
     case 1:
         Ov006_QueueMenuSprites();
