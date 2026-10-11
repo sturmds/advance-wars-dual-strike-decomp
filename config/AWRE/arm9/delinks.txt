@@ -22347,6 +22347,7 @@ src/sdk/card/card_rom_load_command_bytes.c:
     .text       start:0x021164f8 end:0x02116598
 
 src/sdk/card/cardi_end_task.c:
+    complete
     .text       start:0x02116598 end:0x02116618
 
 src/sdk/card/card_rom_take_from_buffered_page.c:
