@@ -10,7 +10,7 @@ extern u32 data_0229eaec;
 BOOL EventScript_IsRunning(void);
 BOOL func_020d1b70(void);
 u32 func_020ef1bc(void);
-u32 func_020efedc(void);
+u32 MapTouch_ReadTileTapOrBack(void);
 /* Defined without parameters; the original passes the task in r0. */
 void func_020eef58(Task *task);
 void Silo_StartLaunch(int siloX, int siloY, int targetX, int targetY, void *parentOrList);
@@ -23,7 +23,7 @@ void func_020c407c(void);
 void MapView_ScrollStep(int a);
 void func_020c4124(int a, int b);
 
-/* Bits func_020ef1bc (buttons) and func_020efedc (touch) return. */
+/* Bits func_020ef1bc (buttons) and MapTouch_ReadTileTapOrBack (touch) return. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL  0x20
 
@@ -44,7 +44,7 @@ void SiloLaunch_PickTargetStep(Task *task)
     }
     if (func_020d1b70()) {
         buttons = func_020ef1bc();
-        input = buttons | func_020efedc();
+        input = buttons | MapTouch_ReadTileTapOrBack();
         if (input & INPUT_CONFIRM) {
             func_020eef58(task);
             Silo_StartLaunch(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->unk_28, GAME->unk_2a, task);
