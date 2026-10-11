@@ -3,7 +3,7 @@
 #include "game/keypad.h"
 #include "game/touch.h"
 
-void func_020769a8(void);
+void TapPrompt_Draw(void);
 void Sound_PlaySe(u32 soundId);
 void func_020763b4(void);
 void Task_ResumeScript(Task *task);
@@ -12,7 +12,7 @@ void Task_ResumeScript(Task *task);
  * plays the confirm sound, starts the task of func_020763b4 and resumes the script. */
 void TapPrompt_WaitForInput(Task *task)
 {
-    func_020769a8();
+    TapPrompt_Draw();
     if (!(gKeypad->pressed & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_START))) {
         if (gTouch.phase != TOUCH_PRESSED) {
             return;
