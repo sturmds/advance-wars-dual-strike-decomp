@@ -6,7 +6,7 @@ extern DlPlayHostLinkArea *data_022aced4;
 /* Finds the segment that holds a block of a file and fills in where the
  * block is: its offset in the file, its size (at most one message) and
  * where the child receives it. FALSE for a block past the end. */
-BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *info, const DlPlaySegmentStarts *table, u16 block, const DlPlayProgramLayoutHead *header)
+BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *info, const DlPlaySegmentStarts *table, u16 block, const DlPlayProgramLayout *header)
 {
     s8 i;
     u32 segmentBlock;

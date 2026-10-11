@@ -9,7 +9,7 @@ BOOL MbFile_CanLoadSegment(u8 segment, u32 address, u32 size);
  * starts in the file and at which block, and the file's block count.
  * FALSE when there is no download info or a segment cannot be loaded where
  * it asks to be. */
-BOOL MbFile_MakeBlockTable(DlPlaySegmentStarts *table, const DlPlayProgramLayoutHead *header)
+BOOL MbFile_MakeBlockTable(DlPlaySegmentStarts *table, const DlPlayProgramLayout *header)
 {
     u16 *firstBlocks = table->segmentFirstBlocks;
     u32 offset = 0;

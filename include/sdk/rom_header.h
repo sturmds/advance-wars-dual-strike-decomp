@@ -13,11 +13,11 @@ typedef struct RomRegion {
 typedef struct RomHeader {
     u8 pad_00[0x20];
     u32 arm9RomOffset;
-    u32 pad_24;
+    u32 arm9EntryAddress;
     u32 arm9RamAddress;
     u32 arm9Size;
     u32 arm7RomOffset;
-    u32 pad_34;
+    u32 arm7EntryAddress;
     u32 arm7RamAddress;
     u32 arm7Size;
     RomRegion fnt;                 /* file name table */

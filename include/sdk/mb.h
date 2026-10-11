@@ -439,17 +439,19 @@ typedef struct DlPlaySegmentPlacement {
 
 #define DLPLAY_CART_HEADER_BYTES 0x160
 
-/* The start of a file's download info (DlPlayOfferedFile.dlFileInfo). */
-typedef struct DlPlayProgramLayoutHead {
+/* A file's download info (DlPlayOfferedFile.dlFileInfo), as far as known. */
+typedef struct DlPlayProgramLayout {
     u32 arm9EntryAddress;
     u32 arm7EntryAddress;
     u32 pad_08;
     DlPlaySegmentPlacement segments[DLPLAY_PROGRAM_PART_COUNT];
-} DlPlayProgramLayoutHead;
+    u8 authCode[DLPLAY_SIGNATURE_BYTES];
+} DlPlayProgramLayout;
 
 /* Where each kind of segment may be received or loaded. */
 #define DLPLAY_MAIN_RAM_BASE 0x02000000
 #define DLPLAY_MAINCPU_CODE_AREA_END 0x022c0000
+#define DLPLAY_SUBCPU_CODE_STAGING DLPLAY_MAINCPU_CODE_AREA_END   /* where a relocated ARM7 static is received */
 #define DLPLAY_SUBCPU_CODE_AREA_END 0x02300000
 #define DLPLAY_HOST_DESC_SLOT 0x023fe800
 #define DLPLAY_SUBCPU_CODE_SIZE_LIMIT 0x40000   /* past DLPLAY_SUBCPU_CODE_AREA_END */
