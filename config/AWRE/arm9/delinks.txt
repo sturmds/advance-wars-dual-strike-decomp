@@ -699,6 +699,10 @@ src/game/main/screen/blend_fade_from_black_start.c:
     complete
     .text       start:0x02006ed0 end:0x0200704c
 
+src/game/main/screen/screen_blend_lighten_update.c:
+    complete
+    .text       start:0x0200704c end:0x020070bc
+
 src/game/main/screen/blend_fade_to_black_update.c:
     complete
     .text       start:0x02007134 end:0x020072a8
