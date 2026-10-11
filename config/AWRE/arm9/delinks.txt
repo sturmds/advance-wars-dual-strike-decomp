@@ -9392,6 +9392,10 @@ src/game/main/link/link_menu_cancel.c:
     complete
     .text       start:0x0207c7e4 end:0x0207c8b8
 
+src/game/main/link/link_menu_confirm.c:
+    complete
+    .text       start:0x0207c8b8 end:0x0207ca34
+
 src/game/main/link/func_0207ca34.c:
     complete
     .text       start:0x0207ca34 end:0x0207ca70

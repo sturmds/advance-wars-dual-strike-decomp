@@ -2,15 +2,15 @@
 #include "game/keypad.h"
 
 void LinkMenu_Cancel(void);
-void func_0207c8b8(void);
+void LinkMenu_Confirm(void);
 
-/* A confirms (func_0207c8b8), B cancels. */
+/* A confirms (LinkMenu_Confirm), B cancels. */
 void LinkMenu_HandlePressed(void)
 {
     u16 keys = gKeypad->pressed;
 
     if (keys & PAD_BUTTON_A) {
-        func_0207c8b8();
+        LinkMenu_Confirm();
     } else if (keys & PAD_BUTTON_B) {
         LinkMenu_Cancel();
     }
