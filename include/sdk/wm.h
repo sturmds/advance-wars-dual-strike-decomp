@@ -28,12 +28,25 @@ typedef struct WMCallback {
 
 /* WMCallback.errcode values. */
 #define WM_ERRCODE_SUCCESS 0
+#define WM_ERRCODE_OPERATING 2             /* the command was sent and its callback will follow */
+#define WM_ERRCODE_ILLEGAL_STATE 3
+#define WM_ERRCODE_INVALID_PARAM 6
+#define WM_ERRCODE_NO_CHILD 7
+#define WM_ERRCODE_FIFO_ERROR 8
 #define WM_ERRCODE_TIMEOUT 9
 #define WM_ERRCODE_INVALID_POLLBITMAP 13
 #define WM_ERRCODE_SEND_FAILED 15
 
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
+
+/* Command ids that the WM commands send to the ARM7, one per request kind. */
+#define WM_APIID_START_PARENT 8
+#define WM_APIID_END_PARENT 9
+#define WM_APIID_START_SCAN 10
+#define WM_APIID_END_SCAN 11
+#define WM_APIID_START_CONNECT 12
+#define WM_APIID_DISCONNECT 13
 
 /* What an indication callback receives (unsolicited ARM7 events). */
 typedef struct RadioNotice {
@@ -206,9 +219,14 @@ typedef struct WMArm9Buf {
 /* WM internals shared by the command functions. func_02116cf0 returns 0 when
  * the current state is one of the count states listed after it, else an error
  * code. func_02116df4 returns 3 (illegal state) before the WM is initialised.
- * func_02116e20 sends the command with its argument count, 0 on failure. */
+ * func_02116f74 stores the callback to run when command apiid completes.
+ * func_02116e20 sends a command: its id, the count of extra arguments, then
+ * those arguments. It returns WM_ERRCODE_OPERATING once the command is
+ * queued, else an error code. */
 int func_02116cf0(int count, ...);
 int func_02116df4(void);
 WMArm9Buf *func_02116e10(void);
+int func_02116e20(int apiid, int argCount, ...);
+int func_02116f74(int apiid, WMCallbackFunc callback);
 
 #endif

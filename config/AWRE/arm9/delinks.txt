@@ -22027,6 +22027,10 @@ src/sdk/wm/wm_set_ind_callback.c:
     complete
     .text       start:0x02117664 end:0x021176b0
 
+src/sdk/wm/wm_disconnect.c:
+    complete
+    .text       start:0x021176b0 end:0x021177b8
+
 src/game/main/func_0211ba5c.c:
     complete
     .text       start:0x0211ba5c end:0x0211ba80
