@@ -219,8 +219,12 @@ typedef struct WMPortRecvCallback {
 typedef struct WMPortSendCallback {
     u16 apiid;
     u16 errcode;
-    u8 pad_04[0x18];
+    u8 pad_04[6];
+    u16 port;
+    u8 pad_0c[0x0e];
+    u16 seqNo;
     void (*callback)(void *arg);       /* run when the data has been sent */
+    void *arg;                         /* what the sender passed with the data */
 } WMPortSendCallback;
 
 /* One child's data in an MP receive buffer; length 0xffff or 0 means none
@@ -249,6 +253,12 @@ WMMpRecvData *WM_ReadMPData(const WMMpRecvBuf *recvBuf, u16 aid);
  * and all of them receive the blocks of all. */
 #define SHARE_RING_SLOTS 4
 #define SHARE_SET_PAYLOAD_BYTES 508
+/* WMDataSharingInfo.state values. */
+#define SHARE_PHASE_IDLE 0
+#define SHARE_PHASE_RUNNING 1
+#define SHARE_PHASE_HALTING 2
+#define SHARE_PHASE_HALTED 3
+#define SHARE_PHASE_RESEND 4           /* the send queue was full; send again */
 #define SHARE_PHASE_FAILED 5               /* WMDataSharingInfo.state after a failed send */
 #define WIRELESS_URGENCY_RAISED 1                 /* send priority, 0 (urgent) to 3 (low) */
 
@@ -410,5 +420,6 @@ u16 *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, 
 void DataShare_PushCurrentSet(WMDataSharingInfo *dsInfo, BOOL delayed);
 void DataShare_StoreStationBlock(WMDataSharingInfo *dsInfo, u16 aid, u16 *data);
 BOOL Wireless_ParentSettingsValid(WMParentParam *param);
+int WM_SetPortCallback(int port, WMCallbackFunc callback, void *arg);
 
 #endif
