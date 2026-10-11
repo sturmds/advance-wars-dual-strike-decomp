@@ -21565,6 +21565,10 @@ src/sdk/fs/fs_get_path_command.c:
     complete
     .text       start:0x02111288 end:0x02111648
 
+src/sdk/fs/fs_find_path_command.c:
+    complete
+    .text       start:0x02111648 end:0x02111864
+
 src/sdk/fs/archive_cmd_set_dir_position.c:
     complete
     .text       start:0x02111974 end:0x02111a0c
