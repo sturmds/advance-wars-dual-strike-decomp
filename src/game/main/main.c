@@ -24,7 +24,7 @@ void Overlay_Load(int slot);
 void func_0200c0b0(void);
 u8 func_0200c044(void);
 void Link_Init(void);
-void func_0201968c(void);
+void Save_PackProgress(void);
 void func_0201980c(void);
 void func_02020690(void (*a)(void), void (*b)(void), void *c);
 void func_0200a418(void);
@@ -96,7 +96,7 @@ void main(void)
     func_0200c0b0();
     data_ov000_023503a0 = func_0200c044();
     Link_Init();
-    func_02020690(func_0201968c, func_0201980c, data_02291774);
+    func_02020690(Save_PackProgress, func_0201980c, data_02291774);
     func_0200a418();
     Menu_Reset();
     func_0200ccac();
