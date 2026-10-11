@@ -20,7 +20,7 @@ extern void *data_ov000_0234eef0;
  * owner's army style, the unit type's icon and two more icons, then fuel and
  * the type's maximum fuel as numbers (one digit shifts 4 pixels left to line
  * up). The numbers are skipped for Oozium (UNIT_CLASS_ALL), which has no fuel
- * display. Everything is drawn relative to the panel's unk_00, an x origin. The shifts
+ * display. Everything is drawn relative to the panel's originX. The shifts
  * and the 37 and 6 icons are guesses. */
 void UnitInfoPanel_DrawUnit(void)
 {
@@ -29,11 +29,11 @@ void UnitInfoPanel_DrawUnit(void)
     int shift;
 
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    Oam_PutSprite((u8)data_ov000_0234ec8c->unk_00 + 48, 87, data_ov000_0234f384[unit->type][data_ov000_0234ec8c->style],
+    Oam_PutSprite(data_ov000_0234ec8c->originX + 48, 87, data_ov000_0234f384[unit->type][data_ov000_0234ec8c->style],
                   (data_ov000_0234ec8c->buffer == 0 ? 0x214 : 0x254) | 0x3000);
-    Icon_Draw(data_ov000_022f5cc8[unit->type], (u8)data_ov000_0234ec8c->unk_00 + 74, 40, 0, 0);
-    Icon_Draw(37, (u8)data_ov000_0234ec8c->unk_00 + 74, 56, 0, 0);
-    Icon_Draw(6, (u8)data_ov000_0234ec8c->unk_00 + 84, 72, 0, 0);
+    Icon_Draw(data_ov000_022f5cc8[unit->type], data_ov000_0234ec8c->originX + 74, 40, 0, 0);
+    Icon_Draw(37, data_ov000_0234ec8c->originX + 74, 56, 0, 0);
+    Icon_Draw(6, data_ov000_0234ec8c->originX + 84, 72, 0, 0);
     Screen_SetCurrentGfx(savedGfx);
     if (Ov000_gUnitStats[unit->type].unitClass == UNIT_CLASS_ALL) {
         return;
@@ -41,10 +41,10 @@ void UnitInfoPanel_DrawUnit(void)
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     shift = unit->fuel < 10 ? -4 : 0;
-    func_020caf70(shift + (u8)data_ov000_0234ec8c->unk_00 + 104, 72, unit->fuel);
+    func_020caf70(shift + data_ov000_0234ec8c->originX + 104, 72, unit->fuel);
     shift = Ov000_gUnitStats[unit->type].fuel < 10 ? -4 : 0;
-    func_020caf70(shift + (u8)data_ov000_0234ec8c->unk_00 + 116, 80, Ov000_gUnitStats[unit->type].fuel);
-    Oam_PutSprite((u8)data_ov000_0234ec8c->unk_00 + 107, 76, &data_ov000_0234eef0, 0xf36a);
+    func_020caf70(shift + data_ov000_0234ec8c->originX + 116, 80, Ov000_gUnitStats[unit->type].fuel);
+    Oam_PutSprite(data_ov000_0234ec8c->originX + 107, 76, &data_ov000_0234eef0, 0xf36a);
     UnitInfoPanel_DrawIconList();
     Screen_SetCurrentGfx(savedGfx);
 }

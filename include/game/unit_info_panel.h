@@ -8,7 +8,7 @@
  * data_ov000_0234ec8c. The panel shows one unit with a frame in the
  * owner's army palette and sprite set. */
 typedef struct UnitInfoPanel {
-    u8 unk_00;                         /* 120 when shown by UnitInfoPanel_OpenForType and UnitInfoPanel_OpenForUnit; passed to the drawing code */
+    u8 originX;                        /* x in pixels everything is drawn from; 120 from UnitInfoPanel_OpenForType and UnitInfoPanel_OpenForUnit */
     u8 pad_01[0x02 - 0x01];
     u8 tileX;                          /* top left of the panel text area, in tiles; the text starts one tile in */
     u8 tileY;

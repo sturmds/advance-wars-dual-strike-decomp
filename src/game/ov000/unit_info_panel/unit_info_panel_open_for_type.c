@@ -35,7 +35,7 @@ void UnitInfoPanel_OpenForType(int owner, int unitType)
     Unit_Init(&data_ov000_02350510, unitType);
     ScriptSlot_Start(data_ov000_0234f30c, 1);
     data_ov000_0234ec8c->buffer = 0;
-    data_ov000_0234ec8c->unk_00 = 120;
+    data_ov000_0234ec8c->originX = 120;
     data_ov000_0234ec8c->owner = owner;
     data_ov000_0234ec8c->unit = &data_ov000_02350510;
     data_ov000_0234ec8c->palette = data_027c027c->unk_48[data_027c0284]->players[data_ov000_0234ec8c->owner].armyColour - 1;

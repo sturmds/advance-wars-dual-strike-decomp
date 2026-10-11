@@ -30,15 +30,15 @@ void UnitInfoPanel_DrawAmmoAndRange(void)
 
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     if (Ov000_gUnitStats[unit->type].ammo != 0) {
-        func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 80 + (unit->ammo < 10 ? -4 : 0), 88, ammo);
-        func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 89 + (Ov000_gUnitStats[unit->type].ammo < 10 ? -4 : 0), 96, maxAmmo);
-        Sprite_QueueAt(0, (u8)data_ov000_0234ec8c->unk_00 + 81, 92, &data_ov000_0234eef0, 0xf36a, 0);
+        func_020caee4(0, data_ov000_0234ec8c->originX + 80 + (unit->ammo < 10 ? -4 : 0), 88, ammo);
+        func_020caee4(0, data_ov000_0234ec8c->originX + 89 + (Ov000_gUnitStats[unit->type].ammo < 10 ? -4 : 0), 96, maxAmmo);
+        Sprite_QueueAt(0, data_ov000_0234ec8c->originX + 81, 92, &data_ov000_0234eef0, 0xf36a, 0);
         if (maxRange > 1) {
-            Icon_Draw(63, (u8)data_ov000_0234ec8c->unk_00 + 100, 88, 0, 0);
+            Icon_Draw(63, data_ov000_0234ec8c->originX + 100, 88, 0, 0);
             shift = maxRange < 10 ? 0 : 3;
-            func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 104 - shift, 96, minRange);
-            Sprite_QueueAt(0, (u8)data_ov000_0234ec8c->unk_00 + 112 - shift, 97, &data_ov000_0234eef0, 0xf36b, 0);
-            func_020caee4(0, (u8)data_ov000_0234ec8c->unk_00 + 120 + shift, 96, maxRange);
+            func_020caee4(0, data_ov000_0234ec8c->originX + 104 - shift, 96, minRange);
+            Sprite_QueueAt(0, data_ov000_0234ec8c->originX + 112 - shift, 97, &data_ov000_0234eef0, 0xf36b, 0);
+            func_020caee4(0, data_ov000_0234ec8c->originX + 120 + shift, 96, maxRange);
         }
     }
     Screen_SetCurrentGfx(savedGfx);

@@ -36,6 +36,6 @@ void UnitInfoPanel_DrawPageMarker(void)
     }
     savedGfx = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_020f75dc(data_ov000_0234ec8c->unk_00 + base, x, value, d, 952, 15);
+    func_020f75dc(data_ov000_0234ec8c->originX + base, x, value, d, 952, 15);
     Screen_SetCurrentGfx(savedGfx);
 }
