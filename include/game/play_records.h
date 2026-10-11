@@ -45,7 +45,10 @@ typedef struct PlayRecords {
     u32 unk_384;                       /* capped at 999999; PlayRecords_AddCoins adds to it */
     u32 unk_388;                       /* loaded from the save with a profile (Save_LoadProfile) */
     u32 unk_38c;
-    u8 pad_390[0x3a0 - 0x390];
+    u32 rank5Battles;                  /* battles a human ended with score rank 5 (likely S), capped at 999999 (PlayRecords_CountBattleRank) */
+    u32 rank4Battles;
+    u32 rank3Battles;
+    u32 rank2Battles;
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */
     u32 superPowersActivated;          /* same for super powers (UnitAction_ActivateSuperPower) */
     u32 tagPowersActivated;            /* same for tag powers (UnitAction_ActivateTagPower) */
