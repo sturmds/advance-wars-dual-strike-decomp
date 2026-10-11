@@ -13,7 +13,7 @@ typedef struct AiBuildState {
     u8 unk_03;                         /* cleared by func_0208d964 */
     u8 pad_04;
     u8 unk_05;                         /* set to 2 by AiEndActions_Start */
-    u8 pad_06;
+    u8 unk_06;                         /* 1-4; AiBuild_RateAttackerVsTarget changes Anti-Air and Cruiser ratings by it */
     u8 unk_07;                         /* AiTurn_RunEndActions ends the phase once it reaches 50 after step 0; steps 2 to 5 run only when nonzero */
     u8 unk_08;                         /* set by func_02090154 from func_0209f980(1) */
     u8 pad_09[3];
