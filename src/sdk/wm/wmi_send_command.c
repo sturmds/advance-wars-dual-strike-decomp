@@ -9,7 +9,7 @@ void MI_DmaCopy32(int dmaNo, const void *src, void *dst, u32 size);
 BOOL OS_ReceiveMessage(OSMessageQueue *queue, OSMessage *msg, int flags);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage msg, int flags);
 BOOL OS_JamMessage(OSMessageQueue *queue, OSMessage msg, int flags);
-int func_02110f88(int tag, u32 data, BOOL err);
+int PXI_SendWordByFifo(int tag, u32 data, BOOL err);
 
 extern WMArm9Buf *data_022ac32c;
 extern OSMessageQueue data_022ac330;
@@ -49,7 +49,7 @@ int WMi_SendCommand(int apiid, u16 argCount, ...)
     va_end(args);
 
     DC_StoreRange(buf, WM_FIFO_BUF_SIZE);
-    result = func_02110f88(PXI_FIFO_TAG_WM, (u32)buf, FALSE);
+    result = PXI_SendWordByFifo(PXI_FIFO_TAG_WM, (u32)buf, FALSE);
     OS_SendMessage(&data_022ac330, buf, OS_MESSAGE_BLOCK);
     if (result < 0) {
         return WM_ERRCODE_FIFO_ERROR;

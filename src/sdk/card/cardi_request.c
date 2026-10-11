@@ -9,7 +9,7 @@
 void DC_FlushRange(const void *start, u32 size);
 void DC_WaitWriteBufferEmpty(void);
 void OS_SleepThread(OSThreadQueue *queue);
-int func_02110f88(int tag, u32 word, int err);
+int PXI_SendWordByFifo(int tag, u32 word, int err);
 int func_0211103c(int tag, int arg);
 
 /*
@@ -36,12 +36,12 @@ BOOL CARDi_Request(CARDiCommon *common, u32 request, int retries)
     do {
         common->unk_04 = request;
         FLAG(common) |= GAMECARD_FLAG_AWAIT_PEER_REPLY;
-        while (func_02110f88(FIFO_TAG_CARD_SERVICE, request, 1) < 0) {
+        while (PXI_SendWordByFifo(FIFO_TAG_CARD_SERVICE, request, 1) < 0) {
         }
         if (request == GAMECARD_REQ_HANDSHAKE) {
             u32 cmdAddress = (u32)common->cmd;
 
-            while (func_02110f88(FIFO_TAG_CARD_SERVICE, cmdAddress, 1) < 0) {
+            while (PXI_SendWordByFifo(FIFO_TAG_CARD_SERVICE, cmdAddress, 1) < 0) {
             }
         }
         state = OS_DisableInterrupts();

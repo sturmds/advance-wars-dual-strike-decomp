@@ -2,7 +2,7 @@
 #include "sdk/os.h"
 
 void DC_FlushRange(void *start, u32 length);
-int func_02110f88(int tag, u32 data, int err);
+int PXI_SendWordByFifo(int tag, u32 data, int err);
 
 /* Sends the queued commands to the ARM7. Returns 1 when sent, 0 when it would
    have to wait and SOUND_SEND_WAIT_IF_FULL is not set. */
@@ -24,12 +24,12 @@ int SND_FlushCommand(u32 flags)
         } while (data_022a9c84 >= SOUND_BATCHES_IN_FLIGHT_MAX);
     }
     DC_FlushRange(data_022a9f40, sizeof(data_022a9f40));
-    if (func_02110f88(SOUND_FIFO_TAG, (u32)data_022a9c70, 0) < 0) {
+    if (PXI_SendWordByFifo(SOUND_FIFO_TAG, (u32)data_022a9c70, 0) < 0) {
         if (!(flags & SOUND_SEND_WAIT_IF_FULL)) {
             OS_RestoreInterrupts(irq);
             return 0;
         }
-        while (func_02110f88(SOUND_FIFO_TAG, (u32)data_022a9c70, 0) < 0) {
+        while (PXI_SendWordByFifo(SOUND_FIFO_TAG, (u32)data_022a9c70, 0) < 0) {
             OS_RestoreInterrupts(irq);
             OS_SpinWait(100);
             irq = OS_DisableInterrupts();

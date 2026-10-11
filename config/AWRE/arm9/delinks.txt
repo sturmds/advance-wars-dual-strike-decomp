@@ -21888,6 +21888,10 @@ src/sdk/func_02110e58.c:
     complete
     .text       start:0x02110e58 end:0x02110e64
 
+src/sdk/pxi/pxi_send_word_by_fifo.c:
+    complete
+    .text       start:0x02110f88 end:0x0211103c
+
 src/sdk/func_021111dc.c:
     complete
     .text       start:0x021111dc end:0x021111e4
