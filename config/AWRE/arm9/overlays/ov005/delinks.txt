@@ -657,6 +657,10 @@ src/game/ov005/func_ov005_02362bf0.c:
     complete
     .text       start:0x02362bf0 end:0x02362bfc
 
+src/game/ov005/ov005_add_co_palette_buttons.c:
+    complete
+    .text       start:0x02362bfc end:0x02362cb4
+
 src/game/ov005/ov005_init_co_palette_buttons.c:
     complete
     .text       start:0x02362cb4 end:0x02362cf8
