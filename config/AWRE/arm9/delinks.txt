@@ -6872,6 +6872,10 @@ src/game/main/menus/player_info_sprite_task_init.c:
     complete
     .text       start:0x0206f16c end:0x0206f1c4
 
+src/game/main/menus/player_info_draw_sprites.c:
+    complete
+    .text       start:0x0206f1c4 end:0x0206f2b0
+
 src/game/main/menus/player_info_queue_page_sprites.c:
     complete
     .text       start:0x0206f660 end:0x0206f6f8
