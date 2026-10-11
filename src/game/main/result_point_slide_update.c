@@ -3,7 +3,7 @@
 #include "game/Unk_0229c734.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_020393dc(int x, int y, int arg);
+void ResultPoint_DrawPanel(int x, int y, int arg);
 void Task_ResumeScript(ResultPointTask *task);
 
 /* Task update: draws the result point sprites, eased 256 pixels to the left
@@ -12,7 +12,7 @@ void Task_ResumeScript(ResultPointTask *task);
 void ResultPoint_SlideUpdate(ResultPointTask *task)
 {
     task->frame++;
-    func_020393dc(8 - Math_Ease(1, 0, 256, task->frame, task->value), 160, data_0229c734->tally);
+    ResultPoint_DrawPanel(8 - Math_Ease(1, 0, 256, task->frame, task->value), 160, data_0229c734->tally);
     if (task->frame != task->value) {
         return;
     }

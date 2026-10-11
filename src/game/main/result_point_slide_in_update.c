@@ -4,7 +4,7 @@
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void func_020388dc(int x, int y, int arg);
-void func_020393dc(int x, int y, int arg);
+void ResultPoint_DrawPanel(int x, int y, int arg);
 void func_020394a0(int x, int y);
 void Task_ResumeScript(ResultPointTask *task);
 
@@ -18,7 +18,7 @@ void ResultPoint_SlideInUpdate(ResultPointTask *task)
 
     func_020388dc(x, 16, -1);
     func_020394a0(x, 160);
-    func_020393dc(x, 160, -1);
+    ResultPoint_DrawPanel(x, 160, -1);
     if (task->frame != SLIDE_IN_FRAMES) {
         task->frame++;
         return;

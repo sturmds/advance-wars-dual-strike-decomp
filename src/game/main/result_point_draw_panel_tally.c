@@ -9,12 +9,14 @@ extern u8 data_027c01ac[];
 
 #define SCORES data_0229c734
 
-void func_02039310(int x, int y, ResultPointTask *task)
+/* Like ResultPoint_DrawPanel, but draws the number with func_02039560, from
+ * SCORES->tally and the task's unk_34. */
+void ResultPoint_DrawPanelTally(int x, int y, ResultPointTask *task)
 {
-    u8 spriteY = y + 8;
-
-    Sprite_QueueAt(6, x & 0x1ff, spriteY, data_027c01ac, (SCORES->paletteSlot + 1) << 12, SCORES->partTile[3]);
-    func_02039560(x + 80, y + 8, SCORES->tally, task->unk_34);
-    Sprite_QueueAt(6, (x + 120) & 0x1ff, spriteY, data_027c0060, (SCORES->paletteSlot + 1) << 12,
+    /* needed to match: y moved down once, cast to u8 at each sprite call */
+    y += 8;
+    Sprite_QueueAt(6, x & 0x1ff, (u8)y, data_027c01ac, (SCORES->paletteSlot + 1) << 12, SCORES->partTile[3]);
+    func_02039560(x + 80, y, SCORES->tally, task->unk_34);
+    Sprite_QueueAt(6, (x + 120) & 0x1ff, (u8)y, data_027c0060, (SCORES->paletteSlot + 1) << 12,
                    SCORES->partTile[3] + 72);
 }

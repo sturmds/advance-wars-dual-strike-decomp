@@ -5012,9 +5012,11 @@ src/game/main/score_list_draw_row.c:
     .text       start:0x02038964 end:0x02039144
 
 src/game/main/result_point_draw_panel_tally.c:
+    complete
     .text       start:0x02039310 end:0x020393dc
 
 src/game/main/result_point_draw_panel.c:
+    complete
     .text       start:0x020393dc end:0x020394a0
 
 src/game/main/result_point_draw_bar.c:
