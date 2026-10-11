@@ -357,7 +357,8 @@ src/game/ov002/battle_screen_task_init.c:
     complete
     .text       start:0x023587f8 end:0x0235882c
 
-src/game/ov002/func_ov002_0235882c.c:
+src/game/ov002/battle_cells_run_impact_list.c:
+    complete
     .text       start:0x0235882c end:0x02358c40
 
 src/game/ov002/func_ov002_02358c40.c:
