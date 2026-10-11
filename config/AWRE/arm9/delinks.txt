@@ -3175,6 +3175,7 @@ src/game/main/task/task_cmd_wait_for_event_script_end.c:
     .text       start:0x020228c0 end:0x020228f8
 
 src/game/main/task/task_cmd_start_event_script.c:
+    complete
     .text       start:0x020228f8 end:0x0202292c
 
 src/game/main/task_cmd_start_child_on_both_screens.c:
