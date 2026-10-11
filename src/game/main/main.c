@@ -30,7 +30,7 @@ void func_02020690(void (*a)(void), void (*b)(void), void *c);
 void Touch_Init(void);
 void Menu_Reset(void);
 void func_0200ccac(void);
-void func_02018f0c(void);
+void Save_LoadAndUnpackProgress(void);
 void func_020d6fcc(void);
 void Rng_SetState(u32 state);
 void VBlankIntrWait(void);
@@ -101,7 +101,7 @@ void main(void)
     Menu_Reset();
     func_0200ccac();
     Save_ResetProgress();
-    func_02018f0c();
+    Save_LoadAndUnpackProgress();
     func_020d6fcc();
     Rng_SetState(0x0a6b99cd);
     VBlankIntrWait();
