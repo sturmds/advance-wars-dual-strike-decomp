@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_022a7b80.h"
 
-int func_020eaa20(void);
+u32 Survival_GetTimeLeft(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -21,7 +21,7 @@ BOOL Survival_IsBudgetSpent(void)
     switch (data_022a7b80.unk_07) {
     case 0:
     case 3:
-        if (func_020eaa20() == 0) {
+        if (Survival_GetTimeLeft() == 0) {
             return TRUE;
         }
         break;
