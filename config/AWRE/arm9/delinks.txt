@@ -12245,6 +12245,10 @@ src/game/main/units/capture_done_draw.c:
     complete
     .text       start:0x020ec914 end:0x020eca30
 
+src/game/main/units/capture_done_init.c:
+    complete
+    .text       start:0x020eca30 end:0x020ecb04
+
 src/game/main/func_020ecb04.c:
     complete
     .text       start:0x020ecb04 end:0x020ecb14
