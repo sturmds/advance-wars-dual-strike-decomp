@@ -6,7 +6,7 @@ extern const TaskScriptCmd data_021587a8[];
 
 void func_01ff9b48(void);
 const void *Text_Get(u32 textId);
-int func_02014a3c(const void *text);
+int Text_GetWidthInTiles(const void *text);
 void func_0201ee48(PopupMenuTask *menu);
 void func_0201ecf8(Task *task);
 void func_0201ed5c(Task *task);
@@ -55,7 +55,7 @@ PopupMenuTask *PopupMenu_Create(const MenuItem *items, int x, int y, int style, 
         menu->flags[listedCount] = item->getFlags();
         if (!(menu->flags[listedCount] & MENU_ITEM_HIDDEN)) {
             menu->itemIndex[listedCount++] = i;
-            labelWidth = func_02014a3c(Text_Get(item->textId));
+            labelWidth = Text_GetWidthInTiles(Text_Get(item->textId));
             if (maxWidth < labelWidth) {
                 maxWidth = labelWidth;
             }
