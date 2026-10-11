@@ -5,14 +5,14 @@
 
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(void *task);
-void func_0204bbfc(int x, int y, int added, int total, int popFrame);
+void PointsTally_Draw(int x, int y, int added, int total, int popFrame);
 
 /* Moves two points per frame from added into total, with a tick sound
  * every other frame. A or a touch moves the rest at once. The script
  * resumes when added is empty. */
 void PointsTally_Count(PointsTallyTask *task)
 {
-    func_0204bbfc(56, 88, task->added, task->total, -1);
+    PointsTally_Draw(56, 88, task->added, task->total, -1);
     task->frame++;
     if (task->added == 0) {
         task->frame = 0;
