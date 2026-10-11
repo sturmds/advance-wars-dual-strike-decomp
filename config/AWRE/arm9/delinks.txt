@@ -6380,6 +6380,10 @@ src/game/main/points_tally_hold_on_sub_screen.c:
     complete
     .text       start:0x0204b570 end:0x0204b5c8
 
+src/game/main/points_tally_init_sub_screen.c:
+    complete
+    .text       start:0x0204b730 end:0x0204b7b4
+
 src/game/main/points_tally_count.c:
     complete
     .text       start:0x0204b850 end:0x0204b9ac
