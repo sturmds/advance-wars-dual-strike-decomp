@@ -20913,6 +20913,10 @@ src/sdk/gx/g3x_reset.c:
     complete
     .text       start:0x0210b97c end:0x0210ba04
 
+src/sdk/gx/g3_rot_y.c:
+    complete
+    .text       start:0x0210bb60 end:0x0210bb9c
+
 src/game/main/func_0210c610.c:
     complete
     .text       start:0x0210c610 end:0x0210c634

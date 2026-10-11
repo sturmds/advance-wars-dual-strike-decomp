@@ -2,7 +2,7 @@
 #include "game/main_menu.h"
 
 void Gfx3d_InitScene(void);
-void func_0210bb60(int sin, int cos);
+void G3_RotY(int sin, int cos);
 void func_0210bb9c(int sin, int cos);
 void MainMenu_BuildPage0(void);
 void MainMenu_BuildPage1(void);
@@ -29,7 +29,7 @@ extern s16 data_0214d4c4[];            /* a sine and cosine pair per 16 angle un
 
 /* Per-frame 3D drawing of the main menu. While a page flip runs (unk_10_3
  * counts its 16 frames down), turns the page by up to a quarter turn each
- * way, with func_0210bb60 for slides 2 and 3 and func_0210bb9c otherwise.
+ * way, with G3_RotY for slides 2 and 3 and func_0210bb9c otherwise.
  * Halfway through it builds the next page; on the last frame it puts the
  * entry buttons back. */
 void MainMenu_DrawFrame(void)
@@ -56,7 +56,7 @@ void MainMenu_DrawFrame(void)
             }
         }
         if (slide == 2 || slide == 3) {
-            func_0210bb60(data_0214d4c4[(angle >> 4) * 2], data_0214d4c4[(angle >> 4) * 2 + 1]);
+            G3_RotY(data_0214d4c4[(angle >> 4) * 2], data_0214d4c4[(angle >> 4) * 2 + 1]);
         } else {
             func_0210bb9c(data_0214d4c4[(angle >> 4) * 2], data_0214d4c4[(angle >> 4) * 2 + 1]);
         }

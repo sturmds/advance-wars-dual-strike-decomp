@@ -11,7 +11,7 @@ void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_ov005_0235b2f0(Unk_ov005_0235a30c *work);
 void func_ov005_0235b2cc(Unk_ov005_0235a30c *work);
-void func_0210bb60(int sin, int cos);
+void G3_RotY(int sin, int cos);
 int Ov005_CharToGlyphIndex(u32 ch);
 void Ov005_QueueSpritePair(void *work, int x, int y, int tile, u16 flags);
 void Ov005_SendTexturedQuad(void *work, int x, int y, int z, int sizeS, int sizeT, int width,
@@ -75,7 +75,7 @@ void func_ov005_0235aec8(Unk_ov005_0235a30c *work)
             sin = data_0214d4c4[idx];
             for (; j < 32; j++) {
                 *GXFIFO_MTX_PUSH = 0;
-                func_0210bb60(sin, cos);
+                G3_RotY(sin, cos);
                 *GXFIFO_MTX_TRANS = x;
                 *GXFIFO_MTX_TRANS = quadY;
                 *GXFIFO_MTX_TRANS = 0;

@@ -23,7 +23,7 @@ void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *na
 void Ov004_BlitBlockMirrored(Unk_ov004_022bf158 *state, int col, int row, const char *name);
 void Ov004_FillBlock(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
-void func_0210bb60(int sin, int cos);
+void G3_RotY(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
 void Bg_FillRect(u16 *map, int x, int y, int width, int height, int tile);
@@ -300,7 +300,7 @@ void Ov004Task_PlayTwoTurningQuadsScene(Ov004Task *task)
     quad1X = state->unk_8f8;
     quad2X = state->unk_8fc;
     *GXFIFO_MTX_PUSH = 0;
-    func_0210bb60(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+    G3_RotY(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *GXFIFO_MTX_TRANS = quad1X;
     *GXFIFO_MTX_TRANS = -16;
     *GXFIFO_MTX_TRANS = 0;
@@ -309,7 +309,7 @@ void Ov004Task_PlayTwoTurningQuadsScene(Ov004Task *task)
 
     idx = quad2Angle >> 4;
     *GXFIFO_MTX_PUSH = 0;
-    func_0210bb60(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+    G3_RotY(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *GXFIFO_MTX_TRANS = quad2X;
     *GXFIFO_MTX_TRANS = -16;
     *GXFIFO_MTX_TRANS = 0;

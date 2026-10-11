@@ -151,6 +151,7 @@ void G3X_SetClearColor(int color, int alpha, int depth, int polygonId, BOOL fog)
 #define REG_MTX_PUSH ((volatile u32 *)0x04000444)
 #define REG_MTX_POP ((volatile u32 *)0x04000448)
 #define REG_MTX_STORE ((volatile u32 *)0x0400044c)
+#define IO_GEOM_APPLY_MATRIX_3X3 ((volatile s32 *)0x04000468)
 #define REG_MTX_IDENTITY ((volatile u32 *)0x04000454)
 #define REG_MTX_TRANS ((volatile u32 *)0x04000470)
 #define REG_POLYGON_ATTR ((volatile u32 *)0x040004a4)
@@ -174,5 +175,10 @@ extern u16 gGxDispOn;
 void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0As3d);
 void GX_DispOn(void);
 void GX_DispOff(void);
+
+/* Multiplies the current matrix by a rotation about the Y axis. sinVal and cosVal are 4.12 fixed point. */
+void G3_RotY(int sinVal, int cosVal);
+/* Same, about the X axis. */
+void G3_RotX(int sinVal, int cosVal);
 
 #endif

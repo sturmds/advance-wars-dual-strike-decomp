@@ -23,7 +23,7 @@ void Ov004_BlitBlock(Unk_ov004_022bf158 *state, int col, int row, const char *na
 void Ov004_FillBlock(Unk_ov004_022bf158 *state, int col, int row, int fill);
 void Ov004_InitTileMap(Unk_ov004_022bf158 *state, int cols, int rows);
 Task *PaletteFade_StartFromBlack(int a, void *b, int c, int d, int e);
-void func_0210bb60(int sin, int cos);
+void G3_RotY(int sin, int cos);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Palette_Flush(void);
 void Task_ResumeScript(void *task);
@@ -248,7 +248,7 @@ void Ov004Task_PlayTurningQuadScene2(Ov004Task *task)
     z = state->unk_900;
     idx = (state->unk_904 & 0xffff) >> 4;
     *GXFIFO_MTX_PUSH = 0;
-    func_0210bb60(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
+    G3_RotY(data_0214d4c4[idx * 2], data_0214d4c4[idx * 2 + 1]);
     *GXFIFO_MTX_TRANS = x;
     *GXFIFO_MTX_TRANS = -16;
     *GXFIFO_MTX_TRANS = z;
