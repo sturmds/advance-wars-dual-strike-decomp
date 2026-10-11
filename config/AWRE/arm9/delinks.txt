@@ -6862,6 +6862,10 @@ src/game/main/func_020517d8.c:
     complete
     .text       start:0x020517d8 end:0x020517f0
 
+src/game/main/screen/title_call_start_song.c:
+    complete
+    .text       start:0x020517f0 end:0x02051874
+
 src/game/main/screen/title_call_scroll_walls.c:
     complete
     .text       start:0x02051874 end:0x020519a8
