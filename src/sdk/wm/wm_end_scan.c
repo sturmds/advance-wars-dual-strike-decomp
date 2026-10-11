@@ -10,7 +10,7 @@ int WM_EndScan(WMCallbackFunc callback)
         return result;
     }
     func_02116f74(WM_APIID_END_SCAN, callback);
-    result = func_02116e20(WM_APIID_END_SCAN, 0);
+    result = WMi_SendCommand(WM_APIID_END_SCAN, 0);
     if (result == 0) {
         result = WM_ERRCODE_OPERATING;
     }

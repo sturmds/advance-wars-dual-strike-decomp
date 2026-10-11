@@ -22123,6 +22123,10 @@ src/sdk/func_02116e10.c:
     complete
     .text       start:0x02116e10 end:0x02116e20
 
+src/sdk/wm/wmi_send_command.c:
+    complete
+    .text       start:0x02116e20 end:0x02116f74
+
 src/game/main/func_02116f74.c:
     complete
     .text       start:0x02116f74 end:0x02116f8c

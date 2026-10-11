@@ -31,7 +31,7 @@ int Wireless_RequestJoinParent(WMCallbackFunc callback, WMBssDesc *bssDesc, cons
     }
     req->powerSave = powerSave;
     req->authMode = authMode;
-    result = func_02116e20(WM_APIID_START_CONNECT, 0);
+    result = WMi_SendCommand(WM_APIID_START_CONNECT, 0);
     if (result == 0) {
         result = WM_ERRCODE_OPERATING;
     }

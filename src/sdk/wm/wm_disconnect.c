@@ -27,7 +27,7 @@ int WM_Disconnect(WMCallbackFunc callback, u16 aid)
         return WM_ERRCODE_INVALID_PARAM;
     }
     func_02116f74(WM_APIID_DISCONNECT, callback);
-    result = func_02116e20(WM_APIID_DISCONNECT, 1, 1 << aid);
+    result = WMi_SendCommand(WM_APIID_DISCONNECT, 1, 1 << aid);
     if (result == 0) {
         result = WM_ERRCODE_OPERATING;
     }

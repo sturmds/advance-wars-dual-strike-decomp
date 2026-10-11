@@ -64,6 +64,7 @@ typedef struct WMCallback {
 #define WM_APIID_PORT_SEND 0x81
 #define WM_APIID_PORT_RECV 0x82
 
+#define PXI_FIFO_TAG_WM 10                 /* PXI FIFO tag of messages between the WM halves */
 #define WM_NUM_OF_PORT 16
 #define WM_FIFO_BUF_SIZE 0x100             /* one command or reply in shared memory */
 #define WM_STATUS_BUF_SIZE 0x800
@@ -284,14 +285,14 @@ typedef struct WMArm9Buf {
  * the current state is one of the count states listed after it, else an error
  * code. func_02116df4 returns 3 (illegal state) before the WM is initialised.
  * func_02116f74 stores the callback to run when command apiid completes.
- * func_02116e20 sends a command: its id, the count of extra arguments, then
+ * WMi_SendCommand sends a command: its id, the count of extra arguments, then
  * those arguments. It returns WM_ERRCODE_OPERATING once the command is
  * queued, else an error code. */
 int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
 int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
-int func_02116e20(int apiid, int argCount, ...);
+int WMi_SendCommand(int apiid, u16 argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);
 
 #endif

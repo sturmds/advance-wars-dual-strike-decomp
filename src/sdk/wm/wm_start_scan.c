@@ -32,7 +32,7 @@ int WM_StartScan(WMCallbackFunc callback, const WMScanParam *param)
     req->bssid[3] = param->bssid[3];
     req->bssid[4] = param->bssid[4];
     req->bssid[5] = param->bssid[5];
-    result = func_02116e20(WM_APIID_START_SCAN, 0);
+    result = WMi_SendCommand(WM_APIID_START_SCAN, 0);
     if (result == 0) {
         result = WM_ERRCODE_OPERATING;
     }
