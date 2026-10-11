@@ -5865,9 +5865,17 @@ src/game/main/menus/vs_setup_add_link_slot_buttons.c:
     complete
     .text       start:0x020668a8 end:0x02066a40
 
+src/game/main/menus/vs_setup_close_team_arrow_buttons.c:
+    complete
+    .text       start:0x02066a40 end:0x02066b18
+
 src/game/main/menus/vs_setup_add_player_buttons.c:
     complete
     .text       start:0x02066b18 end:0x02066c3c
+
+src/game/main/menus/vs_setup_on_slot_button_selected.c:
+    complete
+    .text       start:0x02066c3c end:0x02066c6c
 
 src/game/main/menus/vs_setup_team_slot_on_keys.c:
     complete

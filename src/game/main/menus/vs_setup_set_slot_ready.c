@@ -6,14 +6,14 @@ int Link_FindSlotOfPlayer(int player);
 int func_0206b5cc(int player);
 void func_0206b748(int slot, u16 x, int y);
 int func_0207bd6c(void);
-void func_02066a40(int slot);
+void VsSetup_CloseTeamArrowButtons(int slot);
 
 extern MenuState gMenuState;
 
 /* Marks a slot ready on the team screen (once): plays a sound, sets its flag
  * in setup.unk_2d0 and calls func_0206b748 at the slot position, y 72 (a
  * ready marker, a guess). On the own slot of this machine it also removes
- * the team arrow buttons (func_02066a40). Shifted view: see VsSetup_NextTeam. */
+ * the team arrow buttons (VsSetup_CloseTeamArrowButtons). Shifted view: see VsSetup_NextTeam. */
 void VsSetup_SetSlotReady(int slot)
 {
     MenuState *shifted = (MenuState *)((u8 *)&gMenuState + slot);
@@ -27,5 +27,5 @@ void VsSetup_SetSlotReady(int slot)
     if (slot != Link_FindSlotOfPlayer(func_0207bd6c()) - 1) {
         return;
     }
-    func_02066a40(slot);
+    VsSetup_CloseTeamArrowButtons(slot);
 }
