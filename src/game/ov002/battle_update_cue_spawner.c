@@ -42,9 +42,9 @@ void Battle_UpdateCueSpawner(BattleFighterTask *task)
                                 *(u16 *)((u32)&gMenuState + side * 2 + 12), 8, 0, side);
         }
         if (MENU_WORD(0x48, task->side) != 0) {
-            func_ov002_02357e5c(task->side, task->counter);
+            func_ov002_02357e5c(task->side, task->step);
         }
-        task->counter++;
+        task->step++;
     }
     if (task->sprite->unk_5c != 0) {
         Task_ResumeScript(task);

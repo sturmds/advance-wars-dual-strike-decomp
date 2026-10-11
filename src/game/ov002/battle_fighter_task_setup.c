@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/task.h"
-#include "game/FighterTask.h"
+#include "game/battle_fighter_task.h"
 #include "game/map_select.h"
 
 void Task_Destroy(Task *task);
@@ -14,7 +14,7 @@ int Battle_GetMatchupNibble1(int side);
  * one from the side's sprite table. Needed to match: `left` reads
  * task->fighter through a cast, so the compiler loads it again for
  * `fighter` instead of sharing the load. */
-void BattleFighterTask_Setup(FighterTask *task)
+void BattleFighterTask_Setup(BattleFighterTask *task)
 {
     BattleCellTask *fighter;
     BOOL left;
@@ -24,7 +24,7 @@ void BattleFighterTask_Setup(FighterTask *task)
     int scale;
 
     task->fighter = (BattleCellTask *)MENU->battle.unk_310[task->side][0].unk_00;
-    task->steps = &MENU->battle.hitLists[task->side];
+    task->hitList = &MENU->battle.hitLists[task->side];
     task->anim = (BattleAnimData *)MENU->battle.unk_27c[task->side]->cellPositions;
     if (MENU->battle.spriteTables2[task->side] != 0) {
         if (FIGHTER_ENTRY(task).sprites[1] != NULL) {
@@ -39,7 +39,7 @@ void BattleFighterTask_Setup(FighterTask *task)
         side = fighter->side;
         FIGHTER_ENTRY(task).sprites[1] = BattleSpriteTask_Create(
             (const u32 *)MENU->battle.spriteTables2[task->fighter->side],
-            task->steps->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->posX,
+            task->hitList->count + Battle_GetMatchupNibble1(task->side) - 1, fighter->posX,
             fighter->posY, fighter->posZ, 0, fighter->angle, 0, scale, scale,
             (&MENU->colours[2])[side], unk_56, 0, side, fighter->hasPos2, fighter->pos2X,
             fighter->pos2Y, fighter->pos2Z, unk_58);

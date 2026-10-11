@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/task.h"
-#include "game/FighterTask.h"
+#include "game/battle_fighter_task.h"
 
 #include "game/map_select.h"
 
@@ -15,7 +15,7 @@ void func_ov002_02357e5c(int side, int step);
  * makes the next sprite task and plays the side's second table; the script
  * resumes once the sprite task has unk_5c set. The size and offset of each step
  * scale with the fighter's size. */
-void BattleFighterTask_SpawnStep(FighterTask *task)
+void BattleFighterTask_SpawnStep(BattleFighterTask *task)
 {
     int step;
     int side;
@@ -25,7 +25,7 @@ void BattleFighterTask_SpawnStep(FighterTask *task)
     if (task->sprite->unk_5b == 5) {
         task->sprite->unk_5b = 0;
         step = task->step;
-        if (task->steps->count != step) {
+        if (task->hitList->count != step) {
             side = task->side;
             if (MENU->battle.unk_40[side] != 0) {
                 scale = task->scale;

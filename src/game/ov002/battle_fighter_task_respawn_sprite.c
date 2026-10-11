@@ -42,5 +42,5 @@ void BattleFighterTask_RespawnSprite(BattleFighterTask *task)
             fighter->hasPos2, fighter->pos2X, fighter->pos2Y, fighter->pos2Z, unk_58);
         task->sprite = BATTLE_FIGHTER_ENTRY(task->fighter).sprites[1];
     }
-    task->counter = 0;
+    task->step = 0;
 }

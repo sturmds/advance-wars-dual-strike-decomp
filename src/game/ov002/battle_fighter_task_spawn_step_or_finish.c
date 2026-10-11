@@ -1,6 +1,6 @@
 #include "types.h"
 #include "game/task.h"
-#include "game/FighterTask.h"
+#include "game/battle_fighter_task.h"
 #include "game/map_select.h"
 
 void Task_ResumeScript(Task *task);
@@ -13,7 +13,7 @@ void func_ov002_02357e5c(int side, int step);
  * it clears the fighter's steps[stepIndex], moves on to the next one
  * (the ring of 8 wraps) and resumes the script. The same happens once the
  * sprite task has unk_5c set. */
-void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)
+void BattleFighterTask_SpawnStepOrFinish(BattleFighterTask *task)
 {
     int step;
     int side;
@@ -23,7 +23,7 @@ void BattleFighterTask_SpawnStepOrFinish(FighterTask *task)
     if (task->sprite->unk_5b == 5) {
         task->sprite->unk_5b = 0;
         step = task->step;
-        if (task->steps->count == step) {
+        if (task->hitList->count == step) {
             task->fighter->steps[task->fighter->stepIndex] = 0;
             task->fighter->stepIndex++;
             if (task->fighter->stepIndex == 8) {
