@@ -1,0 +1,72 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/Unk_02088d04.h"
+
+void Screen_SetCurrent(void *state);
+void Screen_SetCurrentGfx(void *state);
+void func_0201e6e8(int x, int y, int width, int height);
+void func_020dbc94(int id, int army, void *dest, int copy);
+const void *func_020ccb38(int id, int army);
+u8 *func_020c67bc(void);
+int Player_GetCoIconTile(int player, int index);
+void TransferQueue_Add(const void *src, void *dst, u32 size);
+void Palette_Load(const void *src, u32 offset, u32 size);
+void MenuBox_Draw(int x, int y, int width, int height);
+
+extern Unk_02080440 *data_027c027c;
+extern Unk_027c0280 *data_027c0280;
+extern int data_027c0284;
+extern Unk_027c0288 data_027c0288;
+extern u8 gArmyPalettes[][32];
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+
+/* Loads the sub screen sprites of the count table that
+ * Ov006_DrawPropertyCounts draws: eight terrain sprites (func_020dbc94) at
+ * 0x3000-0x3700 in OBJ VRAM, the CO icons of players 1-4 at 0x3c00, the
+ * players' army colours as OBJ palettes 11-14, and the property palettes
+ * of armies 0-4 (id 20) as OBJ palettes 4-8, which the table rows use. Also
+ * fills a 16 x 20 block of layer 1 at (16, 3) (func_0201e6e8) and draws a
+ * menu box. */
+void Ov006_LoadPropertyCountGraphics(void)
+{
+    Unk_027c0280 *saved0280;
+    Unk_02080440 *saved027c;
+
+    saved0280 = data_027c0280;
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    func_0201e6e8(16, 3, 16, 20);
+
+    func_020dbc94(6, 0, data_027c0280->objVram + 0x3000, 1);
+    func_020dbc94(14, 1, data_027c0280->objVram + 0x3100, 1);
+    func_020dbc94(10, 0, data_027c0280->objVram + 0x3200, 1);
+    func_020dbc94(11, 0, data_027c0280->objVram + 0x3300, 1);
+    func_020dbc94(22, 0, data_027c0280->objVram + 0x3400, 1);
+    func_020dbc94(14, 0, data_027c0280->objVram + 0x3500, 1);
+    func_020dbc94(17, 0, data_027c0280->objVram + 0x3600, 1);
+    func_020dbc94(16, 0, data_027c0280->objVram + 0x3700, 1);
+
+    TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(1, 2) * 32, data_027c0280->objVram + 0x3c00, 128);
+    TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(2, 2) * 32, data_027c0280->objVram + 0x3c80, 128);
+    TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(3, 2) * 32, data_027c0280->objVram + 0x3d00, 128);
+    TransferQueue_Add(func_020c67bc() + Player_GetCoIconTile(4, 2) * 32, data_027c0280->objVram + 0x3d80, 128);
+
+    Palette_Load(gArmyPalettes[STATE->players[1].armyColour - 1], 0x360, 32);
+    Palette_Load(gArmyPalettes[STATE->players[2].armyColour - 1], 0x380, 32);
+    Palette_Load(gArmyPalettes[STATE->players[3].armyColour - 1], 0x3a0, 32);
+    Palette_Load(gArmyPalettes[STATE->players[4].armyColour - 1], 0x3c0, 32);
+
+    Palette_Load(func_020ccb38(20, 0), 0x280, 32);
+    Palette_Load(func_020ccb38(20, 1), 0x2a0, 32);
+    Palette_Load(func_020ccb38(20, 2), 0x2c0, 32);
+    Palette_Load(func_020ccb38(20, 3), 0x2e0, 32);
+    Palette_Load(func_020ccb38(20, 4), 0x300, 32);
+    Palette_Load(func_020ccb38(17, 0), 0x320, 32);
+    Palette_Load(func_020ccb38(15, 0), 0x340, 32);
+
+    MenuBox_Draw(3, 2, 10, 4);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+}
