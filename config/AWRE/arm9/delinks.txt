@@ -12976,6 +12976,10 @@ src/game/main/sound/sound_strm_stop.c:
     complete
     .text       start:0x02105b4c end:0x02105bcc
 
+src/game/main/sound/sound_strm_set_pan.c:
+    complete
+    .text       start:0x02105bcc end:0x02105c10
+
 src/game/main/sound/sound_output_restart.c:
     complete
     .text       start:0x02105ff8 end:0x02106098
