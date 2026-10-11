@@ -32,7 +32,7 @@ void SurvivalSelect_LoadCoPictures(void);
 void SurvivalSelect_DrawMapRecord(void);
 void SurvivalSelect_DrawModeRecord(void);
 int SurvivalSelect_GetList(void);
-int func_020478b0(int mode);
+int SurvivalRecord_GetRankIcon(int mode);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
 int Survival_GetMapId(int mode, int index);
@@ -49,7 +49,7 @@ extern char data_0215ae74[]; /* "/ohashi/res_survival_lang" */
  * more pages, picked by the page count), the selected map's preview.
  * Bottom: a panel that, when func_02047944 is 1 for the mode (probably a
  * saved record), shows two COs from func_02047924 and an icon picked by
- * func_020478b0. Also copies the strip's cycling colours into
+ * SurvivalRecord_GetRankIcon. Also copies the strip's cycling colours into
  * data_0229c744 and resets the menu cursor and buttons. */
 void SurvivalSelect_Init(void)
 {
@@ -105,7 +105,7 @@ void SurvivalSelect_Init(void)
         if (func_02047924(mode, 1) != 0) {
             Co_LoadSmallPicture(func_02047924(mode, 1), data_027c0280->objVram + 0x180, 19);
         }
-        Icon_LoadTo(func_020478b0(mode) + 85, data_027c0280->objVram, 88);
+        Icon_LoadTo(SurvivalRecord_GetRankIcon(mode) + 85, data_027c0280->objVram, 88);
     }
     IconBank_LoadPalette(1, 21);
     Screen_SetCurrentGfx(savedState);

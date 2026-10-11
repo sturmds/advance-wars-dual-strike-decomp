@@ -27,7 +27,7 @@ void func_02046d68(void);
 void SurvivalModeMenu_DrawRecords(void);
 int SurvivalSelect_GetList(void);
 int SurvivalModeMenu_GetRowMode(int row);
-int func_020478b0(int mode);
+int SurvivalRecord_GetRankIcon(int mode);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
 int func_02047960(void);
@@ -86,7 +86,7 @@ void SurvivalModeMenu_Init(void)
                 picture = row * 2 + 1;
                 Co_LoadSmallPicture(func_02047924(mode, 1), data_027c0280->objVram + ((picture * 12) << 5), row * 2 + 17);
             }
-            Icon_LoadTo(func_020478b0(mode) + 85, data_027c0280->objVram, 112 + row * 4);
+            Icon_LoadTo(SurvivalRecord_GetRankIcon(mode) + 85, data_027c0280->objVram, 112 + row * 4);
         }
     }
     IconBank_LoadPalette(1, 21);

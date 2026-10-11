@@ -5339,6 +5339,10 @@ src/game/main/menus/mode_set_variant.c:
     complete
     .text       start:0x02047830 end:0x020478b0
 
+src/game/main/menus/survival_record_get_rank_icon.c:
+    complete
+    .text       start:0x020478b0 end:0x02047924
+
 src/game/main/menus/survival_select_draw_mode4_record.c:
     complete
     .text       start:0x02047a04 end:0x02047b54
