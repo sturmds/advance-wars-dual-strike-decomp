@@ -21411,6 +21411,7 @@ src/sdk/fs/fs_open_file_direct.c:
     .text       start:0x02112930 end:0x02112988
 
 src/sdk/fs/fs_convert_path_to_file_id.c:
+    complete
     .text       start:0x02112988 end:0x021129cc
 
 src/sdk/fs/fs_init_file.c:
