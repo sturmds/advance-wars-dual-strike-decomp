@@ -16,7 +16,7 @@ extern CallbackNode data_022a8038;
 
 void func_02104de8(void);
 void func_02104ddc(void);
-void func_0210fee8(void);
+void SND_Init(void);
 void func_021148ec(CallbackNode *node);
 void func_021148d4(CallbackNode *node);
 void *func_02104f00(void);
@@ -31,7 +31,7 @@ void SoundSystem_Init(void)
         return;
     }
     data_022a8028 = 1;
-    func_0210fee8();
+    SND_Init();
     data_022a802c.func = func_02104de8;
     data_022a802c.arg = NULL;
     data_022a8038.func = func_02104ddc;
