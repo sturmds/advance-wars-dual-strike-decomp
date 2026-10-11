@@ -5050,6 +5050,9 @@ src/game/main/func_02055e40.c:
     complete
     .text       start:0x02055e40 end:0x02055e50
 
+src/game/main/copowers/func_02055f84.c:
+    .text       start:0x02055f84 end:0x02056508
+
 src/game/main/screen/tag_power_screen_set_up.c:
     complete
     .text       start:0x02056aa8 end:0x02057eec
