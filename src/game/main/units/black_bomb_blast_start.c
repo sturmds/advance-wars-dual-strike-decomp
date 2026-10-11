@@ -26,7 +26,7 @@ void func_0200b9d8(const char *fileName, void *dest, int size);
  * /bmap (for the 3D engine on its screen; on the other screen into sprite
  * tile gfxTile and sprite palette `palette`, which follows the 16
  * background palettes in the palette buffer), then starts the blast task
- * at tile (x, y) under parent. Only func_020ebcc0 calls it. */
+ * at tile (x, y) under parent. Only BlackBombExplosion_StartBlast calls it. */
 void BlackBombBlast_Start(int x, int y, int gfxTile, int palette, int damage, Task *parent)
 {
     BlackBombBlastTask *task;
