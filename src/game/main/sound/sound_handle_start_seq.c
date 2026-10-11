@@ -7,7 +7,7 @@ void *SoundSeqPlayer_AttachHeap(int playerNo, SoundSeqPlayer *player);
 int SoundArc_GetBank(int bankNo, int loadFlags, void *heap, int cache, void **loadedOut);
 int func_02107720(int seqNo, int loadFlags, void *heap, int cache, void **loadedOut);
 void func_0210547c(SoundSeqPlayer *player);
-void func_02105400(SoundSeqPlayer *player, const void *seqData, u32 offset, void *bank);
+void SoundSeqPlayer_Start(SoundSeqPlayer *player, const void *seqData, u32 offset, void *bank);
 void func_02105814(SoundHandle *handle, int volume);
 void func_0210579c(SoundHandle *handle, int channelPrio);
 void func_02105780(SoundHandle *handle, int seqNo);
@@ -36,7 +36,7 @@ BOOL SoundHandle_StartSeq(SoundHandle *handle, int playerNo, int bankNo, int pla
         func_0210547c(player);
         return FALSE;
     }
-    func_02105400(player, (const u8 *)seq + seq->dataOffset, 0, bank);
+    SoundSeqPlayer_Start(player, (const u8 *)seq + seq->dataOffset, 0, bank);
     func_02105814(handle, info->volume);
     func_0210579c(handle, info->channelPrio);
     func_02105780(handle, seqNo);

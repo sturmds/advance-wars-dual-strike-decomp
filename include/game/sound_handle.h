@@ -31,7 +31,7 @@ typedef struct SoundPlayerSlot {
     LinkList players;                  /* 0x00 */
     LinkList heaps;                    /* 0x0c: SoundPlayerHeaps not in use by a player */
     u32 maxPlayers;                    /* 0x18 */
-    u32 unk_1c;                        /* 0x1c: nonzero: the group's players use sound-processor track masks */
+    u32 trackChannelMask;              /* 0x1c: hardware channels the tracks of the group may use, 0 for no limit */
     u8 volume;                         /* 0x20: index into the volume table */
     u8 pad_21[3];
 } SoundPlayerSlot;

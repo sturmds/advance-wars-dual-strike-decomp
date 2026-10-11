@@ -10215,6 +10215,10 @@ src/game/main/sound/sound_seq_player_stop.c:
     complete
     .text       start:0x021053a0 end:0x02105400
 
+src/game/main/sound/sound_seq_player_start.c:
+    complete
+    .text       start:0x02105400 end:0x0210547c
+
 src/game/main/func_0210547c.c:
     complete
     .text       start:0x0210547c end:0x02105488
