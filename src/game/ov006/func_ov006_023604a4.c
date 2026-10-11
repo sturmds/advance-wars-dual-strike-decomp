@@ -1,7 +1,7 @@
 #include "types.h"
 
 int Ov006_GetNeighborTile(int x, int y);
-int func_ov006_02360f90(int x, int y);
+int Ov006_GetLandMaskPiece(int x, int y);
 int Ov006_GetRiverPiece(int x, int y);
 
 /* Yes/no version of func_ov006_023624b4 for the tile at (x, y): 1 when it ends
@@ -38,7 +38,7 @@ int func_ov006_023604a4(int x, int y)
             }
         }
     } else if (Ov006_GetNeighborTile(x, y) >= 0) {
-        first = func_ov006_02360f90(x, y);
+        first = Ov006_GetLandMaskPiece(x, y);
         if (first != 0) {
             other = Ov006_GetRiverPiece(x, y);
             if (other != 0) {
