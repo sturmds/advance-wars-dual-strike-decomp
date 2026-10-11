@@ -2778,11 +2778,15 @@ src/game/main/func_02027aa8.c:
     complete
     .text       start:0x02027aa8 end:0x02027ab4
 
-src/game/main/func_020280d4.c:
+src/game/main/graphics/quad/gx_draw_textured_quad.c:
+    complete
+    .text       start:0x02027f4c end:0x020280d4
+
+src/game/main/graphics/tex_size_t_to_pixels.c:
     complete
     .text       start:0x020280d4 end:0x02028118
 
-src/game/main/func_02028118.c:
+src/game/main/graphics/tex_size_s_to_pixels.c:
     complete
     .text       start:0x02028118 end:0x0202815c
 

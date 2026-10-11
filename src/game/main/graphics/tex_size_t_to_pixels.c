@@ -1,8 +1,10 @@
 #include "types.h"
 
-u32 func_020280d4(u32 index)
+/* Texture size code 0 to 3 to the size in pixels (8 to 64); any other code
+ * gives 0. */
+u32 TexSizeT_ToPixels(u32 sizeCode)
 {
-    switch (index) {
+    switch (sizeCode) {
     case 0:
         return 8;
     case 1:
