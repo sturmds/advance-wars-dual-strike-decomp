@@ -13,7 +13,7 @@ typedef struct Unk_ov005_0235abfc {
     const u8 *text;                    /* character codes, mapped to glyphs by Ov005_CharToGlyphIndex */
     u16 tile;                          /* first tile of the entry's sprites */
     s16 style;                         /* 2 and 3 pick the second glyph set */
-    u8 pad_0c[0x0e - 0x0c];
+    u16 angle;                         /* turn about the Y axis while the entry is drawn in 3D; index into data_0214d4c4 after >> 4 */
     s16 x;
     s16 y;
     u8 pad_12[0x14 - 0x12];
