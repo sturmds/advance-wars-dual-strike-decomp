@@ -22335,6 +22335,7 @@ src/sdk/isd/isd_cart_ring_write_byte.c:
     .text       start:0x02120b64 end:0x02120c18
 
 src/sdk/isd/isd_print_target_write.c:
+    complete
     .text       start:0x02120c18 end:0x02120d30
 
 src/sdk/isd/isd_bus_restore.c:
