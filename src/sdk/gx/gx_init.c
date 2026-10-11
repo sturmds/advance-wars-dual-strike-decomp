@@ -5,7 +5,7 @@
 extern u16 data_022a9870;   /* VRAM lock id */
 extern u32 data_0216d958;   /* DMA channel the GX library uses, or GX_DMA_NOT_USE */
 
-int func_0210cef0(void);   /* OS_GetLockID */
+int OS_GetLockID(void);
 void MI_DmaFill32(u32 dmaNo, void *dest, u32 data, u32 size);   /* MI_DmaFill32 */
 void MIi_CpuClear32(u32 data, void *dest, u32 size);   /* MIi_CpuClear32 */
 
@@ -26,7 +26,7 @@ void GX_Init(void)
     Vram_ClearAllBankControl();
 
     while (data_022a9870 == 0) {
-        int lockId = func_0210cef0();
+        int lockId = OS_GetLockID();
         if (lockId == OS_LOCK_ID_ERROR) {
             OS_Terminate();
         }

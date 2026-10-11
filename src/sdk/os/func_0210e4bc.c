@@ -5,7 +5,7 @@ extern u32 data_022a9b78;
 u32 func_0210dbec(void);
 u32 func_0210e36c(int id);
 void func_0210e270(int id, u32 lo);
-void func_0210e25c(int id, u32 hi);
+void OS_SetArenaLo(int id, u32 hi);
 void func_0210e67c(u32 value);
 u32 OS_GetInitArenaHi(int id);
 
@@ -13,7 +13,7 @@ u32 OS_GetInitArenaHi(int id);
 void func_0210e4bc(void)
 {
     func_0210e270(2, func_0210e36c(2));
-    func_0210e25c(2, OS_GetInitArenaHi(2));
+    OS_SetArenaLo(2, OS_GetInitArenaHi(2));
     if (data_022a9b78 == 0 || (func_0210dbec() & 3) == 1) {
         func_0210e67c(0x0200002b);
     }

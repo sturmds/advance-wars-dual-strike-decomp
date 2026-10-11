@@ -7,7 +7,7 @@ struct Unk_0210f0a4_0 {
     int unk_40000b0;
 };
 
-int func_0210f0a4(int a0)
+int Dma_ChannelRunning(int a0)
 {
     return (u32)(((Unk_0210f0a4_0 *)(((a0 * 3) + 2) << 2))->unk_40000b0 & -0x80000000) >> 31;
 }

@@ -7,7 +7,7 @@ struct Unk_0210e4a8_0 {
     int unk_27ffdc4;
 };
 
-int func_0210e4a8(int a0)
+int OS_GetArenaHi(int a0)
 {
     return ((Unk_0210e4a8_0 *)(a0 << 2))->unk_27ffdc4;
 }

@@ -1,7 +1,7 @@
 #include "sdk/os.h"
 
 /* Handlers for the interrupts that have no slot in gOsIrqSlots, indexed by IE bit. */
-extern OSIrqFunction data_027c127c[];
+extern OSIrqFunction OS_IRQTable[];
 
 void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function)
 {
@@ -19,7 +19,7 @@ void OS_SetIrqFunction(OSIrqMask mask, OSIrqFunction function)
         } else if (bit >= 3 && bit <= 6) {
             slot = &gOsIrqSlots[bit + 1];
         } else {
-            data_027c127c[bit] = function;
+            OS_IRQTable[bit] = function;
         }
         if (slot != NULL) {
             /* slot handlers take an argument, which is NULL here */

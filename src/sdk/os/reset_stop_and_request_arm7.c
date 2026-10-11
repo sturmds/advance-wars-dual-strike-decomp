@@ -2,7 +2,7 @@
 #include "sdk/os.h"
 
 void MI_StopDma(u32 dmaNo);
-u32 func_0210cef0(void);   /* OS_GetLockID */
+u32 OS_GetLockID(void);   /* OS_GetLockID */
 u32 func_0210cfc0(u16 lockID);   /* takes the card lock; nonzero while another user holds it */
 void func_0210eb70(void);   /* halts the CPU until an interrupt */
 void OS_ResetSystem(void);
@@ -15,7 +15,7 @@ void Reset_StopAndRequestArm7(u32 parameter)
     if (*BOOT_ORIGIN_WORD == BOOT_ORIGIN_WIRELESS) {
         OS_Terminate();
     }
-    lockID = func_0210cef0();
+    lockID = OS_GetLockID();
     while (func_0210cfc0(lockID) != 0) {
         func_0210eb70();
     }

@@ -1,16 +1,16 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo data_022a9930;
+extern OSThreadInfo OSi_ThreadInfo;
 
-void func_0210d958(OSThread *thread)
+void OSi_InsertThreadToList(OSThread *thread)
 {
     OSThread *cur;
     OSThread *prev;
     OSThread *head;
 
     prev = NULL;
-    head = data_022a9930.list;
+    head = OSi_ThreadInfo.list;
     cur = head;
     while (cur != NULL && cur->priority < thread->priority) {
         prev = cur;
@@ -18,7 +18,7 @@ void func_0210d958(OSThread *thread)
     }
     if (prev == NULL) {
         thread->next = head;
-        data_022a9930.list = thread;
+        OSi_ThreadInfo.list = thread;
     } else {
         thread->next = prev->next;
         prev->next = thread;

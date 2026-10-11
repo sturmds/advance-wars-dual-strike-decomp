@@ -2,7 +2,7 @@
 #include "game/screen_other_map.h"
 
 int ScreenTransition_IsRunning(void);
-int func_0210f0a4(int channel);
+int Dma_ChannelRunning(int channel);
 
 /* TRUE while a screen transition runs on `screen`. A macro because the
  * original reads the screen pointer again after saving the state. */
@@ -32,7 +32,7 @@ BOOL Screens_IsTransitionRunning(void)
     if (running == TRUE) {
         return TRUE;
     }
-    func_0210f0a4(0);
-    func_0210f0a4(1);
+    Dma_ChannelRunning(0);
+    Dma_ChannelRunning(1);
     return FALSE;
 }

@@ -26,8 +26,8 @@ extern u8 data_027c0000[];     /* DTCM base */
 
 extern BOOL OSi_IsThreadInitialized;
 extern OSThread **data_022a9924;      /* current thread pointer */
-extern OSThreadInfo data_022a9930;
-extern OSThread *data_022a9938;       /* data_022a9930.current, under its own symbol */
+extern OSThreadInfo OSi_ThreadInfo;
+extern OSThread *data_022a9938;       /* OSi_ThreadInfo.current, under its own symbol */
 extern OSThread OSi_LauncherThread;   /* the code that called this, made thread 0 */
 extern OSThread data_022a9984;        /* the idle thread */
 extern u32 data_022a9b74[];           /* end of the idle thread's stack */
@@ -47,7 +47,7 @@ void OS_InitThread(void)
     OSi_IsThreadInitialized = TRUE;
 
     for (i = 0; i < THREAD_SLOT_COUNT; i++) {
-        data_022a9930.threads[i] = NULL;
+        OSi_ThreadInfo.threads[i] = NULL;
     }
 
     data_022a9924 = &data_022a9938;
@@ -56,9 +56,9 @@ void OS_InitThread(void)
     OSi_LauncherThread.state = OS_THREAD_STATE_READY;
     OSi_LauncherThread.next = NULL;
     OSi_LauncherThread.profiler = NULL;
-    data_022a9930.threads[0] = &OSi_LauncherThread;
-    data_022a9930.list = &OSi_LauncherThread;
-    data_022a9930.current = &OSi_LauncherThread;
+    OSi_ThreadInfo.threads[0] = &OSi_LauncherThread;
+    OSi_ThreadInfo.list = &OSi_LauncherThread;
+    OSi_ThreadInfo.current = &OSi_LauncherThread;
 
     if ((u32)SDK_SYS_STACKSIZE == 0) {
         stackLo = (u32)SDK_SECTION_ARENA_DTCM_START - (u32)SDK_SYS_STACKSIZE;
@@ -72,10 +72,10 @@ void OS_InitThread(void)
     *(u32 *)OSi_LauncherThread.stackTop = STACK_GUARD_HIGH_MAGIC;
     OSi_LauncherThread.joinQueue.head = 0;
 
-    data_022a9930.maxEntry = THREAD_SLOT_COUNT;
-    data_022a9930.isNeedRescheduling = FALSE;
-    data_022a9930.inIrq = 0;
-    THREAD_TABLE_PTR_ARM9 = &data_022a9930;
+    OSi_ThreadInfo.maxEntry = THREAD_SLOT_COUNT;
+    OSi_ThreadInfo.isNeedRescheduling = FALSE;
+    OSi_ThreadInfo.inIrq = 0;
+    THREAD_TABLE_PTR_ARM9 = &OSi_ThreadInfo;
     OS_SetSwitchThreadCallback(NULL);
 
     OS_CreateThread(&data_022a9984, OSi_IdleThreadProc, NULL, data_022a9b74, IDLE_THREAD_STACK_BYTES, OS_THREAD_PRIORITY_MAX);

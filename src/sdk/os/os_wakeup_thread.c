@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo data_022a9930;
+extern OSThreadInfo OSi_ThreadInfo;
 
 void OS_RescheduleThread(void);
 
@@ -15,7 +15,7 @@ void OS_WakeupThread(OSThreadQueue *queue)
     irqState = OS_DisableInterrupts();
     waiting = queue->head;
     if (waiting != 0) {
-        for (thread = data_022a9930.list; thread != NULL; thread = thread->next) {
+        for (thread = OSi_ThreadInfo.list; thread != NULL; thread = thread->next) {
             if (waiting & (1 << thread->id)) {
                 thread->state = OS_THREAD_STATE_READY;
             }

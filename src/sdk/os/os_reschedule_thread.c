@@ -6,7 +6,7 @@
 extern u32 data_022a9920;
 extern OSThread **data_022a9924;
 extern ThreadSwapHook data_022a992c;
-extern OSThreadInfo data_022a9930;
+extern OSThreadInfo OSi_ThreadInfo;
 
 u32 func_0210eb64(void);
 OSThread *Thread_FirstRunnable(void);
@@ -17,7 +17,7 @@ void OS_RescheduleThread(void)
 {
     OSThread *current;
     OSThread *next;
-    OSThreadInfo *info = &data_022a9930;
+    OSThreadInfo *info = &OSi_ThreadInfo;
 
     if (data_022a9920 != 0) {
         return;
@@ -40,6 +40,6 @@ void OS_RescheduleThread(void)
     if (info->switchCallback != NULL) {
         info->switchCallback(current, next);
     }
-    data_022a9930.current = next;
+    OSi_ThreadInfo.current = next;
     func_0210daa0(next);
 }

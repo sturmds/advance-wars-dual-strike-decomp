@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os.h"
 
-extern OSThreadInfo data_022a9930;
+extern OSThreadInfo OSi_ThreadInfo;
 
 void Mutex_AppendToOwner(OSThread *thread, OSMutex *mutex);
 void OS_SleepThread(OSThreadQueue *queue);
@@ -10,7 +10,7 @@ void OS_SleepThread(OSThreadQueue *queue);
 void OS_LockMutex(OSMutex *mutex)
 {
     int irqState = OS_DisableInterrupts();
-    OSThread *current = data_022a9930.current;
+    OSThread *current = OSi_ThreadInfo.current;
 
     while (TRUE) {
         if (mutex->thread == NULL) {

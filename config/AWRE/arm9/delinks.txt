@@ -21147,19 +21147,19 @@ src/game/main/func_0210cff8.c:
     complete
     .text       start:0x0210cff8 end:0x0210d014
 
-src/game/main/func_0210d014.c:
+src/sdk/os/osi_free_cartridge_bus.c:
     complete
     .text       start:0x0210d014 end:0x0210d02c
 
-src/game/main/func_0210d02c.c:
+src/sdk/os/osi_allocate_cartridge_bus.c:
     complete
     .text       start:0x0210d02c end:0x0210d044
 
-src/game/main/func_0210d044.c:
+src/sdk/os/os_lock_cartridge.c:
     complete
     .text       start:0x0210d044 end:0x0210d064
 
-src/game/main/func_0210d064.c:
+src/sdk/os/os_unlock_cartridge.c:
     complete
     .text       start:0x0210d064 end:0x0210d084
 
@@ -21242,7 +21242,7 @@ src/sdk/os/osi_remove_thread_from_list.c:
     complete
     .text       start:0x0210d910 end:0x0210d958
 
-src/sdk/os/func_0210d958.c:
+src/sdk/os/osi_insert_thread_to_list.c:
     complete
     .text       start:0x0210d958 end:0x0210d9c0
 
@@ -21324,7 +21324,7 @@ src/sdk/os/os_alloc_from_arena_lo.c:
     complete
     .text       start:0x0210e1d4 end:0x0210e25c
 
-src/game/main/func_0210e25c.c:
+src/sdk/os/os_set_arena_lo.c:
     complete
     .text       start:0x0210e25c end:0x0210e270
 
@@ -21339,11 +21339,11 @@ src/sdk/os/os_get_init_arena_hi.c:
 src/sdk/os/func_0210e36c.c:
     .text       start:0x0210e36c end:0x0210e494
 
-src/game/main/func_0210e494.c:
+src/sdk/os/os_get_arena_lo.c:
     complete
     .text       start:0x0210e494 end:0x0210e4a8
 
-src/game/main/func_0210e4a8.c:
+src/sdk/os/os_get_arena_hi.c:
     complete
     .text       start:0x0210e4a8 end:0x0210e4bc
 
@@ -21443,7 +21443,7 @@ src/sdk/mi/mi_dma_wait.c:
     complete
     .text       start:0x0210f034 end:0x0210f0a4
 
-src/game/main/func_0210f0a4.c:
+src/sdk/mi/dma_channel_running.c:
     complete
     .text       start:0x0210f0a4 end:0x0210f0c8
 

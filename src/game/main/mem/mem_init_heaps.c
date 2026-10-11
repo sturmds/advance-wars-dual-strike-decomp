@@ -2,8 +2,8 @@
 #include "game/heap.h"
 
 void *OS_AllocFromArenaLo(int arena, u32 size, int align);   /* SDK: takes memory from the start of an arena */
-u32 func_0210e494(int arena);                          /* SDK: arena low address */
-u32 func_0210e4a8(int arena);                          /* SDK: arena high address */
+u32 OS_GetArenaLo(int arena);                          /* SDK: arena low address */
+u32 OS_GetArenaHi(int arena);                          /* SDK: arena high address */
 int func_02112c8c(void *table, int size);              /* SDK: loads the ROM file table; (0, 0) returns its size */
 
 ExpHeap *Heap_Create(void *start, u32 size, u16 options);
@@ -22,8 +22,8 @@ void Mem_InitHeaps(void)
     int tableSize;
 
     smallBlock = OS_AllocFromArenaLo(0, 0x10000, 16);
-    arenaLo = func_0210e494(0);
-    arenaHi = func_0210e4a8(0);
+    arenaLo = OS_GetArenaLo(0);
+    arenaHi = OS_GetArenaHi(0);
     bigSize = (arenaHi & ~15) - ((arenaLo + 15) & ~15);
     bigBlock = OS_AllocFromArenaLo(0, bigSize, 16);
     data_0218ff54 = Heap_Create(smallBlock, 0x10000, 0);

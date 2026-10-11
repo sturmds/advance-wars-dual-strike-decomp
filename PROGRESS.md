@@ -124,6 +124,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/os/func_0210e36c.c` | func_0210e36c | 296 |
 | `src/sdk/os/os_init_context.c` | OS_InitContext | 100 |
 | `src/sdk/os/os_init_thread.c` | OS_InitThread | 384 |
-| `src/sdk/os/os_release_lock_id.c` | func_0210cf48 | 48 |
+| `src/sdk/os/os_release_lock_id.c` | OS_ReleaseLockID | 48 |
 | `src/sdk/os/os_set_dma_irq_handler.c` | func_0210cdf4 | 76 |
 | `src/sdk/os/timer_install_irq_slot.c` | func_0210cda8 | 76 |

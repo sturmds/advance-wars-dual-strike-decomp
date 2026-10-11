@@ -9,7 +9,7 @@
 extern OSThread *data_022a9944[];
 
 int OSi_GetUnusedThreadId(void);
-void func_0210d958(OSThread *thread);
+void OSi_InsertThreadToList(OSThread *thread);
 void MIi_CpuClear32(u32 value, void *dest, u32 size);
 void OS_ExitThread(void);
 
@@ -31,7 +31,7 @@ void OS_CreateThread(OSThread *thread, void (*func)(void *), void *arg, void *st
     thread->state = OS_THREAD_STATE_WAITING;
     thread->profiler = NULL;
     data_022a9944[id] = thread;
-    func_0210d958(thread);
+    OSi_InsertThreadToList(thread);
 
     thread->stackBottom = (u32)stack;
     thread->stackTop = (u32)stack - stackSize;

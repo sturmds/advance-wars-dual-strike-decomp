@@ -2,7 +2,7 @@
 #include "sdk/gx.h"
 
 void OS_Init(void);
-void func_0210e25c(int a, int b);
+void OS_SetArenaLo(int a, int b);
 void func_0210e270(int a, int b);
 void func_0210e67c(int a);
 void func_0210a420(void);
@@ -23,7 +23,7 @@ void Boot_InitHardware(void)
     u16 oldIme;
 
     OS_Init();
-    func_0210e25c(2, 0x2400000);
+    OS_SetArenaLo(2, 0x2400000);
     func_0210e270(2, 0x2700000);
     func_0210e67c(0x200002d);
     func_0210a420();

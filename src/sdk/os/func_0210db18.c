@@ -10,10 +10,10 @@
 #define SLOT2_MATCH 0x01000000
 #define SLOT2_NO_MATCH 0x02000000
 
-int func_0210cef0(void);
+int OS_GetLockID(void);
 u16 func_0210cf88(void *lock);
-int func_0210d044(int lockId);
-void func_0210d064(int lockId);
+int OS_LockCartridge(int lockId);
+void OS_UnlockCartridge(int lockId);
 
 /*
  * Takes the lock on the shared word, then checks whether Slot-2 memory starts
@@ -29,21 +29,21 @@ u32 func_0210db18(void)
     u16 lockId;
 
     done = FALSE;
-    lockId = func_0210cef0();
+    lockId = OS_GetLockID();
     result = 0;
 
     do {
         lockResult = -1;
         irqState = OS_DisableInterrupts();
 
-        if ((func_0210cf88(LOCK_WORD) & 0x40) != 0 || (lockResult = func_0210d044(lockId)) == 0) {
+        if ((func_0210cf88(LOCK_WORD) & 0x40) != 0 || (lockResult = OS_LockCartridge(lockId)) == 0) {
             if (SLOT2_WORD_0 == SLOT2_MAGIC_0 && SLOT2_WORD_1 == SLOT2_MAGIC_1) {
                 result = SLOT2_MATCH;
             } else {
                 result = SLOT2_NO_MATCH;
             }
             if (lockResult == 0) {
-                func_0210d064(lockId);
+                OS_UnlockCartridge(lockId);
                 done = TRUE;
             }
         }
