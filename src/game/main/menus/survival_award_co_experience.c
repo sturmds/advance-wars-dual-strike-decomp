@@ -5,7 +5,7 @@
 u32 Co_GetExperience(int co);
 void Co_SetExperience(int co, u32 experience);
 u32 Survival_GetExperienceBonus(void);
-void func_020ea6e4(void);
+void PlayRecords_UpdateCoRankTotal(void);
 
 extern Unk_022a7b80 data_022a7b80;
 
@@ -13,7 +13,7 @@ extern Unk_022a7b80 data_022a7b80;
 
 /* Adds experience to the two COs of player 1's result row (front and back,
  * when set): the run's points (data_022a7b80.points) plus the mode's bonus
- * from Survival_GetExperienceBonus, at most 9999. Then func_020ea6e4
+ * from Survival_GetExperienceBonus, at most 9999. Then PlayRecords_UpdateCoRankTotal
  * updates the stored total of CO ranks. */
 void Survival_AwardCoExperience(void)
 {
@@ -33,5 +33,5 @@ void Survival_AwardCoExperience(void)
             Co_SetExperience(co, total);
         }
     }
-    func_020ea6e4();
+    PlayRecords_UpdateCoRankTotal();
 }

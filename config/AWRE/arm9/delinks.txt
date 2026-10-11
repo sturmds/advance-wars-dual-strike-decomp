@@ -17000,6 +17000,18 @@ src/game/main/map/battle_score_compute.c:
     complete
     .text       start:0x020ea240 end:0x020ea530
 
+src/game/main/map/campaign_add_co_scores.c:
+    complete
+    .text       start:0x020ea530 end:0x020ea608
+
+src/game/main/map/battle_results_award_experience.c:
+    complete
+    .text       start:0x020ea608 end:0x020ea6e4
+
+src/game/main/map/play_records_update_co_rank_total.c:
+    complete
+    .text       start:0x020ea6e4 end:0x020ea724
+
 src/game/main/map/play_records_count_battle_rank.c:
     complete
     .text       start:0x020ea724 end:0x020ea87c

@@ -57,7 +57,7 @@ typedef struct PlayRecords {
     u32 indirectAttacks;               /* same for units with a longer minRange */
     u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
     u32 capturesCompleted;             /* captures finished by human players, capped at 999999 */
-    u8 pad_3bc[0x3c0 - 0x3bc];
+    u32 coRankTotal;                   /* sum of Co_GetRank over CO ids 1-27 (PlayRecords_UpdateCoRankTotal) */
     u32 humanFundsSpent;               /* funds spent by human players, capped at 999999999 (Player_SpendFunds) */
     u32 humanDamageTaken;              /* funds value of hp lost by units of human players, capped at 999999999 (Unit_AddDamageTaken) */
     u32 silosLaunched;                 /* silo launches by human players, capped at 999999 (Silo_StartLaunch) */
