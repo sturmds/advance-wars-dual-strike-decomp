@@ -11,7 +11,7 @@ extern u8 data_02291774[];
 extern u8 data_02166dc8[];
 
 void func_01ff9f9c(void);
-void func_020011e0(void);
+void Boot_EnableDisplay(void);
 void func_02112bdc(int a);
 void Mem_InitHeaps(void);
 void Screens_InitContexts(void);
@@ -80,7 +80,7 @@ void main(void)
     volatile u16 heldKeys;  /* volatile to match: the original keeps it on the stack */
 
     func_01ff9f9c();
-    func_020011e0();
+    Boot_EnableDisplay();
     /* KEYINPUT plus the X/Y bits, inverted: keys are active low */
     heldKeys = ((REG_KEYINPUT | HW_BUTTON_XY_BUF) ^ PAD_ALL_MASK) & PAD_ALL_MASK;
     func_02112bdc(3);
