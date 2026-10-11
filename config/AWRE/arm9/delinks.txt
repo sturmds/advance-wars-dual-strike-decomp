@@ -10363,6 +10363,10 @@ src/game/main/menus/survival_start_variant.c:
     complete
     .text       start:0x020d64d0 end:0x020d6538
 
+src/game/main/map/game_mode_start_record_task.c:
+    complete
+    .text       start:0x020d6538 end:0x020d6580
+
 src/game/main/func_020d69c0.c:
     complete
     .text       start:0x020d69c0 end:0x020d69e4
