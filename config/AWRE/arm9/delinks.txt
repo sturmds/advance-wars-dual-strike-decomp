@@ -5546,6 +5546,10 @@ src/game/main/func_020654dc.c:
     complete
     .text       start:0x020654dc end:0x02065508
 
+src/game/main/menus/vs_setup_draw_settings.c:
+    complete
+    .text       start:0x02065508 end:0x02065630
+
 src/game/main/func_02066244.c:
     complete
     .text       start:0x02066244 end:0x02066250
