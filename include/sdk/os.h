@@ -243,4 +243,12 @@ typedef struct FirmwareUserSettings {
 /* Copies the console owner's profile out of the boot settings. */
 void OS_GetOwnerInfo(OSOwnerInfo *info);
 
+/* Nine VRAM banks (A to I) can each be locked by a lock ID. */
+#define VRAM_ALL_BANK_BITS 0x1ff
+extern u32 gOsVramLockedBanks;   /* bit set = bank locked */
+extern u16 gOsVramLockIds[9];
+
+/* Releases the banks in the mask that lockID holds. */
+void OSi_UnlockVram(u16 banks, u16 lockID);
+
 #endif

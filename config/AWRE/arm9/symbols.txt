@@ -5419,7 +5419,7 @@ OS_InitReset kind:function(arm,size=0x68) addr:0x0210ecb8
 OS_GetOwnerInfo kind:function(arm,size=0x7c) addr:0x0210ed20
 func_0210ed9c kind:function(arm,size=0x1c) addr:0x0210ed9c
 func_0210edb8 kind:function(arm,size=0x8) addr:0x0210edb8
-func_0210edc0 kind:function(arm,size=0x88) addr:0x0210edc0
+OSi_UnlockVram kind:function(arm,size=0x88) addr:0x0210edc0
 func_0210ee48 kind:function(arm,size=0x34) addr:0x0210ee48
 func_0210ee7c kind:function(arm,size=0x10) addr:0x0210ee7c
 MIi_CheckDma0SourceAddress kind:function(arm,size=0x70) addr:0x0210ee8c
@@ -9012,8 +9012,8 @@ data_022a9c24 kind:bss addr:0x022a9c24
 data_022a9c28 kind:bss addr:0x022a9c28
 gOsResetInitialized kind:bss addr:0x022a9c30
 data_022a9c34 kind:bss addr:0x022a9c34
-data_022a9c38 kind:bss addr:0x022a9c38
-data_022a9c3c kind:bss addr:0x022a9c3c
+gOsVramLockedBanks kind:bss addr:0x022a9c38
+gOsVramLockIds kind:bss addr:0x022a9c3c
 data_022a9c50 kind:bss addr:0x022a9c50
 data_022a9c54 kind:bss addr:0x022a9c54
 data_022a9c68 kind:bss addr:0x022a9c68
