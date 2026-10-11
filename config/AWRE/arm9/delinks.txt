@@ -18294,6 +18294,10 @@ src/game/main/func_020f43f4.c:
     complete
     .text       start:0x020f43f4 end:0x020f440c
 
+src/game/main/screen/scene_mode_update_mode5.c:
+    complete
+    .text       start:0x020f440c end:0x020f4624
+
 src/game/main/func_020f4624.c:
     complete
     .text       start:0x020f4624 end:0x020f4628
