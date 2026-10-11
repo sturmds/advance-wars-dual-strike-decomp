@@ -7,7 +7,7 @@ void func_0201e954(void);
 void MenuDepth_Push(void);
 
 /* Unit command menu handler (table entry at 0x02166140). Sets data_022a6b30,
- * which func_020ce2d4 and MapCursor_SelectTile read; its meaning is not known. */
+ * which UnloadTask_PickTile and MapCursor_SelectTile read; its meaning is not known. */
 void func_020bd13c(void)
 {
     data_022a6b30 = 1;
