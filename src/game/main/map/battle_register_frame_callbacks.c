@@ -6,7 +6,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern u8 func_020d1be0[];
-extern u8 func_020d1c3c[];
+extern u8 WeatherFx_UpdateFirstScreen[];
 extern u8 func_020d308c[];
 
 #define HOOKS (data_027c027c->unk_50[data_027c0284])
@@ -25,7 +25,7 @@ void Battle_RegisterFrameCallbacks(void)
         HOOKS->unk_38();
     }
     if (data_027c027c == data_027c0288.unk_00) {
-        CallbackSlots_Add(func_020d1c3c);
+        CallbackSlots_Add(WeatherFx_UpdateFirstScreen);
     } else {
         CallbackSlots_Add(func_020d1be0);
     }
