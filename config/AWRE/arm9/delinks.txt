@@ -21990,6 +21990,10 @@ src/sdk/pm/pm_send_pxi_data.c:
     complete
     .text       start:0x02114d20 end:0x02114d50
 
+src/sdk/pm/pm_get_back_light.c:
+    complete
+    .text       start:0x02114d50 end:0x02114dc8
+
 src/game/main/func_02114e04.c:
     complete
     .text       start:0x02114e04 end:0x02114e1c
