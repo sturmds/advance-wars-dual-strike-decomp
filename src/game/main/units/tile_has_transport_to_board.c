@@ -6,7 +6,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-BOOL func_020c6f24(MapUnit *transport, int unitType); /* TRUE when transport has room for a unit of unitType */
+BOOL Transport_HasRoomFor(MapUnit *transport, int unitType); /* TRUE when transport has room for a unit of unitType */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 /* Needed to match: the tile reads index the state array first. */
@@ -32,7 +32,7 @@ BOOL Tile_HasTransportToBoard(int x, int y)
     if ((slot & 0xc0) != (STATE->actingUnitIndex & 0xc0)) {
         return FALSE;
     }
-    if (!func_020c6f24(transport, STATE->actingUnit->type)) {
+    if (!Transport_HasRoomFor(transport, STATE->actingUnit->type)) {
         return FALSE;
     }
     /* needed to match: x is reused for the terrain id */
