@@ -18,7 +18,7 @@ void ActingUnit_ResetCaptureIfMoved(void);
 void ActingUnit_StartAtDest(void);
 void Game_EnterState18(void);
 void func_020ec058(int owner);
-void func_020ecb14(int x, int y, int oldProgress, int newProgress, int owner);
+void Capture_StartDisplay(int x, int y, int oldProgress, int newProgress, int owner);
 void Tile_SetOwner(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -76,7 +76,7 @@ void UnitAction_Capture(void)
         || GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)] != 0) {
         if (GAME->unk_82 == 1 || GAME->unk_82 == 2 || MAP_TILE_TERRAIN(tile) == TERRAIN_HQ
             || MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
-            func_020ecb14(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->actingUnit->captureProgress, progress,
+            Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->actingUnit->captureProgress, progress,
                           ACTING_UNIT_OWNER);
         } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
             func_020ec058(ACTING_UNIT_OWNER);

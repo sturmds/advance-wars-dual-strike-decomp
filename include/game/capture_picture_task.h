@@ -6,7 +6,9 @@
 struct Unk_02022404;
 
 /* Work area of the task that draws a property while it is captured
- * (func_020ec5cc sets it up, CapturePicture_Draw draws it each frame). */
+ * (script data_02168df0: func_020ec5cc sets it up, CapturePicture_Draw draws
+ * it each frame). Capture_StartDisplay fills it. Its parent task (script
+ * data_021690f8, func_020ec120) uses the same fields up to tile. */
 typedef struct CapturePictureTask {
     u8 pad_00[0x2c];
     struct Unk_02022404 *picture;      /* the property (PropertyPicture_Load), affine matrix 1 */
@@ -17,11 +19,11 @@ typedef struct CapturePictureTask {
     s16 y;
     u8 pad_40[0x42 - 0x40];
     s16 unk_42;                        /* added to y for the sprites in unk_34 and unk_38 */
-    u8 unk_44;
-    u8 pad_45;
-    u16 points;                        /* capture points so far, 0-20; func_020ec5cc copies unk_48 here */
-    u8 unk_48;
-    u8 pad_49;
+    u8 owner;                          /* player capturing the property */
+    u8 oldOwner;                       /* its owner before the capture */
+    u16 points;                        /* capture points shown, 0-20; func_020ec5cc starts it at oldPoints */
+    u8 oldPoints;                      /* capture points before this capture action */
+    u8 newPoints;                      /* capture points after it */
     u8 tile;                           /* MapTiles.tiles byte of the property */
 } CapturePictureTask;
 

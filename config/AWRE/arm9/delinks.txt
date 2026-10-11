@@ -11021,6 +11021,10 @@ src/game/main/func_020ecb04.c:
     complete
     .text       start:0x020ecb04 end:0x020ecb14
 
+src/game/main/units/capture_start_display.c:
+    complete
+    .text       start:0x020ecb14 end:0x020eccb4
+
 src/game/main/map/func_020ed744.c:
     complete
     .text       start:0x020ed744 end:0x020ed774
