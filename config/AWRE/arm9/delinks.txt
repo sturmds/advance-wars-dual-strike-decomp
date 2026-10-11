@@ -5889,6 +5889,14 @@ src/game/main/menus/vs_setup_add_team_arrow_buttons.c:
     complete
     .text       start:0x02066d80 end:0x02066fc0
 
+src/game/main/menus/vs_setup_next_team_for_button.c:
+    complete
+    .text       start:0x02066fc0 end:0x02067088
+
+src/game/main/menus/vs_setup_prev_team_for_button.c:
+    complete
+    .text       start:0x02067088 end:0x0206714c
+
 src/game/main/func_0206714c.c:
     complete
     .text       start:0x0206714c end:0x02067188

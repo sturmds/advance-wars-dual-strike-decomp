@@ -2,8 +2,8 @@
 #include "game/keypad.h"
 #include "game/menu_button.h"
 
-void func_02066fc0(MenuButton *button);
-void func_02067088(MenuButton *button);
+void VsSetup_NextTeamForButton(MenuButton *button);
+void VsSetup_PrevTeamForButton(MenuButton *button);
 void func_0206714c(int unused);
 
 #define FIRST_SLOT_BUTTON 48
@@ -11,8 +11,8 @@ void func_0206714c(int unused);
 
 /* Key handler of the player slot buttons 48-51 of the Vs setup screen.
  * Left and right move to the previous or next slot button that exists,
- * wrapping. Up and down change the slot's team (func_02067088 and
- * func_02066fc0 step setup.unk_2c8[slot]). B cancels; A goes on through
+ * wrapping. Up and down change the slot's team (VsSetup_PrevTeamForButton and
+ * VsSetup_NextTeamForButton step setup.unk_2c8[slot]). B cancels; A goes on through
  * func_0206714c. */
 void VsSetup_TeamSlotOnKeys(MenuButton *button)
 {
@@ -40,10 +40,10 @@ void VsSetup_TeamSlotOnKeys(MenuButton *button)
         button = MenuButton_Select(id);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
-        func_02067088(button);
+        VsSetup_PrevTeamForButton(button);
     }
     if (gKeypad->repeat & PAD_KEY_DOWN) {
-        func_02066fc0(button);
+        VsSetup_NextTeamForButton(button);
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
         Menu_CancelSelected();
