@@ -4096,6 +4096,7 @@ src/game/main/func_0203295c.c:
     .text       start:0x0203295c end:0x02032984
 
 src/game/main/menus/func_02032984.c:
+    complete
     .text       start:0x02032984 end:0x020329c0
 
 src/game/main/func_020329c0.c:
