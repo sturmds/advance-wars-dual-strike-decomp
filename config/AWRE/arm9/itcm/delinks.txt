@@ -237,7 +237,7 @@ src/game/itcm/map/path_reverse.c:
     complete
     .text       start:0x01ff9fd0 end:0x01ffa02c
 
-src/game/itcm/range_map/range_map_trace_path.c:
+src/game/itcm/range_map/trace_path.c:
     complete
     .text       start:0x01ffa02c end:0x01ffa294
 
@@ -264,6 +264,10 @@ src/game/itcm/range_map/mark_attack_range.c:
 src/game/itcm/range_map/fill_diamond.c:
     complete
     .text       start:0x01ffa610 end:0x01ffa744
+
+src/game/itcm/range_map/mark_direct_attack_range.c:
+    complete
+    .text       start:0x01ffa744 end:0x01ffaa3c
 
 src/game/itcm/range_map/mark_adjacent_tiles.c:
     .text       start:0x01ffaa3c end:0x01ffabcc

@@ -16,7 +16,7 @@ void UnitShowTask_Create(MapUnit *unit);
 void func_020c8888(void);
 void func_020f78b8(int a0);
 void Game_State15_EnterState8(void);
-void func_01ffa744(int value);
+void RangeMap_MarkDirectAttackRange(int value);
 BOOL Unit_CanAttackDirect(MapUnit *unit);
 BOOL Unit_CanAttackIndirect(MapUnit *unit);
 void Sound_PlaySe(int se);
@@ -26,7 +26,7 @@ void Sound_PlaySe(int se);
 
 /* B on the map: shows the attack range of what stands on tile (x, y). A map
  * object that MapObject_Draw handles gets its own range. On a unit, a direct
- * attacker gets its move range spread by func_01ffa744, and an indirect one
+ * attacker gets its move range spread by RangeMap_MarkDirectAttackRange, and an indirect one
  * its fire range around its tile; a unit with neither plays sound 0x10008
  * and returns FALSE. An empty tile goes to Game_State15_EnterState8. */
 BOOL MapCursor_ShowRange(int x, int y)
@@ -69,7 +69,7 @@ BOOL MapCursor_ShowRange(int x, int y)
         RangeMap_FillUnitMoves(GAME->actingUnit);
         GAME->unk_1e = GAME->currentPlayer;
         GAME->rangeMap[y][x] = 0;
-        func_01ffa744(64);
+        RangeMap_MarkDirectAttackRange(64);
         GAME->rangeMap[y][x] = -1;
     }
     if (indirect != 0) {
