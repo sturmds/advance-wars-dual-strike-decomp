@@ -15,7 +15,7 @@ typedef struct Unk_022a7c5c {
     u8 *unk_34;                        /* base that func_020f8534 and func_020f83d8 add palette offsets to */
     u32 unk_38;                        /* passed to func_020146f0 by RangeSpread_Update */
     u32 unk_3c;
-    u8 pad_40[0x44 - 0x40];
+    u32 unk_40;                        /* tile base for the sprites Sprite3d_DrawAnimation draws */
     u8 *unk_44;                        /* destination of the colour func_020f8344 queues (+ 8) */
     u8 pad_48[0x5c - 0x48];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
