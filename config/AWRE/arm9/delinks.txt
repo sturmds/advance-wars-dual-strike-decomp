@@ -9522,6 +9522,10 @@ src/game/main/map/tile_sprite_task_draw_object.c:
     complete
     .text       start:0x020d56f4 end:0x020d5824
 
+src/game/main/map/tile_sprite_task_animate.c:
+    complete
+    .text       start:0x020d58bc end:0x020d5ae8
+
 src/game/main/func_020d5ae8.c:
     complete
     .text       start:0x020d5ae8 end:0x020d5b08
