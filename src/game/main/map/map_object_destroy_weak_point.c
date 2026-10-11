@@ -1,0 +1,34 @@
+#include "types.h"
+#include "game/Unk_02080440.h"
+#include "game/map_object.h"
+#include "game/task.h"
+
+extern Unk_02080440 *data_027c027c;
+extern int data_027c0284;
+
+void func_020eed28(int x, int y, Task *parent);
+void func_020c4018(void);
+void func_020dae38(MapObject *object);
+void func_020c4448(void);
+
+#define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
+
+/* Terrain id and map cell code that replace a destroyed Grand Bolt weak
+ * point; the terrain has no name yet. */
+#define TERRAIN_WEAK_POINT_DESTROYED 27
+#define CELL_WEAK_POINT_DESTROYED    0x17a
+
+/* A destroyed Grand Bolt weak point (object kinds 11 to 13): starts the
+ * destruction effect (func_020eed28), changes its tile, removes the object
+ * from the object list (func_020dae38 moves the later entries down) and
+ * rescans the properties. */
+void MapObject_DestroyWeakPoint(MapObject *object, Task *task)
+{
+    func_020eed28(object->x, object->y, task);
+    STATE->mapTiles->tiles[TILE_INDEX(object->x, object->y)] = TERRAIN_WEAK_POINT_DESTROYED;
+    STATE->mapTiles->mapCells[TILE_INDEX(object->x, object->y)] = CELL_WEAK_POINT_DESTROYED;
+    func_020c4018();
+    func_020dae38(object);
+    func_020c4448();
+}
