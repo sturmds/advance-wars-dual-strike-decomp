@@ -17,7 +17,7 @@ void func_020e86b8(void);
 void func_020248fc(void);
 void func_02101b94(void);
 void func_020e6d8c(void);
-void func_02023fcc(void);
+void PlayRecords_ResetCounters(void);
 void func_0208c010(void);
 void LinkReaction_LoadTexts(void);
 void Mem_ZeroBytes(u8 *dest, u32 size);
@@ -60,7 +60,7 @@ void Save_ResetProgress(void)
     func_020248fc();
     func_02101b94();
     func_020e6d8c();
-    func_02023fcc();
+    PlayRecords_ResetCounters();
     func_0208c010();
     LinkReaction_LoadTexts();
     gPlayRecords.unk_0f = 0;

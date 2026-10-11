@@ -3868,6 +3868,10 @@ src/game/main/play_records_count_frame.c:
     complete
     .text       start:0x02023f94 end:0x02023fcc
 
+src/game/main/play_records_reset_counters.c:
+    complete
+    .text       start:0x02023fcc end:0x02024020
+
 src/game/main/func_020242c0.c:
     complete
     .text       start:0x020242c0 end:0x020242e0
