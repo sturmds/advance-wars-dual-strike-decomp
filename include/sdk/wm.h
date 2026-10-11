@@ -211,6 +211,8 @@ typedef struct WMMpRecvBuf {
 } WMMpRecvBuf;
 
 /* What WMStatus.state holds. */
+#define WM_STATE_READY 0                   /* initialised, not enabled yet */
+#define WM_STATE_STOP 1                    /* enabled, wireless hardware off */
 #define WM_STATE_IDLE 2
 #define WM_STATE_CLASS1 3
 #define WM_STATE_SCAN 5
@@ -287,6 +289,7 @@ typedef struct WMArm9Buf {
  * queued, else an error code. */
 int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
+int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
 int func_02116e20(int apiid, int argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);

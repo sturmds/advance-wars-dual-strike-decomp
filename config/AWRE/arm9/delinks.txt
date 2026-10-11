@@ -22111,6 +22111,10 @@ src/sdk/wm/wmi_check_state_ex.c:
     complete
     .text       start:0x02116cf0 end:0x02116d98
 
+src/sdk/wm/wmi_check_idle.c:
+    complete
+    .text       start:0x02116d98 end:0x02116df4
+
 src/game/main/func_02116df4.c:
     complete
     .text       start:0x02116df4 end:0x02116e10
