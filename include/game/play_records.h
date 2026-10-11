@@ -10,7 +10,8 @@
  * counters of what human players did, each capped at 999999 or 999999999. */
 typedef struct PlayRecords {
     u32 unk_00;
-    u8 pad_04[0x0e - 0x04];
+    u32 unk_04;                        /* capped at 99999; PlayRecords_AddCoins adds to it with unk_00 and unk_384 */
+    u8 pad_08[0x0e - 0x08];
     u8 unk_0e;                         /* copied to Unk_02080440_48.musicReady by a rules reset */
     u8 unk_0f;
     u8 pad_10[0x12 - 0x10];
@@ -25,7 +26,8 @@ typedef struct PlayRecords {
     SaveHalfwords16 unk_348[3];        /* one per profile; Save_LoadProfiles fills them from the save */
     u8 pad_378[0x380 - 0x378];
     u32 unk_380;                       /* capped at 999999; Turn_AdvanceToNextPlayer adds 1 each time the turn order wraps past player 4, under conditions not yet understood */
-    u8 pad_384[0x3a0 - 0x384];
+    u32 unk_384;                       /* capped at 999999; PlayRecords_AddCoins adds to it */
+    u8 pad_388[0x3a0 - 0x388];
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */
     u32 superPowersActivated;          /* same for super powers (UnitAction_ActivateSuperPower) */
     u32 tagPowersActivated;            /* same for tag powers (UnitAction_ActivateTagPower) */
