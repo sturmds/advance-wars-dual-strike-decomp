@@ -142,6 +142,6 @@ void SuperBreak_SetUpScreen(Task *task)
     if (data_027c027c != data_027c0288.unk_00 && func_0207bd80() == 1) {
         SpriteTask_Create(232, 8, 0, 15);
     }
-    /* a halfword the next steps of this task use (func_02054e40 clears it too) */
+    /* a halfword the next steps of this task use (SuperBreak_LoadBanner clears it too) */
     *(u16 *)&task->unk_4c = 0;
 }

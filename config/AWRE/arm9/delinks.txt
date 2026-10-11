@@ -5130,6 +5130,10 @@ src/game/main/copowers/super_break_slide_in_banner.c:
     complete
     .text       start:0x02054d34 end:0x02054e40
 
+src/game/main/copowers/super_break_load_banner.c:
+    complete
+    .text       start:0x02054e40 end:0x0205504c
+
 src/game/main/func_02055074.c:
     complete
     .text       start:0x02055074 end:0x020550e8
