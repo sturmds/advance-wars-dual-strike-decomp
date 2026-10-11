@@ -22791,6 +22791,10 @@ src/sdk/mb/mb_file_make_block_table.c:
     complete
     .text       start:0x0211a8ac end:0x0211a988
 
+src/sdk/mb/mb_file_set_segment_info.c:
+    complete
+    .text       start:0x0211a988 end:0x0211ab40
+
 src/sdk/mb/download_play_offer_child_program.c:
     complete
     .text       start:0x0211abc4 end:0x0211ae8c

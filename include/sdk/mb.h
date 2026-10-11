@@ -433,8 +433,11 @@ typedef struct DlPlaySegmentPlacement {
     u32 recvAddress;                   /* where the child receives it */
     u32 loadAddress;
     u32 size;
-    u32 flags;
+    u32 target : 1;                    /* MI_PROCESSOR_ARM9 or MI_PROCESSOR_ARM7 */
+    u32 reserved : 31;
 } DlPlaySegmentPlacement;
+
+#define DLPLAY_CART_HEADER_BYTES 0x160
 
 /* The start of a file's download info (DlPlayOfferedFile.dlFileInfo). */
 typedef struct DlPlayProgramLayoutHead {
