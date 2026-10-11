@@ -31,6 +31,8 @@ typedef struct MtxFx33 {
 } MtxFx33;
 
 void MTX_RotX43_(MtxFx43 *mtx, fx32 sin, fx32 cos);
+void MTX_RotY43_(MtxFx43 *mtx, fx32 sin, fx32 cos);
+void Matrix_SetZTurn43FromSinCos(MtxFx43 *mtx, fx32 sin, fx32 cos);
 fx32 FX_Div(fx32 numer, fx32 denom);
 void FX_DivAsync(fx32 numer, fx32 denom);
 void FX_InvAsync(fx32 denom);

@@ -2,8 +2,6 @@
 #include "sdk/fx.h"
 #include "game/camera_pan.h"
 
-void MTX_RotY43_(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: rotation about Y */
-void Matrix_SetZTurn43FromSinCos(MtxFx43 *mtx, fx32 sin, fx32 cos);                  /* SDK: rotation about Z */
 void MTX_Concat43(MtxFx43 *a, MtxFx43 *b, MtxFx43 *dest);             /* SDK: 4x3 product */
 void MI_Copy36B(MtxFx43 *src, MtxFx33 *dest);                       /* SDK: copy 36 bytes */
 void Matrix_Invert3x3(MtxFx33 *src, MtxFx33 *dest);                       /* SDK: 3x3 inverse */

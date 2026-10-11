@@ -20741,6 +20741,14 @@ src/sdk/fx/fx_mtx43.c:
     complete
     .text       start:0x0210969c end:0x021096bc
 
+src/sdk/fx/mtx_rot_y43.c:
+    complete
+    .text       start:0x021096bc end:0x021096d8
+
+src/sdk/fx/mtx_rot_z43.c:
+    complete
+    .text       start:0x021096d8 end:0x021096f4
+
 src/sdk/fx/mtx_concat43.c:
     complete
     .text       start:0x021096f4 end:0x02109914
