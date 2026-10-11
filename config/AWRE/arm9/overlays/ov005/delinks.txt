@@ -288,7 +288,8 @@ src/game/ov005/func_ov005_0235a30c.c:
     complete
     .text       start:0x0235a30c end:0x0235a320
 
-src/game/ov005/func_ov005_0235a320.c:
+src/game/ov005/ov005_scroll_staff_credits_background.c:
+    complete
     .text       start:0x0235a320 end:0x0235a560
 
 src/game/ov005/ov005_screen_load_palettes.c:

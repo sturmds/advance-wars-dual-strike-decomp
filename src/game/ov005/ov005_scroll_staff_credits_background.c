@@ -14,7 +14,10 @@ void Gfx_RequestLayerCopy(int layer);
 extern u32 data_ov005_02367f8c[];
 extern u32 data_ov005_02367f9c[];
 
-void func_ov005_0235a320(Unk_ov005_0236bb90 *work)
+/* Moves the staff credits background one pixel right every 10 frames (wrapping from
+ * 0x500 back to 0x100), copies the visible 33 x 8 tile window of work->palettesOut
+ * (192 tiles wide) into layer 2's map, and sets the layer's scroll. */
+void Ov005_ScrollStaffCreditsBackground(Unk_ov005_0236bb90 *work)
 {
     int row;
     int col;
@@ -52,8 +55,8 @@ void func_ov005_0235a320(Unk_ov005_0236bb90 *work)
         src = (u16 *)work->palettesOut;
 
         for (col = 0; col < 33; col++) {
-            int tileX = (scrollX >> 3) + col;
             int page = 0;
+            int tileX = (scrollX >> 3) + col;
             int index;
 
             if (tileX & 32) {

@@ -30,7 +30,7 @@ void func_ov005_0235a30c(Unk_ov005_0235a30c *work);
 void Ov005_SkipOnInput(Unk_ov005_0235a30c *work, Ov005Task *task);
 void Ov005_DrawCreditsEntries3D(Unk_ov005_0235a30c *work);
 void Ov005_QueueEntrySprites(Unk_ov005_0235a30c *work);
-void func_ov005_0235a320(Unk_ov005_0235a30c *work);
+void Ov005_ScrollStaffCreditsBackground(Unk_ov005_0235a30c *work);
 void func_ov005_0235bab4(void);
 
 extern Unk_02080440 *data_027c027c;
@@ -274,5 +274,5 @@ void Ov005_UpdateStaffCreditsScreen(Ov005Task *task)
     Ov005_SkipOnInput(work, task);
     Ov005_DrawCreditsEntries3D(work);
     Ov005_QueueEntrySprites(work);
-    func_ov005_0235a320(work);
+    Ov005_ScrollStaffCreditsBackground(work);
 }
