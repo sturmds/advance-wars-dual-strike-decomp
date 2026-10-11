@@ -8467,6 +8467,10 @@ src/game/main/menus/game_state5_start_turn_task.c:
     complete
     .text       start:0x020ba398 end:0x020ba400
 
+src/game/main/menus/game_state4_wait_song_fade.c:
+    complete
+    .text       start:0x020ba400 end:0x020ba450
+
 src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
