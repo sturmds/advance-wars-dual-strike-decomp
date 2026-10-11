@@ -27,6 +27,11 @@ typedef struct GbaSlotWaitStates {
     u32 romSecondAccess;           /* EXMEMCNT bit 4 */
 } GbaSlotWaitStates;
 
+/* Low six bits of a PXI word from the ARM7 are the command. */
+#define GBA_SLOT_MSG_OPCODE_BITS 0x3f
+#define GBA_SLOT_MSG_SETUP_ACK 1     /* answer to the init command */
+#define GBA_SLOT_MSG_REMOVED 17   /* the cartridge was pulled out */
+
 /* Header at the start of a GBA cartridge ROM (only the fields the library reads). */
 typedef struct GbaRomHeader {
     u8 pad_00[0xac];
