@@ -5286,6 +5286,10 @@ src/game/main/func_0205c09c.c:
     complete
     .text       start:0x0205c09c end:0x0205c16c
 
+src/game/main/co_swap/co_swap_slide_out_cos.c:
+    complete
+    .text       start:0x0205c16c end:0x0205c388
+
 src/game/main/func_0205c82c.c:
     complete
     .text       start:0x0205c82c end:0x0205c8a0
