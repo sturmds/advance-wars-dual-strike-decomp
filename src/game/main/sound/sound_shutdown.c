@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/sound.h"
 
-extern void *data_0218feb0;                 /* sound heap set up by func_0200b83c / func_0200b8d0 */
+extern void *data_0218feb0;                 /* sound heap set up by Sound_InitFromMemory / Sound_Init */
 
 /* Stops every sequence at once, destroys the sound heap and marks the
  * sound system as not ready, so the other Sound_ calls do nothing. */

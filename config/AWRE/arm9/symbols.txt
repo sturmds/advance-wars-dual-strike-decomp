@@ -308,8 +308,8 @@ Sound_PlaySubSe kind:function(arm,size=0x40) addr:0x0200b72c
 Sound_PlaySe kind:function(arm,size=0x40) addr:0x0200b76c
 Sound_PlaySeAtVolume kind:function(arm,size=0x3c) addr:0x0200b7ac
 Sound_Shutdown kind:function(arm,size=0x54) addr:0x0200b7e8
-func_0200b83c kind:function(arm,size=0x94) addr:0x0200b83c
-func_0200b8d0 kind:function(arm,size=0xa0) addr:0x0200b8d0
+Sound_InitFromMemory kind:function(arm,size=0x94) addr:0x0200b83c
+Sound_Init kind:function(arm,size=0xa0) addr:0x0200b8d0
 func_0200b970 kind:function(arm,size=0x4c) addr:0x0200b970
 Mem_ZeroBytes kind:function(arm,size=0x1c) addr:0x0200b9bc
 func_0200b9d8 kind:function(arm,size=0x34) addr:0x0200b9d8
@@ -6884,7 +6884,7 @@ data_021574c0 kind:data(any) addr:0x021574c0
 data_021575c8 kind:data(any) addr:0x021575c8
 data_02157618 kind:data(any) addr:0x02157618
 data_02157668 kind:data(any) addr:0x02157668
-data_021576b8 kind:data(any) addr:0x021576b8
+gSoundArcPath kind:data(any) addr:0x021576b8
 data_021576d0 kind:data(any) addr:0x021576d0
 data_021576dc kind:data(any) addr:0x021576dc
 gCameraPresets kind:data(any) addr:0x021576e8
@@ -8560,7 +8560,7 @@ gSeHandle kind:bss addr:0x0218feb4
 gSubSeHandle kind:bss addr:0x0218feb8
 gStrmHandle kind:bss addr:0x0218febc
 gSoundReady kind:bss addr:0x0218fec0
-data_0218fec4 kind:bss addr:0x0218fec4
+gSoundArc kind:bss addr:0x0218fec4
 gGameHeap kind:bss addr:0x0218ff50
 data_0218ff54 kind:bss addr:0x0218ff54
 data_0218ff58 kind:bss addr:0x0218ff58

@@ -1016,6 +1016,14 @@ src/game/main/sound/sound_shutdown.c:
     complete
     .text       start:0x0200b7e8 end:0x0200b83c
 
+src/game/main/sound/sound_init_from_memory.c:
+    complete
+    .text       start:0x0200b83c end:0x0200b8d0
+
+src/game/main/sound/sound_init.c:
+    complete
+    .text       start:0x0200b8d0 end:0x0200b970
+
 src/game/main/mem/mem_zero_bytes.c:
     complete
     .text       start:0x0200b9bc end:0x0200b9d8

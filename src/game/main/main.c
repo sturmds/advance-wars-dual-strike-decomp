@@ -17,7 +17,7 @@ void Mem_InitHeaps(void);
 void Screens_InitContexts(void);
 void Screens_InitDisplay(void);
 void func_0200b970(void);
-void func_0200b8d0(void);
+void Sound_Init(void);
 void Sound_LoadResidentData(void);
 void func_0200170c(void);
 void Overlay_Load(int slot);
@@ -88,7 +88,7 @@ void main(void)
     Screens_InitContexts();
     Screens_InitDisplay();
     func_0200b970();
-    func_0200b8d0();
+    Sound_Init();
     Sound_LoadResidentData();
     func_0200170c();
     Overlay_Load(0);
