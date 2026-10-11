@@ -6907,6 +6907,10 @@ src/game/main/func_0207a7a4.c:
     complete
     .text       start:0x0207a7a4 end:0x0207a7c8
 
+src/game/main/link/wireless_init.c:
+    complete
+    .text       start:0x0207a888 end:0x0207aa04
+
 src/game/main/func_0207ab14.c:
     complete
     .text       start:0x0207ab14 end:0x0207ab2c

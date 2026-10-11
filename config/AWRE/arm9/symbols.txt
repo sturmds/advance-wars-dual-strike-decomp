@@ -2318,7 +2318,7 @@ func_0207a6f8 kind:function(arm,size=0x58) addr:0x0207a6f8
 func_0207a750 kind:function(arm,size=0x54) addr:0x0207a750
 func_0207a7a4 kind:function(arm,size=0x24) addr:0x0207a7a4
 func_0207a7c8 kind:function(arm,size=0xc0) addr:0x0207a7c8
-func_0207a888 kind:function(arm,size=0x17c) addr:0x0207a888
+Wireless_Init kind:function(arm,size=0x17c) addr:0x0207a888
 func_0207aa04 kind:function(arm,size=0xb0) addr:0x0207aa04
 func_0207aab4 kind:function(arm,size=0x60) addr:0x0207aab4
 func_0207ab14 kind:function(arm,size=0x18) addr:0x0207ab14
@@ -8742,7 +8742,7 @@ data_0229c888 kind:bss addr:0x0229c888
 data_0229c88c kind:bss addr:0x0229c88c
 data_0229c890 kind:bss addr:0x0229c890
 gWirelessParentLinkLevels kind:bss addr:0x0229c894
-data_0229c898 kind:bss addr:0x0229c898
+gWirelessSystemBuf kind:bss addr:0x0229c898
 data_0229c89c kind:bss addr:0x0229c89c
 data_0229c8a0 kind:bss addr:0x0229c8a0
 data_0229c8a4 kind:bss addr:0x0229c8a4
