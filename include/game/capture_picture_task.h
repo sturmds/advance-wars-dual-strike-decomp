@@ -8,7 +8,7 @@ struct Unk_02022404;
 /* Work area of the task that draws a property while it is captured
  * (script data_02168df0: func_020ec5cc sets it up, CapturePicture_Draw draws
  * it each frame). Capture_StartDisplay fills it. Its parent task (script
- * data_021690f8, func_020ec120) uses the same fields up to tile. */
+ * data_021690f8, CaptureTask_ShowCompletion) uses the same fields up to tile. */
 typedef struct CapturePictureTask {
     u8 pad_00[0x2c];
     struct Unk_02022404 *picture;      /* the property (PropertyPicture_Load), affine matrix 1 */
@@ -27,7 +27,7 @@ typedef struct CapturePictureTask {
     u8 tile;                           /* MapTiles.tiles byte of the property */
 } CapturePictureTask;
 
-/* Work area of the task func_020ec120 starts when a capture completes
+/* Work area of the task CaptureTask_ShowCompletion starts when a capture completes
  * (script data_02168ea8); CaptureDone_Draw draws it. */
 typedef struct CaptureDoneTask {
     u8 pad_00[0x30];

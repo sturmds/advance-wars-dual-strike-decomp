@@ -24,7 +24,7 @@ void Palette_LoadFromFile(const char *fileName, int fileOffset, u16 paletteOffse
  * gfxTile, and its owner's army colours from /bmap/0b9 into sprite palette
  * `palette`. /bmap/0bb holds one HQ per army style (1-5), then a city, base,
  * airport, port and lab; other terrain gets the city. The callers draw the
- * capture of a property (func_020ec120 waits for 20 capture points). */
+ * capture of a property (CaptureTask_ShowCompletion waits for 20 capture points). */
 void PropertyPicture_Load(int tile, int gfxTile, int palette)
 {
     int army = Map_GetTileArmy(tile);
