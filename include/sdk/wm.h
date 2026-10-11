@@ -76,6 +76,15 @@ typedef struct WMScanParam {
     u8 bssid[6];                       /* all 0xff scans for any parent */
 } WMScanParam;
 
+typedef struct WMMeasureChannelCallback {
+    u16 apiid;
+    u16 errcode;
+    u16 wlCmdID;
+    u16 wlResult;
+    u16 channel;
+    u16 ccaBusyRatio;                  /* percent of the time the channel was busy */
+} WMMeasureChannelCallback;
+
 typedef struct WMStartParentCallback {
     u16 apiid;
     u16 errcode;
