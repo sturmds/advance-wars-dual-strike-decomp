@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_020278e4(u16 *map, u16 x, u16 y, int width, u16 height, int firstTile, u16 palette);
+void Bg_PutTileRect(u16 *map, u16 x, u16 y, int width, u16 height, int firstTile, u16 palette);
 
 /* Puts one row of 4 tiles of a meter in the battle screen. Its only caller
  * draws the HP bar; the argument names are guesses from that call. */
@@ -14,5 +14,5 @@ void Battle_PutMeterRow(u16 *map, u8 x, u8 y, u16 tile, u8 palette,
             tile = tile + (levelEnd - level) * 4;
         }
     }
-    func_020278e4(map, x, y, 4, 1, tile, palette);
+    Bg_PutTileRect(map, x, y, 4, 1, tile, palette);
 }

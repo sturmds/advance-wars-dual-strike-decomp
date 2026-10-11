@@ -3,7 +3,7 @@
 
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
-void func_020278e4(u16 *map, int x, int y, int width, int height, int firstTile, int palette);
+void Bg_PutTileRect(u16 *map, int x, int y, int width, int height, int firstTile, int palette);
 void Ov006_DrawMenuLine(int unused, int row, const char *text, int indent);
 
 extern Unk_027c0280 *data_027c0280;
@@ -17,6 +17,6 @@ void Ov006_DrawMenuLineWithIcon(int unused, int row, const char *text)
     y += row * 2;
     Icon_LoadTo(3, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14), 64);
     IconBank_LoadPalette(0, 11);
-    func_020278e4(data_027c0280->layer0Map, 3, y, 2, 2, 64, 11);
+    Bg_PutTileRect(data_027c0280->layer0Map, 3, y, 2, 2, 64, 11);
     Ov006_DrawMenuLine(unused, row, text, 1);
 }
