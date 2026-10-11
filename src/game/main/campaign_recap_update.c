@@ -98,12 +98,12 @@ void CampaignRecap_Update(CampaignRecapTask *task)
             ys = data_0216a870;
             x = xs.v[HwMod32(work->index, 5)];
             y = ys.v[HwMod32(work->index, 5)];
-            work->unk_50 = x + (work->unk_44 * 50 - 800);
-            work->unk_54 = y + (-work->unk_48 * 50 + 600);
-            work->unk_58 = -300;
-            work->unk_5c = work->unk_44 * 50 - 800;
-            work->unk_60 = -work->unk_48 * 50 + 600;
-            work->unk_64 = 0;
+            work->cameraStartX = x + (work->unk_44 * 50 - 800);
+            work->cameraStartY = y + (-work->unk_48 * 50 + 600);
+            work->cameraStartZ = -300;
+            work->cameraEndX = work->unk_44 * 50 - 800;
+            work->cameraEndY = -work->unk_48 * 50 + 600;
+            work->cameraEndZ = 0;
             work->unk_4c = Task_Create(data_0216a898, TASK_LIST(3));
             task->step = work->firstStep;
         }

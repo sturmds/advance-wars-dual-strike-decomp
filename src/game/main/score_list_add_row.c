@@ -4,7 +4,7 @@
 #include "game/Unk_022a7a9c.h"
 
 /* Returns 1, 2 or 3 from data_02160ac0->unk_84 (0, 1, 2). */
-int func_0203ad50(void);
+int ScoreList_GetMultiplier(void);
 /* Counts the cells with state 1 and this tile in data_02160ac0, at most 9. */
 u8 func_0203ad90(int tile);
 
@@ -44,7 +44,7 @@ BOOL ScoreList_AddRow(int kind)
     case 21:
         ROW.kind = kind;
         ROW.count = 0;
-        ROW.points = func_0203ad50() * 300;
+        ROW.points = ScoreList_GetMultiplier() * 300;
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
@@ -125,7 +125,7 @@ BOOL ScoreList_AddRow(int kind)
         }
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 40 * func_0203ad50();
+        ROW.points = count * 40 * ScoreList_GetMultiplier();
         ROW.height = 32;
         data_0229c734->rowCount++;
         return TRUE;
@@ -136,7 +136,7 @@ BOOL ScoreList_AddRow(int kind)
         }
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 10 * func_0203ad50();
+        ROW.points = count * 10 * ScoreList_GetMultiplier();
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
@@ -147,7 +147,7 @@ BOOL ScoreList_AddRow(int kind)
         }
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 5 * func_0203ad50();
+        ROW.points = count * 5 * ScoreList_GetMultiplier();
         ROW.height = 16;
         data_0229c734->rowCount++;
         return TRUE;
@@ -155,7 +155,7 @@ BOOL ScoreList_AddRow(int kind)
         count = data_02160abc->unk_00[1];
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 5 * func_0203ad50();
+        ROW.points = count * 5 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -166,7 +166,7 @@ BOOL ScoreList_AddRow(int kind)
         count = data_02160abc->unk_00[3];
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 10 * func_0203ad50();
+        ROW.points = count * 10 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -177,7 +177,7 @@ BOOL ScoreList_AddRow(int kind)
         count = data_02160abc->unk_00[4];
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 15 * func_0203ad50();
+        ROW.points = count * 15 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -188,7 +188,7 @@ BOOL ScoreList_AddRow(int kind)
         count = data_02160abc->unk_00[5];
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 20 * func_0203ad50();
+        ROW.points = count * 20 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -199,7 +199,7 @@ BOOL ScoreList_AddRow(int kind)
         count = func_0203ad90(1);
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 25 * func_0203ad50();
+        ROW.points = count * 25 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -210,7 +210,7 @@ BOOL ScoreList_AddRow(int kind)
         count = func_0203ad90(3);
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 50 * func_0203ad50();
+        ROW.points = count * 50 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -221,7 +221,7 @@ BOOL ScoreList_AddRow(int kind)
         count = func_0203ad90(4);
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 75 * func_0203ad50();
+        ROW.points = count * 75 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }
@@ -232,7 +232,7 @@ BOOL ScoreList_AddRow(int kind)
         count = func_0203ad90(5);
         ROW.kind = kind;
         ROW.count = count;
-        ROW.points = count * 100 * func_0203ad50();
+        ROW.points = count * 100 * ScoreList_GetMultiplier();
         if (ROW.points > 999) {
             ROW.points = 999;
         }

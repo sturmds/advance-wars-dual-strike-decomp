@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 data_ov000_022f66d8[];       /* glyph width in pixels, per character */
-extern u8 *data_ov000_022f67d8[];      /* glyph pixels, 4 bits each, (width + 1) / 2 bytes per row */
+extern u8 Ov000_gGlyphWidths[];       /* glyph width in pixels, per character */
+extern u8 *Ov000_gGlyphPixels[];      /* glyph pixels, 4 bits each, (width + 1) / 2 bytes per row */
 
 /* One 8-pixel row of a 4-bit tile. */
 typedef union GlyphRow {
@@ -16,7 +16,7 @@ typedef union GlyphRow {
  * 0xa + colour. A tile column is cleared before the first pixel is drawn
  * into it. Returns the glyph width.
  * Not matching yet (96.7%): shift, bytes and i get other registers. */
-int func_02020e0c(int c, u16 *dst, int x, int colour)
+int Font_DrawGlyph(int c, u16 *dst, int x, int colour)
 {
     int bytes;
     GlyphRow rows[2];
@@ -28,7 +28,7 @@ int func_02020e0c(int c, u16 *dst, int x, int colour)
     u8 *src;
 
     shift = x & 7;
-    width = data_ov000_022f66d8[c];
+    width = Ov000_gGlyphWidths[c];
     if (shift <= 1) {
         for (row = 0; row < 32; row++) {
             dst[row] = 0;
@@ -43,7 +43,7 @@ int func_02020e0c(int c, u16 *dst, int x, int colour)
     }
     if (width != 0) {
         bytes = (width + 1) >> 1;
-        src = data_ov000_022f67d8[c];
+        src = Ov000_gGlyphPixels[c];
         for (row = 0; row < 16; row++) {
             rows[1].word = 0;
             rows[0].word = 0;

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/text_print.h"
 
-extern u8 data_ov000_022f66d8[];   /* glyph widths in pixels, by character code */
+extern u8 Ov000_gGlyphWidths[];   /* glyph widths in pixels, by character code */
 
 int Text_GetPrintWidth(const void *text)
 {
@@ -12,7 +12,7 @@ int Text_GetPrintWidth(const void *text)
         if (width != 0) {
             width++;
         }
-        width += data_ov000_022f66d8[*p];
+        width += Ov000_gGlyphWidths[*p];
         p++;
     }
     return width;

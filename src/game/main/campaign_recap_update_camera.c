@@ -6,7 +6,7 @@ extern CampaignRecap *data_022a7ea4;
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
-void func_020fec98(CampaignRecap *recap, int x, int y, int z);
+void CampaignRecap_SetCamera(CampaignRecap *recap, int x, int y, int z);
 
 void CampaignRecap_UpdateCamera(CampaignRecapCameraTask *task)
 {
@@ -21,10 +21,10 @@ void CampaignRecap_UpdateCamera(CampaignRecapCameraTask *task)
         task->frames = 330;
         task->step++;
     case 1:
-        x = Math_Ease(0, recap->unk_50, recap->unk_5c, task->frame, task->frames);
-        y = Math_Ease(0, recap->unk_54, recap->unk_60, task->frame, task->frames);
-        z = Math_Ease(0, recap->unk_58, recap->unk_64, task->frame, task->frames);
-        func_020fec98(recap, x, y, z);
+        x = Math_Ease(0, recap->cameraStartX, recap->cameraEndX, task->frame, task->frames);
+        y = Math_Ease(0, recap->cameraStartY, recap->cameraEndY, task->frame, task->frames);
+        z = Math_Ease(0, recap->cameraStartZ, recap->cameraEndZ, task->frame, task->frames);
+        CampaignRecap_SetCamera(recap, x, y, z);
         if (task->frame <= task->frames) {
             task->frame++;
         }

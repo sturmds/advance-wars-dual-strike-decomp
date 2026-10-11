@@ -2945,7 +2945,7 @@ src/game/main/menus/map_preview_draw_upper_half.c:
     complete
     .text       start:0x02020aac end:0x02020e0c
 
-src/game/main/text/func_02020e0c.c:
+src/game/main/text/font_draw_glyph.c:
     .text       start:0x02020e0c end:0x02020f80
 
 src/game/main/text/text_printer_write_run.c:

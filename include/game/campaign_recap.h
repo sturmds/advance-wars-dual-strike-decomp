@@ -28,15 +28,15 @@ typedef struct CampaignRecap {
     struct Task *fadeTask2;
     struct Task *songFadeTask;         /* func_020fcb08 */
     int firstStep;                     /* step CampaignRecap_Update goes to after loading an entry; 3: wait 32 frames first */
-    int unk_44;                        /* scaled by 50 for unk_50 and unk_5c */
-    int unk_48;                        /* scaled by -50 for unk_54 and unk_60 */
+    int unk_44;                        /* scaled by 50 for cameraStartX and cameraEndX */
+    int unk_48;                        /* scaled by -50 for cameraStartY and cameraEndY */
     struct Task *unk_4c;               /* task of script data_0216a898 */
-    int unk_50;
-    int unk_54;
-    int unk_58;
-    int unk_5c;
-    int unk_60;
-    int unk_64;
+    int cameraStartX;                  /* camera position eased from start to end by CampaignRecap_UpdateCamera */
+    int cameraStartY;
+    int cameraStartZ;
+    int cameraEndX;
+    int cameraEndY;
+    int cameraEndZ;
     u8 pad_68[0x74 - 0x68];
     int index;                         /* current entry in unk_7c */
     u32 count;                         /* 28 */
@@ -56,7 +56,7 @@ typedef struct CampaignRecapTask {
 } CampaignRecapTask;
 
 /* The data_0216a898 task (CampaignRecap.unk_4c): moves the camera from
- * (unk_50, unk_54, unk_58) to (unk_5c, unk_60, unk_64) of data_022a7ea4. */
+ * CampaignRecap's cameraStart to cameraEnd. */
 typedef struct CampaignRecapCameraTask {
     u8 pad_00[0x34];
     u32 step;

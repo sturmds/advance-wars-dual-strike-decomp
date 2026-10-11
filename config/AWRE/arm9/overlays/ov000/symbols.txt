@@ -1068,8 +1068,8 @@ data_ov000_022f6688 kind:data(any) addr:0x022f6688 ambiguous
 data_ov000_022f669c kind:data(any) addr:0x022f669c ambiguous
 data_ov000_022f66b0 kind:data(any) addr:0x022f66b0 ambiguous
 data_ov000_022f66c4 kind:data(any) addr:0x022f66c4 ambiguous
-data_ov000_022f66d8 kind:data(any) addr:0x022f66d8 ambiguous
-data_ov000_022f67d8 kind:data(any) addr:0x022f67d8 ambiguous
+Ov000_gGlyphWidths kind:data(any) addr:0x022f66d8 ambiguous
+Ov000_gGlyphPixels kind:data(any) addr:0x022f67d8 ambiguous
 data_ov000_022f6bd8 kind:data(any) addr:0x022f6bd8
 gTextBanks kind:data(any) addr:0x022f6bf0
 data_ov000_022f6d78 kind:data(any) addr:0x022f6d78

@@ -6,7 +6,7 @@
 void Sprite_QueueAt(int list, int x, int y, const void *data, int unk08, int unk0a);
 void func_02001b94(int x, int y, int unk08, int unk0a, int list);
 int func_0206b608(int player);
-int func_0206b654(int slot);
+int VsSetup_GetPlayerOfSlot(int slot);
 BOOL Skills_AreDisabled(void);
 int BattleSetup_IsCursorOnCo(void);
 
@@ -21,7 +21,7 @@ extern u8 data_027c01dc;
 /* Queues the sprites of the Vs setup screen at the button positions of
  * VsSetup_AddMapAndCoButtons, on the screen of data_027c0288.unk_00: per
  * player slot a controller marker on each map button at y 24 (tile
- * func_0206b654(slot) * 4 for a human, 16 for the AI), then at y 80 the CO
+ * VsSetup_GetPlayerOfSlot(slot) * 4 for a human, 16 for the AI), then at y 80 the CO
  * frame and the front and back CO pictures. With skills on, four Force Rank
  * set tabs at y 144; the set of the CO under the cursor uses tiles 20 + set * 4,
  * the others 36 + set * 4. On the other screen, four sprites with skills on. */
@@ -38,7 +38,7 @@ void VsSetup_DrawButtonSprites(void)
     if (STATE->twoMaps == 0) {
         for (player = 0; player < MENU->setup.unk_2e3; player++) {
             if (MENU->setup.controllers[player][0] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, func_0206b654(player + 1) * 4);
+                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
                 Sprite_QueueAt(1, (func_0206b608(player) * 8 + 16) & 0x1ff, 24, &data_027c0040, 0, 16);
             }
@@ -46,12 +46,12 @@ void VsSetup_DrawButtonSprites(void)
     } else {
         for (player = 0; player < MENU->setup.unk_2e3; player++) {
             if (MENU->setup.controllers[player][0] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(0, (func_0206b608(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, func_0206b654(player + 1) * 4);
+                Sprite_QueueAt(0, (func_0206b608(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
                 Sprite_QueueAt(0, (func_0206b608(player) * 8 + 4) & 0x1ff, 24, &data_027c0040, 0, 16);
             }
             if (MENU->setup.controllers[player][1] != PLAYER_CONTROLLER_AI) {
-                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, func_0206b654(player + 1) * 4);
+                Sprite_QueueAt(1, (func_0206b608(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, VsSetup_GetPlayerOfSlot(player + 1) * 4);
             } else {
                 Sprite_QueueAt(1, (func_0206b608(player) * 8 + 28) & 0x1ff, 24, &data_027c0040, 0, 16);
             }

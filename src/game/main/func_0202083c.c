@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_02020e0c(const void *src, void *dst, u32 size);
+int Font_DrawGlyph(int c, u16 *dst, int x, int colour);
 
-void func_0202083c(const void *src, void *dst, u32 size)
+int func_0202083c(int c, u16 *dst, int x, int colour)
 {
-    func_02020e0c(src, dst, size);
+    return Font_DrawGlyph(c, dst, x, colour);
 }
