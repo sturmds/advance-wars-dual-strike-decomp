@@ -6,12 +6,12 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 int Unit_GetValuePerHp(int playerIndex, int unitType);
-int func_020b382c(MapUnit *unit);
+int AiBlackBoat_GetRepairPriority(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* TRUE when unit is a better Black Boat repair target than best (NULL: no
- * best yet). It must have a higher repair priority (func_020b382c); on a
+ * best yet). It must have a higher repair priority (AiBlackBoat_GetRepairPriority); on a
  * tie, a higher repair cost per HP. */
 BOOL AiBlackBoat_IsBetterRepairTarget(MapUnit *best, MapUnit *unit)
 {
@@ -21,8 +21,8 @@ BOOL AiBlackBoat_IsBetterRepairTarget(MapUnit *best, MapUnit *unit)
     if (best == NULL) {
         return TRUE;
     }
-    bestPriority = func_020b382c(best);
-    priority = func_020b382c(unit);
+    bestPriority = AiBlackBoat_GetRepairPriority(best);
+    priority = AiBlackBoat_GetRepairPriority(unit);
     if (bestPriority < priority) {
         return TRUE;
     }

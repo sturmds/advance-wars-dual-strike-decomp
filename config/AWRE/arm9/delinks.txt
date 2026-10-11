@@ -11558,7 +11558,8 @@ src/game/main/ai/ai_black_boat_is_better_repair_target.c:
     complete
     .text       start:0x020b377c end:0x020b382c
 
-src/game/main/ai/func_020b382c.c:
+src/game/main/ai/ai_black_boat_get_repair_priority.c:
+    complete
     .text       start:0x020b382c end:0x020b38c4
 
 src/game/main/ai/ai_sea_transport_wait_near_port.c:
