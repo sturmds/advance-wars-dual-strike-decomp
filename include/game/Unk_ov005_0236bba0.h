@@ -26,7 +26,7 @@ typedef struct Unk_ov005_0236bba0 {
     int button243Added;                       /* nonzero while the button with id 243 exists */
     int button244Added;                       /* nonzero while the button with id 244 exists */
     int selectedEntry;                  /* index of the entry whose button was selected last */
-    int unk_83c;
+    int cursorRow;                     /* row kept when the cursor moves left or right */
     int unk_840;
     int unk_844;
     int unk_848;

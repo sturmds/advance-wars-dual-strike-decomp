@@ -15,6 +15,6 @@ void Ov005_OnCoGridButtonSelect(MenuButton *button)
     work->cursor = entry;
     work->coId = func_ov005_02362bf0(work, entry);
     if ((gKeypad->repeat & (PAD_KEY_RIGHT | PAD_KEY_LEFT | PAD_KEY_UP | PAD_KEY_DOWN)) == 0) {
-        work->unk_38 = work->grid[work->cursor].row;
+        work->cursorRow = work->grid[work->cursor].row;
     }
 }

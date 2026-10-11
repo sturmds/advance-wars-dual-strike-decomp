@@ -12,7 +12,7 @@ extern Unk_ov005_0236bba8 *data_ov005_0236bba8;
  * wrapping at the edges. Left and right go back to the row kept in
  * unk_38. When the new cell cannot be selected, it walks down (or up)
  * the column, then on to the next column, until it finds one that can.
- * A cell's pad_0e holds its MenuButton id. */
+ * A cell's buttonId holds its MenuButton id. */
 void Ov005_MoveCoGridCursor(void)
 {
     u16 keys;
@@ -60,8 +60,8 @@ void Ov005_MoveCoGridCursor(void)
     }
     if (horizontal != 0) {
         col = work->grid[cursor].column;
-        if (work->unk_38 != -1) {
-            cursor = Ov005_FindCoGridCell(work, col, work->unk_38);
+        if (work->cursorRow != -1) {
+            cursor = Ov005_FindCoGridCell(work, col, work->cursorRow);
         }
         if (horizontal == 1) {
             if (col > 0) {
@@ -80,11 +80,11 @@ void Ov005_MoveCoGridCursor(void)
 
     if (func_ov005_023634b0(work, cursor)) {
         if (cursor != work->cursor) {
-            MenuButton_Select(work->grid[cursor].pad_0e);
+            MenuButton_Select(work->grid[cursor].buttonId);
         }
         work->cursor = cursor;
         if (vertical != 0) {
-            work->unk_38 = work->grid[cursor].row;
+            work->cursorRow = work->grid[cursor].row;
         }
         return;
     }
@@ -109,11 +109,11 @@ void Ov005_MoveCoGridCursor(void)
             /* the original repeats the block above here */
             if (func_ov005_023634b0(work, cursor)) {
                 if (cursor != work->cursor) {
-                    MenuButton_Select(work->grid[cursor].pad_0e);
+                    MenuButton_Select(work->grid[cursor].buttonId);
                 }
                 work->cursor = cursor;
                 if (vertical != 0) {
-                    work->unk_38 = work->grid[cursor].row;
+                    work->cursorRow = work->grid[cursor].row;
                 }
                 return;
             }

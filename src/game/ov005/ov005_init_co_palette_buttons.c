@@ -6,7 +6,7 @@ void Ov005_InitCoPaletteButtons(Ov005Task *task)
 {
     Unk_ov005_0236bba8 *work = task->work;
     int i;
-    CoPaletteButton *button = (CoPaletteButton *)work->unk_288;
+    CoPaletteButton *button = work->paletteButtons;
 
     for (i = 0; i < CO_PALETTE_BUTTONS; i++, button++) {
         button->buttonId = 0xe0 + i;

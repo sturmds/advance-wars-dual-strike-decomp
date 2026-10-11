@@ -16,7 +16,7 @@ void Ov005_AddCoPaletteButtons(Ov005Task *task)
     int i;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
-    CoPaletteButton *extra = (CoPaletteButton *)work->unk_288;
+    CoPaletteButton *extra = work->paletteButtons;
 
     for (i = 0; i < CO_PALETTE_BUTTONS; i++, extra++) {
         if (Co_GetRank(work->coId) >= 10 || i != 8) {
@@ -29,5 +29,5 @@ void Ov005_AddCoPaletteButtons(Ov005Task *task)
             Screen_SetCurrentGfx(saved0280);
         }
     }
-    MenuButton_Select(((CoPaletteButton *)work->unk_288)[work->unk_20c].buttonId);
+    MenuButton_Select(work->paletteButtons[work->unk_20c].buttonId);
 }

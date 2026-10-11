@@ -5,7 +5,7 @@
 
 /* CO picture screen work block (0x2f4 bytes) that func_ov005_02362618
  * allocates into Ov005Task.work and data_ov005_0236bba8. */
-/* One palette variant button, an entry of Unk_ov005_0236bba8.unk_288:
+/* One palette variant button, an entry of Unk_ov005_0236bba8.paletteButtons:
  * 8 in row 0, one more in row 1. */
 typedef struct CoPaletteButton {
     u8 pad_00[0x2];
@@ -30,7 +30,7 @@ typedef struct Ov005CoGridEntry {
     s16 column;
     s16 row;
     s16 available;                     /* 1 when func_02045830 accepts coId */
-    s16 pad_0e;                        /* MenuButton id of the cell, 0x80 + index */
+    s16 buttonId;                      /* MenuButton id of the cell, 0x80 + index */
 } Ov005CoGridEntry;
 
 #define OV005_CO_GRID_ENTRIES 28
@@ -48,7 +48,7 @@ typedef struct Unk_ov005_0236bba8 {
     int unk_2c;
     u32 cursor;                        /* grid cell index */
     u32 unk_34;
-    u32 unk_38;
+    u32 cursorRow;                     /* row kept when the cursor moves left or right; -1: none */
     Ov005CoGridEntry grid[OV005_CO_GRID_ENTRIES]; /* copy of data_ov005_0236ac90 */
     fx32 unk_1fc;
     fx32 unk_200;
@@ -61,7 +61,7 @@ typedef struct Unk_ov005_0236bba8 {
     void *unk_21c[9];
     int extraX[9];                     /* palette button x + 13 (Ov005_InitCoPaletteButtons) */
     int extraY[9];                     /* palette button y + 12 */
-    u8 unk_288[0x6c];                  /* copy of data_ov005_0236ac24 */
+    CoPaletteButton paletteButtons[CO_PALETTE_BUTTONS]; /* copy of data_ov005_0236ac24 */
 } Unk_ov005_0236bba8;
 
 #endif

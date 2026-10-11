@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bba0.h"
 
-int func_ov005_0235d4fc(Unk_ov005_0236bba0 *work, int entry);
-u8 func_ov005_0235d5bc(int entry);
-u8 func_ov005_0235d5cc(int entry);
+int Ov005_IsCoListEntryActive(Unk_ov005_0236bba0 *work, int entry);
+u8 Ov005_GetCoListEntryRow(int entry);
+u8 Ov005_GetCoListEntryColumn(int entry);
 void Ov005_GetCursorRanges(int column, int row, int *minColumn, int *maxColumn, int *minRow, int *maxRow);
 
 /* Moves *entry one step up (direction 1) or down (direction 2) within its
@@ -22,8 +22,8 @@ int Ov005_MoveCoListCursorVertical(Unk_ov005_0236bba0 *work, int *entry, int dir
         int minColumn;
         int maxColumn;
 
-        column = func_ov005_0235d5cc(row);
-        row = func_ov005_0235d5bc(row);
+        column = Ov005_GetCoListEntryColumn(row);
+        row = Ov005_GetCoListEntryRow(row);
 
         Ov005_GetCursorRanges(column, row, &minColumn, &maxColumn, &minRow, &maxRow);
         if (direction == 1) {
@@ -39,7 +39,7 @@ int Ov005_MoveCoListCursorVertical(Unk_ov005_0236bba0 *work, int *entry, int dir
                 *entry -= maxRow;
             }
         }
-        if (func_ov005_0235d4fc(work, *entry) != 0) {
+        if (Ov005_IsCoListEntryActive(work, *entry) != 0) {
             return 1;
         }
     }

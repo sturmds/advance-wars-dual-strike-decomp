@@ -2,9 +2,9 @@
 #include "game/Unk_ov005_0236bba0.h"
 
 int Ov005_FindCoListEntryAt(int column, int row);
-int func_ov005_0235d4fc(Unk_ov005_0236bba0 *work, int entry);
-u8 func_ov005_0235d5bc(int entry);
-u8 func_ov005_0235d5cc(int entry);
+int Ov005_IsCoListEntryActive(Unk_ov005_0236bba0 *work, int entry);
+u8 Ov005_GetCoListEntryRow(int entry);
+u8 Ov005_GetCoListEntryColumn(int entry);
 void Ov005_GetCursorRanges(int column, int row, int *minColumn, int *maxColumn, int *minRow, int *maxRow);
 
 /* Looks for an entry with a button in the column of *entry, trying the rows
@@ -24,8 +24,8 @@ int Ov005_FindCoListEntryNearRow(Unk_ov005_0236bba0 *work, int *entry)
     int minColumn;
     int maxColumn;
     start = *entry;
-    column = func_ov005_0235d5cc(start);
-    row = func_ov005_0235d5bc(start);
+    column = Ov005_GetCoListEntryColumn(start);
+    row = Ov005_GetCoListEntryRow(start);
 
     Ov005_GetCursorRanges(column, row, &minColumn, &maxColumn, &minRow, &maxRow);
     step = 2;
@@ -42,7 +42,7 @@ int Ov005_FindCoListEntryNearRow(Unk_ov005_0236bba0 *work, int *entry)
             step++;
         } while (candidate < lowest || candidate > highest);
         *entry = Ov005_FindCoListEntryAt(column, candidate);
-        if (func_ov005_0235d4fc(work, *entry) != 0) {
+        if (Ov005_IsCoListEntryActive(work, *entry) != 0) {
             return 1;
         }
     }

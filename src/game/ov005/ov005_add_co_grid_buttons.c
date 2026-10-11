@@ -16,15 +16,15 @@ void Ov005_AddCoGridButtons(Ov005Task *task)
 
     for (i = 0; i < OV005_CO_GRID_ENTRIES; i++, entry++) {
         if (entry->coId != -1 && entry->available != 0) {
-            entry->pad_0e = 0x80 + i;
+            entry->buttonId = 0x80 + i;
             saved0280 = data_027c0280;
             Screen_SetCurrentGfx(data_027c0288.unk_00);
             saved027c = data_027c027c;
             Screen_SetCurrent(data_027c0288.unk_00);
-            MenuButton_Add(entry->x - 8, entry->y - 8, data_ov005_0236abac, entry->pad_0e);
+            MenuButton_Add(entry->x - 8, entry->y - 8, data_ov005_0236abac, entry->buttonId);
             Screen_SetCurrent(saved027c);
             Screen_SetCurrentGfx(saved0280);
         }
     }
-    MenuButton_Select(work->grid[work->cursor].pad_0e);
+    MenuButton_Select(work->grid[work->cursor].buttonId);
 }

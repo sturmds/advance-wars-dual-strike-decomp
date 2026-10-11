@@ -7,15 +7,15 @@ int Ov005_FindCoListEntryAt(int column, int row);
 int Ov005_FindCoListEntryNearRow(Unk_ov005_0236bba0 *work, int *entry);
 int Ov005_MoveCoListCursorVertical(Unk_ov005_0236bba0 *work, int *entry, int direction);
 void Ov005_GetCursorRanges(int column, int row, int *minColumn, int *maxColumn, int *minRow, int *maxRow);
-int func_ov005_0235d4fc(Unk_ov005_0236bba0 *work, int entry);
-u8 func_ov005_0235d5bc(int entry);
-u8 func_ov005_0235d5cc(int entry);
+int Ov005_IsCoListEntryActive(Unk_ov005_0236bba0 *work, int entry);
+u8 Ov005_GetCoListEntryRow(int entry);
+u8 Ov005_GetCoListEntryColumn(int entry);
 
 extern Unk_ov005_0236bba0 *data_ov005_0236bba0;
 
 /* Moves the CO list cursor with the d-pad. Left and right move 11 entries
  * at a time (one column), wrapping at the ends, starting from the row in
- * work->unk_83c; if that entry has no button, a nearby row of the new column
+ * work->cursorRow; if that entry has no button, a nearby row of the new column
  * is tried, and then the next column. Up and down move within the column
  * and remember the new row. The button of the new entry is selected. */
 void Ov005_MoveCoListCursor(void)
@@ -49,11 +49,11 @@ void Ov005_MoveCoListCursor(void)
 
     found = 0;
     if (horizontal != 0) {
-        entry = Ov005_FindCoListEntryAt(func_ov005_0235d5cc(entry), work->unk_83c);
+        entry = Ov005_FindCoListEntryAt(Ov005_GetCoListEntryColumn(entry), work->cursorRow);
         for (tries = 0; tries < 2; tries++) {
             current = entry;
-            column = func_ov005_0235d5cc(current);
-            row = func_ov005_0235d5bc(current);
+            column = Ov005_GetCoListEntryColumn(current);
+            row = Ov005_GetCoListEntryRow(current);
             Ov005_GetCursorRanges(column, row, &minColumn, &maxColumn, &minRow, &maxRow);
             if (horizontal == 1) {
                 if (column > minColumn) {
@@ -68,14 +68,14 @@ void Ov005_MoveCoListCursor(void)
                     entry -= maxColumn * 11;
                 }
             }
-            if (func_ov005_0235d4fc(work, entry) != 0) {
+            if (Ov005_IsCoListEntryActive(work, entry) != 0) {
                 found = 1;
                 break;
             }
             /* the ranges are fetched again but not used */
             current = entry;
-            column = func_ov005_0235d5cc(current);
-            row = func_ov005_0235d5bc(current);
+            column = Ov005_GetCoListEntryColumn(current);
+            row = Ov005_GetCoListEntryRow(current);
             Ov005_GetCursorRanges(column, row, &minColumn, &maxColumn, &minRow, &maxRow);
             found = Ov005_FindCoListEntryNearRow(work, &entry);
             if (found != 0) {
@@ -84,7 +84,7 @@ void Ov005_MoveCoListCursor(void)
         }
     } else if (vertical != 0) {
         found = Ov005_MoveCoListCursorVertical(work, &entry, vertical);
-        work->unk_83c = func_ov005_0235d5bc(entry);
+        work->cursorRow = Ov005_GetCoListEntryRow(entry);
     }
 
     if (found == 0) {

@@ -17,7 +17,7 @@ void func_0202b6f8(u8 *dest);
 /* Defined with no parameters; this call passes the task in r0 anyway. */
 void Ov005_AddStateScreenButtons(Ov005Task *task);
 int Ov005_FindSavedCoListEntry(void);
-u8 func_ov005_0235d5bc(int entry);
+u8 Ov005_GetCoListEntryRow(int entry);
 void Ov005_AddCoListButtons(Ov005Task *task);
 void Wallpaper_LoadBothOnLayer3(int co);
 void ModeFont_Load(int tile, int paletteSlot);
@@ -149,7 +149,7 @@ void Ov005_SetUpCoListScreen(Ov005Task *task)
     work->unk_0c = 0;
     work->unk_10 = 0;
     work->selectedEntry = Ov005_FindSavedCoListEntry();
-    work->unk_83c = func_ov005_0235d5bc(work->selectedEntry);
+    work->cursorRow = Ov005_GetCoListEntryRow(work->selectedEntry);
     work->unk_840 = work->selectedEntry;
     Ov005_AddCoListButtons(task);
     work->unk_844 = work->selectedEntry;

@@ -70,7 +70,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
     int i;
 
     Mem_Copy32(data_ov005_0236ac90, work->grid, sizeof(work->grid));
-    Mem_Copy32(data_ov005_0236ac24, work->unk_288, sizeof(work->unk_288));
+    Mem_Copy32(data_ov005_0236ac24, work->paletteButtons, sizeof(work->paletteButtons));
     for (i = 0; i < OV005_CO_GRID_ENTRIES; i++) {
         if (work->grid[i].coId == -1) {
             work->grid[i].available = 0;
@@ -83,7 +83,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
 
     work->cursor = 0;
     work->unk_34 = 0;
-    work->unk_38 = 0;
+    work->cursorRow = 0;
     work->cursorCoId = func_ov005_02362bf0(work, work->cursor);
     work->coId = work->cursorCoId;
     work->unk_2c = Co_GetSavedPaletteVariant(work->coId);

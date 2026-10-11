@@ -7,12 +7,6 @@ int Co_GetRank(u32 co);
 
 extern Unk_ov005_0236bba8 *data_ov005_0236bba8;
 
-/* work->unk_288 read as CoPaletteButton[CO_PALETTE_BUTTONS]. The shared
- * header types unk_288 as bytes; indexing a cast of it adds the field
- * offset first and does not match. */
-#define PALETTE_BUTTON(work, i) \
-    (*(CoPaletteButton *)((u8 *)(work) + (i) * sizeof(CoPaletteButton) + ((u32)&((Unk_ov005_0236bba8 *)0)->unk_288)))
-
 /* Moves the cursor over the CO's palette variant buttons with the d-pad.
  * Left and right wrap around the 8 variants of row 0, and the last one
  * there is kept in unk_214. Down goes to the ninth variant (row 1), up
@@ -47,8 +41,8 @@ void Ov005_MoveCoPaletteCursor(void)
         vertical = 0;
     }
     variant = work->unk_20c;
-    col = PALETTE_BUTTON(work, variant).col;
-    row = PALETTE_BUTTON(work, variant).row;
+    col = work->paletteButtons[variant].col;
+    row = work->paletteButtons[variant].row;
 
     if (vertical == 0 && row == 0) {
         if (horizontal == 1) {
@@ -73,6 +67,6 @@ void Ov005_MoveCoPaletteCursor(void)
         variant = 8;
     }
 
-    MenuButton_Select(PALETTE_BUTTON(work, variant).buttonId);
+    MenuButton_Select(work->paletteButtons[variant].buttonId);
     work->unk_20c = variant;
 }
