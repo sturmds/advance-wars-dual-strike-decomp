@@ -6789,6 +6789,10 @@ src/game/main/menus/player_info_add_co_buttons.c:
     complete
     .text       start:0x0206ce94 end:0x0206cf50
 
+src/game/main/menus/player_info_on_co_selected.c:
+    complete
+    .text       start:0x0206cf50 end:0x0206cf98
+
 src/game/main/func_0206cf98.c:
     complete
     .text       start:0x0206cf98 end:0x0206cfbc
