@@ -2086,7 +2086,7 @@ func_0206f660 kind:function(arm,size=0x98) addr:0x0206f660
 func_0206f6f8 kind:function(arm,size=0xf4) addr:0x0206f6f8
 func_0206f7ec kind:function(arm,size=0x4) addr:0x0206f7ec
 func_0206f7f0 kind:function(arm,size=0x1c) addr:0x0206f7f0
-func_0206f80c kind:function(arm,size=0xa2c) addr:0x0206f80c
+PlayerInfo_Init kind:function(arm,size=0xa2c) addr:0x0206f80c
 func_02070238 kind:function(arm,size=0x18) addr:0x02070238
 TabList_RebuildButtons kind:function(arm,size=0x160) addr:0x02070250
 func_020703b0 kind:function(arm,size=0xbc) addr:0x020703b0
@@ -7352,8 +7352,8 @@ data_0215d3a8 kind:data(any) addr:0x0215d3a8
 data_0215d3d0 kind:data(any) addr:0x0215d3d0
 data_0215d400 kind:data(any) addr:0x0215d400
 data_0215d430 kind:data(any) addr:0x0215d430
-data_0215d478 kind:data(any) addr:0x0215d478
-data_0215d490 kind:data(any) addr:0x0215d490
+gPlayerInfoPath kind:data(any) addr:0x0215d478
+gPlayerInfoLangPath kind:data(any) addr:0x0215d490
 data_0215d4ac kind:data(any) addr:0x0215d4ac
 data_0215d4c4 kind:data(any) addr:0x0215d4c4
 data_0215d4ec kind:data(any) addr:0x0215d4ec
