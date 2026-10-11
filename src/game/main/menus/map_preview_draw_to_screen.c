@@ -5,7 +5,7 @@ extern u32 data_022a6b3c;
 
 void Palette_Load(const void *src, int offset, u32 size);
 void MapPreview_DrawCurrentMap(void *dst);
-void func_020d3dec(u16 *screen, int firstTile);
+void MapPreview_FillTileMap(u16 *screen, int firstTile);
 
 /* Like MapPreview_DrawToLayer, but fills the given screen map and draws the
  * preview with MapPreview_DrawCurrentMap. */
@@ -14,5 +14,5 @@ void MapPreview_DrawToScreen(u8 *charBase, u16 *screen, int firstTile, int palet
     data_022a6b3c = palette;
     Palette_Load(data_02149280, (u16)(palette << 5), 32);
     MapPreview_DrawCurrentMap(charBase + firstTile * 32);
-    func_020d3dec(screen, firstTile | (palette << 12));
+    MapPreview_FillTileMap(screen, firstTile | (palette << 12));
 }

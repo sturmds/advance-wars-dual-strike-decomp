@@ -14659,7 +14659,8 @@ src/game/main/menus/map_preview_draw_units.c:
     complete
     .text       start:0x020d3c44 end:0x020d3dec
 
-src/game/main/menus/func_020d3dec.c:
+src/game/main/menus/map_preview_fill_tile_map.c:
+    complete
     .text       start:0x020d3dec end:0x020d3e80
 
 src/game/main/menus/map_preview_draw_current_map.c:
