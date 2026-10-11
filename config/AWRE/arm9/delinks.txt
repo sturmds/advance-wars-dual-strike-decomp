@@ -4160,6 +4160,10 @@ src/game/main/func_0204b558.c:
     complete
     .text       start:0x0204b558 end:0x0204b570
 
+src/game/main/points_tally_count.c:
+    complete
+    .text       start:0x0204b850 end:0x0204b9ac
+
 src/game/main/func_0204c11c.c:
     complete
     .text       start:0x0204c11c end:0x0204c134
