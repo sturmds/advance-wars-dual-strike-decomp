@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/weather.h"
 
-void func_020d2ae4(int weather);
+void Weather_SetDaysIfChanged(int weather);
 WeatherTaskWork *ScriptSlot_Start(const void *descriptor, int arg);
 
 extern Unk_02080440 *data_027c027c;
@@ -18,7 +18,7 @@ void Weather_StartNext(void)
 {
     WeatherTaskWork *work;
 
-    func_020d2ae4(VIEW->nextWeather);
+    Weather_SetDaysIfChanged(VIEW->nextWeather);
     if (VIEW->weather == VIEW->nextWeather) {
         return;
     }

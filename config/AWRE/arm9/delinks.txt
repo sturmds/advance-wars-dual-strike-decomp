@@ -11730,6 +11730,10 @@ src/game/main/weather/weather_set.c:
     complete
     .text       start:0x020d2aa8 end:0x020d2ae4
 
+src/game/main/weather/weather_set_days_if_changed.c:
+    complete
+    .text       start:0x020d2ae4 end:0x020d2b4c
+
 src/game/main/weather/weather_set_days.c:
     complete
     .text       start:0x020d2b4c end:0x020d2bfc
