@@ -4768,6 +4768,10 @@ src/game/main/menus/campaign_map_callout_hold120.c:
     complete
     .text       start:0x0204ee74 end:0x0204eec0
 
+src/game/main/menus/campaign_map_callout_grow.c:
+    complete
+    .text       start:0x0204eec0 end:0x0204ef30
+
 src/game/main/func_0204ef30.c:
     complete
     .text       start:0x0204ef30 end:0x0204ef3c
