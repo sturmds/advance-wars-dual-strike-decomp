@@ -3836,6 +3836,10 @@ src/game/main/menus/co_exp_check_max_level.c:
     complete
     .text       start:0x0203153c end:0x020315d0
 
+src/game/main/menus/co_exp_check_level_10.c:
+    complete
+    .text       start:0x020315d0 end:0x02031664
+
 src/game/main/menus/menu_is_busy.c:
     complete
     .text       start:0x020316f8 end:0x0203175c
