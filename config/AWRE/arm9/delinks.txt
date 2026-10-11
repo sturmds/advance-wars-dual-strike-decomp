@@ -15241,6 +15241,10 @@ src/game/main/map/design_map_apply_record.c:
     complete
     .text       start:0x020d70cc end:0x020d70ec
 
+src/game/main/map/design_map_unpack_record.c:
+    complete
+    .text       start:0x020d70ec end:0x020d727c
+
 src/game/main/map/func_020d73d4.c:
     .text       start:0x020d73d4 end:0x020d76f0
 
