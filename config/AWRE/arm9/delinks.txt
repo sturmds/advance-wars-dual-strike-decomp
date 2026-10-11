@@ -7862,6 +7862,10 @@ src/game/main/func_020bb02c.c:
     complete
     .text       start:0x020bb02c end:0x020bb05c
 
+src/game/main/map/map_is_this_maps_turn.c:
+    complete
+    .text       start:0x020bb520 end:0x020bb728
+
 src/game/main/func_020bba44.c:
     complete
     .text       start:0x020bba44 end:0x020bba60
