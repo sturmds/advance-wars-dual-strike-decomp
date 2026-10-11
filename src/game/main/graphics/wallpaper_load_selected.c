@@ -14,7 +14,7 @@ u8 *File_Load(const char *path);
 void Mem_Free(void *res);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void FS_ChangeDir(const char *dir);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
@@ -31,7 +31,7 @@ extern const char *data_021595cc[];    /* "res_wall_default", "res_wall_cathy", 
 extern u16 data_0229c684[];            /* per wallpaper: offset of its tiles in the file */
 extern u16 data_021593fc[];            /* per wallpaper: offset of its tile map */
 extern u16 data_021593bc[];            /* per wallpaper: offset of its palette */
-extern const TaskScriptCmd data_0215939c[];
+extern const TaskScriptCmd gWallpaperTaskScript[];
 
 #define WALLPAPER_COUNT 31
 
@@ -42,7 +42,7 @@ extern const TaskScriptCmd data_0215939c[];
 
 /* Loads the wallpaper base onto layer 2 of both screens, then the
  * wallpaper picked in gPlayRecords.wallpaper onto layer 3 of the first screen
- * and copies it to the second. Starts the data_0215939c task on both. */
+ * and copies it to the second. Starts the gWallpaperTaskScript task on both. */
 void Wallpaper_LoadSelected(void)
 {
     u8 *res;
@@ -100,7 +100,7 @@ void Wallpaper_LoadSelected(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     Data_Unpack(res + data_0229c684[index], LAYER_CHARS(data_027c0280, data_027c0280->layer3Bg));
     Data_Unpack(res + data_021593fc[index], data_027c0280->layer3Map);
-    func_0210e138(res + data_021593bc[index], 0x200);
+    DC_FlushRange(res + data_021593bc[index], 0x200);
     func_0210c718();
     func_0210c698(res + data_021593bc[index], 0x6000, 0x200);
     func_0210c634();
@@ -127,9 +127,9 @@ void Wallpaper_LoadSelected(void)
     saved0280 = data_027c0280;
     saved027c = data_027c027c;
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    Task_Create(data_0215939c, TASK_LIST(3));
+    Task_Create(gWallpaperTaskScript, TASK_LIST(3));
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    Task_Create(data_0215939c, TASK_LIST(3));
+    Task_Create(gWallpaperTaskScript, TASK_LIST(3));
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

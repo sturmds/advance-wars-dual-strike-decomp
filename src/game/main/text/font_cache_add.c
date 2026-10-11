@@ -5,7 +5,7 @@ extern Unk_027c0280 *data_027c0280;
 
 int func_02124534(const char *a, const char *b);
 char *func_021246d4(char *dst, const char *src);
-u32 func_021247ac(const char *str);
+u32 strlen(const char *str);
 int Text_DrawStringToTiles(const char *str, u8 *tiles, int colour);
 
 /* Returns the cache entry of str drawn in colour, drawing it first if the
@@ -32,7 +32,7 @@ int FontCache_Add(const char *str, int colour)
         if (colour == font->cache[index].colour && func_02124534(names + pos, str) == 0) {
             return index;
         }
-        pos = pos + func_021247ac(names + pos) + 1;
+        pos = pos + strlen(names + pos) + 1;
         index++;
     }
     func_021246d4(names + pos, str);
@@ -44,6 +44,6 @@ int FontCache_Add(const char *str, int colour)
     font->cache[index].halfTiles = tiles >> 1;
     font->cache[index].colour = colour;
     font->digitEndTile += tiles;
-    names[pos + func_021247ac(str) + 1] = 1;
+    names[pos + strlen(str) + 1] = 1;
     return index;
 }

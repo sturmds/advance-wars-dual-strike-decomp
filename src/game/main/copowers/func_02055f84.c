@@ -12,7 +12,7 @@ void Palette_BlendWithColor(u16 *palette, u16 color, u8 palWeight, u8 colorWeigh
 void Palette_Flush(void);
 void Task_ResumeScript(Task *task);
 
-extern u8 data_0229fb90[];             /* palette rows 3-5 as loaded, from res_tagchange */
+extern u8 gTagChangePalette[];             /* palette rows 3-5 as loaded, from res_tagchange */
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 /* Slide offset kept in the task's free bytes at 0x2c. */
@@ -42,7 +42,7 @@ extern u8 data_0229fb90[];             /* palette rows 3-5 as loaded, from res_t
     data_027c0280->dispCnt |= 0x1000
 
 #define WHITEN_PALETTES(palWeight, colorWeight)                                \
-    Mem_Copy32(data_0229fb90, data_027c0280->paletteBuffer + 0x60, 0x60);      \
+    Mem_Copy32(gTagChangePalette, data_027c0280->paletteBuffer + 0x60, 0x60);      \
     for (i = 0; i < 3; i++) {                                                  \
         Palette_BlendWithColor((u16 *)(data_027c0280->paletteBuffer + (i + 3) * 32), 0x7fff, \
                                palWeight, colorWeight);                        \
@@ -54,7 +54,7 @@ extern u8 data_0229fb90[];             /* palette rows 3-5 as loaded, from res_t
  * TagBreak_DrawSidePiece slide apart (eased over SLIDE_FRAMES frames) and task->unk_58
  * text sprites are redrawn at y 80. Frames 1-16 raise eva with the frame,
  * fading BG0 in. Frames 17-25 blend palette rows 3-5 (saved in
- * data_0229fb90) toward white on both screens; frame 26 makes them fully
+ * gTagChangePalette) toward white on both screens; frame 26 makes them fully
  * white and resumes the script.
  * WIP (98%): the first Mem_Copy32 and both blend loops differ in register
  * choice and scheduling, the same diff as func_020593c8. */

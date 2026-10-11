@@ -1245,7 +1245,7 @@ src/game/main/graphics/gfx_queue_add_kind2.c:
     complete
     .text       start:0x0200c998 end:0x0200ca18
 
-src/game/main/func_0200ca18.c:
+src/game/main/graphics/gfx_queue_add_kind1.c:
     complete
     .text       start:0x0200ca18 end:0x0200ca98
 
@@ -2189,7 +2189,7 @@ src/game/main/battle_save_get_record_id.c:
     complete
     .text       start:0x02019330 end:0x0201939c
 
-src/game/main/func_0201939c.c:
+src/game/main/battle_save_set_record_flag.c:
     complete
     .text       start:0x0201939c end:0x020193bc
 
@@ -4671,7 +4671,7 @@ src/game/main/win_quote_print.c:
     complete
     .text       start:0x02032f4c end:0x02033088
 
-src/game/main/func_02033088.c:
+src/game/main/win_quote_init.c:
     complete
     .text       start:0x02033088 end:0x0203339c
 
@@ -5097,7 +5097,7 @@ src/game/main/result_stats_init.c:
     complete
     .text       start:0x0203bf50 end:0x0203c6d8
 
-src/game/main/func_0203c6d8.c:
+src/game/main/graphics/palette_copy_block.c:
     complete
     .text       start:0x0203c6d8 end:0x0203c6fc
 
@@ -5429,7 +5429,7 @@ src/game/main/menus/survival_select_move_cursor.c:
     complete
     .text       start:0x02045ac0 end:0x02045b44
 
-src/game/main/func_02045b44.c:
+src/game/main/menus/survival_select_leave.c:
     complete
     .text       start:0x02045b44 end:0x02045b7c
 
@@ -5833,15 +5833,15 @@ src/game/main/func_0204cb34.c:
     complete
     .text       start:0x0204cb34 end:0x0204cb40
 
-src/game/main/func_0204cb40.c:
+src/game/main/caption_font_draw_char.c:
     complete
     .text       start:0x0204cb40 end:0x0204cc0c
 
-src/game/main/func_0204cc0c.c:
+src/game/main/caption_font_text_width.c:
     complete
     .text       start:0x0204cc0c end:0x0204cc4c
 
-src/game/main/func_0204cc4c.c:
+src/game/main/caption_font_char_width.c:
     complete
     .text       start:0x0204cc4c end:0x0204cc54
 

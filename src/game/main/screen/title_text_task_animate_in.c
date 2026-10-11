@@ -14,7 +14,7 @@ void Screen_SetCurrentGfx(void *state);
 const u8 *Text_Get(u32 textId);
 int Text_GetStringWidth(const u8 *str);
 int func_02039f20(const u8 *str);
-int func_021247ac(const u8 *str);       /* string length */
+int strlen(const u8 *str);       /* string length */
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 int func_02039da0(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 int HwDiv32(int num, int den);
@@ -78,7 +78,7 @@ void TitleTextTask_AnimateIn(Task *task)
     Screen_SetCurrent(data_027c0288.unk_00);
     if (y > -16) {
         x = 128 - (func_02039f20(Text_Get(TEXT_UPPER)) >> 1);
-        for (i = 0; i < func_021247ac(Text_Get(TEXT_UPPER)); i++) {
+        for (i = 0; i < strlen(Text_Get(TEXT_UPPER)); i++) {
             x += SpriteFont_QueueChar(Text_Get(TEXT_UPPER)[i], x & 0x1ff, y & 0xff, 0x1000, 0, 6);
         }
     }
@@ -92,13 +92,13 @@ void TitleTextTask_AnimateIn(Task *task)
     /* y on the sub screen, 192 lines above the main screen. */
     if (y + 192 < 192) {
         x = 128 - (func_02039f20(Text_Get(TEXT_UPPER)) >> 1);
-        for (i = 0; i < func_021247ac(Text_Get(TEXT_UPPER)); i++) {
+        for (i = 0; i < strlen(Text_Get(TEXT_UPPER)); i++) {
             x += SpriteFont_QueueChar(Text_Get(TEXT_UPPER)[i], x & 0x1ff, (y + 192) & 0xff, 0x1000, 0, 6);
         }
     }
     x = 128 - (Text_GetStringWidth(Text_Get(TEXT_LOWER)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TEXT_LOWER)); i++) {
-        start = Math_Ease(0, 0, 24, i, func_021247ac(Text_Get(TEXT_LOWER)) - 1);
+    for (i = 0; i < strlen(Text_Get(TEXT_LOWER)); i++) {
+        start = Math_Ease(0, 0, 24, i, strlen(Text_Get(TEXT_LOWER)) - 1);
         if (FRAME(task) >= start) {
             if (FRAME(task) < start + 8) {
                 scale = Math_Ease(0, 512, 256, FRAME(task) - start, 8);

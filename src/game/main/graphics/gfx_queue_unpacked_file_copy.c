@@ -4,7 +4,7 @@ void *File_Load(const char *path);
 void *Mem_Alloc(s32 size);
 void Mem_Free(void *ptr);
 void Data_Unpack(const void *src, void *dst);
-void func_0210e138(void *data, u32 size);
+void DC_FlushRange(void *data, u32 size);
 void GfxQueue_AddKind3(const void *src, void *dst, u32 size);
 
 /* Loads a compressed file, unpacks it (the top 24 bits of its first word
@@ -17,7 +17,7 @@ void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest)
     void *unpacked = Mem_Alloc(size);
 
     Data_Unpack(packed, unpacked);
-    func_0210e138(unpacked, size);
+    DC_FlushRange(unpacked, size);
     GfxQueue_AddKind3(unpacked, dest, size);
     Mem_Free(packed);
 }

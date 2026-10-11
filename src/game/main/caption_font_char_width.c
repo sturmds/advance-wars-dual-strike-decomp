@@ -1,6 +1,6 @@
 #include "types.h"
 
-int func_0204cc4c(void)
+int CaptionFont_CharWidth(void)
 {
     return 32;
 }

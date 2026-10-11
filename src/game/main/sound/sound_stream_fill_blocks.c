@@ -8,7 +8,7 @@ extern u8 *data_022a8aa4;              /* buffer that ADPCM data is read into */
 BOOL func_021126ac(FSFile *file, s32 offset, int origin);
 void func_0210f52c(void *dest, int value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
-void func_0210e138(const void *start, u32 size);
+void DC_FlushRange(const void *start, u32 size);
 void func_021084b0(SoundStream *stream);
 
 /* IMA ADPCM: decode one 4-bit code with a channel's state and store the
@@ -218,7 +218,7 @@ void func_02107c28(SoundStreamRequest *request)
                          stream->callbackArg);
     }
     for (ch = 0; ch < request->channelCount; ch++) {
-        func_0210e138(request->blocks[ch], request->blockSize);
+        DC_FlushRange(request->blocks[ch], request->blockSize);
     }
     if (request->status == STRM_CALLBACK_FIRST_FILL) {
         stream->unk_114 = 1;

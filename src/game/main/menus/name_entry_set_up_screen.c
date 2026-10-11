@@ -33,7 +33,7 @@ extern u8 data_0216ac74[];
 extern char data_0216b338[];
 extern char data_0216b344[];
 extern u8 data_022a7ed0[];
-extern u8 data_022a7eac[];
+extern u8 gNameEntryStartText[];
 
 /* Needed to match: an inline call evaluates its arguments (the layer
  * number, the map pointer) before the body reads data_027c0280 again. */
@@ -227,6 +227,6 @@ void NameEntry_SetUpScreen(NameEntryTask *task)
             }
         }
     }
-    Mem_Copy32(data_022a7ed0, data_022a7eac, 34);
+    Mem_Copy32(data_022a7ed0, gNameEntryStartText, 34);
     task->step = 0;
 }

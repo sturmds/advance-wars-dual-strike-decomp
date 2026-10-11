@@ -61,7 +61,7 @@ void func_0210c874(const void *src, u32 offset, u32 size);
 void func_0210c8e8(void);
 void func_0210c930(void);
 void func_0210cb04(void);
-void func_0210e138(const void *start, u32 size);
+void DC_FlushRange(const void *start, u32 size);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -106,15 +106,15 @@ void func_0202f0d8(MainMenuTask *task)
     func_0210cb04();
     Data_Unpack(res, (void *)0x06800000);
     func_0210c930();
-    func_0210e138(res + 0x5c78, 32);
+    DC_FlushRange(res + 0x5c78, 32);
     func_0210c8e8();
     func_0210c874(res + 0x5c78, 0x240, 32);
     func_0210c81c();
     Mem_Free(res);
 
     res = File_Load(data_02159c08);
-    func_0210e138(res + 0x1dc, 0x120);
-    func_0210e138(res + 0x2fc, 0x120);
+    DC_FlushRange(res + 0x1dc, 0x120);
+    DC_FlushRange(res + 0x2fc, 0x120);
     func_0210c8e8();
     func_0210c874(res + 0x1dc, 0, 0x120);
     func_0210c874(res + 0x2fc, 0x120, 0x120);
@@ -148,7 +148,7 @@ void func_0202f0d8(MainMenuTask *task)
 
     res = Mem_Alloc(32);
     File_ReadAt(res, data_02159c20, 32, 32);
-    func_0210e138(res, 32);
+    DC_FlushRange(res, 32);
     func_0210c8e8();
     func_0210c874(res, 0x260, 32);
     func_0210c81c();

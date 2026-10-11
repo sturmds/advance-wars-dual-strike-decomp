@@ -5,7 +5,7 @@ extern Unk_027c0280 *data_027c0280;
 
 int FontCache_Add(const char *str, int colour);
 void Text_PutGlyphTiles(u16 *map, int tile, int count);
-u32 func_021247ac(const char *str);
+u32 strlen(const char *str);
 
 /* Draws str in colour through the font cache and writes its tiles into the
  * screen map at map, with tileBase added to the cache's tile numbers.
@@ -22,5 +22,5 @@ u32 Text_WriteCachedString(u16 *map, const char *str, int tileBase, int colour)
     }
     tile = tileBase + font->cache[index].tile;
     Text_PutGlyphTiles(map, tile, font->cache[index].halfTiles);
-    return func_021247ac(str);
+    return strlen(str);
 }

@@ -9,7 +9,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void *File_Load(const char *path);
 void Mem_Free(void *ptr);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);  /* guess: copies to texture palette VRAM */
 void func_0210c81c(void);
@@ -41,7 +41,7 @@ void Ov005Screen_Init3dAndEntries(Unk_ov005_0236bb90 *work)
     FS_ChangeDir(data_ov005_0236988c);
     File_UnpackTo(work->buffer_0010, data_ov005_023698cc);
     palette = File_Load(data_ov005_023698bc);
-    func_0210e138(palette, 32);
+    DC_FlushRange(palette, 32);
     func_0210c8e8();
     func_0210c874(palette, 0, 32);
     func_0210c81c();

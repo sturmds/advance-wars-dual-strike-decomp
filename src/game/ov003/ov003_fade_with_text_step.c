@@ -7,7 +7,7 @@
 const void *Text_Get(u32 textId);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
-int func_021247ac(const char *str);
+int strlen(const char *str);
 int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetterAlt(int ch, u16 x, int y);
 
@@ -28,7 +28,7 @@ void Ov003_FadeWithTextStep(Unk_ov003_0235dd38 *obj)
     }
     if (data_02160abc->unk_0a == data_ov003_02364928->slots[data_ov003_02364928->currentSlot].row) {
         x = 128 - (Ov003_GetTextWidth(Text_Get(0x7d000023)) >> 1);
-        for (i = 0; i < func_021247ac(Text_Get(0x7d000023)); i++) {
+        for (i = 0; i < strlen(Text_Get(0x7d000023)); i++) {
             x += Ov003_DrawLetterAlt(((const u8 *)Text_Get(0x7d000023))[i], x & 0x1ff, 80);
         }
         brightness = Math_Ease(0, 0, 16, obj->frame, 48);

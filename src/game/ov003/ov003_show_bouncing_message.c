@@ -8,7 +8,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
+int strlen(const u8 *str);
 int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetter(u8 ch, u16 x, u16 y);
 void Task_ResumeScript(Ov003MessageTask *task);
@@ -131,7 +131,7 @@ void Ov003_ShowBouncingMessage(Ov003MessageTask *task)
             break;
         }
     }
-    for (i = 0; i < func_021247ac(Text_Get(MESSAGE_TEXT)); i++) {
+    for (i = 0; i < strlen(Text_Get(MESSAGE_TEXT)); i++) {
         x += Ov003_DrawLetter(Text_Get(MESSAGE_TEXT)[i], x & 0x1ff, (offset + 80) & 0xff);
     }
     if (task->frames == MESSAGE_FRAMES) {

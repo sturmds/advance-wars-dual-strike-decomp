@@ -8,7 +8,7 @@ void Task_ResumeByScript(void *script);
 
 /* Resumes the tasks of data_0215ad6c, drops the selectable buttons, turns
  * touch input off and starts the data_0215ad3c script in task list 3. */
-void func_02045b44(void)
+void SurvivalSelect_Leave(void)
 {
     Task_ResumeByScript((void *)data_0215ad6c);
     MenuButtons_RemoveSelectable();

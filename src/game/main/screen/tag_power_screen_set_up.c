@@ -24,7 +24,7 @@ void Co_LoadArmyGraphics(int coId, int tile, int army);
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
-int BreakText_LoadChangeFont(const void *text, int arg1, int arg2);
+u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette);
 void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 
@@ -40,7 +40,7 @@ extern char data_0215c63c[];           /* "/ohashi/res_tagbreak_mix" */
 extern char data_0215c658[];           /* "/ohashi/res_tagbreak" */
 extern char data_0215c670[];           /* "/ohashi/res_tagbreak_head" */
 extern char data_0215c68c[];           /* "/ohashi/res_tagchange" */
-extern u8 data_0229fb90[];             /* copy of the res_tagchange palette */
+extern u8 gTagChangePalette[];             /* copy of the res_tagchange palette */
 
 /* The frame counter shares its slot with Task.unk_4c. */
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
@@ -302,7 +302,7 @@ void TagPowerScreen_SetUp(Task *task)
     Data_Unpack(file, BG_CHARS(data_027c0280->layer0Bg));
     Data_Unpack(file + 0x28f0, data_027c0280->layer0Map);
     Palette_Load(file + 0x2cd0, 0x60, 0x60);
-    Mem_Copy32(file + 0x2cd0, data_0229fb90, 0x60);
+    Mem_Copy32(file + 0x2cd0, gTagChangePalette, 0x60);
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer0Map[i] += 0x3000;
     }

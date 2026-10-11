@@ -5,7 +5,7 @@
 void *Mem_Alloc(u32 size);
 void Mem_Free(void *block);
 void Mem_Fill32(u32 value, void *dst, u32 size);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_02028808(void);
 void Co_LoadTexture(int coId, int tileOffset, int paletteOffset);
 void Gfx_LoadTexPalette(void *palette, int start, int offset);
@@ -23,7 +23,7 @@ void func_ov005_02363014(Ov005Task *task)
     blank = Mem_Alloc(32);
 
     Mem_Fill32(0, blank, 32);
-    func_0210e138(blank, 32);
+    DC_FlushRange(blank, 32);
     func_02028808();
     loaded = 0;
     i = 0;

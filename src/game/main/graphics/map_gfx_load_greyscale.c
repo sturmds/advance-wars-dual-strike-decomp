@@ -6,7 +6,7 @@ void func_020f8d40(int variant, int style);         /* guess: loads the map grap
 u16 Rgb_ToGrey(u16 red, u16 green, u16 blue);
 u16 *File_Load(const char *path);
 void Mem_Free(void *block);
-void func_0210e138(const void *start, u32 size);
+void DC_FlushRange(const void *start, u32 size);
 void func_0210c8e8(void);
 void func_0210c874(const void *src, u32 offset, u32 size);
 void func_0210c81c(void);
@@ -28,7 +28,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
     for (i = 0; i < 256; i++) {
         palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5, (palette[i] & 0x7c00) >> 10);
     }
-    func_0210e138(palette, 256 * sizeof(u16));
+    DC_FlushRange(palette, 256 * sizeof(u16));
     func_0210c8e8();
     func_0210c874(palette, gfx->texPaletteOffset, 256 * sizeof(u16));
     func_0210c81c();
@@ -38,7 +38,7 @@ void MapGfx_LoadGreyscale(int variant, int style)
     for (i = 0; i < 96; i++) {
         palette[i] = Rgb_ToGrey(palette[i] & 0x1f, (palette[i] & 0x3e0) >> 5, (palette[i] & 0x7c00) >> 10);
     }
-    func_0210e138(palette, 96 * sizeof(u16));
+    DC_FlushRange(palette, 96 * sizeof(u16));
     func_0210c8e8();
     func_0210c874(palette, gfx->texPaletteOffset, 96 * sizeof(u16));
     func_0210c81c();

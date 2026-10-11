@@ -11,9 +11,9 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_0215937c[];
-extern u8 data_0215939c[];
+extern u8 gWallpaperTaskScript[];
 
-/* Destroys the tasks started from data_0215939c and data_0215937c (the
+/* Destroys the tasks started from gWallpaperTaskScript and data_0215937c (the
  * wallpaper task of Wallpaper_LoadBoth) on both screens. */
 void Wallpaper_DestroyTasks(void)
 {
@@ -21,10 +21,10 @@ void Wallpaper_DestroyTasks(void)
     Unk_02080440 *saved027c = data_027c027c;
 
     Screen_SetCurrentBoth(data_027c0288.unk_00);
-    Task_DestroyByScript(data_0215939c);
+    Task_DestroyByScript(gWallpaperTaskScript);
     Task_DestroyByScript(data_0215937c);
     Screen_SetCurrentBoth(data_027c0288.unk_04);
-    Task_DestroyByScript(data_0215939c);
+    Task_DestroyByScript(gWallpaperTaskScript);
     Task_DestroyByScript(data_0215937c);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);

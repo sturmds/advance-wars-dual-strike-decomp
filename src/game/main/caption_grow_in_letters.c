@@ -3,9 +3,9 @@
 #include "game/screen_other_map.h"
 
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
-int func_0204cc0c(const u8 *str);
-int func_0204cb40(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
+int strlen(const u8 *str);
+int CaptionFont_TextWidth(const u8 *str);
+int CaptionFont_DrawChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 int HwDiv32(int num, int den);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
@@ -40,23 +40,23 @@ void Caption_GrowInLetters(CaptionTask *task)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    x = 128 - (func_0204cc0c(Text_Get(CAPTION_TEXT)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(CAPTION_TEXT)); i++) {
+    x = 128 - (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
+    for (i = 0; i < strlen(Text_Get(CAPTION_TEXT)); i++) {
         if (task->frame >= i * 6) {
             if (task->frame < i * 6 + 16) {
                 scaleX = Math_Ease(0, 2, 256, task->frame - i * 6, 16);
                 scaleY = Math_Ease(0, 512, 256, task->frame - i * 6, 16);
                 Oam_SetAffineParams(i + 1, DIV_SCALE(COS0 << 4, scaleX), DIV_SCALE(-SIN0 << 4, scaleY),
                                     DIV_SCALE(SIN0 << 4, scaleX), DIV_SCALE(COS0 << 4, scaleY));
-                x += func_0204cb40(Text_Get(CAPTION_TEXT)[i], (x & 0x1ff) | ((i + 1) << 9), 80 | 0x300, 0, 0, 1);
+                x += CaptionFont_DrawChar(Text_Get(CAPTION_TEXT)[i], (x & 0x1ff) | ((i + 1) << 9), 80 | 0x300, 0, 0, 1);
             } else {
-                x += func_0204cb40(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, 80, 0, 0, 1);
+                x += CaptionFont_DrawChar(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, 80, 0, 0, 1);
             }
         }
     }
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
-    if (task->frame == func_021247ac(Text_Get(CAPTION_TEXT)) * 6 + 16) {
+    if (task->frame == strlen(Text_Get(CAPTION_TEXT)) * 6 + 16) {
         task->frame = 0;
         Task_ResumeScript(task);
     }

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_02088d04.h"
 
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
@@ -18,12 +18,12 @@ extern Unk_027c0288 data_027c0288;
 void BgExtPalette_Load(const void *src, u32 offset, u32 size, u32 slot)
 {
     if (data_027c027c == data_027c0288.unk_00) {
-        func_0210e138(src, size);
+        DC_FlushRange(src, size);
         func_0210c718();
         func_0210c698(src, offset + (slot << 13), size);
         func_0210c634();
     } else {
-        func_0210e138(src, size);
+        DC_FlushRange(src, size);
         func_0210c610();
         func_0210c59c(src, offset + (slot << 13), size);
         func_0210c550();

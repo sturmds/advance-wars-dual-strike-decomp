@@ -3,9 +3,9 @@
 #include "game/screen_other_map.h"
 
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
-int func_0204cc0c(const u8 *str);
-int func_0204cb40(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
+int strlen(const u8 *str);
+int CaptionFont_TextWidth(const u8 *str);
+int CaptionFont_DrawChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
 int func_0204cd00(void);
@@ -29,9 +29,9 @@ void Caption_SlideUp(CaptionTask *task)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     if (y > -16) {
-        x = 128 - (func_0204cc0c(Text_Get(CAPTION_TEXT)) >> 1);
-        for (i = 0; i < func_021247ac(Text_Get(CAPTION_TEXT)); i++) {
-            x += func_0204cb40(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, y & 0xff, 0, 0, 1);
+        x = 128 - (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
+        for (i = 0; i < strlen(Text_Get(CAPTION_TEXT)); i++) {
+            x += CaptionFont_DrawChar(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, y & 0xff, 0, 0, 1);
         }
     }
     Screen_SetCurrent(savedState);
@@ -42,9 +42,9 @@ void Caption_SlideUp(CaptionTask *task)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     if (y + 192 < 192) {
-        x = 128 - (func_0204cc0c(Text_Get(CAPTION_TEXT)) >> 1);
-        for (i = 0; i < func_021247ac(Text_Get(CAPTION_TEXT)); i++) {
-            x += func_0204cb40(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, (y + 192) & 0xff, 0, 0, 1);
+        x = 128 - (CaptionFont_TextWidth(Text_Get(CAPTION_TEXT)) >> 1);
+        for (i = 0; i < strlen(Text_Get(CAPTION_TEXT)); i++) {
+            x += CaptionFont_DrawChar(Text_Get(CAPTION_TEXT)[i], x & 0x1ff, (y + 192) & 0xff, 0, 0, 1);
         }
     }
     Screen_SetCurrent(savedState);

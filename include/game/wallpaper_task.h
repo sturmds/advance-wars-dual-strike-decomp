@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* The task of script data_0215939c, which Wallpaper_LoadSelected starts on
+/* The task of script gWallpaperTaskScript, which Wallpaper_LoadSelected starts on
  * each screen: it scrolls the wallpaper layers and blends between them.
  * The first 0x2a bytes belong to the task system (Task_Create). */
 typedef struct WallpaperTask {

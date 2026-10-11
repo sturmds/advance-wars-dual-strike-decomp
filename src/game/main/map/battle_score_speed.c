@@ -5,7 +5,7 @@
 BOOL Player1Team_HasPlayerInGame(void);
 BOOL Player_IsInGame(u8 player);
 int Campaign_IsHardMode(void);
-s32 func_0212911c(s32 numerator, s32 denominator); /* _s32_div_f, signed division */
+s32 _s32_div_f(s32 numerator, s32 denominator); /* _s32_div_f, signed division */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -42,5 +42,5 @@ int BattleScore_Speed(int player)
     if (STATE->day >= par * 4) {
         return 0;
     }
-    return 100 - func_0212911c((STATE->day - par) * 100, par * 3);
+    return 100 - _s32_div_f((STATE->day - par) * 100, par * 3);
 }

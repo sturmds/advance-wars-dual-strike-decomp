@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov005_0236bb90.h"
 
-u32 func_021247ac(const char *str);
+u32 strlen(const char *str);
 
 #define OV005_MENU_ITEMS 6
 
@@ -56,7 +56,7 @@ Ov005Menu *Ov005_LoadCreditsPage(Unk_ov005_0236bb90 *work, int menuIndex)
         }
         if (item->kind != 0) {
             text = item->text;
-            length = func_021247ac(text);
+            length = strlen(text);
 
             work->entriesA[slot].kind = item->kind;
             work->entriesA[slot].id = 1;

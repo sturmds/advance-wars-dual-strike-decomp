@@ -13,7 +13,7 @@ void Palette_BlendWithColor(u16 *palette, u16 color, u8 palWeight, u8 colorWeigh
 void Palette_Flush(void);
 void Task_ResumeScript(Task *task);
 
-extern u8 data_0229fb90[];
+extern u8 gTagChangePalette[];
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 
@@ -39,7 +39,7 @@ extern u8 data_0229fb90[];
     data_027c0280->dispCnt |= 0x1000
 
 #define WHITEN_PALETTES(palWeight, colorWeight)                                \
-    Mem_Copy32(data_0229fb90, data_027c0280->paletteBuffer + 0x60, 0x60);      \
+    Mem_Copy32(gTagChangePalette, data_027c0280->paletteBuffer + 0x60, 0x60);      \
     for (i = 0; i < 3; i++) {                                                  \
         Palette_BlendWithColor((u16 *)(data_027c0280->paletteBuffer + (i + 3) * 32), 0x7fff, \
                                palWeight, colorWeight);                        \
@@ -49,7 +49,7 @@ extern u8 data_0229fb90[];
 /* Script task step. Frame 0 plays sound effect 0xbd and sets both screens to
  * alpha-blend BG0 over BG1-BG3 and OBJ (BG0 not visible yet). Frames 1-16
  * raise eva with the frame, fading BG0 in. Frames 17-25 blend palette rows
- * 3-5 (saved in data_0229fb90) toward white on both screens, more each
+ * 3-5 (saved in gTagChangePalette) toward white on both screens, more each
  * frame; frame 26 makes them fully white and resumes the script. Every frame
  * redraws task->unk_58 sprites at y 48.
  * WIP: the first Mem_Copy32 and both blend loops differ in scheduling. */

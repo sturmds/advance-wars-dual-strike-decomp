@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
+int strlen(const u8 *str);
 int func_02039f20(const u8 *str);
 int Text_GetStringWidth(const u8 *str);
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
@@ -35,11 +35,11 @@ void CombatResult_Draw(void)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     x = 128 - (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
+    for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
         x += SpriteFont_QueueChar(Text_Get(TWO_LINE_CAPTION_TEXT_A)[i], x & 0x1ff, 80, 0, 0, 0);
     }
     x = 128 - (Text_GetStringWidth(Text_Get(TWO_LINE_CAPTION_TEXT_B)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_B)); i++) {
+    for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_B)); i++) {
         x += func_02039da0(Text_Get(TWO_LINE_CAPTION_TEXT_B)[i], x & 0x1ff, 72, 0, 0, 0);
     }
     Screen_SetCurrent(savedState);

@@ -8,7 +8,7 @@ extern u32 data_0229eaec;
 
 void func_02019920(void);
 u8 func_020193bc(int recordId);
-void func_0201939c(int recordId, int value);
+void BattleSave_SetRecordFlag(int recordId, int value);
 void DesignMap_SaveToSlot(int slot, void *map, int unk); /* the definition takes two arguments; this call also passes 1 in r2 */
 void BattleSave_Pack(u8 flag);
 void Save_WriteRecord(u8 recordId, void *buffer, int size);
@@ -38,7 +38,7 @@ void BattleSave_Save(int recordId, int flag)
     }
     func_02019920();
     if (func_020193bc(recordId) == 0) {
-        func_0201939c(recordId, 1);
+        BattleSave_SetRecordFlag(recordId, 1);
     }
 
     savedGfx = data_027c0280;

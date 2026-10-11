@@ -28,7 +28,7 @@ extern Unk_027c0288 data_027c0288;
  * unk_64 of data_022a7ab8, plus a second CO when the record has one.
  * Layer 1 gets scroll Y -168 and screen size 2. */
 
-void func_02033088(Task *task)
+void WinQuote_Init(Task *task)
 {
     Unk_027c0280 *savedGfx;
     Unk_02080440 *saved;

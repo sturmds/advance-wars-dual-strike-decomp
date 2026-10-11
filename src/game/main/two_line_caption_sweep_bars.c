@@ -5,7 +5,7 @@
 extern u8 data_027c0058[];
 
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
+int strlen(const u8 *str);
 int func_02039f20(const u8 *str);
 int Text_GetStringWidth(const u8 *str);
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
@@ -41,11 +41,11 @@ void TwoLineCaption_SweepBars(CaptionTask *task)
     Sprite_QueueAt(6, (right - sweep) & 0x1ff, 105, data_027c0058, 0x1000, 0x332);
     Sprite_QueueAt(6, (right - sweep) & 0x1ff, 107, data_027c0058, 0x1000, 0x332);
     x = 128 - (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
+    for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
         x += SpriteFont_QueueChar(Text_Get(TWO_LINE_CAPTION_TEXT_A)[i], x & 0x1ff, 80, 0x1000, 0, 7);
     }
     x = 128 - (Text_GetStringWidth(Text_Get(TWO_LINE_CAPTION_TEXT_B)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_B)); i++) {
+    for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_B)); i++) {
         x += func_02039da0(Text_Get(TWO_LINE_CAPTION_TEXT_B)[i], x & 0x1ff, 72, 0x1000, 0, 7);
     }
     Screen_SetCurrent(savedState);

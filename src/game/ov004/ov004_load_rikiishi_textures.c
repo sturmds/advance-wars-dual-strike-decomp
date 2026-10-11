@@ -3,7 +3,7 @@
 void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void File_ReadTo(void *dest, const char *fileName);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210cb04(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM, between begin and end calls */
 void func_0210c930(void);
@@ -34,14 +34,14 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     FS_ChangeDir(gRikiishiDir);
 
     File_UnpackTo(buffer, gRikiishiFile0a4);
-    func_0210e138(buffer, 0x8000);
+    DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0, 0x8000);
     func_0210c930();
 
     File_UnpackTo(buffer, gRikiishiFile0a6);
     File_UnpackTo(buffer + 0x4000, gRikiishiFile0a7);
-    func_0210e138(buffer, 0x8000);
+    DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0x8000, 0x8000);
     func_0210c930();
@@ -53,7 +53,7 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     File_UnpackTo(buffer + 0x4000, gRikiishiFile0ae);
     File_UnpackTo(buffer + 0x5000, gRikiishiFile0af);
     File_UnpackTo(buffer + 0x6000, gRikiishiFile0b0);
-    func_0210e138(buffer, 0x8000);
+    DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0x10000, 0x8000);
     func_0210c930();
@@ -61,7 +61,7 @@ void Ov004_LoadRikiishiTextures(void *state)  /* state is not used */
     File_ReadTo(buffer, gRikiishiFile0a5);
     File_ReadTo(buffer + 0xa0, gRikiishiFile0a8);
     File_ReadTo(buffer + 0xc0, gRikiishiFile0b1);
-    func_0210e138(buffer, 0xe0);
+    DC_FlushRange(buffer, 0xe0);
     func_0210c8e8();
     func_0210c874(buffer, 0, 0xe0);
     func_0210c81c();

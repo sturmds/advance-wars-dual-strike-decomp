@@ -11,7 +11,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void File_ReadTo(void *dest, const char *fileName);
 void Mem_Fill32(u32 value, void *dst, u32 size);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210cb04(void);
 void func_0210c9a0(const void *src, u32 offset, u32 size);  /* guess: copies to texture VRAM */
 void func_0210c930(void);
@@ -150,13 +150,13 @@ void Ov004Task_InitBlendedScene(Ov004Task *task)
     FS_ChangeDir(data_ov004_022bf0dc);
     buffer = state->buffer;
     File_UnpackTo(buffer, data_ov004_022bf0e8);
-    func_0210e138(buffer, 0x8000);
+    DC_FlushRange(buffer, 0x8000);
     func_0210cb04();
     func_0210c9a0(buffer, 0, 0x8000);
     func_0210c930();
     File_ReadTo(buffer, data_ov004_022bf0ec);
     Mem_Fill32(-1, buffer + 0x200, 0x200);
-    func_0210e138(buffer, 0x400);
+    DC_FlushRange(buffer, 0x400);
     func_0210c8e8();
     func_0210c874(buffer, 0, 0x400);
     func_0210c81c();

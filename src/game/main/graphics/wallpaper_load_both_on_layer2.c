@@ -10,7 +10,7 @@ u8 *File_Load(const char *path);
 void Mem_Free(void *res);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void FS_ChangeDir(const char *dir);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
@@ -55,7 +55,7 @@ void Wallpaper_LoadBothOnLayer2(u32 index)
     Screen_SetCurrent(data_027c0288.unk_00);
     Data_Unpack(res + data_0229c684[index], LAYER_CHARS(data_027c0280, data_027c0280->layer2Bg));
     Data_Unpack(res + data_021593fc[index], data_027c0280->layer2Map);
-    func_0210e138(res + data_021593bc[index], 0x200);
+    DC_FlushRange(res + data_021593bc[index], 0x200);
     func_0210c718();
     func_0210c698(res + data_021593bc[index], 0x4000, 0x200);
     func_0210c634();

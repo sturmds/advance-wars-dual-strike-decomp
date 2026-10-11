@@ -7,7 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0288 data_027c0288;
 
 int MainLoop_GetFrameCount(void);
-void func_0200ca18(const void *src, void *dst, u32 size);
+void GfxQueue_AddKind1(const void *src, void *dst, u32 size);
 
 /* Parts 0-2 of an animation frame are 0xc00 bytes, part 3 is 0xd80. */
 #define QUEUE_PART(frame, part)                         \
@@ -61,7 +61,7 @@ int MapAnim_QueueFramePart(void)
         case 70: QUEUE_PART(1, 3); break;
         }
         if (size != 0) {
-            func_0200ca18(src, dst, size);
+            GfxQueue_AddKind1(src, dst, size);
         }
     }
     return size;

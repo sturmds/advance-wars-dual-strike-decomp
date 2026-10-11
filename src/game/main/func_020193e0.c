@@ -8,7 +8,7 @@ extern u8 data_02290724;
 extern u8 data_02290725;
 
 /* Returns the address of the one-byte value for index 1 to 6, or NULL. Callers
- * func_0201939c and func_020193bc store and load it; what it counts is unknown. */
+ * BattleSave_SetRecordFlag and func_020193bc store and load it; what it counts is unknown. */
 u8 *func_020193e0(int index)
 {
     switch (index) {

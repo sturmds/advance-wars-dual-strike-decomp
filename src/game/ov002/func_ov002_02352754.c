@@ -14,7 +14,7 @@ void func_0210c930(void);              /* guess: undoes func_0210cb04 */
 void func_0210c8e8(void);
 void func_0210c81c(void);
 void File_ReadTo(void *dest, const char *path);
-void func_0210e138(void *start, u32 size);
+void DC_FlushRange(void *start, u32 size);
 void func_0210c874(const void *src, u32 offset, u32 size);
 
 extern char data_ov002_023600e4[];
@@ -224,7 +224,7 @@ void func_ov002_02352754(void)
                 | ((((colour & 0x3e0) >> 5) + 31) >> 1) << 5
                 | (((colour & 31) + 31) >> 1);
         }
-        func_0210e138(menu->battle.unk_410, sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
+        DC_FlushRange(menu->battle.unk_410, sizeof(menu->battle.unk_410) + sizeof(menu->battle.unk_450));
         isFirst = side == 0 ? TRUE : FALSE;
         func_0210c874(menu->battle.unk_450, (isFirst ? 0 : 2) * 32, 64);
         func_0210c874(menu->battle.unk_410, (isFirst ? 4 : 6) * 32, 64);

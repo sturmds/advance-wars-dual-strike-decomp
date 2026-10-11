@@ -8,7 +8,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 const u8 *Text_Get(u32 textId);
 void Task_ResumeScript(void *task);
-int func_021247ac(const u8 *str);  /* string length */
+int strlen(const u8 *str);  /* string length */
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);  /* sets OBJ affine matrix index */
 int Ov003_DrawLetterAlt(int ch, u16 attr1, u16 attr0);  /* queues one letter, returns its width */
 int Ov003_GetTextWidth(const u8 *str);  /* text width in pixels */
@@ -74,7 +74,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
     }
 
     x = 128 - (Ov003_GetTextWidth(Text_Get(TEXT_BANNER_TOP)) >> 1);
-    for (top = 0; top < func_021247ac(Text_Get(TEXT_BANNER_TOP)); top++) {
+    for (top = 0; top < strlen(Text_Get(TEXT_BANNER_TOP)); top++) {
         if (FRAME < top * LETTER_DELAY) {
             continue;
         }
@@ -87,7 +87,7 @@ void Ov003_UpdateBannerText(Unk_ov003_0235dd38 *task)
 
     /* the bottom line's letters come after the top line's */
     x = 128 - (Ov003_GetTextWidth(Text_Get(TEXT_BANNER_BOTTOM)) >> 1);
-    for (bottom = 0; bottom < func_021247ac(Text_Get(TEXT_BANNER_BOTTOM)); bottom++) {
+    for (bottom = 0; bottom < strlen(Text_Get(TEXT_BANNER_BOTTOM)); bottom++) {
         if (FRAME < (top + bottom) * LETTER_DELAY) {
             continue;
         }

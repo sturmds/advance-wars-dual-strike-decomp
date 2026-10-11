@@ -41,7 +41,7 @@ extern char data_0215c658[];           /* "/ohashi/res_tagbreak" */
 extern char data_0215c670[];           /* "/ohashi/res_tagbreak_head" */
 extern char data_0215c68c[];           /* "/ohashi/res_tagchange" */
 extern u8 data_0229fb70[];
-extern u8 data_0229fb90[];
+extern u8 gTagChangePalette[];
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 #define PLAYER (&GAME->players[GAME->currentPlayer])
@@ -223,7 +223,7 @@ loaded:
     Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
     Data_Unpack(res + 0x28f0, data_027c0280->layer0Map);
     Palette_Load(res + 0x2cd0, 0x60, 0x60);
-    Mem_Copy32(res + 0x2cd0, data_0229fb90, 0x60);
+    Mem_Copy32(res + 0x2cd0, gTagChangePalette, 0x60);
     for (i = 0; i < 0x300; i++) {
         data_027c0280->layer0Map[i] += 0x3000;
     }

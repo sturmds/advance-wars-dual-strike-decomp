@@ -7,7 +7,7 @@ void Data_Unpack(const void *src, void *dest);
 u8 *File_Load(const char *path);
 void Mem_Free(void *res);
 void FS_ChangeDir(const char *dir);
-void func_0210e138(const void *start, u32 size);  /* guess: flushes the data cache for the range */
+void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
 void func_0210c698(const void *src, u32 offset, u32 size);
 void func_0210c634(void);                          /* guess: ends the load */
@@ -40,7 +40,7 @@ void Wallpaper_LoadOnLayer3(u32 index)
     res = File_Load(data_021595cc[index]);
     Data_Unpack(res + data_0229c684[index], data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer3Bg].charBase << 14));
     Data_Unpack(res + data_021593fc[index], data_027c0280->layer3Map);
-    func_0210e138(res + data_021593bc[index], 0x200);
+    DC_FlushRange(res + data_021593bc[index], 0x200);
     if (data_027c027c == data_027c0288.unk_00) {
         func_0210c718();
         func_0210c698(res + data_021593bc[index], 0x6000, 0x200);

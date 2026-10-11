@@ -6,7 +6,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
+int strlen(const u8 *str);
 int func_02039f20(const u8 *str);
 int SpriteFont_QueueChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list);
 void Task_ResumeScript(CaptionTask *task);
@@ -38,7 +38,7 @@ void TwoLineCaption_GrowInLetters(CaptionTask *task)
     savedState = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     x = 128 - (func_02039f20(Text_Get(TWO_LINE_CAPTION_TEXT_A)) >> 1);
-    for (i = 0; i < func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
+    for (i = 0; i < strlen(Text_Get(TWO_LINE_CAPTION_TEXT_A)); i++) {
         if (task->frame < i * 6) {
             continue;
         }
@@ -64,7 +64,7 @@ void TwoLineCaption_GrowInLetters(CaptionTask *task)
     }
     Screen_SetCurrent(savedState);
     Screen_SetCurrentGfx(savedGfx);
-    if (task->frame == func_021247ac(Text_Get(TWO_LINE_CAPTION_TEXT_A)) * 6 + 16) {
+    if (task->frame == strlen(Text_Get(TWO_LINE_CAPTION_TEXT_A)) * 6 + 16) {
         task->frame = 0;
         Task_ResumeScript(task);
     }

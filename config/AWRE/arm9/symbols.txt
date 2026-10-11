@@ -353,7 +353,7 @@ Camera_Set kind:function(arm,size=0xac) addr:0x0200c7ec
 GfxQueue_AddKind4 kind:function(arm,size=0x80) addr:0x0200c898
 GfxQueue_AddKind3 kind:function(arm,size=0x80) addr:0x0200c918
 GfxQueue_AddKind2 kind:function(arm,size=0x80) addr:0x0200c998
-func_0200ca18 kind:function(arm,size=0x80) addr:0x0200ca18
+GfxQueue_AddKind1 kind:function(arm,size=0x80) addr:0x0200ca18
 func_0200ca98 kind:function(arm,size=0x60) addr:0x0200ca98
 func_0200caf8 kind:function(arm,size=0x140) addr:0x0200caf8
 func_0200cc38 kind:function(arm,size=0x74) addr:0x0200cc38
@@ -608,7 +608,7 @@ Save_PackAndWriteProgress kind:function(arm,size=0x38) addr:0x02018f48
 BattleSave_Restore kind:function(arm,size=0x1ac) addr:0x02018f80
 BattleSave_Save kind:function(arm,size=0x204) addr:0x0201912c
 BattleSave_GetRecordId kind:function(arm,size=0x6c) addr:0x02019330
-func_0201939c kind:function(arm,size=0x20) addr:0x0201939c
+BattleSave_SetRecordFlag kind:function(arm,size=0x20) addr:0x0201939c
 func_020193bc kind:function(arm,size=0x24) addr:0x020193bc
 func_020193e0 kind:function(arm,size=0x78) addr:0x020193e0
 BattleSave_ClearRecordFlag kind:function(arm,size=0x2c) addr:0x02019458
@@ -1172,12 +1172,12 @@ ModeFont_ShowTextOnScreen kind:function(arm,size=0x8c) addr:0x0202a9d4
 ModeFont_StartTextTask kind:function(arm,size=0x148) addr:0x0202aa60
 ModeFont_Load kind:function(arm,size=0x6c) addr:0x0202aba8
 ModeFont_LoadHere kind:function(arm,size=0xa8) addr:0x0202ac14
-func_0202acbc kind:function(arm,size=0xc8) addr:0x0202acbc
+ModeFontTask_DrawPlain kind:function(arm,size=0xc8) addr:0x0202acbc
 ModeFontTask_GrowIn kind:function(arm,size=0x224) addr:0x0202ad84
 ModeFontTask_Draw kind:function(arm,size=0x150) addr:0x0202afa8
 ModeFontTask_GrowInFramed kind:function(arm,size=0x2d0) addr:0x0202b0f8
 ModeFontTask_SlideIn kind:function(arm,size=0x1c8) addr:0x0202b3c8
-func_0202b590 kind:function(arm,size=0xc4) addr:0x0202b590
+ModeFontTask_InitLetterStarts kind:function(arm,size=0xc4) addr:0x0202b590
 func_0202b654 kind:function(arm,size=0x38) addr:0x0202b654
 TpIcon3_LoadTo kind:function(arm,size=0x6c) addr:0x0202b68c
 TpIcon2_LoadTo kind:function(arm,size=0x6c) addr:0x0202b6f8
@@ -1312,7 +1312,7 @@ WinQuote_WaitKeys kind:function(arm,size=0x120) addr:0x02032b40
 WinQuote_WaitText kind:function(arm,size=0x11c) addr:0x02032c60
 WinQuote_SlideIn kind:function(arm,size=0x1d0) addr:0x02032d7c
 WinQuote_Print kind:function(arm,size=0x13c) addr:0x02032f4c
-func_02033088 kind:function(arm,size=0x314) addr:0x02033088
+WinQuote_Init kind:function(arm,size=0x314) addr:0x02033088
 CoExp_SlideStep kind:function(arm,size=0xb8) addr:0x0203339c
 CoExp_WaitForConfirm kind:function(arm,size=0x60) addr:0x02033454
 CoExp_LevelEventsStep kind:function(arm,size=0x8c) addr:0x020334b4
@@ -1437,7 +1437,7 @@ func_0203be58 kind:function(arm,size=0x70) addr:0x0203be58
 ResultStats_QueuePlayerSprite kind:function(arm,size=0x64) addr:0x0203bec8
 func_0203bf2c kind:function(arm,size=0x24) addr:0x0203bf2c
 ResultStats_Init kind:function(arm,size=0x788) addr:0x0203bf50
-func_0203c6d8 kind:function(arm,size=0x24) addr:0x0203c6d8
+Palette_CopyBlock kind:function(arm,size=0x24) addr:0x0203c6d8
 func_0203c6fc kind:function(arm,size=0xb0) addr:0x0203c6fc
 func_0203c7ac kind:function(arm,size=0xb0) addr:0x0203c7ac
 func_0203c85c kind:function(arm,size=0x1cc) addr:0x0203c85c
@@ -1563,7 +1563,7 @@ func_020459cc kind:function(arm,size=0x24) addr:0x020459cc
 SurvivalSelect_PickMap kind:function(arm,size=0xac) addr:0x020459f0
 func_02045a9c kind:function(arm,size=0x24) addr:0x02045a9c
 SurvivalSelect_MoveCursorOnKeys kind:function(arm,size=0x84) addr:0x02045ac0
-func_02045b44 kind:function(arm,size=0x38) addr:0x02045b44
+SurvivalSelect_Leave kind:function(arm,size=0x38) addr:0x02045b44
 SurvivalSelect_Draw kind:function(arm,size=0x4d8) addr:0x02045b7c
 SurvivalSelect_DrawPageCount kind:function(arm,size=0xd8) addr:0x02046054
 SurvivalSelect_CancelOnKey kind:function(arm,size=0x44) addr:0x0204612c
@@ -1677,9 +1677,9 @@ Caption_SweepBars kind:function(arm,size=0x218) addr:0x0204c3fc
 Caption_SlideUp kind:function(arm,size=0x23c) addr:0x0204c614
 Caption_GrowInLetters kind:function(arm,size=0x2e4) addr:0x0204c850
 func_0204cb34 kind:function(arm,size=0xc) addr:0x0204cb34
-func_0204cb40 kind:function(arm,size=0xcc) addr:0x0204cb40
-func_0204cc0c kind:function(arm,size=0x40) addr:0x0204cc0c
-func_0204cc4c kind:function(arm,size=0x8) addr:0x0204cc4c
+CaptionFont_DrawChar kind:function(arm,size=0xcc) addr:0x0204cb40
+CaptionFont_TextWidth kind:function(arm,size=0x40) addr:0x0204cc0c
+CaptionFont_CharWidth kind:function(arm,size=0x8) addr:0x0204cc4c
 func_0204cc54 kind:function(arm,size=0x34) addr:0x0204cc54
 func_0204cc88 kind:function(arm,size=0x38) addr:0x0204cc88
 func_0204ccc0 kind:function(arm,size=0x28) addr:0x0204ccc0
@@ -1867,10 +1867,10 @@ func_0205b2e4 kind:function(arm,size=0xa4) addr:0x0205b2e4
 func_0205b388 kind:function(arm,size=0x74) addr:0x0205b388
 func_0205b3fc kind:function(arm,size=0xa4) addr:0x0205b3fc
 func_0205b4a0 kind:function(arm,size=0x1f8) addr:0x0205b4a0
-func_0205b698 kind:function(arm,size=0x38) addr:0x0205b698
+SparkBurst_Start kind:function(arm,size=0x38) addr:0x0205b698
 SparkBurst_Update kind:function(arm,size=0x8a8) addr:0x0205b6d0
-func_0205bf78 kind:function(arm,size=0x40) addr:0x0205bf78
-func_0205bfb8 kind:function(arm,size=0x5c) addr:0x0205bfb8
+SparkBurst_Wait kind:function(arm,size=0x40) addr:0x0205bf78
+SparkBurst_Init kind:function(arm,size=0x5c) addr:0x0205bfb8
 func_0205c014 kind:function(arm,size=0x18) addr:0x0205c014
 func_0205c02c kind:function(arm,size=0x70) addr:0x0205c02c
 func_0205c09c kind:function(arm,size=0xd0) addr:0x0205c09c
@@ -5375,7 +5375,7 @@ func_0210e0c0 kind:function(arm,size=0x14) addr:0x0210e0c0
 func_0210e0d4 kind:function(arm,size=0x2c) addr:0x0210e0d4
 func_0210e100 kind:function(arm,size=0x1c) addr:0x0210e100
 func_0210e11c kind:function(arm,size=0x1c) addr:0x0210e11c
-func_0210e138 kind:function(arm,size=0x1c) addr:0x0210e138
+DC_FlushRange kind:function(arm,size=0x1c) addr:0x0210e138
 func_0210e154 kind:function(arm,size=0xc) addr:0x0210e154
 func_0210e160 kind:function(arm,size=0xc) addr:0x0210e160
 func_0210e16c kind:function(arm,size=0x1c) addr:0x0210e16c
@@ -5897,7 +5897,7 @@ func_021244f8 kind:function(arm,size=0x3c) addr:0x021244f8
 func_02124534 kind:function(arm,size=0x12c) addr:0x02124534
 func_02124660 kind:function(arm,size=0x74) addr:0x02124660
 func_021246d4 kind:function(arm,size=0xd8) addr:0x021246d4
-func_021247ac kind:function(arm,size=0x1c) addr:0x021247ac
+strlen kind:function(arm,size=0x1c) addr:0x021247ac
 func_021247c8 kind:function(arm,size=0x28) addr:0x021247c8
 func_021247f0 kind:function(arm,size=0x24) addr:0x021247f0
 func_02124814 kind:function(arm,size=0xc0) addr:0x02124814
@@ -5932,7 +5932,7 @@ _fsub kind:function(arm,size=0x448) addr:0x02128acc
 func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
 .L_02128f20 kind:label(arm) addr:0x02128f20
 func_02128f6c kind:function(arm,size=0x1b0) addr:0x02128f6c
-func_0212911c kind:function(arm,size=0x20c) addr:0x0212911c
+_s32_div_f kind:function(arm,size=0x20c) addr:0x0212911c
 _u32_div_f kind:function(arm,size=0x1e4) addr:0x02129328
 .L_02129330 kind:label(arm) addr:0x02129330
 func_0212950c kind:function(arm,size=0x34) addr:0x0212950c
@@ -7035,7 +7035,7 @@ data_02159340 kind:data(any) addr:0x02159340
 data_02159354 kind:data(any) addr:0x02159354
 data_02159368 kind:data(any) addr:0x02159368
 data_0215937c kind:data(any) addr:0x0215937c
-data_0215939c kind:data(any) addr:0x0215939c
+gWallpaperTaskScript kind:data(any) addr:0x0215939c
 data_021593bc kind:data(any) addr:0x021593bc
 data_021593fc kind:data(any) addr:0x021593fc
 data_0215943c kind:data(any) addr:0x0215943c
@@ -8846,7 +8846,7 @@ data_0229f330 kind:bss addr:0x0229f330
 data_0229fb30 kind:bss addr:0x0229fb30
 data_0229fb50 kind:bss addr:0x0229fb50
 data_0229fb70 kind:bss addr:0x0229fb70
-data_0229fb90 kind:bss addr:0x0229fb90
+gTagChangePalette kind:bss addr:0x0229fb90
 data_0229ff30 kind:bss addr:0x0229ff30
 data_022a0030 kind:bss addr:0x022a0030
 data_022a020c kind:bss addr:0x022a020c
@@ -8910,7 +8910,7 @@ data_022a7e72 kind:bss addr:0x022a7e72
 data_022a7e88 kind:bss addr:0x022a7e88
 data_022a7ea4 kind:bss addr:0x022a7ea4
 data_022a7ea8 kind:bss addr:0x022a7ea8
-data_022a7eac kind:bss addr:0x022a7eac
+gNameEntryStartText kind:bss addr:0x022a7eac
 data_022a7ed0 kind:bss addr:0x022a7ed0
 gGameFlagsLow kind:bss addr:0x022a7ef4
 data_022a7ef8 kind:bss addr:0x022a7ef8

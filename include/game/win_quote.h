@@ -6,7 +6,7 @@
 #include "game/Unk_022a7a9c.h"
 
 /* The win quote screen, a task script with its steps at 0x0215a0bc-0x0215a0dc:
- * func_02033088 loads the COs of result record task->unk_64,
+ * WinQuote_Init loads the COs of result record task->unk_64,
  * WinQuote_SlideIn slides them in and prints the quote, WinQuote_WaitText
  * and WinQuote_WaitKeys wait. */
 
@@ -20,7 +20,7 @@ void Sprite_QueueDefaultTile(int x, int y, int attr, int tile, int list);
  * count in the low halfword. */
 #define WIN_QUOTE_FRAME(task) (*(s16 *)&(task)->unk_4c)
 
-/* Draws the CO sprites that func_02033088 loaded: the front CO, plus the
+/* Draws the CO sprites that WinQuote_Init loaded: the front CO, plus the
  * back CO when the record has a tag partner. */
 static inline void WinQuote_DrawCos(Task *task)
 {

@@ -6,7 +6,7 @@ BOOL Player1Team_HasPlayerInGame(void);
 BOOL Player_IsInGame(u8 player);
 int Player_CountUnitsBuilt(int player);
 int Player_CountUnitsLost(int player);
-s32 func_0212911c(s32 numerator, s32 denominator); /* _s32_div_f, signed division */
+s32 _s32_div_f(s32 numerator, s32 denominator); /* _s32_div_f, signed division */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -55,7 +55,7 @@ int BattleScore_Technique(int player)
     if (built < lost) {
         return 0;
     }
-    score = bonus + 100 - func_0212911c(lost * 100, built);
+    score = bonus + 100 - _s32_div_f(lost * 100, built);
     if (score >= 100) {
         return 100;
     }

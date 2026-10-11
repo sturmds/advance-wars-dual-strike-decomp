@@ -24,7 +24,7 @@ void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
 void IconBank_LoadPalette(int bank, int paletteSlot);
-void func_0203c6d8(int block, u8 *dest); /* copies 0x100 bytes of palette block `block` to dest */
+void Palette_CopyBlock(int block, u8 *dest); /* copies 0x100 bytes of palette block `block` to dest */
 void func_0200208c(int coId, void *dest, int paletteSlot, int player);
 void Co_UnpackPicture(int coId, int firstTile);
 const void *Terrain_GetPalette(int id, int army);
@@ -148,11 +148,11 @@ void ResultStats_Init(Task *task)
     /* CO pictures: front CO in picture 2 * i, tag partner in 2 * i + 1,
      * 12 tiles each from tile 174 (palette 18 + picture). */
     SWITCH_TO(SECOND_MAP);
-    func_0203c6d8(6, data_027c0280->objVram + 0x10c0);
-    func_0203c6d8(14, data_027c0280->objVram + 0x11c0);
-    func_0203c6d8(10, data_027c0280->objVram + 0x12c0);
-    func_0203c6d8(11, data_027c0280->objVram + 0x13c0);
-    func_0203c6d8(22, data_027c0280->objVram + 0x14c0);
+    Palette_CopyBlock(6, data_027c0280->objVram + 0x10c0);
+    Palette_CopyBlock(14, data_027c0280->objVram + 0x11c0);
+    Palette_CopyBlock(10, data_027c0280->objVram + 0x12c0);
+    Palette_CopyBlock(11, data_027c0280->objVram + 0x13c0);
+    Palette_CopyBlock(22, data_027c0280->objVram + 0x14c0);
     for (i = 0; i < task->unk_6a; i++) {
         func_0200208c(ROW(i + 1).unk_00, data_027c0280->objVram + ((i * 2 * 12 + 174) << 5), i * 2 + 18, i + 1);
         Co_UnpackPicture(ROW(i + 1).unk_00 & 0x7f, i * 2 * 12 + 0x10e);

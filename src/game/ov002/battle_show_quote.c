@@ -14,7 +14,7 @@ const char *File_LocalizePath(const char *path);
 void Mem_Free(void *block);
 u32 Battle_PickHappyQuote(int side);
 u32 Battle_PickAngryQuote(int side);
-s32 func_0212911c(s32 num, s32 den);
+s32 _s32_div_f(s32 num, s32 den);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 void func_01ff8c84(int a);
 void Gfx_RequestLayerCopy(int a);
@@ -58,7 +58,7 @@ void Battle_ShowQuote(void)
         hpLost = Ov002_gBattleScene->sides[i].hpBefore - Ov002_gBattleScene->sides[i].hpAfter;
         /* Needed to match: the frame count is written out twice, not kept
          * in a local. The drain takes 20 frames plus one per 5 HP lost. */
-        gMenuState.battle.hpStep[i] = func_0212911c(hpLost << 16, hpLost / 5 + 20);
+        gMenuState.battle.hpStep[i] = _s32_div_f(hpLost << 16, hpLost / 5 + 20);
         gMenuState.battle.unk_1008[i] = 0;
         if (i != Ov002_gBattleScene->attackerSide
             || (Ov002_gBattleScene->sides[(i + 1) & 1].hpAfter != 0

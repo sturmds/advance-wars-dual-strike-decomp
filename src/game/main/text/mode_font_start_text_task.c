@@ -2,7 +2,7 @@
 #include "game/task.h"
 #include "game/mode_font_task.h"
 
-u32 func_021247ac(const char *str);
+u32 strlen(const char *str);
 
 extern const TaskScriptCmd data_02159830[];
 
@@ -16,7 +16,7 @@ void ModeFont_StartTextTask(const char *text, int tile, int paletteSlot, int unk
     u16 width;
 
     task = (ModeFontTask *)Task_Create(data_02159830, TASK_LIST(3));
-    task->length = func_021247ac(text);
+    task->length = strlen(text);
     width = 0;
     for (i = 0; i < task->length; i++) {
         s8 c = text[i];

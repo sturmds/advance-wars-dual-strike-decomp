@@ -4,7 +4,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/mode_font_task.h"
 
-u32 func_021247ac(const char *str);
+u32 strlen(const char *str);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 
@@ -28,7 +28,7 @@ void ModeFont_ShowSecondLine(const char *text, int tile, int paletteSlot, int un
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
     task = (ModeFontTask *)Task_Create(data_02159870, TASK_LIST(3));
-    task->length = func_021247ac(text);
+    task->length = strlen(text);
     width = 0;
     for (i = 0; i < task->length; i++) {
         s8 c = text[i];

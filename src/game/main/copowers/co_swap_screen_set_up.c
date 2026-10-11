@@ -18,7 +18,7 @@ void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot, int army
 int func_0207bd80(void);
 void SpriteTask_Create(int x, int y, int tile, int paletteSlot);
 const void *Text_Get(u32 textId);
-int BreakText_LoadChangeFont(const void *text, int arg1, int arg2);
+u8 BreakText_LoadChangeFont(const s8 *text, u16 tile, u8 palette);
 void Sound_LowerSongVolume(int volume);
 void Sound_PlaySe(u32 soundId);
 

@@ -3,9 +3,9 @@
 extern u8 data_0215af8c[];
 extern u8 data_027c0048[];
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-int func_0204cc4c(int ch);
+int CaptionFont_CharWidth(int ch);
 
-int func_0204cb40(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list)
+int CaptionFont_DrawChar(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list)
 {
     int index;
     u8 *entry;
@@ -21,7 +21,7 @@ int func_0204cb40(int ch, u16 x, u16 y, int attr, u16 firstTile, u8 list)
         do {
             if (*entry == ch) {
                 Sprite_Queue(list, x, y, data_027c0048, attr, firstTile + index * 16);
-                return func_0204cc4c(ch);
+                return CaptionFont_CharWidth(ch);
             }
             entry++;
             index++;

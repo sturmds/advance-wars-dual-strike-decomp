@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/gfx_queue.h"
 
-void func_0200ca18(const void *src, void *dst, u32 size)
+void GfxQueue_AddKind1(const void *src, void *dst, u32 size)
 {
     data_027c0520[data_027c051c].src = src;
     data_027c0520[data_027c051c].dst = dst;

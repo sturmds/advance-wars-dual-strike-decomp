@@ -7,7 +7,7 @@
 s32 HwDiv32(s32 numer, s32 denom);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 const u8 *Text_Get(u32 textId);
-int func_021247ac(const u8 *str);
+int strlen(const u8 *str);
 int Ov003_GetTextWidth(const u8 *str);
 int Ov003_DrawLetterAlt(u8 ch, u16 x, u16 y);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
@@ -56,11 +56,11 @@ void Ov003_ShowWarpedTwoLineMessage(Ov003MessageTask *task)
     Oam_SetAffineParams(0, HwDiv32(cosValue, d0), HwDiv32(-sinValue * 16, d1),
                   HwDiv32(sinValue * 16, d2), HwDiv32(cosValue, d3));
     topX = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_TOP_TEXT)) >> 1);
-    for (topChar = 0; topChar < func_021247ac(Text_Get(MESSAGE_TOP_TEXT)); topChar++) {
+    for (topChar = 0; topChar < strlen(Text_Get(MESSAGE_TOP_TEXT)); topChar++) {
         topX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_TOP_TEXT)[topChar], topX & 0x1ff, 832);
     }
     bottomX = 128 - (Ov003_GetTextWidth(Text_Get(MESSAGE_BOTTOM_TEXT)) >> 1);
-    for (bottomChar = 0; bottomChar < func_021247ac(Text_Get(MESSAGE_BOTTOM_TEXT)); bottomChar++) {
+    for (bottomChar = 0; bottomChar < strlen(Text_Get(MESSAGE_BOTTOM_TEXT)); bottomChar++) {
         bottomX += Ov003_DrawLetterAlt(Text_Get(MESSAGE_BOTTOM_TEXT)[bottomChar], bottomX & 0x1ff, 864);
     }
     if (task->frames == MESSAGE_FRAMES) {
