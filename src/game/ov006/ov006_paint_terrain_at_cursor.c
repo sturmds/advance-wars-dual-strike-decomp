@@ -37,7 +37,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
         func_ov006_0235da70(x, y, 1);              \
     }
 
-/* Paints the chosen brush (unk_1c: a tile byte, terrain and owner) on the
+/* Paints the chosen brush (toolTile: a tile byte, terrain and owner) on the
  * tile at cursorX, cursorY, after saving the cell it replaces in oldCell.
  * Each terrain goes through its own placing routine, then units that can no
  * longer stand there are removed. The sound effect to play is left in
@@ -53,7 +53,7 @@ void Ov006_PaintTerrainAtCursor(void)
     x = data_ov006_0236d640->cursorX;
     data_ov006_0236d640->oldCell = STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x];
     data_ov006_0236d640->unk_00 |= 0x1000;
-    brush = data_ov006_0236d640->unk_1c;
+    brush = data_ov006_0236d640->toolTile;
     switch (brush & 0x1f) {
     case TERRAIN_SEA:
         Ov006_TurnToSea(x, y);

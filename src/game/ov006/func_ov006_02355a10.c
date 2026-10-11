@@ -13,7 +13,7 @@ void func_ov006_02355a10(int choice)
     if (state->screenState != 51) {
         return;
     }
-    if (state->unk_29 == 1) {
+    if (state->unitMode == 1) {
         if (state->unk_28 != choice) {
             state->unk_28 = choice;
             func_ov006_02357674();
@@ -23,7 +23,7 @@ void func_ov006_02355a10(int choice)
         }
     }
     state = data_ov006_0236d640;
-    if (state->unk_29 != 0) {
+    if (state->unitMode != 0) {
         return;
     }
     if (state->unk_27 != choice) {

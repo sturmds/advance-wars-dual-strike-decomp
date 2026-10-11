@@ -138,11 +138,11 @@ void DesignRoom_Init(Task *task)
     Font_SetDigitEndTile(0x45);
     func_020c4394(7, 4, &STATE->unk_28, &STATE->unk_2c);
     *(s8 *)&OV6->chosenSlot = -1; /* needed to match: stored as a signed -1 */
-    OV6->unk_1c = 1;
-    OV6->unk_25 = 1;
-    OV6->unk_24 = 1;
-    OV6->unk_27 = OV6->unk_25;
-    OV6->unk_28 = OV6->unk_24;
+    OV6->toolTile = 1;
+    OV6->tileArmy = 1;
+    OV6->unitArmy = 1;
+    OV6->unk_27 = OV6->tileArmy;
+    OV6->unk_28 = OV6->unitArmy;
     Ov006_PostRequest(0);
     OV6->unk_5c = Task_Create(data_ov006_0236a218, TASK_LIST(3));
     Sound_StartSong(0x34);

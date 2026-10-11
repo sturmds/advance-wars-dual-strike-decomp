@@ -15,15 +15,16 @@ u8 *Co_GetPreviewTiles(int co);
 
 #define STATE data_ov006_0236d640
 
-/* Loads the CO id in STATE->unk_1a (low 6 bits) for display on the second
+/* Loads the CO id in STATE->toolUnit (low 6 bits) for display on the second
  * screen: its 4-tile icon at 0x5480 in OBJ VRAM (tile index from
  * Player_GetCoIconTile, row picked by the player's army style, the sprite set), its
  * 8-tile picture (Co_GetPreviewTiles) at 0x5500, and the player's army colour (the
- * palette) in sprite palette slot 2. STATE->unk_24 is the player; 0 means
- * player 1. Names are guesses: unk_1a is a CO id by its use here. */
+ * palette) in sprite palette slot 2. STATE->unitArmy is the player; 0 means
+ * player 1. Names are guesses: the callees take toolUnit as a CO id, but
+ * other files index Ov000_gUnitStats with it. */
 void Ov006_LoadCoPreview(void)
 {
-    int player = STATE->unk_24;
+    int player = STATE->unitArmy;
     int palette;
     int co;
     u8 *icons;
@@ -34,7 +35,7 @@ void Ov006_LoadCoPreview(void)
         player = 1;
     }
     palette = data_027c027c->unk_48[data_027c0284]->players[player].armyColour;
-    co = STATE->unk_1a & 0x3f;
+    co = STATE->toolUnit & 0x3f;
     icons = func_020c67bc();
     TransferQueue_Add(icons + Player_GetCoIconTile(player, co) * 32,
                   (u8 *)((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5480, 128);

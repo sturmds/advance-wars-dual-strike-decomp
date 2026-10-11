@@ -7,7 +7,7 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 extern u8 data_ov006_0236b62c[];
 
 /* When at least 7 of the 8 slots have bit 0 set (flags 0x10 clear, unk_2a is 6),
- * puts one sprite at x 0x40 or 0xc0 depending on unk_29. The 8th slot is
+ * puts one sprite at x 0x40 or 0xc0 depending on unitMode. The 8th slot is
  * unk_d4, so the loop reads one slot past the unk_80 array. */
 void func_ov006_023547bc(void)
 {
@@ -30,7 +30,7 @@ void func_ov006_023547bc(void)
     if (state->unk_2a != 6) {
         return;
     }
-    if (state->unk_29 == 1) {
+    if (state->unitMode == 1) {
         x = 0x40;
     } else {
         x = 0xc0;

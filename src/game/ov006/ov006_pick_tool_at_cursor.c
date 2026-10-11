@@ -20,8 +20,8 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* Takes the terrain (mode 0) or unit (mode 1) under the cursor as the
  * current tool, like an eyedropper. Terrain: when the tile differs from
- * unk_1c, Ov006_SetEntryTile gets the tile value and button 38 is chosen.
- * Unit: when the unit there differs from unk_1a of army unk_24, both are
+ * toolTile, Ov006_SetEntryTile gets the tile value and button 38 is chosen.
+ * Unit: when the unit there differs from toolUnit of army unitArmy, both are
  * set from it and button 34 is chosen. An empty tile reads as
  * UNIT_TYPE_COUNT and is skipped. */
 void Ov006_PickToolAtCursor(int mode)
@@ -32,7 +32,7 @@ void Ov006_PickToolAtCursor(int mode)
     switch (mode) {
     case 0:
         tile = TILE(OV6->cursorX, OV6->cursorY);
-        if (OV6->unk_1c == tile) {
+        if (OV6->toolTile == tile) {
             return;
         }
         Ov006_SetEntryTile(tile);
@@ -40,7 +40,7 @@ void Ov006_PickToolAtCursor(int mode)
         Ov006_ChooseButton38();
         break;
     case 1:
-        code = ((OV6->unk_24 - 1) << 6) | (OV6->unk_1a & 63);
+        code = ((OV6->unitArmy - 1) << 6) | (OV6->toolUnit & 63);
         if (code == Ov006_GetUnitCodeAt(OV6->cursorX, OV6->cursorY)) {
             return;
         }
@@ -48,8 +48,8 @@ void Ov006_PickToolAtCursor(int mode)
         if ((code & 63) >= UNIT_TYPE_COUNT) {
             return;
         }
-        OV6->unk_1a = code & 63;
-        OV6->unk_24 = (code >> 6) + 1;
+        OV6->toolUnit = code & 63;
+        OV6->unitArmy = (code >> 6) + 1;
         Ov006_LoadCoPreview();
         Sound_PlaySe(0x1000a);
         Ov006_ChooseButton34();

@@ -24,10 +24,10 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
 
 /* Checks whether the chosen tool can be used on the cursor tile (cursorX,
  * cursorY) and stores the answer in unk_2a: 1 allowed, 6 not allowed, 5 when
- * flag 0x40 is set in unit mode. In terrain mode (unk_29 == 0) unk_1c holds
+ * flag 0x40 is set in unit mode. In terrain mode (unitMode == 0) toolTile holds
  * the terrain to paint, and shoal, river, reef, bridge, road over a river
  * and pipe seam each have their own test; any other terrain is refused only
- * while flag 0x2000 is set. In unit mode the unit in unk_1a must be able to
+ * while flag 0x2000 is set. In unit mode the unit in toolUnit must be able to
  * move onto the tile. Map_ScrollViewToTile gets 5 or 1; its name may be
  * wrong here (a cursor style fits better). */
 int Ov006_CheckToolAtCursor(void)
@@ -35,8 +35,8 @@ int Ov006_CheckToolAtCursor(void)
     Unk_ov006_0235f690 *ov6 = OV6;
     int result;
 
-    if (ov6->unk_29 == 0) {
-        int tool = ov6->unk_1c;
+    if (ov6->unitMode == 0) {
+        int tool = ov6->toolTile;
 
         result = 1;
         if (tool == TERRAIN_SHOAL) {
@@ -70,7 +70,7 @@ int Ov006_CheckToolAtCursor(void)
         }
     } else if (ov6->unk_00 & 0x40) {
         result = 5;
-    } else if (CHART[Ov000_gUnitStats[ov6->unk_1a & 63].moveType]
+    } else if (CHART[Ov000_gUnitStats[ov6->toolUnit & 63].moveType]
                     [MAP_TILE_TERRAIN(TILE(ov6->cursorX, ov6->cursorY))] != -1) {
         result = 1;
     } else {

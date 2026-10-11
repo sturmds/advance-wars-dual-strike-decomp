@@ -44,7 +44,7 @@ static inline BOOL Touch_Is(int phase)
 /* One frame of the Design Room map editor. Flag 0x8000 of unk_00 sets the
  * editor up and puts the edit tile (cursorX, cursorY) on the map cursor. Each
  * frame moves the cursor and the view, then acts on Ov006_ReadEditInput:
- * 1 paints terrain (unk_29 == 0) or places a unit, 2 deletes the unit on
+ * 1 paints terrain (unitMode == 0) or places a unit, 2 deletes the unit on
  * the edit tile. Touch or B calls Ov006_PickToolAtCursor, R and L choose
  * buttons 39 and 36. Last it plays pendingSe, or else the cursor sound. */
 void Ov006_UpdateMapEditor(void)
@@ -103,7 +103,7 @@ void Ov006_UpdateMapEditor(void)
 
     action = Ov006_ReadEditInput();
     if (action == 1) {
-        if (OV6->unk_29 == 0) {
+        if (OV6->unitMode == 0) {
             if (OV6->unk_2a != 6) {
                 Ov006_PaintTerrainAtCursor();
                 if (STATE_50->first != NULL) {
@@ -124,7 +124,7 @@ void Ov006_UpdateMapEditor(void)
             if (result == 1) {
                 se = 0;
                 OV6->pendingSe = 0;
-                UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->unk_1a & 0x3f);
+                UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->toolUnit & 0x3f);
             }
             if (result > 0) {
                 OV6->unk_00 |= 0x1000;
@@ -139,7 +139,7 @@ void Ov006_UpdateMapEditor(void)
         if (result == 1) {
             se = 0;
             OV6->pendingSe = 0;
-            UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->unk_1a & 0x3f);
+            UnitShowTask_CreateAtTile(OV6->cursorX, OV6->cursorY, OV6->toolUnit & 0x3f);
         }
         if (result > 0) {
             OV6->unk_00 |= 0x1000;
@@ -150,11 +150,11 @@ void Ov006_UpdateMapEditor(void)
     if (Touch_Is(TOUCH_PRESSED) == TRUE) {
         if (OV6->touchY > 32 && (OV6->unk_00 & 0x20)) {
             func_ov006_0235f690();
-            Ov006_PickToolAtCursor(OV6->unk_29);
+            Ov006_PickToolAtCursor(OV6->unitMode);
         }
     } else if (gKeypad->pressed & PAD_BUTTON_B) {
         func_ov006_0235f690();
-        Ov006_PickToolAtCursor(OV6->unk_29);
+        Ov006_PickToolAtCursor(OV6->unitMode);
     }
     if (gKeypad->pressed & (PAD_BUTTON_R | PAD_BUTTON_L)) {
         if (gKeypad->pressed & PAD_BUTTON_R) {

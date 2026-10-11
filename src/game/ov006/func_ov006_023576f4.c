@@ -13,8 +13,8 @@ void func_ov006_023576f4(int value)
     if (state->screenState != 51) {
         return;
     }
-    if (state->unk_29 != value) {
-        state->unk_29 = value;
+    if (state->unitMode != value) {
+        state->unitMode = value;
         data_ov006_0236d640->screenState = 70;
     }
 }

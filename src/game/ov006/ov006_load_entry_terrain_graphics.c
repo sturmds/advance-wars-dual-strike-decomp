@@ -19,12 +19,12 @@ extern s8 data_ov006_0236a7a0[];
 
 /* Loads the tiles (two blocks in the sub screen object VRAM, at 0x5280 and
  * 0x5380) and the palette (offset 0x260) for the id in table data_ov006_0236a7a0
- * at index unk_20, using unk_25 as the army. The sub screen state is current
+ * at index unk_20, using tileArmy as the army. The sub screen state is current
  * while the palette loads. */
 void Ov006_LoadEntryTerrainGraphics(void)
 {
     int id = data_ov006_0236a7a0[data_ov006_0236d640->unk_20];
-    int army = data_ov006_0236d640->unk_25;
+    int army = data_ov006_0236d640->tileArmy;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 

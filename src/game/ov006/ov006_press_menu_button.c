@@ -35,7 +35,7 @@ void Ov006_PressMenuButton(int button)
         Sound_PlaySe(0x10001);
         break;
     case 0x21:
-        STATE->unk_29 = 1;
+        STATE->unitMode = 1;
         STATE->unk_00 |= 0x10;
         STATE->unk_00 &= ~0x40;
         Ov006_ToggleChosenButton(button);
@@ -48,7 +48,7 @@ void Ov006_PressMenuButton(int button)
         }
         break;
     case 0x22:
-        STATE->unk_29 = 1;
+        STATE->unitMode = 1;
         STATE->unk_00 &= ~0x20;
         STATE->unk_00 &= ~0x40;
         Ov006_ToggleChosenButton(button);
@@ -61,7 +61,7 @@ void Ov006_PressMenuButton(int button)
         }
         break;
     case 0x23:
-        STATE->unk_29 = 1;
+        STATE->unitMode = 1;
         STATE->unk_00 &= ~0x20;
         Ov006_ToggleChosenButton(button);
         if (STATE->chosenButton == -1) {
@@ -86,7 +86,7 @@ void Ov006_PressMenuButton(int button)
         Sound_PlaySe(0x10002);
         break;
     case 0x25:
-        STATE->unk_29 = 0;
+        STATE->unitMode = 0;
         STATE->unk_00 |= 0x10;
         STATE->unk_00 &= ~0x40;
         Ov006_ToggleChosenButton(button);
@@ -99,7 +99,7 @@ void Ov006_PressMenuButton(int button)
         }
         break;
     case 0x26:
-        STATE->unk_29 = 0;
+        STATE->unitMode = 0;
         STATE->unk_00 &= ~0x20;
         STATE->unk_00 &= ~0x40;
         Ov006_ToggleChosenButton(button);

@@ -24,7 +24,7 @@ extern Unk_02080440 *data_027c027c;
  * 0x260) of the terrain for that army, like Ov006_LoadEntryTerrainGraphics. */
 void Ov006_SetEntryTile(int tile)
 {
-    int army = data_ov006_0236d640->unk_25;
+    int army = data_ov006_0236d640->tileArmy;
     int terrain;
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
@@ -71,8 +71,8 @@ void Ov006_SetEntryTile(int tile)
         army = 4;
         break;
     }
-    data_ov006_0236d640->unk_25 = army;
-    data_ov006_0236d640->unk_1c = tile;
+    data_ov006_0236d640->tileArmy = army;
+    data_ov006_0236d640->toolTile = tile;
     terrain = MAP_TILE_TERRAIN(tile);
 
     func_020dbc94(terrain, army, ((Unk_027c0280 *)data_027c0288.unk_04)->objVram + 0x5280, 1);

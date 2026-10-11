@@ -74,7 +74,7 @@ extern const char data_ov006_0236b8b4[];   /* "001" */
 
 #define START_WINDOW_RECT()                                                            \
     {                                                                                  \
-        OV6->winLeft = OV6->unk_29 == 1 ? 144 : 240;                                   \
+        OV6->winLeft = OV6->unitMode == 1 ? 144 : 240;                                   \
         OV6->winTop = 16;                                                              \
         OV6->winRight = OV6->winLeft + 1;                                              \
         OV6->winBottom = OV6->winTop + 1;                                              \
@@ -89,7 +89,7 @@ extern const char data_ov006_0236b8b4[];   /* "001" */
  *   0-4: load the page's palette and graphics, then grow window 0 from a
  *     point at x 144 or 240 to (0, 20)-(255, 159), add the buttons and print
  *     text 0x7e000035. 51: idle.
- *   70-74: switch page (unk_29: 0 army, 1 CO): OBJ matrix 0 zooms out,
+ *   70-74: switch page (unitMode: 0 army, 1 CO): OBJ matrix 0 zooms out,
  *     the other page loads, then it zooms back in.
  *   60-62: close: clear the buttons, shrink the window, undo the blend, slide
  *     the slot buttons back in and post request 1.
@@ -138,11 +138,11 @@ void Ov006_UpdateArmyCoPanel(void)
     switch (OV6->screenState) {
     case 0:
         Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
-        func_ov006_02352708(OV6->unk_29);
+        func_ov006_02352708(OV6->unitMode);
         OV6->screenState = 1;
         break;
     case 1:
-        func_ov006_023526c8(OV6->unk_29);
+        func_ov006_023526c8(OV6->unitMode);
         OV6->screenState = 2;
         break;
     case 2:
@@ -198,9 +198,9 @@ void Ov006_UpdateArmyCoPanel(void)
         func_ov006_02355bd4();
         Ov006_AddToolButtons();
         OV6->unk_02 |= 0x10;
-        if (OV6->unk_29 == 1) {
+        if (OV6->unitMode == 1) {
             OV6->unk_02 &= ~1;
-        } else if (OV6->unk_29 == 0) {
+        } else if (OV6->unitMode == 0) {
             OV6->unk_02 |= 1;
         }
         func_ov006_02355514();
@@ -227,13 +227,13 @@ void Ov006_UpdateArmyCoPanel(void)
             func_ov006_02355610();
             OV6->unk_02 &= ~0x10;
             Palette_Load(Terrain_GetPalette(20, OV6->unk_27), 0x300, 32);
-            func_ov006_02352708(OV6->unk_29);
+            func_ov006_02352708(OV6->unitMode);
             OV6->unk_02 &= ~8;
             OV6->screenState = 72;
         }
         break;
     case 72:
-        func_ov006_023526c8(OV6->unk_29);
+        func_ov006_023526c8(OV6->unitMode);
         OV6->screenState = 73;
         OV6->unk_3b = 4;
         break;
@@ -245,9 +245,9 @@ void Ov006_UpdateArmyCoPanel(void)
         Ov006_AddEntryButtons();
         func_ov006_02355bd4();
         Ov006_AddToolButtons();
-        if (OV6->unk_29 == 1) {
+        if (OV6->unitMode == 1) {
             OV6->unk_02 &= ~1;
-        } else if (OV6->unk_29 == 0) {
+        } else if (OV6->unitMode == 0) {
             OV6->unk_02 |= 1;
         }
         SET_MATRIX0(0, 0);
@@ -345,27 +345,27 @@ void Ov006_UpdateArmyCoPanel(void)
     switch (OV6->screenState) {
     case 30:
         OV6->unk_02 |= 4;
-        OV6->unk_3a = 0;
+        OV6->squashStep = 0;
         OV6->screenState = 31;
         SET_MATRIX0(256, 256);
         break;
     case 31:
-        scale = Ov006_gPanelScaleSteps[OV6->unk_3a++];
+        scale = Ov006_gPanelScaleSteps[OV6->squashStep++];
         if (scale > 0) {
             SET_MATRIX0(scale, 256);
         } else if (scale == 0) {
             SET_MATRIX0(scale, 256);
-            if (OV6->unk_29 == 1) {
+            if (OV6->unitMode == 1) {
                 Ov006_LoadCoIcons(OV6->unk_28);
             }
-            if (OV6->unk_29 == 0) {
+            if (OV6->unitMode == 0) {
                 Ov006_LoadArmyTiles(OV6->unk_27);
             }
             OV6->screenState = 32;
         }
         break;
     case 32:
-        scale = Ov006_gPanelScaleSteps[OV6->unk_3a++];
+        scale = Ov006_gPanelScaleSteps[OV6->squashStep++];
         if (scale >= 0) {
             SET_MATRIX0(scale, 256);
         }

@@ -49,17 +49,17 @@ typedef struct Unk_ov006_0235f690 {
     s16 prevCursorY;
     s16 viewX;                         /* tile the map view follows (Ov006_ScrollMapView) */
     s16 viewY;
-    u16 unk_1a;
-    u16 unk_1c;
-    u16 unk_1e;                        /* entry index that unk_1a was set for */
-    u16 unk_20;                        /* entry index that unk_1c was set for */
+    u16 toolUnit;                      /* unit mode tool: unit type in the low 6 bits */
+    u16 toolTile;                      /* terrain mode tool: tile byte, terrain plus owner << 5 */
+    u16 unk_1e;                        /* entry index that toolUnit was set for */
+    u16 unk_20;                        /* entry index that toolTile was set for */
     u16 oldCell;                       /* cell code of the tile an edit is about to overwrite (Ov006_BreakCellBlock) */
-    s8 unk_24;
-    s8 unk_25;
+    s8 unitArmy;                       /* army (1-4) that unit mode places units for */
+    s8 tileArmy;                       /* owner of property tiles that terrain mode places */
     s8 unk_26;
     s8 unk_27;
     s8 unk_28;
-    s8 unk_29;                         /* 1 or 0: which of two layouts Ov006_UpdateEntryView updates */
+    s8 unitMode;                       /* 1: the editor places units; 0: it paints terrain */
     s8 unk_2a;
     s8 propertyCount;                  /* property tiles on the map (Ov006_CountPropertyTiles); at most 60 */
     u8 unk_2c[4]; /* Player_CountUnits(1..4): count of nonzero entries per slot */
@@ -67,7 +67,7 @@ typedef struct Unk_ov006_0235f690 {
     s8 hqY[4];
     u8 chosenSlot;                     /* design map slot that Ov006_StartIdScript was called with; 0xff (-1) when none */
     u8 unk_39;                         /* set to 32, the id of the first slot button, by Ov006_InitSlotButtons */
-    s8 unk_3a;                         /* step in Ov006_gPanelScaleSteps of the OBJ matrix 0 squash (states 30-32 of Ov006_UpdateArmyCoPanel) */
+    s8 squashStep;                     /* step in Ov006_gPanelScaleSteps of the OBJ matrix 0 squash (states 30-32 of Ov006_UpdateArmyCoPanel) */
     s8 unk_3b;                         /* frame countdown, set to 30 on a request; at 0 a script starts (Ov006_StartScriptAfterDelay) */
     s8 recountDelay;                   /* frames until Ov006_UpdateMapEditor recounts; 5 after a unit is removed */
     u8 pad_3d[0x40 - 0x3d];

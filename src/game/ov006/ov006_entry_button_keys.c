@@ -73,26 +73,26 @@ void Ov006_EntryButtonKeys(MenuButton *button)
     }
     if (gKeypad->pressed & (PAD_BUTTON_X | PAD_BUTTON_Y)) {
         if (gKeypad->pressed & PAD_BUTTON_Y) {
-            if (STATE->unk_29 == 1) {
+            if (STATE->unitMode == 1) {
                 next = STATE->unk_28 - 1;
                 if (next < 1) {
                     next += 4;
                 }
             }
-            if (STATE->unk_29 == 0) {
+            if (STATE->unitMode == 0) {
                 next = STATE->unk_27 - 1;
                 if (next < 0) {
                     next += 5;
                 }
             }
         } else if (gKeypad->pressed & PAD_BUTTON_X) {
-            if (STATE->unk_29 == 1) {
+            if (STATE->unitMode == 1) {
                 next = STATE->unk_28 + 1;
                 if (next >= 5) {
                     next = 1;
                 }
             }
-            if (STATE->unk_29 == 0) {
+            if (STATE->unitMode == 0) {
                 next = STATE->unk_27 + 1;
                 if (next >= 5) {
                     next = 0;
@@ -108,9 +108,9 @@ void Ov006_EntryButtonKeys(MenuButton *button)
         CursorSteps25 rightA = data_ov006_0236b790;
         CursorSteps26 rightB = data_ov006_0236b81c;
         CursorSteps24 rightTerrain = data_ov006_0236b728;
-        if (STATE->unk_29 == 1) {
+        if (STATE->unitMode == 1) {
             steps = GameFlag_IsSet(0x2b) ? rightB.step : rightA.step;
-        } else if (STATE->unk_29 == 0) {
+        } else if (STATE->unitMode == 0) {
             steps = rightTerrain.step;
         }
     }
@@ -118,9 +118,9 @@ void Ov006_EntryButtonKeys(MenuButton *button)
         CursorSteps25 leftA = data_ov006_0236b7ac;
         CursorSteps26 leftB = data_ov006_0236b838;
         CursorSteps24 leftTerrain = data_ov006_0236b740;
-        if (STATE->unk_29 == 1) {
+        if (STATE->unitMode == 1) {
             steps = GameFlag_IsSet(0x2b) ? leftB.step : leftA.step;
-        } else if (STATE->unk_29 == 0) {
+        } else if (STATE->unitMode == 0) {
             steps = leftTerrain.step;
         }
     }
@@ -140,9 +140,9 @@ void Ov006_EntryButtonKeys(MenuButton *button)
         CursorSteps25 upA = data_ov006_0236b758;
         CursorSteps26 upB = data_ov006_0236b7c8;
         CursorSteps18 upTerrain = data_ov006_0236b700;
-        if (STATE->unk_29 == 1) {
+        if (STATE->unitMode == 1) {
             steps = GameFlag_IsSet(0x2b) ? upB.step : upA.step;
-        } else if (STATE->unk_29 == 0) {
+        } else if (STATE->unitMode == 0) {
             steps = upTerrain.step;
         }
     }
@@ -150,9 +150,9 @@ void Ov006_EntryButtonKeys(MenuButton *button)
         CursorSteps25 downA = data_ov006_0236b774;
         CursorSteps26 downB = data_ov006_0236b800;
         CursorSteps18 downTerrain = data_ov006_0236b714;
-        if (STATE->unk_29 == 1) {
+        if (STATE->unitMode == 1) {
             steps = GameFlag_IsSet(0x2b) ? downB.step : downA.step;
-        } else if (STATE->unk_29 == 0) {
+        } else if (STATE->unitMode == 0) {
             steps = downTerrain.step;
         }
     }

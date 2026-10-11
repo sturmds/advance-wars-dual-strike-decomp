@@ -5,15 +5,15 @@
 #include "game/unlocks.h"
 
 extern Unk_ov006_0235f690 *data_ov006_0236d640;
-extern u8 data_ov006_0236a7ec[];       /* (x, y) per entry when unk_29 is 0 */
-extern u8 data_ov006_0236a810[];       /* the same for unk_29 1, 25 entries */
+extern u8 data_ov006_0236a7ec[];       /* (x, y) per entry when unitMode is 0 */
+extern u8 data_ov006_0236a810[];       /* the same for unitMode 1, 25 entries */
 extern u8 data_ov006_0236a844[];       /* the same, 26 entries (game flag 0x2b) */
 extern const MenuButtonTemplate data_ov006_0236b854;
 
 #define OV6 data_ov006_0236d640
 
 /* Adds one menu button per entry of the list on the first screen, ids from
- * 64: 18 entries when unk_29 is 0, else 25 or 26 by game flag 0x2b, at
+ * 64: 18 entries when unitMode is 0, else 25 or 26 by game flag 0x2b, at
  * the places Ov006_QueueEntrySprites draws them. unk_50 ends as the last
  * id. */
 void Ov006_AddEntryButtons(void)
@@ -27,7 +27,7 @@ void Ov006_AddEntryButtons(void)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    if (OV6->unk_29 == 1) {
+    if (OV6->unitMode == 1) {
         if (GameFlag_IsSet(0x2b) == 1) {
             pos = data_ov006_0236a844;
             count = 26;
@@ -38,7 +38,7 @@ void Ov006_AddEntryButtons(void)
         dx = -4;
         dy = 0;
     }
-    if (OV6->unk_29 == 0) {
+    if (OV6->unitMode == 0) {
         pos = data_ov006_0236a7ec;
         count = 18;
         dx = -4;

@@ -18,8 +18,8 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * (from x -32 to index * 32) and back out. Select, once at least 7 of them
  * are shown, calls Ov006_PressMenuButton(32). Button 39 drives the rest: when it
  * is in, it clears flag 8 and calls Ov006_PressMenuButton with 38 or 34 by
- * unk_29; once it is out it acts on chosenButton (32: request 3; 36 or 39: set
- * unk_29 to 1 or 0 and request 2), then removes all eight buttons. */
+ * unitMode; once it is out it acts on chosenButton (32: request 3; 36 or 39: set
+ * unitMode to 1 or 0 and request 2), then removes all eight buttons. */
 void Ov006_UpdateSlotButton(MenuButton *button)
 {
     int index = button->id - 32;
@@ -49,10 +49,10 @@ void Ov006_UpdateSlotButton(MenuButton *button)
             slide->flags |= 1;
             if (button->id == 39) {
                 OV6->unk_00 &= ~8;
-                if (OV6->unk_29 == 0) {
+                if (OV6->unitMode == 0) {
                     Ov006_PressMenuButton(38);
                 }
-                if (OV6->unk_29 == 1) {
+                if (OV6->unitMode == 1) {
                     Ov006_PressMenuButton(34);
                 }
             }
@@ -85,10 +85,10 @@ void Ov006_UpdateSlotButton(MenuButton *button)
         }
         if (OV6->chosenButton == 36 || OV6->chosenButton == 39) {
             if (OV6->chosenButton == 36) {
-                OV6->unk_29 = 1;
+                OV6->unitMode = 1;
             }
             if (OV6->chosenButton == 39) {
-                OV6->unk_29 = 0;
+                OV6->unitMode = 0;
             }
             func_ov006_02357760();
             slide->state = OV006_SLIDE_DONE;

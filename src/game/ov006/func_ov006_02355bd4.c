@@ -14,10 +14,10 @@ void func_ov006_02355bd4(void)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    if (data_ov006_0236d640->unk_29 == 1) {
+    if (data_ov006_0236d640->unitMode == 1) {
         buttonId += data_ov006_0236d640->unk_1e;
     }
-    if (data_ov006_0236d640->unk_29 == 0) {
+    if (data_ov006_0236d640->unitMode == 0) {
         buttonId += data_ov006_0236d640->unk_20;
     }
     MenuButton_Select(buttonId);

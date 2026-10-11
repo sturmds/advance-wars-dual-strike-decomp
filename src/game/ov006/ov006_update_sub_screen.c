@@ -58,7 +58,7 @@ void Ov006_UpdateSubScreen(void)
     func_020219e4(OV6->unk_70, 1, 0, 10, 167, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(18, 175, OV6->cursorY + 1);
     func_020219e4(OV6->unk_70, 3, 0, 26, 138, 0xf2b0, 0, 0);
-    Oam_PutSmallNumber(58, 137, 50 - (s8)OV6->unk_2c[OV6->unk_24 - 1]);
+    Oam_PutSmallNumber(58, 137, 50 - (s8)OV6->unk_2c[OV6->unitArmy - 1]);
     func_020219e4(OV6->unk_70, 3, 0, 70, 138, 0xf2b0, 0, 0);
     Oam_PutSmallNumber(102, 137, 60 - OV6->propertyCount);
     func_01ff8b18(0, (OV6->unk_54 >> 12) & 0xff);
