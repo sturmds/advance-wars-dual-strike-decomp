@@ -11,7 +11,7 @@ BOOL func_020b4da8(int x, int y);
 BOOL AiSeaTransport_FootUnitsOutnumberArmed(int x, int y);
 BOOL func_020b50bc(int x, int y);
 BOOL func_020b51ec(int x, int y);
-BOOL func_020b53c0(int x, int y);
+BOOL AiSeaTransport_FewArmedUnitsInRange(int x, int y);
 BOOL func_020b5570(int x, int y);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -34,7 +34,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
         switch (unit->aiOrder) {
         case 0:
         case 1:
-            check = func_020b53c0;
+            check = AiSeaTransport_FewArmedUnitsInRange;
             break;
         case 2:
             check = func_020b51ec;
@@ -68,7 +68,7 @@ BOOL AiTransport_SecondCargoHasTaskAt(int x, int y)
     case 10:
         return FALSE;
     }
-    if (func_020b53c0(x, y) == TRUE) {
+    if (AiSeaTransport_FewArmedUnitsInRange(x, y) == TRUE) {
         unit->aiOrder = 0;
         unit->aiTargetX = MAP_UNIT_NO_TARGET;
         unit->aiTargetY = MAP_UNIT_NO_TARGET;

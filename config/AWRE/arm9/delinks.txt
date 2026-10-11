@@ -6653,6 +6653,10 @@ src/game/main/ai/ai_sea_transport_cargo_reaches_enemy_hq.c:
     complete
     .text       start:0x020b52d4 end:0x020b53c0
 
+src/game/main/ai/ai_sea_transport_few_armed_units_in_range.c:
+    complete
+    .text       start:0x020b53c0 end:0x020b5464
+
 src/game/main/ai/func_020b5464.c:
     complete
     .text       start:0x020b5464 end:0x020b54c4
