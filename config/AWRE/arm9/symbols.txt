@@ -5905,7 +5905,7 @@ __num2dec_internal kind:function(arm,size=0x258) addr:0x02124c80
 __two_exp kind:function(arm,size=0x3e0) addr:0x02124ed8
 __str2dec kind:function(arm,size=0xc4) addr:0x021252b8
 __timesdec kind:function(arm,size=0x1a8) addr:0x0212537c
-func_02125524 kind:function(arm,size=0xd0) addr:0x02125524
+__ull2dec kind:function(arm,size=0xd0) addr:0x02125524
 __rounddec kind:function(arm,size=0x64) addr:0x021255f4
 func_02125658 kind:function(arm,size=0x4c) addr:0x02125658
 func_021256a4 kind:function(arm,size=0x4) addr:0x021256a4
@@ -5928,7 +5928,7 @@ func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
 _fmul kind:function(arm,size=0x1ec) addr:0x021285e0
 _fsub kind:function(arm,size=0x448) addr:0x02128acc
 func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
-.L_02128f20 kind:label(arm) addr:0x02128f20
+_ull_mod kind:label(arm) addr:0x02128f20
 _ll_sdiv kind:function(arm,size=0x1b0) addr:0x02128f6c
 _s32_div_f kind:function(arm,size=0x20c) addr:0x0212911c
 _u32_div_f kind:function(arm,size=0x1e4) addr:0x02129328

@@ -23255,6 +23255,10 @@ src/sdk/msl/timesdec.c:
     complete
     .text       start:0x0212537c end:0x02125524
 
+src/sdk/msl/ull2dec.c:
+    complete
+    .text       start:0x02125524 end:0x021255f4
+
 src/sdk/msl/__rounddec.c:
     complete
     .text       start:0x021255f4 end:0x02125658

@@ -46,7 +46,7 @@ void __num2dec_internal(Decimal *dec, double x)
         Decimal power;
 
         __two_exp(&power, exponent - bits);
-        func_02125524(&mantissa, func_02125e7c(ldexp(fraction, bits)));
+        __ull2dec(&mantissa, func_02125e7c(ldexp(fraction, bits)));
         __timesdec(dec, &mantissa, &power);
         dec->sign = sign;
     }

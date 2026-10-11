@@ -100,7 +100,7 @@ void __str2dec(Decimal *dec, const char *digits, s16 exponent);
 /* Sets result to x * y. */
 void __timesdec(Decimal *result, const Decimal *x, const Decimal *y);
 /* Sets dec to the digits of value. */
-void func_02125524(Decimal *dec, u64 value);
+void __ull2dec(Decimal *dec, u64 value);
 
 /* Adds one to the digit string at its first count digits; a carry out of the first digit raises exp. */
 void func_02125658(Decimal *dec, int count);
