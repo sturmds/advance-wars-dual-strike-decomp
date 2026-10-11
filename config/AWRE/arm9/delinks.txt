@@ -11643,6 +11643,10 @@ src/game/main/combat/combat_simulate_checked.c:
     complete
     .text       start:0x020c28ac end:0x020c28ec
 
+src/game/main/combat/combat_write_back_attacker.c:
+    complete
+    .text       start:0x020c28ec end:0x020c2928
+
 src/game/main/combat/combat_apply_result.c:
     complete
     .text       start:0x020c2928 end:0x020c2ce0
