@@ -6,7 +6,7 @@
 extern Unk_0229c960 *data_0229c8a0;
 extern u32 data_0229c880;
 
-BOOL func_02079e28(void);
+BOOL Wireless_MeasureNextChannel(void);
 void func_02079ee0(void);
 BOOL func_0207909c(void);
 void func_02079180(void);
@@ -23,7 +23,7 @@ void Wireless_OnChannelMeasured(WMMeasureChannelCallback *cb)
             data_0215fe88->bestBusyRatio = cb->ccaBusyRatio;
             data_0215fe88->bestChannel = cb->channel;
         }
-        if (func_02079e28()) {
+        if (Wireless_MeasureNextChannel()) {
             return;
         }
     }

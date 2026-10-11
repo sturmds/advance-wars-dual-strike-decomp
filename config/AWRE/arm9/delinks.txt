@@ -5844,6 +5844,10 @@ src/game/main/link/wireless_on_channel_measured.c:
     complete
     .text       start:0x02079d50 end:0x02079e28
 
+src/game/main/link/wireless_measure_next_channel.c:
+    complete
+    .text       start:0x02079e28 end:0x02079ee0
+
 src/game/main/func_02079ee0.c:
     complete
     .text       start:0x02079ee0 end:0x02079f10
