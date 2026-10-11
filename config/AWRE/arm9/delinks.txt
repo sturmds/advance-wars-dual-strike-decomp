@@ -2238,6 +2238,9 @@ src/game/main/script/event_script_update_all.c:
     complete
     .text       start:0x0201a8bc end:0x0201aa04
 
+src/game/main/script/event_script_step_slot.c:
+    .text       start:0x0201aa04 end:0x0201ab18
+
 src/game/main/script/event_script_start.c:
     complete
     .text       start:0x0201ab18 end:0x0201ab8c

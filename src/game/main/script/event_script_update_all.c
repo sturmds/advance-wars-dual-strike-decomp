@@ -14,7 +14,7 @@ extern u16 data_0216e048;
 s16 func_0201d798(void);
 BOOL func_020f5848(void);
 BOOL func_020eedf0(void);
-void func_0201aa04(s16 index);
+void EventScript_StepSlot(s16 index);
 
 typedef void (*EventHoldFunc)(EventScriptSlot *slot);
 
@@ -22,7 +22,7 @@ typedef void (*EventHoldFunc)(EventScriptSlot *slot);
  * nothing while func_0201d798 is nonzero; otherwise clears data_02297778,
  * then stops if script data_02169e38 runs (func_020f5848) or task
  * data_021690f8 exists (func_020eedf0). Each used slot runs its hold
- * callback, then func_0201aa04 steps it. While data_0229777c is set
+ * callback, then EventScript_StepSlot steps it. While data_0229777c is set
  * (EventScript_Start sets it), the key state is overwritten with
  * data_02297778, which scripts may have set this frame, and
  * data_0216e044 and data_0216e048 are cleared. */
@@ -50,7 +50,7 @@ void EventScript_UpdateAll(void)
             if (slot->hold != 0) {
                 ((EventHoldFunc)slot->hold)(slot);
             }
-            func_0201aa04(i);
+            EventScript_StepSlot(i);
         }
     }
     if (data_0229777c == 0) {
