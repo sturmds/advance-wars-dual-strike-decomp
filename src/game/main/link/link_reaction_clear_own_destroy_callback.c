@@ -5,7 +5,7 @@ int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 void Task_SetDestroyCallback(Task *task, void (*onDestroy)(Task *task));
 
-/* Called for each reaction task (func_02080844). Drops the destroy callback of this
+/* Called for each reaction task (LinkReaction_StartCooldown). Drops the destroy callback of this
  * player's own reaction. */
 void LinkReaction_ClearOwnDestroyCallback(Task *task)
 {

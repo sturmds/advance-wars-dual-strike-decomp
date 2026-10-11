@@ -8,7 +8,7 @@ extern int data_027c0284;
 int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 int Map_IsThisMapsTurn(void);
-void func_02080e84(void);
+void LinkReaction_HandleKeys(void);
 int LinkReactionQueue_Pop(LinkReaction *dest);
 void LinkReaction_Show(u8 a, u8 b);
 
@@ -28,7 +28,7 @@ void LinkReaction_Update(void)
             isLocalTurn = 0;
         }
         if (!isLocalTurn) {
-            func_02080e84();
+            LinkReaction_HandleKeys();
         }
     }
     if (LinkReactionQueue_Pop(&reaction) != 1) {

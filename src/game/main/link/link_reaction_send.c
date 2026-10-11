@@ -11,7 +11,7 @@ void LinkReactionQueue_Push(void *data);
 
 /* Sends a 2-byte payload as packet type 18. When func_0207a260 returns 0, also passes it to
  * LinkReactionQueue_Push (presumably so the sender sees its own message). */
-void func_0207b6c0(void *data)
+void LinkReaction_Send(void *data)
 {
     LinkPacket packet;
 
