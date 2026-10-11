@@ -2,7 +2,7 @@
 
 extern int gLinkPlay;
 
-void func_020e8c28(void)
+void Link_ClearPlay(void)
 {
     gLinkPlay = 0;
 }

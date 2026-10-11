@@ -7436,7 +7436,7 @@ src/game/main/menus/map_select_cancel_first_map.c:
     complete
     .text       start:0x0205d46c end:0x0205d56c
 
-src/game/main/func_0205d56c.c:
+src/game/main/menus/map_select_leave.c:
     complete
     .text       start:0x0205d56c end:0x0205d594
 
@@ -8473,7 +8473,7 @@ src/game/main/link/link_screen_handle_keys.c:
     complete
     .text       start:0x0207291c end:0x020729c4
 
-src/game/main/func_020729c4.c:
+src/game/main/link/link_screen_push_back.c:
     complete
     .text       start:0x020729c4 end:0x020729d8
 
@@ -9428,7 +9428,7 @@ src/game/main/link/link_menu_confirm.c:
     complete
     .text       start:0x0207c8b8 end:0x0207ca34
 
-src/game/main/link/func_0207ca34.c:
+src/game/main/link/link_menu_find_task.c:
     complete
     .text       start:0x0207ca34 end:0x0207ca70
 
@@ -16105,7 +16105,7 @@ src/game/main/func_020dc524.c:
     complete
     .text       start:0x020dc524 end:0x020dc538
 
-src/game/main/func_020dc538.c:
+src/game/main/map/fire_targets_get_count.c:
     complete
     .text       start:0x020dc538 end:0x020dc548
 
@@ -17345,7 +17345,7 @@ src/game/main/map/game_reset_settings.c:
     complete
     .text       start:0x020e8b18 end:0x020e8c28
 
-src/game/main/func_020e8c28.c:
+src/game/main/link/link_clear_play.c:
     complete
     .text       start:0x020e8c28 end:0x020e8c3c
 
@@ -19270,7 +19270,7 @@ src/game/main/touch_is_pressed.c:
     complete
     .text       start:0x020fd7b0 end:0x020fd7dc
 
-src/game/main/math/func_020fd7dc.c:
+src/game/main/math/math_ease_overshoot.c:
     complete
     .text       start:0x020fd7dc end:0x020fd85c
 

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/task.h"
 
-int func_020dc538(void); /* number of entries in the target list */
+int FireTargets_GetCount(void); /* number of entries in the target list */
 void func_020f5c58(Task *parent);
 void Sound_PlaySe(u32 soundId);
 
@@ -10,7 +10,7 @@ void Sound_PlaySe(u32 soundId);
 void TargetListPicker_Init(Task *task)
 {
     task->unk_64 = 0;
-    task->unk_66 = func_020dc538();
+    task->unk_66 = FireTargets_GetCount();
     func_020f5c58(task);
     Sound_PlaySe(0x1000b);
 }

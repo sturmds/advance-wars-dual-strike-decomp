@@ -4,10 +4,10 @@
 u32 Link_IsActive(void);
 void EventQueue_Push(int id, int arg);
 /* Cancel handler: undoes the first pick of a two-map battle if there is one,
- * otherwise leaves the screen (func_0205d56c). In link mode the request is
+ * otherwise leaves the screen (MapSelect_Leave). In link mode the request is
  * queued as event 8 or 6 instead. */
 void MapSelect_CancelFirstMap(void);
-void func_0205d56c(void);
+void MapSelect_Leave(void);
 
 extern MenuStateFrom400 data_0229ef30;
 
@@ -23,7 +23,7 @@ void MapSelect_Cancel(void)
         if (Link_IsActive() == 1) {
             EventQueue_Push(6, 0);
         } else {
-            func_0205d56c();
+            MapSelect_Leave();
         }
     }
 }

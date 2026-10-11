@@ -10,7 +10,7 @@ u32 Link_IsActive(void);
 int func_0207bd94(void);
 void func_0205ec08(int unused);
 void func_0205ec14(int unused);
-void func_0205d56c(void);
+void MapSelect_Leave(void);
 void MapSelect_PrevList(void);
 void MapSelect_NextList(void);
 void MapSelect_TurnToPage(u32 page);
@@ -96,7 +96,7 @@ void MapSelect_Update(Task *task)
         return;
     }
     if (leave == TRUE) {
-        func_0205d56c();
+        MapSelect_Leave();
         EventQueue_Reset();
         func_0207b48c();
         Task_ResumeScript(task);

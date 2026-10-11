@@ -18,7 +18,7 @@ void LinkBanner_Create(int id);
 void Link_SendUnflaggedPacket(void *data);
 void MenuButtons_CloseAll(void);
 void MenuButtons_RemoveSelectable(void);
-Task *func_0207ca34(void);
+Task *LinkMenu_FindTask(void);
 void Task_ResumeScript(Task *task);
 void func_0210f52c(void *dest, int value, int size);
 
@@ -71,7 +71,7 @@ void LinkMenu_Confirm(void)
             ack[1] = Wireless_GetChildAids();
             Link_SendUnflaggedPacket(ack);
             MenuButtons_CloseAll();
-            Task_ResumeScript(func_0207ca34());
+            Task_ResumeScript(LinkMenu_FindTask());
             Sound_PlaySe(SE_CONFIRM);
             data_0215fed0->locked = 1;
             return;

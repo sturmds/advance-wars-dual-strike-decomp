@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern int data_022a6dc8;
+extern int gFireTargetCount;
 
 void FireTargets_Clear(void);
 /* Defined with u16 parameters. Declared here with int x, y and slot because
@@ -52,5 +52,5 @@ int FireTargets_Build(void)
             }
         }
     }
-    return data_022a6dc8;
+    return gFireTargetCount;
 }

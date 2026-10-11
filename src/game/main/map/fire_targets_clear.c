@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern int data_022a6dc8;
+extern int gFireTargetCount;
 
 void FireTargets_Clear(void)
 {
-    data_022a6dc8 = 0;
+    gFireTargetCount = 0;
 }

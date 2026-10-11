@@ -1889,7 +1889,7 @@ MapSelect_PrevSubStrip kind:function(arm,size=0x68) addr:0x0205d0a8
 MapSelect_NextList kind:function(arm,size=0x1b0) addr:0x0205d110
 MapSelect_PrevList kind:function(arm,size=0x1ac) addr:0x0205d2c0
 MapSelect_CancelFirstMap kind:function(arm,size=0x100) addr:0x0205d46c
-func_0205d56c kind:function(arm,size=0x28) addr:0x0205d56c
+MapSelect_Leave kind:function(arm,size=0x28) addr:0x0205d56c
 MapSelect_PickFirstMap kind:function(arm,size=0x2e8) addr:0x0205d594
 MapSelect_SelectFirstMap kind:function(arm,size=0x208) addr:0x0205d87c
 MapSelect_ConfirmMap kind:function(arm,size=0x41c) addr:0x0205da84
@@ -2149,7 +2149,7 @@ func_0207287c kind:function(arm,size=0xc) addr:0x0207287c
 LinkScreen_OnReadyConfirm kind:function(arm,size=0x3c) addr:0x02072888
 LinkScreen_OnPlayerButtonConfirm kind:function(arm,size=0x58) addr:0x020728c4
 LinkScreen_HandleKeys kind:function(arm,size=0xa8) addr:0x0207291c
-func_020729c4 kind:function(arm,size=0x14) addr:0x020729c4
+LinkScreen_PushBack kind:function(arm,size=0x14) addr:0x020729c4
 LinkScreen_PushReady kind:function(arm,size=0x14) addr:0x020729d8
 LinkScreen_PushMoveDown kind:function(arm,size=0x14) addr:0x020729ec
 LinkScreen_PushMoveUp kind:function(arm,size=0x14) addr:0x02072a00
@@ -2388,7 +2388,7 @@ LinkMenu_OnKeys kind:function(arm,size=0x68) addr:0x0207c72c
 LinkMenu_HandlePressed kind:function(arm,size=0x50) addr:0x0207c794
 LinkMenu_Cancel kind:function(arm,size=0xd4) addr:0x0207c7e4
 LinkMenu_Confirm kind:function(arm,size=0x17c) addr:0x0207c8b8
-func_0207ca34 kind:function(arm,size=0x3c) addr:0x0207ca34
+LinkMenu_FindTask kind:function(arm,size=0x3c) addr:0x0207ca34
 LinkMenu_ResumeScript kind:function(arm,size=0x28) addr:0x0207ca70
 LinkMenu_EndScreen kind:function(arm,size=0xd8) addr:0x0207ca98
 LinkMenu_WaitForChildAcks kind:function(arm,size=0xc8) addr:0x0207cb70
@@ -4062,7 +4062,7 @@ func_020dc1a8 kind:function(arm,size=0x140) addr:0x020dc1a8
 FireTargets_Build kind:function(arm,size=0x1e0) addr:0x020dc2e8
 FireTargets_Add kind:function(arm,size=0x5c) addr:0x020dc4c8
 func_020dc524 kind:function(arm,size=0x14) addr:0x020dc524
-func_020dc538 kind:function(arm,size=0x10) addr:0x020dc538
+FireTargets_GetCount kind:function(arm,size=0x10) addr:0x020dc538
 FireTargets_Clear kind:function(arm,size=0x14) addr:0x020dc548
 func_020dc55c kind:function(arm,size=0x30) addr:0x020dc55c
 ObjectAttackTask_Finish kind:function(arm,size=0x80) addr:0x020dc58c
@@ -4372,7 +4372,7 @@ Map_SetCoSelectPhase kind:function(arm,size=0x28) addr:0x020e8a88
 func_020e8ab0 kind:function(arm,size=0x34) addr:0x020e8ab0
 Map_IsCoSelectPhase kind:function(arm,size=0x34) addr:0x020e8ae4
 Game_ResetSettings kind:function(arm,size=0x110) addr:0x020e8b18
-func_020e8c28 kind:function(arm,size=0x14) addr:0x020e8c28
+Link_ClearPlay kind:function(arm,size=0x14) addr:0x020e8c28
 MapRules_SetDefaults kind:function(arm,size=0x638) addr:0x020e8c3c
 SetupMapRules kind:function(arm,size=0x5a8) addr:0x020e9274
 BattleScore_Technique kind:function(arm,size=0x164) addr:0x020e981c
@@ -4854,7 +4854,7 @@ Palette_Darken kind:function(arm,size=0x9c) addr:0x020fd6d4
 Keypad_ConfirmNextPressed kind:function(arm,size=0x20) addr:0x020fd770
 Keypad_ConfirmPressed kind:function(arm,size=0x20) addr:0x020fd790
 Touch_IsPressed kind:function(arm,size=0x2c) addr:0x020fd7b0
-func_020fd7dc kind:function(arm,size=0x80) addr:0x020fd7dc
+Math_EaseOvershoot kind:function(arm,size=0x80) addr:0x020fd7dc
 func_020fd85c kind:function(arm,size=0x18) addr:0x020fd85c
 func_020fd874 kind:function(arm,size=0x18) addr:0x020fd874
 func_020fd88c kind:function(arm,size=0x18) addr:0x020fd88c
@@ -8867,7 +8867,7 @@ data_022a6c84 kind:bss addr:0x022a6c84
 data_022a6c97 kind:bss addr:0x022a6c97
 data_022a6c9d kind:bss addr:0x022a6c9d
 data_022a6c9e kind:bss addr:0x022a6c9e
-data_022a6dc8 kind:bss addr:0x022a6dc8
+gFireTargetCount kind:bss addr:0x022a6dc8
 data_022a6dcc kind:bss addr:0x022a6dcc
 data_022a6dd0 kind:bss addr:0x022a6dd0
 data_022a6dd4 kind:bss addr:0x022a6dd4

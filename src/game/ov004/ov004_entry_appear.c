@@ -4,7 +4,7 @@
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-int func_020fd7dc(int amount, int from, int to, int elapsed, int duration);
+int Math_EaseOvershoot(int amount, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
 
 void Ov004_EntryAppear(Ov004Task *task) {
@@ -18,8 +18,8 @@ void Ov004_EntryAppear(Ov004Task *task) {
     case 1:
         state->entries[task->tweenFrames].active = 1;
         state->entries[task->tweenFrames].shade = Math_Ease(0, 31, 0, task->frame, task->duration);
-        state->entries[task->tweenFrames].width = func_020fd7dc(100, 2, 64, task->frame, task->duration);
-        state->entries[task->tweenFrames].height = func_020fd7dc(100, 190, 128, task->frame, task->duration);
+        state->entries[task->tweenFrames].width = Math_EaseOvershoot(100, 2, 64, task->frame, task->duration);
+        state->entries[task->tweenFrames].height = Math_EaseOvershoot(100, 190, 128, task->frame, task->duration);
         if (task->frame <= task->duration) {
             task->frame++;
         }

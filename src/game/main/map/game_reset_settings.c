@@ -3,7 +3,7 @@
 
 void Screen_SetCurrentBoth(void *state);
 void MapRules_SetDefaults(void);
-void func_020e8c28(void); /* gLinkPlay = 0 */
+void Link_ClearPlay(void); /* gLinkPlay = 0 */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -27,5 +27,5 @@ void Game_ResetSettings(void)
     STATE->unk_1c4->mapId = 1;
     STATE->unk_82 = 1;
     MapRules_SetDefaults();
-    func_020e8c28();
+    Link_ClearPlay();
 }

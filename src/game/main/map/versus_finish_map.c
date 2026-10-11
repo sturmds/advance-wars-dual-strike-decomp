@@ -6,7 +6,7 @@ void BattleRecordTask_Start(int recordId, void (*callback)(void));
 void Versus_StartVsCpuOneMap(void);
 void Versus_StartVsCpuTwoMaps(void);
 void GameFlagsMid_Restore(void);
-void func_020e8c28(void);
+void Link_ClearPlay(void);
 void func_0210372c(void);
 
 extern u32 gLinkPlay;
@@ -24,7 +24,7 @@ void Versus_FinishMap(void)
         }
     } else {
         GameFlagsMid_Restore();
-        func_020e8c28();
+        Link_ClearPlay();
         func_0210372c();
     }
 }

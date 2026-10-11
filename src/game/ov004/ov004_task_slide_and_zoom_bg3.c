@@ -4,7 +4,7 @@
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-int func_020fd7dc(int param, int from, int to, int elapsed, int duration);
+int Math_EaseOvershoot(int param, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
 
 void Ov004Task_SlideAndZoomBg3(Ov004Task *task) {
@@ -17,7 +17,7 @@ void Ov004Task_SlideAndZoomBg3(Ov004Task *task) {
         task->duration = task->tweenFrames;
         task->step++;
     case 1:
-        Ov004_SetBg3Center(state, func_020fd7dc(110, task->tweenFrom, task->tweenTo, task->frame, task->duration), 96);
+        Ov004_SetBg3Center(state, Math_EaseOvershoot(110, task->tweenFrom, task->tweenTo, task->frame, task->duration), 96);
         scale = Math_Ease(0, 304, 256, task->frame, task->duration);
         Ov004_SetBg3Scale(state, scale, scale);
         if (task->frame <= task->duration) {

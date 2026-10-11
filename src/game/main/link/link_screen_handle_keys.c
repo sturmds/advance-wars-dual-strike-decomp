@@ -5,7 +5,7 @@
 extern MenuState gMenuState;
 
 int Link_GetOwnPlayer(void);
-void func_020729c4(void);
+void LinkScreen_PushBack(void);
 void LinkScreen_PushReady(void);
 void LinkScreen_PushMoveDown(void);
 void LinkScreen_PushMoveUp(void);
@@ -28,6 +28,6 @@ void LinkScreen_HandleKeys(void)
         }
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
-        func_020729c4();
+        LinkScreen_PushBack();
     }
 }

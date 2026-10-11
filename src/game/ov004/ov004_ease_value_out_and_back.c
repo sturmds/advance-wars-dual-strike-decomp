@@ -3,7 +3,7 @@
 
 extern Unk_ov004_022bf158 *data_ov004_022bf158;
 
-int func_020fd7dc(int amount, int from, int to, int elapsed, int duration);
+int Math_EaseOvershoot(int amount, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(void *task);
 
 void Ov004_EaseValueOutAndBack(Ov004Task *task) {
@@ -16,9 +16,9 @@ void Ov004_EaseValueOutAndBack(Ov004Task *task) {
         task->step++;
     case 1:
         if (task->tweenFrames == 0) {
-            state->unk_8f8 = func_020fd7dc(110, task->tweenFrom, task->tweenTo, task->frame, task->duration);
+            state->unk_8f8 = Math_EaseOvershoot(110, task->tweenFrom, task->tweenTo, task->frame, task->duration);
         } else {
-            state->unk_8fc = func_020fd7dc(110, task->tweenFrom, task->tweenTo, task->frame, task->duration);
+            state->unk_8fc = Math_EaseOvershoot(110, task->tweenFrom, task->tweenTo, task->frame, task->duration);
         }
         if (task->frame < task->duration) {
             task->frame++;
@@ -31,9 +31,9 @@ void Ov004_EaseValueOutAndBack(Ov004Task *task) {
         task->step++;
     case 3:
         if (task->tweenFrames == 0) {
-            state->unk_8f8 = func_020fd7dc(110, task->unk_5c, task->tweenTo, task->duration - task->frame, task->duration);
+            state->unk_8f8 = Math_EaseOvershoot(110, task->unk_5c, task->tweenTo, task->duration - task->frame, task->duration);
         } else {
-            state->unk_8fc = func_020fd7dc(110, task->unk_5c, task->tweenTo, task->duration - task->frame, task->duration);
+            state->unk_8fc = Math_EaseOvershoot(110, task->unk_5c, task->tweenTo, task->duration - task->frame, task->duration);
         }
         if (task->frame < task->duration) {
             task->frame++;
