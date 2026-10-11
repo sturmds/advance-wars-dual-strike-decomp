@@ -2087,6 +2087,13 @@ src/game/main/script/event_cmd_load_current_army_palette_slot15.c:
     complete
     .text       start:0x0201c22c end:0x0201c2a8
 
+src/game/main/script/event_cmd_clear_flag84_run_action_hook.c:
+    complete
+    .text       start:0x0201c2a8 end:0x0201c304
+
+src/game/main/script/event_cmd_set_flag84_run_action_hook.c:
+    .text       start:0x0201c304 end:0x0201c360
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
