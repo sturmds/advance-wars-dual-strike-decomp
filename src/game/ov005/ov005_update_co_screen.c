@@ -38,7 +38,7 @@ void Task_Destroy(void *task);
 void Task_ResumeScript(void *task);
 void Wallpaper_DestroyTasks(void);
 void Screen1_DestroyTextTasks(void);
-void func_020273c4(void);
+void HelpBand_Stop(void);
 void func_020fd560(void);
 void func_020d7d9c(Ov005Task *task);
 void Ov005_DrawCoGridCells(Ov005Task *task);
@@ -278,7 +278,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         Task_Destroy(work->childTask);
         Wallpaper_DestroyTasks();
         Screen1_DestroyTextTasks();
-        func_020273c4();
+        HelpBand_Stop();
         MenuButtons_RemoveUnselectable();
         func_020fd560();
         saved0280 = data_027c0280;

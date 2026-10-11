@@ -17,7 +17,7 @@ void Task_ResumeScript(Ov005Task *task);
 BOOL func_02004828(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
-void func_020273c4(void);
+void HelpBand_Stop(void);
 void Wallpaper_LoadBothOnLayer3(int co);           /* probably loads the CO's picture */
 void func_020d7d9c(Ov005Task *task);
 Task *func_020fd128(Ov005Task *parent, int frames, int a, int b);
@@ -264,7 +264,7 @@ void Ov005_UpdateCoListScreen(Ov005Task *task)
         MenuButtons_RemoveSelectable();
         MenuButtons_RemoveUnselectable();
         Screen1_DestroyTextTasks();
-        func_020273c4();
+        HelpBand_Stop();
         task->step++;
         break;
     case 103:
