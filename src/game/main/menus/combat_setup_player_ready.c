@@ -14,7 +14,7 @@ extern const MenuButtonTemplate data_02160de0;
 /* Link message 9: a player is ready. A player who is already ready is
  * skipped. For the local player, the Ready button (254) closes and, unless
  * they are player 0, the Unready button (252) is added. */
-void func_02085974(u8 player)
+void CombatSetup_SetPlayerReady(u8 player)
 {
     if (MENU->combat.players[player].unk_1 != 0) {
         return;

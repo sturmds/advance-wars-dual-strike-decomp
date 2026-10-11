@@ -14,7 +14,7 @@ extern const MenuButtonTemplate data_02160d40;
 /* Link message 10: a player is no longer ready. For the local player, the
  * Ready button (254) comes back and, unless they are player 0, the Unready
  * button (252) closes. */
-void func_02085900(u8 player)
+void CombatSetup_SetPlayerUnready(u8 player)
 {
     Sound_PlaySe(0x10009);
     MENU->combat.players[player].unk_1 = 0;

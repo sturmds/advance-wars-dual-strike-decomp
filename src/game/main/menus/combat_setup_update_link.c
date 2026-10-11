@@ -10,8 +10,8 @@ void func_0207b48c(void);
 int func_0207bd94(void);
 void func_020858bc(void);
 void func_020858d8(void);
-void func_02085900(u8 player);
-void func_02085974(u8 player);
+void CombatSetup_SetPlayerUnready(u8 player);
+void CombatSetup_SetPlayerReady(u8 player);
 void CombatSetup_MovePlayerDown(u8 player);
 void CombatSetup_MovePlayerUp(u8 player);
 void CombatSetup_MoveToNextRow(u8 player);
@@ -54,11 +54,11 @@ void CombatSetup_UpdateLink(Task *task)
                 for (j = 0; j < 4; msg += 2, j++) {
                     switch (msg[0]) {
                     case 9:
-                        func_02085974(i);
+                        CombatSetup_SetPlayerReady(i);
                         break;
                     case 10:
                         if (MENU->combat.players[i].unk_1 != 0) {
-                            func_02085900(i);
+                            CombatSetup_SetPlayerUnready(i);
                         } else if (i == 0) {
                             cancel = 1;
                         }
