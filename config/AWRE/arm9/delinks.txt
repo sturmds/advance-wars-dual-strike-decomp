@@ -22668,6 +22668,10 @@ src/sdk/wm/data_share_on_child_port_recv.c:
     complete
     .text       start:0x021184a0 end:0x021185d0
 
+src/sdk/wm/data_share_on_parent_port_recv.c:
+    complete
+    .text       start:0x021185d0 end:0x021186e4
+
 src/sdk/wm/wm_set_entry.c:
     complete
     .text       start:0x02118f34 end:0x02118f94
