@@ -31,7 +31,9 @@ typedef struct Task {
     u16 unk_34;                        /* frame counter of func_02081900 */
     u16 unk_36;                        /* frame counter of func_020824e4 */
     void *unk_38;                      /* data some scripts get from their creator, beside unk_4c */
-    u8 pad_3c[0x44 - 0x3c];
+    void (*unk_3c)(void);              /* set by EventCmd_StartPaletteBufferTask */
+    u16 unk_40;                        /* palette slot << 12, same */
+    u8 pad_42[0x44 - 0x42];
     s16 unk_44;                        /* step limit of the screen shake task (ScreenShake_Update) */
     u8 pad_46[0x4c - 0x46];
     void *unk_4c;                      /* data some scripts get from their creator; a MapUnit * for the battle tasks of ActingUnit_StartAttack */
