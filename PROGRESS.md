@@ -8,9 +8,9 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| game | 6625 / 6700 | 1492280 / 1553840 | 96.04% | 0 | 0 |
+| game | 6628 / 6700 | 1492764 / 1553840 | 96.07% | 0 | 0 |
 | SDK/library | 297 / 779 | 31072 / 132154 | 23.51% | 21 | 1286 |
-| all | 6922 / 7479 | 1523352 / 1685994 | 90.35% | 21 | 1286 |
+| all | 6925 / 7479 | 1523836 / 1685994 | 90.38% | 21 | 1286 |
 
 ## By module
 
@@ -18,7 +18,7 @@ Rows with nothing done are left out, but count in the totals.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5134 / 5180 | 1039052 / 1082632 | 95.97% | 0 |
+| main | game | 5137 / 5180 | 1039536 / 1082632 | 96.02% | 0 |
 | main | SDK/library | 290 / 768 | 30160 / 130618 | 23.09% | 19 |
 | itcm | game | 100 / 102 | 21272 / 21896 | 97.15% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 2 |
@@ -50,13 +50,10 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/ai/func_020a6ac4.c` | func_020a6ac4 | 620 |
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
-| `src/game/main/event_queue/event_queue_drain.c` | EventQueue_Drain | 192 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
-| `src/game/main/link/func_02072a50.c` | func_02072a50 | 176 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
-| `src/game/main/link/link_screen_move_player_up.c` | LinkScreen_MovePlayerUp | 116 |
 | `src/game/main/map/design_map_build_record.c` | DesignMap_BuildRecord | 796 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020c4448.c` | func_020c4448 | 904 |

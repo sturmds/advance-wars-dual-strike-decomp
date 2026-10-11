@@ -8774,7 +8774,7 @@ data_0229cdfc kind:bss addr:0x0229cdfc
 data_0229cf7c kind:bss addr:0x0229cf7c
 data_0229cf7d kind:bss addr:0x0229cf7d
 data_0229d88c kind:bss addr:0x0229d88c
-data_0229d894 kind:bss addr:0x0229d894
+gEventQueueBatch kind:bss addr:0x0229d894
 gEventQueue kind:bss addr:0x0229d89c
 data_0229d89d kind:bss addr:0x0229d89d
 data_0229d8c0 kind:bss addr:0x0229d8c0
