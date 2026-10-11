@@ -10495,6 +10495,10 @@ src/game/main/func_02096f44.c:
     complete
     .text       start:0x02096f44 end:0x02097050
 
+src/game/main/ai/ai_mark_enemy_sub_reach.c:
+    complete
+    .text       start:0x02097050 end:0x020972f0
+
 src/game/main/ai/ai_count_enemy_sub_reach.c:
     complete
     .text       start:0x020972f0 end:0x020973fc
