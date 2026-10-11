@@ -2,7 +2,7 @@
 #include "game/sound_arc.h"
 
 const SoundArcStrmInfo *NNS_SndArcGetStrmInfo(int strmNo);
-BOOL func_02108a58(void **handle, const SoundArcStrmInfo *info, int unk_06, int unk_05,
+BOOL SoundStream_Prepare(void **handle, const SoundArcStrmInfo *info, int unk_06, int unk_05,
                    int strmNo, u32 offset, int arg6, int arg7, int arg8, int arg9);
 
 /* Prepares stream strmNo of the current sound archive on handle, starting
@@ -15,5 +15,5 @@ BOOL SoundArc_PrepareStream(void **handle, int strmNo, u32 offset)
     if (info == NULL) {
         return FALSE;
     }
-    return func_02108a58(handle, info, info->unk_06, info->unk_05, strmNo, offset, 0, 0, 0, 0);
+    return SoundStream_Prepare(handle, info, info->unk_06, info->unk_05, strmNo, offset, 0, 0, 0, 0);
 }

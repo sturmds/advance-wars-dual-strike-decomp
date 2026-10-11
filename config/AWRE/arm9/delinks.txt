@@ -20536,6 +20536,10 @@ src/game/main/sound/sound_stream_stop.c:
     complete
     .text       start:0x021089f4 end:0x02108a58
 
+src/game/main/sound/sound_stream_prepare.c:
+    complete
+    .text       start:0x02108a58 end:0x02108d30
+
 src/game/main/sound/sound_stream_detach.c:
     complete
     .text       start:0x02108d30 end:0x02108d6c

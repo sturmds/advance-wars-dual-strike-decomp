@@ -45,7 +45,7 @@ typedef struct SoundStream {
     u8 channelCount;                   /* 0xbe: channels in the file */
     u8 pad_bf;
     u16 sampleRate;                    /* 0xc0 */
-    u8 pad_c2[2];
+    u16 timer;                         /* 0xc2: hardware channel timer for the sample rate */
     u32 loopStart;                     /* 0xc4: sample to go back to at the end */
     u8 pad_c8[4];
     u32 dataOffset;                    /* 0xcc: first data byte, from the file start */
