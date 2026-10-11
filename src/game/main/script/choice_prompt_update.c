@@ -13,7 +13,7 @@ extern u16 gEventChoiceAnswer;
 
 int ChoicePrompt_GetKeys(void);
 u16 ChoicePrompt_PollTouch(void);
-void func_020d31f4(void);
+void DialogueCursor_Animate(void);
 void func_0201d730(void *text);
 void ScriptSlot_ClearCallback(int slot);
 void ChoicePrompt_DrawCursor(Unk_0201a774 *prompt);
@@ -28,7 +28,7 @@ void ChoicePrompt_Update(Unk_0201a774 *prompt)
     u16 held = ChoicePrompt_GetKeys();
     u32 keys = ChoicePrompt_PollTouch() | held;
 
-    func_020d31f4();
+    DialogueCursor_Animate();
     if (prompt->cursor != 0) {
         if (prompt->cursor == 1) {
             if (keys & CHOICE_KEY_LEFT) {

@@ -3821,7 +3821,7 @@ NumberSprite_PutDigits kind:function(arm,size=0x94) addr:0x020d2e3c
 func_020d2ed0 kind:function(arm,size=0x28) addr:0x020d2ed0
 MainLoop_Ov003VBlank kind:function(arm,size=0x194) addr:0x020d2ef8
 MainLoop_MapFrame kind:function(arm,size=0x168) addr:0x020d308c
-func_020d31f4 kind:function(arm,size=0xb0) addr:0x020d31f4
+DialogueCursor_Animate kind:function(arm,size=0xb0) addr:0x020d31f4
 Map_ResetFrameCallbacks kind:function(arm,size=0x6c) addr:0x020d32a4
 func_020d3310 kind:function(arm,size=0xc) addr:0x020d3310
 func_020d331c kind:function(arm,size=0x1c) addr:0x020d331c
@@ -6164,7 +6164,7 @@ data_02148eec kind:data(any) addr:0x02148eec
 data_02149080 kind:data(any) addr:0x02149080
 data_02149280 kind:data(any) addr:0x02149280
 data_021492c0 kind:data(any) addr:0x021492c0
-data_02149cc0 kind:data(any) addr:0x02149cc0
+gDialogueCursorTiles kind:data(any) addr:0x02149cc0
 gSubDiveAnim kind:data(any) addr:0x02149de0
 gStealthHideAnim kind:data(any) addr:0x02149ebc
 data_0214a528 kind:data(any) addr:0x0214a528

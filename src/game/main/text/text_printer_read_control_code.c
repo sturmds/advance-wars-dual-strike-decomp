@@ -16,7 +16,7 @@ int func_02015ec8(TextPrinter *printer);
 void func_02015da8(TextPrinter *printer);
 void func_0201d730(void);
 void PopupMenu_SetItemIcon(int arg);
-void func_020d31f4(void);
+void DialogueCursor_Animate(void);
 void func_020f7da0(u16 *dest, int unitType, int base, int cargo, int a4, int hp, int a6, int a7, int a8, int a9, int a10);
 
 #define TEXT ((const u8 *)printer->text) /* TextPrinter.text is a bare pointer */
@@ -100,7 +100,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         slot->textEntry = entry + 1;
         slot->unk_28 = func_02015ec8(printer);
         slot->unk_2c = printer->unk_40;
-        func_020d31f4();
+        DialogueCursor_Animate();
         return 2;
     case 12:
         ADVANCE(1);

@@ -10,7 +10,7 @@ void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg
 void TileMap_GetPixelPos(u16 *tile, u16 *tileMap, s16 *pixelPos);
 void ChoicePrompt_DrawCursor(Unk_0201a774 *prompt);
 void EventScript_GetTextWindowRect(Rect *rect);
-void func_020d31f4(void);
+void DialogueCursor_Animate(void);
 
 /* First step of the two-choice prompt in the event text window: prints text
  * 0xc00002ae at the top left of the prompt's tile map, draws the cursor and
@@ -23,7 +23,7 @@ void ChoicePrompt_Init(Unk_0201a774 *prompt)
 
     Text_PrintImmediate(0, 0, (u16 *)prompt->tiles, 0xc00002ae, prompt->palette, 0);
     ChoicePrompt_DrawCursor(prompt);
-    func_020d31f4();
+    DialogueCursor_Animate();
     EventScript_GetTextWindowRect(&data_02297794);
     EventScript_GetTextWindowRect(&data_0229779c);
     TileMap_GetPixelPos((u16 *)prompt->tiles, data_02297be0[0], pos);

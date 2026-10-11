@@ -9,7 +9,7 @@ u32 func_02024a6c(void);
 int func_02024ec0(void);
 BOOL func_02014b28(void);
 void func_0201d730(void *text);
-void func_020d31f4(void);
+void DialogueCursor_Animate(void);
 
 /* Start asks to skip the event (data_022900b8 = 1) when func_02014b28 allows
  * it. Start, A or a touch in the text window then clears the text with
@@ -28,5 +28,5 @@ void TextBox_UpdateSkipInput(Unk_0201a774 *prompt)
         prompt->redraw();
         prompt->unk_08 = NULL;
     }
-    func_020d31f4();
+    DialogueCursor_Animate();
 }

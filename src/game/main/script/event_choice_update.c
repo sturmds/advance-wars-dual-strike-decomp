@@ -14,7 +14,7 @@ extern u8 data_022977d0[];
 
 u16 func_0201a160(void);
 u16 Touch_TestButtonRects(void *buttons, int count);
-void func_020d31f4(void);
+void DialogueCursor_Animate(void);
 void EventChoice_DrawRecord(int choice, int x, int y);
 void func_0201a4f0(Task *task);
 void func_0201d730(void *text);
@@ -39,7 +39,7 @@ void EventChoice_Update(Task *task)
 
     keys = func_0201a160();
     touched = Touch_TestButtonRects(data_022977d0, 4);
-    func_020d31f4();
+    DialogueCursor_Animate();
     oldCursor = CURSOR(task);
     if (keys & CHOICE_KEY_CANCEL) {
         CURSOR(task) = CHOICE_LAST;
