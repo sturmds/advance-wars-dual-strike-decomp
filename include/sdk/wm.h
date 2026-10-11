@@ -51,6 +51,7 @@ typedef struct WMCallback {
 #define WM_APIID_SET_MP_DATA 15
 
 /* Command ids that the WM commands send to the ARM7, one per request kind. */
+#define WM_APIID_SET_P_PARAM 7
 #define WM_APIID_START_PARENT 8
 #define WM_APIID_END_PARENT 9
 #define WM_APIID_START_SCAN 10
@@ -326,5 +327,6 @@ int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
 int WMi_SendCommand(int apiid, u16 argCount, ...);
 int func_02116f74(int apiid, WMCallbackFunc callback);
+BOOL Wireless_ParentSettingsValid(WMParentParam *param);
 
 #endif
