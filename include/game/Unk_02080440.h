@@ -71,9 +71,9 @@ typedef struct Unk_02080440_1c4 {
     u8 fog;                            /* 1: Fog of War */
     u8 tileset;                        /* from MapHeader.tileset */
     u8 weather;                        /* WEATHER_* */
-    u8 unk_3b;                         /* 1: menu weather setting 0 */
-    u8 nextWeather;                    /* WEATHER_* for the next turn: func_020ddb38 picks it through Weather_PickNext (random when unk_3b is 1); AiTurn_Restart passes it to Link_SendWeather */
-    u8 unk_3d;                         /* 0-3, mapped to menu weather settings 1-4 */
+    u8 randomWeather;                  /* 1: random weather (menu weather setting 0) */
+    u8 nextWeather;                    /* WEATHER_* for the next turn: func_020ddb38 picks it through Weather_PickNext (random when randomWeather is 1); AiTurn_Restart passes it to Link_SendWeather */
+    u8 defaultWeather;                 /* WEATHER_* the map returns to; menu weather settings 1-4 */
 } Unk_02080440_1c4;
 
 /* SidePanel_Place modes */
@@ -223,9 +223,9 @@ typedef struct Unk_02080440_48 {
 
 /* Reached through Unk_02080440.unk_5c[i]. */
 typedef struct Unk_02080440_5c {
-    u8 unk_00;                         /* sent to other consoles with the weather (Link_SendWeather) */
-    u8 unk_01;                         /* same */
-    u8 unk_02;                         /* same */
+    u8 sandChance;                     /* percent chances for Weather_PickNext; sent to other consoles with the weather (Link_SendWeather) */
+    u8 rainChance;
+    u8 snowChance;
     u8 weatherDays[5];                 /* per player slot: days the current weather lasts; set by Weather_SetDays */
     u8 unk_08;                         /* the struct is 9 bytes: battle saves copy it bytewise (BattleSaveMap.unk_e34) */
 } Unk_02080440_5c;

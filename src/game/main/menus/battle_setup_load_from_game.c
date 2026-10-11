@@ -86,11 +86,11 @@ void BattleSetup_LoadFromGame(void)
         gMenuState.setup.unk_2e2 = gPlayRecords.unk_15;
     }
 
-    /* weather setting: 0 when unk_3b is 1, else 1-4 from unk_3d */
-    if (GAME->unk_1c4->unk_3b == 1) {
+    /* weather setting: 0 when randomWeather is 1, else 1-4 from defaultWeather */
+    if (GAME->unk_1c4->randomWeather == 1) {
         *(u8 *)&gMenuState.setup.unk_2dc = 0;
     } else {
-        switch (GAME->unk_1c4->unk_3d) {
+        switch (GAME->unk_1c4->defaultWeather) {
         case 0:
         default:
             gMenuState.setup.unk_2dc = 1;

@@ -79,11 +79,11 @@ void BattleRecord_SaveWin(void)
     case GAME_MODE_WAR_ROOM:
         mapId -= WAR_ROOM_FIRST_MAP;
         for (place = 0; place < 3; place++) {
-            if (WAR_ROOM_RECORD(mapId, place).unk_14 < data_022a7a9c.score) {
+            if (WAR_ROOM_RECORD(mapId, place).score < data_022a7a9c.score) {
                 break;
             }
-            if (data_022a7a9c.score == WAR_ROOM_RECORD(mapId, place).unk_14
-                && WAR_ROOM_RECORD(mapId, place).unk_0a > STATE->day) {
+            if (data_022a7a9c.score == WAR_ROOM_RECORD(mapId, place).score
+                && WAR_ROOM_RECORD(mapId, place).days > STATE->day) {
                 break;
             }
         }
@@ -97,17 +97,17 @@ void BattleRecord_SaveWin(void)
         }
         WAR_ROOM_RECORD(mapId, place).frontCo = FRONT_CO(slot);
         WAR_ROOM_RECORD(mapId, place).backCo = BACK_CO(slot);
-        WAR_ROOM_RECORD(mapId, place).unk_14 = data_022a7a9c.score;
-        WAR_ROOM_RECORD(mapId, place).unk_0a = STATE->day;
+        WAR_ROOM_RECORD(mapId, place).score = data_022a7a9c.score;
+        WAR_ROOM_RECORD(mapId, place).days = STATE->day;
         break;
     case GAME_MODE_CAMPAIGN:
-        if (CAMPAIGN_RECORD(mapId).unk_14 > data_022a7a9c.score) {
+        if (CAMPAIGN_RECORD(mapId).score > data_022a7a9c.score) {
             return;
         }
         CAMPAIGN_RECORD(mapId).frontCo = FRONT_CO(slot);
         CAMPAIGN_RECORD(mapId).backCo = BACK_CO(slot);
-        CAMPAIGN_RECORD(mapId).unk_14 = data_022a7a9c.score;
-        CAMPAIGN_RECORD(mapId).unk_0a = STATE->day;
+        CAMPAIGN_RECORD(mapId).score = data_022a7a9c.score;
+        CAMPAIGN_RECORD(mapId).days = STATE->day;
         break;
     }
 }

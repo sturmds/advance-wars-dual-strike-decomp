@@ -83,13 +83,13 @@ typedef struct BattleSetupState {
     s8 unk_4ce[6];                     /* drawn as two-digit numbers in a 3 by 2 grid */
     s8 unk_4d4[6];                     /* same, for a second grid */
     u8 recordCos[6];                   /* War Room: front and back CO of each of the three best records */
-    u8 recordUnk_0a[3];                /* WarRoomRecord.unk_0a of each record */
+    u8 recordDays[3];                  /* WarRoomRecord.days of each record */
     u8 pad_4e3;
-    u16 recordUnk_14[3];               /* WarRoomRecord.unk_14 of each record */
-    u8 unk_4ea[6];
-    u8 unk_4f0[3];
+    u16 recordScores[3];               /* WarRoomRecord.score of each record */
+    u8 prevRecordCos[6];               /* the records above as they were before the list slide */
+    u8 prevRecordDays[3];
     u8 pad_4f3;
-    u16 unk_4f4[3];
+    u16 prevRecordScores[3];
     u16 prevMapId;                     /* map selected before the list changed */
     u16 unk_4fc;
     u8 listChanged;                    /* set by the first change of list, which plays a sound */

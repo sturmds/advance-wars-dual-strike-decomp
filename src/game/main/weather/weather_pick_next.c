@@ -12,20 +12,20 @@ extern int data_027c0284;
 #define WEATHER (data_027c027c->unk_5c[data_027c0284])
 
 /* Weather for the next turn. Clear weather stays clear unless the map's
- * weather setting is random (unk_3b is 1); then unk_02, unk_01 and unk_00 of
- * the weather record are percent chances of snow, rain and sand. Other
+ * weather setting is random (randomWeather is 1); then the weather record gives the percent
+ * chances of snow, rain and sand. Other
  * weather lasts until Weather_TickDays reports that every player's days ran
- * out, then returns to the map's default (unk_3d). */
+ * out, then returns to the map's default (defaultWeather). */
 int Weather_PickNext(void)
 {
     int weather = VIEW->weather;
 
     if (weather == WEATHER_CLEAR) {
-        if (VIEW->unk_3b != 1) {
+        if (VIEW->randomWeather != 1) {
             return weather;
         }
-        switch (Rng_RollTier(WEATHER->unk_02, WEATHER->unk_02 + WEATHER->unk_01,
-                             WEATHER->unk_00 + (WEATHER->unk_02 + WEATHER->unk_01))) {
+        switch (Rng_RollTier(WEATHER->snowChance, WEATHER->snowChance + WEATHER->rainChance,
+                             WEATHER->sandChance + (WEATHER->snowChance + WEATHER->rainChance))) {
         case 1:
             weather = WEATHER_SNOW;
             break;
@@ -37,11 +37,11 @@ int Weather_PickNext(void)
             break;
         }
     } else {
-        if (weather == VIEW->unk_3d && VIEW->unk_3b == 0) {
+        if (weather == VIEW->defaultWeather && VIEW->randomWeather == 0) {
             return weather;
         }
         if (Weather_TickDays()) {
-            weather = VIEW->unk_3d;
+            weather = VIEW->defaultWeather;
         }
     }
     return weather;

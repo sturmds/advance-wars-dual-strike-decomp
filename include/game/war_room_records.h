@@ -10,8 +10,8 @@
 typedef struct WarRoomRecord {
     u32 frontCo : 5;
     u32 backCo : 5;                    /* 0: no tag partner */
-    u32 unk_0a : 10;                   /* 0: no record in this place */
-    u32 unk_14 : 10;
+    u32 days : 10;                     /* days the win took; 0: no record in this place */
+    u32 score : 10;
     u32 : 2;
 } WarRoomRecord;
 

@@ -22,9 +22,9 @@ void AiShowAction_StartTurn(void)
     Player_RefreshUnits();
     gAiTurnState->state = AI_STATE_START;
     GAME->unk_1c4->nextWeather = gUnitAction.target;
-    EXTRA->unk_00 = gUnitAction.unk_07;
-    EXTRA->unk_01 = gUnitAction.packed[0];
-    EXTRA->unk_02 = gUnitAction.packed[1];
+    EXTRA->sandChance = gUnitAction.unk_07;
+    EXTRA->rainChance = gUnitAction.packed[0];
+    EXTRA->snowChance = gUnitAction.packed[1];
     for (i = 0; i < 4; i++) {
         EXTRA->weatherDays[i + 1] = gUnitAction.packed[i + 2];
     }

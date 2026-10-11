@@ -70,9 +70,9 @@ void MapRules_SetDefaults(void)
     Screen_SetCurrent(data_027c0288.unk_00);
     STATE->unk_1c4->fog = 0;
     STATE->unk_1c4->tileset = 0;
-    STATE->unk_1c4->unk_3d = 0;
+    STATE->unk_1c4->defaultWeather = 0;
     STATE->unk_1c4->weather = WEATHER_CLEAR;
-    STATE->unk_1c4->unk_3b = 0;
+    STATE->unk_1c4->randomWeather = 0;
     STATE->unk_1c4->nextWeather = 0;
     STATE->unk_1c4->unk_37 = 3;
     Screen_SetCurrent(saved027c);
@@ -84,9 +84,9 @@ void MapRules_SetDefaults(void)
     Screen_SetCurrent(data_027c0288.unk_04);
     STATE->unk_1c4->fog = 0;
     STATE->unk_1c4->tileset = 0;
-    STATE->unk_1c4->unk_3d = 0;
+    STATE->unk_1c4->defaultWeather = 0;
     STATE->unk_1c4->weather = WEATHER_CLEAR;
-    STATE->unk_1c4->unk_3b = 0;
+    STATE->unk_1c4->randomWeather = 0;
     STATE->unk_1c4->nextWeather = 0;
     STATE->unk_1c4->unk_37 = 3;
     Screen_SetCurrent(saved027c);

@@ -23,9 +23,9 @@ void MapSelect_LoadWarRoomRecords(void)
         return;
     }
     for (i = 0; i < 3; i++) {
-        MENU->setup.recordUnk_0a[i] = RECORD(i).unk_0a;
-        MENU->setup.recordUnk_14[i] = RECORD(i).unk_14;
-        if (MENU->setup.recordUnk_0a[i] == 0) {
+        MENU->setup.recordDays[i] = RECORD(i).days;
+        MENU->setup.recordScores[i] = RECORD(i).score;
+        if (MENU->setup.recordDays[i] == 0) {
             MENU->setup.recordCos[i * 2] = 0;
             MENU->setup.recordCos[i * 2 + 1] = 0;
         } else {

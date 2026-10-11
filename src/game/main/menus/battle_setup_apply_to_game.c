@@ -48,10 +48,10 @@ static inline void SetSlotController(int i, int map)
  * the compiler merges the switch cases. */
 #define SET_WEATHER(random, value)               \
     do {                                         \
-        GAME->unk_1c4->unk_3b = (random);        \
+        GAME->unk_1c4->randomWeather = (random);        \
         GAME->unk_1c4->weather = (value);        \
         GAME->unk_1c4->nextWeather = (value);    \
-        GAME->unk_1c4->unk_3d = (value);         \
+        GAME->unk_1c4->defaultWeather = (value);         \
     } while (0)
 
 /* Menu weather setting 0 is random weather; 1-4 are clear, rain, snow

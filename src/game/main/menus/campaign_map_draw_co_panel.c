@@ -66,8 +66,8 @@ void CampaignMap_DrawCoPanel(CampaignMapTask *task)
     if (func_0210391c()) {
         Sprite_QueueAt(0, 216, 56, data_027c0040, 0x2000, 174);
     }
-    if (MISSION_RECORD.unk_0a != 0) {
-        Sprite_QueueAt(0, 232, 168, data_027c0040, ((5 - Score_ToRank(MISSION_RECORD.unk_14)) * 4 + 158) | 0x3000, 0);
+    if (MISSION_RECORD.days != 0) {
+        Sprite_QueueAt(0, 232, 168, data_027c0040, ((5 - Score_ToRank(MISSION_RECORD.score)) * 4 + 158) | 0x3000, 0);
     }
     Screen_SetCurrentGfx(savedGfx);
 }

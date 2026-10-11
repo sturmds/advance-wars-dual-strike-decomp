@@ -42,7 +42,7 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
     for (i = 0; i < 3; i++) {
         Sprite_QueueAt(0, (x + 8) & 0x1ff, (y + 8 + i * 32) & 0xff, &data_027c0060, 0x1000, 0x19e + i * 8);
         if (mode == 0) {
-            if (MENU->setup.recordUnk_0a[i] != 0) {
+            if (MENU->setup.recordDays[i] != 0) {
                 if (MENU->setup.recordCos[i * 2] != 0) {
                     func_02001f50((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 3) << 12,
                                   (i * 2) * 12 + 0x1ca, ((i * 2) & 1) + 1);
@@ -51,21 +51,21 @@ void MapSelect_DrawStatsPanel(int x, int y, int mode)
                     func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 4) << 12,
                                   (i * 2 + 1) * 12 + 0x1ca, ((i * 2 + 1) & 1) + 1);
                 }
-                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.recordUnk_0a[i]);
-                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.recordUnk_14[i]);
+                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.recordDays[i]);
+                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.recordScores[i]);
             }
         } else {
-            if (MENU->setup.unk_4f0[i] != 0) {
-                if (MENU->setup.unk_4ea[i * 2] != 0) {
+            if (MENU->setup.prevRecordDays[i] != 0) {
+                if (MENU->setup.prevRecordCos[i * 2] != 0) {
                     func_02001f50((x + 32) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 9) << 12,
                                   (i * 2 + 6) * 12 + 0x1ca, ((i * 2 + 6) & 1) + 1);
                 }
-                if (MENU->setup.unk_4ea[i * 2 + 1] != 0) {
+                if (MENU->setup.prevRecordCos[i * 2 + 1] != 0) {
                     func_02001f50((x + 64) & 0x1ff, (y + 40 + i * 32) & 0xff, (i * 2 + 10) << 12,
                                   (i * 2 + 7) * 12 + 0x1ca, ((i * 2 + 7) & 1) + 1);
                 }
-                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.unk_4f0[i]);
-                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.unk_4f4[i]);
+                MapSelect_DrawNumber(x + 64, y + 16 + i * 32, MENU->setup.prevRecordDays[i]);
+                MapSelect_DrawNumber(x + 96, y + 16 + i * 32, MENU->setup.prevRecordScores[i]);
             }
         }
     }

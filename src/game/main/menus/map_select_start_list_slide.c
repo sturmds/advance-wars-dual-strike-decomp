@@ -33,7 +33,7 @@ static inline int Gfx_LayerBg(int layer)
  * second half, and the first 32 by 32 tile maps of layer 0 and, on the other
  * screen, layer 1 to the second ones, moving their tile numbers to the
  * copies. Then scrolls both layers to the copies (x = 256), and keeps the
- * War Room records shown so far in unk_4ea, unk_4f0 and unk_4f4. */
+ * War Room records shown so far in prevRecordCos, prevRecordDays and prevRecordScores. */
 void MapSelect_StartListSlide(int slideBack)
 {
     Unk_027c0280 *savedGfx;
@@ -66,10 +66,10 @@ void MapSelect_StartListSlide(int slideBack)
     Palette_Flush();
 
     for (i = 0; i < 3; i++) {
-        MENU->setup.unk_4ea[i * 2] = MENU->setup.recordCos[i * 2];
-        MENU->setup.unk_4ea[i * 2 + 1] = MENU->setup.recordCos[i * 2 + 1];
-        MENU->setup.unk_4f0[i] = MENU->setup.recordUnk_0a[i];
-        MENU->setup.unk_4f4[i] = MENU->setup.recordUnk_14[i];
+        MENU->setup.prevRecordCos[i * 2] = MENU->setup.recordCos[i * 2];
+        MENU->setup.prevRecordCos[i * 2 + 1] = MENU->setup.recordCos[i * 2 + 1];
+        MENU->setup.prevRecordDays[i] = MENU->setup.recordDays[i];
+        MENU->setup.prevRecordScores[i] = MENU->setup.recordScores[i];
     }
 
     savedGfx = data_027c0280;

@@ -17,9 +17,9 @@ void Link_SendWeather(int nextWeather)
 
     data_0229d8c8.action = 13;
     data_0229d8c8.target = nextWeather;
-    data_0229d8c8.unk_07 = WEATHER->unk_00;
-    data_0229d8c8.packed[0] = WEATHER->unk_01;
-    data_0229d8c8.packed[1] = WEATHER->unk_02;
+    data_0229d8c8.unk_07 = WEATHER->sandChance;
+    data_0229d8c8.packed[0] = WEATHER->rainChance;
+    data_0229d8c8.packed[1] = WEATHER->snowChance;
     for (i = 0; i < 4; i++) {
         data_0229d8c8.packed[2 + i] = WEATHER->weatherDays[1 + i];
     }
