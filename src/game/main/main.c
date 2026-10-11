@@ -15,7 +15,7 @@ void func_020011e0(void);
 void func_02112bdc(int a);
 void func_0200bf64(void);
 void func_0200acd8(void);
-void func_020012b0(void);
+void Screens_InitDisplay(void);
 void func_0200b970(void);
 void func_0200b8d0(void);
 void Sound_LoadResidentData(void);
@@ -86,7 +86,7 @@ void main(void)
     func_02112bdc(3);
     func_0200bf64();
     func_0200acd8();
-    func_020012b0();
+    Screens_InitDisplay();
     func_0200b970();
     func_0200b8d0();
     Sound_LoadResidentData();
