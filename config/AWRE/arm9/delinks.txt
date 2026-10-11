@@ -5936,9 +5936,19 @@ src/game/main/func_02042da4.c:
     complete
     .text       start:0x02042da4 end:0x02042dcc
 
+src/game/main/menus/co_select_screen_destroy_tasks.c:
+    complete
+    .text       start:0x02042dcc end:0x02042e40
+
+src/game/main/menus/co_select_screen_start_song.c:
+    .text       start:0x02042e40 end:0x02042e9c
+
 src/game/main/func_02042e9c.c:
     complete
     .text       start:0x02042e9c end:0x02042ebc
+
+src/game/main/menus/co_select_screen_open_force_rank.c:
+    .text       start:0x02042ebc end:0x02042f20
 
 src/game/main/menus/co_select_screen_slide_pictures.c:
     complete
