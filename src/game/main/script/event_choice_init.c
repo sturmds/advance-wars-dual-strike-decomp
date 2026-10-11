@@ -3,7 +3,7 @@
 #include "game/rect.h"
 #include "game/task.h"
 
-extern u16 data_02297be0[][32];       /* tile map of the event text window */
+extern u16 gEventTextMap[][32];       /* tile map of the event text window */
 extern Rect gEventChoiceButtons[4];          /* touch buttons of the four choices */
 
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
@@ -26,11 +26,11 @@ void EventChoice_Init(Task *task)
     s16 pos[2];
     int i;
 
-    Text_PrintId(7, 1, data_02297be0[0], 0xc00002dd, data_022977a4.unk_00 << 12, data_022977a4.unk_04);
+    Text_PrintId(7, 1, gEventTextMap[0], 0xc00002dd, data_022977a4.unk_00 << 12, data_022977a4.unk_04);
     EventChoice_DrawCursor(task);
     DialogueCursor_Animate();
     /* unk_34 holds a tile pointer here (EventCmd_StartTextMapTask); pos is not used */
-    TileMap_GetPixelPos(*(u16 **)&task->unk_34, data_02297be0[0], pos);
+    TileMap_GetPixelPos(*(u16 **)&task->unk_34, gEventTextMap[0], pos);
     for (i = 0; i < 4; i++) {
         EventScript_GetTextWindowRect(&gEventChoiceButtons[i]); /* the whole text window */
     }

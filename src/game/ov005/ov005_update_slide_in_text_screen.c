@@ -12,7 +12,7 @@ int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
 void Screens_BlackOut(void);
-void func_02015da8(TextPrinter *printer);
+void TextPrinter_ShowAll(TextPrinter *printer);
 BOOL Text_IsPrinting(void);
 void Text_StopPrinting(void);
 void Task_Destroy(Task *task);
@@ -24,7 +24,7 @@ extern const MenuButtonTemplate data_ov005_02368070;
 /* Per-frame update. Every frame it eases the x scroll of layers 1 and 2 on
  * screen data_027c0288.unk_04 (0 to 120 and 256 to 376 pixels). Steps: start
  * the BG wave task (Ov005_UpdateBgWave) and fade in (64 frames); wait until
- * the text is printed, or on A call func_02015da8 on the text printer and go on;
+ * the text is printed, or on A call TextPrinter_ShowAll on the text printer and go on;
  * add button 253 and wait for A or the button (its callback
  * func_ov005_023536a4 sets unk_08); fade out, hide all layers on both
  * screens, remove the button, the wave task and the text, and resume the
@@ -75,7 +75,7 @@ void Ov005_UpdateSlideInTextScreen(Ov005Task *task)
         return;
     case 10:
         if (gKeypad->pressed & PAD_BUTTON_A) {
-            func_02015da8(textPrinter);
+            TextPrinter_ShowAll(textPrinter);
             task->step++;
             return;
         }

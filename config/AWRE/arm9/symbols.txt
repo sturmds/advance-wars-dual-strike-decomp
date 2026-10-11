@@ -512,7 +512,7 @@ func_020154c4 kind:function(arm,size=0x44) addr:0x020154c4
 TextPrinter_Update kind:function(arm,size=0x2b4) addr:0x02015508
 TextPrinter_WriteTallEntries kind:function(arm,size=0x28) addr:0x020157bc
 TextPrinter_ReadControlCode kind:function(arm,size=0x5c4) addr:0x020157e4
-func_02015da8 kind:function(arm,size=0x14) addr:0x02015da8
+TextPrinter_ShowAll kind:function(arm,size=0x14) addr:0x02015da8
 func_02015dbc kind:function(arm,size=0xec) addr:0x02015dbc
 func_02015ea8 kind:function(arm,size=0x20) addr:0x02015ea8
 func_02015ec8 kind:function(arm,size=0x18) addr:0x02015ec8
@@ -653,7 +653,7 @@ EventScript_StartQueuedIfRequested kind:function(arm,size=0x58) addr:0x0201ac94
 EventScript_FindSlot kind:function(arm,size=0x3c) addr:0x0201acec
 EventScript_IsRunning kind:function(arm,size=0x3c) addr:0x0201ad28
 EventScript_Init kind:function(arm,size=0xec) addr:0x0201ad64
-EventScript_SetPlayerPalette kind:function(arm,size=0x2c) addr:0x0201ae50
+EventScript_SetArmyPalette kind:function(arm,size=0x2c) addr:0x0201ae50
 EventScript_SetPalette kind:function(arm,size=0x50) addr:0x0201ae7c
 EventScript_ClearFlag kind:function(arm,size=0x44) addr:0x0201aecc
 EventScript_SetFlag kind:function(arm,size=0x44) addr:0x0201af10
@@ -767,7 +767,7 @@ EventText_ClearLines kind:function(arm,size=0x58) addr:0x0201d740
 func_0201d798 kind:function(arm,size=0x10) addr:0x0201d798
 func_0201d7a8 kind:function(arm,size=0x14) addr:0x0201d7a8
 func_0201d7bc kind:function(arm,size=0x14) addr:0x0201d7bc
-func_0201d7d0 kind:function(arm,size=0x2c) addr:0x0201d7d0
+EventTextMap_QueueCopy kind:function(arm,size=0x2c) addr:0x0201d7d0
 func_0201d7fc kind:function(arm,size=0x1c) addr:0x0201d7fc
 Bg2_SetPriority kind:function(arm,size=0x1c) addr:0x0201d818
 func_0201d834 kind:function(arm,size=0x1c) addr:0x0201d834
@@ -8666,7 +8666,7 @@ gEventScriptOwnsInput kind:bss addr:0x0229777c
 data_02297780 kind:bss addr:0x02297780
 gEventChoiceAnswer kind:bss addr:0x02297784
 data_02297788 kind:bss addr:0x02297788
-data_0229778c kind:bss addr:0x0229778c
+gEventTextWindowPos kind:bss addr:0x0229778c
 data_02297790 kind:bss addr:0x02297790
 data_02297794 kind:bss addr:0x02297794
 data_0229779c kind:bss addr:0x0229779c
@@ -8682,7 +8682,7 @@ data_02297801 kind:bss addr:0x02297801
 data_02297802 kind:bss addr:0x02297802
 data_02297804 kind:bss addr:0x02297804
 data_022978e0 kind:bss addr:0x022978e0
-data_02297be0 kind:bss addr:0x02297be0
+gEventTextMap kind:bss addr:0x02297be0
 data_02297c2e kind:bss addr:0x02297c2e
 data_02297ee0 kind:bss addr:0x02297ee0
 data_02297ee4 kind:bss addr:0x02297ee4

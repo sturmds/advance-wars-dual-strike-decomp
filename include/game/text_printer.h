@@ -19,14 +19,14 @@ typedef struct TextPrinter {
     u8 cursorY;                        /* 0x37: in tiles */
     u16 unk_38;
     u16 unk_3a;                        /* same value as unk_38 when set up */
-    u8 unk_3c;
-    s8 unk_3d;
-    s8 unk_3e;
+    u8 charSound;                      /* 0x3c: nonzero plays a sound per character */
+    s8 frameCounter;                   /* 0x3d: counts up to charDelay; negative: print at once */
+    s8 charDelay;                      /* 0x3e: frames per character */
     u8 pad_3f[0x40 - 0x3f];
-    void *unk_40;                      /* from GfxLayer_GetCopyCallback(0) */
-    u8 unk_44;
+    void *copyCallback;                /* 0x40: queues the map copy; from GfxLayer_GetCopyCallback(0) */
+    u8 pixelInTile;                    /* 0x44: pixel offset inside the cursor tile */
     u8 pad_45[0x46 - 0x45];
-    u16 unk_46;
+    u16 charsDrawn;                    /* 0x46 */
     u8 pad_48[0x60 - 0x48];
 } TextPrinter;
 

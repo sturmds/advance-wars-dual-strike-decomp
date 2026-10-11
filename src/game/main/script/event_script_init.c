@@ -36,7 +36,7 @@ void EventScript_Init(void)
     EventScript_ResetLineOffsets();
     data_022977a4.unk_08 = 0;
     data_022977a4.unk_00 = 0;
-    data_022977a4.unk_01 = 1;
+    data_022977a4.armyColour = 1;
     data_022977a4.unk_02 = 0;
     data_022977a4.unk_04 = 0x100;
     charBase = data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14);

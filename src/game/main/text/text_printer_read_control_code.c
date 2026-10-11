@@ -13,7 +13,7 @@ s32 HwDiv32(s32 numer, s32 denom);
 ScriptSlot *ScriptSlot_Start(const void *descriptor, int arg);
 int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry);
 int func_02015ec8(TextPrinter *printer);
-void func_02015da8(TextPrinter *printer);
+void TextPrinter_ShowAll(TextPrinter *printer);
 void func_0201d730(void);
 void PopupMenu_SetItemIcon(int arg);
 void DialogueCursor_Animate(void);
@@ -29,9 +29,9 @@ void UnitIcon_DrawEntries(u16 *dest, int unitType, int base, int cargo, int a4, 
  * character the caller draws, 2 or 3 when a code was handled (2: the
  * caller goes on with the next cell after the code's effect). The codes
  * seen: 9 plays a sound (PopupMenu_SetItemIcon), 10 draws the HP and icon of a
- * unit carried by the acting unit, 11 sets unk_3e, 12 and 15 return to the
+ * unit carried by the acting unit, 11 sets charDelay, 12 and 15 return to the
  * line start (15 also marks the next cell), 13 is a line break, 14 starts
- * the effect in data_02158364 while unk_3e is set, 20 to 23 start the effect
+ * the effect in data_02158364 while charDelay is set, 20 to 23 start the effect
  * in data_02158520 and move the cursor 8 tiles right. */
 int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
 {
@@ -70,7 +70,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         slot = ScriptSlot_Start(data_02158520, 0);
         slot->textEntry = entry + 1;
         slot->unk_28 = func_02015ec8(printer);
-        slot->unk_2c = printer->unk_40;
+        slot->unk_2c = printer->copyCallback;
         slot->unk_30 = printer->unk_30;
         if (TEXT[0] == 23 || TEXT[0] == 23) /* needed to match: the original tests twice */ {
             slot->unk_1e = 1;
@@ -85,7 +85,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         printer->cursorY += 2;
         printer->cursorX = printer->startX;
         printer->unk_38 += 2;
-        printer->unk_44 = 0;
+        printer->pixelInTile = 0;
         ADVANCE(1);
         return 3;
     case 15:
@@ -95,11 +95,11 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         printer->cursorX = printer->startX;
         printer->cursorY = printer->startY;
         printer->unk_38 = printer->unk_3a;
-        printer->unk_44 = 0;
+        printer->pixelInTile = 0;
         slot = ScriptSlot_Start(data_021584f8, 0);
         slot->textEntry = entry + 1;
         slot->unk_28 = func_02015ec8(printer);
-        slot->unk_2c = printer->unk_40;
+        slot->unk_2c = printer->copyCallback;
         DialogueCursor_Animate();
         return 2;
     case 12:
@@ -107,14 +107,14 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         printer->cursorX = printer->startX;
         printer->cursorY = printer->startY;
         printer->unk_38 = printer->unk_3a;
-        printer->unk_44 = 0;
+        printer->pixelInTile = 0;
         func_02015ec8(printer);
         func_0201d730();
-        ((void (*)(void))printer->unk_40)();
+        ((void (*)(void))printer->copyCallback)();
         return 2;
     case 14:
         ADVANCE(1);
-        if (printer->unk_3e == 0) {
+        if (printer->charDelay == 0) {
             return 3;
         }
         slot = ScriptSlot_Start(data_02158364, 0);
@@ -124,7 +124,7 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         ADVANCE(1);
         switch (TEXT[0]) {
         case 16:
-            func_02015da8(printer);
+            TextPrinter_ShowAll(printer);
             ADVANCE(1);
             break;
         case 17:
@@ -136,8 +136,8 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         case 23:
         case 24:
         case 25:
-            printer->unk_3e = TEXT[0] - 16;
-            printer->unk_3d = 0;
+            printer->charDelay = TEXT[0] - 16;
+            printer->frameCounter = 0;
             ADVANCE(1);
             break;
         }

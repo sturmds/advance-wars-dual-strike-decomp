@@ -30,7 +30,7 @@ typedef struct ScriptSlot {
     u8 pad_22[0x26 - 0x22];
     s16 unk_26;                        /* passed to func_0201751c when the script stops with bit 2 of unk_12 set */
     int unk_28;                        /* text printer: the cursor offset from func_02015ec8 */
-    void *unk_2c;                      /* text printer: TextPrinter.unk_40 */
+    void *unk_2c;                      /* text printer: TextPrinter.copyCallback */
     u16 unk_30;                        /* text printer: TextPrinter.unk_30 */
     u8 pad_32[0x38 - 0x32];
     s16 unk_38;                        /* service cost popup (ServiceCostPopup_Start, ServiceCostPopup_SetShown): set from the last argument of ServiceCostPopup_Start; its meaning is a guess: whether the popup is shown */

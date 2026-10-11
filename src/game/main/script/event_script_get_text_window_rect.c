@@ -1,15 +1,15 @@
 #include "types.h"
 #include "game/rect.h"
 
-extern s16 data_0229778c;
+extern s16 gEventTextWindowPos;
 void OS_Terminate(void);
 
 /* Fills rect with the area of the event text window for the screen mode in
- * data_0229778c: 0 is the top window, 1 the one at y 144. Any other mode
+ * gEventTextWindowPos: 0 is the top window, 1 the one at y 144. Any other mode
  * terminates. */
 void EventScript_GetTextWindowRect(Rect *rect)
 {
-    switch (data_0229778c) {
+    switch (gEventTextWindowPos) {
     case 0:
         rect->x = 0;
         rect->y = 0;

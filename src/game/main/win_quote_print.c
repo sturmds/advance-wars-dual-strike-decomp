@@ -24,15 +24,15 @@ void WinQuote_Print(int record)
                                       Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
                                                     data_022a7aba[record].unk_00 & 0x7f, 0, pick),
                                       0, 0x41);
-        printer->unk_3e = 2;
+        printer->charDelay = 2;
         printer = Text_PrintByIdOnLayer0(1, 18, data_027c0280->layer0Map,
                                       Co_GetPairWinQuote(data_022a7ab8[record].unk_00 & 0x7f,
                                                     data_022a7aba[record].unk_00 & 0x7f, 1, pick),
                                       0, 0x81);
-        printer->unk_3e = 2;
+        printer->charDelay = 2;
     } else {
         printer = Text_PrintByIdOnLayer0(1, 18, data_027c0280->layer0Map,
                                       Co_PickWinQuote(data_022a7ab8[record].unk_00 & 0x7f), 0, 0x41);
-        printer->unk_3e = 2;
+        printer->charDelay = 2;
     }
 }

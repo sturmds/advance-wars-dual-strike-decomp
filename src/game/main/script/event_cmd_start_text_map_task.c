@@ -9,13 +9,13 @@ extern Unk_0201d320 data_022977f4[];
 extern EventSlotHold data_022977f8[];
 extern const TaskScriptCmd data_02158548[];
 extern u8 data_02297c2e[];
-extern u8 data_02297be0[];
+extern u8 gEventTextMap[];
 
-void func_0201d7d0(void);
+void EventTextMap_QueueCopy(void);
 void EventHold_ReleaseOnTextMapTaskEnd(EventScriptSlot *slot);
 
 /* Event script command: starts the task data_02158548 in task list 3, with the text map
- * buffer data_02297be0, its upload function (func_0201d7d0), the palette slot
+ * buffer gEventTextMap, its upload function (EventTextMap_QueueCopy), the palette slot
  * (data_022977a4.unk_00) and data_02290118.unk_00. The script is held until the task
  * ends, and the slot's run ends for this frame. */
 BOOL EventCmd_StartTextMapTask(s16 index)
@@ -24,8 +24,8 @@ BOOL EventCmd_StartTextMapTask(s16 index)
 
     /* a word over unk_34 and unk_36, which other task scripts use as halfwords */
     *(void **)&task->unk_34 = data_02297c2e;
-    task->unk_38 = data_02297be0;
-    task->unk_3c = func_0201d7d0;
+    task->unk_38 = gEventTextMap;
+    task->unk_3c = EventTextMap_QueueCopy;
     task->unk_40 = data_022977a4.unk_00 << 12;
     task->waitFrames = data_02290118.unk_00;
     data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextMapTaskEnd;

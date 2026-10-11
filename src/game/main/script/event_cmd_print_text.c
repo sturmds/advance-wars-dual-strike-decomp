@@ -22,7 +22,7 @@ void EventHold_ReleaseOnTextDone(struct EventScriptSlot *slot);
 
 /* Event script command: prints the command's text id (unk_0c) on the layer 0
  * tile map at tile (7, 15), or (1, 15) in game mode 0 when
- * data_022977a4.unk_01 is 5, with the current palette slot. The printer
+ * data_022977a4.armyColour is 5, with the current palette slot. The printer
  * runs func_0201c600 when done, and the script is held by EventHold_ReleaseOnTextDone.
  * A text with control code 20 (func_02015dbc) sets gEventSkipState to 2;
  * while gEventSkipState is 1 nothing is printed and the command returns 1,
@@ -40,15 +40,15 @@ s16 EventCmd_PrintText(int index)
     }
     if (gEventSkipState != 1) {
         map = data_027c0280->layer0Map;
-        if (data_027c027c->unk_48[data_027c0284]->gameMode == 0 && data_022977a4.unk_01 == 5) {
+        if (data_027c027c->unk_48[data_027c0284]->gameMode == 0 && data_022977a4.armyColour == 5) {
             x = 1;
         } else {
             x = 7;
         }
         printer = Text_PrintByIdOnLayer0(x, 15, map, script->unk_00->unk_0c,
                                          data_022977a4.unk_00 << 12, data_022977a4.unk_04);
-        printer->unk_40 = (void *)func_0201c600;
-        printer->unk_3c = 1;
+        printer->copyCallback = (void *)func_0201c600;
+        printer->charSound = 1;
         data_022977f8[index].hold = (u32)EventHold_ReleaseOnTextDone;
         done = 0;
     } else {

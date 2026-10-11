@@ -12,12 +12,12 @@ extern Unk_0201d320 data_022977f4[];
 void Gfx_LoadPlayerBmap0a0Palette(int player);
 
 /* Event script command: loads the current player's palette and records the
- * player's army colour in the script state (data_022977a4.unk_01), then
+ * player's army colour in the script state (data_022977a4.armyColour), then
  * moves to the next record. */
 BOOL EventCmd_LoadCurrentArmyPalette(s16 index)
 {
     Gfx_LoadPlayerBmap0a0Palette(STATE->currentPlayer);
-    data_022977a4.unk_01 = STATE->players[STATE->currentPlayer].armyColour;
+    data_022977a4.armyColour = STATE->players[STATE->currentPlayer].armyColour;
     data_022977f4[index].unk_00++;
     return 1;
 }

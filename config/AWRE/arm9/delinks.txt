@@ -1960,7 +1960,7 @@ src/game/main/text/text_printer_read_control_code.c:
     complete
     .text       start:0x020157e4 end:0x02015da8
 
-src/game/main/text/func_02015da8.c:
+src/game/main/text/text_printer_show_all.c:
     complete
     .text       start:0x02015da8 end:0x02015dbc
 
@@ -2519,7 +2519,7 @@ src/game/main/script/event_script_init.c:
     complete
     .text       start:0x0201ad64 end:0x0201ae50
 
-src/game/main/script/event_script_set_player_palette.c:
+src/game/main/script/event_script_set_army_palette.c:
     complete
     .text       start:0x0201ae50 end:0x0201ae7c
 
@@ -2975,7 +2975,7 @@ src/game/main/func_0201d7bc.c:
     complete
     .text       start:0x0201d7bc end:0x0201d7d0
 
-src/game/main/func_0201d7d0.c:
+src/game/main/script/event_text_map_queue_copy.c:
     complete
     .text       start:0x0201d7d0 end:0x0201d7fc
 

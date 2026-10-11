@@ -40,7 +40,7 @@ void Ov005_SetupMainScreenAndStartSong(Ov005Task *task)
     Unk_027c0280 *saved0280;
     Unk_02080440 *saved027c;
 
-    data_022977a4.unk_01 = 1;
+    data_022977a4.armyColour = 1;
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;

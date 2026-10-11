@@ -5,7 +5,7 @@
 #include "game/player.h"
 
 extern Unk_0201d320 data_022977f4[];
-extern s16 data_0229778c;    /* screen the picture goes on: 0 or 1 */
+extern s16 gEventTextWindowPos;    /* screen the picture goes on: 0 or 1 */
 extern void *data_01ff8f64[]; /* ITCM table of two functions, one per screen */
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -37,7 +37,7 @@ void EventScript_ShowPicture(s16 index)
 
     func_0201dc44(index);
     record = data_022977f4[index].unk_00;
-    data_0229778c = record->unk_0c;
+    gEventTextWindowPos = record->unk_0c;
     picture = record->unk_08;
     if (picture != PICTURE_NONE) {
         if (picture & PICTURE_FROM_PLAYER) {
@@ -53,6 +53,6 @@ void EventScript_ShowPicture(s16 index)
             data_022977a4.unk_02 = picture;
         }
     }
-    func_0201dc38(data_01ff8f64[data_0229778c]);
+    func_0201dc38(data_01ff8f64[gEventTextWindowPos]);
     EventScript_StartScreenSlideOut(index);
 }

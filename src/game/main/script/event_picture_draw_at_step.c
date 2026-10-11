@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/event_picture.h"
 
-extern u16 data_02297be0[];
+extern u16 gEventTextMap[];
 
-void func_0201d7d0(void);
+void EventTextMap_QueueCopy(void);
 
-/* Draws the 6 by 6 tile event picture into the tile map buffer data_02297be0, shifted
+/* Draws the 6 by 6 tile event picture into the tile map buffer gEventTextMap, shifted
  * toward the screen edge by step columns (0: fully in, 6: gone), and queues the copy
- * (func_0201d7d0). The slide holds call it once per frame. */
+ * (EventTextMap_QueueCopy). The slide holds call it once per frame. */
 void EventPicture_DrawAtStep(int step)
 {
     u8 row;
@@ -23,11 +23,11 @@ void EventPicture_DrawAtStep(int step)
                 tile = col + EVENT_PICTURE_TILE_BASE + step + row * EVENT_PICTURE_SIZE + (u32)EVENT_PICTURE_PALETTE;
             }
             if (EVENT_PICTURE_ON_RIGHT) {
-                data_02297be0[row * EVENT_PICTURE_MAP_WIDTH + (EventPicture_GetX() - col)] = tile | EVENT_PICTURE_HFLIP;
+                gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH + (EventPicture_GetX() - col)] = tile | EVENT_PICTURE_HFLIP;
             } else {
-                data_02297be0[row * EVENT_PICTURE_MAP_WIDTH + (col + EventPicture_GetX())] = tile;
+                gEventTextMap[row * EVENT_PICTURE_MAP_WIDTH + (col + EventPicture_GetX())] = tile;
             }
         }
     }
-    func_0201d7d0();
+    EventTextMap_QueueCopy();
 }

@@ -13,7 +13,7 @@ void func_0200493c(u16 frames);
 BOOL Screens_IsTransitionRunning(void);
 void func_0200270c(int x, int y, int attr, int list, int hFlip);
 void Bg_FillRect(void *map, int x, int y, int width, int height, int tile);
-void func_0201d7d0(void);
+void EventTextMap_QueueCopy(void);
 void func_0201c898(void);
 int func_02014c24(void);
 BOOL PlayRecords_SpendPoints(u32 points);
@@ -50,7 +50,7 @@ void Ov005_AddShopPageButtons(Unk_ov005_0236bbb0 *work);   /* adds the page's bu
 void Ov005_DrawShopPageNumber(Unk_ov005_0236bbb0 *work);   /* draws the page numbers */
 
 extern u16 gEventChoiceAnswer;          /* answer of the yes/no question, 0: yes */
-extern u8 data_02297be0[];
+extern u8 gEventTextMap[];
 extern u8 data_022978e0[];
 extern const TaskScriptCmd data_ov005_0236b35c[];
 extern const TaskScriptCmd data_ov005_0236b374[];
@@ -247,8 +247,8 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
         }
         if (!Ov005_IsShopScriptRunning() && work->points <= gPlayRecords.points) {
             SWITCH_TO(data_027c0288.unk_00);
-            Bg_FillRect(data_02297be0, 6, 0, 26, 6, 0);
-            func_0201d7d0();
+            Bg_FillRect(gEventTextMap, 6, 0, 26, 6, 0);
+            EventTextMap_QueueCopy();
             SWITCH_BACK();
             work->points = gPlayRecords.points;
             work->boughtSomething = 1;
@@ -330,7 +330,7 @@ void Ov005_UpdateShopScreen(Ov005Task *task)
             break;
         }
         SWITCH_TO(data_027c0288.unk_00);
-        Mem_Copy32(data_02297be0, data_027c0280->layer0Map + 0x240, 0x180);
+        Mem_Copy32(gEventTextMap, data_027c0280->layer0Map + 0x240, 0x180);
         Gfx_RequestLayerCopy(0);
         Mem_Copy32(data_022978e0, data_027c0280->layer1Map + 0x240, 0x180);
         Gfx_RequestLayerCopy(1);

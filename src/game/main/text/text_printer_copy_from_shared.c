@@ -17,14 +17,14 @@ void TextPrinter_CopyFromShared(TextPrinter *printer)
     printer->unk_32 = src->unk_32;
     printer->unk_3a = src->unk_38;
     printer->unk_38 = src->unk_38;
-    printer->unk_3c = src->unk_3c;
+    printer->charSound = src->charSound;
     printer->startX = src->startX;
     printer->startY = src->startY;
     printer->cursorX = src->cursorX;
     printer->cursorY = src->cursorY;
-    printer->unk_3d = src->unk_3d;
-    printer->unk_3e = src->unk_3e;
-    printer->unk_40 = src->unk_40;
-    printer->unk_44 = src->unk_44;
-    printer->unk_46 = src->unk_46;
+    printer->frameCounter = src->frameCounter;
+    printer->charDelay = src->charDelay;
+    printer->copyCallback = src->copyCallback;
+    printer->pixelInTile = src->pixelInTile;
+    printer->charsDrawn = src->charsDrawn;
 }

@@ -10,10 +10,10 @@ extern Unk_0201d320 data_022977f4[];
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 extern u8 gEventSkipState;
-void EventScript_SetPlayerPalette(int army);
+void EventScript_SetArmyPalette(int army);
 
 /* Event script command: loads the palette of a player's army through
- * EventScript_SetPlayerPalette. The record value is a player slot, 5 meaning the current
+ * EventScript_SetArmyPalette. The record value is a player slot, 5 meaning the current
  * player; slot 0 (neutral) loads the Black Hole palette. Does nothing when
  * gEventSkipState is 1. */
 BOOL EventCmd_LoadArmyPalette(s16 index)
@@ -35,7 +35,7 @@ BOOL EventCmd_LoadArmyPalette(s16 index)
                 army = ARMY_BLACK_HOLE;
             }
         }
-        EventScript_SetPlayerPalette(army);
+        EventScript_SetArmyPalette(army);
     }
     script->unk_00++;
     return 1;

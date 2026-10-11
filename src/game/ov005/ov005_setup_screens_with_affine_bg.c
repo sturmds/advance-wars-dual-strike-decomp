@@ -159,7 +159,7 @@ void Ov005_SetupScreensWithAffineBg(Ov005Task *task)
     Screen_SetCurrent(data_027c0288.unk_00);
     printer = Text_PrintByIdOnLayer0(6, 2, data_027c0280->layer0Map, 0x21000002, 0, 0x41);
     work->textPrinter = printer;
-    printer->unk_3e = 6;
+    printer->charDelay = 6;
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 

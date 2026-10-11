@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_022977a4.h"
 
-extern u16 data_02297be0[][32];       /* tile map of the event text window */
+extern u16 gEventTextMap[][32];       /* tile map of the event text window */
 /* Fields of the 16-byte records MainMenu_ShowRecordHelp also shows. */
 extern u8 data_02290a62[][16];         /* 1: draws an extra mark */
 extern u8 data_02290a64[][16];         /* a number; 0xff: none */
@@ -24,7 +24,7 @@ void EventChoice_DrawRecord(int index, int x, int y)
     u8 mark;
     int second;
 
-    EventText_ClearLines(&data_02297be0[y][x], 1);
+    EventText_ClearLines(&gEventTextMap[y][x], 1);
     if (index == 3) {
         return;
     }
@@ -39,16 +39,16 @@ void EventChoice_DrawRecord(int index, int x, int y)
         } else {
             textId = (second == 0) ? 0xc00002e2 : 0xc00002e0;
         }
-        Text_PrintId(x, y, data_02297be0[0], textId, data_022977a4.unk_00 << 12, data_022977a4.unk_04 + 50);
+        Text_PrintId(x, y, gEventTextMap[0], textId, data_022977a4.unk_00 << 12, data_022977a4.unk_04 + 50);
         if (number == 0xff) {
             return;
         }
-        Number_Draw(x + 12, y, data_02297be0[0], number, data_022977a4.unk_00 << 12, 0);
+        Number_Draw(x + 12, y, gEventTextMap[0], number, data_022977a4.unk_00 << 12, 0);
         if (second <= 0) {
             return;
         }
-        Number_Draw(x + 19, y, data_02297be0[0], second, data_022977a4.unk_00 << 12, 0);
+        Number_Draw(x + 19, y, gEventTextMap[0], second, data_022977a4.unk_00 << 12, 0);
     } else {
-        Text_PrintId(x, y, data_02297be0[0], 0xc00002df, data_022977a4.unk_00 << 12, data_022977a4.unk_04 + 50);
+        Text_PrintId(x, y, gEventTextMap[0], 0xc00002df, data_022977a4.unk_00 << 12, data_022977a4.unk_04 + 50);
     }
 }

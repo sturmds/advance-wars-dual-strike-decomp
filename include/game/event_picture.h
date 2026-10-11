@@ -7,7 +7,7 @@
 #include "game/player.h"
 
 /* The CO picture that event scripts show next to their text: a 6 by 6 tile
- * block in the layer tile map buffer data_02297be0. */
+ * block in the layer tile map buffer gEventTextMap. */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,7 +22,7 @@ extern int data_027c0284;
 /* In the campaign, a Black Hole speaker's picture sits at the right edge, mirrored. */
 #define EVENT_PICTURE_ON_RIGHT                                                          \
     (data_027c027c->unk_48[data_027c0284]->gameMode == GAME_MODE_CAMPAIGN             \
-     && data_022977a4.unk_01 == ARMY_BLACK_HOLE)
+     && data_022977a4.armyColour == ARMY_BLACK_HOLE)
 
 /* Map column of the picture's first column. */
 static inline int EventPicture_GetX(void)

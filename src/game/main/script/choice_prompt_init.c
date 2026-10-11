@@ -4,7 +4,7 @@
 
 extern Rect data_02297794;
 extern Rect data_0229779c;
-extern u16 data_02297be0[][32];       /* tile map of the event text window */
+extern u16 gEventTextMap[][32];       /* tile map of the event text window */
 
 void Text_PrintImmediate(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, int arg);
 void TileMap_GetPixelPos(u16 *tile, u16 *tileMap, s16 *pixelPos);
@@ -26,7 +26,7 @@ void ChoicePrompt_Init(Unk_0201a774 *prompt)
     DialogueCursor_Animate();
     EventScript_GetTextWindowRect(&data_02297794);
     EventScript_GetTextWindowRect(&data_0229779c);
-    TileMap_GetPixelPos((u16 *)prompt->tiles, data_02297be0[0], pos);
+    TileMap_GetPixelPos((u16 *)prompt->tiles, gEventTextMap[0], pos);
     data_02297794.x += pos[0];
     data_02297794.y += pos[1];
     data_02297794.width = 32;

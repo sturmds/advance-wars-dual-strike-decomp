@@ -57,7 +57,7 @@ void Ov005_SetupBlendInScreensByDifficulty(Ov005Task *task)
     u16 *map;
 
     work = task->work;
-    data_022977a4.unk_01 = 1;
+    data_022977a4.armyColour = 1;
     saved0280 = data_027c0280;
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
