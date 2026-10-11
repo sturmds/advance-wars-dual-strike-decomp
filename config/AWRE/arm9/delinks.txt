@@ -21832,6 +21832,10 @@ src/sdk/snd/sound_alarm_clear_all.c:
     complete
     .text       start:0x02110850 end:0x02110880
 
+src/sdk/snd/sound_reset_arm7_status_block.c:
+    complete
+    .text       start:0x02110880 end:0x02110900
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98

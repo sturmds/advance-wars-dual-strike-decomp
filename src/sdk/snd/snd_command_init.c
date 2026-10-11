@@ -1,12 +1,12 @@
 #include "sdk/snd.h"
 
 int SND_FlushCommand(u32 flags);
-void func_02110880(SndSharedWork *work);
 
 extern SndCommand data_022ab728;
 extern SndSharedWork data_022a9cc0;
 extern SndSharedWork *data_022ab7a0;
 extern int data_022a9c7c;
+
 void SND_CommandInit(void)
 {
     int i;
@@ -27,7 +27,7 @@ void SND_CommandInit(void)
     data_022a9c88 = 1;
     data_022a9c6c = 0;
     data_022ab7a0 = &data_022a9cc0;
-    func_02110880(&data_022a9cc0);
+    Sound_ResetArm7StatusBlock(&data_022a9cc0);
 
     command = SND_AllocCommand(1);
     if (command == NULL) {

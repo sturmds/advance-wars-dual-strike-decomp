@@ -12,7 +12,7 @@ typedef struct SndCommand {
 
 /* Status block the ARM7 sound driver writes and the ARM9 reads after invalidating its cache lines. */
 typedef struct SndPlayerInfo {
-    u16 variable[16];
+    s16 variable[16];
     u32 tickCounter;
 } SndPlayerInfo;
 
@@ -23,7 +23,7 @@ typedef struct SndSharedWork {
     u16 captureStatus;
     u8 pad_0C[20];
     SndPlayerInfo player[16];
-    u16 globalVariable[16];
+    s16 globalVariable[16];
 } SndSharedWork;
 
 /* One software alarm slot: the handler runs when the ARM7 reports the alarm, if tag still matches. */
@@ -78,5 +78,6 @@ u32 SoundAlarm_AssignHandler(u32 alarmNo, SndAlarmHandler handler, u32 arg);
 /* Makes alarm ids already in flight for this slot stale. */
 void SoundAlarm_BumpTag(int alarmNo);
 void SoundAlarm_ClearAll(void);
+void Sound_ResetArm7StatusBlock(SndSharedWork *work);
 
 #endif
