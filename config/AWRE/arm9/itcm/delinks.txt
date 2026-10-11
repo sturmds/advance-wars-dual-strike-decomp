@@ -386,3 +386,7 @@ src/sdk/mi/mem_repeat_word_asm.c:
 src/sdk/mi/reset_reload_programs_from_card.c:
     complete
     .text       start:0x01ffdc18 end:0x01ffdcdc
+
+src/sdk/mi/os_reset_system.c:
+    complete
+    .text       start:0x01ffdcdc end:0x01ffdd1c
