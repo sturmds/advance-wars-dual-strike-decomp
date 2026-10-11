@@ -4,7 +4,7 @@
 
 void func_020c4eb4(void);
 void Ov006_NewMap(void);
-void func_020cafe4(void);
+void Panels_PlaceForCursor(void);
 
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
@@ -34,5 +34,5 @@ void Ov006_ResetMapView(int keep)
     STATE->unk_2e = 0;
     OV6->unk_16 = 0;
     OV6->unk_18 = 0;
-    func_020cafe4();
+    Panels_PlaceForCursor();
 }

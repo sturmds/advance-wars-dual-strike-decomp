@@ -10213,6 +10213,10 @@ src/game/main/graphics/oam_put_small_number_from_tile0.c:
     complete
     .text       start:0x020caf70 end:0x020cafe4
 
+src/game/main/map/panels_place_for_cursor.c:
+    complete
+    .text       start:0x020cafe4 end:0x020cb0cc
+
 src/game/main/func_020cb0cc.c:
     complete
     .text       start:0x020cb0cc end:0x020cb0f4

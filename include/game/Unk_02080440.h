@@ -189,7 +189,8 @@ typedef struct Unk_02080440_48 {
     u8 sidePanelRight;                 /* 1: the side panel sits on the right of the screen, 0: on the left (SidePanel_*); name is a guess at what the panel shows */
     u8 pad_bd[0xc0 - 0xbd];
     s32 sidePanelX;                    /* x of the side panel; 0 or 192 at rest, see SidePanel_SlideLeft */
-    u8 pad_c4[0xc8 - 0xc4];
+    u8 unk_c4;                         /* cleared by Panels_PlaceForCursor when it puts the panels on the left */
+    u8 pad_c5[0xc8 - 0xc5];
     s32 infoPanelX;                    /* x of the info panel (game/info_panel.h); at or left of 3 it sits on the left */
     u8 infoTileX;                      /* tile the info panel describes */
     u8 infoTileY;

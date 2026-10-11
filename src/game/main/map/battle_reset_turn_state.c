@@ -6,7 +6,7 @@ extern int data_027c0284;
 extern u16 data_0229d8c4;
 extern u32 data_022a6b38;
 
-void func_020cafe4(void);
+void Panels_PlaceForCursor(void);
 void func_020b9c3c(void);
 void func_020b98bc(void);
 void func_020c7104(void);
@@ -24,7 +24,7 @@ void Battle_ResetTurnState(void)
     STATE->unk_2a = 0;
     STATE->unk_2c = 0;
     STATE->unk_2e = 0;
-    func_020cafe4();
+    Panels_PlaceForCursor();
     STATE->unk_10 = 0;
     STATE->unk_14 = 0;
     func_020b9c3c();
