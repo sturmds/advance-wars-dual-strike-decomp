@@ -21294,6 +21294,10 @@ src/sdk/mi/mi_copy48b.c:
     complete
     .text       start:0x0210f508 end:0x0210f52c
 
+src/sdk/mi/mi_cpu_fill8.c:
+    complete
+    .text       start:0x0210f52c end:0x0210f5c0
+
 src/game/main/func_0210fa9c.c:
     complete
     .text       start:0x0210fa9c end:0x0210fac0

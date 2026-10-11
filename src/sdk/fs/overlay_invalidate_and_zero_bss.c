@@ -2,7 +2,7 @@
 
 void func_0210e16c(void *start, u32 size);
 void DC_InvalidateRange(void *start, u32 size);
-void func_0210f52c(void *dest, u8 value, u32 size);
+void MI_CpuFill8(void *dest, u8 value, u32 size);
 
 /* Drops the cache lines over the overlay's memory and zeroes its bss. */
 void Overlay_InvalidateAndZeroBss(const FSOverlayInfo *info)
@@ -17,5 +17,5 @@ void Overlay_InvalidateAndZeroBss(const FSOverlayInfo *info)
 
     func_0210e16c(start, total);
     DC_InvalidateRange(start, total);
-    func_0210f52c(start + size, 0, total - size);
+    MI_CpuFill8(start + size, 0, total - size);
 }

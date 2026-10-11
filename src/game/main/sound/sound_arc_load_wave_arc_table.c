@@ -10,7 +10,7 @@ void *SoundHeap_AllocItem(void *heap, u32 size, void (*onUnload)(void *payload, 
                           SoundArc *arc, int fileId);
 void SoundWaveArc_OnUnload(void *payload, u32 size, SoundArc *arc, int fileId);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
-void func_0210f52c(void *dest, int value, u32 size);
+void MI_CpuFill8(void *dest, int value, u32 size);
 void func_0210e11c(void *start, u32 size);
 
 extern SoundWaveArc data_022a8a64;         /* header of the wave archive being loaded */
@@ -47,7 +47,7 @@ void *SoundArc_LoadWaveArcTable(int fileId, void *heap, int cache)
             return NULL;
         }
         Mem_CopyBytes(waveArc->table, &waveArc->table[waveArc->count], tableSize);
-        func_0210f52c(waveArc->table, 0, tableSize);
+        MI_CpuFill8(waveArc->table, 0, tableSize);
         func_0210e11c(waveArc, allocSize);
         if (cache) {
             func_021062e8(fileId, waveArc);

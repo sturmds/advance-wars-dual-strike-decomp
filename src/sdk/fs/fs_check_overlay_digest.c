@@ -3,7 +3,7 @@
 extern u8 *gOverlayDigestKey;
 extern u32 gOverlayDigestKeySize;
 
-void func_0210f52c(void *dest, u8 value, u32 size);
+void MI_CpuFill8(void *dest, u8 value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void func_0211364c(u8 *digest, const void *data, u32 size, const u8 *key, u32 keySize);
 
@@ -16,7 +16,7 @@ BOOL Overlay_CheckKeyedHash(const u8 *expected, const void *data, u32 size)
     u32 offset;
     const u32 *word;
 
-    func_0210f52c(digest, 0, sizeof(digest));
+    MI_CpuFill8(digest, 0, sizeof(digest));
     Mem_CopyBytes(gOverlayDigestKey, key, gOverlayDigestKeySize);
     func_0211364c((u8 *)digest, data, size, key, gOverlayDigestKeySize);
     word = digest;

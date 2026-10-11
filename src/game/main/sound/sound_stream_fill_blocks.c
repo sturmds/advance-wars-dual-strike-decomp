@@ -5,7 +5,7 @@ extern s16 data_0214d410[];            /* ADPCM step sizes, 89 entries */
 extern s8 data_0214d400[];             /* ADPCM step index change per nibble */
 extern u8 *data_022a8aa4;              /* buffer that ADPCM data is read into */
 
-void func_0210f52c(void *dest, int value, u32 size);
+void MI_CpuFill8(void *dest, int value, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
 void DC_FlushRange(const void *start, u32 size);
 void SoundStream_SetupNext(SoundStream *stream);
@@ -83,7 +83,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
     while (remaining != 0) {
         if (stream->flags.dataEnded) {
             for (ch = 0; ch < request->channelCount; ch++) {
-                func_0210f52c((u8 *)request->blocks[ch] + offset, 0, remaining);
+                MI_CpuFill8((u8 *)request->blocks[ch] + offset, 0, remaining);
             }
             break;
         }
@@ -187,7 +187,7 @@ void SoundStream_FillBlocks(SoundStreamRequest *request)
                     }
                 }
             } else if (stream->flags.silenceExtraChannels) {
-                func_0210f52c(dest, 0, bytes);
+                MI_CpuFill8(dest, 0, bytes);
             } else {
                 Mem_CopyBytes((u8 *)request->blocks[0] + offset, dest, bytes);
             }

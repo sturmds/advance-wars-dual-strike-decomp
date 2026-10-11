@@ -13,7 +13,7 @@ void func_0207bb48(int start);
 void func_020b9890(void);
 void MenuButtons_CloseAll(void);
 int Task_JumpToLabel(Task *task, int label);
-void func_0210f52c(void *dest, int value, int size);
+void MI_CpuFill8(void *dest, int value, int size);
 
 /* Child side of the player list task. When the parent sends an ack (0x8f) holding the connected
  * child aid bits, takes them over, answers with an ack, closes the buttons and starts the
@@ -35,7 +35,7 @@ void LinkMenu_UpdateChild(Task *task)
     if (gotAck != 1) {
         return;
     }
-    func_0210f52c(ack, 0, 23);
+    MI_CpuFill8(ack, 0, 23);
     ack[0] = LINK_UNFLAGGED_ACK;
     Link_SendUnflaggedPacket(ack);
     func_020b9890();

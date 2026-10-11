@@ -20,7 +20,7 @@ void MenuButtons_CloseAll(void);
 void MenuButtons_RemoveSelectable(void);
 Task *LinkMenu_FindTask(void);
 void Task_ResumeScript(Task *task);
-void func_0210f52c(void *dest, int value, int size);
+void MI_CpuFill8(void *dest, int value, int size);
 
 /* A on the player list, unless a choice was made. In link state 3, button 4
  * runs func_0207bc14 and the other buttons join the parent of that row; on
@@ -66,7 +66,7 @@ void LinkMenu_Confirm(void)
         }
         if (Wireless_GetChildAids() != 0) {
             func_0207bb48(0);
-            func_0210f52c(ack, 0, 23);
+            MI_CpuFill8(ack, 0, 23);
             ack[0] = LINK_UNFLAGGED_ACK;
             ack[1] = Wireless_GetChildAids();
             Link_SendUnflaggedPacket(ack);

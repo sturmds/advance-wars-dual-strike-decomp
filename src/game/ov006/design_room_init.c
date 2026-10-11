@@ -8,7 +8,7 @@
 #include "game/screen_other_map.h"
 
 void *Mem_Alloc(u32 size);
-void func_0210f52c(void *dst, int value, int size);
+void MI_CpuFill8(void *dst, int value, int size);
 void func_020b98bc(void);
 void func_020f4a84(void);
 void Players_Reset(void);
@@ -65,10 +65,10 @@ void DesignRoom_Init(Task *task)
     void (*callback)(int);
 
     OV6 = Mem_Alloc(sizeof(Unk_ov006_0235f690));
-    func_0210f52c(OV6, 0, sizeof(Unk_ov006_0235f690));
+    MI_CpuFill8(OV6, 0, sizeof(Unk_ov006_0235f690));
     OV6->unk_d8[0] = 0;
     if (keep == 0) {
-        func_0210f52c(OV6, 0, sizeof(Unk_ov006_0235f690));
+        MI_CpuFill8(OV6, 0, sizeof(Unk_ov006_0235f690));
     }
     func_020b98bc();
     STATE->unk_1c4->playerCount = 4;
