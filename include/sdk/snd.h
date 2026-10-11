@@ -81,6 +81,8 @@ void SoundAlarm_ClearAll(void);
 void Sound_ResetArm7StatusBlock(SndSharedWork *work);
 u16 SND_GetChannelStatus(void);
 u32 SND_GetPlayerStatus(void);
+/* Maps a volume from -723 to 0 to the hardware volume (low byte) and volume shift (bits 8-9). */
+u16 SND_CalcChannelVolume(int volume);
 /* Reads the ARM7 shared work after invalidating its cache lines. */
 u32 Sound_LastDoneCommandTag(void);
 

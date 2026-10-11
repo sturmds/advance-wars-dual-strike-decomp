@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 536 / 781 | 64768 / 132154 | 49.01% | 69 | 3394 |
-| ARM9 all | 7190 / 7481 | 1571388 / 1685994 | 93.20% | 69 | 3394 |
+| ARM9 SDK/library | 547 / 781 | 65856 / 132154 | 49.83% | 69 | 3394 |
+| ARM9 all | 7201 / 7481 | 1572476 / 1685994 | 93.27% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 536 / 1795 | 64768 / 286450 | 22.61% | 69 | 3394 |
-| all | 7190 / 8495 | 1571388 / 1840290 | 85.39% | 69 | 3394 |
+| SDK/library | 547 / 1795 | 65856 / 286450 | 22.99% | 69 | 3394 |
+| all | 7201 / 8495 | 1572476 / 1840290 | 85.45% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 529 / 770 | 63856 / 130618 | 48.89% | 65 |
+| main | SDK/library | 540 / 770 | 64944 / 130618 | 49.72% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -118,3 +118,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/os/os_set_dma_irq_handler.c` | func_0210cdf4 | 76 |
 | `src/sdk/os/timer_install_irq_slot.c` | func_0210cda8 | 76 |
 | `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 |
+| `src/sdk/snd/snd_command_init.c` | SND_CommandInit | 280 |

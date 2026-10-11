@@ -21848,6 +21848,10 @@ src/sdk/snd/snd_get_player_status.c:
     complete
     .text       start:0x02110968 end:0x0211099c
 
+src/sdk/snd/snd_calc_channel_volume.c:
+    complete
+    .text       start:0x0211099c end:0x02110a10
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98
