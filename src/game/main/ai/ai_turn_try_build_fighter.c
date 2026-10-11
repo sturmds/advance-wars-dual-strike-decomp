@@ -14,13 +14,13 @@ int Unit_GetValuePerHp(int playerIndex, int unitType);
 int func_02093b50(void);
 int func_02093bfc(void);
 void func_0209a91c(void);
-int func_02095e0c(void);
+int AiSite_PickAirport(void);
 void func_0209316c(int index);
 
 /* End-actions step 3. Tries to start building a Fighter: needs an airport among
  * the current player's factories, the profile's flag for Fighters set, the
  * funds for one and a yes from func_02093b50 and func_02093bfc (not decompiled;
- * the first must not return 1, the second must be nonzero). func_02095e0c
+ * the first must not return 1, the second must be nonzero). AiSite_PickAirport
  * picks the factory (-1: none). The name is a guess from the unit type and the
  * checks. Returns 1 when it queued an action. */
 BOOL AiTurn_TryBuildFighter(void)
@@ -43,7 +43,7 @@ BOOL AiTurn_TryBuildFighter(void)
         return 0;
     }
     func_0209a91c();
-    index = func_02095e0c();
+    index = AiSite_PickAirport();
     if (index == -1) {
         return 0;
     }
