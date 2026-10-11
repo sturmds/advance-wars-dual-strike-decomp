@@ -14,7 +14,7 @@ void func_01ff8c84(int layer);
 void Gfx_LoadBmap09f(void *target, int a, int b);
 void Font_LoadDigits(int a);
 int Campaign_IsHardMode(void);
-int func_02034fa0(void);
+int CoExp_IsSingleColumn(void);
 void Bg_PutTileBlock(u16 *map, int x, int y, const u8 *block, u16 tileAdd);
 void Gfx_RequestLayerCopy(int layer);
 void Icon_LoadTo(int iconId, u8 *vram, int tile);
@@ -45,7 +45,7 @@ extern u8 data_022a0030[];
 
 /* Sets up the CO experience page of the results screen on the main screen.
  * Draws the panel tile blocks on layer 1 (one centered panel on campaign
- * maps up to 231 on normal mode, and in the War Room when func_02034fa0
+ * maps up to 231 on normal mode, and in the War Room when CoExp_IsSingleColumn
  * says 1; else one panel per side A player, at most three). Loads each
  * player's army icon and the small pictures of the front and back CO,
  * two rows of ten icons (likely digits), and the experience multiplier
@@ -69,7 +69,7 @@ void CoExp_InitScreen(void)
     if (GAME->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode() && GAME->unk_1c4->mapId <= 231) {
         Bg_PutTileBlock(data_027c0280->layer1Map, 9, 8, RES + 0x16c, 0);
     } else if (GAME->gameMode == GAME_MODE_WAR_ROOM) {
-        if (func_02034fa0() == 1) {
+        if (CoExp_IsSingleColumn() == 1) {
             Bg_PutTileBlock(data_027c0280->layer1Map, 9, 6, RES + 0x16c, 0);
             Bg_PutTileBlock(data_027c0280->layer1Map, 13, 12, RES + 0x218, 0);
         } else {

@@ -10,7 +10,7 @@ int Campaign_IsHardMode(void);
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(void *task);
 void func_02033c90(CoExp *exp, int a, int b, int c);
-int func_02034fa0(void);
+int CoExp_IsSingleColumn(void);
 void func_0203813c(int points);       /* sets the points left to hand out */
 s16 func_02038150(void);             /* points left to hand out */
 
@@ -24,7 +24,7 @@ extern MenuState gMenuState;
 /* Task step of the results screen: takes up to 2 points off the pool
  * (func_02038150) each frame and adds them to the front and back CO of
  * each player, scaled by game mode: War Room by unk_59 (0: x2.5, 1: x2,
- * 2: x1.5; only the front CO when func_02034fa0 says so), hard campaign
+ * 2: x1.5; only the front CO when CoExp_IsSingleColumn says so), hard campaign
  * x2. A player with one CO gets both shares.
  * A or a touch hands out the rest at once. Resumes the script once the
  * pool is empty. */
@@ -49,7 +49,7 @@ void CoExp_TallyStep(WinLoseTask *task)
         /* needed to match: (step << 1) and gain <<= 1 rather than step * 2
          * where the original computes the x2 share apart */
         if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-            if (func_02034fa0() == 1) {
+            if (CoExp_IsSingleColumn() == 1) {
                 EXP[i * 2].points += STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
             } else {
                 if (STATE->unk_59 == 0) {
@@ -114,7 +114,7 @@ void CoExp_TallyStep(WinLoseTask *task)
         }
         step = func_02038150();
         if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-            if (func_02034fa0() == 1) {
+            if (CoExp_IsSingleColumn() == 1) {
                 EXP[i * 2].points += STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
             } else {
                 if (STATE->unk_59 == 0) {

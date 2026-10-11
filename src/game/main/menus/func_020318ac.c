@@ -6,11 +6,11 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-int func_02034fa0(void);
+int CoExp_IsSingleColumn(void);
 
 /* Starts the func_02031a14 task for one of six cells in a 2-column,
  * 3-row grid (x 40 or 152, y 17, 73 or 129), passing 31 - item. The grid
- * moves right and down in the war room (down only unless func_02034fa0
+ * moves right and down in the war room (down only unless CoExp_IsSingleColumn
  * says 1) and on campaign maps up to 231; otherwise it moves down when the
  * win/lose screen's side A has one or two players. */
 void func_020318ac(int item)
@@ -27,7 +27,7 @@ void func_020318ac(int item)
 
     if (state->gameMode == GAME_MODE_WAR_ROOM) {
         dy = 40;
-        if (func_02034fa0() == 1) {
+        if (CoExp_IsSingleColumn() == 1) {
             dx = 56;
         }
     } else if (state->gameMode == GAME_MODE_CAMPAIGN && state->unk_1c4->mapId <= 231) {
