@@ -7574,6 +7574,7 @@ src/game/main/menus/player_info_add_page_buttons.c:
     .text       start:0x0206d118 end:0x0206d1c8
 
 src/game/main/menus/player_info_toggle_last_page_view.c:
+    complete
     .text       start:0x0206d1c8 end:0x0206d220
 
 src/game/main/menus/player_info_next_page.c:
