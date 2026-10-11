@@ -4087,7 +4087,8 @@ src/game/main/result_stats_draw_stat.c:
     complete
     .text       start:0x0203ba50 end:0x0203bae4
 
-src/game/main/func_0203bae4.c:
+src/game/main/result_stats_draw_unit_grid.c:
+    complete
     .text       start:0x0203bae4 end:0x0203bc5c
 
 src/game/main/result_stats_draw_count.c:

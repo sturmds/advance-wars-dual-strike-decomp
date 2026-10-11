@@ -6,7 +6,7 @@
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void ResultStats_QueuePlayerSprite(int x, int y, int index);
-void func_0203bae4(int offset, Task *task);
+void ResultStats_DrawUnitGrid(int offset, Task *task);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -23,7 +23,7 @@ void ResultStats_DrawMainScreen(int offset, Task *task)
     saved = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
     ResultStats_QueuePlayerSprite(offset + 24, 16, task->unk_66 - 1);
-    func_0203bae4(offset, task);
+    ResultStats_DrawUnitGrid(offset, task);
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
 }
