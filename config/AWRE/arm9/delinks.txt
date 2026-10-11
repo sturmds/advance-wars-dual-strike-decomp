@@ -11671,6 +11671,10 @@ src/game/main/bmap_sprite_anim_create.c:
     complete
     .text       start:0x020eb974 end:0x020eb9dc
 
+src/game/main/missile_strike_start.c:
+    complete
+    .text       start:0x020eb9dc end:0x020eba28
+
 src/game/main/units/black_bomb_blast_hit.c:
     complete
     .text       start:0x020eba28 end:0x020ebb48
