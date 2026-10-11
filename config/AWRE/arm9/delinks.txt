@@ -8784,6 +8784,10 @@ src/game/main/menus/combat_mode_menu_draw_funds_and_prices.c:
     complete
     .text       start:0x02089dac end:0x0208a0c4
 
+src/game/main/menus/combat_mode_menu_add_shop_buttons.c:
+    complete
+    .text       start:0x0208a0c4 end:0x0208a128
+
 src/game/main/func_0208a128.c:
     complete
     .text       start:0x0208a128 end:0x0208a160
