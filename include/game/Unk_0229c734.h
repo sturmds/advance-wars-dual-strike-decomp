@@ -35,6 +35,14 @@ typedef struct Unk_0229c734 {
     int unk_a4;                        /* set to 1 by ScriptTask_ResumeWithValue, read by func_02038164 */
 } Unk_0229c734;
 
+/* The task that runs the result point script (data_0215a44c). */
+typedef struct ResultPointTask {
+    u8 pad_00[0x32];
+    s16 frame;                         /* frames the current slide has run */
+    u8 pad_34[0x3a - 0x34];
+    s16 value;                         /* set by ResultPoint_RestartScript; the slide's frame count */
+} ResultPointTask;
+
 extern Unk_0229c734 *data_0229c734;
 
 #endif
