@@ -14193,6 +14193,10 @@ src/game/main/func_020fb9ec.c:
     complete
     .text       start:0x020fb9ec end:0x020fba00
 
+src/game/main/graphics/shimmer_levels_update.c:
+    complete
+    .text       start:0x020fba00 end:0x020fbaf0
+
 src/game/main/func_020fbaf0.c:
     complete
     .text       start:0x020fbaf0 end:0x020fbb0c
