@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
 BOOL Unit_IsCurrentPlayers(int unitSlot);
-int func_0209e814(int attackerType, int targetType, int arg);   /* damage of an attacker type against a target type */
+int Ai_BestDamage(int attackerType, int targetType, int arg);   /* damage of an attacker type against a target type */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -99,8 +99,8 @@ int AiUnit_TeammateOutdamages(MapUnit *target)
                 if (other->captureProgress != 0) {
                     continue;
                 }
-                if (STATE->actingUnit->hp * func_0209e814(STATE->actingUnit->type, target->type, 0) + 2000
-                    < other->hp * func_0209e814(other->type, target->type, 0)) {
+                if (STATE->actingUnit->hp * Ai_BestDamage(STATE->actingUnit->type, target->type, 0) + 2000
+                    < other->hp * Ai_BestDamage(other->type, target->type, 0)) {
                     return 1;
                 }
             }

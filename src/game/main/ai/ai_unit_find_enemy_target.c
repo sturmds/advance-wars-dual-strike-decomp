@@ -16,7 +16,7 @@ BOOL Unit_IsVisibleToCurrentPlayer(u16 slot);
 /* Damage percent the attacker type deals to a dived unit, 0 if it cannot hit it. */
 int Ai_BestDamageVsDived(int attacker, int target, int arg);
 /* Best damage percent of the attacker type against the target type. */
-int func_0209e814(int attacker, int target, int arg);
+int Ai_BestDamage(int attacker, int target, int arg);
 int Player_CanSeeUnitAt(int player, int x, int y);
 /* Checks the tile found and may move it; FALSE means the tile is not usable. */
 BOOL AiUnit_FindFiringTile(s16 *tile);
@@ -68,7 +68,7 @@ BOOL AiUnit_FindEnemyTarget(s16 *tile)
             if ((unit->flags & MAP_UNIT_DIVED) && !Ai_BestDamageVsDived(STATE->actingUnit->type, unit->type, 0)) {
                 continue;
             }
-            score = func_0209e814(STATE->actingUnit->type, unit->type, 0);
+            score = Ai_BestDamage(STATE->actingUnit->type, unit->type, 0);
             y = unit->y;
             x = unit->x;
             cost = STATE->rangeMap[y][x];

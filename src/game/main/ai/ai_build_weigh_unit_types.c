@@ -18,7 +18,7 @@ BOOL AiProfile_AllowsBuild(u8 type);
 int AiBuild_RateAttackerVsTarget(u8 type, int targetType);
 int AiBuild_ScaleByReach(int damage, int type, int arg);
 int Ai_BestDamageVsDived(int unitType, int targetType, int powerState);
-int func_0209e814(int attacker, int target, int arg);
+int Ai_BestDamage(int attacker, int target, int arg);
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 s32 HwDiv32(s32 numerator, s32 denominator);
@@ -78,7 +78,7 @@ void AiBuild_WeighUnitTypes(void)
             if (gAiTargetGroupType[group] == UNIT_SUB) {
                 damage = Ai_BestDamageVsDived(attacker, gAiTargetGroupType[group], 0) * gAiOwnHpByType[attacker];
             } else {
-                damage = func_0209e814(attacker, gAiTargetGroupType[group], 0) * gAiOwnHpByType[attacker];
+                damage = Ai_BestDamage(attacker, gAiTargetGroupType[group], 0) * gAiOwnHpByType[attacker];
             }
             damage = AiBuild_ScaleByReach(damage, attacker, 0);
             if (Ov000_gUnitStats[gAiTargetGroupType[group]].moveGroup & MOVE_GROUP_AIR) {
@@ -160,7 +160,7 @@ noneLeft:
         if (hitter == UNIT_ANTI_AIR && !(gAiTurnState->domainsAny & AI_DOMAIN_AIR)) {
             continue;
         }
-        if (func_0209e814(hitter, UNIT_INFANTRY, 0) == 0) {
+        if (Ai_BestDamage(hitter, UNIT_INFANTRY, 0) == 0) {
             continue;
         }
         gAiBuildScores[hitter] = Unit_GetValuePerHp(STATE->currentPlayer, hitter);

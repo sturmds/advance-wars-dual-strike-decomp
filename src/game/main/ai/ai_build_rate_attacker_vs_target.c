@@ -7,14 +7,14 @@ int Ai_CountUnitsOfType(int type);
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Ai_CoPairBestDamageVsDived(int attackerType, int targetType, int arg);
 int Ai_CoPairBestDamage(int attackerType, int targetType, int arg);
-int func_0209e814(int attackerType, int targetType, int arg);
+int Ai_BestDamage(int attackerType, int targetType, int arg);
 int AiBuild_ScaleByReach(int score, int unitType, int arg);
 
 #define MOVE_GROUP_GROUND (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)
 
 /* Rates a unit type to build against one enemy unit type, for the AI's
  * build scores. Starts from a damage value (Ai_CoPairBestDamage halved against
- * Infantry, that plus Ai_CoPairBestDamageVsDived against Subs, else func_0209e814),
+ * Infantry, that plus Ai_CoPairBestDamageVsDived against Subs, else Ai_BestDamage),
  * halves it for ground units against ships, doubles it for ships against
  * ships, for Subs against Battleships and against aircraft (twice for
  * Fighters). Anti-Air and Cruisers against aircraft also depend on
@@ -35,7 +35,7 @@ int AiBuild_RateAttackerVsTarget(int attacker, int target)
         score = Ai_CoPairBestDamage(attacker, target, 2) >> 1;
         score += Ai_CoPairBestDamageVsDived(attacker, target, 2);
     } else {
-        score = func_0209e814(attacker, target, 2);
+        score = Ai_BestDamage(attacker, target, 2);
     }
     if (Ov000_gUnitStats[attacker].moveGroup & MOVE_GROUP_GROUND) {
         if (Ov000_gUnitStats[target].moveGroup & MOVE_GROUP_SEA) {

@@ -10844,6 +10844,10 @@ src/game/main/ai/ai_best_damage_vs_dived.c:
     complete
     .text       start:0x0209e768 end:0x0209e814
 
+src/game/main/ai/ai_best_damage.c:
+    complete
+    .text       start:0x0209e814 end:0x0209e8bc
+
 src/game/main/ai/player_can_see_unit_at.c:
     complete
     .text       start:0x0209e8bc end:0x0209eb38
