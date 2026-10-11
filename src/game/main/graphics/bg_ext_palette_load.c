@@ -4,7 +4,7 @@
 
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
-void func_0210c698(const void *src, u32 offset, u32 size);
+void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadBGExtPltt(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
 void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size);
@@ -20,7 +20,7 @@ void BgExtPalette_Load(const void *src, u32 offset, u32 size, u32 slot)
     if (data_027c027c == data_027c0288.unk_00) {
         DC_FlushRange(src, size);
         func_0210c718();
-        func_0210c698(src, offset + (slot << 13), size);
+        GX_LoadBGExtPltt(src, offset + (slot << 13), size);
         GX_EndLoadBGExtPltt();
     } else {
         DC_FlushRange(src, size);

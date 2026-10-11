@@ -16,7 +16,7 @@ void Mem_Copy32(const void *src, void *dst, u32 size);
 void FS_ChangeDir(const char *dir);
 void DC_FlushRange(const void *start, u32 size);  /* guess: flushes the data cache for the range */
 void func_0210c718(void);                          /* guess: begins a background extended palette load */
-void func_0210c698(const void *src, u32 offset, u32 size);
+void GX_LoadBGExtPltt(const void *src, u32 offset, u32 size);
 void GX_EndLoadBGExtPltt(void);                          /* guess: ends the load */
 int func_0210c610(void);                           /* same three for the sub screen */
 void GXS_LoadBGExtPltt(const void *src, u32 offset, u32 size);
@@ -102,7 +102,7 @@ void Wallpaper_LoadSelected(void)
     Data_Unpack(res + data_021593fc[index], data_027c0280->layer3Map);
     DC_FlushRange(res + data_021593bc[index], 0x200);
     func_0210c718();
-    func_0210c698(res + data_021593bc[index], 0x6000, 0x200);
+    GX_LoadBGExtPltt(res + data_021593bc[index], 0x6000, 0x200);
     GX_EndLoadBGExtPltt();
     Gfx_RequestLayerCopy(3);
     Screen_SetCurrent(saved027c);
