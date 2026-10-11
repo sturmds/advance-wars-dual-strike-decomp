@@ -22308,6 +22308,7 @@ src/game/main/func_0211e628.c:
     .text       start:0x0211e628 end:0x0211e648
 
 src/sdk/isd/isd_double_exponent.c:
+    complete
     .text       start:0x0212090c end:0x02120964
 
 src/sdk/isd/isd_double_sign.c:
