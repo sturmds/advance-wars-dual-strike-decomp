@@ -5,7 +5,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Ov005_UnpackCoScreenPicture(Unk_ov005_0236bba8 *work);
 void Ov005_DrawCoGridRowIcon(Unk_ov005_0236bba8 *work);
-void func_ov005_0236297c(Unk_ov005_0236bba8 *work, int x, int y);
+void Ov005_QueueCoSpriteOnBothScreens(Unk_ov005_0236bba8 *work, int x, int y);
 void Ov005_LoadCoGraphicsToBothScreens(Unk_ov005_0236bba8 *work);
 
 /* Per-frame update of the CO picture. When work->coId changes, the picture
@@ -34,7 +34,7 @@ void Ov005_UpdateCoPicture(Ov005Task *task)
         if (task->frame >= task->frames) {
             task->step++;
         }
-        func_ov005_0236297c(work, (work->unk_1fc + offset) >> 12, work->unk_200 >> 12);
+        Ov005_QueueCoSpriteOnBothScreens(work, (work->unk_1fc + offset) >> 12, work->unk_200 >> 12);
         break;
     case 2:
         Ov005_LoadCoGraphicsToBothScreens(work);
