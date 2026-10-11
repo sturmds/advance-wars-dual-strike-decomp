@@ -3795,7 +3795,7 @@ func_020d1be0 kind:function(arm,size=0x5c) addr:0x020d1be0
 func_020d1c3c kind:function(arm,size=0x5c) addr:0x020d1c3c
 func_020d1c98 kind:function(arm,size=0x7c) addr:0x020d1c98
 WeatherFx_UpdateSand kind:function(arm,size=0x130) addr:0x020d1d14
-func_020d1e44 kind:function(arm,size=0x118) addr:0x020d1e44
+WeatherFx_UpdateRain kind:function(arm,size=0x118) addr:0x020d1e44
 func_020d1f5c kind:function(arm,size=0x120) addr:0x020d1f5c
 Weather_Change kind:function(arm,size=0x88) addr:0x020d207c
 SetMapWeather kind:function(arm,size=0x8c) addr:0x020d2104
@@ -7680,7 +7680,7 @@ data_02166cc8 kind:data(any) addr:0x02166cc8
 data_02166cd0 kind:data(any) addr:0x02166cd0
 data_02166cdc kind:data(any) addr:0x02166cdc
 gWeatherSandSprite kind:data(any) addr:0x02166ce0
-data_02166ce8 kind:data(any) addr:0x02166ce8
+gWeatherRainSprites kind:data(any) addr:0x02166ce8
 data_02166d00 kind:data(any) addr:0x02166d00
 data_02166d18 kind:data(any) addr:0x02166d18
 data_02166d78 kind:data(any) addr:0x02166d78
