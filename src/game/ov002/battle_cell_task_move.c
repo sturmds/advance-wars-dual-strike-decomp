@@ -13,11 +13,11 @@
         }                                                                        \
     } while (0)
 
-/* While flag0 is set, moves the cell: adds the acceleration to the velocity, the velocity
+/* While moving is set, moves the cell: adds the acceleration to the velocity, the velocity
  * (8.8 fixed point) to both positions, and copies the positions to the cell's sprites. */
 void BattleCellTask_Move(BattleCellTask *task)
 {
-    if (!task->flag0) {
+    if (!task->moving) {
         return;
     }
     task->velX += task->accelX;

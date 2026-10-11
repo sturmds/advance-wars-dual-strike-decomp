@@ -16,7 +16,7 @@
         }                                                                        \
     } while (0)
 
-/* Starts the cell moving (flag0) with posX falling by 1 per frame, then makes its sprites
+/* Starts the cell moving (sets moving) with posX falling by 1 per frame, then makes its sprites
  * again at the task's positions: one from each of the side's tables that is set.
  * Needed to match: the palette entries are read as (colours + n)[side], not colours[side + n]. */
 void BattleCellTask_StartMove(BattleCellTask *task)
@@ -24,7 +24,7 @@ void BattleCellTask_StartMove(BattleCellTask *task)
     BOOL left;
     int side;
 
-    task->flag0 = 1;
+    task->moving = 1;
     task->velX = -0x100;
     task->velY = 0;
     task->accelX = 0;

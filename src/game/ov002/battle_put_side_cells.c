@@ -5,12 +5,12 @@ int HwDiv32(int num, int den);
 void Bg_PutTileRect(u16 *map, u16 x, u16 y, int width, u16 height, int firstTile, u16 palette);
 
 /* Draws the side's row of cells in the tile map: a 4-tile strip at its edge, then one
- * tile for each ten of BattleSide.unk_03. Needed to match: ground is assigned inside
+ * tile for each ten of BattleSide.terrainDefense. Needed to match: ground is assigned inside
  * the first call's arguments. */
 void Battle_PutSideCells(u16 *tilemap, int side, int isAir)
 {
     int i;
-    int count = HwDiv32(Ov002_gBattleScene->sides[side].unk_03, 10);
+    int count = HwDiv32(Ov002_gBattleScene->sides[side].terrainDefense, 10);
     BOOL left = (side == 0);
     BOOL ground;
 

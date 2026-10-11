@@ -21,22 +21,22 @@ typedef struct BattleCellTask {
     s16 pos2Z;
     u16 scale;                         /* starts at 0x100 */
     s16 angle;                         /* bobbing offset, copied to the sprites; a guess */
-    s16 velX;                          /* 8.8 fixed point, added to the positions each frame while flag0 is set */
+    s16 velX;                          /* 8.8 fixed point, added to the positions each frame while moving is set */
     s16 velY;
     s16 accelX;                        /* 8.8 fixed point, added to velX each frame */
     s16 accelY;
     s16 unk_50;                        /* cleared by BattleCellTask_Reset */
     u8 pad_52[0x54 - 0x52];
-    u8 flashCount;                     /* flashes left while flag2 is set */
+    u8 flashCount;                     /* flashes left while flashing is set */
     u8 flashTimer;                     /* frame within one flash, 0 to 6 */
     u8 phase;                          /* frame phase of the bobbing, starts at cell * 16 */
     u8 unk_57;
     u8 hasPos2 : 1;
     u8 pos2Index : 7;
-    u8 flag0 : 1;
+    u8 moving : 1;
     u8 flag1 : 1;
-    u8 flag2 : 1;
-    u8 flag3 : 1;
+    u8 flashing : 1;
+    u8 flag3 : 1;                      /* the fighter motion steps run only while set; BattleCellTask_Bob skips while set */
     u8 side : 1;
     u8 cell : 3;
     u8 unk_5a_lo : 4;

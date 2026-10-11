@@ -8,7 +8,7 @@ typedef struct BattleSide {
     u8 hpBefore;                       /* HP before the fight */
     u8 hpAfter;
     u8 terrain;                        /* Combatant.terrain */
-    u8 unk_03;                         /* tens of it are drawn as cells by Battle_PutSideCells */
+    u8 terrainDefense;                 /* Combatant.terrainDefense (percent); Battle_PutSideCells draws one per ten */
     u8 tileOwner;                      /* owner bits of the unit's tile */
     u8 usesSecondary;                  /* 1: fires its secondary weapon */
     u8 counters;                       /* nonzero: hits back; a guess from Battle_ShowQuote */

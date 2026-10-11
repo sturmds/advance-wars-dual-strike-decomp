@@ -22,19 +22,19 @@
         }                                                                                \
     } while (0)
 
-/* Flashes the sprites of an HP cell while flag2 is set: each flash uses palette 4 (6 on the
+/* Flashes the sprites of an HP cell while flashing is set: each flash uses palette 4 (6 on the
  * right side) for four frames, then the normal palette for two. After flashCount flashes it
- * clears flag2 and puts the normal palette back. */
+ * clears flashing and puts the normal palette back. */
 void BattleCellTask_Flash(BattleCellTask *task)
 {
-    if (!task->flag2) {
+    if (!task->flashing) {
         return;
     }
     if (task->flashTimer == 6) {
         task->flashTimer = 0;
         task->flashCount--;
         if (task->flashCount == 0) {
-            task->flag2 = 0;
+            task->flashing = 0;
             SET_SPRITE_PALETTES(task, 0);
             return;
         }

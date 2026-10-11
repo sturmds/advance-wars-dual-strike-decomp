@@ -67,8 +67,8 @@ void BattleScene_FillFromCombat(MapUnit *unitA, MapUnit *unitB, Combatant *comba
     Ov002_gBattleScene->sides[1].hpAfter = combatantB->hp;
     Ov002_gBattleScene->sides[0].terrain = combatantA->terrain;
     Ov002_gBattleScene->sides[1].terrain = combatantB->terrain;
-    Ov002_gBattleScene->sides[0].unk_03 = combatantA->terrainDefense;
-    Ov002_gBattleScene->sides[1].unk_03 = combatantB->terrainDefense;
+    Ov002_gBattleScene->sides[0].terrainDefense = combatantA->terrainDefense;
+    Ov002_gBattleScene->sides[1].terrainDefense = combatantB->terrainDefense;
     Ov002_gBattleScene->sides[0].tileOwner = TILE_OWNER(unitA);
     Ov002_gBattleScene->sides[1].tileOwner = TILE_OWNER(unitB);
     Ov002_gBattleScene->sides[0].coId = GAME->players[MAP_UNIT_OWNER(GAME, unitA)].front.id;

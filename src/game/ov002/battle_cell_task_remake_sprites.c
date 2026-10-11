@@ -20,7 +20,7 @@ void func_ov002_0235643c(const u32 *table, int index, int unk_3c, int unk_3e, in
         }                                                                        \
     } while (0)
 
-/* Stops the cell's movement (flag0) and makes its sprites again at the task's positions:
+/* Stops the cell's movement (clears moving) and makes its sprites again at the task's positions:
  * one from each of the side's tables that is set, the last through func_ov002_0235643c.
  * Needed to match: the palette entries are read as (colours + n)[side], not colours[side + n]. */
 void BattleCellTask_RemakeSprites(BattleCellTask *task)
@@ -28,7 +28,7 @@ void BattleCellTask_RemakeSprites(BattleCellTask *task)
     BOOL left;
     int side;
 
-    task->flag0 = 0;
+    task->moving = 0;
 
     DESTROY_SPRITE(task, 0);
     side = task->side;
