@@ -20,6 +20,18 @@ typedef struct MapObject {
     u8 unk_07;
 } MapObject;
 
+/* Object kinds named so far (terrain id the kind is placed for). */
+enum MapObjectKind {
+    MAP_OBJECT_VOLCANO = 2,            /* terrain 28 */
+    MAP_OBJECT_BLACK_CANNON = 3,       /* terrain 26 */
+    MAP_OBJECT_MINICANNON = 4,         /* terrain 21 */
+    MAP_OBJECT_KIND_5 = 5,             /* terrain 30 */
+    MAP_OBJECT_KIND_8 = 8,             /* terrain 31 */
+    MAP_OBJECT_BLACK_CRYSTAL = 9,      /* terrain 23 */
+    MAP_OBJECT_BLACK_OBELISK = 10,     /* terrain 29 */
+    MAP_OBJECT_GRAND_BOLT_WEAK_POINT = 11  /* terrain 24; 11 to 13, one per owner */
+};
+
 /* TRUE when the current screen's map has a live object of this kind. */
 BOOL MapObjects_HasKind(int kind);
 void MapObject_ClearVariant(MapObject *object);

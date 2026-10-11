@@ -17,14 +17,14 @@ extern u16 data_ov000_022dbd52[];
 
 MapObject *Map_FindObjectCovering(int x, int y);
 void func_020db3fc(void);
-void func_020daaa8(int x, int y, int w, int h, int a, int b);
-void func_020dab24(int x, int y);
-void func_020dab8c(int x, int y, int a, int b, int owner);
-void func_020dac00(int x, int y, int w, int h, int a, int b, int owner);
-void func_020dac7c(int x, int y, int w, int h, int a, int b, int c);
-void func_020dacf8(int x, int y, int w, int h);
-void func_020dad64(int x, int y, int owner);
-void func_020dadd0(int x, int y);
+void Map_AddKind5Object(int x, int y, int w, int h, int a, int b);
+void Map_AddBlackObeliskObject(int x, int y);
+void Map_AddMinicannonObject(int x, int y, int a, int b, int owner);
+void Map_AddBlackCannonObject(int x, int y, int w, int h, int a, int b, int owner);
+void Map_AddVolcanoObject(int x, int y, int w, int h, int a, int b, int c);
+void Map_AddKind8Object(int x, int y, int w, int h);
+void Map_AddGrandBoltWeakPointObject(int x, int y, int owner);
+void Map_AddBlackCrystalObject(int x, int y);
 
 void Map_DrawSpecialTerrain(void)
 {
@@ -44,38 +44,38 @@ void Map_DrawSpecialTerrain(void)
             tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
             switch (MAP_TILE_TERRAIN(tile)) {
             case 23:
-                func_020dadd0(x, y);
+                Map_AddBlackCrystalObject(x, y);
                 break;
             case 21:
-                func_020dab8c(x, y, mapA, mapB, MAP_TILE_OWNER(tile));
+                Map_AddMinicannonObject(x, y, mapA, mapB, MAP_TILE_OWNER(tile));
                 break;
             case 28:
                 switch (MAP_TILE_OWNER(tile)) {
                 case 0:
-                    func_020dac7c(x, y, 4, 4, 0, 2, 0);
+                    Map_AddVolcanoObject(x, y, 4, 4, 0, 2, 0);
                     break;
                 case 1:
-                    func_020dac7c(x, y, 4, 4, 2, 1, 1);
+                    Map_AddVolcanoObject(x, y, 4, 4, 2, 1, 1);
                     break;
                 case 2:
-                    func_020dac7c(x, y, 4, 4, 2, 1, 2);
+                    Map_AddVolcanoObject(x, y, 4, 4, 2, 1, 2);
                     break;
                 }
                 break;
             case 26:
-                func_020dac00(x, y, 3, 3, mapA, mapB, MAP_TILE_OWNER(tile));
+                Map_AddBlackCannonObject(x, y, 3, 3, mapA, mapB, MAP_TILE_OWNER(tile));
                 break;
             case 31:
-                func_020dacf8(x, y, 4, 4);
+                Map_AddKind8Object(x, y, 4, 4);
                 break;
             case 24:
-                func_020dad64(x, y, MAP_TILE_OWNER(tile));
+                Map_AddGrandBoltWeakPointObject(x, y, MAP_TILE_OWNER(tile));
                 break;
             case 30:
-                func_020daaa8(x, y, 3, 3, 7, 7);
+                Map_AddKind5Object(x, y, 3, 3, 7, 7);
                 break;
             case 29:
-                func_020dab24(x, y);
+                Map_AddBlackObeliskObject(x, y);
                 break;
             }
         }
