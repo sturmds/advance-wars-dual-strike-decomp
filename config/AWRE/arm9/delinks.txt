@@ -12191,6 +12191,14 @@ src/game/main/menus/game_state3_next_turn_screen.c:
     complete
     .text       start:0x020ba754 end:0x020baafc
 
+src/game/main/menus/next_turn_draw_army_name.c:
+    complete
+    .text       start:0x020baafc end:0x020bab78
+
+src/game/main/menus/text_draw_centered.c:
+    complete
+    .text       start:0x020bab78 end:0x020babb4
+
 src/game/main/func_020babb4.c:
     complete
     .text       start:0x020babb4 end:0x020babd8
