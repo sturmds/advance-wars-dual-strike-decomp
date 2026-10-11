@@ -164,6 +164,10 @@ src/game/itcm/range_map/mark_attack_range.c:
 src/game/itcm/range_map/mark_adjacent_tiles.c:
     .text       start:0x01ffaa3c end:0x01ffabcc
 
+src/game/itcm/range_map/fill_columns_below.c:
+    complete
+    .text       start:0x01ffaca0 end:0x01ffad44
+
 src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8

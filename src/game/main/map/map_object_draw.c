@@ -4,7 +4,7 @@
 extern int data_02167ed0[];
 
 void func_01ffabcc(int x, int y, int value);
-void func_01ffaca0(int x, u16 y, int value);
+void RangeMap_FillColumnsBelow(int x, u16 y, int value);
 void func_01ffad44(u16 x, u16 y, int variant, int size, int value);
 int MapObject_GetDrawOffsetY(int kind, int variant);
 int MapObject_GetDrawOffsetX(int kind, int variant);
@@ -35,7 +35,7 @@ BOOL MapObject_Draw(MapObject *object, int value)
         func_01ffad44(object->x + data_02167ed0[variant * 2], object->y + data_02167ed0[variant * 2 + 1], variant, 4, value);
         return TRUE;
     case 5:
-        func_01ffaca0(object->x, object->y + 3, value);
+        RangeMap_FillColumnsBelow(object->x, object->y + 3, value);
         return TRUE;
     default:
         return FALSE;
