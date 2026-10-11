@@ -8479,6 +8479,10 @@ src/game/main/menus/game_state12_black_hole_check.c:
     complete
     .text       start:0x020ba610 end:0x020ba688
 
+src/game/main/menus/game_state11_clear_weather.c:
+    complete
+    .text       start:0x020ba688 end:0x020ba6d0
+
 src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
