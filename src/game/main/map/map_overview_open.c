@@ -15,7 +15,7 @@ void Screen_ResetWindows(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* First step of script data_02166948, which MapCursor_HandleButtons starts
+/* First step of script gMapOverviewScript, which MapCursor_HandleButtons starts
  * through Script_StartWithHook. Saves the view scroll, draws the map preview
  * on layer 0 and puts it in front, and sets up a darken blend on the other
  * layers that MapOverview_DimStep then fades in. "Overview" is a guess at what the

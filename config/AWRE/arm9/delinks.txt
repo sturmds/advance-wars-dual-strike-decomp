@@ -8386,7 +8386,7 @@ src/game/main/func_02071e90.c:
     complete
     .text       start:0x02071e90 end:0x02071f80
 
-src/game/main/tab_list_draw_entry_with_icon.c:
+src/game/main/tab_list_draw_entry_with_black_hole_icon.c:
     complete
     .text       start:0x02071f80 end:0x02072084
 
@@ -10315,7 +10315,7 @@ src/game/main/func_02085d4c.c:
     complete
     .text       start:0x02085d4c end:0x02085d60
 
-src/game/main/func_02085d60.c:
+src/game/main/menus/combat_setup_push_mark_ready.c:
     complete
     .text       start:0x02085d60 end:0x02085d74
 
@@ -10335,7 +10335,7 @@ src/game/main/func_02085db0.c:
     complete
     .text       start:0x02085db0 end:0x02085dc4
 
-src/game/main/func_02085dc4.c:
+src/game/main/menus/combat_setup_push_move_to_row.c:
     complete
     .text       start:0x02085dc4 end:0x02085dd8
 
@@ -10399,23 +10399,23 @@ src/game/main/link/link_menu_increase_setting.c:
     complete
     .text       start:0x02086a14 end:0x02086b1c
 
-src/game/main/func_02086b1c.c:
+src/game/main/link/link_menu_push_select_entry.c:
     complete
     .text       start:0x02086b1c end:0x02086b30
 
-src/game/main/func_02086b30.c:
+src/game/main/link/link_menu_push_cancel.c:
     complete
     .text       start:0x02086b30 end:0x02086b44
 
-src/game/main/func_02086b44.c:
+src/game/main/link/link_menu_push_confirm.c:
     complete
     .text       start:0x02086b44 end:0x02086b58
 
-src/game/main/func_02086b58.c:
+src/game/main/link/link_menu_push_lower.c:
     complete
     .text       start:0x02086b58 end:0x02086b6c
 
-src/game/main/func_02086b6c.c:
+src/game/main/link/link_menu_push_raise.c:
     complete
     .text       start:0x02086b6c end:0x02086b80
 

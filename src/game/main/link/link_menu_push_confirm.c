@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/event_queue.h"
 
-void func_02086b44(void)
+void LinkMenu_PushConfirm(void)
 {
     EventQueue_Push(4, 0);
 }

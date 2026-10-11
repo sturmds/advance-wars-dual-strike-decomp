@@ -8,8 +8,8 @@ void Number_Draw(s16 x, s16 y, u16 *map, int value, u16 a, u16 b);
 extern Unk_027c0280 *data_027c0280;
 
 /* TabListEntry.draw of the entries with an Orange Star icon: like
- * TabList_DrawEntryWithIcon, but icon unk_04 comes from army style 1 (Orange
- * Star; TabList_DrawEntryWithIcon uses 5, Black Hole) with palette 3. */
+ * TabList_DrawEntryWithBlackHoleIcon, but icon unk_04 comes from army style 1 (Orange
+ * Star; TabList_DrawEntryWithBlackHoleIcon uses 5, Black Hole) with palette 3. */
 void TabList_DrawEntryWithOrangeStarIcon(int x, int y, int row, int col)
 {
     u16 *map;

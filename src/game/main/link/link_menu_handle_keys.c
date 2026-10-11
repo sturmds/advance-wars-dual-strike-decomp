@@ -2,11 +2,11 @@
 #include "game/keypad.h"
 #include "game/Unk_0229fb30.h"
 
-void func_02086b1c(u8 entry);
-void func_02086b30(void);
-void func_02086b44(void);
-void func_02086b58(void);
-void func_02086b6c(void);
+void LinkMenu_PushSelectEntry(u8 entry);
+void LinkMenu_PushCancel(void);
+void LinkMenu_PushConfirm(void);
+void LinkMenu_PushLower(void);
+void LinkMenu_PushRaise(void);
 
 /* Keys of player 0 on the link menu, which has five entries
  * (data_0229fb30.unk_45b is the selected one). Left and right pick the
@@ -23,26 +23,26 @@ void LinkMenu_HandleKeys(void)
         if (entry < 0) {
             entry = 4;
         }
-        func_02086b1c(entry);
+        LinkMenu_PushSelectEntry(entry);
     }
     if (gKeypad->repeat & PAD_KEY_RIGHT) {
         entry++;
         if (entry >= 5) {
             entry = 0;
         }
-        func_02086b1c(entry);
+        LinkMenu_PushSelectEntry(entry);
     }
     if (gKeypad->repeat & PAD_KEY_UP) {
-        func_02086b6c();
+        LinkMenu_PushRaise();
     }
     if (gKeypad->repeat & PAD_KEY_DOWN) {
-        func_02086b58();
+        LinkMenu_PushLower();
     }
     if (gKeypad->pressed & PAD_BUTTON_A) {
-        func_02086b44();
+        LinkMenu_PushConfirm();
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_B) {
-        func_02086b30();
+        LinkMenu_PushCancel();
     }
 }

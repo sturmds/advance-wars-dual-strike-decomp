@@ -9,7 +9,7 @@ void Gfx_LoadPlayerWindowFrame(int player);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Last callback of the Start-button map overview script (data_02166948).
+/* Last callback of the Start-button map overview script (gMapOverviewScript).
  * When the view scrolled during the overview, puts the cursor at the middle
  * of the view (7 tiles right and 5 down of its corner), then reloads the
  * current player's window frame. */

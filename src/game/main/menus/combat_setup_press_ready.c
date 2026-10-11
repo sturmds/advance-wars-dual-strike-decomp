@@ -2,7 +2,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 
-void func_02085d60(void);
+void CombatSetup_PushMarkReady(void);
 
 extern MenuState gMenuState;
 
@@ -15,5 +15,5 @@ void CombatSetup_PressReady(void)
     if (MENU->combat.players[data_0229fb30.unk_45a].ready != 0) {
         return;
     }
-    func_02085d60();
+    CombatSetup_PushMarkReady();
 }

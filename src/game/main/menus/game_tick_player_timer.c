@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern EventScriptCommand data_02166948[];
+extern EventScriptCommand gMapOverviewScript[];
 
 s16 ScriptSlot_Find(const EventScriptCommand *script);
 int func_020d1bc4(void);
@@ -21,7 +21,7 @@ void EffectScene_TickProgress(void);
  * EffectScene_TickProgress runs. */
 void Game_TickPlayerTimer(void)
 {
-    if (ScriptSlot_Find(data_02166948) != -1) {
+    if (ScriptSlot_Find(gMapOverviewScript) != -1) {
         return;
     }
     if (func_020d1bc4() != 0) {

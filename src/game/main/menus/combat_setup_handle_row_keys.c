@@ -4,7 +4,7 @@
 #include "game/Unk_0229fb30.h"
 
 void func_02085d4c(void);
-void func_02085d60(void);
+void CombatSetup_PushMarkReady(void);
 void func_02085d74(void);
 void func_02085d88(void);
 void func_02085d9c(void);
@@ -36,7 +36,7 @@ void CombatSetup_HandleRowKeys(void)
             func_02085d9c();
         }
         if (gKeypad->pressed & PAD_BUTTON_A) {
-            func_02085d60();
+            CombatSetup_PushMarkReady();
             return;
         }
     }

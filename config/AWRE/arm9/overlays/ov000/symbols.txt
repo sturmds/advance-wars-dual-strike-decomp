@@ -1060,7 +1060,7 @@ data_ov000_022f65d4 kind:data(any) addr:0x022f65d4 ambiguous
 data_ov000_022f65fc kind:data(any) addr:0x022f65fc ambiguous
 data_ov000_022f6610 kind:data(any) addr:0x022f6610
 data_ov000_022f6624 kind:data(any) addr:0x022f6624 ambiguous
-data_ov000_022f6638 kind:data(any) addr:0x022f6638 ambiguous
+gNumberFontByLanguage kind:data(any) addr:0x022f6638 ambiguous
 data_ov000_022f664c kind:data(any) addr:0x022f664c ambiguous
 data_ov000_022f6660 kind:data(any) addr:0x022f6660 ambiguous
 data_ov000_022f6674 kind:data(any) addr:0x022f6674 ambiguous

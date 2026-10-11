@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/Unk_0229fb30.h"
 
-void func_02085dc4(int row);
+void CombatSetup_PushMoveToRow(int row);
 
 extern MenuState gMenuState;
 
@@ -21,5 +21,5 @@ void CombatSetup_PressRowButton(MenuButton *button)
     if ((u8)(button->id - 15) == MENU->combat.players[data_0229fb30.unk_45a].row) {
         return;
     }
-    func_02085dc4((u8)(button->id - 15));
+    CombatSetup_PushMoveToRow((u8)(button->id - 15));
 }

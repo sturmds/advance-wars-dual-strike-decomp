@@ -11,7 +11,7 @@ void Gfx_RequestLayerCopy(int layer);
 Task *EaseTask_Start(int from, int to, int frames, Task *parent);
 
 extern Unk_027c0280 *data_027c0280;
-extern char data_0215c6a4[];           /* "/ohashi/res_tagbreak_thunder" */
+extern char gTagBreakThunderPath[];           /* "/ohashi/res_tagbreak_thunder" */
 extern u8 gMenuState[];                /* gets a sprite file */
 extern u16 data_0229f330[];            /* layer 0 map that TagBreak_StartSparks shows */
 extern u8 data_0229fb30[];             /* two palettes; the second is gTagBreakSparkPalette */
@@ -31,7 +31,7 @@ void TagBreak_LoadThunder(Task *task)
 {
     u8 *res;
 
-    res = File_Load(data_0215c6a4);
+    res = File_Load(gTagBreakThunderPath);
     Data_Unpack(res, LAYER_TILES(data_027c0280->layer0Bg));
     Data_Unpack(res + 0x2254, gMenuState);
     Data_Unpack(res + 0x252c, data_0229f330);

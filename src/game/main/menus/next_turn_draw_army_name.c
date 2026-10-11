@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/icon.h"
 
-extern u32 data_02167d58[];                 /* text id of each army's name */
+extern u32 gArmyNameTextIds[];                 /* text id of each army's name */
 
 const char *Text_Get(u32 textId);
 int Text_GetCenteredX(const char *text);
@@ -15,7 +15,7 @@ int strlen(const char *s);
  * sides of it. */
 void NextTurn_DrawArmyName(int y, int army)
 {
-    const char *name = Text_Get(data_02167d58[army]);
+    const char *name = Text_Get(gArmyNameTextIds[army]);
     int x = Text_GetCenteredX(name);
 
     Text_DrawCentered(y, name);

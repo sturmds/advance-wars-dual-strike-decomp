@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_02086b30(void);
+void LinkMenu_PushCancel(void);
 
 void func_020876e4(void)
 {
-    func_02086b30();
+    LinkMenu_PushCancel();
 }

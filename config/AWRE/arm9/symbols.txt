@@ -2125,7 +2125,7 @@ func_02071bc0 kind:function(arm,size=0xf0) addr:0x02071bc0
 func_02071cb0 kind:function(arm,size=0xf0) addr:0x02071cb0
 func_02071da0 kind:function(arm,size=0xf0) addr:0x02071da0
 func_02071e90 kind:function(arm,size=0xf0) addr:0x02071e90
-TabList_DrawEntryWithIcon kind:function(arm,size=0x104) addr:0x02071f80
+TabList_DrawEntryWithBlackHoleIcon kind:function(arm,size=0x104) addr:0x02071f80
 TabList_DrawEntryWithOrangeStarIcon kind:function(arm,size=0x104) addr:0x02072084
 TabList_DrawEntryTime kind:function(arm,size=0xfc) addr:0x02072188
 TabList_DrawEntryPlain kind:function(arm,size=0xe0) addr:0x02072284
@@ -2608,12 +2608,12 @@ CombatSetup_MoveToNextRow kind:function(arm,size=0x64) addr:0x02085b64
 CombatSetup_MoveToPrevRow kind:function(arm,size=0x64) addr:0x02085bc8
 CombatSetup_MovePlayerToRow kind:function(arm,size=0x120) addr:0x02085c2c
 func_02085d4c kind:function(arm,size=0x14) addr:0x02085d4c
-func_02085d60 kind:function(arm,size=0x14) addr:0x02085d60
+CombatSetup_PushMarkReady kind:function(arm,size=0x14) addr:0x02085d60
 func_02085d74 kind:function(arm,size=0x14) addr:0x02085d74
 func_02085d88 kind:function(arm,size=0x14) addr:0x02085d88
 func_02085d9c kind:function(arm,size=0x14) addr:0x02085d9c
 func_02085db0 kind:function(arm,size=0x14) addr:0x02085db0
-func_02085dc4 kind:function(arm,size=0x14) addr:0x02085dc4
+CombatSetup_PushMoveToRow kind:function(arm,size=0x14) addr:0x02085dc4
 CombatSetup_HandleRowKeys kind:function(arm,size=0xe4) addr:0x02085dd8
 CombatSetup_QueueIconsAndSettings kind:function(arm,size=0xd8) addr:0x02085ebc
 CombatSetup_DrawRowPlayerIcons kind:function(arm,size=0x2c0) addr:0x02085f94
@@ -2629,11 +2629,11 @@ LinkMenu_ApplyCancel kind:function(arm,size=0x68) addr:0x0208683c
 LinkMenu_ApplyConfirm kind:function(arm,size=0x68) addr:0x020868a4
 LinkMenu_DecreaseSetting kind:function(arm,size=0x108) addr:0x0208690c
 LinkMenu_IncreaseSetting kind:function(arm,size=0x108) addr:0x02086a14
-func_02086b1c kind:function(arm,size=0x14) addr:0x02086b1c
-func_02086b30 kind:function(arm,size=0x14) addr:0x02086b30
-func_02086b44 kind:function(arm,size=0x14) addr:0x02086b44
-func_02086b58 kind:function(arm,size=0x14) addr:0x02086b58
-func_02086b6c kind:function(arm,size=0x14) addr:0x02086b6c
+LinkMenu_PushSelectEntry kind:function(arm,size=0x14) addr:0x02086b1c
+LinkMenu_PushCancel kind:function(arm,size=0x14) addr:0x02086b30
+LinkMenu_PushConfirm kind:function(arm,size=0x14) addr:0x02086b44
+LinkMenu_PushLower kind:function(arm,size=0x14) addr:0x02086b58
+LinkMenu_PushRaise kind:function(arm,size=0x14) addr:0x02086b6c
 LinkMenu_HandleKeys kind:function(arm,size=0xdc) addr:0x02086b80
 LinkMenu_DrawSettings kind:function(arm,size=0xd0) addr:0x02086c5c
 SubScreen_ResetMenu kind:function(arm,size=0x64) addr:0x02086d2c
@@ -7273,7 +7273,7 @@ data_0215c63c kind:data(any) addr:0x0215c63c
 data_0215c658 kind:data(any) addr:0x0215c658
 data_0215c670 kind:data(any) addr:0x0215c670
 data_0215c68c kind:data(any) addr:0x0215c68c
-data_0215c6a4 kind:data(any) addr:0x0215c6a4
+gTagBreakThunderPath kind:data(any) addr:0x0215c6a4
 data_0215c6c4 kind:data(any) addr:0x0215c6c4
 data_0215c714 kind:data(any) addr:0x0215c714
 data_0215c764 kind:data(any) addr:0x0215c764
@@ -7663,7 +7663,7 @@ data_021667d8 kind:data(any) addr:0x021667d8
 data_02166828 kind:data(any) addr:0x02166828
 data_02166888 kind:data(any) addr:0x02166888
 data_021668e8 kind:data(any) addr:0x021668e8
-data_02166948 kind:data(any) addr:0x02166948
+gMapOverviewScript kind:data(any) addr:0x02166948
 data_021669b0 kind:data(any) addr:0x021669b0
 data_02166a18 kind:data(any) addr:0x02166a18
 data_02166a88 kind:data(any) addr:0x02166a88
@@ -7778,7 +7778,7 @@ gCoPicksDefault kind:data(any) addr:0x02167d24
 data_02167d30 kind:data(any) addr:0x02167d30
 data_02167d3c kind:data(any) addr:0x02167d3c
 data_02167d48 kind:data(any) addr:0x02167d48
-data_02167d58 kind:data(any) addr:0x02167d58
+gArmyNameTextIds kind:data(any) addr:0x02167d58
 gDefaultCoList kind:data(any) addr:0x02167d70
 gOwnerCellCodes kind:data(any) addr:0x02167d8c
 gMapPaletteFiles kind:data(any) addr:0x02167dd4
