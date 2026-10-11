@@ -6,7 +6,7 @@ void func_021062e8(int a0, int a1);
 void SoundArc_UnloadItem(void);
 typedef void (*SoundLoadFn)(void);
 
-void *func_021073f4(int fileId, SoundLoadFn loader, void *cacheOwner, int fileId2, void *heap);
+void *SoundArc_LoadFileToHeap(int fileId, SoundLoadFn loader, void *cacheOwner, int fileId2, void *heap);
 
 /* Returns the sound archive file fileId when it is already in memory.
  * Otherwise loads it into heap. A cached load is recorded in the cache
@@ -22,7 +22,7 @@ void *func_02107204(int fileId, void *heap, int cache)
         } else {
             cacheOwner = NULL;
         }
-        loaded = func_021073f4(fileId, SoundArc_UnloadItem, cacheOwner, fileId, heap);
+        loaded = SoundArc_LoadFileToHeap(fileId, SoundArc_UnloadItem, cacheOwner, fileId, heap);
         if (cache != 0 && loaded != NULL) {
             func_021062e8(fileId, (int)loaded);
         }
