@@ -11751,6 +11751,10 @@ src/game/main/units/capture_picture_init_offset.c:
     complete
     .text       start:0x020ec218 end:0x020ec248
 
+src/game/main/units/capture_army_gfx_load.c:
+    complete
+    .text       start:0x020ec248 end:0x020ec2f0
+
 src/game/main/units/property_picture_load.c:
     complete
     .text       start:0x020ec2f0 end:0x020ec438
