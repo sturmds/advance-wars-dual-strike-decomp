@@ -8,7 +8,7 @@ s8 UnitMenu_JoinHidden(void);
 s8 UnitMenu_BoardHidden(void);
 int func_020df2f8(u8 *unitType);
 void RangeMap_Fill(int value);
-void func_01ffa294(int x, int y);
+void RangeMap_SetAdjacentReachable(int x, int y);
 int func_020dc080(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -31,6 +31,6 @@ s8 UnitMenu_SupplyHidden(void)
         return 1;
     }
     RangeMap_Fill(-1);
-    func_01ffa294(STATE->actingUnitDestX, STATE->actingUnitDestY);
+    RangeMap_SetAdjacentReachable(STATE->actingUnitDestX, STATE->actingUnitDestY);
     return func_020dc080() == 0;
 }
