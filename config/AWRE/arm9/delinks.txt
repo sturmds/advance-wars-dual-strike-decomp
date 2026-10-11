@@ -20989,6 +20989,10 @@ src/sdk/fs/fs_open_file_fast_command.c:
     complete
     .text       start:0x0211120c end:0x02111288
 
+src/sdk/fs/archive_cmd_set_dir_position.c:
+    complete
+    .text       start:0x02111974 end:0x02111a0c
+
 src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
