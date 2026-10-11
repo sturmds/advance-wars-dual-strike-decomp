@@ -11,12 +11,12 @@ int func_02079180(void);
 int func_02078864(void);
 int func_02079bb0(void);
 void func_02079ee0(void);
-void func_02079990(u8 linkLevel);
+void Wireless_AddParent(u8 linkLevel);
 BOOL Wireless_StartRequest(void);
 
 /* Scan callback (Wireless_StartRequest passes it to the SDK). In state 3 a
  * found parent with our game group id and no download play flag goes to
- * func_02079990, then the scan restarts while data_0215fe84->unk_14 is set. */
+ * Wireless_AddParent, then the scan restarts while data_0215fe84->unk_14 is set. */
 void Wireless_OnScan(WMStartScanCallback *cb)
 {
     if (cb->errcode == 0) {
@@ -44,7 +44,7 @@ void Wireless_OnScan(WMStartScanCallback *cb)
                 if (data_0229c8a8->length * 2 >= 0x48
                     && data_0229c8a8->gameInfo.ggid == data_0229c960.ggid
                     && !(data_0229c8a8->gameInfo.attribute & WM_ATTR_FLAG_MB)) {
-                    func_02079990(cb->linkLevel);
+                    Wireless_AddParent(cb->linkLevel);
                 }
                 /* fall through */
             case WM_STATECODE_PARENT_NOT_FOUND:
