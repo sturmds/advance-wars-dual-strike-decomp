@@ -21307,6 +21307,10 @@ src/sdk/os/osi_count_up_tick.c:
     complete
     .text       start:0x0210e964 end:0x0210e9ec
 
+src/sdk/os/os_init_tick.c:
+    complete
+    .text       start:0x0210e9ec end:0x0210ea88
+
 src/game/main/func_0210ed9c.c:
     complete
     .text       start:0x0210ed9c end:0x0210edb8
