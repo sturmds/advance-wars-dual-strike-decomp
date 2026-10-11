@@ -7480,6 +7480,10 @@ src/game/main/menus/map_select_prev_page.c:
     complete
     .text       start:0x0205e8a4 end:0x0205ea58
 
+src/game/main/menus/map_select_next_page.c:
+    complete
+    .text       start:0x0205ea58 end:0x0205ec08
+
 src/game/main/func_0205ec08.c:
     complete
     .text       start:0x0205ec08 end:0x0205ec14

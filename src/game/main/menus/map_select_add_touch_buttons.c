@@ -7,7 +7,7 @@ int func_0207bd6c(void);
 
 /* Touch buttons of the map select screen, 32x32 each. */
 extern const MenuButtonTemplate data_0215c8c8;   /* (224, 160), func_0205e898 */
-extern const MenuButtonTemplate data_0215c940;   /* (224, 128), func_0205ea58 */
+extern const MenuButtonTemplate data_0215c940;   /* (224, 128), MapSelect_NextPage */
 extern const MenuButtonTemplate data_0215c878;   /* (224, 96), previous page */
 extern const MenuButtonTemplate data_0215c918;   /* (32, 0), previous list */
 extern const MenuButtonTemplate data_0215c850;   /* (192, 0), next list */

@@ -5,6 +5,9 @@
 
 #define EVENT_QUEUE_SIZE 16
 
+/* Link message of the map select menu. */
+#define EVENT_MAP_SELECT_PAGE 3 /* arg: page to turn to */
+
 /* Link messages of the Vs setup team screen. The team ones add the
  * player slot (0-3) to the id. */
 #define EVENT_VS_SETUP_CANCEL 18 /* cancel on the Vs setup player and CO buttons, a guess */

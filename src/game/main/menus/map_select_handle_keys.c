@@ -12,13 +12,13 @@ int MapSelect_PosDown(int pos);
 int func_0205ef34(int pos);
 void func_0205ec5c(int unused);
 void func_0205ec20(int unused);
-void func_0205ea58(MenuButton *button);
+void MapSelect_NextPage(MenuButton *button);
 void MapSelect_PrevPage(MenuButton *button);
 
 /* onKeys of the map buttons on the map select screen. The d-pad moves the
  * cursor through the page (left and right do nothing in the War Room). L
  * and R, when not held together, change the list; Y turns to the previous
- * page and X (func_0205ea58) likely to the next. A confirms the map, B
+ * page and X (MapSelect_NextPage) likely to the next. A confirms the map, B
  * cancels. */
 void MapSelect_HandleKeys(MenuButton *button)
 {
@@ -51,7 +51,7 @@ void MapSelect_HandleKeys(MenuButton *button)
         }
     }
     if (gKeypad->pressed & PAD_BUTTON_X) {
-        func_0205ea58(NULL);
+        MapSelect_NextPage(NULL);
         return;
     }
     if (gKeypad->pressed & PAD_BUTTON_Y) {
