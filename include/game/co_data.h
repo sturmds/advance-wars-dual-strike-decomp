@@ -153,6 +153,8 @@ typedef struct CoPowerBlock {
 
 /* CoRecord.nation of the Black Hole COs. */
 #define NATION_BLACK_HOLE 5
+/* CoRecord.nation of Andy, Max and Sami. */
+#define NATION_ORANGE_STAR 1
 
 /* One entry of gCoTable (main 0x0215360c), indexed by CO id.
  * Layout from romhacking.net doc 890 (RadioTails), checked against AWRE. */

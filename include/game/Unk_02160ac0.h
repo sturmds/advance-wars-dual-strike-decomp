@@ -17,7 +17,10 @@ typedef struct Unk_02160ac0_Row {
 /* Pointed to by data_02160ac0 (main data). func_0208bf40 fills bytes
  * 0x00-0x13, 0x18, 0x19, 0x7d and 0x84 from data_0229e148. */
 typedef struct Unk_02160ac0 {
-    u8 pad_00[0x18];
+    struct {
+        u8 tile : 6;
+        u8 state : 2;
+    } cells[0x18];
     u8 unk_18;
     u8 unk_19;
     u8 pad_1a[0x70 - 0x1a];
