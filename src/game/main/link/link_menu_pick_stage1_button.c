@@ -5,7 +5,7 @@
 void Sound_PlaySe(u32 soundId);
 void HelpText_Show(u32 textId, int tile);
 int func_0207a260(void);
-void func_0207fcec(u8 kind, u16 x, u16 y);
+void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y);
 void func_0207e02c(void);
 
 /* A stage 1 button (0 or 1) is picked: puts marker kind 0 next to it, stores it in
@@ -14,7 +14,7 @@ void func_0207e02c(void);
 void LinkMenu_PickStage1Button(int button)
 {
     Sound_PlaySe(0x10006);
-    func_0207fcec(0, 112, button * 16 + 56);
+    LinkMenu_CreateMarker(0, 112, button * 16 + 56);
     data_0229fb30.unk_631 = button;
     data_0229fb30.unk_630 = 2;
     if (func_0207a260() == 0) {
