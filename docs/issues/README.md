@@ -46,7 +46,7 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0016](0016-field-renames-not-replayed.md) | `apply_commit.py` does not replay struct field renames | open | loop | M1 |
 | [0017](0017-diff-reloc-names.md) | `fn.py diff` shows less than 100% for table accesses that match | closed | tools | M1 |
 | [0018](0018-rh890-names-to-confirm.md) | Names from document 890 to confirm | open | decomp | M2 |
-| [0019](0019-ov000-relocations.md) | Relocations marked `overlays(0,4)` that can only be ov000 | open | tools | M3 |
+| [0019](0019-ov000-relocations.md) | Relocations marked `overlays(0,4)` that can only be ov000 | closed | tools | M3 |
 | [0020](0020-apply-commit-header-conflicts.md) | `apply_commit.py` stops at shared-header conflicts | closed | loop | M1 |
 | [0021](0021-auto-co-maps.md) | Name the Auto CO special case for Lightning Strikes and Ring of Fire | closed | decomp | M2 |
 | [0022](0022-army-style-colour-comments.md) | Player.armyStyle and armyColour comments are wrong | closed | decomp | M2 |
@@ -82,3 +82,4 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0052](0052-partials-strategy.md) | The game partials need a better tool than permute.py and agent retries | open | tools | M2 |
 | [0053](0053-duplicate-data-symbol-name.md) | Two data symbols with the same name break the arm9 checksum during a replay | open | loop | M1 |
 | [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |
+| [0055](0055-overlay-relocations-left.md) | 15 relocations still name several overlays | open | tools | M3 |
