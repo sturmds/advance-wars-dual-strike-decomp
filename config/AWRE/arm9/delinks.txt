@@ -8792,6 +8792,10 @@ src/game/main/func_0208a128.c:
     complete
     .text       start:0x0208a128 end:0x0208a160
 
+src/game/main/menus/combat_mode_menu_pick_slot.c:
+    complete
+    .text       start:0x0208a160 end:0x0208a1ac
+
 src/game/main/menus/combat_mode_menu_on_keys.c:
     complete
     .text       start:0x0208a1ac end:0x0208a288
