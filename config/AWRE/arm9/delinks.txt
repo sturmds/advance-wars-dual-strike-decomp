@@ -5901,9 +5901,17 @@ src/game/main/func_0206714c.c:
     complete
     .text       start:0x0206714c end:0x02067188
 
+src/game/main/menus/vs_setup_request_team_screen_back.c:
+    complete
+    .text       start:0x02067188 end:0x020671e4
+
 src/game/main/menus/vs_setup_open_co_select.c:
     complete
     .text       start:0x020671e4 end:0x02067228
+
+src/game/main/menus/vs_setup_draw_team_screen_team_sprites.c:
+    complete
+    .text       start:0x02067228 end:0x020672e0
 
 src/game/main/menus/vs_setup_draw_slot_sprites.c:
     complete
