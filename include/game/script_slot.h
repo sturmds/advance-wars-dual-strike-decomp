@@ -104,6 +104,9 @@ typedef struct AccelMoveArgs {
     float frames;
 } AccelMoveArgs;
 
+/* Ends the point list of the path move command. */
+#define PATH_END (-1)
+
 /* The same slot as the arc move command uses it. */
 typedef struct ArcMoveSlot {
     ScriptCommand *start;
