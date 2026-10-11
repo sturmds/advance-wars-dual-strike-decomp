@@ -4,7 +4,7 @@
 extern DlPlayHostLinkArea *data_022aced4;
 
 void MIi_CpuClear16(u16 value, void *dst, u32 size);
-int func_02119900(u8 type, u16 bitmap);
+int MbParent_SendHeaderOnly(u8 type, u16 bitmap);
 int func_02119750(void);
 int func_021193fc(void);
 
@@ -50,20 +50,20 @@ int MbParent_SendCommData(void)
     }
 
     if (bitmaps.bootRequest != 0) {
-        result = func_02119900(DLPLAY_TO_CHILD_START_PROGRAM, bitmaps.bootRequest);
+        result = MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_START_PROGRAM, bitmaps.bootRequest);
     } else if (bitmaps.connected != 0) {
-        result = func_02119900(DLPLAY_TO_CHILD_UPLOAD_BEGINS, bitmaps.connected);
+        result = MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_UPLOAD_BEGINS, bitmaps.connected);
     } else if (bitmaps.memberFull != 0) {
-        result = func_02119900(DLPLAY_TO_CHILD_NO_ROOM, bitmaps.memberFull);
+        result = MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_NO_ROOM, bitmaps.memberFull);
     } else if (bitmaps.kicked != 0) {
-        result = func_02119900(DLPLAY_TO_CHILD_REFUSE, bitmaps.kicked);
+        result = MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_REFUSE, bitmaps.kicked);
     } else if (bitmaps.accepted != 0) {
         result = func_02119750();
     } else {
         result = func_021193fc();
     }
     if (result == DLPLAY_NOTHING_TRANSMITTED) {
-        return func_02119900(DLPLAY_TO_CHILD_EMPTY, 0xffff);
+        return MbParent_SendHeaderOnly(DLPLAY_TO_CHILD_EMPTY, 0xffff);
     }
     return result;
 }
