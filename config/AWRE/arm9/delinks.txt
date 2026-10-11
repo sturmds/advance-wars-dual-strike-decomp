@@ -5911,6 +5911,7 @@ src/game/main/link/wireless_on_set_mode_0.c:
     .text       start:0x02077fc8 end:0x02077fe8
 
 src/game/main/link/wireless_on_set_mode_1.c:
+    complete
     .text       start:0x02077fe8 end:0x02078008
 
 src/game/main/func_02078138.c:

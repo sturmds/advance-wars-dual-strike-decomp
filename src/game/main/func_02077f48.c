@@ -5,7 +5,7 @@ extern u32 data_0229c88c;
 /* Probably an SDK call: the second argument is passed on to the callback. */
 void func_02118f34(void (*callback)(void), int mode);
 void Wireless_OnSetMode0(void);
-void func_02077fe8(void);
+void Wireless_OnSetMode1(void);
 
 void func_02077f48(int mode)
 {
@@ -16,7 +16,7 @@ void func_02077f48(int mode)
         return;
     }
     if (mode == 1) {
-        func_02118f34(func_02077fe8, mode);
+        func_02118f34(Wireless_OnSetMode1, mode);
         return;
     }
     func_02118f34(Wireless_OnSetMode0, mode);
