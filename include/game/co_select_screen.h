@@ -9,7 +9,7 @@
 typedef struct CoSelectScreen {
     u8 coGrid[0x2c];                   /* CO id per cell at (cursorColumn - 1) * 2 + cursorRow; 0: empty */
     u8 *unk_2c;                        /* byte table read by func_020457d8 */
-    u8 pad_30;
+    u8 unk_30;                         /* CO list slot of the cursor cell's CO, set by CoSelectScreen_Create */
     u8 cursorColumn;                   /* counts from 1 */
     u8 cursorRow;
     u8 coListOpen;                     /* 1 while the CO list is open */
