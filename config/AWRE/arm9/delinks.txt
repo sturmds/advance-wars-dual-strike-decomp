@@ -6376,6 +6376,10 @@ src/game/main/func_0204b558.c:
     complete
     .text       start:0x0204b558 end:0x0204b570
 
+src/game/main/points_tally_hold_on_sub_screen.c:
+    complete
+    .text       start:0x0204b570 end:0x0204b5c8
+
 src/game/main/points_tally_count.c:
     complete
     .text       start:0x0204b850 end:0x0204b9ac
