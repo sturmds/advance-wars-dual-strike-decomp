@@ -11,7 +11,7 @@ BOOL Campaign_IsHardMode(void);
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern MenuState gMenuState;
-extern u8 gUnitRowTypes[];             /* unit type of each row of the list func_0206d67c draws; UNIT_NONE: empty row */
+extern u8 gUnitRowTypes[];             /* unit type of each row of the list PlayerInfo_DrawUnitStats draws; UNIT_NONE: empty row */
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -21,7 +21,7 @@ extern u8 gUnitRowTypes[];             /* unit type of each row of the list func
     (((u8 *)&gMenuState + (gMenuState.unk_0206d67c.player - 1))                 \
         [(u32) & ((MenuState *)0)->unk_0206d67c.playerArmy])
 
-/* Whether the unit in a row of func_0206d67c's unit list is shown yet.
+/* Whether the unit in a row of PlayerInfo_DrawUnitStats's unit list is shown yet.
  * Outside the campaign only Oozium waits, for game flag 43. In a
  * normal-mode campaign, the newer units appear by campaign map id when the
  * shown player is Black Hole; for other players Piperunner, Black Bomb and

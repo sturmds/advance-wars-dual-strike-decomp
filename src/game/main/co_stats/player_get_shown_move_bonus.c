@@ -12,7 +12,7 @@ extern MenuState gMenuState;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Movement bonus of a player's CO for a unit type, as the unit info drawn by
- * func_0206d67c shows it (the movement counterpart of Player_GetShownFirepower).
+ * PlayerInfo_DrawUnitStats shows it (the movement counterpart of Player_GetShownFirepower).
  * Outside the gameMode 3 case the menu's slot replaces the slot argument; slot
  * 1 uses power state 0, slot 0 the front CO's. In a two-map battle where the
  * other map's unk_30 is 0 and the menu slot is 1, the lookup runs on the second

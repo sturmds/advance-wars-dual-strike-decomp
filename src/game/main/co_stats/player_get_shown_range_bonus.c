@@ -9,7 +9,9 @@ void Screen_SetCurrentBoth(void *state);
 extern MenuState gMenuState;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
-int func_0206e0a8(int player, int slot, int unitType)
+/* Range bonus of a player's CO for a unit type, as PlayerInfo_DrawUnitStats
+ * shows it. Same slot and two-map handling as Player_GetShownMoveBonus. */
+int Player_GetShownRangeBonus(int player, int slot, int unitType)
 {
     Unk_02080440 *saved027c;
     Unk_027c0280 *saved0280;

@@ -12,7 +12,7 @@ extern MenuState gMenuState;
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Firepower bonus of a player's CO slot (0 front, 1 back) for a unit type,
- * as the unit info drawn by func_0206d67c shows it. Slot 0 uses
+ * as the unit info drawn by PlayerInfo_DrawUnitStats shows it. Slot 0 uses
  * Player_GetFirepowerBonus with the front CO's power state; other slots use
  * Player_GetSlotFirepower. In a two-map battle where the other map's unk_30 is 0, a
  * back slot instead reads the front CO of the same player on the second map

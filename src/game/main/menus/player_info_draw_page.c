@@ -6,7 +6,7 @@ extern MenuState gMenuState;
 void PlayerInfo_DrawCoProfile(void);
 void CoStatsScreen_DrawSkills(void);
 void func_0206e814(void);
-void func_0206d67c(void);
+void PlayerInfo_DrawUnitStats(void);
 
 /* Draws the text of the page the player info screen shows. */
 void PlayerInfo_DrawPage(void)
@@ -22,7 +22,7 @@ void PlayerInfo_DrawPage(void)
         func_0206e814();
         break;
     default:
-        func_0206d67c();
+        PlayerInfo_DrawUnitStats();
         break;
     }
 }
