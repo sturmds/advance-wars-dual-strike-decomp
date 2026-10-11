@@ -12,10 +12,13 @@ typedef struct ScoreRow {
     u8 pad_05;
 } ScoreRow;
 
+#define SCORE_ROW_COUNT 22
+#define RESULT_POINT_PART_COUNT 5
+
 /* Pointed to by data_0229c734 (main bss). */
 typedef struct Unk_0229c734 {
-    ScoreRow rows[22];
-    u16 partTile[5];                   /* first OBJ tile of each graphics part, 0xffff until loaded */
+    ScoreRow rows[SCORE_ROW_COUNT];
+    u16 partTile[RESULT_POINT_PART_COUNT]; /* first OBJ tile of each graphics part, 0xffff until loaded */
     u8 pad_8e[0x90 - 0x8e];
     u8 *gfxFile;                       /* /ohashi/res_result_point_obj */
     u16 nextTile;                      /* next free OBJ tile */

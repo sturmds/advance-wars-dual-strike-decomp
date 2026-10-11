@@ -3817,6 +3817,10 @@ src/game/main/func_0203b194.c:
     complete
     .text       start:0x0203b194 end:0x0203b1a8
 
+src/game/main/result_point_init.c:
+    complete
+    .text       start:0x0203b1a8 end:0x0203b300
+
 src/game/main/func_0203b300.c:
     complete
     .text       start:0x0203b300 end:0x0203b318
