@@ -6,7 +6,10 @@
 /* Object reached through data_022a7c5c (main bss); only the fields the
  * overlay 0 show tasks read are listed. */
 typedef struct Unk_022a7c5c {
-    u8 pad_00[0x5c];
+    u8 pad_00[0x0c];
+    u8 *animDst;                       /* where MapAnim_QueueFramePart queues the animated map graphics */
+    u8 *animFrames[4];                 /* frames of those graphics, 0x3180 bytes each */
+    u8 pad_20[0x5c - 0x20];
     u32 unk_5c;                        /* picked for an odd player slot (ShowTask_GetSlotValue) */
     u32 unk_60;                        /* picked for an even player slot */
 } Unk_022a7c5c;
