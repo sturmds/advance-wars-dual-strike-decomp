@@ -12,7 +12,7 @@ void func_ov000_022b0054(void);
 void FirstScreenTask_StartOrRefresh(void);
 void UnitInfoPanel_Close(void);
 void UnitInfoPanel_OpenForUnit(MapUnit *unit);
-void func_020f3280(int a, int b, int c, int d, int e);
+void NumberSpriteTask_StartCounter(int a, int b, int c, int d, int e);
 
 /* Shows what is under the cursor on the second screen: the unit info panel
  * for a unit, else the tile panel. tile packs the tile's id in bits 0-4 and
@@ -46,7 +46,7 @@ void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     savedScreen = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_04);
-    func_020f3280(181, 0, 708, 15, 3);
+    NumberSpriteTask_StartCounter(181, 0, 708, 15, 3);
     Screen_SetCurrent(savedScreen);
     Screen_SetCurrentGfx(savedGfx);
 }
