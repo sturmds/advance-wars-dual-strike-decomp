@@ -13,13 +13,13 @@ int CampaignRecords_GetAverageScore(void);
 void CampaignRecords_Store(int mapIndex, int days, int score);
 int CampaignMap_IsFinalMission(void);
 void func_0210375c(void);
-void func_02102c4c(void);
+void CampaignMap_StartExitTask(void);
 
 /* Runs when a campaign map ends. A win stores the day count and score as the
  * map's record (maps from id 224 on). When CampaignMap_IsFinalMission then returns
  * nonzero, the best average score of the current difficulty is raised if the
  * records now average higher, and a task starts; otherwise
- * func_02102c4c runs. */
+ * CampaignMap_StartExitTask runs. */
 void Campaign_FinishMap(void)
 {
     u8 recorded = 0;
@@ -39,6 +39,6 @@ void Campaign_FinishMap(void)
         data_02290118.unk_04 = 0xff;
         func_0210375c();
     } else {
-        func_02102c4c();
+        CampaignMap_StartExitTask();
     }
 }

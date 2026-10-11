@@ -19348,6 +19348,10 @@ src/game/main/func_02102c34.c:
     complete
     .text       start:0x02102c34 end:0x02102c4c
 
+src/game/main/campaign/campaign_map_start_exit_task.c:
+    complete
+    .text       start:0x02102c4c end:0x02102cf8
+
 src/game/main/campaign/campaign_continue_profile2.c:
     complete
     .text       start:0x02102cf8 end:0x02102e10
