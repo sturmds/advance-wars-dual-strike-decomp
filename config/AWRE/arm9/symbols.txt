@@ -4963,8 +4963,8 @@ Shop_MapAw1 kind:function(arm,size=0x3c) addr:0x02102214
 Shop_MapVersus kind:function(arm,size=0x24) addr:0x02102250
 Shop_MapWarRoom kind:function(arm,size=0x40) addr:0x02102274
 State_SetMapIds kind:function(arm,size=0x50) addr:0x021022b4
-func_02102304 kind:function(arm,size=0x44) addr:0x02102304
-func_02102348 kind:function(arm,size=0x30) addr:0x02102348
+GameFlagsMid_Restore kind:function(arm,size=0x44) addr:0x02102304
+GameFlagsMid_Backup kind:function(arm,size=0x30) addr:0x02102348
 func_02102378 kind:function(arm,size=0x1c) addr:0x02102378
 func_02102394 kind:function(arm,size=0x10) addr:0x02102394
 func_021023a4 kind:function(arm,size=0x10) addr:0x021023a4
@@ -8913,7 +8913,7 @@ gNameEntry kind:bss addr:0x022a7ea8
 gNameEntryStartText kind:bss addr:0x022a7eac
 gNameEntryText kind:bss addr:0x022a7ed0
 gGameFlagsLow kind:bss addr:0x022a7ef4
-data_022a7ef8 kind:bss addr:0x022a7ef8
+gGameFlagsMidBackup kind:bss addr:0x022a7ef8
 gGameFlagsMid kind:bss addr:0x022a7f50
 data_022a7f58 kind:bss addr:0x022a7f58
 gMapFlags kind:bss addr:0x022a7f5a

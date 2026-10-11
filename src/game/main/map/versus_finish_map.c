@@ -5,7 +5,7 @@ int BattleSave_GetRecordId(int mode, int campaignSlot);
 void BattleRecordTask_Start(int recordId, void (*callback)(void));
 void Versus_StartVsCpuOneMap(void);
 void Versus_StartVsCpuTwoMaps(void);
-void func_02102304(void);
+void GameFlagsMid_Restore(void);
 void func_020e8c28(void);
 void func_0210372c(void);
 
@@ -23,7 +23,7 @@ void Versus_FinishMap(void)
             BattleRecordTask_Start(BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode, 0), Versus_StartVsCpuTwoMaps);
         }
     } else {
-        func_02102304();
+        GameFlagsMid_Restore();
         func_020e8c28();
         func_0210372c();
     }
