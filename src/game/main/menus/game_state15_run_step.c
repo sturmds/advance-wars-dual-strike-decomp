@@ -6,7 +6,7 @@ extern int data_027c0284;
 
 void func_020d174c(void);
 void UnitMoveSelect_Update(void);
-void func_020d14cc(void);
+void Game_State15_PickUnitToDelete(void);
 void Game_State15_OpenMenuAtDestination(void);
 void Game_State15_AwaitUnitCommand(void);
 void Game_State15_EndBlockedMove(void);
@@ -29,7 +29,7 @@ void Game_State15_RunStep(void)
         UnitMoveSelect_Update();
         break;
     case 2:
-        func_020d14cc();
+        Game_State15_PickUnitToDelete();
         break;
     case 3:
         Game_State15_OpenMenuAtDestination();

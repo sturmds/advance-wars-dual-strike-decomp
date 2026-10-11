@@ -70,7 +70,7 @@ typedef struct PlayRecords {
     u32 blackCrystalsDestroyed;
     u32 pipeSeamsDestroyed;            /* also counts objects of kind 0 */
     u32 suppliesAndRepairs;            /* supply (action 6) and repair (action 24) actions by human players, capped at 999999; the name is a guess from those two callers */
-    u8 pad_3f0[0x3f4 - 0x3f0];
+    u32 unitsDeleted;                  /* capped at 999999; +1 per unit a human player deletes (Game_State15_PickUnitToDelete) */
     u32 unitsJoined;                   /* joins by human players, capped at 999999 (UnitAction_Join); name from the code, the meaning of the counter is a guess */
     u32 unitsBoarded;                  /* unit action 7 by human players, capped at 999999 (UnitAction_Board) */
     u32 unitsUnloaded;                 /* unloads by human players, capped at 999999 (ActingUnit_UnloadCargo) */

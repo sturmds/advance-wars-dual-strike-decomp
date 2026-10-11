@@ -14666,6 +14666,10 @@ src/game/main/menus/game_state15_scroll_to_tile_then_return_to_cursor.c:
     complete
     .text       start:0x020d1440 end:0x020d14cc
 
+src/game/main/menus/game_state15_pick_unit_to_delete.c:
+    complete
+    .text       start:0x020d14cc end:0x020d16a4
+
 src/game/main/menus/game_state15_return_to_cursor.c:
     complete
     .text       start:0x020d16a4 end:0x020d16f0
