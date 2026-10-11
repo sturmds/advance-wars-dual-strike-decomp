@@ -21801,6 +21801,10 @@ src/sdk/snd/snd_flush_command.c:
     complete
     .text       start:0x021102b0 end:0x02110470
 
+src/sdk/snd/sound_link_command_at_tail.c:
+    complete
+    .text       start:0x02110470 end:0x021104b8
+
 src/game/main/func_02110a90.c:
     complete
     .text       start:0x02110a90 end:0x02110a98

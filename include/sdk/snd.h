@@ -38,9 +38,9 @@ int SND_IsFinishedCommandTag(u32 tag);
 void Sound_WaitForArm7Listener(void);
 void SoundAlarm_OnArm7Message(int tag, u32 data, int err);
 
-/* Allocate and queue a command (guessed names; see func_021104b8 and func_02110470). */
+/* Allocate and queue a command (func_021104b8 is the allocator, guessed name SND_AllocCommand). */
 SndCommand *func_021104b8(int block);
-void func_02110470(SndCommand *command);
+void Sound_LinkCommandAtTail(SndCommand *command);
 void Sound_PostCommandArgs(u32 id, u32 arg0, u32 arg1, u32 arg2, u32 arg3);
 
 #endif

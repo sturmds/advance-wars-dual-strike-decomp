@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 494 / 781 | 59216 / 132154 | 44.81% | 69 | 3394 |
-| ARM9 all | 7148 / 7481 | 1565836 / 1685994 | 92.87% | 69 | 3394 |
+| ARM9 SDK/library | 507 / 781 | 60672 / 132154 | 45.91% | 69 | 3394 |
+| ARM9 all | 7161 / 7481 | 1567292 / 1685994 | 92.96% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 494 / 1795 | 59216 / 286450 | 20.67% | 69 | 3394 |
-| all | 7148 / 8495 | 1565836 / 1840290 | 85.09% | 69 | 3394 |
+| SDK/library | 507 / 1795 | 60672 / 286450 | 21.18% | 69 | 3394 |
+| all | 7161 / 8495 | 1567292 / 1840290 | 85.17% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 487 / 770 | 58304 / 130618 | 44.64% | 65 |
+| main | SDK/library | 500 / 770 | 59760 / 130618 | 45.75% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |

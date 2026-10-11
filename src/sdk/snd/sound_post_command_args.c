@@ -12,5 +12,5 @@ void Sound_PostCommandArgs(u32 id, u32 arg0, u32 arg1, u32 arg2, u32 arg3)
     command->args[1] = arg1;
     command->args[2] = arg2;
     command->args[3] = arg3;
-    func_02110470(command);
+    Sound_LinkCommandAtTail(command);
 }
