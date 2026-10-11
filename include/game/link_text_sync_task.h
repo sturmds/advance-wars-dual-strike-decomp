@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-/* Fields of the task (func_02080b34) that swaps the six reaction texts
+/* Fields of the task (LinkTextSyncTask_Update) that swaps the six reaction texts
  * (data_0229da8c, 198 bytes) between players in chunks of 8 bytes. The
  * first 0x2a bytes belong to the task system (Task_Create). */
 typedef struct LinkTextSyncTask {

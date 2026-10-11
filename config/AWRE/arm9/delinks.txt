@@ -7213,7 +7213,8 @@ src/game/main/link/link_reaction_task_init.c:
     complete
     .text       start:0x02080af4 end:0x02080b34
 
-src/game/main/link/func_02080b34.c:
+src/game/main/link/link_text_sync_task_update.c:
+    complete
     .text       start:0x02080b34 end:0x02080d5c
 
 src/game/main/link/link_text_sync_task_reset.c:

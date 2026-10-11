@@ -15,7 +15,7 @@ extern u8 data_0229db54[4][6][33];
 /* Swaps the reaction texts with the other players, 8 bytes a frame: sends
  * the next chunk of data_0229da8c and copies the chunk each player sent into
  * that player's row of data_0229db54. The first chunk sent is a 1 marker. */
-void func_02080b34(LinkTextSyncTask *task)
+void LinkTextSyncTask_Update(LinkTextSyncTask *task)
 {
     int j;
     u8 chunk[8];
@@ -63,16 +63,18 @@ void func_02080b34(LinkTextSyncTask *task)
         }
         task->started = 1;
     } else if (task->sendDone == 0) {
+        u8 *out = chunk; /* needed to match: chunk[i] keeps the text pointer in the wrong register */
         u8 *text = data_0229da8c;
 
         for (i = 0; i < 8; i++) {
-            chunk[i] = text[task->sentBytes];
+            *out = text[task->sentBytes];
             task->sentBytes++;
             if (task->sentBytes == 198) {
                 task->sendDone = 1;
                 i++;
                 break;
             }
+            out++;
         }
         for (; i < 8; i++) {
             chunk[i] = 0;
