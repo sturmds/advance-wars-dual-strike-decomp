@@ -7833,6 +7833,10 @@ src/game/main/func_020888ec.c:
     complete
     .text       start:0x020888ec end:0x020888f8
 
+src/game/main/menus/row_lock_mark_pop_in.c:
+    complete
+    .text       start:0x020888f8 end:0x02088aac
+
 src/game/main/func_02088aac.c:
     complete
     .text       start:0x02088aac end:0x02088ad0
