@@ -16,6 +16,7 @@ typedef struct PageStripList {
  * func_0204779c. */
 typedef struct PageStrip {
     PageStripList lists[2];
+    u16 colours[16]; /* palette cycle, one colour every 4 frames */
 } PageStrip;
 
 extern PageStrip *data_0229c744;
