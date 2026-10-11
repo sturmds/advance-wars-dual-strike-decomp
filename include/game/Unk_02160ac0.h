@@ -36,7 +36,7 @@ typedef struct Unk_02160ac0 {
     u8 unk_19;
     u8 pad_1a[0x70 - 0x1a];
     u8 unk_70[8];                      /* Ov003Slot.row per slot (overlay 3, link play) */
-    u8 pad_78[0x7c - 0x78];
+    u32 unk_78;                        /* link menu entry 1: 10000-95000 in steps of 5000 */
     u8 unk_7c;                         /* nonzero: Ov003_InitState uses a fixed random seed */
     u8 unk_7d;
     u8 unk_7e;
