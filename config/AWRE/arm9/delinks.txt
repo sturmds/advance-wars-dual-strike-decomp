@@ -5836,6 +5836,10 @@ src/game/main/link/wireless_start_channel_survey.c:
     complete
     .text       start:0x02079c64 end:0x02079ce0
 
+src/game/main/link/wireless_begin_channel_survey.c:
+    complete
+    .text       start:0x02079ce0 end:0x02079d50
+
 src/game/main/func_02079ee0.c:
     complete
     .text       start:0x02079ee0 end:0x02079f10

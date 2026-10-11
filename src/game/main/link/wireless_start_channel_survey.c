@@ -6,7 +6,7 @@ extern Unk_0229c960 *data_0229c8a0;
 extern u16 gWirelessTgidCounter;
 
 void MIi_CpuCopy32(const void *src, void *dst, u32 size);
-BOOL func_02079ce0(void);
+BOOL Wireless_BeginChannelSurvey(void);
 void func_02079ee0(void);
 
 /* Copies our parent settings to the buffer the parent start request reads,
@@ -18,7 +18,7 @@ void Wireless_StartChannelSurvey(int mode)
     MIi_CpuCopy32(&data_0229c960, data_0229c8a0, sizeof(Unk_0229c960));
     gWirelessTgidCounter++;
     data_0229c8a0->tgid = gWirelessTgidCounter;
-    if (!func_02079ce0()) {
+    if (!Wireless_BeginChannelSurvey()) {
         func_02079ee0();
     }
 }
