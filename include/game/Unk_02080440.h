@@ -257,7 +257,7 @@ typedef struct Unk_02080440_50 {
     void (*afterInfoPanelDraw)(void);  /* run by MapScreen_DrawInfoPanel after it draws the info panel */
     void (*unk_48)(void);              /* run by ScreenConfig_RunActionHook when set */
     void (*unk_4c)(void);              /* run by Script_StartWithHook when unk_48 is set */
-    u8 pad_50[0x54 - 0x50];
+    void (*unk_50)(void);              /* run by MapOverview_DimStep when unk_48 is set */
     void (*unk_54)(int);               /* called with 1 by Battle_SetupWithPresetCos when set */
     void (*unk_58)(int weather, int tileset); /* run by func_020c9778 and func_020c98b4 on each screen when set */
     BOOL (*unk_5c)(void);              /* func_020fa6f8 calls it; picks between two asset or chart variants */

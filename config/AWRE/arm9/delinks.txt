@@ -13686,6 +13686,10 @@ src/game/main/map/map_overview_wait_for_close.c:
     complete
     .text       start:0x020c9f9c end:0x020ca01c
 
+src/game/main/map/map_overview_dim_step.c:
+    complete
+    .text       start:0x020ca01c end:0x020ca0dc
+
 src/game/main/script/script_start_with_hook.c:
     complete
     .text       start:0x020ca288 end:0x020ca2e8
