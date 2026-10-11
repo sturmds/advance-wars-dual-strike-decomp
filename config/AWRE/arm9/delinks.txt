@@ -1903,6 +1903,10 @@ src/game/main/script/event_script_fade_out_song.c:
     complete
     .text       start:0x0201b150 end:0x0201b190
 
+src/game/main/script/event_script_fade_out_song_hard_mode.c:
+    complete
+    .text       start:0x0201b190 end:0x0201b1ec
+
 src/game/main/script/event_script_play_song.c:
     complete
     .text       start:0x0201b2bc end:0x0201b318
