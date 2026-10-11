@@ -35,7 +35,7 @@ void SuperBreak_BlendUpdate(Task *task)
         data_027c0280->blendEva = 0;
         data_027c0280->blendEvb = 16;
         /* Needed to match: the original stores blendEvy back unchanged. */
-        data_027c0280->blendEvy = *(volatile u16 *)&data_027c0280->blendEvy;
+        data_027c0280->blendEvy = (u16)data_027c0280->blendEvy;
         data_027c0280->blendTopBg[data_027c0280->layer0Bg] = 1;
         data_027c0280->blendTopBg[data_027c0280->layer1Bg] = 0;
         data_027c0280->blendTopBg[data_027c0280->layer2Bg] = 0;
