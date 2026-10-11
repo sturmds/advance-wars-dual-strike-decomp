@@ -3971,6 +3971,10 @@ src/game/main/result_stats_close_page.c:
     complete
     .text       start:0x0203b574 end:0x0203b5b8
 
+src/game/main/result_stats_add_buttons.c:
+    complete
+    .text       start:0x0203b5b8 end:0x0203b614
+
 src/game/main/func_0203b614.c:
     complete
     .text       start:0x0203b614 end:0x0203b634

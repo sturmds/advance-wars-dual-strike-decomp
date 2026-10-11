@@ -9,7 +9,7 @@ void Screen_SetCurrentBoth(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Task_ResumeScript(Task *task);
 void func_0203b84c(int offset, Task *task);
-void func_0203b5b8(void);
+void ResultStats_AddButtons(void);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -44,7 +44,7 @@ void ResultStats_SlideIn(Task *task)
     func_0203b84c(offset, task);
     if (FRAME(task) == SLIDE_FRAMES) {
         FRAME(task) = 0;
-        func_0203b5b8();
+        ResultStats_AddButtons();
         Task_ResumeScript(task);
     }
 }
