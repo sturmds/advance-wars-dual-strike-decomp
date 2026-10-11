@@ -2,13 +2,12 @@
 #include "game/map_unit.h"
 #include "game/player.h"
 #include "game/Unk_02080440.h"
+#include "game/vision.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern u16 data_ov000_022f5c50[5];     /* per player slot: slot << 5, the owner bits of MapTiles.tiles */
 
-void Unit_AddVision(MapUnit *unit, int delta);
-void func_020c5674(s16 x, s16 y, int range, int gridMask, int a, int b);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -33,7 +32,7 @@ void Player_AddVision(int player)
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
             if (data_ov000_022f5c50[player] == (STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] & 0xe0)) {
-                func_020c5674(x, y, 0, STATE->players[player].unk_1b, 1, 0);
+                Vision_AddArea(x, y, 0, STATE->players[player].unk_1b, 1, 0);
             }
         }
     }

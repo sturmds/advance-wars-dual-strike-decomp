@@ -1,18 +1,14 @@
 #include "types.h"
 #include "game/map_object.h"
 #include "game/Unk_02080440.h"
+#include "game/vision.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
-void Player_AddVision(int player);
-void func_020c5674(s16 x, s16 y, int range, int gridMask, int a, int b);
 void func_020c65fc(s8 *grid, int value);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
-
-/* Vision grid number n: the n-th 0x508-byte grid from MapTiles.inSight. */
-#define VISION_GRID(n) (STATE->mapTiles->inSight + (n) * sizeof(STATE->mapTiles->inSight))
 
 static inline BOOL Map_IsFoggy(void)
 {
@@ -37,8 +33,8 @@ void Map_RebuildVision(void)
     int x;
     int y;
 
-    func_020c65fc(VISION_GRID(STATE->unk_20), (s16)!Map_IsFoggy());
-    func_020c65fc(VISION_GRID(STATE->unk_22), (s16)!Map_IsFoggy());
+    func_020c65fc(VISION_GRID(STATE, STATE->unk_20), (s16)!Map_IsFoggy());
+    func_020c65fc(VISION_GRID(STATE, STATE->unk_22), (s16)!Map_IsFoggy());
     if (!Map_IsFoggy()) {
         return;
     }
@@ -51,7 +47,7 @@ void Map_RebuildVision(void)
         endY = object->y + object->height;
         for (x = object->x; x < endX; x++) {
             for (y = object->y; y < endY; y++) {
-                func_020c5674(x, y, 0, 3, 1, 0);
+                Vision_AddArea(x, y, 0, 3, 1, 0);
             }
         }
     }
