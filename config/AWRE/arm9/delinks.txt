@@ -6091,6 +6091,18 @@ src/game/main/copowers/power_screen_start.c:
     complete
     .text       start:0x020536bc end:0x020537a8
 
+src/game/main/copowers/super_break_ease_in_background.c:
+    complete
+    .text       start:0x020537a8 end:0x02053878
+
+src/game/main/copowers/super_break_set_up_background_blend.c:
+    complete
+    .text       start:0x02053878 end:0x0205396c
+
+src/game/main/copowers/super_break_scroll_backgrounds.c:
+    complete
+    .text       start:0x0205396c end:0x020539b0
+
 src/game/main/screen/screen_fade_in_from_white_update.c:
     complete
     .text       start:0x020539b0 end:0x02053a20
@@ -6126,6 +6138,10 @@ src/game/main/copowers/super_break_slide_in_banner.c:
 src/game/main/copowers/super_break_load_banner.c:
     complete
     .text       start:0x02054e40 end:0x0205504c
+
+src/game/main/copowers/co_power_screen_scroll_background.c:
+    complete
+    .text       start:0x0205504c end:0x02055074
 
 src/game/main/func_02055074.c:
     complete
