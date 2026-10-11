@@ -19,7 +19,7 @@ u16 func_0207a1dc(void);
 int func_0207a1f0(void);
 int func_0207a260(void);
 int func_0207a324(void);
-void *func_0207a390(u8 index);
+void *Wireless_GetPlayerName(u8 index);
 void func_0207c380(void);
 void LinkMenu_ResetBackButton(void);
 void func_020827b0(void *data, int a, u16 b, int c);
@@ -71,7 +71,7 @@ void LinkMenu_DrawSecondView(void)
         data_0215fed0->redraw = 1;
     }
     func_01ff8c84(0);
-    func_020827b0(func_0207a390(0), 1, 1, 0x200);
+    func_020827b0(Wireless_GetPlayerName(0), 1, 1, 0x200);
     map = data_027c0280->layer0Map;
     Number_Draw(28, 1, map, func_0207a1f0() + 1, 0, 0);
     Text_PrintStringImmediate(29, 1, data_027c0280->layer0Map, data_02167c88, 0, 0);
@@ -79,7 +79,7 @@ void LinkMenu_DrawSecondView(void)
     Number_Draw(30, 1, map, func_0207a324(), 0, 0);
     for (i = 0; i < 8; i++) {
         if ((1 << i) & (func_0207a1dc() | 1)) {
-            func_020827b0(func_0207a390(i), 7, row + i * 2, 0x200 + i * 40);
+            func_020827b0(Wireless_GetPlayerName(i), 7, row + i * 2, 0x200 + i * 40);
         }
     }
     Gfx_RequestLayerCopy(0);
