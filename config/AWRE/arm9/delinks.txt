@@ -4123,6 +4123,10 @@ src/game/main/func_02032abc.c:
     complete
     .text       start:0x02032abc end:0x02032ae4
 
+src/game/main/menus/result_screen_confirm.c:
+    complete
+    .text       start:0x02032ae4 end:0x02032b14
+
 src/game/main/func_02032b14.c:
     complete
     .text       start:0x02032b14 end:0x02032b28
