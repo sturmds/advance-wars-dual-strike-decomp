@@ -21971,6 +21971,10 @@ src/sdk/tp/tp_wait_raw_result.c:
     complete
     .text       start:0x021142cc end:0x02114324
 
+src/sdk/tp/tp_request_sampling_async.c:
+    complete
+    .text       start:0x02114324 end:0x021143c4
+
 src/sdk/func_021148a4.c:
     complete
     .text       start:0x021148a4 end:0x021148bc
