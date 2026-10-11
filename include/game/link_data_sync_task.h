@@ -5,7 +5,8 @@
 #include "game/design_map.h"
 
 /* Fields of the tasks that swap a block of data between link players in
- * chunks of 8 bytes, such as the design maps (LinkDesignMapSync_Update).
+ * chunks of 8 bytes: the design maps (LinkDesignMapSync_Update) and the
+ * map flags (LinkMapFlagsSync_Update).
  * The first 0x2c bytes belong to the task system (Task_Create). */
 typedef struct LinkDataSyncTask {
     u8 pad_00[0x2c];
