@@ -2915,6 +2915,10 @@ src/game/main/script_task_resume_with_value.c:
     complete
     .text       start:0x020381b8 end:0x020381f0
 
+src/game/main/func_0203822c.c:
+    complete
+    .text       start:0x0203822c end:0x02038264
+
 src/game/main/func_02038264.c:
     complete
     .text       start:0x02038264 end:0x0203827c
@@ -4186,6 +4190,10 @@ src/game/main/func_02079098.c:
     complete
     .text       start:0x02079098 end:0x0207909c
 
+src/game/main/func_0207909c.c:
+    complete
+    .text       start:0x0207909c end:0x020790d4
+
 src/game/main/func_02079180.c:
     complete
     .text       start:0x02079180 end:0x020791f8
@@ -4866,6 +4874,10 @@ src/game/main/func_02088528.c:
     complete
     .text       start:0x02088528 end:0x0208854c
 
+src/game/main/func_02088600.c:
+    complete
+    .text       start:0x02088600 end:0x02088644
+
 src/game/main/func_020888ec.c:
     complete
     .text       start:0x020888ec end:0x020888f8
@@ -5001,6 +5013,10 @@ src/game/main/func_0208b988.c:
 src/game/main/func_0208b9a0.c:
     complete
     .text       start:0x0208b9a0 end:0x0208b9d4
+
+src/game/main/func_0208b9d4.c:
+    complete
+    .text       start:0x0208b9d4 end:0x0208ba10
 
 src/game/main/func_0208ba10.c:
     complete
@@ -9898,6 +9914,10 @@ src/game/main/func_02106f94.c:
 src/game/main/sound/sound_arc_unload_item.c:
     complete
     .text       start:0x02106fb8 end:0x02106ff4
+
+src/game/main/func_02106ff4.c:
+    complete
+    .text       start:0x02106ff4 end:0x02107030
 
 src/game/main/sound/sound_arc_forget_loaded_item.c:
     complete
