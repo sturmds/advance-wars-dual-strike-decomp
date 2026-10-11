@@ -9,7 +9,9 @@ typedef struct VsSetupSlotTask {
     u8 pad_00[0x2c];
     s32 x;                             /* pixel position the slot's sprite is drawn at */
     s32 y;
-    u8 pad_34[0x52 - 0x34];
+    u8 pad_34[0x4c - 0x34];
+    s16 frame;                         /* frames since the step started */
+    u8 pad_4e[0x52 - 0x4e];
     u16 id;                            /* 25 + slot */
 } VsSetupSlotTask;
 
