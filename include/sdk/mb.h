@@ -150,10 +150,13 @@ typedef struct DlPlayStationArea {
     u16 unk_528;
     u16 unk_52a;
     u16 unk_52c;
-    u8 pad_52e[0x548 - 0x52e];
+    u8 pad_52e[2];
+    u16 userName[4];                   /* DownloadPlay_SetUpWork copies the user's nickname here */
+    u16 unk_538[8];                    /* DownloadPlay_SetUpWork copies L"multiboot" here, up to 16 characters */
     u16 unk_548;
     u8 pad_54a[0x5e4 - 0x54a];
     u32 unk_5e4;
+    u8 pad_5e8[0x1e00 - 0x5e8];
 } DlPlayStationArea;
 
 /* data_022aced4 points to the MB buffer; the parent work area sits 0x1000
@@ -162,6 +165,10 @@ typedef struct DlPlayBufferArea {
     u8 pad_000[0x1000];
     DlPlayStationArea parent;
 } DlPlayBufferArea;
+
+/* Return codes of the MB calls. */
+#define DLPLAY_RESULT_OK 0
+#define DLPLAY_RESULT_WRONG_PHASE 2
 
 /* Event types of the parent's callbacks (errorCallback, MbParent_CommCallback). */
 #define DLPLAY_EVENT_CHILD_JOINED 0
@@ -544,7 +551,8 @@ typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
  * aid - 1 (aid 0 is the parent). */
 typedef struct DlPlayHostLinkArea {
     u8 sendBuffer[4];                  /* length unknown */
-    u8 pad_04[0x1300 - 4];
+    u8 pad_04[0x400 - 4];
+    u16 unk_400[(0x1300 - 0x400) / 2];
     DlPlayPlayerBadge user;                   /* the parent's user info */
     u16 unk_1316;
     u32 blockSizeMax;                  /* bytes of file data in one parent message */

@@ -22979,6 +22979,10 @@ src/sdk/mb/mb_check_comm_param.c:
     complete
     .text       start:0x0211c4c4 end:0x0211c534
 
+src/sdk/mb/download_play_set_up_work.c:
+    complete
+    .text       start:0x0211c534 end:0x0211c71c
+
 src/sdk/mb/mb_get_beacon_jitter.c:
     complete
     .text       start:0x0211c71c end:0x0211c794
