@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
 BOOL Map_IsTileVisible(s16 x, s16 y);
-int func_020b80d0(MapUnit *unit);
+int AiBlackBomb_ScoreUnit(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define MAP (STATE->mapTiles)
@@ -17,7 +17,7 @@ int func_020b80d0(MapUnit *unit);
 /* Radius of a Black Bomb explosion in tiles. */
 #define BLOMB_RADIUS 3
 
-/* Adds up func_020b80d0 over the units within 3 tiles (by taxicab
+/* Adds up AiBlackBomb_ScoreUnit over the units within 3 tiles (by taxicab
  * distance, not on the centre tile) of (x, y). Skipped: Black Bombs,
  * Oozium, unarmed units, units at 10 hp or less and tiles out of sight. */
 int AiBlackBomb_ScoreExplosionAt(int x, int y)
@@ -79,7 +79,7 @@ int AiBlackBomb_ScoreExplosionAt(int x, int y)
             if (!Map_IsTileVisible(unit->x, unit->y)) {
                 continue;
             }
-            total += func_020b80d0(unit);
+            total += AiBlackBomb_ScoreUnit(unit);
         }
     }
     return total;

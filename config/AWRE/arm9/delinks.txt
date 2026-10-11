@@ -11883,6 +11883,10 @@ src/game/main/ai/ai_black_bomb_get_start_score.c:
     complete
     .text       start:0x020b8044 end:0x020b80d0
 
+src/game/main/ai/ai_black_bomb_score_unit.c:
+    complete
+    .text       start:0x020b80d0 end:0x020b81a4
+
 src/game/main/func_020b81a4.c:
     complete
     .text       start:0x020b81a4 end:0x020b81a8
