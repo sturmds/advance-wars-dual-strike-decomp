@@ -1452,6 +1452,10 @@ src/game/main/skills/co_rank.c:
     complete
     .text       start:0x020179a4 end:0x020179c0
 
+src/game/main/skills/co_set_experience.c:
+    complete
+    .text       start:0x020179c0 end:0x02017a28
+
 src/game/main/skills/co_experience.c:
     complete
     .text       start:0x02017a28 end:0x02017a54

@@ -15,7 +15,7 @@ typedef struct SkillSet {
 int Save_LoadRecord(int recordId, void *buffer); /* the definition takes only recordId; this call also passes r1 */
 void func_02017ca0(int value);
 void func_02017c88(int value);
-void func_020179c0(int co, u32 experience);
+void Co_SetExperience(int co, u32 experience);
 u8 *ForceRank_GetSavedSet(int mode, int co, int set);
 
 /* Loads save record 0 into data_02291774 and copies it into the live progress
@@ -37,7 +37,7 @@ void Save_LoadProgress(void)
     func_02017ca0(progress->unk_58);
     func_02017c88(progress->unk_5c);
     for (co = 0; co < CO_COUNT; co++) {
-        func_020179c0(co, progress->coRecords[co].experience);
+        Co_SetExperience(co, progress->coRecords[co].experience);
         switch (data_027c027c->unk_48[data_027c0284]->gameMode) {
         case 0:
             src = progress->profileSets[data_02290118.unk_00][co];

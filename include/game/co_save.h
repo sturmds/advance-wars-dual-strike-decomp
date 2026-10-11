@@ -9,7 +9,7 @@ typedef u8 ForceRankSet[4];
 /* Saved progress of one CO. The records sit in PlayRecords.coRecords,
  * indexed by CO id. */
 typedef struct CoSaveRecord {
-    u32 experience : 19;               /* func_020179c0 caps it at 100000 */
+    u32 experience : 19;               /* Co_SetExperience caps it at 100000 */
     u32 forceRankSetByPlayer : 8;      /* 2 bits per player 1-4: which Force Rank set the CO uses */
     u32 paletteVariant : 3;            /* 0-7, see Co_LoadPalette */
     u32 pictureVariant : 1;            /* alternate picture */
