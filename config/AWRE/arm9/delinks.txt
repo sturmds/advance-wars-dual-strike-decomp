@@ -19535,6 +19535,10 @@ src/game/main/func_021023e4.c:
     complete
     .text       start:0x021023e4 end:0x021023f4
 
+src/game/main/menus/versus_save_can_continue.c:
+    complete
+    .text       start:0x021025d8 end:0x02102690
+
 src/game/main/func_021026d8.c:
     complete
     .text       start:0x021026d8 end:0x021026f0

@@ -113,7 +113,13 @@ enum {
 /* Unk_02080440_48.unk_184: a 0x40-byte block that a battle save copies
  * whole (BattleSaveMap.unk_6c). */
 typedef struct Unk_02080440_184 {
-    u32 words[16];
+    union {
+        u32 words[16];
+        struct {
+            u8 pad_00[0x34];
+            u16 mapId;                 /* the copy of Unk_02080440_1c4.mapId in a battle save */
+        };
+    };
 } Unk_02080440_184;
 
 typedef struct Unk_02080440_48 {

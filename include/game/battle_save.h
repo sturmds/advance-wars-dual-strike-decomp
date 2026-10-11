@@ -17,7 +17,13 @@
 /* Unk_02080440_48 from gameMode (0x58) up to sidePanelRight (0xbc), copied
  * as one block. */
 typedef struct BattleSaveSettings {
-    u32 words[25];
+    union {
+        u32 words[25];
+        struct {
+            u8 pad_00[0x30];
+            u16 secondMapId;           /* Unk_02080440_48.secondMapId */
+        };
+    };
 } BattleSaveSettings;
 
 /* Unk_02080440_48.unk_28 and unk_2a, copied as one block. */
