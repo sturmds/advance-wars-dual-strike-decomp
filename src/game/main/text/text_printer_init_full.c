@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/text_printer.h"
 
-void *func_0200a644(int arg);
+void *GfxLayer_GetCopyCallback(int arg);
 
 void TextPrinter_InitFull(TextPrinter *printer, int x, int y, u8 *tiles, u16 *map, const void *text, u16 unk_30, u16 unk_32, u16 unk_38)
 {
@@ -20,7 +20,7 @@ void TextPrinter_InitFull(TextPrinter *printer, int x, int y, u8 *tiles, u16 *ma
     printer->cursorY = y;
     printer->unk_3d = -1;
     printer->unk_3e = 2;
-    printer->unk_40 = func_0200a644(0);
+    printer->unk_40 = GfxLayer_GetCopyCallback(0);
     printer->unk_44 = 0;
     printer->unk_46 = 0;
 }

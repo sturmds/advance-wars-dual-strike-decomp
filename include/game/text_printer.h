@@ -23,7 +23,7 @@ typedef struct TextPrinter {
     s8 unk_3d;
     s8 unk_3e;
     u8 pad_3f[0x40 - 0x3f];
-    void *unk_40;                      /* from func_0200a644(0) */
+    void *unk_40;                      /* from GfxLayer_GetCopyCallback(0) */
     u8 unk_44;
     u8 pad_45[0x46 - 0x45];
     u16 unk_46;
