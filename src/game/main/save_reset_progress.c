@@ -15,7 +15,7 @@ void func_0210408c(void);
 void Campaign_ResetProgress(void);
 void CoPicks_ResetToDefaults(void);
 void BattleRecord_ClearAll(void);
-void func_02101b94(void);
+void Unlocks_ResetToNewGame(void);
 void ForceRank_ResetAllSets(void);
 void PlayRecords_ResetCounters(void);
 void func_0208c010(void);
@@ -58,7 +58,7 @@ void Save_ResetProgress(void)
     data_02290a18.unk_7a = 0;
     CoPicks_ResetToDefaults();
     BattleRecord_ClearAll();
-    func_02101b94();
+    Unlocks_ResetToNewGame();
     ForceRank_ResetAllSets();
     PlayRecords_ResetCounters();
     func_0208c010();

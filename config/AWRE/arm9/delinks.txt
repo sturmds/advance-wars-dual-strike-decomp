@@ -19597,6 +19597,10 @@ src/game/main/map/map_set_single_flag.c:
     complete
     .text       start:0x02101b64 end:0x02101b94
 
+src/game/main/unlocks/unlocks_reset_to_new_game.c:
+    complete
+    .text       start:0x02101b94 end:0x02101ce0
+
 src/game/main/unlocks/shop_smashed_crystal.c:
     complete
     .text       start:0x02101ce0 end:0x02101d30
