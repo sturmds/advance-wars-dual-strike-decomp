@@ -1,0 +1,39 @@
+#include "types.h"
+#include "game/sound_stream.h"
+
+extern u8 data_022a8aa8[];             /* message buffer of the queue, one message */
+extern u8 data_022a8ac4[];             /* message queue the sound thread waits on */
+extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
+
+void func_0210de74(void *queue, void *messages, int count);
+int func_0210dd20(void *queue, void *message, int flags);
+void func_0210e034(void *mutex);
+void func_0210dfc4(void *mutex);
+SoundStreamRequest *func_02108814(void);
+void func_02107c28(SoundStreamRequest *request);
+void func_02108790(SoundStreamRequest *request);
+
+/* Entry of the sound stream thread. Sleeps on a message queue; each message
+ * means refill requests are waiting, and it handles them all before it
+ * sleeps again. */
+void SoundStream_ThreadMain(void)
+{
+    SoundStreamRequest *request;
+    u32 message[2];
+
+    func_0210de74(data_022a8ac4, data_022a8aa8, 1);
+    while (TRUE) {
+        func_0210dd20(data_022a8ac4, message, 1);
+        while (TRUE) {
+            func_0210e034(data_022a8ad8);
+            request = func_02108814();
+            if (request == NULL) {
+                func_0210dfc4(data_022a8ad8);
+                break;
+            }
+            func_02107c28(request);
+            func_02108790(request);
+            func_0210dfc4(data_022a8ad8);
+        }
+    }
+}
