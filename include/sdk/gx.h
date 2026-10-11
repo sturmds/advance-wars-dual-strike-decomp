@@ -8,6 +8,7 @@
 #define REG_BG2CNT ((volatile u16 *)0x0400000c)
 /* Main engine display registers (GBATEK). */
 #define REG_DISPCNT ((volatile u32 *)0x04000000)
+#define DISPCNT_BG_EXT_PLTT 0x40000000 /* BG extended palettes on */
 #define REG_DISPSTAT ((volatile u16 *)0x04000004)
 #define REG_VCOUNT ((volatile u16 *)0x04000006)
 #define HW_BG_VRAM 0x06000000 /* main engine BG VRAM */
@@ -95,6 +96,7 @@
 #define VRAMCNT_ENABLE 0x80
 #define VRAMCNT_TEXPLTT(slot) (0x83 | ((slot) << 3)) /* enabled, texture palette slot */
 #define VRAMCNT_TEX(slot) (0x83 | ((slot) << 3)) /* banks A-D: enabled, texture image slot */
+#define VRAMCNT_BGEXTPLTT(slot) (0x84 | ((slot) << 3)) /* banks E-G: enabled, main BG extended palette slot */
 #define GX_VRAM_A 0x001
 #define GX_VRAM_B 0x002
 #define GX_VRAM_C 0x004
@@ -138,6 +140,7 @@
 
 void Vram_PowerOnBanks(u32 banks);
 void GX_SetBankForTex(int tex);
+void GX_SetBankForBGExtPltt(int bgExtPltt);
 void GX_SetBankForTexPltt(int texPltt);
 void GXi_NopClearFifo128_(volatile u32 *fifo);
 int G3X_GetMtxStackLevelPJ(int *level);
