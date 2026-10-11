@@ -8,7 +8,7 @@ int func_02096c60(int x, int y);
 #define SITE_TYPE_ANY     4
 
 /* AiSite_PickNearestToProperty without the group test. */
-int func_02096a78(int siteType)
+int AiSite_PickNearestToPropertyAnyGroup(int siteType)
 {
     AiSite *site;
     int i;
