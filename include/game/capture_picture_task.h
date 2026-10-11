@@ -25,4 +25,16 @@ typedef struct CapturePictureTask {
     u8 tile;                           /* MapTiles.tiles byte of the property */
 } CapturePictureTask;
 
+/* Work area of the task func_020ec120 starts when a capture completes
+ * (script data_02168ea8); CaptureDone_Draw draws it. */
+typedef struct CaptureDoneTask {
+    u8 pad_00[0x30];
+    struct Unk_02022404 *sprite;
+    u8 pad_34[0x3c - 0x34];
+    s16 x;                             /* copied from CapturePictureTask.x */
+    s16 y;
+    u8 pad_40[0x4c - 0x40];
+    s16 frame;                         /* counts up to 10 */
+} CaptureDoneTask;
+
 #endif
