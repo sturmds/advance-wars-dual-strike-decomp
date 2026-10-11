@@ -14225,6 +14225,10 @@ src/game/main/graphics/sprite3d_draw_animation.c:
     complete
     .text       start:0x020fbd4c end:0x020fbdac
 
+src/game/main/screen/screen0_allows_mode.c:
+    complete
+    .text       start:0x020fbf50 end:0x020fbf88
+
 src/game/main/func_020fc134.c:
     complete
     .text       start:0x020fc134 end:0x020fc160
