@@ -6,15 +6,23 @@ build links it from `src/`. Functions written as `asm` inside a .c file count se
 
 ## Totals
 
+ARM9 is main, ITCM and the overlays; ARM7 is `arm7.bin`. `game`, `SDK/library` and `all`
+add both CPUs.
+
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
+| ARM9 game | 6636 / 6700 | 1495580 / 1553840 | 96.25% | 0 | 0 |
+| ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
+| ARM9 all | 7070 / 7481 | 1547192 / 1685994 | 91.77% | 33 | 2126 |
+| ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
+| ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6636 / 6700 | 1495580 / 1553840 | 96.25% | 0 | 0 |
-| SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| all | 7070 / 7481 | 1547192 / 1685994 | 91.77% | 33 | 2126 |
+| SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
+| all | 7070 / 8495 | 1547192 / 1840290 | 84.07% | 33 | 2126 |
 
 ## By module
 
-Rows with nothing done are left out, but count in the totals.
+Rows with nothing done are left out, but count in the totals; ARM7's row is always shown.
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
@@ -29,6 +37,7 @@ Rows with nothing done are left out, but count in the totals.
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 260 / 266 | 94692 / 96684 | 97.94% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
+| arm7 | SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 |
 
 Modules with nothing done: none.
 

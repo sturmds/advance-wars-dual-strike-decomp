@@ -5,15 +5,22 @@
     progress.py --write FILE     write a Markdown report (PROGRESS.md)
 
 Counts matched functions and bytes from the `complete` files in
-delinks.txt, split into game code and SDK/library code, and into C and
-assembly (functions written as `asm` in a .c file count as assembly, never
-as C). The table also counts address-named symbols (func_/data_), for
-information only, and runs objdiff-cli's report into build/report.json.
+delinks.txt, split by CPU (ARM9: main, ITCM, overlays; ARM7: the `arm7`
+module), into game code and SDK/library code, and into C and assembly
+(functions written as `asm` in a .c file count as assembly, never as C).
+ARM7 functions count in the totals from the day they were delinked, with
+or without C. The rows labelled `game`, `SDK/library` and `all` add both
+CPUs (the loop reads `all`); per-CPU rows are labelled `ARM9 ...` and
+`ARM7 ...`. The table also counts address-named symbols (func_/data_), for
+information only, and runs objdiff-cli's reports: build/report.json for
+ARM9 and build/arm7/report.json for ARM7, with the split counts in
+build/progress.json.
 
 The Markdown report reads only config/ and src/, so it is fast and gives
 the same file for the same tree. hooks/pre-commit writes it on every commit.
 """
 
+import json
 import re
 import subprocess
 import sys
@@ -25,11 +32,14 @@ import fn  # noqa: E402
 ROOT = fn.ROOT
 ASM_FUNC = re.compile(r"^\s*asm\s+[\w\s\*]*?\b(\w+)\s*\(", re.M)
 AREAS = ("game", "SDK/library")
+# Each CPU's modules. The Download Play child (issue 0049) would add its own
+# two CPUs here once it is delinked.
+CPUS = {"ARM9": lambda mod: mod != "arm7", "ARM7": lambda mod: mod == "arm7"}
 
 
 def asm_names() -> set[str]:
     out = set()
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():
         for path, _, _, complete in mod.files:
             if complete and (ROOT / path).exists():
                 out.update(ASM_FUNC.findall((ROOT / path).read_text()))
@@ -40,7 +50,7 @@ def count():
     """{(module, area): {"total"|"C"|"asm": [funcs, bytes]}}"""
     asm, done = asm_names(), fn.matched_names()
     out = {}
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():
         for f in mod.funcs:
             area = "game" if fn.is_game(f) else "SDK/library"
             row = out.setdefault((mod.name, area), {k: [0, 0] for k in ("total", "C", "asm")})
@@ -66,7 +76,7 @@ def unlinked():
     """[(path, function names, bytes)] of source files in src/ that are not
     marked complete: started, but not built into the ROM yet."""
     out, listed = [], set()
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():
         for path, start, end, complete in mod.files:
             listed.add(path)
             if complete or not path.startswith("src/") or not (ROOT / path).exists():
@@ -78,6 +88,24 @@ def unlinked():
         if path not in listed:
             out.append((path, [], 0))
     return sorted(out)
+
+
+def totals(rows):
+    """[(label, merged counts)] for the totals table: each CPU by area, each
+    CPU's sum, then both CPUs by area and in all. A CPU with no code in an
+    area (ARM7 has no game code) gets no row for it."""
+    out = []
+    for cpu, has in CPUS.items():
+        mine = {k: v for k, v in rows.items() if has(k[0])}
+        for area in AREAS:
+            part = [v for (_, a), v in mine.items() if a == area]
+            if part:
+                out.append((f"{cpu} {area}", merge(part)))
+        out.append((f"{cpu} all", merge(mine.values())))
+    for area in AREAS:
+        out.append((area, merge(v for (_, a), v in rows.items() if a == area)))
+    out.append(("all", merge(rows.values())))
+    return out
 
 
 def pct(part: int, whole: int) -> str:
@@ -95,29 +123,28 @@ def markdown() -> str:
         "",
         "## Totals",
         "",
+        "ARM9 is main, ITCM and the overlays; ARM7 is `arm7.bin`. `game`, `SDK/library` and `all`",
+        "add both CPUs.",
+        "",
         "| Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |",
         "|---|---:|---:|---:|---:|---:|",
     ]
-    for area in AREAS:
-        r = merge(v for (_, a), v in rows.items() if a == area)
-        lines.append(f"| {area} | {r['C'][0]} / {r['total'][0]} | {r['C'][1]} / {r['total'][1]} "
+    for label, r in totals(rows):
+        lines.append(f"| {label} | {r['C'][0]} / {r['total'][0]} | {r['C'][1]} / {r['total'][1]} "
                      f"| {pct(r['C'][1], r['total'][1])} | {r['asm'][0]} | {r['asm'][1]} |")
-    r = merge(rows.values())
-    lines.append(f"| all | {r['C'][0]} / {r['total'][0]} | {r['C'][1]} / {r['total'][1]} "
-                 f"| {pct(r['C'][1], r['total'][1])} | {r['asm'][0]} | {r['asm'][1]} |")
 
     lines += [
         "",
         "## By module",
         "",
-        "Rows with nothing done are left out, but count in the totals.",
+        "Rows with nothing done are left out, but count in the totals; ARM7's row is always shown.",
         "",
         "| Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |",
         "|---|---|---:|---:|---:|---:|",
     ]
-    order, shown = list(fn.modules()), set()
+    order, shown = list(fn.all_modules()), set()
     for (mod, area), r in sorted(rows.items(), key=lambda kv: (order.index(kv[0][0]), AREAS.index(kv[0][1]))):
-        if r["C"][0] or r["asm"][0]:
+        if r["C"][0] or r["asm"][0] or mod == "arm7":
             shown.add(mod)
             lines.append(f"| {mod} | {area} | {r['C'][0]} / {r['total'][0]} | {r['C'][1]} / {r['total'][1]} "
                          f"| {pct(r['C'][1], r['total'][1])} | {r['asm'][0]} |")
@@ -142,19 +169,24 @@ def markdown() -> str:
 
 
 def table() -> int:
-    subprocess.run(fn.ninja("objdiff.json"), cwd=ROOT, check=True, capture_output=True)
-    subprocess.run([fn.OBJDIFF, "report", "generate", "-p", ".", "-o", "build/report.json"],
-                   cwd=ROOT, check=True, capture_output=True)
+    subprocess.run(fn.ninja("objdiff.json", "build/arm7/objdiff.json"), cwd=ROOT, check=True, capture_output=True)
+    for project, out in ((".", "build/report.json"), ("build/arm7", "build/arm7/report.json")):
+        subprocess.run([fn.OBJDIFF, "report", "generate", "-p", project, "-o", out],
+                       cwd=ROOT, check=True, capture_output=True)
     rows = count()
-    print(f"{'':<18}{'functions':>12}{'bytes':>12}{'of code':>10}")
-    for area in AREAS:
-        r = merge(v for (_, a), v in rows.items() if a == area)
+    split = {}
+    print(f"{'':<24}{'functions':>12}{'bytes':>12}{'of code':>10}")
+    for label, r in totals(rows):
+        split[label] = r
         for lang in ("C", "asm"):
             n, b = r[lang]
-            print(f"{area + ' ' + lang:<18}{n:>12}{b:>12}{100 * b / r['total'][1]:>9.3f}%")
-        print(f"{area + ' total':<18}{r['total'][0]:>12}{r['total'][1]:>12}")
+            print(f"{label + ' ' + lang:<24}{n:>12}{b:>12}{pct(b, r['total'][1]):>10}")
+        print(f"{label + ' total':<24}{r['total'][0]:>12}{r['total'][1]:>12}")
+    (ROOT / "build/progress.json").write_text(json.dumps(
+        {label: {k: {"functions": n, "bytes": b} for k, (n, b) in r.items()} for label, r in split.items()},
+        indent=1) + "\n")
     unnamed = named = 0
-    for mod in fn.modules().values():
+    for mod in fn.all_modules().values():
         for name in mod.syms.values():
             if re.match(r"(func|data)_", name):
                 unnamed += 1
