@@ -84,9 +84,10 @@ extern const EventScriptCommand data_ov005_0236ba00[];
  * another when nothing is left), then the list runs: L/Y/Left and
  * R/X/Right turn the page, A asks whether to buy the item, B leaves (the
  * flags unk_04-unk_10 do the same, probably set by touch). Buying counts
- * the points down on screen and removes the item from the list. On leaving, Hachi says goodbye (one of four scripts by
- * visit count), the screens fade out and the task script resumes. Every
- * frame ends by drawing the page numbers, the points and the page. */
+ * the points down on screen and removes the item from the list. On
+ * leaving, Hachi says goodbye (one of four scripts by visit count), the
+ * screens fade out and the task script resumes. Every frame ends by
+ * drawing the page numbers, the points and the page. */
 void Ov005_UpdateShopScreen(Ov005Task *task)
 {
     Unk_ov005_0236bbb0 *work = task->work;
