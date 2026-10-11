@@ -8439,6 +8439,10 @@ src/game/main/menus/game_close_first_map.c:
     complete
     .text       start:0x020b9e3c end:0x020b9eb4
 
+src/game/main/menus/game_state20_close_map.c:
+    complete
+    .text       start:0x020b9eb4 end:0x020b9f3c
+
 src/game/main/func_020ba750.c:
     complete
     .text       start:0x020ba750 end:0x020ba754
