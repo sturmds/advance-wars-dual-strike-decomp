@@ -28,7 +28,7 @@ void Sound_PlaySe(u32 soundId);
 void func_020272e0(u32 textId, int tile);
 void Ov005_ReadCoPaletteVariant(Unk_ov005_0236bba8 *work);
 int Co_GetPictureVariant(int coId);
-void func_02002b74(int coId, int variant);
+void Co_SetPictureVariant(int coId, int variant);
 void Co_LoadGraphics(int coId, int firstTile);
 void func_02002804(int coId, int firstTile);
 void Co_SetSavedPaletteVariant(int coId, int variant);
@@ -235,7 +235,7 @@ void Ov005_UpdateCoScreen(Ov005Task *task)
         if ((gKeypad->pressed & PAD_BUTTON_A) || work->unk_08 == 1) {
             work->unk_08 = 0;
             if (work->unk_20c == CO_PICTURE_SWAP_VARIANT) {
-                func_02002b74(work->coId & 0x7f, (Co_GetPictureVariant(work->coId & 0x7f) + 1) & 1);
+                Co_SetPictureVariant(work->coId & 0x7f, (Co_GetPictureVariant(work->coId & 0x7f) + 1) & 1);
                 saved0280 = data_027c0280;
                 Screen_SetCurrentGfx(data_027c0288.unk_04);
                 saved027c = data_027c027c;
