@@ -7,7 +7,7 @@ const void *Text_Get(u32 textId);
 void ModeFont_ShowText(const void *text, int tile, int paletteSlot, int a, int b);
 void Gfx3d_InitScene(void);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02030084(void);
+void MainMenu_DrawPicture192x144(void);
 void func_02028644(void);
 void Sound_PlaySe(int id);
 void Task_ResumeScript(void *task);
@@ -32,7 +32,7 @@ void MainMenu_OpenUpdate(MainMenuTask *task)
         *GXFIFO_MTX_TRANS = offsetY;
         *GXFIFO_MTX_TRANS = 0;
     }
-    func_02030084();
+    MainMenu_DrawPicture192x144();
     func_02028644();
     if (*(s16 *)&task->unk_4c != 56) {
         return;
