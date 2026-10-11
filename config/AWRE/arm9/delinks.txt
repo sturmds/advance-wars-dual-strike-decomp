@@ -6801,6 +6801,10 @@ src/game/main/menus/player_info_next_co_button.c:
     complete
     .text       start:0x0206d084 end:0x0206d0d8
 
+src/game/main/menus/player_info_prev_co_button.c:
+    complete
+    .text       start:0x0206d0d8 end:0x0206d118
+
 src/game/main/menus/player_info_add_page_buttons.c:
     complete
     .text       start:0x0206d118 end:0x0206d1c8
