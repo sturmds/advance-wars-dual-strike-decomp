@@ -4458,6 +4458,7 @@ src/game/main/result_point_scroll_rows_update.c:
     .text       start:0x02038360 end:0x02038410
 
 src/game/main/result_point_scroll_all_update.c:
+    complete
     .text       start:0x02038410 end:0x020384c0
 
 src/game/main/score_list_draw_row.c:
