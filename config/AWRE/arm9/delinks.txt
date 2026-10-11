@@ -9891,6 +9891,10 @@ src/game/main/func_020d0148.c:
     complete
     .text       start:0x020d0148 end:0x020d0164
 
+src/game/main/zoom_sprite_task_update_then_resume.c:
+    complete
+    .text       start:0x020d0164 end:0x020d0384
+
 src/game/main/func_020d0478.c:
     complete
     .text       start:0x020d0478 end:0x020d048c
