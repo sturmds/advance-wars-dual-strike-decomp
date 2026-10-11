@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/msl_file.h"
 
 #define EXIT_TABLE_SIZE 64
 
@@ -16,7 +17,6 @@ extern AtExitFunction gMslExitHook;
 BOOL OS_TryLockMutex(OSMutex *mutex);
 void OS_LockMutex(OSMutex *mutex);
 void OS_UnlockMutex(OSMutex *mutex);
-void func_0212218c(int stream);
 void func_021295b4(void);
 
 void MSL_Exit(int status)
@@ -46,6 +46,6 @@ void MSL_Exit(int status)
         gMslExitHook = NULL;
     }
 
-    func_0212218c(0);
+    fflush(NULL);
     func_021295b4();
 }
