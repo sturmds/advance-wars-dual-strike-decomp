@@ -17,6 +17,10 @@ src/game/itcm/screen/bg_get_map_entry_ptr.c:
     complete
     .text       start:0x01ff8a98 end:0x01ff8b18
 
+src/game/itcm/screen/screen_set_layer3_scroll.c:
+    complete
+    .text       start:0x01ff8b18 end:0x01ff8b44
+
 src/game/itcm/gfx_request_layer_copy.c:
     complete
     .text       start:0x01ff8d60 end:0x01ff8d94
