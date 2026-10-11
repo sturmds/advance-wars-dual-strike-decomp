@@ -9482,6 +9482,10 @@ src/game/main/units/move_path_to_steps.c:
     complete
     .text       start:0x020d4d40 end:0x020d4e70
 
+src/game/main/units/move_path_add_tile.c:
+    complete
+    .text       start:0x020d501c end:0x020d5170
+
 src/game/main/func_020d5324.c:
     complete
     .text       start:0x020d5324 end:0x020d534c

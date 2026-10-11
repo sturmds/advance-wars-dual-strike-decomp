@@ -9,7 +9,8 @@ typedef struct MovePath {
     u8 pad_00[0x20];
     s8 x[12];
     s8 y[12];
-    u8 pad_38[0x45 - 0x38];
+    s8 movesLeft[12];                  /* move points left on arrival at each tile */
+    u8 pad_44[0x45 - 0x44];
     s8 lastTile;                       /* index of the last tile in x and y */
 } MovePath;
 
