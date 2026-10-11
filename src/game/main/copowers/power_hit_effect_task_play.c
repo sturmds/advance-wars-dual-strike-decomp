@@ -9,7 +9,7 @@
 
 void Task_ResumeScript(Task *task);
 s16 ScriptSlot_Find(const ScriptCommand *script);
-void func_020e1bc8(int x, int y, int kind);
+void PowerEffect_Start(int x, int y, int kind);
 
 extern ScriptCommand gMapScrollScript[];
 extern Unk_02080440 *data_027c027c;
@@ -23,6 +23,6 @@ void PowerHitEffectTask_Play(PowerHitEffectTask *task)
         return;
     }
     /* needed to match: the callee gets the tile as bytes */
-    func_020e1bc8((u8)task->tileX, (u8)task->tileY, STATE->players[task->player].front.unk_12);
+    PowerEffect_Start((u8)task->tileX, (u8)task->tileY, STATE->players[task->player].front.unk_12);
     Task_ResumeScript((Task *)task);
 }

@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 void Sound_PlaySe(u32 soundId);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -33,7 +33,7 @@ void SuperBreak_FlashUpdate(Task *task)
         Sound_PlaySe(188);
     }
     FRAME(task)++;
-    func_02002620(184, 160, 0x800, 16, 2, 0);
+    Sprite_QueueCoPortrait(184, 160, 0x800, 16, 2, 0);
     for (i = 0; i < task->unk_58; i++) {
         BreakText_QueueLetterSized(i, BreakText_GetCentredX(i) & 0x1ff, 80, 0, 1);
     }

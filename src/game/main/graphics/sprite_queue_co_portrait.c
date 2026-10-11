@@ -4,7 +4,7 @@ void Sprite_Queue(int list, int packedX, int packedY, void *data, int arg4, int 
 
 extern u8 data_02151dac[];
 
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip)
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip)
 {
     u16 xHigh = x & 0xfe00;
     u16 yHigh = y & 0xff00;

@@ -15,7 +15,7 @@ extern Unk_027c0288 data_027c0288;
 
 void Screen_SetCurrentGfx(void *state);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Mem_Zero32(u32 value, void *dest, u32 size);
 void Co_LoadGraphicsAndPalette(int co, int tile, int row);
 
@@ -58,9 +58,9 @@ void CoSelectScreen_SlidePictures(CoSelectPictureTask *task)
             task->slideOffset[row] = Math_Ease(4, task->slideFrom[row], 0, task->frame[row], SLIDE_FRAMES);
         }
         if (row == 0) {
-            func_02002620((56 - task->slideOffset[row]) & 0x1ff, 160, (row << 12) | 0x800, row * PICTURE_TILES, row + 5, TRUE);
+            Sprite_QueueCoPortrait((56 - task->slideOffset[row]) & 0x1ff, 160, (row << 12) | 0x800, row * PICTURE_TILES, row + 5, TRUE);
         } else {
-            func_02002620((256 - (56 - task->slideOffset[row])) & 0x1ff, 160, (row << 12) | 0x800, row * PICTURE_TILES, row + 5, FALSE);
+            Sprite_QueueCoPortrait((256 - (56 - task->slideOffset[row])) & 0x1ff, 160, (row << 12) | 0x800, row * PICTURE_TILES, row + 5, FALSE);
         }
         if (task->frame[row] == SLIDE_FRAMES) {
             if (task->slidingIn[row] == 0) {

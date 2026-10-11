@@ -4,7 +4,7 @@
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 s32 HwDiv32(s32 numerator, s32 denominator);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Task_ResumeScript(Task *task);
@@ -34,8 +34,8 @@ void CoSwap_SlideInCos(Task *task)
 
     CO_SWAP_FRAME(task)++;
     CO_SWAP_OFFSET(task) = Math_Ease(4, 256, 0, CO_SWAP_FRAME(task), task->unk_58 * LETTER_DELAY + LETTER_FRAMES);
-    func_02002620((CO_SWAP_FRONT_X + CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
-    func_02002620((CO_SWAP_BACK_X - CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
+    Sprite_QueueCoPortrait((CO_SWAP_FRONT_X + CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
+    Sprite_QueueCoPortrait((CO_SWAP_BACK_X - CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
     for (i = 0; i < task->unk_58; i++) {
         if (CO_SWAP_FRAME(task) < i * LETTER_DELAY) {
             continue;

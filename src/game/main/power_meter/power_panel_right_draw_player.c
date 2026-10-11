@@ -4,7 +4,7 @@
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
-extern u16 data_022a7290;
+extern u16 gPowerPanelPlayer;
 extern u8 data_02168690[];
 extern u8 data_02168658[];
 extern u8 data_0216874c[];
@@ -27,7 +27,7 @@ void Sound_PlaySe(int se);
  * sound 185 if the Super CO Power can be used, else 184. */
 void PowerPanelRight_DrawPlayer(int x, int y, int player, BOOL coSelect)
 {
-    data_022a7290 = player;
+    gPowerPanelPlayer = player;
     if (coSelect) {
         Sprite_QueueAt(0, x, y, data_02168690, 0x7010, 0);
     } else {

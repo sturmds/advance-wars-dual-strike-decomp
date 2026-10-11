@@ -7,7 +7,7 @@ extern const s16 gSineTable[];
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Sound_PlaySe(u32 soundId);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 s16 BreakText_GetCentredX(u8 slot);
 void BreakText_QueueLetterSized(u8 slot, u16 x, int y, int attr, int arg);
@@ -34,7 +34,7 @@ void SuperBreak_LettersPopInUpdate(Task *task)
 
     FRAME(task)++;
     SLIDE(task) = Math_Ease(4, 128, 0, FRAME(task), task->unk_58 * STAGGER_FRAMES + GROW_FRAMES);
-    func_02002620(184, 160, 0x800, 16, 2, 0);
+    Sprite_QueueCoPortrait(184, 160, 0x800, 16, 2, 0);
     for (i = 0; i < task->unk_58; i++) {
         if (FRAME(task) >= i * STAGGER_FRAMES && FRAME(task) < i * STAGGER_FRAMES + GROW_FRAMES) {
             int scale;

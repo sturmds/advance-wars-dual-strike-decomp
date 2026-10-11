@@ -14,7 +14,7 @@ void Gfx_RequestLayerCopy(int layer);
 void Mem_Copy32(const void *src, void *dst, u32 size);
 void Mem_Free(void *block);
 void SpriteStrip_LoadMapName(int mapId, int arg);
-void func_020523e0(int scale, int angle);
+void TitleCall_SetBg3Zoom(int scale, int angle);
 void Screen_SetBothNibbles(int value);
 
 extern Unk_02080440 *data_027c027c;
@@ -173,7 +173,7 @@ void TitleCall_SetUpScreens(Task *task)
     Mem_Free(file);
 
     SpriteStrip_LoadMapName(data_027c027c->unk_48[data_027c0284]->unk_1c4->mapId, 0x90);
-    func_020523e0(0x100, 0x80);
+    TitleCall_SetBg3Zoom(0x100, 0x80);
     Screen_SetBothNibbles(0);
     FRAME(task) = 0;
 }

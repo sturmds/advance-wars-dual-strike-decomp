@@ -7,13 +7,13 @@ void Screen_SetCurrentBoth(void *state);
 void *Task_FindByScript(const void *script);
 void Task_ResumeScript(Task *task);
 void func_02050ca8(void *parentOrList);
-void func_020523e0(int scale, int angle);
+void TitleCall_SetBg3Zoom(int scale, int angle);
 
 extern const TaskScriptCmd data_0215bc10[];
 
 #define FRAME(task) (*(s16 *)&(task)->unk_4c)
 
-/* Task script step, 120 frames on both screens. BG3 zooms in (func_020523e0
+/* Task script step, 120 frames on both screens. BG3 zooms in (TitleCall_SetBg3Zoom
  * eases its arguments from 192 and 384 to 256). Frames 1-31: the screens
  * brighten out of darken mode (evy 16 down by half a step per frame). From
  * frame 32: layer 3 is alpha-blended over layers 1 and 2 while EVA eases from
@@ -24,7 +24,7 @@ void Screens_ZoomInFadeUpdate(Task *task)
     int eva;
 
     FRAME(task)++;
-    func_020523e0(Math_Ease(4, 192, 256, FRAME(task), 120), Math_Ease(4, 384, 256, FRAME(task), 120));
+    TitleCall_SetBg3Zoom(Math_Ease(4, 192, 256, FRAME(task), 120), Math_Ease(4, 384, 256, FRAME(task), 120));
 
     if (FRAME(task) < 32) {
         Unk_027c0280 *saved0280;

@@ -2,7 +2,7 @@
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
 
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 BreakText_GetLetterX(int index);
 void BreakText_QueueLetterSized(u8 index, u16 value, int arg2, int arg3, int arg4);
 void Task_ResumeScript(void *task);
@@ -17,7 +17,7 @@ void func_ov003_0235ce7c(Unk_ov003_0235dd38 *obj)
     if (data_ov003_02364928->unk_1d7 == 0) {
         obj->frame++;
     }
-    func_02002620(184, 160, 0x3000, 0x58e, 3, 0);
+    Sprite_QueueCoPortrait(184, 160, 0x3000, 0x58e, 3, 0);
     for (i = 0; i < obj->count; i++) {
         BreakText_QueueLetterSized(i, BreakText_GetLetterX((u8)i) & 0x1ff, 80, 0, 2);
     }

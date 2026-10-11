@@ -2,7 +2,9 @@
 #include "game/screen_other_map.h"
 #include "game/affine_params.h"
 
-void func_020523e0(int scale, int angle)
+/* Byte for byte the same code as Screens_SetBg3Zoom, at another address:
+ * sets the BG3 affine matrix of both screens to one scale and angle. */
+void TitleCall_SetBg3Zoom(int scale, int angle)
 {
     s16 scale16;
     AffineParams params;
@@ -10,7 +12,7 @@ void func_020523e0(int scale, int angle)
     Unk_02080440 *saved027c;
 
     params.srcX = 256;
-    scale16 = scale;  
+    scale16 = scale; /* needed to match: assigned between the two 256 stores */
     params.srcY = 256;
     params.scaleX = scale16;
     params.scaleY = scale16;

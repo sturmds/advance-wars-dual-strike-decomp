@@ -24,8 +24,8 @@ void WinQuote_SlideIn(Task *task)
     slideY = Math_Ease(4, 168, 0, WIN_QUOTE_FRAME(task), SLIDE_FRAMES);
 
     if (data_022a7aba[WIN_QUOTE_RECORD(task)].unk_00 & 0x7f) {
-        func_02002620((slideX + 64) & 0x1ff, 160, 0x5800, 0x224, 5, FALSE);
-        func_02002620((192 - slideX) & 0x1ff, 160, 0x6800, 0x3d4, 6, TRUE);
+        Sprite_QueueCoPortrait((slideX + 64) & 0x1ff, 160, 0x5800, 0x224, 5, FALSE);
+        Sprite_QueueCoPortrait((192 - slideX) & 0x1ff, 160, 0x6800, 0x3d4, 6, TRUE);
         if (slideY + 88 <= 240) {
             Sprite_QueueDefaultTile(96, (slideY + 88) & 0xff, 0x4000, 0x1dc, 6);
         }
@@ -33,7 +33,7 @@ void WinQuote_SlideIn(Task *task)
             Sprite_QueueDefaultTile(96, (slideY + 128) & 0xff, 0x4000, 0x1e8, 6);
         }
     } else {
-        func_02002620((slideX + 64) & 0x1ff, 160, 0x5800, 0x224, 5, FALSE);
+        Sprite_QueueCoPortrait((slideX + 64) & 0x1ff, 160, 0x5800, 0x224, 5, FALSE);
         if (slideY + 128 <= 240) {
             Sprite_QueueDefaultTile(96, (slideY + 128) & 0xff, 0x4000, 0x1dc, 6);
         }

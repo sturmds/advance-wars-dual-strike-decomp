@@ -78,7 +78,7 @@ DeferredCopyTask_Start kind:function(arm,size=0x34) addr:0x020024b4
 DeferredCopyTask_Copy kind:function(arm,size=0x28) addr:0x020024e8
 func_02002510 kind:function(arm,size=0x88) addr:0x02002510
 func_02002598 kind:function(arm,size=0x88) addr:0x02002598
-func_02002620 kind:function(arm,size=0x74) addr:0x02002620
+Sprite_QueueCoPortrait kind:function(arm,size=0x74) addr:0x02002620
 func_02002694 kind:function(arm,size=0x78) addr:0x02002694
 func_0200270c kind:function(arm,size=0x78) addr:0x0200270c
 Co_LoadObjPicture kind:function(arm,size=0x80) addr:0x02002784
@@ -1784,7 +1784,7 @@ func_020517d8 kind:function(arm,size=0x18) addr:0x020517d8
 TitleCall_StartSong kind:function(arm,size=0x84) addr:0x020517f0
 TitleCall_ScrollWalls kind:function(arm,size=0x134) addr:0x02051874
 TitleCall_SetUpScreens kind:function(arm,size=0xa38) addr:0x020519a8
-func_020523e0 kind:function(arm,size=0xf0) addr:0x020523e0
+TitleCall_SetBg3Zoom kind:function(arm,size=0xf0) addr:0x020523e0
 SpriteStrip_Queue kind:function(arm,size=0xd8) addr:0x020524d0
 SpriteStrip_LoadMapName kind:function(arm,size=0x120) addr:0x020525a8
 func_020526c8 kind:function(arm,size=0x18) addr:0x020526c8
@@ -2458,7 +2458,7 @@ LinkMenu_IsMapSlotUsed kind:function(arm,size=0x30) addr:0x0207fb98
 LinkMenu_PlayerHasMap kind:function(arm,size=0x6c) addr:0x0207fbc8
 func_0207fc34 kind:function(arm,size=0x8) addr:0x0207fc34
 DesignMap_IsUsed kind:function(arm,size=0x14) addr:0x0207fc3c
-func_0207fc50 kind:function(arm,size=0x38) addr:0x0207fc50
+LinkMenu_DestroyMarkers kind:function(arm,size=0x38) addr:0x0207fc50
 LinkMenu_ResumeMarker kind:function(arm,size=0x64) addr:0x0207fc88
 LinkMenu_CreateMarker kind:function(arm,size=0x70) addr:0x0207fcec
 LinkMarkerTask_SquashOut kind:function(arm,size=0x184) addr:0x0207fd5c
@@ -4187,7 +4187,7 @@ Co_GetTagStars kind:function(arm,size=0x6c) addr:0x020e1948
 Player_SwapCos kind:function(arm,size=0xbc) addr:0x020e19b4
 CoSelect_ResetToUnlockedCos kind:function(arm,size=0x5c) addr:0x020e1a70
 func_020e1acc kind:function(arm,size=0xfc) addr:0x020e1acc
-func_020e1bc8 kind:function(arm,size=0x18) addr:0x020e1bc8
+PowerEffect_Start kind:function(arm,size=0x18) addr:0x020e1bc8
 PowerHighlight_LoadEffect kind:function(arm,size=0x8c) addr:0x020e1be0
 HachiFlash kind:function(arm,size=0x20) addr:0x020e1c6c
 GoldRush kind:function(arm,size=0x60) addr:0x020e1c8c
@@ -7447,9 +7447,9 @@ data_02160128 kind:data(any) addr:0x02160128
 data_02160150 kind:data(any) addr:0x02160150
 data_02160178 kind:data(any) addr:0x02160178
 data_021601a0 kind:data(any) addr:0x021601a0
-data_021601d0 kind:data(any) addr:0x021601d0
-data_02160208 kind:data(any) addr:0x02160208
-data_02160240 kind:data(any) addr:0x02160240
+gLinkMarkerScript0 kind:data(any) addr:0x021601d0
+gLinkMarkerScript1 kind:data(any) addr:0x02160208
+gLinkMarkerScript2 kind:data(any) addr:0x02160240
 data_02160278 kind:data(any) addr:0x02160278
 data_021602d0 kind:data(any) addr:0x021602d0
 gLoadingRes1Path kind:data(any) addr:0x02160460
@@ -8872,7 +8872,7 @@ data_022a6dcc kind:bss addr:0x022a6dcc
 data_022a6dd0 kind:bss addr:0x022a6dd0
 data_022a6dd4 kind:bss addr:0x022a6dd4
 data_022a6dd8 kind:bss addr:0x022a6dd8
-data_022a7290 kind:bss addr:0x022a7290
+gPowerPanelPlayer kind:bss addr:0x022a7290
 data_022a7294 kind:bss addr:0x022a7294
 gCoPickList kind:bss addr:0x022a7298
 data_022a72b8 kind:bss addr:0x022a72b8

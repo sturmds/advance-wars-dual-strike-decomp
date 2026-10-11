@@ -2,9 +2,9 @@
 #include "game/task.h"
 #include "game/link_marker_task.h"
 
-extern const TaskScriptCmd data_021601d0[];
-extern const TaskScriptCmd data_02160208[];
-extern const TaskScriptCmd data_02160240[];
+extern const TaskScriptCmd gLinkMarkerScript0[];
+extern const TaskScriptCmd gLinkMarkerScript1[];
+extern const TaskScriptCmd gLinkMarkerScript2[];
 
 /* Starts a marker task next to a button: kind 0 for the stage 1 pick, player + 1 for the stage 2 pick of a player. */
 void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y)
@@ -13,13 +13,13 @@ void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y)
 
     switch (kind) {
     case 0:
-        task = (LinkMarkerTask *)Task_Create(data_021601d0, TASK_LIST(3));
+        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript0, TASK_LIST(3));
         break;
     case 1:
-        task = (LinkMarkerTask *)Task_Create(data_02160208, TASK_LIST(3));
+        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript1, TASK_LIST(3));
         break;
     default:
-        task = (LinkMarkerTask *)Task_Create(data_02160240, TASK_LIST(3));
+        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript2, TASK_LIST(3));
         break;
     }
     task->x = x;

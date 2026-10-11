@@ -5,7 +5,7 @@
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0280 *data_027c0280;
-extern u16 data_022a7290;
+extern u16 gPowerPanelPlayer;
 extern u8 data_ov000_023503a0;              /* game language */
 extern const void *const data_ov000_022f65fc[];
 extern const void *const data_ov000_022f6610[];
@@ -24,7 +24,7 @@ void Palette_Load(const void *src, u32 offset, u32 size);
  * tile 104. */
 void PowerPanel_LoadGfx(int player, BOOL coSelectPhase)
 {
-    data_022a7290 = 0;
+    gPowerPanelPlayer = 0;
     if (coSelectPhase) {
         TransferQueue_Add(data_ov000_022f6624[data_ov000_023503a0], data_027c0280->objVram + 0x200, 0x600);
     } else {

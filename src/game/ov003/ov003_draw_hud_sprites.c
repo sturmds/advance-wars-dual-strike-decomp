@@ -3,7 +3,7 @@
 #include "game/Unk_02160ac0.h"
 
 void Co_QueuePictureSpriteAtTile(int x, int y, int attr, int tile, int list);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Ov003_StepFrameCycles(void);
 void Ov003_UpdateRowsAndPalette(void);
 void Ov003_DrawRows(void);
@@ -19,8 +19,8 @@ void Ov003_DrawHudSprites(void)
     Ov003_DrawRows();
     Ov003_UpdateRowsAndPalette();
     if (data_02160ac0->unk_7c == 0) {
-        func_02002620(32, 160, 0x2800, 208, 2, TRUE);
-        func_02002620(224, 160, 0x3800, 640, 2, FALSE);
+        Sprite_QueueCoPortrait(32, 160, 0x2800, 208, 2, TRUE);
+        Sprite_QueueCoPortrait(224, 160, 0x3800, 640, 2, FALSE);
         return;
     }
     for (i = 0; i < data_ov003_02364928->rowCount; i++) {

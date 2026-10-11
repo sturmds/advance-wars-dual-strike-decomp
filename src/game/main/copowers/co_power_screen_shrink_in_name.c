@@ -6,7 +6,7 @@ extern const s16 gSineTable[];
 
 s32 HwDiv32(s32 numerator, s32 denominator);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 void BreakText_QueueLetterSized(u8 letter, u16 x, int y, int arg3, int list);
 s16 BreakText_GetLetterX(u8 letter);
@@ -17,7 +17,7 @@ void Task_ResumeScript(Unk_ov003_0235dd38 *task);
 
 /* Step of the CO Power cut-in, the same as Ov003_StepLettersShrink apart
  * from the sprite arguments: over 3 * count + 8 frames the sprite at
- * func_02002620 slides in from 128 pixels right, and each letter of the
+ * Sprite_QueueCoPortrait slides in from 128 pixels right, and each letter of the
  * power name appears 3 frames after the previous one, shrinking from double
  * size through affine matrix i + 1, then stays drawn at rest. */
 void CoPowerScreen_ShrinkInName(Unk_ov003_0235dd38 *task)
@@ -27,7 +27,7 @@ void CoPowerScreen_ShrinkInName(Unk_ov003_0235dd38 *task)
 
     task->frame++;
     task->slideX = Math_Ease(4, 128, 0, task->frame, task->count * 3 + 8);
-    func_02002620((task->slideX + 184) & 0x1ff, 160, 0, 16, 2, 0);
+    Sprite_QueueCoPortrait((task->slideX + 184) & 0x1ff, 160, 0, 16, 2, 0);
     for (i = 0; i < task->count; i++) {
         if (task->frame >= i * 3 && task->frame < i * 3 + 8) {
             scale = Math_Ease(4, 512, 256, task->frame - i * 3, 8);

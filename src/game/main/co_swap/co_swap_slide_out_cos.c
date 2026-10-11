@@ -4,7 +4,7 @@
 #include "game/screen_other_map.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 s16 BreakText_GetScreenX(u8 slot);
 void BreakText_QueueLetter(u8 slot, u16 x, int y, int attr, int arg);
 void Mem_Copy32(const void *src, void *dst, u32 size);
@@ -29,8 +29,8 @@ void CoSwap_SlideOutCos(Task *task)
 
     CO_SWAP_FRAME(task)++;
     CO_SWAP_OFFSET(task) = Math_Ease(1, 0, 128, CO_SWAP_FRAME(task), 26);
-    func_02002620((CO_SWAP_FRONT_X - CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
-    func_02002620((CO_SWAP_BACK_X + CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
+    Sprite_QueueCoPortrait((CO_SWAP_FRONT_X - CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0, 16, 2, FALSE);
+    Sprite_QueueCoPortrait((CO_SWAP_BACK_X + CO_SWAP_OFFSET(task)) & 0x1ff, CO_SWAP_CO_Y, 0x1000, 0x1c0, 3, FALSE);
     for (i = 0; i < task->unk_58; i++) {
         BreakText_QueueLetter(i, BreakText_GetScreenX(i) & 0x1ff, CO_SWAP_TITLE_Y, 0, 1);
     }

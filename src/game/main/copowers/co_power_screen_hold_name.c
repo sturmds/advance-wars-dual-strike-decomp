@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_ov003_0235dd38.h"
 
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void BreakText_QueueLetterSized(u8 letter, u16 x, int y, int arg3, int list);
 s16 BreakText_GetLetterX(u8 letter);
 void Task_ResumeScript(Unk_ov003_0235dd38 *task);
@@ -14,7 +14,7 @@ void CoPowerScreen_HoldName(Unk_ov003_0235dd38 *task)
     int i;
 
     task->frame++;
-    func_02002620(184, 160, 0, 16, 2, 0);
+    Sprite_QueueCoPortrait(184, 160, 0, 16, 2, 0);
     for (i = 0; i < task->count; i++) {
         BreakText_QueueLetterSized(i, BreakText_GetLetterX(i) & 0x1ff, 80, 0, 1);
     }

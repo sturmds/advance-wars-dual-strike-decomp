@@ -7,7 +7,7 @@
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 MapUnit *Unit_Spawn(s16 x, s16 y, s16 type);
-void func_020e1bc8(int x, int y, int kind);
+void PowerEffect_Start(int x, int y, int kind);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,7 +22,7 @@ void UnitDrop_SpawnUnit(UnitDropTask *task)
 
     unit->hp = 90;
     if (STATE->mapTiles->unk_2338[STATE->mapTiles->rowStart[task->y] + task->x] != 0) {
-        func_020e1bc8((u8)task->x, (u8)task->y,
+        PowerEffect_Start((u8)task->x, (u8)task->y,
                       STATE->players[STATE->currentPlayer].front.unk_12);
     }
     task->x++;

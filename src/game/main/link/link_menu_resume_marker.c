@@ -1,9 +1,9 @@
 #include "types.h"
 #include "game/task.h"
 
-extern const TaskScriptCmd data_021601d0[];
-extern const TaskScriptCmd data_02160208[];
-extern const TaskScriptCmd data_02160240[];
+extern const TaskScriptCmd gLinkMarkerScript0[];
+extern const TaskScriptCmd gLinkMarkerScript1[];
+extern const TaskScriptCmd gLinkMarkerScript2[];
 
 void Task_ResumeByScript(const TaskScriptCmd *script);
 
@@ -13,13 +13,13 @@ void LinkMenu_ResumeMarker(int kind)
 {
     switch (kind) {
     case 0:
-        Task_ResumeByScript(data_021601d0);
+        Task_ResumeByScript(gLinkMarkerScript0);
         break;
     case 1:
-        Task_ResumeByScript(data_02160208);
+        Task_ResumeByScript(gLinkMarkerScript1);
         break;
     default:
-        Task_ResumeByScript(data_02160240);
+        Task_ResumeByScript(gLinkMarkerScript2);
         break;
     }
 }

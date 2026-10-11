@@ -6,7 +6,7 @@
 extern MenuState gMenuState;
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_02002620(int x, int y, int arg2, int arg3, int list, BOOL flip);
+void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip);
 void Co_LoadArmyGraphicsAndPalette(int coId, int firstTile, int paletteSlot, int army);
 
 #define MENU (gMenuState.unk_0206d67c)
@@ -53,7 +53,7 @@ void PlayerInfo_SlideCoPortrait(PlayerInfoSpriteTask *task)
     } else {
         task->slideX = Math_Ease(4, task->slideStartX, 0, task->slideFrame, 8);
     }
-    func_02002620((256 - (72 - task->slideX)) & 0x1ff, 160, 0, 108, 0, FALSE);
+    Sprite_QueueCoPortrait((256 - (72 - task->slideX)) & 0x1ff, 160, 0, 108, 0, FALSE);
     if (task->slideFrame == 8) {
         if (task->slidingIn == 0) {
             if (task->waitFrames < 4) {

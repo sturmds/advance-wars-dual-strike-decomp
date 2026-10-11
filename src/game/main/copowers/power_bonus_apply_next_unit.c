@@ -12,7 +12,7 @@ extern ScriptCommand gMapScrollScript[];
 void Task_ResumeScript(Task *task);
 s16 ScriptSlot_Find(const ScriptCommand *script);
 void func_020f5888(s16 x, s16 y);           /* starts the map scroll to the tile */
-void func_020e1bc8(int x, int y, int block); /* tile effect sprite */
+void PowerEffect_Start(int x, int y, int block); /* tile effect sprite */
 void func_020c4018(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -63,7 +63,7 @@ void PowerBonus_ApplyNextUnit(Task *task)
             return;
         }
         BLOCK.unitBonus(unit);
-        func_020e1bc8(unit->x, unit->y, FRONT.unk_12);
+        PowerEffect_Start(unit->x, unit->y, FRONT.unk_12);
         task->unk_68++;
         break;
     }
