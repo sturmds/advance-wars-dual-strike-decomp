@@ -20,7 +20,7 @@ const char *Text_Get(u32 textId);
 void Text_PrintStringImmediate(s16 x, s16 y, u16 *map, const char *text, u16 a, u16 b);
 void Number_Draw(s16 x, s16 y, u16 *map, u32 value, u16 entryBits, u16 digitSet);
 void Gfx_RequestLayerCopy(int layer);
-void func_0207463c(void);
+void UnitList_DrawHeadings(void);
 void UnitList_DrawRows(int scroll);
 
 extern Unk_02080440 *data_027c027c;
@@ -73,7 +73,7 @@ void UnitList_Init(UnitListTask *task)
     Text_PrintStringImmediate(5, 1, map,
                               Text_Get(data_02167c9c[GAME->players[GAME->currentPlayer].armyColour]), 0, 0);
     Number_Draw(30, 1, data_027c0280->layer0Map, task->unitCount, 0, 0);
-    func_0207463c();
+    UnitList_DrawHeadings();
     UnitList_DrawRows(task->scroll);
     Gfx_RequestLayerCopy(0);
     Gfx_RequestLayerCopy(1);

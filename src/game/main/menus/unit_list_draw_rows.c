@@ -5,7 +5,7 @@
 void Bg_ClearRect(void *target, int x, int y, int w, int h);
 void Gfx_RequestLayerCopy(int layer);
 void UnitList_DrawRow(int y, int index);
-void func_0207463c(void);
+void UnitList_DrawHeadings(void);
 
 extern Unk_027c0280 *data_027c0280;
 
@@ -31,7 +31,7 @@ void UnitList_DrawRows(int scroll)
         }
         Bg_ClearRect(data_027c0280->layer0Map, 0, 7, 32, 1);
         Bg_ClearRect(data_027c0280->layer0Map, 0, 20, 32, 1);
-        func_0207463c();
+        UnitList_DrawHeadings();
     } else {
         int rowY;
         int row;

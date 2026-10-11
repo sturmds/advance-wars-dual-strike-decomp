@@ -8552,6 +8552,10 @@ src/game/main/menus/unit_list_draw_rows.c:
     complete
     .text       start:0x02074544 end:0x0207463c
 
+src/game/main/menus/unit_list_draw_headings.c:
+    complete
+    .text       start:0x0207463c end:0x02074704
+
 src/game/main/menus/unit_list_draw_row.c:
     complete
     .text       start:0x02074704 end:0x02074be8
