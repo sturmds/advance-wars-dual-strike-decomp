@@ -5,15 +5,15 @@
 extern Unk_02080440 *data_027c027c;
 extern u32 data_027c0284;
 
-int func_020bef88(void);
+int UnitMenu_DiveHidden(void);
 
-/* Returns 1 when the acting unit is not a Stealth, else func_020bef88(). */
+/* Returns 1 when the acting unit is not a Stealth, else UnitMenu_DiveHidden(). */
 int func_020bef30(void)
 {
     /* A one-case switch, needed to match (an if gives conditional returns). */
     switch (data_027c027c->unk_48[data_027c0284]->actingUnit->type) {
     case UNIT_SUB:
-        return func_020bef88();
+        return UnitMenu_DiveHidden();
     }
     return 1;
 }
