@@ -16,7 +16,7 @@ int func_02097dd4(void);
 int UnitType_GetAttackKind(u8 unitType);
 BOOL AiBuild_HasEnoughIndirectsForArtillery(int info);
 BOOL AiBuild_HasEnoughGroundIndirects(int info);
-int func_020961ac(int supplyKind);
+int AiSite_PickForBuild(int supplyKind);
 int func_0209770c(int x, int y, int unitType);
 void func_0209373c(void);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
@@ -32,7 +32,7 @@ int Ai_CountUnitsOfType(int type);
 #define PLAYER (STATE->players[STATE->currentPlayer])
 
 /* Called by func_02091904 (end-actions step 9). Picks the unit type with the highest weight in
- * data_0229e278 and a factory for it (func_020961ac by gUnitSupplyKind).
+ * data_0229e278 and a factory for it (AiSite_PickForBuild by gUnitSupplyKind).
  * func_02097dd4 returns flags (bit 8) and a count (bits 0-7) that rule out
  * foot units or, for ground units, all but non-direct ones, Infantry, Mech and
  * Anti-Air (at half weight). An airport or port where func_0209770c gives 90 or
@@ -110,7 +110,7 @@ int AiTurn_PickUnitToBuild(int allowSaving)
         }
         supplyKind = &gUnitSupplyKind[best];
         for (;;) {
-            index = func_020961ac(*supplyKind);
+            index = AiSite_PickForBuild(*supplyKind);
             if (index == -1) {
                 goto reject;
             }

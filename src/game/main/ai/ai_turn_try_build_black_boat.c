@@ -14,13 +14,13 @@ extern int data_027c0284;
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
 BOOL func_020985b0(int mask);
-int func_020961ac(int arg);
+int AiSite_PickForBuild(int arg);
 int func_02090ed4(void);
 void func_0209316c(int index);
 
 /* End-actions step 8, fourth sub-step. Tries to start building a Black
  * Boat: needs bit 2 of the profile byte that func_020985b0 tests and the
- * funds for one. func_020961ac(3) picks the factory (-1: none).
+ * funds for one. AiSite_PickForBuild(3) picks the factory (-1: none).
  * func_02090ed4 counts the player's ships that have a weapon; the AI wants
  * one Black Boat per three of them, the new one included (a ship count of
  * 2 is enough for the first). The name is a guess from the unit type.
@@ -38,7 +38,7 @@ BOOL AiTurn_TryBuildBlackBoat(void)
     if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_BLACK_BOAT) * 10) > state->players[state->currentPlayer].funds) {
         return 0;
     }
-    index = func_020961ac(3);
+    index = AiSite_PickForBuild(3);
     if (index == -1) {
         return 0;
     }
