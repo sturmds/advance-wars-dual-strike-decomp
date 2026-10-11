@@ -7,16 +7,21 @@ void Ov004_UnpackResource(const char *name, void *dst);
  * each entry as it copies the block into the big map at (blockX, blockY).
  * With flag 0x400 (horizontal flip) each row is copied mirrored. */
 void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158 *state, int blockX, int blockY, const char *name, u16 flags) {
-    int stride = state->blocksWide;
-    u16 *block = state->mapBlock;
-    u16 *map = state->tileMap;
-    int origin;
-    u16 *dst;
-    int row;
-    int col;
-    u16 *srcRow;
     u16 *dstRow;
+    u16 *srcRow;
+    u16 *block;
+    u16 *dst;
+    int stride;
+    int origin;
+    u16 *map;
+    int col;
+    int row;
 
+    /* Not matched yet (88.8%): registers differ from the start (orig keeps
+     * stride in r5, map in r7, flags in r2). Declaration order from permute.py. */
+    stride = state->blocksWide;
+    block = state->mapBlock;
+    map = state->tileMap;
     stride <<= 5;
     origin = stride * (blockY << 5) + (blockX << 5);
     Ov004_UnpackResource(name, block);
