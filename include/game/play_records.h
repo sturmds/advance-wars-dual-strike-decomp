@@ -31,7 +31,8 @@ typedef struct PlayRecords {
     u32 coPowersActivated;             /* CO powers activated by human players, capped at 999999 (UnitAction_ActivateCoPower) */
     u32 superPowersActivated;          /* same for super powers (UnitAction_ActivateSuperPower) */
     u32 tagPowersActivated;            /* same for tag powers (UnitAction_ActivateTagPower) */
-    u8 pad_3ac[0x3b4 - 0x3ac];
+    u32 directAttacks;                 /* attacks by human players' units with minRange 1, capped at 999999 (AttackTargetSelect_Finish) */
+    u32 indirectAttacks;               /* same for units with a longer minRange */
     u32 capturesStarted;               /* captures begun by human players, capped at 999999 (UnitAction_Capture); name from the code */
     u32 capturesCompleted;             /* captures finished by human players, capped at 999999 */
     u8 pad_3bc[0x3c0 - 0x3bc];
