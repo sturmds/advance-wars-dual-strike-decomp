@@ -2582,14 +2582,14 @@ src/game/main/func_020224ec.c:
     complete
     .text       start:0x020224ec end:0x02022504
 
-src/game/main/graphics/func_02022504.c:
+src/game/main/graphics/sprite_anim_queue3d.c:
     .text       start:0x02022504 end:0x020225c8
 
 src/game/main/func_020225c8.c:
     complete
     .text       start:0x020225c8 end:0x02022610
 
-src/game/main/graphics/func_02022610.c:
+src/game/main/graphics/sprite_file_draw3d.c:
     .text       start:0x02022610 end:0x02022664
 
 src/game/main/graphics/sprite_anim3d_task_start_alt_flagged.c:

@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_02022504(u32 *handle, int x, int y);
+void SpriteAnim_Queue3d(u32 *handle, int x, int y);
 int func_02022140(u32 *handle);
 
 int func_020225c8(u32 *handle, int x, int y)
@@ -15,6 +15,6 @@ int func_020225c8(u32 *handle, int x, int y)
     if (!active) {
         return 0;
     }
-    func_02022504(handle, x, y);
+    SpriteAnim_Queue3d(handle, x, y);
     return func_02022140(handle);
 }

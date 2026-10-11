@@ -6,11 +6,12 @@ void func_02021de8(SpriteAnim *sprite);
 int func_020224d4(void);
 int func_020224ec(void);
 
-void func_02022504(SpriteAnim *sprite, const VecFx32 *pos, int arg)
+/* Draws the sprite's current cells as 3D quads at *pos, the 3D counterpart of
+ * SpriteAnim_Queue. SPRITE_ANIM_SKIP_DRAW skips one draw. Not matched: the
+ * flags byte lands in r1 instead of r0. */
+void SpriteAnim_Queue3d(SpriteAnim *sprite, const VecFx32 *pos, int arg)
 {
     BOOL active;
-    int skip;
-    int alt;
 
     if (sprite != NULL && sprite->data != 0) {
         active = TRUE;
@@ -20,12 +21,10 @@ void func_02022504(SpriteAnim *sprite, const VecFx32 *pos, int arg)
     if (!active) {
         return;
     }
-    skip = sprite->flags & SPRITE_ANIM_SKIP_DRAW;
-    alt = sprite->flags & SPRITE_ANIM_ALT_REGISTER;
-    if (skip) {
+    if (sprite->flags & SPRITE_ANIM_SKIP_DRAW) {
         sprite->flags &= ~SPRITE_ANIM_SKIP_DRAW;
     } else {
-        if (alt) {
+        if (sprite->flags & SPRITE_ANIM_ALT_REGISTER) {
             func_020224ec();
         } else {
             func_020224d4();
