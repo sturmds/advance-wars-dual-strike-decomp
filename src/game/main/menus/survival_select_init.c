@@ -31,7 +31,7 @@ void func_020458c0(void);
 void SurvivalSelect_LoadCoPictures(void);
 void SurvivalSelect_DrawMapRecord(void);
 void SurvivalSelect_DrawModeRecord(void);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 int func_020478b0(int mode);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
@@ -80,16 +80,16 @@ void SurvivalSelect_Init(void)
     func_0201e6e8(12, 18, 16, 6);
     Data_Unpack(res + 0x234, data_027c0280->objVram + 0xc00);
     Data_Unpack(res + 0x2dc, data_027c0280->objVram + 0x1000);
-    if (data_0229c744->lists[func_0204779c()].unk_03 <= 1) {
+    if (data_0229c744->lists[SurvivalSelect_GetList()].unk_03 <= 1) {
         Palette_Load(res + 0xe58, 0x300, 32);
     } else {
-        Palette_Load(res + 0xe58 + ((data_0229c744->lists[func_0204779c()].unk_03 - 2) & 7) * 32, 0x300, 32);
-        Palette_Load(res + 0xe58 + ((data_0229c744->lists[func_0204779c()].unk_03 - 1) & 7) * 32, 0x320, 32);
+        Palette_Load(res + 0xe58 + ((data_0229c744->lists[SurvivalSelect_GetList()].unk_03 - 2) & 7) * 32, 0x300, 32);
+        Palette_Load(res + 0xe58 + ((data_0229c744->lists[SurvivalSelect_GetList()].unk_03 - 1) & 7) * 32, 0x320, 32);
     }
     Icon_LoadTo(203, data_027c0280->objVram, 112);
     IconBank_LoadPalette(4, 26);
     SurvivalSelect_LoadCoPictures();
-    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
     Screen_SetCurrentGfx(savedState);
 
     savedState = data_027c0280;

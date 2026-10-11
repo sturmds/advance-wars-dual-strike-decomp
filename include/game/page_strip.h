@@ -13,7 +13,7 @@ typedef struct PageStripList {
 } PageStripList;
 
 /* Allocated work area, through data_0229c744. One list for each value of
- * func_0204779c. */
+ * SurvivalSelect_GetList. */
 typedef struct PageStrip {
     PageStripList lists[2];
     u16 colours[16]; /* palette cycle, one colour every 4 frames */

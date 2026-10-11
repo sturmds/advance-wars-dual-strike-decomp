@@ -3,14 +3,14 @@
 #include "game/page_strip.h"
 
 void *MenuButton_Select(int id);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 
 /* Left and right move the strip's selected button by one, within the
  * current list. */
 void SurvivalSelect_MoveCursorOnKeys(u8 *cursor)
 {
     int target = *cursor;
-    int list = func_0204779c();
+    int list = SurvivalSelect_GetList();
 
     if (gKeypad->repeat & PAD_KEY_LEFT) {
         if (target != 0) {

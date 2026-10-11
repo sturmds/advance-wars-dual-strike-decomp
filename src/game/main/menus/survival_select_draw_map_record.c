@@ -16,7 +16,7 @@ int Survival_GetMapId(int mode, int index);
 s8 Text_Print(s16 x, s16 y, u16 *map, const void *text, u16 unk_30, u16 unk_32);
 s8 Text_PrintId(s16 x, s16 y, u16 *map, u32 textId, u16 unk_30, u16 unk_32);
 BOOL SurvivalSelect_HasRecord(int index);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 int Survival_GetRecordIndex(int mode, int index);
 
 extern Unk_022a7b80 data_022a7b80;
@@ -32,7 +32,7 @@ extern Unk_027c0280 *data_027c0280;
  * lookup. */
 void SurvivalSelect_DrawMapRecord(void)
 {
-    PageStripList *list = &data_0229c744->lists[func_0204779c()];
+    PageStripList *list = &data_0229c744->lists[SurvivalSelect_GetList()];
     int cursor = list->cursor;
     int mode;
     u16 *map;

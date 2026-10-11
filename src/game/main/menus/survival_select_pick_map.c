@@ -10,7 +10,7 @@ void Sound_PlaySe(u32 soundId);
 void SurvivalSelect_DrawMapRecord(void);
 void SurvivalSelect_LoadCoPictures(void);
 int Survival_GetMapId(int mode, int index);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 
 extern Unk_022a7b80 data_022a7b80;
 extern Unk_027c0280 *data_027c0280;
@@ -21,7 +21,7 @@ extern Unk_027c0288 data_027c0288;
  * buttons, the record, the CO pictures and the map preview. */
 void SurvivalSelect_PickMap(u8 *entry)
 {
-    int list = func_0204779c();
+    int list = SurvivalSelect_GetList();
     Unk_027c0280 *savedState;
 
     Sound_PlaySe(0x10002);
@@ -31,6 +31,6 @@ void SurvivalSelect_PickMap(u8 *entry)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     SurvivalSelect_DrawMapRecord();
     SurvivalSelect_LoadCoPictures();
-    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[func_0204779c()].cursor));
+    MapPreview_Draw(data_027c0280->objVram + 0x8000, Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[SurvivalSelect_GetList()].cursor));
     Screen_SetCurrentGfx(savedState);
 }

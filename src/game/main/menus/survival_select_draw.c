@@ -13,7 +13,7 @@ void Sprite_QueuePicture192x160(s16 x, int y, int a2, int a3, int a4);
 void func_02001f50(int x, int y, int attr, int tile, int a4);
 void Co_QueueSmallPictureSprite(int x, int y, int attr, int a3);
 void SurvivalSelect_DrawPageCount(int pages);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 int func_02047924(int mode, int a1);
 int func_02047944(int mode);
 int Survival_GetMapId(int mode, int index);
@@ -37,7 +37,7 @@ extern u8 data_027c01c0;
 void SurvivalSelect_Draw(void)
 {
     int mode = data_022a7b80.unk_07;
-    int list = func_0204779c();
+    int list = SurvivalSelect_GetList();
     int playerCount = Map_GetPlayerCount((u16)Survival_GetMapId(data_022a7b80.unk_07, data_0229c744->lists[list].cursor));
     Unk_027c0280 *savedState = data_027c0280;
     int col;
@@ -87,7 +87,7 @@ void SurvivalSelect_Draw(void)
     for (j = 0; j <= 1; j++) {
         func_02001f50(0x10c0, (168 + j * 16) & 0xff, (j + 6) << 12, 72 + j * 12, j & 1);
     }
-    if (data_0229c744->lists[func_0204779c()].count != 0) {
+    if (data_0229c744->lists[SurvivalSelect_GetList()].count != 0) {
         for (i = 0; i < playerCount - 1; i++) {
             for (j = 0; j <= 1; j++) {
                 int k = j + i * 2;

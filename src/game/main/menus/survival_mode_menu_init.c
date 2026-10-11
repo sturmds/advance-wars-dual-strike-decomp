@@ -25,7 +25,7 @@ void func_01ff9b48(void);
 void func_0202b764(void);
 void func_02046d68(void);
 void SurvivalModeMenu_DrawRecords(void);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 int func_020477d0(int row);
 int func_020478b0(int mode);
 int func_02047924(int mode, int a1);
@@ -41,7 +41,7 @@ extern char data_0215ae5c[]; /* "/ohashi/res_survival" */
  * from res_survival: a panel per row (the second only when func_02047960
  * allows it) and, for each row whose mode has a saved record, the record's
  * two COs (palettes 16 + row * 2 and 17 + row * 2) and an icon. Then resets
- * the menu cursor and buttons and selects the row func_0204779c returns.
+ * the menu cursor and buttons and selects the row SurvivalSelect_GetList returns.
  * Needed to match: the second picture's offset from a local, its palette
  * from row. */
 void SurvivalModeMenu_Init(void)
@@ -97,7 +97,7 @@ void SurvivalModeMenu_Init(void)
     func_0202b764();
     Menu_Reset();
     MenuCursor_SetRect(0, -16, 224, -16);
-    MenuButton_Select(func_0204779c());
+    MenuButton_Select(SurvivalSelect_GetList());
     func_02046d68();
     MenuButtons_DisableTouch();
 }

@@ -9,7 +9,7 @@ void Co_QueueSmallPicture(int coId, void *dest, int paletteSlot);
 void Mem_Zero32(u32 value, void *dst, u32 size);
 u8 Map_GetPlayerCount(u16 mapId);
 BOOL SurvivalSelect_HasRecord(int index);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 int Survival_GetMapId(int mode, int index);
 int Survival_GetRecordIndex(int mode, int index);
 
@@ -39,7 +39,7 @@ extern Unk_027c0280 *data_027c0280;
 void SurvivalSelect_LoadCoPictures(void)
 {
     int i;
-    int cursor = data_0229c744->lists[func_0204779c()].cursor;
+    int cursor = data_0229c744->lists[SurvivalSelect_GetList()].cursor;
     int playerCount = Map_GetPlayerCount(Survival_GetMapId(data_022a7b80.unk_07, cursor));
     int j;
     int co;

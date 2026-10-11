@@ -5,7 +5,7 @@ void MenuButton_Add(int x, int y, void *def, int id);
 void *MenuButton_Select(int id);
 void MenuButtons_RemoveSelectable(void);
 int HwMod32(int num, int denom);
-int func_0204779c(void);
+int SurvivalSelect_GetList(void);
 
 extern u8 data_0215ac24[];
 extern u8 data_0215ad14[];
@@ -15,7 +15,7 @@ extern u8 data_0215ad14[];
  * Name and purpose are guesses. */
 void PageStrip_AddButtons(void)
 {
-    int list = func_0204779c();
+    int list = SurvivalSelect_GetList();
     int x = 0;
     int y = 0;
     int i;
