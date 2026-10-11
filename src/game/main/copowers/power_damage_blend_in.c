@@ -8,7 +8,7 @@ void Task_ResumeScript(Task *task);
 /* Script step after PowerDamage_StartBlend: every third frame fades layer 0
  * in one step (blendEva up, blendEvb down). Resumes the script when
  * blendEva reaches 10. */
-void func_020e385c(PowerDamageTask *task)
+void PowerDamage_BlendIn(PowerDamageTask *task)
 {
     if (task->blendFrame++ > 1) {
         data_027c0280->blendEva++;
