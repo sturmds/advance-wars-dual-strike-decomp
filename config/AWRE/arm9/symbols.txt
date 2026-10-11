@@ -2747,7 +2747,7 @@ func_0208ba10 kind:function(arm,size=0x24) addr:0x0208ba10
 func_0208ba34 kind:function(arm,size=0x28) addr:0x0208ba34
 func_0208ba5c kind:function(arm,size=0x4) addr:0x0208ba5c
 func_0208ba60 kind:function(arm,size=0xc) addr:0x0208ba60
-func_0208ba6c kind:function(arm,size=0x3ac) addr:0x0208ba6c
+CombatManual_Init kind:function(arm,size=0x3ac) addr:0x0208ba6c
 func_0208be18 kind:function(arm,size=0x14) addr:0x0208be18
 func_0208be2c kind:function(arm,size=0xa8) addr:0x0208be2c
 func_0208bed4 kind:function(arm,size=0x6c) addr:0x0208bed4
@@ -7557,7 +7557,7 @@ gResultLionResPath kind:data(any) addr:0x0216172c
 data_02161744 kind:data(any) addr:0x02161744
 data_0216176c kind:data(any) addr:0x0216176c
 data_0216179c kind:data(any) addr:0x0216179c
-data_021617d4 kind:data(any) addr:0x021617d4
+gCombatManualResPath kind:data(any) addr:0x021617d4
 data_021617ec kind:data(any) addr:0x021617ec
 data_021617f4 kind:data(any) addr:0x021617f4
 data_021617fc kind:data(any) addr:0x021617fc
