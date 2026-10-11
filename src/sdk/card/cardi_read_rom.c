@@ -10,7 +10,7 @@ void CARDi_SetTask(GameCardTaskStep task);
 void func_021154ac(void);
 void func_02116070(void);      /* waits for the running request (the definition's parameters are not used here) */
 BOOL func_021162d8(CARDiRomPage *page);
-void func_021161a4(CARDiCommon *common);
+void CardRom_TaskReadRest(CARDiCommon *common);
 
 /* Reads len bytes of game card ROM at src into dst; dma is a DMA channel (0 to 3) or another value for CPU copies. */
 void CARDi_ReadRom(u32 dma, u32 src, u32 dst, u32 len, CARDCallback callback, void *callbackArg, BOOL isAsync)
@@ -45,9 +45,9 @@ void CARDi_ReadRom(u32 dma, u32 src, u32 dst, u32 len, CARDCallback callback, vo
         return;
     }
     if (isAsync) {
-        CARDi_SetTask(func_021161a4);
+        CARDi_SetTask(CardRom_TaskReadRest);
         return;
     }
     common->waiter = OSi_ThreadInfo.current;
-    func_021161a4(common);
+    CardRom_TaskReadRest(common);
 }
