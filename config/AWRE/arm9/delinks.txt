@@ -15200,6 +15200,10 @@ src/game/main/func_020f137c.c:
     complete
     .text       start:0x020f137c end:0x020f138c
 
+src/game/main/map/map_cursor_move_to_touch.c:
+    complete
+    .text       start:0x020f138c end:0x020f151c
+
 src/game/main/graphics/gfx_load_bmap083.c:
     complete
     .text       start:0x020f151c end:0x020f18b0
