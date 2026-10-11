@@ -92,4 +92,14 @@
  * brightness: 0 none, 1-16 towards white, -1 to -16 towards black. */
 void GXx_SetMasterBrightness_(volatile u16 *reg, int brightness);
 
+/* Display state kept by GX_SetGraphicsMode, GX_DispOn and GX_DispOff.
+ * gGxDispMode: display mode last requested (DISPCNT bits 16-17).
+ * gGxDispOn: 0 while the display is switched off (starts at 1). */
+extern u16 gGxDispMode;
+extern u16 gGxDispOn;
+
+void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0As3d);
+void GX_DispOn(void);
+void GX_DispOff(void);
+
 #endif

@@ -8404,7 +8404,7 @@ data_0216d934 kind:data(any) addr:0x0216d934
 data_0216d938 kind:data(any) addr:0x0216d938
 data_0216d93c kind:data(any) addr:0x0216d93c
 gLanguageSuffix kind:data(any) addr:0x0216d940
-data_0216d954 kind:data(any) addr:0x0216d954
+gGxDispOn kind:data(any) addr:0x0216d954
 data_0216d958 kind:data(any) addr:0x0216d958
 data_0216d95c kind:data(any) addr:0x0216d95c
 data_0216d96c kind:data(any) addr:0x0216d96c
@@ -8962,7 +8962,7 @@ data_022a8b80 kind:bss addr:0x022a8b80
 data_022a8d00 kind:bss addr:0x022a8d00
 data_022a9300 kind:bss addr:0x022a9300
 data_022a9870 kind:bss addr:0x022a9870
-data_022a9874 kind:bss addr:0x022a9874
+gGxDispMode kind:bss addr:0x022a9874
 data_022a9878 kind:bss addr:0x022a9878
 data_022a987a kind:bss addr:0x022a987a
 data_022a987c kind:bss addr:0x022a987c
