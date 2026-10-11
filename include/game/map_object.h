@@ -15,7 +15,7 @@ typedef struct MapObject {
     u16 unk_02_10 : 4;
     u16 variant : 2;                   /* index into data_02167e98 for kind 2 */
     u8 hp;                             /* 0: destroyed (Map_GetObjectAt then returns NULL) */
-    u8 pad_05;
+    u8 unk_05;
     s8 unk_06;                         /* Ai_AddObjectThreat handles the objects where this is 1 */
     u8 unk_07;
 } MapObject;

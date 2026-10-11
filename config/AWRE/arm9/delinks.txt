@@ -12463,6 +12463,14 @@ src/game/main/map/map_object_remove.c:
     complete
     .text       start:0x020dae38 end:0x020dae80
 
+src/game/main/map/map_object_add.c:
+    complete
+    .text       start:0x020dae80 end:0x020daefc
+
+src/game/main/map/map_object_append.c:
+    complete
+    .text       start:0x020daefc end:0x020dafc4
+
 src/game/main/map/map_object_get_target_tile.c:
     complete
     .text       start:0x020dafc4 end:0x020db054
