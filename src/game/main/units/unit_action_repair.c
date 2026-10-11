@@ -3,20 +3,12 @@
 #include "game/Unk_02080440.h"
 #include "game/play_records.h"
 #include "game/player.h"
+#include "game/repair_task.h"
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 extern s16 data_021684d8[]; /* dx, dy per direction */
 extern const TaskScriptCmd data_02168538[];
-
-/* Work area of the repair task (script data_02168538). */
-typedef struct RepairTask {
-    u8 pad_00[0x2c];
-    int tileX;
-    int tileY;
-    u8 pad_34[0x4c - 0x34];
-    MapUnit *unit;
-} RepairTask;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 

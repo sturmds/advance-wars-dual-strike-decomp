@@ -8498,6 +8498,10 @@ src/game/main/units/acting_unit_unload_cargo.c:
     complete
     .text       start:0x020de090 end:0x020de244
 
+src/game/main/units/repair_task_service_unit.c:
+    complete
+    .text       start:0x020de244 end:0x020de350
+
 src/game/main/units/unit_action_repair.c:
     complete
     .text       start:0x020de350 end:0x020de440
