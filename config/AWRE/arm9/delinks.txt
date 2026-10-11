@@ -20860,7 +20860,7 @@ src/sdk/func_0210dc64.c:
     complete
     .text       start:0x0210dc64 end:0x0210dc6c
 
-src/game/main/os_init_message_queue.c:
+src/sdk/os_init_message_queue.c:
     complete
     .text       start:0x0210de74 end:0x0210de94
 
@@ -20936,7 +20936,7 @@ src/game/main/func_0211257c.c:
     complete
     .text       start:0x0211257c end:0x021125a0
 
-src/game/main/FS_ReadFile.c:
+src/sdk/FS_ReadFile.c:
     complete
     .text       start:0x02112718 end:0x02112728
 
@@ -21084,7 +21084,7 @@ src/game/main/func_0211e628.c:
     complete
     .text       start:0x0211e628 end:0x0211e648
 
-src/game/main/abs.c:
+src/sdk/abs.c:
     complete
     .text       start:0x021220ac end:0x021220b8
 
