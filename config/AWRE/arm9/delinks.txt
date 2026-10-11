@@ -4568,6 +4568,10 @@ src/game/main/screen/screens_setup_layer0_alpha_blend.c:
     complete
     .text       start:0x02051044 end:0x020513f4
 
+src/game/main/screen/screens_zoom_in_fade_update.c:
+    complete
+    .text       start:0x020513f4 end:0x020517cc
+
 src/game/main/func_020517cc.c:
     complete
     .text       start:0x020517cc end:0x020517d8

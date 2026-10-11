@@ -5,7 +5,7 @@ void Screen_SetCurrentBoth(void *state);
 
 /* On both screens: BG0-BG2 and OBJ on, BG3 off, layer i at priority i,
  * and layer 0 alpha-blended over layers 1 and 2 and the sprites with EVA and
- * EVB 16. Runs in the same task script after func_020513f4. */
+ * EVB 16. Runs in the same task script after Screens_ZoomInFadeUpdate. */
 void Screens_SetupLayer0AlphaBlend(void)
 {
     Unk_027c0280 *saved0280;
