@@ -5494,6 +5494,10 @@ src/game/main/func_02064910.c:
     complete
     .text       start:0x02064910 end:0x0206491c
 
+src/game/main/menus/vs_setup_show_settings_menu.c:
+    complete
+    .text       start:0x0206491c end:0x02064a34
+
 src/game/main/func_02064acc.c:
     complete
     .text       start:0x02064acc end:0x02064af0
