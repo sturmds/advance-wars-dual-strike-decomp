@@ -195,6 +195,10 @@ src/game/itcm/map3d/key_icon_get_texture_offset.c:
     complete
     .text       start:0x01ffc4f4 end:0x01ffc568
 
+src/game/itcm/map3d/digit3d_get_texture_offset.c:
+    complete
+    .text       start:0x01ffc568 end:0x01ffc578
+
 src/game/itcm/func_01ffc5b8.c:
     complete
     .text       start:0x01ffc5b8 end:0x01ffc5c8
