@@ -2702,6 +2702,10 @@ src/game/main/script/func_020234b0.c:
     complete
     .text       start:0x020234b0 end:0x020234dc
 
+src/game/main/task/task_cmd_set_update.c:
+    complete
+    .text       start:0x020234dc end:0x020234fc
+
 src/game/main/task/task_skip_command.c:
     complete
     .text       start:0x020235bc end:0x020235d0
