@@ -10700,6 +10700,10 @@ src/game/main/units/service_cost_popup_start.c:
     complete
     .text       start:0x020cdb14 end:0x020cdba4
 
+src/game/main/units/service_cost_popup_count_down.c:
+    complete
+    .text       start:0x020cdba4 end:0x020cdcb0
+
 src/game/main/func_020cdcb0.c:
     complete
     .text       start:0x020cdcb0 end:0x020cdccc

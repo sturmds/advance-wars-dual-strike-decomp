@@ -46,7 +46,7 @@ typedef struct ServiceCostPopupSlot {
     s16 tileY;
     int cost;                          /* funds the service costs */
     int fundsAfter;                    /* the current player's funds less the cost */
-    u8 pad_2c[0x30 - 0x2c];
+    int step;                          /* taken off cost each frame while the popup counts down */
     u32 unk_30;
     u8 unk_34;
     u8 pad_35[0x38 - 0x35];
