@@ -5283,6 +5283,10 @@ src/game/main/func_02046e64.c:
     complete
     .text       start:0x02046e64 end:0x02046e8c
 
+src/game/main/menus/survival_mode_menu_on_keys.c:
+    complete
+    .text       start:0x02046e8c end:0x02046f3c
+
 src/game/main/func_02046f3c.c:
     complete
     .text       start:0x02046f3c end:0x02046f74
