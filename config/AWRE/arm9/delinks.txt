@@ -4271,6 +4271,10 @@ src/game/main/menus/win_lose_screen_draw_points.c:
     complete
     .text       start:0x0203f4fc end:0x0203f854
 
+src/game/main/menus/win_lose_screen_draw_points_digit.c:
+    complete
+    .text       start:0x0203f854 end:0x0203f9e8
+
 src/game/main/func_0203fbc4.c:
     complete
     .text       start:0x0203fbc4 end:0x0203fbd0
