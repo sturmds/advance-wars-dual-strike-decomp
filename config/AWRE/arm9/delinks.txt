@@ -7825,6 +7825,10 @@ src/game/main/func_020886cc.c:
     complete
     .text       start:0x020886cc end:0x02088764
 
+src/game/main/menus/row_lock_mark_squash_out.c:
+    complete
+    .text       start:0x02088764 end:0x020888ec
+
 src/game/main/func_020888ec.c:
     complete
     .text       start:0x020888ec end:0x020888f8
