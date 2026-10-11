@@ -5875,8 +5875,8 @@ __flush_buffer kind:function(arm,size=0x9c) addr:0x021220b8
 __prep_buffer kind:function(arm,size=0x34) addr:0x02122154
 __convert_from_newlines kind:function(arm,size=0x4) addr:0x02122188
 fflush kind:function(arm,size=0x100) addr:0x0212218c
-func_0212228c kind:function(arm,size=0x94) addr:0x0212228c
-func_02122320 kind:function(arm,size=0x28) addr:0x02122320
+wcstombs kind:function(arm,size=0x94) addr:0x0212228c
+wctomb kind:function(arm,size=0x28) addr:0x02122320
 func_02122348 kind:function(arm,size=0x14) addr:0x02122348
 func_0212235c kind:function(arm,size=0x38) addr:0x0212235c
 func_02122394 kind:function(arm,size=0x2c) addr:0x02122394
@@ -5895,7 +5895,7 @@ func_02123dcc kind:function(arm,size=0x5dc) addr:0x02123dcc
 func_021243a8 kind:function(arm,size=0x150) addr:0x021243a8
 func_021244f8 kind:function(arm,size=0x3c) addr:0x021244f8
 func_02124534 kind:function(arm,size=0x12c) addr:0x02124534
-func_02124660 kind:function(arm,size=0x74) addr:0x02124660
+strncpy kind:function(arm,size=0x74) addr:0x02124660
 func_021246d4 kind:function(arm,size=0xd8) addr:0x021246d4
 strlen kind:function(arm,size=0x1c) addr:0x021247ac
 func_021247c8 kind:function(arm,size=0x28) addr:0x021247c8
@@ -8426,7 +8426,7 @@ data_0216dd2c kind:data(any) addr:0x0216dd2c
 data_0216dd30 kind:data(any) addr:0x0216dd30
 data_0216dd38 kind:data(any) addr:0x0216dd38
 data_0216dd40 kind:data(any) addr:0x0216dd40
-data_0216dd4c kind:data(any) addr:0x0216dd4c
+gMslLocale kind:data(any) addr:0x0216dd4c
 data_0216dd58 kind:data(any) addr:0x0216dd58
 data_0216dd64 kind:data(any) addr:0x0216dd64
 data_0216dd74 kind:data(any) addr:0x0216dd74
