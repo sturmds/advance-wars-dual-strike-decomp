@@ -36,7 +36,7 @@ void func_02023f38(void);
 void IconBank_Init(int bank, u8 *vram, int firstTile, int paletteSlot);
 void Icon_Load(int iconId);
 void func_ov005_02363014(Ov005Task *task);
-ShowSprite *func_02022478(void *file, int a, int b);
+ShowSprite *SpriteAnim_Create(void *file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 
 extern Unk_02080440 *data_027c027c;
@@ -186,7 +186,7 @@ void Ov005_InitCoScreen(Ov005Task *task)
         Palette_LoadFromFile(data_ov005_0236ae7c, 0, 0x200, 32);
         work->spriteFile = File_Load(data_ov005_0236ae80);
         for (sprite = 0; sprite < 9; sprite++) {
-            work->unk_21c[sprite] = func_02022478(work->spriteFile, 0, 2);
+            work->unk_21c[sprite] = SpriteAnim_Create(work->spriteFile, 0, 2);
             ((ShowSprite *)work->unk_21c[sprite])->unk_24 = 0;
             SpriteAnim_SetAnimation(work->unk_21c[sprite], sprite);
         }

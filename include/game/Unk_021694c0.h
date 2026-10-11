@@ -31,7 +31,7 @@ typedef struct Unk_021694c0Task {
     int x;
     int y;
     u8 pad_34[0x50 - 0x34];
-    struct ShowSprite *sprite;         /* handle from func_02022478 */
+    struct ShowSprite *sprite;         /* handle from SpriteAnim_Create */
     u8 pad_54[0x64 - 0x54];
     s16 frame;
 } Unk_021694c0Task;

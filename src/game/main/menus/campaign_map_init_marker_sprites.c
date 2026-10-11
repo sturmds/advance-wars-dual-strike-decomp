@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/unit_show_task.h"
 
-ShowSprite *func_02022478(void *file, int a, int b);
+ShowSprite *SpriteAnim_Create(void *file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 s32 Rng_Range(s32 min, s32 max);
 
@@ -18,10 +18,10 @@ extern MenuState gMenuState;
  * is a guess: nothing shows what the sprites look like. */
 void CampaignMap_InitMarkerSprites(CampaignMapTask *task)
 {
-    gMenuState.campaignMap.sprites[0] = func_02022478(WORK_FIELD(unk_244), 1, 2);
+    gMenuState.campaignMap.sprites[0] = SpriteAnim_Create(WORK_FIELD(unk_244), 1, 2);
     SpriteAnim_SetAnimation(gMenuState.campaignMap.sprites[0], 0);
     gMenuState.campaignMap.sprites[0]->unk_24 = 0x97c;
-    gMenuState.campaignMap.sprites[1] = func_02022478(WORK_FIELD(unk_244), 1, 2);
+    gMenuState.campaignMap.sprites[1] = SpriteAnim_Create(WORK_FIELD(unk_244), 1, 2);
     SpriteAnim_SetAnimation(gMenuState.campaignMap.sprites[1], 1);
     gMenuState.campaignMap.sprites[1]->unk_24 = 0x97c;
     task->unk_64 = 2;

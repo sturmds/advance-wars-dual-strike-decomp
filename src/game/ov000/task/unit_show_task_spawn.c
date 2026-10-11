@@ -25,7 +25,7 @@ int FS_ChangeDir(const char *path);
 void *File_Load(const char *path);
 void Palette_Load(const void *src, u32 offset, u32 size);
 void GfxQueue_AddKind2(const void *src, void *dst, u32 size);
-ShowSprite *func_02022478(void *file, int a, int b);
+ShowSprite *SpriteAnim_Create(void *file, int a, int b);
 void SpriteAnim_SetAnimation(ShowSprite *sprite, int frame);
 int UnitShowTask_CheckVisible(UnitShowTask *task);
 void UnitShowTask_PlaceSprite(UnitShowTask *task);
@@ -53,10 +53,10 @@ UnitShowTask *UnitShowTask_Spawn(int x, int y, int owner, int type)
     file = File_Load(UnitShowEntry_GetSpritePath(type));
     task = (UnitShowTask *)Task_Create(data_ov000_022db6cc, TASK_LIST(5));
     if ((void *)data_027c027c == data_027c0288) {
-        task->sprite = func_02022478(file, 2, 14);
+        task->sprite = SpriteAnim_Create(file, 2, 14);
         task->sprite->flags |= 0x20;
     } else {
-        task->sprite = func_02022478(file, 2, 2);
+        task->sprite = SpriteAnim_Create(file, 2, 2);
     }
     task->slot = slot;
     task->unit = NULL;

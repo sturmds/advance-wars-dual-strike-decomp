@@ -13,7 +13,7 @@ void Sound_PlaySe(int songId);
 void ScreenShake_Start(int tableIndex, int steps, void *parent);
 void SpriteAnim_SetAnimation(Unk_02022404 *sprite, int animation);
 void func_0202244c(Unk_02022404 *sprite);
-Unk_02022404 *func_02022478(void *file, int a, int b);
+Unk_02022404 *SpriteAnim_Create(void *file, int a, int b);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
@@ -28,7 +28,7 @@ void TileStrikeTask_UpdateFall2d(TileStrikeTask *task)
     }
     func_0202244c(task->sprite);
     task->y = task->tileY * 16 + 8;
-    task->sprite = func_02022478(data_02148eec, 1, 2);
+    task->sprite = SpriteAnim_Create(data_02148eec, 1, 2);
     task->sprite->unk_24 = 0x5194;
     SpriteAnim_SetAnimation(task->sprite, 1);
     Sound_PlaySe(159);

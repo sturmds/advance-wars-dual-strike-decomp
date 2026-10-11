@@ -41,7 +41,7 @@ typedef struct Unk_ov005_0236bba4 {
     u32 unk_50;
     Unk_ov005_0236bba4_State states[41]; /* copy of data_ov005_0236a74c */
     Unk_ov005_0236bba4_State *stateTable; /* points at states */
-    void *spriteFile;                  /* /rikiishi/050; func_02022478 makes the unk_390 sprites from it */
+    void *spriteFile;                  /* /rikiishi/050; SpriteAnim_Create makes the unk_390 sprites from it */
     void *unk_390[3];
 } Unk_ov005_0236bba4;
 

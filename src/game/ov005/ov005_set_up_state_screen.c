@@ -23,7 +23,7 @@ void FS_ChangeDir(const char *dir);
 void File_UnpackTo(void *dest, const char *fileName);
 void Palette_LoadFromFile(const char *fileName, int fileOffset, int paletteOffset, int size);
 void *File_Load(const char *path);
-ShowSprite *func_02022478(void *file, int a, int b);
+ShowSprite *SpriteAnim_Create(void *file, int a, int b);
 void func_ov005_0235ec40(Unk_ov005_0236bba4 *work);
 
 extern Unk_02080440 *data_027c027c;
@@ -168,7 +168,7 @@ void Ov005_SetUpStateScreen(Ov005Task *task)
     Palette_LoadFromFile(data_ov005_0236aa90, 0, 0x340, 32);
     work->spriteFile = File_Load(data_ov005_0236aa94);
     for (i = 0; i < 3; i++) {
-        work->unk_390[i] = func_02022478(work->spriteFile, 0, 2);
+        work->unk_390[i] = SpriteAnim_Create(work->spriteFile, 0, 2);
         ((ShowSprite *)work->unk_390[i])->unk_24 = 0xa200;
     }
     Screen_SetCurrent(saved027c);

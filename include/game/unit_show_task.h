@@ -8,7 +8,7 @@
 
 #define UNIT_SHOW_PATH_LENGTH 16
 
-/* Sprite handle of a UnitShowTask (func_02022478 makes it from a loaded file). */
+/* Sprite handle of a UnitShowTask (SpriteAnim_Create makes it from a loaded file). */
 typedef struct ShowSprite {
     u8 pad_00[0x20];
     u8 flags;                          /* 0x20 set for the first screen's 3D sprite */
