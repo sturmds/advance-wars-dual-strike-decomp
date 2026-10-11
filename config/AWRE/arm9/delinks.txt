@@ -10415,6 +10415,10 @@ src/game/main/link/link_task_wait_for_peer.c:
     complete
     .text       start:0x020d6ad8 end:0x020d6b48
 
+src/game/main/link/link_task_start_exchange.c:
+    complete
+    .text       start:0x020d6b48 end:0x020d6b84
+
 src/game/main/map/versus_task_reset_game.c:
     complete
     .text       start:0x020d6dc4 end:0x020d6e44
