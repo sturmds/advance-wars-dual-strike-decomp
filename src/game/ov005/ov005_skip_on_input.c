@@ -3,7 +3,7 @@
 #include "game/Unk_ov005_0235a30c.h"
 
 BOOL GameFlag_IsSet(u32 flag);
-BOOL func_020fd7b0(void);
+BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmPressed(void);
 
 /* With game flag 57 set, a touch or a press of A or Start in one of the
@@ -13,7 +13,7 @@ void Ov005_SkipOnInput(Unk_ov005_0235a30c *work, Ov005Task *task)
     if (!GameFlag_IsSet(57)) {
         return;
     }
-    if (!func_020fd7b0() && !Keypad_ConfirmPressed()) {
+    if (!Touch_IsPressed() && !Keypad_ConfirmPressed()) {
         return;
     }
     switch (task->step) {

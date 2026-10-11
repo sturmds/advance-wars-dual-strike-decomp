@@ -7,7 +7,7 @@
 
 BOOL func_020fd624(Task *task);
 void func_020fd618(Task *task);
-BOOL func_020fd7b0(void);
+BOOL Touch_IsPressed(void);
 BOOL Keypad_ConfirmPressed(void);
 void Screens_BlackOut(void);
 BOOL func_02004828(void);
@@ -155,7 +155,7 @@ void Ov004Task_RunPressStartScreen(Ov004Task *task)
         task->step++;
         break;
     case 51:
-        if (func_020fd7b0() || Keypad_ConfirmPressed()) {
+        if (Touch_IsPressed() || Keypad_ConfirmPressed()) {
             Sound_PlaySe(0x10006);
             task->step = 100;
         } else if (state->unk_1bf0 != 0) {

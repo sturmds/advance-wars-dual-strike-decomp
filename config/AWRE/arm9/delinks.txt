@@ -10316,6 +10316,10 @@ src/game/main/keypad_confirm_pressed.c:
     complete
     .text       start:0x020fd790 end:0x020fd7b0
 
+src/game/main/touch_is_pressed.c:
+    complete
+    .text       start:0x020fd7b0 end:0x020fd7dc
+
 src/game/main/func_020fd85c.c:
     complete
     .text       start:0x020fd85c end:0x020fd874
