@@ -14,7 +14,7 @@ void func_020b9d48(void);
 void func_020c8888(void);
 s8 func_020bf260(void);
 void func_020bc404(void);
-void func_02080278(int unitIndex, int a1, int a2);
+void UnitAction_SendUnload(int unitIndex, int a1, int a2);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -22,7 +22,7 @@ void func_02080278(int unitIndex, int a1, int a2);
  * cargo slot in unk_68). When unk_6a is 0 it drops that cargo unit, and
  * while func_020bf260 returns 0, func_020bc404 runs (guess: the unit menu opens again)
  * with the view target on the acting unit and unk_1c set to 5. Otherwise the
- * action ends and, when data_0229eaec is set, func_02080278 sends it. */
+ * action ends and, when data_0229eaec is set, UnitAction_SendUnload sends it. */
 void UnloadTask_Step(Task *task)
 {
     if (task->unk_6a == 0) {
@@ -43,6 +43,6 @@ void UnloadTask_Step(Task *task)
     STATE->unk_1c = 0;
     ActingUnit_FinishAction();
     if (data_0229eaec != 0) {
-        func_02080278(STATE->actingUnitIndex, data_022a6b34[0], data_022a6b34[1]);
+        UnitAction_SendUnload(STATE->actingUnitIndex, data_022a6b34[0], data_022a6b34[1]);
     }
 }

@@ -11,13 +11,13 @@ void func_0201e954(void);
 void ActingUnit_SaveStartPos(void);
 void ActingUnit_FinishAction(void);
 void ActingUnitStart_Restore(void);
-void func_02080278(int unitIndex, int a1, int a2);
+void UnitAction_SendUnload(int unitIndex, int a1, int a2);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
 
 /* Unit command menu: Wait. When data_0229eaec is set, sends unit action 2, or
- * through func_02080278 when either byte of data_022a6b34 is nonzero. */
+ * through UnitAction_SendUnload when either byte of data_022a6b34 is nonzero. */
 void UnitMenu_Wait(void)
 {
     func_020b9d48();
@@ -29,7 +29,7 @@ void UnitMenu_Wait(void)
         if (data_022a6b34[0] == 0 && data_022a6b34[1] == 0) {
             UnitAction_Send(2, GAME->actingUnitIndex, 0, 0);
         } else {
-            func_02080278(GAME->actingUnitIndex, data_022a6b34[0], data_022a6b34[1]);
+            UnitAction_SendUnload(GAME->actingUnitIndex, data_022a6b34[0], data_022a6b34[1]);
         }
     }
 }

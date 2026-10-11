@@ -8076,6 +8076,10 @@ src/game/main/link/link_send_weather.c:
     complete
     .text       start:0x020801dc end:0x02080278
 
+src/game/main/units/unit_action_send_unload.c:
+    complete
+    .text       start:0x02080278 end:0x020802e8
+
 src/game/main/func_020802e8.c:
     complete
     .text       start:0x020802e8 end:0x0208038c
