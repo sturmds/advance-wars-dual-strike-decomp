@@ -3,7 +3,7 @@
 #include "game/screen_other_map.h"
 
 extern Unk_0201d320 data_022977f4[];
-void func_02019a6c(int player, int arg);
+void LinkPlayers_DefeatOtherTeams(int player, int arg);
 
 BOOL func_0201b5dc(s16 index)
 {
@@ -21,7 +21,7 @@ BOOL func_0201b5dc(s16 index)
     Screen_SetCurrentGfx(data_027c0288.unk_00);
     saved027c = data_027c027c;
     Screen_SetCurrent(data_027c0288.unk_00);
-    func_02019a6c(player, 128);
+    LinkPlayers_DefeatOtherTeams(player, 128);
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
     script->unk_00++;
