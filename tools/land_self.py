@@ -33,10 +33,12 @@ worktree. A run that outlived a tool timeout keeps running in the
 background; wait for it with `flock <lock file> true` (the message names
 the file) instead of starting a second one, and never stop it with pkill.
 
-Before step 1 it checks that the tenets review ran on each commit that
-touches src/ or include/ (tools/review_stamp.py; the exemptions are listed
-there). Commits without a review stamp stop the run with exit code 5 and a
-message that says how to review and stamp them.
+Before step 1, and again after each replay, it checks that the tenets
+review ran on each commit that touches src/ or include/
+(tools/review_stamp.py; the exemptions are listed there). Commits without
+a review stamp stop the run with exit code 5 and a message that says how
+to review and stamp them. Otherwise it prints each commit's review
+findings, so the log shows what the review checked.
 
 When a replay changes tools/land_self.py or tools/review_stamp.py, the run
 starts again from the replayed copy (os.execv) before it builds or lands,
@@ -199,22 +201,31 @@ def fast_forward(onto: str, branch: str) -> str | None:
         return git("rev-parse", "refs/heads/mainline")
 
 
-def unreviewed() -> bool:
-    """Print what to do and return True if commits lack a review stamp."""
-    todo = review_stamp.missing("refs/heads/mainline")
+def unreviewed(show_findings: bool = True) -> bool:
+    """Print what to do and return True if commits lack a review stamp;
+    otherwise, with show_findings, print the stamped findings for the log."""
+    commits = [c for c in review_stamp.branch_commits("refs/heads/mainline") if review_stamp.needs_stamp(c)]
+    todo = [c for c in commits if not review_stamp.is_stamped(c)]
     if not todo:
+        if show_findings:
+            for c in commits:
+                print(f"review findings for {review_stamp.describe(c)}:\n{review_stamp.findings_of(c).rstrip()}")
         return False
     lines = "\n".join("    " + review_stamp.describe(c) for c in todo)
     hashes = " ".join(c[:10] for c in todo)
     print(f"error: the tenets review has no record for these commits:\n{lines}\n"
           "Every commit that changes src/ or include/ must pass the review in\n"
-          ".claude/skills/tenets-review/SKILL.md before it lands. For each commit above:\n"
+          ".claude/skills/tenets-review/SKILL.md before it lands. A commit fixed by hand\n"
+          "during `rebase_onto_mainline.py --continue` needs a new review too. For each\n"
+          "commit above:\n"
           "  1. Read it (`git show <hash>`) and do the review: run tools/style_check.py on\n"
           "     its changed files and on its message, and check its C against TENETS.md.\n"
-          "  2. If the review finds problems, fix them in a new commit, reviewed the same\n"
-          "     way: stage the fix, review it, run `python3 tools/review_stamp.py`, commit.\n"
-          "  3. Record that each listed commit was reviewed:\n"
-          f"         python3 tools/review_stamp.py {hashes}\n"
+          "     Write what you checked and found in a findings file, one or more lines\n"
+          "     `<path>: <findings>` for each file it changes under src/ or include/.\n"
+          "  2. If the review finds problems, fix them in a new commit, reviewed and\n"
+          "     stamped the same way before you commit it.\n"
+          "  3. Record the review of the listed commits:\n"
+          f"         python3 tools/review_stamp.py --findings FILE {hashes}\n"
           "Then run `python3 tools/land_self.py` again. Never stamp a commit you have not\n"
           "reviewed. `python3 tools/review_stamp.py --missing` lists what is left.",
           file=sys.stderr)
@@ -255,6 +266,8 @@ def main() -> int:
             os.set_inheritable(queue.fileno(), True)
             os.environ["LAND_QUEUE_FD"] = str(queue.fileno())
             os.execv(sys.executable, [sys.executable, str(ROOT / "tools/land_self.py"), *sys.argv[1:]])
+        if unreviewed(show_findings=False):
+            return UNREVIEWED
         if run("make", "release"):
             return BUILD_FAILED
         code = write_progress()

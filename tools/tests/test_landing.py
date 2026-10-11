@@ -386,21 +386,70 @@ class ReviewStampTest(RepoCase):
         r = self.tool("review_stamp.py", "--missing")
         return [line.split()[0] for line in r.stdout.splitlines()]
 
+    def stamp(self, *revs: str, findings: str | None = None):
+        """Stamp with a findings line for every changed file under src/ and include/."""
+        if findings is None:
+            files = self.repo.git("-C", str(self.wt), "diff", "--cached", "--name-only") if not revs else \
+                "\n".join(self.repo.git("-C", str(self.wt), "diff-tree", "--root", "-r", "--name-only",
+                                        "--no-commit-id", rev) for rev in revs)
+            findings = "".join(f"{f}: names, types, casts and comments checked; nothing to fix\n"
+                               for f in files.split() if f.startswith(("src/", "include/")))
+        path = Path(self.tmp.name) / "findings.txt"
+        path.write_text(findings)
+        return self.tool("review_stamp.py", "--findings", str(path), *revs)
+
     def test_land_refuses_unreviewed(self):
         c = self.commit({"src/f.c": "int f(void) { return 0; }\n"}, "Decompile f (main 0x02000900)")
         r = self.tool("land_self.py")
         self.assertEqual(r.returncode, 5, r.stdout + r.stderr)
         self.assertIn(c[:7], r.stderr)
-        self.assertIn(f"python3 tools/review_stamp.py {c[:10]}", r.stderr)
+        self.assertIn(f"python3 tools/review_stamp.py --findings FILE {c[:10]}", r.stderr)
         self.assertIn("tenets-review/SKILL.md", r.stderr)
-        self.assertEqual(self.tool("review_stamp.py", c).returncode, 0)
+        self.assertEqual(self.stamp(c).returncode, 0)
         r = self.tool("land_self.py")
         self.assertNotEqual(r.returncode, 5, r.stdout + r.stderr)  # goes on (no Makefile here)
+        # The log shows what the review found.
+        self.assertIn("review findings for", r.stdout)
+        self.assertIn("src/f.c: names, types, casts and comments checked", r.stdout)
+
+    def test_stamp_needs_findings(self):
+        """2026-10-11: b19/s07 stamped 15 commits without reviewing them. A
+        stamp now needs a findings line for each changed file."""
+        c = self.commit({"src/f.c": "int f(void) { return 0; }\n",
+                         "include/t.h": header("#define FLAG_A 1\n#define FLAG_F 2\n")}, "Decompile f")
+        r = self.tool("review_stamp.py", c)
+        self.assertEqual(r.returncode, 2, r.stdout + r.stderr)
+        self.assertIn("--findings FILE is required", r.stderr)
+        r = self.stamp(c, findings="src/f.c: checked names, types and comments, all fine\ninclude/t.h: ok\n")
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("no line `include/t.h: <what was checked and found>`", r.stderr)
+        self.assertEqual(self.missing(), [c[:7]])
+        r = self.stamp(c)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertEqual(self.missing(), [])
+        self.assertIn("include/t.h: names", self.tool("review_stamp.py", "--show", c).stdout)
+
+    def test_stamp_runs_style_check(self):
+        word = next(w.rstrip("*") for w in (TOOLS.parent / "docs/style/banned.txt").read_text().splitlines()
+                    if not w.startswith("#") and w.rstrip("*").isalpha())
+        c = self.commit({"src/f.c": f"/* {word} */\nint f(void) {{ return 0; }}\n"}, "Decompile f")
+        r = self.stamp(c)
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("src/f.c:1: error: banned word", r.stdout)
+        self.assertEqual(self.missing(), [c[:7]])
+
+    def test_stamp_without_findings_is_missing(self):
+        """Stamps written before findings were required count as missing."""
+        c = self.commit({"src/f.c": "int f(void) { return 0; }\n"}, "Decompile f")
+        self.assertEqual(self.stamp(c).returncode, 0)
+        [old] = (self.repo.path / ".git/tenets-review").iterdir()
+        old.write_text("2026-10-10T00:00:00Z staged change\n")
+        self.assertEqual(self.missing(), [c[:7]])
 
     def test_stamp_staged_change(self):
         (self.wt / "src/f.c").write_text("int f(void) { return 0; }\n")
         self.repo.git("-C", str(self.wt), "add", "-A")
-        r = self.tool("review_stamp.py")
+        r = self.stamp()
         self.assertIn("stamped the staged change", r.stdout)
         self.repo.git("-C", str(self.wt), "commit", "-q", "-m", "Decompile f")
         self.assertEqual(self.missing(), [])
@@ -426,7 +475,7 @@ class ReviewStampTest(RepoCase):
     def test_stamp_survives_replay(self):
         c = self.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 3;\n}\n"},
                         "Decompile b")
-        self.tool("review_stamp.py", c)
+        self.assertEqual(self.stamp(c).returncode, 0)
         # Mainline changes a line next to the commit's hunk, so the replayed
         # diff has other context lines and another patch ID.
         self.repo.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void) /* b */\n{\n    return 2;\n}\n"},
@@ -437,6 +486,28 @@ class ReviewStampTest(RepoCase):
         self.assertEqual(self.missing(), [])
         # Two stamps: the patch ID changed and the replay carried the stamp over.
         self.assertEqual(len(list((self.repo.path / ".git/tenets-review").iterdir())), 2)
+
+    def test_hand_fix_needs_new_stamp(self):
+        """2026-10-11: agents changed C by hand while fixing replay conflicts
+        (b21/s27, b21/m17), and the replay stamped the result. A commit
+        committed by --continue now needs a new review."""
+        c = self.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 3;\n}\n"},
+                        "Decompile b")
+        self.assertEqual(self.stamp(c).returncode, 0)
+        self.repo.commit({"src/a.c": "int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 4;\n}\n"},
+                         "mainline change")
+        r = self.tool("rebase_onto_mainline.py")
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        (self.wt / "src/a.c").write_text("int a(void)\n{\n    return 1;\n}\n\nint b(void)\n{\n    return 5;\n}\n")
+        r = self.tool("rebase_onto_mainline.py", "--continue")
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("fixed by hand, so it needs a new tenets review", r.stdout)
+        new = self.repo.git("-C", str(self.wt), "rev-parse", "HEAD")
+        self.assertEqual(self.missing(), [new[:7]])
+        r = self.tool("land_self.py")
+        self.assertEqual(r.returncode, 5, r.stdout + r.stderr)
+        self.assertEqual(self.stamp(new).returncode, 0)
+        self.assertEqual(self.missing(), [])
 
 
 class LandSelfReexecTest(RepoCase):

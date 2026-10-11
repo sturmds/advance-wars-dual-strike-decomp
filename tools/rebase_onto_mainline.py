@@ -21,8 +21,10 @@ are staged. Fix them, `git add` the files, and run it with --continue.
 PROGRESS.md is never committed here: mainline writes it when the commit
 lands.
 
-A replayed commit keeps its tenets review stamp (tools/review_stamp.py),
-also when the merge or a fix during --continue changed its diff.
+A commit replayed without a stop keeps its tenets review stamp
+(tools/review_stamp.py), also when the merge changed its diff. A commit
+committed by --continue was fixed by hand, so it needs a new review and
+stamp before land_self.py lands it.
 
 It refuses to run while land_self.py or another rebase_onto_mainline.py
 runs in this worktree: both hold <git dir>/land-self.lock.
@@ -113,14 +115,15 @@ def replay(state: dict) -> int:
         if r.returncode:
             stop(commit)
             return 1
-        done(state, commit)
+        done(state, commit, reviewed=True)
     return finish(state)
 
 
-def done(state: dict, commit: str) -> None:
+def done(state: dict, commit: str, reviewed: bool) -> None:
     new = git("rev-parse", "HEAD")
-    # The merge may have changed the diff; a reviewed commit stays reviewed.
-    review_stamp.carry(commit, new)
+    # Only the tools changed the diff of a commit replayed without a stop.
+    if reviewed:
+        review_stamp.carry(commit, new)
     state["done"].append([commit, new])
     state["todo"].pop(0)
     save(state)
@@ -149,9 +152,12 @@ def resume() -> int:
         if r.returncode:
             stop(commit)
             return 1
+        if review_stamp.needs_stamp("HEAD") and not review_stamp.is_stamped("HEAD"):
+            print(f"{review_stamp.describe('HEAD')}: fixed by hand, so it needs a new tenets review"
+                  " and stamp before it lands")
     else:
         print(f"{commit[:10]} has nothing left to commit after the fix; skipped")
-    done(state, commit)
+    done(state, commit, reviewed=False)
     return replay(state)
 
 
