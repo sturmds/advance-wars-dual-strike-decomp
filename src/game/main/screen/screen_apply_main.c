@@ -15,8 +15,8 @@ BOOL Screen_IsTextBg(int bg);
 void GX_VBlankIntr(BOOL enable);
 void GX_HBlankIntr(BOOL enable);
 void func_0210a5d4(int line);
-void func_0210b528(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
-void func_0210b580(volatile u16 *reg, int top, int bottom, int eva, int evb);
+void G2x_SetBlendBrightnessExt(volatile u16 *reg, int top, int bottom, int eva, int evb, int evy);
+void G2x_SetBlendAlpha(volatile u16 *reg, int top, int bottom, int eva, int evb);
 void func_0210b684(int offset);
 
 #define GFX data_027c0280
@@ -100,12 +100,12 @@ static inline void SetMosaicSize(volatile u8 *reg, int h, int v)
 
 static inline void SetBlendAlpha(int top, int bottom, int eva, int evb)
 {
-    func_0210b580(REG_BLDCNT, top, bottom, eva, evb);
+    G2x_SetBlendAlpha(REG_BLDCNT, top, bottom, eva, evb);
 }
 
 static inline void SetBlendBrightness(int top, int bottom, int eva, int evb, int evy)
 {
-    func_0210b528(REG_BLDCNT, top, bottom, eva, evb, evy);
+    G2x_SetBlendBrightnessExt(REG_BLDCNT, top, bottom, eva, evb, evy);
 }
 
 static inline void SetWnd0Position(int left, int top, int right, int bottom)

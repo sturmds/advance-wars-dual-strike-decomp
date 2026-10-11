@@ -22,8 +22,8 @@ extern u32 data_027c0268;  /* BLDCNT */
 extern u8 data_027c0238;
 
 BOOL Screen_IsTextBg(int bg);
-void func_0210b580(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2);
-void func_0210b528(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2, int brightness);
+void G2x_SetBlendAlpha(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2);
+void G2x_SetBlendBrightnessExt(u32 *bldcnt, int plane1, int plane2, int ev1, int ev2, int brightness);
 
 #define GFX data_027c0280
 
@@ -77,14 +77,14 @@ void Screen_PrepareHBlankRegs(void)
         data_027c0268 = 0;
         break;
     case 1:
-        func_0210b580(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb);
+        G2x_SetBlendAlpha(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb);
         break;
     case 2:
-        func_0210b528(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb,
+        G2x_SetBlendBrightnessExt(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb,
                       GFX->blendEvy);
         break;
     case 3:
-        func_0210b528(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb,
+        G2x_SetBlendBrightnessExt(&data_027c0268, BLEND_TOP_PLANES, BLEND_BOTTOM_PLANES, GFX->blendEva, GFX->blendEvb,
                       -GFX->blendEvy);
         break;
     }

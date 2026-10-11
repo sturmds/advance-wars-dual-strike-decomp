@@ -102,6 +102,11 @@
 #define GX_VRAM_H 0x080
 #define GX_VRAM_I 0x100
 
+/* BLDCNT color effect field (bits 6-7). */
+#define BLDCNT_EFFECT_ALPHA 0x40
+#define BLDCNT_EFFECT_BRIGHTEN 0x80
+#define BLDCNT_EFFECT_DARKEN 0xc0
+
 void Vram_PowerOnBanks(u32 banks);
 void GX_SetBankForTexPltt(int texPltt);
 #define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)

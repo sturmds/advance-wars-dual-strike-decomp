@@ -20849,6 +20849,14 @@ src/sdk/gx/vram_power_on_banks.c:
     complete
     .text       start:0x0210b470 end:0x0210b528
 
+src/sdk/gx/g2x_set_blend_brightness_ext.c:
+    complete
+    .text       start:0x0210b528 end:0x0210b580
+
+src/sdk/gx/g2x_set_blend_alpha.c:
+    complete
+    .text       start:0x0210b580 end:0x0210b59c
+
 src/game/main/func_0210b59c.c:
     complete
     .text       start:0x0210b59c end:0x0210b5b8
