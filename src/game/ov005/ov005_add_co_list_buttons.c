@@ -6,7 +6,7 @@
 #include "game/Unk_ov005_0236bba0.h"
 #include "game/text_print.h"
 
-BOOL func_02017b1c(int coId);
+BOOL Co_IsAvailable(int coId);
 u32 Ov005_GetCoListEntryName(int entry);
 
 extern u8 data_ov005_0236a48c[33];
@@ -17,7 +17,7 @@ extern const MenuButtonTemplate data_ov005_0236a4d8;
  * available entry a button (id 128 + entry) and prints its name on the top
  * screen. An entry whose CO byte is 0 is always available and 255 never;
  * COs 28, 29 and 30 need game flags 64, 65 and 63; the others ask
- * func_02017b1c. Selects the button of work->selectedEntry. */
+ * Co_IsAvailable. Selects the button of work->selectedEntry. */
 void Ov005_AddCoListButtons(Ov005Task *task)
 {
     Unk_ov005_0236bba0 *work = task->work;
@@ -42,7 +42,7 @@ void Ov005_AddCoListButtons(Ov005Task *task)
         } else if (*coIds == 255) {
             active = 0;
         } else {
-            active = func_02017b1c(*coIds);
+            active = Co_IsAvailable(*coIds);
         }
         work->entryActive[i] = active;
     }
