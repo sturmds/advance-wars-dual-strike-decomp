@@ -8,7 +8,7 @@ extern u8 data_ov006_0236d744[][30];
 s32 Rng_Range(s32 min, s32 max);
 int Ov006_FindRandomCell(int *x, int *y, int cell);
 void Ov006_SetMapCell(int x, int y, int cell);
-void func_ov006_0235a7c0(int a, int b);
+void Ov006_GrowCells(int cell, int fromCell);
 void Ov006_SettleSeedTiles(void);
 void Ov006_MarkMapBorder(void);
 
@@ -19,7 +19,7 @@ void Ov006_MarkMapBorder(void);
 #define MARK_SEED  2
 
 /* Random map step: puts 2 to 8 plus-shaped patches of sea on plain tiles
- * and grows them out over the plain (func_ov006_0235a7c0). */
+ * and grows them out over the plain (Ov006_GrowCells). */
 void Ov006_ScatterSea(void)
 {
     int x;
@@ -53,5 +53,5 @@ void Ov006_ScatterSea(void)
         }
     }
     Ov006_SettleSeedTiles();
-    func_ov006_0235a7c0(CELL_SEA, 1);
+    Ov006_GrowCells(CELL_SEA, 1);
 }

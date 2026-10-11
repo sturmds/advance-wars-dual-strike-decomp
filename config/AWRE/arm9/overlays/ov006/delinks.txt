@@ -695,6 +695,10 @@ src/game/ov006/ov006_pick_link_tiles.c:
     complete
     .text       start:0x0235a1ac end:0x0235a7c0
 
+src/game/ov006/ov006_grow_cells.c:
+    complete
+    .text       start:0x0235a7c0 end:0x0235a904
+
 src/game/ov006/ov006_pick_random_cell_near.c:
     complete
     .text       start:0x0235aa60 end:0x0235ab7c
