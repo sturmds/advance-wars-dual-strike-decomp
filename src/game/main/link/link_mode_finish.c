@@ -1,0 +1,21 @@
+#include "types.h"
+
+int func_0207bd80(void);
+void func_0207b4e8(void);
+void func_0207bfb8(void);
+void func_02102304(void);
+void func_02103714(void);
+
+/* In link mode runs func_02102304, func_0207b4e8 (link state 2 to 3) and
+ * func_0207bfb8; outside link mode runs func_02103714. Name is a guess from
+ * those steps. */
+void LinkMode_Finish(void)
+{
+    if (func_0207bd80() == 1) {
+        func_02102304();
+        func_0207b4e8();
+        func_0207bfb8();
+    } else {
+        func_02103714();
+    }
+}
