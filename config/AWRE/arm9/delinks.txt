@@ -22334,6 +22334,37 @@ src/sdk/func_02116070.c:
     complete
     .text       start:0x02116070 end:0x0211607c
 
+src/sdk/card/card_rom_on_page_dma_done.c:
+    complete
+    .text       start:0x0211642c end:0x021164a0
+
+src/sdk/card/card_rom_start_page_dma.c:
+    .text       start:0x021164a0 end:0x021164f8
+
+src/sdk/card/card_rom_load_command_bytes.c:
+    .text       start:0x021164f8 end:0x02116598
+
+src/sdk/card/cardi_end_task.c:
+    .text       start:0x02116598 end:0x02116618
+
+src/sdk/card/card_rom_take_from_buffered_page.c:
+    .text       start:0x02116618 end:0x021166b0
+
+src/sdk/card/cardi_request.c:
+    .text       start:0x021166b0 end:0x021167ec
+
+src/sdk/card/card_push_removal_tag_word.c:
+    .text       start:0x021167ec end:0x02116850
+
+src/sdk/card/card_halt_after_removal.c:
+    .text       start:0x02116850 end:0x02116890
+
+src/sdk/card/card_on_removal_message.c:
+    .text       start:0x02116890 end:0x021168fc
+
+src/sdk/card/card_register_removal_handler.c:
+    .text       start:0x021168fc end:0x02116934
+
 src/sdk/wm/wm_clear_fifo_recv_flag.c:
     complete
     .text       start:0x02116934 end:0x02116950

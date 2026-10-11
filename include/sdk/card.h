@@ -12,6 +12,7 @@
 
 /* MASTERCNT: card enable, with interrupts off and ROM (not backup) mode. */
 #define CARDMST_ENABLE 0x80
+#define CARDMST_IRQ 0x40
 
 /* GAMECARD_ROM_CTRL bits. */
 #define CARD_DATA_READY 0x00800000
@@ -66,8 +67,10 @@ typedef struct CARDiCommandArg {
 #define CARD_TARGET_BACKUP 2
 
 /* CARDiCommon.flag bits. */
+#define GAMECARD_FLAG_PEER_GREETED 0x02        /* the other CPU has been sent its first request */
 #define CARD_STAT_BUSY 0x04            /* a request is running */
 #define CARD_STAT_TASK 0x08            /* the card thread has a task to run */
+#define GAMECARD_FLAG_WORKER_SLEEPS 0x10     /* the card thread sleeps until the request ends */
 #define GAMECARD_FLAG_AWAIT_PEER_REPLY 0x20        /* waiting for the other CPU's answer */
 
 /* CARDiCommon.priorityMode: base priority, or follow the requester's. */
@@ -107,5 +110,34 @@ struct CARDiCommon {
 };
 
 extern CARDiCommon data_022abb00;
+
+/* PXI messages. Tag 11 carries backup requests; tag 14 the card removal notice. */
+#define FIFO_TAG_CARD_SERVICE 11
+#define FIFO_TAG_CARD_REMOVAL 14
+#define GAMECARD_MSG_REMOVED 17
+#define GAMECARD_REQ_HANDSHAKE 0
+#define GAMECARD_STATUS_RESEND 4       /* the other CPU asks for the request to be sent again */
+
+/* Set once the other CPU reports the card removed, and the game's handler for that. */
+extern BOOL data_022ac320;
+extern BOOL (*data_022ac324)(void);
+
+/* Status halfword set by the other CPU: bit 15 asks for a power off after card removal. */
+#define REMOVAL_HALT_STATUS_WORD (*(volatile u16 *)0x027fffa8)
+#define REMOVAL_HALT_POWER_BIT 0x8000
+
+/* IRQ mask bit: a card data transfer ended. */
+#define IRQ_CARD_DATA 0x80000
+
+/* ROM read work, data_022ac100: the page being read and its control word. */
+typedef struct CARDiRomPage CARDiRomPage;
+struct CARDiRomPage {
+    BOOL (*task)(CARDiRomPage *page);   /* runs after each page, TRUE while more is left */
+    u32 control;                        /* IO_GAMECARD_ROM_CTRL value that starts a page read */
+    u32 address;                        /* ROM address of the page held in data */
+    u8 unk_0C[20];
+    u8 data[GAMECARD_ROM_PAGE_BYTES];
+};
+extern CARDiRomPage data_022ac100;
 
 #endif
