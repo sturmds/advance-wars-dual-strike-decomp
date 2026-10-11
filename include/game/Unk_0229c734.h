@@ -24,7 +24,7 @@ typedef struct Unk_0229c734 {
     u16 nextTile;                      /* next free OBJ tile */
     u16 paletteSlot;                   /* first OBJ palette used */
     u16 unk_98;
-    s16 unk_9a;                        /* set by func_0203813c, read by func_02038150 */
+    s16 tally;                         /* points counted up on the result screen, later handed out to the COs (CoExp_TallyStep) */
     u8 unk_9c;
     u8 unk_9d;                         /* set by func_0203b194 */
     u8 unk_9e;
@@ -47,5 +47,8 @@ typedef struct ResultPointTask {
 } ResultPointTask;
 
 extern Unk_0229c734 *data_0229c734;
+
+s16 ResultPoint_GetTally(void);
+void ResultPoint_SetTally(int points);
 
 #endif

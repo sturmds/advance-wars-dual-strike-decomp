@@ -25,7 +25,7 @@ void CoRankTask_PopInSprite(CoRankTask *task)
     int scale;
 
     task->frame++;
-    CoRankScreen_QueueNumber(0, 136, task->unk_38);
+    CoRankScreen_QueueNumber(0, 136, task->experienceGain);
     Sprite_QueueAt(7, 164, 128, &data_027c0030, 0x5000, 0xfc);
     scale = Math_Ease(0, 0x200, 0x100, task->frame, 4);
     {

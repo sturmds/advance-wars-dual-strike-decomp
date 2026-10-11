@@ -23,7 +23,7 @@ extern WinLoseSides data_022a7a88;
 typedef struct WinLoseTask {
     u8 pad_00[0x4c];
     s16 unk_4c;
-    u16 scoreWidth;                    /* from func_0203f300: 24 plus 4 per digit after the first */
+    u16 scoreWidth;                    /* from WinLose_GetScoreWidth: 24 plus 4 per digit after the first */
     u8 pad_50[0x58 - 0x50];
     s32 unk_58;                        /* points from data_022a7a88.unk_0c */
     s32 unk_5c;                        /* points, at most 99999 */

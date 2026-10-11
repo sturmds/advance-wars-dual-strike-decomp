@@ -12,7 +12,7 @@ extern int data_027c0284;
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* After a campaign or War Room battle whose current player is human, adds
- * 1 to the play record of the battle's score rank (data_022a7a9c.unk_03,
+ * 1 to the play record of the battle's score rank (data_022a7a9c.rank,
  * 2-5). */
 void PlayRecords_CountBattleRank(void)
 {
@@ -26,7 +26,7 @@ void PlayRecords_CountBattleRank(void)
     if (!human) {
         return;
     }
-    switch (data_022a7a9c.unk_03) {
+    switch (data_022a7a9c.rank) {
     case 5:
         if (gPlayRecords.rank5Battles < 999999) {
             gPlayRecords.rank5Battles++;

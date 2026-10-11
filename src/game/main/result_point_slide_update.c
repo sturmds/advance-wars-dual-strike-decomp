@@ -12,7 +12,7 @@ void Task_ResumeScript(ResultPointTask *task);
 void ResultPoint_SlideUpdate(ResultPointTask *task)
 {
     task->frame++;
-    func_020393dc(8 - Math_Ease(1, 0, 256, task->frame, task->value), 160, data_0229c734->unk_9a);
+    func_020393dc(8 - Math_Ease(1, 0, 256, task->frame, task->value), 160, data_0229c734->tally);
     if (task->frame != task->value) {
         return;
     }

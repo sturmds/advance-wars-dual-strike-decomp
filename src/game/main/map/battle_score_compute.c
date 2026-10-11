@@ -24,7 +24,7 @@ extern int data_027c0284;
 
 /* End-of-battle score into data_022a7a9c: speed (unk_00), power (unk_01)
  * and technique (unk_02) of the current player (unk_04), their sum (score)
- * and its rank (unk_03); Survival halves all but the rank. Then the
+ * and its rank; Survival halves all but the rank. Then the
  * Player.unk_20 counts of the human players summed into unk_08-unk_0c,
  * unk_0d set on maps 242 and 247, and the total (unk_14): the sum plus
  * the bonus points, 0 when player 1's team is out or in Versus, doubled on
@@ -43,7 +43,7 @@ void BattleScore_Compute(void)
     data_022a7a9c.unk_01 = BattleScore_Power(data_022a7a9c.unk_04);
     data_022a7a9c.unk_02 = BattleScore_Technique(data_022a7a9c.unk_04);
     data_022a7a9c.score = func_020e9bc0(data_022a7a9c.unk_04);
-    data_022a7a9c.unk_03 = Score_ToRank_020e5428(data_022a7a9c.score);
+    data_022a7a9c.rank = Score_ToRank_020e5428(data_022a7a9c.score);
     if (STATE->gameMode == GAME_MODE_SURVIVAL) {
         data_022a7a9c.unk_00 >>= 1;
         data_022a7a9c.unk_01 >>= 1;

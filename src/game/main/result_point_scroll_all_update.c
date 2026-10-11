@@ -19,7 +19,7 @@ void ResultPoint_ScrollAllUpdate(ResultPointTask *task)
     x = 8 - Math_Ease(1, 0, 120, task->frame, task->value);
     func_020388dc(x, 16, task->unk_38);
     func_020394a0(x, 160);
-    func_020393dc(x, 160, data_0229c734->unk_9a);
+    func_020393dc(x, 160, data_0229c734->tally);
     if (task->frame != task->value) {
         return;
     }

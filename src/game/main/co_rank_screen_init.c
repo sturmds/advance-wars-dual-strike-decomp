@@ -76,10 +76,10 @@ void CoRankScreen_Init(CoRankTask *task)
     u8 *file;
 
     task->experienceBonus = Survival_GetExperienceBonus();
-    task->unk_38 = data_022a7b80.unk_10;
-    task->unk_38 += task->experienceBonus;
-    if (task->unk_38 > EXPERIENCE_MAX_GAIN) {
-        task->unk_38 = EXPERIENCE_MAX_GAIN;
+    task->experienceGain = data_022a7b80.unk_10;
+    task->experienceGain += task->experienceBonus;
+    if (task->experienceGain > EXPERIENCE_MAX_GAIN) {
+        task->experienceGain = EXPERIENCE_MAX_GAIN;
     }
 
     Gfx_InitBothScreens();

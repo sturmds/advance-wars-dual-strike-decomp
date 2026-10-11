@@ -26,7 +26,7 @@ void ResultSprite_SlideOut(ResultSpriteTask *task)
     }
     task->frame++;
     offset = Math_Ease(1, 0, 120, task->frame, SLIDE_FRAMES);
-    ResultPath_DrawAllOffset(195 - (5 - data_022a7a9c.unk_03) * 35, offset, 0);
+    ResultPath_DrawAllOffset(195 - (5 - data_022a7a9c.rank) * 35, offset, 0);
     Sprite_QueueAt(6, (200 + offset) & 0x1ff, 88, &data_027c0060, 0x1000, 0x40a);
     data_027c0280->bgScrollX[data_027c0280->layer1Bg] = 88 - offset;
     if (task->frame == SLIDE_FRAMES) {

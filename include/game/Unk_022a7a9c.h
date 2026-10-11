@@ -9,7 +9,7 @@ typedef struct Unk_022a7a9c {
     u8 unk_00;
     u8 unk_01;
     u8 unk_02;
-    u8 unk_03;                         /* the four sprites of ResultPath_DrawAll start at path step 20 + 35 * unk_03 */
+    u8 rank;                           /* Score_ToRank_020e5428 of score; ResultPath_DrawAll starts its sprites at path step 20 + 35 * rank */
     u8 unk_04;                         /* func_02033088 copies it to its task's unk_64 */
     u8 pad_05;
     u16 score;                         /* saved by BattleRecord_SaveWin as a Campaign or War Room record */

@@ -4732,11 +4732,11 @@ src/game/main/menus/co_exp_is_special_mission.c:
     complete
     .text       start:0x02038064 end:0x0203813c
 
-src/game/main/func_0203813c.c:
+src/game/main/result_point_set_tally.c:
     complete
     .text       start:0x0203813c end:0x02038150
 
-src/game/main/func_02038150.c:
+src/game/main/result_point_get_tally.c:
     complete
     .text       start:0x02038150 end:0x02038164
 

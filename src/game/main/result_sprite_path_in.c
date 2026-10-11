@@ -15,11 +15,11 @@ void ResultRank_PlaySe(int rank);
 void ResultSprite_PathIn(ResultSpriteTask *task)
 {
     task->frame++;
-    ResultPath_DrawAll(195 - (5 - data_022a7a9c.unk_03) * 35 - Math_Ease(4, 210, 0, task->frame, PATH_FRAMES));
+    ResultPath_DrawAll(195 - (5 - data_022a7a9c.rank) * 35 - Math_Ease(4, 210, 0, task->frame, PATH_FRAMES));
     if (task->frame != PATH_FRAMES) {
         return;
     }
-    ResultRank_PlaySe(data_022a7a9c.unk_03);
+    ResultRank_PlaySe(data_022a7a9c.rank);
     task->frame = 0;
     Task_ResumeScript(task);
 }

@@ -5,14 +5,13 @@
 #include "game/touch.h"
 #include "game/win_lose.h"
 #include "game/Unk_02080440.h"
+#include "game/Unk_0229c734.h"
 
 int Campaign_IsHardMode(void);
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(void *task);
 void func_02033c90(CoExp *exp, int a, int b, int c);
 int CoExp_IsSingleColumn(void);
-void func_0203813c(int points);       /* sets the points left to hand out */
-s16 func_02038150(void);             /* points left to hand out */
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -22,7 +21,7 @@ extern MenuState gMenuState;
 #define EXP gMenuState.coExp.exp
 
 /* Task step of the results screen: takes up to 2 points off the pool
- * (func_02038150) each frame and adds them to the front and back CO of
+ * (ResultPoint_GetTally) each frame and adds them to the front and back CO of
  * each player, scaled by game mode: War Room by unk_59 (0: x2.5, 1: x2,
  * 2: x1.5; only the front CO when CoExp_IsSingleColumn says so), hard campaign
  * x2. A player with one CO gets both shares.
@@ -35,10 +34,10 @@ void CoExp_TallyStep(WinLoseTask *task)
     int k;
     int gain;
 
-    func_0203813c((s16)(func_02038150() - 2));
+    ResultPoint_SetTally((s16)(ResultPoint_GetTally() - 2));
     step = 2;
-    while (func_02038150() < 0) {
-        func_0203813c((s16)(func_02038150() + 1));
+    while (ResultPoint_GetTally() < 0) {
+        ResultPoint_SetTally((s16)(ResultPoint_GetTally() + 1));
         step--;
     }
 
@@ -96,7 +95,7 @@ void CoExp_TallyStep(WinLoseTask *task)
     }
     /* needed to match: the original adds the offset to gMenuState at run time */
     func_02033c90((CoExp *)((u8 *)&gMenuState + (u32)&((MenuState *)0)->coExp.exp), 0, 0, -1);
-    if (func_02038150() == 0) {
+    if (ResultPoint_GetTally() == 0) {
         task->unk_4c = 0;
         Task_ResumeScript(task);
         return;
@@ -112,7 +111,7 @@ void CoExp_TallyStep(WinLoseTask *task)
         if (i >= 3) {
             break;
         }
-        step = func_02038150();
+        step = ResultPoint_GetTally();
         if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
             if (CoExp_IsSingleColumn() == 1) {
                 EXP[i * 2].points += STATE->unk_59 == 0 ? (step << 1) + (step >> 1) : step * 2;
@@ -152,7 +151,7 @@ void CoExp_TallyStep(WinLoseTask *task)
             }
         }
     }
-    func_0203813c(0);
+    ResultPoint_SetTally(0);
     task->unk_4c = 0;
     Task_ResumeScript(task);
 }

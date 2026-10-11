@@ -16,7 +16,7 @@ extern u8 data_027c0060;
 void ResultSprite_Shake(ResultSpriteTask *task)
 {
     task->frame++;
-    ResultPath_DrawAll(195 - (5 - data_022a7a9c.unk_03) * 35);
+    ResultPath_DrawAll(195 - (5 - data_022a7a9c.rank) * 35);
     switch (task->frame) {
     case 1:
         Sprite_QueueAt(6, 202, 86, &data_027c0060, 0x1000, 0x40a);

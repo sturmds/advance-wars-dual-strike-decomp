@@ -12,5 +12,5 @@ void ResultPoint_DrawUpdate(ResultPointTask *task)
 {
     func_020388dc(8, 16, task->unk_38);
     func_020394a0(8, 160);
-    func_020393dc(8, 160, data_0229c734->unk_9a);
+    func_020393dc(8, 160, data_0229c734->tally);
 }

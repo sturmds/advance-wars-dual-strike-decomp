@@ -3,7 +3,7 @@
 void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 
 extern u8 data_027c0030;
-extern s16 data_0215a0e8[];
+extern s16 gResultPathPoints[];
 
 /* ResultPath_DrawSprite shifted by (dx, dy) pixels. */
 void ResultPath_DrawSpriteOffset(int step, int sprite, int dx, int dy)
@@ -14,11 +14,11 @@ void ResultPath_DrawSpriteOffset(int step, int sprite, int dx, int dy)
     if (step < 0 || step > 181) {
         return;
     }
-    x = dx + (data_0215a0e8[step * 2] - 32);
+    x = dx + (gResultPathPoints[step * 2] - 32);
     if (x >= 256) {
         return;
     }
-    y = dy + (data_0215a0e8[step * 2 + 1] - 32);
+    y = dy + (gResultPathPoints[step * 2 + 1] - 32);
     if (y <= -64 || y >= 192) {
         return;
     }

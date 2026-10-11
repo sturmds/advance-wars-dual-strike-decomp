@@ -28,9 +28,9 @@ void CoRankTask_SlideDown(CoRankTask *task)
     data_027c0280->bgScrollY[layer1] = -offset;
     data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
     if (offset + 136 < 174) {
-        CoRankScreen_QueueNumber(0, offset + 136, task->unk_38);
+        CoRankScreen_QueueNumber(0, offset + 136, task->experienceGain);
     } else {
-        CoRankScreen_QueueNumber(0, 174, task->unk_38);
+        CoRankScreen_QueueNumber(0, 174, task->experienceGain);
     }
     Sprite_QueueAt(7, 164, (offset + 128) & 0xff, &data_027c0030, 0x5000, 0xfc);
     Sprite_QueueAt(6, 212, (offset + 152) & 0xff, &data_027c0060, 0x1000, 0x13c);

@@ -1360,8 +1360,8 @@ ResultScreen_Init kind:function(arm,size=0xea4) addr:0x0203705c
 CoExp_LoadSpriteFiles kind:function(arm,size=0x74) addr:0x02037f00
 Screens_SetBg3Zoom kind:function(arm,size=0xf0) addr:0x02037f74
 CoExp_IsSpecialMission kind:function(arm,size=0xd8) addr:0x02038064
-func_0203813c kind:function(arm,size=0x14) addr:0x0203813c
-func_02038150 kind:function(arm,size=0x14) addr:0x02038150
+ResultPoint_SetTally kind:function(arm,size=0x14) addr:0x0203813c
+ResultPoint_GetTally kind:function(arm,size=0x14) addr:0x02038150
 func_02038164 kind:function(arm,size=0x14) addr:0x02038164
 ResultPoint_Close kind:function(arm,size=0x40) addr:0x02038178
 ScriptTask_ResumeWithValue kind:function(arm,size=0x38) addr:0x020381b8
@@ -1459,7 +1459,7 @@ WinLoseScreen_SlideInPicturesTwoSides kind:function(arm,size=0x2a4) addr:0x0203e
 func_0203e470 kind:function(arm,size=0x15c) addr:0x0203e470
 func_0203e5cc kind:function(arm,size=0xb0) addr:0x0203e5cc
 WinLoseScreen_Init kind:function(arm,size=0xc84) addr:0x0203e67c
-func_0203f300 kind:function(arm,size=0x40) addr:0x0203f300
+WinLose_GetScoreWidth kind:function(arm,size=0x40) addr:0x0203f300
 func_0203f340 kind:function(arm,size=0x1bc) addr:0x0203f340
 WinLoseScreen_DrawPoints kind:function(arm,size=0x358) addr:0x0203f4fc
 WinLoseScreen_DrawPointsDigit kind:function(arm,size=0x194) addr:0x0203f854
@@ -7106,7 +7106,7 @@ data_02159ee0 kind:data(any) addr:0x02159ee0
 data_02159f30 kind:data(any) addr:0x02159f30
 data_02159f80 kind:data(any) addr:0x02159f80
 data_02159ff8 kind:data(any) addr:0x02159ff8
-data_0215a0e8 kind:data(any) addr:0x0215a0e8
+gResultPathPoints kind:data(any) addr:0x0215a0e8
 data_0215a3bc kind:data(any) addr:0x0215a3bc
 data_0215a3d4 kind:data(any) addr:0x0215a3d4
 data_0215a3e8 kind:data(any) addr:0x0215a3e8

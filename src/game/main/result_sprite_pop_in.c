@@ -24,7 +24,7 @@ void ResultSprite_PopIn(ResultSpriteTask *task)
     int scale;
 
     task->frame++;
-    ResultPath_DrawAll(195 - (5 - data_022a7a9c.unk_03) * 35);
+    ResultPath_DrawAll(195 - (5 - data_022a7a9c.rank) * 35);
     scale = Math_Ease(0, 0x200, 0x100, task->frame, 4);
     {
         int d3 = DIVISOR(scale);

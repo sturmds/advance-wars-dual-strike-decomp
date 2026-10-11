@@ -18,7 +18,7 @@ typedef struct CoRankTask {
     CoRankEntry cos[2];                /* front CO, back CO */
     u8 pad_32[0x34 - 0x32];
     s32 experienceBonus;               /* Survival_GetExperienceBonus, set by CoRankScreen_Init */
-    s32 unk_38;                        /* number drawn by CoRankScreen_QueueNumber */
+    s32 experienceGain;                /* run points plus bonus, at most 9999; drawn by CoRankScreen_QueueNumber */
     u8 pad_3c[0x44 - 0x3c];
     s16 frame;                         /* frame of the running animation step */
     u8 pad_46[0x4c - 0x46];

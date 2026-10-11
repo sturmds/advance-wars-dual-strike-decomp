@@ -26,7 +26,7 @@ void TpIcon2_LoadTo(u8 *dest);
 void Menu_Reset(void);
 void Wallpaper_LoadBoth(void);
 void Task_JumpToLabel(Task *task, int label);
-int func_0203f300(int points);
+int WinLose_GetScoreWidth(int points);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -270,7 +270,7 @@ void WinLoseScreen_Init(WinLoseTask *task)
         if (task->unk_5c > 99999) {
             task->unk_5c = 99999;
         }
-        task->scoreWidth = func_0203f300(task->unk_58 + task->unk_5c);
+        task->scoreWidth = WinLose_GetScoreWidth(task->unk_58 + task->unk_5c);
     } else {
         task->portraitsA = 0;
         for (i = 0; i < data_022a7a88.countA; i++) {
