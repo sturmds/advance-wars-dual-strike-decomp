@@ -9668,6 +9668,10 @@ src/game/main/combat/player_get_charge_per_hp.c:
     complete
     .text       start:0x020e0350 end:0x020e0360
 
+src/game/main/power_meter/power_panel_right_queue_stars.c:
+    complete
+    .text       start:0x020e03e8 end:0x020e0570
+
 src/game/main/co_tag_firepower.c:
     complete
     .text       start:0x020e1928 end:0x020e1948
