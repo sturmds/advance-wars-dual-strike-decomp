@@ -7474,7 +7474,7 @@ data_021606e4 kind:data(any) addr:0x021606e4
 data_021606ec kind:data(any) addr:0x021606ec
 gSpriteTaskScript kind:data(any) addr:0x0216072c
 data_0216074c kind:data(any) addr:0x0216074c
-data_02160768 kind:data(any) addr:0x02160768
+gLargeFontCodes kind:data(any) addr:0x02160768
 data_02160a14 kind:data(any) addr:0x02160a14
 data_02160aa0 kind:data(any) addr:0x02160aa0
 data_02160abc kind:data(any) addr:0x02160abc
