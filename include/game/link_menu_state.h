@@ -1,0 +1,16 @@
+#ifndef GAME_LINK_MENU_STATE_H
+#define GAME_LINK_MENU_STATE_H
+
+#include "types.h"
+
+/* State of the link play player list screen, pointed to by data_0215fed0. */
+typedef struct LinkMenuState {
+    u8 redraw;                         /* 1: Link_DrawPlayerRows redraws the layer 2 background first */
+    u8 selected;                       /* id of the selected button, 0-4 */
+    u8 pad_02[2];
+    int locked;                        /* 1 once a choice was made; key handlers then ignore input */
+} LinkMenuState;
+
+extern LinkMenuState *data_0215fed0;
+
+#endif

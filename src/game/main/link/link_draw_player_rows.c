@@ -1,9 +1,6 @@
 #include "types.h"
 #include "game/Unk_02088d04.h"
-
-typedef struct Unk_0215fed0 {
-    u8 redraw;
-} Unk_0215fed0;
+#include "game/link_menu_state.h"
 
 typedef struct LinkPlayerData {
     u8 pad_00[0x14];
@@ -15,7 +12,6 @@ typedef struct LinkPlayerInfo {
     LinkPlayerData data;
 } LinkPlayerInfo;
 
-extern Unk_0215fed0 *data_0215fed0;
 extern Unk_027c0280 *data_027c0280;
 extern u8 gMenuState[];
 extern char data_02167c88[];
