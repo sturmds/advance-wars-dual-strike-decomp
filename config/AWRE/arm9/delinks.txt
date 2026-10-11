@@ -13089,6 +13089,10 @@ src/game/main/menus/survival_finish_map.c:
     complete
     .text       start:0x020d5e58 end:0x020d605c
 
+src/game/main/map/war_room_finish_map.c:
+    complete
+    .text       start:0x020d605c end:0x020d60a8
+
 src/game/main/func_020d60a8.c:
     complete
     .text       start:0x020d60a8 end:0x020d60c4
