@@ -7,7 +7,7 @@ extern int data_027c0284;
 
 /* Reduction of the damage a player's units take from cannons, from the
  * skills of one CO (coSlot 0 front, 1 back): 20 with Cannon Guard. The
- * caller (func_020da1dc) subtracts it. */
+ * caller (Cannon_AddBestTarget) subtracts it. */
 int DamageFromCannons(int playerIndex, int coSlot)
 {
     Player *player = &data_027c027c->unk_48[data_027c0284]->players[playerIndex];

@@ -11541,6 +11541,10 @@ src/game/main/map/map_object_draw.c:
     complete
     .text       start:0x020da068 end:0x020da1dc
 
+src/game/main/ai/cannon_add_best_target.c:
+    complete
+    .text       start:0x020da1dc end:0x020da4f0
+
 src/game/main/map/map_object_get_draw_offset_y.c:
     complete
     .text       start:0x020da4f0 end:0x020da524
