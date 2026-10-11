@@ -21193,6 +21193,10 @@ src/sdk/os/osi_get_unused_thread_id.c:
 src/sdk/os/os_init_context.c:
     .text       start:0x0210d9f0 end:0x0210da54
 
+src/sdk/os/func_0210dae4.c:
+    complete
+    .text       start:0x0210dae4 end:0x0210db18
+
 src/sdk/func_0210dc64.c:
     complete
     .text       start:0x0210dc64 end:0x0210dc6c
