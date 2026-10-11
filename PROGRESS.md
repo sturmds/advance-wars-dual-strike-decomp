@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| ARM9 SDK/library | 614 / 781 | 89172 / 132154 | 67.48% | 69 | 3394 |
-| ARM9 all | 7268 / 7481 | 1595792 / 1685994 | 94.65% | 69 | 3394 |
+| ARM9 SDK/library | 615 / 781 | 90796 / 132154 | 68.70% | 69 | 3394 |
+| ARM9 all | 7269 / 7481 | 1597416 / 1685994 | 94.75% | 69 | 3394 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6654 / 6700 | 1506620 / 1553840 | 96.96% | 0 | 0 |
-| SDK/library | 614 / 1795 | 89172 / 286450 | 31.13% | 69 | 3394 |
-| all | 7268 / 8495 | 1595792 / 1840290 | 86.71% | 69 | 3394 |
+| SDK/library | 615 / 1795 | 90796 / 286450 | 31.70% | 69 | 3394 |
+| all | 7269 / 8495 | 1597416 / 1840290 | 86.80% | 69 | 3394 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 607 / 770 | 88260 / 130618 | 67.57% | 65 |
+| main | SDK/library | 608 / 770 | 89884 / 130618 | 68.81% | 65 |
 | itcm | game | 101 / 102 | 21496 / 21896 | 98.17% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -107,6 +107,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/mb/func_021193fc.c` | func_021193fc | 696 |
 | `src/sdk/mi/unpack_huffman_to_words.c` | Unpack_HuffmanToWords | 216 |
 | `src/sdk/mi/mi_uncompress_lz8.c` | MI_UncompressLZ8 | 216 |
+| `src/sdk/msl/__pformatter.c` | __pformatter | 2108 |
 | `src/sdk/msl/double2hex.c` | double2hex | 948 |
 | `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 |
 | `src/sdk/msl/func_02121db0.c` | func_02121db0 | 92 |

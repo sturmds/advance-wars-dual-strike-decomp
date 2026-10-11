@@ -6,8 +6,6 @@
 
 #define CONVERSION_BUFFER_SIZE 512
 
-char *func_02122d44(long double value, char *bufferEnd, PrintFormat format);
-
 extern const wchar_t data_0216def8[]; /* L"" */
 extern const char data_0216defc[];    /* "" */
 
@@ -142,7 +140,7 @@ int __pformatter(FormatWriteProc write, void *sink, const char *format, va_list 
             } else {
                 doubleValue = va_arg(args, double);
             }
-            if (!(text = func_02122d44(doubleValue, buffer + CONVERSION_BUFFER_SIZE, spec))) {
+            if (!(text = float2str(doubleValue, buffer + CONVERSION_BUFFER_SIZE, spec))) {
                 goto conversion_error;
             }
             count = buffer + CONVERSION_BUFFER_SIZE - 1 - text;

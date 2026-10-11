@@ -86,6 +86,7 @@ const char *parse_format(const char *format, va_list *args, PrintFormat *out);
 char *long2str(long value, char *bufferEnd, PrintFormat format);
 char *longlong2str(long long value, char *bufferEnd, PrintFormat format);
 char *double2hex(double value, char *bufferEnd, PrintFormat format);
+char *float2str(long double value, char *bufferEnd, PrintFormat format);
 
 /* Returns x * 2^n. */
 double ldexp(double x, int n);

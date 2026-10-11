@@ -5884,7 +5884,7 @@ snprintf kind:function(arm,size=0x30) addr:0x02122414
 vsnprintf kind:function(arm,size=0x74) addr:0x02122444
 __StringWrite kind:function(arm,size=0x50) addr:0x021224b8
 __pformatter kind:function(arm,size=0x83c) addr:0x02122508
-func_02122d44 kind:function(arm,size=0x658) addr:0x02122d44
+float2str kind:function(arm,size=0x658) addr:0x02122d44
 __round_decimal kind:function(arm,size=0x130) addr:0x0212339c
 double2hex kind:function(arm,size=0x3b4) addr:0x021234cc
 longlong2str kind:function(arm,size=0x2e8) addr:0x02123880
@@ -5921,7 +5921,7 @@ func_0212676c kind:function(arm,size=0x568) addr:0x0212676c
 _fadd kind:function(arm,size=0x460) addr:0x02126cd4
 func_02127134 kind:function(arm,size=0x9e4) addr:0x02127134
 _deq kind:label(arm) addr:0x0212769c
-.L_02127788 kind:label(arm) addr:0x02127788
+_dls kind:label(arm) addr:0x02127788
 _fdiv kind:function(arm,size=0x380) addr:0x02127cac
 _ffix kind:function(arm,size=0x9c) addr:0x0212839c
 func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
