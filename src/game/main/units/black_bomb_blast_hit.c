@@ -10,7 +10,7 @@ extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern u8 data_0213d11c[];
 
-void func_020c6ae0(int x, int y, int damage, int range);
+void Units_DamageAroundTile(int x, int y, int damage, int range);
 void SpriteAnim3dTask_StartAlt(void *anim, VecFx32 *pos, void *gfx, void *palette, int a, int b);
 void SpriteAnimTask_Start(void *anim, int x, int y, int sprite, int a, int b);
 void Sound_PlaySe(u32 soundId);
@@ -18,14 +18,14 @@ void Sound_PlaySe(u32 soundId);
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Blast task step: takes task->damage off the units on tile offset list 3
- * around the blast tile (func_020c6ae0), starts the explosion animation there, as a 3D
+ * around the blast tile (Units_DamageAroundTile), starts the explosion animation there, as a 3D
  * object on the screen that shows the 3D engine and as a sprite on the
  * other, and plays sound 172. */
 void BlackBombBlast_Hit(BlackBombBlastTask *task)
 {
     VecFx32 pos;
 
-    func_020c6ae0(task->tileX, task->tileY, task->damage, 3);
+    Units_DamageAroundTile(task->tileX, task->tileY, task->damage, 3);
     if (data_027c027c == data_027c0288.unk_00) {
         pos.x = (task->pixelX * 0x2000) / 256;
         pos.y = (task->pixelY * 0x6000) / 768;
