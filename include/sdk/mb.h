@@ -187,6 +187,8 @@ typedef struct DlPlayLiveCodePatch {
 #define DLPLAY_ASSUMED_CART_BYTES 0x1000000      /* when the header gives no ROM size */
 #define DLPLAY_MAINCPU_SPLIT_BYTES 0x4400           /* ARM9 code goes in three parts when both programs do not fit */
 #define DLPLAY_RETURN_OPCODE 0xe12fff1e            /* ARM "bx lr" */
+#define DLPLAY_PREFIX_BYTES 0x268     /* header, auth code, cache list and card map */
+#define DLPLAY_PROGRAM_BUFFER_FLOOR 0x10000
 
 #define DLPLAY_OFFER_SLOTS_OLD 16
 
