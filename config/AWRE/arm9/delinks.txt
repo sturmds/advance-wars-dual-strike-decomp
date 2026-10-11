@@ -12459,6 +12459,10 @@ src/game/main/map/map_add_black_crystal_object.c:
     complete
     .text       start:0x020dadd0 end:0x020dae38
 
+src/game/main/map/map_object_remove.c:
+    complete
+    .text       start:0x020dae38 end:0x020dae80
+
 src/game/main/map/map_object_get_target_tile.c:
     complete
     .text       start:0x020dafc4 end:0x020db054

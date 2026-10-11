@@ -9,7 +9,7 @@ extern int data_027c0284;
 
 void func_020eed28(int x, int y, Task *parent);
 void func_020c4018(void);
-void func_020dae38(MapObject *object);
+void MapObject_Remove(MapObject *object);
 void func_020c4448(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -17,13 +17,13 @@ void func_020c4448(void);
 
 /* A destroyed Minicannon: starts the destruction effect (func_020eed28), turns
  * its tile into plain ground, drops the object from the object list
- * (func_020dae38 moves the later entries down) and rescans the properties. */
+ * (MapObject_Remove moves the later entries down) and rescans the properties. */
 void MapObject_DestroyMinicannon(MapObject *object, Task *task)
 {
     func_020eed28(object->x, object->y, task);
     STATE->mapTiles->tiles[TILE_INDEX(object->x, object->y)] = TERRAIN_PLAIN;
     STATE->mapTiles->mapCells[TILE_INDEX(object->x, object->y)] = 4;
     func_020c4018();
-    func_020dae38(object);
+    MapObject_Remove(object);
     func_020c4448();
 }

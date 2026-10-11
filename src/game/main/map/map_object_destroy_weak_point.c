@@ -8,7 +8,7 @@ extern int data_027c0284;
 
 void func_020eed28(int x, int y, Task *parent);
 void func_020c4018(void);
-void func_020dae38(MapObject *object);
+void MapObject_Remove(MapObject *object);
 void func_020c4448(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -21,7 +21,7 @@ void func_020c4448(void);
 
 /* A destroyed Grand Bolt weak point (object kinds 11 to 13): starts the
  * destruction effect (func_020eed28), changes its tile, removes the object
- * from the object list (func_020dae38 moves the later entries down) and
+ * from the object list (MapObject_Remove moves the later entries down) and
  * rescans the properties. */
 void MapObject_DestroyWeakPoint(MapObject *object, Task *task)
 {
@@ -29,6 +29,6 @@ void MapObject_DestroyWeakPoint(MapObject *object, Task *task)
     STATE->mapTiles->tiles[TILE_INDEX(object->x, object->y)] = TERRAIN_WEAK_POINT_DESTROYED;
     STATE->mapTiles->mapCells[TILE_INDEX(object->x, object->y)] = CELL_WEAK_POINT_DESTROYED;
     func_020c4018();
-    func_020dae38(object);
+    MapObject_Remove(object);
     func_020c4448();
 }
