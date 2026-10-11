@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_0210eb7c(int);
+void OS_SpinWait(int);
 
 void func_0210cf78(void)
 {
-    func_0210eb7c(0x1000);
+    OS_SpinWait(0x1000);
 }

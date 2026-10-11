@@ -177,4 +177,7 @@ u32 OSi_DoLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL dis
 int OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
 #define LOCK_NOT_OWNER (-2)
 
+/* Busy-waits about cycles CPU cycles. */
+void OS_SpinWait(u32 cycles);
+
 #endif
