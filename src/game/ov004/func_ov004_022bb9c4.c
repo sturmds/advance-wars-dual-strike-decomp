@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/gx.h"
 
-void func_0210a794(void);
+void Vram_ClearAllBankControl(void);
 void func_0210ad34(int mask);
 void func_0210b1b8(int mask);
 void func_0210ab74(int mask);
@@ -13,7 +13,7 @@ void func_0210aa6c(int mask);
 
 void func_ov004_022bb9c4(void)
 {
-    func_0210a794();
+    Vram_ClearAllBankControl();
     *REG_POWCNT1 &= ~POWCNT1_DISPLAY_SWAP;
     func_0210ad34(1);
     func_0210b1b8(2);

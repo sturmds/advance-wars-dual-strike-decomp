@@ -77,6 +77,13 @@
 #define REG_DB_BLDALPHA ((volatile u16 *)0x04001052)
 #define REG_DB_MASTER_BRIGHT ((volatile u16 *)0x0400106c)
 
+/* VRAM bank control (one byte per bank; A-D are written together as a word). */
+#define REG_VRAMCNT_ABCD ((volatile u32 *)0x04000240)
+#define REG_VRAMCNT_E ((volatile u8 *)0x04000244)
+#define REG_VRAMCNT_F ((volatile u8 *)0x04000245)
+#define REG_VRAMCNT_G ((volatile u8 *)0x04000246)
+#define IO_VRAM_BANKS_H_I_CTRL ((volatile u16 *)0x04000248)
+
 /* 3D engine registers. */
 #define REG_DISP3DCNT ((volatile u16 *)0x04000060)
 #define REG_MTX_MODE ((volatile u32 *)0x04000440)

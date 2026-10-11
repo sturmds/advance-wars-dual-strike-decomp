@@ -1,6 +1,6 @@
 #include "types.h"
 
-void func_0210a794(void);
+void Vram_ClearAllBankControl(void);
 void func_0210ad34(int mask);
 void func_0210b1b8(int mask);
 void func_0210ab74(int mask);
@@ -13,7 +13,7 @@ void func_0210aa6c(int mask);
 /* Like Ov004_InitVramBanks, but without the screen swap: each of the eight
  * per-bank setup calls (guess) gets one bank bit, 1 to 128 in order. */
 void Ov004_InitVramBanksInOrder(void) {
-    func_0210a794();
+    Vram_ClearAllBankControl();
     func_0210ad34(1);
     func_0210b1b8(2);
     func_0210ab74(4);
