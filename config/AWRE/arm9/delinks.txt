@@ -5969,6 +5969,7 @@ src/game/main/func_020441e8.c:
     .text       start:0x020441e8 end:0x020441ec
 
 src/game/main/menus/co_select_screen_restore_buttons.c:
+    complete
     .text       start:0x020441ec end:0x02044228
 
 src/game/main/menus/co_select_screen_init.c:
