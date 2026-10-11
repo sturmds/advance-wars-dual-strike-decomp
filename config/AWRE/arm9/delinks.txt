@@ -19495,6 +19495,10 @@ src/game/main/unlocks/shop_map_war_room.c:
     complete
     .text       start:0x02102274 end:0x021022b4
 
+src/game/main/menus/state_set_map_ids.c:
+    complete
+    .text       start:0x021022b4 end:0x02102304
+
 src/game/main/func_02102378.c:
     complete
     .text       start:0x02102378 end:0x02102394
