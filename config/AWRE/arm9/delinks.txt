@@ -1919,6 +1919,10 @@ src/game/main/script/event_script_play_song.c:
     complete
     .text       start:0x0201b2bc end:0x0201b318
 
+src/game/main/script/event_script_play_se.c:
+    complete
+    .text       start:0x0201b318 end:0x0201b358
+
 src/game/main/func_0201b358.c:
     complete
     .text       start:0x0201b358 end:0x0201b3b4
