@@ -19,8 +19,8 @@ void MapObjects_ClearHead(void)
         object->kind = 0;
         object->hp = 0;
         object->unk_05 = 0;
-        object->unk_02_10 = 0;
-        object->unk_06 = 0;
+        object->startState = 0;
+        object->state = 0;
         object->unk_07 = 0;
     }
 }

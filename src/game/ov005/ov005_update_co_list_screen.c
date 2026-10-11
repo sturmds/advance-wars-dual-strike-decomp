@@ -18,7 +18,7 @@ BOOL func_02004828(void);
 void func_020048f4(u16 frames);
 void func_0200493c(u16 frames);
 void HelpBand_Stop(void);
-void Wallpaper_LoadBothOnLayer3(int co);           /* probably loads the CO's picture */
+void Wallpaper_LoadBothOnLayer3(int index);
 void EventSequenceTask_Start(Ov005Task *task);
 Task *PaletteFade_StartToBlackScreen1(Ov005Task *parent, int frames, int a, int b);
 Task *PaletteFade_StartFromBlackScreen1(Ov005Task *parent, const void *palettes, int frames, int a, int b);
@@ -41,7 +41,7 @@ extern const MenuButtonTemplate data_ov005_0236a500;
  * before it). Fades in, then waits in step 10:
  * - A (or its touch button) on another CO: saves the sub screen's palettes
  *   and starts a palette fade task, darkens both screens over 16 frames,
- *   loads that CO's picture with Wallpaper_LoadBothOnLayer3, starts a fade back to the
+ *   loads that CO's wallpaper with Wallpaper_LoadBothOnLayer3, starts a fade back to the
  *   saved palettes and brightens again.
  * - R: hides the list (only BG3 and OBJ stay on) so Left and Right scroll
  *   the BG3 picture by up to 64 pixels; B brings the list back.

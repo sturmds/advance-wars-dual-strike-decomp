@@ -12,11 +12,11 @@ typedef struct MapObject {
     u16 width : 3;                     /* footprint in tiles */
     u16 height : 3;
     u16 kind : 4;                      /* damage chart target kind */
-    u16 unk_02_10 : 4;
+    u16 startState : 4;                /* state copied to state when that is 0 (MapObjects_InitState) */
     u16 variant : 2;                   /* index into data_02167e98 for kind 2 */
     u8 hp;                             /* 0: destroyed (Map_GetObjectAt then returns NULL) */
     u8 unk_05;
-    s8 unk_06;                         /* Ai_AddObjectThreat handles the objects where this is 1 */
+    s8 state;                          /* Ai_AddObjectThreat handles the objects where this is 1 */
     u8 unk_07;
 } MapObject;
 

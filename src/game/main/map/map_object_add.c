@@ -10,7 +10,7 @@ void Map_AddObject(int x, int y, int width, int height, int kind, int hp, int st
 
     object->unk_05 = state;
     object->variant = variant;
-    object->unk_02_10 = startState;
-    object->unk_06 = state;
+    object->startState = startState;
+    object->state = state;
     object->unk_07 = unk07;
 }

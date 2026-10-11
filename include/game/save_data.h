@@ -5,7 +5,7 @@
 
 #define SAVE_SLOT_COUNT 21
 
-/* data_02297f3c: three byte arrays with one entry per slot. */
+/* data_02297f3c: byte arrays with one entry per slot. */
 typedef struct SaveSlotTable {
     u8 id[SAVE_SLOT_COUNT];            /* id of the record in each slot, 0xff: none (guess) */
     u8 newId[SAVE_SLOT_COUNT];         /* ids that the save buffer holds; copied to id after a full load */

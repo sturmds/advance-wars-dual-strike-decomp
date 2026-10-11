@@ -26,7 +26,7 @@ void Ai_AddObjectThreat(void)
     }
     RangeMap_SetBuffer(STATE->mapTiles->threatSum);
     for (object = STATE->objects; object->kind != 0; object++) {
-        if (object->unk_06 == 1) {
+        if (object->state == 1) {
             MapObject_Draw(object, -1);
         }
     }

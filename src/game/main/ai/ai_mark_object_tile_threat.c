@@ -28,7 +28,7 @@ void Ai_MarkObjectTileThreat(void)
         return;
     }
     for (object = STATE->objects; object->kind != 0; object++) {
-        if (object->kind == 2 && object->unk_06 == 1) {
+        if (object->kind == 2 && object->state == 1) {
             tile = data_02167e98[object->variant];
             for (;; tile++) {
                 if ((u16)tile->x == 0xffff) {

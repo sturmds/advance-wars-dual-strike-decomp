@@ -40,8 +40,8 @@ extern u8 data_ov005_0236a48c[33];     /* CO id of each list entry */
  * screens: BG0, BG3 and OBJ on (the main screen also BG1), layer priorities
  * 0 to 3, darken blend on layer 3 with no fade yet, no scroll. Loads the main
  * screen's layer 1 map from /rikiishi/039, the digit font and the buttons,
- * puts the cursor on the CO saved in gPlayRecords, passes that CO id to
- * Wallpaper_LoadBothOnLayer3 (probably loads its picture), and writes the sub screen's
+ * puts the cursor on the entry of the wallpaper saved in gPlayRecords, loads
+ * that wallpaper with Wallpaper_LoadBothOnLayer3, and writes the sub screen's
  * title and help text. */
 void Ov005_SetUpCoListScreen(Ov005Task *task)
 {
