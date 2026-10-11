@@ -12,7 +12,7 @@ void func_0210c874(const void *src, u32 offset, u32 size);
 void func_0210c81c(void);
 void func_020d2794(void);
 
-/* Loads the map graphics like func_020f9118, but turns the map palette
+/* Loads the map graphics like MapGfx_Load, but turns the map palette
  * grey before it goes to texture palette VRAM. The palette file is loaded
  * twice: first all 256 colours, then the first 96 again to the same place. */
 void MapGfx_LoadGreyscale(int variant, int style)

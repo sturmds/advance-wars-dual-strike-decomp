@@ -13064,6 +13064,10 @@ src/game/main/graphics/map_gfx_load_greyscale.c:
     complete
     .text       start:0x020f8f68 end:0x020f90a8
 
+src/game/main/graphics/map_gfx_load.c:
+    complete
+    .text       start:0x020f9118 end:0x020f9178
+
 src/game/main/func_020f931c.c:
     complete
     .text       start:0x020f931c end:0x020f934c
