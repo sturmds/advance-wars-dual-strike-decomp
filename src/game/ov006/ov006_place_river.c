@@ -14,7 +14,7 @@ int func_ov006_02360f90(int x, int y);
 void Ov006_SetTerrain(int x, int y, int terrain);
 void Ov006_StoreMapCell(int x, int y, int cell);
 int Ov006_TileMatches(int x, int y, int arg);
-int func_ov006_023622bc(int x, int y);
+int Ov006_CountRiverNeighbors(int x, int y);
 void Ov006_AddRiverMouths(int x, int y);
 void func_ov006_0235dd24(int x, int y);
 void Ov006_PlaceMountain(int x, int y);
@@ -80,7 +80,7 @@ int Ov006_PlaceRiver(int x, int y)
         return 0;
     }
 
-    if (func_ov006_023622bc(x, y) != 0) {
+    if (Ov006_CountRiverNeighbors(x, y) != 0) {
         Ov006_AddRiverMouths(x, y);
     }
     if (y > 0 && Ov006_TileMatches(x, y - 1, 1) != 0) {

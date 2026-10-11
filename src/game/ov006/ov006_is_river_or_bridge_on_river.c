@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-int func_ov006_023622bc(int x, int y);  /* river neighbours, not counting river mouths */
+int Ov006_CountRiverNeighbors(int x, int y);  /* river neighbours, not counting river mouths */
 BOOL Ov006_IsWaterTile(int x, int y); /* TRUE on sea, shoal, reef or a river mouth */
 
 extern Unk_02080440 *data_027c027c;
@@ -27,7 +27,7 @@ BOOL Ov006_IsRiverOrBridgeOnRiver(int x, int y)
     int count;
 
     if (terrain == TERRAIN_BRIDGE) {
-        if (func_ov006_023622bc(x, y)) {
+        if (Ov006_CountRiverNeighbors(x, y)) {
             result = TRUE;
         }
         if (CELL_AT(x, y) == CELL_BRIDGE_HORIZONTAL || CELL_AT(x, y) == CELL_BRIDGE_HORIZONTAL) {

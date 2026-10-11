@@ -959,6 +959,14 @@ src/game/ov006/ov006_place_river.c:
     complete
     .text       start:0x02361de0 end:0x023620cc
 
+src/game/ov006/ov006_count_river_or_bridge_neighbors.c:
+    complete
+    .text       start:0x023620cc end:0x023622bc
+
+src/game/ov006/ov006_count_river_neighbors.c:
+    complete
+    .text       start:0x023622bc end:0x023624b4
+
 src/game/ov006/func_ov006_023624b4.c:
     complete
     .text       start:0x023624b4 end:0x02362548
