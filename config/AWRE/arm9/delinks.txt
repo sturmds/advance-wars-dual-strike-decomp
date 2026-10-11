@@ -5860,6 +5860,10 @@ src/game/main/link/wireless_pick_channel.c:
     complete
     .text       start:0x02079f8c end:0x0207a000
 
+src/game/main/link/wireless_send_child_data.c:
+    complete
+    .text       start:0x0207a000 end:0x0207a068
+
 src/game/main/func_0207a0d0.c:
     complete
     .text       start:0x0207a0d0 end:0x0207a0f8

@@ -9,7 +9,9 @@ typedef struct Unk_0215fe84 {
     u16 childCount;                    /* number of bits set in childAids (aids 1 to 7) */
     u16 channel;                       /* scan channel, 1 to 14 */
     s8 unk_06;                         /* -1 after func_020791f8, 0 on parent start */
-    u8 pad_07[0x14 - 0x07];
+    u8 pad_07;
+    int unk_08;                        /* Wireless_SendChildData and Wireless_SendParentData send only while it is nonzero and clear it; func_020781b0 sets it to 1 when the send fails */
+    u8 pad_0c[0x14 - 0x0c];
     int unk_14;                        /* set to 1 by Wireless_OnEvent */
     int unk_18;                        /* returned by func_02077f20 */
     int childrenChanged;               /* set to 1 when a child connects or leaves */
