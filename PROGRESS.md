@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6637 / 6700 | 1495804 / 1553840 | 96.26% | 0 | 0 |
+| ARM9 game | 6640 / 6700 | 1496852 / 1553840 | 96.33% | 0 | 0 |
 | ARM9 SDK/library | 434 / 781 | 51612 / 132154 | 39.05% | 33 | 2126 |
-| ARM9 all | 7071 / 7481 | 1547416 / 1685994 | 91.78% | 33 | 2126 |
+| ARM9 all | 7074 / 7481 | 1548464 / 1685994 | 91.84% | 33 | 2126 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
-| game | 6637 / 6700 | 1495804 / 1553840 | 96.26% | 0 | 0 |
+| game | 6640 / 6700 | 1496852 / 1553840 | 96.33% | 0 | 0 |
 | SDK/library | 434 / 1795 | 51612 / 286450 | 18.02% | 33 | 2126 |
-| all | 7071 / 8495 | 1547416 / 1840290 | 84.09% | 33 | 2126 |
+| all | 7074 / 8495 | 1548464 / 1840290 | 84.14% | 33 | 2126 |
 
 ## By module
 
@@ -35,7 +35,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov002 | game | 157 / 164 | 55500 / 64208 | 86.44% | 0 |
 | ov003 | game | 232 / 235 | 81820 / 82696 | 98.94% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
-| ov005 | game | 260 / 266 | 94692 / 96684 | 97.94% | 0 |
+| ov005 | game | 263 / 266 | 95740 / 96684 | 99.02% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
 | arm7 | SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 |
 
@@ -104,11 +104,8 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 |
 | `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 |
 | `src/game/ov005/func_ov005_0235a320.c` | func_ov005_0235a320 | 576 |
-| `src/game/ov005/func_ov005_0235aec8.c` | func_ov005_0235aec8 | 640 |
-| `src/game/ov005/func_ov005_0235b3d4.c` | func_ov005_0235b3d4 | 236 |
 | `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 |
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 |
-| `src/game/ov005/func_ov005_02363014.c` | func_ov005_02363014 | 172 |
 | `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 |
