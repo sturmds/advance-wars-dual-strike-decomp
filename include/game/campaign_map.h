@@ -32,4 +32,27 @@ typedef struct CampaignTopCo {
     u8 pad_3;
 } CampaignTopCo;
 
+/* Task of the world map scripts that scroll the map and move the cursor
+ * (CampaignMap_InitMarkerSprites and the functions after it). The first 0x2c bytes belong
+ * to the task system (Task_Create). */
+typedef struct CampaignMapTask {
+    u8 pad_00[0x2c];
+    int fromX;                         /* scroll at the start of func_0204e900's move */
+    int fromY;
+    int toX;
+    int toY;
+    int cursorX;                       /* position of the destination mission, set by func_0204e9cc */
+    int cursorY;
+    u8 pad_44[0x4c - 0x44];
+    s16 step;                          /* frame counter or phase of the running update function */
+    u8 pad_4e[0x58 - 0x4e];
+    int unk_58;
+    int unk_5c;
+    u8 pad_60[0x64 - 0x60];
+    s16 unk_64;
+    s16 unk_66;
+    s16 unk_68;
+    s16 mission;                       /* index into gCampaignMissions */
+} CampaignMapTask;
+
 #endif

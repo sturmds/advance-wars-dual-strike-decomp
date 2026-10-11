@@ -94,7 +94,7 @@ typedef struct CampaignMapWork {
     u8 unk_020[0xc4];                  /* the three blocks are copied from res_gmap */
     u8 unk_0e4[0x160];
     u8 unk_244[0x8c];
-    u8 pad_2d0[0x2d8 - 0x2d0];
+    struct ShowSprite *sprites[2];     /* made by CampaignMap_InitMarkerSprites */
     CampaignTopCo topCos[3];
     u8 enemyCos[2];                    /* front and back CO of the map's last player slot, probably the enemy */
 } CampaignMapWork;
