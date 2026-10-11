@@ -6379,6 +6379,10 @@ src/game/main/func_020b5604.c:
     complete
     .text       start:0x020b5604 end:0x020b5668
 
+src/game/main/ai/ai_transport_head_for_unload_tile.c:
+    complete
+    .text       start:0x020b5c30 end:0x020b5e54
+
 src/game/main/ai/ai_count_team_armed_ground_units_in_range.c:
     complete
     .text       start:0x020b6f6c end:0x020b70a0
