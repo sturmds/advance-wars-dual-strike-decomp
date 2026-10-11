@@ -5,7 +5,7 @@
 extern DlPlayHostLinkArea *data_022aced4;
 
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
-u8 *func_0211dfe4(u8 *recv, DlPlayChildMsgHead *header, u16 aid);
+u8 *MbComm_ReadChildMessage(u8 *recv, DlPlayChildMsgHead *header, u16 aid);
 void MbComm_SetState(u16 aid, int state, void *arg);
 u16 MbMaxU32(u16 nextBlock, u16 request);
 
@@ -28,7 +28,7 @@ void MbParent_HandleChildMessage(WMMpRecvData *recv, u16 aid)
     if (aid == 0 || aid > DLPLAY_CHILD_SLOTS) {
         return;
     }
-    data = func_0211dfe4(recv->cdata, &header, aid);
+    data = MbComm_ReadChildMessage(recv->cdata, &header, aid);
     state = data_022aced4->commState[aid - 1];
 
     switch (header.type) {

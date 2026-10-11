@@ -22947,6 +22947,10 @@ src/sdk/mb/mb_pieces_add.c:
     complete
     .text       start:0x0211df34 end:0x0211dfe4
 
+src/sdk/mb/mb_comm_read_child_message.c:
+    complete
+    .text       start:0x0211dfe4 end:0x0211e120
+
 src/game/main/func_0211e1f4.c:
     complete
     .text       start:0x0211e1f4 end:0x0211e214
