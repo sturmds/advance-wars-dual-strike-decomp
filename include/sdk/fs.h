@@ -184,6 +184,7 @@ BOOL FS_CloseFile(FSFile *file);
 BOOL FS_ChangeDir(const char *path);
 BOOL FS_SeekFile(FSFile *file, s32 offset, int origin);
 void FS_CancelFile(FSFile *file);
+BOOL FS_WaitAsync(FSFile *file);
 
 /* Looks up a path: gives a file ID or a directory position (not named yet). */
 BOOL func_02112a54(FSFile *scratch, const char *path, FSFileID *fileId, FSDirPos *dirPos);
