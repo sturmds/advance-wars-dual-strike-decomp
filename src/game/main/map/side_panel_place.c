@@ -6,20 +6,20 @@ void SidePanel_SnapLeft(void);
 void SidePanel_SnapRight(void);
 void SidePanel_SnapAwayFromCursor(void);
 
-/* Calls the routine for one weather (WEATHER_*). */
-void Weather_StartEffect(int weather)
+/* Moves the side panel the way mode (SIDE_PANEL_*) says. */
+void SidePanel_Place(int mode)
 {
-    switch (weather) {
-    case WEATHER_CLEAR:
+    switch (mode) {
+    case SIDE_PANEL_SLIDE_AWAY:
         SidePanel_SlideAwayFromCursor();
         break;
-    case WEATHER_SNOW:
+    case SIDE_PANEL_SNAP_LEFT:
         SidePanel_SnapLeft();
         break;
-    case WEATHER_RAIN:
+    case SIDE_PANEL_SNAP_RIGHT:
         SidePanel_SnapRight();
         break;
-    case WEATHER_SAND:
+    case SIDE_PANEL_SNAP_AWAY:
         SidePanel_SnapAwayFromCursor();
         break;
     }

@@ -1,8 +1,7 @@
 #include "types.h"
-#include "game/weather.h"
 
-void Screen_SetBgMode(int weather);
+void Screen_SetBgMode(int mode);
 
 void func_02028d50(void) {
-    Screen_SetBgMode(WEATHER_CLEAR);
+    Screen_SetBgMode(0);
 }

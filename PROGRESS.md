@@ -46,6 +46,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/func_0209770c.c` | func_0209770c | 1736 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
 | `src/game/main/copowers/func_02055f84.c` | func_02055f84 | 1412 |
+| `src/game/main/func_0200a6c0.c` | no delinks entry | 0 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/func_020593c8.c` | func_020593c8 | 1348 |
 | `src/game/main/func_020f20b4 5.c` | no delinks entry | 0 |

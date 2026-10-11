@@ -16,7 +16,7 @@ void func_020c4018(void);
 void func_020bbbb0(int x, int y, int first);
 void Sound_PlaySe(int id);
 void UnitInfoPanel_OpenForTypeOnSecondScreen(int owner, int unitType);
-void Weather_StartEffect(int weather);
+void SidePanel_Place(int mode);
 
 /* A step of the build menu task (Task_Create with data_0216594c): selects the
  * first row, draws the unit list (one column centred, or two columns of
@@ -45,5 +45,5 @@ void BuildMenu_Setup(Task *task)
     MenuButton_AddReserved(0, 0, &data_02158f54);
     Sound_PlaySe(0x1000a);
     UnitInfoPanel_OpenForTypeOnSecondScreen(data_027c027c->unk_48[data_027c0284]->currentPlayer, data_0229eaf8[0].unitType);
-    Weather_StartEffect(1);
+    SidePanel_Place(SIDE_PANEL_SNAP_LEFT);
 }

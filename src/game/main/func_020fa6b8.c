@@ -1,8 +1,7 @@
 #include "types.h"
-#include "game/weather.h"
 
-void Gfx_RequestLayerCopy(int weather);
+void Gfx_RequestLayerCopy(int layer);
 
 void func_020fa6b8(void) {
-    Gfx_RequestLayerCopy(WEATHER_CLEAR);
+    Gfx_RequestLayerCopy(0);
 }

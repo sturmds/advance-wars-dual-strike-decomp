@@ -6,14 +6,14 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-void Weather_StartEffect(int weather);
+void SidePanel_Place(int mode);
 void func_ov000_022af520(void);
 
-/* Handler for game state 11. Clears the weather effect, calls
+/* Handler for game state 11. Slides the side panel away from the cursor, calls
  * func_ov000_022af520, then switches to state 13. */
-void Game_State11_ClearWeather(void)
+void Game_State11_SlidePanel(void)
 {
-    Weather_StartEffect(0);
+    SidePanel_Place(SIDE_PANEL_SLIDE_AWAY);
     func_ov000_022af520();
     STATE->unk_18 = 13;
 }

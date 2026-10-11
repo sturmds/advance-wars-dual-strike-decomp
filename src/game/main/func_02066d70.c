@@ -1,8 +1,7 @@
 #include "types.h"
-#include "game/weather.h"
 
-void VsSetup_RequestTeamScreenBack(int weather);
+void VsSetup_RequestTeamScreenBack(int unused);
 
 void func_02066d70(void) {
-    VsSetup_RequestTeamScreenBack(WEATHER_CLEAR);
+    VsSetup_RequestTeamScreenBack(0);
 }

@@ -1,8 +1,7 @@
 #include "types.h"
-#include "game/weather.h"
 
-void Map_SetCoSelectPhase(int weather);
+void Map_SetCoSelectPhase(u8 value);
 
 void func_020e889c(void) {
-    Map_SetCoSelectPhase(WEATHER_CLEAR);
+    Map_SetCoSelectPhase(0);
 }

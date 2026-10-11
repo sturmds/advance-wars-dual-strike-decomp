@@ -76,6 +76,12 @@ typedef struct Unk_02080440_1c4 {
     u8 unk_3d;                         /* 0-3, mapped to menu weather settings 1-4 */
 } Unk_02080440_1c4;
 
+/* SidePanel_Place modes */
+#define SIDE_PANEL_SLIDE_AWAY 0        /* slide to the side away from the cursor */
+#define SIDE_PANEL_SNAP_LEFT  1
+#define SIDE_PANEL_SNAP_RIGHT 2
+#define SIDE_PANEL_SNAP_AWAY  3        /* jump to the side away from the cursor */
+
 /* Unk_02080440_1c4.weather */
 #define WEATHER_CLEAR 0
 #define WEATHER_SNOW  1

@@ -8,7 +8,7 @@ extern int data_027c0284;
 void func_020c4024(void);
 void func_020c40d0(void);
 void MapView_ScrollStep(int a);
-void Weather_StartEffect(int a);
+void SidePanel_Place(int mode);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -20,5 +20,5 @@ void func_020800c0(void)
         func_020c40d0();
         MapView_ScrollStep(4);
     }
-    Weather_StartEffect(3);
+    SidePanel_Place(SIDE_PANEL_SNAP_AWAY);
 }

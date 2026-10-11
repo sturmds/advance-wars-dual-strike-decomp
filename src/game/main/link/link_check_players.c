@@ -5,7 +5,7 @@ int func_020cf17c(u16 player);
 int func_020ceffc(int player);
 int func_020cf090(u16 player);
 int func_020cf0e4(u16 player);
-void func_020cf2c8(int player, int code);
+void LinkPlayer_MarkDefeated(int player, int code);
 
 void LinkPlayers_RecordFirstFailure(void)
 {
@@ -16,13 +16,13 @@ void LinkPlayers_RecordFirstFailure(void)
             continue;
         }
         if (!func_020cf17c(player)) {
-            func_020cf2c8(player, 8);
+            LinkPlayer_MarkDefeated(player, 8);
         } else if (!func_020ceffc(player)) {
-            func_020cf2c8(player, 16);
+            LinkPlayer_MarkDefeated(player, 16);
         } else if (!func_020cf090(player)) {
-            func_020cf2c8(player, 1);
+            LinkPlayer_MarkDefeated(player, 1);
         } else if (!func_020cf0e4(player)) {
-            func_020cf2c8(player, 2);
+            LinkPlayer_MarkDefeated(player, 2);
         }
     }
 }

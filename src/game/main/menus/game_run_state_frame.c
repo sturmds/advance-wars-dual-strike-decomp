@@ -19,7 +19,7 @@ int Map_IsThisMapsTurn(void);
 s8 func_020b9ccc(void);
 s16 func_020b9914(void);
 s16 ScriptSlot_Find(const EventScriptCommand *script);
-void Weather_StartEffect(int weather);
+void SidePanel_Place(int mode);
 int func_0207bd6c(void);
 void MapView_ScrollStep(int step);
 void AiTurn_Update(void);
@@ -35,9 +35,9 @@ void func_020ba04c(void);
 void Game_State8_PickNextState(void);
 void Game_State9_RunStep(void);
 void Game_State10_RunStep(void);
-void Game_State11_ClearWeather(void);
+void Game_State11_SlidePanel(void);
 void Game_State12_BlackHoleCheck(void);
-void Game_State13_ClearWeatherStartTask(void);
+void Game_State13_SlidePanelStartTask(void);
 void func_020ba450(void);
 void Game_State15_RunStep(void);
 void Game_State18_RestorePrevious(void);
@@ -139,10 +139,10 @@ void Game_RunStateFrame(void)
                 Game_State10_RunStep();
                 break;
             case 11:
-                Game_State11_ClearWeather();
+                Game_State11_SlidePanel();
                 break;
             case 13:
-                Game_State13_ClearWeatherStartTask();
+                Game_State13_SlidePanelStartTask();
                 break;
             case 14:
                 func_020ba450();
@@ -177,7 +177,7 @@ void Game_RunStateFrame(void)
 
     if (GAME->unk_18 == 16 || GAME->unk_1a == 16) {
         if (ScriptSlot_Find(data_02169e38) != -1 || func_020b9ccc() == 0) {
-            Weather_StartEffect(3);
+            SidePanel_Place(SIDE_PANEL_SNAP_AWAY);
         }
     }
 }
