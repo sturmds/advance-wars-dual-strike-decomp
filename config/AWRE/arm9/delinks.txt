@@ -7560,31 +7560,31 @@ src/game/main/func_020cef2c.c:
     complete
     .text       start:0x020cef2c end:0x020ceffc
 
-src/game/main/func_020ceffc.c:
+src/game/main/link/func_020ceffc.c:
     complete
     .text       start:0x020ceffc end:0x020cf090
 
-src/game/main/func_020cf090.c:
+src/game/main/link/func_020cf090.c:
     complete
     .text       start:0x020cf090 end:0x020cf0e4
 
-src/game/main/func_020cf0e4.c:
+src/game/main/link/func_020cf0e4.c:
     complete
     .text       start:0x020cf0e4 end:0x020cf17c
 
-src/game/main/func_020cf17c.c:
+src/game/main/link/func_020cf17c.c:
     complete
     .text       start:0x020cf17c end:0x020cf1f8
 
-src/game/main/link_player_defeat.c:
+src/game/main/link/link_player_defeat.c:
     complete
     .text       start:0x020cf1f8 end:0x020cf2c8
 
-src/game/main/link_player_defeat_task_create.c:
+src/game/main/link/link_player_defeat_task_create.c:
     complete
     .text       start:0x020cf400 end:0x020cf434
 
-src/game/main/link_player_defeat_task_update.c:
+src/game/main/link/link_player_defeat_task_update.c:
     complete
     .text       start:0x020cf434 end:0x020cf500
 
@@ -7596,23 +7596,23 @@ src/game/main/map/weather_start_effect.c:
     complete
     .text       start:0x020cf884 end:0x020cf8e8
 
-src/game/main/side_panel_snap_away_from_cursor.c:
+src/game/main/map/side_panel_snap_away_from_cursor.c:
     complete
     .text       start:0x020cf8e8 end:0x020cf9a0
 
-src/game/main/side_panel_snap_right.c:
+src/game/main/map/side_panel_snap_right.c:
     complete
     .text       start:0x020cf9a0 end:0x020cfa14
 
-src/game/main/side_panel_snap_left.c:
+src/game/main/map/side_panel_snap_left.c:
     complete
     .text       start:0x020cfa14 end:0x020cfa88
 
-src/game/main/side_panel_slide_away_from_cursor.c:
+src/game/main/map/side_panel_slide_away_from_cursor.c:
     complete
     .text       start:0x020cfa88 end:0x020cfb48
 
-src/game/main/side_panel_slide_left.c:
+src/game/main/map/side_panel_slide_left.c:
     complete
     .text       start:0x020cfb48 end:0x020cfc40
 
