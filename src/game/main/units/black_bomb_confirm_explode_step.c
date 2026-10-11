@@ -10,7 +10,7 @@ extern u32 data_0229eaec;
 BOOL EventScript_IsRunning(void);
 BOOL MapView_IsAtRest(void);
 u32 func_020ef190(void);
-u32 func_020efc20(void);
+u32 MapTouch_ReadCursorTileTap(void);
 void BlackBomb_RemoveActingUnit(Task *task);
 void func_020dd940(int x, int y, int targetX, int targetY, void *parentOrList);
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
@@ -19,7 +19,7 @@ void Task_JumpToLabel(Task *task, int label);
 void func_020f5888(int x, int y);
 void func_020c4124(int a, int b);
 
-/* Bits func_020ef190 (buttons) and func_020efc20 (touch) return. */
+/* Bits func_020ef190 (buttons) and MapTouch_ReadCursorTileTap (touch) return. */
 #define INPUT_CONFIRM 0x10
 #define INPUT_CANCEL  0x20
 
@@ -44,7 +44,7 @@ void BlackBomb_ConfirmExplodeStep(Task *task)
         return;
     }
     buttons = func_020ef190();
-    input = buttons | func_020efc20();
+    input = buttons | MapTouch_ReadCursorTileTap();
     if (input & INPUT_CONFIRM) {
         BlackBomb_RemoveActingUnit(task);
         func_020dd940(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->cursorX, GAME->cursorY, task);

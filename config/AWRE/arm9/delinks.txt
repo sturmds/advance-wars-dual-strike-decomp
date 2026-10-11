@@ -15132,6 +15132,10 @@ src/game/main/func_020efbf4.c:
     complete
     .text       start:0x020efbf4 end:0x020efc20
 
+src/game/main/map/map_touch_read_cursor_tile_tap.c:
+    complete
+    .text       start:0x020efc20 end:0x020efedc
+
 src/game/main/map/map_touch_read_tile_tap_or_back.c:
     complete
     .text       start:0x020efedc end:0x020f005c
