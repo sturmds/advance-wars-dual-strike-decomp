@@ -5402,7 +5402,7 @@ OSi_SetTimerReserved kind:function(arm,size=0x1c) addr:0x0210e898
 OS_GetTick kind:function(arm,size=0xb0) addr:0x0210e8b4
 OSi_CountUpTick kind:function(arm,size=0x88) addr:0x0210e964
 OS_InitTick kind:function(arm,size=0x9c) addr:0x0210e9ec
-func_0210ea88 kind:function(arm,size=0x70) addr:0x0210ea88
+OS_InitVAlarm kind:function(arm,size=0x70) addr:0x0210ea88
 func_0210eaf8 kind:function(arm,size=0x14) addr:0x0210eaf8
 OS_DisableInterrupts kind:function(arm,size=0x14) addr:0x0210eb0c
 OS_RestoreInterrupts kind:function(arm,size=0x18) addr:0x0210eb20
@@ -9006,7 +9006,7 @@ gOsiTimerReserved kind:bss addr:0x022a9c08
 gOsTickInitialized kind:bss addr:0x022a9c0c
 gOsiNeedResetTimer kind:bss addr:0x022a9c10
 gOsiTickCounter kind:bss addr:0x022a9c14
-data_022a9c1c kind:bss addr:0x022a9c1c
+gOsVAlarmInitialized kind:bss addr:0x022a9c1c
 data_022a9c20 kind:bss addr:0x022a9c20
 data_022a9c24 kind:bss addr:0x022a9c24
 data_022a9c28 kind:bss addr:0x022a9c28
