@@ -8,7 +8,7 @@ void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
 int Co_GetRank(u32 co);
 int MainLoop_GetFrameCount(void);
 BOOL Skills_AreDisabled(void);
-void func_02043558(int x, int y, int rank);
+void CoSelectScreen_DrawRank(int x, int y, u8 rank);
 
 extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
@@ -37,10 +37,10 @@ void CoSelectScreen_DrawColumnInfo(void)
     Screen_SetCurrentGfx(data_027c0288.unk_04);
     Sprite_QueueAt(0, 112, 136, data_027c0060, 0x2000, (data_0229c73c->cursorColumn - 1) * 8 + 864);
     if (PICKED_CO(data_0229c73c->cursorColumn, 0) != 0) {
-        func_02043558(40, 152, (u8)Co_GetRank(PICKED_CO(data_0229c73c->cursorColumn, 0)));
+        CoSelectScreen_DrawRank(40, 152, Co_GetRank(PICKED_CO(data_0229c73c->cursorColumn, 0)));
     }
     if (data_0229c73c->rowCount == 2 && PICKED_CO(data_0229c73c->cursorColumn, 1) != 0) {
-        func_02043558(168, 152, (u8)Co_GetRank(PICKED_CO(data_0229c73c->cursorColumn, 1)));
+        CoSelectScreen_DrawRank(168, 152, Co_GetRank(PICKED_CO(data_0229c73c->cursorColumn, 1)));
     }
     Sprite_QueueAt(4, 96, 152, data_027c0008, 0x4000, ((data_0229c73c->cursorColumn - 1) << 6) + 920);
     if ((MainLoop_GetFrameCount() & 32) && STATE->gameMode == GAME_MODE_CAMPAIGN) {
