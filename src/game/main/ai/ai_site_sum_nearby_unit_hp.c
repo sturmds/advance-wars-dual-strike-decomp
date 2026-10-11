@@ -14,7 +14,7 @@ extern u16 data_0229ea84[UNIT_TYPE_COUNT]; /* per unit type: hp of the current p
 extern u8 data_0229e5bd[][sizeof(AiSite)];
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-void func_02095014(void);
+void AiBuild_WeighUnitTypes(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -23,7 +23,7 @@ void func_02095014(void);
 /* Like AiBuild_SumUnitHp, but only counts units within SITE_RADIUS tiles of
  * a site (Manhattan distance). Ground units count only when a Tank could
  * reach their tile from the site within SITE_RADIUS move points. Then calls
- * func_02095014. */
+ * AiBuild_WeighUnitTypes. */
 void AiSite_SumNearbyUnitHp(int siteIndex)
 {
     /* needed to match: declaration order, the u8 types and the
@@ -97,5 +97,5 @@ void AiSite_SumNearbyUnitHp(int siteIndex)
             }
         }
     }
-    func_02095014();
+    AiBuild_WeighUnitTypes();
 }

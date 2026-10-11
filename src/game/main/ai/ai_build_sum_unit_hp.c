@@ -8,12 +8,12 @@ extern u16 data_0229ea4c[UNIT_TYPE_COUNT]; /* per unit type: hp of enemy units *
 extern u16 data_0229ea84[UNIT_TYPE_COUNT]; /* per unit type: hp of the current player's team */
 
 BOOL Player_IsInGame(u8 player);
-void func_02095014(void);
+void AiBuild_WeighUnitTypes(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Adds up unit hp per unit type, once for the current player's team and once
- * for the players on other teams, then calls func_02095014. Each player
+ * for the players on other teams, then calls AiBuild_WeighUnitTypes. Each player
  * owns slots first + 1 to first + 50 of Unk_02080440_48.units. */
 void AiBuild_SumUnitHp(void)
 {
@@ -47,5 +47,5 @@ void AiBuild_SumUnitHp(void)
             }
         }
     }
-    func_02095014();
+    AiBuild_WeighUnitTypes();
 }

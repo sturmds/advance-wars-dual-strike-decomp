@@ -2880,12 +2880,12 @@ Ai_WantsBlackBomb kind:function(arm,size=0x80) addr:0x02094adc
 func_02094b5c kind:function(arm,size=0xa0) addr:0x02094b5c
 AiBuild_SumUnitHp kind:function(arm,size=0x198) addr:0x02094bfc
 AiSite_SumNearbyUnitHp kind:function(arm,size=0x280) addr:0x02094d94
-func_02095014 kind:function(arm,size=0x4f4) addr:0x02095014
+AiBuild_WeighUnitTypes kind:function(arm,size=0x4f4) addr:0x02095014
 func_02095508 kind:function(arm,size=0x314) addr:0x02095508
-func_0209581c kind:function(arm,size=0x6c) addr:0x0209581c
+AiProfile_AllowsBuild kind:function(arm,size=0x6c) addr:0x0209581c
 AiBuild_RateAttackerVsTarget kind:function(arm,size=0x1f4) addr:0x02095888
 func_02095a7c kind:function(arm,size=0x7c) addr:0x02095a7c
-func_02095af8 kind:function(arm,size=0xc8) addr:0x02095af8
+AiBuild_GetTargetGroup kind:function(arm,size=0xc8) addr:0x02095af8
 func_02095bc0 kind:function(arm,size=0x5c) addr:0x02095bc0
 func_02095c1c kind:function(arm,size=0xf8) addr:0x02095c1c
 func_02095d14 kind:function(arm,size=0xf8) addr:0x02095d14
@@ -7583,7 +7583,7 @@ gTerrainSupplyKind kind:data(any) addr:0x02161a44
 data_02161a64 kind:data(any) addr:0x02161a64
 gAiUnitPhases kind:data(any) addr:0x02161a68
 gAiUnitPhasesFog kind:data(any) addr:0x02161ae8
-data_02161b80 kind:data(any) addr:0x02161b80
+gAiTargetGroupType kind:data(any) addr:0x02161b80
 data_02161b8c kind:data(any) addr:0x02161b8c
 data_02161b8d kind:data(any) addr:0x02161b8d
 data_02161baa kind:data(any) addr:0x02161baa
