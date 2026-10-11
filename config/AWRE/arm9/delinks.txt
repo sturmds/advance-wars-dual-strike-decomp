@@ -7773,6 +7773,10 @@ src/game/main/func_02087a44.c:
     complete
     .text       start:0x02087a44 end:0x02087aa8
 
+src/game/main/func_02087aa8.c:
+    complete
+    .text       start:0x02087aa8 end:0x02087b88
+
 src/game/main/menus/combat_setup_init.c:
     complete
     .text       start:0x02087dd0 end:0x02088404
