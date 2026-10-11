@@ -10628,6 +10628,10 @@ src/game/main/units/unit_paralyse_at_tile.c:
     complete
     .text       start:0x020c6b50 end:0x020c6c88
 
+src/game/main/units/units_copy_block_to_player.c:
+    complete
+    .text       start:0x020c6c88 end:0x020c6d18
+
 src/game/main/units/units_reassign_player_slots.c:
     complete
     .text       start:0x020c6d18 end:0x020c6e20
