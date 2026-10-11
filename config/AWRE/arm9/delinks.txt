@@ -22106,6 +22106,10 @@ src/sdk/mb/mb_wide_string_length.c:
     complete
     .text       start:0x0211baf8 end:0x0211bb20
 
+src/sdk/mb/mb_game_set_players.c:
+    complete
+    .text       start:0x0211bb20 end:0x0211bba4
+
 src/game/main/func_0211bdbc.c:
     complete
     .text       start:0x0211bdbc end:0x0211bddc
