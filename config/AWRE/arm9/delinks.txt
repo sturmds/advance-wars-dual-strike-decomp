@@ -10258,6 +10258,10 @@ src/game/main/menus/unit_menu_fire_blocked_hidden.c:
     complete
     .text       start:0x020bf324 end:0x020bf43c
 
+src/game/main/menus/unit_menu_fire_hidden.c:
+    complete
+    .text       start:0x020bf43c end:0x020bf588
+
 src/game/main/menus/unit_menu_oozium_hidden.c:
     complete
     .text       start:0x020bf588 end:0x020bf674
