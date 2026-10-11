@@ -5077,6 +5077,10 @@ src/game/main/func_0204923c.c:
     complete
     .text       start:0x0204923c end:0x02049390
 
+src/game/main/func_02049390.c:
+    complete
+    .text       start:0x02049390 end:0x02049410
+
 src/game/main/func_02049410.c:
     complete
     .text       start:0x02049410 end:0x02049598
@@ -6087,6 +6091,10 @@ src/game/main/menus/vs_setup_cancel.c:
 src/game/main/func_02067b94.c:
     complete
     .text       start:0x02067b94 end:0x02067bec
+
+src/game/main/func_02067bec.c:
+    complete
+    .text       start:0x02067bec end:0x02067c80
 
 src/game/main/menus/vs_setup_set_co.c:
     complete

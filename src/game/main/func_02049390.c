@@ -1,0 +1,17 @@
+#include "types.h"
+#include "game/Unk_02031a14.h"
+
+void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
+void Task_ResumeScript(Unk_02031a14 *task);
+extern u8 data_027c0030;
+
+void func_02049390(Unk_02031a14 *task)
+{
+    Sprite_QueueAt(1, task->unk_2c & 0x1ff, (task->unk_30 - 16) & 0xff, &data_027c0030, 0x4000, 436);
+    if (task->frame != 16) {
+        task->frame++;
+        return;
+    }
+    task->frame = 0;
+    Task_ResumeScript(task);
+}
