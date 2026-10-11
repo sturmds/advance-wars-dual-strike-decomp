@@ -2893,6 +2893,10 @@ src/game/main/help_band_start.c:
     complete
     .text       start:0x02027488 end:0x02027500
 
+src/game/main/help_band_update.c:
+    complete
+    .text       start:0x02027500 end:0x020275d8
+
 src/game/main/graphics/bg_put_skill_slot.c:
     complete
     .text       start:0x020277a4 end:0x02027804
