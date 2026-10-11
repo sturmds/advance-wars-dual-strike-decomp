@@ -2047,6 +2047,10 @@ src/game/main/script/event_cmd_call_function.c:
     complete
     .text       start:0x0201bf6c end:0x0201bfcc
 
+src/game/main/script/event_cmd_wait_while_state14.c:
+    complete
+    .text       start:0x0201bfcc end:0x0201c020
+
 src/game/main/func_0201c3fc.c:
     complete
     .text       start:0x0201c3fc end:0x0201c424
