@@ -4379,6 +4379,10 @@ src/game/main/func_02040c34.c:
     complete
     .text       start:0x02040c34 end:0x02040c38
 
+src/game/main/menus/force_rank_screen_init.c:
+    complete
+    .text       start:0x02040c38 end:0x02041318
+
 src/game/main/menus/force_rank_screen_put_icons.c:
     complete
     .text       start:0x02041370 end:0x02041428
