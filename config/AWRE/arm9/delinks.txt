@@ -7219,6 +7219,10 @@ src/game/main/copowers/tag_power_screen_hold_name.c:
     complete
     .text       start:0x020566bc end:0x0205677c
 
+src/game/main/copowers/tag_power_screen_stretch_in_name.c:
+    complete
+    .text       start:0x0205677c end:0x020569cc
+
 src/game/main/copowers/tag_power_screen_fade_in_from_black.c:
     complete
     .text       start:0x020569cc end:0x02056aa8
