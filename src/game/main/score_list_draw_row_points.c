@@ -23,7 +23,7 @@ void ScoreList_DrawRowPoints(int x, int y, int row, int tally)
         ResultPoint_QueueNumber(x, y, tally, 0);
         return;
     }
-    matrixIndex = (row - SCORES->unk_9c) * 3;
+    matrixIndex = (row - SCORES->firstRow) * 3;
     /* Needed to match: tally becomes the frames since it reached the
      * points, which time each digit's pop-in, 4 frames apart. */
     tally -= points;

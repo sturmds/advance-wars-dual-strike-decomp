@@ -5,9 +5,9 @@ void ScoreList_UpdatePageMax(void);
 
 #define SCORE_LIST_PAGE_HEIGHT 144
 
-/* Moves to the next page of the score list: unk_9c becomes the first row
- * after the old page, unk_9d the number of rows that fit in 144 pixels, and
- * unk_9e the top margin that centres them. */
+/* Moves to the next page of the score list: firstRow becomes the first row
+ * after the old page, pageRowCount the number of rows that fit in 144 pixels, and
+ * topMargin the top margin that centres them. */
 void ScoreList_NextPage(void)
 {
     int count;
@@ -16,8 +16,8 @@ void ScoreList_NextPage(void)
 
     count = usedHeight = 0;
 
-    data_0229c734->unk_9c += data_0229c734->unk_9d;
-    for (i = data_0229c734->unk_9c; i < SCORE_ROW_COUNT; i++) {
+    data_0229c734->firstRow += data_0229c734->pageRowCount;
+    for (i = data_0229c734->firstRow; i < SCORE_ROW_COUNT; i++) {
         if (data_0229c734->rows[i].kind == 0) {
             break;
         }
@@ -27,7 +27,7 @@ void ScoreList_NextPage(void)
         usedHeight += data_0229c734->rows[i].height;
         count++;
     }
-    data_0229c734->unk_9e = (SCORE_LIST_PAGE_HEIGHT - usedHeight) >> 1;
-    data_0229c734->unk_9d = count;
+    data_0229c734->topMargin = (SCORE_LIST_PAGE_HEIGHT - usedHeight) >> 1;
+    data_0229c734->pageRowCount = count;
     ScoreList_UpdatePageMax();
 }

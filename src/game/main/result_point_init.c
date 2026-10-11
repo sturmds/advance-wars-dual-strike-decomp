@@ -40,9 +40,9 @@ void ResultPoint_Init(int firstTile, int paletteSlot)
     Palette_Load(data_0229c734->gfxFile + 0x988, (u16)((data_0229c734->paletteSlot + 16) * 32), 96);
     Screen_SetCurrent(saved);
     Screen_SetCurrentGfx(savedGfx);
-    data_0229c734->unk_9c = 0;
-    data_0229c734->unk_9d = 0;
-    data_0229c734->unk_9e = 0;
+    data_0229c734->firstRow = 0;
+    data_0229c734->pageRowCount = 0;
+    data_0229c734->topMargin = 0;
     data_0229c734->unk_9f = 0;
     data_0229c734->unk_98 = 0;
     data_0229c734->rowCount = 0;

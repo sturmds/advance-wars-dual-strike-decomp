@@ -3,9 +3,9 @@
 #include "game/Unk_0229c734.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void func_020388dc(int x, int y, int arg);
+void ResultPoint_DrawRows(int x, int y, int arg);
 void ResultPoint_DrawPanel(int x, int y, int arg);
-void func_020394a0(int x, int y);
+void ResultPoint_DrawBar(int x, int y);
 void Task_ResumeScript(ResultPointTask *task);
 
 #define SLIDE_IN_FRAMES 24
@@ -16,8 +16,8 @@ void ResultPoint_SlideInUpdate(ResultPointTask *task)
 {
     int x = Math_Ease(4, -160, 8, task->frame, SLIDE_IN_FRAMES);
 
-    func_020388dc(x, 16, -1);
-    func_020394a0(x, 160);
+    ResultPoint_DrawRows(x, 16, -1);
+    ResultPoint_DrawBar(x, 160);
     ResultPoint_DrawPanel(x, 160, -1);
     if (task->frame != SLIDE_IN_FRAMES) {
         task->frame++;

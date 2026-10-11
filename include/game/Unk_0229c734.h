@@ -25,9 +25,9 @@ typedef struct Unk_0229c734 {
     u16 paletteSlot;                   /* first OBJ palette used */
     u16 unk_98;
     s16 tally;                         /* points counted up on the result screen, later handed out to the COs (CoExp_TallyStep) */
-    u8 unk_9c;
-    u8 unk_9d;                         /* set by func_0203b194 */
-    u8 unk_9e;
+    u8 firstRow;                       /* first score row on the shown page */
+    u8 pageRowCount;                   /* rows on the shown page; also set by func_0203b194 */
+    u8 topMargin;                      /* pixels above the first row, centring the page */
     u8 unk_9f;
     u8 rowCount;
     u8 nations[2];                     /* Co_GetNation of the two COs in data_02160abc */

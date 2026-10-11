@@ -11,7 +11,7 @@ void ResultPoint_QueueNumber(int x, int y, int value, int palette);
 /* Draws a number of up to four digits in palette 1, x being the left of a
  * three digit number. Each digit pops in 4 frames after the one before,
  * through the affine matrices after those of the score rows on the page
- * (unk_9d rows, three each). A negative frame draws it plain. */
+ * (pageRowCount rows, three each). A negative frame draws it plain. */
 void ResultPoint_DrawTallyPopIn(int x, int y, int value, int frame)
 {
     int matrixIndex;
@@ -22,7 +22,7 @@ void ResultPoint_DrawTallyPopIn(int x, int y, int value, int frame)
         ResultPoint_QueueNumber(x, y, value, 1);
         return;
     }
-    matrixIndex = SCORES->unk_9d * 3;
+    matrixIndex = SCORES->pageRowCount * 3;
     if (value >= 1000) {
         digit = HwDiv32(value, 1000);
         rest = HwMod32(value, 1000);

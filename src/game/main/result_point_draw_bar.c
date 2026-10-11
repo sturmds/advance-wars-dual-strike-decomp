@@ -9,7 +9,7 @@ extern u8 data_027c0020[];
 
 /* Queues the bar under the score rows with its top left at (x, y): four
  * sprites 32 pixels apart and a fifth 16 pixels short of the end. */
-void func_020394a0(int x, int y)
+void ResultPoint_DrawBar(int x, int y)
 {
     int i;
     int spriteX = x;

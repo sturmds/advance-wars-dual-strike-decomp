@@ -6,8 +6,8 @@ void ResultPoint_DrawPanel(int x, int y, int arg);
 void ResultPoint_DrawPanelTally(int x, int y, ResultPointTask *task);
 void Sound_PlaySe(u32 soundId);
 void Task_ResumeScript(ResultPointTask *task);
-void func_020388dc(int x, int y, int arg);
-void func_020394a0(int x, int y);
+void ResultPoint_DrawRows(int x, int y, int arg);
+void ResultPoint_DrawBar(int x, int y);
 int ScoreList_CountRowsAtLeast(int points);
 int ScoreList_GetPanelSize(int points);
 void ScoreList_NextPage(void);
@@ -28,7 +28,7 @@ BOOL ScoreList_HasMoreRows(void);
                 Sound_PlaySe(0x1000c);                                \
             }                                                         \
         }                                                             \
-        func_020388dc(8, 16, (task)->unk_38);                         \
+        ResultPoint_DrawRows(8, 16, (task)->unk_38);                         \
         if ((task)->unk_38 == SCORES->unk_98 + (task)->rank) {       \
             (task)->frame = 0;                                        \
             if (ScoreList_HasMoreRows() == TRUE) {                            \
@@ -57,16 +57,16 @@ void ResultPoint_TallyUpdate(ResultPointTask *task)
             task->rank = ScoreList_GetPanelSize(task->totalPoints);
         }
         if (task->frame < 24) {
-            func_020388dc(Math_Ease(1, 8, -160, task->frame, 24), 16, task->unk_38);
+            ResultPoint_DrawRows(Math_Ease(1, 8, -160, task->frame, 24), 16, task->unk_38);
         } else if (task->frame < 48) {
-            func_020388dc(Math_Ease(4, -160, 8, task->frame - 24, 24), 16, -1);
+            ResultPoint_DrawRows(Math_Ease(4, -160, 8, task->frame - 24, 24), 16, -1);
         } else {
             COUNT_STEP(task, draw);
         }
     }
     task->frame++;
 draw:
-    func_020394a0(8, 160);
+    ResultPoint_DrawBar(8, 160);
     if (SCORES->tally == task->totalPoints && ScoreList_HasMoreRows() == FALSE) {
         ResultPoint_DrawPanelTally(8, 160, task);
         task->unk_34++;
