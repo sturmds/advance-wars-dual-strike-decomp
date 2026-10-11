@@ -8,7 +8,7 @@ extern u8 data_021674c4[];
 void func_020d73d4(void *template, DesignMapRecord *record, int flag);
 void Map_SetDataBuffer(void *buffer);
 void Player_SaveArmyColours(void);
-void func_020d4148(void *vram, u16 *tileMap, int firstTile, int palette);
+void MapPreview_Start(void *vram, u16 *tileMap, int firstTile, int palette);
 void Gfx_RequestLayerCopy(int layer);
 
 /* Builds a map record from the template data_021674c4 and draws its preview
@@ -21,7 +21,7 @@ void DesignMap_DrawTemplatePreview(int x, int y, int firstTile, int palette)
     func_020d73d4(data_021674c4, record, 1);
     Map_SetDataBuffer(record);
     Player_SaveArmyColours();
-    func_020d4148(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
+    MapPreview_Start(data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer0Bg].charBase << 14),
                   data_027c0280->layer0Map + (x + y * 32), firstTile, palette);
     Gfx_RequestLayerCopy(0);
 }
