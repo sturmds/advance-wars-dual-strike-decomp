@@ -3,7 +3,7 @@
 
 extern int data_02167ed0[];
 
-void func_01ffabcc(int x, int y, int value);
+void RangeMap_FillRowAndColumn(int x, int y, int value);
 void RangeMap_FillColumnsBelow(int x, u16 y, int value);
 void func_01ffad44(u16 x, u16 y, int variant, int size, int value);
 int MapObject_GetDrawOffsetY(int kind, int variant);
@@ -23,7 +23,7 @@ BOOL MapObject_Draw(MapObject *object, int value)
     kind = object->kind;
     switch (kind) {
     case 1:
-        func_01ffabcc(object->x, object->y, value);
+        RangeMap_FillRowAndColumn(object->x, object->y, value);
         return TRUE;
     case 3:
         variant = object->variant;
