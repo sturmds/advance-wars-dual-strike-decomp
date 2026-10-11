@@ -1,0 +1,21 @@
+#include "types.h"
+#include "game/task.h"
+#include "game/dma_task.h"
+
+void func_0210efb0(int channel);   /* SDK: stops a DMA channel */
+void func_0210f3cc(int channel, const void *src, volatile void *dest, int mode);   /* SDK: starts a DMA transfer */
+
+extern DmaTaskState data_0216e054;
+
+/* Script command of the channel 0 DMA task: restarts DMA channel 0 with the
+ * task's source and destination, then calls the task's callback. The callback
+ * is skipped when channel 1 is in use with the same one. */
+void DmaTaskCmd_StartChannel0(Task *task)
+{
+    func_0210efb0(0);
+    func_0210f3cc(0, DMA_TASK_ARGS(task)->src, DMA_TASK_ARGS(task)->dest, 2);
+    if (data_0216e054.channelScreen[1] != 0 && DMA_TASK_ARGS(task)->callback == data_0216e054.channel1Callback) {
+        return;
+    }
+    DMA_TASK_ARGS(task)->callback();
+}

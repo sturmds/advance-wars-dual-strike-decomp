@@ -19,7 +19,7 @@ typedef struct DmaTaskArgs {
     volatile void *dest;               /* I/O register */
     u16 unk_34;
     u16 unk_36;
-    void (*callback)(void);            /* called by the task's script command func_02003584 */
+    void (*callback)(void);            /* called by the task's script command DmaTaskCmd_StartChannel0 */
 } DmaTaskArgs;
 
 #define DMA_TASK_ARGS(task) ((DmaTaskArgs *)(task)->pad_2c)

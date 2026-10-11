@@ -304,6 +304,10 @@ src/game/main/dma_task_cmd_channel1.c:
     complete
     .text       start:0x02003550 end:0x02003584
 
+src/game/main/dma_task_cmd_channel0.c:
+    complete
+    .text       start:0x02003584 end:0x020035e0
+
 src/game/main/dma_tasks_destroy.c:
     complete
     .text       start:0x020035e0 end:0x020036a8
