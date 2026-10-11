@@ -17,12 +17,12 @@ extern u8 data_02160bd8[];
 #define MENU ((MenuState *)&gMenuState)
 
 /* Combat setup buttons: 22-25 one per unit on sale; 254 likely the ready
- * button (func_020832a8 closes it when it sets the mark). */
+ * button (CombatSetup_MarkReady closes it when it sets the mark). */
 #define BUTTON_FIRST_UNIT 22
 #define BUTTON_READY 254
 
 /* Link player `player` takes back the ready mark of their Combat row
- * (func_020832a8 sets it). For the local player the shop buttons come back,
+ * (CombatSetup_MarkReady sets it). For the local player the shop buttons come back,
  * and the ready button too when the row has at least rows[].unk_07 units. */
 void CombatSetup_CancelReady(int player)
 {

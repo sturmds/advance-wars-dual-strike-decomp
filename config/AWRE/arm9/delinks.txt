@@ -8501,7 +8501,7 @@ src/game/main/menus/combat_setup_buy_unit.c:
     complete
     .text       start:0x020834dc end:0x0208372c
 
-src/game/main/func_020837b0.c:
+src/game/main/combat_setup_send_cancel.c:
     complete
     .text       start:0x020837b0 end:0x020837c4
 
@@ -8535,6 +8535,10 @@ src/game/main/menus/func_0208395c.c:
 src/game/main/menus/combat_setup_clear_screens.c:
     complete
     .text       start:0x02083f00 end:0x02084024
+
+src/game/main/menus/combat_setup_update_shop.c:
+    complete
+    .text       start:0x02084024 end:0x020842e0
 
 src/game/main/menus/combat_setup_init_screen.c:
     complete
