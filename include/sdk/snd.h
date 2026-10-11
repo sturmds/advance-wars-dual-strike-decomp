@@ -79,5 +79,7 @@ u32 SoundAlarm_AssignHandler(u32 alarmNo, SndAlarmHandler handler, u32 arg);
 void SoundAlarm_BumpTag(int alarmNo);
 void SoundAlarm_ClearAll(void);
 void Sound_ResetArm7StatusBlock(SndSharedWork *work);
+/* Reads the ARM7 shared work after invalidating its cache lines. */
+u32 Sound_LastDoneCommandTag(void);
 
 #endif

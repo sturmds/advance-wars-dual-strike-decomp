@@ -1,7 +1,6 @@
 #include "sdk/os.h"
 #include "sdk/snd.h"
 
-u32 func_02110900(void);
 
 extern SndCommand *data_022a9c68;
 extern u32 data_022a9c6c;
@@ -18,12 +17,12 @@ SndCommand *SND_RecvCommandReply(int block)
     int index;
 
     if (block & 1) {
-        while (func_02110900() == data_022a9c6c) {
+        while (Sound_LastDoneCommandTag() == data_022a9c6c) {
             OS_RestoreInterrupts(intrState);
             OS_SpinWait(100);
             intrState = OS_DisableInterrupts();
         }
-    } else if (func_02110900() == data_022a9c6c) {
+    } else if (Sound_LastDoneCommandTag() == data_022a9c6c) {
         OS_RestoreInterrupts(intrState);
         return NULL;
     }
