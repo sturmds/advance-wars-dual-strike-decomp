@@ -201,7 +201,8 @@ typedef struct Unk_02080440_48 {
     u8 sidePanelRight;                 /* 1: the side panel sits on the right of the screen, 0: on the left (SidePanel_*); name is a guess at what the panel shows */
     u8 pad_bd[0xc0 - 0xbd];
     s32 sidePanelX;                    /* x of the side panel; 0 or 192 at rest, see SidePanel_SlideLeft */
-    u8 unk_c4;                         /* cleared by Panels_PlaceForCursor when it puts the panels on the left */
+    u8 infoPanelRight;                 /* 1 once the info panel heads right (InfoPanel_SlideRight), 0 left;
+                                        * picks the side while the cursor is in the top rows */
     u8 pad_c5[0xc8 - 0xc5];
     s32 infoPanelX;                    /* x of the info panel (game/info_panel.h); at or left of 3 it sits on the left */
     u8 infoTileX;                      /* tile the info panel describes */
@@ -253,7 +254,7 @@ typedef struct Unk_02080440_50 {
     void (*unk_1c)(void);              /* run by MainLoop_MapFrame each frame on the second screen, when set */
     void (*unk_20)(int player, int frame); /* run by PowerMeter_UpdateFlash for each player in the game: the power meter flash frame, 0-15 */
     void (*unk_24)(int arg, int count); /* run by ScreenConfig_RunCycleHook with (1, 8) or (0, 8) when set */
-    void (*unk_28)(int frame);         /* run by MapScreen_UpdateAnimations (ScreenConfig_RunFrameHook) when set */
+    void (*frameHook)(int frame);      /* run by MapScreen_UpdateAnimations (ScreenConfig_RunFrameHook) when set */
     void (*unk_2c)(void);              /* run by MapCursor_ShowRange when set, after it shows a range */
     void (*unk_30)(void);              /* run by MapCursor_SelectTile when set, after a unit is picked to move */
     void (*unk_34)(void);              /* run by UnitMenu_Fire when set, after it starts the target picker */

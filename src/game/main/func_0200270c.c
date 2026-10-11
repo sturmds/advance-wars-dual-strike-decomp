@@ -1,7 +1,7 @@
 #include "types.h"
 
 void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-extern u8 data_02151dac[];
+extern u8 gCoPortraitSprite[];
 #define OBJ_X_FLIP 0x1000
 
 void func_0200270c(int x, int y, int attr, int list, int mirror)
@@ -14,5 +14,5 @@ void func_0200270c(int x, int y, int attr, int list, int mirror)
     if (mirror) {
         x |= OBJ_X_FLIP;
     }
-    Sprite_Queue(list, x | xAttr, y | yAttr, data_02151dac, attr, 0);
+    Sprite_Queue(list, x | xAttr, y | yAttr, gCoPortraitSprite, attr, 0);
 }

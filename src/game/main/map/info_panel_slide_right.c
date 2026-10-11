@@ -19,7 +19,7 @@ void InfoPanel_SlideRight(void)
     s16 hiddenX = -data_02166308[InfoPanel_CountUnitBoxes(STATE->infoTileX, STATE->infoTileY)] - 8;
 
     if (STATE->infoPanelX <= 3) {
-        STATE->unk_c4 = 1;
+        STATE->infoPanelRight = 1;
         if (STATE->infoPanelX <= hiddenX + 1) {
             STATE->infoPanelX = 258;
         } else {

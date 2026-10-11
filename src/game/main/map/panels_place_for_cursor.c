@@ -16,7 +16,7 @@ void Panels_PlaceForCursor(void)
         STATE->sidePanelX = 192;
         STATE->infoPanelX = 164;
     } else {
-        STATE->unk_c4 = 0;
+        STATE->infoPanelRight = 0;
         STATE->sidePanelX = 0;
         STATE->infoPanelX = 3;
     }

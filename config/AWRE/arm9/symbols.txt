@@ -6221,11 +6221,11 @@ data_02151cc4 kind:data(any) addr:0x02151cc4
 data_02151cc8 kind:data(any) addr:0x02151cc8
 data_02151ccc kind:data(any) addr:0x02151ccc
 gDeferredCopyTaskScript kind:data(any) addr:0x02151cdc
-data_02151cf4 kind:data(any) addr:0x02151cf4
+gCoPictureSprite kind:data(any) addr:0x02151cf4
 data_02151d10 kind:data(any) addr:0x02151d10
 data_02151d38 kind:data(any) addr:0x02151d38
 gTile4bppPixelOffsets kind:data(any) addr:0x02151d6c
-data_02151dac kind:data(any) addr:0x02151dac
+gCoPortraitSprite kind:data(any) addr:0x02151dac
 data_02151df8 kind:data(any) addr:0x02151df8
 data_02151e44 kind:data(any) addr:0x02151e44
 data_02151e4c kind:data(any) addr:0x02151e4c

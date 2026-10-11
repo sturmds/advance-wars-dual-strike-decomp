@@ -19,7 +19,7 @@ void InfoPanel_SlideLeft(void)
     s16 hiddenX = data_02166308[InfoPanel_CountUnitBoxes(STATE->infoTileX, STATE->infoTileY)] + 176;
 
     if (STATE->infoPanelX >= 164) {
-        STATE->unk_c4 = 0;
+        STATE->infoPanelRight = 0;
         if (STATE->infoPanelX >= hiddenX - 1) {
             STATE->infoPanelX = -90;
         } else {

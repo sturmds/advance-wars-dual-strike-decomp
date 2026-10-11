@@ -2,7 +2,7 @@
 
 void Sprite_Queue(int list, int packedX, int packedY, void *data, int arg4, int arg5);
 
-extern u8 data_02151dac[];
+extern u8 gCoPortraitSprite[];
 
 void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL flip)
 {
@@ -14,5 +14,5 @@ void Sprite_QueueCoPortrait(int x, int y, int arg2, int arg3, int list, BOOL fli
     if (flip) {
         x |= 0x1000;
     }
-    Sprite_Queue(list, x | xHigh, y | yHigh, data_02151dac, arg2, arg3);
+    Sprite_Queue(list, x | xHigh, y | yHigh, gCoPortraitSprite, arg2, arg3);
 }
