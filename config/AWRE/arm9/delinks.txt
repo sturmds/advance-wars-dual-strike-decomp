@@ -9996,6 +9996,10 @@ src/game/main/ai/range_map_spread_over_sea.c:
     complete
     .text       start:0x020911d4 end:0x020913b4
 
+src/game/main/ai/lander_can_enter_tile.c:
+    complete
+    .text       start:0x020913b4 end:0x020913e8
+
 src/game/main/ai/ai_turn_try_build_apc.c:
     complete
     .text       start:0x020913e8 end:0x02091538
