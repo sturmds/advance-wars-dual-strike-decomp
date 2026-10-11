@@ -7340,6 +7340,10 @@ src/game/main/copowers/power_screen_swap_map_with_sparks.c:
     complete
     .text       start:0x0205b3fc end:0x0205b4a0
 
+src/game/main/copowers/tag_break_load_thunder.c:
+    complete
+    .text       start:0x0205b4a0 end:0x0205b698
+
 src/game/main/spark_burst_start.c:
     complete
     .text       start:0x0205b698 end:0x0205b6d0
