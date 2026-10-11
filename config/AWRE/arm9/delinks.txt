@@ -21483,6 +21483,10 @@ src/sdk/os/os_enable_interrupts.c:
     complete
     .text       start:0x0210eaf8 end:0x0210eb0c
 
+src/sdk/os/os_disable_interrupts.c:
+    complete
+    .text       start:0x0210eb0c end:0x0210eb20
+
 src/sdk/os/os_spin_wait.c:
     complete
     .text       start:0x0210eb7c end:0x0210eb88
