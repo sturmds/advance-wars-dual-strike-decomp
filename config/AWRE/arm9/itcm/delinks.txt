@@ -261,6 +261,10 @@ src/game/itcm/range_map/mark_attack_range.c:
     complete
     .text       start:0x01ffa4fc end:0x01ffa610
 
+src/game/itcm/range_map/fill_diamond.c:
+    complete
+    .text       start:0x01ffa610 end:0x01ffa744
+
 src/game/itcm/range_map/mark_adjacent_tiles.c:
     .text       start:0x01ffaa3c end:0x01ffabcc
 
