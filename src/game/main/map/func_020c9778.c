@@ -5,7 +5,7 @@
 void func_0200a5e0(int screen);
 void Screens_SelectConfigs(void);
 void func_020c4018(void);
-void func_020c18cc(void);
+void CurrentPlayer_LoadPalettes(void);
 void func_020c0734(void);
 int func_020f4638(int a0);
 
@@ -14,7 +14,7 @@ int func_020f4638(int a0);
 
 /* Makes screen 0 current, picks the screen configs, then on screen 0's map
  * state runs the unk_58 hook with the map's weather and tileset,
- * func_020c4018, func_020c18cc and func_020c0734. When func_020f4638(4) is
+ * func_020c4018, CurrentPlayer_LoadPalettes and func_020c0734. When func_020f4638(4) is
  * true it does the same on screen 1, without func_020c0734. No direct
  * callers. */
 void func_020c9778(void)
@@ -33,7 +33,7 @@ void func_020c9778(void)
         HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }
     func_020c4018();
-    func_020c18cc();
+    CurrentPlayer_LoadPalettes();
     func_020c0734();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
@@ -49,7 +49,7 @@ void func_020c9778(void)
         HOOKS->unk_58(GAME->unk_1c4->weather, GAME->unk_1c4->tileset);
     }
     func_020c4018();
-    func_020c18cc();
+    CurrentPlayer_LoadPalettes();
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
 }

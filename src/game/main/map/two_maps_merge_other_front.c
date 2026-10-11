@@ -17,7 +17,7 @@ void func_020c1b90(void);
 void MovementCost(void);
 BOOL func_020f4638(int arg);
 void func_020c4018(void);
-void func_020c18cc(void);
+void CurrentPlayer_LoadPalettes(void);
 
 /* HP as the map shows it: 0-10, rounded up. */
 #define SHOWN_HP(unit) ((unit)->hp != 0 ? HwDiv32((unit)->hp - 1, 10) + 1 : 0)
@@ -88,7 +88,7 @@ void TwoMaps_MergeOtherFront(void)
     MovementCost();
     if (func_020f4638(4)) {
         func_020c4018();
-        func_020c18cc();
+        CurrentPlayer_LoadPalettes();
     }
     Screen_SetCurrent(saved027c);
     Screen_SetCurrentGfx(saved0280);
