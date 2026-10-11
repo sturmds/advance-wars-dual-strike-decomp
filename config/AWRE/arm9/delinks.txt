@@ -2943,6 +2943,10 @@ src/game/main/func_0201d730.c:
     complete
     .text       start:0x0201d730 end:0x0201d740
 
+src/game/main/script/event_text_clear_lines.c:
+    complete
+    .text       start:0x0201d740 end:0x0201d798
+
 src/game/main/func_0201d798.c:
     complete
     .text       start:0x0201d798 end:0x0201d7a8
