@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-int func_02069a90(int coSlot, int co);
+int VsSetup_CanPickCo(int coSlot, int co);
 
 extern MenuState gMenuState;
 
@@ -23,6 +23,6 @@ int VsSetup_NextCo(int coSlot)
         if (i == MENU->setup.coListCount) {
             i = 0;
         }
-    } while (func_02069a90(coSlot, MENU->setup.coList[i]) == 0);
+    } while (VsSetup_CanPickCo(coSlot, MENU->setup.coList[i]) == 0);
     return MENU->setup.coList[i];
 }

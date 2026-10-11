@@ -8,7 +8,7 @@ int func_0207bd6c(void);
 int Link_FindSlotOfPlayer(int player);
 void Co_QueueArmyMediumPicture(int co, void *dest, int paletteSlot, int player);
 void VsSetup_RedrawSkills(void);
-void func_02069624(void);
+void VsSetup_RedrawAllSkills(void);
 
 extern MenuState gMenuState;
 
@@ -39,9 +39,9 @@ void VsSetup_SetCo(int event, int co)
             return;
         }
         VsSetup_RedrawSkills();
-        func_02069624();
+        VsSetup_RedrawAllSkills();
     } else {
         VsSetup_RedrawSkills();
-        func_02069624();
+        VsSetup_RedrawAllSkills();
     }
 }

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/menu_state.h"
 
-int func_02069a90(int coSlot, int co);
+int VsSetup_CanPickCo(int coSlot, int co);
 
 extern MenuState gMenuState;
 
@@ -9,7 +9,7 @@ extern MenuState gMenuState;
 #define MENU ((MenuState *)&gMenuState)
 
 /* The CO before the one in coSlot in the pick list (wrapping), skipping COs
- * func_02069a90 refuses for that slot. */
+ * VsSetup_CanPickCo refuses for that slot. */
 int VsSetup_PrevCo(int coSlot)
 {
     u8 co = MENU->setup.cos[coSlot >> 1][coSlot & 1];
@@ -24,6 +24,6 @@ int VsSetup_PrevCo(int coSlot)
         if (i < 0) {
             i = MENU->setup.coListCount - 1;
         }
-    } while (func_02069a90(coSlot, MENU->setup.coList[i]) == 0);
+    } while (VsSetup_CanPickCo(coSlot, MENU->setup.coList[i]) == 0);
     return MENU->setup.coList[i];
 }

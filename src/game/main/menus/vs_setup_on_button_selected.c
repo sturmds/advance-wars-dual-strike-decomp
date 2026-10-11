@@ -6,7 +6,7 @@ int Sound_PlaySe(int);
 void HelpText_Show(u32 textId, int tile);
 int BattleSetup_IsCursorOnCo(void);
 void VsSetup_RedrawSkills(void);
-void func_02069624(void);
+void VsSetup_RedrawAllSkills(void);
 
 extern MenuState gMenuState;
 
@@ -28,7 +28,7 @@ void VsSetup_OnButtonSelected(MenuButton *button)
     }
     MENU->setup.unk_2e4 = button->id;
     VsSetup_RedrawSkills();
-    func_02069624();
+    VsSetup_RedrawAllSkills();
     if (BattleSetup_IsCursorOnCo() == 1) {
         HelpText_Show(HELP_TEXT(0x18), HELP_TILE);
     } else {
