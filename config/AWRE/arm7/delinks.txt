@@ -1528,6 +1528,10 @@ src/arm7/sdk/snd/snd_ex_channel_set_attack.c:
     complete
     .text       start:0x037ff834 end:0x037ff858
 
+src/arm7/sdk/snd/snd_ex_channel_update_envelope.c:
+    complete
+    .text       start:0x037ff858 end:0x037ff90c
+
 src/arm7/sdk/func_arm7_03800e84.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
