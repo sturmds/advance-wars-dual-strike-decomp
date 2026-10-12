@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-/* Alarm handler of func_arm7_027cc2b0: no answer came within request->timeoutMs. */
+/* Alarm handler of WifiMlme_RunReassociation: no answer came within request->timeoutMs. */
 void WifiMlme_ReassociationTimedOut(void *arg)
 {
     WlPeerJob *job = &WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->peer;
