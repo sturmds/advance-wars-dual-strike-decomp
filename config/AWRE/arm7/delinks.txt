@@ -800,6 +800,10 @@ src/arm7/sdk/wl/wifi_rf_await_quiet_air.c:
     complete
     .text       start:0x027cb848 end:0x027cb880
 
+src/arm7/sdk/wl/wifi_spin_for_us.c:
+    complete
+    .text       start:0x027cb880 end:0x027cb8f4
+
 src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c

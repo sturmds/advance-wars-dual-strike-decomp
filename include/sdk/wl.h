@@ -435,6 +435,7 @@ int WifiBuffer_Release(WlBufferList *list, WlBuffer *buffer);
 int WifiBuffer_Transfer(WlBufferList *from, WlBufferList *to, WlBuffer *buffer);
 void WifiBuffer_GiveToHost(WlBufferList *list, WlBuffer *buffer);
 int WifiBaseband_AwaitReady(void);
+void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
