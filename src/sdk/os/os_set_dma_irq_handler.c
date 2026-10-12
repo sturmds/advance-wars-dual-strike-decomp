@@ -1,10 +1,12 @@
 #include "sdk/os.h"
 
-void func_0210cdf4(int dma, void (*handler)(void *), void *arg)
+/* Sets the handler for DMA channel dma (0-3) and enables its interrupt;
+ * keepEnabled records whether the interrupt was already enabled. */
+void OSi_EnterDmaCallback(u32 dma, void (*handler)(void *), void *arg)
 {
-    int bit = dma + 8;
+    u32 mask = 1 << (dma + 8);
 
     gOsIrqSlots[dma].handler = handler;
-    data_022a98c4[dma].arg = arg;
-    data_022a98c0[dma].keepEnabled = OS_EnableIrqMask(1 << bit) & (1 << bit);
+    gOsIrqSlots[dma].arg = arg;
+    gOsIrqSlots[dma].keepEnabled = OS_EnableIrqMask(mask) & mask;
 }

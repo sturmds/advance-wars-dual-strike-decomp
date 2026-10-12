@@ -7,7 +7,7 @@ int OS_DisableInterrupts(void);
 void OS_RestoreInterrupts(int irqState);
 void MI_WaitDma(u32 dmaNo);
 void MIi_DmaSetParams(u32 dmaNo, u32 src, u32 dest, u32 control);
-void func_0210cdf4(u32 dmaNo, void (*callback)(void *), void *arg);
+void OSi_EnterDmaCallback(u32 dmaNo, void (*callback)(void *), void *arg);
 
 /* Fills size bytes at dest with data in 32-bit units; with a callback, runs callback(arg) after the transfer. */
 void MI_DmaFill32Async(u32 dmaNo, u32 dest, u32 data, u32 size, void (*callback)(void *), void *arg)
@@ -23,7 +23,7 @@ void MI_DmaFill32Async(u32 dmaNo, u32 dest, u32 data, u32 size, void (*callback)
     }
     MI_WaitDma(dmaNo);
     if (callback != NULL) {
-        func_0210cdf4(dmaNo, callback, arg);
+        OSi_EnterDmaCallback(dmaNo, callback, arg);
         irqState = OS_DisableInterrupts();
         src = (u32)&IO_DMA_FILL_VALUE(dmaNo);
         IO_DMA_FILL_VALUE(dmaNo) = data;
