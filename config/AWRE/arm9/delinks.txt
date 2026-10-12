@@ -23508,6 +23508,14 @@ src/sdk/func_021295f8.c:
     complete
     .text       start:0x021295f8 end:0x02129600
 
+src/sdk/msl/__write_console.c:
+    complete
+    .text       start:0x02129600 end:0x02129638
+
+src/sdk/msl/__read_console.c:
+    complete
+    .text       start:0x02129638 end:0x0212969c
+
 src/sdk/func_02129748.c:
     complete
     .text       start:0x02129748 end:0x02129754
