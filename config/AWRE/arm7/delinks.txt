@@ -847,6 +847,10 @@ src/arm7/sdk/snd/snd_arm7_stop_timer.c:
     complete
     .text       start:0x038020fc end:0x038021c0
 
+src/arm7/sdk/snd/snd_arm7_start_timer.c:
+    complete
+    .text       start:0x038021c0 end:0x038022b4
+
 src/arm7/sdk/func_arm7_0380239c.c:
     complete
     .text       start:0x0380239c end:0x038023b4

@@ -136,4 +136,6 @@ typedef struct SndArm7Snapshot {
 extern SndArm7Work data_arm7_03808090;
 extern SndArm7Alarm data_arm7_03809010[SOUND_TIMER_SLOTS_ARM7]; /* same memory as data_arm7_03808090.alarms */
 
+void SndArm7_StartAlarm(int alarmNo);
+
 #endif
