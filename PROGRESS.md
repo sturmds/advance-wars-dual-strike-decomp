@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
-| ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7305 / 7533 | 1615400 / 1689066 | 95.64% | 176 | 20718 |
+| ARM9 SDK/library | 642 / 833 | 102952 / 135226 | 76.13% | 176 | 20718 |
+| ARM9 all | 7307 / 7533 | 1617048 / 1689066 | 95.74% | 176 | 20718 |
 | ARM7 SDK/library | 946 / 1020 | 146680 / 154300 | 95.06% | 69 | 4960 |
 | ARM7 all | 946 / 1020 | 146680 / 154300 | 95.06% | 69 | 4960 |
 | game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
-| SDK/library | 1586 / 1853 | 247984 / 289526 | 85.65% | 245 | 25678 |
-| all | 8251 / 8553 | 1762080 / 1843366 | 95.59% | 245 | 25678 |
+| SDK/library | 1588 / 1853 | 249632 / 289526 | 86.22% | 245 | 25678 |
+| all | 8253 / 8553 | 1763728 / 1843366 | 95.68% | 245 | 25678 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5159 / 5180 | 1055196 / 1082632 | 97.47% | 0 |
-| main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
+| main | SDK/library | 635 / 822 | 102040 / 133690 | 76.33% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -90,9 +90,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 |
 | `src/sdk/card/cardi_start_rom_dma.c` | func_021162d8 | 340 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 |
-| `src/sdk/isd/isd_double_add.c` | func_02120574 | 920 |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 |
-| `src/sdk/isd/isd_double_times_ten.c` | func_0212029c | 728 |
 | `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 |
 | `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 |

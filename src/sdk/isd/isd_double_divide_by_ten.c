@@ -60,7 +60,10 @@ double func_0211fe0c(double x, int keepFraction)
     } else {
         exponent = 0;
     }
-    integerOnly = keepFraction == 0;
+    integerOnly = FALSE;
+    if (keepFraction == 0) {
+        integerOnly = TRUE;
+    }
     fifth = 0;
     remainder = 0;
     mantissa |= 0x0010000000000000ULL;
@@ -131,7 +134,8 @@ double func_0211fe0c(double x, int keepFraction)
     Isd_StoreByte(writePtr, byte);
     for (i = 6; i >= 0; i--) {
         shifted = fraction;
-        for (j = 0; j < i * 8; j++) {
+        count = i * 8;
+        for (j = 0; j < count; j++) {
             shifted >>= 1;
         }
         writePtr = (char *)&result + i;
