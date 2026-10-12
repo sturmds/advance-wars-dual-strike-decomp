@@ -7,11 +7,11 @@ struct Unk_038037e8_0 {
     int unk_10;
 };
 
-void func_arm7_03802c3c(int);
+void CardSave_EraseSectorAt(int);
 
 void func_arm7_038037e8(Unk_038037e8_0 **a0)
 {
     Unk_038037e8_0 *t0 = *a0;
     int t1 = t0->unk_10;
-    func_arm7_03802c3c(t1);
+    CardSave_EraseSectorAt(t1);
 }

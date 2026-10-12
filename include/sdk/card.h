@@ -154,6 +154,13 @@ extern CARDiRomPage data_022ac100;
 #define CARD_SPI_BUSY 0x0080
 
 #define CARD_RESULT_TIMEOUT 4
+#define CARD_RESULT_FAILURE 1          /* verify found a byte that differs */
+
+/* Save chip commands. */
+#define SAVE_CHIP_OP_FILL_ERASED_PAGE 0x02   /* write a page that was erased */
+#define SAVE_CHIP_OP_FETCH_BYTES 0x03
+#define SAVE_CHIP_OP_ERASE_AND_WRITE 0x0a   /* erase and write a page (flash) */
+#define SAVE_CHIP_OP_WIPE_SECTOR 0xd8
 
 /* Scanlines in one frame; used to count elapsed time from VCOUNT. */
 #define GAMECARD_TIMER_FRAME_LINES 263
@@ -164,6 +171,7 @@ struct CARDiSpiTransfer {
     int remaining;                 /* the chip select is released on the last byte */
     const u8 *src;
     u8 *dst;
+    BOOL verifyOk;                 /* verify: no byte has differed so far */
 };
 
 typedef void (*CARDiSpiByteFunction)(CARDiSpiTransfer *transfer);
