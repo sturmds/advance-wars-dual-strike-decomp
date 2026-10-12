@@ -1218,7 +1218,8 @@ typedef struct WlBufferLists {
     WlBufferAllocator allocator;
     WlBufferList unk_15c;
     WlBufferList txQueues[2]; /* WlWork.txQueues */
-    u8 pad_30[0x84 - 0x30];
+    WlBufferList multicastQueue; /* WlWork.multicastQueue */
+    u8 pad_3c[0x84 - 0x3c];
     WlBufferList inbox;
 } WlBufferLists;
 
