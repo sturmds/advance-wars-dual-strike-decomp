@@ -330,13 +330,17 @@ typedef struct WMStatus {
     u16 state;                         /* WIRELESS_PHASE_* */
     u8 pad_02[0x0a];
     u32 mpFlag;                        /* 1 while MP runs */
-    u8 pad_10[0x36];
+    u8 pad_10[0x0c];
+    u32 unk_1c;                        /* 1: MP sends set flag 0x8000 */
+    u8 pad_20[0x26];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
     u8 pad_54[0x32];
     u16 mpReadyBitmap;                 /* the children that take part in MP */
-    u8 pad_88[0x30];
+    u8 pad_88[2];
+    u16 unk_8a;
+    u8 pad_8c[0x2c];
     u16 linkLevel;
     u8 pad_ba[8];
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
