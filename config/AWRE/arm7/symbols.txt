@@ -1042,7 +1042,7 @@ CTRDG_IsPulledOut kind:function(arm,size=0x58) addr:0x03806718
 func_arm7_03806770 kind:function(arm,size=0x40) addr:0x03806770
 func_arm7_038067b0 kind:function(arm,size=0xc) addr:0x038067b0
 func_arm7_038067bc kind:function(arm,size=0x20) addr:0x038067bc
-func_arm7_038067dc kind:function(arm,size=0x114) addr:0x038067dc
+Cartridge_CheckRemovedEveryTenFrames kind:function(arm,size=0x114) addr:0x038067dc
 func_arm7_038068f0 kind:function(arm,size=0xac) addr:0x038068f0
 func_arm7_0380699c kind:function(arm,size=0x2c) addr:0x0380699c
 func_arm7_038069c8 kind:function(arm,size=0x38) addr:0x038069c8
@@ -1081,8 +1081,8 @@ data_arm7_038077e4 kind:data(any) addr:0x038077e4
 data_arm7_038077e8 kind:data(any) addr:0x038077e8
 data_arm7_038077ec kind:data(any) addr:0x038077ec
 data_arm7_038077f0 kind:data(any) addr:0x038077f0
-data_arm7_03807880 kind:data(any) addr:0x03807880
-data_arm7_03807884 kind:data(any) addr:0x03807884
+gCtrdgFirstPoll kind:data(any) addr:0x03807880
+gCtrdgNextPollFrame kind:data(any) addr:0x03807884
 data_arm7_038078bc kind:bss addr:0x038078bc
 data_arm7_038078c0 kind:bss addr:0x038078c0
 data_arm7_038078c4 kind:bss addr:0x038078c4
@@ -1178,8 +1178,8 @@ data_arm7_0380a874 kind:bss addr:0x0380a874
 data_arm7_0380af74 kind:bss addr:0x0380af74
 data_arm7_0380afb0 kind:bss addr:0x0380afb0
 data_arm7_0380afc0 kind:bss addr:0x0380afc0
-data_arm7_0380afc4 kind:bss addr:0x0380afc4
-data_arm7_0380afc8 kind:bss addr:0x0380afc8
+gCtrdgPollStopped kind:bss addr:0x0380afc4
+gCtrdgPulledOut kind:bss addr:0x0380afc8
 data_arm7_0380afcc kind:bss addr:0x0380afcc
 data_arm7_0380afd0 kind:bss addr:0x0380afd0
 data_arm7_0380afd4 kind:bss addr:0x0380afd4
