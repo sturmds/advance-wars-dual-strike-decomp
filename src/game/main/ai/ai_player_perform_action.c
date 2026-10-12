@@ -11,7 +11,7 @@ extern u8 data_0229ea0c[];
 extern u32 gLinkPlay;
 
 void UnitAction_Send(int action, int unitIndex, u8 target, u8 arg);
-void func_021296a8(void *p, int n);
+void longjmp(void *p, int n);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -35,5 +35,5 @@ void AiPlayer_PerformAction(int action)
         }
         break;
     }
-    func_021296a8(data_0229ea0c, 1);
+    longjmp(data_0229ea0c, 1);
 }

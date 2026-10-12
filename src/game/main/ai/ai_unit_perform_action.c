@@ -13,7 +13,7 @@ extern u32 gLinkPlay;
 
 void AiUnit_AdjustAction(int x, int y, u8 *action, u8 *target, u8 *arg);
 void AiUnit_MarkFinishingCapture(int action);
-void func_021296a8(void *p, int n);
+void longjmp(void *p, int n);
 void RangeMap_FillUnitMoves(MapUnit *unit);
 void RangeMap_TracePath(int x, int y, u8 *out);
 void PackNibblePairs(const u8 *nibbles, u8 *out);
@@ -34,7 +34,7 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     unit = GAME->actingUnit;
     if (x == unit->x && y == unit->y && action == 2) {
         unit->unk_08_7 = 1;
-        func_021296a8(data_0229ea0c, 1);
+        longjmp(data_0229ea0c, 1);
     }
     RangeMap_FillUnitMoves(unit);
     RangeMap_TracePath(x, y, GAME->pathSteps);
@@ -56,5 +56,5 @@ void AiUnit_PerformAction(int x, int y, u8 action, u8 target, u8 arg)
     if (gLinkPlay != 0) {
         func_0208fda8();
     }
-    func_021296a8(data_0229ea0c, 1);
+    longjmp(data_0229ea0c, 1);
 }

@@ -14,7 +14,7 @@ extern u8 data_0229ea0c[];
 int Rng_Next(void);
 s32 HwMod32(s32 numer, s32 denom);
 int Unit_GetUsableMovement(MapUnit *unit);
-int func_0212969c(void *p);
+int setjmp(void *p);
 
 /* Runs gAiQueueRoutine for the next queue entry. A unit entry becomes
  * the active unit and is lifted off the unit map while the routine runs;
@@ -60,7 +60,7 @@ void AiTurn_RunQueue(void)
         gUnitAction.pending = 0;
     }
 
-    if (func_0212969c(data_0229ea0c) == 0) {
+    if (setjmp(data_0229ea0c) == 0) {
         gAiQueueRoutine();
     }
 
