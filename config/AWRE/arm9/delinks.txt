@@ -9804,7 +9804,8 @@ src/game/main/func_0207f544.c:
     complete
     .text       start:0x0207f544 end:0x0207f550
 
-src/game/main/link/func_0207f550.c:
+src/game/main/link/link_menu_draw_players_and_maps.c:
+    complete
     .text       start:0x0207f550 end:0x0207f7ec
 
 src/game/main/link/link_menu_init_two_player_screen.c:

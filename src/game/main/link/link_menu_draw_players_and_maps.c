@@ -27,9 +27,8 @@ void HelpText_Show(u32 textId, int tile);
  * "func_0207a1f0() + 1 / func_0207a324()" count on the top row, both players'
  * names, and for each player the names of the three maps in
  * MenuState.linkMenu.rows (text 0x7e000011 for an empty slot). Shows a help
- * text when either player has a map.
- * WIP: 10 instructions differ; row, y and map land in rotated registers. */
-void func_0207f550(void) {
+ * text when either player has a map. */
+void LinkMenu_DrawPlayersAndMaps(void) {
   int i;
   int player;
   int slot;
@@ -51,11 +50,14 @@ void func_0207f550(void) {
     }
   }
   for (player = 0; player < 2; player++) {
-    row = &((MenuState*)&gMenuState)->linkMenu.rows[player * 3];
-    for (slot = 0; slot < 3; row++, slot++) {
+    for (slot = 0; slot < 3; slot++) {
+      /* Needed to match: the row rebuilt from the player's first row at each
+       * slot, not stepped with row++. */
+      row = &((MenuState*)&gMenuState)->linkMenu.rows[player * 3] + slot;
       if (DesignMap_IsUsed(row) == 1) {
-        map = data_027c0280->layer0Map;
-        Text_Print(5 + player * 12, 15 + slot * 2, map, func_0207fc34(row), 0,
+        /* Needed to match: a map local of its own, read before the call. */
+        u16* layer = data_027c0280->layer0Map;
+        Text_Print(5 + player * 12, 15 + slot * 2, layer, func_0207fc34(row), 0,
                    (player * 3 + slot) * 20 + 0x300);
       } else {
         Text_PrintId(5 + player * 12, 15 + slot * 2, data_027c0280->layer0Map,
