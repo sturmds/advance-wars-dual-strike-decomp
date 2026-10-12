@@ -556,6 +556,10 @@ src/arm7/sdk/wl/wifi_cmd_report_own_mac.c:
     complete
     .text       start:0x027cd8fc end:0x027cd934
 
+src/arm7/sdk/wl/wifi_cmd_report_all_settings.c:
+    complete
+    .text       start:0x027cd934 end:0x027cda6c
+
 src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28

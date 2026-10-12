@@ -20,6 +20,29 @@ typedef struct WlReply {
     u16 words[16];
 } WlReply;
 
+// Reply of WifiCmd_ReportAllSettings. Field names give the WL work offset each one
+// is copied from.
+typedef struct WlStatusReply {
+    u16 unk_00;
+    u16 status;
+    u16 unk_04;
+    u16 macAddress[3];
+    u16 work2fe;
+    u16 state00;
+    u16 state92;
+    u16 phase;
+    u16 state04;
+    u16 state08;
+    u16 state0a;
+    u16 flag0;
+    u16 flag1;
+    u16 state96;
+    u16 state10;
+    u16 state58[16];
+    u16 flag2;
+    u16 state06;
+} WlStatusReply;
+
 typedef struct WlLimits {
     u8 pad_00[0xd8];
     struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
