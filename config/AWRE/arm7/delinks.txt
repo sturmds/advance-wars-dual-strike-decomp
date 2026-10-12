@@ -1120,6 +1120,10 @@ src/arm7/sdk/wl/wifi_cmd_go_idle_mode.c:
     complete
     .text       start:0x027ce7cc end:0x027ce830
 
+src/arm7/sdk/wl/wifi_cmd_power_down_mode.c:
+    complete
+    .text       start:0x027ce830 end:0x027ce87c
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
