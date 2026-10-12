@@ -35,9 +35,17 @@ static inline void NVRAM_SpiWait(void)
     }
 }
 
+/* The byte that came in during the last transfer. Returning u16 keeps the
+ * mask before a byte store, as the original has it. */
+static inline u16 NVRAM_SpiReceived(void)
+{
+    return (u16)(REG_SPIDATA & 0xff);
+}
+
 void NVRAM_EraseSector(u32 address);
 void NVRAM_ErasePage(u32 address);
 void NVRAM_ProgramPage(u32 address, u16 size, const u8 *src);
 void NVRAM_WritePage(u32 address, u16 size, const u8 *src);
+void NVRAM_FastRead(u32 address, u32 size, u8 *dest);
 
 #endif
