@@ -3,7 +3,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fbe2c(OSThreadQueue *queue);
+void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
 void func_arm7_037fbe9c(OSThreadQueue *queue);
 
 /*
@@ -24,7 +24,7 @@ BOOL func_arm7_037fc44c(OSMessageQueue *queue, OSMessage msg, int flags)
     }
     queue->msgArray[ARM7_REMAINDER(queue->firstIndex + queue->usedCount, queue->msgCount)] = msg;
     queue->usedCount++;
-    func_arm7_037fbe2c((OSThreadQueue *)&queue->queueReceive);
+    Thread_ReadyAllWaiters_Arm7((OSThreadQueue *)&queue->queueReceive);
     func_arm7_037fdb94(irqState);
     return TRUE;
 }

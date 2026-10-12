@@ -812,6 +812,10 @@ src/arm7/sdk/os/thread_make_ready_arm7.c:
     complete
     .text       start:0x037fbdf8 end:0x037fbe2c
 
+src/arm7/sdk/os/thread_ready_all_waiters_arm7.c:
+    complete
+    .text       start:0x037fbe2c end:0x037fbe9c
+
 src/arm7/sdk/os/thread_unlink_arm7.c:
     complete
     .text       start:0x037fc18c end:0x037fc1d4
