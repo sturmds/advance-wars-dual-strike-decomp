@@ -22,23 +22,26 @@ static inline void Isd_StoreByte(char *address, int value)
  * and packs the result. Zero (exponent and mantissa 0) returns the other
  * argument; signs are ignored.
  */
-double func_02120574(double a, double b)
+double Isd_DoubleAdd(double a, double b)
 {
-    int byte;
-    int expA;
-    int j;
-    u64 mantA;
-    int shift;
-    char *topB;
-    int k;
-    char *readPtr;
+    /* Needed to match: this declaration order. */
     char *writePtr;
+    char *readPtr;
     u64 mantB;
-    u64 shifted;
+    int expA;
+    char *topB;
+    int byte;
     char *topA;
+    u64 shifted;
+    int count;
+    double result;
+    u64 mantA;
     int expB;
     int i;
-    double result;
+    int k;
+    int j;
+    u64 sum;
+    int shift;
 
     expA = Isd_DoubleExponent(a);
     mantA = 0;
@@ -76,18 +79,18 @@ double func_02120574(double a, double b)
         for (; k < shift; k++) {
             mantB >>= 1;
         }
-        mantB = mantA + mantB;
+        sum = mantA + mantB;
     } else {
         shift = expB - expA;
         for (; k < shift; k++) {
             mantA >>= 1;
         }
-        mantB = mantA + mantB;
+        sum = mantA + mantB;
         expA = expB;
     }
     /* A carry into bit 53 moves the point one place. */
-    while ((mantB >> 53) & 1) {
-        mantB >>= 1;
+    while ((sum >> 53) & 1) {
+        sum >>= 1;
         expA++;
     }
 
@@ -97,13 +100,16 @@ double func_02120574(double a, double b)
     writePtr = (char *)&result + 7;
     Isd_StoreByte(writePtr, byte);
     readPtr = (char *)&result + 6;
-    byte = Isd_ReadByte(readPtr) | ((expA & 0xf) << 4);
+    /* Needed to match: the byte goes through i first, and the shift count below is a local. */
+    i = Isd_ReadByte(readPtr) | ((expA & 0xf) << 4);
+    byte = i;
     writePtr = (char *)&result + 6;
     Isd_StoreByte(writePtr, byte);
-    mantB &= 0x000fffffffffffffULL;
+    sum &= 0x000fffffffffffffULL;
     for (i = 6; i >= 0; i--) {
-        shifted = mantB;
-        for (j = 0; j < i * 8; j++) {
+        shifted = sum;
+        count = i * 8;
+        for (j = 0; j < count; j++) {
             shifted >>= 1;
         }
         writePtr = (char *)&result + i;

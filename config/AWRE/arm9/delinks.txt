@@ -23255,6 +23255,7 @@ src/sdk/isd/isd_double_times_ten.c:
     .text       start:0x0212029c end:0x02120574
 
 src/sdk/isd/isd_double_add.c:
+    complete
     .text       start:0x02120574 end:0x0212090c
 
 src/sdk/isd/isd_double_exponent.c:

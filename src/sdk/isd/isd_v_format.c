@@ -13,7 +13,7 @@ int Isd_DoubleExponent(double x);
 u32 Isd_DoubleUnitsDigit(double x);         /* the digit in front of the point */
 double func_0211fe0c(double x, int keepFraction); /* x / 10; with keepFraction 0, the integer part of it */
 double Isd_DoubleTimesTen(double x);             /* x * 10 */
-double func_02120574(double a, double b);   /* a + b */
+double Isd_DoubleAdd(double a, double b);   /* a + b */
 
 extern char gIsdNullString[];   /* "(null)" */
 extern char gIsdZeroString[];   /* "0" */
@@ -486,7 +486,7 @@ void Isd_VFormat(IsdPrintTarget *target, const char *format, char **args)
             for (i = 0; i <= fracDigits; i++) {
                 rounding = func_0211fe0c(rounding, 1);
             }
-            number = func_02120574(number, rounding);
+            number = Isd_DoubleAdd(number, rounding);
             if (conversion == CONV_EXP || conversion == CONV_EXP_UPPER) {
                 if (!isGeneral || exponent != 0) {
                     if (exponent >= 0) {
