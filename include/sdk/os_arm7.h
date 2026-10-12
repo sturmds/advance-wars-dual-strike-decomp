@@ -144,6 +144,36 @@ typedef enum ArenaRegionArm7 {
 } ArenaRegionArm7;
 
 /*
+ * OS heaps carved out of an arena. Each block, used or free, starts with an
+ * HeapBlockHeader header padded to HEAP_BLOCK_HEADER_BYTES; sizes include the header
+ * and are multiples of 32.
+ */
+#define HEAP_BLOCK_HEADER_BYTES 32
+#define HEAP_SMALLEST_SPLIT 64          /* a header and at least 32 bytes */
+
+typedef struct HeapBlockHeader HeapBlockHeader;
+struct HeapBlockHeader {
+    HeapBlockHeader *prev;
+    HeapBlockHeader *next;
+    s32 size;
+};
+
+typedef struct HeapRecord {
+    s32 size;                      /* negative for an unused slot */
+    HeapBlockHeader *free;              /* sorted by address */
+    HeapBlockHeader *allocated;
+} HeapRecord;
+
+/* One per arena that has heaps, at the start of the arena. */
+typedef struct OSHeapInfo {
+    s32 currentHeap;               /* used when a heap argument is negative */
+    s32 numHeaps;                  /* number of slots in heapArray */
+    void *arenaStart;              /* first byte after heapArray, 32-byte aligned */
+    void *arenaEnd;
+    HeapRecord *heapArray;
+} OSHeapInfo;
+
+/*
  * The compiler's signed divide: the quotient comes back in r0 and the
  * remainder in r1, so a 64-bit return value holds both. The original calls
  * it by this name, so a plain % would not match.

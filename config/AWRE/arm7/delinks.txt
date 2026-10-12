@@ -883,6 +883,10 @@ src/arm7/sdk/os/arena_apply_defaults_arm7.c:
     complete
     .text       start:0x037fc814 end:0x037fc8b8
 
+src/arm7/sdk/os/heap_verify_and_count_free_arm7.c:
+    complete
+    .text       start:0x037fc8b8 end:0x037fca5c
+
 src/arm7/sdk/os/tick_read64_arm7.c:
     complete
     .text       start:0x037fce88 end:0x037fcf38
