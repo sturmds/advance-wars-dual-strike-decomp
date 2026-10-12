@@ -198,7 +198,8 @@ typedef struct WlLink {
     u16 mode;
     u8 pad_0a[2];
     u16 unk_0c;
-    u8 pad_0e[0x12 - 0x0e];
+    u8 pad_0e[0x10 - 0x0e];
+    u16 unk_10;     /* set to 1 on each pre-beacon interrupt */
     u16 unk_12;
     u8 pad_14[0x16 - 0x14];
     u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
@@ -214,9 +215,11 @@ typedef struct WlLink {
     u8 pad_6c[0x6e - 0x6c];
     u16 beaconInterval; /* sent in probe responses */
     u16 listenInterval; /* sent in association requests */
-    u8 pad_72[0x7c - 0x72];
+    u16 unk_72;
+    u8 pad_74[0x7c - 0x74];
     u16 flags_7c;
-    u8 pad_7e[0x82 - 0x7e];
+    u16 unk_7e;          /* WlState.unk_96: pre-beacons between runs of task 13 */
+    u16 unk_80;          /* WlState.unk_98: pre-beacons counted towards unk_7e */
     u16 currentAp[3];   /* MAC address sent in reassociation requests */
     u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
