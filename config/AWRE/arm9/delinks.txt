@@ -19466,6 +19466,7 @@ src/game/main/campaign_recap_set_camera.c:
     .text       start:0x020fec98 end:0x020fed58
 
 src/game/main/map/func_020fed58.c:
+    complete
     .text       start:0x020fed58 end:0x020ff07c
 
 src/game/main/func_020ff07c.c:

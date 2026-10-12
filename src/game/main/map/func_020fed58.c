@@ -24,17 +24,16 @@ extern int data_027c0284;
  * starts the screen black. Each slot 1-4 first gets army style = slot
  * number; a slot whose header CO is a real CO then gets that CO's style.
  * Slots with a CO or CO_PLAYER_PICKS get a human controller, slots with
- * none get no controller. Called by CampaignRecap_Update.
- *
- * WIP: 97%. The loop preheader schedules two instructions differently
- * (the Ov000_gMapHeaders load and the copies of the constant 1). */
+ * none get no controller. Called by CampaignRecap_Update. */
 void func_020fed58(CampaignRecap *recap, int mission)
 {
     int mapId;
     int slot;
     int coId;
 
-    mapId = MAP_CAMPAIGN_FIRST + mission;
+    /* needed to match: in two steps (97% as one sum; found by tools/permuter.py) */
+    mapId = mission;
+    mapId += MAP_CAMPAIGN_FIRST;
     STATE->unk_1c4->mapId = mapId;
     STATE->unk_1c4->tileset = Ov000_gMapHeaders[STATE->unk_1c4->mapId].tileset;
     TileCodeTable_Load();
