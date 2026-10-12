@@ -63,26 +63,22 @@ void func_0209c1f8(void); /* rebuilds the AI threat maps */
  *   in another direction than the first. */
 void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
   /* needed to match: each search has its own variables, while count,
-     * unit and chart are shared. The spilled unloadMaxY..unloadStartX take
-     * stack slots in declaration order, except that a variable set by a
-     * ternary or an if/else takes the lowest slot: hence the plain ifs on
-     * unloadMinY and unloadStartX. Not matching yet: the original sets
-     * unloadStartX with a conditional store on both paths. */
+     * unit and chart are shared */
   MapUnit* best = NULL;
   MapUnit* unit;
   int count = 0;
   int unloadEndX;
   int unloadStartY;
   int unloadMaxX;
+  int unloadMinX;
+  int unloadMinY;
   int unloadX;
   int unloadY;
   int unloadDist;
   int unload2X;
   int unload2Dist;
-  int unloadMaxY;
-  int unloadMinY;
-  int unloadMinX;
   int unloadEndY;
+  int unloadMaxY;
   int unloadStartX;
   int repairMaxY;
   int repairMaxX;
@@ -396,9 +392,10 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
       }
       func_0209c1f8();
       unloadMinX = x - 1;
-      unloadStartX = unloadMinX;
       if (unloadMinX < 0) {
         unloadStartX = 0;
+      } else {
+        unloadStartX = unloadMinX;
       }
       unloadMinY = y - 1;
       if (unloadMinY < 0) {
@@ -409,10 +406,9 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
       unloadEndX = x + 1 < STATE->unk_1c4->mapWidth - 1
                        ? x + 1
                        : STATE->unk_1c4->mapWidth - 1;
-      unloadEndY = STATE->unk_1c4->mapHeight - 1;
-      if (y + 1 < unloadEndY) {
-        unloadEndY = y + 1;
-      }
+      unloadEndY = y + 1 < STATE->unk_1c4->mapHeight - 1
+                       ? y + 1
+                       : STATE->unk_1c4->mapHeight - 1;
       for (unloadY = unloadStartY; unloadY <= unloadEndY; unloadY++) {
         for (unloadX = unloadStartX; unloadX <= unloadEndX; unloadX++) {
           unloadDist = 0;
@@ -429,8 +425,8 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
           if (unloadDist < 1 || unloadDist > 1) {
             continue;
           }
-          /* closer to the original read in place than through chart
-                 * (found by tools/permuter.py) */
+          /* needed to match: read in place, not through chart (found by
+           * tools/permuter.py) */
           if (((const s8(*)[32])gCoTable[0]
                    .blocks[0]
                    .movementCost[MOVE_CHART_DEFAULT])
@@ -465,18 +461,19 @@ void AiUnit_UpgradeWaitAction(s16 x, s16 y, u8* action, u8* target, u8* arg) {
       if (secondCargo->fuel != Ov000_gUnitStats[secondCargo->type].fuel) {
         return;
       }
-      if (unloadMinX < 0) {
-        unloadMinX = 0;
-      }
-      if (unloadMinY < 0) {
-        unloadMinY = 0;
-      }
+      /* needed to match: unloadStartX, unloadEndY, unloadMinX, unloadMinY
+       * and unloadMaxY are set by a ternary or an if/else, not by an
+       * assignment followed by an if. mwcc spills all five, and the form
+       * decides which stack slot each one gets. */
+      unloadMinX = unloadMinX < 0 ? 0 : unloadMinX;
+      unloadMinY = unloadMinY < 0 ? 0 : unloadMinY;
       unloadMaxX = STATE->unk_1c4->mapWidth - 1;
       if (x + 1 < unloadMaxX) {
         unloadMaxX = x + 1;
       }
-      unloadMaxY = STATE->unk_1c4->mapHeight - 1;
-      if (y + 1 < unloadMaxY) {
+      if (y + 1 >= STATE->unk_1c4->mapHeight - 1) {
+        unloadMaxY = STATE->unk_1c4->mapHeight - 1;
+      } else {
         unloadMaxY = y + 1;
       }
       /* needed to match: chart loads after the row check, once; the rows
