@@ -1083,6 +1083,10 @@ src/arm7/sdk/os/func_arm7_037fd530.c:
     complete
     .text       start:0x037fd530 end:0x037fd57c
 
+src/arm7/sdk/os/line_alarm_classify_timing_arm7.c:
+    complete
+    .text       start:0x037fd57c end:0x037fd5cc
+
 src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0

@@ -335,4 +335,14 @@ struct OSVAlarm {
     BOOL canceled;
 };
 
+/* V count lines per frame, blanking included. */
+#define LINE_ALARM_FRAME_LINES 263
+
+/* Where now stands against a V-count alarm's frame and line. */
+enum {
+    LINE_ALARM_EARLY = 0,
+    LINE_ALARM_ON_TIME = 1,             /* reached, at most delay lines late */
+    LINE_ALARM_TOO_LATE = 2           /* more than delay lines late */
+};
+
 #endif
