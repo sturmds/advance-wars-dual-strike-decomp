@@ -1028,7 +1028,6 @@ func_arm7_03805da8 kind:function(arm,size=0x2d4) addr:0x03805da8
 func_arm7_0380607c kind:function(arm,size=0x40) addr:0x0380607c
 func_arm7_038060bc kind:function(arm,size=0xc8) addr:0x038060bc
 func_arm7_03806184 kind:function(arm,size=0xc8) addr:0x03806184
-func_arm7_0380624c kind:function(arm,size=0x180) addr:0x0380624c
 func_arm7_038063d0 kind:function(arm,size=0x4c) addr:0x038063d0
 func_arm7_0380641c kind:function(arm,size=0x6c) addr:0x0380641c
 func_arm7_03806488 kind:function(arm,size=0x28) addr:0x03806488
@@ -1062,7 +1061,7 @@ data_arm7_03807294 kind:data(any) addr:0x03807294
 data_arm7_038072a8 kind:data(any) addr:0x038072a8
 data_arm7_038072ac kind:data(any) addr:0x038072ac
 data_arm7_038072b0 kind:data(any) addr:0x038072b0
-data_arm7_038072e4 kind:data(any) addr:0x038072e4
+gOsNestedIrqPriorities kind:data(any) addr:0x038072e4
 func_arm7_03807394 kind:function(arm,size=0x74) addr:0x03807394
 func_arm7_03807408 kind:function(arm,size=0x1c) addr:0x03807408
 data_arm7_03807424 kind:data(any) addr:0x03807424
@@ -1176,7 +1175,7 @@ data_arm7_0380a03c kind:bss addr:0x0380a03c
 data_arm7_0380a0b4 kind:bss addr:0x0380a0b4
 data_arm7_0380a874 kind:bss addr:0x0380a874
 data_arm7_0380af74 kind:bss addr:0x0380af74
-data_arm7_0380afb0 kind:bss addr:0x0380afb0
+gOsNestedIrqWork kind:bss addr:0x0380afb0
 data_arm7_0380afc0 kind:bss addr:0x0380afc0
 gCtrdgPollStopped kind:bss addr:0x0380afc4
 gCtrdgPulledOut kind:bss addr:0x0380afc8
@@ -1189,3 +1188,4 @@ data_arm7_0380788c kind:bss addr:0x0380788c
 data_arm7_03807890 kind:bss addr:0x03807890
 data_arm7_03807894 kind:bss addr:0x03807894
 data_arm7_0380a274 kind:bss addr:0x0380a274
+IrqNest_DispatchByPriority kind:function(arm,size=0x184) addr:0x0380624c

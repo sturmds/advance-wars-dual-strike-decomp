@@ -142,6 +142,24 @@ typedef struct OSThreadInfo {
     OSThread *threads[16];
 } OSThreadInfo;
 
+/* The IRQ vector the BIOS jumps through: the address of the IRQ handler. */
+typedef void (*IrqEntryPoint)(void);
+#define BIOS_IRQ_HANDLER_PTR (*(IrqEntryPoint volatile *)0x0380fffc)
+
+/* State of the nesting IRQ handler (IrqNest_DispatchByPriority), gOsNestedIrqWork. */
+typedef struct OSiNestedIrqWork {
+    u32 unk_00;
+    void *stack;                   /* stack of the outermost handler; holds the thread's sp while it runs */
+    u32 stackSize;
+    IrqEntryPoint savedVector;       /* the handler it replaced */
+} OSiNestedIrqWork;
+
+extern OSiNestedIrqWork gOsNestedIrqWork;
+void IrqNest_DispatchByPriority(void);
+
+#define IRQ_NEST_STACK_BASE ((void *)0x0380fe80)
+#define IRQ_NEST_STACK_BYTES 0x40
+
 /* Arenas the ARM7 manages, numbered as in sdk/os.h's OSArenaId. */
 typedef enum ArenaRegionArm7 {
     OS_ARENA_MAIN_SUBPRIV = 1,     /* ARM7's private part of main RAM */
