@@ -121,6 +121,14 @@ typedef struct SndArm7Work {
     SndArm7Alarm alarms[SOUND_TIMER_SLOTS_ARM7];
 } SndArm7Work;
 
+/* Copy of the driver's state, written to a buffer the ARM9 passed in. */
+typedef struct SndArm7Snapshot {
+    SndArm7Work work;
+    u32 channelControl[16]; /* SOUNDxCNT of each channel */
+    SndArm7Work *driver;
+    u32 unk_11C4;
+} SndArm7Snapshot;
+
 extern SndArm7Work data_arm7_03808090;
 extern SndArm7Alarm data_arm7_03809010[SOUND_TIMER_SLOTS_ARM7]; /* same memory as data_arm7_03808090.alarms */
 

@@ -839,6 +839,10 @@ src/arm7/sdk/snd/snd_arm7_init_alarms.c:
     complete
     .text       start:0x03802064 end:0x03802090
 
+src/arm7/sdk/snd/snd_arm7_write_snapshot.c:
+    complete
+    .text       start:0x03802090 end:0x038020fc
+
 src/arm7/sdk/func_arm7_0380239c.c:
     complete
     .text       start:0x0380239c end:0x038023b4
