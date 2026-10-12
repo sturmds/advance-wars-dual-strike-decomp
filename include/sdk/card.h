@@ -247,6 +247,7 @@ extern CARDiArm7Common data_arm7_03809280;
 
 /* PXI word from the ARM9 under FIFO_TAG_CARD_REMOVAL: the card was removed, shut down. */
 #define GAMECARD_MSG_POWER_DOWN 1
+#define CARD_PXI_COMMAND_MASK 0x3f    /* command bits of a word under that tag */
 
 /* Set once a check found the card removed; the checks return TRUE while the card is there. */
 extern BOOL gCardRemoved;
