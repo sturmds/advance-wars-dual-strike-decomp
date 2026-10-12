@@ -395,6 +395,14 @@ typedef struct WlBufferList {
     u16 id;
 } WlBufferList;
 
+/* A buffer holding a frame to send. */
+typedef struct WlTxBuffer {
+    WlBuffer header;
+    u16 unk_0c;
+    u8 pad_0e[2];
+    WlTxFrame frame;
+} WlTxBuffer;
+
 // Host buffer that carries a frame to send. The reply sits replyOffset
 // halfwords after the start of frame.
 typedef struct WlTxRequest {
@@ -560,6 +568,18 @@ typedef struct WlStateView {
 } WlStateView;
 
 #define WIFI_FROM_STATION_TABLE_OF(work) ((WlStateView *)&(work)->limits.unk_f0)
+
+// View from work offset 0x150 (the buffer allocator), as WifiTx_EnqueueHostData
+// addresses its buffer lists.
+typedef struct WlBufferLists {
+    WlBufferAllocator allocator;
+    WlBufferList unk_15c;
+    WlBufferList txQueues[2]; /* WlWork.txQueues */
+    u8 pad_30[0x84 - 0x30];
+    WlBufferList inbox;
+} WlBufferLists;
+
+#define WIFI_LISTS_VIEW_OF(work) ((WlBufferLists *)&(work)->allocator)
 
 // View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
 // (WlState.mpReplySlots).

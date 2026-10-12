@@ -1284,6 +1284,10 @@ src/arm7/sdk/wl/wifi_cmd_arm_mp_reply.c:
     complete
     .text       start:0x027cee38 end:0x027cefb0
 
+src/arm7/sdk/wl/wifi_tx_enqueue_host_data.c:
+    complete
+    .text       start:0x027cefb0 end:0x027cf190
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
