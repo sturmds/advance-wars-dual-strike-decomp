@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6674 / 6700 | 1525556 / 1553840 | 98.18% | 0 | 0 |
+| ARM9 game | 6675 / 6700 | 1525736 / 1553840 | 98.19% | 0 | 0 |
 | ARM9 SDK/library | 643 / 833 | 103292 / 135226 | 76.38% | 176 | 20718 |
-| ARM9 all | 7317 / 7533 | 1628848 / 1689066 | 96.43% | 176 | 20718 |
+| ARM9 all | 7318 / 7533 | 1629028 / 1689066 | 96.45% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
-| game | 6674 / 6700 | 1525556 / 1553840 | 98.18% | 0 | 0 |
+| game | 6675 / 6700 | 1525736 / 1553840 | 98.19% | 0 | 0 |
 | SDK/library | 1592 / 1853 | 251996 / 289526 | 87.04% | 245 | 25678 |
-| all | 8266 / 8553 | 1777552 / 1843366 | 96.43% | 245 | 25678 |
+| all | 8267 / 8553 | 1777732 / 1843366 | 96.44% | 245 | 25678 |
 
 ## By module
 
@@ -35,7 +35,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov002 | game | 160 / 164 | 57796 / 64208 | 90.01% | 0 |
 | ov003 | game | 234 / 235 | 81996 / 82696 | 99.15% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
-| ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
+| ov005 | game | 265 / 266 | 96496 / 96684 | 99.81% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
 | arm7 | SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 |
 
@@ -52,15 +52,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 26 | 28284 | 6671 / 7092 (94.06%) |
+| ARM9 game | 25 | 28104 | 6632 / 7047 (94.11%) |
 | ARM9 SDK/library | 14 | 11216 | 2076 / 2890 (71.83%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 42 | 40136 | 8895 / 10141 (87.71%) |
+| all | 41 | 39956 | 8856 / 10096 (87.72%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 252 |
-| 3 to 10 | 13 | 7568 |
+| 3 to 10 | 12 | 7388 |
 | 11 to 50 | 25 | 24300 |
 | more than 50 | 3 | 8016 |
 
@@ -75,7 +75,6 @@ Closest first.
 | `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 | 4 | 95.63% |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 | 5 | 98.72% |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 | 5 | 97.38% |
-| `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 | 6 | 98.98% |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 | 6 | 94.00% |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 | 6 | 94.00% |
 | `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 | 7 | 99.90% |

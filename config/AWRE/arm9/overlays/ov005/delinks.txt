@@ -388,7 +388,8 @@ src/game/ov005/ov005_draw_credits_entry_text.c:
     complete
     .text       start:0x0235b3d4 end:0x0235b4c0
 
-src/game/ov005/func_ov005_0235b4c0.c:
+src/game/ov005/ov005_draw_glyph.c:
+    complete
     .text       start:0x0235b4c0 end:0x0235b574
 
 src/game/ov005/ov005_upload_tile_buffer.c:
