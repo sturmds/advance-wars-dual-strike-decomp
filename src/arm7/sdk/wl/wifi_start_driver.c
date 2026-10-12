@@ -14,7 +14,7 @@ void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_027cb920(void);
 void func_arm7_027cb9ac(void);
-void func_arm7_027cacec(void);
+void WifiStation_ClearTable(void);
 void Wifi_CreateAlarms(void);
 void WifiRf_ReadChipFormat(void);
 void WifiSelfTest_MacRegisters(void);
@@ -61,7 +61,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
     WifiTask_ClearQueues();
     func_arm7_027cb920();
     func_arm7_027cb9ac();
-    func_arm7_027cacec();
+    WifiStation_ClearTable();
     Wifi_CreateAlarms();
     if (WifiFlash_ValidateRadioBlock(&crcs) != WIFI_RADIO_BLOCK_VALID) {
         WIFI_DRIVER_STATE->state.unk_12 |= 0x80;
