@@ -1,4 +1,3 @@
-/* WIP, 99.7%: only dst and len swap registers (r4/r8). */
 /* Needed to match: the CARD library was built with propagation off, which keeps the flags below as values. */
 #pragma opt_propagation off
 #include "sdk/card.h"
@@ -22,11 +21,14 @@ void CardRom_StartPageDma(void);
  * pages; then starts the first page read. */
 BOOL func_021162d8(CARDiRomPage *page)
 {
+    /* Needed to match: len declared at function scope before dst, which gives
+     * dst r4 and len r8. */
     CARDiCommon *common = &data_022abb00;
-    u32 dst = common->dst;
+    u32 len;
     BOOL useDma = FALSE;
     BOOL pageAligned = FALSE;
     BOOL rangeOk = FALSE;
+    u32 dst = common->dst;
     BOOL dmaChannel = useDma;     /* needed to match: FALSE, but copied from useDma */
     int state;
 
@@ -34,11 +36,17 @@ BOOL func_021162d8(CARDiRomPage *page)
         dmaChannel = TRUE;
     }
     if (dmaChannel) {
-        u32 len = common->len;
-        u32 dtcm = Cp15_DataTcmBase();
-        BOOL overlaps = TRUE;
-        u32 end = len + dst;
-        BOOL inItcm = FALSE;
+        /* Needed to match: assigned after the declarations, not in them. */
+        u32 dtcm;
+        BOOL overlaps;
+        u32 end;
+        BOOL inItcm;
+
+        len = common->len;
+        dtcm = Cp15_DataTcmBase();
+        overlaps = TRUE;
+        end = dst + len;
+        inItcm = FALSE;
 
         if (end > ITCM_START && dst < ITCM_END) {
             inItcm = overlaps;    /* needed to match: TRUE, but copied from overlaps */
