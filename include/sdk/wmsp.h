@@ -91,6 +91,9 @@ typedef struct WmspWork {
 
 extern WmspState data_arm7_027d7c44;
 
+/* Held while a reply buffer is filled and sent. */
+extern OSMutex data_arm7_027d813c;
+
 /* The same 16 bytes as WmspState.history; the original names them apart. */
 extern u8 data_arm7_027d8160[16];
 

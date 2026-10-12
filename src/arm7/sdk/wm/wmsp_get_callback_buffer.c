@@ -2,8 +2,6 @@
 #include "sdk/os.h"
 #include "sdk/wmsp.h"
 
-extern OSMutex data_arm7_027d813c;
-
 void func_arm7_037fc624(OSMutex *mutex);
 void func_arm7_037fdc04(int count);
 
