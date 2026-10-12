@@ -53,9 +53,9 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
 | ARM9 game | 21 | 17932 | 4144 / 4503 (92.03%) |
-| ARM9 SDK/library | 13 | 10648 | 1949 / 2747 (70.95%) |
+| ARM9 SDK/library | 13 | 10648 | 1958 / 2747 (71.28%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 36 | 29216 | 6241 / 7409 (84.24%) |
+| all | 36 | 29216 | 6250 / 7409 (84.36%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
@@ -102,5 +102,5 @@ Closest first.
 | `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 | 42 | 72.36% |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 44 | 96.78% |
 | `src/sdk/msl/double2hex.c` | double2hex | 948 | 121 | 86.82% |
-| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 199 | 99.30% |
+| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 190 | 99.31% |
 | `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 284 | 88.31% |

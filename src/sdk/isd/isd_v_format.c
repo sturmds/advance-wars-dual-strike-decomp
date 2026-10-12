@@ -113,7 +113,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   int conversion;
   u32 radix;
   const char* str;
-  int expPositive;
+  int hexOffset;
   int bufLen;
   int width;
   int exponent;
@@ -121,7 +121,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   int state;
   double scaled;
   char* out;
-  int prefixTail;
+  int expPositive;
   int fieldPad;
   int fracDigits;
   int signLen;
@@ -130,10 +130,10 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
   double rounding;
   int charArg;
   int digitChar;
-  int hexOffset;
-  double fraction;
+  int prefixTail;
   int prefixLen;
   int prefixHead;
+  double fraction;
   int i;
   int fracLen;
   int droppedDigits;
