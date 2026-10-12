@@ -8,7 +8,7 @@ int func_arm7_037fe654(void);         /* sets the master enable bit */
 void func_arm7_037ff9e8(BOOL periodic);
 void func_arm7_037ffcf4(void);
 void func_arm7_037ffee0(void);
-void func_arm7_038019f0(BOOL periodic);
+void SndArm7_SeqMain(BOOL periodic);
 void func_arm7_03801a7c(void);
 void func_arm7_03801df4(void);
 void func_arm7_03802408(void);
@@ -39,7 +39,7 @@ void SndDrv_Thread(void *arg)
         }
         func_arm7_037ffcf4();
         func_arm7_03802408();
-        func_arm7_038019f0(periodic);
+        SndArm7_SeqMain(periodic);
         func_arm7_037ff9e8(periodic);
         func_arm7_03801df4();
         SndDrv_NextRandom();
