@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
 
-int WM_Init(void *workArea, u16 dmaNo);
-
 /* Sets up WM on the ARM9, then has the ARM7 side start up with the work
  * area's pieces. workArea needs WM_SYSTEM_BUF_SIZE bytes, 32-byte aligned. */
 int WM_Initialize(void *workArea, WMCallbackFunc callback, u16 dmaNo)

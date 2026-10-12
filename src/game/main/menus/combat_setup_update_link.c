@@ -5,7 +5,7 @@
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_0229ff30.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void func_020858bc(void);
@@ -50,7 +50,7 @@ void CombatSetup_UpdateLink(Task *task)
     if (func_0207bd94() == 1) {
         for (i = 0; i < 8; i++) {
             if (data_0229ff30.playerMask & (1 << i)) {
-                msg = func_02078138((u16)i);
+                msg = Wireless_GetSharedData((u16)i);
                 for (j = 0; j < 4; msg += 2, j++) {
                     switch (msg[0]) {
                     case 9:

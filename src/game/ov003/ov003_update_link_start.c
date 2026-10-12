@@ -3,7 +3,7 @@
 #include "game/Unk_02160ac0.h"
 
 u16 Wireless_GetChildAids(void);
-int func_02078138(int a0);
+int Wireless_GetSharedData(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
@@ -31,7 +31,7 @@ void Ov003_UpdateLinkStart(void)
         }
         for (i = 0; i < 8; i++) {
             if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-                if (strcmp(func_02078138((u16)i), Ov003_StartMessage)) {
+                if (strcmp(Wireless_GetSharedData((u16)i), Ov003_StartMessage)) {
                     found = 1;
                     break;
                 }

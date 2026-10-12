@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 u16 Wireless_GetChildAids(void);
@@ -40,7 +40,7 @@ void LinkPhase_Update(Task *task)
     if (func_0207bd94() == 1) {
         for (player = 0; player < 4; player++) {
             if ((Wireless_GetChildAids() | 1) & (1 << player)) {
-                msg = func_02078138((u16)player);
+                msg = Wireless_GetSharedData((u16)player);
                 for (i = 0; i < 4; i++, msg += 2) {
                     switch (msg[0]) {
                     case 1:

@@ -2,7 +2,7 @@
 #include "game/link_sync_task.h"
 
 int func_0207bd94(void);
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 u16 Wireless_GetChildAids(void);
 void Co_SetArmyPictureVariant(int army, int coId, int variant);
 void Co_SetArmyPaletteVariant(int army, int coId, int variant);
@@ -26,7 +26,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask *task)
         return;
     }
     if (task->receiveStarted == 0) {
-        if (*func_02078138(0) != 0) {
+        if (*Wireless_GetSharedData(0) != 0) {
             task->receiveStarted = 1;
         }
     } else if (task->receiveStarted != 0) {
@@ -40,7 +40,7 @@ void LinkCoVariantSyncTask_Update(LinkCoVariantSyncTask *task)
                 if (i == 4) {
                     continue;
                 }
-                src = (LinkCoVariantPair *)func_02078138((u16)player);
+                src = (LinkCoVariantPair *)Wireless_GetSharedData((u16)player);
                 for (j = task->receivedBytes; j < task->receivedBytes + 8; j++, src++) {
                     if (j >= task->sentBytes) {
                         break;

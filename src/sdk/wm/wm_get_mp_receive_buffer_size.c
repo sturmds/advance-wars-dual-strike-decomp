@@ -4,8 +4,8 @@
 void DC_InvalidateRange(void *start, u32 size);
 
 /* Bytes for the MP receive buffer of a parent or child, 32-byte aligned and
- * doubled. 0 when the state is wrong or status field 0x0c is 1. */
-u32 WM_GetMPReceiveBufferSize(void)
+ * doubled. 0 when the state is wrong or MP is running. */
+int WM_GetMPReceiveBufferSize(void)
 {
     WMArm9Buf *buf = func_02116e10();
     BOOL isParent;
@@ -14,12 +14,12 @@ u32 WM_GetMPReceiveBufferSize(void)
     if (WMi_CheckStateEx(2, WM_STATE_PARENT, WM_STATE_CHILD) != 0) {
         return 0;
     }
-    DC_InvalidateRange(&buf->status->unk_0c, 4);
-    if (buf->status->unk_0c == 1) {
+    DC_InvalidateRange(&buf->status->mpFlag, 4);
+    if (buf->status->mpFlag == 1) {
         return 0;
     }
-    DC_InvalidateRange(&buf->status->unk_184, 2);
-    isParent = buf->status->unk_184 == 0;
+    DC_InvalidateRange(&buf->status->aid, 2);
+    isParent = buf->status->aid == 0;
     DC_InvalidateRange(&buf->status->unk_190, 2);
     maxSize = buf->status->unk_190;
     if (isParent != TRUE) {

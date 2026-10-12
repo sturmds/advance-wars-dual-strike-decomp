@@ -20,11 +20,11 @@ int WM_StartMPEx(WMCallbackFunc callback, u16 *recvBuf, u16 recvBufSize, u16 *se
     if (result != WM_ERRCODE_SUCCESS) {
         return result;
     }
-    DC_InvalidateRange(&buf->status->unk_0c, 4);
-    if (buf->status->unk_0c == 1) {
+    DC_InvalidateRange(&buf->status->mpFlag, 4);
+    if (buf->status->mpFlag == 1) {
         return WM_ERRCODE_ILLEGAL_STATE;
     }
-    if (recvBufSize < (int)WM_GetMPReceiveBufferSize()) {
+    if (recvBufSize < WM_GetMPReceiveBufferSize()) {
         return WM_ERRCODE_INVALID_PARAM;
     }
     if ((recvBufSize & 0x3f) != 0) {
@@ -33,7 +33,7 @@ int WM_StartMPEx(WMCallbackFunc callback, u16 *recvBuf, u16 recvBufSize, u16 *se
     /* needed to match: the checks use an int copy, the command reloads
      * sendBufSize from the stack */
     sendSize = sendBufSize;
-    if (sendSize < (int)WM_GetMPSendBufferSize()) {
+    if (sendSize < WM_GetMPSendBufferSize()) {
         return WM_ERRCODE_INVALID_PARAM;
     }
     if ((sendSize & 0x1f) != 0) {

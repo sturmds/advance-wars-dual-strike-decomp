@@ -3,7 +3,7 @@
 #include "game/ov003_frame_task.h"
 
 u16 Wireless_GetChildAids(void);
-int func_02078138(int a0);
+int Wireless_GetSharedData(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
@@ -32,7 +32,7 @@ void Ov003_WaitLinkFade(Ov003FrameTask *task)
     found = 0;
     for (i = 0; i < 8; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (strcmp(func_02078138((u16)i), data_ov003_02364b44)) {
+            if (strcmp(Wireless_GetSharedData((u16)i), data_ov003_02364b44)) {
                 found = 1;
                 break;
             }

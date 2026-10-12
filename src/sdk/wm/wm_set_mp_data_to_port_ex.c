@@ -26,12 +26,12 @@ int WM_SetMPDataToPortEx(WMCallbackFunc callback, void *arg, const void *sendDat
     }
     DC_InvalidateRange(&status->unk_18e, 2);
     maxSendDataSize = status->unk_18e;
-    DC_InvalidateRange(&status->unk_184, 2);
-    isParent = (status->unk_184 == 0) ? TRUE : FALSE;
+    DC_InvalidateRange(&status->aid, 2);
+    isParent = (status->aid == 0) ? TRUE : FALSE;
     if (isParent == TRUE) {
         DC_InvalidateRange(&status->childBitmap, 2);
         childBitmap = status->childBitmap;
-        DC_InvalidateRange(&status->unk_86, 2);
+        DC_InvalidateRange(&status->mpReadyBitmap, 2);
     }
     if (sendData == NULL) {
         return WM_ERRCODE_INVALID_PARAM;

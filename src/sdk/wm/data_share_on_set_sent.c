@@ -25,8 +25,8 @@ void DataShare_OnSetSent(void *arg)
     if (dsInfo == NULL || dsInfo != cb->arg) {
         return;
     }
-    DC_InvalidateRange(&status->unk_184, 2);
-    aid = status->unk_184;
+    DC_InvalidateRange(&status->aid, 2);
+    aid = status->aid;
     if (cb->errcode == WM_ERRCODE_SUCCESS) {
         if (aid == 0) {
             dsInfo->seqNum[dsInfo->sendIndex] = cb->seqNo >> 1;

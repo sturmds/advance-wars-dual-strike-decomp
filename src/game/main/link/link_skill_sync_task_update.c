@@ -2,7 +2,7 @@
 #include "game/link_sync_task.h"
 
 int func_0207bd94(void);
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 u16 Wireless_GetChildAids(void);
 int Link_GetPlayerOfSlot(int slot);
 s32 HwDiv32(s32 numer, s32 denom);
@@ -28,13 +28,13 @@ void LinkSkillSyncTask_Update(LinkSyncTask *task)
         return;
     }
     if (task->receiveStarted == 0) {
-        if (*func_02078138(0) != 0) {
+        if (*Wireless_GetSharedData(0) != 0) {
             task->receiveStarted = 1;
         }
     } else if (task->receiveStarted != 0) {
         for (i = 0; i < 4; i++) {
             if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-                src = func_02078138((u16)i);
+                src = Wireless_GetSharedData((u16)i);
                 dst = data_0229de6c;
                 for (j = task->receivedBytes; j < task->receivedBytes + 8; j++) {
                     if (j >= task->sentBytes) {

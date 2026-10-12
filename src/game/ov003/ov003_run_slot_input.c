@@ -3,7 +3,7 @@
 #include "game/ov003_unit.h"
 #include "game/Unk_02160ac0.h"
 
-/* What func_02078138 returns for one linked player. */
+/* What Wireless_GetSharedData returns for one linked player. */
 typedef struct LinkInput {
     u8 pad_00[4];
     u16 keys;
@@ -15,7 +15,7 @@ extern Ov003Unit data_ov003_02369538[];
 extern u8 data_ov003_02365b04[];
 
 u16 Wireless_GetChildAids(void);
-LinkInput *func_02078138(int player);
+LinkInput *Wireless_GetSharedData(int player);
 void Keypad_UpdateState(Keypad *keypad, int keys);
 void Ov003Unit_HandleInput(Ov003Unit *unit, Keypad *keypad, void *a2);
 void Ov003Slot_UpdatePlacing(int slot, Keypad *keypad, void *a2);
@@ -48,7 +48,7 @@ void Ov003_RunSlotInput(void)
     } else {
         for (i = 0; i < 8; i++) {
             if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-                input = func_02078138((u16)i);
+                input = Wireless_GetSharedData((u16)i);
                 Keypad_UpdateState(&data_0216e4e4[i], input->keys);
                 switch (STATE->slots[i].state) {
                 case 0:

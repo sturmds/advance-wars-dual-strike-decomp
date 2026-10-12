@@ -2,7 +2,7 @@
 #include "game/event_queue.h"
 #include "game/task.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 u8 Link_GetOwnPlayer(void);
 u32 Link_IsActive(void);
@@ -50,7 +50,7 @@ void VsSetup_UpdateSettingsMenu(Task *task)
         return;
     }
     if (func_0207bd94() == 1) {
-        msg = func_02078138(0);
+        msg = Wireless_GetSharedData(0);
         for (i = 0; i < 4; i++, msg += 2) {
             switch (msg[0]) {
             case EVENT_VS_SETTING_SELECT_ROW:

@@ -8921,7 +8921,7 @@ src/game/main/func_02077f34.c:
     complete
     .text       start:0x02077f34 end:0x02077f48
 
-src/game/main/func_02077f48.c:
+src/game/main/link/wireless_set_entry.c:
     complete
     .text       start:0x02077f48 end:0x02077fc8
 
@@ -8941,7 +8941,7 @@ src/game/main/link/wireless_start_data_sharing.c:
     complete
     .text       start:0x0207809c end:0x02078138
 
-src/game/main/func_02078138.c:
+src/game/main/link/wireless_get_shared_data.c:
     complete
     .text       start:0x02078138 end:0x02078160
 

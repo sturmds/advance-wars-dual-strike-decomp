@@ -27,8 +27,8 @@ int WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 
     if (result != 0) {
         return result;
     }
-    DC_InvalidateRange(&status->unk_0c, 4);
-    if (status->unk_0c == 0) {
+    DC_InvalidateRange(&status->mpFlag, 4);
+    if (status->mpFlag == 0) {
         return WM_ERRCODE_ILLEGAL_STATE;
     }
     if (dsInfo == NULL) {
@@ -40,12 +40,11 @@ int WM_StartDataSharing(WMDataSharingInfo *dsInfo, u16 port, u16 aidBitmap, u16 
     if (aidBitmap == 0) {
         return WM_ERRCODE_INVALID_PARAM;
     }
-    DC_InvalidateRange(&status->unk_184, 2);
-    aid = status->unk_184;
+    DC_InvalidateRange(&status->aid, 2);
+    aid = status->aid;
     if (aid == 0) {
-        /* unk_86: the children that take part in MP */
-        DC_InvalidateRange(&status->unk_86, 2);
-        connectedBitmap = status->unk_86;
+        DC_InvalidateRange(&status->mpReadyBitmap, 2);
+        connectedBitmap = status->mpReadyBitmap;
     }
 
     zero = 0;

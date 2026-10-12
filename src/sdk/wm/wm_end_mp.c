@@ -12,8 +12,8 @@ int WM_EndMP(WMCallbackFunc callback)
     if (result != 0) {
         return result;
     }
-    DC_InvalidateRange(&buf->status->unk_0c, 4);
-    if (buf->status->unk_0c == 0) {
+    DC_InvalidateRange(&buf->status->mpFlag, 4);
+    if (buf->status->mpFlag == 0) {
         return WM_ERRCODE_ILLEGAL_STATE;
     }
     func_02116f74(WM_APIID_END_MP, callback);

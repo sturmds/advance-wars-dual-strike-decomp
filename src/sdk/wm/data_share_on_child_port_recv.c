@@ -34,9 +34,8 @@ void DataShare_OnChildPortRecv(void *arg)
             aidBitmap = dataSet->aidBitmap;
             length = cb->length;
 
-            /* unk_184 holds this station's aid */
-            DC_InvalidateRange(&status->unk_184, 2);
-            aid = status->unk_184;
+            DC_InvalidateRange(&status->aid, 2);
+            aid = status->aid;
             if (length != dsInfo->dataSetLength) {
                 if (length > sizeof(WMDataSet)) {
                     length = sizeof(WMDataSet);

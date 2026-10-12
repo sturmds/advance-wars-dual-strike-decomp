@@ -2,7 +2,7 @@
 #include "game/event_queue.h"
 #include "game/task.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void func_02087764(int a0);
@@ -21,7 +21,7 @@ void func_02087aa8(Task *task)
     int i;
 
     if (func_0207bd94() == 1) {
-        msg = func_02078138(0);
+        msg = Wireless_GetSharedData(0);
         for (i = 0; i < 4; msg += 2, i++) {
             switch (msg[0]) {
             case 1:

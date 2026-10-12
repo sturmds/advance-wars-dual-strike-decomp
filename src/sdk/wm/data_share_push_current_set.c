@@ -24,9 +24,9 @@ void DataShare_PushCurrentSet(WMDataSharingInfo *dsInfo, BOOL delayed)
     volatile u16 zero; /* needed to match: the 0 goes through the stack */
 
     if (dsInfo->ds[dsInfo->writeIndex].aidBitmap == 0) {
-        DC_InvalidateRange(&status->unk_86, 2);
+        DC_InvalidateRange(&status->mpReadyBitmap, 2);
         oldWI = dsInfo->writeIndex;
-        currentChildBitmap = status->unk_86;
+        currentChildBitmap = status->mpReadyBitmap;
         newWI = (oldWI + 1) & (SHARE_RING_SLOTS - 1);
         if (dsInfo->doubleMode == TRUE) {
             resetWI = (newWI + 1) & (SHARE_RING_SLOTS - 1);

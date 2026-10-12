@@ -6,7 +6,7 @@
 extern DesignMap data_022a6c84[];
 
 u16 Wireless_GetChildAids(void);
-u8 *func_02078138(u16 slot);
+u8 *Wireless_GetSharedData(u16 slot);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(u8 *chunk);
@@ -29,14 +29,14 @@ void LinkDesignMapSync_Update(LinkDataSyncTask *task)
         return;
     }
     if (task->receiveStarted == 0) {
-        if (*func_02078138(0) != 0) {
+        if (*Wireless_GetSharedData(0) != 0) {
             task->receiveStarted = 1;
         }
     } else if (task->receiveStarted != 0) { /* needed to match: tests the flag again */
         for (slot = 0; slot < 4; slot++) {
             if ((Wireless_GetChildAids() | 1) & (1 << slot)) {
                 dest = (u8 *)&data_022a6c84[slot * LINK_DESIGN_MAPS_PER_PLAYER] + task->receivedBytes;
-                src = func_02078138((u16)slot);
+                src = Wireless_GetSharedData((u16)slot);
                 for (i = task->receivedBytes; i < task->receivedBytes + LINK_SYNC_CHUNK; i++, dest++) {
                     if (i >= task->sentBytes) {
                         break;

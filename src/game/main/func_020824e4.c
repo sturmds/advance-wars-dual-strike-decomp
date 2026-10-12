@@ -4,7 +4,7 @@
 extern u8 data_021606e4[];
 
 u16 Wireless_GetChildAids(void);
-int func_02078138(int a0);
+int Wireless_GetSharedData(int a0);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
@@ -23,7 +23,7 @@ void func_020824e4(Task *task)
     found = 0;
     for (i = 0; i < 4; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (strcmp(func_02078138((u16)i), data_021606e4)) {
+            if (strcmp(Wireless_GetSharedData((u16)i), data_021606e4)) {
                 found = 1;
                 break;
             }

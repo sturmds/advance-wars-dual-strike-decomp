@@ -5,7 +5,7 @@
 #include "game/task.h"
 
 u16 Wireless_GetChildAids(void);
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int Link_GetOwnPlayer(void);
 int Link_IsActive(void);
@@ -46,7 +46,7 @@ void VsSetup_UpdateTeamScreenLink(Task *task)
     if (func_0207bd94() == 1) {
         for (i = 0; i < 4; i++) {
             if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-                msg = func_02078138((u16)i);
+                msg = Wireless_GetSharedData((u16)i);
                 for (j = 0; j < 4; j++, msg += 2) {
                     switch (msg[0]) {
                     case EVENT_VS_TEAM_PREV + 0:

@@ -10,7 +10,7 @@
 #include "game/Unk_0229fb30.h"
 #include "game/Unk_0229ff30.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 /* Needed to match: declared with a u8 player (defined with int), so each call
@@ -52,7 +52,7 @@ void CombatSetup_UpdateCoPick(Task *task)
             if (i != MENU->combat.rows[MENU->combat.players[i].row - 1].player) {
                 continue;
             }
-            msg = func_02078138((u16)i);
+            msg = Wireless_GetSharedData((u16)i);
             for (j = 0; j < 4; j++, msg += 2) {
                 switch (msg[0]) {
                 case 16:

@@ -327,13 +327,13 @@ typedef struct WMDataSharingInfo {
 typedef struct WMStatus {
     u16 state;                         /* WIRELESS_PHASE_* */
     u8 pad_02[0x0a];
-    u32 unk_0c;
+    u32 mpFlag;                        /* 1 while MP runs */
     u8 pad_10[0x36];
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
     u8 pad_48[8];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
     u8 pad_54[0x32];
-    u16 unk_86;
+    u16 mpReadyBitmap;                 /* the children that take part in MP */
     u8 pad_88[0x30];
     u16 linkLevel;
     u8 pad_ba[8];
@@ -343,7 +343,7 @@ typedef struct WMStatus {
     u8 pad_f6[0x88];
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
     u8 pad_180[4];
-    u16 unk_184;                       /* 0 on a parent */
+    u16 aid;                           /* this station's aid, 0 on a parent */
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;
@@ -428,6 +428,8 @@ typedef struct WMArm9Buf {
 int WMi_CheckStateEx(int count, ...);
 int func_02116df4(void);
 int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size);
+int WM_Init(void *workArea, u16 dmaNo);
+int WM_SetEntry(WMCallbackFunc callback, int entryFlag);
 int WM_Finish(void);                    /* only while READY; clears the WM work area pointer */
 int WMi_CheckIdle(void);                /* illegal state while READY or STOP */
 WMArm9Buf *func_02116e10(void);
@@ -436,8 +438,8 @@ int func_02116f74(int apiid, WMCallbackFunc callback);
 int WM_StartMPEx(WMCallbackFunc callback, u16 *recvBuf, u16 recvBufSize, u16 *sendBuf, u16 sendBufSize,
                  u16 mpFreq, u16 defaultRetryCount, BOOL minPollBmpMode, BOOL singlePacketMode,
                  BOOL fixFreqMode, BOOL ignoreFatalError);
-u32 WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
-u32 WM_GetMPSendBufferSize(void);
+int WM_GetMPReceiveBufferSize(void);  /* bytes, 0 when MP cannot start */
+int WM_GetMPSendBufferSize(void);
 u16 *DataShare_StationBlockPtr(WMDataSharingInfo *dsInfo, u16 aidBitmap, u16 *receiveBuf, u32 aid);
 u16 *WM_GetSharedDataAddress(WMDataSharingInfo *dsInfo, WMDataSet *receiveData, u16 aid);
 void DataShare_PushCurrentSet(WMDataSharingInfo *dsInfo, BOOL delayed);

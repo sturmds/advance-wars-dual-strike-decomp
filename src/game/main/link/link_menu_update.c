@@ -3,7 +3,7 @@
 #include "game/task.h"
 #include "game/Unk_0229fb30.h"
 
-u8 *func_02078138(int player);
+u8 *Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 void LinkMenu_SelectEntry(int entry);
@@ -26,7 +26,7 @@ void LinkMenu_Update(Task *task)
     int i;
 
     if (func_0207bd94() == 1) {
-        msg = func_02078138(0);
+        msg = Wireless_GetSharedData(0);
         for (i = 0; i < 4; i++, msg += 2) {
             switch (msg[0]) {
             case 4:
