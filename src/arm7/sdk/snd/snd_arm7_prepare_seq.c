@@ -3,7 +3,7 @@
 
 void func_arm7_03800df4(SndPlayer *player);
 void SndPlayer_Setup(SndPlayer *player, u32 bank);
-int func_arm7_037fff40(void);
+int SndTrack_Alloc(void);
 void SndTrack_Init(SndTrack *track);
 void func_arm7_038010e4(SndTrack *track, int base, int offset); /* the definition types base as int */
 void SndSeq_FillCache(u8 *address);
@@ -26,7 +26,7 @@ void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, u32 bank)
         func_arm7_03800df4(player);
     }
     SndPlayer_Setup(player, bank);
-    trackNo = func_arm7_037fff40();
+    trackNo = SndTrack_Alloc();
     if (trackNo < 0) {
         return;
     }
@@ -43,7 +43,7 @@ void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, u32 bank)
         trackMask = SndTrack_ReadU16(track);
         for (trackMask >>= 1, i = 1; trackMask != 0; i++, trackMask >>= 1) {
             if (trackMask & 1) {
-                trackNo = func_arm7_037fff40();
+                trackNo = SndTrack_Alloc();
                 if (trackNo < 0) {
                     break;
                 }

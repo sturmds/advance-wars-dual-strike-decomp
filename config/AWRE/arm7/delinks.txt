@@ -1552,6 +1552,10 @@ src/arm7/sdk/snd/snd_exchannel_init_all.c:
     complete
     .text       start:0x037ffee0 end:0x037fff40
 
+src/arm7/sdk/snd/snd_track_alloc.c:
+    complete
+    .text       start:0x037fff40 end:0x037fff84
+
 src/arm7/sdk/func_arm7_03800e84.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
