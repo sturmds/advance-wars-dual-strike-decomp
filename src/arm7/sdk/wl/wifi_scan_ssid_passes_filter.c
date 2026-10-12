@@ -7,7 +7,7 @@ u8 WL_ReadByte(const void *addr);
 BOOL WifiScan_SsidPassesFilter(u32 length, const u8 *ssid)
 {
     WlWork *work = WIFI_DRIVER_STATE;
-    WlSsidParams *params = WIFI_SSID_SETTINGS_OF(work);
+    WlParams *params = WIFI_SETTINGS_BLOCK_OF(work);
     const u8 *own;
     const u8 *mask;
     u32 i;

@@ -640,6 +640,10 @@ src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108
 
+src/arm7/sdk/wl/wifi_link_drop_assoc_id.c:
+    complete
+    .text       start:0x027c9108 end:0x027c917c
+
 src/arm7/sdk/func_arm7_027c94ac.c:
     complete
     .text       start:0x027c94ac end:0x027c94c0

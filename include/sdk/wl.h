@@ -250,7 +250,8 @@ typedef struct WlState {
     u16 unk_78;
     u8 pad_7a[0x7c - 0x7a];
     u16 unk_7c[3];
-    u8 pad_82[4];
+    u16 aid; /* association ID */
+    u8 pad_84[0x2];
     u16 unk_86;
     u16 unk_88;
     u8 pad_8a[2];
@@ -423,7 +424,9 @@ typedef struct WlWork {
             WlUnk318 unk_318;
         };
     };
-    u8 pad_484[0x504 - 0x484];
+    u8 pad_484[0x4a2 - 0x484];
+    u16 aidBit; /* 1 << state.aid */
+    u8 pad_4a4[0x504 - 0x4a4];
     WlStationBits stationBits;
     u32 counters[45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
     WlRandom random;
@@ -461,19 +464,23 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
-/* WlState 0x18-0x78 as a block of its own: the SSID filter code addresses
-   these fields from a pointer to 0x18, so the original nests a struct there.
-   ssidLength is WlState.unk_36 and ssid is WlState.words. */
-typedef struct WlSsidParams {
+/* WlState from 0x18 on as a block of its own: some code addresses these
+   fields from a pointer to 0x18, so the original nests a struct there.
+   ssidLength is WlState.unk_36, ssid is WlState.words, aid is WlState.aid. */
+typedef struct WlParams {
     u8 pad_00[0x1e];
     u16 ssidLength;
     u8 ssid[32];
     u8 ssidMask[32]; /* a set bit matches any SSID bit */
-} WlSsidParams;
+    u8 pad_60[0xa];
+    u16 aid;
+    u8 pad_6c[0x1c];
+    u16 unk_88;
+} WlParams;
 
 /* 0x318: offsetof(WlWork, state) + 0x18, written as one constant so the
    compiler adds it in one step as the original does. */
-#define WIFI_SSID_SETTINGS_OF(work) ((WlSsidParams *)((u8 *)(work) + 0x318))
+#define WIFI_SETTINGS_BLOCK_OF(work) ((WlParams *)((u8 *)(work) + 0x318))
 
 #define WIFI_SSID_LONGEST 32
 
@@ -560,6 +567,8 @@ typedef struct WlStationTable {
 #define IO_WIRELESS_RADIO_WORD_LO (*(volatile u16 *)0x0480817e)  /* low half; writing DATA2 starts the transfer */
 // 8-bit statistic counters, two per halfword: 0x048081b0-0x048081c1 and 0x048081d0-0x048081df.
 #define IO_WIRELESS_TALLY_BYTES ((volatile u16 *)0x048081b0)
+#define IO_WIRELESS_STATION_ID_4BIT (*(volatile u16 *)0x04808028)
+#define IO_WIRELESS_STATION_ID (*(volatile u16 *)0x0480802a)
 
 BOOL WifiRf_AwaitSerialIdle(void);
 // Returns 0 once the RF port is idle, 1 on timeout.
@@ -573,6 +582,7 @@ u32 WifiParam_ChannelAllowed(u32 bit);
 BOOL WifiMac_Equal(const u16 *a, const u16 *b);
 void WifiStats_Accumulate(void);
 void WifiStats_Zero(void);
+void WifiLink_DropAssocId(void);
 void WifiMac_CopyAddressPair(u16 *dest, const u16 *addr1, const u16 *addr2);
 void WifiMac_CopyAddressTriple(u16 *dest, const u16 *addr1, const u16 *addr2, const u16 *addr3);
 
