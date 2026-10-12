@@ -496,10 +496,10 @@ typedef struct WMStatus {
     u8 pad_f6[0x2e];
     u8 childMacAddress[15][6];         /* [aid - 1] */
     u16 childBitmap;                   /* bit n set: the child with aid n is connected */
-    u8 pad_180[4];
+    WMBssDesc *pInfoBuf;               /* the scan request's scanBuf */
     u16 aid;                           /* this station's aid, 0 on a parent */
     u8 parentMacAddress[6];            /* the parent this child is connected to */
-    u8 pad_18c[2];
+    u16 scanChannel;                   /* the channel being scanned */
     u16 unk_18e;
     u16 unk_190;
     u16 wepMode;                       /* WIRELESS_CIPHER_* */

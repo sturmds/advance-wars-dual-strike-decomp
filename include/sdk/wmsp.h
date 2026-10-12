@@ -170,6 +170,32 @@ typedef union WlCommandBuf {
     u8 bytes[0x200];
 } WlCommandBuf;
 
+/* The reply to WL command 2 (scan): the number of parents found, then the
+   first one's beacon with the fields of a WMBssDesc, only 2-byte aligned. */
+typedef struct WmspScanReply {
+    u16 command;
+    u16 length;
+    u16 status;                        /* 0: success */
+    u16 unk_06;
+    u16 bssCount;
+    u16 bssLength;                     /* WMBssDesc.length: the beacon's size in halfwords */
+    u16 rssi;                          /* raw in the low byte, see Wmsp_DecodeRssi */
+    u8 bssid[6];
+    u16 ssidLength;
+    u8 ssid[32];
+    u16 capaInfo;
+    u16 rateSetBasic;
+    u16 rateSetSupport;
+    u16 beaconPeriod;
+    u16 dtimPeriod;
+    u16 channel;
+    u16 cfpPeriod;
+    u16 cfpMaxDuration;
+    u16 gameInfoLength;
+    u16 otherElementCount;
+    u16 gameInfo[sizeof(WMGameInfo) / 2];
+} WmspScanReply;
+
 /* The arguments of WL command 0x200, which sets the WL parameters in one go
    (written by WMSP_SetAllParams). The header is a WlCommand's. */
 typedef struct WlParamSetAllCommand {
