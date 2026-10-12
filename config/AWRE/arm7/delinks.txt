@@ -1256,6 +1256,10 @@ src/arm7/sdk/func_arm7_037fee74.c:
     complete
     .text       start:0x037fee74 end:0x037fee90
 
+src/arm7/sdk/snd/snd_wait_for_interval_timer.c:
+    complete
+    .text       start:0x037fee90 end:0x037feebc
+
 src/arm7/sdk/func_arm7_037feebc.c:
     complete
     .text       start:0x037feebc end:0x037feed0
