@@ -24,7 +24,8 @@ typedef struct WlLimits {
     u8 pad_00[0xd8];
     struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
     struct OSMessageQueue *fromHost; /* buffers the host side hands to the driver */
-    u8 pad_e0[0x14];
+    u8 pad_e0[0xf0 - 0xe0];
+    u32 unk_f0;
     u16 unk_f4;
     u16 unk_f6;
 } WlLimits;
