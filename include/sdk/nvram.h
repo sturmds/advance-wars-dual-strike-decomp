@@ -90,5 +90,6 @@ void NVRAM_WriteEnable(void);
 void NVRAM_WriteDisable(void);
 BOOL NVRAM_IsWriteEnabled(void);   /* idle, with the write enable latch set */
 BOOL NVRAM_IsIdle(void);   /* no write or erase running */
+void NVRAM_SoftwareReset(void);
 
 #endif

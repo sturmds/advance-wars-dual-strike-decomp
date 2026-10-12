@@ -10,7 +10,6 @@ void func_arm7_027d49e0(void);
 void func_arm7_027d49a0(void);
 void func_arm7_027d4960(void);
 void func_arm7_027d48c4(void *id);
-void func_arm7_027d4884(void);
 
 /* Runs one NVRAM job on the SPI thread and replies to the ARM9. Reads need
  * an idle flash; writes and erases also need the write enable latch. */
@@ -103,7 +102,7 @@ void NVRAM_ExecuteProcess(SerialBusJob *entry)
         func_arm7_027d48c4((void *)entry->arg[2]);
         break;
     case FLASH_REQ_RESTART:
-        func_arm7_027d4884();
+        NVRAM_SoftwareReset();
         break;
     default:
         SPIi_ReleaseException(SERIAL_OWNER_FLASH);
