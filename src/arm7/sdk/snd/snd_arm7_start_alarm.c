@@ -1,6 +1,6 @@
 #include "sdk/snd.h"
 
-u64 func_arm7_037fce88(void);
+u64 Tick_Read64_Arm7(void);
 void func_arm7_037fd174(void *alarm);
 void func_arm7_037fd204(void *alarm, u64 start, u64 period, void (*handler)(int), int arg);
 void func_arm7_037fd280(void *alarm, u64 start, void (*handler)(int), int arg);
@@ -26,7 +26,7 @@ void SndArm7_StartAlarm(int alarmNo)
     if (period == 0) {
         func_arm7_037fd280(alarm->osAlarm, start, func_arm7_03801ed0, arg);
     } else {
-        func_arm7_037fd204(alarm->osAlarm, start + func_arm7_037fce88(), period, func_arm7_03801ed0, arg);
+        func_arm7_037fd204(alarm->osAlarm, start + Tick_Read64_Arm7(), period, func_arm7_03801ed0, arg);
     }
     alarm->active = 1;
 }

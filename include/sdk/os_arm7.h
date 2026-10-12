@@ -12,6 +12,15 @@
 #error "sdk/os_arm7.h and sdk/os.h describe different OSContext layouts"
 #endif
 
+typedef volatile u16 vu16;
+typedef volatile u32 vu32;
+typedef volatile u64 vu64;
+
+#define REG_IF (*(vu32 *)0x04000214)
+#define REG_TM0CNT_L (*(vu16 *)0x04000100)
+#define REG_TM0CNT_H (*(vu16 *)0x04000102)
+#define IRQ_MASK_TIMER0 0x8
+
 typedef struct OSThread OSThread;
 typedef struct OSMutex OSMutex;
 
