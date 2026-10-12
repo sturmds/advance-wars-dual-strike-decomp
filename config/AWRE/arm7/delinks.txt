@@ -1014,6 +1014,10 @@ src/arm7/sdk/wl/wifi_clear_session_area.c:
     complete
     .text       start:0x027ca3a0 end:0x027ca438
 
+src/arm7/sdk/wl/wifi_self_test_baseband.c:
+    complete
+    .text       start:0x027ca438 end:0x027ca730
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94

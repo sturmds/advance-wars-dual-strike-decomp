@@ -1183,6 +1183,14 @@ typedef struct WlWork {
 
 // Wireless RAM, as halfwords.
 #define WIFI_PACKET_RAM ((volatile u16 *)0x04804000)
+#define WIFI_PACKET_RAM_BYTES 0x2000
+
+/* WlState.unk_12 bits set by the init self-tests. */
+#define WIFI_SELFTEST_FAIL_MAC 0x01
+#define WIFI_SELFTEST_FAIL_RAM 0x02
+#define WIFI_SELFTEST_FAIL_BASEBAND 0x08
+/* A self-test stops after this many mismatches. */
+#define WIFI_SELFTEST_ERROR_CAP 32
 
 /* WlState.unk_d8 (0x20 bytes) as WifiTask_BeginShutdown reads it: a halfword at 0 and
    a pointer at 0x1c. */
