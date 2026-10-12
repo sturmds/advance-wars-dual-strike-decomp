@@ -19,7 +19,9 @@ extern MenuState gMenuState;
 
 /* As func_0204f0c0, 4 pixels left, animation 1. */
 void func_0204f160(void) {
-  Unk_027c0280* gfx;
+  /* Needed to match: through a volatile pointer the scroll X load comes
+   * before the mission X load, as in the original. */
+  volatile Unk_027c0280* gfx;
   int bg;
   int mission;
 

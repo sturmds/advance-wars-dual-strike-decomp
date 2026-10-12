@@ -22,8 +22,13 @@ extern u8 data_0215b420[];
 #define WORK_FIELD(field) \
   ((u8*)&gMenuState + (u32) & ((MenuState*)0)->campaignMap.field)
 
+/* Script step: on step 0 starts the sprite task 8 pixels right and 16 down of
+ * the current mission and plays sound 0x57. Counts steps while func_02021b34
+ * returns TRUE, then resumes script data_0215b420 and this task's script. */
 void func_0204e808(CampaignMapTask* task) {
-  Unk_027c0280* gfx;
+  /* Needed to match: through a volatile pointer the scroll X load comes
+   * before the mission X load, as in the original. */
+  volatile Unk_027c0280* gfx;
   int bg;
   int mission;
 
