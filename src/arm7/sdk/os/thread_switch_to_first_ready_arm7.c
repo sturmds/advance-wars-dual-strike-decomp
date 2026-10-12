@@ -9,7 +9,7 @@ extern ThreadSwapHook data_arm7_03807908;  /* called on every switch, before inf
 extern OSThreadInfo data_arm7_0380790c;
 
 u32 func_arm7_037fdbd8(void);
-OSThread *func_arm7_037fbdcc(void);
+OSThread *Thread_FirstRunnable_Arm7(void);
 int func_arm7_037fc2d4(OSContext *context);
 void func_arm7_037fc308(OSContext *context);
 
@@ -32,7 +32,7 @@ void Thread_SwitchToFirstReady_Arm7(void)
         return;
     }
     current = *gRunningThreadRef_Arm7;
-    next = func_arm7_037fbdcc();
+    next = Thread_FirstRunnable_Arm7();
     if (current == next || next == NULL) {
         return;
     }

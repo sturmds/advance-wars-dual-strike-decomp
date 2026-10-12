@@ -804,6 +804,10 @@ src/arm7/sdk/os/thread_switch_to_first_ready_arm7.c:
     complete
     .text       start:0x037fbcf8 end:0x037fbdcc
 
+src/arm7/sdk/os/thread_first_runnable_arm7.c:
+    complete
+    .text       start:0x037fbdcc end:0x037fbdf8
+
 src/arm7/sdk/os/thread_unlink_arm7.c:
     complete
     .text       start:0x037fc18c end:0x037fc1d4
