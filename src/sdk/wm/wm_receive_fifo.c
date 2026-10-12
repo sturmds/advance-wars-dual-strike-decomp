@@ -23,7 +23,7 @@ static inline void MI_CpuClear16(void *dest, u32 size)
 /* Runs when the ARM7 sends a WM reply or indication through the PXI FIFO:
  * calls the callback registered for it, tells the port callbacks about
  * connects and disconnects, then hands the buffer back to the ARM7. */
-void WmReceiveFifo(int tag, u32 data, BOOL err)
+void WmReceiveFifo(u32 tag, u32 data, BOOL err)
 {
     WMCallback *cb = (WMCallback *)data;
     WMCallbackFunc callback;

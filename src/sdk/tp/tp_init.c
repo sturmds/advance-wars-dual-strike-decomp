@@ -1,13 +1,9 @@
 #include "sdk/tp.h"
+#include "sdk/pxi.h"
 
-void func_02110e58(void);                        /* likely PXI_Init */
-int PXI_IsCallbackReady(u32 tag, u32 proc);            /* likely PXI_IsCallbackReady */
-void PXI_SetFifoRecvCallback(u32 tag, void (*callback)(u32, u32, int));   /* likely PXI_SetFifoRecvCallback */
 void TPi_TpCallback(u32 tag, u32 data, int err);  /* the touch panel PXI receive callback */
 
 extern u16 tpInitialized;                        /* TRUE once TP_Init has run */
-
-#define PXI_PROC_ARM7 1
 
 /* Clears the touch panel state and, once the ARM7 driver is up, installs
  * the PXI callback that receives its answers. Runs only once. */
@@ -18,7 +14,7 @@ void TP_Init(void)
     }
     tpInitialized = TRUE;
 
-    func_02110e58();
+    PXI_Init();
     tpState.state = TP_STATE_READY;
     tpState.command_flg = 0;
     tpState.index = 0;

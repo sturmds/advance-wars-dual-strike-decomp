@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/pxi.h"
 
 void OS_InitArena(void);
-void func_02110e58(void);
 void func_0210d21c(void);
 void func_0210ced0(void);
 void func_0210fa9c(void);
@@ -18,7 +18,7 @@ void OS_InitVAlarm(void);
 void OS_Init(void)
 {
     OS_InitArena();
-    func_02110e58();
+    PXI_Init();
     func_0210d21c();
     func_0210e4bc();
     func_0210ced0();

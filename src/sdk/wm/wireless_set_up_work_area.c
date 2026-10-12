@@ -1,5 +1,6 @@
 #include "sdk/os.h"
 #include "sdk/wm.h"
+#include "sdk/pxi.h"
 
 void DC_InvalidateRange(void *start, u32 size);
 void DC_StoreRange(void *start, u32 size);
@@ -7,11 +8,8 @@ void MI_DmaFill32(u32 dmaNo, void *dest, u32 data, u32 size);
 void OS_InitMessageQueue(OSMessageQueue *queue, OSMessage *messages, int count);
 BOOL OS_SendMessage(OSMessageQueue *queue, OSMessage msg, int flags);
 void WmClearFifoRecvFlag(void);
-void WmReceiveFifo(int tag, u32 data, BOOL err);
+void WmReceiveFifo(u32 tag, u32 data, BOOL err);
 int WM_SetPortCallback(int port, WMCallbackFunc callback, void *arg);
-void func_02110e58(void);
-BOOL PXI_IsCallbackReady(int tag, int proc);
-void PXI_SetFifoRecvCallback(int tag, void *callback);
 
 extern u16 data_022ac328;
 extern WMArm9Buf *data_022ac32c;
@@ -45,7 +43,7 @@ int Wireless_SetUpWorkArea(void *workArea, u16 dmaNo, u32 size)
         return WM_ERRCODE_INVALID_PARAM;
     }
 
-    func_02110e58();
+    PXI_Init();
     if (!PXI_IsCallbackReady(PXI_FIFO_TAG_WM, PXI_PROC_ARM7)) {
         data_022ac328 = FALSE;
         return WM_ERRCODE_WM_DISABLE;

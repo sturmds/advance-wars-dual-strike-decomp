@@ -8,7 +8,7 @@ extern volatile int gPMSleepRequestAck;
 void Power_ReleaseAndReport(u32 result);
 
 /* PXI callback for tag 8: one reply word from the ARM7 (command in bits 8-14, value in bits 0-7). */
-void Power_OnArm7Reply(int tag, u32 data, int err)
+void Power_OnArm7Reply(u32 tag, u32 data, int err)
 {
     u16 command;
     u16 value;

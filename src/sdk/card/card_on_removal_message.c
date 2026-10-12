@@ -3,7 +3,7 @@
 void Card_HaltAfterRemoval(void);
 
 /* PXI receive callback for the card removal tag: runs the game's handler, then shuts down. */
-void Card_OnRemovalMessage(int tag, u32 data, int err)
+void Card_OnRemovalMessage(u32 tag, u32 data, int err)
 {
     if ((data & 0x3f) == GAMECARD_MSG_REMOVED) {
         BOOL shutDown = TRUE;
