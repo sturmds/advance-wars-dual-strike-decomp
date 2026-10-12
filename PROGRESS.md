@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6671 / 6700 | 1522816 / 1553840 | 98.00% | 0 | 0 |
+| ARM9 game | 6672 / 6700 | 1524400 / 1553840 | 98.11% | 0 | 0 |
 | ARM9 SDK/library | 643 / 833 | 103292 / 135226 | 76.38% | 176 | 20718 |
-| ARM9 all | 7314 / 7533 | 1626108 / 1689066 | 96.27% | 176 | 20718 |
+| ARM9 all | 7315 / 7533 | 1627692 / 1689066 | 96.37% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
-| game | 6671 / 6700 | 1522816 / 1553840 | 98.00% | 0 | 0 |
+| game | 6672 / 6700 | 1524400 / 1553840 | 98.11% | 0 | 0 |
 | SDK/library | 1592 / 1853 | 251996 / 289526 | 87.04% | 245 | 25678 |
-| all | 8263 / 8553 | 1774812 / 1843366 | 96.28% | 245 | 25678 |
+| all | 8264 / 8553 | 1776396 / 1843366 | 96.37% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5164 / 5180 | 1062544 / 1082632 | 98.14% | 0 |
+| main | game | 5165 / 5180 | 1064128 / 1082632 | 98.29% | 0 |
 | main | SDK/library | 636 / 822 | 102380 / 133690 | 76.58% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -52,14 +52,14 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 29 | 31024 | 7343 / 7779 (94.40%) |
+| ARM9 game | 28 | 29440 | 6949 / 7383 (94.12%) |
 | ARM9 SDK/library | 14 | 11216 | 2076 / 2890 (71.83%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 45 | 42876 | 9567 / 10828 (88.35%) |
+| all | 44 | 41292 | 9173 / 10432 (87.93%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
-| 1 to 2 | 2 | 1836 |
+| 1 to 2 | 1 | 252 |
 | 3 to 10 | 15 | 8724 |
 | 11 to 50 | 25 | 24300 |
 | more than 50 | 3 | 8016 |
@@ -68,7 +68,6 @@ Closest first.
 
 | File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
-| `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 | 2 | 99.99% |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 | 2 | 96.83% |
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 3 | 99.47% |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 3 | 97.80% |

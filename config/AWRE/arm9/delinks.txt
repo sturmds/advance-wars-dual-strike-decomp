@@ -11403,6 +11403,7 @@ src/game/main/ai/func_02092134.c:
     .text       start:0x02092134 end:0x02092350
 
 src/game/main/ai/ai_site_group_rate_surroundings.c:
+    complete
     .text       start:0x02092350 end:0x02092980
 
 src/game/main/ai/ai_site_unit_can_reach.c:

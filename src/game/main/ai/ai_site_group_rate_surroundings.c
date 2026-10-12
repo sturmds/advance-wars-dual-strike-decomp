@@ -32,9 +32,9 @@ BOOL Unit_IsHarmless(MapUnit *unit);
  *   property the current team does not own. */
 void AiSiteGroup_RateSurroundings(int group)
 {
-    int maxY;
     AiSite *site;
     int maxX;
+    int maxY;
     int dist;
     u8 range;
     int y;
@@ -82,20 +82,26 @@ void AiSiteGroup_RateSurroundings(int group)
         RangeMap_SetBuffer(STATE->mapTiles->rangeMapTiles);
 
         range = gAiProfile->unk_08[8];
-        minX = site->x - range;
-        if (minX < 0) {
+        /* Needed to match: these clamp forms and the declaration order set
+         * the spill slots and the order the hoisted zeros are stored in. */
+        if (site->x - range < 0) {
             minX = 0;
+        } else {
+            minX = site->x - range;
         }
-        minY = site->y - range;
-        if (minY < 0) {
+        if (site->y - range < 0) {
             minY = 0;
+        } else {
+            minY = site->y - range;
         }
-        maxX = STATE->unk_1c4->mapWidth - 1;
-        if (site->x + range < maxX) {
+        if (site->x + range >= STATE->unk_1c4->mapWidth - 1) {
+            maxX = STATE->unk_1c4->mapWidth - 1;
+        } else {
             maxX = site->x + range;
         }
-        maxY = STATE->unk_1c4->mapHeight - 1;
-        if (site->y + range < maxY) {
+        if (site->y + range >= STATE->unk_1c4->mapHeight - 1) {
+            maxY = STATE->unk_1c4->mapHeight - 1;
+        } else {
             maxY = site->y + range;
         }
         for (y = minY; y <= maxY; y++) {
