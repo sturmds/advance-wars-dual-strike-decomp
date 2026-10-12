@@ -23,6 +23,15 @@ typedef struct WlReply {
     u16 words[16];
 } WlReply;
 
+/* One entry of the station table (28 bytes), reached by index. */
+typedef struct WlStation {
+    u16 state;
+    u16 aid;
+    u8 pad_04[0x12];
+    u16 queuedFrames;
+    u8 pad_18[4];
+} WlStation;
+
 /* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
  * of the bytes from length on, then the length, then the data. */
 #define WIFI_RADIO_BLOCK_FLASH_OFFSET 0x2a
@@ -157,7 +166,9 @@ typedef struct WlState {
     u8 pad_94[2];
     u16 unk_96;
     u16 unk_98;
-    u8 pad_9a[0x14];
+    u8 pad_9a[0xac - 0x9a];
+    /* Wi-Fi RAM offset of the beacon frame that holds the TIM element. */
+    u16 timOffset;
     u16 unk_ae;
     u8 pad_b0[0xb2 - 0xb0];
     u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
@@ -270,6 +281,9 @@ typedef struct WlWork {
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
+
+/* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
+#define IRQ_MASK_WIRELESS 0x1000000
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
