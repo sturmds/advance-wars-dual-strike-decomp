@@ -495,6 +495,10 @@ src/arm7/sdk/os/context_capture_arm7.c:
     complete
     .text       start:0x037fc2d4 end:0x037fc308
 
+src/arm7/sdk/os/context_resume_arm7.c:
+    complete
+    .text       start:0x037fc308 end:0x037fc334
+
 src/arm7/sdk/func_arm7_037fc4e0.c:
     complete
     .text       start:0x037fc4e0 end:0x037fc500
