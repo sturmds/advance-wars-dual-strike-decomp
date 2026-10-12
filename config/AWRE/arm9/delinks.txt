@@ -11775,7 +11775,8 @@ src/game/main/ai/ai_player_front_co_nearer_to_super.c:
     complete
     .text       start:0x02099a64 end:0x02099ba0
 
-src/game/main/ai/func_02099ba0.c:
+src/game/main/ai/ai_co_front_closer_to_super.c:
+    complete
     .text       start:0x02099ba0 end:0x02099dac
 
 src/game/main/ai/ai_co_tag_rank.c:

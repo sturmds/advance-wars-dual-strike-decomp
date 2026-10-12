@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6667 / 6700 | 1517204 / 1553840 | 97.64% | 0 | 0 |
+| ARM9 game | 6668 / 6700 | 1517728 / 1553840 | 97.68% | 0 | 0 |
 | ARM9 SDK/library | 643 / 833 | 103292 / 135226 | 76.38% | 176 | 20718 |
-| ARM9 all | 7310 / 7533 | 1620496 / 1689066 | 95.94% | 176 | 20718 |
+| ARM9 all | 7311 / 7533 | 1621020 / 1689066 | 95.97% | 176 | 20718 |
 | ARM7 SDK/library | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
 | ARM7 all | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
-| game | 6667 / 6700 | 1517204 / 1553840 | 97.64% | 0 | 0 |
+| game | 6668 / 6700 | 1517728 / 1553840 | 97.68% | 0 | 0 |
 | SDK/library | 1591 / 1853 | 251036 / 289526 | 86.71% | 245 | 25678 |
-| all | 8258 / 8553 | 1768240 / 1843366 | 95.92% | 245 | 25678 |
+| all | 8259 / 8553 | 1768764 / 1843366 | 95.95% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5160 / 5180 | 1056932 / 1082632 | 97.63% | 0 |
+| main | game | 5161 / 5180 | 1057456 / 1082632 | 97.67% | 0 |
 | main | SDK/library | 636 / 822 | 102380 / 133690 | 76.58% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -52,15 +52,15 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 33 | 36636 | 8726 / 9185 (95.00%) |
+| ARM9 game | 32 | 36112 | 8599 / 9054 (94.97%) |
 | ARM9 SDK/library | 14 | 11216 | 2058 / 2890 (71.21%) |
 | ARM7 SDK/library | 3 | 1596 | 323 / 399 (80.95%) |
-| all | 50 | 49448 | 11107 / 12474 (89.04%) |
+| all | 49 | 48924 | 10980 / 12343 (88.96%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 3 | 4872 |
-| 3 to 10 | 17 | 10816 |
+| 3 to 10 | 16 | 10292 |
 | 11 to 50 | 26 | 24784 |
 | more than 50 | 4 | 8976 |
 
@@ -74,7 +74,6 @@ Closest first.
 | `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 3 | 99.47% |
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 3 | 97.80% |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 | 4 | 99.89% |
-| `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 | 4 | 99.77% |
 | `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 | 4 | 95.63% |
 | `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 | 5 | 98.72% |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 | 5 | 97.38% |

@@ -8,8 +8,8 @@ extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
-/* Rank of a CO for the AI's tag choice: func_02099ba0 compares the front and
- * back CO's ranks when their meters do not decide. Most COs rank 2. Kanbei
+/* Rank of a CO for the AI's tag choice: AiCo_FrontCloserToSuper compares the
+ * front and back CO's ranks when their meters do not decide. Most COs rank 2. Kanbei
  * ranks 0, and Hachi 6 and Colin 7, only while gAiTurnState->factoryDomainsOwn
  * is nonzero; Sonja ranks 3 in Fog of War or rain. */
 int AiCo_TagRank(int coId)

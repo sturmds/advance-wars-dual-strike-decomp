@@ -25,7 +25,7 @@ int AiCo_TagRank(int coId);   /* a rank per CO id, used to break ties */
  * far each CO's meter is from its Super CO Power cost: TRUE when the front CO
  * is closer. When both are equally far, or both meters are empty,
  * AiCo_TagRank ranks the two COs instead. */
-BOOL func_02099ba0(void)
+BOOL AiCo_FrontCloserToSuper(void)
 {
     int checkedPlayer;              /* the current player, read during the checks */
     u32 hasPartner;
@@ -52,6 +52,11 @@ BOOL func_02099ba0(void)
     }
     RELOAD_STATE(state);
     player = state->currentPlayer;
+    /* Needed to match (found by tools/permuter.py): this empty test emits
+     * no code, but naming players[player] here, before players is set,
+     * gives the players base and the index product the original's registers */
+    if (players[player].back.charge || players[player].back.charge) {
+    }
     frontCharge = state->players[player].front.charge;
     players = state->players;
     /* needed to match: the byte-offset form keeps the compiler from reusing
