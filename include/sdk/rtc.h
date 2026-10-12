@@ -50,6 +50,20 @@ typedef struct RtcDateTime {
     u32 unk_4;
 } RtcDateTime;
 
+/* PXI protocol with the ARM9. A reply word holds the result in bits 0-7,
+ * the command it answers in bits 8-14, and bit 15 set. */
+#define PXI_FIFO_TAG_RTC 5
+#define CLOCK_ANSWER_BIT 0x8000
+
+#define RTC_PXI_COMMAND_INTERRUPT 0x30 /* sent unasked when an alarm fires */
+
+#define RTC_PXI_RESULT_INVALID_COMMAND 1
+#define RTC_PXI_RESULT_BUSY 3
+#define RTC_PXI_RESULT_FATAL_ERROR 4
+
+/* Sends `result` for `command` to the ARM9, retrying until the FIFO takes it. */
+void func_arm7_027d58a8(int command, int result);
+
 /* Runs one serial transfer of `size` bytes at `data`. */
 void func_arm7_027d5b18(int mode, int reg, void *data, int size);
 
