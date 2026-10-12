@@ -7,7 +7,7 @@
 #define REG_WIFIWAITCNT (*(vu16 *)0x04000206)
 
 void Wifi_ClearSessionArea(u32 value, int limit);
-void func_arm7_027c7cf4(void);
+void WifiTask_ClearQueues(void);
 void func_arm7_027c7e30(const WlBufferAllocator *allocator);
 BOOL WifiFlash_FetchRadioBlock(void);
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
@@ -58,7 +58,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
     WIFI_DRIVER_STATE->limits.fromHost = (struct OSMessageQueue *)params->unk_10;
     WIFI_DRIVER_STATE->limits.toHost = (struct OSMessageQueue *)params->unk_14;
     Wifi_ClearSessionArea((u32)params->unk_2c, params->unk_30 / 28);
-    func_arm7_027c7cf4();
+    WifiTask_ClearQueues();
     func_arm7_027cb920();
     func_arm7_027cb9ac();
     func_arm7_027cacec();

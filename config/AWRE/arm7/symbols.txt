@@ -161,7 +161,7 @@ func_arm7_027c7a8c kind:function(arm,size=0x14) addr:0x027c7a8c
 func_arm7_027c7aa0 kind:function(arm,size=0x14) addr:0x027c7aa0
 Wifi_StartDriver kind:function(arm,size=0x1ec) addr:0x027c7ab4
 Wifi_RestartDriver kind:function(arm,size=0x54) addr:0x027c7ca0
-func_arm7_027c7cf4 kind:function(arm,size=0x8c) addr:0x027c7cf4
+WifiTask_ClearQueues kind:function(arm,size=0x8c) addr:0x027c7cf4
 func_arm7_027c7d80 kind:function(arm,size=0x54) addr:0x027c7d80
 func_arm7_027c7dd4 kind:function(arm,size=0x5c) addr:0x027c7dd4
 func_arm7_027c7e30 kind:function(arm,size=0xe4) addr:0x027c7e30
@@ -536,7 +536,7 @@ func_arm7_027d63b8 kind:function(arm,size=0x70) addr:0x027d63b8
 func_arm7_027d6428 kind:function(arm,size=0x90) addr:0x027d6428
 func_arm7_027d64b8 kind:function(arm,size=0xb8) addr:0x027d64b8
 data_arm7_027d6570 kind:data(any) addr:0x027d6570
-data_arm7_027d661c kind:data(any) addr:0x027d661c
+gWlTaskHandlers kind:data(any) addr:0x027d661c
 data_arm7_027d667c kind:data(any) addr:0x027d667c
 data_arm7_027d6680 kind:data(any) addr:0x027d6680
 data_arm7_027d6688 kind:data(any) addr:0x027d6688

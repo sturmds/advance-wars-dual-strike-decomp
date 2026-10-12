@@ -367,6 +367,8 @@ typedef struct WlBufferPool {
    queues by priority (0 first); next links the entries of a queue. */
 #define WIFI_TASK_LIST_END 0xffff
 #define WIFI_TASK_LEVELS 4
+#define WIFI_TASK_LEVEL_IDLE 3
+#define WIFI_TASK_SLOTS 24
 
 typedef struct WlTask {
     u16 next;
