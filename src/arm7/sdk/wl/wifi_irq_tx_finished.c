@@ -22,7 +22,7 @@ void WifiIrq_TxFinished(void)
         if (mp->unk_8c & 2) {
             WifiTx_PauseDataSlots();
         }
-        WIFI_DRIVER_STATE->counters[7]++;
+        WIFI_DRIVER_STATE->counters[WIFI_STAT_LOC3_SENT]++;
         WifiTask_Schedule(0, 8);
         break;
     case W_TXSTAT_MP_CMD:

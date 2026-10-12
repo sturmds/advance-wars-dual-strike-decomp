@@ -1100,8 +1100,11 @@ typedef struct WlCounters {
     u32 cmdStat[15]; /* counter bytes 0x21-0x2f: 0x048081d1-0x048081df */
 } WlCounters;
 
-/* WlWork.counters index of the LOC3 (multicast) TX done count. */
+/* WlWork.counters index of the count of frames sent to a group address, from
+   any TX slot (bit 0 of the destination address set). */
 #define WIFI_STAT_GROUP_SENT 5
+/* WlWork.counters index of the count of LOC3 transmit-done interrupts. */
+#define WIFI_STAT_LOC3_SENT 7
 
 /* Receive side state. */
 typedef struct WlRxState {
