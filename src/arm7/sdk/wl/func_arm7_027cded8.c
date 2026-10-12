@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027ca094(int);
+int WifiParam_SetSsidHidden(int);
 
 int func_arm7_027cded8(WlRequest *request, WlReply *reply)
 {
@@ -8,5 +8,5 @@ int func_arm7_027cded8(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.mode > 32) {
         return 1;
     }
-    return func_arm7_027ca094(request->unk_10);
+    return WifiParam_SetSsidHidden(request->unk_10);
 }
