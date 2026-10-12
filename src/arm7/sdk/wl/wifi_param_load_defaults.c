@@ -9,7 +9,7 @@ int WifiParam_StoreRateMode(u32 value);
 int WifiParam_StoreWepMode(u32 value);
 int func_arm7_027ca130(u32 value);
 int WifiRam_StoreFourKeyBlocks(int src);
-int WifiParam_ChangeBeaconPeriod(u32 value);
+int WifiParam_ChangeBeaconPeriod(u16 interval);
 int WifiParam_SetSsidHidden(u32 enable);
 int WifiParam_SetProbeNeedsSsid(u32 enable);
 int WifiParam_StoreBeaconsPerRun(u32 value);
@@ -23,7 +23,7 @@ int WifiParam_StoreRates(const WlRateSet *rates);
 int func_arm7_027c933c(u32 value);
 int WifiParam_SetAntennaSwitching(int bit4, int bit5);
 int WifiParam_SetAntennaChoice(int bit3);
-int func_arm7_027c9c84(u32 enable);
+int WifiParam_SetBeaconForwarding(int bit6);
 void Wifi_SeedLcg(u32 mul, u32 add);
 
 extern u8 gWlDefaultWifiRamBlocks[80];
@@ -58,7 +58,7 @@ void WifiParam_LoadDefaults(void)
     func_arm7_027c933c(5);
     WifiParam_SetAntennaSwitching(0, 0);
     WifiParam_SetAntennaChoice(0);
-    func_arm7_027c9c84(0);
+    WifiParam_SetBeaconForwarding(0);
     Wifi_SeedLcg(WIFI_MAC_REGISTER(0x044) + (WIFI_MAC_REGISTER(0x044) << 8), WIFI_MAC_REGISTER(0x044));
     WIFI_DRIVER_STATE->state.unk_2c = 1;
 }

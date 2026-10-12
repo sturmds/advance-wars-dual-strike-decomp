@@ -872,6 +872,10 @@ src/arm7/sdk/wl/wifi_param_load_bssid.c:
     complete
     .text       start:0x027c9c1c end:0x027c9c84
 
+src/arm7/sdk/wl/wifi_param_set_beacon_forwarding.c:
+    complete
+    .text       start:0x027c9c84 end:0x027c9cc4
+
 src/arm7/sdk/wl/wifi_param_set_antenna_switching.c:
     complete
     .text       start:0x027c9cc4 end:0x027c9da0

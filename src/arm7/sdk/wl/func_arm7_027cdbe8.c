@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027c9c84(int);
+int WifiParam_SetBeaconForwarding(int);
 
 int func_arm7_027cdbe8(WlRequest *request, WlReply *reply)
 {
@@ -8,5 +8,5 @@ int func_arm7_027cdbe8(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.mode < 16) {
         return 1;
     }
-    return func_arm7_027c9c84(request->unk_10);
+    return WifiParam_SetBeaconForwarding(request->unk_10);
 }
