@@ -229,6 +229,16 @@ Not measured: tokens per function (only per job, so per-retry tokens are average
 
 This covers ideas 5 and 6 only. The larger tools stay deferred and the issue stays open: a permuter-style source mutator (ideas 1 to 4), retrieval of past fixes by nearest assembly windows (kNN over diff windows, which the cookbook does by hand), and machine learning (idea 7).
 
+## Approach chosen (2026-10-11)
+
+Ideas 1 and 2, with decomp-permuter itself rather than our own passes first (sturmds's call):
+
+- `tools.lock` pins decomp-permuter at commit `059609d4aec7` (2026-09-07) as a source archive. It includes its own patched pycparser, so nothing else is pinned; a shim over `tomllib` stands in for the `toml` package. Its scorer needs `arm-none-eabi-objdump`, which was already installed. Credits: `docs/third-party/decomp-permuter.md`.
+- `tools/permuter.py` writes decomp-permuter's input folder for one function (C after `mwccarm -E`, the original object from `build/delinks/`, a compile script with the build's flags) and runs it under the caller's `nice` for a time limit. Two adjustments to its scorer: objdump disassembles only the named function, and a filter rewrites each relocation to its symbol's address plus addend, because dsd's object and ours name some addresses differently (`data_ov000_022dbd7c` against `Ov000_gMapHeaders+0x54`), which added a constant penalty to every score. The best five variants are rescored with `fn.py check`.
+- `--parked` runs the functions of `partials-parked.md` one after another.
+- First result: RangeMap_MarkAdjacentTiles (register-only, 99.8%, six retries) matched on the 77th variant, in 3 seconds: `y != 0` became `(y & 0xFFFFFFFFu) != 0`, and `y != 0u` gives the same code. CampaignMap_Init got nothing in 30 minutes with 4 jobs.
+- Not done yet: our own passes from the cookbook (`volatile` on a store, reading a field in place, reusing a dead variable, the `(&a[i])[k]` forms), and aiming the mutations at the registers that differ (idea 3).
+
 ## Context and pointers
 
 - Report of the hard assembly shapes we already matched, with examples (not in the repo).

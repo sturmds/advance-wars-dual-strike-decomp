@@ -101,6 +101,7 @@ test:
 	@$(PYTHON) tools/tests/test_ds.py
 	@$(PYTHON) tools/tests/test_pragmas.py
 	@$(PYTHON) tools/tests/test_protocheck.py
+	@$(PYTHON) tools/tests/test_permuter.py
 	@$(PYTHON) tools/tests/test_absolute.py
 	@$(PYTHON) tools/tests/test_arm7.py
 

@@ -21,3 +21,12 @@ version = "0.1.3"
 url = "https://github.com/mid-kid/metroskrew/releases/download/0.1.3/metroskrew-linux.tar.xz"
 sha256 = "2fec5ba308690a25157afc532ed87411a413501d43d85892ae4bfb9eb3975790"
 type = "tar.xz"
+
+# Source mutator for near-miss functions (tools/permuter.py, issue 0052).
+# No releases, so this pins a commit's source archive. MIT; see
+# docs/third-party/decomp-permuter.md.
+[decomp-permuter]
+version = "059609d4aec73eb0650726772954e1ad575825f8"
+url = "https://github.com/simonlindholm/decomp-permuter/archive/059609d4aec73eb0650726772954e1ad575825f8.tar.gz"
+sha256 = "2e4e0d991e4258df332c19d8dcf372212fe27f1b18e777d9e1eb25fc2c64a404"
+type = "tar.gz"

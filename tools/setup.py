@@ -67,7 +67,7 @@ def install(name: str, spec: dict) -> None:
         exe = target / name
         shutil.copyfile(archive, exe)
         exe.chmod(0o755)
-    elif spec["type"] == "tar.xz":
+    elif spec["type"] in ("tar.xz", "tar.gz"):
         with tarfile.open(archive) as t:
             t.extractall(target, filter="tar")
         # Archives with a single top-level directory are flattened.

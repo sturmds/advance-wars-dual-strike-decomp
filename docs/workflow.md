@@ -80,6 +80,7 @@ All three work from `build/fnindex.json`, check every candidate with the fast ch
 - `python3 tools/propagate.py [--dry-run] [--identical-only]`: copies the C of a matched function to unmatched functions with the same masked hash (identical twins) or the same shape with other immediates (near twins). `fn.py pick --families` ranks the unmatched families; match a head by hand, then run this.
 - `python3 tools/trivial.py [--pattern P] [--dry-run]`: writes C for functions of up to nine instructions: empty, constants, getters, stores, load-modify-store, tail calls, wrappers, comparisons. Patterns: empty, const, getter, tailcall, wrapper, store, modify, addr, compare, other.
 - `python3 tools/permute.py FILE.c NAME [--budget-seconds 120] [--apply]`: for a started function below 100%, tries declaration orders, statement swaps and local types, and prints the best variants. `--apply` replaces the source when the best one matches.
+- `nice -n 19 python3 tools/permuter.py NAME [--seconds 600] [--jobs 4]`: runs decomp-permuter (issue 0052, `docs/third-party/decomp-permuter.md`) on a started function: random rewrites of the C (temporaries, statement order, casts, loop forms, if/else, operand order, and more), each scored against the original. The best variants are rescored with `fn.py check`; the best goes to `build/permuter/NAME/best.c`, with `best.diff` showing the function's change. Its output is preprocessed and reformatted, so bring back only the change into the real file, look for a plainer form that compiles the same (RangeMap_MarkAdjacentTiles: `(y & 0xFFFFFFFFu) != 0` became `y != 0u`), and confirm with `fn.py diff`. `--parked FILE --out REPORT` runs every function in a Markdown table; `--explain` prints decomp-permuter's score and line diff without running it. Needs `arm-none-eabi-objdump`.
 
 What they leave behind is in `docs/issues/0024-brute-force-tool-leftovers.md`.
 
@@ -110,7 +111,7 @@ Terms: *registers swap* means the same instructions with two register numbers ex
 2. If a sibling of the same shape matched (a twin, an Up/Down or Ready/Unready pair), copy its shape first (func_02001f50, GfxQueue_AddKind4, LinkScreen_MovePlayerUp).
 3. Run `pragmas.py`. A pragma was part of 13 partial matches, and matched 5 of them with no change to the C.
 4. Find the symptom below and try its rewrites, before inventing new ones.
-5. Run `permute.py` for declaration order once the instructions agree. It finished many matches, but on a register-only diff it never found one alone.
+5. Run `permuter.py` for 10 minutes once the instructions agree, and `permute.py` for declaration order. `permute.py` finished many matches, but on a register-only diff it never found one alone; `permuter.py` matched RangeMap_MarkAdjacentTiles (register-only, parked after six retries) in seconds.
 
 ### Rewrites by symptom
 
@@ -189,7 +190,7 @@ Each line: the rewrite, then the functions it matched.
 
 ### When to stop: parking
 
-A *retry* is one model job's work on a function after the group that first wrote it (a `partials<N>` job or a batch 22 style partials group). Passes that spend no model tokens (`pragmas.py`, `triage_partials.py`, `permute.py`, a future permuter) do not count.
+A *retry* is one model job's work on a function after the group that first wrote it (a `partials<N>` job or a batch 22 style partials group). Passes that spend no model tokens (`pragmas.py`, `triage_partials.py`, `permute.py`, `permuter.py`) do not count.
 
 - **Park a function after two retries that did not match it**, whether they gained or not. In past data, first retries matched 47% of the time, second retries 16%, third 10%, fourth none; this rule would have lost 2 of 74 matches and saved 13% of retry tokens.
 - **Record it** in `work/partials-parked.md`: one row with the function, module and address, file, best match, triage class, the retry jobs, the date, and what would reopen it. `partials-tried.md` keeps the notes of each attempt. The parked list in `steer.md` (sturmds's) also stays parked.
@@ -231,6 +232,7 @@ A mod that changes code size moves every later address. The linker fixes an addr
 | `python3 tools/fn.py check FILE.c NAME` | Compile one file, compare one function with the index, exit 0 on a match |
 | `python3 tools/pragmas.py FILE.c NAME` | Score one function under each optimisation pragma |
 | `python3 tools/triage_partials.py --out FILE.md` | Classify the unlinked functions' diffs, with pragma sweep and pragma'd neighbours |
+| `nice -n 19 python3 tools/permuter.py NAME` | decomp-permuter on one function, best variant rescored with `fn.py check` |
 | `python3 tools/protocheck.py [FILE.c ...]` | Declarations and calls in the unlinked files that disagree with the callee's definition or header; `--all` for every file |
 | `python3 tools/fn.py pick --families` | Rank unmatched same-shape families by member count |
 | `python3 tools/fn.py pick --arm7` | Candidates in ARM7 (also with `--families`) |
