@@ -3,7 +3,7 @@
 /* Needed to match: the early returns get their own epilogues, as -O4,p builds them. */
 #pragma optimize_for_size off
 
-int func_arm7_027c698c(int a0, int a1, int a2, int a3, u16 *flags, const void *buf, u32 *a6, u32 *size);
+int WMSP_BuildMpSendData(int a0, int a1, int a2, int a3, u16 *flags, const void *buf, u32 *a6, u32 *size);
 u16 *func_arm7_027c2344(WlCommand *cmd, u16 arg0, u16 arg1, u32 arg2);
 
 void func_arm7_027c70f8(void)
@@ -22,7 +22,7 @@ void func_arm7_027c70f8(void)
     buf = status->unk_50;
     port = status->unk_18e;
     flags = 0;
-    if (func_arm7_027c698c(1, 1, 1, port, &flags, buf, &unused, &size) == 1) {
+    if (WMSP_BuildMpSendData(1, 1, 1, port, &flags, buf, &unused, &size) == 1) {
         return;
     }
     if (status->unk_1c == 1) {

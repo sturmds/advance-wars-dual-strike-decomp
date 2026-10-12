@@ -3,13 +3,13 @@
 /* Needed to match: the early return gets its own epilogue, as -O4,p builds it. */
 #pragma optimize_for_size off
 
-int func_arm7_027c698c(int a0, int a1, int a2, int a3, u16 *flags, const void *buf, u32 *a6, u32 *size);
+int WMSP_BuildMpSendData(int a0, int a1, int a2, int a3, u16 *flags, const void *buf, u32 *a6, u32 *size);
 u16 func_arm7_027c6020(u32 parentSize, u32 childSize, u32 childBitmap);
 u16 *func_arm7_027c22a8(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3, u16 arg4, u16 arg5,
                         u16 arg6, u16 arg7, u32 arg8);
 
 /*
- * A parent's MP send, from request slot 40 and WMSP_VAlarmMp: func_arm7_027c698c
+ * A parent's MP send, from request slot 40 and WMSP_VAlarmMp: WMSP_BuildMpSendData
  * fills the send buffer from the port queues (it returns 1 when there is nothing
  * to send), then WL command 0x102 sends it to the polled children. When unk_9a
  * is set, an empty frame goes to all children instead. The command's sizes and
@@ -44,7 +44,7 @@ void WMSP_SendMp(u16 arg)
         status->unk_88 = 0;
     }
     if (status->unk_9a == 0) {
-        if (func_arm7_027c698c(pollBitmap, childBitmap, readyBitmap, maxSize, &flags, buf, &polled,
+        if (WMSP_BuildMpSendData(pollBitmap, childBitmap, readyBitmap, maxSize, &flags, buf, &polled,
                                &parentSize) == 1) {
             return;
         }

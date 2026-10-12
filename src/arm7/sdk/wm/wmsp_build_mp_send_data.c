@@ -15,11 +15,8 @@
  * bitmap (header bit 12) when a parent sends to only some children. The
  * first header goes to *header, later ones into buf. Returns 1 if nothing
  * can be sent now, else 0.
- *
- * Not matched yet: the original keeps withDest at sp+0 and prevNext at
- * sp+0x30; this version swaps those two stack slots.
  */
-int func_arm7_027c698c(u32 pollBitmap, u32 childBitmap, u32 readyBitmap, int space, u16 *header, u16 *buf,
+int WMSP_BuildMpSendData(u32 pollBitmap, u32 childBitmap, u32 readyBitmap, int space, u16 *header, u16 *buf,
                        u32 *destBitmapOut, u32 *sizeOut)
 {
     WMStatus *status = func_arm7_027c05e0()->buf->status;
@@ -102,11 +99,11 @@ int func_arm7_027c698c(u32 pollBitmap, u32 childBitmap, u32 readyBitmap, int spa
                 goto next;
             }
             withSeqNo = (entry->port & 8) ? TRUE : FALSE;
-            if (isParent && (targets | 1) != 0xffff) {
-                withDest = TRUE;
-            } else {
-                withDest = FALSE;
-            }
+            /*
+             * Needed to match: withDest as a ternary and prevNext (below) as
+             * an if/else; the other way round swaps their stack slots.
+             */
+            withDest = (isParent && (targets | 1) != 0xffff) ? TRUE : FALSE;
             if ((entry->size & 1) == 1) {
                 entry->size++;
             }
@@ -170,7 +167,11 @@ int func_arm7_027c698c(u32 pollBitmap, u32 childBitmap, u32 readyBitmap, int spa
             }
 
         next:
-            prevNext = (index != WIRELESS_OUTBOX_NO_ENTRY) ? &queueData[index].next : &ready->head;
+            if (index != WIRELESS_OUTBOX_NO_ENTRY) {
+                prevNext = &queueData[index].next;
+            } else {
+                prevNext = &ready->head;
+            }
             prev = index;
             index = (index != WIRELESS_OUTBOX_NO_ENTRY) ? queueData[index].next : ready->head;
         }
