@@ -13921,7 +13921,8 @@ src/game/main/current_player_collect_income.c:
     complete
     .text       start:0x020c0a44 end:0x020c0aa8
 
-src/game/main/map/func_020c0aa8.c:
+src/game/main/map/map_count_player_properties.c:
+    complete
     .text       start:0x020c0aa8 end:0x020c0e3c
 
 src/game/main/player_has_hq.c:

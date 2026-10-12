@@ -13,7 +13,7 @@ s16 MapCell_SetOwner(int x, int y, int tile);
 s16 func_020f6488(int x, int y, int tile);
 void func_020c4018(void);
 void func_020c4448(void);
-void func_020c0aa8(void);
+void Map_CountPlayerProperties(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define HQ (STATE->players[task->unk_64])
@@ -77,6 +77,6 @@ void LinkPlayerDefeatTask_TransferProperties(Task *task)
     }
     func_020c4018();
     func_020c4448();
-    func_020c0aa8();
+    Map_CountPlayerProperties();
     task->unk_68 = 1;
 }

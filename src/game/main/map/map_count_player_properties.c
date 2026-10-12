@@ -12,21 +12,20 @@ extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
+#define TILE_AT(x, y) (STATE->mapTiles->tiles[(x) + STATE->mapTiles->rowStart[y]])
 
 /* Counts each player's properties and income from the map tiles (Base, City,
- * Airport, Port, Com Tower, HQ), and stores the HQ position in unk_2f and
- * unk_30. Afterwards human players get no income while gameMode is 3 and
- * data_022a7b80.mode is 1 or 4.
- * Not matching yet: y is u8 to keep its narrowing out of the inner loop, which
- * costs one instruction at the y increment. */
-void func_020c0aa8(void)
+ * Airport, Port, Com Tower, HQ), and stores the HQ position in hqX and hqY.
+ * Afterwards human players get no income while gameMode is 3 and
+ * data_022a7b80.mode is 1 or 4. */
+void Map_CountPlayerProperties(void)
 {
     int i;
     int slot;
     u8 tile;
     Player *player;
     int x;
-    u8 y;
+    int y;
 
     for (i = 0; i < ARMY_SLOT_COUNT; i++) {
         STATE->players[i].unk_08 = 0;
@@ -39,33 +38,34 @@ void func_020c0aa8(void)
     }
     for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
         for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            tile = STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]];
+            tile = TILE_AT(x, y);
             if ((tile & 0xe0) != 0) {
-                player = &STATE->players[(tile & 0xe0) >> 5];
-                switch (tile & 0x1f) {
+                player = &STATE->players[MAP_TILE_OWNER(tile)];
+                switch (MAP_TILE_TERRAIN(tile)) {
                 case TERRAIN_HQ:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(tile), MAP_TILE_TERRAIN(tile));
                     player->hqX = x;
                     player->hqY = y;
                     break;
                 case TERRAIN_BASE:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(tile), MAP_TILE_TERRAIN(tile));
                     player->unk_10[0]++;
                     break;
                 case TERRAIN_CITY:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(tile), MAP_TILE_TERRAIN(tile));
                     player->unk_10[1]++;
                     break;
                 case TERRAIN_COM_TOWER:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(tile), MAP_TILE_TERRAIN(tile));
                     player->comTowers++;
                     break;
                 case TERRAIN_AIRPORT:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(tile), MAP_TILE_TERRAIN(tile));
                     player->unk_10[2]++;
                     break;
                 case TERRAIN_PORT:
-                    player->unk_08 += IncreaseFunds((tile & 0xe0) >> 5, tile & 0x1f);
+                    /* Read from the map again, not from tile: needed to match. */
+                    player->unk_08 += IncreaseFunds(MAP_TILE_OWNER(TILE_AT(x, y)), MAP_TILE_TERRAIN(TILE_AT(x, y)));
                     player->unk_10[3]++;
                     break;
                 }

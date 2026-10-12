@@ -5,7 +5,7 @@ extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
 
 s16 MapCell_SetOwner(int x, int y, int tile);
-void func_020c0aa8(void);
+void Map_CountPlayerProperties(void);
 void func_020c4018(void);
 void func_020c4448(void);
 
@@ -23,5 +23,5 @@ void Tile_SetOwner(int x, int y)
     MapCell_SetOwner(x, y, (u8)(tile & 0xe0));
     func_020c4018();
     func_020c4448();
-    func_020c0aa8();
+    Map_CountPlayerProperties();
 }

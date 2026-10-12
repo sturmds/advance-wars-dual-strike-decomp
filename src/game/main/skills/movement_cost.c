@@ -5,7 +5,7 @@
 
 BOOL Player_IsInGame(u8 player);
 void UpdatePlayerSkills(int player);
-void func_020c0aa8(void);
+void Map_CountPlayerProperties(void);
 
 extern Unk_02080440 *data_027c027c;
 extern int data_027c0284;
@@ -59,5 +59,5 @@ void MovementCost(void)
         }
     }
 
-    func_020c0aa8();
+    Map_CountPlayerProperties();
 }
