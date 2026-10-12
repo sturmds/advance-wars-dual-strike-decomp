@@ -34,6 +34,13 @@ typedef struct WlWifiConfig {
     u16 length;
 } WlWifiConfig;
 
+/* Results of WifiFlash_ValidateRadioBlock. */
+enum {
+    WIFI_RADIO_BLOCK_VALID = 0,
+    WIFI_RADIO_BLOCK_CRC_WRONG = 1,
+    WIFI_RADIO_BLOCK_SIZE_WRONG = 2
+};
+
 // Reply of WifiCmd_ReportAllSettings. Field names give the WL work offset each one
 // is copied from.
 typedef struct WlStatusReply {
