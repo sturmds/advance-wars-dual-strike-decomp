@@ -23516,6 +23516,10 @@ src/sdk/runtime/fadd.c:
     complete
     .text       start:0x02126cd4 end:0x02127134
 
+src/sdk/runtime/fp_compare.c:
+    complete
+    .text       start:0x02127134 end:0x02127ca0
+
 src/sdk/runtime/fdiv.c:
     complete
     .text       start:0x02127cac end:0x0212839c
