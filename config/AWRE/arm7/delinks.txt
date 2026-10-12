@@ -1361,6 +1361,10 @@ src/arm7/sdk/ctrdg/func_arm7_03806520.c:
     complete
     .text       start:0x03806520 end:0x03806590
 
+src/arm7/sdk/ctrdg/func_arm7_03806590.c:
+    complete
+    .text       start:0x03806590 end:0x038065c4
+
 src/arm7/sdk/func_arm7_038065c4.c:
     complete
     .text       start:0x038065c4 end:0x0380660c
