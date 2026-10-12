@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6680 / 6700 | 1536908 / 1553840 | 98.91% | 0 | 0 |
+| ARM9 game | 6681 / 6700 | 1537508 / 1553840 | 98.95% | 0 | 0 |
 | ARM9 SDK/library | 645 / 833 | 104112 / 135226 | 76.99% | 176 | 20718 |
-| ARM9 all | 7325 / 7533 | 1641020 / 1689066 | 97.16% | 176 | 20718 |
+| ARM9 all | 7326 / 7533 | 1641620 / 1689066 | 97.19% | 176 | 20718 |
 | ARM7 SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
 | ARM7 all | 949 / 1020 | 148704 / 154300 | 96.37% | 69 | 4960 |
-| game | 6680 / 6700 | 1536908 / 1553840 | 98.91% | 0 | 0 |
+| game | 6681 / 6700 | 1537508 / 1553840 | 98.95% | 0 | 0 |
 | SDK/library | 1594 / 1853 | 252816 / 289526 | 87.32% | 245 | 25678 |
-| all | 8274 / 8553 | 1789724 / 1843366 | 97.09% | 245 | 25678 |
+| all | 8275 / 8553 | 1790324 / 1843366 | 97.12% | 245 | 25678 |
 
 ## By module
 
@@ -36,7 +36,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov003 | game | 234 / 235 | 81996 / 82696 | 99.15% | 0 |
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 265 / 266 | 96496 / 96684 | 99.81% | 0 |
-| ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
+| ov006 | game | 321 / 321 | 105588 / 105588 | 100.00% | 0 |
 | arm7 | SDK/library | 949 / 1020 | 148704 / 154300 | 96.37% | 69 |
 
 Modules with nothing done: none.
@@ -52,16 +52,16 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 20 | 16932 | 3910 / 4253 (91.94%) |
+| ARM9 game | 19 | 16332 | 3788 / 4101 (92.37%) |
 | ARM9 SDK/library | 12 | 10396 | 1896 / 2683 (70.67%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 34 | 27964 | 5954 / 7095 (83.92%) |
+| all | 33 | 27364 | 5832 / 6943 (84.00%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 0 | 0 |
 | 3 to 10 | 10 | 6000 |
-| 11 to 50 | 21 | 13948 |
+| 11 to 50 | 20 | 13348 |
 | more than 50 | 3 | 8016 |
 
 Closest first.
@@ -79,10 +79,10 @@ Closest first.
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 10 | 99.64% |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 | 11 | 99.91% |
+| `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 13 | 99.46% |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 | 14 | 95.83% |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 | 15 | 99.98% |
-| `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 15 | 97.22% |
 | `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 15 | 94.13% |
 | `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 | 17 | 85.97% |
 | `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 17 | 52.39% |
@@ -93,7 +93,6 @@ Closest first.
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 | 25 | 94.72% |
 | `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 | 26 | 99.70% |
-| `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 | 28 | 99.07% |
 | `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 | 30 | 90.39% |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 30 | 84.98% |
 | `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
