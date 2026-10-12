@@ -1405,6 +1405,10 @@ src/arm7/sdk/ctrdg/cartridge_store_init_done_word.c:
     complete
     .text       start:0x038069c8 end:0x03806a00
 
+src/arm7/sdk/ctrdg/cartridge_check_logo_from_arm9_once.c:
+    complete
+    .text       start:0x03806a00 end:0x03806ae8
+
 src/arm7/sdk/func_arm7_03806d4c.c:
     complete
     .text       start:0x03806d4c end:0x03806f58
