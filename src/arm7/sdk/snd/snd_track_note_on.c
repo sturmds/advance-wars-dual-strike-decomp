@@ -26,7 +26,7 @@ void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, 
         }
     }
     if (channel == NULL) {
-        if (!SndArm7_ReadInstData((SoundBank *)player->bank, track->program, key, &note)) {
+        if (!SndArm7_ReadInstData(player->bank, track->program, key, &note)) {
             return;
         }
         switch (note.type) {
@@ -48,8 +48,8 @@ void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, 
         if (channel == NULL) {
             return;
         }
-        if (!SndArm7_NoteOn(channel, key, velocity, track->tie ? -1 : length, (SoundBank *)player->bank, &note)) {
-            channel->unk_22 = 0;
+        if (!SndArm7_NoteOn(channel, key, velocity, track->tie ? -1 : length, player->bank, &note)) {
+            channel->priority = 0;
             func_arm7_037ff68c(channel);
             return;
         }
@@ -68,7 +68,7 @@ void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, 
     if (track->release != SEQ_ENV_FROM_INSTRUMENT) {
         func_arm7_037ff7f4(channel, track->release);
     }
-    channel->sweepPitch = *(s16 *)&track->sweepPitch; /* the field is declared u16; the original loads it signed */
+    channel->sweepPitch = track->sweepPitch;
     if (track->portamento) {
         /* glide from the previous key: 64 sweep units per semitone */
         channel->sweepPitch += (s16)((track->portamentoKey - key) << 6);

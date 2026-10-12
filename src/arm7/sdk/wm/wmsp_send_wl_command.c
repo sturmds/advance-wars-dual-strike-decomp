@@ -11,7 +11,7 @@ WlCommand *Wmsp_SendWlCommand(WlCommand *command)
 
     MsgQueue_PushBack_Arm7(&WMSP_WORK->wlQueue, command, OS_MESSAGE_BLOCK);
     MsgQueue_PopOldest_Arm7(&data_arm7_027d6c84, (OSMessage *)&answer, OS_MESSAGE_BLOCK);
-    if ((answer->words + 2)[answer->index] == 14) {
+    if ((answer->words + 2)[answer->length] == 14) {
         RadioNotice *indication = Wmsp_GetCallbackBuffer();
 
         indication->apiid = WM_APIID_INDICATION;

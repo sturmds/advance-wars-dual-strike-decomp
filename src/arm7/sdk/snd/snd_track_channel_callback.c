@@ -9,7 +9,7 @@ void SndTrack_ChannelCallback(SndExChannel *channel, int status, void *data)
     SndExChannel *prev;
 
     if (status == VOICE_DONE) {
-        channel->unk_22 = 0;
+        channel->priority = 0;
         func_arm7_037ff68c(channel);
     }
     if (track->channels == channel) {

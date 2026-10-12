@@ -18,11 +18,11 @@ void SndTrack_Init(SndTrack *track)
     track->priority = 64;
     track->volume = 127;
     track->volume2 = 127;
-    track->transpose = 0;
+    track->extFader = 0;
     track->pan = 0;
-    track->unk_09 = 0;
+    track->extPan = 0;
     track->pitchBend = 0;
-    track->unk_0c = 0;
+    track->extPitch = 0;
     track->attack = 255;
     track->decay = 255;
     track->sustain = 255;
@@ -32,7 +32,7 @@ void SndTrack_Init(SndTrack *track)
     track->portamentoKey = 60;
     track->portamentoTime = 0;
     track->sweepPitch = 0;
-    track->unk_13 = 0;
+    track->transpose = 0;
     track->channelMask = 0xFFFF;
     func_arm7_037ff3c4(&track->lfo);
     track->unk_20 = 0;

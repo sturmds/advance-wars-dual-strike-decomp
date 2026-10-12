@@ -8,7 +8,7 @@ void SndArm7_PauseSeq(int playerNo, BOOL pause)
     SndPlayer *player = &data_arm7_038085d0[playerNo];
     int i;
 
-    player->prepared = pause;
+    player->paused = pause;
     if (pause) {
         for (i = 0; i < SND_TRACK_COUNT; i++) {
             SndTrack *track = SndPlayer_GetTrack(player, i);

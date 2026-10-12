@@ -6,7 +6,7 @@ void func_arm7_038010e4(SndTrack *track, int base, int offset); /* the definitio
 /* First byte of a sequence with more than one track; a 16-bit mask of the tracks to allocate follows. */
 #define SEQ_CMD_ALLOC_TRACKS 0xFE
 
-void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, u32 bank)
+void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, SoundBank *bank)
 {
     SndPlayer *player = &data_arm7_038085d0[playerNo];
     int trackNo;

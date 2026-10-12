@@ -15,7 +15,7 @@ void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release)
             if (release >= 0) {
                 func_arm7_037ff7f4(channel, (u8)release);
             }
-            channel->unk_22 = 1;
+            channel->priority = 1;
             func_arm7_037ff7e8(channel);
         }
     }

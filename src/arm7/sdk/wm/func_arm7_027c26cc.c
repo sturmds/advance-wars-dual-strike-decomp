@@ -11,14 +11,14 @@ u16 *func_arm7_027c26cc(WlCommand *cmd, const void *src, int arg0, int arg1)
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 4;
-    cmd->index = 5;
+    cmd->command = 4;
+    cmd->length = 5;
     Mem_CopyHalfwords_Arm7(src, &cmd->words[0], 6);
     cmd->words[3] = arg0;
     cmd->words[4] = arg1;
-    slot = (u16 *)cmd + cmd->index;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 6;
     Wmsp_SendWlCommand(cmd);
     return reply;

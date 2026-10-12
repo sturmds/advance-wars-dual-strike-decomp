@@ -3,11 +3,11 @@
 
 extern SndSharedWork *data_arm7_0380808c;
 
-void SndPlayer_Setup(SndPlayer *player, u32 bank)
+void SndPlayer_Setup(SndPlayer *player, SoundBank *bank)
 {
     int i;
 
-    player->prepared = 0;
+    player->paused = FALSE;
     player->bank = bank;
     player->tempo = 120;
     player->tempoRatio = 256;

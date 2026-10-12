@@ -12,8 +12,8 @@ u16 *func_arm7_027c23b0(WlCommand *cmd, u16 *params)
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 0x100;
-    cmd->index = 24;
+    cmd->command = 0x100;
+    cmd->length = 24;
     Mem_CopyHalfwords_Arm7(params, &cmd->words[0], 48);
     params[1] = 0;
     params[2] = 0;
@@ -28,9 +28,9 @@ u16 *func_arm7_027c23b0(WlCommand *cmd, u16 *params)
     params[19] = 0;
     params[20] = 0;
     params[21] = 0;
-    slot = (u16 *)cmd + cmd->index;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 2;
     Wmsp_SendWlCommand(cmd);
     return reply;

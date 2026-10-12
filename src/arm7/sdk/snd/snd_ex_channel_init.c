@@ -9,7 +9,7 @@ void SndExChannel_Init(SndExChannel *channel, SndExChannelCallback callback, voi
     channel->callback = callback;
     channel->callbackArg = callbackArg;
     channel->length = 0;
-    channel->unk_22 = priority;
+    channel->priority = priority;
     channel->volume = 127;
     channel->start = FALSE;
     channel->autoSweep = TRUE;

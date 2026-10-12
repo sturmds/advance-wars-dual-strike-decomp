@@ -141,9 +141,9 @@ typedef struct WmspInternalRequest {
    words[] holds the arguments, then the reply header at words[index]:
    the argument count, then the command id. WL fills in the reply. */
 typedef struct WlCommand {
-    u16 reserved[6];
-    u16 length;
-    u16 index;
+    u16 reserved[6];                   /* the WlBuffer list links */
+    u16 command;                       /* WL command id */
+    u16 length;                        /* argument words that follow */
     u16 words[1];
 } WlCommand;
 

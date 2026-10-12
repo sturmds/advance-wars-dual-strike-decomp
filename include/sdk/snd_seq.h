@@ -32,21 +32,21 @@ typedef struct SndTrack {
     u16 program;
     u8 volume;
     u8 volume2;
-    u8 pitchBend;
+    s8 pitchBend;
     u8 bendRange;
-    u8 pan;
-    u8 unk_09;
-    u16 transpose;
-    u16 unk_0c;
+    s8 pan;
+    s8 extPan;     /* set by the ARM9 (SndArm7_SetTrackParam) */
+    s16 extFader;  /* set by the ARM9 */
+    s16 extPitch;  /* set by the ARM9 */
     u8 attack;
     u8 decay;
     u8 sustain;
     u8 release;
     u8 priority;
-    u8 unk_13;
+    s8 transpose;
     u8 portamentoKey;
     u8 portamentoTime;
-    u16 sweepPitch;
+    s16 sweepPitch;
     SndLfo lfo;
     u16 channelMask;
     u32 unk_20;
@@ -68,7 +68,7 @@ enum {
 
 typedef struct SndPlayer {
     u8 active;
-    u8 prepared;
+    u8 paused;
     u8 number;
     u8 pad_03;
     u8 priority;
@@ -79,7 +79,7 @@ typedef struct SndPlayer {
     u16 tempoRatio;
     u16 tempoCounter;
     u16 pad_1e;
-    u32 bank; /* address of the sound bank the player uses */
+    struct SoundBank *bank;
 } SndPlayer;
 
 extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
@@ -149,7 +149,7 @@ typedef struct SndWaveData {
 #define VOICE_STOLEN 0   /* taken by a request of higher priority */
 #define VOICE_DONE 1
 
-/* SndExChannel.unk_03_3: hardware updates the driver still has to make for the channel. */
+/* SndExChannel.sync: hardware updates the driver still has to make for the channel. */
 #define VOICE_DIRTY_START 1
 #define VOICE_DIRTY_STOP 2
 #define VOICE_DIRTY_TIMER 4
@@ -167,7 +167,7 @@ struct SndExChannel {
     u8 active : 1;
     u8 start : 1;
     u8 autoSweep : 1; /* advance the sweep on each periodic update */
-    u8 unk_03_3 : 5;
+    u8 sync : 5;
     u8 panRange;
     u8 originalKey;
     s16 userDecay2;
@@ -184,7 +184,7 @@ struct SndExChannel {
     u8 sustain;
     u16 decay;
     u16 release;
-    u8 unk_22; /* priority: allocation replaces the lowest */
+    u8 priority; /* allocation replaces the lowest */
     u8 pan;
     u16 volume; /* bits 0-7 hardware volume, bits 8-9 volume shift */
     u16 timer;

@@ -9,7 +9,7 @@ void SndExChannel_InitAll(void)
     for (i = 0; i < AUDIO_CH_TOTAL; i++) {
         channel = &data_arm7_03808090.channels[i];
         channel->id = i;
-        channel->unk_03_3 = 0;
+        channel->sync = 0;
         channel->active = FALSE;
     }
     data_arm7_0380806c = 0;

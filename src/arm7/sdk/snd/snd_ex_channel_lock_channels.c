@@ -23,9 +23,9 @@ void SndExChannel_LockChannels(u32 channelMask, u32 flags)
             channel->callback(channel, VOICE_STOLEN, channel->callbackArg);
         }
         SndHw_StopChannel(i, 0);
-        channel->unk_22 = 0;
+        channel->priority = 0;
         func_arm7_037ff68c(channel);
-        channel->unk_03_3 = 0;
+        channel->sync = 0;
         channel->active = FALSE;
     }
     if (flags & VOICE_RESERVE_SOFT) {

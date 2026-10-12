@@ -12,11 +12,11 @@ u16 *func_arm7_027c21f0(WlCommand *cmd)
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 0x200;
-    cmd->index = 0x48;
-    slot = (u16 *)cmd + cmd->index;
+    cmd->command = 0x200;
+    cmd->length = 0x48;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 1;
     Wmsp_SendWlCommand(cmd);
     return reply;

@@ -12,14 +12,14 @@ u16 *func_arm7_027c2344(WlCommand *cmd, u16 arg0, u16 arg1, u32 arg2)
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 0x101;
-    cmd->index = 4;
+    cmd->command = 0x101;
+    cmd->length = 4;
     cmd->words[0] = arg0;
     cmd->words[1] = arg1;
     *(u32 *)&cmd->words[2] = arg2;
-    slot = (u16 *)cmd + cmd->index;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 1;
     Wmsp_SendWlCommand(cmd);
     return reply;

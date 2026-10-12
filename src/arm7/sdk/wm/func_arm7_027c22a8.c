@@ -13,8 +13,8 @@ u16 *func_arm7_027c22a8(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3, 
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 0x102;
-    cmd->index = 10;
+    cmd->command = 0x102;
+    cmd->length = 10;
     cmd->words[0] = arg0;
     cmd->words[1] = arg1;
     cmd->words[2] = arg2;
@@ -24,9 +24,9 @@ u16 *func_arm7_027c22a8(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2, u16 arg3, 
     cmd->words[6] = arg6;
     cmd->words[7] = arg7;
     *(u32 *)&cmd->words[8] = arg8;
-    slot = (u16 *)cmd + cmd->index;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 1;
     Wmsp_SendWlCommand(cmd);
     return reply;

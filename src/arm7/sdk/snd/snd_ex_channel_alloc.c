@@ -26,8 +26,8 @@ SndExChannel *SndExChannel_Alloc(u32 channelMask, int priority, BOOL strong, Snd
 
             if (best == NULL) {
                 best = channel;
-            } else if (channel->unk_22 <= best->unk_22) {
-                if (channel->unk_22 != best->unk_22 || SndExChannel_CompareVolume(best, channel) < 0) {
+            } else if (channel->priority <= best->priority) {
+                if (channel->priority != best->priority || SndExChannel_CompareVolume(best, channel) < 0) {
                     best = channel;
                 }
             }
@@ -36,13 +36,13 @@ SndExChannel *SndExChannel_Alloc(u32 channelMask, int priority, BOOL strong, Snd
     if (best == NULL) {
         return NULL;
     }
-    if (priority < best->unk_22) {
+    if (priority < best->priority) {
         return NULL;
     }
     if (best->callback != NULL) {
         best->callback(best, VOICE_STOLEN, best->callbackArg);
     }
-    best->unk_03_3 = VOICE_DIRTY_STOP;
+    best->sync = VOICE_DIRTY_STOP;
     best->active = FALSE;
     SndExChannel_Init(best, callback, callbackArg, priority);
     return best;

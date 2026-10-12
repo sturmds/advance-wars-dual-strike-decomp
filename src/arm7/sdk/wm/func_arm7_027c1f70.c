@@ -13,13 +13,13 @@ u16 *func_arm7_027c1f70(WlCommand *cmd, int size, const void *data)
     cmd->reserved[3] = 0;
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
-    cmd->length = 0x245;
-    cmd->index = (s32)func_arm7_03806d4c(size + 1, 2) + 1;
+    cmd->command = 0x245;
+    cmd->length = (s32)func_arm7_03806d4c(size + 1, 2) + 1;
     cmd->words[0] = size;
     Mem_CopyHalfwords_Arm7(data, &cmd->words[1], size);
-    slot = (u16 *)cmd + cmd->index;
+    slot = (u16 *)cmd + cmd->length;
     reply = slot + 8;
-    slot[8] = cmd->length;
+    slot[8] = cmd->command;
     reply[1] = 1;
     Wmsp_SendWlCommand(cmd);
     return reply;
