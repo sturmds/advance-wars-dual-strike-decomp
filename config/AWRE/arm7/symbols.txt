@@ -831,7 +831,7 @@ SndExChannel_UnlockChannels kind:function(arm,size=0x3c) addr:0x037ff490
 SndExChannel_LockChannels kind:function(arm,size=0xf8) addr:0x037ff4cc
 SndExChannel_StopUnlockedChannels kind:function(arm,size=0xc8) addr:0x037ff5c4
 func_arm7_037ff68c kind:function(arm,size=0x14) addr:0x037ff68c
-func_arm7_037ff6a0 kind:function(arm,size=0x138) addr:0x037ff6a0
+SndExChannel_Alloc kind:function(arm,size=0x138) addr:0x037ff6a0
 func_arm7_037ff7d8 kind:function(arm,size=0x10) addr:0x037ff7d8
 func_arm7_037ff7e8 kind:function(arm,size=0xc) addr:0x037ff7e8
 func_arm7_037ff7f4 kind:function(arm,size=0x1c) addr:0x037ff7f4
@@ -1057,7 +1057,7 @@ gCrc16NibbleTable kind:data(any) addr:0x0380713c
 gSndSineQuarterTable kind:data(any) addr:0x0380715c
 data_arm7_03807180 kind:data(any) addr:0x03807180
 gSndVolumeShiftBits kind:data(any) addr:0x03807280
-data_arm7_03807284 kind:data(any) addr:0x03807284
+gSndExChannelAllocOrder kind:data(any) addr:0x03807284
 data_arm7_03807294 kind:data(any) addr:0x03807294
 data_arm7_038072a8 kind:data(any) addr:0x038072a8
 data_arm7_038072ac kind:data(any) addr:0x038072ac
