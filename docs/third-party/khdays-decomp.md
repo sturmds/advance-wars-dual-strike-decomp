@@ -19,6 +19,7 @@ Ideas and parts of the code of these tools, rewritten for our dsd and objdiff pi
 - `pick_family.py`: ranking of family heads and its filters. Used in `tools/fn.py pick --families`.
 - `configure.py` (`ABSOLUTE_SYMBOLS`, `add_absolute_symbols`): linker-absolute symbols added to the generated linker script. Used in `tools/lcf_absolute.py`.
 - The family index and the check that uses it (`fnindex.py`, `tools/fn.py check`) follow the same twin-family idea.
+- Two C shapes that make mwcc copy a call's result with `add rN, r0, #0`: `call() + (v - v)` and an inline helper `low + call()` called with 0 (their `src/overlays/enemies/`, for example `Ov271_AiChooseMoveSteering.c` and `Ov279_DecideAttackByDistanceRoll.c`). We read their built objects for this, not their tools. Used in the near-miss cookbook in `docs/workflow.md`.
 
 ## What we do not take
 
