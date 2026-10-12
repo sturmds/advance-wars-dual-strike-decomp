@@ -1,9 +1,9 @@
-#include "types.h"
+#include "sdk/os.h"
 
-void OSi_DoLockByWord(int, int, void *, int);
 int OSi_AllocateCartridgeBus(void);
 
-void OS_LockCartridge(int a0)
+/* Returns 0 once the lock is taken. */
+int OS_LockCartridge(u16 lockId)
 {
-    OSi_DoLockByWord(a0, 0x27fffe8, (void *)OSi_AllocateCartridgeBus, 1);
+    return OSi_DoLockByWord(lockId, SLOTLOCK_WORD, (void (*)(void))OSi_AllocateCartridgeBus, TRUE);
 }

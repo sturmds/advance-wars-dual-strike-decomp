@@ -5,7 +5,7 @@
 
 #define CARTRIDGE_LOCK_WORD ((void *)0x027fffe8)
 
-int OS_LockCartridge(int lockId);
+int OS_LockCartridge(u16 lockId);
 u16 func_0210cf88(void *lock);
 
 /*

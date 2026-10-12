@@ -1,9 +1,8 @@
-#include "types.h"
+#include "sdk/os.h"
 
-void OSi_DoUnlockByWord(int, int, void *, int);
 int OSi_FreeCartridgeBus(void);
 
-void OS_UnlockCartridge(int a0)
+void OS_UnlockCartridge(u16 lockId)
 {
-    OSi_DoUnlockByWord(a0, 0x27fffe8, (void *)OSi_FreeCartridgeBus, 1);
+    OSi_DoUnlockByWord(lockId, SLOTLOCK_WORD, (void (*)(void))OSi_FreeCartridgeBus, TRUE);
 }

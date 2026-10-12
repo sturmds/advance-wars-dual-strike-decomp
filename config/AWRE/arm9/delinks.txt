@@ -21395,6 +21395,7 @@ src/sdk/os/func_0210dae4.c:
     .text       start:0x0210dae4 end:0x0210db18
 
 src/sdk/os/func_0210db18.c:
+    complete
     .text       start:0x0210db18 end:0x0210dbec
 
 src/sdk/os/func_0210dbec.c:

@@ -20,6 +20,9 @@ typedef struct OSLockWord {
     u16 extension;
 } OSLockWord;
 
+/* The lock word for the Slot-2 cartridge bus, in shared main RAM. */
+#define SLOTLOCK_WORD ((OSLockWord *)0x027fffe8)
+
 typedef void (*OSIrqFunction)(void);
 
 /* One entry of the handler table that runs timer and DMA interrupts. */
