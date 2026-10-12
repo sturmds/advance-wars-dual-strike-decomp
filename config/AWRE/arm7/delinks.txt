@@ -1024,6 +1024,10 @@ src/arm7/sdk/wl/wifi_mlme_run_reassociation.c:
     complete
     .text       start:0x027cc2b0 end:0x027cc364
 
+src/arm7/sdk/wl/wifi_mlme_association_timed_out.c:
+    complete
+    .text       start:0x027cc364 end:0x027cc3a0
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac
