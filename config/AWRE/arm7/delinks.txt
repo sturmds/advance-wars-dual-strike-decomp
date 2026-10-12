@@ -696,6 +696,10 @@ src/arm7/sdk/func_arm7_027cb3c8.c:
     complete
     .text       start:0x027cb3c8 end:0x027cb3e0
 
+src/arm7/sdk/wl/wifi_station_change_state.c:
+    complete
+    .text       start:0x027cb3e0 end:0x027cb4ac
+
 src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
