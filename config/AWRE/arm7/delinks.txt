@@ -2184,6 +2184,10 @@ src/arm7/sdk/os/irq_nest_dispatch_by_priority.c:
     complete
     .text       start:0x0380624c end:0x038063d0
 
+src/arm7/sdk/os/irq_nest_unhook_vector.c:
+    complete
+    .text       start:0x038063d0 end:0x0380641c
+
 src/arm7/sdk/ctrdg/func_arm7_038064b0.c:
     complete
     .text       start:0x038064b0 end:0x038064f8

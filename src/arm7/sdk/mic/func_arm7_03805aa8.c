@@ -5,7 +5,7 @@ int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 u32 func_arm7_037fb690(u32 mask);
 void func_arm7_03806488(u32 mask, void (*handler)(void));
-void func_arm7_038063d0(void);
+void IrqNest_UnhookVector(void);
 void func_arm7_0380641c(void);
 void func_arm7_03805a6c(void);
 
@@ -67,7 +67,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             REG_TM3CNT_H &= ~TIMER_ENABLE;
             irqState = func_arm7_037fdb80();
             func_arm7_03806488(IRQ_MASK_TIMER3, NULL);
-            func_arm7_038063d0();
+            IrqNest_UnhookVector();
             func_arm7_037fdb94(irqState);
             if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END) {
                 SPIi_ReturnResult(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_SUCCESS);
