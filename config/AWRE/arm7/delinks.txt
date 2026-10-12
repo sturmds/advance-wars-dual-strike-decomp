@@ -1844,6 +1844,10 @@ src/arm7/sdk/rtc/func_arm7_027d5364.c:
     complete
     .text       start:0x027d5364 end:0x027d53f4
 
+src/arm7/sdk/rtc/clock_serve_arm9_requests.c:
+    complete
+    .text       start:0x027d53f4 end:0x027d58a8
+
 src/arm7/sdk/rtc/func_arm7_027d58a8.c:
     complete
     .text       start:0x027d58a8 end:0x027d58e8
