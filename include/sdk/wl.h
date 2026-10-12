@@ -492,6 +492,7 @@ void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
 void WifiRf_AwaitReceiverOn(void);
 void WifiTask_DrainOutbox(void);
 int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info);
+int WifiHost_TellBeaconSent(void);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
