@@ -1264,6 +1264,10 @@ src/arm7/sdk/func_arm7_037feebc.c:
     complete
     .text       start:0x037feebc end:0x037feed0
 
+src/arm7/sdk/snd/snd_start_interval_timer.c:
+    complete
+    .text       start:0x037feed0 end:0x037fef28
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
