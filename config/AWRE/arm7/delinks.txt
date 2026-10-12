@@ -709,6 +709,10 @@ src/arm7/sdk/os/alarm_withdraw_arm7.c:
     complete
     .text       start:0x037fd174 end:0x037fd204
 
+src/arm7/sdk/os/alarm_arm_repeating_arm7.c:
+    complete
+    .text       start:0x037fd204 end:0x037fd280
+
 src/arm7/sdk/func_arm7_037fd424.c:
     complete
     .text       start:0x037fd424 end:0x037fd434
