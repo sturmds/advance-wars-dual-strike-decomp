@@ -102,6 +102,8 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 #define REG_KEYCNT ((volatile u16 *)0x04000132)
 #define REG_RCNT ((volatile u16 *)0x04000134)
 #define KEYCNT_IRQ 0x4000
+#define REG_POWCNT2 ((volatile u16 *)0x04000304)
+#define POWCNT2_WIRELESS 0x2
 #define IRQ_RTC 0x80
 #define IRQ_KEY 0x1000
 #define IRQ_CARTRIDGE 0x2000
