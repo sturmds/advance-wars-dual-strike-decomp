@@ -5,7 +5,7 @@
 void WifiRf_AwaitQuietAir(void)
 {
     do {
-        while (REG_W_RF_PINS & 1) {
+        while (REG_W_RF_PINS & W_RF_PINS_CARRIER_SENSE) {
         }
     } while (REG_W_RF_STATUS == 6 || REG_W_RF_STATUS == 5);
 }
