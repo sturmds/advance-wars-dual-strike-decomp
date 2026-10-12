@@ -12877,6 +12877,7 @@ src/game/main/ai/ai_score_reachable_enemy_properties.c:
     .text       start:0x020b731c end:0x020b7460
 
 src/game/main/ai/ai_oozium_move_to_target.c:
+    complete
     .text       start:0x020b7460 end:0x020b7a80
 
 src/game/main/ai/ai_black_bomb_move_toward_enemy.c:

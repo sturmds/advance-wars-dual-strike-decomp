@@ -22,8 +22,9 @@ void AiUnit_PerformAction(s16 x, s16 y, int action, u8 arg3, u8 arg4);
  * it: onto it when next to it, else to a free tile no enemy threatens. */
 void AiOozium_MoveToTarget(void)
 {
-    /* needed to match: declaration order sets the registers, and after the
-     * first search dist holds the best step's cost and bestDist the tile's */
+    /* Needed to match: declaration order sets the registers; the first
+     * search reads the move cost from rangeMap at each use, and after it
+     * value holds the best step's cost and bestDist the tile's. */
     int bestValue;
     int unitX;
     int minY;
@@ -39,7 +40,6 @@ void AiOozium_MoveToTarget(void)
     s16 stepX;
     int tileX;
     int maxX;
-    int dist;
     s16 stepY;
     int bestDist;
     int value;
@@ -55,8 +55,7 @@ void AiOozium_MoveToTarget(void)
             if (STATE->rangeMap[y][x] < 0) {
                 continue;
             }
-            dist = STATE->rangeMap[y][x];
-            if (dist > bestDist) {
+            if (STATE->rangeMap[y][x] > bestDist) {
                 continue;
             }
             slot = STATE->mapTiles->unitAt[TILE(x, y)];
@@ -69,7 +68,7 @@ void AiOozium_MoveToTarget(void)
                 continue;
             }
             value = unit->hp * Ov000_gUnitStats[unit->type].costDiv10;
-            if (bestDist == dist) {
+            if (bestDist == STATE->rangeMap[y][x]) {
                 if (bestValue > value) {
                     continue;
                 }
@@ -105,7 +104,7 @@ void AiOozium_MoveToTarget(void)
                     }
                 }
             }
-            bestDist = dist;
+            bestDist = STATE->rangeMap[y][x];
             bestValue = value;
             bestX = x;
             bestY = y;
@@ -119,7 +118,7 @@ void AiOozium_MoveToTarget(void)
     stepX = NO_TILE;
     unitX = STATE->actingUnit->x;
     unitY = STATE->actingUnit->y;
-    dist = STATE->rangeMap[unitY][unitX];
+    value = STATE->rangeMap[unitY][unitX];
     minX = unitX - 1;
     if (minX < 0) {
         minX = 0;
@@ -153,7 +152,7 @@ void AiOozium_MoveToTarget(void)
                 continue;
             }
             bestDist = STATE->rangeMap[tileY][tileX];
-            if (bestDist < 0 || bestDist > dist) {
+            if (bestDist < 0 || bestDist > value) {
                 continue;
             }
             slot = STATE->mapTiles->unitAt[TILE(tileX, tileY)];
@@ -169,7 +168,7 @@ void AiOozium_MoveToTarget(void)
                     continue;
                 }
             }
-            if (dist == bestDist) {
+            if (value == bestDist) {
                 if (gAiTurnState->roll < 25) {
                     if (stepY < tileY) {
                         continue;
@@ -200,7 +199,7 @@ void AiOozium_MoveToTarget(void)
                     }
                 }
             }
-            dist = bestDist;
+            value = bestDist;
             stepX = tileX;
             stepY = tileY;
         }
