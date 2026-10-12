@@ -94,6 +94,13 @@ typedef struct WlLimits {
     u16 unk_f6;
 } WlLimits;
 
+/* Association IDs handed out to stations; bit n of aidMask set while AID n is in use. */
+typedef struct WlAidPool {
+    u8 pad_00[0x8];
+    u16 aidCount;
+    u16 aidMask;
+} WlAidPool;
+
 // Option bits at WlState offset 0x0e, set one by one by the parameter setters.
 typedef union WlFlags {
     u16 raw;
@@ -265,7 +272,9 @@ typedef struct WlWork {
     u16 macAddress[3];
     u16 unk_2fe;
     WlState state;
-    u8 pad_484[0x5c4 - 0x484];
+    u8 pad_484[0x504 - 0x484];
+    WlAidPool aidPool;
+    u8 pad_510[0x5c4 - 0x510];
     WlRandom random;
     u8 pad_5ca[2];
     WlRfConfig rf;
