@@ -59,6 +59,8 @@ typedef struct WMCallback {
 
 #define WM_ATTR_FLAG_ENTRY 0x01  /* the parent accepts new children */
 #define WM_ATTR_FLAG_MB 0x02     /* the parent offers a download play game */
+#define WIRELESS_BEACON_BIT_KEYSHARE 0x04     /* the parent uses key sharing */
+#define WIRELESS_BEACON_BIT_STREAMING 0x08     /* the parent uses continuous sending */
 
 /* WMCallback.apiid value of the calls made here. */
 #define WM_APIID_SET_MP_DATA 15
