@@ -166,6 +166,13 @@ extern TouchSamplerState tpWork;
 
 /* SPI driver calls the touch panel code uses. The SPI code has no C yet. */
 #define SERIAL_OWNER_TOUCH 0
+
+/* One job the SPI thread runs: a device, its request id and arguments. */
+typedef struct SerialBusJob {
+    u32 device;                    /* SERIAL_OWNER_* */
+    u32 process;                   /* request id, TOUCH_JOB_* for the touch panel */
+    u32 arg[4];
+} SerialBusJob;
 void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the ARM9 */
 /* Queue a job for the SPI thread; FALSE when the queue is full. */
 BOOL func_arm7_03803d38(u32 device, u32 process, u16 paramCount, ...);
