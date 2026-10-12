@@ -11,3 +11,254 @@
     .data       start:0x03807740 end:0x03807888 kind:data align:32
     .bss        start:0x038078a0 end:0x0380b004 kind:bss align:32
 
+src/arm7/sdk/func_arm7_027c1a94.c:
+    complete
+    .text       start:0x027c1a94 end:0x027c1a98
+
+src/arm7/sdk/func_arm7_027c1cf4.c:
+    complete
+    .text       start:0x027c1cf4 end:0x027c1cf8
+
+src/arm7/sdk/func_arm7_027c87e4.c:
+    complete
+    .text       start:0x027c87e4 end:0x027c87f0
+
+src/arm7/sdk/func_arm7_027cb0e4.c:
+    complete
+    .text       start:0x027cb0e4 end:0x027cb100
+
+src/arm7/sdk/func_arm7_027cb9a4.c:
+    complete
+    .text       start:0x027cb9a4 end:0x027cb9ac
+
+src/arm7/sdk/func_arm7_027d2090.c:
+    complete
+    .text       start:0x027d2090 end:0x027d2094
+
+src/arm7/sdk/func_arm7_037f8444.c:
+    complete
+    .text       start:0x037f8444 end:0x037f8450
+
+src/arm7/sdk/func_arm7_037f8a5c.c:
+    complete
+    .text       start:0x037f8a5c end:0x037f8a64
+
+src/arm7/sdk/func_arm7_037fb61c.c:
+    complete
+    .text       start:0x037fb61c end:0x037fb620
+
+src/arm7/sdk/func_arm7_037fb810.c:
+    complete
+    .text       start:0x037fb810 end:0x037fb81c
+
+src/arm7/sdk/func_arm7_037fb8b4.c:
+    complete
+    .text       start:0x037fb8b4 end:0x037fb8e4
+
+src/arm7/sdk/func_arm7_037fb8f4.c:
+    complete
+    .text       start:0x037fb8f4 end:0x037fb8fc
+
+src/arm7/sdk/func_arm7_037fb8fc.c:
+    complete
+    .text       start:0x037fb8fc end:0x037fb900
+
+src/arm7/sdk/func_arm7_037fb900.c:
+    complete
+    .text       start:0x037fb900 end:0x037fb904
+
+src/arm7/sdk/func_arm7_037fbb34.c:
+    complete
+    .text       start:0x037fbb34 end:0x037fbb38
+
+src/arm7/sdk/func_arm7_037fbba8.c:
+    complete
+    .text       start:0x037fbba8 end:0x037fbbdc
+
+src/arm7/sdk/func_arm7_037fbbdc.c:
+    complete
+    .text       start:0x037fbbdc end:0x037fbbe8
+
+src/arm7/sdk/func_arm7_037fc270.c:
+    complete
+    .text       start:0x037fc270 end:0x037fc2d4
+
+src/arm7/sdk/func_arm7_037fc4e0.c:
+    complete
+    .text       start:0x037fc4e0 end:0x037fc500
+
+src/arm7/sdk/func_arm7_037fc6b0.c:
+    complete
+    .text       start:0x037fc6b0 end:0x037fc6c4
+
+src/arm7/sdk/func_arm7_037fc6c4.c:
+    complete
+    .text       start:0x037fc6c4 end:0x037fc6fc
+
+src/arm7/sdk/func_arm7_037fc6fc.c:
+    complete
+    .text       start:0x037fc6fc end:0x037fc710
+
+src/arm7/sdk/func_arm7_037fc710.c:
+    complete
+    .text       start:0x037fc710 end:0x037fc724
+
+src/arm7/sdk/func_arm7_037fc7ec.c:
+    complete
+    .text       start:0x037fc7ec end:0x037fc800
+
+src/arm7/sdk/func_arm7_037fc800.c:
+    complete
+    .text       start:0x037fc800 end:0x037fc814
+
+src/arm7/sdk/func_arm7_037fdb6c.c:
+    complete
+    .text       start:0x037fdb6c end:0x037fdb80
+
+src/arm7/sdk/func_arm7_037fdb80.c:
+    complete
+    .text       start:0x037fdb80 end:0x037fdb94
+
+src/arm7/sdk/func_arm7_037fdb94.c:
+    complete
+    .text       start:0x037fdb94 end:0x037fdbac
+
+src/arm7/sdk/func_arm7_037fdbac.c:
+    complete
+    .text       start:0x037fdbac end:0x037fdbc0
+
+src/arm7/sdk/func_arm7_037fdbc0.c:
+    complete
+    .text       start:0x037fdbc0 end:0x037fdbd8
+
+src/arm7/sdk/func_arm7_037fdbd8.c:
+    complete
+    .text       start:0x037fdbd8 end:0x037fdbe4
+
+src/arm7/sdk/func_arm7_037fdc10.c:
+    complete
+    .text       start:0x037fdc10 end:0x037fdc24
+
+src/arm7/sdk/func_arm7_037fdc78.c:
+    complete
+    .text       start:0x037fdc78 end:0x037fdca8
+
+src/arm7/sdk/func_arm7_037fde28.c:
+    complete
+    .text       start:0x037fde28 end:0x037fde40
+
+src/arm7/sdk/func_arm7_037fde40.c:
+    complete
+    .text       start:0x037fde40 end:0x037fde5c
+
+src/arm7/sdk/func_arm7_037fde5c.c:
+    complete
+    .text       start:0x037fde5c end:0x037fde70
+
+src/arm7/sdk/func_arm7_037fde70.c:
+    complete
+    .text       start:0x037fde70 end:0x037fde88
+
+src/arm7/sdk/func_arm7_037fde88.c:
+    complete
+    .text       start:0x037fde88 end:0x037fded4
+
+src/arm7/sdk/func_arm7_037fded4.c:
+    complete
+    .text       start:0x037fded4 end:0x037fdf68
+
+src/arm7/sdk/func_arm7_037fdf68.c:
+    complete
+    .text       start:0x037fdf68 end:0x037fe098
+
+src/arm7/sdk/func_arm7_037fe098.c:
+    complete
+    .text       start:0x037fe098 end:0x037fe0a0
+
+src/arm7/sdk/func_arm7_037fe0a0.c:
+    complete
+    .text       start:0x037fe0a0 end:0x037fe0ac
+
+src/arm7/sdk/func_arm7_037fe534.c:
+    complete
+    .text       start:0x037fe534 end:0x037fe544
+
+src/arm7/sdk/func_arm7_037fe58c.c:
+    complete
+    .text       start:0x037fe58c end:0x037fe598
+
+src/arm7/sdk/func_arm7_037fe5dc.c:
+    complete
+    .text       start:0x037fe5dc end:0x037fe5e8
+
+src/arm7/sdk/func_arm7_037fee6c.c:
+    complete
+    .text       start:0x037fee6c end:0x037fee70
+
+src/arm7/sdk/func_arm7_037fee70.c:
+    complete
+    .text       start:0x037fee70 end:0x037fee74
+
+src/arm7/sdk/func_arm7_037ff3b4.c:
+    complete
+    .text       start:0x037ff3b4 end:0x037ff3c4
+
+src/arm7/sdk/func_arm7_03801c28.c:
+    complete
+    .text       start:0x03801c28 end:0x03801c70
+
+src/arm7/sdk/func_arm7_038028c8.c:
+    complete
+    .text       start:0x038028c8 end:0x038028d4
+
+src/arm7/sdk/func_arm7_03802974.c:
+    complete
+    .text       start:0x03802974 end:0x03802984
+
+src/arm7/sdk/func_arm7_038032a4.c:
+    complete
+    .text       start:0x038032a4 end:0x038032b4
+
+src/arm7/sdk/func_arm7_038038a8.c:
+    complete
+    .text       start:0x038038a8 end:0x038038ac
+
+src/arm7/sdk/func_arm7_038038ac.c:
+    complete
+    .text       start:0x038038ac end:0x038038b0
+
+src/arm7/sdk/func_arm7_038038b0.c:
+    complete
+    .text       start:0x038038b0 end:0x038038b4
+
+src/arm7/sdk/func_arm7_0380390c.c:
+    complete
+    .text       start:0x0380390c end:0x0380392c
+
+src/arm7/sdk/func_arm7_03805168.c:
+    complete
+    .text       start:0x03805168 end:0x03805198
+
+src/arm7/sdk/func_arm7_0380566c.c:
+    complete
+    .text       start:0x0380566c end:0x03805678
+
+src/arm7/sdk/func_arm7_03805678.c:
+    complete
+    .text       start:0x03805678 end:0x03805688
+
+src/arm7/sdk/func_arm7_038064f8.c:
+    complete
+    .text       start:0x038064f8 end:0x03806520
+
+src/arm7/sdk/func_arm7_038065c4.c:
+    complete
+    .text       start:0x038065c4 end:0x0380660c
+
+src/arm7/sdk/func_arm7_038067bc.c:
+    complete
+    .text       start:0x038067bc end:0x038067dc
+
+src/arm7/sdk/func_arm7_03806d4c.c:
+    complete
+    .text       start:0x03806d4c end:0x03806f58
