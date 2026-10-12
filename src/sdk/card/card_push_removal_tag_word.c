@@ -10,6 +10,6 @@ void Card_PushRemovalTagWord(u32 word, u32 waitCount)
         return;
     }
     do {
-        WaitByLoop(waitCount);
+        SVC_WaitByLoop(waitCount);
     } while (PXI_SendWordByFifo(FIFO_TAG_CARD_REMOVAL, word, 0) != 0);
 }

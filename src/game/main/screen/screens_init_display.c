@@ -7,9 +7,7 @@ extern Unk_02080440 *data_027c027c;
 extern Unk_027c0280 *data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-void VBlankIntrWait(void);
-void GX_DispOn(void);
-void GX_SetGraphicsMode(int dispMode, int bgMode, int bg0Mode);
+void SVC_WaitVBlankIntr(void);
 void GXS_SetGraphicsMode(int bgMode);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
@@ -39,7 +37,7 @@ void Screens_InitDisplay(void)
     Unk_027c0280 *savedGfx;
     Unk_02080440 *savedState;
 
-    VBlankIntrWait();
+    SVC_WaitVBlankIntr();
     GX_DispOn();
     *REG_DB_DISPCNT |= DISPCNT_MODE_GRAPHICS;  /* sub-engine display on, inlined */
     GX_SetGraphicsMode(1, 0, 0);

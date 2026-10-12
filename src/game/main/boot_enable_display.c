@@ -4,8 +4,7 @@
 void Boot_InitHardware(void);
 void Gfx_ClearVideoMemory(void);
 void Vram_AssignAllBanks(void);
-void VBlankIntrWait(void);
-void GX_DispOn(void);
+void SVC_WaitVBlankIntr(void);
 
 #define REG_EXMEMCNT ((volatile u16 *)0x04000204)
 #define EXMEMCNT_BIT15 0x8000       /* guess: main memory interface priority */
@@ -20,7 +19,7 @@ void Boot_EnableDisplay(void)
     Boot_InitHardware();
     Gfx_ClearVideoMemory();
     Vram_AssignAllBanks();
-    VBlankIntrWait();
+    SVC_WaitVBlankIntr();
     GXx_SetMasterBrightness_(REG_MASTER_BRIGHT, MASTER_BRIGHT_WHITE);
     GXx_SetMasterBrightness_(IO_SUB_SCREEN_FADE, MASTER_BRIGHT_WHITE);
     GX_DispOn();

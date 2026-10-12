@@ -7,6 +7,6 @@ int PXI_SendWordByFifo(u32 tag, u32 data, int err);
 void Cartridge_SendWordUntilTaken(u32 word)
 {
     while (PXI_SendWordByFifo(FIFO_TAG_GBA_SLOT, word, 0) != 0) {
-        WaitByLoop(1);
+        SVC_WaitByLoop(1);
     }
 }

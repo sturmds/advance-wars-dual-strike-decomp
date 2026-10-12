@@ -82,7 +82,7 @@ void Cartridge_CopyGbaHeaderOnce(void)
     DC_FlushAll();
     Cartridge_SendWordUntilTaken((((u32)&data_022acf40 - 0x02000000) >> 5) << 6 | GBA_SLOT_MSG_SETUP_ACK);
     while (data_022acf14.commandDone != 1) {
-        WaitByLoop(1);
+        SVC_WaitByLoop(1);
     }
     (void)*REG_IME;
     *REG_IME = oldIme;

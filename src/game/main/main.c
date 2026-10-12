@@ -33,7 +33,7 @@ void GfxQueue_Init(void);
 void Save_LoadAndUnpackProgress(void);
 void DesignMap_RefreshAllRows(void);
 void Rng_SetState(u32 state);
-void VBlankIntrWait(void);
+void SVC_WaitVBlankIntr(void);
 void Screen_SetCurrent(void *state);
 void Screen_SetCurrentGfx(void *state);
 void func_020097a4(void);
@@ -104,7 +104,7 @@ void main(void)
     Save_LoadAndUnpackProgress();
     DesignMap_RefreshAllRows();
     Rng_SetState(0x0a6b99cd);
-    VBlankIntrWait();
+    SVC_WaitVBlankIntr();
 
     INIT_SCREEN(data_027c0288.unk_00);
     INIT_SCREEN(data_027c0288.unk_04);

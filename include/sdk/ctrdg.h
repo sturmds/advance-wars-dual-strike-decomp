@@ -73,7 +73,7 @@ typedef struct CTRDGWork {
 extern CTRDGWork data_022acf14;
 
 /* Busy-waits for roughly the given number of loop passes (Thumb code in the SDK). */
-void WaitByLoop(u32 count);
+void SVC_WaitByLoop(u32 count);
 
 void Cartridge_SendWordUntilTaken(u32 word);
 void Cartridge_SpinUntilSlotOwned(int lockID, GbaSlotLockRecord *lock);

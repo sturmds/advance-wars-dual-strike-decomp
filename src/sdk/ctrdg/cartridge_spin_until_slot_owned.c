@@ -17,6 +17,6 @@ void Cartridge_SpinUntilSlotOwned(int lockID, GbaSlotLockRecord *lock)
             return;
         }
         OS_RestoreInterrupts(lock->savedIrqState);
-        WaitByLoop(1);
+        SVC_WaitByLoop(1);
     }
 }

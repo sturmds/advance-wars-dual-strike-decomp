@@ -4,7 +4,7 @@
 #include "types.h"
 
 /* gMainLoop (DTCM): state of the main loop step MainLoop_RunFrame, which
- * runs once per frame and ends with VBlankIntrWait. */
+ * runs once per frame and ends with SVC_WaitVBlankIntr. */
 typedef struct MainLoop {
     void (*screenCallbacks[2])(void);  /* called once per frame on each screen when set */
     void (*vblankCallback)(void);      /* called by MainLoop_FinishVBlank when set */

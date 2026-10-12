@@ -28,7 +28,7 @@ void MenuButtons_Update(void);
 void SpriteList_Draw(int list);
 void Sprites_ResetLists(void);
 void *MainLoop_CountFrame(void);
-void VBlankIntrWait(void);
+void SVC_WaitVBlankIntr(void);
 
 /* Runs `body` with `screen` as the current screen, then restores the
  * previous one. */
@@ -78,5 +78,5 @@ void MainLoop_RunFrame(void)
     MainLoop_CountFrame();
     func_01ff9ef8();
     func_01ff9f1c(1);
-    VBlankIntrWait();
+    SVC_WaitVBlankIntr();
 }

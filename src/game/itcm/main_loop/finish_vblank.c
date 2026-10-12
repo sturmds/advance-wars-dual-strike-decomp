@@ -13,7 +13,7 @@ void func_01ff9f2c(void);
 #define IRQ_CHECK_VBLANK 1
 
 /* Runs vblankCallback if set, updates the frame flags in gMainLoop (the three
- * helpers are not named yet), then tells VBlankIntrWait that a VBlank happened. */
+ * helpers are not named yet), then tells SVC_WaitVBlankIntr that a VBlank happened. */
 void MainLoop_FinishVBlank(void)
 {
     u32 base;
