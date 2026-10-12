@@ -15,6 +15,11 @@
 /* Sound capture control registers; bit 7 starts a capture. */
 #define AUDIO_RECORD0_CTRL (*(u8 *)0x4000508)
 #define AUDIO_RECORD1_CTRL (*(u8 *)0x4000509)
+/* Capture destination address and length (in words) of the capture whose registers start blockOffset (capture << 3) bytes from capture 0's. */
+#define AUDIO_RECORD_TARGET_ADDR(blockOffset) (*(u32 *)(0x4000510 + (blockOffset)))
+#define AUDIO_RECORD_WORD_COUNT(blockOffset) (*(u16 *)(0x4000514 + (blockOffset)))
+/* Bit 2 of a capture control register. */
+enum { AUDIO_RECORD_WRAPAROUND = 0, AUDIO_RECORD_SINGLE_PASS = 1 };
 
 #define AUDIO_CH_TOTAL 16
 

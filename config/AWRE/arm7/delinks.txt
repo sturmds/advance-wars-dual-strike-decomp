@@ -1284,6 +1284,10 @@ src/arm7/sdk/snd/snd_is_capture_active.c:
     complete
     .text       start:0x037fefe0 end:0x037feff8
 
+src/arm7/sdk/snd/snd_setup_capture.c:
+    complete
+    .text       start:0x037feff8 end:0x037ff050
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
