@@ -36,5 +36,6 @@ static inline void NVRAM_SpiWait(void)
 }
 
 void NVRAM_EraseSector(u32 address);
+void NVRAM_ErasePage(u32 address);
 
 #endif
