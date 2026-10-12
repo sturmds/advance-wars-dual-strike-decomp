@@ -71,3 +71,11 @@ Tracked as `docs/issues/0013-arm7-from-objects.md` (closed by the workaround).
 - **What mwldarm does:** it aligns the start of each object to the larger of `ALIGNALL` and the object's `sh_addralign`, and does not pad the end. Tested by hand: with only one of the two set to 2, the stub still moved to the next multiple of 4.
 - **Workaround:** `tools/lcf_align2.py`. After `dsd lcf`, it puts `ALIGNALL(2);` ... `ALIGNALL(4);` around each main `.text` object that starts at 2 mod 4: a file whose delinks range starts there, and the object after a file whose range ends there (usually a gap). Before the link it copies those objects to `build/align2/` with `.text` alignment 2, and the linker reads the list in `build/objects.link.txt`. Every other object keeps ALIGNALL(4) and its own alignment. Only ARM9 main is handled; ITCM, DTCM and the overlays have no such object yet.
 - **Other projects:** khdays-decomp turns every `ALIGNALL(4)` into `ALIGNALL(2)` and sets `.text` alignment 2 in every object (`tools/_run_mwld.py`, `tools/patch_align.py`). That changes the alignment of every object; ours changes only the ones that need it.
+
+## dsd: `arm_branch` in a delinked range loses the condition
+
+Tracked as `docs/issues/0058-dsd-arm-branch-unconditional.md`.
+
+- **Version:** dsd 0.12.1 (`tools.lock`).
+- **Seen:** 2026-10-11, b26-rtd0 (`_dadd`, `_dsub`). An `arm_branch` entry in `relocs.txt` for a `bmi` inside a range that is still delinked (taken from the original bytes) is written as an unconditional `b`: the high byte becomes 0xea instead of 0x4a.
+- **Workaround:** add the `arm_branch` entry only once both ends of the branch are C.

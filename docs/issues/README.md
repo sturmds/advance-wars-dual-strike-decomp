@@ -84,3 +84,9 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0054](0054-arm7-unrelocated-pointers.md) | 25 ARM7 words that look like pointers have no relocation | open | decomp | M2 |
 | [0055](0055-overlay-relocations-left.md) | 15 relocations still name several overlays | open | tools | M3 |
 | [0056](0056-shifted-secure-area-crc.md) | A ROM with changed main code has a wrong secure-area CRC | open | build | M3 |
+| [0057](0057-diff-below-100-for-matching-asm.md) | `fn.py diff` scores below 100% for hand-written asm whose ROM bytes match | open | tools | M1 |
+| [0058](0058-dsd-arm-branch-unconditional.md) | dsd writes an `arm_branch` relocation in a delinked range as an unconditional `b` | worked around | tools | M1 |
+| [0059](0059-replay-conflict-leaves-files-unstaged.md) | After a conflict in a replay, the resolved commit held one file and the next commit was dropped | open | loop | M1 |
+| [0060](0060-dsd-symbol-sizes-too-small.md) | dsd symbol sizes too small for runtime functions, and tails split off as functions | open | tools | M1 |
+| [0061](0061-msl-by-value-struct-frame.md) | MSL functions that mwccarm 2.0-72 cannot match because of the by-value struct frame | open | decomp | M2 |
+| [0062](0062-protocheck-reports-left.md) | About 190 `protocheck.py` reports left in files touched only by renames | open | decomp | M2 |
