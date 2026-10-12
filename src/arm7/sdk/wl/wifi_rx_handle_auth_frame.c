@@ -39,7 +39,7 @@ void WifiRx_HandleAuthFrame(WlRxFrame *frame)
 
     /* Same WEP engine restart as WifiIrq_RxEventCounted, without the busy count. */
     if (work->unk_638 & 8) {
-        WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(work);
+        WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(work);
         u16 txreq = REG_W_TXREQ_READ;
 
         if (!(((txreq & 1) && mp->txSlots[0].busy != 0) || ((txreq & 4) && mp->txSlots[1].busy != 0)

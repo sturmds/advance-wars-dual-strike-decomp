@@ -1250,7 +1250,7 @@ typedef struct WlBufferLists {
 #define WIFI_LISTS_VIEW_OF(work) ((WlBufferLists *)&(work)->allocator)
 
 // Buffer of MP child replies: entries of entrySize bytes from 0x1a, one for
-// each bit set in WlMpReplyView.unk_98.
+// each bit set in WlTxSlotView.unk_98.
 typedef struct WlMpChildEntry {
     u8 pad_00[6];
     u16 unk_06;
@@ -1263,9 +1263,10 @@ typedef struct WlMpBuffer {
     u8 entries[1];
 } WlMpBuffer;
 
-// View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
-// (WlState.mpReplySlots).
-typedef struct WlMpReplyView {
+// View of work offset 0x400 on, as the interrupt handlers and WifiCmd_ArmMpReply
+// address it: the TX slots as WlMpReplySlot entries (WlState.mpReplySlots),
+// then the fields after them. WlTxSlots lays out the same bytes.
+typedef struct WlTxSlotView {
     WlMpReplySlot txSlots[4]; /* [3]: the MP command; its frame's unk_02 holds one bit per child */
     WlMpReplySlot slots[2];
     u8 pad_78[0x80 - 0x78];
@@ -1282,9 +1283,9 @@ typedef struct WlMpReplyView {
     u16 unk_ac;
     u16 unk_ae;
     u16 txTimeouts;      /* TX slot frames dropped by WifiIrq_BeaconSent */
-} WlMpReplyView;
+} WlTxSlotView;
 
-#define WIFI_REPLY_SLOTS_VIEW_OF(work) ((WlMpReplyView *)((u8 *)(work) + 0x400))
+#define WIFI_TX_SLOT_RECORDS_OF(work) ((WlTxSlotView *)((u8 *)(work) + 0x400))
 
 /* Work offset 0x400 on: all seven TX slots, then the buffer the CMD slot
    sends. It runs past WlState. */
@@ -1305,7 +1306,7 @@ typedef struct WlTxSlots {
     u16 unk_a4;       /* 0xffff after a session start */
     u16 savedMpReply; /* WlWork.savedMpReply */
     u8 pad_a8[0xb0 - 0xa8];
-    u16 txTimeouts;   /* WlMpReplyView.txTimeouts */
+    u16 txTimeouts;   /* WlTxSlotView.txTimeouts */
 } WlTxSlots;
 
 /* One reply slot in a WlMpCommand, filled from a received MP reply. */
@@ -1519,6 +1520,9 @@ void func_arm7_027cb324(u32 station);
 
 /* Station index returned when no station fits. */
 #define WIFI_NO_PEER 0xff
+
+/* ff:ff:ff:ff:ff:ff, the MAC address of station 0. */
+extern u16 gWlBroadcastAddress[3];
 
 /*
  * WlLimits 0xf0-0xf7 seen as one struct: unk_f0 holds the station table

@@ -12,7 +12,7 @@ int WifiCmd_ArmMpReply(WlMpReplyRequest *request, WlReply *reply)
     WlWork *work = WIFI_DRIVER_STATE;
     WlLink *link = WIFI_LINK_VIEW_OF(work);
     WlStateView *view = WIFI_FROM_STATION_TABLE_OF(work);
-    WlMpReplyView *mpReply = WIFI_REPLY_SLOTS_VIEW_OF(work); /* needed to match */
+    WlTxSlotView *mpReply = WIFI_TX_SLOT_RECORDS_OF(work); /* needed to match */
     u16 options = work->unk_638;
     u32 index;
     WlRamFrame *frame;

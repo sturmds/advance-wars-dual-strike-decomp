@@ -8,7 +8,7 @@ void WifiTx_PauseDataSlots(void);
    transmit request; every kind queues task 14. */
 void WifiIrq_TxFinished(void)
 {
-    WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
+    WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(WIFI_DRIVER_STATE);
     u32 kind;
 
     WIFI_IRQ_PENDING_FLAGS = W_IRQ_TX_DONE;

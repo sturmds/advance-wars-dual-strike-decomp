@@ -6,7 +6,6 @@ u32 WifiFrame_PutRatesElement(u8 *dest);
 int func_arm7_027c8c00(void);
 
 /* Broadcast address ff:ff:ff:ff:ff:ff. */
-extern u16 data_arm7_027d6680[3];
 
 #define REG_W_TXBUF_TIM (*(volatile u16 *)0x04808084)
 
@@ -33,7 +32,7 @@ void WifiBeacon_Build(void)
     frame->rate = func_arm7_027c8c00();
     frame->frameControl = 0x80; /* beacon */
     frame->duration = 0;
-    WifiMac_CopyAddressTriple(frame->addr1, data_arm7_027d6680, head->macAddress, head->macAddress);
+    WifiMac_CopyAddressTriple(frame->addr1, gWlBroadcastAddress, head->macAddress, head->macAddress);
     frame->sequence = 0;
     body = (WlBeaconBody *)frame->body;
     body->timestamp[0] = 0;

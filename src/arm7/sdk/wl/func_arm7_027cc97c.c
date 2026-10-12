@@ -1,7 +1,5 @@
 #include "sdk/wl.h"
 
-extern u16 data_arm7_027d6680[3];
-
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_027c926c(int length, u8 *data);
 void WifiParam_StoreRates(u16 *masks);
@@ -15,8 +13,8 @@ void Wifi_OpenSession(void);
 /*
  * Checks a request of network settings (a 1-32 byte SSID, a channel, ranged
  * values and two 12-bit masks) and hands each one to its hardware setup
- * function. The address passed to WifiParam_LoadBssid is the broadcast address
- * (data_arm7_027d6680) in phase 0 and the own MAC address in phase 1; other
+ * function. The address passed to WifiParam_LoadBssid is gWlBroadcastAddress
+ * in phase 0 and the own MAC address in phase 1; other
  * phases return 11.
  */
 int func_arm7_027cc97c(WlBssSettings *request, WlReply *reply)
@@ -74,7 +72,7 @@ int func_arm7_027cc97c(WlBssSettings *request, WlReply *reply)
         return WIFI_ANSWER_FLASH_BLOCK_BAD;
     }
     if (head->phase == 0) {
-        WifiParam_LoadBssid(data_arm7_027d6680);
+        WifiParam_LoadBssid(gWlBroadcastAddress);
     } else {
         WifiParam_LoadBssid(head->macAddress);
     }

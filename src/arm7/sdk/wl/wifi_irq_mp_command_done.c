@@ -8,7 +8,7 @@ void WifiMp_ReplyWaitExpired(void *arg);
    the polled children need to reply; otherwise it queues task 16. */
 void WifiIrq_MpCommandDone(int waitReplies)
 {
-    WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
+    WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(WIFI_DRIVER_STATE);
 
     WIFI_IRQ_PENDING_FLAGS = W_IRQ_MP_END;
     if (mp->txSlots[3].busy == 0) {

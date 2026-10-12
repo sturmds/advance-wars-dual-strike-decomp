@@ -6,7 +6,7 @@ void WifiTx_RepairDamagedQueues(void);
 void WifiIrq_RxEventCounted(void)
 {
     WlRxState *rx = &WIFI_DRIVER_STATE->wepWatch;
-    WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
+    WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(WIFI_DRIVER_STATE);
     u16 events;
 
     WIFI_IRQ_PENDING_FLAGS = W_IRQ_RX_COUNT;

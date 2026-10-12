@@ -11,7 +11,7 @@ void WifiIrq_BeaconSent(void)
 {
     WlLink *link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
     WlStateView *view = WIFI_FROM_STATION_TABLE_OF(WIFI_DRIVER_STATE);
-    WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
+    WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(WIFI_DRIVER_STATE);
     u32 i;
     BOOL wakeForNextBeacon;
 

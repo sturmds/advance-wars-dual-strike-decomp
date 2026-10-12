@@ -13,7 +13,7 @@ void WifiIrq_TxErrorCounted(void)
     }
     if (WIFI_DRIVER_STATE->unk_638 & 8) {
         WlLink *link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
-        WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
+        WlTxSlotView *mp = WIFI_TX_SLOT_RECORDS_OF(WIFI_DRIVER_STATE);
 
         /* A protected frame whose last two halfwords before the FCS are
            zero: restart the WEP engine. */

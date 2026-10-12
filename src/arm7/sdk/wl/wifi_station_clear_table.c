@@ -1,8 +1,6 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-extern u16 data_arm7_027d6680[3]; /* broadcast address ff:ff:ff:ff:ff:ff */
-
 void WifiStation_SetUpEntry(u32 index, const u16 *macAddress);
 void WifiStation_ChangeState(u16 station, u16 state);
 
@@ -27,6 +25,6 @@ void WifiStation_ClearTable(void)
     for (index = 1; index < count; index++) {
         stations[index].timeoutReload = 0xffff;
     }
-    WifiStation_SetUpEntry(0, data_arm7_027d6680);
+    WifiStation_SetUpEntry(0, gWlBroadcastAddress);
     WifiStation_ChangeState(0, WIFI_PEER_ASSOCIATED);
 }

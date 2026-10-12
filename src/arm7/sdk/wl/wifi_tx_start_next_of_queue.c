@@ -18,7 +18,7 @@ void WifiTx_StartNextOfQueue(int queue)
     /* needed to match: this declaration order and int frameControl */
     WlLink *link;
     WlTxBuffer *buffer;
-    WlMpReplyView *mp;
+    WlTxSlotView *mp;
     WlRamFrame *dest;
     WlTxSlot *slot;
     WlTxFrame *frame;
@@ -33,7 +33,7 @@ void WifiTx_StartNextOfQueue(int queue)
 
     work = WIFI_DRIVER_STATE;
     link = WIFI_LINK_VIEW_OF(work);
-    mp = WIFI_REPLY_SLOTS_VIEW_OF(work);
+    mp = WIFI_TX_SLOT_RECORDS_OF(work);
     slot = &WIFI_TX_LOCATIONS_OF(work)->slot[queue];
     list = WIFI_SEND_QUEUE_OF(work, queue);
 

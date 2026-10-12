@@ -538,7 +538,7 @@ func_arm7_027d64b8 kind:function(arm,size=0xb8) addr:0x027d64b8
 gWmspRequestHandlers kind:data(any) addr:0x027d6570
 gWlTaskHandlers kind:data(any) addr:0x027d661c
 gWlDefaultRateSet kind:data(any) addr:0x027d667c
-data_arm7_027d6680 kind:data(any) addr:0x027d6680
+gWlBroadcastAddress kind:data(any) addr:0x027d6680
 data_arm7_027d6688 kind:data(any) addr:0x027d6688
 gWlZeroMacAddr kind:data(any) addr:0x027d6690
 data_arm7_027d6698 kind:data(any) addr:0x027d6698
