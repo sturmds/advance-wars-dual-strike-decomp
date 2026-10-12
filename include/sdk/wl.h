@@ -281,7 +281,9 @@ typedef struct WlLink {
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
     u8 pad_ae[2];
     u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
-    u8 pad_b2[0xb8 - 0xb2];
+    u8 pad_b2[0xb4 - 0xb2];
+    u16 rxDropped;     /* bad frames WifiIrq_RxFinished dropped from the RX ring */
+    u8 pad_b6[0xb8 - 0xb6];
     u16 unk_b8;        /* WlState.unk_d0 */
     u16 wepRestarts;   /* times WifiIrq_TxErrorCounted restarted the WEP engine */
     u8 pad_bc[2];
@@ -1087,15 +1089,15 @@ typedef struct WlCounters {
 /* WlWork.counters index of the LOC3 (multicast) TX done count. */
 #define WIFI_STAT_GROUP_SENT 5
 
-/* Receive events seen while a frame waits to be sent; WifiIrq_RxEventCounted restarts
-   the WEP engine after too many. */
-typedef struct WlWepWatch {
+/* Receive side state. */
+typedef struct WlRxState {
     u16 unk_00;
-    u16 busyCount;
-} WlWepWatch;
+    u16 busyCount; /* RX events while a frame waits to be sent; WifiIrq_RxEventCounted restarts the WEP engine after 13 */
+    u16 readPos;   /* next RX ring header, as a WIFI_PACKET_RAM halfword index */
+} WlRxState;
 
 /* Work offset 0x4b4 as the MP receive code sees it (a child's view of the
-   parent's polls). Its first halfword is WlWepWatch.unk_00, replyFlags is
+   parent's polls). Its first halfword is WlRxState.unk_00, replyFlags is
    WlWork.unk_4ba. */
 typedef struct WlMpChild {
     u16 lastSequence; /* sequence number of the last MP poll taken */
@@ -1143,8 +1145,7 @@ typedef struct WlWork {
     u8 pad_4a4[2];
     u16 savedMpReply; /* REG_W_TXBUF_REPLY2 taken back by WifiIrq_RxBegun, 0xffff when none */
     u8 pad_4a8[0x4b4 - 0x4a8];
-    WlWepWatch wepWatch;
-    u8 pad_4b8[0x4ba - 0x4b8];
+    WlRxState wepWatch;
     u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
     WlDefragSlot defragSlots[WIFI_REASSEMBLY_SLOTS];
     WlStationBits stationBits;
@@ -1451,6 +1452,7 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */
 #define W_RXCNT_COPY_REPLY  0x80 /* REG_W_RXCNT: copy REPLY1 into REPLY2 */
 #define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
+#define REG_W_US_COUNT1     (*(volatile u16 *)0x048080fa)
 #define REG_W_TX_SEQNO      (*(volatile u16 *)0x04808210) /* sequence number of the last frame sent */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK

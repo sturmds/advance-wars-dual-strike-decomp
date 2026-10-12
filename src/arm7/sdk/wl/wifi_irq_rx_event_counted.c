@@ -5,7 +5,7 @@ void WifiTx_RepairDamagedQueues(void);
 /* Receive event counter interrupt. */
 void WifiIrq_RxEventCounted(void)
 {
-    WlWepWatch *watch = &WIFI_DRIVER_STATE->wepWatch;
+    WlRxState *rx = &WIFI_DRIVER_STATE->wepWatch;
     WlMpReplyView *mp = WIFI_REPLY_SLOTS_VIEW_OF(WIFI_DRIVER_STATE);
     u16 events;
 
@@ -20,9 +20,9 @@ void WifiIrq_RxEventCounted(void)
               || ((txreq & 8) && mp->txSlots[2].busy != 0) || (REG_W_RF_PINS & W_RF_PINS_CARRIER_SENSE))) {
             REG_W_WEP_CNT = 0;
             REG_W_WEP_CNT = 0x8000;
-            watch->busyCount = 0;
-        } else if (watch->busyCount++ > 12) {
-            watch->busyCount = 0;
+            rx->busyCount = 0;
+        } else if (rx->busyCount++ > 12) {
+            rx->busyCount = 0;
             REG_W_WEP_CNT = 0;
             REG_W_WEP_CNT = 0x8000;
             WIFI_DRIVER_STATE->state.wepRestarts++;

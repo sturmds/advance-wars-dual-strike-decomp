@@ -2240,6 +2240,10 @@ src/arm7/sdk/wl/wifi_irq_tx_finished.c:
     complete
     .text       start:0x037f9c00 end:0x037f9e28
 
+src/arm7/sdk/wl/wifi_irq_rx_finished.c:
+    complete
+    .text       start:0x037f9e28 end:0x037fa0b4
+
 src/arm7/sdk/wl/wifi_irq_tx_begun.c:
     complete
     .text       start:0x037fa1bc end:0x037fa270
