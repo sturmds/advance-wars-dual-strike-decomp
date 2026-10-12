@@ -9,8 +9,10 @@ extern int data_027c0284;
 s32 HwDiv32(s32 numerator, s32 denominator);
 int UnitType_BestBaseDamage(int unitType, int targetType);
 int Player_GetUnitMoveRange(int player, int unitType);
-void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
-void RangeMap_MarkAdjacentTiles(int arg);
+/* movement is int, not the s16 of the definition: the original passes it
+ * without narrowing */
+void RangeMap_FillMoves(int x, int y, int unitType, int movement, int moveRange);
+void RangeMap_MarkAdjacentTiles(s8 mark);
 int Unit_GetCoMaxRange(MapUnit *unit);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -28,13 +30,7 @@ int Unit_GetCoMaxRange(MapUnit *unit);
  * - a Cruiser against air units and Black Boats, Anti-Air against air units
  *   (half for a Bomber or Stealth), a Sub against Battleships and Carriers,
  *   when it can move next to the site;
- * - any unit with a max range above 1 that has the site in range.
- *
- * Not matching yet (97.5%): mwcc gives `state` stack slot 0x24, the original
- * 0x38 (after the compiler temporaries), so every slot from 0x24 to 0x34
- * moves by 4. Declaration order, block scope and the hybrids of `state` and
- * STATE did not move it. Without `state`, the slot order is right but Fighter
- * units are read through the outer STATE copy. */
+ * - any unit with a max range above 1 that has the site in range. */
 int AiBuild_RateSiteDanger(int x, int y, int unitType)
 {
     /* needed to match: declaration order sets the stack slots */
@@ -52,7 +48,6 @@ int AiBuild_RateSiteDanger(int x, int y, int unitType)
     u16 savedUnk1e;
     MapUnit *unit;
     u16 cover;
-    Unk_02080440_48 *state;
     int tx;
     int dist;
     int range;
@@ -60,15 +55,13 @@ int AiBuild_RateSiteDanger(int x, int y, int unitType)
     total = 0;
     airMax = 0;
     cover = 0;
-    state = STATE;
-    savedUnk1e = state->unk_1e;
+    savedUnk1e = STATE->unk_1e;
     if (Ov000_gUnitStats[unitType].moveGroup & MOVE_GROUP_AIR) {
-        RangeMap_FillMoves(x, y, UNIT_FIGHTER, Player_GetUnitMoveRange(state->currentPlayer, UNIT_FIGHTER), 1);
+        RangeMap_FillMoves(x, y, UNIT_FIGHTER, Player_GetUnitMoveRange(STATE->currentPlayer, UNIT_FIGHTER), 1);
         RangeMap_MarkAdjacentTiles(111);
-        state = STATE;
-        for (row = 0; row < state->unk_1c4->mapHeight; row++) {
-            for (col = 0; col < state->unk_1c4->mapWidth; col++) {
-                if (state->rangeMap[row][col] < 0) {
+        for (row = 0; row < STATE->unk_1c4->mapHeight; row++) {
+            for (col = 0; col < STATE->unk_1c4->mapWidth; col++) {
+                if (STATE->rangeMap[row][col] < 0) {
                     continue;
                 }
                 slot = STATE->mapTiles->unk_508[TILE_INDEX(col, row)];
@@ -78,7 +71,9 @@ int AiBuild_RateSiteDanger(int x, int y, int unitType)
                 if (STATE->players[STATE->currentPlayer].team != STATE->players[(STATE->mapTiles->unitAt[TILE_INDEX(col, row)] >> 6) + 1].team) {
                     continue;
                 }
-                unit = &STATE->units[slot];
+                /* needed to match: the slot read again, not `slot`, so that
+                 * units is read through the same state pointer as players */
+                unit = &STATE->units[STATE->mapTiles->unk_508[TILE_INDEX(col, row)]];
                 if (unit->type != UNIT_FIGHTER) {
                     continue;
                 }
@@ -94,11 +89,11 @@ int AiBuild_RateSiteDanger(int x, int y, int unitType)
     if (minY < 0) {
         minY = 0;
     }
-    maxX = state->unk_1c4->mapWidth - 1;
+    maxX = STATE->unk_1c4->mapWidth - 1;
     if (x + 9 < maxX) {
         maxX = x + 9;
     }
-    maxY = state->unk_1c4->mapHeight - 1;
+    maxY = STATE->unk_1c4->mapHeight - 1;
     if (y + 9 < maxY) {
         maxY = y + 9;
     }
