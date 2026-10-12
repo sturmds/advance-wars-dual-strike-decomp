@@ -219,6 +219,8 @@ typedef struct WlLink {
     u16 unk_a4;
     u8 pad_a6[6];
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
+    u8 pad_ae[2];
+    u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
@@ -774,6 +776,7 @@ typedef struct WlIndication {
             u8 pad_34[8];
             u8 data[1];
         } ind8d;
+        u16 events; /* command 0x186 */
     };
 } WlIndication;
 
