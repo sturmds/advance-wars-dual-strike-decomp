@@ -9,7 +9,7 @@ int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(void* table, int index, int x, int y, int a4, int a5,
                          int a6, int a7, int a8, int a9, int a10, int a11,
                          int a12, int side);
-void func_ov002_02357e5c(int side, int step);
+void Battle_StartCellEffectAtPoint(int side, int step);
 
 /* Update of a side's fighter task. When the sprite task it last made reports
  * that its frame is done (unk_5b is 5), the next step of the side's list
@@ -38,7 +38,7 @@ void BattleFighterTask_SpawnStep(BattleFighterTask* task) {
                             scale, (&MENU->colours[6])[side], 8, 0, side);
       }
       if (MENU->battle.unk_48[task->side] != 0) {
-        func_ov002_02357e5c(task->side, task->step);
+        Battle_StartCellEffectAtPoint(task->side, task->step);
       }
       task->step++;
     }

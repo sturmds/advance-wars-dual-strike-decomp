@@ -14,7 +14,7 @@ int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(const u32* table, int a1, int a2, int a3, int a4,
                          int a5, int a6, int a7, int a8, int a9, int a10,
                          int a11, int a12, int a13);
-void func_ov002_02357e5c(int side, int a1);
+void Battle_StartCellEffectAtPoint(int side, int a1);
 void Task_ResumeScript(void* task);
 
 /* Needed to match: the original adds the offset into gMenuState at run time. */
@@ -44,7 +44,7 @@ void Battle_UpdateCueSpawner(BattleFighterTask* task) {
           *(u16*)((u32)&gMenuState + side * 2 + 12), 8, 0, side);
     }
     if (MENU_WORD(0x48, task->side) != 0) {
-      func_ov002_02357e5c(task->side, task->step);
+      Battle_StartCellEffectAtPoint(task->side, task->step);
     }
     task->step++;
   }

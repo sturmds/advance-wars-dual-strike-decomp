@@ -8,7 +8,7 @@ int Battle_GetMatchupValue(int side);
 void func_ov002_0235643c(void* table, int index, int x, int y, int a4, int a5,
                          int a6, int a7, int a8, int a9, int a10, int a11,
                          int a12, int side);
-void func_ov002_02357e5c(int side, int step);
+void Battle_StartCellEffectAtPoint(int side, int step);
 
 /* Like BattleFighterTask_SpawnStep, but when the side's step list has run out
  * it clears the fighter's steps[stepIndex], moves on to the next one
@@ -44,7 +44,7 @@ void BattleFighterTask_SpawnStepOrFinish(BattleFighterTask* task) {
                           (&MENU->colours[6])[side], 8, 0, side);
     }
     if (MENU->battle.unk_48[task->side] != 0) {
-      func_ov002_02357e5c(task->side, task->step);
+      Battle_StartCellEffectAtPoint(task->side, task->step);
     }
     task->step++;
   }

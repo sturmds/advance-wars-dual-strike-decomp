@@ -320,6 +320,7 @@ src/game/ov002/battle_cell_sprite_arrived.c:
     .text       start:0x02357d24 end:0x02357e5c
 
 src/game/ov002/battle_fx_start_a.c:
+    complete
     .text       start:0x02357e5c end:0x02358048
 
 src/game/ov002/battle_start_cell_effect.c:

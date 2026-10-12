@@ -10,7 +10,7 @@
 #define DUE_CELL (hitList->flags[hitList->cursor].cell)
 
 void Battle_StartFighterTask(BattleCellTask* cellTask);
-void func_ov002_02357e5c(int side, int cell);
+void Battle_StartCellEffectAtPoint(int side, int cell);
 void Battle_StartCellEffect(int side, int cell);
 void Battle_PutFighterSprite(int side, int cell);
 void func_ov002_0235f02c(BattleCellTask* cellTask);
@@ -68,7 +68,7 @@ void BattleCells_RunSequence(BattleScreenTask* screen) {
                 Battle_PutFighterSprite(side, DUE_CELL);
               }
               if (MENU->battle.unk_48[side] != 0) {
-                func_ov002_02357e5c(side, DUE_CELL);
+                Battle_StartCellEffectAtPoint(side, DUE_CELL);
               }
               break;
           }
