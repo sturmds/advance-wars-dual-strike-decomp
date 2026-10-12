@@ -528,6 +528,10 @@ src/arm7/sdk/spi/nvram_fast_read.c:
     complete
     .text       start:0x027d4e00 end:0x027d4f3c
 
+src/arm7/sdk/spi/nvram_read.c:
+    complete
+    .text       start:0x027d4f3c end:0x027d505c
+
 src/arm7/sdk/rtc/func_arm7_027d5150.c:
     complete
     .text       start:0x027d5150 end:0x027d51c8

@@ -1,6 +1,6 @@
 #include "sdk/user_settings.h"
 
-void func_arm7_027d4f3c(u32 offset, u32 size, void *dest);    /* read firmware flash */
+void NVRAM_Read(u32 offset, u32 size, void *dest);    /* read firmware flash */
 void func_arm7_037fde5c(u32 data, void *dest, int size);       /* fill words */
 void func_arm7_037fde70(const void *src, void *dest, int size); /* copy words */
 void func_arm7_037fdf68(const void *src, void *dest, u32 size); /* copy bytes */
@@ -26,10 +26,10 @@ void UserSettings_LoadFromFlash(void)
     int i;
 
     shared = SHARED_USER_SETTINGS;
-    func_arm7_027d4f3c(FLASH_USER_SETTINGS_OFFSET, 2, &offset);
+    NVRAM_Read(FLASH_USER_SETTINGS_OFFSET, 2, &offset);
     offset <<= 3;
-    func_arm7_027d4f3c(offset, sizeof(UserSettings), &copies[0]);
-    func_arm7_027d4f3c(offset + 0x100, sizeof(UserSettings), &copies[1]);
+    NVRAM_Read(offset, sizeof(UserSettings), &copies[0]);
+    NVRAM_Read(offset + 0x100, sizeof(UserSettings), &copies[1]);
 
     /* needed to match: `(copies - 1)[chosen]` and `p + i - 1` let the
        compiler fold the - 1s into the offsets, as the original does */
@@ -51,9 +51,9 @@ void UserSettings_LoadFromFlash(void)
         func_arm7_037fde5c(zero, shared, sizeof(UserSettings));
     }
 
-    func_arm7_027d4f3c(FLASH_MAC_ADDRESS, 6, mac);
+    NVRAM_Read(FLASH_MAC_ADDRESS, 6, mac);
     wireless = (SharedWirelessInfo *)(shared + 1);
     func_arm7_037fdf68(mac, wireless->macAddress, 6);
-    func_arm7_027d4f3c(FLASH_CHANNELS, 2, &channels);
+    NVRAM_Read(FLASH_CHANNELS, 2, &channels);
     wireless->channels = PickWirelessChannels(channels >> 1);
 }
