@@ -96,6 +96,7 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/isd/isd_double_add.c` | func_02120574 | 920 |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 |
 | `src/sdk/isd/isd_double_times_ten.c` | func_0212029c | 728 |
+| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 |
 | `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 |
 | `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 |
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 |

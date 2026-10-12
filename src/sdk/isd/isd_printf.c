@@ -3,7 +3,7 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-void func_0211e980(IsdPrintTarget *target, const char *format, char **args);
+void Isd_VFormat(IsdPrintTarget *target, const char *format, char **args);
 
 /* Formats to the debugger when debugger output is on. The va_list is built by hand: a pointer to the word after format. */
 void Isd_Printf(const char *format, ...)
@@ -17,6 +17,6 @@ void Isd_Printf(const char *format, ...)
         target.limit = -1;
         target.write = Isd_PrintTargetWrite;
         args = (char *)(((u32)&format & ~3) + 4);
-        func_0211e980(&target, format, &args);
+        Isd_VFormat(&target, format, &args);
     }
 }
