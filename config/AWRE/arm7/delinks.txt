@@ -1095,6 +1095,10 @@ src/arm7/sdk/os/line_alarm_withdraw_tagged_arm7.c:
     complete
     .text       start:0x037fd754 end:0x037fd7d0
 
+src/arm7/sdk/os/line_alarm_withdraw_arm7.c:
+    complete
+    .text       start:0x037fd7d0 end:0x037fd824
+
 src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0
