@@ -148,7 +148,7 @@ void __timesdec(Decimal *result, const Decimal *x, const Decimal *y);
 void __ull2dec(Decimal *dec, u64 value);
 
 /* Adds one to the digit string at its first count digits; a carry out of the first digit raises exp. */
-void func_02125658(Decimal *dec, int count);
+void __dorounddecup(Decimal *dec, int count);
 /* Returns 1 to round the digits at count up, -1 to round down; an exact half goes to the even digit. */
 int __must_round(Decimal *dec, int count);
 /* Rounds the digit string to count digits. */

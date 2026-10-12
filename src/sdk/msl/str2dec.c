@@ -32,6 +32,6 @@ void __str2dec(Decimal *dec, const char *digits, s16 exponent)
             }
         }
     round_up:
-        func_02125658(dec, dec->length);
+        __dorounddecup(dec, dec->length);
     }
 }

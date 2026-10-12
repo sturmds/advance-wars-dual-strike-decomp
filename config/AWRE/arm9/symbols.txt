@@ -5907,8 +5907,6 @@ __str2dec kind:function(arm,size=0xc4) addr:0x021252b8
 __timesdec kind:function(arm,size=0x1a8) addr:0x0212537c
 __ull2dec kind:function(arm,size=0xd0) addr:0x02125524
 __rounddec kind:function(arm,size=0x64) addr:0x021255f4
-func_02125658 kind:function(arm,size=0x4c) addr:0x02125658
-func_021256a4 kind:function(arm,size=0x4) addr:0x021256a4
 __must_round kind:function(arm,size=0x70) addr:0x021256a8
 __cnt_trail_zeros kind:function(arm,size=0x7c) addr:0x02125718
 _dadd kind:function(arm,size=0x10) addr:0x02125794
@@ -9169,3 +9167,4 @@ __dadd_same_sign kind:function(arm,size=0x58c) addr:0x021257a4
 __dsub_same_sign kind:function(arm,size=0x558) addr:0x0212677c
 _dmul kind:function(arm,size=0x6f0) addr:0x02126064
 _drsb kind:label(arm) addr:0x02126754
+__dorounddecup kind:function(arm,size=0x50) addr:0x02125658

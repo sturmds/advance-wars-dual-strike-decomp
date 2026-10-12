@@ -60,6 +60,6 @@ void __timesdec(Decimal *result, const Decimal *x, const Decimal *y)
             }
         }
     round_up:
-        func_02125658(result, result->length);
+        __dorounddecup(result, result->length);
     }
 }

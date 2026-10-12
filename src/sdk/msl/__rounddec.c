@@ -16,5 +16,5 @@ void __rounddec(Decimal *dec, int count)
     if (roundUp < 0) {
         return;
     }
-    func_02125658(dec, count);
+    __dorounddecup(dec, count);
 }
