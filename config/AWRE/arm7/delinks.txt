@@ -380,6 +380,10 @@ src/arm7/sdk/func_arm7_027c87e4.c:
     complete
     .text       start:0x027c87e4 end:0x027c87f0
 
+src/arm7/sdk/wl/wifi_create_alarms.c:
+    complete
+    .text       start:0x027c87f0 end:0x027c8844
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108
