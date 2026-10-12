@@ -6,7 +6,7 @@ void func_arm7_037fdb94(int state);
 u32 func_arm7_037fb690(u32 mask);
 void func_arm7_03806488(u32 mask, void (*handler)(void));
 void IrqNest_UnhookVector(void);
-void func_arm7_0380641c(void);
+void IrqNest_HookVector(void);
 void func_arm7_03805a6c(void);
 
 /* Runs one queued microphone request on the SPI thread. */
@@ -51,7 +51,7 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             irqState = func_arm7_037fdb80();
             func_arm7_037fb690(IRQ_MASK_TIMER3);
             func_arm7_03806488(IRQ_MASK_TIMER3, func_arm7_03805a6c);
-            func_arm7_0380641c();
+            IrqNest_HookVector();
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
             func_arm7_037fdb94(irqState);
