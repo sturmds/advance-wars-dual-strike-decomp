@@ -92,4 +92,12 @@ typedef struct OSThreadInfo {
     OSThread *threads[16];
 } OSThreadInfo;
 
+/*
+ * The compiler's signed divide: the quotient comes back in r0 and the
+ * remainder in r1, so a 64-bit return value holds both. The original calls
+ * it by this name, so a plain % would not match.
+ */
+u64 func_arm7_03806d4c(s32 dividend, s32 divisor);
+#define ARM7_REMAINDER(dividend, divisor) ((s32)(func_arm7_03806d4c((dividend), (divisor)) >> 32))
+
 #endif
