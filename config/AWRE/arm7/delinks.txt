@@ -1484,6 +1484,10 @@ src/arm7/sdk/snd/snd_ex_channel_get_locked_channels.c:
     complete
     .text       start:0x037ff470 end:0x037ff490
 
+src/arm7/sdk/snd/snd_ex_channel_unlock_channels.c:
+    complete
+    .text       start:0x037ff490 end:0x037ff4cc
+
 src/arm7/sdk/func_arm7_037ff68c.c:
     complete
     .text       start:0x037ff68c end:0x037ff6a0
