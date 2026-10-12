@@ -13,7 +13,7 @@ extern const MenuButtonTemplate gOv006ToolButtonTemplate;
 
 /* Adds menu buttons 96-99 on the first screen, plus button 100 when unitMode
  * is 0; flag 0x100 of unk_02 tells whether button 100 is there.
- * func_ov006_023557b8 draws their icons at the same places. */
+ * Ov006_QueueToolButtonIcons draws their icons at the same places. */
 void Ov006_AddToolButtons(void) {
   Unk_027c0280* saved0280 = data_027c0280;
   Unk_02080440* saved027c;

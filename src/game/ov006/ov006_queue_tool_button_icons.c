@@ -34,10 +34,8 @@ static inline void QueueIcon(ButtonPos* p, void* data, BOOL affine) {
 
 /* Queues the icons of the tool buttons that Ov006_AddToolButtons adds, 8
  * pixels inside each button; the fifth only with flag 1 of unk_02, which
- * also picks the position table. Not matching yet (99.07%): affine
- * and pos get r6 and r7 where the original has r4 and r5, and the two
- * saved pointers swap the other way. */
-void func_ov006_023557b8(void) {
+ * also picks the position table. */
+void Ov006_QueueToolButtonIcons(void) {
   u16 flags = OV6->unk_02;
   BOOL affine = (flags & 8) ? 1 : 0;
   ButtonPos* pos;
@@ -50,8 +48,14 @@ void func_ov006_023557b8(void) {
     pos = data_ov006_0236b6f4;
   }
   saved0280 = data_027c0280;
+  /* Needed to match: these empty tests emit no code but give the saved
+   * pointers the registers the original uses. */
+  if (!saved0280 && affine) {
+  }
   Screen_SetCurrentGfx(data_027c0288.unk_00);
   saved027c = data_027c027c;
+  if (!saved027c && affine) {
+  }
   Screen_SetCurrent(data_027c0288.unk_00);
   QueueIcon(&pos[0], data_ov006_0236b6e0, affine);
   QueueIcon(&pos[1], data_ov006_0236b6c8, affine);

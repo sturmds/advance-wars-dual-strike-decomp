@@ -459,7 +459,8 @@ src/game/ov006/ov006_add_tool_buttons.c:
     complete
     .text       start:0x0235566c end:0x023557b8
 
-src/game/ov006/func_ov006_023557b8.c:
+src/game/ov006/ov006_queue_tool_button_icons.c:
+    complete
     .text       start:0x023557b8 end:0x02355a10
 
 src/game/ov006/ov006_set_entry_page.c:
