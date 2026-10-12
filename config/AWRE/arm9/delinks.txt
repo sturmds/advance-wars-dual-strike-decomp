@@ -23071,11 +23071,11 @@ src/sdk/mb/download_play_advance_to_allowed_channel.c:
     complete
     .text       start:0x0211d964 end:0x0211d9e0
 
-src/sdk/mb/mb_segment_read.c:
+src/sdk/mb/mb_cache_read.c:
     complete
     .text       start:0x0211d9e0 end:0x0211da80
 
-src/sdk/mb/mb_segment_add.c:
+src/sdk/mb/mb_cache_add.c:
     complete
     .text       start:0x0211da80 end:0x0211daf4
 

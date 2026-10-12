@@ -5,9 +5,9 @@
 extern DlPlayHostLinkArea *data_022aced4;
 
 void MbParentFile_AdvanceBlock(u8 fileId);
-BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *block, u32 *segmentOffsets, u16 blockNo, u8 *dlFileInfo);
+BOOL MbFile_GetBlockInfo(DlPlayBlockSpot *info, const DlPlaySegmentStarts *table, u16 block, const DlPlayProgramLayout *header);
 u8 *MbComm_WriteParentMessage(DlPlayHostMsgHead *header, u8 *buffer);
-BOOL MbSegment_Read(DlPlayHeldProgram *cache, u32 address, u8 *dst, u32 size);
+int MbCache_Read(DlPlayHeldProgram *cache, u32 address, void *dst, u32 size);
 BOOL MbTask_IsLoading(DlPlayWorkerJob *task);
 void MbTask_Set(DlPlayWorkerJob *task, void (*callback)(DlPlayWorkerJob *task), int arg, int priority);
 void MbCache_LoadPage(DlPlayWorkerJob *task);
@@ -16,7 +16,7 @@ int func_0211b458(u32 size, u16 bitmap, u8 *buffer);
 /* Sends the next block of the next file that children are receiving. The
  * block comes from the file's cache; on a miss it starts a load of the
  * page into the oldest ready cache page and sends nothing.
- * Not matched yet (96.55%): in the address computation the original keeps
+ * Not matched yet (99.14%): in the address computation the original keeps
  * the work pointer in r5 and the file index in r2; ours uses r7 and r5. */
 int func_021193fc(void)
 {
@@ -43,8 +43,8 @@ int func_021193fc(void)
     {
         DlPlayHostLinkArea *work = data_022aced4;
 
-        if (!MbFile_GetBlockInfo(&block, work->files[work->currentFile].segmentOffsets,
-                           work->files[work->currentFile].currentBlock, work->files[work->currentFile].dlFileInfo)) {
+        if (!MbFile_GetBlockInfo(&block, &work->files[work->currentFile].blockTable,
+                           work->files[work->currentFile].currentBlock, (DlPlayProgramLayout *)work->files[work->currentFile].dlFileInfo)) {
             return DLPLAY_NOTHING_TRANSMITTED;
         }
     }
@@ -55,14 +55,14 @@ int func_021193fc(void)
     data = MbComm_WriteParentMessage(&header, data_022aced4->sendBuffer);
     {
         DlPlayHostLinkArea *work = data_022aced4;
-        u32 address = block.offset - work->files[work->currentFile].segmentOffsets[block.segment]
-                    + work->files[work->currentFile].segmentAddresses[block.segment];
+        u32 address = block.offset - work->files[work->currentFile].blockTable.segmentOffsets[block.segment]
+                    + work->files[work->currentFile].segmentRomAddresses[block.segment];
         DlPlayHeldProgram *cache = work->files[work->currentFile].cache;
 
-        if (!MbSegment_Read(cache, address, data, block.size)) {
+        if (!MbCache_Read(cache, address, data, block.size)) {
             DlPlayWorkerJob *task = &data_022aced4->task;
 
-            if (!MbTask_IsLoading(task) && cache->loadPending != 0) {
+            if (!MbTask_IsLoading(task) && cache->readSinceLoad != 0) {
                 DlPlayHeldBlock *pages = cache->pages;
                 DlPlayHeldBlock *page = NULL;
                 int j;
@@ -76,8 +76,8 @@ int func_021193fc(void)
                 if (page == NULL) {
                     OS_Terminate();
                 }
-                cache->loadPending = 0;
-                page->state = 1;
+                cache->readSinceLoad = 0;
+                page->state = DLPLAY_HELD_BLOCK_FILLING;
                 page->address = address & ~31;
                 task->page = page;
                 task->cache = cache;

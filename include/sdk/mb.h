@@ -227,29 +227,10 @@ typedef struct DlPlayFailedCall {
     u16 errcode;
 } DlPlayFailedCall;
 
-/* One block of a child program kept in memory, 16 bytes. */
-typedef struct DlPlayKeptChunk {
-    u32 romAddress;                    /* where the block starts in the ROM */
-    u32 length;
-    u8 *buffer;
-    u32 state;                         /* DLPLAY_KEPT_CHUNK_*, 0 when the slot is free */
-} DlPlayKeptChunk;
-
-#define DLPLAY_KEPT_CHUNK_USABLE 2
-#define DLPLAY_KEPT_CHUNK_PINNED 3            /* kept for the whole download */
-
-/* The blocks of one child program held in memory, 0x70 bytes. */
-typedef struct DlPlayKeptChunkSet {
-    u8 pad_00[0x10];
-    char archiveName[4];               /* archive the program is read from */
-    u32 archiveNameLength;
-    u8 pad_18[0x18];
-    DlPlayKeptChunk list[4];               /* 0x30: header, ARM9 static, ARM7 static (or ARM9 parts) */
-} DlPlayKeptChunkSet;
-
-/* Where a child program's ARM9 and ARM7 static code lie in the ROM, 16 bytes. */
+/* Where a child program's segments lie in the ROM, 16 bytes, in download
+ * segment order (see gMbSegmentTypes). */
 typedef struct DlPlayProgramRomOffsets {
-    u32 unk_00;
+    u32 headerRomAddress;              /* 0: the ROM header starts the file */
     u32 arm9RomAddress;
     u32 arm7RomAddress;
     u32 unk_0c;
@@ -274,62 +255,14 @@ typedef struct DlPlayLiveCodePatch {
 #define DLPLAY_ASSUMED_CART_BYTES 0x1000000      /* when the header gives no ROM size */
 #define DLPLAY_MAINCPU_SPLIT_BYTES 0x4400           /* ARM9 code goes in three parts when both programs do not fit */
 #define DLPLAY_RETURN_OPCODE 0xe12fff1e            /* ARM "bx lr" */
-#define DLPLAY_PREFIX_BYTES 0x268     /* header, auth code, cache list and card map */
+#define DLPLAY_PREFIX_BYTES 0x268     /* header, auth code, cache and card map */
 #define DLPLAY_PROGRAM_BUFFER_FLOOR 0x10000
 
-#define DLPLAY_OFFER_SLOTS_OLD 16
-
-/* One file (a child program) the parent offers, 0x5d4 bytes. */
-typedef struct DlPlayOfferedFileOld {
-    u8 downloadInfo[0xe4];             /* entry points, segments and auth code sent to children */
-    DlPlayGameEntry gameInfo;               /* 0xe4 */
-    u8 blockTable[0x14];               /* 0x5a4 */
-    const DlPlayGameSource *registry;    /* 0x5b8 */
-    const void *source;                /* 0x5bc: ROM header, auth code, cache list, card map */
-    u8 pad_5c0[6];
-    u16 childFlags;                    /* 0x5c6 */
-    u8 pad_5c8[2];
-    u8 active;                         /* 0x5ca */
-    u8 pad_5cb;
-    DlPlayKeptChunkSet *cacheList;            /* 0x5cc */
-    DlPlayProgramRomOffsets *cardMapping;        /* 0x5d0 */
-} DlPlayOfferedFileOld;
-
 /* Offsets into the buffer given with a file. */
-#define DLPLAY_SOURCE_KEPT_LIST_AT 0x1e8
+#define DLPLAY_SOURCE_HELD_AT 0x1e8
 #define DLPLAY_SOURCE_ROM_OFFSETS_AT 0x258
 
 #define DLPLAY_WORKER_STACK_BYTES 0x800
-
-/* The parent's file work area, behind data_022aced4. */
-typedef struct DlPlayHostLinkAreaOld {
-    u8 pad_0000[0x1300];
-    u8 user[0x20];                     /* 0x1300: the parent's user info */
-    u8 pad_1320[0x1524 - 0x1320];
-    u8 fileCount;                      /* 0x1524 */
-    u8 pad_1525[0x1788 - 0x1525];
-    DlPlayOfferedFileOld files[DLPLAY_OFFER_SLOTS_OLD];    /* 0x1788 */
-    u8 pad_74c8[0x74e0 - 0x74c8];
-    u8 taskThreadStack[DLPLAY_WORKER_STACK_BYTES];   /* 0x74e0 */
-    u8 currentTask[0x20];              /* 0x7ce0 */
-} DlPlayHostLinkAreaOld;
-
-/* One piece of the downloaded program kept in memory, found by its address in
- * the program. state 0 is an empty slot; 2 and above can be read. */
-typedef struct DlPlayProgramChunk {
-    u32 address;
-    u32 size;
-    u8 *data;
-    u32 state;
-} DlPlayProgramChunk;
-
-#define DLPLAY_KEPT_CHUNK_SLOTS 4
-
-typedef struct DlPlayProgramChunkSet {
-    u32 unk_00;                        /* set to 1 after a read */
-    u8 pad_04[0x30 - 0x04];
-    DlPlayProgramChunk segments[DLPLAY_KEPT_CHUNK_SLOTS];
-} DlPlayProgramChunkSet;
 
 /* The task thread's work area, behind data_022acf00: an OSThread, then the
  * queue of tasks it runs. */
@@ -481,8 +414,7 @@ typedef struct DlPlayBlockSpot {
 
 extern u32 gMbSegmentTypes[DLPLAY_PROGRAM_PART_COUNT];
 
-/* Where a file's segments start, in the file and in blocks (20 bytes, the
- * DlPlayOfferedFile.segmentOffsets area). */
+/* Where a file's segments start, in the file and in blocks, 20 bytes. */
 typedef struct DlPlaySegmentStarts {
     u32 segmentOffsets[DLPLAY_PROGRAM_PART_COUNT];      /* where each segment starts in the file */
     u16 segmentFirstBlocks[DLPLAY_PROGRAM_PART_COUNT];
@@ -521,18 +453,24 @@ typedef struct DlPlayProgramLayout {
 #define DLPLAY_FAST_RAM_END 0x0380f000
 
 #define DLPLAY_HELD_BLOCK_SLOTS 4
-#define DLPLAY_HELD_BLOCK_USABLE 2
+#define DLPLAY_HELD_BLOCK_FILLING 1
+#define DLPLAY_HELD_BLOCK_USABLE 2              /* this state and above can be read */
+#define DLPLAY_HELD_BLOCK_PINNED 3             /* kept for the whole download */
 
+/* One block of a child program kept in memory, 16 bytes. state 0 is a free
+ * slot. */
 typedef struct DlPlayHeldBlock {
     u32 address;                       /* offset in the ROM */
     u32 size;
-    void *buffer;
-    int state;
+    u8 *buffer;
+    u32 state;                         /* DLPLAY_HELD_BLOCK_* */
 } DlPlayHeldBlock;
 
-/* Pages of a file read from the card on demand. */
+/* The blocks of one child program held in memory, 0x70 bytes: header, ARM9
+ * static, ARM7 static (or ARM9 parts), plus pages read from the card on
+ * demand. DownloadPlay_LoadChildProgram builds it in the file's buffer. */
 typedef struct DlPlayHeldProgram {
-    u32 loadPending;                   /* cleared when a page load starts */
+    u32 readSinceLoad;                 /* set by each read that hits, cleared when a page load starts */
     u8 pad_04[0x10 - 4];
     char archiveName[4];
     int archiveNameLength;
@@ -560,9 +498,9 @@ typedef struct DlPlayWorkerJob {
 typedef struct DlPlayOfferedFile {
     u8 dlFileInfo[DLPLAY_LAYOUT_SENT_BYTES];
     DlPlayGameEntry gameInfo;               /* the beacon entry for this file */
-    u32 segmentOffsets[5];             /* block table: where each segment starts in the file */
-    DlPlayGameSource *registry;
-    u8 pad_5bc[4];
+    DlPlaySegmentStarts blockTable;
+    const DlPlayGameSource *registry;
+    const void *source;                /* ROM header, auth code, cache and card map (DownloadPlay_LoadChildProgram) */
     u16 currentBlock;
     u16 nextBlock;
     u16 pollBitmap;                    /* children receiving this file */
@@ -570,8 +508,8 @@ typedef struct DlPlayOfferedFile {
     u16 changedBitmap;
     u8 active;
     u8 pad_5cb;
-    DlPlayHeldProgram *cache;
-    u32 *segmentAddresses;
+    DlPlayHeldProgram *cache;                    /* in source, at DLPLAY_SOURCE_HELD_AT */
+    u32 *segmentRomAddresses;          /* the DlPlayProgramRomOffsets in source, by download segment */
 } DlPlayOfferedFile;
 
 typedef void (*DlPlayLinkEventFunc)(u32 aid, u32 state, void *arg);
@@ -603,7 +541,8 @@ typedef struct DlPlayHostLinkArea {
     DlPlayPlayerBadge userInfoCopy;           /* filled by MbComm_GetChildUser */
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];
     u32 unk_74c8;
-    u8 pad_74cc[0x7ce0 - 0x74cc];
+    u8 pad_74cc[0x74e0 - 0x74cc];
+    u8 taskThreadStack[DLPLAY_WORKER_STACK_BYTES];
     DlPlayWorkerJob task;
     u8 pad_7cf8[0x7d00 - 0x7cf8];
 } DlPlayHostLinkArea;

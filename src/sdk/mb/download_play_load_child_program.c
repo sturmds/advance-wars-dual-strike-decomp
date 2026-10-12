@@ -15,12 +15,12 @@ extern const char gMbRomArchiveName[];
 void AutoloadCallback(int arg);
 void DC_FlushRange(const void *start, u32 size);
 void Mem_CopyBytes(const void *src, void *dest, u32 size);
-void func_0211daf4(DlPlayKeptChunkSet *cache);    /* clear the cache list */
-void MbSegment_Add(DlPlayKeptChunkSet *cache, u32 romAddress, u32 length, void *buffer, u32 state);   /* add a block */
+void func_0211daf4(DlPlayHeldProgram *cache);        /* clear the cache */
+void MbCache_Add(DlPlayHeldProgram *cache, u32 address, u32 size, u8 *buffer, u32 state);
 void MbSegment_CopySecureArea(DlPlayLiveCodePatch *copy, u32 start, u32 end, BOOL clear);
 
 /* Fills buffer with what DownloadPlay_OfferChildProgram needs to offer a child program:
- * ROM header, auth code, cache list, card map, then the ARM9 and ARM7 static
+ * ROM header, auth code, cache, card map, then the ARM9 and ARM7 static
  * code (or the first 0xcc00 bytes of ARM9 code when both do not fit).
  * file NULL means the running program itself: its header comes from RAM,
  * its secure area is cleared except the parts copied from RAM, and its
@@ -34,7 +34,7 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
         BOOL ownProgram = FALSE;           /* file was NULL */
         u32 rest = length;
         u8 *next = buffer;
-        DlPlayKeptChunkSet *cache = NULL;
+        DlPlayHeldProgram *cache = NULL;
         DlPlayProgramRomOffsets *mapping = NULL;
         u32 base;
         u32 romSize;
@@ -76,15 +76,15 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
             rest = 0;
         }
 
-        if (rest >= sizeof(DlPlayKeptChunkSet)) {
+        if (rest >= sizeof(DlPlayHeldProgram)) {
             const s8 *name;
             int nameLength;
 
-            cache = (DlPlayKeptChunkSet *)next;
+            cache = (DlPlayHeldProgram *)next;
             func_0211daf4(cache);
-            next += sizeof(DlPlayKeptChunkSet);
-            rest -= sizeof(DlPlayKeptChunkSet);
-            MbSegment_Add(cache, 0, sizeof(RomHeader), buffer, DLPLAY_KEPT_CHUNK_PINNED);
+            next += sizeof(DlPlayHeldProgram);
+            rest -= sizeof(DlPlayHeldProgram);
+            MbCache_Add(cache, 0, sizeof(RomHeader), buffer, DLPLAY_HELD_BLOCK_PINNED);
             name = (const s8 *)&file->arc->name;
             for (nameLength = 0; nameLength < 3 && name[nameLength] != 0; nameLength++) {
             }
@@ -96,7 +96,7 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
 
         if (rest >= sizeof(DlPlayProgramRomOffsets)) {
             mapping = (DlPlayProgramRomOffsets *)next;
-            mapping->unk_00 = 0;
+            mapping->headerRomAddress = 0;
             mapping->arm9RomAddress = header->arm9RomOffset + (base + file->top);
             mapping->arm7RomAddress = header->arm7RomOffset + (base + file->top);
             next += sizeof(DlPlayProgramRomOffsets);
@@ -110,11 +110,11 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
 
             FS_SeekFile(file, mapping->arm9RomAddress - top, FS_SEEK_SET);
             FS_ReadFile(file, next, header->arm9Size);
-            MbSegment_Add(cache, mapping->arm9RomAddress, header->arm9Size, next, DLPLAY_KEPT_CHUNK_PINNED);
+            MbCache_Add(cache, mapping->arm9RomAddress, header->arm9Size, next, DLPLAY_HELD_BLOCK_PINNED);
             next += header->arm9Size;
             FS_SeekFile(file, mapping->arm7RomAddress - top, FS_SEEK_SET);
             FS_ReadFile(file, next, header->arm7Size);
-            MbSegment_Add(cache, mapping->arm7RomAddress, header->arm7Size, next, DLPLAY_KEPT_CHUNK_PINNED);
+            MbCache_Add(cache, mapping->arm7RomAddress, header->arm7Size, next, DLPLAY_HELD_BLOCK_PINNED);
             result = TRUE;
         } else if (rest >= 3 * DLPLAY_MAINCPU_SPLIT_BYTES) {
             u32 top = file->top;
@@ -122,13 +122,13 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
 
             FS_SeekFile(file, address - top, FS_SEEK_SET);
             FS_ReadFile(file, next, DLPLAY_MAINCPU_SPLIT_BYTES);
-            MbSegment_Add(cache, address, DLPLAY_MAINCPU_SPLIT_BYTES, next, DLPLAY_KEPT_CHUNK_PINNED);
+            MbCache_Add(cache, address, DLPLAY_MAINCPU_SPLIT_BYTES, next, DLPLAY_HELD_BLOCK_PINNED);
             FS_SeekFile(file, address + DLPLAY_MAINCPU_SPLIT_BYTES - top, FS_SEEK_SET);
             FS_ReadFile(file, next + DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES);
-            MbSegment_Add(cache, address + DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES, next + DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_KEPT_CHUNK_USABLE);
+            MbCache_Add(cache, address + DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES, next + DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_HELD_BLOCK_USABLE);
             FS_SeekFile(file, address + 2 * DLPLAY_MAINCPU_SPLIT_BYTES - top, FS_SEEK_SET);
             FS_ReadFile(file, next + 2 * DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES);
-            MbSegment_Add(cache, address + 2 * DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES, next + 2 * DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_KEPT_CHUNK_USABLE);
+            MbCache_Add(cache, address + 2 * DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_MAINCPU_SPLIT_BYTES, next + 2 * DLPLAY_MAINCPU_SPLIT_BYTES, DLPLAY_HELD_BLOCK_USABLE);
             result = TRUE;
         }
 
@@ -143,13 +143,13 @@ BOOL DownloadPlay_LoadChildProgram(FSFile *file, void *buffer, u32 length)
                 copy.romOffset = header->arm9RomOffset;
                 region = gMbArm9CopyRegions;
                 copy.source = (const u8 *)(header->arm9RamAddress - header->arm9RomOffset);
-                copy.dest = cache->list[1].buffer - header->arm9RomOffset;
+                copy.dest = cache->pages[1].buffer - header->arm9RomOffset;
                 copy.length = length;
                 MbSegment_CopySecureArea(&copy, DLPLAY_PROTECTED_ROM_START, DLPLAY_PROTECTED_ROM_END, TRUE);
                 for (; region->length != 0; region++) {
                     MbSegment_CopySecureArea(&copy, region->offset, region->offset + region->length, FALSE);
                 }
-                patch = (u32 *)(cache->list[1].buffer + ((u32)AutoloadCallback - header->arm9RamAddress));
+                patch = (u32 *)(cache->pages[1].buffer + ((u32)AutoloadCallback - header->arm9RamAddress));
                 *patch = DLPLAY_RETURN_OPCODE;
             }
         }
