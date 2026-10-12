@@ -252,6 +252,10 @@ src/arm7/sdk/wm/wmsp_set_life_time.c:
     complete
     .text       start:0x027c52a4 end:0x027c53b0
 
+src/arm7/sdk/wm/wmsp_reply_measure_channel_failed.c:
+    complete
+    .text       start:0x027c53b0 end:0x027c53ec
+
 src/arm7/sdk/wm/func_arm7_027c5de8.c:
     complete
     .text       start:0x027c5de8 end:0x027c5e10
