@@ -10,8 +10,8 @@ BOOL Cartridge_HeaderStillMatches(void);
 int PM_GetBackLight(int *topBackLight, int *bottomBackLight);
 int PM_ForceToPowerOff(void);
 int PM_SetBackLight(int target, int value);
-void func_02114ee8(int backlight);
-int Power_AskArm7ToSleep(u16 trigger, u16 keys);
+int func_02114ee8(int backlight);
+int Power_AskArm7ToSleep(u32 trigger, u32 keys);
 
 #define IRQ_CARD_IREQ 0x100000
 
@@ -22,11 +22,13 @@ static inline u16 SetIme(u16 value)
     return previous;
 }
 
+/* Not matched yet (97%): the original keeps keyPattern in r11 until the sleep
+ * request and saves nine registers; ours reuses its register for command. */
 void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern)
 {
     u16 savedIme;
-    volatile int savedInterrupts; /* volatile: needed to match (stack slot) */
     u16 command;
+    volatile int savedInterrupts; /* volatile: needed to match (stack slot) */
     u32 savedDispcnt;
     u32 savedSubDispcnt;
     u32 now;
@@ -79,8 +81,8 @@ void func_02114ae8(u32 trigger, u16 logic, u16 keyPattern)
         now = *SHARED_FRAME_COUNTER;
     } while (tick == now);
 
-    logic = logic | keyPattern;
     command = trigger | (topBackLight << 5) | (bottomBackLight << 6);
+    logic = logic | keyPattern;
     while (Power_AskArm7ToSleep(command, logic) != 0) {
     }
 

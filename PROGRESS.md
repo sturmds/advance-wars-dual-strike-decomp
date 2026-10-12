@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
-| ARM9 SDK/library | 638 / 833 | 100420 / 135226 | 74.26% | 175 | 20618 |
-| ARM9 all | 7293 / 7533 | 1607440 / 1689066 | 95.17% | 175 | 20618 |
+| ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
+| ARM9 all | 7295 / 7533 | 1608324 / 1689066 | 95.22% | 176 | 20718 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
-| SDK/library | 638 / 1847 | 100420 / 289522 | 34.68% | 175 | 20618 |
-| all | 7293 / 8547 | 1607440 / 1843362 | 87.20% | 175 | 20618 |
+| SDK/library | 640 / 1847 | 101304 / 289522 | 34.99% | 176 | 20718 |
+| all | 7295 / 8547 | 1608324 / 1843362 | 87.25% | 176 | 20718 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 631 / 822 | 99508 / 133690 | 74.43% | 171 |
+| main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -95,8 +95,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 |
 | `src/sdk/card/cardi_start_rom_dma.c` | func_021162d8 | 340 |
 | `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 |
-| `src/sdk/fx/matrix_invert3x3.c` | Matrix_Invert3x3 | 760 |
-| `src/sdk/gx/gx_set_bank_for_sub_obj.c` | func_0210aaf8 | 124 |
 | `src/sdk/isd/isd_double_add.c` | func_02120574 | 920 |
 | `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 |
 | `src/sdk/isd/isd_double_times_ten.c` | func_0212029c | 728 |
@@ -109,5 +107,4 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/msl/double2hex.c` | double2hex | 948 |
 | `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 |
 | `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 |
-| `src/sdk/os/os_init_context.c` | OS_InitContext | 100 |
 | `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 |
