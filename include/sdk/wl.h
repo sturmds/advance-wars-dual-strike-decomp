@@ -3,7 +3,6 @@
 
 #include "types.h"
 
-
 // WL is the ARM7 wireless driver below WM. Its work area address is kept at
 // 0x0380fff4. The request handlers get a request block and fill a reply block.
 
@@ -31,15 +30,29 @@ typedef struct WlLimits {
 } WlLimits;
 
 // Option bits at WlState offset 0x0e, set one by one by the parameter setters.
-typedef struct WlFlags {
-    u16 bit0 : 1;
-    u16 bit1 : 1;
-    u16 bit2 : 1;
-    u16 bit3 : 1;
-    u16 bit4 : 1;
-    u16 bit5 : 1;
-    u16 unused : 10;
+typedef union WlFlags {
+    u16 raw;
+    struct {
+        u16 bit0 : 1;
+        u16 bit1 : 1;
+        u16 bit2 : 1;
+        u16 bit3 : 1;
+        u16 bit4 : 1;
+        u16 bit5 : 1;
+        u16 unused : 10;
+    };
 } WlFlags;
+
+// Second view of the work area, starting at WlState offset 0x18 (work offset
+// 0x318). Its mode is the same halfword as WlState.mode.
+typedef struct WlLink {
+    u8 pad_00[8];
+    u16 mode;
+    u8 pad_0a[0x72];
+    u16 flags_7c;
+    u8 pad_7e[0xc];
+    u16 flags_8a;
+} WlLink;
 
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
@@ -75,13 +88,10 @@ typedef struct WlState {
     u16 unk_88;
     u8 pad_8a[2];
     u16 unk_8c;
-    u8 pad_8e[6];
-    u16 unk_94;
+    u8 pad_8e[8];
     u16 unk_96;
     u16 unk_98;
-    u8 pad_9a[8];
-    u16 unk_a2;
-    u8 pad_a4[10];
+    u8 pad_9a[0x14];
     u16 unk_ae;
     u8 pad_b0[4];
     void *unk_b4;
@@ -154,6 +164,9 @@ typedef struct WlWork {
 } WlWork;
 
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
+#define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
+
+#define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
