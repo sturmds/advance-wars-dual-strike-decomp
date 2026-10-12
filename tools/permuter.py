@@ -232,6 +232,12 @@ def rescore(d: Path, name: str, module: str, index) -> list:
     return rows
 
 
+def base_score(d: Path):
+    """decomp-permuter's score of the unchanged function, from its log."""
+    m = re.search(r"base score = (\d+)", (d / "permuter.log").read_text(errors="replace"))
+    return int(m.group(1)) if m else None
+
+
 def one(name: str, seconds: int, jobs: int, index, verbose: bool = False) -> dict:
     d, path, module = setup(name)
     start = time.time()
@@ -239,12 +245,15 @@ def one(name: str, seconds: int, jobs: int, index, verbose: bool = False) -> dic
         code = run(d, seconds, jobs, log, verbose)
     rows = rescore(d, name, module, index)
     base = rows[0]
-    best = min(rows, key=lambda r: (r[0], r[1] is None))
+    # A match wins; otherwise decomp-permuter's score, which aligns the two
+    # listings, so a variant that fixes the order of instructions counts even
+    # when fn.py check (position by position) shows no change.
+    best = min(rows, key=lambda r: (not r[3].ok, r[1] if r[1] is not None else base_score(d), r[0]))
     out = {"name": name, "file": path, "seconds": round(time.time() - start), "exit": code,
            "base": base[0], "best": best[0], "units": best[3].units, "ok": best[3].ok,
+           "score_base": base_score(d), "score_best": best[1] if best[1] is not None else base_score(d),
            "outputs": len(list(d.glob("output-*"))), "best_dir": best[2]}
     if best[2] != d:
-        src = (best[2] / "source.c").read_text()
         shutil.copyfile(best[2] / "source.c", d / "best.c")
         write_diff(d, name)
     return out
@@ -273,7 +282,8 @@ def explain(name: str) -> None:
 def summary_line(r: dict) -> str:
     gain = f"{r['base']} -> {r['best']}" + (" MATCH" if r["ok"] else "")
     where = r["best_dir"].relative_to(ROOT) if r["best_dir"] != WORK / r["name"] else "-"
-    return f"{r['name']}: {gain} of {r['units']} differ, {r['outputs']} outputs, {r['seconds']} s; best {where}"
+    return (f"{r['name']}: {gain} of {r['units']} differ, permuter score {r['score_base']} -> {r['score_best']}, "
+            f"{r['outputs']} outputs, {r['seconds']} s; best {where}")
 
 
 def parked_names(path: Path) -> list:
@@ -325,14 +335,16 @@ def main() -> int:
 
 def markdown(results: list, seconds: int, jobs: int) -> str:
     out = ["# decomp-permuter run", "",
-           f"Written by `tools/permuter.py`: {seconds} s per function, {jobs} jobs. Counts are",
-           "instructions that differ by `fn.py check`, before and after.", "",
-           "| Function | Before | Best | Instructions | Outputs | Best variant |",
-           "|---|---:|---:|---:|---:|---|"]
+           f"Written by `tools/permuter.py`: {seconds} s per function, {jobs} jobs. Before and best:",
+           "instructions that differ by `fn.py check` (position by position), and decomp-permuter's",
+           "score (aligned; 0 is a match). Check each best variant by hand: some change behaviour.", "",
+           "| Function | Before | Best | Instructions | Score before | Score best | Outputs | Best variant |",
+           "|---|---:|---:|---:|---:|---:|---:|---|"]
     for r in results:
         where = r["best_dir"].relative_to(ROOT) if r["best_dir"] != WORK / r["name"] else ""
         best = f"{r['best']}{' MATCH' if r['ok'] else ''}"
-        out.append(f"| {r['name']} | {r['base']} | {best} | {r['units']} | {r['outputs']} | {where} |")
+        out.append(f"| {r['name']} | {r['base']} | {best} | {r['units']} | {r['score_base']} | {r['score_best']} | "
+                   f"{r['outputs']} | {where} |")
     return "\n".join(out) + "\n"
 
 
