@@ -8,7 +8,7 @@ void SndExChannel_SetAttack(SndExChannel *channel, int attack);
 int func_arm7_037ff818(SndExChannel *channel, int decay);
 void func_arm7_037ff810(SndExChannel *channel, int sustain);
 int func_arm7_037ff7f4(SndExChannel *channel, int release);
-void func_arm7_03800d8c(SndExChannel *channel, int status, void *track);
+void SndTrack_ChannelCallback(SndExChannel *channel, int status, void *track);
 
 /* Channels each kind of note can play on. */
 #define VOICE_SAMPLE_CAPABLE_MASK 0xFFFF
@@ -49,7 +49,7 @@ void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, 
             return;
         }
         allowed &= track->channelMask;
-        channel = SndExChannel_Alloc(allowed, player->priority + track->priority, track->channelMaskSet, func_arm7_03800d8c, track);
+        channel = SndExChannel_Alloc(allowed, player->priority + track->priority, track->channelMaskSet, SndTrack_ChannelCallback, track);
         if (channel == NULL) {
             return;
         }
