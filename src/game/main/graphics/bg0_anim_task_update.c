@@ -11,7 +11,7 @@ s16 TransferQueue_Add(const void *src, void *dst, u32 size);
 int MainLoop_GetFrameCount(void);
 void func_02003154(const void *src, int offset, u32 size);
 
-/* Update of the task in the script data_02169dd8 (func_020f9450 starts
+/* Update of the task in the script data_02169dd8 (MapView_DrawAllRangeTiles starts
  * it). Until frame 8 it copies the next 4-tile frame into the layer 0 tile
  * data, once per call. Every call it copies 15 colours of a cycle into
  * palette colours 1 to 15, one step every 4 frames; task->unk_64 picks the

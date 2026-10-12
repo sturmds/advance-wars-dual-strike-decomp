@@ -11,7 +11,7 @@ extern Unk_027c0280 *data_027c0280;
 /* Draws the move and attack range highlight for map tile (x, y): a tile with
  * a non-negative rangeMap value gets the four highlight characters, any other
  * is cleared. */
-void MapView_DrawRangeTile(int x, int y)
+void MapView_DrawRangeTile(s16 x, s16 y)
 {
     u16 *cell;
 
