@@ -13,7 +13,6 @@ void SndHw_Enable(void);
 void SndHw_Disable(void);
 void func_arm7_0380513c(int command, int arg, int data);
 void func_arm7_0380566c(void);
-void func_arm7_03805688(int pattern);
 
 extern u16 data_arm7_03809ff0;
 extern u16 data_arm7_03809ff4;
@@ -57,7 +56,7 @@ void Power_SleepUntilTrigger(void)
     irqMask = func_arm7_037fb654(IRQ_ALL);
     control = PMi_GetRegister(POWER_SWITCHES_REG_INDEX);
 
-    func_arm7_03805688(POWER_LIGHT_SLOW_FLASH);
+    PowerLed_SelectPattern(POWER_LIGHT_SLOW_FLASH);
     PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
     PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
     SndHw_Disable();

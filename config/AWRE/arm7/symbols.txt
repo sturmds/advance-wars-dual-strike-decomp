@@ -1015,7 +1015,7 @@ Power_ApplyArm9Command kind:function(arm,size=0x134) addr:0x0380536c
 Power_SleepUntilTrigger kind:function(arm,size=0x1cc) addr:0x038054a0
 func_arm7_0380566c kind:function(arm,size=0xc) addr:0x0380566c
 func_arm7_03805678 kind:function(arm,size=0x10) addr:0x03805678
-func_arm7_03805688 kind:function(arm,size=0x24) addr:0x03805688
+PowerLed_SelectPattern kind:function(arm,size=0x24) addr:0x03805688
 func_arm7_038056ac kind:function(arm,size=0x128) addr:0x038056ac
 func_arm7_038057d4 kind:function(arm,size=0xa4) addr:0x038057d4
 func_arm7_03805878 kind:function(arm,size=0x38) addr:0x03805878
@@ -1167,7 +1167,7 @@ data_arm7_03809ff0 kind:bss addr:0x03809ff0
 data_arm7_03809ff4 kind:bss addr:0x03809ff4
 data_arm7_03809ff8 kind:bss addr:0x03809ff8
 data_arm7_03809ffc kind:bss addr:0x03809ffc
-data_arm7_0380a028 kind:bss addr:0x0380a028
+gPowerLedStepCounter kind:bss addr:0x0380a028
 data_arm7_0380a02c kind:bss addr:0x0380a02c
 data_arm7_0380a030 kind:bss addr:0x0380a030
 data_arm7_0380a034 kind:bss addr:0x0380a034

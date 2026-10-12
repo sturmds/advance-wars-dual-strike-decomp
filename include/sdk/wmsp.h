@@ -105,7 +105,7 @@ extern OSMutex data_arm7_027d813c;
 WmspWork *func_arm7_027c05e0(void);
 void func_arm7_027c73a4(void);
 int func_arm7_027c75fc(u16 *a, u16 *b);
-void func_arm7_03805688(int arg);
+void PowerLed_SelectPattern(int arg);
 void func_arm7_037fd9dc(void *object);
 void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);

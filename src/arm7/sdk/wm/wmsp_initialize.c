@@ -13,7 +13,7 @@ void WMSP_Initialize(WmspInitRequest *request)
     buf->status = request->status;
     buf->replyBuf = request->replyBuf;
     func_arm7_027c73a4();
-    func_arm7_03805688(15);
+    PowerLed_SelectPattern(15);
     buf->status->state = WM_STATE_STOP;
     if (func_arm7_027c75fc(&wlCmdID, &wlResult) == 0) {
         reply = Wmsp_GetCallbackBuffer();

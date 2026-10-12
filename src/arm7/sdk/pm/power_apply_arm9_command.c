@@ -2,22 +2,21 @@
 #include "sdk/pm.h"
 
 void SndHw_Disable(void);
-void func_arm7_03805688(int pattern);
 
 /* Applies one POWER_ORDER_* from the ARM9 to the LED, backlights, sound amplifier or power. */
 void Power_ApplyArm9Command(int command)
 {
     switch (command) {
     case POWER_ORDER_LED_STEADY:
-        func_arm7_03805688(PM_LED_ON);
+        PowerLed_SelectPattern(PM_LED_ON);
         PMi_SetLED(PM_LED_ON);
         break;
     case POWER_ORDER_LED_QUICK_FLASH:
-        func_arm7_03805688(POWER_LIGHT_QUICK_FLASH);
+        PowerLed_SelectPattern(POWER_LIGHT_QUICK_FLASH);
         PMi_SetLED(POWER_LIGHT_QUICK_FLASH);
         break;
     case POWER_ORDER_LED_LAZY_FLASH:
-        func_arm7_03805688(POWER_LIGHT_SLOW_FLASH);
+        PowerLed_SelectPattern(POWER_LIGHT_SLOW_FLASH);
         PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
         break;
     case POWER_ORDER_LOWER_LCD_LIT:

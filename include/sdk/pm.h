@@ -123,8 +123,14 @@ void PMi_SetControl(int bits);
 void PMi_ResetControl(int bits);
 void PMi_SetLED(int status);
 void Power_ApplyArm9Command(int command);
+void PowerLed_SelectPattern(int pattern);
 
 /* Last state given to PMi_SetLED. */
 extern int gPowerLedLastState;
+
+/* LED patterns: the current one and the step it has reached. */
+#define POWER_LIGHT_LAST_PATTERN 15
+extern u32 data_arm7_0380a02c;
+extern u32 gPowerLedStepCounter;
 
 #endif
