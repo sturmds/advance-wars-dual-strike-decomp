@@ -4,7 +4,7 @@ u16 SndDrv_NextRandom(void);
 s16 *func_arm7_037fff84(SndPlayer *player, int index);
 u32 SndTrack_ReadVarLength(SndTrack *track);
 u16 SndTrack_ReadU16(SndTrack *track);
-u8 func_arm7_038013a4(u8 *address);
+u8 SndSeq_ReadByte(u8 *address);
 
 int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
 {
@@ -17,7 +17,7 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
 
     switch (type) {
     case SEQ_ARG_FROM_U8:
-        value = func_arm7_038013a4(track->cursor);
+        value = SndSeq_ReadByte(track->cursor);
         track->cursor++;
         break;
     case SEQ_ARG_FROM_U16:
@@ -28,7 +28,7 @@ int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
         break;
     /* Needed to match: this case comes before SEQ_ARG_FROM_RANGE. A missing variable returns an unassigned value. */
     case SEQ_ARG_FROM_PLAYER_VAR:
-        index = func_arm7_038013a4(track->cursor);
+        index = SndSeq_ReadByte(track->cursor);
         track->cursor++;
         variable = func_arm7_037fff84(player, index);
         if (variable != NULL) {

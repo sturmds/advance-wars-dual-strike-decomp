@@ -1524,6 +1524,10 @@ src/arm7/sdk/snd/snd_track_read_u16.c:
     complete
     .text       start:0x03801354 end:0x038013a4
 
+src/arm7/sdk/snd/snd_seq_read_byte.c:
+    complete
+    .text       start:0x038013a4 end:0x038013f4
+
 src/arm7/sdk/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70

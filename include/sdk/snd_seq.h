@@ -84,6 +84,15 @@ typedef struct SndPlayer {
 
 extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
 
+/* Sequence data is read through a 16-byte window that is copied from the data when a read falls outside it. */
+typedef struct SndSeqCache {
+    u8 *start;
+    u8 *end;
+    u8 bytes[16];
+} SndSeqCache;
+
+extern SndSeqCache data_arm7_03808074;
+
 enum {
     SND_LFO_PITCH = 0,
     SND_LFO_VOLUME = 1,
