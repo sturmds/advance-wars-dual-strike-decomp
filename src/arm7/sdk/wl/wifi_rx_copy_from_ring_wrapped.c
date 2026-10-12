@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_037fde40(const void *src, void *dest, int size);
+void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
 
 /*
  * Copies size bytes (rounded up to even) out of the MAC RAM ring buffer.
@@ -19,8 +19,8 @@ void WifiRx_CopyFromRingWrapped(void *dest, const void *src, u32 size)
         first = size;
         rest = 0;
     }
-    func_arm7_037fde40(src, dest, first);
+    Mem_CopyHalfwords_Arm7(src, dest, first);
     if (rest != 0) {
-        func_arm7_037fde40((u8 *)src + first - WIFI_DRIVER_STATE->state.ringSize, (u8 *)dest + first, rest);
+        Mem_CopyHalfwords_Arm7((u8 *)src + first - WIFI_DRIVER_STATE->state.ringSize, (u8 *)dest + first, rest);
     }
 }

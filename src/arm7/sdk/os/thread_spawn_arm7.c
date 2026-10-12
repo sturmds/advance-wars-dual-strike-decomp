@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
+#include "sdk/mi.h"
 
 /* Marks written at both ends of a new thread's stack, to spot overflows (not ARM9's values). */
 #define STACK_GUARD_LOW_MAGIC 0xd73bfdf7
@@ -8,7 +9,6 @@
 extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own symbol */
 
 void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp);
-void func_arm7_037fde5c(u32 data, void *dest, int size);
 
 /*
  * ARM7 copy of OS_CreateThread. stack is the top of the stack (it grows
@@ -47,7 +47,7 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     context->lr = (u32)Thread_EndCurrent_Arm7;
 
     zero = 0;
-    func_arm7_037fde5c(zero, (void *)((u32)stack - stackSize + 4), stackSize - 8);
+    Mem_FillWords_Arm7(zero, (void *)((u32)stack - stackSize + 4), stackSize - 8);
     thread->mutex = NULL;
     thread->mutexQueue.head = NULL;
     thread->mutexQueue.tail = NULL;

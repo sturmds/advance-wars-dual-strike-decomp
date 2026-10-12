@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fde88(u32 data, void *dest, u32 size)
+asm void Mem_FillWordsInBlocks_Arm7(u32 data, void *dest, u32 size)
 {
     stmdb sp!, {r4, r5, r6, r7, r8, r9}
     add r9, r1, r2

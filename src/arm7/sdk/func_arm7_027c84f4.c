@@ -1,8 +1,8 @@
 #include "types.h"
+#include "sdk/mi.h"
 
-void func_arm7_037fde40(int, int, int, int);
-
-void func_arm7_027c84f4(int a0, int a1, int a2)
+/* Copies count halfwords from src to dest. */
+void func_arm7_027c84f4(u16 *dest, const u16 *src, u32 count)
 {
-    func_arm7_037fde40(a1, a0, a2 << 1, a0);
+    Mem_CopyHalfwords_Arm7(src, dest, count << 1);
 }

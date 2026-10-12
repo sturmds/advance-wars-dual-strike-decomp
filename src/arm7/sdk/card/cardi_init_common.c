@@ -1,12 +1,12 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
+#include "sdk/pxi.h"
 
 /* looks like OS_CreateThread */
-void func_arm7_037fe298(int tag, void (*callback)(int tag, u32 data, int err));   /* looks like PXI_SetFifoRecvCallback */
 void func_arm7_03802974(u32 state);
 void Card_ServiceThread_Arm7(void *arg);
-void Card_OnRequestTagMessage_Arm7(int tag, u32 data, int err);
+void Card_OnRequestTagMessage_Arm7(u32 tag, u32 data, int err);
 
 #define GAMECARD_WORKER_PRIO_ARM7 4
 
@@ -30,7 +30,7 @@ void CARDi_InitCommon(void)
     Thread_Spawn_Arm7(&common->thread, Card_ServiceThread_Arm7, NULL, &data_arm7_03809860, GAMECARD_WORKER_STACK_BYTES,
                        common->priority);
     Thread_MakeReady_Arm7(&common->thread);
-    func_arm7_037fe298(FIFO_TAG_CARD_SERVICE, Card_OnRequestTagMessage_Arm7);
+    Fifo_RegisterTagHandler_Arm7(FIFO_TAG_CARD_SERVICE, Card_OnRequestTagMessage_Arm7);
     if (*BOOT_ORIGIN_WORD != BOOT_ORIGIN_WIRELESS) {
         func_arm7_03802974(1);
     }

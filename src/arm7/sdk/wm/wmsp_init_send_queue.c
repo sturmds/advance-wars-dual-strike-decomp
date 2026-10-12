@@ -1,13 +1,13 @@
 #include "sdk/wmsp.h"
 
-void func_arm7_037fde28(u16 data, void *dest, int size); /* MIi_CpuClear16 */
+void Mem_FillHalfwords_Arm7(u16 data, void *dest, int size); /* MIi_CpuClear16 */
 
 /* Needed to match: the zero goes through a halfword on the stack. */
 static inline void MI_CpuClear16(void *dest, u32 size)
 {
     volatile u16 zero = 0;
 
-    func_arm7_037fde28(zero, dest, size);
+    Mem_FillHalfwords_Arm7(zero, dest, size);
 }
 
 /* Links all port send entries into the free list and empties the send and

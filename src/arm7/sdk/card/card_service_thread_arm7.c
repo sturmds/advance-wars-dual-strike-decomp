@@ -1,8 +1,7 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
-
-int func_arm7_037fe1cc(u32 tag, u32 data, int err);   /* looks like PXI_SendWordByFifo */
+#include "sdk/pxi.h"
 
 /* Request handlers, indexed by CARDiArm7Common.command. */
 extern void (*const data_arm7_038072b0[])(CARDiArm7Common *common);
@@ -39,7 +38,7 @@ void Card_ServiceThread_Arm7(void *arg)
         if (request) {
             common->cmd->result = CARD_RESULT_SUCCESS;
             data_arm7_038072b0[common->command](common);
-            while (func_arm7_037fe1cc(FIFO_TAG_CARD_SERVICE, 1, 1) < 0) {
+            while (Fifo_PushWord_Arm7(FIFO_TAG_CARD_SERVICE, 1, 1) < 0) {
             }
             interrupts = Cpu_MaskIrq_Arm7();
             common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);

@@ -163,5 +163,9 @@ extern OSAlarm data_arm7_03807bc4;        /* the interval alarm */
 void SND_InitIntervalTimer(void);
 void SND_StartIntervalTimer(void);
 OSMessage SND_WaitForIntervalTimer(void);
+void SND_SendWakeupMessage(void);
+
+/* PXI receive callback of SOUND_FIFO_TAG: queues a command list from the ARM9, or wakes the driver for 0. */
+void SndArm7_OnPxiReceive(u32 tag, u32 data, int err);
 
 #endif

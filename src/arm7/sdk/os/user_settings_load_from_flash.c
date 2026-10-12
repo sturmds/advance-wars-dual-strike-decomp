@@ -1,9 +1,7 @@
 #include "sdk/user_settings.h"
+#include "sdk/mi.h"
 
 void NVRAM_Read(u32 offset, u32 size, void *dest);    /* read firmware flash */
-void func_arm7_037fde5c(u32 data, void *dest, int size);       /* fill words */
-void func_arm7_037fde70(const void *src, void *dest, int size); /* copy words */
-void func_arm7_037fdf68(const void *src, void *dest, u32 size); /* copy bytes */
 u16 PickWirelessChannels(u16 value);
 int UserSettings_ChooseCopy(UserSettings *copies);
 
@@ -45,15 +43,15 @@ void UserSettings_LoadFromFlash(void)
                 *((copies - 1)[chosen].comment + i - 1) = 0;
             }
         }
-        func_arm7_037fde70(&copies[chosen - 1], shared, sizeof(UserSettings));
+        Mem_CopyWords_Arm7(&copies[chosen - 1], shared, sizeof(UserSettings));
     } else {
         zero = 0;
-        func_arm7_037fde5c(zero, shared, sizeof(UserSettings));
+        Mem_FillWords_Arm7(zero, shared, sizeof(UserSettings));
     }
 
     NVRAM_Read(FLASH_MAC_ADDRESS, 6, mac);
     wireless = (SharedWirelessInfo *)(shared + 1);
-    func_arm7_037fdf68(mac, wireless->macAddress, 6);
+    Mem_CopyBytes_Arm7(mac, wireless->macAddress, 6);
     NVRAM_Read(FLASH_CHANNELS, 2, &channels);
     wireless->channels = PickWirelessChannels(channels >> 1);
 }

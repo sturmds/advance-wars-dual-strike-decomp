@@ -4,7 +4,7 @@
 
 /* The ARM7 MI_WaitDma: waits for a channel to finish, then re-arms
  * channel 0 with a dummy transfer. */
-void func_arm7_037fddb8(u32 dmaNo)
+void Dma_SpinUntilChannelIdle_Arm7(u32 dmaNo)
 {
     int irqState = Cpu_MaskIrq_Arm7();
     volatile u32 *control = &((volatile u32 *)REG_DMA)[dmaNo * 3 + 2];

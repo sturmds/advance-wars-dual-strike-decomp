@@ -1,6 +1,6 @@
 #include "sdk/svc.h"
 
-void func_arm7_037f8444(void)
+void Cpu_IdleUntilIrq_Arm7(void)
 {
     Bios_HaltUntilIrq_Arm7();
 }

@@ -90,7 +90,14 @@ OSIntrMode Cpu_RestoreIrqFiqBits_Arm7(OSIntrMode state);
 u32 Cpu_CurrentMode_Arm7(void);
 
 void System_StartServices_Arm7(void);
+void Cpu_IdleUntilIrq_Arm7(void);
 void Cpu_HaltForever_Arm7(void);
+
+/* Reset: the ARM9 asks for it over PXI, then the ARM7 stops its hardware and jumps to the reset code. */
+void Reset_ListenForRequest_Arm7(void);
+void Reset_OnOsTagMessage_Arm7(u32 tag, u32 data, int err);
+u16 Reset_WasRequested_Arm7(void);
+void Reset_QuiesceAndRestart_Arm7(void);
 void Cpu_BusyWaitCycles_Arm7(s32 cycles);
 
 /*

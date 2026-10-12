@@ -3,7 +3,7 @@
 void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
 void Wmsp_SetNormalThreadPriorities(void);
 void func_arm7_027c632c(u32 aidBitmap);
-void func_arm7_037fde28(u16 data, void *dest, int size); /* MIi_CpuClear16 */
+void Mem_FillHalfwords_Arm7(u16 data, void *dest, int size); /* MIi_CpuClear16 */
 void func_arm7_037fd424(void *object);
 void func_arm7_037fc6b0(OSMutex *mutex);        /* clears the queue, owner and count */
 void func_arm7_027c5de8(void);
@@ -46,7 +46,7 @@ void WMSP_ResetStatus(void)
         buf->slots[i].flags = WMSP_SLOT_FLAG;
     }
     one = 1;
-    func_arm7_037fde28(one, buf->status->portSeqNo, sizeof(buf->status->portSeqNo));
+    Mem_FillHalfwords_Arm7(one, buf->status->portSeqNo, sizeof(buf->status->portSeqNo));
     func_arm7_037fd424(buf->status->unk_58);
     func_arm7_037fc6b0((OSMutex *)buf->status->sendQueueMutex);
     func_arm7_027c5de8();

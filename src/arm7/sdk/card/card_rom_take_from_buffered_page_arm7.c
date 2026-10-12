@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
-
-void func_arm7_037fdf68(const void *src, void *dest, u32 size);
+#include "sdk/mi.h"
 
 /* Copies the part of the page buffer that the request asked for to its destination. Returns whether bytes remain. */
 int CardRom_TakeFromBufferedPage_Arm7(CARDiRomPage *page)
@@ -16,7 +15,7 @@ int CardRom_TakeFromBufferedPage_Arm7(CARDiRomPage *page)
         if (count > common->len) {
             count = common->len;
         }
-        func_arm7_037fdf68(page->data + offset, common->dst, count);
+        Mem_CopyBytes_Arm7(page->data + offset, common->dst, count);
         common->src += count;
         common->dst += count;
         common->len -= count;

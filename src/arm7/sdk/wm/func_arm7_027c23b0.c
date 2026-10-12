@@ -14,7 +14,7 @@ u16 *func_arm7_027c23b0(WlCommand *cmd, u16 *params)
     cmd->reserved[5] = 0;
     cmd->length = 0x100;
     cmd->index = 24;
-    func_arm7_037fde40(params, &cmd->words[0], 48);
+    Mem_CopyHalfwords_Arm7(params, &cmd->words[0], 48);
     params[1] = 0;
     params[2] = 0;
     params[4] = 0;

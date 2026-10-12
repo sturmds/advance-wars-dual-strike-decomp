@@ -8,7 +8,7 @@
  * Request 1 is never queued. Once a request has all its words, it wakes the
  * card thread, or the thread waiting for the running request.
  */
-void Card_OnRequestTagMessage_Arm7(int tag, u32 data, int err)
+void Card_OnRequestTagMessage_Arm7(u32 tag, u32 data, int err)
 {
     CARDiArm7Common *common;
 

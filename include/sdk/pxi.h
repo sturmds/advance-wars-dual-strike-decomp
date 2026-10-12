@@ -54,4 +54,12 @@ void Fifo_DispatchReceived(void);
 /* Receive callback per tag, filled by PXI_SetFifoRecvCallback. */
 extern PXIFifoCallback gPxiRecvCallbacks[FIFO_TAG_LIMIT];
 
+/* ARM7 copies. */
+void Fifo_SetUp_Arm7(void);
+void Fifo_ResetAndHandshake_Arm7(void);
+int Fifo_PushWord_Arm7(u32 tag, u32 data, int err);
+BOOL Fifo_PeerHasHandler_Arm7(u32 tag, u32 proc);
+void Fifo_RegisterTagHandler_Arm7(u32 tag, PXIFifoCallback callback);
+void Fifo_DispatchReceived_Arm7(void);
+
 #endif

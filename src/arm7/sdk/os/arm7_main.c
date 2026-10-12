@@ -1,5 +1,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/gx.h"
+#include "sdk/pxi.h"
 
 #define DISPSTAT_VBLANK_IRQ 0x8
 #define IRQ_VBLANK 0x1
@@ -7,10 +8,6 @@
 void func_arm7_027d5a24(int a0);
 void UserSettings_LoadFromFlash(void);
 int InitWramHeap(void);
-void func_arm7_037f8444(void);                                  /* BIOS Halt (svc 6) */
-void func_arm7_037fdc24(void);
-u16 func_arm7_037fdce4(void);
-void func_arm7_037fe0a0(void);
 BOOL func_arm7_037fe45c(void);
 void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);
@@ -35,7 +32,7 @@ void Arm7Main(void)
     System_StartServices_Arm7();
     Thread_SetUpTableOnce_Arm7();
     UserSettings_LoadFromFlash();
-    func_arm7_037fe0a0();
+    Fifo_SetUp_Arm7();
     heap = InitWramHeap();
     Sound_StartDriver_Arm7(6);
     func_arm7_037fe45c();
@@ -55,9 +52,9 @@ void Arm7Main(void)
     SPI_Init(2);
 
     while (TRUE) {
-        func_arm7_037f8444();
-        if (func_arm7_037fdce4()) {
-            func_arm7_037fdc24();
+        Cpu_IdleUntilIrq_Arm7();
+        if (Reset_WasRequested_Arm7()) {
+            Reset_QuiesceAndRestart_Arm7();
         }
         Cartridge_CheckRemovedEveryTenFrames();
         Card_CheckRemovedEveryTenFrames();

@@ -3,8 +3,6 @@
 #include "sdk/pxi.h"
 
 void func_arm7_03806770(void);                                   /* Cartridge_ZeroStateTakeLockId */
-void func_arm7_037fe0a0(void);                                   /* PXI_Init */
-void func_arm7_037fe298(u32 tag, PXIFifoCallback callback);      /* PXI_SetFifoRecvCallback */
 void Cartridge_CheckLogoFromArm9Once(void);
 void Cartridge_StoreInitDoneWord(u32 tag, u32 data, int err);
 void Cartridge_OnShutdownMessage(u32 tag, u32 data, int err);
@@ -19,8 +17,8 @@ void func_arm7_03806ae8(void)
     }
     data_arm7_0380afd0 = 1;
     func_arm7_03806770();
-    func_arm7_037fe0a0();
-    func_arm7_037fe298(FIFO_TAG_GBA_SLOT, Cartridge_StoreInitDoneWord);
+    Fifo_SetUp_Arm7();
+    Fifo_RegisterTagHandler_Arm7(FIFO_TAG_GBA_SLOT, Cartridge_StoreInitDoneWord);
     Cartridge_CheckLogoFromArm9Once();
-    func_arm7_037fe298(FIFO_TAG_GBA_SLOT, Cartridge_OnShutdownMessage);
+    Fifo_RegisterTagHandler_Arm7(FIFO_TAG_GBA_SLOT, Cartridge_OnShutdownMessage);
 }

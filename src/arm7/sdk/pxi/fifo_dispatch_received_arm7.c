@@ -13,7 +13,7 @@ extern PXIFifoCallback data_arm7_03807ab8[FIFO_TAG_LIMIT];
  * it to the callback of its tag. A word with an unknown tag is sent back
  * with the error bit set, unless it already has the bit set. Tag 0 is
  * ignored. */
-void func_arm7_037fe0ac(void)
+void Fifo_DispatchReceived_Arm7(void)
 {
     PXIFifoMessage message;
     int status;

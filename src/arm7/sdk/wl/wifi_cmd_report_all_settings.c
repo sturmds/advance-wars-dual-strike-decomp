@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void func_arm7_027c90ec(u16 *dst, u16 *src);
-void func_arm7_037fde40(const void *src, void *dest, int size);
+void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
 
 int WifiCmd_ReportAllSettings(WlRequest *request, WlStatusReply *reply)
 {
@@ -18,7 +18,7 @@ int WifiCmd_ReportAllSettings(WlRequest *request, WlStatusReply *reply)
     reply->flag1 = WIFI_DRIVER_STATE->state.flags.bit1;
     reply->state96 = WIFI_DRIVER_STATE->state.unk_96;
     reply->state10 = WIFI_DRIVER_STATE->state.unk_10;
-    func_arm7_037fde40(WIFI_DRIVER_STATE->state.words_58, reply->state58, sizeof(reply->state58));
+    Mem_CopyHalfwords_Arm7(WIFI_DRIVER_STATE->state.words_58, reply->state58, sizeof(reply->state58));
     reply->flag2 = WIFI_DRIVER_STATE->state.flags.bit2;
     reply->state06 = WIFI_DRIVER_STATE->state.unk_06;
     return 0;

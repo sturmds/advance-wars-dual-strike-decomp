@@ -9,7 +9,7 @@ u16 *func_arm7_027c2124(WlCommand *cmd, u16 arg0, u16 arg1, u16 arg2);
 u16 *func_arm7_027c2064(WlCommand *cmd, u16 arg);
 void WMSP_InitConfigRegisters(void);
 u16 PickWirelessChannels(u16 value);
-void func_arm7_037fdf68(const void *src, void *dest, u32 size); /* copy bytes */
+void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size); /* copy bytes */
 
 /* Runs the WL start-up commands and reads the usable channels, the firmware
    versions and the MAC address into WMStatus. On a failed command, returns
@@ -53,7 +53,7 @@ int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult)
         *wlResult = result[2];
         return FALSE;
     }
-    func_arm7_037fde40(&result[3], buf->status->wlVersion, sizeof(buf->status->wlVersion));
+    Mem_CopyHalfwords_Arm7(&result[3], buf->status->wlVersion, sizeof(buf->status->wlVersion));
     buf->status->macVersion = result[7];
     buf->status->bbpVersion[0] = result[8];
     buf->status->bbpVersion[1] = result[9];
@@ -64,7 +64,7 @@ int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult)
         *wlResult = result[2];
         return FALSE;
     }
-    func_arm7_037fdf68(&result[3], buf->status->macAddress, sizeof(buf->status->macAddress));
+    Mem_CopyBytes_Arm7(&result[3], buf->status->macAddress, sizeof(buf->status->macAddress));
     result = func_arm7_027c2064((WlCommand *)cmd, 1);
     if (result[2] != 0) {
         *wlCmdID = 0x215;

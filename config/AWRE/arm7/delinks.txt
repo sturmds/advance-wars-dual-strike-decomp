@@ -988,7 +988,7 @@ src/arm7/sdk/os/arm7_main.c:
     complete
     .text       start:0x037f838c end:0x037f8444
 
-src/arm7/sdk/func_arm7_037f8444.c:
+src/arm7/sdk/os/cpu_idle_until_irq_arm7.c:
     complete
     .text       start:0x037f8444 end:0x037f8450
 
@@ -1532,7 +1532,7 @@ src/arm7/sdk/os/cpu_halt_forever_arm7.c:
     complete
     .text       start:0x037fdc10 end:0x037fdc24
 
-src/arm7/sdk/os/func_arm7_037fdc24.c:
+src/arm7/sdk/os/reset_quiesce_and_restart_arm7.c:
     complete
     .text       start:0x037fdc24 end:0x037fdc78
 
@@ -1540,79 +1540,79 @@ src/arm7/sdk/func_arm7_037fdc78.c:
     complete
     .text       start:0x037fdc78 end:0x037fdca8
 
-src/arm7/sdk/os/func_arm7_037fdca8.c:
+src/arm7/sdk/os/reset_on_os_tag_message_arm7.c:
     complete
     .text       start:0x037fdca8 end:0x037fdce4
 
-src/arm7/sdk/func_arm7_037fdce4.c:
+src/arm7/sdk/os/reset_was_requested_arm7.c:
     complete
     .text       start:0x037fdce4 end:0x037fdcf4
 
-src/arm7/sdk/os/func_arm7_037fdcf4.c:
+src/arm7/sdk/os/reset_listen_for_request_arm7.c:
     complete
     .text       start:0x037fdcf4 end:0x037fdd34
 
-src/arm7/sdk/mi/func_arm7_037fdd34.c:
+src/arm7/sdk/mi/dma_halt_channel_arm7.c:
     complete
     .text       start:0x037fdd34 end:0x037fddb8
 
-src/arm7/sdk/mi/func_arm7_037fddb8.c:
+src/arm7/sdk/mi/dma_spin_until_channel_idle_arm7.c:
     complete
     .text       start:0x037fddb8 end:0x037fde28
 
-src/arm7/sdk/func_arm7_037fde28.c:
+src/arm7/sdk/mi/mem_fill_halfwords_arm7.c:
     complete
     .text       start:0x037fde28 end:0x037fde40
 
-src/arm7/sdk/func_arm7_037fde40.c:
+src/arm7/sdk/mi/mem_copy_halfwords_arm7.c:
     complete
     .text       start:0x037fde40 end:0x037fde5c
 
-src/arm7/sdk/func_arm7_037fde5c.c:
+src/arm7/sdk/mi/mem_fill_words_arm7.c:
     complete
     .text       start:0x037fde5c end:0x037fde70
 
-src/arm7/sdk/func_arm7_037fde70.c:
+src/arm7/sdk/mi/mem_copy_words_arm7.c:
     complete
     .text       start:0x037fde70 end:0x037fde88
 
-src/arm7/sdk/func_arm7_037fde88.c:
+src/arm7/sdk/mi/mem_fill_words_in_blocks_arm7.c:
     complete
     .text       start:0x037fde88 end:0x037fded4
 
-src/arm7/sdk/func_arm7_037fded4.c:
+src/arm7/sdk/mi/mem_fill_bytes_arm7.c:
     complete
     .text       start:0x037fded4 end:0x037fdf68
 
-src/arm7/sdk/func_arm7_037fdf68.c:
+src/arm7/sdk/mi/mem_copy_bytes_arm7.c:
     complete
     .text       start:0x037fdf68 end:0x037fe098
 
-src/arm7/sdk/func_arm7_037fe098.c:
+src/arm7/sdk/mi/atomic_exchange_word_arm7.c:
     complete
     .text       start:0x037fe098 end:0x037fe0a0
 
-src/arm7/sdk/func_arm7_037fe0a0.c:
+src/arm7/sdk/pxi/fifo_set_up_arm7.c:
     complete
     .text       start:0x037fe0a0 end:0x037fe0ac
 
-src/arm7/sdk/pxi/func_arm7_037fe0ac.c:
+src/arm7/sdk/pxi/fifo_dispatch_received_arm7.c:
     complete
     .text       start:0x037fe0ac end:0x037fe1cc
 
-src/arm7/sdk/pxi/func_arm7_037fe1cc.c:
+src/arm7/sdk/pxi/fifo_push_word_arm7.c:
     complete
     .text       start:0x037fe1cc end:0x037fe270
 
-src/arm7/sdk/pxi/func_arm7_037fe270.c:
+src/arm7/sdk/pxi/fifo_peer_has_handler_arm7.c:
     complete
     .text       start:0x037fe270 end:0x037fe298
 
-src/arm7/sdk/pxi/func_arm7_037fe298.c:
+src/arm7/sdk/pxi/fifo_register_tag_handler_arm7.c:
     complete
     .text       start:0x037fe298 end:0x037fe304
 
-src/arm7/sdk/pxi/func_arm7_037fe304.c:
+src/arm7/sdk/pxi/fifo_reset_and_handshake_arm7.c:
     complete
     .text       start:0x037fe304 end:0x037fe3e0
 

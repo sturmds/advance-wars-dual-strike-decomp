@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fde40(const void *src, void *dest, int size)
+asm void Mem_CopyHalfwords_Arm7(const void *src, void *dest, u32 size)
 {
     mov r12, #0
 loop:

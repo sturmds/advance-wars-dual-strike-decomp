@@ -1,9 +1,8 @@
 #include "types.h"
-
-void func_arm7_037fe298(int, void *);
-void SndArm7_OnPxiReceive(void);
+#include "sdk/pxi.h"
+#include "sdk/snd.h"
 
 void func_arm7_0380239c(void)
 {
-    func_arm7_037fe298(7, (void *)SndArm7_OnPxiReceive);
+    Fifo_RegisterTagHandler_Arm7(SOUND_FIFO_TAG, SndArm7_OnPxiReceive);
 }

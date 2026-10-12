@@ -4,7 +4,7 @@
 
 /* The ARM7 PXI_SendWordByFifo: queues one message for the ARM9. Returns 0
  * on success, FIFO_PUSH_FAULT (and clears the FIFO error) or FIFO_PUSH_NO_ROOM. */
-int func_arm7_037fe1cc(u32 tag, u32 data, int err)
+int Fifo_PushWord_Arm7(u32 tag, u32 data, int err)
 {
     PXIFifoMessage message;
     int irq;

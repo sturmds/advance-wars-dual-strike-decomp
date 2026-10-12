@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wm.h"
-
-void func_arm7_037fdf68(const void *src, void *dest, u32 size);
+#include "sdk/mi.h"
 
 void Wmsp_BuildGameInfo(WMGameInfo *info, const WMParentParam *param)
 {
@@ -19,6 +18,6 @@ void Wmsp_BuildGameInfo(WMGameInfo *info, const WMParentParam *param)
     info->parentMaxSize = param->parentMaxSize;
     info->childMaxSize = param->childMaxSize;
     if (info->userGameInfoLength != 0) {
-        func_arm7_037fdf68(param->userGameInfo, info->userGameInfo, (info->userGameInfoLength + 1) & ~1);
+        Mem_CopyBytes_Arm7(param->userGameInfo, info->userGameInfo, (info->userGameInfoLength + 1) & ~1);
     }
 }

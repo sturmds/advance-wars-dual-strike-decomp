@@ -1,6 +1,6 @@
 #include "types.h"
 
-asm void func_arm7_037fdf68(const void *src, void *dest, u32 size)
+asm void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size)
 {
     cmp r2, #0
     bxeq lr

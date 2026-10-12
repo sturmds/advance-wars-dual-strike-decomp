@@ -16,14 +16,14 @@ u16 *func_arm7_027c24f4(WlCommand *cmd, u16 arg0, const void *block, u16 arg17, 
     cmd->length = 9;
     cmd->index = (s32)func_arm7_03806d4c(size + 1, 2) + 23;
     cmd->words[0] = arg0;
-    func_arm7_037fde40(block, &cmd->words[1], 32);
+    Mem_CopyHalfwords_Arm7(block, &cmd->words[1], 32);
     cmd->words[17] = arg17;
     cmd->words[18] = arg18;
     cmd->words[19] = arg19;
     cmd->words[20] = arg20;
     cmd->words[21] = arg21;
     cmd->words[22] = size;
-    func_arm7_037fde40(data, &cmd->words[23], size);
+    Mem_CopyHalfwords_Arm7(data, &cmd->words[23], size);
     slot = (u16 *)cmd + cmd->index;
     reply = slot + 8;
     slot[8] = cmd->length;

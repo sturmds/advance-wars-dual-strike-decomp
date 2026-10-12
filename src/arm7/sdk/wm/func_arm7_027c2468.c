@@ -18,7 +18,7 @@ u16 *func_arm7_027c2468(WlCommand *cmd, u16 arg1, u16 arg2, u16 arg3, const void
     cmd->words[1] = arg1;
     cmd->words[2] = arg2;
     cmd->words[3] = arg3;
-    func_arm7_037fde40(data, &cmd->words[4], 16);
+    Mem_CopyHalfwords_Arm7(data, &cmd->words[4], 16);
     slot = (u16 *)cmd + cmd->index;
     reply = slot + 8;
     slot[8] = cmd->length;

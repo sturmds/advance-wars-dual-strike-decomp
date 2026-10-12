@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fde70(const void *src, void *dest, int size)
+asm void Mem_CopyWords_Arm7(const void *src, void *dest, u32 size)
 {
     add r12, r1, r2
 loop:

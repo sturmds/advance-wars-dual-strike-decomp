@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fded4(void *dest, u32 data, u32 size)
+asm void Mem_FillBytes_Arm7(void *dest, u32 data, u32 size)
 {
     cmp r2, #0
     bxeq lr

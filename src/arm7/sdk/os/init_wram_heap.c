@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
+#include "sdk/mi.h"
 
 /* The last of the nine arena slots (low ends at 0x027ffda0, high ends at
    0x027ffdc4): ARM7 private WRAM in arena id order. */
@@ -14,7 +15,6 @@ void Heap_VerifyAndCountFree_Arm7(int arena, int heap);
 int Heap_CarveFromRange_Arm7(int arena, int lo, int hi);              /* create heap */
 int Heap_SetUpArenaTable_Arm7(int arena, int lo, int hi, int maxHeaps); /* init allocator */
 void Heap_SelectDefault_Arm7(int arena, int heap);   /* set current heap */
-void func_arm7_037fded4(void *dest, u32 data, u32 size);        /* fill bytes */
 
 /*
  * Sets up the allocator in the ARM7 private WRAM arena with room for one
@@ -29,7 +29,7 @@ int InitWramHeap(void)
 
     hi = func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE);
     lo = Heap_SetUpArenaTable_Arm7(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi, 1);
-    func_arm7_037fded4((void *)lo, 0, func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE) - lo);
+    Mem_FillBytes_Arm7((void *)lo, 0, func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE) - lo);
     func_arm7_037fc6fc(ARENA_WRAM_SUB_PRIVATE, lo);
     hi = func_arm7_037fc800(ARENA_WRAM_SUB_PRIVATE);
     heap = Heap_CarveFromRange_Arm7(ARENA_WRAM_SUB_PRIVATE, func_arm7_037fc7ec(ARENA_WRAM_SUB_PRIVATE), hi);

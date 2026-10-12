@@ -126,7 +126,7 @@ void func_arm7_027c6f68(u16 arg);
 void func_arm7_027c70f8(void);
 
 /* Copies halfwords (ARM7's MI_CpuCopy16-like helper). */
-void func_arm7_037fde40(const void *src, void *dest, int size);
+void Mem_CopyHalfwords_Arm7(const void *src, void *dest, int size);
 
 /* Sends the command to the firmware and returns its answer. */
 WlCommand *Wmsp_SendWlCommand(WlCommand *command);

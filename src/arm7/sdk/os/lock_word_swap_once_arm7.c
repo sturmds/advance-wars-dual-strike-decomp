@@ -1,6 +1,5 @@
 #include "sdk/os_arm7.h"
-
-u32 func_arm7_037fe098(u32 setData, volatile u32 *destp);   /* ARM7 MI_SwapWord */
+#include "sdk/mi.h"
 
 /* One try at a lock word; see the declaration in sdk/os_arm7.h. */
 u32 LockWord_SwapOnce_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq)
@@ -13,7 +12,7 @@ u32 LockWord_SwapOnce_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BO
     } else {
         intr = Cpu_MaskIrq_Arm7();
     }
-    lockFlag = func_arm7_037fe098(lockID, &lockp->lockFlag);
+    lockFlag = Atomic_ExchangeWord_Arm7(lockID, &lockp->lockFlag);
     if (lockFlag == 0) {
         if (ctrl != NULL) {
             ctrl();

@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fde28(u16 data, void *dest, int size)
+asm void Mem_FillHalfwords_Arm7(u16 data, void *dest, u32 size)
 {
     mov r3, #0
 loop:

@@ -46,4 +46,16 @@ typedef struct DmaChannel {
 #define REGION_IO 0x04000000
 #define REGION_CARTRIDGE 0x08000000
 
+/* ARM7 copies of the DMA and memory routines. Sizes are in bytes. */
+void Dma_HaltChannel_Arm7(u32 dmaNo);
+void Dma_SpinUntilChannelIdle_Arm7(u32 dmaNo);
+void Mem_FillHalfwords_Arm7(u16 data, void *dest, u32 size);
+void Mem_CopyHalfwords_Arm7(const void *src, void *dest, u32 size);
+void Mem_FillWords_Arm7(u32 data, void *dest, u32 size);
+void Mem_CopyWords_Arm7(const void *src, void *dest, u32 size);
+void Mem_FillWordsInBlocks_Arm7(u32 data, void *dest, u32 size);
+void Mem_FillBytes_Arm7(void *dest, u32 data, u32 size);
+void Mem_CopyBytes_Arm7(const void *src, void *dest, u32 size);
+u32 Atomic_ExchangeWord_Arm7(u32 setData, volatile u32 *destp);
+
 #endif

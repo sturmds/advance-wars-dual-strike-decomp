@@ -1,6 +1,6 @@
 #include "sdk/mi.h"
 
-asm void func_arm7_037fde5c(u32 data, void *dest, int size)
+asm void Mem_FillWords_Arm7(u32 data, void *dest, u32 size)
 {
     add r12, r1, r2
 loop:

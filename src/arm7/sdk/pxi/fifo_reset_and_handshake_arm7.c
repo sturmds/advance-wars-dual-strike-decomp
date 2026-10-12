@@ -7,12 +7,10 @@ extern u16 data_arm7_03807ab4;
 /* The ARM7 receive callback per tag. */
 extern PXIFifoCallback data_arm7_03807ab8[FIFO_TAG_LIMIT];
 
-void func_arm7_037fe0ac(void);
-
 /* The ARM7 PXI_InitFifo. Runs once: clears the callback table, enables the
  * receive FIFO interrupt and synchronises with the ARM9 over the PXI sync
  * register. */
-void func_arm7_037fe304(void)
+void Fifo_ResetAndHandshake_Arm7(void)
 {
     int irq = Cpu_MaskIrq_Arm7();
     int i;
@@ -27,7 +25,7 @@ void func_arm7_037fe304(void)
         }
         *IO_FIFO_CTRL = FIFO_CTRL_ON | FIFO_CTRL_FAULT_ACK | FIFO_CTRL_INBOX_IRQ | FIFO_CTRL_FLUSH_OUTBOX;
         Irq_AckPending_Arm7(IRQ_FIFO_RECV);
-        Irq_InstallHandlers_Arm7(IRQ_FIFO_RECV, func_arm7_037fe0ac);
+        Irq_InstallHandlers_Arm7(IRQ_FIFO_RECV, Fifo_DispatchReceived_Arm7);
         Irq_SetEnableBits_Arm7(IRQ_FIFO_RECV);
         /* Count down from 8 on the sync register; the ARM9 echoes each value
          * back, and a value it has not echoed after the wait starts the
