@@ -14,10 +14,10 @@ struct Unk_027cde24_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027c9e08(int, int, void *);
+void WifiBaseband_SetCcaParams(int, int, void *);
 
 void func_arm7_027cde24(Unk_027cde24 *a0, Unk_027cde24_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027c9e08(a0->unk_10, a0->unk_12, a0);
+    WifiBaseband_SetCcaParams(a0->unk_10, a0->unk_12, a0);
 }
