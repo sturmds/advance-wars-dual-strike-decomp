@@ -376,6 +376,23 @@ typedef struct WlRxAddrs {
     u16 sequence;
 } WlRxAddrs;
 
+/* The information elements of a received management frame, as
+   func_arm7_027d1d84 parses them. Callers fill data, length and unk_0c. */
+typedef struct WlElements {
+    const u8 *data;
+    u8 pad_04[4];
+    u16 length;
+    u16 result;           /* WIFI_IE_* bits */
+    u16 unk_0c;           /* some callers set 0x800 before parsing */
+    u8 pad_0e[0x16 - 0x0e];
+    u16 supportedRates;   /* stored in WlStation.unk_10 on association */
+    const u8 *unk_18;     /* element handed to the response builder */
+    u8 pad_1c[0x28 - 0x1c];
+} WlElements;
+
+#define WIFI_IE_FITS_SSID 0x1  /* probe and association requests are answered only with it */
+#define WIFI_IE_FITS_RATES 0x4 /* association is refused with status 18 without it */
+
 /* 802.11 frame control, as bitfields. */
 typedef union WlFrameControl {
     u16 raw;
