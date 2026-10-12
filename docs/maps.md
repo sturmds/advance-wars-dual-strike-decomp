@@ -24,6 +24,7 @@ assets/maps/
   maps.txt        map id and YAML file, one line per entry of Ov000_gMapHeaders
   tiles.txt       YAML file and `tiles` or `hardTiles`, in the order the blocks sit in .rodata
   units.txt       YAML file and `units` or `hardUnits`, in the order the lists sit in .data
+  legend.yaml     the token each tile code is written as (`o` for 0x02a, sea)
   campaign/       MapHeader.mapCase 0 and 1: missions and the second maps of two-map missions
   versus/         cases 2-6
   warroom/        cases 7 and 8
@@ -45,10 +46,11 @@ header:
   co: [[CO_NONE, CO_NONE], [CO_ANDY, CO_NONE], ...]
   ...
 tiles:
-  width: 16
-  height: 12
-  rows:
-  - 001 001 001 ...                  # one row per line, 3 hex digits per tile code
+  rows: |                            # one line per row, one token per tile (legend.yaml)
+    o   o   o   o   o   o   o   o
+    o   o2  o3  o3  o3  o3  o4  o
+    o2  o9  .   .   ^   .   o10 o4
+    ...
 hardTiles: ...                       # only on the 4 maps that have them
 units:
 - army: 1                            # player slot of the rows that follow
@@ -57,10 +59,19 @@ units:
 hardUnits: ...
 ```
 
+- `tiles` and `hardTiles` hold the map as a block of tokens; the width and height come from the block. Map 0xf8 adds `legend: bmap002` (below).
 - `header` holds every `MapHeader` field by its C name, except `mapData`, `hardMapData`, `units` and `hardUnits`: those point at the `tiles`, `hardTiles`, `units` and `hardUnits` sections. `pad_` fields may be left out; they are zero.
 - A word in capitals is a constant from `include/` (`CO_ANDY`, `UNIT_TANK`). Any other word is a symbol, written into the C as `extern char NAME[]`.
 - A unit list is written to the ROM as an army row (`PREDEPLOYED_ARMY`, slot) before each army's rows, then an end row. A list can be empty (`units: []`): the header still points at an end row.
 - When a header field gets a new name in `include/`, rename the key in the YAML files too; `pack` stops on a key the struct does not have.
+
+## Tile legend
+
+`assets/maps/legend.yaml` has one section per tile code table. `bmap003` is for every map but one; `bmap002` is for the bottom map of Means to an End (0xf8), whose table turns many sea, shoal and river codes into the Grand Bolt. Each line gives a token and its tile code, and a comment with the terrain id and owner the table gives that code.
+
+`unpack` makes the tokens from the terrain id: a symbol per terrain (`.` plain, `~` river, `^` mountain, `T` wood, `=` road, `o` sea, `,` shoal, `b` bridge, `|` pipe, `r` reef, `x` the other tiles of a large object, `G` and `g` the Grand Bolt's body and weak points). Owned terrain adds the owner: `C0` is a neutral city, `H1` player 1's HQ, `B2` a base of player 2, `m0`-`m3` the four Minicannon codes. The other terrain has many codes for its shapes (coasts, road bends): the code the maps use most gets the bare symbol and the rest are numbered in code order (`o`, `o1`, `o2`). The numbers say nothing about the shape yet.
+
+Tokens can be renamed in `legend.yaml` (one word, not starting with `@`, one token per code); run `unpack` afterwards to rewrite the maps with the new names, as it keeps an existing `legend.yaml`. A map can also give a code directly as `@` and hex (`@1a4`), for a code with no token. `pack` stops on a token the map's section does not have.
 
 ## Build
 
@@ -76,7 +87,7 @@ hardUnits: ...
 
 Edit the YAML file and run `make`. A change that alters the size of a tile block or unit list moves everything after it in ov000. Such a build no longer matches retail: it belongs in the mod build (issue 0023), not in a commit here.
 
-To regenerate every file from the ROM: `python3 tools/maps.py unpack`. It reads `extract/` and the field offsets in `build/dsindex.json` (`tools/dsindex.py`), and overwrites `assets/maps/`.
+To regenerate every file from the ROM: `python3 tools/maps.py unpack`. It reads `extract/` and the field offsets in `build/dsindex.json` (`tools/dsindex.py`), and overwrites `assets/maps/` except `legend.yaml`, which it writes only when there is none.
 
 ## Python packages
 

@@ -1,0 +1,645 @@
+# Tile legend: the token a map file writes for each tile code. Rename tokens freely;
+# one token per code, no spaces, not starting with @ (docs/maps.md). Comments give
+# the terrain id and owner from the section's /bmap table.
+
+bmap003:  # /bmap/003: every other map
+  '.': 0x001          # TERRAIN_PLAIN
+  '.1': 0x004         # TERRAIN_PLAIN
+  '.2': 0x021         # TERRAIN_PLAIN
+  '.3': 0x122         # TERRAIN_PLAIN
+  '.4': 0x123         # TERRAIN_PLAIN
+  '~': 0x018          # TERRAIN_RIVER
+  '~1': 0x019         # TERRAIN_RIVER
+  '~2': 0x01a         # TERRAIN_RIVER
+  '~3': 0x01b         # TERRAIN_RIVER
+  '~4': 0x01c         # TERRAIN_RIVER
+  '~5': 0x01d         # TERRAIN_RIVER
+  '~6': 0x01e         # TERRAIN_RIVER
+  '~7': 0x01f         # TERRAIN_RIVER
+  '~8': 0x038         # TERRAIN_RIVER
+  '~9': 0x039         # TERRAIN_RIVER
+  '~10': 0x03a        # TERRAIN_RIVER
+  '~11': 0x03c        # TERRAIN_RIVER
+  '~12': 0x03d        # TERRAIN_RIVER
+  '~13': 0x057        # TERRAIN_RIVER
+  '~14': 0x058        # TERRAIN_RIVER
+  '~15': 0x059        # TERRAIN_RIVER
+  '~16': 0x05a        # TERRAIN_RIVER
+  '~17': 0x05b        # TERRAIN_RIVER
+  '~18': 0x05c        # TERRAIN_RIVER
+  '~19': 0x05d        # TERRAIN_RIVER
+  '~20': 0x05e        # TERRAIN_RIVER
+  '~21': 0x05f        # TERRAIN_RIVER
+  '~22': 0x078        # TERRAIN_RIVER
+  '~23': 0x079        # TERRAIN_RIVER
+  '~24': 0x07a        # TERRAIN_RIVER
+  '~25': 0x07b        # TERRAIN_RIVER
+  '~26': 0x07c        # TERRAIN_RIVER
+  '~27': 0x07d        # TERRAIN_RIVER
+  '~28': 0x07e        # TERRAIN_RIVER
+  '~29': 0x07f        # TERRAIN_RIVER
+  '~30': 0x098        # TERRAIN_RIVER
+  '~31': 0x099        # TERRAIN_RIVER
+  '~32': 0x09a        # TERRAIN_RIVER
+  '~33': 0x09b        # TERRAIN_RIVER
+  '~34': 0x09c        # TERRAIN_RIVER
+  '~35': 0x09d        # TERRAIN_RIVER
+  '~36': 0x09e        # TERRAIN_RIVER
+  '~37': 0x09f        # TERRAIN_RIVER
+  '~38': 0x0b8        # TERRAIN_RIVER
+  '~39': 0x0b9        # TERRAIN_RIVER
+  '~40': 0x0ba        # TERRAIN_RIVER
+  '~41': 0x0bb        # TERRAIN_RIVER
+  '~42': 0x0bc        # TERRAIN_RIVER
+  '~43': 0x0bd        # TERRAIN_RIVER
+  '~44': 0x0be        # TERRAIN_RIVER
+  '~45': 0x0bf        # TERRAIN_RIVER
+  '~46': 0x0d8        # TERRAIN_RIVER
+  '~47': 0x0d9        # TERRAIN_RIVER
+  '~48': 0x0da        # TERRAIN_RIVER
+  '~49': 0x0db        # TERRAIN_RIVER
+  '~50': 0x0dc        # TERRAIN_RIVER
+  '~51': 0x0dd        # TERRAIN_RIVER
+  '~52': 0x0de        # TERRAIN_RIVER
+  '~53': 0x0df        # TERRAIN_RIVER
+  '~54': 0x0f8        # TERRAIN_RIVER
+  '~55': 0x0f9        # TERRAIN_RIVER
+  '~56': 0x0fa        # TERRAIN_RIVER
+  '~57': 0x0fb        # TERRAIN_RIVER
+  '~58': 0x118        # TERRAIN_RIVER
+  '~59': 0x119        # TERRAIN_RIVER
+  '~60': 0x11a        # TERRAIN_RIVER
+  '~61': 0x11b        # TERRAIN_RIVER
+  '~62': 0x138        # TERRAIN_RIVER
+  '~63': 0x139        # TERRAIN_RIVER
+  '^': 0x020          # TERRAIN_MOUNTAIN
+  '^1': 0x146         # TERRAIN_MOUNTAIN
+  '^2': 0x147         # TERRAIN_MOUNTAIN
+  'T1': 0x086         # TERRAIN_WOOD
+  'T': 0x087          # TERRAIN_WOOD
+  '=1': 0x040         # TERRAIN_ROAD
+  '=2': 0x041         # TERRAIN_ROAD
+  '=3': 0x042         # TERRAIN_ROAD
+  '=4': 0x060         # TERRAIN_ROAD
+  '=': 0x061          # TERRAIN_ROAD
+  '=5': 0x062         # TERRAIN_ROAD
+  '=6': 0x080         # TERRAIN_ROAD
+  '=7': 0x081         # TERRAIN_ROAD
+  '=8': 0x082         # TERRAIN_ROAD
+  '=9': 0x0a0         # TERRAIN_ROAD
+  '=10': 0x0a1        # TERRAIN_ROAD
+  '=11': 0x0a2        # TERRAIN_ROAD
+  '=12': 0x0c0        # TERRAIN_ROAD
+  '=13': 0x0c1        # TERRAIN_ROAD
+  '=14': 0x0c2        # TERRAIN_ROAD
+  '=15': 0x0c3        # TERRAIN_ROAD
+  '=16': 0x0e0        # TERRAIN_ROAD
+  '=17': 0x0e1        # TERRAIN_ROAD
+  '=18': 0x0e2        # TERRAIN_ROAD
+  '=19': 0x0e3        # TERRAIN_ROAD
+  '=20': 0x100        # TERRAIN_ROAD
+  '=21': 0x101        # TERRAIN_ROAD
+  'C0': 0x1c2         # TERRAIN_CITY
+  'C01': 0x1e2        # TERRAIN_CITY
+  'C1': 0x1c7         # TERRAIN_CITY, owner 1
+  'C11': 0x1e7        # TERRAIN_CITY, owner 1
+  'C2': 0x1cc         # TERRAIN_CITY, owner 2
+  'C21': 0x1ec        # TERRAIN_CITY, owner 2
+  'C3': 0x1d1         # TERRAIN_CITY, owner 3
+  'C31': 0x1f1        # TERRAIN_CITY, owner 3
+  'C4': 0x1d6         # TERRAIN_CITY, owner 4
+  'C41': 0x1f6        # TERRAIN_CITY, owner 4
+  'o1': 0x008         # TERRAIN_SEA
+  'o2': 0x009         # TERRAIN_SEA
+  'o3': 0x00a         # TERRAIN_SEA
+  'o4': 0x00b         # TERRAIN_SEA
+  'o5': 0x00c         # TERRAIN_SEA
+  'o6': 0x00d         # TERRAIN_SEA
+  'o7': 0x017         # TERRAIN_SEA
+  'o8': 0x028         # TERRAIN_SEA
+  'o9': 0x029         # TERRAIN_SEA
+  'o': 0x02a          # TERRAIN_SEA
+  'o10': 0x02b        # TERRAIN_SEA
+  'o11': 0x02c        # TERRAIN_SEA
+  'o12': 0x02d        # TERRAIN_SEA
+  'o13': 0x033        # TERRAIN_SEA
+  'o14': 0x034        # TERRAIN_SEA
+  'o15': 0x035        # TERRAIN_SEA
+  'o16': 0x037        # TERRAIN_SEA
+  'o17': 0x048        # TERRAIN_SEA
+  'o18': 0x049        # TERRAIN_SEA
+  'o19': 0x04a        # TERRAIN_SEA
+  'o20': 0x04b        # TERRAIN_SEA
+  'o21': 0x04c        # TERRAIN_SEA
+  'o22': 0x068        # TERRAIN_SEA
+  'o23': 0x069        # TERRAIN_SEA
+  'o24': 0x06a        # TERRAIN_SEA
+  'o25': 0x06b        # TERRAIN_SEA
+  'o26': 0x06c        # TERRAIN_SEA
+  'o27': 0x088        # TERRAIN_SEA
+  'o28': 0x089        # TERRAIN_SEA
+  'o29': 0x08a        # TERRAIN_SEA
+  'o30': 0x08b        # TERRAIN_SEA
+  'o31': 0x0a8        # TERRAIN_SEA
+  'o32': 0x0a9        # TERRAIN_SEA
+  'o33': 0x0aa        # TERRAIN_SEA
+  'o34': 0x0ab        # TERRAIN_SEA
+  'o35': 0x0c8        # TERRAIN_SEA
+  'o36': 0x0c9        # TERRAIN_SEA
+  'o37': 0x0e8        # TERRAIN_SEA
+  'o38': 0x0e9        # TERRAIN_SEA
+  'o39': 0x0ea        # TERRAIN_SEA
+  'o40': 0x0eb        # TERRAIN_SEA
+  'o41': 0x0ec        # TERRAIN_SEA
+  'o42': 0x0fc        # TERRAIN_SEA
+  'o43': 0x0fd        # TERRAIN_SEA
+  'o44': 0x108        # TERRAIN_SEA
+  'o45': 0x109        # TERRAIN_SEA
+  'o46': 0x10a        # TERRAIN_SEA
+  'o47': 0x10b        # TERRAIN_SEA
+  'o48': 0x10c        # TERRAIN_SEA
+  'o49': 0x11c        # TERRAIN_SEA
+  'o50': 0x11d        # TERRAIN_SEA
+  'o51': 0x128        # TERRAIN_SEA
+  'o52': 0x129        # TERRAIN_SEA
+  'o53': 0x12a        # TERRAIN_SEA
+  'o54': 0x12b        # TERRAIN_SEA
+  'o55': 0x12c        # TERRAIN_SEA
+  'H0': 0x1c0         # TERRAIN_HQ
+  'H01': 0x1e0        # TERRAIN_HQ
+  'H1': 0x1c5         # TERRAIN_HQ, owner 1
+  'H11': 0x1e5        # TERRAIN_HQ, owner 1
+  'H2': 0x1ca         # TERRAIN_HQ, owner 2
+  'H21': 0x1ea        # TERRAIN_HQ, owner 2
+  'H3': 0x1cf         # TERRAIN_HQ, owner 3
+  'H31': 0x1ef        # TERRAIN_HQ, owner 3
+  'H4': 0x1d4         # TERRAIN_HQ, owner 4
+  'H41': 0x1f4        # TERRAIN_HQ, owner 4
+  'x1': 0x186         # TERRAIN_OBJECT_PART
+  'x2': 0x188         # TERRAIN_OBJECT_PART
+  'x3': 0x189         # TERRAIN_OBJECT_PART
+  'x4': 0x18b         # TERRAIN_OBJECT_PART
+  'x5': 0x18c         # TERRAIN_OBJECT_PART
+  'x6': 0x18e         # TERRAIN_OBJECT_PART
+  'x7': 0x18f         # TERRAIN_OBJECT_PART
+  'x8': 0x191         # TERRAIN_OBJECT_PART
+  'x9': 0x192         # TERRAIN_OBJECT_PART
+  'x10': 0x194        # TERRAIN_OBJECT_PART
+  'x': 0x1a4          # TERRAIN_OBJECT_PART
+  'x11': 0x1a5        # TERRAIN_OBJECT_PART
+  'x12': 0x1a6        # TERRAIN_OBJECT_PART
+  'x13': 0x1a8        # TERRAIN_OBJECT_PART
+  'x14': 0x1a9        # TERRAIN_OBJECT_PART
+  'x15': 0x1aa        # TERRAIN_OBJECT_PART
+  'x16': 0x1ac        # TERRAIN_OBJECT_PART
+  'x17': 0x1ad        # TERRAIN_OBJECT_PART
+  'x18': 0x1ae        # TERRAIN_OBJECT_PART
+  'x19': 0x1b0        # TERRAIN_OBJECT_PART
+  'x20': 0x1b1        # TERRAIN_OBJECT_PART
+  'A0': 0x1c3         # TERRAIN_AIRPORT
+  'A01': 0x1e3        # TERRAIN_AIRPORT
+  'A1': 0x1c8         # TERRAIN_AIRPORT, owner 1
+  'A11': 0x1e8        # TERRAIN_AIRPORT, owner 1
+  'A2': 0x1cd         # TERRAIN_AIRPORT, owner 2
+  'A21': 0x1ed        # TERRAIN_AIRPORT, owner 2
+  'A3': 0x1d2         # TERRAIN_AIRPORT, owner 3
+  'A31': 0x1f2        # TERRAIN_AIRPORT, owner 3
+  'A4': 0x1d7         # TERRAIN_AIRPORT, owner 4
+  'A41': 0x1f7        # TERRAIN_AIRPORT, owner 4
+  'P0': 0x1c4         # TERRAIN_PORT
+  'P01': 0x1e4        # TERRAIN_PORT
+  'P1': 0x1c9         # TERRAIN_PORT, owner 1
+  'P11': 0x1e9        # TERRAIN_PORT, owner 1
+  'P2': 0x1ce         # TERRAIN_PORT, owner 2
+  'P21': 0x1ee        # TERRAIN_PORT, owner 2
+  'P3': 0x1d3         # TERRAIN_PORT, owner 3
+  'P31': 0x1f3        # TERRAIN_PORT, owner 3
+  'P4': 0x1d8         # TERRAIN_PORT, owner 4
+  'P41': 0x1f8        # TERRAIN_PORT, owner 4
+  'b': 0x015          # TERRAIN_BRIDGE
+  'b1': 0x016         # TERRAIN_BRIDGE
+  ',1': 0x010         # TERRAIN_SHOAL
+  ',2': 0x02e         # TERRAIN_SHOAL
+  ',3': 0x02f         # TERRAIN_SHOAL
+  ',4': 0x031         # TERRAIN_SHOAL
+  ',5': 0x032         # TERRAIN_SHOAL
+  ',6': 0x04f         # TERRAIN_SHOAL
+  ',': 0x050          # TERRAIN_SHOAL
+  ',7': 0x051         # TERRAIN_SHOAL
+  ',8': 0x053         # TERRAIN_SHOAL
+  ',9': 0x054         # TERRAIN_SHOAL
+  ',10': 0x055        # TERRAIN_SHOAL
+  ',11': 0x06d        # TERRAIN_SHOAL
+  ',12': 0x06e        # TERRAIN_SHOAL
+  ',13': 0x075        # TERRAIN_SHOAL
+  ',14': 0x08f        # TERRAIN_SHOAL
+  ',15': 0x092        # TERRAIN_SHOAL
+  ',16': 0x093        # TERRAIN_SHOAL
+  ',17': 0x0af        # TERRAIN_SHOAL
+  ',18': 0x0b0        # TERRAIN_SHOAL
+  ',19': 0x0b2        # TERRAIN_SHOAL
+  ',20': 0x0b3        # TERRAIN_SHOAL
+  ',21': 0x0b6        # TERRAIN_SHOAL
+  ',22': 0x0b7        # TERRAIN_SHOAL
+  ',23': 0x0cd        # TERRAIN_SHOAL
+  ',24': 0x0ce        # TERRAIN_SHOAL
+  ',25': 0x0cf        # TERRAIN_SHOAL
+  ',26': 0x0d0        # TERRAIN_SHOAL
+  ',27': 0x0d2        # TERRAIN_SHOAL
+  ',28': 0x0d3        # TERRAIN_SHOAL
+  ',29': 0x0d6        # TERRAIN_SHOAL
+  ',30': 0x0d7        # TERRAIN_SHOAL
+  ',31': 0x0ef        # TERRAIN_SHOAL
+  ',32': 0x0f2        # TERRAIN_SHOAL
+  ',33': 0x0f3        # TERRAIN_SHOAL
+  ',34': 0x112        # TERRAIN_SHOAL
+  ',35': 0x113        # TERRAIN_SHOAL
+  'B0': 0x1c1         # TERRAIN_BASE
+  'B01': 0x1e1        # TERRAIN_BASE
+  'B1': 0x1c6         # TERRAIN_BASE, owner 1
+  'B11': 0x1e6        # TERRAIN_BASE, owner 1
+  'B2': 0x1cb         # TERRAIN_BASE, owner 2
+  'B21': 0x1eb        # TERRAIN_BASE, owner 2
+  'B3': 0x1d0         # TERRAIN_BASE, owner 3
+  'B31': 0x1f0        # TERRAIN_BASE, owner 3
+  'B4': 0x1d5         # TERRAIN_BASE, owner 4
+  'B41': 0x1f5        # TERRAIN_BASE, owner 4
+  '|1': 0x102         # TERRAIN_PIPE
+  '|2': 0x103         # TERRAIN_PIPE
+  '|3': 0x120         # TERRAIN_PIPE
+  '|4': 0x121         # TERRAIN_PIPE
+  '|5': 0x140         # TERRAIN_PIPE
+  '|6': 0x141         # TERRAIN_PIPE
+  '|': 0x142          # TERRAIN_PIPE
+  '|7': 0x143         # TERRAIN_PIPE
+  '|8': 0x160         # TERRAIN_PIPE
+  '|9': 0x161         # TERRAIN_PIPE
+  '%': 0x162          # TERRAIN_PIPE_SEAM
+  '%1': 0x163         # TERRAIN_PIPE_SEAM
+  'S': 0x180          # TERRAIN_SILO
+  's': 0x1a0          # TERRAIN_SILO_USED
+  'r': 0x168          # TERRAIN_REEF
+  'L0': 0x1d9         # TERRAIN_LAB
+  'L01': 0x1f9        # TERRAIN_LAB
+  'L1': 0x1da         # TERRAIN_LAB, owner 1
+  'L11': 0x1fa        # TERRAIN_LAB, owner 1
+  'L2': 0x1db         # TERRAIN_LAB, owner 2
+  'L21': 0x1fb        # TERRAIN_LAB, owner 2
+  'L3': 0x1dc         # TERRAIN_LAB, owner 3
+  'L31': 0x1fc        # TERRAIN_LAB, owner 3
+  'L4': 0x1dd         # TERRAIN_LAB, owner 4
+  'L41': 0x1fd        # TERRAIN_LAB, owner 4
+  'm0': 0x182         # TERRAIN_MINICANNON
+  'm1': 0x183         # TERRAIN_MINICANNON, owner 1
+  'm2': 0x184         # TERRAIN_MINICANNON, owner 2
+  'm3': 0x185         # TERRAIN_MINICANNON, owner 3
+  't0': 0x1b9         # TERRAIN_COM_TOWER
+  't1': 0x1ba         # TERRAIN_COM_TOWER, owner 1
+  't2': 0x1bb         # TERRAIN_COM_TOWER, owner 2
+  't3': 0x1bc         # TERRAIN_COM_TOWER, owner 3
+  't4': 0x1bd         # TERRAIN_COM_TOWER, owner 4
+  'K': 0x1a1          # TERRAIN_BLACK_CRYSTAL
+  'z': 0x181          # TERRAIN_LASER
+  'N0': 0x187         # TERRAIN_BLACK_CANNON
+  'N1': 0x18a         # TERRAIN_BLACK_CANNON, owner 1
+  'G': 0x190          # TERRAIN_GRAND_BOLT
+  'V0': 0x1a7         # TERRAIN_VOLCANO
+  'V1': 0x1a2         # TERRAIN_VOLCANO, owner 1
+  'V2': 0x1a3         # TERRAIN_VOLCANO, owner 2
+  'O': 0x18d          # TERRAIN_BLACK_OBELISK
+  'D': 0x193          # TERRAIN_DEATHRAY
+  'X': 0x1ab          # TERRAIN_BLOCKED
+  'X1': 0x1af         # TERRAIN_BLOCKED
+
+bmap002:  # /bmap/002: 0x0f8
+  '.': 0x001          # TERRAIN_PLAIN
+  '.1': 0x004         # TERRAIN_PLAIN
+  '.2': 0x021         # TERRAIN_PLAIN
+  '.3': 0x122         # TERRAIN_PLAIN
+  '.4': 0x123         # TERRAIN_PLAIN
+  '^': 0x020          # TERRAIN_MOUNTAIN
+  '^1': 0x146         # TERRAIN_MOUNTAIN
+  '^2': 0x147         # TERRAIN_MOUNTAIN
+  'T1': 0x086         # TERRAIN_WOOD
+  'T': 0x087          # TERRAIN_WOOD
+  '=1': 0x040         # TERRAIN_ROAD
+  '=2': 0x041         # TERRAIN_ROAD
+  '=3': 0x042         # TERRAIN_ROAD
+  '=4': 0x060         # TERRAIN_ROAD
+  '=': 0x061          # TERRAIN_ROAD
+  '=5': 0x062         # TERRAIN_ROAD
+  '=6': 0x080         # TERRAIN_ROAD
+  '=7': 0x081         # TERRAIN_ROAD
+  '=8': 0x082         # TERRAIN_ROAD
+  '=9': 0x0a0         # TERRAIN_ROAD
+  '=10': 0x0a1        # TERRAIN_ROAD
+  '=11': 0x0a2        # TERRAIN_ROAD
+  '=12': 0x0c0        # TERRAIN_ROAD
+  '=13': 0x0c1        # TERRAIN_ROAD
+  '=14': 0x0c2        # TERRAIN_ROAD
+  '=15': 0x0c3        # TERRAIN_ROAD
+  '=16': 0x0e0        # TERRAIN_ROAD
+  '=17': 0x0e1        # TERRAIN_ROAD
+  '=18': 0x0e2        # TERRAIN_ROAD
+  '=19': 0x0e3        # TERRAIN_ROAD
+  '=20': 0x100        # TERRAIN_ROAD
+  '=21': 0x101        # TERRAIN_ROAD
+  'C0': 0x1c2         # TERRAIN_CITY
+  'C01': 0x1e2        # TERRAIN_CITY
+  'C1': 0x1c7         # TERRAIN_CITY, owner 1
+  'C11': 0x1e7        # TERRAIN_CITY, owner 1
+  'C2': 0x1cc         # TERRAIN_CITY, owner 2
+  'C21': 0x1ec        # TERRAIN_CITY, owner 2
+  'C3': 0x1d1         # TERRAIN_CITY, owner 3
+  'C31': 0x1f1        # TERRAIN_CITY, owner 3
+  'C4': 0x1d6         # TERRAIN_CITY, owner 4
+  'C41': 0x1f6        # TERRAIN_CITY, owner 4
+  'H0': 0x1c0         # TERRAIN_HQ
+  'H01': 0x1e0        # TERRAIN_HQ
+  'H1': 0x1c5         # TERRAIN_HQ, owner 1
+  'H11': 0x1e5        # TERRAIN_HQ, owner 1
+  'H2': 0x1ca         # TERRAIN_HQ, owner 2
+  'H21': 0x1ea        # TERRAIN_HQ, owner 2
+  'H3': 0x1cf         # TERRAIN_HQ, owner 3
+  'H31': 0x1ef        # TERRAIN_HQ, owner 3
+  'H4': 0x1d4         # TERRAIN_HQ, owner 4
+  'H41': 0x1f4        # TERRAIN_HQ, owner 4
+  'x1': 0x186         # TERRAIN_OBJECT_PART
+  'x2': 0x188         # TERRAIN_OBJECT_PART
+  'x3': 0x189         # TERRAIN_OBJECT_PART
+  'x4': 0x18b         # TERRAIN_OBJECT_PART
+  'x5': 0x18c         # TERRAIN_OBJECT_PART
+  'x6': 0x18e         # TERRAIN_OBJECT_PART
+  'x7': 0x18f         # TERRAIN_OBJECT_PART
+  'x8': 0x191         # TERRAIN_OBJECT_PART
+  'x9': 0x192         # TERRAIN_OBJECT_PART
+  'x10': 0x194        # TERRAIN_OBJECT_PART
+  'x': 0x1a4          # TERRAIN_OBJECT_PART
+  'x11': 0x1a5        # TERRAIN_OBJECT_PART
+  'x12': 0x1a6        # TERRAIN_OBJECT_PART
+  'x13': 0x1a8        # TERRAIN_OBJECT_PART
+  'x14': 0x1a9        # TERRAIN_OBJECT_PART
+  'x15': 0x1aa        # TERRAIN_OBJECT_PART
+  'x16': 0x1ac        # TERRAIN_OBJECT_PART
+  'x17': 0x1ad        # TERRAIN_OBJECT_PART
+  'x18': 0x1ae        # TERRAIN_OBJECT_PART
+  'x19': 0x1b0        # TERRAIN_OBJECT_PART
+  'x20': 0x1b1        # TERRAIN_OBJECT_PART
+  'A0': 0x1c3         # TERRAIN_AIRPORT
+  'A01': 0x1e3        # TERRAIN_AIRPORT
+  'A1': 0x1c8         # TERRAIN_AIRPORT, owner 1
+  'A11': 0x1e8        # TERRAIN_AIRPORT, owner 1
+  'A2': 0x1cd         # TERRAIN_AIRPORT, owner 2
+  'A21': 0x1ed        # TERRAIN_AIRPORT, owner 2
+  'A3': 0x1d2         # TERRAIN_AIRPORT, owner 3
+  'A31': 0x1f2        # TERRAIN_AIRPORT, owner 3
+  'A4': 0x1d7         # TERRAIN_AIRPORT, owner 4
+  'A41': 0x1f7        # TERRAIN_AIRPORT, owner 4
+  'P0': 0x1c4         # TERRAIN_PORT
+  'P01': 0x1e4        # TERRAIN_PORT
+  'P1': 0x1c9         # TERRAIN_PORT, owner 1
+  'P11': 0x1e9        # TERRAIN_PORT, owner 1
+  'P2': 0x1ce         # TERRAIN_PORT, owner 2
+  'P21': 0x1ee        # TERRAIN_PORT, owner 2
+  'P3': 0x1d3         # TERRAIN_PORT, owner 3
+  'P31': 0x1f3        # TERRAIN_PORT, owner 3
+  'P4': 0x1d8         # TERRAIN_PORT, owner 4
+  'P41': 0x1f8        # TERRAIN_PORT, owner 4
+  'b': 0x015          # TERRAIN_BRIDGE
+  'b1': 0x016         # TERRAIN_BRIDGE
+  'B0': 0x1c1         # TERRAIN_BASE
+  'B01': 0x1e1        # TERRAIN_BASE
+  'B1': 0x1c6         # TERRAIN_BASE, owner 1
+  'B11': 0x1e6        # TERRAIN_BASE, owner 1
+  'B2': 0x1cb         # TERRAIN_BASE, owner 2
+  'B21': 0x1eb        # TERRAIN_BASE, owner 2
+  'B3': 0x1d0         # TERRAIN_BASE, owner 3
+  'B31': 0x1f0        # TERRAIN_BASE, owner 3
+  'B4': 0x1d5         # TERRAIN_BASE, owner 4
+  'B41': 0x1f5        # TERRAIN_BASE, owner 4
+  '|1': 0x102         # TERRAIN_PIPE
+  '|2': 0x103         # TERRAIN_PIPE
+  '|3': 0x120         # TERRAIN_PIPE
+  '|4': 0x121         # TERRAIN_PIPE
+  '|5': 0x140         # TERRAIN_PIPE
+  '|6': 0x141         # TERRAIN_PIPE
+  '|': 0x142          # TERRAIN_PIPE
+  '|7': 0x143         # TERRAIN_PIPE
+  '|8': 0x160         # TERRAIN_PIPE
+  '|9': 0x161         # TERRAIN_PIPE
+  '%': 0x162          # TERRAIN_PIPE_SEAM
+  '%1': 0x163         # TERRAIN_PIPE_SEAM
+  'S': 0x180          # TERRAIN_SILO
+  's': 0x1a0          # TERRAIN_SILO_USED
+  'L0': 0x1d9         # TERRAIN_LAB
+  'L01': 0x1f9        # TERRAIN_LAB
+  'L1': 0x1da         # TERRAIN_LAB, owner 1
+  'L11': 0x1fa        # TERRAIN_LAB, owner 1
+  'L2': 0x1db         # TERRAIN_LAB, owner 2
+  'L21': 0x1fb        # TERRAIN_LAB, owner 2
+  'L3': 0x1dc         # TERRAIN_LAB, owner 3
+  'L31': 0x1fc        # TERRAIN_LAB, owner 3
+  'L4': 0x1dd         # TERRAIN_LAB, owner 4
+  'L41': 0x1fd        # TERRAIN_LAB, owner 4
+  'm0': 0x182         # TERRAIN_MINICANNON
+  'm1': 0x183         # TERRAIN_MINICANNON, owner 1
+  'm2': 0x184         # TERRAIN_MINICANNON, owner 2
+  'm3': 0x185         # TERRAIN_MINICANNON, owner 3
+  't0': 0x1b9         # TERRAIN_COM_TOWER
+  't1': 0x1ba         # TERRAIN_COM_TOWER, owner 1
+  't2': 0x1bb         # TERRAIN_COM_TOWER, owner 2
+  't3': 0x1bc         # TERRAIN_COM_TOWER, owner 3
+  't4': 0x1bd         # TERRAIN_COM_TOWER, owner 4
+  'K': 0x1a1          # TERRAIN_BLACK_CRYSTAL
+  'g0': 0x12b         # TERRAIN_GRAND_BOLT_WEAK_POINT
+  'g1': 0x171         # TERRAIN_GRAND_BOLT_WEAK_POINT, owner 1
+  'g2': 0x137         # TERRAIN_GRAND_BOLT_WEAK_POINT, owner 2
+  'z': 0x181          # TERRAIN_LASER
+  'N0': 0x187         # TERRAIN_BLACK_CANNON
+  'N1': 0x18a         # TERRAIN_BLACK_CANNON, owner 1
+  'G1': 0x00e         # TERRAIN_GRAND_BOLT
+  'G2': 0x00f         # TERRAIN_GRAND_BOLT
+  'G3': 0x010         # TERRAIN_GRAND_BOLT
+  'G4': 0x011         # TERRAIN_GRAND_BOLT
+  'G5': 0x012         # TERRAIN_GRAND_BOLT
+  'G6': 0x013         # TERRAIN_GRAND_BOLT
+  'G7': 0x014         # TERRAIN_GRAND_BOLT
+  'G8': 0x02c         # TERRAIN_GRAND_BOLT
+  'G9': 0x02d         # TERRAIN_GRAND_BOLT
+  'G10': 0x02e        # TERRAIN_GRAND_BOLT
+  'G11': 0x02f        # TERRAIN_GRAND_BOLT
+  'G12': 0x030        # TERRAIN_GRAND_BOLT
+  'G13': 0x031        # TERRAIN_GRAND_BOLT
+  'G14': 0x032        # TERRAIN_GRAND_BOLT
+  'G15': 0x033        # TERRAIN_GRAND_BOLT
+  'G16': 0x034        # TERRAIN_GRAND_BOLT
+  'G17': 0x035        # TERRAIN_GRAND_BOLT
+  'G18': 0x036        # TERRAIN_GRAND_BOLT
+  'G19': 0x04a        # TERRAIN_GRAND_BOLT
+  'G20': 0x04b        # TERRAIN_GRAND_BOLT
+  'G21': 0x04c        # TERRAIN_GRAND_BOLT
+  'G22': 0x04d        # TERRAIN_GRAND_BOLT
+  'G23': 0x04e        # TERRAIN_GRAND_BOLT
+  'G24': 0x04f        # TERRAIN_GRAND_BOLT
+  'G25': 0x050        # TERRAIN_GRAND_BOLT
+  'G26': 0x051        # TERRAIN_GRAND_BOLT
+  'G27': 0x052        # TERRAIN_GRAND_BOLT
+  'G28': 0x053        # TERRAIN_GRAND_BOLT
+  'G29': 0x054        # TERRAIN_GRAND_BOLT
+  'G30': 0x055        # TERRAIN_GRAND_BOLT
+  'G31': 0x056        # TERRAIN_GRAND_BOLT
+  'G32': 0x057        # TERRAIN_GRAND_BOLT
+  'G33': 0x058        # TERRAIN_GRAND_BOLT
+  'G34': 0x068        # TERRAIN_GRAND_BOLT
+  'G35': 0x069        # TERRAIN_GRAND_BOLT
+  'G36': 0x06a        # TERRAIN_GRAND_BOLT
+  'G37': 0x06b        # TERRAIN_GRAND_BOLT
+  'G38': 0x06c        # TERRAIN_GRAND_BOLT
+  'G39': 0x06d        # TERRAIN_GRAND_BOLT
+  'G40': 0x06e        # TERRAIN_GRAND_BOLT
+  'G41': 0x06f        # TERRAIN_GRAND_BOLT
+  'G42': 0x070        # TERRAIN_GRAND_BOLT
+  'G43': 0x071        # TERRAIN_GRAND_BOLT
+  'G44': 0x072        # TERRAIN_GRAND_BOLT
+  'G45': 0x073        # TERRAIN_GRAND_BOLT
+  'G46': 0x074        # TERRAIN_GRAND_BOLT
+  'G47': 0x075        # TERRAIN_GRAND_BOLT
+  'G48': 0x076        # TERRAIN_GRAND_BOLT
+  'G49': 0x077        # TERRAIN_GRAND_BOLT
+  'G50': 0x078        # TERRAIN_GRAND_BOLT
+  'G51': 0x079        # TERRAIN_GRAND_BOLT
+  'G52': 0x07a        # TERRAIN_GRAND_BOLT
+  'G53': 0x088        # TERRAIN_GRAND_BOLT
+  'G54': 0x089        # TERRAIN_GRAND_BOLT
+  'G55': 0x08a        # TERRAIN_GRAND_BOLT
+  'G56': 0x08b        # TERRAIN_GRAND_BOLT
+  'G57': 0x08c        # TERRAIN_GRAND_BOLT
+  'G58': 0x08d        # TERRAIN_GRAND_BOLT
+  'G59': 0x08e        # TERRAIN_GRAND_BOLT
+  'G60': 0x08f        # TERRAIN_GRAND_BOLT
+  'G61': 0x090        # TERRAIN_GRAND_BOLT
+  'G62': 0x091        # TERRAIN_GRAND_BOLT
+  'G63': 0x092        # TERRAIN_GRAND_BOLT
+  'G64': 0x093        # TERRAIN_GRAND_BOLT
+  'G65': 0x094        # TERRAIN_GRAND_BOLT
+  'G66': 0x095        # TERRAIN_GRAND_BOLT
+  'G67': 0x096        # TERRAIN_GRAND_BOLT
+  'G68': 0x097        # TERRAIN_GRAND_BOLT
+  'G69': 0x098        # TERRAIN_GRAND_BOLT
+  'G70': 0x099        # TERRAIN_GRAND_BOLT
+  'G71': 0x09a        # TERRAIN_GRAND_BOLT
+  'G72': 0x0a8        # TERRAIN_GRAND_BOLT
+  'G73': 0x0a9        # TERRAIN_GRAND_BOLT
+  'G74': 0x0aa        # TERRAIN_GRAND_BOLT
+  'G75': 0x0ab        # TERRAIN_GRAND_BOLT
+  'G76': 0x0ac        # TERRAIN_GRAND_BOLT
+  'G77': 0x0ad        # TERRAIN_GRAND_BOLT
+  'G78': 0x0ae        # TERRAIN_GRAND_BOLT
+  'G79': 0x0af        # TERRAIN_GRAND_BOLT
+  'G80': 0x0b0        # TERRAIN_GRAND_BOLT
+  'G81': 0x0b1        # TERRAIN_GRAND_BOLT
+  'G82': 0x0b2        # TERRAIN_GRAND_BOLT
+  'G83': 0x0b3        # TERRAIN_GRAND_BOLT
+  'G84': 0x0b4        # TERRAIN_GRAND_BOLT
+  'G85': 0x0b5        # TERRAIN_GRAND_BOLT
+  'G86': 0x0b6        # TERRAIN_GRAND_BOLT
+  'G87': 0x0b7        # TERRAIN_GRAND_BOLT
+  'G88': 0x0b8        # TERRAIN_GRAND_BOLT
+  'G89': 0x0b9        # TERRAIN_GRAND_BOLT
+  'G90': 0x0ba        # TERRAIN_GRAND_BOLT
+  'G91': 0x0c8        # TERRAIN_GRAND_BOLT
+  'G92': 0x0c9        # TERRAIN_GRAND_BOLT
+  'G93': 0x0ca        # TERRAIN_GRAND_BOLT
+  'G94': 0x0cb        # TERRAIN_GRAND_BOLT
+  'G95': 0x0cc        # TERRAIN_GRAND_BOLT
+  'G96': 0x0cd        # TERRAIN_GRAND_BOLT
+  'G97': 0x0ce        # TERRAIN_GRAND_BOLT
+  'G98': 0x0cf        # TERRAIN_GRAND_BOLT
+  'G99': 0x0d0        # TERRAIN_GRAND_BOLT
+  'G100': 0x0d1       # TERRAIN_GRAND_BOLT
+  'G101': 0x0d2       # TERRAIN_GRAND_BOLT
+  'G102': 0x0d3       # TERRAIN_GRAND_BOLT
+  'G103': 0x0d4       # TERRAIN_GRAND_BOLT
+  'G104': 0x0d5       # TERRAIN_GRAND_BOLT
+  'G105': 0x0d6       # TERRAIN_GRAND_BOLT
+  'G106': 0x0d7       # TERRAIN_GRAND_BOLT
+  'G107': 0x0d8       # TERRAIN_GRAND_BOLT
+  'G108': 0x0d9       # TERRAIN_GRAND_BOLT
+  'G109': 0x0da       # TERRAIN_GRAND_BOLT
+  'G110': 0x0e8       # TERRAIN_GRAND_BOLT
+  'G111': 0x0e9       # TERRAIN_GRAND_BOLT
+  'G112': 0x0ea       # TERRAIN_GRAND_BOLT
+  'G113': 0x0eb       # TERRAIN_GRAND_BOLT
+  'G114': 0x0ec       # TERRAIN_GRAND_BOLT
+  'G115': 0x0ed       # TERRAIN_GRAND_BOLT
+  'G116': 0x0ee       # TERRAIN_GRAND_BOLT
+  'G117': 0x0ef       # TERRAIN_GRAND_BOLT
+  'G118': 0x0f0       # TERRAIN_GRAND_BOLT
+  'G119': 0x0f1       # TERRAIN_GRAND_BOLT
+  'G120': 0x0f2       # TERRAIN_GRAND_BOLT
+  'G121': 0x0f3       # TERRAIN_GRAND_BOLT
+  'G122': 0x0f4       # TERRAIN_GRAND_BOLT
+  'G123': 0x0f5       # TERRAIN_GRAND_BOLT
+  'G124': 0x0f6       # TERRAIN_GRAND_BOLT
+  'G125': 0x0f7       # TERRAIN_GRAND_BOLT
+  'G126': 0x0f8       # TERRAIN_GRAND_BOLT
+  'G127': 0x0f9       # TERRAIN_GRAND_BOLT
+  'G128': 0x0fa       # TERRAIN_GRAND_BOLT
+  'G129': 0x108       # TERRAIN_GRAND_BOLT
+  'G130': 0x109       # TERRAIN_GRAND_BOLT
+  'G131': 0x10a       # TERRAIN_GRAND_BOLT
+  'G132': 0x10b       # TERRAIN_GRAND_BOLT
+  'G133': 0x10c       # TERRAIN_GRAND_BOLT
+  'G134': 0x10d       # TERRAIN_GRAND_BOLT
+  'G135': 0x10e       # TERRAIN_GRAND_BOLT
+  'G136': 0x10f       # TERRAIN_GRAND_BOLT
+  'G137': 0x110       # TERRAIN_GRAND_BOLT
+  'G138': 0x111       # TERRAIN_GRAND_BOLT
+  'G139': 0x112       # TERRAIN_GRAND_BOLT
+  'G140': 0x113       # TERRAIN_GRAND_BOLT
+  'G141': 0x114       # TERRAIN_GRAND_BOLT
+  'G142': 0x115       # TERRAIN_GRAND_BOLT
+  'G143': 0x116       # TERRAIN_GRAND_BOLT
+  'G144': 0x117       # TERRAIN_GRAND_BOLT
+  'G145': 0x118       # TERRAIN_GRAND_BOLT
+  'G146': 0x119       # TERRAIN_GRAND_BOLT
+  'G147': 0x11a       # TERRAIN_GRAND_BOLT
+  'G148': 0x12a       # TERRAIN_GRAND_BOLT
+  'G149': 0x12c       # TERRAIN_GRAND_BOLT
+  'G150': 0x12d       # TERRAIN_GRAND_BOLT
+  'G151': 0x12e       # TERRAIN_GRAND_BOLT
+  'G152': 0x12f       # TERRAIN_GRAND_BOLT
+  'G153': 0x130       # TERRAIN_GRAND_BOLT
+  'G154': 0x131       # TERRAIN_GRAND_BOLT
+  'G155': 0x132       # TERRAIN_GRAND_BOLT
+  'G156': 0x133       # TERRAIN_GRAND_BOLT
+  'G157': 0x134       # TERRAIN_GRAND_BOLT
+  'G158': 0x135       # TERRAIN_GRAND_BOLT
+  'G159': 0x136       # TERRAIN_GRAND_BOLT
+  'G160': 0x138       # TERRAIN_GRAND_BOLT
+  'G161': 0x14c       # TERRAIN_GRAND_BOLT
+  'G162': 0x14d       # TERRAIN_GRAND_BOLT
+  'G163': 0x14e       # TERRAIN_GRAND_BOLT
+  'G164': 0x14f       # TERRAIN_GRAND_BOLT
+  'G165': 0x150       # TERRAIN_GRAND_BOLT
+  'G166': 0x151       # TERRAIN_GRAND_BOLT
+  'G167': 0x152       # TERRAIN_GRAND_BOLT
+  'G168': 0x153       # TERRAIN_GRAND_BOLT
+  'G169': 0x154       # TERRAIN_GRAND_BOLT
+  'G170': 0x155       # TERRAIN_GRAND_BOLT
+  'G171': 0x156       # TERRAIN_GRAND_BOLT
+  'G172': 0x16e       # TERRAIN_GRAND_BOLT
+  'G173': 0x16f       # TERRAIN_GRAND_BOLT
+  'G174': 0x170       # TERRAIN_GRAND_BOLT
+  'G175': 0x172       # TERRAIN_GRAND_BOLT
+  'G176': 0x173       # TERRAIN_GRAND_BOLT
+  'G177': 0x174       # TERRAIN_GRAND_BOLT
+  'G178': 0x17a       # TERRAIN_GRAND_BOLT
+  'G': 0x190          # TERRAIN_GRAND_BOLT
+  'V0': 0x1a7         # TERRAIN_VOLCANO
+  'V1': 0x1a2         # TERRAIN_VOLCANO, owner 1
+  'V2': 0x1a3         # TERRAIN_VOLCANO, owner 2
+  'O': 0x18d          # TERRAIN_BLACK_OBELISK
+  'D': 0x193          # TERRAIN_DEATHRAY
+  'X': 0x1ab          # TERRAIN_BLOCKED
+  'X1': 0x1af         # TERRAIN_BLOCKED

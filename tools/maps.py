@@ -10,9 +10,10 @@ Layout (docs/maps.md has the details):
   assets/maps/maps.txt     map id -> YAML file, in Ov000_gMapHeaders order
   assets/maps/tiles.txt    tile blocks in .rodata order (YAML file + `tiles` or `hardTiles`)
   assets/maps/units.txt    unit lists in .data order (YAML file + `units` or `hardUnits`)
+  assets/maps/legend.yaml  tile tokens (`o`, `C1`) and the tile code each stands for
   assets/maps/<group>/NNN_<name>.yaml
       header:    the MapHeader fields by their C names (include/game/map_header.h)
-      tiles, hardTiles:  width, height and one row of 3-digit hex tile codes per line
+      tiles, hardTiles:  the map as a block of tokens, one line per row
       units, hardUnits:  the PredeployedUnit rows of each army
 
 `pack` reads the fields of MapHeader, PredeployedUnit, MapSlotFlags and
@@ -59,6 +60,19 @@ GROUPS = {0: "campaign", 1: "campaign", 2: "versus", 3: "versus", 4: "versus", 5
 # Structs that map files spell out, and the header that declares each.
 STRUCT_HEADERS = {"MapHeader": "game/map_header.h", "MapSlotFlags": "game/map_header.h",
                   "PredeployedUnit": "game/predeployed_unit.h", "TextRef": "game/text_ref.h"}
+# Tile code tables in /bmap (TileCodeTable_Load), one legend section each.
+# Only the bottom map of Means to an End uses 002.
+LEGEND = Path("legend.yaml")
+TABLE_FILES = {"bmap003": "003", "bmap002": "002"}
+DEFAULT_LEGEND = "bmap003"
+MAP_LEGENDS = {0xf8: "bmap002"}
+# Token symbol of each terrain id. Owned terrain gets the owner digit
+# (C1: a city of player 1); the others get a variant number (o, o1, o2).
+SYMBOLS = {0: "?", 1: ".", 2: "~", 3: "^", 4: "T", 5: "=", 6: "C", 7: "o", 8: "H", 9: "x", 10: "A",
+           11: "P", 12: "b", 13: ",", 14: "B", 15: "|", 16: "%", 17: "S", 18: "s", 19: "r", 20: "L",
+           21: "m", 22: "t", 23: "K", 24: "g", 25: "z", 26: "N", 27: "G", 28: "V", 29: "O", 30: "D", 31: "X"}
+OWNED = {6, 8, 10, 11, 14, 20, 21, 22, 24, 26, 28}
+RAW = "@"                          # @1a4: a tile code the legend has no token for
 UNIT_ROW = 13                      # sizeof(PredeployedUnit)
 PREDEPLOYED_ARMY = 0xfe
 PREDEPLOYED_END = 0xff
@@ -336,11 +350,91 @@ class Hex(int):
     """An int that unpack writes in hex."""
 
 
-def tile_rows(raw: bytes) -> dict:
+def tile_codes(raw: bytes) -> list[list[int]]:
+    """Rows of tile codes of an unpacked MapData."""
     width, height = raw[0], raw[1]
     codes = [int.from_bytes(raw[2 + 2 * i:4 + 2 * i], "little") for i in range(width * height)]
-    rows = [" ".join(f"{c:03x}" for c in codes[y * width:(y + 1) * width]) for y in range(height)]
-    return {"width": width, "height": height, "rows": rows}
+    return [codes[y * width:(y + 1) * width] for y in range(height)]
+
+
+# ---------------------------------------------------------------- tile legend
+
+def code_table(name: str) -> bytes:
+    """The tile code -> terrain table of a legend section: bits 0-4 terrain id, 5-7 owner."""
+    data, _ = lz_unpack((ROOT / EXTRACT / "files/bmap" / TABLE_FILES[name]).read_bytes())
+    return data
+
+
+def make_legend(usage: dict[str, dict[int, int]]) -> dict[str, dict[str, int]]:
+    """Token -> code for every code each table gives a terrain to. In a
+    group of codes with one terrain and owner, the one the maps use most
+    gets the bare token and the rest are numbered in code order. A code
+    that 002 reads like 003 keeps its 003 token."""
+    legend: dict[str, dict[str, int]] = {}
+    for name in TABLE_FILES:
+        table, used = code_table(name), usage.get(name, {})
+        base = legend.get(DEFAULT_LEGEND, {})
+        base_table = code_table(DEFAULT_LEGEND) if base else b""
+        tokens: dict[str, int] = {}
+        groups: dict[tuple[int, int], list[int]] = {}
+        for code, info in enumerate(table):
+            if not info and code not in used:
+                continue
+            keep = next((tok for tok, c in base.items() if c == code), None) if base else None
+            if keep and base_table[code] == info:
+                tokens[keep] = code
+            else:
+                groups.setdefault((info & 31, info >> 5), []).append(code)
+        for (terrain, owner), codes in sorted(groups.items()):
+            stem = SYMBOLS[terrain] + (str(owner) if terrain in OWNED else "")
+            first = max(codes, key=lambda c: (used.get(c, 0), -c))
+            n = 0
+            for code in [first] + sorted(c for c in codes if c != first):
+                while True:
+                    tok = stem + (str(n) if n else "")
+                    n += 1
+                    if tok not in tokens:
+                        break
+                tokens[tok] = code
+        legend[name] = tokens
+    return legend
+
+
+def write_legend(path: Path, legend: dict[str, dict[str, int]]) -> None:
+    names = {v: k for k, v in enum_values("game/terrain.h", "TerrainId").items()}
+    lines = ["# Tile legend: the token a map file writes for each tile code. Rename tokens freely;",
+             "# one token per code, no spaces, not starting with @ (docs/maps.md). Comments give",
+             "# the terrain id and owner from the section's /bmap table."]
+    for name, tokens in legend.items():
+        table = code_table(name)
+        used_by = ", ".join(f"{m:#05x}" for m, n in MAP_LEGENDS.items() if n == name) or "every other map"
+        lines += ["", f"{name}:  # /bmap/{TABLE_FILES[name]}: {used_by}"]
+        for tok, code in sorted(tokens.items(), key=lambda kv: (table[kv[1]] & 31, table[kv[1]] >> 5, kv[1])):
+            terrain, owner = table[code] & 31, table[code] >> 5
+            note = names.get(terrain, f"terrain {terrain}") + (f", owner {owner}" if owner else "")
+            lines.append(f"  '{tok}': {code:#05x}".ljust(22) + f"# {note}")
+    path.write_text("\n".join(lines) + "\n")
+
+
+def load_legend(path: Path) -> dict[str, dict[str, int]]:
+    legend = yaml.safe_load(path.read_text())
+    for name, tokens in legend.items():
+        seen: dict[int, str] = {}
+        for tok, code in tokens.items():
+            if not isinstance(tok, str) or not re.fullmatch(r"[^\s@]\S*", tok):
+                sys.exit(f"error: {path}: {name}: token {tok!r} must be one word not starting with {RAW}")
+            if code in seen:
+                sys.exit(f"error: {path}: {name}: {tok} and {seen[code]} are both {code:#05x}")
+            seen[code] = tok
+    return legend
+
+
+def tile_block(rows: list[list[int]], tokens: dict[str, int]) -> str:
+    """A map's tiles as lines of tokens, padded into columns."""
+    names = {c: t for t, c in tokens.items()}
+    cells = [[names.get(c, f"{RAW}{c:03x}") for c in row] for row in rows]
+    width = max(len(c) for row in cells for c in row) + 1
+    return "\n".join("".join(c.ljust(width) for c in row).rstrip() for row in cells) + "\n"
 
 
 def unit_armies(rom: Rom, decoder: Decoder, addr: int) -> tuple[list[dict], int]:
@@ -392,8 +486,11 @@ def write_map(path: Path, title: str, map_id: int, doc: dict) -> None:
     for key in TILE_KEYS:
         if key in doc:
             t = doc[key]
-            lines += [f"{key}:", f"  width: {t['width']}", f"  height: {t['height']}", "  rows:"]
-            lines += [f"  - {row}" for row in t["rows"]]
+            lines.append(f"{key}:")
+            if t["legend"] != DEFAULT_LEGEND:
+                lines.append(f"  legend: {t['legend']}")
+            lines.append("  rows: |")
+            lines += [f"    {row}" for row in t["rows"].splitlines()]
     for key in UNIT_KEYS:
         if key in doc:
             lines.append(f"{key}:" + ("" if doc[key] else " []"))
@@ -414,6 +511,8 @@ def cmd_unpack(args) -> int:
     count = define("game/map_header.h", "MAP_COUNT")
     offsets = {f["name"]: f["offset"] for f in structs["MapHeader"]["fields"]}
     out = ROOT / args.out
+    docs: list[tuple[str, str, int, dict]] = []
+    usage: dict[str, dict[int, int]] = {}
     paths: list[str] = []
     tile_blocks: list[tuple[int, str, str]] = []
     unit_lists: list[tuple[int, str, str]] = []
@@ -431,13 +530,29 @@ def cmd_unpack(args) -> int:
                 continue
             if key in TILE_KEYS:
                 raw, _ = lz_unpack(rom.data, addr - rom.base)
-                doc[key] = tile_rows(raw)
+                legend = MAP_LEGENDS.get(map_id, DEFAULT_LEGEND)
+                doc[key] = {"legend": legend, "codes": tile_codes(raw)}
+                for row in doc[key]["codes"]:
+                    for c in row:
+                        usage.setdefault(legend, {})[c] = usage.get(legend, {}).get(c, 0) + 1
                 tile_blocks.append((addr, rel, key))
             else:
                 doc[key], _ = unit_armies(rom, decoder, addr)
                 unit_lists.append((addr, rel, key))
-        write_map(out / rel, title, map_id, doc)
+        docs.append((rel, title, map_id, doc))
         paths.append(rel)
+    if (out / LEGEND).exists():
+        legend = load_legend(out / LEGEND)
+    else:
+        legend = make_legend(usage)
+        out.mkdir(parents=True, exist_ok=True)
+        write_legend(out / LEGEND, legend)
+    for rel, title, map_id, doc in docs:
+        for key in TILE_KEYS:
+            if key in doc:
+                t = doc[key]
+                t["rows"] = tile_block(t.pop("codes"), legend[t["legend"]])
+        write_map(out / rel, title, map_id, doc)
     (out / "maps.txt").write_text(
         "# Map header table (Ov000_gMapHeaders): one map id and YAML file per line, in id order.\n"
         + "".join(f"{i:#05x} {p}\n" for i, p in enumerate(paths)))
@@ -516,17 +631,26 @@ def c_struct(name: str, v: dict, where: str, externs: set[str], given: dict[str,
     return "{ " + ", ".join(parts) + " }"
 
 
-def tile_bytes(t: dict, where: str) -> bytes:
-    width, height, rows = t["width"], t["height"], t["rows"]
-    if len(rows) != height:
-        sys.exit(f"error: {where}: {len(rows)} rows, height {height}")
-    raw = bytearray([width, height])
+def tile_bytes(t: dict, legend: dict[str, dict[str, int]], where: str) -> bytes:
+    """MapData of a tiles section: width, height, then one u16 code per tile."""
+    name = t.get("legend", DEFAULT_LEGEND)
+    if name not in legend:
+        sys.exit(f"error: {where}: no legend {name} in {LEGEND}")
+    tokens = legend[name]
+    rows = [line.split() for line in str(t["rows"]).splitlines() if line.strip()]
+    width = len(rows[0])
+    if any(len(row) != width for row in rows):
+        sys.exit(f"error: {where}: rows of different widths")
+    raw = bytearray([width, len(rows)])
     for y, row in enumerate(rows):
-        codes = str(row).split()
-        if len(codes) != width:
-            sys.exit(f"error: {where}: row {y} has {len(codes)} codes, width {width}")
-        for c in codes:
-            raw += int(c, 16).to_bytes(2, "little")
+        for x, tok in enumerate(row):
+            if tok in tokens:
+                code = tokens[tok]
+            elif re.fullmatch(rf"{RAW}[0-9a-fA-F]+", tok):
+                code = int(tok[1:], 16)
+            else:
+                sys.exit(f"error: {where}: row {y} column {x}: {tok!r} is not in legend {name}")
+            raw += code.to_bytes(2, "little")
     return bytes(raw)
 
 
@@ -574,6 +698,7 @@ def cmd_pack(args) -> int:
                     sys.exit(f"error: {rel} has a {key} section that {name} does not list")
         return found
 
+    legend = load_legend(assets / LEGEND)
     tiles = placed("tiles.txt", TILE_KEYS)
     units = placed("units.txt", UNIT_KEYS)
     generated_note = "/* Generated by tools/maps.py pack from assets/maps/. Do not edit. */\n"
@@ -584,7 +709,7 @@ def cmd_pack(args) -> int:
          "typedef struct MapTileData {"]
     t_init = [generated_note, "const MapTileData gMapTiles = {"]
     for rel, key in tiles:
-        packed = pad4(lz_pack(tile_bytes(maps[rel][key], f"{rel} {key}")))
+        packed = pad4(lz_pack(tile_bytes(maps[rel][key], legend, f"{rel} {key}")))
         h.append(f"    u8 {member(rel, key)}[{len(packed):#x}];".ljust(39) + f"/* {rel} {key} */")
         body = ", ".join(f"{b:#04x}" for b in packed)
         t_init.append(f"    {{ {body} }},")
