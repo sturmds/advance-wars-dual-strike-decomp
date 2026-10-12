@@ -25,9 +25,19 @@
 #define NVRAM_INSTRUCTION_FAST_READ 0x0b    /* read after one dummy byte */
 #define NVRAM_INSTRUCTION_SE   0xd8    /* sector erase */
 #define NVRAM_INSTRUCTION_PE   0xdb    /* page erase */
+#define NVRAM_INSTRUCTION_READ_ID            0x9f
+#define NVRAM_INSTRUCTION_RELEASE_POWER_DOWN 0xab
+#define NVRAM_INSTRUCTION_DEEP_POWER_DOWN    0xb9
+#define NVRAM_INSTRUCTION_CHIP_ERASE         0xc7
+#define NVRAM_INSTRUCTION_SOFTWARE_RESET     0xff
 
 #define NVRAM_PAGE_SIZE 0x100
 #define NVRAM_ADDRESS_BYTES 3
+
+/* Bits of the flash status register. */
+#define NVRAM_STATUS_BUSY         0x01   /* write or erase in progress */
+#define NVRAM_STATUS_WRITE_ENABLE 0x02   /* write enable latch */
+#define NVRAM_STATUS_ERROR        0x20   /* last write or erase failed; cleared by a reset */
 
 static inline void NVRAM_SpiWait(void)
 {

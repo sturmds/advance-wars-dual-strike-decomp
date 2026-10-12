@@ -3,7 +3,7 @@
 #include "sdk/spi.h"
 #include "sdk/wl.h"
 
-void func_arm7_027d428c(void);
+void WifiFlash_AwaitIdle(void);
 
 /* Copies the wifi block of the firmware flash header into a new WL buffer.
  * FALSE when its length is out of range or the allocation fails. */
@@ -12,7 +12,7 @@ BOOL WifiFlash_FetchRadioBlock(void)
     u32 length;
 
     SPI_Lock(WIFI_DRIVER_STATE->limits.spiLockId);
-    func_arm7_027d428c();
+    WifiFlash_AwaitIdle();
     length = 0;
     NVRAM_Read(WIFI_RADIO_BLOCK_FLASH_OFFSET + 2, 2, (u8 *)&length);
     SPI_Unlock(WIFI_DRIVER_STATE->limits.spiLockId);
@@ -30,7 +30,7 @@ BOOL WifiFlash_FetchRadioBlock(void)
     WIFI_DRIVER_STATE->limits.wifiConfig = (WlWifiConfig *)((WlBuffer *)WIFI_DRIVER_STATE->limits.wifiConfig + 1);
 
     SPI_Lock(WIFI_DRIVER_STATE->limits.spiLockId);
-    func_arm7_027d428c();
+    WifiFlash_AwaitIdle();
     NVRAM_Read(WIFI_RADIO_BLOCK_FLASH_OFFSET, length, (u8 *)WIFI_DRIVER_STATE->limits.wifiConfig);
     SPI_Unlock(WIFI_DRIVER_STATE->limits.spiLockId);
     return TRUE;
