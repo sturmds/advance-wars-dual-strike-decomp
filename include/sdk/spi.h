@@ -57,6 +57,9 @@ typedef struct SerialBusJob {
     u32 arg[SERIAL_JOB_ARGS];
 } SerialBusJob;
 
+void SPI_Init(u32 priority);   /* start the devices and the SPI thread */
+void SerialDev_OnFifoMessage(u32 tag, u32 data, int err);
+void SerialDev_WorkerLoop(void *arg);
 void SPIi_ReturnResult(u16 command, u16 result);    /* send a reply word to the ARM9 */
 /* Queue a job for the SPI thread; FALSE when the queue is full. */
 BOOL SPIi_SetEntry(u32 device, u32 process, u16 paramCount, ...);

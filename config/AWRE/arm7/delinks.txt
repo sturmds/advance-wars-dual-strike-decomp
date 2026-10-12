@@ -1932,6 +1932,10 @@ src/arm7/sdk/spi/spi_lock.c:
     complete
     .text       start:0x03803fc4 end:0x03804028
 
+src/arm7/sdk/spi/spi_init.c:
+    complete
+    .text       start:0x03804028 end:0x03804148
+
 src/arm7/sdk/tp/touch_apply_stability_request.c:
     complete
     .text       start:0x03804148 end:0x03804190

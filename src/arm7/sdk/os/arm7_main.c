@@ -21,7 +21,7 @@ void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);
 void func_arm7_038028c8(int a0);
 void func_arm7_0380392c(void);
-void func_arm7_03804028(int a0);
+void SPI_Init(int a0);
 void func_arm7_038058b0(int heap);
 void Cartridge_CheckRemovedEveryTenFrames(void);
 void VBlankIntr_Arm7(void);
@@ -57,7 +57,7 @@ void Arm7Main(void)
     func_arm7_038028c8(15);
     func_arm7_027d5a24(12);
     func_arm7_038058b0(heap);
-    func_arm7_03804028(2);
+    SPI_Init(2);
 
     while (TRUE) {
         func_arm7_037f8444();
