@@ -494,6 +494,7 @@ void WifiTask_DrainOutbox(void);
 int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info);
 int WifiHost_TellBeaconSent(void);
 int WifiHost_TellBeaconLost(const u8 *mac);
+int WifiHost_TellDisassociated(const u8 *mac, u16 value);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
