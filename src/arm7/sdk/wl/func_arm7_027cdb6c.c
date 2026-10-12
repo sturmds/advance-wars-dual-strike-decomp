@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027c9aa0(int);
+int WifiParam_ChangeBeaconPeriod(int);
 
 int func_arm7_027cdb6c(WlRequest *request, WlReply *reply)
 {
@@ -8,5 +8,5 @@ int func_arm7_027cdb6c(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.phase != 1) {
         return 11;
     }
-    return func_arm7_027c9aa0(request->unk_10);
+    return WifiParam_ChangeBeaconPeriod(request->unk_10);
 }

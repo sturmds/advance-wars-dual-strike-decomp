@@ -9,7 +9,7 @@ int WifiParam_StoreRateMode(u32 value);
 int WifiParam_StoreWepMode(u32 value);
 int func_arm7_027ca130(u32 value);
 int WifiRam_StoreFourKeyBlocks(int src);
-int func_arm7_027c9aa0(u32 value);
+int WifiParam_ChangeBeaconPeriod(u32 value);
 int WifiParam_SetSsidHidden(u32 enable);
 int WifiParam_SetProbeNeedsSsid(u32 enable);
 int WifiParam_StoreBeaconsPerRun(u32 value);
@@ -45,7 +45,7 @@ void WifiParam_LoadDefaults(void)
     WifiParam_StoreWepMode(0);
     func_arm7_027ca130(0);
     WifiRam_StoreFourKeyBlocks((int)gWlDefaultWifiRamBlocks);
-    func_arm7_027c9aa0(500);
+    WifiParam_ChangeBeaconPeriod(500);
     WifiParam_SetSsidHidden(0);
     WifiParam_SetProbeNeedsSsid(0);
     WifiParam_StoreBeaconsPerRun(16);

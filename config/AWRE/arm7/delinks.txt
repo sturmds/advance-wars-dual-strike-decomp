@@ -860,6 +860,10 @@ src/arm7/sdk/wl/wifi_param_change_listen_period.c:
     complete
     .text       start:0x027c9a54 end:0x027c9aa0
 
+src/arm7/sdk/wl/wifi_param_change_beacon_period.c:
+    complete
+    .text       start:0x027c9aa0 end:0x027c9b00
+
 src/arm7/sdk/wl/wifi_param_set_antenna_switching.c:
     complete
     .text       start:0x027c9cc4 end:0x027c9da0
