@@ -67,9 +67,11 @@ enum {
  * Writes one byte with a halfword read and write, like Isd_ReadByte reads.
  * Needed to match: the copies of both arguments make the compiler work out
  * each argument once, before the alignment test (the copies in
- * isd_double_add.c and its neighbours have none).
+ * isd_double_add.c and its neighbours have none). The void * parameter keeps
+ * the compiler from sharing one alignment test between two stores to the same
+ * address (the fraction digit loop).
  */
-static inline void Isd_StoreByte(char* address, int value) {
+static inline void Isd_StoreByte(void* address, int value) {
   char* at = address;
   int byte = value;
 
@@ -220,12 +222,12 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
         state = STATE_DOT;
         break;
       case STATE_PRECISION:
+        state = STATE_PRECISION;
         if (prec == -1) {
           prec = c - '0';
         } else {
           prec = prec * 10 + (c - '0');
         }
-        state = STATE_PRECISION;
         break;
       case STATE_LENGTH:
         state = STATE_LENGTH;
@@ -423,7 +425,7 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
         number = ISD_VA_ARG(args, double);
         out = &buf[63];
         fieldPad = width;
-        sign = droppedDigits = count = 0;
+        droppedDigits = sign = count = 0;
         trimZeros = 1;
         flags |= FORMAT_UNSIGNED;
         if (DoubleTopByte(&number) & 0x80) {
@@ -466,11 +468,8 @@ void Isd_VFormat(IsdPrintTarget* target, const char* format, char** args) {
         }
         if (conversion == CONV_GENERAL || conversion == CONV_GENERAL_UPPER) {
           if (exponent < -4 || exponent >= prec) {
-            if (conversion == CONV_GENERAL) {
-              conversion = CONV_EXP;
-            } else {
-              conversion = CONV_EXP_UPPER;
-            }
+            conversion =
+                (conversion == CONV_GENERAL) ? CONV_EXP : CONV_EXP_UPPER;
           } else {
             conversion = CONV_FIXED;
           }
