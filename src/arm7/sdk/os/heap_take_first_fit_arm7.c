@@ -5,7 +5,7 @@ extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-HeapBlockHeader *func_arm7_037fce28(HeapBlockHeader *list, HeapBlockHeader *cell);
+HeapBlockHeader *Heap_UnlinkBlock(HeapBlockHeader *list, HeapBlockHeader *cell);
 HeapBlockHeader *func_arm7_037fce50(HeapBlockHeader *list, HeapBlockHeader *cell);
 
 /*
@@ -48,7 +48,7 @@ void *Heap_TakeFirstFit_Arm7(ArenaRegionArm7 id, s32 heap, s32 size)
 
     leftover = cell->size - size;
     if ((u32)leftover < HEAP_SMALLEST_SPLIT) {
-        desc->free = func_arm7_037fce28(desc->free, cell);
+        desc->free = Heap_UnlinkBlock(desc->free, cell);
     } else {
         cell->size = size;
         rest = (HeapBlockHeader *)((u8 *)cell + size);
