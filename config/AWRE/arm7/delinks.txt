@@ -704,6 +704,10 @@ src/arm7/sdk/wl/wifi_station_uncount_queued_frame.c:
     complete
     .text       start:0x027cb4ac end:0x027cb518
 
+src/arm7/sdk/wl/wifi_station_count_queued_frame.c:
+    complete
+    .text       start:0x027cb518 end:0x027cb58c
+
 src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
