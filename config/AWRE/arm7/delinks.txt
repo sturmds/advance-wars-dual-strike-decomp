@@ -1018,6 +1018,10 @@ src/arm7/sdk/wl/wifi_self_test_baseband.c:
     complete
     .text       start:0x027ca438 end:0x027ca730
 
+src/arm7/sdk/wl/wifi_self_test_ram.c:
+    complete
+    .text       start:0x027ca730 end:0x027ca8b4
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94

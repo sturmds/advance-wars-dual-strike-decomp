@@ -21,7 +21,7 @@ void func_arm7_027ca8b4(void);
 void func_arm7_027c93a4(void);
 void WifiMac_LoadRegisterTable(void);
 void WifiRf_LoadStartValues(void);
-void func_arm7_027ca730(void);
+void WifiSelfTest_Ram(void);
 void WifiSelfTest_Baseband(void);
 void WifiBaseband_LoadStartValues(void);
 void WifiParam_LoadDefaults(void);
@@ -71,7 +71,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
         func_arm7_027c93a4();
         WifiMac_LoadRegisterTable();
         WifiRf_LoadStartValues();
-        func_arm7_027ca730();
+        WifiSelfTest_Ram();
         WifiSelfTest_Baseband();
         WifiBaseband_LoadStartValues();
         WifiParam_LoadDefaults();
