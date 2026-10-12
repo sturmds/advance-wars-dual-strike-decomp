@@ -1163,6 +1163,10 @@ src/arm7/sdk/svc/bios_fast_fill_or_copy_arm7.c:
     complete
     .text       start:0x03803bbc end:0x03803bc0
 
+src/arm7/sdk/svc/bios_square_root_arm7.c:
+    complete
+    .text       start:0x03803bc0 end:0x03803bc4
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68
