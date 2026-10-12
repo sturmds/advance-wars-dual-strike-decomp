@@ -344,7 +344,8 @@ typedef struct WlRxFrame {
     u16 unk_04;
     u16 bodyLength;
     u16 unk_08;         /* first word of the hardware RX header */
-    u8 pad_0a[0x0e - 0x0a];
+    u16 unk_0a;
+    u16 unk_0c;
     u16 rate;           /* WIFI_RATE_CODE_* */
     u16 length;         /* 802.11 header and body */
     u16 unk_12;
@@ -945,6 +946,21 @@ typedef struct WlWepWatch {
     u16 unk_00;
     u16 busyCount;
 } WlWepWatch;
+
+/* Work offset 0x4b4 as the MP receive code sees it (a child's view of the
+   parent's polls). Its first halfword is WlWepWatch.unk_00, replyFlags is
+   WlWork.unk_4ba. */
+typedef struct WlMpChild {
+    u16 lastSequence; /* sequence number of the last MP poll taken */
+    u8 pad_02[4];
+    u16 replyFlags;   /* ORed into the RX header word of MP frames sent to the host */
+} WlMpChild;
+
+#define WIFI_CHILD_POLL_STATE_OF(work) ((WlMpChild *)&(work)->wepWatch)
+
+/* Bits of WlMpChild.replyFlags. */
+#define WIFI_POLL_ASKED_US 0x2000    /* the last poll asked this child for a reply */
+#define WIFI_POLL_ANSWER_READY 0x4000 /* a reply frame with data was set up for it */
 
 typedef struct WlWork {
     u16 queueHead[WIFI_TASK_LEVELS];

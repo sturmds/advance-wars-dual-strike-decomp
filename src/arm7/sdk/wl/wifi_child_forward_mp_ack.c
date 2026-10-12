@@ -22,7 +22,7 @@ int WifiChild_ForwardMpAck(WlRxFrame *frame)
     buffer = WIFI_RX_HOLDER_OF(frame);
     buffer->command = 0x185;
     buffer->length = 24;
-    buffer->frame.unk_08 |= WIFI_DRIVER_STATE->unk_4ba | ((WIFI_MAC_REGISTER(0x098) & 0x8000) >> 4) | ((WIFI_TX_NEXT_POLL_ANSWER & 0x8000) >> 3);
+    buffer->frame.unk_08 |= WIFI_CHILD_POLL_STATE_OF(WIFI_DRIVER_STATE)->replyFlags | ((WIFI_MAC_REGISTER(0x098) & 0x8000) >> 4) | ((WIFI_TX_NEXT_POLL_ANSWER & 0x8000) >> 3);
     WifiBuffer_GiveToHost(&WIFI_DRIVER_STATE->unk_15c, &buffer->header);
     return 0;
 }
