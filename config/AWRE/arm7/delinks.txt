@@ -2212,6 +2212,10 @@ src/arm7/sdk/func_arm7_037f8a5c.c:
     complete
     .text       start:0x037f8a5c end:0x037f8a64
 
+src/arm7/sdk/wl/wifi_task_dispatch_command.c:
+    complete
+    .text       start:0x037f8a64 end:0x037f8d74
+
 src/arm7/sdk/wl/wifi_buffer_give_to_host.c:
     complete
     .text       start:0x037f8d74 end:0x037f8e04

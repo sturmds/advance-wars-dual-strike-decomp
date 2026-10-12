@@ -696,6 +696,11 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
 #define WIFI_ANSWER_PEER_SAID_NO 12  /* the peer answered with a nonzero status, in WlReply.value */
 #define WIFI_ANSWER_LATER 0x80 /* the request stays in WlMlme; the reply comes later */
+#define WIFI_ANSWER_BAD_MODE 1       /* not allowed in the current WlState.mode */
+#define WIFI_ANSWER_GROUP_BUSY 2             /* a request of the same group is still being handled */
+#define WIFI_ANSWER_NO_SUCH_REQ 3
+#define WIFI_ANSWER_ID_DIFFERS 13 /* the reply does not name the request's command */
+#define WIFI_ANSWER_KEPT_BUFFER 0x81        /* the handler kept the buffer (a frame queued to send) */
 
 /* Request that names a destination station by MAC address. Bit 0 of the
    first byte marks a multicast address. */
@@ -742,6 +747,15 @@ typedef struct WlCurrentRequest {
     struct WlBuffer *buffer;
     u16 busy; /* bit 0 set while buffer is being handled */
 } WlCurrentRequest;
+
+/* One entry of a host command table: the shortest request and reply the
+   command takes (request->replyOffset and reply->status, in halfwords), and
+   its handler, which returns the result code for WlReply.unk_04. */
+typedef struct WlCommandEntry {
+    u16 requestLength;
+    u16 replyLength;
+    int (*handler)(struct WlRequest *request, struct WlReply *reply);
+} WlCommandEntry;
 
 /* Wi-Fi RAM address that WlState.timOffset counts from. */
 #define WIFI_RAM_TIM_BASE 0x0480425c
