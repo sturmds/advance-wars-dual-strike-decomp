@@ -879,6 +879,10 @@ src/arm7/sdk/func_arm7_037fc800.c:
     complete
     .text       start:0x037fc800 end:0x037fc814
 
+src/arm7/sdk/os/arena_apply_defaults_arm7.c:
+    complete
+    .text       start:0x037fc814 end:0x037fc8b8
+
 src/arm7/sdk/os/tick_read64_arm7.c:
     complete
     .text       start:0x037fce88 end:0x037fcf38
