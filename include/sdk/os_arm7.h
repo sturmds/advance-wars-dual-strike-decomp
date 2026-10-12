@@ -136,6 +136,13 @@ typedef struct OSThreadInfo {
     OSThread *threads[16];
 } OSThreadInfo;
 
+/* Arenas the ARM7 manages, numbered as in sdk/os.h's OSArenaId. */
+typedef enum ArenaRegionArm7 {
+    OS_ARENA_MAIN_SUBPRIV = 1,     /* ARM7's private part of main RAM */
+    OS_ARENA_WRAM_SUB = 7,         /* ARM7's share of the shared WRAM */
+    OS_ARENA_WRAM_SUBPRIV = 8      /* ARM7's own WRAM */
+} ArenaRegionArm7;
+
 /*
  * The compiler's signed divide: the quotient comes back in r0 and the
  * remainder in r1, so a 64-bit return value holds both. The original calls
