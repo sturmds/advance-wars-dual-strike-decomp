@@ -1852,6 +1852,10 @@ src/arm7/sdk/func_arm7_038038b4.c:
     complete
     .text       start:0x038038b4 end:0x038038c4
 
+src/arm7/sdk/card/card_push_removal_tag_word_arm7.c:
+    complete
+    .text       start:0x038038c4 end:0x0380390c
+
 src/arm7/sdk/func_arm7_0380390c.c:
     complete
     .text       start:0x0380390c end:0x0380392c
