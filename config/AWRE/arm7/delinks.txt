@@ -620,6 +620,10 @@ src/arm7/sdk/rtc/func_arm7_027d6180.c:
     complete
     .text       start:0x027d6180 end:0x027d61ac
 
+src/arm7/sdk/rtc/func_arm7_027d61ac.c:
+    complete
+    .text       start:0x027d61ac end:0x027d61d8
+
 src/arm7/sdk/os/v_blank_intr_arm7.c:
     complete
     .text       start:0x037f8000 end:0x037f802c
