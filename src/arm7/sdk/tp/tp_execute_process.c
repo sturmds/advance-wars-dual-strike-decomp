@@ -10,7 +10,7 @@ void func_arm7_03803e0c(u32 device);              /* release the SPI bus */
 void func_arm7_037fd8ac(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
 void func_arm7_037fd754(u32 tag);                 /* cancel the V alarms with this tag */
 void func_arm7_03804800(SPITpData *data, s32 range, u16 *density);
-void func_arm7_0380443c(SPITpData *data, u16 density);
+void Touch_TuneStabilityRange(SPITpData *data, u16 density);
 void Touch_QueueAutoSample(void *arg);
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
@@ -39,7 +39,7 @@ void TP_ExecuteProcess(SerialBusJob *entry)
         func_arm7_037fdb94(intr);
 
         func_arm7_03804800(&sample, tpWork.range, &density);
-        func_arm7_0380443c(&sample, density);
+        Touch_TuneStabilityRange(&sample, density);
         TOUCH_SHARED_LATEST_LOW = sample.halfs[0];
         TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];
 

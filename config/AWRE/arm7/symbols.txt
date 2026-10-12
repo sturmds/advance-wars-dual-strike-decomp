@@ -994,7 +994,7 @@ func_arm7_03804028 kind:function(arm,size=0x120) addr:0x03804028
 Touch_ApplyStabilityRequest kind:function(arm,size=0x48) addr:0x03804148
 Touch_QueueAutoSample kind:function(arm,size=0x78) addr:0x03804190
 TP_ExecuteProcess kind:function(arm,size=0x234) addr:0x03804208
-func_arm7_0380443c kind:function(arm,size=0xf4) addr:0x0380443c
+Touch_TuneStabilityRange kind:function(arm,size=0xf4) addr:0x0380443c
 func_arm7_03804530 kind:function(arm,size=0x1c0) addr:0x03804530
 func_arm7_038046f0 kind:function(arm,size=0x110) addr:0x038046f0
 func_arm7_03804800 kind:function(arm,size=0x250) addr:0x03804800
@@ -1158,8 +1158,8 @@ data_arm7_03809d84 kind:bss addr:0x03809d84
 data_arm7_03809d88 kind:bss addr:0x03809d88
 data_arm7_03809eb0 kind:bss addr:0x03809eb0
 data_arm7_03809f08 kind:bss addr:0x03809f08
-data_arm7_03809f10 kind:bss addr:0x03809f10
-data_arm7_03809f14 kind:bss addr:0x03809f14
+tpValidCount kind:bss addr:0x03809f10
+tpInvalidCount kind:bss addr:0x03809f14
 tpWork kind:bss addr:0x03809f18
 data_arm7_03809f44 kind:bss addr:0x03809f44
 data_arm7_03809fec kind:bss addr:0x03809fec
