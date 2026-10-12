@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-u16 func_arm7_027c8d08(int channel);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void WifiFlash_ReadLocked(u32 address, u32 size, u8 *dest);
 void func_arm7_027c87b8(int a0);
@@ -28,7 +27,7 @@ int WifiCmd_RunRadioTest(WlTestModeRequest *request, WlReply *reply)
     if (request->rate != 10 && request->rate != 20) {
         return 5;
     }
-    if (!func_arm7_027c8d08(request->channel)) {
+    if (!WifiParam_ChannelAllowed(request->channel)) {
         return 5;
     }
     if (request->signal > 4) {
