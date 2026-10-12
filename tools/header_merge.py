@@ -5,11 +5,17 @@ Agents add fields to the same shared structs at the same time. A text merge
 conflicts as soon as two of them split the same padding array, so this
 reads both versions as declarations instead of lines:
 
-- Struct fields are placed by byte offset, computed from their types the
-  way the compiler lays them out. The result has the named fields of both
-  sides, with padding written again between them. Where both sides name
-  the same bytes differently, mainline's name stays and the pair is
+- Struct fields are placed by byte offset. The result has the named fields
+  of both sides, with padding written again between them. Where both sides
+  name the same bytes differently, mainline's name stays and the pair is
   returned so that apply_commit.py can rewrite the commit's sources.
+- Offsets come from mwccarm when merge() gets a probe (apply_commit.py
+  always passes one): each side's header is compiled in that side's tree,
+  field types take the sizes and alignments the compiler reports, and each
+  side's layout and the merged one must match the compiler's field by
+  field, or the merge raises MergeError and the conflict is left to a
+  person (b31: an OSAlarm placed 8 bytes late, and an OSThread sized with
+  ARM9's definition in an ARM7 header).
 - Typedefs, structs, #defines, externs and prototypes that only one side
   has are kept. Where both sides changed the same one, mainline's version
   stays and the clash is noted; for a #define with two different values
@@ -32,8 +38,11 @@ version of a field or declaration, the commit's version wins, as in a
 """
 
 import re
+import subprocess
 from collections import Counter
+from collections.abc import Callable
 from dataclasses import dataclass, field
+from pathlib import Path
 
 
 class MergeError(Exception):
@@ -152,7 +161,11 @@ def split_braces(lines: list[str]) -> tuple[list[str], list[str], list[str]]:
 
 # ------------------------------------------------------------------ types
 
-C_TYPES = {"char": 1, "short": 2, "int": 4, "long": 4, "long long": 8, "float": 4, "double": 8}
+# (size, alignment). mwccarm aligns the 8-byte types to 4, with the ARM9 and
+# the ARM7 flags alike (b31/wlq2: an OSAlarm, which holds a u64, sits at
+# WlWork+0x608).
+C_TYPES = {"char": (1, 1), "short": (2, 2), "int": (4, 4), "long": (4, 4), "long long": (8, 4),
+           "float": (4, 4), "double": (8, 4)}
 
 
 def align_up(n: int, a: int) -> int:
@@ -161,9 +174,14 @@ def align_up(n: int, a: int) -> int:
 
 class Types:
     """Sizes of the named types and values of the #defines in a set of
-    headers, for laying out struct fields."""
+    headers, for laying out struct fields. sizes, when given, holds what
+    the compiler reports for the field types of the header being merged
+    (Compiled.sizes); it wins over sizes worked out from the texts, which
+    do not know which of two definitions of a type the header includes
+    (b31/wlc0: ARM9's OSThread of 148 bytes in place of ARM7's 0x78)."""
 
-    def __init__(self, texts: list[str]):
+    def __init__(self, texts: list[str], sizes: dict[str, tuple[int, int]] | None = None):
+        self.sizes = sizes or {}
         self.structs: dict[str, tuple[str, str]] = {}   # name or tag -> (kind, body code)
         self.aliases: dict[str, tuple[str, str]] = {}   # typedef name -> type words, array lengths
         self.scalars: dict[str, int] = {}               # enums, function pointers
@@ -175,7 +193,11 @@ class Types:
 
     def first(self, *texts: str) -> "Types":
         """These types with the definitions in texts taking precedence."""
-        return Types(list(texts) + self.texts)
+        return Types(list(texts) + self.texts, self.sizes)
+
+    def with_sizes(self, sizes: dict[str, tuple[int, int]]) -> "Types":
+        """These types with the compiler's sizes."""
+        return Types(self.texts, sizes)
 
     def scan(self, code: str) -> None:
         for m in re.finditer(r"\b(typedef\s+)?(struct|union)\s*(\w*)\s*\{", code):
@@ -218,6 +240,9 @@ class Types:
 
     def size(self, words: list[str]) -> tuple[int, int]:
         """(size, alignment) of a type written as words: ['const', 'u8']."""
+        written = " ".join(w for w in words if w not in ("const", "volatile"))
+        if written in self.sizes:
+            return self.sizes[written]
         words = [w for w in words if w not in ("const", "volatile", "signed")]
         if words[0] == "enum":
             return 4, 4
@@ -225,8 +250,7 @@ class Types:
             return self.named("struct " + words[1])
         plain = " ".join(w for w in words if w != "unsigned") or "int"
         if plain in C_TYPES:
-            n = C_TYPES[plain]
-            return n, n
+            return C_TYPES[plain]
         if len(words) != 1:
             raise MergeError("unknown type " + " ".join(words))
         return self.named(words[0])
@@ -235,7 +259,9 @@ class Types:
         if name in self.cache:
             return self.cache[name]
         self.cache[name] = (0, 0)  # stops a loop on a self-referencing type
-        if name in self.scalars:
+        if name in self.sizes:
+            res = self.sizes[name]
+        elif name in self.scalars:
             n = self.scalars[name]
             res = (n, n)
         elif name in self.aliases:
@@ -380,6 +406,7 @@ class Sides:
     ours: Types
     theirs: Types
     base: Types
+    compiled: dict[str, "Compiled"] = field(default_factory=dict)  # 'ours', 'theirs', 'base'
 
 
 @dataclass
@@ -392,6 +419,7 @@ class Report:
     type_renames: dict[str, str] = field(default_factory=dict)  # commit's type name -> mainline's
     notes: list[str] = field(default_factory=list)               # clashes, and what was kept
     conflicts: list[str] = field(default_factory=list)          # what a person has to fix
+    merged_structs: list[tuple[str, str]] = field(default_factory=list)  # (name, kind) laid out again
 
     def rename(self, old: str, new: str, where: str) -> None:
         self.renames[old] = new
@@ -635,6 +663,157 @@ def check_layout(body: list[str], named: list[Item], end: int, types: Types) -> 
         raise MergeError(f"size changed to 0x{size:x}")
 
 
+# --------------------------------------------------------- compiler probe
+
+@dataclass
+class Compiled:
+    """What mwccarm makes of one version of a header: (size, alignment) of
+    each type its struct fields are declared with, and each struct's size
+    and field offsets (members of anonymous structs and unions listed
+    beside the others)."""
+    sizes: dict[str, tuple[int, int]]
+    structs: dict[str, tuple[int, dict[str, int]]]
+
+
+def is_aggregate(e: "Entry") -> bool:
+    return e.key[0] == "type" and "{" in e.code and not re.match(r"(typedef\s+)?enum\b", e.code)
+
+
+def struct_entries(text: str) -> dict[str, str]:
+    """Structs and unions a header defines: entry name -> how C names the
+    type (`Foo`, or `struct Foo` for a struct without a typedef)."""
+    out = {}
+    for e in parse_header(text)[0]:
+        kind = re.match(r"(?:typedef\s+)?(struct|union)\b", e.code)
+        if is_aggregate(e) and kind:
+            typedef = e.code.startswith("typedef") and re.search(r"\}\s*\w+\s*;$", e.code)
+            out[e.key[1]] = e.key[1] if typedef else f"{kind.group(1)} {e.key[1]}"
+    return out
+
+
+def field_types(text: str) -> set[str]:
+    """The types the struct fields of a header are declared with, as
+    written (`u16`, `OSAlarm`, `struct Foo`), pointers left out."""
+    out: set[str] = set()
+
+    def walk(body: str) -> None:
+        for ch in code_chunks(body):
+            if NESTED.match(ch.code):
+                walk(ch.code[ch.code.index("{") + 1:ch.code.rindex("}")])
+            elif not FN_PTR.search(ch.code):
+                m = DECL.match(ch.code)
+                if m and not m.group(2):
+                    words = (m.group(1) or m.group(3)).split()
+                    written = " ".join(w for w in words if w not in ("const", "volatile"))
+                    if written not in ("", "struct", "union", "enum"):
+                        out.add(written)
+    for e in parse_header(text)[0]:
+        if is_aggregate(e):
+            walk(e.code[e.code.index("{") + 1:e.code.rindex("}")])
+    return out
+
+
+def probe_source(rel: str, text: str) -> tuple[str, list[str], list[str]]:
+    """A file that includes the header at rel and declares one pointer per
+    struct of text and one per field type T, the latter inside
+    `struct { char c; T t; }` (t's offset is T's alignment). Returns it
+    with the probed struct names and field types, in the pointers' order."""
+    structs = struct_entries(text)
+    types = sorted(field_types(text))
+    lines = ['#include "types.h"', f'#include "{rel}"']
+    lines += [f"{c} *hm_s{i};" for i, c in enumerate(structs.values())]
+    lines += [f"struct hm_a{i} {{ char c; {t} t; }} *hm_t{i};" for i, t in enumerate(types)]
+    return "\n".join(lines) + "\n", list(structs), types
+
+
+def read_probe(dwarf: str, structs: list[str], types: list[str]) -> Compiled:
+    """Compiled from the DWARF of a compiled probe_source."""
+    import dsindex  # imported here: it reads configure.py, which the tests' repos lack
+    dies = dsindex.parse_dies(dwarf)
+    dt = dsindex.Types(dies)
+    target = {}
+    for d in dies.values():
+        if d["tag"] == "variable" and d["attrs"].get("name", "").startswith("hm_"):
+            ptr = dt.ref(d)
+            target[d["attrs"]["name"]] = dt.strip(dt.ref(dies[ptr])) if ptr is not None else None
+    out = Compiled({}, {})
+    for i, name in enumerate(structs):
+        off = target.get(f"hm_s{i}")
+        if off is None:
+            raise MergeError(f"mwccarm did not report the layout of {name}")
+        rec = dt.aggregate(off)
+        out.structs[name] = (rec["size"], {f["name"]: f["offset"] for f in rec["fields"] if f["name"]})
+    for i, t in enumerate(types):
+        off = target.get(f"hm_t{i}")
+        member = next((dt.member(c) for c in dies[off]["children"] if dies[c]["attrs"].get("name") == "t"),
+                      None) if off is not None else None
+        if member is None:
+            raise MergeError(f"mwccarm did not report the size of {t}")
+        out.sizes[t] = (member["size"], member["offset"])
+    return out
+
+
+def compile_header(cc: Path, flags: str, include: Path, rel: str, text: str) -> Compiled:
+    """Write text to include/rel and compile a probe of it with mwccarm:
+    flags with include in place of their `-i` directory, and -g. Raises
+    MergeError with the compiler's message when it does not compile."""
+    (include / rel).parent.mkdir(parents=True, exist_ok=True)
+    (include / rel).write_text(text)
+    src, structs, types = probe_source(rel, text)
+    probe, obj = include.parent / "hm_probe.c", include.parent / "hm_probe.o"
+    probe.write_text(src)
+    args = flags.split()
+    if "-i" in args:
+        del args[args.index("-i"):args.index("-i") + 2]
+    r = subprocess.run([str(cc), "-c", *args, "-i", str(include), "-g", "-o", str(obj), str(probe)],
+                       cwd=include.parent, capture_output=True, text=True)
+    if r.returncode or not obj.exists():
+        msg = " ".join((r.stdout + r.stderr).split())[:300]
+        raise MergeError(f"mwccarm cannot compile {rel} to check the layout: {msg}")
+    d = subprocess.run(["arm-none-eabi-objdump", "--dwarf=info", str(obj)],
+                       capture_output=True, text=True, check=True)
+    obj.unlink()
+    return read_probe(d.stdout, structs, types)
+
+
+def flat_offsets(items: list[Item], types: Types, base: int = 0) -> dict[str, tuple[int, int]]:
+    """Field name -> (offset, size) of laid-out items, the members of
+    anonymous structs and unions included at their own offsets. Each name
+    of a bit-field group gets the group's storage unit."""
+    out: dict[str, tuple[int, int]] = {}
+    for it in items:
+        if not it.name or it.name == "(unnamed)":
+            continue
+        if it.name.startswith("@"):
+            inner = it.code[it.code.index("{") + 1:it.code.rindex("}")]
+            out.update(flat_offsets(layout(code_chunks(inner), it.nested, types)[0], types, base + it.offset))
+            continue
+        for name in it.name.split(","):
+            if name != "(unnamed)":
+                out[name] = (base + it.offset, it.size)
+    return out
+
+
+def compare_layout(where: str, side: str, items: list[Item], size: int, types: Types,
+                   compiled: Compiled) -> None:
+    """Raise MergeError where the compiler places a field of struct where
+    elsewhere than this merge does, or gives the struct another size. A
+    bit-field only has to fall inside its storage unit."""
+    if where not in compiled.structs:
+        raise MergeError(f"mwccarm did not report the layout of {where} ({side})")
+    c_size, c_fields = compiled.structs[where]
+    for name, (off, n) in flat_offsets(items, types).items():
+        got = c_fields.get(name)
+        bits = "," in name or any(it.width is not None and name in it.name.split(",") for it in items)
+        if got != off and not (bits and got is not None and off <= got < off + n):
+            raise MergeError(f"{side}: header_merge places {where}.{name} at 0x{off:x}, mwccarm at "
+                             + (f"0x{got:x}" if got is not None else "no offset")
+                             + "; refusing to write a layout that differs from the compiler's")
+    if c_size != size:
+        raise MergeError(f"{side}: header_merge makes {where} 0x{size:x} bytes, mwccarm 0x{c_size:x};"
+                         " refusing to write a layout that differs from the compiler's")
+
+
 # ------------------------------------------------------------ header merge
 
 @dataclass
@@ -731,17 +910,36 @@ def rename_words(text: str, names: dict[str, str]) -> str:
     return words.sub(lambda m: names[m.group(0)], text)
 
 
-def merge(ours: str, theirs: str, base: str, types: Types, theirs_types: Types | None = None) -> tuple[str, Report]:
+Probe = Callable[[str, str], Compiled]
+
+
+def merge(ours: str, theirs: str, base: str, types: Types, theirs_types: Types | None = None,
+          probe: Probe | None = None) -> tuple[str, Report]:
     """Merge the commit's version of a header (theirs) into mainline's (ours).
     types has mainline's type definitions first, theirs_types the commit's
     (by default types with theirs read first). Raises MergeError when a
-    part cannot be read or laid out."""
+    part cannot be read or laid out.
+
+    probe(side, text) compiles one version of the header in that side's
+    tree ('ours', 'theirs', 'base' or 'merged'). With it, field types take
+    their sizes from the compiler, each side's layout and the merged one
+    must match the compiler's, and a mismatch raises MergeError."""
     rep = Report()
     o_entries, o_tail = parse_header(ours)
     rep.type_renames = find_aliases(o_entries, parse_header(theirs)[0])
     sides = Sides(types, theirs_types or types.first(rename_words(theirs, rep.type_renames)), types.first(base))
     t_entries = parse_header(rename_words(theirs, rep.type_renames))[0]
     b_by_key = {e.key: e for e in parse_header(rename_words(base, rep.type_renames))[0]}
+    if probe is not None and merges_fields(o_entries, t_entries, b_by_key):
+        sides.compiled = {"ours": probe("ours", ours), "theirs": renamed_compiled(probe("theirs", theirs),
+                                                                                 rep.type_renames)}
+        if base.strip():
+            sides.compiled["base"] = renamed_compiled(probe("base", base), rep.type_renames)
+        # Mainline's types also lay out the merged struct, which can have
+        # fields of types only the commit uses (b31/wlc0: WlWork.thread).
+        sides.ours = sides.ours.with_sizes({**sides.compiled["theirs"].sizes, **sides.compiled["ours"].sizes})
+        sides.theirs = sides.theirs.with_sizes(sides.compiled["theirs"].sizes)
+        sides.base = sides.base.with_sizes(sides.compiled.get("base", sides.compiled["ours"]).sizes)
     res = list(o_entries)
     t_keys = {e.key for e in t_entries}
     pos = start_position(res)
@@ -765,7 +963,40 @@ def merge(ours: str, theirs: str, base: str, types: Types, theirs_types: Types |
         if gone and mine is not None and mine.text == b.text:
             res.remove(mine)
     text = "".join(line for e in res for line in e.lead + e.lines) + "".join(o_tail)
+    if probe is not None and rep.merged_structs:
+        check_merged(text, probe("merged", text), sides, rep)
     return text, rep
+
+
+def merges_fields(ours: list[Entry], theirs: list[Entry], base: dict[tuple, Entry]) -> bool:
+    """Whether merge_entry will merge some struct or union field by field:
+    both sides changed it."""
+    o_by = {e.key: e for e in ours}
+    for t in theirs:
+        o, b = o_by.get(t.key), base.get(t.key)
+        if o is not None and is_aggregate(o) and "{" in t.code and o.full != t.full \
+                and not (b is not None and b.full == o.full):
+            return True
+    return False
+
+
+def renamed_compiled(c: Compiled, names: dict[str, str]) -> Compiled:
+    """c with the commit's type names replaced by mainline's (find_aliases)."""
+    if not names:
+        return c
+    return Compiled({rename_words(t, names): v for t, v in c.sizes.items()},
+                    {names.get(s, s): v for s, v in c.structs.items()})
+
+
+def check_merged(text: str, compiled: Compiled, sides: Sides, rep: Report) -> None:
+    """Every struct merged field by field must come out of the compiler as
+    this merge laid it out."""
+    entries = {e.key: e for e in parse_header(text)[0]}
+    types = sides.ours.with_sizes(compiled.sizes)
+    for name, kind in rep.merged_structs:
+        e = entries[("type", name)]
+        items, size, _ = layout(chunks("".join(split_braces(e.lines)[1]))[0], kind, types)
+        compare_layout(name, "merged", items, size, types, compiled)
 
 
 def start_position(entries: list[Entry]) -> int:
@@ -797,12 +1028,27 @@ def merge_entry(o: Entry, t: Entry, b: Entry | None, sides: Sides, rep: Report) 
         oh, ob, ot = split_braces(o.lines)
         tb = split_braces(t.lines)[1]
         bb = split_braces(b.lines)[1] if b is not None and "{" in b.code else None
+        check_sides(kind, o.key[1], {"ours": ob, "theirs": tb, "base": bb}, sides)
         o.lines = oh + merge_body(kind, ob, tb, bb, sides, rep, o.key[1]) + ot
+        rep.merged_structs.append((o.key[1], kind))
     elif o.key[0] == "define" and (b is None or b.text != t.text) and define_body(o) != define_body(t):
         rep.conflicts.append(f"#define {o.key[1]} is `{define_body(o)}` on mainline"
                              f" and `{define_body(t)}` in the commit")
     elif (b is None or b.text != t.text) and o.code != t.code:
         rep.notes.append(f"kept mainline's {o.key[1] if len(o.key) > 1 else o.code[:40]}")
+
+
+def check_sides(kind: str, where: str, bodies: dict[str, list[str] | None], sides: Sides) -> None:
+    """Before a struct is merged field by field: each side's version must be
+    laid out here as the compiler lays it out in that side's tree, since
+    the merge places fields by these offsets."""
+    for side, body in bodies.items():
+        compiled = sides.compiled.get(side)
+        if body is None or compiled is None:
+            continue
+        types = getattr(sides, side)
+        items, size, _ = layout(chunks("".join(body))[0], kind, types)
+        compare_layout(where, side, items, size, types, compiled)
 
 
 def define_body(e: Entry) -> str:

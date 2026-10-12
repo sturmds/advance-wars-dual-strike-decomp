@@ -7,6 +7,8 @@ Each case builds a throwaway git repo under a temporary directory with a
 base commit, a mainline commit and a branch commit, then replays the branch
 commit onto mainline with `apply_commit.py --no-commit` and checks the
 files. Nothing in this checkout is touched, and no ROM or build is needed.
+Merges of struct fields check the layout with this checkout's mwccarm
+(.cache, from `make setup`); without it those cases are skipped.
 """
 
 import os
@@ -18,6 +20,8 @@ import unittest
 from pathlib import Path
 
 TOOLS = Path(__file__).resolve().parent.parent
+COMPILER = TOOLS.parent / ".cache/tools/metroskrew/bin/mwccarm-2.0-72.exe"
+needs_compiler = unittest.skipUnless(COMPILER.exists(), "needs mwccarm in .cache (make setup)")
 
 TYPES_H = """\
 #ifndef TYPES_H
@@ -26,6 +30,7 @@ TYPES_H = """\
 typedef unsigned char u8;
 typedef unsigned short u16;
 typedef unsigned int u32;
+typedef unsigned long long u64;
 
 #endif
 """
@@ -96,6 +101,7 @@ class RepoCase(unittest.TestCase):
         self.tmp.cleanup()
 
 
+@needs_compiler
 class FieldRenameTest(RepoCase):
     def test_field_rename_scoped_to_struct(self):
         """Issue 0025: a header merge renamed Foo.mapWidth to mainline's name,
@@ -128,6 +134,7 @@ class FieldRenameTest(RepoCase):
         self.assertIn("foo->width", self.repo.read("src/f.c"))
 
 
+@needs_compiler
 class AnonymousUnionTest(RepoCase):
     """Both sides lay an anonymous union over the same field (b12/o3s2:
     Ov003State.unk_1d6, Unk_ov003_0235dd38.unk_4c)."""
@@ -162,6 +169,7 @@ class AnonymousUnionTest(RepoCase):
         self.assertIn("u8 unk_2_4 : 4;", self.repo.read("include/foo.h"))
 
 
+@needs_compiler
 class EmbeddedStructSizeTest(RepoCase):
     """b12/o4s2: mainline grew a struct that another one embeds, and the
     commit's fields after it were placed with mainline's size, 4 bytes late
@@ -187,6 +195,7 @@ class EmbeddedStructSizeTest(RepoCase):
         self.assertNotIn("unk_40", text)
 
 
+@needs_compiler
 class RemovedFieldTest(RepoCase):
     """b23/mb8 and b23/mb6: mainline removed DlPlayHostMsgHead.pad_06 and
     the struct shrank to 6 bytes; a commit made on the older header put it
@@ -230,6 +239,137 @@ class RemovedFieldTest(RepoCase):
             theirs={"include/mb.h": struct("Hdr", view.format("        u8 half;\n", "unk_4"))})
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn("Hdr.half: mainline removed it from the union", r.stderr)
+
+
+ALARM_H = """\
+#ifndef ALARM_H
+#define ALARM_H
+
+#include "types.h"
+
+/* 44 bytes: mwccarm aligns its u64 fields to 4. */
+typedef struct OSAlarm {
+    void *handler;
+    void *arg;
+    u32 tag;
+    u64 fire;
+    void *prev;
+    void *next;
+    u64 period;
+    u64 start;
+} OSAlarm;
+
+#endif
+"""
+
+THREAD_H = """\
+#ifndef {guard}
+#define {guard}
+
+#include "types.h"
+
+typedef struct OSThread {{
+    u8 pad_00[{size}];
+}} OSThread;
+
+#endif
+"""
+
+
+def wl_header(body: str, inc: str) -> str:
+    return f'#ifndef WIFI_DRIVER_H\n#define WIFI_DRIVER_H\n\n#include "types.h"\n#include "{inc}"\n\n' \
+        f"typedef struct WlWork {{\n{body}}} WlWork;\n\n#endif\n"
+
+
+@needs_compiler
+class CompilerLayoutTest(RepoCase):
+    """b31: three ARM7 merges placed fields where mwccarm does not, and only
+    `make release` caught it. The merge now takes field type sizes from the
+    compiler and checks every layout it writes against it."""
+
+    def test_alarm_aligned_to_4(self):
+        """b31/wlq2: an OSAlarm the commit adds at offset 4 was aligned to 8,
+        and the merge clashed with mainline's field after it."""
+        r = self.repo.replay(
+            base={"include/alarm.h": ALARM_H,
+                  "include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x30];\n", "alarm.h")},
+            ours={"include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x2c];\n    u32 last;\n", "alarm.h")},
+            theirs={"include/wl.h": wl_header("    u32 a;\n    OSAlarm alarm;\n    u8 pad_30[4];\n", "alarm.h")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("    u32 a;\n    OSAlarm alarm;\n    u32 last;\n} WlWork;", self.repo.read("include/wl.h"))
+
+    def test_fields_after_mainline_alarm(self):
+        """b31/wmi1: mainline put an OSAlarm into padding; laid out 4 bytes
+        too long, it pushed mainline's later fields away from the commit's
+        names for the same bytes (false renames, then a clash)."""
+        tail = "    u16 {0};\n    u16 {1};\n"
+        r = self.repo.replay(
+            base={"include/alarm.h": ALARM_H,
+                  "include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x2c];\n" + tail.format("unk_30", "unk_32"),
+                                            "alarm.h")},
+            ours={"include/wl.h": wl_header("    u32 a;\n    OSAlarm alarm;\n" + tail.format("unk_30", "unk_32"),
+                                            "alarm.h")},
+            theirs={"include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x2c];\n" + tail.format("flag", "bitmap"),
+                                              "alarm.h")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("    OSAlarm alarm;\n    u16 flag;\n    u16 bitmap;\n", self.repo.read("include/wl.h"))
+
+    def test_arm7_thread_size(self):
+        """b31/wlc0: the merge sized an OSThread with ARM9's definition (148
+        bytes) in place of the ARM7 one the header includes (0x78)."""
+        r = self.repo.replay(
+            base={"include/os.h": THREAD_H.format(guard="THREADS_H", size="148"),
+                  "include/os_arm7.h": THREAD_H.format(guard="THREADS_ARM7_H", size="0x78"),
+                  "src/arm7/wl.c": '#include "wl.h"\n',
+                  "include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x100];\n", "os_arm7.h")},
+            ours={"include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x7c];\n    u32 tasks;\n"
+                                            "    u8 pad_84[0x80];\n", "os_arm7.h")},
+            theirs={"include/wl.h": wl_header("    u32 a;\n    OSThread thread;\n    u8 pad_7c[0x88];\n",
+                                              "os_arm7.h")})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+        self.assertIn("    OSThread thread;\n    u8 pad_7c[0x80 - 0x7c];\n    u32 tasks;\n",
+                      self.repo.read("include/wl.h"))
+
+    def test_refuses_header_that_does_not_compile(self):
+        """When the compiler cannot lay a version out, the merge stops and
+        leaves the conflict to a person."""
+        r = self.repo.replay(
+            base={"include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0x10];\n", "types.h")},
+            ours={"include/wl.h": wl_header("    u32 a;\n    u32 b;\n    u8 pad_08[0xc];\n", "types.h")},
+            theirs={"include/wl.h": wl_header("    u32 a;\n    u8 pad_04[0xc];\n    Missing c;\n", "types.h")})
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("cannot merge by meaning: mwccarm cannot compile wl.h", r.stdout)
+        self.assertIn("<<<<<<< current", self.repo.read("include/wl.h"))
+
+
+class LayoutRefusalTest(unittest.TestCase):
+    """header_merge refuses to write a struct whose layout the compiler
+    reports differently, for each side and for the result."""
+    OURS = "typedef struct S {\n    u32 a;\n    u16 b;\n    u8 pad_06[2];\n} S;\n"
+    THEIRS = "typedef struct S {\n    u32 a;\n    u8 pad_04[2];\n    u16 c;\n} S;\n"
+    BASE = "typedef struct S {\n    u32 a;\n    u8 pad_04[4];\n} S;\n"
+
+    def merge(self, wrong: str):
+        import header_merge
+
+        def probe(side, text):
+            fields = {"ours": {"a": 0, "b": 4}, "theirs": {"a": 0, "c": 6}, "base": {"a": 0},
+                      "merged": {"a": 0, "b": 4, "c": 6}}[side]
+            if side == wrong:
+                fields = {k: v + (2 if k != "a" else 0) for k, v in fields.items()}
+            return header_merge.Compiled({"u32": (4, 4), "u16": (2, 2), "u8": (1, 1)}, {"S": (8, fields)})
+        types = header_merge.Types([TYPES_H])
+        return header_merge.merge(header(self.OURS), header(self.THEIRS), header(self.BASE), types, probe=probe)
+
+    def test_agrees(self):
+        text, rep = self.merge("")
+        self.assertIn("    u16 b;\n    u16 c;\n", text)
+
+    def test_refuses_each_side(self):
+        import header_merge
+        for side in ("ours", "theirs", "merged"):
+            with self.subTest(side=side), self.assertRaisesRegex(header_merge.MergeError, f"^{side}: .*refusing"):
+                self.merge(side)
 
 
 def header(body: str) -> str:

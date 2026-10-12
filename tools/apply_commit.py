@@ -260,7 +260,8 @@ def merge_header(path: str, ours: str, theirs: str, base: str) -> bool:
     """Merge a conflicting header by meaning (tools/header_merge.py). False
     if it cannot be read; the conflict markers of git merge-file then stay."""
     try:
-        text, rep = header_merge.merge(ours, theirs, base, *header_types(path, ours, theirs))
+        text, rep = header_merge.merge(ours, theirs, base, *header_types(path, ours, theirs),
+                                       probe=HeaderProbe(path))
     except header_merge.MergeError as e:
         print(f"{path}: cannot merge by meaning: {e}")
         return False
@@ -282,6 +283,84 @@ def header_types(path: str, ours: str, theirs: str) -> tuple[header_merge.Types,
               if name.startswith("include/") and name != path]
     return (header_merge.Types([ours] + mine + [theirs] + commit),
             header_merge.Types([theirs] + commit + [ours] + mine))
+
+
+class HeaderProbe:
+    """Compiles a version of the header at path in its side's tree, for
+    header_merge.merge (b31: three ARM7 merges placed fields at offsets
+    the compiler did not use). The trees are HEAD's include/ for 'ours',
+    the commit's for 'theirs', its parent's for 'base', and for 'merged'
+    the include/ of this checkout, where a header still in conflict counts
+    as HEAD's and one the commit changed that this branch did not as the
+    commit's. It compiles with the pinned mwccarm of the checkout holding
+    this script, with the flags of each module that includes the header."""
+
+    def __init__(self, path: str):
+        self.rel = path.removeprefix("include/")
+        self.dir = ROOT / "build" / "apply_commit" / "probe"
+        self.flag_sets: list[str] | None = None
+
+    def __call__(self, side: str, text: str) -> header_merge.Compiled:
+        import configure
+        cc = configure.ROOT / configure.CC
+        if not cc.exists():
+            raise header_merge.MergeError(f"{configure.CC} is missing (run make setup); without it the"
+                                          " merged struct layout cannot be checked")
+        include = self.tree(side)
+        results = []
+        for flags in self.flags(configure):
+            results.append(header_merge.compile_header(cc, flags, include, self.rel, text))
+        if any(r != results[0] for r in results):
+            raise header_merge.MergeError(f"{self.rel} lays out differently with the ARM9 and ARM7 flags")
+        return results[0]
+
+    def tree(self, side: str) -> Path:
+        import io
+        import shutil
+        import tarfile
+        root = self.dir / side
+        if root.exists():
+            shutil.rmtree(root)
+        root.mkdir(parents=True)
+        rev = {"ours": "HEAD", "theirs": COMMIT, "base": f"{COMMIT}^"}.get(side)
+        if rev is not None:
+            data = subprocess.run(["git", "archive", rev, "include"], cwd=ROOT, capture_output=True,
+                                  check=True).stdout
+            with tarfile.open(fileobj=io.BytesIO(data)) as tar:
+                tar.extractall(root, filter="data")
+            return root / "include"
+        shutil.copytree(ROOT / "include", root / "include")
+        changed = git("diff-tree", "--no-commit-id", "-r", "--name-only", f"{COMMIT}^", COMMIT).splitlines()
+        for p in (root / "include").rglob("*.h"):
+            name = p.relative_to(root).as_posix()
+            text = p.read_text()
+            if "<<<<<<< current" in text:
+                p.write_text(show("HEAD", name) or "")
+            elif name in changed and text == (show(f"{COMMIT}^", name) or ""):
+                p.write_text(show(COMMIT, name) or "")
+        return root / "include"
+
+    def flags(self, configure) -> list[str]:
+        """ARM7's flags if a file under src/arm7/ includes the header, ARM9's if
+        another file does (directly or through other headers); both if both or
+        neither."""
+        if self.flag_sets is not None:
+            return self.flag_sets
+        users, todo = set(), [self.rel]
+        files = list((ROOT / "include").rglob("*.h")) + list((ROOT / "src").rglob("*.c"))
+        includes = {p: set(INCLUDE.findall(p.read_text(errors="replace"))) for p in files}
+        while todo:
+            name = todo.pop()
+            for p, names in includes.items():
+                if name in names and p not in users:
+                    users.add(p)
+                    if p.suffix == ".h":
+                        todo.append(p.relative_to(ROOT / "include").as_posix())
+        arm7 = any(p.suffix == ".c" and configure.is_arm7_source(p.relative_to(ROOT)) for p in users)
+        arm9 = any(p.suffix == ".c" and not configure.is_arm7_source(p.relative_to(ROOT)) for p in users)
+        self.flag_sets = [configure.CFLAGS7 if arm7 else configure.CFLAGS] if arm7 != arm9 \
+            else [configure.CFLAGS, configure.CFLAGS7]
+        return self.flag_sets
 
 
 def member_access(name: str) -> re.Pattern:
