@@ -89,6 +89,12 @@ typedef struct WmspWork {
 
 extern WmspState data_arm7_027d7c44;
 
+/* The parent parameters kept in WMStatus (see WMStatus.pparam). */
+static inline WMParentParam *Wmsp_ParentParam(WMStatus *status)
+{
+    return (WMParentParam *)status->pparam;
+}
+
 /* Held while a reply buffer is filled and sent. */
 extern OSMutex data_arm7_027d813c;
 
