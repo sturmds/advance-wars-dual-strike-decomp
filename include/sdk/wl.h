@@ -476,6 +476,11 @@ typedef struct WlParams {
     u16 aid;
     u8 pad_6c[0x1c];
     u16 unk_88;
+    u8 pad_8a[0x12];
+    u8 *unk_9c;  /* buffer of up to 129 bytes */
+    u16 unk_a0;  /* length stored with unk_9c */
+    u16 unk_a2;
+    u16 unk_a4;
 } WlParams;
 
 /* 0x318: offsetof(WlWork, state) + 0x18, written as one constant so the
