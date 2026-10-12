@@ -4,7 +4,7 @@ extern u16 data_arm7_027d6680[3];
 
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_027c926c(int length, u8 *data);
-void func_arm7_027c95f4(u16 *masks);
+void WifiParam_StoreRates(u16 *masks);
 void func_arm7_027c963c(u16 channel, int arg);
 void func_arm7_027c9a54(int value);
 void func_arm7_027c9aa0(int value);
@@ -82,7 +82,7 @@ int func_arm7_027cc97c(WlBssSettings *request, WlReply *reply)
     func_arm7_027c9aa0(request->unk_32);
     func_arm7_027c9a54(request->unk_34);
     func_arm7_027c963c(request->channel, 0);
-    func_arm7_027c95f4(request->unk_38);
+    WifiParam_StoreRates(request->unk_38);
     func_arm7_027c926c(request->unk_3c, request->unk_3e);
     link->unk_a4 = 0;
     func_arm7_037f8e04();
