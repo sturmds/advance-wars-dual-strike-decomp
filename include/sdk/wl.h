@@ -165,8 +165,24 @@ typedef struct Unk_027cdd18 {
     u16 unk_1a;
 } Unk_027cdd18;
 
+/* A BSS seen in a beacon, kept in WlLimits.bssList. */
+typedef struct WlBssEntry {
+    u16 rssi;           /* 0: the entry is free */
+    u16 unk_02;
+    u16 capability;
+    u16 bssid[3];
+    u16 ssidLength;
+    u8 ssid[32];
+    u16 beaconInterval;
+    u16 ttl;            /* WIFI_NETWORK_LIFETIME when recorded; task 18 counts it down and frees the entry at 0 */
+} WlBssEntry;
+
+#define WIFI_REMEMBERED_NETWORKS 4
+#define WIFI_NETWORK_LIFETIME 0x400
+
 typedef struct WlLimits {
-    u8 pad_00[0xd8];
+    u8 pad_00[0x10];
+    WlBssEntry bssList[WIFI_REMEMBERED_NETWORKS];
     struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
     struct OSMessageQueue *fromHost; /* buffers the host side hands to the driver */
     u32 unk_e0;
