@@ -1,7 +1,7 @@
 #include "sdk/wmsp.h"
 
 /* Queues the data on a port; returns a WIRELESS_RESULT_*. */
-int func_arm7_027c6824(u16 childBitmap, u16 prio, u16 port, u32 destBitmap, const u16 *data, u16 size,
+int WMSP_QueuePortSend(u16 childBitmap, u16 prio, u16 port, u32 destBitmap, const u16 *data, u16 size,
                        void (*callback)(void *arg), void *arg);
 
 void WMSP_SetMPData(WmspSetMPDataRequest *request)
@@ -38,7 +38,7 @@ void WMSP_SetMPData(WmspSetMPDataRequest *request)
     } else if ((destBitmap & childBitmap) == 0) {
         result = WM_ERRCODE_SUCCESS;
     } else {
-        result = func_arm7_027c6824(childBitmap, prio, port, destBitmap, data, size, callback, arg);
+        result = WMSP_QueuePortSend(childBitmap, prio, port, destBitmap, data, size, callback, arg);
     }
     if (result != WM_ERRCODE_OPERATING) {
         reply = Wmsp_GetCallbackBuffer();

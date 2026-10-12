@@ -403,7 +403,18 @@ typedef struct WMDataSharingInfo {
 /* One port send request, an entry in the send queue. */
 typedef struct RadioOutboxEntry {
     u16 next;                          /* index of the next entry in its list */
-    u8 pad_02[0x1e];
+    u16 port;
+    u16 destBitmap;
+    u16 restBitmap;                    /* children the data has not reached yet */
+    u16 sentBitmap;
+    u16 unk_0a;                        /* 0 when queued */
+    u8 pad_0c[2];
+    u16 size;
+    u16 seqNo;
+    u16 unk_12;                        /* WMStatus.unk_98 when queued */
+    const u16 *data;
+    void (*callback)(void *arg);
+    void *arg;
 } RadioOutboxEntry;
 
 /* A list of RadioOutboxEntry entries, by index. */
