@@ -158,7 +158,7 @@ a_zero:
     blt return_b
     cmp r0, #0
     beq return_inf
-    b a_zero_b_inf_or_nan
+    b a_zero_b_nan
 b_zero_or_subnormal:
     movs r1, r1, lsl #1
     beq return_a
@@ -242,7 +242,7 @@ overflow_toward_minus_inf:
     addeq r0, r0, r2, lsr #31
     add sp, sp, #12
     bx lr
-a_zero_b_inf_or_nan:
+a_zero_b_nan:
     mov r3, r0
     mvn r0, #0x80000000
     tst r3, #0x80000000
