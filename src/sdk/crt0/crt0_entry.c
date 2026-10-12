@@ -8,7 +8,7 @@ void func_02000900(u32 data, void *dest, int size);
 void MIi_UncompressBackward(void *bottom);
 void do_autoload(void);
 void init_cp15(void);
-void func_02000afc(void);
+void NitroStartUp(void);
 void func_0212950c(void);
 void __call_static_initializers(void);
 
@@ -74,7 +74,7 @@ clear_bss:
     ldr r0, =OS_IrqHandler
     str r0, [r1]
     bl func_0212950c
-    bl func_02000afc
+    bl NitroStartUp
     bl __call_static_initializers
     ldr r1, =main
     ldr lr, =0xffff0000

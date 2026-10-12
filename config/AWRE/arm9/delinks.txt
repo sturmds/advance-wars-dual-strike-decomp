@@ -60,6 +60,10 @@ src/sdk/crt0/init_cp15.c:
     complete
     .text       start:0x02000a14 end:0x02000afc
 
+src/sdk/crt0/nitro_start_up.c:
+    complete
+    .text       start:0x02000afc end:0x02000b00
+
 src/game/main/main.c:
     complete
     .text       start:0x02000b24 end:0x02000cfc
