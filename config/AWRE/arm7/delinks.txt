@@ -1056,6 +1056,10 @@ src/arm7/sdk/wl/wifi_station_set_up_entry.c:
     complete
     .text       start:0x027cab94 end:0x027cac58
 
+src/arm7/sdk/wl/wifi_station_forget_peers.c:
+    complete
+    .text       start:0x027cac58 end:0x027cacec
+
 src/arm7/sdk/wl/wifi_beacon_mark_traffic_for.c:
     complete
     .text       start:0x027caf88 end:0x027cb030

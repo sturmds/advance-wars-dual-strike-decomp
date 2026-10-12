@@ -6,7 +6,7 @@ void Wifi_SwitchMode(int mode);
 void WifiBeacon_Enable(void);
 void func_arm7_027c92e8(void);
 int func_arm7_027c94c0(int value);
-void func_arm7_027cac58(void);
+void WifiStation_ForgetPeers(void);
 void WifiScan_ForgetNetworks(void);
 void WifiTx_LayOutSlots(void);
 void WifiRx_SetUpRing(void);
@@ -46,7 +46,7 @@ void Wifi_OpenSession(void)
     IO_WIRELESS_STATION_ID = 0;
     IO_WIRELESS_STATION_ID_4BIT = 0;
     WIFI_MAC_WAKE_CONTROL = 15;
-    func_arm7_027cac58();
+    WifiStation_ForgetPeers();
     WifiScan_ForgetNetworks();
     WifiTx_LayOutSlots();
     WifiRx_SetUpRing();
