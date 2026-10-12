@@ -5,7 +5,7 @@ FpTrapHandler *func_02129754(void);
 u32 func_02129540(u32 clearMask, u32 xorMask);
 void raise(int signal);
 
-FpValue func_02121f3c(FpValue x, FpValue y, u32 op)
+FpValue __fp_trap(FpValue x, FpValue y, u32 op)
 {
     FpTrapHandler *handlers = func_02129754();
     FpTrapHandler handler;

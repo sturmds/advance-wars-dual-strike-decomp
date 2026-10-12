@@ -1,8 +1,8 @@
 #include "types.h"
 
-u8 *func_02129748(void);
-float func_02121e0c(float a, float b, u32 op);
-float func_02121ef4(float a, u32 op);
+u32 *__fp_status(void);
+float __fp_trap_ff(float a, float b, u32 op);
+float __fp_trap_f(float a, u32 op);
 
 /*
  * Soft-float single-precision divide: r0 = r0 / r1, as IEEE bit patterns.
@@ -70,7 +70,7 @@ divide:
     addmi r0, r0, #1
     subpl r1, r1, lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -258,7 +258,7 @@ a_subnormal_b_exp_zero:
     b divide
 underflow:
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r1, [r1]
@@ -285,7 +285,7 @@ underflow:
     addmi r0, r0, #1
     subpl r1, r1, lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -312,7 +312,7 @@ exact_plus_one:
     bx lr
 underflow_shift_24:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -334,7 +334,7 @@ b_nan:
     b nan_operand
 divide_by_zero:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -368,7 +368,7 @@ nan_operand:
     ldmnefd sp!, {lr}
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -381,7 +381,7 @@ nan_operand:
     bx lr
 signal_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -396,7 +396,7 @@ return_nan:
     bx lr
 overflow:
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -424,7 +424,7 @@ overflow_toward_minus_inf:
     bx lr
 underflow_to_zero:
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -458,7 +458,7 @@ overflow_trap_after_round:
     add sp, sp, #8
     sub r0, r0, #0x60000000
     mov r1, #0x10000004
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 overflow_trap:
@@ -466,7 +466,7 @@ overflow_trap:
     sub ip, ip, #0xc0
     add r0, r0, ip, lsl #23
     mov r1, #0x10000004
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 underflow_trap:
@@ -474,25 +474,25 @@ underflow_trap:
     add ip, ip, #0xc0
     add r0, r0, ip, lsl #23
     mov r1, #0x20000004
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 divide_by_zero_trap:
     add sp, sp, #8
     ldr r2, =0x08000004
-    bl func_02121e0c
+    bl __fp_trap_ff
     ldmfd sp!, {lr}
     bx lr
 invalid_trap:
     ldmfd sp!, {r0, r1}
     ldr r2, =0x04000004
-    bl func_02121e0c
+    bl __fp_trap_ff
     ldmfd sp!, {lr}
     bx lr
 inexact_trap:
     add sp, sp, #8
     mov r1, #0x40000004
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 }

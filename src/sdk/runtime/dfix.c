@@ -1,8 +1,8 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 extern double func_02121ea8(double a, u32 op);
-extern float func_02121ef4(float a, u32 op);
+extern float __fp_trap_f(float a, u32 op);
 
 /*
  * Converts a double (r0 low word, r1 high word) to a signed 32-bit integer,
@@ -30,7 +30,7 @@ asm int _dfix(double x)
     orrs ip, ip, r3, lsl r2
     bxeq lr
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -44,7 +44,7 @@ below_one:
     bxeq lr
     mov r0, #0
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]
@@ -59,7 +59,7 @@ out_of_range:
     beq maybe_min_int
 invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -77,7 +77,7 @@ maybe_min_int:
     mov r0, #0x80000000
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -95,7 +95,7 @@ invalid_trap:
 inexact_trap:
     ldr r1, =0x40c000c8
     stmfd sp!, {lr}
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 }

@@ -1,9 +1,9 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 
 /*
- * Read-modify-write of the status word func_02129748 returns: clears the bits
+ * Read-modify-write of the status word __fp_status returns: clears the bits
  * in r0, xors in r1, and returns the old word. The caller is the
  * soft-float trap code. Assembly: r0 and r1 survive the call by being saved
  * and restored around it.
@@ -11,7 +11,7 @@ extern u8 *func_02129748(void);
 asm u32 func_02129540(u32 clearMask, u32 xorBits)
 {
     stmfd sp!, {r0, r1, r2, r12, lr}
-    bl func_02129748
+    bl __fp_status
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, r12, lr}
     ldr r2, [r3]

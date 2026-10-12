@@ -1,5 +1,5 @@
 #include "types.h"
-#include "sdk/msl_decimal.h"
+#include "sdk/msl.h"
 
 void __round_decimal(Decimal *dec, int newLength)
 {
@@ -12,7 +12,7 @@ void __round_decimal(Decimal *dec, int newLength)
 
     if (newLength < 0) {
 zero: /* shared with the all-digits-rounded-away case below; needed to match */
-        dec->exponent = 0;
+        dec->exp = 0;
         dec->length = 1;
         dec->digits[0] = '0';
         return;
@@ -51,7 +51,7 @@ zero: /* shared with the all-digits-rounded-away case below; needed to match */
     }
 
     if (carry) {
-        dec->exponent++;
+        dec->exp++;
         dec->length = 1;
         dec->digits[0] = '1';
         return;

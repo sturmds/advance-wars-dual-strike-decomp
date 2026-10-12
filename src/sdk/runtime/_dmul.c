@@ -12,9 +12,9 @@
  * with an eor), so symbols.txt lists it as a label.
  */
 
-u8 *func_02129748(void);
-double func_02121e58(double a, u32 op);
-double func_02121db0(double a, double b, u32 op);
+u32 *__fp_status(void);
+double __fp_trap_d(double a, u32 op);
+double __fp_trap_dd(double a, double b, u32 op);
 
 asm double _dmul(double a, double b)
 {
@@ -79,7 +79,7 @@ normalized:
     ldmeqfd sp!, {r4, r5, r6, r7, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -219,7 +219,7 @@ b_normalize_clz:
     b multiply
 underflow:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r2, [r2]
@@ -254,7 +254,7 @@ underflow:
     ldmeqfd sp!, {r4, r5, r6, r7, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -333,7 +333,7 @@ b_is_nan:
     ldmnefd sp!, {r4, r5, r6, r7, lr}
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -346,7 +346,7 @@ b_is_nan:
     bx lr
 signal_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -365,7 +365,7 @@ round_tiny:
     mov r1, lr
     mov r0, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -386,7 +386,7 @@ underflow_to_zero:
     mov r1, lr
     mov r0, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -407,7 +407,7 @@ underflow_to_zero:
     bx lr
 overflow:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -451,7 +451,7 @@ trap_round_overflow:
     add sp, sp, #16
     sub r1, r1, #0x60000000
     ldr r2, =0x10000093
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 trap_overflow:
@@ -463,7 +463,7 @@ trap_overflow:
     sub ip, ip, #0x600
     orr r1, r1, ip, lsl #20
     ldr r2, =0x10000093
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 trap_underflow:
@@ -475,21 +475,21 @@ trap_underflow:
     add ip, ip, #0x600
     orr r1, r1, ip, lsl #20
     ldr r2, =0x20000093
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, =0x04000093
     stmfd sp!, {ip}
-    bl func_02121db0
+    bl __fp_trap_dd
     add sp, sp, #4
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 trap_inexact:
     add sp, sp, #16
     ldr r2, =0x40000093
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, r5, r6, r7, lr}
     bx lr
 }

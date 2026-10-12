@@ -1,17 +1,17 @@
 #include "types.h"
 #include "game/Unk_02160ac0.h"
 #include "game/ov003_frame_task.h"
+#include "sdk/msl_string.h"
 
 u16 Wireless_GetChildAids(void);
-int Wireless_GetSharedData(int a0);
+u16 *Wireless_GetSharedData(u16 aid);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
 void Link_FlagError(void);
-int strcmp(int a0, void *a1);
 void Task_ResumeScript(Ov003FrameTask *task);
 
-extern u8 data_ov003_02364b44[];
+extern char data_ov003_02364b44[];
 
 /* Task script command. Outside a link game it goes straight on. In one it
  * waits while strcmp matches some link player against the string
@@ -32,7 +32,7 @@ void Ov003_WaitLinkFade(Ov003FrameTask *task)
     found = 0;
     for (i = 0; i < 8; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (strcmp(Wireless_GetSharedData((u16)i), data_ov003_02364b44)) {
+            if (strcmp((const char *)Wireless_GetSharedData((u16)i), data_ov003_02364b44)) {
                 found = 1;
                 break;
             }

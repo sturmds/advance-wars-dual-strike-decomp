@@ -1,16 +1,16 @@
 #include "types.h"
 #include "game/task.h"
+#include "sdk/msl_string.h"
 
-extern u8 data_0215c810[];
+extern char data_0215c810[];
 
 u16 Wireless_GetChildAids(void);
-int Wireless_GetSharedData(int a0);
+u16 *Wireless_GetSharedData(u16 aid);
 int Link_IsActive(void);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
 void Link_FlagError(void);
-int strcmp(int a0, void *a1);
 void Task_ResumeScript(Task *task);
 
 /* The frame counter shares its slot with Task.unk_4c. */
@@ -31,7 +31,7 @@ void LinkTask_WaitForPeerData(Task *task)
     found = 0;
     for (i = 0; i < 4; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (strcmp(Wireless_GetSharedData((u16)i), data_0215c810)) {
+            if (strcmp((const char *)Wireless_GetSharedData((u16)i), data_0215c810)) {
                 found = 1;
                 break;
             }

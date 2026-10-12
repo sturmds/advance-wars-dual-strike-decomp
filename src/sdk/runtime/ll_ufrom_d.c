@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
-extern double func_02121e58(double a, u32 op);
+u32 *__fp_status(void);
+extern double __fp_trap_d(double a, u32 op);
 
 /*
  * Converts a double (r0 low word, r1 high word) to an unsigned 64-bit
@@ -32,7 +32,7 @@ asm u64 _ll_ufrom_d(double x)
     orrs ip, r3, ip, lsl r2
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -50,7 +50,7 @@ small_shift:
     movs ip, r3, lsl r2
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -65,7 +65,7 @@ below_one:
     mov r1, #0
     mov r0, #0
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -83,7 +83,7 @@ negative:
     bx lr
 invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -97,13 +97,13 @@ invalid:
 invalid_trap:
     ldr r2, =0x04c000f8
     stmfd sp!, {lr}
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {lr}
     bx lr
 inexact_trap:
     ldr r2, =0x40c000f8
     stmfd sp!, {lr}
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {lr}
     bx lr
 }

@@ -153,6 +153,8 @@ void __dorounddecup(Decimal *dec, int count);
 int __must_round(Decimal *dec, int count);
 /* Rounds the digit string to count digits. */
 void __rounddec(Decimal *dec, int count);
+/* Rounds the ASCII digits to newLength digits, half to even. A negative newLength gives zero. */
+void __round_decimal(Decimal *dec, int newLength);
 /* Returns the number of trailing zero bits of value, 32 for 0. */
 int __cnt_trail_zeros(u32 value);
 
@@ -161,5 +163,17 @@ int __StringWrite(void *context, const char *src, u32 count);
 int vsnprintf(char *buf, u32 size, const char *format, va_list args);
 int snprintf(char *buf, u32 size, const char *format, ...);
 int sprintf(char *buf, const char *format, ...);
+
+/* MSL's recursive locks: the owning thread's id and the nesting count of
+ * each lock. */
+#define MSL_LOCK_COUNT 9
+#define MSL_LOCK_EXIT 0
+#define MSL_LOCK_SIGNAL 7
+
+extern u32 gMslLockOwners[MSL_LOCK_COUNT];
+extern int gMslLockCounts[MSL_LOCK_COUNT];
+
+/* Character class bits for codes 0-127 (bit 3: decimal digit). */
+extern const u16 __ctype_map[];
 
 #endif

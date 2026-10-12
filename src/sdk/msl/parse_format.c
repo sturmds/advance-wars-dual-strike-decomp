@@ -2,10 +2,8 @@
 #include "stdarg.h"
 #include "sdk/msl.h"
 
-/* Character class table of the C locale; bit 3 marks the digits. */
-extern u16 data_02151b68[];
-
-#define IS_DIGIT(c) (((c) < 0 || (c) >= 128) ? 0 : (data_02151b68[c] & 8))
+/* __ctype_map bit 3 marks the digits. */
+#define IS_DIGIT(c) (((c) < 0 || (c) >= 128) ? 0 : (__ctype_map[c] & 8))
 
 const char *parse_format(const char *format, va_list *args, PrintFormat *out)
 {

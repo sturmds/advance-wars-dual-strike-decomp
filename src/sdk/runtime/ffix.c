@@ -1,10 +1,10 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 
 /*
  * Converts a float to a signed 32-bit integer, rounding toward zero.
- * func_02129748 returns the soft-float status word: flags in bits 0-4
+ * __fp_status returns the soft-float status word: flags in bits 0-4
  * (bit 4 inexact), trap enables in bits 8-12 (bit 12 inexact). An inexact
  * result sets the flag, or calls the trap handler when its enable is set.
  * Values of 2^31 and above, and negative 2^31 exactly, continue in
@@ -29,7 +29,7 @@ asm int _ffix(float x)
     movs r1, r1, lsl r2
     bxeq lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -43,7 +43,7 @@ below_one:
     bxeq lr
     mov r0, #0
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]

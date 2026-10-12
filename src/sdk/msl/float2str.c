@@ -2,15 +2,10 @@
 #include "sdk/msl.h"
 #include "sdk/msl_string.h"
 
-/* Declared with msl.h's Decimal: sdk/msl_decimal.h defines a second Decimal with the same layout. */
-void __round_decimal(Decimal *dec, int newLength);
-
-/* Character class table of the C locale; bit 0x200 marks upper case letters. */
-extern const u16 data_02151b68[];
-
+/* __ctype_map bit 0x200 marks upper case letters. */
 static inline int IsUpper(int c)
 {
-    return (c < 0 || c >= 128) ? 0 : (data_02151b68[c] & 0x200);
+    return (c < 0 || c >= 128) ? 0 : (__ctype_map[c] & 0x200);
 }
 
 extern const char data_0216df00[]; /* "-INF" */

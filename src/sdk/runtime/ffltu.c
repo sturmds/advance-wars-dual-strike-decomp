@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 
 /*
  * Converts an unsigned 32-bit integer to a float. The value is normalised
@@ -28,7 +28,7 @@ normalised:
     orr r0, r0, r3, lsl #23
     bxeq lr
     stmfd sp!, {r0, r2, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, r0
     ldmfd sp!, {r0, r2, r3, ip, lr}
     ldr r3, [r1]

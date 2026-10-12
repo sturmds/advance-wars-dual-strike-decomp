@@ -9,9 +9,9 @@
  * through into __dsub_same_sign, which _dadd also branches into.
  */
 
-u8 *func_02129748(void);
-double func_02121e58(double a, u32 op);
-double func_02121db0(double a, double b, u32 op);
+u32 *__fp_status(void);
+double __fp_trap_d(double a, u32 op);
+double __fp_trap_dd(double a, double b, u32 op);
 asm void __dadd_same_sign(void);
 
 asm double _dsub(double a, double b)
@@ -91,7 +91,7 @@ pack:
     ldmeqfd sp!, {r4, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -340,7 +340,7 @@ return_nan:
     ldmnefd sp!, {r4, lr}
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -353,7 +353,7 @@ return_nan:
     bx lr
 signal_invalid:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -372,7 +372,7 @@ return_zero:
     mov r1, #0
     mov r0, #0
     stmfd sp!, {r0, r1, r2, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, ip, lr}
     ldr r3, [r3]
@@ -392,14 +392,14 @@ trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, =0x04000092
     stmfd sp!, {ip}
-    bl func_02121db0
+    bl __fp_trap_dd
     add sp, sp, #4
     ldmfd sp!, {r4, lr}
     bx lr
 trap_inexact:
     add sp, sp, #16
     ldr r2, =0x40000092
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, lr}
     bx lr
 }

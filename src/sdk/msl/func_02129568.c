@@ -1,6 +1,6 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 
 /*
  * Same update as func_02129540 on the status word, but both arguments and the
@@ -17,7 +17,7 @@ asm u32 func_02129568(u32 clearMask, u32 xorBits)
     and r3, r1, #0x1f0000
     orr r1, r2, r3, lsr #8
     stmfd sp!, {r0, r1, r2, r12, lr}
-    bl func_02129748
+    bl __fp_status
     mov r3, r0
     ldmfd sp!, {r0, r1, r2, r12, lr}
     ldr r2, [r3]

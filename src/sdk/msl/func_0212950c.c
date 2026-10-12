@@ -1,10 +1,10 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
+u32 *__fp_status(void);
 extern u8 *func_02129754(void);
 
 /*
- * Called from Entry. Clears the word func_02129748 returns and the five words
+ * Called from Entry. Clears the word __fp_status returns and the five words
  * after the first in the block func_02129754 returns. Written as assembly
  * because the original keeps the stack 4 bytes off 8-byte alignment, which
  * compiled C never does.
@@ -12,7 +12,7 @@ extern u8 *func_02129754(void);
 asm void func_0212950c(void)
 {
     stmfd sp!, {lr}
-    bl func_02129748
+    bl __fp_status
     mov r1, #0
     str r1, [r0]
     bl func_02129754

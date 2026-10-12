@@ -9,16 +9,16 @@
  * __dadd_same_sign. The two halves are separate functions so that _dsub can
  * branch into the second one by name.
  *
- * func_02129748 returns the floating-point status word: bit 0 invalid,
+ * __fp_status returns the floating-point status word: bit 0 invalid,
  * bit 2 overflow, bit 4 inexact; bits 8, 10 and 12 enable the trap for each;
  * bits 22-23 the rounding mode (0 nearest, 1 toward +inf, 2 toward -inf,
- * 3 toward zero). A trap goes to func_02121e58 or func_02121db0 with an
+ * 3 toward zero). A trap goes to __fp_trap_d or __fp_trap_dd with an
  * exception code.
  */
 
-u8 *func_02129748(void);
-double func_02121e58(double a, u32 op);
-double func_02121db0(double a, double b, u32 op);
+u32 *__fp_status(void);
+double __fp_trap_d(double a, u32 op);
+double __fp_trap_dd(double a, double b, u32 op);
 asm void __dsub_same_sign(void);
 
 asm double _dadd(double a, double b)
@@ -111,7 +111,7 @@ pack:
     ldmeqfd sp!, {r4, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -254,7 +254,7 @@ pack_subnormal:
     ldmeqfd sp!, {r4, lr}
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -324,7 +324,7 @@ return_nan:
     ldmnefd sp!, {r4, lr}
     bxne lr
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -337,7 +337,7 @@ return_nan:
     bx lr
 a_signaling_nan:
     stmfd sp!, {r0, r1, r3, ip, lr}
-    bl func_02129748
+    bl __fp_status
     mov r2, r0
     ldmfd sp!, {r0, r1, r3, ip, lr}
     ldr r3, [r2]
@@ -356,7 +356,7 @@ overflow:
     movge lr, #0x80000000
     movlt lr, #0
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -394,7 +394,7 @@ trap_round_overflow:
     add sp, sp, #16
     sub r1, r1, #0x60000000
     ldr r2, =0x10000091
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, lr}
     bx lr
 trap_overflow:
@@ -407,21 +407,21 @@ trap_overflow:
     orr r1, r1, r2, lsl #20
     orr r1, r1, lr
     ldr r2, =0x10000091
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, lr}
     bx lr
 trap_invalid:
     ldmfd sp!, {r0, r1, r2, r3}
     ldr ip, =0x04000091
     stmfd sp!, {ip}
-    bl func_02121db0
+    bl __fp_trap_dd
     add sp, sp, #4
     ldmfd sp!, {r4, lr}
     bx lr
 trap_inexact:
     add sp, sp, #16
     ldr r2, =0x40000091
-    bl func_02121e58
+    bl __fp_trap_d
     ldmfd sp!, {r4, lr}
     bx lr
 }

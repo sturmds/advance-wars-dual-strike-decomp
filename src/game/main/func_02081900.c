@@ -1,15 +1,15 @@
 #include "types.h"
 #include "game/task.h"
+#include "sdk/msl_string.h"
 
-extern u8 data_0216061c[];
+extern char data_0216061c[];
 
 u16 Wireless_GetChildAids(void);
-int Wireless_GetSharedData(int a0);
+u16 *Wireless_GetSharedData(u16 aid);
 int func_0207bd94(void);
 void func_0207b48c(void);
 void func_0207b4b0(void *a0);
 void Link_FlagError(void);
-int strcmp(int a0, void *a1);
 void Task_ResumeScript(Task *task);
 
 void func_02081900(Task *task)
@@ -23,7 +23,7 @@ void func_02081900(Task *task)
     found = 0;
     for (i = 0; i < 4; i++) {
         if ((Wireless_GetChildAids() | 1) & (1 << i)) {
-            if (strcmp(Wireless_GetSharedData((u16)i), data_0216061c)) {
+            if (strcmp((const char *)Wireless_GetSharedData((u16)i), data_0216061c)) {
                 found = 1;
                 break;
             }

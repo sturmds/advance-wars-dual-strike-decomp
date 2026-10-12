@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/os.h"
+#include "sdk/msl.h"
 
 #define SIGNAL_COUNT 7
 #define SIGNAL_ABORT 1
@@ -11,11 +12,6 @@ typedef void (*SignalHandler)(int sig);
 extern OSThreadInfo OSi_ThreadInfo;
 extern OSMutex gMslSignalMutex;
 extern SignalHandler gMslSignalHandlers[SIGNAL_COUNT];
-/* Per-lock owner and count tables; MSL_Exit uses entry 0 of the same tables. */
-extern u32 data_022ad128[];
-extern int data_022ad14c[];
-
-#define SIGNAL_LOCK 7
 
 BOOL OS_TryLockMutex(OSMutex *mutex);
 void OS_LockMutex(OSMutex *mutex);
@@ -31,14 +27,14 @@ int raise(int sig)
     }
 
     if (!OS_TryLockMutex(&gMslSignalMutex)) {
-        data_022ad128[SIGNAL_LOCK] = OSi_ThreadInfo.current->id;
-        data_022ad14c[SIGNAL_LOCK] = 1;
-    } else if (data_022ad128[SIGNAL_LOCK] == OSi_ThreadInfo.current->id) {
-        data_022ad14c[SIGNAL_LOCK]++;
+        gMslLockOwners[MSL_LOCK_SIGNAL] = OSi_ThreadInfo.current->id;
+        gMslLockCounts[MSL_LOCK_SIGNAL] = 1;
+    } else if (gMslLockOwners[MSL_LOCK_SIGNAL] == OSi_ThreadInfo.current->id) {
+        gMslLockCounts[MSL_LOCK_SIGNAL]++;
     } else {
         OS_LockMutex(&gMslSignalMutex);
-        data_022ad128[SIGNAL_LOCK] = OSi_ThreadInfo.current->id;
-        data_022ad14c[SIGNAL_LOCK] = 1;
+        gMslLockOwners[MSL_LOCK_SIGNAL] = OSi_ThreadInfo.current->id;
+        gMslLockCounts[MSL_LOCK_SIGNAL] = 1;
     }
 
     handler = gMslSignalHandlers[sig - 1];
@@ -46,7 +42,7 @@ int raise(int sig)
         gMslSignalHandlers[sig - 1] = SIGNAL_HANDLER_DEFAULT;
     }
 
-    if (--data_022ad14c[SIGNAL_LOCK] == 0) {
+    if (--gMslLockCounts[MSL_LOCK_SIGNAL] == 0) {
         OS_UnlockMutex(&gMslSignalMutex);
     }
 

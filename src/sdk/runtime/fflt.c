@@ -1,7 +1,7 @@
 #include "types.h"
 
-extern u8 *func_02129748(void);
-extern float func_02121ef4(float a, u32 op);
+u32 *__fp_status(void);
+extern float __fp_trap_f(float a, u32 op);
 
 /*
  * Converts a signed 32-bit integer to a float. The magnitude is normalised
@@ -9,7 +9,7 @@ extern float func_02121ef4(float a, u32 op);
  * fit in the 24-bit mantissa are rounded by the rounding mode in the
  * soft-float status word (bits 22-23: 0 nearest even, 1 toward plus infinity,
  * 2 toward minus infinity, 3 truncate). An inexact result sets bit 4 of the
- * status word, or calls the trap handler through func_02121ef4 when bit 12
+ * status word, or calls the trap handler through __fp_trap_f when bit 12
  * is set. The labels ffltu_round_up and ffltu_inexact_trap are only
  * reached from _ffltu's branches.
  */
@@ -28,7 +28,7 @@ asm float _fflt(int x)
     orr r0, r0, r3, lsl #23
     bxeq lr
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -60,13 +60,13 @@ round_up:
 ffltu_inexact_trap:
     stmfd sp!, {lr}
     ldr r1, =0x40000308
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 inexact_trap:
     stmfd sp!, {lr}
     ldr r1, =0x40000208
-    bl func_02121ef4
+    bl __fp_trap_f
     ldmfd sp!, {lr}
     bx lr
 }

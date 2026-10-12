@@ -25,8 +25,8 @@
  * in another function. Handlers end by falling through into the next one.
  */
 
-u8 *func_02129748(void); /* returns the floating-point status word */
-float func_02121e0c(float a, float b, u32 op);
+u32 *__fp_status(void); /* returns the floating-point status word */
+float __fp_trap_ff(float a, float b, u32 op);
 s32 func_02121d58(double a, double b, u32 op);
 
 asm void FCmp_Invalid(void);
@@ -300,7 +300,7 @@ asm void func_021273d0(void)
 asm void FCmp_Invalid(void)
 {
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -316,7 +316,7 @@ asm void FCmp_Invalid(void)
 asm void FCmp_InvalidFlagsNe(void)
 {
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -332,7 +332,7 @@ asm void FCmp_InvalidFlagsNe(void)
 asm void FCmp_InvalidFlagsHi(void)
 {
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -349,7 +349,7 @@ asm void FCmp_InvalidFlagsHi(void)
 asm void FCmp_InvalidFlagsEq(void)
 {
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr r3, [ip]
@@ -919,7 +919,7 @@ asm void DCmp_Invalid(void)
 {
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip]
@@ -937,7 +937,7 @@ asm void DCmp_InvalidFlagsNe(void)
 {
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip]
@@ -956,7 +956,7 @@ asm void DCmp_InvalidFlagsHi(void)
 {
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip]
@@ -976,7 +976,7 @@ asm void DCmp_InvalidFlagsEq(void)
 {
     stmfd sp!, {ip, lr}
     stmfd sp!, {r0, r1, r2, r3, lr}
-    bl func_02129748
+    bl __fp_status
     mov ip, r0
     ldmfd sp!, {r0, r1, r2, r3, lr}
     ldr lr, [ip]
@@ -1057,7 +1057,7 @@ asm void FCmp_CallTrap(void)
 {
     stmfd sp!, {lr}
     ldr r2, [pc, #32]
-    bl func_02121e0c
+    bl __fp_trap_ff
     ldmfd sp!, {lr}
     bx lr
 }
