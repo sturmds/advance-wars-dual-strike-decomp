@@ -2872,6 +2872,10 @@ src/arm7/sdk/snd/snd_ex_channel_start_pcm.c:
     complete
     .text       start:0x037ff9ac end:0x037ff9e8
 
+src/arm7/sdk/snd/snd_ex_channel_main.c:
+    complete
+    .text       start:0x037ff9e8 end:0x037ffcf4
+
 src/arm7/sdk/snd/snd_exchannel_update.c:
     complete
     .text       start:0x037ffcf4 end:0x037ffee0

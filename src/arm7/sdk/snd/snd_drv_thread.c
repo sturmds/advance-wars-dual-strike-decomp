@@ -4,7 +4,6 @@
 
 void func_arm7_037fe534(int volume);   /* writes the master volume register */
 int func_arm7_037fe654(void);         /* sets the master enable bit */
-void func_arm7_037ff9e8(BOOL periodic);
 void func_arm7_03802408(void);
 
 #define SOUND_MAIN_LOUDNESS_FULL 127
@@ -34,7 +33,7 @@ void SndDrv_Thread(void *arg)
         SndExChannel_Update();
         func_arm7_03802408();
         SndArm7_SeqMain(periodic);
-        func_arm7_037ff9e8(periodic);
+        SndExChannel_Main(periodic);
         SndArm7_UpdateSharedWork();
         SndDrv_NextRandom();
     }

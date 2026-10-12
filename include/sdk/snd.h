@@ -233,6 +233,7 @@ int SndExChannel_UpdateLfo(SndExChannel *channel, BOOL update);
 int SndExChannel_UpdateSweep(SndExChannel *channel, BOOL update);
 void SndExChannel_InitAll(void);
 void SndExChannel_Update(void);
+void SndExChannel_Main(BOOL periodic);
 
 /* LFOs. */
 int SndLfo_GetValue(SndChannelLfo *lfo);
