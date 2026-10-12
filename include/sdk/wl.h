@@ -143,7 +143,7 @@ typedef struct WlState {
     u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
     void *unk_b4;
     u8 pad_b8[0xc0 - 0xb8];
-    u32 unk_c0;
+    u32 periodicCount;             /* periodic alarm firings */
     u8 pad_c4[4];
     u16 unk_c8;
     u8 pad_ca[0x178 - 0xca];
