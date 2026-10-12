@@ -7,7 +7,7 @@
 u16 func_arm7_037fdaf4(void);                    /* V alarms set up? */
 void func_arm7_037fdb04(void);                   /* set up V alarms */
 void func_arm7_037fd9dc(OSVAlarm *alarm);        /* clear an alarm */
-void func_arm7_037fd824(OSVAlarm *alarm, u32 tag);
+void LineAlarm_AssignTag_Arm7(OSVAlarm *alarm, u32 tag);
 
 /* Resets the ARM7 touch panel driver, prepares its auto sampling alarms and
  * leaves the controller ready to report the pen. */
@@ -27,7 +27,7 @@ void Touch_ResetDriver_Arm7(void)
     }
     for (i = 0; i < TOUCH_MAX_SAMPLES_PER_FRAME; i++) {
         func_arm7_037fd9dc(&tpWork.vAlarm[i]);
-        func_arm7_037fd824(&tpWork.vAlarm[i], TOUCH_LINE_ALARM_ID);
+        LineAlarm_AssignTag_Arm7(&tpWork.vAlarm[i], TOUCH_LINE_ALARM_ID);
     }
 
     Touch_WaitBusIdle();
