@@ -358,7 +358,7 @@ typedef struct WlBufferAllocator {
 typedef struct WlBufferPool {
     WlBufferAllocator allocator;
     WlBufferList newBuffers;
-    u8 pad_18[0x60];
+    WlBufferList lists[8]; /* list ids 3 to 10; lists[2] is WlWork.multicastQueue */
     WlBufferList outbox;
     WlBufferList inbox;
 } WlBufferPool;
