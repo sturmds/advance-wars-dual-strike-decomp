@@ -943,6 +943,10 @@ src/arm7/sdk/card/card_report_done_and_wake.c:
     complete
     .text       start:0x038036d4 end:0x03803750
 
+src/arm7/sdk/card/card_rom_take_from_buffered_page_arm7.c:
+    complete
+    .text       start:0x03803750 end:0x038037e8
+
 src/arm7/sdk/func_arm7_038037e8.c:
     complete
     .text       start:0x038037e8 end:0x038037fc
