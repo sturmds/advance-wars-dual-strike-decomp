@@ -1,6 +1,6 @@
 #include "sdk/os.h"
 
-/* The timer entries of the ARM7 IRQ slot table, from OS7_IRQ_SLOTS[4], reached through three symbols. */
+/* The timer entries of the ARM7 IRQ slot table, from data_arm7_0380788c[4], reached through three symbols. */
 extern IrqSlotEntry data_arm7_038078bc[];
 extern IrqSlotKeepAlias data_arm7_038078c0[];
 extern IrqSlotArgAlias data_arm7_038078c4[];

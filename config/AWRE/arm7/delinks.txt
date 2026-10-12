@@ -9,6 +9,7 @@
     .text       start:0x037f8000 end:0x0380773c kind:code align:32
     .rodata     start:0x0380773c end:0x03807740 kind:rodata align:4
     .data       start:0x03807740 end:0x03807888 kind:data align:32
+    .sbss       start:0x03807888 end:0x038078a0 kind:bss align:4
     .bss        start:0x038078a0 end:0x0380b004 kind:bss align:32
 
 src/arm7/sdk/wm/wmsp_take_flagged_slot.c:

@@ -291,14 +291,17 @@ void OSi_UnlockVram(u16 banks, u16 lockID);
 void OSi_InitVramExclusive(void);
 
 /*
- * ARM7 side. The ARM7 copy of gOsIrqSlots: 0-3 DMA, 4-7 timers, 8 VBlank.
- * Most ARM7 code loads these addresses as plain numbers with no relocation,
- * so they stay numbers to match.
+ * ARM7 side. data_arm7_0380788c is the ARM7 copy of gOsIrqSlots: 0-3 DMA,
+ * 4-7 timers, 8 VBlank. IrqSlot_CallAndClear loads the slot fields through their
+ * own literals, so the keep and arg views have symbols of their own.
  */
-#define OS7_IRQ_SLOTS ((IrqSlotEntry *)0x0380788c)
-#define OS7_IRQ_SLOTS_KEEP ((IrqSlotKeepAlias *)0x03807890)
-#define OS7_IRQ_SLOTS_ARG ((IrqSlotArgAlias *)0x03807894)
+extern IrqSlotEntry data_arm7_0380788c[];
+extern IrqSlotKeepAlias data_arm7_03807890[];
+extern IrqSlotArgAlias data_arm7_03807894[];
 #define OS7_IRQ_SLOT_VBLANK 8
+
+/* Bit per thread ID: threads to mark ready on the way out of an interrupt. */
+extern u16 data_arm7_03807888;
 
 /* ARM7 WRAM flag word that the IRQ wait routines poll, 8 bytes below the end of WRAM. */
 #define OS7_IRQ_CHECK_FLAGS (*(volatile u32 *)0x0380fff8)

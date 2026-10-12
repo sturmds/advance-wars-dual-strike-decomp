@@ -79,3 +79,10 @@ Tracked as `docs/issues/0058-dsd-arm-branch-unconditional.md`.
 - **Version:** dsd 0.12.1 (`tools.lock`).
 - **Seen:** 2026-10-11, b26-rtd0 (`_dadd`, `_dsub`). An `arm_branch` entry in `relocs.txt` for a `bmi` inside a range that is still delinked (taken from the original bytes) is written as an unconditional `b`: the high byte becomes 0xea instead of 0x4a.
 - **Workaround:** add the `arm_branch` entry only once both ends of the branch are C.
+
+## dsd: memory between `.data` and an aligned `.bss` gets no symbols
+
+- **Version:** dsd 0.12.1 (`tools.lock`).
+- **Seen:** 2026-10-11, ARM7 WRAM. `.data` ends at 0x03807888, and the autoload table's bss size (0x3764) puts `.bss` at the next multiple of 32, 0x038078a0. The 24 bytes between belong to neither section, yet the code uses them: the wake mask at 0x03807888 and the start of the IRQ slot table at 0x0380788c (the table runs on into `.bss`).
+- **Behaviour:** dsd makes no symbols and no relocations for addresses outside every section, so the seven literal words that point there (0x037fb4a8, 0x037fb4fc, 0x037fb60c, 0x037fb610, 0x037fb618, 0x037fb7ec, 0x037fb808) stayed plain numbers. C that names the table as a symbol then differed from the original in its relocations, and C that used the numbers compiled to different code.
+- **Workaround:** a section of its own for the gap in `config/AWRE/arm7/delinks.txt`: `.sbss start:0x03807888 end:0x038078a0 kind:bss align:4`. `dsd lcf` aligns each section to its own `align`, so the gap object follows `.data` at once and `.bss` still starts at 0x038078a0; the bss size that `tools/arm7.py bin` writes into the autoload table (`BSS_END - BSS_START`) stays 0x3764. The symbols and relocations are then added by hand. Moving the `.bss` start down to 0x03807888 instead would change that table entry.

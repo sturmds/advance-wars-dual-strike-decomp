@@ -1184,3 +1184,7 @@ gCtrdgHeaderReceived kind:bss addr:0x0380afcc
 data_arm7_0380afd0 kind:bss addr:0x0380afd0
 gCtrdgInitMessage kind:bss addr:0x0380afd4
 data_arm7_0380afec kind:bss addr:0x0380afec
+data_arm7_03807888 kind:bss addr:0x03807888
+data_arm7_0380788c kind:bss addr:0x0380788c
+data_arm7_03807890 kind:bss addr:0x03807890
+data_arm7_03807894 kind:bss addr:0x03807894

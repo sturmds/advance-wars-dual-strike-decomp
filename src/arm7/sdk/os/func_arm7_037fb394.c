@@ -4,19 +4,17 @@ extern OSThreadInfo data_arm7_0380790c;   /* ARM7 OSi_ThreadInfo */
 
 /*
  * ARM7 copy of OS_IrqHandler_ThreadSwitch, the return path of
- * func_arm7_037fb340. Marks the threads named in the u16 wake mask at
- * 0x03807888 as ready, then, if the scheduler asked for it, saves the
+ * func_arm7_037fb340. Marks the threads named in the wake mask
+ * data_arm7_03807888 as ready, then, if the scheduler asked for it, saves the
  * interrupted thread's context, runs the switch callback and resumes the
  * highest priority ready thread. With nothing to switch to it returns to the
  * interrupted code. Unlike ARM9 there is no coprocessor context to save.
  *
- * The wake mask address stays a number: the original's literal has no
- * relocation. Offsets used on the ARM7 OSThread: 0x48 state, 0x4c next,
- * 0x50 id.
+ * Offsets used on the ARM7 OSThread: 0x48 state, 0x4c next, 0x50 id.
  */
 asm void func_arm7_037fb394(void)
 {
-    ldr r12, =0x03807888
+    ldr r12, =data_arm7_03807888
     ldrh r3, [r12]
     mov r0, #0
     cmp r3, #0
