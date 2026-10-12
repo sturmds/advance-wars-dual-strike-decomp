@@ -240,7 +240,9 @@ typedef struct WlState {
     u32 periodicCount;             /* periodic alarm firings */
     u8 pad_c4[4];
     u16 unk_c8;
-    u8 pad_ca[0x178 - 0xca];
+    u8 pad_ca[0xd8 - 0xca];
+    u16 unk_d8[16];
+    u8 pad_f8[0x178 - 0xf8];
     u16 unk_178;
     u8 pad_17a[6];
     WlTxFrame *txFrame;
