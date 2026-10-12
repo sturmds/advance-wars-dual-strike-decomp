@@ -6,7 +6,7 @@ u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_027c926c(int length, u8 *data);
 void WifiParam_StoreRates(u16 *masks);
 void WifiRf_TuneChannel(u16 channel, int arg);
-void func_arm7_027c9a54(int value);
+void WifiParam_ChangeListenPeriod(int value);
 void func_arm7_027c9aa0(int value);
 void func_arm7_027c9b00(int length, u8 *ssid);
 void func_arm7_027c9c1c(u16 *address);
@@ -80,7 +80,7 @@ int func_arm7_027cc97c(WlBssSettings *request, WlReply *reply)
     }
     func_arm7_027c9b00(request->ssidLength, request->ssid);
     func_arm7_027c9aa0(request->unk_32);
-    func_arm7_027c9a54(request->unk_34);
+    WifiParam_ChangeListenPeriod(request->unk_34);
     WifiRf_TuneChannel(request->channel, 0);
     WifiParam_StoreRates(request->unk_38);
     func_arm7_027c926c(request->unk_3c, request->unk_3e);
