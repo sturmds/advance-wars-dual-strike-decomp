@@ -11,7 +11,7 @@ void WifiIrq_RxEventCounted(void);
 void WifiIrq_RxFinished(void);
 void WifiIrq_StatsHalfFull(void);
 void WifiIrq_TxFinished(void);
-void func_arm7_037fa0b4(int arg);
+void WifiIrq_MpCommandDone(int arg);
 
 /* Wireless interrupt handler: runs the handler of each pending, enabled
    cause until none is left. */
@@ -58,7 +58,7 @@ void WifiIrq_Dispatch(void)
             WifiIrq_TxFinished();
         }
         if (causes & W_IRQ_MP_END) {
-            func_arm7_037fa0b4(1);
+            WifiIrq_MpCommandDone(1);
         }
     }
     OS7_IRQ_CHECK_FLAGS |= IRQ_MASK_WIRELESS;

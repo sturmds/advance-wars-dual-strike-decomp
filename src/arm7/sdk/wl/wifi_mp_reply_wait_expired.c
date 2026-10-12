@@ -1,8 +1,8 @@
 #include "sdk/wl.h"
 
-void func_arm7_037fa0b4(int arg);
+void WifiIrq_MpCommandDone(int arg);
 
-// One-shot alarm set by the MP end interrupt handler (func_arm7_037fa0b4):
+// One-shot alarm set by the MP end interrupt handler (WifiIrq_MpCommandDone):
 // pulses bit 12 of register 0x244, waits up to 100 reads for the hardware to
 // send a frame, then runs the handler again without setting the alarm.
 void WifiMp_ReplyWaitExpired(void *arg)
@@ -18,6 +18,6 @@ void WifiMp_ReplyWaitExpired(void *arg)
         }
     }
     WIFI_MAC_REGISTER(0x244) = 0;
-    func_arm7_037fa0b4(0);
+    WifiIrq_MpCommandDone(0);
     Irq_SetEnableBits_Arm7(saved);
 }

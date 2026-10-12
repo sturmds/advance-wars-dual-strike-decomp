@@ -800,7 +800,8 @@ typedef struct WlState {
     u16 unk_ce;                    /* counts frames found with their marks overwritten */
     u16 unk_d0;                    /* counts TX queue restarts */
     u16 wepRestarts;               /* same halfword as WlLink.wepRestarts */
-    u8 pad_d4[0xd8 - 0xd4];
+    u16 mpReplyWaits;              /* reply-wait alarms WifiIrq_MpCommandDone set */
+    u8 pad_d6[0xd8 - 0xd6];
     u16 unk_d8[16];
     WlCurrentRequest current;
     u8 pad_100[0x130 - 0x100];

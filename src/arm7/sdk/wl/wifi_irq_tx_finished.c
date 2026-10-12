@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void WifiTest_ResendOrHalt(void);
-void func_arm7_037fa0b4(int arg);
+void WifiIrq_MpCommandDone(int arg);
 void WifiTx_PauseDataSlots(void);
 
 /* Transmit done interrupt. Most kinds end by restarting the MP command
@@ -67,7 +67,7 @@ void WifiIrq_TxFinished(void)
             if (WIFI_IRQ_PENDING_FLAGS & W_IRQ_MP_END) {
                 mp->unk_ae++;
             } else {
-                func_arm7_037fa0b4(2);
+                WifiIrq_MpCommandDone(2);
             }
             mp->unk_ac++;
         }
