@@ -4,7 +4,7 @@
 #include "sdk/snd_hw.h"
 
 void func_arm7_037fdc78(u32 command);
-void func_arm7_03807408(void);
+void Reset_MasterOffAndReboot_Arm7(void);
 
 /* The ARM7 half of a system reset: stop all four DMA channels, leave only
  * the PXI receive interrupt enabled, clear every pending interrupt, tell the
@@ -19,5 +19,5 @@ void Reset_QuiesceAndRestart_Arm7(void)
     Irq_AckPending_Arm7(~0);
     SndHw_Reset();
     func_arm7_037fdc78(OS_PXI_COMMAND_RESET);
-    func_arm7_03807408();
+    Reset_MasterOffAndReboot_Arm7();
 }

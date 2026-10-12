@@ -3950,6 +3950,10 @@ src/arm7/sdk/mi/reset_handshake_and_reboot_arm7.c:
     complete
     .text       start:0x03807394 end:0x03807408
 
+src/arm7/sdk/os/reset_master_off_and_reboot_arm7.c:
+    complete
+    .text       start:0x03807408 end:0x03807424
+
 src/arm7/sdk/os/pick_wireless_channels.c:
     complete
     .text       start:0x03807514 end:0x03807640

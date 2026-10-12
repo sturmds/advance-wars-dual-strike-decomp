@@ -1061,7 +1061,7 @@ data_arm7_038072ac kind:data(any) addr:0x038072ac
 data_arm7_038072b0 kind:data(any) addr:0x038072b0
 gOsNestedIrqPriorities kind:data(any) addr:0x038072e4
 Reset_HandshakeAndReboot_Arm7 kind:function(arm,size=0x74) addr:0x03807394
-func_arm7_03807408 kind:function(arm,size=0x1c) addr:0x03807408
+Reset_MasterOffAndReboot_Arm7 kind:function(arm,size=0x1c) addr:0x03807408
 data_arm7_03807424 kind:data(any) addr:0x03807424
 data_arm7_0380749c kind:data(any) addr:0x0380749c
 PickWirelessChannels kind:function(arm,size=0x12c) addr:0x03807514
