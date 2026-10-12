@@ -4486,6 +4486,7 @@ src/game/main/task/anim_sprite_task_update.c:
     .text       start:0x02027bec end:0x02027d68
 
 src/game/main/graphics/quad/quad_sprite_draw.c:
+    complete
     .text       start:0x02027d68 end:0x02027f4c
 
 src/game/main/graphics/quad/gx_draw_textured_quad.c:

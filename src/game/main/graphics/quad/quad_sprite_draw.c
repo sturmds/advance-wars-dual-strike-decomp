@@ -15,7 +15,6 @@ void AnimSpriteTask_Draw(QuadSpriteTask *task)
     s16 y;
     s16 w;
     s16 h;
-    int offsetY;
 
     /* light 0, front and back faces, opaque */
     *GXFIFO_POLYGON_ATTR = 0x001f00c1;
@@ -28,12 +27,11 @@ void AnimSpriteTask_Draw(QuadSpriteTask *task)
         if (y & 0x100) {
             y |= 0xff00;
         }
-        offsetY = y * task->scaleY;
-        x = task->x + (s16)((task->scaleX * x) >> 8);
+        x = task->x + (s16)((x * task->scaleX) >> 8);
+        y = task->y + (s16)((y * task->scaleY) >> 8);
         if (task->scrollX != NULL) {
             x -= *task->scrollX;
         }
-        y = task->y + (s16)(offsetY >> 8);
         if (task->scrollY != NULL) {
             y -= *task->scrollY;
         }
