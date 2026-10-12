@@ -588,6 +588,10 @@ src/arm7/sdk/wl/wifi_baseband_checksum_start_values.c:
     complete
     .text       start:0x027c8af4 end:0x027c8b64
 
+src/arm7/sdk/wl/wifi_rf_send_word.c:
+    complete
+    .text       start:0x027c8b64 end:0x027c8b8c
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108

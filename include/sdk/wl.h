@@ -506,6 +506,17 @@ typedef struct WlStationTable {
 #define WIFI_RATE_CODE_1M 10
 #define WIFI_RATE_CODE_2M 20
 
+// Wireless baseband (BB) and RF chip serial ports.
+#define IO_WIRELESS_BASEBAND_SELECT (*(volatile u16 *)0x04808158)   /* index | 0x5000 write, | 0x6000 read */
+#define IO_WIRELESS_BASEBAND_OUT (*(volatile u16 *)0x0480815a)
+#define IO_WIRELESS_BASEBAND_IN (*(volatile u16 *)0x0480815c)
+#define IO_WIRELESS_RADIO_WORD_HI (*(volatile u16 *)0x0480817c)  /* high half of the RF word */
+#define IO_WIRELESS_RADIO_WORD_LO (*(volatile u16 *)0x0480817e)  /* low half; writing DATA2 starts the transfer */
+
+BOOL WifiRf_AwaitSerialIdle(void);
+// Returns 0 once the RF port is idle, 1 on timeout.
+int WifiRf_SendWord(u32 value);
+
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
 

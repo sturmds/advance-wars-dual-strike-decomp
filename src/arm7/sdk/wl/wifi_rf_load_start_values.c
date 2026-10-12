@@ -3,7 +3,6 @@
 extern const u16 gWlFirmwareRegOffsets[16];
 
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
-void func_arm7_027c8b64(u32 entry);
 
 void WifiRf_LoadStartValues(void)
 {
@@ -42,13 +41,13 @@ void WifiRf_LoadStartValues(void)
             entry = 0;
             WifiFlash_ReadRadioBytes(offset, 1, &entry);
             entry |= 0x50000 + (i << 8);
-            func_arm7_027c8b64(entry);
+            WifiRf_SendWord(entry);
         }
     } else {
         entry = 0;
         while (count != 0) {
             WifiFlash_ReadRadioBytes(offset, bytesPerEntry, &entry);
-            func_arm7_027c8b64(entry);
+            WifiRf_SendWord(entry);
             if (rf->type == 2 && (entry >> 18) == 9) {
                 rf->unk_0c = entry & ~0x7c00;
             }
