@@ -4,7 +4,6 @@ void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_AssociationTimedOut(void *arg);
 void *WifiFrame_NewAssocAsk(u16 *peer);
 void WifiTx_EnqueueMgmt(void *frame);
-void func_arm7_027d0500(int a);
 void func_arm7_027d0590(int a);
 
 /*
@@ -31,7 +30,7 @@ void WifiMlme_RunAssociation(void)
         }
         break;
     case 0x53:
-        func_arm7_027d0500(1);
+        WifiTx_HaltSlot(1);
         func_arm7_027d0590(1);
         WifiTx_DrainQueue(1, 0);
         job->state = 0;

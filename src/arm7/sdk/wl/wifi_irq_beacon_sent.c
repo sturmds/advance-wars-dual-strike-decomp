@@ -2,7 +2,7 @@
 
 void WL_WriteByte(void *addr, u32 value);
 int func_arm7_027c94c0(int value);
-void func_arm7_027d0500(int slot); /* cancels TX slot `slot` */
+void WifiTx_HaltSlot(int slot); /* cancels TX slot `slot` */
 void func_arm7_037fa4cc(void);
 
 /* Beacon interrupt. Mode 1 writes WIFI_SHARED_GAME_WORD into the Nintendo element
@@ -89,7 +89,7 @@ void WifiIrq_BeaconSent(void)
 
         if (slot->busy != 0 && slot->txFrame->result == 0
             && (u16)(link->periodicCount - slot->txFrame->unk_04) > link->unk_8c) {
-            func_arm7_027d0500(i);
+            WifiTx_HaltSlot(i);
             slot->frame->status = 2;
             WifiTask_Schedule(0, 14);
             mp->txTimeouts++;
