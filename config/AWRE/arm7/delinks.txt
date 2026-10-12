@@ -1532,6 +1532,10 @@ src/arm7/sdk/pm/pmi_reset_control.c:
     complete
     .text       start:0x03805198 end:0x038051c4
 
+src/arm7/sdk/pm/pmi_set_control.c:
+    complete
+    .text       start:0x038051c4 end:0x038051e8
+
 src/arm7/sdk/func_arm7_038052e8.c:
     complete
     .text       start:0x038052e8 end:0x03805304
