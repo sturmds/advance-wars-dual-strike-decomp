@@ -194,6 +194,12 @@ typedef struct WlTxFrame {
     u16 unk_2e;
 } WlTxFrame;
 
+/* The host request being handled; task 11 takes it from the inbox. */
+typedef struct WlCurrentRequest {
+    struct WlBuffer *buffer;
+    u16 busy; /* bit 0 set while buffer is being handled */
+} WlCurrentRequest;
+
 typedef struct WlState {
     u16 unk_00;
     u16 phase;
@@ -242,7 +248,8 @@ typedef struct WlState {
     u16 unk_c8;
     u8 pad_ca[0xd8 - 0xca];
     u16 unk_d8[16];
-    u8 pad_f8[0x178 - 0xf8];
+    WlCurrentRequest current;
+    u8 pad_100[0x178 - 0x100];
     u16 unk_178;
     u8 pad_17a[6];
     WlTxFrame *txFrame;
@@ -307,6 +314,16 @@ typedef struct WlBufferAllocator {
         void (*free)(void *ptr);
     } b;
 } WlBufferAllocator;
+
+/* The buffer fields of WlWork from allocator to inbox, as one struct. Some
+   functions reach them through a pointer to allocator. */
+typedef struct WlBufferPool {
+    WlBufferAllocator allocator;
+    WlBufferList newBuffers;
+    u8 pad_18[0x60];
+    WlBufferList outbox;
+    WlBufferList inbox;
+} WlBufferPool;
 
 /* Tasks run by the driver thread, one at a time. They wait in four FIFO
    queues by priority (0 first); next links the entries of a queue. */
@@ -503,6 +520,7 @@ int WifiHost_TellReassociated(const u8 *mac, u16 value, const u8 *ssidElement);
 int WifiHost_TellAssociated(const u8 *mac, u16 value, const u8 *ssidElement);
 int WifiHost_TellDeauthenticated(const u8 *mac, u16 value);
 int WifiHost_TellAuthenticated(const u8 *mac, u16 value);
+void WifiHost_ReturnCurrentRequest(void);
 void WifiRf_AwaitQuietAir(void);
 
 #endif

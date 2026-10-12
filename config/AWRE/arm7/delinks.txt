@@ -856,6 +856,10 @@ src/arm7/sdk/wl/wl_send_indication_84.c:
     complete
     .text       start:0x027cbed8 end:0x027cbf54
 
+src/arm7/sdk/wl/wifi_host_return_current_request.c:
+    complete
+    .text       start:0x027cbf54 end:0x027cbfa4
+
 src/arm7/sdk/func_arm7_027cbfa4.c:
     complete
     .text       start:0x027cbfa4 end:0x027cbfc8
