@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/wl.h"
 
-void func_arm7_027c80b0(u16 flags);
 u8 WL_ReadByte(const void *addr);
 void WL_WriteByte(void *addr, u8 value);
 void func_arm7_027c90ec(void *dest, const void *src); /* copies a 6-byte MAC address */
@@ -17,7 +16,7 @@ int WifiHost_TellAssociated(const u8 *mac, u16 value, const u8 *ssidElement)
     u32 i;
 
     if (ind == NULL) {
-        func_arm7_027c80b0(1);
+        WifiHost_RaiseEventBits(WIFI_EVT_NOTE_DROPPED);
         return 0;
     }
     ind->command = 0x86;

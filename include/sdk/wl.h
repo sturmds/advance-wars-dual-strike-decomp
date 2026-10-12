@@ -904,6 +904,10 @@ int WifiBuffer_Release(WlBufferList *list, WlBuffer *buffer);
 int WifiBuffer_Transfer(WlBufferList *from, WlBufferList *to, WlBuffer *buffer);
 void WifiBuffer_GiveToHost(WlBufferList *list, WlBuffer *buffer);
 void WifiBufList_ReleaseAll(WlBufferList *list);
+
+/* Event bits for WifiHost_RaiseEventBits. */
+#define WIFI_EVT_NOTE_DROPPED 0x1 /* an indication was dropped: no buffer left */
+void WifiHost_RaiseEventBits(u16 events);
 int WifiBaseband_AwaitReady(void);
 void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
 void WifiRf_AwaitReceiverOn(void);

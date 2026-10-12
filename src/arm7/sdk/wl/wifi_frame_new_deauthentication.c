@@ -1,6 +1,5 @@
 #include "sdk/wl.h"
 
-void func_arm7_027c80b0(int code);
 void WifiTx_FillHeader(WlTxFrame *frame, const u16 *dest);
 
 // Allocates a buffer and builds a deauthentication frame to dest with the
@@ -11,7 +10,7 @@ WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason)
     WlTxFrame *frame;
 
     if (buffer == NULL) {
-        func_arm7_027c80b0(2);
+        WifiHost_RaiseEventBits(2);
         return (WlTxFrame *)buffer; /* needed to match: NULL, but returned from the register */
     }
     buffer->unk_0c = 0xffff;

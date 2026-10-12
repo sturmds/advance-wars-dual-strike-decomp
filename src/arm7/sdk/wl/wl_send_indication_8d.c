@@ -2,7 +2,6 @@
 #include "sdk/mi.h"
 #include "sdk/wl.h"
 
-void func_arm7_027c80b0(u16 flags);
 u8 WL_ReadByte(const void *addr);
 void WL_WriteByte(void *addr, u8 value);
 void func_arm7_027c90ec(void *dest, const void *src); /* copies a 6-byte MAC address */
@@ -19,7 +18,7 @@ int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info)
 
     ind = (WlIndication *)WifiBuffer_New(&work->unk_15c, work->unk_318.dataLength + 0x3e);
     if (ind == NULL) {
-        func_arm7_027c80b0(1);
+        WifiHost_RaiseEventBits(WIFI_EVT_NOTE_DROPPED);
         return 0;
     }
     ind->command = 0x8d;

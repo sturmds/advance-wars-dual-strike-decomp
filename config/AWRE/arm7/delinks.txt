@@ -560,6 +560,10 @@ src/arm7/sdk/wl/wifi_task_report_events.c:
     complete
     .text       start:0x027c8028 end:0x027c80b0
 
+src/arm7/sdk/wl/wifi_host_raise_event_bits.c:
+    complete
+    .text       start:0x027c80b0 end:0x027c80f4
+
 src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8
