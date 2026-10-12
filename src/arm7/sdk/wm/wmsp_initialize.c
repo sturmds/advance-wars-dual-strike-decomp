@@ -21,12 +21,12 @@ void WMSP_Initialize(WmspInitRequest *request)
         reply->errcode = WM_ERRCODE_FAILED;
         reply->wlCmdID = wlCmdID;
         reply->wlResult = wlResult;
-        func_arm7_038076e8();
+        func_arm7_038076e8(reply);
     } else {
         buf->status->state = WM_STATE_IDLE;
         reply = func_arm7_03807640();
         reply->apiid = WM_APIID_INITIALIZE;
         reply->errcode = WM_ERRCODE_SUCCESS;
-        func_arm7_038076e8();
+        func_arm7_038076e8(reply);
     }
 }

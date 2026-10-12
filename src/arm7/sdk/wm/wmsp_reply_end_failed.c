@@ -8,5 +8,5 @@ void WMSP_ReplyEndFailed(u16 wlCmdID, u16 wlResult)
     reply->errcode = WM_ERRCODE_FAILED;
     reply->wlCmdID = wlCmdID;
     reply->wlResult = wlResult;
-    func_arm7_038076e8();
+    func_arm7_038076e8(reply);
 }

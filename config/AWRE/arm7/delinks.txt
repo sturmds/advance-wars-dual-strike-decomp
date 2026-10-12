@@ -15,6 +15,10 @@ src/arm7/sdk/wm/wmsp_take_flagged_slot.c:
     complete
     .text       start:0x027c0000 end:0x027c0070
 
+src/arm7/sdk/wm/wmsp_reply_failed.c:
+    complete
+    .text       start:0x027c0070 end:0x027c00a4
+
 src/arm7/sdk/func_arm7_027c05e0.c:
     complete
     .text       start:0x027c05e0 end:0x027c05ec

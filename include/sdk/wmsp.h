@@ -106,7 +106,7 @@ void func_arm7_027c6eb4(u16 arg);
 void func_arm7_027c6f68(u16 arg);
 void func_arm7_027c70f8(void);
 WmspReply *func_arm7_03807640(void);
-void func_arm7_038076e8(void);
+void func_arm7_038076e8(void *reply);
 
 /* Copies halfwords (ARM7's MI_CpuCopy16-like helper). */
 void func_arm7_037fde40(const void *src, void *dest, int size);
