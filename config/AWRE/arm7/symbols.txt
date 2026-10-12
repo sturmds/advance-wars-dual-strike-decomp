@@ -1056,7 +1056,7 @@ _u32_div_f kind:function(arm,size=0x1e4) addr:0x03806f58
 gCrc16NibbleTable kind:data(any) addr:0x0380713c
 gSndSineQuarterTable kind:data(any) addr:0x0380715c
 data_arm7_03807180 kind:data(any) addr:0x03807180
-data_arm7_03807280 kind:data(any) addr:0x03807280
+gSndVolumeShiftBits kind:data(any) addr:0x03807280
 data_arm7_03807284 kind:data(any) addr:0x03807284
 data_arm7_03807294 kind:data(any) addr:0x03807294
 data_arm7_038072a8 kind:data(any) addr:0x038072a8
