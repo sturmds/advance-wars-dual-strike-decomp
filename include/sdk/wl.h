@@ -740,6 +740,7 @@ typedef struct WlWork {
 #define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
 #define WIFI_MAC_RETRY_LIMIT (*(volatile u16 *)0x0480802c)
 #define WIFI_OWN_MAC_REGISTERS ((u16 *)0x04808018)
+#define WIFI_BSSID_REGISTERS ((u16 *)0x04808020) /* GBATEK */
 #define WIFI_MAC_RUN (*(volatile u16 *)0x04808004)
 #define WIFI_IRQ_PENDING_FLAGS (*(volatile u16 *)0x04808010)
 #define WIFI_IRQ_ENABLE_MASK (*(volatile u16 *)0x04808012)

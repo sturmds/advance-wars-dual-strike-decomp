@@ -7,10 +7,10 @@ struct Unk_027cdbd0_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027c9c1c(int, void *, int);
+void WifiParam_LoadBssid(int, void *, int);
 
 void func_arm7_027cdbd0(int a0, Unk_027cdbd0_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027c9c1c(a0 + 16, a1, 1);
+    WifiParam_LoadBssid(a0 + 16, a1, 1);
 }
