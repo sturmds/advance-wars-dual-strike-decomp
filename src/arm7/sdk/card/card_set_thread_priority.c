@@ -5,7 +5,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fbc48(void *thread, u32 priority);   /* looks like OS_SetThreadPriority */
+void Thread_Reprioritize_Arm7(void *thread, u32 priority);
 
 /* Sets the card thread's priority and returns the old one. */
 u32 CARD_SetThreadPriority(u32 priority)
@@ -15,7 +15,7 @@ u32 CARD_SetThreadPriority(u32 priority)
     u32 old = common->priority;
 
     common->priority = priority;
-    func_arm7_037fbc48(common->thread, common->priority);
+    Thread_Reprioritize_Arm7(common->thread, common->priority);
     func_arm7_037fdb94(interrupts);
     return old;
 }
