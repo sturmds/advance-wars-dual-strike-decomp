@@ -436,6 +436,20 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
+/* WlState 0x18-0x78 as a block of its own: the SSID filter code addresses
+   these fields from a pointer to 0x18, so the original nests a struct there.
+   ssidLength is WlState.unk_36 and ssid is WlState.words. */
+typedef struct WlSsidParams {
+    u8 pad_00[0x1e];
+    u16 ssidLength;
+    u8 ssid[32];
+    u8 ssidMask[32]; /* a set bit matches any SSID bit */
+} WlSsidParams;
+
+/* 0x318: offsetof(WlWork, state) + 0x18, written as one constant so the
+   compiler adds it in one step as the original does. */
+#define WIFI_SSID_SETTINGS_OF(work) ((WlSsidParams *)((u8 *)(work) + 0x318))
+
 #define WIFI_SSID_LONGEST 32
 
 /* A message from the driver to the host: command, payload length in

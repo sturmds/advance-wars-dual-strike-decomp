@@ -616,6 +616,10 @@ src/arm7/sdk/wl/wifi_mac_equal.c:
     complete
     .text       start:0x027c8d28 end:0x027c8d64
 
+src/arm7/sdk/wl/wifi_scan_ssid_passes_filter.c:
+    complete
+    .text       start:0x027c8d64 end:0x027c8e34
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108
