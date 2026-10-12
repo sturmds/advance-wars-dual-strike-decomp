@@ -17,7 +17,7 @@ void func_arm7_037fdc24(void);
 u16 func_arm7_037fdce4(void);
 void func_arm7_037fe0a0(void);
 BOOL func_arm7_037fe45c(void);
-void func_arm7_037fefa8(int a0);
+void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);
 void func_arm7_038028c8(int a0);
 void func_arm7_0380392c(void);
@@ -42,7 +42,7 @@ void Arm7Main(void)
     UserSettings_LoadFromFlash();
     func_arm7_037fe0a0();
     heap = InitWramHeap();
-    func_arm7_037fefa8(6);
+    Sound_StartDriver_Arm7(6);
     func_arm7_037fe45c();
     func_arm7_037fb748(IRQ_VBLANK, VBlankIntr_Arm7);
     func_arm7_037fb690(IRQ_VBLANK);

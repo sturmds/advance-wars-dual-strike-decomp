@@ -1276,6 +1276,10 @@ src/arm7/sdk/snd/snd_create_thread.c:
     complete
     .text       start:0x037fef60 end:0x037fefa8
 
+src/arm7/sdk/snd/sound_start_driver_arm7.c:
+    complete
+    .text       start:0x037fefa8 end:0x037fefe0
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4

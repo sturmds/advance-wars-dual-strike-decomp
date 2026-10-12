@@ -812,7 +812,7 @@ func_arm7_037feebc kind:function(arm,size=0x14) addr:0x037feebc
 SND_StartIntervalTimer kind:function(arm,size=0x58) addr:0x037feed0
 SND_InitIntervalTimer kind:function(arm,size=0x38) addr:0x037fef28
 SND_CreateThread kind:function(arm,size=0x48) addr:0x037fef60
-func_arm7_037fefa8 kind:function(arm,size=0x38) addr:0x037fefa8
+Sound_StartDriver_Arm7 kind:function(arm,size=0x38) addr:0x037fefa8
 func_arm7_037fefe0 kind:function(arm,size=0x18) addr:0x037fefe0
 func_arm7_037feff8 kind:function(arm,size=0x58) addr:0x037feff8
 func_arm7_037ff050 kind:function(arm,size=0x9c) addr:0x037ff050
@@ -1118,7 +1118,7 @@ data_arm7_03807b3c kind:bss addr:0x03807b3c
 gSndHwPanEdgeAttenuation kind:bss addr:0x03807b68
 gSndHwChannelPan kind:bss addr:0x03807b6c
 gSndHwChannelVolume kind:bss addr:0x03807b7c
-data_arm7_03807b8c kind:bss addr:0x03807b8c
+gSndArm7Initialized kind:bss addr:0x03807b8c
 data_arm7_03807b90 kind:bss addr:0x03807b90
 data_arm7_03807ba4 kind:bss addr:0x03807ba4
 data_arm7_03807bc4 kind:bss addr:0x03807bc4
