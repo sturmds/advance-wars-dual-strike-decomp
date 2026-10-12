@@ -533,6 +533,15 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_OUT_OF_RANGE 5
 #define WIFI_ANSWER_NO_RESPONSE 7
 #define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
+#define WIFI_ANSWER_LATER 0x80
+
+/* Request that names a destination station by MAC address. Bit 0 of the
+   first byte marks a multicast address. */
+typedef struct WlMacRequest {
+    u8 pad_00[0x10];
+    u16 mac[3];
+    u16 reason; /* 802.11 reason code */
+} WlMacRequest;
 #define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
 
 typedef struct WlMlmeJob {
@@ -774,6 +783,9 @@ typedef struct WlTxRequest {
     u16 replyOffset;
     WlTxFrame frame;
 } WlTxRequest;
+
+/* The buffer header in front of a frame that sits in a WlTxRequest. */
+#define WIFI_HOST_TX_HEADER_OF(frame) ((WlBuffer *)((u8 *)(frame) - (u32)&((WlTxRequest *)0)->frame))
 
 /* Where buffers come from. kind 0: Heap_TakeFirstFit_Arm7(arena, heap, size).
    kind 1: the alloc and free callbacks. */
@@ -1119,6 +1131,19 @@ typedef struct WlStationTable {
 
 #define WIFI_PEER_TABLE_INFO ((WlStationTable *)&WIFI_DRIVER_STATE->limits.unk_f0)
 #define WIFI_PEER_ARRAY (WIFI_PEER_TABLE_INFO->stations)
+
+/*
+ * WlState.unk_d8 seen as one struct: a request that answers later. The
+ * handler keeps the request and its reply here and returns WIFI_ANSWER_LATER.
+ */
+typedef struct WlPendingRequest {
+    u16 command;
+    u8 pad_02[0x16];
+    void *request;
+    WlReply *reply;
+} WlPendingRequest;
+
+#define WIFI_WAITING_REQUEST_OF ((WlPendingRequest *)WIFI_DRIVER_STATE->state.unk_d8)
 
 /* Work offsets 0x2f0-0x317 seen as one struct (Wifi_ClearSessionArea clears them in
    one go); func_arm7_027cc97c reaches phase and macAddress through it. */
