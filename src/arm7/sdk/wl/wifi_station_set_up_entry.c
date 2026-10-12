@@ -21,12 +21,12 @@ void WifiStation_SetUpEntry(u32 index, const u16 *macAddress)
         WIFI_DRIVER_STATE->stationBits.stationCount++;
     }
     zero = 0;
-    Mem_FillHalfwords_Arm7(zero, station, sizeof(WlStation) - 2); /* all but unk_1a */
+    Mem_FillHalfwords_Arm7(zero, station, sizeof(WlStation) - 2); /* all but timeoutReload */
     func_arm7_027cb364(index, 0);
     func_arm7_027cb300(index);
     func_arm7_027c90ec(station->macAddress, macAddress);
     station->lastSequence = 0xffff;
     station->rates = WIFI_DRIVER_STATE->state.unk_7a;
-    station->unk_18 = station->unk_1a;
+    station->timeout = station->timeoutReload;
     WifiStation_ChangeState(index, WIFI_PEER_KNOWN_ONLY);
 }

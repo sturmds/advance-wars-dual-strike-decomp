@@ -17,5 +17,5 @@ void WifiStation_CountQueuedFrame(WlTxFrame *frame)
     }
     station->queuedFrames++;
     Irq_SetEnableBits_Arm7(irqMask);
-    station->unk_18 = station->unk_1a;
+    station->timeout = station->timeoutReload;
 }

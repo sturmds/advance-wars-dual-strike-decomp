@@ -41,8 +41,8 @@ typedef struct WlStation {
     u8 pad_12[0x2];
     u16 lastSequence;  /* set to 0xffff for a new station */
     u16 queuedFrames;
-    u16 unk_18; /* reloaded from unk_1a */
-    u16 unk_1a;
+    u16 timeout;       /* counted down by task 10; 0 and 0xffff never expire */
+    u16 timeoutReload; /* copied to timeout when a frame is queued for or received from it */
 } WlStation;
 
 /* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
@@ -160,13 +160,6 @@ typedef struct WlTestModeRequest {
 #define WIFI_MODE_JOINED 64 /* set when an association response reports success */
 #define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
 #define WIFI_MODE_AUTH_DONE 48 /* set when an authentication response reports success */
-
-// Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
-typedef struct Unk_027cdd18 {
-    u8 pad_00[0x18];
-    u16 unk_18;
-    u16 unk_1a;
-} Unk_027cdd18;
 
 /* A BSS seen in a beacon, kept in WlLimits.bssList. */
 typedef struct WlBssEntry {

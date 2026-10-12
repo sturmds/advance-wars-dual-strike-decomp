@@ -2,13 +2,12 @@
 
 int func_arm7_027c933c(u32 value);
 
-// Index value that selects every entry from 1 up.
+// Index value that selects every station from 1 up.
 #define WIFI_EVERY_STATION_INDEX 0xffff
 
 int func_arm7_027cdd18(WlRequest *request, WlReply *reply)
 {
-    // WlLimits.unk_f0 is declared u32; it holds the entry table pointer.
-    Unk_027cdd18 *entries = (Unk_027cdd18 *)WIFI_DRIVER_STATE->limits.unk_f0;
+    WlStation *stations = WIFI_PEER_ARRAY;
     u32 i;
 
     reply->status = 1;
@@ -20,15 +19,15 @@ int func_arm7_027cdd18(WlRequest *request, WlReply *reply)
     }
     if (request->unk_10 == WIFI_EVERY_STATION_INDEX) {
         for (i = 1; i < WIFI_DRIVER_STATE->limits.unk_f6; i++) {
-            entries[i].unk_1a = request->unk_12;
-            if (entries[i].unk_18 != 0) {
-                entries[i].unk_18 = request->unk_12;
+            stations[i].timeoutReload = request->unk_12;
+            if (stations[i].timeout != 0) {
+                stations[i].timeout = request->unk_12;
             }
         }
     } else if (request->unk_10 != 0) {
-        entries[request->unk_10].unk_1a = request->unk_12;
-        if (entries[request->unk_10].unk_18 != 0) {
-            entries[request->unk_10].unk_18 = request->unk_12;
+        stations[request->unk_10].timeoutReload = request->unk_12;
+        if (stations[request->unk_10].timeout != 0) {
+            stations[request->unk_10].timeout = request->unk_12;
         }
     }
     if (request->unk_14 != 0) {

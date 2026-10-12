@@ -5,7 +5,7 @@ void Wifi_SwitchMode(int mode);
 void WifiStation_ChangeState(u16 station, u16 state);
 
 /*
- * Task 10: counts down each station's timeout (unk_18; 0 and 0xffff never
+ * Task 10: counts down each station's timeout (0 and 0xffff never
  * expire). When one runs out, its queued frames are flushed and the host is
  * told: a parent reports a station that was past unauthenticated, a child
  * reports its parent and stops the link, both with 802.11 reason code 1
@@ -25,9 +25,9 @@ void WifiTask_AgeStations(void)
         if (station->state == 0) {
             continue;
         }
-        if (station->unk_18 != 0 && station->unk_18 != 0xffff) {
-            station->unk_18--;
-            if (station->unk_18 == 0) {
+        if (station->timeout != 0 && station->timeout != 0xffff) {
+            station->timeout--;
+            if (station->timeout == 0) {
                 if (station->state >= WIFI_PEER_KNOWN_ONLY) {
                     WifiTx_DropStationFrames(index);
                     if (work->state.unk_24 == 1) {

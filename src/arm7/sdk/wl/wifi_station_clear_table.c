@@ -7,7 +7,7 @@ void WifiStation_SetUpEntry(u32 index, const u16 *macAddress);
 void WifiStation_ChangeState(u16 station, u16 state);
 
 /*
- * Clears the whole station table and the station bitmasks, sets unk_1a of
+ * Clears the whole station table and the station bitmasks, sets timeoutReload of
  * every entry to 0xffff, and sets up entry 0 for the broadcast address.
  */
 void WifiStation_ClearTable(void)
@@ -23,9 +23,9 @@ void WifiStation_ClearTable(void)
     Mem_FillHalfwords_Arm7(zeroTable, stations, count * sizeof(WlStation));
     zeroBits = 0;
     Mem_FillHalfwords_Arm7(zeroBits, &WIFI_DRIVER_STATE->stationBits, sizeof(WlStationBits));
-    stations[0].unk_1a = 0xffff;
+    stations[0].timeoutReload = 0xffff;
     for (index = 1; index < count; index++) {
-        stations[index].unk_1a = 0xffff;
+        stations[index].timeoutReload = 0xffff;
     }
     WifiStation_SetUpEntry(0, data_arm7_027d6680);
     WifiStation_ChangeState(0, WIFI_PEER_ASSOCIATED);

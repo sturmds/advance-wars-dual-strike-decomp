@@ -8,7 +8,7 @@ void WifiStation_SetUpEntry(u32 station, const u16 *macAddress);
 /*
  * Returns the index of the station with this MAC address, setting up a new
  * entry if none has it: the first free entry, or else the idle station
- * (no queued frames) with the lowest unk_18. Returns 0 for a group address
+ * (no queued frames) with the lowest timeout. Returns 0 for a group address
  * and WIFI_NO_PEER when no entry can be taken.
  */
 u32 WifiStation_LookUpOrCreate(const u16 *macAddress)
@@ -58,8 +58,8 @@ u32 WifiStation_LookUpOrCreate(const u16 *macAddress)
         index = 0;
         for (count = table->count; other < count; other++) {
             if (stations[other].state < WIFI_PEER_REPLACEABLE_BELOW && stations[other].queuedFrames == 0
-                && lowest > stations[other].unk_18) {
-                lowest = stations[other].unk_18;
+                && lowest > stations[other].timeout) {
+                lowest = stations[other].timeout;
                 index = other;
             }
         }
