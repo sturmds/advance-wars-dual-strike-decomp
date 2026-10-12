@@ -290,4 +290,22 @@ void OSi_UnlockVram(u16 banks, u16 lockID);
 /* Forgets every VRAM bank lock. */
 void OSi_InitVramExclusive(void);
 
+/* An alarm that fires when the LCD reaches a given line (V count). */
+typedef void (*OSVAlarmHandler)(void *arg);
+
+typedef struct OSVAlarm OSVAlarm;
+struct OSVAlarm {
+    OSVAlarmHandler handler;
+    void *arg;
+    u32 tag;                       /* alarms with one tag can be cancelled together */
+    u32 frame;
+    s16 fire;                      /* line to fire on */
+    s16 delay;                     /* lines it may fire late */
+    OSVAlarm *prev;
+    OSVAlarm *next;
+    BOOL period;                   /* TRUE: fires every frame */
+    BOOL finish;
+    BOOL canceled;
+};
+
 #endif

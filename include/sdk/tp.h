@@ -2,6 +2,7 @@
 #define SDK_TP_H
 
 #include "types.h"
+#include "sdk/os.h"
 
 /* One touch panel reading. Raw readings are 12-bit panel units;
  * TP_GetCalibratedPoint turns them into screen pixels. The game's
@@ -129,5 +130,35 @@ void TP_GetCalibratedPoint(TPData *disp, const TPData *raw);
 void TP_WaitBusy(u32 commandFlags);
 u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate, u16 rawX1, u16 rawY1, u16 dx1, u16 dy1,
                           u16 rawX2, u16 rawY2, u16 dx2, u16 dy2);
+
+/* ARM7 side: the touch panel driver that answers the requests above. */
+
+#define TOUCH_MSG_MAX_HALFWORDS 16           /* halfwords in one request */
+#define TOUCH_MAX_SAMPLES_PER_FRAME 4    /* auto samples per frame */
+#define TOUCH_SCANLINES_PER_FRAME 263               /* V count lines per frame, blanking included */
+#define TOUCH_LINE_ALARM_ID 0x54505641       /* 'TPVA': tag of the auto sampling V alarms */
+#define TOUCH_LINE_ALARM_SLACK 10
+
+/* TouchSamplerState.status */
+enum {
+    TOUCH_SAMPLER_IDLE = 0,
+    TOUCH_SAMPLER_ALARMS_PENDING = 1,      /* auto sampling accepted, alarms not set yet */
+    TOUCH_SAMPLER_PERIODIC = 2,
+    TOUCH_SAMPLER_STOPPING = 3    /* stop accepted, alarms not cancelled yet */
+};
+
+typedef struct TouchSamplerState {
+    u16 command[TOUCH_MSG_MAX_HALFWORDS]; /* the request being received */
+    u32 status;                     /* TOUCH_SAMPLER_* */
+    s32 range;                      /* readings this close count as one point */
+    s32 rangeMin;                   /* range never adjusts below this */
+    OSVAlarm vAlarm[TOUCH_MAX_SAMPLES_PER_FRAME];
+    u16 vCount[TOUCH_MAX_SAMPLES_PER_FRAME];
+} TouchSamplerState;
+
+extern TouchSamplerState tpWork;
+
+/* SPI driver calls the touch panel code uses. The SPI code has no C yet. */
+void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the ARM9 */
 
 #endif

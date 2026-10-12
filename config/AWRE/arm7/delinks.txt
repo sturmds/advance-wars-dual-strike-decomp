@@ -1099,6 +1099,10 @@ src/arm7/sdk/func_arm7_03803e68.c:
     complete
     .text       start:0x03803e68 end:0x03803e84
 
+src/arm7/sdk/tp/touch_apply_stability_request.c:
+    complete
+    .text       start:0x03804148 end:0x03804190
+
 src/arm7/sdk/func_arm7_0380513c.c:
     complete
     .text       start:0x0380513c end:0x03805168
