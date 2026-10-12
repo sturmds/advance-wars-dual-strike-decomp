@@ -334,6 +334,10 @@ static inline void Wmsp_SetVAlarm(WmspBuf *buf, s16 line)
 #define W_US_COUNT0 (*(volatile u16 *)0x048080f8)
 #define W_US_COUNT1 (*(volatile u16 *)0x048080fa)
 
+/* A halfword in the BIOS area at the top of ARM7 WRAM, next to OS7_IRQ_CHECK_FLAGS:
+   the microsecond counter at the start of a frame, in 64 us units. */
+#define WMSP_FRAME_START_TIME (*(vu16 *)0x0380fff0)
+
 /* Held while a reply buffer is filled and sent. */
 extern OSMutex data_arm7_027d813c;
 

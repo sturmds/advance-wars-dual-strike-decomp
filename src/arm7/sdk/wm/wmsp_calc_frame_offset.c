@@ -8,7 +8,7 @@
 #define US_COUNT_MASK 0x3fffc0
 
 /*
- * WMStatus.unk_cc holds a time from the BIOS area in 64 us units. Turns it into
+ * WMStatus.unk_cc holds WMSP_FRAME_START_TIME (64 us units). Turns it into
  * microseconds, steps it one frame at a time until it passes the start of the next
  * frame, and stores in unk_d4 how far past it ends up. unk_d4 is 0 when the time is
  * already past that start, needs 30 steps or more, or ends up more than 0x400e us past it.

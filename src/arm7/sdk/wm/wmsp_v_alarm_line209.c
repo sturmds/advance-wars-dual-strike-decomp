@@ -1,7 +1,7 @@
 #include "sdk/gx.h"
 #include "sdk/wmsp.h"
 
-void func_arm7_027c5c58(void);
+void WMSP_StoreFrameStartTime(void);
 
 void WMSP_VAlarmLine209(void)
 {
@@ -19,6 +19,6 @@ void WMSP_VAlarmLine209(void)
     } else {
         status->unk_d8++;
     }
-    func_arm7_027c5c58();
+    WMSP_StoreFrameStartTime();
     Wmsp_SetVAlarm(buf, 260);
 }
