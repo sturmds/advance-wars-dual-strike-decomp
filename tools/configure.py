@@ -17,7 +17,8 @@ ARM7 (tools/arm7.py says why it takes extra steps):
   config/AWRE/arm7 + extract --arm7.py prepare--> build/arm7/rom/, build/arm7/config/ (stand-in ROM and dsd config)
   --dsd delink--> build/arm7/delinks/**.o
   src/arm7/**.c marked `complete` --mwccarm (ARM7 flags)--> build/arm7/src/arm7/**.o
-  --dsd lcf, arm7.py lcf--> build/arm7/arm7.lcf, build/arm7/objects.txt
+  --dsd lcf, arm7.py lcf, lcf_align2.py lcf--> build/arm7/arm7.lcf, build/arm7/objects.txt
+  --lcf_align2.py objects--> build/arm7/objects.link.txt, build/arm7/align2/**.o
   --mwldarm--> build/arm7/arm7.elf, build/arm7/build/*.bin --arm7.py bin--> build/build/arm7.bin
   rom_config.yaml points at build/build/arm7.bin (arm7.py romconfig).
 """
@@ -172,11 +173,15 @@ def main() -> int:
         "  description = ARM7 DELINK",
         "",
         "rule arm7_lcf",
-        f"  command = $dsd lcf -c {ARM7_CFG} > /dev/null && $python tools/arm7.py lcf",
+        f"  command = $dsd lcf -c {ARM7_CFG} > /dev/null && $python tools/arm7.py lcf"
+        " && $python tools/lcf_align2.py lcf build/arm7/arm7.lcf config/AWRE/arm7/delinks.txt"
+        " AUTOLOAD_2 AUTOLOAD_3 AUTOLOAD_4",
         "  description = ARM7 LCF",
         "",
         "rule arm7_link",
-        "  command = $python tools/link.py $ld $out build/arm7/arm7.lcf build/arm7/objects.txt $ldflags7",
+        "  command = $python tools/lcf_align2.py objects build/arm7/arm7.lcf build/arm7/objects.txt"
+        " build/arm7/objects.link.txt build/arm7/align2"
+        " && $python tools/link.py $ld $out build/arm7/arm7.lcf build/arm7/objects.link.txt $ldflags7",
         "  description = LINK $out",
         "",
         "rule arm7_bin",
@@ -218,10 +223,10 @@ def main() -> int:
         "",
         "build build/arm7/delink.stamp: arm7_delink build/arm7/prepare.stamp | $dsd",
         "",
-        "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp | $dsd tools/arm7.py",
+        "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp | $dsd tools/arm7.py tools/lcf_align2.py",
         "",
         "build build/arm7/arm7.elf: arm7_link build/arm7/arm7.lcf build/arm7/objects.txt"
-        f" | $ld tools/link.py {' '.join(objs7)}",
+        f" | $ld tools/link.py tools/lcf_align2.py {' '.join(objs7)}",
         "",
         "build build/build/arm7.bin: arm7_bin build/arm7/arm7.elf | tools/arm7.py",
         "",

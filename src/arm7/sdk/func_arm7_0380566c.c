@@ -1,8 +1,6 @@
-#include "types.h"
+#include "sdk/svc.h"
 
-void func_arm7_03803b96(const void *src, void *dst, u32 size);
-
-void func_arm7_0380566c(const void *src, void *dst, u32 size)
+void func_arm7_0380566c(void)
 {
-    func_arm7_03803b96(src, dst, size);
+    Bios_EnterSleepMode_Arm7();
 }

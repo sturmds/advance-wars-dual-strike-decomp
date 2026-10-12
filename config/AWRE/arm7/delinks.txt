@@ -1007,6 +1007,38 @@ src/arm7/sdk/svc/bios_await_irq_flags_arm7.c:
     complete
     .text       start:0x03803b7c end:0x03803b8c
 
+src/arm7/sdk/svc/svc_wait_vblank_intr.c:
+    complete
+    .text       start:0x03803b8c end:0x03803b92
+
+src/arm7/sdk/svc/bios_halt_until_irq_arm7.c:
+    complete
+    .text       start:0x03803b92 end:0x03803b96
+
+src/arm7/sdk/svc/bios_enter_sleep_mode_arm7.c:
+    complete
+    .text       start:0x03803b96 end:0x03803b9a
+
+src/arm7/sdk/svc/bios_ramp_sound_bias_arm7.c:
+    complete
+    .text       start:0x03803b9a end:0x03803b9e
+
+src/arm7/sdk/svc/bios_ramp_sound_bias_up_arm7.c:
+    complete
+    .text       start:0x03803b9e end:0x03803ba6
+
+src/arm7/sdk/svc/bios_ramp_sound_bias_down_arm7.c:
+    complete
+    .text       start:0x03803ba6 end:0x03803bae
+
+src/arm7/sdk/svc/bios_quotient_arm7.c:
+    complete
+    .text       start:0x03803bae end:0x03803bb2
+
+src/arm7/sdk/svc/bios_remainder_arm7.c:
+    complete
+    .text       start:0x03803bb2 end:0x03803bb8
+
 src/arm7/sdk/func_arm7_03803e50.c:
     complete
     .text       start:0x03803e50 end:0x03803e68

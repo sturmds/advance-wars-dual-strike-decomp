@@ -6,6 +6,8 @@
 - `mark` wraps each object that starts at 2 mod 4 in ALIGNALL(2) and
   ALIGNALL(4), joins neighbours into one block, leaves other objects and
   other sections alone, and fails on a name not in the text list.
+- With ARM7's block names, `mark` looks in each autoload's text list,
+  leaves the ARM9 list alone, and fails on a block the lcf lacks.
 - `copy_objects` copies only the marked objects, with .text alignment 2.
 
 No ROM, build or compiler needed.
@@ -76,6 +78,42 @@ try:
     expect("mark: missing object raises", False, True)
 except ValueError as e:
     expect("mark: missing object raises", "b.o" in str(e), True)
+
+
+def arm7_lcf(*wram: str) -> str:
+    """ARM7's lcf from dsd: a stand-in ARM9 list, then two autoloads."""
+    lines = ["    .arm9 : {", "        ALIGNALL(4);", "        ARM9_TEXT_START = .;",
+             "        gap_9.o(.text)", "        ARM9_TEXT_END = .;", "    }"]
+    lines += ["    .autoload_2 : {", "        ALIGNALL(4);", "        AUTOLOAD_2_TEXT_START = .;",
+              "        crt0.o(.text)", "        AUTOLOAD_2_TEXT_END = .;", "    }"]
+    lines += ["    .autoload_3 : {", "        ALIGNALL(4);", "        AUTOLOAD_3_TEXT_START = .;"]
+    lines += [f"        {t}" for t in wram]
+    lines += ["        AUTOLOAD_3_TEXT_END = .;", "    }", ""]
+    return "\n".join(lines)
+
+
+# Two ARM7 WRAM stubs: e ends at 2 mod 4, so f and the gap after it move.
+DELINKS7 = """    .text       start:0x037f8000 end:0x0380773c kind:code align:32
+
+src/arm7/sdk/svc/e.c:
+    complete
+    .text       start:0x03803b8c end:0x03803b92
+
+src/arm7/sdk/svc/f.c:
+    complete
+    .text       start:0x03803b92 end:0x03803b96
+"""
+base7 = arm7_lcf("gap_1.o(.text)", "e.o(.text)", "f.o(.text)", "gap_2.o(.text)")
+want7 = arm7_lcf("gap_1.o(.text)", "e.o(.text)", "ALIGNALL(2);", "f.o(.text)",
+                 "gap_2.o(.text)", "ALIGNALL(4);")
+expect("mark arm7: autoload list", lcf_align2.mark(base7, DELINKS7, ("AUTOLOAD_2", "AUTOLOAD_3")), want7)
+for what, blocks, needle in (("missing block", ("AUTOLOAD_3", "AUTOLOAD_4"), "AUTOLOAD_4"),
+                             ("ARM9 list only", ("ARM9",), "f.o")):
+    try:
+        lcf_align2.mark(base7, DELINKS7, blocks)
+        expect(f"mark arm7: {what} raises", False, True)
+    except ValueError as e:
+        expect(f"mark arm7: {what} raises", needle in str(e), True)
 
 
 def elf(align: int) -> bytes:

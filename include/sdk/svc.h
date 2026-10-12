@@ -47,6 +47,14 @@ void Bios_UnpackRunLengthByHalfwords(const void *src, void *dst);
 void Bios_RebootSoft_Arm7(void);
 void Bios_DelayLoop_Arm7(int count);
 void Bios_AwaitIrqFlags_Arm7(int clearFlags, u32 intrFlags);
+void Bios_SleepUntilVBlank_Arm7(void);
+void Bios_HaltUntilIrq_Arm7(void);
+void Bios_EnterSleepMode_Arm7(void);
+void Bios_RampSoundBias_Arm7(int raise, int delay);
+void Bios_RampSoundBiasUp_Arm7(int delay);
+void Bios_RampSoundBiasDown_Arm7(int delay);
+int Bios_Quotient_Arm7(int numerator, int denominator);
+int Bios_Remainder_Arm7(int numerator, int denominator);
 
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);

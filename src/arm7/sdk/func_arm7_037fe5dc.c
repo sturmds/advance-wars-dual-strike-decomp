@@ -1,8 +1,6 @@
-#include "types.h"
+#include "sdk/svc.h"
 
-void func_arm7_03803ba6(const void *src, void *dst, u32 size);
-
-void func_arm7_037fe5dc(const void *src, void *dst, u32 size)
+void func_arm7_037fe5dc(int delay)
 {
-    func_arm7_03803ba6(src, dst, size);
+    Bios_RampSoundBiasDown_Arm7(delay);
 }

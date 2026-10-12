@@ -47,7 +47,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 | `docs/early-phase-project-plan.md` | Milestones and open questions. |
 | `docs/style/` | `banned.txt` (blocks commits), `claudeisms.csv` (warnings), and their source. |
 | `tools.lock`, `tools/setup.py` | Tool versions, URLs, hashes, and the fetcher. |
-| `tools/configure.py`, `tools/lcf_absolute.py`, `tools/lcf_align2.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, absolute symbols for the ARM9 linker script (`ARM9_ABSOLUTE_SYMBOLS`, see `docs/workflow.md`), 2-byte alignment for main objects that start at 2 mod 4 (`docs/tool-issues.md`), one-time dsd config generation, header CRC fix. |
+| `tools/configure.py`, `tools/lcf_absolute.py`, `tools/lcf_align2.py`, `tools/dsd_init.py`, `tools/fix_header.py` | Build generator, absolute symbols for the ARM9 linker script (`ARM9_ABSOLUTE_SYMBOLS`, see `docs/workflow.md`), 2-byte alignment for ARM9 main and ARM7 objects that start at 2 mod 4 (`docs/tool-issues.md`), one-time dsd config generation, header CRC fix. |
 | `tools/arm7.py`, `tools/arm7_init.py` | ARM7 build steps around dsd (a stand-in ROM with the parts moved into dsd's range), and the one-time generation of `config/AWRE/arm7/`. |
 | `tools/fn.py`, `docs/workflow.md` | One-function loop: pick, show, add, diff, finish, rename. The near-miss cookbook and the parking rule for partials are in `docs/workflow.md`. |
 | `tools/fnindex.py`, `tools/tests/`, `fn.py check` | Function index (`build/fnindex.json`) and the fast `fn.py check`, with its test against `fn.py diff`. `fn.py pick --families` ranks same-shape families. |
