@@ -7,7 +7,7 @@ void func_arm7_037fe534(int volume);   /* writes the master volume register */
 int func_arm7_037fe654(void);         /* sets the master enable bit */
 void func_arm7_037ff9e8(BOOL periodic);
 void SndExChannel_Update(void);
-void func_arm7_037ffee0(void);
+void SndExChannel_InitAll(void);
 void SndArm7_SeqMain(BOOL periodic);
 void SndArm7_InitSeq(void);
 void SndArm7_UpdateSharedWork(void);
@@ -19,7 +19,7 @@ void func_arm7_03802408(void);
 void SndDrv_Thread(void *arg)
 {
     SND_InitIntervalTimer();
-    func_arm7_037ffee0();
+    SndExChannel_InitAll();
     SndArm7_InitSeq();
     SndArm7_InitAlarms();
     func_arm7_037fe654();
