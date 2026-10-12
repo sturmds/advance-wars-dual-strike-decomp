@@ -13,24 +13,27 @@ void Ov004_BlitBlockWithFlags(Unk_ov004_022bf158* state, int blockX, int blockY,
   u16* block;
   int stride;
   int col;
-  int row;
   int origin;
 
   /* Not matched yet (91.6%): in the flip branch dst shares map's register,
      * and the else branch's row steps swap registers. Both rows written as
-     * (base + row * n)[i] give the original's index-first addresses. The
-     * else branch counts rows in blockX: that puts flags in r2 as in the
-     * original. */
+     * (base + row * n)[i] give the original's index-first addresses. Needed
+     * for the registers so far: the flip branch counts in its own block-scoped
+     * i and j, and the else branch counts rows in the blockX parameter (that
+     * puts flags in r2). */
   stride = state->blocksWide * 32;
   block = state->mapBlock;
   map = state->tileMap;
   origin = stride * (blockY << 5) + (blockX << 5);
   Ov004_UnpackResource(name, block);
   if (flags & 0x400) {
+    int i;
+    int j;
+
     dst = map + origin;
-    for (row = 0; row < 32; row++) {
-      for (col = 0; col < 32; col++) {
-        (dst + row * stride)[31 - col] = (block + row * 32)[col] | flags;
+    for (i = 0; i < 32; i++) {
+      for (j = 0; j < 32; j++) {
+        (dst + i * stride)[31 - j] = (block + i * 32)[j] | flags;
       }
     }
   } else {
