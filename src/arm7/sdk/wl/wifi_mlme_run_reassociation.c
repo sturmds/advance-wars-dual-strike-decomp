@@ -2,7 +2,7 @@
 
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_ReassociationTimedOut(void *arg);
-void *func_arm7_027cfa54(u16 *peer);
+void *WifiFrame_NewReassocAsk(u16 *peer);
 void func_arm7_027d01c4(void *frame);
 void func_arm7_027d0240(int a, int b);
 void func_arm7_027d0590(int a);
@@ -19,7 +19,7 @@ void WifiMlme_RunReassociation(void)
 
     switch (job->state) {
     case 0x60:
-        frame = func_arm7_027cfa54(job->request->peer);
+        frame = WifiFrame_NewReassocAsk(job->request->peer);
         if (frame == NULL) {
             job->reply->unk_04 = WIFI_ANSWER_NO_MEMORY;
             job->state = 0x63;
