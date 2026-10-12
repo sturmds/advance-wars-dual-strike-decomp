@@ -1556,6 +1556,10 @@ src/arm7/sdk/pm/power_apply_arm9_command.c:
     complete
     .text       start:0x0380536c end:0x038054a0
 
+src/arm7/sdk/pm/power_sleep_until_trigger.c:
+    complete
+    .text       start:0x038054a0 end:0x0380566c
+
 src/arm7/sdk/func_arm7_0380566c.c:
     complete
     .text       start:0x0380566c end:0x03805678

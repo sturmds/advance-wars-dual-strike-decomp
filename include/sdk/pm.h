@@ -90,6 +90,31 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 #define POWER_ORDER_SHUT_DOWN 14
 #define POWER_ORDER_CANCEL_SHUTDOWN 15
 
+/* PM PXI command that puts the system to sleep; the ARM7 acknowledges it on wake-up. */
+#define POWER_MSG_ENTER_SLEEP 0x62
+
+/* Other wake-up triggers for sleep mode. */
+#define PM_TRIGGER_KEY 0x1
+#define PM_TRIGGER_RTC_ALARM 0x2
+#define PM_TRIGGER_COVER_OPEN 0x4
+
+/* ARM7 registers and interrupt bits used to wake from sleep. */
+#define REG_KEYCNT ((volatile u16 *)0x04000132)
+#define REG_RCNT ((volatile u16 *)0x04000134)
+#define KEYCNT_IRQ 0x4000
+#define IRQ_RTC 0x80
+#define IRQ_KEY 0x1000
+#define IRQ_CARTRIDGE 0x2000
+#define IRQ_CARD 0x100000
+#define IRQ_COVER_OPEN 0x400000
+
+/* PM commands from the ARM9 arrive here a halfword at a time. */
+typedef struct PowerRequestInbox PowerRequestInbox;
+struct PowerRequestInbox {
+    u16 words[16];
+    u32 unk_20;
+};
+
 /* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
 int func_arm7_038052e8(int continuous);
 u8 PMi_GetRegister(int reg);
@@ -97,6 +122,7 @@ void PMi_SetRegister(int reg, int value);
 void PMi_SetControl(int bits);
 void PMi_ResetControl(int bits);
 void PMi_SetLED(int status);
+void Power_ApplyArm9Command(int command);
 
 /* Last state given to PMi_SetLED. */
 extern int gPowerLedLastState;
