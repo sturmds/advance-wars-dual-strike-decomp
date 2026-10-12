@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-/* Alarm handler of func_arm7_027cc498: no answer came within request->timeoutMs. */
+/* Alarm handler of WifiMlme_RunAuthentication: no answer came within request->timeoutMs. */
 void WifiMlme_AuthenticationTimedOut(void *arg)
 {
     WlPeerJob *job = &WIFI_ACTIVE_JOB_OF(WIFI_DRIVER_STATE)->peer;
