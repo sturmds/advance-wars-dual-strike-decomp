@@ -1532,6 +1532,10 @@ src/arm7/sdk/snd/snd_seq_fill_cache.c:
     complete
     .text       start:0x038013f4 end:0x03801430
 
+src/arm7/sdk/snd/snd_arm7_set_track_param.c:
+    complete
+    .text       start:0x03801430 end:0x038014d4
+
 src/arm7/sdk/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70
