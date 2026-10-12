@@ -10,6 +10,7 @@
 
 #define CLOCK_SEL_STATUS_A 0x00
 #define CLOCK_SEL_INT1_SETTING 0x10
+#define CLOCK_SEL_DATE_AND_TIME 0x20
 #define CLOCK_SEL_ADDR3 0x30
 #define CLOCK_SEL_STATUS_B 0x40
 #define CLOCK_SEL_INT2_ALARM 0x50
@@ -21,8 +22,33 @@ typedef struct RtcIntRegister {
     u16 mode : 4;
     u16 unk_4 : 2;
     u16 alarm1Enabled : 1;
-    u16 unk_7 : 9;
+    u16 test : 1;
+    u16 unk_8 : 8;
 } RtcIntRegister;
+
+/* Register 0 (status 1). powerOn and lowVoltage report a lost clock;
+ * int1 and int2 report a fired interrupt. */
+typedef struct RtcStatus1 {
+    u16 reset : 1;
+    u16 unk_1 : 3;
+    u16 int1 : 1;
+    u16 int2 : 1;
+    u16 lowVoltage : 1;
+    u16 powerOn : 1;
+    u16 unk_8 : 8;
+} RtcStatus1;
+
+/* Register 2: date then time, 7 bytes, every field in BCD. */
+typedef struct RtcDateTime {
+    u32 year : 8;
+    u32 month : 5;
+    u32 unk_13 : 3;
+    u32 day : 6;
+    u32 unk_22 : 2;
+    u32 weekday : 3;
+    u32 unk_27 : 5;
+    u32 unk_4;
+} RtcDateTime;
 
 /* Runs one serial transfer of `size` bytes at `data`. */
 void func_arm7_027d5b18(int mode, int reg, void *data, int size);
