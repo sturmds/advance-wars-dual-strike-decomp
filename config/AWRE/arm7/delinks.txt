@@ -100,6 +100,10 @@ src/arm7/sdk/wm/wmsp_indicate_reassociate.c:
     complete
     .text       start:0x027c0ba8 end:0x027c0bdc
 
+src/arm7/sdk/wm/wmsp_indicate_disassociate.c:
+    complete
+    .text       start:0x027c0bdc end:0x027c0c10
+
 src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98
