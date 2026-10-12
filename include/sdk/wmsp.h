@@ -201,6 +201,17 @@ static inline WMParentParam *Wmsp_ParentParam(WMStatus *status)
     return (WMParentParam *)status->pparam;
 }
 
+/* The MP V-count alarm: one step per line, func_arm7_027c5cb0 dispatches on the line. */
+#define WMSP_VALARM_DELAY 263               /* a whole frame of lines: the step is never skipped */
+
+void func_arm7_027c5cb0(void *line);
+
+/* Sets the alarm in WmspBuf.unk_d0 for line, with the line as the handler's argument. */
+static inline void Wmsp_SetVAlarm(WmspBuf *buf, s16 line)
+{
+    LineAlarm_ArmOneShot_Arm7((OSVAlarm *)buf->unk_d0, line, WMSP_VALARM_DELAY, func_arm7_027c5cb0, (void *)line);
+}
+
 /* Held while a reply buffer is filled and sent. */
 extern OSMutex data_arm7_027d813c;
 

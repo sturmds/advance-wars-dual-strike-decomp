@@ -149,6 +149,9 @@ BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage msg, int flags);
 BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
 BOOL MsgQueue_PeekOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
 
+/* V-count alarms: the handler runs when VCOUNT reaches line, up to delay lines late. */
+void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
+
 /* Mutexes. */
 void Mutex_Take_Arm7(OSMutex *mutex);
 void Mutex_Release_Arm7(OSMutex *mutex);
