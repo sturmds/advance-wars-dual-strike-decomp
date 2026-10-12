@@ -3,7 +3,7 @@
 
 extern AlarmList gOsiAlarmQueue_Arm7;
 u32 func_arm7_037fb654(u32 mask);
-void func_arm7_037fd494(OSAlarm *alarm);
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
@@ -28,7 +28,7 @@ void Alarm_FireDueAndRearm_Arm7(void)
         return;
     }
     if (now < alarm->fire) {
-        func_arm7_037fd494(alarm);
+        Alarm_StartTimer1ForDue_Arm7(alarm);
         return;
     }
 
@@ -53,6 +53,6 @@ void Alarm_FireDueAndRearm_Arm7(void)
     }
 
     if (gOsiAlarmQueue_Arm7.head != NULL) {
-        func_arm7_037fd494(gOsiAlarmQueue_Arm7.head);
+        Alarm_StartTimer1ForDue_Arm7(gOsiAlarmQueue_Arm7.head);
     }
 }

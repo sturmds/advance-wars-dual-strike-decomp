@@ -4,7 +4,7 @@
 extern AlarmList gOsiAlarmQueue_Arm7;
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fd494(OSAlarm *alarm);
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 
 /* ARM7 copy of OS_CancelAlarm: takes a set alarm out of the queue. */
 void Alarm_Withdraw_Arm7(OSAlarm *alarm)
@@ -29,7 +29,7 @@ void Alarm_Withdraw_Arm7(OSAlarm *alarm)
         gOsiAlarmQueue_Arm7.head = next;
         if (next != NULL) {
             /* The first alarm changed: restart timer 1 for it. */
-            func_arm7_037fd494(next);
+            Alarm_StartTimer1ForDue_Arm7(next);
         }
     }
 

@@ -733,6 +733,10 @@ src/arm7/sdk/os/alarm_set_up_timer1_queue_arm7.c:
     complete
     .text       start:0x037fd444 end:0x037fd494
 
+src/arm7/sdk/os/alarm_start_timer1_for_due_arm7.c:
+    complete
+    .text       start:0x037fd494 end:0x037fd530
+
 src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0

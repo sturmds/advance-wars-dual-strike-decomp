@@ -2,7 +2,7 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-void func_arm7_037fd494(OSAlarm *alarm);
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 u64 func_arm7_03806b44(u64 dividend, u64 divisor);
 
 /*
@@ -36,7 +36,7 @@ void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire)
                 alarm->prev->next = alarm;
             } else {
                 gOsiAlarmQueue_Arm7.head = alarm;
-                func_arm7_037fd494(alarm);
+                Alarm_StartTimer1ForDue_Arm7(alarm);
             }
             return;
         }
@@ -51,6 +51,6 @@ void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire)
     } else {
         gOsiAlarmQueue_Arm7.tail = alarm;
         gOsiAlarmQueue_Arm7.head = alarm;
-        func_arm7_037fd494(alarm);
+        Alarm_StartTimer1ForDue_Arm7(alarm);
     }
 }
