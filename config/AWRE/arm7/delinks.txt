@@ -899,6 +899,10 @@ src/arm7/sdk/func_arm7_038031ac.c:
     complete
     .text       start:0x038031ac end:0x038031c4
 
+src/arm7/sdk/card/card_save_wait_until_idle.c:
+    complete
+    .text       start:0x038031c4 end:0x038032a4
+
 src/arm7/sdk/func_arm7_038032a4.c:
     complete
     .text       start:0x038032a4 end:0x038032b4
