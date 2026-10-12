@@ -312,6 +312,10 @@ src/arm7/sdk/func_arm7_027c83c8.c:
     complete
     .text       start:0x027c83c8 end:0x027c83e0
 
+src/arm7/sdk/wl/wifi_seed_lcg.c:
+    complete
+    .text       start:0x027c83e0 end:0x027c841c
+
 src/arm7/sdk/func_arm7_027c84e0.c:
     complete
     .text       start:0x027c84e0 end:0x027c84f4
