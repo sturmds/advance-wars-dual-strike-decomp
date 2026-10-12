@@ -1104,6 +1104,10 @@ src/arm7/sdk/wl/wifi_cmd_report_firmware_info.c:
     complete
     .text       start:0x027ce678 end:0x027ce6e4
 
+src/arm7/sdk/wl/wifi_cmd_zero_statistics.c:
+    complete
+    .text       start:0x027ce6e4 end:0x027ce728
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
