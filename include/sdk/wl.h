@@ -253,6 +253,15 @@ typedef struct WlWork {
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
 
+/*
+ * 32-bit time to OS tick conversions. Ticks run at the
+ * system clock / 64; 33514 is the system clock / 1000.
+ */
+#ifndef Tick_FromMilliseconds32
+#define Tick_FromMilliseconds32(ms) ((u32)(33514 * (u32)(ms)) / 64)
+#define Tick_FromMicroseconds32(us) (Tick_FromMilliseconds32(us) / 1000)
+#endif
+
 void WifiTask_ThreadMain(void);
 void WifiHost_TakeInboxBuffer(void **message);
 void WifiTask_WaitForHost(void);

@@ -348,6 +348,10 @@ src/arm7/sdk/func_arm7_027c8594.c:
     complete
     .text       start:0x027c8594 end:0x027c85b8
 
+src/arm7/sdk/wl/wifi_arm_one_shot_us.c:
+    complete
+    .text       start:0x027c85b8 end:0x027c862c
+
 src/arm7/sdk/func_arm7_027c8714.c:
     complete
     .text       start:0x027c8714 end:0x027c8738
