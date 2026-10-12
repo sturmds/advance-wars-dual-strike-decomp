@@ -21240,6 +21240,7 @@ src/sdk/os/os_get_lock_id.c:
     .text       start:0x0210cef0 end:0x0210cf48
 
 src/sdk/os/os_release_lock_id.c:
+    complete
     .text       start:0x0210cf48 end:0x0210cf78
 
 src/game/main/func_0210cf78.c:
