@@ -4,7 +4,7 @@ void func_arm7_027d4f3c(u32 offset, u32 size, void *dest);    /* read firmware f
 void func_arm7_037fde5c(u32 data, void *dest, int size);       /* fill words */
 void func_arm7_037fde70(const void *src, void *dest, int size); /* copy words */
 void func_arm7_037fdf68(const void *src, void *dest, u32 size); /* copy bytes */
-u16 func_arm7_03807514(u16 value);
+u16 PickWirelessChannels(u16 value);
 int UserSettings_ChooseCopy(UserSettings *copies);
 
 /*
@@ -55,5 +55,5 @@ void UserSettings_LoadFromFlash(void)
     wireless = (SharedWirelessInfo *)(shared + 1);
     func_arm7_037fdf68(mac, wireless->macAddress, 6);
     func_arm7_027d4f3c(FLASH_CHANNELS, 2, &channels);
-    wireless->channels = func_arm7_03807514(channels >> 1);
+    wireless->channels = PickWirelessChannels(channels >> 1);
 }

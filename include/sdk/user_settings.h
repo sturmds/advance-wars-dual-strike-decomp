@@ -31,7 +31,7 @@ typedef struct UserSettings {
  */
 typedef struct SharedWirelessInfo {
     u8 macAddress[6];
-    u16 channels;               /* from flash offset 0x3c, through func_arm7_03807514 */
+    u16 channels;               /* from flash offset 0x3c, through PickWirelessChannels */
 } SharedWirelessInfo;
 
 #define SHARED_USER_SETTINGS ((UserSettings *)0x027ffc80)

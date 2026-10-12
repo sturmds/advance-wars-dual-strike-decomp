@@ -2376,6 +2376,10 @@ src/arm7/sdk/mi/reset_handshake_and_reboot_arm7.c:
     complete
     .text       start:0x03807394 end:0x03807408
 
+src/arm7/sdk/os/pick_wireless_channels.c:
+    complete
+    .text       start:0x03807514 end:0x03807640
+
 src/arm7/sdk/wm/wmsp_get_callback_buffer.c:
     complete
     .text       start:0x03807640 end:0x0380769c

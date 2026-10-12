@@ -1064,7 +1064,7 @@ Reset_HandshakeAndReboot_Arm7 kind:function(arm,size=0x74) addr:0x03807394
 func_arm7_03807408 kind:function(arm,size=0x1c) addr:0x03807408
 data_arm7_03807424 kind:data(any) addr:0x03807424
 data_arm7_0380749c kind:data(any) addr:0x0380749c
-func_arm7_03807514 kind:function(arm,size=0x12c) addr:0x03807514
+PickWirelessChannels kind:function(arm,size=0x12c) addr:0x03807514
 Wmsp_GetCallbackBuffer kind:function(arm,size=0x5c) addr:0x03807640
 Wmsp_WaitCallbackFree kind:function(arm,size=0x4c) addr:0x0380769c
 Wmsp_SendReply kind:function(arm,size=0x54) addr:0x038076e8
