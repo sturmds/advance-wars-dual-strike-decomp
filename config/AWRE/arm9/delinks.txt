@@ -23524,6 +23524,14 @@ src/sdk/msl/longjmp.c:
     complete
     .text       start:0x021296a8 end:0x021296b8
 
+src/sdk/msl/__destroy_global_chain.c:
+    complete
+    .text       start:0x021296b8 end:0x02129710
+
+src/sdk/msl/__call_static_initializers.c:
+    complete
+    .text       start:0x02129710 end:0x02129748
+
 src/sdk/func_02129748.c:
     complete
     .text       start:0x02129748 end:0x02129754

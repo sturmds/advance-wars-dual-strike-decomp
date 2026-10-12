@@ -5945,8 +5945,8 @@ __write_console kind:function(arm,size=0x38) addr:0x02129600
 __read_console kind:function(arm,size=0x64) addr:0x02129638
 setjmp kind:function(arm,size=0xc) addr:0x0212969c
 longjmp kind:function(arm,size=0x10) addr:0x021296a8
-func_021296b8 kind:function(arm,size=0x58) addr:0x021296b8
-func_02129710 kind:function(arm,size=0x38) addr:0x02129710
+__destroy_global_chain kind:function(arm,size=0x58) addr:0x021296b8
+__call_static_initializers kind:function(arm,size=0x38) addr:0x02129710
 func_02129748 kind:function(arm,size=0xc) addr:0x02129748
 func_02129754 kind:function(arm,size=0xc) addr:0x02129754
 data_02129760 kind:data(any) addr:0x02129760
