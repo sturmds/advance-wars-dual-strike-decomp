@@ -2,7 +2,7 @@
 #include "sdk/pm.h"
 #include "sdk/tp.h"
 
-void func_arm7_027d46b8(u32 data);   /* NVRAM request word */
+void NVRAM_AnalyzeCommand(u32 data);   /* NVRAM request word */
 void PM_AnalyzeCommand(u32 data);   /* power chip request word */
 void func_arm7_03805da8(u32 data);   /* microphone request word */
 
@@ -25,7 +25,7 @@ void SerialDev_OnFifoMessage(u32 tag, u32 data, int err)
         PM_AnalyzeCommand(data);
         break;
     case PXI_FIFO_TAG_NVRAM:
-        func_arm7_027d46b8(data);
+        NVRAM_AnalyzeCommand(data);
         break;
     }
 }

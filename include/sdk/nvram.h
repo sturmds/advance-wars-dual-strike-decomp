@@ -50,6 +50,14 @@ enum {
     FLASH_REQ_RESTART = 0x2d
 };
 
+/* A request arrives as up to this many PXI words of one halfword each. */
+#define NVRAM_PXI_WORDS 16
+extern u16 nvramPxiWords[NVRAM_PXI_WORDS];   /* the request being collected */
+
+/* The ARM9 buffers a request reads into or writes from must lie in main RAM. */
+#define NVRAM_BUFFER_MIN 0x02000000
+#define NVRAM_BUFFER_END 0x02400000
+
 #define NVRAM_PAGE_SIZE 0x100
 #define NVRAM_ADDRESS_BYTES 3
 

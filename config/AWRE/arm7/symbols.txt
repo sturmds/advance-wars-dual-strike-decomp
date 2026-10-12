@@ -481,7 +481,7 @@ WifiFlash_ValidateRadioBlock kind:function(arm,size=0xac) addr:0x027d42cc
 NVRAM_IsWriteEnabled kind:function(arm,size=0x38) addr:0x027d4378
 NVRAM_IsIdle kind:function(arm,size=0x2c) addr:0x027d43b0
 NVRAM_ExecuteProcess kind:function(arm,size=0x2dc) addr:0x027d43dc
-func_arm7_027d46b8 kind:function(arm,size=0x1a4) addr:0x027d46b8
+NVRAM_AnalyzeCommand kind:function(arm,size=0x1a4) addr:0x027d46b8
 func_arm7_027d485c kind:function(arm,size=0x28) addr:0x027d485c
 func_arm7_027d4884 kind:function(arm,size=0x40) addr:0x027d4884
 func_arm7_027d48c4 kind:function(arm,size=0x9c) addr:0x027d48c4
@@ -572,7 +572,7 @@ data_arm7_027d7c44 kind:bss addr:0x027d7c44
 data_arm7_027d7d3c kind:bss addr:0x027d7d3c
 data_arm7_027d813c kind:bss addr:0x027d813c
 data_arm7_027d8160 kind:bss addr:0x027d8160
-data_arm7_027d818c kind:bss addr:0x027d818c
+nvramPxiWords kind:bss addr:0x027d818c
 data_arm7_027d81ac kind:bss addr:0x027d81ac
 data_arm7_027d81b0 kind:bss addr:0x027d81b0
 data_arm7_027d81c4 kind:bss addr:0x027d81c4
