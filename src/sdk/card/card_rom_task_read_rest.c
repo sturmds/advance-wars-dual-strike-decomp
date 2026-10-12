@@ -9,7 +9,7 @@ void CardRom_TaskReadRest(CARDiCommon *common)
     CARDiRomPage *page = &data_022ac100;
 
     if (CardRom_TakeFromBufferedPage(page)) {
-        page->task(page);
+        page->readPages(page);
     }
     CARDi_EndTask();
 }

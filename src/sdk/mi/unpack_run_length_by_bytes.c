@@ -6,7 +6,7 @@
  * 7 bits: a literal block of count + 1 bytes, or one byte repeated
  * count + 3 times. Sits in gUnpackFuncs for RL data read from main RAM.
  */
-asm void func_0210f93c(const u8 *src, u8 *dest)
+asm void Unpack_RunLengthByBytes(const u8 *src, u8 *dest)
 {
     stmfd sp!, {r4, r5, r7}
     ldmia r0!, {r3}

@@ -2,12 +2,12 @@
 
 /*
  * Hand-written Thumb assembly: run-length unpacker that writes 16-bit
- * halfwords, safe for VRAM. Same stream format as func_0210f93c; bytes are
+ * halfwords, safe for VRAM. Same stream format as Unpack_RunLengthByBytes; bytes are
  * collected into r7 and stored when a halfword is full. Sits in gUnpackFuncs
  * for RL data read from VRAM-safe destinations.
  */
 #pragma thumb on
-asm void func_0210f9a8(const u8 *src, u16 *dest)
+asm void Unpack_RunLengthByHalfwords(const u8 *src, u16 *dest)
 {
     push {r4, r5, r6, r7}
     sub sp, #12

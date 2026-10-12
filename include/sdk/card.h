@@ -133,7 +133,7 @@ extern BOOL (*data_022ac324)(void);
 /* ROM read work, data_022ac100: the page being read and its control word. */
 typedef struct CARDiRomPage CARDiRomPage;
 struct CARDiRomPage {
-    BOOL (*task)(CARDiRomPage *page);   /* runs after each page, TRUE while more is left */
+    void (*readPages)(CARDiRomPage *page);   /* reads the pages left after the first copy */
     u32 control;                        /* IO_GAMECARD_ROM_CTRL value that starts a page read */
     u32 address;                        /* ROM address of the page held in data */
     u8 unk_0C[20];

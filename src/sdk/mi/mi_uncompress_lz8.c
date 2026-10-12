@@ -6,7 +6,7 @@
  * header, dest the output. Sits in gUnpackFuncs for LZ data read from main
  * RAM. Written as asm because the swpb stores have no C form.
  */
-asm void func_0210f6f8(const u8 *src, u8 *dest)
+asm void MI_UncompressLZ8(const u8 *src, u8 *dest)
 {
     stmfd sp!, {r4, r5, r6, lr}
     ldr r5, [r0], #4

@@ -21,6 +21,6 @@ void CARD_Init(void)
     common->callbackArg = NULL;
     data_022ac0e0 = 0;
     func_021154e8();
-    data_022ac100.task = (BOOL (*)(CARDiRomPage *))CardRom_ReadPagesByCpu;   /* the field type claims a BOOL result; this function returns nothing */
+    data_022ac100.readPages = CardRom_ReadPagesByCpu;
     Card_RegisterRemovalHandler();
 }

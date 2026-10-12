@@ -21500,7 +21500,7 @@ src/sdk/os/os_get_init_arena_lo.c:
     complete
     .text       start:0x0210e284 end:0x0210e36c
 
-src/sdk/os/func_0210e36c.c:
+src/sdk/os/os_get_init_arena_hi.c:
     complete
     .text       start:0x0210e36c end:0x0210e494
 
@@ -21736,7 +21736,7 @@ src/sdk/mi/mi_swap_word.c:
     complete
     .text       start:0x0210f6f0 end:0x0210f6f8
 
-src/sdk/mi/func_0210f6f8.c:
+src/sdk/mi/mi_uncompress_lz8.c:
     complete
     .text       start:0x0210f6f8 end:0x0210f78c
 
@@ -21747,11 +21747,11 @@ src/sdk/mi/unpack_lz77_by_halfwords.c:
 src/sdk/mi/unpack_huffman_to_words.c:
     .text       start:0x0210f864 end:0x0210f93c
 
-src/sdk/mi/func_0210f93c.c:
+src/sdk/mi/unpack_run_length_by_bytes.c:
     complete
     .text       start:0x0210f93c end:0x0210f9a8
 
-src/sdk/mi/func_0210f9a8.c:
+src/sdk/mi/unpack_run_length_by_halfwords.c:
     complete
     .text       start:0x0210f9a8 end:0x0210fa10
 
@@ -22438,7 +22438,7 @@ src/sdk/pm/power_release_and_report.c:
     complete
     .text       start:0x0211531c end:0x02115370
 
-src/game/main/func_02115370.c:
+src/sdk/pm/power_save_sync_result.c:
     complete
     .text       start:0x02115370 end:0x02115378
 
@@ -22544,7 +22544,7 @@ src/sdk/card/card_init.c:
     complete
     .text       start:0x02115fe8 end:0x02116070
 
-src/sdk/func_02116070.c:
+src/sdk/card/card_wait_rom_async.c:
     complete
     .text       start:0x02116070 end:0x0211607c
 

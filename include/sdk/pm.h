@@ -40,6 +40,7 @@ struct PowerChipReadSlot {
 #define POWER_CHIP_READ_SLOTS 4
 
 void PowerHook_CallAll(PowerHookEntry *list);
+void Power_SaveSyncResult(u32 result, u32 *dest);
 BOOL Power_LcdsPowered(void);
 BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 

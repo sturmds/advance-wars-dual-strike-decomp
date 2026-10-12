@@ -8,7 +8,7 @@ void OS_SleepThread(OSThreadQueue *queue);
 void MI_StopDma(int channel);
 void CARDi_SetTask(GameCardTaskStep task);
 void func_021154ac(void);
-void func_02116070(void);      /* waits for the running request (the definition's parameters are not used here) */
+BOOL CARD_WaitRomAsync(void);
 BOOL func_021162d8(CARDiRomPage *page);
 void CardRom_TaskReadRest(CARDiCommon *common);
 
@@ -40,7 +40,7 @@ void CARDi_ReadRom(u32 dma, u32 src, u32 dst, u32 len, CARDCallback callback, vo
     }
     if (func_021162d8(page)) {
         if (!isAsync) {
-            func_02116070();
+            CARD_WaitRomAsync();
         }
         return;
     }

@@ -6,7 +6,7 @@
 
 void Unpack_Lz77ByHalfwords(const void *src, void *dest);             /* SDK LZ77 unpack */
 void Unpack_HuffmanToWords(const void *src, void *dest);             /* SDK Huffman unpack */
-void func_0210f9a8(const void *src, void *dest);             /* SDK run-length unpack */
+void Unpack_RunLengthByHalfwords(const void *src, void *dest);             /* SDK run-length unpack */
 
 /* DS compression header, first word of a packed file: type in bits
  * 4-7, unpacked size in bits 8-31. */
@@ -58,7 +58,7 @@ u32 File_UnpackTo(void *dest, const char *path)
         Unpack_HuffmanToWords(packed, dest);
         break;
     case COMPRESS_RL:
-        func_0210f9a8(packed, dest);
+        Unpack_RunLengthByHalfwords(packed, dest);
         break;
     }
     Heap_Free(gGameHeap, packed);

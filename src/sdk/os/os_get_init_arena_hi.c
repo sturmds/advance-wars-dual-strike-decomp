@@ -25,7 +25,7 @@ extern BOOL data_022a9b78;     /* main RAM past 4 MB may be used as an arena */
 
 u32 func_0210dbec(void);       /* console type */
 
-void *func_0210e36c(OSArenaId id)
+void *OS_GetInitArenaHi(OSArenaId id)
 {
     u32 irqStackLo;
     u32 sysStackLo;
