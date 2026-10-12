@@ -1128,6 +1128,10 @@ src/arm7/sdk/wl/wifi_host_return_sent_frame.c:
     complete
     .text       start:0x027ce87c end:0x027ce8b4
 
+src/arm7/sdk/wl/wifi_cmd_reset_transmit_parts.c:
+    complete
+    .text       start:0x027ce8b4 end:0x027ce900
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
