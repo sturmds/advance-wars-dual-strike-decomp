@@ -409,6 +409,17 @@ typedef struct WlRxFrame {
     u16 body[1];
 } WlRxFrame;
 
+/* The 802.11 header inside a WlRxFrame, from frameControl on. Some code
+   reaches the addresses through a pointer to it. */
+typedef struct WlMacHeader {
+    u16 frameControl;
+    u16 duration;
+    u16 addr1[3];
+    u16 addr2[3];
+    u16 addr3[3];
+    u16 sequence;
+} WlMacHeader;
+
 /* 802.11 frame control bits. */
 #define WIFI_FRAMECTL_SENT_TO_AP 0x100
 #define WIFI_FRAMECTL_SENT_BY_AP 0x200
@@ -1034,7 +1045,9 @@ typedef struct WlCounters {
     u32 unk_0c;
     u8 pad_10[0x10];
     u32 unk_20;
-    u8 pad_24[0xc];
+    u32 unk_24;
+    u32 mgmtRxUnicast;   /* management and control frames received */
+    u32 mgmtRxMulticast;
     u32 unk_30;
     u8 pad_34[4];
     u32 unk_38;
