@@ -523,6 +523,10 @@ src/arm7/sdk/os/mutex_unlink_from_owner_arm7.c:
     complete
     .text       start:0x037fc528 end:0x037fc54c
 
+src/arm7/sdk/os/mutex_append_to_owner_arm7.c:
+    complete
+    .text       start:0x037fc54c end:0x037fc574
+
 src/arm7/sdk/func_arm7_037fc6b0.c:
     complete
     .text       start:0x037fc6b0 end:0x037fc6c4
