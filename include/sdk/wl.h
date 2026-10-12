@@ -54,6 +54,12 @@ typedef struct WlLink {
     u16 flags_8a;
 } WlLink;
 
+// Entry inside the frame payload at a running offset.
+typedef struct WlPayloadEntry {
+    u8 pad_00[6];
+    u8 bytes[2];
+} WlPayloadEntry;
+
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
     u8 pad_00[0x24];
@@ -166,6 +172,7 @@ typedef struct WlWork {
 
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
 #define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
+#define WIFI_POST_BEACON_TIMER (*(volatile u16 *)0x04808134)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 

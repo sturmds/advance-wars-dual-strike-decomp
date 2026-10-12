@@ -336,6 +336,10 @@ src/arm7/sdk/wl/wifi_param_store_ssid_mask.c:
     complete
     .text       start:0x027c9f34 end:0x027c9f64
 
+src/arm7/sdk/wl/wifi_param_store_post_beacon_time.c:
+    complete
+    .text       start:0x027c9f64 end:0x027ca024
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94
