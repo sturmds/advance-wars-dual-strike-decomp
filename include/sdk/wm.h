@@ -88,8 +88,11 @@ typedef struct WMCallback {
 #define WM_APIID_START_KS 21                /* best guess from the neighbouring request ids */
 #define WM_APIID_SET_GAMEINFO 24
 #define WM_APIID_SET_BEACON_IND 25
+#define WM_APIID_STOP_TESTMODE 27
 #define WM_APIID_SET_LIFETIME 29
 #define WM_APIID_MEASURE_CHANNEL 30
+#define WM_APIID_INIT_W_COUNTER 31
+#define WM_APIID_GET_W_COUNTER 32
 #define WM_APIID_SET_ENTRY 33
 #define WM_APIID_AUTO_DEAUTH 34
 #define WM_APIID_SET_BEACON_PERIOD 36      /* best guess from the neighbouring request ids */
