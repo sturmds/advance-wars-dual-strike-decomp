@@ -1111,6 +1111,10 @@ src/arm7/sdk/os/line_alarm_arm_every_frame_arm7.c:
     complete
     .text       start:0x037fd8ac end:0x037fd944
 
+src/arm7/sdk/os/line_alarm_arm_one_shot_arm7.c:
+    complete
+    .text       start:0x037fd944 end:0x037fd9dc
+
 src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0
