@@ -376,6 +376,24 @@ typedef struct WlRxAddrs {
     u16 sequence;
 } WlRxAddrs;
 
+/* 802.11 capability information, the first body field of beacons, probe
+   responses and (re)association frames. */
+typedef union WlCapability {
+    u16 raw;
+    struct {
+        u16 ess : 1;
+        u16 ibss : 1;
+        u16 cfPollable : 1;
+        u16 cfPollRequest : 1;
+        u16 privacy : 1;
+        u16 shortPreamble : 1;
+        u16 unused : 10;
+    };
+} WlCapability;
+
+/* Capability bits a parent refuses in an association request (status 10). */
+#define WIFI_CAPS_PARENT_REJECTS 0xffc2
+
 /* The information elements of a received management frame, as
    func_arm7_027d1d84 parses them. Callers fill data, length and unk_0c. */
 typedef struct WlElements {
@@ -787,6 +805,13 @@ typedef struct WlRxBuffer {
 
 /* 802.11 status code of an association response when no AID is left. */
 #define WIFI_IEEE_STATUS_AP_FULL 19
+/* Other 802.11 status codes WL answers (re)association requests with. */
+#define WIFI_IEEE_STATUS_OK 0
+#define WIFI_IEEE_STATUS_FAILURE 1
+#define WIFI_IEEE_STATUS_CAPS_UNSUPPORTED 10
+#define WIFI_IEEE_STATUS_RATES_UNSUPPORTED 18
+/* 802.11 reason code: a frame came from a station that has not authenticated. */
+#define WIFI_REASON_UNAUTHED_SENDER 6
 
 /* Body of a management frame the driver builds, from WlTxFrame.body. */
 typedef union WlMgmtBody {
