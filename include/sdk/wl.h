@@ -1472,6 +1472,15 @@ typedef struct Unk_027cb9e4 {
 #define W_RXCNT_COPY_REPLY  0x80 /* REG_W_RXCNT: copy REPLY1 into REPLY2 */
 #define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
 #define REG_W_US_COUNT1     (*(volatile u16 *)0x048080fa)
+#define REG_W_US_COUNT2     (*(volatile u16 *)0x048080fc)
+#define REG_W_US_COUNT3     (*(volatile u16 *)0x048080fe)
+/* Microsecond compare (bit 0 of COMPARE0 enables it) and the CFP time left
+   from the CF parameter set. Names from GBATEK. */
+#define REG_W_US_COMPARE0 (*(volatile u16 *)0x048080f0)
+#define REG_W_US_COMPARE1 (*(volatile u16 *)0x048080f2)
+#define REG_W_US_COMPARE2 (*(volatile u16 *)0x048080f4)
+#define REG_W_US_COMPARE3 (*(volatile u16 *)0x048080f6)
+#define REG_W_CONTENTFREE (*(volatile u16 *)0x0480810c)
 #define REG_W_TX_SEQNO      (*(volatile u16 *)0x04808210) /* sequence number of the last frame sent */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
