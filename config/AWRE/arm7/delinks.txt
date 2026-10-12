@@ -956,6 +956,10 @@ src/arm7/sdk/wl/wifi_test_resend_or_halt.c:
     complete
     .text       start:0x027ce178 end:0x027ce220
 
+src/arm7/sdk/wl/wifi_test_send_pattern_frames.c:
+    complete
+    .text       start:0x027ce220 end:0x027ce370
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
