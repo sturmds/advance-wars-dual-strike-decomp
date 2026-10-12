@@ -24,10 +24,12 @@ int BattleCellTask_GetCellOffsetX(BattleCellTask *task, int unk_3);
 int BattleCellTask_GetCellOffsetY(BattleCellTask *task, int unk_3);
 
 /* Makes the hit sprite at the cell task's position. Needed to match: its locals are declared
- * at function scope (97.4% as block locals). */
+ * at function scope (97.4% as block locals), and the side passes through scale before
+ * cellSide (28 differing instructions without it, 26 with it). */
 #define CREATE_HIT_SPRITE(task, arg570, arg4e0)                                                   \
     do {                                                                                          \
-        cellSide = (task)->side;                                                              \
+        scale = (task)->side;                                                              \
+        cellSide = scale;                                                              \
         scale = (task)->scale;                                                                \
         offsetY = BattleCellTask_GetCellOffsetY((task), (arg570));                                      \
         offsetX = BattleCellTask_GetCellOffsetX((task), (arg4e0));                                  \
