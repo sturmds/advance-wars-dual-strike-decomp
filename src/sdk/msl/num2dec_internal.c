@@ -2,7 +2,7 @@
 #include "sdk/msl.h"
 
 /* Soft-float runtime: double subtract, and double to unsigned 64-bit. */
-double func_0212676c(double a, double b);
+double _dsub(double a, double b);
 u64 _ll_ufrom_d(double x);
 
 /* Number of trailing zero bits in the 53-bit mantissa of x. */
@@ -35,7 +35,7 @@ void __num2dec_internal(Decimal *dec, double x)
         return;
     }
     if (sign) {
-        x = func_0212676c(0.0, x);
+        x = _dsub(0.0, x);
     }
     /* x = mantissa * 2^(exponent - bits), with the mantissa as an exact integer. */
     {
