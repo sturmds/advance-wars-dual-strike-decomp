@@ -22513,6 +22513,7 @@ src/sdk/func_021154d8.c:
     .text       start:0x021154d8 end:0x021154e8
 
 src/sdk/card/func_021154e8.c:
+    complete
     .text       start:0x021154e8 end:0x021155e4
 
 src/sdk/card/cardi_unlock_resource.c:

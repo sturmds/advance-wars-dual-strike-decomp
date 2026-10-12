@@ -17,16 +17,16 @@ void func_0211549c(u32 state);
 void CARDi_TaskThread(void* arg);
 void Card_OnRequestTagMessage(int tag, u32 data, int err);
 
-/* Not matched yet (96.8%): the original schedules the zero's mov before the
- * lockOwner store. Writing lockTarget and cmd through data_022abb00 rather
- * than common got it this far. */
+/* Needed to match: the first four stores go through data_022abb00, not
+ * common, and the zero passed to MIi_CpuClearFast goes through a volatile
+ * stack slot. */
 void func_021154e8(void) {
   CARDiCommon* common = &data_022abb00;
   vu32 zero;
   u32 value;
 
-  common->lockOwner = OS_LOCK_ID_ERROR;
-  common->lockCount = 0;
+  data_022abb00.lockOwner = OS_LOCK_ID_ERROR;
+  data_022abb00.lockCount = 0;
   zero = 0;
   value = zero;
   data_022abb00.lockTarget = 0;
