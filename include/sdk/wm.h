@@ -308,10 +308,11 @@ typedef struct WMMpRecvData {
 
 /* Receive buffer of an MP exchange: count entries, stride bytes apart. */
 typedef struct WMMpRecvBuf {
-    u8 pad_00[4];
+    u16 bitmap;                        /* the children polled */
+    u8 pad_02[2];
     u16 count;
     u16 stride;
-    u8 pad_08[2];
+    u16 unk_08;
     u8 firstEntry[1];                  /* a WMMpRecvData */
 } WMMpRecvBuf;
 

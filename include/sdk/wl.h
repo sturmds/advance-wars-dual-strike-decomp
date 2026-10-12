@@ -105,6 +105,22 @@ typedef struct WlParamsRequest {
     u16 value06;
 } WlParamsRequest;
 
+// Request of WifiCmd_StartMpPoll: the parent's MP poll to the children in
+// pollBitmap. With bit 15 of flags set it resumes the last poll: each of bits
+// 1-4 that is clear takes childTime, pollBitmap, sendTime or the data from it.
+typedef struct WlMpRequest {
+    u8 pad_00[0x10];
+    u16 flags;
+    u16 unk_12;
+    u16 childTime;   /* bit 15 set: microseconds per child reply; clear: bytes */
+    u16 pollBitmap;  /* bit n: poll the child with aid n */
+    u16 sendTime;    /* 0: send now; else when to send, in 10 us steps */
+    u16 usCountBase; /* microsecond counter value sendTime counts from */
+    u16 dataLength;  /* at most 0x204 */
+    u16 header;      /* first body halfword, before the data */
+    const void *data;
+} WlMpRequest;
+
 // Request of WifiCmd_ArmMpReply.
 typedef struct WlMpReplyRequest {
     u8 pad_00[0x10];
@@ -1176,10 +1192,15 @@ typedef struct WlTxSlots {
     WlTxSlot slot[7];
     u8 pad_8c[4];
     WlBuffer *cmdBuffer;
-    u8 pad_94[4];
+    /* mpChildTime to mpPollBitmapSaved, except mpExpected and mpReceived: the
+       last WlMpRequest, for fields a resumed request leaves out. */
+    u16 mpChildTime;
+    u16 mpSendTime;
     u16 mpExpected; /* bit n: a reply from AID n is expected */
     u16 mpReceived; /* bit n: the reply from AID n came in */
-    u8 pad_9c[0xa2 - 0x9c];
+    u16 mpDataLength;
+    u16 mpUnk12;
+    u16 mpPollBitmapSaved; /* what a resumed request without bit 2 polls */
     u16 aidBit;       /* WlWork.aidBit */
     u8 pad_a4[2];
     u16 savedMpReply; /* WlWork.savedMpReply */
