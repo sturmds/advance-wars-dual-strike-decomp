@@ -548,6 +548,10 @@ src/arm7/sdk/wl/wifi_cmd_report_channel_info.c:
     complete
     .text       start:0x027cd89c end:0x027cd8d4
 
+src/arm7/sdk/wl/wifi_cmd_report_retry_limit.c:
+    complete
+    .text       start:0x027cd8d4 end:0x027cd8fc
+
 src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28
