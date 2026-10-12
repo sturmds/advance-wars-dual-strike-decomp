@@ -1232,6 +1232,10 @@ src/arm7/sdk/wl/wifi_cmd_start_association.c:
     complete
     .text       start:0x027ccce4 end:0x027ccdc4
 
+src/arm7/sdk/wl/wifi_cmd_send_deauth.c:
+    complete
+    .text       start:0x027ccdc4 end:0x027ccef0
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac

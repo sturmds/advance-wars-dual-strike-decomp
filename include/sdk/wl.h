@@ -543,6 +543,14 @@ typedef struct WlMacRequest {
     u16 reason; /* 802.11 reason code */
 } WlMacRequest;
 
+/* Reply that echoes the station address of a WlMacRequest. */
+typedef struct WlMacReply {
+    u16 unk_00;
+    u16 status;
+    u16 unk_04;
+    u16 mac[3];
+} WlMacReply;
+
 /* Request to (re)associate with the access point at mac. */
 typedef struct WlAssociateRequest {
     u8 pad_00[0x10];
