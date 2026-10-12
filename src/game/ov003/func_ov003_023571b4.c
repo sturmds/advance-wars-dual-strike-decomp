@@ -14,23 +14,22 @@ void Ov003_UpdateTileClaims(void);
 void Ov003Rows_TickPowers(void);
 void Ov003_UpdateSpawns(void);
 
-void func_ov003_023571b4(void)
-{
-    if (Ov003_IsPhase0Or1() == 1) {
-        Ov003_RunSlotInput();
-    }
-    if (Ov003_IsPlayPhase() == 1) {
-        Ov003_UpdateRowUnits();
-        Ov003_StepMarkers();
-    }
-    if (Ov003_IsPhase0OrAbove6() != 1) {
-        return;
-    }
-    Ov003_TickUnits();
-    Ov003_UpdatePickups();
-    Ov003_UpdateObjects();
-    Ov003_HealUnitsOnOwnTiles();
-    Ov003_UpdateTileClaims();
-    Ov003Rows_TickPowers();
-    Ov003_UpdateSpawns();
+void func_ov003_023571b4(void) {
+  if (Ov003_IsPhase0Or1() == 1) {
+    Ov003_RunSlotInput();
+  }
+  if (Ov003_IsPlayPhase() == 1) {
+    Ov003_UpdateRowUnits();
+    Ov003_StepMarkers();
+  }
+  if (Ov003_IsPhase0OrAbove6() != 1) {
+    return;
+  }
+  Ov003_TickUnits();
+  Ov003_UpdatePickups();
+  Ov003_UpdateObjects();
+  Ov003_HealUnitsOnOwnTiles();
+  Ov003_UpdateTileClaims();
+  Ov003Rows_TickPowers();
+  Ov003_UpdateSpawns();
 }

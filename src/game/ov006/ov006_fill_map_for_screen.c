@@ -11,9 +11,9 @@ void func_ov006_02363198(int x, int y);
 void Ov006_FindHqs(void);
 u8 Ov006_CountPropertyTiles(void);
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-extern Unk_ov006_0235f690 *data_ov006_0236d640;
+extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -22,44 +22,46 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * (plain), 4 (wood) or 7 (sea) for screens 1, 4 and 7, and for screen 3 mountain
  * with an extra call per tile. The tile store as (tiles + x)[row] is needed to
  * match. */
-void Ov006_FillMapForScreen(int screenId)
-{
-    int i;
-    int y;
-    int x;
+void Ov006_FillMapForScreen(int screenId) {
+  int i;
+  int y;
+  int x;
 
-    if (screenId < 0) {
-        Ov006_NewMap();
-        return;
+  if (screenId < 0) {
+    Ov006_NewMap();
+    return;
+  }
+  Units_ClearAll();
+  data_ov006_0236d640->unk_2c[0] = 0;
+  for (i = 0; i < STATE->unk_1c4->mapHeight; i++) {
+    STATE->mapTiles->rowStart[i] = i * STATE->unk_1c4->mapWidth;
+  }
+  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+      switch (screenId) {
+        case 7:
+          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 42;
+          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+              TERRAIN_SEA;
+          break;
+        case 1:
+          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 1;
+          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+              TERRAIN_PLAIN;
+          break;
+        case 3:
+          Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);
+          func_ov006_02363198(x, y);
+          break;
+        case 4:
+          STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 135;
+          (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] =
+              TERRAIN_WOOD;
+          break;
+      }
     }
-    Units_ClearAll();
-    data_ov006_0236d640->unk_2c[0] = 0;
-    for (i = 0; i < STATE->unk_1c4->mapHeight; i++) {
-        STATE->mapTiles->rowStart[i] = i * STATE->unk_1c4->mapWidth;
-    }
-    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-        for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            switch (screenId) {
-            case 7:
-                STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 42;
-                (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] = TERRAIN_SEA;
-                break;
-            case 1:
-                STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 1;
-                (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] = TERRAIN_PLAIN;
-                break;
-            case 3:
-                Ov006_SetTerrain(x, y, TERRAIN_MOUNTAIN);
-                func_ov006_02363198(x, y);
-                break;
-            case 4:
-                STATE->mapTiles->mapCells[STATE->mapTiles->rowStart[y] + x] = 135;
-                (STATE->mapTiles->tiles + x)[STATE->mapTiles->rowStart[y]] = TERRAIN_WOOD;
-                break;
-            }
-        }
-    }
-    func_020c4448();
-    Ov006_FindHqs();
-    data_ov006_0236d640->propertyCount = Ov006_CountPropertyTiles();
+  }
+  func_020c4448();
+  Ov006_FindHqs();
+  data_ov006_0236d640->propertyCount = Ov006_CountPropertyTiles();
 }

@@ -9,36 +9,37 @@
 
 void Gfx_InitBothScreens(void);
 void Wallpaper_LoadBoth(void);
-void Screen_SetCurrent(void *state);
-void Screen_SetCurrentGfx(void *state);
-void Screen_SetCurrentBoth(void *state);
-void Gfx_LoadBmap09f(void *target, int a, int b);
+void Screen_SetCurrent(void* state);
+void Screen_SetCurrentGfx(void* state);
+void Screen_SetCurrentBoth(void* state);
+void Gfx_LoadBmap09f(void* target, int a, int b);
 void Font_LoadDigits(int a);
 void LargeFont_Load(void);
-void *File_Load(const char *path);
-const char *File_LocalizePath(const char *path);
-void Data_Unpack(const void *src, void *dst);
-void Palette_Load(const void *src, u32 offset, u32 size);
-void Mem_Copy32(const void *src, void *dst, u32 size);
-void Mem_Free(void *file);
+void* File_Load(const char* path);
+const char* File_LocalizePath(const char* path);
+void Data_Unpack(const void* src, void* dst);
+void Palette_Load(const void* src, u32 offset, u32 size);
+void Mem_Copy32(const void* src, void* dst, u32 size);
+void Mem_Free(void* file);
 void Gfx_RequestLayerCopy(int layer);
 void NumberFont_LoadLow(void);
 int func_0207a324(void);
 void Link_DrawPlayerRows(void);
 void LinkMenu_DrawSecondView(void);
 void ModeFont_Load(int a, int b);
-void ModeFont_ShowText(const void *text, int a, int b, int c, int d);
-const void *Text_Get(u32 textId);
+void ModeFont_ShowText(const void* text, int a, int b, int c, int d);
+const void* Text_Get(u32 textId);
 void SpriteTask_Create(int a, int b, int c, int d);
 void LinkMenu_AddAllButtons(void);
 void LinkMenu_AddBackButtons(void);
 
-extern Unk_02080440 *data_027c027c;
-extern Unk_027c0280 *data_027c0280;
+extern Unk_02080440* data_027c027c;
+extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuState gMenuState;
-extern u16 data_0229f330[0x300];      /* layer 2 map of the second view, beside the list's map in gMenuState */
+extern u16 data_0229f330
+    [0x300]; /* layer 2 map of the second view, beside the list's map in gMenuState */
 extern const char gLinkLoginResPath[];
 extern const char gLinkMenuCommonLangResPath[];
 extern const char gLinkMenuCommonResPath[];
@@ -53,108 +54,113 @@ extern const char gLinkMenuCommonResPath[];
  * (Link_DrawPlayerRows), 1 the second view (LinkMenu_DrawSecondView). GAME->unk_8b
  * picks the title text. */
 
-void LinkMenu_InitScreen(Task *task)
-{
-    Unk_027c0280 *saved0280;
-    Unk_02080440 *saved027c;
-    u8 *file;
-    u16 *map;
-    int i;
-    u32 textId;
+void LinkMenu_InitScreen(Task* task) {
+  Unk_027c0280* saved0280;
+  Unk_02080440* saved027c;
+  u8* file;
+  u16* map;
+  int i;
+  u32 textId;
 
-    *(u16 *)&task->unk_4c = 0;          /* the original stores a halfword */
-    Gfx_InitBothScreens();
-    Wallpaper_LoadBoth();
-    saved0280 = data_027c0280;
-    saved027c = data_027c027c;
-    Screen_SetCurrentBoth(data_027c0288.unk_00);
-    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
-    Font_LoadDigits(0);
-    Screen_SetCurrentBoth(data_027c0288.unk_04);
-    Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
-    Font_LoadDigits(0);
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
-    LargeFont_Load();
+  *(u16*)&task->unk_4c = 0; /* the original stores a halfword */
+  Gfx_InitBothScreens();
+  Wallpaper_LoadBoth();
+  saved0280 = data_027c0280;
+  saved027c = data_027c027c;
+  Screen_SetCurrentBoth(data_027c0288.unk_00);
+  Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
+  Font_LoadDigits(0);
+  Screen_SetCurrentBoth(data_027c0288.unk_04);
+  Gfx_LoadBmap09f(data_027c0280->unk_f8, 0, 0);
+  Font_LoadDigits(0);
+  Screen_SetCurrent(saved027c);
+  Screen_SetCurrentGfx(saved0280);
+  LargeFont_Load();
 
-    file = File_Load(gLinkLoginResPath);
-    Data_Unpack(file, &gMenuState);
-    switch (func_0207a324()) {
+  file = File_Load(gLinkLoginResPath);
+  Data_Unpack(file, &gMenuState);
+  switch (func_0207a324()) {
     case 8:
-        Data_Unpack(file + 0x3c0, data_0229f330);
-        break;
+      Data_Unpack(file + 0x3c0, data_0229f330);
+      break;
     case 4:
     default:
-        Data_Unpack(file + 0x2a8, data_0229f330);
-        break;
+      Data_Unpack(file + 0x2a8, data_0229f330);
+      break;
     case 2:
-        Data_Unpack(file + 0x190, data_0229f330);
-        break;
-    }
-    Palette_Load(file + 0x6cc, 0x20, 0x20);
-    Mem_Free(file);
-    map = (u16 *)&gMenuState;
-    for (i = 0; i < 0x300; i++) {
-        map[i] += 0x1000;               /* palette 1 */
-    }
-    map = data_0229f330;
-    for (i = 0; i < 0x300; i++) {
-        map[i] += 0x1000;
-    }
-    if (data_0215fed0->view == 0) {
-        Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
-    } else {
-        Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
-    }
-    Gfx_RequestLayerCopy(2);
+      Data_Unpack(file + 0x190, data_0229f330);
+      break;
+  }
+  Palette_Load(file + 0x6cc, 0x20, 0x20);
+  Mem_Free(file);
+  map = (u16*)&gMenuState;
+  for (i = 0; i < 0x300; i++) {
+    map[i] += 0x1000; /* palette 1 */
+  }
+  map = data_0229f330;
+  for (i = 0; i < 0x300; i++) {
+    map[i] += 0x1000;
+  }
+  if (data_0215fed0->view == 0) {
+    Mem_Copy32(&gMenuState, data_027c0280->layer2Map, 0x600);
+  } else {
+    Mem_Copy32(data_0229f330, data_027c0280->layer2Map, 0x600);
+  }
+  Gfx_RequestLayerCopy(2);
 
-    file = File_Load(File_LocalizePath(gLinkMenuCommonLangResPath));
-    if (GAME->unk_8b == 2) {
-        Data_Unpack(file + 0x5e4, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
-    } else {
-        Data_Unpack(file + 0x2d8, data_027c0280->bgVram + (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
-    }
-    Data_Unpack(file, data_027c0280->objVram);
-    Mem_Free(file);
+  file = File_Load(File_LocalizePath(gLinkMenuCommonLangResPath));
+  if (GAME->unk_8b == 2) {
+    Data_Unpack(
+        file + 0x5e4,
+        data_027c0280->bgVram +
+            (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
+  } else {
+    Data_Unpack(
+        file + 0x2d8,
+        data_027c0280->bgVram +
+            (data_027c0280->bgCnt[data_027c0280->layer2Bg].charBase << 14));
+  }
+  Data_Unpack(file, data_027c0280->objVram);
+  Mem_Free(file);
 
-    file = File_Load(gLinkMenuCommonResPath);
-    Palette_Load(file, 0x200, 0x20);
-    Palette_Load(file, 0x220, 0x20);
-    Mem_Copy32(file + 0x20, &data_0229fb30, 0x20);
-    Mem_Free(file);
-    NumberFont_LoadLow();
+  file = File_Load(gLinkMenuCommonResPath);
+  Palette_Load(file, 0x200, 0x20);
+  Palette_Load(file, 0x220, 0x20);
+  Mem_Copy32(file + 0x20, &data_0229fb30, 0x20);
+  Mem_Free(file);
+  NumberFont_LoadLow();
 
-    if (data_0215fed0->view == 0) {
-        Link_DrawPlayerRows();
-    } else {
-        LinkMenu_DrawSecondView();
-    }
-    ModeFont_Load(0, 0);
-    switch (GAME->unk_8b) {
+  if (data_0215fed0->view == 0) {
+    Link_DrawPlayerRows();
+  } else {
+    LinkMenu_DrawSecondView();
+  }
+  ModeFont_Load(0, 0);
+  switch (GAME->unk_8b) {
     default:
     case 0:
-        textId = 0x7d000017;
-        break;
+      textId = 0x7d000017;
+      break;
     case 1:
-        textId = 0x7d000018;
-        break;
+      textId = 0x7d000018;
+      break;
     case 2:
-        textId = 0x7d000019;
-        break;
+      textId = 0x7d000019;
+      break;
     case 3:
-        textId = 0x7d000013;
-        break;
+      textId = 0x7d000013;
+      break;
     case 4:
-        textId = 0x7d00001a;
-        break;
-    }
-    ModeFont_ShowText(Text_Get(textId), 0, 0, 0, 0);
-    SpriteTask_Create(0xe8, 8, 0x3f0, 15);
-    Menu_Reset();
-    if (data_0215fed0->view == 0) {
-        LinkMenu_AddAllButtons();
-    } else {
-        LinkMenu_AddBackButtons();
-    }
-    MenuButtons_DisableTouch();
+      textId = 0x7d00001a;
+      break;
+  }
+  ModeFont_ShowText(Text_Get(textId), 0, 0, 0, 0);
+  SpriteTask_Create(0xe8, 8, 0x3f0, 15);
+  Menu_Reset();
+  if (data_0215fed0->view == 0) {
+    LinkMenu_AddAllButtons();
+  } else {
+    LinkMenu_AddBackButtons();
+  }
+  MenuButtons_DisableTouch();
 }

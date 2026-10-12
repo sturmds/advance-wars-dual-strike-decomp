@@ -6,18 +6,17 @@
 extern char gIsdInsertIndexCheck[];
 
 /* Opens a free entry at index in the overlay table, moving the later entries up. */
-void Isd_OverlayTableInsert(IsdOverlayInfo *table, int index)
-{
-    int i;
+void Isd_OverlayTableInsert(IsdOverlayInfo* table, int index) {
+  int i;
 
-    if (index > table->header.infoCount) {
-        Isd_ReportFailure(gIsdOverlayFileName, 81, gIsdInsertIndexCheck, TRUE);
+  if (index > table->header.infoCount) {
+    Isd_ReportFailure(gIsdOverlayFileName, 81, gIsdInsertIndexCheck, TRUE);
+  }
+  /* Needed to match: the original tests count - index, not count != index. */
+  if (table->header.infoCount - index != 0) {
+    for (i = table->header.infoCount - 1; i >= index; i--) {
+      table->info[i + 1] = table->info[i];
     }
-    /* Needed to match: the original tests count - index, not count != index. */
-    if (table->header.infoCount - index != 0) {
-        for (i = table->header.infoCount - 1; i >= index; i--) {
-            table->info[i + 1] = table->info[i];
-        }
-    }
-    table->header.infoCount++;
+  }
+  table->header.infoCount++;
 }

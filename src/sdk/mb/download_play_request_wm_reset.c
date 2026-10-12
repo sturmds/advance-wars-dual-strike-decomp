@@ -2,29 +2,28 @@
 #include "sdk/mb.h"
 #include "sdk/os.h"
 
-extern DlPlayStationArea *data_022aced8;
+extern DlPlayStationArea* data_022aced8;
 
 int MbParent_ResetWm(void);
-void MbParent_ResetWmCallback(DlPlayWorkerJob *info);
+void MbParent_ResetWmCallback(DlPlayWorkerJob* info);
 
 /* Ends the parent: WM goes back to the idle state. Returns 1 when this was already
  * requested, else 0 or the WM error code. With the task queue active the reset runs
  * from the queue. */
-int DownloadPlay_RequestWmReset(void)
-{
-    int result = 1;
-    OSIntrMode enabled = OS_DisableInterrupts();
+int DownloadPlay_RequestWmReset(void) {
+  int result = 1;
+  OSIntrMode enabled = OS_DisableInterrupts();
 
-    if (data_022aced8->unk_526 == 0) {
-        data_022aced8->unk_5e4 = 0;
-        data_022aced8->unk_526 = 1;
-        if (MbTask_IsAvailable()) {
-            MbTask_End(MbParent_ResetWmCallback);
-            result = 0;
-        } else {
-            result = MbParent_ResetWm();
-        }
+  if (data_022aced8->unk_526 == 0) {
+    data_022aced8->unk_5e4 = 0;
+    data_022aced8->unk_526 = 1;
+    if (MbTask_IsAvailable()) {
+      MbTask_End(MbParent_ResetWmCallback);
+      result = 0;
+    } else {
+      result = MbParent_ResetWm();
     }
-    OS_RestoreInterrupts(enabled);
-    return result;
+  }
+  OS_RestoreInterrupts(enabled);
+  return result;
 }

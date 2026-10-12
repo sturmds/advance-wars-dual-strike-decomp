@@ -4,19 +4,21 @@
 #include "game/play_records.h"
 #include "game/player.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void ActivatePower(int player, int power);
 void func_020c4018(void);
 
-void UnitAction_ActivateSuperPower(void)
-{
-    if (data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (gPlayRecords.superPowersActivated < 999999) {
-            gPlayRecords.superPowersActivated++;
-        }
+void UnitAction_ActivateSuperPower(void) {
+  if (data_027c027c->unk_48[data_027c0284]
+          ->players[data_027c027c->unk_48[data_027c0284]->currentPlayer]
+          .controller == PLAYER_CONTROLLER_HUMAN) {
+    if (gPlayRecords.superPowersActivated < 999999) {
+      gPlayRecords.superPowersActivated++;
     }
-    ActivatePower(data_027c027c->unk_48[data_027c0284]->currentPlayer, POWER_SUPER);
-    func_020c4018();
+  }
+  ActivatePower(data_027c027c->unk_48[data_027c0284]->currentPlayer,
+                POWER_SUPER);
+  func_020c4018();
 }

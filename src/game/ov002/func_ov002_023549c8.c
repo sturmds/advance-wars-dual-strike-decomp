@@ -5,33 +5,38 @@
 
 extern MenuState gMenuState;
 
-void Battle_SortHitList(BattleHitList *list);
+void Battle_SortHitList(BattleHitList* list);
 
 #define BATTLE (gMenuState.battle)
-#define TIMES(i) ((const BattleHitTimes *)BATTLE.drainProfile[i])
+#define TIMES(i) ((const BattleHitTimes*)BATTLE.drainProfile[i])
 /* Key of the k-th added cell: the attacker's offsets moved onto the other profile's times. */
-#define ATTACKER_KEY(k) (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 + (TIMES(0)->unk_04 + TIMES(1)->unk_08))
+#define ATTACKER_KEY(k)                     \
+  (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 + \
+   (TIMES(0)->unk_04 + TIMES(1)->unk_08))
 /* Needed to match: an int-sized enum. A plain 0/1 ternary emits its conditional moves in
  * the other order, and a byte-sized enum adds a mask. */
 #pragma enumsalwaysint on
 enum { ROLE_ATTACKER, ROLE_DEFENDER };
 #pragma enumsalwaysint reset
-#define ROLE(side) ((side) == Ov002_gBattleScene->attackerSide ? ROLE_ATTACKER : ROLE_DEFENDER)
+#define ROLE(side) \
+  ((side) == Ov002_gBattleScene->attackerSide ? ROLE_ATTACKER : ROLE_DEFENDER)
 /* Added to a step list key to move it onto this list's times. */
-#define SHIFT (TIMES((ROLE(side) + 1) & 1)->unk_08 - TIMES((ROLE(side) + 1) & 1)->unk_06)
+#define SHIFT \
+  (TIMES((ROLE(side) + 1) & 1)->unk_08 - TIMES((ROLE(side) + 1) & 1)->unk_06)
 
 /* Needed to match: the flags of the step list and the new list are reached with the field
  * offset added at run time, the step list's count and keys with it folded into the load. */
-#define BATTLE_FIELD(field) ((u8 *)&gMenuState + (u32)&((MenuState *)0)->battle.field)
-#define STEPS ((BattleHitList *)BATTLE_FIELD(stepLists) + side)
-#define LIST ((BattleHitList *)BATTLE_FIELD(unk_2ec) + side)
+#define BATTLE_FIELD(field) \
+  ((u8*)&gMenuState + (u32) & ((MenuState*)0)->battle.field)
+#define STEPS ((BattleHitList*)BATTLE_FIELD(stepLists) + side)
+#define LIST ((BattleHitList*)BATTLE_FIELD(unk_2ec) + side)
 
 typedef struct StepListsView {
-    u8 pad_000[0x2c8];
-    BattleHitList stepLists[2];
+  u8 pad_000[0x2c8];
+  BattleHitList stepLists[2];
 } StepListsView;
 
-#define STEP_LIST (((StepListsView *)&gMenuState)->stepLists[side])
+#define STEP_LIST (((StepListsView*)&gMenuState)->stepLists[side])
 
 /* Builds BattleScreenWork.unk_2ec for each side, sorted by key. When the other side's
  * BattleSideData.effects[4 + weapon] entry is set, the list takes the side's step list
@@ -43,132 +48,132 @@ typedef struct StepListsView {
  * cell swaps registers with the search counter in the unk_2a0 loop of the first branch.
  * The defender key reads its offset into a u8 local first, like func_ov002_023552d0;
  * sum also counts the search loop, as the original's registers show. */
-void func_ov002_023549c8(void)
-{
-    int side;
-    int i;
-    int j;
-    int cell;
-    int added;
-    int sum;
-    u8 offset;
-    BattleHitFlags *flags;
+void func_ov002_023549c8(void) {
+  int side;
+  int i;
+  int j;
+  int cell;
+  int added;
+  int sum;
+  u8 offset;
+  BattleHitFlags* flags;
 
-    for (side = 0; side < 2; side++) {
-        LIST->cursor = 0;
-        LIST->count = 0;
-        /* effects[4 + weapon]; needed to match: indexed from &effects[4]. */
-        if ((&BATTLE.unk_27c[(side + 1) & 1]->effects[4])[Ov002_gBattleScene->sides[(side + 1) & 1].usesSecondary] != NULL) {
-            for (i = 0; i < STEP_LIST.count; i++) {
-                if (STEPS->flags[i].unk_7 == 0) {
-                    LIST->flags[LIST->count].cell = STEPS->flags[i].cell;
-                    LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
-                    LIST->flags[LIST->count].unk_6 = 1;
-                    LIST->key[LIST->count] = STEP_LIST.key[i]
-                        + SHIFT;
-                    flags = &LIST->flags[LIST->count];
-                    cell = flags->cell;
-                    if (BATTLE.unk_310[side][cell].fillAfter != 0 || BATTLE.unk_27c[side]->unk_48 == 1) {
-                        flags->unk_6 = 0;
-                    } else {
-                        for (j = i + 1; j < STEP_LIST.count; j++) {
-                            if (cell == STEPS->flags[j].cell) {
-                                flags->unk_6 = 0;
-                                break;
-                            }
-                        }
-                    }
-                    LIST->count++;
-                }
+  for (side = 0; side < 2; side++) {
+    LIST->cursor = 0;
+    LIST->count = 0;
+    /* effects[4 + weapon]; needed to match: indexed from &effects[4]. */
+    if ((&BATTLE.unk_27c[(side + 1) & 1]->effects[4])
+            [Ov002_gBattleScene->sides[(side + 1) & 1].usesSecondary] != NULL) {
+      for (i = 0; i < STEP_LIST.count; i++) {
+        if (STEPS->flags[i].unk_7 == 0) {
+          LIST->flags[LIST->count].cell = STEPS->flags[i].cell;
+          LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
+          LIST->flags[LIST->count].unk_6 = 1;
+          LIST->key[LIST->count] = STEP_LIST.key[i] + SHIFT;
+          flags = &LIST->flags[LIST->count];
+          cell = flags->cell;
+          if (BATTLE.unk_310[side][cell].fillAfter != 0 ||
+              BATTLE.unk_27c[side]->unk_48 == 1) {
+            flags->unk_6 = 0;
+          } else {
+            for (j = i + 1; j < STEP_LIST.count; j++) {
+              if (cell == STEPS->flags[j].cell) {
+                flags->unk_6 = 0;
+                break;
+              }
             }
-            if (BATTLE.unk_27c[side]->unk_48 != 1) {
-                added = 0;
-                for (i = 0; i < 5; i++) {
-                    cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
+          }
+          LIST->count++;
+        }
+      }
+      if (BATTLE.unk_27c[side]->unk_48 != 1) {
+        added = 0;
+        for (i = 0; i < 5; i++) {
+          cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
-                    if (BATTLE.unk_310[side][cell].fillBefore == 0 || BATTLE.unk_310[side][cell].fillAfter != 0) {
-                        continue;
-                    }
-                    for (sum = 0; sum < LIST->count; sum++) {
-                        if (cell == LIST->flags[sum].cell && LIST->flags[sum].unk_6 == 1) {
-                            goto next;
-                        }
-                    }
-                    LIST->flags[LIST->count].cell = cell;
-                    LIST->flags[LIST->count].unk_6 = 1;
-                    if (side == Ov002_gBattleScene->attackerSide) {
-                        LIST->key[LIST->count] = ATTACKER_KEY(added);
-                    } else {
-                        offset = TIMES(0)->unk_0a[added];
-                        LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
-                    }
-                    LIST->flags[LIST->count].unk_3 = 7;
-                    added++;
-                    LIST->count++;
-                next:;
-                }
+          if (BATTLE.unk_310[side][cell].fillBefore == 0 ||
+              BATTLE.unk_310[side][cell].fillAfter != 0) {
+            continue;
+          }
+          for (sum = 0; sum < LIST->count; sum++) {
+            if (cell == LIST->flags[sum].cell && LIST->flags[sum].unk_6 == 1) {
+              goto next;
             }
-        } else if (BATTLE.unk_27c[side]->unk_48 == 1) {
-            sum = 0;
-            for (cell = 0; cell < 5; cell++) {
-                sum += BATTLE.unk_310[side][cell].fillAfter;
-            }
-            if (sum == 0) {
-                LIST->flags[LIST->count].cell = 0;
-                LIST->flags[LIST->count].unk_6 = 1;
-                LIST->flags[LIST->count].unk_3 = 7;
-                if (side == Ov002_gBattleScene->attackerSide) {
-                    LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
-                } else {
-                    offset = TIMES(0)->unk_0a[LIST->count];
-                    LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
-                }
-                for (i = 0; i < STEP_LIST.count; i++) {
-                    if (STEPS->flags[i].unk_7 == 0
-                        && STEP_LIST.key[i] + SHIFT >= LIST->key[LIST->count]) {
-                        LIST->key[LIST->count] = STEP_LIST.key[i]
-                            + SHIFT;
-                        LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
-                    }
-                }
-                LIST->count++;
-            }
+          }
+          LIST->flags[LIST->count].cell = cell;
+          LIST->flags[LIST->count].unk_6 = 1;
+          if (side == Ov002_gBattleScene->attackerSide) {
+            LIST->key[LIST->count] = ATTACKER_KEY(added);
+          } else {
+            offset = TIMES(0)->unk_0a[added];
+            LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
+          }
+          LIST->flags[LIST->count].unk_3 = 7;
+          added++;
+          LIST->count++;
+        next:;
+        }
+      }
+    } else if (BATTLE.unk_27c[side]->unk_48 == 1) {
+      sum = 0;
+      for (cell = 0; cell < 5; cell++) {
+        sum += BATTLE.unk_310[side][cell].fillAfter;
+      }
+      if (sum == 0) {
+        LIST->flags[LIST->count].cell = 0;
+        LIST->flags[LIST->count].unk_6 = 1;
+        LIST->flags[LIST->count].unk_3 = 7;
+        if (side == Ov002_gBattleScene->attackerSide) {
+          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
         } else {
-            for (i = 0; i < 5; i++) {
-                cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
+          offset = TIMES(0)->unk_0a[LIST->count];
+          LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
+        }
+        for (i = 0; i < STEP_LIST.count; i++) {
+          if (STEPS->flags[i].unk_7 == 0 &&
+              STEP_LIST.key[i] + SHIFT >= LIST->key[LIST->count]) {
+            LIST->key[LIST->count] = STEP_LIST.key[i] + SHIFT;
+            LIST->flags[LIST->count].unk_3 = STEPS->flags[i].unk_3;
+          }
+        }
+        LIST->count++;
+      }
+    } else {
+      for (i = 0; i < 5; i++) {
+        cell = (BATTLE.unk_2a0[side] >> (i * 3)) & 7;
 
-                if (BATTLE.unk_310[side][cell].fillBefore == 0 || BATTLE.unk_310[side][cell].fillAfter != 0) {
-                    continue;
-                }
-                LIST->flags[LIST->count].cell = cell;
-                LIST->flags[LIST->count].unk_6 = 1;
-                if (side == Ov002_gBattleScene->attackerSide) {
-                    LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
-                } else {
-                    offset = TIMES(0)->unk_0a[LIST->count];
-                    LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
-                }
-                LIST->flags[LIST->count].unk_3 = 7;
-                for (j = 0; j < STEP_LIST.count; j++) {
-                    if (STEPS->flags[j].unk_7 == 0 && cell == STEPS->flags[j].cell
-                        && STEP_LIST.key[j] + SHIFT >= LIST->key[LIST->count]) {
-                        LIST->key[LIST->count] = STEP_LIST.key[j]
-                            + SHIFT;
-                        LIST->flags[LIST->count].unk_3 = STEPS->flags[j].unk_3;
-                    }
-                }
-                LIST->count++;
-            }
+        if (BATTLE.unk_310[side][cell].fillBefore == 0 ||
+            BATTLE.unk_310[side][cell].fillAfter != 0) {
+          continue;
         }
-        Battle_SortHitList(LIST);
-        if (BATTLE.unk_27c[side]->unk_48 == 1) {
-            sum = 0;
-            for (cell = 0; cell < 5; cell++) {
-                sum += BATTLE.unk_310[side][cell].fillAfter;
-            }
-            if (sum == 0 && LIST->count != 0) {
-                LIST->flags[LIST->count - 1].unk_6 = 1;
-            }
+        LIST->flags[LIST->count].cell = cell;
+        LIST->flags[LIST->count].unk_6 = 1;
+        if (side == Ov002_gBattleScene->attackerSide) {
+          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
+        } else {
+          offset = TIMES(0)->unk_0a[LIST->count];
+          LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
         }
+        LIST->flags[LIST->count].unk_3 = 7;
+        for (j = 0; j < STEP_LIST.count; j++) {
+          if (STEPS->flags[j].unk_7 == 0 && cell == STEPS->flags[j].cell &&
+              STEP_LIST.key[j] + SHIFT >= LIST->key[LIST->count]) {
+            LIST->key[LIST->count] = STEP_LIST.key[j] + SHIFT;
+            LIST->flags[LIST->count].unk_3 = STEPS->flags[j].unk_3;
+          }
+        }
+        LIST->count++;
+      }
     }
+    Battle_SortHitList(LIST);
+    if (BATTLE.unk_27c[side]->unk_48 == 1) {
+      sum = 0;
+      for (cell = 0; cell < 5; cell++) {
+        sum += BATTLE.unk_310[side][cell].fillAfter;
+      }
+      if (sum == 0 && LIST->count != 0) {
+        LIST->flags[LIST->count - 1].unk_6 = 1;
+      }
+    }
+  }
 }

@@ -6,10 +6,10 @@ extern const TaskScriptCmd gExMachinaBoltScript[];
 
 /* Starts the bolt that hits one tile: a child task of the Ex Machina task
  * running gExMachinaBoltScript. */
-void ExMachinaBolt_Start(int tileX, int tileY, Task *parent)
-{
-    ExMachinaBoltTask *bolt = (ExMachinaBoltTask *)Task_CreateChild(gExMachinaBoltScript, parent);
+void ExMachinaBolt_Start(int tileX, int tileY, Task* parent) {
+  ExMachinaBoltTask* bolt =
+      (ExMachinaBoltTask*)Task_CreateChild(gExMachinaBoltScript, parent);
 
-    bolt->tileX = tileX;
-    bolt->tileY = tileY;
+  bolt->tileX = tileX;
+  bolt->tileY = tileY;
 }

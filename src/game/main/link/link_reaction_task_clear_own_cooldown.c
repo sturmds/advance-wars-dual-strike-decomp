@@ -6,9 +6,8 @@ int Link_FindSlotOfPlayer(int player);
 extern u16 gLinkReactionCooldown;
 
 /* gLinkReactionCooldown is the 200 frame wait that LinkReaction_StartCooldown sets after a send. */
-void LinkReactionTask_ClearOwnCooldown(LinkReactionTask *task)
-{
-    if (task->slot == Link_FindSlotOfPlayer(Link_GetOwnPlayer())) {
-        gLinkReactionCooldown = 0;
-    }
+void LinkReactionTask_ClearOwnCooldown(LinkReactionTask* task) {
+  if (task->slot == Link_FindSlotOfPlayer(Link_GetOwnPlayer())) {
+    gLinkReactionCooldown = 0;
+  }
 }

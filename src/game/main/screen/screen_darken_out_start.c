@@ -2,42 +2,41 @@
 #include "game/task.h"
 #include "game/screen_other_map.h"
 
-void Screen_SetCurrentBoth(void *state);
+void Screen_SetCurrentBoth(void* state);
 
 /* The frame counter shares its slot with Task.unk_4c. */
-#define FRAME(task) (*(s16 *)&(task)->unk_4c)
+#define FRAME(task) (*(s16*)&(task)->unk_4c)
 
 /* Script step: on both screens, sets up a darken blend of all four layers
  * and the sprites, starting at 0 / 16. The update that follows in the
  * script (ScreenDarkenOut_Update) raises it to 16 / 16. */
-void ScreenDarkenOut_Start(Task *task)
-{
-    Unk_027c0280 *saved0280 = data_027c0280;
-    Unk_02080440 *saved027c = data_027c027c;
+void ScreenDarkenOut_Start(Task* task) {
+  Unk_027c0280* saved0280 = data_027c0280;
+  Unk_02080440* saved027c = data_027c027c;
 
-    Screen_SetCurrentBoth(data_027c0288.unk_00);
-    data_027c0280->blendMode = BLEND_MODE_DARKEN;
-    data_027c0280->blendEva = 0;
-    data_027c0280->blendEvb = 0;
-    data_027c0280->blendEvy = 0;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 0)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 1)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 2)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 3)->bg] = 1;
-    data_027c0280->blendTopObj = 1;
+  Screen_SetCurrentBoth(data_027c0288.unk_00);
+  data_027c0280->blendMode = BLEND_MODE_DARKEN;
+  data_027c0280->blendEva = 0;
+  data_027c0280->blendEvb = 0;
+  data_027c0280->blendEvy = 0;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 0)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 1)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 2)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 3)->bg] = 1;
+  data_027c0280->blendTopObj = 1;
 
-    Screen_SetCurrentBoth(data_027c0288.unk_04);
-    data_027c0280->blendMode = BLEND_MODE_DARKEN;
-    data_027c0280->blendEva = 0;
-    data_027c0280->blendEvb = 0;
-    data_027c0280->blendEvy = 0;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 0)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 1)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 2)->bg] = 1;
-    data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 3)->bg] = 1;
-    data_027c0280->blendTopObj = 1;
+  Screen_SetCurrentBoth(data_027c0288.unk_04);
+  data_027c0280->blendMode = BLEND_MODE_DARKEN;
+  data_027c0280->blendEva = 0;
+  data_027c0280->blendEvb = 0;
+  data_027c0280->blendEvy = 0;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 0)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 1)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 2)->bg] = 1;
+  data_027c0280->blendTopBg[GFX_LAYER(data_027c0280, 3)->bg] = 1;
+  data_027c0280->blendTopObj = 1;
 
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
-    FRAME(task) = 0;
+  Screen_SetCurrent(saved027c);
+  Screen_SetCurrentGfx(saved0280);
+  FRAME(task) = 0;
 }

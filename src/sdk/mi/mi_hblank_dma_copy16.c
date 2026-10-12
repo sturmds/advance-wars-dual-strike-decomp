@@ -9,14 +9,14 @@ void MI_WaitDma(u32 dmaNo);
 void Dma_LoadChannelMasked(u32 dmaNo, u32 src, u32 dest, u32 control);
 
 /* Starts a repeating 16-bit copy that runs once per HBlank, and returns without waiting. */
-void MI_HBlankDmaCopy16(u32 dmaNo, u32 src, u32 dest, u32 size)
-{
-    Dma_HaltOnStartModeClash(dmaNo, DMA_START_HBLANK);
-    MIi_CheckDma0SourceAddress(dmaNo, src, size, 0);
-    if (size == 0) {
-        return;
-    }
-    MI_WaitDma(dmaNo);
-    Dma_LoadChannelMasked(dmaNo, src, dest,
-                          DMA_ENABLE | DMA_START_HBLANK | DMA_REPEAT | DMA_DEST_RELOAD | (size >> 1));
+void MI_HBlankDmaCopy16(u32 dmaNo, u32 src, u32 dest, u32 size) {
+  Dma_HaltOnStartModeClash(dmaNo, DMA_START_HBLANK);
+  MIi_CheckDma0SourceAddress(dmaNo, src, size, 0);
+  if (size == 0) {
+    return;
+  }
+  MI_WaitDma(dmaNo);
+  Dma_LoadChannelMasked(dmaNo, src, dest,
+                        DMA_ENABLE | DMA_START_HBLANK | DMA_REPEAT |
+                            DMA_DEST_RELOAD | (size >> 1));
 }

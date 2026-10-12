@@ -8,15 +8,14 @@ void EventScript_Stop(s16 slot);
 
 /* Event script command: stops every other script slot, moves to the next
  * record and ends the slot's run for this frame. */
-BOOL EventCmd_StopOtherScripts(s16 index)
-{
-    u8 i;
+BOOL EventCmd_StopOtherScripts(s16 index) {
+  u8 i;
 
-    for (i = 0; i < EVENT_SCRIPT_SLOTS; i++) {
-        if (i != index) {
-            EventScript_Stop(i);
-        }
+  for (i = 0; i < EVENT_SCRIPT_SLOTS; i++) {
+    if (i != index) {
+      EventScript_Stop(i);
     }
-    data_022977f4[index].unk_00++;
-    return FALSE;
+  }
+  data_022977f4[index].unk_00++;
+  return FALSE;
 }

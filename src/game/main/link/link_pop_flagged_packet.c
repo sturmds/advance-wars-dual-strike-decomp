@@ -7,26 +7,25 @@ extern u8 data_0229cb4c[7][98];
 extern u8 data_0229cbac[7][98];
 extern u8 data_0229cbad[7][98];
 
-void Mem_CopyBytes(void *src, void *dest, int size);
+void Mem_CopyBytes(void* src, void* dest, int size);
 
 /* Takes the oldest packet out of the peer's queue into dest. Returns 0 when the queue is empty. */
-int Link_PopFlaggedPacket(int player, void *dest)
-{
-    u8 *readIndex;
-    u8 index;
+int Link_PopFlaggedPacket(int player, void* dest) {
+  u8* readIndex;
+  u8 index;
 
-    if (player != 0) {
-        player = (u8)(player - 1);
-    }
-    readIndex = data_0229cbac[player];
-    index = *readIndex;
-    if (index == data_0229cbad[player][0]) {
-        return 0;
-    }
-    Mem_CopyBytes(&data_0229cb4c[player][index * 24], dest, 24);
-    (*readIndex)++;
-    if (*readIndex == 4) {
-        *readIndex = 0;
-    }
-    return 1;
+  if (player != 0) {
+    player = (u8)(player - 1);
+  }
+  readIndex = data_0229cbac[player];
+  index = *readIndex;
+  if (index == data_0229cbad[player][0]) {
+    return 0;
+  }
+  Mem_CopyBytes(&data_0229cb4c[player][index * 24], dest, 24);
+  (*readIndex)++;
+  if (*readIndex == 4) {
+    *readIndex = 0;
+  }
+  return 1;
 }

@@ -6,12 +6,11 @@
 #include "game/name_entry_work.h"
 #include "game/menu_button.h"
 
-extern NameEntry *gNameEntry;
+extern NameEntry* gNameEntry;
 
 /* onSelect of the letter key buttons: moves the cursor to the key. */
-void NameEntry_OnKeySelect(MenuButton *button)
-{
-    NameEntry *entry = gNameEntry;
+void NameEntry_OnKeySelect(MenuButton* button) {
+  NameEntry* entry = gNameEntry;
 
-    entry->cursor = button->id - NAME_ENTRY_KEY_BUTTON_ID;
+  entry->cursor = button->id - NAME_ENTRY_KEY_BUTTON_ID;
 }

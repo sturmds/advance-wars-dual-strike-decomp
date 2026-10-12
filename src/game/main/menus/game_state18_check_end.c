@@ -12,19 +12,18 @@ void func_020cef2c(void);
  * 20 is entered. Otherwise a
  * property goal winner is passed on to LinkPlayers_DefeatOtherTeams with code 32, and with
  * no winner the link players are checked (func_020cef2c). */
-void Game_State18_CheckEnd(void)
-{
-    int winner;
+void Game_State18_CheckEnd(void) {
+  int winner;
 
-    if (Players_IsOneTeamLeft()) {
-        LinkPlayers_RecordFirstFailure();
-        Game_EnterState20();
-        return;
-    }
-    winner = Players_FindPropertyGoalWinner();
-    if (winner) {
-        LinkPlayers_DefeatOtherTeams(winner, 32);
-        return;
-    }
-    func_020cef2c();
+  if (Players_IsOneTeamLeft()) {
+    LinkPlayers_RecordFirstFailure();
+    Game_EnterState20();
+    return;
+  }
+  winner = Players_FindPropertyGoalWinner();
+  if (winner) {
+    LinkPlayers_DefeatOtherTeams(winner, 32);
+    return;
+  }
+  func_020cef2c();
 }

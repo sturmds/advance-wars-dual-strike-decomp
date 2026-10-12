@@ -4,19 +4,19 @@
 u32 Math_Distance(int x1, int y1, int x2, int y2);
 
 /* x and y are in pixels. Kind 6 reaches 8 pixels, kind 7 reaches 24. */
-int Ov003_IsNearMarker(Ov003Marker *marker, int x, int y)
-{
-    u32 radius;
+int Ov003_IsNearMarker(Ov003Marker* marker, int x, int y) {
+  u32 radius;
 
-    switch (marker->kind) {
+  switch (marker->kind) {
     case 6:
-        radius = 8;
-        break;
+      radius = 8;
+      break;
     case 7:
-        radius = 24;
-        break;
+      radius = 24;
+      break;
     default:
-        return 0;
-    }
-    return Math_Distance(x, y, (marker->x * 128 + 64) >> 3, (marker->y * 128 + 64) >> 3) <= radius;
+      return 0;
+  }
+  return Math_Distance(x, y, (marker->x * 128 + 64) >> 3,
+                       (marker->y * 128 + 64) >> 3) <= radius;
 }

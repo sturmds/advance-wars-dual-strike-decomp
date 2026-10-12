@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 data_021663a0[];
 
@@ -16,16 +16,16 @@ void Game_EnterState18(void);
 /* Takes a player out of a link battle for the reason in code (the values
  * func_020cef2c passes: 1, 2, 8, 16). LinkPlayer_MarkDefeated marks the player defeated;
  * the name is a guess from that. */
-void LinkPlayer_Defeat(int player, int code)
-{
-    EventScript_StartText(data_021663a0[STATE->players[player].armyColour - 1], 21, 0);
-    LinkPlayerDefeatTask_Create(player, code);
-    LinkPlayer_MarkDefeated(player, code);
-    if (player == STATE->currentPlayer) {
-        STATE->unk_18 = 1;
-        Player_RefreshUnits();
-    }
-    if (code == 2) {
-        Game_EnterState18();
-    }
+void LinkPlayer_Defeat(int player, int code) {
+  EventScript_StartText(data_021663a0[STATE->players[player].armyColour - 1],
+                        21, 0);
+  LinkPlayerDefeatTask_Create(player, code);
+  LinkPlayer_MarkDefeated(player, code);
+  if (player == STATE->currentPlayer) {
+    STATE->unk_18 = 1;
+    Player_RefreshUnits();
+  }
+  if (code == 2) {
+    Game_EnterState18();
+  }
 }

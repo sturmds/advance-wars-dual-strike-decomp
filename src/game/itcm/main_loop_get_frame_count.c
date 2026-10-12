@@ -3,7 +3,4 @@
 
 extern MainLoop gMainLoop;
 
-u32 MainLoop_GetFrameCount(void)
-{
-    return gMainLoop.frameCount;
-}
+u32 MainLoop_GetFrameCount(void) { return gMainLoop.frameCount; }

@@ -6,7 +6,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 extern s8 data_0229e5c0[][12];
@@ -32,41 +32,44 @@ void AiTurn_QueueBuildAtSite(int index);
  * when a roll of 0 to 99 is under AiTurn_GetMechBuildPercent() and funds cover 20 times its
  * value per HP, else an Infantry. The name and the meaning of the flags are
  * guesses. */
-BOOL AiTurn_TryBuildFootUnit(void)
-{
-    int index;
-    u32 roll;
-    AiSiteGroup *record;
+BOOL AiTurn_TryBuildFootUnit(void) {
+  int index;
+  u32 roll;
+  AiSiteGroup* record;
 
-    if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_INFANTRY) * 10) > STATE->players[STATE->currentPlayer].funds) {
-        return 0;
+  if ((u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_INFANTRY) * 10) >
+      STATE->players[STATE->currentPlayer].funds) {
+    return 0;
+  }
+  index = AiSite_PickForFootUnit();
+  if (index == -1) {
+    index = AiSite_PickNearestToPropertyAnyGroup(1);
+  }
+  if (index == -1) {
+    index = AiSite_PickFirst(1);
+  }
+  if (index == -1) {
+    return 0;
+  }
+  record = &gAiSiteGroups[data_0229e5c0[index][0]];
+  if (record->skipFoot == 0) {
+    record->skipFoot = 1;
+  } else {
+    data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
+    if (data_021619c0->unk_08 >=
+        gAiProfile->unk_08[0] + gAiProfile->unk_08[1]) {
+      return 0;
     }
-    index = AiSite_PickForFootUnit();
-    if (index == -1) {
-        index = AiSite_PickNearestToPropertyAnyGroup(1);
-    }
-    if (index == -1) {
-        index = AiSite_PickFirst(1);
-    }
-    if (index == -1) {
-        return 0;
-    }
-    record = &gAiSiteGroups[data_0229e5c0[index][0]];
-    if (record->skipFoot == 0) {
-        record->skipFoot = 1;
-    } else {
-        data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
-        if (data_021619c0->unk_08 >= gAiProfile->unk_08[0] + gAiProfile->unk_08[1]) {
-            return 0;
-        }
-    }
-    roll = HwMod32(Rng_Next(), 100);
-    if (roll < AiTurn_GetMechBuildPercent() && (u32)STATE->players[STATE->currentPlayer].funds >= (u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_MECH) * 20)) {
-        gUnitAction.target = UNIT_MECH;
-    } else {
-        gUnitAction.target = UNIT_INFANTRY;
-    }
-    func_020b81bc();
-    AiTurn_QueueBuildAtSite(index);
-    return 1;
+  }
+  roll = HwMod32(Rng_Next(), 100);
+  if (roll < AiTurn_GetMechBuildPercent() &&
+      (u32)STATE->players[STATE->currentPlayer].funds >=
+          (u32)(Unit_GetValuePerHp(STATE->currentPlayer, UNIT_MECH) * 20)) {
+    gUnitAction.target = UNIT_MECH;
+  } else {
+    gUnitAction.target = UNIT_INFANTRY;
+  }
+  func_020b81bc();
+  AiTurn_QueueBuildAtSite(index);
+  return 1;
 }

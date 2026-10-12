@@ -5,15 +5,14 @@
  * PXI callback for tag 5: hands a request from the ARM9 to the RTC thread,
  * or answers at once when the command is unknown or a request is running.
  */
-void func_arm7_027d58e8(u32 tag, u32 data, BOOL err)
-{
-    u16 command;
+void func_arm7_027d58e8(u32 tag, u32 data, BOOL err) {
+  u16 command;
 
-    if (err) {
-        return;
-    }
-    command = (data & 0x7f00) >> 8;
-    switch (command) {
+  if (err) {
+    return;
+  }
+  command = (data & 0x7f00) >> 8;
+  switch (command) {
     case 0x00:
     case 0x01:
     case 0x10:
@@ -36,18 +35,19 @@ void func_arm7_027d58e8(u32 tag, u32 data, BOOL err)
     case 0x27:
     case 0x28:
     case 0x29:
-        if (data_arm7_027d81b0.busy) {
-            func_arm7_027d58a8(command, RTC_PXI_RESULT_BUSY);
-        } else {
-            data_arm7_027d81b0.busy = TRUE;
-            data_arm7_027d81b0.command = command;
-            if (!MsgQueue_PushBack_Arm7(&data_arm7_027d81b0.queue, NULL, OS_MESSAGE_NOBLOCK)) {
-                func_arm7_027d58a8(command, RTC_PXI_RESULT_FATAL_ERROR);
-            }
+      if (data_arm7_027d81b0.busy) {
+        func_arm7_027d58a8(command, RTC_PXI_RESULT_BUSY);
+      } else {
+        data_arm7_027d81b0.busy = TRUE;
+        data_arm7_027d81b0.command = command;
+        if (!MsgQueue_PushBack_Arm7(&data_arm7_027d81b0.queue, NULL,
+                                    OS_MESSAGE_NOBLOCK)) {
+          func_arm7_027d58a8(command, RTC_PXI_RESULT_FATAL_ERROR);
         }
-        break;
+      }
+      break;
     default:
-        func_arm7_027d58a8(command, RTC_PXI_RESULT_INVALID_COMMAND);
-        break;
-    }
+      func_arm7_027d58a8(command, RTC_PXI_RESULT_INVALID_COMMAND);
+      break;
+  }
 }

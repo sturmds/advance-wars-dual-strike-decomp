@@ -3,7 +3,7 @@
 #include "game/player.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void PowerHighlight_LoadGraphics(int effect, int color, int a, int b);
@@ -15,8 +15,12 @@ void PowerHighlight_LoadGraphics(int effect, int color, int a, int b);
  * unk_12 like PowerHighlightTask_Update does (highlightEffect and
  * highlightColor go to PowerHighlight_LoadGraphics, which loads graphics files).
  * Needed to match: the block is indexed in both arguments. */
-void PowerHighlight_LoadEffect(int player)
-{
-    PowerHighlight_LoadGraphics(gCoTable[FRONT(player).id & PLAYER_CO_ID_MASK].blocks[FRONT(player).unk_12].highlightEffect,
-                  gCoTable[FRONT(player).id & PLAYER_CO_ID_MASK].blocks[FRONT(player).unk_12].highlightColor, 404, 5);
+void PowerHighlight_LoadEffect(int player) {
+  PowerHighlight_LoadGraphics(gCoTable[FRONT(player).id & PLAYER_CO_ID_MASK]
+                                  .blocks[FRONT(player).unk_12]
+                                  .highlightEffect,
+                              gCoTable[FRONT(player).id & PLAYER_CO_ID_MASK]
+                                  .blocks[FRONT(player).unk_12]
+                                  .highlightColor,
+                              404, 5);
 }

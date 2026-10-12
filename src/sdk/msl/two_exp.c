@@ -24,89 +24,89 @@ extern const char data_0216e000[]; /* 2^6 */
 extern const char data_0216e004[]; /* 2^7 */
 extern const char data_0216e008[]; /* 2^8 */
 
-void __two_exp(Decimal *dec, long exponent)
-{
-    switch (exponent) {
+void __two_exp(Decimal* dec, long exponent) {
+  switch (exponent) {
     case -64:
-        __str2dec(dec, data_0216df38, -20);
-        return;
+      __str2dec(dec, data_0216df38, -20);
+      return;
     case -53:
-        __str2dec(dec, data_0216df68, -16);
-        return;
+      __str2dec(dec, data_0216df68, -16);
+      return;
     case -32:
-        __str2dec(dec, data_0216df90, -10);
-        return;
+      __str2dec(dec, data_0216df90, -10);
+      return;
     case -16:
-        __str2dec(dec, data_0216dfa8, -5);
-        return;
+      __str2dec(dec, data_0216dfa8, -5);
+      return;
     case -8:
-        __str2dec(dec, data_0216dfb8, -3);
-        return;
+      __str2dec(dec, data_0216dfb8, -3);
+      return;
     case -7:
-        __str2dec(dec, data_0216dfc0, -3);
-        return;
+      __str2dec(dec, data_0216dfc0, -3);
+      return;
     case -6:
-        __str2dec(dec, data_0216dfc8, -2);
-        return;
+      __str2dec(dec, data_0216dfc8, -2);
+      return;
     case -5:
-        __str2dec(dec, data_0216dfd0, -2);
-        return;
+      __str2dec(dec, data_0216dfd0, -2);
+      return;
     case -4:
-        __str2dec(dec, data_0216dfd8, -2);
-        return;
+      __str2dec(dec, data_0216dfd8, -2);
+      return;
     case -3:
-        __str2dec(dec, data_0216dfdc, -1);
-        return;
+      __str2dec(dec, data_0216dfdc, -1);
+      return;
     case -2:
-        __str2dec(dec, data_0216dfe0, -1);
-        return;
+      __str2dec(dec, data_0216dfe0, -1);
+      return;
     case -1:
-        __str2dec(dec, data_0216dfe4, -1);
-        return;
+      __str2dec(dec, data_0216dfe4, -1);
+      return;
     case 0:
-        __str2dec(dec, data_0216dfe8, 0);
-        return;
+      __str2dec(dec, data_0216dfe8, 0);
+      return;
     case 1:
-        __str2dec(dec, data_0216dfec, 0);
-        return;
+      __str2dec(dec, data_0216dfec, 0);
+      return;
     case 2:
-        __str2dec(dec, data_0216dff0, 0);
-        return;
+      __str2dec(dec, data_0216dff0, 0);
+      return;
     case 3:
-        __str2dec(dec, data_0216dff4, 0);
-        return;
+      __str2dec(dec, data_0216dff4, 0);
+      return;
     case 4:
-        __str2dec(dec, data_0216dff8, 1);
-        return;
+      __str2dec(dec, data_0216dff8, 1);
+      return;
     case 5:
-        __str2dec(dec, data_0216dffc, 1);
-        return;
+      __str2dec(dec, data_0216dffc, 1);
+      return;
     case 6:
-        __str2dec(dec, data_0216e000, 1);
-        return;
+      __str2dec(dec, data_0216e000, 1);
+      return;
     case 7:
-        __str2dec(dec, data_0216e004, 2);
-        return;
+      __str2dec(dec, data_0216e004, 2);
+      return;
     case 8:
-        __str2dec(dec, data_0216e008, 2);
-        return;
-    }
-    {
-        Decimal root;
-        Decimal square;
+      __str2dec(dec, data_0216e008, 2);
+      return;
+  }
+  {
+    Decimal root;
+    Decimal square;
 
-        /* exponent / 2 rounded toward zero, written out: needed to match the and of the sign bit */
-        __two_exp(&root, (exponent + (long)((u32)(exponent & 0x80000000) >> 31)) >> 1);
-        __timesdec(dec, &root, &root);
-        /* Odd exponent: one more factor of 2, or of 1/2 when negative. */
-        if (exponent & 1) {
-            square = *dec;
-            if (exponent > 0) {
-                __str2dec(&root, data_0216dfec, 0);
-            } else {
-                __str2dec(&root, data_0216dfe4, -1);
-            }
-            __timesdec(dec, &square, &root);
-        }
+    /* exponent / 2 rounded toward zero, written out: needed to match the and of the sign bit */
+    __two_exp(&root,
+              (exponent + (long)((u32)(exponent & 0x80000000) >> 31)) >> 1);
+    __timesdec(dec, &root, &root);
+    /* Odd exponent: one more factor of 2, or of 1/2 when negative. */
+    if (exponent & 1) {
+      square = *dec;
+      if (exponent > 0) {
+        __str2dec(&root, data_0216dfec, 0);
+      } else {
+        __str2dec(&root, data_0216dfe4, -1);
+      }
+      __timesdec(dec, &square, &root);
     }
+  }
 }

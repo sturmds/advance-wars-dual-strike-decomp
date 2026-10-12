@@ -4,19 +4,18 @@ typedef struct Unk_027cdf50 Unk_027cdf50;
 typedef struct Unk_027cdf50_a1 Unk_027cdf50_a1;
 
 struct Unk_027cdf50 {
-    u8 pad_00[0x10];
-    u16 unk_10;
+  u8 pad_00[0x10];
+  u16 unk_10;
 };
 
 struct Unk_027cdf50_a1 {
-    u8 pad_00[0x2];
-    u16 unk_2;
+  u8 pad_00[0x2];
+  u16 unk_2;
 };
 
-void WifiParam_StoreWepMode(int, void *, int);
+void WifiParam_StoreWepMode(int, void*, int);
 
-void func_arm7_027cdf50(Unk_027cdf50 *a0, Unk_027cdf50_a1 *a1)
-{
-    a1->unk_2 = 1;
-    WifiParam_StoreWepMode(a0->unk_10, a1, 1);
+void func_arm7_027cdf50(Unk_027cdf50* a0, Unk_027cdf50_a1* a1) {
+  a1->unk_2 = 1;
+  WifiParam_StoreWepMode(a0->unk_10, a1, 1);
 }

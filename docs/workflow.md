@@ -83,7 +83,7 @@ python3 tools/fn.py lines CampaignMap_Init [FILE.c]
 
 ## Tools that match many functions
 
-All three work from `build/fnindex.json`, check every candidate with the fast check, and `fn.py diff` each before `fn.py finish`. They write `src/game/<module>/func_XXXXXXXX.c`, `delinks.txt` entries and nothing else. Run them on `mainline` with a clean tree, build and commit the result in chunks (each commit must pass `make release`). All are based on khdays-decomp (`docs/third-party/khdays-decomp.md`).
+All three work from `build/fnindex.json`, check every candidate with the fast check, and `fn.py diff` each before `fn.py finish`. They write `src/game/<module>/func_XXXXXXXX.c`, `delinks.txt` entries and nothing else. Run them on `mainline` with a clean tree, then `make format`, build and commit the result in chunks (each commit must pass `make release`). All are based on khdays-decomp (`docs/third-party/khdays-decomp.md`).
 
 - `python3 tools/propagate.py [--dry-run] [--identical-only]`: copies the C of a matched function to unmatched functions with the same masked hash (identical twins) or the same shape with other immediates (near twins). `fn.py pick --families` ranks the unmatched families; match a head by hand, then run this. For a candidate no template matches, its report keeps the attempt with the fewest differing instructions.
 - `python3 tools/trivial.py [--pattern P] [--dry-run]`: writes C for functions of up to nine instructions: empty, constants, getters, stores, load-modify-store, tail calls, wrappers, comparisons. Patterns: empty, const, getter, tailcall, wrapper, store, modify, addr, compare, other.
@@ -227,9 +227,9 @@ A *retry* is one model job's work on a function after the group that first wrote
 
 ## 5. Mark it complete and review
 
-1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes.
+1. `python3 tools/fn.py finish NAME` adds `complete` under the file entry in `delinks.txt`. The link now uses your object instead of the original bytes. It also formats the file with clang-format; run `make format` for headers or other files you changed.
 2. Run the review pass (`.claude/skills/tenets-review/`): names, types, no magic offsets, comments only where the shape is odd, plain writing.
-3. `make release`. It fails if any module or the whole ROM differs from retail.
+3. `make release`. It fails if a file under `src/` or `include/` is not formatted, or if any module or the whole ROM differs from retail.
 4. Commit. The hooks run `make release` again, rewrite `PROGRESS.md` and stage it, and check the message.
 
 ## ARM7

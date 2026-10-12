@@ -7,7 +7,7 @@
 extern const TaskScriptCmd gUnitDropScript[];
 
 /* Sensei's CO Power: places infantry units on the map. */
-void CopterCommand(void *parent) {
-    UnitDropTask *task = (UnitDropTask *)Task_CreateChild(gUnitDropScript, parent);
-    task->unitType = UNIT_INFANTRY;
+void CopterCommand(void* parent) {
+  UnitDropTask* task = (UnitDropTask*)Task_CreateChild(gUnitDropScript, parent);
+  task->unitType = UNIT_INFANTRY;
 }

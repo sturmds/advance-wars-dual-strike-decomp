@@ -3,7 +3,7 @@
 #include "game/touch.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690 *data_ov006_0236d640;
+extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 #define OV6 data_ov006_0236d640
 
@@ -14,41 +14,40 @@ extern Unk_ov006_0235f690 *data_ov006_0236d640;
  * was on last frame (prevCursorX, prevCursorY), so holding A paints a line without
  * repeating on one tile. A new touch, or a touch on the same tile, counts
  * only below the top 32 pixels (touchY > 32). */
-int Ov006_ReadEditInput(void)
-{
-    u16 flags = OV6->unk_00;
-    int pressed;
+int Ov006_ReadEditInput(void) {
+  u16 flags = OV6->unk_00;
+  int pressed;
 
-    if (flags & 0x10) {
-        return 0;
+  if (flags & 0x10) {
+    return 0;
+  }
+  if (gKeypad->pressed & PAD_BUTTON_A) {
+    return 1;
+  }
+  if (gKeypad->pressed & PAD_BUTTON_X) {
+    return 2;
+  }
+  if (flags & 0x40) {
+    if (gTouch.active != 0 && gTouch.phase == TOUCH_PRESSED) {
+      pressed = TRUE;
+    } else {
+      pressed = FALSE;
     }
-    if (gKeypad->pressed & PAD_BUTTON_A) {
-        return 1;
+    if (pressed == TRUE) {
+      return OV6->touchY > 32;
     }
-    if (gKeypad->pressed & PAD_BUTTON_X) {
-        return 2;
+  }
+  if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {
+    if (gTouch.phase != 0 && gTouch.prevPhase == 0) {
+      return OV6->touchY > 32;
     }
-    if (flags & 0x40) {
-        if (gTouch.active != 0 && gTouch.phase == TOUCH_PRESSED) {
-            pressed = TRUE;
-        } else {
-            pressed = FALSE;
-        }
-        if (pressed == TRUE) {
-            return OV6->touchY > 32;
-        }
-    }
-    if (OV6->cursorX == OV6->prevCursorX && OV6->cursorY == OV6->prevCursorY) {
-        if (gTouch.phase != 0 && gTouch.prevPhase == 0) {
-            return OV6->touchY > 32;
-        }
-        return 0;
-    }
-    if (gKeypad->held & PAD_BUTTON_A) {
-        return 1;
-    }
-    if (gKeypad->held & PAD_BUTTON_X) {
-        return gTouch.phase == 0 ? 2 : 0;
-    }
-    return gTouch.phase != 0;
+    return 0;
+  }
+  if (gKeypad->held & PAD_BUTTON_A) {
+    return 1;
+  }
+  if (gKeypad->held & PAD_BUTTON_X) {
+    return gTouch.phase == 0 ? 2 : 0;
+  }
+  return gTouch.phase != 0;
 }

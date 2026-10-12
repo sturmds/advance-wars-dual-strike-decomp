@@ -8,17 +8,16 @@ extern u16 data_0229d8c4;
 
 /* Per-frame step for actions queued from the link. State 0 waits for the next
  * action (LinkAction_StartNext takes it off the queue); state 4 shows it. */
-void LinkAction_Update(void)
-{
-    u16 state = data_0229d8c4;
+void LinkAction_Update(void) {
+  u16 state = data_0229d8c4;
 
-    data_0229d8c0 = 0;
-    switch (state) {
+  data_0229d8c0 = 0;
+  switch (state) {
     case 0:
-        LinkAction_StartNext();
-        break;
+      LinkAction_StartNext();
+      break;
     case 4:
-        func_02080440();
-        break;
-    }
+      func_02080440();
+      break;
+  }
 }

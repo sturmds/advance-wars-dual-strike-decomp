@@ -2,14 +2,13 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_show_task.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 
 /* Frees both show task slots. */
-void UnitShowTask_ClearSlots(void)
-{
-    u16 i;
+void UnitShowTask_ClearSlots(void) {
+  u16 i;
 
-    for (i = 0; i < UNIT_SHOW_SLOT_COUNT; i++) {
-        data_027c027c->unk_58[i] = 0;
-    }
+  for (i = 0; i < UNIT_SHOW_SLOT_COUNT; i++) {
+    data_027c027c->unk_58[i] = 0;
+  }
 }

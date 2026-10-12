@@ -5,19 +5,19 @@
 #define FADE_FRAMES 32
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Task_ResumeScript(Task *task);
+void Task_ResumeScript(Task* task);
 
 /* The frame counter shares its slot with Task.unk_4c. */
-#define FRAME(task) (*(s16 *)&(task)->unk_4c)
+#define FRAME(task) (*(s16*)&(task)->unk_4c)
 
 /* Task update: raises the master brightness from black (-16) to normal over
  * 32 frames, then resumes the task's script. */
-void ScreenFadeInFromBlack_Update(Task *task)
-{
-    FRAME(task)++;
-    data_027c0280->masterBrightness = Math_Ease(4, -16, 0, FRAME(task), FADE_FRAMES);
-    if (FRAME(task) == FADE_FRAMES) {
-        FRAME(task) = 0;
-        Task_ResumeScript(task);
-    }
+void ScreenFadeInFromBlack_Update(Task* task) {
+  FRAME(task)++;
+  data_027c0280->masterBrightness =
+      Math_Ease(4, -16, 0, FRAME(task), FADE_FRAMES);
+  if (FRAME(task) == FADE_FRAMES) {
+    FRAME(task) = 0;
+    Task_ResumeScript(task);
+  }
 }

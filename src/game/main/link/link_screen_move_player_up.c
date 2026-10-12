@@ -10,20 +10,20 @@ int LinkScreen_FindPanelOfPlayer(int player);
 void LinkScreen_MovePlayerToPanel(int player, int panel);
 
 /* Moves a player up one panel, wrapping to the bottom and skipping panels of players with the ready flag set. */
-void LinkScreen_MovePlayerUp(int player)
-{
-    u8 panel;
+void LinkScreen_MovePlayerUp(int player) {
+  u8 panel;
 
-    if (LINK_READY_FLAG(gMenuState, player) != 0) {
-        return;
+  if (LINK_READY_FLAG(gMenuState, player) != 0) {
+    return;
+  }
+  panel = LinkScreen_FindPanelOfPlayer(player);
+  do {
+    if (panel != 0) {
+      panel = panel - 1;
+    } else {
+      panel = gMenuState.link.playerCount - 1;
     }
-    panel = LinkScreen_FindPanelOfPlayer(player);
-    do {
-        if (panel != 0) {
-            panel = panel - 1;
-        } else {
-            panel = gMenuState.link.playerCount - 1;
-        }
-    } while (LINK_READY_FLAG(gMenuState, LINK_PANEL_PLAYER(gMenuState, panel)) != 0);
-    LinkScreen_MovePlayerToPanel(player, panel);
+  } while (LINK_READY_FLAG(gMenuState, LINK_PANEL_PLAYER(gMenuState, panel)) !=
+           0);
+  LinkScreen_MovePlayerToPanel(player, panel);
 }

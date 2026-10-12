@@ -6,48 +6,50 @@
 #define STACK_GUARD_LOW_MAGIC 0xd73bfdf7
 #define STACK_GUARD_HIGH_MAGIC 0xfbdd37bb
 
-extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own symbol */
+extern OSThread*
+    data_arm7_03807920[]; /* OSThreadInfo.threads, under its own symbol */
 
 /*
  * ARM7 copy of OS_CreateThread. stack is the top of the stack (it grows
  * down). The thread starts waiting; it returns into Thread_EndCurrent_Arm7.
  */
-void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority)
-{
-    int irqState;
-    s32 id;
-    OSContext *context;
-    volatile u32 zero; /* needed to match: the fill value goes through the stack */
+void Thread_Spawn_Arm7(OSThread* thread, void (*func)(void*), void* arg,
+                       void* stack, u32 stackSize, u32 priority) {
+  int irqState;
+  s32 id;
+  OSContext* context;
+  volatile u32
+      zero; /* needed to match: the fill value goes through the stack */
 
-    irqState = Cpu_MaskIrq_Arm7();
-    id = Thread_FirstFreeId_Arm7();
-    if (id < 0) {
-        Cpu_RestoreIrqBit_Arm7(irqState);
-        return;
-    }
-    thread->priority = priority;
-    thread->id = id;
-    thread->state = OS_THREAD_STATE_WAITING;
-    thread->profiler = NULL;
-    data_arm7_03807920[id] = thread;
-    Thread_LinkByPriority_Arm7(thread);
-
-    thread->stackBottom = (u32)stack;
-    thread->stackTop = (u32)stack - stackSize;
-    thread->stackWarningOffset = 0;
-    *(u32 *)(thread->stackBottom - 4) = STACK_GUARD_LOW_MAGIC;
-    *(u32 *)thread->stackTop = STACK_GUARD_HIGH_MAGIC;
-    thread->joinQueue.head = 0;
-
-    context = &thread->context;
-    Context_PrepareForEntry_Arm7(context, (u32)func, (u32)stack - 4);
-    context->r[0] = (u32)arg;
-    context->lr = (u32)Thread_EndCurrent_Arm7;
-
-    zero = 0;
-    Mem_FillWords_Arm7(zero, (void *)((u32)stack - stackSize + 4), stackSize - 8);
-    thread->mutex = NULL;
-    thread->mutexQueue.head = NULL;
-    thread->mutexQueue.tail = NULL;
+  irqState = Cpu_MaskIrq_Arm7();
+  id = Thread_FirstFreeId_Arm7();
+  if (id < 0) {
     Cpu_RestoreIrqBit_Arm7(irqState);
+    return;
+  }
+  thread->priority = priority;
+  thread->id = id;
+  thread->state = OS_THREAD_STATE_WAITING;
+  thread->profiler = NULL;
+  data_arm7_03807920[id] = thread;
+  Thread_LinkByPriority_Arm7(thread);
+
+  thread->stackBottom = (u32)stack;
+  thread->stackTop = (u32)stack - stackSize;
+  thread->stackWarningOffset = 0;
+  *(u32*)(thread->stackBottom - 4) = STACK_GUARD_LOW_MAGIC;
+  *(u32*)thread->stackTop = STACK_GUARD_HIGH_MAGIC;
+  thread->joinQueue.head = 0;
+
+  context = &thread->context;
+  Context_PrepareForEntry_Arm7(context, (u32)func, (u32)stack - 4);
+  context->r[0] = (u32)arg;
+  context->lr = (u32)Thread_EndCurrent_Arm7;
+
+  zero = 0;
+  Mem_FillWords_Arm7(zero, (void*)((u32)stack - stackSize + 4), stackSize - 8);
+  thread->mutex = NULL;
+  thread->mutexQueue.head = NULL;
+  thread->mutexQueue.tail = NULL;
+  Cpu_RestoreIrqBit_Arm7(irqState);
 }

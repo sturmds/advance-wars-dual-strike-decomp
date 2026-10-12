@@ -6,20 +6,19 @@ extern u32 gWirelessState;
 BOOL func_02079424(void);
 BOOL func_02079578(void);
 
-void func_020796a0(WirelessEvent *event)
-{
-    if (event->errorCode == 0) {
-        switch (data_0229c880) {
-        case 0:
-            func_02079578();
-            break;
-        case 3:
-        case 4:
-        case 5:
-            func_02079424();
-            break;
-        }
-    } else {
-        gWirelessState = 1;
+void func_020796a0(WirelessEvent* event) {
+  if (event->errorCode == 0) {
+    switch (data_0229c880) {
+      case 0:
+        func_02079578();
+        break;
+      case 3:
+      case 4:
+      case 5:
+        func_02079424();
+        break;
     }
+  } else {
+    gWirelessState = 1;
+  }
 }

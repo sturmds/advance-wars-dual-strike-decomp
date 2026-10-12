@@ -2,7 +2,7 @@
 #include "game/ai_unit_action.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
 
 int Rng_Next(void);
@@ -22,38 +22,38 @@ int Player_TeamHasNoBlackHole(void);
 
 /* Sets up an AI turn: picks the player's first unit, reseeds the RNG,
  * runs the setup routines, then starts the unit phases. */
-void AiTurn_Start(void)
-{
-    Unk_02080440_48 *state;
+void AiTurn_Start(void) {
+  Unk_02080440_48* state;
 
-    data_027c027c->unk_48[data_027c0284]->actingUnitIndex =
-        Ov000_gPlayerFirstUnitSlot[data_027c027c->unk_48[data_027c0284]->currentPlayer];
-    state = data_027c027c->unk_48[data_027c0284];
-    state->actingUnit = &state->units[state->actingUnitIndex];
+  data_027c027c->unk_48[data_027c0284]->actingUnitIndex =
+      Ov000_gPlayerFirstUnitSlot[data_027c027c->unk_48[data_027c0284]
+                                     ->currentPlayer];
+  state = data_027c027c->unk_48[data_027c0284];
+  state->actingUnit = &state->units[state->actingUnitIndex];
 
-    Rng_SetState(Rng_Next() + MainLoop_GetFrameCount());
+  Rng_SetState(Rng_Next() + MainLoop_GetFrameCount());
 
-    AiProfile_BuildForPlayer(data_027c027c->unk_48[data_027c0284]->currentPlayer);
-    AiTurn_FindUnitDomains();
-    AiTurn_ClearCaptureMarks();
-    AiTurn_MarkReachableTiles();
-    AiTurn_ClearUnitMarks();
-    Ai_ClearTransportsSentToUnit();
-    AiTurn_CountCaptureTargets();
-    func_0208d964();
-    AiTurn_UpdateUnitModes();
+  AiProfile_BuildForPlayer(data_027c027c->unk_48[data_027c0284]->currentPlayer);
+  AiTurn_FindUnitDomains();
+  AiTurn_ClearCaptureMarks();
+  AiTurn_MarkReachableTiles();
+  AiTurn_ClearUnitMarks();
+  Ai_ClearTransportsSentToUnit();
+  AiTurn_CountCaptureTargets();
+  func_0208d964();
+  AiTurn_UpdateUnitModes();
 
-    if (func_0209dec0() == 1) {
-        gAiTurnState->flags |= 4;
-    } else {
-        gAiTurnState->flags &= ~4;
-    }
-    if (Player_TeamHasNoBlackHole() == 1) {
-        gAiTurnState->flags |= 8;
-    } else {
-        gAiTurnState->flags &= ~8;
-    }
-    gAiTurnState->phase = 0;
-    gAiTurnState->actionStep = 0;
-    gAiTurnState->state = AI_STATE_RUN_PHASE;
+  if (func_0209dec0() == 1) {
+    gAiTurnState->flags |= 4;
+  } else {
+    gAiTurnState->flags &= ~4;
+  }
+  if (Player_TeamHasNoBlackHole() == 1) {
+    gAiTurnState->flags |= 8;
+  } else {
+    gAiTurnState->flags &= ~8;
+  }
+  gAiTurnState->phase = 0;
+  gAiTurnState->actionStep = 0;
+  gAiTurnState->state = AI_STATE_RUN_PHASE;
 }

@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void ScriptSlot_Stop(int slot);
@@ -17,22 +17,21 @@ void func_020d0478(void); /* destroys the task running script data_021664b8 */
  * the cost reaches 0 the funds are set to fundsAfter (chargeFunds is 1), the task
  * of data_021664b8 is destroyed (visible set), the slot stops and sound
  * 0x10004 plays after the sub sound effect stops. */
-void ServiceCostPopup_CountDown(ServiceCostPopupSlot *slot)
-{
-    slot->cost -= slot->step;
-    if (slot->cost > 0) {
-        if (slot->chargeFunds == 1) {
-            STATE->players[STATE->currentPlayer].funds -= slot->step;
-        }
-        return;
-    }
+void ServiceCostPopup_CountDown(ServiceCostPopupSlot* slot) {
+  slot->cost -= slot->step;
+  if (slot->cost > 0) {
     if (slot->chargeFunds == 1) {
-        STATE->players[STATE->currentPlayer].funds = slot->fundsAfter;
+      STATE->players[STATE->currentPlayer].funds -= slot->step;
     }
-    if (slot->visible != 0) {
-        func_020d0478();
-    }
-    ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);
-    Sound_StopSubSe(0);
-    Sound_PlaySe(0x10004);
+    return;
+  }
+  if (slot->chargeFunds == 1) {
+    STATE->players[STATE->currentPlayer].funds = slot->fundsAfter;
+  }
+  if (slot->visible != 0) {
+    func_020d0478();
+  }
+  ScriptSlot_Stop(*data_027c027c->scriptSlotCurrent);
+  Sound_StopSubSe(0);
+  Sound_PlaySe(0x10004);
 }

@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void func_020c4024(void);
@@ -16,20 +16,19 @@ void Screen_ResetBlend(void);
 
 /* Game_State15_RunStep sub-state 8: scrolls the view until it rests and the
  * two waits have finished, then resets the blend and returns to the free cursor. */
-void Game_State15_WaitScrollThenReturnToCursor(void)
-{
-    func_020c4024();
-    func_020c40d0();
-    MapView_ScrollStep(8);
-    if (!MapView_IsAtRest()) {
-        return;
-    }
-    if (!func_020ef1e8()) {
-        return;
-    }
-    if (!MapTouch_ReadNotHeld()) {
-        return;
-    }
-    Screen_ResetBlend();
-    GAME->unk_1c = 0;
+void Game_State15_WaitScrollThenReturnToCursor(void) {
+  func_020c4024();
+  func_020c40d0();
+  MapView_ScrollStep(8);
+  if (!MapView_IsAtRest()) {
+    return;
+  }
+  if (!func_020ef1e8()) {
+    return;
+  }
+  if (!MapTouch_ReadNotHeld()) {
+    return;
+  }
+  Screen_ResetBlend();
+  GAME->unk_1c = 0;
 }

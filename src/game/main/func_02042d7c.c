@@ -1,11 +1,10 @@
 #include "types.h"
 
-int Task_FindByScript(void *);
+int Task_FindByScript(void*);
 extern u8 data_0215ab00[];
 int Task_JumpToLabel(int, int);
 
-int func_02042d7c(void)
-{
-    int t0 = Task_FindByScript(data_0215ab00);
-    return Task_JumpToLabel(t0, 1);
+int func_02042d7c(void) {
+  int t0 = Task_FindByScript(data_0215ab00);
+  return Task_JumpToLabel(t0, 1);
 }

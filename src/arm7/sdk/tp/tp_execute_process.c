@@ -5,66 +5,68 @@
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
  * auto sampling), or starting and stopping auto sampling. */
-void TP_ExecuteProcess(SerialBusJob *entry)
-{
-    int i;
+void TP_ExecuteProcess(SerialBusJob* entry) {
+  int i;
 
-    switch (entry->process) {
+  switch (entry->process) {
     case TP_REQUEST_COMMAND_AUTO_SAMPLING:
-        if (tpWork.status != TOUCH_SAMPLER_PERIODIC) {
-            return;
-        }
-        /* fall through: an auto sample is taken like a one-shot one */
+      if (tpWork.status != TOUCH_SAMPLER_PERIODIC) {
+        return;
+      }
+      /* fall through: an auto sample is taken like a one-shot one */
     case TP_REQUEST_COMMAND_SAMPLING: {
-        SPITpData sample;
-        u16 density;
-        int intr = Cpu_MaskIrq_Arm7();
+      SPITpData sample;
+      u16 density;
+      int intr = Cpu_MaskIrq_Arm7();
 
-        if (!SPIi_CheckException(SERIAL_OWNER_TOUCH)) {
-            Cpu_RestoreIrqBit_Arm7(intr);
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_BUS_TAKEN);
-            return;
-        }
-        SPIi_GetException(SERIAL_OWNER_TOUCH);
+      if (!SPIi_CheckException(SERIAL_OWNER_TOUCH)) {
         Cpu_RestoreIrqBit_Arm7(intr);
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_BUS_TAKEN);
+        return;
+      }
+      SPIi_GetException(SERIAL_OWNER_TOUCH);
+      Cpu_RestoreIrqBit_Arm7(intr);
 
-        TP_ExecSampling(&sample, tpWork.range, &density);
-        Touch_TuneStabilityRange(&sample, density);
-        TOUCH_SHARED_LATEST_LOW = sample.halfs[0];
-        TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];
+      TP_ExecSampling(&sample, tpWork.range, &density);
+      Touch_TuneStabilityRange(&sample, density);
+      TOUCH_SHARED_LATEST_LOW = sample.halfs[0];
+      TOUCH_SHARED_LATEST_HIGH = sample.halfs[1];
 
-        if (entry->process == TP_REQUEST_COMMAND_SAMPLING) {
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
-        } else {
-            SPIi_ReturnResult(entry->process, entry->arg[0] & 0xff);
-        }
-        SPIi_ReleaseException(SERIAL_OWNER_TOUCH);
-        break;
+      if (entry->process == TP_REQUEST_COMMAND_SAMPLING) {
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
+      } else {
+        SPIi_ReturnResult(entry->process, entry->arg[0] & 0xff);
+      }
+      SPIi_ReleaseException(SERIAL_OWNER_TOUCH);
+      break;
     }
 
     case TP_REQUEST_COMMAND_AUTO_ON:
-        if (tpWork.status == TOUCH_SAMPLER_ALARMS_PENDING) {
-            /* arg[0] alarms per frame, spaced evenly from line arg[1] */
-            for (i = 0; i < entry->arg[0]; i++) {
-                tpWork.vCount[i] = (entry->arg[1] + i * TOUCH_SCANLINES_PER_FRAME / entry->arg[0]) % TOUCH_SCANLINES_PER_FRAME;
-                LineAlarm_ArmEveryFrame_Arm7(&tpWork.vAlarm[i], tpWork.vCount[i], TOUCH_LINE_ALARM_SLACK,
-                                          Touch_QueueAutoSample, (void *)i);
-            }
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
-            tpWork.status = TOUCH_SAMPLER_PERIODIC;
-        } else {
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
+      if (tpWork.status == TOUCH_SAMPLER_ALARMS_PENDING) {
+        /* arg[0] alarms per frame, spaced evenly from line arg[1] */
+        for (i = 0; i < entry->arg[0]; i++) {
+          tpWork.vCount[i] =
+              (entry->arg[1] + i * TOUCH_SCANLINES_PER_FRAME / entry->arg[0]) %
+              TOUCH_SCANLINES_PER_FRAME;
+          LineAlarm_ArmEveryFrame_Arm7(&tpWork.vAlarm[i], tpWork.vCount[i],
+                                       TOUCH_LINE_ALARM_SLACK,
+                                       Touch_QueueAutoSample, (void*)i);
         }
-        break;
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
+        tpWork.status = TOUCH_SAMPLER_PERIODIC;
+      } else {
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
+      }
+      break;
 
     case TP_REQUEST_COMMAND_AUTO_OFF:
-        if (tpWork.status == TOUCH_SAMPLER_STOPPING) {
-            LineAlarm_WithdrawTagged_Arm7(TOUCH_LINE_ALARM_ID);
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
-            tpWork.status = TOUCH_SAMPLER_IDLE;
-        } else {
-            SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
-        }
-        break;
-    }
+      if (tpWork.status == TOUCH_SAMPLER_STOPPING) {
+        LineAlarm_WithdrawTagged_Arm7(TOUCH_LINE_ALARM_ID);
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_OK);
+        tpWork.status = TOUCH_SAMPLER_IDLE;
+      } else {
+        SPIi_ReturnResult(entry->process, TOUCH_REPLY_WRONG_STATE);
+      }
+      break;
+  }
 }

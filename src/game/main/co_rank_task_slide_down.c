@@ -3,11 +3,11 @@
 #include "game/Unk_02088d04.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Sprite_QueueAt(int list, int x, int y, void *data, int attr, int tile);
-void Task_ResumeScript(CoRankTask *task);
+void Sprite_QueueAt(int list, int x, int y, void* data, int attr, int tile);
+void Task_ResumeScript(CoRankTask* task);
 void CoRankScreen_QueueNumber(int x, int y, int value);
 
-extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0280* data_027c0280;
 extern u8 data_027c0030;
 extern u8 data_027c0060;
 
@@ -15,27 +15,26 @@ extern u8 data_027c0060;
  * move down by an eased 0 to 64 pixels. The number from CoRankScreen_QueueNumber
  * moves with them but stops at y 174. Resumes the task's script on the
  * last frame. */
-void CoRankTask_SlideDown(CoRankTask *task)
-{
-    int offset;
-    u8 layer1;
-    u8 layer0;
+void CoRankTask_SlideDown(CoRankTask* task) {
+  int offset;
+  u8 layer1;
+  u8 layer0;
 
-    task->frame++;
-    offset = Math_Ease(1, 0, 64, task->frame, 16);
-    layer1 = data_027c0280->layer1Bg;
-    layer0 = data_027c0280->layer0Bg;
-    data_027c0280->bgScrollY[layer1] = -offset;
-    data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
-    if (offset + 136 < 174) {
-        CoRankScreen_QueueNumber(0, offset + 136, task->experienceGain);
-    } else {
-        CoRankScreen_QueueNumber(0, 174, task->experienceGain);
-    }
-    Sprite_QueueAt(7, 164, (offset + 128) & 0xff, &data_027c0030, 0x5000, 0xfc);
-    Sprite_QueueAt(6, 212, (offset + 152) & 0xff, &data_027c0060, 0x1000, 0x13c);
-    if (task->frame == 16) {
-        task->frame = 0;
-        Task_ResumeScript(task);
-    }
+  task->frame++;
+  offset = Math_Ease(1, 0, 64, task->frame, 16);
+  layer1 = data_027c0280->layer1Bg;
+  layer0 = data_027c0280->layer0Bg;
+  data_027c0280->bgScrollY[layer1] = -offset;
+  data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
+  if (offset + 136 < 174) {
+    CoRankScreen_QueueNumber(0, offset + 136, task->experienceGain);
+  } else {
+    CoRankScreen_QueueNumber(0, 174, task->experienceGain);
+  }
+  Sprite_QueueAt(7, 164, (offset + 128) & 0xff, &data_027c0030, 0x5000, 0xfc);
+  Sprite_QueueAt(6, 212, (offset + 152) & 0xff, &data_027c0060, 0x1000, 0x13c);
+  if (task->frame == 16) {
+    task->frame = 0;
+    Task_ResumeScript(task);
+  }
 }

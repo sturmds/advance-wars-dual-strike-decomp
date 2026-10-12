@@ -1,20 +1,20 @@
 #include "sdk/wm.h"
 #include "sdk/os.h"
 
-extern WMArm9Buf *data_022ac32c;
+extern WMArm9Buf* data_022ac32c;
 
-int WMi_CheckIdle(void)
-{
-    int result;
+int WMi_CheckIdle(void) {
+  int result;
 
-    result = func_02116df4();
-    if (result != WM_ERRCODE_SUCCESS) {
-        return result;
-    }
+  result = func_02116df4();
+  if (result != WM_ERRCODE_SUCCESS) {
+    return result;
+  }
 
-    DC_InvalidateRange(&data_022ac32c->status->state, 2);
-    if (data_022ac32c->status->state == WM_STATE_READY || data_022ac32c->status->state == WM_STATE_STOP) {
-        return WM_ERRCODE_ILLEGAL_STATE;
-    }
-    return WM_ERRCODE_SUCCESS;
+  DC_InvalidateRange(&data_022ac32c->status->state, 2);
+  if (data_022ac32c->status->state == WM_STATE_READY ||
+      data_022ac32c->status->state == WM_STATE_STOP) {
+    return WM_ERRCODE_ILLEGAL_STATE;
+  }
+  return WM_ERRCODE_SUCCESS;
 }

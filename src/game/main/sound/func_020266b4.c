@@ -7,7 +7,4 @@ void Sound_FadeSeVolume(int from, int to, int frames);
 
 /* Fades the gSeHandle sound out over 60 frames. Reached through a
  * pointer in ov002 (battle animation). */
-void func_020266b4(void)
-{
-    Sound_FadeSeVolume(-1, 0, 60);
-}
+void func_020266b4(void) { Sound_FadeSeVolume(-1, 0, 60); }

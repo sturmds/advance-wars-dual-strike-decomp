@@ -2,12 +2,11 @@
 #include "game/unit_stats.h"
 
 /* Every unit type except Oozium can be built; the player is not used. */
-BOOL BuildMenu_CanBuildUnitOutsideCampaign(int player, int unitType)
-{
-    switch (unitType) {
+BOOL BuildMenu_CanBuildUnitOutsideCampaign(int player, int unitType) {
+  switch (unitType) {
     case UNIT_OOZIUM:
-        return FALSE;
+      return FALSE;
     default:
-        return TRUE;
-    }
+      return TRUE;
+  }
 }

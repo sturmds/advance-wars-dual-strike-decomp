@@ -5,7 +5,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 extern u32 gAiBuildScores[];
@@ -43,129 +43,137 @@ int Ai_CountUnitsOfType(int type);
  * none of). Black Bomb and Piperunner builds go through AiSite_PickBlackBombAirport and
  * AiSite_PickPiperunnerSite. A type that fails gets weight 0 and the pick starts again.
  * Returns the factory's site index with gUnitAction.target set, or -1. */
-int AiTurn_PickUnitToBuild(int allowSaving)
-{
-    /* needed to match: this declaration order and the hoisted countLess1 */
-    int index;
-    u8 *supplyKind;
-    int best;
-    int infoFlag;
-    u32 bestScore;
-    int pipeCost;
-    int info;
-    int type;
-    UnitStats *stats;
-    int countLess1;
-    AiSite *site;
-    int infoCount;
-    u16 cost;
+int AiTurn_PickUnitToBuild(int allowSaving) {
+  /* needed to match: this declaration order and the hoisted countLess1 */
+  int index;
+  u8* supplyKind;
+  int best;
+  int infoFlag;
+  u32 bestScore;
+  int pipeCost;
+  int info;
+  int type;
+  UnitStats* stats;
+  int countLess1;
+  AiSite* site;
+  int infoCount;
+  u16 cost;
 
-    if (AiSite_PickFirst(4) == -1) {
-        return -1;
-    }
-    info = AiSite_RateBaseLandmass();
-    infoFlag = info & 0x100;
-    infoCount = info & 0xff;
-    for (;;) {
-        best = 0;
-        bestScore = 0;
-        countLess1 = infoCount - 1;
-        for (type = 1, stats = &Ov000_gUnitStats[1]; type < UNIT_TYPE_COUNT; stats++, type++) {
-            if (bestScore >= gAiBuildScores[type]) {
-                continue;
-            }
-            if (infoFlag != 0) {
-                if (type <= UNIT_MECH && countLess1 >= 5) {
-                    continue;
-                }
-            } else if (infoCount != 0 && (stats->moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))) {
-                if (UnitType_GetAttackKind(type) != ATTACK_KIND_DIRECT || type == UNIT_INFANTRY || type == UNIT_MECH || type == UNIT_ANTI_AIR) {
-                    if (type == UNIT_ARTILLERY) {
-                        continue;
-                    }
-                    if (type <= UNIT_MECH && countLess1 >= 5) {
-                        continue;
-                    }
-                    if (bestScore <= gAiBuildScores[type] >> 1) {
-                        bestScore = gAiBuildScores[type] >> 1;
-                        best = type;
-                    }
-                }
-                continue;
-            }
-            if (type == UNIT_ARTILLERY) {
-                if (AiBuild_HasEnoughIndirectsForArtillery(info) == 1) {
-                    continue;
-                }
-            } else if (UnitType_GetAttackKind(type) == ATTACK_KIND_INDIRECT
-                       && (stats->moveGroup & (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))
-                       && AiBuild_HasEnoughGroundIndirects(info) == 1) {
-                continue;
-            }
+  if (AiSite_PickFirst(4) == -1) {
+    return -1;
+  }
+  info = AiSite_RateBaseLandmass();
+  infoFlag = info & 0x100;
+  infoCount = info & 0xff;
+  for (;;) {
+    best = 0;
+    bestScore = 0;
+    countLess1 = infoCount - 1;
+    for (type = 1, stats = &Ov000_gUnitStats[1]; type < UNIT_TYPE_COUNT;
+         stats++, type++) {
+      if (bestScore >= gAiBuildScores[type]) {
+        continue;
+      }
+      if (infoFlag != 0) {
+        if (type <= UNIT_MECH && countLess1 >= 5) {
+          continue;
+        }
+      } else if (infoCount != 0 &&
+                 (stats->moveGroup &
+                  (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD))) {
+        if (UnitType_GetAttackKind(type) != ATTACK_KIND_DIRECT ||
+            type == UNIT_INFANTRY || type == UNIT_MECH ||
+            type == UNIT_ANTI_AIR) {
+          if (type == UNIT_ARTILLERY) {
+            continue;
+          }
+          if (type <= UNIT_MECH && countLess1 >= 5) {
+            continue;
+          }
+          if (bestScore <= gAiBuildScores[type] >> 1) {
+            bestScore = gAiBuildScores[type] >> 1;
             best = type;
-            bestScore = gAiBuildScores[type];
+          }
         }
-        if (best == 0) {
-            return -1;
+        continue;
+      }
+      if (type == UNIT_ARTILLERY) {
+        if (AiBuild_HasEnoughIndirectsForArtillery(info) == 1) {
+          continue;
         }
-        supplyKind = &gUnitSupplyKind[best];
-        for (;;) {
-            index = AiSite_PickForBuild(*supplyKind);
-            if (index == -1) {
-                goto reject;
-            }
-            /* needed to match: airport or port written as + 254 */
-            if ((u8)(*supplyKind + 254) > 1) {
-                break;
-            }
-            site = &data_0229e5bc[index];
-            if (AiBuild_RateSiteDanger(site->x, site->y, best) >= 90) {
-                site->kind = 0xff;
-                continue;
-            }
-            AiSites_ClearRejectedMarks();
-            break;
-        }
-        cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
-        if (cost > (u32)PLAYER.funds) {
-            if (allowSaving == 1 && AiBuild_ShouldSaveFunds(cost) == 1) {
-                data_021619c0->savingTarget = cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
-            }
-            goto reject;
-        }
-        if (Ai_WantsBlackBomb(best) == 1) {
-            gUnitAction.target = UNIT_BLACK_BOMB;
-            return AiSite_PickBlackBombAirport();
-        }
-        if (data_021619c0->savingTarget != 0) {
-            if (AiBuild_CanAffordPiperunnerInstead(best) == 1) {
-                gUnitAction.target = UNIT_PIPERUNNER;
-                return AiSite_PickPiperunnerSite();
-            }
-        } else if (AiBuild_WantsPiperunnerInstead(best) == 1) {
-            pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
-            if (pipeCost > (u32)PLAYER.funds) {
-                if (allowSaving == 1 && AiBuild_ShouldSaveFunds(pipeCost) == 1) {
-                    data_021619c0->savingTarget = pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
-                    continue;
-                }
-            } else {
-                gUnitAction.target = UNIT_PIPERUNNER;
-                return AiSite_PickPiperunnerSite();
-            }
-        }
-        if (data_021619c0->savingTarget != 0 && data_021619c0->savingSkips != 0) {
-            data_021619c0->savingSkips--;
-            if (Ai_CountUnitsOfType(best) != 0 && cost > PLAYER.funds - data_021619c0->savingTarget) {
-                goto reject;
-            }
-        } else if (cost > PLAYER.funds - data_021619c0->savingTarget) {
-            goto reject;
-        }
-        gUnitAction.target = best;
-        return index;
-    reject:
-        gAiBuildScores[best] = 0;
-        AiSites_ClearRejectedMarks();
+      } else if (UnitType_GetAttackKind(type) == ATTACK_KIND_INDIRECT &&
+                 (stats->moveGroup &
+                  (MOVE_GROUP_FOOT | MOVE_GROUP_TIRES | MOVE_GROUP_TREAD)) &&
+                 AiBuild_HasEnoughGroundIndirects(info) == 1) {
+        continue;
+      }
+      best = type;
+      bestScore = gAiBuildScores[type];
     }
+    if (best == 0) {
+      return -1;
+    }
+    supplyKind = &gUnitSupplyKind[best];
+    for (;;) {
+      index = AiSite_PickForBuild(*supplyKind);
+      if (index == -1) {
+        goto reject;
+      }
+      /* needed to match: airport or port written as + 254 */
+      if ((u8)(*supplyKind + 254) > 1) {
+        break;
+      }
+      site = &data_0229e5bc[index];
+      if (AiBuild_RateSiteDanger(site->x, site->y, best) >= 90) {
+        site->kind = 0xff;
+        continue;
+      }
+      AiSites_ClearRejectedMarks();
+      break;
+    }
+    cost = Unit_GetValuePerHp(STATE->currentPlayer, best) * 10;
+    if (cost > (u32)PLAYER.funds) {
+      if (allowSaving == 1 && AiBuild_ShouldSaveFunds(cost) == 1) {
+        data_021619c0->savingTarget =
+            cost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+      }
+      goto reject;
+    }
+    if (Ai_WantsBlackBomb(best) == 1) {
+      gUnitAction.target = UNIT_BLACK_BOMB;
+      return AiSite_PickBlackBombAirport();
+    }
+    if (data_021619c0->savingTarget != 0) {
+      if (AiBuild_CanAffordPiperunnerInstead(best) == 1) {
+        gUnitAction.target = UNIT_PIPERUNNER;
+        return AiSite_PickPiperunnerSite();
+      }
+    } else if (AiBuild_WantsPiperunnerInstead(best) == 1) {
+      pipeCost = Unit_GetValuePerHp(STATE->currentPlayer, UNIT_PIPERUNNER) * 10;
+      if (pipeCost > (u32)PLAYER.funds) {
+        if (allowSaving == 1 && AiBuild_ShouldSaveFunds(pipeCost) == 1) {
+          data_021619c0->savingTarget =
+              pipeCost - (PLAYER.unk_08 - data_021619c0->unk_0c);
+          continue;
+        }
+      } else {
+        gUnitAction.target = UNIT_PIPERUNNER;
+        return AiSite_PickPiperunnerSite();
+      }
+    }
+    if (data_021619c0->savingTarget != 0 && data_021619c0->savingSkips != 0) {
+      data_021619c0->savingSkips--;
+      if (Ai_CountUnitsOfType(best) != 0 &&
+          cost > PLAYER.funds - data_021619c0->savingTarget) {
+        goto reject;
+      }
+    } else if (cost > PLAYER.funds - data_021619c0->savingTarget) {
+      goto reject;
+    }
+    gUnitAction.target = best;
+    return index;
+  reject:
+    gAiBuildScores[best] = 0;
+    AiSites_ClearRejectedMarks();
+  }
 }

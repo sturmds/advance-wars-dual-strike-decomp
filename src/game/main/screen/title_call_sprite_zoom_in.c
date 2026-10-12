@@ -4,13 +4,13 @@
 int HwDiv32(int num, int den);
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
 void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
-void Sprite_Queue(int list, int x, int y, void *data, int attr, int tile);
-void Task_ResumeScript(Task *task);
+void Sprite_Queue(int list, int x, int y, void* data, int attr, int tile);
+void Task_ResumeScript(Task* task);
 
 extern const s16 gSineTable[];
 extern u8 data_027c0030[];
 
-#define FRAME(task) (*(s16 *)&(task)->unk_4c)
+#define FRAME(task) (*(s16*)&(task)->unk_4c)
 
 /* Divisor for one matrix entry: the eased scale, or 2 if it is 0. */
 #define DIVISOR(scale) ((scale) != 0 ? (scale) : 2)
@@ -25,28 +25,29 @@ extern u8 data_027c0030[];
  * over 32 frames, zooms one sprite at (64, 32) from almost nothing to twice
  * its size through affine matrix 1, then resumes the script. gSineTable
  * has 256 steps per turn (index 64 = cosine of 0). */
-void TitleCall_SpriteZoomIn(Task *task)
-{
-    int scale;
+void TitleCall_SpriteZoomIn(Task* task) {
+  int scale;
 
-    scale = Math_Ease(4, 2, 512, FRAME(task), 32);
-    /* Needed to match: the divisor is evaluated once per entry, before the
+  scale = Math_Ease(4, 2, 512, FRAME(task), 32);
+  /* Needed to match: the divisor is evaluated once per entry, before the
      * table reads. */
-    {
-        int d3 = DIVISOR(scale);
-        int d2 = DIVISOR(scale);
-        int d1 = DIVISOR(scale);
-        int d0 = DIVISOR(scale);
-        int sinValue = gSineTable[0];
-        int cosValue = gSineTable[64] << 4;
+  {
+    int d3 = DIVISOR(scale);
+    int d2 = DIVISOR(scale);
+    int d1 = DIVISOR(scale);
+    int d0 = DIVISOR(scale);
+    int sinValue = gSineTable[0];
+    int cosValue = gSineTable[64] << 4;
 
-        Oam_SetAffineParams(ZOOM_AFFINE, HwDiv32(cosValue, d0), HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
-                            HwDiv32(cosValue, d3));
-    }
-    Sprite_Queue(1, 64 | (ZOOM_AFFINE << 9), 32 | OAM_AFFINE_DOUBLE, data_027c0030, 0, 80);
-    if (FRAME(task) != 32) {
-        FRAME(task)++;
-        return;
-    }
-    Task_ResumeScript(task);
+    Oam_SetAffineParams(ZOOM_AFFINE, HwDiv32(cosValue, d0),
+                        HwDiv32(-sinValue << 4, d1), HwDiv32(sinValue << 4, d2),
+                        HwDiv32(cosValue, d3));
+  }
+  Sprite_Queue(1, 64 | (ZOOM_AFFINE << 9), 32 | OAM_AFFINE_DOUBLE,
+               data_027c0030, 0, 80);
+  if (FRAME(task) != 32) {
+    FRAME(task)++;
+    return;
+  }
+  Task_ResumeScript(task);
 }

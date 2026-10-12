@@ -1,29 +1,28 @@
 #include "types.h"
 #include "game/sound_stream.h"
 
-extern u8 data_022a8ad8[];             /* mutex around the stream slots and request lists */
+extern u8 data_022a8ad8[]; /* mutex around the stream slots and request lists */
 
-void OS_LockMutex(void *mutex);
-void OS_UnlockMutex(void *mutex);
-void SoundStream_Close(SoundStream *stream);
-void SoundStrm_UnlockChannels(SoundStrm *strm);
+void OS_LockMutex(void* mutex);
+void OS_UnlockMutex(void* mutex);
+void SoundStream_Close(SoundStream* stream);
+void SoundStrm_UnlockChannels(SoundStrm* strm);
 
 /* Run when the sound heap drops the block memory of a stream slot: closes
  * the stream and empties the slot. Does nothing when buffer is not the
  * slot's. */
-void SoundStream_ReleaseBuffer(void *buffer, u32 unused, SoundStream *stream)
-{
-    if (buffer != stream->buffer) {
-        return;
-    }
-    OS_LockMutex(data_022a8ad8);
-    SoundStream_Close(stream);
-    stream->buffer = NULL;
-    stream->bufferSize = 0;
-    stream->slotChannelCount = 0;
-    if (stream->channelLockCount > 0) {
-        SoundStrm_UnlockChannels(&stream->strm);
-        stream->channelLockCount = 0;
-    }
-    OS_UnlockMutex(data_022a8ad8);
+void SoundStream_ReleaseBuffer(void* buffer, u32 unused, SoundStream* stream) {
+  if (buffer != stream->buffer) {
+    return;
+  }
+  OS_LockMutex(data_022a8ad8);
+  SoundStream_Close(stream);
+  stream->buffer = NULL;
+  stream->bufferSize = 0;
+  stream->slotChannelCount = 0;
+  if (stream->channelLockCount > 0) {
+    SoundStrm_UnlockChannels(&stream->strm);
+    stream->channelLockCount = 0;
+  }
+  OS_UnlockMutex(data_022a8ad8);
 }

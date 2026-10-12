@@ -6,7 +6,7 @@
 #include "game/Unk_02080440.h"
 #include "game/play_records.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
 extern const TaskScriptCmd data_02168d88[];
@@ -18,7 +18,8 @@ void ActingUnit_ResetCaptureIfMoved(void);
 void ActingUnit_StartAtDest(void);
 void Game_EnterState18(void);
 int Capture_PlayCompleteSound(int owner, int tile);
-void Capture_StartDisplay(int x, int y, int oldProgress, int newProgress, int owner);
+void Capture_StartDisplay(int x, int y, int oldProgress, int newProgress,
+                          int owner);
 void Tile_SetOwner(int x, int y);
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -39,61 +40,69 @@ void Tile_SetOwner(int x, int y);
  * old owner. The scene functions show the progress; with fog or rain they
  * are skipped for a tile the current player cannot see. Human players
  * count captures begun and finished in gPlayRecords. */
-void UnitAction_Capture(void)
-{
-    int shownHp;
-    int progress;
-    u8 tile;
-    int oldProgress;
+void UnitAction_Capture(void) {
+  int shownHp;
+  int progress;
+  u8 tile;
+  int oldProgress;
 
-    shownHp = SHOWN_HP(GAME->actingUnit);
-    progress = HwDiv32(shownHp * Player_GetCaptureRate(GAME->currentPlayer), 100) + CaptureIncrease(GAME->currentPlayer, 0);
-    tile = GAME->mapTiles->tiles[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)];
-    ActingUnit_ResetCaptureIfMoved();
-    ActingUnit_StartAtDest();
+  shownHp = SHOWN_HP(GAME->actingUnit);
+  progress =
+      HwDiv32(shownHp * Player_GetCaptureRate(GAME->currentPlayer), 100) +
+      CaptureIncrease(GAME->currentPlayer, 0);
+  tile = GAME->mapTiles
+             ->tiles[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)];
+  ActingUnit_ResetCaptureIfMoved();
+  ActingUnit_StartAtDest();
 
-    oldProgress = GAME->actingUnit->captureProgress;
-    progress += GAME->actingUnit->captureProgress;
-    if (progress >= MAP_UNIT_CAPTURE_POINTS) {
-        progress = MAP_UNIT_CAPTURE_POINTS;
+  oldProgress = GAME->actingUnit->captureProgress;
+  progress += GAME->actingUnit->captureProgress;
+  if (progress >= MAP_UNIT_CAPTURE_POINTS) {
+    progress = MAP_UNIT_CAPTURE_POINTS;
+  }
+
+  if (GAME->players[GAME->currentPlayer].controller ==
+      PLAYER_CONTROLLER_HUMAN) {
+    if (oldProgress == 0) {
+      if (gPlayRecords.capturesStarted < 999999) {
+        gPlayRecords.capturesStarted++;
+      }
     }
-
-    if (GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (oldProgress == 0) {
-            if (gPlayRecords.capturesStarted < 999999) {
-                gPlayRecords.capturesStarted++;
-            }
-        }
-        if (progress == MAP_UNIT_CAPTURE_POINTS) {
-            if (gPlayRecords.capturesCompleted < 999999) {
-                gPlayRecords.capturesCompleted++;
-            }
-        }
+    if (progress == MAP_UNIT_CAPTURE_POINTS) {
+      if (gPlayRecords.capturesCompleted < 999999) {
+        gPlayRecords.capturesCompleted++;
+      }
     }
+  }
 
-    if ((GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN)
-        || (GAME->players[GAME->currentPlayer].visionGrids & 2)
-        || GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX, GAME->actingUnitDestY)] != 0) {
-        if (GAME->unk_82 == 1 || GAME->unk_82 == 2 || MAP_TILE_TERRAIN(tile) == TERRAIN_HQ
-            || MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
-            Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY, GAME->actingUnit->captureProgress, progress,
-                          ACTING_UNIT_OWNER);
-        } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
-            Capture_PlayCompleteSound(ACTING_UNIT_OWNER, MAP_TILE_TERRAIN(tile));
-        }
-    } else if (gLinkPlay != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2)
-               && GAME->players[GAME->currentPlayer].controller == PLAYER_CONTROLLER_AI) {
-        /* the tile is out of sight: no capture scene, but link play still needs the task */
-        Task_Create(data_02168d88, TASK_LIST(3));
+  if ((GAME->unk_1c4->fog == 0 && GAME->unk_1c4->weather != WEATHER_RAIN) ||
+      (GAME->players[GAME->currentPlayer].visionGrids & 2) ||
+      GAME->mapTiles->unk_2338[TILE_INDEX(GAME->actingUnitDestX,
+                                          GAME->actingUnitDestY)] != 0) {
+    if (GAME->unk_82 == 1 || GAME->unk_82 == 2 ||
+        MAP_TILE_TERRAIN(tile) == TERRAIN_HQ ||
+        MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
+      Capture_StartDisplay(GAME->actingUnitDestX, GAME->actingUnitDestY,
+                           GAME->actingUnit->captureProgress, progress,
+                           ACTING_UNIT_OWNER);
+    } else if (progress >= MAP_UNIT_CAPTURE_POINTS) {
+      Capture_PlayCompleteSound(ACTING_UNIT_OWNER, MAP_TILE_TERRAIN(tile));
     }
+  } else if (gLinkPlay != 0 && (GAME->unk_82 == 1 || GAME->unk_82 == 2) &&
+             GAME->players[GAME->currentPlayer].controller ==
+                 PLAYER_CONTROLLER_AI) {
+    /* the tile is out of sight: no capture scene, but link play still needs the task */
+    Task_Create(data_02168d88, TASK_LIST(3));
+  }
 
-    GAME->actingUnit->captureProgress = progress;
-    if (GAME->actingUnit->captureProgress >= MAP_UNIT_CAPTURE_POINTS) {
-        GAME->actingUnit->captureProgress = 0;
-        if (MAP_TILE_TERRAIN(tile) == TERRAIN_HQ || MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
-            GAME->players[MAP_TILE_OWNER(tile)].unk_34 = 1;
-        }
-        Tile_SetOwner(GAME->actingUnitDestX, GAME->actingUnitDestY);
+  GAME->actingUnit->captureProgress = progress;
+  if (GAME->actingUnit->captureProgress >= MAP_UNIT_CAPTURE_POINTS) {
+    GAME->actingUnit->captureProgress = 0;
+    if (MAP_TILE_TERRAIN(tile) == TERRAIN_HQ ||
+        MAP_TILE_TERRAIN(tile) == TERRAIN_LAB) {
+      GAME->players[MAP_TILE_OWNER(tile)].unk_34 = 1;
     }
-    Game_EnterState18();
+    Tile_SetOwner(GAME->actingUnitDestX, GAME->actingUnitDestY);
+  }
+  Game_EnterState18();
 }

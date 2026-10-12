@@ -2,7 +2,7 @@
 #include "game/Unk_02088d04.h"
 #include "game/unit_info_panel.h"
 
-extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0280* data_027c0280;
 
 /* Per unit type: 1-based row of data_ov000_0234fa28. */
 extern s8 data_ov000_022b3850[];
@@ -12,32 +12,35 @@ extern u32 data_ov000_0234fa28[][16];
 void Map_ScrollViewToTile(int mode);
 void Text_StopPrinting(void);
 void Gfx_RequestLayerCopy(int layer);
-void Text_PrintById(s16 x, s16 y, void *target, u32 text, int a, int b);
+void Text_PrintById(s16 x, s16 y, void* target, u32 text, int a, int b);
 
 /* Redraws the panel's text area when the page changed: clears 14 by 8 tiles
  * and prints the page's text for the unit's type. */
-void UnitInfoPanel_DrawPage(void)
-{
-    u8 row;
-    u8 col;
+void UnitInfoPanel_DrawPage(void) {
+  u8 row;
+  u8 col;
 
-    Map_ScrollViewToTile(2);
-    if (data_ov000_0234ec8c->shownPage == data_ov000_0234ec8c->page) {
-        return;
+  Map_ScrollViewToTile(2);
+  if (data_ov000_0234ec8c->shownPage == data_ov000_0234ec8c->page) {
+    return;
+  }
+  data_ov000_0234ec8c->shownPage = data_ov000_0234ec8c->page;
+  Text_StopPrinting();
+  for (row = 0; row < 8; row++) {
+    for (col = 0; col < 14; col++) {
+      data_027c0280->layer0Map[(data_ov000_0234ec8c->tileX + 1 + col) +
+                               (data_ov000_0234ec8c->tileY + 1 + row) * 32] = 0;
     }
-    data_ov000_0234ec8c->shownPage = data_ov000_0234ec8c->page;
-    Text_StopPrinting();
-    for (row = 0; row < 8; row++) {
-        for (col = 0; col < 14; col++) {
-            data_027c0280->layer0Map[(data_ov000_0234ec8c->tileX + 1 + col) + (data_ov000_0234ec8c->tileY + 1 + row) * 32] = 0;
-        }
-    }
-    Gfx_RequestLayerCopy(0);
-    {
-        UnitInfoPanel *panel = data_ov000_0234ec8c;
-        int type = panel->unit->type;
-        s16 x = panel->tileX + 1;
-        s16 y = panel->tileY + 1;
-        Text_PrintById(x, y, data_027c0280->layer0Map, data_ov000_0234fa28[data_ov000_022b3850[type] - 1][panel->page], 0, 248);
-    }
+  }
+  Gfx_RequestLayerCopy(0);
+  {
+    UnitInfoPanel* panel = data_ov000_0234ec8c;
+    int type = panel->unit->type;
+    s16 x = panel->tileX + 1;
+    s16 y = panel->tileY + 1;
+    Text_PrintById(
+        x, y, data_027c0280->layer0Map,
+        data_ov000_0234fa28[data_ov000_022b3850[type] - 1][panel->page], 0,
+        248);
+  }
 }

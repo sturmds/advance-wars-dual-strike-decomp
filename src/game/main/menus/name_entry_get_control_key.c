@@ -6,10 +6,9 @@
 
 /* Index of the control key under the cursor, or -1 when it is on a
  * character key. */
-int NameEntry_GetControlKey(NameEntry *entry)
-{
-    if (entry->cursor < NAME_ENTRY_KEY_COUNT) {
-        return -1;
-    }
-    return entry->cursor - NAME_ENTRY_KEY_COUNT;
+int NameEntry_GetControlKey(NameEntry* entry) {
+  if (entry->cursor < NAME_ENTRY_KEY_COUNT) {
+    return -1;
+  }
+  return entry->cursor - NAME_ENTRY_KEY_COUNT;
 }

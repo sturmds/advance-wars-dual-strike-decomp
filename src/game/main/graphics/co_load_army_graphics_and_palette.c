@@ -9,11 +9,11 @@ extern u32 gLinkPlay;
  * and its palette into sprite palette slot paletteSlot (palette numbers
  * 16 and up are the sprite ones). Bit 7 of coId, or gLinkPlay being 0,
  * means army 0. */
-void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot, int army)
-{
-    if (gLinkPlay == 0 || (coId & 0x80)) {
-        army = 0;
-    }
-    Co_LoadArmyGraphics(coId, tile, army);
-    Co_LoadArmyPalette(coId, paletteSlot + 16, army);
+void Co_LoadArmyGraphicsAndPalette(int coId, int tile, int paletteSlot,
+                                   int army) {
+  if (gLinkPlay == 0 || (coId & 0x80)) {
+    army = 0;
+  }
+  Co_LoadArmyGraphics(coId, tile, army);
+  Co_LoadArmyPalette(coId, paletteSlot + 16, army);
 }

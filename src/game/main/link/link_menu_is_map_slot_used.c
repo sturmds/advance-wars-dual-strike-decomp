@@ -3,10 +3,9 @@
 
 extern MenuState gMenuState;
 
-int DesignMap_IsUsed(DesignMap *row);
+int DesignMap_IsUsed(DesignMap* row);
 
 /* Whether the map slot (0-2) of a link player holds a map. */
-int LinkMenu_IsMapSlotUsed(int player, int slot)
-{
-    return DesignMap_IsUsed(&LINK_MAP_ROWS[player * 3 + slot]);
+int LinkMenu_IsMapSlotUsed(int player, int slot) {
+  return DesignMap_IsUsed(&LINK_MAP_ROWS[player * 3 + slot]);
 }

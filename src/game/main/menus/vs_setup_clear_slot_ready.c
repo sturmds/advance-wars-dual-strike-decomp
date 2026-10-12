@@ -10,14 +10,13 @@ void VsSetup_AddLinkSlotButtons(int player);
 extern MenuState gMenuState;
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
-#define MENU ((MenuState *)&gMenuState)
+#define MENU ((MenuState*)&gMenuState)
 
-void VsSetup_ClearSlotReady(int player)
-{
-    Sound_PlaySe(0x10009);
-    MENU->setup.ready[player] = 0;
-    VsSetup_ResumePlayerTask(player);
-    if (player == Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) {
-        VsSetup_AddLinkSlotButtons(player);
-    }
+void VsSetup_ClearSlotReady(int player) {
+  Sound_PlaySe(0x10009);
+  MENU->setup.ready[player] = 0;
+  VsSetup_ResumePlayerTask(player);
+  if (player == Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1) {
+    VsSetup_AddLinkSlotButtons(player);
+  }
 }

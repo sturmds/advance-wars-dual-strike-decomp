@@ -3,7 +3,4 @@
 
 void IrqSlot_CallAndClear(int length);
 
-void func_0210cbf0(void)
-{
-    IrqSlot_CallAndClear(2);
-}
+void func_0210cbf0(void) { IrqSlot_CallAndClear(2); }

@@ -2,7 +2,4 @@
 
 void UnitInfoPanel_ClearUnit(void);
 
-void func_020f416c(void)
-{
-    UnitInfoPanel_ClearUnit();
-}
+void func_020f416c(void) { UnitInfoPanel_ClearUnit(); }

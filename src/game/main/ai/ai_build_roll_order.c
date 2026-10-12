@@ -3,7 +3,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 BOOL Ai_HasOwnBaseNearHq(void);
@@ -23,40 +23,40 @@ int Rng_Next(void);
  * HQ_SAFE_RADIUS of the HQ. Returns 0 for sea units and for types whose first
  * weight is negative. The caller passes the result through gUnitAction.unk_07
  * to AiBuild_BuyAtSite. */
-u8 AiBuild_RollOrder(int unitType, u8 excluded)
-{
-    u8 weights[ORDER_COUNT];
-    u32 total;
-    u8 index = unitType - 1;
-    int i;
-    u8 roll;
+u8 AiBuild_RollOrder(int unitType, u8 excluded) {
+  u8 weights[ORDER_COUNT];
+  u32 total;
+  u8 index = unitType - 1;
+  int i;
+  u8 roll;
 
-    if (gAiProfile->units[index].orderWeights[0] < 0) {
-        return 0;
-    }
-    if (Ov000_gUnitStats[index + 1].moveGroup & MOVE_GROUP_SEA) {
-        return 0;
-    }
-    if (Ai_HasOwnBaseNearHq() == TRUE) {
-        if (!Ai_HasEnemyWithin(CURRENT_PLAYER.hqX & 0x7f, CURRENT_PLAYER.hqY & 0x7f, HQ_SAFE_RADIUS)) {
-            excluded |= 1 << 6;
-        }
-    }
-    total = 0;
-    for (i = 0; i < ORDER_COUNT; i++) {
-        if (excluded & (1 << i)) {
-            weights[i] = 0;
-        } else {
-            weights[i] = gAiProfile->units[index].orderWeights[i];
-            total += weights[i];
-        }
-    }
-    roll = (u32)Rng_Next() % total;
-    for (i = 0; i < ORDER_COUNT; i++) {
-        if (weights[i] > roll) {
-            return i;
-        }
-        roll -= weights[i];
-    }
+  if (gAiProfile->units[index].orderWeights[0] < 0) {
     return 0;
+  }
+  if (Ov000_gUnitStats[index + 1].moveGroup & MOVE_GROUP_SEA) {
+    return 0;
+  }
+  if (Ai_HasOwnBaseNearHq() == TRUE) {
+    if (!Ai_HasEnemyWithin(CURRENT_PLAYER.hqX & 0x7f, CURRENT_PLAYER.hqY & 0x7f,
+                           HQ_SAFE_RADIUS)) {
+      excluded |= 1 << 6;
+    }
+  }
+  total = 0;
+  for (i = 0; i < ORDER_COUNT; i++) {
+    if (excluded & (1 << i)) {
+      weights[i] = 0;
+    } else {
+      weights[i] = gAiProfile->units[index].orderWeights[i];
+      total += weights[i];
+    }
+  }
+  roll = (u32)Rng_Next() % total;
+  for (i = 0; i < ORDER_COUNT; i++) {
+    if (weights[i] > roll) {
+      return i;
+    }
+    roll -= weights[i];
+  }
+  return 0;
 }

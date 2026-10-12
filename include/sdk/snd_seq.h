@@ -12,75 +12,76 @@ typedef struct SndExChannel SndExChannel;
 
 /* Low frequency oscillator settings. */
 typedef struct SndLfo {
-    u8 target; /* SND_LFO_PITCH, SND_LFO_VOLUME or SND_LFO_PAN */
-    u8 speed;
-    u8 depth;
-    u8 range;
-    u16 delay;
+  u8 target; /* SND_LFO_PITCH, SND_LFO_VOLUME or SND_LFO_PAN */
+  u8 speed;
+  u8 depth;
+  u8 range;
+  u16 delay;
 } SndLfo;
 
 typedef struct SndTrack {
-    u8 active : 1;
-    u8 noteWait : 1;
-    u8 mute : 1;
-    u8 tie : 1;
-    u8 noteFinished : 1;
-    u8 portamento : 1;
-    u8 compare : 1;
-    u8 channelMaskSet : 1; /* only the channels in channelMask may be used */
-    u8 panRange;
-    u16 program;
-    u8 volume;
-    u8 volume2;
-    s8 pitchBend;
-    u8 bendRange;
-    s8 pan;
-    s8 extPan;     /* set by the ARM9 (SndArm7_SetTrackParam) */
-    s16 extFader;  /* set by the ARM9 */
-    s16 extPitch;  /* set by the ARM9 */
-    u8 attack;
-    u8 decay;
-    u8 sustain;
-    u8 release;
-    u8 priority;
-    s8 transpose;
-    u8 portamentoKey;
-    u8 portamentoTime;
-    s16 sweepPitch;
-    SndLfo lfo;
-    u16 channelMask;
-    s32 wait;   /* ticks left before the next command */
-    u8 *base;   /* start of the track's sequence data */
-    u8 *cursor; /* next byte to read */
-    u8 *callStack[3]; /* return addresses of calls, and starts of loops */
-    u8 loopCount[3];  /* loops left for each loop on the call stack; 0 loops forever */
-    u8 callDepth; /* entries in use on callStack */
-    SndExChannel *channels;
+  u8 active : 1;
+  u8 noteWait : 1;
+  u8 mute : 1;
+  u8 tie : 1;
+  u8 noteFinished : 1;
+  u8 portamento : 1;
+  u8 compare : 1;
+  u8 channelMaskSet : 1; /* only the channels in channelMask may be used */
+  u8 panRange;
+  u16 program;
+  u8 volume;
+  u8 volume2;
+  s8 pitchBend;
+  u8 bendRange;
+  s8 pan;
+  s8 extPan;    /* set by the ARM9 (SndArm7_SetTrackParam) */
+  s16 extFader; /* set by the ARM9 */
+  s16 extPitch; /* set by the ARM9 */
+  u8 attack;
+  u8 decay;
+  u8 sustain;
+  u8 release;
+  u8 priority;
+  s8 transpose;
+  u8 portamentoKey;
+  u8 portamentoTime;
+  s16 sweepPitch;
+  SndLfo lfo;
+  u16 channelMask;
+  s32 wait;         /* ticks left before the next command */
+  u8* base;         /* start of the track's sequence data */
+  u8* cursor;       /* next byte to read */
+  u8* callStack[3]; /* return addresses of calls, and starts of loops */
+  u8 loopCount
+      [3]; /* loops left for each loop on the call stack; 0 loops forever */
+  u8 callDepth; /* entries in use on callStack */
+  SndExChannel* channels;
 } SndTrack;
 
 /* How a sequence command stores one of its arguments. */
 enum {
-    SEQ_ARG_FROM_U8,
-    SEQ_ARG_FROM_U16,
-    SEQ_ARG_FROM_VARINT,
-    SEQ_ARG_FROM_RANGE, /* two 16-bit limits, the value is picked between them */
-    SEQ_ARG_FROM_PLAYER_VAR /* index of a player variable */
+  SEQ_ARG_FROM_U8,
+  SEQ_ARG_FROM_U16,
+  SEQ_ARG_FROM_VARINT,
+  SEQ_ARG_FROM_RANGE, /* two 16-bit limits, the value is picked between them */
+  SEQ_ARG_FROM_PLAYER_VAR /* index of a player variable */
 };
 
 typedef struct SndPlayer {
-    u8 active;
-    u8 paused;
-    u8 number;
-    u8 pad_03;
-    u8 priority;
-    u8 volume;
-    s16 extFader;
-    u8 tracks[SND_TRACK_COUNT]; /* index of each track, 0xFF when unused */
-    u16 tempo;
-    u16 tempoRatio;
-    u16 tempoCounter;
-    u16 pad_1e;
-    struct SoundBank *bank;
+  u8 active;
+  u8 paused;
+  u8 number;
+  u8 pad_03;
+  u8 priority;
+  u8 volume;
+  s16 extFader;
+  u8 tracks[SND_TRACK_COUNT]; /* index of each track, 0xFF when unused */
+  u16 tempo;
+  u16 tempoRatio;
+  u16 tempoCounter;
+  u16 pad_1e;
+  struct SoundBank* bank;
 } SndPlayer;
 
 extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
@@ -94,39 +95,35 @@ extern s16 data_arm7_03807180[128];
 
 /* Sequence data is read through a 16-byte window that is copied from the data when a read falls outside it. */
 typedef struct SndSeqCache {
-    u8 *start;
-    u8 *end;
-    u32 words[4]; /* the 16 bytes at start */
+  u8* start;
+  u8* end;
+  u32 words[4]; /* the 16 bytes at start */
 } SndSeqCache;
 
 extern SndSeqCache data_arm7_03808074;
 
-enum {
-    SND_LFO_PITCH = 0,
-    SND_LFO_VOLUME = 1,
-    SND_LFO_PAN = 2
-};
+enum { SND_LFO_PITCH = 0, SND_LFO_VOLUME = 1, SND_LFO_PAN = 2 };
 
 /* A running oscillator: its settings and where it is in its cycle. */
 typedef struct SndChannelLfo {
-    SndLfo param;
-    u16 delayCounter;
-    u16 counter;
+  SndLfo param;
+  u16 delayCounter;
+  u16 counter;
 } SndChannelLfo;
 
 /* How a PCM sample plays: format, loop and the channel timer for its rate. */
 typedef struct SndWaveParam {
-    u8 format;
-    u8 loop;
-    u16 rate;
-    u16 timer;
-    u16 loopStart;
-    u32 loopLength;
+  u8 format;
+  u8 loop;
+  u16 rate;
+  u16 timer;
+  u16 loopStart;
+  u32 loopLength;
 } SndWaveParam;
 
 typedef struct SndWaveData {
-    SndWaveParam param;
-    u8 samples[1];
+  SndWaveParam param;
+  u8 samples[1];
 } SndWaveData;
 
 /* SndExChannel.type */
@@ -147,7 +144,7 @@ typedef struct SndWaveData {
 #define ENV_STAGE_FADE 3
 
 /* Reason passed to a channel's callback. */
-#define VOICE_STOLEN 0   /* taken by a request of higher priority */
+#define VOICE_STOLEN 0 /* taken by a request of higher priority */
 #define VOICE_DONE 1
 
 /* SndExChannel.sync: hardware updates the driver still has to make for the channel. */
@@ -157,46 +154,47 @@ typedef struct SndWaveData {
 #define VOICE_DIRTY_VOLUME 8
 #define VOICE_DIRTY_PAN 16
 
-typedef void (*SndExChannelCallback)(SndExChannel *channel, int status, void *arg);
+typedef void (*SndExChannelCallback)(SndExChannel* channel, int status,
+                                     void* arg);
 
 /* A hardware channel as the driver's channel allocator sees it. Only the fields the code read so far are named. */
 
 struct SndExChannel {
-    u8 id;   /* hardware channel number */
-    u8 type; /* VOICE_* */
-    u8 envStatus;
-    u8 active : 1;
-    u8 start : 1;
-    u8 autoSweep : 1; /* advance the sweep on each periodic update */
-    u8 sync : 5;
-    u8 panRange;
-    u8 originalKey;
-    s16 userDecay2;
-    u8 key;
-    u8 velocity;
-    s8 initPan;
-    s8 userPan;
-    s16 userDecay;
-    s16 userPitch;
-    s32 envAttenuation; /* envelope level, in 1/128 steps of SND_CalcChannelVolume's volume; -723 * 128 is silent */
-    s32 sweepCounter;
-    s32 sweepLength;
-    u8 attack; /* multiplier applied to the level each tick of the attack */
-    u8 sustain;
-    u16 decay;
-    u16 release;
-    u8 priority; /* allocation replaces the lowest */
-    u8 pan;
-    u16 volume; /* bits 0-7 hardware volume, bits 8-9 volume shift */
-    u16 timer;
-    SndChannelLfo lfo;
-    s16 sweepPitch; /* pitch offset at the start of the sweep; it falls to 0 over sweepLength */
-    s32 length;
-    SndWaveParam wave;
-    const void *data; /* PCM: the sample; PSG: the duty cycle */
-    SndExChannelCallback callback;
-    void *callbackArg;
-    SndExChannel *next; /* next channel of the same track */
+  u8 id;   /* hardware channel number */
+  u8 type; /* VOICE_* */
+  u8 envStatus;
+  u8 active : 1;
+  u8 start : 1;
+  u8 autoSweep : 1; /* advance the sweep on each periodic update */
+  u8 sync : 5;
+  u8 panRange;
+  u8 originalKey;
+  s16 userDecay2;
+  u8 key;
+  u8 velocity;
+  s8 initPan;
+  s8 userPan;
+  s16 userDecay;
+  s16 userPitch;
+  s32 envAttenuation; /* envelope level, in 1/128 steps of SND_CalcChannelVolume's volume; -723 * 128 is silent */
+  s32 sweepCounter;
+  s32 sweepLength;
+  u8 attack; /* multiplier applied to the level each tick of the attack */
+  u8 sustain;
+  u16 decay;
+  u16 release;
+  u8 priority; /* allocation replaces the lowest */
+  u8 pan;
+  u16 volume; /* bits 0-7 hardware volume, bits 8-9 volume shift */
+  u16 timer;
+  SndChannelLfo lfo;
+  s16 sweepPitch; /* pitch offset at the start of the sweep; it falls to 0 over sweepLength */
+  s32 length;
+  SndWaveParam wave;
+  const void* data; /* PCM: the sample; PSG: the duty cycle */
+  SndExChannelCallback callback;
+  void* callbackArg;
+  SndExChannel* next; /* next channel of the same track */
 };
 
 /* Locked channels: allocation never takes them. */

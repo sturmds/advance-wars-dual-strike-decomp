@@ -3,11 +3,8 @@
 typedef struct Unk_0204f7c4 Unk_0204f7c4;
 
 struct Unk_0204f7c4 {
-    u8 pad_00[0x64];
-    u16 unk_64;
+  u8 pad_00[0x64];
+  u16 unk_64;
 };
 
-void func_0204f7c4(Unk_0204f7c4 *a0)
-{
-    a0->unk_64 = 0;
-}
+void func_0204f7c4(Unk_0204f7c4* a0) { a0->unk_64 = 0; }

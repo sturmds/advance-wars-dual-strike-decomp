@@ -1,9 +1,9 @@
 #include "sdk/user_settings.h"
 #include "sdk/mi.h"
 
-void NVRAM_Read(u32 offset, u32 size, void *dest);    /* read firmware flash */
+void NVRAM_Read(u32 offset, u32 size, void* dest); /* read firmware flash */
 u16 PickWirelessChannels(u16 value);
-int UserSettings_ChooseCopy(UserSettings *copies);
+int UserSettings_ChooseCopy(UserSettings* copies);
 
 /*
  * Reads the two user settings copies from firmware flash, blanks the unused
@@ -11,47 +11,49 @@ int UserSettings_ChooseCopy(UserSettings *copies);
  * shared area at 0x027ffc80 (zeros if neither copy is good). Then puts the
  * MAC address and the channel word from flash right after it.
  */
-void UserSettings_LoadFromFlash(void)
-{
-    UserSettings *shared;
-    SharedWirelessInfo *wireless;
-    u32 offset;
-    int chosen;
-    u16 channels;
-    UserSettings copies[2];
-    u8 mac[6];
-    volatile u32 zero;  /* needed to match: the original stores and reloads the 0 */
-    int i;
+void UserSettings_LoadFromFlash(void) {
+  UserSettings* shared;
+  SharedWirelessInfo* wireless;
+  u32 offset;
+  int chosen;
+  u16 channels;
+  UserSettings copies[2];
+  u8 mac[6];
+  volatile u32
+      zero; /* needed to match: the original stores and reloads the 0 */
+  int i;
 
-    shared = SHARED_USER_SETTINGS;
-    NVRAM_Read(FLASH_USER_SETTINGS_OFFSET, 2, &offset);
-    offset <<= 3;
-    NVRAM_Read(offset, sizeof(UserSettings), &copies[0]);
-    NVRAM_Read(offset + 0x100, sizeof(UserSettings), &copies[1]);
+  shared = SHARED_USER_SETTINGS;
+  NVRAM_Read(FLASH_USER_SETTINGS_OFFSET, 2, &offset);
+  offset <<= 3;
+  NVRAM_Read(offset, sizeof(UserSettings), &copies[0]);
+  NVRAM_Read(offset + 0x100, sizeof(UserSettings), &copies[1]);
 
-    /* needed to match: `(copies - 1)[chosen]` and `p + i - 1` let the
+  /* needed to match: `(copies - 1)[chosen]` and `p + i - 1` let the
        compiler fold the - 1s into the offsets, as the original does */
-    chosen = UserSettings_ChooseCopy(copies);
-    if (chosen != 0) {
-        if ((copies - 1)[chosen].nicknameLength < USER_SETTINGS_NICKNAME_MAX) {
-            for (i = USER_SETTINGS_NICKNAME_MAX; i > (copies - 1)[chosen].nicknameLength; i--) {
-                *((copies - 1)[chosen].nickname + i - 1) = 0;
-            }
-        }
-        if ((copies - 1)[chosen].commentLength < USER_SETTINGS_COMMENT_MAX) {
-            for (i = USER_SETTINGS_COMMENT_MAX; i > (copies - 1)[chosen].commentLength; i--) {
-                *((copies - 1)[chosen].comment + i - 1) = 0;
-            }
-        }
-        Mem_CopyWords_Arm7(&copies[chosen - 1], shared, sizeof(UserSettings));
-    } else {
-        zero = 0;
-        Mem_FillWords_Arm7(zero, shared, sizeof(UserSettings));
+  chosen = UserSettings_ChooseCopy(copies);
+  if (chosen != 0) {
+    if ((copies - 1)[chosen].nicknameLength < USER_SETTINGS_NICKNAME_MAX) {
+      for (i = USER_SETTINGS_NICKNAME_MAX;
+           i > (copies - 1)[chosen].nicknameLength; i--) {
+        *((copies - 1)[chosen].nickname + i - 1) = 0;
+      }
     }
+    if ((copies - 1)[chosen].commentLength < USER_SETTINGS_COMMENT_MAX) {
+      for (i = USER_SETTINGS_COMMENT_MAX;
+           i > (copies - 1)[chosen].commentLength; i--) {
+        *((copies - 1)[chosen].comment + i - 1) = 0;
+      }
+    }
+    Mem_CopyWords_Arm7(&copies[chosen - 1], shared, sizeof(UserSettings));
+  } else {
+    zero = 0;
+    Mem_FillWords_Arm7(zero, shared, sizeof(UserSettings));
+  }
 
-    NVRAM_Read(FLASH_MAC_ADDRESS, 6, mac);
-    wireless = (SharedWirelessInfo *)(shared + 1);
-    Mem_CopyBytes_Arm7(mac, wireless->macAddress, 6);
-    NVRAM_Read(FLASH_CHANNELS, 2, &channels);
-    wireless->channels = PickWirelessChannels(channels >> 1);
+  NVRAM_Read(FLASH_MAC_ADDRESS, 6, mac);
+  wireless = (SharedWirelessInfo*)(shared + 1);
+  Mem_CopyBytes_Arm7(mac, wireless->macAddress, 6);
+  NVRAM_Read(FLASH_CHANNELS, 2, &channels);
+  wireless->channels = PickWirelessChannels(channels >> 1);
 }

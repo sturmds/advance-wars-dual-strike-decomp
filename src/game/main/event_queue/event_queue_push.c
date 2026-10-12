@@ -4,22 +4,21 @@
 extern u8 data_0229d89d[];
 void Link_FlagError(void);
 
-void EventQueue_Push(int id, int arg)
-{
-    u8 next;
-    u8 writeIndex = gEventQueue.writeIndex;
+void EventQueue_Push(int id, int arg) {
+  u8 next;
+  u8 writeIndex = gEventQueue.writeIndex;
 
-    next = writeIndex + 1;
+  next = writeIndex + 1;
 
-    if (next == EVENT_QUEUE_SIZE) {
-        next = 0;
-    }
-    /* Full queue: the event is dropped. */
-    if (next == gEventQueue.readIndex) {
-        Link_FlagError();
-        return;
-    }
-    gEventQueue.entries[writeIndex].id = id;
-    data_0229d89d[gEventQueue.writeIndex * 2] = arg;
-    gEventQueue.writeIndex = next;
+  if (next == EVENT_QUEUE_SIZE) {
+    next = 0;
+  }
+  /* Full queue: the event is dropped. */
+  if (next == gEventQueue.readIndex) {
+    Link_FlagError();
+    return;
+  }
+  gEventQueue.entries[writeIndex].id = id;
+  data_0229d89d[gEventQueue.writeIndex * 2] = arg;
+  gEventQueue.writeIndex = next;
 }

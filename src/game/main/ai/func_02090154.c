@@ -10,20 +10,19 @@ int AiTurn_TryBuildApc(void);
 
 /* End-actions step 8. Tries five sub-steps in order and returns 1 at the first
  * one that returns 1 (needs another frame). Their purposes are not known. */
-BOOL func_02090154(void)
-{
-    data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
-    if (AiTurn_TryBuildTCopter() == 1) {
-        return 1;
-    }
-    if (AiTurn_TryBuildLander() == 1) {
-        return 1;
-    }
-    if (AiTurn_TryBuildBlackBoatTransport() == 1) {
-        return 1;
-    }
-    if (AiTurn_TryBuildBlackBoat() == 1) {
-        return 1;
-    }
-    return AiTurn_TryBuildApc() == 1;
+BOOL func_02090154(void) {
+  data_021619c0->unk_08 = Ai_CountUnitsOfAiClass(1);
+  if (AiTurn_TryBuildTCopter() == 1) {
+    return 1;
+  }
+  if (AiTurn_TryBuildLander() == 1) {
+    return 1;
+  }
+  if (AiTurn_TryBuildBlackBoatTransport() == 1) {
+    return 1;
+  }
+  if (AiTurn_TryBuildBlackBoat() == 1) {
+    return 1;
+  }
+  return AiTurn_TryBuildApc() == 1;
 }

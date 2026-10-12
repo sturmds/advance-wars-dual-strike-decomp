@@ -1,13 +1,13 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void BattleSave_ClearRecordFlag(int recordId);
 void func_02019920(void);
 int Save_DeleteRecord(int recordId);
-void *PlayRecords_TakeSnapshot(void);
+void* PlayRecords_TakeSnapshot(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -15,15 +15,14 @@ void *PlayRecords_TakeSnapshot(void);
  * Save_DeleteRecord runs for the record. In game mode 0 it also calls
  * PlayRecords_TakeSnapshot, which copies two words of gPlayRecords. Record 0 does
  * nothing. */
-void BattleSave_Delete(int recordId)
-{
-    if (recordId == 0) {
-        return;
-    }
-    BattleSave_ClearRecordFlag(recordId);
-    func_02019920();
-    Save_DeleteRecord(recordId);
-    if (STATE->gameMode == GAME_MODE_CAMPAIGN) {
-        PlayRecords_TakeSnapshot();
-    }
+void BattleSave_Delete(int recordId) {
+  if (recordId == 0) {
+    return;
+  }
+  BattleSave_ClearRecordFlag(recordId);
+  func_02019920();
+  Save_DeleteRecord(recordId);
+  if (STATE->gameMode == GAME_MODE_CAMPAIGN) {
+    PlayRecords_TakeSnapshot();
+  }
 }

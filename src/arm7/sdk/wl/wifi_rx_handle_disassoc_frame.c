@@ -2,9 +2,9 @@
 
 void WifiStation_ChangeState(u16 station, u16 state);
 void WifiTx_DropStationFrames(u32 station);
-WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
-WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
-void WifiTx_EnqueueMgmt(void *frame);
+WlTxFrame* WifiFrame_NewDisassociation(const u16* dest, u32 reason);
+WlTxFrame* WifiFrame_NewDeauthentication(const u16* dest, u32 reason);
+void WifiTx_EnqueueMgmt(void* frame);
 void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
 
 /*
@@ -15,38 +15,38 @@ void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
  * associated). In 2 and 3, a disassociation from our AP while associated
  * (mode 0x40) switches to mode 0x30.
  */
-void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
-{
-    WlLink *link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
-    u32 station = frame->station;
-    u16 state;
-    WlTxFrame *reply;
+void WifiRx_HandleDisassocFrame(WlRxFrame* frame) {
+  WlLink* link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
+  u32 station = frame->station;
+  u16 state;
+  WlTxFrame* reply;
 
-    switch (link->unk_0c) {
+  switch (link->unk_0c) {
     case 1:
-        state = WifiStation_StateOf(station);
-        if (state == WIFI_PEER_ASSOCIATED) {
-            WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
-            WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
-            WifiTx_DropStationFrames(station);
+      state = WifiStation_StateOf(station);
+      if (state == WIFI_PEER_ASSOCIATED) {
+        WifiStation_ChangeState(station, WIFI_PEER_AUTH_DONE);
+        WifiHost_TellDisassociated((const u8*)frame->addr2, frame->body[0]);
+        WifiTx_DropStationFrames(station);
+      } else {
+        if (state == WIFI_PEER_AUTH_DONE) {
+          reply = WifiFrame_NewDisassociation(frame->addr2, 7);
         } else {
-            if (state == WIFI_PEER_AUTH_DONE) {
-                reply = WifiFrame_NewDisassociation(frame->addr2, 7);
-            } else {
-                reply = WifiFrame_NewDeauthentication(frame->addr2, 7);
-            }
-            if (reply != NULL) {
-                WifiTx_EnqueueMgmt(reply);
-            }
+          reply = WifiFrame_NewDeauthentication(frame->addr2, 7);
         }
-        break;
+        if (reply != NULL) {
+          WifiTx_EnqueueMgmt(reply);
+        }
+      }
+      break;
     case 2:
     case 3:
-        if (link->mode == WIFI_MODE_JOINED && WifiMac_Equal(frame->addr2, link->currentAp)) {
-            Wifi_SwitchMode(0x30);
-            WifiLink_DropAssocId();
-            WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
-        }
-        break;
-    }
+      if (link->mode == WIFI_MODE_JOINED &&
+          WifiMac_Equal(frame->addr2, link->currentAp)) {
+        Wifi_SwitchMode(0x30);
+        WifiLink_DropAssocId();
+        WifiHost_TellDisassociated((const u8*)frame->addr2, frame->body[0]);
+      }
+      break;
+  }
 }

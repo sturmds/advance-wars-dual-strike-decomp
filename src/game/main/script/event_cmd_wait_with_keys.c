@@ -12,19 +12,18 @@ extern EventSlotWait data_022977fc[];
  * game, to the record's unk_08. When the event is being skipped
  * (gEventSkipState is 1) it neither waits nor sets the keys and the script goes
  * on at once. Returns 1 to go on, 0 to end the run for this frame. */
-s16 EventCmd_WaitWithKeys(s16 index)
-{
-    int result;
+s16 EventCmd_WaitWithKeys(s16 index) {
+  int result;
 
-    if (gEventSkipState == 1) {
-        result = 1;
-    } else {
-        Unk_0201d320_Entry *entry = data_022977f4[index].unk_00;
+  if (gEventSkipState == 1) {
+    result = 1;
+  } else {
+    Unk_0201d320_Entry* entry = data_022977f4[index].unk_00;
 
-        gEventScriptKeys = entry->unk_08;
-        data_022977fc[index].wait = entry->unk_0c;
-        result = 0;
-    }
-    data_022977f4[index].unk_00++;
-    return result;
+    gEventScriptKeys = entry->unk_08;
+    data_022977fc[index].wait = entry->unk_0c;
+    result = 0;
+  }
+  data_022977f4[index].unk_00++;
+  return result;
 }

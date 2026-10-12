@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 BOOL AiUnit_HasReachableTarget(void);
@@ -16,13 +16,13 @@ BOOL Player_HasHq(int player);
  * transport's own target is not reachable, the current player has an HQ and
  * the range map reaches it. Which unit the map was filled for is a guess
  * (the cargo unit). */
-BOOL AiSeaTransport_CargoReachesHq(void)
-{
-    if (AiUnit_HasReachableTarget() == TRUE) {
-        return FALSE;
-    }
-    if (!Player_HasHq(STATE->currentPlayer)) {
-        return FALSE;
-    }
-    return STATE->rangeMap[PLAYER.hqY & HQ_COORD_MASK][PLAYER.hqX & HQ_COORD_MASK] > 0;
+BOOL AiSeaTransport_CargoReachesHq(void) {
+  if (AiUnit_HasReachableTarget() == TRUE) {
+    return FALSE;
+  }
+  if (!Player_HasHq(STATE->currentPlayer)) {
+    return FALSE;
+  }
+  return STATE->rangeMap[PLAYER.hqY & HQ_COORD_MASK]
+                        [PLAYER.hqX & HQ_COORD_MASK] > 0;
 }

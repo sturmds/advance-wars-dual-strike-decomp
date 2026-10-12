@@ -8,24 +8,23 @@ void WeatherFx_InitSnow(void);
 void WeatherFx_InitRain(void);
 void WeatherFx_InitSand(void);
 
-void Weather_LoadGraphics(int weather, int tilesetByte)
-{
-    int tileset = tilesetByte & 0x7f;
+void Weather_LoadGraphics(int weather, int tilesetByte) {
+  int tileset = tilesetByte & 0x7f;
 
-    Weather_LoadTileGraphics(weather, tileset, 0x94);
-    MapGfx_LoadTilesetPalettes(weather, tileset, 8);
-    switch (weather) {
+  Weather_LoadTileGraphics(weather, tileset, 0x94);
+  MapGfx_LoadTilesetPalettes(weather, tileset, 8);
+  switch (weather) {
     case WEATHER_CLEAR:
-        WeatherFx_InitClouds();
-        break;
+      WeatherFx_InitClouds();
+      break;
     case WEATHER_SNOW:
-        WeatherFx_InitSnow();
-        break;
+      WeatherFx_InitSnow();
+      break;
     case WEATHER_RAIN:
-        WeatherFx_InitRain();
-        break;
+      WeatherFx_InitRain();
+      break;
     case WEATHER_SAND:
-        WeatherFx_InitSand();
-        break;
-    }
+      WeatherFx_InitSand();
+      break;
+  }
 }

@@ -18,49 +18,48 @@ extern u8 data_027c0060;
  * or NULL when no OAM size has that shape. Oam_GetAttrCells picks from the
  * same tables by OAM attributes; 8x32 uses data_027c0010, which it never
  * returns. */
-const void *Oam_GetShapeCells(int width, int height)
-{
-    switch (width) {
+const void* Oam_GetShapeCells(int width, int height) {
+  switch (width) {
     case 8:
-        switch (height) {
+      switch (height) {
         case 8:
-            return &data_027c0028;
+          return &data_027c0028;
         case 16:
-            return &data_027c0038;
+          return &data_027c0038;
         case 32:
-            return &data_027c0010;
-        }
-        return NULL;
+          return &data_027c0010;
+      }
+      return NULL;
     case 16:
-        switch (height) {
+      switch (height) {
         case 8:
-            return &data_027c0058;
+          return &data_027c0058;
         case 16:
-            return &data_027c0040;
+          return &data_027c0040;
         case 32:
-            return &data_027c0000;
-        }
-        return NULL;
+          return &data_027c0000;
+      }
+      return NULL;
     case 32:
-        switch (height) {
+      switch (height) {
         case 8:
-            return &data_027c0020;
+          return &data_027c0020;
         case 16:
-            return &data_027c0060;
+          return &data_027c0060;
         case 32:
-            return &data_027c0048;
+          return &data_027c0048;
         case 64:
-            return &data_027c0018;
-        }
-        return NULL;
+          return &data_027c0018;
+      }
+      return NULL;
     case 64:
-        switch (height) {
+      switch (height) {
         case 32:
-            return &data_027c0008;
+          return &data_027c0008;
         case 64:
-            return &data_027c0030;
-        }
-        return NULL;
-    }
-    return NULL;
+          return &data_027c0030;
+      }
+      return NULL;
+  }
+  return NULL;
 }

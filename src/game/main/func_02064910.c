@@ -2,7 +2,4 @@
 
 void MenuButtons_EnableTouch(void);
 
-void func_02064910(void)
-{
-    MenuButtons_EnableTouch();
-}
+void func_02064910(void) { MenuButtons_EnableTouch(); }

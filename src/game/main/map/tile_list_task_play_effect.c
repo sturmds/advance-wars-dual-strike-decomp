@@ -6,7 +6,7 @@
 #include "game/Unk_022a7c5c.h"
 #include "game/sprite_anim.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern u8 gMenuState[];
@@ -17,12 +17,15 @@ extern char data_02168208[];
 extern u8 data_021480e0[];
 extern u8 data_021488c4[];
 
-void FS_ChangeDir(const char *dir);
-void File_UnpackTo(void *dest, const char *fileName);
-void Palette_LoadFromFile(const char *fileName, int a, int b, int c);
-void Gfx_QueueUnpackedFileCopy(const char *fileName, void *dest);
-void Gfx_QueueFileCopy(const char *fileName, void *dest, int size);
-SpriteAnim3dTask *SpriteAnim3dTask_StartAlt(const void *file, const VecFx32 *pos, u32 tileBase, u32 unk28, int animation, int layer);
+void FS_ChangeDir(const char* dir);
+void File_UnpackTo(void* dest, const char* fileName);
+void Palette_LoadFromFile(const char* fileName, int a, int b, int c);
+void Gfx_QueueUnpackedFileCopy(const char* fileName, void* dest);
+void Gfx_QueueFileCopy(const char* fileName, void* dest, int size);
+SpriteAnim3dTask* SpriteAnim3dTask_StartAlt(const void* file,
+                                            const VecFx32* pos, u32 tileBase,
+                                            u32 unk28, int animation,
+                                            int layer);
 /* Defined returning void, but leaves the new task in r0, and this caller uses it. */
 void Sound_PlaySe(u32 soundId);
 
@@ -33,26 +36,28 @@ void Sound_PlaySe(u32 soundId);
  * shows the 3D engine it draws in 3D; on the other the graphics go to a
  * buffer in gMenuState and the sprite takes its tiles from there. What the
  * animation shows is not known; name is a guess. */
-void TileListTask_PlayEffect(Unk_02168140Task *task)
-{
-    VecFx32 pos;
-    SpriteAnimTask *spriteTask;
+void TileListTask_PlayEffect(Unk_02168140Task* task) {
+  VecFx32 pos;
+  SpriteAnimTask* spriteTask;
 
-    if (data_027c027c == data_027c0288.unk_00) {
-        FS_ChangeDir(data_021681d8);
-        Gfx_QueueUnpackedFileCopy(data_02168204, data_022a7c5c->unk_68);
-        Gfx_QueueFileCopy(data_021681fc, data_022a7c5c->unk_6c, 32);
-        pos.x = (task->unk_2c * 16 + 32) * 0x2000 / 256;
-        pos.y = (task->unk_30 * 16 + 8) * 0x6000 / 768;
-        pos.z = 8;
-        SpriteAnim3dTask_StartAlt(data_021488c4, &pos, (u32)data_022a7c5c->unk_68, (u32)data_022a7c5c->unk_6c, 0, 1);
-    } else {
-        FS_ChangeDir(data_021681d8);
-        File_UnpackTo(gMenuState, data_02168208);
-        Palette_LoadFromFile(data_021681fc, 0, 672, 32);
-        spriteTask = SpriteAnimTask_Start(data_021480e0, (task->unk_2c * 16 - STATE->unk_1c4->scrollX + 32) & 0x1ff,
-                                          (task->unk_30 * 16 - STATE->unk_1c4->scrollY + 8) & 0xff, 0x5194, 0, 1);
-        spriteTask->sprite->tileSource = gMenuState;
-    }
-    Sound_PlaySe(160);
+  if (data_027c027c == data_027c0288.unk_00) {
+    FS_ChangeDir(data_021681d8);
+    Gfx_QueueUnpackedFileCopy(data_02168204, data_022a7c5c->unk_68);
+    Gfx_QueueFileCopy(data_021681fc, data_022a7c5c->unk_6c, 32);
+    pos.x = (task->unk_2c * 16 + 32) * 0x2000 / 256;
+    pos.y = (task->unk_30 * 16 + 8) * 0x6000 / 768;
+    pos.z = 8;
+    SpriteAnim3dTask_StartAlt(data_021488c4, &pos, (u32)data_022a7c5c->unk_68,
+                              (u32)data_022a7c5c->unk_6c, 0, 1);
+  } else {
+    FS_ChangeDir(data_021681d8);
+    File_UnpackTo(gMenuState, data_02168208);
+    Palette_LoadFromFile(data_021681fc, 0, 672, 32);
+    spriteTask = SpriteAnimTask_Start(
+        data_021480e0,
+        (task->unk_2c * 16 - STATE->unk_1c4->scrollX + 32) & 0x1ff,
+        (task->unk_30 * 16 - STATE->unk_1c4->scrollY + 8) & 0xff, 0x5194, 0, 1);
+    spriteTask->sprite->tileSource = gMenuState;
+  }
+  Sound_PlaySe(160);
 }

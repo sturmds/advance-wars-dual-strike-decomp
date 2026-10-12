@@ -4,7 +4,7 @@
 #include "game/Unk_02160ac0.h"
 
 void Sound_PlaySe(u32 soundId);
-void MenuButton_Add(int x, int y, void *def, int id);
+void MenuButton_Add(int x, int y, void* def, int id);
 void MenuButton_EnableTouch(int id);
 void RowLockMark_Remove(int row);
 
@@ -14,7 +14,7 @@ extern u8 data_02160e58[];
 extern u8 data_02160bd8[];
 
 /* Needed to match: the cast keeps the field offset out of the literal pool. */
-#define MENU ((MenuState *)&gMenuState)
+#define MENU ((MenuState*)&gMenuState)
 
 /* Combat setup buttons: 22-25 one per unit on sale; 254 likely the ready
  * button (CombatSetup_MarkReady closes it when it sets the mark). */
@@ -24,27 +24,26 @@ extern u8 data_02160bd8[];
 /* Link player `player` takes back the ready mark of their Combat row
  * (CombatSetup_MarkReady sets it). For the local player the shop buttons come back,
  * and the ready button too when the row has at least rows[].memberCount units. */
-void CombatSetup_CancelReady(int player)
-{
-    int row;
-    int y;
-    int id;
+void CombatSetup_CancelReady(int player) {
+  int row;
+  int y;
+  int id;
 
-    y = 24;
-    row = MENU->combat.players[player].row;
-    Sound_PlaySe(0x10009);
-    MENU->combat.rows[row - 1].locked = 0;
-    RowLockMark_Remove(row);
-    if (player != data_0229fb30.unk_45a) {
-        return;
-    }
-    for (id = BUTTON_FIRST_UNIT; id < BUTTON_FIRST_UNIT + 4; id++) {
-        MenuButton_Add(8, y, data_02160db8, id);
-        y += 16;
-    }
-    MenuButton_EnableTouch(253);
-    if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].memberCount) {
-        MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
-    }
-    MenuButton_Add(0, 0, data_02160bd8, 252);
+  y = 24;
+  row = MENU->combat.players[player].row;
+  Sound_PlaySe(0x10009);
+  MENU->combat.rows[row - 1].locked = 0;
+  RowLockMark_Remove(row);
+  if (player != data_0229fb30.unk_45a) {
+    return;
+  }
+  for (id = BUTTON_FIRST_UNIT; id < BUTTON_FIRST_UNIT + 4; id++) {
+    MenuButton_Add(8, y, data_02160db8, id);
+    y += 16;
+  }
+  MenuButton_EnableTouch(253);
+  if (LINK_ROWS[row - 1].spawnCount >= MENU->combat.rows[row - 1].memberCount) {
+    MenuButton_Add(0, 0, data_02160e58, BUTTON_READY);
+  }
+  MenuButton_Add(0, 0, data_02160bd8, 252);
 }

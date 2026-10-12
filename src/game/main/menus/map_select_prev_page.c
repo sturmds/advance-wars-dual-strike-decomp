@@ -13,25 +13,24 @@ void MapSelect_TurnToPage(u32 page);
 /* Y key and the touch button at (224, 96) on the map select screen: turns
  * the current list back one page, from the first page to the last. In link
  * play the turn goes out as event 3 instead. */
-void MapSelect_PrevPage(MenuButton *button)
-{
-    int page;
+void MapSelect_PrevPage(MenuButton* button) {
+  int page;
 
-    page = PAGE();
-    /* Needed to match: an unsigned compare, as in MapSelect_TurnToPage. */
-    if ((u32)PAGE_COUNT() >= 2) {
-        if (page == 0) {
-            page = PAGE_COUNT() - 1;
-        } else {
-            page--;
-        }
-    }
-    if (page == PAGE()) {
-        return;
-    }
-    if (Link_IsActive() == 1) {
-        EventQueue_Push(3, (u8)page);
+  page = PAGE();
+  /* Needed to match: an unsigned compare, as in MapSelect_TurnToPage. */
+  if ((u32)PAGE_COUNT() >= 2) {
+    if (page == 0) {
+      page = PAGE_COUNT() - 1;
     } else {
-        MapSelect_TurnToPage(page);
+      page--;
     }
+  }
+  if (page == PAGE()) {
+    return;
+  }
+  if (Link_IsActive() == 1) {
+    EventQueue_Push(3, (u8)page);
+  } else {
+    MapSelect_TurnToPage(page);
+  }
 }

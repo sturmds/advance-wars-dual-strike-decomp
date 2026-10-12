@@ -2,14 +2,14 @@
 #include "game/Unk_02080440.h"
 #include "game/co_select_screen.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 int Campaign_IsHardMode(void);
 int HwDiv32(int a, int b);
 int HwMod32(int a, int b);
-int CoSelectScreen_GetListCo(u8 slot);  /* CO in a CO list slot; 0: empty */
-BOOL CoSelect_IsCoAvailable(u8 co);         /* co is in the available mask */
+int CoSelectScreen_GetListCo(u8 slot); /* CO in a CO list slot; 0: empty */
+BOOL CoSelect_IsCoAvailable(u8 co);    /* co is in the available mask */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -17,7 +17,8 @@ BOOL CoSelect_IsCoAvailable(u8 co);         /* co is in the available mask */
  * otherwise the list has 7 rows. Needed to match: the column count tests
  * the mode though both sides are 4, and the row count turns the test into
  * 0 or 1 first. */
-#define MAP_CO_LIST (STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode())
+#define MAP_CO_LIST \
+  (STATE->gameMode == GAME_MODE_CAMPAIGN && !Campaign_IsHardMode())
 #define LIST_COLUMNS (MAP_CO_LIST ? 4 : 4)
 #define LIST_ROWS ((MAP_CO_LIST ? 1 : 0) ? 5 : 7)
 
@@ -25,30 +26,29 @@ BOOL CoSelect_IsCoAvailable(u8 co);         /* co is in the available mask */
  * first slot that is empty or holds an available CO, looking from the
  * listAnchor row down to the bottom, then from it up to the top. A column
  * with no such slot is skipped. */
-int CoSelectScreen_ListSlotRight(int slot)
-{
-    int column = HwMod32(slot, LIST_COLUMNS);
-    int anchorRow = HwDiv32(data_0229c73c->listAnchor, LIST_COLUMNS);
-    int row;
-    int co;
+int CoSelectScreen_ListSlotRight(int slot) {
+  int column = HwMod32(slot, LIST_COLUMNS);
+  int anchorRow = HwDiv32(data_0229c73c->listAnchor, LIST_COLUMNS);
+  int row;
+  int co;
 
-    for (;;) {
-        if (column == LIST_COLUMNS - 1) {
-            column = 0;
-        } else {
-            column++;
-        }
-        for (row = anchorRow; row < LIST_ROWS; row++) {
-            co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
-            if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
-                return column + row * LIST_COLUMNS;
-            }
-        }
-        for (row = anchorRow; row >= 0; row--) {
-            co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
-            if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
-                return column + row * LIST_COLUMNS;
-            }
-        }
+  for (;;) {
+    if (column == LIST_COLUMNS - 1) {
+      column = 0;
+    } else {
+      column++;
     }
+    for (row = anchorRow; row < LIST_ROWS; row++) {
+      co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
+      if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
+        return column + row * LIST_COLUMNS;
+      }
+    }
+    for (row = anchorRow; row >= 0; row--) {
+      co = CoSelectScreen_GetListCo(column + row * LIST_COLUMNS);
+      if (co == 0 || CoSelect_IsCoAvailable(co) == 1) {
+        return column + row * LIST_COLUMNS;
+      }
+    }
+  }
 }

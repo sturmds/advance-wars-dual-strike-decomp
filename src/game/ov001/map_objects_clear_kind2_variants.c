@@ -5,23 +5,22 @@
 /* Clears MapObject.variant (the shared function does it with a mask on the bitfield word; name still MapObject_ClearVariant). */
 
 /* Clears the variant of every kind-2 object on this screen's map state. */
-void MapObjects_ClearKind2Variants(void)
-{
-    MapObject *object;
-    Unk_027c0280 *saved0280;
-    Unk_02080440 *saved027c;
+void MapObjects_ClearKind2Variants(void) {
+  MapObject* object;
+  Unk_027c0280* saved0280;
+  Unk_02080440* saved027c;
 
-    saved0280 = data_027c0280;
-    Screen_SetCurrentGfx((&data_027c0288.unk_00)[data_027c0284]);
-    saved027c = data_027c027c;
-    Screen_SetCurrent((&data_027c0288.unk_00)[data_027c0284]);
-    object = data_027c027c->unk_48[data_027c0284]->objects;
-    while (object->kind != 0) {
-        if (object->kind == 2) {
-            MapObject_ClearVariant(object);
-        }
-        object++;
+  saved0280 = data_027c0280;
+  Screen_SetCurrentGfx((&data_027c0288.unk_00)[data_027c0284]);
+  saved027c = data_027c027c;
+  Screen_SetCurrent((&data_027c0288.unk_00)[data_027c0284]);
+  object = data_027c027c->unk_48[data_027c0284]->objects;
+  while (object->kind != 0) {
+    if (object->kind == 2) {
+      MapObject_ClearVariant(object);
     }
-    Screen_SetCurrent(saved027c);
-    Screen_SetCurrentGfx(saved0280);
+    object++;
+  }
+  Screen_SetCurrent(saved027c);
+  Screen_SetCurrentGfx(saved0280);
 }

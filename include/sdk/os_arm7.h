@@ -15,13 +15,13 @@
 #error "sdk/os_arm7.h and sdk/os.h describe different OSContext layouts"
 #endif
 
-#define REG_TM0CNT_L (*(vu16 *)0x04000100)
-#define REG_TM0CNT_H (*(vu16 *)0x04000102)
+#define REG_TM0CNT_L (*(vu16*)0x04000100)
+#define REG_TM0CNT_H (*(vu16*)0x04000102)
 #define IRQ_MASK_TIMER0 0x8
 /* Timer control: start, interrupt on overflow, count at the system clock / 64. */
 #define TMCNT_START_IRQ_DIV64 0xc1
-#define REG_TM1CNT_L (*(vu16 *)0x04000104)
-#define REG_TM1CNT_H (*(vu16 *)0x04000106)
+#define REG_TM1CNT_L (*(vu16*)0x04000104)
+#define REG_TM1CNT_H (*(vu16*)0x04000106)
 #define IRQ_MASK_TIMER1 0x10
 #define IRQ_MASK_TIMER3 0x40
 #define IRQ_SIO 0x80 /* serial port interrupt */
@@ -31,36 +31,35 @@
  * handlers set the bits the SDK's IRQ wait routines poll (ARM7 copy of the
  * DTCM flags on ARM9).
  */
-#define OS7_IRQ_CHECK_FLAGS (*(vu32 *)0x0380fff8)
-
+#define OS7_IRQ_CHECK_FLAGS (*(vu32*)0x0380fff8)
 
 /* Saved CPU registers of a thread. */
 typedef struct OSContext {
-    u32 cpsr;
-    u32 r[13];
-    u32 sp;
-    u32 lr;
-    u32 pcPlus4;
-    u32 spSvc;
+  u32 cpsr;
+  u32 r[13];
+  u32 sp;
+  u32 lr;
+  u32 pcPlus4;
+  u32 spSvc;
 } OSContext;
 
 struct OSThread {
-    OSContext context;
-    u32 state;
-    OSThread *next;
-    u32 id;
-    u32 priority;
-    void *profiler;
-    OSMutex *mutex;                /* the mutex this thread is waiting for */
-    OSMutexQueue mutexQueue;
-    u32 stackTop;                  /* lowest address of the stack */
-    u32 stackBottom;               /* one past its highest address */
-    u32 stackWarningOffset;
-    OSThreadQueue joinQueue;
+  OSContext context;
+  u32 state;
+  OSThread* next;
+  u32 id;
+  u32 priority;
+  void* profiler;
+  OSMutex* mutex; /* the mutex this thread is waiting for */
+  OSMutexQueue mutexQueue;
+  u32 stackTop;    /* lowest address of the stack */
+  u32 stackBottom; /* one past its highest address */
+  u32 stackWarningOffset;
+  OSThreadQueue joinQueue;
 };
 
-void Context_PrepareForEntry_Arm7(OSContext *context, u32 pc, u32 sp);
-void Mutex_Clear_Arm7(OSMutex *mutex);
+void Context_PrepareForEntry_Arm7(OSContext* context, u32 pc, u32 sp);
+void Mutex_Clear_Arm7(OSMutex* mutex);
 
 /*
  * Arenas and heaps. id is an OSArenaId, passed as int: enums take one byte
@@ -68,51 +67,55 @@ void Mutex_Clear_Arm7(OSMutex *mutex);
  * argument means the arena's current heap.
  */
 void Arena_ApplyDefaults_Arm7(void);
-void *Arena_DefaultLowEnd_Arm7(int id);
-void *Arena_DefaultHighEnd_Arm7(int id);
-void *Arena_LowEnd_Arm7(int id);
-void *Arena_HighEnd_Arm7(int id);
-void Arena_SetLowEnd_Arm7(int id, void *lo);
-void Arena_SetHighEnd_Arm7(int id, void *hi);
-void *Heap_SetUpArenaTable_Arm7(int id, void *start, void *end, s32 maxHeaps);
-s32 Heap_CarveFromRange_Arm7(int id, void *start, void *end);
+void* Arena_DefaultLowEnd_Arm7(int id);
+void* Arena_DefaultHighEnd_Arm7(int id);
+void* Arena_LowEnd_Arm7(int id);
+void* Arena_HighEnd_Arm7(int id);
+void Arena_SetLowEnd_Arm7(int id, void* lo);
+void Arena_SetHighEnd_Arm7(int id, void* hi);
+void* Heap_SetUpArenaTable_Arm7(int id, void* start, void* end, s32 maxHeaps);
+s32 Heap_CarveFromRange_Arm7(int id, void* start, void* end);
 s32 Heap_SelectDefault_Arm7(int id, s32 heap);
-void *Heap_TakeFirstFit_Arm7(int id, s32 heap, s32 size);
-void Heap_ReturnBlock_Arm7(int id, s32 heap, void *ptr);
+void* Heap_TakeFirstFit_Arm7(int id, s32 heap, s32 size);
+void Heap_ReturnBlock_Arm7(int id, s32 heap, void* ptr);
 s32 Heap_VerifyAndCountFree_Arm7(int id, s32 heap);
 
 /* Tick (timer 0) and alarms (timer 1). */
 void Tick_StartTimer0_Arm7(void);
 OSTick Tick_Read64_Arm7(void);
 BOOL Tick_IsRunning_Arm7(void);
-void Tick_OnTimer0Overflow_Arm7(void *arg);
+void Tick_OnTimer0Overflow_Arm7(void* arg);
 void Timer_MarkInUse_Arm7(int timer);
 void Alarm_SetUpTimer1Queue_Arm7(void);
 BOOL Alarm_IsSetUp_Arm7(void);
-void Alarm_Clear_Arm7(OSAlarm *alarm);
-void Alarm_ArmOneShot_Arm7(OSAlarm *alarm, OSTick delay, OSAlarmHandler handler, void *arg);
-void Alarm_ArmRepeating_Arm7(OSAlarm *alarm, OSTick start, OSTick period, OSAlarmHandler handler, void *arg);
-void Alarm_Withdraw_Arm7(OSAlarm *alarm);
-void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
-void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
+void Alarm_Clear_Arm7(OSAlarm* alarm);
+void Alarm_ArmOneShot_Arm7(OSAlarm* alarm, OSTick delay, OSAlarmHandler handler,
+                           void* arg);
+void Alarm_ArmRepeating_Arm7(OSAlarm* alarm, OSTick start, OSTick period,
+                             OSAlarmHandler handler, void* arg);
+void Alarm_Withdraw_Arm7(OSAlarm* alarm);
+void Alarm_QueueByFireTime_Arm7(OSAlarm* alarm, OSTick fire);
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm* alarm);
 void Alarm_FireDueAndRearm_Arm7(void);
-void Alarm_OnTimer1Irq_Arm7(void *arg);
+void Alarm_OnTimer1Irq_Arm7(void* arg);
 
 /* V-count alarms. */
 void LineAlarm_SetUpQueue_Arm7(void);
 BOOL LineAlarm_IsSetUp_Arm7(void);
-void LineAlarm_Clear_Arm7(OSVAlarm *alarm);
-void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
-void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
-void LineAlarm_AssignTag_Arm7(OSVAlarm *alarm, u32 tag);
-void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm);
+void LineAlarm_Clear_Arm7(OSVAlarm* alarm);
+void LineAlarm_ArmOneShot_Arm7(OSVAlarm* alarm, s16 line, s16 delay,
+                               OSVAlarmHandler handler, void* arg);
+void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm* alarm, s16 line, s16 delay,
+                                  OSVAlarmHandler handler, void* arg);
+void LineAlarm_AssignTag_Arm7(OSVAlarm* alarm, u32 tag);
+void LineAlarm_Withdraw_Arm7(OSVAlarm* alarm);
 void LineAlarm_WithdrawTagged_Arm7(u32 tag);
 void LineAlarm_OnVcountIrq_Arm7(void);
-void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
-void LineAlarm_PushTail_Arm7(OSVAlarm *alarm);
-void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
-void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
-int LineAlarm_ClassifyTiming_Arm7(OSVAlarm *alarm, s32 frame, s32 vcount);
+void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm* alarm);
+void LineAlarm_PushTail_Arm7(OSVAlarm* alarm);
+void LineAlarm_Unlink_Arm7(OSVAlarm* alarm);
+void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm* alarm);
+int LineAlarm_ClassifyTiming_Arm7(OSVAlarm* alarm, s32 frame, s32 vcount);
 
 /* Interrupts. The mask functions return the previous value of the register they change. */
 void Irq_ResetWakeMaskAndFrames_Arm7(void);
@@ -134,7 +137,7 @@ OSIrqMask Irq_ClearEnableBits_Arm7(OSIrqMask mask);
 OSIrqMask Irq_SetEnableBits_Arm7(OSIrqMask mask);
 OSIrqMask Irq_ReplaceEnableBits_Arm7(OSIrqMask mask);
 void Irq_InstallHandlers_Arm7(OSIrqMask mask, OSIrqFunction function);
-void Timer_InstallIrqSlot_Arm7(int timer, void (*handler)(void *), void *arg);
+void Timer_InstallIrqSlot_Arm7(int timer, void (*handler)(void*), void* arg);
 
 /* CPSR interrupt bits: each returns the previous state; hand it back to restore. */
 int Cpu_UnmaskIrq_Arm7(void);
@@ -164,11 +167,14 @@ void Cpu_BusyWaitCycles_Arm7(s32 cycles);
 void LockId_HandshakeAndFreeIds_Arm7(void);
 int LockId_Allocate_Arm7(void);
 void LockId_Free_Arm7(u16 lockID);
-u32 LockWord_SwapOnce_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
-s32 LockWord_SpinAcquire_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
-int LockWord_ClearIfOwner_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+u32 LockWord_SwapOnce_Arm7(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
+                           BOOL disableFiq);
+s32 LockWord_SpinAcquire_Arm7(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
+                              BOOL disableFiq);
+int LockWord_ClearIfOwner_Arm7(u16 lockID, OSLockWord* lockp,
+                               void (*ctrl)(void), BOOL disableFiq);
 void LockWord_PauseBetweenTries_Arm7(void);
-u16 LockWord_OwnerId_Arm7(OSLockWord *lock);
+u16 LockWord_OwnerId_Arm7(OSLockWord* lock);
 s32 SlotLock_TryOnce_Arm7(u16 lockID);
 s32 SlotLock_Acquire_Arm7(u16 lockID);
 s32 SlotLock_Release_Arm7(u16 lockID);
@@ -178,42 +184,45 @@ void SlotLock_OnReleaseNoop_Arm7(void);
 
 /* Threads. Thread queues are bit masks of thread ids. */
 void Thread_SetUpTableOnce_Arm7(void);
-void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
+void Thread_Spawn_Arm7(OSThread* thread, void (*func)(void*), void* arg,
+                       void* stack, u32 stackSize, u32 priority);
 void Thread_EndCurrent_Arm7(void);
-void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
-void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
-void Thread_MakeReady_Arm7(OSThread *thread);
-BOOL Thread_Reprioritize_Arm7(OSThread *thread, u32 priority);
+void Thread_WaitOnQueue_Arm7(OSThreadQueue* queue);
+void Thread_ReadyAllWaiters_Arm7(OSThreadQueue* queue);
+void Thread_MakeReady_Arm7(OSThread* thread);
+BOOL Thread_Reprioritize_Arm7(OSThread* thread, u32 priority);
 void Thread_SwitchToFirstReady_Arm7(void);
 u32 Thread_HoldSwitching_Arm7(void);
 u32 Thread_ReleaseSwitching_Arm7(void);
 void Thread_NapMilliseconds_Arm7(u32 msec);
-void Thread_WakeAfterNap_Arm7(void *thread);
-OSThread *Thread_FirstRunnable_Arm7(void);
-void Thread_LinkByPriority_Arm7(OSThread *thread);
-void Thread_Unlink_Arm7(OSThread *thread);
+void Thread_WakeAfterNap_Arm7(void* thread);
+OSThread* Thread_FirstRunnable_Arm7(void);
+void Thread_LinkByPriority_Arm7(OSThread* thread);
+void Thread_Unlink_Arm7(OSThread* thread);
 int Thread_FirstFreeId_Arm7(void);
 
 /* Save returns 0 when it saves and 1 when Context_Resume_Arm7 resumes the context. */
-int Context_Capture_Arm7(OSContext *context);
-void Context_Resume_Arm7(OSContext *context);
+int Context_Capture_Arm7(OSContext* context);
+void Context_Resume_Arm7(OSContext* context);
 
 /* Message queues; flags is OS_MESSAGE_BLOCK or OS_MESSAGE_NOBLOCK. */
-void MsgQueue_SetUpRing_Arm7(OSMessageQueue *queue, OSMessage *msgArray, s32 msgCount);
-BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage msg, int flags);
-BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
-BOOL MsgQueue_PeekOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags);
+void MsgQueue_SetUpRing_Arm7(OSMessageQueue* queue, OSMessage* msgArray,
+                             s32 msgCount);
+BOOL MsgQueue_PushBack_Arm7(OSMessageQueue* queue, OSMessage msg, int flags);
+BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue* queue, OSMessage* msg, int flags);
+BOOL MsgQueue_PeekOldest_Arm7(OSMessageQueue* queue, OSMessage* msg, int flags);
 
 /* V-count alarms: the handler runs when VCOUNT reaches line, up to delay lines late. */
-void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg);
+void LineAlarm_ArmOneShot_Arm7(OSVAlarm* alarm, s16 line, s16 delay,
+                               OSVAlarmHandler handler, void* arg);
 
 /* Mutexes. */
-void Mutex_Take_Arm7(OSMutex *mutex);
-void Mutex_Release_Arm7(OSMutex *mutex);
-void Mutex_AppendToOwner_Arm7(OSThread *thread, OSMutex *mutex);
-void Mutex_UnlinkFromOwner_Arm7(OSThread *thread, OSMutex *mutex);
-OSMutex *Mutex_PopOldestHeld_Arm7(OSThread *thread);
-void Mutex_ReleaseAllHeld_Arm7(OSThread *thread);
+void Mutex_Take_Arm7(OSMutex* mutex);
+void Mutex_Release_Arm7(OSMutex* mutex);
+void Mutex_AppendToOwner_Arm7(OSThread* thread, OSMutex* mutex);
+void Mutex_UnlinkFromOwner_Arm7(OSThread* thread, OSMutex* mutex);
+OSMutex* Mutex_PopOldestHeld_Arm7(OSThread* thread);
+void Mutex_ReleaseAllHeld_Arm7(OSThread* thread);
 
 /*
  * data_arm7_0380788c is the ARM7 copy of gOsIrqSlots: 0-3 DMA, 4-7 timers,
@@ -230,20 +239,21 @@ extern u16 data_arm7_03807888;
 
 /* The IRQ vector the BIOS jumps through: the address of the IRQ handler. */
 typedef void (*IrqEntryPoint)(void);
-#define BIOS_IRQ_HANDLER_PTR (*(IrqEntryPoint volatile *)0x0380fffc)
+#define BIOS_IRQ_HANDLER_PTR (*(IrqEntryPoint volatile*)0x0380fffc)
 
 /* State of the nesting IRQ handler (IrqNest_DispatchByPriority), gOsNestedIrqWork. */
 typedef struct OSiNestedIrqWork {
-    u32 unk_00;
-    void *stack;                   /* stack of the outermost handler; holds the thread's sp while it runs */
-    u32 stackSize;
-    IrqEntryPoint savedVector;       /* the handler it replaced */
+  u32 unk_00;
+  void*
+      stack; /* stack of the outermost handler; holds the thread's sp while it runs */
+  u32 stackSize;
+  IrqEntryPoint savedVector; /* the handler it replaced */
 } OSiNestedIrqWork;
 
 extern OSiNestedIrqWork gOsNestedIrqWork;
 void IrqNest_DispatchByPriority(void);
 
-#define IRQ_NEST_STACK_BASE ((void *)0x0380fe80)
+#define IRQ_NEST_STACK_BASE ((void*)0x0380fe80)
 #define IRQ_NEST_STACK_BYTES 0x40
 
 #endif

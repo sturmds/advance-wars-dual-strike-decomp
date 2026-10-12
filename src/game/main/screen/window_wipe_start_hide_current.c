@@ -8,9 +8,10 @@ int Screen_GetNibble(void);
 void Screen_SetNibble(int value);
 int func_02007710(int screens);
 void Screen_EnableEmptyWindows(void);
-void DmaTask_Start(const void *src, volatile void *dest, int unk34, int unk36, void (*callback)(void));
+void DmaTask_Start(const void* src, volatile void* dest, int unk34, int unk36,
+                   void (*callback)(void));
 void WindowWipe_BuildCenterOut(void);
-void Task_Destroy(Task *task);
+void Task_Destroy(Task* task);
 
 /* Script step: like WindowWipe_StartHide, but for the current screen only.
  * Does nothing but end the task if the screen is hidden already. Otherwise it
@@ -18,18 +19,19 @@ void Task_Destroy(Task *task);
  * WindowWipe_BuildCenterOut's table.
  * Needed to match: both wipe variables are written through volatile casts; with
  * plain stores mwcc loads the second address before the first store. */
-void WindowWipe_StartHideCurrent(Task *task)
-{
-    if (Screen_GetNibble() == 1) {
-        Task_Destroy(task);
-        return;
-    }
-    Screen_SetNibble(1);
-    func_02007710(0);
-    task->unk_64 = 1;
-    Screen_EnableEmptyWindows();
-    *(volatile s16 *)&data_0216e29c = 0;
-    *(volatile s16 *)&data_0216e2a8 = 0;
-    DmaTask_Start(gWipeWin0hTable, data_027c027c == data_027c0288.unk_00 ? REG_WIN0H : REG_DB_WIN0H, 1, 0xa240,
-                  WindowWipe_BuildCenterOut);
+void WindowWipe_StartHideCurrent(Task* task) {
+  if (Screen_GetNibble() == 1) {
+    Task_Destroy(task);
+    return;
+  }
+  Screen_SetNibble(1);
+  func_02007710(0);
+  task->unk_64 = 1;
+  Screen_EnableEmptyWindows();
+  *(volatile s16*)&data_0216e29c = 0;
+  *(volatile s16*)&data_0216e2a8 = 0;
+  DmaTask_Start(
+      gWipeWin0hTable,
+      data_027c027c == data_027c0288.unk_00 ? REG_WIN0H : REG_DB_WIN0H, 1,
+      0xa240, WindowWipe_BuildCenterOut);
 }

@@ -5,7 +5,7 @@
 #include "game/map_header.h"
 #include "game/unlocks.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 #define GAME (data_027c027c->unk_48[data_027c0284])
@@ -16,26 +16,25 @@ extern int data_027c0284;
  * Megatanks, Stealths and Carriers are allowed only on listed missions;
  * Piperunners, Black Bombs and Black Boats need a game flag each (99, 100,
  * 101; likely set by campaign progress). Oozium never. */
-BOOL Campaign_CanPlayerBuildUnit(int player, int unitType)
-{
-    u16 mapId;
+BOOL Campaign_CanPlayerBuildUnit(int player, int unitType) {
+  u16 mapId;
 
-    if (GAME->players[player].armyColour == ARMY_BLACK_HOLE) {
-        return TRUE;
-    }
-    mapId = GAME->unk_1c4->mapId;
-    if (mapId >= MAP_CAMPAIGN_FIRST && mapId <= MAP_CAMPAIGN_FIRST + 4) {
-        switch (unitType) {
-        case UNIT_MEDIUM_TANK:
-        case UNIT_NEOTANK:
-        case UNIT_ROCKETS:
-        case UNIT_MISSILES:
-            return FALSE;
-        }
-    }
+  if (GAME->players[player].armyColour == ARMY_BLACK_HOLE) {
+    return TRUE;
+  }
+  mapId = GAME->unk_1c4->mapId;
+  if (mapId >= MAP_CAMPAIGN_FIRST && mapId <= MAP_CAMPAIGN_FIRST + 4) {
     switch (unitType) {
+      case UNIT_MEDIUM_TANK:
+      case UNIT_NEOTANK:
+      case UNIT_ROCKETS:
+      case UNIT_MISSILES:
+        return FALSE;
+    }
+  }
+  switch (unitType) {
     case UNIT_MEGATANK:
-        switch (mapId) {
+      switch (mapId) {
         case MAP_CAMPAIGN_FIRST + 13:
         case MAP_CAMPAIGN_FIRST + 14:
         case MAP_CAMPAIGN_FIRST + 15:
@@ -52,13 +51,13 @@ BOOL Campaign_CanPlayerBuildUnit(int player, int unitType)
         case MAP_CAMPAIGN_FIRST + 30:
         case MAP_CAMPAIGN_FIRST + 31:
         case MAP_CAMPAIGN_FIRST + 32:
-            return TRUE;
+          return TRUE;
         default:
-            return FALSE;
-        }
+          return FALSE;
+      }
     case UNIT_STEALTH:
     case UNIT_CARRIER:
-        switch (mapId) {
+      switch (mapId) {
         case MAP_CAMPAIGN_FIRST + 14:
         case MAP_CAMPAIGN_FIRST + 15:
         case MAP_CAMPAIGN_FIRST + 16:
@@ -73,18 +72,18 @@ BOOL Campaign_CanPlayerBuildUnit(int player, int unitType)
         case MAP_CAMPAIGN_FIRST + 30:
         case MAP_CAMPAIGN_FIRST + 31:
         case MAP_CAMPAIGN_FIRST + 32:
-            return TRUE;
+          return TRUE;
         default:
-            return FALSE;
-        }
+          return FALSE;
+      }
     case UNIT_BLACK_BOAT:
-        return GameFlag_IsSet(101) ? TRUE : FALSE;
+      return GameFlag_IsSet(101) ? TRUE : FALSE;
     case UNIT_BLACK_BOMB:
-        return GameFlag_IsSet(100) ? TRUE : FALSE;
+      return GameFlag_IsSet(100) ? TRUE : FALSE;
     case UNIT_PIPERUNNER:
-        return GameFlag_IsSet(99) ? TRUE : FALSE;
+      return GameFlag_IsSet(99) ? TRUE : FALSE;
     case UNIT_OOZIUM:
-        return FALSE;
-    }
-    return TRUE;
+      return FALSE;
+  }
+  return TRUE;
 }

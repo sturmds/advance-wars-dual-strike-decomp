@@ -5,7 +5,7 @@
 #include "game/terrain.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 BOOL Ai_CanEndMoveAt(s16 x, s16 y);
@@ -23,35 +23,36 @@ BOOL Unit_IsEnemyTile(int unitIndex, int x, int y);
  * that does not move by sea may not stop on ports unless they are enemy-owned,
  * and a unit waiting for a T-Copter (transportWanted 2) may not stop on ports
  * and shoals. */
-BOOL AiTile_IsSafeStop(s16 x, s16 y)
-{
-    /* needed to match: the first read adds the scaled index first */
-    int tile = x + STATE_IDX_FIRST->mapTiles->rowStart[y];
+BOOL AiTile_IsSafeStop(s16 x, s16 y) {
+  /* needed to match: the first read adds the scaled index first */
+  int tile = x + STATE_IDX_FIRST->mapTiles->rowStart[y];
 
-    if (STATE->mapTiles->threatMax[tile] >= gAiActiveUnitProfile->threatMaxLimit) {
-        return FALSE;
+  if (STATE->mapTiles->threatMax[tile] >=
+      gAiActiveUnitProfile->threatMaxLimit) {
+    return FALSE;
+  }
+  if (STATE->mapTiles->threatSum[tile] >=
+      gAiActiveUnitProfile->threatSumLimit) {
+    return FALSE;
+  }
+  if (!Ai_CanEndMoveAt(x, y)) {
+    return FALSE;
+  }
+  if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup != MOVE_GROUP_SEA &&
+      UnitType_GetAttackKind(STATE->actingUnit->type) != ATTACK_KIND_NONE &&
+      MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]) == TERRAIN_PORT) {
+    if (!Unit_IsEnemyTile(STATE->actingUnitIndex, x, y)) {
+      return FALSE;
     }
-    if (STATE->mapTiles->threatSum[tile] >= gAiActiveUnitProfile->threatSumLimit) {
-        return FALSE;
+  }
+  if (Ai_IsTileNeededByAlly(x, y) == 1) {
+    return FALSE;
+  }
+  if (STATE->actingUnit->transportWanted == 2) {
+    int terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]);
+    if (terrain == TERRAIN_PORT || terrain == TERRAIN_SHOAL) {
+      return FALSE;
     }
-    if (!Ai_CanEndMoveAt(x, y)) {
-        return FALSE;
-    }
-    if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup != MOVE_GROUP_SEA
-        && UnitType_GetAttackKind(STATE->actingUnit->type) != ATTACK_KIND_NONE
-        && MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]) == TERRAIN_PORT) {
-        if (!Unit_IsEnemyTile(STATE->actingUnitIndex, x, y)) {
-            return FALSE;
-        }
-    }
-    if (Ai_IsTileNeededByAlly(x, y) == 1) {
-        return FALSE;
-    }
-    if (STATE->actingUnit->transportWanted == 2) {
-        int terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE(x, y)]);
-        if (terrain == TERRAIN_PORT || terrain == TERRAIN_SHOAL) {
-            return FALSE;
-        }
-    }
-    return TRUE;
+  }
+  return TRUE;
 }

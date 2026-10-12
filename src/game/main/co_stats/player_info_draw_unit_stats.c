@@ -33,144 +33,145 @@ extern u8 gUnitRowTypes[];
  * Each unit gets its icon (palette: shown player + 4), a range or movement
  * bonus icon with its value, and a firepower gauge. Transports and units that
  * explode get no gauge. The CO icon table lookup here takes the unit type. */
-void PlayerInfo_DrawUnitStats(void)
-{
-    int row;
-    int col;
-    int unitType;
-    int bonus;
-    int firepower;
+void PlayerInfo_DrawUnitStats(void) {
+  int row;
+  int col;
+  int unitType;
+  int bonus;
+  int firepower;
 
-    Gfx_ClearLayerMap(0);
-    for (row = 0; row < 6; row++) {
-        for (col = 0; col < 5; col++) {
-            if (!UnitRow_IsAvailable(row * 5 + col)) {
-                continue;
-            }
-            unitType = gUnitRowTypes[row * 5 + col];
-            Bg_PutTileQuad(1 + col * 6, 5 + row * 3, Player_GetUnitIconTile(MENU.player, unitType) + UNIT_ICON_TILE,
-                           MENU.player + 4);
-            bonus = Player_GetShownRangeBonus(MENU.player, MENU.slot, unitType);
-            if (bonus != 0) {
-                Bg_PutOneTile(3 + col * 6, 6 + row * 3, RANGE_ICON_TILE, 3);
-            } else {
-                bonus = Player_GetShownMoveBonus(MENU.player, MENU.slot, unitType);
-                if (bonus != 0) {
-                    Bg_PutOneTile(3 + col * 6, 6 + row * 3, MOVE_ICON_TILE, 3);
-                }
-            }
-            switch (bonus) {
-            case -2:
-                Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(-2), 3);
-                break;
-            case -1:
-                Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(-1), 3);
-                break;
-            case 1:
-                Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(1), 3);
-                break;
-            case 2:
-                Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(2), 3);
-                break;
-            case 3:
-                Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(3), 3);
-                break;
-            }
-            if (GetUnitCombatClass(unitType) == UNIT_CLASS_TRANSPORT) {
-                continue;
-            }
-            if (GetUnitCombatClass(unitType) == UNIT_CLASS_EXPLODES) {
-                continue;
-            }
-            firepower = Player_GetShownFirepower(MENU.player, MENU.slot, unitType);
-            if (firepower == 0) {
-                Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(0), 3);
-            } else if (firepower < 0) {
-                if (firepower < -95) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-20), 3);
-                } else if (firepower < -90) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-19), 3);
-                } else if (firepower < -85) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-18), 3);
-                } else if (firepower < -80) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-17), 3);
-                } else if (firepower < -75) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-16), 3);
-                } else if (firepower < -70) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-15), 3);
-                } else if (firepower < -65) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-14), 3);
-                } else if (firepower < -60) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-13), 3);
-                } else if (firepower < -55) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-12), 3);
-                } else if (firepower < -50) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-11), 3);
-                } else if (firepower < -45) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-10), 3);
-                } else if (firepower < -40) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-9), 3);
-                } else if (firepower < -35) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-8), 3);
-                } else if (firepower < -30) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-7), 3);
-                } else if (firepower < -25) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-6), 3);
-                } else if (firepower < -20) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-5), 3);
-                } else if (firepower < -15) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-4), 3);
-                } else if (firepower < -10) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-3), 3);
-                } else if (firepower < -5) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-2), 3);
-                } else {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-1), 3);
-                }
-            } else {
-                if (firepower > 95) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(20), 3);
-                } else if (firepower > 90) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(19), 3);
-                } else if (firepower > 85) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(18), 3);
-                } else if (firepower > 80) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(17), 3);
-                } else if (firepower > 75) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(16), 3);
-                } else if (firepower > 70) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(15), 3);
-                } else if (firepower > 65) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(14), 3);
-                } else if (firepower > 60) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(13), 3);
-                } else if (firepower > 55) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(12), 3);
-                } else if (firepower > 50) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(11), 3);
-                } else if (firepower > 45) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(10), 3);
-                } else if (firepower > 40) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(9), 3);
-                } else if (firepower > 35) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(8), 3);
-                } else if (firepower > 30) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(7), 3);
-                } else if (firepower > 25) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(6), 3);
-                } else if (firepower > 20) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(5), 3);
-                } else if (firepower > 15) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(4), 3);
-                } else if (firepower > 10) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(3), 3);
-                } else if (firepower > 5) {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(2), 3);
-                } else {
-                    Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(1), 3);
-                }
-            }
+  Gfx_ClearLayerMap(0);
+  for (row = 0; row < 6; row++) {
+    for (col = 0; col < 5; col++) {
+      if (!UnitRow_IsAvailable(row * 5 + col)) {
+        continue;
+      }
+      unitType = gUnitRowTypes[row * 5 + col];
+      Bg_PutTileQuad(
+          1 + col * 6, 5 + row * 3,
+          Player_GetUnitIconTile(MENU.player, unitType) + UNIT_ICON_TILE,
+          MENU.player + 4);
+      bonus = Player_GetShownRangeBonus(MENU.player, MENU.slot, unitType);
+      if (bonus != 0) {
+        Bg_PutOneTile(3 + col * 6, 6 + row * 3, RANGE_ICON_TILE, 3);
+      } else {
+        bonus = Player_GetShownMoveBonus(MENU.player, MENU.slot, unitType);
+        if (bonus != 0) {
+          Bg_PutOneTile(3 + col * 6, 6 + row * 3, MOVE_ICON_TILE, 3);
         }
+      }
+      switch (bonus) {
+        case -2:
+          Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(-2), 3);
+          break;
+        case -1:
+          Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(-1), 3);
+          break;
+        case 1:
+          Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(1), 3);
+          break;
+        case 2:
+          Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(2), 3);
+          break;
+        case 3:
+          Bg_PutTwoTiles(4 + col * 6, 6 + row * 3, BONUS_TILE(3), 3);
+          break;
+      }
+      if (GetUnitCombatClass(unitType) == UNIT_CLASS_TRANSPORT) {
+        continue;
+      }
+      if (GetUnitCombatClass(unitType) == UNIT_CLASS_EXPLODES) {
+        continue;
+      }
+      firepower = Player_GetShownFirepower(MENU.player, MENU.slot, unitType);
+      if (firepower == 0) {
+        Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(0), 3);
+      } else if (firepower < 0) {
+        if (firepower < -95) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-20), 3);
+        } else if (firepower < -90) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-19), 3);
+        } else if (firepower < -85) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-18), 3);
+        } else if (firepower < -80) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-17), 3);
+        } else if (firepower < -75) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-16), 3);
+        } else if (firepower < -70) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-15), 3);
+        } else if (firepower < -65) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-14), 3);
+        } else if (firepower < -60) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-13), 3);
+        } else if (firepower < -55) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-12), 3);
+        } else if (firepower < -50) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-11), 3);
+        } else if (firepower < -45) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-10), 3);
+        } else if (firepower < -40) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-9), 3);
+        } else if (firepower < -35) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-8), 3);
+        } else if (firepower < -30) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-7), 3);
+        } else if (firepower < -25) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-6), 3);
+        } else if (firepower < -20) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-5), 3);
+        } else if (firepower < -15) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-4), 3);
+        } else if (firepower < -10) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-3), 3);
+        } else if (firepower < -5) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-2), 3);
+        } else {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(-1), 3);
+        }
+      } else {
+        if (firepower > 95) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(20), 3);
+        } else if (firepower > 90) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(19), 3);
+        } else if (firepower > 85) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(18), 3);
+        } else if (firepower > 80) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(17), 3);
+        } else if (firepower > 75) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(16), 3);
+        } else if (firepower > 70) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(15), 3);
+        } else if (firepower > 65) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(14), 3);
+        } else if (firepower > 60) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(13), 3);
+        } else if (firepower > 55) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(12), 3);
+        } else if (firepower > 50) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(11), 3);
+        } else if (firepower > 45) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(10), 3);
+        } else if (firepower > 40) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(9), 3);
+        } else if (firepower > 35) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(8), 3);
+        } else if (firepower > 30) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(7), 3);
+        } else if (firepower > 25) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(6), 3);
+        } else if (firepower > 20) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(5), 3);
+        } else if (firepower > 15) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(4), 3);
+        } else if (firepower > 10) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(3), 3);
+        } else if (firepower > 5) {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(2), 3);
+        } else {
+          Bg_PutThreeTiles(3 + col * 6, 5 + row * 3, GAUGE_TILE(1), 3);
+        }
+      }
     }
-    Gfx_RequestLayerCopy(0);
+  }
+  Gfx_RequestLayerCopy(0);
 }

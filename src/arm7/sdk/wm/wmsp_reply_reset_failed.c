@@ -1,12 +1,11 @@
 #include "sdk/wmsp.h"
 
-void WMSP_ReplyResetFailed(u16 wlCmdID, u16 wlResult)
-{
-    WmspReply *reply = Wmsp_GetCallbackBuffer();
+void WMSP_ReplyResetFailed(u16 wlCmdID, u16 wlResult) {
+  WmspReply* reply = Wmsp_GetCallbackBuffer();
 
-    reply->apiid = WM_APIID_RESET;
-    reply->errcode = WM_ERRCODE_FAILED;
-    reply->wlCmdID = wlCmdID;
-    reply->wlResult = wlResult;
-    Wmsp_SendReply(reply);
+  reply->apiid = WM_APIID_RESET;
+  reply->errcode = WM_ERRCODE_FAILED;
+  reply->wlCmdID = wlCmdID;
+  reply->wlResult = wlResult;
+  Wmsp_SendReply(reply);
 }

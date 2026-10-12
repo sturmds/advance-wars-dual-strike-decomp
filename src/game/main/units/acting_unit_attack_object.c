@@ -4,15 +4,16 @@
 #include "game/task.h"
 #include "game/unit_action.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern UnitAction data_0229d8c8;
 extern u32 gRngState;
 extern const TaskScriptCmd data_02168380[];
 
-MapObject *Map_GetObjectAt(int x, int y); /* object standing at (x, y); NULL: none or destroyed */
+MapObject* Map_GetObjectAt(
+    int x, int y); /* object standing at (x, y); NULL: none or destroyed */
 void ActingUnit_AttackTile(int x, int y, int flag);
-void Combat_CalcDamageToTarget(int unitIndex, int target, s16 *pos);
+void Combat_CalcDamageToTarget(int unitIndex, int target, s16* pos);
 void ScreenConfig_RunActionHook(void);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -21,26 +22,26 @@ void ScreenConfig_RunActionHook(void);
  * or the tile there when no object stands on it. The RNG state is saved in
  * data_0229d8c8, the damage without luck comes off the object's hp (not
  * below 0), and the attack task starts with flag. */
-void ActingUnit_AttackObject(int x, int y, int flag)
-{
-    MapObject *object;
-    ObjectAttackTask *task;
+void ActingUnit_AttackObject(int x, int y, int flag) {
+  MapObject* object;
+  ObjectAttackTask* task;
 
-    object = Map_GetObjectAt(x, y);
-    if (object == NULL) {
-        ActingUnit_AttackTile(x, y, flag);
-        return;
-    }
-    data_0229d8c8.rngState = gRngState;
-    Combat_CalcDamageToTarget(STATE->actingUnitIndex, object->kind, &STATE->actingUnitDestX);
-    if (object->hp < STATE->combatants[0].damageNoLuck) {
-        object->hp = 0;
-    } else {
-        object->hp = object->hp - STATE->combatants[0].damageNoLuck;
-    }
-    ScreenConfig_RunActionHook();
-    task = (ObjectAttackTask *)Task_Create(data_02168380, TASK_LIST(3));
-    task->attacker = STATE->actingUnit;
-    task->object = object;
-    task->flag = flag;
+  object = Map_GetObjectAt(x, y);
+  if (object == NULL) {
+    ActingUnit_AttackTile(x, y, flag);
+    return;
+  }
+  data_0229d8c8.rngState = gRngState;
+  Combat_CalcDamageToTarget(STATE->actingUnitIndex, object->kind,
+                            &STATE->actingUnitDestX);
+  if (object->hp < STATE->combatants[0].damageNoLuck) {
+    object->hp = 0;
+  } else {
+    object->hp = object->hp - STATE->combatants[0].damageNoLuck;
+  }
+  ScreenConfig_RunActionHook();
+  task = (ObjectAttackTask*)Task_Create(data_02168380, TASK_LIST(3));
+  task->attacker = STATE->actingUnit;
+  task->object = object;
+  task->flag = flag;
 }

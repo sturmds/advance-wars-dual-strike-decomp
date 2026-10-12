@@ -556,6 +556,12 @@ def main() -> int:
     if CONFLICTS:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
+    # A merged header or a commit made before `make format` existed would
+    # fail make release's format check.
+    sources = [p for p in paths if p.startswith(("src/", "include/")) and (ROOT / p).exists()]
+    if sources:
+        subprocess.run([sys.executable, Path(__file__).resolve().parent / "format.py", *sources],
+                       cwd=ROOT, check=True)
     git("add", "-A", "config", "src", "include", "docs")
     # Also stage the commit's other paths (tools/, hooks/, Makefile, CLAUDE.md,
     # skills): without this, a replayed tools commit landed without its files.

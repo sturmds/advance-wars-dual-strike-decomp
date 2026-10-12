@@ -4,12 +4,13 @@
 #include "game/map_bg.h"
 #include "game/terrain.h"
 
-extern Unk_02080440 *data_027c027c;
-extern Unk_027c0280 *data_027c0280;
+extern Unk_02080440* data_027c027c;
+extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 
 /* Picks a mountain look from the tile position. */
-#define MOUNTAIN_CELL(y) gMountainCellVariants[((((y) >> 3) + (tileX >> 2) + tileX) + (y) * 2) & 15]
+#define MOUNTAIN_CELL(y) \
+  gMountainCellVariants[((((y) >> 3) + (tileX >> 2) + tileX) + (y) * 2) & 15]
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -17,84 +18,107 @@ extern int data_027c0284;
  * map tile (tileX, tileY) and at metatile row row (0-15, wrapping) of
  * metatile column col (0-31). Same drawing as MapBg_DrawTileRow: layer 3
  * gets each tile, layer 2 the part of the tile below that reaches up. */
-void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY)
-{
-    u16 i;
-    u16 *ground;
-    u16 *overhang;
-    int at;
-    int tile;
-    int terrain;
-    int cell;
+void MapBg_DrawTileColumn(int col, int row, int tileX, int tileY) {
+  u16 i;
+  u16* ground;
+  u16* overhang;
+  int at;
+  int tile;
+  int terrain;
+  int cell;
 
-    at = (row & 15) * 64;
-    ground = data_027c0280->layer3Map + data_02169eb8[col & 31];
-    overhang = data_027c0280->layer2Map + data_02169eb8[col & 31];
-    for (i = 0; i < 13; i++) {
-        if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth && (tileY + i) >= 0 && (tileY + i) < STATE->unk_1c4->mapHeight) {
-            tile = STATE->mapTiles->rowStart[tileY + i] + tileX;
-            terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
-            if (terrain == TERRAIN_MOUNTAIN) {
-                cell = MOUNTAIN_CELL(tileY + i);
-            } else {
-                cell = STATE->mapTiles->mapCells[tile];
-                if (STATE->mapTiles->unk_2338[tile] == 0 && data_02169e78[terrain] != 0) {
-                    cell = data_02169e78[terrain];
-                }
-            }
-            if (STATE->mapTiles->unk_2338[tile] == 0) {
-                cell *= 4;
-                ground[at] = (gMapCellGroundTiles[cell] & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(ground + at + 1) = (*(gMapCellGroundTiles + cell + 1) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(ground + at + 32) = (*(gMapCellGroundTiles + cell + 2) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(ground + at + 33) = (*(gMapCellGroundTiles + cell + 3) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-            } else {
-                cell *= 4;
-                ground[at] = gMapCellGroundTiles[cell] + BG_TILE_PALETTE(2);
-                *(ground + at + 1) = *(gMapCellGroundTiles + cell + 1) + BG_TILE_PALETTE(2);
-                *(ground + at + 32) = *(gMapCellGroundTiles + cell + 2) + BG_TILE_PALETTE(2);
-                *(ground + at + 33) = *(gMapCellGroundTiles + cell + 3) + BG_TILE_PALETTE(2);
-            }
-        } else {
-            ground[at] = 0;
-            *(ground + at + 1) = 0;
-            *(ground + at + 32) = 0;
-            *(ground + at + 33) = 0;
+  at = (row & 15) * 64;
+  ground = data_027c0280->layer3Map + data_02169eb8[col & 31];
+  overhang = data_027c0280->layer2Map + data_02169eb8[col & 31];
+  for (i = 0; i < 13; i++) {
+    if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth && (tileY + i) >= 0 &&
+        (tileY + i) < STATE->unk_1c4->mapHeight) {
+      tile = STATE->mapTiles->rowStart[tileY + i] + tileX;
+      terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
+      if (terrain == TERRAIN_MOUNTAIN) {
+        cell = MOUNTAIN_CELL(tileY + i);
+      } else {
+        cell = STATE->mapTiles->mapCells[tile];
+        if (STATE->mapTiles->unk_2338[tile] == 0 &&
+            data_02169e78[terrain] != 0) {
+          cell = data_02169e78[terrain];
         }
-        if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth && (tileY + i + 1) >= 0 && (tileY + i + 1) < STATE->unk_1c4->mapHeight) {
-            tile = STATE->mapTiles->rowStart[tileY + i + 1] + tileX;
-            terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
-            if (tileY + i < STATE->unk_1c4->mapHeight - 1) {
-                if (terrain == TERRAIN_MOUNTAIN) {
-                    cell = MOUNTAIN_CELL(tileY + i + 1);
-                } else {
-                    cell = STATE->mapTiles->mapCells[tile];
-                    if (STATE->mapTiles->unk_2338[tile] == 0 && data_02169e78[terrain] != 0) {
-                        cell = data_02169e78[terrain];
-                    }
-                }
-            } else {
-                cell = 0;
-            }
-            if (STATE->mapTiles->unk_2338[tile] == 0) {
-                cell *= 4;
-                overhang[at] = (gMapCellOverhangTiles[cell] & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(overhang + at + 1) = (*(gMapCellOverhangTiles + cell + 1) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(overhang + at + 32) = (*(gMapCellOverhangTiles + cell + 2) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-                *(overhang + at + 33) = (*(gMapCellOverhangTiles + cell + 3) & BG_TILE_CHAR_AND_FLIP) + BG_TILE_PALETTE(7);
-            } else {
-                cell *= 4;
-                overhang[at] = gMapCellOverhangTiles[cell] + BG_TILE_PALETTE(2);
-                *(overhang + at + 1) = *(gMapCellOverhangTiles + cell + 1) + BG_TILE_PALETTE(2);
-                *(overhang + at + 32) = *(gMapCellOverhangTiles + cell + 2) + BG_TILE_PALETTE(2);
-                *(overhang + at + 33) = *(gMapCellOverhangTiles + cell + 3) + BG_TILE_PALETTE(2);
-            }
-        } else {
-            overhang[at] = 0;
-            *(overhang + at + 1) = 0;
-            *(overhang + at + 32) = 0;
-            *(overhang + at + 33) = 0;
-        }
-        at = (at + 64) & 0x3ff;
+      }
+      if (STATE->mapTiles->unk_2338[tile] == 0) {
+        cell *= 4;
+        ground[at] = (gMapCellGroundTiles[cell] & BG_TILE_CHAR_AND_FLIP) +
+                     BG_TILE_PALETTE(7);
+        *(ground + at + 1) =
+            (*(gMapCellGroundTiles + cell + 1) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+        *(ground + at + 32) =
+            (*(gMapCellGroundTiles + cell + 2) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+        *(ground + at + 33) =
+            (*(gMapCellGroundTiles + cell + 3) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+      } else {
+        cell *= 4;
+        ground[at] = gMapCellGroundTiles[cell] + BG_TILE_PALETTE(2);
+        *(ground + at + 1) =
+            *(gMapCellGroundTiles + cell + 1) + BG_TILE_PALETTE(2);
+        *(ground + at + 32) =
+            *(gMapCellGroundTiles + cell + 2) + BG_TILE_PALETTE(2);
+        *(ground + at + 33) =
+            *(gMapCellGroundTiles + cell + 3) + BG_TILE_PALETTE(2);
+      }
+    } else {
+      ground[at] = 0;
+      *(ground + at + 1) = 0;
+      *(ground + at + 32) = 0;
+      *(ground + at + 33) = 0;
     }
+    if (tileX >= 0 && tileX < STATE->unk_1c4->mapWidth &&
+        (tileY + i + 1) >= 0 && (tileY + i + 1) < STATE->unk_1c4->mapHeight) {
+      tile = STATE->mapTiles->rowStart[tileY + i + 1] + tileX;
+      terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[tile]);
+      if (tileY + i < STATE->unk_1c4->mapHeight - 1) {
+        if (terrain == TERRAIN_MOUNTAIN) {
+          cell = MOUNTAIN_CELL(tileY + i + 1);
+        } else {
+          cell = STATE->mapTiles->mapCells[tile];
+          if (STATE->mapTiles->unk_2338[tile] == 0 &&
+              data_02169e78[terrain] != 0) {
+            cell = data_02169e78[terrain];
+          }
+        }
+      } else {
+        cell = 0;
+      }
+      if (STATE->mapTiles->unk_2338[tile] == 0) {
+        cell *= 4;
+        overhang[at] = (gMapCellOverhangTiles[cell] & BG_TILE_CHAR_AND_FLIP) +
+                       BG_TILE_PALETTE(7);
+        *(overhang + at + 1) =
+            (*(gMapCellOverhangTiles + cell + 1) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+        *(overhang + at + 32) =
+            (*(gMapCellOverhangTiles + cell + 2) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+        *(overhang + at + 33) =
+            (*(gMapCellOverhangTiles + cell + 3) & BG_TILE_CHAR_AND_FLIP) +
+            BG_TILE_PALETTE(7);
+      } else {
+        cell *= 4;
+        overhang[at] = gMapCellOverhangTiles[cell] + BG_TILE_PALETTE(2);
+        *(overhang + at + 1) =
+            *(gMapCellOverhangTiles + cell + 1) + BG_TILE_PALETTE(2);
+        *(overhang + at + 32) =
+            *(gMapCellOverhangTiles + cell + 2) + BG_TILE_PALETTE(2);
+        *(overhang + at + 33) =
+            *(gMapCellOverhangTiles + cell + 3) + BG_TILE_PALETTE(2);
+      }
+    } else {
+      overhang[at] = 0;
+      *(overhang + at + 1) = 0;
+      *(overhang + at + 32) = 0;
+      *(overhang + at + 33) = 0;
+    }
+    at = (at + 64) & 0x3ff;
+  }
 }

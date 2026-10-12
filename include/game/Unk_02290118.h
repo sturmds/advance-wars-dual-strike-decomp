@@ -7,9 +7,9 @@
 /* One campaign map record. The 28 records start at data_02290118.unk_8c and
  * end at the first entry with days 0. */
 typedef struct MapRecord {
-    u32 mapIndex : 8;                  /* map id - 224 */
-    u32 days : 12;
-    u32 score : 12;
+  u32 mapIndex : 8; /* map id - 224 */
+  u32 days : 12;
+  u32 score : 12;
 } MapRecord;
 
 /* The same memory as the records at data_02290118.unk_8c. */
@@ -18,24 +18,24 @@ extern MapRecord gCampaignMapRecords[28];
 /* data_02290118 (main bss): saved progress. Only the part the campaign
  * world map reads is described. */
 typedef struct Unk_02290118 {
-    u8 unk_00;                         /* picks the Force Rank profile Save_LoadProgress reads from the save buffer */
-    u8 unk_01;
-    u8 hardMode;                       /* 1: the campaign is in hard mode (Campaign_IsHardMode) */
-    u8 unk_03;                         /* counts the times the profile was stored, up to 255 (Save_StoreProfile) */
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0a;
-    u16 unk_0c;
-    u16 unk_0e;
-    u8 pad_010[0x8c - 0x10];
-    union {
-        u32 unk_8c;                    /* bits 8-19 are cleared when a campaign starts (Campaign_ResetProgress) */
-        MapRecord records[28];
-    };
-    u8 pad_0fc[0x11a - 0xfc];
-    u8 coScore[CO_COUNT];              /* per CO id; the world map shows the three highest */
+  u8 unk_00; /* picks the Force Rank profile Save_LoadProgress reads from the save buffer */
+  u8 unk_01;
+  u8 hardMode; /* 1: the campaign is in hard mode (Campaign_IsHardMode) */
+  u8 unk_03; /* counts the times the profile was stored, up to 255 (Save_StoreProfile) */
+  u8 unk_04;
+  u8 unk_05;
+  u16 unk_06;
+  u16 unk_08;
+  u16 unk_0a;
+  u16 unk_0c;
+  u16 unk_0e;
+  u8 pad_010[0x8c - 0x10];
+  union {
+    u32 unk_8c; /* bits 8-19 are cleared when a campaign starts (Campaign_ResetProgress) */
+    MapRecord records[28];
+  };
+  u8 pad_0fc[0x11a - 0xfc];
+  u8 coScore[CO_COUNT]; /* per CO id; the world map shows the three highest */
 } Unk_02290118;
 
 extern Unk_02290118 data_02290118;
@@ -44,17 +44,17 @@ extern Unk_02290118 data_02290118;
  * data_02290a60 holds three, in the same memory as gPlayRecords.unk_348;
  * Save_LoadProfile copies one over the start of data_02290118. */
 typedef struct ProfileHeader {
-    u8 unk_00;
-    u8 unk_01;
-    u8 hardMode;
-    u8 inUse;                          /* nonzero: the profile is in use (Profile_IsInUse) */
-    u8 unk_04;
-    u8 unk_05;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0a;
-    u16 unk_0c;
-    u16 unk_0e;
+  u8 unk_00;
+  u8 unk_01;
+  u8 hardMode;
+  u8 inUse; /* nonzero: the profile is in use (Profile_IsInUse) */
+  u8 unk_04;
+  u8 unk_05;
+  u16 unk_06;
+  u16 unk_08;
+  u16 unk_0a;
+  u16 unk_0c;
+  u16 unk_0e;
 } ProfileHeader;
 
 extern ProfileHeader data_02290a60[3];

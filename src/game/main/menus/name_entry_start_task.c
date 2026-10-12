@@ -8,9 +8,9 @@
 extern const TaskScriptCmd gNameEntryScript[];
 
 /* Starts the name entry screen under parent. maxLength is 8 or 16. */
-void NameEntry_StartTask(Task *parent, int maxLength)
-{
-    NameEntryTask *task = (NameEntryTask *)Task_CreateChild(gNameEntryScript, parent);
+void NameEntry_StartTask(Task* parent, int maxLength) {
+  NameEntryTask* task =
+      (NameEntryTask*)Task_CreateChild(gNameEntryScript, parent);
 
-    task->maxLength = maxLength;
+  task->maxLength = maxLength;
 }

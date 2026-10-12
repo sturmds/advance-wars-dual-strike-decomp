@@ -2,14 +2,13 @@
 #include "game/sprite_anim.h"
 
 /* Returns the slot that holds file, or NULL. Passing 0 finds a free slot. */
-SpriteAnim *SpriteAnim_Find(const void *file)
-{
-    int i;
+SpriteAnim* SpriteAnim_Find(const void* file) {
+  int i;
 
-    for (i = 0; i < SPRITE_ANIM_COUNT; i++) {
-        if (gSpriteAnims[i].data == file) {
-            return &gSpriteAnims[i];
-        }
+  for (i = 0; i < SPRITE_ANIM_COUNT; i++) {
+    if (gSpriteAnims[i].data == file) {
+      return &gSpriteAnims[i];
     }
-    return NULL;
+  }
+  return NULL;
 }

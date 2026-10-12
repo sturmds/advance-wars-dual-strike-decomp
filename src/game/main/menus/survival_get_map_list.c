@@ -9,22 +9,21 @@ extern u16 gSurvivalMapsMode5[];
 
 /* The map list of a Survival mode variant (0-5): map ids (indexes into
  * Ov000_gMapHeaders) ending with 0. NULL for other modes. */
-u16 *Survival_GetMapList(int mode)
-{
-    switch (mode) {
+u16* Survival_GetMapList(int mode) {
+  switch (mode) {
     case 0:
-        return gSurvivalMapsMode0;
+      return gSurvivalMapsMode0;
     case 1:
-        return gSurvivalMapsMode1;
+      return gSurvivalMapsMode1;
     case 2:
-        return gSurvivalMapsMode2;
+      return gSurvivalMapsMode2;
     case 3:
-        return gSurvivalMapsMode3;
+      return gSurvivalMapsMode3;
     case 4:
-        return gSurvivalMapsMode4;
+      return gSurvivalMapsMode4;
     case 5:
-        return gSurvivalMapsMode5;
+      return gSurvivalMapsMode5;
     default:
-        return NULL;
-    }
+      return NULL;
+  }
 }

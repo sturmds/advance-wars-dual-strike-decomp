@@ -2,7 +2,4 @@
 
 void LinkScreen_PushBack(void);
 
-void func_0207287c(void)
-{
-    LinkScreen_PushBack();
-}
+void func_0207287c(void) { LinkScreen_PushBack(); }

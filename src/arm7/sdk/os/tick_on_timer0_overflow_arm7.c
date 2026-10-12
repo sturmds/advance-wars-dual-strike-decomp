@@ -8,14 +8,13 @@ extern u32 gOsiNeedResetTimer_Arm7;
  * ARM7 copy of OSi_CountUpTick, the timer 0 overflow handler: counts one
  * more overflow and arms itself for the next.
  */
-void Tick_OnTimer0Overflow_Arm7(void *arg)
-{
-    gOsiTickCounter_Arm7++;
-    if (gOsiNeedResetTimer_Arm7 != 0) {
-        REG_TM0CNT_H = 0;
-        REG_TM0CNT_L = 0;
-        REG_TM0CNT_H = TMCNT_START_IRQ_DIV64;
-        gOsiNeedResetTimer_Arm7 = 0;
-    }
-    Timer_InstallIrqSlot_Arm7(0, Tick_OnTimer0Overflow_Arm7, NULL);
+void Tick_OnTimer0Overflow_Arm7(void* arg) {
+  gOsiTickCounter_Arm7++;
+  if (gOsiNeedResetTimer_Arm7 != 0) {
+    REG_TM0CNT_H = 0;
+    REG_TM0CNT_L = 0;
+    REG_TM0CNT_H = TMCNT_START_IRQ_DIV64;
+    gOsiNeedResetTimer_Arm7 = 0;
+  }
+  Timer_InstallIrqSlot_Arm7(0, Tick_OnTimer0Overflow_Arm7, NULL);
 }

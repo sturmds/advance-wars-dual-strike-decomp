@@ -3,35 +3,36 @@
 #include "game/wireless_host.h"
 
 extern int data_022a7e68;
-extern void *data_022a7e6c;
+extern void* data_022a7e6c;
 extern WirelessHostUser gWirelessHostUser;
 
 #define VBLANK_COUNT_ADDR 0x027ffc3c
 
 void Sound_StopSong(void);
 void Sound_Shutdown(void);
-void *Mem_Alloc(u32 size);
+void* Mem_Alloc(u32 size);
 void WirelessHost_FillInfo(void);
-void DownloadPlay_SetUpWork(void *work, WirelessHostUser *user, u32 id, u16 tick, int dma);
+void DownloadPlay_SetUpWork(void* work, WirelessHostUser* user, u32 id,
+                            u16 tick, int dma);
 void DownloadPlay_SetSendSizeAndChildren(int size, int count);
-void func_020fc700(u32 aid, u32 state, void *arg);
+void func_020fc700(u32 aid, u32 state, void* arg);
 BOOL func_020fc698(void);
 
 /* Stops the sound, then sets up the wireless host with a 0xc000-byte work
  * area and state 3. */
-void DownloadPlay_Start(void)
-{
-    u32 tick;
+void DownloadPlay_Start(void) {
+  u32 tick;
 
-    Sound_StopSong();
-    Sound_Shutdown();
-    data_022a7e6c = Mem_Alloc(0xc000);
-    data_022a7e68 = 3;
-    WirelessHost_FillInfo();
-    /* needed to match: volatile read keeps the tick load before the other arguments */
-    tick = *(volatile u32 *)VBLANK_COUNT_ADDR;
-    DownloadPlay_SetUpWork(data_022a7e6c, &gWirelessHostUser, WIRELESS_HOST_ID, tick, 2);
-    DownloadPlay_SetSendSizeAndChildren(0x100, 8);
-    MbComm_SetCallback(func_020fc700);
-    func_020fc698();
+  Sound_StopSong();
+  Sound_Shutdown();
+  data_022a7e6c = Mem_Alloc(0xc000);
+  data_022a7e68 = 3;
+  WirelessHost_FillInfo();
+  /* needed to match: volatile read keeps the tick load before the other arguments */
+  tick = *(volatile u32*)VBLANK_COUNT_ADDR;
+  DownloadPlay_SetUpWork(data_022a7e6c, &gWirelessHostUser, WIRELESS_HOST_ID,
+                         tick, 2);
+  DownloadPlay_SetSendSizeAndChildren(0x100, 8);
+  MbComm_SetCallback(func_020fc700);
+  func_020fc698();
 }

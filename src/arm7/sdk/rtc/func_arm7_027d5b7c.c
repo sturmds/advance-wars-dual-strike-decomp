@@ -2,9 +2,8 @@
 
 /* Rewrites an alarm hour from 12-hour to 24-hour form (BCD). An hour that
  * is valid in neither form is cleared. */
-void func_arm7_027d5b7c(RtcAlarm *alarm)
-{
-    switch (alarm->hour) {
+void func_arm7_027d5b7c(RtcAlarm* alarm) {
+  switch (alarm->hour) {
     case 0x00:
     case 0x01:
     case 0x02:
@@ -15,17 +14,17 @@ void func_arm7_027d5b7c(RtcAlarm *alarm)
     case 0x07:
     case 0x10:
     case 0x11:
-        if (alarm->pm) {
-            alarm->hour = alarm->hour + 0x12;
-        }
-        break;
+      if (alarm->pm) {
+        alarm->hour = alarm->hour + 0x12;
+      }
+      break;
     case 0x08:
     case 0x09:
-        /* BCD: 08 and 09 carry into the tens digit */
-        if (alarm->pm) {
-            alarm->hour = alarm->hour + 0x18;
-        }
-        break;
+      /* BCD: 08 and 09 carry into the tens digit */
+      if (alarm->pm) {
+        alarm->hour = alarm->hour + 0x18;
+      }
+      break;
     case 0x12:
     case 0x13:
     case 0x14:
@@ -38,11 +37,11 @@ void func_arm7_027d5b7c(RtcAlarm *alarm)
     case 0x21:
     case 0x22:
     case 0x23:
-        alarm->pm = 1;
-        break;
+      alarm->pm = 1;
+      break;
     default:
-        alarm->pm = 0;
-        alarm->hour = 0;
-        break;
-    }
+      alarm->pm = 0;
+      alarm->hour = 0;
+      break;
+  }
 }

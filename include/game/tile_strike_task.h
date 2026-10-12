@@ -10,21 +10,22 @@ struct SpriteAnim;
  * sub screen draws it as a 2D sprite and the main screen in 3D; the same
  * fields serve both. */
 typedef struct TileStrikeTask {
-    u8 pad_00[0x2c];
-    int tileX;
-    int tileY;
-    u8 pad_34[0x50 - 0x34];
-    struct SpriteAnim *sprite;              /* handle from SpriteAnim_Create or BmapSpriteAnim_Create */
-    int x;                             /* pixels on the map */
-    int y;                             /* 2D: sprite y, moves down; 3D: tile y */
-    int height;                        /* 3D only: counts down from 100 to 0 */
+  u8 pad_00[0x2c];
+  int tileX;
+  int tileY;
+  u8 pad_34[0x50 - 0x34];
+  struct SpriteAnim*
+      sprite; /* handle from SpriteAnim_Create or BmapSpriteAnim_Create */
+  int x;      /* pixels on the map */
+  int y;      /* 2D: sprite y, moves down; 3D: tile y */
+  int height; /* 3D only: counts down from 100 to 0 */
 } TileStrikeTask;
 
 /* Position of a 3D sprite, as SpriteAnim_Draw3d takes it. */
 typedef struct TileStrikePos {
-    int x;
-    int y;
-    int z;
+  int x;
+  int y;
+  int z;
 } TileStrikePos;
 
 #endif

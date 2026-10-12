@@ -6,10 +6,9 @@
 void Sound_FadeMusicVolume(int from, int to, int frames);
 
 /* Fades the song back to full volume (127) over 40 frames. */
-void Sound_RestoreSongVolume(void)
-{
-    if (gCurrentSong == SONG_NONE) {
-        return;
-    }
-    Sound_FadeMusicVolume(-1, 127, 40);
+void Sound_RestoreSongVolume(void) {
+  if (gCurrentSong == SONG_NONE) {
+    return;
+  }
+  Sound_FadeMusicVolume(-1, 127, 40);
 }

@@ -3,9 +3,9 @@
 #include "game/weather.h"
 
 void Weather_SetDaysIfChanged(int weather);
-WeatherTaskWork *ScriptSlot_Start(const void *descriptor, int arg);
+WeatherTaskWork* ScriptSlot_Start(const void* descriptor, int arg);
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const u32 data_02166d18[];
 
@@ -14,14 +14,13 @@ extern const u32 data_02166d18[];
 /* Sets the days for the map's next weather and, when it differs from the
  * current one, starts the weather task for it (as Weather_Set does). The
  * current weather field itself is not written here. */
-void Weather_StartNext(void)
-{
-    WeatherTaskWork *work;
+void Weather_StartNext(void) {
+  WeatherTaskWork* work;
 
-    Weather_SetDaysIfChanged(VIEW->nextWeather);
-    if (VIEW->weather == VIEW->nextWeather) {
-        return;
-    }
-    work = ScriptSlot_Start(data_02166d18, 0);
-    work->weather = VIEW->nextWeather;
+  Weather_SetDaysIfChanged(VIEW->nextWeather);
+  if (VIEW->weather == VIEW->nextWeather) {
+    return;
+  }
+  work = ScriptSlot_Start(data_02166d18, 0);
+  work->weather = VIEW->nextWeather;
 }

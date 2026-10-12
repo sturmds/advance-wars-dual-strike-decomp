@@ -13,18 +13,17 @@ void UnitMoveSelect_HandleTouch(void);
  * the acting unit moves. Moves the cursor and view and draws the move path;
  * once the view stops scrolling, A and B go first and touch is read only
  * when neither was pressed. */
-void UnitMoveSelect_Update(void)
-{
-    func_020c4024();
-    func_020c4028();
-    MapView_ScrollStep(4);
-    Map_ScrollViewToTile(1);
-    MovePath_Draw();
-    if (!MapView_IsAtRest()) {
-        return;
-    }
-    if (UnitMoveSelect_HandleButtons()) {
-        return;
-    }
-    UnitMoveSelect_HandleTouch();
+void UnitMoveSelect_Update(void) {
+  func_020c4024();
+  func_020c4028();
+  MapView_ScrollStep(4);
+  Map_ScrollViewToTile(1);
+  MovePath_Draw();
+  if (!MapView_IsAtRest()) {
+    return;
+  }
+  if (UnitMoveSelect_HandleButtons()) {
+    return;
+  }
+  UnitMoveSelect_HandleTouch();
 }

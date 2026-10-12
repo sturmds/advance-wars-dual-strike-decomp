@@ -1,10 +1,9 @@
 #include "types.h"
 #include "game/move_path.h"
 
-extern MovePath *gMovePath;
+extern MovePath* gMovePath;
 
-void MovePath_SetCursor(int x, int y)
-{
-    gMovePath->cursorX = x;
-    gMovePath->cursorY = y;
+void MovePath_SetCursor(int x, int y) {
+  gMovePath->cursorX = x;
+  gMovePath->cursorY = y;
 }

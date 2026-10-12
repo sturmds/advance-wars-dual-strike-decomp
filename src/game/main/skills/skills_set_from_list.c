@@ -1,21 +1,20 @@
 #include "types.h"
 
-void Skills_Clear(u32 *skills);
-void PartnerBoost2(u32 *skills, int id);
+void Skills_Clear(u32* skills);
+void PartnerBoost2(u32* skills, int id);
 
 /* Clears a skill set, then turns on the ids in `list` (up to 4, ended by 0). */
-void Skills_SetFromList(const u8 *list, u32 *skills)
-{
-    int i;
+void Skills_SetFromList(const u8* list, u32* skills) {
+  int i;
 
-    Skills_Clear(skills);
-    if (list == NULL) {
-        return;
+  Skills_Clear(skills);
+  if (list == NULL) {
+    return;
+  }
+  for (i = 0; i < 4; i++) {
+    if (list[i] == 0) {
+      return;
     }
-    for (i = 0; i < 4; i++) {
-        if (list[i] == 0) {
-            return;
-        }
-        PartnerBoost2(skills, list[i]);
-    }
+    PartnerBoost2(skills, list[i]);
+  }
 }

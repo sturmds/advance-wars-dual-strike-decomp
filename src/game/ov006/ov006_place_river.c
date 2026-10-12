@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -27,73 +27,74 @@ void Ov006_BreakCellBlock(int x, int y);
  * Ov006_GetLandMaskPiece when that gives 0. After the neighbours are fixed up,
  * the tiles above and below get their own updates. Returns 0 when no river
  * fits there, 1 when one was placed. */
-int Ov006_PlaceRiver(int x, int y)
-{
-    int blockCell;
-    int cell;
+int Ov006_PlaceRiver(int x, int y) {
+  int blockCell;
+  int cell;
 
-    blockCell = Ov006_GetNeighborTile(x, y);
-    if (blockCell < 0) {
-        return 0;
-    }
-    if (blockCell != 0) {
-        cell = Ov006_GetRiverPiece(x, y);
-        if (cell == 0) {
-            Ov006_SetTerrain(x, y, TERRAIN_RIVER);
-            Ov006_StoreMapCell(x, y, blockCell);
-            Ov006_RefreshNeighborRiverCells(x, y);
-        } else if (cell > 0) {
-            blockCell &= 0xfe00;
-            /* needed to match: each flag value is tested twice */
-            if (blockCell == 0x4000 && blockCell == 0x4000) {
-                Ov006_SetTerrain(x, y, TERRAIN_RIVER);
-                Ov006_StoreMapCell(x, y, cell);
-            }
-            if (blockCell == 0x2000 && blockCell == 0x2000) {
-                Ov006_SetTerrain(x, y, TERRAIN_RIVER);
-                Ov006_StoreMapCell(x, y, cell);
-            }
-            if (blockCell == 0) {
-                Ov006_SetTerrain(x, y, TERRAIN_RIVER);
-                Ov006_StoreMapCell(x, y, cell);
-            }
-            Ov006_RefreshNeighborRiverCells(x, y);
-        } else {
-            return 0;
-        }
-    } else if (Ov006_GetNeighborTile(x, y) >= 0) {
-        cell = Ov006_GetLandMaskPiece(x, y);
-        if (cell != 0) {
-            blockCell = Ov006_GetRiverPiece(x, y);
-            if (blockCell != 0) {
-                cell = blockCell;
-            }
-        }
-        if (cell > 0) {
-            Ov006_SetTerrain(x, y, TERRAIN_RIVER);
-            Ov006_StoreMapCell(x, y, cell);
-            Ov006_RefreshNeighborRiverCells(x, y);
-        } else {
-            return 0;
-        }
+  blockCell = Ov006_GetNeighborTile(x, y);
+  if (blockCell < 0) {
+    return 0;
+  }
+  if (blockCell != 0) {
+    cell = Ov006_GetRiverPiece(x, y);
+    if (cell == 0) {
+      Ov006_SetTerrain(x, y, TERRAIN_RIVER);
+      Ov006_StoreMapCell(x, y, blockCell);
+      Ov006_RefreshNeighborRiverCells(x, y);
+    } else if (cell > 0) {
+      blockCell &= 0xfe00;
+      /* needed to match: each flag value is tested twice */
+      if (blockCell == 0x4000 && blockCell == 0x4000) {
+        Ov006_SetTerrain(x, y, TERRAIN_RIVER);
+        Ov006_StoreMapCell(x, y, cell);
+      }
+      if (blockCell == 0x2000 && blockCell == 0x2000) {
+        Ov006_SetTerrain(x, y, TERRAIN_RIVER);
+        Ov006_StoreMapCell(x, y, cell);
+      }
+      if (blockCell == 0) {
+        Ov006_SetTerrain(x, y, TERRAIN_RIVER);
+        Ov006_StoreMapCell(x, y, cell);
+      }
+      Ov006_RefreshNeighborRiverCells(x, y);
     } else {
-        return 0;
+      return 0;
     }
+  } else if (Ov006_GetNeighborTile(x, y) >= 0) {
+    cell = Ov006_GetLandMaskPiece(x, y);
+    if (cell != 0) {
+      blockCell = Ov006_GetRiverPiece(x, y);
+      if (blockCell != 0) {
+        cell = blockCell;
+      }
+    }
+    if (cell > 0) {
+      Ov006_SetTerrain(x, y, TERRAIN_RIVER);
+      Ov006_StoreMapCell(x, y, cell);
+      Ov006_RefreshNeighborRiverCells(x, y);
+    } else {
+      return 0;
+    }
+  } else {
+    return 0;
+  }
 
-    if (Ov006_CountRiverNeighbors(x, y) != 0) {
-        Ov006_AddRiverMouths(x, y);
+  if (Ov006_CountRiverNeighbors(x, y) != 0) {
+    Ov006_AddRiverMouths(x, y);
+  }
+  if (y > 0 && Ov006_TileMatches(x, y - 1, 1) != 0) {
+    Ov006_StoreMapCell(x, y - 1, 1);
+    func_ov006_0235dd24(x, y - 1);
+    if (STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] ==
+        TERRAIN_MOUNTAIN) {
+      Ov006_PlaceMountain(x, y);
     }
-    if (y > 0 && Ov006_TileMatches(x, y - 1, 1) != 0) {
-        Ov006_StoreMapCell(x, y - 1, 1);
-        func_ov006_0235dd24(x, y - 1);
-        if (STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]] == TERRAIN_MOUNTAIN) {
-            Ov006_PlaceMountain(x, y);
-        }
-    }
-    if (y < STATE->unk_1c4->mapHeight - 1 && Ov006_TileMatches(x, y + 1, 1) != 0) {
-        func_ov006_0235da70(x, y + 1, 1);
-    }
-    Ov006_RefitCellsAround(x, y);
-    Ov006_BreakCellBlock(x, y);
-    return 1;
+  }
+  if (y < STATE->unk_1c4->mapHeight - 1 &&
+      Ov006_TileMatches(x, y + 1, 1) != 0) {
+    func_ov006_0235da70(x, y + 1, 1);
+  }
+  Ov006_RefitCellsAround(x, y);
+  Ov006_BreakCellBlock(x, y);
+  return 1;
 }

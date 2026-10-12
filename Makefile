@@ -72,7 +72,7 @@ progress: all
 	@$(PYTHON) tools/progress.py
 
 # clang-format on src/ and include/, style in .clang-format. format rewrites
-# files; format-check only reports.
+# files; format-check only reports and is part of release.
 format: setup
 	@$(PYTHON) tools/format.py
 
@@ -80,6 +80,7 @@ format-check: setup
 	@$(PYTHON) tools/format.py --check
 
 release: setup
+	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
 	@echo "release: OK"

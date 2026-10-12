@@ -7,9 +7,9 @@
 /* One entry of a sleep callback list (pre-sleep or post-sleep). */
 typedef struct PowerHookEntry PowerHookEntry;
 struct PowerHookEntry {
-    void (*callback)(void *arg);
-    void *arg;
-    PowerHookEntry *next;
+  void (*callback)(void* arg);
+  void* arg;
+  PowerHookEntry* next;
 };
 
 /* PXI FIFO tag of the power management service. */
@@ -20,62 +20,61 @@ struct PowerHookEntry {
 #define PM_TRIGGER_CARTRIDGE 0x10
 
 /* Called with the ARM7 result and the argument given when the command was started. */
-typedef void (*PMCallback)(u32 result, u32 *arg);
+typedef void (*PMCallback)(u32 result, u32* arg);
 
 /* The command in flight: PM runs one at a time (lock), and the reply calls callback. */
 typedef struct PowerCommandState PowerCommandState;
 struct PowerCommandState {
-    int lock;
-    PMCallback callback;
-    u32 *arg;
-    u32 *unk_0c;
+  int lock;
+  PMCallback callback;
+  u32* arg;
+  u32* unk_0c;
 };
 
 /* Per PM register: whether its read finished, and where to store the value. */
 typedef struct PowerChipReadSlot PowerChipReadSlot;
 struct PowerChipReadSlot {
-    u16 done;
-    u16 *data;
+  u16 done;
+  u16* data;
 };
 
 #define POWER_CHIP_READ_SLOTS 4
 
-void PowerHook_CallAll(PowerHookEntry *list);
-void Power_SaveSyncResult(u32 result, u32 *dest);
+void PowerHook_CallAll(PowerHookEntry* list);
+void Power_SaveSyncResult(u32 result, u32* dest);
 int Power_SpinUntilIdle(void);
 BOOL Power_LcdsPowered(void);
 /* led: POWER_LIGHT_* state to set with the LCD, 0 to leave the LED alone. */
 BOOL Power_SwitchLcds(int on, int led, BOOL force, BOOL sync);
 
 /* Sends a power LED state (POWER_LIGHT_*) to the ARM7. */
-int Power_RequestLedState(int led, PMCallback callback, u32 *arg);
-
+int Power_RequestLedState(int led, PMCallback callback, u32* arg);
 
 /* ARM7 side: the power chip driver that answers the requests above. */
 
 /* Request ids in the high byte of the first PXI word. Register reads are
  * answered with POWER_MSG_REGISTER_VALUE_BASE + the register number. */
 enum {
-    POWER_MSG_HANDSHAKE = 0x60,
-    POWER_MSG_PREPARE_SLEEP = 0x61,
-    /* 0x62 is POWER_MSG_ENTER_SLEEP below */
-    POWER_MSG_APPLY_ORDER = 0x63,
-    POWER_MSG_STORE_REGISTER = 0x64,
-    POWER_MSG_FETCH_REGISTER = 0x65,
-    /* 0x66 is POWER_MSG_LED_STATE below */
-    POWER_MSG_QUERY_BLINK_SCRIPT = 0x67,
-    POWER_MSG_REGISTER_VALUE_BASE = 0x70
+  POWER_MSG_HANDSHAKE = 0x60,
+  POWER_MSG_PREPARE_SLEEP = 0x61,
+  /* 0x62 is POWER_MSG_ENTER_SLEEP below */
+  POWER_MSG_APPLY_ORDER = 0x63,
+  POWER_MSG_STORE_REGISTER = 0x64,
+  POWER_MSG_FETCH_REGISTER = 0x65,
+  /* 0x66 is POWER_MSG_LED_STATE below */
+  POWER_MSG_QUERY_BLINK_SCRIPT = 0x67,
+  POWER_MSG_REGISTER_VALUE_BASE = 0x70
 };
 
-#define POWER_MSG_MAX_HALFWORDS 16           /* halfwords in one request */
+#define POWER_MSG_MAX_HALFWORDS 16 /* halfwords in one request */
 
 /* PowerRequestInbox.unk_20: the job the SPI thread is running. */
 enum {
-    POWER_JOB_NONE = 0,
-    POWER_JOB_SLEEPING = 1,
-    POWER_JOB_ORDER = 2,
-    POWER_JOB_FETCH = 3,
-    POWER_JOB_STORE = 4
+  POWER_JOB_NONE = 0,
+  POWER_JOB_SLEEPING = 1,
+  POWER_JOB_ORDER = 2,
+  POWER_JOB_FETCH = 3,
+  POWER_JOB_STORE = 4
 };
 
 /* ARM7 side: the power chip sits on the SPI bus (sdk/spi.h). */
@@ -126,10 +125,10 @@ enum {
 #define PM_TRIGGER_COVER_OPEN 0x4
 
 /* ARM7 registers and interrupt bits used to wake from sleep. */
-#define REG_KEYCNT ((volatile u16 *)0x04000132)
-#define REG_RCNT ((volatile u16 *)0x04000134)
+#define REG_KEYCNT ((volatile u16*)0x04000132)
+#define REG_RCNT ((volatile u16*)0x04000134)
 #define KEYCNT_IRQ 0x4000
-#define REG_POWCNT2 ((volatile u16 *)0x04000304)
+#define REG_POWCNT2 ((volatile u16*)0x04000304)
 #define POWCNT2_WIRELESS 0x2
 #define IRQ_RTC 0x80
 #define IRQ_KEY 0x1000
@@ -140,10 +139,10 @@ enum {
 /* PM commands from the ARM9 arrive here a halfword at a time. */
 typedef struct PowerRequestInbox PowerRequestInbox;
 struct PowerRequestInbox {
-    u16 words[16];
-    u32 unk_20;
-    u32 value;                         /* value written, or the utility argument */
-    u32 reg;                           /* register read or written */
+  u16 words[16];
+  u32 unk_20;
+  u32 value; /* value written, or the utility argument */
+  u32 reg;   /* register read or written */
 };
 
 extern PowerRequestInbox data_arm7_03809ffc;
@@ -170,9 +169,9 @@ extern int gPowerLedLastState;
  */
 typedef struct PowerLedBlinkScript PowerLedBlinkScript;
 struct PowerLedBlinkScript {
-    u64 bits;
-    u16 stepCount;
-    u16 framesPerStep;
+  u64 bits;
+  u16 stepCount;
+  u16 framesPerStep;
 };
 
 /* LED patterns: the current one and the step it has reached. */

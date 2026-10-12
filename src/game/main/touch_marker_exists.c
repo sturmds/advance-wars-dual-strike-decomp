@@ -3,9 +3,8 @@
 
 extern const TaskScriptCmd gTouchMarkerScript[];
 
-Task *Task_FindByScript(const TaskScriptCmd *script);
+Task* Task_FindByScript(const TaskScriptCmd* script);
 
-BOOL TouchMarker_Exists(void)
-{
-    return Task_FindByScript(gTouchMarkerScript) != NULL;
+BOOL TouchMarker_Exists(void) {
+  return Task_FindByScript(gTouchMarkerScript) != NULL;
 }

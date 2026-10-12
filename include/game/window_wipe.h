@@ -9,8 +9,9 @@
 
 #define WIPE_LINES 192
 
-extern u16 gWipeWin0hTable[WIPE_LINES]; /* WIN0H per scanline: left << 8 | right */
-extern s16 data_0216e29c;             /* wipe progress in pixels */
+extern u16
+    gWipeWin0hTable[WIPE_LINES]; /* WIN0H per scanline: left << 8 | right */
+extern s16 data_0216e29c;        /* wipe progress in pixels */
 extern s16 data_0216e2a8;
 
 #endif

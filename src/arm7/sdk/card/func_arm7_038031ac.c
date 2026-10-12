@@ -2,7 +2,4 @@
 
 void CardSave_WaitUntilIdle(int, int);
 
-void func_arm7_038031ac(void)
-{
-    CardSave_WaitUntilIdle(0, 0x316);
-}
+void func_arm7_038031ac(void) { CardSave_WaitUntilIdle(0, 0x316); }

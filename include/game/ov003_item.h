@@ -8,11 +8,11 @@
 /* One of the 4 8-byte entries in data_ov003_02369b98 (overlay 3). A free
  * entry has timer 0. */
 typedef struct Ov003Item {
-    s16 x;                             /* 8 per tile, like Ov003Object */
-    s16 y;
-    u16 timer;                         /* frames left; 600 when it appears */
-    u8 kind;                           /* 1 to 5: picks the sprite */
-    u8 pad_07;
+  s16 x; /* 8 per tile, like Ov003Object */
+  s16 y;
+  u16 timer; /* frames left; 600 when it appears */
+  u8 kind;   /* 1 to 5: picks the sprite */
+  u8 pad_07;
 } Ov003Item;
 
 typedef char Ov003Item_size_check[sizeof(Ov003Item) == 8 ? 1 : -1];

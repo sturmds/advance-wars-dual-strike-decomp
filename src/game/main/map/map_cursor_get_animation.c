@@ -9,79 +9,79 @@ int Screen_AddCornerIndex(int x, int y, int base);
  * animations by screen corner (Screen_AddCornerIndex); style 0 uses the
  * second set over an empty tile that Map_IsFreeDeployCity accepts (a city a unit
  * can be deployed from). Other styles not listed are their own animation. */
-int MapCursor_GetAnimation(int *xp, int *yp, int style)
-{
-    int x = *xp;
-    int y = *yp;
+int MapCursor_GetAnimation(int* xp, int* yp, int style) {
+  int x = *xp;
+  int y = *yp;
 
-    switch (style) {
+  switch (style) {
     case 0:
-        x += 8;
-        y += 8;
-        style = Screen_AddCornerIndex(x, y, Map_IsFreeDeployCity((s16)(x >> 4), (s16)(y >> 4)) ? 4 : 0);
-        break;
+      x += 8;
+      y += 8;
+      style = Screen_AddCornerIndex(
+          x, y, Map_IsFreeDeployCity((s16)(x >> 4), (s16)(y >> 4)) ? 4 : 0);
+      break;
     case 1:
-        x += 8;
-        y += 8;
-        style = Screen_AddCornerIndex(x, y, 0);
-        break;
+      x += 8;
+      y += 8;
+      style = Screen_AddCornerIndex(x, y, 0);
+      break;
     case 2:
-        x += 8;
-        y += 8;
-        style = 16;
-        break;
+      x += 8;
+      y += 8;
+      style = 16;
+      break;
     case 3:
-        style = 17;
-        break;
+      style = 17;
+      break;
     case 5:
-        x += 8;
-        y += 8;
-        style = Screen_AddCornerIndex(x, y, 8);
-        break;
+      x += 8;
+      y += 8;
+      style = Screen_AddCornerIndex(x, y, 8);
+      break;
     case 6:
-        x += 8;
-        y += 8;
-        style = Screen_AddCornerIndex(x, y, 12);
-        break;
+      x += 8;
+      y += 8;
+      style = Screen_AddCornerIndex(x, y, 12);
+      break;
     case 7:
-        x += 8;
-        y += 8;
-        style = 18;
-        break;
+      x += 8;
+      y += 8;
+      style = 18;
+      break;
     case 12:
-        x += 8;
-        y += 16;
-        style = 20;
-        break;
+      x += 8;
+      y += 16;
+      style = 20;
+      break;
     case 13:
-        x += 8;
-        y += 16;
-        style = 19;
-        break;
+      x += 8;
+      y += 16;
+      style = 19;
+      break;
     case 14:
-        style = 21;
-        break;
+      style = 21;
+      break;
     case 15:
-        style = 22;
-        break;
+      style = 22;
+      break;
     case 16:
-        style = 23;
-        break;
+      style = 23;
+      break;
     case 17:
-        style = 24;
-        break;
+      style = 24;
+      break;
     case 18:
-        x += 8;
-        y += 8;
-        style = 25;
-        break;
+      x += 8;
+      y += 8;
+      style = 25;
+      break;
     case 19:
-        x += 8;
-        y += 8;
-        style = 26;
-        break;
-    }
-    *xp = x;
-    *yp = y;
-    return style;
+      x += 8;
+      y += 8;
+      style = 26;
+      break;
+  }
+  *xp = x;
+  *yp = y;
+  return style;
 }

@@ -17,17 +17,16 @@ extern MenuStateFrom400 data_0229ef30;
  * and starts a task (func_0205f538). In a two-map battle outside the War
  * Room, the map chosen before (firstMapId) comes first and the selected one
  * becomes the second map. */
-void MapSelect_ConfirmMap(void)
-{
-    Sound_PlaySe(0x10006);
-    func_020b9890();
-    if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
-        State_SetMapIds(SELECTED_MAP_ID(), SECOND_MAP_ID());
-        STATE->unk_59 = TABLES.subStrip;
-    } else if (STATE->twoMaps == 0) {
-        State_SetMapIds(SELECTED_MAP_ID(), 0);
-    } else {
-        State_SetMapIds(data_0229ef30.firstMapId, SELECTED_MAP_ID());
-    }
-    func_0205f538();
+void MapSelect_ConfirmMap(void) {
+  Sound_PlaySe(0x10006);
+  func_020b9890();
+  if (STATE->gameMode == GAME_MODE_WAR_ROOM) {
+    State_SetMapIds(SELECTED_MAP_ID(), SECOND_MAP_ID());
+    STATE->unk_59 = TABLES.subStrip;
+  } else if (STATE->twoMaps == 0) {
+    State_SetMapIds(SELECTED_MAP_ID(), 0);
+  } else {
+    State_SetMapIds(data_0229ef30.firstMapId, SELECTED_MAP_ID());
+  }
+  func_0205f538();
 }

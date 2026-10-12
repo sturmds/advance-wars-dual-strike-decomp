@@ -16,20 +16,19 @@ void func_ov002_023549c8(void);
 
 /* Sets up the HP part of the battle screen: drain profiles, then the HP cells of each side
  * from the shown HP before and after the fight. */
-void Battle_InitHpDisplay(void)
-{
-    u32 shownAfter;
-    u32 shownBefore;
+void Battle_InitHpDisplay(void) {
+  u32 shownAfter;
+  u32 shownBefore;
 
-    Battle_PickHpDrainProfiles();
-    Battle_ShuffleCellOrders();
-    shownAfter = SHOWN_HP(SIDE(0).hpAfter);
-    shownBefore = SHOWN_HP(SIDE(0).hpBefore);
-    Battle_InitHpCells(0, shownBefore, shownAfter);
-    shownAfter = SHOWN_HP(SIDE(1).hpAfter);
-    shownBefore = SHOWN_HP(SIDE(1).hpBefore);
-    Battle_InitHpCells(1, shownBefore, shownAfter);
-    Battle_BuildHitLists();
-    func_ov002_023552d0();
-    func_ov002_023549c8();
+  Battle_PickHpDrainProfiles();
+  Battle_ShuffleCellOrders();
+  shownAfter = SHOWN_HP(SIDE(0).hpAfter);
+  shownBefore = SHOWN_HP(SIDE(0).hpBefore);
+  Battle_InitHpCells(0, shownBefore, shownAfter);
+  shownAfter = SHOWN_HP(SIDE(1).hpAfter);
+  shownBefore = SHOWN_HP(SIDE(1).hpBefore);
+  Battle_InitHpCells(1, shownBefore, shownAfter);
+  Battle_BuildHitLists();
+  func_ov002_023552d0();
+  func_ov002_023549c8();
 }

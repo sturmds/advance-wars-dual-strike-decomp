@@ -15,20 +15,19 @@ void OS_InitException(void);
 void OS_InitVAlarm(void);
 
 /* Runs the OS library initialisers in order. */
-void OS_Init(void)
-{
-    OS_InitArena();
-    PXI_Init();
-    func_0210d21c();
-    func_0210e4bc();
-    func_0210ced0();
-    OS_InitException();
-    func_0210fa9c();
-    OS_InitVAlarm();
-    OSi_InitVramExclusive();
-    OS_InitThread();
-    OS_InitReset();
-    CTRDG_Init();
-    CARD_Init();
-    PM_Init();
+void OS_Init(void) {
+  OS_InitArena();
+  PXI_Init();
+  func_0210d21c();
+  func_0210e4bc();
+  func_0210ced0();
+  OS_InitException();
+  func_0210fa9c();
+  OS_InitVAlarm();
+  OSi_InitVramExclusive();
+  OS_InitThread();
+  OS_InitReset();
+  CTRDG_Init();
+  CARD_Init();
+  PM_Init();
 }

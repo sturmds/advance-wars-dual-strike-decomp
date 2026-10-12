@@ -7,11 +7,10 @@ void Reset_ReloadProgramsFromCard(void);
 void Reset_ClearAndJumpToEntry(void);
 
 /* Waits for the reset request, then reloads both binaries and restarts. */
-void OS_ResetSystem(void)
-{
-    while (data_022a9c34 == 0) {
-    }
-    *REG_IME = 0;
-    Reset_ReloadProgramsFromCard();
-    Reset_ClearAndJumpToEntry();
+void OS_ResetSystem(void) {
+  while (data_022a9c34 == 0) {
+  }
+  *REG_IME = 0;
+  Reset_ReloadProgramsFromCard();
+  Reset_ClearAndJumpToEntry();
 }

@@ -8,13 +8,12 @@ void Turn_AdvanceToNextPlayer(void);
 void Map_MarkCrystalObeliskRange(void);
 void Map_InitTileHp(void);
 
-void func_020c4fa0(void)
-{
-    Players_Reset();
-    Players_ApplyBattleSetup();
-    Turn_AdvanceToNextPlayer();
-    Weather_ResetChances();
-    Map_DrawSpecialTerrain();
-    Map_InitTileHp();
-    Map_MarkCrystalObeliskRange();
+void func_020c4fa0(void) {
+  Players_Reset();
+  Players_ApplyBattleSetup();
+  Turn_AdvanceToNextPlayer();
+  Weather_ResetChances();
+  Map_DrawSpecialTerrain();
+  Map_InitTileHp();
+  Map_MarkCrystalObeliskRange();
 }

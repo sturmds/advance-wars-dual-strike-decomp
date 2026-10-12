@@ -3,25 +3,26 @@
 #include "game/unit_stats.h"
 #include "game/co_data.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 s8 Unit_GetDropDirections(int x, int y, int slot);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
-#define CHART ((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
+#define CHART \
+  ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 
 /* TRUE when the carried unit in cargo slot cargoIndex has a free tile to
  * drop onto next to (x, y) and its move type can enter the terrain at
  * (x, y) itself. */
-BOOL Transport_CanUnloadCargo(MapUnit *carrier, int x, int y, int cargoIndex)
-{
-    u8 *slot = &carrier->cargo[cargoIndex];
+BOOL Transport_CanUnloadCargo(MapUnit* carrier, int x, int y, int cargoIndex) {
+  u8* slot = &carrier->cargo[cargoIndex];
 
-    if (Unit_GetDropDirections(x, y, *slot) == 0) {
-        return FALSE;
-    }
-    return CHART[Ov000_gUnitStats[STATE->units[*slot].type].moveType]
-               [MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)])] != -1;
+  if (Unit_GetDropDirections(x, y, *slot) == 0) {
+    return FALSE;
+  }
+  return CHART[Ov000_gUnitStats[STATE->units[*slot].type].moveType]
+              [MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)])] !=
+         -1;
 }

@@ -2,7 +2,4 @@
 
 extern int gFireTargetCount;
 
-int FireTargets_GetCount(void)
-{
-    return gFireTargetCount;
-}
+int FireTargets_GetCount(void) { return gFireTargetCount; }

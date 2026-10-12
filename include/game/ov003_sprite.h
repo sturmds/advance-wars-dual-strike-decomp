@@ -6,23 +6,23 @@
 
 /* Where a sprite of Ov003_CreateRowSprite was made and which row it belongs to. */
 typedef struct Ov003SpriteSpot {
-    s16 x;
-    s16 y;
-    u8 row;                            /* compared with Ov003Unit.row */
+  s16 x;
+  s16 y;
+  u8 row; /* compared with Ov003Unit.row */
 } Ov003SpriteSpot;
 
 /* A sprite from Sprite_CreateTask whose per-sprite data in overlay 3 starts at
  * 0x60 (Ov003_CreateRowSprite sets it, Ov003_CreateAnchoredSprite reads it). */
 typedef struct Ov003Sprite {
-    u8 pad_00[0x60];
-    Ov003SpriteSpot spot;
+  u8 pad_00[0x60];
+  Ov003SpriteSpot spot;
 } Ov003Sprite;
 
 /* A sprite from Ov003_CreateUnitSprite that follows one unit; its callback is
  * func_ov003_02364300. */
 typedef struct Ov003UnitSprite {
-    u8 pad_00[0x60];
-    Ov003Unit *unit;
+  u8 pad_00[0x60];
+  Ov003Unit* unit;
 } Ov003UnitSprite;
 
 #endif

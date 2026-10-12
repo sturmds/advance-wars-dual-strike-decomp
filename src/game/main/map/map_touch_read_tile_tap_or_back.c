@@ -6,7 +6,7 @@ BOOL MapTouch_InBackButton(int x, int y);
 void TouchMarker_Resume(void);
 void TouchMarker_Destroy(void);
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern s16 gEventScriptOwnsInput;
 
@@ -14,14 +14,13 @@ extern s16 gEventScriptOwnsInput;
 
 /* Bits returned, the same as func_020ef1bc returns for the A and B buttons. */
 #define INPUT_CONFIRM 0x10
-#define INPUT_CANCEL  0x20
+#define INPUT_CANCEL 0x20
 
-static inline BOOL IsTouchInPhase(int phase)
-{
-    if (gTouch.active != 0 && gTouch.phase == phase) {
-        return TRUE;
-    }
-    return FALSE;
+static inline BOOL IsTouchInPhase(int phase) {
+  if (gTouch.active != 0 && gTouch.phase == phase) {
+    return TRUE;
+  }
+  return FALSE;
 }
 
 /* Touch input while the player picks a map tile. A new touch on the box
@@ -29,35 +28,34 @@ static inline BOOL IsTouchInPhase(int phase)
  * the touch began (unk_30, unk_32, set by MapCursor_UpdateFromTouch) confirms
  * and resumes the touch marker task; TOUCH_HELD clears that tile. Returns 0
  * while gEventScriptOwnsInput is set. */
-u32 MapTouch_ReadTileTapOrBack(void)
-{
-    int touchX = gTouch.x;
-    int touchY = gTouch.y;
+u32 MapTouch_ReadTileTapOrBack(void) {
+  int touchX = gTouch.x;
+  int touchY = gTouch.y;
 
-    if (gEventScriptOwnsInput != 0) {
-        return 0;
-    }
-    if (IsTouchInPhase(TOUCH_PRESSED) && MapTouch_InBackButton(touchX, touchY)) {
-        return INPUT_CANCEL;
-    }
-    switch (gTouch.phase) {
-    case TOUCH_PRESSED:
-        break;
-    case TOUCH_HELD:
-        if (IsTouchInPhase(TOUCH_HELD)) {
-            TouchMarker_Destroy();
-            GAME->unk_30 = 0xff;
-            GAME->unk_32 = 0xff;
-        }
-        break;
-    case TOUCH_RELEASED:
-        if (IsTouchInPhase(TOUCH_RELEASED)) {
-            if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
-                TouchMarker_Resume();
-                return INPUT_CONFIRM;
-            }
-        }
-        break;
-    }
+  if (gEventScriptOwnsInput != 0) {
     return 0;
+  }
+  if (IsTouchInPhase(TOUCH_PRESSED) && MapTouch_InBackButton(touchX, touchY)) {
+    return INPUT_CANCEL;
+  }
+  switch (gTouch.phase) {
+    case TOUCH_PRESSED:
+      break;
+    case TOUCH_HELD:
+      if (IsTouchInPhase(TOUCH_HELD)) {
+        TouchMarker_Destroy();
+        GAME->unk_30 = 0xff;
+        GAME->unk_32 = 0xff;
+      }
+      break;
+    case TOUCH_RELEASED:
+      if (IsTouchInPhase(TOUCH_RELEASED)) {
+        if (GAME->cursorX == GAME->unk_30 && GAME->cursorY == GAME->unk_32) {
+          TouchMarker_Resume();
+          return INPUT_CONFIRM;
+        }
+      }
+      break;
+  }
+  return 0;
 }

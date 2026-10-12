@@ -3,6 +3,4 @@
 
 void IrqSlot_CallAndClear(int weather);
 
-void func_0210cc10(void) {
-    IrqSlot_CallAndClear(WEATHER_CLEAR);
-}
+void func_0210cc10(void) { IrqSlot_CallAndClear(WEATHER_CLEAR); }

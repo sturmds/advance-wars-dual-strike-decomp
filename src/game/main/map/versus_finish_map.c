@@ -14,17 +14,22 @@ extern u32 gLinkPlay;
 /* End of a Versus map. Offline, starts the BattleRecordTask_Start task for this mode's
  * record, with a callback that restarts one-map or two-map Versus. With
  * gLinkPlay set, runs the three calls below instead. */
-void Versus_FinishMap(void)
-{
-    if (gLinkPlay == 0) {
-        if (data_027c027c->unk_48[data_027c0284]->twoMaps == 0) {
-            BattleRecordTask_Start(BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode, 0), Versus_StartVsCpuOneMap);
-        } else {
-            BattleRecordTask_Start(BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode, 0), Versus_StartVsCpuTwoMaps);
-        }
+void Versus_FinishMap(void) {
+  if (gLinkPlay == 0) {
+    if (data_027c027c->unk_48[data_027c0284]->twoMaps == 0) {
+      BattleRecordTask_Start(
+          BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode,
+                                 0),
+          Versus_StartVsCpuOneMap);
     } else {
-        GameFlagsMid_Restore();
-        Link_ClearPlay();
-        func_0210372c();
+      BattleRecordTask_Start(
+          BattleSave_GetRecordId(data_027c027c->unk_48[data_027c0284]->gameMode,
+                                 0),
+          Versus_StartVsCpuTwoMaps);
     }
+  } else {
+    GameFlagsMid_Restore();
+    Link_ClearPlay();
+    func_0210372c();
+  }
 }

@@ -13,11 +13,10 @@ extern u16 data_arm7_03809ff4;
 extern PowerRequestInbox data_arm7_03809ffc;
 
 /* IME writes that return the old value, as the SDK's IRQ helpers do. */
-static inline u16 SetIme(u16 value)
-{
-    u16 prev = *REG_IME;
-    *REG_IME = value;
-    return prev;
+static inline u16 SetIme(u16 value) {
+  u16 prev = *REG_IME;
+  *REG_IME = value;
+  return prev;
 }
 
 /* Request bits besides the WAKE_ON_* ones: which backlights to turn on after waking. */
@@ -35,67 +34,70 @@ static inline u16 SetIme(u16 value)
  * Sleeps until one of the requested triggers fires. data_arm7_03809ff4 holds the
  * triggers and backlight bits of the request, data_arm7_03809ff0 the key pattern.
  */
-void Power_SleepUntilTrigger(void)
-{
-    u16 ime;
-    int intr;
-    u32 irqMask;
-    u8 control;
-    u16 rcnt;
-    int topCommand;
-    int bottomCommand;
+void Power_SleepUntilTrigger(void) {
+  u16 ime;
+  int intr;
+  u32 irqMask;
+  u8 control;
+  u16 rcnt;
+  int topCommand;
+  int bottomCommand;
 
-    ime = SetIme(0);
-    intr = Cpu_MaskIrq_Arm7();
-    irqMask = Irq_ClearEnableBits_Arm7(IRQ_ALL);
-    control = PMi_GetRegister(POWER_SWITCHES_REG_INDEX);
+  ime = SetIme(0);
+  intr = Cpu_MaskIrq_Arm7();
+  irqMask = Irq_ClearEnableBits_Arm7(IRQ_ALL);
+  control = PMi_GetRegister(POWER_SWITCHES_REG_INDEX);
 
-    PowerLed_SelectPattern(POWER_LIGHT_SLOW_FLASH);
-    PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
-    PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
-    SndHw_Disable();
-    PMi_ResetControl(POWER_SWITCH_AMPLIFIER);
+  PowerLed_SelectPattern(POWER_LIGHT_SLOW_FLASH);
+  PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
+  PMi_SetLED(POWER_LIGHT_SLOW_FLASH);
+  SndHw_Disable();
+  PMi_ResetControl(POWER_SWITCH_AMPLIFIER);
 
-    if (data_arm7_03809ff4 & PM_TRIGGER_KEY) {
-        *REG_KEYCNT = data_arm7_03809ff0 | KEYCNT_IRQ;
-        Irq_SetEnableBits_Arm7(IRQ_KEY);
-    }
-    if (data_arm7_03809ff4 & PM_TRIGGER_COVER_OPEN) {
-        Irq_SetEnableBits_Arm7(IRQ_COVER_OPEN);
-    }
-    if (data_arm7_03809ff4 & PM_TRIGGER_RTC_ALARM) {
-        rcnt = *REG_RCNT;
-        func_arm7_037fe3e0(RCNT_MODE_GPIO);
-        func_arm7_037fe3fc(RCNT_SI_DIRECTION, RCNT_SI_DIRECTION);
-        func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
-        Irq_SetEnableBits_Arm7(IRQ_RTC);
-    }
-    if (data_arm7_03809ff4 & PM_TRIGGER_CARD) {
-        Irq_SetEnableBits_Arm7(IRQ_CARD);
-    }
-    if (data_arm7_03809ff4 & PM_TRIGGER_CARTRIDGE) {
-        Irq_SetEnableBits_Arm7(IRQ_CARTRIDGE);
-    }
+  if (data_arm7_03809ff4 & PM_TRIGGER_KEY) {
+    *REG_KEYCNT = data_arm7_03809ff0 | KEYCNT_IRQ;
+    Irq_SetEnableBits_Arm7(IRQ_KEY);
+  }
+  if (data_arm7_03809ff4 & PM_TRIGGER_COVER_OPEN) {
+    Irq_SetEnableBits_Arm7(IRQ_COVER_OPEN);
+  }
+  if (data_arm7_03809ff4 & PM_TRIGGER_RTC_ALARM) {
+    rcnt = *REG_RCNT;
+    func_arm7_037fe3e0(RCNT_MODE_GPIO);
+    func_arm7_037fe3fc(RCNT_SI_DIRECTION, RCNT_SI_DIRECTION);
+    func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
+    Irq_SetEnableBits_Arm7(IRQ_RTC);
+  }
+  if (data_arm7_03809ff4 & PM_TRIGGER_CARD) {
+    Irq_SetEnableBits_Arm7(IRQ_CARD);
+  }
+  if (data_arm7_03809ff4 & PM_TRIGGER_CARTRIDGE) {
+    Irq_SetEnableBits_Arm7(IRQ_CARTRIDGE);
+  }
 
-    Cpu_RestoreIrqBit_Arm7(intr);
-    SetIme(1);
-    func_arm7_0380566c();
+  Cpu_RestoreIrqBit_Arm7(intr);
+  SetIme(1);
+  func_arm7_0380566c();
 
-    PMi_SetRegister(POWER_SWITCHES_REG_INDEX, control);
-    topCommand = (data_arm7_03809ff4 & SLEEP_BACKLIGHT_TOP) ? POWER_ORDER_UPPER_LCD_LIT : POWER_ORDER_UPPER_LCD_DARK;
-    bottomCommand = (data_arm7_03809ff4 & SLEEP_BACKLIGHT_BOTTOM) ? POWER_ORDER_LOWER_LCD_LIT : POWER_ORDER_LOWER_LCD_DARK;
-    Power_ApplyArm9Command(topCommand);
-    Power_ApplyArm9Command(bottomCommand);
-    /* rcnt is only saved for an RTC wake-up, but the original restores it every time */
-    *REG_RCNT = rcnt;
-    PMi_SetControl(POWER_SWITCH_AMPLIFIER);
-    SndHw_Enable();
+  PMi_SetRegister(POWER_SWITCHES_REG_INDEX, control);
+  topCommand = (data_arm7_03809ff4 & SLEEP_BACKLIGHT_TOP)
+                   ? POWER_ORDER_UPPER_LCD_LIT
+                   : POWER_ORDER_UPPER_LCD_DARK;
+  bottomCommand = (data_arm7_03809ff4 & SLEEP_BACKLIGHT_BOTTOM)
+                      ? POWER_ORDER_LOWER_LCD_LIT
+                      : POWER_ORDER_LOWER_LCD_DARK;
+  Power_ApplyArm9Command(topCommand);
+  Power_ApplyArm9Command(bottomCommand);
+  /* rcnt is only saved for an RTC wake-up, but the original restores it every time */
+  *REG_RCNT = rcnt;
+  PMi_SetControl(POWER_SWITCH_AMPLIFIER);
+  SndHw_Enable();
 
-    data_arm7_03809ffc.unk_20 = 0;
-    func_arm7_0380513c(POWER_MSG_ENTER_SLEEP, 0, 0);
+  data_arm7_03809ffc.unk_20 = 0;
+  func_arm7_0380513c(POWER_MSG_ENTER_SLEEP, 0, 0);
 
-    Cpu_MaskIrq_Arm7();
-    Irq_ReplaceEnableBits_Arm7(irqMask);
-    Cpu_RestoreIrqBit_Arm7(intr);
-    SetIme(ime);
+  Cpu_MaskIrq_Arm7();
+  Irq_ReplaceEnableBits_Arm7(irqMask);
+  Cpu_RestoreIrqBit_Arm7(intr);
+  SetIme(ime);
 }

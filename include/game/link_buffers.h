@@ -7,25 +7,28 @@
 
 /* A packet as the senders build it. The queues hold all 24 bytes. */
 typedef struct LinkPacket {
-    u8 header;                         /* sequence number in the low 7 bits; bit 7 set for flagged packets */
-    u8 type;
-    u8 payload[22];
+  u8 header; /* sequence number in the low 7 bits; bit 7 set for flagged packets */
+  u8 type;
+  u8 payload[22];
 } LinkPacket;
 
 /* LinkPacket.type values seen in the packet handlers. */
 #define LINK_PACKET_STOP 1
-#define LINK_PACKET_CHILD_AIDS 2         /* payload: connected child aid bits, low byte first */
-#define LINK_PACKET_PLAYER_NAME 3        /* 3 to 9: name of the player with aid 1 to 7 */
+#define LINK_PACKET_CHILD_AIDS \
+  2 /* payload: connected child aid bits, low byte first */
+#define LINK_PACKET_PLAYER_NAME \
+  3 /* 3 to 9: name of the player with aid 1 to 7 */
 #define LINK_PACKET_SHARING_START 10
 #define LINK_PACKET_SHARING_STARTED 11
 #define LINK_PACKET_SHARING_END 12
 #define LINK_PACKET_SHARING_ENDED 13
-#define LINK_PACKET_ACTION 14            /* 14 to 17: unit action from the player with aid 0 to 3 */
+#define LINK_PACKET_ACTION \
+  14 /* 14 to 17: unit action from the player with aid 0 to 3 */
 #define LINK_PACKET_REACTION 18
 
 /* One queued packet: a LinkPacket. */
 typedef struct LinkQueueSlot {
-    u8 bytes[24];
+  u8 bytes[24];
 } LinkQueueSlot;
 
 /* Each queue below is a ring buffer. Its two trailing bytes are
@@ -34,23 +37,23 @@ typedef struct LinkQueueSlot {
 
 /* data_0229ca88: packets waiting to be sent, 8 slots */
 typedef struct Unk_0229ca88 {
-    LinkQueueSlot slots[8];
-    u8 readIndex;
-    u8 writeIndex;
+  LinkQueueSlot slots[8];
+  u8 readIndex;
+  u8 writeIndex;
 } Unk_0229ca88;
 
 /* data_0229cdfc, 7 entries, one per peer: 16 slots */
 typedef struct Unk_0229cdfc {
-    LinkQueueSlot slots[16];
-    u8 readIndex;
-    u8 writeIndex;
+  LinkQueueSlot slots[16];
+  u8 readIndex;
+  u8 writeIndex;
 } Unk_0229cdfc;
 
 /* data_0229cb4c, 7 entries, one per peer: 4 slots */
 typedef struct Unk_0229cb4c {
-    LinkQueueSlot slots[4];
-    u8 readIndex;
-    u8 writeIndex;
+  LinkQueueSlot slots[4];
+  u8 readIndex;
+  u8 writeIndex;
 } Unk_0229cb4c;
 
 #endif

@@ -3,20 +3,19 @@
 #include "game/Unk_ov003_0235dd38.h"
 #include "game/ov003_unit.h"
 
-extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0280* data_027c0280;
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Task_ResumeScript(void *task);
+void Task_ResumeScript(void* task);
 
 /* Task step: while Ov003State.unk_1d7 is 0, counts 8 frames and eases the
  * blend coefficient EVY from 8 to 0, then resumes the task script. */
-void Ov003_FadeEvyStep(Unk_ov003_0235dd38 *obj)
-{
-    if (data_ov003_02364928->unk_1d7 == 0) {
-        obj->frame++;
-    }
-    data_027c0280->blendEvy = Math_Ease(0, 8, 0, obj->frame, 8);
-    if (obj->frame == 8) {
-        obj->frame = 0;
-        Task_ResumeScript(obj);
-    }
+void Ov003_FadeEvyStep(Unk_ov003_0235dd38* obj) {
+  if (data_ov003_02364928->unk_1d7 == 0) {
+    obj->frame++;
+  }
+  data_027c0280->blendEvy = Math_Ease(0, 8, 0, obj->frame, 8);
+  if (obj->frame == 8) {
+    obj->frame = 0;
+    Task_ResumeScript(obj);
+  }
 }

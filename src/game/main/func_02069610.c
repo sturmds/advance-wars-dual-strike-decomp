@@ -3,7 +3,4 @@
 
 extern MenuState gMenuState;
 
-void func_02069610(void)
-{
-    gMenuState.setup.unk_2ea = 0;
-}
+void func_02069610(void) { gMenuState.setup.unk_2ea = 0; }

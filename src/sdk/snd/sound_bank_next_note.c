@@ -4,47 +4,48 @@
 /* Returns the next note of the bank after the position in iter and moves iter
  * past it, or FALSE when no notes are left. The loops that always return on
  * their first pass are needed to match. */
-BOOL SoundBank_NextNote(SoundBank *bank, SoundBankNote *note, SoundBankIter *iter)
-{
-    u32 entry;
-    u8 *data;
+BOOL SoundBank_NextNote(SoundBank* bank, SoundBankNote* note,
+                        SoundBankIter* iter) {
+  u32 entry;
+  u8* data;
 
-    while (iter->instrument < bank->instrumentCount) {
-        entry = bank->instruments[iter->instrument];
-        note->type = entry;
-        switch (note->type) {
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-        case 5:
-            *(SoundBankWaveParams *)&note->waveNo = *(SoundBankWaveParams *)((u8 *)bank + (entry >> 8));
-            iter->instrument++;
-            return TRUE;
-        case INST_TYPE_DRUM_SET:
-            /* data[0] and data[1] are the lowest and highest key. */
-            data = (u8 *)bank + (entry >> 8);
-            while (iter->note < data[1] - data[0] + 1) {
-                *note = ((SoundBankNote *)(data + 2))[iter->note];
-                iter->note++;
-                return TRUE;
-            }
-            break;
-        case INST_TYPE_KEY_SPLIT:
-            /* One byte per region, 0 for an unused one, then the notes. */
-            data = (u8 *)bank + (entry >> 8);
-            while (iter->note < 8) {
-                if (data[iter->note] == 0) {
-                    break;
-                }
-                *note = ((SoundBankNote *)(data + 8))[iter->note];
-                iter->note++;
-                return TRUE;
-            }
-            break;
-        }
+  while (iter->instrument < bank->instrumentCount) {
+    entry = bank->instruments[iter->instrument];
+    note->type = entry;
+    switch (note->type) {
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+        *(SoundBankWaveParams*)&note->waveNo =
+            *(SoundBankWaveParams*)((u8*)bank + (entry >> 8));
         iter->instrument++;
-        iter->note = 0;
+        return TRUE;
+      case INST_TYPE_DRUM_SET:
+        /* data[0] and data[1] are the lowest and highest key. */
+        data = (u8*)bank + (entry >> 8);
+        while (iter->note < data[1] - data[0] + 1) {
+          *note = ((SoundBankNote*)(data + 2))[iter->note];
+          iter->note++;
+          return TRUE;
+        }
+        break;
+      case INST_TYPE_KEY_SPLIT:
+        /* One byte per region, 0 for an unused one, then the notes. */
+        data = (u8*)bank + (entry >> 8);
+        while (iter->note < 8) {
+          if (data[iter->note] == 0) {
+            break;
+          }
+          *note = ((SoundBankNote*)(data + 8))[iter->note];
+          iter->note++;
+          return TRUE;
+        }
+        break;
     }
-    return FALSE;
+    iter->instrument++;
+    iter->note = 0;
+  }
+  return FALSE;
 }

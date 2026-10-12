@@ -54,216 +54,215 @@ void Gx_SendPlainQuad_020123b4(void);
  * Gx_SendPlainQuad_* functions (64x32 and 64x64 share one). Other sizes send nothing. A height not
  * listed under its width falls through to the next width's cases, as in
  * the original. */
-void Gx_SendObjSizedQuad(int width, int height, int flip)
-{
-    switch (flip) {
+void Gx_SendObjSizedQuad(int width, int height, int flip) {
+  switch (flip) {
     case QUAD_FLIP_H:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02011990();
-                return;
+              Gx_SendPlainQuad_02011990();
+              return;
             case 16:
-                Gx_SendPlainQuad_0201131c();
-                return;
+              Gx_SendPlainQuad_0201131c();
+              return;
             case 32:
-                Gx_SendPlainQuad_02011230();
-                return;
-            }
+              Gx_SendPlainQuad_02011230();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_020115e0();
-                return;
+              Gx_SendPlainQuad_020115e0();
+              return;
             case 16:
-                Gx_SendPlainQuad_020118a4();
-                return;
+              Gx_SendPlainQuad_020118a4();
+              return;
             case 32:
-                Gx_SendPlainQuad_02011144();
-                return;
-            }
+              Gx_SendPlainQuad_02011144();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_020114f4();
-                return;
+              Gx_SendPlainQuad_020114f4();
+              return;
             case 16:
-                Gx_SendPlainQuad_02011408();
-                return;
+              Gx_SendPlainQuad_02011408();
+              return;
             case 32:
-                Gx_SendPlainQuad_020117b8();
-                return;
+              Gx_SendPlainQuad_020117b8();
+              return;
             case 64:
-                Gx_SendPlainQuad_02011058();
-                return;
-            }
+              Gx_SendPlainQuad_02011058();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_020116cc();
-                return;
+              Gx_SendPlainQuad_020116cc();
+              return;
             case 64:
-                Gx_SendPlainQuad_020116cc();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_020116cc();
+              return;
+          }
+      }
+      break;
     case QUAD_FLIP_V:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02010f6c();
-                return;
+              Gx_SendPlainQuad_02010f6c();
+              return;
             case 16:
-                Gx_SendPlainQuad_020108f8();
-                return;
+              Gx_SendPlainQuad_020108f8();
+              return;
             case 32:
-                Gx_SendPlainQuad_0201080c();
-                return;
-            }
+              Gx_SendPlainQuad_0201080c();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02010bbc();
-                return;
+              Gx_SendPlainQuad_02010bbc();
+              return;
             case 16:
-                Gx_SendPlainQuad_02010e80();
-                return;
+              Gx_SendPlainQuad_02010e80();
+              return;
             case 32:
-                Gx_SendPlainQuad_02010720();
-                return;
-            }
+              Gx_SendPlainQuad_02010720();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02010ad0();
-                return;
+              Gx_SendPlainQuad_02010ad0();
+              return;
             case 16:
-                Gx_SendPlainQuad_020109e4();
-                return;
+              Gx_SendPlainQuad_020109e4();
+              return;
             case 32:
-                Gx_SendPlainQuad_02010d94();
-                return;
+              Gx_SendPlainQuad_02010d94();
+              return;
             case 64:
-                Gx_SendPlainQuad_02010634();
-                return;
-            }
+              Gx_SendPlainQuad_02010634();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_02010ca8();
-                return;
+              Gx_SendPlainQuad_02010ca8();
+              return;
             case 64:
-                Gx_SendPlainQuad_02010ca8();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_02010ca8();
+              return;
+          }
+      }
+      break;
     case QUAD_FLIP_H | QUAD_FLIP_V:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02010548();
-                return;
+              Gx_SendPlainQuad_02010548();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200fed4();
-                return;
+              Gx_SendPlainQuad_0200fed4();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200fde8();
-                return;
-            }
+              Gx_SendPlainQuad_0200fde8();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02010198();
-                return;
+              Gx_SendPlainQuad_02010198();
+              return;
             case 16:
-                Gx_SendPlainQuad_0201045c();
-                return;
+              Gx_SendPlainQuad_0201045c();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200fcfc();
-                return;
-            }
+              Gx_SendPlainQuad_0200fcfc();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_020100ac();
-                return;
+              Gx_SendPlainQuad_020100ac();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200ffc0();
-                return;
+              Gx_SendPlainQuad_0200ffc0();
+              return;
             case 32:
-                Gx_SendPlainQuad_02010370();
-                return;
+              Gx_SendPlainQuad_02010370();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200fc10();
-                return;
-            }
+              Gx_SendPlainQuad_0200fc10();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_02010284();
-                return;
+              Gx_SendPlainQuad_02010284();
+              return;
             case 64:
-                Gx_SendPlainQuad_02010284();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_02010284();
+              return;
+          }
+      }
+      break;
     default:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_020123b4();
-                return;
+              Gx_SendPlainQuad_020123b4();
+              return;
             case 16:
-                Gx_SendPlainQuad_02011d40();
-                return;
+              Gx_SendPlainQuad_02011d40();
+              return;
             case 32:
-                Gx_SendPlainQuad_02011c54();
-                return;
-            }
+              Gx_SendPlainQuad_02011c54();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02012004();
-                return;
+              Gx_SendPlainQuad_02012004();
+              return;
             case 16:
-                Gx_SendPlainQuad_020122c8();
-                return;
+              Gx_SendPlainQuad_020122c8();
+              return;
             case 32:
-                Gx_SendPlainQuad_02011b68();
-                return;
-            }
+              Gx_SendPlainQuad_02011b68();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_02011f18();
-                return;
+              Gx_SendPlainQuad_02011f18();
+              return;
             case 16:
-                Gx_SendPlainQuad_02011e2c();
-                return;
+              Gx_SendPlainQuad_02011e2c();
+              return;
             case 32:
-                Gx_SendPlainQuad_020121dc();
-                return;
+              Gx_SendPlainQuad_020121dc();
+              return;
             case 64:
-                Gx_SendPlainQuad_02011a7c();
-                return;
-            }
+              Gx_SendPlainQuad_02011a7c();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_020120f0();
-                return;
+              Gx_SendPlainQuad_020120f0();
+              return;
             case 64:
-                Gx_SendPlainQuad_020120f0();
-                return;
-            }
-        }
-        break;
-    }
+              Gx_SendPlainQuad_020120f0();
+              return;
+          }
+      }
+      break;
+  }
 }

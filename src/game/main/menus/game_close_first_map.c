@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 gLinkPlay;
 
@@ -17,17 +17,16 @@ void SpriteTask_DestroyAllFirstScreen(void);
 /* Ends the first map's game: sets up the map screen again, drops the sprite
  * tasks of the first screen when gLinkPlay is set, and returns to
  * state 0. */
-void Game_CloseFirstMap(void)
-{
-    func_020c0704();
-    func_020d6a04();
-    STATE->unk_18 = 0;
-    func_02080708();
-    if (Link_IsActive() == 1) {
-        Link_SendStopRequest();
-    }
-    if (gLinkPlay == 0) {
-        return;
-    }
-    SpriteTask_DestroyAllFirstScreen();
+void Game_CloseFirstMap(void) {
+  func_020c0704();
+  func_020d6a04();
+  STATE->unk_18 = 0;
+  func_02080708();
+  if (Link_IsActive() == 1) {
+    Link_SendStopRequest();
+  }
+  if (gLinkPlay == 0) {
+    return;
+  }
+  SpriteTask_DestroyAllFirstScreen();
 }

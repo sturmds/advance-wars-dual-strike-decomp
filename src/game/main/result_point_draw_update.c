@@ -8,9 +8,8 @@ void ResultPoint_DrawBar(int x, int y);
 
 /* Task update: draws the score rows, their bar and the points panel at
  * x 8. */
-void ResultPoint_DrawUpdate(ResultPointTask *task)
-{
-    ResultPoint_DrawRows(8, 16, task->countStep);
-    ResultPoint_DrawBar(8, 160);
-    ResultPoint_DrawPanel(8, 160, data_0229c734->tally);
+void ResultPoint_DrawUpdate(ResultPointTask* task) {
+  ResultPoint_DrawRows(8, 16, task->countStep);
+  ResultPoint_DrawBar(8, 160);
+  ResultPoint_DrawPanel(8, 160, data_0229c734->tally);
 }

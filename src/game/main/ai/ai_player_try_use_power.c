@@ -4,7 +4,7 @@
 #include "game/ai_unit_action.h"
 #include "game/co_data.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 BOOL func_020fa6f8(void);
@@ -30,77 +30,78 @@ void AiPlayer_PerformAction(int action);
  * the turn's roll at most unk_07. The CO Power is used when the front charge
  * is at most CO Power cost plus unk_04 percent of the gap to the Super cost,
  * the roll is under unk_05, and the back CO has no Super power ready. */
-void AiPlayer_TryUsePower(void)
-{
-    int coCost;
-    int threshold;
-    u32 hasPartner; /* needed to match: a u32 keeps the compare with TRUE */
-    int powerCost;
+void AiPlayer_TryUsePower(void) {
+  int coCost;
+  int threshold;
+  u32 hasPartner; /* needed to match: a u32 keeps the compare with TRUE */
+  int powerCost;
 
-    if (func_020fa6f8() == TRUE) {
-        return;
-    }
-    if (CURRENT.front.powerState != 0) {
-        return;
-    }
-    hasPartner = CURRENT.back.id != 0;
-    if (hasPartner == TRUE && CanUseSuperPower(STATE->currentPlayer, 0)
-        && CanUseSuperPower(STATE->currentPlayer, 1)) {
-        if (POWER_HOOK == NULL) {
-            return;
-        }
-        if (POWER_HOOK(2) != TRUE) {
-            return;
-        }
-        AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
-        AiPlayer_PerformAction(18);
-        return;
-    }
-    if ((CURRENT.front.id & PLAYER_CO_ID_MASK) == CO_COLIN && CanUseCoPower(STATE->currentPlayer, 0) == TRUE
-        && POWER_HOOK != NULL && POWER_HOOK(1) == TRUE) {
-        AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
-        AiPlayer_PerformAction(16);
-        return;
-    }
-    if (CanUseSuperPower(STATE->currentPlayer, 0)) {
-        hasPartner = CURRENT.back.id != 0;
-        if (hasPartner == TRUE) {
-            powerCost = SuperPowerCost(STATE->currentPlayer, 1);
-            if ((u32)HwDiv32(CURRENT.back.charge * 100, powerCost) > gAiProfile->unk_06) {
-                return;
-            }
-            if (gAiTurnState->roll > gAiProfile->unk_07) {
-                return;
-            }
-        }
-        if (POWER_HOOK != NULL && POWER_HOOK(2) == TRUE) {
-            AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
-            AiPlayer_PerformAction(17);
-            return;
-        }
-    }
-    if (!CanUseCoPower(STATE->currentPlayer, 0)) {
-        return;
-    }
-    hasPartner = CURRENT.back.id != 0;
-    if (hasPartner == TRUE && CanUseSuperPower(STATE->currentPlayer, 1)) {
-        return;
-    }
-    coCost = CoPowerCost(STATE->currentPlayer, 0);
-    powerCost = SuperPowerCost(STATE->currentPlayer, 0) - coCost;
-    threshold = coCost + HwDiv32(powerCost * gAiProfile->unk_04, 100);
-    if (threshold < (int)CURRENT.front.charge) {
-        return;
-    }
-    if (gAiTurnState->roll >= gAiProfile->unk_05) {
-        return;
-    }
+  if (func_020fa6f8() == TRUE) {
+    return;
+  }
+  if (CURRENT.front.powerState != 0) {
+    return;
+  }
+  hasPartner = CURRENT.back.id != 0;
+  if (hasPartner == TRUE && CanUseSuperPower(STATE->currentPlayer, 0) &&
+      CanUseSuperPower(STATE->currentPlayer, 1)) {
     if (POWER_HOOK == NULL) {
-        return;
+      return;
     }
-    if (POWER_HOOK(1) != TRUE) {
-        return;
+    if (POWER_HOOK(2) != TRUE) {
+      return;
     }
     AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
+    AiPlayer_PerformAction(18);
+    return;
+  }
+  if ((CURRENT.front.id & PLAYER_CO_ID_MASK) == CO_COLIN &&
+      CanUseCoPower(STATE->currentPlayer, 0) == TRUE && POWER_HOOK != NULL &&
+      POWER_HOOK(1) == TRUE) {
+    AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
     AiPlayer_PerformAction(16);
+    return;
+  }
+  if (CanUseSuperPower(STATE->currentPlayer, 0)) {
+    hasPartner = CURRENT.back.id != 0;
+    if (hasPartner == TRUE) {
+      powerCost = SuperPowerCost(STATE->currentPlayer, 1);
+      if ((u32)HwDiv32(CURRENT.back.charge * 100, powerCost) >
+          gAiProfile->unk_06) {
+        return;
+      }
+      if (gAiTurnState->roll > gAiProfile->unk_07) {
+        return;
+      }
+    }
+    if (POWER_HOOK != NULL && POWER_HOOK(2) == TRUE) {
+      AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
+      AiPlayer_PerformAction(17);
+      return;
+    }
+  }
+  if (!CanUseCoPower(STATE->currentPlayer, 0)) {
+    return;
+  }
+  hasPartner = CURRENT.back.id != 0;
+  if (hasPartner == TRUE && CanUseSuperPower(STATE->currentPlayer, 1)) {
+    return;
+  }
+  coCost = CoPowerCost(STATE->currentPlayer, 0);
+  powerCost = SuperPowerCost(STATE->currentPlayer, 0) - coCost;
+  threshold = coCost + HwDiv32(powerCost * gAiProfile->unk_04, 100);
+  if (threshold < (int)CURRENT.front.charge) {
+    return;
+  }
+  if (gAiTurnState->roll >= gAiProfile->unk_05) {
+    return;
+  }
+  if (POWER_HOOK == NULL) {
+    return;
+  }
+  if (POWER_HOOK(1) != TRUE) {
+    return;
+  }
+  AiProfile_RerandomiseForPlayer(STATE->currentPlayer);
+  AiPlayer_PerformAction(16);
 }

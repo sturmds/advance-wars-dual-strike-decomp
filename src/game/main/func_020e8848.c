@@ -3,7 +3,4 @@
 
 extern const TaskScriptCmd data_02168c3c[];
 
-void func_020e8848(void)
-{
-    Task_Create(data_02168c3c, TASK_LIST(3));
-}
+void func_020e8848(void) { Task_Create(data_02168c3c, TASK_LIST(3)); }

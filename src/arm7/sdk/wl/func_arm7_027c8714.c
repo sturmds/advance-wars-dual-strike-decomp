@@ -2,7 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/wl.h"
 
-void func_arm7_027c8714(void)
-{
-    Alarm_Withdraw_Arm7(&WIFI_DRIVER_STATE->periodicAlarm);
+void func_arm7_027c8714(void) {
+  Alarm_Withdraw_Arm7(&WIFI_DRIVER_STATE->periodicAlarm);
 }

@@ -1,17 +1,16 @@
 #include "types.h"
 #include "game/menu_button.h"
 
-int MenuButton_TestFlags(MenuButton *button, int mask);
+int MenuButton_TestFlags(MenuButton* button, int mask);
 
 /* Removes every selectable button at once, without the closing animation. */
-void MenuButtons_RemoveSelectable(void)
-{
-    int i;
-    MenuButton *button = gMenuButtons;
+void MenuButtons_RemoveSelectable(void) {
+  int i;
+  MenuButton* button = gMenuButtons;
 
-    for (i = 0; i < 80; i++, button++) {
-        if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH)) {
-            button->active = 0;
-        }
+  for (i = 0; i < 80; i++, button++) {
+    if (MenuButton_TestFlags(button, MENU_BUTTON_SELECT_ON_TOUCH)) {
+      button->active = 0;
     }
+  }
 }

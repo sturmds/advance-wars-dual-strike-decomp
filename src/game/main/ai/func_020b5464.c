@@ -6,13 +6,12 @@ int AiSeaTransport_ScoreArmedCount(void);
 void func_020b5268(void);
 void func_020b5bf4(void);
 
-void func_020b5464(void)
-{
-    gAiUnloadTest = AiSeaTransport_FewArmedUnitsNoTarget;
-    gAiUnloadScore = AiSeaTransport_ScoreArmedCount;
-    AiSeaTransport_ScoreUnloadTiles();
-    if (gAiTurnState->stepFlags & AI_STEP_UNLOAD_SCORED) {
-        func_020b5bf4();
-    }
-    func_020b5268();
+void func_020b5464(void) {
+  gAiUnloadTest = AiSeaTransport_FewArmedUnitsNoTarget;
+  gAiUnloadScore = AiSeaTransport_ScoreArmedCount;
+  AiSeaTransport_ScoreUnloadTiles();
+  if (gAiTurnState->stepFlags & AI_STEP_UNLOAD_SCORED) {
+    func_020b5bf4();
+  }
+  func_020b5268();
 }

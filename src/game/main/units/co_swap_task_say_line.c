@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/player.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u32 data_02153640[][136];
 
@@ -16,11 +16,11 @@ void CoQuote_StartText(u32 textId);
  * text for the player's new front CO. A CO byte with bit 7 set gets the fixed
  * text 0xf000028a; the others pick one of two texts at random from
  * data_02153640 (name guessed: a text id table, 136 entries per CO). */
-void CoSwapTask_ShowLine(void)
-{
-    if (FRONT_CO(STATE).id & 0x80) {
-        CoQuote_StartText(0xf000028a);
-        return;
-    }
-    CoQuote_StartText(data_02153640[FRONT_CO(STATE).id & PLAYER_CO_ID_MASK][Rng_Next() & 1]);
+void CoSwapTask_ShowLine(void) {
+  if (FRONT_CO(STATE).id & 0x80) {
+    CoQuote_StartText(0xf000028a);
+    return;
+  }
+  CoQuote_StartText(
+      data_02153640[FRONT_CO(STATE).id & PLAYER_CO_ID_MASK][Rng_Next() & 1]);
 }

@@ -3,13 +3,12 @@
 typedef struct Unk_020f137c Unk_020f137c;
 
 struct Unk_020f137c {
-    u8 pad_00[0x44];
-    u16 unk_44;
-    u16 unk_46;
+  u8 pad_00[0x44];
+  u16 unk_44;
+  u16 unk_46;
 };
 
-void func_020f137c(Unk_020f137c *a0)
-{
-    a0->unk_46 = 0;
-    a0->unk_44 = 0;
+void func_020f137c(Unk_020f137c* a0) {
+  a0->unk_46 = 0;
+  a0->unk_44 = 0;
 }

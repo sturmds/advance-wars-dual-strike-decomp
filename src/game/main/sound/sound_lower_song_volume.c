@@ -6,10 +6,9 @@
 void Sound_FadeMusicVolume(int from, int to, int frames);
 
 /* Fades the song from full volume (127) down to volume over 40 frames. */
-void Sound_LowerSongVolume(int volume)
-{
-    if (gCurrentSong == SONG_NONE) {
-        return;
-    }
-    Sound_FadeMusicVolume(127, volume, 40);
+void Sound_LowerSongVolume(int volume) {
+  if (gCurrentSong == SONG_NONE) {
+    return;
+  }
+  Sound_FadeMusicVolume(127, volume, 40);
 }

@@ -4,7 +4,6 @@
 #define AUDIO_RECORD_RUNNING 0x80
 
 /* capture: 0 or 1. */
-BOOL SND_IsCaptureActive(int capture)
-{
-    return ((&AUDIO_RECORD0_CTRL)[capture] & AUDIO_RECORD_RUNNING) ? TRUE : FALSE;
+BOOL SND_IsCaptureActive(int capture) {
+  return ((&AUDIO_RECORD0_CTRL)[capture] & AUDIO_RECORD_RUNNING) ? TRUE : FALSE;
 }

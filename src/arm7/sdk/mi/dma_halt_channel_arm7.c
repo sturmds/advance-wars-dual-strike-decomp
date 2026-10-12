@@ -4,21 +4,20 @@
 
 /* The ARM7 MI_StopDma: stops a channel and clears its start timing and
  * repeat bits; channel 0 is then re-armed with a dummy transfer. */
-void Dma_HaltChannel_Arm7(u32 dmaNo)
-{
-    int irqState = Cpu_MaskIrq_Arm7();
-    volatile u16 *control = &IO_DMA_CTRL_UPPER(dmaNo);
+void Dma_HaltChannel_Arm7(u32 dmaNo) {
+  int irqState = Cpu_MaskIrq_Arm7();
+  volatile u16* control = &IO_DMA_CTRL_UPPER(dmaNo);
 
-    *control &= ~((DMA7_START_MASK | DMA_REPEAT) >> 16);
-    *control &= ~(DMA_ENABLE >> 16);
-    (void)*control;
-    (void)*control;
-    if (dmaNo == 0) {
-        DmaChannel *dma = &REG_DMA[dmaNo];
+  *control &= ~((DMA7_START_MASK | DMA_REPEAT) >> 16);
+  *control &= ~(DMA_ENABLE >> 16);
+  (void)*control;
+  (void)*control;
+  if (dmaNo == 0) {
+    DmaChannel* dma = &REG_DMA[dmaNo];
 
-        dma->src = 0;
-        dma->dest = 0;
-        dma->control = DMA_DUMMY_TRANSFER;
-    }
-    Cpu_RestoreIrqBit_Arm7(irqState);
+    dma->src = 0;
+    dma->dest = 0;
+    dma->control = DMA_DUMMY_TRANSFER;
+  }
+  Cpu_RestoreIrqBit_Arm7(irqState);
 }

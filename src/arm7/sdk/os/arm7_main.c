@@ -25,38 +25,37 @@ void VBlankIntr_Arm7(void);
  * to func_arm7_038058b0. Each pass of the loop halts the CPU until the next
  * interrupt, then runs the per-frame work.
  */
-void Arm7Main(void)
-{
-    int heap;
+void Arm7Main(void) {
+  int heap;
 
-    System_StartServices_Arm7();
-    Thread_SetUpTableOnce_Arm7();
-    UserSettings_LoadFromFlash();
-    Fifo_SetUp_Arm7();
-    heap = InitWramHeap();
-    Sound_StartDriver_Arm7(6);
-    func_arm7_037fe45c();
-    Irq_InstallHandlers_Arm7(IRQ_VBLANK, VBlankIntr_Arm7);
-    Irq_SetEnableBits_Arm7(IRQ_VBLANK);
-    /* needed to match: the original reads each register once before the
+  System_StartServices_Arm7();
+  Thread_SetUpTableOnce_Arm7();
+  UserSettings_LoadFromFlash();
+  Fifo_SetUp_Arm7();
+  heap = InitWramHeap();
+  Sound_StartDriver_Arm7(6);
+  func_arm7_037fe45c();
+  Irq_InstallHandlers_Arm7(IRQ_VBLANK, VBlankIntr_Arm7);
+  Irq_SetEnableBits_Arm7(IRQ_VBLANK);
+  /* needed to match: the original reads each register once before the
        write and ignores the value (the old IME setting) */
-    *REG_DISPSTAT;
-    *REG_DISPSTAT |= DISPSTAT_VBLANK_IRQ;
-    *REG_IME;
-    *REG_IME = 1;
-    Cpu_UnmaskIrq_Arm7();
-    FileSys_SetUpOnce_Arm7(-1);
-    func_arm7_038028c8(15);
-    func_arm7_027d5a24(12);
-    func_arm7_038058b0(heap);
-    SPI_Init(2);
+  *REG_DISPSTAT;
+  *REG_DISPSTAT |= DISPSTAT_VBLANK_IRQ;
+  *REG_IME;
+  *REG_IME = 1;
+  Cpu_UnmaskIrq_Arm7();
+  FileSys_SetUpOnce_Arm7(-1);
+  func_arm7_038028c8(15);
+  func_arm7_027d5a24(12);
+  func_arm7_038058b0(heap);
+  SPI_Init(2);
 
-    while (TRUE) {
-        Cpu_IdleUntilIrq_Arm7();
-        if (Reset_WasRequested_Arm7()) {
-            Reset_QuiesceAndRestart_Arm7();
-        }
-        Cartridge_CheckRemovedEveryTenFrames();
-        Card_CheckRemovedEveryTenFrames();
+  while (TRUE) {
+    Cpu_IdleUntilIrq_Arm7();
+    if (Reset_WasRequested_Arm7()) {
+      Reset_QuiesceAndRestart_Arm7();
     }
+    Cartridge_CheckRemovedEveryTenFrames();
+    Card_CheckRemovedEveryTenFrames();
+  }
 }

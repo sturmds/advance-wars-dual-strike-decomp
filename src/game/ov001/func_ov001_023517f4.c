@@ -3,7 +3,4 @@
 
 void Weather_Change(int length);
 
-void func_ov001_023517f4(void)
-{
-    Weather_Change(2);
-}
+void func_ov001_023517f4(void) { Weather_Change(2); }

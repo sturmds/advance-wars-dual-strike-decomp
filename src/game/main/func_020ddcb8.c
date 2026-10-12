@@ -4,18 +4,19 @@
 #include "game/player.h"
 #include "game/script_slot.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const ScriptCommand data_02166450[];
 
-ScriptSlot *ScriptSlot_Start(const ScriptCommand *script, int arg);
+ScriptSlot* ScriptSlot_Start(const ScriptCommand* script, int arg);
 
-ScriptSlot *func_020ddcb8(void)
-{
-    if (data_027c027c->unk_48[data_027c0284]->players[data_027c027c->unk_48[data_027c0284]->currentPlayer].controller == PLAYER_CONTROLLER_HUMAN) {
-        if (gPlayRecords.suppliesAndRepairs < 999999) {
-            gPlayRecords.suppliesAndRepairs++;
-        }
+ScriptSlot* func_020ddcb8(void) {
+  if (data_027c027c->unk_48[data_027c0284]
+          ->players[data_027c027c->unk_48[data_027c0284]->currentPlayer]
+          .controller == PLAYER_CONTROLLER_HUMAN) {
+    if (gPlayRecords.suppliesAndRepairs < 999999) {
+      gPlayRecords.suppliesAndRepairs++;
     }
-    return ScriptSlot_Start(data_02166450, 0);
+  }
+  return ScriptSlot_Start(data_02166450, 0);
 }

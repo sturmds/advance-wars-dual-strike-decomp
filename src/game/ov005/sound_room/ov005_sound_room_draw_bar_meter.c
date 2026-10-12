@@ -4,21 +4,22 @@
 
 void Gfx_RequestLayerCopy(int layer);
 BOOL Screen_IsAffineBg(int layer);
-void TileMap_AddToEntries(u16 *entries, u16 byteCount, int addend);
+void TileMap_AddToEntries(u16* entries, u16 byteCount, int addend);
 void Gfx_ClearLayerMap(int layer);
 BOOL Screen_IsTextBg(int layer);
 BOOL SND_IsFinishedCommandTag(u32 tick);
 u32 SND_GetCurrentCommandTag(void);
 u32 SND_GetChannelStatus(void);
 
-extern Unk_ov005_0236bbac *data_ov005_0236bbac;
-extern u32 data_ov005_02367fec[];      /* map bytes of a rotation/scaling BG by screen size */
-extern u32 data_ov005_02367ffc[];      /* map bytes of a text BG by screen size */
+extern Unk_ov005_0236bbac* data_ov005_0236bbac;
+extern u32 data_ov005_02367fec
+    []; /* map bytes of a rotation/scaling BG by screen size */
+extern u32 data_ov005_02367ffc[]; /* map bytes of a text BG by screen size */
 
 /* Two map entries side by side: one bar column is two tiles wide. */
 typedef struct TilePair {
-    u16 left;
-    u16 right;
+  u16 left;
+  u16 right;
 } TilePair;
 
 extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
@@ -28,92 +29,94 @@ extern TilePair data_ov005_0236b054[]; /* tiles of each bar row */
  * screen. Then sets both OBJ scales from a 16-bit mask that SND_GetChannelStatus
  * returns: 0x100 plus 16 per set bit. With no music it clears the layer and
  * sets both scales to -1. */
-void Ov005SoundRoom_DrawBarMeter(void)
-{
-    Unk_ov005_0236bbac *work = data_ov005_0236bbac;
-    /* needed to match: i also counts the set bits, and row also holds the
+void Ov005SoundRoom_DrawBarMeter(void) {
+  Unk_ov005_0236bbac* work = data_ov005_0236bbac;
+  /* needed to match: i also counts the set bits, and row also holds the
      * running sum, as in the original */
-    int i;
-    int row;
-    int height;
+  int i;
+  int row;
+  int height;
 
-    if (work->musicPlaying == 0) {
-        Unk_027c0280 *saved0280 = data_027c0280;
-        Unk_02080440 *saved027c;
+  if (work->musicPlaying == 0) {
+    Unk_027c0280* saved0280 = data_027c0280;
+    Unk_02080440* saved027c;
 
-        Screen_SetCurrentGfx(data_027c0288.unk_04);
-        saved027c = data_027c027c;
-        Screen_SetCurrent(data_027c0288.unk_04);
-        Gfx_ClearLayerMap(1);
-        Gfx_RequestLayerCopy(1);
-        Screen_SetCurrent(saved027c);
-        Screen_SetCurrentGfx(saved0280);
-        work->objScale1 = -1;
-        work->objScale2 = -1;
-        return;
-    }
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    Gfx_ClearLayerMap(1);
+    Gfx_RequestLayerCopy(1);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+    work->objScale1 = -1;
+    work->objScale2 = -1;
+    return;
+  }
+  for (i = 0; i < 16; i++) {
+    work->shownBarHeights[i] = work->barHeights[i];
+  }
+  {
+    Unk_027c0280* saved0280 = data_027c0280;
+    Unk_02080440* saved027c;
+    u16* map;
+
+    Screen_SetCurrentGfx(data_027c0288.unk_04);
+    saved027c = data_027c027c;
+    Screen_SetCurrent(data_027c0288.unk_04);
+    map = data_027c0280->layer1Map + 20 * 32;
+    Gfx_ClearLayerMap(1);
     for (i = 0; i < 16; i++) {
-        work->shownBarHeights[i] = work->barHeights[i];
-    }
-    {
-        Unk_027c0280 *saved0280 = data_027c0280;
-        Unk_02080440 *saved027c;
-        u16 *map;
+      height = work->shownBarHeights[i];
+      row = 0;
+      for (;;) {
+        TilePair* cell;
 
-        Screen_SetCurrentGfx(data_027c0288.unk_04);
-        saved027c = data_027c027c;
-        Screen_SetCurrent(data_027c0288.unk_04);
-        map = data_027c0280->layer1Map + 20 * 32;
-        Gfx_ClearLayerMap(1);
-        for (i = 0; i < 16; i++) {
-            height = work->shownBarHeights[i];
-            row = 0;
-            for (;;) {
-                TilePair *cell;
-
-                if (row >= height) {
-                    break;
-                }
-                row++;
-                cell = (TilePair *)((u8 *)map - row * 64); /* 64 bytes per map row */
-                cell[i].left = data_ov005_0236b054[10 - row].left;
-                cell[i].right = data_ov005_0236b054[10 - row].right;
-            }
+        if (row >= height) {
+          break;
         }
-        map = data_027c0280->layer1Map;
-        TileMap_AddToEntries(map,
-                      Screen_IsTextBg(1) ? data_ov005_02367ffc[GFX_LAYER(data_027c0280, 1)->screenSize]
-                      : Screen_IsAffineBg(1) ? data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize]
-                                             : data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize] * 2,
-                      0x2300);
-        Gfx_RequestLayerCopy(1);
-        Screen_SetCurrent(saved027c);
-        Screen_SetCurrentGfx(saved0280);
+        row++;
+        cell = (TilePair*)((u8*)map - row * 64); /* 64 bytes per map row */
+        cell[i].left = data_ov005_0236b054[10 - row].left;
+        cell[i].right = data_ov005_0236b054[10 - row].right;
+      }
     }
+    map = data_027c0280->layer1Map;
+    TileMap_AddToEntries(
+        map,
+        Screen_IsTextBg(1)
+            ? data_ov005_02367ffc[GFX_LAYER(data_027c0280, 1)->screenSize]
+        : Screen_IsAffineBg(1)
+            ? data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize]
+            : data_ov005_02367fec[GFX_LAYER(data_027c0280, 1)->screenSize] * 2,
+        0x2300);
+    Gfx_RequestLayerCopy(1);
+    Screen_SetCurrent(saved027c);
+    Screen_SetCurrentGfx(saved0280);
+  }
 
-    if (SND_IsFinishedCommandTag(SND_GetCurrentCommandTag())) {
-        u32 bit;
-        u32 mask;
+  if (SND_IsFinishedCommandTag(SND_GetCurrentCommandTag())) {
+    u32 bit;
+    u32 mask;
 
-        mask = SND_GetChannelStatus();
-        i = 0;
-        bit = 0;
-        row = 0;
-        for (; bit < 16; bit++) {
-            if ((mask >> bit) & 1) {
-                row += 32;
-                i++;
-            }
-            work->unk_1114 = row;
-        }
+    mask = SND_GetChannelStatus();
+    i = 0;
+    bit = 0;
+    row = 0;
+    for (; bit < 16; bit++) {
+      if ((mask >> bit) & 1) {
+        row += 32;
+        i++;
+      }
+      work->unk_1114 = row;
     }
-    {
-        s16 sum = work->unk_1114;
+  }
+  {
+    s16 sum = work->unk_1114;
 
-        if (sum > 512) {
-            sum = 512;
-        }
-        work->objScale2 = (sum >> 1) + 256;
-        work->objScale1 = work->objScale2;
+    if (sum > 512) {
+      sum = 512;
     }
+    work->objScale2 = (sum >> 1) + 256;
+    work->objScale1 = work->objScale2;
+  }
 }

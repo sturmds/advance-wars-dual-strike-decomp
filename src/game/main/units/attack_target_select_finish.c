@@ -6,15 +6,15 @@
 #include "game/unit_stats.h"
 #include "game/unit_target_entry.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const EventScriptCommand gMapScrollScript[];
 extern int data_022a6dd4;
 
 void MenuDepth_Pop(void);
-void Task_ResumeScript(Task *task);
+void Task_ResumeScript(Task* task);
 void UnitMenu_Open(void);
-UnitTargetEntry *func_020dc524(int index);
+UnitTargetEntry* func_020dc524(int index);
 void func_020dea40(int defenderSlot);
 void func_020de9f0(int x, int y);
 
@@ -26,42 +26,42 @@ void func_020de9f0(int x, int y);
  * entry of the target list: the acting unit attacks the unit in it, or the
  * object at its tile when value is set. A human player's attack is counted
  * in gPlayRecords as direct or indirect by the unit's minRange. */
-void AttackTargetSelect_Finish(Task *task)
-{
-    UnitTargetEntry *target;
+void AttackTargetSelect_Finish(Task* task) {
+  UnitTargetEntry* target;
 
-    if (ScriptSlot_Find(gMapScrollScript) != -1) {
-        return;
-    }
-    if (data_022a6dd4 < 0) {
-        MenuDepth_Pop();
-        Task_Destroy(task);
-        UnitMenu_Open();
-        return;
-    }
-    target = func_020dc524(data_022a6dd4);
-    if (target->value == 0) {
-        func_020dea40(target->unitSlot & 0xff);
-    } else {
-        /* needed to match: the original reads the tile as s16 */
-        func_020de9f0(target->x, target->y);
-    }
-    Task_ResumeScript(task);
-    if (GAME->players[GAME->currentPlayer].controller != PLAYER_CONTROLLER_HUMAN) {
-        return;
-    }
-    switch (Ov000_gUnitStats[GAME->actingUnit->type].minRange) {
+  if (ScriptSlot_Find(gMapScrollScript) != -1) {
+    return;
+  }
+  if (data_022a6dd4 < 0) {
+    MenuDepth_Pop();
+    Task_Destroy(task);
+    UnitMenu_Open();
+    return;
+  }
+  target = func_020dc524(data_022a6dd4);
+  if (target->value == 0) {
+    func_020dea40(target->unitSlot & 0xff);
+  } else {
+    /* needed to match: the original reads the tile as s16 */
+    func_020de9f0(target->x, target->y);
+  }
+  Task_ResumeScript(task);
+  if (GAME->players[GAME->currentPlayer].controller !=
+      PLAYER_CONTROLLER_HUMAN) {
+    return;
+  }
+  switch (Ov000_gUnitStats[GAME->actingUnit->type].minRange) {
     case ATTACK_NONE:
-        return;
+      return;
     case ATTACK_DIRECT:
-        if (gPlayRecords.directAttacks < 999999) {
-            gPlayRecords.directAttacks++;
-        }
-        return;
+      if (gPlayRecords.directAttacks < 999999) {
+        gPlayRecords.directAttacks++;
+      }
+      return;
     default:
-        if (gPlayRecords.indirectAttacks < 999999) {
-            gPlayRecords.indirectAttacks++;
-        }
-        return;
-    }
+      if (gPlayRecords.indirectAttacks < 999999) {
+        gPlayRecords.indirectAttacks++;
+      }
+      return;
+  }
 }

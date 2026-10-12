@@ -6,9 +6,8 @@ void EventScript_TakeInput(void);
 
 /* Script command: calls EventScript_TakeInput, then steps the slot's record pointer
  * on by one record (16 bytes). */
-BOOL func_0201ce1c(s16 index)
-{
-    EventScript_TakeInput();
-    data_022977f4[index].unk_00++;
-    return TRUE;
+BOOL func_0201ce1c(s16 index) {
+  EventScript_TakeInput();
+  data_022977f4[index].unk_00++;
+  return TRUE;
 }

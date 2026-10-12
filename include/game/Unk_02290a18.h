@@ -7,9 +7,9 @@
  * unk_78 and unk_7a as scores (Score_ToRank turns them into a rank) for
  * page 11 entry kinds 25 and 26. */
 typedef struct Unk_02290a18 {
-    u8 pad_00[0x78];
-    u16 unk_78;
-    u16 unk_7a;
+  u8 pad_00[0x78];
+  u16 unk_78;
+  u16 unk_7a;
 } Unk_02290a18;
 
 extern Unk_02290a18 data_02290a18;

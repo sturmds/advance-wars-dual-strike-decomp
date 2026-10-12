@@ -2,13 +2,12 @@
 #include "game/Unk_02080440.h"
 #include "game/unit_show_entry.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
-s16 UnitShowEntry_GetStepSize(int entry)
-{
-    if (data_027c027c->unk_48[data_027c0284]->unk_82 == 1) {
-        return gUnitShowEntries[entry].stepSize;
-    }
-    return gUnitShowEntries[entry].stepSize * 2;
+s16 UnitShowEntry_GetStepSize(int entry) {
+  if (data_027c027c->unk_48[data_027c0284]->unk_82 == 1) {
+    return gUnitShowEntries[entry].stepSize;
+  }
+  return gUnitShowEntries[entry].stepSize * 2;
 }

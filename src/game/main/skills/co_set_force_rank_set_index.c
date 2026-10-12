@@ -5,11 +5,10 @@
 extern u8 gForceRankSetKeepMask[];
 
 /* Chooses which of the CO's four saved Force Rank sets (0-3) player (1-4) uses. */
-void Co_SetForceRankSetIndex(int co, int player, int set)
-{
-    CoSaveRecord *record = &gPlayRecords.coRecords[co];
-    u8 sets = gForceRankSetKeepMask[player] & record->forceRankSetByPlayer;
+void Co_SetForceRankSetIndex(int co, int player, int set) {
+  CoSaveRecord* record = &gPlayRecords.coRecords[co];
+  u8 sets = gForceRankSetKeepMask[player] & record->forceRankSetByPlayer;
 
-    sets |= set << ((player - 1) * 2);
-    record->forceRankSetByPlayer = sets;
+  sets |= set << ((player - 1) * 2);
+  record->forceRankSetByPlayer = sets;
 }

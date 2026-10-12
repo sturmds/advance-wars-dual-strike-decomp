@@ -7,15 +7,14 @@
 extern u8 gNameEntryText[];
 
 /* Length of the text in gNameEntryText. entry is not used. */
-int NameEntry_GetTextLength(NameEntry *entry)
-{
-    int length = 0;
+int NameEntry_GetTextLength(NameEntry* entry) {
+  int length = 0;
 
-    for (;;) {
-        if (gNameEntryText[length] == 0) {
-            break;
-        }
-        length++;
+  for (;;) {
+    if (gNameEntryText[length] == 0) {
+      break;
     }
-    return length;
+    length++;
+  }
+  return length;
 }

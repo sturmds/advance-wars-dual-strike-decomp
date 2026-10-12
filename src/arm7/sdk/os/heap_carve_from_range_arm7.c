@@ -1,7 +1,8 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena id */
+extern OSHeapInfo*
+    data_arm7_03807a54[]; /* heap info of each arena, by arena id */
 
 /*
  * ARM7 copy of OS_CreateHeap. Makes a heap of the memory from start to end
@@ -9,31 +10,30 @@ extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena
  * array, as one free block. Returns the heap's handle, or -1 if every slot
  * is in use.
  */
-s32 Heap_CarveFromRange_Arm7(int id, void *start, void *end)
-{
-    int irqState = Cpu_MaskIrq_Arm7();
-    OSHeapInfo *info = data_arm7_03807a54[id];
-    HeapRecord *desc;
-    HeapBlockHeader *cell;
-    s32 heap;
+s32 Heap_CarveFromRange_Arm7(int id, void* start, void* end) {
+  int irqState = Cpu_MaskIrq_Arm7();
+  OSHeapInfo* info = data_arm7_03807a54[id];
+  HeapRecord* desc;
+  HeapBlockHeader* cell;
+  s32 heap;
 
-    start = (void *)(((u32)start + 31) & ~31);
-    end = (void *)((u32)end & ~31);
+  start = (void*)(((u32)start + 31) & ~31);
+  end = (void*)((u32)end & ~31);
 
-    for (heap = 0; heap < info->numHeaps; heap++) {
-        desc = &info->heapArray[heap];
-        if (desc->size < 0) {
-            desc->size = (u32)end - (u32)start;
-            cell = start;
-            cell->prev = NULL;
-            cell->next = NULL;
-            cell->size = desc->size;
-            desc->free = cell;
-            desc->allocated = NULL;
-            Cpu_RestoreIrqBit_Arm7(irqState);
-            return heap;
-        }
+  for (heap = 0; heap < info->numHeaps; heap++) {
+    desc = &info->heapArray[heap];
+    if (desc->size < 0) {
+      desc->size = (u32)end - (u32)start;
+      cell = start;
+      cell->prev = NULL;
+      cell->next = NULL;
+      cell->size = desc->size;
+      desc->free = cell;
+      desc->allocated = NULL;
+      Cpu_RestoreIrqBit_Arm7(irqState);
+      return heap;
     }
-    Cpu_RestoreIrqBit_Arm7(irqState);
-    return -1;
+  }
+  Cpu_RestoreIrqBit_Arm7(irqState);
+  return -1;
 }

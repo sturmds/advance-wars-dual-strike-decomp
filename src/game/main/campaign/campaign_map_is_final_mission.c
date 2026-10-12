@@ -8,7 +8,8 @@ extern u8 gCampaignMissionKind[];
 
 /* Whether the current mission is the last story map; Campaign_FinishMap then
  * updates the best average score. */
-BOOL CampaignMap_IsFinalMission(void)
-{
-    return (gCampaignMissionKind[gCampaignMapState.playedMission * sizeof(CampaignMission)] & 2) != 0;
+BOOL CampaignMap_IsFinalMission(void) {
+  return (gCampaignMissionKind[gCampaignMapState.playedMission *
+                               sizeof(CampaignMission)] &
+          2) != 0;
 }

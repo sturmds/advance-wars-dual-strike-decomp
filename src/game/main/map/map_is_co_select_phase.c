@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* TRUE while coSelectPhase is 1. func_020e8970 sets it to 1 when
@@ -9,10 +9,9 @@ extern int data_027c0284;
  * Player_PlayTheme plays the CO Select song instead of battle music,
  * VisionIncrease leaves out Scout and Eagle Eye, and Map_InitBattle leaves
  * out some setup. The name is a guess from those uses. */
-BOOL Map_IsCoSelectPhase(void)
-{
-    if (data_027c027c->unk_48[data_027c0284]->coSelectPhase == 1) {
-        return TRUE;
-    }
-    return FALSE;
+BOOL Map_IsCoSelectPhase(void) {
+  if (data_027c027c->unk_48[data_027c0284]->coSelectPhase == 1) {
+    return TRUE;
+  }
+  return FALSE;
 }

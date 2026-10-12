@@ -10,22 +10,21 @@ extern u16 gGxVramBankMasks[];
 #define VRAMCNT_SUB_BG_HI 0x81
 
 /* sub_bg is C, H, or H and I together; H and I are mapped one after the other. */
-void GX_SetBankForSubBG(int sub_bg)
-{
-    gGxVramBankMasks[0] = ~sub_bg & (gGxVramBankMasks[0] | gGxVramBankMasks[9]);
-    gGxVramBankMasks[9] = sub_bg;
+void GX_SetBankForSubBG(int sub_bg) {
+  gGxVramBankMasks[0] = ~sub_bg & (gGxVramBankMasks[0] | gGxVramBankMasks[9]);
+  gGxVramBankMasks[9] = sub_bg;
 
-    switch (sub_bg) {
+  switch (sub_bg) {
     case 0:
-        break;
+      break;
     case GX_VRAM_C:
-        *REG_VRAMCNT_C = VRAMCNT_SUB_BG_C;
-        break;
+      *REG_VRAMCNT_C = VRAMCNT_SUB_BG_C;
+      break;
     case GX_VRAM_H | GX_VRAM_I:
-        *REG_VRAMCNT_I = VRAMCNT_SUB_BG_HI;
+      *REG_VRAMCNT_I = VRAMCNT_SUB_BG_HI;
     case GX_VRAM_H:
-        *REG_VRAMCNT_H = VRAMCNT_SUB_BG_HI;
-        break;
-    }
-    Vram_PowerOnBanks(gGxVramBankMasks[0]);
+      *REG_VRAMCNT_H = VRAMCNT_SUB_BG_HI;
+      break;
+  }
+  Vram_PowerOnBanks(gGxVramBankMasks[0]);
 }

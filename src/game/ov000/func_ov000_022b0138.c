@@ -1,9 +1,8 @@
 #include "types.h"
 #include "game/unit_stats.h"
 
-BOOL func_ov000_022b0138(int unitType)
-{
-    switch (unitType) {
+BOOL func_ov000_022b0138(int unitType) {
+  switch (unitType) {
     case UNIT_BATTLESHIP:
     case UNIT_LANDER:
     case UNIT_SUB:
@@ -14,8 +13,8 @@ BOOL func_ov000_022b0138(int unitType)
     case 29:
     case 30:
     case 31:
-        return FALSE;
+      return FALSE;
     default:
-        return TRUE;
-    }
+      return TRUE;
+  }
 }

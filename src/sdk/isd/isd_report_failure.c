@@ -9,12 +9,12 @@ extern char gIsdWarningFormat[];
 void Isd_Breakpoint(void);
 
 /* Prints the assertion or warning line for a failed check; a fatal one then traps. */
-void Isd_ReportFailure(const char *file, int line, const char *expression, BOOL isFatal)
-{
-    if (isFatal) {
-        Isd_Printf(gIsdAssertionFormat, file, line, expression);
-        Isd_Breakpoint();
-    } else {
-        Isd_Printf(gIsdWarningFormat, file, line, expression);
-    }
+void Isd_ReportFailure(const char* file, int line, const char* expression,
+                       BOOL isFatal) {
+  if (isFatal) {
+    Isd_Printf(gIsdAssertionFormat, file, line, expression);
+    Isd_Breakpoint();
+  } else {
+    Isd_Printf(gIsdWarningFormat, file, line, expression);
+  }
 }

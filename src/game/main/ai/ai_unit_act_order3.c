@@ -15,17 +15,16 @@ void AiUnit_HeadForObjectTarget(void);
 /* AiUnit_ActByOrder runs these AI steps for units with AI order 3. The
  * last one, AiUnit_WaitInPlace, makes the unit stay on its tile
  * (AiUnit_PerformAction with action 2). */
-void AiUnit_ActOrder3(void)
-{
-    Ai_BuildThreatMaps();
-    func_020af5f8();
-    AiUnit_PlanAttack();
-    AiUnit_RetreatTowardSite();
-    func_020aa9c4();
-    AiUnit_SeekSeaTransport();
-    AiUnit_HeadForObjectTarget();
-    AiUnit_MoveToEnemyProperty();
-    AiUnit_MoveToEnemyTarget();
-    AiUnit_MoveToOtherMap();
-    AiUnit_WaitInPlace();
+void AiUnit_ActOrder3(void) {
+  Ai_BuildThreatMaps();
+  func_020af5f8();
+  AiUnit_PlanAttack();
+  AiUnit_RetreatTowardSite();
+  func_020aa9c4();
+  AiUnit_SeekSeaTransport();
+  AiUnit_HeadForObjectTarget();
+  AiUnit_MoveToEnemyProperty();
+  AiUnit_MoveToEnemyTarget();
+  AiUnit_MoveToOtherMap();
+  AiUnit_WaitInPlace();
 }

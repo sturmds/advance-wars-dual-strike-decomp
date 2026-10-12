@@ -3,10 +3,10 @@
 
 /* Unsigned quotient: both operands are zero-extended to 64 bits. */
 u32 HwDivU32(u32 numer, u32 denom) {
-    REG_DIVCNT = DIVCNT_MODE_64_64;
-    IO_DIVIDER_DIVIDEND = numer;
-    REG_DIV_DENOM = denom;
-    while (REG_DIVCNT & DIVCNT_BUSY) {
-    }
-    return REG_DIV_RESULT;
+  REG_DIVCNT = DIVCNT_MODE_64_64;
+  IO_DIVIDER_DIVIDEND = numer;
+  REG_DIV_DENOM = denom;
+  while (REG_DIVCNT & DIVCNT_BUSY) {
+  }
+  return REG_DIV_RESULT;
 }

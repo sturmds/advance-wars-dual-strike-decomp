@@ -6,22 +6,21 @@
 void Sound_PlaySe(int se);
 void Sound_StopSubSe(int se);
 
-void ShowEntry_PlaySound(UnitShowTask *task)
-{
-    u16 sound = gUnitShowEntries[task->entry].sound;
+void ShowEntry_PlaySound(UnitShowTask* task) {
+  u16 sound = gUnitShowEntries[task->entry].sound;
 
-    if (sound == SHOW_SOUND_NONE) {
-        return;
-    }
-    switch (sound) {
+  if (sound == SHOW_SOUND_NONE) {
+    return;
+  }
+  switch (sound) {
     case SHOW_SOUND_SPECIAL:
-        UnitShowTask_PlayStepSound(task);
-        break;
+      UnitShowTask_PlayStepSound(task);
+      break;
     case SHOW_SOUND_STOP:
-        Sound_StopSubSe(20);
-        break;
+      Sound_StopSubSe(20);
+      break;
     default:
-        Sound_PlaySe(sound);
-        break;
-    }
+      Sound_PlaySe(sound);
+      break;
+  }
 }

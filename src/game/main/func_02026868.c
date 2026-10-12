@@ -6,14 +6,8 @@
  * Needed to match: written in reverse address order, because the compiler
  * emits them last to first. */
 
-void func_02026870(int arg)
-{
-}
+void func_02026870(int arg) {}
 
-void func_0202686c(void)
-{
-}
+void func_0202686c(void) {}
 
-void func_02026868(int arg)
-{
-}
+void func_02026868(int arg) {}

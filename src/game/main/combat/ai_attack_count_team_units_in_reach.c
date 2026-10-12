@@ -3,98 +3,101 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 int UnitType_GetAttackKind(int unitType);
-int Player_GetUnitMoveRange(int player, int unitType);            /* movement plus the CO's move bonus */
-int AiAttack_CountTeamUnitsInFireRange(MapUnit *unit);                        /* the same count for an indirect unit */
-BOOL Unit_CanBeAttackedBy(MapUnit *target, MapUnit *attacker);
+int Player_GetUnitMoveRange(
+    int player, int unitType); /* movement plus the CO's move bonus */
+int AiAttack_CountTeamUnitsInFireRange(
+    MapUnit* unit); /* the same count for an indirect unit */
+BOOL Unit_CanBeAttackedBy(MapUnit* target, MapUnit* attacker);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) (STATE->mapTiles->rowStart[y] + (x))
-#define MOVE_RANGE(unit) Player_GetUnitMoveRange(MAP_UNIT_OWNER(STATE, unit), (unit)->type)
+#define MOVE_RANGE(unit) \
+  Player_GetUnitMoveRange(MAP_UNIT_OWNER(STATE, unit), (unit)->type)
 
 /* For a target unit that attacks directly: counts the current player's
  * team's units within the target's move range (distance in tiles) that
  * Unit_CanBeAttackedBy pairs with it, plus the acting unit. Air units count
  * twice. AiAttack_Score raises an attack's score by count / 32. */
-int AiAttack_CountTeamUnitsInReach(MapUnit *unit)
-{
-    int maxY;
-    int maxX;
-    int minY;
-    int slot;
-    MapUnit *other;
-    int count = 0;
-    int minX;
-    int x;
-    int y;
-    int dist;
+int AiAttack_CountTeamUnitsInReach(MapUnit* unit) {
+  int maxY;
+  int maxX;
+  int minY;
+  int slot;
+  MapUnit* other;
+  int count = 0;
+  int minX;
+  int x;
+  int y;
+  int dist;
 
-    if (UnitType_GetAttackKind(unit->type) == ATTACK_KIND_INDIRECT) {
-        return AiAttack_CountTeamUnitsInFireRange(unit);
-    }
-    if (UnitType_GetAttackKind(unit->type) != ATTACK_KIND_DIRECT) {
-        return count;
-    }
-    if (unit->x - MOVE_RANGE(unit) < 0) {
-        minX = 0;
-    } else {
-        minX = unit->x - MOVE_RANGE(unit);
-    }
-    if (unit->y - MOVE_RANGE(unit) < 0) {
-        minY = 0;
-    } else {
-        minY = unit->y - MOVE_RANGE(unit);
-    }
-    if (unit->x + MOVE_RANGE(unit) < STATE->unk_1c4->mapWidth - 1) {
-        maxX = unit->x + MOVE_RANGE(unit);
-    } else {
-        maxX = STATE->unk_1c4->mapWidth - 1;
-    }
-    if (unit->y + MOVE_RANGE(unit) < STATE->unk_1c4->mapHeight - 1) {
-        maxY = unit->y + MOVE_RANGE(unit);
-    } else {
-        maxY = STATE->unk_1c4->mapHeight - 1;
-    }
-    for (y = minY; y <= maxY; y++) {
-        for (x = minX; x <= maxX; x++) {
-            dist = 0;
-            if (unit->x - x > 0) {
-                dist += unit->x - x;
-            } else {
-                dist += x - unit->x;
-            }
-            if (unit->y - y > 0) {
-                dist += unit->y - y;
-            } else {
-                dist += y - unit->y;
-            }
-            if (dist < 0 || dist > MOVE_RANGE(unit)) {
-                continue;
-            }
-            slot = STATE->mapTiles->unitAt[TILE_INDEX(x, y)];
-            if (slot == 0) {
-                continue;
-            }
-            if (STATE->players[STATE->currentPlayer].team != STATE->players[(slot >> 6) + 1].team) {
-                continue;
-            }
-            other = &STATE->units[slot];
-            if (Unit_CanBeAttackedBy(other, unit)) {
-                count++;
-                if (Ov000_gUnitStats[other->type].moveGroup & MOVE_GROUP_AIR) {
-                    count++;
-                }
-            }
-        }
-    }
-    if (Unit_CanBeAttackedBy(STATE->actingUnit, unit) == TRUE) {
-        count++;
-        if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_AIR) {
-            count++;
-        }
-    }
+  if (UnitType_GetAttackKind(unit->type) == ATTACK_KIND_INDIRECT) {
+    return AiAttack_CountTeamUnitsInFireRange(unit);
+  }
+  if (UnitType_GetAttackKind(unit->type) != ATTACK_KIND_DIRECT) {
     return count;
+  }
+  if (unit->x - MOVE_RANGE(unit) < 0) {
+    minX = 0;
+  } else {
+    minX = unit->x - MOVE_RANGE(unit);
+  }
+  if (unit->y - MOVE_RANGE(unit) < 0) {
+    minY = 0;
+  } else {
+    minY = unit->y - MOVE_RANGE(unit);
+  }
+  if (unit->x + MOVE_RANGE(unit) < STATE->unk_1c4->mapWidth - 1) {
+    maxX = unit->x + MOVE_RANGE(unit);
+  } else {
+    maxX = STATE->unk_1c4->mapWidth - 1;
+  }
+  if (unit->y + MOVE_RANGE(unit) < STATE->unk_1c4->mapHeight - 1) {
+    maxY = unit->y + MOVE_RANGE(unit);
+  } else {
+    maxY = STATE->unk_1c4->mapHeight - 1;
+  }
+  for (y = minY; y <= maxY; y++) {
+    for (x = minX; x <= maxX; x++) {
+      dist = 0;
+      if (unit->x - x > 0) {
+        dist += unit->x - x;
+      } else {
+        dist += x - unit->x;
+      }
+      if (unit->y - y > 0) {
+        dist += unit->y - y;
+      } else {
+        dist += y - unit->y;
+      }
+      if (dist < 0 || dist > MOVE_RANGE(unit)) {
+        continue;
+      }
+      slot = STATE->mapTiles->unitAt[TILE_INDEX(x, y)];
+      if (slot == 0) {
+        continue;
+      }
+      if (STATE->players[STATE->currentPlayer].team !=
+          STATE->players[(slot >> 6) + 1].team) {
+        continue;
+      }
+      other = &STATE->units[slot];
+      if (Unit_CanBeAttackedBy(other, unit)) {
+        count++;
+        if (Ov000_gUnitStats[other->type].moveGroup & MOVE_GROUP_AIR) {
+          count++;
+        }
+      }
+    }
+  }
+  if (Unit_CanBeAttackedBy(STATE->actingUnit, unit) == TRUE) {
+    count++;
+    if (Ov000_gUnitStats[STATE->actingUnit->type].moveGroup & MOVE_GROUP_AIR) {
+      count++;
+    }
+  }
+  return count;
 }

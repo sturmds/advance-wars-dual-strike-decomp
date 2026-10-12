@@ -5,16 +5,15 @@
 int Math_EaseInOut(int from, int to, int step, int steps);
 void PointsTally_Draw(int x, int y, int added, int total, int popFrame);
 int func_0204cd00(void);
-void Task_ResumeScript(PointsTallyTask *task);
+void Task_ResumeScript(PointsTallyTask* task);
 
 /* Sets the Y scroll of layers 1 and 0 of the current screen to `value`. */
-static inline void SetLayer01ScrollY(int value)
-{
-    u8 layer1 = data_027c0280->layer1Bg;
-    u8 layer0 = data_027c0280->layer0Bg;
+static inline void SetLayer01ScrollY(int value) {
+  u8 layer1 = data_027c0280->layer1Bg;
+  u8 layer0 = data_027c0280->layer0Bg;
 
-    data_027c0280->bgScrollY[layer1] = value;
-    data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
+  data_027c0280->bgScrollY[layer1] = value;
+  data_027c0280->bgScrollY[layer0] = data_027c0280->bgScrollY[layer1];
 }
 
 /* Script step, 24 frames: eases the points box from y 88 on the screen of
@@ -23,35 +22,34 @@ static inline void SetLayer01ScrollY(int value)
  * screens stacked, and scrolls layers 0 and 1 of both screens up 144 pixels
  * with it. Then resumes the task of script data_0215b22c (func_0204cd00)
  * and this script. */
-void PointsTally_SlideToSubScreen(PointsTallyTask *task)
-{
-    int y;
-    int scroll;
-    Unk_027c0280 *saved;
+void PointsTally_SlideToSubScreen(PointsTallyTask* task) {
+  int y;
+  int scroll;
+  Unk_027c0280* saved;
 
-    task->frame++;
-    y = Math_EaseInOut(280, 136, task->frame, 24);
-    scroll = Math_EaseInOut(0, -144, task->frame, 24);
+  task->frame++;
+  y = Math_EaseInOut(280, 136, task->frame, 24);
+  scroll = Math_EaseInOut(0, -144, task->frame, 24);
 
-    saved = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_04);
-    SetLayer01ScrollY(-192 - scroll);
-    if (y < 192) {
-        PointsTally_Draw(56, y, task->added, task->total, -1);
-    }
-    Screen_SetCurrentGfx(saved);
+  saved = data_027c0280;
+  Screen_SetCurrentGfx(data_027c0288.unk_04);
+  SetLayer01ScrollY(-192 - scroll);
+  if (y < 192) {
+    PointsTally_Draw(56, y, task->added, task->total, -1);
+  }
+  Screen_SetCurrentGfx(saved);
 
-    saved = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_00);
-    SetLayer01ScrollY(-scroll);
-    if (y > 160) {
-        PointsTally_Draw(56, y - 192, task->added, task->total, -1);
-    }
-    Screen_SetCurrentGfx(saved);
+  saved = data_027c0280;
+  Screen_SetCurrentGfx(data_027c0288.unk_00);
+  SetLayer01ScrollY(-scroll);
+  if (y > 160) {
+    PointsTally_Draw(56, y - 192, task->added, task->total, -1);
+  }
+  Screen_SetCurrentGfx(saved);
 
-    if (task->frame == 24) {
-        func_0204cd00();
-        task->frame = 0;
-        Task_ResumeScript(task);
-    }
+  if (task->frame == 24) {
+    func_0204cd00();
+    task->frame = 0;
+    Task_ResumeScript(task);
+  }
 }

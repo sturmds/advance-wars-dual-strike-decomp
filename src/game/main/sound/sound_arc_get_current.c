@@ -1,7 +1,5 @@
 #include "types.h"
 
-extern void *gCurrentSoundArc;
+extern void* gCurrentSoundArc;
 
-void *SoundArc_GetCurrent(void) {
-    return gCurrentSoundArc;
-}
+void* SoundArc_GetCurrent(void) { return gCurrentSoundArc; }

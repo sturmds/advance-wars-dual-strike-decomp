@@ -1,5 +1,3 @@
 #include "types.h"
 
-void AiStep_DebugHook(void)
-{
-}
+void AiStep_DebugHook(void) {}

@@ -5,6 +5,4 @@
  * Weather_Set. */
 void Weather_Change(int weather);
 
-void Ov001_SetWeatherClear(void) {
-    Weather_Change(WEATHER_CLEAR);
-}
+void Ov001_SetWeatherClear(void) { Weather_Change(WEATHER_CLEAR); }

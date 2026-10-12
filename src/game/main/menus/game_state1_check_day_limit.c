@@ -15,29 +15,31 @@ void Game_EnterState20(void);
  * round ends on that day, every player in the game with fewer properties
  * (Player.propertyCount) than the most any player has is marked defeated (code 32)
  * and the game ends (state 20). Otherwise sets state 2 and enters state 18. */
-void Game_State1_CheckDayLimit(void)
-{
-    int most;
-    u8 player;
+void Game_State1_CheckDayLimit(void) {
+  int most;
+  u8 player;
 
-    if (data_027c027c == data_027c0288.unk_00) {
-        func_ov000_022b04ec();
+  if (data_027c027c == data_027c0288.unk_00) {
+    func_ov000_022b04ec();
+  }
+  if (STATE->dayLimit == 0 || !Turn_NextPlayerWrapsAround() ||
+      STATE->dayLimit != STATE->day) {
+    STATE->unk_18 = 2;
+    Game_EnterState18();
+    return;
+  }
+  most = 0;
+  for (player = 1; player < 5; player++) {
+    if (Player_IsInGame(player) &&
+        most < STATE->players[player].propertyCount) {
+      most = STATE->players[player].propertyCount;
     }
-    if (STATE->dayLimit == 0 || !Turn_NextPlayerWrapsAround() || STATE->dayLimit != STATE->day) {
-        STATE->unk_18 = 2;
-        Game_EnterState18();
-        return;
+  }
+  for (player = 1; player < 5; player++) {
+    if (Player_IsInGame(player) &&
+        most > STATE->players[player].propertyCount) {
+      LinkPlayer_MarkDefeated(player, 32);
     }
-    most = 0;
-    for (player = 1; player < 5; player++) {
-        if (Player_IsInGame(player) && most < STATE->players[player].propertyCount) {
-            most = STATE->players[player].propertyCount;
-        }
-    }
-    for (player = 1; player < 5; player++) {
-        if (Player_IsInGame(player) && most > STATE->players[player].propertyCount) {
-            LinkPlayer_MarkDefeated(player, 32);
-        }
-    }
-    Game_EnterState20();
+  }
+  Game_EnterState20();
 }

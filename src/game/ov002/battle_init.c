@@ -14,20 +14,19 @@ void func_ov002_023571b8(void);
 void func_ov002_0235323c(void);
 
 /* Sets up the battle screen after the scene is loaded; the argument is not used. */
-int Battle_Init(int unused)
-{
-    int i;
+int Battle_Init(int unused) {
+  int i;
 
-    for (i = 0; i < 2; i++) {
-        gMenuState.battle.bgScroll[i] = 0;
-        gMenuState.battle.unk_40c[i] = 0;
-    }
-    Sound_LoadBattleUnitData(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
-    Battle_PickSideVariants();
-    Battle_SelectUnitRecords(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
-    Battle_LoadScreen();
-    Battle_InitHpDisplay();
-    Battle_MakeFighters();
-    func_ov002_023571b8();
-    func_ov002_0235323c();
+  for (i = 0; i < 2; i++) {
+    gMenuState.battle.bgScroll[i] = 0;
+    gMenuState.battle.unk_40c[i] = 0;
+  }
+  Sound_LoadBattleUnitData(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
+  Battle_PickSideVariants();
+  Battle_SelectUnitRecords(BATTLE_SIDE_UNIT_TYPE(0), BATTLE_SIDE_UNIT_TYPE(1));
+  Battle_LoadScreen();
+  Battle_InitHpDisplay();
+  Battle_MakeFighters();
+  func_ov002_023571b8();
+  func_ov002_0235323c();
 }

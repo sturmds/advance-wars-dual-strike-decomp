@@ -7,7 +7,7 @@ extern u16 data_arm7_027d81ac;
 
 void func_arm7_027d5244(void);
 void func_arm7_027d5364(void);
-void Clock_ServeArm9Requests(void *arg);
+void Clock_ServeArm9Requests(void* arg);
 void func_arm7_027d58e8(u32 tag, u32 data, BOOL err);
 
 /* Its definition takes three arguments, but it only branches to the PXI
@@ -18,32 +18,32 @@ void func_arm7_037fe3fc(u16 mask, u16 value);
  * Runs once: checks the clock, starts the thread that serves the ARM9's
  * requests, and takes the RTC's alarm line on SI as the serial interrupt.
  */
-void func_arm7_027d5a24(u32 priority)
-{
-    int irq;
+void func_arm7_027d5a24(u32 priority) {
+  int irq;
 
-    if (data_arm7_027d81ac) {
-        return;
-    }
-    data_arm7_027d81ac = TRUE;
+  if (data_arm7_027d81ac) {
+    return;
+  }
+  data_arm7_027d81ac = TRUE;
 
-    data_arm7_027d81b0.busy = TRUE;
-    func_arm7_027d5244();
-    data_arm7_027d81b0.busy = FALSE;
+  data_arm7_027d81b0.busy = TRUE;
+  func_arm7_027d5244();
+  data_arm7_027d81b0.busy = FALSE;
 
-    Fifo_SetUp_Arm7();
-    Fifo_RegisterTagHandler_Arm7(PXI_FIFO_TAG_RTC, func_arm7_027d58e8);
-    MsgQueue_SetUpRing_Arm7(&data_arm7_027d81b0.queue, data_arm7_027d81b0.messages, 4);
-    Thread_Spawn_Arm7(&data_arm7_027d81b0.thread, Clock_ServeArm9Requests, NULL,
-                       data_arm7_027d81b0.stack + CLOCK_WORKER_STACK_LEN,
-                       sizeof(data_arm7_027d81b0.stack), priority);
-    Thread_MakeReady_Arm7(&data_arm7_027d81b0.thread);
+  Fifo_SetUp_Arm7();
+  Fifo_RegisterTagHandler_Arm7(PXI_FIFO_TAG_RTC, func_arm7_027d58e8);
+  MsgQueue_SetUpRing_Arm7(&data_arm7_027d81b0.queue,
+                          data_arm7_027d81b0.messages, 4);
+  Thread_Spawn_Arm7(&data_arm7_027d81b0.thread, Clock_ServeArm9Requests, NULL,
+                    data_arm7_027d81b0.stack + CLOCK_WORKER_STACK_LEN,
+                    sizeof(data_arm7_027d81b0.stack), priority);
+  Thread_MakeReady_Arm7(&data_arm7_027d81b0.thread);
 
-    func_arm7_037fe3e0(RCNT_MODE_GPIO);
-    func_arm7_037fe3fc(RCNT_SI_OUTPUT, 0);
-    func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
-    irq = Cpu_MaskIrq_Arm7();
-    Irq_InstallHandlers_Arm7(IRQ_SIO, func_arm7_027d5364);
-    Irq_SetEnableBits_Arm7(IRQ_SIO);
-    Cpu_RestoreIrqBit_Arm7(irq);
+  func_arm7_037fe3e0(RCNT_MODE_GPIO);
+  func_arm7_037fe3fc(RCNT_SI_OUTPUT, 0);
+  func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
+  irq = Cpu_MaskIrq_Arm7();
+  Irq_InstallHandlers_Arm7(IRQ_SIO, func_arm7_027d5364);
+  Irq_SetEnableBits_Arm7(IRQ_SIO);
+  Cpu_RestoreIrqBit_Arm7(irq);
 }

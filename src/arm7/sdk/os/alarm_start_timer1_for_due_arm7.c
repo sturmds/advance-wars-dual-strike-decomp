@@ -7,24 +7,23 @@
  * already due fires after two counts; one 0x10000 or more counts away waits
  * a full timer period and is checked again then.
  */
-void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm)
-{
-    OSTick now;
-    s64 delay;
-    u16 count;
+void Alarm_StartTimer1ForDue_Arm7(OSAlarm* alarm) {
+  OSTick now;
+  s64 delay;
+  u16 count;
 
-    now = Tick_Read64_Arm7();
-    REG_TM1CNT_H = 0;
-    delay = alarm->fire - now;
-    Timer_InstallIrqSlot_Arm7(1, Alarm_OnTimer1Irq_Arm7, NULL);
-    if (delay < 0) {
-        count = 0xfffe;
-    } else if (delay < 0x10000) {
-        count = (u16)~delay;
-    } else {
-        count = 0;
-    }
-    REG_TM1CNT_L = count;
-    REG_TM1CNT_H = TMCNT_START_IRQ_DIV64;
-    Irq_SetEnableBits_Arm7(IRQ_MASK_TIMER1);
+  now = Tick_Read64_Arm7();
+  REG_TM1CNT_H = 0;
+  delay = alarm->fire - now;
+  Timer_InstallIrqSlot_Arm7(1, Alarm_OnTimer1Irq_Arm7, NULL);
+  if (delay < 0) {
+    count = 0xfffe;
+  } else if (delay < 0x10000) {
+    count = (u16)~delay;
+  } else {
+    count = 0;
+  }
+  REG_TM1CNT_L = count;
+  REG_TM1CNT_H = TMCNT_START_IRQ_DIV64;
+  Irq_SetEnableBits_Arm7(IRQ_MASK_TIMER1);
 }

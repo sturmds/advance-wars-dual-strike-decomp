@@ -8,15 +8,14 @@ void UnitInfoPanel_PutFrameBlock(void);
 void UnitInfoPanel_DrawContents(void);
 
 /* Redraws the unit info panel on the other screen. The caller passes a script slot; it is not used. */
-void UnitInfoPanel_Redraw(ScriptSlot *slot)
-{
-    Unk_027c0280 *saved0280;
+void UnitInfoPanel_Redraw(ScriptSlot* slot) {
+  Unk_027c0280* saved0280;
 
-    func_ov000_022b1a40();
-    saved0280 = data_027c0280;
-    Screen_SetCurrentGfx(data_027c0288.unk_04);
-    func_01ff9ac4();
-    UnitInfoPanel_PutFrameBlock();
-    UnitInfoPanel_DrawContents();
-    Screen_SetCurrentGfx(saved0280);
+  func_ov000_022b1a40();
+  saved0280 = data_027c0280;
+  Screen_SetCurrentGfx(data_027c0288.unk_04);
+  func_01ff9ac4();
+  UnitInfoPanel_PutFrameBlock();
+  UnitInfoPanel_DrawContents();
+  Screen_SetCurrentGfx(saved0280);
 }

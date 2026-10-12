@@ -6,18 +6,20 @@
 /* Sound hardware registers the ARM7 driver writes. */
 
 /* High byte of SOUNDCNT: bits 0-1 left output, 2-3 right output, 4 and 5 channel 1 and 3 direct output, 7 master enable. */
-#define AUDIO_MIXER_ROUTE_BYTE (*(u8 *)0x4000501)
+#define AUDIO_MIXER_ROUTE_BYTE (*(u8*)0x4000501)
 #define AUDIO_MIXER_MASTER_ON 0x80
 
 /* POWCNT2: bit 0 powers the speakers and sound circuit. */
-#define AUDIO_SPEAKER_POWER_REG (*(u16 *)0x4000304)
+#define AUDIO_SPEAKER_POWER_REG (*(u16*)0x4000304)
 
 /* Sound capture control registers; bit 7 starts a capture. */
-#define AUDIO_RECORD0_CTRL (*(u8 *)0x4000508)
-#define AUDIO_RECORD1_CTRL (*(u8 *)0x4000509)
+#define AUDIO_RECORD0_CTRL (*(u8*)0x4000508)
+#define AUDIO_RECORD1_CTRL (*(u8*)0x4000509)
 /* Capture destination address and length (in words) of the capture whose registers start blockOffset (capture << 3) bytes from capture 0's. */
-#define AUDIO_RECORD_TARGET_ADDR(blockOffset) (*(u32 *)(0x4000510 + (blockOffset)))
-#define AUDIO_RECORD_WORD_COUNT(blockOffset) (*(u16 *)(0x4000514 + (blockOffset)))
+#define AUDIO_RECORD_TARGET_ADDR(blockOffset) \
+  (*(u32*)(0x4000510 + (blockOffset)))
+#define AUDIO_RECORD_WORD_COUNT(blockOffset) \
+  (*(u16*)(0x4000514 + (blockOffset)))
 /* Bit 2 of a capture control register. */
 enum { AUDIO_RECORD_WRAPAROUND = 0, AUDIO_RECORD_SINGLE_PASS = 1 };
 
@@ -35,26 +37,27 @@ extern int gSndHwPanOverride;
 
 /* One channel register block at 0x04000400 + channel * 0x10. */
 typedef struct SndHwChannel {
-    u8 volume;
-    u8 volumeShift; /* bits 0-1 volume divider, bit 7 hold */
-    u8 pan;
-    u8 flags;       /* bits 3-4 repeat mode, 5-6 format, bit 7 busy and start */
-    u32 source;
-    u16 timer;
-    u16 loopStart;
-    u32 length;
+  u8 volume;
+  u8 volumeShift; /* bits 0-1 volume divider, bit 7 hold */
+  u8 pan;
+  u8 flags; /* bits 3-4 repeat mode, 5-6 format, bit 7 busy and start */
+  u32 source;
+  u16 timer;
+  u16 loopStart;
+  u32 length;
 } SndHwChannel;
 
-#define AUDIO_CH_REG_BLOCKS ((SndHwChannel *)0x4000400)
+#define AUDIO_CH_REG_BLOCKS ((SndHwChannel*)0x4000400)
 /* Byte registers of the channel whose block starts blockOffset bytes (channel << 4) from the first. */
-#define AUDIO_CH_LOUDNESS_BYTE(blockOffset) (*(u8 *)(0x4000400 + (blockOffset)))
-#define AUDIO_CH_BALANCE_BYTE(blockOffset) (*(u8 *)(0x4000402 + (blockOffset)))
-#define AUDIO_CH_LOUDNESS_DIVIDER(blockOffset) (*(u16 *)(0x4000400 + (blockOffset)))
-#define AUDIO_CH_CTRL_WORD(blockOffset) (*(u32 *)(0x4000400 + (blockOffset)))
-#define AUDIO_CH_RATE_RELOAD(blockOffset) (*(u16 *)(0x4000408 + (blockOffset)))
-#define AUDIO_CH_REPEAT_POINT(blockOffset) (*(u16 *)(0x400040A + (blockOffset)))
-#define AUDIO_CH_SAMPLE_ADDR(blockOffset) (*(u32 *)(0x4000404 + (blockOffset)))
-#define AUDIO_CH_DATA_SPAN(blockOffset) (*(u32 *)(0x400040C + (blockOffset)))
+#define AUDIO_CH_LOUDNESS_BYTE(blockOffset) (*(u8*)(0x4000400 + (blockOffset)))
+#define AUDIO_CH_BALANCE_BYTE(blockOffset) (*(u8*)(0x4000402 + (blockOffset)))
+#define AUDIO_CH_LOUDNESS_DIVIDER(blockOffset) \
+  (*(u16*)(0x4000400 + (blockOffset)))
+#define AUDIO_CH_CTRL_WORD(blockOffset) (*(u32*)(0x4000400 + (blockOffset)))
+#define AUDIO_CH_RATE_RELOAD(blockOffset) (*(u16*)(0x4000408 + (blockOffset)))
+#define AUDIO_CH_REPEAT_POINT(blockOffset) (*(u16*)(0x400040A + (blockOffset)))
+#define AUDIO_CH_SAMPLE_ADDR(blockOffset) (*(u32*)(0x4000404 + (blockOffset)))
+#define AUDIO_CH_DATA_SPAN(blockOffset) (*(u32*)(0x400040C + (blockOffset)))
 #define AUDIO_CH_PLAY_BIT 0x80000000
 #define AUDIO_CH_KEEP_LAST_SAMPLE 0x8000
 /* Format field of the control word (bits 29-30): 3 selects PSG or noise. */
@@ -71,12 +74,17 @@ BOOL SndHw_IsChannelBusy(int channel);
 void SndHw_Reset(void);
 void SndHw_SetChannelPan(int channel, int pan);
 void SndHw_SetChannelVolume(int channel, int volume, int volumeShift);
-void SndHw_SetOutputControl(int leftOutput, int rightOutput, int ch1Direct, int ch3Direct);
+void SndHw_SetOutputControl(int leftOutput, int rightOutput, int ch1Direct,
+                            int ch3Direct);
 void SndHw_SetPanEdgeAttenuation(int attenuation);
 void SndHw_SetPanOverride(int pan);
-void SndHw_SetupNoise(int channel, int volume, int volumeShift, int timer, int pan);
-void SndHw_SetupPcm(int channel, u32 source, int format, int repeatMode, int loopStart, int length, int volume, int volumeShift, int timer, int pan);
-void SndHw_SetupPsg(int channel, int duty, int volume, int volumeShift, int timer, int pan);
+void SndHw_SetupNoise(int channel, int volume, int volumeShift, int timer,
+                      int pan);
+void SndHw_SetupPcm(int channel, u32 source, int format, int repeatMode,
+                    int loopStart, int length, int volume, int volumeShift,
+                    int timer, int pan);
+void SndHw_SetupPsg(int channel, int duty, int volume, int volumeShift,
+                    int timer, int pan);
 void SndHw_StopChannel(int channel, int hold);
 
 #endif

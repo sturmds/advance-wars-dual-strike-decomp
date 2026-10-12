@@ -15,32 +15,31 @@ extern ShopItem data_0216cb60[];
  * flags 32-158 and func_021019a4's per-map flags. Then each Battle Maps
  * shop item clears its own flag through its onBuy routine, so only what
  * the shop sells starts locked. */
-void Unlocks_ResetToNewGame(void)
-{
-    int i;
+void Unlocks_ResetToNewGame(void) {
+  int i;
 
-    for (i = 0; i < 11; i++) {
-        func_02101ac8(i, 1);
-    }
-    for (i = 0; i < MAP_COUNT; i++) {
-        Map_SetSingleFlag(i, 1);
-    }
-    for (i = 0; i < CO_COUNT; i++) {
-        Unlock_Set(i, 1);
-    }
-    for (i = 0; i < CO_COUNT; i++) {
-        CoColor_Set(i, 1);
-    }
-    for (i = 95; i < 159; i++) {
-        GameFlag_Set(i, 0);
-    }
-    for (i = 32; i < 95; i++) {
-        GameFlag_Set(i, 0);
-    }
-    for (i = 0; i < MAP_COUNT; i++) {
-        func_021019a4(i, 0);
-    }
-    for (i = 0; data_0216cb60[i].price != -1; i++) {
-        data_0216cb60[i].onBuy(data_0216cb60[i].arg, 0);
-    }
+  for (i = 0; i < 11; i++) {
+    func_02101ac8(i, 1);
+  }
+  for (i = 0; i < MAP_COUNT; i++) {
+    Map_SetSingleFlag(i, 1);
+  }
+  for (i = 0; i < CO_COUNT; i++) {
+    Unlock_Set(i, 1);
+  }
+  for (i = 0; i < CO_COUNT; i++) {
+    CoColor_Set(i, 1);
+  }
+  for (i = 95; i < 159; i++) {
+    GameFlag_Set(i, 0);
+  }
+  for (i = 32; i < 95; i++) {
+    GameFlag_Set(i, 0);
+  }
+  for (i = 0; i < MAP_COUNT; i++) {
+    func_021019a4(i, 0);
+  }
+  for (i = 0; data_0216cb60[i].price != -1; i++) {
+    data_0216cb60[i].onBuy(data_0216cb60[i].arg, 0);
+  }
 }

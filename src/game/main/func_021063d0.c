@@ -5,26 +5,27 @@ typedef struct Unk_021063d0_1 Unk_021063d0_1;
 typedef struct Unk_021063d0_2 Unk_021063d0_2;
 
 struct Unk_021063d0_0 {
-    u8 pad_00[0x8];
-    int unk_8;
+  u8 pad_00[0x8];
+  int unk_8;
 };
 
 struct Unk_021063d0_1 {
-    u8 pad_00[0x10];
-    int unk_10;
+  u8 pad_00[0x10];
+  int unk_10;
 };
 
 struct Unk_021063d0_2 {
-    u8 pad_00[0x80];
-    Unk_021063d0_0 *unk_80;
+  u8 pad_00[0x80];
+  Unk_021063d0_0* unk_80;
 };
 
-extern Unk_021063d0_2 *gCurrentSoundArc;
+extern Unk_021063d0_2* gCurrentSoundArc;
 
-int func_021063d0(int a0)
-{
-    Unk_021063d0_0 *t0 = gCurrentSoundArc->unk_80;
-    if ((u32)a0 < (u32)t0->unk_8) {
-    }
-    return ((u32)a0 >= (u32)t0->unk_8) ? 0 : ((Unk_021063d0_1 *)((int)t0 + (a0 << 4)))->unk_10;
+int func_021063d0(int a0) {
+  Unk_021063d0_0* t0 = gCurrentSoundArc->unk_80;
+  if ((u32)a0 < (u32)t0->unk_8) {
+  }
+  return ((u32)a0 >= (u32)t0->unk_8)
+             ? 0
+             : ((Unk_021063d0_1*)((int)t0 + (a0 << 4)))->unk_10;
 }

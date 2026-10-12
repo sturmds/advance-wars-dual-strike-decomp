@@ -6,10 +6,10 @@
 /* One CO's entry in the experience block sent over the link (28 COs), and
  * in each player's row of data_0229deec. */
 typedef struct LinkCoRecord {
-    u32 paletteVariant : 3;            /* Co_GetSavedPaletteVariant */
-    u32 pictureVariant : 1;            /* Co_GetSavedPictureVariant */
-    u32 experience : 17;               /* Co_GetExperience */
-    u32 : 11;
+  u32 paletteVariant : 3; /* Co_GetSavedPaletteVariant */
+  u32 pictureVariant : 1; /* Co_GetSavedPictureVariant */
+  u32 experience : 17;    /* Co_GetExperience */
+  u32 : 11;
 } LinkCoRecord;
 
 /* Fields of the tasks that swap a block of data between players over the
@@ -17,37 +17,40 @@ typedef struct LinkCoRecord {
  * experience). Each task uses one of the two data pointers. The first 0x2a
  * bytes belong to the task system (Task_Create). */
 typedef struct LinkSyncTask {
-    u8 pad_00[0x2c];
-    LinkCoRecord *experience;          /* 28 entries (112 bytes) to send, allocated by LinkExperienceSyncTask_Init */
-    u8 *skills;                        /* 128 bytes to send: 4 players x 2 COs x 16, filled by LinkSkillSyncTask_Init */
-    u16 sentBytes;
-    u16 receivedBytes;
-    u16 sendDone;                      /* set when sentBytes reaches the block size */
-    u16 started;                       /* set once the first chunk went out */
-    u16 receiveStarted;                /* set when the first chunk arrived */
+  u8 pad_00[0x2c];
+  LinkCoRecord*
+      experience; /* 28 entries (112 bytes) to send, allocated by LinkExperienceSyncTask_Init */
+  u8* skills; /* 128 bytes to send: 4 players x 2 COs x 16, filled by LinkSkillSyncTask_Init */
+  u16 sentBytes;
+  u16 receivedBytes;
+  u16 sendDone;       /* set when sentBytes reaches the block size */
+  u16 started;        /* set once the first chunk went out */
+  u16 receiveStarted; /* set when the first chunk arrived */
 } LinkSyncTask;
 
 /* Palette and picture variants of two COs, packed in one byte. */
 typedef struct LinkCoVariantPair {
-    u8 palette0 : 3;
-    u8 picture0 : 1;
-    u8 palette1 : 3;
-    u8 picture1 : 1;
+  u8 palette0 : 3;
+  u8 picture0 : 1;
+  u8 palette1 : 3;
+  u8 picture1 : 1;
 } LinkCoVariantPair;
 
 /* Fields of the task (LinkCoVariantSyncTask_Update) that swaps the palette and picture
  * variants of the 7 COs in data_0216069c between players. Its fields start
  * one byte earlier than the other tasks'. */
 typedef struct LinkCoVariantSyncTask {
-    u8 pad_00[0x29];
-    LinkCoVariantPair variants[4];     /* 7 COs, two a byte; filled by LinkCoVariantSyncTask_Init */
-    u8 players[4];                     /* the player in each link slot; the received chunk of player players[k] goes to army k + 1 */
-    u8 pad_31;
-    u16 sentBytes;
-    u16 receivedBytes;
-    u16 sendDone;                      /* set when sentBytes reaches 4 */
-    u16 started;                       /* set once the first chunk went out */
-    u16 receiveStarted;                /* set when the first chunk arrived */
+  u8 pad_00[0x29];
+  LinkCoVariantPair
+      variants[4]; /* 7 COs, two a byte; filled by LinkCoVariantSyncTask_Init */
+  u8 players
+      [4]; /* the player in each link slot; the received chunk of player players[k] goes to army k + 1 */
+  u8 pad_31;
+  u16 sentBytes;
+  u16 receivedBytes;
+  u16 sendDone;       /* set when sentBytes reaches 4 */
+  u16 started;        /* set once the first chunk went out */
+  u16 receiveStarted; /* set when the first chunk arrived */
 } LinkCoVariantSyncTask;
 
 #endif

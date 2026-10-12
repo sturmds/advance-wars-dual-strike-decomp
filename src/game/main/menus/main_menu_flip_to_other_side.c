@@ -9,14 +9,13 @@ void MainMenu_StartPageFlip(int page, int slide);
 
 /* Remembers the cursor, then flips to the other side page: page 6 from the
  * first side pages, page 0 from the others. */
-void MainMenu_FlipToOtherSide(void)
-{
-    MainMenu *menu = data_021599d0;
+void MainMenu_FlipToOtherSide(void) {
+  MainMenu* menu = data_021599d0;
 
-    menu->cursors[menu->page] = Menu_GetSelectedId();
-    if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
-        MainMenu_StartPageFlip(6, SLIDE_RIGHT);
-    } else {
-        MainMenu_StartPageFlip(0, SLIDE_RIGHT);
-    }
+  menu->cursors[menu->page] = Menu_GetSelectedId();
+  if (MainMenu_IsFirstSidePage(data_021599d0->page) == 1) {
+    MainMenu_StartPageFlip(6, SLIDE_RIGHT);
+  } else {
+    MainMenu_StartPageFlip(0, SLIDE_RIGHT);
+  }
 }

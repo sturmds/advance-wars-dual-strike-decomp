@@ -3,7 +3,7 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -22,47 +22,49 @@ BOOL Unit_IsCurrentPlayers(s16 unitSlot);
  * skipped; otherwise each reached tile of MapTiles.rangeScratch keeps the lower
  * of its value and the Sub's move cost. */
 
-void Ai_MarkEnemySubReach(u8 player)
-{
-    MapUnit *unit;
-    MapUnit *other;
-    int slot;
-    int fillX;                         /* needed to match: the second scan has its own column counter */
-    int x;
-    int y;
+void Ai_MarkEnemySubReach(u8 player) {
+  MapUnit* unit;
+  MapUnit* other;
+  int slot;
+  int fillX; /* needed to match: the second scan has its own column counter */
+  int x;
+  int y;
 
-    STATE->unk_1e = player;
-    for (slot = Ov000_gPlayerFirstUnitSlot[player] + 1; slot < Ov000_gPlayerFirstUnitSlot[player] + 51; slot++) {
-        unit = &STATE->units[slot];
-        if (unit->type == UNIT_NONE || unit->type != UNIT_SUB || unit->hp <= 20) {
-            continue;
-        }
-        RangeMap_FillMoves(unit->x, unit->y, unit->type, UNLIMITED_MOVE, 0);
-        RangeMap_MarkAdjacentTiles(111);
-        for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-            for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-                if (STATE->rangeMap[y][x] < 0) {
-                    continue;
-                }
-                if (Unit_IsCurrentPlayers(STATE->mapTiles->unk_508[TILE(x, y)]) == 0) {
-                    continue;
-                }
-                other = &STATE->units[STATE->mapTiles->unitAt[TILE(x, y)]];
-                if (other->type == UNIT_CRUISER && other->hp >= CRUISER_GUARD_HP) {
-                    goto next;
-                }
-            }
-        }
-        for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-            for (fillX = 0; fillX < STATE->unk_1c4->mapWidth; fillX++) {
-                if (STATE->rangeMap[y][fillX] < 0) {
-                    continue;
-                }
-                if (STATE->rangeMap[y][fillX] <= STATE->mapTiles->rangeScratch[TILE(fillX, y)]) {
-                    STATE->mapTiles->rangeScratch[TILE(fillX, y)] = STATE->rangeMap[y][fillX];
-                }
-            }
-        }
-    next:;
+  STATE->unk_1e = player;
+  for (slot = Ov000_gPlayerFirstUnitSlot[player] + 1;
+       slot < Ov000_gPlayerFirstUnitSlot[player] + 51; slot++) {
+    unit = &STATE->units[slot];
+    if (unit->type == UNIT_NONE || unit->type != UNIT_SUB || unit->hp <= 20) {
+      continue;
     }
+    RangeMap_FillMoves(unit->x, unit->y, unit->type, UNLIMITED_MOVE, 0);
+    RangeMap_MarkAdjacentTiles(111);
+    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+      for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+        if (STATE->rangeMap[y][x] < 0) {
+          continue;
+        }
+        if (Unit_IsCurrentPlayers(STATE->mapTiles->unk_508[TILE(x, y)]) == 0) {
+          continue;
+        }
+        other = &STATE->units[STATE->mapTiles->unitAt[TILE(x, y)]];
+        if (other->type == UNIT_CRUISER && other->hp >= CRUISER_GUARD_HP) {
+          goto next;
+        }
+      }
+    }
+    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+      for (fillX = 0; fillX < STATE->unk_1c4->mapWidth; fillX++) {
+        if (STATE->rangeMap[y][fillX] < 0) {
+          continue;
+        }
+        if (STATE->rangeMap[y][fillX] <=
+            STATE->mapTiles->rangeScratch[TILE(fillX, y)]) {
+          STATE->mapTiles->rangeScratch[TILE(fillX, y)] =
+              STATE->rangeMap[y][fillX];
+        }
+      }
+    }
+  next:;
+  }
 }

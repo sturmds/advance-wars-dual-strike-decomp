@@ -7,7 +7,7 @@
 extern const TaskScriptCmd gUnitDropScript[];
 
 /* Sensei's Super CO Power: places mech units on the map. */
-void AirborneAssault(void *parent) {
-    UnitDropTask *task = (UnitDropTask *)Task_CreateChild(gUnitDropScript, parent);
-    task->unitType = UNIT_MECH;
+void AirborneAssault(void* parent) {
+  UnitDropTask* task = (UnitDropTask*)Task_CreateChild(gUnitDropScript, parent);
+  task->unitType = UNIT_MECH;
 }

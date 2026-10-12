@@ -7,8 +7,7 @@
 
 /* Loads the sound data the game keeps resident from boot: sequence
  * archive 1 and bank 0x30. */
-void Sound_LoadResidentData(void)
-{
-    NNS_SndArcLoadSeqArc(1, gSoundHeap);
-    NNS_SndArcLoadBank(0x30, gSoundHeap);
+void Sound_LoadResidentData(void) {
+  NNS_SndArcLoadSeqArc(1, gSoundHeap);
+  NNS_SndArcLoadBank(0x30, gSoundHeap);
 }

@@ -3,8 +3,7 @@
 
 void Sound_StopSubSe(int);
 
-void func_ov000_022ae488(UnitShowTask *task)
-{
-    Sound_StopSubSe(0);
-    ShowEntry_Finish(task);
+void func_ov000_022ae488(UnitShowTask* task) {
+  Sound_StopSubSe(0);
+  ShowEntry_Finish(task);
 }

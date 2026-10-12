@@ -2,7 +2,4 @@
 
 extern int gLinkPlay;
 
-void Link_ClearPlay(void)
-{
-    gLinkPlay = 0;
-}
+void Link_ClearPlay(void) { gLinkPlay = 0; }

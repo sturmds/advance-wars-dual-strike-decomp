@@ -5,21 +5,21 @@
 
 extern OSMessageQueue data_arm7_027d6c84;
 
-WlCommand *Wmsp_SendWlCommand(WlCommand *command)
-{
-    WlCommand *answer;
+WlCommand* Wmsp_SendWlCommand(WlCommand* command) {
+  WlCommand* answer;
 
-    MsgQueue_PushBack_Arm7(&WMSP_WORK->wlQueue, command, OS_MESSAGE_BLOCK);
-    MsgQueue_PopOldest_Arm7(&data_arm7_027d6c84, (OSMessage *)&answer, OS_MESSAGE_BLOCK);
-    if ((answer->words + 2)[answer->length] == 14) {
-        RadioNotice *indication = Wmsp_GetCallbackBuffer();
+  MsgQueue_PushBack_Arm7(&WMSP_WORK->wlQueue, command, OS_MESSAGE_BLOCK);
+  MsgQueue_PopOldest_Arm7(&data_arm7_027d6c84, (OSMessage*)&answer,
+                          OS_MESSAGE_BLOCK);
+  if ((answer->words + 2)[answer->length] == 14) {
+    RadioNotice* indication = Wmsp_GetCallbackBuffer();
 
-        indication->apiid = WM_APIID_INDICATION;
-        indication->errcode = WM_ERRCODE_FLASH_ERROR;
-        indication->state = 23;
-        Wmsp_SendReply(indication);
-        SndHw_Disable();
-        Cpu_HaltForever_Arm7();
-    }
-    return answer;
+    indication->apiid = WM_APIID_INDICATION;
+    indication->errcode = WM_ERRCODE_FLASH_ERROR;
+    indication->state = 23;
+    Wmsp_SendReply(indication);
+    SndHw_Disable();
+    Cpu_HaltForever_Arm7();
+  }
+  return answer;
 }

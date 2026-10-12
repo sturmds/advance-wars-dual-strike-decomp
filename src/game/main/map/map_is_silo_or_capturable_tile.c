@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/terrain.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* Ov000_gUrbanTerrain of the tile's terrain, or 0 when the tile belongs to
@@ -13,10 +13,11 @@ int Map_IsCapturableByActingUnit(s16 x, s16 y);
 
 /* Nonzero when the acting unit has something to do on tile (x, y): a missile
  * silo that has not been fired, or a property its team does not own. */
-BOOL Map_IsSiloOrCapturableTile(int x, int y)
-{
-    if (MAP_TILE_TERRAIN(STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]]) == TERRAIN_SILO) {
-        return TRUE;
-    }
-    return Map_IsCapturableByActingUnit(x, y);
+BOOL Map_IsSiloOrCapturableTile(int x, int y) {
+  if (MAP_TILE_TERRAIN(
+          STATE->mapTiles->tiles[x + STATE->mapTiles->rowStart[y]]) ==
+      TERRAIN_SILO) {
+    return TRUE;
+  }
+  return Map_IsCapturableByActingUnit(x, y);
 }

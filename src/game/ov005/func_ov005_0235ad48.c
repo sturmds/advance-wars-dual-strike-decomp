@@ -2,7 +2,4 @@
 
 void func_ov005_0235ad60(int, int);
 
-void func_ov005_0235ad48(int a0)
-{
-    func_ov005_0235ad60(a0, a0 + 0x8018);
-}
+void func_ov005_0235ad48(int a0) { func_ov005_0235ad60(a0, a0 + 0x8018); }

@@ -3,30 +3,29 @@
 #include "game/Unk_02080440.h"
 #include "game/Unk_ov006_0235f690.h"
 
-extern Unk_ov006_0235f690 *data_ov006_0236d640;
+extern Unk_ov006_0235f690* data_ov006_0236d640;
 
 /* Records x, y as the HQ position of the army that owns hqTile (an HQ tile
  * with owner 1 to 4). Any other tile changes nothing. */
-void Ov006_SetHqPosition(int hqTile, int x, int y)
-{
-    int army;
+void Ov006_SetHqPosition(int hqTile, int x, int y) {
+  int army;
 
-    switch (hqTile) {
+  switch (hqTile) {
     case MAP_TILE_MAKE(TERRAIN_HQ, 1):
-        army = 0;
-        break;
+      army = 0;
+      break;
     case MAP_TILE_MAKE(TERRAIN_HQ, 2):
-        army = 1;
-        break;
+      army = 1;
+      break;
     case MAP_TILE_MAKE(TERRAIN_HQ, 3):
-        army = 2;
-        break;
+      army = 2;
+      break;
     case MAP_TILE_MAKE(TERRAIN_HQ, 4):
-        army = 3;
-        break;
+      army = 3;
+      break;
     default:
-        return;
-    }
-    data_ov006_0236d640->hqX[army] = x;
-    data_ov006_0236d640->hqY[army] = y;
+      return;
+  }
+  data_ov006_0236d640->hqX[army] = x;
+  data_ov006_0236d640->hqY[army] = y;
 }

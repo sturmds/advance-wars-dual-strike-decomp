@@ -4,17 +4,16 @@
 extern const u8 gSndVolumeShiftBits[4];
 
 /* Orders two channels by their output volume: 1 when a is quieter, -1 when louder, 0 when equal. */
-int SndExChannel_CompareVolume(SndExChannel *a, SndExChannel *b)
-{
-    int volumeA = a->volume & 0xff;
-    int volumeB = b->volume & 0xff;
+int SndExChannel_CompareVolume(SndExChannel* a, SndExChannel* b) {
+  int volumeA = a->volume & 0xff;
+  int volumeB = b->volume & 0xff;
 
-    volumeA <<= 4;
-    volumeB <<= 4;
-    volumeA >>= gSndVolumeShiftBits[a->volume >> 8];
-    volumeB >>= gSndVolumeShiftBits[b->volume >> 8];
-    if (volumeA != volumeB) {
-        return volumeA < volumeB ? 1 : -1;
-    }
-    return 0;
+  volumeA <<= 4;
+  volumeB <<= 4;
+  volumeA >>= gSndVolumeShiftBits[a->volume >> 8];
+  volumeB >>= gSndVolumeShiftBits[b->volume >> 8];
+  if (volumeA != volumeB) {
+    return volumeA < volumeB ? 1 : -1;
+  }
+  return 0;
 }

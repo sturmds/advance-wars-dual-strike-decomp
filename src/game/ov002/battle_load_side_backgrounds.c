@@ -2,11 +2,11 @@
 #include "game/battle_scene.h"
 #include "game/terrain.h"
 
-u32 File_UnpackTo(void *dest, const char *path);
+u32 File_UnpackTo(void* dest, const char* path);
 u8 Player_GetArmyStyle(int playerIndex);
-void GX_BeginLoadTex(void);              /* guess: maps VRAM bank A to the CPU (LCDC) */
-void GX_EndLoadTex(void);              /* guess: undoes GX_BeginLoadTex */
-BOOL Battle_IsSideSea(int side);     /* TRUE: the side's unit is a naval unit */
+void GX_BeginLoadTex(void);      /* guess: maps VRAM bank A to the CPU (LCDC) */
+void GX_EndLoadTex(void);        /* guess: undoes GX_BeginLoadTex */
+BOOL Battle_IsSideSea(int side); /* TRUE: the side's unit is a naval unit */
 
 extern char data_ov002_0236038c[];
 extern char data_ov002_02360390[];
@@ -82,136 +82,150 @@ extern char data_ov002_02360498[];
 
 /* Picks the background files for tileset 2 or 3, or for any other. */
 #define PICK_BY_TILESET(alt1, alt2, def1, def2) \
-    switch (Ov002_gBattleScene->tileset) { \
-    case 2: \
-    case 3: \
-        mapFile = alt1; \
-        tileFile = alt2; \
-        break; \
-    default: \
-        mapFile = def1; \
-        tileFile = def2; \
-        break; \
-    }
+  switch (Ov002_gBattleScene->tileset) {        \
+    case 2:                                     \
+    case 3:                                     \
+      mapFile = alt1;                           \
+      tileFile = alt2;                          \
+      break;                                    \
+    default:                                    \
+      mapFile = def1;                           \
+      tileFile = def2;                          \
+      break;                                    \
+  }
 
 /* Loads the background behind each side of the battle animation from
  * /battle: a 0x1000-byte tile map and 0x2000 bytes of tiles, picked by the
  * terrain the unit stands on (naval units always get the sea), the map's tileset
  * and, for an HQ, the army style of its owner. In VRAM bank A, side 0's
  * tiles go to +0 and its map to +0x4000, side 1's to +0x2000 and +0x5000. */
-void Battle_LoadSideBackgrounds(void)
-{
-    int i;
-    int isFirst;
-    const char *mapFile;
-    const char *tileFile;
+void Battle_LoadSideBackgrounds(void) {
+  int i;
+  int isFirst;
+  const char* mapFile;
+  const char* tileFile;
 
-    GX_BeginLoadTex();
-    for (i = 0; i < 2; i++) {
-        if (Battle_IsSideSea(i) == TRUE) {
-            PICK_BY_TILESET(data_ov002_0236038c, data_ov002_02360390, data_ov002_02360394, data_ov002_02360398)
-        } else {
-            switch (Ov002_gBattleScene->sides[i].terrain) {
-            case TERRAIN_RIVER:
-                PICK_BY_TILESET(data_ov002_0236039c, data_ov002_023603a0, data_ov002_023603a4, data_ov002_023603a8)
-                break;
-            case TERRAIN_MOUNTAIN:
-                PICK_BY_TILESET(data_ov002_023603ac, data_ov002_023603b0, data_ov002_023603b4, data_ov002_023603b8)
-                break;
-            case TERRAIN_WOOD:
-                PICK_BY_TILESET(data_ov002_023603bc, data_ov002_023603c0, data_ov002_023603c4, data_ov002_023603c8)
-                break;
-            case TERRAIN_ROAD:
-                PICK_BY_TILESET(data_ov002_023603cc, data_ov002_023603d0, data_ov002_023603d4, data_ov002_023603d8)
-                break;
-            case TERRAIN_SEA:
-            case TERRAIN_REEF:
-                PICK_BY_TILESET(data_ov002_0236038c, data_ov002_02360390, data_ov002_02360394, data_ov002_02360398)
-                break;
-            case TERRAIN_BRIDGE:
-                PICK_BY_TILESET(data_ov002_023603dc, data_ov002_023603e0, data_ov002_023603e4, data_ov002_023603e8)
-                break;
-            case TERRAIN_SHOAL:
-                PICK_BY_TILESET(data_ov002_023603ec, data_ov002_023603f0, data_ov002_023603f4, data_ov002_023603f8)
-                break;
-            case TERRAIN_AIRPORT:
-                PICK_BY_TILESET(data_ov002_023603fc, data_ov002_02360400, data_ov002_02360404, data_ov002_02360408)
-                break;
-            case TERRAIN_PORT:
-                PICK_BY_TILESET(data_ov002_0236040c, data_ov002_02360410, data_ov002_02360414, data_ov002_02360418)
-                break;
-            case TERRAIN_BASE:
-            case TERRAIN_LAB:
-                PICK_BY_TILESET(data_ov002_0236041c, data_ov002_02360420, data_ov002_02360424, data_ov002_02360428)
-                break;
-            case TERRAIN_CITY:
-            case TERRAIN_SILO:
-            case TERRAIN_SILO_USED:
-            case TERRAIN_COM_TOWER:
-                PICK_BY_TILESET(data_ov002_0236042c, data_ov002_02360430, data_ov002_02360434, data_ov002_02360438)
-                break;
-            case TERRAIN_HQ:
-                switch (Ov002_gBattleScene->tileset) {
-                case 2:
-                case 3:
-                    switch (Player_GetArmyStyle(Ov002_gBattleScene->sides[i].tileOwner)) {
-                    default:
-                        mapFile = data_ov002_0236043c;
-                        tileFile = data_ov002_02360440;
-                        break;
-                    case 2:
-                        mapFile = data_ov002_02360444;
-                        tileFile = data_ov002_02360448;
-                        break;
-                    case 3:
-                        mapFile = data_ov002_0236044c;
-                        tileFile = data_ov002_02360450;
-                        break;
-                    case 4:
-                        mapFile = data_ov002_02360454;
-                        tileFile = data_ov002_02360458;
-                        break;
-                    case 5:
-                        mapFile = data_ov002_0236045c;
-                        tileFile = data_ov002_02360460;
-                        break;
-                    }
-                    break;
+  GX_BeginLoadTex();
+  for (i = 0; i < 2; i++) {
+    if (Battle_IsSideSea(i) == TRUE) {
+      PICK_BY_TILESET(data_ov002_0236038c, data_ov002_02360390,
+                      data_ov002_02360394, data_ov002_02360398)
+    } else {
+      switch (Ov002_gBattleScene->sides[i].terrain) {
+        case TERRAIN_RIVER:
+          PICK_BY_TILESET(data_ov002_0236039c, data_ov002_023603a0,
+                          data_ov002_023603a4, data_ov002_023603a8)
+          break;
+        case TERRAIN_MOUNTAIN:
+          PICK_BY_TILESET(data_ov002_023603ac, data_ov002_023603b0,
+                          data_ov002_023603b4, data_ov002_023603b8)
+          break;
+        case TERRAIN_WOOD:
+          PICK_BY_TILESET(data_ov002_023603bc, data_ov002_023603c0,
+                          data_ov002_023603c4, data_ov002_023603c8)
+          break;
+        case TERRAIN_ROAD:
+          PICK_BY_TILESET(data_ov002_023603cc, data_ov002_023603d0,
+                          data_ov002_023603d4, data_ov002_023603d8)
+          break;
+        case TERRAIN_SEA:
+        case TERRAIN_REEF:
+          PICK_BY_TILESET(data_ov002_0236038c, data_ov002_02360390,
+                          data_ov002_02360394, data_ov002_02360398)
+          break;
+        case TERRAIN_BRIDGE:
+          PICK_BY_TILESET(data_ov002_023603dc, data_ov002_023603e0,
+                          data_ov002_023603e4, data_ov002_023603e8)
+          break;
+        case TERRAIN_SHOAL:
+          PICK_BY_TILESET(data_ov002_023603ec, data_ov002_023603f0,
+                          data_ov002_023603f4, data_ov002_023603f8)
+          break;
+        case TERRAIN_AIRPORT:
+          PICK_BY_TILESET(data_ov002_023603fc, data_ov002_02360400,
+                          data_ov002_02360404, data_ov002_02360408)
+          break;
+        case TERRAIN_PORT:
+          PICK_BY_TILESET(data_ov002_0236040c, data_ov002_02360410,
+                          data_ov002_02360414, data_ov002_02360418)
+          break;
+        case TERRAIN_BASE:
+        case TERRAIN_LAB:
+          PICK_BY_TILESET(data_ov002_0236041c, data_ov002_02360420,
+                          data_ov002_02360424, data_ov002_02360428)
+          break;
+        case TERRAIN_CITY:
+        case TERRAIN_SILO:
+        case TERRAIN_SILO_USED:
+        case TERRAIN_COM_TOWER:
+          PICK_BY_TILESET(data_ov002_0236042c, data_ov002_02360430,
+                          data_ov002_02360434, data_ov002_02360438)
+          break;
+        case TERRAIN_HQ:
+          switch (Ov002_gBattleScene->tileset) {
+            case 2:
+            case 3:
+              switch (
+                  Player_GetArmyStyle(Ov002_gBattleScene->sides[i].tileOwner)) {
                 default:
-                    switch (Player_GetArmyStyle(Ov002_gBattleScene->sides[i].tileOwner)) {
-                    default:
-                        mapFile = data_ov002_02360464;
-                        tileFile = data_ov002_02360468;
-                        break;
-                    case 2:
-                        mapFile = data_ov002_0236046c;
-                        tileFile = data_ov002_02360470;
-                        break;
-                    case 3:
-                        mapFile = data_ov002_02360474;
-                        tileFile = data_ov002_02360478;
-                        break;
-                    case 4:
-                        mapFile = data_ov002_0236047c;
-                        tileFile = data_ov002_02360480;
-                        break;
-                    case 5:
-                        mapFile = data_ov002_02360484;
-                        tileFile = data_ov002_02360488;
-                        break;
-                    }
-                    break;
-                }
-                break;
-            case 31:                       /* large-object tile (doc 890) */
+                  mapFile = data_ov002_0236043c;
+                  tileFile = data_ov002_02360440;
+                  break;
+                case 2:
+                  mapFile = data_ov002_02360444;
+                  tileFile = data_ov002_02360448;
+                  break;
+                case 3:
+                  mapFile = data_ov002_0236044c;
+                  tileFile = data_ov002_02360450;
+                  break;
+                case 4:
+                  mapFile = data_ov002_02360454;
+                  tileFile = data_ov002_02360458;
+                  break;
+                case 5:
+                  mapFile = data_ov002_0236045c;
+                  tileFile = data_ov002_02360460;
+                  break;
+              }
+              break;
             default:
-                PICK_BY_TILESET(data_ov002_0236048c, data_ov002_02360490, data_ov002_02360494, data_ov002_02360498)
-                break;
-            }
-        }
-        isFirst = i == 0 ? TRUE : FALSE;
-        File_UnpackTo((void *)(VRAM_LCDC_A + (isFirst ? 512 : 640) * 32), mapFile);
-        File_UnpackTo((void *)(VRAM_LCDC_A + (isFirst ? 0 : 256) * 32), tileFile);
+              switch (
+                  Player_GetArmyStyle(Ov002_gBattleScene->sides[i].tileOwner)) {
+                default:
+                  mapFile = data_ov002_02360464;
+                  tileFile = data_ov002_02360468;
+                  break;
+                case 2:
+                  mapFile = data_ov002_0236046c;
+                  tileFile = data_ov002_02360470;
+                  break;
+                case 3:
+                  mapFile = data_ov002_02360474;
+                  tileFile = data_ov002_02360478;
+                  break;
+                case 4:
+                  mapFile = data_ov002_0236047c;
+                  tileFile = data_ov002_02360480;
+                  break;
+                case 5:
+                  mapFile = data_ov002_02360484;
+                  tileFile = data_ov002_02360488;
+                  break;
+              }
+              break;
+          }
+          break;
+        case 31: /* large-object tile (doc 890) */
+        default:
+          PICK_BY_TILESET(data_ov002_0236048c, data_ov002_02360490,
+                          data_ov002_02360494, data_ov002_02360498)
+          break;
+      }
     }
-    GX_EndLoadTex();
+    isFirst = i == 0 ? TRUE : FALSE;
+    File_UnpackTo((void*)(VRAM_LCDC_A + (isFirst ? 512 : 640) * 32), mapFile);
+    File_UnpackTo((void*)(VRAM_LCDC_A + (isFirst ? 0 : 256) * 32), tileFile);
+  }
+  GX_EndLoadTex();
 }

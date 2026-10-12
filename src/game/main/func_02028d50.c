@@ -2,6 +2,4 @@
 
 void Screen_SetBgMode(int mode);
 
-void func_02028d50(void) {
-    Screen_SetBgMode(0);
-}
+void func_02028d50(void) { Screen_SetBgMode(0); }

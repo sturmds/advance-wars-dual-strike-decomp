@@ -7,11 +7,10 @@
 
 /* Loads a sequence archive (firstItem) and a bank (secondItem) into the
  * sound heap, like Sound_LoadResidentData. */
-void Sound_LoadArchiveItems(int firstItem, int secondItem)
-{
-    if (gSoundReady == 0) {
-        return;
-    }
-    NNS_SndArcLoadSeqArc(firstItem, gSoundHeap);
-    NNS_SndArcLoadBank(secondItem, gSoundHeap);
+void Sound_LoadArchiveItems(int firstItem, int secondItem) {
+  if (gSoundReady == 0) {
+    return;
+  }
+  NNS_SndArcLoadSeqArc(firstItem, gSoundHeap);
+  NNS_SndArcLoadBank(secondItem, gSoundHeap);
 }

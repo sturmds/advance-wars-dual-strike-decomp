@@ -2,10 +2,10 @@
 #include "game/Unk_02080440.h"
 #include "game/missile_strike_task.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
-void Task_ResumeScript(MissileStrikeTask *task);
+void Task_ResumeScript(MissileStrikeTask* task);
 void Bg_SetScroll(int layer, int scrollX, int scrollY);
 
 #define VIEW (data_027c027c->unk_48[data_027c0284]->unk_1c4)
@@ -13,15 +13,14 @@ void Bg_SetScroll(int layer, int scrollX, int scrollY);
 /* Update of data_02169088's fall step: layer 0 (the missile picture) moves
  * down 16 pixels a frame toward the landing pixel; fallHeight is the height left.
  * At 0 the script resumes. */
-void MissileStrike_FallStep(MissileStrikeTask *task)
-{
-    int x = task->pixelX - VIEW->scrollX;
-    int y = task->pixelY - VIEW->scrollY;
+void MissileStrike_FallStep(MissileStrikeTask* task) {
+  int x = task->pixelX - VIEW->scrollX;
+  int y = task->pixelY - VIEW->scrollY;
 
-    task->fallHeight -= 16;
-    if (task->fallHeight < 0) {
-        task->fallHeight = 0;
-        Task_ResumeScript(task);
-    }
-    Bg_SetScroll(0, 40 - x, 192 - y + task->fallHeight);
+  task->fallHeight -= 16;
+  if (task->fallHeight < 0) {
+    task->fallHeight = 0;
+    Task_ResumeScript(task);
+  }
+  Bg_SetScroll(0, 40 - x, 192 - y + task->fallHeight);
 }

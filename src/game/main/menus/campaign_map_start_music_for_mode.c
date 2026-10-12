@@ -7,15 +7,14 @@ BOOL Player1Team_HasPlayerInGame(void);
  * (mode 2, see CampaignMap_StartAfterBattle) and the mission is 9 or 19, the
  * first mission of a new song range, it leaves the music alone (guess: the
  * scene that follows plays its own). */
-void CampaignMap_StartMusicForMode(Unk_0204f960 *task)
-{
-    if (Player1Team_HasPlayerInGame() && task->unk_52 == 2) {
-        if (gCampaignMapState.mission == 9) {
-            return;
-        }
-        if (gCampaignMapState.mission == 19) {
-            return;
-        }
+void CampaignMap_StartMusicForMode(Unk_0204f960* task) {
+  if (Player1Team_HasPlayerInGame() && task->unk_52 == 2) {
+    if (gCampaignMapState.mission == 9) {
+      return;
     }
-    CampaignMap_StartMissionSong();
+    if (gCampaignMapState.mission == 19) {
+      return;
+    }
+  }
+  CampaignMap_StartMissionSong();
 }

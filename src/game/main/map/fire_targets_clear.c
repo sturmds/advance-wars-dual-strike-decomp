@@ -2,7 +2,4 @@
 
 extern int gFireTargetCount;
 
-void FireTargets_Clear(void)
-{
-    gFireTargetCount = 0;
-}
+void FireTargets_Clear(void) { gFireTargetCount = 0; }

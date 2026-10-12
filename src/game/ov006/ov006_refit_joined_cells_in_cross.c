@@ -3,28 +3,27 @@
 
 void Ov006_RefitJoinedCellsAround(int x, int y);
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern u32 data_027c0284;
-extern s16 Ov006_gCrossDx[5];   /* offsets: centre, left, right, up, down */
-extern s16 Ov006_gCrossDy[5];   
+extern s16 Ov006_gCrossDx[5]; /* offsets: centre, left, right, up, down */
+extern s16 Ov006_gCrossDy[5];
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Runs Ov006_RefitJoinedCellsAround on tile x, y and on each of its four
  * neighbours that lies on the map. */
-void Ov006_RefitJoinedCellsInCross(int x, int y)
-{
-    int i;
-    int nx;
-    int ny;
+void Ov006_RefitJoinedCellsInCross(int x, int y) {
+  int i;
+  int nx;
+  int ny;
 
-    for (i = 0; i < 5; i++) {
-        nx = x + Ov006_gCrossDx[i];
-        if (nx >= 0 && nx < STATE->unk_1c4->mapWidth) {
-            ny = y + Ov006_gCrossDy[i];
-            if (ny >= 0 && ny < STATE->unk_1c4->mapHeight) {
-                Ov006_RefitJoinedCellsAround(nx, ny);
-            }
-        }
+  for (i = 0; i < 5; i++) {
+    nx = x + Ov006_gCrossDx[i];
+    if (nx >= 0 && nx < STATE->unk_1c4->mapWidth) {
+      ny = y + Ov006_gCrossDy[i];
+      if (ny >= 0 && ny < STATE->unk_1c4->mapHeight) {
+        Ov006_RefitJoinedCellsAround(nx, ny);
+      }
     }
+  }
 }

@@ -4,11 +4,10 @@
 extern u8 gSavedArmyColours[5];
 
 /* Copies the army colours of a design map record into gSavedArmyColours. */
-void SavedArmyColours_LoadFromRecord(DesignMapRecord *record)
-{
-    int i;
+void SavedArmyColours_LoadFromRecord(DesignMapRecord* record) {
+  int i;
 
-    for (i = 0; i < 5; i++) {
-        gSavedArmyColours[i] = record->armyColours[i];
-    }
+  for (i = 0; i < 5; i++) {
+    gSavedArmyColours[i] = record->armyColours[i];
+  }
 }

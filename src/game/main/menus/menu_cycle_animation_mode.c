@@ -9,15 +9,15 @@ typedef void (*MenuHelpFn)(int a0, int a1, u32 flags);
 
 /* Copied to the stack as a whole: one help text function per setting. */
 typedef struct MenuHelpFive {
-    MenuHelpFn fn[5];
+  MenuHelpFn fn[5];
 } MenuHelpFive;
 
-void Screen_SetCurrent(void *state);
-void Screen_SetCurrentGfx(void *state);
+void Screen_SetCurrent(void* state);
+void Screen_SetCurrentGfx(void* state);
 void PopupMenu_Refresh(void);
 
-extern Unk_02080440 *data_027c027c;
-extern Unk_027c0280 *data_027c0280;
+extern Unk_02080440* data_027c027c;
+extern Unk_027c0280* data_027c0280;
 extern int data_027c0284;
 extern Unk_027c0288 data_027c0288;
 extern MenuHelpFive gAnimationMenuHelpFns;
@@ -29,46 +29,45 @@ extern PlayRecords gPlayRecords;
 #define OTHER_MAP ((&data_027c0288.unk_00)[1 - data_027c0284])
 
 #define SWITCH_TO(state, savedGfx, savedGame) \
-    savedGfx = data_027c0280;                 \
-    Screen_SetCurrentGfx(state);              \
-    savedGame = data_027c027c;                \
-    Screen_SetCurrent(state)
+  savedGfx = data_027c0280;                   \
+  Screen_SetCurrentGfx(state);                \
+  savedGame = data_027c027c;                  \
+  Screen_SetCurrent(state)
 
 #define SWITCH_BACK(savedGfx, savedGame) \
-    Screen_SetCurrent(savedGame);        \
-    Screen_SetCurrentGfx(savedGfx)
+  Screen_SetCurrent(savedGame);          \
+  Screen_SetCurrentGfx(savedGfx)
 
 /* Battle menu handler (table entries 0x02165dc0 to 0x02165e40, one per value):
  * steps Unk_02080440_48.unk_82 through 0-4, on both maps of a two-map battle
  * when the other map's unk_1c4->unk_30 is 0, draws the matching help text,
  * refreshes the menu and saves the value in gPlayRecords. ActingUnit_StartAttack
  * picks the attack animation task from unk_82, so the name is a guess. */
-void Menu_CycleAnimationMode(int a0, int a1, u32 flags)
-{
-    MenuHelpFive help = gAnimationMenuHelpFns;
-    Unk_027c0280 *savedGfx;
-    Unk_02080440 *savedGame;
-    u8 mode;
-    u32 otherUnk30;
+void Menu_CycleAnimationMode(int a0, int a1, u32 flags) {
+  MenuHelpFive help = gAnimationMenuHelpFns;
+  Unk_027c0280* savedGfx;
+  Unk_02080440* savedGame;
+  u8 mode;
+  u32 otherUnk30;
 
-    SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
-    GAME->unk_82++;
-    if (GAME->unk_82 > 4) {
-        GAME->unk_82 = 0;
-    }
-    mode = GAME->unk_82;
+  SWITCH_TO(CURRENT_MAP, savedGfx, savedGame);
+  GAME->unk_82++;
+  if (GAME->unk_82 > 4) {
+    GAME->unk_82 = 0;
+  }
+  mode = GAME->unk_82;
+  SWITCH_BACK(savedGfx, savedGame);
+  if (GAME->secondMapId != 0) {
+    SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
+    otherUnk30 = GAME->unk_1c4->unk_30;
     SWITCH_BACK(savedGfx, savedGame);
-    if (GAME->secondMapId != 0) {
-        SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-        otherUnk30 = GAME->unk_1c4->unk_30;
-        SWITCH_BACK(savedGfx, savedGame);
-        if (otherUnk30 == 0) {
-            SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
-            GAME->unk_82 = mode;
-            SWITCH_BACK(savedGfx, savedGame);
-        }
+    if (otherUnk30 == 0) {
+      SWITCH_TO(OTHER_MAP, savedGfx, savedGame);
+      GAME->unk_82 = mode;
+      SWITCH_BACK(savedGfx, savedGame);
     }
-    help.fn[GAME->unk_82](a0, a1, flags);
-    PopupMenu_Refresh();
-    gPlayRecords.unk_12 = GAME->unk_82;
+  }
+  help.fn[GAME->unk_82](a0, a1, flags);
+  PopupMenu_Refresh();
+  gPlayRecords.unk_12 = GAME->unk_82;
 }

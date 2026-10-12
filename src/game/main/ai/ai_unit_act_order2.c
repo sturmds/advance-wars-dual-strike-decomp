@@ -16,17 +16,16 @@ void AiUnit_HeadForObjectTarget(void);
  * func_0209dd7c is TRUE (otherwise the order 0 steps). The last one,
  * AiUnit_WaitInPlace, makes the unit stay on its tile (AiUnit_PerformAction
  * with action 2). */
-void AiUnit_ActOrder2(void)
-{
-    Ai_BuildThreatMaps();
-    func_020af5f8();
-    AiUnit_PlanAttack();
-    AiUnit_RetreatTowardSite();
-    func_020aac28();
-    AiUnit_SeekSeaTransport();
-    AiUnit_HeadForObjectTarget();
-    AiUnit_MoveToEnemyProperty();
-    AiUnit_MoveToEnemyTarget();
-    AiUnit_MoveToOtherMap();
-    AiUnit_WaitInPlace();
+void AiUnit_ActOrder2(void) {
+  Ai_BuildThreatMaps();
+  func_020af5f8();
+  AiUnit_PlanAttack();
+  AiUnit_RetreatTowardSite();
+  func_020aac28();
+  AiUnit_SeekSeaTransport();
+  AiUnit_HeadForObjectTarget();
+  AiUnit_MoveToEnemyProperty();
+  AiUnit_MoveToEnemyTarget();
+  AiUnit_MoveToOtherMap();
+  AiUnit_WaitInPlace();
 }

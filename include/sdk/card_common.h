@@ -6,10 +6,11 @@
 /* Card definitions both CPUs use. sdk/card.h adds the ARM9 library state, sdk/card_arm7.h the ARM7 one. */
 
 /* Game card registers. */
-#define IO_GAMECARD_MASTER (*(volatile u8 *)0x040001a1)
-#define IO_GAMECARD_ROM_CTRL (*(volatile u32 *)0x040001a4)
-#define IO_GAMECARD_CMD_BYTES ((volatile u8 *)0x040001a8)   /* 8 command bytes, sent first byte first */
-#define IO_GAMECARD_READ_PORT (*(volatile u32 *)0x04100010)
+#define IO_GAMECARD_MASTER (*(volatile u8*)0x040001a1)
+#define IO_GAMECARD_ROM_CTRL (*(volatile u32*)0x040001a4)
+#define IO_GAMECARD_CMD_BYTES \
+  ((volatile u8*)0x040001a8) /* 8 command bytes, sent first byte first */
+#define IO_GAMECARD_READ_PORT (*(volatile u32*)0x04100010)
 
 /* MASTERCNT: card enable, with interrupts off and ROM (not backup) mode. */
 #define CARDMST_ENABLE 0x80
@@ -17,8 +18,8 @@
 
 /* GAMECARD_ROM_CTRL bits. */
 #define CARD_DATA_READY 0x00800000
-#define CARD_COMMAND_MASK 0x07000000   /* block size field */
-#define GAMECARD_XFER_ONE_PAGE 0x01000000         /* one 512-byte block */
+#define CARD_COMMAND_MASK 0x07000000      /* block size field */
+#define GAMECARD_XFER_ONE_PAGE 0x01000000 /* one 512-byte block */
 #define CARD_RESET_HI 0x20000000
 #define CARD_START 0x80000000
 
@@ -37,27 +38,27 @@
 
 /* Chip geometry and timings that CardSave_FillGeometryFromType fills from the type. */
 typedef struct CARDiBackupSpec {
-    u32 totalSize;
-    u32 sectorSize;
-    u32 pageSize;
-    u32 addrWidth;          /* bytes in a chip address */
-    u32 unk_10;
-    u32 unk_14;
-    u32 unk_18;
-    u32 unk_1C;
-    u32 unk_20;
-    u32 unk_24;
+  u32 totalSize;
+  u32 sectorSize;
+  u32 pageSize;
+  u32 addrWidth; /* bytes in a chip address */
+  u32 unk_10;
+  u32 unk_14;
+  u32 unk_18;
+  u32 unk_1C;
+  u32 unk_20;
+  u32 unk_24;
 } CARDiBackupSpec;
 
 /* What the card thread sends to the other CPU for one backup request. */
 typedef struct CARDiCommandArg {
-    int result;                    /* GAMECARD_STATUS_*; 0 means success */
-    u32 type;                      /* backup type */
-    u32 unk_08;
-    u32 src;                       /* backup transfer: source address */
-    u32 dst;                       /* destination address */
-    u32 len;                       /* bytes */
-    CARDiBackupSpec spec;
+  int result; /* GAMECARD_STATUS_*; 0 means success */
+  u32 type;   /* backup type */
+  u32 unk_08;
+  u32 src; /* backup transfer: source address */
+  u32 dst; /* destination address */
+  u32 len; /* bytes */
+  CARDiBackupSpec spec;
 } CARDiCommandArg;
 
 #define CARD_RESULT_SUCCESS 0
@@ -68,12 +69,15 @@ typedef struct CARDiCommandArg {
 #define CARD_TARGET_BACKUP 2
 
 /* CARDiCommon.flag bits. */
-#define CARD_STAT_INIT 0x01            /* CARD_Init has run */
-#define GAMECARD_FLAG_PEER_GREETED 0x02        /* the other CPU has been sent its first request */
-#define CARD_STAT_BUSY 0x04            /* a request is running */
-#define CARD_STAT_TASK 0x08            /* the card thread has a task to run */
-#define GAMECARD_FLAG_WORKER_SLEEPS 0x10     /* the card thread sleeps until the request ends */
-#define GAMECARD_FLAG_AWAIT_PEER_REPLY 0x20        /* waiting for the other CPU's answer */
+#define CARD_STAT_INIT 0x01 /* CARD_Init has run */
+#define GAMECARD_FLAG_PEER_GREETED \
+  0x02                      /* the other CPU has been sent its first request */
+#define CARD_STAT_BUSY 0x04 /* a request is running */
+#define CARD_STAT_TASK 0x08 /* the card thread has a task to run */
+#define GAMECARD_FLAG_WORKER_SLEEPS \
+  0x10 /* the card thread sleeps until the request ends */
+#define GAMECARD_FLAG_AWAIT_PEER_REPLY \
+  0x20 /* waiting for the other CPU's answer */
 
 /* CARDiCommon.priorityMode: base priority, or follow the requester's. */
 #define GAMECARD_PRIO_OUTRANK_CALLER 32
@@ -82,15 +86,15 @@ typedef struct CARDiCommandArg {
 #define GAMECARD_WORKER_STACK_BYTES 0x400
 #define GAMECARD_BOUNCE_BUF_BYTES 0x100
 
-typedef void (*CARDCallback)(void *arg);
+typedef void (*CARDCallback)(void* arg);
 
 /* PXI messages: backup requests go under tag 11, the card removal notice under tag 14. */
 #define FIFO_TAG_CARD_SERVICE 11
 #define FIFO_TAG_CARD_REMOVAL 14
 #define GAMECARD_MSG_REMOVED 17
 #define GAMECARD_REQ_HANDSHAKE 0
-#define GAMECARD_STATUS_RESEND 4       /* the other CPU asks for the request to be sent again */
-
+#define GAMECARD_STATUS_RESEND \
+  4 /* the other CPU asks for the request to be sent again */
 
 /* IRQ mask bit: a card data transfer ended. */
 #define IRQ_CARD_DATA 0x80000
@@ -98,11 +102,12 @@ typedef void (*CARDCallback)(void *arg);
 /* ROM read work (data_022ac100, ARM7 data_arm7_03809880): the page being read and its control word. */
 typedef struct CARDiRomPage CARDiRomPage;
 struct CARDiRomPage {
-    void (*readPages)(CARDiRomPage *page);   /* reads the pages left after the first copy */
-    u32 control;                        /* IO_GAMECARD_ROM_CTRL value that starts a page read */
-    u32 address;                        /* ROM address of the page held in data */
-    u8 unk_0C[20];
-    u8 data[GAMECARD_ROM_PAGE_BYTES];
+  void (*readPages)(
+      CARDiRomPage* page); /* reads the pages left after the first copy */
+  u32 control; /* IO_GAMECARD_ROM_CTRL value that starts a page read */
+  u32 address; /* ROM address of the page held in data */
+  u8 unk_0C[20];
+  u8 data[GAMECARD_ROM_PAGE_BYTES];
 };
 
 #endif

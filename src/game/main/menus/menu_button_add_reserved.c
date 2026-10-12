@@ -5,7 +5,7 @@
 extern MenuButton gMenuButtonReserved;
 
 /* Makes the reserved button, with id 0xff, from template at (x, y). */
-MenuButton *MenuButton_AddReserved(int x, int y, const MenuButtonTemplate *template)
-{
-    return MenuButton_Init(x, y, &gMenuButtonReserved, template, 0xff);
+MenuButton* MenuButton_AddReserved(int x, int y,
+                                   const MenuButtonTemplate* template) {
+  return MenuButton_Init(x, y, &gMenuButtonReserved, template, 0xff);
 }

@@ -16,38 +16,37 @@ BOOL Wireless_StartScan(void);
 /* Callback of the SDK request func_02079424 starts. Same steps as
  * func_020791f8 without the unk_06 reset; mode 4 also runs func_0207930c
  * first. */
-void func_02079460(WMCallback *cb)
-{
-    if (cb->errcode == 0) {
-        switch (data_0229c880) {
-        case 0:
-            func_02079368();
-            break;
-        case 4:
-            if (!func_0207930c()) {
-                return;
-            }
-            Wireless_StartChannelSurvey(1);
-            break;
-        case 3:
-        case 5:
-            if (!func_0207930c()) {
-                return;
-            }
-            if (!Wireless_PrepareScan()) {
-                func_02079ee0();
-                return;
-            }
-            data_0215fe84->scanning = 1;
-            gWirelessState = 3;
-            if (Wireless_StartScan()) {
-                return;
-            }
-            data_0229c880 = 0;
-            func_02079180();
-            break;
+void func_02079460(WMCallback* cb) {
+  if (cb->errcode == 0) {
+    switch (data_0229c880) {
+      case 0:
+        func_02079368();
+        break;
+      case 4:
+        if (!func_0207930c()) {
+          return;
         }
-    } else {
-        gWirelessState = 1;
+        Wireless_StartChannelSurvey(1);
+        break;
+      case 3:
+      case 5:
+        if (!func_0207930c()) {
+          return;
+        }
+        if (!Wireless_PrepareScan()) {
+          func_02079ee0();
+          return;
+        }
+        data_0215fe84->scanning = 1;
+        gWirelessState = 3;
+        if (Wireless_StartScan()) {
+          return;
+        }
+        data_0229c880 = 0;
+        func_02079180();
+        break;
     }
+  } else {
+    gWirelessState = 1;
+  }
 }

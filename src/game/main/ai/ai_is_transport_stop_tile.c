@@ -3,13 +3,14 @@
 #include "game/unit_stats.h"
 #include "game/co_data.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE_INDEX(x, y) ((x) + STATE->mapTiles->rowStart[y])
 /* Default movement cost chart of the first CO record; -1 marks a terrain the move type cannot enter. */
-#define CHART ((const s8 (*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
+#define CHART \
+  ((const s8(*)[32])gCoTable[0].blocks[0].movementCost[MOVE_CHART_DEFAULT])
 #define PASSABLE(moveType) (CHART[moveType][terrain] != -1)
 #define INFANTRY_MOVE_TYPE Ov000_gUnitStats[UNIT_INFANTRY].moveType
 #define OWN_MOVE_TYPE Ov000_gUnitStats[unitType].moveType
@@ -18,23 +19,22 @@ extern int data_027c0284;
  * a tile Infantry can enter. A Lander or Black Boat needs one that Infantry
  * and the boat can both enter (a shore). A Cruiser or Carrier needs one it
  * can enter itself. Other types: FALSE. The name is a guess from the callers. */
-BOOL Ai_IsTransportStopTile(int unitType, int x, int y)
-{
-    int terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)]);
+BOOL Ai_IsTransportStopTile(int unitType, int x, int y) {
+  int terrain = MAP_TILE_TERRAIN(STATE->mapTiles->tiles[TILE_INDEX(x, y)]);
 
-    switch (unitType) {
+  switch (unitType) {
     case UNIT_APC:
     case UNIT_T_COPTER:
-        return PASSABLE(INFANTRY_MOVE_TYPE);
+      return PASSABLE(INFANTRY_MOVE_TYPE);
     case UNIT_BLACK_BOAT:
     case UNIT_LANDER:
-        if (PASSABLE(INFANTRY_MOVE_TYPE) == FALSE) {
-            return FALSE;
-        }
-        return PASSABLE(OWN_MOVE_TYPE);
+      if (PASSABLE(INFANTRY_MOVE_TYPE) == FALSE) {
+        return FALSE;
+      }
+      return PASSABLE(OWN_MOVE_TYPE);
     case UNIT_CRUISER:
     case UNIT_CARRIER:
-        return PASSABLE(OWN_MOVE_TYPE);
-    }
-    return FALSE;
+      return PASSABLE(OWN_MOVE_TYPE);
+  }
+  return FALSE;
 }

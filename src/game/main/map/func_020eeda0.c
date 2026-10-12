@@ -3,11 +3,10 @@
 
 extern const TaskScriptCmd data_02168e18[];
 
-void TileEffectTask_Create(int x, int y, int effect, Task *parent);
+void TileEffectTask_Create(int x, int y, int effect, Task* parent);
 
 /* Starts tile effect 30 at tile (x, y) under `parent`, in a new task at top level 3. */
-void func_020eeda0(int x, int y, Task *parent)
-{
-    Task_Create(data_02168e18, TASK_LIST(3));
-    TileEffectTask_Create(x, y, 30, parent);
+void func_020eeda0(int x, int y, Task* parent) {
+  Task_Create(data_02168e18, TASK_LIST(3));
+  TileEffectTask_Create(x, y, 30, parent);
 }

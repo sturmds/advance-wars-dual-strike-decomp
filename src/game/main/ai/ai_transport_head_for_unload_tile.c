@@ -2,7 +2,7 @@
 #include "game/Unk_02080440.h"
 #include "game/ai_unit_action.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 void RangeMap_FillMoves(int x, int y, int unitType, int movement, int arg4);
@@ -24,56 +24,56 @@ void AiUnit_MoveTowardTile(int x, int y);
  * one turn's move (gAiTurnState->unk_05, likely the move per turn), it
  * takes the fewest turns away, then the highest score, and heads there
  * with AiUnit_MoveTowardTile. */
-void AiTransport_HeadForUnloadTile(void)
-{
-    /* declaration order needed to match (register allocation) */
-    int bestTurns;
-    int bestX;
-    int bestValue;
-    int value;
-    int x;
-    int y;
-    int bestY;
-    int turns;
+void AiTransport_HeadForUnloadTile(void) {
+  /* declaration order needed to match (register allocation) */
+  int bestTurns;
+  int bestX;
+  int bestValue;
+  int value;
+  int x;
+  int y;
+  int bestY;
+  int turns;
 
-    bestX = -1;
-    bestY = bestX;
-    bestTurns = NO_TILE;
-    bestValue = 0;
-    RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y, STATE->actingUnit->type, UNLIMITED_MOVE, 1);
-    for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
-        for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
-            if (STATE->rangeMap[y][x] < 0) {
-                continue;
-            }
-            if (STATE->rangeMap[y][x] <= gAiTurnState->unk_05) {
-                continue;
-            }
-            if (STATE->mapTiles->rangeScratch2[TILE(x, y)] == 0) {
-                continue;
-            }
-            if (!AiTransport_CountUnloadTiles(x, y)) {
-                continue;
-            }
-            turns = HwDiv32(STATE->rangeMap[y][x], gAiTurnState->unk_05) + 1;
-            if (HwMod32(STATE->rangeMap[y][x], gAiTurnState->unk_05) == 0) {
-                turns--;
-            }
-            if (bestTurns < turns) {
-                continue;
-            }
-            value = (u8)STATE->mapTiles->rangeScratch2[TILE(x, y)];
-            if (bestTurns == turns && bestValue > value) {
-                continue;
-            }
-            bestX = x;
-            bestY = y;
-            bestTurns = turns;
-            bestValue = value;
-        }
+  bestX = -1;
+  bestY = bestX;
+  bestTurns = NO_TILE;
+  bestValue = 0;
+  RangeMap_FillMoves(STATE->actingUnit->x, STATE->actingUnit->y,
+                     STATE->actingUnit->type, UNLIMITED_MOVE, 1);
+  for (y = 0; y < STATE->unk_1c4->mapHeight; y++) {
+    for (x = 0; x < STATE->unk_1c4->mapWidth; x++) {
+      if (STATE->rangeMap[y][x] < 0) {
+        continue;
+      }
+      if (STATE->rangeMap[y][x] <= gAiTurnState->unk_05) {
+        continue;
+      }
+      if (STATE->mapTiles->rangeScratch2[TILE(x, y)] == 0) {
+        continue;
+      }
+      if (!AiTransport_CountUnloadTiles(x, y)) {
+        continue;
+      }
+      turns = HwDiv32(STATE->rangeMap[y][x], gAiTurnState->unk_05) + 1;
+      if (HwMod32(STATE->rangeMap[y][x], gAiTurnState->unk_05) == 0) {
+        turns--;
+      }
+      if (bestTurns < turns) {
+        continue;
+      }
+      value = (u8)STATE->mapTiles->rangeScratch2[TILE(x, y)];
+      if (bestTurns == turns && bestValue > value) {
+        continue;
+      }
+      bestX = x;
+      bestY = y;
+      bestTurns = turns;
+      bestValue = value;
     }
-    if (bestValue == 0) {
-        return;
-    }
-    AiUnit_MoveTowardTile(bestX, bestY);
+  }
+  if (bestValue == 0) {
+    return;
+  }
+  AiUnit_MoveTowardTile(bestX, bestY);
 }

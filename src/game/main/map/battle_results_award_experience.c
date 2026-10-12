@@ -6,7 +6,7 @@
 #include "game/Unk_022a7a9c.h"
 #undef data_022a7a9c
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern BattleResults data_022a7a9c;
 
@@ -18,27 +18,26 @@ void PlayRecords_UpdateCoRankTotal(void);
 
 /* Adds the experience gain in each result row to the COs of human players,
  * in every mode but Survival (it has its own, Survival_AwardCoExperience). */
-void BattleResults_AwardExperience(void)
-{
-    int gain;
-    int co;
-    int player;
-    int slot;
+void BattleResults_AwardExperience(void) {
+  int gain;
+  int co;
+  int player;
+  int slot;
 
-    if (GAME->gameMode == GAME_MODE_SURVIVAL) {
-        return;
-    }
-    for (player = 1; player < 5; player++) {
-        if (GAME->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
-            for (slot = 0; slot < 2; slot++) {
-                co = (&data_022a7a9c.rows[player].unk_00)[slot] & PLAYER_CO_ID_MASK;
-                if (co != 0) {
-                    gain = data_022a7a9c.rows[player].expGain[slot];
-                    gain += Co_GetExperience(co);
-                    Co_SetExperience(co, gain);
-                }
-            }
+  if (GAME->gameMode == GAME_MODE_SURVIVAL) {
+    return;
+  }
+  for (player = 1; player < 5; player++) {
+    if (GAME->players[player].controller == PLAYER_CONTROLLER_HUMAN) {
+      for (slot = 0; slot < 2; slot++) {
+        co = (&data_022a7a9c.rows[player].unk_00)[slot] & PLAYER_CO_ID_MASK;
+        if (co != 0) {
+          gain = data_022a7a9c.rows[player].expGain[slot];
+          gain += Co_GetExperience(co);
+          Co_SetExperience(co, gain);
         }
+      }
     }
-    PlayRecords_UpdateCoRankTotal();
+  }
+  PlayRecords_UpdateCoRankTotal();
 }

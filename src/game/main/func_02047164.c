@@ -1,5 +1,3 @@
 #include "types.h"
 
-void func_02047164(int arg)
-{
-}
+void func_02047164(int arg) {}

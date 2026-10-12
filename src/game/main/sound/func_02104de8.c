@@ -8,13 +8,12 @@ void SND_FlushCommand(int arg0);
 
 /* Callback that SoundSystem_Init adds to a system callback list. Pauses the
  * sound output, then calls the hardware routines not named yet. */
-void func_02104de8(void)
-{
-    int saved;
+void func_02104de8(void) {
+  int saved;
 
-    SoundOutput_Pause();
-    SND_StopTimer(0, 0, 0, 0);
-    saved = SND_GetCurrentCommandTag();
-    SND_FlushCommand(1);
-    SND_WaitForCommandProc(saved);
+  SoundOutput_Pause();
+  SND_StopTimer(0, 0, 0, 0);
+  saved = SND_GetCurrentCommandTag();
+  SND_FlushCommand(1);
+  SND_WaitForCommandProc(saved);
 }

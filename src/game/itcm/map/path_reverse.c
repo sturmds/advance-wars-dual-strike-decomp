@@ -5,27 +5,26 @@
 
 /* Reverses the steps in [start, end) in place and ends the list with PATH_STEP_END
  * after them. Callers pass a list of at most 12 steps. */
-void UnitPath_ReverseSteps(s8 *start, s8 *end)
-{
-    s8 reversed[24];
-    int count = 0;
-    int i;
+void UnitPath_ReverseSteps(s8* start, s8* end) {
+  s8 reversed[24];
+  int count = 0;
+  int i;
 
-    if (end != start) {
-        do {
-            end--;
-            reversed[count] = *end;
-            count++;
-        } while (end != start);
+  if (end != start) {
+    do {
+      end--;
+      reversed[count] = *end;
+      count++;
+    } while (end != start);
+  }
+  reversed[count] = PATH_STEP_END;
+  i = 0;
+  while (1) {
+    *start = reversed[i];
+    i++;
+    if (*start == PATH_STEP_END) {
+      break;
     }
-    reversed[count] = PATH_STEP_END;
-    i = 0;
-    while (1) {
-        *start = reversed[i];
-        i++;
-        if (*start == PATH_STEP_END) {
-            break;
-        }
-        start++;
-    }
+    start++;
+  }
 }

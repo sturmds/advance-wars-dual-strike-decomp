@@ -2,10 +2,10 @@
 #include "sdk/ctrdg.h"
 #include "sdk/os_arm7.h"
 
-void func_arm7_037fdc04(u32 count);             /* SVC_WaitByLoop through a veneer */
+void func_arm7_037fdc04(u32 count); /* SVC_WaitByLoop through a veneer */
 
 /* POSTFLG: bit 0 is set once the ARM7 and ARM9 finished their boot. */
-#define REG_POSTFLG (*(vu16 *)0x04000300)
+#define REG_POSTFLG (*(vu16*)0x04000300)
 
 /*
  * The init word from the ARM9 holds the address of its copy of the cartridge
@@ -24,34 +24,35 @@ extern GbaSlotInitWord gCtrdgInitMessage;
  * logo the ARM9 put in its header buffer with the cartridge's logo, records
  * the result as isAgb and answers the ARM9.
  */
-void Cartridge_CheckLogoFromArm9Once(void)
-{
-    OSIrqMask oldIrqMask;
-    u16 oldIme;
-    GbaRomHeader *header;
-    GbaSlotBootSnapshot *info;
-    BOOL logoOk;
+void Cartridge_CheckLogoFromArm9Once(void) {
+  OSIrqMask oldIrqMask;
+  u16 oldIme;
+  GbaRomHeader* header;
+  GbaSlotBootSnapshot* info;
+  BOOL logoOk;
 
-    if (gCtrdgHeaderReceived != 0) {
-        return;
-    }
-    gCtrdgHeaderReceived = 1;
-    if ((REG_POSTFLG & 1) == 0) {
-        return;
-    }
-    oldIrqMask = Irq_ReplaceEnableBits_Arm7(IRQ_FIFO_RECV);
-    oldIme = *REG_IME;
-    *REG_IME = 1;
-    while (gCtrdgInitMessage.received != 1) {
-        func_arm7_037fdc04(0x100);
-    }
-    header = (GbaRomHeader *)((((gCtrdgInitMessage.word & INIT_WORD_OFFSET_MASK) >> INIT_WORD_OFFSET_SHIFT)
-                                 << INIT_WORD_OFFSET_UNIT_SHIFT) + MAIN_RAM_BASE);
-    logoOk = Cartridge_LogoMatchesBios(header->logo);
-    info = GBA_SLOT_SNAPSHOT_PTR;
-    info->isAgb = logoOk;
-    Cartridge_SendWordUntilTaken_Arm7(GBA_SLOT_MSG_SETUP_ACK);
-    (void)*REG_IME;
-    *REG_IME = oldIme;
-    Irq_ReplaceEnableBits_Arm7(oldIrqMask);
+  if (gCtrdgHeaderReceived != 0) {
+    return;
+  }
+  gCtrdgHeaderReceived = 1;
+  if ((REG_POSTFLG & 1) == 0) {
+    return;
+  }
+  oldIrqMask = Irq_ReplaceEnableBits_Arm7(IRQ_FIFO_RECV);
+  oldIme = *REG_IME;
+  *REG_IME = 1;
+  while (gCtrdgInitMessage.received != 1) {
+    func_arm7_037fdc04(0x100);
+  }
+  header = (GbaRomHeader*)((((gCtrdgInitMessage.word & INIT_WORD_OFFSET_MASK) >>
+                             INIT_WORD_OFFSET_SHIFT)
+                            << INIT_WORD_OFFSET_UNIT_SHIFT) +
+                           MAIN_RAM_BASE);
+  logoOk = Cartridge_LogoMatchesBios(header->logo);
+  info = GBA_SLOT_SNAPSHOT_PTR;
+  info->isAgb = logoOk;
+  Cartridge_SendWordUntilTaken_Arm7(GBA_SLOT_MSG_SETUP_ACK);
+  (void)*REG_IME;
+  *REG_IME = oldIme;
+  Irq_ReplaceEnableBits_Arm7(oldIrqMask);
 }

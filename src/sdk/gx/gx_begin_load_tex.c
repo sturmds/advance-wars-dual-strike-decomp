@@ -8,13 +8,14 @@ extern u16 gGxTexLcdcPages2[];
 
 int func_0210a948(void);
 
-void GX_BeginLoadTex(void)
-{
-    int banks = func_0210a948();
-    int row = banks * 6; /* byte offset: 3 halfwords per row; indexing the arrays does not match */
+void GX_BeginLoadTex(void) {
+  int banks = func_0210a948();
+  int row =
+      banks *
+      6; /* byte offset: 3 halfwords per row; indexing the arrays does not match */
 
-    data_022a98b0 = banks;
-    data_022a98a4 = *(u16 *)((u8 *)gGxTexLcdcPages0 + row) << 12;
-    data_022a98b4 = *(u16 *)((u8 *)gGxTexLcdcPages1 + row) << 12;
-    data_022a98b8 = *(u16 *)((u8 *)gGxTexLcdcPages2 + row) << 12;
+  data_022a98b0 = banks;
+  data_022a98a4 = *(u16*)((u8*)gGxTexLcdcPages0 + row) << 12;
+  data_022a98b4 = *(u16*)((u8*)gGxTexLcdcPages1 + row) << 12;
+  data_022a98b8 = *(u16*)((u8*)gGxTexLcdcPages2 + row) << 12;
 }

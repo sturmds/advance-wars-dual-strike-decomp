@@ -10,11 +10,10 @@ void Gfx_LoadPlayerWindowFrame(int player);
 /* Script step of the day banner's early-exit script (the one DayBanner_CheckInput
  * starts): puts layer 0 back to its normal size, runs the screen's own hook
  * if it has one, and reloads the current player's window frame graphics. */
-void DayBanner_RestoreScreen(void)
-{
-    Screen_SetLayerScreenSize(0, 0);
-    if (STATE_50->unk_38 != NULL) {
-        STATE_50->unk_38();
-    }
-    Gfx_LoadPlayerWindowFrame(GAME->currentPlayer);
+void DayBanner_RestoreScreen(void) {
+  Screen_SetLayerScreenSize(0, 0);
+  if (STATE_50->unk_38 != NULL) {
+    STATE_50->unk_38();
+  }
+  Gfx_LoadPlayerWindowFrame(GAME->currentPlayer);
 }

@@ -12,32 +12,31 @@ void AiTurn_Restart(void);
 
 /* Runs one step of the AI turn. Does nothing while EventScript_IsRunning
  * returns nonzero. */
-void AiTurn_Update(void)
-{
-    if (EventScript_IsRunning()) {
-        return;
-    }
-    switch (gAiTurnState->state) {
+void AiTurn_Update(void) {
+  if (EventScript_IsRunning()) {
+    return;
+  }
+  switch (gAiTurnState->state) {
     case AI_STATE_START:
-        AiTurn_Start();
-        break;
+      AiTurn_Start();
+      break;
     case AI_STATE_RUN_PHASE:
-        AiTurn_RunPhase();
-        break;
+      AiTurn_RunPhase();
+      break;
     case AI_STATE_RUN_QUEUE:
-        AiTurn_RunQueue();
-        break;
+      AiTurn_RunQueue();
+      break;
     case AI_STATE_SHOW_ACTION:
-        AiTurn_ShowAction();
-        break;
+      AiTurn_ShowAction();
+      break;
     case AI_STATE_END_ACTIONS:
-        AiTurn_RunEndActions();
-        break;
+      AiTurn_RunEndActions();
+      break;
     case 5:
-        AiTurn_RunPowerStep();
-        break;
+      AiTurn_RunPowerStep();
+      break;
     case 6:
-        AiTurn_Restart();
-        break;
-    }
+      AiTurn_Restart();
+      break;
+  }
 }

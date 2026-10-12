@@ -5,10 +5,11 @@
 
 #define SOUND_THREAD_MSG_SLOTS 8
 
-extern OSMessage data_arm7_03807ba4[SOUND_THREAD_MSG_SLOTS]; /* buffer of data_arm7_03807b90 */
+extern OSMessage data_arm7_03807ba4
+    [SOUND_THREAD_MSG_SLOTS]; /* buffer of data_arm7_03807b90 */
 
-void SND_InitIntervalTimer(void)
-{
-    MsgQueue_SetUpRing_Arm7(&data_arm7_03807b90, data_arm7_03807ba4, SOUND_THREAD_MSG_SLOTS);
-    Alarm_Clear_Arm7(&data_arm7_03807bc4);
+void SND_InitIntervalTimer(void) {
+  MsgQueue_SetUpRing_Arm7(&data_arm7_03807b90, data_arm7_03807ba4,
+                          SOUND_THREAD_MSG_SLOTS);
+  Alarm_Clear_Arm7(&data_arm7_03807bc4);
 }

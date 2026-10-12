@@ -4,7 +4,7 @@
 #include "game/map_unit.h"
 #include "game/unit_stats.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* Sorts gAiQueue by hp, largest first; a unit with an AI target counts
@@ -19,23 +19,22 @@ void AiFoot_MoveAndCapture(void);
  * whatever their AI order, highest hp first. Only slots 1-50 of the
  * player are checked. Same queue as AiAction_QueueFootUnits2 with a
  * different action routine. */
-void AiAction_QueueFootUnits(void)
-{
-    int i;
-    MapUnit *unit;
+void AiAction_QueueFootUnits(void) {
+  int i;
+  MapUnit* unit;
 
-    gAiQueueCursor = gAiQueue;
-    for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1;
-         i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
-        unit = &STATE->units[i];
-        if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0
-            && Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_FOOT) {
-            *gAiQueueCursor++ = i;
-        }
+  gAiQueueCursor = gAiQueue;
+  for (i = Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 1;
+       i < Ov000_gPlayerFirstUnitSlot[STATE->currentPlayer] + 51; i++) {
+    unit = &STATE->units[i];
+    if (unit->type != UNIT_NONE && (unit->flags & MAP_UNIT_WAITED) == 0 &&
+        Ov000_gUnitStats[unit->type].aiClass == AI_CLASS_FOOT) {
+      *gAiQueueCursor++ = i;
     }
-    *gAiQueueCursor = 0;
-    gAiQueueCursor = gAiQueue;
-    AiQueue_SortByHp();
-    gAiQueueRoutine = AiFoot_MoveAndCapture;
-    gAiTurnState->state = AI_STATE_RUN_QUEUE;
+  }
+  *gAiQueueCursor = 0;
+  gAiQueueCursor = gAiQueue;
+  AiQueue_SortByHp();
+  gAiQueueRoutine = AiFoot_MoveAndCapture;
+  gAiTurnState->state = AI_STATE_RUN_QUEUE;
 }

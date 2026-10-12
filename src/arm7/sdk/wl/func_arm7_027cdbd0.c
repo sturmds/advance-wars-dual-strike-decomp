@@ -3,14 +3,13 @@
 typedef struct Unk_027cdbd0_a1 Unk_027cdbd0_a1;
 
 struct Unk_027cdbd0_a1 {
-    u8 pad_00[0x2];
-    u16 unk_2;
+  u8 pad_00[0x2];
+  u16 unk_2;
 };
 
-void WifiParam_LoadBssid(int, void *, int);
+void WifiParam_LoadBssid(int, void*, int);
 
-void func_arm7_027cdbd0(int a0, Unk_027cdbd0_a1 *a1)
-{
-    a1->unk_2 = 1;
-    WifiParam_LoadBssid(a0 + 16, a1, 1);
+void func_arm7_027cdbd0(int a0, Unk_027cdbd0_a1* a1) {
+  a1->unk_2 = 1;
+  WifiParam_LoadBssid(a0 + 16, a1, 1);
 }

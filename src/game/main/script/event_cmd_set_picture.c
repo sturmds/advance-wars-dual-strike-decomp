@@ -10,12 +10,11 @@ void EventScript_LoadCoPicture(int coMood);
 /* Event script command: shows the CO picture whose mood is in the record at once, without
  * the slide of EventCmd_ChangePicture, and remembers it in data_022977a4.unk_02. Does
  * nothing when gEventSkipState is 1. */
-BOOL EventCmd_SetPicture(s16 index)
-{
-    if (gEventSkipState != 1) {
-        data_022977a4.unk_02 = data_022977f4[index].unk_00->unk_08;
-        EventScript_LoadCoPicture(data_022977a4.unk_02);
-    }
-    data_022977f4[index].unk_00++;
-    return 0;
+BOOL EventCmd_SetPicture(s16 index) {
+  if (gEventSkipState != 1) {
+    data_022977a4.unk_02 = data_022977f4[index].unk_00->unk_08;
+    EventScript_LoadCoPicture(data_022977a4.unk_02);
+  }
+  data_022977f4[index].unk_00++;
+  return 0;
 }

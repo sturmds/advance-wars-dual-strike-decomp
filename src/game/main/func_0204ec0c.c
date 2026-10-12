@@ -2,7 +2,4 @@
 
 void Sound_PlaySe(u32 soundId);
 
-void func_0204ec0c(void)
-{
-    Sound_PlaySe(85);
-}
+void func_0204ec0c(void) { Sound_PlaySe(85); }

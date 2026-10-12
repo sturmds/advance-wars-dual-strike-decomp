@@ -10,11 +10,10 @@ void OS_SetProtectionRegion1(u32 value);
 u32 OS_GetInitArenaLo(int id);
 
 /* Sets the low and high marks of arena 2; then, when data_022a9b78 is 0 or the console type reads 1, sets protection region 1 to 4 MB at 0x02000000. */
-void func_0210e4bc(void)
-{
-    OS_SetArenaHi(2, OS_GetInitArenaHi(2));
-    OS_SetArenaLo(2, OS_GetInitArenaLo(2));
-    if (data_022a9b78 == 0 || (func_0210dbec() & 3) == 1) {
-        OS_SetProtectionRegion1(0x0200002b);
-    }
+void func_0210e4bc(void) {
+  OS_SetArenaHi(2, OS_GetInitArenaHi(2));
+  OS_SetArenaLo(2, OS_GetInitArenaLo(2));
+  if (data_022a9b78 == 0 || (func_0210dbec() & 3) == 1) {
+    OS_SetProtectionRegion1(0x0200002b);
+  }
 }

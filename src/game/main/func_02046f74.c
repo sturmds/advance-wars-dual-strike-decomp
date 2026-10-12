@@ -4,9 +4,8 @@
 
 extern const TaskScriptCmd data_0215adac[];
 
-void func_02046f74(void)
-{
-    MenuButtons_RemoveSelectable();
-    MenuButtons_DisableTouch();
-    Task_Create(data_0215adac, TASK_LIST(3));
+void func_02046f74(void) {
+  MenuButtons_RemoveSelectable();
+  MenuButtons_DisableTouch();
+  Task_Create(data_0215adac, TASK_LIST(3));
 }

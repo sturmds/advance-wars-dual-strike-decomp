@@ -7,17 +7,16 @@ extern const MenuButtonTemplate data_0215ff24;
 extern const MenuButtonTemplate data_0215ff74;
 
 /* Adds button 254 and the five row buttons, and selects the remembered one. */
-void LinkMenu_AddAllButtons(void)
-{
-    int i;
+void LinkMenu_AddAllButtons(void) {
+  int i;
 
-    MenuButton_Add(0, 0, &data_0215ff74, 254);
-    for (i = 0; i < 5; i++) {
-        if (i == 4) {
-            MenuButton_Add(0, i * 40, &data_0215ff24, i);
-        } else {
-            MenuButton_Add(0, i * 40, &data_0215fefc, i);
-        }
+  MenuButton_Add(0, 0, &data_0215ff74, 254);
+  for (i = 0; i < 5; i++) {
+    if (i == 4) {
+      MenuButton_Add(0, i * 40, &data_0215ff24, i);
+    } else {
+      MenuButton_Add(0, i * 40, &data_0215fefc, i);
     }
-    MenuButton_Select(data_0215fed0->selected);
+  }
+  MenuButton_Select(data_0215fed0->selected);
 }

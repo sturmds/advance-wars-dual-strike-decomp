@@ -4,9 +4,8 @@
 
 void func_arm7_03805878(void);
 
-void func_arm7_038067bc(void)
-{
-    SndHw_Disable();
-    func_arm7_03805878();
-    Cpu_HaltForever_Arm7();
+void func_arm7_038067bc(void) {
+  SndHw_Disable();
+  func_arm7_03805878();
+  Cpu_HaltForever_Arm7();
 }

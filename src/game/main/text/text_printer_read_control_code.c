@@ -3,24 +3,25 @@
 #include "game/script_slot.h"
 #include "game/text_printer.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern u8 data_02158364[];
 extern u8 data_021584f8[];
 extern u8 data_02158520[];
 
 s32 HwDiv32(s32 numer, s32 denom);
-ScriptSlot *ScriptSlot_Start(const void *descriptor, int arg);
-int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry);
-int func_02015ec8(TextPrinter *printer);
-void TextPrinter_ShowAll(TextPrinter *printer);
+ScriptSlot* ScriptSlot_Start(const void* descriptor, int arg);
+int TextPrinter_ReadControlCode(TextPrinter* printer, u16* entry);
+int func_02015ec8(TextPrinter* printer);
+void TextPrinter_ShowAll(TextPrinter* printer);
 void func_0201d730(void);
 void PopupMenu_SetItemIcon(int arg);
 void DialogueCursor_Animate(void);
-void UnitIcon_DrawEntries(u16 *dest, int unitType, int base, int cargo, int a4, int hp, int a6, int a7, int a8, int a9, int a10);
+void UnitIcon_DrawEntries(u16* dest, int unitType, int base, int cargo, int a4,
+                          int hp, int a6, int a7, int a8, int a9, int a10);
 
-#define TEXT ((const u8 *)printer->text) /* TextPrinter.text is a bare pointer */
-#define ADVANCE(n) (*(const u8 **)&printer->text += (n))
+#define TEXT ((const u8*)printer->text) /* TextPrinter.text is a bare pointer */
+#define ADVANCE(n) (*(const u8**)& printer->text += (n))
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
 /* Handles the control code at the printer's text position; entry is the
@@ -33,100 +34,100 @@ void UnitIcon_DrawEntries(u16 *dest, int unitType, int base, int cargo, int a4, 
  * line start (15 also marks the next cell), 13 is a line break, 14 starts
  * the effect in data_02158364 while charDelay is set, 20 to 23 start the effect
  * in data_02158520 and move the cursor 8 tiles right. */
-int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
-{
-    const u8 *text;
-    ScriptSlot *slot;
-    MapUnit *unit;
-    int hp;
+int TextPrinter_ReadControlCode(TextPrinter* printer, u16* entry) {
+  const u8* text;
+  ScriptSlot* slot;
+  MapUnit* unit;
+  int hp;
 
-    for (;;) {
-        text = TEXT;
-        switch (text[0]) {
-        case 16:
-        case 17:
-        case 18:
-        case 19:
-            printer->unk_32 = text[0] - 16;
-            ADVANCE(1);
-            continue;
-        }
-        break;
-    }
-
+  for (;;) {
+    text = TEXT;
     switch (text[0]) {
+      case 16:
+      case 17:
+      case 18:
+      case 19:
+        printer->unk_32 = text[0] - 16;
+        ADVANCE(1);
+        continue;
+    }
+    break;
+  }
+
+  switch (text[0]) {
     case 0:
-        if (printer->resumeText == NULL) {
-            return 0;
-        }
-        printer->text = printer->resumeText;
-        printer->resumeText = NULL;
-        return TextPrinter_ReadControlCode(printer, entry);
+      if (printer->resumeText == NULL) {
+        return 0;
+      }
+      printer->text = printer->resumeText;
+      printer->resumeText = NULL;
+      return TextPrinter_ReadControlCode(printer, entry);
     case 21:
-        return 1; /* needed to match: separate from default */
+      return 1; /* needed to match: separate from default */
     case 20:
     case 22:
     case 23:
-        slot = ScriptSlot_Start(data_02158520, 0);
-        slot->textEntry = entry + 1;
-        slot->unk_28 = func_02015ec8(printer);
-        slot->unk_2c = printer->copyCallback;
-        slot->unk_30 = printer->unk_30;
-        if (TEXT[0] == 23 || TEXT[0] == 23) /* needed to match: the original tests twice */ {
-            slot->unk_1e = 1;
-            ADVANCE(1);
-        } else {
-            slot->unk_1e = 0;
-            ADVANCE(1);
-        }
-        printer->cursorX += 8;
-        return 2;
+      slot = ScriptSlot_Start(data_02158520, 0);
+      slot->textEntry = entry + 1;
+      slot->unk_28 = func_02015ec8(printer);
+      slot->unk_2c = printer->copyCallback;
+      slot->unk_30 = printer->unk_30;
+      if (TEXT[0] == 23 ||
+          TEXT[0] == 23) /* needed to match: the original tests twice */ {
+        slot->unk_1e = 1;
+        ADVANCE(1);
+      } else {
+        slot->unk_1e = 0;
+        ADVANCE(1);
+      }
+      printer->cursorX += 8;
+      return 2;
     case 13:
-        printer->cursorY += 2;
-        printer->cursorX = printer->startX;
-        printer->unk_38 += 2;
-        printer->pixelInTile = 0;
-        ADVANCE(1);
-        return 3;
+      printer->cursorY += 2;
+      printer->cursorX = printer->startX;
+      printer->unk_38 += 2;
+      printer->pixelInTile = 0;
+      ADVANCE(1);
+      return 3;
     case 15:
-        entry[1] = 0;
-        entry[33] = printer->unk_30 | 0x1b0;
-        ADVANCE(1);
-        printer->cursorX = printer->startX;
-        printer->cursorY = printer->startY;
-        printer->unk_38 = printer->unk_3a;
-        printer->pixelInTile = 0;
-        slot = ScriptSlot_Start(data_021584f8, 0);
-        slot->textEntry = entry + 1;
-        slot->unk_28 = func_02015ec8(printer);
-        slot->unk_2c = printer->copyCallback;
-        DialogueCursor_Animate();
-        return 2;
+      entry[1] = 0;
+      entry[33] = printer->unk_30 | 0x1b0;
+      ADVANCE(1);
+      printer->cursorX = printer->startX;
+      printer->cursorY = printer->startY;
+      printer->unk_38 = printer->unk_3a;
+      printer->pixelInTile = 0;
+      slot = ScriptSlot_Start(data_021584f8, 0);
+      slot->textEntry = entry + 1;
+      slot->unk_28 = func_02015ec8(printer);
+      slot->unk_2c = printer->copyCallback;
+      DialogueCursor_Animate();
+      return 2;
     case 12:
-        ADVANCE(1);
-        printer->cursorX = printer->startX;
-        printer->cursorY = printer->startY;
-        printer->unk_38 = printer->unk_3a;
-        printer->pixelInTile = 0;
-        func_02015ec8(printer);
-        func_0201d730();
-        ((void (*)(void))printer->copyCallback)();
-        return 2;
+      ADVANCE(1);
+      printer->cursorX = printer->startX;
+      printer->cursorY = printer->startY;
+      printer->unk_38 = printer->unk_3a;
+      printer->pixelInTile = 0;
+      func_02015ec8(printer);
+      func_0201d730();
+      ((void (*)(void))printer->copyCallback)();
+      return 2;
     case 14:
-        ADVANCE(1);
-        if (printer->charDelay == 0) {
-            return 3;
-        }
-        slot = ScriptSlot_Start(data_02158364, 0);
-        slot->unk_1e = 10;
-        return 2;
+      ADVANCE(1);
+      if (printer->charDelay == 0) {
+        return 3;
+      }
+      slot = ScriptSlot_Start(data_02158364, 0);
+      slot->unk_1e = 10;
+      return 2;
     case 11:
-        ADVANCE(1);
-        switch (TEXT[0]) {
+      ADVANCE(1);
+      switch (TEXT[0]) {
         case 16:
-            TextPrinter_ShowAll(printer);
-            ADVANCE(1);
-            break;
+          TextPrinter_ShowAll(printer);
+          ADVANCE(1);
+          break;
         case 17:
         case 18:
         case 19:
@@ -136,41 +137,45 @@ int TextPrinter_ReadControlCode(TextPrinter *printer, u16 *entry)
         case 23:
         case 24:
         case 25:
-            printer->charDelay = TEXT[0] - 16;
-            printer->frameCounter = 0;
-            ADVANCE(1);
-            break;
-        }
-        return 3;
+          printer->charDelay = TEXT[0] - 16;
+          printer->frameCounter = 0;
+          ADVANCE(1);
+          break;
+      }
+      return 3;
     case 10:
-        if (text[1] == 17) {
-            unit = &STATE->units[STATE->actingUnit->cargo[0]];
-            hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
-            UnitIcon_DrawEntries(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
-                          STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0, 0, 0);
-            printer->cursorX += 2;
-            ADVANCE(2);
-            return 3;
-        } else { /* needed to match: the original has both copies in full */
-            unit = &STATE->units[STATE->actingUnit->cargo[1]];
-            hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
-            UnitIcon_DrawEntries(printer->screen + printer->cursorX + printer->cursorY * 32, unit->type,
-                          STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0, 0, 0);
-            printer->cursorX += 2;
-            ADVANCE(2);
-            return 3;
-        }
-    case 9:
-        if (text[1] >= 128 && text[1] <= 153) {
-            PopupMenu_SetItemIcon(text[1] - 128);
-        }
-        if (TEXT[1] >= 154 && TEXT[1] <= 179) {
-            PopupMenu_SetItemIcon(TEXT[1] - 128);
-        }
+      if (text[1] == 17) {
+        unit = &STATE->units[STATE->actingUnit->cargo[0]];
+        hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
+        UnitIcon_DrawEntries(
+            printer->screen + printer->cursorX + printer->cursorY * 32,
+            unit->type, STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0,
+            0, 0);
         printer->cursorX += 2;
         ADVANCE(2);
         return 3;
+      } else { /* needed to match: the original has both copies in full */
+        unit = &STATE->units[STATE->actingUnit->cargo[1]];
+        hp = unit->hp == 0 ? 0 : HwDiv32(unit->hp - 1, 10) + 1;
+        UnitIcon_DrawEntries(
+            printer->screen + printer->cursorX + printer->cursorY * 32,
+            unit->type, STATE->currentUnitBase, unit->cargo[0], 0, hp, 0, 0, 0,
+            0, 0);
+        printer->cursorX += 2;
+        ADVANCE(2);
+        return 3;
+      }
+    case 9:
+      if (text[1] >= 128 && text[1] <= 153) {
+        PopupMenu_SetItemIcon(text[1] - 128);
+      }
+      if (TEXT[1] >= 154 && TEXT[1] <= 179) {
+        PopupMenu_SetItemIcon(TEXT[1] - 128);
+      }
+      printer->cursorX += 2;
+      ADVANCE(2);
+      return 3;
     default:
-        return 1;
-    }
+      return 1;
+  }
 }

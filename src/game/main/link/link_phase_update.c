@@ -3,7 +3,7 @@
 #include "game/menu_state.h"
 #include "game/task.h"
 
-u8 *Wireless_GetSharedData(int player);
+u8* Wireless_GetSharedData(int player);
 void func_0207b48c(void);
 int func_0207bd94(void);
 u16 Wireless_GetChildAids(void);
@@ -17,7 +17,7 @@ void LinkScreen_SetReady(u8 player);
 void LinkScreen_ClearReady(u8 player);
 void LinkScreen_MovePlayerToPanel(u8 player, int panel);
 void LinkScreen_MovePlayerDown(u8 player);
-void Task_ResumeScript(Task *task);
+void Task_ResumeScript(Task* task);
 
 extern MenuState gMenuState;
 
@@ -27,66 +27,65 @@ extern MenuState gMenuState;
  * player to the panel in the argument, 4 and 5 move it up and down. Once
  * every connected player is ready the screen ends; otherwise this
  * console reads its own keys. */
-void LinkPhase_Update(Task *task)
-{
-    int cancel;
-    int allReady;
-    u8 *msg;
-    int i;
-    int player;
+void LinkPhase_Update(Task* task) {
+  int cancel;
+  int allReady;
+  u8* msg;
+  int i;
+  int player;
 
-    allReady = 1;
-    cancel = 0;
-    if (func_0207bd94() == 1) {
-        for (player = 0; player < 4; player++) {
-            if ((Wireless_GetChildAids() | 1) & (1 << player)) {
-                msg = Wireless_GetSharedData((u16)player);
-                for (i = 0; i < 4; i++, msg += 2) {
-                    switch (msg[0]) {
-                    case 1:
-                        LinkScreen_SetReady(player);
-                        break;
-                    case 2:
-                        if (LINK_READY_FLAG(gMenuState, player) != 0) {
-                            LinkScreen_ClearReady(player);
-                        } else if (player == 0) {
-                            cancel = 1;
-                        }
-                        break;
-                    case 3:
-                        LinkScreen_MovePlayerToPanel(player, msg[1]);
-                        break;
-                    case 4:
-                        LinkScreen_MovePlayerUp(player);
-                        break;
-                    case 5:
-                        LinkScreen_MovePlayerDown(player);
-                        break;
-                    }
-                }
-            }
-        }
-        EventQueue_Drain();
-    }
-    if (cancel == 1) {
-        LinkScreen_Cancel();
-        func_0207b48c();
-        Task_ResumeScript(task);
-        return;
-    }
+  allReady = 1;
+  cancel = 0;
+  if (func_0207bd94() == 1) {
     for (player = 0; player < 4; player++) {
-        if ((Wireless_GetChildAids() | 1) & (1 << player)) {
-            if (LINK_READY_FLAG(gMenuState, player) == 0) {
-                allReady = 0;
-                break;
-            }
+      if ((Wireless_GetChildAids() | 1) & (1 << player)) {
+        msg = Wireless_GetSharedData((u16)player);
+        for (i = 0; i < 4; i++, msg += 2) {
+          switch (msg[0]) {
+            case 1:
+              LinkScreen_SetReady(player);
+              break;
+            case 2:
+              if (LINK_READY_FLAG(gMenuState, player) != 0) {
+                LinkScreen_ClearReady(player);
+              } else if (player == 0) {
+                cancel = 1;
+              }
+              break;
+            case 3:
+              LinkScreen_MovePlayerToPanel(player, msg[1]);
+              break;
+            case 4:
+              LinkScreen_MovePlayerUp(player);
+              break;
+            case 5:
+              LinkScreen_MovePlayerDown(player);
+              break;
+          }
         }
+      }
     }
-    if (allReady == 1) {
-        func_020724f0();
-        func_0207b48c();
-        Task_ResumeScript(task);
-        return;
+    EventQueue_Drain();
+  }
+  if (cancel == 1) {
+    LinkScreen_Cancel();
+    func_0207b48c();
+    Task_ResumeScript(task);
+    return;
+  }
+  for (player = 0; player < 4; player++) {
+    if ((Wireless_GetChildAids() | 1) & (1 << player)) {
+      if (LINK_READY_FLAG(gMenuState, player) == 0) {
+        allReady = 0;
+        break;
+      }
     }
-    LinkScreen_HandleKeys();
+  }
+  if (allReady == 1) {
+    func_020724f0();
+    func_0207b48c();
+    Task_ResumeScript(task);
+    return;
+  }
+  LinkScreen_HandleKeys();
 }

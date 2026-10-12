@@ -7,22 +7,21 @@ extern const TaskScriptCmd gLinkMarkerScript1[];
 extern const TaskScriptCmd gLinkMarkerScript2[];
 
 /* Starts a marker task next to a button: kind 0 for the stage 1 pick, player + 1 for the stage 2 pick of a player. */
-void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y)
-{
-    LinkMarkerTask *task;
+void LinkMenu_CreateMarker(u8 kind, u16 x, u16 y) {
+  LinkMarkerTask* task;
 
-    switch (kind) {
+  switch (kind) {
     case 0:
-        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript0, TASK_LIST(3));
-        break;
+      task = (LinkMarkerTask*)Task_Create(gLinkMarkerScript0, TASK_LIST(3));
+      break;
     case 1:
-        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript1, TASK_LIST(3));
-        break;
+      task = (LinkMarkerTask*)Task_Create(gLinkMarkerScript1, TASK_LIST(3));
+      break;
     default:
-        task = (LinkMarkerTask *)Task_Create(gLinkMarkerScript2, TASK_LIST(3));
-        break;
-    }
-    task->x = x;
-    task->y = y;
-    task->affineIndex = kind + 25;
+      task = (LinkMarkerTask*)Task_Create(gLinkMarkerScript2, TASK_LIST(3));
+      break;
+  }
+  task->x = x;
+  task->y = y;
+  task->affineIndex = kind + 25;
 }

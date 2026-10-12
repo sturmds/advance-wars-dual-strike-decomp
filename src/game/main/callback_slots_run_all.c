@@ -5,13 +5,12 @@ extern void (*volatile gCallbackSlots[16])(void);
 
 /* Calls every callback stored in the 16 slots, in order (called from the
  * vblank handler). */
-void CallbackSlots_RunAll(void)
-{
-    u16 i;
+void CallbackSlots_RunAll(void) {
+  u16 i;
 
-    for (i = 0; i < 16; i++) {
-        if (gCallbackSlots[i] != NULL) {
-            gCallbackSlots[i]();
-        }
+  for (i = 0; i < 16; i++) {
+    if (gCallbackSlots[i] != NULL) {
+      gCallbackSlots[i]();
     }
+  }
 }

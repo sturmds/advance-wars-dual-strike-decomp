@@ -1,7 +1,7 @@
 #include "types.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const char gTilesetPaletteFileAlt[];
 extern const char gTilesetPaletteFileDefault[];
@@ -10,15 +10,14 @@ extern const char gTilesetPaletteFileDefault[];
 
 /* Name of a palette file for the map's tileset (bit 7 ignored): "0af" for
  * tilesets 2 and 3, "0ae" for the others. Map_LoadExtraObjTiles loads it. */
-const char *Tileset_GetPaletteFileName(void)
-{
-    int tileset = VIEW->tileset & 0x7f;
+const char* Tileset_GetPaletteFileName(void) {
+  int tileset = VIEW->tileset & 0x7f;
 
-    switch (tileset) {
+  switch (tileset) {
     case 2:
     case 3:
-        return gTilesetPaletteFileAlt;
+      return gTilesetPaletteFileAlt;
     default:
-        return gTilesetPaletteFileDefault;
-    }
+      return gTilesetPaletteFileDefault;
+  }
 }

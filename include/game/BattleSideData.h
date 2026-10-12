@@ -8,65 +8,70 @@
 /* Reached through BattleSideData.unk_18: a table of points, one per cell of the
  * side's HP bar in each of its two sets (index 0-5 and 6-). */
 typedef struct BattleSideData_18 {
-    u8 pad_00[0x0e];
-    BattlePoint points[10];            /* length a guess */
+  u8 pad_00[0x0e];
+  BattlePoint points[10]; /* length a guess */
 } BattleSideData_18;
 
 /* One entry of BattleSideData.effects: how a flying sprite of a side starts and moves.
  * Values are 8.8 fixed point; Battle_StartCellSprite and friends scale them by the
  * sprite's scale. */
 typedef struct BattleEffectParams {
-    u8 pad_00[0x18];
-    BattlePoint offset;                /* start offset, scaled */
-    u16 delay;                         /* frames before the sprite moves */
-    BattlePoint velocity;              /* scaled */
-    BattlePoint acceleration;          /* added to the velocity every frame */
-    BattlePoint unk_26;                /* added to the point for the cell to get the step */
-    BattlePoint direction;             /* BattleCellSprite.direction when it starts */
-    BattlePoint unk_2e;                /* signs: which way the sprite is heading, per axis; 0: no check */
+  u8 pad_00[0x18];
+  BattlePoint offset;       /* start offset, scaled */
+  u16 delay;                /* frames before the sprite moves */
+  BattlePoint velocity;     /* scaled */
+  BattlePoint acceleration; /* added to the velocity every frame */
+  BattlePoint unk_26;    /* added to the point for the cell to get the step */
+  BattlePoint direction; /* BattleCellSprite.direction when it starts */
+  BattlePoint
+      unk_2e; /* signs: which way the sprite is heading, per axis; 0: no check */
 } BattleEffectParams;
 
 /* Layout of BattleSideData.cellPositions that the fighter tasks read: positions they step through, from byte 14 of the data. */
 typedef struct BattleAnimData {
-    u8 pad_00[14];
-    struct {
-        s16 x;
-        s16 y;
-    } offsets[1];                      /* one per step; length unknown */
+  u8 pad_00[14];
+  struct {
+    s16 x;
+    s16 y;
+  } offsets[1]; /* one per step; length unknown */
 } BattleAnimData;
 
 /* Position of one HP cell on the battle screen. */
 typedef struct BattleCellPos {
-    s16 x;
-    s16 y;
-    s16 z;
+  s16 x;
+  s16 y;
+  s16 z;
 } BattleCellPos;
 
 /* Reached through BattleSideData.weapons, unk_08 and unk_10. mwcc packs bit fields
  * from the low end. The three matchup values are picked by Battle_GetAirGroundMatchup. */
 typedef struct BattleSideWeapon {
-    BattleGfxByStyle gfx;              /* the HP cell sprites (BattleScreenWork.spriteTables) */
-    u8 spriteIndex : 4;                /* index argument of BattleSpriteTask_Create for the HP cells */
-    u8 unk_28_hi : 4;
-    u8 unk_29_lo : 4;
-    u8 sameAltitude : 4;               /* matchup 0 */
-    u8 groundVsAir : 4;                /* matchup 1 */
-    u8 airVsGround : 4;                /* matchup 2 */
-    u8 unk_2b;                         /* index argument of BattleSpriteTask_Create, like spriteIndex */
+  BattleGfxByStyle
+      gfx; /* the HP cell sprites (BattleScreenWork.spriteTables) */
+  u8 spriteIndex
+      : 4; /* index argument of BattleSpriteTask_Create for the HP cells */
+  u8 unk_28_hi : 4;
+  u8 unk_29_lo : 4;
+  u8 sameAltitude : 4; /* matchup 0 */
+  u8 groundVsAir : 4;  /* matchup 1 */
+  u8 airVsGround : 4;  /* matchup 2 */
+  u8 unk_2b; /* index argument of BattleSpriteTask_Create, like spriteIndex */
 } BattleSideWeapon;
 
 /* What BattleScreenWork.unk_27c points to, one per side of the battle in ov002. */
 typedef struct BattleSideData {
-    const BattleSideWeapon *weapons[2]; /* by BattleSide.usesSecondary */
-    const BattleSideWeapon *unk_08[2]; /* by BattleSide.usesSecondary */
-    const BattleSideWeapon *unk_10;
-    const char *const *paletteFiles;   /* by BattleSide.army - 1 */
-    const BattleCellPos *cellPositions; /* by cell */
-    const BattleGfxFile *unk_1c[2];    /* by BattleSide.usesSecondary */
-    BattleEffectParams *effects[9];    /* indexed by byte 9 of the side's 12-byte record in the scene; length a guess */
-    u8 unk_48;                         /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
-    u8 unk_49[3];                      /* indexed by byte 9 of the side's 12-byte record in the scene, or by BattleSide.usesSecondary */
-    const BattleSounds *sounds;
+  const BattleSideWeapon* weapons[2]; /* by BattleSide.usesSecondary */
+  const BattleSideWeapon* unk_08[2];  /* by BattleSide.usesSecondary */
+  const BattleSideWeapon* unk_10;
+  const char* const* paletteFiles;    /* by BattleSide.army - 1 */
+  const BattleCellPos* cellPositions; /* by cell */
+  const BattleGfxFile* unk_1c[2];     /* by BattleSide.usesSecondary */
+  BattleEffectParams* effects
+      [9]; /* indexed by byte 9 of the side's 12-byte record in the scene; length a guess */
+  u8 unk_48; /* 0: the cells step with the hit list (BattleCells_RunSequence); else the side runs a fighter task */
+  u8 unk_49
+      [3]; /* indexed by byte 9 of the side's 12-byte record in the scene, or by BattleSide.usesSecondary */
+  const BattleSounds* sounds;
 } BattleSideData;
 
 #endif

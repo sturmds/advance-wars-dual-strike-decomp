@@ -3,7 +3,4 @@
 
 void Map_SetCoSelectPhase(int length);
 
-void func_020e888c(void)
-{
-    Map_SetCoSelectPhase(2);
-}
+void func_020e888c(void) { Map_SetCoSelectPhase(2); }

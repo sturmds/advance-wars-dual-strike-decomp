@@ -5,6 +5,6 @@
 
 /* CoPowerBlock.affectsUnit filter: every unit except Oozium. Same code as
  * UnitHighlightAllButOozium; the CO table uses both. */
-BOOL UnitHighlightAllButOozium2(MapUnit *unit) {
-    return Ov000_gUnitStats[unit->type].unitClass != UNIT_CLASS_ALL;
+BOOL UnitHighlightAllButOozium2(MapUnit* unit) {
+  return Ov000_gUnitStats[unit->type].unitClass != UNIT_CLASS_ALL;
 }

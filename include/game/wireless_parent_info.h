@@ -7,13 +7,13 @@
  * this, filled at link init). The fields follow the arguments of the game
  * info request in Wireless_SetGameInfo. */
 typedef struct WirelessParentInfo {
-    void *userGameInfo;
-    u16 userGameInfoLength;
-    u8 pad_06[0x08 - 0x06];
-    u32 ggid;                          /* game group id */
-    u16 tgid;
+  void* userGameInfo;
+  u16 userGameInfoLength;
+  u8 pad_06[0x08 - 0x06];
+  u32 ggid; /* game group id */
+  u16 tgid;
 } WirelessParentInfo;
 
-extern WirelessParentInfo *data_0229c8a0;
+extern WirelessParentInfo* data_0229c8a0;
 
 #endif

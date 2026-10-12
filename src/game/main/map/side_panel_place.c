@@ -7,20 +7,19 @@ void SidePanel_SnapRight(void);
 void SidePanel_SnapAwayFromCursor(void);
 
 /* Moves the side panel the way mode (SIDE_PANEL_*) says. */
-void SidePanel_Place(int mode)
-{
-    switch (mode) {
+void SidePanel_Place(int mode) {
+  switch (mode) {
     case SIDE_PANEL_SLIDE_AWAY:
-        SidePanel_SlideAwayFromCursor();
-        break;
+      SidePanel_SlideAwayFromCursor();
+      break;
     case SIDE_PANEL_SNAP_LEFT:
-        SidePanel_SnapLeft();
-        break;
+      SidePanel_SnapLeft();
+      break;
     case SIDE_PANEL_SNAP_RIGHT:
-        SidePanel_SnapRight();
-        break;
+      SidePanel_SnapRight();
+      break;
     case SIDE_PANEL_SNAP_AWAY:
-        SidePanel_SnapAwayFromCursor();
-        break;
-    }
+      SidePanel_SnapAwayFromCursor();
+      break;
+  }
 }

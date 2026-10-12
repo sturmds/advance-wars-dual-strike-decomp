@@ -2,7 +2,4 @@
 
 void Ov006_OpenScreen(int id);
 
-void func_ov006_0235436c(void)
-{
-    Ov006_OpenScreen(7);
-}
+void func_ov006_0235436c(void) { Ov006_OpenScreen(7); }

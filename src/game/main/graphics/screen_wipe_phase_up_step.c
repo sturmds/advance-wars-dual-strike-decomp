@@ -7,21 +7,20 @@ void Gfx_RequestLayerCopy(int layer);
 /* Script callback of a screen wipe made of 2x2-tile blocks, mirrored. Each
  * frame, column c before the frame number gets tile phase frame - c, so the
  * phases rise as the frame grows. The wipe ends at frame 22. */
-void ScreenWipe_PhaseUpStep(WipeSlot *slot)
-{
-    u8 column = 0;
-    s16 step = slot->frame;
+void ScreenWipe_PhaseUpStep(WipeSlot* slot) {
+  u8 column = 0;
+  s16 step = slot->frame;
 
-    for (; column < slot->frame; column++) {
-        if (column >= 16) {
-            break;
-        }
-        ScreenWipe_SetColumn(column, step--, 1);
+  for (; column < slot->frame; column++) {
+    if (column >= 16) {
+      break;
     }
-    Gfx_RequestLayerCopy(0);
-    if (slot->frame == 22) {
-        slot->callback = NULL;
-    } else {
-        slot->frame++;
-    }
+    ScreenWipe_SetColumn(column, step--, 1);
+  }
+  Gfx_RequestLayerCopy(0);
+  if (slot->frame == 22) {
+    slot->callback = NULL;
+  } else {
+    slot->frame++;
+  }
 }

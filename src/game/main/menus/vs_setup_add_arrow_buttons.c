@@ -17,10 +17,7 @@ extern MenuButtonTemplate data_0215cdf0;
 extern MenuButtonTemplate data_0215ce18;
 extern MenuButtonTemplate data_0215ce40;
 
-static inline BOOL IsFirstLinkPlayer(void)
-{
-    return Link_GetOwnPlayer() == 0;
-}
+static inline BOOL IsFirstLinkPlayer(void) { return Link_GetOwnPlayer() == 0; }
 
 /* Adds buttons 250-254 of the Vs setup screen (250-252 only when skills are
  * on) and, per player slot, the buttons above (y 8, data_0215cdf0) and
@@ -30,61 +27,80 @@ static inline BOOL IsFirstLinkPlayer(void)
  * the own slot gets them, plus, for the first link player, the CO arrows of
  * each slot not set in the Link_GetConnectedSlotMask mask; only the first link player
  * gets button 254. */
-void VsSetup_AddArrowButtons(void)
-{
-    int player;
+void VsSetup_AddArrowButtons(void) {
+  int player;
 
-    if (Link_IsActive() == 1) {
-        if (IsFirstLinkPlayer() == 1) {
-            MenuButton_Add(0, 0, &data_0215ce18, 254);
-        }
-        MenuButton_Add(0, 0, &data_0215ce40, 253);
-        if (!Skills_AreDisabled()) {
-            MenuButton_Add(0, 0, &data_0215cd50, 252);
-            MenuButton_Add(56, 152, &data_0215cda0, 251);
-            MenuButton_Add(152, 152, &data_0215cb48, 250);
-        }
-        player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
-        if (STATE->twoMaps == 1) {
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0, player * 4 + 18);
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70, player * 4 + 19);
-        }
-        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
-        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
-        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);
-        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
-        if (IsFirstLinkPlayer() == 1) {
-            for (player = 0; player < MENU->setup.unk_2e3; player++) {
-                if ((Link_GetConnectedSlotMask() & (1 << player)) == 0) {
-                    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
-                    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
-                    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);
-                    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
-                }
-            }
-        }
-    } else {
-        MenuButton_Add(0, 0, &data_0215ce18, 254);
-        MenuButton_Add(0, 0, &data_0215ce40, 253);
-        if (!Skills_AreDisabled()) {
-            MenuButton_Add(0, 0, &data_0215cd50, 252);
-            MenuButton_Add(56, 152, &data_0215cda0, 251);
-            MenuButton_Add(152, 152, &data_0215cb48, 250);
-        }
-        for (player = 0; player < MENU->setup.unk_2e3; player++) {
-            if (STATE->twoMaps == 0) {
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 8, &data_0215cdf0, player * 4 + 16);
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 40, &data_0215cb70, player * 4 + 17);
-            } else {
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 8, &data_0215cdf0, player * 4 + 16);
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 40, &data_0215cb70, player * 4 + 17);
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0, player * 4 + 18);
-                MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70, player * 4 + 19);
-            }
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0, player * 4 + 32);
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70, player * 4 + 33);
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0, player * 4 + 34);
-            MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70, player * 4 + 35);
-        }
+  if (Link_IsActive() == 1) {
+    if (IsFirstLinkPlayer() == 1) {
+      MenuButton_Add(0, 0, &data_0215ce18, 254);
     }
+    MenuButton_Add(0, 0, &data_0215ce40, 253);
+    if (!Skills_AreDisabled()) {
+      MenuButton_Add(0, 0, &data_0215cd50, 252);
+      MenuButton_Add(56, 152, &data_0215cda0, 251);
+      MenuButton_Add(152, 152, &data_0215cb48, 250);
+    }
+    player = Link_FindSlotOfPlayer(Link_GetOwnPlayer()) - 1;
+    if (STATE->twoMaps == 1) {
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8, &data_0215cdf0,
+                     player * 4 + 18);
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40, &data_0215cb70,
+                     player * 4 + 19);
+    }
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0,
+                   player * 4 + 32);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70,
+                   player * 4 + 33);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0,
+                   player * 4 + 34);
+    MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128, &data_0215cb70,
+                   player * 4 + 35);
+    if (IsFirstLinkPlayer() == 1) {
+      for (player = 0; player < MENU->setup.unk_2e3; player++) {
+        if ((Link_GetConnectedSlotMask() & (1 << player)) == 0) {
+          MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64,
+                         &data_0215cdf0, player * 4 + 32);
+          MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128,
+                         &data_0215cb70, player * 4 + 33);
+          MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64,
+                         &data_0215cdf0, player * 4 + 34);
+          MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128,
+                         &data_0215cb70, player * 4 + 35);
+        }
+      }
+    }
+  } else {
+    MenuButton_Add(0, 0, &data_0215ce18, 254);
+    MenuButton_Add(0, 0, &data_0215ce40, 253);
+    if (!Skills_AreDisabled()) {
+      MenuButton_Add(0, 0, &data_0215cd50, 252);
+      MenuButton_Add(56, 152, &data_0215cda0, 251);
+      MenuButton_Add(152, 152, &data_0215cb48, 250);
+    }
+    for (player = 0; player < MENU->setup.unk_2e3; player++) {
+      if (STATE->twoMaps == 0) {
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 8,
+                       &data_0215cdf0, player * 4 + 16);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 16, 40,
+                       &data_0215cb70, player * 4 + 17);
+      } else {
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 8, &data_0215cdf0,
+                       player * 4 + 16);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 40,
+                       &data_0215cb70, player * 4 + 17);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 8,
+                       &data_0215cdf0, player * 4 + 18);
+        MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 40,
+                       &data_0215cb70, player * 4 + 19);
+      }
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 64, &data_0215cdf0,
+                     player * 4 + 32);
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 4, 128, &data_0215cb70,
+                     player * 4 + 33);
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 64, &data_0215cdf0,
+                     player * 4 + 34);
+      MenuButton_Add(VsSetup_GetPanelTileX(player) * 8 + 28, 128,
+                     &data_0215cb70, player * 4 + 35);
+    }
+  }
 }

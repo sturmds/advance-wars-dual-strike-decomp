@@ -4,7 +4,4 @@
 
 extern const TaskScriptCmd data_0215fc0c[];
 
-void func_02075df0(Task *parent)
-{
-    Task_CreateChild(data_0215fc0c, parent);
-}
+void func_02075df0(Task* parent) { Task_CreateChild(data_0215fc0c, parent); }

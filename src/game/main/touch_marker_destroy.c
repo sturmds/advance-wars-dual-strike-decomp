@@ -3,14 +3,13 @@
 
 extern const TaskScriptCmd gTouchMarkerScript[];
 
-Task *Task_FindByScript(const TaskScriptCmd *script);
-void Task_DestroyByScript(const TaskScriptCmd *script);
+Task* Task_FindByScript(const TaskScriptCmd* script);
+void Task_DestroyByScript(const TaskScriptCmd* script);
 
 /* Destroys the touch marker task, if there is one. */
-void TouchMarker_Destroy(void)
-{
-    if (Task_FindByScript(gTouchMarkerScript) == NULL) {
-        return;
-    }
-    Task_DestroyByScript(gTouchMarkerScript);
+void TouchMarker_Destroy(void) {
+  if (Task_FindByScript(gTouchMarkerScript) == NULL) {
+    return;
+  }
+  Task_DestroyByScript(gTouchMarkerScript);
 }

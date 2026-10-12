@@ -11,35 +11,34 @@ int UnitType_GetAttackKind(int unitType);
  * enemy and own scores separately. damage is in the same units as hp
  * (100 = full). The strike never kills, so a unit loses at most hp - 1.
  * This score weights infantry, mechs and capturing units. */
-int StrikeScore_InfantryDamage(MapUnit *unit, int damage, int isEnemy)
-{
-    u16 score;
+int StrikeScore_InfantryDamage(MapUnit* unit, int damage, int isEnemy) {
+  u16 score;
 
-    if (unit->type == UNIT_OOZIUM) {
-        return 0;
-    }
-    if (unit->hp <= 10) {
-        return 1;
-    }
-    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
-        return 1;
-    }
+  if (unit->type == UNIT_OOZIUM) {
+    return 0;
+  }
+  if (unit->hp <= 10) {
+    return 1;
+  }
+  if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
+    return 1;
+  }
 
-    if (unit->hp > damage) {
-        score = damage;
-    } else {
-        score = unit->hp - 1;
+  if (unit->hp > damage) {
+    score = damage;
+  } else {
+    score = unit->hp - 1;
+  }
+  if (unit->type == UNIT_INFANTRY || unit->type == UNIT_MECH) {
+    if (isEnemy == 1) {
+      score *= 4;
     }
-    if (unit->type == UNIT_INFANTRY || unit->type == UNIT_MECH) {
-        if (isEnemy == 1) {
-            score *= 4;
-        }
-    }
-    if (unit->captureProgress != 0 && isEnemy == 1) {
-        score *= 2;
-    }
-    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
-        score /= 2;
-    }
-    return score;
+  }
+  if (unit->captureProgress != 0 && isEnemy == 1) {
+    score *= 2;
+  }
+  if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
+    score /= 2;
+  }
+  return score;
 }

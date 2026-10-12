@@ -3,6 +3,4 @@
 
 /* 1 when the map has an object of the given kind (MapObject.kind) that is not destroyed. */
 
-BOOL Ov001_MapLacksObjectKind4(void) {
-    return MapObjects_HasKind(4) == 0;
-}
+BOOL Ov001_MapLacksObjectKind4(void) { return MapObjects_HasKind(4) == 0; }

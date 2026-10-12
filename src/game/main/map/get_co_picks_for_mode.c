@@ -8,17 +8,16 @@ extern u8 gCoPicksMode2[5][2];
 extern u8 gCoPicksMode3[5][2];
 
 /* mode: Unk_02080440_48.gameMode. */
-u8 (*GetCoPicksForMode(int mode))[2]
-{
-    switch (mode) {
+u8 (*GetCoPicksForMode(int mode))[2] {
+  switch (mode) {
     case 0:
-        return gCoPicksMode0;
+      return gCoPicksMode0;
     case 1:
-        return gCoPicksMode1;
+      return gCoPicksMode1;
     case 3:
-        return gCoPicksMode3;
+      return gCoPicksMode3;
     case 2: /* needed to match: keeps 2 in the jump table */
     default:
-        return gCoPicksMode2;
-    }
+      return gCoPicksMode2;
+  }
 }

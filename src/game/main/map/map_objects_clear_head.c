@@ -2,25 +2,24 @@
 #include "game/Unk_02080440.h"
 #include "game/map_object.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* Zeroes the first 16 object entries except the variant. The chained assignments are needed to match. */
-void MapObjects_ClearHead(void)
-{
-    MapObject *object = data_027c027c->unk_48[data_027c0284]->objects;
-    int i;
+void MapObjects_ClearHead(void) {
+  MapObject* object = data_027c027c->unk_48[data_027c0284]->objects;
+  int i;
 
-    for (i = 0; i < 16; i++, object++) {
-        object->height = 0;
-        object->width = object->height;
-        object->y = object->width;
-        object->x = object->y;
-        object->kind = 0;
-        object->hp = 0;
-        object->unk_05 = 0;
-        object->startState = 0;
-        object->state = 0;
-        object->unk_07 = 0;
-    }
+  for (i = 0; i < 16; i++, object++) {
+    object->height = 0;
+    object->width = object->height;
+    object->y = object->width;
+    object->x = object->y;
+    object->kind = 0;
+    object->hp = 0;
+    object->unk_05 = 0;
+    object->startState = 0;
+    object->state = 0;
+    object->unk_07 = 0;
+  }
 }

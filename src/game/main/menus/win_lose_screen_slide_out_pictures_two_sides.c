@@ -4,30 +4,30 @@
 #include "game/win_lose.h"
 
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Screen_SetCurrent(void *state);
-void Screen_SetCurrentGfx(void *state);
-void Task_ResumeScript(WinLoseTask *task);
+void Screen_SetCurrent(void* state);
+void Screen_SetCurrentGfx(void* state);
+void Task_ResumeScript(WinLoseTask* task);
 void Co_QueuePictureSprite(int x, int y, int attr, int list);
 
-extern Unk_02080440 *data_027c027c;
-extern Unk_027c0280 *data_027c0280;
+extern Unk_02080440* data_027c027c;
+extern Unk_027c0280* data_027c0280;
 extern Unk_027c0288 data_027c0288;
 
-#define MAIN_MAP   (data_027c0288.unk_00)
+#define MAIN_MAP (data_027c0288.unk_00)
 #define SECOND_MAP (data_027c0288.unk_04)
 
-#define SWITCH_TO(state)                              \
-    {                                                 \
-        Unk_027c0280 *saved0280 = data_027c0280;      \
-        Unk_02080440 *saved027c;                      \
-        Screen_SetCurrentGfx(state);                  \
-        saved027c = data_027c027c;                    \
-        Screen_SetCurrent(state)
+#define SWITCH_TO(state)                     \
+  {                                          \
+    Unk_027c0280* saved0280 = data_027c0280; \
+    Unk_02080440* saved027c;                 \
+    Screen_SetCurrentGfx(state);             \
+    saved027c = data_027c027c;               \
+    Screen_SetCurrent(state)
 
-#define SWITCH_BACK()                                 \
-        Screen_SetCurrent(saved027c);                 \
-        Screen_SetCurrentGfx(saved0280);              \
-    }
+#define SWITCH_BACK()              \
+  Screen_SetCurrent(saved027c);    \
+  Screen_SetCurrentGfx(saved0280); \
+  }
 
 /* OBJ attribute 1: horizontal flip, for the pictures on the right. */
 #define OBJ_HFLIP 0x1000
@@ -41,42 +41,42 @@ extern Unk_027c0288 data_027c0288;
  * flipped) to the right. Picture i starts at frame 6 * i and takes 18
  * frames. When the last one is gone the frame counter is set to 64 and
  * the task's script resumes. */
-void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask *task)
-{
-    int i;
-    int x;
+void WinLoseScreen_SlideOutPicturesTwoSides(WinLoseTask* task) {
+  int i;
+  int x;
 
-    SWITCH_TO(SECOND_MAP);
-    for (i = 0; i < task->portraitsA; i++) {
-        if (task->frame < i * 6) {
-            Co_QueuePictureSprite((24 + i * 32) & 0x1ff, 192, PORTRAIT_ATTR(i), i);
-        } else if (task->frame < i * 6 + 18) {
-            x = Math_Ease(1, 0, -240, task->frame - i * 6, 18);
-            x += 24 + i * 32;
-            if (x > -48) {
-                Co_QueuePictureSprite(x & 0x1ff, 192, PORTRAIT_ATTR(i), i);
-            }
-        }
+  SWITCH_TO(SECOND_MAP);
+  for (i = 0; i < task->portraitsA; i++) {
+    if (task->frame < i * 6) {
+      Co_QueuePictureSprite((24 + i * 32) & 0x1ff, 192, PORTRAIT_ATTR(i), i);
+    } else if (task->frame < i * 6 + 18) {
+      x = Math_Ease(1, 0, -240, task->frame - i * 6, 18);
+      x += 24 + i * 32;
+      if (x > -48) {
+        Co_QueuePictureSprite(x & 0x1ff, 192, PORTRAIT_ATTR(i), i);
+      }
     }
-    SWITCH_BACK();
+  }
+  SWITCH_BACK();
 
-    SWITCH_TO(MAIN_MAP);
-    for (i = 0; i < task->portraitsB; i++) {
-        if (task->frame < i * 6) {
-            Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
-        } else if (task->frame < i * 6 + 18) {
-            x = (232 - i * 32) - Math_Ease(1, 0, -256, task->frame - i * 6, 18);
-            if (x < 256) {
-                Co_QueuePictureSprite((x & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
-            }
-        }
+  SWITCH_TO(MAIN_MAP);
+  for (i = 0; i < task->portraitsB; i++) {
+    if (task->frame < i * 6) {
+      Co_QueuePictureSprite(((232 - i * 32) & 0x1ff) | OBJ_HFLIP, 48,
+                            PORTRAIT_ATTR(i), i);
+    } else if (task->frame < i * 6 + 18) {
+      x = (232 - i * 32) - Math_Ease(1, 0, -256, task->frame - i * 6, 18);
+      if (x < 256) {
+        Co_QueuePictureSprite((x & 0x1ff) | OBJ_HFLIP, 48, PORTRAIT_ATTR(i), i);
+      }
     }
-    SWITCH_BACK();
+  }
+  SWITCH_BACK();
 
-    if (task->frame != (task->portraitsMax - 1) * 6 + 18) {
-        task->frame++;
-        return;
-    }
-    task->frame = 64;
-    Task_ResumeScript(task);
+  if (task->frame != (task->portraitsMax - 1) * 6 + 18) {
+    task->frame++;
+    return;
+  }
+  task->frame = 64;
+  Task_ResumeScript(task);
 }

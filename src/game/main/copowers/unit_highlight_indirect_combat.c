@@ -8,9 +8,9 @@ int GetUnitCombatClass(int unitType);
 
 /* CoPowerBlock.affectsUnit filter: indirect-attack units that are not
  * inside a transport. */
-BOOL UnitHighlightIndirectCombat(MapUnit *unit) {
-    if (unit->flags & MAP_UNIT_CARRIED) {
-        return FALSE;
-    }
-    return GetUnitCombatClass(unit->type) == UNIT_CLASS_INDIRECT_COMBAT;
+BOOL UnitHighlightIndirectCombat(MapUnit* unit) {
+  if (unit->flags & MAP_UNIT_CARRIED) {
+    return FALSE;
+  }
+  return GetUnitCombatClass(unit->type) == UNIT_CLASS_INDIRECT_COMBAT;
 }

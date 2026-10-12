@@ -12,21 +12,22 @@
 typedef void (*MenuItemHandler)(s8 index, s8 button, s8 flags);
 
 typedef struct MenuItem {
-    u8 unk_00;                         /* id passed to MapScript_RunList10 on confirm */
-    u8 pad_01[3];
-    s8 (*getFlags)(void);              /* MENU_ITEM_* */
-    MenuItemHandler onUpdate;          /* every frame (PopupMenuButton_Update) */
-    MenuItemHandler onSelect;          /* cursor moved onto it (PopupMenuButton_Select) */
-    u32 unk_10;
-    MenuItemHandler onConfirm;         /* PopupMenuButton_Confirm */
-    MenuItemHandler onCancel;          /* PopupMenuButton_Cancel */
-    u32 textId;                        /* label, passed to Text_Get */
+  u8 unk_00; /* id passed to MapScript_RunList10 on confirm */
+  u8 pad_01[3];
+  s8 (*getFlags)(void);     /* MENU_ITEM_* */
+  MenuItemHandler onUpdate; /* every frame (PopupMenuButton_Update) */
+  MenuItemHandler onSelect; /* cursor moved onto it (PopupMenuButton_Select) */
+  u32 unk_10;
+  MenuItemHandler onConfirm; /* PopupMenuButton_Confirm */
+  MenuItemHandler onCancel;  /* PopupMenuButton_Cancel */
+  u32 textId;                /* label, passed to Text_Get */
 } MenuItem;
 
 #define MENU_ITEM_HIDDEN 1
-#define MENU_ITEM_GREYED 2 /* printed in the other text colour; confirming plays another sound,
+#define MENU_ITEM_GREYED \
+  2 /* printed in the other text colour; confirming plays another sound,
                             * UnitMenu_Fire does nothing and UnitMenu_Send says why it cannot send */
-#define MENU_ITEM_END    0xff
+#define MENU_ITEM_END 0xff
 
 /* Battle map menu (main 0x02165e8c): Strike, Assault, General, Defense,
  * Auto CO On and Auto CO Off among others. */

@@ -54,216 +54,215 @@ void Gx_SendPlainQuad_0200fb24(void);
 
 /* Gx_SendObjSizedQuad with another set of quads; here 64x32 and 64x64
  * get different ones. SpriteCells_Draw3d calls this one when its flag is set. */
-void func_0201403c(int width, int height, int flip)
-{
-    switch (flip) {
+void func_0201403c(int width, int height, int flip) {
+  switch (flip) {
     case QUAD_FLIP_H:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200f014();
-                return;
+              Gx_SendPlainQuad_0200f014();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200e8b4();
-                return;
+              Gx_SendPlainQuad_0200e8b4();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200e7c8();
-                return;
-            }
+              Gx_SendPlainQuad_0200e7c8();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200ec64();
-                return;
+              Gx_SendPlainQuad_0200ec64();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200ef28();
-                return;
+              Gx_SendPlainQuad_0200ef28();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200e6dc();
-                return;
-            }
+              Gx_SendPlainQuad_0200e6dc();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200eb78();
-                return;
+              Gx_SendPlainQuad_0200eb78();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200ea8c();
-                return;
+              Gx_SendPlainQuad_0200ea8c();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200ee3c();
-                return;
+              Gx_SendPlainQuad_0200ee3c();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200e5f0();
-                return;
-            }
+              Gx_SendPlainQuad_0200e5f0();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_0200e9a0();
-                return;
+              Gx_SendPlainQuad_0200e9a0();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200ed50();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_0200ed50();
+              return;
+          }
+      }
+      break;
     case QUAD_FLIP_V:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200e504();
-                return;
+              Gx_SendPlainQuad_0200e504();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200dda4();
-                return;
+              Gx_SendPlainQuad_0200dda4();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200dcb8();
-                return;
-            }
+              Gx_SendPlainQuad_0200dcb8();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200e154();
-                return;
+              Gx_SendPlainQuad_0200e154();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200e418();
-                return;
+              Gx_SendPlainQuad_0200e418();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200dbcc();
-                return;
-            }
+              Gx_SendPlainQuad_0200dbcc();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200e068();
-                return;
+              Gx_SendPlainQuad_0200e068();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200df7c();
-                return;
+              Gx_SendPlainQuad_0200df7c();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200e32c();
-                return;
+              Gx_SendPlainQuad_0200e32c();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200dae0();
-                return;
-            }
+              Gx_SendPlainQuad_0200dae0();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_0200de90();
-                return;
+              Gx_SendPlainQuad_0200de90();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200e240();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_0200e240();
+              return;
+          }
+      }
+      break;
     case QUAD_FLIP_H | QUAD_FLIP_V:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200d9f4();
-                return;
+              Gx_SendPlainQuad_0200d9f4();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200d294();
-                return;
+              Gx_SendPlainQuad_0200d294();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200d1a8();
-                return;
-            }
+              Gx_SendPlainQuad_0200d1a8();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200d644();
-                return;
+              Gx_SendPlainQuad_0200d644();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200d908();
-                return;
+              Gx_SendPlainQuad_0200d908();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200d0bc();
-                return;
-            }
+              Gx_SendPlainQuad_0200d0bc();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200d558();
-                return;
+              Gx_SendPlainQuad_0200d558();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200d46c();
-                return;
+              Gx_SendPlainQuad_0200d46c();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200d81c();
-                return;
+              Gx_SendPlainQuad_0200d81c();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200cfd0();
-                return;
-            }
+              Gx_SendPlainQuad_0200cfd0();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_0200d380();
-                return;
+              Gx_SendPlainQuad_0200d380();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200d730();
-                return;
-            }
-        }
-        break;
+              Gx_SendPlainQuad_0200d730();
+              return;
+          }
+      }
+      break;
     default:
-        switch (width) {
+      switch (width) {
         case 8:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200fb24();
-                return;
+              Gx_SendPlainQuad_0200fb24();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200f3c4();
-                return;
+              Gx_SendPlainQuad_0200f3c4();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200f2d8();
-                return;
-            }
+              Gx_SendPlainQuad_0200f2d8();
+              return;
+          }
         case 16:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200f774();
-                return;
+              Gx_SendPlainQuad_0200f774();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200fa38();
-                return;
+              Gx_SendPlainQuad_0200fa38();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200f1ec();
-                return;
-            }
+              Gx_SendPlainQuad_0200f1ec();
+              return;
+          }
         case 32:
-            switch (height) {
+          switch (height) {
             case 8:
-                Gx_SendPlainQuad_0200f688();
-                return;
+              Gx_SendPlainQuad_0200f688();
+              return;
             case 16:
-                Gx_SendPlainQuad_0200f59c();
-                return;
+              Gx_SendPlainQuad_0200f59c();
+              return;
             case 32:
-                Gx_SendPlainQuad_0200f94c();
-                return;
+              Gx_SendPlainQuad_0200f94c();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200f100();
-                return;
-            }
+              Gx_SendPlainQuad_0200f100();
+              return;
+          }
         case 64:
-            switch (height) {
+          switch (height) {
             case 32:
-                Gx_SendPlainQuad_0200f4b0();
-                return;
+              Gx_SendPlainQuad_0200f4b0();
+              return;
             case 64:
-                Gx_SendPlainQuad_0200f860();
-                return;
-            }
-        }
-        break;
-    }
+              Gx_SendPlainQuad_0200f860();
+              return;
+          }
+      }
+      break;
+  }
 }

@@ -17,22 +17,22 @@ extern MenuStateFrom400 data_0229ef30;
  * goes to MapSelect_PickFirstMap; otherwise MapSelect_ConfirmMap takes the map.
  * In link mode (Link_IsActive returns 1) the pick is queued as event 7 or 5
  * with the map's page position instead. */
-void MapSelect_PickMap(void)
-{
-    if (SELECTED_MAP_ID() < 0x101 && !Map_IsFlagSet(SELECTED_MAP_ID())) {
-        return;
-    }
-    if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 && data_0229ef30.firstMapId == 0) {
-        if (Link_IsActive() == 1) {
-            EventQueue_Push(7, PAGE_POS());
-        } else {
-            MapSelect_PickFirstMap();
-        }
+void MapSelect_PickMap(void) {
+  if (SELECTED_MAP_ID() < 0x101 && !Map_IsFlagSet(SELECTED_MAP_ID())) {
+    return;
+  }
+  if (STATE->gameMode != GAME_MODE_WAR_ROOM && STATE->twoMaps == 1 &&
+      data_0229ef30.firstMapId == 0) {
+    if (Link_IsActive() == 1) {
+      EventQueue_Push(7, PAGE_POS());
     } else {
-        if (Link_IsActive() == 1) {
-            EventQueue_Push(5, PAGE_POS());
-        } else {
-            MapSelect_ConfirmMap();
-        }
+      MapSelect_PickFirstMap();
     }
+  } else {
+    if (Link_IsActive() == 1) {
+      EventQueue_Push(5, PAGE_POS());
+    } else {
+      MapSelect_ConfirmMap();
+    }
+  }
 }

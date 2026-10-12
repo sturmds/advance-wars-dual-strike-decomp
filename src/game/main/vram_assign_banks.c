@@ -12,15 +12,14 @@ void GX_SetBankForSubOBJExtPltt(int mask);
 
 /* Calls the nine per-bank setup functions (guess), each with one VRAM bank
  * bit: A=1, B=2, C=4, D=8, E=0x10, F=0x20, G=0x40, H=0x80, I=0x100. */
-void Vram_AssignAllBanks(void)
-{
-    GX_SetBankForTex(1);
-    GX_SetBankForBG(2);
-    GX_SetBankForOBJ(0x10);
-    GX_SetBankForTexPltt(0x20);
-    GX_SetBankForBGExtPltt(0x40);
-    GX_SetBankForSubBG(4);
-    func_0210aaf8(8);
-    GX_SetBankForSubBGExtPltt(0x80);
-    GX_SetBankForSubOBJExtPltt(0x100);
+void Vram_AssignAllBanks(void) {
+  GX_SetBankForTex(1);
+  GX_SetBankForBG(2);
+  GX_SetBankForOBJ(0x10);
+  GX_SetBankForTexPltt(0x20);
+  GX_SetBankForBGExtPltt(0x40);
+  GX_SetBankForSubBG(4);
+  func_0210aaf8(8);
+  GX_SetBankForSubBGExtPltt(0x80);
+  GX_SetBankForSubOBJExtPltt(0x100);
 }

@@ -17,20 +17,19 @@ extern MenuButtonTemplate data_0215b448;
  * left of the mission, or 80 pixels further left when the mission is in the
  * right half of the screen, and two buttons off screen (253, 254), and
  * selects 253. */
-void CampaignMap_AddMissionButtons(void)
-{
-    int buttonX;
-    int buttonY;
+void CampaignMap_AddMissionButtons(void) {
+  int buttonX;
+  int buttonY;
 
-    buttonX = MISSION.x - CampaignMap_CenterScrollX(MISSION.x);
-    buttonY = MISSION.y - func_0204ec34(MISSION.y);
-    if (MISSION.x - CampaignMap_CenterScrollX(MISSION.x) > 120) {
-        buttonX -= 80;
-    } else {
-        buttonX -= 8;
-    }
-    MenuButton_Add(buttonX, buttonY - 8, &data_0215b448, 252);
-    MenuButton_Add(0, 0, &data_0215b3d0, 253);
-    MenuButton_Add(0, 0, &data_0215b3f8, 254);
-    MenuButton_Select(253);
+  buttonX = MISSION.x - CampaignMap_CenterScrollX(MISSION.x);
+  buttonY = MISSION.y - func_0204ec34(MISSION.y);
+  if (MISSION.x - CampaignMap_CenterScrollX(MISSION.x) > 120) {
+    buttonX -= 80;
+  } else {
+    buttonX -= 8;
+  }
+  MenuButton_Add(buttonX, buttonY - 8, &data_0215b448, 252);
+  MenuButton_Add(0, 0, &data_0215b3d0, 253);
+  MenuButton_Add(0, 0, &data_0215b3f8, 254);
+  MenuButton_Select(253);
 }

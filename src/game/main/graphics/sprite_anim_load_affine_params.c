@@ -13,34 +13,33 @@ void Oam_SetAffineParams(int index, s16 pa, s16 pb, s16 pc, s16 pd);
 /* Sets the OAM affine matrices of the sprite's current frame, from affineBase on: each
  * SpriteAffineEntry gives a rotation and a scale. Does nothing for a free slot or a frame
  * without affine data. */
-void SpriteAnim_LoadAffineParams(SpriteAnim *sprite)
-{
-    BOOL active;
-    const u16 *data;
-    int i;
-    const SpriteAffineEntry *entry;
-    int count;
+void SpriteAnim_LoadAffineParams(SpriteAnim* sprite) {
+  BOOL active;
+  const u16* data;
+  int i;
+  const SpriteAffineEntry* entry;
+  int count;
 
-    if (sprite != NULL && sprite->data != 0) {
-        active = TRUE;
-    } else {
-        active = FALSE;
-    }
-    if (!active) {
-        return;
-    }
-    data = sprite->affine;
-    if (data == NULL) {
-        return;
-    }
-    entry = (const SpriteAffineEntry *)(data + 1);
-    count = data[0] & AFFINE_COUNT_MASK;
-    for (i = 0; i < count; i++) {
-        Oam_SetAffineParams(sprite->affineBase + i,
-                            HwDiv32(COS(entry->angle) << 4, entry->scaleX),
-                            HwDiv32(-SIN(entry->angle) << 4, entry->scaleY),
-                            HwDiv32(SIN(entry->angle) << 4, entry->scaleX),
-                            HwDiv32(COS(entry->angle) << 4, entry->scaleY));
-        entry++;
-    }
+  if (sprite != NULL && sprite->data != 0) {
+    active = TRUE;
+  } else {
+    active = FALSE;
+  }
+  if (!active) {
+    return;
+  }
+  data = sprite->affine;
+  if (data == NULL) {
+    return;
+  }
+  entry = (const SpriteAffineEntry*)(data + 1);
+  count = data[0] & AFFINE_COUNT_MASK;
+  for (i = 0; i < count; i++) {
+    Oam_SetAffineParams(sprite->affineBase + i,
+                        HwDiv32(COS(entry->angle) << 4, entry->scaleX),
+                        HwDiv32(-SIN(entry->angle) << 4, entry->scaleY),
+                        HwDiv32(SIN(entry->angle) << 4, entry->scaleX),
+                        HwDiv32(COS(entry->angle) << 4, entry->scaleY));
+    entry++;
+  }
 }

@@ -12,16 +12,16 @@ void WifiStation_ClearTable(void);
 void WifiParam_LoadDefaults(void);
 
 /* Part of the setup Wifi_StartDriver does, again, with the values Wifi_StartDriver stored. */
-void Wifi_RestartDriver(void)
-{
-    func_arm7_027c8594();
-    func_arm7_027c9438();
-    WifiMac_LoadRegisterTable();
-    WifiBuffer_ReleaseWorkLists();
-    WifiTask_ClearQueues();
-    Wifi_ClearSessionArea(WIFI_DRIVER_STATE->limits.unk_f0, WIFI_DRIVER_STATE->limits.unk_f4);
-    func_arm7_027cb920();
-    func_arm7_027cb9ac();
-    WifiStation_ClearTable();
-    WifiParam_LoadDefaults();
+void Wifi_RestartDriver(void) {
+  func_arm7_027c8594();
+  func_arm7_027c9438();
+  WifiMac_LoadRegisterTable();
+  WifiBuffer_ReleaseWorkLists();
+  WifiTask_ClearQueues();
+  Wifi_ClearSessionArea(WIFI_DRIVER_STATE->limits.unk_f0,
+                        WIFI_DRIVER_STATE->limits.unk_f4);
+  func_arm7_027cb920();
+  func_arm7_027cb9ac();
+  WifiStation_ClearTable();
+  WifiParam_LoadDefaults();
 }

@@ -10,13 +10,13 @@
  * data_027c0288.unk_04. The first 0x2c bytes belong to the task system
  * (Task_Create). */
 typedef struct RowLockMarkTask {
-    u8 pad_00[0x2c];
-    int x;                             /* top left of the sprite at normal size */
-    int y;
-    u8 pad_34[0x4c - 0x34];
-    s16 frame;
-    u8 pad_4e[0x52 - 0x4e];
-    u16 affineIndex;                   /* OBJ affine matrix 25 to 28 */
+  u8 pad_00[0x2c];
+  int x; /* top left of the sprite at normal size */
+  int y;
+  u8 pad_34[0x4c - 0x34];
+  s16 frame;
+  u8 pad_4e[0x52 - 0x4e];
+  u16 affineIndex; /* OBJ affine matrix 25 to 28 */
 } RowLockMarkTask;
 
 #endif

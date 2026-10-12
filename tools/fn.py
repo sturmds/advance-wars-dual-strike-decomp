@@ -524,6 +524,8 @@ def cmd_finish(args) -> int:
     text = delinks.read_text().replace(f"\n{fi[0]}:\n", f"\n{fi[0]}:\n    complete\n", 1)
     delinks.write_text(text)
     print(f"marked {fi[0]} complete")
+    # make release checks the format.
+    subprocess.run([sys.executable, ROOT / "tools/format.py", ROOT / fi[0]], check=True)
     return 0
 
 

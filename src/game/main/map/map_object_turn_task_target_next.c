@@ -5,15 +5,15 @@
 #include "game/player.h"
 #include "game/tile_point.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
-extern TilePointU16 *data_02167e98[4];
+extern TilePointU16* data_02167e98[4];
 
 void AiTargetList_Clear(void);
 void AiTargetList_Add(u16 x, u16 y, u16 unitSlot, u16 kind);
-void AiTargetList_AddUnitsOnTiles(TilePointU16 *points, int damage);
+void AiTargetList_AddUnitsOnTiles(TilePointU16* points, int damage);
 void Cannon_AddBestTarget(int x, int y, int damage, int kind, int variant);
-int Task_JumpToLabel(MapObjectTurnTask *task, int label);
+int Task_JumpToLabel(MapObjectTurnTask* task, int label);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 
@@ -25,37 +25,41 @@ int Task_JumpToLabel(MapObjectTurnTask *task, int label);
  * acts on Black Hole's turn and picks one unit (Cannon_AddBestTarget). The
  * damage comes from the object's unk_07. With no object left, jumps to
  * label 1. */
-void MapObjectTurnTask_TargetNext(MapObjectTurnTask *task)
-{
-    MapObject *object;
-    u16 kind;
+void MapObjectTurnTask_TargetNext(MapObjectTurnTask* task) {
+  MapObject* object;
+  u16 kind;
 
-    AiTargetList_Clear();
-    while ((kind = task->nextObject->kind) != 0) {
-        object = task->nextObject;
-        switch (kind) {
-        case MAP_OBJECT_VOLCANO:
-            if (object->variant != 0 && object->state == 0) {
-                AiTargetList_Add(object->x, object->y, 0, kind);
-                if (STATE->day != 0) {
-                    AiTargetList_AddUnitsOnTiles(data_02167e98[task->nextObject->variant], (s8)task->nextObject->unk_07);
-                }
-                task->nextObject++;
-                return;
-            }
-            break;
-        case MAP_OBJECT_BLACK_CANNON:
-        case MAP_OBJECT_MINICANNON:
-            if (STATE->players[STATE->currentPlayer].armyColour == ARMY_BLACK_HOLE && object->hp != 0 && object->state == 0) {
-                AiTargetList_Add(object->x, object->y, 0, kind);
-                object = task->nextObject;
-                Cannon_AddBestTarget(object->x, object->y, (s8)object->unk_07, object->kind, object->variant);
-                task->nextObject++;
-                return;
-            }
-            break;
+  AiTargetList_Clear();
+  while ((kind = task->nextObject->kind) != 0) {
+    object = task->nextObject;
+    switch (kind) {
+      case MAP_OBJECT_VOLCANO:
+        if (object->variant != 0 && object->state == 0) {
+          AiTargetList_Add(object->x, object->y, 0, kind);
+          if (STATE->day != 0) {
+            AiTargetList_AddUnitsOnTiles(
+                data_02167e98[task->nextObject->variant],
+                (s8)task->nextObject->unk_07);
+          }
+          task->nextObject++;
+          return;
         }
-        task->nextObject++;
+        break;
+      case MAP_OBJECT_BLACK_CANNON:
+      case MAP_OBJECT_MINICANNON:
+        if (STATE->players[STATE->currentPlayer].armyColour ==
+                ARMY_BLACK_HOLE &&
+            object->hp != 0 && object->state == 0) {
+          AiTargetList_Add(object->x, object->y, 0, kind);
+          object = task->nextObject;
+          Cannon_AddBestTarget(object->x, object->y, (s8)object->unk_07,
+                               object->kind, object->variant);
+          task->nextObject++;
+          return;
+        }
+        break;
     }
-    Task_JumpToLabel(task, 1);
+    task->nextObject++;
+  }
+  Task_JumpToLabel(task, 1);
 }

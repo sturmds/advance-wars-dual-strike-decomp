@@ -1,9 +1,9 @@
 #include "sdk/snd.h"
 
-void func_arm7_037ff68c(SndExChannel *channel);
-int func_arm7_037ff818(SndExChannel *channel, int decay);
-void func_arm7_037ff810(SndExChannel *channel, int sustain);
-int func_arm7_037ff7f4(SndExChannel *channel, int release);
+void func_arm7_037ff68c(SndExChannel* channel);
+int func_arm7_037ff818(SndExChannel* channel, int decay);
+void func_arm7_037ff810(SndExChannel* channel, int sustain);
+int func_arm7_037ff7f4(SndExChannel* channel, int release);
 
 /* Channels each kind of note can play on. */
 #define VOICE_SAMPLE_CAPABLE_MASK 0xFFFF
@@ -12,74 +12,78 @@ int func_arm7_037ff7f4(SndExChannel *channel, int release);
 
 #define SEQ_ENV_FROM_INSTRUMENT 0xFF
 
-void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, s32 length)
-{
-    SndExChannel *channel = NULL;
-    SoundBankNote note;
-    u32 allowed;
+void SndTrack_NoteOn(SndTrack* track, SndPlayer* player, int key, int velocity,
+                     s32 length) {
+  SndExChannel* channel = NULL;
+  SoundBankNote note;
+  u32 allowed;
 
-    if (track->tie) {
-        channel = track->channels;
-        if (channel != NULL) {
-            channel->key = key;
-            channel->velocity = velocity;
-        }
+  if (track->tie) {
+    channel = track->channels;
+    if (channel != NULL) {
+      channel->key = key;
+      channel->velocity = velocity;
     }
+  }
+  if (channel == NULL) {
+    if (!SndArm7_ReadInstData(player->bank, track->program, key, &note)) {
+      return;
+    }
+    switch (note.type) {
+      case SOUND_NOTE_WAVE:
+      case SOUND_NOTE_DIRECT_WAVE:
+        allowed = VOICE_SAMPLE_CAPABLE_MASK;
+        break;
+      case SOUND_NOTE_PSG:
+        allowed = VOICE_SQUARE_CAPABLE_MASK;
+        break;
+      case SOUND_NOTE_NOISE:
+        allowed = VOICE_NOISE_CAPABLE_MASK;
+        break;
+      default:
+        return;
+    }
+    allowed &= track->channelMask;
+    channel = SndExChannel_Alloc(allowed, player->priority + track->priority,
+                                 track->channelMaskSet,
+                                 SndTrack_ChannelCallback, track);
     if (channel == NULL) {
-        if (!SndArm7_ReadInstData(player->bank, track->program, key, &note)) {
-            return;
-        }
-        switch (note.type) {
-        case SOUND_NOTE_WAVE:
-        case SOUND_NOTE_DIRECT_WAVE:
-            allowed = VOICE_SAMPLE_CAPABLE_MASK;
-            break;
-        case SOUND_NOTE_PSG:
-            allowed = VOICE_SQUARE_CAPABLE_MASK;
-            break;
-        case SOUND_NOTE_NOISE:
-            allowed = VOICE_NOISE_CAPABLE_MASK;
-            break;
-        default:
-            return;
-        }
-        allowed &= track->channelMask;
-        channel = SndExChannel_Alloc(allowed, player->priority + track->priority, track->channelMaskSet, SndTrack_ChannelCallback, track);
-        if (channel == NULL) {
-            return;
-        }
-        if (!SndArm7_NoteOn(channel, key, velocity, track->tie ? -1 : length, player->bank, &note)) {
-            channel->priority = 0;
-            func_arm7_037ff68c(channel);
-            return;
-        }
-        channel->next = track->channels;
-        track->channels = channel;
+      return;
     }
-    if (track->attack != SEQ_ENV_FROM_INSTRUMENT) {
-        SndExChannel_SetAttack(channel, track->attack);
+    if (!SndArm7_NoteOn(channel, key, velocity, track->tie ? -1 : length,
+                        player->bank, &note)) {
+      channel->priority = 0;
+      func_arm7_037ff68c(channel);
+      return;
     }
-    if (track->decay != SEQ_ENV_FROM_INSTRUMENT) {
-        func_arm7_037ff818(channel, track->decay);
-    }
-    if (track->sustain != SEQ_ENV_FROM_INSTRUMENT) {
-        func_arm7_037ff810(channel, track->sustain);
-    }
-    if (track->release != SEQ_ENV_FROM_INSTRUMENT) {
-        func_arm7_037ff7f4(channel, track->release);
-    }
-    channel->sweepPitch = track->sweepPitch;
-    if (track->portamento) {
-        /* glide from the previous key: 64 sweep units per semitone */
-        channel->sweepPitch += (s16)((track->portamentoKey - key) << 6);
-    }
-    if (track->portamentoTime == 0) {
-        channel->sweepLength = length;
-        channel->autoSweep = FALSE;
-    } else {
-        int time = track->portamentoTime * track->portamentoTime;
-        int distance = channel->sweepPitch < 0 ? -channel->sweepPitch : channel->sweepPitch;
-        channel->sweepLength = (time * distance) >> 11;
-    }
-    channel->sweepCounter = 0;
+    channel->next = track->channels;
+    track->channels = channel;
+  }
+  if (track->attack != SEQ_ENV_FROM_INSTRUMENT) {
+    SndExChannel_SetAttack(channel, track->attack);
+  }
+  if (track->decay != SEQ_ENV_FROM_INSTRUMENT) {
+    func_arm7_037ff818(channel, track->decay);
+  }
+  if (track->sustain != SEQ_ENV_FROM_INSTRUMENT) {
+    func_arm7_037ff810(channel, track->sustain);
+  }
+  if (track->release != SEQ_ENV_FROM_INSTRUMENT) {
+    func_arm7_037ff7f4(channel, track->release);
+  }
+  channel->sweepPitch = track->sweepPitch;
+  if (track->portamento) {
+    /* glide from the previous key: 64 sweep units per semitone */
+    channel->sweepPitch += (s16)((track->portamentoKey - key) << 6);
+  }
+  if (track->portamentoTime == 0) {
+    channel->sweepLength = length;
+    channel->autoSweep = FALSE;
+  } else {
+    int time = track->portamentoTime * track->portamentoTime;
+    int distance =
+        channel->sweepPitch < 0 ? -channel->sweepPitch : channel->sweepPitch;
+    channel->sweepLength = (time * distance) >> 11;
+  }
+  channel->sweepCounter = 0;
 }

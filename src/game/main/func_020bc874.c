@@ -2,7 +2,4 @@
 
 void BattleMenu_DrawHelpText(u32 textId);
 
-void func_020bc874(void)
-{
-    BattleMenu_DrawHelpText(-0x3ffffd17);
-}
+void func_020bc874(void) { BattleMenu_DrawHelpText(-0x3ffffd17); }

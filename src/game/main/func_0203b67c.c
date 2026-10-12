@@ -2,7 +2,4 @@
 
 void ResultStats_Draw(int, int);
 
-void func_0203b67c(int a0)
-{
-    ResultStats_Draw(0, a0);
-}
+void func_0203b67c(int a0) { ResultStats_Draw(0, a0); }

@@ -4,21 +4,21 @@
 #include "sdk/fs.h"
 #include "sdk/isd.h"
 
-extern int (*gIsdUnregisterOverlayHook)(MIProcessor target, void *address, u32 size);
+extern int (*gIsdUnregisterOverlayHook)(MIProcessor target, void* address,
+                                        u32 size);
 
 BOOL Isd_OverlayTableRemoveRange(MIProcessor target, u32 address, u32 size);
 
 /* Tells the debugger that an overlay's memory range is no longer loaded. */
-int Isd_UnregisterOverlay(MIProcessor target, void *address, u32 size)
-{
-    IsdRegionState saved;
-    int result;
+int Isd_UnregisterOverlay(MIProcessor target, void* address, u32 size) {
+  IsdRegionState saved;
+  int result;
 
-    if (gIsdOverlayHooksEnabled) {
-        Isd_OpenDebugRegion(&saved);
-        result = gIsdUnregisterOverlayHook(target, address, size);
-        Isd_CloseDebugRegion(&saved);
-        return result;
-    }
-    return Isd_OverlayTableRemoveRange(target, (u32)address, size);
+  if (gIsdOverlayHooksEnabled) {
+    Isd_OpenDebugRegion(&saved);
+    result = gIsdUnregisterOverlayHook(target, address, size);
+    Isd_CloseDebugRegion(&saved);
+    return result;
+  }
+  return Isd_OverlayTableRemoveRange(target, (u32)address, size);
 }

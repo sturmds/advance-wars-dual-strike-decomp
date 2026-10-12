@@ -13,18 +13,18 @@ struct SoundWaveArc;
 /* Links a bank to a wave archive it uses. The bank holds four of them; an
  * archive chains the links of all banks that use it. */
 typedef struct SoundWaveArcLink {
-    struct SoundWaveArc *waveArc;
-    struct SoundWaveArcLink *next;
+  struct SoundWaveArc* waveArc;
+  struct SoundWaveArcLink* next;
 } SoundWaveArcLink;
 
 typedef struct SoundWaveArc {
-    u8 pad_00[8];
-    u32 fileSize;                      /* 0x08 */
-    u8 pad_0c[0x18 - 0x0c];
-    SoundWaveArcLink *firstLink;       /* 0x18 */
-    u8 pad_1c[0x38 - 0x1c];
-    u32 count;                         /* 0x38 */
-    u32 table[1];                      /* 0x3c */
+  u8 pad_00[8];
+  u32 fileSize; /* 0x08 */
+  u8 pad_0c[0x18 - 0x0c];
+  SoundWaveArcLink* firstLink; /* 0x18 */
+  u8 pad_1c[0x38 - 0x1c];
+  u32 count;    /* 0x38 */
+  u32 table[1]; /* 0x3c */
 } SoundWaveArc;
 
 /* Bytes before the wave table. */

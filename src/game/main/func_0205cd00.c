@@ -4,15 +4,15 @@
 
 #define FADE_FRAMES 16
 int Math_Ease(int curve, int from, int to, int elapsed, int duration);
-void Task_ResumeScript(Task *task);
-#define FRAME(task) (*(s16 *)&(task)->unk_4c)
+void Task_ResumeScript(Task* task);
+#define FRAME(task) (*(s16*)&(task)->unk_4c)
 
-void func_0205cd00(Task *task)
-{
-    FRAME(task)++;
-    data_027c0280->masterBrightness = Math_Ease(4, 0, -16, FRAME(task), FADE_FRAMES);
-    if (FRAME(task) == FADE_FRAMES) {
-        FRAME(task) = 0;
-        Task_ResumeScript(task);
-    }
+void func_0205cd00(Task* task) {
+  FRAME(task)++;
+  data_027c0280->masterBrightness =
+      Math_Ease(4, 0, -16, FRAME(task), FADE_FRAMES);
+  if (FRAME(task) == FADE_FRAMES) {
+    FRAME(task) = 0;
+    Task_ResumeScript(task);
+  }
 }

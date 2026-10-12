@@ -11,26 +11,25 @@ extern MenuState gMenuState;
 
 /* Keys of the Vs setup help view: left and right pick the setting row
  * (setup.settingRow, wrapping) and show its help text; B closes it. */
-void VsSetup_HandleSettingRowKeys(void)
-{
-    s8 row;
+void VsSetup_HandleSettingRowKeys(void) {
+  s8 row;
 
-    row = gMenuState.setup.settingRow;
-    if (gKeypad->repeat & PAD_KEY_LEFT) {
-        row--;
-        if (row < 0) {
-            row = SETTING_ROWS - 1;
-        }
-        func_02064af0((u8)row);
+  row = gMenuState.setup.settingRow;
+  if (gKeypad->repeat & PAD_KEY_LEFT) {
+    row--;
+    if (row < 0) {
+      row = SETTING_ROWS - 1;
     }
-    if (gKeypad->repeat & PAD_KEY_RIGHT) {
-        row++;
-        if (row >= SETTING_ROWS) {
-            row = 0;
-        }
-        func_02064af0((u8)row);
+    func_02064af0((u8)row);
+  }
+  if (gKeypad->repeat & PAD_KEY_RIGHT) {
+    row++;
+    if (row >= SETTING_ROWS) {
+      row = 0;
     }
-    if (gKeypad->pressed & PAD_BUTTON_B) {
-        func_02064acc();
-    }
+    func_02064af0((u8)row);
+  }
+  if (gKeypad->pressed & PAD_BUTTON_B) {
+    func_02064acc();
+  }
 }

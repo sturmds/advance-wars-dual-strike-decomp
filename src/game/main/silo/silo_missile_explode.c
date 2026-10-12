@@ -3,15 +3,17 @@
 #include "game/player.h"
 #include "game/silo_missile_task.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const u8 data_0213dd38[];
 
-BOOL Map_AddTileOffset(int *x, int *y, int list, int index);
+BOOL Map_AddTileOffset(int* x, int* y, int list, int index);
 int DamageFromSilos(int playerIndex, int coSlot);
 void Unit_DamageAtTile(int x, int y, int damage);
 void func_020c4018(void);
-struct SpriteAnimTask *SpriteAnimTask_Start(const void *file, int x, int y, u32 tileBase, int animation, int layer);
+struct SpriteAnimTask* SpriteAnimTask_Start(const void* file, int x, int y,
+                                            u32 tileBase, int animation,
+                                            int layer);
 void Sound_PlaySe(u32 soundId);
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
@@ -20,40 +22,45 @@ void Sound_PlaySe(u32 soundId);
  * offset list 1 around the target by damage, less the owner's silo damage
  * reduction (DamageFromSilos). With bit 0 of effect set, Black Hole units
  * take no damage. Then plays the explosion animation and sound. */
-void SiloMissile_Explode(SiloMissileTask *task)
-{
-    int pos[2];
-    int index;
-    MapUnit *unit;
-    int damage;
-    int reduction;
+void SiloMissile_Explode(SiloMissileTask* task) {
+  int pos[2];
+  int index;
+  MapUnit* unit;
+  int damage;
+  int reduction;
 
-    index = 0;
-    while (1) {
-        pos[0] = task->x;
-        pos[1] = task->y;
-        if (!Map_AddTileOffset(&pos[0], &pos[1], 1, index++)) {
-            break;
-        }
-        if (pos[0] < 0 || pos[0] >= STATE->unk_1c4->mapWidth) {
-            continue;
-        }
-        if (pos[1] < 0 || pos[1] >= STATE->unk_1c4->mapHeight) {
-            continue;
-        }
-        unit = &STATE->units[STATE->mapTiles->unk_508[pos[0] + STATE->mapTiles->rowStart[pos[1]]]];
-        damage = task->damage;
-        /* needed to match: the original adds the call to a zero */
-        reduction = 0;
-        reduction += DamageFromSilos(MAP_UNIT_OWNER(STATE, unit), 0);
-        damage -= reduction;
-        if ((task->effect & 1) && STATE->players[MAP_UNIT_OWNER(STATE, unit)].armyColour == ARMY_BLACK_HOLE) {
-            continue;
-        }
-        Unit_DamageAtTile(pos[0], pos[1], damage);
+  index = 0;
+  while (1) {
+    pos[0] = task->x;
+    pos[1] = task->y;
+    if (!Map_AddTileOffset(&pos[0], &pos[1], 1, index++)) {
+      break;
     }
-    func_020c4018();
-    SpriteAnimTask_Start(data_0213dd38, task->pixelX - STATE->unk_1c4->scrollX,
-                         task->pixelY - STATE->unk_1c4->scrollY, task->spriteAttr, 3, 1);
-    Sound_PlaySe(0xac);
+    if (pos[0] < 0 || pos[0] >= STATE->unk_1c4->mapWidth) {
+      continue;
+    }
+    if (pos[1] < 0 || pos[1] >= STATE->unk_1c4->mapHeight) {
+      continue;
+    }
+    unit =
+        &STATE
+             ->units[STATE->mapTiles
+                         ->unk_508[pos[0] + STATE->mapTiles->rowStart[pos[1]]]];
+    damage = task->damage;
+    /* needed to match: the original adds the call to a zero */
+    reduction = 0;
+    reduction += DamageFromSilos(MAP_UNIT_OWNER(STATE, unit), 0);
+    damage -= reduction;
+    if ((task->effect & 1) &&
+        STATE->players[MAP_UNIT_OWNER(STATE, unit)].armyColour ==
+            ARMY_BLACK_HOLE) {
+      continue;
+    }
+    Unit_DamageAtTile(pos[0], pos[1], damage);
+  }
+  func_020c4018();
+  SpriteAnimTask_Start(data_0213dd38, task->pixelX - STATE->unk_1c4->scrollX,
+                       task->pixelY - STATE->unk_1c4->scrollY, task->spriteAttr,
+                       3, 1);
+  Sound_PlaySe(0xac);
 }

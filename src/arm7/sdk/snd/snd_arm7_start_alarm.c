@@ -1,26 +1,27 @@
 #include "sdk/snd.h"
 #include "sdk/os_arm7.h"
 
-void SndArm7_StartAlarm(int alarmNo)
-{
-    /* needed to match: the declaration order sets the register order */
-    u64 start;
-    u64 period;
-    SndArm7Alarm *alarm;
-    int arg;
-    alarm = &data_arm7_03809010[alarmNo];
-    if (alarm->active != 0) {
-        Alarm_Withdraw_Arm7(&alarm->osAlarm);
-        alarm->active = 0;
-    }
-    start = alarm->start;
-    period = alarm->period;
-    arg = alarmNo | (alarm->tag << 8);
-    Alarm_Clear_Arm7(&alarm->osAlarm);
-    if (period == 0) {
-        Alarm_ArmOneShot_Arm7(&alarm->osAlarm, start, SndArm7_AlarmHandler, (void *)arg);
-    } else {
-        Alarm_ArmRepeating_Arm7(&alarm->osAlarm, start + Tick_Read64_Arm7(), period, SndArm7_AlarmHandler, (void *)arg);
-    }
-    alarm->active = 1;
+void SndArm7_StartAlarm(int alarmNo) {
+  /* needed to match: the declaration order sets the register order */
+  u64 start;
+  u64 period;
+  SndArm7Alarm* alarm;
+  int arg;
+  alarm = &data_arm7_03809010[alarmNo];
+  if (alarm->active != 0) {
+    Alarm_Withdraw_Arm7(&alarm->osAlarm);
+    alarm->active = 0;
+  }
+  start = alarm->start;
+  period = alarm->period;
+  arg = alarmNo | (alarm->tag << 8);
+  Alarm_Clear_Arm7(&alarm->osAlarm);
+  if (period == 0) {
+    Alarm_ArmOneShot_Arm7(&alarm->osAlarm, start, SndArm7_AlarmHandler,
+                          (void*)arg);
+  } else {
+    Alarm_ArmRepeating_Arm7(&alarm->osAlarm, start + Tick_Read64_Arm7(), period,
+                            SndArm7_AlarmHandler, (void*)arg);
+  }
+  alarm->active = 1;
 }

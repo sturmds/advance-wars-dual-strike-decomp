@@ -4,15 +4,14 @@
 extern const TaskScriptCmd data_0215ffdc[];
 extern const TaskScriptCmd data_02160044[];
 
-Task *Task_FindByScript(const TaskScriptCmd *script);
+Task* Task_FindByScript(const TaskScriptCmd* script);
 
 /* Returns the task running the data_0215ffdc script, else the one running data_02160044. */
-Task *LinkMenu_FindTask(void)
-{
-    Task *task = Task_FindByScript(data_0215ffdc);
+Task* LinkMenu_FindTask(void) {
+  Task* task = Task_FindByScript(data_0215ffdc);
 
-    if (task != NULL) {
-        return task;
-    }
-    return Task_FindByScript(data_02160044);
+  if (task != NULL) {
+    return task;
+  }
+  return Task_FindByScript(data_02160044);
 }

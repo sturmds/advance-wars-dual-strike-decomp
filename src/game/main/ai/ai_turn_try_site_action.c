@@ -14,18 +14,17 @@ extern u8 data_0229e5bf[][sizeof(AiSite)];
  * AiSite_SumNearbyUnitHp fills the range map from it. If AiSite_ChooseUnitToBuild finds nothing
  * for the site, its kind becomes 0xfe, else AiTurn_QueueBuildAtSite queues an action
  * for it. Returns 1 when it picked a site. */
-BOOL AiTurn_TrySiteAction(void)
-{
-    int site = AiSite_PickBestBalance();
+BOOL AiTurn_TrySiteAction(void) {
+  int site = AiSite_PickBestBalance();
 
-    if (site == -1) {
-        return 0;
-    }
-    AiSite_SumNearbyUnitHp(site);
-    if (AiSite_ChooseUnitToBuild(site) != -1) {
-        AiTurn_QueueBuildAtSite(site);
-        return 1;
-    }
-    data_0229e5bf[site][0] = 0xfe;
+  if (site == -1) {
+    return 0;
+  }
+  AiSite_SumNearbyUnitHp(site);
+  if (AiSite_ChooseUnitToBuild(site) != -1) {
+    AiTurn_QueueBuildAtSite(site);
     return 1;
+  }
+  data_0229e5bf[site][0] = 0xfe;
+  return 1;
 }

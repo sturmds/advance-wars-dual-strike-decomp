@@ -17,32 +17,37 @@ extern Unk_022a7b80 data_022a7b80;
  * back CO) and its result into the record of the current mode variant when
  * the record is empty or the new value is higher. Variants 0-2 keep
  * data_022a7b80.budgetLeft; the others keep mapIndex when it is not 0. */
-void Survival_SaveRecord(void)
-{
-    int mode = data_022a7b80.mode;
-    u32 value;
+void Survival_SaveRecord(void) {
+  int mode = data_022a7b80.mode;
+  u32 value;
 
-    switch (mode) {
+  switch (mode) {
     case 0:
     case 1:
     case 2:
-        if (gPlayRecords.survivalRecords[mode].co != 0 &&
-            gPlayRecords.survivalRecords[mode].value >= data_022a7b80.budgetLeft) {
-            return;
-        }
-        gPlayRecords.survivalRecords[mode].co = data_022a7a9c.rows[1].unk_00 & PLAYER_CO_ID_MASK;
-        gPlayRecords.survivalRecords[mode].tagCo = data_022a7a9c.rows[1].unk_02 & PLAYER_CO_ID_MASK;
-        gPlayRecords.survivalRecords[mode].value = data_022a7b80.budgetLeft;
+      if (gPlayRecords.survivalRecords[mode].co != 0 &&
+          gPlayRecords.survivalRecords[mode].value >=
+              data_022a7b80.budgetLeft) {
         return;
-    }
-    value = data_022a7b80.mapIndex;
-    if (value == 0) {
-        return;
-    }
-    if (gPlayRecords.survivalRecords[mode].co != 0 && gPlayRecords.survivalRecords[mode].value >= value) {
-        return;
-    }
-    gPlayRecords.survivalRecords[mode].co = data_022a7a9c.rows[1].unk_00 & PLAYER_CO_ID_MASK;
-    gPlayRecords.survivalRecords[mode].tagCo = data_022a7a9c.rows[1].unk_02 & PLAYER_CO_ID_MASK;
-    gPlayRecords.survivalRecords[mode].value = value;
+      }
+      gPlayRecords.survivalRecords[mode].co =
+          data_022a7a9c.rows[1].unk_00 & PLAYER_CO_ID_MASK;
+      gPlayRecords.survivalRecords[mode].tagCo =
+          data_022a7a9c.rows[1].unk_02 & PLAYER_CO_ID_MASK;
+      gPlayRecords.survivalRecords[mode].value = data_022a7b80.budgetLeft;
+      return;
+  }
+  value = data_022a7b80.mapIndex;
+  if (value == 0) {
+    return;
+  }
+  if (gPlayRecords.survivalRecords[mode].co != 0 &&
+      gPlayRecords.survivalRecords[mode].value >= value) {
+    return;
+  }
+  gPlayRecords.survivalRecords[mode].co =
+      data_022a7a9c.rows[1].unk_00 & PLAYER_CO_ID_MASK;
+  gPlayRecords.survivalRecords[mode].tagCo =
+      data_022a7a9c.rows[1].unk_02 & PLAYER_CO_ID_MASK;
+  gPlayRecords.survivalRecords[mode].value = value;
 }

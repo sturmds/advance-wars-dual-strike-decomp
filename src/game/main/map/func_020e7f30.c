@@ -5,20 +5,19 @@
 BOOL Campaign_IsHardMode(void);
 
 /* TRUE if Campaign_IsHardMode says so, or if the map lets any player pick a CO. */
-BOOL func_020e7f30(int mapId)
-{
-    int player;
-    int slot;
+BOOL func_020e7f30(int mapId) {
+  int player;
+  int slot;
 
-    if (Campaign_IsHardMode() == TRUE) {
+  if (Campaign_IsHardMode() == TRUE) {
+    return TRUE;
+  }
+  for (player = 1; player < 5; player++) {
+    for (slot = 0; slot < 2; slot++) {
+      if (Ov000_gMapHeaders[mapId].co[player][slot] == CO_PLAYER_PICKS) {
         return TRUE;
+      }
     }
-    for (player = 1; player < 5; player++) {
-        for (slot = 0; slot < 2; slot++) {
-            if (Ov000_gMapHeaders[mapId].co[player][slot] == CO_PLAYER_PICKS) {
-                return TRUE;
-            }
-        }
-    }
-    return FALSE;
+  }
+  return FALSE;
 }

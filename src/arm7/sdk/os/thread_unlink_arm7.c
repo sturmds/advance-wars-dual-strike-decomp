@@ -3,18 +3,17 @@
 
 extern OSThreadInfo data_arm7_0380790c;
 
-void Thread_Unlink_Arm7(OSThread *thread)
-{
-    OSThread *cur = data_arm7_0380790c.list;
-    OSThread *prev = NULL;
+void Thread_Unlink_Arm7(OSThread* thread) {
+  OSThread* cur = data_arm7_0380790c.list;
+  OSThread* prev = NULL;
 
-    while (cur != NULL && cur != thread) {
-        prev = cur;
-        cur = cur->next;
-    }
-    if (prev == NULL) {
-        data_arm7_0380790c.list = thread->next;
-    } else {
-        prev->next = thread->next;
-    }
+  while (cur != NULL && cur != thread) {
+    prev = cur;
+    cur = cur->next;
+  }
+  if (prev == NULL) {
+    data_arm7_0380790c.list = thread->next;
+  } else {
+    prev->next = thread->next;
+  }
 }

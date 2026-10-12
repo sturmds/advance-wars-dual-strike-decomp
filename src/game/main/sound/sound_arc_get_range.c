@@ -1,10 +1,7 @@
 #include "types.h"
 #include "game/sound_arc.h"
 
-extern SoundArc *gCurrentSoundArc;
+extern SoundArc* gCurrentSoundArc;
 
 /* Copies the current sound archive's range words to out. */
-void SoundArc_GetRange(SoundArcRange *out)
-{
-    *out = gCurrentSoundArc->range;
-}
+void SoundArc_GetRange(SoundArcRange* out) { *out = gCurrentSoundArc->range; }

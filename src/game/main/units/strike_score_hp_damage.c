@@ -8,27 +8,26 @@ int UnitType_GetAttackKind(int unitType);
 
 /* Target score for the CO power strikes, like StrikeScore_InfantryDamage
  * without the infantry and capture weights: the HP the strike takes. */
-int StrikeScore_HpDamage(MapUnit *unit, int damage, int isEnemy)
-{
-    u16 score;
+int StrikeScore_HpDamage(MapUnit* unit, int damage, int isEnemy) {
+  u16 score;
 
-    if (unit->type == UNIT_OOZIUM) {
-        return 0;
-    }
-    if (unit->hp <= 10) {
-        return 1;
-    }
-    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
-        return 1;
-    }
+  if (unit->type == UNIT_OOZIUM) {
+    return 0;
+  }
+  if (unit->hp <= 10) {
+    return 1;
+  }
+  if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 1) {
+    return 1;
+  }
 
-    if (unit->hp > damage) {
-        score = damage;
-    } else {
-        score = unit->hp - 1;
-    }
-    if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
-        score /= 2;
-    }
-    return score;
+  if (unit->hp > damage) {
+    score = damage;
+  } else {
+    score = unit->hp - 1;
+  }
+  if (UnitType_GetAttackKind(unit->type) == 2 && isEnemy == 0) {
+    score /= 2;
+  }
+  return score;
 }

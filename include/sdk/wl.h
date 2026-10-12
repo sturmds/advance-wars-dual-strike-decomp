@@ -8,41 +8,42 @@
 // 0x0380fff4. The request handlers get a request block and fill a reply block.
 
 typedef struct WlRequest {
-    u8 pad_00[0xe];
-    u16 unk_0e;
-    u16 unk_10;
-    u16 unk_12;
-    u16 unk_14;
+  u8 pad_00[0xe];
+  u16 unk_0e;
+  u16 unk_10;
+  u16 unk_12;
+  u16 unk_14;
 } WlRequest;
 
 typedef struct WlReply {
-    u16 unk_00;
-    u16 status;
-    u16 unk_04;
-    u16 value;
-    u16 words[16];
+  u16 unk_00;
+  u16 status;
+  u16 unk_04;
+  u16 value;
+  u16 words[16];
 } WlReply;
 
 /* WlStation.state value checked before WL marks or clears a station's bits; meaning not known yet. */
 #define WIFI_PEER_ASSOCIATED 0x40
 /* Station states below WIFI_PEER_ASSOCIATED, as the frame handlers set them. */
 #define WIFI_PEER_KNOWN_ONLY 0x20 /* set on a deauthentication */
-#define WIFI_PEER_AUTH_DONE 0x30   /* association requests are refused below this */
+#define WIFI_PEER_AUTH_DONE \
+  0x30 /* association requests are refused below this */
 
 /* One entry of the station table (28 bytes), reached by index. */
 typedef struct WlStation {
-    u16 state;
-    u16 aid;
-    u16 macAddress[3];
-    u16 rssi;          /* low byte of WlRxFrame.unk_12 of its last frame */
-    u16 capability;    /* capability word of its (re)association request */
-    u16 challengeSeed; /* seed of the shared-key challenge text, 0 when none */
-    u16 rates;         /* supported rates; bit 1: send to this station at 2 Mbit/s */
-    u8 pad_12[0x2];
-    u16 lastSequence;  /* set to 0xffff for a new station */
-    u16 queuedFrames;
-    u16 timeout;       /* counted down by task 10; 0 and 0xffff never expire */
-    u16 timeoutReload; /* copied to timeout when a frame is queued for or received from it */
+  u16 state;
+  u16 aid;
+  u16 macAddress[3];
+  u16 rssi;          /* low byte of WlRxFrame.unk_12 of its last frame */
+  u16 capability;    /* capability word of its (re)association request */
+  u16 challengeSeed; /* seed of the shared-key challenge text, 0 when none */
+  u16 rates; /* supported rates; bit 1: send to this station at 2 Mbit/s */
+  u8 pad_12[0x2];
+  u16 lastSequence; /* set to 0xffff for a new station */
+  u16 queuedFrames;
+  u16 timeout; /* counted down by task 10; 0 and 0xffff never expire */
+  u16 timeoutReload; /* copied to timeout when a frame is queued for or received from it */
 } WlStation;
 
 /* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
@@ -52,148 +53,152 @@ typedef struct WlStation {
 #define WIFI_RADIO_BLOCK_SIZE_HIGH 0x1d6
 
 typedef struct WlWifiConfig {
-    u16 crc;
-    u16 length;
+  u16 crc;
+  u16 length;
 } WlWifiConfig;
 
 /* Results of WifiFlash_ValidateRadioBlock. */
 enum {
-    WIFI_RADIO_BLOCK_VALID = 0,
-    WIFI_RADIO_BLOCK_CRC_WRONG = 1,
-    WIFI_RADIO_BLOCK_SIZE_WRONG = 2
+  WIFI_RADIO_BLOCK_VALID = 0,
+  WIFI_RADIO_BLOCK_CRC_WRONG = 1,
+  WIFI_RADIO_BLOCK_SIZE_WRONG = 2
 };
 
 // Reply of WifiCmd_ReportAllSettings. Field names give the WL work offset each one
 // is copied from.
 typedef struct WlStatusReply {
-    u16 unk_00;
-    u16 status;
-    u16 unk_04;
-    u16 macAddress[3];
-    u16 work2fe;
-    u16 state00;
-    u16 state92;
-    u16 phase;
-    u16 state04;
-    u16 state08;
-    u16 state0a;
-    u16 flag0;
-    u16 flag1;
-    u16 state96;
-    u16 state10;
-    u16 state58[16];
-    u16 flag2;
-    u16 state06;
+  u16 unk_00;
+  u16 status;
+  u16 unk_04;
+  u16 macAddress[3];
+  u16 work2fe;
+  u16 state00;
+  u16 state92;
+  u16 phase;
+  u16 state04;
+  u16 state08;
+  u16 state0a;
+  u16 flag0;
+  u16 flag1;
+  u16 state96;
+  u16 state10;
+  u16 state58[16];
+  u16 flag2;
+  u16 state06;
 } WlStatusReply;
 
 // Request of WifiCmd_ApplyAllSettings: one value for each parameter setter, in the order
 // of WlStatusReply.
 typedef struct WlParamsRequest {
-    u8 pad_00[0x10];
-    u16 macAddress[3];
-    u16 work2fe;
-    u16 mask00;
-    u16 unk_1a;
-    u16 phase;
-    u16 value04;
-    u16 value08;
-    u16 value0a;
-    u8 wifiRamBlocks[0x50];
-    u16 optionBit0;
-    u16 optionBit1;
-    u16 value96;
-    u16 value10;
-    u16 words58[16];
-    u16 optionBit2;
-    u16 value06;
+  u8 pad_00[0x10];
+  u16 macAddress[3];
+  u16 work2fe;
+  u16 mask00;
+  u16 unk_1a;
+  u16 phase;
+  u16 value04;
+  u16 value08;
+  u16 value0a;
+  u8 wifiRamBlocks[0x50];
+  u16 optionBit0;
+  u16 optionBit1;
+  u16 value96;
+  u16 value10;
+  u16 words58[16];
+  u16 optionBit2;
+  u16 value06;
 } WlParamsRequest;
 
 // Request of WifiCmd_StartMpPoll: the parent's MP poll to the children in
 // pollBitmap. With bit 15 of flags set it resumes the last poll: each of bits
 // 1-4 that is clear takes childTime, pollBitmap, sendTime or the data from it.
 typedef struct WlMpRequest {
-    u8 pad_00[0x10];
-    u16 flags;
-    u16 unk_12;
-    u16 childTime;   /* bit 15 set: microseconds per child reply; clear: bytes */
-    u16 pollBitmap;  /* bit n: poll the child with aid n */
-    u16 sendTime;    /* 0: send now; else when to send, in 10 us steps */
-    u16 usCountBase; /* microsecond counter value sendTime counts from */
-    u16 dataLength;  /* at most 0x204 */
-    u16 header;      /* first body halfword, before the data */
-    const void *data;
+  u8 pad_00[0x10];
+  u16 flags;
+  u16 unk_12;
+  u16 childTime;   /* bit 15 set: microseconds per child reply; clear: bytes */
+  u16 pollBitmap;  /* bit n: poll the child with aid n */
+  u16 sendTime;    /* 0: send now; else when to send, in 10 us steps */
+  u16 usCountBase; /* microsecond counter value sendTime counts from */
+  u16 dataLength;  /* at most 0x204 */
+  u16 header;      /* first body halfword, before the data */
+  const void* data;
 } WlMpRequest;
 
 // Request of WifiCmd_ArmMpReply.
 typedef struct WlMpReplyRequest {
-    u8 pad_00[0x10];
-    u16 length; /* bytes at data, at most 0x204 */
-    u16 header; /* first body halfword, before the data */
-    const void *data;
+  u8 pad_00[0x10];
+  u16 length; /* bytes at data, at most 0x204 */
+  u16 header; /* first body halfword, before the data */
+  const void* data;
 } WlMpReplyRequest;
 
 // Reply of WifiCmd_ReportFirmwareInfo.
 typedef struct WlVersionReply {
-    u16 unk_00;
-    u16 status;
-    u16 unk_04;
-    char version[8]; /* "2.39.00" */
-    u16 chipId;      /* WIFI_MAC_REGISTER(0x000) */
-    u16 bbChipId;    /* baseband register 0 */
-    u16 bbCrc;       /* WifiBaseband_ChecksumStartValues */
-    u16 rfType;
+  u16 unk_00;
+  u16 status;
+  u16 unk_04;
+  char version[8]; /* "2.39.00" */
+  u16 chipId;      /* WIFI_MAC_REGISTER(0x000) */
+  u16 bbChipId;    /* baseband register 0 */
+  u16 bbCrc;       /* WifiBaseband_ChecksumStartValues */
+  u16 rfType;
 } WlVersionReply;
 
 // Request of WifiCmd_RunRadioTest.
 typedef struct WlTestModeRequest {
-    u8 pad_00[0x10];
-    u16 start;   /* 1 starts a test transmission, 0 stops it */
-    u16 signal;  /* 0-2: WIFI_MODE_CARRIER_TEST, 3-4: WIFI_MODE_FRAME_TEST */
-    u16 rate;    /* 10 or 20 */
-    u16 channel;
+  u8 pad_00[0x10];
+  u16 start;  /* 1 starts a test transmission, 0 stops it */
+  u16 signal; /* 0-2: WIFI_MODE_CARRIER_TEST, 3-4: WIFI_MODE_FRAME_TEST */
+  u16 rate;   /* 10 or 20 */
+  u16 channel;
 } WlTestModeRequest;
 
 // WlLink.mode values. Modes 0x10-0x1f are the ones where WifiCmd_RunRadioTest may run.
 #define WIFI_MODE_RADIO_ON 16
 #define WIFI_MODE_CARRIER_TEST 17
-#define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
-#define WIFI_MODE_JOINED 64 /* set when an association response reports success */
-#define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
-#define WIFI_MODE_AUTH_DONE 48 /* set when an authentication response reports success */
+#define WIFI_MODE_FRAME_TEST \
+  18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
+#define WIFI_MODE_JOINED \
+  64 /* set when an association response reports success */
+#define WIFI_MODE_READY 32 /* entered by Wifi_CloseSession */
+#define WIFI_MODE_AUTH_DONE \
+  48 /* set when an authentication response reports success */
 
 /* A BSS seen in a beacon, kept in WlLimits.bssList. */
 typedef struct WlBssEntry {
-    u16 rssi;           /* 0: the entry is free */
-    u16 unk_02;
-    u16 capability;
-    u16 bssid[3];
-    u16 ssidLength;
-    u8 ssid[32];
-    u16 beaconInterval;
-    u16 ttl;            /* WIFI_NETWORK_LIFETIME when recorded; task 18 counts it down and frees the entry at 0 */
+  u16 rssi; /* 0: the entry is free */
+  u16 unk_02;
+  u16 capability;
+  u16 bssid[3];
+  u16 ssidLength;
+  u8 ssid[32];
+  u16 beaconInterval;
+  u16 ttl; /* WIFI_NETWORK_LIFETIME when recorded; task 18 counts it down and frees the entry at 0 */
 } WlBssEntry;
 
 #define WIFI_REMEMBERED_NETWORKS 4
 #define WIFI_NETWORK_LIFETIME 0x400
 
 typedef struct WlLimits {
-    u8 pad_00[0x10];
-    WlBssEntry bssList[WIFI_REMEMBERED_NETWORKS];
-    struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
-    struct OSMessageQueue *fromHost; /* buffers the host side hands to the driver */
-    u32 unk_e0;
-    u32 unk_e4;                      /* 0xffffffff when set up as 0 */
-    u32 spiLockId;                 /* 0xe8 id WL passes to SPI_Lock */
-    WlWifiConfig *wifiConfig;      /* 0xec copy of the flash wifi block, or NULL */
-    u32 unk_f0;
-    u16 unk_f4;
-    u16 unk_f6;
+  u8 pad_00[0x10];
+  WlBssEntry bssList[WIFI_REMEMBERED_NETWORKS];
+  struct OSMessageQueue* toHost; /* buffers the driver hands to the host side */
+  struct OSMessageQueue*
+      fromHost; /* buffers the host side hands to the driver */
+  u32 unk_e0;
+  u32 unk_e4;               /* 0xffffffff when set up as 0 */
+  u32 spiLockId;            /* 0xe8 id WL passes to SPI_Lock */
+  WlWifiConfig* wifiConfig; /* 0xec copy of the flash wifi block, or NULL */
+  u32 unk_f0;
+  u16 unk_f4;
+  u16 unk_f6;
 } WlLimits;
 
 /* 802.11 rates as bit masks, one bit per rate (bit 0 1 Mbit/s, bit 1 2 Mbit/s, ...). */
 typedef struct WlRateSet {
-    u16 basic;
-    u16 supported;
+  u16 basic;
+  u16 supported;
 } WlRateSet;
 
 /*
@@ -201,95 +206,95 @@ typedef struct WlRateSet {
  * out (bit n of aidMask set while AID n is in use).
  */
 typedef struct WlStationBits {
-    u16 stationCount; /* station entries with a nonzero state */
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 aidCount;
-    u16 aidMask;
+  u16 stationCount; /* station entries with a nonzero state */
+  u16 unk_02;
+  u16 unk_04;
+  u16 unk_06;
+  u16 aidCount;
+  u16 aidMask;
 } WlStationBits;
 
 // Option bits at WlState offset 0x0e, set one by one by the parameter setters.
 typedef union WlFlags {
-    u16 raw;
-    struct {
-        u16 bit0 : 1;
-        u16 bit1 : 1;
-        u16 bit2 : 1;
-        u16 bit3 : 1;
-        u16 bit4 : 1;
-        u16 bit5 : 1;
-        u16 bit6 : 1;
-        u16 unused : 9;
-    };
+  u16 raw;
+  struct {
+    u16 bit0 : 1;
+    u16 bit1 : 1;
+    u16 bit2 : 1;
+    u16 bit3 : 1;
+    u16 bit4 : 1;
+    u16 bit5 : 1;
+    u16 bit6 : 1;
+    u16 unused : 9;
+  };
 } WlFlags;
 
 // Second view of the work area, starting at WlState offset 0x18 (work offset
 // 0x318). Its mode is the same halfword as WlState.mode.
 typedef struct WlLink {
-    u8 pad_00[8];
-    u16 mode;
-    u8 pad_0a[2];
-    u16 unk_0c;
-    u16 unk_0e;
-    u16 unk_10;     /* set to 1 on each pre-beacon interrupt */
-    u16 unk_12;
-    u16 unk_14;
-    u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
-    u16 testTxActive;
-    u16 unk_1a;
-    u8 pad_1c[2];
-    u16 ssidLength;
-    u8 ssid[32];
-    u8 pad_40[0x60 - 0x40];
-    u16 basicRates;     /* bit n: rate n of the rate table is a basic rate */
-    u16 supportedRates; /* bit n: rate n of the rate table is supported */
-    u16 bssid[3];
-    u16 aid;            /* passed to WifiTx_BuildPsPoll */
-    u8 pad_6c[0x6e - 0x6c];
-    u16 beaconInterval; /* sent in probe responses */
-    u16 listenInterval; /* sent in association requests */
-    u16 unk_72;
-    u16 unk_74;
-    u16 unk_76;          /* counts down from unk_74 - 1 once per beacon */
-    u8 pad_78[2];
-    u16 channel;         /* WlState.unk_92 */
-    u16 flags_7c;
-    u16 unk_7e;          /* WlState.unk_96: pre-beacons between runs of task 13 */
-    u16 unk_80;          /* WlState.unk_98: pre-beacons counted towards unk_7e */
-    u16 currentAp[3];   /* MAC address sent in reassociation requests */
-    u16 unk_88; /* station index of data frames sent outside phase 1 */
-    u16 flags_8a;
-    u16 unk_8c;                    /* WlState.unk_a4 */
-    u16 unk_8e;
-    u8 pad_90[2];
-    u16 ssidOffset;                /* SSID element in the tx frame payload */
-    u16 timOffset;      /* WlState.timOffset */
-    u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
-    u8 pad_98[0x9a - 0x98];
-    u16 ringSize;       /* WlState.ringSize */
-    u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
-    u16 gameInfoLength;
-    u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
-    u16 unk_a4;         /* 1 once gameInfo changes, 0 once the beacon has it */
-    u8 pad_a6[2];
-    u32 periodicCount;  /* WlState.periodicCount */
-    u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
-    u8 pad_ae[2];
-    u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
-    u8 pad_b2[0xb4 - 0xb2];
-    u16 rxDropped;     /* bad frames WifiIrq_RxFinished dropped from the RX ring */
-    u8 pad_b6[0xb8 - 0xb6];
-    u16 unk_b8;        /* WlState.unk_d0 */
-    u16 wepRestarts;   /* times WifiIrq_TxErrorCounted restarted the WEP engine */
-    u8 pad_bc[2];
-    u16 mpRepliesCancelled; /* MP replies taken back because the poll left us out */
+  u8 pad_00[8];
+  u16 mode;
+  u8 pad_0a[2];
+  u16 unk_0c;
+  u16 unk_0e;
+  u16 unk_10; /* set to 1 on each pre-beacon interrupt */
+  u16 unk_12;
+  u16 unk_14;
+  u16 testRate; /* 10 or 20, from the WifiCmd_RunRadioTest request */
+  u16 testTxActive;
+  u16 unk_1a;
+  u8 pad_1c[2];
+  u16 ssidLength;
+  u8 ssid[32];
+  u8 pad_40[0x60 - 0x40];
+  u16 basicRates;     /* bit n: rate n of the rate table is a basic rate */
+  u16 supportedRates; /* bit n: rate n of the rate table is supported */
+  u16 bssid[3];
+  u16 aid; /* passed to WifiTx_BuildPsPoll */
+  u8 pad_6c[0x6e - 0x6c];
+  u16 beaconInterval; /* sent in probe responses */
+  u16 listenInterval; /* sent in association requests */
+  u16 unk_72;
+  u16 unk_74;
+  u16 unk_76; /* counts down from unk_74 - 1 once per beacon */
+  u8 pad_78[2];
+  u16 channel; /* WlState.unk_92 */
+  u16 flags_7c;
+  u16 unk_7e;       /* WlState.unk_96: pre-beacons between runs of task 13 */
+  u16 unk_80;       /* WlState.unk_98: pre-beacons counted towards unk_7e */
+  u16 currentAp[3]; /* MAC address sent in reassociation requests */
+  u16 unk_88;       /* station index of data frames sent outside phase 1 */
+  u16 flags_8a;
+  u16 unk_8c; /* WlState.unk_a4 */
+  u16 unk_8e;
+  u8 pad_90[2];
+  u16 ssidOffset; /* SSID element in the tx frame payload */
+  u16 timOffset;  /* WlState.timOffset */
+  u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
+  u8 pad_98[0x9a - 0x98];
+  u16 ringSize; /* WlState.ringSize */
+  u8* gameInfo; /* sent in the Nintendo element of the beacon */
+  u16 gameInfoLength;
+  u16 unk_a2; /* bit 0: gameInfo starts one byte later */
+  u16 unk_a4; /* 1 once gameInfo changes, 0 once the beacon has it */
+  u8 pad_a6[2];
+  u32 periodicCount; /* WlState.periodicCount */
+  u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
+  u8 pad_ae[2];
+  u16 pendingEvents; /* WlState.unk_c8: event bits task 21 sends to the host */
+  u8 pad_b2[0xb4 - 0xb2];
+  u16 rxDropped; /* bad frames WifiIrq_RxFinished dropped from the RX ring */
+  u8 pad_b6[0xb8 - 0xb6];
+  u16 unk_b8;      /* WlState.unk_d0 */
+  u16 wepRestarts; /* times WifiIrq_TxErrorCounted restarted the WEP engine */
+  u8 pad_bc[2];
+  u16 mpRepliesCancelled; /* MP replies taken back because the poll left us out */
 } WlLink;
 
 // Entry inside the frame payload at a running offset.
 typedef struct WlPayloadEntry {
-    u8 pad_00[6];
-    u8 bytes[2];
+  u8 pad_00[6];
+  u8 bytes[2];
 } WlPayloadEntry;
 
 /*
@@ -297,37 +302,37 @@ typedef struct WlPayloadEntry {
  * then the 802.11 header, then the body.
  */
 typedef struct WlRamFrame {
-    u16 status;
-    u16 unk_02;
-    u16 unk_04;
-    u16 unk_06;
-    u16 rate;         /* WIFI_RATE_CODE_* */
-    u16 length;       /* 802.11 header, body and FCS */
-    u16 frameControl;
-    u16 duration;     /* the AID in a PS-Poll */
-    u16 addr1[3];
-    u16 addr2[3];
-    u16 addr3[3];
-    u16 sequence;
-    u16 body[1];
+  u16 status;
+  u16 unk_02;
+  u16 unk_04;
+  u16 unk_06;
+  u16 rate;   /* WIFI_RATE_CODE_* */
+  u16 length; /* 802.11 header, body and FCS */
+  u16 frameControl;
+  u16 duration; /* the AID in a PS-Poll */
+  u16 addr1[3];
+  u16 addr2[3];
+  u16 addr3[3];
+  u16 sequence;
+  u16 body[1];
 } WlRamFrame;
 
 /* Body of the beacon frame in WIFI_PACKET_RAM, from WlRamFrame.body. */
 typedef struct WlBeaconBody {
-    u32 timestamp[2];   /* filled by the hardware */
-    u16 beaconInterval;
-    u16 capability;
-    u8 elements[2];
+  u32 timestamp[2]; /* filled by the hardware */
+  u16 beaconInterval;
+  u16 capability;
+  u8 elements[2];
 } WlBeaconBody;
 
 /* An MP reply frame in WIFI_PACKET_RAM and whether it waits to be sent. */
 typedef struct WlMpReplySlot {
-    u16 busy;
-    u16 count;    /* frames set up in this slot */
-    u8 pad_04[4];
-    WlRamFrame *frame;
-    struct WlTxFrame *txFrame; /* the frame as the driver built it */
-    u8 pad_10[4];
+  u16 busy;
+  u16 count; /* frames set up in this slot */
+  u8 pad_04[4];
+  WlRamFrame* frame;
+  struct WlTxFrame* txFrame; /* the frame as the driver built it */
+  u8 pad_10[4];
 } WlMpReplySlot;
 
 /*
@@ -336,14 +341,14 @@ typedef struct WlMpReplySlot {
  * are WlState.mpReplySlots, record 6 starts at WlState.unk_178.
  */
 typedef struct WlTxQueue {
-    u16 busy;
-    u8 pad_02[6];
-    WlRamFrame *frame;
-    u8 *unk_0c;     /* 16 bytes into a block WifiTx_PlaceFrameInRam reads */
-    u8 pad_10[4];
+  u16 busy;
+  u8 pad_02[6];
+  WlRamFrame* frame;
+  u8* unk_0c; /* 16 bytes into a block WifiTx_PlaceFrameInRam reads */
+  u8 pad_10[4];
 } WlTxQueue;
 
-#define WIFI_SEND_QUEUE_RECORDS_OF(work) ((WlTxQueue *)(work)->state.pad_100)
+#define WIFI_SEND_QUEUE_RECORDS_OF(work) ((WlTxQueue*)(work)->state.pad_100)
 
 /* The two halfwords kept just before each queued frame in WIFI_PACKET_RAM; a frame
    found without them is rewritten as a 1-byte frame with them as header. */
@@ -352,29 +357,29 @@ typedef struct WlTxQueue {
 
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
-    u16 unk_00;
-    u16 station;
-    u16 unk_04;         /* low half of periodicCount when the frame was queued */
-    u16 bodyLength;     /* bytes after the 802.11 header */
-    u16 result; /* set when the frame is done, returned in the reply */
-    u8 pad_0a[2];
-    u16 unk_0c;         /* WlRamFrame.unk_04 of the copy that was sent */
-    u16 requestedRate;  /* 0: use the station's rate */
-    u16 rate;           /* WIFI_RATE_CODE_* */
-    u16 length;         /* whole frame: header, body and FCS (and 8 more with WEP) */
-    u16 frameControl;
-    u16 duration;
-    u16 addr1[3];
-    u16 addr2[3];
-    union {
-        u8 payload[10];
-        struct {
-            u16 addr3[3];
-            u16 sequence;
-            u16 body;
-        };
+  u16 unk_00;
+  u16 station;
+  u16 unk_04;     /* low half of periodicCount when the frame was queued */
+  u16 bodyLength; /* bytes after the 802.11 header */
+  u16 result;     /* set when the frame is done, returned in the reply */
+  u8 pad_0a[2];
+  u16 unk_0c;        /* WlRamFrame.unk_04 of the copy that was sent */
+  u16 requestedRate; /* 0: use the station's rate */
+  u16 rate;          /* WIFI_RATE_CODE_* */
+  u16 length; /* whole frame: header, body and FCS (and 8 more with WEP) */
+  u16 frameControl;
+  u16 duration;
+  u16 addr1[3];
+  u16 addr2[3];
+  union {
+    u8 payload[10];
+    struct {
+      u16 addr3[3];
+      u16 sequence;
+      u16 body;
     };
-    u16 unk_2e;
+  };
+  u16 unk_2e;
 } WlTxFrame;
 
 /*
@@ -382,40 +387,40 @@ typedef struct WlTxFrame {
  * 0x08, the 802.11 header from 0x14, then the body.
  */
 typedef struct WlRxFrame {
-    u16 unk_00;
-    u16 station;        /* station table index, 0 when the sender is unknown */
-    u16 unk_04;
-    u16 bodyLength;
-    u16 unk_08;         /* first word of the hardware RX header */
-    u16 unk_0a;
-    u16 unk_0c;
-    u16 rate;           /* WIFI_RATE_CODE_* */
-    u16 length;         /* 802.11 header and body */
-    u16 unk_12;
-    u16 frameControl;
-    u16 duration;
-    u16 addr1[3];
-    u16 addr2[3];
-    u16 addr3[3];
-    union {
-        u16 sequence;
-        struct {
-            u16 fragment : 4;
-            u16 sequenceNumber : 12;
-        };
+  u16 unk_00;
+  u16 station; /* station table index, 0 when the sender is unknown */
+  u16 unk_04;
+  u16 bodyLength;
+  u16 unk_08; /* first word of the hardware RX header */
+  u16 unk_0a;
+  u16 unk_0c;
+  u16 rate;   /* WIFI_RATE_CODE_* */
+  u16 length; /* 802.11 header and body */
+  u16 unk_12;
+  u16 frameControl;
+  u16 duration;
+  u16 addr1[3];
+  u16 addr2[3];
+  u16 addr3[3];
+  union {
+    u16 sequence;
+    struct {
+      u16 fragment : 4;
+      u16 sequenceNumber : 12;
     };
-    u16 body[1];
+  };
+  u16 body[1];
 } WlRxFrame;
 
 /* The 802.11 header inside a WlRxFrame, from frameControl on. Some code
    reaches the addresses through a pointer to it. */
 typedef struct WlMacHeader {
-    u16 frameControl;
-    u16 duration;
-    u16 addr1[3];
-    u16 addr2[3];
-    u16 addr3[3];
-    u16 sequence;
+  u16 frameControl;
+  u16 duration;
+  u16 addr1[3];
+  u16 addr2[3];
+  u16 addr3[3];
+  u16 sequence;
 } WlMacHeader;
 
 /* 802.11 frame control bits. */
@@ -427,24 +432,24 @@ typedef struct WlMacHeader {
 /* Destination, source and sequence of a received data frame, worked out from
    the To DS and From DS bits. */
 typedef struct WlRxAddrs {
-    u16 dest[3];
-    u16 src[3];
-    u16 sequence;
+  u16 dest[3];
+  u16 src[3];
+  u16 sequence;
 } WlRxAddrs;
 
 /* 802.11 capability information, the first body field of beacons, probe
    responses and (re)association frames. */
 typedef union WlCapability {
-    u16 raw;
-    struct {
-        u16 ess : 1;
-        u16 ibss : 1;
-        u16 cfPollable : 1;
-        u16 cfPollRequest : 1;
-        u16 privacy : 1;
-        u16 shortPreamble : 1;
-        u16 unused : 10;
-    };
+  u16 raw;
+  struct {
+    u16 ess : 1;
+    u16 ibss : 1;
+    u16 cfPollable : 1;
+    u16 cfPollRequest : 1;
+    u16 privacy : 1;
+    u16 shortPreamble : 1;
+    u16 unused : 10;
+  };
 } WlCapability;
 
 /* Capability bits a parent refuses in an association request (status 10). */
@@ -453,25 +458,27 @@ typedef union WlCapability {
 /* The information elements of a received management frame, as
    WifiRx_ScanElements parses them. Callers fill data, length and unk_0c. */
 typedef struct WlElements {
-    const u8 *data;
-    u16 rxStatus;         /* first word of the frame's RX header */
-    u16 capability;
-    u16 length;
-    u16 result;           /* WIFI_IE_* bits */
-    u16 present;          /* WIFI_IE_SEEN_* bits; some callers set 0x800 before parsing */
-    u8 pad_0e[0x12 - 0x0e];
-    u16 channel;          /* from the DS parameter set, else our own; WlScanEntry.unk_36 */
-    u16 basicRates;       /* WlScanEntry.unk_2e; with supportedRates a WlRateSet */
-    u16 supportedRates;   /* stored in WlStation.rates on association */
-    const u8 *ssid;       /* SSID element, handed to the response builder */
-    const u8 *cfParams;   /* CF parameter set; byte 3 goes to WlScanEntry.unk_38 */
-    const u8 *tim;        /* TIM element; byte 3 goes to WlScanEntry.unk_34 */
-    const u8 *nintendo;   /* Nintendo element: game info from byte 10 */
+  const u8* data;
+  u16 rxStatus; /* first word of the frame's RX header */
+  u16 capability;
+  u16 length;
+  u16 result;  /* WIFI_IE_* bits */
+  u16 present; /* WIFI_IE_SEEN_* bits; some callers set 0x800 before parsing */
+  u8 pad_0e[0x12 - 0x0e];
+  u16 channel; /* from the DS parameter set, else our own; WlScanEntry.unk_36 */
+  u16 basicRates;     /* WlScanEntry.unk_2e; with supportedRates a WlRateSet */
+  u16 supportedRates; /* stored in WlStation.rates on association */
+  const u8* ssid;     /* SSID element, handed to the response builder */
+  const u8* cfParams; /* CF parameter set; byte 3 goes to WlScanEntry.unk_38 */
+  const u8* tim;      /* TIM element; byte 3 goes to WlScanEntry.unk_34 */
+  const u8* nintendo; /* Nintendo element: game info from byte 10 */
 } WlElements;
 
-#define WIFI_IE_FITS_SSID 0x1  /* probe and association requests are answered only with it */
+#define WIFI_IE_FITS_SSID \
+  0x1 /* probe and association requests are answered only with it */
 #define WIFI_IE_FITS_CHANNEL 0x2 /* same channel as the join request */
-#define WIFI_IE_FITS_RATES 0x4 /* association is refused with status 18 without it */
+#define WIFI_IE_FITS_RATES \
+  0x4 /* association is refused with status 18 without it */
 #define WIFI_IE_FITS_BSSID 0x8
 #define WIFI_IE_FITS_NET_KIND 0x10 /* ESS and IBSS capability bits as ours */
 #define WIFI_IE_FITS_PRIVACY 0x20  /* privacy capability bit as ours */
@@ -490,24 +497,24 @@ typedef struct WlElements {
 
 /* 802.11 frame control, as bitfields. */
 typedef union WlFrameControl {
-    u16 raw;
-    struct {
-        u16 version : 2;
-        u16 type : 2; /* 0: management frame */
-        u16 subtype : 4;
-        u16 toDs : 1;
-        u16 fromDs : 1;
-        u16 moreFragments : 1;
-        u16 retry : 1;
-        u16 powerManagement : 1;
-        u16 moreData : 1;
-        u16 protectedFrame : 1;
-        u16 order : 1;
-    };
+  u16 raw;
+  struct {
+    u16 version : 2;
+    u16 type : 2; /* 0: management frame */
+    u16 subtype : 4;
+    u16 toDs : 1;
+    u16 fromDs : 1;
+    u16 moreFragments : 1;
+    u16 retry : 1;
+    u16 powerManagement : 1;
+    u16 moreData : 1;
+    u16 protectedFrame : 1;
+    u16 order : 1;
+  };
 } WlFrameControl;
 
 /* A u16 frameControl field read through its bitfields. */
-#define WIFI_FRAMECTL_FIELDS(field) ((WlFrameControl *)&(field))
+#define WIFI_FRAMECTL_FIELDS(field) ((WlFrameControl*)&(field))
 #define WIFI_FRAMECTL_WEP_ON 0x4000
 
 /* WlTxFrame.result of a frame taken off a queue unsent. */
@@ -518,20 +525,21 @@ typedef union WlFrameControl {
  * beacon) and the frame it sends. TX queue n feeds slot n.
  */
 typedef struct WlTxSlot {
-    u16 busy;
-    u16 count;
-    u16 sentCount;
-    u8 pad_06[2];
-    WlRamFrame *frame;   /* the frame in WIFI_PACKET_RAM */
-    WlTxFrame *queued;   /* the queued frame it was copied from */
-    void (*onDone)(WlTxFrame *queued, int arg);
+  u16 busy;
+  u16 count;
+  u16 sentCount;
+  u8 pad_06[2];
+  WlRamFrame* frame; /* the frame in WIFI_PACKET_RAM */
+  WlTxFrame* queued; /* the queued frame it was copied from */
+  void (*onDone)(WlTxFrame* queued, int arg);
 } WlTxSlot;
 
 #define WIFI_TXLOC_DATA 0
 #define WIFI_TXLOC_MGMT 1
 #define WIFI_TXLOC_GROUP_OR_PSPOLL 2 /* frame: WlState.psPollFrame */
-#define WIFI_TXLOC_MP_POLL 3  /* busy: WlState.unk_13c */
-#define WIFI_TXLOC_POLL_ANSWER_A 4 /* WlState.mpReplySlots; which is which is a guess */
+#define WIFI_TXLOC_MP_POLL 3         /* busy: WlState.unk_13c */
+#define WIFI_TXLOC_POLL_ANSWER_A \
+  4 /* WlState.mpReplySlots; which is which is a guess */
 #define WIFI_TXLOC_POLL_ANSWER_B 5
 #define WIFI_TXLOC_BEACON 6 /* busy: WlState.unk_178, frame: WlState.txFrame */
 
@@ -541,145 +549,145 @@ typedef struct WlTxSlot {
 // of request keeps its own fields after state.
 
 typedef struct WlMeasureChannelRequest {
-    u8 pad_00[0x12];
-    u16 reg13Value;
-    u16 reg35Value;
-    u16 sampleMs;      /* time spent on each channel */
-    u8 channels[16];   /* 0 ends the list */
+  u8 pad_00[0x12];
+  u16 reg13Value;
+  u16 reg35Value;
+  u16 sampleMs;    /* time spent on each channel */
+  u8 channels[16]; /* 0 ends the list */
 } WlMeasureChannelRequest;
 
 typedef struct WlMeasureChannelJob {
-    u16 state;
-    u8 pad_02[2];
-    u32 sampleCount;
-    u32 busyTotal;     /* 100 for each sample that found the channel busy */
-    u16 savedReg040;
-    u16 savedReg13;
-    u16 savedReg35;
-    u8 pad_12[2];
-    u16 index;
-    u16 result;
-    WlMeasureChannelRequest *request;
-    WlReply *reply;
+  u16 state;
+  u8 pad_02[2];
+  u32 sampleCount;
+  u32 busyTotal; /* 100 for each sample that found the channel busy */
+  u16 savedReg040;
+  u16 savedReg13;
+  u16 savedReg35;
+  u8 pad_12[2];
+  u16 index;
+  u16 result;
+  WlMeasureChannelRequest* request;
+  WlReply* reply;
 } WlMeasureChannelJob;
 
 /* Request of the authenticate, associate and reassociate steps. */
 typedef struct WlPeerRequest {
-    u8 pad_00[0x10];
-    u16 peer[3];       /* address handed to the frame builder */
-    u16 authAlgorithm; /* authenticate only */
-    u16 timeoutMs;
+  u8 pad_00[0x10];
+  u16 peer[3];       /* address handed to the frame builder */
+  u16 authAlgorithm; /* authenticate only */
+  u16 timeoutMs;
 } WlPeerRequest;
 
 typedef struct WlPeerJob {
-    u16 state;
-    u8 pad_02[0x16];
-    WlPeerRequest *request;
-    WlReply *reply;
+  u16 state;
+  u8 pad_02[0x16];
+  WlPeerRequest* request;
+  WlReply* reply;
 } WlPeerJob;
 
 /* Authentication frame from WifiFrame_NewAuthentication: the 802.11 header starts at
    0x14 (frame control 0xb0), the body at 0x2c. */
 typedef struct WlAuthFrame {
-    u8 pad_00[2];
-    u16 station;         /* as in WlTxFrame and WlRxFrame */
-    u8 pad_04[0x28];
-    u16 algorithm;
-    u16 sequence;
-    u16 status;
-    u8 challengeId;      /* challenge text element, shared key only */
-    u8 challengeLength;
-    u16 challenge[1];
+  u8 pad_00[2];
+  u16 station; /* as in WlTxFrame and WlRxFrame */
+  u8 pad_04[0x28];
+  u16 algorithm;
+  u16 sequence;
+  u16 status;
+  u8 challengeId; /* challenge text element, shared key only */
+  u8 challengeLength;
+  u16 challenge[1];
 } WlAuthFrame;
 
 /* Request checked and applied by func_arm7_027cc97c. */
 typedef struct WlBssSettings {
-    u8 pad_00[0x10];
-    u16 ssidLength;      /* 1-32 */
-    u8 ssid[32];
-    u16 unk_32;          /* 10-1000 */
-    u16 unk_34;          /* 1-255 */
-    u16 channel;
-    u16 unk_38[2];       /* nonzero 12-bit masks */
-    u16 unk_3c;          /* length of unk_3e, at most 128 */
-    u8 unk_3e[128];
+  u8 pad_00[0x10];
+  u16 ssidLength; /* 1-32 */
+  u8 ssid[32];
+  u16 unk_32; /* 10-1000 */
+  u16 unk_34; /* 1-255 */
+  u16 channel;
+  u16 unk_38[2]; /* nonzero 12-bit masks */
+  u16 unk_3c;    /* length of unk_3e, at most 128 */
+  u8 unk_3e[128];
 } WlBssSettings;
 
 /* Scan request (task 0, WifiMlme_RunScan). */
 typedef struct WlScanRequest {
-    u8 pad_00[0x10];
-    u16 peer[3];         /* address handed to the probe request builder */
-    u16 ssidLength;      /* up to 32 */
-    u8 ssid[32];
-    u16 unk_38;          /* nonzero: send no probe requests */
-    u8 channels[16];     /* 0 ends the list */
-    u16 channelTimeMs;   /* time spent on each channel */
-    u16 unk_4c;          /* up to 16 */
-    u16 bssids[16][3];   /* unk_4c of them; seen ones set a bit in WlReply.value */
+  u8 pad_00[0x10];
+  u16 peer[3];    /* address handed to the probe request builder */
+  u16 ssidLength; /* up to 32 */
+  u8 ssid[32];
+  u16 unk_38;        /* nonzero: send no probe requests */
+  u8 channels[16];   /* 0 ends the list */
+  u16 channelTimeMs; /* time spent on each channel */
+  u16 unk_4c;        /* up to 16 */
+  u16 bssids[16][3]; /* unk_4c of them; seen ones set a bit in WlReply.value */
 } WlScanRequest;
 
 typedef struct WlStopSessionRequest {
-    u8 pad_00[0x10];
-    u16 clearCounters; /* 0 or 1 */
+  u8 pad_00[0x10];
+  u16 clearCounters; /* 0 or 1 */
 } WlStopSessionRequest;
 
 /* Reply that carries the WlUnk318 data block. */
 typedef struct WlDataReply {
-    u16 unk_00;
-    u16 length;     /* reply length in halfwords: room on entry, used on return */
-    u16 unk_04;
-    u16 dataLength; /* in bytes */
-    u8 data[1];
+  u16 unk_00;
+  u16 length; /* reply length in halfwords: room on entry, used on return */
+  u16 unk_04;
+  u16 dataLength; /* in bytes */
+  u8 data[1];
 } WlDataReply;
 
 typedef struct WlScanJob {
-    u16 state;
-    u8 pad_02[2];
-    u16 unk_04;          /* WlReply.status - 2 when the scan was asked for */
-    u16 channelIndex;    /* next entry of request->channels */
-    u16 unk_08;
-    u16 elapsedMs;       /* time spent on the current channel */
-    u16 probeIntervalMs;
-    u8 pad_0e[0xa];
-    WlScanRequest *request;
-    WlReply *reply;
+  u16 state;
+  u8 pad_02[2];
+  u16 unk_04;       /* WlReply.status - 2 when the scan was asked for */
+  u16 channelIndex; /* next entry of request->channels */
+  u16 unk_08;
+  u16 elapsedMs; /* time spent on the current channel */
+  u16 probeIntervalMs;
+  u8 pad_0e[0xa];
+  WlScanRequest* request;
+  WlReply* reply;
 } WlScanJob;
 
 /* One network found by a scan, as WifiScan_RecordHeardNetwork appends it to the reply
    from WlReply.words[1] on (words[0] counts them). */
 typedef struct WlScanEntry {
-    u16 length;          /* in halfwords, game info included */
-    u16 rssi;            /* low byte of the RX header's unk_12 */
-    u16 bssid[3];
-    u16 ssidLength;
-    u8 ssid[32];
-    u16 capability;
-    u16 unk_2e;
-    u16 supportedRates;
-    u16 beaconInterval;
-    u16 unk_34;
-    u16 unk_36;
-    u16 unk_38;
-    u8 pad_3a[2];
-    u16 gameInfoLength;
-    u8 pad_3e[2];
-    u8 gameInfo[1];
+  u16 length; /* in halfwords, game info included */
+  u16 rssi;   /* low byte of the RX header's unk_12 */
+  u16 bssid[3];
+  u16 ssidLength;
+  u8 ssid[32];
+  u16 capability;
+  u16 unk_2e;
+  u16 supportedRates;
+  u16 beaconInterval;
+  u16 unk_34;
+  u16 unk_36;
+  u16 unk_38;
+  u8 pad_3a[2];
+  u16 gameInfoLength;
+  u8 pad_3e[2];
+  u8 gameInfo[1];
 } WlScanEntry;
 
 /* Task 1 (func_arm7_027cc5ac): waits for the receive path to fill result. */
 typedef struct WlTask1Request {
-    u8 pad_00[0x10];
-    u16 timeoutMs;
+  u8 pad_00[0x10];
+  u16 timeoutMs;
 } WlTask1Request;
 
 typedef struct WlTask1Job {
-    u16 state;
-    u8 pad_02[2];
-    u16 result;
-    u16 unk_06;
-    u8 pad_08[0x10];
-    WlTask1Request *request;
-    WlReply *reply;
+  u16 state;
+  u8 pad_02[2];
+  u16 result;
+  u16 unk_06;
+  u8 pad_08[0x10];
+  WlTask1Request* request;
+  WlReply* reply;
 } WlTask1Job;
 
 /* Values of WlReply.unk_04 set by the MLME steps. */
@@ -687,200 +695,205 @@ typedef struct WlTask1Job {
 #define WIFI_ANSWER_ROOM_SHORT 4
 #define WIFI_ANSWER_OUT_OF_RANGE 5
 #define WIFI_ANSWER_NO_RESPONSE 7
-#define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
-#define WIFI_ANSWER_FLASH_BLOCK_BAD 14  /* WifiFlash_ValidateRadioBlock failed */
-#define WIFI_ANSWER_PEER_SAID_NO 12  /* the peer answered with a nonzero status, in WlReply.value */
-#define WIFI_ANSWER_LATER 0x80 /* the request stays in WlMlme; the reply comes later */
-#define WIFI_ANSWER_BAD_MODE 1       /* not allowed in the current WlState.mode */
-#define WIFI_ANSWER_GROUP_BUSY 2             /* a request of the same group is still being handled */
+#define WIFI_ANSWER_NO_MEMORY 8        /* the frame could not be allocated */
+#define WIFI_ANSWER_FLASH_BLOCK_BAD 14 /* WifiFlash_ValidateRadioBlock failed */
+#define WIFI_ANSWER_PEER_SAID_NO \
+  12 /* the peer answered with a nonzero status, in WlReply.value */
+#define WIFI_ANSWER_LATER \
+  0x80 /* the request stays in WlMlme; the reply comes later */
+#define WIFI_ANSWER_BAD_MODE 1 /* not allowed in the current WlState.mode */
+#define WIFI_ANSWER_GROUP_BUSY \
+  2 /* a request of the same group is still being handled */
 #define WIFI_ANSWER_NO_SUCH_REQ 3
-#define WIFI_ANSWER_ID_DIFFERS 13 /* the reply does not name the request's command */
-#define WIFI_ANSWER_KEPT_BUFFER 0x81        /* the handler kept the buffer (a frame queued to send) */
+#define WIFI_ANSWER_ID_DIFFERS \
+  13 /* the reply does not name the request's command */
+#define WIFI_ANSWER_KEPT_BUFFER \
+  0x81 /* the handler kept the buffer (a frame queued to send) */
 
 /* Request that names a destination station by MAC address. Bit 0 of the
    first byte marks a multicast address. */
 typedef struct WlMacRequest {
-    u8 pad_00[0x10];
-    u16 mac[3];
-    u16 reason; /* 802.11 reason code */
+  u8 pad_00[0x10];
+  u16 mac[3];
+  u16 reason; /* 802.11 reason code */
 } WlMacRequest;
 
 /* Reply that echoes the station address of a WlMacRequest. */
 typedef struct WlMacReply {
-    u16 unk_00;
-    u16 status;
-    u16 unk_04;
-    u16 mac[3];
+  u16 unk_00;
+  u16 status;
+  u16 unk_04;
+  u16 mac[3];
 } WlMacReply;
 
 /* Request to (re)associate with the access point at mac. */
 typedef struct WlAssociateRequest {
-    u8 pad_00[0x10];
-    u16 mac[3];
-    u16 listenInterval; /* 1-255 */
-    u16 timeoutMs;      /* 10-2000: how long to wait for the response */
+  u8 pad_00[0x10];
+  u16 mac[3];
+  u16 listenInterval; /* 1-255 */
+  u16 timeoutMs;      /* 10-2000: how long to wait for the response */
 } WlAssociateRequest;
 
 typedef struct WlMlmeJob {
-    u16 state;
-    u8 pad_02[0x16];
-    void *request;
-    WlReply *reply;
+  u16 state;
+  u8 pad_02[0x16];
+  void* request;
+  WlReply* reply;
 } WlMlmeJob;
 
 typedef union WlMlme {
-    u16 state;
-    WlMlmeJob any;
-    WlMeasureChannelJob measure;
-    WlPeerJob peer;
-    WlTask1Job task1;
-    WlScanJob scan;
+  u16 state;
+  WlMlmeJob any;
+  WlMeasureChannelJob measure;
+  WlPeerJob peer;
+  WlTask1Job task1;
+  WlScanJob scan;
 } WlMlme;
 
 /* The host request being handled; task 11 takes it from the inbox. */
 typedef struct WlCurrentRequest {
-    struct WlBuffer *buffer;
-    u16 busy; /* bit 0 set while buffer is being handled */
+  struct WlBuffer* buffer;
+  u16 busy; /* bit 0 set while buffer is being handled */
 } WlCurrentRequest;
 
 /* One entry of a host command table: the shortest request and reply the
    command takes (request->replyOffset and reply->status, in halfwords), and
    its handler, which returns the result code for WlReply.unk_04. */
 typedef struct WlCommandEntry {
-    u16 requestLength;
-    u16 replyLength;
-    int (*handler)(struct WlRequest *request, struct WlReply *reply);
+  u16 requestLength;
+  u16 replyLength;
+  int (*handler)(struct WlRequest* request, struct WlReply* reply);
 } WlCommandEntry;
 
 /* Wi-Fi RAM address that WlState.timOffset counts from. */
 #define WIFI_RAM_TIM_BASE 0x0480425c
 
 typedef struct WlState {
-    u16 unk_00;
-    u16 phase;
-    u16 unk_04;
-    u16 unk_06;
-    u16 unk_08;
-    u16 unk_0a;
-    u16 unk_0c;
-    WlFlags flags;
-    u16 unk_10;
-    u16 unk_12;                    /* bit 0x40: no alarm could be set up */
-    u32 unk_14;
-    u8 pad_18[8];
-    u16 mode;
-    u8 pad_22[2];
-    u16 unk_24;
-    u16 unk_26;
-    u8 pad_28[2];
-    u16 unk_2a;
-    u16 unk_2c;
-    u8 pad_2e[8];
-    u16 unk_36;
-    u16 words[16];
-    u16 words_58[16];
-    u16 unk_78;
-    u16 unk_7a;
-    u16 unk_7c[3];
-    u16 aid; /* association ID */
-    u8 pad_84[0x2];
-    u16 unk_86;
-    u16 unk_88;
-    u8 pad_8a[2];
-    u16 unk_8c;
-    u8 pad_8e[4];
-    u16 unk_92;
-    u16 capability; /* same halfword as WlLink.flags_7c */
-    u16 unk_96;
-    u16 unk_98;
-    u8 pad_9a[0xa];
-    u16 unk_a4;
-    u8 pad_a6[0xac - 0xa6];
-    /* Wi-Fi RAM offset of the beacon frame that holds the TIM element. */
-    u16 timOffset;
-    u16 unk_ae;
-    u8 pad_b0[0xb2 - 0xb0];
-    u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
-    void *unk_b4;
-    u16 unk_b8;                    /* same halfword as WlLink.gameInfoLength */
-    u8 pad_ba[2];
-    u16 gameInfoChanged;           /* same halfword as WlLink.unk_a4 */
-    u16 unk_be;
-    u32 periodicCount;             /* periodic alarm firings */
-    u8 pad_c4[4];
-    u16 unk_c8;
-    u8 pad_ca[0xce - 0xca];
-    u16 unk_ce;                    /* counts frames found with their marks overwritten */
-    u16 unk_d0;                    /* counts TX queue restarts */
-    u16 wepRestarts;               /* same halfword as WlLink.wepRestarts */
-    u16 mpReplyWaits;              /* reply-wait alarms WifiIrq_MpCommandDone set */
-    u8 pad_d6[0xd8 - 0xd6];
-    u16 unk_d8[16];
-    WlCurrentRequest current;
-    u8 pad_100[0x130 - 0x100];
-    struct WlRamFrame *psPollFrame;
-    u8 pad_134[0x13c - 0x134];
-    u16 unk_13c;
-    u8 pad_13e[0x150 - 0x13e];
-    WlMpReplySlot mpReplySlots[2];
-    u16 unk_178;
-    u8 pad_17a[6];
-    WlTxFrame *txFrame;
+  u16 unk_00;
+  u16 phase;
+  u16 unk_04;
+  u16 unk_06;
+  u16 unk_08;
+  u16 unk_0a;
+  u16 unk_0c;
+  WlFlags flags;
+  u16 unk_10;
+  u16 unk_12; /* bit 0x40: no alarm could be set up */
+  u32 unk_14;
+  u8 pad_18[8];
+  u16 mode;
+  u8 pad_22[2];
+  u16 unk_24;
+  u16 unk_26;
+  u8 pad_28[2];
+  u16 unk_2a;
+  u16 unk_2c;
+  u8 pad_2e[8];
+  u16 unk_36;
+  u16 words[16];
+  u16 words_58[16];
+  u16 unk_78;
+  u16 unk_7a;
+  u16 unk_7c[3];
+  u16 aid; /* association ID */
+  u8 pad_84[0x2];
+  u16 unk_86;
+  u16 unk_88;
+  u8 pad_8a[2];
+  u16 unk_8c;
+  u8 pad_8e[4];
+  u16 unk_92;
+  u16 capability; /* same halfword as WlLink.flags_7c */
+  u16 unk_96;
+  u16 unk_98;
+  u8 pad_9a[0xa];
+  u16 unk_a4;
+  u8 pad_a6[0xac - 0xa6];
+  /* Wi-Fi RAM offset of the beacon frame that holds the TIM element. */
+  u16 timOffset;
+  u16 unk_ae;
+  u8 pad_b0[0xb2 - 0xb0];
+  u16 ringSize; /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
+  void* unk_b4;
+  u16 unk_b8; /* same halfword as WlLink.gameInfoLength */
+  u8 pad_ba[2];
+  u16 gameInfoChanged; /* same halfword as WlLink.unk_a4 */
+  u16 unk_be;
+  u32 periodicCount; /* periodic alarm firings */
+  u8 pad_c4[4];
+  u16 unk_c8;
+  u8 pad_ca[0xce - 0xca];
+  u16 unk_ce;       /* counts frames found with their marks overwritten */
+  u16 unk_d0;       /* counts TX queue restarts */
+  u16 wepRestarts;  /* same halfword as WlLink.wepRestarts */
+  u16 mpReplyWaits; /* reply-wait alarms WifiIrq_MpCommandDone set */
+  u8 pad_d6[0xd8 - 0xd6];
+  u16 unk_d8[16];
+  WlCurrentRequest current;
+  u8 pad_100[0x130 - 0x100];
+  struct WlRamFrame* psPollFrame;
+  u8 pad_134[0x13c - 0x134];
+  u16 unk_13c;
+  u8 pad_13e[0x150 - 0x13e];
+  WlMpReplySlot mpReplySlots[2];
+  u16 unk_178;
+  u8 pad_17a[6];
+  WlTxFrame* txFrame;
 } WlState;
 
 /* Kept at WlWork+0x318, inside the range WlState covers (data is WlState.unk_b4); the code reaches
    it through its own pointer. */
 typedef struct WlUnk318 {
-    u8 pad_00[0x9c];
-    u8 *data;
-    u16 dataLength;
-    u16 flags; /* bit 0: data starts one byte after the pointer */
-    u16 unk_a4;
+  u8 pad_00[0x9c];
+  u8* data;
+  u16 dataLength;
+  u16 flags; /* bit 0: data starts one byte after the pointer */
+  u16 unk_a4;
 } WlUnk318;
 
 /* Linear congruential generator: value = value * mul + add (16 bits). */
 typedef struct WlRandom {
-    u16 mul;
-    u16 add;
-    u16 value;
+  u16 mul;
+  u16 add;
+  u16 value;
 } WlRandom;
 
 /* RF chip settings read from the firmware's wireless block (bytes 0x40-0x43, 0xce). */
 typedef struct WlRfConfig {
-    u16 type;                      /* firmware 0x40 */
-    u16 bitsPerEntry;              /* firmware 0x41: bits 0-6 count, bit 7 a flag */
-    u16 entryCount;                /* firmware 0x42 */
-    u16 unk_06;                    /* firmware 0x43 */
-    u8 unk_08;
-    u8 pad_09[3];
-    u32 unk_0c;
+  u16 type;         /* firmware 0x40 */
+  u16 bitsPerEntry; /* firmware 0x41: bits 0-6 count, bit 7 a flag */
+  u16 entryCount;   /* firmware 0x42 */
+  u16 unk_06;       /* firmware 0x43 */
+  u8 unk_08;
+  u8 pad_09[3];
+  u32 unk_0c;
 } WlRfConfig;
 
 /* Message buffers: a 12-byte header followed by the payload. A buffer sits
    in at most one list; listId names that list, 0 when it sits in none. */
 #define WIFI_MSG_BUFFER_TAG 0xbf1d
-#define WIFI_LIST_END ((WlBuffer *)-1)
+#define WIFI_LIST_END ((WlBuffer*)-1)
 
 typedef struct WlBuffer {
-    struct WlBuffer *prev;
-    struct WlBuffer *next;
-    u16 listId;
-    u16 magic;
+  struct WlBuffer* prev;
+  struct WlBuffer* next;
+  u16 listId;
+  u16 magic;
 } WlBuffer;
 
 typedef struct WlBufferList {
-    WlBuffer *first;
-    WlBuffer *last;
-    u16 count;
-    u16 id;
+  WlBuffer* first;
+  WlBuffer* last;
+  u16 count;
+  u16 id;
 } WlBufferList;
 
 /* A buffer holding a frame to send. */
 typedef struct WlTxBuffer {
-    WlBuffer header;
-    u16 unk_0c;
-    u8 pad_0e[2];
-    WlTxFrame frame;
+  WlBuffer header;
+  u16 unk_0c;
+  u8 pad_0e[2];
+  WlTxFrame frame;
 } WlTxBuffer;
 
 /* Longest received frame (802.11 header and body) WL handles. */
@@ -890,29 +903,29 @@ typedef struct WlTxBuffer {
 
 /* A buffer holding a received frame. */
 typedef struct WlRxBuffer {
-    WlBuffer header;
-    u16 command;
-    u16 length;
-    WlRxFrame frame;
+  WlBuffer header;
+  u16 command;
+  u16 length;
+  WlRxFrame frame;
 } WlRxBuffer;
 
 /* WlRxFrame from unk_08 on (the hardware RX header), as the fragment
    reassembly code addresses it. */
 typedef struct WlRxHeader {
-    u16 flags;      /* WlRxFrame.unk_08: bits 0-3 frame kind, bit 8 WIFI_RX_NOT_LAST_FRAGMENT */
-    u8 pad_02[6];
-    u16 length;     /* WlRxFrame.length */
-    u8 pad_0a[0x24 - 0x0a];
-    u16 body[1];    /* WlRxFrame.body */
+  u16 flags; /* WlRxFrame.unk_08: bits 0-3 frame kind, bit 8 WIFI_RX_NOT_LAST_FRAGMENT */
+  u8 pad_02[6];
+  u16 length; /* WlRxFrame.length */
+  u8 pad_0a[0x24 - 0x0a];
+  u16 body[1]; /* WlRxFrame.body */
 } WlRxHeader;
 
 /* 802.11 sequence control, as bitfields. */
 typedef struct WlSequenceControl {
-    u16 fragment : 4;
-    u16 number : 12;
+  u16 fragment : 4;
+  u16 number : 12;
 } WlSequenceControl;
 
-#define WIFI_SEQCTL_FIELDS(field) ((WlSequenceControl *)&(field))
+#define WIFI_SEQCTL_FIELDS(field) ((WlSequenceControl*)&(field))
 
 /* WlRxHeader.flags bit set on every fragment but the last. */
 #define WIFI_RX_NOT_LAST_FRAGMENT 0x100
@@ -923,17 +936,18 @@ typedef struct WlSequenceControl {
  * with each fragment.
  */
 typedef struct WlDefragSlot {
-    u16 ticks;        /* nonzero while in use; task 17 frees the buffer when it reaches 0 */
-    u16 fragmentSize; /* length of one fragment's body */
-    WlRxAddrs addrs;
-    u8 pad_12[2];
-    WlRxBuffer *buffer;
+  u16 ticks; /* nonzero while in use; task 17 frees the buffer when it reaches 0 */
+  u16 fragmentSize; /* length of one fragment's body */
+  WlRxAddrs addrs;
+  u8 pad_12[2];
+  WlRxBuffer* buffer;
 } WlDefragSlot;
 
 #define WIFI_REASSEMBLY_SLOTS 3
 
 /* The WlRxBuffer that holds a received frame. */
-#define WIFI_RX_HOLDER_OF(rxFrame) ((WlRxBuffer *)((u8 *)(rxFrame) - (u32)&((WlRxBuffer *)0)->frame))
+#define WIFI_RX_HOLDER_OF(rxFrame) \
+  ((WlRxBuffer*)((u8*)(rxFrame) - (u32) & ((WlRxBuffer*)0)->frame))
 
 /* WlTxBuffer.unk_0c of a frame the driver builds for itself. */
 #define WIFI_DRIVER_BUILT_FRAME 0xffff
@@ -980,81 +994,83 @@ typedef struct WlDefragSlot {
 
 /* Body of a management frame the driver builds, from WlTxFrame.body. */
 typedef union WlMgmtBody {
-    struct {
-        u16 algorithm;
-        u16 sequence;
-        u16 status;
-        u8 elements[2];
-    } auth;
-    struct {
-        u8 timestamp[8];
-        u16 beaconInterval;
-        u16 capability;
-        u8 elements[2];
-    } probeResponse;
-    struct {
-        u16 capability;
-        u16 listenInterval;
-        u8 elements[2];
-    } assocRequest;
-    struct {
-        u16 capability;
-        u16 listenInterval;
-        u16 currentAp[3];
-        u8 elements[2];
-    } reassocRequest;
-    struct {
-        u16 capability;
-        u16 status;
-        u16 aid;
-        u8 elements[2];
-    } assocResponse; /* also reassociation responses */
-    u16 reason;      /* deauthentication and disassociation */
-    u8 elements[2];  /* probe requests */
+  struct {
+    u16 algorithm;
+    u16 sequence;
+    u16 status;
+    u8 elements[2];
+  } auth;
+  struct {
+    u8 timestamp[8];
+    u16 beaconInterval;
+    u16 capability;
+    u8 elements[2];
+  } probeResponse;
+  struct {
+    u16 capability;
+    u16 listenInterval;
+    u8 elements[2];
+  } assocRequest;
+  struct {
+    u16 capability;
+    u16 listenInterval;
+    u16 currentAp[3];
+    u8 elements[2];
+  } reassocRequest;
+  struct {
+    u16 capability;
+    u16 status;
+    u16 aid;
+    u8 elements[2];
+  } assocResponse; /* also reassociation responses */
+  u16 reason;      /* deauthentication and disassociation */
+  u8 elements[2];  /* probe requests */
 } WlMgmtBody;
 
 /* A WlTxFrame seen as a management frame, to reach its body by offset. */
 typedef struct WlMgmtFrame {
-    u8 pad_00[0x2c];
-    WlMgmtBody body;
+  u8 pad_00[0x2c];
+  WlMgmtBody body;
 } WlMgmtFrame;
 
-#define WIFI_MANAGEMENT_FIELDS_OF(frame) (&((WlMgmtFrame *)(frame))->body)
+#define WIFI_MANAGEMENT_FIELDS_OF(frame) (&((WlMgmtFrame*)(frame))->body)
 
 // Host buffer that carries a frame to send. The reply sits replyOffset
 // halfwords after the start of frame.
 typedef struct WlTxRequest {
-    WlBuffer header;
-    u16 command;
-    u16 replyOffset;
-    WlTxFrame frame;
+  WlBuffer header;
+  u16 command;
+  u16 replyOffset;
+  WlTxFrame frame;
 } WlTxRequest;
 
 /* The buffer header in front of a frame that sits in a WlTxRequest. */
-#define WIFI_HOST_TX_HEADER_OF(frame) ((WlBuffer *)((u8 *)(frame) - (u32)&((WlTxRequest *)0)->frame))
+#define WIFI_HOST_TX_HEADER_OF(frame) \
+  ((WlBuffer*)((u8*)(frame) - (u32) & ((WlTxRequest*)0)->frame))
 
 /* Where buffers come from. kind 0: Heap_TakeFirstFit_Arm7(arena, heap, size).
    kind 1: the alloc and free callbacks. */
 typedef struct WlBufferAllocator {
-    s32 kind;
-    union {
-        s32 arena;
-        void *(*alloc)(s32 size);
-    } a;
-    union {
-        s32 heap;
-        void (*free)(void *ptr);
-    } b;
+  s32 kind;
+  union {
+    s32 arena;
+    void* (*alloc)(s32 size);
+  } a;
+  union {
+    s32 heap;
+    void (*free)(void* ptr);
+  } b;
 } WlBufferAllocator;
 
 /* The buffer fields of WlWork from allocator to inbox, as one struct. Some
    functions reach them through a pointer to allocator. */
 typedef struct WlBufferPool {
-    WlBufferAllocator allocator;
-    WlBufferList newBuffers;
-    WlBufferList lists[8]; /* list ids 3 to 10; lists[2] is WlWork.multicastQueue */
-    WlBufferList outbox;
-    WlBufferList inbox;
+  WlBufferAllocator allocator;
+  WlBufferList newBuffers;
+  WlBufferList
+      lists[8]; /* list ids 3 to 10; lists[2] is WlWork.multicastQueue */
+  WlBufferList outbox;
+  WlBufferList inbox;
 } WlBufferPool;
 
 /* Tasks run by the driver thread, one at a time. They wait in four FIFO
@@ -1065,39 +1081,39 @@ typedef struct WlBufferPool {
 #define WIFI_TASK_SLOTS 24
 
 typedef struct WlTask {
-    u16 next;
-    u16 queued;
-    void (*handler)(void);
+  u16 next;
+  u16 queued;
+  void (*handler)(void);
 } WlTask;
 
 /* WlWork.counters seen field by field: running totals of the hardware's 8-bit
    statistic counters (IO_WIRELESS_TALLY_BYTES). Each unk_XX field adds one counter byte. */
 typedef struct WlCounters {
-    u8 pad_00[0xc];
-    u32 unk_0c;
-    u8 pad_10[0x10];
-    u32 unk_20;
-    u32 unk_24;
-    u32 mgmtRxUnicast;   /* management and control frames received */
-    u32 mgmtRxMulticast;
-    u32 unk_30;
-    u8 pad_34[4];
-    u32 unk_38;
-    u32 unk_3c;
-    u32 unk_40;
-    u32 unk_44;
-    u32 unk_48;
-    u32 unk_4c;
-    u32 unk_50;
-    u32 unk_54;
-    u32 unk_58;
-    u32 unk_5c;
-    u32 unk_60;
-    u8 pad_64[4];
-    u32 retries;      /* sum of the low bytes of WlRamFrame.unk_04 */
-    u32 sentFirstTry; /* frames whose low byte was 0 */
-    u8 pad_70[8];
-    u32 cmdStat[15]; /* counter bytes 0x21-0x2f: 0x048081d1-0x048081df */
+  u8 pad_00[0xc];
+  u32 unk_0c;
+  u8 pad_10[0x10];
+  u32 unk_20;
+  u32 unk_24;
+  u32 mgmtRxUnicast; /* management and control frames received */
+  u32 mgmtRxMulticast;
+  u32 unk_30;
+  u8 pad_34[4];
+  u32 unk_38;
+  u32 unk_3c;
+  u32 unk_40;
+  u32 unk_44;
+  u32 unk_48;
+  u32 unk_4c;
+  u32 unk_50;
+  u32 unk_54;
+  u32 unk_58;
+  u32 unk_5c;
+  u32 unk_60;
+  u8 pad_64[4];
+  u32 retries;      /* sum of the low bytes of WlRamFrame.unk_04 */
+  u32 sentFirstTry; /* frames whose low byte was 0 */
+  u8 pad_70[8];
+  u32 cmdStat[15]; /* counter bytes 0x21-0x2f: 0x048081d1-0x048081df */
 } WlCounters;
 
 /* WlWork.counters index of the count of frames sent to a group address, from
@@ -1108,99 +1124,102 @@ typedef struct WlCounters {
 
 /* Receive side state. */
 typedef struct WlRxState {
-    u16 unk_00;
-    u16 busyCount; /* RX events while a frame waits to be sent; WifiIrq_RxEventCounted restarts the WEP engine after 13 */
-    u16 readPos;   /* next RX ring header, as a WIFI_PACKET_RAM halfword index */
+  u16 unk_00;
+  u16 busyCount; /* RX events while a frame waits to be sent; WifiIrq_RxEventCounted restarts the WEP engine after 13 */
+  u16 readPos;   /* next RX ring header, as a WIFI_PACKET_RAM halfword index */
 } WlRxState;
 
 /* Work offset 0x4b4 as the MP receive code sees it (a child's view of the
    parent's polls). Its first halfword is WlRxState.unk_00, replyFlags is
    WlWork.unk_4ba. */
 typedef struct WlMpChild {
-    u16 lastSequence; /* sequence number of the last MP poll taken */
-    u8 pad_02[2];
-    u16 rxReadCursor; /* RX ring read position in halfwords, as REG_W_RXBUF_READCSR */
-    u16 replyFlags;   /* ORed into the RX header word of MP frames sent to the host */
+  u16 lastSequence; /* sequence number of the last MP poll taken */
+  u8 pad_02[2];
+  u16 rxReadCursor; /* RX ring read position in halfwords, as REG_W_RXBUF_READCSR */
+  u16 replyFlags; /* ORed into the RX header word of MP frames sent to the host */
 } WlMpChild;
 
-#define WIFI_CHILD_POLL_STATE_OF(work) ((WlMpChild *)&(work)->wepWatch)
+#define WIFI_CHILD_POLL_STATE_OF(work) ((WlMpChild*)&(work)->wepWatch)
 
 /* Bits of WlMpChild.replyFlags. */
-#define WIFI_POLL_ASKED_US 0x2000    /* the last poll asked this child for a reply */
-#define WIFI_POLL_ANSWER_READY 0x4000 /* a reply frame with data was set up for it */
+#define WIFI_POLL_ASKED_US \
+  0x2000 /* the last poll asked this child for a reply */
+#define WIFI_POLL_ANSWER_READY \
+  0x4000 /* a reply frame with data was set up for it */
 
 typedef struct WlWork {
-    u16 queueHead[WIFI_TASK_LEVELS];
-    u16 queueTail[WIFI_TASK_LEVELS];
-    u16 topPriority;   /* lowest priority number that may hold a task */
-    u16 runPriority;
-    u16 runTask;
-    u8 pad_016[2];
-    OSThread thread;   /* runs WifiTask_ThreadMain */
-    WlTask tasks[24];
-    WlBufferAllocator allocator;
-    WlBufferList unk_15c;          /* holds the wifi config buffer */
-    WlBufferList txQueues[2]; /* TX queues 0 and 1; queue 2 is multicastQueue */
-    /* Multicast and broadcast frames; TIM bit 0 is set while it is not empty. */
-    WlBufferList multicastQueue;
-    u8 pad_18c[0x1c8 - 0x18c];
-    WlBufferList outbox; /* buffers waiting to go to the host */
-    WlBufferList inbox;  /* buffers received from the host */
-    u8 pad_1e0[0x20];
-    WlLimits limits;
-    u16 macAddress[3];
-    u16 unk_2fe;
-    union {
-        WlState state;
-        struct {
-            u8 pad_300[0x18];
-            WlUnk318 unk_318;
-        };
+  u16 queueHead[WIFI_TASK_LEVELS];
+  u16 queueTail[WIFI_TASK_LEVELS];
+  u16 topPriority; /* lowest priority number that may hold a task */
+  u16 runPriority;
+  u16 runTask;
+  u8 pad_016[2];
+  OSThread thread; /* runs WifiTask_ThreadMain */
+  WlTask tasks[24];
+  WlBufferAllocator allocator;
+  WlBufferList unk_15c;     /* holds the wifi config buffer */
+  WlBufferList txQueues[2]; /* TX queues 0 and 1; queue 2 is multicastQueue */
+  /* Multicast and broadcast frames; TIM bit 0 is set while it is not empty. */
+  WlBufferList multicastQueue;
+  u8 pad_18c[0x1c8 - 0x18c];
+  WlBufferList outbox; /* buffers waiting to go to the host */
+  WlBufferList inbox;  /* buffers received from the host */
+  u8 pad_1e0[0x20];
+  WlLimits limits;
+  u16 macAddress[3];
+  u16 unk_2fe;
+  union {
+    WlState state;
+    struct {
+      u8 pad_300[0x18];
+      WlUnk318 unk_318;
     };
-    u8 pad_484[0x4a2 - 0x484];
-    u16 aidBit; /* 1 << state.aid */
-    u8 pad_4a4[2];
-    u16 savedMpReply; /* REG_W_TXBUF_REPLY2 taken back by WifiIrq_RxBegun, 0xffff when none */
-    u8 pad_4a8[0x4b4 - 0x4a8];
-    WlRxState wepWatch;
-    u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
-    WlDefragSlot defragSlots[WIFI_REASSEMBLY_SLOTS];
-    WlStationBits stationBits;
-    u32 counters[45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
-    WlRandom random;
-    u8 pad_5ca[2];
-    WlRfConfig rf;
-    OSAlarm periodicAlarm;
-    OSAlarm oneShotAlarm;
-    u32 unk_634;
-    u16 unk_638;
-    u16 unk_63a;
+  };
+  u8 pad_484[0x4a2 - 0x484];
+  u16 aidBit; /* 1 << state.aid */
+  u8 pad_4a4[2];
+  u16 savedMpReply; /* REG_W_TXBUF_REPLY2 taken back by WifiIrq_RxBegun, 0xffff when none */
+  u8 pad_4a8[0x4b4 - 0x4a8];
+  WlRxState wepWatch;
+  u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
+  WlDefragSlot defragSlots[WIFI_REASSEMBLY_SLOTS];
+  WlStationBits stationBits;
+  u32 counters
+      [45]; /* totals of the hardware event counters, see WifiCmd_ReportStatistics */
+  WlRandom random;
+  u8 pad_5ca[2];
+  WlRfConfig rf;
+  OSAlarm periodicAlarm;
+  OSAlarm oneShotAlarm;
+  u32 unk_634;
+  u16 unk_638;
+  u16 unk_63a;
 } WlWork;
 
-#define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
-#define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
+#define WIFI_ANTENNA_SELECT (*(volatile u16*)0x04808290)
+#define WIFI_MAC_PREAMBLE_BITS (*(volatile u16*)0x048080bc)
 /* Frame to send in reply to the next MP poll: bit 15 enables it,
    the low bits give its WIFI_PACKET_RAM halfword offset. */
-#define WIFI_TX_NEXT_POLL_ANSWER (*(volatile u16 *)0x04808094)
-#define WIFI_POST_BEACON_TIMER (*(volatile u16 *)0x04808134)
-#define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
-#define WIFI_MAC_RETRY_LIMIT (*(volatile u16 *)0x0480802c)
-#define WIFI_OWN_MAC_REGISTERS ((u16 *)0x04808018)
-#define WIFI_BSSID_REGISTERS ((u16 *)0x04808020) /* GBATEK */
-#define WIFI_MAC_RUN (*(volatile u16 *)0x04808004)
-#define WIFI_IRQ_PENDING_FLAGS (*(volatile u16 *)0x04808010)
-#define WIFI_IRQ_ENABLE_MASK (*(volatile u16 *)0x04808012)
-#define WIFI_MAC_FORCE_POWER (*(volatile u16 *)0x04808040)
-#define WIFI_TX_LOC1_FRAME_ADDR (*(volatile u16 *)0x048080a0)
-#define WIFI_TX_REQUEST_CLEAR (*(volatile u16 *)0x048080ac)
-#define WIFI_TX_REQUEST_RAISE (*(volatile u16 *)0x048080ae)
-#define WIFI_TX_HEADER_CONTROL (*(volatile u16 *)0x04808194)
-#define WIFI_TEST_TX_CONTROL (*(volatile u16 *)0x048081a0)
-#define WIFI_TEST_TX_PATTERN (*(volatile u16 *)0x048081a2)
-#define WIFI_TEST_TX_RATE (*(volatile u16 *)0x048081a4)
+#define WIFI_TX_NEXT_POLL_ANSWER (*(volatile u16*)0x04808094)
+#define WIFI_POST_BEACON_TIMER (*(volatile u16*)0x04808134)
+#define WIFI_MAC_MODE_AND_WEP (*(volatile u16*)0x04808006)
+#define WIFI_MAC_RETRY_LIMIT (*(volatile u16*)0x0480802c)
+#define WIFI_OWN_MAC_REGISTERS ((u16*)0x04808018)
+#define WIFI_BSSID_REGISTERS ((u16*)0x04808020) /* GBATEK */
+#define WIFI_MAC_RUN (*(volatile u16*)0x04808004)
+#define WIFI_IRQ_PENDING_FLAGS (*(volatile u16*)0x04808010)
+#define WIFI_IRQ_ENABLE_MASK (*(volatile u16*)0x04808012)
+#define WIFI_MAC_FORCE_POWER (*(volatile u16*)0x04808040)
+#define WIFI_TX_LOC1_FRAME_ADDR (*(volatile u16*)0x048080a0)
+#define WIFI_TX_REQUEST_CLEAR (*(volatile u16*)0x048080ac)
+#define WIFI_TX_REQUEST_RAISE (*(volatile u16*)0x048080ae)
+#define WIFI_TX_HEADER_CONTROL (*(volatile u16*)0x04808194)
+#define WIFI_TEST_TX_CONTROL (*(volatile u16*)0x048081a0)
+#define WIFI_TEST_TX_PATTERN (*(volatile u16*)0x048081a2)
+#define WIFI_TEST_TX_RATE (*(volatile u16*)0x048081a4)
 
 // Wireless RAM, as halfwords.
-#define WIFI_PACKET_RAM ((volatile u16 *)0x04804000)
+#define WIFI_PACKET_RAM ((volatile u16*)0x04804000)
 #define WIFI_PACKET_RAM_BYTES 0x2000
 
 /* WlState.unk_12 bits set by the init self-tests. */
@@ -1213,138 +1232,140 @@ typedef struct WlWork {
 /* WlState.unk_d8 (0x20 bytes) as WifiTask_BeginShutdown reads it: a halfword at 0 and
    a pointer at 0x1c. */
 typedef struct Unk_arm7_027c7f84 {
-    u8 pad_00[4];
-    u16 unk_04;
+  u8 pad_00[4];
+  u16 unk_04;
 } Unk_arm7_027c7f84;
 
 typedef struct WlStateD8 {
-    u16 unk_00;
-    u8 pad_02[0x1a];
-    Unk_arm7_027c7f84 *unk_1c;
+  u16 unk_00;
+  u8 pad_02[0x1a];
+  Unk_arm7_027c7f84* unk_1c;
 } WlStateD8;
 
-#define WIFI_JOB_AREA_OF(work) ((WlStateD8 *)(work)->state.unk_d8)
+#define WIFI_JOB_AREA_OF(work) ((WlStateD8*)(work)->state.unk_d8)
 
-#define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
-#define WIFI_ACTIVE_JOB_OF(work) ((WlMlme *)(work)->state.unk_d8)
+#define WIFI_LINK_VIEW_OF(work) ((WlLink*)(work)->state.pad_18)
+#define WIFI_ACTIVE_JOB_OF(work) ((WlMlme*)(work)->state.unk_d8)
 
 // Third view of the work area, starting at work offset 0x2f0 (the station
 // table), as some functions address it.
 typedef struct WlStateView {
-    u8 pad_00[8];
-    u16 macAddress[3];
-    u16 unk_2fe;
-    WlState state;
+  u8 pad_00[8];
+  u16 macAddress[3];
+  u16 unk_2fe;
+  WlState state;
 } WlStateView;
 
-#define WIFI_FROM_STATION_TABLE_OF(work) ((WlStateView *)&(work)->limits.unk_f0)
+#define WIFI_FROM_STATION_TABLE_OF(work) ((WlStateView*)&(work)->limits.unk_f0)
 
 // View from work offset 0x150 (the buffer allocator), as WifiTx_EnqueueHostData
 // addresses its buffer lists.
 typedef struct WlBufferLists {
-    WlBufferAllocator allocator;
-    WlBufferList unk_15c;
-    WlBufferList txQueues[2]; /* WlWork.txQueues */
-    WlBufferList multicastQueue; /* WlWork.multicastQueue */
-    u8 pad_3c[0x84 - 0x3c];
-    WlBufferList inbox;
+  WlBufferAllocator allocator;
+  WlBufferList unk_15c;
+  WlBufferList txQueues[2];    /* WlWork.txQueues */
+  WlBufferList multicastQueue; /* WlWork.multicastQueue */
+  u8 pad_3c[0x84 - 0x3c];
+  WlBufferList inbox;
 } WlBufferLists;
 
-#define WIFI_LISTS_VIEW_OF(work) ((WlBufferLists *)&(work)->allocator)
+#define WIFI_LISTS_VIEW_OF(work) ((WlBufferLists*)&(work)->allocator)
 
 // Buffer of MP child replies: entries of entrySize bytes from 0x1a, one for
 // each bit set in WlTxSlotView.unk_98.
 typedef struct WlMpChildEntry {
-    u8 pad_00[6];
-    u16 unk_06;
+  u8 pad_00[6];
+  u16 unk_06;
 } WlMpChildEntry;
 
 typedef struct WlMpBuffer {
-    u8 pad_00[0x16];
-    u16 entrySize;
-    u16 unk_18;
-    u8 entries[1];
+  u8 pad_00[0x16];
+  u16 entrySize;
+  u16 unk_18;
+  u8 entries[1];
 } WlMpBuffer;
 
 // View of work offset 0x400 on, as the interrupt handlers and WifiCmd_ArmMpReply
 // address it: the TX slots as WlMpReplySlot entries (WlState.mpReplySlots),
 // then the fields after them. WlTxSlots lays out the same bytes.
 typedef struct WlTxSlotView {
-    WlMpReplySlot txSlots[4]; /* [3]: the MP command; its frame's unk_02 holds one bit per child */
-    WlMpReplySlot slots[2];
-    u8 pad_78[0x80 - 0x78];
-    WlTxFrame *txFrame;  /* WlState.txFrame */
-    u8 pad_84[0x8c - 0x84];
-    u32 unk_8c;
-    WlMpBuffer *mpBuffer;
-    u8 pad_94[0x98 - 0x94];
-    u16 unk_98;          /* one bit per child with an entry in mpBuffer */
-    u8 pad_9a[0x9e - 0x9a];
-    u16 unk_9e;
-    u8 pad_a0[0xaa - 0xa0];
-    u16 unk_aa;
-    u16 unk_ac;
-    u16 unk_ae;
-    u16 txTimeouts;      /* TX slot frames dropped by WifiIrq_BeaconSent */
+  WlMpReplySlot txSlots
+      [4]; /* [3]: the MP command; its frame's unk_02 holds one bit per child */
+  WlMpReplySlot slots[2];
+  u8 pad_78[0x80 - 0x78];
+  WlTxFrame* txFrame; /* WlState.txFrame */
+  u8 pad_84[0x8c - 0x84];
+  u32 unk_8c;
+  WlMpBuffer* mpBuffer;
+  u8 pad_94[0x98 - 0x94];
+  u16 unk_98; /* one bit per child with an entry in mpBuffer */
+  u8 pad_9a[0x9e - 0x9a];
+  u16 unk_9e;
+  u8 pad_a0[0xaa - 0xa0];
+  u16 unk_aa;
+  u16 unk_ac;
+  u16 unk_ae;
+  u16 txTimeouts; /* TX slot frames dropped by WifiIrq_BeaconSent */
 } WlTxSlotView;
 
-#define WIFI_TX_SLOT_RECORDS_OF(work) ((WlTxSlotView *)((u8 *)(work) + 0x400))
+#define WIFI_TX_SLOT_RECORDS_OF(work) ((WlTxSlotView*)((u8*)(work) + 0x400))
 
 /* Work offset 0x400 on: all seven TX slots, then the buffer the CMD slot
    sends. It runs past WlState. */
 typedef struct WlTxSlots {
-    WlTxSlot slot[7];
-    u8 pad_8c[4];
-    WlBuffer *cmdBuffer;
-    /* mpChildTime to mpPollBitmapSaved, except mpExpected and mpReceived: the
+  WlTxSlot slot[7];
+  u8 pad_8c[4];
+  WlBuffer* cmdBuffer;
+  /* mpChildTime to mpPollBitmapSaved, except mpExpected and mpReceived: the
        last WlMpRequest, for fields a resumed request leaves out. */
-    u16 mpChildTime;
-    u16 mpSendTime;
-    u16 mpExpected; /* bit n: a reply from AID n is expected */
-    u16 mpReceived; /* bit n: the reply from AID n came in */
-    u16 mpDataLength;
-    u16 mpUnk12;
-    u16 mpPollBitmapSaved; /* what a resumed request without bit 2 polls */
-    u16 aidBit;       /* WlWork.aidBit */
-    u16 unk_a4;       /* 0xffff after a session start */
-    u16 savedMpReply; /* WlWork.savedMpReply */
-    u8 pad_a8[0xb0 - 0xa8];
-    u16 txTimeouts;   /* WlTxSlotView.txTimeouts */
+  u16 mpChildTime;
+  u16 mpSendTime;
+  u16 mpExpected; /* bit n: a reply from AID n is expected */
+  u16 mpReceived; /* bit n: the reply from AID n came in */
+  u16 mpDataLength;
+  u16 mpUnk12;
+  u16 mpPollBitmapSaved; /* what a resumed request without bit 2 polls */
+  u16 aidBit;            /* WlWork.aidBit */
+  u16 unk_a4;            /* 0xffff after a session start */
+  u16 savedMpReply;      /* WlWork.savedMpReply */
+  u8 pad_a8[0xb0 - 0xa8];
+  u16 txTimeouts; /* WlTxSlotView.txTimeouts */
 } WlTxSlots;
 
 /* One reply slot in a WlMpCommand, filled from a received MP reply. */
 typedef struct WlMpReplyEntry {
-    u16 length;  /* body bytes; data holds them */
-    u8 rate;     /* low byte of WlRxFrame.rate */
-    u8 rssi;     /* low byte of WlRxFrame.unk_12 */
-    u8 pad_04[4];
-    u8 data[1];
+  u16 length; /* body bytes; data holds them */
+  u8 rate;    /* low byte of WlRxFrame.rate */
+  u8 rssi;    /* low byte of WlRxFrame.unk_12 */
+  u8 pad_04[4];
+  u8 data[1];
 } WlMpReplyEntry;
 
 /* The body of the host buffer the CMD slot sends (an MP poll), with room
    for the replies after it: one slot of replySize bytes for each expected
    AID from 1 up, in AID order. */
 typedef struct WlMpPoll {
-    u16 pendingAids; /* bit n: no reply from AID n yet */
-    u16 unk_02;      /* pendingAids ^ WlRamFrame.unk_02 once the poll was sent */
-    u8 pad_04[2];
-    u16 replySize;   /* bytes per reply slot, WlMpReplyEntry header included */
-    u8 pad_08[2];
-    u8 replies[1];
+  u16 pendingAids; /* bit n: no reply from AID n yet */
+  u16 unk_02;      /* pendingAids ^ WlRamFrame.unk_02 once the poll was sent */
+  u8 pad_04[2];
+  u16 replySize; /* bytes per reply slot, WlMpReplyEntry header included */
+  u8 pad_08[2];
+  u8 replies[1];
 } WlMpPoll;
 
 typedef struct WlMpCommand {
-    WlBuffer header;
-    u16 command;
-    u16 length;
-    WlMpPoll poll;
+  WlBuffer header;
+  u16 command;
+  u16 length;
+  WlMpPoll poll;
 } WlMpCommand;
 
-#define WIFI_TX_LOCATIONS_OF(work) ((WlTxSlots *)(work)->state.pad_100)
+#define WIFI_TX_LOCATIONS_OF(work) ((WlTxSlots*)(work)->state.pad_100)
 /* One slot, its offset from work in one constant (as some code adds it). */
-#define WIFI_TX_LOCATION_OF(work, n) ((WlTxSlot *)&(work)->state.pad_100[(n) * sizeof(WlTxSlot)])
+#define WIFI_TX_LOCATION_OF(work, n) \
+  ((WlTxSlot*)&(work)->state.pad_100[(n) * sizeof(WlTxSlot)])
 /* The beacon slot on its own, from WlState.unk_178. */
-#define WIFI_BEACON_TX_SLOT_OF(work) ((WlTxSlot *)&(work)->state.unk_178)
+#define WIFI_BEACON_TX_SLOT_OF(work) ((WlTxSlot*)&(work)->state.unk_178)
 
 /* TX queues 0-2 in a row: txQueues[0], txQueues[1], multicastQueue. */
 #define WIFI_SEND_QUEUE_OF(work, n) (&(work)->txQueues[0] + (n))
@@ -1352,162 +1373,168 @@ typedef struct WlMpCommand {
 #define WIFI_SEND_QUEUE_GROUP 2
 
 /* The request buffer of a queued frame (frame sits 16 bytes in). */
-#define WIFI_HOST_TX_REQUEST_OF(frame) ((WlTxRequest *)((u8 *)(frame) - 16))
+#define WIFI_HOST_TX_REQUEST_OF(frame) ((WlTxRequest*)((u8*)(frame) - 16))
 
-#define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
+#define WIFI_DRIVER_STATE (*(WlWork**)0x0380fff4)
 /* Halfword WL copies into the Nintendo beacon element after WlState.unk_10. */
-#define WIFI_SHARED_GAME_WORD (*(u16 *)0x0380fff0)
+#define WIFI_SHARED_GAME_WORD (*(u16*)0x0380fff0)
 
 /* WlState from 0x18 on as a block of its own: some code addresses these
    fields from a pointer to 0x18, so the original nests a struct there.
    ssidLength is WlState.unk_36, ssid is WlState.words, aid is WlState.aid. */
 typedef struct WlParams {
-    u8 pad_00[0x1e];
-    u16 ssidLength;
-    u8 ssid[32];
-    u8 ssidMask[32]; /* a set bit matches any SSID bit */
-    u8 pad_60[0xa];
-    u16 aid;
-    u8 pad_6c[0x1c];
-    u16 unk_88;
-    u8 pad_8a[0x12];
-    u8 *unk_9c;  /* buffer of up to 129 bytes */
-    u16 unk_a0;  /* length stored with unk_9c */
-    u16 unk_a2;
-    u16 unk_a4;
+  u8 pad_00[0x1e];
+  u16 ssidLength;
+  u8 ssid[32];
+  u8 ssidMask[32]; /* a set bit matches any SSID bit */
+  u8 pad_60[0xa];
+  u16 aid;
+  u8 pad_6c[0x1c];
+  u16 unk_88;
+  u8 pad_8a[0x12];
+  u8* unk_9c; /* buffer of up to 129 bytes */
+  u16 unk_a0; /* length stored with unk_9c */
+  u16 unk_a2;
+  u16 unk_a4;
 } WlParams;
 
 /* 0x318: offsetof(WlWork, state) + 0x18, written as one constant so the
    compiler adds it in one step as the original does. */
-#define WIFI_SETTINGS_BLOCK_OF(work) ((WlParams *)((u8 *)(work) + 0x318))
+#define WIFI_SETTINGS_BLOCK_OF(work) ((WlParams*)((u8*)(work) + 0x318))
 
 #define WIFI_SSID_LONGEST 32
 
 /* A message from the driver to the host: command, payload length in
    halfwords, then the payload. */
 typedef struct WlIndication {
-    WlBuffer buffer;
-    u16 command;
-    u16 length;
-    union {
-        struct {
-            u8 mac[6];
-            u16 value;
-            u16 ssidLength;
-            u8 ssid[WIFI_SSID_LONGEST];
-        } peer; /* commands 0x84-0x88; 0x8b has the MAC only; the SSID only in 0x86 and 0x87 */
-        struct {
-            u8 pad_10[6];
-            u16 dataLength;
-            u8 pad_18[6];
-            u8 unk_1e;
-            u8 unk_1f;
-            u8 pad_20[0xe];
-            u8 mac[6];
-            u8 pad_34[8];
-            u8 data[1];
-        } ind8d;
-        u16 events; /* command 0x186 */
-    };
+  WlBuffer buffer;
+  u16 command;
+  u16 length;
+  union {
+    struct {
+      u8 mac[6];
+      u16 value;
+      u16 ssidLength;
+      u8 ssid[WIFI_SSID_LONGEST];
+    } peer; /* commands 0x84-0x88; 0x8b has the MAC only; the SSID only in 0x86 and 0x87 */
+    struct {
+      u8 pad_10[6];
+      u16 dataLength;
+      u8 pad_18[6];
+      u8 unk_1e;
+      u8 unk_1f;
+      u8 pad_20[0xe];
+      u8 mac[6];
+      u8 pad_34[8];
+      u8 data[1];
+    } ind8d;
+    u16 events; /* command 0x186 */
+  };
 } WlIndication;
 
 typedef struct Unk_027cb9e4 {
-    u8 pad_00[0xe];
-    u16 unk_0e;
-    u8 pad_10[2];
-    u16 unk_12;
-    u8 pad_14[0xa];
-    u8 mac[6];
+  u8 pad_00[0xe];
+  u16 unk_0e;
+  u8 pad_10[2];
+  u16 unk_12;
+  u8 pad_14[0xa];
+  u8 mac[6];
 } Unk_027cb9e4;
 
 /* Wireless hardware registers (names from GBATEK). */
-#define REG_W_BB_BUSY   (*(volatile u16 *)0x0480815e) /* bit 0: baseband serial transfer busy */
-#define REG_W_RF_PINS   (*(volatile u16 *)0x0480819c)
+#define REG_W_BB_BUSY \
+  (*(volatile u16*)0x0480815e) /* bit 0: baseband serial transfer busy */
+#define REG_W_RF_PINS (*(volatile u16*)0x0480819c)
 #define W_RF_PINS_CARRIER_SENSE 0x0001
-#define W_RF_PINS_RX_ON         0x0080
-#define REG_W_RF_STATUS (*(volatile u16 *)0x04808214)
-#define REG_W_RANDOM    (*(volatile u16 *)0x04808044) /* hardware random number */
+#define W_RF_PINS_RX_ON 0x0080
+#define REG_W_RF_STATUS (*(volatile u16*)0x04808214)
+#define REG_W_RANDOM (*(volatile u16*)0x04808044) /* hardware random number */
 
 /* Wi-Fi transmit request registers: writing a bit clears or sets that request. */
-#define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
-#define REG_W_TXREQ_SET (*(volatile u16 *)0x048080ae)
+#define REG_W_TXREQ_RESET (*(volatile u16*)0x048080ac)
+#define REG_W_TXREQ_SET (*(volatile u16*)0x048080ae)
 #define W_TXREQ_LOC1 0x1
 #define W_TXREQ_CMD 0x2
 #define W_TXREQ_LOC2 0x4
 #define W_TXREQ_LOC3 0x8
 /* TX locations: WIFI_PACKET_RAM halfword offset of a frame, bit 15 enables it. */
-#define REG_W_TXBUF_BEACON (*(volatile u16 *)0x04808080)
-#define REG_W_TXBUF_LOC3 (*(volatile u16 *)0x048080a8)
+#define REG_W_TXBUF_BEACON (*(volatile u16*)0x04808080)
+#define REG_W_TXBUF_LOC3 (*(volatile u16*)0x048080a8)
 /* LOC1-3 in a row, one per TX slot 0-2 (4 bytes apart). */
-#define REG_W_TXBUF_LOC(slot) ((volatile u16 *)(0x048080a0 + (slot) * 4))
+#define REG_W_TXBUF_LOC(slot) ((volatile u16*)(0x048080a0 + (slot) * 4))
 #define W_TXBUF_ENABLE 0x8000
 /* Writing a bit stops that TX location: the W_TXREQ_* bits, and the reply slots. */
-#define REG_W_TXBUF_RESET (*(volatile u16 *)0x048080b4)
+#define REG_W_TXBUF_RESET (*(volatile u16*)0x048080b4)
 #define W_TXBUF_RESET_REPLY2 0x40
 #define W_TXBUF_RESET_REPLY1 0x80
 /* Wi-Fi RF serial status: bit 0 set while a transfer to the RF chip runs. */
-#define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
+#define REG_W_RF_BUSY (*(volatile u16*)0x04808180)
 /* Wi-Fi WEP engine control: bit 15 enables it. */
-#define REG_W_WEP_CNT (*(volatile u16 *)0x04808032)
+#define REG_W_WEP_CNT (*(volatile u16*)0x04808032)
 /* Wi-Fi receive buffer registers (GBATEK names). */
-#define REG_W_RXCNT         (*(volatile u16 *)0x04808030)
-#define REG_W_RXBUF_BEGIN   (*(volatile u16 *)0x04808050)
-#define REG_W_RXBUF_END     (*(volatile u16 *)0x04808052)
-#define REG_W_RXBUF_WRCSR   (*(volatile u16 *)0x04808054) /* write cursor, in halfwords */
-#define REG_W_RXBUF_WR_ADDR (*(volatile u16 *)0x04808056)
-#define REG_W_RXBUF_READCSR (*(volatile u16 *)0x0480805a)
-#define REG_W_RXBUF_GAP     (*(volatile u16 *)0x04808062)
-#define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
-#define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
+#define REG_W_RXCNT (*(volatile u16*)0x04808030)
+#define REG_W_RXBUF_BEGIN (*(volatile u16*)0x04808050)
+#define REG_W_RXBUF_END (*(volatile u16*)0x04808052)
+#define REG_W_RXBUF_WRCSR \
+  (*(volatile u16*)0x04808054) /* write cursor, in halfwords */
+#define REG_W_RXBUF_WR_ADDR (*(volatile u16*)0x04808056)
+#define REG_W_RXBUF_READCSR (*(volatile u16*)0x0480805a)
+#define REG_W_RXBUF_GAP (*(volatile u16*)0x04808062)
+#define REG_W_TXREQ_READ (*(volatile u16*)0x048080b0)
+#define REG_W_RXSTAT_INC_IF (*(volatile u16*)0x048081a8)
 /* Wi-Fi transmit status; bits 8-11 tell which frame finished. */
-#define REG_W_TXSTAT (*(volatile u16 *)0x048080b8)
-#define W_TXSTAT_KIND      0x0f00
-#define W_TXSTAT_LOC3      0x0300
-#define W_TXSTAT_MP_CMD    0x0800 /* the MP command went out */
-#define W_TXSTAT_MP_REPLY  0x0b00 /* the MP reply window ended */
-#define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
-#define REG_W_TXBUF_REPLY1  (*(volatile u16 *)0x04808094)
-#define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */
-#define W_RXCNT_COPY_REPLY  0x80 /* REG_W_RXCNT: copy REPLY1 into REPLY2 */
-#define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
-#define REG_W_US_COUNT1     (*(volatile u16 *)0x048080fa)
-#define REG_W_US_COUNT2     (*(volatile u16 *)0x048080fc)
-#define REG_W_US_COUNT3     (*(volatile u16 *)0x048080fe)
+#define REG_W_TXSTAT (*(volatile u16*)0x048080b8)
+#define W_TXSTAT_KIND 0x0f00
+#define W_TXSTAT_LOC3 0x0300
+#define W_TXSTAT_MP_CMD 0x0800   /* the MP command went out */
+#define W_TXSTAT_MP_REPLY 0x0b00 /* the MP reply window ended */
+#define REG_W_RXTX_ADDR \
+  (*(volatile u16*)0x04808268) /* halfword the hardware reads or writes now */
+#define REG_W_TXBUF_REPLY1 (*(volatile u16*)0x04808094)
+#define REG_W_TXBUF_REPLY2 \
+  (*(volatile u16*)0x04808098)  /* MP reply frame being sent */
+#define W_RXCNT_COPY_REPLY 0x80 /* REG_W_RXCNT: copy REPLY1 into REPLY2 */
+#define REG_W_US_COUNT0 \
+  (*(volatile u16*)0x048080f8) /* microsecond counter, low half */
+#define REG_W_US_COUNT1 (*(volatile u16*)0x048080fa)
+#define REG_W_US_COUNT2 (*(volatile u16*)0x048080fc)
+#define REG_W_US_COUNT3 (*(volatile u16*)0x048080fe)
 /* Microsecond compare (bit 0 of COMPARE0 enables it) and the CFP time left
    from the CF parameter set. Names from GBATEK. */
-#define REG_W_US_COMPARE0 (*(volatile u16 *)0x048080f0)
-#define REG_W_US_COMPARE1 (*(volatile u16 *)0x048080f2)
-#define REG_W_US_COMPARE2 (*(volatile u16 *)0x048080f4)
-#define REG_W_US_COMPARE3 (*(volatile u16 *)0x048080f6)
-#define REG_W_CONTENTFREE (*(volatile u16 *)0x0480810c)
-#define REG_W_TX_SEQNO      (*(volatile u16 *)0x04808210) /* sequence number of the last frame sent */
+#define REG_W_US_COMPARE0 (*(volatile u16*)0x048080f0)
+#define REG_W_US_COMPARE1 (*(volatile u16*)0x048080f2)
+#define REG_W_US_COMPARE2 (*(volatile u16*)0x048080f4)
+#define REG_W_US_COMPARE3 (*(volatile u16*)0x048080f6)
+#define REG_W_CONTENTFREE (*(volatile u16*)0x0480810c)
+#define REG_W_TX_SEQNO \
+  (*(volatile u16*)0x04808210) /* sequence number of the last frame sent */
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */
-#define W_IRQ_RX_DONE        0x0001
-#define W_IRQ_TX_DONE        0x0002
-#define W_IRQ_RX_COUNT       0x0004 /* a receive event counter went up */
-#define W_IRQ_TX_COUNT       0x0008 /* a transmit error counter went up */
+#define W_IRQ_RX_DONE 0x0001
+#define W_IRQ_TX_DONE 0x0002
+#define W_IRQ_RX_COUNT 0x0004       /* a receive event counter went up */
+#define W_IRQ_TX_COUNT 0x0008       /* a transmit error counter went up */
 #define W_IRQ_COUNT_OVERFLOW 0x0030 /* RX and TX counters half full */
-#define W_IRQ_RX_START       0x0040
-#define W_IRQ_TX_START       0x0080
-#define W_IRQ_RF_WAKEUP      0x0800
-#define W_IRQ_MP_END         0x1000 /* multiplay command finished */
-#define W_IRQ_POST_BEACON    0x2000
-#define W_IRQ_BEACON         0x4000
-#define W_IRQ_PRE_BEACON     0x8000
+#define W_IRQ_RX_START 0x0040
+#define W_IRQ_TX_START 0x0080
+#define W_IRQ_RF_WAKEUP 0x0800
+#define W_IRQ_MP_END 0x1000 /* multiplay command finished */
+#define W_IRQ_POST_BEACON 0x2000
+#define W_IRQ_BEACON 0x4000
+#define W_IRQ_PRE_BEACON 0x8000
 
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000
 
-WlStation *WifiStation_Entry(u32 index);
+WlStation* WifiStation_Entry(u32 index);
 
 /* Getters and setters for one WlStation field each. */
 u16 WifiStation_PendingTxOf(u32 station);
 u16 WifiStation_AssocIdOf(u32 station);
 u16 WifiStation_LastSeqOf(u32 station);
 u16 WifiStation_ChallengeSeedOf(u32 station);
-u16 *WifiStation_MacOf(u32 station);
+u16* WifiStation_MacOf(u32 station);
 u16 WifiStation_StateOf(u32 station);
 u16 WifiStation_SendRateOf(u32 station); /* WIFI_RATE_CODE_* from rates bit 1 */
 void WifiStation_StoreChallengeSeed(u32 station, u32 challengeSeed);
@@ -1533,52 +1560,53 @@ extern u16 gWlBroadcastAddress[3];
  * address as a u32, unk_f6 the number of entries (entry 0 included).
  */
 typedef struct WlStationTable {
-    WlStation *stations;
-    u16 maxCount;
-    u16 count;
+  WlStation* stations;
+  u16 maxCount;
+  u16 count;
 } WlStationTable;
 
-#define WIFI_PEER_TABLE_INFO ((WlStationTable *)&WIFI_DRIVER_STATE->limits.unk_f0)
+#define WIFI_PEER_TABLE_INFO \
+  ((WlStationTable*)&WIFI_DRIVER_STATE->limits.unk_f0)
 #define WIFI_PEER_ARRAY (WIFI_PEER_TABLE_INFO->stations)
 
 /* Work offsets 0x2f0-0x317 seen as one struct (Wifi_ClearSessionArea clears them in
    one go); func_arm7_027cc97c reaches phase and macAddress through it. */
 typedef struct WlHead {
-    WlStationTable stationTable;
-    u16 macAddress[3];   /* WlWork.macAddress */
-    u16 unk_0e;
-    u16 unk_10;
-    u16 phase;           /* WlState.phase */
-    u8 pad_14[8];
-    u16 unk_1c;                    /* WlState.unk_0c */
-    WlFlags flags;                 /* WlState.flags */
-    u16 unk_20;                    /* WlState.unk_10 */
+  WlStationTable stationTable;
+  u16 macAddress[3]; /* WlWork.macAddress */
+  u16 unk_0e;
+  u16 unk_10;
+  u16 phase; /* WlState.phase */
+  u8 pad_14[8];
+  u16 unk_1c;    /* WlState.unk_0c */
+  WlFlags flags; /* WlState.flags */
+  u16 unk_20;    /* WlState.unk_10 */
 } WlHead;
 
-#define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
+#define WIFI_SESSION_HEAD_OF(work) ((WlHead*)&(work)->limits.unk_f0)
 
 typedef struct WlAuthenticateReply {
-    u16 unk_00;
-    u16 status;
-    u16 unk_04;
-    u16 unk_06;
-    u16 mac[3];
-    u16 algorithm;
+  u16 unk_00;
+  u16 status;
+  u16 unk_04;
+  u16 unk_06;
+  u16 mac[3];
+  u16 algorithm;
 } WlAuthenticateReply;
 
 /* Request to join the BSS it describes (fields as in a beacon). */
 typedef struct WlJoinRequest {
-    u8 pad_00[0x10];
-    u16 timeoutMs;      /* up to 2000 */
-    u8 pad_12[6];
-    u16 bssid[3];
-    u16 ssidLength;     /* 1-32 */
-    u8 ssid[WIFI_SSID_LONGEST];
-    u16 capability;     /* 802.11 capability field */
-    WlRateSet rates;    /* bits 0-11 */
-    u16 beaconInterval; /* 10-1000 */
-    u16 dtimPeriod;     /* up to 255 */
-    u16 channel;        /* 0-15, and allowed in WlState.unk_00 */
+  u8 pad_00[0x10];
+  u16 timeoutMs; /* up to 2000 */
+  u8 pad_12[6];
+  u16 bssid[3];
+  u16 ssidLength; /* 1-32 */
+  u8 ssid[WIFI_SSID_LONGEST];
+  u16 capability;     /* 802.11 capability field */
+  WlRateSet rates;    /* bits 0-11 */
+  u16 beaconInterval; /* 10-1000 */
+  u16 dtimPeriod;     /* up to 255 */
+  u16 channel;        /* 0-15, and allowed in WlState.unk_00 */
 } WlJoinRequest;
 
 /* TX header rate codes, in 100 kbit/s. */
@@ -1586,17 +1614,20 @@ typedef struct WlJoinRequest {
 #define WIFI_RATE_CODE_2M 20
 
 // Wireless baseband (BB) and RF chip serial ports.
-#define IO_WIRELESS_BASEBAND_SELECT (*(volatile u16 *)0x04808158)   /* index | 0x5000 write, | 0x6000 read */
-#define IO_WIRELESS_BASEBAND_OUT (*(volatile u16 *)0x0480815a)
-#define IO_WIRELESS_BASEBAND_IN (*(volatile u16 *)0x0480815c)
-#define IO_WIRELESS_RADIO_WORD_HI (*(volatile u16 *)0x0480817c)  /* high half of the RF word */
-#define IO_WIRELESS_RADIO_WORD_LO (*(volatile u16 *)0x0480817e)  /* low half; writing DATA2 starts the transfer */
+#define IO_WIRELESS_BASEBAND_SELECT \
+  (*(volatile u16*)0x04808158) /* index | 0x5000 write, | 0x6000 read */
+#define IO_WIRELESS_BASEBAND_OUT (*(volatile u16*)0x0480815a)
+#define IO_WIRELESS_BASEBAND_IN (*(volatile u16*)0x0480815c)
+#define IO_WIRELESS_RADIO_WORD_HI \
+  (*(volatile u16*)0x0480817c) /* high half of the RF word */
+#define IO_WIRELESS_RADIO_WORD_LO \
+  (*(volatile u16*)0x0480817e) /* low half; writing DATA2 starts the transfer */
 // 8-bit statistic counters, two per halfword: 0x048081b0-0x048081c1 and 0x048081d0-0x048081df.
-#define IO_WIRELESS_TALLY_BYTES ((volatile u16 *)0x048081b0)
-#define IO_WIRELESS_STATION_ID_4BIT (*(volatile u16 *)0x04808028)
-#define IO_WIRELESS_STATION_ID (*(volatile u16 *)0x0480802a)
-#define WIFI_MAC_WAKE_CONTROL (*(volatile u16 *)0x04808038)
-#define WIFI_MAC_POWER_AUX (*(volatile u16 *)0x04808048)
+#define IO_WIRELESS_TALLY_BYTES ((volatile u16*)0x048081b0)
+#define IO_WIRELESS_STATION_ID_4BIT (*(volatile u16*)0x04808028)
+#define IO_WIRELESS_STATION_ID (*(volatile u16*)0x0480802a)
+#define WIFI_MAC_WAKE_CONTROL (*(volatile u16*)0x04808038)
+#define WIFI_MAC_POWER_AUX (*(volatile u16*)0x04808048)
 
 BOOL WifiRf_AwaitSerialIdle(void);
 // Returns 0 once the RF port is idle, 1 on timeout.
@@ -1607,35 +1638,36 @@ u16 WifiBaseband_Get(u32 index);
 // Nonzero when bit `bit` of WIFI_DRIVER_STATE->state.unk_00 is set.
 u32 WifiParam_ChannelAllowed(u32 bit);
 // a and b are 6-byte MAC addresses, read as three halfwords.
-BOOL WifiMac_Equal(const u16 *a, const u16 *b);
+BOOL WifiMac_Equal(const u16* a, const u16* b);
 void WifiStats_Accumulate(void);
 void WifiStats_Zero(void);
 void WifiLink_DropAssocId(void);
 void WifiLink_TakeAssocId(u16 aid);
-void WifiMac_CopyAddressPair(u16 *dest, const u16 *addr1, const u16 *addr2);
-void WifiMac_CopyAddressTriple(u16 *dest, const u16 *addr1, const u16 *addr2, const u16 *addr3);
+void WifiMac_CopyAddressPair(u16* dest, const u16* addr1, const u16* addr2);
+void WifiMac_CopyAddressTriple(u16* dest, const u16* addr1, const u16* addr2,
+                               const u16* addr3);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
-#define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
+#define WIFI_MAC_REGISTER(offset) (*(volatile u16*)(0x04808000 + (offset)))
 
 /* One entry of a register setup table: write value to WIFI_MAC_REGISTER(offset). */
 typedef struct WlRegValue {
-    u16 offset;
-    u16 value;
+  u16 offset;
+  u16 value;
 } WlRegValue;
 
 /* One entry of the register self-test table: the bits of WIFI_MAC_REGISTER(offset)
    that read back what was written. */
 typedef struct WlRegMask {
-    u16 offset;
-    u16 mask;
+  u16 offset;
+  u16 mask;
 } WlRegMask;
 
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
 /* p, moved back by the ring size once it reaches WIFI_RX_RING_LIMIT. */
-u16 *WifiRx_FoldRingPointer(u16 *p);
-void WifiRx_CopyFromRingWrapped(void *dest, const void *src, u32 size);
+u16* WifiRx_FoldRingPointer(u16* p);
+void WifiRx_CopyFromRingWrapped(void* dest, const void* src, u32 size);
 
 /*
  * 32-bit time to OS tick conversions. Ticks run at the
@@ -1647,36 +1679,39 @@ void WifiRx_CopyFromRingWrapped(void *dest, const void *src, u32 size);
 #endif
 
 void WifiTask_ThreadMain(void);
-void WifiHost_TakeInboxBuffer(void **message);
+void WifiHost_TakeInboxBuffer(void** message);
 void WifiTask_WaitForHost(void);
 void WifiTask_Schedule(int priority, int task);
 u16 WifiTask_PopNext(int priority);
-int WifiBufList_PushTail(WlBufferList *list, WlBuffer *buffer);
-int WifiBufList_PushTailIfLoose(WlBufferList *list, WlBuffer *buffer);
-int WifiBufList_Unlink(WlBufferList *list, WlBuffer *buffer);
-WlBuffer *WifiBuffer_New(WlBufferList *list, int size);
-int WifiBuffer_Release(WlBufferList *list, WlBuffer *buffer);
-int WifiBuffer_Transfer(WlBufferList *from, WlBufferList *to, WlBuffer *buffer);
-void WifiBuffer_GiveToHost(WlBufferList *list, WlBuffer *buffer);
-void WifiBufList_ReleaseAll(WlBufferList *list);
+int WifiBufList_PushTail(WlBufferList* list, WlBuffer* buffer);
+int WifiBufList_PushTailIfLoose(WlBufferList* list, WlBuffer* buffer);
+int WifiBufList_Unlink(WlBufferList* list, WlBuffer* buffer);
+WlBuffer* WifiBuffer_New(WlBufferList* list, int size);
+int WifiBuffer_Release(WlBufferList* list, WlBuffer* buffer);
+int WifiBuffer_Transfer(WlBufferList* from, WlBufferList* to, WlBuffer* buffer);
+void WifiBuffer_GiveToHost(WlBufferList* list, WlBuffer* buffer);
+void WifiBufList_ReleaseAll(WlBufferList* list);
 
 /* Event bits for WifiHost_RaiseEventBits. */
-#define WIFI_EVT_NOTE_DROPPED 0x1 /* an indication was dropped: no buffer left */
-#define WIFI_EVT_TX_BUILD_FAILED 0x2 /* a frame to send could not be built: no buffer left */
-#define WIFI_EVT_FRAGMENT_DROPPED 0x4 /* a fragmented frame was dropped: no buffer left */
+#define WIFI_EVT_NOTE_DROPPED \
+  0x1 /* an indication was dropped: no buffer left */
+#define WIFI_EVT_TX_BUILD_FAILED \
+  0x2 /* a frame to send could not be built: no buffer left */
+#define WIFI_EVT_FRAGMENT_DROPPED \
+  0x4 /* a fragmented frame was dropped: no buffer left */
 void WifiHost_RaiseEventBits(u16 events);
 int WifiBaseband_AwaitReady(void);
 void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
 void WifiRf_AwaitReceiverOn(void);
 void WifiTask_DrainOutbox(void);
-int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info);
+int WifiHost_TellBeaconHeard(Unk_027cb9e4* info);
 int WifiHost_TellBeaconSent(void);
-int WifiHost_TellBeaconLost(const u8 *mac);
-int WifiHost_TellDisassociated(const u8 *mac, u16 value);
-int WifiHost_TellReassociated(const u8 *mac, u16 value, const u8 *ssidElement);
-int WifiHost_TellAssociated(const u8 *mac, u16 value, const u8 *ssidElement);
-int WifiHost_TellDeauthenticated(const u8 *mac, u16 value);
-int WifiHost_TellAuthenticated(const u8 *mac, u16 value);
+int WifiHost_TellBeaconLost(const u8* mac);
+int WifiHost_TellDisassociated(const u8* mac, u16 value);
+int WifiHost_TellReassociated(const u8* mac, u16 value, const u8* ssidElement);
+int WifiHost_TellAssociated(const u8* mac, u16 value, const u8* ssidElement);
+int WifiHost_TellDeauthenticated(const u8* mac, u16 value);
+int WifiHost_TellAuthenticated(const u8* mac, u16 value);
 void WifiHost_ReturnCurrentRequest(void);
 void WifiRf_AwaitQuietAir(void);
 void WifiTx_DrainQueue(int queue, BOOL toHost);

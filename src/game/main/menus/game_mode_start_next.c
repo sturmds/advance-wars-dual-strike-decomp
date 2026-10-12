@@ -10,10 +10,9 @@ extern u32 gGameModeStartTableGroup[][2];
 
 /* Runs the start function of the game mode that the main menu picked
  * (gNextGameMode) and records its group. */
-void GameMode_StartNext(void)
-{
-    void (*start)(void) = gGameModeStartTable[gNextGameMode][0];
+void GameMode_StartNext(void) {
+  void (*start)(void) = gGameModeStartTable[gNextGameMode][0];
 
-    gPlayRecords.unk_10 = gGameModeStartTableGroup[gNextGameMode][0];
-    start();
+  gPlayRecords.unk_10 = gGameModeStartTableGroup[gNextGameMode][0];
+  start();
 }

@@ -9,16 +9,15 @@ int TabList_GetPageCount(int tab);
 void TabList_UpdateHelpText(void);
 
 /* Shows the previous page of the current tab, wrapping to the last page. */
-void TabList_PrevPage(MenuButton *button)
-{
-    int pageCount = TabList_GetPageCount(gMenuState.tab);
+void TabList_PrevPage(MenuButton* button) {
+  int pageCount = TabList_GetPageCount(gMenuState.tab);
 
-    if (gMenuState.pageOfTab[gMenuState.tab] == 0) {
-        gMenuState.pageOfTab[gMenuState.tab] = pageCount - 1;
-    } else {
-        gMenuState.pageOfTab[gMenuState.tab]--;
-    }
-    Sound_PlaySe(0x10002);
-    TabList_RebuildButtons();
-    TabList_UpdateHelpText();
+  if (gMenuState.pageOfTab[gMenuState.tab] == 0) {
+    gMenuState.pageOfTab[gMenuState.tab] = pageCount - 1;
+  } else {
+    gMenuState.pageOfTab[gMenuState.tab]--;
+  }
+  Sound_PlaySe(0x10002);
+  TabList_RebuildButtons();
+  TabList_UpdateHelpText();
 }

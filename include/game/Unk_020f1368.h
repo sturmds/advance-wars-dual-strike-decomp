@@ -5,8 +5,8 @@
 
 /* Passed to func_020f1368 (no direct callers; probably a task callback). */
 typedef struct Unk_020f1368 {
-    u8 pad_00[0x44];
-    s16 unk_44;
+  u8 pad_00[0x44];
+  s16 unk_44;
 } Unk_020f1368;
 
 #endif

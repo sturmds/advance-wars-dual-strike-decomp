@@ -19,39 +19,39 @@ extern IrqSlotArgAlias data_022a98c4[];
 
 /* Saved CPU registers of a thread. */
 typedef struct OSContext {
-    u32 cpsr;
-    u32 r[13];
-    u32 sp;
-    u32 lr;
-    u32 pcPlus4;
-    u32 spSvc;
-    u8 cpContext[0x1c];            /* 0x48: divider and square root unit state */
+  u32 cpsr;
+  u32 r[13];
+  u32 sp;
+  u32 lr;
+  u32 pcPlus4;
+  u32 spSvc;
+  u8 cpContext[0x1c]; /* 0x48: divider and square root unit state */
 } OSContext;
 
 struct OSThread {
-    OSContext context;
-    u32 state;
-    OSThread *next;
-    u32 id;
-    u32 priority;
-    void *profiler;
-    OSMutex *mutex;                /* the mutex this thread is waiting for */
-    OSMutexQueue mutexQueue;
-    u32 stackTop;                  /* lowest address of the stack */
-    u32 stackBottom;               /* one past its highest address */
-    u32 stackWarningOffset;
-    OSThreadQueue joinQueue;
+  OSContext context;
+  u32 state;
+  OSThread* next;
+  u32 id;
+  u32 priority;
+  void* profiler;
+  OSMutex* mutex; /* the mutex this thread is waiting for */
+  OSMutexQueue mutexQueue;
+  u32 stackTop;    /* lowest address of the stack */
+  u32 stackBottom; /* one past its highest address */
+  u32 stackWarningOffset;
+  OSThreadQueue joinQueue;
 };
 
-void OS_InitContext(OSContext *context, u32 pc, u32 sp);
+void OS_InitContext(OSContext* context, u32 pc, u32 sp);
 
 /* Data cache maintenance over a byte range. */
-void DC_FlushRange(const void *start, u32 size);
-void DC_InvalidateRange(void *start, u32 size);
-void DC_StoreRange(const void *start, u32 size);
+void DC_FlushRange(const void* start, u32 size);
+void DC_InvalidateRange(void* start, u32 size);
+void DC_StoreRange(const void* start, u32 size);
 
-u32 OS_GetThreadPriority(const OSThread *thread);
-BOOL OS_SetThreadPriority(OSThread *thread, u32 priority);
+u32 OS_GetThreadPriority(const OSThread* thread);
+BOOL OS_SetThreadPriority(OSThread* thread, u32 priority);
 
 /* Disables interrupts and halts the CPU for good. */
 void OS_Terminate(void);
@@ -72,7 +72,7 @@ OSIntrMode OS_DisableInterrupts_IrqAndFiq(void);
 OSIntrMode OS_RestoreInterrupts_IrqAndFiq(OSIntrMode state);
 
 /* Stores setData in *destp and returns what was there (swp). */
-u32 MI_SwapWord(u32 setData, volatile u32 *destp);
+u32 MI_SwapWord(u32 setData, volatile u32* destp);
 
 /*
  * Take and give back a lock word. ctrl, when given, runs while the lock
@@ -80,8 +80,10 @@ u32 MI_SwapWord(u32 setData, volatile u32 *destp);
  * lock once and returns the old lock flag (0 means it was free and is now
  * ours); unlock returns LOCK_NOT_OWNER if lockID is not the owner, else 0.
  */
-u32 OSi_DoTryLockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
-int OSi_DoUnlockByWord(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+u32 OSi_DoTryLockByWord(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
+                        BOOL disableFiq);
+int OSi_DoUnlockByWord(u16 lockID, OSLockWord* lockp, void (*ctrl)(void),
+                       BOOL disableFiq);
 
 /* Busy-waits about cycles CPU cycles. */
 void OS_SpinWait(u32 cycles);
@@ -99,12 +101,12 @@ void Reset_OnOsTagMessage(u32 tag, u32 data, int err);
 void OS_InitReset(void);
 
 /* Copies the console owner's profile out of the boot settings. */
-void OS_GetOwnerInfo(OSOwnerInfo *info);
+void OS_GetOwnerInfo(OSOwnerInfo* info);
 
 /* Nine VRAM banks (A to I) can each be locked by a lock ID. */
 #define VRAM_LOCKABLE_BANKS 9
 #define VRAM_ALL_BANK_BITS 0x1ff
-extern u32 gOsVramLockedBanks;   /* bit set = bank locked */
+extern u32 gOsVramLockedBanks; /* bit set = bank locked */
 extern u16 gOsVramLockIds[VRAM_LOCKABLE_BANKS];
 
 /* Releases the banks in the mask that lockID holds. */

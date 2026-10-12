@@ -5,17 +5,19 @@
 
 extern CampaignMapState gCampaignMapState;
 extern CampaignMission gCampaignMissions[];
-extern Unk_027c0280 *data_027c0280;
+extern Unk_027c0280* data_027c0280;
 extern TaskScriptCmd data_0215b470[];
 
 /* Starts the task of script data_0215b470 for the mission just played
  * (gCampaignMapState.playedMission). It gets side 0 and the mission's position on
  * the screen (map position minus the layer 3 scroll) in fromX and fromY. */
-void CampaignMap_StartPlayedMissionTask(void)
-{
-    CampaignMapTask *task = (CampaignMapTask *)Task_Create(data_0215b470, TASK_LIST(3));
+void CampaignMap_StartPlayedMissionTask(void) {
+  CampaignMapTask* task =
+      (CampaignMapTask*)Task_Create(data_0215b470, TASK_LIST(3));
 
-    task->side = 0;
-    task->fromX = gCampaignMissions[gCampaignMapState.playedMission].x - data_027c0280->bgScrollX[data_027c0280->layer3Bg];
-    task->fromY = gCampaignMissions[gCampaignMapState.playedMission].y - data_027c0280->bgScrollY[data_027c0280->layer3Bg];
+  task->side = 0;
+  task->fromX = gCampaignMissions[gCampaignMapState.playedMission].x -
+                data_027c0280->bgScrollX[data_027c0280->layer3Bg];
+  task->fromY = gCampaignMissions[gCampaignMapState.playedMission].y -
+                data_027c0280->bgScrollY[data_027c0280->layer3Bg];
 }

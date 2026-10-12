@@ -4,10 +4,9 @@
 
 /* NitroSystem NNS_SndPlayerSetVolume */
 
-void Sound_SetMusicVolume(int volume)
-{
-    if (gSoundReady == 0) {
-        return;
-    }
-    NNS_SndPlayerSetVolume(&gMusicHandle, volume);
+void Sound_SetMusicVolume(int volume) {
+  if (gSoundReady == 0) {
+    return;
+  }
+  NNS_SndPlayerSetVolume(&gMusicHandle, volume);
 }

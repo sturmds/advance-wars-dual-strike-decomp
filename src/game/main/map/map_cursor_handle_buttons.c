@@ -4,7 +4,7 @@
 #include "game/keypad.h"
 #include "game/map_unit.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern const EventScriptCommand gMapScrollScript[];
 
@@ -15,10 +15,10 @@ void func_020bc56c(void);
 void func_020d1414(void);
 void SceneMode_OnButtonX(void);
 int Map_GetDisplayTile(int x, int y);
-void SecondScreen_ShowCursorInfo(int tile, MapUnit *unit);
-MapUnit *CurrentPlayer_NextIdleUnit(void);
+void SecondScreen_ShowCursorInfo(int tile, MapUnit* unit);
+MapUnit* CurrentPlayer_NextIdleUnit(void);
 void func_020f5888(int x, int y);
-s16 ScriptSlot_Find(const EventScriptCommand *script);
+s16 ScriptSlot_Find(const EventScriptCommand* script);
 void ScreenConfig_RunActionHook(void);
 BOOL MapCursor_SelectTile(int x, int y, int a, int b);
 void MapCursor_ShowRange(int x, int y);
@@ -30,62 +30,63 @@ void MapCursor_ShowRange(int x, int y);
  * shows the cursor tile on the second screen, then L moves the cursor to
  * the unit CurrentPlayer_NextIdleUnit picks, A selects at the cursor (MapCursor_SelectTile)
  * and B runs MapCursor_ShowRange there. Returns TRUE when a button was handled. */
-BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX)
-{
-    u16 keys = gKeypad->pressed;
-    Unk_02080440_48 *game;
-    MapTiles *tiles;
-    int x;
-    int y;
-    MapUnit *unit;
+BOOL MapCursor_HandleButtons(BOOL allowR, BOOL allowX) {
+  u16 keys = gKeypad->pressed;
+  Unk_02080440_48* game;
+  MapTiles* tiles;
+  int x;
+  int y;
+  MapUnit* unit;
 
-    if (keys & PAD_BUTTON_START) {
-        func_020d1420();
-        return TRUE;
-    }
-    if (keys & PAD_BUTTON_SELECT) {
-        if (Map_IsCoSelectPhase()) {
-            func_020bc5c0();
-        } else {
-            func_020bc56c();
-        }
-        return TRUE;
-    }
-    if (allowR && (keys & PAD_BUTTON_R)) {
-        func_020d1414();
-        return TRUE;
-    }
-    if (allowX && (keys & PAD_BUTTON_X)) {
-        SceneMode_OnButtonX();
-        return TRUE;
-    }
-    game = GAME;
-    y = game->cursorY;
-    x = game->cursorX;
-    tiles = game->mapTiles;
-    SecondScreen_ShowCursorInfo(Map_GetDisplayTile(x, y), &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
-    if (gKeypad->pressed & PAD_BUTTON_L) {
-        unit = CurrentPlayer_NextIdleUnit();
-        if (unit != NULL) {
-            func_020f5888(unit->x, unit->y);
-            if (ScriptSlot_Find(gMapScrollScript) != -1) {
-                ScreenConfig_RunActionHook();
-            }
-            return TRUE;
-        }
-    }
-    if (gKeypad->pressed & PAD_BUTTON_A) {
-        if (Map_IsCoSelectPhase()) {
-            func_020bc5c0();
-            return TRUE;
-        }
-        if (MapCursor_SelectTile(GAME->cursorX, GAME->cursorY, 1, 1)) {
-            return TRUE;
-        }
-    }
-    if (!(gKeypad->pressed & PAD_BUTTON_B)) {
-        return FALSE;
-    }
-    MapCursor_ShowRange(GAME->cursorX, GAME->cursorY);
+  if (keys & PAD_BUTTON_START) {
+    func_020d1420();
     return TRUE;
+  }
+  if (keys & PAD_BUTTON_SELECT) {
+    if (Map_IsCoSelectPhase()) {
+      func_020bc5c0();
+    } else {
+      func_020bc56c();
+    }
+    return TRUE;
+  }
+  if (allowR && (keys & PAD_BUTTON_R)) {
+    func_020d1414();
+    return TRUE;
+  }
+  if (allowX && (keys & PAD_BUTTON_X)) {
+    SceneMode_OnButtonX();
+    return TRUE;
+  }
+  game = GAME;
+  y = game->cursorY;
+  x = game->cursorX;
+  tiles = game->mapTiles;
+  SecondScreen_ShowCursorInfo(
+      Map_GetDisplayTile(x, y),
+      &game->units[tiles->unitAt[x + tiles->rowStart[y]]]);
+  if (gKeypad->pressed & PAD_BUTTON_L) {
+    unit = CurrentPlayer_NextIdleUnit();
+    if (unit != NULL) {
+      func_020f5888(unit->x, unit->y);
+      if (ScriptSlot_Find(gMapScrollScript) != -1) {
+        ScreenConfig_RunActionHook();
+      }
+      return TRUE;
+    }
+  }
+  if (gKeypad->pressed & PAD_BUTTON_A) {
+    if (Map_IsCoSelectPhase()) {
+      func_020bc5c0();
+      return TRUE;
+    }
+    if (MapCursor_SelectTile(GAME->cursorX, GAME->cursorY, 1, 1)) {
+      return TRUE;
+    }
+  }
+  if (!(gKeypad->pressed & PAD_BUTTON_B)) {
+    return FALSE;
+  }
+  MapCursor_ShowRange(GAME->cursorX, GAME->cursorY);
+  return TRUE;
 }

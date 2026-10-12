@@ -3,13 +3,15 @@
 #include "game/unit_stats.h"
 #include "game/Unk_02080440.h"
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 
 /* data_027c027c->unk_48[data_027c0284], written so that the compiler loads
  * the index first, as the original does. */
-#define STATE (*(Unk_02080440_48 **)((u8 *)(data_027c0284 * sizeof(Unk_02080440_48 *)) + (u32)data_027c027c \
-                                     + (u32)&((Unk_02080440 *)0)->unk_48))
+#define STATE                                                             \
+  (*(Unk_02080440_48**)((u8*)(data_027c0284 * sizeof(Unk_02080440_48*)) + \
+                            (u32)data_027c027c + (u32) &                  \
+                        ((Unk_02080440*)0)->unk_48))
 
 int Ai_CountUnitsOfType(int type);
 int Unit_GetValuePerHp(int playerIndex, int unitType);
@@ -25,28 +27,28 @@ void AiTurn_QueueBuildAtSite(int index);
  * one Black Boat per three of them, the new one included (a ship count of
  * 2 is enough for the first). The name is a guess from the unit type.
  * Returns 1 when it queued an action. */
-BOOL AiTurn_TryBuildBlackBoat(void)
-{
-    Unk_02080440_48 *state;
-    int index;
-    int boats;
+BOOL AiTurn_TryBuildBlackBoat(void) {
+  Unk_02080440_48* state;
+  int index;
+  int boats;
 
-    if (AiProfile_HasBuildFlag(4) == 0) {
-        return 0;
-    }
-    state = STATE;
-    if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_BLACK_BOAT) * 10) > state->players[state->currentPlayer].funds) {
-        return 0;
-    }
-    index = AiSite_PickForBuild(3);
-    if (index == -1) {
-        return 0;
-    }
-    boats = Ai_CountUnitsOfType(UNIT_BLACK_BOAT);
-    if (Ai_CountArmedShips() + 1 < (boats + 1) * 3) {
-        return 0;
-    }
-    gUnitAction.target = UNIT_BLACK_BOAT;
-    AiTurn_QueueBuildAtSite(index);
-    return 1;
+  if (AiProfile_HasBuildFlag(4) == 0) {
+    return 0;
+  }
+  state = STATE;
+  if ((u32)(Unit_GetValuePerHp(state->currentPlayer, UNIT_BLACK_BOAT) * 10) >
+      state->players[state->currentPlayer].funds) {
+    return 0;
+  }
+  index = AiSite_PickForBuild(3);
+  if (index == -1) {
+    return 0;
+  }
+  boats = Ai_CountUnitsOfType(UNIT_BLACK_BOAT);
+  if (Ai_CountArmedShips() + 1 < (boats + 1) * 3) {
+    return 0;
+  }
+  gUnitAction.target = UNIT_BLACK_BOAT;
+  AiTurn_QueueBuildAtSite(index);
+  return 1;
 }

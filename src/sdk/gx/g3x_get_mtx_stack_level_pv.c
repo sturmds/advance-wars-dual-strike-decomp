@@ -3,11 +3,10 @@
 
 /* Stores the position/vector stack level (GXSTAT bits 8-12) in *level.
  * Returns -1 without storing when the stack has overflowed (bit 14). */
-int G3X_GetMtxStackLevelPV(int *level)
-{
-    if (*REG_GXSTAT & GXSTAT_MTX_STACK_ERROR) {
-        return -1;
-    }
-    *level = (*REG_GXSTAT & GXSTAT_PV_LEVEL) >> 8;
-    return 0;
+int G3X_GetMtxStackLevelPV(int* level) {
+  if (*REG_GXSTAT & GXSTAT_MTX_STACK_ERROR) {
+    return -1;
+  }
+  *level = (*REG_GXSTAT & GXSTAT_PV_LEVEL) >> 8;
+  return 0;
 }

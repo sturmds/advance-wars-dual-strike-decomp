@@ -2,7 +2,4 @@
 
 void Sound_StartFadeOutTask(int holdScript, int fadeLength);
 
-void func_020fcb08(int a)
-{
-    Sound_StartFadeOutTask(a, 2);
-}
+void func_020fcb08(int a) { Sound_StartFadeOutTask(a, 2); }

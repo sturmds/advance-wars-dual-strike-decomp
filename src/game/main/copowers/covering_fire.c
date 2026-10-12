@@ -6,6 +6,6 @@
 extern const TaskScriptCmd gCoveringFireScript[];
 
 /* Rachel's Super CO Power. */
-void CoveringFire(void *parent) {
-    Task_CreateChild(gCoveringFireScript, parent);
+void CoveringFire(void* parent) {
+  Task_CreateChild(gCoveringFireScript, parent);
 }

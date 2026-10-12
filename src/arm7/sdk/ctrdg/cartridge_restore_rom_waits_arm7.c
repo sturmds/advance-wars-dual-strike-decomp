@@ -2,10 +2,9 @@
 #include "sdk/ctrdg.h"
 #include "sdk/os_arm7.h"
 
-void Cartridge_RestoreRomWaits_Arm7(GbaSlotWaitStates *timing)
-{
-    REG_EXMEMCNT = (timing->romFirstAccess << GBA_SLOT_INITIAL_WAIT_POS)
-                 | (REG_EXMEMCNT & ~GBA_SLOT_INITIAL_WAIT_BITS);
-    REG_EXMEMCNT = (timing->romSecondAccess << GBA_SLOT_FOLLOWUP_WAIT_POS)
-                 | (REG_EXMEMCNT & ~GBA_SLOT_FOLLOWUP_WAIT_BIT);
+void Cartridge_RestoreRomWaits_Arm7(GbaSlotWaitStates* timing) {
+  REG_EXMEMCNT = (timing->romFirstAccess << GBA_SLOT_INITIAL_WAIT_POS) |
+                 (REG_EXMEMCNT & ~GBA_SLOT_INITIAL_WAIT_BITS);
+  REG_EXMEMCNT = (timing->romSecondAccess << GBA_SLOT_FOLLOWUP_WAIT_POS) |
+                 (REG_EXMEMCNT & ~GBA_SLOT_FOLLOWUP_WAIT_BIT);
 }

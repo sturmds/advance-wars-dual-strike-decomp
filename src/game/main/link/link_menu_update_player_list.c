@@ -6,13 +6,13 @@ int Wireless_GetState(void);
 int func_0207a120(void);
 int func_0207a0f8(void);
 int func_0207a0d0(void);
-void func_0207cec4(LinkWaitTask *task);
-void func_0207ceb8(LinkWaitTask *task);
-void func_0207ceac(LinkWaitTask *task);
-void LinkMenu_UpdateParent(LinkWaitTask *task);
-void LinkMenu_UpdateChild(LinkWaitTask *task);
+void func_0207cec4(LinkWaitTask* task);
+void func_0207ceb8(LinkWaitTask* task);
+void func_0207ceac(LinkWaitTask* task);
+void LinkMenu_UpdateParent(LinkWaitTask* task);
+void LinkMenu_UpdateChild(LinkWaitTask* task);
 void LinkMenu_HandlePressed(void);
-void LinkBanner_CreateWithText(LinkWaitTask *task, u32 textId);
+void LinkBanner_CreateWithText(LinkWaitTask* task, u32 textId);
 void func_0207c380(void);
 void LinkMenu_RestoreRowButtons(void);
 
@@ -22,45 +22,44 @@ void LinkMenu_RestoreRowButtons(void);
  * shows a banner with its message (text 0x48000000-0x48000002); all but the
  * second on the second view also remove the data_0215fee4 banner and restore
  * the row buttons. */
-void LinkMenu_UpdatePlayerList(LinkWaitTask *task)
-{
-    data_0215fed0->locked = 0;
-    switch (Wireless_GetState()) {
+void LinkMenu_UpdatePlayerList(LinkWaitTask* task) {
+  data_0215fed0->locked = 0;
+  switch (Wireless_GetState()) {
     case 0:
-        func_0207cec4(task);
-        break;
+      func_0207cec4(task);
+      break;
     case 3:
-        func_0207ceb8(task);
-        break;
+      func_0207ceb8(task);
+      break;
     case 2:
-        func_0207ceac(task);
-        break;
+      func_0207ceac(task);
+      break;
     case 4:
-        LinkMenu_UpdateParent(task);
-        break;
+      LinkMenu_UpdateParent(task);
+      break;
     case 5:
-        LinkMenu_UpdateChild(task);
-        break;
+      LinkMenu_UpdateChild(task);
+      break;
+  }
+  LinkMenu_HandlePressed();
+  task->waitFrames++;
+  if (func_0207a120() == 1) {
+    LinkBanner_CreateWithText(task, 0x48000000);
+    func_0207c380();
+    LinkMenu_RestoreRowButtons();
+  }
+  if (func_0207a0f8() == 1) {
+    if (data_0215fed0->view == 0) {
+      LinkBanner_CreateWithText(task, 0x48000000);
+      func_0207c380();
+      LinkMenu_RestoreRowButtons();
+    } else {
+      LinkBanner_CreateWithText(task, 0x48000001);
     }
-    LinkMenu_HandlePressed();
-    task->waitFrames++;
-    if (func_0207a120() == 1) {
-        LinkBanner_CreateWithText(task, 0x48000000);
-        func_0207c380();
-        LinkMenu_RestoreRowButtons();
-    }
-    if (func_0207a0f8() == 1) {
-        if (data_0215fed0->view == 0) {
-            LinkBanner_CreateWithText(task, 0x48000000);
-            func_0207c380();
-            LinkMenu_RestoreRowButtons();
-        } else {
-            LinkBanner_CreateWithText(task, 0x48000001);
-        }
-    }
-    if (func_0207a0d0() == 1) {
-        LinkBanner_CreateWithText(task, 0x48000002);
-        func_0207c380();
-        LinkMenu_RestoreRowButtons();
-    }
+  }
+  if (func_0207a0d0() == 1) {
+    LinkBanner_CreateWithText(task, 0x48000002);
+    func_0207c380();
+    LinkMenu_RestoreRowButtons();
+  }
 }

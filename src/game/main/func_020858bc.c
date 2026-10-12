@@ -4,8 +4,7 @@
 void MenuButtons_CloseAll(void);
 void func_020b9890(void);
 
-void func_020858bc(void)
-{
-    MenuButtons_CloseAll();
-    func_020b9890();
+void func_020858bc(void) {
+  MenuButtons_CloseAll();
+  func_020b9890();
 }

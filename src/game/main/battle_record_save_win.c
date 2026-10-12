@@ -10,7 +10,7 @@ int Campaign_IsHardMode(void);
 s32 HwDiv32(s32 num, s32 den);
 int Survival_GetRecordIndex(int mode, int index);
 
-extern Unk_02080440 *data_027c027c;
+extern Unk_02080440* data_027c027c;
 extern int data_027c0284;
 extern Unk_022a7b80 data_022a7b80;
 /* Campaign records by map (id - CAMPAIGN_FIRST_MAP), normal then hard. */
@@ -23,7 +23,8 @@ extern WarRoomRecord gCampaignBestRecords[][2];
 #define FRONT_CO(slot) (data_022a7ab8[slot].unk_00 & 0x7f)
 #define BACK_CO(slot) (data_022a7aba[slot].unk_00 & 0x7f)
 #define WAR_ROOM_RECORD(map, place) (gWarRoomRecords[STATE->unk_59][map][place])
-#define CAMPAIGN_RECORD(map) (gCampaignBestRecords[(map) - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
+#define CAMPAIGN_RECORD(map) \
+  (gCampaignBestRecords[(map) - CAMPAIGN_FIRST_MAP][Campaign_IsHardMode()])
 
 /* Saves the result of a won battle when it beats the stored record.
  * Survival keeps one record per map and mode: lowest time in seconds,
@@ -31,83 +32,87 @@ extern WarRoomRecord gCampaignBestRecords[][2];
  * per map, by score and then by fewest days; a new place pushes the
  * lower ones down. The Campaign keeps one per map and difficulty, by
  * score. Each record also keeps the two COs of the winning slot. */
-void BattleRecord_SaveWin(void)
-{
-    int slot = data_022a7a9c.player;
-    int mapId = STATE->unk_1c4->mapId;
-    int place;
-    int j;
-    u32 value;
-    int index;
+void BattleRecord_SaveWin(void) {
+  int slot = data_022a7a9c.player;
+  int mapId = STATE->unk_1c4->mapId;
+  int place;
+  int j;
+  u32 value;
+  int index;
 
-    switch (STATE->gameMode) {
+  switch (STATE->gameMode) {
     case GAME_MODE_SURVIVAL:
-        index = Survival_GetRecordIndex(data_022a7b80.mode, data_022a7b80.mapIndex);
-        switch (data_022a7b80.mode) {
+      index =
+          Survival_GetRecordIndex(data_022a7b80.mode, data_022a7b80.mapIndex);
+      switch (data_022a7b80.mode) {
         case 0:
         case 3:
-            value = HwDiv32(STATE->players[slot].playTimeFrames, 60);
-            if (data_02291588[index].mode0Co != 0 && data_02291650[index] <= value) {
-                return;
-            }
-            data_02291650[index] = value;
-            data_02291588[index].mode0Co = FRONT_CO(slot);
-            data_02291588[index].mode0TagCo = BACK_CO(slot);
-            break;
+          value = HwDiv32(STATE->players[slot].playTimeFrames, 60);
+          if (data_02291588[index].mode0Co != 0 &&
+              data_02291650[index] <= value) {
+            return;
+          }
+          data_02291650[index] = value;
+          data_02291588[index].mode0Co = FRONT_CO(slot);
+          data_02291588[index].mode0TagCo = BACK_CO(slot);
+          break;
         case 1:
         case 4:
-            value = STATE->players[slot].unk_04;
-            if (data_0229158c[index].mode1Co != 0 && data_02291584[index].fundsSpent <= value) {
-                return;
-            }
-            data_02291584[index].fundsSpent = value;
-            data_0229158c[index].mode1Co = FRONT_CO(slot);
-            data_0229158c[index].mode1TagCo = BACK_CO(slot);
-            break;
+          value = STATE->players[slot].unk_04;
+          if (data_0229158c[index].mode1Co != 0 &&
+              data_02291584[index].fundsSpent <= value) {
+            return;
+          }
+          data_02291584[index].fundsSpent = value;
+          data_0229158c[index].mode1Co = FRONT_CO(slot);
+          data_0229158c[index].mode1TagCo = BACK_CO(slot);
+          break;
         case 2:
         case 5:
-            value = STATE->day;
-            if (data_02291588[index].mode2Co != 0 && data_02291588[index].days <= value) {
-                return;
-            }
-            data_02291588[index].days = value;
-            data_02291588[index].mode2Co = FRONT_CO(slot);
-            data_02291588[index].mode2TagCo = BACK_CO(slot);
-            break;
-        }
-        break;
+          value = STATE->day;
+          if (data_02291588[index].mode2Co != 0 &&
+              data_02291588[index].days <= value) {
+            return;
+          }
+          data_02291588[index].days = value;
+          data_02291588[index].mode2Co = FRONT_CO(slot);
+          data_02291588[index].mode2TagCo = BACK_CO(slot);
+          break;
+      }
+      break;
     case GAME_MODE_WAR_ROOM:
-        mapId -= WAR_ROOM_FIRST_MAP;
-        for (place = 0; place < 3; place++) {
-            if (WAR_ROOM_RECORD(mapId, place).score < data_022a7a9c.score) {
-                break;
-            }
-            if (data_022a7a9c.score == WAR_ROOM_RECORD(mapId, place).score
-                && WAR_ROOM_RECORD(mapId, place).days > STATE->day) {
-                break;
-            }
+      mapId -= WAR_ROOM_FIRST_MAP;
+      for (place = 0; place < 3; place++) {
+        if (WAR_ROOM_RECORD(mapId, place).score < data_022a7a9c.score) {
+          break;
         }
-        if (place == 3) {
-            return;
+        if (data_022a7a9c.score == WAR_ROOM_RECORD(mapId, place).score &&
+            WAR_ROOM_RECORD(mapId, place).days > STATE->day) {
+          break;
         }
-        /* Needed to match: the original reaches the records through
+      }
+      if (place == 3) {
+        return;
+      }
+      /* Needed to match: the original reaches the records through
          * gPlayRecords here and through gWarRoomRecords everywhere else. */
-        for (j = 1; j >= place; j--) {
-            gPlayRecords.warRoomRecords[STATE->unk_59][mapId][j + 1] = gPlayRecords.warRoomRecords[STATE->unk_59][mapId][j];
-        }
-        WAR_ROOM_RECORD(mapId, place).frontCo = FRONT_CO(slot);
-        WAR_ROOM_RECORD(mapId, place).backCo = BACK_CO(slot);
-        WAR_ROOM_RECORD(mapId, place).score = data_022a7a9c.score;
-        WAR_ROOM_RECORD(mapId, place).days = STATE->day;
-        break;
+      for (j = 1; j >= place; j--) {
+        gPlayRecords.warRoomRecords[STATE->unk_59][mapId][j + 1] =
+            gPlayRecords.warRoomRecords[STATE->unk_59][mapId][j];
+      }
+      WAR_ROOM_RECORD(mapId, place).frontCo = FRONT_CO(slot);
+      WAR_ROOM_RECORD(mapId, place).backCo = BACK_CO(slot);
+      WAR_ROOM_RECORD(mapId, place).score = data_022a7a9c.score;
+      WAR_ROOM_RECORD(mapId, place).days = STATE->day;
+      break;
     case GAME_MODE_CAMPAIGN:
-        if (CAMPAIGN_RECORD(mapId).score > data_022a7a9c.score) {
-            return;
-        }
-        CAMPAIGN_RECORD(mapId).frontCo = FRONT_CO(slot);
-        CAMPAIGN_RECORD(mapId).backCo = BACK_CO(slot);
-        CAMPAIGN_RECORD(mapId).score = data_022a7a9c.score;
-        CAMPAIGN_RECORD(mapId).days = STATE->day;
-        break;
-    }
+      if (CAMPAIGN_RECORD(mapId).score > data_022a7a9c.score) {
+        return;
+      }
+      CAMPAIGN_RECORD(mapId).frontCo = FRONT_CO(slot);
+      CAMPAIGN_RECORD(mapId).backCo = BACK_CO(slot);
+      CAMPAIGN_RECORD(mapId).score = data_022a7a9c.score;
+      CAMPAIGN_RECORD(mapId).days = STATE->day;
+      break;
+  }
 }

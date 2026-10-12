@@ -4,19 +4,18 @@
 
 #define OV005_SOUND_ROOM_WORK_SIZE 0x1360
 
-void *Mem_Alloc(u32 size);
-void Mem_Zero32(u32 value, void *dst, u32 size);
+void* Mem_Alloc(u32 size);
+void Mem_Zero32(u32 value, void* dst, u32 size);
 void Sound_FadeOutSongOver(int length);
 
-extern Unk_ov005_0236bbac *data_ov005_0236bbac;
+extern Unk_ov005_0236bbac* data_ov005_0236bbac;
 
-void Ov005SoundRoom_AllocWork(Ov005Task *task)
-{
-    Unk_ov005_0236bbac *work;
+void Ov005SoundRoom_AllocWork(Ov005Task* task) {
+  Unk_ov005_0236bbac* work;
 
-    task->work = Mem_Alloc(OV005_SOUND_ROOM_WORK_SIZE);
-    work = task->work;
-    data_ov005_0236bbac = work;
-    Mem_Zero32(0, work, OV005_SOUND_ROOM_WORK_SIZE);
-    Sound_FadeOutSongOver(1);
+  task->work = Mem_Alloc(OV005_SOUND_ROOM_WORK_SIZE);
+  work = task->work;
+  data_ov005_0236bbac = work;
+  Mem_Zero32(0, work, OV005_SOUND_ROOM_WORK_SIZE);
+  Sound_FadeOutSongOver(1);
 }

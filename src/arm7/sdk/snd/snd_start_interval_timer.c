@@ -6,10 +6,9 @@
 /* Delay before the first update. */
 #define SOUND_TICK_FIRST_DELAY 0x10000
 
-void SND_StartIntervalTimer(void)
-{
-    OSTick now = Tick_Read64_Arm7();
+void SND_StartIntervalTimer(void) {
+  OSTick now = Tick_Read64_Arm7();
 
-    Alarm_ArmRepeating_Arm7(&data_arm7_03807bc4, now + SOUND_TICK_FIRST_DELAY, SOUND_TICK_PERIOD,
-                             SndDrv_OnIntervalAlarm, NULL);
+  Alarm_ArmRepeating_Arm7(&data_arm7_03807bc4, now + SOUND_TICK_FIRST_DELAY,
+                          SOUND_TICK_PERIOD, SndDrv_OnIntervalAlarm, NULL);
 }
