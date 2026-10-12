@@ -57,6 +57,15 @@ typedef struct SndTrack {
     SndExChannel *channels;
 } SndTrack;
 
+/* How a sequence command stores one of its arguments. */
+enum {
+    SEQ_ARG_FROM_U8,
+    SEQ_ARG_FROM_U16,
+    SEQ_ARG_FROM_VARINT,
+    SEQ_ARG_FROM_RANGE, /* two 16-bit limits, the value is picked between them */
+    SEQ_ARG_FROM_PLAYER_VAR /* index of a player variable */
+};
+
 typedef struct SndPlayer {
     u8 active;
     u8 prepared;
