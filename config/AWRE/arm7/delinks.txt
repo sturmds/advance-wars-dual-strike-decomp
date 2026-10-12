@@ -320,6 +320,10 @@ src/arm7/sdk/wl/wl_read_byte.c:
     complete
     .text       start:0x027c841c end:0x027c843c
 
+src/arm7/sdk/wl/wl_write_byte.c:
+    complete
+    .text       start:0x027c843c end:0x027c8468
+
 src/arm7/sdk/func_arm7_027c84e0.c:
     complete
     .text       start:0x027c84e0 end:0x027c84f4
