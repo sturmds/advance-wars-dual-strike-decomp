@@ -6,20 +6,20 @@ void MI_Copy48B(const void *src, void *dst);
  * same matrix). Returns -1 and leaves dst alone when src has no inverse. The
  * 3x3 part is inverted as in Matrix_Invert3x3; the translation row becomes
  * minus src's translation times that inverse.
- * Not matched yet: the same 6 instructions as in Matrix_Invert3x3 differ. */
+ */
 int MTX_Inverse43(const MtxFx43 *src, MtxFx43 *dst)
 {
     MtxFx43 tmp;
     MtxFx43 *out;
     fx32 det;
-    fx64 det0, det1, det2;
+    fx32 det0, det1, det2;
     fx32 var0, var1, var2, var3;
 
     out = (src == dst) ? &tmp : dst;
 
-    det1 = (fx32)(((fx64)src->m[1][0] * src->m[2][2] - (fx64)src->m[2][0] * src->m[1][2] + FX32_HALF) >> FX32_SHIFT);
     det0 = (fx32)(((fx64)src->m[1][1] * src->m[2][2] - (fx64)src->m[1][2] * src->m[2][1] + FX32_HALF) >> FX32_SHIFT);
-    det2 = (fx32)(((fx64)src->m[1][0] * src->m[2][1] - (fx64)src->m[2][0] * src->m[1][1] + FX32_HALF) >> FX32_SHIFT);
+    det1 = (fx32)(((fx64)src->m[1][0] * src->m[2][2] - (fx64)src->m[1][2] * src->m[2][0] + FX32_HALF) >> FX32_SHIFT);
+    det2 = (fx32)(((fx64)src->m[1][0] * src->m[2][1] - (fx64)src->m[1][1] * src->m[2][0] + FX32_HALF) >> FX32_SHIFT);
     det = (fx32)(((fx64)src->m[0][0] * det0 - (fx64)src->m[0][1] * det1 + (fx64)src->m[0][2] * det2 + FX32_HALF) >> FX32_SHIFT);
     if (det == 0) {
         return -1;

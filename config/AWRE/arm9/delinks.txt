@@ -20846,6 +20846,7 @@ src/sdk/fx/mtx_concat43.c:
     .text       start:0x021096f4 end:0x02109914
 
 src/sdk/fx/mtx_inverse43.c:
+    complete
     .text       start:0x02109914 end:0x02109ca8
 
 src/sdk/fx/matrix_move_along_local_axes43.c:
