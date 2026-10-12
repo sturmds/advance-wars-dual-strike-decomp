@@ -188,16 +188,22 @@ typedef struct CARDiArm7ThreadQueue {
 
 typedef struct CARDiArm7Common {
     CARDiCommandArg *cmd;
-    u8 unk_04[0x18];
-    u32 src;                       /* ROM read: address, destination and bytes left */
+    u32 command;                   /* request from the other CPU: index into the request table */
+    u32 recvStep;                  /* 0: the next PXI word is a request; 1: the command block address */
+    int lockOwner;                 /* OS lock id of the owner, OS_LOCK_ID_ERROR when free */
+    int lockCount;
+    u16 lockQueue;                 /* threads waiting for the lock, as a mask of thread ids */
+    u8 pad_16[2];
+    u32 lockTarget;
+    u32 src;                    /* ROM read: address, destination and bytes left */
     u8 *dst;
     u32 len;
     u32 dmaNo;                     /* DMA channel for the copy to RAM, 4 or more when none */
     CARDCallback callback;
     void *callbackArg;
-    u32 unk_34;
+    void (*task)(struct CARDiArm7Common *common);   /* run by the card thread for CARD_STAT_TASK */
     volatile u32 flag;             /* GAMECARD_FLAG_*; volatile is needed to match */
-    u32 unk_3C;
+    u32 priority;                  /* card thread priority */
     u8 thread[0x78];               /* the card thread */
     void *waiter;                  /* thread to wake when the request ends */
     CARDiArm7ThreadQueue queue;    /* threads waiting for CARD_STAT_BUSY to clear */
