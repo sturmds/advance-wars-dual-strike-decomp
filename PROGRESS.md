@@ -12,13 +12,13 @@ add both CPUs.
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
 | ARM9 game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
-| ARM9 SDK/library | 627 / 834 | 97196 / 135226 | 71.88% | 172 | 20138 |
-| ARM9 all | 7282 / 7534 | 1604216 / 1689066 | 94.98% | 172 | 20138 |
+| ARM9 SDK/library | 628 / 834 | 97492 / 135226 | 72.10% | 172 | 20138 |
+| ARM9 all | 7283 / 7534 | 1604512 / 1689066 | 94.99% | 172 | 20138 |
 | ARM7 SDK/library | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | ARM7 all | 0 / 1014 | 0 / 154296 | 0.00% | 0 | 0 |
 | game | 6655 / 6700 | 1507020 / 1553840 | 96.99% | 0 | 0 |
-| SDK/library | 627 / 1848 | 97196 / 289522 | 33.57% | 172 | 20138 |
-| all | 7282 / 8548 | 1604216 / 1843362 | 87.03% | 172 | 20138 |
+| SDK/library | 628 / 1848 | 97492 / 289522 | 33.67% | 172 | 20138 |
+| all | 7283 / 8548 | 1604512 / 1843362 | 87.04% | 172 | 20138 |
 
 ## By module
 
@@ -27,7 +27,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
 | main | game | 5149 / 5180 | 1048120 / 1082632 | 96.81% | 0 |
-| main | SDK/library | 620 / 823 | 96284 / 133690 | 72.02% | 168 |
+| main | SDK/library | 621 / 823 | 96580 / 133690 | 72.24% | 168 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
 | ov000 | game | 119 / 120 | 25000 / 25300 | 98.81% | 0 |
@@ -102,6 +102,9 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/sdk/gx/gx_set_bank_for_sub_obj.c` | func_0210aaf8 | 124 |
 | `src/sdk/gx/gx_set_bank_for_sub_obj_ext_pltt.c` | func_0210a9e0 | 140 |
 | `src/sdk/isd/func_02120ad4.c` | func_02120ad4 | 144 |
+| `src/sdk/isd/isd_double_add.c` | func_02120574 | 920 |
+| `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 |
+| `src/sdk/isd/isd_double_times_ten.c` | func_0212029c | 728 |
 | `src/sdk/mb/func_021193fc.c` | func_021193fc | 696 |
 | `src/sdk/mi/unpack_huffman_to_words.c` | Unpack_HuffmanToWords | 216 |
 | `src/sdk/mi/mi_uncompress_lz8.c` | MI_UncompressLZ8 | 216 |
