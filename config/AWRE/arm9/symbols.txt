@@ -5927,12 +5927,10 @@ _ffix kind:function(arm,size=0x9c) addr:0x0212839c
 func_02128438 kind:function(arm,size=0x5c) addr:0x02128438
 _fmul kind:function(arm,size=0x1ec) addr:0x021285e0
 _fsub kind:function(arm,size=0x448) addr:0x02128acc
-func_02128f14 kind:function(arm,size=0x58) addr:0x02128f14
-_ull_mod kind:label(arm) addr:0x02128f20
-_ll_sdiv kind:function(arm,size=0x1b0) addr:0x02128f6c
+_ull_mod kind:function(arm,size=0x8) addr:0x02128f20
+_ll_sdiv kind:function(arm,size=0x10) addr:0x02128f6c
 _s32_div_f kind:function(arm,size=0x20c) addr:0x0212911c
-_u32_div_f kind:function(arm,size=0x1e4) addr:0x02129328
-.L_02129330 kind:label(arm) addr:0x02129330
+_u32_div_f kind:function(arm,size=0x8) addr:0x02129328
 func_0212950c kind:function(arm,size=0x34) addr:0x0212950c
 func_02129540 kind:function(arm,size=0x28) addr:0x02129540
 func_02129568 kind:function(arm,size=0x4c) addr:0x02129568
@@ -9119,3 +9117,9 @@ _fflt kind:function(arm,size=0xcc) addr:0x02128514
 gOverlayExpectedHmacs kind:data(any) addr:0x0216e00c
 Isd_RestoreFiq kind:function(arm,size=0x3c) addr:0x02121ac8
 Isd_RestoreIrq kind:function(arm,size=0x3c) addr:0x02121b14
+_ll_udiv kind:function(arm,size=0xc) addr:0x02128f14
+_ll_udiv_common kind:function(arm,size=0x34) addr:0x02128f28
+_ll_mod kind:function(arm,size=0x10) addr:0x02128f5c
+_ll_sdiv_common kind:function(arm,size=0x64) addr:0x02128f7c
+_ll_div_core kind:function(arm,size=0x13c) addr:0x02128fe0
+_u32_div_not_0_f kind:function(arm,size=0x1dc) addr:0x02129330

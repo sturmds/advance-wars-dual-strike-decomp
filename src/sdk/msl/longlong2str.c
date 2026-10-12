@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/msl.h"
 
-/* Unsigned 64-bit division of the runtime (_ll_udiv); x % y on u64 calls _ull_mod. */
-u64 func_02128f14(u64 dividend, u64 divisor);
-
 char *longlong2str(long long value, char *bufferEnd, PrintFormat format)
 {
     u64 magnitude;
@@ -50,7 +47,7 @@ char *longlong2str(long long value, char *bufferEnd, PrintFormat format)
 
     do {
         digit = magnitude % base;
-        magnitude = func_02128f14(magnitude, base);
+        magnitude /= base;
         if (digit < 10) {
             digit += '0';
         } else if (format.conversionChar == 'x') {
