@@ -40,7 +40,8 @@ typedef union WlFlags {
         u16 bit3 : 1;
         u16 bit4 : 1;
         u16 bit5 : 1;
-        u16 unused : 10;
+        u16 bit6 : 1;
+        u16 unused : 9;
     };
 } WlFlags;
 
