@@ -2,6 +2,7 @@
 #define SDK_SND_H
 
 #include "types.h"
+#include "sdk/os.h"
 #include "game/sound_bank.h"
 #include "game/sound_wave_arc.h"
 
@@ -135,6 +136,10 @@ typedef struct SndArm7Snapshot {
 
 extern SndArm7Work data_arm7_03808090;
 extern SndArm7Alarm data_arm7_03809010[SOUND_TIMER_SLOTS_ARM7]; /* same memory as data_arm7_03808090.alarms */
+
+/* Command lists the ARM9 sends are queued here for the driver thread. */
+extern OSMessageQueue data_arm7_03809210;
+extern OSMessage data_arm7_03809224[8];
 
 void SndArm7_StartAlarm(int alarmNo);
 
