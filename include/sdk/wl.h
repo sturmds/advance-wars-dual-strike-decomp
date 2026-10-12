@@ -657,7 +657,8 @@ typedef struct WlState {
     u8 pad_ca[0xce - 0xca];
     u16 unk_ce;                    /* counts frames found with their marks overwritten */
     u16 unk_d0;                    /* counts TX queue restarts */
-    u8 pad_d2[0xd8 - 0xd2];
+    u16 wepRestarts;               /* same halfword as WlLink.wepRestarts */
+    u8 pad_d4[0xd8 - 0xd4];
     u16 unk_d8[16];
     WlCurrentRequest current;
     u8 pad_100[0x130 - 0x100];
@@ -890,6 +891,13 @@ typedef struct WlCounters {
 /* WlWork.counters index of the LOC3 (multicast) TX done count. */
 #define WIFI_STAT_GROUP_SENT 5
 
+/* Receive events seen while a frame waits to be sent; WifiIrq_RxEventCounted restarts
+   the WEP engine after too many. */
+typedef struct WlWepWatch {
+    u16 unk_00;
+    u16 busyCount;
+} WlWepWatch;
+
 typedef struct WlWork {
     u16 queueHead[WIFI_TASK_LEVELS];
     u16 queueTail[WIFI_TASK_LEVELS];
@@ -920,7 +928,9 @@ typedef struct WlWork {
     };
     u8 pad_484[0x4a2 - 0x484];
     u16 aidBit; /* 1 << state.aid */
-    u8 pad_4a4[0x4ba - 0x4a4];
+    u8 pad_4a4[0x4b4 - 0x4a4];
+    WlWepWatch wepWatch;
+    u8 pad_4b8[0x4ba - 0x4b8];
     u16 unk_4ba; /* ORed into the RX header word of an MP ack sent to the host */
     u8 pad_4bc[0x504 - 0x4bc];
     WlStationBits stationBits;
@@ -1132,6 +1142,15 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
 /* Wi-Fi WEP engine control: bit 15 enables it. */
 #define REG_W_WEP_CNT (*(volatile u16 *)0x04808032)
+/* Wi-Fi receive buffer registers (GBATEK names). */
+#define REG_W_RXCNT         (*(volatile u16 *)0x04808030)
+#define REG_W_RXBUF_BEGIN   (*(volatile u16 *)0x04808050)
+#define REG_W_RXBUF_END     (*(volatile u16 *)0x04808052)
+#define REG_W_RXBUF_WRCSR   (*(volatile u16 *)0x04808054) /* write cursor, in halfwords */
+#define REG_W_RXBUF_WR_ADDR (*(volatile u16 *)0x04808056)
+#define REG_W_RXBUF_READCSR (*(volatile u16 *)0x0480805a)
+#define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
+#define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
 
 /* Wireless interrupt causes: bits of WIFI_IRQ_PENDING_FLAGS (W_IF, set) and WIFI_IRQ_ENABLE_MASK
    (W_IE, enabled). Names from GBATEK. */
