@@ -803,6 +803,10 @@ src/arm7/sdk/func_arm7_037fe5dc.c:
     complete
     .text       start:0x037fe5dc end:0x037fe5e8
 
+src/arm7/sdk/snd/snd_hw_reset.c:
+    complete
+    .text       start:0x037fe5e8 end:0x037fe63c
+
 src/arm7/sdk/func_arm7_037fe63c.c:
     complete
     .text       start:0x037fe63c end:0x037fe654

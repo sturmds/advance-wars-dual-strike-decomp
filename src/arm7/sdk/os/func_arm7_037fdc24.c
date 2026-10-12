@@ -4,7 +4,7 @@
 void func_arm7_037fdd34(u32 dmaNo);
 OSIrqMask func_arm7_037fb6c8(OSIrqMask mask);
 OSIrqMask func_arm7_037fb620(OSIrqMask mask);
-void func_arm7_037fe5e8(void);
+void SndHw_Reset(void);
 void func_arm7_037fdc78(u32 command);
 void func_arm7_03807408(void);
 
@@ -19,7 +19,7 @@ void func_arm7_037fdc24(void)
     func_arm7_037fdd34(3);
     func_arm7_037fb6c8(IRQ_FIFO_RECV);
     func_arm7_037fb620(~0);
-    func_arm7_037fe5e8();
+    SndHw_Reset();
     func_arm7_037fdc78(OS_PXI_COMMAND_RESET);
     func_arm7_03807408();
 }

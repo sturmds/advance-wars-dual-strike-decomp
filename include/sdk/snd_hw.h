@@ -12,4 +12,8 @@
 /* POWCNT2: bit 0 powers the speakers and sound circuit. */
 #define AUDIO_SPEAKER_POWER_REG (*(u16 *)0x4000304)
 
+/* Sound capture control registers; bit 7 starts a capture. */
+#define AUDIO_RECORD0_CTRL (*(u8 *)0x4000508)
+#define AUDIO_RECORD1_CTRL (*(u8 *)0x4000509)
+
 #endif
