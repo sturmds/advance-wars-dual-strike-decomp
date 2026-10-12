@@ -135,6 +135,8 @@ typedef struct WlTestModeRequest {
 #define WIFI_MODE_RADIO_ON 16
 #define WIFI_MODE_CARRIER_TEST 17
 #define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
+#define WIFI_MODE_SESSION_DOWN 32         /* a deauthentication sets the link back to this mode */
+#define WIFI_MODE_JOINED 64 /* set when an association response reports success */
 #define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
 
 // Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
@@ -327,6 +329,47 @@ typedef struct WlTxFrame {
     };
     u16 unk_2e;
 } WlTxFrame;
+
+/*
+ * A received frame: 8 bytes the driver fills, the hardware RX header from
+ * 0x08, the 802.11 header from 0x14, then the body.
+ */
+typedef struct WlRxFrame {
+    u16 unk_00;
+    u16 station;        /* station table index, 0 when the sender is unknown */
+    u16 unk_04;
+    u16 bodyLength;
+    u16 unk_08;         /* first word of the hardware RX header */
+    u8 pad_0a[0x10 - 0x0a];
+    u16 length;         /* 802.11 header and body */
+    u16 unk_12;
+    u16 frameControl;
+    u16 duration;
+    u16 addr1[3];
+    u16 addr2[3];
+    u16 addr3[3];
+    union {
+        u16 sequence;
+        struct {
+            u16 fragment : 4;
+            u16 sequenceNumber : 12;
+        };
+    };
+    u16 body[1];
+} WlRxFrame;
+
+/* 802.11 frame control bits. */
+#define WIFI_FRAMECTL_SENT_TO_AP 0x100
+#define WIFI_FRAMECTL_SENT_BY_AP 0x200
+#define WIFI_FRAMECTL_FRAGMENTS_FOLLOW 0x400
+
+/* Destination, source and sequence of a received data frame, worked out from
+   the To DS and From DS bits. */
+typedef struct WlRxAddrs {
+    u16 dest[3];
+    u16 src[3];
+    u16 sequence;
+} WlRxAddrs;
 
 /* 802.11 frame control, as bitfields. */
 typedef union WlFrameControl {
@@ -631,6 +674,16 @@ typedef struct WlTxBuffer {
     u8 pad_0e[2];
     WlTxFrame frame;
 } WlTxBuffer;
+
+/* Longest received frame (802.11 header and body) WL handles. */
+#define WIFI_RX_FRAME_CAP 0x5fc
+
+/* A buffer holding a received frame. */
+typedef struct WlRxBuffer {
+    WlBuffer header;
+    u8 pad_0c[4];
+    WlRxFrame frame;
+} WlRxBuffer;
 
 /* WlTxBuffer.unk_0c of a frame the driver builds for itself. */
 #define WIFI_DRIVER_BUILT_FRAME 0xffff
