@@ -88,7 +88,7 @@ extern SndPlayer data_arm7_038085d0[SND_PLAYER_COUNT];
 typedef struct SndSeqCache {
     u8 *start;
     u8 *end;
-    u8 bytes[16];
+    u32 words[4]; /* the 16 bytes at start */
 } SndSeqCache;
 
 extern SndSeqCache data_arm7_03808074;
