@@ -7,11 +7,11 @@ struct Unk_0380388c_0 {
     int unk_8;
 };
 
-int func_arm7_038034d8(void);
+int CardRom_IssueChipIdCommand(void);
 
 int func_arm7_0380388c(Unk_0380388c_0 **a0)
 {
-    int t0 = func_arm7_038034d8();
+    int t0 = CardRom_IssueChipIdCommand();
     Unk_0380388c_0 *t1 = *a0;
     t1->unk_8 = t0;
     return t0;

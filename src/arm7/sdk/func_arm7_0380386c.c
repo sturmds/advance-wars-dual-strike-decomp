@@ -9,10 +9,10 @@ struct Unk_0380386c_0 {
     int unk_14;
 };
 
-void func_arm7_03803460(int, int, int, int);
+void CardRom_BeginCpuRead(int, int, int, int);
 
 void func_arm7_0380386c(Unk_0380386c_0 **a0)
 {
     Unk_0380386c_0 *t0 = *a0;
-    func_arm7_03803460(4, t0->unk_c, t0->unk_10, t0->unk_14);
+    CardRom_BeginCpuRead(4, t0->unk_c, t0->unk_10, t0->unk_14);
 }

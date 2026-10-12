@@ -1,8 +1,8 @@
 #include "types.h"
 
-void func_arm7_038031c4(int, int);
+void CardSave_WaitUntilIdle(int, int);
 
 void func_arm7_038031ac(void)
 {
-    func_arm7_038031c4(0, 0x316);
+    CardSave_WaitUntilIdle(0, 0x316);
 }
