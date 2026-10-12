@@ -1,0 +1,50 @@
+#include "types.h"
+#include "sdk/os.h"
+#include "sdk/pxi.h"
+
+extern u16 data_arm7_03807ab4;
+
+/* The ARM7 receive callback per tag. */
+extern PXIFifoCallback data_arm7_03807ab8[FIFO_TAG_LIMIT];
+
+int func_arm7_037fdb80(void);
+void func_arm7_037fdb94(int state);
+OSIrqMask func_arm7_037fb620(OSIrqMask mask);
+void func_arm7_037fb748(OSIrqMask mask, OSIrqFunction function);
+OSIrqMask func_arm7_037fb690(OSIrqMask mask);
+int func_arm7_037fdbe4(int cycles);
+void func_arm7_037fe0ac(void);
+
+/* The ARM7 PXI_InitFifo. Runs once: clears the callback table, enables the
+ * receive FIFO interrupt and synchronises with the ARM9 over the PXI sync
+ * register. */
+void func_arm7_037fe304(void)
+{
+    int irq = func_arm7_037fdb80();
+    int i;
+    volatile FifoPeerRegistry *work;
+
+    if (!data_arm7_03807ab4) {
+        data_arm7_03807ab4 = TRUE;
+        work = FIFO_PEER_REGISTRY;
+        work->callbackFlags[PXI_PROC_ARM7] = 0;
+        for (i = 0; i < FIFO_TAG_LIMIT; i++) {
+            data_arm7_03807ab8[i] = NULL;
+        }
+        *IO_FIFO_CTRL = FIFO_CTRL_ON | FIFO_CTRL_FAULT_ACK | FIFO_CTRL_INBOX_IRQ | FIFO_CTRL_FLUSH_OUTBOX;
+        func_arm7_037fb620(IRQ_FIFO_RECV);
+        func_arm7_037fb748(IRQ_FIFO_RECV, func_arm7_037fe0ac);
+        func_arm7_037fb690(IRQ_FIFO_RECV);
+        /* Count down from 8 on the sync register; the ARM9 echoes each value
+         * back, and a value it has not echoed after the wait starts the
+         * count again. */
+        for (i = 8; i >= 0; i--) {
+            *REG_PXI_SYNC = i << 8;
+            func_arm7_037fdbe4(1000);
+            if ((*REG_PXI_SYNC & 15) != i) {
+                i = 8;
+            }
+        }
+    }
+    func_arm7_037fdb94(irq);
+}
