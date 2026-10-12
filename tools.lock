@@ -30,3 +30,12 @@ version = "059609d4aec73eb0650726772954e1ad575825f8"
 url = "https://github.com/simonlindholm/decomp-permuter/archive/059609d4aec73eb0650726772954e1ad575825f8.tar.gz"
 sha256 = "2e4e0d991e4258df332c19d8dcf372212fe27f1b18e777d9e1eb25fc2c64a404"
 type = "tar.gz"
+
+# Formatter for src/ and include/ (`make format`, checked by `make release`).
+# The PyPI wheel holds a static Linux binary at clang_format/data/bin/.
+# Apache-2.0 with LLVM exception. Style in .clang-format.
+[clang-format]
+version = "23.1.1"
+url = "https://files.pythonhosted.org/packages/42/ef/3f8e215916e79ecd435b5bc20810443f80fce3fb8bbfe6d2783ceb775c1b/clang_format-23.1.1-py2.py3-none-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl"
+sha256 = "64900462c1203cee2fec364536c2dda708baf0619e15b52ceda926648cc82f56"
+type = "whl"

@@ -15,6 +15,7 @@ import sys
 import tarfile
 import tomllib
 import urllib.request
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -77,6 +78,15 @@ def install(name: str, spec: dict) -> None:
             for p in inner.iterdir():
                 p.rename(target / p.name)
             inner.rmdir()
+    elif spec["type"] == "whl":
+        # A Python wheel is a zip. Keep each file's Unix mode, so the
+        # binaries inside stay executable.
+        with zipfile.ZipFile(archive) as z:
+            for info in z.infolist():
+                path = Path(z.extract(info, target))
+                mode = info.external_attr >> 16
+                if mode and not info.is_dir():
+                    path.chmod(mode & 0o777)
     else:
         sys.exit(f"error: unknown type {spec['type']!r} for {name} in tools.lock")
     stamp.write_text(want + "\n")

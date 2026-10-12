@@ -1,0 +1,22 @@
+# Google style (https://google.github.io/styleguide/cppguide.html), as
+# built into clang-format, with the changes kehanXue/google-style-clang-format
+# makes and two more for this repo. clang-format formats C with its C++
+# rules; the C++-only options never apply. Run `make format`; files with
+# `asm` functions are skipped (tools/format.py).
+Language: Cpp
+BasedOnStyle: Google
+
+# Header order matters here (types.h comes first).
+SortIncludes: Never
+IncludeBlocks: Preserve
+
+# One pointer style for every file, not each file's majority.
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+# From kehanXue/google-style-clang-format.
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+ReflowComments: false
+KeepEmptyLines:
+  AtStartOfBlock: true

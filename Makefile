@@ -16,7 +16,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean shift emu-smoke
+.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -70,6 +70,14 @@ dsindex:
 
 progress: all
 	@$(PYTHON) tools/progress.py
+
+# clang-format on src/ and include/, style in .clang-format. format rewrites
+# files; format-check only reports.
+format: setup
+	@$(PYTHON) tools/format.py
+
+format-check: setup
+	@$(PYTHON) tools/format.py --check
 
 release: setup
 	@$(MAKE) --no-print-directory all
