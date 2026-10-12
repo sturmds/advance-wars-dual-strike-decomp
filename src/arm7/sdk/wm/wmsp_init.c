@@ -19,7 +19,7 @@ extern OSThread data_arm7_03807424;
 extern u8 data_arm7_027d7d3c[];
 
 void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error);
-void func_arm7_027c1c5c(void *arg);
+void Wmsp_WlReceiveThread(void *arg);
 void func_arm7_027c1cf8(void *arg);
 u16 Wifi_StartDriver(Unk_arm7_038057d4 *params);
 
@@ -48,7 +48,7 @@ void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *priorities)
     Mutex_Clear_Arm7(&data_arm7_027d813c);
 
     /* The reply mutex starts where this 0x400-byte stack ends, so the thread gets its address as stack top. */
-    Thread_Spawn_Arm7(&data_arm7_0380749c, func_arm7_027c1c5c, NULL, &data_arm7_027d813c, 0x400,
+    Thread_Spawn_Arm7(&data_arm7_0380749c, Wmsp_WlReceiveThread, NULL, &data_arm7_027d813c, 0x400,
                          priorities->unk_04);
     Thread_MakeReady_Arm7(&data_arm7_0380749c);
     Thread_Spawn_Arm7(&data_arm7_03807424, func_arm7_027c1cf8, NULL, data_arm7_027d7d3c, 0x1000,
