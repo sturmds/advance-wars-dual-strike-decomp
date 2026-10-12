@@ -309,6 +309,27 @@ typedef struct WlMeasureChannelJob {
     WlReply *reply;
 } WlMeasureChannelJob;
 
+/* Request of the authenticate, associate and reassociate steps. */
+typedef struct WlPeerRequest {
+    u8 pad_00[0x10];
+    u16 peer[3];       /* address handed to the frame builder */
+    u16 unk_16;        /* authenticate: copied into the frame body at 0x2c */
+    u16 timeoutMs;
+} WlPeerRequest;
+
+typedef struct WlPeerJob {
+    u16 state;
+    u8 pad_02[0x16];
+    WlPeerRequest *request;
+    WlReply *reply;
+} WlPeerJob;
+
+/* Values of WlReply.unk_04 set by the MLME steps. */
+#define WIFI_ANSWER_OK 0
+#define WIFI_ANSWER_OUT_OF_RANGE 5
+#define WIFI_ANSWER_NO_RESPONSE 7
+#define WIFI_ANSWER_NO_MEMORY 8  /* the frame could not be allocated */
+
 typedef struct WlMlmeJob {
     u16 state;
     u8 pad_02[0x16];
@@ -320,6 +341,7 @@ typedef union WlMlme {
     u16 state;
     WlMlmeJob any;
     WlMeasureChannelJob measure;
+    WlPeerJob peer;
 } WlMlme;
 
 /* The host request being handled; task 11 takes it from the inbox. */
