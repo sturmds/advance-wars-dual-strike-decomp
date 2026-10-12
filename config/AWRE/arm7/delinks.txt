@@ -816,6 +816,10 @@ src/arm7/sdk/wl/func_arm7_027c933c.c:
     complete
     .text       start:0x027c933c end:0x027c93a4
 
+src/arm7/sdk/wl/func_arm7_027c93a4.c:
+    complete
+    .text       start:0x027c93a4 end:0x027c9438
+
 src/arm7/sdk/func_arm7_027c94ac.c:
     complete
     .text       start:0x027c94ac end:0x027c94c0
