@@ -4,7 +4,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue);
-void func_arm7_037fbe9c(OSThreadQueue *queue);
+void Thread_WaitOnQueue_Arm7(OSThreadQueue *queue);
 
 /*
  * ARM7 copy of OS_ReceiveMessage; main already has that symbol. Takes the
@@ -20,7 +20,7 @@ BOOL func_arm7_037fc3ac(OSMessageQueue *queue, OSMessage *msg, int flags)
             func_arm7_037fdb94(irqState);
             return FALSE;
         }
-        func_arm7_037fbe9c((OSThreadQueue *)&queue->queueReceive);
+        Thread_WaitOnQueue_Arm7((OSThreadQueue *)&queue->queueReceive);
     }
     if (msg != NULL) {
         *msg = queue->msgArray[queue->firstIndex];

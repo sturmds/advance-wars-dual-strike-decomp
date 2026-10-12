@@ -3,7 +3,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fbe9c(CARDiArm7ThreadQueue *queue);
+void Thread_WaitOnQueue_Arm7(CARDiArm7ThreadQueue *queue);
 u32 CardRom_IssueChipIdCommand(void);
 void Card_ReportDoneAndWake(void);
 
@@ -17,7 +17,7 @@ u32 Card_LockAndReadChipId(void)
     common = &data_arm7_03809280;
     interrupts = func_arm7_037fdb80();
     while (common->flag & CARD_STAT_BUSY) {
-        func_arm7_037fbe9c(&common->queue);
+        Thread_WaitOnQueue_Arm7(&common->queue);
     }
     common->flag |= CARD_STAT_BUSY;
     func_arm7_037fdb94(interrupts);
