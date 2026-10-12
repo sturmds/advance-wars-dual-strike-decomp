@@ -771,6 +771,10 @@ src/arm7/sdk/pad/func_arm7_037fe3fc.c:
     complete
     .text       start:0x037fe3fc end:0x037fe41c
 
+src/arm7/sdk/pad/func_arm7_037fe41c.c:
+    complete
+    .text       start:0x037fe41c end:0x037fe45c
+
 src/arm7/sdk/func_arm7_037fe534.c:
     complete
     .text       start:0x037fe534 end:0x037fe544
