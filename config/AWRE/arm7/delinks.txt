@@ -112,6 +112,10 @@ src/arm7/sdk/wm/wmsp_indicate_dcf_data.c:
     complete
     .text       start:0x027c0ce8 end:0x027c0dc0
 
+src/arm7/sdk/wm/wmsp_indicate_mp_ack.c:
+    complete
+    .text       start:0x027c0dc0 end:0x027c10a0
+
 src/arm7/sdk/func_arm7_027c1a94.c:
     complete
     .text       start:0x027c1a94 end:0x027c1a98

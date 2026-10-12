@@ -91,6 +91,10 @@ typedef struct WlMpAckIndication {
     WlMpAckFrame frame;
 } WlMpAckIndication;
 
+/* The wireless hardware's free-running microsecond counter, low and high halves. */
+#define IO_WIRELESS_USEC_LOW (*(vu16 *)0x048080f8)
+#define IO_WIRELESS_USEC_HIGH (*(vu16 *)0x048080fa)
+
 /* Requests WMSP queues for itself in a slot from Wmsp_TakeFlaggedSlot. */
 typedef struct WmspAutoDeauthRequest {
     u32 apiid;                         /* WM_APIID_AUTO_DEAUTH */
