@@ -145,7 +145,9 @@ typedef struct WlPayloadEntry {
 
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
-    u8 pad_00[0x24];
+    u16 unk_00;
+    u16 station;
+    u8 pad_04[0x24 - 0x04];
     u8 payload[10];
     u16 unk_2e;
 } WlTxFrame;
