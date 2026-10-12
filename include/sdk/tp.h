@@ -139,6 +139,14 @@ u32 TP_CalcCalibrateParam(TPCalibrateParam *calibrate, u16 rawX1, u16 rawY1, u16
 #define TOUCH_LINE_ALARM_ID 0x54505641       /* 'TPVA': tag of the auto sampling V alarms */
 #define TOUCH_LINE_ALARM_SLACK 10
 
+/* A request from the ARM9 arrives as up to TOUCH_MSG_MAX_HALFWORDS PXI words.
+ * Each holds one halfword and its index; command[0] holds the request id
+ * in its high byte. */
+#define TOUCH_MSG_FIRST_WORD   0x02000000  /* first word of a request */
+#define TOUCH_MSG_LAST_WORD     0x01000000  /* last word: the request is complete */
+#define TOUCH_MSG_SLOT_BITS  0x000f0000
+#define TOUCH_MSG_SLOT_POS 16
+
 /* TouchSamplerState.status */
 enum {
     TOUCH_SAMPLER_IDLE = 0,
