@@ -2,6 +2,7 @@
 #define SDK_WL_H
 
 #include "types.h"
+#include "sdk/os_arm7.h"
 
 // WL is the ARM7 wireless driver below WM. Its work area address is kept at
 // 0x0380fff4. The request handlers get a request block and fill a reply block.
@@ -111,7 +112,7 @@ typedef struct WlState {
     u8 pad_0c[2];
     WlFlags flags;
     u16 unk_10;
-    u8 pad_12[2];
+    u16 unk_12;                    /* bit 0x40: no alarm could be set up */
     u32 unk_14;
     u8 pad_18[8];
     u16 mode;
@@ -138,13 +139,36 @@ typedef struct WlState {
     u16 unk_98;
     u8 pad_9a[0x14];
     u16 unk_ae;
-    u8 pad_b0[4];
+    u8 pad_b0[0xb2 - 0xb0];
+    u16 ringSize;                  /* length of the MAC RAM ring that ends at WIFI_RX_RING_LIMIT */
     void *unk_b4;
-    u8 pad_b8[0xc0];
+    u8 pad_b8[0xc0 - 0xb8];
+    u32 unk_c0;
+    u8 pad_c4[4];
+    u16 unk_c8;
+    u8 pad_ca[0x178 - 0xca];
     u16 unk_178;
     u8 pad_17a[6];
     WlTxFrame *txFrame;
 } WlState;
+
+/* Linear congruential generator: value = value * mul + add (16 bits). */
+typedef struct WlRandom {
+    u16 mul;
+    u16 add;
+    u16 value;
+} WlRandom;
+
+/* RF chip settings read from the firmware's wireless block (bytes 0x40-0x43, 0xce). */
+typedef struct WlRfConfig {
+    u16 type;                      /* firmware 0x40 */
+    u16 bitsPerEntry;              /* firmware 0x41: bits 0-6 count, bit 7 a flag */
+    u16 entryCount;                /* firmware 0x42 */
+    u16 unk_06;                    /* firmware 0x43 */
+    u8 unk_08;
+    u8 pad_09[3];
+    u32 unk_0c;
+} WlRfConfig;
 
 /* Message buffers: a 12-byte header followed by the payload. A buffer sits
    in at most one list; listId names that list, 0 when it sits in none. */
@@ -207,6 +231,12 @@ typedef struct WlWork {
     u16 macAddress[3];
     u16 unk_2fe;
     WlState state;
+    u8 pad_484[0x5c4 - 0x484];
+    WlRandom random;
+    u8 pad_5ca[2];
+    WlRfConfig rf;
+    OSAlarm periodicAlarm;
+    OSAlarm oneShotAlarm;
 } WlWork;
 
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
@@ -219,6 +249,9 @@ typedef struct WlWork {
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
+
+/* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
+#define WIFI_RX_RING_LIMIT 0x04805f60
 
 void WifiTask_ThreadMain(void);
 void WifiHost_TakeInboxBuffer(void **message);

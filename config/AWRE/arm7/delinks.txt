@@ -304,6 +304,10 @@ src/arm7/sdk/func_arm7_027c7f14.c:
     complete
     .text       start:0x027c7f14 end:0x027c7f30
 
+src/arm7/sdk/wl/wifi_step_lcg.c:
+    complete
+    .text       start:0x027c8390 end:0x027c83c8
+
 src/arm7/sdk/func_arm7_027c83c8.c:
     complete
     .text       start:0x027c83c8 end:0x027c83e0
