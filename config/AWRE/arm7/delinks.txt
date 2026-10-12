@@ -1464,6 +1464,10 @@ src/arm7/sdk/snd/snd_lfo_get_value.c:
     complete
     .text       start:0x037ff300 end:0x037ff350
 
+src/arm7/sdk/snd/snd_lfo_update.c:
+    complete
+    .text       start:0x037ff350 end:0x037ff3b4
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4
