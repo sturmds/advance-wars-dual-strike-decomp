@@ -101,6 +101,14 @@ typedef struct MICSystemWork {
 #define REG_SPICNT  (*(volatile u16 *)0x040001c0)
 #define REG_SPIDATA (*(volatile u16 *)0x040001c2)
 #define SPI_BUSY 0x0080
+#define SERIAL_RATE_2MHZ  0x0001
+#define SERIAL_SELECT_TOUCH_ADC 0x0200          /* touch screen controller; its ADC also reads the microphone */
+#define SERIAL_KEEP_CHIP_SELECTED       0x0800          /* keep chip select after this byte */
+#define SPI_ENABLE     0x8000
+
+/* Touch screen controller commands that convert the microphone channel. */
+#define TSC_READ_MIC_12BIT 0xe4
+#define TSC_READ_MIC_8BIT  0xec
 
 /* A request the SPI manager queued, as its thread hands it to the device code. */
 typedef struct SerialBusJob {
