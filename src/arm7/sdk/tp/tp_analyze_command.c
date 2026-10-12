@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/tp.h"
 
-void Touch_ApplyStabilityRequest(u16 range);
-
 /* Takes the touch panel words from the SPI PXI handler: collects the words of a
  * request, then checks it and queues it for the SPI thread or answers it. */
 void TP_AnalyzeCommand(u32 data)

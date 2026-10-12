@@ -2,10 +2,6 @@
 #include "sdk/tp.h"
 
 void func_arm7_037fdc10(void);                   /* halt: disable interrupts and stop for good */
-u32 func_arm7_03804c48(void);
-u32 Touch_MeasureAxis(u16 *pos, s32 range, int axis, u16 *density);
-
-extern u16 tpLastTouch;
 
 /* Takes one touch panel reading: pen state, then X and Y. density gets the
  * larger spread of the raw readings on either axis, or 0 when the pen is up
@@ -23,7 +19,7 @@ void TP_ExecSampling(SPITpData *data, s32 range, u16 *density)
         range = -range;
     }
 
-    touch = func_arm7_03804c48();
+    touch = Touch_ReadPenLine();
     if (touch == TP_TOUCH_OFF) {
         data->e.x = 0;
         data->e.y = 0;
@@ -51,7 +47,7 @@ void TP_ExecSampling(SPITpData *data, s32 range, u16 *density)
         data->e.validity = TP_VALIDITY_INVALID_XY;
     }
 
-    touch = func_arm7_03804c48();
+    touch = Touch_ReadPenLine();
     switch (touch) {
     case PEN_UP_GLITCH:
         data->e.touch = TP_TOUCH_ON;

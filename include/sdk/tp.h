@@ -165,6 +165,7 @@ typedef struct TouchSamplerState {
 } TouchSamplerState;
 
 extern TouchSamplerState tpWork;
+extern u16 tpLastTouch;         /* pen was down at the last sample */
 
 /* The ARM7's SPI bus, shared by the touch panel, power chip and firmware. */
 #define REG_SPICNT  (*(volatile u16 *)0x040001c0)
@@ -227,5 +228,15 @@ typedef struct SerialBusJob {
 void func_arm7_03803e84(u16 command, u16 result);    /* send a reply word to the ARM9 */
 /* Queue a job for the SPI thread; FALSE when the queue is full. */
 BOOL func_arm7_03803d38(u32 device, u32 process, u16 paramCount, ...);
+
+void Touch_ResetDriver_Arm7(void);
+void TP_AnalyzeCommand(u32 data);
+void TP_ExecuteProcess(SerialBusJob *entry);
+void Touch_ApplyStabilityRequest(u16 range);
+void Touch_QueueAutoSample(void *arg);
+void Touch_TuneStabilityRange(SPITpData *sample, u16 density);
+void TP_ExecSampling(SPITpData *data, s32 range, u16 *density);
+u32 Touch_MeasureAxis(u16 *pos, s32 range, int axis, u16 *density);
+u32 Touch_ReadPenLine(void);   /* TP_TOUCH_OFF, TP_TOUCH_ON or PEN_UP_GLITCH */
 
 #endif
