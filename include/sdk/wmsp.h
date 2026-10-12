@@ -319,15 +319,15 @@ static inline WMParentParam *Wmsp_ParentParam(WMStatus *status)
     return (WMParentParam *)status->pparam;
 }
 
-/* The MP V-count alarm: one step per line, func_arm7_027c5cb0 dispatches on the line. */
+/* The MP V-count alarm: one step per line, WMSP_VAlarmHandler dispatches on the line. */
 #define WMSP_VALARM_DELAY 263               /* a whole frame of lines: the step is never skipped */
 
-void func_arm7_027c5cb0(void *line);
+void WMSP_VAlarmHandler(void *line);
 
 /* Sets WmspBuf.vAlarm for line, with the line as the handler's argument. */
 static inline void Wmsp_SetVAlarm(WmspBuf *buf, s16 line)
 {
-    LineAlarm_ArmOneShot_Arm7(&buf->vAlarm, line, WMSP_VALARM_DELAY, func_arm7_027c5cb0, (void *)line);
+    LineAlarm_ArmOneShot_Arm7(&buf->vAlarm, line, WMSP_VALARM_DELAY, WMSP_VAlarmHandler, (void *)line);
 }
 
 /* The wireless microsecond counter, low and next halfword (GBATEK W_US_COUNT0/1). */
