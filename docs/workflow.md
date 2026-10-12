@@ -118,7 +118,7 @@ Terms: *registers swap* means the same instructions with two register numbers ex
    - a header that lacks something the siblings use, such as `volatile` fields (GfxQueue_AddKind4).
 2. If a sibling of the same shape matched (a twin, an Up/Down or Ready/Unready pair), copy its shape first (func_02001f50, GfxQueue_AddKind4, LinkScreen_MovePlayerUp).
 3. Run `pragmas.py`. A pragma was part of 13 partial matches, and matched 5 of them with no change to the C.
-4. Find the symptom below and try its rewrites, before inventing new ones.
+4. Find which statement made each differing line with `fn.py lines` ("Which C line made which instruction" above), then find the symptom below and try its rewrites on that statement, before inventing new ones.
 5. Run `permuter.py` for 10 minutes once the instructions agree, and `permute.py` for declaration order. `permute.py` finished many matches, but on a register-only diff it never found one alone; `permuter.py` matched RangeMap_MarkAdjacentTiles (register-only, parked after six retries) in seconds.
 6. Try combining the best halves of different attempts: each half can match on its own. CampaignMap_Init kept a 7-differ version as its best for several retries; the `(u8)` cast from one attempt in the first half and `n = 0; co[n + call]` from another in the second brought it to 1.
 
