@@ -43,7 +43,7 @@ void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
         break;
     case 2:
     case 3:
-        if (link->mode == 0x40 && WifiMac_Equal(frame->addr2, link->currentAp)) {
+        if (link->mode == WIFI_MODE_JOINED && WifiMac_Equal(frame->addr2, link->currentAp)) {
             Wifi_SwitchMode(0x30);
             WifiLink_DropAssocId();
             WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);

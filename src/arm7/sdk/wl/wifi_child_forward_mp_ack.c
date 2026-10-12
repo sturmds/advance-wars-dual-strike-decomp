@@ -12,7 +12,7 @@ int WifiChild_ForwardMpAck(WlRxFrame *frame)
     WlLink *link = WIFI_LINK_VIEW_OF(WIFI_DRIVER_STATE);
     WlRxBuffer *buffer;
 
-    if (WIFI_DRIVER_STATE->state.mode != 0x40) {
+    if (WIFI_DRIVER_STATE->state.mode != WIFI_MODE_JOINED) {
         return 1;
     }
     if (!WifiMac_Equal(frame->addr2, link->bssid) || !WifiMac_Equal(frame->addr3, link->currentAp)) {

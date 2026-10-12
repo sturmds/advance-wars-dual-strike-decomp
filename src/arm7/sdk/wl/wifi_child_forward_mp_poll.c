@@ -19,7 +19,7 @@ int WifiChild_ForwardMpPoll(WlRxFrame *frame)
     u32 count;
     u16 mask;
 
-    if (link->mode != 0x40) {
+    if (link->mode != WIFI_MODE_JOINED) {
         return 1;
     }
     if (child->lastSequence == frame->sequence) {

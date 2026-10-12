@@ -51,8 +51,7 @@ void WifiParent_StoreMpReply(WlRxFrame *frame)
         }
         return;
     }
-    /* frame control bit 12: the station's power management bit */
-    func_arm7_027cb364(station, (u32)(frame->frameControl << 19) >> 31);
+    func_arm7_027cb364(station, WIFI_FRAMECTL_FIELDS(frame->frameControl)->powerManagement);
     func_arm7_027cb27c(station);
     bit = 1 << func_arm7_027cb068(station);
     if (bit & slots->mpReceived) {
