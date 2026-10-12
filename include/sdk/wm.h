@@ -324,6 +324,22 @@ typedef struct WMDataSharingInfo {
 #define WM_STATE_MP_CHILD 10
 #define WM_STATE_DCF_CHILD 11
 
+#define WIRELESS_OUTBOX_ENTRIES 32
+#define WIRELESS_URGENCY_LEVELS 4
+#define WIRELESS_OUTBOX_NO_ENTRY 0xffff           /* no entry: ends a list */
+
+/* One port send request, an entry in the send queue. */
+typedef struct RadioOutboxEntry {
+    u16 next;                          /* index of the next entry in its list */
+    u8 pad_02[0x1e];
+} RadioOutboxEntry;
+
+/* A list of RadioOutboxEntry entries, by index. */
+typedef struct RadioOutboxList {
+    u16 head;
+    u16 tail;
+} RadioOutboxList;
+
 /* The ARM7 keeps these up to date; the ARM9 invalidates its cache lines
  * before each read. Only the fields read so far are named. */
 typedef struct WMStatus {
@@ -355,6 +371,12 @@ typedef struct WMStatus {
     u8 pad_186[8];
     u16 unk_18e;
     u16 unk_190;
+    u8 pad_192[0x162];
+    RadioOutboxEntry sendQueueData[WIRELESS_OUTBOX_ENTRIES];
+    RadioOutboxList sendQueueFreeList;
+    RadioOutboxList sendQueue[WIRELESS_URGENCY_LEVELS];
+    RadioOutboxList readyQueue[WIRELESS_URGENCY_LEVELS];
+    u8 sendQueueMutex[0x18];           /* an OSMutex; wm.h does not include os.h */
 } WMStatus;
 
 /* Arguments of the connect command, written into WMArm9Buf.requestBuf. */
