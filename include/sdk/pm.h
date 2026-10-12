@@ -48,6 +48,33 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 /* Frame counter in shared main RAM, raised by the VBlank interrupt. */
 #define SHARED_FRAME_COUNTER ((volatile u32 *)0x027ffc3c)
 
+/* ARM7 side: the power chip driver that answers the requests above. */
+
+/* Request ids in the high byte of the first PXI word. Register reads are
+ * answered with POWER_MSG_REGISTER_VALUE_BASE + the register number. */
+enum {
+    POWER_MSG_HANDSHAKE = 0x60,
+    POWER_MSG_PREPARE_SLEEP = 0x61,
+    /* 0x62 is POWER_MSG_ENTER_SLEEP below */
+    POWER_MSG_APPLY_ORDER = 0x63,
+    POWER_MSG_STORE_REGISTER = 0x64,
+    POWER_MSG_FETCH_REGISTER = 0x65,
+    /* 0x66 is POWER_MSG_LED_STATE below */
+    POWER_MSG_QUERY_BLINK_SCRIPT = 0x67,
+    POWER_MSG_REGISTER_VALUE_BASE = 0x70
+};
+
+#define POWER_MSG_MAX_HALFWORDS 16           /* halfwords in one request */
+
+/* PowerRequestInbox.unk_20: the job the SPI thread is running. */
+enum {
+    POWER_JOB_NONE = 0,
+    POWER_JOB_SLEEPING = 1,
+    POWER_JOB_ORDER = 2,
+    POWER_JOB_FETCH = 3,
+    POWER_JOB_STORE = 4
+};
+
 /* ARM7 side: the power chip sits on the SPI bus. */
 #define REG_SPI_CNT ((volatile u16 *)0x040001c0)
 #define REG_SPI_DATA ((volatile u16 *)0x040001c2)
@@ -115,7 +142,11 @@ typedef struct PowerRequestInbox PowerRequestInbox;
 struct PowerRequestInbox {
     u16 words[16];
     u32 unk_20;
+    u32 value;                         /* value written, or the utility argument */
+    u32 reg;                           /* register read or written */
 };
+
+extern PowerRequestInbox data_arm7_03809ffc;
 
 /* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
 int func_arm7_038052e8(int continuous);
