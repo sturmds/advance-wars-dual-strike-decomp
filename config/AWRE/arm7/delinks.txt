@@ -1668,6 +1668,10 @@ src/arm7/sdk/snd/snd_arm7_set_player_variable.c:
     complete
     .text       start:0x03801eb0 end:0x03801ed0
 
+src/arm7/sdk/snd/snd_arm7_alarm_handler.c:
+    complete
+    .text       start:0x03801ed0 end:0x03801f00
+
 src/arm7/sdk/snd/snd_arm7_start_alarm.c:
     complete
     .text       start:0x03801f40 end:0x03802008
