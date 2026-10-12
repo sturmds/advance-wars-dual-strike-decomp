@@ -8,7 +8,7 @@
 
 void Wifi_ClearSessionArea(u32 value, int limit);
 void WifiTask_ClearQueues(void);
-void func_arm7_027c7e30(const WlBufferAllocator *allocator);
+void WifiBuffer_SetUpLists(const WlBufferAllocator *allocator);
 BOOL WifiFlash_FetchRadioBlock(void);
 void WifiFlash_ReadRadioBytes(u32 offset, u32 size, void *dest);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
@@ -48,7 +48,7 @@ u16 Wifi_StartDriver(Unk_arm7_038057d4 *params)
     if (WIFI_DRIVER_STATE->limits.unk_e4 == 0) {
         WIFI_DRIVER_STATE->limits.unk_e4 = 0xffffffff;
     }
-    func_arm7_027c7e30((WlBufferAllocator *)&params->unk_20);
+    WifiBuffer_SetUpLists((WlBufferAllocator *)&params->unk_20);
     WifiFlash_FetchRadioBlock();
     *REG_POWCNT2 |= POWCNT2_WIRELESS;
     REG_WIFIWAITCNT = 0x30;

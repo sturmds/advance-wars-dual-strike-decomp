@@ -540,6 +540,10 @@ src/arm7/sdk/wl/wifi_buffer_release_work_lists.c:
     complete
     .text       start:0x027c7dd4 end:0x027c7e30
 
+src/arm7/sdk/wl/wifi_buffer_set_up_lists.c:
+    complete
+    .text       start:0x027c7e30 end:0x027c7f14
+
 src/arm7/sdk/func_arm7_027c7f14.c:
     complete
     .text       start:0x027c7f14 end:0x027c7f30

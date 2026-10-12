@@ -291,6 +291,7 @@ typedef struct WlUnk318 {
     u8 *data;
     u16 dataLength;
     u16 flags; /* bit 0: data starts one byte after the pointer */
+    u16 unk_a4;
 } WlUnk318;
 
 /* Linear congruential generator: value = value * mul + add (16 bits). */
