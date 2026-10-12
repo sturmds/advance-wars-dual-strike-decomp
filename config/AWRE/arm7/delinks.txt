@@ -1504,6 +1504,10 @@ src/arm7/sdk/func_arm7_038010e4.c:
     complete
     .text       start:0x038010e4 end:0x038010f8
 
+src/arm7/sdk/snd/snd_track_init.c:
+    complete
+    .text       start:0x038010f8 end:0x038011ec
+
 src/arm7/sdk/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70
