@@ -230,6 +230,32 @@ typedef struct WmspBuf {
     WmspSlot slots[WMSP_SLOT_COUNT];
 } WmspBuf;
 
+/* WmspBuf offset 0x10: the WMBssDesc of the parent a child connects to,
+   copied by WMSP_StartConnect (unk_46 is its channel). */
+#define WMSP_BSS_DESC(buf) ((WMBssDesc *)&(buf)->pad_0c[4])
+
+/* The argument of WL command 3: the first 0x40 bytes of a WMBssDesc
+   (everything before gameInfo), then a word WMSP_StartConnect does not write.
+   ssid is filled in halfwords. */
+typedef struct WlJoinBssDesc {
+    u16 length;
+    u16 rssi;
+    u8 bssid[6];
+    u16 ssidLength;
+    u16 ssid[16];
+    u16 capaInfo;
+    u16 rateSetBasic;
+    u16 rateSetSupport;
+    u16 beaconPeriod;
+    u16 dtimPeriod;
+    u16 channel;
+    u16 cfpPeriod;
+    u16 cfpMaxDuration;
+    u16 gameInfoLength;
+    u16 otherElementCount;
+    u32 unk_40;
+} WlJoinBssDesc;
+
 /* What the ARM9 sends for a request with one value. */
 typedef struct WmspRequest {
     u16 apiid;
