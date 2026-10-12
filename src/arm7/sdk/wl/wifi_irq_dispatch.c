@@ -4,7 +4,7 @@ void func_arm7_037fa1bc(void);
 void func_arm7_037fa270(void);
 void WifiIrq_BeforeBeacon(void);
 void WifiIrq_BeaconSent(void);
-void func_arm7_037f9868(void);
+void WifiIrq_AfterBeacon(void);
 int func_arm7_027cab80(void); /* acknowledges W_IRQ_RF_WAKEUP */
 void func_arm7_037f9920(void);
 void func_arm7_037f9a44(void);
@@ -37,7 +37,7 @@ void WifiIrq_Dispatch(void)
             WifiIrq_BeaconSent();
         }
         if (causes & W_IRQ_POST_BEACON) {
-            func_arm7_037f9868();
+            WifiIrq_AfterBeacon();
         }
         if (causes & W_IRQ_RF_WAKEUP) {
             func_arm7_027cab80();
