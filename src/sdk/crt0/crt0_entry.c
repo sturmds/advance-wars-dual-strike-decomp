@@ -6,7 +6,7 @@ void OS_IrqHandler(void);
 void main(void);
 void func_02000900(u32 data, void *dest, int size);
 void MIi_UncompressBackward(void *bottom);
-void func_020009b8(void);
+void do_autoload(void);
 void func_02000a14(void);
 void func_02000afc(void);
 void func_0212950c(void);
@@ -57,7 +57,7 @@ asm void Entry(void)
     ldr r1, =BuildInfo
     ldr r0, [r1, #0x14]
     bl MIi_UncompressBackward
-    bl func_020009b8
+    bl do_autoload
     ldr r0, =BuildInfo
     ldr r1, [r0, #0xc]
     ldr r2, [r0, #0x10]
