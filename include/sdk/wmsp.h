@@ -32,7 +32,12 @@ typedef struct WmspSlot {
 #define WIFI_HOSTMSG_PEER_JOINED 0x86
 #define WIFI_HOSTMSG_PEER_REJOINED 0x87
 #define WIFI_HOSTMSG_PEER_LEFT 0x88
+#define WIFI_HOSTMSG_PARENT_GONE 0x8b
+#define WIFI_HOSTMSG_BEACON_OUT 0x8c
+#define WIFI_HOSTMSG_BEACON_HEARD 0x8d
 #define WIFI_HOSTMSG_DATA_FRAME 0x180
+#define WIFI_HOSTMSG_POLL_HEARD 0x182                /* a child received an MP frame */
+#define WIFI_HOSTMSG_POLL_FINISHED 0x184            /* a parent received the children's MP replies */
 #define WIFI_HOSTMSG_POLL_ACKED 0x185
 #define WIFI_HOSTMSG_EVENT_BITS 0x186  /* best guess: WMSP disconnects every link on it */
 
@@ -73,6 +78,25 @@ typedef struct WlDataIndication {
     WlIndicationHeader ind;
     WlDataFrame frame;
 } WlDataIndication;
+
+typedef struct WlMpIndication {
+    WlIndicationHeader ind;
+    RadioChildFrameBuffer frame;            /* frame.length + 0x30 bytes are valid */
+} WlMpIndication;
+
+typedef struct WlMpEndIndication {
+    WlIndicationHeader ind;
+    WMMpRecvBuf recv;
+} WlMpEndIndication;
+
+/* A parent's beacon, as a child receives it. */
+typedef struct WlBeaconIndication {
+    WlIndicationHeader ind;
+    u8 pad_10[6];
+    u16 gameInfoLength;
+    u8 pad_18[0x24];
+    WMGameInfo gameInfo;
+} WlBeaconIndication;
 
 /* The ack that ends an MP exchange. */
 typedef struct WlMpAckFrame {

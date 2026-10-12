@@ -316,6 +316,25 @@ typedef struct WMMpRecvBuf {
 
 WMMpRecvData *WM_ReadMPData(const WMMpRecvBuf *recvBuf, u16 aid);
 
+/* A child's MP receive buffer: the frame the parent sent (the child-side
+ * one WMMpRecvBuf; the WMMpRecvBuf above is its parent-side header). */
+typedef struct RadioChildFrameBuffer {
+    u8 pad_00[6];
+    u16 length;                        /* bytes after wmHeader */
+    u16 unk_08;
+    u16 ackTimeStamp;
+    u16 timeStamp;
+    u8 rate;
+    u8 rssi;                           /* raw; see Wmsp_DecodeRssi */
+    u8 pad_10[8];
+    u8 destAdrs[6];
+    u8 srcAdrs[6];
+    u8 pad_24[0xa];
+    u16 pollBitmap;                    /* bit n set: the parent polls the child with aid n */
+    u16 wmHeader;
+    u16 data[1];
+} RadioChildFrameBuffer;
+
 /* Data sharing: every station sends a block each frame
  * and all of them receive the blocks of all. */
 #define SHARE_RING_SLOTS 4
@@ -396,7 +415,9 @@ typedef struct RadioOutboxList {
  * before each read. Only the fields read so far are named. */
 typedef struct WMStatus {
     u16 state;                         /* WIRELESS_PHASE_* */
-    u8 pad_02[0x0a];
+    u16 busyApiid;                     /* the request the ARM7 runs now */
+    u32 apiBusy;                       /* 1 while a request runs */
+    u8 pad_08[4];
     u32 mpFlag;                        /* 1 while MP runs */
     u32 unk_10;
     u32 unk_14;
@@ -410,9 +431,10 @@ typedef struct WMStatus {
     u16 unk_32;
     u16 unk_34;                        /* a limit set by request 35; 0 there means 16 */
     u16 unk_36;                        /* kept at or below unk_34 */
-    u8 pad_38[0xe];
+    u8 pad_38[0xc];
+    u16 mpRecvBufSel;                  /* which of mpRecvBuf gets the next frame */
     u16 mpRecvBufSize;                 /* bytes in an MP receive buffer */
-    u8 pad_48[8];
+    RadioChildFrameBuffer *mpRecvBuf[2];
     const void *unk_50;                /* WM_SetMPDataToPortEx refuses this buffer */
     u8 pad_54[2];
     u16 unk_56;                        /* MP ack deadline, in the wireless microsecond counter / 16 */
@@ -434,7 +456,7 @@ typedef struct WMStatus {
     u16 dcfRecvBufSel;
     void *dcfRecvBuf[2];               /* two halves of the buffer given to WM_StartDCF */
     u16 dcfRecvBufSize;
-    u8 pad_b6[2];
+    u16 tgid;                          /* the parent's tgid, compared with each beacon */
     u16 linkLevel;
     u16 unk_ba;
     u8 pad_bc[2];
@@ -478,6 +500,17 @@ typedef struct WMStatus {
     u64 mpLastRecvTick[16];            /* tick of the last MP frame from each aid, bit 0 set */
     u64 unk_7b0;
 } WMStatus;
+
+/* What WIRELESS_NOTICE_HEARD_BEACON reports. */
+typedef struct RadioHeardBeaconNotice {
+    u16 apiid;
+    u16 errcode;
+    u16 state;
+    u16 tgid;
+    u16 wmstate;                       /* WMStatus.state */
+    u16 gameInfoLength;
+    WMGameInfo gameInfo;
+} RadioHeardBeaconNotice;
 
 /* Arguments of the connect command, written into WMArm9Buf.requestBuf. */
 typedef struct WMStartConnectReq {
