@@ -23131,7 +23131,7 @@ src/sdk/mb/mb_pieces_clear.c:
     complete
     .text       start:0x0211e1a8 end:0x0211e1f4
 
-src/game/main/func_0211e1f4.c:
+src/sdk/mb/mb_pieces_init.c:
     complete
     .text       start:0x0211e1f4 end:0x0211e214
 

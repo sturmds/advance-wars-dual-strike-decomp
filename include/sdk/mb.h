@@ -32,11 +32,11 @@ typedef struct DlPlayGameEntry {
     u16 unk_35c;
     u8 users[DLPLAY_CHILD_SLOTS][DLPLAY_PLAYER_BADGE_BYTES];
     u8 unk_4a8[8];                     /* sent at the end of the player beacon */
-    u16 changed;                       /* set to 1 when the beacon sent the game's pieces */
+    u16 sentPlayerFlags;               /* beacon progress: bit 0 once the game's pieces went out, bit n once player n's info did */
     u8 noIcon;                         /* 1 when an icon file could not be read */
-    u8 unk_4b3;
+    u8 seqNo;                          /* registration order, from gMbGameSequence */
     u8 changeCount;                    /* up by one at each player change */
-    u8 unk_4b5;
+    u8 fileNo;                         /* slot in DlPlayHostLinkArea.files */
     u8 pad_4b6[2];
     u32 ggid;
     struct DlPlayGameEntry *next;           /* list link */
@@ -81,8 +81,8 @@ typedef struct DlPlayAdvertProgress {
 typedef struct DlPlayAdvertFrame {
     u32 ggid;
     u8 noIcon : 2;
-    u8 unk_4b5 : 6;
-    u8 unk_4b3;
+    u8 fileNo : 6;
+    u8 seqNo;
     u8 changeCount;
     u8 sequence;                       /* up by one at each beacon */
     u16 checksum;                      /* over the bytes from here to the end */
@@ -101,8 +101,8 @@ typedef struct DlPlayAdvertFrame {
 typedef struct DlPlayRosterFrame {
     u32 ggid;
     u8 kind : 2;                       /* DLPLAY_ADVERT_IS_ROSTER */
-    u8 unk_4b5 : 6;
-    u8 unk_4b3;
+    u8 fileNo : 6;
+    u8 seqNo;
     u8 changeCount;
     u8 sequence;
     u16 checksum;
@@ -371,6 +371,11 @@ typedef struct DlPlayFragmentGeometry {
     int dataSize;
 } DlPlayFragmentGeometry;
 
+extern DlPlayFragmentStore *gMbRecvPieces;
+extern DlPlayFragmentGeometry gMbRecvPieceSize;
+
+void MbPieces_Init(DlPlayFragmentStore *buffer);
+
 /* A child message that carries one piece (type 7). */
 typedef struct DlPlayRequestFragment {
     u8 type;
@@ -534,10 +539,10 @@ typedef struct DlPlayHostLinkArea {
     int commState[DLPLAY_CHILD_SLOTS];
     u8 fileCount;
     u8 currentFile;
-    u8 childFiles[DLPLAY_CHILD_SLOTS];     /* file each child picked */
+    s8 childFiles[DLPLAY_CHILD_SLOTS];     /* file each child picked, DLPLAY_NO_FILE_CHOSEN for none */
     u8 childCount;
     u16 childEntryBitmap;
-    u8 pieceBuffer[0x1754 - 0x1538];   /* request pieces from children (func_0211e1f4) */
+    DlPlayFragmentStore pieceBuffer;          /* request pieces from children (MbPieces_Init) */
     u16 childRequests[DLPLAY_CHILD_SLOTS];
     DlPlayPlayerBadge userInfoCopy;           /* filled by MbComm_GetChildUser */
     DlPlayOfferedFile files[DLPLAY_OFFER_SLOTS];

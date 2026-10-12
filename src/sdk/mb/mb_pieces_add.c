@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayFragmentStore *data_022acf04;
-extern DlPlayFragmentGeometry data_022acf08;
-
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
 int MbPieces_IsComplete(int aid);
 
@@ -13,18 +10,18 @@ u8 *MbPieces_Add(DlPlayRequestFragment *piece, int aid)
 {
     u8 index;
 
-    if (data_022acf04 == NULL) {
+    if (gMbRecvPieces == NULL) {
         return NULL;
     }
     index = piece->index;
-    if (index > data_022acf08.pieceCount) {
+    if (index > gMbRecvPieceSize.pieceCount) {
         return NULL;
     }
-    Mem_CopyBytes(piece->data, data_022acf04->data[aid - 1] + index * data_022acf08.pieceSize,
-                 data_022acf08.pieceSize);
-    data_022acf04->received[aid - 1] |= 1 << index;
+    Mem_CopyBytes(piece->data, gMbRecvPieces->data[aid - 1] + index * gMbRecvPieceSize.pieceSize,
+                 gMbRecvPieceSize.pieceSize);
+    gMbRecvPieces->received[aid - 1] |= 1 << index;
     if (MbPieces_IsComplete(aid)) {
-        return data_022acf04->data[aid - 1];
+        return gMbRecvPieces->data[aid - 1];
     }
     return NULL;
 }

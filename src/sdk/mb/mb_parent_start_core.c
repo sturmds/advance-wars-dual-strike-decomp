@@ -11,7 +11,6 @@ void MIi_CpuClear16(u16 value, void *dst, u32 size);
 void MI_CpuFill8(void *dst, u8 value, u32 size);
 BOOL PXI_IsCallbackReady(int tag, int proc);
 void MbPieces_SetSize(u32 childMaxSize);
-void func_0211e1f4(void *buffer);
 void MbParent_CommCallback(u32 type, void *arg);
 void MbParent_WmCallback(void);
 void MbBeacon_Init(void);
@@ -42,10 +41,10 @@ int MbParent_StartCore(int channel)
     }
     data_022aced4->blockSizeMax = data_022aced8->sendSize - DLPLAY_HOST_MSG_HEAD_BYTES;
     MbPieces_SetSize(data_022aced8->unk_502);
-    func_0211e1f4(data_022aced4->pieceBuffer);
+    MbPieces_Init(&data_022aced4->pieceBuffer);
     for (i = 0; i < DLPLAY_CHILD_SLOTS; i++) {
         data_022aced4->commState[i] = 0;
-        ((s8 *)data_022aced4->childFiles)[i] = -1;   /* no file picked; the SDK field is signed */
+        data_022aced4->childFiles[i] = DLPLAY_NO_FILE_CHOSEN;
     }
     data_022aced4->fileCount = 0;
     zero2 = 0;

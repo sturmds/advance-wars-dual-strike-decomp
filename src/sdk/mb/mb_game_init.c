@@ -34,5 +34,5 @@ void MbGame_Init(DlPlayGameEntry *game, const DlPlayGameSource *registry, const 
     MIi_CpuCopy16(registry->gameIntro, game->gameIntro, sizeof(game->gameIntro));
     game->playerCount = 1;
     game->playerFlags = 1;
-    game->changed = 1;
+    game->sentPlayerFlags = 1;
 }

@@ -27,10 +27,10 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute)
         MbBeacon_EndGame();
     }
     data_022ace60.kind = DLPLAY_ADVERT_IS_ROSTER;
-    data_022ace60.unk_4b3 = data_022ace4c.currentGame->unk_4b3;
+    data_022ace60.seqNo = data_022ace4c.currentGame->seqNo;
     data_022ace60.changeCount = data_022ace4c.changeCount;
     data_022ace60.ggid = data_022ace4c.currentGame->ggid;
-    data_022ace60.unk_4b5 = data_022ace4c.currentGame->unk_4b5;
+    data_022ace60.fileNo = data_022ace4c.currentGame->fileNo;
     data_022ace60.sequence = data_022ace4c.sequence++;
     data_022ace60.playerCount = data_022ace4c.currentGame->playerCount;
     data_022ace60.playerFlags = data_022ace4c.currentGame->playerFlags;
@@ -45,12 +45,12 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute)
     zero = 0;
     MIi_CpuClear16(zero, data_022ace60.users, sizeof(data_022ace60.users));
     count = 0;
-    pending = data_022ace4c.currentGame->changed ^ data_022ace4c.currentGame->playerFlags;
+    pending = data_022ace4c.currentGame->sentPlayerFlags ^ data_022ace4c.currentGame->playerFlags;
     for (i = 0; i < DLPLAY_CHILD_SLOTS; i++) {
         if (pending & (2 << i)) {   /* bit 0 is the parent */
             MIi_CpuCopy16(data_022ace4c.currentGame->users[i], data_022ace60.users[count], DLPLAY_PLAYER_BADGE_BYTES);
             count++;
-            data_022ace4c.currentGame->changed |= 2 << i;
+            data_022ace4c.currentGame->sentPlayerFlags |= 2 << i;
             if (count == DLPLAY_ROSTER_PER_FRAME) {
                 break;
             }
@@ -62,7 +62,7 @@ void MbBeacon_SendPlayers(u32 ggid, u16 tgid, u32 attribute)
 
     data_022ace60.checksum = 0;
     data_022ace60.checksum = MbBeacon_Checksum(&data_022ace60.checksum, DLPLAY_ADVERT_SUMMED_BYTES);
-    if (data_022ace4c.currentGame->changed == data_022ace4c.currentGame->playerFlags) {
+    if (data_022ace4c.currentGame->sentPlayerFlags == data_022ace4c.currentGame->playerFlags) {
         data_022ace4c.state = DLPLAY_ADVERT_STEP_PICK;
     }
     WM_SetGameInfo(0, &data_022ace60, sizeof(DlPlayRosterFrame), ggid, tgid, attribute | WM_ATTR_FLAG_MB);

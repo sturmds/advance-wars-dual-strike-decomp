@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/mb.h"
 
-extern DlPlayFragmentStore *data_022acf04;
-extern DlPlayFragmentGeometry data_022acf08;
-
 void Mem_CopyBytes(const void *src, void *dst, u32 size);
 int MbPieces_IsComplete(int aid);
 u8 *MbPieces_Add(DlPlayRequestFragment *piece, int aid);
@@ -22,13 +19,13 @@ u8 *MbComm_ReadChildMessage(const u8 *src, DlPlayChildMsgHead *header, int aid)
         DlPlayRequestFragment *piece = (DlPlayRequestFragment *)header;
 
         if (MbPieces_IsComplete(aid)) {
-            return data_022acf04->data[aid - 1];
+            return gMbRecvPieces->data[aid - 1];
         }
         piece->index = src[1];
-        if (piece->index > data_022acf08.pieceCount) {
+        if (piece->index > gMbRecvPieceSize.pieceCount) {
             return NULL;
         }
-        Mem_CopyBytes(src + 2, piece->data, data_022acf08.pieceSize);
+        Mem_CopyBytes(src + 2, piece->data, gMbRecvPieceSize.pieceSize);
         payload = MbPieces_Add(piece, aid);
         break;
     }
@@ -41,8 +38,8 @@ u8 *MbComm_ReadChildMessage(const u8 *src, DlPlayChildMsgHead *header, int aid)
         payload = (u8 *)src + 3;
         header->request = src[1] & 0xff;
         header->request |= (src[2] << 8) & 0xff00;
-        Mem_CopyBytes(payload, header->pad_04, data_022acf08.pieceSize);
-        payload += data_022acf08.pieceSize;
+        Mem_CopyBytes(payload, header->pad_04, gMbRecvPieceSize.pieceSize);
+        payload += gMbRecvPieceSize.pieceSize;
         break;
     default:
         return NULL;

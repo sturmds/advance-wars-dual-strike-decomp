@@ -54,9 +54,9 @@ BOOL DownloadPlay_OfferChildProgram(const DlPlayGameSource *registry, const void
         return FALSE;
     }
     MbGame_Init(&data_022aced4->files[fileId].gameInfo, registry, &data_022aced4->user);
-    data_022aced4->files[fileId].gameInfo.unk_4b5 = fileId;
+    data_022aced4->files[fileId].gameInfo.fileNo = fileId;
     MbBeacon_AppendGame(&data_022aced4->files[fileId].gameInfo);
-    data_022aced4->files[fileId].gameInfo.unk_4b3 = gMbGameSequence++;
+    data_022aced4->files[fileId].gameInfo.seqNo = gMbGameSequence++;
     data_022aced4->files[fileId].childBitmap = 1;
     data_022aced4->files[fileId].source = buffer;
     data_022aced4->files[fileId].cache = (DlPlayHeldProgram *)((u8 *)buffer + DLPLAY_SOURCE_HELD_AT);

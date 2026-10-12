@@ -61,8 +61,7 @@ void MbParent_CommCallback(u16 type, void *arg)
             if (fileId != DLPLAY_NO_FILE_CHOSEN) {
                 MbComm_GetFile(data_022aced4, (u8)fileId)->childBitmap &= ~(1 << aid);
                 MbComm_GetFile(data_022aced4, (u8)fileId)->changedBitmap |= 1 << aid;
-                /* needed to match: childFiles holds s8 values */
-                ((s8 *)data_022aced4->childFiles)[aid - 1] = DLPLAY_NO_FILE_CHOSEN;
+                data_022aced4->childFiles[aid - 1] = DLPLAY_NO_FILE_CHOSEN;
                 MbComm_GetFile(data_022aced4, (u8)fileId)->pollBitmap &= ~(1 << aid);
             }
         }

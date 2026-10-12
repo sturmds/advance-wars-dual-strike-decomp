@@ -23,12 +23,10 @@ int MbParent_SendFileInfo(void)
     u8 i;
     u8 *data;
 
-    /* needed to match: childFiles is read signed here (ldrsb) and unsigned
-     * in the receive handler. */
     MI_CpuFill8(childCounts, 0, sizeof(childCounts));
     for (aid = 1; aid <= DLPLAY_CHILD_SLOTS; aid++) {
         if (data_022aced4->commState[aid - 1] == DLPLAY_CHILD_ADMITTED) {
-            childCounts[(s8)data_022aced4->childFiles[aid - 1]]++;
+            childCounts[data_022aced4->childFiles[aid - 1]]++;
         }
     }
 
@@ -47,7 +45,7 @@ int MbParent_SendFileInfo(void)
 
     for (aid = 1; aid <= DLPLAY_CHILD_SLOTS; aid++) {
         if (data_022aced4->commState[aid - 1] == DLPLAY_CHILD_ADMITTED
-            && (s8)data_022aced4->childFiles[aid - 1] == fileId) {
+            && data_022aced4->childFiles[aid - 1] == fileId) {
             bitmap |= 1 << aid;
         }
     }

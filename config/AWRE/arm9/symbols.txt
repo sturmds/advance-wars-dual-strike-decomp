@@ -5795,7 +5795,7 @@ MbPieces_Add kind:function(arm,size=0xb0) addr:0x0211df34
 MbComm_ReadChildMessage kind:function(arm,size=0x13c) addr:0x0211dfe4
 MbComm_WriteParentMessage kind:function(arm,size=0x88) addr:0x0211e120
 MbPieces_Clear kind:function(arm,size=0x4c) addr:0x0211e1a8
-func_0211e1f4 kind:function(arm,size=0x20) addr:0x0211e1f4
+MbPieces_Init kind:function(arm,size=0x20) addr:0x0211e1f4
 MbPieces_SetSize kind:function(arm,size=0x3c) addr:0x0211e214
 Cartridge_SendWordUntilTaken kind:function(arm,size=0x64) addr:0x0211e250
 Cartridge_ReleaseSlotIfTaken kind:function(arm,size=0x28) addr:0x0211e2b4
@@ -9082,8 +9082,8 @@ data_022aced8 kind:bss addr:0x022aced8
 data_022acedc kind:bss addr:0x022acedc
 data_022acee0 kind:bss addr:0x022acee0
 data_022acf00 kind:bss addr:0x022acf00
-data_022acf04 kind:bss addr:0x022acf04
-data_022acf08 kind:bss addr:0x022acf08
+gMbRecvPieces kind:bss addr:0x022acf04
+gMbRecvPieceSize kind:bss addr:0x022acf08
 data_022acf14 kind:bss addr:0x022acf14
 gCtrdgHeaderRead kind:bss addr:0x022acf18
 gCtrdgInitialized kind:bss addr:0x022acf1c
