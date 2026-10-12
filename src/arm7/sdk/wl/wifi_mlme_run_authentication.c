@@ -2,7 +2,7 @@
 
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_AuthenticationTimedOut(void *arg);
-WlAuthFrame *func_arm7_027cf55c(u16 *peer, int arg);
+WlAuthFrame *WifiFrame_NewAuthentication(u16 *peer, int arg);
 void func_arm7_027d01c4(void *frame);
 void func_arm7_027d0240(int a, int b);
 void func_arm7_027d0500(int a);
@@ -21,7 +21,7 @@ void WifiMlme_RunAuthentication(void)
 
     switch (job->state) {
     case 0x30:
-        frame = func_arm7_027cf55c(job->request->peer, 0);
+        frame = WifiFrame_NewAuthentication(job->request->peer, 0);
         if (frame == NULL) {
             job->reply->unk_04 = WIFI_ANSWER_NO_MEMORY;
             job->state = 0x35;

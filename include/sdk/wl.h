@@ -207,12 +207,18 @@ typedef struct WlLink {
     u16 basicRates;     /* bit n: rate n of the rate table is a basic rate */
     u16 supportedRates; /* bit n: rate n of the rate table is supported */
     u16 bssid[3];
-    u8 pad_6a[0x7c - 0x6a];
+    u8 pad_6a[0x6e - 0x6a];
+    u16 beaconInterval; /* sent in probe responses */
+    u16 listenInterval; /* sent in association requests */
+    u8 pad_72[0x7c - 0x72];
     u16 flags_7c;
-    u8 pad_7e[0x88 - 0x7e];
+    u8 pad_7e[0x82 - 0x7e];
+    u16 currentAp[3];   /* MAC address sent in reassociation requests */
     u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
-    u8 pad_8c[0x9c - 0x8c];
+    u8 pad_8c[0x96 - 0x8c];
+    u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
+    u8 pad_98[0x9c - 0x98];
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
     u16 gameInfoLength;
     u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
@@ -327,7 +333,7 @@ typedef struct WlPeerJob {
     WlReply *reply;
 } WlPeerJob;
 
-/* Authentication frame from func_arm7_027cf55c: the 802.11 header starts at
+/* Authentication frame from WifiFrame_NewAuthentication: the 802.11 header starts at
    0x14 (frame control 0xb0), the body at 0x2c. */
 typedef struct WlAuthFrame {
     u8 pad_00[0x2c];
@@ -450,7 +456,7 @@ typedef struct WlState {
     u16 unk_8c;
     u8 pad_8e[4];
     u16 unk_92;
-    u8 pad_94[2];
+    u16 capability; /* same halfword as WlLink.flags_7c */
     u16 unk_96;
     u16 unk_98;
     u8 pad_9a[0xac - 0x9a];
@@ -534,6 +540,76 @@ typedef struct WlTxBuffer {
     u8 pad_0e[2];
     WlTxFrame frame;
 } WlTxBuffer;
+
+/* WlTxBuffer.unk_0c of a frame the driver builds for itself. */
+#define WIFI_DRIVER_BUILT_FRAME 0xffff
+
+/* 802.11 management frame subtypes, as WlTxFrame.frameControl. */
+#define WIFI_FRAMECTL_ASSOC_ASK 0x00
+#define WIFI_FRAMECTL_ASSOC_ANSWER 0x10
+#define WIFI_FRAMECTL_REASSOC_ASK 0x20
+#define WIFI_FRAMECTL_REASSOC_ANSWER 0x30
+#define WIFI_FRAMECTL_PROBE_ASK 0x40
+#define WIFI_FRAMECTL_PROBE_ANSWER 0x50
+#define WIFI_FRAMECTL_DISASSOCIATION 0xa0
+#define WIFI_FRAMECTL_AUTHENTICATION 0xb0
+#define WIFI_FRAMECTL_DEAUTHENTICATION 0xc0
+
+/* 802.11 header (24 bytes) and frame check sequence (4 bytes): WlTxFrame.unk_12
+   is the body length WlTxFrame.unk_06 plus this. */
+#define WIFI_HEADER_PLUS_CHECKSUM 28
+
+/* 802.11 element ID of the challenge text in shared-key authentication. */
+#define WIFI_CHALLENGE_IE_ID 16
+
+/* Bits 14-15 of an AID field, always set. */
+#define WIFI_ASSOC_ID_TOP_BITS 0xc000
+
+/* 802.11 status code of an association response when no AID is left. */
+#define WIFI_IEEE_STATUS_AP_FULL 19
+
+/* Body of a management frame the driver builds, from WlTxFrame.body. */
+typedef union WlMgmtBody {
+    struct {
+        u16 algorithm;
+        u16 sequence;
+        u16 status;
+        u8 elements[2];
+    } auth;
+    struct {
+        u8 timestamp[8];
+        u16 beaconInterval;
+        u16 capability;
+        u8 elements[2];
+    } probeResponse;
+    struct {
+        u16 capability;
+        u16 listenInterval;
+        u8 elements[2];
+    } assocRequest;
+    struct {
+        u16 capability;
+        u16 listenInterval;
+        u16 currentAp[3];
+        u8 elements[2];
+    } reassocRequest;
+    struct {
+        u16 capability;
+        u16 status;
+        u16 aid;
+        u8 elements[2];
+    } assocResponse; /* also reassociation responses */
+    u16 reason;      /* deauthentication and disassociation */
+    u8 elements[2];  /* probe requests */
+} WlMgmtBody;
+
+/* A WlTxFrame seen as a management frame, to reach its body by offset. */
+typedef struct WlMgmtFrame {
+    u8 pad_00[0x2c];
+    WlMgmtBody body;
+} WlMgmtFrame;
+
+#define WIFI_MANAGEMENT_FIELDS_OF(frame) (&((WlMgmtFrame *)(frame))->body)
 
 // Host buffer that carries a frame to send. The reply sits replyOffset
 // halfwords after the start of frame.
@@ -907,6 +983,7 @@ void WifiBufList_ReleaseAll(WlBufferList *list);
 
 /* Event bits for WifiHost_RaiseEventBits. */
 #define WIFI_EVT_NOTE_DROPPED 0x1 /* an indication was dropped: no buffer left */
+#define WIFI_EVT_TX_BUILD_FAILED 0x2 /* a frame to send could not be built: no buffer left */
 void WifiHost_RaiseEventBits(u16 events);
 int WifiBaseband_AwaitReady(void);
 void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
