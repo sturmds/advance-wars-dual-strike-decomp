@@ -73,6 +73,23 @@ BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 #define POWER_LIGHT_SLOW_FLASH 2
 #define POWER_LIGHT_QUICK_FLASH 3
 
+/* Power commands the ARM9 sends over PXI; the ARM7 applies them to the control register. */
+#define POWER_ORDER_LED_STEADY 1
+#define POWER_ORDER_LED_QUICK_FLASH 2
+#define POWER_ORDER_LED_LAZY_FLASH 3
+#define POWER_ORDER_LOWER_LCD_LIT 4
+#define POWER_ORDER_LOWER_LCD_DARK 5
+#define POWER_ORDER_UPPER_LCD_LIT 6
+#define POWER_ORDER_UPPER_LCD_DARK 7
+#define POWER_ORDER_BOTH_LCDS_LIT 8
+#define POWER_ORDER_BOTH_LCDS_DARK 9
+#define POWER_ORDER_AMPLIFIER_ENABLE 10
+#define POWER_ORDER_AMPLIFIER_DISABLE 11
+#define POWER_ORDER_SILENCE_SPEAKER 12
+#define POWER_ORDER_UNSILENCE_SPEAKER 13
+#define POWER_ORDER_SHUT_DOWN 14
+#define POWER_ORDER_CANCEL_SHUTDOWN 15
+
 /* Sets up SPICNT for the power chip; continuous holds chip select for another byte. */
 int func_arm7_038052e8(int continuous);
 u8 PMi_GetRegister(int reg);
