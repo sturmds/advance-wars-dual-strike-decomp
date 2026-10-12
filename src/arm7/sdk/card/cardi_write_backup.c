@@ -4,7 +4,7 @@
 void func_arm7_038031ac(void);
 void func_arm7_038032a4(u32 byteCount);
 void CardSave_SendCommandAndAddress(u32 address, u32 command);
-void func_arm7_03802fe0(void);
+void CardSave_SendWriteEnable(void);
 void CardSpi_ClockByteOut(CARDiSpiTransfer *transfer);
 void CardSpi_MoveBytes(const u8 *src, u8 *dst, int count, CARDiSpiByteFunction transferByte);
 void CardSave_WaitUntilIdle(int minWait, int maxWait);
@@ -24,7 +24,7 @@ void CARDi_WriteBackup(u32 address, const u8 *src, u32 len)
         if (count > len) {
             count = len;
         }
-        func_arm7_03802fe0();
+        CardSave_SendWriteEnable();
         func_arm7_038032a4(data_arm7_03809280.cmd->spec.addrWidth + 1 + count);
         CardSave_SendCommandAndAddress(address, SAVE_CHIP_OP_ERASE_AND_WRITE);
         CardSpi_MoveBytes(src, NULL, count, CardSpi_ClockByteOut);
