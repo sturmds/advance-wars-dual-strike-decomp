@@ -1456,6 +1456,10 @@ src/arm7/sdk/snd/snd_ex_channel_init.c:
     complete
     .text       start:0x037ff208 end:0x037ff2a0
 
+src/arm7/sdk/snd/snd_ex_channel_calc_decay_rate.c:
+    complete
+    .text       start:0x037ff2a0 end:0x037ff300
+
 src/arm7/sdk/func_arm7_037ff3b4.c:
     complete
     .text       start:0x037ff3b4 end:0x037ff3c4

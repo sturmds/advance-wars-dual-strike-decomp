@@ -7,11 +7,11 @@ struct Unk_037ff7f4 {
     u16 unk_20;
 };
 
-int func_arm7_037ff2a0(int);
+int SndExChannel_CalcDecayRate(int);
 
 int func_arm7_037ff7f4(Unk_037ff7f4 *a0, int a1)
 {
-    int t0 = func_arm7_037ff2a0(a1);
+    int t0 = SndExChannel_CalcDecayRate(a1);
     a0->unk_20 = t0;
     return t0;
 }
