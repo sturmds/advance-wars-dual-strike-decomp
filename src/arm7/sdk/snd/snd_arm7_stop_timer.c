@@ -2,7 +2,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fe8e4(int channel, int hold);
+void SndHw_StopChannel(int channel, int hold);
 void func_arm7_03801df4(void);
 void func_arm7_03801f00(int alarmNo);
 
@@ -18,7 +18,7 @@ void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold
     }
     for (bit = 0; bit < 16 && channelMask != 0; bit++, channelMask >>= 1) {
         if (channelMask & 1) {
-            func_arm7_037fe8e4(bit, hold);
+            SndHw_StopChannel(bit, hold);
         }
     }
     if (captureMask & 1) {

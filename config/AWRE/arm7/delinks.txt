@@ -847,6 +847,10 @@ src/arm7/sdk/snd/snd_hw_set_channel_volume.c:
     complete
     .text       start:0x037fe860 end:0x037fe8e4
 
+src/arm7/sdk/snd/snd_hw_stop_channel.c:
+    complete
+    .text       start:0x037fe8e4 end:0x037fe910
+
 src/arm7/sdk/func_arm7_037fec60.c:
     complete
     .text       start:0x037fec60 end:0x037fec6c
