@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6662 / 6700 | 1512156 / 1553840 | 97.32% | 0 | 0 |
+| ARM9 game | 6663 / 6700 | 1512952 / 1553840 | 97.37% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7302 / 7533 | 1613460 / 1689066 | 95.52% | 176 | 20718 |
+| ARM9 all | 7303 / 7533 | 1614256 / 1689066 | 95.57% | 176 | 20718 |
 | ARM7 SDK/library | 890 / 1020 | 116036 / 154300 | 75.20% | 69 | 4960 |
 | ARM7 all | 890 / 1020 | 116036 / 154300 | 75.20% | 69 | 4960 |
-| game | 6662 / 6700 | 1512156 / 1553840 | 97.32% | 0 | 0 |
+| game | 6663 / 6700 | 1512952 / 1553840 | 97.37% | 0 | 0 |
 | SDK/library | 1530 / 1853 | 217340 / 289526 | 75.07% | 245 | 25678 |
-| all | 8192 / 8553 | 1729496 / 1843366 | 93.82% | 245 | 25678 |
+| all | 8193 / 8553 | 1730292 / 1843366 | 93.87% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5156 / 5180 | 1053256 / 1082632 | 97.29% | 0 |
+| main | game | 5157 / 5180 | 1054052 / 1082632 | 97.36% | 0 |
 | main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -57,7 +57,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |
-| `src/game/main/map/design_map_build_record.c` | DesignMap_BuildRecord | 796 |
 | `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 |
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 |
 | `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 |

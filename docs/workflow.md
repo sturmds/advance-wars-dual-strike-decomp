@@ -186,6 +186,8 @@ Each line: the rewrite, then the functions it matched.
 - `add rN, rM, #0` comes from `x = 0; x += call();` (`terrain_firepower.c`).
 - See also the bug checks in step 1.
 
+**Found by `permuter.py` (2026-10-11, issue 0052):** an unsigned operand where the original compares or indexes (`y != 0u`, `rowTable[(u32)y - startY]`, `cellSkills[(u32)left][(u32)row]`: RangeMap_MarkAdjacentTiles, MapPreview_DrawBlock, CoSelectScreen_RefreshCellSkills); a value read once into a local that two statements use (func_02055f84, DesignMap_BuildRecord); a sum in two steps (`mapId = mission; mapId += MAP_CAMPAIGN_FIRST;`, func_020fed58); a counter incremented at the end of the loop body instead of the start (AiSites_Collect); an empty `if` of two terms (`&&` or `||`) after a call in a loop, which changes how mwcc lays out the loop (EventScript_StepSlot).
+
 **Rarely helped:** `permute.py` or full declaration-order searches on a register-only diff without a rewrite first; `register`; `volatile` other than for a forced reload; a cast on one use; moving a whole block or body into an inline helper.
 
 ### When to stop: parking

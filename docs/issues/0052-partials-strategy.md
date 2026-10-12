@@ -239,6 +239,37 @@ Ideas 1 and 2, with decomp-permuter itself rather than our own passes first (stu
 - First result: RangeMap_MarkAdjacentTiles (register-only, 99.8%, six retries) matched on the 77th variant, in 3 seconds: `y != 0` became `(y & 0xFFFFFFFFu) != 0`, and `y != 0u` gives the same code. CampaignMap_Init got nothing in 30 minutes with 4 jobs.
 - Not done yet: our own passes from the cookbook (`volatile` on a store, reading a field in place, reusing a dead variable, the `(&a[i])[k]` forms), and aiming the mutations at the registers that differ (idea 3).
 
+## Run 1 over the parked partials (2026-10-11)
+
+`tools/permuter.py --parked`, 600 s per function, 4 jobs under `nice -n 19` while the loop ran (each job got about half a core). 37 of the 43 parked functions ran before the run was stopped; the last six (func_020f9450, UnitInfoPanel_DrawPage, func_ov004_022bacd8, func_ov002_02357e5c, func_ov002_023549c8, func_ov005_0235b5dc) are left for the loop. Per-function notes are in `work/partials-tried.md`; the table is in `work/permuter-run1.md`.
+
+| Result | Functions |
+|---|---|
+| Matched, landed (9) | RangeMap_MarkAdjacentTiles, func_02055f84, func_020593c8 (its twin, same fix by hand), func_020fed58, MapPreview_DrawBlock, EventScript_StepSlot, CoSelectScreen_RefreshCellSkills, AiSites_Collect, DesignMap_BuildRecord |
+| Closer, landed as WIP (3) | AiUnit_UpgradeWaitAction 99.94% to 99.985%, func_02093ce8 96.6% to 98.32%, func_ov004_022ad71c 27 to 26 differing |
+| Closer only with code that does nothing or changes behaviour; logged as hints, not applied (7) | func_02099ba0, func_0204f0c0, CombatMap_DrawPreviewBlock, func_ov002_02358c40, func_ov003_02361c7c, func_ov006_023557b8, Ov004_BlitBlockWithFlags |
+| No change in 600 s (18) | the rest, CampaignMap_Init among them |
+
+9 matches in 37 functions that agents had retried two to six times, with no model tokens. Every match came within 3 minutes (3 s to 166 s); no function improved after the first few minutes, so 600 s per function is more than enough for a first pass. Before-and-after counts are from `fn.py check`, which compares position by position; decomp-permuter's own score aligns the listings, and `permuter.py` now ranks by it (see below).
+
+What the fixes were, each written back as plain C (decomp-permuter's form in brackets):
+
+- An unsigned operand: `y != 0u` (`(y & 0xFFFFFFFFu) != 0`), `rowTable[(u32)y - startY]`, `cellSkills[(u32)left][row]` with `[(u32)row]` (64-bit casts). Three matches.
+- A value read once into a local used twice: a global for both screens' copies (func_02055f84, then its twin), a tile's terrain id for two tests (DesignMap_BuildRecord).
+- A sum in two steps: `mapId = mission; mapId += MAP_CAMPAIGN_FIRST;`.
+- A counter incremented at the end of the loop body instead of the start (`count++; count--;` at the end).
+- An empty `if` of two terms (`&&` or `||`) after a call in a loop: no code, but mwcc lays out the loop differently. One term alone does nothing. Kept in EventScript_StepSlot with a comment; a probe that inserts it after every statement of 35 other parked functions found nothing more.
+
+Lessons:
+
+- decomp-permuter reformats the whole function; `best.diff` now prints base.c through its own printer first, so the diff shows only the change.
+- Some variants change what the code does (Ov004_BlitBlockWithFlags: a variable zeroed before its last use, 89.0% to 90.6%). Some lower the score only by adding code that does nothing. Both need a person or agent to judge; `docs/workflow.md` says so.
+- The fixes are short and of known kinds, so they belong in the cookbook ("Near misses: the cookbook" in `docs/workflow.md`).
+- CampaignMap_Init got nothing in 40 minutes, nor from a sweep of 480 declaration, local and cast types. Next: restrict mutations to the four lines of the count copy with `PERM_RANDOMIZE`.
+
+Next steps: run the seven left; a second round on the functions that got closer, from their new C; our own passes listed above.
+
+
 ## Context and pointers
 
 - Report of the hard assembly shapes we already matched, with examples (not in the repo).
@@ -247,7 +278,7 @@ Ideas 1 and 2, with decomp-permuter itself rather than our own passes first (stu
 - `work/loop/results/b22-p*.txt` and `partials21.txt`: RESULT blocks with `Skill tip` lines.
 - `work/loop/journal.md`: the loop's log, including partials yields per group.
 - Tools: `tools/permute.py`, `tools/pragmas.py`, `tools/triage_partials.py`, `tools/fn.py check` (fast scorer) and `fn.py diff`, `tools/ds.py field` (signedness of loads), `tools/propagate.py` (twins).
-- Credits: khdays-decomp is in `docs/third-party/khdays-decomp.md`. decomp-permuter, if used or followed, needs its own page in `docs/third-party/`.
+- Credits: khdays-decomp is in `docs/third-party/khdays-decomp.md`, decomp-permuter in `docs/third-party/decomp-permuter.md`.
 
 Constraints: Linux only, every tool pinned in `tools.lock`, no network except tool downloads listed there, no decomp.me. Ask sturmds before installing anything. The decomp loop keeps running and landing on mainline meanwhile; batch 22 partials groups (p11 to p16) are working on some of these functions now.
 
