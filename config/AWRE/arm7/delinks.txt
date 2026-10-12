@@ -1719,6 +1719,10 @@ src/arm7/sdk/mic/func_arm7_03805da8.c:
     complete
     .text       start:0x03805da8 end:0x0380607c
 
+src/arm7/sdk/mic/func_arm7_0380607c.c:
+    complete
+    .text       start:0x0380607c end:0x038060bc
+
 src/arm7/sdk/ctrdg/func_arm7_038064b0.c:
     complete
     .text       start:0x038064b0 end:0x038064f8
