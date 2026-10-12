@@ -4,7 +4,7 @@
 extern BOOL data_arm7_03809ff8;   /* set once PM is ready; the ARM7 VBlank handler checks it */
 
 /* Clears the power chip driver's state. Called from SPI_Init. */
-void Power_PrepareDriver_Arm7(void)
+void Power_ResetDriverState_Arm7(void)
 {
     int i;
 
