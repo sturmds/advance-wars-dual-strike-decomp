@@ -52,16 +52,16 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
-| ARM9 game | 20 | 16932 | 3898 / 4253 (91.65%) |
+| ARM9 game | 20 | 16932 | 3910 / 4253 (91.94%) |
 | ARM9 SDK/library | 13 | 10648 | 1958 / 2747 (71.28%) |
 | ARM7 SDK/library | 2 | 636 | 148 / 159 (93.08%) |
-| all | 35 | 28216 | 6004 / 7159 (83.87%) |
+| all | 35 | 28216 | 6016 / 7159 (84.03%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 1 | 252 |
-| 3 to 10 | 9 | 3688 |
-| 11 to 50 | 22 | 16260 |
+| 3 to 10 | 10 | 6000 |
+| 11 to 50 | 21 | 13948 |
 | more than 50 | 3 | 8016 |
 
 Closest first.
@@ -75,6 +75,7 @@ Closest first.
 | `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 | 5 | 97.38% |
 | `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 | 6 | 94.00% |
 | `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 | 6 | 94.00% |
+| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 | 8 | 99.92% |
 | `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 | 8 | 99.63% |
 | `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 10 | 99.64% |
@@ -89,7 +90,6 @@ Closest first.
 | `src/sdk/msl/__fp_trap_ff.c` | __fp_trap_ff | 76 | 18 | 54.63% |
 | `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 | 18 | 54.63% |
 | `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 | 19 | 56.65% |
-| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 | 20 | 99.38% |
 | `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 | 21 | 60.14% |
 | `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
 | `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 | 25 | 94.72% |

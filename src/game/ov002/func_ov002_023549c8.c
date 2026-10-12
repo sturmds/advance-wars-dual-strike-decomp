@@ -9,10 +9,15 @@ void Battle_SortHitList(BattleHitList* list);
 
 #define BATTLE (gMenuState.battle)
 #define TIMES(i) ((const BattleHitTimes*)BATTLE.drainProfile[i])
-/* Key of the k-th added cell: the attacker's offsets moved onto the other profile's times. */
-#define ATTACKER_KEY(k)                     \
-  (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 + \
-   (TIMES(0)->unk_04 + TIMES(1)->unk_08))
+/* TIMES(i), storing the address of the profile pointer in p on the way. */
+#define TIMES_VIA(p, i) \
+  ((const BattleHitTimes*)*((p) = &BATTLE.drainProfile[i]))
+/* Key of the k-th added cell: the attacker's offsets moved onto the other profile's times.
+ * Needed to match: the last two terms as `- -x`, and TIMES_VIA with its own local at each
+ * use; a plain sum adds the terms in another order. */
+#define ATTACKER_KEY(k, p)                                        \
+  (TIMES(0)->unk_0f[k] - TIMES(1)->unk_04 - (-TIMES(0)->unk_04) - \
+   (-TIMES_VIA(p, 1)->unk_08))
 /* Needed to match: an int-sized enum. A plain 0/1 ternary emits its conditional moves in
  * the other order, and a byte-sized enum adds a mask. */
 #pragma enumsalwaysint on
@@ -43,9 +48,8 @@ typedef struct StepListsView {
  * entries (unk_6 set only on the last step of a cell whose fill ends at 0), then the cells
  * of unk_2a0 that empty and are not in it yet. Otherwise it takes the emptying cells of
  * unk_2a0, or one entry for cell 0 when BattleSideData.unk_48 is 1 and every cell empties;
- * each entry's key is raised to the latest matching step. Partial match (99.4%): the
- * attacker key adds its four terms in another order (as in func_ov002_023552d0), and
- * cell swaps registers with the search counter in the unk_2a0 loop of the first branch.
+ * each entry's key is raised to the latest matching step. Partial match (99.9%): cell
+ * swaps registers with the search counter in the unk_2a0 loop of the first branch.
  * The defender key reads its offset into a u8 local first, like func_ov002_023552d0;
  * sum also counts the search loop, as the original's registers show. */
 void func_ov002_023549c8(void) {
@@ -57,6 +61,9 @@ void func_ov002_023549c8(void) {
   int sum;
   u8 offset;
   BattleHitFlags* flags;
+  const void** profile1;
+  const void** profile2;
+  const void** profile3;
 
   for (side = 0; side < 2; side++) {
     LIST->cursor = 0;
@@ -103,7 +110,7 @@ void func_ov002_023549c8(void) {
           LIST->flags[LIST->count].cell = cell;
           LIST->flags[LIST->count].unk_6 = 1;
           if (side == Ov002_gBattleScene->attackerSide) {
-            LIST->key[LIST->count] = ATTACKER_KEY(added);
+            LIST->key[LIST->count] = ATTACKER_KEY(added, profile1);
           } else {
             offset = TIMES(0)->unk_0a[added];
             LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
@@ -124,7 +131,7 @@ void func_ov002_023549c8(void) {
         LIST->flags[LIST->count].unk_6 = 1;
         LIST->flags[LIST->count].unk_3 = 7;
         if (side == Ov002_gBattleScene->attackerSide) {
-          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
+          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count, profile2);
         } else {
           offset = TIMES(0)->unk_0a[LIST->count];
           LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
@@ -149,7 +156,7 @@ void func_ov002_023549c8(void) {
         LIST->flags[LIST->count].cell = cell;
         LIST->flags[LIST->count].unk_6 = 1;
         if (side == Ov002_gBattleScene->attackerSide) {
-          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count);
+          LIST->key[LIST->count] = ATTACKER_KEY(LIST->count, profile3);
         } else {
           offset = TIMES(0)->unk_0a[LIST->count];
           LIST->key[LIST->count] = offset + TIMES(0)->unk_08;
