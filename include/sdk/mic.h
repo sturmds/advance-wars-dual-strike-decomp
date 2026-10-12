@@ -82,6 +82,13 @@ typedef struct MICSystemWork {
 #define REG_SPIDATA (*(volatile u16 *)0x040001c2)
 #define SPI_BUSY 0x0080
 
+/* A request the SPI manager queued, as its thread hands it to the device code. */
+typedef struct SerialBusJob {
+    u32 device;
+    u32 command;                   /* PXI command byte */
+    u32 args[4];
+} SerialBusJob;
+
 /* ARM7 SPI manager calls (not decompiled yet). */
 BOOL func_arm7_03803d10(void);         /* a request is waiting in the queue */
 BOOL func_arm7_03803d38(int device, int command, int argCount, ...);  /* queue a request; FALSE when full */
