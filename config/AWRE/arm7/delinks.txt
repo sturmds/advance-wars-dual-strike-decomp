@@ -888,6 +888,10 @@ src/arm7/sdk/spi/nvram_chip_erase.c:
     complete
     .text       start:0x027d4960 end:0x027d49a0
 
+src/arm7/sdk/spi/nvram_release_power_down.c:
+    complete
+    .text       start:0x027d49a0 end:0x027d49e0
+
 src/arm7/sdk/spi/nvram_erase_sector.c:
     complete
     .text       start:0x027d4a20 end:0x027d4ae4
