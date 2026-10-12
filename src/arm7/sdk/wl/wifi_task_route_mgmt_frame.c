@@ -51,7 +51,7 @@ void WifiTask_RouteMgmtFrame(void)
     } else {
         counters->mgmtRxUnicast++;
     }
-    counters->unk_24 += (s32)func_arm7_03806d4c(frame->unk_08 & 0xf0, 16) - 1;
+    counters->unk_24 += _s32_div_f(frame->unk_08 & 0xf0, 16) - 1;
     type = WIFI_FRAMECTL_FIELDS(mac->frameControl)->type;
     subtype = WIFI_FRAMECTL_FIELDS(mac->frameControl)->subtype;
     station = WifiStation_LookUpOrCreate(mac->addr2);

@@ -57,7 +57,7 @@ void WifiRx_AppendFragment(WlRxHeader *header, WlRxAddrs *addrs)
     }
     Mem_CopyHalfwords_Arm7((u8 *)header->body + offset, (u8 *)stored->body + stored->length, length + 1);
     stored->length = total;
-    count = (s32)func_arm7_03806d4c(header->flags & 0xf0, 16);
+    count = _s32_div_f(header->flags & 0xf0, 16);
     slot = &slots[i];
     WIFI_SEQCTL_FIELDS(slot->addrs.sequence)->fragment = count - fragments + WIFI_SEQCTL_FIELDS(slot->addrs.sequence)->fragment;
     WIFI_DRIVER_STATE->counters[9] += count;

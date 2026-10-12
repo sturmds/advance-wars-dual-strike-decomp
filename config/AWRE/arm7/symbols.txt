@@ -1047,7 +1047,7 @@ Cartridge_OnShutdownMessage kind:function(arm,size=0x2c) addr:0x0380699c
 Cartridge_StoreInitDoneWord kind:function(arm,size=0x38) addr:0x038069c8
 Cartridge_CheckLogoFromArm9Once kind:function(arm,size=0xe8) addr:0x03806a00
 Cartridge_SetUpOnce_Arm7 kind:function(arm,size=0x5c) addr:0x03806ae8
-func_arm7_03806d4c kind:function(arm,size=0x20c) addr:0x03806d4c
+_s32_div_f kind:function(arm,size=0x20c) addr:0x03806d4c
 _u32_div_f kind:function(arm,size=0x8) addr:0x03806f58
 _u32_div_not_0_f_Arm7 kind:function(arm,size=0x1dc) addr:0x03806f60
 gCrc16NibbleTable kind:data(any) addr:0x0380713c

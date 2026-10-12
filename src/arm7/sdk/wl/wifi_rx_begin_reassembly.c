@@ -22,7 +22,7 @@ void WifiRx_BeginReassembly(WlRxHeader *header, WlRxAddrs *addrs)
         if (slots[i].ticks != 0) {
             if (WifiMac_Equal(slot->addrs.dest, addrs->dest) && WifiMac_Equal(slot->addrs.src, addrs->src)
                 && WIFI_SEQCTL_FIELDS(addrs->sequence)->number == WIFI_SEQCTL_FIELDS(slot->addrs.sequence)->number) {
-                count = func_arm7_03806d4c(header->flags & 0xf0, 16);
+                count = _s32_div_f(header->flags & 0xf0, 16);
                 added = count - WIFI_SEQCTL_FIELDS(slot->addrs.sequence)->fragment;
                 if (added == 0 || (added & 0x80000000)) {
                     return;
@@ -55,7 +55,7 @@ void WifiRx_BeginReassembly(WlRxHeader *header, WlRxAddrs *addrs)
         stored = &buffer->frame;
         Mem_CopyHalfwords_Arm7(header, &stored->unk_08, header->length + 12);
         Dma_SpinUntilChannelIdle_Arm7(WIFI_DRIVER_STATE->limits.unk_e0);
-        count = func_arm7_03806d4c(stored->unk_08 & 0xf0, 16);
+        count = _s32_div_f(stored->unk_08 & 0xf0, 16);
         WIFI_SEQCTL_FIELDS(slot->addrs.sequence)->fragment = count;
         WIFI_DRIVER_STATE->counters[9] += count;
         stored->length = header->length - WIFI_80211_HEADER_BYTES;

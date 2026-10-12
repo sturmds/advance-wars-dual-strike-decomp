@@ -32,7 +32,7 @@ void WifiRf_LoadStartValues(void)
     /* The RF chip's start entries follow at firmware 0xce. */
     offset = 0xce;
     /* (bits + 7) / 8 through the signed divide; the low word holds the quotient. */
-    bytesPerEntry = (u32)func_arm7_03806d4c((rf->bitsPerEntry & 0x7f) + 7, 8);
+    bytesPerEntry = (u32)_s32_div_f((rf->bitsPerEntry & 0x7f) + 7, 8);
     count = rf->entryCount;
     if (rf->type == 3) {
         /* Type 3: one byte per entry, sent with its index; one more byte after them. */

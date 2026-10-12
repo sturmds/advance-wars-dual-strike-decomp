@@ -17,7 +17,7 @@ BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage msg, int flags)
         }
         Thread_WaitOnQueue_Arm7((OSThreadQueue *)queue);
     }
-    queue->msgArray[ARM7_REMAINDER(queue->firstIndex + queue->usedCount, queue->msgCount)] = msg;
+    queue->msgArray[(queue->firstIndex + queue->usedCount) % queue->msgCount] = msg;
     queue->usedCount++;
     Thread_ReadyAllWaiters_Arm7((OSThreadQueue *)&queue->queueReceive);
     Cpu_RestoreIrqBit_Arm7(irqState);

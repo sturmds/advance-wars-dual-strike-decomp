@@ -4,7 +4,13 @@
 #define DIV_STEP adcs r3, r1, r3, lsl #1; subcc r3, r3, r1; adcs r0, r0, r0;
 #define DIV_STEP_4 DIV_STEP DIV_STEP DIV_STEP DIV_STEP
 
-asm s32 func_arm7_03806d4c(s32 dividend, s32 divisor)
+/*
+ * ARM7 copy of src/sdk/runtime/s32_div_f.c, under the plain name because the
+ * compiler calls it by that name for `/` and `%` in ARM7 C. Many ARM7 callers
+ * name it directly with a constant divisor, where `/` would compile to shifts.
+ */
+
+asm s32 _s32_div_f(s32 dividend, s32 divisor)
 {
      
     eor r12, r0, r1

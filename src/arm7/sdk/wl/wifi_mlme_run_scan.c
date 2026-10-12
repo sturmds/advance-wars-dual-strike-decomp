@@ -35,7 +35,7 @@ void WifiMlme_RunScan(void)
         job->channelIndex = 0;
         job->unk_08 = 0;
         if (job->request->unk_38 == 0) {
-            job->probeIntervalMs = func_arm7_03806d4c(job->request->channelTimeMs + 3, 4);
+            job->probeIntervalMs = _s32_div_f(job->request->channelTimeMs + 3, 4);
             if (job->probeIntervalMs < 10) {
                 job->probeIntervalMs = 10;
             }

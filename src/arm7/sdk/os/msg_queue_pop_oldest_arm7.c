@@ -20,7 +20,7 @@ BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *msg, int flags)
     if (msg != NULL) {
         *msg = queue->msgArray[queue->firstIndex];
     }
-    queue->firstIndex = ARM7_REMAINDER(queue->firstIndex + 1, queue->msgCount);
+    queue->firstIndex = (queue->firstIndex + 1) % queue->msgCount;
     queue->usedCount--;
     Thread_ReadyAllWaiters_Arm7((OSThreadQueue *)queue);
     Cpu_RestoreIrqBit_Arm7(irqState);

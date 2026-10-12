@@ -33,8 +33,8 @@ void WifiIrq_RxEventCounted(void)
 
         /* The write cursor (a halfword offset) left the receive buffer
            (byte addresses from 0x4000): restart it at the read cursor. */
-        if (cursor >= (s32)func_arm7_03806d4c(REG_W_RXBUF_END - 0x4000, 2)
-            || cursor < (s32)func_arm7_03806d4c(REG_W_RXBUF_BEGIN - 0x4000, 2)) {
+        if (cursor >= _s32_div_f(REG_W_RXBUF_END - 0x4000, 2)
+            || cursor < _s32_div_f(REG_W_RXBUF_BEGIN - 0x4000, 2)) {
             REG_W_RXBUF_WR_ADDR = REG_W_RXBUF_READCSR;
             REG_W_RXCNT = 0x8001;
         }

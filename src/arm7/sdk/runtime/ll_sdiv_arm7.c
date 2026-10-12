@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/runtime.h"
 
-s32 func_arm7_03806d4c(s32 dividend, s32 divisor);   /* ARM7 copy of _s32_div_f */
-
 /*
  * ARM7 copy of src/sdk/runtime/ll_sdiv.c: signed 64-bit remainder and
  * division, and the 64-bit division loop that _ll_udiv_Arm7 shares. The
@@ -48,7 +46,7 @@ asm void _ll_sdiv_common_Arm7(void)
     orrs r6, r5, r6
     bne @divide_magnitudes
     mov r1, r2
-    bl func_arm7_03806d4c
+    bl _s32_div_f
     ands r4, r4, #1
     movne r0, r1
     mov r1, r0, asr #31

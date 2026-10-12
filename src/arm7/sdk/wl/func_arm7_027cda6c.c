@@ -13,7 +13,7 @@ int func_arm7_027cda6c(WlRequest *request, WlReply *reply)
     length = request->unk_10;
     // Guess: unk_0e counts the request halfwords after the header, so it
     // must cover the length halfword plus the data.
-    if (request->unk_0e < (s32)func_arm7_03806d4c(length + 1, 2) + 1) {
+    if (request->unk_0e < _s32_div_f(length + 1, 2) + 1) {
         return 4;
     }
     return func_arm7_027c91c0(length, &request->unk_12);

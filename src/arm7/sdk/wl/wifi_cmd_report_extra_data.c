@@ -33,6 +33,6 @@ int WifiCmd_ReportExtraData(WlRequest *request, WlDataReply *reply)
         }
     }
     /* 2 halfwords before the data, then the data rounded up to halfwords */
-    reply->length = (s32)func_arm7_03806d4c(reply->dataLength + 1, 2) + 2;
+    reply->length = _s32_div_f(reply->dataLength + 1, 2) + 2;
     return WIFI_ANSWER_OK;
 }

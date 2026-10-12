@@ -13,5 +13,5 @@ u16 SndExChannel_CalcDecayRate(int setting)
         return setting * 2 + 1;
     }
     /* needed to match: a signed divide goes through the runtime routine by hand */
-    return func_arm7_03806d4c(0x1E00, 126 - setting);
+    return _s32_div_f(0x1E00, 126 - setting);
 }

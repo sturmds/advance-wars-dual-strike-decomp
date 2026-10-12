@@ -28,7 +28,7 @@ void WMSP_SetLifeTime(WmspSetLifeTimeRequest *request)
         /* needed to match: a 64-bit 1, not a 32-bit one widened afterwards */
         status->unk_7b0 = mpLifeTime == 0
             ? (s64)1
-            : (s32)func_arm7_03806d4c(mpLifeTime * CYCLES_PER_100MS, 64);
+            : _s32_div_f(mpLifeTime * CYCLES_PER_100MS, 64);
     } else {
         status->unk_7b0 = 0;
     }

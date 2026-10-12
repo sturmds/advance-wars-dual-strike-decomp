@@ -62,7 +62,7 @@ void Wmsp_IndicateMp(WlMpIndication *ind)
     // The ack is due (ackTimeStamp - timeStamp + 0x80) * 16 microseconds from
     // now; 0x82ea / 64 is the ARM7 timer rate in kHz (33.514 MHz / 64).
     Alarm_ArmOneShot_Arm7(&status->mpAckAlarm,
-                     (s32)func_arm7_03806d4c((s32)func_arm7_03806d4c((((u16)(recvBuf->ackTimeStamp - recvBuf->timeStamp) + 0x80) << 4) * 0x82ea, 64), 1024),
+                     _s32_div_f(_s32_div_f((((u16)(recvBuf->ackTimeStamp - recvBuf->timeStamp) + 0x80) << 4) * 0x82ea, 64), 1024),
                      Wmsp_PostMpAckTimeout, NULL);
     bits2800 = (ind->frame.unk_08 & 0x2800) == 0x2800;
     bits6000 = (ind->frame.unk_08 & 0x6000) == 0x6000;

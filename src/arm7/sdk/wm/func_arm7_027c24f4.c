@@ -14,7 +14,7 @@ u16 *func_arm7_027c24f4(WlCommand *cmd, u16 arg0, const void *block, u16 arg17, 
     cmd->reserved[4] = 0;
     cmd->reserved[5] = 0;
     cmd->command = 9;
-    cmd->length = (s32)func_arm7_03806d4c(size + 1, 2) + 23;
+    cmd->length = _s32_div_f(size + 1, 2) + 23;
     cmd->words[0] = arg0;
     Mem_CopyHalfwords_Arm7(block, &cmd->words[1], 32);
     cmd->words[17] = arg17;

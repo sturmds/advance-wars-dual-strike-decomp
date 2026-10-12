@@ -23,7 +23,7 @@ int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info)
     }
     ind->command = 0x8d;
     /* 22 halfwords before the data, then the data rounded up to halfwords */
-    ind->length = (s32)func_arm7_03806d4c(unk->dataLength + 1, 2) + 22;
+    ind->length = _s32_div_f(unk->dataLength + 1, 2) + 22;
     WL_WriteByte(&ind->ind8d.unk_1f, info->unk_12);
     WL_WriteByte(&ind->ind8d.unk_1e, info->unk_0e);
     func_arm7_027c90ec(ind->ind8d.mac, info->mac);

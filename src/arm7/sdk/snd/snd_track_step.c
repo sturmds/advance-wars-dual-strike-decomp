@@ -343,7 +343,7 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
                 break;
             case SEQ_OP_VAR_DIVIDE:
                 if (arg != 0) {
-                    *variable = (s32)func_arm7_03806d4c(*variable, arg);
+                    *variable = _s32_div_f(*variable, arg);
                 }
                 break;
             case SEQ_OP_VAR_BITSHIFT:

@@ -35,9 +35,9 @@ u16 PickWirelessChannels(u16 value)
         return 1 << low;
     }
     /* Look at mid, mid + 1, mid - 1, mid + 2, ... for a usable channel. */
-    mid = (s32)func_arm7_03806d4c(high + low, 2);
+    mid = _s32_div_f(high + low, 2);
     for (i = 0; i < span; i++) {
-        mid += i * (ARM7_REMAINDER(i, 2) * 2 - 1);
+        mid += i * (i % 2 * 2 - 1);
         if (channels & (1 << mid)) {
             break;
         }

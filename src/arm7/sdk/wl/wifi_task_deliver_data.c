@@ -56,7 +56,7 @@ void WifiTask_DeliverData(void)
         }
     }
     /* bits 4-7 of the RX header word, less one */
-    counters[9] += (s32)func_arm7_03806d4c(frame->unk_08 & 0xf0, 16) - 1;
+    counters[9] += _s32_div_f(frame->unk_08 & 0xf0, 16) - 1;
     drop = TRUE;
     phase = link->unk_0c;
     switch (phase) {

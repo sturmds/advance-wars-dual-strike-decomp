@@ -2,6 +2,7 @@
 #define SDK_OS_ARM7_H
 
 #include "types.h"
+#include "sdk/runtime.h"
 #include "sdk/os_common.h"
 
 /*
@@ -244,13 +245,5 @@ void IrqNest_DispatchByPriority(void);
 
 #define IRQ_NEST_STACK_BASE ((void *)0x0380fe80)
 #define IRQ_NEST_STACK_BYTES 0x40
-
-/*
- * The compiler's signed divide: the quotient comes back in r0 and the
- * remainder in r1, so a 64-bit return value holds both. The original calls
- * it by this name, so a plain % would not match.
- */
-u64 func_arm7_03806d4c(s32 dividend, s32 divisor);
-#define ARM7_REMAINDER(dividend, divisor) ((s32)(func_arm7_03806d4c((dividend), (divisor)) >> 32))
 
 #endif
