@@ -12,9 +12,9 @@ void WifiStation_ReturnAssocId(u16 station)
     func_arm7_027caedc(station);
     aid = func_arm7_027cb068(station);
     WifiStation_Entry(station)->aid = 0;
-    work->aidPool.aidMask &= ~(1 << aid);
-    work->aidPool.aidCount--;
-    if (work->aidPool.aidCount == 0) {
+    work->stationBits.aidMask &= ~(1 << aid);
+    work->stationBits.aidCount--;
+    if (work->stationBits.aidCount == 0) {
         func_arm7_027c92e8();
     }
 }
