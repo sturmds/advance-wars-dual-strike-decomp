@@ -102,6 +102,14 @@ typedef struct WlParamsRequest {
     u16 value06;
 } WlParamsRequest;
 
+// Request of WifiCmd_ArmMpReply.
+typedef struct WlMpReplyRequest {
+    u8 pad_00[0x10];
+    u16 length; /* bytes at data, at most 0x204 */
+    u16 header; /* first body halfword, before the data */
+    const void *data;
+} WlMpReplyRequest;
+
 // Reply of WifiCmd_ReportFirmwareInfo.
 typedef struct WlVersionReply {
     u16 unk_00;
@@ -190,11 +198,23 @@ typedef struct WlLink {
     u8 pad_0a[0xc];
     u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
     u16 testTxActive;
-    u8 pad_1a[0x62];
+    u8 pad_1a[4];
+    u16 ssidLength;
+    u8 ssid[32];
+    u8 pad_40[0x60 - 0x40];
+    u16 basicRates;     /* bit n: rate n of the rate table is a basic rate */
+    u16 supportedRates; /* bit n: rate n of the rate table is supported */
+    u16 bssid[3];
+    u8 pad_6a[0x7c - 0x6a];
     u16 flags_7c;
-    u8 pad_7e[0xc];
+    u8 pad_7e[0x88 - 0x7e];
+    u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
-    u8 pad_8c[0x20];
+    u8 pad_8c[0x9c - 0x8c];
+    u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
+    u16 gameInfoLength;
+    u16 unk_a2;         /* bit 0: gameInfo starts one byte later */
+    u8 pad_a4[0xac - 0xa4];
     u16 savedBbReg6; /* baseband register 6 before WifiTest_SendPatternFrames changed it */
 } WlLink;
 
@@ -204,17 +224,58 @@ typedef struct WlPayloadEntry {
     u8 bytes[2];
 } WlPayloadEntry;
 
+/*
+ * A frame as the wireless hardware reads it from WIFI_PACKET_RAM: a 12-byte TX header,
+ * then the 802.11 header, then the body.
+ */
+typedef struct WlRamFrame {
+    u16 status;
+    u16 unk_02;
+    u16 unk_04;
+    u16 unk_06;
+    u16 rate;         /* WIFI_RATE_CODE_* */
+    u16 length;       /* 802.11 header, body and FCS */
+    u16 frameControl;
+    u16 duration;     /* the AID in a PS-Poll */
+    u16 addr1[3];
+    u16 addr2[3];
+    u16 addr3[3];
+    u16 sequence;
+    u16 body[1];
+} WlRamFrame;
+
+/* An MP reply frame in WIFI_PACKET_RAM and whether it waits to be sent. */
+typedef struct WlMpReplySlot {
+    u16 busy;
+    u16 count;    /* frames set up in this slot */
+    u8 pad_04[4];
+    WlRamFrame *frame;
+    u8 pad_0c[8];
+} WlMpReplySlot;
+
 // Frame buffer the driver builds; the payload starts at 0x24.
 typedef struct WlTxFrame {
     u16 unk_00;
     u16 station;
-    u8 pad_04[2];
+    u16 unk_04;         /* low half of periodicCount when the frame was queued */
     u16 unk_06;
     u16 result; /* set when the frame is done, returned in the reply */
-    u8 pad_0a[0x12 - 0x0a];
+    u8 pad_0a[0x0e - 0x0a];
+    u16 requestedRate;  /* 0: use the station's rate */
+    u16 rate;           /* WIFI_RATE_CODE_* */
     u16 unk_12;
-    u8 pad_14[0x24 - 0x14];
-    u8 payload[10];
+    u16 frameControl;
+    u16 duration;
+    u16 addr1[3];
+    u16 addr2[3];
+    union {
+        u8 payload[10];
+        struct {
+            u16 addr3[3];
+            u16 sequence;
+            u16 body;
+        };
+    };
     u16 unk_2e;
 } WlTxFrame;
 
@@ -276,9 +337,12 @@ typedef struct WlState {
     u8 pad_ca[0xd8 - 0xca];
     u16 unk_d8[16];
     WlCurrentRequest current;
-    u8 pad_100[0x13c - 0x100];
+    u8 pad_100[0x130 - 0x100];
+    struct WlRamFrame *psPollFrame;
+    u8 pad_134[0x13c - 0x134];
     u16 unk_13c;
-    u8 pad_13e[0x178 - 0x13e];
+    u8 pad_13e[0x150 - 0x13e];
+    WlMpReplySlot mpReplySlots[2];
     u16 unk_178;
     u8 pad_17a[6];
     WlTxFrame *txFrame;
@@ -447,6 +511,9 @@ typedef struct WlWork {
 
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)
 #define WIFI_MAC_PREAMBLE_BITS (*(volatile u16 *)0x048080bc)
+/* Frame to send in reply to the next MP poll: bit 15 enables it,
+   the low bits give its WIFI_PACKET_RAM halfword offset. */
+#define WIFI_TX_NEXT_POLL_ANSWER (*(volatile u16 *)0x04808094)
 #define WIFI_POST_BEACON_TIMER (*(volatile u16 *)0x04808134)
 #define WIFI_MAC_MODE_AND_WEP (*(volatile u16 *)0x04808006)
 #define WIFI_MAC_RETRY_LIMIT (*(volatile u16 *)0x0480802c)
@@ -482,6 +549,26 @@ typedef struct WlStateD8 {
 #define WIFI_JOB_AREA_OF(work) ((WlStateD8 *)(work)->state.unk_d8)
 
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
+
+// Third view of the work area, starting at work offset 0x2f0 (the station
+// table), as some functions address it.
+typedef struct WlStateView {
+    u8 pad_00[8];
+    u16 macAddress[3];
+    u16 unk_2fe;
+    WlState state;
+} WlStateView;
+
+#define WIFI_FROM_STATION_TABLE_OF(work) ((WlStateView *)&(work)->limits.unk_f0)
+
+// View from work offset 0x400, as WifiCmd_ArmMpReply addresses the MP reply slots
+// (WlState.mpReplySlots).
+typedef struct WlMpReplyView {
+    u8 pad_00[0x50];
+    WlMpReplySlot slots[2];
+} WlMpReplyView;
+
+#define WIFI_REPLY_SLOTS_VIEW_OF(work) ((WlMpReplyView *)((u8 *)(work) + 0x400))
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
