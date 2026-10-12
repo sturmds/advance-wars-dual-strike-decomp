@@ -381,6 +381,8 @@ typedef struct WlWork {
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 
+#define WIFI_SSID_LONGEST 32
+
 /* A message from the driver to the host: command, payload length in
    halfwords, then the payload. */
 typedef struct WlIndication {
@@ -391,7 +393,9 @@ typedef struct WlIndication {
         struct {
             u8 mac[6];
             u16 value;
-        } peer; /* commands 0x85, 0x88 and 0x8b (MAC only) */
+            u16 ssidLength;
+            u8 ssid[WIFI_SSID_LONGEST];
+        } peer; /* commands 0x84-0x88; 0x8b has the MAC only; the SSID only in 0x86 and 0x87 */
         struct {
             u8 pad_10[6];
             u16 dataLength;
@@ -495,6 +499,7 @@ int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info);
 int WifiHost_TellBeaconSent(void);
 int WifiHost_TellBeaconLost(const u8 *mac);
 int WifiHost_TellDisassociated(const u8 *mac, u16 value);
+int WifiHost_TellReassociated(const u8 *mac, u16 value, const u8 *ssidElement);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
