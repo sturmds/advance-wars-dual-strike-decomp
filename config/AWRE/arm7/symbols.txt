@@ -784,7 +784,7 @@ func_arm7_037fe5dc kind:function(arm,size=0xc) addr:0x037fe5dc
 SndHw_Reset kind:function(arm,size=0x54) addr:0x037fe5e8
 func_arm7_037fe63c kind:function(arm,size=0x18) addr:0x037fe63c
 func_arm7_037fe654 kind:function(arm,size=0x18) addr:0x037fe654
-func_arm7_037fe66c kind:function(arm,size=0x6c) addr:0x037fe66c
+SndHw_ScaleVolumeForPan kind:function(arm,size=0x6c) addr:0x037fe66c
 func_arm7_037fe6d8 kind:function(arm,size=0x64) addr:0x037fe6d8
 func_arm7_037fe73c kind:function(arm,size=0x10) addr:0x037fe73c
 func_arm7_037fe74c kind:function(arm,size=0x64) addr:0x037fe74c
@@ -1074,7 +1074,7 @@ func_arm7_038076e8 kind:function(arm,size=0x54) addr:0x038076e8
 data_arm7_0380773c kind:data(any) addr:0x0380773c
 data_arm7_03807750 kind:data(any) addr:0x03807750
 data_arm7_038077b4 kind:data(any) addr:0x038077b4
-data_arm7_038077b8 kind:data(any) addr:0x038077b8
+gSndHwPanOverride kind:data(any) addr:0x038077b8
 data_arm7_038077bc kind:data(any) addr:0x038077bc
 data_arm7_038077c0 kind:data(any) addr:0x038077c0
 data_arm7_038077e4 kind:data(any) addr:0x038077e4
@@ -1115,9 +1115,9 @@ data_arm7_03807ab4 kind:bss addr:0x03807ab4
 data_arm7_03807ab8 kind:bss addr:0x03807ab8
 data_arm7_03807b38 kind:bss addr:0x03807b38
 data_arm7_03807b3c kind:bss addr:0x03807b3c
-data_arm7_03807b68 kind:bss addr:0x03807b68
-data_arm7_03807b6c kind:bss addr:0x03807b6c
-data_arm7_03807b7c kind:bss addr:0x03807b7c
+gSndHwPanEdgeAttenuation kind:bss addr:0x03807b68
+gSndHwChannelPan kind:bss addr:0x03807b6c
+gSndHwChannelVolume kind:bss addr:0x03807b7c
 data_arm7_03807b8c kind:bss addr:0x03807b8c
 data_arm7_03807b90 kind:bss addr:0x03807b90
 data_arm7_03807ba4 kind:bss addr:0x03807ba4

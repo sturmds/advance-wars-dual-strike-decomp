@@ -16,4 +16,14 @@
 #define AUDIO_RECORD0_CTRL (*(u8 *)0x4000508)
 #define AUDIO_RECORD1_CTRL (*(u8 *)0x4000509)
 
+#define AUDIO_CH_TOTAL 16
+
+/* Strength of the volume drop near the left and right edges of the pan range (0 = none, 0x7FFF = most). */
+extern int gSndHwPanEdgeAttenuation;
+/* Pan and volume last requested for each channel. */
+extern u8 gSndHwChannelPan[AUDIO_CH_TOTAL];
+extern u8 gSndHwChannelVolume[AUDIO_CH_TOTAL];
+/* When not negative, this pan replaces every channel pan. */
+extern int gSndHwPanOverride;
+
 #endif

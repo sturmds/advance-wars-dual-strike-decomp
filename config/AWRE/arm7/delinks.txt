@@ -815,6 +815,10 @@ src/arm7/sdk/func_arm7_037fe654.c:
     complete
     .text       start:0x037fe654 end:0x037fe66c
 
+src/arm7/sdk/snd/snd_hw_scale_volume_for_pan.c:
+    complete
+    .text       start:0x037fe66c end:0x037fe6d8
+
 src/arm7/sdk/func_arm7_037fe73c.c:
     complete
     .text       start:0x037fe73c end:0x037fe74c
