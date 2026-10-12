@@ -663,7 +663,7 @@ func_arm7_037fb9e8 kind:function(arm,size=0x8c) addr:0x037fb9e8
 func_arm7_037fba74 kind:function(arm,size=0x48) addr:0x037fba74
 func_arm7_037fbabc kind:function(arm,size=0x78) addr:0x037fbabc
 func_arm7_037fbb34 kind:function(arm,size=0x4) addr:0x037fbb34
-func_arm7_037fbb38 kind:function(arm,size=0x38) addr:0x037fbb38
+Thread_ReleaseSwitching_Arm7 kind:function(arm,size=0x38) addr:0x037fbb38
 func_arm7_037fbb70 kind:function(arm,size=0x38) addr:0x037fbb70
 func_arm7_037fbba8 kind:function(arm,size=0x34) addr:0x037fbba8
 func_arm7_037fbbdc kind:function(arm,size=0xc) addr:0x037fbbdc
@@ -1088,7 +1088,7 @@ data_arm7_038078c0 kind:bss addr:0x038078c0
 data_arm7_038078c4 kind:bss addr:0x038078c4
 data_arm7_038078ec kind:bss addr:0x038078ec
 data_arm7_038078f8 kind:bss addr:0x038078f8
-data_arm7_038078fc kind:bss addr:0x038078fc
+gSchedulerHoldDepth_Arm7 kind:bss addr:0x038078fc
 data_arm7_03807900 kind:bss addr:0x03807900
 data_arm7_03807904 kind:bss addr:0x03807904
 data_arm7_03807908 kind:bss addr:0x03807908
