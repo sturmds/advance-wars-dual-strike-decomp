@@ -536,6 +536,10 @@ src/arm7/sdk/spi/nvram_read_status.c:
     complete
     .text       start:0x027d505c end:0x027d50d0
 
+src/arm7/sdk/spi/nvram_write_disable.c:
+    complete
+    .text       start:0x027d50d0 end:0x027d5110
+
 src/arm7/sdk/rtc/func_arm7_027d5150.c:
     complete
     .text       start:0x027d5150 end:0x027d51c8

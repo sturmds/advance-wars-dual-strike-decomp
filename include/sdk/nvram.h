@@ -49,5 +49,6 @@ void NVRAM_WritePage(u32 address, u16 size, const u8 *src);
 void NVRAM_Read(u32 address, u32 size, u8 *dest);
 void NVRAM_FastRead(u32 address, u32 size, u8 *dest);
 void NVRAM_ReadStatus(u8 *status);
+void NVRAM_WriteDisable(void);
 
 #endif
