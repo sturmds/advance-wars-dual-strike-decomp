@@ -27,12 +27,15 @@ void WifiScan_RememberNetwork(u16 value, WlRxFrame *frame, const u8 *ssidElement
  * (state 0x21) and, on the child side (WlLink.unk_0c 2 or 3), takes the
  * Nintendo element, sets the microsecond compare to the next beacon time and
  * reads the TIM to send a PS-Poll when the parent holds frames for us.
- * WIP: the stack slots of zero and now differ from the original.
  */
-void func_arm7_027d3104(WlRxFrame *frame)
+void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
 {
+    u64 next;
+    /* Needed to match: two u64s, not an array; mwcc puts arrays after the scalars on the stack. */
+    u64 now;
+    u64 nowAgain;
+    volatile u32 zero;
     u16 *half;
-    u64 now[2];
     u32 bit;
     u32 elapsed;
     const u16 *body;
@@ -41,8 +44,6 @@ void func_arm7_027d3104(WlRxFrame *frame)
     WlStateView *view;
     u32 first;
     WlBufferLists *lists;
-    u64 next;
-    volatile u32 zero;
     u32 last;
     u32 low;
     u32 bodyLength;
@@ -195,19 +196,19 @@ void func_arm7_027d3104(WlRxFrame *frame)
 
             next -= interval;
             irq = Cpu_MaskIrq_Arm7();
-            ((u16 *)&now[0])[0] = REG_W_US_COUNT0;
-            ((u16 *)&now[0])[1] = REG_W_US_COUNT1;
-            ((u16 *)&now[0])[2] = REG_W_US_COUNT2;
-            ((u16 *)&now[0])[3] = REG_W_US_COUNT3;
-            ((u16 *)&now[1])[0] = REG_W_US_COUNT0;
-            ((u16 *)&now[1])[1] = REG_W_US_COUNT1;
-            ((u16 *)&now[1])[2] = REG_W_US_COUNT2;
-            ((u16 *)&now[1])[3] = REG_W_US_COUNT3;
+            ((u16 *)&now)[0] = REG_W_US_COUNT0;
+            ((u16 *)&now)[1] = REG_W_US_COUNT1;
+            ((u16 *)&now)[2] = REG_W_US_COUNT2;
+            ((u16 *)&now)[3] = REG_W_US_COUNT3;
+            ((u16 *)&nowAgain)[0] = REG_W_US_COUNT0;
+            ((u16 *)&nowAgain)[1] = REG_W_US_COUNT1;
+            ((u16 *)&nowAgain)[2] = REG_W_US_COUNT2;
+            ((u16 *)&nowAgain)[3] = REG_W_US_COUNT3;
             Cpu_RestoreIrqBit_Arm7(irq);
-            if (((u16 *)&now[0])[0] < ((u16 *)&now[1])[0]) {
-                elapsed = (now[0] - next) >> 10;
+            if (((u16 *)&now)[0] < ((u16 *)&nowAgain)[0]) {
+                elapsed = (now - next) >> 10;
             } else {
-                elapsed = (now[1] - next) >> 10;
+                elapsed = (nowAgain - next) >> 10;
             }
             if (elapsed < view->state.unk_10) {
                 WIFI_POST_BEACON_TIMER = view->state.unk_10 - elapsed;

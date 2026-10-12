@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 WlRxFrame *WifiRx_TakeFromRing(const void *src, u32 length);
-void func_arm7_027d3104(WlRxFrame *frame);
+void WifiRx_HandleBeaconFrame(WlRxFrame *frame);
 int WifiChild_ForwardMpPoll(WlRxFrame *frame);
 int WifiChild_ForwardMpAck(WlRxFrame *frame);
 void WifiParent_StoreMpReply(WlRxFrame *frame);
@@ -77,7 +77,7 @@ void func_arm7_037fa880(void)
                 break;
             case 1:
                 if (frame->frameControl == 0x80) {
-                    func_arm7_027d3104(frame);
+                    WifiRx_HandleBeaconFrame(frame);
                 }
                 break;
             case 0:

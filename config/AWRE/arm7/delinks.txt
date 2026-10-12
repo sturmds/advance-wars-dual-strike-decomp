@@ -1871,7 +1871,8 @@ src/arm7/sdk/wl/wifi_rx_handle_disassoc_frame.c:
     complete
     .text       start:0x027d3014 end:0x027d3104
 
-src/arm7/sdk/wl/func_arm7_027d3104.c:
+src/arm7/sdk/wl/wifi_rx_handle_beacon_frame.c:
+    complete
     .text       start:0x027d3104 end:0x027d37f8
 
 src/arm7/sdk/wl/wifi_child_forward_mp_ack.c:

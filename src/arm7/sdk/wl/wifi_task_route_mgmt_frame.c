@@ -18,7 +18,7 @@ void WifiChild_TakeReassocAnswer(WlRxFrame *frame);
 void WifiParent_AnswerReassocAsk(WlRxFrame *frame);
 void WifiChild_TakeAssocAnswer(WlRxFrame *frame);
 void WifiParent_AnswerAssocAsk(WlRxFrame *frame);
-void func_arm7_027d3104(WlRxFrame *frame);
+void WifiRx_HandleBeaconFrame(WlRxFrame *frame);
 
 /*
  * Task 7: takes the next received management or control frame from its list
@@ -88,7 +88,7 @@ void WifiTask_RouteMgmtFrame(void)
             if (type == 0) {
                 switch (subtype) {
                 case 8: /* beacon */
-                    func_arm7_027d3104(frame);
+                    WifiRx_HandleBeaconFrame(frame);
                     break;
                 case 0: /* association request */
                     WifiParent_AnswerAssocAsk(frame);
@@ -121,7 +121,7 @@ void WifiTask_RouteMgmtFrame(void)
             if (type == 0) {
                 switch (subtype) {
                 case 8: /* beacon */
-                    func_arm7_027d3104(frame);
+                    WifiRx_HandleBeaconFrame(frame);
                     break;
                 case 1: /* association response */
                     WifiChild_TakeAssocAnswer(frame);
