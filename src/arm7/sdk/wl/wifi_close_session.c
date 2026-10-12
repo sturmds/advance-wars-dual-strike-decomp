@@ -2,7 +2,7 @@
 
 void func_arm7_027c8714(void); /* cancels the periodic alarm */
 void func_arm7_027c8594(void); /* cancels the one-shot alarm */
-void func_arm7_037f9380(int mode);
+void Wifi_SwitchMode(int mode);
 int func_arm7_027d00b4(void);
 void func_arm7_027d02d8(void);
 void WifiBuffer_ReleaseWorkLists(void);
@@ -15,7 +15,7 @@ void Wifi_CloseSession(void)
 
     func_arm7_027c8714();
     func_arm7_027c8594();
-    func_arm7_037f9380(WIFI_MODE_READY);
+    Wifi_SwitchMode(WIFI_MODE_READY);
     link->unk_a4 = 0;
     link->unk_12 = 0;
     WIFI_IRQ_ENABLE_MASK = 0;

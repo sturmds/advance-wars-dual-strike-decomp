@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_037f9380(int mode); /* switches WlLink.mode */
+void Wifi_SwitchMode(int mode); /* switches WlLink.mode */
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 
 int WifiCmd_GoIdleMode(WlRequest *request, WlReply *reply)
@@ -12,7 +12,7 @@ int WifiCmd_GoIdleMode(WlRequest *request, WlReply *reply)
         if (WifiFlash_ValidateRadioBlock(NULL) != WIFI_RADIO_BLOCK_VALID) {
             return 14;
         }
-        func_arm7_037f9380(WIFI_MODE_RADIO_ON);
+        Wifi_SwitchMode(WIFI_MODE_RADIO_ON);
         result = 0;
     }
     return result;

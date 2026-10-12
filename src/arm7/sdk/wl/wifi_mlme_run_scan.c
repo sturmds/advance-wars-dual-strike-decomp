@@ -9,7 +9,7 @@ void func_arm7_027d01c4(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
 void Wifi_CloseSession(void);
-void func_arm7_037f9380(int arg);
+void Wifi_SwitchMode(int arg);
 
 /*
  * Scan request, run as WL task 0. It spends request->channelTimeMs on each
@@ -28,7 +28,7 @@ void WifiMlme_RunScan(void)
 
     switch (job->state) {
     case 0x10:
-        func_arm7_037f9380(0x20);
+        Wifi_SwitchMode(0x20);
         link->unk_0c = 2;
         job->reply->words[0] = 0;
         job->reply->value = 0;
