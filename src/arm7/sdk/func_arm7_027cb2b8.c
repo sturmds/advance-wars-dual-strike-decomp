@@ -7,10 +7,10 @@ struct Unk_027cb2b8_0 {
     u16 unk_14;
 };
 
-Unk_027cb2b8_0 *func_arm7_027cb030(void);
+Unk_027cb2b8_0 *WifiStation_Entry(void);
 
 void func_arm7_027cb2b8(int a0, int a1)
 {
-    Unk_027cb2b8_0 *t0 = func_arm7_027cb030();
+    Unk_027cb2b8_0 *t0 = WifiStation_Entry();
     t0->unk_14 = a1;
 }

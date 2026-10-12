@@ -612,6 +612,10 @@ src/arm7/sdk/wl/wifi_beacon_mark_traffic_for.c:
     complete
     .text       start:0x027caf88 end:0x027cb030
 
+src/arm7/sdk/wl/wifi_station_entry.c:
+    complete
+    .text       start:0x027cb030 end:0x027cb04c
+
 src/arm7/sdk/func_arm7_027cb04c.c:
     complete
     .text       start:0x027cb04c end:0x027cb068

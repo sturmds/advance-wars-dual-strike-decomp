@@ -285,6 +285,8 @@ typedef struct WlWork {
 /* Interrupt mask bit of the wireless interrupt; WL masks it around queue changes. */
 #define IRQ_MASK_WIRELESS 0x1000000
 
+WlStation *WifiStation_Entry(u16 index);
+
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
 
