@@ -1110,6 +1110,8 @@ typedef struct WlTxSlots {
     u16 aidBit;       /* WlWork.aidBit */
     u8 pad_a4[2];
     u16 savedMpReply; /* WlWork.savedMpReply */
+    u8 pad_a8[0xb0 - 0xa8];
+    u16 txTimeouts;   /* WlMpReplyView.txTimeouts */
 } WlTxSlots;
 
 /* One reply slot in a WlMpCommand, filled from a received MP reply. */
