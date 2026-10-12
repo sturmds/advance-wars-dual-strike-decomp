@@ -1056,6 +1056,7 @@ typedef struct Unk_027cb9e4 {
 #define W_RF_PINS_CARRIER_SENSE 0x0001
 #define W_RF_PINS_RX_ON         0x0080
 #define REG_W_RF_STATUS (*(volatile u16 *)0x04808214)
+#define REG_W_RANDOM    (*(volatile u16 *)0x04808044) /* hardware random number */
 
 /* Wi-Fi transmit request registers: writing a bit clears or sets that request. */
 #define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
