@@ -80,6 +80,28 @@ typedef struct WlStatusReply {
     u16 state06;
 } WlStatusReply;
 
+// Request of WifiCmd_ApplyAllSettings: one value for each parameter setter, in the order
+// of WlStatusReply.
+typedef struct WlParamsRequest {
+    u8 pad_00[0x10];
+    u16 macAddress[3];
+    u16 work2fe;
+    u16 mask00;
+    u16 unk_1a;
+    u16 phase;
+    u16 value04;
+    u16 value08;
+    u16 value0a;
+    u8 wifiRamBlocks[0x50];
+    u16 optionBit0;
+    u16 optionBit1;
+    u16 value96;
+    u16 value10;
+    u16 words58[16];
+    u16 optionBit2;
+    u16 value06;
+} WlParamsRequest;
+
 // Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
 typedef struct Unk_027cdd18 {
     u8 pad_00[0x18];
