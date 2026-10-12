@@ -13,10 +13,10 @@ struct Unk_027cdea8_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027ca024(int, void *, int);
+void WifiParam_StoreBeaconsPerRun(int, void *, int);
 
 void func_arm7_027cdea8(Unk_027cdea8 *a0, Unk_027cdea8_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027ca024(a0->unk_10, a1, 1);
+    WifiParam_StoreBeaconsPerRun(a0->unk_10, a1, 1);
 }
