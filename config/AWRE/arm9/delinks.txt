@@ -23219,6 +23219,9 @@ src/sdk/isd/isd_double_units_digit.c:
     complete
     .text       start:0x0211fce4 end:0x0211fe0c
 
+src/sdk/isd/isd_double_add.c:
+    .text       start:0x02120574 end:0x0212090c
+
 src/sdk/isd/isd_double_exponent.c:
     complete
     .text       start:0x0212090c end:0x02120964
