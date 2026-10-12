@@ -20,7 +20,7 @@ void Card_OnRequestTagMessage(int tag, u32 data, int err);
 /* Needed to match: the first four stores go through data_022abb00, not
  * common, and the zero passed to MIi_CpuClearFast goes through a volatile
  * stack slot. */
-void func_021154e8(void) {
+void CARDi_InitCommon(void) {
   CARDiCommon* common = &data_022abb00;
   vu32 zero;
   u32 value;

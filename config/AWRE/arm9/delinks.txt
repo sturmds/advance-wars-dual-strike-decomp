@@ -22513,7 +22513,7 @@ src/sdk/func_021154d8.c:
     complete
     .text       start:0x021154d8 end:0x021154e8
 
-src/sdk/card/func_021154e8.c:
+src/sdk/card/cardi_init_common.c:
     complete
     .text       start:0x021154e8 end:0x021155e4
 

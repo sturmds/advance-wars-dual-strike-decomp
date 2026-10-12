@@ -14,7 +14,7 @@ void Card_OnRequestTagMessage_Arm7(u32 tag, u32 data, int err);
  * Clears the request and lock state, starts the card thread and listens for
  * the other CPU's requests on PXI tag 11.
  */
-void CARDi_InitCommon(void) {
+void CARDi_InitCommon_Arm7(void) {
   CARDiArm7Common* common = &data_arm7_03809280;
 
   common->lockOwner = OS_LOCK_ID_ERROR;

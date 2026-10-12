@@ -3466,7 +3466,7 @@ src/arm7/sdk/card/func_arm7_03802974.c:
     complete
     .text       start:0x03802974 end:0x03802984
 
-src/arm7/sdk/card/cardi_init_common.c:
+src/arm7/sdk/card/cardi_init_common_arm7.c:
     complete
     .text       start:0x03802984 end:0x03802a2c
 

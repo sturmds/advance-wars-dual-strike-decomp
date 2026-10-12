@@ -4,7 +4,7 @@
 extern u32
     data_022ac0e0; /* offset added to every ROM address; CARD_Init clears it */
 
-void func_021154e8(
+void CARDi_InitCommon(
     void); /* sets up the lock, the command buffer and the card thread */
 void CardRom_ReadPagesByCpu(
     CARDiRomPage* page); /* reads ROM pages with the CPU */
@@ -22,7 +22,7 @@ void CARD_Init(void) {
   common->callback = NULL;
   common->callbackArg = NULL;
   data_022ac0e0 = 0;
-  func_021154e8();
+  CARDi_InitCommon();
   data_022ac100.readPages = CardRom_ReadPagesByCpu;
   Card_RegisterRemovalHandler();
 }

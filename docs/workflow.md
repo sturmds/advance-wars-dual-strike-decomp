@@ -183,10 +183,12 @@ Each line: the rewrite, then the functions it matched.
 - A BOOL set by `cond ? TRUE : FALSE` takes the lowest slot. Two rewrites that each break the code may match together (WMSP_BuildMpSendData: `withDest` as that ternary, `prevNext` set by an if/else).
 - Read a byte argument through `*(s8 *)&arg` to keep it on the stack (SndTrack_Step).
 - The original gives each block its own stack slot, in source order: give each block its own variable, even declared at function scope (BattleCells_RunStepList: one scale variable per hit-sprite block).
+- mwcc gives spill slots first to variables set by a ternary or an if/else, then to those set by an assignment followed by an `if`, and within each kind by declaration order. Write the variables whose slots are out of order in the same form as their neighbours, then move declarations (AiUnit_UpgradeWaitAction: five unload bounds, each as a ternary or an if/else, `unloadMaxY` as an if/else with `>=`).
 
 **Order: the same instructions in another order**
 
 - mwcc reorders a chain of `+` and `-` into its own order, but a term written as `- -x` keeps its own subtract and its place, and a term that assigns a local inside the expression (`*(p = &table[i])`) pins when that load happens (func_ov002_023552d0: `a - b - (-c) - (-TIMES_VIA(profile, 1)->unk_08)`; the permuter found it from the `- -x` form).
+- A macro that assigns a local inside its expression and is used at several sites: give each site its own local (`TIMES_VIA(profile1, 1)`, `TIMES_VIA(profile2, 1)`); one shared local changes the order or the registers (func_ov002_023549c8, gain only).
 - A value combined into a parameter before a call (`logic = logic | keyPattern; f(command, logic);`) can take another register than the same expression written in the call argument (`f(command, logic | keyPattern)`) (PM_GoSleepMode, with the declaration order of `cardEjected` and `command`).
 
 - Two hoisted constants loaded in the wrong order: a redundant `else pal = 6;` in the test that sets the higher one (PageStripTask_Draw, SurvivalSelect_Draw).

@@ -14,7 +14,7 @@ struct CARDiCommon {
   u32 unk_04;
   volatile int
       lockOwner; /* OS lock id of the owner, OS_LOCK_ID_ERROR when free; volatile is needed to match */
-  volatile int lockCount; /* volatile is needed to match func_021154e8 */
+  volatile int lockCount; /* volatile is needed to match CARDi_InitCommon */
   OSThreadQueue lockQueue;
   u32 lockTarget;
   u32 src;
