@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_027d0708(void);
+void WifiTx_AbortReplySlots(void);
 void WifiTx_AbortCmdSlot(void);
 void WifiTx_AbortDataSlot(void);
 
@@ -9,7 +9,7 @@ int WifiCmd_ResetTransmitParts(WlRequest *request, WlReply *reply)
 {
     reply->status = 1;
     if (request->unk_10 & 1) {
-        func_arm7_027d0708();
+        WifiTx_AbortReplySlots();
     }
     if (request->unk_10 & 2) {
         WifiTx_AbortCmdSlot();
