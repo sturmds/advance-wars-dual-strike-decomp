@@ -14,11 +14,11 @@ add both CPUs.
 | ARM9 game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
 | ARM9 SDK/library | 642 / 833 | 102952 / 135226 | 76.13% | 176 | 20718 |
 | ARM9 all | 7307 / 7533 | 1617048 / 1689066 | 95.74% | 176 | 20718 |
-| ARM7 SDK/library | 947 / 1020 | 147644 / 154300 | 95.69% | 69 | 4960 |
-| ARM7 all | 947 / 1020 | 147644 / 154300 | 95.69% | 69 | 4960 |
+| ARM7 SDK/library | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
+| ARM7 all | 948 / 1020 | 147744 / 154300 | 95.75% | 69 | 4960 |
 | game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
-| SDK/library | 1589 / 1853 | 250596 / 289526 | 86.55% | 245 | 25678 |
-| all | 8254 / 8553 | 1764692 / 1843366 | 95.73% | 245 | 25678 |
+| SDK/library | 1590 / 1853 | 250696 / 289526 | 86.59% | 245 | 25678 |
+| all | 8255 / 8553 | 1764792 / 1843366 | 95.74% | 245 | 25678 |
 
 ## By module
 
@@ -37,7 +37,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 | ov004 | game | 232 / 236 | 64808 / 67364 | 96.21% | 0 |
 | ov005 | game | 264 / 266 | 96316 / 96684 | 99.62% | 0 |
 | ov006 | game | 320 / 321 | 104988 / 105588 | 99.43% | 0 |
-| arm7 | SDK/library | 947 / 1020 | 147644 / 154300 | 95.69% | 69 |
+| arm7 | SDK/library | 948 / 1020 | 147744 / 154300 | 95.75% | 69 |
 
 Modules with nothing done: none.
 
@@ -54,14 +54,14 @@ objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 00
 |---|---:|---:|---:|
 | ARM9 game | 35 | 39744 | 9456 / 9967 (94.87%) |
 | ARM9 SDK/library | 15 | 11556 | 2138 / 2975 (71.87%) |
-| ARM7 SDK/library | 4 | 1696 | 335 / 424 (79.01%) |
-| all | 54 | 52996 | 11929 / 13366 (89.25%) |
+| ARM7 SDK/library | 3 | 1596 | 323 / 399 (80.95%) |
+| all | 53 | 52896 | 11917 / 13341 (89.33%) |
 
 | Rows that differ | Functions | Bytes |
 |---|---:|---:|
 | 1 to 2 | 3 | 4872 |
 | 3 to 10 | 18 | 11156 |
-| 11 to 50 | 29 | 27992 |
+| 11 to 50 | 28 | 27892 |
 | more than 50 | 4 | 8976 |
 
 Closest first.
@@ -91,7 +91,6 @@ Closest first.
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 10 | 99.64% |
 | `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 | 11 | 99.91% |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 | 11 | 94.12% |
-| `src/arm7/sdk/wl/func_arm7_027cab1c.c` | func_arm7_027cab1c | 100 | 13 | 95.60% |
 | `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 | 14 | 95.83% |
 | `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 | 15 | 99.98% |

@@ -1053,7 +1053,8 @@ src/arm7/sdk/wl/wifi_tx_free_slot_if_sent.c:
     complete
     .text       start:0x027caab4 end:0x027cab1c
 
-src/arm7/sdk/wl/func_arm7_027cab1c.c:
+src/arm7/sdk/wl/wifi_mp_put_back_reply.c:
+    complete
     .text       start:0x027cab1c end:0x027cab80
 
 src/arm7/sdk/wl/func_arm7_027cab80.c:

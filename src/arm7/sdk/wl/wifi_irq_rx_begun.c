@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_027cab1c(void);
+void WifiMp_PutBackReply(void);
 
 /* Frame control of an MP poll from the parent (data + CF-Poll, from the DS),
    with the retry and power management bits masked out. */
@@ -101,5 +101,5 @@ void WifiIrq_RxBegun(void)
     WIFI_MAC_REGISTER(0x244) &= ~0x40;
     WIFI_MAC_REGISTER(0x228) = 8;
     WIFI_MAC_REGISTER(0x228) = 0;
-    func_arm7_027cab1c();
+    WifiMp_PutBackReply();
 }
