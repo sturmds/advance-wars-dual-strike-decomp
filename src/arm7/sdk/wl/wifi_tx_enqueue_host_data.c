@@ -7,7 +7,7 @@ u16 WifiStation_SendRateOf(u32 station);
 void func_arm7_027c90ec(u16 *dest, const u16 *src);
 void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
 void WifiStation_CountQueuedFrame(WlTxFrame *frame);
-void func_arm7_027d1034(void);
+void WifiTx_StartNextGroupcast(void);
 void func_arm7_027d10f4(int arg);
 
 // Fills in the station, rate, frame control and addresses of a data frame from
@@ -60,7 +60,7 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
         if (station == 0) {
             WifiTx_EnqueueGroupcast(&lists->inbox, &buffer->header);
             if ((WIFI_DRIVER_STATE->stationBits.unk_02 & ~WIFI_DRIVER_STATE->stationBits.unk_06) == 0) {
-                func_arm7_027d1034();
+                WifiTx_StartNextGroupcast();
             }
         } else {
             WifiStation_CountQueuedFrame(frame);

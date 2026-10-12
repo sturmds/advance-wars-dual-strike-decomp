@@ -3,7 +3,7 @@
 WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
 void WifiTx_EnqueueMgmt(WlTxFrame *frame);
 void WifiTx_DropFramesToMac(const u16 *mac);
-void func_arm7_027d1034(void);
+void WifiTx_StartNextGroupcast(void);
 void WifiTx_EnqueueGroupcast(WlBufferList *from, WlBuffer *buffer);
 
 // Sends an 802.11 disassociation frame to request->mac, to every station when
@@ -34,7 +34,7 @@ int WifiCmd_SendDisassoc(WlMacRequest *request, WlReply *reply)
     if (request->mac[0] & 1) {
         WifiTx_EnqueueGroupcast(&WIFI_DRIVER_STATE->unk_15c, WIFI_HOST_TX_HEADER_OF(frame));
         if ((WIFI_DRIVER_STATE->stationBits.unk_02 & ~WIFI_DRIVER_STATE->stationBits.unk_06) == 0) {
-            func_arm7_027d1034();
+            WifiTx_StartNextGroupcast();
         }
     } else {
         WifiTx_DropFramesToMac(request->mac);
