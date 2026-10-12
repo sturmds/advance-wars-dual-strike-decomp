@@ -1718,6 +1718,10 @@ src/arm7/sdk/wl/wifi_task_age_reassembly.c:
     complete
     .text       start:0x027d1324 end:0x027d139c
 
+src/arm7/sdk/wl/wifi_rx_append_fragment.c:
+    complete
+    .text       start:0x027d139c end:0x027d15dc
+
 src/arm7/sdk/wl/wifi_task_sort_data_frame.c:
     complete
     .text       start:0x027d182c end:0x027d1948

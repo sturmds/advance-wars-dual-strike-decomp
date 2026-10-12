@@ -773,6 +773,8 @@ typedef struct WlTxBuffer {
 
 /* Longest received frame (802.11 header and body) WL handles. */
 #define WIFI_RX_FRAME_CAP 0x5fc
+#define WIFI_80211_HEADER_BYTES 24
+#define WIFI_RX_BODY_CAP (WIFI_RX_FRAME_CAP - WIFI_80211_HEADER_BYTES)
 
 /* A buffer holding a received frame. */
 typedef struct WlRxBuffer {
@@ -782,8 +784,26 @@ typedef struct WlRxBuffer {
     WlRxFrame frame;
 } WlRxBuffer;
 
-/* The WlRxFrame whose unk_08 (hardware RX header) rxHeader points to. */
-#define WIFI_RX_FRAME_FROM_HEADER(rxHeader) ((WlRxFrame *)((u8 *)(rxHeader) - 8))
+/* WlRxFrame from unk_08 on (the hardware RX header), as the fragment
+   reassembly code addresses it. */
+typedef struct WlRxHeader {
+    u16 flags;      /* WlRxFrame.unk_08: bits 0-3 frame kind, bit 8 WIFI_RX_NOT_LAST_FRAGMENT */
+    u8 pad_02[6];
+    u16 length;     /* WlRxFrame.length */
+    u8 pad_0a[0x24 - 0x0a];
+    u16 body[1];    /* WlRxFrame.body */
+} WlRxHeader;
+
+/* 802.11 sequence control, as bitfields. */
+typedef struct WlSequenceControl {
+    u16 fragment : 4;
+    u16 number : 12;
+} WlSequenceControl;
+
+#define WIFI_SEQCTL_FIELDS(field) ((WlSequenceControl *)&(field))
+
+/* WlRxHeader.flags bit set on every fragment but the last. */
+#define WIFI_RX_NOT_LAST_FRAGMENT 0x100
 
 /*
  * One of three slots where a fragmented frame is put back together: the
