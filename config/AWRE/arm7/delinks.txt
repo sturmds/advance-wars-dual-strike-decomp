@@ -919,6 +919,10 @@ src/arm7/sdk/card/card_start_service_arm7.c:
     complete
     .text       start:0x03803378 end:0x038033f8
 
+src/arm7/sdk/card/card_lock_and_read_chip_id.c:
+    complete
+    .text       start:0x038033f8 end:0x03803460
+
 src/arm7/sdk/func_arm7_038037e8.c:
     complete
     .text       start:0x038037e8 end:0x038037fc
