@@ -392,6 +392,7 @@ BOOL WMSP_SetAllParams(int apiid, WlCommand *cmd);
 void WMSP_ReplyStartScanFailed(u16 wlCmdID, u16 wlResult, BOOL extended);
 void WMSP_ReplyStartConnectFailed(u16 wlCmdID, u16 wlResult);
 void WMSP_ReplyAutoDisconnectFailed(u16 wlCmdID, u16 wlResult, u16 tryBitmap, u16 disconnectedBitmap);
+void WMSP_ReplyDisconnectFailed(u16 wlCmdID, u16 wlResult, u16 tryBitmap, u16 disconnectedBitmap);
 void WMSP_ResetStatus(void);
 int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
 void func_arm7_027c6eb4(u16 arg);
