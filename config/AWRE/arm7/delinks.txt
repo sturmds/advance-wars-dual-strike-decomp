@@ -903,6 +903,10 @@ src/arm7/sdk/os/heap_return_block_arm7.c:
     complete
     .text       start:0x037fcbe8 end:0x037fcc5c
 
+src/arm7/sdk/os/heap_take_first_fit_arm7.c:
+    complete
+    .text       start:0x037fcc5c end:0x037fcd74
+
 src/arm7/sdk/os/tick_read64_arm7.c:
     complete
     .text       start:0x037fce88 end:0x037fcf38
