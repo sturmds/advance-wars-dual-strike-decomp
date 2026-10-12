@@ -23,6 +23,9 @@ typedef struct WlReply {
     u16 words[16];
 } WlReply;
 
+/* WlStation.state value checked before WL marks or clears a station's bits; meaning not known yet. */
+#define WIFI_PEER_ASSOCIATED 0x40
+
 /* One entry of the station table (28 bytes), reached by index. */
 typedef struct WlStation {
     u16 state;
