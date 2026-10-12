@@ -8,7 +8,7 @@ The plan is in `docs/early-phase-project-plan.md` (edit that copy). The rules it
 
 ```sh
 mkdir -p orig && ln -s /path/to/awds.nds orig/AWRE.nds   # once; never copy the ROM into git
-make release    # setup if needed, format check, build, then every check
+make release    # setup if needed, format check, build, every check, then the decomp.dev report
 make format     # clang-format src/ and include/ (style in .clang-format)
 make            # build build/AWRE.nds (ninja, incremental)
 make check      # per-module hashes, then the whole-ROM SHA-1
@@ -22,6 +22,7 @@ make setup      # install git hooks, fetch tools.lock entries into .cache/tools/
 - System packages needed: `make`, `ninja-build`, `python3` (3.11+), `python3-yaml` (PyYAML, for `tools/maps.py`), `libc6:i386` (the metroskrew binaries are 32-bit), `flock` from `util-linux` (part of every Ubuntu install; `make` and `fn.py` run ninja under `build/.ninja.lock`, one build per checkout at a time). `tools/permuter.py` also needs `binutils-arm-none-eabi`; the build does not.
 - Pipeline (`tools/configure.py` writes `build.ninja`): `dsd rom extract` → `dsd delink` (config in `config/AWRE/arm9/`) → `dsd lcf` → `tools/lcf_absolute.py` → `tools/maps.py lcf` → `tools/lcf_align2.py` → `mwldarm` → `dsd rom config` → `dsd rom build` → `tools/fix_header.py`. ARM7 goes through the same steps from `config/AWRE/arm7/`, with `tools/arm7.py` around them, because dsd 0.12.1 cannot delink ARM7 on its own (`docs/tool-issues.md`). The file system comes from `extract/` unchanged. The map tables in ov000 come from `assets/maps/` (`tools/maps.py pack`, `docs/maps.md`).
 - Format: Google style through clang-format (`.clang-format`, `tools/format.py`), with includes kept in order. `make release` fails on an unformatted file. Files that define an `asm` function are skipped, because clang-format breaks ARM assembly. `fn.py finish` and `apply_commit.py` format the files they touch.
+- `make decomp-dev-report` (last step of `make release`) writes `build/artifacts/0.1_report/report.json`: one objdiff report over ARM9 and ARM7, in the artifact layout decomp.dev reads (`tools/decomp_dev_report.py`, `docs/third-party/decomp-dev.md`). Nothing uploads it yet (issue 0070).
 - `make check` runs `dsd check modules` (ARM9), then `config/AWRE/modules.sha1` (ARM9 and `arm7.bin`), then compares `build/AWRE.nds` with `config/AWRE/rom.sha1`.
 - Compiler: mwccarm 2.0-72, `-O4,p -proc arm946e -interworking` for ARM9 and `-O4,s -proc arm7tdmi -interworking` for ARM7 (optimised for size; the level is a guess); linker mwldarm 2.0-72. Evidence in `docs/awre-facts.md`.
 - `config/AWRE/arm9/` was generated once by `tools/dsd_init.py` (it works around a `dsd init` abort, see `docs/awre-facts.md`). Edit those files by hand or with dsd; rerun `dsd_init.py --force` only on purpose, and check `git diff` afterwards. `config/AWRE/arm7/` was generated the same way by `tools/arm7_init.py`.

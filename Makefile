@@ -18,7 +18,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup tools assets release pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup tools assets release decomp-dev-report pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -98,7 +98,13 @@ release: setup
 	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check
+	@$(MAKE) --no-print-directory decomp-dev-report
 	@echo "release: OK"
+
+# build/artifacts/0.1_report/report.json: the objdiff report over both CPUs,
+# laid out as decomp.dev's artifact. Written only, never uploaded.
+decomp-dev-report: all
+	@$(PYTHON) tools/decomp_dev_report.py
 
 # A ROM with 0x20 bytes inserted in main, in build/shift/ (issue 0012).
 # Checks that every symbol after the pad moved; not part of release.
