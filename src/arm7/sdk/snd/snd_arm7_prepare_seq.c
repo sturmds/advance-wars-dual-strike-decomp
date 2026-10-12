@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void func_arm7_038010e4(SndTrack *track, int base, int offset); /* the definition types base as int */
-
 /* First byte of a sequence with more than one track; a 16-bit mask of the tracks to allocate follows. */
 #define SEQ_CMD_ALLOC_TRACKS 0xFE
 
@@ -25,7 +23,7 @@ void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, SoundBank *ban
     }
     track = &data_arm7_03808810[trackNo];
     SndTrack_Init(track);
-    func_arm7_038010e4(track, (int)seqBase, seqOffset);
+    SndTrack_Start(track, seqBase, seqOffset);
     player->tracks[0] = trackNo;
     SndSeq_FillCache(track->cursor);
     cmd = SndSeq_ReadByte(track->cursor);

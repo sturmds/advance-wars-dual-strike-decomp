@@ -1,11 +1,8 @@
 #include "sdk/snd.h"
 #include "sdk/os_arm7.h"
 
-/* Sets the track's base and starts reading at base + offset. */
-void func_arm7_038010e4(SndTrack *track, u8 *base, u32 offset);
-
 /* Nonzero when the sequence print-variable command should look up its variable (debug only). */
-extern int data_arm7_03808070;
+extern int gSndPrintVarEnabled;
 
 /* Sequence commands. Bytes below 0x80 are notes; their low 7 bits give the key. */
 enum {
@@ -89,17 +86,16 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
         track->noteFinished = FALSE;
     }
 
-    /* unk_20 counts ticks left to wait; the compare is signed. */
-    if ((s32)track->unk_20 > 0) {
-        track->unk_20--;
-        if ((s32)track->unk_20 > 0) {
+    if (track->wait > 0) {
+        track->wait--;
+        if (track->wait > 0) {
             return 0;
         }
     }
 
     SndSeq_FillCache(track->cursor);
 
-    while (track->unk_20 == 0 && !track->noteFinished) {
+    while (track->wait == 0 && !track->noteFinished) {
         override = FALSE;
         run = TRUE;
 
@@ -146,7 +142,7 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
             }
             track->portamentoKey = key;
             if (track->noteWait) {
-                track->unk_20 = length;
+                track->wait = length;
                 if (length == 0) {
                     track->noteFinished = TRUE;
                 }
@@ -162,7 +158,7 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
             }
             switch (cmd) {
             case SEQ_OP_REST:
-                track->unk_20 = arg;
+                track->wait = arg;
                 break;
             case SEQ_OP_SET_INSTRUMENT:
                 if (arg < 0x10000) {
@@ -186,7 +182,7 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
                     other = SndPlayer_GetTrack(player, number);
                     if (other != NULL && other != track) {
                         SndTrack_Close(other, player);
-                        func_arm7_038010e4(other, track->base, offset);
+                        SndTrack_Start(other, track->base, offset);
                     }
                 }
                 break;
@@ -200,9 +196,9 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
             }
             case SEQ_OP_GOSUB: {
                 u32 offset = SndTrack_ReadU24(track);
-                if (run && track->unk_3b < SEQ_NESTING_DEPTH) {
-                    track->callStack[track->unk_3b] = track->cursor;
-                    track->unk_3b++;
+                if (run && track->callDepth < SEQ_NESTING_DEPTH) {
+                    track->callStack[track->callDepth] = track->cursor;
+                    track->callDepth++;
                     track->cursor = track->base + offset;
                 }
                 break;
@@ -263,10 +259,10 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
                 track->release = arg;
                 break;
             case SEQ_OP_REPEAT_BEGIN:
-                if (track->unk_3b < SEQ_NESTING_DEPTH) {
-                    track->callStack[track->unk_3b] = track->cursor;
-                    track->loopCount[track->unk_3b] = arg;
-                    track->unk_3b++;
+                if (track->callDepth < SEQ_NESTING_DEPTH) {
+                    track->callStack[track->callDepth] = track->cursor;
+                    track->loopCount[track->callDepth] = arg;
+                    track->callDepth++;
                 }
                 break;
             case SEQ_OP_LEGATO:
@@ -291,7 +287,7 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
                 track->pan = arg - 64;
                 break;
             case SEQ_OP_DEBUG_SHOW_VAR:
-                if (data_arm7_03808070) {
+                if (gSndPrintVarEnabled) {
                     SndPlayer_GetVariablePtr(player, arg);
                 }
                 break;
@@ -396,14 +392,14 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
             }
             switch (cmd) {
             case SEQ_OP_BACK_FROM_GOSUB:
-                if (track->unk_3b == 0) {
+                if (track->callDepth == 0) {
                     break;
                 }
-                track->unk_3b--;
-                track->cursor = track->callStack[track->unk_3b];
+                track->callDepth--;
+                track->cursor = track->callStack[track->callDepth];
                 break;
             case SEQ_OP_REPEAT_CLOSE: {
-                u8 depth = track->unk_3b;
+                u8 depth = track->callDepth;
                 u8 count;
 
                 if (depth == 0) {
@@ -413,12 +409,12 @@ int SndTrack_Step(SndTrack *track, SndPlayer *player, int trackNo, int play)
                 if (count != 0) {
                     count--;
                     if (count == 0) {
-                        track->unk_3b = depth - 1;
+                        track->callDepth = depth - 1;
                         break;
                     }
                 }
                 track->loopCount[depth - 1] = count;
-                track->cursor = track->callStack[track->unk_3b - 1];
+                track->cursor = track->callStack[track->callDepth - 1];
                 break;
             }
             case SEQ_OP_RESERVE_TRACKS:

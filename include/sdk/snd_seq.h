@@ -49,12 +49,12 @@ typedef struct SndTrack {
     s16 sweepPitch;
     SndLfo lfo;
     u16 channelMask;
-    u32 unk_20;
+    s32 wait;   /* ticks left before the next command */
     u8 *base;   /* start of the track's sequence data */
     u8 *cursor; /* next byte to read */
     u8 *callStack[3]; /* return addresses of calls, and starts of loops */
     u8 loopCount[3];  /* loops left for each loop on the call stack; 0 loops forever */
-    u8 unk_3b;
+    u8 callDepth; /* entries in use on callStack */
     SndExChannel *channels;
 } SndTrack;
 

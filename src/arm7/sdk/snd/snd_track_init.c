@@ -13,7 +13,7 @@ void SndTrack_Init(SndTrack *track)
     track->portamento = 0;
     track->compare = 1;
     track->channelMaskSet = 0;
-    track->unk_3b = 0;
+    track->callDepth = 0;
     track->program = 0;
     track->priority = 64;
     track->volume = 127;
@@ -35,6 +35,6 @@ void SndTrack_Init(SndTrack *track)
     track->transpose = 0;
     track->channelMask = 0xFFFF;
     func_arm7_037ff3c4(&track->lfo);
-    track->unk_20 = 0;
+    track->wait = 0;
     track->channels = NULL;
 }

@@ -861,7 +861,7 @@ SndPlayer_Advance kind:function(arm,size=0xc0) addr:0x03800ed0
 SndTrack_FreeChannels kind:function(arm,size=0x3c) addr:0x03800f90
 SndTrack_ReleaseChannels kind:function(arm,size=0x70) addr:0x03800fcc
 SndPlayer_Setup kind:function(arm,size=0xa8) addr:0x0380103c
-func_arm7_038010e4 kind:function(arm,size=0x14) addr:0x038010e4
+SndTrack_Start kind:function(arm,size=0x14) addr:0x038010e4
 SndTrack_Init kind:function(arm,size=0xf4) addr:0x038010f8
 SndTrack_ReadArg kind:function(arm,size=0xc8) addr:0x038011ec
 SndTrack_ReadVarLength kind:function(arm,size=0x40) addr:0x038012b4
@@ -1122,7 +1122,7 @@ data_arm7_03807bc4 kind:bss addr:0x03807bc4
 data_arm7_03807bf0 kind:bss addr:0x03807bf0
 data_arm7_03808068 kind:bss addr:0x03808068
 data_arm7_0380806c kind:bss addr:0x0380806c
-data_arm7_03808070 kind:bss addr:0x03808070
+gSndPrintVarEnabled kind:bss addr:0x03808070
 data_arm7_03808074 kind:bss addr:0x03808074
 data_arm7_0380807c kind:bss addr:0x0380807c
 data_arm7_0380808c kind:bss addr:0x0380808c
