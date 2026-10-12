@@ -948,7 +948,7 @@ func_arm7_038038b0 kind:function(arm,size=0x4) addr:0x038038b0
 func_arm7_038038b4 kind:function(arm,size=0x10) addr:0x038038b4
 Card_PushRemovalTagWord_Arm7 kind:function(arm,size=0x48) addr:0x038038c4
 func_arm7_0380390c kind:function(arm,size=0x20) addr:0x0380390c
-func_arm7_0380392c kind:function(arm,size=0xd8) addr:0x0380392c
+Card_CheckRemovedEveryTenFrames kind:function(arm,size=0xd8) addr:0x0380392c
 func_arm7_03803a04 kind:function(arm,size=0x2c) addr:0x03803a04
 func_arm7_03803a30 kind:function(arm,size=0x68) addr:0x03803a30
 func_arm7_03803a98 kind:function(arm,size=0x50) addr:0x03803a98
@@ -1077,8 +1077,8 @@ data_arm7_038077b4 kind:data(any) addr:0x038077b4
 gSndHwPanOverride kind:data(any) addr:0x038077b8
 gSndRandomSeed kind:data(any) addr:0x038077bc
 data_arm7_038077c0 kind:data(any) addr:0x038077c0
-data_arm7_038077e4 kind:data(any) addr:0x038077e4
-data_arm7_038077e8 kind:data(any) addr:0x038077e8
+gCardNextPollFrame kind:data(any) addr:0x038077e4
+gCardFirstPoll kind:data(any) addr:0x038077e8
 gPowerLedLastState kind:data(any) addr:0x038077ec
 gPowerLedBlinkTable kind:data(any) addr:0x038077f0
 gCtrdgFirstPoll kind:data(any) addr:0x03807880
@@ -1146,7 +1146,7 @@ data_arm7_038092c0 kind:bss addr:0x038092c0
 data_arm7_03809860 kind:bss addr:0x03809860
 data_arm7_03809870 kind:bss addr:0x03809870
 data_arm7_03809880 kind:bss addr:0x03809880
-data_arm7_03809aa0 kind:bss addr:0x03809aa0
+gCardPulledOut kind:bss addr:0x03809aa0
 data_arm7_03809aa4 kind:bss addr:0x03809aa4
 data_arm7_03809aa8 kind:bss addr:0x03809aa8
 spiInitialized kind:bss addr:0x03809aac

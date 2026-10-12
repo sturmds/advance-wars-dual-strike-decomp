@@ -20,7 +20,7 @@ BOOL func_arm7_037fe45c(void);
 void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);
 void func_arm7_038028c8(int a0);
-void func_arm7_0380392c(void);
+void Card_CheckRemovedEveryTenFrames(void);
 void SPI_Init(int a0);
 void func_arm7_038058b0(int heap);
 void Cartridge_CheckRemovedEveryTenFrames(void);
@@ -65,6 +65,6 @@ void Arm7Main(void)
             func_arm7_037fdc24();
         }
         Cartridge_CheckRemovedEveryTenFrames();
-        func_arm7_0380392c();
+        Card_CheckRemovedEveryTenFrames();
     }
 }
