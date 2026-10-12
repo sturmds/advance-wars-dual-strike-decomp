@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-int func_arm7_027c9da0(int);
+int WifiParam_SetAntennaChoice(int);
 
 int func_arm7_027cdc78(WlRequest *request, WlReply *reply)
 {
@@ -8,5 +8,5 @@ int func_arm7_027cdc78(WlRequest *request, WlReply *reply)
     if (WIFI_DRIVER_STATE->state.mode < 16) {
         return 1;
     }
-    return func_arm7_027c9da0(request->unk_10);
+    return WifiParam_SetAntennaChoice(request->unk_10);
 }
