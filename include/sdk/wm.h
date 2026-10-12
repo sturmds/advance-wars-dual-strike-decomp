@@ -426,7 +426,11 @@ typedef struct WMStatus {
     u16 unk_c2;                        /* WM_SetMPDataToPortEx needs 1 */
     u8 pad_c4[6];
     u16 unk_ca;
-    u8 pad_cc[0x10];
+    u32 unk_cc;
+    u32 unk_d0;
+    u32 unk_d4;
+    u16 unk_d8;
+    u8 pad_da[2];
     u8 macAddress[6];
     u16 unk_e2;                        /* WMSP_MeasureChannel sets 2 */
     u8 pparam[0x10];                   /* start of the WMParentParam the parent runs with; unk_f4 is its maxEntry */
