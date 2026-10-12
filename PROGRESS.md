@@ -11,14 +11,14 @@ add both CPUs.
 
 | Code | Functions in C | Bytes in C | % of bytes | Functions in asm | Bytes in asm |
 |---|---:|---:|---:|---:|---:|
-| ARM9 game | 6664 / 6700 | 1513476 / 1553840 | 97.40% | 0 | 0 |
+| ARM9 game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
 | ARM9 SDK/library | 640 / 833 | 101304 / 135226 | 74.91% | 176 | 20718 |
-| ARM9 all | 7304 / 7533 | 1614780 / 1689066 | 95.60% | 176 | 20718 |
+| ARM9 all | 7305 / 7533 | 1615400 / 1689066 | 95.64% | 176 | 20718 |
 | ARM7 SDK/library | 933 / 1020 | 138452 / 154300 | 89.73% | 69 | 4960 |
 | ARM7 all | 933 / 1020 | 138452 / 154300 | 89.73% | 69 | 4960 |
-| game | 6664 / 6700 | 1513476 / 1553840 | 97.40% | 0 | 0 |
+| game | 6665 / 6700 | 1514096 / 1553840 | 97.44% | 0 | 0 |
 | SDK/library | 1573 / 1853 | 239756 / 289526 | 82.81% | 245 | 25678 |
-| all | 8237 / 8553 | 1753232 / 1843366 | 95.11% | 245 | 25678 |
+| all | 8238 / 8553 | 1753852 / 1843366 | 95.14% | 245 | 25678 |
 
 ## By module
 
@@ -26,7 +26,7 @@ Rows with nothing done are left out, but count in the totals; ARM7's row is alwa
 
 | Module | Code | Functions in C | Bytes in C | % of bytes | Functions in asm |
 |---|---|---:|---:|---:|---:|
-| main | game | 5158 / 5180 | 1054576 / 1082632 | 97.41% | 0 |
+| main | game | 5159 / 5180 | 1055196 / 1082632 | 97.47% | 0 |
 | main | SDK/library | 633 / 822 | 100392 / 133690 | 75.09% | 172 |
 | itcm | game | 102 / 102 | 21896 / 21896 | 100.00% | 0 |
 | itcm | SDK/library | 7 / 11 | 912 / 1536 | 59.38% | 4 |
@@ -56,7 +56,6 @@ Source files in `src/` that the build does not use yet (not marked `complete`).
 | `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 |
 | `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 |
 | `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 |
-| `src/game/main/ai/func_020a6ac4.c` | func_020a6ac4 | 620 |
 | `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 |
 | `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 |
 | `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 |

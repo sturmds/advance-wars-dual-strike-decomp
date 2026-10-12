@@ -12,7 +12,7 @@ extern MoveSearchNode *data_027c075c;
 
 int Player_GetUnitMoveRange(int player, int unitType);
 void MoveSearch_LoadMoveCosts(int unitType);
-void func_020a6ac4(int direction); /* queues the tile next to the current one in that direction */
+void MoveSearch_TryStepOverTurns(int direction); /* queues the tile next to the current one in that direction */
 
 #define STATE (data_027c027c->unk_48[data_027c0284])
 #define TILE(x, y) ((x) + STATE->mapTiles->rowStart[y])
@@ -68,30 +68,30 @@ void RangeMap_FillMovesOverTurns(int x, int y, int unitType, int maxCost)
         while (data_027c0754->from != 0) {
             switch (data_027c0754->from) {
             case FROM_START:
-                func_020a6ac4(DIR_UP);
-                func_020a6ac4(DIR_DOWN);
-                func_020a6ac4(DIR_LEFT);
-                func_020a6ac4(DIR_RIGHT);
+                MoveSearch_TryStepOverTurns(DIR_UP);
+                MoveSearch_TryStepOverTurns(DIR_DOWN);
+                MoveSearch_TryStepOverTurns(DIR_LEFT);
+                MoveSearch_TryStepOverTurns(DIR_RIGHT);
                 break;
             case DIR_UP:
-                func_020a6ac4(DIR_UP);
-                func_020a6ac4(DIR_LEFT);
-                func_020a6ac4(DIR_RIGHT);
+                MoveSearch_TryStepOverTurns(DIR_UP);
+                MoveSearch_TryStepOverTurns(DIR_LEFT);
+                MoveSearch_TryStepOverTurns(DIR_RIGHT);
                 break;
             case DIR_DOWN:
-                func_020a6ac4(DIR_DOWN);
-                func_020a6ac4(DIR_LEFT);
-                func_020a6ac4(DIR_RIGHT);
+                MoveSearch_TryStepOverTurns(DIR_DOWN);
+                MoveSearch_TryStepOverTurns(DIR_LEFT);
+                MoveSearch_TryStepOverTurns(DIR_RIGHT);
                 break;
             case DIR_LEFT:
-                func_020a6ac4(DIR_UP);
-                func_020a6ac4(DIR_DOWN);
-                func_020a6ac4(DIR_LEFT);
+                MoveSearch_TryStepOverTurns(DIR_UP);
+                MoveSearch_TryStepOverTurns(DIR_DOWN);
+                MoveSearch_TryStepOverTurns(DIR_LEFT);
                 break;
             case DIR_RIGHT:
-                func_020a6ac4(DIR_UP);
-                func_020a6ac4(DIR_DOWN);
-                func_020a6ac4(DIR_RIGHT);
+                MoveSearch_TryStepOverTurns(DIR_UP);
+                MoveSearch_TryStepOverTurns(DIR_DOWN);
+                MoveSearch_TryStepOverTurns(DIR_RIGHT);
                 break;
             }
             data_027c075c->from = 0;

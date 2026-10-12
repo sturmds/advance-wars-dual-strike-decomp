@@ -12368,7 +12368,8 @@ src/game/main/ai/range_map_fill_moves_over_turns.c:
     complete
     .text       start:0x020a6764 end:0x020a6ac4
 
-src/game/main/ai/func_020a6ac4.c:
+src/game/main/ai/move_search_try_step_over_turns.c:
+    complete
     .text       start:0x020a6ac4 end:0x020a6d30
 
 src/game/main/ai/ai_unit_teammate_outdamages.c:

@@ -30,7 +30,7 @@ extern MoveSearchNode *data_027c075c;
  * expanded one tile in direction. If the cost of the move is within
  * maxCost and beats what rangeMap holds for the tile, records it there,
  * records the turn count in MapTiles.rangeScratch, and queues the tile. */
-void func_020a6ac4(int direction)
+void MoveSearch_TryStepOverTurns(int direction)
 {
     s8 *rangeTile;
     MapTiles *tiles;
@@ -39,6 +39,7 @@ void func_020a6ac4(int direction)
     int turnEnd;
     Unk_02080440_1c4 *map;
     u8 x;
+    unsigned long row;
     Unk_02080440_48 *state;
     u8 y;
     u8 terrainCost;
@@ -74,7 +75,10 @@ void func_020a6ac4(int direction)
         return;
     }
     tiles = state->mapTiles;
-    terrainCost = data_027c0758->moveCost[MAP_TILE_TERRAIN(tiles->tiles[TILE(tiles, x, y)])];
+    /* Needed to match: an unsigned long copy of y, set here (u32 or a
+     * cast does not match) */
+    row = y;
+    terrainCost = data_027c0758->moveCost[MAP_TILE_TERRAIN(tiles->tiles[TILE(tiles, x, row)])];
     cost = data_027c0754->cost + terrainCost;
     if (cost > data_027c0758->maxCost) {
         return;
@@ -87,7 +91,7 @@ void func_020a6ac4(int direction)
         cost = turnEnd + terrainCost;
         turns++;
     }
-    rangeTile = &state->rangeMap[y][x];
+    rangeTile = &state->rangeMap[row][x];
     if (*rangeTile <= cost && *rangeTile >= 0) {
         return;
     }
