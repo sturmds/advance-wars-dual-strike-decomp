@@ -1056,6 +1056,10 @@ src/arm7/sdk/wl/wifi_mlme_run_scan.c:
     complete
     .text       start:0x027cc6a8 end:0x027cc89c
 
+src/arm7/sdk/wl/wifi_cmd_start_channel_survey.c:
+    complete
+    .text       start:0x027cc89c end:0x027cc97c
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac

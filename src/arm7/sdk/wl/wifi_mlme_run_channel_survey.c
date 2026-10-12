@@ -13,7 +13,7 @@ void func_arm7_037f8e04(void);
 void func_arm7_037f92c8(void);
 
 /*
- * One step of the channel measurement started by func_arm7_027cc89c. For each
+ * One step of the channel measurement started by WifiCmd_StartChannelSurvey. For each
  * channel of the request it samples the busy bit of WIFI_MAC_REGISTER(0x19c) for
  * request->sampleMs and stores channel | ratio << 8 in the reply, where ratio
  * is 0 when no sample was busy, else the busy percent + 1, at most 100.
