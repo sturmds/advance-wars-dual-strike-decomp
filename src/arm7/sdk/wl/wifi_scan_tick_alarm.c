@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 /*
- * Alarm handler of func_arm7_027cc6a8, every probeIntervalMs. Once the
+ * Alarm handler of WifiMlme_RunScan, every probeIntervalMs. Once the
  * channel time is used up it moves on to the next channel, or ends the scan
  * after the last one; otherwise the scan step sends another probe.
  */
