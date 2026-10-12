@@ -4,7 +4,6 @@ void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_AuthenticationTimedOut(void *arg);
 WlAuthFrame *WifiFrame_NewAuthentication(u16 *peer, int arg);
 void WifiTx_EnqueueMgmt(void *frame);
-void func_arm7_027d0240(int a, int b);
 void func_arm7_027d0500(int a);
 void func_arm7_027d0590(int a);
 
@@ -38,7 +37,7 @@ void WifiMlme_RunAuthentication(void)
     case 0x35:
         func_arm7_027d0500(1);
         func_arm7_027d0590(1);
-        func_arm7_027d0240(1, 0);
+        WifiTx_DrainQueue(1, 0);
         job->state = 0;
         WifiHost_ReturnCurrentRequest();
         break;
