@@ -466,6 +466,21 @@ typedef struct WlWork {
 // Wireless RAM, as halfwords.
 #define WIFI_PACKET_RAM ((volatile u16 *)0x04804000)
 
+/* WlState.unk_d8 (0x20 bytes) as WifiTask_BeginShutdown reads it: a halfword at 0 and
+   a pointer at 0x1c. */
+typedef struct Unk_arm7_027c7f84 {
+    u8 pad_00[4];
+    u16 unk_04;
+} Unk_arm7_027c7f84;
+
+typedef struct WlStateD8 {
+    u16 unk_00;
+    u8 pad_02[0x1a];
+    Unk_arm7_027c7f84 *unk_1c;
+} WlStateD8;
+
+#define WIFI_JOB_AREA_OF(work) ((WlStateD8 *)(work)->state.unk_d8)
+
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)

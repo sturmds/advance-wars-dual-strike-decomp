@@ -552,6 +552,10 @@ src/arm7/sdk/wl/wifi_task_shutdown.c:
     complete
     .text       start:0x027c7f30 end:0x027c7f84
 
+src/arm7/sdk/wl/wifi_task_begin_shutdown.c:
+    complete
+    .text       start:0x027c7f84 end:0x027c8028
+
 src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8
