@@ -832,6 +832,10 @@ src/arm7/sdk/wl/wl_send_indication_8c.c:
     complete
     .text       start:0x027cbb10 end:0x027cbb78
 
+src/arm7/sdk/wl/wl_send_indication_8b.c:
+    complete
+    .text       start:0x027cbb78 end:0x027cbbf4
+
 src/arm7/sdk/func_arm7_027cbfa4.c:
     complete
     .text       start:0x027cbfa4 end:0x027cbfc8
