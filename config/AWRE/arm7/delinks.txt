@@ -2888,11 +2888,11 @@ src/arm7/sdk/spi/spii_release_exception.c:
     complete
     .text       start:0x03803e0c end:0x03803e50
 
-src/arm7/sdk/func_arm7_03803e50.c:
+src/arm7/sdk/spi/spii_get_exception.c:
     complete
     .text       start:0x03803e50 end:0x03803e68
 
-src/arm7/sdk/func_arm7_03803e68.c:
+src/arm7/sdk/spi/spii_check_exception.c:
     complete
     .text       start:0x03803e68 end:0x03803e84
 

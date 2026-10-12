@@ -165,11 +165,7 @@ typedef struct TouchSamplerState {
 extern TouchSamplerState tpWork;
 extern u16 tpLastTouch;         /* pen was down at the last sample */
 
-/* The ARM7's SPI bus, shared by the touch panel, power chip and firmware. */
-#define REG_SPICNT  (*(volatile u16 *)0x040001c0)
-#define REG_SPIDATA (*(volatile u16 *)0x040001c2)
-#define SPICNT_BUSY 0x0080
-/* Enabled, 2 MHz, touch panel selected; HOLD keeps the device selected
+/* SPICNT values (sdk/spi.h has the registers). Enabled, 2 MHz, touch panel selected; HOLD keeps the device selected
  * after the byte (a continuous transfer). */
 #define SPICNT_TP_1BYTE      0x8201
 #define SPICNT_TP_CONTINUOUS 0x8a01

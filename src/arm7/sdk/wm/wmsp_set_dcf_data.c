@@ -1,7 +1,7 @@
 #include "sdk/wmsp.h"
 #include "sdk/mi.h"
 
-u16 *func_arm7_027c23b0(WlCommand *cmd, WlTxFrame *frame);
+u16 *func_arm7_027c23b0(WlCommand *cmd, WlTxRequest *frame);
 
 /* Needed to match: the original stores the zero on the stack and loads it back. */
 static inline void MI_CpuClear16(void *dest, u32 size)
@@ -18,7 +18,7 @@ enum { ERRCODE_SUCCESS = WM_ERRCODE_SUCCESS, ERRCODE_FAILED = WM_ERRCODE_FAILED 
 void WMSP_SetDCFData(WmspSetDCFDataRequest *request)
 {
     WMStatus *status = func_arm7_027c05e0()->buf->status;
-    WlTxFrame frame;
+    WlTxRequest frame;
     u32 wlBuf[WMSP_WL_BUF_WORDS];
     u16 *wlReply;
     WmspReply *reply;

@@ -2,6 +2,7 @@
 #define SDK_MIC_H
 
 #include "types.h"
+#include "sdk/spi.h"
 
 /*
  * ARM7 side of the microphone. The ARM9 sends a request as PXI words; the
@@ -43,9 +44,6 @@ enum {
     MIC_PXI_RESULT_ILLEGAL_STATUS = 3,
     MIC_PXI_RESULT_EXCLUSIVE = 4
 };
-
-/* The SPI manager's device number for the microphone. */
-#define SERIAL_JOB_MICROPHONE 2
 
 /* Sampling type bits, from the low byte of the request's first word. */
 #define MIC_TYPE_12BIT     0x01        /* 12-bit samples in halfwords; otherwise 8-bit, two per halfword */
@@ -97,33 +95,9 @@ typedef struct MICSystemWork {
 #define TIMER_IRQ_ENABLE 0x0040
 #define TIMER_ENABLE     0x0080
 
-/* The ARM7 SPI bus (touch panel, firmware flash, power management, microphone). */
-#define REG_SPICNT  (*(volatile u16 *)0x040001c0)
-#define REG_SPIDATA (*(volatile u16 *)0x040001c2)
-#define SPI_BUSY 0x0080
-#define SERIAL_RATE_2MHZ  0x0001
-#define SERIAL_SELECT_TOUCH_ADC 0x0200          /* touch screen controller; its ADC also reads the microphone */
-#define SERIAL_KEEP_CHIP_SELECTED       0x0800          /* keep chip select after this byte */
-#define SPI_ENABLE     0x8000
-
 /* Touch screen controller commands that convert the microphone channel. */
 #define TSC_READ_MIC_12BIT 0xe4
 #define TSC_READ_MIC_8BIT  0xec
-
-/* A request the SPI manager queued, as its thread hands it to the device code. */
-typedef struct SerialBusJob {
-    u32 device;
-    u32 command;                   /* PXI command byte */
-    u32 args[4];
-} SerialBusJob;
-
-/* ARM7 SPI manager calls (not decompiled yet). */
-BOOL SPIi_CheckEntry(void);         /* a request is waiting in the queue */
-BOOL SPIi_SetEntry(int device, int command, int argCount, ...);  /* queue a request; FALSE when full */
-void SPIi_ReleaseException(int device);   /* release the exclusive lock */
-void func_arm7_03803e50(int device);   /* take the exclusive lock */
-int func_arm7_03803e68(int device);    /* nonzero when no device holds the lock */
-void SPIi_ReturnResult(u16 command, u16 result);  /* PXI reply to the ARM9 */
 
 u16 func_arm7_038060bc(void);
 u16 func_arm7_03806184(void);

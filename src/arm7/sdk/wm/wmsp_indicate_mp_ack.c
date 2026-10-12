@@ -9,7 +9,7 @@ int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
 
 /*
  * WIFI_HOSTMSG_POLL_ACKED: the ack that ends an MP exchange, or one Wmsp_PostMpAckTimeout
- * made up (unk_0e 0) once the ack deadline passed. Stops the ack alarm, reports
+ * made up (length 0) once the ack deadline passed. Stops the ack alarm, reports
  * START_MP/MPACK_IND with the outcome, then queues request 41 or marks unk_32.
  */
 void Wmsp_IndicateMpAck(WlMpAckIndication *ind)
@@ -26,7 +26,7 @@ void Wmsp_IndicateMpAck(WlMpAckIndication *ind)
     if (status->mpFlag == 0) {
         return;
     }
-    if (ind->ind.unk_0e == 0) {
+    if (ind->ind.length == 0) {
         u16 low;
         u16 high;
         u16 low2;

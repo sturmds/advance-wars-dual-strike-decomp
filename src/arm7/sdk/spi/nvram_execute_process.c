@@ -3,9 +3,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/spi.h"
 
-BOOL func_arm7_03803e68(u32 device);   /* TRUE when nobody holds the SPI bus; its definition leaves out device */
-void func_arm7_03803e50(int device);   /* take the SPI bus for device */
-
 /* Runs one NVRAM job on the SPI thread and replies to the ARM9. Reads need
  * an idle flash; writes and erases also need the write enable latch. */
 void NVRAM_ExecuteProcess(SerialBusJob *entry)
@@ -13,12 +10,12 @@ void NVRAM_ExecuteProcess(SerialBusJob *entry)
     int irqState;
 
     irqState = Cpu_MaskIrq_Arm7();
-    if (!func_arm7_03803e68(SERIAL_OWNER_FLASH)) {
+    if (!SPIi_CheckException(SERIAL_OWNER_FLASH)) {
         Cpu_RestoreIrqBit_Arm7(irqState);
         SPIi_ReturnResult(entry->process, SPI_PXI_RESULT_EXCLUSIVE);
         return;
     }
-    func_arm7_03803e50(SERIAL_OWNER_FLASH);
+    SPIi_GetException(SERIAL_OWNER_FLASH);
     Cpu_RestoreIrqBit_Arm7(irqState);
 
     switch (entry->process) {

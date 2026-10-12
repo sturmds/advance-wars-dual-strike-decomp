@@ -3,7 +3,7 @@
 #include "sdk/wmsp.h"
 
 /* WIFI_HOSTMSG_PEER_AUTHED: tells the ARM9 a station authenticated. */
-void Wmsp_IndicateAuthenticate(WlIndication *ind)
+void Wmsp_IndicateAuthenticate(WlIndicationHeader *ind)
 {
     RadioNotice *callback = Wmsp_GetCallbackBuffer();
 

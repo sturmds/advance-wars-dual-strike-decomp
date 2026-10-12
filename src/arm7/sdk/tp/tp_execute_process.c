@@ -1,9 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 #include "sdk/tp.h"
-
-BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
-void func_arm7_03803e50(int device);              /* take the SPI bus */
+#include "sdk/spi.h"
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
  * auto sampling), or starting and stopping auto sampling. */
@@ -22,12 +20,12 @@ void TP_ExecuteProcess(SerialBusJob *entry)
         u16 density;
         int intr = Cpu_MaskIrq_Arm7();
 
-        if (!func_arm7_03803e68(SERIAL_OWNER_TOUCH)) {
+        if (!SPIi_CheckException(SERIAL_OWNER_TOUCH)) {
             Cpu_RestoreIrqBit_Arm7(intr);
             SPIi_ReturnResult(entry->process, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
-        func_arm7_03803e50(SERIAL_OWNER_TOUCH);
+        SPIi_GetException(SERIAL_OWNER_TOUCH);
         Cpu_RestoreIrqBit_Arm7(intr);
 
         TP_ExecSampling(&sample, tpWork.range, &density);

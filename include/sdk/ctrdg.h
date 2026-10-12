@@ -2,6 +2,7 @@
 #define SDK_CTRDG_H
 
 #include "types.h"
+#include "sdk/svc.h"
 
 /* PXI FIFO tag of the cartridge library: the ARM9 and ARM7 exchange commands under it. */
 #define FIFO_TAG_GBA_SLOT 13
@@ -83,9 +84,6 @@ typedef struct GbaSlotInitWord {
     u8 pad_04[0xc];
     u32 received;                  /* set to 1 once word holds the init command */
 } GbaSlotInitWord;
-
-/* Busy-waits for roughly the given number of loop passes (Thumb code in the SDK). */
-void SVC_WaitByLoop(u32 count);
 
 void Cartridge_SendWordUntilTaken(u32 word);
 void Cartridge_SpinUntilSlotOwned(int lockID, GbaSlotLockRecord *lock);

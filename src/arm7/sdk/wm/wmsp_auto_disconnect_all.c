@@ -9,7 +9,7 @@ WmspSlot *Wmsp_TakeFlaggedSlot(void);
  * WL indication 0x186: queues an auto-disconnect of every link (all children on
  * a parent, the parent on a child) unless unk_da is 1.
  */
-void Wmsp_AutoDisconnectAll(WlIndication *ind)
+void Wmsp_AutoDisconnectAll(WlIndicationHeader *ind)
 {
     WmspBuf *buf = func_arm7_027c05e0()->buf;
     WmspAutoDisconnectRequest *request;

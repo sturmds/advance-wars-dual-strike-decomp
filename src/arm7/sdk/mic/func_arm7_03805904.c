@@ -26,8 +26,8 @@ asm void func_arm7_03805904(void)
     bl SPIi_CheckEntry
     cmp r0, #0
     bne store
-    mov r0, #SERIAL_JOB_MICROPHONE
-    bl func_arm7_03803e68
+    mov r0, #SERIAL_OWNER_MICROPHONE
+    bl SPIi_CheckException
     cmp r0, #0
     beq store
     and r0, r5, #MIC_TYPE_12BIT
@@ -89,7 +89,7 @@ advance:
     bl SPIi_ReturnResult
     b done
 queue_stop:
-    mov r0, #SERIAL_JOB_MICROPHONE
+    mov r0, #SERIAL_OWNER_MICROPHONE
     mov r1, #MIC_PXI_COMMAND_AUTO_STOP
     mov r2, #0
     bl SPIi_SetEntry

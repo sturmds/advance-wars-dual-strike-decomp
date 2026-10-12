@@ -12,33 +12,33 @@ void func_arm7_03805aa8(SerialBusJob *entry)
     int irqState;
     u16 sample;
 
-    switch (entry->command) {
+    switch (entry->process) {
     case MIC_PXI_COMMAND_ONE_SAMPLE:
         irqState = Cpu_MaskIrq_Arm7();
-        if (!func_arm7_03803e68(SERIAL_JOB_MICROPHONE)) {
+        if (!SPIi_CheckException(SERIAL_OWNER_MICROPHONE)) {
             Cpu_RestoreIrqBit_Arm7(irqState);
-            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_EXCLUSIVE);
+            SPIi_ReturnResult(entry->process, MIC_PXI_RESULT_EXCLUSIVE);
             break;
         }
-        func_arm7_03803e50(SERIAL_JOB_MICROPHONE);
+        SPIi_GetException(SERIAL_OWNER_MICROPHONE);
         Cpu_RestoreIrqBit_Arm7(irqState);
-        if ((entry->args[0] & MIC_TYPE_12BIT) == MIC_TYPE_12BIT) {
+        if ((entry->arg[0] & MIC_TYPE_12BIT) == MIC_TYPE_12BIT) {
             sample = func_arm7_038060bc();
-            if (entry->args[0] & MIC_TYPE_SIGNED) {
+            if (entry->arg[0] & MIC_TYPE_SIGNED) {
                 sample ^= 0x8000;
             }
             MIC_SYSTEM_WORK->lastSample = sample;
             MIC_SYSTEM_WORK->lastAddress = &MIC_SYSTEM_WORK->lastSample;
         } else {
             sample = func_arm7_03806184();
-            if (entry->args[0] & MIC_TYPE_SIGNED) {
+            if (entry->arg[0] & MIC_TYPE_SIGNED) {
                 sample ^= 0x80;
             }
             MIC_SYSTEM_WORK->lastSample = sample;
             MIC_SYSTEM_WORK->lastAddress = &MIC_SYSTEM_WORK->lastSample;
         }
-        SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_SUCCESS);
-        SPIi_ReleaseException(SERIAL_JOB_MICROPHONE);
+        SPIi_ReturnResult(entry->process, MIC_PXI_RESULT_SUCCESS);
+        SPIi_ReleaseException(SERIAL_OWNER_MICROPHONE);
         break;
 
     case MIC_PXI_COMMAND_AUTO_START:
@@ -52,10 +52,10 @@ void func_arm7_03805aa8(SerialBusJob *entry)
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
             Cpu_RestoreIrqBit_Arm7(irqState);
-            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_SUCCESS);
+            SPIi_ReturnResult(entry->process, MIC_PXI_RESULT_SUCCESS);
             data_arm7_0380af74.status = MIC_STATUS_AUTO_SAMPLING;
         } else {
-            SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_ILLEGAL_STATUS);
+            SPIi_ReturnResult(entry->process, MIC_PXI_RESULT_ILLEGAL_STATUS);
         }
         break;
 

@@ -3,8 +3,6 @@
 #include "sdk/spi.h"
 #include "sdk/os_arm7.h"
 
-BOOL func_arm7_03803e68(u32 device);            /* bus free? */
-void func_arm7_03803e50(int device);            /* take the bus */
 void Power_SleepUntilTrigger(void);
 
 extern u16 data_arm7_03809ff0;                  /* sleep: wake-up key pattern */
@@ -15,12 +13,12 @@ void PM_ExecuteProcess(SerialBusJob *entry)
 {
     int intr = Cpu_MaskIrq_Arm7();
 
-    if (!func_arm7_03803e68(SERIAL_OWNER_POWER_CHIP)) {
+    if (!SPIi_CheckException(SERIAL_OWNER_POWER_CHIP)) {
         Cpu_RestoreIrqBit_Arm7(intr);
         SPIi_ReturnResult(entry->process, SPI_PXI_RESULT_EXCLUSIVE);
         return;
     }
-    func_arm7_03803e50(SERIAL_OWNER_POWER_CHIP);
+    SPIi_GetException(SERIAL_OWNER_POWER_CHIP);
     Cpu_RestoreIrqBit_Arm7(intr);
 
     switch (entry->process) {

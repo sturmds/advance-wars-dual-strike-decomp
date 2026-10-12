@@ -53,10 +53,14 @@ enum {
     SPI_PXI_RESULT_EXCLUSIVE = 4   /* the bus or the job queue is busy */
 };
 
-/* The bus registers; sdk/tp.h has the same definitions. */
+/* The bus registers. */
 #define REG_SPICNT  (*(volatile u16 *)0x040001c0)
 #define REG_SPIDATA (*(volatile u16 *)0x040001c2)
-#define SPICNT_BUSY 0x0080
+#define SPICNT_BAUD_2MHZ  0x0001
+#define SPICNT_BUSY       0x0080
+#define SPICNT_DEVICE_TSC 0x0200       /* touch screen controller; its ADC also reads the microphone */
+#define SPICNT_HOLD       0x0800       /* keep the device selected after this byte */
+#define SPICNT_ENABLE     0x8000
 
 #define SERIAL_JOB_ARGS 4
 
@@ -75,6 +79,8 @@ void SPIi_ReturnResult(u16 command, u16 result);    /* send a reply word to the 
 BOOL SPIi_SetEntry(u32 device, u32 process, u16 paramCount, ...);
 BOOL SPIi_CheckEntry(void);   /* TRUE when a job is queued */
 void SPIi_ReleaseException(u32 device);   /* free the bus if device holds it */
+void SPIi_GetException(u32 device);       /* give the bus to device */
+BOOL SPIi_CheckException(u32 device);     /* TRUE when no device holds the bus */
 void SPI_Unlock(u32 id);   /* give back the bus taken with this id */
 void SPI_Lock(u32 id);   /* take the bus, sleeping until it is free */
 

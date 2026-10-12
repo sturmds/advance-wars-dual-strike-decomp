@@ -36,20 +36,21 @@ typedef struct WmspSlot {
 #define WIFI_HOSTMSG_POLL_ACKED 0x185
 #define WIFI_HOSTMSG_EVENT_BITS 0x186  /* best guess: WMSP disconnects every link on it */
 
-typedef struct WlIndication {
+/* The first 16 bytes of a WlIndication (sdk/wl.h), which the WMSP indication structs start with. */
+typedef struct WlIndicationHeader {
     u8 bufferHeader[12];               /* the WlBuffer list links */
-    u16 code;          /* WIFI_HOSTMSG_* */
-    u16 unk_0e;        /* WIFI_HOSTMSG_POLL_ACKED: 0 when WMSP made it up after a timeout */
-} WlIndication;
+    u16 command;                       /* WIFI_HOSTMSG_* */
+    u16 length;                        /* payload halfwords; WIFI_HOSTMSG_POLL_ACKED: 0 when WMSP made it up after a timeout */
+} WlIndicationHeader;
 
 typedef struct WlDeauthIndication {
-    WlIndication ind;
+    WlIndicationHeader ind;
     u8 macAddress[6];  /* the station that left */
     u16 reason;
 } WlDeauthIndication;
 
 typedef struct WlAssocIndication {
-    WlIndication ind;
+    WlIndicationHeader ind;
     u8 macAddress[6];  /* the station that joined */
     u16 aid;
     u8 pad_18[10];
@@ -69,7 +70,7 @@ typedef struct WlDataFrame {
 } WlDataFrame;
 
 typedef struct WlDataIndication {
-    WlIndication ind;
+    WlIndicationHeader ind;
     WlDataFrame frame;
 } WlDataIndication;
 
@@ -88,7 +89,7 @@ typedef struct WlMpAckFrame {
 } WlMpAckFrame;
 
 typedef struct WlMpAckIndication {
-    WlIndication ind;
+    WlIndicationHeader ind;
     WlMpAckFrame frame;
 } WlMpAckIndication;
 
@@ -124,7 +125,7 @@ typedef struct WlCommand {
 
 /* A frame to send, the argument of WL command 0x100 (func_arm7_027c23b0).
    Only the fields WMSP fills are named. */
-typedef struct WlTxFrame {
+typedef struct WlTxRequest {
     u16 status;
     u8 pad_02[4];
     u16 length;                        /* bytes at data */
@@ -135,7 +136,7 @@ typedef struct WlTxFrame {
     u8 srcAdr[6];
     u8 pad_24[8];
     const u16 *data;
-} WlTxFrame;
+} WlTxRequest;
 
 /* Stack space a WMSP handler gives a WL command and its reply. */
 typedef union WlCommandBuf {
@@ -177,7 +178,7 @@ typedef struct WmspBuf {
     WmspSlot slots[WMSP_SLOT_COUNT];
 } WmspBuf;
 
-/* What the ARM9 sends for a request that carries one value. */
+/* What the ARM9 sends for a request with one value. */
 typedef struct WmspRequest {
     u16 apiid;
     u8 pad_02[2];

@@ -3,7 +3,7 @@
 #include "sdk/wmsp.h"
 
 /* WIFI_HOSTMSG_PEER_LEFT: tells the ARM9 a station disassociated. */
-void Wmsp_IndicateDisassociate(WlIndication *ind)
+void Wmsp_IndicateDisassociate(WlIndicationHeader *ind)
 {
     RadioNotice *callback = Wmsp_GetCallbackBuffer();
 

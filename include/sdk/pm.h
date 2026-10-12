@@ -78,10 +78,7 @@ enum {
     POWER_JOB_STORE = 4
 };
 
-/* ARM7 side: the power chip sits on the SPI bus. */
-#define REG_SPI_CNT ((volatile u16 *)0x040001c0)
-#define REG_SPI_DATA ((volatile u16 *)0x040001c2)
-#define SPI_BUSY 0x80
+/* ARM7 side: the power chip sits on the SPI bus (sdk/spi.h). */
 
 /* Set in the first SPI byte to read a power chip register instead of writing it. */
 #define POWER_CHIP_READ_BIT 0x80
@@ -164,9 +161,8 @@ void PowerLed_SelectPattern(int pattern);
 /* Last state given to PMi_SetLED. */
 extern int gPowerLedLastState;
 
-/* PM command that sets the LED state; the ARM7 queues it for its SPI thread under SERIAL_JOB_POWER_CHIP. */
+/* PM command that sets the LED state; the ARM7 queues it for its SPI thread under SERIAL_OWNER_POWER_CHIP. */
 #define POWER_MSG_LED_STATE 0x66
-#define SERIAL_JOB_POWER_CHIP 3
 
 /*
  * Patterns 4 to 15 blink the LED by table: bit 63 downwards of bits gives on (set)

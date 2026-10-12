@@ -3,7 +3,7 @@
 #include "sdk/wmsp.h"
 
 /* WIFI_HOSTMSG_PEER_REJOINED: tells the ARM9 a station reassociated. */
-void Wmsp_IndicateReassociate(WlIndication *ind)
+void Wmsp_IndicateReassociate(WlIndicationHeader *ind)
 {
     RadioNotice *callback = Wmsp_GetCallbackBuffer();
 
