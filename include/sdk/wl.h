@@ -313,7 +313,7 @@ typedef struct WlMeasureChannelJob {
 typedef struct WlPeerRequest {
     u8 pad_00[0x10];
     u16 peer[3];       /* address handed to the frame builder */
-    u16 unk_16;        /* authenticate: copied into the frame body at 0x2c */
+    u16 authAlgorithm; /* authenticate only */
     u16 timeoutMs;
 } WlPeerRequest;
 
@@ -323,6 +323,15 @@ typedef struct WlPeerJob {
     WlPeerRequest *request;
     WlReply *reply;
 } WlPeerJob;
+
+/* Authentication frame from func_arm7_027cf55c: the 802.11 header starts at
+   0x14 (frame control 0xb0), the body at 0x2c. */
+typedef struct WlAuthFrame {
+    u8 pad_00[0x2c];
+    u16 algorithm;
+    u16 sequence;
+    u16 status;
+} WlAuthFrame;
 
 /* Values of WlReply.unk_04 set by the MLME steps. */
 #define WIFI_ANSWER_OK 0
