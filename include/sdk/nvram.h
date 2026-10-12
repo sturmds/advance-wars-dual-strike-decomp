@@ -62,5 +62,6 @@ void NVRAM_ReadStatus(u8 *status);
 void NVRAM_WriteEnable(void);
 void NVRAM_WriteDisable(void);
 BOOL NVRAM_IsWriteEnabled(void);   /* idle, with the write enable latch set */
+BOOL NVRAM_IsIdle(void);   /* no write or erase running */
 
 #endif
