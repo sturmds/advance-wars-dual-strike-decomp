@@ -7396,7 +7396,8 @@ src/game/main/copowers/tag_break_fade_in_blend.c:
     complete
     .text       start:0x02058834 end:0x02058b1c
 
-src/game/main/func_02058b1c.c:
+src/game/main/copowers/tag_break_slide_in_side_pieces.c:
+    complete
     .text       start:0x02058b1c end:0x02058f04
 
 src/game/main/copowers/tag_break_draw_side_piece.c:
