@@ -10,7 +10,7 @@ s32 func_arm7_037fd530(s32 vcount);
 int LineAlarm_ClassifyTiming_Arm7(OSVAlarm *alarm, s32 frame, s32 vcount);
 void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
 void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
-void func_arm7_037fda28(OSVAlarm *alarm);
+void LineAlarm_PushTail_Arm7(OSVAlarm *alarm);
 
 /*
  * V-count interrupt: runs every alarm that is due, moves missed ones to the
@@ -55,12 +55,12 @@ void LineAlarm_OnVcountIrq_Arm7(void)
             if (alarm->period && !alarm->canceled) {
                 alarm->handler = handler;
                 alarm->frame = data_arm7_03807aa0 + 1;
-                func_arm7_037fda28(alarm);
+                LineAlarm_PushTail_Arm7(alarm);
             }
             break;
         case LINE_ALARM_TOO_LATE:
             LineAlarm_Unlink_Arm7(alarm);
-            func_arm7_037fda28(alarm);
+            LineAlarm_PushTail_Arm7(alarm);
             alarm->frame = data_arm7_03807aa0 + 1;
             break;
         }
