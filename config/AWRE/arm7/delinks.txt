@@ -1880,6 +1880,10 @@ src/arm7/sdk/card/card_on_removal_message_arm7.c:
     complete
     .text       start:0x03803ae8 end:0x03803b14
 
+src/arm7/sdk/card/card_register_removal_handler_arm7.c:
+    complete
+    .text       start:0x03803b14 end:0x03803b74
+
 src/arm7/sdk/svc/bios_reboot_soft_arm7.c:
     complete
     .text       start:0x03803b74 end:0x03803b78

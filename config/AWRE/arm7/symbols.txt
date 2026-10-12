@@ -953,7 +953,7 @@ Card_TestRemovalIrqFlag kind:function(arm,size=0x2c) addr:0x03803a04
 Card_CompareChipIdWithBoot kind:function(arm,size=0x68) addr:0x03803a30
 CARD_IsPulledOut kind:function(arm,size=0x50) addr:0x03803a98
 Card_OnRemovalMessage_Arm7 kind:function(arm,size=0x2c) addr:0x03803ae8
-func_arm7_03803b14 kind:function(arm,size=0x60) addr:0x03803b14
+Card_RegisterRemovalHandler_Arm7 kind:function(arm,size=0x60) addr:0x03803b14
 Bios_RebootSoft_Arm7 kind:function(thumb,size=0x4) addr:0x03803b74
 Bios_DelayLoop_Arm7 kind:function(thumb,size=0x4) addr:0x03803b78
 Bios_AwaitIrqFlags_Arm7 kind:function(thumb,size=0x10) addr:0x03803b7c
@@ -1147,7 +1147,7 @@ data_arm7_03809860 kind:bss addr:0x03809860
 data_arm7_03809870 kind:bss addr:0x03809870
 data_arm7_03809880 kind:bss addr:0x03809880
 gCardPulledOut kind:bss addr:0x03809aa0
-data_arm7_03809aa4 kind:bss addr:0x03809aa4
+gCardPullOutInitDone kind:bss addr:0x03809aa4
 gCardRemoved kind:bss addr:0x03809aa8
 spiInitialized kind:bss addr:0x03809aac
 data_arm7_03809ab0 kind:bss addr:0x03809ab0
