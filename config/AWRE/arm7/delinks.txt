@@ -219,6 +219,10 @@ src/arm7/sdk/wl/func_arm7_027cdadc.c:
     complete
     .text       start:0x027cdadc end:0x027cdb28
 
+src/arm7/sdk/wl/func_arm7_027cdb28.c:
+    complete
+    .text       start:0x027cdb28 end:0x027cdb6c
+
 src/arm7/sdk/func_arm7_027cdbb0.c:
     complete
     .text       start:0x027cdbb0 end:0x027cdbd0
