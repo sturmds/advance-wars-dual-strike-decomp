@@ -296,6 +296,10 @@ src/arm7/sdk/wm/wmsp_power_on.c:
     complete
     .text       start:0x027c781c end:0x027c78cc
 
+src/arm7/sdk/wm/wmsp_power_off.c:
+    complete
+    .text       start:0x027c78cc end:0x027c7984
+
 src/arm7/sdk/func_arm7_027c7a8c.c:
     complete
     .text       start:0x027c7a8c end:0x027c7aa0
