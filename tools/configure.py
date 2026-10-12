@@ -60,6 +60,19 @@ ARM9_ABSOLUTE_SYMBOLS = {
     "SDK_SECTION_ARENA_DTCM_START": 0x027C12E0,
 }
 
+# The same for ARM7 (build/arm7/arm7.lcf). Its SDK build has a 0x400-byte
+# system stack where ARM9's is 0 (Arena_DefaultHighEnd_Arm7).
+ARM7_ABSOLUTE_SYMBOLS = {
+    "SDK_SYS_STACKSIZE": 0x00000400,
+    "SDK_IRQ_STACKSIZE": 0x00000400,
+}
+
+
+def absolute_symbols(module: str | None) -> dict[str, int]:
+    """The link-time constants of a module's lcf: ARM7's for `arm7`,
+    ARM9's for every other module."""
+    return ARM7_ABSOLUTE_SYMBOLS if module == "arm7" else ARM9_ABSOLUTE_SYMBOLS
+
 
 def config_inputs() -> list[str]:
     files = sorted((ROOT / CONFIG).rglob("*.txt")) + [ROOT / CONFIG / "config.yaml"]
@@ -174,6 +187,7 @@ def main() -> int:
         "",
         "rule arm7_lcf",
         f"  command = $dsd lcf -c {ARM7_CFG} > /dev/null && $python tools/arm7.py lcf"
+        " && $python tools/lcf_absolute.py build/arm7/arm7.lcf $absolute"
         " && $python tools/lcf_align2.py lcf build/arm7/arm7.lcf config/AWRE/arm7/delinks.txt"
         " AUTOLOAD_2 AUTOLOAD_3 AUTOLOAD_4",
         "  description = ARM7 LCF",
@@ -223,7 +237,9 @@ def main() -> int:
         "",
         "build build/arm7/delink.stamp: arm7_delink build/arm7/prepare.stamp | $dsd",
         "",
-        "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp | $dsd tools/arm7.py tools/lcf_align2.py",
+        "build build/arm7/arm7.lcf build/arm7/objects.txt: arm7_lcf build/arm7/delink.stamp"
+        " | $dsd tools/arm7.py tools/lcf_align2.py tools/lcf_absolute.py",
+        "  absolute = " + " ".join(f"{k}={v:#x}" for k, v in ARM7_ABSOLUTE_SYMBOLS.items()),
         "",
         "build build/arm7/arm7.elf: arm7_link build/arm7/arm7.lcf build/arm7/objects.txt"
         f" | $ld tools/link.py tools/lcf_align2.py {' '.join(objs7)}",

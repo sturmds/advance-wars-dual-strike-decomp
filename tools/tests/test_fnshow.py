@@ -30,10 +30,10 @@ def check(what: str, good: bool, detail="") -> None:
     failed |= not good
 
 
-g = fn.find("func_arm7_038076e8")
+g = fn.find("Wmsp_SendReply")
 check("ARM7 function found", g.module == "arm7" and g.addr == 0x038076e8, g)
 check("fn.modules() stays ARM9 only", "arm7" not in fn.modules() and "arm7" in fn.all_modules())
-check("caller in main RAM of a WRAM function", "func_arm7_027c0070" in fn.callers_of(g))
+check("caller in main RAM of a WRAM function", "Wmsp_ReplyFailed" in fn.callers_of(g))
 # The last function of WRAM's .text ends the section, not at the next
 # function in another part.
 check("next_start stops at the WRAM .text end", fn.next_start(g) == 0x0380773c, hex(fn.next_start(g)))

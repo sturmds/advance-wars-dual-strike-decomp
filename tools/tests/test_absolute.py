@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Check linker-absolute symbols (configure.py ARM9_ABSOLUTE_SYMBOLS).
+"""Check linker-absolute symbols (configure.py ARM9_ABSOLUTE_SYMBOLS, ARM7_ABSOLUTE_SYMBOLS).
 
     python3 tools/tests/test_absolute.py
 
 - lcf_absolute.py adds each symbol once at the top of SECTIONS.
 - fn.py diff (absolute_word) and fn.py check (fnindex.compare) accept a word
   relocated to an absolute symbol where the original holds its value, and
-  reject a wrong value or a symbol not in the list.
+  reject a wrong value or a symbol not in the list. Each module uses its own
+  list: SDK_SYS_STACKSIZE is 0 on ARM9 and 0x400 on ARM7.
 
 Uses the compiler from make setup; no ROM or build needed.
 """
@@ -56,10 +57,14 @@ def rows(orig_value: int, sym: str):
 expect("diff: same value", fn.absolute_word(*rows(value, name)), True)
 expect("diff: other value", fn.absolute_word(*rows(value + 4, name)), False)
 expect("diff: symbol not in the list", fn.absolute_word(*rows(value, "data_unlisted")), False)
+expect("diff: ARM7 list, 0x400", fn.absolute_word(*rows(0x400, "SDK_SYS_STACKSIZE"), "arm7"), True)
+expect("diff: ARM7 list, ARM9's 0", fn.absolute_word(*rows(0, "SDK_SYS_STACKSIZE"), "arm7"), False)
+expect("diff: ARM9 list, 0", fn.absolute_word(*rows(0, "SDK_SYS_STACKSIZE"), "main"), True)
+expect("diff: ARM9 list, ARM7's 0x400", fn.absolute_word(*rows(0x400, "SDK_SYS_STACKSIZE"), "main"), False)
 
 
 # fnindex.compare on a compiled function that loads the symbol
-def compare(sym: str, orig_value: int) -> bool:
+def compare(sym: str, orig_value: int, module: str = "main") -> bool:
     with tempfile.TemporaryDirectory() as d:
         src = Path(d) / "abs.c"
         src.write_text(f"extern char {sym}[];\nunsigned long AbsTest(void) {{ return (unsigned long){sym}; }}\n")
@@ -72,7 +77,7 @@ def compare(sym: str, orig_value: int) -> bool:
     for off, _, _, _ in relas[f.shndx]:
         if f.value <= off < f.value + f.size:
             raw[off - f.value:off - f.value + 4] = orig_value.to_bytes(4, "little")
-    entry = {"name": "AbsTest", "module": "main", "mode": "arm", "addr": 0x02000000,
+    entry = {"name": "AbsTest", "module": module, "mode": "arm", "addr": 0x02000000,
              "raw": raw.hex(), "relocs": []}
     index = fnindex.Index({"AbsTest": [entry]}, {})
     return fnindex.compare(index, obj, "AbsTest").ok
@@ -81,5 +86,7 @@ def compare(sym: str, orig_value: int) -> bool:
 expect("check: same value", compare(name, value), True)
 expect("check: other value", compare(name, value + 4), False)
 expect("check: symbol not in the list", compare("data_unlisted", value), False)
+expect("check: ARM7 list, 0x400", compare("SDK_SYS_STACKSIZE", 0x400, "arm7"), True)
+expect("check: ARM7 list, ARM9's 0", compare("SDK_SYS_STACKSIZE", 0, "arm7"), False)
 
 sys.exit(1 if failures else 0)

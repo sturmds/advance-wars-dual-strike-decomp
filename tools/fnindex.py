@@ -373,17 +373,18 @@ def compare(index: Index, obj_data: bytes, name: str, module: str | None = None)
         return set()
 
     # Our relocations inside the function: offset -> (class, targets).
-    # A word relocated to an absolute symbol (configure.ARM9_ABSOLUTE_SYMBOLS)
+    # A word relocated to an absolute symbol (configure.absolute_symbols)
     # matches an original word of that value, which has no relocation.
-    got, absolute = {}, set()
+    got, absolute_bytes = {}, set()
+    absolute = configure.absolute_symbols(want["module"])
     for off, rtype, si, addend in relas.get(sym.shndx, []):
         if sym.value <= off < sym.value + sym.size:
             cls = ELF_CLASS.get(rtype, f"elf type {rtype}")
-            value = configure.ARM9_ABSOLUTE_SYMBOLS.get(syms[si].name)
+            value = absolute.get(syms[si].name)
             at = off - sym.value
             if (cls == "load" and value is not None and syms[si].shndx == 0
                     and raw[at:at + 4] == ((value + addend) & 0xFFFFFFFF).to_bytes(4, "little")):
-                absolute.update(range(at, at + 4))
+                absolute_bytes.update(range(at, at + 4))
                 continue
             got[off - sym.value] = (cls, resolve(syms[si], addend + PC_BIAS.get(cls, 0)))
     exp = {}
@@ -392,7 +393,7 @@ def compare(index: Index, obj_data: bytes, name: str, module: str | None = None)
 
     # Bytes a relocation fills in. An ARM call keeps its top byte (condition
     # and bl/b), except that the linker turns bl into blx for a Thumb target.
-    skip = set(absolute)
+    skip = set(absolute_bytes)
     for off in set(exp) | set(got):
         cls = (exp.get(off) or got[off])[0]
         skip.update(range(off, off + (3 if cls == "arm_call" else 4)))

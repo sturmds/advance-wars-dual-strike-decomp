@@ -22,9 +22,9 @@ config/AWRE/arm7/ for the `arm7` module (one module for ARM7's three parts;
 names func_arm7_XXXXXXXX). `pick` leaves ARM7 out unless given --arm7. `diff`
 runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
-symbol at the same address, or an absolute symbol from configure.py's
-ARM9_ABSOLUTE_SYMBOLS with the original word's value, and count as
-matching), and exits 0 only at 100%.
+symbol at the same address, or an absolute symbol from the module's list in
+configure.py (ARM9_ABSOLUTE_SYMBOLS, ARM7_ABSOLUTE_SYMBOLS) with the original
+word's value, and count as matching), and exits 0 only at 100%.
 
 `pick --families` is based on khdays-decomp tools/pick_family.py
 (CC0 1.0, commit ba2de370; see docs/third-party/khdays-decomp.md).
@@ -585,7 +585,7 @@ def cmd_diff(args) -> int:
     # point at the same address under different names (issue 0017) match,
     # and so do words relocated to an absolute symbol of the original value.
     same = {i for i, (a, b) in enumerate(zip(orig.get("instructions", []), ours_sym.get("instructions", [])))
-            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b))}
+            if a.get("diff_kind") and (same_target(data, a, b) or absolute_word(data, a, b, f.module))}
     width = max((len(t) for t, _ in left), default=10) + 2
     print(f"{'original':<{width}}   ours")
     differ = 0
@@ -657,12 +657,13 @@ def same_target(data, left, right) -> bool:
     return targets[0] == targets[1]
 
 
-def absolute_word(data, left, right) -> bool:
+def absolute_word(data, left, right, module: str | None = None) -> bool:
     """True when the original row is a plain `.word N` and ours is a word
-    relocated to a symbol from ARM9_ABSOLUTE_SYMBOLS (tools/configure.py)
-    whose value plus addend is N. dsd leaves no relocation there, because
+    relocated to a symbol from the module's absolute list
+    (configure.absolute_symbols) whose value plus addend is N. dsd leaves no relocation there, because
     the original object has none to give."""
-    from configure import ARM9_ABSOLUTE_SYMBOLS
+    from configure import absolute_symbols
+    symbols = absolute_symbols(module)
     if left.get("diff_kind") != "DIFF_ARG_MISMATCH" or right.get("diff_kind") != "DIFF_ARG_MISMATCH":
         return False
     lins, rins = left["instruction"], right["instruction"]
@@ -675,9 +676,9 @@ def absolute_word(data, left, right) -> bool:
     if [p for p in lins["parts"] if "arg" not in p] != [p for p in rins["parts"] if "arg" not in p]:
         return False
     name = data["right"]["symbols"][rel["target_symbol"]]["name"]
-    if name not in ARM9_ABSOLUTE_SYMBOLS:
+    if name not in symbols:
         return False
-    value = (ARM9_ABSOLUTE_SYMBOLS[name] + int(rel.get("addend", 0))) & 0xFFFFFFFF
+    value = (symbols[name] + int(rel.get("addend", 0))) & 0xFFFFFFFF
     return int(largs[0]["unsigned"]) == value
 
 

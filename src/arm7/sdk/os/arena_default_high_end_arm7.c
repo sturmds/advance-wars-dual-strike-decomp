@@ -3,9 +3,8 @@
 
 /*
  * Link-time constants of the ARM7 SDK build, both 0x400 here. The ROM keeps
- * testing them at run time, so they must stay symbols. Not linkable yet: the
- * ARM7 linker script has no absolute symbols (ARM9's come from
- * ARM9_ABSOLUTE_SYMBOLS in tools/configure.py, where SDK_SYS_STACKSIZE is 0).
+ * testing them at run time, so they must stay symbols. ARM7_ABSOLUTE_SYMBOLS
+ * in tools/configure.py gives them their values in the linker script.
  */
 extern char SDK_SYS_STACKSIZE[];
 extern char SDK_IRQ_STACKSIZE[];
