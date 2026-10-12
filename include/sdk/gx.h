@@ -99,6 +99,7 @@
 #define VRAMCNT_BG(offset) (0x81 | ((offset) << 3)) /* enabled, main engine BG; what the offset field means depends on the bank (GBATEK) */
 #define VRAMCNT_OBJ(offset) (0x82 | ((offset) << 3)) /* enabled, main engine OBJ; what the offset field means depends on the bank (GBATEK) */
 #define VRAMCNT_BGEXTPLTT(slot) (0x84 | ((slot) << 3)) /* banks E-G: enabled, main BG extended palette slot */
+#define VRAMCNT_SUB_BGEXTPLTT 0x82 /* bank H: enabled, sub engine BG extended palettes */
 #define GX_VRAM_A 0x001
 #define GX_VRAM_B 0x002
 #define GX_VRAM_C 0x004

@@ -7,7 +7,7 @@ void GX_SetBankForTexPltt(int mask);
 void GX_SetBankForBGExtPltt(int mask);
 void GX_SetBankForSubBG(int mask);
 void func_0210aaf8(int mask);
-void func_0210aa6c(int mask);
+void GX_SetBankForSubBGExtPltt(int mask);
 void GX_SetBankForSubOBJExtPltt(int mask);
 
 /* Calls the nine per-bank setup functions (guess), each with one VRAM bank
@@ -21,6 +21,6 @@ void Vram_AssignAllBanks(void)
     GX_SetBankForBGExtPltt(0x40);
     GX_SetBankForSubBG(4);
     func_0210aaf8(8);
-    func_0210aa6c(0x80);
+    GX_SetBankForSubBGExtPltt(0x80);
     GX_SetBankForSubOBJExtPltt(0x100);
 }

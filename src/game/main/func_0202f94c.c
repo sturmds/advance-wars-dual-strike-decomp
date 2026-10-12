@@ -8,7 +8,7 @@ void func_0210aaf8(int mask);
 void GX_SetBankForOBJ(int mask);
 void GX_SetBankForTexPltt(int mask);
 void GX_SetBankForBGExtPltt(int mask);
-void func_0210aa6c(int mask);
+void GX_SetBankForSubBGExtPltt(int mask);
 
 void func_0202f94c(void) {
     Vram_ClearAllBankControl();
@@ -19,5 +19,5 @@ void func_0202f94c(void) {
     GX_SetBankForOBJ(16);
     GX_SetBankForTexPltt(32);
     GX_SetBankForBGExtPltt(64);
-    func_0210aa6c(128);
+    GX_SetBankForSubBGExtPltt(128);
 }
