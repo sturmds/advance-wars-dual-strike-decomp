@@ -1,14 +1,9 @@
 #include "sdk/snd.h"
 
-BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote *note);
-SndExChannel *SndExChannel_Alloc(u32 channelMask, int priority, BOOL strong, SndExChannelCallback callback, void *callbackArg);
-BOOL SndArm7_NoteOn(SndExChannel *channel, int key, int velocity, s32 length, SoundBank *bank, SoundBankNote *note);
 void func_arm7_037ff68c(SndExChannel *channel);
-void SndExChannel_SetAttack(SndExChannel *channel, int attack);
 int func_arm7_037ff818(SndExChannel *channel, int decay);
 void func_arm7_037ff810(SndExChannel *channel, int sustain);
 int func_arm7_037ff7f4(SndExChannel *channel, int release);
-void SndTrack_ChannelCallback(SndExChannel *channel, int status, void *track);
 
 /* Channels each kind of note can play on. */
 #define VOICE_SAMPLE_CAPABLE_MASK 0xFFFF

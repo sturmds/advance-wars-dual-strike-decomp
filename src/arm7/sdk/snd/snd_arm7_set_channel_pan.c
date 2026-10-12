@@ -1,6 +1,5 @@
 #include "sdk/snd.h"
-
-void SndHw_SetChannelPan(int channel, int pan);
+#include "sdk/snd_hw.h"
 
 void SndArm7_SetChannelPan(u32 channelMask, int pan)
 {

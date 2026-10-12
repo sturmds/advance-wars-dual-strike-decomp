@@ -1,8 +1,5 @@
 #include "sdk/snd.h"
 
-BOOL SndPlayer_StepTracks(SndPlayer *player, int play);
-void SndPlayer_Stop(SndPlayer *player);
-
 /* The tempo counter gains tempo * tempoRatio / 256 per call; each 240 in it is one sequence tick. */
 #define SEQ_BEAT_ACCUM_STEP 240
 

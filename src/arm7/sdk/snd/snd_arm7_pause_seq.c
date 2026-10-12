@@ -1,10 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackIndex);
-void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
-void SndTrack_FreeChannels(SndTrack *track);
-
 /* Pausing releases every channel of the player's tracks. The field named prepared
  * holds the pause flag: SndArm7_SeqMain skips the sequence step while it is set. */
 void SndArm7_PauseSeq(int playerNo, BOOL pause)

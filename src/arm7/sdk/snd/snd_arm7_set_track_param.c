@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
+#include "sdk/snd.h"
 
 /* Stores value (size bytes: 1, 2 or 4) at a byte offset of each selected track; bit i of trackMask selects track i. */
 void SndArm7_SetTrackParam(int playerNo, u32 trackMask, int offset, u32 value, int size)

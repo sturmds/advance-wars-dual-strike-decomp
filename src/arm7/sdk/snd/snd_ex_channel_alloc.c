@@ -4,9 +4,6 @@
 /* Hardware channel numbers in the order the allocator tries them. */
 extern u8 gSndExChannelAllocOrder[AUDIO_CH_TOTAL];
 
-int SndExChannel_CompareVolume(SndExChannel *a, SndExChannel *b);
-void SndExChannel_Init(SndExChannel *channel, SndExChannelCallback callback, void *callbackArg, int priority);
-
 /*
  * Picks a channel from channelMask for a new sound of the given priority: a free channel, else the one of
  * lowest priority, the quietest among equals. Returns NULL when every candidate outranks the request.

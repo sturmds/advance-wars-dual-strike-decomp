@@ -1,4 +1,5 @@
 #include "types.h"
+#include "sdk/snd.h"
 
 typedef struct Unk_037ff818 Unk_037ff818;
 
@@ -6,8 +7,6 @@ struct Unk_037ff818 {
     u8 pad_00[0x1e];
     u16 unk_1e;
 };
-
-int SndExChannel_CalcDecayRate(int);
 
 int func_arm7_037ff818(Unk_037ff818 *a0, int a1)
 {

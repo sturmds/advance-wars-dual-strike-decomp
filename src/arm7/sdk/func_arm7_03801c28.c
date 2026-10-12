@@ -1,15 +1,12 @@
 #include "types.h"
 #include "sdk/snd.h"
 
-void func_arm7_037fee6c(void);
-void func_arm7_037fee70(void);
-
 void *func_arm7_03801c28(SoundWaveArc *arc, u32 waveNo)
 {
     u32 entry;
     u8 *wave;
 
-    func_arm7_037fee70();
+    SNDi_LockMutex();
     entry = arc->table[waveNo];
     if (entry != 0) {
         wave = (u8 *)entry;
@@ -19,6 +16,6 @@ void *func_arm7_03801c28(SoundWaveArc *arc, u32 waveNo)
     } else {
         wave = NULL;
     }
-    func_arm7_037fee6c();
+    SNDi_UnlockMutex();
     return wave;
 }

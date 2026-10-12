@@ -1,13 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/snd_hw.h"
 
-void SndHw_StopChannel(int channel, int hold);
-void SndHw_SetupPcm(int channel, u32 source, int format, int repeatMode, int loopStart, int length, int volume, int volumeShift, int timer, int pan);
-void SndHw_SetupPsg(int channel, int duty, int volume, int volumeShift, int timer, int pan);
-void SndHw_SetupNoise(int channel, int volume, int volumeShift, int timer, int pan);
 void func_arm7_037fe848(int channel, int timer);
-void SndHw_SetChannelVolume(int channel, int volume, int volumeShift);
-void SndHw_SetChannelPan(int channel, int pan);
 
 /* Repeat modes of the channel control register. */
 #define AUDIO_CH_MODE_LOOPING 1

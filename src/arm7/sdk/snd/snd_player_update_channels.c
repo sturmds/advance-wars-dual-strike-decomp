@@ -1,8 +1,5 @@
 #include "sdk/snd.h"
 
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
-void SndTrack_UpdateChannels(SndTrack *track, SndPlayer *player, BOOL release);
-
 void SndPlayer_UpdateChannels(SndPlayer *player)
 {
     int i;

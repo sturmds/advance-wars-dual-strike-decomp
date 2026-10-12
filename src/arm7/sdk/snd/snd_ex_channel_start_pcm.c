@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-void SndExChannel_Start(SndExChannel *channel, int length);
+#include "sdk/snd.h"
 
 /* Starts a PCM sample on the channel; any channel can play one. */
 BOOL SndExChannel_StartPcm(SndExChannel *channel, const SndWaveParam *wave, const void *data, int length)

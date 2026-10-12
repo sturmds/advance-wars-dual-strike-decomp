@@ -2,7 +2,6 @@
 #include "sdk/mi.h"
 
 int func_arm7_037fe73c(int channel);
-u32 SndExChannel_GetLockedChannels(int arg);
 
 void SndArm7_WriteSnapshot(SndArm7Snapshot *snapshot)
 {

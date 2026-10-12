@@ -1,11 +1,10 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 #include "sdk/pm.h"
+#include "sdk/snd_hw.h"
 
 void func_arm7_037fe3e0(int mode);
 void func_arm7_037fe3fc(int mask, int value);
-void SndHw_Enable(void);
-void SndHw_Disable(void);
 void func_arm7_0380513c(int command, int arg, int data);
 void func_arm7_0380566c(void);
 

@@ -170,4 +170,104 @@ void SND_SendWakeupMessage(void);
 /* PXI receive callback of SOUND_FIFO_TAG: queues a command list from the ARM9, or wakes the driver for 0. */
 void SndArm7_OnPxiReceive(u32 tag, u32 data, int err);
 
+/* Driver commands and work. */
+void *SndArm7_GetBankWaveData(SoundBank *bank, int waveArcSlot, u32 waveNo);
+void SndArm7_Init(void);
+void SndArm7_InitAlarms(void);
+void SndArm7_InitSeq(void);
+void SndArm7_InvalidateBank(u32 start, u32 end);
+void SndArm7_InvalidateSeq(u32 start, u32 end);
+BOOL SndArm7_NoteOn(SndExChannel *channel, int key, int velocity, s32 length, SoundBank *bank, SoundBankNote *note);
+void SndArm7_PauseSeq(int playerNo, BOOL pause);
+void SndArm7_PrepareSeq(int playerNo, u8 *seqBase, u32 seqOffset, u32 bank);
+BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote *note);
+void SndArm7_SeqMain(BOOL stepSequence);
+void SndArm7_SetChannelPan(u32 channelMask, int pan);
+void SndArm7_SetChannelTimer(u32 channelMask, int timer);
+void SndArm7_SetChannelVolume(u32 channelMask, int volume, int shift);
+void SndArm7_SetPlayerParam(int playerNo, int offset, u32 value, int size);
+void SndArm7_SetPlayerVariable(int playerNo, int varNo, s16 value);
+void SndArm7_SetTrackChannelMask(int playerNo, u32 trackMask, u32 channelMask);
+void SndArm7_SetTrackMute(int playerNo, u32 trackMask, int mute);
+void SndArm7_SetTrackParam(int playerNo, u32 trackMask, int offset, u32 value, int size);
+void SndArm7_SetupAlarm(int alarmNo, u64 start, u64 period, int tag);
+void SndArm7_SkipSeq(int playerNo, u32 ticks);
+void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask);
+void SndArm7_StopAlarm(int alarmNo);
+void SndArm7_StopSeq(int playerNo);
+void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold);
+void SndArm7_UpdateSharedWork(void);
+void SndArm7_WriteSnapshot(SndArm7Snapshot *snapshot);
+
+/* Setup, capture and the pitch and volume tables. */
+u16 Sound_DecibelToHwVolume_Arm7(int volume);
+u16 Sound_PitchShiftTimer_Arm7(int timer, int pitch);
+void SND_CreateThread(u32 priority);
+void Sound_StartDriver_Arm7(u32 priority);
+BOOL SND_IsCaptureActive(int capture);
+void SND_SetupCapture(int capture, int format, void *buffer, int length, BOOL loop, int in, int out);
+
+/* Driver thread helpers. */
+u16 SndDrv_NextRandom(void);
+void SndDrv_OnIntervalAlarm(void *arg);
+s8 SndDrv_SineWave(int phase);
+void SndDrv_Thread(void *arg);
+
+/* Channels. */
+SndExChannel *SndExChannel_Alloc(u32 channelMask, int priority, BOOL strong, SndExChannelCallback callback, void *callbackArg);
+u16 SndExChannel_CalcDecayRate(int setting);
+int SndExChannel_CompareVolume(SndExChannel *a, SndExChannel *b);
+u32 SndExChannel_GetLockedChannels(u32 flags);
+void SndExChannel_Init(SndExChannel *channel, SndExChannelCallback callback, void *callbackArg, int priority);
+void SndExChannel_InvalidateWave(const void *start, const void *end);
+void SndExChannel_LockChannels(u32 channelMask, u32 flags);
+void SndExChannel_SetAttack(SndExChannel *channel, int attack);
+void SndExChannel_Start(SndExChannel *channel, int length);
+BOOL SndExChannel_StartNoise(SndExChannel *channel, int length);
+BOOL SndExChannel_StartPcm(SndExChannel *channel, const SndWaveParam *wave, const void *data, int length);
+BOOL SndExChannel_StartPsg(SndExChannel *channel, int duty, int length);
+void SndExChannel_StopUnlockedChannels(u32 channelMask, u32 flags);
+void SndExChannel_UnlockChannels(u32 channelMask, u32 flags);
+int SndExChannel_UpdateEnvelope(SndExChannel *channel, BOOL update);
+int SndExChannel_UpdateLfo(SndExChannel *channel, BOOL update);
+int SndExChannel_UpdateSweep(SndExChannel *channel, BOOL update);
+void SndExChannel_InitAll(void);
+void SndExChannel_Update(void);
+
+/* LFOs. */
+int SndLfo_GetValue(SndChannelLfo *lfo);
+void SndLfo_Update(SndChannelLfo *lfo);
+
+/* Players. */
+void SndPlayer_Advance(SndPlayer *player);
+void SndPlayer_CloseTrack(SndPlayer *player, int trackNo);
+SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
+s16 *SndPlayer_GetVariablePtr(SndPlayer *player, int varNo);
+void SndPlayer_Setup(SndPlayer *player, u32 bank);
+BOOL SndPlayer_StepTracks(SndPlayer *player, int play);
+void SndPlayer_Stop(SndPlayer *player);
+void SndPlayer_UpdateChannels(SndPlayer *player);
+
+/* Sequence data cache. */
+void SndSeq_FillCache(u8 *address);
+u8 SndSeq_ReadByte(u8 *address);
+
+/* Tracks. */
+int SndTrack_Alloc(void);
+void SndTrack_ChannelCallback(SndExChannel *channel, int status, void *data);
+void SndTrack_Close(SndTrack *track, SndPlayer *player);
+void SndTrack_FreeChannels(SndTrack *track);
+void SndTrack_Init(SndTrack *track);
+void SndTrack_NoteOn(SndTrack *track, SndPlayer *player, int key, int velocity, s32 length);
+int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type);
+u16 SndTrack_ReadU16(SndTrack *track);
+u32 SndTrack_ReadU24(SndTrack *track);
+u32 SndTrack_ReadVarLength(SndTrack *track);
+void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
+void SndTrack_UpdateChannels(SndTrack *track, SndPlayer *player, BOOL release);
+
+/* Taken around reads of sound data the ARM9 may change; both are empty in this build. */
+void SNDi_LockMutex(void);
+void SNDi_UnlockMutex(void);
+
 #endif

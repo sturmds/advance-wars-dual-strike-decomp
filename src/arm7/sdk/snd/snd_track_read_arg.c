@@ -1,10 +1,5 @@
 #include "sdk/snd_seq.h"
-
-u16 SndDrv_NextRandom(void);
-s16 *SndPlayer_GetVariablePtr(SndPlayer *player, int index);
-u32 SndTrack_ReadVarLength(SndTrack *track);
-u16 SndTrack_ReadU16(SndTrack *track);
-u8 SndSeq_ReadByte(u8 *address);
+#include "sdk/snd.h"
 
 int SndTrack_ReadArg(SndTrack *track, SndPlayer *player, int type)
 {

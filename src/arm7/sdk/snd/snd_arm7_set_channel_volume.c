@@ -1,6 +1,5 @@
 #include "sdk/snd.h"
-
-void SndHw_SetChannelVolume(int channel, int volume, int shift);
+#include "sdk/snd_hw.h"
 
 void SndArm7_SetChannelVolume(u32 channelMask, int volume, int shift)
 {

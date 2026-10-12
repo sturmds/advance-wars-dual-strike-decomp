@@ -1,6 +1,6 @@
 #include "sdk/snd_seq.h"
+#include "sdk/snd.h"
 
-void SndTrack_UpdateChannels(SndTrack *track, SndPlayer *player, int arg);
 int func_arm7_037ff7d8(SndExChannel *channel);
 void func_arm7_037ff7e8(SndExChannel *channel);
 int func_arm7_037ff7f4(SndExChannel *channel, int release);

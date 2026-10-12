@@ -1,9 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/os_arm7.h"
-
-void SndHw_StopChannel(int channel, int hold);
-void SndArm7_UpdateSharedWork(void);
-void SndArm7_StopAlarm(int alarmNo);
+#include "sdk/snd_hw.h"
 
 void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold)
 {

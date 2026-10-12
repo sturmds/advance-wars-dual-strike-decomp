@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
+#include "sdk/snd.h"
 
 /* Limits the selected tracks (bit i of trackMask is track i) to the hardware channels in channelMask. */
 void SndArm7_SetTrackChannelMask(int playerNo, u32 trackMask, u32 channelMask)

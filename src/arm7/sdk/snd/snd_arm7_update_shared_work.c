@@ -1,9 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_hw.h"
 
-BOOL SndHw_IsChannelBusy(int channel);
-BOOL SND_IsCaptureActive(int capture);
-
 void SndArm7_UpdateSharedWork(void)
 {
     u16 channelStatus = 0;

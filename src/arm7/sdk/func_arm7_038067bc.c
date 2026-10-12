@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
+#include "sdk/snd_hw.h"
 
-void SndHw_Disable(void);
 void func_arm7_03805878(void);
 
 void func_arm7_038067bc(void)

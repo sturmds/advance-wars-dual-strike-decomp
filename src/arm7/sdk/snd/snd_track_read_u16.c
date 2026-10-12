@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-u8 SndSeq_ReadByte(u8 *address);
+#include "sdk/snd.h"
 
 u16 SndTrack_ReadU16(SndTrack *track)
 {

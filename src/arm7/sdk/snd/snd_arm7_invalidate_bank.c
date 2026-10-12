@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-void SndPlayer_Stop(SndPlayer *player);
+#include "sdk/snd.h"
 
 /* Stops every playing sequence whose bank lies in [start, end]. */
 void SndArm7_InvalidateBank(u32 start, u32 end)

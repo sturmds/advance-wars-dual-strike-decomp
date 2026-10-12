@@ -3,6 +3,7 @@
 #include "sdk/pxi.h"
 #include "sdk/ctrdg.h"
 #include "sdk/spi.h"
+#include "sdk/snd.h"
 
 #define DISPSTAT_VBLANK_IRQ 0x8
 #define IRQ_VBLANK 0x1
@@ -11,7 +12,6 @@ void func_arm7_027d5a24(int a0);
 void UserSettings_LoadFromFlash(void);
 s32 InitWramHeap(void);
 BOOL func_arm7_037fe45c(void);
-void Sound_StartDriver_Arm7(int a0);
 void FileSys_SetUpOnce_Arm7(u32 dmaNo);
 void func_arm7_038028c8(int a0);
 void Card_CheckRemovedEveryTenFrames(void);

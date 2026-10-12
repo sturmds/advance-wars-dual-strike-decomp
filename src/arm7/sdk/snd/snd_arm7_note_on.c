@@ -1,11 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-SndWaveData *SndArm7_GetBankWaveData(SoundBank *bank, int waveArcSlot, u32 waveNo);
-BOOL SndExChannel_StartPcm(SndExChannel *channel, const SndWaveParam *wave, const void *data, int length);
-BOOL SndExChannel_StartPsg(SndExChannel *channel, int duty, int length);
-BOOL SndExChannel_StartNoise(SndExChannel *channel, int length);
-void SndExChannel_SetAttack(SndExChannel *channel, int attack);
 int func_arm7_037ff818(SndExChannel *channel, int decay);
 void func_arm7_037ff810(SndExChannel *channel, int sustain);
 int func_arm7_037ff7f4(SndExChannel *channel, int release);

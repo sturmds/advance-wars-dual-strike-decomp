@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-s8 SndDrv_SineWave(int phase);
+#include "sdk/snd.h"
 
 /* Current oscillator output: 0 until the start delay has passed. */
 int SndLfo_GetValue(SndChannelLfo *lfo)

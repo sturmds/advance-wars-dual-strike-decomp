@@ -1,8 +1,5 @@
 #include "sdk/snd_seq.h"
-
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
-void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
-void SndTrack_FreeChannels(SndTrack *track);
+#include "sdk/snd.h"
 
 /* Mutes or unmutes the selected tracks (bit i of trackMask is track i). Muting also releases their notes. */
 void SndArm7_SetTrackMute(int playerNo, u32 trackMask, int mute)

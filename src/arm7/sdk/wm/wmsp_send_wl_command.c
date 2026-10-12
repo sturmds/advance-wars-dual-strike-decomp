@@ -1,10 +1,9 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 #include "sdk/wmsp.h"
+#include "sdk/snd_hw.h"
 
 extern OSMessageQueue data_arm7_027d6c84;
-
-void SndHw_Disable(void);
 
 WlCommand *Wmsp_SendWlCommand(WlCommand *command)
 {

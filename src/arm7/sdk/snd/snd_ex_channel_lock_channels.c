@@ -1,7 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_hw.h"
 
-void SndHw_StopChannel(int channel, int hold);
 void func_arm7_037ff68c(SndExChannel *channel);
 
 /* Stops the channels in channelMask that are not locked yet, then adds them to the lock or weak lock. */

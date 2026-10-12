@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 #include "sdk/mi.h"
+#include "sdk/snd_hw.h"
 
-void SndHw_Reset(void);
 void func_arm7_037fdc78(u32 command);
 void func_arm7_03807408(void);
 

@@ -1,12 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackIndex);
-void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
-void SndTrack_FreeChannels(SndTrack *track);
-BOOL SndPlayer_StepTracks(SndPlayer *player, BOOL doPeriodic);
-void SndPlayer_Stop(SndPlayer *player);
-
 /* Moves the player's sequence ticks ticks forward without playing it: releases
  * and frees every channel first, then steps with the interval timer stopped. */
 void SndArm7_SkipSeq(int playerNo, u32 ticks)

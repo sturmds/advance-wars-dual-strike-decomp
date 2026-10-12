@@ -64,4 +64,19 @@ typedef struct SndHwChannel {
 /* Channels 1 and 3 can feed the mixer directly, so volume scaling skips them. */
 #define AUDIO_CH_PAN_SCALE_MASK 0xFFF5
 
+/* Hardware channel and mixer access. */
+void SndHw_Disable(void);
+void SndHw_Enable(void);
+BOOL SndHw_IsChannelBusy(int channel);
+void SndHw_Reset(void);
+void SndHw_SetChannelPan(int channel, int pan);
+void SndHw_SetChannelVolume(int channel, int volume, int volumeShift);
+void SndHw_SetOutputControl(int leftOutput, int rightOutput, int ch1Direct, int ch3Direct);
+void SndHw_SetPanEdgeAttenuation(int attenuation);
+void SndHw_SetPanOverride(int pan);
+void SndHw_SetupNoise(int channel, int volume, int volumeShift, int timer, int pan);
+void SndHw_SetupPcm(int channel, u32 source, int format, int repeatMode, int loopStart, int length, int volume, int volumeShift, int timer, int pan);
+void SndHw_SetupPsg(int channel, int duty, int volume, int volumeShift, int timer, int pan);
+void SndHw_StopChannel(int channel, int hold);
+
 #endif

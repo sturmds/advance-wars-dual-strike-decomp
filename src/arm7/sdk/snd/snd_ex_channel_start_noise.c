@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-void SndExChannel_Start(SndExChannel *channel, int length);
+#include "sdk/snd.h"
 
 /* Starts white noise on the channel; only hardware channels 14 and 15 can play noise. */
 BOOL SndExChannel_StartNoise(SndExChannel *channel, int length)

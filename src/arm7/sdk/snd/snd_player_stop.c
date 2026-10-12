@@ -1,7 +1,5 @@
 #include "sdk/snd.h"
 
-void SndPlayer_CloseTrack(SndPlayer *player, int trackNo);
-
 void SndPlayer_Stop(SndPlayer *player)
 {
     int i;

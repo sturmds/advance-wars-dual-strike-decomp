@@ -1,7 +1,5 @@
 #include "types.h"
-
-void SndArm7_Init(void);
-void SND_CreateThread(u32 priority);
+#include "sdk/snd.h"
 
 extern BOOL gSndArm7Initialized;
 

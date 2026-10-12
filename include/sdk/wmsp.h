@@ -147,9 +147,10 @@ typedef struct WlCommand {
     u16 words[1];
 } WlCommand;
 
-/* A frame to send, the argument of WL command 0x100 (func_arm7_027c23b0).
-   Only the fields WMSP fills are named. */
-typedef struct WlTxRequest {
+/* A frame to send, the argument of WL command 0x100 (func_arm7_027c23b0):
+   the 0x30-byte frame header of sdk/wl.h's WlTxFrame as WMSP fills it, with
+   data pointing at the payload. Only the fields WMSP fills are named. */
+typedef struct WmspTxFrame {
     u16 status;
     u8 pad_02[4];
     u16 length;                        /* bytes at data */
@@ -160,7 +161,7 @@ typedef struct WlTxRequest {
     u8 srcAdr[6];
     u8 pad_24[8];
     const u16 *data;
-} WlTxRequest;
+} WmspTxFrame;
 
 /* Stack space a WMSP handler gives a WL command and its reply. */
 typedef union WlCommandBuf {

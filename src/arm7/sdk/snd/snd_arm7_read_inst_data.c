@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 
 /* Empty stubs; their definitions take an int that no caller passes. */
-void func_arm7_037fee6c(void);
-void func_arm7_037fee70(void);
 
 /* Writes the note that program programNo plays for key into note. FALSE when
  * the program or key has none. */
@@ -17,9 +15,9 @@ BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote
     if (programNo < 0) {
         return FALSE;
     }
-    func_arm7_037fee70();
+    SNDi_LockMutex();
     if (programNo >= bank->instrumentCount) {
-        func_arm7_037fee6c();
+        SNDi_UnlockMutex();
         return FALSE;
     }
     entry = bank->instruments[programNo];
@@ -37,7 +35,7 @@ BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote
         highestKey = data[1];
         lowestKey = data[0];
         if (key < lowestKey || key > highestKey) {
-            func_arm7_037fee6c();
+            SNDi_UnlockMutex();
             return FALSE;
         }
         *note = ((SoundBankNote *)(data + 2))[key - lowestKey];
@@ -49,7 +47,7 @@ BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote
         while (key > data[i]) {
             i++;
             if (i >= INST_KEY_SPLIT_REGIONS) {
-                func_arm7_037fee6c();
+                SNDi_UnlockMutex();
                 return FALSE;
             }
         }
@@ -57,9 +55,9 @@ BOOL SndArm7_ReadInstData(SoundBank *bank, int programNo, int key, SoundBankNote
         break;
     case 0: /* needed to match: makes the switch one jump table over 0-17 */
     default:
-        func_arm7_037fee6c();
+        SNDi_UnlockMutex();
         return FALSE;
     }
-    func_arm7_037fee6c();
+    SNDi_UnlockMutex();
     return TRUE;
 }

@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_hw.h"
 
-void SndHw_StopChannel(int channel, int hold);
-
 /* Stops every PCM channel playing a sample that lies in [start, end], before that memory is reused. */
 void SndExChannel_InvalidateWave(const void *start, const void *end)
 {

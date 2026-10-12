@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/pm.h"
-
-void SndHw_Disable(void);
+#include "sdk/snd_hw.h"
 
 /* Applies one POWER_ORDER_* from the ARM9 to the LED, backlights, sound amplifier or power. */
 void Power_ApplyArm9Command(int command)

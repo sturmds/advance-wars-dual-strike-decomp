@@ -1,14 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void SndPlayer_Stop(SndPlayer *player);
-void SndPlayer_Setup(SndPlayer *player, u32 bank);
-int SndTrack_Alloc(void);
-void SndTrack_Init(SndTrack *track);
 void func_arm7_038010e4(SndTrack *track, int base, int offset); /* the definition types base as int */
-void SndSeq_FillCache(u8 *address);
-u8 SndSeq_ReadByte(u8 *address);
-u16 SndTrack_ReadU16(SndTrack *track);
 
 /* First byte of a sequence with more than one track; a 16-bit mask of the tracks to allocate follows. */
 #define SEQ_CMD_ALLOC_TRACKS 0xFE

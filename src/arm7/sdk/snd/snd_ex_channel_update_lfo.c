@@ -1,7 +1,5 @@
 #include "sdk/snd_seq.h"
-
-int SndLfo_GetValue(SndChannelLfo *lfo);  /* current oscillator value */
-void SndLfo_Update(SndChannelLfo *lfo); /* advances the oscillator */
+#include "sdk/snd.h"
 
 /* Returns the channel's LFO offset scaled for its target (pitch, volume or pan), and advances the LFO when update is set. */
 int SndExChannel_UpdateLfo(SndExChannel *channel, BOOL update)

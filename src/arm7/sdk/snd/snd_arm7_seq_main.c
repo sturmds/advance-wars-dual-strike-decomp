@@ -1,9 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void SndPlayer_Advance(SndPlayer *player);
-void SndPlayer_UpdateChannels(SndPlayer *player);
-
 /* stepSequence is FALSE on driver runs between sequence ticks: only the channels are updated then.
  * SndPlayer.prepared holds the pause flag (see SndArm7_PauseSeq). */
 void SndArm7_SeqMain(BOOL stepSequence)

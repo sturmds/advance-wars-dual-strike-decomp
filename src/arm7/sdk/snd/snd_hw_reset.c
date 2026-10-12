@@ -1,7 +1,6 @@
 #include "sdk/snd_hw.h"
 
 int func_arm7_037fe63c(void);
-void SndHw_StopChannel(int channel, int flag);
 
 void SndHw_Reset(void)
 {

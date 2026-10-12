@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-void SndPlayer_Stop(SndPlayer *player);
-
 void SndArm7_StopSeq(int playerNo)
 {
     SndPlayer *player = &data_arm7_038085d0[playerNo];

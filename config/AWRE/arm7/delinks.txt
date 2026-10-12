@@ -2404,11 +2404,11 @@ src/arm7/sdk/snd/snd_drv_on_interval_alarm.c:
     complete
     .text       start:0x037fee20 end:0x037fee6c
 
-src/arm7/sdk/func_arm7_037fee6c.c:
+src/arm7/sdk/snd/sndi_unlock_mutex.c:
     complete
     .text       start:0x037fee6c end:0x037fee70
 
-src/arm7/sdk/func_arm7_037fee70.c:
+src/arm7/sdk/snd/sndi_lock_mutex.c:
     complete
     .text       start:0x037fee70 end:0x037fee74
 
@@ -2600,7 +2600,7 @@ src/arm7/sdk/snd/snd_player_close_track.c:
     complete
     .text       start:0x03800e30 end:0x03800e84
 
-src/arm7/sdk/func_arm7_03800e84.c:
+src/arm7/sdk/snd/snd_track_close.c:
     complete
     .text       start:0x03800e84 end:0x03800ea4
 

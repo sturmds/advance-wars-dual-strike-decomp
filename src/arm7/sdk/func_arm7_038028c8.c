@@ -1,8 +1,7 @@
 #include "types.h"
+#include "sdk/card_arm7.h"
 
-void CARD_SetThreadPriority(const void *src, void *dst, u32 size);
-
-void func_arm7_038028c8(const void *src, void *dst, u32 size)
+u32 func_arm7_038028c8(u32 priority)
 {
-    CARD_SetThreadPriority(src, dst, size);
+    return CARD_SetThreadPriority(priority);
 }

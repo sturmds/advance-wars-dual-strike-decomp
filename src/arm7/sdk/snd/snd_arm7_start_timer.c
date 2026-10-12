@@ -1,8 +1,6 @@
 #include "sdk/snd.h"
 #include "sdk/os_arm7.h"
 
-void SndArm7_UpdateSharedWork(void);
-
 #define AUDIO_CH_CTRL_TOP_BYTE(channel) (*(u8 *)(0x04000403 + ((channel) << 4)))
 #define AUDIO_RECORD_PAIR_CNT (*(u16 *)0x04000508)
 

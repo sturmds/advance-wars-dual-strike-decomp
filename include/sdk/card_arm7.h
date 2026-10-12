@@ -113,4 +113,7 @@ BOOL Card_TestRemovalIrqFlag(void);
 BOOL Card_CompareChipIdWithBoot(void);
 BOOL CARD_IsPulledOut(void);
 
+/* Sets the card thread's priority; returns the old one. */
+u32 CARD_SetThreadPriority(u32 priority);
+
 #endif

@@ -1,6 +1,5 @@
 #include "sdk/snd_seq.h"
-
-void SndExChannel_Start(SndExChannel *channel, int length);
+#include "sdk/snd.h"
 
 /* Starts a square wave of the given duty on the channel; only hardware channels 8 to 13 can play one. */
 BOOL SndExChannel_StartPsg(SndExChannel *channel, int duty, int length)
