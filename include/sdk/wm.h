@@ -386,7 +386,7 @@ typedef struct WMStatus {
     u16 unk_ca;
     u8 pad_cc[0x10];
     u8 macAddress[6];
-    u8 pad_e2[2];
+    u16 unk_e2;                        /* WMSP_MeasureChannel sets 2 */
     u8 pparam[0x10];                   /* start of the WMParentParam the parent runs with; unk_f4 is its maxEntry */
     u16 unk_f4;
     u8 pad_f6[0x88];
