@@ -21737,7 +21737,8 @@ src/sdk/mi/func_0210f6f8.c:
     complete
     .text       start:0x0210f6f8 end:0x0210f78c
 
-src/sdk/mi/mi_uncompress_lz8.c:
+src/sdk/mi/unpack_lz77_by_halfwords.c:
+    complete
     .text       start:0x0210f78c end:0x0210f864
 
 src/sdk/mi/unpack_huffman_to_words.c:

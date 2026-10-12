@@ -7,7 +7,7 @@ void *Mem_Alloc(u32 size);
 void Map_SetDataBuffer(void *buffer);
 void Save_LoadRecord(int recordId, void *buffer); /* the definition takes only recordId; this call also passes r1 */
 int Campaign_IsHardMode(void);
-void MI_UncompressLZ8(const void *src, void *dst); /* SDK LZ77 unpack */
+void Unpack_Lz77ByHalfwords(const void *src, void *dst); /* SDK LZ77 unpack */
 
 /* Allocates the map data buffer and fills it for a map id. */
 void Map_LoadData(u32 mapId)
@@ -25,5 +25,5 @@ void Map_LoadData(u32 mapId)
     if (src == NULL) {
         src = Ov000_gMapHeaders[mapId].mapData;
     }
-    MI_UncompressLZ8(src, data_0229eadc);
+    Unpack_Lz77ByHalfwords(src, data_0229eadc);
 }
