@@ -16,7 +16,7 @@ DSD      := .cache/tools/dsd/dsd
 LOCKED_NINJA := mkdir -p build && flock build/.ninja.lock $(NINJA)
 
 
-.PHONY: all configure fnindex dsindex progress setup release check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
+.PHONY: all configure fnindex dsindex progress setup release pnc-check check check-rom check-modules check-out hooks extract test clean shift emu-smoke format format-check
 
 all: check-rom configure
 	@$(LOCKED_NINJA)
@@ -79,7 +79,12 @@ format: setup
 format-check: setup
 	@$(PYTHON) tools/format.py --check
 
+# Tenet 8: no tracked file matches a private pattern (.git/info/pnc-patterns).
+pnc-check:
+	@$(PYTHON) tools/pnc_check.py
+
 release: setup
+	@$(MAKE) --no-print-directory pnc-check
 	@$(MAKE) --no-print-directory format-check
 	@$(MAKE) --no-print-directory all
 	@$(MAKE) --no-print-directory check

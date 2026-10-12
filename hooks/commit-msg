@@ -1,8 +1,15 @@
 #!/bin/sh
 # Installed by `make setup` through core.hooksPath.
-# Refuses commit messages with a word from docs/style/banned.txt. Claudeisms
-# and possible "X is the Y" lines print as warnings only.
+# Removes Claude-Session trailers, refuses a message that matches the private
+# patterns (tools/pnc_check.py) or has a word from docs/style/banned.txt.
+# Claudeisms and possible "X is the Y" lines print as warnings only.
 set -eu
+
+# Session links tie a commit to a private account (tenet 8): drop them before
+# anything else reads the message.
+sed -i '/^Claude-Session: /d' "$1"
+
+python3 tools/pnc_check.py --message "$1" || exit 1
 
 msg=$(sed -e '/^# ------------------------ >8 ------------------------$/,$d' -e '/^#/d' "$1")
 printf '%s\n' "$msg" | python3 tools/style_check.py - || {

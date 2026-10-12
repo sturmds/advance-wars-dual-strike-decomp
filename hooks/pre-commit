@@ -8,6 +8,12 @@
 #    lands, and agent commits that carry it conflict with each other.
 set -eu
 
+# Tenet 8: commit dates carry +0000, not the committer's timezone.
+if [ "$(date +%z)" != "+0000" ] && [ -z "${GIT_COMMITTER_DATE:-}" ]; then
+    echo "pre-commit: the local timezone is $(date +%z); commit with TZ=UTC (for example: export TZ=UTC)" >&2
+    exit 1
+fi
+
 bad=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)(orig|extract|build)/|\.(nds|bin|o|exe)$' || true)
 if [ -n "$bad" ]; then
     echo "pre-commit: these paths must not enter git:" >&2
