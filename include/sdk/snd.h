@@ -101,4 +101,27 @@ void SND_DestroyWaveArc(SoundWaveArc *arc);
 SoundBankIter SoundBank_StartIter(void);
 BOOL SoundBank_NextNote(SoundBank *bank, SoundBankNote *note, SoundBankIter *iter);
 
+/* ARM7 side of the sound driver. */
+
+/* One alarm slot of the ARM7 driver. The alarm handler reports slot | tag << 8 to the ARM9. */
+typedef struct SndArm7Alarm {
+    u8 active;
+    u8 tag;
+    u8 pad_02[2];
+    u64 start; /* delay before the first firing, in ticks */
+    u64 period; /* 0 for a one-shot alarm */
+    u8 osAlarm[44];
+} SndArm7Alarm;
+
+#define SOUND_TIMER_SLOTS_ARM7 8
+
+/* The driver's state block; its first 0x1180 bytes are copied into the shared work. */
+typedef struct SndArm7Work {
+    u8 pad_0000[0xf80];
+    SndArm7Alarm alarms[SOUND_TIMER_SLOTS_ARM7];
+} SndArm7Work;
+
+extern SndArm7Work data_arm7_03808090;
+extern SndArm7Alarm data_arm7_03809010[SOUND_TIMER_SLOTS_ARM7]; /* same memory as data_arm7_03808090.alarms */
+
 #endif
