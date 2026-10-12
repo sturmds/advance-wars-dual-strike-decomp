@@ -7,10 +7,10 @@ struct Unk_027cdf20_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027ca0cc(int, void *, int);
+void WifiRam_StoreFourKeyBlocks(int, void *, int);
 
 void func_arm7_027cdf20(int a0, Unk_027cdf20_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027ca0cc(a0 + 16, a1, 1);
+    WifiRam_StoreFourKeyBlocks(a0 + 16, a1, 1);
 }
