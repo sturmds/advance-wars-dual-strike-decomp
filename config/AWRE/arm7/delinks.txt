@@ -276,6 +276,10 @@ src/arm7/sdk/wm/wmsp_set_wep_key_ex.c:
     complete
     .text       start:0x027c4f18 end:0x027c4fe0
 
+src/arm7/sdk/wm/wmsp_set_wep_key.c:
+    complete
+    .text       start:0x027c4fe0 end:0x027c5074
+
 src/arm7/sdk/wm/wmsp_stop_test_mode.c:
     complete
     .text       start:0x027c523c end:0x027c5268
