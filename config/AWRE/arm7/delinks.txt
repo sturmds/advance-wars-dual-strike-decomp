@@ -915,6 +915,10 @@ src/arm7/sdk/card/scanline_timer_has_time_left.c:
     complete
     .text       start:0x03803320 end:0x03803378
 
+src/arm7/sdk/card/card_start_service_arm7.c:
+    complete
+    .text       start:0x03803378 end:0x038033f8
+
 src/arm7/sdk/func_arm7_038037e8.c:
     complete
     .text       start:0x038037e8 end:0x038037fc
