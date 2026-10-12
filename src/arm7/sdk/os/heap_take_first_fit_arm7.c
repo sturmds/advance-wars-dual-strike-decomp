@@ -6,7 +6,7 @@ extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 HeapBlockHeader *Heap_UnlinkBlock(HeapBlockHeader *list, HeapBlockHeader *cell);
-HeapBlockHeader *func_arm7_037fce50(HeapBlockHeader *list, HeapBlockHeader *cell);
+HeapBlockHeader *Heap_LinkAtFront(HeapBlockHeader *list, HeapBlockHeader *cell);
 
 /*
  * ARM7 copy of OS_AllocFromHeap. Takes the first free block big enough for
@@ -64,7 +64,7 @@ void *Heap_TakeFirstFit_Arm7(ArenaRegionArm7 id, s32 heap, s32 size)
             desc->free = rest;
         }
     }
-    desc->allocated = func_arm7_037fce50(desc->allocated, cell);
+    desc->allocated = Heap_LinkAtFront(desc->allocated, cell);
     func_arm7_037fdb94(irqState);
     return (u8 *)cell + HEAP_BLOCK_HEADER_BYTES;
 }
