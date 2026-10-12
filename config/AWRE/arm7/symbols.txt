@@ -837,7 +837,7 @@ func_arm7_037ff7e8 kind:function(arm,size=0xc) addr:0x037ff7e8
 func_arm7_037ff7f4 kind:function(arm,size=0x1c) addr:0x037ff7f4
 func_arm7_037ff810 kind:function(arm,size=0x8) addr:0x037ff810
 func_arm7_037ff818 kind:function(arm,size=0x1c) addr:0x037ff818
-func_arm7_037ff834 kind:function(arm,size=0x24) addr:0x037ff834
+SndExChannel_SetAttack kind:function(arm,size=0x24) addr:0x037ff834
 func_arm7_037ff858 kind:function(arm,size=0xb4) addr:0x037ff858
 func_arm7_037ff90c kind:function(arm,size=0x4c) addr:0x037ff90c
 func_arm7_037ff958 kind:function(arm,size=0x54) addr:0x037ff958
@@ -1057,7 +1057,7 @@ gSndSineQuarterTable kind:data(any) addr:0x0380715c
 data_arm7_03807180 kind:data(any) addr:0x03807180
 gSndVolumeShiftBits kind:data(any) addr:0x03807280
 gSndExChannelAllocOrder kind:data(any) addr:0x03807284
-data_arm7_03807294 kind:data(any) addr:0x03807294
+gSndAttackTable kind:data(any) addr:0x03807294
 data_arm7_038072a8 kind:data(any) addr:0x038072a8
 data_arm7_038072ac kind:data(any) addr:0x038072ac
 data_arm7_038072b0 kind:data(any) addr:0x038072b0
