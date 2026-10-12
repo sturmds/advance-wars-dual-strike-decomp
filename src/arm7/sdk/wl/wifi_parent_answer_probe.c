@@ -4,7 +4,7 @@
 
 WlTxFrame *WifiFrame_NewProbeAnswer(const u16 *dest);
 void WifiTx_EnqueueMgmt(WlTxFrame *frame);
-void func_arm7_027d1d84(WlElements *elements);
+void WifiRx_ScanElements(WlElements *elements);
 
 /*
  * Probe request received on the parent side: answers with a probe response
@@ -24,7 +24,7 @@ void WifiParent_AnswerProbe(WlRxFrame *frame)
         if (!WIFI_DRIVER_STATE->state.flags.bit1) {
             elements.unk_0c = 0x800;
         }
-        func_arm7_027d1d84(&elements);
+        WifiRx_ScanElements(&elements);
         if ((elements.result & WIFI_IE_FITS_SSID) == WIFI_IE_FITS_SSID) {
             response = WifiFrame_NewProbeAnswer(frame->addr2);
             if (response != NULL) {

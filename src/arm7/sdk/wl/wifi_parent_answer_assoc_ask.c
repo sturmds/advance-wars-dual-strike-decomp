@@ -9,7 +9,7 @@ void WifiStation_ChangeState(u16 station, u16 state);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewAssocAnswer(u16 station, u16 status, const u8 *element);
 void WifiTx_EnqueueMgmt(WlTxFrame *frame);
-void func_arm7_027d1d84(WlElements *elements);
+void WifiRx_ScanElements(WlElements *elements);
 
 /*
  * Association request, parent side. An unknown station or one that has not
@@ -53,7 +53,7 @@ void WifiParent_AnswerAssocAsk(WlRxFrame *frame)
     Mem_FillWords_Arm7(zero, &elements, sizeof(elements));
     elements.data = (const u8 *)capability + 4;
     elements.length = bodyLength - 4;
-    func_arm7_027d1d84(&elements);
+    WifiRx_ScanElements(&elements);
     if ((capability->raw & WIFI_CAPS_PARENT_REJECTS) != 0 || !capability->ess ||
         (view->state.unk_08 == 0 && capability->privacy == 1) ||
         (view->state.unk_08 != 0 && capability->privacy == 0) ||

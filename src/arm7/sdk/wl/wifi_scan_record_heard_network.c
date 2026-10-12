@@ -6,7 +6,7 @@ u8 WL_ReadByte(const void *addr);
 void WL_WriteByte(void *addr, u32 value);
 void func_arm7_027c8594(void);                       /* cancels the one-shot alarm */
 void func_arm7_027c90ec(u16 *dest, const u16 *src);  /* copies a 6-byte MAC address */
-void func_arm7_027d1d84(WlElements *elements);
+void WifiRx_ScanElements(WlElements *elements);
 
 extern const u16 gWlZeroMacAddr[3];
 
@@ -80,7 +80,7 @@ void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements)
         parsed.unk_0c = 0x38;
         parsed.unk_04 = frame->unk_08;
         parsed.capability = body->probeResponse.capability;
-        func_arm7_027d1d84(&parsed);
+        WifiRx_ScanElements(&parsed);
         elements = &parsed;
     }
     if (elements->nintendo != NULL) {

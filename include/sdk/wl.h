@@ -453,7 +453,7 @@ typedef union WlCapability {
 #define WIFI_CAPS_PARENT_REJECTS 0xffc2
 
 /* The information elements of a received management frame, as
-   func_arm7_027d1d84 parses them. Callers fill data, length and unk_0c. */
+   WifiRx_ScanElements parses them. Callers fill data, length and unk_0c. */
 typedef struct WlElements {
     const u8 *data;
     u16 unk_04;           /* first word of the frame's RX header */
@@ -1456,6 +1456,47 @@ typedef struct WlAuthenticateReply {
     u16 mac[3];
     u16 algorithm;
 } WlAuthenticateReply;
+
+/*
+ * Information elements of a received management frame, as
+ * WifiRx_ScanElements reads them. The caller sets elements, length,
+ * capability and the WIFI_IE_BLANK_SSID_PASSES bit of found; the parser fills
+ * the rest. Element pointers point at the element's ID byte.
+ */
+typedef struct WlRxElements {
+    const u8 *elements;
+    u16 unk_04;         /* bit 15 checked with WIFI_IE_ASK_BSSID_TEST */
+    u16 capability;     /* 802.11 capability field of the frame */
+    u16 length;         /* bytes of elements */
+    u16 matched;        /* WIFI_IE_AGREES_* */
+    u16 found;          /* WIFI_IE_SPOTTED_* */
+    u8 pad_0e[0x12 - 0x0e];
+    u16 channel;        /* from the DS parameter set, else ours */
+    WlRateSet rates;
+    const u8 *ssid;
+    const u8 *cfParams;
+    const u8 *tim;
+    const u8 *nintendo; /* vendor element with Nintendo's OUI 00:09:bf, type 0 */
+} WlRxElements;
+
+/* WlRxElements.found bits. */
+#define WIFI_IE_SPOTTED_NETWORK_NAME 0x1
+#define WIFI_IE_SPOTTED_DS_SET 0x2
+#define WIFI_IE_SPOTTED_RATE_LIST 0x4
+#define WIFI_IE_ASK_BSSID_TEST 0x8
+#define WIFI_IE_ASK_CAPS_TEST 0x30
+#define WIFI_IE_SPOTTED_TRAFFIC_MAP 0x100
+#define WIFI_IE_SPOTTED_CF_SET 0x200
+#define WIFI_IE_SPOTTED_VENDOR 0x400
+#define WIFI_IE_BLANK_SSID_PASSES 0x800 /* a missing or empty SSID matches */
+
+/* WlRxElements.matched bits. */
+#define WIFI_IE_AGREES_SSID 0x1
+#define WIFI_IE_AGREES_CHANNEL 0x2
+#define WIFI_IE_AGREES_RATES 0x4
+#define WIFI_IE_AGREES_BSSID 0x8
+#define WIFI_IE_AGREES_NET_KIND 0x10 /* ESS and IBSS capability bits as ours */
+#define WIFI_IE_AGREES_PRIVACY 0x20  /* privacy capability bit as ours */
 
 /* Request to join the BSS it describes (fields as in a beacon). */
 typedef struct WlJoinRequest {

@@ -1758,6 +1758,10 @@ src/arm7/sdk/wl/wifi_task_route_mgmt_frame.c:
     complete
     .text       start:0x027d1a44 end:0x027d1d84
 
+src/arm7/sdk/wl/wifi_rx_scan_elements.c:
+    complete
+    .text       start:0x027d1d84 end:0x027d2090
+
 src/arm7/sdk/func_arm7_027d2090.c:
     complete
     .text       start:0x027d2090 end:0x027d2094

@@ -9,7 +9,7 @@ void WifiStation_ChangeState(u16 station, u16 state);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewReassocAnswer(u16 station, u16 status, const u8 *element);
 void WifiTx_EnqueueMgmt(WlTxFrame *frame);
-void func_arm7_027d1d84(WlElements *elements);
+void WifiRx_ScanElements(WlElements *elements);
 
 /*
  * Reassociation request, parent side. A station that has not authenticated
@@ -52,7 +52,7 @@ void WifiParent_AnswerReassocAsk(WlRxFrame *frame)
     elements.data = (const u8 *)capability + 10;
     elements.length = bodyLength - 10;
     elements.unk_0c = 0x800;
-    func_arm7_027d1d84(&elements);
+    WifiRx_ScanElements(&elements);
     if ((capability->raw & WIFI_CAPS_PARENT_REJECTS) != 0 ||
         (work->state.unk_08 == 0 && capability->privacy == 1) ||
         (work->state.unk_08 != 0 && capability->privacy == 0)) {
