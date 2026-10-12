@@ -1,8 +1,5 @@
 #include "sdk/wl.h"
 
-/* Wi-Fi RAM address that WlState.timOffset counts from. */
-#define WIFI_RAM_TIM_BASE 0x0480425c
-
 u16 func_arm7_027cb068(u16 station);
 u16 func_arm7_027cb140(u16 station);
 u8 WL_ReadByte(const void *addr);

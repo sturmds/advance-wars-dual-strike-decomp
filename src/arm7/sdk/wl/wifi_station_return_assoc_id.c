@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void func_arm7_027c92e8(void);
-void func_arm7_027caedc(u16 station);
+void WifiBeacon_UnmarkTrafficFor(u16 station);
 u16 func_arm7_027cb068(u16 station);
 
 void WifiStation_ReturnAssocId(u16 station)
@@ -9,7 +9,7 @@ void WifiStation_ReturnAssocId(u16 station)
     WlWork *work = WIFI_DRIVER_STATE;
     u32 aid;
 
-    func_arm7_027caedc(station);
+    WifiBeacon_UnmarkTrafficFor(station);
     aid = func_arm7_027cb068(station);
     WifiStation_Entry(station)->aid = 0;
     work->stationBits.aidMask &= ~(1 << aid);

@@ -743,6 +743,9 @@ typedef struct WlCurrentRequest {
     u16 busy; /* bit 0 set while buffer is being handled */
 } WlCurrentRequest;
 
+/* Wi-Fi RAM address that WlState.timOffset counts from. */
+#define WIFI_RAM_TIM_BASE 0x0480425c
+
 typedef struct WlState {
     u16 unk_00;
     u16 phase;

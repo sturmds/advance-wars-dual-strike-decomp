@@ -4,7 +4,7 @@ void WifiStation_CountQueuedFrame(WlTxFrame *frame);
 void func_arm7_027d0924(WlTxFrame *frame, int arg);
 void WifiHost_ReturnSentFrame(WlBufferList *list, WlTxRequest *request);
 void WifiTx_StartNextOfQueue(int queue);
-void func_arm7_027caedc(u16 station);
+void WifiBeacon_UnmarkTrafficFor(u16 station);
 
 /*
  * onDone callback of the LOC3 (multicast) slot. A management frame moves on
@@ -44,6 +44,6 @@ void WifiTx_GroupSlotDone(WlTxFrame *frame, int arg)
             WifiTx_StartNextOfQueue(WIFI_SEND_QUEUE_GROUP);
         }
     } else {
-        func_arm7_027caedc(0);
+        WifiBeacon_UnmarkTrafficFor(0);
     }
 }

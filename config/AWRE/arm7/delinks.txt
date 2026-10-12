@@ -1068,6 +1068,10 @@ src/arm7/sdk/wl/wifi_task_age_stations.c:
     complete
     .text       start:0x027cada4 end:0x027caedc
 
+src/arm7/sdk/wl/wifi_beacon_unmark_traffic_for.c:
+    complete
+    .text       start:0x027caedc end:0x027caf88
+
 src/arm7/sdk/wl/wifi_beacon_mark_traffic_for.c:
     complete
     .text       start:0x027caf88 end:0x027cb030
