@@ -169,6 +169,31 @@ typedef union WlCommandBuf {
     u8 bytes[0x200];
 } WlCommandBuf;
 
+/* The arguments of WL command 0x200, which sets the WL parameters in one go
+   (written by WMSP_SetAllParams). The header is a WlCommand's. */
+typedef struct WlParamSetAllCommand {
+    u16 reserved[6];
+    u16 length;
+    u16 index;
+    u8 macAddress[6];                  /* 0x10 */
+    u16 unk_16;                        /* always 7 */
+    u16 enableChannel;
+    u8 pad_1a[2];
+    u16 unk_1c;                        /* WMStatus.unk_e2 */
+    u16 unk_1e;                        /* WMStatus.unk_1e8 */
+    u16 unk_20;                        /* WMStatus.wepMode */
+    u16 unk_22;                        /* WMStatus.wepKeyId */
+    u8 unk_24[0x50];                   /* WMStatus.wepKey */
+    u16 unk_74;
+    u16 unk_76;
+    u16 unk_78;                        /* 0 when WMStatus.unk_e2 is 1, else 16 */
+    u16 unk_7a;
+    u8 unk_7c[8];                      /* cleared */
+    u8 unk_84[24];                     /* filled with 0xff */
+    u16 unk_9c;                        /* WMStatus.unk_1ea */
+    u16 unk_9e;                        /* 1 when WMStatus.wepFlag is set */
+} WlParamSetAllCommand;
+
 /* The ARM9 asks the ARM7 to start WM with these pointers (the arguments of
    WM_Initialize's request). */
 typedef struct WmspInitRequest {
@@ -354,6 +379,8 @@ void Wmsp_SendReply(void *reply);
 extern u8 data_arm7_027d8160[16];
 
 WmspWork *func_arm7_027c05e0(void);
+/* Sends the WL parameters kept in WMStatus; on failure replies to apiid and returns FALSE. */
+BOOL WMSP_SetAllParams(int apiid, WlCommand *cmd);
 void WMSP_ResetStatus(void);
 int WMSP_InitWl(u16 *wlCmdID, u16 *wlResult);
 void func_arm7_027c6eb4(u16 arg);

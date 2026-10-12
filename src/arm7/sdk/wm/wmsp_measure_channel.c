@@ -14,7 +14,6 @@ u16 *func_arm7_027c1ee4(WlCommand *cmd);
 u16 *func_arm7_027c1efc(WlCommand *cmd);
 u16 *func_arm7_027c2890(WlCommand *cmd, int arg0, int arg1, int arg2);
 u16 *func_arm7_027c2468(WlCommand *cmd, u16 arg1, u16 arg2, u16 arg3, const void *data);
-BOOL func_arm7_027c0248(int apiid, WlCommand *cmd);
 void WMSP_ReplyMeasureChannelFailed(u16 wlCmdID, u16 wlResult);
 
 void WMSP_MeasureChannel(WMMeasureChannelReq *req)
@@ -50,7 +49,7 @@ void WMSP_MeasureChannel(WMMeasureChannelReq *req)
     wmBuf->status->unk_e2 = 2;
     if (wlState == WIFI_REPORTED_RADIO_ON) {
         /* The original passes START_SCAN's id: a failure here replies as START_SCAN. */
-        if (!func_arm7_027c0248(WM_APIID_START_SCAN, cmd)) {
+        if (!WMSP_SetAllParams(WM_APIID_START_SCAN, cmd)) {
             return;
         }
         wlReply = func_arm7_027c1ee4(cmd);

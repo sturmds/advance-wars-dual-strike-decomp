@@ -60,6 +60,10 @@ src/arm7/sdk/wm/wmsp_decode_rssi.c:
     complete
     .text       start:0x027c022c end:0x027c0248
 
+src/arm7/sdk/wm/wmsp_set_all_params.c:
+    complete
+    .text       start:0x027c0248 end:0x027c03cc
+
 src/arm7/sdk/wm/wmsp_build_game_info.c:
     complete
     .text       start:0x027c03cc end:0x027c047c
