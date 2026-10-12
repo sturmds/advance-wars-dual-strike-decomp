@@ -248,6 +248,15 @@ typedef struct WlState {
     WlTxFrame *txFrame;
 } WlState;
 
+/* Kept at WlWork+0x318, inside the range WlState covers (data is WlState.unk_b4); the code reaches
+   it through its own pointer. */
+typedef struct WlUnk318 {
+    u8 pad_00[0x9c];
+    u8 *data;
+    u16 dataLength;
+    u16 flags; /* bit 0: data starts one byte after the pointer */
+} WlUnk318;
+
 /* Linear congruential generator: value = value * mul + add (16 bits). */
 typedef struct WlRandom {
     u16 mul;
@@ -330,7 +339,13 @@ typedef struct WlWork {
     WlLimits limits;
     u16 macAddress[3];
     u16 unk_2fe;
-    WlState state;
+    union {
+        WlState state;
+        struct {
+            u8 pad_300[0x18];
+            WlUnk318 unk_318;
+        };
+    };
     u8 pad_484[0x504 - 0x484];
     WlStationBits stationBits;
     u8 pad_510[0x5c4 - 0x510];
@@ -365,6 +380,40 @@ typedef struct WlWork {
 #define WIFI_LINK_VIEW_OF(work) ((WlLink *)(work)->state.pad_18)
 
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
+
+/* A message from the driver to the host: command, payload length in
+   halfwords, then the payload. */
+typedef struct WlIndication {
+    WlBuffer buffer;
+    u16 command;
+    u16 length;
+    union {
+        struct {
+            u8 mac[6];
+            u16 value;
+        } peer; /* commands 0x85, 0x88 and 0x8b (MAC only) */
+        struct {
+            u8 pad_10[6];
+            u16 dataLength;
+            u8 pad_18[6];
+            u8 unk_1e;
+            u8 unk_1f;
+            u8 pad_20[0xe];
+            u8 mac[6];
+            u8 pad_34[8];
+            u8 data[1];
+        } ind8d;
+    };
+} WlIndication;
+
+typedef struct Unk_027cb9e4 {
+    u8 pad_00[0xe];
+    u16 unk_0e;
+    u8 pad_10[2];
+    u16 unk_12;
+    u8 pad_14[0xa];
+    u8 mac[6];
+} Unk_027cb9e4;
 
 /* Wireless hardware registers (names from GBATEK). */
 #define REG_W_BB_BUSY   (*(volatile u16 *)0x0480815e) /* bit 0: baseband serial transfer busy */
@@ -442,6 +491,7 @@ int WifiBaseband_AwaitReady(void);
 void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
 void WifiRf_AwaitReceiverOn(void);
 void WifiTask_DrainOutbox(void);
+int WifiHost_TellBeaconHeard(Unk_027cb9e4 *info);
 void WifiRf_AwaitQuietAir(void);
 
 #endif
