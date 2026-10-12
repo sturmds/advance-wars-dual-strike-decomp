@@ -63,6 +63,7 @@ int Bios_RunningOnDevUnit_Arm7(void);
 void Bios_WidenBitDepth_Arm7(const void *src, void *dst, const void *params);
 void Bios_UnpackLz77ByBytes_Arm7(const void *src, void *dst);
 void Bios_UnpackLz77ByHalfwords_Arm7(const void *src, void *dst);
+void Bios_UnpackHuffman_Arm7(const void *src, void *dst);
 
 int Sha1_ResetState(SVCSHA1Context *context);
 int Sha1_FeedBytes(SVCSHA1Context *context, const u8 *data, u32 length);
