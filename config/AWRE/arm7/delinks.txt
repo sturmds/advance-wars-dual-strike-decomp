@@ -1119,6 +1119,10 @@ src/arm7/sdk/func_arm7_037fd9dc.c:
     complete
     .text       start:0x037fd9dc end:0x037fd9f0
 
+src/arm7/sdk/os/line_alarm_unlink_arm7.c:
+    complete
+    .text       start:0x037fd9f0 end:0x037fda28
+
 src/arm7/sdk/func_arm7_037fdaf4.c:
     complete
     .text       start:0x037fdaf4 end:0x037fdb04

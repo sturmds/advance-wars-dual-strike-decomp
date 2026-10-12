@@ -3,7 +3,7 @@
 
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
-void func_arm7_037fd9f0(OSVAlarm *alarm);
+void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
 
 /*
  * Takes a V-count alarm out of the queue if it is set. Marks it canceled
@@ -18,7 +18,7 @@ void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm)
         func_arm7_037fdb94(irqState);
         return;
     }
-    func_arm7_037fd9f0(alarm);
+    LineAlarm_Unlink_Arm7(alarm);
     alarm->handler = NULL;
     func_arm7_037fdb94(irqState);
 }
