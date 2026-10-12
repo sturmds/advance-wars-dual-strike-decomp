@@ -1420,7 +1420,9 @@ typedef struct Unk_027cb9e4 {
 #define REG_W_TXREQ_READ    (*(volatile u16 *)0x048080b0)
 #define REG_W_RXSTAT_INC_IF (*(volatile u16 *)0x048081a8)
 #define REG_W_RXTX_ADDR     (*(volatile u16 *)0x04808268) /* halfword the hardware reads or writes now */
+#define REG_W_TXBUF_REPLY1  (*(volatile u16 *)0x04808094)
 #define REG_W_TXBUF_REPLY2  (*(volatile u16 *)0x04808098) /* MP reply frame being sent */
+#define W_RXCNT_COPY_REPLY  0x80 /* REG_W_RXCNT: copy REPLY1 into REPLY2 */
 #define REG_W_US_COUNT0     (*(volatile u16 *)0x048080f8) /* microsecond counter, low half */
 #define REG_W_TX_SEQNO      (*(volatile u16 *)0x04808210) /* sequence number of the last frame sent */
 
