@@ -779,6 +779,10 @@ src/arm7/sdk/pad/func_arm7_037fe45c.c:
     complete
     .text       start:0x037fe45c end:0x037fe4fc
 
+src/arm7/sdk/snd/snd_hw_set_output_control.c:
+    complete
+    .text       start:0x037fe4fc end:0x037fe534
+
 src/arm7/sdk/func_arm7_037fe534.c:
     complete
     .text       start:0x037fe534 end:0x037fe544
