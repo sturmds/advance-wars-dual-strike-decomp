@@ -12,6 +12,10 @@
     .sbss       start:0x03807888 end:0x038078a0 kind:bss align:4
     .bss        start:0x038078a0 end:0x0380b004 kind:bss align:32
 
+src/arm7/sdk/crt0/entry_arm7.c:
+    complete
+    .text       start:0x02380000 end:0x023800c0
+
 src/arm7/sdk/wm/wmsp_take_flagged_slot.c:
     complete
     .text       start:0x027c0000 end:0x027c0070

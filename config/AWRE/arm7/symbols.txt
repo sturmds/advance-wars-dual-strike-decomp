@@ -1,7 +1,7 @@
-func_arm7_02380000 kind:function(arm,size=0xc0) addr:0x02380000
+Entry_Arm7 kind:function(arm,size=0xc0) addr:0x02380000
 func_arm7_023800c0 kind:function(arm,size=0x5c) addr:0x023800c0
 func_arm7_0238011c kind:function(arm,size=0x3c) addr:0x0238011c
-data_arm7_02380158 kind:data(any) addr:0x02380158
+BuildInfo_Arm7 kind:data(any) addr:0x02380158
 Wmsp_TakeFlaggedSlot kind:function(arm,size=0x70) addr:0x027c0000
 Wmsp_ReplyFailed kind:function(arm,size=0x34) addr:0x027c0070
 Wmsp_SetAltThreadPriorities kind:function(arm,size=0x60) addr:0x027c00a4

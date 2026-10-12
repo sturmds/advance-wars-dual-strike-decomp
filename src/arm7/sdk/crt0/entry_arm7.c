@@ -1,0 +1,60 @@
+#include "types.h"
+
+extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
+void func_arm7_023800c0(void);
+void func_arm7_0238011c(void);
+void func_arm7_037fb340(void);    /* IRQ handler */
+void func_arm7_037f838c(void);    /* ARM7 main */
+
+/*
+ * ARM7 entry point from the cartridge header (crt0). Turns interrupts off
+ * through IME and clears ARM7 WRAM from 0x03800000 (or from the end of this
+ * crt0, 0x02380170, if that were higher) up to the stacks at 0x0380ff00.
+ * Gives the supervisor, IRQ and system modes their stacks, copies the
+ * autoload blocks, clears .bss, records the main RAM size, stores the IRQ
+ * handler in the WRAM IRQ vector at 0x0380fffc and jumps to the ARM7 main
+ * with lr at the BIOS reset vector 0xffff0000.
+ */
+asm void Entry_Arm7(void)
+{
+    mov r12, #0x4000000
+    str r12, [r12, #0x208]
+    ldr r1, =0x02380170
+    mov r0, #0x3800000
+    cmp r0, r1
+    movpl r1, r0
+    ldr r2, =0x0380ff00
+    mov r0, #0
+clear_wram:
+    cmp r1, r2
+    stmltia r1!, {r0}
+    blt clear_wram
+    mov r0, #0x13
+    msr CPSR_c, r0
+    ldr sp, =0x0380ffc0
+    mov r0, #0x12
+    msr CPSR_c, r0
+    ldr r0, =0x0380ff80
+    mov sp, r0
+    ldr r1, =0x400
+    sub r1, r0, r1
+    mov r0, #0x1f
+    msr CPSR_fsxc, r0
+    sub sp, r1, #4
+    bl func_arm7_023800c0
+    ldr r0, =BuildInfo_Arm7
+    ldr r1, [r0, #0xc]
+    ldr r2, [r0, #0x10]
+    mov r0, #0
+clear_bss:
+    cmp r1, r2
+    strcc r0, [r1], #4
+    bcc clear_bss
+    bl func_arm7_0238011c
+    ldr r1, =0x0380fffc
+    ldr r0, =func_arm7_037fb340
+    str r0, [r1]
+    ldr r1, =func_arm7_037f838c
+    ldr lr, =0xffff0000
+    bx r1
+}
