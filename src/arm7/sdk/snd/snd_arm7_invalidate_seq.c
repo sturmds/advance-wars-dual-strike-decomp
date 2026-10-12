@@ -1,7 +1,7 @@
 #include "sdk/snd_seq.h"
 
 void SndPlayer_Stop(SndPlayer *player);
-SndTrack *func_arm7_03800ea4(SndPlayer *player, int trackNo);
+SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
 
 /* Stops every playing sequence with a track reading from [start, end]. */
 void SndArm7_InvalidateSeq(u32 start, u32 end)
@@ -16,7 +16,7 @@ void SndArm7_InvalidateSeq(u32 start, u32 end)
 
         if (player->active) {
             for (j = 0; j < SND_TRACK_COUNT; j++) {
-                track = func_arm7_03800ea4(player, j);
+                track = SndPlayer_GetTrack(player, j);
                 if (track != NULL && start <= (u32)track->cursor && (u32)track->cursor <= end) {
                     SndPlayer_Stop(player);
                     break;

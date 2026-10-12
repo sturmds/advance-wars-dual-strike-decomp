@@ -1,6 +1,6 @@
 #include "sdk/snd.h"
 
-SndTrack *func_arm7_03800ea4(SndPlayer *player, int trackNo);
+SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackNo);
 int func_arm7_03800048(SndTrack *track, SndPlayer *player, int trackNo, int play);
 void SndPlayer_CloseTrack(SndPlayer *player, int trackNo);
 
@@ -11,7 +11,7 @@ BOOL SndPlayer_StepTracks(SndPlayer *player, int play)
     int i;
 
     for (i = 0; i < SND_TRACK_COUNT; i++) {
-        SndTrack *track = func_arm7_03800ea4(player, i);
+        SndTrack *track = SndPlayer_GetTrack(player, i);
         if (track != NULL && track->cursor != NULL) {
             if (func_arm7_03800048(track, player, i, play) == 0) {
                 playing = TRUE;

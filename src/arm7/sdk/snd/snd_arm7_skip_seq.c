@@ -1,7 +1,7 @@
 #include "sdk/snd.h"
 #include "sdk/snd_seq.h"
 
-SndTrack *func_arm7_03800ea4(SndPlayer *player, int trackIndex);
+SndTrack *SndPlayer_GetTrack(SndPlayer *player, int trackIndex);
 void SndTrack_ReleaseChannels(SndTrack *track, SndPlayer *player, int release);
 void SndTrack_FreeChannels(SndTrack *track);
 void func_arm7_037feebc(void);
@@ -18,7 +18,7 @@ void SndArm7_SkipSeq(int playerNo, u32 ticks)
     u32 tick;
 
     for (i = 0; i < SND_TRACK_COUNT; i++) {
-        SndTrack *track = func_arm7_03800ea4(player, i);
+        SndTrack *track = SndPlayer_GetTrack(player, i);
         if (track != NULL) {
             SndTrack_ReleaseChannels(track, player, 127);
             SndTrack_FreeChannels(track);
