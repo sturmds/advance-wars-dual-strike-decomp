@@ -388,6 +388,10 @@ src/arm7/sdk/wl/wifi_rf_load_start_values.c:
     complete
     .text       start:0x027c8844 end:0x027c89d4
 
+src/arm7/sdk/wl/wifi_baseband_load_start_values.c:
+    complete
+    .text       start:0x027c89d4 end:0x027c8a38
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108
