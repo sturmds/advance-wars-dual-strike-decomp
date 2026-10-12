@@ -832,6 +832,10 @@ src/arm7/sdk/func_arm7_027c94c0.c:
     complete
     .text       start:0x027c94c0 end:0x027c94ec
 
+src/arm7/sdk/wl/func_arm7_027c94ec.c:
+    complete
+    .text       start:0x027c94ec end:0x027c9560
+
 src/arm7/sdk/wl/wifi_param_set_antenna_switching.c:
     complete
     .text       start:0x027c9cc4 end:0x027c9da0

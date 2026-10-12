@@ -915,6 +915,8 @@ typedef struct WlHead {
     u16 phase;           /* WlState.phase */
     u8 pad_14[8];
     u16 unk_1c;                    /* WlState.unk_0c */
+    u8 pad_1e[2];
+    u16 unk_20;                    /* WlState.unk_10 */
 } WlHead;
 
 #define WIFI_SESSION_HEAD_OF(work) ((WlHead *)&(work)->limits.unk_f0)
