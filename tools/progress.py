@@ -94,8 +94,9 @@ def unlinked():
 
 
 class Score:
-    """One function's `fn.py diff`: objdiff's match percentage, and the rows
-    of the aligned listing, with how many of them differ."""
+    """One function's `fn.py diff`: objdiff's match percentage, the rows of
+    the aligned listing, and how many of them differ (fn.py's count, which
+    leaves out = rows)."""
 
     def __init__(self, percent: float, rows: int, differ: int):
         self.percent, self.rows, self.differ = percent, rows, differ
@@ -104,18 +105,10 @@ class Score:
 def diff_score(name: str) -> Score | None:
     out = subprocess.run([sys.executable, str(ROOT / "tools/fn.py"), "diff", "--color", "never", name],
                          cwd=ROOT, capture_output=True, text=True).stdout
-    lines = out.splitlines()
-    head = next((i for i, ln in enumerate(lines) if ln.startswith("original")), None)
-    m = re.search(r"([\d.]+)% match", out)
-    if head is None or not m:
+    score = fn.parse_diff(out)
+    if score is None or score.percent is None:
         return None
-    mark = lines[head].index("ours") - 2
-    rows = []
-    for ln in lines[head + 1:]:
-        if not ln.strip():
-            break
-        rows.append(ln)
-    return Score(float(m.group(1)), len(rows), sum(ln[mark:mark + 1] == "|" for ln in rows))
+    return Score(score.percent, len(score.rows), score.differ)
 
 
 def scores(files) -> dict:
@@ -141,8 +134,10 @@ def partials_section() -> list[str]:
         "",
         "Functions in C files that the build does not use yet (not marked `complete`), because",
         "they do not match. Each one is compiled and compared with the original by `fn.py diff`:",
-        "\"Match\" is objdiff's percentage, \"Differ\" the rows of its aligned listing that differ",
-        "(an instruction only one side has counts as one row).",
+        "\"Differ\" counts the rows of its aligned listing that differ (an instruction only one side",
+        "has counts as one row; a relocation naming another symbol at the same address does not",
+        "count). \"Match\" is objdiff's percentage. The list ranks by \"Differ\", then \"Match\":",
+        "objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 0067).",
         "",
     ]
     if not funcs:
@@ -178,16 +173,16 @@ def partials_section() -> list[str]:
         missing = [f for _, m, f in funcs if (m, f.name) not in res]
         if missing and got:
             lines.append(f"| not scored (does not compile) | {len(missing)} | {sum(f.size for f in missing)} |")
-        lines += ["", "Closest first.", "", "| File | Function | Bytes | Match | Differ |", "|---|---|---:|---:|---:|"]
+        lines += ["", "Closest first.", "", "| File | Function | Bytes | Differ | Match |", "|---|---|---:|---:|---:|"]
 
         def key(row):
             r = res.get((row[1], row[2].name))
-            return (r is None, r.differ if r else 0, -(r.percent if r else 0), row[0], row[2].name)
+            return (r is None, *(fn.rank(r.differ, r.percent) if r else (0, 0.0)), row[0], row[2].name)
 
         for path, mod, f in sorted(funcs, key=key):
             r = res.get((mod, f.name))
             match, differ = (f"{r.percent:.2f}%", str(r.differ)) if r else ("-", "-")
-            lines.append(f"| `{path}` | {f.name} | {f.size} | {match} | {differ} |")
+            lines.append(f"| `{path}` | {f.name} | {f.size} | {differ} | {match} |")
     orphans = [path for path, mod, _ in files if mod is None]
     if orphans:
         lines += ["", "C files with no delinks entry: " + ", ".join(f"`{p}`" for p in orphans) + "."]

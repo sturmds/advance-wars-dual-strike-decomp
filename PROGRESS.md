@@ -45,8 +45,10 @@ Modules with nothing done: none.
 
 Functions in C files that the build does not use yet (not marked `complete`), because
 they do not match. Each one is compiled and compared with the original by `fn.py diff`:
-"Match" is objdiff's percentage, "Differ" the rows of its aligned listing that differ
-(an instruction only one side has counts as one row).
+"Differ" counts the rows of its aligned listing that differ (an instruction only one side
+has counts as one row; a relocation naming another symbol at the same address does not
+count). "Match" is objdiff's percentage. The list ranks by "Differ", then "Match":
+objdiff's score charges one wrong opcode as much as 12 wrong registers (issue 0067).
 
 | Code | Functions | Bytes | Rows that match |
 |---|---:|---:|---:|
@@ -64,59 +66,59 @@ they do not match. Each one is compiled and compared with the original by `fn.py
 
 Closest first.
 
-| File | Function | Bytes | Match | Differ |
+| File | Function | Bytes | Differ | Match |
 |---|---|---:|---:|---:|
-| `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 | 99.91% | 1 |
-| `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 | 99.99% | 2 |
-| `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 | 96.83% | 2 |
-| `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 99.47% | 3 |
-| `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 97.80% | 3 |
-| `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 | 99.89% | 4 |
-| `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 | 99.77% | 4 |
-| `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 | 95.63% | 4 |
-| `src/sdk/card/cardi_start_rom_dma.c` | func_021162d8 | 340 | 99.71% | 5 |
-| `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 | 98.72% | 5 |
-| `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 | 97.38% | 5 |
-| `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 | 99.52% | 6 |
-| `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 | 98.98% | 6 |
-| `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 | 94.00% | 6 |
-| `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 | 94.00% | 6 |
-| `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 | 99.90% | 7 |
-| `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 | 99.90% | 7 |
-| `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 | 94.42% | 7 |
-| `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 | 99.63% | 8 |
-| `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 99.74% | 10 |
-| `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 99.64% | 10 |
-| `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 | 99.91% | 11 |
-| `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 | 94.12% | 11 |
-| `src/arm7/sdk/wl/func_arm7_027cab1c.c` | func_arm7_027cab1c | 100 | 95.60% | 13 |
-| `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 | 95.83% | 14 |
-| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 89.08% | 14 |
-| `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 | 99.98% | 15 |
-| `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 97.22% | 15 |
-| `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 94.13% | 15 |
-| `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 | 97.27% | 16 |
-| `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 | 85.97% | 17 |
-| `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 52.39% | 17 |
-| `src/sdk/msl/__fp_trap_ff.c` | __fp_trap_ff | 76 | 54.63% | 18 |
-| `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 | 54.63% | 18 |
-| `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 | 56.65% | 19 |
-| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 | 99.38% | 20 |
-| `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 | 60.14% | 21 |
-| `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 | 99.82% | 22 |
-| `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 | 99.81% | 22 |
-| `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 61.65% | 22 |
-| `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 | 94.72% | 25 |
-| `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 | 99.73% | 26 |
-| `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 | 99.70% | 26 |
-| `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 | 97.49% | 26 |
-| `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 | 99.07% | 28 |
-| `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 | 90.39% | 30 |
-| `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 84.98% | 30 |
-| `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 98.06% | 42 |
-| `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 | 72.36% | 42 |
-| `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 96.78% | 44 |
-| `src/arm7/sdk/wm/wmsp_start_scan_ex.c` | func_arm7_027c342c | 960 | 98.44% | 65 |
-| `src/sdk/msl/double2hex.c` | double2hex | 948 | 86.82% | 121 |
-| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 99.28% | 217 |
-| `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 88.31% | 284 |
+| `src/game/main/menus/campaign_map_init.c` | CampaignMap_Init | 3036 | 1 | 99.91% |
+| `src/game/main/ai/ai_site_group_rate_surroundings.c` | AiSiteGroup_RateSurroundings | 1584 | 2 | 99.99% |
+| `src/sdk/card/func_021154e8.c` | func_021154e8 | 252 | 2 | 96.83% |
+| `src/arm7/sdk/wm/func_arm7_027c6020.c` | func_arm7_027c6020 | 152 | 3 | 99.47% |
+| `src/sdk/card/cardi_set_backup_spec.c` | func_02115858 | 472 | 3 | 97.80% |
+| `src/game/main/func_02058b1c.c` | func_02058b1c | 1000 | 4 | 99.89% |
+| `src/game/main/ai/func_02099ba0.c` | func_02099ba0 | 524 | 4 | 99.77% |
+| `src/game/main/menus/func_0204e808.c` | func_0204e808 | 248 | 4 | 95.63% |
+| `src/sdk/card/cardi_start_rom_dma.c` | func_021162d8 | 340 | 5 | 99.71% |
+| `src/game/ov002/func_ov002_023552d0.c` | func_ov002_023552d0 | 1044 | 5 | 98.72% |
+| `src/game/main/map/func_020cb848.c` | func_020cb848 | 428 | 5 | 97.38% |
+| `src/game/main/map/func_020c0aa8.c` | func_020c0aa8 | 916 | 6 | 99.52% |
+| `src/game/ov005/func_ov005_0235b4c0.c` | func_ov005_0235b4c0 | 180 | 6 | 98.98% |
+| `src/game/main/menus/func_0204f160.c` | func_0204f160 | 160 | 6 | 94.00% |
+| `src/game/main/menus/func_0204f200.c` | func_0204f200 | 160 | 6 | 94.00% |
+| `src/game/main/screen/screen_prepare_h_blank_regs.c` | Screen_PrepareHBlankRegs | 1656 | 7 | 99.90% |
+| `src/game/main/ai/ai_oozium_move_to_target.c` | AiOozium_MoveToTarget | 1568 | 7 | 99.90% |
+| `src/game/main/map/func_020f9450.c` | func_020f9450 | 240 | 7 | 94.42% |
+| `src/arm7/sdk/wm/func_arm7_027c632c.c` | func_arm7_027c632c | 484 | 8 | 99.63% |
+| `src/game/main/units/move_path_follow_cursor.c` | MovePath_FollowCursor | 916 | 10 | 99.74% |
+| `src/game/main/link/func_0207f550.c` | func_0207f550 | 668 | 10 | 99.64% |
+| `src/game/ov002/func_ov002_02352754.c` | func_ov002_02352754 | 2564 | 11 | 99.91% |
+| `src/game/main/graphics/quad/quad_sprite_draw.c` | AnimSpriteTask_Draw | 484 | 11 | 94.12% |
+| `src/arm7/sdk/wl/func_arm7_027cab1c.c` | func_arm7_027cab1c | 100 | 13 | 95.60% |
+| `src/game/ov002/battle_fx_start_a.c` | func_ov002_02357e5c | 492 | 14 | 95.83% |
+| `src/game/ov000/unit_info_panel/unit_info_panel_draw_page.c` | UnitInfoPanel_DrawPage | 300 | 14 | 89.08% |
+| `src/game/main/ai/ai_unit_upgrade_wait_action.c` | AiUnit_UpgradeWaitAction | 3924 | 15 | 99.98% |
+| `src/game/ov003/func_ov003_02361c7c.c` | func_ov003_02361c7c | 700 | 15 | 97.22% |
+| `src/game/ov004/func_ov004_022bacd8.c` | func_ov004_022bacd8 | 212 | 15 | 94.13% |
+| `src/sdk/pm/pm_go_sleep_mode.c` | func_02114ae8 | 568 | 16 | 97.27% |
+| `src/game/main/menus/func_0204f0c0.c` | func_0204f0c0 | 160 | 17 | 85.97% |
+| `src/sdk/msl/__fp_trap_f.c` | __fp_trap_f | 72 | 17 | 52.39% |
+| `src/sdk/msl/__fp_trap_ff.c` | __fp_trap_ff | 76 | 18 | 54.63% |
+| `src/sdk/msl/func_02121ea8.c` | func_02121ea8 | 76 | 18 | 54.63% |
+| `src/sdk/msl/__fp_trap_d.c` | __fp_trap_d | 80 | 19 | 56.65% |
+| `src/game/ov002/func_ov002_023549c8.c` | func_ov002_023549c8 | 2312 | 20 | 99.38% |
+| `src/sdk/msl/func_02121d58.c` | func_02121d58 | 88 | 21 | 60.14% |
+| `src/game/main/screen/screen_apply_main.c` | Screen_ApplyMain | 3848 | 22 | 99.82% |
+| `src/game/main/screen/screen_apply_sub.c` | Screen_ApplySub | 3624 | 22 | 99.81% |
+| `src/sdk/msl/__fp_trap_dd.c` | __fp_trap_dd | 92 | 22 | 61.65% |
+| `src/game/ov004/func_ov004_022ad71c.c` | func_ov004_022ad71c | 352 | 25 | 94.72% |
+| `src/game/ov002/func_ov002_02358c40.c` | func_ov002_02358c40 | 1372 | 26 | 99.73% |
+| `src/game/ov004/func_ov004_022b1f98.c` | func_ov004_022b1f98 | 1736 | 26 | 99.70% |
+| `src/game/main/ai/ai_build_rate_site_danger.c` | AiBuild_RateSiteDanger | 1736 | 26 | 97.49% |
+| `src/game/ov006/func_ov006_023557b8.c` | func_ov006_023557b8 | 600 | 28 | 99.07% |
+| `src/game/ov004/ov004_blit_block_with_flags.c` | Ov004_BlitBlockWithFlags | 256 | 30 | 90.39% |
+| `src/sdk/msl/__fp_trap.c` | __fp_trap | 256 | 30 | 84.98% |
+| `src/game/main/menus/combat_map_draw_preview_block.c` | CombatMap_DrawPreviewBlock | 556 | 42 | 98.06% |
+| `src/game/ov005/func_ov005_0235b5dc.c` | func_ov005_0235b5dc | 188 | 42 | 72.36% |
+| `src/sdk/isd/isd_double_divide_by_ten.c` | func_0211fe0c | 1168 | 44 | 96.78% |
+| `src/arm7/sdk/wm/wmsp_start_scan_ex.c` | func_arm7_027c342c | 960 | 65 | 98.44% |
+| `src/sdk/msl/double2hex.c` | double2hex | 948 | 121 | 86.82% |
+| `src/sdk/isd/isd_v_format.c` | Isd_VFormat | 4960 | 217 | 99.28% |
+| `src/sdk/msl/__pformatter.c` | __pformatter | 2108 | 284 | 88.31% |

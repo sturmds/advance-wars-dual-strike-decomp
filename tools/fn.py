@@ -24,7 +24,14 @@ runs ninja for the object and objdiff.json, then objdiff-cli, prints both
 listings side by side (lines marked | differ; lines marked = name another
 symbol at the same address, or an absolute symbol from the module's list in
 configure.py (ARM9_ABSOLUTE_SYMBOLS, ARM7_ABSOLUTE_SYMBOLS) with the original
-word's value, and count as matching), and exits 0 only at 100%.
+word's value, and count as matching), and exits 0 only at 100%. Its last line,
+`NAME: N differ, P% match`, gives the rows marked | and objdiff's percentage.
+Rank attempts by N, then P (issue 0067): objdiff's score charges one wrong
+opcode as much as 12 wrong registers, and charges for = rows too. N can
+differ from `fn.py check`'s count: check compares by position, so one
+missing or extra instruction makes it count every one after it, while
+objdiff lines the listings up first and may show a changed instruction as
+one row each side has alone. They agree when the listings line up one to one.
 
 `pick --families` is based on khdays-decomp tools/pick_family.py
 (CC0 1.0, commit ba2de370; see docs/third-party/khdays-decomp.md).
@@ -641,8 +648,46 @@ def cmd_diff(args) -> int:
     if same:
         print(f"\n= : {len(same)} relocation(s) name another symbol at the same address,"
               " or an absolute symbol of the same value; counted as matching.")
-    print(f"\n{f.name}: {percent if percent is not None else '?'}% match")
+    print(f"\n{f.name}: {differ} differ, {percent if percent is not None else '?'}% match")
     return 0 if percent == 100.0 else 1
+
+
+@dataclass
+class DiffScore:
+    """What `fn.py diff` printed: rows marked | (`=` rows not counted),
+    objdiff's percentage, and the listing as (original, ours, mark) rows."""
+    differ: int
+    percent: float | None
+    rows: list[tuple[str, str, str]]
+
+    def rank(self) -> tuple[int, float]:
+        return rank(self.differ, self.percent)
+
+
+def rank(differ: int, percent: float | None) -> tuple[int, float]:
+    """Sort key, closest first: fewest differing rows, then the highest
+    percentage (issue 0067)."""
+    return differ, -(percent or 0.0)
+
+
+DIFF_LAST = re.compile(r"^\S+: (\d+) differ, ([\d.]+|\?)% match$", re.M)
+
+
+def parse_diff(out: str) -> DiffScore | None:
+    """Read `fn.py diff --color never` output. None when it has no listing
+    (a compile error, a function the file does not define)."""
+    lines = out.splitlines()
+    head = next((i for i, ln in enumerate(lines) if ln.startswith("original")), None)
+    m = DIFF_LAST.search(out)
+    if head is None or not m:
+        return None
+    width = lines[head].index("ours") - 3
+    rows = []
+    for ln in lines[head + 1:]:
+        if not ln.strip():
+            break
+        rows.append((ln[:width].strip(), ln[width + 3:].strip(), ln[width + 1:width + 2]))
+    return DiffScore(int(m.group(1)), None if m.group(2) == "?" else float(m.group(2)), rows)
 
 
 def painter(when: str):

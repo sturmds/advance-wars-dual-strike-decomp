@@ -15,7 +15,7 @@ How the top-level Claude session runs batches of agents, each matching one funct
    ```
    It replays the commit by meaning (delinks entries by address, symbol renames by address and all in one pass, so A → B plus C → A never chain, other symbol and relocation lines added, removed or changed by name and `from:` address, headers as below, source files with a 3-way merge; a deleted file goes when mainline's copy differs only in names, and an edit to a file mainline moved is a conflict unless it only renames symbols) and commits with the original message; the hooks run `make release` and write `PROGRESS.md`. On a conflict it stops with the changes staged.
 6. **After the batch.** Rerun `propagate.py` (new heads pay for their families) and run `permute.py` on each new partial. Record the runs in `tools.txt` and each agent's tokens in `loop-prompts/batchN/log.txt` (`group | matched/attempted | model | tokens | minutes | landed | family members propagated from this agent's heads`). Each batch row below reports model-only and total functions per 1M model tokens.
-7. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and best percentage in the batch log below.
+7. **Clean up.** `git worktree remove` each finished worktree and delete its branch. Partial attempts can be kept for a second pass: note the function and its best attempt as `<n> differ (<percent>%)` in the batch log below, ranked by the count first (issue 0067).
 
 ## Shared headers
 

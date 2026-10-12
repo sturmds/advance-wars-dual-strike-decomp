@@ -505,6 +505,15 @@ def src_path(f: dict) -> str:
     return f"src/game/{f['module']}/{f['name']}.c"
 
 
+def better(r: dict, best: dict | None) -> bool:
+    """True when attempt r should replace best as a candidate's closest
+    failure: one that compiled beats one that did not, then fewest differing
+    instructions, then highest percentage (issue 0067)."""
+    if best is None or best["status"] != "differ":
+        return True
+    return r["status"] == "differ" and fn.rank(r["differ"], r["percent"]) < fn.rank(best["differ"], best["percent"])
+
+
 # ---------------------------------------------------------------- driver
 
 def fn_cli(*args) -> subprocess.CompletedProcess:
@@ -596,9 +605,9 @@ def main() -> int:
                          "why": res.compiler_output.strip().splitlines()[0] if res.compiler_output.strip() else ""}
                 else:
                     pct = 100.0 * (res.units - res.differ) / res.units
-                    r = {"name": cand["name"], "template": tpl.f["name"], "status": "differ", "percent": round(pct, 2),
-                         "why": str(res)}
-                if best is None or best["status"] != "differ" or (r["status"] == "differ" and r["percent"] > best["percent"]):
+                    r = {"name": cand["name"], "template": tpl.f["name"], "status": "differ", "differ": res.differ,
+                         "percent": round(pct, 2), "why": str(res)}
+                if better(r, best):
                     best = r
         return best
 

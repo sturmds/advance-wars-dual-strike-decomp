@@ -1,6 +1,6 @@
 # 0067: Partials are ranked by objdiff's percentage, which favours register differences over a closer match
 
-- **Status:** open
+- **Status:** closed
 - **Area:** loop
 - **Opened:** 2026-10-12
 - **Milestone:** M2
@@ -31,3 +31,11 @@ CampaignMap_Init (main 0x0204f960), scored with objdiff-cli 3.8.2 against the de
 - `fn.py diff` prints the number of differing instructions (`fn.py check`'s count, `=` rows not counted) next to objdiff's percentage, and the decomp-function skill reports it as `BEST:` (for example `BEST: 1 differ (99.91%)`).
 - `triage_partials.py`, `propagate.py`, `partials-parked.md` and the partials job templates rank by the count first.
 - The partials guidance in `docs/workflow.md` says to try combining the best halves of different attempts, since each half can match on its own (CampaignMap_Init).
+
+## Fixed (2026-10-12)
+
+`fn.py diff` ends with `NAME: N differ, P% match`: N counts the `|` rows, so `=` rows do not count. `fn.parse_diff` reads that output and `fn.rank` sorts by N, then P; `triage_partials.py` (within a class, `Differ rows` before `Match`), `progress.py` (the "Partial functions" list, `Differ` before `Match`) and `propagate.py` (`better()`, the closest failed template) use them. The decomp-function skill reports `BEST: <n> differ (<percent>%)`, and the partials job templates, `docs/workflow.md` ("Order of work", step 6) and `docs/loop.md` rank by the count and say to try combining the best halves of different attempts. `partials-parked.md` has the count for every row, from `fn.py diff` on the mainline file.
+
+N is objdiff's aligned count, not always `fn.py check`'s: on the 32 parked functions they differ for 13, from AiBuild_RateSiteDanger (26 in `diff`, 82 in `check`, which compares by position and counts everything after a missing instruction) to func_0204f0c0 (17 and 15, where objdiff shows a changed instruction as two one-sided rows). The parked list gives check's count next to diff's where they differ.
+
+Tests: `make test` (`tools/tests/test_ranking.py`: parsing the last line, and the three CampaignMap_Init versions in fn.rank, triage_partials.sort_key and propagate.better).

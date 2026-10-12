@@ -45,20 +45,10 @@ REG = re.compile(r"\b(r\d+|ip|lr|sb|sl|fp)\b")
 
 def diff_rows(name: str):
     """[(original, ours, mark)] from `fn.py diff`, and the percentage."""
-    out = subprocess.run([sys.executable, str(ROOT / "tools/fn.py"), "diff", name],
+    out = subprocess.run([sys.executable, str(ROOT / "tools/fn.py"), "diff", "--color", "never", name],
                          cwd=ROOT, capture_output=True, text=True).stdout
-    lines = out.splitlines()
-    head = next((i for i, ln in enumerate(lines) if ln.startswith("original")), None)
-    m = re.search(r"([\d.]+)% match", out)
-    if head is None or not m:
-        return None, None
-    width = lines[head].index("ours") - 3
-    rows = []
-    for ln in lines[head + 1:]:
-        if not ln.strip():
-            break
-        rows.append((ln[:width].strip(), ln[width + 3:].strip(), ln[width + 1:width + 2]))
-    return rows, float(m.group(1))
+    score = fn.parse_diff(out)
+    return (score.rows, score.percent) if score else (None, None)
 
 
 def norm(ins: str, regs: bool) -> str:
@@ -152,7 +142,7 @@ def main() -> int:
         if nb:
             row["neighbour"] = {"dist": nb[0], "file": nb[1], "pragmas": nb[2]}
         rows[n] = row
-        print(f"{n}: {row['class']} {pct}%", file=sys.stderr)
+        print(f"{n}: {row['class']} {row.get('differ', '?')} differ, {pct}%", file=sys.stderr)
 
     if not a.no_sweep:
         index = fnindex.load()
@@ -183,16 +173,16 @@ def main() -> int:
 
 
 def markdown(rows) -> str:
-    order = ["register-only", "order", "missing/extra", "structural", "match", "no diff"]
     counts = Counter(r["class"] for r in rows)
     out = ["# Partial functions: triage", "",
            "Written by `tools/triage_partials.py`. Classes from `fn.py diff`; `sweep` is the best",
            "`tools/pragmas.py` score (instructions that differ after alignment) against the build flags.",
+           "Within a class, fewest differing rows first, then objdiff's percentage (issue 0067).",
            "", "| Class | Functions |", "|---|---:|"]
-    out += [f"| {c} | {counts[c]} |" for c in order if counts[c]]
-    out += ["", "| Function | Module | Bytes | Match | Class | Differ rows | Instr. orig/ours | Sweep: flags -> best | Best setting | Nearest pragma file | Proto |",
-            "|---|---|---:|---:|---|---:|---|---|---|---|---|"]
-    for r in sorted(rows, key=lambda r: (order.index(r["class"]) if r["class"] in order else 9, -(r["pct"] or 0))):
+    out += [f"| {c} | {counts[c]} |" for c in CLASSES if counts[c]]
+    out += ["", "| Function | Module | Bytes | Differ rows | Match | Class | Instr. orig/ours | Sweep: flags -> best | Best setting | Nearest pragma file | Proto |",
+            "|---|---|---:|---:|---:|---|---|---|---|---|---|"]
+    for r in sorted(rows, key=sort_key):
         sw = r.get("sweep", {})
         if sw.get("best") is not None:
             gain = f"{sw['base']} -> {sw['best']}{' MATCH' if sw.get('ok') else ''}"
@@ -204,10 +194,21 @@ def markdown(rows) -> str:
         if nb:
             where = "adjacent" if nb["dist"] == 0 else f"{nb['dist']:#x} away"
             nbs = f"{Path(nb['file']).name}: {'; '.join(nb['pragmas'])} ({where})"
-        out.append(f"| {r['name']} | {r['module']} | {r['size']} | {r['pct'] if r['pct'] is not None else '?'}% | "
-                   f"{r['class']} | {r.get('differ', '')} | {r.get('orig', '')}/{r.get('ours', '')} | {gain} | "
+        out.append(f"| {r['name']} | {r['module']} | {r['size']} | {r.get('differ', '')} | "
+                   f"{r['pct'] if r['pct'] is not None else '?'}% | {r['class']} | "
+                   f"{r.get('orig', '')}/{r.get('ours', '')} | {gain} | "
                    f"{setting} | {nbs} | {proto_text(r.get('proto', {}))} |")
     return "\n".join(out) + "\n"
+
+
+CLASSES = ["register-only", "order", "missing/extra", "structural", "match", "no diff"]
+
+
+def sort_key(r: dict):
+    """Class order, then fewest differing rows, then highest percentage.
+    A row with no diff has no count and goes last in its class."""
+    cls = CLASSES.index(r["class"]) if r["class"] in CLASSES else len(CLASSES)
+    return (cls, *fn.rank(r["differ"], r["pct"])) if "differ" in r else (cls, float("inf"), 0.0)
 
 
 def proto_text(kinds: dict) -> str:
