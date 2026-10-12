@@ -1664,6 +1664,10 @@ src/arm7/sdk/wl/wifi_tx_loc3_slot_done.c:
     complete
     .text       start:0x027d08b8 end:0x027d0924
 
+src/arm7/sdk/wl/wifi_tx_data_slot_done.c:
+    complete
+    .text       start:0x027d0d58 end:0x027d0ee8
+
 src/arm7/sdk/wl/wifi_task_sort_data_frame.c:
     complete
     .text       start:0x027d182c end:0x027d1948

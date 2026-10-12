@@ -231,7 +231,8 @@ typedef struct WlLink {
     u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
     u16 unk_8c;                    /* WlState.unk_a4 */
-    u8 pad_8e[4];
+    u16 unk_8e;
+    u8 pad_90[2];
     u16 ssidOffset;                /* SSID element in the tx frame payload */
     u8 pad_94[0x96 - 0x94];
     u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
@@ -365,6 +366,7 @@ typedef struct WlRxFrame {
 #define WIFI_FRAMECTL_SENT_TO_AP 0x100
 #define WIFI_FRAMECTL_SENT_BY_AP 0x200
 #define WIFI_FRAMECTL_FRAGMENTS_FOLLOW 0x400
+#define WIFI_FRAMECTL_MORE_BUFFERED 0x2000
 
 /* Destination, source and sequence of a received data frame, worked out from
    the To DS and From DS bits. */
