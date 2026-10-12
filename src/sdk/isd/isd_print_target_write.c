@@ -3,7 +3,7 @@
 #include "types.h"
 #include "sdk/isd.h"
 
-void func_02120ad4(IsdRing *ring, int byte);
+void Isd_ChannelRingWriteByte(IsdRing *ring, int byte);
 
 /*
  * Write callback of the formatter's output target: sends each byte of text to the debugger
@@ -22,7 +22,7 @@ void Isd_PrintTargetWrite(IsdPrintTarget *target, const char *text, u32 length)
         if (Isd_TestFlags(ISD_FLAG_CART_RING)) {
             writer = Isd_CartRingWriteByte;
         } else if (Isd_TestFlags(ISD_FLAG_CHANNEL_RING)) {
-            writer = func_02120ad4;
+            writer = Isd_ChannelRingWriteByte;
         }
         if (writer != NULL) {
             Isd_AcquireCartridge(&savedState);

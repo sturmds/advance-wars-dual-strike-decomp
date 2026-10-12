@@ -23255,7 +23255,8 @@ src/sdk/isd/isd_string_length.c:
     complete
     .text       start:0x02120a9c end:0x02120ad4
 
-src/sdk/isd/func_02120ad4.c:
+src/sdk/isd/isd_channel_ring_write_byte.c:
+    complete
     .text       start:0x02120ad4 end:0x02120b64
 
 src/sdk/isd/isd_cart_ring_write_byte.c:
