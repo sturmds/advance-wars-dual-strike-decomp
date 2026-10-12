@@ -139,7 +139,8 @@ typedef struct WlLimits {
     u8 pad_00[0xd8];
     struct OSMessageQueue *toHost;   /* buffers the driver hands to the host side */
     struct OSMessageQueue *fromHost; /* buffers the host side hands to the driver */
-    u8 pad_e0[0xe8 - 0xe0];
+    u32 unk_e0;
+    u32 unk_e4;                      /* 0xffffffff when set up as 0 */
     u32 spiLockId;                 /* 0xe8 id WL passes to SPI_Lock */
     WlWifiConfig *wifiConfig;      /* 0xec copy of the flash wifi block, or NULL */
     u32 unk_f0;
@@ -368,7 +369,8 @@ typedef struct WlWork {
     u16 topPriority;   /* lowest priority number that may hold a task */
     u16 runPriority;
     u16 runTask;
-    u8 pad_016[0x7a];
+    u8 pad_016[2];
+    OSThread thread;   /* runs WifiTask_ThreadMain */
     WlTask tasks[24];
     WlBufferAllocator allocator;
     WlBufferList unk_15c;          /* holds the wifi config buffer */
@@ -397,6 +399,9 @@ typedef struct WlWork {
     WlRfConfig rf;
     OSAlarm periodicAlarm;
     OSAlarm oneShotAlarm;
+    u32 unk_634;
+    u16 unk_638;
+    u16 unk_63a;
 } WlWork;
 
 #define WIFI_ANTENNA_SELECT (*(volatile u16 *)0x04808290)

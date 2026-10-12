@@ -21,7 +21,7 @@ extern u8 data_arm7_027d7d3c[];
 void Wmsp_ReceiveRequest(int tag, WmspRequest *request, BOOL error);
 void func_arm7_027c1c5c(void *arg);
 void func_arm7_027c1cf8(void *arg);
-void func_arm7_027c7ab4(Unk_arm7_038057d4 *params);
+u16 Wifi_StartDriver(Unk_arm7_038057d4 *params);
 
 /* Sets up WMSP: its queues, reply mutex and two threads, the ARM9 request callback, then starts WL. */
 void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *priorities)
@@ -65,5 +65,5 @@ void Wmsp_Init(Unk_arm7_038057d4 *params, Unk_arm7_038057d4_2 *priorities)
     Fifo_RegisterTagHandler_Arm7(PXI_FIFO_TAG_WM, (PXIFifoCallback)Wmsp_ReceiveRequest);
     params->unk_18 = 2;
     params->unk_0c = priorities->unk_14;
-    func_arm7_027c7ab4(params);
+    Wifi_StartDriver(params);
 }
