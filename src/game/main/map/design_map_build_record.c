@@ -21,6 +21,7 @@ void DesignMap_BuildRecord(const char *name, DesignMapRecord *record, int countH
     u16 hqs;
     int x;
     u8 terrainTile;
+    int terrain;
     u8 ownerCodes[6];
     int y;
     u16 tile;
@@ -56,11 +57,12 @@ void DesignMap_BuildRecord(const char *name, DesignMapRecord *record, int countH
             record->tileCodes[tile++] = GAME->mapTiles->mapCells[TILE_INDEX(x, y)];
             state = GAME;
             terrainTile = state->mapTiles->tiles[x + state->mapTiles->rowStart[y]];
-            if (Ov000_gUrbanTerrain[MAP_TILE_TERRAIN(terrainTile)] != 0) {
+            terrain = MAP_TILE_TERRAIN(terrainTile);
+            if (Ov000_gUrbanTerrain[terrain] != 0) {
                 urbanCounts[5]++;
                 urbanCounts[terrainTile >> 5]++;
             }
-            if (MAP_TILE_TERRAIN(terrainTile) == TERRAIN_HQ) {
+            if (terrain == TERRAIN_HQ) {
                 hqs++;
             }
         }

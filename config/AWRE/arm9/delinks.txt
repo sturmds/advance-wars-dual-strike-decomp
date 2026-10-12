@@ -15691,6 +15691,7 @@ src/game/main/map/design_map_spawn_units.c:
     .text       start:0x020d727c end:0x020d73d4
 
 src/game/main/map/design_map_build_record.c:
+    complete
     .text       start:0x020d73d4 end:0x020d76f0
 
 src/game/main/map/design_map_save.c:
