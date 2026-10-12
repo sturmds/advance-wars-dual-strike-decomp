@@ -31,7 +31,8 @@ typedef struct WlStation {
     u16 unk_10; /* bit 1: send to this station at 2 Mbit/s */
     u8 pad_12[0x4];
     u16 queuedFrames;
-    u8 pad_18[4];
+    u16 unk_18; /* reloaded from unk_1a */
+    u16 unk_1a;
 } WlStation;
 
 /* The wifi block of the firmware flash header, from offset 0x2a: a CRC-16
@@ -297,6 +298,19 @@ typedef struct WlWork {
 #define IRQ_MASK_WIRELESS 0x1000000
 
 WlStation *WifiStation_Entry(u16 index);
+
+/*
+ * WlLimits 0xf0-0xf7 seen as one struct: unk_f0 holds the station table
+ * address as a u32, unk_f6 the number of entries (entry 0 included).
+ */
+typedef struct WlStationTable {
+    WlStation *stations;
+    u16 maxCount;
+    u16 count;
+} WlStationTable;
+
+#define WIFI_PEER_TABLE_INFO ((WlStationTable *)&WIFI_DRIVER_STATE->limits.unk_f0)
+#define WIFI_PEER_ARRAY (WIFI_PEER_TABLE_INFO->stations)
 
 /* TX header rate codes, in 100 kbit/s. */
 #define WIFI_RATE_CODE_1M 10

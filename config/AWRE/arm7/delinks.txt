@@ -660,6 +660,10 @@ src/arm7/sdk/wl/wifi_station_give_assoc_id.c:
     complete
     .text       start:0x027cb1cc end:0x027cb27c
 
+src/arm7/sdk/wl/func_arm7_027cb27c.c:
+    complete
+    .text       start:0x027cb27c end:0x027cb2a0
+
 src/arm7/sdk/func_arm7_027cb2a0.c:
     complete
     .text       start:0x027cb2a0 end:0x027cb2b8
