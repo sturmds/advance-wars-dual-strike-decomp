@@ -217,7 +217,9 @@ typedef struct WlLink {
     u16 unk_88; /* station index of data frames sent outside phase 1 */
     u16 flags_8a;
     u16 unk_8c;                    /* WlState.unk_a4 */
-    u8 pad_8e[0x96 - 0x8e];
+    u8 pad_8e[4];
+    u16 ssidOffset;                /* SSID element in the tx frame payload */
+    u8 pad_94[0x96 - 0x94];
     u16 gameInfoOffset; /* Nintendo element offset in the beacon, same halfword as WlState.unk_ae */
     u8 pad_98[0x9c - 0x98];
     u8 *gameInfo;       /* sent in the Nintendo element of the beacon */
@@ -463,8 +465,7 @@ typedef struct WlState {
     u16 unk_98;
     u8 pad_9a[0xa];
     u16 unk_a4;
-    u8 pad_a6[4];
-    u16 unk_aa;
+    u8 pad_a6[0xac - 0xa6];
     /* Wi-Fi RAM offset of the beacon frame that holds the TIM element. */
     u16 timOffset;
     u16 unk_ae;
