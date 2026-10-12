@@ -44,6 +44,7 @@ typedef struct SndHwChannel {
 /* Byte registers of the channel whose block starts blockOffset bytes (channel << 4) from the first. */
 #define AUDIO_CH_LOUDNESS_BYTE(blockOffset) (*(u8 *)(0x4000400 + (blockOffset)))
 #define AUDIO_CH_BALANCE_BYTE(blockOffset) (*(u8 *)(0x4000402 + (blockOffset)))
+#define AUDIO_CH_LOUDNESS_DIVIDER(blockOffset) (*(u16 *)(0x4000400 + (blockOffset)))
 #define AUDIO_CH_PLAYING_FLAG 0x80
 
 /* Channels 1 and 3 can feed the mixer directly, so volume scaling skips them. */
