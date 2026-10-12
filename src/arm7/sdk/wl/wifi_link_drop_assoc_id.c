@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_027d0424(void);
+void WifiTx_DropStationFrames(void);
 void WifiStation_ChangeState(u16 station, u16 state);
 
 void WifiLink_DropAssocId(void)
@@ -13,7 +13,7 @@ void WifiLink_DropAssocId(void)
     IO_WIRELESS_STATION_ID_4BIT = 0;
     IO_WIRELESS_STATION_ID = 0;
     if (params->unk_88 != 0) {
-        func_arm7_027d0424();
+        WifiTx_DropStationFrames();
         WifiStation_ChangeState(params->unk_88, 32);
         params->unk_88 = 0;
     }

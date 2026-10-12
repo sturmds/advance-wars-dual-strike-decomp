@@ -3,7 +3,7 @@
 
 u16 func_arm7_027cb140(u32 station);   /* station state */
 void WifiStation_ChangeState(u16 station, u16 state);
-void func_arm7_027d0424(u32 station);  /* ends the frames queued for the station */
+void WifiTx_DropStationFrames(u32 station);  /* ends the frames queued for the station */
 void Wifi_SwitchMode(int mode);
 
 /*
@@ -21,7 +21,7 @@ void WifiRx_HandleDeauthFrame(WlRxFrame *frame)
         if (func_arm7_027cb140(station) > WIFI_PEER_KNOWN_ONLY) {
             WifiStation_ChangeState(station, WIFI_PEER_KNOWN_ONLY);
             WifiHost_TellDeauthenticated((const u8 *)frame->addr2, frame->body[0]);
-            func_arm7_027d0424(station);
+            WifiTx_DropStationFrames(station);
         }
         break;
     case 2:

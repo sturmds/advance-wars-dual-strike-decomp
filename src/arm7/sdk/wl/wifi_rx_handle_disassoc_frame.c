@@ -2,7 +2,7 @@
 
 u16 func_arm7_027cb140(u32 station); /* the station's state */
 void WifiStation_ChangeState(u16 station, u16 state);
-void func_arm7_027d0424(u32 station);
+void WifiTx_DropStationFrames(u32 station);
 WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason);
 WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason);
 void WifiTx_EnqueueMgmt(void *frame);
@@ -29,7 +29,7 @@ void WifiRx_HandleDisassocFrame(WlRxFrame *frame)
         if (state == WIFI_PEER_ASSOCIATED) {
             WifiStation_ChangeState(station, 0x30);
             WifiHost_TellDisassociated((const u8 *)frame->addr2, frame->body[0]);
-            func_arm7_027d0424(station);
+            WifiTx_DropStationFrames(station);
         } else {
             if (state == 0x30) {
                 reply = WifiFrame_NewDisassociation(frame->addr2, 7);
