@@ -687,6 +687,10 @@ src/arm7/sdk/func_arm7_037fdc78.c:
     complete
     .text       start:0x037fdc78 end:0x037fdca8
 
+src/arm7/sdk/os/func_arm7_037fdca8.c:
+    complete
+    .text       start:0x037fdca8 end:0x037fdce4
+
 src/arm7/sdk/func_arm7_037fdce4.c:
     complete
     .text       start:0x037fdce4 end:0x037fdcf4
