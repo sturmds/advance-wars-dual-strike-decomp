@@ -557,9 +557,9 @@ def main() -> int:
         sys.exit("error: conflict in " + ", ".join(CONFLICTS) + "; resolve, then commit by hand")
 
     # A merged header or a commit made before `make format` existed would
-    # fail make release's format check.
+    # fail make release's format check. The test repos have no style file.
     sources = [p for p in paths if p.startswith(("src/", "include/")) and (ROOT / p).exists()]
-    if sources:
+    if sources and (ROOT / ".clang-format").exists():
         subprocess.run([sys.executable, Path(__file__).resolve().parent / "format.py", *sources],
                        cwd=ROOT, check=True)
     git("add", "-A", "config", "src", "include", "docs")
