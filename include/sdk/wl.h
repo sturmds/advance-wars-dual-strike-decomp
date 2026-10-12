@@ -333,6 +333,28 @@ typedef struct WlAuthFrame {
     u16 status;
 } WlAuthFrame;
 
+/* Scan request (task 0, WifiMlme_RunScan). */
+typedef struct WlScanRequest {
+    u8 pad_00[0x10];
+    u16 peer[3];         /* address handed to the probe request builder */
+    u8 pad_16[0x38 - 0x16];
+    u16 unk_38;          /* nonzero: send no probe requests */
+    u8 channels[16];     /* 0 ends the list */
+    u16 channelTimeMs;   /* time spent on each channel */
+} WlScanRequest;
+
+typedef struct WlScanJob {
+    u16 state;
+    u8 pad_02[4];
+    u16 channelIndex;    /* next entry of request->channels */
+    u16 unk_08;
+    u16 elapsedMs;       /* time spent on the current channel */
+    u16 probeIntervalMs;
+    u8 pad_0e[0xa];
+    WlScanRequest *request;
+    WlReply *reply;
+} WlScanJob;
+
 /* Task 1 (func_arm7_027cc5ac): waits for the receive path to fill result. */
 typedef struct WlTask1Request {
     u8 pad_00[0x10];
@@ -368,6 +390,7 @@ typedef union WlMlme {
     WlMeasureChannelJob measure;
     WlPeerJob peer;
     WlTask1Job task1;
+    WlScanJob scan;
 } WlMlme;
 
 /* The host request being handled; task 11 takes it from the inbox. */

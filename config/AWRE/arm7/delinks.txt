@@ -1048,6 +1048,10 @@ src/arm7/sdk/wl/func_arm7_027cc5ac.c:
     complete
     .text       start:0x027cc5ac end:0x027cc648
 
+src/arm7/sdk/wl/wifi_scan_tick_alarm.c:
+    complete
+    .text       start:0x027cc648 end:0x027cc6a8
+
 src/arm7/sdk/wl/wifi_cmd_report_assoc_listen.c:
     complete
     .text       start:0x027cd484 end:0x027cd4ac
