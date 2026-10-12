@@ -644,6 +644,10 @@ src/arm7/sdk/wl/wifi_tx_resend_queue_head.c:
     complete
     .text       start:0x027c81f4 end:0x027c8240
 
+src/arm7/sdk/wl/wifi_tx_halt_and_settle.c:
+    complete
+    .text       start:0x027c8240 end:0x027c8284
+
 src/arm7/sdk/wl/wifi_step_lcg.c:
     complete
     .text       start:0x027c8390 end:0x027c83c8

@@ -1,7 +1,7 @@
 #include "sdk/wl.h"
 
 void WifiTx_ResendQueueHead(WlTxQueue *queue);
-void func_arm7_027c8240(void);
+void WifiTx_HaltAndSettle(void);
 BOOL func_arm7_027c8284(WlTxQueue *queue);
 void WifiTx_BuildPsPoll(u32 aid);
 void func_arm7_027cfd48(void);
@@ -21,7 +21,7 @@ void WifiTx_RepairDamagedQueues(void)
     switch (work->state.unk_24) {
     case 1:
         if (func_arm7_027c8284(&queues[6])) {
-            func_arm7_027c8240();
+            WifiTx_HaltAndSettle();
             func_arm7_027cfd48();
         }
         if (func_arm7_027c8284(&queues[2])) {
@@ -32,7 +32,7 @@ void WifiTx_RepairDamagedQueues(void)
         func_arm7_027c8284(&queues[5]);
         if (func_arm7_027c8284(&queues[2])) {
             if (queues[2].busy != 0) {
-                func_arm7_027c8240();
+                WifiTx_HaltAndSettle();
             }
             WifiTx_BuildPsPoll(link->aid);
             link->unk_b8++;
