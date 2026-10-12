@@ -703,6 +703,10 @@ src/arm7/sdk/mi/func_arm7_037fdd34.c:
     complete
     .text       start:0x037fdd34 end:0x037fddb8
 
+src/arm7/sdk/mi/func_arm7_037fddb8.c:
+    complete
+    .text       start:0x037fddb8 end:0x037fde28
+
 src/arm7/sdk/func_arm7_037fde28.c:
     complete
     .text       start:0x037fde28 end:0x037fde40
