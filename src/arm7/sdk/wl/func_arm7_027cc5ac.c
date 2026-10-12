@@ -3,12 +3,12 @@
 void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void func_arm7_027cc574(void *arg);
 void func_arm7_037f8e04(void);
-void func_arm7_037f92c8(void);
+void Wifi_CloseSession(void);
 
 /*
  * WL task 1. State 0x20 calls func_arm7_037f8e04 and waits in 0x21, at most
  * request->timeoutMs, for the receive path to set result. State 0x25 sends
- * the reply; on failure it also calls func_arm7_037f92c8, which undoes
+ * the reply; on failure it also calls Wifi_CloseSession, which undoes
  * func_arm7_037f8e04 in the other steps too.
  */
 void func_arm7_027cc5ac(void)
@@ -27,7 +27,7 @@ void func_arm7_027cc5ac(void)
         job->reply->unk_04 = job->result;
         job->reply->value = job->unk_06;
         if (job->result != WIFI_ANSWER_OK) {
-            func_arm7_037f92c8();
+            Wifi_CloseSession();
         }
         job->state = 0;
         WifiHost_ReturnCurrentRequest();

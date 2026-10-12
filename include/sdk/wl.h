@@ -135,6 +135,7 @@ typedef struct WlTestModeRequest {
 #define WIFI_MODE_RADIO_ON 16
 #define WIFI_MODE_CARRIER_TEST 17
 #define WIFI_MODE_FRAME_TEST 18 /* sends the frame in WIFI_PACKET_RAM again on every TX done */
+#define WIFI_MODE_READY 32     /* entered by Wifi_CloseSession */
 
 // Entries of the table at WlLimits.unk_f0, indexed from 1 (see func_arm7_027cdd18).
 typedef struct Unk_027cdd18 {
@@ -197,7 +198,9 @@ typedef struct WlLink {
     u16 mode;
     u8 pad_0a[2];
     u16 unk_0c;
-    u8 pad_0e[0x16 - 0x0e];
+    u8 pad_0e[0x12 - 0x0e];
+    u16 unk_12;
+    u8 pad_14[0x16 - 0x14];
     u16 testRate;   /* 10 or 20, from the WifiCmd_RunRadioTest request */
     u16 testTxActive;
     u8 pad_1a[4];

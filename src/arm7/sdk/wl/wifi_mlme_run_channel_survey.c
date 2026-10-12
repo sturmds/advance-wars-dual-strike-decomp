@@ -10,7 +10,7 @@ void WifiRf_TuneChannel(u16 channel, int arg);
 void func_arm7_027cbfc8(void);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
-void func_arm7_037f92c8(void);
+void Wifi_CloseSession(void);
 
 /*
  * One step of the channel measurement started by WifiCmd_StartChannelSurvey. For each
@@ -79,7 +79,7 @@ void WifiMlme_RunChannelSurvey(void)
         job->state = 0x81;
         break;
     case 0x84:
-        func_arm7_037f92c8();
+        Wifi_CloseSession();
         link->unk_0c = WIFI_DRIVER_STATE->state.phase;
         WifiBaseband_Put(0x13, job->savedReg13);
         WifiBaseband_Put(0x35, job->savedReg35);

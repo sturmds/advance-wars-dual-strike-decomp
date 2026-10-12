@@ -1,6 +1,6 @@
 #include "sdk/wl.h"
 
-void func_arm7_037f92c8(void); /* stops the current session */
+void Wifi_CloseSession(void); /* stops the current session */
 void func_arm7_027c9438(void);
 
 /*
@@ -11,7 +11,7 @@ void WifiTask_BeginShutdown(void)
 {
     WIFI_DRIVER_STATE->state.unk_12 |= 0x8000;
     if (WIFI_DRIVER_STATE->state.mode != 0) {
-        func_arm7_037f92c8();
+        Wifi_CloseSession();
         if (WIFI_JOB_AREA_OF(WIFI_DRIVER_STATE)->unk_00 != 0) {
             WIFI_JOB_AREA_OF(WIFI_DRIVER_STATE)->unk_00 = 0;
             WIFI_JOB_AREA_OF(WIFI_DRIVER_STATE)->unk_1c->unk_04 = 6;

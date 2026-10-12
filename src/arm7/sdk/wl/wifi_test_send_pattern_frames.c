@@ -2,7 +2,7 @@
 #include "sdk/wl.h"
 
 void func_arm7_037f8e04(void);
-void func_arm7_037f92c8(void);
+void Wifi_CloseSession(void);
 void WifiRf_TuneChannel(int channel, int arg1);
 void func_arm7_027c87b8(int a0);
 
@@ -16,7 +16,7 @@ void WifiTest_SendPatternFrames(WlTestModeRequest *request)
     volatile u16 *p;
 
     func_arm7_037f8e04();
-    func_arm7_037f92c8();
+    Wifi_CloseSession();
     link->savedBbReg6 = WifiBaseband_Get(6);
     if (request->signal == 4) {
         WifiBaseband_Put(6, 0);

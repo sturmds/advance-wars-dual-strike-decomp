@@ -8,7 +8,7 @@ void *func_arm7_027cf6e0(u16 *peer);
 void func_arm7_027d01c4(void *frame);
 u32 WifiFlash_ValidateRadioBlock(u32 *crcs);
 void func_arm7_037f8e04(void);
-void func_arm7_037f92c8(void);
+void Wifi_CloseSession(void);
 void func_arm7_037f9380(int arg);
 
 /*
@@ -82,7 +82,7 @@ void WifiMlme_RunScan(void)
         break;
     case 0x15:
         job->state = 0;
-        func_arm7_037f92c8();
+        Wifi_CloseSession();
         link->unk_0c = WIFI_DRIVER_STATE->state.phase;
         WifiHost_ReturnCurrentRequest();
         break;
