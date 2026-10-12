@@ -253,6 +253,12 @@ typedef struct WlWork {
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))
 
+/* One entry of a register setup table: write value to WIFI_MAC_REGISTER(offset). */
+typedef struct WlRegValue {
+    u16 offset;
+    u16 value;
+} WlRegValue;
+
 /* End of the MAC RAM ring buffer read by WifiRx_CopyFromRingWrapped. */
 #define WIFI_RX_RING_LIMIT 0x04805f60
 
