@@ -11,9 +11,11 @@
 typedef struct UserSettings {
     u8 unk_00[6];
     u16 nickname[10];           /* UTF-16 */
-    u16 nicknameLength;
+    u8 nicknameLength;
+    u8 pad_1b;
     u16 comment[26];            /* UTF-16 */
-    u16 commentLength;
+    u8 commentLength;
+    u8 pad_51;
     u8 unk_52[0x1e];
     u16 saveCount;              /* 0-0x7f, one more on each save, wraps */
     u16 crc;                    /* CalcCrc16(0xffff, ...) of the first 0x70 bytes */
@@ -22,5 +24,21 @@ typedef struct UserSettings {
 #define USER_SETTINGS_CRC_SIZE 0x70
 #define USER_SETTINGS_NICKNAME_MAX 10
 #define USER_SETTINGS_COMMENT_MAX 26
+
+/*
+ * Where the ARM7 startup leaves what it read from the firmware flash: the
+ * chosen UserSettings, then the wireless block right after it.
+ */
+typedef struct SharedWirelessInfo {
+    u8 macAddress[6];
+    u16 channels;               /* from flash offset 0x3c, through func_arm7_03807514 */
+} SharedWirelessInfo;
+
+#define SHARED_USER_SETTINGS ((UserSettings *)0x027ffc80)
+
+/* Firmware flash offsets */
+#define FLASH_USER_SETTINGS_OFFSET 0x20   /* halfword: user settings offset / 8 */
+#define FLASH_MAC_ADDRESS 0x36
+#define FLASH_CHANNELS 0x3c
 
 #endif
