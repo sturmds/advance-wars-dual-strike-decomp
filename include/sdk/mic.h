@@ -10,6 +10,22 @@
  * RAM. The game links no ARM9 microphone code.
  */
 
+/*
+ * A request is up to 16 PXI words. Bits 16-19 of each word give its index,
+ * MIC_PXI_START marks the first and MIC_PXI_END the last; the low 16 bits
+ * are data. Word 0 holds the command byte in bits 8-15 and the first
+ * argument byte in bits 0-7.
+ */
+#define MIC_PXI_START       0x02000000
+#define MIC_PXI_END         0x01000000
+#define MIC_PXI_INDEX_MASK  0x000f0000
+#define MIC_PXI_INDEX_SHIFT 16
+#define MIC_PXI_WORDS       16
+
+/* The sampling buffer must lie in main RAM. */
+#define MIC_BUFFER_MIN 0x02000000
+#define MIC_BUFFER_END 0x02400000
+
 /* Requests (the command byte of a PXI word) and the buffer-full notice. */
 enum {
     MIC_PXI_COMMAND_ONE_SAMPLE = 0x40,
