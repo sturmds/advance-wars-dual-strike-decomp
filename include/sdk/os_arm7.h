@@ -103,6 +103,8 @@ struct OSMutex {
     OSMutex *next;
 };
 
+#define IRQ_SIO 0x80 /* serial port interrupt */
+
 typedef void *OSMessage;
 
 enum {

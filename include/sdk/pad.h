@@ -11,6 +11,8 @@
 #define REG_RCNT ((volatile u16 *)0x04000134)
 #define RCNT_MODE_MASK 0xc000
 #define RCNT_MODE_GPIO 0x8000
+#define RCNT_SI_OUTPUT 0x0040          /* GPIO mode: SI pin direction */
+#define RCNT_SI_IRQ 0x0100             /* GPIO mode: interrupt when SI falls */
 
 /* EXTKEYIN, ARM7 only: a bit reads 0 while its button is down. */
 #define REG_EXTKEYIN ((volatile u16 *)0x04000136)

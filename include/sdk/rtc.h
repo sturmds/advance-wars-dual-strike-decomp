@@ -66,12 +66,14 @@ typedef struct RtcDateTime {
  * The library's statics. The original reaches them all from the queue's
  * address (the busy flag as an offset from it), so one struct describes them.
  */
+#define CLOCK_WORKER_STACK_LEN 0x40
+
 typedef struct RtcState {
     OSMessageQueue queue;   /* requests for the RTC thread */
     OSMessage messages[4];
     OSThread thread;
     u8 unk_8c[0x10];
-    u32 stack[0x40];
+    u32 stack[CLOCK_WORKER_STACK_LEN];
     u32 busy;               /* a request is being handled */
     u16 command;            /* the request being handled */
 } RtcState;
