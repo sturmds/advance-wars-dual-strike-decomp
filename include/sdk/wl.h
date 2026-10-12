@@ -355,13 +355,13 @@ typedef struct WlTxFrame {
     u16 unk_00;
     u16 station;
     u16 unk_04;         /* low half of periodicCount when the frame was queued */
-    u16 unk_06;
+    u16 bodyLength;     /* bytes after the 802.11 header */
     u16 result; /* set when the frame is done, returned in the reply */
     u8 pad_0a[2];
     u16 unk_0c;         /* WlRamFrame.unk_04 of the copy that was sent */
     u16 requestedRate;  /* 0: use the station's rate */
     u16 rate;           /* WIFI_RATE_CODE_* */
-    u16 unk_12;
+    u16 length;         /* whole frame: header, body and FCS (and 8 more with WEP) */
     u16 frameControl;
     u16 duration;
     u16 addr1[3];
@@ -454,18 +454,18 @@ typedef union WlCapability {
    WifiRx_ScanElements parses them. Callers fill data, length and unk_0c. */
 typedef struct WlElements {
     const u8 *data;
-    u16 unk_04;           /* first word of the frame's RX header */
+    u16 rxStatus;         /* first word of the frame's RX header */
     u16 capability;
     u16 length;
     u16 result;           /* WIFI_IE_* bits */
-    u16 unk_0c;           /* WIFI_IE_SEEN_* bits; some callers set 0x800 before parsing */
+    u16 present;          /* WIFI_IE_SEEN_* bits; some callers set 0x800 before parsing */
     u8 pad_0e[0x12 - 0x0e];
-    u16 unk_12;           /* WlScanEntry.unk_36 */
-    u16 unk_14;           /* WlScanEntry.unk_2e */
-    u16 supportedRates;   /* stored in WlStation.unk_10 on association */
-    const u8 *unk_18;     /* SSID element, handed to the response builder */
-    const u8 *unk_1c;     /* element whose byte 3 goes to WlScanEntry.unk_38 */
-    const u8 *unk_20;     /* element whose byte 3 goes to WlScanEntry.unk_34 */
+    u16 channel;          /* from the DS parameter set, else our own; WlScanEntry.unk_36 */
+    u16 basicRates;       /* WlScanEntry.unk_2e; with supportedRates a WlRateSet */
+    u16 supportedRates;   /* stored in WlStation.rates on association */
+    const u8 *ssid;       /* SSID element, handed to the response builder */
+    const u8 *cfParams;   /* CF parameter set; byte 3 goes to WlScanEntry.unk_38 */
+    const u8 *tim;        /* TIM element; byte 3 goes to WlScanEntry.unk_34 */
     const u8 *nintendo;   /* Nintendo element: game info from byte 10 */
 } WlElements;
 
@@ -476,7 +476,7 @@ typedef struct WlElements {
 #define WIFI_IE_FITS_NET_KIND 0x10 /* ESS and IBSS capability bits as ours */
 #define WIFI_IE_FITS_PRIVACY 0x20  /* privacy capability bit as ours */
 
-/* WlElements.unk_0c bits: which elements the frame has. Element pointers
+/* WlElements.present bits: which elements the frame has. Element pointers
    point at the element's ID byte. */
 #define WIFI_IE_SEEN_NETWORK_NAME 0x1
 #define WIFI_IE_SEEN_DS_SET 0x2
@@ -949,8 +949,8 @@ typedef struct WlDefragSlot {
 #define WIFI_FRAMECTL_AUTHENTICATION 0xb0
 #define WIFI_FRAMECTL_DEAUTHENTICATION 0xc0
 
-/* 802.11 header (24 bytes) and frame check sequence (4 bytes): WlTxFrame.unk_12
-   is the body length WlTxFrame.unk_06 plus this. */
+/* 802.11 header (24 bytes) and frame check sequence (4 bytes): WlTxFrame.length
+   is WlTxFrame.bodyLength plus this. */
 #define WIFI_HEADER_PLUS_CHECKSUM 28
 /* The 802.11 header alone: WlRxFrame.length minus this is the body length. */
 #define WIFI_80211_HEADER_BYTES 24

@@ -40,11 +40,11 @@ WlTxFrame *WifiFrame_NewReassocAnswer(u16 station, u16 status, const u8 *element
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.capability = WIFI_DRIVER_STATE->state.capability;
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.status = status;
     WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.aid = aid | WIFI_ASSOC_ID_TOP_BITS;
-    frame->unk_06 = WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.elements) + 6;
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.elements) + 6;
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_REASSOC_ANSWER;
 
-    end = (u8 *)&frame->frameControl + frame->unk_12;
+    end = (u8 *)&frame->frameControl + frame->length;
     if (element != NULL) {
         length = WL_ReadByte(element + 1);
         WL_WriteByte(end, WL_ReadByte(element));

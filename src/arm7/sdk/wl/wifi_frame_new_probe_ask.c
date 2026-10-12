@@ -21,8 +21,8 @@ WlTxFrame *WifiFrame_NewProbeAsk(const u16 *dest)
     WifiTx_FillHeader(frame, dest);
     length = WifiFrame_PutSsidElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->elements);
     length += WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->elements + length);
-    frame->unk_06 = length;
-    frame->unk_12 = length + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = length;
+    frame->length = length + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_PROBE_ASK;
     return frame;
 }

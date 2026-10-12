@@ -24,8 +24,8 @@ WlTxFrame *WifiFrame_NewAuthentication(const u16 *dest, u16 challengeLength)
         WL_WriteByte(&WIFI_MANAGEMENT_FIELDS_OF(frame)->auth.elements[1], (u8)challengeLength);
         challengeLength += 2;
     }
-    frame->unk_06 = challengeLength + 6;
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = challengeLength + 6;
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_AUTHENTICATION;
     return frame;
 }

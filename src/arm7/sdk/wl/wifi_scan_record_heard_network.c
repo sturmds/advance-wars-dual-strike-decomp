@@ -77,8 +77,8 @@ void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements)
         parsed.data = body->probeResponse.elements;
         parsed.length = length - WIFI_BEACON_BODY_HEAD_BYTES;
         parsed.result = 3;
-        parsed.unk_0c = 0x38;
-        parsed.unk_04 = frame->unk_08;
+        parsed.present = 0x38;
+        parsed.rxStatus = frame->unk_08;
         parsed.capability = body->probeResponse.capability;
         WifiRx_ScanElements(&parsed);
         elements = &parsed;
@@ -96,10 +96,10 @@ void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements)
                 WL_WriteByte(entry->gameInfo + i, WL_ReadByte(elements->nintendo + 10 + i));
             }
         }
-        if (elements->unk_18 != NULL) {
-            entry->ssidLength = WL_ReadByte(elements->unk_18 + 1);
+        if (elements->ssid != NULL) {
+            entry->ssidLength = WL_ReadByte(elements->ssid + 1);
             for (i = 0; i < entry->ssidLength; i++) {
-                WL_WriteByte(entry->ssid + i, WL_ReadByte(elements->unk_18 + 2 + i));
+                WL_WriteByte(entry->ssid + i, WL_ReadByte(elements->ssid + 2 + i));
             }
         } else {
             entry->ssidLength = 0;
@@ -107,14 +107,14 @@ void WifiScan_RecordHeardNetwork(WlRxFrame *frame, WlElements *elements)
                 WL_WriteByte(entry->ssid + i, 0);
             }
         }
-        entry->unk_2e = elements->unk_14;
+        entry->unk_2e = elements->basicRates;
         entry->supportedRates = elements->supportedRates;
-        entry->unk_36 = elements->unk_12;
-        if (elements->unk_1c != NULL) {
-            entry->unk_38 = WL_ReadByte(elements->unk_1c + 3);
+        entry->unk_36 = elements->channel;
+        if (elements->cfParams != NULL) {
+            entry->unk_38 = WL_ReadByte(elements->cfParams + 3);
         }
-        if (elements->unk_20 != NULL) {
-            entry->unk_34 = WL_ReadByte(elements->unk_20 + 3);
+        if (elements->tim != NULL) {
+            entry->unk_34 = WL_ReadByte(elements->tim + 3);
         }
         entry->length = WIFI_SCAN_RESULT_HALFWORDS(entry->gameInfoLength);
         reply->status += entry->length;

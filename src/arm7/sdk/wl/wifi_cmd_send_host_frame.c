@@ -13,7 +13,7 @@ int WifiCmd_SendHostFrame(WlTxRequest *request, WlReply *reply)
     request->command = 0xffff;
     frame = &request->frame;
     frame->station = 0;
-    frame->unk_12 = frame->unk_06;
+    frame->length = frame->bodyLength;
     WifiStation_CountQueuedFrame(frame);
     WifiBuffer_Transfer(&WIFI_DRIVER_STATE->inbox, &WIFI_DRIVER_STATE->txQueues[0], &request->header);
     WifiTx_StartNextOfQueue(0);

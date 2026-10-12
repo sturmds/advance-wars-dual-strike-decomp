@@ -16,7 +16,7 @@ void WifiTx_EnqueueMgmt(WlTxFrame *frame)
     }
     frame->unk_04 = WIFI_DRIVER_STATE->state.periodicCount;
     if (frame->frameControl & WIFI_FRAMECTL_WEP_ON) {
-        frame->unk_12 += 8;
+        frame->length += 8;
     }
     WifiStation_CountQueuedFrame(frame);
     WifiBuffer_Transfer(&WIFI_DRIVER_STATE->unk_15c, &WIFI_DRIVER_STATE->txQueues[1], &WIFI_HOST_TX_REQUEST_OF(frame)->header);

@@ -67,7 +67,7 @@ void WifiParent_AnswerAssocAsk(WlRxFrame *frame)
             status = WIFI_IEEE_STATUS_OK;
         }
     }
-    response = WifiFrame_NewAssocAnswer(station, status, elements.unk_18);
+    response = WifiFrame_NewAssocAnswer(station, status, elements.ssid);
     if (response != NULL) {
         WifiTx_EnqueueMgmt(response);
     }

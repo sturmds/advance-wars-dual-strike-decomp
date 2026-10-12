@@ -26,8 +26,8 @@ WlTxFrame *WifiFrame_NewAssocAsk(const u16 *dest)
     length = WifiFrame_PutSsidElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->assocRequest.elements);
     length += WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->assocRequest.elements + length);
     /* 4: the capability and listen interval before the elements */
-    frame->unk_06 = length + 4;
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = length + 4;
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_ASSOC_ASK;
     return frame;
 }

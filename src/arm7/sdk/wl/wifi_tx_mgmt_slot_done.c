@@ -67,10 +67,10 @@ void WifiTx_MgmtSlotDone(WlTxFrame *frame, int sendNext)
                 WifiStation_ChangeState(station, WIFI_PEER_ASSOCIATED);
                 if (subtype == WIFI_FRAMECTL_ASSOC_ANSWER) {
                     WifiHost_TellAssociated((const u8 *)frame->addr1, WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.aid,
-                                        (const u8 *)&frame->frameControl + frame->unk_12);
+                                        (const u8 *)&frame->frameControl + frame->length);
                 } else {
                     WifiHost_TellReassociated((const u8 *)frame->addr1, WIFI_MANAGEMENT_FIELDS_OF(frame)->assocResponse.aid,
-                                        (const u8 *)&frame->frameControl + frame->unk_12);
+                                        (const u8 *)&frame->frameControl + frame->length);
                 }
             }
         } else {

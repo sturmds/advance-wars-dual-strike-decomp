@@ -17,8 +17,8 @@ WlTxFrame *WifiFrame_NewDeauthentication(const u16 *dest, u32 reason)
     frame = &buffer->frame;
     WifiTx_FillHeader(frame, dest);
     frame->body = reason;
-    frame->unk_06 = 2;
-    frame->unk_12 = frame->unk_06 + 28;
+    frame->bodyLength = 2;
+    frame->length = frame->bodyLength + 28;
     frame->frameControl = 0xc0;
     return frame;
 }

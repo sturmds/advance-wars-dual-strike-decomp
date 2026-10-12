@@ -29,8 +29,8 @@ WlTxFrame *WifiFrame_NewProbeAnswer(const u16 *dest)
     length += WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.elements + length);
     length += WifiFrame_PutChannelElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.elements + length);
     /* 12: the timestamp, beacon interval and capability before the elements */
-    frame->unk_06 = length + WifiFrame_PutGameInfoElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.elements + length) + 12;
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = length + WifiFrame_PutGameInfoElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.elements + length) + 12;
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_PROBE_ANSWER;
     return frame;
 }

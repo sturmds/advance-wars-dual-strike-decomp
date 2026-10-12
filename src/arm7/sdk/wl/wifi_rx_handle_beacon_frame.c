@@ -77,12 +77,12 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
     if (link->ssidLength == 0) {
         elements.result |= WIFI_IE_FITS_SSID;
     }
-    elements.unk_0c = WIFI_IE_WANT_BSSID_TEST | WIFI_IE_WANT_CAPS_TEST;
-    elements.unk_04 = frame->unk_08;
+    elements.present = WIFI_IE_WANT_BSSID_TEST | WIFI_IE_WANT_CAPS_TEST;
+    elements.rxStatus = frame->unk_08;
     elements.capability = body[5];
     WifiRx_ScanElements(&elements);
 
-    element = elements.unk_1c;
+    element = elements.cfParams;
     if (element != NULL && (frame->duration & 0x8000)) {
         low = WL_ReadByte(element + 6);
         REG_W_CONTENTFREE = low + (WL_ReadByte(element + 7) << 8);
@@ -98,8 +98,8 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
     if (!(elements.result & WIFI_IE_FITS_BSSID)) {
         goto done;
     }
-    if (elements.unk_0c & WIFI_IE_SEEN_NETWORK_NAME) {
-        if ((elements.unk_0c & WIFI_IE_SEEN_NETWORK_NAME) == 0) {
+    if (elements.present & WIFI_IE_SEEN_NETWORK_NAME) {
+        if ((elements.present & WIFI_IE_SEEN_NETWORK_NAME) == 0) {
             goto done;
         }
         if ((elements.result & WIFI_IE_FITS_SSID) == 0) {
@@ -121,8 +121,8 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
             mlme->task1.unk_06 = 1;
         } else {
             mlme->task1.result = WIFI_ANSWER_OK;
-            if ((elements.unk_0c & WIFI_IE_SEEN_DS_SET) && !(elements.result & WIFI_IE_FITS_CHANNEL)) {
-                WifiRf_TuneChannel(elements.unk_12, 0);
+            if ((elements.present & WIFI_IE_SEEN_DS_SET) && !(elements.result & WIFI_IE_FITS_CHANNEL)) {
+                WifiRf_TuneChannel(elements.channel, 0);
             }
             WifiStation_StoreRates(station, elements.supportedRates);
             if (link->unk_0c == 2) {
@@ -137,8 +137,8 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
                     WIFI_SHARED_GAME_WORD = 0;
                 }
             }
-            WifiParam_ChangeListenPeriod(WL_ReadByte(elements.unk_20 + 3));
-            link->unk_76 = WL_ReadByte(elements.unk_20 + 2);
+            WifiParam_ChangeListenPeriod(WL_ReadByte(elements.tim + 3));
+            link->unk_76 = WL_ReadByte(elements.tim + 2);
             WifiParam_ChangeBeaconPeriod(WIFI_MANAGEMENT_FIELDS_OF(frame)->probeResponse.beaconInterval);
             link->unk_12 = 1;
             link->unk_1a = 1;
@@ -214,21 +214,21 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
             }
         }
 
-        if (link->mode == WIFI_MODE_JOINED && elements.unk_20 != NULL && link->unk_0e == 1) {
-            dtimCount = WL_ReadByte(elements.unk_20 + 2);
+        if (link->mode == WIFI_MODE_JOINED && elements.tim != NULL && link->unk_0e == 1) {
+            dtimCount = WL_ReadByte(elements.tim + 2);
             if (link->unk_76 != dtimCount) {
                 link->unk_76 = dtimCount;
             }
             link->unk_8e = 0;
-            if (dtimCount == 0 && (WL_ReadByte(elements.unk_20 + 4) & 1)) {
+            if (dtimCount == 0 && (WL_ReadByte(elements.tim + 4) & 1)) {
                 link->unk_8e |= 1;
             }
-            low = WL_ReadByte(elements.unk_20 + 4) & 0xfe;
+            low = WL_ReadByte(elements.tim + 4) & 0xfe;
             first = low << 3;
-            last = (low + WL_ReadByte(elements.unk_20 + 1) - 3) << 3;
+            last = (low + WL_ReadByte(elements.tim + 1) - 3) << 3;
             if (first <= link->aid && link->aid <= last) {
                 bit = link->aid - first;
-                if ((1 << (bit & 7)) & WL_ReadByte(elements.unk_20 + 5 + (bit >> 3))) {
+                if ((1 << (bit & 7)) & WL_ReadByte(elements.tim + 5 + (bit >> 3))) {
                     link->unk_8e |= 2;
                     WifiTx_FirePsPoll();
                 }
@@ -244,7 +244,7 @@ void WifiRx_HandleBeaconFrame(WlRxFrame *frame)
         WifiHost_TellBeaconHeard((Unk_027cb9e4 *)frame);
     }
 done:
-    if (elements.unk_18 != NULL) {
-        WifiScan_RememberNetwork(elements.unk_12, frame, elements.unk_18);
+    if (elements.ssid != NULL) {
+        WifiScan_RememberNetwork(elements.channel, frame, elements.ssid);
     }
 }

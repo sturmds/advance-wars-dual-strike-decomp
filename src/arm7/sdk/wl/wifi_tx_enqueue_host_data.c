@@ -21,7 +21,7 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
     WlTxFrame *frame = &buffer->frame;
     u32 station;
 
-    if (buffer->frame.unk_06 > 0x5e4) { /* needed to match: read through buffer, not frame */
+    if (buffer->frame.bodyLength > 0x5e4) { /* needed to match: read through buffer, not frame */
         return 5;
     }
     if (view->state.phase == 1) {
@@ -40,16 +40,16 @@ int WifiTx_EnqueueHostData(WlTxBuffer *buffer)
     } else {
         frame->rate = WifiStation_SendRateOf(station);
     }
-    if (frame->unk_06 == 0) {
+    if (frame->bodyLength == 0) {
         frame->frameControl = (link->flags_8a | 0x40) & ~0x4000; /* null function, no WEP */
-        frame->unk_12 = 28;
+        frame->length = 28;
     } else {
         frame->frameControl = link->flags_8a;
         // 8 more bytes when unk_08 is set: likely the WEP IV and ICV
         if (view->state.unk_08 == 0) {
-            frame->unk_12 = frame->unk_06 + 28;
+            frame->length = frame->bodyLength + 28;
         } else {
-            frame->unk_12 = frame->unk_06 + 36;
+            frame->length = frame->bodyLength + 36;
         }
     }
     switch (view->state.phase) {

@@ -22,7 +22,7 @@ void WifiParent_AnswerProbe(WlRxFrame *frame)
         elements.data = (const u8 *)frame->body;
         elements.length = frame->bodyLength;
         if (!WIFI_DRIVER_STATE->state.flags.bit1) {
-            elements.unk_0c = 0x800;
+            elements.present = 0x800;
         }
         WifiRx_ScanElements(&elements);
         if ((elements.result & WIFI_IE_FITS_SSID) == WIFI_IE_FITS_SSID) {

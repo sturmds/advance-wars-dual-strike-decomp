@@ -28,8 +28,8 @@ WlTxFrame *WifiFrame_NewReassocAsk(const u16 *dest)
     length = WifiFrame_PutSsidElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->reassocRequest.elements);
     length += WifiFrame_PutRatesElement(WIFI_MANAGEMENT_FIELDS_OF(frame)->reassocRequest.elements + length);
     /* 10: the capability, listen interval and AP address before the elements */
-    frame->unk_06 = length + 10;
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = length + 10;
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_REASSOC_ASK;
     return frame;
 }

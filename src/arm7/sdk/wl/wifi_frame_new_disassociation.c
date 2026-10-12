@@ -17,8 +17,8 @@ WlTxFrame *WifiFrame_NewDisassociation(const u16 *dest, u32 reason)
     frame = &buffer->frame;
     WifiTx_FillHeader(frame, dest);
     WIFI_MANAGEMENT_FIELDS_OF(frame)->reason = reason;
-    frame->unk_06 = sizeof(WIFI_MANAGEMENT_FIELDS_OF(frame)->reason);
-    frame->unk_12 = frame->unk_06 + WIFI_HEADER_PLUS_CHECKSUM;
+    frame->bodyLength = sizeof(WIFI_MANAGEMENT_FIELDS_OF(frame)->reason);
+    frame->length = frame->bodyLength + WIFI_HEADER_PLUS_CHECKSUM;
     frame->frameControl = WIFI_FRAMECTL_DISASSOCIATION;
     return frame;
 }

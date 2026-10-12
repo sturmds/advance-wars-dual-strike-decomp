@@ -48,7 +48,7 @@ void WifiParent_AnswerReassocAsk(WlRxFrame *frame)
     Mem_FillWords_Arm7(zero, &elements, sizeof(elements));
     elements.data = (const u8 *)capability + 10;
     elements.length = bodyLength - 10;
-    elements.unk_0c = 0x800;
+    elements.present = 0x800;
     WifiRx_ScanElements(&elements);
     if ((capability->raw & WIFI_CAPS_PARENT_REJECTS) != 0 ||
         (work->state.unk_08 == 0 && capability->privacy == 1) ||
@@ -65,7 +65,7 @@ void WifiParent_AnswerReassocAsk(WlRxFrame *frame)
             status = WIFI_IEEE_STATUS_OK;
         }
     }
-    response = WifiFrame_NewReassocAnswer(station, status, elements.unk_18);
+    response = WifiFrame_NewReassocAnswer(station, status, elements.ssid);
     if (response != NULL) {
         WifiTx_EnqueueMgmt(response);
     }

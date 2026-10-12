@@ -14,24 +14,24 @@ void WifiTx_PlaceFrameInRam(WlRamFrame *dest, WlTxBuffer *buffer)
 
     if (frame->frameControl & WIFI_FRAMECTL_WEP_ON) {
         if (buffer->unk_0c == WIFI_DRIVER_BUILT_FRAME) {
-            WifiTx_CopyWithWepGap(dest, &frame->result, &frame->body, frame->unk_06);
+            WifiTx_CopyWithWepGap(dest, &frame->result, &frame->body, frame->bodyLength);
         } else {
-            WifiTx_CopyWithWepGap(dest, &frame->result, *(void **)&frame->body, frame->unk_06);
+            WifiTx_CopyWithWepGap(dest, &frame->result, *(void **)&frame->body, frame->bodyLength);
         }
         dest->body[0] = REG_W_RANDOM + (REG_W_RANDOM << 8);
         dest->body[1] = (REG_W_RANDOM & 0xff) | (WIFI_DRIVER_STATE->state.unk_0a << 14);
         if (WIFI_DRIVER_STATE->unk_638 & 8) { /* clear the 4 bytes before the FCS */
-            u16 *icv = (u16 *)(((u32)&dest->frameControl + frame->unk_12 - 7) & ~1);
+            u16 *icv = (u16 *)(((u32)&dest->frameControl + frame->length - 7) & ~1);
             icv[0] = 0;
             icv[1] = 0;
         }
     } else if (buffer->unk_0c == WIFI_DRIVER_BUILT_FRAME) {
-        func_arm7_027c84e0(dest, &frame->result, frame->unk_06 + 0x24);
+        func_arm7_027c84e0(dest, &frame->result, frame->bodyLength + 0x24);
     } else {
-        WifiTx_CopyHeaderAndBody(dest, &frame->result, *(void **)&frame->body, frame->unk_06);
+        WifiTx_CopyHeaderAndBody(dest, &frame->result, *(void **)&frame->body, frame->bodyLength);
     }
     if (WIFI_DRIVER_STATE->unk_638 & 4) {
-        u16 *footer = (u16 *)(((u32)&dest->frameControl + frame->unk_12 - 1) & ~3);
+        u16 *footer = (u16 *)(((u32)&dest->frameControl + frame->length - 1) & ~3);
         footer[0] = WIFI_GUARD_WORD_A;
         footer[1] = WIFI_GUARD_WORD_B;
     }
