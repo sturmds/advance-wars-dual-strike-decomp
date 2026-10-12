@@ -528,6 +528,8 @@ u32 WifiBaseband_Put(u32 index, u32 value);
 u16 WifiBaseband_Get(u32 index);
 // Nonzero when bit `bit` of WIFI_DRIVER_STATE->state.unk_00 is set.
 u32 WifiParam_ChannelAllowed(u32 bit);
+// a and b are 6-byte MAC addresses, read as three halfwords.
+BOOL WifiMac_Equal(const u16 *a, const u16 *b);
 
 /* Wireless hardware registers, 0x04808000 + offset. */
 #define WIFI_MAC_REGISTER(offset) (*(volatile u16 *)(0x04808000 + (offset)))

@@ -612,6 +612,10 @@ src/arm7/sdk/wl/wifi_param_channel_allowed.c:
     complete
     .text       start:0x027c8d08 end:0x027c8d28
 
+src/arm7/sdk/wl/wifi_mac_equal.c:
+    complete
+    .text       start:0x027c8d28 end:0x027c8d64
+
 src/arm7/sdk/func_arm7_027c90ec.c:
     complete
     .text       start:0x027c90ec end:0x027c9108

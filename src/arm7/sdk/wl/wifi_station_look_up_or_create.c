@@ -3,7 +3,6 @@
 /* Stations below this state can be replaced by a new one. */
 #define WIFI_PEER_REPLACEABLE_BELOW 0x30
 
-BOOL func_arm7_027c8d28(const u16 *a, const u16 *b);
 void func_arm7_027cab94(u32 station, const u16 *macAddress);
 
 /*
@@ -35,7 +34,7 @@ u32 WifiStation_LookUpOrCreate(const u16 *macAddress)
         seen = 0;
         for (index = 1; index < table->count; index++, station++) {
             if (station->state != 0) {
-                if (func_arm7_027c8d28(station->macAddress, macAddress)) {
+                if (WifiMac_Equal(station->macAddress, macAddress)) {
                     return index;
                 }
                 seen++;
