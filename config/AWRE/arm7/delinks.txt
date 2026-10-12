@@ -264,6 +264,10 @@ src/arm7/sdk/wm/wmsp_reply_end_dcf_failed.c:
     complete
     .text       start:0x027c4dfc end:0x027c4e38
 
+src/arm7/sdk/wm/wmsp_end_dcf.c:
+    complete
+    .text       start:0x027c4e38 end:0x027c4edc
+
 src/arm7/sdk/wm/wmsp_stop_test_mode.c:
     complete
     .text       start:0x027c523c end:0x027c5268
