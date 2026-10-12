@@ -95,6 +95,10 @@ src/arm7/sdk/wm/func_arm7_027c28f4.c:
     complete
     .text       start:0x027c28f4 end:0x027c294c
 
+src/arm7/sdk/wm/wmsp_initialize.c:
+    complete
+    .text       start:0x027c294c end:0x027c2a00
+
 src/arm7/sdk/func_arm7_027c3408.c:
     complete
     .text       start:0x027c3408 end:0x027c342c
