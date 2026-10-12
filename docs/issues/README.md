@@ -92,3 +92,5 @@ When an issue closes, set the status, add a line saying how it was resolved, and
 | [0062](0062-protocheck-reports-left.md) | About 190 `protocheck.py` reports left in files touched only by renames | open | decomp | M2 |
 | [0063](0063-trivial-arm7-tailcall-breaks-module-hash.md) | `trivial.py --arm7` output for `func_arm7_03807408` passes the fast check but breaks the arm7 module hash | open | tools | M2 |
 | [0064](0064-terrain-stats-start.md) | `Ov000_gTerrainStats` starts 8 bytes after the real table: names belong to the next terrain id | open | decomp | M2 |
+| [0065](0065-tile-shape-names.md) | Tile tokens for shapes (coasts, bends) are numbers, not names | open | docs | M2 |
+| [0066](0066-map-scripts.md) | Map event scripts are bytes in ov001, not in the map files | open | decomp | M2 |
