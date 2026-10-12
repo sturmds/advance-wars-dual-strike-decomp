@@ -4,7 +4,6 @@ void Wifi_ArmOneShotMs(u32 milliseconds, OSAlarmHandler handler);
 void WifiMlme_ReassociationTimedOut(void *arg);
 void *WifiFrame_NewReassocAsk(u16 *peer);
 void WifiTx_EnqueueMgmt(void *frame);
-void func_arm7_027d0590(int a);
 
 /*
  * Reassociate request, run as WL task 4. State 0x60 sends a reassociation
@@ -30,7 +29,7 @@ void WifiMlme_RunReassociation(void)
         }
         break;
     case 0x63:
-        func_arm7_027d0590(1);
+        WifiTx_ReportSlotResult(1);
         WifiTx_DrainQueue(1, 0);
         job->state = 0;
         WifiHost_ReturnCurrentRequest();
