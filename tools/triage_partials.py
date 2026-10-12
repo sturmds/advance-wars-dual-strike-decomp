@@ -4,7 +4,7 @@
     python3 tools/triage_partials.py --out FILE.md [--jobs 3] [--no-sweep] [NAME ...]
 
 For each function in a source file that is not marked `complete`
-(PROGRESS.md, "Started, not linked", ARM7 included), or only the NAMEs given:
+(PROGRESS.md, "Partial functions", ARM7 included), or only the NAMEs given:
 
   class      from `fn.py diff`: register-only (same instructions, other
              register numbers), order (the same instructions in another
@@ -133,10 +133,10 @@ def main() -> int:
     a = ap.parse_args()
 
     funcs = []
-    for path, names, _ in progress.unlinked():
-        for n in names:
-            if not a.names or n in a.names:
-                funcs.append((path, n))
+    for path, _, fs in progress.unlinked():
+        for f in fs:
+            if not a.names or f.name in a.names:
+                funcs.append((path, f.name))
     by_name = {f.name: f for mod in fn.all_modules().values() for f in mod.funcs}
     table = pragma_files()
     protos = protocheck.load()

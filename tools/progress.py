@@ -16,14 +16,17 @@ information only, and runs objdiff-cli's reports: build/report.json for
 ARM9 and build/arm7/report.json for ARM7, with the split counts in
 build/progress.json.
 
-The Markdown report reads only config/ and src/, so it is fast and gives
-the same file for the same tree. hooks/pre-commit writes it on every commit.
+The Markdown report reads config/, src/ and include/, and gives the same
+file for the same tree. For the partial functions (started in C, not linked)
+it runs `fn.py diff` on each one (about 6 seconds in all); without extract/
+and build/ those columns show "-". hooks/pre-commit writes it on every commit, after `make release`.
 """
 
 import json
 import re
 import subprocess
 import sys
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -73,21 +76,122 @@ def merge(rows):
 
 
 def unlinked():
-    """[(path, function names, bytes)] of source files in src/ that are not
-    marked complete: started, but not built into the ROM yet."""
+    """[(path, module, functions)] of source files in src/ that are not
+    marked complete: started, but not built into the ROM yet. A file with no
+    delinks entry has no module and no functions."""
     out, listed = [], set()
     for mod in fn.all_modules().values():
         for path, start, end, complete in mod.files:
             listed.add(path)
             if complete or not path.startswith("src/") or not (ROOT / path).exists():
                 continue
-            funcs = [f for f in mod.funcs if start <= f.addr < end]
-            out.append((path, [f.name for f in funcs], sum(f.size for f in funcs)))
+            out.append((path, mod.name, [f for f in mod.funcs if start <= f.addr < end]))
     for p in sorted((ROOT / "src").rglob("*.c")):
         path = p.relative_to(ROOT).as_posix()
         if path not in listed:
-            out.append((path, [], 0))
-    return sorted(out)
+            out.append((path, None, []))
+    return sorted(out, key=lambda x: x[0])
+
+
+class Score:
+    """One function's `fn.py diff`: objdiff's match percentage, and the rows
+    of the aligned listing, with how many of them differ."""
+
+    def __init__(self, percent: float, rows: int, differ: int):
+        self.percent, self.rows, self.differ = percent, rows, differ
+
+
+def diff_score(name: str) -> Score | None:
+    out = subprocess.run([sys.executable, str(ROOT / "tools/fn.py"), "diff", "--color", "never", name],
+                         cwd=ROOT, capture_output=True, text=True).stdout
+    lines = out.splitlines()
+    head = next((i for i, ln in enumerate(lines) if ln.startswith("original")), None)
+    m = re.search(r"([\d.]+)% match", out)
+    if head is None or not m:
+        return None
+    mark = lines[head].index("ours") - 2
+    rows = []
+    for ln in lines[head + 1:]:
+        if not ln.strip():
+            break
+        rows.append(ln)
+    return Score(float(m.group(1)), len(rows), sum(ln[mark:mark + 1] == "|" for ln in rows))
+
+
+def scores(files) -> dict:
+    """{(module, name): Score} for every function in the unlinked files, from
+    `fn.py diff` (objdiff, aligned, the percentage the parked list uses).
+    Missing for a function that does not compile or without extract/."""
+    jobs = [(mod, f.name) for _, mod, funcs in files for f in funcs]
+    with ThreadPoolExecutor(4) as pool:
+        got = pool.map(lambda job: (job, diff_score(job[1])), jobs)
+        return {k: r for k, r in got if r is not None}
+
+
+# Bands of differing instructions for the partials summary.
+BANDS = ((1, 2), (3, 10), (11, 50), (51, None))
+
+
+def partials_section() -> list[str]:
+    files = unlinked()
+    res = scores(files)
+    funcs = [(path, mod, f) for path, mod, fs in files for f in fs]
+    lines = [
+        "## Partial functions",
+        "",
+        "Functions in C files that the build does not use yet (not marked `complete`), because",
+        "they do not match. Each one is compiled and compared with the original by `fn.py diff`:",
+        "\"Match\" is objdiff's percentage, \"Differ\" the rows of its aligned listing that differ",
+        "(an instruction only one side has counts as one row).",
+        "",
+    ]
+    if not funcs:
+        lines.append("None.")
+    else:
+        got = [res[(m, f.name)] for _, m, f in funcs if (m, f.name) in res]
+        rows = sum(r.rows for r in got)
+        same = rows - sum(r.differ for r in got)
+        lines += ["| Code | Functions | Bytes | Rows that match |", "|---|---:|---:|---:|"]
+        for cpu, has in CPUS.items():
+            for area in AREAS:
+                part = [(m, f) for _, m, f in funcs if has(m) and (fn.is_game(f) == (area == "game"))]
+                if part:
+                    sc = [res[(m, f.name)] for m, f in part if (m, f.name) in res]
+                    n = sum(r.rows for r in sc)
+                    ok = n - sum(r.differ for r in sc)
+                    lines.append(f"| {cpu} {area} | {len(part)} | {sum(f.size for _, f in part)} "
+                                 f"| {f'{ok} / {n} ({pct(ok, n)})' if sc else '-'} |")
+        lines += [
+            f"| all | {len(funcs)} | {sum(f.size for _, _, f in funcs)} "
+            f"| {f'{same} / {rows} ({pct(same, rows)})' if got else '-'} |",
+            "",
+            "| Rows that differ | Functions | Bytes |",
+            "|---|---:|---:|",
+        ]
+        bands = [(f"{lo} to {hi}" if hi else f"more than {lo - 1}",
+                  lambda r, lo=lo, hi=hi: lo <= r.differ and (hi is None or r.differ <= hi)) for lo, hi in BANDS]
+        bands.insert(0, ("none (matches; mark it complete)", lambda r: r.differ == 0))
+        for label, test in bands:
+            band = [f for _, m, f in funcs if (r := res.get((m, f.name))) and test(r)]
+            if band or label[0].isdigit() or label.startswith("more"):
+                lines.append(f"| {label} | {len(band)} | {sum(f.size for f in band)} |")
+        missing = [f for _, m, f in funcs if (m, f.name) not in res]
+        if missing and got:
+            lines.append(f"| not scored (does not compile) | {len(missing)} | {sum(f.size for f in missing)} |")
+        lines += ["", "Closest first.", "", "| File | Function | Bytes | Match | Differ |", "|---|---|---:|---:|---:|"]
+
+        def key(row):
+            r = res.get((row[1], row[2].name))
+            return (r is None, r.differ if r else 0, -(r.percent if r else 0), row[0], row[2].name)
+
+        for path, mod, f in sorted(funcs, key=key):
+            r = res.get((mod, f.name))
+            match, differ = (f"{r.percent:.2f}%", str(r.differ)) if r else ("-", "-")
+            lines.append(f"| `{path}` | {f.name} | {f.size} | {match} | {differ} |")
+    orphans = [path for path, mod, _ in files if mod is None]
+    if orphans:
+        lines += ["", "C files with no delinks entry: " + ", ".join(f"`{p}`" for p in orphans) + "."]
+    return lines
 
 
 def totals(rows):
@@ -151,20 +255,7 @@ def markdown() -> str:
     empty = [m for m in order if m not in shown and any(k[0] == m for k in rows)]
     lines += ["", f"Modules with nothing done: {', '.join(empty) or 'none'}."]
 
-    lines += [
-        "",
-        "## Started, not linked",
-        "",
-        "Source files in `src/` that the build does not use yet (not marked `complete`).",
-        "",
-    ]
-    files = unlinked()
-    if files:
-        lines += ["| File | Functions | Bytes |", "|---|---|---:|"]
-        for path, names, size in files:
-            lines.append(f"| `{path}` | {', '.join(names) or 'no delinks entry'} | {size} |")
-    else:
-        lines.append("None.")
+    lines += [""] + partials_section()
     return "\n".join(lines) + "\n"
 
 
