@@ -812,6 +812,10 @@ src/arm7/sdk/func_arm7_027cb920.c:
     complete
     .text       start:0x027cb920 end:0x027cb93c
 
+src/arm7/sdk/wl/wifi_task_drain_outbox.c:
+    complete
+    .text       start:0x027cb93c end:0x027cb9a4
+
 src/arm7/sdk/func_arm7_027cb9a4.c:
     complete
     .text       start:0x027cb9a4 end:0x027cb9ac
