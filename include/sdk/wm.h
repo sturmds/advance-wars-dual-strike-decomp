@@ -339,16 +339,18 @@ typedef struct WMDataSharingInfo {
     u16 reserved[1];
 } WMDataSharingInfo;
 
-/* What WMStatus.state holds. */
+/* WMStatus.wepMode */
 #define WM_WEPMODE_NO 0
 #define WIRELESS_CIPHER_KEY5 1
 #define WIRELESS_CIPHER_KEY13 2
 #define WIRELESS_CIPHER_KEY16 3
 
+/* WMStatus.unk_1e8: the wireless bit rate. */
 #define WIRELESS_BITRATE_ONE 1
 #define WIRELESS_BITRATE_TWO 2
 
-#define WM_STATE_READY 0                   /* initialised, not enabled yet */
+/* What WMStatus.state holds. */
+#define WM_STATE_READY 0                  /* initialised, not enabled yet */
 #define WM_STATE_STOP 1                    /* enabled, wireless hardware off */
 #define WM_STATE_IDLE 2
 #define WM_STATE_CLASS1 3
