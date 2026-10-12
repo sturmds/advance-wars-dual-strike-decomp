@@ -1026,6 +1026,10 @@ src/arm7/sdk/wl/wifi_self_test_mac_registers.c:
     complete
     .text       start:0x027ca8b4 end:0x027caa60
 
+src/arm7/sdk/wl/wifi_irq_uninstall.c:
+    complete
+    .text       start:0x027caa60 end:0x027caa88
+
 src/arm7/sdk/func_arm7_027cab80.c:
     complete
     .text       start:0x027cab80 end:0x027cab94
