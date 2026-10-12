@@ -297,7 +297,8 @@ typedef struct WlTxFrame {
     u16 unk_04;         /* low half of periodicCount when the frame was queued */
     u16 unk_06;
     u16 result; /* set when the frame is done, returned in the reply */
-    u8 pad_0a[0x0e - 0x0a];
+    u8 pad_0a[2];
+    u16 unk_0c;         /* WlRamFrame.unk_04 of the copy that was sent */
     u16 requestedRate;  /* 0: use the station's rate */
     u16 rate;           /* WIFI_RATE_CODE_* */
     u16 unk_12;
@@ -315,6 +316,53 @@ typedef struct WlTxFrame {
     };
     u16 unk_2e;
 } WlTxFrame;
+
+/* 802.11 frame control, as bitfields. */
+typedef union WlFrameControl {
+    u16 raw;
+    struct {
+        u16 version : 2;
+        u16 type : 2; /* 0: management frame */
+        u16 subtype : 4;
+        u16 toDs : 1;
+        u16 fromDs : 1;
+        u16 moreFragments : 1;
+        u16 retry : 1;
+        u16 powerManagement : 1;
+        u16 moreData : 1;
+        u16 protectedFrame : 1;
+        u16 order : 1;
+    };
+} WlFrameControl;
+
+/* A u16 frameControl field read through its bitfields. */
+#define WIFI_FRAMECTL_FIELDS(field) ((WlFrameControl *)&(field))
+#define WIFI_FRAMECTL_WEP_ON 0x4000
+
+/* WlTxFrame.result of a frame taken off a queue unsent. */
+#define WIFI_SEND_RESULT_UNSENT 2
+
+/*
+ * One hardware TX location (LOC1, LOC2, LOC3, CMD, two MP reply slots, the
+ * beacon) and the frame it sends. TX queue n feeds slot n.
+ */
+typedef struct WlTxSlot {
+    u16 busy;
+    u16 count;
+    u16 sentCount;
+    u8 pad_06[2];
+    WlRamFrame *frame;   /* the frame in WIFI_PACKET_RAM */
+    WlTxFrame *queued;   /* the queued frame it was copied from */
+    void (*onDone)(WlTxFrame *queued, int arg);
+} WlTxSlot;
+
+#define WIFI_TXLOC_DATA 0
+#define WIFI_TXLOC_MGMT 1
+#define WIFI_TXLOC_GROUP_OR_PSPOLL 2 /* frame: WlState.psPollFrame */
+#define WIFI_TXLOC_MP_POLL 3  /* busy: WlState.unk_13c */
+#define WIFI_TXLOC_POLL_ANSWER_A 4 /* WlState.mpReplySlots; which is which is a guess */
+#define WIFI_TXLOC_POLL_ANSWER_B 5
+#define WIFI_TXLOC_BEACON 6 /* busy: WlState.unk_178, frame: WlState.txFrame */
 
 // The MLME request in progress, in WlState.unk_d8 (work offset 0x3d8; reach
 // it with WIFI_ACTIVE_JOB_OF). Its handler runs again
@@ -710,9 +758,15 @@ typedef struct WlCounters {
     u32 unk_58;
     u32 unk_5c;
     u32 unk_60;
-    u8 pad_64[0x14];
+    u8 pad_64[4];
+    u32 retries;      /* sum of the low bytes of WlRamFrame.unk_04 */
+    u32 sentFirstTry; /* frames whose low byte was 0 */
+    u8 pad_70[8];
     u32 cmdStat[15]; /* counter bytes 0x21-0x2f: 0x048081d1-0x048081df */
 } WlCounters;
+
+/* WlWork.counters index of the LOC3 (multicast) TX done count. */
+#define WIFI_STAT_GROUP_SENT 5
 
 typedef struct WlWork {
     u16 queueHead[WIFI_TASK_LEVELS];
@@ -832,6 +886,28 @@ typedef struct WlMpReplyView {
 
 #define WIFI_REPLY_SLOTS_VIEW_OF(work) ((WlMpReplyView *)((u8 *)(work) + 0x400))
 
+/* Work offset 0x400 on: all seven TX slots, then the buffer the CMD slot
+   sends. It runs past WlState. */
+typedef struct WlTxSlots {
+    WlTxSlot slot[7];
+    u8 pad_8c[4];
+    WlBuffer *cmdBuffer;
+} WlTxSlots;
+
+#define WIFI_TX_LOCATIONS_OF(work) ((WlTxSlots *)(work)->state.pad_100)
+/* One slot, its offset from work in one constant (as some code adds it). */
+#define WIFI_TX_LOCATION_OF(work, n) ((WlTxSlot *)&(work)->state.pad_100[(n) * sizeof(WlTxSlot)])
+/* The beacon slot on its own, from WlState.unk_178. */
+#define WIFI_BEACON_TX_SLOT_OF(work) ((WlTxSlot *)&(work)->state.unk_178)
+
+/* TX queues 0-2 in a row: txQueues[0], txQueues[1], multicastQueue. */
+#define WIFI_SEND_QUEUE_OF(work, n) (&(work)->txQueues[0] + (n))
+#define WIFI_SEND_QUEUE_TOTAL 3
+#define WIFI_SEND_QUEUE_GROUP 2
+
+/* The request buffer of a queued frame (frame sits 16 bytes in). */
+#define WIFI_HOST_TX_REQUEST_OF(frame) ((WlTxRequest *)((u8 *)(frame) - 16))
+
 #define WIFI_DRIVER_STATE (*(WlWork **)0x0380fff4)
 /* Halfword WL copies into the Nintendo beacon element after WlState.unk_10. */
 #define WIFI_SHARED_GAME_WORD (*(u16 *)0x0380fff0)
@@ -908,7 +984,18 @@ typedef struct Unk_027cb9e4 {
 /* Wi-Fi transmit request registers: writing a bit clears or sets that request. */
 #define REG_W_TXREQ_RESET (*(volatile u16 *)0x048080ac)
 #define REG_W_TXREQ_SET (*(volatile u16 *)0x048080ae)
+#define W_TXREQ_LOC1 0x1
+#define W_TXREQ_CMD 0x2
+#define W_TXREQ_LOC2 0x4
 #define W_TXREQ_LOC3 0x8
+/* TX locations: WIFI_PACKET_RAM halfword offset of a frame, bit 15 enables it. */
+#define REG_W_TXBUF_BEACON (*(volatile u16 *)0x04808080)
+#define REG_W_TXBUF_LOC3 (*(volatile u16 *)0x048080a8)
+#define W_TXBUF_ENABLE 0x8000
+/* Writing a bit stops that TX location: the W_TXREQ_* bits, and the reply slots. */
+#define REG_W_TXBUF_RESET (*(volatile u16 *)0x048080b4)
+#define W_TXBUF_RESET_REPLY2 0x40
+#define W_TXBUF_RESET_REPLY1 0x80
 /* Wi-Fi RF serial status: bit 0 set while a transfer to the RF chip runs. */
 #define REG_W_RF_BUSY (*(volatile u16 *)0x04808180)
 
@@ -1036,5 +1123,9 @@ int WifiHost_TellDeauthenticated(const u8 *mac, u16 value);
 int WifiHost_TellAuthenticated(const u8 *mac, u16 value);
 void WifiHost_ReturnCurrentRequest(void);
 void WifiRf_AwaitQuietAir(void);
+void WifiTx_EnqueueMgmt(WlTxFrame *frame);
+void WifiTx_DrainQueue(int queue, BOOL toHost);
+void WifiTx_HaltSlot(int index);
+void WifiTx_ReportSlotResult(int index);
 
 #endif

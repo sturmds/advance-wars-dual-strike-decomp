@@ -1536,6 +1536,10 @@ src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
 
+src/arm7/sdk/wl/wifi_beacon_enable.c:
+    complete
+    .text       start:0x027d00dc end:0x027d0128
+
 src/arm7/sdk/func_arm7_027d2090.c:
     complete
     .text       start:0x027d2090 end:0x027d2094
