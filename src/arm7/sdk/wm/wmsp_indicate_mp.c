@@ -6,7 +6,6 @@ u8 Wmsp_DecodeRssi(int rawRssi);
 void Wmsp_WaitCallbackFree(void);
 void Wmsp_PostMpAckTimeout(void *arg);
 int func_arm7_027c6510(BOOL timedOut, u16 polledAgain);
-void func_arm7_027c60b8(int aid, u16 wmHeader, u16 *data, u16 length, RadioChildFrameBuffer *recvBuf);
 
 /* WL indication WIFI_HOSTMSG_POLL_HEARD on a child: an MP frame from the parent arrived.
    Copies it into the next receive buffer, waits for the parent's ack with an
@@ -102,7 +101,7 @@ void Wmsp_IndicateMp(WlMpIndication *ind)
         reply->recvBuf = recvBuf;
         Wmsp_SendReply(reply);
         if (recvBuf->length != 0) {
-            func_arm7_027c60b8(0, recvBuf->wmHeader, recvBuf->data, recvBuf->length, recvBuf);
+            WMSP_ParsePortPacket(0, recvBuf->wmHeader, recvBuf->data, recvBuf->length, recvBuf);
             Wmsp_WaitCallbackFree();
         }
     } else {

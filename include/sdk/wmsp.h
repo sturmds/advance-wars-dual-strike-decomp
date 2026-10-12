@@ -419,6 +419,9 @@ static inline void Wmsp_SetVAlarm(WmspBuf *buf, s16 line)
    the microsecond counter at the start of a frame, in 64 us units. */
 #define WMSP_FRAME_START_TIME (*(vu16 *)0x0380fff0)
 
+/* Sends a PORT_RECV reply for each port packet in an MP frame from aid. */
+void WMSP_ParsePortPacket(u16 aid, u16 wmHeader, u16 *data, u16 length, void *recvBuf);
+
 /* Held while a reply buffer is filled and sent. */
 extern OSMutex data_arm7_027d813c;
 
