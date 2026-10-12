@@ -62,6 +62,13 @@ typedef struct WmspRequest {
     u32 arg;
 } WmspRequest;
 
+/* What the ARM9 sends for a request about one station. */
+typedef struct WmspMacRequest {
+    u16 apiid;
+    u8 pad_02[2];
+    u8 macAddress[6];
+} WmspMacRequest;
+
 // The symbol data_arm7_027d7c44, which is the same memory as WmspWork from
 // 0x1000 on. Only the part WMSP uses.
 typedef struct WmspState {
