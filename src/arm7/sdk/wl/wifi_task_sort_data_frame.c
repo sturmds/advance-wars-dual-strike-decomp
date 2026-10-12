@@ -3,7 +3,7 @@
 
 void func_arm7_027c90ec(u16 *dest, const u16 *src); /* copies a 6-byte MAC address */
 void WifiRx_AppendFragment(u16 *rxHeader, WlRxAddrs *addrs);
-void func_arm7_027d15dc(u16 *rxHeader, WlRxAddrs *addrs);
+void WifiRx_BeginReassembly(u16 *rxHeader, WlRxAddrs *addrs);
 
 /*
  * Task 9: takes the next received data frame from its list, works out its
@@ -42,7 +42,7 @@ void WifiTask_SortDataFrame(void)
         }
         addrs.sequence = frame->sequence;
         if ((frameControl & WIFI_FRAMECTL_FRAGMENTS_FOLLOW) && frame->fragment == 0) {
-            func_arm7_027d15dc(&frame->unk_08, &addrs);
+            WifiRx_BeginReassembly(&frame->unk_08, &addrs);
         } else {
             WifiRx_AppendFragment(&frame->unk_08, &addrs);
         }

@@ -1452,6 +1452,7 @@ void WifiBufList_ReleaseAll(WlBufferList *list);
 /* Event bits for WifiHost_RaiseEventBits. */
 #define WIFI_EVT_NOTE_DROPPED 0x1 /* an indication was dropped: no buffer left */
 #define WIFI_EVT_TX_BUILD_FAILED 0x2 /* a frame to send could not be built: no buffer left */
+#define WIFI_EVT_FRAGMENT_DROPPED 0x4 /* a fragmented frame was dropped: no buffer left */
 void WifiHost_RaiseEventBits(u16 events);
 int WifiBaseband_AwaitReady(void);
 void Wifi_SpinForUs(u32 usec, OSAlarmHandler handler);
