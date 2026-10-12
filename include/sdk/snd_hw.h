@@ -47,6 +47,9 @@ typedef struct SndHwChannel {
 #define AUDIO_CH_LOUDNESS_DIVIDER(blockOffset) (*(u16 *)(0x4000400 + (blockOffset)))
 #define AUDIO_CH_CTRL_WORD(blockOffset) (*(u32 *)(0x4000400 + (blockOffset)))
 #define AUDIO_CH_RATE_RELOAD(blockOffset) (*(u16 *)(0x4000408 + (blockOffset)))
+#define AUDIO_CH_REPEAT_POINT(blockOffset) (*(u16 *)(0x400040A + (blockOffset)))
+#define AUDIO_CH_SAMPLE_ADDR(blockOffset) (*(u32 *)(0x4000404 + (blockOffset)))
+#define AUDIO_CH_DATA_SPAN(blockOffset) (*(u32 *)(0x400040C + (blockOffset)))
 #define AUDIO_CH_PLAY_BIT 0x80000000
 #define AUDIO_CH_KEEP_LAST_SAMPLE 0x8000
 /* Format field of the control word (bits 29-30): 3 selects PSG or noise. */
