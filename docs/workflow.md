@@ -129,6 +129,7 @@ Each line: the rewrite, then the functions it matched.
 
 - Read it once into a local, and use the local only where the original keeps it in a register (BattleCells_RunImpactList: `side` only for the side argument; Save_WriteRecord: the part count read once and stored back).
 - Under `opt_common_subs off`, keep in a local the index the original holds in a register (CombatSetup_AddShopButtons).
+- Kept across a call: write the shared part out the same way in both uses, `(u32)WIFI_PACKET_RAM + cursor * 2`, and mwcc keeps `cursor * 2` in a register (WifiTask_DrainRxRing).
 
 **Part of an address is shared differently** (the original shares one product and rebuilds the rest, or the reverse)
 
@@ -164,6 +165,9 @@ Each line: the rewrite, then the functions it matched.
 **Spill slots differ** (same code, other stack offsets)
 
 - Write each bound clamp as a ternary, an `if`, or assign-then-clamp, and try the combinations (Ai_ClearThreatInAntiAirCover, AiUnit_FindFiringTile). In the bounding-box loops: minX as assign-then-clamp, the first row as an if/else written into the loop variable (Ai_AddOoziumThreat, AiUnit_TeammateOutdamages). Distances as `dist = 0; if (x - tx > 0) dist += x - tx; else dist += tx - x;` (AiBlackBomb_ScoreExplosionAt). Then `permute.py`.
+- mwcc puts arrays after the scalars on the stack: split a small array into scalars (WifiRx_HandleBeaconFrame: `u64 now[2]` became `now` and `nowAgain`).
+- A BOOL set by `cond ? TRUE : FALSE` takes the lowest slot. Two rewrites that each break the code may match together (WMSP_BuildMpSendData: `withDest` as that ternary, `prevNext` set by an if/else).
+- Read a byte argument through `*(s8 *)&arg` to keep it on the stack (SndTrack_Step).
 
 **Order: the same instructions in another order**
 
@@ -173,6 +177,9 @@ Each line: the rewrite, then the functions it matched.
 - A statement that runs once per outer iteration in the original sits in the inner loop in ours, or the reverse: check where it belongs (MapSelect_ResetTables, func_0204f3b0).
 - A call result used in an expression: call it inside a local's initialiser (Palette_GetArmyBlock) or inline in each compare (AiUnit_HasFuelForTile). `(x = x << 9) >> 4` keeps a shift in place (Camera_SetFromMapScroll).
 - A value the original copies to a scratch register instead of reusing a callee-saved one: compute the later use after the copy (SoundStream_FillBlocks, gain only).
+- Blocks of a `switch` in another order: write the cases in the original's block order (SndTrack_Step).
+- The loop test at the bottom where the original tests at the top: `for (;;)` with `break` instead of `while` (WifiIrq_Dispatch).
+- A field load after a store that acknowledges an interrupt: read the field into a local before the store and mask it afterwards (WifiIrq_RxFinished).
 
 **Conditional moves and BOOLs**
 
@@ -186,7 +193,9 @@ Each line: the rewrite, then the functions it matched.
 - `add rN, rM, #0` comes from `x = 0; x += call();` (`terrain_firepower.c`).
 - See also the bug checks in step 1.
 
-**Found by `permuter.py` (2026-10-11, issue 0052):** an unsigned operand where the original compares or indexes (`y != 0u`, `rowTable[(u32)y - startY]`, `cellSkills[(u32)left][(u32)row]`: RangeMap_MarkAdjacentTiles, MapPreview_DrawBlock, CoSelectScreen_RefreshCellSkills); a value read once into a local that two statements use (func_02055f84, DesignMap_BuildRecord); a sum in two steps (`mapId = mission; mapId += MAP_CAMPAIGN_FIRST;`, func_020fed58); a counter incremented at the end of the loop body instead of the start (AiSites_Collect); an empty `if` of two terms (`&&` or `||`) after a call in a loop, which changes how mwcc lays out the loop (EventScript_StepSlot).
+**Found by `permuter.py` (2026-10-11, issue 0052):** an unsigned operand where the original compares or indexes (`y != 0u`, `rowTable[(u32)y - startY]`, `cellSkills[(u32)left][(u32)row]`: RangeMap_MarkAdjacentTiles, MapPreview_DrawBlock, CoSelectScreen_RefreshCellSkills); a value read once into a local that two statements use (func_02055f84, DesignMap_BuildRecord); a sum in two steps (`mapId = mission; mapId += MAP_CAMPAIGN_FIRST;`, func_020fed58); a counter incremented at the end of the loop body instead of the start (AiSites_Collect); an `unsigned long` copy where `u32` or a cast does not match (`unsigned long row = y;` after `tiles = state->mapTiles`, used in both row indexes: MoveSearch_TryStepOverTurns); an empty `if` of two terms (`&&` or `||`) after a call in a loop, which changes how mwcc lays out the loop (EventScript_StepSlot), or before a register write, which changes register choice (Screen_PrepareHBlankRegs, gain only). The empty `if` emits no code; mark it "Needed to match".
+
+**Not fixed by any form so far:** mwcc puts any chain of `+` and `-` in one fixed order, whatever the term order or casts (func_ov002_023549c8); it folds `<< 6` into the adds in every form tried (func_ov005_0235b5dc). A permuter variant that changes behaviour, such as overwriting a buffer (func_arm7_027c342c) or a `continue` inside `do {} while (0)` (AiSiteGroup_RateSurroundings), is a hint, not a fix.
 
 **Rarely helped:** `permute.py` or full declaration-order searches on a register-only diff without a rewrite first; `register`; `volatile` other than for a forced reload; a cast on one use; moving a whole block or body into an inline helper.
 
