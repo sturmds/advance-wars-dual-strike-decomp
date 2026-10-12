@@ -83,7 +83,8 @@ typedef struct WlState {
     u8 pad_2c[0xa];
     u16 unk_36;
     u16 words[16];
-    u8 pad_58[0x2e];
+    u16 words_58[16];
+    u8 pad_78[0xe];
     u16 unk_86;
     u16 unk_88;
     u8 pad_8a[2];

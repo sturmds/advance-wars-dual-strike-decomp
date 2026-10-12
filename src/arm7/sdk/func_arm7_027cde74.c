@@ -7,10 +7,10 @@ struct Unk_027cde74_a1 {
     u16 unk_2;
 };
 
-void func_arm7_027c9f34(int, void *, int);
+void WifiParam_StoreSsidMask(int, void *, int);
 
 void func_arm7_027cde74(int a0, Unk_027cde74_a1 *a1)
 {
     a1->unk_2 = 1;
-    func_arm7_027c9f34(a0 + 16, a1, 1);
+    WifiParam_StoreSsidMask(a0 + 16, a1, 1);
 }
