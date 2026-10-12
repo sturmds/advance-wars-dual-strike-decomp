@@ -8,7 +8,7 @@ BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
 void func_arm7_03803e50(int device);              /* take the SPI bus */
 void func_arm7_03803e0c(u32 device);              /* release the SPI bus */
 void func_arm7_037fd8ac(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
-void func_arm7_037fd754(u32 tag);                 /* cancel the V alarms with this tag */
+void LineAlarm_WithdrawTagged_Arm7(u32 tag);              /* cancel the V alarms with this tag */
 
 /* Runs one touch panel job on the SPI thread: a sample (one-shot or from
  * auto sampling), or starting and stopping auto sampling. */
@@ -66,7 +66,7 @@ void TP_ExecuteProcess(SerialBusJob *entry)
 
     case TP_REQUEST_COMMAND_AUTO_OFF:
         if (tpWork.status == TOUCH_SAMPLER_STOPPING) {
-            func_arm7_037fd754(TOUCH_LINE_ALARM_ID);
+            LineAlarm_WithdrawTagged_Arm7(TOUCH_LINE_ALARM_ID);
             func_arm7_03803e84(entry->process, TOUCH_REPLY_OK);
             tpWork.status = TOUCH_SAMPLER_IDLE;
         } else {
