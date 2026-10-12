@@ -8,7 +8,6 @@ void func_arm7_03803e50(int device);   /* take the SPI bus for device */
 
 void func_arm7_027d49e0(void);
 void func_arm7_027d49a0(void);
-void func_arm7_027d4960(void);
 
 /* Runs one NVRAM job on the SPI thread and replies to the ARM9. Reads need
  * an idle flash; writes and erases also need the write enable latch. */
@@ -95,7 +94,7 @@ void NVRAM_ExecuteProcess(SerialBusJob *entry)
             SPIi_ReleaseException(SERIAL_OWNER_FLASH);
             return;
         }
-        func_arm7_027d4960();
+        NVRAM_ChipErase();
         break;
     case FLASH_REQ_IDENTIFY:
         NVRAM_ReadId((u8 *)entry->arg[2]);
