@@ -30,6 +30,7 @@ typedef struct GbaSlotWaitStates {
 /* Low six bits of a PXI word from the ARM7 are the command. */
 #define GBA_SLOT_MSG_OPCODE_BITS 0x3f
 #define GBA_SLOT_MSG_SETUP_ACK 1     /* answer to the init command */
+#define CTRDG_PXI_COMMAND_TERMINATE 2     /* the ARM9 stops; the ARM7 shuts down too */
 #define GBA_SLOT_MSG_REMOVED 17   /* the cartridge was pulled out */
 
 #define GBA_LOGO_LEN_HALFWORDS (0x9c / 2)

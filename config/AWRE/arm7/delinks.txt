@@ -1397,6 +1397,10 @@ src/arm7/sdk/ctrdg/cartridge_logo_matches_bios.c:
     complete
     .text       start:0x038068f0 end:0x0380699c
 
+src/arm7/sdk/ctrdg/cartridge_on_shutdown_message.c:
+    complete
+    .text       start:0x0380699c end:0x038069c8
+
 src/arm7/sdk/func_arm7_03806d4c.c:
     complete
     .text       start:0x03806d4c end:0x03806f58
