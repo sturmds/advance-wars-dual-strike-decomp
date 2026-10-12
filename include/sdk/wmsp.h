@@ -8,6 +8,11 @@
 // WMSP is the ARM7 half of WM. It runs the requests the ARM9 sends and
 // reports back through a reply buffer that both CPUs can see.
 
+/* Wireless hardware configuration registers, named by address (GBATEK). */
+#define IO_WIRELESS_INIT_REG_124 ((volatile u16 *)0x04808124)
+#define IO_WIRELESS_INIT_REG_128 ((volatile u16 *)0x04808128)
+#define IO_WIRELESS_INIT_REG_150 ((volatile u16 *)0x04808150)
+
 #define WMSP_SLOT_COUNT 32
 #define WMSP_SLOT_FLAG 0x8000
 
