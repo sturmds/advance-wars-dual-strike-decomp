@@ -3,7 +3,7 @@
 
 /* Soft-float runtime: double subtract, and double to unsigned 64-bit. */
 double func_0212676c(double a, double b);
-u64 func_02125e7c(double x);
+u64 _ll_ufrom_d(double x);
 
 /* Number of trailing zero bits in the 53-bit mantissa of x. */
 static inline int CountTrailingZeros(double x)
@@ -46,7 +46,7 @@ void __num2dec_internal(Decimal *dec, double x)
         Decimal power;
 
         __two_exp(&power, exponent - bits);
-        __ull2dec(&mantissa, func_02125e7c(ldexp(fraction, bits)));
+        __ull2dec(&mantissa, _ll_ufrom_d(ldexp(fraction, bits)));
         __timesdec(dec, &mantissa, &power);
         dec->sign = sign;
     }
