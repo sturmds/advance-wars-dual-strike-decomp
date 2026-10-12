@@ -1092,6 +1092,10 @@ src/arm7/sdk/wl/wifi_cmd_run_radio_test.c:
     complete
     .text       start:0x027ce370 end:0x027ce5f8
 
+src/arm7/sdk/wl/wifi_cmd_report_mode.c:
+    complete
+    .text       start:0x027ce5f8 end:0x027ce620
+
 src/arm7/sdk/func_arm7_027d00b4.c:
     complete
     .text       start:0x027d00b4 end:0x027d00dc
