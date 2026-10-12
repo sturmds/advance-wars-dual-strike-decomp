@@ -1,6 +1,6 @@
 #!/bin/sh
-# Prepare a git worktree of this repo for building: link the ROM and the
-# tool cache from the main checkout, so nothing is downloaded or copied.
+# Prepare a git worktree of this repo for building: link the ROM, the
+# tool cache and the unpacked maps from the main checkout, so nothing is downloaded or copied.
 # Run from the worktree root. Safe to run twice.
 set -eu
 
@@ -12,8 +12,10 @@ if [ "$main" = "$here" ]; then
 fi
 [ -e "$main/orig/AWRE.nds" ] || { echo "error: $main/orig/AWRE.nds is missing" >&2; exit 1; }
 [ -d "$main/.cache/tools" ] || { echo "error: run make setup in $main first" >&2; exit 1; }
+[ -d "$main/extracted" ] || { echo "error: run make setup in $main first (extracted/ is missing)" >&2; exit 1; }
 
 mkdir -p "$here/orig"
 ln -sfn "$(readlink -f "$main/orig/AWRE.nds")" "$here/orig/AWRE.nds"
 [ -e "$here/.cache" ] || ln -s "$main/.cache" "$here/.cache"
-echo "wt_setup: linked orig/AWRE.nds and .cache from $main"
+[ -e "$here/extracted" ] || ln -s "$main/extracted" "$here/extracted"
+echo "wt_setup: linked orig/AWRE.nds, .cache and extracted from $main"

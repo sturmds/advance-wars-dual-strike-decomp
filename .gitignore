@@ -28,7 +28,7 @@ __pycache__/
 /.claude/worktrees/
 
 # Generated or local-only, never in git
-/extracted/
+/extracted
 /work/
 /.claude/
 /assets/maps/*/
