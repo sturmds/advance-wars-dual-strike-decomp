@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/tp.h"
-
-void func_arm7_037fdc10(void);                   /* halt: disable interrupts and stop for good */
+#include "sdk/os_arm7.h"
 
 /* Takes one touch panel reading: pen state, then X and Y. density gets the
  * larger spread of the raw readings on either axis, or 0 when the pen is up
@@ -64,6 +63,6 @@ void TP_ExecSampling(SPITpData *data, s32 range, u16 *density)
         tpLastTouch = 0;
         break;
     default:
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
 }

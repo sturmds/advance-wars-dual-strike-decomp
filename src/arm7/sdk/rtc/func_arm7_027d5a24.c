@@ -14,10 +14,6 @@ void func_arm7_027d58e8(u32 tag, u32 data, BOOL err);
 void func_arm7_037fe0a0(void);
 void func_arm7_037fe298(u32 tag, void (*callback)(u32 tag, u32 data, BOOL err));
 void func_arm7_037fe3fc(u16 mask, u16 value);
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-void func_arm7_037fb748(u32 mask, void (*function)(void));
-u32 func_arm7_037fb690(u32 mask);
 
 /*
  * Runs once: checks the clock, starts the thread that serves the ARM9's
@@ -47,8 +43,8 @@ void func_arm7_027d5a24(u32 priority)
     func_arm7_037fe3e0(RCNT_MODE_GPIO);
     func_arm7_037fe3fc(RCNT_SI_OUTPUT, 0);
     func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
-    irq = func_arm7_037fdb80();
-    func_arm7_037fb748(IRQ_SIO, func_arm7_027d5364);
-    func_arm7_037fb690(IRQ_SIO);
-    func_arm7_037fdb94(irq);
+    irq = Cpu_MaskIrq_Arm7();
+    Irq_InstallHandlers_Arm7(IRQ_SIO, func_arm7_027d5364);
+    Irq_SetEnableBits_Arm7(IRQ_SIO);
+    Cpu_RestoreIrqBit_Arm7(irq);
 }

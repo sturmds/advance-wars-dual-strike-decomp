@@ -2,6 +2,7 @@
 #define SDK_PM_H
 
 #include "types.h"
+#include "sdk/os_common.h"
 
 /* One entry of a sleep callback list (pre-sleep or post-sleep). */
 typedef struct PowerHookEntry PowerHookEntry;
@@ -45,8 +46,6 @@ int Power_SpinUntilIdle(void);
 BOOL Power_LcdsPowered(void);
 BOOL Power_SwitchLcds(int on, int backlight, BOOL force, BOOL sync);
 
-/* Frame counter in shared main RAM, raised by the VBlank interrupt. */
-#define SHARED_FRAME_COUNTER ((volatile u32 *)0x027ffc3c)
 
 /* ARM7 side: the power chip driver that answers the requests above. */
 

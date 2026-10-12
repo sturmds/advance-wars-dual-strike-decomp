@@ -848,139 +848,139 @@ src/arm7/sdk/wl/wifi_buffer_give_to_host.c:
     complete
     .text       start:0x037f8d74 end:0x037f8e04
 
-src/arm7/sdk/os/func_arm7_037fb340.c:
+src/arm7/sdk/os/irq_dispatch_lowest_pending_arm7.c:
     complete
     .text       start:0x037fb340 end:0x037fb394
 
-src/arm7/sdk/os/func_arm7_037fb394.c:
+src/arm7/sdk/os/irq_wake_and_switch_on_exit_arm7.c:
     complete
     .text       start:0x037fb394 end:0x037fb4b0
 
-src/arm7/sdk/os/func_arm7_037fb4b0.c:
+src/arm7/sdk/os/v_blank_irq_count_and_call_slot_arm7.c:
     complete
     .text       start:0x037fb4b0 end:0x037fb508
 
-src/arm7/sdk/func_arm7_037fb508.c:
+src/arm7/sdk/os/timer3_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb508 end:0x037fb518
 
-src/arm7/sdk/func_arm7_037fb518.c:
+src/arm7/sdk/os/timer2_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb518 end:0x037fb528
 
-src/arm7/sdk/func_arm7_037fb528.c:
+src/arm7/sdk/os/timer1_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb528 end:0x037fb538
 
-src/arm7/sdk/func_arm7_037fb538.c:
+src/arm7/sdk/os/timer0_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb538 end:0x037fb548
 
-src/arm7/sdk/func_arm7_037fb548.c:
+src/arm7/sdk/os/dma3_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb548 end:0x037fb558
 
-src/arm7/sdk/func_arm7_037fb558.c:
+src/arm7/sdk/os/dma2_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb558 end:0x037fb568
 
-src/arm7/sdk/func_arm7_037fb568.c:
+src/arm7/sdk/os/dma1_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb568 end:0x037fb578
 
-src/arm7/sdk/func_arm7_037fb578.c:
+src/arm7/sdk/os/dma0_irq_call_slot_handler_arm7.c:
     complete
     .text       start:0x037fb578 end:0x037fb588
 
-src/arm7/sdk/os/func_arm7_037fb588.c:
+src/arm7/sdk/os/irq_slot_call_and_clear_arm7.c:
     complete
     .text       start:0x037fb588 end:0x037fb61c
 
-src/arm7/sdk/func_arm7_037fb61c.c:
+src/arm7/sdk/os/irq_ignore_unused_arm7.c:
     complete
     .text       start:0x037fb61c end:0x037fb620
 
-src/arm7/sdk/os/func_arm7_037fb620.c:
+src/arm7/sdk/os/irq_ack_pending_arm7.c:
     complete
     .text       start:0x037fb620 end:0x037fb654
 
-src/arm7/sdk/os/func_arm7_037fb654.c:
+src/arm7/sdk/os/irq_clear_enable_bits_arm7.c:
     complete
     .text       start:0x037fb654 end:0x037fb690
 
-src/arm7/sdk/os/func_arm7_037fb690.c:
+src/arm7/sdk/os/irq_set_enable_bits_arm7.c:
     complete
     .text       start:0x037fb690 end:0x037fb6c8
 
-src/arm7/sdk/os/func_arm7_037fb6c8.c:
+src/arm7/sdk/os/irq_replace_enable_bits_arm7.c:
     complete
     .text       start:0x037fb6c8 end:0x037fb6fc
 
-src/arm7/sdk/os/func_arm7_037fb6fc.c:
+src/arm7/sdk/os/timer_install_irq_slot_arm7.c:
     complete
     .text       start:0x037fb6fc end:0x037fb748
 
-src/arm7/sdk/os/func_arm7_037fb748.c:
+src/arm7/sdk/os/irq_install_handlers_arm7.c:
     complete
     .text       start:0x037fb748 end:0x037fb7f0
 
-src/arm7/sdk/func_arm7_037fb7f0.c:
+src/arm7/sdk/os/irq_reset_wake_mask_and_frames_arm7.c:
     complete
     .text       start:0x037fb7f0 end:0x037fb810
 
-src/arm7/sdk/func_arm7_037fb810.c:
+src/arm7/sdk/os/os_unlock_cartridge_alias_arm7.c:
     complete
     .text       start:0x037fb810 end:0x037fb81c
 
-src/arm7/sdk/os/func_arm7_037fb81c.c:
+src/arm7/sdk/os/lock_id_allocate_arm7.c:
     complete
     .text       start:0x037fb81c end:0x037fb8b4
 
-src/arm7/sdk/func_arm7_037fb8b4.c:
+src/arm7/sdk/os/lock_id_free_arm7.c:
     complete
     .text       start:0x037fb8b4 end:0x037fb8e4
 
-src/arm7/sdk/func_arm7_037fb8e4.c:
+src/arm7/sdk/os/lock_word_pause_between_tries_arm7.c:
     complete
     .text       start:0x037fb8e4 end:0x037fb8f4
 
-src/arm7/sdk/func_arm7_037fb8f4.c:
+src/arm7/sdk/os/lock_word_owner_id_arm7.c:
     complete
     .text       start:0x037fb8f4 end:0x037fb8fc
 
-src/arm7/sdk/func_arm7_037fb8fc.c:
+src/arm7/sdk/os/slot_lock_on_release_noop_arm7.c:
     complete
     .text       start:0x037fb8fc end:0x037fb900
 
-src/arm7/sdk/func_arm7_037fb900.c:
+src/arm7/sdk/os/slot_lock_on_acquire_noop_arm7.c:
     complete
     .text       start:0x037fb900 end:0x037fb904
 
-src/arm7/sdk/func_arm7_037fb904.c:
+src/arm7/sdk/os/slot_lock_try_once_arm7.c:
     complete
     .text       start:0x037fb904 end:0x037fb924
 
-src/arm7/sdk/func_arm7_037fb924.c:
+src/arm7/sdk/os/slot_lock_release_arm7.c:
     complete
     .text       start:0x037fb924 end:0x037fb944
 
-src/arm7/sdk/func_arm7_037fb944.c:
+src/arm7/sdk/os/slot_lock_acquire_arm7.c:
     complete
     .text       start:0x037fb944 end:0x037fb964
 
-src/arm7/sdk/os/func_arm7_037fb964.c:
+src/arm7/sdk/os/lock_word_swap_once_arm7.c:
     complete
     .text       start:0x037fb964 end:0x037fb9e8
 
-src/arm7/sdk/os/func_arm7_037fb9e8.c:
+src/arm7/sdk/os/lock_word_clear_if_owner_arm7.c:
     complete
     .text       start:0x037fb9e8 end:0x037fba74
 
-src/arm7/sdk/os/func_arm7_037fba74.c:
+src/arm7/sdk/os/lock_word_spin_acquire_arm7.c:
     complete
     .text       start:0x037fba74 end:0x037fbabc
 
-src/arm7/sdk/os/func_arm7_037fbabc.c:
+src/arm7/sdk/os/lock_id_handshake_and_free_ids_arm7.c:
     complete
     .text       start:0x037fbabc end:0x037fbb34
 
@@ -1112,7 +1112,7 @@ src/arm7/sdk/func_arm7_037fc6b0.c:
     complete
     .text       start:0x037fc6b0 end:0x037fc6c4
 
-src/arm7/sdk/func_arm7_037fc6c4.c:
+src/arm7/sdk/os/system_start_services_arm7.c:
     complete
     .text       start:0x037fc6c4 end:0x037fc6fc
 
@@ -1300,31 +1300,31 @@ src/arm7/sdk/os/line_alarm_set_up_queue_arm7.c:
     complete
     .text       start:0x037fdb04 end:0x037fdb6c
 
-src/arm7/sdk/func_arm7_037fdb6c.c:
+src/arm7/sdk/os/cpu_unmask_irq_arm7.c:
     complete
     .text       start:0x037fdb6c end:0x037fdb80
 
-src/arm7/sdk/func_arm7_037fdb80.c:
+src/arm7/sdk/os/cpu_mask_irq_arm7.c:
     complete
     .text       start:0x037fdb80 end:0x037fdb94
 
-src/arm7/sdk/func_arm7_037fdb94.c:
+src/arm7/sdk/os/cpu_restore_irq_bit_arm7.c:
     complete
     .text       start:0x037fdb94 end:0x037fdbac
 
-src/arm7/sdk/func_arm7_037fdbac.c:
+src/arm7/sdk/os/cpu_mask_irq_fiq_arm7.c:
     complete
     .text       start:0x037fdbac end:0x037fdbc0
 
-src/arm7/sdk/func_arm7_037fdbc0.c:
+src/arm7/sdk/os/cpu_restore_irq_fiq_bits_arm7.c:
     complete
     .text       start:0x037fdbc0 end:0x037fdbd8
 
-src/arm7/sdk/func_arm7_037fdbd8.c:
+src/arm7/sdk/os/cpu_current_mode_arm7.c:
     complete
     .text       start:0x037fdbd8 end:0x037fdbe4
 
-src/arm7/sdk/func_arm7_037fdbe4.c:
+src/arm7/sdk/os/cpu_busy_wait_cycles_arm7.c:
     complete
     .text       start:0x037fdbe4 end:0x037fdc04
 
@@ -1332,7 +1332,7 @@ src/arm7/sdk/func_arm7_037fdc04.c:
     complete
     .text       start:0x037fdc04 end:0x037fdc10
 
-src/arm7/sdk/func_arm7_037fdc10.c:
+src/arm7/sdk/os/cpu_halt_forever_arm7.c:
     complete
     .text       start:0x037fdc10 end:0x037fdc24
 

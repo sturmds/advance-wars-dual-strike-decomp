@@ -59,6 +59,61 @@ struct OSThread {
     OSThreadQueue joinQueue;
 };
 
+/* Interrupts. The mask functions return the previous value of the register they change. */
+void Irq_ResetWakeMaskAndFrames_Arm7(void);
+void Irq_DispatchLowestPending_Arm7(void);
+void Irq_WakeAndSwitchOnExit_Arm7(void);
+void Irq_IgnoreUnused_Arm7(void);
+void IrqSlot_CallAndClear_Arm7(int slot);
+void VBlankIrq_CountAndCallSlot_Arm7(void);
+void Dma0Irq_CallSlotHandler_Arm7(void);
+void Dma1Irq_CallSlotHandler_Arm7(void);
+void Dma2Irq_CallSlotHandler_Arm7(void);
+void Dma3Irq_CallSlotHandler_Arm7(void);
+void Timer0Irq_CallSlotHandler_Arm7(void);
+void Timer1Irq_CallSlotHandler_Arm7(void);
+void Timer2Irq_CallSlotHandler_Arm7(void);
+void Timer3Irq_CallSlotHandler_Arm7(void);
+OSIrqMask Irq_AckPending_Arm7(OSIrqMask mask);
+OSIrqMask Irq_ClearEnableBits_Arm7(OSIrqMask mask);
+OSIrqMask Irq_SetEnableBits_Arm7(OSIrqMask mask);
+OSIrqMask Irq_ReplaceEnableBits_Arm7(OSIrqMask mask);
+void Irq_InstallHandlers_Arm7(OSIrqMask mask, OSIrqFunction function);
+void Timer_InstallIrqSlot_Arm7(int timer, void (*handler)(void *), void *arg);
+
+/* CPSR interrupt bits: each returns the previous state; hand it back to restore. */
+int Cpu_UnmaskIrq_Arm7(void);
+int Cpu_MaskIrq_Arm7(void);
+void Cpu_RestoreIrqBit_Arm7(int state);
+OSIntrMode Cpu_MaskIrqFiq_Arm7(void);
+OSIntrMode Cpu_RestoreIrqFiqBits_Arm7(OSIntrMode state);
+u32 Cpu_CurrentMode_Arm7(void);
+
+void System_StartServices_Arm7(void);
+void Cpu_HaltForever_Arm7(void);
+void Cpu_BusyWaitCycles_Arm7(s32 cycles);
+
+/*
+ * Lock words. Try takes the lock once and returns the old lock flag (0: it
+ * is ours now); Lock retries until it gets it. Unlock returns
+ * LOCK_NOT_OWNER if lockID is not the owner, else 0. ctrl runs while the
+ * lock changes hands.
+ */
+void LockId_HandshakeAndFreeIds_Arm7(void);
+int LockId_Allocate_Arm7(void);
+void LockId_Free_Arm7(u16 lockID);
+u32 LockWord_SwapOnce_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+s32 LockWord_SpinAcquire_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+int LockWord_ClearIfOwner_Arm7(u16 lockID, OSLockWord *lockp, void (*ctrl)(void), BOOL disableFiq);
+void LockWord_PauseBetweenTries_Arm7(void);
+u16 LockWord_OwnerId_Arm7(OSLockWord *lock);
+s32 SlotLock_TryOnce_Arm7(u16 lockID);
+s32 SlotLock_Acquire_Arm7(u16 lockID);
+s32 SlotLock_Release_Arm7(u16 lockID);
+void SlotLock_ReleaseAlias_Arm7(u16 lockID);
+void SlotLock_OnAcquireNoop_Arm7(void);
+void SlotLock_OnReleaseNoop_Arm7(void);
+
 /* Threads. Thread queues are bit masks of thread ids. */
 void Thread_SetUpTableOnce_Arm7(void);
 void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority);

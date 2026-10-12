@@ -2,7 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-u32 func_arm7_037fb654(u32 mask);
 void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
@@ -19,7 +18,7 @@ void Alarm_FireDueAndRearm_Arm7(void)
     OSAlarmHandler handler;
 
     REG_TM1CNT_H = 0;
-    func_arm7_037fb654(IRQ_MASK_TIMER1);
+    Irq_ClearEnableBits_Arm7(IRQ_MASK_TIMER1);
     OS7_IRQ_CHECK_FLAGS |= IRQ_MASK_TIMER1;
     now = Tick_Read64_Arm7();
 

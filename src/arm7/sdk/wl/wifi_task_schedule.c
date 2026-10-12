@@ -6,8 +6,8 @@
 #define WIFI_TASK_LEVEL_IDLE 3
 
 BOOL MsgQueue_PushBack_Arm7(OSMessageQueue *queue, OSMessage message, int flags); /* OS_SendMessage */
-u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
+u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
+u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Puts a task at the back of its priority queue, unless it is queued already. */
 void WifiTask_Schedule(int priority, int task)
@@ -16,7 +16,7 @@ void WifiTask_Schedule(int priority, int task)
     WlTask *tasks = work->tasks;
     u32 irqState;
 
-    irqState = func_arm7_037fb654(WIFI_TASKQ_LOCK_IRQS);
+    irqState = Irq_ClearEnableBits_Arm7(WIFI_TASKQ_LOCK_IRQS);
     if (tasks[task].queued == 0) {
         tasks[task].queued = 1;
         tasks[task].next = WIFI_TASK_LIST_END;
@@ -30,7 +30,7 @@ void WifiTask_Schedule(int priority, int task)
             work->topPriority = priority;
         }
     }
-    func_arm7_037fb690(irqState);
+    Irq_SetEnableBits_Arm7(irqState);
     if (priority != WIFI_TASK_LEVEL_IDLE && work->runPriority == WIFI_TASK_LEVEL_IDLE) {
         MsgQueue_PushBack_Arm7(WIFI_DRIVER_STATE->limits.fromHost, NULL, OS_MESSAGE_NOBLOCK);
     }

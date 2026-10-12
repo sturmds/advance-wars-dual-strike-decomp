@@ -1,8 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
 
 /*
@@ -11,14 +9,14 @@ void LineAlarm_Unlink_Arm7(OSVAlarm *alarm);
  */
 void LineAlarm_Withdraw_Arm7(OSVAlarm *alarm)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
 
     alarm->canceled = TRUE;
     if (alarm->handler == NULL) {
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         return;
     }
     LineAlarm_Unlink_Arm7(alarm);
     alarm->handler = NULL;
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

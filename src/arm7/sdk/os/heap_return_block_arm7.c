@@ -3,8 +3,6 @@
 
 extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena id */
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 HeapBlockHeader *Heap_UnlinkBlock(HeapBlockHeader *list, HeapBlockHeader *cell);
 HeapBlockHeader *Heap_MergeIntoFreeList(HeapBlockHeader *list, HeapBlockHeader *cell);
 
@@ -16,7 +14,7 @@ void Heap_ReturnBlock_Arm7(OSArenaId id, s32 heap, void *ptr)
     HeapBlockHeader *cell;
     int irqState;
 
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     info = data_arm7_03807a54[id];
     if (heap < 0) {
         heap = info->currentHeap;
@@ -25,5 +23,5 @@ void Heap_ReturnBlock_Arm7(OSArenaId id, s32 heap, void *ptr)
     desc = &info->heapArray[heap];
     desc->allocated = Heap_UnlinkBlock(desc->allocated, cell);
     desc->free = Heap_MergeIntoFreeList(desc->free, cell);
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

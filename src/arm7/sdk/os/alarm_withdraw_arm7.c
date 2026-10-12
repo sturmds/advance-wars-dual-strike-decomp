@@ -2,18 +2,16 @@
 #include "sdk/os_arm7.h"
 
 extern AlarmList gOsiAlarmQueue_Arm7;
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 void Alarm_StartTimer1ForDue_Arm7(OSAlarm *alarm);
 
 /* ARM7 copy of OS_CancelAlarm: takes a set alarm out of the queue. */
 void Alarm_Withdraw_Arm7(OSAlarm *alarm)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     OSAlarm *next;
 
     if (alarm->handler == NULL) {
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         return;
     }
 
@@ -35,5 +33,5 @@ void Alarm_Withdraw_Arm7(OSAlarm *alarm)
 
     alarm->handler = NULL;
     alarm->period = 0;
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

@@ -2,8 +2,6 @@
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 int func_arm7_037fe1cc(u32 tag, u32 data, int err);   /* looks like PXI_SendWordByFifo */
 
 /* Request handlers, indexed by CARDiArm7Common.command. */
@@ -20,7 +18,7 @@ void Card_ServiceThread_Arm7(void *arg)
 
     while (TRUE) {
         BOOL request = FALSE;
-        int interrupts = func_arm7_037fdb80();
+        int interrupts = Cpu_MaskIrq_Arm7();
 
         while (TRUE) {
             if (!(common->flag & CARD_STAT_BUSY)) {
@@ -36,20 +34,20 @@ void Card_ServiceThread_Arm7(void *arg)
             common->waiter = &common->thread;
             Thread_WaitOnQueue_Arm7(NULL);
         }
-        func_arm7_037fdb94(interrupts);
+        Cpu_RestoreIrqBit_Arm7(interrupts);
 
         if (request) {
             common->cmd->result = CARD_RESULT_SUCCESS;
             data_arm7_038072b0[common->command](common);
             while (func_arm7_037fe1cc(FIFO_TAG_CARD_SERVICE, 1, 1) < 0) {
             }
-            interrupts = func_arm7_037fdb80();
+            interrupts = Cpu_MaskIrq_Arm7();
             common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
             Thread_ReadyAllWaiters_Arm7(&common->queue);
             if (common->flag & GAMECARD_FLAG_PEER_JOB_PENDING) {
                 Thread_MakeReady_Arm7(&common->thread);
             }
-            func_arm7_037fdb94(interrupts);
+            Cpu_RestoreIrqBit_Arm7(interrupts);
         } else {
             common->task(common);
         }

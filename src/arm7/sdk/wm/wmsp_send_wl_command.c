@@ -5,7 +5,6 @@
 extern OSMessageQueue data_arm7_027d6c84;
 
 void SndHw_Disable(void);
-void func_arm7_037fdc10(void);
 
 WlCommand *Wmsp_SendWlCommand(WlCommand *command)
 {
@@ -21,7 +20,7 @@ WlCommand *Wmsp_SendWlCommand(WlCommand *command)
         indication->state = 23;
         Wmsp_SendReply(indication);
         SndHw_Disable();
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
     return answer;
 }

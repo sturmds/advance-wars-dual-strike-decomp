@@ -4,9 +4,6 @@
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 /* Ends the running request: reports success, wakes the waiters and calls the callback. */
 void Card_ReportDoneAndWake(void)
 {
@@ -16,13 +13,13 @@ void Card_ReportDoneAndWake(void)
     int interrupts;
 
     common->cmd->result = CARD_RESULT_SUCCESS;
-    interrupts = func_arm7_037fdb80();
+    interrupts = Cpu_MaskIrq_Arm7();
     common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
     Thread_ReadyAllWaiters_Arm7(&common->queue);
     if (common->flag & GAMECARD_FLAG_WORKER_SLEEPS) {
         Thread_MakeReady_Arm7(&common->thread);
     }
-    func_arm7_037fdb94(interrupts);
+    Cpu_RestoreIrqBit_Arm7(interrupts);
     if (callback != NULL) {
         callback(callbackArg);
     }

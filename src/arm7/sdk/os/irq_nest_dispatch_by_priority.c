@@ -3,7 +3,6 @@
 extern OSThreadInfo data_arm7_0380790c;
 extern u32 gOsNestedIrqPriorities[][2];    /* {IE mask, handler index} pairs, highest priority first */
 extern void (*data_arm7_03807750[])(void);
-void func_arm7_037fb394(void);
 
 /*
  * IRQ vector body that lets interrupts nest. Returns at once when IME is off
@@ -16,7 +15,7 @@ void func_arm7_037fb394(void);
  * down to the first entry's mask and IRQs are turned back on while the
  * handler runs. Afterwards it keeps the IE bits the handler changed,
  * restores the rest, unwinds the stack and runs the thread switch
- * (func_arm7_037fb394) when it leaves the outermost level.
+ * (Irq_WakeAndSwitchOnExit_Arm7) when it leaves the outermost level.
  * Mode words: 0x9f system mode with IRQs off, 0x1f system mode, 0x92 IRQ
  * mode with IRQs off.
  */
@@ -111,7 +110,7 @@ call_handler:
     ldmfd sp!, {r0}
     msr SPSR_fc, r0
     tst r1, r1
-    ldreq r0, =func_arm7_037fb394
+    ldreq r0, =Irq_WakeAndSwitchOnExit_Arm7
     addeq lr, pc, #0
     bxeq r0
     ldmfd sp!, {pc}

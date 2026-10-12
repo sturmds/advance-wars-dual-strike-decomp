@@ -8,8 +8,6 @@ extern OSThread **gRunningThreadRef_Arm7;
 extern ThreadSwapHook data_arm7_03807908;  /* called on every switch, before info->switchCallback */
 extern OSThreadInfo data_arm7_0380790c;
 
-u32 func_arm7_037fdbd8(void);
-
 /*
  * ARM7 copy of OS_RescheduleThread: switches to the first ready thread in
  * the list. Does nothing while the scheduler is disabled; in an interrupt it
@@ -24,7 +22,7 @@ void Thread_SwitchToFirstReady_Arm7(void)
     if (gSchedulerHoldDepth_Arm7 != 0) {
         return;
     }
-    if (info->inIrq != 0 || func_arm7_037fdbd8() == PROC_MODE_IRQ) {
+    if (info->inIrq != 0 || Cpu_CurrentMode_Arm7() == PROC_MODE_IRQ) {
         info->isNeedRescheduling = TRUE;
         return;
     }

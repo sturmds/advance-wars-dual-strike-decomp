@@ -2,8 +2,6 @@
 #include "sdk/card_arm7.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 u32 CardRom_IssueChipIdCommand(void);
 void Card_ReportDoneAndWake(void);
 
@@ -15,12 +13,12 @@ u32 Card_LockAndReadChipId(void)
     u32 id;
 
     common = &data_arm7_03809280;
-    interrupts = func_arm7_037fdb80();
+    interrupts = Cpu_MaskIrq_Arm7();
     while (common->flag & CARD_STAT_BUSY) {
         Thread_WaitOnQueue_Arm7(&common->queue);
     }
     common->flag |= CARD_STAT_BUSY;
-    func_arm7_037fdb94(interrupts);
+    Cpu_RestoreIrqBit_Arm7(interrupts);
     common->callback = NULL;
     common->callbackArg = NULL;
     id = CardRom_IssueChipIdCommand();

@@ -1,7 +1,6 @@
 #include "sdk/mic.h"
+#include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 BOOL func_arm7_03805d04(u32 span);
 
 /*
@@ -92,12 +91,12 @@ void func_arm7_03805da8(u32 data)
             break;
         }
         {
-            int irqState = func_arm7_037fdb80();
+            int irqState = Cpu_MaskIrq_Arm7();
 
             REG_TM3CNT_H &= ~TIMER_ENABLE;
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
-            func_arm7_037fdb94(irqState);
+            Cpu_RestoreIrqBit_Arm7(irqState);
         }
         SPIi_ReturnResult(command, MIC_PXI_RESULT_SUCCESS);
         break;

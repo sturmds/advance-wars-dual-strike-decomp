@@ -4,7 +4,6 @@
 extern u16 data_arm7_03807a8c;
 extern AlarmList gOsiAlarmQueue_Arm7;
 void Timer_MarkInUse_Arm7(int timer);
-u32 func_arm7_037fb654(u32 mask);
 
 /*
  * ARM7 copy of OS_InitAlarm. Once only: reserves timer 1, empties the alarm
@@ -19,5 +18,5 @@ void Alarm_SetUpTimer1Queue_Arm7(void)
     Timer_MarkInUse_Arm7(1);
     gOsiAlarmQueue_Arm7.head = NULL;
     gOsiAlarmQueue_Arm7.tail = NULL;
-    func_arm7_037fb654(IRQ_MASK_TIMER1);
+    Irq_ClearEnableBits_Arm7(IRQ_MASK_TIMER1);
 }

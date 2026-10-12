@@ -1,14 +1,13 @@
 #include "sdk/snd.h"
+#include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 void SndHw_StopChannel(int channel, int hold);
 void SndArm7_UpdateSharedWork(void);
 void SndArm7_StopAlarm(int alarmNo);
 
 void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     int bit;
 
     for (bit = 0; bit < SOUND_TIMER_SLOTS_ARM7 && alarmMask != 0; bit++, alarmMask >>= 1) {
@@ -27,6 +26,6 @@ void SndArm7_StopTimer(u32 channelMask, u32 captureMask, u32 alarmMask, int hold
     if (captureMask & 2) {
         AUDIO_RECORD1_CNT = 0;
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     SndArm7_UpdateSharedWork();
 }

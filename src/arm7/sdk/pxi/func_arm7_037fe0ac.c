@@ -1,5 +1,6 @@
 #include "types.h"
 #include "sdk/pxi.h"
+#include "sdk/os_arm7.h"
 
 /* Outcomes of reading one word from the receive FIFO, besides a word. */
 #define FIFO_READ_FAULT (-3)
@@ -7,9 +8,6 @@
 
 /* The ARM7 receive callback per tag. */
 extern PXIFifoCallback data_arm7_03807ab8[FIFO_TAG_LIMIT];
-
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 
 /* The ARM7 Fifo_DispatchReceived: reads every queued word and passes
  * it to the callback of its tag. A word with an unknown tag is sent back
@@ -26,13 +24,13 @@ void func_arm7_037fe0ac(void)
             *IO_FIFO_CTRL |= FIFO_CTRL_FAULT_ACK | FIFO_CTRL_ON;
             status = FIFO_READ_FAULT;
         } else {
-            irq = func_arm7_037fdb80();
+            irq = Cpu_MaskIrq_Arm7();
             if (*IO_FIFO_CTRL & FIFO_CTRL_INBOX_EMPTY) {
-                func_arm7_037fdb94(irq);
+                Cpu_RestoreIrqBit_Arm7(irq);
                 status = FIFO_READ_NOTHING;
             } else {
                 *(u32 *)&message = *IO_FIFO_INBOX;
-                func_arm7_037fdb94(irq);
+                Cpu_RestoreIrqBit_Arm7(irq);
                 status = 0;
             }
         }
@@ -52,12 +50,12 @@ void func_arm7_037fe0ac(void)
             if (*IO_FIFO_CTRL & FIFO_CTRL_FAULT_ACK) {
                 *IO_FIFO_CTRL |= FIFO_CTRL_FAULT_ACK | FIFO_CTRL_ON;
             } else {
-                irq = func_arm7_037fdb80();
+                irq = Cpu_MaskIrq_Arm7();
                 if (*IO_FIFO_CTRL & FIFO_CTRL_OUTBOX_FULL) {
-                    func_arm7_037fdb94(irq);
+                    Cpu_RestoreIrqBit_Arm7(irq);
                 } else {
                     *IO_FIFO_OUTBOX = *(u32 *)&message;
-                    func_arm7_037fdb94(irq);
+                    Cpu_RestoreIrqBit_Arm7(irq);
                 }
             }
         }

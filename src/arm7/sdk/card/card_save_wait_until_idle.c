@@ -1,8 +1,8 @@
 #include "types.h"
 #include "sdk/card_arm7.h"
 #include "sdk/gx.h"
+#include "sdk/os_arm7.h"
 
-int func_arm7_037fdbe4(int arg);
 int ScanlineTimer_HasTimeLeft(CARDiLineTimer *timer);
 int CardSave_IsChipIdle(void);
 
@@ -18,7 +18,7 @@ void CardSave_WaitUntilIdle(int minWait, int maxWait)
             minTimer.lastLine = *REG_VCOUNT;
             minTimer.remaining = minWait;
             while (ScanlineTimer_HasTimeLeft(&minTimer)) {
-                func_arm7_037fdbe4(0);
+                Cpu_BusyWaitCycles_Arm7(0);
             }
         }
         if (maxWait != 0) {
@@ -26,7 +26,7 @@ void CardSave_WaitUntilIdle(int minWait, int maxWait)
             maxTimer.remaining = maxWait - minWait;
             ready = 0;
             while (ready == 0 && ScanlineTimer_HasTimeLeft(&maxTimer)) {
-                func_arm7_037fdbe4(0);
+                Cpu_BusyWaitCycles_Arm7(0);
                 ready = CardSave_IsChipIdle();
             }
         } else {

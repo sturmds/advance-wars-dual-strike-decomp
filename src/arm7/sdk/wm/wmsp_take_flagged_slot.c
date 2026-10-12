@@ -1,14 +1,12 @@
 #include "types.h"
 #include "sdk/wmsp.h"
-
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
+#include "sdk/os_arm7.h"
 
 WmspSlot *Wmsp_TakeFlaggedSlot(void)
 {
     WmspSlot *found = NULL;
     int i;
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     WmspBuf *buf = data_arm7_027d7c44.buf;
 
     if (buf != NULL) {
@@ -20,6 +18,6 @@ WmspSlot *Wmsp_TakeFlaggedSlot(void)
             }
         }
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return found;
 }

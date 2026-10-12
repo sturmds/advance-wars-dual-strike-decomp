@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-void func_arm7_037fdc10(void);
 void Alarm_QueueByFireTime_Arm7(OSAlarm *alarm, OSTick fire);
 
 /*
@@ -15,12 +12,12 @@ void Alarm_ArmOneShot_Arm7(OSAlarm *alarm, OSTick delay, OSAlarmHandler handler,
     int irqState;
 
     if (alarm == NULL || alarm->handler != NULL) {
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     alarm->period = 0;
     alarm->handler = handler;
     alarm->arg = arg;
     Alarm_QueueByFireTime_Arm7(alarm, Tick_Read64_Arm7() + delay);
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

@@ -3,8 +3,8 @@
 
 #define WIFI_LIST_LOCK_IRQS 0x01000000
 
-u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
+u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
+u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Takes a buffer out of a list. Returns 1 if it is not a WL buffer, 2 if it is in another list, else 0. */
 int WifiBufList_Unlink(WlBufferList *list, WlBuffer *buffer)
@@ -17,7 +17,7 @@ int WifiBufList_Unlink(WlBufferList *list, WlBuffer *buffer)
     if (buffer->listId != list->id) {
         return 2;
     }
-    irqState = func_arm7_037fb654(WIFI_LIST_LOCK_IRQS);
+    irqState = Irq_ClearEnableBits_Arm7(WIFI_LIST_LOCK_IRQS);
     list->count--;
     if (list->count == 0) {
         list->first = WIFI_LIST_END;
@@ -33,6 +33,6 @@ int WifiBufList_Unlink(WlBufferList *list, WlBuffer *buffer)
         buffer->prev->next = buffer->next;
     }
     buffer->listId = 0;
-    func_arm7_037fb690(irqState);
+    Irq_SetEnableBits_Arm7(irqState);
     return 0;
 }

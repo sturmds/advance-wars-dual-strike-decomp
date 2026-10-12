@@ -2,11 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/pm.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-u32 func_arm7_037fb654(u32 mask);
-u32 func_arm7_037fb690(u32 mask);
-u32 func_arm7_037fb6c8(u32 mask);
 void func_arm7_037fe3e0(int mode);
 void func_arm7_037fe3fc(int mask, int value);
 void SndHw_Enable(void);
@@ -52,8 +47,8 @@ void Power_SleepUntilTrigger(void)
     int bottomCommand;
 
     ime = SetIme(0);
-    intr = func_arm7_037fdb80();
-    irqMask = func_arm7_037fb654(IRQ_ALL);
+    intr = Cpu_MaskIrq_Arm7();
+    irqMask = Irq_ClearEnableBits_Arm7(IRQ_ALL);
     control = PMi_GetRegister(POWER_SWITCHES_REG_INDEX);
 
     PowerLed_SelectPattern(POWER_LIGHT_SLOW_FLASH);
@@ -64,26 +59,26 @@ void Power_SleepUntilTrigger(void)
 
     if (data_arm7_03809ff4 & PM_TRIGGER_KEY) {
         *REG_KEYCNT = data_arm7_03809ff0 | KEYCNT_IRQ;
-        func_arm7_037fb690(IRQ_KEY);
+        Irq_SetEnableBits_Arm7(IRQ_KEY);
     }
     if (data_arm7_03809ff4 & PM_TRIGGER_COVER_OPEN) {
-        func_arm7_037fb690(IRQ_COVER_OPEN);
+        Irq_SetEnableBits_Arm7(IRQ_COVER_OPEN);
     }
     if (data_arm7_03809ff4 & PM_TRIGGER_RTC_ALARM) {
         rcnt = *REG_RCNT;
         func_arm7_037fe3e0(RCNT_MODE_GPIO);
         func_arm7_037fe3fc(RCNT_SI_DIRECTION, RCNT_SI_DIRECTION);
         func_arm7_037fe3fc(RCNT_SI_IRQ, RCNT_SI_IRQ);
-        func_arm7_037fb690(IRQ_RTC);
+        Irq_SetEnableBits_Arm7(IRQ_RTC);
     }
     if (data_arm7_03809ff4 & PM_TRIGGER_CARD) {
-        func_arm7_037fb690(IRQ_CARD);
+        Irq_SetEnableBits_Arm7(IRQ_CARD);
     }
     if (data_arm7_03809ff4 & PM_TRIGGER_CARTRIDGE) {
-        func_arm7_037fb690(IRQ_CARTRIDGE);
+        Irq_SetEnableBits_Arm7(IRQ_CARTRIDGE);
     }
 
-    func_arm7_037fdb94(intr);
+    Cpu_RestoreIrqBit_Arm7(intr);
     SetIme(1);
     func_arm7_0380566c();
 
@@ -100,8 +95,8 @@ void Power_SleepUntilTrigger(void)
     data_arm7_03809ffc.unk_20 = 0;
     func_arm7_0380513c(POWER_MSG_ENTER_SLEEP, 0, 0);
 
-    func_arm7_037fdb80();
-    func_arm7_037fb6c8(irqMask);
-    func_arm7_037fdb94(intr);
+    Cpu_MaskIrq_Arm7();
+    Irq_ReplaceEnableBits_Arm7(irqMask);
+    Cpu_RestoreIrqBit_Arm7(intr);
     SetIme(ime);
 }

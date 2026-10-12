@@ -3,9 +3,6 @@
 
 extern OSThreadInfo data_arm7_0380790c;
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 /*
  * ARM7 copy of OS_WakeupThread: makes every thread waiting on queue ready.
  * queue->head is a bit mask of the waiting thread ids.
@@ -16,7 +13,7 @@ void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue)
     int irqState;
     OSThread *thread;
 
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     waiting = queue->head;
     if (waiting != 0) {
         for (thread = data_arm7_0380790c.list; thread != NULL; thread = thread->next) {
@@ -27,5 +24,5 @@ void Thread_ReadyAllWaiters_Arm7(OSThreadQueue *queue)
         queue->head = 0;
         Thread_SwitchToFirstReady_Arm7();
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

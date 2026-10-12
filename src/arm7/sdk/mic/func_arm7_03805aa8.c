@@ -1,9 +1,6 @@
 #include "sdk/mic.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-u32 func_arm7_037fb690(u32 mask);
 void Irq_WriteVectorEntries(u32 mask, void (*handler)(void));
 void IrqNest_UnhookVector(void);
 void IrqNest_HookVector(void);
@@ -17,14 +14,14 @@ void func_arm7_03805aa8(SerialBusJob *entry)
 
     switch (entry->command) {
     case MIC_PXI_COMMAND_ONE_SAMPLE:
-        irqState = func_arm7_037fdb80();
+        irqState = Cpu_MaskIrq_Arm7();
         if (!func_arm7_03803e68(SERIAL_JOB_MICROPHONE)) {
-            func_arm7_037fdb94(irqState);
+            Cpu_RestoreIrqBit_Arm7(irqState);
             SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_EXCLUSIVE);
             break;
         }
         func_arm7_03803e50(SERIAL_JOB_MICROPHONE);
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         if ((entry->args[0] & MIC_TYPE_12BIT) == MIC_TYPE_12BIT) {
             sample = func_arm7_038060bc();
             if (entry->args[0] & MIC_TYPE_SIGNED) {
@@ -48,13 +45,13 @@ void func_arm7_03805aa8(SerialBusJob *entry)
         if (data_arm7_0380af74.status == MIC_STATUS_AUTO_START) {
             data_arm7_0380af74.lastSample = 0;
             data_arm7_0380af74.pendingSample = 0;
-            irqState = func_arm7_037fdb80();
-            func_arm7_037fb690(IRQ_MASK_TIMER3);
+            irqState = Cpu_MaskIrq_Arm7();
+            Irq_SetEnableBits_Arm7(IRQ_MASK_TIMER3);
             Irq_WriteVectorEntries(IRQ_MASK_TIMER3, func_arm7_03805a6c);
             IrqNest_HookVector();
             REG_TM3CNT_L = data_arm7_0380af74.timerReload;
             REG_TM3CNT_H = data_arm7_0380af74.timerControl | TIMER_ENABLE | TIMER_IRQ_ENABLE;
-            func_arm7_037fdb94(irqState);
+            Cpu_RestoreIrqBit_Arm7(irqState);
             SPIi_ReturnResult(entry->command, MIC_PXI_RESULT_SUCCESS);
             data_arm7_0380af74.status = MIC_STATUS_AUTO_SAMPLING;
         } else {
@@ -65,10 +62,10 @@ void func_arm7_03805aa8(SerialBusJob *entry)
     case MIC_PXI_COMMAND_AUTO_STOP:
         if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END || data_arm7_0380af74.status == MIC_STATUS_END_WAIT) {
             REG_TM3CNT_H &= ~TIMER_ENABLE;
-            irqState = func_arm7_037fdb80();
+            irqState = Cpu_MaskIrq_Arm7();
             Irq_WriteVectorEntries(IRQ_MASK_TIMER3, NULL);
             IrqNest_UnhookVector();
-            func_arm7_037fdb94(irqState);
+            Cpu_RestoreIrqBit_Arm7(irqState);
             if (data_arm7_0380af74.status == MIC_STATUS_AUTO_END) {
                 SPIi_ReturnResult(MIC_PXI_COMMAND_AUTO_STOP, MIC_PXI_RESULT_SUCCESS);
             } else {

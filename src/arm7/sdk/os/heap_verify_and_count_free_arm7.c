@@ -3,9 +3,6 @@
 
 extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena id */
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 /*
  * ARM7 copy of OS_CheckHeap. Walks both block lists of a heap and checks
  * their links, alignment and sizes. Returns the free bytes (headers not
@@ -20,7 +17,7 @@ s32 Heap_VerifyAndCountFree_Arm7(OSArenaId id, s32 heap)
     s32 total = 0;
     s32 freeBytes = 0;
     s32 result = -1;
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
 
     info = data_arm7_03807a54[id];
     if (info->heapArray == NULL) {
@@ -89,6 +86,6 @@ s32 Heap_VerifyAndCountFree_Arm7(OSArenaId id, s32 heap)
         result = freeBytes;
     }
 done:
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return result;
 }

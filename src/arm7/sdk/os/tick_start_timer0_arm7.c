@@ -5,8 +5,6 @@ extern u16 data_arm7_03807a7c;
 extern vu64 gOsiTickCounter_Arm7;
 extern u32 gOsiNeedResetTimer_Arm7;
 void Timer_MarkInUse_Arm7(int timer);
-void func_arm7_037fb748(u32 mask, void (*handler)(void *));
-void func_arm7_037fb690(u32 mask);
 void Tick_OnTimer0Overflow_Arm7(void *arg);
 
 /*
@@ -24,7 +22,8 @@ void Tick_StartTimer0_Arm7(void)
     REG_TM0CNT_H = 0;
     REG_TM0CNT_L = 0;
     REG_TM0CNT_H = TMCNT_START_IRQ_DIV64;
-    func_arm7_037fb748(IRQ_MASK_TIMER0, Tick_OnTimer0Overflow_Arm7);
-    func_arm7_037fb690(IRQ_MASK_TIMER0);
+    /* the handler takes an argument because it also serves as a timer slot handler */
+    Irq_InstallHandlers_Arm7(IRQ_MASK_TIMER0, (OSIrqFunction)Tick_OnTimer0Overflow_Arm7);
+    Irq_SetEnableBits_Arm7(IRQ_MASK_TIMER0);
     gOsiNeedResetTimer_Arm7 = 0;
 }

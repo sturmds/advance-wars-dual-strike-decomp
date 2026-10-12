@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 
 extern vu64 gOsiTickCounter_Arm7;
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 
 /* ARM7 copy of OS_GetTick: timer 0 overflow count above its 16-bit counter. */
 u64 Tick_Read64_Arm7(void)
@@ -12,7 +10,7 @@ u64 Tick_Read64_Arm7(void)
     vu16 counter;
     vu64 overflows;
 
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     counter = REG_TM0CNT_L;
     overflows = gOsiTickCounter_Arm7 & 0x0000ffffffffffffULL;
 
@@ -20,6 +18,6 @@ u64 Tick_Read64_Arm7(void)
     if ((*REG_IF & IRQ_MASK_TIMER0) && !(counter & 0x8000)) {
         overflows++;
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return (overflows << 16) | counter;
 }

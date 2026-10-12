@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/pm.h"
-
-void func_arm7_037fdc10(void);
+#include "sdk/os_arm7.h"
 
 /* Sets the power LED to steady, slow blink or fast blink; any other state halts. */
 void PMi_SetLED(int status)
@@ -18,7 +17,7 @@ void PMi_SetLED(int status)
         PMi_SetControl(POWER_SWITCH_LED_FLASHING);
         break;
     default:
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
     gPowerLedLastState = status;
 }

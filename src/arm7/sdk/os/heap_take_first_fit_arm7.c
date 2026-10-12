@@ -3,8 +3,6 @@
 
 extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena id */
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 HeapBlockHeader *Heap_UnlinkBlock(HeapBlockHeader *list, HeapBlockHeader *cell);
 HeapBlockHeader *Heap_LinkAtFront(HeapBlockHeader *list, HeapBlockHeader *cell);
 
@@ -23,10 +21,10 @@ void *Heap_TakeFirstFit_Arm7(OSArenaId id, s32 heap, s32 size)
     s32 leftover;
     int irqState;
 
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     info = data_arm7_03807a54[id];
     if (info == NULL) {
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         return NULL;
     }
     if (heap < 0) {
@@ -42,7 +40,7 @@ void *Heap_TakeFirstFit_Arm7(OSArenaId id, s32 heap, s32 size)
         }
     }
     if (cell == NULL) {
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         return NULL;
     }
 
@@ -65,6 +63,6 @@ void *Heap_TakeFirstFit_Arm7(OSArenaId id, s32 heap, s32 size)
         }
     }
     desc->allocated = Heap_LinkAtFront(desc->allocated, cell);
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return (u8 *)cell + HEAP_BLOCK_HEADER_BYTES;
 }

@@ -1,9 +1,6 @@
 #include "types.h"
 #include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 extern u32 gSchedulerHoldDepth_Arm7;
 
 /*
@@ -13,12 +10,12 @@ extern u32 gSchedulerHoldDepth_Arm7;
  */
 u32 Thread_HoldSwitching_Arm7(void)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     u32 count;
 
     if (gSchedulerHoldDepth_Arm7 < 0xffffffff) {
         count = gSchedulerHoldDepth_Arm7++;
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return count;
 }

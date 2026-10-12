@@ -1,7 +1,6 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
-
-void func_arm7_037fdc10(void);   /* OS_Terminate */
+#include "sdk/os_arm7.h"
 
 extern GbaSlotInitWord gCtrdgInitMessage;
 
@@ -11,6 +10,6 @@ void Cartridge_StoreInitDoneWord(u32 tag, u32 data, int err)
         gCtrdgInitMessage.word = data;
         gCtrdgInitMessage.received = 1;
     } else {
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
 }

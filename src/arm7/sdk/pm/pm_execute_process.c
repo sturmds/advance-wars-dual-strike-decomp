@@ -1,9 +1,8 @@
 #include "types.h"
 #include "sdk/pm.h"
 #include "sdk/spi.h"
+#include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);                   /* OS_DisableInterrupts */
-void func_arm7_037fdb94(int state);             /* OS_RestoreInterrupts */
 BOOL func_arm7_03803e68(u32 device);            /* bus free? */
 void func_arm7_03803e50(int device);            /* take the bus */
 void Power_SleepUntilTrigger(void);
@@ -14,15 +13,15 @@ extern u16 data_arm7_03809ff4;                  /* sleep: wake-up triggers and b
 /* Runs one power chip job on the SPI thread, holding the bus meanwhile. */
 void PM_ExecuteProcess(SerialBusJob *entry)
 {
-    int intr = func_arm7_037fdb80();
+    int intr = Cpu_MaskIrq_Arm7();
 
     if (!func_arm7_03803e68(SERIAL_OWNER_POWER_CHIP)) {
-        func_arm7_037fdb94(intr);
+        Cpu_RestoreIrqBit_Arm7(intr);
         SPIi_ReturnResult(entry->process, SPI_PXI_RESULT_EXCLUSIVE);
         return;
     }
     func_arm7_03803e50(SERIAL_OWNER_POWER_CHIP);
-    func_arm7_037fdb94(intr);
+    Cpu_RestoreIrqBit_Arm7(intr);
 
     switch (entry->process) {
     case POWER_MSG_PREPARE_SLEEP:

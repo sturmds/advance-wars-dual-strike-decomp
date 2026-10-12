@@ -3,9 +3,6 @@
 
 extern OSHeapInfo *data_arm7_03807a54[];    /* heap info of each arena, by arena id */
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 /*
  * ARM7 copy of OS_CreateHeap. Makes a heap of the memory from start to end
  * (shrunk to 32-byte bounds) in the first unused slot of the arena's heap
@@ -14,7 +11,7 @@ void func_arm7_037fdb94(int state);
  */
 s32 Heap_CarveFromRange_Arm7(OSArenaId id, void *start, void *end)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     OSHeapInfo *info = data_arm7_03807a54[id];
     HeapRecord *desc;
     HeapBlockHeader *cell;
@@ -33,10 +30,10 @@ s32 Heap_CarveFromRange_Arm7(OSArenaId id, void *start, void *end)
             cell->size = desc->size;
             desc->free = cell;
             desc->allocated = NULL;
-            func_arm7_037fdb94(irqState);
+            Cpu_RestoreIrqBit_Arm7(irqState);
             return heap;
         }
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return -1;
 }

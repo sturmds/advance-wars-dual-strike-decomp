@@ -2,9 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/gx.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-void func_arm7_037fdc10(void);
 s32 func_arm7_037fd530(s32 vcount);
 void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
 
@@ -15,12 +12,12 @@ void LineAlarm_QueueByFrameLine_Arm7(OSVAlarm *alarm);
  */
 void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHandler handler, void *arg)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     u16 vcount;
     s32 frame;
 
     if (alarm == NULL || alarm->handler != NULL) {
-        func_arm7_037fdc10();
+        Cpu_HaltForever_Arm7();
     }
     vcount = *REG_VCOUNT;
     frame = func_arm7_037fd530(vcount);
@@ -35,5 +32,5 @@ void LineAlarm_ArmOneShot_Arm7(OSVAlarm *alarm, s16 line, s16 delay, OSVAlarmHan
     alarm->arg = arg;
     alarm->canceled = FALSE;
     LineAlarm_QueueByFrameLine_Arm7(alarm);
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

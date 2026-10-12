@@ -3,13 +3,10 @@
 
 extern OSThreadInfo data_arm7_0380790c;
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
-
 /* ARM7 copy of OS_LockMutex; main already has that symbol. Takes the mutex, sleeping until its owner releases it. The owner may lock again. */
 void Mutex_Take_Arm7(OSMutex *mutex)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     OSThread *current = data_arm7_0380790c.current;
 
     while (TRUE) {
@@ -27,5 +24,5 @@ void Mutex_Take_Arm7(OSMutex *mutex)
         Thread_WaitOnQueue_Arm7(&mutex->queue);
         current->mutex = NULL;
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

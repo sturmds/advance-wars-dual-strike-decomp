@@ -8,10 +8,6 @@ void func_arm7_027d5a24(int a0);
 void UserSettings_LoadFromFlash(void);
 int InitWramHeap(void);
 void func_arm7_037f8444(void);                                  /* BIOS Halt (svc 6) */
-OSIrqMask func_arm7_037fb690(OSIrqMask mask);                   /* enable IRQs in mask */
-void func_arm7_037fb748(u32 mask, void (*handler)(void));       /* set IRQ handler */
-void func_arm7_037fc6c4(void);
-int func_arm7_037fdb6c(void);
 void func_arm7_037fdc24(void);
 u16 func_arm7_037fdce4(void);
 void func_arm7_037fe0a0(void);
@@ -36,22 +32,22 @@ void Arm7Main(void)
 {
     int heap;
 
-    func_arm7_037fc6c4();
+    System_StartServices_Arm7();
     Thread_SetUpTableOnce_Arm7();
     UserSettings_LoadFromFlash();
     func_arm7_037fe0a0();
     heap = InitWramHeap();
     Sound_StartDriver_Arm7(6);
     func_arm7_037fe45c();
-    func_arm7_037fb748(IRQ_VBLANK, VBlankIntr_Arm7);
-    func_arm7_037fb690(IRQ_VBLANK);
+    Irq_InstallHandlers_Arm7(IRQ_VBLANK, VBlankIntr_Arm7);
+    Irq_SetEnableBits_Arm7(IRQ_VBLANK);
     /* needed to match: the original reads each register once before the
        write and ignores the value (the old IME setting) */
     *REG_DISPSTAT;
     *REG_DISPSTAT |= DISPSTAT_VBLANK_IRQ;
     *REG_IME;
     *REG_IME = 1;
-    func_arm7_037fdb6c();
+    Cpu_UnmaskIrq_Arm7();
     FileSys_SetUpOnce_Arm7(-1);
     func_arm7_038028c8(15);
     func_arm7_027d5a24(12);

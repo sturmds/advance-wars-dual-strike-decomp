@@ -247,6 +247,9 @@ enum {
     LINE_ALARM_TOO_LATE = 2           /* more than delay lines late */
 };
 
+/* Frame counter in shared main RAM, raised by the VBlank interrupt. */
+#define SHARED_FRAME_COUNTER ((volatile u32 *)0x027ffc3c)
+
 /* Boot type word in shared main RAM; 2 means the program came over multiboot. */
 #define BOOT_ORIGIN_WORD ((volatile u16 *)0x027ffc40)
 #define BOOT_ORIGIN_WIRELESS 2

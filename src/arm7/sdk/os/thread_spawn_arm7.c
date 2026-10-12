@@ -7,8 +7,6 @@
 
 extern OSThread *data_arm7_03807920[];   /* OSThreadInfo.threads, under its own symbol */
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 void func_arm7_037fc270(OSContext *context, u32 pc, u32 sp);
 void func_arm7_037fde5c(u32 data, void *dest, int size);
 
@@ -23,10 +21,10 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     OSContext *context;
     volatile u32 zero; /* needed to match: the fill value goes through the stack */
 
-    irqState = func_arm7_037fdb80();
+    irqState = Cpu_MaskIrq_Arm7();
     id = Thread_FirstFreeId_Arm7();
     if (id < 0) {
-        func_arm7_037fdb94(irqState);
+        Cpu_RestoreIrqBit_Arm7(irqState);
         return;
     }
     thread->priority = priority;
@@ -53,5 +51,5 @@ void Thread_Spawn_Arm7(OSThread *thread, void (*func)(void *), void *arg, void *
     thread->mutex = NULL;
     thread->mutexQueue.head = NULL;
     thread->mutexQueue.tail = NULL;
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

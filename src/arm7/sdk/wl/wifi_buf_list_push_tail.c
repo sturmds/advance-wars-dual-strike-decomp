@@ -3,13 +3,13 @@
 
 #define WIFI_LIST_LOCK_IRQS 0x01000000
 
-u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
+u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
+u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Adds a buffer at the end of a list and marks it as a WL buffer of that list. Always returns 0. */
 int WifiBufList_PushTail(WlBufferList *list, WlBuffer *buffer)
 {
-    u32 irqState = func_arm7_037fb654(WIFI_LIST_LOCK_IRQS);
+    u32 irqState = Irq_ClearEnableBits_Arm7(WIFI_LIST_LOCK_IRQS);
 
     if (list->count == 0) {
         buffer->prev = WIFI_LIST_END;
@@ -25,6 +25,6 @@ int WifiBufList_PushTail(WlBufferList *list, WlBuffer *buffer)
     buffer->magic = WIFI_MSG_BUFFER_TAG;
     list->last = buffer;
     list->count++;
-    func_arm7_037fb690(irqState);
+    Irq_SetEnableBits_Arm7(irqState);
     return 0;
 }

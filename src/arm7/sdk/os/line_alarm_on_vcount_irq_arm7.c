@@ -4,8 +4,6 @@
 
 extern OSVAlarmQueue gOsiVAlarmQueue_Arm7;
 extern s32 data_arm7_03807aa0;
-OSIrqMask func_arm7_037fb620(OSIrqMask mask);
-OSIrqMask func_arm7_037fb654(OSIrqMask mask);
 s32 func_arm7_037fd530(s32 vcount);
 int LineAlarm_ClassifyTiming_Arm7(OSVAlarm *alarm, s32 frame, s32 vcount);
 void LineAlarm_ProgramVcountIrq_Arm7(OSVAlarm *alarm);
@@ -21,7 +19,7 @@ void LineAlarm_OnVcountIrq_Arm7(void)
     OSVAlarm *alarm;
     u16 dispstat;
 
-    func_arm7_037fb654(IRQ_BIT_LINE_MATCH);
+    Irq_ClearEnableBits_Arm7(IRQ_BIT_LINE_MATCH);
     *REG_DISPSTAT &= ~DISPSTAT_VCOUNT_IRQ;
     OS7_IRQ_CHECK_FLAGS |= IRQ_BIT_LINE_MATCH;
     /* the line this interrupt was set for, minus one */
@@ -41,9 +39,9 @@ void LineAlarm_OnVcountIrq_Arm7(void)
                 return;
             }
             /* the line came while the interrupt was being set: run it now */
-            func_arm7_037fb654(IRQ_BIT_LINE_MATCH);
+            Irq_ClearEnableBits_Arm7(IRQ_BIT_LINE_MATCH);
             *REG_DISPSTAT &= ~DISPSTAT_VCOUNT_IRQ;
-            func_arm7_037fb620(IRQ_BIT_LINE_MATCH);
+            Irq_AckPending_Arm7(IRQ_BIT_LINE_MATCH);
             /* fall through */
         case LINE_ALARM_ON_TIME:
             handler = alarm->handler;

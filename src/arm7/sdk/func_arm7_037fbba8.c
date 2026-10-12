@@ -2,15 +2,13 @@
 #include "sdk/os_arm7.h"
 
 extern OSThreadInfo data_arm7_0380790c;
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 
 ThreadSwapHook func_arm7_037fbba8(ThreadSwapHook callback)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     ThreadSwapHook previous = data_arm7_0380790c.switchCallback;
 
     data_arm7_0380790c.switchCallback = callback;
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     return previous;
 }

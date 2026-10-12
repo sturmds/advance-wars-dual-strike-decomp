@@ -5,8 +5,8 @@
 #define WIFI_TASKQ_LOCK_IRQS 0x01000010
 
 BOOL MsgQueue_PopOldest_Arm7(OSMessageQueue *queue, OSMessage *message, int flags); /* OS_ReceiveMessage */
-u32 func_arm7_037fb654(u32 mask); /* ARM7 OS_DisableIrqMask */
-u32 func_arm7_037fb690(u32 mask); /* ARM7 OS_EnableIrqMask */
+u32 Irq_ClearEnableBits_Arm7(u32 mask); /* ARM7 OS_DisableIrqMask */
+u32 Irq_SetEnableBits_Arm7(u32 mask); /* ARM7 OS_EnableIrqMask */
 
 /* Thread body of the driver: runs the queued tasks, most urgent priority first. */
 void WifiTask_ThreadMain(void)
@@ -21,14 +21,14 @@ void WifiTask_ThreadMain(void)
         if (MsgQueue_PopOldest_Arm7(WIFI_DRIVER_STATE->limits.fromHost, &message, OS_MESSAGE_NOBLOCK)) {
             WifiHost_TakeInboxBuffer(&message);
         }
-        irqState = func_arm7_037fb654(WIFI_TASKQ_LOCK_IRQS);
+        irqState = Irq_ClearEnableBits_Arm7(WIFI_TASKQ_LOCK_IRQS);
         work->runPriority = work->topPriority;
         if (work->queueHead[work->runPriority] == WIFI_TASK_LIST_END) {
             work->topPriority++;
-            func_arm7_037fb690(irqState);
+            Irq_SetEnableBits_Arm7(irqState);
             continue;
         }
-        func_arm7_037fb690(irqState);
+        Irq_SetEnableBits_Arm7(irqState);
         work->runTask = WifiTask_PopNext(work->runPriority);
         work->tasks[work->runTask].handler();
         work->runTask = WIFI_TASK_LIST_END;

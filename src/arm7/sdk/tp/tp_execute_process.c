@@ -2,8 +2,6 @@
 #include "sdk/os_arm7.h"
 #include "sdk/tp.h"
 
-int func_arm7_037fdb80(void);                     /* disable interrupts */
-void func_arm7_037fdb94(int state);               /* restore interrupts */
 BOOL func_arm7_03803e68(u32 device);              /* SPI bus free? */
 void func_arm7_03803e50(int device);              /* take the SPI bus */
 void LineAlarm_ArmEveryFrame_Arm7(OSVAlarm *alarm, s16 count, s16 delay, OSVAlarmHandler handler, void *arg);
@@ -24,15 +22,15 @@ void TP_ExecuteProcess(SerialBusJob *entry)
     case TP_REQUEST_COMMAND_SAMPLING: {
         SPITpData sample;
         u16 density;
-        int intr = func_arm7_037fdb80();
+        int intr = Cpu_MaskIrq_Arm7();
 
         if (!func_arm7_03803e68(SERIAL_OWNER_TOUCH)) {
-            func_arm7_037fdb94(intr);
+            Cpu_RestoreIrqBit_Arm7(intr);
             SPIi_ReturnResult(entry->process, TOUCH_REPLY_BUS_TAKEN);
             return;
         }
         func_arm7_03803e50(SERIAL_OWNER_TOUCH);
-        func_arm7_037fdb94(intr);
+        Cpu_RestoreIrqBit_Arm7(intr);
 
         TP_ExecSampling(&sample, tpWork.range, &density);
         Touch_TuneStabilityRange(&sample, density);

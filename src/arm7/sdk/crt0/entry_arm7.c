@@ -1,9 +1,9 @@
 #include "types.h"
+#include "sdk/os_arm7.h"
 
 extern u32 BuildInfo_Arm7[];    /* module parameters the linker fills in */
 void do_autoload_Arm7(void);
 void DetectMainMemorySize(void);
-void func_arm7_037fb340(void);    /* IRQ handler */
 void Arm7Main(void);
 
 /*
@@ -52,7 +52,7 @@ clear_bss:
     bcc clear_bss
     bl DetectMainMemorySize
     ldr r1, =0x0380fffc
-    ldr r0, =func_arm7_037fb340
+    ldr r0, =Irq_DispatchLowestPending_Arm7
     str r0, [r1]
     ldr r1, =Arm7Main
     ldr lr, =0xffff0000

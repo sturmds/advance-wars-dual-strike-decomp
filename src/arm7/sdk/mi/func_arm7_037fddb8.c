@@ -1,14 +1,12 @@
 #include "types.h"
 #include "sdk/mi.h"
-
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
+#include "sdk/os_arm7.h"
 
 /* The ARM7 MI_WaitDma: waits for a channel to finish, then re-arms
  * channel 0 with a dummy transfer. */
 void func_arm7_037fddb8(u32 dmaNo)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     volatile u32 *control = &((volatile u32 *)REG_DMA)[dmaNo * 3 + 2];
 
     while (*control & DMA_ENABLE) {
@@ -20,5 +18,5 @@ void func_arm7_037fddb8(u32 dmaNo)
         dma->dest = 0;
         dma->control = DMA_DUMMY_TRANSFER;
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
 }

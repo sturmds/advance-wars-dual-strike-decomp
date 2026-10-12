@@ -1,7 +1,6 @@
 #include "sdk/snd.h"
+#include "sdk/os_arm7.h"
 
-int func_arm7_037fdb80(void);
-void func_arm7_037fdb94(int state);
 void SndArm7_UpdateSharedWork(void);
 
 #define AUDIO_CH_CTRL_TOP_BYTE(channel) (*(u8 *)(0x04000403 + ((channel) << 4)))
@@ -9,7 +8,7 @@ void SndArm7_UpdateSharedWork(void);
 
 void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask)
 {
-    int irqState = func_arm7_037fdb80();
+    int irqState = Cpu_MaskIrq_Arm7();
     int bit;
 
     for (bit = 0; bit < 16 && channelMask != 0; bit++, channelMask >>= 1) {
@@ -31,6 +30,6 @@ void SndArm7_StartTimer(u32 channelMask, u32 captureMask, u32 alarmMask)
             SndArm7_StartAlarm(bit);
         }
     }
-    func_arm7_037fdb94(irqState);
+    Cpu_RestoreIrqBit_Arm7(irqState);
     SndArm7_UpdateSharedWork();
 }

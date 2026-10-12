@@ -1,10 +1,6 @@
 #include "types.h"
 #include "sdk/ctrdg.h"
-
-int func_arm7_037fb81c(void);              /* OS_GetLockID */
-void func_arm7_037fb944(int lockID);       /* locks the cartridge bus, waiting for it */
-void func_arm7_037fb810(int lockID);       /* OS_UnlockCartridge */
-void func_arm7_037fb8b4(int lockID);       /* OS_ReleaseLockID */
+#include "sdk/os_arm7.h"
 
 /*
  * TRUE when the logo in the GBA cartridge header equals the copy of the
@@ -14,13 +10,12 @@ BOOL Cartridge_LogoMatchesBios(const u16 *logo)
 {
     GbaRomHeader *header = GBA_SLOT_HEADER_PTR;
     const u16 *romLogo = header->logo;
-    u32 lockIDCopy;
+    u16 lockID;
     BOOL same = TRUE;
-    u16 lockID = func_arm7_037fb81c();
     int i;
 
-    func_arm7_037fb944(lockID);
-    lockIDCopy = lockID;   /* needed to match: the original keeps a second copy */
+    lockID = LockId_Allocate_Arm7();
+    SlotLock_Acquire_Arm7(lockID);
     for (i = 0; i < GBA_LOGO_LEN_HALFWORDS; i++) {
         /* Header bytes 0x9c and 0x9e hold flag bits inside the logo; they are not compared. */
         u16 mask = 0xffff;
@@ -34,7 +29,7 @@ BOOL Cartridge_LogoMatchesBios(const u16 *logo)
             break;
         }
     }
-    func_arm7_037fb810(lockIDCopy);
-    func_arm7_037fb8b4(lockIDCopy);
+    SlotLock_ReleaseAlias_Arm7(lockID);
+    LockId_Free_Arm7(lockID);
     return same;
 }
