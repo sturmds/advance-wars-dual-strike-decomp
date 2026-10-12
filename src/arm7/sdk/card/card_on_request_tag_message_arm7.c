@@ -1,7 +1,7 @@
 #include "types.h"
 #include "sdk/card.h"
 
-void func_arm7_037fbdf8(void *thread);                /* looks like OS_WakeupThreadDirect */
+void Thread_MakeReady_Arm7(void *thread);                /* looks like OS_WakeupThreadDirect */
 
 /*
  * PXI tag 11 message from the other CPU. The first word is a request number;
@@ -50,9 +50,9 @@ void Card_OnRequestTagMessage_Arm7(int tag, u32 data, int err)
     } else {
         common->recvStep = 0;
         if (common->flag & CARD_STAT_BUSY) {
-            func_arm7_037fbdf8(common->waiter);
+            Thread_MakeReady_Arm7(common->waiter);
         } else {
-            func_arm7_037fbdf8(common->thread);
+            Thread_MakeReady_Arm7(common->thread);
         }
     }
 }

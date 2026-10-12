@@ -2,7 +2,7 @@
 
 /* OS_CreateThread and OS_WakeupThreadDirect, by their arguments and the ARM9 copies. */
 void func_arm7_037fbf60(OSThread *thread, void (*func)(void *), void *arg, void *stack, u32 stackSize, u32 priority);
-void func_arm7_037fbdf8(OSThread *thread);
+void Thread_MakeReady_Arm7(OSThread *thread);
 
 void SndDrv_Thread(void *arg);
 
@@ -15,5 +15,5 @@ extern u8 data_arm7_03808068[];
 void SND_CreateThread(u32 priority)
 {
     func_arm7_037fbf60(&data_arm7_03807bf0, SndDrv_Thread, NULL, data_arm7_03808068, SOUND_THREAD_STACK_BYTES, priority);
-    func_arm7_037fbdf8(&data_arm7_03807bf0);
+    Thread_MakeReady_Arm7(&data_arm7_03807bf0);
 }

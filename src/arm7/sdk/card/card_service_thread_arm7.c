@@ -5,7 +5,7 @@ int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fbe9c(void *queue);                 /* looks like OS_SleepThread */
 void func_arm7_037fbe2c(void *queue);                 /* looks like OS_WakeupThread */
-void func_arm7_037fbdf8(void *thread);                /* looks like OS_WakeupThreadDirect */
+void Thread_MakeReady_Arm7(void *thread);                /* looks like OS_WakeupThreadDirect */
 int func_arm7_037fe1cc(u32 tag, u32 data, int err);   /* looks like PXI_SendWordByFifo */
 
 /* Request handlers, indexed by CARDiArm7Common.command. */
@@ -49,7 +49,7 @@ void Card_ServiceThread_Arm7(void *arg)
             common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
             func_arm7_037fbe2c(&common->queue);
             if (common->flag & GAMECARD_FLAG_PEER_JOB_PENDING) {
-                func_arm7_037fbdf8(common->thread);
+                Thread_MakeReady_Arm7(common->thread);
             }
             func_arm7_037fdb94(interrupts);
         } else {

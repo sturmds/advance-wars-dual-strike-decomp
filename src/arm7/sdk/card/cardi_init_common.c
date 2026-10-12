@@ -4,7 +4,7 @@
 /* looks like OS_CreateThread */
 void func_arm7_037fbf60(void *thread, void (*func)(void *), void *arg, void *stackTop, u32 stackSize,
                         u32 priority);
-void func_arm7_037fbdf8(void *thread);                        /* looks like OS_WakeupThreadDirect */
+void Thread_MakeReady_Arm7(void *thread);                        /* looks like OS_WakeupThreadDirect */
 void func_arm7_037fe298(int tag, void (*callback)(int tag, u32 data, int err));   /* looks like PXI_SetFifoRecvCallback */
 void func_arm7_03802974(u32 state);
 void Card_ServiceThread_Arm7(void *arg);
@@ -31,7 +31,7 @@ void CARDi_InitCommon(void)
     /* The stack ends where the SPI transfer state starts. */
     func_arm7_037fbf60(common->thread, Card_ServiceThread_Arm7, NULL, &data_arm7_03809860, GAMECARD_WORKER_STACK_BYTES,
                        common->priority);
-    func_arm7_037fbdf8(common->thread);
+    Thread_MakeReady_Arm7(common->thread);
     func_arm7_037fe298(FIFO_TAG_CARD_SERVICE, Card_OnRequestTagMessage_Arm7);
     if (*BOOT_ORIGIN_WORD != BOOT_ORIGIN_WIRELESS) {
         func_arm7_03802974(1);

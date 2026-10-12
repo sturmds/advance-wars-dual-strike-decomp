@@ -6,7 +6,7 @@
 int func_arm7_037fdb80(void);
 void func_arm7_037fdb94(int state);
 void func_arm7_037fbe2c(CARDiArm7ThreadQueue *queue);
-void func_arm7_037fbdf8(void *thread);
+void Thread_MakeReady_Arm7(void *thread);
 
 /* Ends the running request: reports success, wakes the waiters and calls the callback. */
 void Card_ReportDoneAndWake(void)
@@ -21,7 +21,7 @@ void Card_ReportDoneAndWake(void)
     common->flag &= ~(CARD_STAT_BUSY | CARD_STAT_TASK);
     func_arm7_037fbe2c(&common->queue);
     if (common->flag & GAMECARD_FLAG_WORKER_SLEEPS) {
-        func_arm7_037fbdf8(common->thread);
+        Thread_MakeReady_Arm7(common->thread);
     }
     func_arm7_037fdb94(interrupts);
     if (callback != NULL) {
