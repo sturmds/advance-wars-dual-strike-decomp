@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """State of the automated loop (docs/loop.md, .claude/skills/decomp-orchestrate).
 
-The state lives outside git, in $LOOP_DIR (default
-work/loop): state.json, journal.md, steer.md, and
-results/<group>.txt, where each agent writes its RESULT blocks. Batch prompts
-live next to it in loop-prompts/batchN/. Relative paths given to this tool
-resolve against the directory that holds both (work).
+The state lives outside git, in $LOOP_DIR (default work/loop in the main
+checkout, gitignored, also when this runs in an agent's worktree):
+state.json, journal.md, steer.md, and results/<group>.txt, where each agent
+writes its RESULT blocks. Batch prompts live next to it in
+loop-prompts/batchN/. Relative paths given to this tool resolve against the
+directory that holds both (work/).
 Agents never change the state, so it cannot touch landing.
 
     loop_state.py lease                 take or refresh the orchestrator lease
@@ -50,7 +51,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fn  # noqa: E402
 
-LOOP_DIR = Path(os.environ.get("LOOP_DIR", Path("work/loop")))
+# The main checkout holds work/: every worktree shares one git common dir.
+MAIN = Path(subprocess.run(["git", "rev-parse", "--path-format=absolute", "--git-common-dir"], cwd=fn.ROOT,
+                           capture_output=True, text=True, check=True).stdout.strip()).parent
+LOOP_DIR = Path(os.environ.get("LOOP_DIR", MAIN / "work/loop"))
 BASE = LOOP_DIR.parent
 PROMPTS = BASE / "loop-prompts"
 RESULTS = LOOP_DIR / "results"
