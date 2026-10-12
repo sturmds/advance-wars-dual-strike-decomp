@@ -1564,6 +1564,10 @@ src/arm7/sdk/snd/snd_arm7_pause_seq.c:
     complete
     .text       start:0x038017f4 end:0x03801860
 
+src/arm7/sdk/snd/snd_arm7_stop_seq.c:
+    complete
+    .text       start:0x03801860 end:0x038018b8
+
 src/arm7/sdk/func_arm7_03801c28.c:
     complete
     .text       start:0x03801c28 end:0x03801c70
